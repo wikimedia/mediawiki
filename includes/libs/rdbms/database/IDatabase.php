@@ -166,14 +166,14 @@ interface IDatabase {
 
 	/**
 	 * Get/set the table prefix.
-	 * @param string $prefix The table prefix to set, or omitted to leave it unchanged.
+	 * @param string|null $prefix The table prefix to set, or omitted to leave it unchanged.
 	 * @return string The previous table prefix.
 	 */
 	public function tablePrefix( $prefix = null );
 
 	/**
 	 * Get/set the db schema.
-	 * @param string $schema The database schema to set, or omitted to leave it unchanged.
+	 * @param string|null $schema The database schema to set, or omitted to leave it unchanged.
 	 * @return string The previous db schema.
 	 */
 	public function dbSchema( $schema = null );
@@ -182,7 +182,7 @@ interface IDatabase {
 	 * Get properties passed down from the server info array of the load
 	 * balancer.
 	 *
-	 * @param string $name The entry of the info array to get, or null to get the
+	 * @param string|null $name The entry of the info array to get, or null to get the
 	 *   whole array
 	 *
 	 * @return array|mixed|null
@@ -195,7 +195,7 @@ interface IDatabase {
 	 * parameters, the member with the given name is set to the given value.
 	 *
 	 * @param string $name
-	 * @param array $value
+	 * @param array|null $value
 	 */
 	public function setLBInfo( $name, $value = null );
 
@@ -1698,7 +1698,7 @@ interface IDatabase {
 	 * @since 1.31
 	 * @see IDatabase::startAtomic
 	 * @param string $fname
-	 * @param AtomicSectionIdentifier $sectionId Section ID from startAtomic();
+	 * @param AtomicSectionIdentifier|null $sectionId Section ID from startAtomic();
 	 *   passing this enables cancellation of unclosed nested sections [optional]
 	 * @throws DBError
 	 */
@@ -1882,7 +1882,7 @@ interface IDatabase {
 	 * The result is unquoted, and needs to be passed through addQuotes()
 	 * before it can be included in raw SQL.
 	 *
-	 * @param string|int $ts
+	 * @param string|int|null $ts
 	 *
 	 * @return string
 	 */

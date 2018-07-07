@@ -42,7 +42,7 @@ class MessageContent extends AbstractContent {
 
 	/**
 	 * @param Message|string $msg A Message object, or a message key.
-	 * @param string[] $params An optional array of message parameters.
+	 * @param string[]|null $params An optional array of message parameters.
 	 */
 	public function __construct( $msg, $params = null ) {
 		# XXX: messages may be wikitext, html or plain text! and maybe even something else entirely.
@@ -148,8 +148,8 @@ class MessageContent extends AbstractContent {
 
 	/**
 	 * @param Title $title Unused.
-	 * @param int $revId Unused.
-	 * @param ParserOptions $options Unused.
+	 * @param int|null $revId Unused.
+	 * @param ParserOptions|null $options Unused.
 	 * @param bool $generateHtml Whether to generate HTML (default: true).
 	 *
 	 * @return ParserOutput

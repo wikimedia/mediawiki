@@ -490,7 +490,7 @@ class RecentChange {
 
 	/**
 	 * Notify all the feeds about the change.
-	 * @param array $feeds Optional feeds to send to, defaults to $wgRCFeeds
+	 * @param array|null $feeds Optional feeds to send to, defaults to $wgRCFeeds
 	 */
 	public function notifyRCFeeds( array $feeds = null ) {
 		global $wgRCFeeds;
@@ -556,7 +556,7 @@ class RecentChange {
 	 *
 	 * @param RecentChange|int $change RecentChange or corresponding rc_id
 	 * @param bool $auto For automatic patrol
-	 * @param string|string[] $tags Change tags to add to the patrol log entry
+	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
 	 *   ($user should be able to add the specified tags before this is called)
 	 * @return array See doMarkPatrolled(), or null if $change is not an existing rc_id
 	 */
@@ -581,7 +581,7 @@ class RecentChange {
 	 * 'markedaspatrollederror-noautopatrol' as errors
 	 * @param User $user User object doing the action
 	 * @param bool $auto For automatic patrol
-	 * @param string|string[] $tags Change tags to add to the patrol log entry
+	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
 	 *   ($user should be able to add the specified tags before this is called)
 	 * @return array Array of permissions errors, see Title::getUserPermissionsErrors()
 	 */
@@ -932,7 +932,7 @@ class RecentChange {
 	 *
 	 * @param string $timestamp Timestamp of the recent change to occur
 	 * @param Title $categoryTitle Title of the category a page is being added to or removed from
-	 * @param User $user User object of the user that made the change
+	 * @param User|null $user User object of the user that made the change
 	 * @param string $comment Change summary
 	 * @param Title $pageTitle Title of the page that is being added or removed
 	 * @param int $oldRevId Parent revision ID of this change
@@ -941,7 +941,7 @@ class RecentChange {
 	 * @param bool $bot true, if the change was made by a bot
 	 * @param string $ip IP address of the user, if the change was made anonymously
 	 * @param int $deleted Indicates whether the change has been deleted
-	 * @param bool $added true, if the category was added, false for removed
+	 * @param bool|null $added true, if the category was added, false for removed
 	 *
 	 * @return RecentChange
 	 */

@@ -327,8 +327,8 @@ class SearchHighlighter {
 	 * @param string $text
 	 * @param int $start
 	 * @param int $end
-	 * @param int &$posStart (out) actual start position
-	 * @param int &$posEnd (out) actual end position
+	 * @param int|null &$posStart (out) actual start position
+	 * @param int|null &$posEnd (out) actual end position
 	 * @return string
 	 */
 	function extract( $text, $start, $end, &$posStart = null, &$posEnd = null ) {

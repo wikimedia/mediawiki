@@ -46,7 +46,7 @@ class CloneDatabase {
 	 * @param IMaintainableDatabase $db A database subclass
 	 * @param array $tablesToClone An array of tables to clone, unprefixed
 	 * @param string $newTablePrefix Prefix to assign to the tables
-	 * @param string $oldTablePrefix Prefix on current tables, if not $wgDBprefix
+	 * @param string|null $oldTablePrefix Prefix on current tables, if not $wgDBprefix
 	 * @param bool $dropCurrentTables
 	 */
 	public function __construct( IMaintainableDatabase $db, array $tablesToClone,

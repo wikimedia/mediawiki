@@ -153,10 +153,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * @param array $options List of options; if not given or empty, an empty module will be
 	 *     constructed
-	 * @param string $localBasePath Base path to prepend to all local paths in $options. Defaults
-	 *     to $IP
-	 * @param string $remoteBasePath Base path to prepend to all remote paths in $options. Defaults
-	 *     to $wgResourceBasePath
+	 * @param string|null $localBasePath Base path to prepend to all local paths in $options.
+	 *     Defaults to $IP
+	 * @param string|null $remoteBasePath Base path to prepend to all remote paths in $options.
+	 *     Defaults to $wgResourceBasePath
 	 *
 	 * Below is a description for the $options array:
 	 * @throws InvalidArgumentException
@@ -298,9 +298,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Implementation note: the amount of global state used in this function is staggering.
 	 *
 	 * @param array $options Module definition
-	 * @param string $localBasePath Path to use if not provided in module definition. Defaults
+	 * @param string|null $localBasePath Path to use if not provided in module definition. Defaults
 	 *     to $IP
-	 * @param string $remoteBasePath Path to use if not provided in module definition. Defaults
+	 * @param string|null $remoteBasePath Path to use if not provided in module definition. Defaults
 	 *     to $wgResourceBasePath
 	 * @return array Array( localBasePath, remoteBasePath )
 	 */
@@ -653,7 +653,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * @param array $list List of lists to select from
 	 * @param string $key Key to look for in $map
-	 * @param string $fallback Key to look for in $list if $key doesn't exist
+	 * @param string|null $fallback Key to look for in $list if $key doesn't exist
 	 * @return array List of elements from $map which matched $key or $fallback,
 	 *  or an empty list in case of no match
 	 */
@@ -826,7 +826,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @private
 	 * @param array $styles Map of media type to file paths to read, remap, and concatenate
 	 * @param bool $flip
-	 * @param ResourceLoaderContext $context
+	 * @param ResourceLoaderContext|null $context
 	 * @return array List of concatenated and remapped CSS data from $styles,
 	 *     keyed by media type
 	 * @throws MWException

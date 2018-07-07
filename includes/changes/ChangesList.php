@@ -107,7 +107,7 @@ class ChangesList extends ContextSource {
 	 *
 	 * @param RecentChange &$rc Passed by reference
 	 * @param bool $watched (default false)
-	 * @param int $linenumber (default null)
+	 * @param int|null $linenumber (default null)
 	 *
 	 * @return string|bool
 	 */
@@ -249,7 +249,7 @@ class ChangesList extends ContextSource {
 	 * bot edit, or unpatrolled edit. In English it typically contains "N", "m", "b", or "!".
 	 *
 	 * @param string $flag One key of $wgRecentChangesFlags
-	 * @param IContextSource $context
+	 * @param IContextSource|null $context
 	 * @return string HTML
 	 */
 	public static function flag( $flag, IContextSource $context = null ) {
@@ -310,7 +310,7 @@ class ChangesList extends ContextSource {
 	 *
 	 * @param int $old Number of bytes
 	 * @param int $new Number of bytes
-	 * @param IContextSource $context
+	 * @param IContextSource|null $context
 	 * @return string
 	 */
 	public static function showCharacterDifference( $old, $new, IContextSource $context = null ) {
@@ -363,7 +363,7 @@ class ChangesList extends ContextSource {
 	 * Format the character difference of one or several changes.
 	 *
 	 * @param RecentChange $old
-	 * @param RecentChange $new Last change to use, if not provided, $old will be used
+	 * @param RecentChange|null $new Last change to use, if not provided, $old will be used
 	 * @return string HTML fragment
 	 */
 	public function formatCharacterDifference( RecentChange $old, RecentChange $new = null ) {
@@ -628,7 +628,7 @@ class ChangesList extends ContextSource {
 	 * field of this revision, if it's marked as deleted.
 	 * @param RCCacheEntry|RecentChange $rc
 	 * @param int $field
-	 * @param User $user User object to check, or null to use $wgUser
+	 * @param User|null $user User object to check, or null to use $wgUser
 	 * @return bool
 	 */
 	public static function userCan( $rc, $field, User $user = null ) {

@@ -131,7 +131,7 @@ class WikiMap {
 	 *
 	 * @param string $wikiID Wiki'd id (generally database name)
 	 * @param string $user User name (must be normalised before calling this function!)
-	 * @param string $text Link's text; optional, default to "User:$user"
+	 * @param string|null $text Link's text; optional, default to "User:$user"
 	 * @return string HTML link or false if the wiki was not found
 	 */
 	public static function foreignUserLink( $wikiID, $user, $text = null ) {
@@ -143,7 +143,7 @@ class WikiMap {
 	 *
 	 * @param string $wikiID Wiki'd id (generally database name)
 	 * @param string $page Page name (must be normalised before calling this function!)
-	 * @param string $text Link's text; optional, default to $page
+	 * @param string|null $text Link's text; optional, default to $page
 	 * @return string|false HTML link or false if the wiki was not found
 	 */
 	public static function makeForeignLink( $wikiID, $page, $text = null ) {

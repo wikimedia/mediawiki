@@ -484,7 +484,7 @@ class WebRequest {
 	 * If no source and no default, returns null.
 	 *
 	 * @param string $name
-	 * @param array $default Optional default (or null)
+	 * @param array|null $default Optional default (or null)
 	 * @return array|null
 	 */
 	public function getArray( $name, $default = null ) {
@@ -503,7 +503,7 @@ class WebRequest {
 	 * If an array is returned, contents are guaranteed to be integers.
 	 *
 	 * @param string $name
-	 * @param array $default Option default (or null)
+	 * @param array|null $default Option default (or null)
 	 * @return array Array of ints
 	 */
 	public function getIntArray( $name, $default = null ) {
@@ -776,8 +776,8 @@ class WebRequest {
 	 * Get a cookie from the $_COOKIE jar
 	 *
 	 * @param string $key The name of the cookie
-	 * @param string $prefix A prefix to use for the cookie name, if not $wgCookiePrefix
-	 * @param mixed $default What to return if the value isn't found
+	 * @param string|null $prefix A prefix to use for the cookie name, if not $wgCookiePrefix
+	 * @param mixed|null $default What to return if the value isn't found
 	 * @return mixed Cookie value or $default if the cookie not set
 	 */
 	public function getCookie( $key, $prefix = null, $default = null ) {

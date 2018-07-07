@@ -932,8 +932,8 @@ class ParserOptions {
 	 * @warning For interaction with the parser cache, use
 	 *  WikiPage::makeParserOptions(), ContentHandler::makeParserOptions(), or
 	 *  ParserOptions::newCanonical() instead.
-	 * @param User $user
-	 * @param Language $lang
+	 * @param User|null $user
+	 * @param Language|null $lang
 	 */
 	public function __construct( $user = null, $lang = null ) {
 		if ( $user === null ) {
@@ -1271,7 +1271,7 @@ class ParserOptions {
 	 *
 	 * @since 1.17
 	 * @param string[] $forOptions
-	 * @param Title $title Used to get the content language of the page (since r97636)
+	 * @param Title|null $title Used to get the content language of the page (since r97636)
 	 * @return string Page rendering hash
 	 */
 	public function optionsHash( $forOptions, $title = null ) {

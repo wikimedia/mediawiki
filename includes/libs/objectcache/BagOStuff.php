@@ -185,7 +185,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * @param string $key
 	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
-	 * @param int $oldFlags [unused]
+	 * @param int|null $oldFlags [unused]
 	 * @return mixed Returns false on failure and if the item does not exist
 	 */
 	public function get( $key, $flags = 0, $oldFlags = null ) {
@@ -774,7 +774,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * @since 1.27
 	 * @param string $class Key class
-	 * @param string $component [optional] Key component (starting with a key collection name)
+	 * @param string|null $component [optional] Key component (starting with a key collection name)
 	 * @return string Colon-delimited list of $keyspace followed by escaped components of $args
 	 */
 	public function makeGlobalKey( $class, $component = null ) {
@@ -786,7 +786,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * @since 1.27
 	 * @param string $class Key class
-	 * @param string $component [optional] Key component (starting with a key collection name)
+	 * @param string|null $component [optional] Key component (starting with a key collection name)
 	 * @return string Colon-delimited list of $keyspace followed by escaped components of $args
 	 */
 	public function makeKey( $class, $component = null ) {

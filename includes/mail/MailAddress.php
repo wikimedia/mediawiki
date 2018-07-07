@@ -47,8 +47,8 @@ class MailAddress {
 
 	/**
 	 * @param string $address String with an email address, or a User object
-	 * @param string $name Human-readable name if a string address is given
-	 * @param string $realName Human-readable real name if a string address is given
+	 * @param string|null $name Human-readable name if a string address is given
+	 * @param string|null $realName Human-readable real name if a string address is given
 	 */
 	function __construct( $address, $name = null, $realName = null ) {
 		if ( is_object( $address ) && $address instanceof User ) {

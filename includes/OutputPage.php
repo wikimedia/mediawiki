@@ -469,7 +469,7 @@ class OutputPage extends ContextSource {
 	 * Internal use only. Use OutputPage::addModules() if possible.
 	 *
 	 * @param string $file URL to file (absolute path, protocol-relative, or full url)
-	 * @param string $unused Previously used to change the cache-busting query parameter
+	 * @param string|null $unused Previously used to change the cache-busting query parameter
 	 */
 	public function addScriptFile( $file, $unused = null ) {
 		if ( substr( $file, 0, 1 ) !== '/' && !preg_match( '#^[a-z]*://#i', $file ) ) {
@@ -1929,7 +1929,7 @@ class OutputPage extends ContextSource {
 	 * @param bool $interface Use interface language ($wgLang instead of
 	 *   $wgContLang) while parsing language sensitive magic words like GRAMMAR and PLURAL.
 	 *   This also disables LanguageConverter.
-	 * @param Language $language Target language object, will override $interface
+	 * @param Language|null $language Target language object, will override $interface
 	 * @throws MWException
 	 * @return string HTML
 	 */
@@ -2533,7 +2533,7 @@ class OutputPage extends ContextSource {
 	 * Output a standard permission error page
 	 *
 	 * @param array $errors Error message keys or [key, param...] arrays
-	 * @param string $action Action that was denied or null if unknown
+	 * @param string|null $action Action that was denied or null if unknown
 	 */
 	public function showPermissionsErrorPage( array $errors, $action = null ) {
 		foreach ( $errors as $key => $error ) {
@@ -2623,7 +2623,7 @@ class OutputPage extends ContextSource {
 	 * Format a list of error messages
 	 *
 	 * @param array $errors Array of arrays returned by Title::getUserPermissionsErrors
-	 * @param string $action Action that was denied or null if unknown
+	 * @param string|null $action Action that was denied or null if unknown
 	 * @return string The wikitext error-messages, formatted into a list.
 	 */
 	public function formatPermissionsErrorMessage( array $errors, $action = null ) {
@@ -2708,7 +2708,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param Title $title Title to link
 	 * @param array $query Query string parameters
-	 * @param string $text Text of the link (input is not escaped)
+	 * @param string|null $text Text of the link (input is not escaped)
 	 * @param array $options Options array to pass to Linker
 	 */
 	public function addReturnTo( $title, array $query = [], $text = null, $options = [] ) {
@@ -2723,9 +2723,9 @@ class OutputPage extends ContextSource {
 	 * Add a "return to" link pointing to a specified title,
 	 * or the title indicated in the request, or else the main page
 	 *
-	 * @param mixed $unused
-	 * @param Title|string $returnto Title or String to return to
-	 * @param string $returntoquery Query string for the return to link
+	 * @param mixed|null $unused
+	 * @param Title|string|null $returnto Title or String to return to
+	 * @param string|null $returntoquery Query string for the return to link
 	 */
 	public function returnToMain( $unused = null, $returnto = null, $returntoquery = null ) {
 		if ( $returnto == null ) {
@@ -3055,7 +3055,7 @@ class OutputPage extends ContextSource {
 	 * Add one or more variables to be set in mw.config in JavaScript
 	 *
 	 * @param string|array $keys Key or array of key/value pairs
-	 * @param mixed $value [optional] Value of the configuration variable
+	 * @param mixed|null $value [optional] Value of the configuration variable
 	 */
 	public function addJsConfigVars( $keys, $value = null ) {
 		if ( is_array( $keys ) ) {

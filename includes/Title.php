@@ -2086,7 +2086,7 @@ class Title implements LinkTarget {
 	 * May provide false positives, but should never provide a false negative.
 	 *
 	 * @param string $action Action that permission needs to be checked for
-	 * @param User $user User to check (since 1.19); $wgUser will be used if not provided.
+	 * @param User|null $user User to check (since 1.19); $wgUser will be used if not provided.
 	 * @return bool
 	 */
 	public function quickUserCan( $action, $user = null ) {
@@ -2097,7 +2097,7 @@ class Title implements LinkTarget {
 	 * Can $user perform $action on this page?
 	 *
 	 * @param string $action Action that permission needs to be checked for
-	 * @param User $user User to check (since 1.19); $wgUser will be used if not
+	 * @param User|null $user User to check (since 1.19); $wgUser will be used if not
 	 *   provided.
 	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
 	 * @return bool
@@ -3139,7 +3139,7 @@ class Title implements LinkTarget {
 	 * Public for usage by LiquidThreads.
 	 *
 	 * @param array $rows Array of db result objects
-	 * @param string $oldFashionedRestrictions Comma-separated set of permission keys
+	 * @param string|null $oldFashionedRestrictions Comma-separated set of permission keys
 	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
 	 * Edit and move sections are separated by a colon
 	 * Example: "edit=autoconfirmed,sysop:move=sysop"
@@ -3211,7 +3211,7 @@ class Title implements LinkTarget {
 	/**
 	 * Load restrictions from the page_restrictions table
 	 *
-	 * @param string $oldFashionedRestrictions Comma-separated set of permission keys
+	 * @param string|null $oldFashionedRestrictions Comma-separated set of permission keys
 	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
 	 * Edit and move sections are separated by a colon
 	 * Example: "edit=autoconfirmed,sysop:move=sysop"
@@ -4681,7 +4681,7 @@ class Title implements LinkTarget {
 	/**
 	 * Updates page_touched for this page; called from LinksUpdate.php
 	 *
-	 * @param string $purgeTime [optional] TS_MW timestamp
+	 * @param string|null $purgeTime [optional] TS_MW timestamp
 	 * @return bool True if the update succeeded
 	 */
 	public function invalidateCache( $purgeTime = null ) {
@@ -4752,7 +4752,7 @@ class Title implements LinkTarget {
 	/**
 	 * Get the timestamp when this page was updated since the user last saw it.
 	 *
-	 * @param User $user
+	 * @param User|null $user
 	 * @return string|null
 	 */
 	public function getNotificationTimestamp( $user = null ) {

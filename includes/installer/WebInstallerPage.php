@@ -145,7 +145,7 @@ abstract class WebInstallerPage {
 
 	/**
 	 * @param string $var
-	 * @param mixed $default
+	 * @param mixed|null $default
 	 *
 	 * @return mixed
 	 */

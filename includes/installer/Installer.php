@@ -531,7 +531,7 @@ abstract class Installer {
 	 * Installer variables are typically prefixed by an underscore.
 	 *
 	 * @param string $name
-	 * @param mixed $default
+	 * @param mixed|null $default
 	 *
 	 * @return mixed
 	 */

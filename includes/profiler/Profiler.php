@@ -165,7 +165,7 @@ abstract class Profiler {
 	abstract public function scopedProfileIn( $section );
 
 	/**
-	 * @param SectionProfileCallback &$section
+	 * @param SectionProfileCallback|null &$section
 	 */
 	public function scopedProfileOut( SectionProfileCallback &$section = null ) {
 		$section = null;

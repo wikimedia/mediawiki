@@ -206,7 +206,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * initialize various variables and generate the template
 	 *
-	 * @param OutputPage $out
+	 * @param OutputPage|null $out
 	 */
 	function outputPage( OutputPage $out = null ) {
 		Profiler::instance()->setTemplated( true );
@@ -508,7 +508,7 @@ class SkinTemplate extends Skin {
 	 *
 	 * @since 1.31
 	 *
-	 * @param array $personalTools
+	 * @param array|null $personalTools
 	 * @param array $options
 	 * @return string
 	 */

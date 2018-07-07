@@ -112,7 +112,7 @@ class CoreParserFunctions {
 	/**
 	 * @param Parser $parser
 	 * @param string $date
-	 * @param string $defaultPref
+	 * @param string|null $defaultPref
 	 *
 	 * @return string
 	 */
@@ -165,7 +165,7 @@ class CoreParserFunctions {
 	 *
 	 * @param Parser $parser
 	 * @param string $s The text to encode.
-	 * @param string $arg (optional): The type of encoding.
+	 * @param string|null $arg (optional): The type of encoding.
 	 * @return string
 	 */
 	public static function urlencode( $parser, $s = '', $arg = null ) {
@@ -292,7 +292,7 @@ class CoreParserFunctions {
 	/**
 	 * @param Parser $parser
 	 * @param string $num
-	 * @param string $arg
+	 * @param string|null $arg
 	 * @return string
 	 */
 	public static function formatnum( $parser, $num = '', $arg = null ) {
@@ -556,7 +556,7 @@ class CoreParserFunctions {
 	 * Note: function name changed to "mwnamespace" rather than "namespace"
 	 * to not break PHP 5.3
 	 * @param Parser $parser
-	 * @param string $title
+	 * @param string|null $title
 	 * @return mixed|string
 	 */
 	public static function mwnamespace( $parser, $title = null ) {
@@ -613,7 +613,7 @@ class CoreParserFunctions {
 	 * Functions to get and normalize pagenames, corresponding to the magic words
 	 * of the same names
 	 * @param Parser $parser
-	 * @param string $title
+	 * @param string|null $title
 	 * @return string
 	 */
 	public static function pagename( $parser, $title = null ) {
@@ -721,8 +721,8 @@ class CoreParserFunctions {
 	 * can't be called too many times per page.
 	 * @param Parser $parser
 	 * @param string $name
-	 * @param string $arg1
-	 * @param string $arg2
+	 * @param string|null $arg1
+	 * @param string|null $arg2
 	 * @return string
 	 */
 	public static function pagesincategory( $parser, $name = '', $arg1 = null, $arg2 = null ) {
@@ -789,7 +789,7 @@ class CoreParserFunctions {
 	 *
 	 * @param Parser $parser
 	 * @param string $page Name of page to check (Default: empty string)
-	 * @param string $raw Should number be human readable with commas or just number
+	 * @param string|null $raw Should number be human readable with commas or just number
 	 * @return string
 	 */
 	public static function pagesize( $parser, $page = '', $raw = null ) {
@@ -1141,7 +1141,7 @@ class CoreParserFunctions {
 	/**
 	 * Get the pageid of a specified page
 	 * @param Parser $parser
-	 * @param string $title Title to get the pageid from
+	 * @param string|null $title Title to get the pageid from
 	 * @return int|null|string
 	 * @since 1.23
 	 */
@@ -1186,7 +1186,7 @@ class CoreParserFunctions {
 	/**
 	 * Get the id from the last revision of a specified page.
 	 * @param Parser $parser
-	 * @param string $title Title to get the id from
+	 * @param string|null $title Title to get the id from
 	 * @return int|null|string
 	 * @since 1.23
 	 */
@@ -1203,7 +1203,7 @@ class CoreParserFunctions {
 	/**
 	 * Get the day from the last revision of a specified page.
 	 * @param Parser $parser
-	 * @param string $title Title to get the day from
+	 * @param string|null $title Title to get the day from
 	 * @return string
 	 * @since 1.23
 	 */
@@ -1220,7 +1220,7 @@ class CoreParserFunctions {
 	/**
 	 * Get the day with leading zeros from the last revision of a specified page.
 	 * @param Parser $parser
-	 * @param string $title Title to get the day from
+	 * @param string|null $title Title to get the day from
 	 * @return string
 	 * @since 1.23
 	 */
@@ -1237,7 +1237,7 @@ class CoreParserFunctions {
 	/**
 	 * Get the month with leading zeros from the last revision of a specified page.
 	 * @param Parser $parser
-	 * @param string $title Title to get the month from
+	 * @param string|null $title Title to get the month from
 	 * @return string
 	 * @since 1.23
 	 */
@@ -1254,7 +1254,7 @@ class CoreParserFunctions {
 	/**
 	 * Get the month from the last revision of a specified page.
 	 * @param Parser $parser
-	 * @param string $title Title to get the month from
+	 * @param string|null $title Title to get the month from
 	 * @return string
 	 * @since 1.23
 	 */
@@ -1271,7 +1271,7 @@ class CoreParserFunctions {
 	/**
 	 * Get the year from the last revision of a specified page.
 	 * @param Parser $parser
-	 * @param string $title Title to get the year from
+	 * @param string|null $title Title to get the year from
 	 * @return string
 	 * @since 1.23
 	 */
@@ -1288,7 +1288,7 @@ class CoreParserFunctions {
 	/**
 	 * Get the timestamp from the last revision of a specified page.
 	 * @param Parser $parser
-	 * @param string $title Title to get the timestamp from
+	 * @param string|null $title Title to get the timestamp from
 	 * @return string
 	 * @since 1.23
 	 */
@@ -1305,7 +1305,7 @@ class CoreParserFunctions {
 	/**
 	 * Get the user from the last revision of a specified page.
 	 * @param Parser $parser
-	 * @param string $title Title to get the user from
+	 * @param string|null $title Title to get the user from
 	 * @return string
 	 * @since 1.23
 	 */

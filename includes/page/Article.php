@@ -85,7 +85,7 @@ class Article implements Page {
 	/**
 	 * Constructor and clear the article
 	 * @param Title $title Reference to a Title object.
-	 * @param int $oldId Revision ID, null to fetch from request, zero for current
+	 * @param int|null $oldId Revision ID, null to fetch from request, zero for current
 	 */
 	public function __construct( Title $title, $oldId = null ) {
 		$this->mOldId = $oldId;
@@ -1962,7 +1962,7 @@ class Article implements Page {
 	 * @since 1.16 (r52326) for LiquidThreads
 	 *
 	 * @param int|null $oldid Revision ID or null
-	 * @param User $user The relevant user
+	 * @param User|null $user The relevant user
 	 * @return ParserOutput|bool ParserOutput or false if the given revision ID is not found
 	 */
 	public function getParserOutput( $oldid = null, User $user = null ) {
@@ -2615,8 +2615,8 @@ class Article implements Page {
 	/**
 	 * @param string $reason
 	 * @param bool $suppress
-	 * @param int $u1 Unused
-	 * @param bool $u2 Unused
+	 * @param int|null $u1 Unused
+	 * @param bool|null $u2 Unused
 	 * @param string &$error
 	 * @return bool
 	 */

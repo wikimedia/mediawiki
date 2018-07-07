@@ -241,7 +241,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param MessageCache $messageCache
 	 * @param Language $contentLanguage
-	 * @param LoggerInterface $saveParseLogger
+	 * @param LoggerInterface|null $saveParseLogger
 	 */
 	public function __construct(
 		WikiPage $wikiPage,

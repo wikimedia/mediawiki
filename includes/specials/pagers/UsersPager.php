@@ -38,9 +38,9 @@ class UsersPager extends AlphabeticPager {
 	protected $userGroupCache;
 
 	/**
-	 * @param IContextSource $context
-	 * @param array $par (Default null)
-	 * @param bool $including Whether this page is being transcluded in
+	 * @param IContextSource|null $context
+	 * @param array|null $par (Default null)
+	 * @param bool|null $including Whether this page is being transcluded in
 	 * another page
 	 */
 	function __construct( IContextSource $context = null, $par = null, $including = null ) {

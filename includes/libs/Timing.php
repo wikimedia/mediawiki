@@ -83,7 +83,7 @@ class Timing implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param string $markName The name of the mark that should
+	 * @param string|null $markName The name of the mark that should
 	 *  be cleared. If not specified, all marks will be cleared.
 	 */
 	public function clearMarks( $markName = null ) {
@@ -117,7 +117,7 @@ class Timing implements LoggerAwareInterface {
 	 *
 	 * @param string $measureName
 	 * @param string $startMark
-	 * @param string $endMark
+	 * @param string|null $endMark
 	 * @return array|bool The measure that has been created, or false if either
 	 *  the start mark or the end mark do not exist.
 	 */

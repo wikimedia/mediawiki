@@ -1029,9 +1029,9 @@ EOT;
 	 * @todo analyse file if need be
 	 * @todo look at multiple extension, separately and together.
 	 *
-	 * @param string $path Full path to the image file, in case we have to look at the contents
+	 * @param string|null $path Full path to the image file, in case we have to look at the contents
 	 *        (if null, only the MIME type is used to determine the media type code).
-	 * @param string $mime MIME type. If null it will be guessed using guessMimeType.
+	 * @param string|null $mime MIME type. If null it will be guessed using guessMimeType.
 	 *
 	 * @return string A value to be used with the MEDIATYPE_xxx constants.
 	 */

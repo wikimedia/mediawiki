@@ -245,7 +245,7 @@ interface ILBFactory {
 
 	/**
 	 * Determine if any master connection has pending/written changes from this request
-	 * @param float $age How many seconds ago is "recent" [defaults to LB lag wait timeout]
+	 * @param float|null $age How many seconds ago is "recent" [defaults to LB lag wait timeout]
 	 * @return bool
 	 */
 	public function hasOrMadeRecentMasterChanges( $age = null );

@@ -1100,7 +1100,7 @@ abstract class ApiBase extends ContextSource {
 	 * Return true if we're to watch the page, false if not, null if no change.
 	 * @param string $watchlist Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
 	 * @param Title $titleObj The page under consideration
-	 * @param string $userOption The user option to consider when $watchlist=preferences.
+	 * @param string|null $userOption The user option to consider when $watchlist=preferences.
 	 *    If not set will use watchdefault always and watchcreations if $titleObj doesn't exist.
 	 * @return bool
 	 */
@@ -1574,7 +1574,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param int &$value Parameter value
 	 * @param int|null $min Minimum value
 	 * @param int|null $max Maximum value for users
-	 * @param int $botMax Maximum value for sysops/bots
+	 * @param int|null $botMax Maximum value for sysops/bots
 	 * @param bool $enforceLimits Whether to enforce (die) if value is outside limits
 	 */
 	protected function validateLimit( $paramName, &$value, $min, $max, $botMax = null,
@@ -1744,7 +1744,7 @@ abstract class ApiBase extends ContextSource {
 	 * Set a watch (or unwatch) based the based on a watchlist parameter.
 	 * @param string $watch Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
 	 * @param Title $titleObj The article's title to change
-	 * @param string $userOption The user option to consider when $watch=preferences
+	 * @param string|null $userOption The user option to consider when $watch=preferences
 	 */
 	protected function setWatch( $watch, $titleObj, $userOption = null ) {
 		$value = $this->getWatchlistValue( $watch, $titleObj, $userOption );
@@ -1812,7 +1812,7 @@ abstract class ApiBase extends ContextSource {
 	 * @since 1.25
 	 * @param string|array|Message $msg
 	 * @param IContextSource $context
-	 * @param array $params
+	 * @param array|null $params
 	 * @return Message|null
 	 */
 	public static function makeMessage( $msg, IContextSource $context, array $params = null ) {

@@ -75,7 +75,7 @@ class LinkCache {
 	 * in order to avoid link table inconsistency), which was later removed
 	 * for performance on wikis with a high edit rate.
 	 *
-	 * @param bool $update
+	 * @param bool|null $update
 	 * @return bool
 	 */
 	public function forUpdate( $update = null ) {
@@ -125,7 +125,7 @@ class LinkCache {
 	 * @param int $id Page's ID
 	 * @param LinkTarget $target
 	 * @param int $len Text's length
-	 * @param int $redir Whether the page is a redirect
+	 * @param int|null $redir Whether the page is a redirect
 	 * @param int $revision Latest revision's ID
 	 * @param string|null $model Latest revision's content model ID
 	 * @param string|null $lang Language code of the page, if not the content language

@@ -52,7 +52,7 @@ class Throttler implements LoggerAwareInterface {
 	protected $warningLimit;
 
 	/**
-	 * @param array $conditions An array of arrays describing throttling conditions.
+	 * @param array|null $conditions An array of arrays describing throttling conditions.
 	 *     Defaults to $wgPasswordAttemptThrottle. See documentation of that variable for format.
 	 * @param array $params Parameters (all optional):
 	 *   - type: throttle type, used as a namespace for counters,

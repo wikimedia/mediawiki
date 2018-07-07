@@ -50,8 +50,8 @@ class MessageBlobStore implements LoggerAwareInterface {
 	protected $wanCache;
 
 	/**
-	 * @param ResourceLoader $rl
-	 * @param LoggerInterface $logger
+	 * @param ResourceLoader|null $rl
+	 * @param LoggerInterface|null $logger
 	 */
 	public function __construct( ResourceLoader $rl = null, LoggerInterface $logger = null ) {
 		$this->resourceloader = $rl;

@@ -505,7 +505,7 @@ abstract class SearchEngine {
 	 *
 	 * @todo This isn't ideal, we'd really like to have content-specific handling here
 	 * @param Title $t Title we're indexing
-	 * @param Content $c Content of the page to index
+	 * @param Content|null $c Content of the page to index
 	 * @return string
 	 */
 	public function getTextFromContent( Title $t, Content $c = null ) {

@@ -457,7 +457,7 @@ final class SessionBackend {
 
 	/**
 	 * Set the "logged out" timestamp
-	 * @param int $ts
+	 * @param int|null $ts
 	 */
 	public function setLoggedOutTimestamp( $ts = null ) {
 		$ts = (int)$ts;

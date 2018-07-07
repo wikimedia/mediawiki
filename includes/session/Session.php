@@ -291,7 +291,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 	/**
 	 * Fetch a value from the session
 	 * @param string|int $key
-	 * @param mixed $default Returned if $this->exists( $key ) would be false
+	 * @param mixed|null $default Returned if $this->exists( $key ) would be false
 	 * @return mixed
 	 */
 	public function get( $key, $default = null ) {
@@ -522,7 +522,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 	/**
 	 * Fetch a value from the session that was set with self::setSecret()
 	 * @param string|int $key
-	 * @param mixed $default Returned if $this->exists( $key ) would be false or decryption fails
+	 * @param mixed|null $default Returned if $this->exists( $key ) would be false or decryption fails
 	 * @return mixed
 	 */
 	public function getSecret( $key, $default = null ) {

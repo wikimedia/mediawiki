@@ -4113,7 +4113,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @see WANObjectCache::getWithSetCallback()
 	 *
 	 * @param IDatabase $db1
-	 * @param IDatabase $db2 [optional]
+	 * @param IDatabase|null $db2 [optional]
 	 * @return array Map of values:
 	 *   - lag: highest lag of any of the DBs or false on error (e.g. replication stopped)
 	 *   - since: oldest UNIX timestamp of any of the DB lag estimates

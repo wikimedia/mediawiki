@@ -75,7 +75,7 @@ class StatusValue {
 	/**
 	 * Factory function for good results
 	 *
-	 * @param mixed $value
+	 * @param mixed|null $value
 	 * @return static
 	 */
 	public static function newGood( $value = null ) {
@@ -162,7 +162,7 @@ class StatusValue {
 	 * Change operation result
 	 *
 	 * @param bool $ok Whether the operation completed
-	 * @param mixed $value
+	 * @param mixed|null $value
 	 */
 	public function setResult( $ok, $value = null ) {
 		$this->ok = (bool)$ok;

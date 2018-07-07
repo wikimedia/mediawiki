@@ -770,7 +770,7 @@ class ParserOutput extends CacheTime {
 	 * Add one or more variables to be set in mw.config in JavaScript.
 	 *
 	 * @param string|array $keys Key or array of key/value pairs.
-	 * @param mixed $value [optional] Value of the configuration variable.
+	 * @param mixed|null $value [optional] Value of the configuration variable.
 	 * @since 1.23
 	 */
 	public function addJsConfigVars( $keys, $value = null ) {

@@ -494,7 +494,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @todo Should be in Block.php?
 	 * @param string $par Subpage parameter passed to setup, or data value from
 	 *     the HTMLForm
-	 * @param WebRequest $request Optionally try and get data from a request too
+	 * @param WebRequest|null $request Optionally try and get data from a request too
 	 * @return array [ User|string|null, Block::TYPE_ constant|null ]
 	 */
 	public static function getTargetAndType( $par, WebRequest $request = null ) {
@@ -1005,7 +1005,7 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Process the form on POST submission.
 	 * @param array $data
-	 * @param HTMLForm $form
+	 * @param HTMLForm|null $form
 	 * @return bool|array True for success, false for didn't-try, array of errors on failure
 	 */
 	public function onSubmit( array $data, HTMLForm $form = null ) {

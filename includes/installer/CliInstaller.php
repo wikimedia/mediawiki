@@ -47,7 +47,7 @@ class CliInstaller extends Installer {
 
 	/**
 	 * @param string $siteName
-	 * @param string $admin
+	 * @param string|null $admin
 	 * @param array $option
 	 */
 	function __construct( $siteName, $admin = null, array $option = [] ) {

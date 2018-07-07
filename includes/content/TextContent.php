@@ -194,7 +194,7 @@ class TextContent extends AbstractContent {
 	 * @since 1.21
 	 *
 	 * @param Content $that The other content object to compare this content object to.
-	 * @param Language $lang The language object to use for text segmentation.
+	 * @param Language|null $lang The language object to use for text segmentation.
 	 *    If not given, $wgContentLang is used.
 	 *
 	 * @return Diff A diff representing the changes that would have to be

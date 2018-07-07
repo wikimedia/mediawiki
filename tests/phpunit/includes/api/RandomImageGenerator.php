@@ -105,7 +105,7 @@ class RandomImageGenerator {
 	 *
 	 * @param int $number Number of filenames to write
 	 * @param string $format Optional, must be understood by ImageMagick, such as 'jpg' or 'gif'
-	 * @param string $dir Directory, optional (will default to current working directory)
+	 * @param string|null $dir Directory, optional (will default to current working directory)
 	 * @return array Filenames we just wrote
 	 */
 	function writeImages( $number, $format = 'jpg', $dir = null ) {

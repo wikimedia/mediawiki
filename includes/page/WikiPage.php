@@ -768,7 +768,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   Revision::FOR_PUBLIC       to be displayed to all users
 	 *   Revision::FOR_THIS_USER    to be displayed to $wgUser
 	 *   Revision::RAW              get the text regardless of permissions
-	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
+	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
 	 * @return Content|null The content of the current revision
 	 *
@@ -808,7 +808,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   Revision::FOR_PUBLIC       to be displayed to all users
 	 *   Revision::FOR_THIS_USER    to be displayed to the given user
 	 *   Revision::RAW              get the text regardless of permissions
-	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
+	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
 	 * @return int User ID for the user that made the last article revision
 	 */
@@ -827,7 +827,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   Revision::FOR_PUBLIC       to be displayed to all users
 	 *   Revision::FOR_THIS_USER    to be displayed to the given user
 	 *   Revision::RAW              get the text regardless of permissions
-	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
+	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
 	 * @return User|null
 	 */
@@ -846,7 +846,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   Revision::FOR_PUBLIC       to be displayed to all users
 	 *   Revision::FOR_THIS_USER    to be displayed to the given user
 	 *   Revision::RAW              get the text regardless of permissions
-	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
+	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
 	 * @return string Username of the user that made the last article revision
 	 */
@@ -864,7 +864,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   Revision::FOR_PUBLIC       to be displayed to all users
 	 *   Revision::FOR_THIS_USER    to be displayed to the given user
 	 *   Revision::RAW              get the text regardless of permissions
-	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
+	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
 	 * @return string Comment stored for the last article revision
 	 */
@@ -1306,10 +1306,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param IDatabase $dbw
 	 * @param Revision $revision For ID number, and text used to set
 	 *   length and redirect status fields
-	 * @param int $lastRevision If given, will not overwrite the page field
+	 * @param int|null $lastRevision If given, will not overwrite the page field
 	 *   when different from the currently set value.
 	 *   Giving 0 indicates the new page flag should be set on.
-	 * @param bool $lastRevIsRedirect If given, will optimize adding and
+	 * @param bool|null $lastRevIsRedirect If given, will optimize adding and
 	 *   removing rows in redirect table.
 	 * @return bool Success; false if the page row was missing or page_latest changed
 	 */
@@ -1774,8 +1774,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * restores or repeats. The new revision is expected to have the exact same content as
 	 * the given original revision. This is used with rollbacks and with dummy "null" revisions
 	 * which are created to record things like page moves.
-	 * @param User $user The user doing the edit
-	 * @param string $serialFormat IGNORED.
+	 * @param User|null $user The user doing the edit
+	 * @param string|null $serialFormat IGNORED.
 	 * @param array|null $tags Change tags to apply to this edit
 	 * Callers are responsible for permission checks
 	 * (with ChangeTags::canAddTagsAccompanyingChange)
@@ -1987,7 +1987,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param int &$cascade Set to false if cascading protection isn't allowed.
 	 * @param string $reason
 	 * @param User $user The user updating the restrictions
-	 * @param string|string[] $tags Change tags to add to the pages and protection log entries
+	 * @param string|string[]|null $tags Change tags to add to the pages and protection log entries
 	 *   ($user should be able to add the specified tags before this is called)
 	 * @return Status Status object; if action is taken, $status->value is the log_id of the
 	 *   protection log entry.
@@ -2403,10 +2403,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param string $reason Delete reason for deletion log
 	 * @param bool $suppress Suppress all revisions and log the deletion in
 	 *        the suppression log instead of the deletion log
-	 * @param int $u1 Unused
-	 * @param bool $u2 Unused
+	 * @param int|null $u1 Unused
+	 * @param bool|null $u2 Unused
 	 * @param array|string &$error Array of errors to append to
-	 * @param User $user The deleting user
+	 * @param User|null $user The deleting user
 	 * @return bool True if successful
 	 */
 	public function doDeleteArticle(
@@ -2425,10 +2425,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param string $reason Delete reason for deletion log
 	 * @param bool $suppress Suppress all revisions and log the deletion in
 	 *   the suppression log instead of the deletion log
-	 * @param int $u1 Unused
-	 * @param bool $u2 Unused
+	 * @param int|null $u1 Unused
+	 * @param bool|null $u2 Unused
 	 * @param array|string &$error Array of errors to append to
-	 * @param User $deleter The deleting user
+	 * @param User|null $deleter The deleting user
 	 * @param array $tags Tags to apply to the deletion action
 	 * @param string $logsubtype
 	 * @return Status Status object; if successful, $status->value is the log_id of the

@@ -773,7 +773,7 @@ class ParserTestRunner {
 	/**
 	 * Get a Parser object
 	 *
-	 * @param string $preprocessor
+	 * @param string|null $preprocessor
 	 * @return Parser
 	 */
 	function getParser( $preprocessor = null ) {

@@ -35,7 +35,7 @@ abstract class QuickTemplate {
 	protected $config;
 
 	/**
-	 * @param Config $config
+	 * @param Config|null $config
 	 */
 	function __construct( Config $config = null ) {
 		$this->data = [];
@@ -73,7 +73,7 @@ abstract class QuickTemplate {
 	 * Gets the template data requested
 	 * @since 1.22
 	 * @param string $name Key for the data
-	 * @param mixed $default Optional default (or null)
+	 * @param mixed|null $default Optional default (or null)
 	 * @return mixed The value of the data requested or the deafult
 	 */
 	public function get( $name, $default = null ) {

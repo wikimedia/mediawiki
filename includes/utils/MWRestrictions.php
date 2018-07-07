@@ -26,7 +26,7 @@ class MWRestrictions {
 	private $ipAddresses = [ '0.0.0.0/0', '::/0' ];
 
 	/**
-	 * @param array $restrictions
+	 * @param array|null $restrictions
 	 * @throws InvalidArgumentException
 	 */
 	protected function __construct( array $restrictions = null ) {

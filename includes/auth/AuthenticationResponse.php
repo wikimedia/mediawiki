@@ -199,7 +199,7 @@ class AuthenticationResponse {
 	/**
 	 * @param AuthenticationRequest[] $reqs AuthenticationRequests needed to continue
 	 * @param string $redirectTarget URL
-	 * @param mixed $redirectApiData Data suitable for adding to an ApiResult
+	 * @param mixed|null $redirectApiData Data suitable for adding to an ApiResult
 	 * @return AuthenticationResponse
 	 * @see AuthenticationResponse::REDIRECT
 	 */

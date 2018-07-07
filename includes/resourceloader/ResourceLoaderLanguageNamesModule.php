@@ -60,7 +60,7 @@ class ResourceLoaderLanguageNamesModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param ResourceLoaderContext $context
+	 * @param ResourceLoaderContext|null $context
 	 * @return array
 	 */
 	public function getDependencies( ResourceLoaderContext $context = null ) {

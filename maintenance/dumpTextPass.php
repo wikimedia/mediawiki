@@ -100,7 +100,7 @@ class TextPassDumper extends BackupDumper {
 	protected $db;
 
 	/**
-	 * @param array $args For backward compatibility
+	 * @param array|null $args For backward compatibility
 	 */
 	function __construct( $args = null ) {
 		parent::__construct();

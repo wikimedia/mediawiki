@@ -45,7 +45,7 @@ trait PatchFileLocation {
 	 *
 	 * @param IDatabase $db
 	 * @param string $name The script name (relative to $patchDir, without the '.sql' suffix)
-	 * @param string $patchDir The directory to find the script in. Use __DIR__ to search in the
+	 * @param string|null $patchDir The directory to find the script in. Use __DIR__ to search in the
 	 *        directory the calling code is located in. If omitted, the "maintenance"
 	 *        directory will be used, where the scripts used by the updater are located.
 	 *

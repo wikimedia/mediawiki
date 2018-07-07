@@ -29,7 +29,7 @@ class DummySerializeErrorContentHandler extends DummyContentHandlerForTesting {
 	 * @see ContentHandler::unserializeContent
 	 *
 	 * @param string $blob
-	 * @param string $format
+	 * @param string|null $format
 	 *
 	 * @return Content
 	 */

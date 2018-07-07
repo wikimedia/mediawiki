@@ -69,7 +69,7 @@ class JobRunner implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param LoggerInterface $logger
+	 * @param LoggerInterface|null $logger
 	 */
 	public function __construct( LoggerInterface $logger = null ) {
 		if ( $logger === null ) {

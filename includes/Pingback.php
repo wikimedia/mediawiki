@@ -50,8 +50,8 @@ class Pingback {
 	protected $id;
 
 	/**
-	 * @param Config $config
-	 * @param LoggerInterface $logger
+	 * @param Config|null $config
+	 * @param LoggerInterface|null $logger
 	 */
 	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
 		$this->config = $config ?: RequestContext::getMain()->getConfig();

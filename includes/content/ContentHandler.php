@@ -70,7 +70,7 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @param Content $content
+	 * @param Content|null $content
 	 *
 	 * @throws MWException If the content is not an instance of TextContent and
 	 * wgContentHandlerTextFallback was set to 'fail'.
@@ -115,11 +115,11 @@ abstract class ContentHandler {
 	 *
 	 * @param string $text The textual representation, will be
 	 *    unserialized to create the Content object
-	 * @param Title $title The title of the page this text belongs to.
+	 * @param Title|null $title The title of the page this text belongs to.
 	 *    Required if $modelId is not provided.
-	 * @param string $modelId The model to deserialize to. If not provided,
+	 * @param string|null $modelId The model to deserialize to. If not provided,
 	 *    $title->getContentModel() is used.
-	 * @param string $format The format to use for deserialization. If not
+	 * @param string|null $format The format to use for deserialization. If not
 	 *    given, the model's default format is used.
 	 *
 	 * @throws MWException If model ID or format is not supported or if the text can not be
@@ -420,7 +420,7 @@ abstract class ContentHandler {
 	 * @since 1.21
 	 *
 	 * @param Content $content The Content object to serialize
-	 * @param string $format The desired serialization format
+	 * @param string|null $format The desired serialization format
 	 *
 	 * @return string Serialized form of the content
 	 */
@@ -446,7 +446,7 @@ abstract class ContentHandler {
 	 * @since 1.21
 	 *
 	 * @param string $blob Serialized form of the content
-	 * @param string $format The format used for serialization
+	 * @param string|null $format The format used for serialization
 	 *
 	 * @return Content The Content object created by deserializing $blob
 	 */
@@ -654,7 +654,7 @@ abstract class ContentHandler {
 	 * @since 1.21
 	 *
 	 * @param Title $title The page to determine the language for.
-	 * @param Content $content The page's content, if you have it handy, to avoid reloading it.
+	 * @param Content|null $content The page's content, if you have it handy, to avoid reloading it.
 	 *
 	 * @return Language The page's language
 	 */
@@ -689,7 +689,7 @@ abstract class ContentHandler {
 	 * @since 1.21
 	 *
 	 * @param Title $title The page to determine the language for.
-	 * @param Content $content The page's content, if you have it handy, to avoid reloading it.
+	 * @param Content|null $content The page's content, if you have it handy, to avoid reloading it.
 	 *
 	 * @return Language The page's language for viewing
 	 */
@@ -1310,7 +1310,7 @@ abstract class ContentHandler {
 	 * Specific content handlers may override it if they need different content handling.
 	 *
 	 * @param WikiPage $page
-	 * @param ParserCache $cache
+	 * @param ParserCache|null $cache
 	 * @return ParserOutput
 	 */
 	public function getParserOutputForIndexing( WikiPage $page, ParserCache $cache = null ) {

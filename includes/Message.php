@@ -242,7 +242,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * message keys to try and use the first non-empty message for, or a
 	 * MessageSpecifier to copy from.
 	 * @param array $params Message parameters.
-	 * @param Language $language [optional] Language to use (defaults to current user language).
+	 * @param Language|null $language [optional] Language to use (defaults to current user language).
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $key, $params = [], Language $language = null ) {

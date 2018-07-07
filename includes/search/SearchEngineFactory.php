@@ -19,7 +19,7 @@ class SearchEngineFactory {
 
 	/**
 	 * Create SearchEngine of the given type.
-	 * @param string $type
+	 * @param string|null $type
 	 * @return SearchEngine
 	 */
 	public function create( $type = null ) {

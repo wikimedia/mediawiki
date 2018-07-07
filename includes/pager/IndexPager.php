@@ -456,8 +456,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * Make a self-link
 	 *
 	 * @param string $text Text displayed on the link
-	 * @param array $query Associative array of parameter to be in the query string
-	 * @param string $type Link type used to create additional attributes, like "rel", "class" or
+	 * @param array|null $query Associative array of parameter to be in the query string
+	 * @param string|null $type Link type used to create additional attributes, like "rel", "class" or
 	 *  "title". Valid values (non-exhaustive list): 'first', 'last', 'prev', 'next', 'asc', 'desc'.
 	 * @return string HTML fragment
 	 */

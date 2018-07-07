@@ -1090,7 +1090,7 @@ class Language {
 	 * @param string $ts 14-character timestamp
 	 *      YYYYMMDDHHMMSS
 	 *      01234567890123
-	 * @param DateTimeZone $zone Timezone of $ts
+	 * @param DateTimeZone|null $zone Timezone of $ts
 	 * @param int &$ttl The amount of time (in seconds) the output may be cached for.
 	 * Only makes sense if $ts is the current time.
 	 * @todo handling of "o" format character for Iranian, Hebrew, Hijri & Thai?
@@ -4076,7 +4076,7 @@ class Language {
 	 * match up with it.
 	 *
 	 * @param string $str The validated block duration in English
-	 * @param User $user User object to use timezone from or null for $wgUser
+	 * @param User|null $user User object to use timezone from or null for $wgUser
 	 * @param int $now Current timestamp, for formatting relative block durations
 	 * @return string Somehow translated block duration
 	 * @see LanguageFi.php for example implementation

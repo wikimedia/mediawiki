@@ -1443,7 +1443,7 @@ function wfHostname() {
  * If $wgShowHostnames is true, the script will also set 'wgHostname' to the
  * hostname of the server handling the request.
  *
- * @param string $nonce Value from OutputPage::getCSPNonce
+ * @param string|null $nonce Value from OutputPage::getCSPNonce
  * @return string|WrappedString HTML
  */
 function wfReportTime( $nonce = null ) {
@@ -1980,7 +1980,7 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
  * For dealing with nullable timestamp columns in the database.
  *
  * @param int $outputtype
- * @param string $ts
+ * @param string|null $ts
  * @return string
  */
 function wfTimestampOrNull( $outputtype = TS_UNIX, $ts = null ) {
@@ -2058,8 +2058,8 @@ function wfTempDir() {
  * Make directory, and make all parent directories if they don't exist
  *
  * @param string $dir Full path to directory to create
- * @param int $mode Chmod value to use, default is $wgDirectoryMode
- * @param string $caller Optional caller param for debugging.
+ * @param int|null $mode Chmod value to use, default is $wgDirectoryMode
+ * @param string|null $caller Optional caller param for debugging.
  * @throws MWException
  * @return bool
  */
@@ -2317,7 +2317,7 @@ function wfShellWikiCmd( $script, array $parameters = [], array $options = [] ) 
  * @param string $mine
  * @param string $yours
  * @param string &$result
- * @param string &$mergeAttemptResult
+ * @param string|null &$mergeAttemptResult
  * @return bool
  */
 function wfMerge( $old, $mine, $yours, &$result, &$mergeAttemptResult = null ) {
@@ -3200,7 +3200,7 @@ function wfUnpack( $format, $data, $length = false ) {
  *
  * @param string $name The image name to check
  * @param Title|bool $contextTitle The page on which the image occurs, if known
- * @param string $blacklist Wikitext of a file blacklist
+ * @param string|null $blacklist Wikitext of a file blacklist
  * @return bool
  */
 function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {

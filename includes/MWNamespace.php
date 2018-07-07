@@ -477,7 +477,7 @@ class MWNamespace {
 	 *
 	 * @since 1.23
 	 * @param int $index Index to check
-	 * @param User $user User to check
+	 * @param User|null $user User to check
 	 * @return array
 	 */
 	public static function getRestrictionLevels( $index, User $user = null ) {

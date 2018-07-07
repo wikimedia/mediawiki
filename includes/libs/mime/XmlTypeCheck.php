@@ -91,7 +91,7 @@ class XmlTypeCheck {
 	 *  result stored in $this->filterMatchType.
 	 *
 	 * @param string $input a filename or string containing the XML element
-	 * @param callable $filterCallback (optional)
+	 * @param callable|null $filterCallback (optional)
 	 *        Function to call to do additional custom validity checks from the
 	 *        SAX element handler event. This gives you access to the element
 	 *        namespace, name, attributes, and text contents.
@@ -114,7 +114,7 @@ class XmlTypeCheck {
 	 * Alternative constructor: from filename
 	 *
 	 * @param string $fname the filename of an XML document
-	 * @param callable $filterCallback (optional)
+	 * @param callable|null $filterCallback (optional)
 	 *        Function to call to do additional custom validity checks from the
 	 *        SAX element handler event. This gives you access to the element
 	 *        namespace, name, and attributes, but not to text contents.
@@ -129,7 +129,7 @@ class XmlTypeCheck {
 	 * Alternative constructor: from string
 	 *
 	 * @param string $string a string containing an XML element
-	 * @param callable $filterCallback (optional)
+	 * @param callable|null $filterCallback (optional)
 	 *        Function to call to do additional custom validity checks from the
 	 *        SAX element handler event. This gives you access to the element
 	 *        namespace, name, and attributes, but not to text contents.

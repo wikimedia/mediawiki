@@ -86,7 +86,7 @@ class Cookie {
 	 * not a big problem in practice, but there are test cases)
 	 *
 	 * @param string $domain The domain to validate
-	 * @param string $originDomain (optional) the domain the cookie originates from
+	 * @param string|null $originDomain (optional) the domain the cookie originates from
 	 * @return bool
 	 */
 	public static function validateCookieDomain( $domain, $originDomain = null ) {

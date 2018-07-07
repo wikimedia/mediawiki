@@ -162,7 +162,7 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string $format The desired serialization format, or null for the default format.
+	 * @param string|null $format The desired serialization format, or null for the default format.
 	 *
 	 * @return string Serialized form of this Content object.
 	 */
@@ -210,7 +210,7 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param Content $that The Content object to compare to.
+	 * @param Content|null $that The Content object to compare to.
 	 *
 	 * @return bool True if this Content object is equal to $that, false otherwise.
 	 */
@@ -262,8 +262,8 @@ interface Content {
 	 *       may call ParserOutput::recordOption() on the output object.
 	 *
 	 * @param Title $title The page title to use as a context for rendering.
-	 * @param int $revId Optional revision ID being rendered.
-	 * @param ParserOptions $options Any parser options.
+	 * @param int|null $revId Optional revision ID being rendered.
+	 * @param ParserOptions|null $options Any parser options.
 	 * @param bool $generateHtml Whether to generate HTML (default: true). If false,
 	 *        the result of calling getText() on the ParserOutput object returned by
 	 *        this method is undefined.
@@ -296,12 +296,12 @@ interface Content {
 	 *   AbstractContent does.
 	 *
 	 * @param Title $title The context for determining the necessary updates
-	 * @param Content $old An optional Content object representing the
+	 * @param Content|null $old An optional Content object representing the
 	 *    previous content, i.e. the content being replaced by this Content
 	 *    object.
 	 * @param bool $recursive Whether to include recursive updates (default:
 	 *    false).
-	 * @param ParserOutput $parserOutput Optional ParserOutput object.
+	 * @param ParserOutput|null $parserOutput Optional ParserOutput object.
 	 *    Provide if you have one handy, to avoid re-parsing of the content.
 	 *
 	 * @return DataUpdate[] A list of DataUpdate objects for putting information

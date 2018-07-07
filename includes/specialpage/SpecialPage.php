@@ -182,7 +182,7 @@ class SpecialPage implements MessageLocalizer {
 	/**
 	 * Get or set whether this special page is listed in Special:SpecialPages
 	 * @since 1.6
-	 * @param bool $x
+	 * @param bool|null $x
 	 * @return bool
 	 */
 	function listed( $x = null ) {
@@ -220,7 +220,7 @@ class SpecialPage implements MessageLocalizer {
 
 	/**
 	 * Whether the special page is being evaluated via transclusion
-	 * @param bool $x
+	 * @param bool|null $x
 	 * @return bool
 	 */
 	function including( $x = null ) {
@@ -388,7 +388,8 @@ class SpecialPage implements MessageLocalizer {
 	 * Note that this does not in any way check that the user is authorized to use this special page
 	 * (use checkPermissions() for that).
 	 *
-	 * @param string $level A security level. Can be an arbitrary string, defaults to the page name.
+	 * @param string|null $level A security level. Can be an arbitrary string, defaults to the page
+	 *   name.
 	 * @return bool False means a redirect to the reauthentication page has been set and processing
 	 *   of the special page should be aborted.
 	 * @throws ErrorPageError If the security level cannot be met, even with reauthentication.

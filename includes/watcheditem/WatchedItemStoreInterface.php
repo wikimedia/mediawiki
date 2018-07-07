@@ -264,7 +264,7 @@ interface WatchedItemStoreInterface {
 	 * @since 1.31
 	 *
 	 * @param User $user
-	 * @param int $unreadLimit
+	 * @param int|null $unreadLimit
 	 *
 	 * @return int|bool The number of unread notifications
 	 *                  true if greater than or equal to $unreadLimit

@@ -339,7 +339,7 @@ class CookieSessionProvider extends SessionProvider {
 	 * @param \WebRequest $request
 	 * @param string $key
 	 * @param string $prefix
-	 * @param mixed $default
+	 * @param mixed|null $default
 	 * @return mixed
 	 */
 	protected function getCookie( $request, $key, $prefix, $default = null ) {

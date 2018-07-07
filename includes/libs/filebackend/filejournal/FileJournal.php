@@ -149,9 +149,9 @@ abstract class FileJournal {
 	 * Get an array of file change log entries.
 	 * A starting change ID and/or limit can be specified.
 	 *
-	 * @param int $start Starting change ID or null
+	 * @param int|null $start Starting change ID or null
 	 * @param int $limit Maximum number of items to return
-	 * @param string &$next Updated to the ID of the next entry.
+	 * @param string|null &$next Updated to the ID of the next entry.
 	 * @return array List of associative arrays, each having:
 	 *     id         : unique, monotonic, ID for this change
 	 *     batch_uuid : UUID for an operation batch

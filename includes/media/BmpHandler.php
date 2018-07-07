@@ -41,7 +41,7 @@ class BmpHandler extends BitmapHandler {
 	 *
 	 * @param string $text
 	 * @param string $mime
-	 * @param array $params
+	 * @param array|null $params
 	 * @return array
 	 */
 	function getThumbType( $text, $mime, $params = null ) {

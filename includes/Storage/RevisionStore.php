@@ -1892,7 +1892,7 @@ class RevisionStore
 	 *
 	 * @param array $conditions
 	 * @param int $flags (optional)
-	 * @param Title $title
+	 * @param Title|null $title
 	 *
 	 * @return RevisionRecord|null
 	 */
@@ -1928,7 +1928,7 @@ class RevisionStore
 	 * @param IDatabase $db
 	 * @param array $conditions
 	 * @param int $flags (optional)
-	 * @param Title $title
+	 * @param Title|null $title
 	 *
 	 * @return RevisionRecord|null
 	 */
@@ -2322,7 +2322,7 @@ class RevisionStore
 	 * MCR migration note: this replaces Revision::getPrevious
 	 *
 	 * @param RevisionRecord $rev
-	 * @param Title $title if known (optional)
+	 * @param Title|null $title if known (optional)
 	 *
 	 * @return RevisionRecord|null
 	 */
@@ -2343,7 +2343,7 @@ class RevisionStore
 	 * MCR migration note: this replaces Revision::getNext
 	 *
 	 * @param RevisionRecord $rev
-	 * @param Title $title if known (optional)
+	 * @param Title|null $title if known (optional)
 	 *
 	 * @return RevisionRecord|null
 	 */

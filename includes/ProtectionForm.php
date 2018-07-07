@@ -196,7 +196,7 @@ class ProtectionForm {
 	/**
 	 * Show the input form with optional error message
 	 *
-	 * @param string $err Error message or null if there's no error
+	 * @param string|null $err Error message or null if there's no error
 	 */
 	function show( $err = null ) {
 		$out = $this->mContext->getOutput();

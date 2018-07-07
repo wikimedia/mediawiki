@@ -401,7 +401,7 @@ class Parser {
 	 * @param ParserOptions $options
 	 * @param bool $linestart
 	 * @param bool $clearState
-	 * @param int $revid Number to pass in {{REVISIONID}}
+	 * @param int|null $revid Number to pass in {{REVISIONID}}
 	 * @return ParserOutput A ParserOutput
 	 */
 	public function parse(
@@ -683,7 +683,7 @@ class Parser {
 	 * Also removes comments.
 	 * Do not call this function recursively.
 	 * @param string $text
-	 * @param Title $title
+	 * @param Title|null $title
 	 * @param ParserOptions $options
 	 * @param int|null $revid
 	 * @param bool|PPFrame $frame
@@ -789,7 +789,7 @@ class Parser {
 	/**
 	 * Accessor/mutator for the Title object
 	 *
-	 * @param Title $x Title object or null to just get the current one
+	 * @param Title|null $x Title object or null to just get the current one
 	 * @return Title
 	 */
 	public function Title( $x = null ) {
@@ -843,7 +843,7 @@ class Parser {
 	/**
 	 * Accessor/mutator for the ParserOptions object
 	 *
-	 * @param ParserOptions $x New value or null to just get the current one
+	 * @param ParserOptions|null $x New value or null to just get the current one
 	 * @return ParserOptions Current ParserOptions object
 	 */
 	public function Options( $x = null ) {
@@ -1914,7 +1914,7 @@ class Parser {
 	 * @since 1.21
 	 * @param string|bool $url Optional URL, to extract the domain from for rel =>
 	 *   nofollow if appropriate
-	 * @param Title $title Optional Title, for wgNoFollowNsExceptions lookups
+	 * @param Title|null $title Optional Title, for wgNoFollowNsExceptions lookups
 	 * @return string|null Rel attribute for $url
 	 */
 	public static function getExternalLinkRel( $url = false, $title = null ) {

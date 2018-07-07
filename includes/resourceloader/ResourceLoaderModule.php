@@ -347,7 +347,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * Note: It is expected that $context will be made non-optional in the near
 	 * future.
 	 *
-	 * @param ResourceLoaderContext $context
+	 * @param ResourceLoaderContext|null $context
 	 * @return array List of module names as strings
 	 */
 	public function getDependencies( ResourceLoaderContext $context = null ) {

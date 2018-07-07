@@ -158,7 +158,7 @@ class CommentStore {
 	 *
 	 * @since 1.30
 	 * @since 1.31 Method signature changed, $key parameter added (with deprecated back compat)
-	 * @param string $key A key such as "rev_comment" identifying the comment
+	 * @param string|null $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
 	 * @return string[] to include in the `$vars` to `IDatabase->select()`. All
 	 *  fields are aliased, so `+` is safe to use.
@@ -191,7 +191,7 @@ class CommentStore {
 	 *
 	 * @since 1.30
 	 * @since 1.31 Method signature changed, $key parameter added (with deprecated back compat)
-	 * @param string $key A key such as "rev_comment" identifying the comment
+	 * @param string|null $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
 	 * @return array With three keys:
 	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
@@ -381,7 +381,7 @@ class CommentStore {
 	 * @since 1.31 Method signature changed, $key parameter added (with deprecated back compat)
 	 * @param string $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
-	 * @param object|array $row Result row.
+	 * @param object|array|null $row Result row.
 	 * @param bool $fallback If true, fall back as well as possible instead of throwing an exception.
 	 * @return CommentStoreComment
 	 */
@@ -415,7 +415,7 @@ class CommentStore {
 	 * @param IDatabase $db Database handle to use for lookup
 	 * @param string $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
-	 * @param object|array $row Result row.
+	 * @param object|array|null $row Result row.
 	 * @param bool $fallback If true, fall back as well as possible instead of throwing an exception.
 	 * @return CommentStoreComment
 	 */
@@ -567,7 +567,7 @@ class CommentStore {
 	 * @param IDatabase $dbw Database handle to insert on
 	 * @param string $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
-	 * @param string|Message|CommentStoreComment $comment As for `self::createComment()`
+	 * @param string|Message|CommentStoreComment|null $comment As for `self::createComment()`
 	 * @param array|null $data As for `self::createComment()`
 	 * @return array Fields for the insert or update
 	 */
@@ -606,7 +606,7 @@ class CommentStore {
 	 * @param IDatabase $dbw Database handle to insert on
 	 * @param string $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
-	 * @param string|Message|CommentStoreComment $comment As for `self::createComment()`
+	 * @param string|Message|CommentStoreComment|null $comment As for `self::createComment()`
 	 * @param array|null $data As for `self::createComment()`
 	 * @return array Two values:
 	 *  - array Fields for the insert or update

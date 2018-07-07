@@ -70,10 +70,10 @@ class NameTableStore {
 	 * @param string $table
 	 * @param string $idField
 	 * @param string $nameField
-	 * @param callable $normalizationCallback Normalization to be applied to names before being
+	 * @param callable|null $normalizationCallback Normalization to be applied to names before being
 	 * saved or queried. This should be a callback that accepts and returns a single string.
 	 * @param bool|string $wikiId The ID of the target wiki database. Use false for the local wiki.
-	 * @param callable $insertCallback Callback to change insert fields accordingly.
+	 * @param callable|null $insertCallback Callback to change insert fields accordingly.
 	 * This parameter was introduced in 1.32
 	 */
 	public function __construct(

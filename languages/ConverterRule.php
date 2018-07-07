@@ -330,7 +330,7 @@ class ConverterRule {
 
 	/**
 	 * Parse rules and flags.
-	 * @param string $variant Variant language code
+	 * @param string|null $variant Variant language code
 	 */
 	public function parse( $variant = null ) {
 		if ( !$variant ) {

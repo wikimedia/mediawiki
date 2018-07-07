@@ -575,7 +575,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * If you pass "flat" as an option then the returned array will be a flat array
 	 * of footer icons instead of a key/value array of footerlinks arrays broken
 	 * up into categories.
-	 * @param string $option
+	 * @param string|null $option
 	 * @return array|mixed
 	 */
 	function getFooterLinks( $option = null ) {
@@ -612,7 +612,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * in the list of footer icons. This is mostly useful for skins which only
 	 * display the text from footericons instead of the images and don't want a
 	 * duplicate copyright statement because footerlinks already rendered one.
-	 * @param string $option
+	 * @param string|null $option
 	 * @return array
 	 */
 	function getFooterIcons( $option = null ) {

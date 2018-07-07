@@ -1267,7 +1267,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *
 	 * @see FileBackend::getFileStat()
 	 *
-	 * @param array $paths Storage paths (optional)
+	 * @param array|null $paths Storage paths (optional)
 	 */
 	abstract public function clearCache( array $paths = null );
 

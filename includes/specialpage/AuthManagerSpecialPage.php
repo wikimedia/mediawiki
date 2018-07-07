@@ -70,7 +70,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * Used to preserve POST data over a HTTP redirect.
 	 *
 	 * @param array $data
-	 * @param bool $wasPosted
+	 * @param bool|null $wasPosted
 	 */
 	protected function setRequest( array $data, $wasPosted = null ) {
 		$request = $this->getContext()->getRequest();
@@ -223,7 +223,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * Load or initialize $authAction, $authRequests and $subPage.
 	 * Subclasses should call this from execute() or otherwise ensure the variables are initialized.
 	 * @param string $subPage Subpage of the special page.
-	 * @param string $authAction Override auth action specified in request (this is useful
+	 * @param string|null $authAction Override auth action specified in request (this is useful
 	 *    when the form needs to be changed from <action> to <action>_CONTINUE after a successful
 	 *    authentication step)
 	 * @param bool $reset Regenerate the requests even if a cached version is available
@@ -730,7 +730,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * Get an array value, or a default if it does not exist.
 	 * @param array $array
 	 * @param string $fieldName
-	 * @param mixed $default
+	 * @param mixed|null $default
 	 * @return mixed
 	 */
 	protected static function getField( array $array, $fieldName, $default = null ) {

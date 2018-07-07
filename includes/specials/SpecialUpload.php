@@ -33,7 +33,7 @@ use MediaWiki\MediaWikiServices;
 class SpecialUpload extends SpecialPage {
 	/**
 	 * Get data POSTed through the form and assign them to the object
-	 * @param WebRequest $request Data posted.
+	 * @param WebRequest|null $request Data posted.
 	 */
 	public function __construct( $request = null ) {
 		parent::__construct( 'Upload', 'upload' );
@@ -587,7 +587,7 @@ class SpecialUpload extends SpecialPage {
 	 * @param string $license
 	 * @param string $copyStatus
 	 * @param string $source
-	 * @param Config $config Configuration object to load data from
+	 * @param Config|null $config Configuration object to load data from
 	 * @return string
 	 */
 	public static function getInitialPageText( $comment = '', $license = '',

@@ -76,7 +76,8 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	protected $group;
 
 	/**
-	 * @param array $options For back-compat, this can be omitted in favour of overwriting getPages.
+	 * @param array|null $options For back-compat, this can be omitted in favour of overwriting
+	 *  getPages.
 	 */
 	public function __construct( array $options = null ) {
 		if ( is_null( $options ) ) {

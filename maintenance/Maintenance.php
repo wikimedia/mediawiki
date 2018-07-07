@@ -253,7 +253,7 @@ abstract class Maintenance {
 	 * this will return an array.
 	 *
 	 * @param string $name The name of the param
-	 * @param mixed $default Anything you want, default null
+	 * @param mixed|null $default Anything you want, default null
 	 * @return mixed
 	 */
 	protected function getOption( $name, $default = null ) {
@@ -309,7 +309,7 @@ abstract class Maintenance {
 	/**
 	 * Get an argument.
 	 * @param int $argId The integer value (from zero) for the arg
-	 * @param mixed $default The default if it doesn't exist
+	 * @param mixed|null $default The default if it doesn't exist
 	 * @return mixed
 	 */
 	protected function getArg( $argId = 0, $default = null ) {
@@ -359,7 +359,7 @@ abstract class Maintenance {
 
 	/**
 	 * Return input from stdin.
-	 * @param int $len The number of bytes to read. If null, just return the handle.
+	 * @param int|null $len The number of bytes to read. If null, just return the handle.
 	 *   Maintenance::STDIN_ALL returns the full length
 	 * @return mixed
 	 */
@@ -388,7 +388,7 @@ abstract class Maintenance {
 	 * Throw some output to the user. Scripts can call this with no fears,
 	 * as we handle all --quiet stuff here
 	 * @param string $out The text to show to the user
-	 * @param mixed $channel Unique identifier for the channel. See function outputChanneled.
+	 * @param mixed|null $channel Unique identifier for the channel. See function outputChanneled.
 	 */
 	protected function output( $out, $channel = null ) {
 		// This is sometimes called very early, before Setup.php is included.
@@ -464,7 +464,7 @@ abstract class Maintenance {
 	 * same channel are concatenated, but any intervening messages in another
 	 * channel start a new line.
 	 * @param string $msg The message without trailing newline
-	 * @param string $channel Channel identifier or null for no
+	 * @param string|null $channel Channel identifier or null for no
 	 *     channel. Channel comparison uses ===.
 	 */
 	public function outputChanneled( $msg, $channel = null ) {
@@ -661,7 +661,7 @@ abstract class Maintenance {
 	 * Run a child maintenance script. Pass all of the current arguments
 	 * to it.
 	 * @param string $maintClass A name of a child maintenance class
-	 * @param string $classFile Full path of where the child is
+	 * @param string|null $classFile Full path of where the child is
 	 * @return Maintenance
 	 */
 	public function runChild( $maintClass, $classFile = null ) {
@@ -922,9 +922,9 @@ abstract class Maintenance {
 	 * $mOptions becomes an array with keys set to the option names
 	 * $mArgs becomes a zero-based array containing the non-option arguments
 	 *
-	 * @param string $self The name of the script, if any
-	 * @param array $opts An array of options, in form of key=>value
-	 * @param array $args An array of command line arguments
+	 * @param string|null $self The name of the script, if any
+	 * @param array|null $opts An array of options, in form of key=>value
+	 * @param array|null $args An array of command line arguments
 	 */
 	public function loadParamsAndArgs( $self = null, $opts = null, $args = null ) {
 		# If we were given opts or args, set those and return early

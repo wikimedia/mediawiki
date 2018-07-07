@@ -299,7 +299,7 @@ class Block {
 	 *     1) A block directly on the given user or IP
 	 *     2) A rangeblock encompassing the given IP (smallest first)
 	 *     3) An autoblock on the given IP
-	 * @param User|string $vagueTarget Also search for blocks affecting this target.  Doesn't
+	 * @param User|string|null $vagueTarget Also search for blocks affecting this target.  Doesn't
 	 *     make any sense to use TYPE_AUTO / TYPE_ID here. Leave blank to skip IP lookups.
 	 * @throws MWException
 	 * @return bool Whether a relevant block was found
@@ -405,7 +405,7 @@ class Block {
 	/**
 	 * Get a set of SQL conditions which will select rangeblocks encompassing a given range
 	 * @param string $start Hexadecimal IP representation
-	 * @param string $end Hexadecimal IP representation, or null to use $start = $end
+	 * @param string|null $end Hexadecimal IP representation, or null to use $start = $end
 	 * @return string
 	 */
 	public static function getRangeCond( $start, $end = null ) {
@@ -519,7 +519,7 @@ class Block {
 	 * Insert a block into the block table. Will fail if there is a conflicting
 	 * block (same name and options) already in the database.
 	 *
-	 * @param IDatabase $dbw If you have one available
+	 * @param IDatabase|null $dbw If you have one available
 	 * @return bool|array False on failure, assoc array on success:
 	 * 	('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
@@ -1162,7 +1162,7 @@ class Block {
 	 *     Calling this with a user, IP address or range will not select autoblocks, and will
 	 *     only select a block where the targets match exactly (so looking for blocks on
 	 *     1.2.3.4 will not select 1.2.0.0/16 or even 1.2.3.4/32)
-	 * @param string|User|int $vagueTarget As above, but we will search for *any* block which
+	 * @param string|User|int|null $vagueTarget As above, but we will search for *any* block which
 	 *     affects that target (so for an IP address, get ranges containing that IP; and also
 	 *     get any relevant autoblocks). Leave empty or blank to skip IP-based lookups.
 	 * @param bool $fromMaster Whether to use the DB_MASTER database
