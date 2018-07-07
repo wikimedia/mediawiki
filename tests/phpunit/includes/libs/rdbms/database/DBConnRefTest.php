@@ -12,6 +12,7 @@ use Wikimedia\Rdbms\ResultWrapper;
  */
 class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
+	use MediaWikiCoversValidator;
 	use PHPUnit4And6Compat;
 
 	/**
@@ -106,18 +107,9 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		new DBConnRef( $lb, 17 ); // bad constructor argument
 	}
 
-	public function testGetWikiID() {
-		$lb = $this->getMock( ILoadBalancer::class );
-
-		// getWikiID is optimized to not create a connection
-		$lb->expects( $this->never() )
-			->method( 'getConnection' );
-
-		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ] );
-
-		$this->assertSame( 'dummy', $ref->getWikiID() );
-	}
-
+	/**
+	 * @covers Wikimedia\Rdbms\DBConnRef::getDomainId
+	 */
 	public function testGetDomainID() {
 		$lb = $this->getMock( ILoadBalancer::class );
 
