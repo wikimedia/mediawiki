@@ -162,7 +162,7 @@ class SpecialRedirect extends FormSpecialPage {
 
 	/**
 	 * Handle Special:Redirect/logid/xxx
-	 * (by redirecting to index.php?title=Special:Log)
+	 * (by redirecting to index.php?title=Special:Log&logid=xxx)
 	 *
 	 * @since 1.27
 	 * @return string|null Url to redirect to, or null if $mValue is invalid.
@@ -176,80 +176,8 @@ class SpecialRedirect extends FormSpecialPage {
 		if ( $logid === 0 ) {
 			return null;
 		}
-
-		$logQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
-
-		$logparams = [
-			'log_id' => 'log_id',
-			'log_timestamp' => 'log_timestamp',
-			'log_type' => 'log_type',
-			'log_user_text' => $logQuery['fields']['log_user_text'],
-		];
-
-		$dbr = wfGetDB( DB_REPLICA );
-
-		// Gets the nested SQL statement which
-		// returns timestamp of the log with the given log ID
-		$inner = $dbr->selectSQLText(
-			'logging',
-			[ 'log_timestamp' ],
-			[ 'log_id' => $logid ]
-		);
-
-		// Returns all fields mentioned in $logparams of the logs
-		// with the same timestamp as the one returned by the statement above
-		$logsSameTimestamps = $dbr->select(
-			[ 'logging' ] + $logQuery['tables'],
-			$logparams,
-			[ "log_timestamp = ($inner)" ],
-			__METHOD__,
-			[],
-			$logQuery['joins']
-		);
-		if ( $logsSameTimestamps->numRows() === 0 ) {
-			return null;
-		}
-
-		// Stores the row with the same log ID as the one given
-		$rowMain = [];
-		foreach ( $logsSameTimestamps as $row ) {
-			if ( (int)$row->log_id === $logid ) {
-				$rowMain = $row;
-			}
-		}
-
-		array_shift( $logparams );
-
-		// Stores all the rows with the same values in each column
-		// as $rowMain
-		foreach ( $logparams as $key => $dummy ) {
-			$matchedRows = [];
-			foreach ( $logsSameTimestamps as $row ) {
-				if ( $row->$key === $rowMain->$key ) {
-					$matchedRows[] = $row;
-				}
-			}
-			if ( count( $matchedRows ) === 1 ) {
-				break;
-			}
-			$logsSameTimestamps = $matchedRows;
-		}
-		$query = [ 'title' => 'Special:Log', 'limit' => count( $matchedRows ) ];
-
-		// A map of database field names from table 'logging' to the values of $logparams
-		$keys = [
-			'log_timestamp' => 'offset',
-			'log_type' => 'type',
-			'log_user_text' => 'user'
-		];
-
-		foreach ( $logparams as $logKey => $dummy ) {
-			$query[$keys[$logKey]] = $matchedRows[0]->$logKey;
-		}
-		$query['offset'] = $query['offset'] + 1;
-		$url = $query;
-
-		return wfAppendQuery( wfScript( 'index' ), $url );
+		$query = [ 'title' => 'Special:Log', 'logid' => $logid ];
+		return wfAppendQuery( wfScript( 'index' ), $query );
 	}
 
 	/**

@@ -9,6 +9,7 @@ This is a security and maintenance release of the MediaWiki 1.31 branch.
 * (T193995) Fix undefined patchPath() method call in parser tests.
 * (T198687) Fix various selectFields methods to use the string 'NULL', not null.
 * Special:BotPasswords now requires reauthentication.
+* (T191608, T187638) Add 'logid' parameter to Special:Log.
 
 == MediaWiki 1.31 ==
 
