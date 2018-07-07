@@ -11,7 +11,8 @@
 			"Macofe",
 			"MtDu",
 			"Abdeaitali",
-			"Reda Benkhadra"
+			"Reda Benkhadra",
+			"Anass Sedrati"
 		]
 	},
 	"tog-underline": "Ṣetter l-lyanaṫ:",
@@ -1679,6 +1680,7 @@
 	"exif-giffilecomment": "ṫ-ṫĝliq dial milef GIF",
 	"exif-intellectualgenre": "noĝ l-madda",
 	"exif-scenecode": "cod mċhd IPTC",
+	"exif-orientation-1": "عادي",
 	"exif-orientation-4": "mḍwwer ofoqiyyen",
 	"exif-orientation-8": "mḍwwer 90° <abbr title=\"Ĝks (ṫ-ṫijah) Ĝaqarib s-Saĝa\">ĜĜS</abbr>",
 	"exif-componentsconfiguration-0": "ma kayn-ċ",
