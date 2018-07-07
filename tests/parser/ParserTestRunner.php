@@ -1264,6 +1264,7 @@ class ParserTestRunner {
 		$this->dbClone = new CloneDatabase( $this->db, $this->listTables(), $prefix );
 		$this->dbClone->useTemporaryTables( $temporary );
 		$this->dbClone->cloneTableStructure();
+		CloneDatabase::changePrefix( $prefix );
 
 		if ( $dbType == 'oracle' ) {
 			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
