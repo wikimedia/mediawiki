@@ -73,6 +73,13 @@ class UserGroupManager implements IDBAccessObject {
 		MainConfigNames::PrivilegedGroups,
 	];
 
+	/**
+	 * Logical operators recognized in $wgAutopromote.
+	 *
+	 * @since 1.42
+	 */
+	public const VALID_OPS = [ '&', '|', '^', '!' ];
+
 	private ServiceOptions $options;
 	private IConnectionProvider $dbProvider;
 	private HookContainer $hookContainer;
@@ -522,9 +529,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @return bool Whether the condition is true
 	 */
 	private function recCheckCondition( $cond, User $user ): bool {
-		$validOps = [ '&', '|', '^', '!' ];
-
-		if ( is_array( $cond ) && count( $cond ) >= 2 && in_array( $cond[0], $validOps ) ) {
+		if ( is_array( $cond ) && count( $cond ) >= 2 && in_array( $cond[0], self::VALID_OPS ) ) {
 			// Recursive condition
 			if ( $cond[0] == '&' ) { // AND (all conds pass)
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
