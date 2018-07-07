@@ -2056,6 +2056,7 @@
 	"dellogpage": "Evidencija brisanja",
 	"dellogpagetext": "Dolje je popis nedavnih brisanja.\nSva vremena su prema poslužiteljevom vremenu.",
 	"deletionlog": "evidencija brisanja",
+	"logentry-create-create": "$1 {{GENDER:$2|stvorio|stvorila}} je stranicu $3",
 	"reverted": "Vraćeno na prijašnju inačicu",
 	"deletecomment": "Razlog:",
 	"deleteotherreason": "Drugi/dodatni razlog:",
