@@ -167,6 +167,9 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/**
+	 * @codeCoverageIgnore
+	 */
 	public function getWikiID() {
 		return $this->getDomainID();
 	}
