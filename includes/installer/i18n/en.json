@@ -61,9 +61,9 @@
 	"config-no-cache-apcu": "<strong>Warning:</strong> Could not find [https://secure.php.net/apcu APCu] or [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nObject caching is not enabled.",
 	"config-mod-security": "<strong>Warning:</strong> Your web server has [https://modsecurity.org/ mod_security]/mod_security2 enabled. Many common configurations of this will cause problems for MediaWiki and other software that allows users to post arbitrary content.\nIf possible, this should be disabled. Otherwise, refer to [https://modsecurity.org/documentation/ mod_security documentation] or contact your host's support if you encounter random errors.",
 
-	"config-diff3-bad": "GNU diff3 not found.",
+	"config-diff3-bad": "GNU diff3 text comparison utility not found. You can ignore this for now, but might run into edit conflicts more frequently.",
 	"config-git": "Found the Git version control software: <code>$1</code>.",
-	"config-git-bad": "Git version control software not found.",
+	"config-git-bad": "Git version control software not found. You can ignore this for now. Note Special:Version will not display commit hashes.",
 	"config-imagemagick": "Found ImageMagick: <code>$1</code>.\nImage thumbnailing will be enabled if you enable uploads.",
 	"config-gd": "Found GD graphics library built-in.\nImage thumbnailing will be enabled if you enable uploads.",
 	"config-no-scaling": "Could not find GD library or ImageMagick.\nImage thumbnailing will be disabled.",
