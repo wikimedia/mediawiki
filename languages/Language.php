@@ -4507,6 +4507,7 @@ class Language {
 
 	/**
 	 * @param string $code
+	 * @deprecated since 1.32, use Language::factory to create a new object instead.
 	 */
 	public function setCode( $code ) {
 		$this->mCode = $code;

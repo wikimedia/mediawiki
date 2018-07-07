@@ -477,6 +477,8 @@ because of Phabricator reports.
 * Class LegacyFormatter is deprecated.
 * Use of CommentStore::insertWithTempTable() with 'img_description' is
   deprecated. Use CommentStore::insert() instead.
+* Language::setCode is deprecated as public function. Use Language::factory
+  to create a new Language object with a different language code.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into

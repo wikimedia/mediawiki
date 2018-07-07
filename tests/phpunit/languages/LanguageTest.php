@@ -1882,15 +1882,18 @@ class LanguageTest extends LanguageClassesTestCase {
 	 * @covers Language::equals
 	 */
 	public function testEquals() {
-		$en1 = new Language();
-		$en1->setCode( 'en' );
-
+		$en1 = Language::factory( 'en' );
 		$en2 = Language::factory( 'en' );
-		$en2->setCode( 'en' );
-
-		$this->assertTrue( $en1->equals( $en2 ), 'en equals en' );
+		$en3 = new Language();
+		$this->assertTrue( $en1->equals( $en2 ), 'en1 equals en2' );
+		$this->assertTrue( $en2->equals( $en3 ), 'en2 equals en3' );
+		$this->assertTrue( $en3->equals( $en1 ), 'en3 equals en1' );
 
 		$fr = Language::factory( 'fr' );
 		$this->assertFalse( $en1->equals( $fr ), 'en not equals fr' );
+
+		$ar1 = Language::factory( 'ar' );
+		$ar2 = new LanguageAr();
+		$this->assertTrue( $ar1->equals( $ar2 ), 'ar equals ar' );
 	}
 }
