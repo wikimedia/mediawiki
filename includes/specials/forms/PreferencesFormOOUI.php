@@ -227,7 +227,8 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	 * @return string
 	 */
 	function getLegend( $key ) {
-		$legend = parent::getLegend( $key );
+		$aliasKey = ( $key === 'optoutwatchlist' || $key === 'optoutrc' ) ? 'opt-out' : $key;
+		$legend = parent::getLegend( $aliasKey );
 		Hooks::run( 'PreferencesGetLegend', [ $this, $key, &$legend ] );
 		return $legend;
 	}
