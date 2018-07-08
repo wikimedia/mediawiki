@@ -589,4 +589,49 @@ mw.loader.register( [
 		);
 	}
 
+	/**
+	 * @covers ResourceLoaderStartupModule::getAllModuleHashes
+	 * @covers ResourceLoaderStartupModule::getDefinitionSummary
+	 */
+	public function testGetVersionHash_varyModule() {
+		$context1 = $this->getResourceLoaderContext();
+		$rl1 = $context1->getResourceLoader();
+		$rl1->register( [
+			'test.a' => new ResourceLoaderTestModule(),
+			'test.b' => new ResourceLoaderTestModule(),
+		] );
+		$module = new ResourceLoaderStartupModule();
+		$version1 = $module->getVersionHash( $context1 );
+
+		$context2 = $this->getResourceLoaderContext();
+		$rl2 = $context2->getResourceLoader();
+		$rl2->register( [
+			'test.b' => new ResourceLoaderTestModule(),
+			'test.c' => new ResourceLoaderTestModule(),
+		] );
+		$module = new ResourceLoaderStartupModule();
+		$version2 = $module->getVersionHash( $context2 );
+
+		$context3 = $this->getResourceLoaderContext();
+		$rl3 = $context3->getResourceLoader();
+		$rl3->register( [
+			'test.a' => new ResourceLoaderTestModule(),
+			'test.b' => new ResourceLoaderTestModule( [ 'script' => 'different' ] ),
+		] );
+		$module = new ResourceLoaderStartupModule();
+		$version3 = $module->getVersionHash( $context3 );
+
+		$this->assertEquals(
+			$version1,
+			$version2,
+			'Module name is insignificant'
+		);
+
+		$this->assertNotEquals(
+			$version1,
+			$version3,
+			'Hash change of any module impacts startup hash'
+		);
+	}
+
 }
