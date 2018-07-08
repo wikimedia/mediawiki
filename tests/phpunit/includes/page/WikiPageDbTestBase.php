@@ -249,6 +249,8 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 
+		$preparedEditBefore = $page->prepareContentForEdit( $content, null, $user1 );
+
 		$status = $page->doEditContent( $content, "[[testing]] 1", EDIT_NEW, false, $user1 );
 
 		$this->assertTrue( $status->isOK(), 'OK' );
@@ -259,8 +261,13 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$this->assertTrue( $status->value['revision']->getContent()->equals( $content ), 'equals' );
 
 		$rev = $page->getRevision();
+		$preparedEditAfter = $page->prepareContentForEdit( $content, $rev, $user1 );
+
 		$this->assertNotNull( $rev->getRecentChange() );
 		$this->assertSame( $rev->getId(), (int)$rev->getRecentChange()->getAttribute( 'rc_this_oldid' ) );
+
+		// make sure that cached ParserOutput gets re-used throughout
+		$this->assertSame( $preparedEditBefore->output, $preparedEditAfter->output );
 
 		$id = $page->getId();
 
@@ -340,6 +347,26 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$res->free();
 
 		$this->assertEquals( 2, $n, 'pagelinks should contain two links from the page' );
+	}
+
+	/**
+	 * @covers WikiPage::doEditContent
+	 */
+	public function testDoEditContent_twice() {
+		$title = Title::newFromText( __METHOD__ );
+		$page = WikiPage::factory( $title );
+		$content = ContentHandler::makeContent( '$1 van $2', $title );
+
+		// Make sure we can do the exact same save twice.
+		// This tests checks that internal caches are reset as appropriate.
+		$status1 = $page->doEditContent( $content, __METHOD__ );
+		$status2 = $page->doEditContent( $content, __METHOD__ );
+
+		$this->assertTrue( $status1->isOK(), 'OK' );
+		$this->assertTrue( $status2->isOK(), 'OK' );
+
+		$this->assertTrue( isset( $status1->value['revision'] ), 'OK' );
+		$this->assertFalse( isset( $status2->value['revision'] ), 'OK' );
 	}
 
 	/**
@@ -2278,14 +2305,25 @@ more stuff
 			->method( 'getParserOutput' )
 			->willReturn( new ParserOutput( 'HTML' ) );
 
-		$updater = $page->newPageUpdater( $user );
+		$preparedEditBefore = $page->prepareContentForEdit( $content, null, $user );
+
+		// provide context, so the cache can be kept in place
+		$slotsUpdate = new revisionSlotsUpdate();
+		$slotsUpdate->modifyContent( 'main', $content );
+
+		$updater = $page->newPageUpdater( $user, $slotsUpdate );
 		$updater->setContent( 'main', $content );
 		$revision = $updater->saveRevision(
 			CommentStoreComment::newUnsavedComment( 'test' ),
 			EDIT_NEW
 		);
 
+		$preparedEditAfter = $page->prepareContentForEdit( $content, $revision, $user );
+
 		$this->assertSame( $revision->getId(), $page->getLatest() );
+
+		// Parsed output must remain cached throughout.
+		$this->assertSame( $preparedEditBefore->output, $preparedEditAfter->output );
 	}
 
 	/**
@@ -2311,13 +2349,19 @@ more stuff
 
 		$updater1->prepareUpdate( $revision );
 
-		// Re-use updater with same revision or content
+		// Re-use updater with same revision or content, even if base changed
 		$this->assertSame( $updater1, $page->getDerivedDataUpdater( $user, $revision ) );
 
 		$slotsUpdate = RevisionSlotsUpdate::newFromContent(
 			[ 'main' => $revision->getContent( 'main' ) ]
 		);
 		$this->assertSame( $updater1, $page->getDerivedDataUpdater( $user, null, $slotsUpdate ) );
+
+		// Don't re-use for edit if base revision ID changed
+		$this->assertNotSame(
+			$updater1,
+			$page->getDerivedDataUpdater( $user, null, $slotsUpdate, true )
+		);
 
 		// Don't re-use with different user
 		$updater2a = $page->getDerivedDataUpdater( $admin, null, $slotsUpdate );
