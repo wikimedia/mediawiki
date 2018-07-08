@@ -1354,7 +1354,7 @@
 	"recentchanges-label-minor": "این یک ویرایش جزئی است",
 	"recentchanges-label-bot": "این ویرایش را یک ربات انجام داده است",
 	"recentchanges-label-unpatrolled": "این ویرایش هنوز گشت‌زنی نشده است",
-	"recentchanges-label-plusminus": "حجم صفحه به اندازه این مقدار بایت تغییر یافته است",
+	"recentchanges-label-plusminus": "حجم صفحه به اندازه این مقدار بایت تغییر یافته است.",
 	"recentchanges-legend-heading": "<strong>اختصارها:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (همچنین به [[Special:NewPages|فهرست صفحات تازه]] نگاه کنید)",
 	"recentchanges-legend-plusminus": "(<em>±۱۲۳</em>)",

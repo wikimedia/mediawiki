@@ -98,7 +98,8 @@
 			"Anwar2",
 			"Acamicamacaraca",
 			"DeRudySoulStorm",
-			"Railfail536"
+			"Railfail536",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -1252,7 +1253,7 @@
 	"right-browsearchive": "Przeszukiwanie usuniętych stron",
 	"right-undelete": "Odtwarzanie usuniętych stron",
 	"right-suppressrevision": "Podgląd, ukrywanie i odkrywanie wersji ukrytych przed wszystkimi",
-	"right-viewsuppressed": "Umożliwia zobaczenie wersji ukrytych przed każdym użytkownikiem",
+	"right-viewsuppressed": "Podgląd wersji ukrytych przed każdym użytkownikiem",
 	"right-suppressionlog": "Podgląd rejestru ukrywania",
 	"right-block": "Blokowanie użytkownikom możliwości edycji",
 	"right-blockemail": "Blokowanie użytkownikom możliwości wysyłania wiadomości",
