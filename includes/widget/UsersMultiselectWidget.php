@@ -39,7 +39,7 @@ class UsersMultiselectWidget extends \OOUI\Widget {
 		$textarea = new MultilineTextInputWidget( [
 			'name' => $this->inputName,
 			'value' => implode( "\n", $this->usersArray ),
-			'rows' => 25,
+			'rows' => 10,
 		] );
 		$this->prependContent( $textarea );
 	}
