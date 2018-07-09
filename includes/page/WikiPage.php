@@ -1664,13 +1664,17 @@ class WikiPage implements Page, IDBAccessObject {
 	 *        to perform updates, if the edit was already saved.
 	 * @param RevisionSlotsUpdate|null $forUpdate The new content to be saved by the edit (pre PST),
 	 *        if the edit was not yet saved.
+	 * @param bool $forEdit Only re-use if the cached DerivedPageDataUpdater has the current
+	 *       revision as the edit's parent revision. This ensures that the same
+	 *       DerivedPageDataUpdater cannot be re-used for two consecutive edits.
 	 *
 	 * @return DerivedPageDataUpdater
 	 */
 	private function getDerivedDataUpdater(
 		User $forUser = null,
 		RevisionRecord $forRevision = null,
-		RevisionSlotsUpdate $forUpdate = null
+		RevisionSlotsUpdate $forUpdate = null,
+		$forEdit = false
 	) {
 		if ( !$forRevision && !$forUpdate ) {
 			// NOTE: can't re-use an existing derivedDataUpdater if we don't know what the caller is
@@ -1693,7 +1697,8 @@ class WikiPage implements Page, IDBAccessObject {
 			&& !$this->derivedDataUpdater->isReusableFor(
 				$forUser,
 				$forRevision,
-				$forUpdate
+				$forUpdate,
+				$forEdit ? $this->getLatest() : null
 			)
 		) {
 			$this->derivedDataUpdater = null;
@@ -1716,16 +1721,18 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @since 1.32
 	 *
 	 * @param User $user
+	 * @param RevisionSlotsUpdate|null $forUpdate If given, allows any cached ParserOutput
+	 *        that may already have been returned via getDerivedDataUpdater to be re-used.
 	 *
 	 * @return PageUpdater
 	 */
-	public function newPageUpdater( User $user ) {
+	public function newPageUpdater( User $user, RevisionSlotsUpdate $forUpdate = null ) {
 		global $wgAjaxEditStash, $wgUseAutomaticEditSummaries, $wgPageCreationLog;
 
 		$pageUpdater = new PageUpdater(
 			$user,
 			$this, // NOTE: eventually, PageUpdater should not know about WikiPage
-			$this->getDerivedDataUpdater( $user ),
+			$this->getDerivedDataUpdater( $user, null, $forUpdate, true ),
 			$this->getDBLoadBalancer(),
 			$this->getRevisionStore()
 		);
@@ -1820,10 +1827,13 @@ class WikiPage implements Page, IDBAccessObject {
 			$flags = ( $flags & ~EDIT_MINOR );
 		}
 
+		$slotsUpdate = new RevisionSlotsUpdate();
+		$slotsUpdate->modifyContent( 'main', $content );
+
 		// NOTE: while doEditContent() executes, callbacks to getDerivedDataUpdater and
 		// prepareContentForEdit will generally use the DerivedPageDataUpdater that is also
 		// used by this PageUpdater. However, there is no guarantee for this.
-		$updater = $this->newPageUpdater( $user );
+		$updater = $this->newPageUpdater( $user, $slotsUpdate );
 		$updater->setContent( 'main', $content );
 		$updater->setOriginalRevisionId( $originalRevId );
 		$updater->setUndidRevisionId( $undidRevId );
