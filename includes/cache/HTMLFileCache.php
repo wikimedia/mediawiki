@@ -91,6 +91,7 @@ class HTMLFileCache extends FileCacheBase {
 	 * @return bool
 	 */
 	public static function useFileCache( IContextSource $context, $mode = self::MODE_NORMAL ) {
+		global $wgContLang;
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		if ( !$config->get( 'UseFileCache' ) && $mode !== self::MODE_REBUILD ) {
@@ -123,7 +124,7 @@ class HTMLFileCache extends FileCacheBase {
 		$ulang = $context->getLanguage();
 
 		// Check that there are no other sources of variation
-		if ( $user->getId() || $ulang->getCode() !== $config->get( 'LanguageCode' ) ) {
+		if ( $user->getId() || !$ulang->equals( $wgContLang ) ) {
 			return false;
 		}
 
