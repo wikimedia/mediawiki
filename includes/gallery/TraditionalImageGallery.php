@@ -226,7 +226,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			$nt,
 			htmlspecialchars(
 				is_int( $this->getCaptionLength() ) ?
-					$lang->truncate( $nt->getText(), $this->getCaptionLength() ) :
+					$lang->truncateForVisual( $nt->getText(), $this->getCaptionLength() ) :
 					$nt->getText()
 			),
 			[
@@ -286,7 +286,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	}
 
 	/**
-	 * Length to truncate filename to in caption when using "showfilename" (if int).
+	 * Length (in characters) to truncate filename to in caption when using "showfilename" (if int).
 	 * A value of 'true' will truncate the filename to one line using CSS, while
 	 * 'false' will disable truncating.
 	 *

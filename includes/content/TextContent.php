@@ -75,7 +75,7 @@ class TextContent extends AbstractContent {
 
 		$text = $this->getNativeData();
 
-		$truncatedtext = $wgContLang->truncate(
+		$truncatedtext = $wgContLang->truncateForDatabase(
 			preg_replace( "/[\n\r]/", ' ', $text ),
 			max( 0, $maxlength ) );
 
