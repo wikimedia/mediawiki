@@ -753,6 +753,17 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
+	 * Get the introductory message HTML.
+	 *
+	 * @since 1.32
+	 *
+	 * @return string
+	 */
+	public function getPreText() {
+		return $this->mPre;
+	}
+
+	/**
 	 * Add HTML to the header, inside the form.
 	 *
 	 * @param string $msg Additional HTML to display in header
