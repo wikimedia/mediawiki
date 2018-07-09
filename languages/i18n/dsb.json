@@ -20,7 +20,8 @@
 			"TMg",
 			"Macofe",
 			"Matma Rex",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Wótkaze pódšmarnuś:",
@@ -997,8 +998,10 @@
 	"right-editsemiprotected": "Boki wobźěłaś, kótarež su pśez \"{{int:protect-level-autoconfirmed}}\" šćitane",
 	"right-editinterface": "Wužywański pówjerch wobźěłaś",
 	"right-editusercss": "Dataje CSS drugich wužywarjow wobźěłaś",
+	"right-edituserjson": "Dataje JSON drugich wužywarjow wobźěłaś",
 	"right-edituserjs": "Dataje JS drugich wužywarjow wobźěłaś",
 	"right-editmyusercss": "Twóje swójske wužywarske CSS-dataje wobźěłaś",
+	"right-editmyuserjson": "Twóje swójske wužywarske JSON-dataje wobźěłaś",
 	"right-editmyuserjs": "Twóje swójske wužywarske JavaScript-dataje wobźěłaś",
 	"right-viewmywatchlist": "Se swójske wobglědowańki woglědaś",
 	"right-editmywatchlist": "Swóje wobglědowańki wobźěłaś. Wobglěduj, až někotare akcije hyšći pśidawaju boki bźez toś togo pšawa.",

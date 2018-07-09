@@ -31,7 +31,8 @@
 			"Bugoslav",
 			"Acamicamacaraca",
 			"Fitoschido",
-			"BadDog"
+			"BadDog",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Podvlačenje veza:",
@@ -1092,8 +1093,10 @@
 	"right-editsemiprotected": "uređivanje stranica pod zaštitom „{{int:protect-level-autoconfirmed}}“",
 	"right-editinterface": "uređivanje korisničkog okruženja",
 	"right-editusercss": "uređivanje tuđih CSS datoteka",
+	"right-edituserjson": "uređivanje tuđih JSON datoteka",
 	"right-edituserjs": "uređivanje tuđih JavaScript datoteka",
 	"right-editmyusercss": "uređivanje sopstvenih CSS datoteka",
+	"right-editmyuserjson": "uređivanje sopstvenih JSON datoteka",
 	"right-editmyuserjs": "uređivanje sopstvenih JavaScript datoteka",
 	"right-viewmywatchlist": "vidi sopstveni spisak nadgledanja",
 	"right-editmywatchlist": "uređivanje sopstvenog spiska nadgledanja; neke preduzete radnje će svejedno dodati stranice na spisak i bez ovog prava",

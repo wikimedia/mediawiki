@@ -39,7 +39,8 @@
 			"Wumbolo",
 			"Fitoschido",
 			"Hamster",
-			"BadDog"
+			"BadDog",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Podcrtavanje poveznica",
@@ -1160,8 +1161,10 @@
 	"right-editcontentmodel": "Odredi modela sadržaja stranice",
 	"right-editinterface": "Uređivanje suradničkog sučelja",
 	"right-editusercss": "Uređivanje CSS stranica drugih suradnika",
+	"right-edituserjson": "Uređivanje JSON stranica drugih suradnika",
 	"right-edituserjs": "Uređivanje JS stranica drugih suradnika",
 	"right-editmyusercss": "Uređivanje vlastitih CSS stranica",
+	"right-editmyuserjson": "Uređivanje vlastitih JSON stranica",
 	"right-editmyuserjs": "Uređivanje vlastitih JavaScript stranica",
 	"right-viewmywatchlist": "Pregled svojeg popisa praćenih stranica",
 	"right-editmywatchlist": "Uređivanje vlastitog popisa praćenja. Određenim djelovanjima moguće je dodavati stranice i bez ovoga dopuštenja.",
@@ -1380,6 +1383,8 @@
 	"rcfilters-watchlist-edit-watchlist-button": "Izmijeni popis praćenih stranica",
 	"rcfilters-preference-label": "Skrij poboljšanu inačicu nedavnih promjena",
 	"rcfilters-preference-help": "Vraća natrag stanje prije redizajna sučelja 2017., te svih oruđa dodanih tada i poslije toga.",
+	"rcfilters-watchlist-preference-label": "Sakrij poboljšanu inačicu popisa praćenja",
+	"rcfilters-watchlist-preference-help": "Vraća natrag stanje prije redizajna sučelja 2017., te svih oruđa dodanih tada i poslije toga.",
 	"rcnotefrom": "Ispod {{PLURAL:$5|je izmjena|su izmjene}} od <strong>$3, $4</strong> (prikazano ih do <strong>$1</strong>).",
 	"rclistfromreset": "Vrati na zadano izbor datuma",
 	"rclistfrom": "Prikaži nove promjene počevši od $3 $2",

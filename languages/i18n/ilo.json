@@ -9,7 +9,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Macofe",
-			"Nemo bis"
+			"Nemo bis",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-underline": "Pinag-ugisan ti silpo:",
@@ -2158,7 +2159,7 @@
 	"deletereason-dropdown": "* Kadawyan a rasrason ti panagikkat\n** Spam\n** Bandalismo\n** Panaglabsing iti karbengan ti kopia\n** Kiddaw ti mannurat\n** Naputed a baw-ing",
 	"delete-edit-reasonlist": "Urnosen dagiti rason ti panagikkat",
 	"delete-toobig": "Daytoy a panid ket dakkel ti pakasaritaanna, sumurok a  $1 {{PLURAL:a panagbaliwan|dagiti panagbaliwan}}.\nTi panagikkat ti kastoy a pammpanid ket naparitan tapno mapawilan ti saan nga inkarkaro a pannakadadael ti {{SITENAME}}.",
-	"delete-warning-toobig": "Daytoy a panid ket adda ti dakkel unay a pakasaritaan ti panagurnos, ti kaadu nga $1 {{PLURAL:$1|panagbaliw|dagiti panagbaliw}}.\nTi panagikkat ket madisturbo ti panagpataray ti database ti {{SITNAME}};\nagal-aluadka a mangrugi.",
+	"delete-warning-toobig": "Daytoy a panid ket adda ti dakkel unay a pakasaritaan ti panagurnos, ti kaadu nga $1 {{PLURAL:$1|panagbaliw|dagiti panagbaliw}}.\nTi panagikkat ket madisturbo ti panagpataray ti database ti {{SITENAME}};\nagal-aluadka a mangrugi.",
 	"deleteprotected": "Saanmo a maikkat daytoy a panid gapu ta nasalaknibanen.",
 	"deleting-backlinks-warning": "<strong>Ballaag:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|Dagiti dadduma a panid]] ket naisilpo wenno nailak-am manipud iti panid a gangani nga ikkatem.",
 	"deleting-subpages-warning": "<strong>Ballaag:</strong> Ti panid nga ik-ikkatem ket addaan [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|iti subpanid|kadagiti $1 a subpanid|51=kadagiti sumurok a 50 a subpanid}}]].",
@@ -2453,8 +2454,8 @@
 	"ip_range_toolarge": "Dagiti serra a nasakop a dakdakkel ngem /$1 ket saan a maipalubos.",
 	"proxyblocker": "Pannakbagi a panagserra",
 	"proxyblockreason": "Ti IP a pagtaengam ket naserraan ngamin ket daytoy ket nakalukat a panakbagi.\nPangngaasi a kontakem ti agit-ited ti serbisio ti Internetmo wenno teknikal a suporta ti gunglom ken ibagam kaniada ti nakaro a parikut ti seguridad.",
-	"sorbsreason": "Ti IP a pagtaengam ket nailista a kasla \"nalukatan a pannakbagi\" iti DNSBL nga inusar babaen ti {{SITNAME}}.",
-	"sorbs_create_account_reason": "Ti IP a pagtaengam ket nailista a kasla \"nalukatan a pannakbagi\" iti DNSBL nga inusar babaen ti {{SITNAME}}.\nSaanka a makapartuat ti pakabilangan.",
+	"sorbsreason": "Ti IP a pagtaengam ket nailista a kasla \"nalukatan a pannakbagi\" iti DNSBL nga inusar babaen ti {{SITENAME}}.",
+	"sorbs_create_account_reason": "Ti IP a pagtaengam ket nailista a kasla \"nalukatan a pannakbagi\" iti DNSBL nga inusar babaen ti {{SITENAME}}.\nSaanka a makapartuat ti pakabilangan.",
 	"softblockrangesreason": "Dagiti kontribusion ti di ammo ket saan a maipalubos manipud iti IP nga adresmo ($1). Pagngaasi a sumrek.",
 	"xffblockreason": "Ti maysa nga adres ti IP nga adda iti paulo ti X-Forwarded-For, mabalin a kukuam wenno ti pannakbagi a server nga us-usarem, ket naserraan. Ti kasisigud a rason ti pannakaserra idi ket: $1",
 	"cant-see-hidden-user": "Ti agar-aramat a kayatmo a serraan ket naserraanen ken nailemmeng.\nGapu ta awan met ti karbengam nga agilemming ti agar-aramat, saanmo a makita wenno maurnos ti serra ti agar-aramat.",
@@ -3207,7 +3208,7 @@
 	"monthsall": "amin",
 	"confirmemail": "Pasingkedan ti esurat a pagtaengam",
 	"confirmemail_noemail": "Awan ti umisu nga e-surat a pagtaengam a naikabil idiay [[Special:Preferences|kaykayat ti agar-aramat]].",
-	"confirmemail_text": "Ti {{SITNAME}} ket masapulna a pasingkedam ti esurat a pagtaengam sakbay nga agusar ti esurat a langa.\nIpabalinmo dita baba a buton ti panagitulod ti pasingkedan a surat dita a pagtaengam.\nTi surat ket mangiraman ti panilpo nga aglaon ti maysa a kodigo;\nikabil ti panilpo dita pagbasabasam tapno mapasingkedam a ti esurat a pagtaengam ket umisu.",
+	"confirmemail_text": "Ti {{SITENAME}} ket masapulna a pasingkedam ti esurat a pagtaengam sakbay nga agusar ti esurat a langa.\nIpabalinmo dita baba a buton ti panagitulod ti pasingkedan a surat dita a pagtaengam.\nTi surat ket mangiraman ti panilpo nga aglaon ti maysa a kodigo;\nikabil ti panilpo dita pagbasabasam tapno mapasingkedam a ti esurat a pagtaengam ket umisu.",
 	"confirmemail_pending": "Ti pasingkedan a kodigo ket naipatulod kenkan:\nno kadamdama ka a nangaramid ti pakabilangam, aguray ka pay ti mano a minutos a sumangpet sakbay ka nga agpadas ti agkiddaw ti baro a kodigo.",
 	"confirmemail_send": "Agipatulod ti pasingkedan a kodigo",
 	"confirmemail_sent": "Naipatuloden ti pammasingked nga esurat.",
