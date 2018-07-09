@@ -3,7 +3,7 @@
 use MediaWiki\Widget\UsersMultiselectWidget;
 
 /**
- * Implements a capsule multiselect input field for user names.
+ * Implements a tag multiselect input field for user names.
  *
  * Besides the parameters recognized by HTMLUserTextField, additional recognized
  * parameters are:
