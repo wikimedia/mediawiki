@@ -598,6 +598,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgField', 'ipblocks', 'ipb_sitewide', 'SMALLINT NOT NULL DEFAULT 1' ],
 			[ 'addTable', 'ipblocks_restrictions', 'patch-ipblocks_restrictions-table.sql' ],
 			[ 'migrateImageCommentTemp' ],
+			[ 'dropPgField', 'category', 'cat_hidden' ],
+			[ 'dropPgField', 'site_stats', 'ss_admins' ],
+			[ 'dropPgField', 'recentchanges', 'rc_cur_time' ],
 		];
 	}
 
@@ -950,8 +953,7 @@ END;
 	protected function changeNullableField( $table, $field, $null, $update = false ) {
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( is_null( $fi ) ) {
-			$this->output( "...ERROR: expected column $table.$field to exist\n" );
-			exit( 1 );
+			return;
 		}
 		if ( $fi->isNullable() ) {
 			# # It's NULL - does it need to be NOT NULL?

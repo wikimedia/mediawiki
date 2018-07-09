@@ -668,6 +668,8 @@ because of Phabricator reports.
   should be mediated by the CommentStore class, this change shouldn't affect
   external code.
 * (T206147) Database::close() will no longer commit any open transactions.
+* (T64103) Dropped columns category.cat_hidden, site_stats.ss_admins, and
+  recentchanges.rc_cur_time from the PostgreSQL schema.
 
 == Compatibility ==
 MediaWiki 1.32 requires PHP 7.0.0 or later. Although HHVM 3.18.5 or later is
