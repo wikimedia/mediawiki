@@ -59,6 +59,11 @@ class MessageBlobStoreTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( '{"foo":"Example"}', $blob, 'Generated blob' );
 	}
 
+	/**
+	 * Seems to fail sometimes (T176097).
+	 *
+	 * @group Broken
+	 */
 	public function testGetBlobCached() {
 		$module = $this->makeModule( [ 'example' ] );
 		$rl = new ResourceLoader();

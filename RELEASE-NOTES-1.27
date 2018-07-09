@@ -2,11 +2,25 @@
 
 THIS IS NOT A RELEASE YET!
 
+This is a security and maintenance release of the MediaWiki 1.27 branch.
+
 === Changes since 1.27.4 ===
 * Upgraded Moment.js from v2.8.4 to v2.19.3.
 * (T160298) Fixed Special:ActiveUsers due to bad backport.
 * (T87572) Make FormatMetadata::flattenArrayReal() work for an associative array.
 * Updated list of SPDX licenses for extensions.
+* (T189567) the CLI installer (maintenance/install.php) learned to detect and
+  include extensions. Pass --with-extensions to enable that feature.
+* (T192584) Stop incorrectly passing USE INDEX to RecentChange::newFromConds().
+* Add default edit rate limit of 90 edits/minute for all users.
+* (T196125) php-memcached 3.0 (provided with PHP 7.0) is now supported.
+* (T196672) The mtime of extension.json files is now able to be zero.
+* (T118683) Fix exception from &$user deref on HHVM in the TitleMoveComplete hook.
+* (T180403) Validate $length in padleft/padright parser functions.
+* (T143790) Make $wgEmailConfirmToEdit only affect edit actions.
+* Special:BotPasswords now requires reauthentication.
+* (T191608, T187638) Add 'logid' parameter to Special:Log.
+* (T193829) Indicate when a Bot Password needs reset.
 
 == MediaWiki 1.27.4 ==
 This is a security and maintenance release of the MediaWiki 1.27 branch.

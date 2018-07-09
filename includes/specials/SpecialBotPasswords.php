@@ -51,6 +51,10 @@ class SpecialBotPasswords extends FormSpecialPage {
 		return $this->getConfig()->get( 'EnableBotPasswords' );
 	}
 
+	protected function getLoginSecurityLevel() {
+		return $this->getName();
+	}
+
 	/**
 	 * Main execution point
 	 * @param string|null $par
@@ -107,6 +111,9 @@ class SpecialBotPasswords extends FormSpecialPage {
 					'type' => 'check',
 					'label-message' => 'botpasswords-label-resetpassword',
 				];
+				if ( $this->botPassword->isInvalid() ) {
+					$fields['resetPassword']['default'] = true;
+				}
 			}
 
 			$lang = $this->getLanguage();
@@ -162,25 +169,42 @@ class SpecialBotPasswords extends FormSpecialPage {
 			];
 
 		} else {
-			$dbr = BotPassword::getDB( DB_SLAVE );
+			$passwordFactory = new PasswordFactory();
+			$passwordFactory->init( $this->getConfig() );
+
+			$dbr = BotPassword::getDB( DB_REPLICA );
 			$res = $dbr->select(
 				'bot_passwords',
-				[ 'bp_app_id' ],
+				[ 'bp_app_id', 'bp_password' ],
 				[ 'bp_user' => $this->userId ],
 				__METHOD__
 			);
 			foreach ( $res as $row ) {
+				try {
+					$password = $passwordFactory->newFromCiphertext( $row->bp_password );
+					$passwordInvalid = $password instanceof InvalidPassword;
+					unset( $password );
+				} catch ( PasswordError $ex ) {
+					$passwordInvalid = true;
+				}
+
+				$text = Linker::link(
+					$this->getPageTitle( $row->bp_app_id ),
+					htmlspecialchars( $row->bp_app_id ),
+					[],
+					[],
+					[ 'known' ]
+				);
+				if ( $passwordInvalid ) {
+					$text .= $this->msg( 'word-separator' )->escaped()
+						. $this->msg( 'botpasswords-label-needsreset' )->parse();
+				}
+
 				$fields[] = [
 					'section' => 'existing',
 					'type' => 'info',
 					'raw' => true,
-					'default' => Linker::link(
-						$this->getPageTitle( $row->bp_app_id ),
-						htmlspecialchars( $row->bp_app_id ),
-						[],
-						[],
-						[ 'known' ]
-					),
+					'default' => $text,
 				];
 			}
 
