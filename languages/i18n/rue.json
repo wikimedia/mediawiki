@@ -14,7 +14,8 @@
 			"Matma Rex",
 			"KHMELNYTSKYIA",
 			"Igor Kercsa",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Підкреслёвати одказы:",
@@ -965,8 +966,10 @@
 	"right-editsemiprotected": "Едітованя сторінок замкнутых на „{{int:protect-level-autoconfirmed}}“",
 	"right-editinterface": "Едітованя інтерфейсу хоснователя",
 	"right-editusercss": "Едітованя CSS файлів іншых хоснователїв",
+	"right-edituserjson": "Едітованя JSON файлів іншых хоснователїв",
 	"right-edituserjs": "Едітованя JS файлів іншых хоснователїв",
 	"right-editmyusercss": "Едітовати вашы властны хосновательскы CSS файлы.",
+	"right-editmyuserjson": "Едітовати вашы властны хосновательскы JSON файлы",
 	"right-editmyuserjs": "Едітовати вашы властны хосновательскы JavaScript файлы",
 	"right-viewmywatchlist": "Перезераня властного списку слїдованых сторінок",
 	"right-editmywatchlist": "Едітованя властного списку слїдованых сторінок. Усвідомте собі, же дакотры дїї будуть до нёго придавати сторінкы і без такого права.",

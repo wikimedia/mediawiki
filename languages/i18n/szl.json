@@ -21,7 +21,8 @@
 			"Uostofchuodnego",
 			"Przem(1)s",
 			"Fitoschido",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Podsztrychniyniy linkōw:",
@@ -890,6 +891,7 @@
 	"right-editprotected": "Sprowjej zawarte zajty (ze zawarćym kaskadowym)",
 	"right-editinterface": "Sprowjej interfejs użytkowńika",
 	"right-editusercss": "Sprowjej pliki CSS inkszych użytkowńikůw",
+	"right-edituserjson": "Sprowjej pliki JSON inkšych užytkowńikůw",
 	"right-edituserjs": "Sprowjej pliki JS inkšych užytkowńikůw",
 	"right-rollback": "Rewert drap sprawjyńo uostatńygo użytkowńika kery sprowjoł dano zajta",
 	"right-markbotedits": "Uoznocz rewertowane sprawjyńo kej sprawjyńo botůw",
