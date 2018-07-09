@@ -652,7 +652,8 @@ class ChangesList extends ContextSource {
 		}
 	}
 
-	/** Inserts a rollback link
+	/**
+	 * Insert a rollback link
 	 *
 	 * @param string &$s
 	 * @param RecentChange &$rc
@@ -661,15 +662,14 @@ class ChangesList extends ContextSource {
 		if ( $rc->mAttribs['rc_type'] == RC_EDIT
 			&& $rc->mAttribs['rc_this_oldid']
 			&& $rc->mAttribs['rc_cur_id']
+			&& $rc->getAttribute( 'page_latest' ) == $rc->mAttribs['rc_this_oldid']
 		) {
-			$page = $rc->getTitle();
-			/** Check for rollback and edit permissions, disallow special pages, and only
+			$title = $rc->getTitle();
+			/** Check for rollback permissions, disallow special pages, and only
 			 * show a link on the top-most revision */
-			if ( $this->getUser()->isAllowed( 'rollback' )
-				&& $rc->mAttribs['page_latest'] == $rc->mAttribs['rc_this_oldid']
-			) {
+			if ( $title->quickUserCan( 'rollback', $this->getUser() ) ) {
 				$rev = new Revision( [
-					'title' => $page,
+					'title' => $title,
 					'id' => $rc->mAttribs['rc_this_oldid'],
 					'user' => $rc->mAttribs['rc_user'],
 					'user_text' => $rc->mAttribs['rc_user_text'],
