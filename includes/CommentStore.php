@@ -458,16 +458,7 @@ class CommentStore {
 		$comment = CommentStoreComment::newUnsavedComment( $comment, $data );
 
 		# Truncate comment in a Unicode-sensitive manner
-		$comment->text = $this->lang->truncate( $comment->text, self::MAX_COMMENT_LENGTH );
-		if ( mb_strlen( $comment->text, 'UTF-8' ) > self::COMMENT_CHARACTER_LIMIT ) {
-			$ellipsis = wfMessage( 'ellipsis' )->inLanguage( $this->lang )->escaped();
-			if ( mb_strlen( $ellipsis ) >= self::COMMENT_CHARACTER_LIMIT ) {
-				// WTF?
-				$ellipsis = '...';
-			}
-			$maxLength = self::COMMENT_CHARACTER_LIMIT - mb_strlen( $ellipsis, 'UTF-8' );
-			$comment->text = mb_substr( $comment->text, 0, $maxLength, 'UTF-8' ) . $ellipsis;
-		}
+		$comment->text = $this->lang->truncateForVisual( $comment->text, self::COMMENT_CHARACTER_LIMIT );
 
 		if ( $this->stage > MIGRATION_OLD && !$comment->id ) {
 			$dbData = $comment->data;
@@ -530,7 +521,7 @@ class CommentStore {
 		$comment = $this->createComment( $dbw, $comment, $data );
 
 		if ( $this->stage <= MIGRATION_WRITE_BOTH ) {
-			$fields[$key] = $this->lang->truncate( $comment->text, 255 );
+			$fields[$key] = $this->lang->truncateForDatabase( $comment->text, 255 );
 		}
 
 		if ( $this->stage >= MIGRATION_WRITE_BOTH ) {
