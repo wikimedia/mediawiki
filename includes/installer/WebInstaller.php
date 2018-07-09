@@ -758,7 +758,7 @@ class WebInstaller extends Installer {
 	 */
 	public function label( $msg, $forId, $contents, $helpData = "" ) {
 		if ( strval( $msg ) == '' ) {
-			$labelText = '\u{00A0}';
+			$labelText = "\u{00A0}";
 		} else {
 			$labelText = wfMessage( $msg )->escaped();
 		}
@@ -1047,7 +1047,7 @@ class WebInstaller extends Installer {
 
 			$items[$value] =
 				Xml::radio( $params['controlName'], $value, $checked, $itemAttribs ) .
-				'\u{00A0}' .
+				"\u{00A0}" .
 				Xml::tags( 'label', [ 'for' => $id ], $this->parse(
 					isset( $params['itemLabels'] ) ?
 						wfMessage( $params['itemLabels'][$value] )->plain() :
