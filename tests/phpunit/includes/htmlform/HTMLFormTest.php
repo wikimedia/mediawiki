@@ -54,4 +54,11 @@ class HTMLFormTest extends MediaWikiTestCase {
 		$this->assertContains( ' autocomplete="off"', $form->wrapForm( '' ) );
 	}
 
+	public function testGetPreText() {
+		$preText = 'TEST';
+		$form = $this->newInstance();
+		$form->setPreText( $preText );
+		$this->assertSame( $preText, $form->getPreText() );
+	}
+
 }
