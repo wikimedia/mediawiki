@@ -27,11 +27,12 @@ class MockCompletionSearchEngine extends SearchEngine {
 	 */
 	public static function addMockResults( $query, array $result ) {
 		// Leading : ensures we don't treat another : as a namespace separator
-		$normalized = Title::newFromText( ":$query" )->getText();
+		$normalized = mb_strtolower( Title::newFromText( ":$query" )->getText() );
 		self::$results[$normalized] = $result;
 	}
 
 	public function completionSearchBackend( $search ) {
+		$search = mb_strtolower( $search );
 		if ( !isset( self::$results[$search] ) ) {
 			return SearchSuggestionSet::emptySuggestionSet();
 		}
