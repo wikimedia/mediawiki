@@ -136,7 +136,7 @@
 	"tog-watchlisthideminor": "隱藏監視清單中的次要修訂",
 	"tog-watchlisthideliu": "隱藏監視清單中已登入使用者的編輯",
 	"tog-watchlistreloadautomatically": "篩選條件變更時自動重新讀取監視清單（需要使用 JavaScript）",
-	"tog-watchlistunwatchlinks": "為帶有變更的監試頁面添加直接（取消）監視標記（{{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}），需要 JavaScript 來打開功能",
+	"tog-watchlistunwatchlinks": "為有更改的監視頁面添加直接（取消）監視標記（{{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}，需要JavaScript才能開啟功能）",
 	"tog-watchlisthideanons": "隱藏監視清單中匿名使用者的編輯",
 	"tog-watchlisthidepatrolled": "隱藏監視清單中已巡查的編輯",
 	"tog-watchlisthidecategorization": "隱藏頁面分類",

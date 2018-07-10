@@ -209,7 +209,7 @@
 	"mycustomjsprotected": "No tiene permiso para editar esta página JavaScript.",
 	"myprivateinfoprotected": "No tiene permiso para editar su información privada.",
 	"mypreferencesprotected": "No tiene permiso para editar sus preferencias.",
-	"exception-nologin-text": "Por favor inicie sesión para acceder a esta página o llevar a cabo esta acción.",
+	"exception-nologin-text": "Necesita acceder para ver esta página o llevar a cabo esta acción.",
 	"exception-nologin-text-manual": "Necesita $1 para poder ver esta página o llevar a cabo esta acción.",
 	"logouttext": "<strong>Su sesión ha finalizado.</strong>\n\nPuede que algunas páginas continúen mostrándose como si la sesión estuviera iniciada hasta que actualice la caché de su navegador.",
 	"welcomeuser": "Le damos la bienvenida, $1.",

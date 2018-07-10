@@ -1381,6 +1381,7 @@
 	"rcfilters-liveupdates-button-title-off": "Prikaži nove izmjene uživo",
 	"rcfilters-watchlist-markseen-button": "Označi sve izmjene kao pregledane",
 	"rcfilters-watchlist-edit-watchlist-button": "Izmijeni popis praćenih stranica",
+	"rcfilters-watchlist-showupdated": "Izmjene na stranicama koje niste posjetili otkako su se izmjene dogodile istaknute su <strong>podebljanim slovima</strong>, s ispunjenim kružićima.",
 	"rcfilters-preference-label": "Skrij poboljšanu inačicu nedavnih promjena",
 	"rcfilters-preference-help": "Vraća natrag stanje prije redizajna sučelja 2017., te svih oruđa dodanih tada i poslije toga.",
 	"rcfilters-watchlist-preference-label": "Sakrij poboljšanu inačicu popisa praćenja",
