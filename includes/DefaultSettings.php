@@ -8606,9 +8606,14 @@ $wgSiteTypes = [
 $wgPagePropsHaveSortkey = true;
 
 /**
- * Port where you have HTTPS running
- * Supports HTTPS on non-standard ports
- * @see T67184
+ * For installations where the canonical server is HTTP but HTTPS is optionally
+ * supported, you can specify a non-standard HTTPS port here. $wgServer should
+ * be a protocol-relative URL.
+ *
+ * If HTTPS is always used, just specify the port number in $wgServer.
+ *
+ * @see https://phabricator.wikimedia.org/T67184
+ *
  * @since 1.24
  */
 $wgHttpsPort = 443;
