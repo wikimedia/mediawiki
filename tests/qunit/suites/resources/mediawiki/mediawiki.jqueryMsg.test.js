@@ -105,10 +105,7 @@
 					skin: mw.config.get( 'skin' ),
 					lang: langCode,
 					debug: mw.config.get( 'debug' ),
-					modules: [
-						'mediawiki.language.data',
-						'mediawiki.language'
-					].join( '|' ),
+					modules: 'mediawiki.language',
 					only: 'scripts'
 				},
 				dataType: 'script',
@@ -903,6 +900,10 @@
 				getMwLanguage( test.lang )
 					.then( function ( langClass ) {
 						var parser;
+						// The unit tests perform hot-reloading of mw.language (in hacky way).
+						// For the languages/*.js script files to work, they need to statically
+						// access mw.language.getData() for the "current" language.
+						mw.language = langClass;
 						mw.config.set( 'wgUserLanguage', test.lang );
 						parser = new mw.jqueryMsg.Parser( { language: langClass } );
 						assert.strictEqual(

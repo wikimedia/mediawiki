@@ -28,7 +28,7 @@
 /**
  * ResourceLoader module for populating language specific data.
  */
-class ResourceLoaderLanguageNamesModule extends ResourceLoaderModule {
+class ResourceLoaderLanguageNamesModule extends ResourceLoaderFileModule {
 
 	protected $targets = [ 'desktop', 'mobile' ];
 
@@ -64,7 +64,7 @@ class ResourceLoaderLanguageNamesModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getDependencies( ResourceLoaderContext $context = null ) {
-		return [ 'mediawiki.language.init' ];
+		return [ 'mediawiki.language' ];
 	}
 
 	/**
