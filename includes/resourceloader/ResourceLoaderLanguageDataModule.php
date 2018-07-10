@@ -23,9 +23,9 @@
  */
 
 /**
- * ResourceLoader module for populating language specific data.
+ * ResourceLoader module for populating language specific data, such as grammar forms.
  */
-class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
+class ResourceLoaderLanguageDataModule extends ResourceLoaderFileModule {
 
 	protected $targets = [ 'desktop', 'mobile' ];
 
@@ -54,7 +54,8 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		return Xml::encodeJsCall(
+		$fileScript = parent::getScript( $context );
+		$langDataScript = Xml::encodeJsCall(
 			'mw.language.setData',
 			[
 				$context->getLanguage(),
@@ -62,6 +63,7 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 			],
 			ResourceLoader::inDebugMode()
 		);
+		return $fileScript . $langDataScript;
 	}
 
 	/**
@@ -72,10 +74,9 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param ResourceLoaderContext|null $context
-	 * @return array
+	 * @return bool
 	 */
-	public function getDependencies( ResourceLoaderContext $context = null ) {
-		return [ 'mediawiki.language.init' ];
+	public function supportsURLLoading() {
+		return false;
 	}
 }
