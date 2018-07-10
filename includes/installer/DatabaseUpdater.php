@@ -1362,4 +1362,29 @@ abstract class DatabaseUpdater {
 			$this->output( "done.\n" );
 		}
 	}
+
+	/**
+	 * Populates the MCR content tables
+	 * @since 1.32
+	 */
+	protected function populateContentTables() {
+		global $wgMultiContentRevisionSchemaMigrationStage;
+		if ( ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) &&
+			!$this->updateRowExists( 'PopulateContentTables' )
+		) {
+			$this->output(
+				"Migrating revision data to the MCR 'slot' and 'content' tables, printing progress markers.\n" .
+				"For large databases, you may want to hit Ctrl-C and do this manually with\n" .
+				"maintenance/populateContentTables.php.\n"
+			);
+			$task = $this->maintenance->runChild(
+				PopulateContentTables::class, 'populateContentTables.php'
+			);
+			$ok = $task->execute();
+			$this->output( $ok ? "done.\n" : "errors were encountered.\n" );
+			if ( $ok ) {
+				$this->insertUpdateRow( 'PopulateContentTables' );
+			}
+		}
+	}
 }

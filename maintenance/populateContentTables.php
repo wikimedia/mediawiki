@@ -92,6 +92,7 @@ class PopulateContentTables extends Maintenance {
 
 		$elapsed = microtime( true ) - $t0;
 		$this->writeln( "Done. Processed $this->totalCount rows in $elapsed seconds" );
+		return true;
 	}
 
 	/**
