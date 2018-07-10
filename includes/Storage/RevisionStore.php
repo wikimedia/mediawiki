@@ -948,8 +948,13 @@ class RevisionStore
 			return null;
 		}
 
-		// Fetch the actual revision row, without locking all extra tables.
-		$oldRevision = $this->loadRevisionFromId( $dbw, $pageLatest );
+		// Fetch the actual revision row from master, without locking all extra tables.
+		$oldRevision = $this->loadRevisionFromConds(
+			$dbw,
+			[ 'rev_id' => intval( $pageLatest ) ],
+			self::READ_LATEST,
+			$title
+		);
 
 		// Construct the new revision
 		$timestamp = wfTimestampNow(); // TODO: use a callback, so we can override it for testing.
