@@ -42,7 +42,6 @@
 		"bluespice/usagetracker": "dev-master",
 		"bluespice/usermanager": "dev-master",
 		"bluespice/usermergeconnector": "dev-master",
-		"bluespice/userpreferences": "dev-master",
 		"bluespice/usersidebar": "dev-master",
 		"bluespice/whoisonline": "dev-master",
 		"mediawiki/extjs-base": "dev-REL1_31",
