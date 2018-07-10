@@ -203,10 +203,10 @@ class PageArchive {
 			'ar_title' => $this->title->getDBkey(),
 		];
 
-		// TODO: ORDER BY ar_timestamp DESC, ar_rev_id DESC, to remove ambiguity.
-		// HOWEVER this requires  ar_rev_id to be added to the name_title_timestamp index first!
-		// Otherwise, adding this ar_rev_id to the order will result in a file sort!
-		$options = [ 'ORDER BY' => 'ar_timestamp DESC' ];
+		// NOTE: ordering by ar_timestamp and ar_id, to remove ambiguity.
+		// XXX: Ideally, we would be ordering by ar_timestamp and ar_rev_id, but since we
+		// don't have an index on ar_rev_id, that causes a file sort.
+		$options = [ 'ORDER BY' => 'ar_timestamp DESC, ar_id DESC' ];
 
 		ChangeTags::modifyDisplayQuery(
 			$queryInfo['tables'],
