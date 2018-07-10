@@ -615,7 +615,6 @@ class PageUpdater {
 		// Defend against mistakes caused by differences with the
 		// signature of WikiPage::doEditContent.
 		Assert::parameterType( 'integer', $flags, '$flags' );
-		Assert::parameterType( 'CommentStoreComment', $summary, '$summary' );
 
 		if ( $this->wasCommitted() ) {
 			throw new RuntimeException( 'saveRevision() has already been called on this PageUpdater!' );

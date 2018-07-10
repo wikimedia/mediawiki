@@ -91,19 +91,21 @@
 	 *  each individual request by passing them to #get or #post (or directly #ajax) later on.
 	 */
 	mw.Api = function ( options ) {
-		options = options || {};
+		var defaults = $.extend( {}, options ),
+			setsUrl = options && options.ajax && options.ajax.url !== undefined;
+
+		defaults.parameters = $.extend( {}, defaultOptions.parameters, defaults.parameters );
+		defaults.ajax = $.extend( {}, defaultOptions.ajax, defaults.ajax );
 
 		// Force a string if we got a mw.Uri object
-		if ( options.ajax && options.ajax.url !== undefined ) {
-			options.ajax.url = String( options.ajax.url );
+		if ( setsUrl ) {
+			defaults.ajax.url = String( defaults.ajax.url );
+		}
+		if ( defaults.useUS === undefined ) {
+			defaults.useUS = !setsUrl;
 		}
 
-		options = $.extend( { useUS: !options.ajax || !options.ajax.url }, options );
-
-		options.parameters = $.extend( {}, defaultOptions.parameters, options.parameters );
-		options.ajax = $.extend( {}, defaultOptions.ajax, options.ajax );
-
-		this.defaults = options;
+		this.defaults = defaults;
 		this.requests = [];
 	};
 
