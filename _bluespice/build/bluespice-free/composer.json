@@ -35,6 +35,7 @@
 		"bluespice/permissionmanager": "dev-master",
 		"bluespice/readers": "dev-master",
 		"bluespice/rssfeeder": "dev-master",
+		"bluespice/saferedit": "dev-master",
 		"bluespice/smartlist": "dev-master",
 		"bluespice/tagcloud": "dev-master",
 		"bluespice/uemodulepdf": "dev-master",
