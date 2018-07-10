@@ -256,6 +256,16 @@ class RevisionStore
 	}
 
 	/**
+	 * @param int $queryFlags a bit field composed of READ_XXX flags
+	 *
+	 * @return DBConnRef
+	 */
+	private function getDBConnectionRefForQueryFlags( $queryFlags ) {
+		list( $mode, ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
+		return $this->getDBConnectionRef( $mode );
+	}
+
+	/**
 	 * @param IDatabase $connection
 	 */
 	private function releaseDBConnection( IDatabase $connection ) {
@@ -1000,9 +1010,8 @@ class RevisionStore
 	 * @return null|RecentChange
 	 */
 	public function getRecentChange( RevisionRecord $rev, $flags = 0 ) {
-		$dbr = $this->getDBConnection( DB_REPLICA );
-
 		list( $dbType, ) = DBAccessObjectUtils::getDBOptions( $flags );
+		$db = $this->getDBConnection( $dbType );
 
 		$userIdentity = $rev->getUser( RevisionRecord::RAW );
 
@@ -1013,18 +1022,18 @@ class RevisionStore
 		}
 
 		// TODO: Select by rc_this_oldid alone - but as of Nov 2017, there is no index on that!
-		$actorWhere = $this->actorMigration->getWhere( $dbr, 'rc_user', $rev->getUser(), false );
+		$actorWhere = $this->actorMigration->getWhere( $db, 'rc_user', $rev->getUser(), false );
 		$rc = RecentChange::newFromConds(
 			[
 				$actorWhere['conds'],
-				'rc_timestamp' => $dbr->timestamp( $rev->getTimestamp() ),
+				'rc_timestamp' => $db->timestamp( $rev->getTimestamp() ),
 				'rc_this_oldid' => $rev->getId()
 			],
 			__METHOD__,
 			$dbType
 		);
 
-		$this->releaseDBConnection( $dbr );
+		$this->releaseDBConnection( $db );
 
 		// XXX: cache this locally? Glue it to the RevisionRecord?
 		return $rc;
@@ -1221,8 +1230,7 @@ class RevisionStore
 		// $slot will be the inherited slot, while $mainSlotRow still refers to the original slot.
 		$mainSlotRow->slot_content_id =
 			function ( SlotRecord $slot ) use ( $queryFlags, $mainSlotRow ) {
-				list( $dbMode, ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
-				$db = $this->getDBConnectionRef( $dbMode );
+				$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
 				return $this->findSlotContentId( $db, $mainSlotRow->slot_revision_id, 'main' );
 			};
 
@@ -1344,12 +1352,11 @@ class RevisionStore
 			// and fall back to master. The assumption is that we only want to force the fallback
 			// if we are quite sure the revision exists because the caller supplied a revision ID.
 			// If the page isn't found at all on a replica, it probably simply does not exist.
-			$db = $this->getDBConnection( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_REPLICA );
+			$db = $this->getDBConnectionRefForQueryFlags( $flags );
 
 			$conds[] = 'rev_id=page_latest';
 			$rev = $this->loadRevisionFromConds( $db, $conds, $flags );
 
-			$this->releaseDBConnection( $db );
 			return $rev;
 		}
 	}
@@ -1386,12 +1393,11 @@ class RevisionStore
 			// and fall back to master. The assumption is that we only want to force the fallback
 			// if we are quite sure the revision exists because the caller supplied a revision ID.
 			// If the page isn't found at all on a replica, it probably simply does not exist.
-			$db = $this->getDBConnection( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_REPLICA );
+			$db = $this->getDBConnectionRefForQueryFlags( $flags );
 
 			$conds[] = 'rev_id=page_latest';
 			$rev = $this->loadRevisionFromConds( $db, $conds, $flags );
 
-			$this->releaseDBConnection( $db );
 			return $rev;
 		}
 	}
@@ -1559,9 +1565,9 @@ class RevisionStore
 			$user = new UserIdentityValue( 0, '', 0 );
 		}
 
-		$comment = $this->commentStore
-			// Legacy because $row may have come from self::selectFields()
-			->getCommentLegacy( $this->getDBConnection( DB_REPLICA ), 'ar_comment', $row, true );
+		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
+		// Legacy because $row may have come from self::selectFields()
+		$comment = $this->commentStore->getCommentLegacy( $db, 'ar_comment', $row, true );
 
 		$slots = $this->newRevisionSlots( $row->ar_rev_id, $row, $queryFlags, $title );
 
@@ -1607,9 +1613,9 @@ class RevisionStore
 			$user = new UserIdentityValue( 0, '', 0 );
 		}
 
-		$comment = $this->commentStore
-			// Legacy because $row may have come from self::selectFields()
-			->getCommentLegacy( $this->getDBConnection( DB_REPLICA ), 'rev_comment', $row, true );
+		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
+		// Legacy because $row may have come from self::selectFields()
+		$comment = $this->commentStore->getCommentLegacy( $db, 'rev_comment', $row, true );
 
 		$slots = $this->newRevisionSlots( $row->rev_id, $row, $queryFlags, $title );
 
@@ -1902,9 +1908,8 @@ class RevisionStore
 	 * @return RevisionRecord|null
 	 */
 	private function newRevisionFromConds( $conditions, $flags = 0, Title $title = null ) {
-		$db = $this->getDBConnection( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_REPLICA );
+		$db = $this->getDBConnectionRefForQueryFlags( $flags );
 		$rev = $this->loadRevisionFromConds( $db, $conditions, $flags, $title );
-		$this->releaseDBConnection( $db );
 
 		$lb = $this->getDBLoadBalancer();
 
@@ -1916,9 +1921,9 @@ class RevisionStore
 			&& $lb->hasOrMadeRecentMasterChanges()
 		) {
 			$flags = self::READ_LATEST;
-			$db = $this->getDBConnection( DB_MASTER );
-			$rev = $this->loadRevisionFromConds( $db, $conditions, $flags, $title );
-			$this->releaseDBConnection( $db );
+			$dbw = $this->getDBConnection( DB_MASTER );
+			$rev = $this->loadRevisionFromConds( $dbw, $conditions, $flags, $title );
+			$this->releaseDBConnection( $dbw );
 		}
 
 		return $rev;
@@ -2409,15 +2414,12 @@ class RevisionStore
 	 * @return string|bool False if not found
 	 */
 	public function getTimestampFromId( $title, $id, $flags = 0 ) {
-		$db = $this->getDBConnection(
-			( $flags & IDBAccessObject::READ_LATEST ) ? DB_MASTER : DB_REPLICA
-		);
+		$db = $this->getDBConnectionRefForQueryFlags( $flags );
 
 		$conds = [ 'rev_id' => $id ];
 		$conds['rev_page'] = $title->getArticleID();
 		$timestamp = $db->selectField( 'revision', 'rev_timestamp', $conds, __METHOD__ );
 
-		$this->releaseDBConnection( $db );
 		return ( $timestamp !== false ) ? wfTimestamp( TS_MW, $timestamp ) : false;
 	}
 
