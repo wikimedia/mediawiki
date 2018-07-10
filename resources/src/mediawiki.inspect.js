@@ -214,7 +214,15 @@
 			Object.keys( inspect.reports );
 
 		reports.forEach( function ( name ) {
+			if ( console.group ) {
+				console.group( 'mw.inspect ' + name + ' report' );
+			} else {
+				console.log( 'mw.inspect ' + name + ' report' );
+			}
 			inspect.dumpTable( inspect.reports[ name ]() );
+			if ( console.group ) {
+				console.groupEnd( 'mw.inspect ' + name + ' report' );
+			}
 		} );
 	};
 
