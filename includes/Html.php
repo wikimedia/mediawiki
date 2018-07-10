@@ -565,7 +565,7 @@ class Html {
 		if ( $nonce !== null ) {
 			$attrs['nonce'] = $nonce;
 		} else {
-			if ( ContentSecurityPolicy::isEnabled( RequestContext::getMain()->getConfig() ) ) {
+			if ( ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() ) ) {
 				wfWarn( "no nonce set on script. CSP will break it" );
 			}
 		}
@@ -590,7 +590,7 @@ class Html {
 		if ( $nonce !== null ) {
 			$attrs['nonce'] = $nonce;
 		} else {
-			if ( ContentSecurityPolicy::isEnabled( RequestContext::getMain()->getConfig() ) ) {
+			if ( ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() ) ) {
 				wfWarn( "no nonce set on script. CSP will break it" );
 			}
 		}
