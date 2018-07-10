@@ -303,6 +303,9 @@
 								"selectorWithVariant": {
 									"type": "string"
 								},
+								"useDataURI": {
+									"type": "boolean"
+								},
 								"variants": {
 									"type": "object"
 								},
