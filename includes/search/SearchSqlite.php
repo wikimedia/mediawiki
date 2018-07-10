@@ -156,7 +156,7 @@ class SearchSqlite extends SearchDatabase {
 	 * @param string $term Raw search term
 	 * @return SqlSearchResultSet
 	 */
-	protected function doSearchText( $term ) {
+	protected function doSearchTextInDB( $term ) {
 		return $this->searchInternal( $term, true );
 	}
 
@@ -166,7 +166,7 @@ class SearchSqlite extends SearchDatabase {
 	 * @param string $term Raw search term
 	 * @return SqlSearchResultSet
 	 */
-	protected function doSearchTitle( $term ) {
+	protected function doSearchTitleInDB( $term ) {
 		return $this->searchInternal( $term, false );
 	}
 

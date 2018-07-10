@@ -273,6 +273,8 @@ because of Phabricator reports.
   logic as it should be handled internally by SearchEngine implementations
   supporting this feature. SearchEngine implementations should no longer
   override this methods.
+* SearchEngine::replacePrefixes( $query ) should no longer be called prior
+  to running searchText/searchTitle.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into

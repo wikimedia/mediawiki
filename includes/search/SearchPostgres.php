@@ -37,7 +37,7 @@ class SearchPostgres extends SearchDatabase {
 	 * @param string $term Raw search term
 	 * @return SqlSearchResultSet
 	 */
-	protected function doSearchTitle( $term ) {
+	protected function doSearchTitleInDB( $term ) {
 		$q = $this->searchQuery( $term, 'titlevector', 'page_title' );
 		$olderror = error_reporting( E_ERROR );
 		$resultSet = $this->db->query( $q, 'SearchPostgres', true );
@@ -45,7 +45,7 @@ class SearchPostgres extends SearchDatabase {
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
-	protected function doSearchText( $term ) {
+	protected function doSearchTextInDB( $term ) {
 		$q = $this->searchQuery( $term, 'textvector', 'old_text' );
 		$olderror = error_reporting( E_ERROR );
 		$resultSet = $this->db->query( $q, 'SearchPostgres', true );

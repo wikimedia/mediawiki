@@ -314,16 +314,20 @@ class SpecialSearch extends SpecialPage {
 		$showSuggestion = $title === null || !$title->isKnown();
 		$search->setShowSuggestion( $showSuggestion );
 
-		$nterm = $search->transformSearchTerm( $term );
-		if ( $nterm !== $term ) {
-			$term = $nterm;
+		$rewritten = $search->transformSearchTerm( $term );
+		if ( $rewritten !== $term ) {
+			$term = $rewritten;
 			wfDeprecated( 'SearchEngine::transformSearchTerm() (overridden by ' .
 				get_class( $search ) . ')', '1.32' );
 		}
 
-		// fetch search results
 		$rewritten = $search->replacePrefixes( $term );
+		if ( $rewritten !== $term ) {
+			wfDeprecated( 'SearchEngine::replacePrefixes() (overridden by ' .
+						  get_class( $search ) . ')', '1.32' );
+		}
 
+		// fetch search results
 		$titleMatches = $search->searchTitle( $rewritten );
 		$textMatches = $search->searchText( $rewritten );
 
