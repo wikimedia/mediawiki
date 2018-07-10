@@ -13,8 +13,8 @@
 	mw.language = {
 		/**
 		 * Language-related data (keyed by language, contains instances of mw.Map).
-		 * Loaded dynamically (see ResourceLoaderLanguageDataModule class in PHP, registered
-		 * as mediawiki.language.data on the client).
+		 *
+		 * Exported dynamically by the ResourceLoaderLanguageDataModule class in PHP.
 		 *
 		 * To set data:
 		 *
