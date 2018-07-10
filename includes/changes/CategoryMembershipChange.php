@@ -23,8 +23,6 @@
  * @since 1.27
  */
 
-use Wikimedia\Assert\Assert;
-
 class CategoryMembershipChange {
 
 	const CATEGORY_ADDITION = 1;
@@ -83,11 +81,10 @@ class CategoryMembershipChange {
 	 *
 	 * @throws MWException
 	 */
-	public function overrideNewForCategorizationCallback( $callback ) {
+	public function overrideNewForCategorizationCallback( callable $callback ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			throw new MWException( 'Cannot override newForCategorization callback in operation.' );
 		}
-		Assert::parameterType( 'callable', $callback, '$callback' );
 		$this->newForCategorizationCallback = $callback;
 	}
 
