@@ -28,6 +28,7 @@ production.
   be blocked.
 * The archive table's ar_rev_id field is now unique.
 * Special:BotPasswords now requires reauthentication.
+* (T194414) The default watchlist view time has been increased from 3 to 7 days.
 
 === New features in 1.32 ===
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
