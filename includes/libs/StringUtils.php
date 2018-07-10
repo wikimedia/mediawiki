@@ -243,10 +243,13 @@ class StringUtils {
 	 * @return string The string with the matches replaced
 	 */
 	static function delimiterReplace( $startDelim, $endDelim, $replace, $subject, $flags = '' ) {
-		$replacer = new RegexlikeReplacer( $replace );
-
-		return self::delimiterReplaceCallback( $startDelim, $endDelim,
-			$replacer->cb(), $subject, $flags );
+		return self::delimiterReplaceCallback(
+			$startDelim, $endDelim,
+			function ( array $matches ) use ( $replace ) {
+				return strtr( $replace, [ '$0' => $matches[0], '$1' => $matches[1] ] );
+			},
+			$subject, $flags
+		);
 	}
 
 	/**
@@ -263,8 +266,13 @@ class StringUtils {
 		$text = str_replace( $placeholder, '', $text );
 
 		// Replace instances of the separator inside HTML-like tags with the placeholder
-		$replacer = new DoubleReplacer( $separator, $placeholder );
-		$cleaned = self::delimiterReplaceCallback( '<', '>', $replacer->cb(), $text );
+		$cleaned = self::delimiterReplaceCallback(
+			'<', '>',
+			function ( array $matches ) use ( $separator, $placeholder ) {
+				return str_replace( $separator, $placeholder, $matches[0] );
+			},
+			$text
+		);
 
 		// Explode, then put the replaced separators back in
 		$items = explode( $separator, $cleaned );
@@ -290,8 +298,13 @@ class StringUtils {
 		$text = str_replace( $placeholder, '', $text );
 
 		// Replace instances of the separator inside HTML-like tags with the placeholder
-		$replacer = new DoubleReplacer( $search, $placeholder );
-		$cleaned = self::delimiterReplaceCallback( '<', '>', $replacer->cb(), $text );
+		$cleaned = self::delimiterReplaceCallback(
+			'<', '>',
+			function ( array $matches ) use ( $search, $placeholder ) {
+				return str_replace( $search, $placeholder, $matches[0] );
+			},
+			$text
+		);
 
 		// Explode, then put the replaced separators back in
 		$cleaned = str_replace( $search, $replace, $cleaned );

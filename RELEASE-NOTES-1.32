@@ -240,7 +240,8 @@ because of Phabricator reports.
   of using showFatalError directly: OutputPage::showFileDeleteError()
   OutputPage::showFileNotFoundError(), OutputPage::showFileRenameError()
   OutputPage::showFileCopyError() and OutputPage::showUnexpectedValueError().
-
+* The Replacer, DoubleReplacer, HashtableReplacer, and RegexlikeReplacer
+  classes are now deprecated. Use a Closure instead.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into proper

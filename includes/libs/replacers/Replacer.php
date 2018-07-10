@@ -21,12 +21,15 @@
 /**
  * Base class for "replacers", objects used in preg_replace_callback() and
  * StringUtils::delimiterReplaceCallback()
+ *
+ * @deprecated since 1.32, use a Closure instead
  */
 abstract class Replacer {
 	/**
 	 * @return array
 	 */
 	public function cb() {
+		wfDeprecated( __METHOD__, '1.32' );
 		return [ $this, 'replace' ];
 	}
 
