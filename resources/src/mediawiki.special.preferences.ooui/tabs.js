@@ -13,13 +13,7 @@
 		$( '<div>' ).addClass( 'mw-navigation-hint' )
 			.text( mw.msg( 'prefs-tabs-navigation-hint' ) )
 			.attr( 'tabIndex', 0 )
-			.on( 'focus blur', function ( e ) {
-				if ( e.type === 'blur' || e.type === 'focusout' ) {
-					$( this ).css( 'height', '0' );
-				} else {
-					$( this ).css( 'height', 'auto' );
-				}
-			} ).prependTo( '#mw-content-text' );
+			.prependTo( '#mw-content-text' );
 
 		tabs = new OO.ui.IndexLayout( {
 			expanded: false,

@@ -30,10 +30,8 @@
 /*
  * Hide, but keep accessible for screen-readers.
  */
-.client-js .mw-navigation-hint {
-	overflow: hidden;
-	height: 0;
-	zoom: 1;
+.client-js .mw-navigation-hint:not( :focus ) {
+	.mixin-screen-reader-text;
 }
 
 /* Override OOUI styles so that dropdowns near the bottom of the form don't get clipped,
