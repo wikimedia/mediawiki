@@ -7,7 +7,7 @@
  * @alternateClassName mediaWiki
  * @singleton
  */
-/* global $VARS */
+/* global $VARS, $CODE */
 
 ( function () {
 	'use strict';
@@ -1166,12 +1166,15 @@
 				}
 
 				registry[ module ].state = 'executing';
+				$CODE.profileExecuteStart();
 
 				runScript = function () {
 					var script, markModuleReady, nestedAddScript;
 
+					$CODE.profileScriptStart();
 					script = registry[ module ].script;
 					markModuleReady = function () {
+						$CODE.profileScriptEnd();
 						registry[ module ].state = 'ready';
 						handlePending( module );
 					};
@@ -1224,6 +1227,7 @@
 						// Use mw.track instead of mw.log because these errors are common in production mode
 						// (e.g. undefined variable), and mw.log is only enabled in debug mode.
 						registry[ module ].state = 'error';
+						$CODE.profileScriptEnd();
 						mw.trackError( 'resourceloader.exception', {
 							exception: e, module:
 							module, source: 'module-execute'
@@ -1334,6 +1338,11 @@
 						}
 					}
 				}
+
+				// End profiling of execute()-self before we call checkCssHandles(),
+				// which (sometimes asynchronously) calls runScript(), which we want
+				// to measure separately without overlap.
+				$CODE.profileExecuteEnd();
 
 				// Kick off.
 				cssHandlesRegistered = true;
