@@ -782,7 +782,7 @@
 	"apihelp-query+filearchive-paramvalue-prop-archivename": "Добавляет имя архивной версии файла.",
 	"apihelp-query+filearchive-example-simple": "Список всех удалённых файлов.",
 	"apihelp-query+filerepoinfo-summary": "Возвращает мета-информацию о файловых репозиториях, настроенных в вики.",
-	"apihelp-query+filerepoinfo-param-prop": "Какие свойства хранилища получить (на некоторых вики может быть доступно больше):\n;apiutl: Ссылка на API хранилища — полезно для получения информации об изображении с хоста.\n;name: Ключ хранилища — используется, например, <var>[[mw:Special:MyLanguage/Manual:$wgForeignFileRepos|$wgForeignFileRepos]]</var> и возвращаемых [[Special:ApiHelp/query+imageinfo|imageinfo]].\n;displayname: Человеко-читаемое название хранилища.\n;rooturl: Корневая ссылка для путей к файлам.\n;local: Определяет, является ли хранилище локальным, или нет.",
+	"apihelp-query+filerepoinfo-param-prop": "Какие свойства хранилища получить (доступность свойств может отличаться в разных вики).",
 	"apihelp-query+filerepoinfo-example-simple": "Получить информацию о файловых репозиториях.",
 	"apihelp-query+fileusage-summary": "Поиск всех страниц, использующих данный файл.",
 	"apihelp-query+fileusage-param-prop": "Какие свойства получить:",
