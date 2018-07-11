@@ -1569,6 +1569,44 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$wanCache->resetCheckKey( 'test' );
 	}
 
+	public function testEpoch() {
+		$bag = new HashBagOStuff();
+		$cache = new WANObjectCache( [ 'cache' => $bag, 'pool' => 'testcache-hash' ] );
+		$key = $cache->makeGlobalKey( 'The whole of the Law' );
+
+		$now = microtime( true );
+		$cache->setMockTime( $now );
+
+		$cache->set( $key, 'Do what thou Wilt' );
+		$cache->touchCheckKey( $key );
+
+		$then = $now;
+		$now += 30;
+		$this->assertEquals( 'Do what thou Wilt', $cache->get( $key ) );
+		$this->assertEquals( $then, $cache->getCheckKeyTime( $key ), 'Check key init', 0.01 );
+
+		$cache = new WANObjectCache( [
+			'cache' => $bag,
+			'pool' => 'testcache-hash',
+			'epoch' => $now - 3600
+		] );
+		$cache->setMockTime( $now );
+
+		$this->assertEquals( 'Do what thou Wilt', $cache->get( $key ) );
+		$this->assertEquals( $then, $cache->getCheckKeyTime( $key ), 'Check key kept', 0.01 );
+
+		$now += 30;
+		$cache = new WANObjectCache( [
+			'cache' => $bag,
+			'pool' => 'testcache-hash',
+			'epoch' => $now + 3600
+		] );
+		$cache->setMockTime( $now );
+
+		$this->assertFalse( $cache->get( $key ), 'Key rejected due to epoch' );
+		$this->assertEquals( $now, $cache->getCheckKeyTime( $key ), 'Check key reset', 0.01 );
+	}
+
 	/**
 	 * @dataProvider provideAdaptiveTTL
 	 * @covers WANObjectCache::adaptiveTTL()
