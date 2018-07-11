@@ -250,6 +250,10 @@ class MultiWriteBagOStuff extends BagOStuff {
 		return $ret;
 	}
 
+	public function makeKeyInternal( $keyspace, $args ) {
+		return $this->caches[0]->makeKeyInternal( ...func_get_args() );
+	}
+
 	public function makeKey( $class, $component = null ) {
 		return $this->caches[0]->makeKey( ...func_get_args() );
 	}
