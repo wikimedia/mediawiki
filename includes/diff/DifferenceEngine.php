@@ -36,19 +36,19 @@ class DifferenceEngine extends ContextSource {
 	 */
 	const DIFF_VERSION = '1.12';
 
-	/** @var int */
+	/** @var int Revision ID or 0 for current */
 	public $mOldid;
 
-	/** @var int */
+	/** @var int|string Revision ID or null for current or an alias such as 'next' */
 	public $mNewid;
 
 	private $mOldTags;
 	private $mNewTags;
 
-	/** @var Content */
+	/** @var Content|null */
 	public $mOldContent;
 
-	/** @var Content */
+	/** @var Content|null */
 	public $mNewContent;
 
 	/** @var Language */
@@ -60,10 +60,10 @@ class DifferenceEngine extends ContextSource {
 	/** @var Title */
 	public $mNewPage;
 
-	/** @var Revision */
+	/** @var Revision|null */
 	public $mOldRev;
 
-	/** @var Revision */
+	/** @var Revision|null */
 	public $mNewRev;
 
 	/** @var bool Have the revisions IDs been loaded */
@@ -74,6 +74,13 @@ class DifferenceEngine extends ContextSource {
 
 	/** @var int How many text blobs have been loaded, 0, 1 or 2? */
 	public $mTextLoaded = 0;
+
+	/**
+	 * Was the content overridden via setContent()?
+	 * If the content was overridden, most internal state (e.g. mOldid or mOldRev) should be ignored.
+	 * @var bool
+	 */
+	protected $isContentOverridden = false;
 
 	/** @var bool Was the diff fetched from cache? */
 	public $mCacheHit = false;
@@ -1341,6 +1348,7 @@ class DifferenceEngine extends ContextSource {
 
 		$this->mTextLoaded = 2;
 		$this->mRevisionsLoaded = true;
+		$this->isContentOverridden = true;
 	}
 
 	/**
@@ -1420,11 +1428,11 @@ class DifferenceEngine extends ContextSource {
 	 * to false. This is impossible via ordinary user input, and is provided for
 	 * API convenience.
 	 *
-	 * @return bool
+	 * @return bool Whether both revisions were loaded successfully.
 	 */
 	public function loadRevisionData() {
 		if ( $this->mRevisionsLoaded ) {
-			return true;
+			return $this->isContentOverridden || $this->mNewRev && $this->mOldRev;
 		}
 
 		// Whether it succeeds or fails, we don't want to try again
@@ -1500,11 +1508,11 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Load the text of the revisions, as well as revision data.
 	 *
-	 * @return bool
+	 * @return bool Whether the content of both revisions could be loaded successfully.
 	 */
 	public function loadText() {
 		if ( $this->mTextLoaded == 2 ) {
-			return true;
+			return $this->loadRevisionData() && $this->mOldContent && $this->mNewContent;
 		}
 
 		// Whether it succeeds or fails, we don't want to try again
@@ -1535,11 +1543,11 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Load the text of the new revision, not the old one
 	 *
-	 * @return bool
+	 * @return bool Whether the content of the new revision could be loaded successfully.
 	 */
 	public function loadNewText() {
 		if ( $this->mTextLoaded >= 1 ) {
-			return true;
+			return $this->loadRevisionData();
 		}
 
 		$this->mTextLoaded = 1;
