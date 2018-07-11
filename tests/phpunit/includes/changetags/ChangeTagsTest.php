@@ -537,4 +537,56 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
 	}
 
+	public function testTagUsageStatisticsOldBackend() {
+		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_OLD );
+		$this->setMwGlobals( 'wgTagStatisticsNewTable', false );
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'change_tag', '*' );
+		$dbw->delete( 'change_tag_def', '*' );
+
+		$rcId = 123;
+		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
+
+		$rcId = 124;
+		ChangeTags::updateTags( [ 'tag1' ], [], $rcId );
+
+		$this->assertEquals( [ 'tag1' => 2, 'tag2' => 1 ], ChangeTags::tagUsageStatistics() );
+	}
+
+	public function testTagUsageStatisticsNewMigrationOldBackedn() {
+		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
+		$this->setMwGlobals( 'wgTagStatisticsNewTable', false );
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'change_tag', '*' );
+		$dbw->delete( 'change_tag_def', '*' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'ChangeTagDefStore' );
+
+		$rcId = 123;
+		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
+
+		$rcId = 124;
+		ChangeTags::updateTags( [ 'tag1' ], [], $rcId );
+
+		$this->assertEquals( [ 'tag1' => 2, 'tag2' => 1 ], ChangeTags::tagUsageStatistics() );
+	}
+
+	public function testTagUsageStatisticsNewBackend() {
+		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
+		$this->setMwGlobals( 'wgTagStatisticsNewTable', true );
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'change_tag', '*' );
+		$dbw->delete( 'change_tag_def', '*' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'ChangeTagDefStore' );
+
+		$rcId = 123;
+		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
+
+		$rcId = 124;
+		ChangeTags::updateTags( [ 'tag1' ], [], $rcId );
+
+		$this->assertEquals( [ 'tag1' => 2, 'tag2' => 1 ], ChangeTags::tagUsageStatistics() );
+	}
 }
