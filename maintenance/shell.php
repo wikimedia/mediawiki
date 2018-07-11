@@ -67,8 +67,12 @@ class MediaWikiShell extends Maintenance {
 		// add this after initializing the code cleaner so all the default passes get added first
 		$traverser->addVisitor( new CodeCleanerGlobalsPass() );
 
-		$config = new \Psy\Configuration( [ 'codeCleaner' => $codeCleaner ] );
+		$config = new \Psy\Configuration();
+		$config->setCodeCleaner( $codeCleaner );
 		$config->setUpdateCheck( \Psy\VersionUpdater\Checker::NEVER );
+		// prevent https://github.com/bobthecow/psysh/issues/443 when using sudo -E
+		$config->setRuntimeDir( wfTempDir() );
+
 		$shell = new \Psy\Shell( $config );
 		if ( $this->hasOption( 'd' ) ) {
 			$this->setupLegacy();
