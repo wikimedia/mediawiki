@@ -387,6 +387,7 @@ $wgAutoloadLocalClasses = [
 	'DependencyWrapper' => __DIR__ . '/includes/cache/CacheDependency.php',
 	'DeprecatedGlobal' => __DIR__ . '/includes/DeprecatedGlobal.php',
 	'DeprecatedInterfaceFinder' => __DIR__ . '/maintenance/findDeprecated.php',
+	'DeprecationHelper' => __DIR__ . '/includes/debug/DeprecationHelper.php',
 	'DerivativeContext' => __DIR__ . '/includes/context/DerivativeContext.php',
 	'DerivativeRequest' => __DIR__ . '/includes/DerivativeRequest.php',
 	'DerivativeResourceLoaderContext' => __DIR__ . '/includes/resourceloader/DerivativeResourceLoaderContext.php',
