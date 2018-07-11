@@ -1,4 +1,28 @@
 # OOUI Release History
+## v0.27.5 / 2018-07-11
+### Deprecations
+* [DEPRECATING CHANGE] CapsuleMultiselectWidget: Deprecate widget (Volker E.)
+
+### Styles
+* CheckboxInputWidget, RadioInputWidget: Use `display: inline-block` in all themes (Bartosz Dziewoński)
+* MessageDialog: Replace special button treatment with framed buttons (Volker E.)
+* WikimediaUI theme: Apply new `ease-out` variable to dialogs (Volker E.)
+* WikimediaUI theme: Replace and remove cubic bezier `transition` option (Volker E.)
+* WikimediaUI theme: Replace hard-coded value with var (Volker E.)
+* Apex theme: Make button faux 3D effect more subtle (Volker E.)
+* Apex theme: Restore space between inline FieldLayout field and label (Bartosz Dziewoński)
+* Apex theme: Unify `border` values (Volker E.)
+* Apex theme: Unify close `border-radius` values (Volker E.)
+
+### Code
+* Add taint annotations for phan-taint-check (Brian Wolff)
+* Ensure window ready process runs after window is made visible (Bartosz Dziewoński)
+* FieldLayout: Avoid unclickable gap between widget and label in 'inline' align (Bartosz Dziewoński)
+* IndexLayout (TabPanelLayouts): Apply correct ARIA roles & attributes (Volker E.)
+* MenuSelectWidget: Remove checks for unchanged input from updateItemVisibility() (Bartosz Dziewoński)
+* build: Update eslint config to 0.6.0 (Ed Sanders)
+
+
 ## v0.27.4 / 2018-06-27
 ### Styles
 * icons: Add destructive variant for subtract icon (Sam Wilson)

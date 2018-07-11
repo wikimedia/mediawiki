@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.4
+ * OOUI v0.27.5
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-06-27T17:25:08Z
+ * Date: 2018-07-11T18:13:04Z
  */
 ( function ( OO ) {
 
@@ -1003,7 +1003,9 @@ OO.ui.TabPanelLayout = function OoUiTabPanelLayout( name, config ) {
 	this.active = false;
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-tabPanelLayout' );
+	this.$element
+		.addClass( 'oo-ui-tabPanelLayout' )
+		.attr( 'role', 'tabpanel' );
 };
 
 /* Setup */
@@ -1085,6 +1087,10 @@ OO.ui.TabPanelLayout.prototype.setTabItem = function ( tabItem ) {
  * @chainable
  */
 OO.ui.TabPanelLayout.prototype.setupTabItem = function () {
+	this.$element.attr( 'aria-labelledby', this.tabItem.getElementId() );
+
+	this.tabItem.$element.attr( 'aria-controls', this.getElementId() );
+
 	if ( this.label ) {
 		this.tabItem.setLabel( this.label );
 	}
@@ -3529,7 +3535,9 @@ OO.ui.TabOptionWidget = function OoUiTabOptionWidget( config ) {
 	OO.ui.TabOptionWidget.parent.call( this, config );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-tabOptionWidget' );
+	this.$element
+		.addClass( 'oo-ui-tabOptionWidget' )
+		.attr( 'role', 'tab' );
 };
 
 /* Setup */
@@ -3570,7 +3578,9 @@ OO.ui.TabSelectWidget = function OoUiTabSelectWidget( config ) {
 	} );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-tabSelectWidget' );
+	this.$element
+		.addClass( 'oo-ui-tabSelectWidget' )
+		.attr( 'role', 'tablist' );
 };
 
 /* Setup */
@@ -3591,6 +3601,7 @@ OO.mixinClass( OO.ui.TabSelectWidget, OO.ui.mixin.TabIndexedElement );
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @deprecated
  */
 OO.ui.CapsuleItemWidget = function OoUiCapsuleItemWidget( config ) {
 	// Configuration initialization
@@ -3749,6 +3760,7 @@ OO.ui.CapsuleItemWidget.prototype.onKeyDown = function ( e ) {
  *  the containing `<div>` and has a larger area. By default, the menu uses
  *  relative positioning.
  *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
+ * @deprecated
  */
 OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config ) {
 	var $tabFocus;
@@ -3876,6 +3888,9 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 	}.bind( this ) );
 
 	this.onMenuItemsChange();
+
+	// Deprecation warning
+	OO.ui.warnDeprecation( 'CapsuleMultiselectWidget: Deprecated widget. Use TagMultiselectWidget instead. See T183299.' );
 };
 
 /* Setup */
