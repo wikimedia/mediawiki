@@ -1128,7 +1128,7 @@ class RevisionStore
 				if ( !property_exists( $row, 'old_flags' ) ) {
 					throw new InvalidArgumentException( 'old_flags was not set in $row' );
 				}
-				$blobFlags = ( $row->old_flags === null ) ? '' : $row->old_flags;
+				$blobFlags = $row->old_flags ?? '';
 			}
 
 			$mainSlotRow->slot_revision_id = intval( $row->rev_id );

@@ -821,7 +821,7 @@ class ManualLogEntry extends LogEntryBase {
 	}
 
 	public function getTimestamp() {
-		$ts = $this->timestamp !== null ? $this->timestamp : wfTimestampNow();
+		$ts = $this->timestamp ?? wfTimestampNow();
 
 		return wfTimestamp( TS_MW, $ts );
 	}

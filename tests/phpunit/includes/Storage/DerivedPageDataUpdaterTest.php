@@ -74,7 +74,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$comment = CommentStoreComment::newUnsavedComment( $summary );
 
 		if ( !$content instanceof Content ) {
-			$content = new WikitextContent( $content === null ? $summary : $content );
+			$content = new WikitextContent( $content ?? $summary );
 		}
 
 		$this->getDerivedPageDataUpdater( $page ); // flush cached instance before.

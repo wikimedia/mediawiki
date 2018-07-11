@@ -865,7 +865,7 @@ abstract class QueryPage extends SpecialPage {
 
 		$batch = new LinkBatch;
 		foreach ( $res as $row ) {
-			$batch->add( $ns !== null ? $ns : $row->namespace, $row->title );
+			$batch->add( $ns ?? $row->namespace, $row->title );
 		}
 		$batch->execute();
 

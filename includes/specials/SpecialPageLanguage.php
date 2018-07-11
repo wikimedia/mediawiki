@@ -163,7 +163,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 			$this->getContext(),
 			$title,
 			$newLanguage,
-			$data['reason'] === null ? '' : $data['reason']
+			$data['reason'] ?? ''
 		);
 	}
 

@@ -138,7 +138,7 @@ class CommentStore {
 	 * @return string
 	 */
 	private function getKey( $methodKey = null ) {
-		$key = $this->key !== null ? $this->key : $methodKey;
+		$key = $this->key ?? $methodKey;
 		if ( $key === null ) {
 			// @codeCoverageIgnoreStart
 			throw new InvalidArgumentException( '$key should not be null' );

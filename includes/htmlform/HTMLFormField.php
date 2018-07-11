@@ -968,11 +968,7 @@ abstract class HTMLFormField {
 	}
 
 	public function getDefault() {
-		if ( isset( $this->mDefault ) ) {
-			return $this->mDefault;
-		} else {
-			return null;
-		}
+		return $this->mDefault ?? null;
 	}
 
 	/**

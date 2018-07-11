@@ -106,7 +106,7 @@ class ApiQueryContributors extends ApiQueryBase {
 				// some other module used up all the space. Just set a dummy
 				// continue and hope it works next time.
 				$this->setContinueEnumParameter( 'continue',
-					$params['continue'] !== null ? $params['continue'] : '0|0'
+					$params['continue'] ?? '0|0'
 				);
 
 				return;

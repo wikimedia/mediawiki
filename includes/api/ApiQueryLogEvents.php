@@ -321,7 +321,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 			if ( LogEventsList::userCan( $row, LogPage::DELETED_USER, $user ) ) {
 				if ( $this->fld_user ) {
-					$vals['user'] = $row->user_name === null ? $row->log_user_text : $row->user_name;
+					$vals['user'] = $row->user_name ?? $row->log_user_text;
 				}
 				if ( $this->fld_userid ) {
 					$vals['userid'] = intval( $row->log_user );

@@ -36,7 +36,7 @@ class WikiReference {
 	public function __construct( $canonicalServer, $path, $server = null ) {
 		$this->mCanonicalServer = $canonicalServer;
 		$this->mPath = $path;
-		$this->mServer = $server === null ? $canonicalServer : $server;
+		$this->mServer = $server ?? $canonicalServer;
 	}
 
 	/**
