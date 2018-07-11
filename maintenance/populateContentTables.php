@@ -188,6 +188,11 @@ class PopulateContentTables extends Maintenance {
 			'',
 			__METHOD__
 		);
+		if ( !$minmax || !is_numeric( $minmax->min ) || !is_numeric( $minmax->max ) ) {
+			// No rows?
+			$minmax = (object)[ 'min' => 1, 'max' => 0 ];
+		}
+
 		$batchSize = $this->getBatchSize();
 
 		for ( $startId = $minmax->min; $startId <= $minmax->max; $startId += $batchSize ) {
