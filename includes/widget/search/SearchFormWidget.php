@@ -270,7 +270,7 @@ class SearchFormWidget {
 		$showSections = [
 			'namespaceTables' => "<table>" . implode( '</table><table>', $namespaceTables ) . '</table>',
 		];
-		Hooks::run( 'SpecialSearchPowerBox', [ &$showSections, $term, $opts ] );
+		Hooks::run( 'SpecialSearchPowerBox', [ &$showSections, $term, &$opts ] );
 
 		$hidden = '';
 		foreach ( $opts as $key => $value ) {
