@@ -77,7 +77,6 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'addTable', 'user_former_groups', 'patch-user_former_groups.sql' ],
 
 			// 1.19
-			[ 'addIndex', 'logging', 'type_action', 'patch-logging-type-action-index.sql' ],
 			[ 'doMigrateUserOptions' ],
 			[ 'dropField', 'user', 'user_options', 'patch-drop-user_options.sql' ],
 			[ 'addField', 'revision', 'rev_sha1', 'patch-rev_sha1.sql' ],
@@ -223,6 +222,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'addField', 'change_tag', 'ct_tag_id', 'patch-change_tag-tag_id.sql' ],
 			[ 'addIndex', 'archive', 'ar_revid_uniq', 'patch-archive-ar_rev_id-unique.sql' ],
 			[ 'populateContentTables' ],
+			[ 'addIndex', 'logging', 'log_type_action', 'patch-logging-log-type-action-index.sql' ],
+			[ 'dropIndex', 'logging', 'type_action', 'patch-logging-drop-type-action-index.sql' ],
 		];
 	}
 

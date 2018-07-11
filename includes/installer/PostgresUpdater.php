@@ -585,6 +585,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgIndex', 'archive', 'ar_revid_uniq', '(ar_rev_id)', 'unique' ],
 			[ 'dropPgIndex', 'archive', 'ar_revid' ], // Probably doesn't exist, but do it anyway.
 			[ 'populateContentTables' ],
+			[ 'addPgIndex', 'logging', 'log_type_action', '( log_type, log_action, log_timestamp )' ],
 		];
 	}
 

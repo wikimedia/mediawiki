@@ -1658,7 +1658,7 @@ CREATE INDEX /*i*/log_actor_type_time ON /*_*/logging (log_actor, log_type, log_
 CREATE INDEX /*i*/log_page_id_time ON /*_*/logging (log_page,log_timestamp);
 
 -- Special:Log action filter
-CREATE INDEX /*i*/type_action ON /*_*/logging (log_type, log_action, log_timestamp);
+CREATE INDEX /*i*/log_type_action ON /*_*/logging (log_type, log_action, log_timestamp);
 
 -- Special:Log filter by type and anonymous performer
 CREATE INDEX /*i*/log_user_text_type_time ON /*_*/logging (log_user_text, log_type, log_timestamp);
