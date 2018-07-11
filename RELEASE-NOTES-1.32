@@ -48,6 +48,9 @@ production.
 * The 'ImageBeforeProduceHTML' hook is now passed three new parameters, $parser,
   &$query and &$widthOption, allowing extensions even finer control over the
   resulting HTML code.
+* Added new 'ArticleShowPatrolFooter' hook, which allows extensions to determine
+  if the [mark as patrolled] link should be shown at the footer of patrollable
+  pages.
 
 === External library changes in 1.32 ===
 * …

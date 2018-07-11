@@ -739,6 +739,11 @@ $user: the user who did the rollback
 $revision: the revision the page was reverted back to
 $current: the reverted revision
 
+'ArticleShowPatrolFooter': Called at the beginning of Article#showPatrolFooter.
+Extensions can use this to not show the [mark as patrolled] link in certain
+circumstances.
+$article: the Article object
+
 'ArticleUndelete': When one or more revisions of an article are restored.
 &$title: Title corresponding to the article restored
 $create: Whether or not the restoration caused the page to be created (i.e. it
