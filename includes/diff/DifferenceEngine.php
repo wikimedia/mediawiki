@@ -28,6 +28,9 @@ use MediaWiki\Shell\Shell;
  * @ingroup DifferenceEngine
  */
 class DifferenceEngine extends ContextSource {
+
+	use DeprecationHelper;
+
 	/**
 	 * Constant to indicate diff cache compatibility.
 	 * Bump this when changing the diff formatting in a way that
@@ -37,28 +40,28 @@ class DifferenceEngine extends ContextSource {
 	const DIFF_VERSION = '1.12';
 
 	/** @var int Revision ID or 0 for current */
-	public $mOldid;
+	protected $mOldid;
 
 	/** @var int|string Revision ID or null for current or an alias such as 'next' */
-	public $mNewid;
+	protected $mNewid;
 
 	private $mOldTags;
 	private $mNewTags;
 
 	/** @var Content|null */
-	public $mOldContent;
+	protected $mOldContent;
 
 	/** @var Content|null */
-	public $mNewContent;
+	protected $mNewContent;
 
 	/** @var Language */
 	protected $mDiffLang;
 
 	/** @var Title */
-	public $mOldPage;
+	protected $mOldPage;
 
 	/** @var Title */
-	public $mNewPage;
+	protected $mNewPage;
 
 	/** @var Revision|null */
 	public $mOldRev;
@@ -70,10 +73,10 @@ class DifferenceEngine extends ContextSource {
 	private $mRevisionsIdsLoaded = false;
 
 	/** @var bool Have the revisions been loaded */
-	public $mRevisionsLoaded = false;
+	protected $mRevisionsLoaded = false;
 
 	/** @var int How many text blobs have been loaded, 0, 1 or 2? */
-	public $mTextLoaded = 0;
+	protected $mTextLoaded = 0;
 
 	/**
 	 * Was the content overridden via setContent()?
@@ -83,7 +86,7 @@ class DifferenceEngine extends ContextSource {
 	protected $isContentOverridden = false;
 
 	/** @var bool Was the diff fetched from cache? */
-	public $mCacheHit = false;
+	protected $mCacheHit = false;
 
 	/**
 	 * Set this to true to add debug info to the HTML output.
@@ -119,6 +122,16 @@ class DifferenceEngine extends ContextSource {
 	public function __construct( $context = null, $old = 0, $new = 0, $rcid = 0,
 		$refreshCache = false, $unhide = false
 	) {
+		$this->deprecatePublicProperty( 'mOldid', '1.32', __CLASS__ );
+		$this->deprecatePublicProperty( 'mNewid', '1.32', __CLASS__ );
+		$this->deprecatePublicProperty( 'mOldPage', '1.32', __CLASS__ );
+		$this->deprecatePublicProperty( 'mNewPage', '1.32', __CLASS__ );
+		$this->deprecatePublicProperty( 'mOldContent', '1.32', __CLASS__ );
+		$this->deprecatePublicProperty( 'mNewContent', '1.32', __CLASS__ );
+		$this->deprecatePublicProperty( 'mRevisionsLoaded', '1.32', __CLASS__ );
+		$this->deprecatePublicProperty( 'mTextLoaded', '1.32', __CLASS__ );
+		$this->deprecatePublicProperty( 'mCacheHit', '1.32', __CLASS__ );
+
 		if ( $context instanceof IContextSource ) {
 			$this->setContext( $context );
 		}
