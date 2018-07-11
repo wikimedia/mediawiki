@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Search\ParserOutputSearchDataExtractor;
 
@@ -613,6 +614,8 @@ abstract class ContentHandler {
 
 	/**
 	 * Factory for creating an appropriate DifferenceEngine for this content model.
+	 * Since 1.32, this is only used for page-level diffs; to diff two content objects,
+	 * use getSlotDiffRenderer.
 	 *
 	 * The DifferenceEngine subclass to use is selected in getDiffEngineClass(). The
 	 * GetDifferenceEngine hook will receive the DifferenceEngine object and can replace or
@@ -621,6 +624,9 @@ abstract class ContentHandler {
 	 * to return false from the hook; you should not rely on always being able to decorate
 	 * the DifferenceEngine instance from the hook. If the owner of the content type wants to
 	 * decorare the instance, overriding this method is a safer approach.)
+	 *
+	 * @todo This is page-level functionality so it should not belong to ContentHandler.
+	 *   Move it to a better place once one exists (e.g. PageTypeHandler).
 	 *
 	 * @since 1.21
 	 *
@@ -642,6 +648,60 @@ abstract class ContentHandler {
 		Hooks::run( 'GetDifferenceEngine', [ $context, $old, $new, $refreshCache, $unhide,
 			&$differenceEngine ] );
 		return $differenceEngine;
+	}
+
+	/**
+	 * Get an appropriate SlotDiffRenderer for this content model.
+	 * @since 1.32
+	 * @param IContextSource $context
+	 * @return SlotDiffRenderer
+	 */
+	final public function getSlotDiffRenderer( IContextSource $context ) {
+		$slotDiffRenderer = $this->getSlotDiffRendererInternal( $context );
+		if ( get_class( $slotDiffRenderer ) === TextSlotDiffRenderer::class ) {
+			//  To keep B/C, when SlotDiffRenderer is not overridden for a given content type
+			// but DifferenceEngine is, use that instead.
+			$differenceEngine = $this->createDifferenceEngine( $context );
+			if ( get_class( $differenceEngine ) !== DifferenceEngine::class ) {
+				// TODO turn this into a deprecation warning in a later release
+				LoggerFactory::getInstance( 'diff' )->notice(
+					'Falling back to DifferenceEngineSlotDiffRenderer', [
+						'modelID' => $this->getModelID(),
+						'DifferenceEngine' => get_class( $differenceEngine ),
+					] );
+				$slotDiffRenderer = new DifferenceEngineSlotDiffRenderer( $differenceEngine );
+			}
+		}
+		Hooks::run( 'GetSlotDiffRenderer', [ $this, &$slotDiffRenderer, $context ] );
+		return $slotDiffRenderer;
+	}
+
+	/**
+	 * Return the SlotDiffRenderer appropriate for this content handler.
+	 * @param IContextSource $context
+	 * @return SlotDiffRenderer
+	 */
+	protected function getSlotDiffRendererInternal( IContextSource $context ) {
+		$contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
+		$statsdDataFactory = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$slotDiffRenderer = new TextSlotDiffRenderer();
+		$slotDiffRenderer->setStatsdDataFactory( $statsdDataFactory );
+		// XXX using the page language would be better, but it's unclear how that should be injected
+		$slotDiffRenderer->setLanguage( $contentLanguage );
+		$slotDiffRenderer->setWikiDiff2MovedParagraphDetectionCutoff(
+			$context->getConfig()->get( 'WikiDiff2MovedParagraphDetectionCutoff' )
+		);
+
+		$engine = DifferenceEngine::getEngine();
+		if ( $engine === false ) {
+			$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_PHP );
+		} elseif ( $engine === 'wikidiff2' ) {
+			$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_WIKIDIFF2 );
+		} else {
+			$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_EXTERNAL, $engine );
+		}
+
+		return $slotDiffRenderer;
 	}
 
 	/**

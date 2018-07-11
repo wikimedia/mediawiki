@@ -1783,6 +1783,12 @@ $relativeTo: MWTimestamp object of the relative (user-adjusted) timestamp
 $user: User whose preferences are being used to make timestamp
 $lang: Language that will be used to render the timestamp
 
+'GetSlotDiffRenderer': Replace or wrap the standard SlotDiffRenderer for some
+content type.
+$contentHandler: ContentHandler for which the slot diff renderer is fetched.
+&$slotDiffRenderer: SlotDiffRenderer to change or replace.
+$context: IContextSource
+
 'getUserPermissionsErrors': Add a permissions error when permissions errors are
 checked for. Use instead of userCan for most cases. Return false if the user
 can't do it, and populate $result with the reason in the form of

@@ -68,6 +68,10 @@ production.
   additional links to the subtitle of a history page.
 * The 'GetLinkColours' hook now receives an additional $title parameter,
   the Title object of the page being parsed, on which the links will be shown.
+* (T194731) DifferenceEngine supports multiple slots. Added SlotDiffRenderer to
+  render diffs between two Content objects, and DifferenceEngine::setRevisions()
+  to render diffs between two custom (potentially multi-content) revisions.
+  Added GetSlotDiffRenderer hook which works like GetDifferenceEngine for slots.
 
 === External library changes in 1.32 ===
 * …
@@ -340,12 +344,20 @@ because of Phabricator reports.
   Set $wgShowExceptionDetails and/or $wgShowHostnames instead.
 * The $wgShowDBErrorBacktrace global is deprecated and nonfunctional.
   Set $wgShowExceptionDetails instead.
-* Public access to the DifferenceEngine properties mOldid, mNewid, mOldPage,
-  mNewPage, mOldContent, mNewContent, mRevisionsLoaded, mTextLoaded and
-  mCacheHit is deprecated. Use getOldid() / getNewid() for the first two,
-  do your own lookup for page/content. mNewRev / mOldRev remains public.
+* Public access to the DifferenceEngine properties mOldid, mNewid, mOldRev,
+  mNewRev, mOldPage, mNewPage, mOldContent, mNewContent, mRevisionsLoaded,
+  mTextLoaded and mCacheHit is deprecated. Use getOldid() / getNewid() /
+  getOldRevision() / getNewRevision() for the first four (note that the
+  revision ones return a RevisionRecord, not a Revision), do your own lookup
+  for page/content.
 * The $wgExternalDiffEngine value 'wikidiff2' is deprecated. To use wikidiff2
   just enable the PHP extension, and it will be autodetected.
+* (T194731) DifferenceEngine properties mOldContent and mNewContent and methods
+  setContent(), generateContentDiffBody(), generateTextDiffBody() and textDiff()
+  are deprecated. To interact with a single slot, use a SlotDiffRenderer (and
+  subclass it to customize diff rendering); to diff custom (e.g. unsaved)
+  content, use setRevisions(). Subclassing DifferenceEngine should only be done
+  to customize page-level diff properties (such as the navigation header).
 * The wfUseMW function, soft-deprecated in 1.26, is now hard deprecated.
 * All MagicWord static methods are now deprecated.  Use the MagicWordFactory
   methods instead.
