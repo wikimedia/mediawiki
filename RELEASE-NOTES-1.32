@@ -287,6 +287,8 @@ because of Phabricator reports.
   mNewPage, mOldContent, mNewContent, mRevisionsLoaded, mTextLoaded and
   mCacheHit is deprecated. Use getOldid() / getNewid() for the first two,
   do your own lookup for page/content. mNewRev / mOldRev remains public.
+* The $wgExternalDiffEngine value 'wikidiff2' is deprecated. To use wikidiff2
+  just enable the PHP extension, and it will be autodetected.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
