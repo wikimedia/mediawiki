@@ -236,6 +236,9 @@ because of Phabricator reports.
 * String type for $lang of DifferenceEngine::setTextLanguage is deprecated.
 
 === Other changes in 1.32 ===
+* (T198811) The following tables have had their UNIQUE indexes turned into proper
+  PRIMARY KEYs for increased maintainability: interwiki, page_props,
+  protected_titles and site_identifiers.
 * …
 
 == Compatibility ==

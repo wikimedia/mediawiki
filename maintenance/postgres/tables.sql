@@ -233,7 +233,6 @@ CREATE TABLE page_props (
   pp_sortkey   FLOAT
 );
 ALTER TABLE page_props ADD CONSTRAINT page_props_pk PRIMARY KEY (pp_page,pp_propname);
-CREATE INDEX page_props_propname ON page_props (pp_propname);
 CREATE UNIQUE INDEX pp_propname_page ON page_props (pp_propname,pp_page);
 CREATE INDEX pp_propname_sortkey_page ON page_props (pp_propname, pp_sortkey, pp_page) WHERE (pp_sortkey IS NOT NULL);
 
@@ -606,7 +605,7 @@ CREATE INDEX wl_user_notificationtimestamp ON watchlist (wl_user, wl_notificatio
 
 
 CREATE TABLE interwiki (
-  iw_prefix  TEXT      NOT NULL  UNIQUE,
+  iw_prefix  TEXT      NOT NULL  PRIMARY KEY,
   iw_url     TEXT      NOT NULL,
   iw_local   SMALLINT  NOT NULL,
   iw_trans   SMALLINT  NOT NULL  DEFAULT 0,
@@ -778,10 +777,10 @@ CREATE TABLE protected_titles (
   pt_reason_id   INTEGER     NOT NULL DEFAULT 0,
   pt_timestamp   TIMESTAMPTZ NOT NULL,
   pt_expiry      TIMESTAMPTZ     NULL,
-  pt_create_perm TEXT        NOT NULL DEFAULT ''
-);
-CREATE UNIQUE INDEX protected_titles_unique ON protected_titles(pt_namespace, pt_title);
+  pt_create_perm TEXT        NOT NULL DEFAULT '',
 
+  PRIMARY KEY (pt_namespace, pt_title)
+);
 
 CREATE TABLE updatelog (
   ul_key TEXT NOT NULL PRIMARY KEY,
@@ -894,8 +893,9 @@ CREATE INDEX site_forward ON sites (site_forward);
 CREATE TABLE site_identifiers (
   si_site   INTEGER NOT NULL,
   si_type   TEXT    NOT NULL,
-  si_key    TEXT    NOT NULL
+  si_key    TEXT    NOT NULL,
+
+  PRIMARY KEY (si_type, si_key)
 );
-CREATE UNIQUE INDEX si_type_key ON site_identifiers (si_type, si_key);
 CREATE INDEX si_site ON site_identifiers (si_site);
 CREATE INDEX si_key ON site_identifiers (si_key);
