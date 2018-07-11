@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.4
+ * OOUI v0.27.5
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-06-27T17:25:08Z
+ * Date: 2018-07-11T18:13:04Z
  */
 ( function ( OO ) {
 
@@ -7325,7 +7325,6 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	this.onInputEditHandler = OO.ui.debounce( this.updateItemVisibility.bind( this ), 100 );
 	this.highlightOnFilter = !!config.highlightOnFilter;
 	this.width = config.width;
-	this.filterQuery = '';
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-menuSelectWidget' );
@@ -7437,10 +7436,9 @@ OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 		showAll = !this.isVisible(),
 		exactMatch = false;
 
-	if ( this.$input && this.filterFromInput && this.filterQuery !== this.$input.val() ) {
+	if ( this.$input && this.filterFromInput ) {
 		filter = showAll ? null : this.getItemMatcher( this.$input.val() );
 		exactFilter = this.getItemMatcher( this.$input.val(), true );
-		this.filterQuery = this.$input.val();
 		// Hide non-matching options, and also hide section headers if all options
 		// in their section are hidden.
 		for ( i = 0; i < len; i++ ) {

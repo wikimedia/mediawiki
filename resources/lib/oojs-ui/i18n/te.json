@@ -27,5 +27,6 @@
 	"ooui-selectfile-button-select": "దస్త్రాన్ని ఎంచుకో",
 	"ooui-selectfile-not-supported": "దస్త్రపు ఎంపిక అందుబాటులో లేదు",
 	"ooui-selectfile-placeholder": "ఏ దస్త్రము ఎంపిక చేయలేదు",
-	"ooui-selectfile-dragdrop-placeholder": "దస్త్రాన్ని ఇక్కడ పడేయండి"
+	"ooui-selectfile-dragdrop-placeholder": "దస్త్రాన్ని ఇక్కడ పడేయండి",
+	"ooui-field-help": "సహాయం"
 }

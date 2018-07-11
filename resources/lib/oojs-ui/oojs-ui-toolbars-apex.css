@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.4
+ * OOUI v0.27.5
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-06-27T17:25:12Z
+ * Date: 2018-07-11T18:13:08Z
  */
 .oo-ui-tool > .oo-ui-tool-link > .oo-ui-tool-checkIcon {
   display: none;
@@ -21,12 +21,12 @@
   margin: 0;
 }
 .oo-ui-toolGroupTool:first-child > .oo-ui-popupToolGroup {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
 .oo-ui-toolGroupTool:last-child > .oo-ui-popupToolGroup {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 .oo-ui-toolGroupTool > .oo-ui-popupToolGroup > .oo-ui-popupToolGroup-handle {
   height: 1.875em;
@@ -43,7 +43,7 @@
   display: inline-block;
   vertical-align: middle;
   margin: 0.375em;
-  border-radius: 4px;
+  border-radius: 3px;
   border: 1px solid transparent;
   -webkit-transition: border-color 250ms ease;
   -moz-transition: border-color 250ms ease;
@@ -92,13 +92,13 @@
   border: 1px solid transparent;
 }
 .oo-ui-barToolGroup-tools > .oo-ui-tool:first-child {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
 .oo-ui-barToolGroup-tools > .oo-ui-tool:last-child {
   margin-right: -1px;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 .oo-ui-barToolGroup-tools > .oo-ui-tool > .oo-ui-tool-link {
   height: 1.875em;
@@ -234,16 +234,16 @@
   margin-left: -2px;
 }
 .oo-ui-buttonGroupWidget .oo-ui-popupToolGroup:first-child > .oo-ui-popupToolGroup-handle {
-  border-bottom-left-radius: 4px;
-  border-top-left-radius: 4px;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
   margin-left: 0;
 }
 .oo-ui-buttonGroupWidget .oo-ui-popupToolGroup:last-child {
   margin-right: 0.5em;
 }
 .oo-ui-buttonGroupWidget .oo-ui-popupToolGroup:last-child > .oo-ui-popupToolGroup-handle {
-  border-bottom-right-radius: 4px;
-  border-top-right-radius: 4px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
 }
 .oo-ui-popupToolGroup-handle {
   height: 2.5em;
