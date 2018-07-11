@@ -3344,19 +3344,15 @@ class LocalFileMoveBatch {
 		$status = $repo->newGood();
 		$dbw = $this->db;
 
-		$hasCurrent = $dbw->selectField(
+		$hasCurrent = $dbw->lockForUpdate(
 			'image',
-			'1',
 			[ 'img_name' => $this->oldName ],
-			__METHOD__,
-			[ 'FOR UPDATE' ]
+			__METHOD__
 		);
-		$oldRowCount = $dbw->selectRowCount(
+		$oldRowCount = $dbw->lockForUpdate(
 			'oldimage',
-			'*',
 			[ 'oi_name' => $this->oldName ],
-			__METHOD__,
-			[ 'FOR UPDATE' ]
+			__METHOD__
 		);
 
 		if ( $hasCurrent ) {
