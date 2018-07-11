@@ -1354,7 +1354,7 @@
 	"rcfilters-quickfilters-placeholder-description": "Filtri sätete salvestamiseks (et neid hiljem uuesti kasutada) klõpsa alloleva aktiivsete filtrite loendi juures järjehoidjaikooni.",
 	"rcfilters-savedqueries-defaultlabel": "Salvestatud filtrid",
 	"rcfilters-savedqueries-rename": "Nimeta ümber",
-	"rcfilters-savedqueries-setdefault": "Määra vaikefiltriteks",
+	"rcfilters-savedqueries-setdefault": "Määra vaikefiltriks",
 	"rcfilters-savedqueries-unsetdefault": "Tühista vaikevalik",
 	"rcfilters-savedqueries-remove": "Eemalda",
 	"rcfilters-savedqueries-new-name-label": "Nimi",

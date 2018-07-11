@@ -1460,6 +1460,7 @@
 	"rcfilters-watchlist-showupdated": "পরিবর্তন যখন ঘটেছে তখন থেকে যে পাতাগুলি আপনি এখনো দেখেননি তা মোটা চিহ্নসহ <strong>গাঢ়</strong> করে দেখানো হয়েছে।",
 	"rcfilters-preference-label": "সাম্প্রতিক পরিবর্তনের উন্নত সংস্করণটি লুকান",
 	"rcfilters-preference-help": "২০১৭-এর পুনঃনকশাকৃত ইন্টারফেস এবং তখন পর্যন্ত ও তখন থেকে যোগ করা সকল সরঞ্জামে ফেরত নিবে।",
+	"rcfilters-watchlist-preference-label": "নজরতালিকার উন্নত সংস্করণটি লুকান",
 	"rcfilters-target-page-placeholder": "একটি পাতার নাম (বা বিষয়শ্রেণী) লিখুন",
 	"rcnotefrom": "<strong>$2</strong>টা থেকে সংঘটিত পরিবর্তনগুলি (সর্বোচ্চ <strong>$1টি</strong> দেখানো হয়েছে)।",
 	"rclistfromreset": "তারিখ নির্বাচন পুনঃস্থাপন করুন",
