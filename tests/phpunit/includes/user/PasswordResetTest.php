@@ -168,6 +168,7 @@ class PasswordResetTest extends MediaWikiTestCase {
 		$performingUser = $this->getMockBuilder( User::class )->getMock();
 		$performingUser->expects( $this->any() )->method( 'getRequest' )->willReturn( $request );
 		$performingUser->expects( $this->any() )->method( 'isAllowed' )->willReturn( true );
+		$performingUser->expects( $this->any() )->method( 'getName' )->willReturn( 'Performer' );
 
 		$targetUser1 = $this->getMockBuilder( User::class )->getMock();
 		$targetUser2 = $this->getMockBuilder( User::class )->getMock();

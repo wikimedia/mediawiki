@@ -46,14 +46,14 @@ class PasswordReset implements LoggerAwareInterface {
 	/**
 	 * In-process cache for isAllowed lookups, by username.
 	 * Contains a StatusValue object
-	 * @var HashBagOStuff
+	 * @var MapCacheLRU
 	 */
 	private $permissionCache;
 
 	public function __construct( Config $config, AuthManager $authManager ) {
 		$this->config = $config;
 		$this->authManager = $authManager;
-		$this->permissionCache = new HashBagOStuff( [ 'maxKeys' => 1 ] );
+		$this->permissionCache = new MapCacheLRU( 1 );
 		$this->logger = LoggerFactory::getInstance( 'authentication' );
 	}
 
