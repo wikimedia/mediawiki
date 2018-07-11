@@ -158,10 +158,12 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 		$now += 29;
 		$this->assertTrue( $cache->has( 'd', 30 ) );
 		$this->assertEquals( 'xxx', $cache->get( 'd' ) );
+		$this->assertEquals( 'xxx', $cache->get( 'd', 30 ) );
 
 		$now += 1.5;
 		$this->assertFalse( $cache->has( 'd', 30 ) );
 		$this->assertEquals( 'xxx', $cache->get( 'd' ) );
+		$this->assertNull( $cache->get( 'd', 30 ) );
 	}
 
 	/**
@@ -180,14 +182,17 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 		$cache->setField( 'PMs', 'Margaret Thatcher', 'Tory' );
 		$this->assertTrue( $cache->hasField( 'PMs', 'Tony Blair', 30 ) );
 		$this->assertEquals( 'Labour', $cache->getField( 'PMs', 'Tony Blair' ) );
+		$this->assertTrue( $cache->hasField( 'PMs', 'Tony Blair', 30 ) );
 
 		$now += 29;
 		$this->assertTrue( $cache->hasField( 'PMs', 'Tony Blair', 30 ) );
 		$this->assertEquals( 'Labour', $cache->getField( 'PMs', 'Tony Blair' ) );
+		$this->assertEquals( 'Labour', $cache->getField( 'PMs', 'Tony Blair', 30 ) );
 
 		$now += 1.5;
 		$this->assertFalse( $cache->hasField( 'PMs', 'Tony Blair', 30 ) );
 		$this->assertEquals( 'Labour', $cache->getField( 'PMs', 'Tony Blair' ) );
+		$this->assertNull( $cache->getField( 'PMs', 'Tony Blair', 30 ) );
 
 		$this->assertEquals(
 			[ 'Tony Blair' => 'Labour', 'Margaret Thatcher' => 'Tory' ],
