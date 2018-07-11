@@ -218,21 +218,15 @@ class InfoAction extends FormlessAction {
 
 		$pageCounts = $this->pageCounts( $this->page );
 
-		$pageProperties = [];
 		$props = PageProps::getInstance()->getAllProperties( $title );
-		if ( isset( $props[$id] ) ) {
-			$pageProperties = $props[$id];
-		}
+		$pageProperties = $props[$id] ?? [];
 
 		// Basic information
 		$pageInfo = [];
 		$pageInfo['header-basic'] = [];
 
 		// Display title
-		$displayTitle = $title->getPrefixedText();
-		if ( isset( $pageProperties['displaytitle'] ) ) {
-			$displayTitle = $pageProperties['displaytitle'];
-		}
+		$displayTitle = $pageProperties['displaytitle'] ?? $title->getPrefixedText();
 
 		$pageInfo['header-basic'][] = [
 			$this->msg( 'pageinfo-display-title' ), $displayTitle
@@ -254,10 +248,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Default sort key
-		$sortKey = $title->getCategorySortkey();
-		if ( isset( $pageProperties['defaultsort'] ) ) {
-			$sortKey = $pageProperties['defaultsort'];
-		}
+		$sortKey = $pageProperties['defaultsort'] ?? $title->getCategorySortkey();
 
 		$sortKey = htmlspecialchars( $sortKey );
 		$pageInfo['header-basic'][] = [ $this->msg( 'pageinfo-default-sort' ), $sortKey ];

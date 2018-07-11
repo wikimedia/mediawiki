@@ -127,7 +127,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					if ( count( $pageIds[NS_FILE] ) == 1 ) {
 						// See the 'the user is screwed' comment below
 						$this->setContinueEnumParameter( 'start',
-							$start !== null ? $start : wfTimestamp( TS_ISO_8601, $img->getTimestamp() )
+							$start ?? wfTimestamp( TS_ISO_8601, $img->getTimestamp() )
 						);
 					} else {
 						$this->setContinueEnumParameter( 'continue',
@@ -152,7 +152,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						// thing again. When the violating queries have been
 						// out-continued, the result will get through
 						$this->setContinueEnumParameter( 'start',
-							$start !== null ? $start : wfTimestamp( TS_ISO_8601, $img->getTimestamp() )
+							$start ?? wfTimestamp( TS_ISO_8601, $img->getTimestamp() )
 						);
 					} else {
 						$this->setContinueEnumParameter( 'continue',

@@ -103,7 +103,7 @@ class FileDuplicateSearchPage extends QueryPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$this->filename = $par !== null ? $par : $this->getRequest()->getText( 'filename' );
+		$this->filename = $par ?? $this->getRequest()->getText( 'filename' );
 		$this->file = null;
 		$this->hash = '';
 		$title = Title::newFromText( $this->filename, NS_FILE );

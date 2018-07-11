@@ -259,7 +259,7 @@ class SpecialSearch extends SpecialPage {
 			return null;
 		}
 
-		return $url === null ? $title->getFullUrlForRedirect() : $url;
+		return $url ?? $title->getFullUrlForRedirect();
 	}
 
 	/**

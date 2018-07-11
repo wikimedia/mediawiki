@@ -80,7 +80,7 @@ class ApiSetPageLanguage extends ApiBase {
 			$this,
 			$titleObj,
 			$params['lang'],
-			$params['reason'] === null ? '' : $params['reason'],
+			$params['reason'] ?? '',
 			$params['tags'] ?: []
 		);
 

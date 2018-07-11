@@ -205,7 +205,7 @@ class SearchResultSet implements Countable, IteratorAggregate {
 		$it = $this->bcIterator();
 		$searchResult = $it->current();
 		$it->next();
-		return $searchResult === null ? false : $searchResult;
+		return $searchResult ?? false;
 	}
 
 	/**
@@ -338,11 +338,7 @@ class SearchResultSet implements Countable, IteratorAggregate {
 			return;
 		}
 		$result->setExtensionData( function () use ( $id ) {
-			if ( isset( $this->extraData[$id] ) ) {
-				return $this->extraData[$id];
-			} else {
-				return [];
-			}
+			return $this->extraData[$id] ?? [];
 		} );
 	}
 

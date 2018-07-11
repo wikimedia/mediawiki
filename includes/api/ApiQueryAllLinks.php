@@ -150,10 +150,10 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		}
 
 		// 'continue' always overrides 'from'
-		$from = ( $continue || $params['from'] === null ? null :
-			$this->titlePartToKey( $params['from'], $namespace ) );
-		$to = ( $params['to'] === null ? null :
-			$this->titlePartToKey( $params['to'], $namespace ) );
+		$from = $continue || $params['from'] === null ? null :
+			$this->titlePartToKey( $params['from'], $namespace );
+		$to = $params['to'] === null ? null :
+			$this->titlePartToKey( $params['to'], $namespace );
 		$this->addWhereRange( $pfx . $fieldTitle, 'newer', $from, $to );
 
 		if ( isset( $params['prefix'] ) ) {

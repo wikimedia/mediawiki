@@ -3352,7 +3352,7 @@ ERROR;
 		}
 
 		$this->showTextbox(
-			$textoverride !== null ? $textoverride : $this->textbox1,
+			$textoverride ?? $this->textbox1,
 			'wpTextbox1',
 			$attribs
 		);

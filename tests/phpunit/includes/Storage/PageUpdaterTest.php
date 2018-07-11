@@ -235,7 +235,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		$comment = CommentStoreComment::newUnsavedComment( $summary );
 
 		if ( !$content instanceof Content ) {
-			$content = new TextContent( $content === null ? $summary : $content );
+			$content = new TextContent( $content ?? $summary );
 		}
 
 		$updater = $page->newPageUpdater( $user );
