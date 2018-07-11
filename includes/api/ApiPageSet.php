@@ -1200,7 +1200,7 @@ class ApiPageSet extends ApiBase {
 				// Variants checking
 				global $wgContLang;
 				if ( $this->mConvertTitles &&
-					count( $wgContLang->getVariants() ) > 1 &&
+					$wgContLang->hasVariants() &&
 					!$titleObj->exists()
 				) {
 					// Language::findVariantLink will modify titleText and titleObj into

@@ -90,7 +90,7 @@ class MediaWiki {
 			}
 			// Check variant links so that interwiki links don't have to worry
 			// about the possible different language variants
-			if ( count( $wgContLang->getVariants() ) > 1
+			if ( $wgContLang->hasVariants()
 				&& !is_null( $ret ) && $ret->getArticleID() == 0
 			) {
 				$wgContLang->findVariantLink( $title, $ret );

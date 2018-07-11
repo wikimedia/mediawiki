@@ -1116,11 +1116,11 @@ class SkinTemplate extends Skin {
 
 			if ( $userCanRead && !$wgDisableLangConversion ) {
 				$pageLang = $title->getPageLanguage();
-				// Gets list of language variants
-				$variants = $pageLang->getVariants();
 				// Checks that language conversion is enabled and variants exist
 				// And if it is not in the special namespace
-				if ( count( $variants ) > 1 ) {
+				if ( $pageLang->hasVariants() ) {
+					// Gets list of language variants
+					$variants = $pageLang->getVariants();
 					// Gets preferred variant (note that user preference is
 					// only possible for wiki content language variant)
 					$preferred = $pageLang->getPreferredVariant();
