@@ -287,6 +287,12 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function lockForUpdate(
+		$table, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+	) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function fieldExists( $table, $field, $fname = __METHOD__ ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

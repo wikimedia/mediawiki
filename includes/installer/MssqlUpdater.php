@@ -140,6 +140,10 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'populateContentTables' ],
 			[ 'addIndex', 'logging', 'log_type_action', 'patch-logging-log-type-action-index.sql' ],
 			[ 'dropIndex', 'logging', 'type_action', 'patch-logging-drop-type-action-index.sql' ],
+			[ 'addIndex', 'interwiki', 'PRIMARY', 'patch-interwiki-pk.sql' ],
+			[ 'addIndex', 'protected_titles', 'PRIMARY', 'patch-protected_titles-pk.sql' ],
+			[ 'addIndex', 'page_props', 'PRIMARY', 'patch-page_props-pk.sql' ],
+			[ 'addIndex', 'site_identifiers', 'PRIMARY', 'patch-site_identifiers-pk.sql' ],
 		];
 	}
 

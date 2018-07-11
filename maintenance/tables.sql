@@ -1529,7 +1529,7 @@ CREATE FULLTEXT INDEX /*i*/si_text ON /*_*/searchindex (si_text);
 --
 CREATE TABLE /*_*/interwiki (
   -- The interwiki prefix, (e.g. "Meatball", or the language prefix "de")
-  iw_prefix varchar(32) NOT NULL,
+  iw_prefix varchar(32) NOT NULL PRIMARY KEY,
 
   -- The URL of the wiki, with "$1" as a placeholder for an article name.
   -- Any spaces in the name will be transformed to underscores before
@@ -1549,8 +1549,6 @@ CREATE TABLE /*_*/interwiki (
   -- Boolean value indicating whether interwiki transclusions are allowed.
   iw_trans tinyint NOT NULL default 0
 ) /*$wgDBTableOptions*/;
-
-CREATE UNIQUE INDEX /*i*/iw_prefix ON /*_*/interwiki (iw_prefix);
 
 
 --
@@ -1807,10 +1805,11 @@ CREATE TABLE /*_*/protected_titles (
   pt_reason_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that pt_reason should be used)
   pt_timestamp binary(14) NOT NULL,
   pt_expiry varbinary(14) NOT NULL default '',
-  pt_create_perm varbinary(60) NOT NULL
+  pt_create_perm varbinary(60) NOT NULL,
+
+  PRIMARY KEY (pt_namespace,pt_title)
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/pt_namespace_title ON /*_*/protected_titles (pt_namespace,pt_title);
 CREATE INDEX /*i*/pt_timestamp ON /*_*/protected_titles (pt_timestamp);
 
 
@@ -1819,10 +1818,11 @@ CREATE TABLE /*_*/page_props (
   pp_page int NOT NULL,
   pp_propname varbinary(60) NOT NULL,
   pp_value blob NOT NULL,
-  pp_sortkey float DEFAULT NULL
+  pp_sortkey float DEFAULT NULL,
+
+  PRIMARY KEY (pp_page,pp_propname)
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/pp_page_propname ON /*_*/page_props (pp_page,pp_propname);
 CREATE UNIQUE INDEX /*i*/pp_propname_page ON /*_*/page_props (pp_propname,pp_page);
 CREATE UNIQUE INDEX /*i*/pp_propname_sortkey_page ON /*_*/page_props (pp_propname,pp_sortkey,pp_page);
 
@@ -1962,10 +1962,11 @@ CREATE TABLE /*_*/site_identifiers (
   si_type                    varbinary(32)       NOT NULL,
 
   -- local key value, ie 'en' or 'wiktionary'
-  si_key                     varbinary(32)       NOT NULL
+  si_key                     varbinary(32)       NOT NULL,
+
+  PRIMARY KEY (si_type, si_key)
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/site_ids_type ON /*_*/site_identifiers (si_type, si_key);
 CREATE INDEX /*i*/site_ids_site ON /*_*/site_identifiers (si_site);
 CREATE INDEX /*i*/site_ids_key ON /*_*/site_identifiers (si_key);
 
