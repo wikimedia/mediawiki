@@ -173,7 +173,7 @@ class CategoryMembershipChangeJob extends Job {
 		}
 
 		// Parse the new revision and get the categories
-		$categoryChanges = $this->getExplicitCategoriesChanges( $title, $newRev, $oldRev );
+		$categoryChanges = $this->getExplicitCategoriesChanges( $page, $newRev, $oldRev );
 		list( $categoryInserts, $categoryDeletes ) = $categoryChanges;
 		if ( !$categoryInserts && !$categoryDeletes ) {
 			return; // nothing to do
@@ -203,7 +203,7 @@ class CategoryMembershipChangeJob extends Job {
 	}
 
 	private function getExplicitCategoriesChanges(
-		Title $title, Revision $newRev, Revision $oldRev = null
+		WikiPage $page, Revision $newRev, Revision $oldRev = null
 	) {
 		// Inject the same timestamp for both revision parses to avoid seeing category changes
 		// due to time-based parser functions. Inject the same page title for the parses too.
@@ -213,10 +213,10 @@ class CategoryMembershipChangeJob extends Job {
 		// assumes these updates are perfectly FIFO and that link tables are always
 		// up to date, neither of which are true.
 		$oldCategories = $oldRev
-			? $this->getCategoriesAtRev( $title, $oldRev, $parseTimestamp )
+			? $this->getCategoriesAtRev( $page, $oldRev, $parseTimestamp )
 			: [];
 		// Parse the new revision and get the categories
-		$newCategories = $this->getCategoriesAtRev( $title, $newRev, $parseTimestamp );
+		$newCategories = $this->getCategoriesAtRev( $page, $newRev, $parseTimestamp );
 
 		$categoryInserts = array_values( array_diff( $newCategories, $oldCategories ) );
 		$categoryDeletes = array_values( array_diff( $oldCategories, $newCategories ) );
@@ -225,19 +225,19 @@ class CategoryMembershipChangeJob extends Job {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param WikiPage $page
 	 * @param Revision $rev
 	 * @param string $parseTimestamp TS_MW
 	 *
 	 * @return string[] category names
 	 */
-	private function getCategoriesAtRev( Title $title, Revision $rev, $parseTimestamp ) {
+	private function getCategoriesAtRev( WikiPage $page, Revision $rev, $parseTimestamp ) {
 		$content = $rev->getContent();
-		$options = $content->getContentHandler()->makeParserOptions( 'canonical' );
+		$options = $page->makeParserOptions( 'canonical' );
 		$options->setTimestamp( $parseTimestamp );
 		// This could possibly use the parser cache if it checked the revision ID,
 		// but that's more complicated than it's worth.
-		$output = $content->getParserOutput( $title, $rev->getId(), $options );
+		$output = $content->getParserOutput( $page->getTitle(), $rev->getId(), $options );
 
 		// array keys will cast numeric category names to ints
 		// so we need to cast them back to strings to avoid breaking things!

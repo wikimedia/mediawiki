@@ -42,6 +42,13 @@ use Wikimedia\ScopedCallback;
 class ParserOptions {
 
 	/**
+	 * Flag indicating that newCanonical() accepts an IContextSource or the string 'canonical', for
+	 * back-compat checks from extensions.
+	 * @since 1.32
+	 */
+	const HAS_NEWCANONICAL_FROM_CONTEXT = 1;
+
+	/**
 	 * Default values for all options that are relevant for caching.
 	 * @see self::getDefaults()
 	 * @var array|null
@@ -930,8 +937,7 @@ class ParserOptions {
 
 	/**
 	 * @warning For interaction with the parser cache, use
-	 *  WikiPage::makeParserOptions(), ContentHandler::makeParserOptions(), or
-	 *  ParserOptions::newCanonical() instead.
+	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 	 * @param User|null $user
 	 * @param Language|null $lang
 	 */
@@ -957,8 +963,7 @@ class ParserOptions {
 	/**
 	 * Get a ParserOptions object for an anonymous user
 	 * @warning For interaction with the parser cache, use
-	 *  WikiPage::makeParserOptions(), ContentHandler::makeParserOptions(), or
-	 *  ParserOptions::newCanonical() instead.
+	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 	 * @since 1.27
 	 * @return ParserOptions
 	 */
@@ -972,8 +977,7 @@ class ParserOptions {
 	 * Language will be taken from $wgLang.
 	 *
 	 * @warning For interaction with the parser cache, use
-	 *  WikiPage::makeParserOptions(), ContentHandler::makeParserOptions(), or
-	 *  ParserOptions::newCanonical() instead.
+	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 	 * @param User $user
 	 * @return ParserOptions
 	 */
@@ -985,8 +989,7 @@ class ParserOptions {
 	 * Get a ParserOptions object from a given user and language
 	 *
 	 * @warning For interaction with the parser cache, use
-	 *  WikiPage::makeParserOptions(), ContentHandler::makeParserOptions(), or
-	 *  ParserOptions::newCanonical() instead.
+	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 	 * @param User $user
 	 * @param Language $lang
 	 * @return ParserOptions
@@ -999,8 +1002,7 @@ class ParserOptions {
 	 * Get a ParserOptions object from a IContextSource object
 	 *
 	 * @warning For interaction with the parser cache, use
-	 *  WikiPage::makeParserOptions(), ContentHandler::makeParserOptions(), or
-	 *  ParserOptions::newCanonical() instead.
+	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 	 * @param IContextSource $context
 	 * @return ParserOptions
 	 */
@@ -1015,12 +1017,29 @@ class ParserOptions {
 	 * different from the canonical values used for caching.
 	 *
 	 * @since 1.30
-	 * @param User|null $user
-	 * @param Language|StubObject|null $lang
+	 * @since 1.32 Added string and IContextSource as options for the first parameter
+	 * @param IContextSource|string|User|null $context
+	 *  - If an IContextSource, the options are initialized based on the source's User and Language.
+	 *  - If the string 'canonical', the options are initialized with an anonymous user and
+	 *    $wgContLang.
+	 *  - If a User or null, the options are initialized for that User (or $wgUser if null).
+	 *    'userlang' is taken from the $userLang parameter, defaulting to $wgLang if that is null.
+	 * @param Language|StubObject|null $userLang (see above)
 	 * @return ParserOptions
 	 */
-	public static function newCanonical( User $user = null, $lang = null ) {
-		$ret = new ParserOptions( $user, $lang );
+	public static function newCanonical( $context = null, $userLang = null ) {
+		if ( $context instanceof IContextSource ) {
+			$ret = self::newFromContext( $context );
+		} elseif ( $context === 'canonical' ) {
+			$ret = self::newFromAnon();
+		} elseif ( $context instanceof User || $context === null ) {
+			$ret = new self( $context, $userLang );
+		} else {
+			throw new InvalidArgumentException(
+				'$context must be an IContextSource, the string "canonical", a User, or null'
+			);
+		}
+
 		foreach ( self::getCanonicalOverrides() as $k => $v ) {
 			$ret->setOption( $k, $v );
 		}

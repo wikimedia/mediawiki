@@ -377,7 +377,7 @@ just a test"
 		$wikitext = false;
 		$redirectTarget = false;
 		$content = $this->newContent( 'hello world.' );
-		$options = $content->getContentHandler()->makeParserOptions( 'canonical' );
+		$options = ParserOptions::newCanonical( 'canonical' );
 		$options->setRedirectTarget( $title );
 		$content->getParserOutput( $title, null, $options );
 		$this->assertEquals( 'hello world.', $wikitext,
@@ -394,7 +394,7 @@ just a test"
 		$content = $this->newContent(
 			"#REDIRECT [[TestRedirectParserOption/redir]]\nhello redirect."
 		);
-		$options = $content->getContentHandler()->makeParserOptions( 'canonical' );
+		$options = ParserOptions::newCanonical( 'canonical' );
 		$content->getParserOutput( $title, null, $options );
 		$this->assertEquals(
 			'hello redirect.',

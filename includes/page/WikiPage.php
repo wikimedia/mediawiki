@@ -1870,7 +1870,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Get parser options suitable for rendering the primary article wikitext
 	 *
-	 * @see ContentHandler::makeParserOptions
+	 * @see ParserOptions::newCanonical
 	 *
 	 * @param IContextSource|User|string $context One of the following:
 	 *        - IContextSource: Use the User and the Language of the provided
@@ -1882,7 +1882,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return ParserOptions
 	 */
 	public function makeParserOptions( $context ) {
-		$options = $this->getContentHandler()->makeParserOptions( $context );
+		$options = ParserOptions::newCanonical( $context );
 
 		if ( $this->getTitle()->isConversionTable() ) {
 			// @todo ConversionTable should become a separate content model, so

@@ -1114,6 +1114,8 @@ abstract class ContentHandler {
 	/**
 	 * Get parser options suitable for rendering and caching the article
 	 *
+	 * @deprecated since 1.32, use WikiPage::makeParserOptions() or
+	 *  ParserOptions::newCanonical() instead.
 	 * @param IContextSource|User|string $context One of the following:
 	 *        - IContextSource: Use the User and the Language of the provided
 	 *                                            context
@@ -1126,22 +1128,7 @@ abstract class ContentHandler {
 	 * @return ParserOptions
 	 */
 	public function makeParserOptions( $context ) {
-		global $wgContLang;
-
-		if ( $context instanceof IContextSource ) {
-			$user = $context->getUser();
-			$lang = $context->getLanguage();
-		} elseif ( $context instanceof User ) { // settings per user (even anons)
-			$user = $context;
-			$lang = null;
-		} elseif ( $context === 'canonical' ) { // canonical settings
-			$user = new User;
-			$lang = $wgContLang;
-		} else {
-			throw new MWException( "Bad context for parser options: $context" );
-		}
-
-		return ParserOptions::newCanonical( $user, $lang );
+		return ParserOptions::newCanonical( $context );
 	}
 
 	/**
