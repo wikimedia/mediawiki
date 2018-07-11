@@ -1507,6 +1507,13 @@ class ChangeTags {
 	 * @return array Array of string => int
 	 */
 	public static function tagUsageStatistics() {
+		global $wgChangeTagsSchemaMigrationStage, $wgTagStatisticsNewTable;
+		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ||
+			( $wgTagStatisticsNewTable && $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD )
+		) {
+			return self::newTagUsageStatistics();
+		}
+
 		$fname = __METHOD__;
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
@@ -1538,6 +1545,29 @@ class ChangeTags {
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
 		);
+	}
+
+	/**
+	 * Same self::tagUsageStatistics() but uses change_tag_def.
+	 *
+	 * @return array Array of string => int
+	 */
+	private static function newTagUsageStatistics() {
+		$dbr = wfGetDB( DB_REPLICA );
+		$res = $dbr->select(
+			'change_tag_def',
+			[ 'ctd_name', 'ctd_count' ],
+			[],
+			__METHOD__,
+			[ 'ORDER BY' => 'ctd_count DESC' ]
+		);
+
+		$out = [];
+		foreach ( $res as $row ) {
+			$out[$row->ctd_name] = $row->ctd_count;
+		}
+
+		return $out;
 	}
 
 	/**
