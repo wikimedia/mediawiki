@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.4
+ * OOUI v0.27.5
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-06-27T17:25:08Z
+ * Date: 2018-07-11T18:13:04Z
  */
 ( function ( OO ) {
 
@@ -1219,7 +1219,7 @@ OO.ui.WindowManager.prototype.getSetupDelay = function () {
  * @return {number} Milliseconds to wait
  */
 OO.ui.WindowManager.prototype.getReadyDelay = function () {
-	return 0;
+	return this.modal ? OO.ui.theme.getDialogTransitionDuration() : 0;
 };
 
 /**
@@ -1242,7 +1242,7 @@ OO.ui.WindowManager.prototype.getHoldDelay = function () {
  * @return {number} Milliseconds to wait
  */
 OO.ui.WindowManager.prototype.getTeardownDelay = function () {
-	return this.modal ? 250 : 0;
+	return this.modal ? OO.ui.theme.getDialogTransitionDuration() : 0;
 };
 
 /**
@@ -1376,7 +1376,6 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, comp
 		setTimeout( function () {
 			manager.compatOpened = $.Deferred();
 			win.setup( data ).then( function () {
-				manager.updateWindowSize( win );
 				compatOpening.notify( { state: 'setup' } );
 				setTimeout( function () {
 					win.ready( data ).then( function () {
@@ -2077,9 +2076,10 @@ OO.ui.Window.prototype.getDir = function () {
 /**
  * Get the 'setup' process.
  *
- * The setup process is used to set up a window for use in a particular context,
- * based on the `data` argument. This method is called during the opening phase of the window’s
- * lifecycle.
+ * The setup process is used to set up a window for use in a particular context, based on the `data`
+ * argument. This method is called during the opening phase of the window’s lifecycle (before the
+ * opening animation). You can add elements to the window in this process or set their default
+ * values.
  *
  * Override this method to add additional steps to the ‘setup’ process the parent method provides
  * using the {@link OO.ui.Process#first first} and {@link OO.ui.Process#next next} methods
@@ -2098,9 +2098,10 @@ OO.ui.Window.prototype.getSetupProcess = function () {
 /**
  * Get the ‘ready’ process.
  *
- * The ready process is used to ready a window for use in a particular
- * context, based on the `data` argument. This method is called during the opening phase of
- * the window’s lifecycle, after the window has been {@link #getSetupProcess setup}.
+ * The ready process is used to ready a window for use in a particular context, based on the `data`
+ * argument. This method is called during the opening phase of the window’s lifecycle, after the
+ * window has been {@link #getSetupProcess setup} (after the opening animation). You can focus
+ * elements in the window in this process, or open their dropdowns.
  *
  * Override this method to add additional steps to the ‘ready’ process the parent method
  * provides using the {@link OO.ui.Process#first first} and {@link OO.ui.Process#next next}
@@ -2116,9 +2117,10 @@ OO.ui.Window.prototype.getReadyProcess = function () {
 /**
  * Get the 'hold' process.
  *
- * The hold process is used to keep a window from being used in a particular context,
- * based on the `data` argument. This method is called during the closing phase of the window’s
- * lifecycle.
+ * The hold process is used to keep a window from being used in a particular context, based on the
+ * `data` argument. This method is called during the closing phase of the window’s lifecycle (before
+ * the closing animation). You can close dropdowns of elements in the window in this process, if
+ * they do not get closed automatically.
  *
  * Override this method to add additional steps to the 'hold' process the parent method provides
  * using the {@link OO.ui.Process#first first} and {@link OO.ui.Process#next next} methods
@@ -2134,9 +2136,10 @@ OO.ui.Window.prototype.getHoldProcess = function () {
 /**
  * Get the ‘teardown’ process.
  *
- * The teardown process is used to teardown a window after use. During teardown,
- * user interactions within the window are conveyed and the window is closed, based on the `data`
- * argument. This method is called during the closing phase of the window’s lifecycle.
+ * The teardown process is used to teardown a window after use. During teardown, user interactions
+ * within the window are conveyed and the window is closed, based on the `data` argument. This
+ * method is called during the closing phase of the window’s lifecycle (after the closing
+ * animation). You can remove elements in the window in this process or clear their values.
  *
  * Override this method to add additional steps to the ‘teardown’ process the parent method provides
  * using the {@link OO.ui.Process#first first} and {@link OO.ui.Process#next next} methods
@@ -2347,8 +2350,8 @@ OO.ui.Window.prototype.close = function ( data ) {
 /**
  * Setup window.
  *
- * This is called by OO.ui.WindowManager during window opening, and should not be called directly
- * by other systems.
+ * This is called by OO.ui.WindowManager during window opening (before the animation), and should
+ * not be called directly by other systems.
  *
  * @param {Object} [data] Window opening data
  * @return {jQuery.Promise} Promise resolved when window is setup
@@ -2362,6 +2365,7 @@ OO.ui.Window.prototype.setup = function ( data ) {
 	this.$focusTraps.on( 'focus', this.focusTrapHandler );
 
 	return this.getSetupProcess( data ).execute().then( function () {
+		win.updateSize();
 		// Force redraw by asking the browser to measure the elements' widths
 		win.$element.addClass( 'oo-ui-window-active oo-ui-window-setup' ).width();
 		win.$content.addClass( 'oo-ui-window-content-setup' ).width();
@@ -2371,8 +2375,8 @@ OO.ui.Window.prototype.setup = function ( data ) {
 /**
  * Ready window.
  *
- * This is called by OO.ui.WindowManager during window opening, and should not be called directly
- * by other systems.
+ * This is called by OO.ui.WindowManager during window opening (after the animation), and should not
+ * be called directly by other systems.
  *
  * @param {Object} [data] Window opening data
  * @return {jQuery.Promise} Promise resolved when window is ready
@@ -2391,8 +2395,8 @@ OO.ui.Window.prototype.ready = function ( data ) {
 /**
  * Hold window.
  *
- * This is called by OO.ui.WindowManager during window closing, and should not be called directly
- * by other systems.
+ * This is called by OO.ui.WindowManager during window closing (before the animation), and should
+ * not be called directly by other systems.
  *
  * @param {Object} [data] Window closing data
  * @return {jQuery.Promise} Promise resolved when window is held
@@ -2410,15 +2414,15 @@ OO.ui.Window.prototype.hold = function ( data ) {
 		}
 
 		// Force redraw by asking the browser to measure the elements' widths
-		win.$element.removeClass( 'oo-ui-window-ready' ).width();
-		win.$content.removeClass( 'oo-ui-window-content-ready' ).width();
+		win.$element.removeClass( 'oo-ui-window-ready oo-ui-window-setup' ).width();
+		win.$content.removeClass( 'oo-ui-window-content-ready oo-ui-window-content-setup' ).width();
 	} );
 };
 
 /**
  * Teardown window.
  *
- * This is called by OO.ui.WindowManager during window closing, and should not be called directly
+ * This is called by OO.ui.WindowManager during window closing (after the animation), and should not be called directly
  * by other systems.
  *
  * @param {Object} [data] Window closing data
@@ -2429,8 +2433,8 @@ OO.ui.Window.prototype.teardown = function ( data ) {
 
 	return this.getTeardownProcess( data ).execute().then( function () {
 		// Force redraw by asking the browser to measure the elements' widths
-		win.$element.removeClass( 'oo-ui-window-active oo-ui-window-setup' ).width();
-		win.$content.removeClass( 'oo-ui-window-content-setup' ).width();
+		win.$element.removeClass( 'oo-ui-window-active' ).width();
+
 		win.$focusTraps.off( 'focus', win.focusTrapHandler );
 		win.toggle( false );
 	} );
@@ -3069,12 +3073,15 @@ OO.ui.MessageDialog.prototype.attachActions = function () {
 
 	if ( special.safe ) {
 		this.$actions.append( special.safe.$element );
+		special.safe.toggleFramed( true );
 	}
 	for ( i = 0, len = others.length; i < len; i++ ) {
 		this.$actions.append( others[ i ].$element );
+		others[ i ].toggleFramed( true );
 	}
 	if ( special.primary ) {
 		this.$actions.append( special.primary.$element );
+		special.primary.toggleFramed( true );
 	}
 };
 
@@ -3094,7 +3101,7 @@ OO.ui.MessageDialog.prototype.fitActions = function () {
 	this.toggleVerticalActionLayout( false );
 	for ( i = 0, len = actions.length; i < len; i++ ) {
 		action = actions[ i ];
-		if ( action.$element.innerWidth() < action.$label.outerWidth( true ) ) {
+		if ( action.$element[ 0 ].scrollWidth > action.$element[ 0 ].clientWidth ) {
 			this.toggleVerticalActionLayout( true );
 			break;
 		}
