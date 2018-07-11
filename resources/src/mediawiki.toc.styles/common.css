@@ -1,0 +1,6 @@
+/* This style is loaded on all media. */
+
+/* Hide the content of the TOC when the checkbox is checked. */
+.toctogglecheckbox:checked ~ ul {
+	display: none;
+}
