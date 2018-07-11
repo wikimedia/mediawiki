@@ -129,7 +129,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$this->memCache = $config['wanCache'];
 		}
 		// Process cache for container info
-		$this->containerStatCache = new ProcessCacheLRU( 300 );
+		$this->containerStatCache = new MapCacheLRU( 300 );
 		// Cache auth token information to avoid RTTs
 		if ( !empty( $config['cacheAuthInfo'] ) && isset( $config['srvCache'] ) ) {
 			$this->srvCache = $config['srvCache'];
@@ -1033,7 +1033,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param array $val Stat value
 	 */
 	public function loadListingStatInternal( $path, array $val ) {
-		$this->cheapCache->set( $path, 'stat', $val );
+		$this->cheapCache->setField( $path, 'stat', $val );
 	}
 
 	protected function doGetFileXAttributes( array $params ) {
@@ -1188,7 +1188,7 @@ class SwiftFileBackend extends FileBackendStore {
 				// Set the file stat process cache in passing
 				$stat = $this->getStatFromHeaders( $rhdrs );
 				$stat['latest'] = $isLatest;
-				$this->cheapCache->set( $path, 'stat', $stat );
+				$this->cheapCache->setField( $path, 'stat', $stat );
 			} elseif ( $rcode === 404 ) {
 				$tmpFiles[$path] = false;
 			} else {
@@ -1395,10 +1395,10 @@ class SwiftFileBackend extends FileBackendStore {
 
 		if ( $bypassCache ) { // purge cache
 			$this->containerStatCache->clear( $container );
-		} elseif ( !$this->containerStatCache->has( $container, 'stat' ) ) {
+		} elseif ( !$this->containerStatCache->hasField( $container, 'stat' ) ) {
 			$this->primeContainerCache( [ $container ] ); // check persistent cache
 		}
-		if ( !$this->containerStatCache->has( $container, 'stat' ) ) {
+		if ( !$this->containerStatCache->hasField( $container, 'stat' ) ) {
 			$auth = $this->getAuthentication();
 			if ( !$auth ) {
 				return null;
@@ -1418,7 +1418,7 @@ class SwiftFileBackend extends FileBackendStore {
 				if ( $bypassCache ) {
 					return $stat;
 				} else {
-					$this->containerStatCache->set( $container, 'stat', $stat ); // cache it
+					$this->containerStatCache->setField( $container, 'stat', $stat ); // cache it
 					$this->setContainerCache( $container, $stat ); // update persistent cache
 				}
 			} elseif ( $rcode === 404 ) {
@@ -1431,7 +1431,7 @@ class SwiftFileBackend extends FileBackendStore {
 			}
 		}
 
-		return $this->containerStatCache->get( $container, 'stat' );
+		return $this->containerStatCache->getField( $container, 'stat' );
 	}
 
 	/**
@@ -1583,7 +1583,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	protected function doPrimeContainerCache( array $containerInfo ) {
 		foreach ( $containerInfo as $container => $info ) {
-			$this->containerStatCache->set( $container, 'stat', $info );
+			$this->containerStatCache->setField( $container, 'stat', $info );
 		}
 	}
 
