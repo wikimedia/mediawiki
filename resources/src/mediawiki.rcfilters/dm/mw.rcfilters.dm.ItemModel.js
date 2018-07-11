@@ -20,7 +20,7 @@
 	 * @cfg {string} [cssClass] The class identifying the results that match this filter
 	 * @cfg {string[]} [identifiers] An array of identifiers for this item. They will be
 	 *  added and considered in the view.
-	 * @cfg {string} [defaultHighlightColor] If set, highlight this filter by default with this color
+	 * @cfg {string} [defaultHighlightColor=null] If set, highlight this filter by default with this color
 	 */
 	mw.rcfilters.dm.ItemModel = function MwRcfiltersDmItemModel( param, config ) {
 		config = config || {};
@@ -41,7 +41,7 @@
 
 		// Highlight
 		this.cssClass = config.cssClass;
-		this.highlightColor = config.defaultHighlightColor;
+		this.highlightColor = config.defaultHighlightColor || null;
 	};
 
 	/* Initialization */
