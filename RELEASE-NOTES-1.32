@@ -244,8 +244,8 @@ because of Phabricator reports.
   classes are now deprecated. Use a Closure instead.
 
 === Other changes in 1.32 ===
-* (T198811) The following tables have had their UNIQUE indexes turned into proper
-  PRIMARY KEYs for increased maintainability: interwiki, page_props,
+* (T198811) The following tables have had their UNIQUE indexes turned into
+  proper PRIMARY KEYs for increased maintainability: interwiki, page_props,
   protected_titles and site_identifiers.
 * …
 
