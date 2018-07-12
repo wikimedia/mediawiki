@@ -12866,6 +12866,7 @@ Templates: Block Tags: 2. Back-to-back template uses
 ## This is an edge case relating to paragraph wrapping.
 ## Note that Parsoid fails to match Remex because it's using the closing tag
 ## as a heuristic to determine if it's in a block, rather than SAX based events.
+## And Parsoid drops empty elements in templates.
 !! test
 Templates: Correctly encapsulate templates producing </p> tag without a corresponding <p> tag
 !! wikitext
@@ -12877,7 +12878,7 @@ b</p>}}
 b</p><p class="mw-empty-elt"></p>
 !! html/parsoid
 <p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"a\nb&lt;/p>"}},"i":0}}]}'>a</p><span about="#mwt1">
-</span><span about="#mwt1">b</span><p about="#mwt1" data-parsoid='{"autoInsertedStart":true,"stx":"html"}'></p>
+</span><span about="#mwt1">b</span>
 !! end
 
 !!test
