@@ -156,7 +156,7 @@
 	"config-db-web-create": "Create the account if it does not already exist",
 	"config-db-web-no-create-privs": "The account you specified for installation does not have enough privileges to create an account.\nThe account you specify here must already exist.",
 	"config-mysql-engine": "Storage engine:",
-	"config-mysql-innodb": "InnoDB",
+	"config-mysql-innodb": "InnoDB (recommended)",
 	"config-mysql-myisam": "MyISAM",
 	"config-mysql-myisam-dep": "<strong>Warning:</strong> You have selected MyISAM as storage engine for MySQL, which is not recommended for use with MediaWiki, because:\n* it barely supports concurrency due to table locking\n* it is more prone to corruption than other engines\n* the MediaWiki codebase does not always handle MyISAM as it should\n\nIf your MySQL installation supports InnoDB, it is highly recommended that you choose that instead.\nIf your MySQL installation does not support InnoDB, maybe it's time for an upgrade.",
 	"config-mysql-only-myisam-dep": "<strong>Warning:</strong> MyISAM is the only available storage engine for MySQL on this machine, and this is not recommended for use with MediaWiki, because:\n* it barely supports concurrency due to table locking\n* it is more prone to corruption than other engines\n* the MediaWiki codebase does not always handle MyISAM as it should\n\nYour MySQL installation does not support InnoDB, maybe it's time for an upgrade.",
