@@ -648,7 +648,7 @@ class EditPage {
 		$this->isConflict = false;
 
 		# Show applicable editing introductions
-		if ( $this->formtype == 'initial' || $this->firsttime ) {
+		if ( $this->formtype === 'initial' || $this->firsttime ) {
 			$this->showIntro();
 		}
 
@@ -657,7 +657,7 @@ class EditPage {
 		# that edit() already checked just in case someone tries to sneak
 		# in the back door with a hand-edited submission URL.
 
-		if ( 'save' == $this->formtype ) {
+		if ( 'save' === $this->formtype ) {
 			$resultDetails = null;
 			$status = $this->attemptSave( $resultDetails );
 			if ( !$this->handleStatus( $status, $resultDetails ) ) {
@@ -667,7 +667,7 @@ class EditPage {
 
 		# First time through: get contents, set time for conflict
 		# checking, etc.
-		if ( 'initial' == $this->formtype || $this->firsttime ) {
+		if ( 'initial' === $this->formtype || $this->firsttime ) {
 			if ( $this->initialiseForm() === false ) {
 				$this->noSuchSectionPage();
 				return;
@@ -706,9 +706,9 @@ class EditPage {
 		foreach ( $permErrors as $error ) {
 			if ( ( $this->preview || $this->diff )
 				&& (
-					$error[0] == 'blockedtext' ||
-					$error[0] == 'autoblockedtext' ||
-					$error[0] == 'systemblockedtext'
+					$error[0] === 'blockedtext' ||
+					$error[0] === 'autoblockedtext' ||
+					$error[0] === 'systemblockedtext'
 				)
 			) {
 				$remove[] = $error;
@@ -825,13 +825,13 @@ class EditPage {
 			// security reasons
 			return false;
 		}
-		if ( $request->getVal( 'preview' ) == 'yes' ) {
+		if ( $request->getVal( 'preview' ) === 'yes' ) {
 			// Explicit override from request
 			return true;
-		} elseif ( $request->getVal( 'preview' ) == 'no' ) {
+		} elseif ( $request->getVal( 'preview' ) === 'no' ) {
 			// Explicit override from request
 			return false;
-		} elseif ( $this->section == 'new' ) {
+		} elseif ( $this->section === 'new' ) {
 			// Nothing *to* preview for new sections
 			return false;
 		} elseif ( ( $request->getVal( 'preload' ) !== null || $this->mTitle->exists() )
@@ -895,7 +895,7 @@ class EditPage {
 			throw new ErrorPageError( 'sectioneditnotsupported-title', 'sectioneditnotsupported-text' );
 		}
 
-		$this->isNew = !$this->mTitle->exists() || $this->section == 'new';
+		$this->isNew = !$this->mTitle->exists() || $this->section === 'new';
 
 		if ( $request->wasPosted() ) {
 			# These fields need to be checked for encoding.
@@ -995,8 +995,8 @@ class EditPage {
 
 			$user = $this->context->getUser();
 			# Don't force edit summaries when a user is editing their own user or talk page
-			if ( ( $this->mTitle->mNamespace == NS_USER || $this->mTitle->mNamespace == NS_USER_TALK )
-				&& $this->mTitle->getText() == $user->getName()
+			if ( ( $this->mTitle->mNamespace === NS_USER || $this->mTitle->mNamespace === NS_USER_TALK )
+				&& $this->mTitle->getText() === $user->getName()
 			) {
 				$this->allowBlankSummary = true;
 			} else {
@@ -1036,11 +1036,11 @@ class EditPage {
 
 			// When creating a new section, we can preload a section title by passing it as the
 			// preloadtitle parameter in the URL (T15100)
-			if ( $this->section == 'new' && $request->getVal( 'preloadtitle' ) ) {
+			if ( $this->section === 'new' && $request->getVal( 'preloadtitle' ) ) {
 				$this->sectiontitle = $request->getVal( 'preloadtitle' );
 				// Once wpSummary isn't being use for setting section titles, we should delete this.
 				$this->summary = $request->getVal( 'preloadtitle' );
-			} elseif ( $this->section != 'new' && $request->getVal( 'summary' ) ) {
+			} elseif ( $this->section !== 'new' && $request->getVal( 'summary' ) ) {
 				$this->summary = $request->getText( 'summary' );
 				if ( $this->summary !== '' ) {
 					$this->hasPresetSummary = true;
@@ -1164,8 +1164,8 @@ class EditPage {
 		$request = $this->context->getRequest();
 		// For message page not locally set, use the i18n message.
 		// For other non-existent articles, use preload text if any.
-		if ( !$this->mTitle->exists() || $this->section == 'new' ) {
-			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI && $this->section != 'new' ) {
+		if ( !$this->mTitle->exists() || $this->section === 'new' ) {
+			if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI && $this->section !== 'new' ) {
 				# If this is a system message, get the default text.
 				$msg = $this->mTitle->getDefaultMessageText();
 
@@ -1242,7 +1242,7 @@ class EditPage {
 
 								# If we just undid one rev, use an autosummary
 								$firstrev = $oldrev->getNext();
-								if ( $firstrev && $firstrev->getId() == $undo ) {
+								if ( $firstrev && $firstrev->getId() === $undo ) {
 									$userText = $undorev->getUserText();
 									if ( $userText === '' ) {
 										$undoSummary = $this->context->msg(
@@ -1277,7 +1277,7 @@ class EditPage {
 					$out = $this->context->getOutput();
 					// Messages: undo-success, undo-failure, undo-main-slot-only, undo-norev,
 					// undo-nochange.
-					$class = ( $undoMsg == 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
+					$class = ( $undoMsg === 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
 					$this->editFormPageTop .= $out->parse( "<div class=\"{$class}\">" .
 						$this->context->msg( 'undo-' . $undoMsg )->plain() . '</div>', true, /* interface */true );
 				}
@@ -1307,7 +1307,7 @@ class EditPage {
 	 * @return Content|null
 	 */
 	private function getOriginalContent( User $user ) {
-		if ( $this->section == 'new' ) {
+		if ( $this->section === 'new' ) {
 			return $this->getCurrentContent();
 		}
 		$revision = $this->mArticle->getRevisionFetched();
@@ -1498,7 +1498,7 @@ class EditPage {
 		$postEditKey = self::POST_EDIT_COOKIE_KEY_PREFIX . $revisionId;
 
 		$val = 'saved';
-		if ( $statusValue == self::AS_SUCCESS_NEW_ARTICLE ) {
+		if ( $statusValue === self::AS_SUCCESS_NEW_ARTICLE ) {
 			$val = 'created';
 		} elseif ( $this->oldid ) {
 			$val = 'restored';
@@ -1553,8 +1553,8 @@ class EditPage {
 		 * @todo FIXME: once the interface for internalAttemptSave() is made
 		 *   nicer, this should use the message in $status
 		 */
-		if ( $status->value == self::AS_SUCCESS_UPDATE
-			|| $status->value == self::AS_SUCCESS_NEW_ARTICLE
+		if ( $status->value === self::AS_SUCCESS_UPDATE
+			|| $status->value === self::AS_SUCCESS_NEW_ARTICLE
 		) {
 			$this->incrementResolvedConflicts();
 
@@ -1617,7 +1617,7 @@ class EditPage {
 				);
 
 				if ( $resultDetails['redirect'] ) {
-					if ( $extraQuery == '' ) {
+					if ( $extraQuery === '' ) {
 						$extraQuery = 'redirect=no';
 					} else {
 						$extraQuery = 'redirect=no&' . $extraQuery;
@@ -1684,7 +1684,7 @@ class EditPage {
 	 */
 	protected function runPostMergeFilters( Content $content, Status $status, User $user ) {
 		// Run old style post-section-merge edit filter
-		if ( $this->hookError != '' ) {
+		if ( $this->hookError !== '' ) {
 			# ...or the hook could be expecting us to produce an error
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
@@ -1846,7 +1846,7 @@ ERROR;
 		}
 
 		# Check image redirect
-		if ( $this->mTitle->getNamespace() == NS_FILE &&
+		if ( $this->mTitle->getNamespace() === NS_FILE &&
 			$textbox_content->isRedirect() &&
 			!$user->isAllowed( 'upload' )
 		) {
@@ -1858,7 +1858,7 @@ ERROR;
 
 		# Check for spam
 		$match = self::matchSummarySpamRegex( $this->summary );
-		if ( $match === false && $this->section == 'new' ) {
+		if ( $match === false && $this->section === 'new' ) {
 			# $wgSpamRegex is enforced on this new heading/summary because, unlike
 			# regular summaries, it is added to the actual wikitext.
 			if ( $this->sectiontitle !== '' ) {
@@ -1891,7 +1891,7 @@ ERROR;
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
 			return $status;
-		} elseif ( $this->hookError != '' ) {
+		} elseif ( $this->hookError !== '' ) {
 			# ...or the hook could be expecting us to produce an error
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
@@ -2020,7 +2020,7 @@ ERROR;
 			$content = $textbox_content;
 
 			$result['sectionanchor'] = '';
-			if ( $this->section == 'new' ) {
+			if ( $this->section === 'new' ) {
 				if ( $this->sectiontitle !== '' ) {
 					// Insert the section title above the content.
 					$content = $content->addSectionHeader( $this->sectiontitle );
@@ -2047,13 +2047,13 @@ ERROR;
 			// revision that was current when editing was initiated on the client.
 			// This is checked based on the timestamp and revision ID.
 			// TODO: the timestamp based check can probably go away now.
-			if ( $timestamp != $this->edittime
-				|| ( $this->editRevId !== null && $this->editRevId != $latest )
+			if ( $timestamp !== $this->edittime
+				|| ( $this->editRevId !== null && $this->editRevId !== $latest )
 			) {
 				$this->isConflict = true;
-				if ( $this->section == 'new' ) {
-					if ( $this->page->getUserText() == $user->getName() &&
-						$this->page->getComment() == $this->newSectionSummary()
+				if ( $this->section === 'new' ) {
+					if ( $this->page->getUserText() === $user->getName() &&
+						$this->page->getComment() === $this->newSectionSummary()
 					) {
 						// Probably a duplicate submission of a new comment.
 						// This can happen when CDN resends a request after
@@ -2142,9 +2142,9 @@ ERROR;
 				return $status;
 			}
 
-			if ( $this->section == 'new' ) {
+			if ( $this->section === 'new' ) {
 				// Handle the user preference to force summaries here
-				if ( !$this->allowBlankSummary && trim( $this->summary ) == '' ) {
+				if ( !$this->allowBlankSummary && trim( $this->summary ) === '' ) {
 					$this->missingSummary = true;
 					$status->fatal( 'missingsummary' ); // or 'missingcommentheader' if $section == 'new'. Blegh
 					$status->value = self::AS_SUMMARY_NEEDED;
@@ -2152,7 +2152,7 @@ ERROR;
 				}
 
 				// Do not allow the user to post an empty comment
-				if ( $this->textbox1 == '' ) {
+				if ( $this->textbox1 === '' ) {
 					$this->missingComment = true;
 					$status->fatal( 'missingcommenttext' );
 					$status->value = self::AS_TEXTBOX_EMPTY;
@@ -2161,7 +2161,7 @@ ERROR;
 			} elseif ( !$this->allowBlankSummary
 				&& !$content->equals( $this->getOriginalContent( $user ) )
 				&& !$content->isRedirect()
-				&& md5( $this->summary ) == $this->autoSumm
+				&& md5( $this->summary ) === $this->autoSumm
 			) {
 				$this->missingSummary = true;
 				$status->fatal( 'missingsummary' );
@@ -2171,9 +2171,9 @@ ERROR;
 
 			# All's well
 			$sectionanchor = '';
-			if ( $this->section == 'new' ) {
+			if ( $this->section === 'new' ) {
 				$this->summary = $this->newSectionSummary( $sectionanchor );
-			} elseif ( $this->section != '' ) {
+			} elseif ( $this->section !== '' ) {
 				# Try to get a section anchor from the section source, redirect
 				# to edited section if header found.
 				# XXX: Might be better to integrate this into Article::replaceSectionAtRev
@@ -2305,7 +2305,7 @@ ERROR;
 		$watch = $this->watchthis;
 		// Do this in its own transaction to reduce contention...
 		DeferredUpdates::addCallableUpdate( function () use ( $user, $title, $watch ) {
-			if ( $watch == $user->isWatched( $title, User::IGNORE_USER_RIGHTS ) ) {
+			if ( $watch === $user->isWatched( $title, User::IGNORE_USER_RIGHTS ) ) {
 				return; // nothing to change
 			}
 			WatchAction::doWatchOrUnwatch( $watch, $title, $user );
@@ -2451,11 +2451,11 @@ ERROR;
 		$contextTitle = $this->getContextTitle();
 		if ( $this->isConflict ) {
 			$msg = 'editconflict';
-		} elseif ( $contextTitle->exists() && $this->section != '' ) {
-			$msg = $this->section == 'new' ? 'editingcomment' : 'editingsection';
+		} elseif ( $contextTitle->exists() && $this->section !== '' ) {
+			$msg = $this->section === 'new' ? 'editingcomment' : 'editingsection';
 		} else {
 			$msg = $contextTitle->exists()
-				|| ( $contextTitle->getNamespace() == NS_MEDIAWIKI
+				|| ( $contextTitle->getNamespace() === NS_MEDIAWIKI
 					&& $contextTitle->getDefaultMessageText() !== false
 				)
 				? 'editing'
@@ -2499,7 +2499,7 @@ ERROR;
 		$out = $this->context->getOutput();
 		$namespace = $this->mTitle->getNamespace();
 
-		if ( $namespace == NS_MEDIAWIKI ) {
+		if ( $namespace === NS_MEDIAWIKI ) {
 			# Show a warning if editing an interface message
 			$out->wrapWikiMsg( "<div class='mw-editinginterface'>\n$1\n</div>", 'editinginterface' );
 			# If this is a default message (but not css, json, or js),
@@ -2515,7 +2515,7 @@ ERROR;
 						'translateinterface' );
 				}
 			}
-		} elseif ( $namespace == NS_FILE ) {
+		} elseif ( $namespace === NS_FILE ) {
 			# Show a hint to shared repo
 			$file = wfFindFile( $this->mTitle );
 			if ( $file && !$file->isLocal() ) {
@@ -2537,7 +2537,7 @@ ERROR;
 
 		# Show a warning message when someone creates/edits a user (talk) page but the user does not exist
 		# Show log extract when the user is currently blocked
-		if ( $namespace == NS_USER || $namespace == NS_USER_TALK ) {
+		if ( $namespace === NS_USER || $namespace === NS_USER_TALK ) {
 			$username = explode( '/', $this->mTitle->getText(), 2 )[0];
 			$user = User::newFromName( $username, false /* allow IP users */ );
 			$ip = User::isIP( $username );
@@ -2545,7 +2545,7 @@ ERROR;
 			if ( !( $user && $user->isLoggedIn() ) && !$ip ) { # User does not exist
 				$out->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n$1\n</div>",
 					[ 'userpage-userdoesnotexist', wfEscapeWikiText( $username ) ] );
-			} elseif ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
+			} elseif ( !is_null( $block ) && $block->getType() !== Block::TYPE_AUTO ) {
 				# Show log extract if the user is currently blocked
 				LogEventsList::showLogExtract(
 					$out,
@@ -2699,7 +2699,7 @@ ERROR;
 		# we parse this near the beginning so that setHeaders can do the title
 		# setting work instead of leaving it in getPreviewText
 		$previewOutput = '';
-		if ( $this->formtype == 'preview' ) {
+		if ( $this->formtype === 'preview' ) {
 			$previewOutput = $this->getPreviewText();
 		}
 
@@ -2715,7 +2715,7 @@ ERROR;
 		$this->addEditNotices();
 
 		if ( !$this->isConflict &&
-			$this->section != '' &&
+			$this->section !== '' &&
 			!$this->isSectionEditSupported() ) {
 			// We use $this->section to much before this and getVal('wgSection') directly in other places
 			// at this point we can't reset $this->section to '' to fallback to non-section editing.
@@ -2737,7 +2737,7 @@ ERROR;
 
 		$showToolbar = true;
 		if ( $this->wasDeletedSinceLastEdit() ) {
-			if ( $this->formtype == 'save' ) {
+			if ( $this->formtype === 'save' ) {
 				// Hide the toolbar and edit area, user can click preview to get it back
 				// Add an confirmation checkbox and explanation.
 				$showToolbar = false;
@@ -2796,7 +2796,7 @@ ERROR;
 		// Put these up at the top to ensure they aren't lost on early form submission
 		$this->showFormBeforeText();
 
-		if ( $this->wasDeletedSinceLastEdit() && 'save' == $this->formtype ) {
+		if ( $this->wasDeletedSinceLastEdit() && 'save' === $this->formtype ) {
 			$username = $this->lastDelete->user_name;
 			$comment = CommentStore::getStore()
 				->getComment( 'log_comment', $this->lastDelete )->text;
@@ -2828,7 +2828,7 @@ ERROR;
 		# ####
 		# For a bit more sophisticated detection of blank summaries, hash the
 		# automatic one and pass that in the hidden field wpAutoSummary.
-		if ( $this->missingSummary || ( $this->section == 'new' && $this->nosummary ) ) {
+		if ( $this->missingSummary || ( $this->section === 'new' && $this->nosummary ) ) {
 			$out->addHTML( Html::hidden( 'wpIgnoreBlankSummary', true ) );
 		}
 
@@ -2858,7 +2858,7 @@ ERROR;
 
 		$out->enableOOUI();
 
-		if ( $this->section == 'new' ) {
+		if ( $this->section === 'new' ) {
 			$this->showSummaryInput( true, $this->summary );
 			$out->addHTML( $this->getSummaryPreview( true, $this->summary ) );
 		}
@@ -2980,7 +2980,7 @@ ERROR;
 		$type = false;
 		if ( $this->preview ) {
 			$type = 'preview';
-		} elseif ( $this->section != '' ) {
+		} elseif ( $this->section !== '' ) {
 			$type = 'section';
 		}
 
@@ -3012,7 +3012,7 @@ ERROR;
 			$this->addExplainConflictHeader( $out );
 			$this->editRevId = $this->page->getLatest();
 		} else {
-			if ( $this->section != '' && $this->section != 'new' ) {
+			if ( $this->section !== '' && $this->section !== 'new' ) {
 				if ( !$this->summary && !$this->preview && !$this->diff ) {
 					$sectionTitle = self::extractSectionTitle( $this->textbox1 ); // FIXME: use Content object
 					if ( $sectionTitle !== false ) {
@@ -3027,14 +3027,14 @@ ERROR;
 				$out->wrapWikiMsg( "<div id='mw-missingcommenttext'>\n$1\n</div>", 'missingcommenttext' );
 			}
 
-			if ( $this->missingSummary && $this->section != 'new' ) {
+			if ( $this->missingSummary && $this->section !== 'new' ) {
 				$out->wrapWikiMsg(
 					"<div id='mw-missingsummary'>\n$1\n</div>",
 					[ 'missingsummary', $buttonLabel ]
 				);
 			}
 
-			if ( $this->missingSummary && $this->section == 'new' ) {
+			if ( $this->missingSummary && $this->section === 'new' ) {
 				$out->wrapWikiMsg(
 					"<div id='mw-missingcommentheader'>\n$1\n</div>",
 					[ 'missingcommentheader', $buttonLabel ]
@@ -3059,7 +3059,7 @@ ERROR;
 				$out->addWikiText( $this->hookError );
 			}
 
-			if ( $this->section != 'new' ) {
+			if ( $this->section !== 'new' ) {
 				$revision = $this->mArticle->getRevisionFetched();
 				if ( $revision ) {
 					// Let sysop know that this will make private content public if saved
@@ -3096,7 +3096,7 @@ ERROR;
 				[ 'readonlywarning', wfReadOnlyReason() ]
 			);
 		} elseif ( $user->isAnon() ) {
-			if ( $this->formtype != 'preview' ) {
+			if ( $this->formtype !== 'preview' ) {
 				$out->wrapWikiMsg(
 					"<div id='mw-anon-edit-warning' class='warningbox'>\n$1\n</div>",
 					[ 'anoneditwarning',
@@ -3331,7 +3331,7 @@ ERROR;
 	 * @param string|null $textoverride Optional text to override $this->textarea1 with
 	 */
 	protected function showTextbox1( $customAttribs = null, $textoverride = null ) {
-		if ( $this->wasDeletedSinceLastEdit() && $this->formtype == 'save' ) {
+		if ( $this->wasDeletedSinceLastEdit() && $this->formtype === 'save' ) {
 			$attribs = [ 'style' => 'display:none;' ];
 		} else {
 			$builder = new TextboxBuilder();
@@ -3384,14 +3384,14 @@ ERROR;
 
 		$attribs = [ 'id' => 'wikiPreview', 'class' => implode( ' ', $classes ) ];
 
-		if ( $this->formtype != 'preview' ) {
+		if ( $this->formtype !== 'preview' ) {
 			$attribs['style'] = 'display: none;';
 		}
 
 		$out = $this->context->getOutput();
 		$out->addHTML( Xml::openElement( 'div', $attribs ) );
 
-		if ( $this->formtype == 'preview' ) {
+		if ( $this->formtype === 'preview' ) {
 			$this->showPreview( $previewOutput );
 		} else {
 			// Empty content container for LivePreview
@@ -3403,7 +3403,7 @@ ERROR;
 
 		$out->addHTML( '</div>' );
 
-		if ( $this->formtype == 'diff' ) {
+		if ( $this->formtype === 'diff' ) {
 			try {
 				$this->showDiff();
 			} catch ( MWContentSerializationException $ex ) {
@@ -3450,7 +3450,7 @@ ERROR;
 
 		$oldtitlemsg = 'currentrev';
 		# if message does not exist, show diff against the preloaded default
-		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI && !$this->mTitle->exists() ) {
+		if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI && !$this->mTitle->exists() ) {
 			$oldtext = $this->mTitle->getDefaultMessageText();
 			if ( $oldtext !== false ) {
 				$oldtitlemsg = 'defaultmessagetext';
@@ -3641,7 +3641,7 @@ ERROR;
 		$out = $this->context->getOutput();
 		$out->addHTML( "<div class='editOptions'>\n" );
 
-		if ( $this->section != 'new' ) {
+		if ( $this->section !== 'new' ) {
 			$this->showSummaryInput( false, $this->summary );
 			$out->addHTML( $this->getSummaryPreview( false, $this->summary ) );
 		}
@@ -3879,17 +3879,17 @@ ERROR;
 					$level = false;
 				}
 
-				if ( $content->getModel() == CONTENT_MODEL_CSS ) {
+				if ( $content->getModel() === CONTENT_MODEL_CSS ) {
 					$format = 'css';
 					if ( $level === 'user' && !$config->get( 'AllowUserCss' ) ) {
 						$format = false;
 					}
-				} elseif ( $content->getModel() == CONTENT_MODEL_JSON ) {
+				} elseif ( $content->getModel() === CONTENT_MODEL_JSON ) {
 					$format = 'json';
 					if ( $level === 'user' /* No comparable 'AllowUserJson' */ ) {
 						$format = false;
 					}
-				} elseif ( $content->getModel() == CONTENT_MODEL_JAVASCRIPT ) {
+				} elseif ( $content->getModel() === CONTENT_MODEL_JAVASCRIPT ) {
 					$format = 'js';
 					if ( $level === 'user' && !$config->get( 'AllowUserJs' ) ) {
 						$format = false;
@@ -4006,7 +4006,7 @@ ERROR;
 	 * @return array
 	 */
 	public function getTemplates() {
-		if ( $this->preview || $this->section != '' ) {
+		if ( $this->preview || $this->section !== '' ) {
 			$templates = [];
 			if ( !isset( $this->mParserOutput ) ) {
 				return $templates;
