@@ -236,6 +236,11 @@ because of Phabricator reports.
 * ResourceLoaderStartUpModule::getStartupModules() and ::getLegacyModules()
   are deprecated. These concepts are obsolete and have no replacement.
 * String type for $lang of DifferenceEngine::setTextLanguage is deprecated.
+* The following methods of OutputPage are now deprecated in favour
+  of using showFatalError directly: OutputPage::showFileDeleteError()
+  OutputPage::showFileNotFoundError(), OutputPage::showFileRenameError()
+  OutputPage::showFileCopyError() and OutputPage::showUnexpectedValueError().
+
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into proper
