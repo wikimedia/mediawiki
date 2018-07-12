@@ -182,7 +182,7 @@ class MediaStatisticsPage extends QueryPage {
 			[],
 			$linkRenderer->makeLink( $mimeSearch, $mime )
 		);
-		$row .= Html::element(
+		$row .= Html::rawElement(
 			'td',
 			[],
 			$this->getExtensionList( $mime )
@@ -245,7 +245,7 @@ class MediaStatisticsPage extends QueryPage {
 		$extArray = explode( ' ', $exts );
 		$extArray = array_unique( $extArray );
 		foreach ( $extArray as &$ext ) {
-			$ext = '.' . $ext;
+			$ext = htmlspecialchars( '.' . $ext );
 		}
 
 		return $this->getLanguage()->commaList( $extArray );

@@ -836,7 +836,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		} else {
 			return MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
 				$this->getTitle(),
-				$cur,
+				new HtmlArmor( $cur ),
 				[],
 				[
 					'diff' => $this->getWikiPage()->getLatest(),
@@ -868,7 +868,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			# Next row probably exists but is unknown, use an oldid=prev link
 			return $linkRenderer->makeKnownLink(
 				$this->getTitle(),
-				$last,
+				new HtmlArmor( $last ),
 				[],
 				[
 					'diff' => $prevRev->getId(),
@@ -887,7 +887,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		return $linkRenderer->makeKnownLink(
 			$this->getTitle(),
-			$last,
+			new HtmlArmor( $last ),
 			[],
 			[
 				'diff' => $prevRev->getId(),
