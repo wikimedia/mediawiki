@@ -656,7 +656,11 @@
 			},
 			function ( e, dependencies ) {
 				assert.strictEqual( Array.isArray( dependencies ), true, 'Expected array of dependencies' );
-				assert.deepEqual( dependencies, [ 'test.module7' ], 'Error callback called with module test.module7' );
+				assert.deepEqual(
+					dependencies,
+					[ 'jquery', 'mediawiki.base', 'test.module7' ],
+					'Error callback called with module test.module7'
+				);
 			}
 		);
 		mw.loader.using(
@@ -670,7 +674,7 @@
 				dependencies.sort();
 				assert.deepEqual(
 					dependencies,
-					[ 'test.module7', 'test.module8', 'test.module9' ],
+					[ 'jquery', 'mediawiki.base', 'test.module7', 'test.module8', 'test.module9' ],
 					'Error callback called with all three modules as dependencies'
 				);
 			}

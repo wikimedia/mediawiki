@@ -1484,7 +1484,7 @@ MESSAGE;
 	}
 
 	/**
-	 * Wraps JavaScript code to run after startup and base modules.
+	 * Wraps JavaScript code to run after the startup module.
 	 *
 	 * @param string $script JavaScript code
 	 * @return string JavaScript code

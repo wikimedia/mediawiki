@@ -7,6 +7,7 @@
  * @alternateClassName mediaWiki
  * @singleton
  */
+/* global $VARS */
 
 ( function () {
 	'use strict';
@@ -619,6 +620,12 @@
 				jobs = [],
 
 				/**
+				 * @private
+				 * @property {Array} baseModules
+				 */
+				baseModules = $VARS.baseModules,
+
+				/**
 				 * For #addEmbeddedCSS() and #addLink()
 				 *
 				 * @private
@@ -745,6 +752,18 @@
 			}
 
 			/**
+			 * Determine whether all direct and base dependencies are in state 'ready'
+			 *
+			 * @private
+			 * @param {string} module Name of the module to be checked
+			 * @return {boolean} True if all direct/base dependencies are in state 'ready'; false otherwise
+			 */
+			function allWithImplicitReady( module ) {
+				return allReady( registry[ module ].dependencies ) &&
+					( baseModules.indexOf( module ) !== -1 || allReady( baseModules ) );
+			}
+
+			/**
 			 * Determine whether all dependencies are in state 'ready', which means we may
 			 * execute the module or job now.
 			 *
@@ -775,9 +794,10 @@
 			 * @param {string} module Name of module that entered one of the states 'ready', 'error', or 'missing'.
 			 */
 			function handlePending( module ) {
-				var j, job, hasErrors, m, stateChange;
+				var j, job, hasErrors, m, stateChange, fromBaseModule;
 
 				if ( registry[ module ].state === 'error' || registry[ module ].state === 'missing' ) {
+					fromBaseModule = baseModules.indexOf( module ) !== -1;
 					// If the current module failed, mark all dependent modules also as failed.
 					// Iterate until steady-state to propagate the error state upwards in the
 					// dependency tree.
@@ -785,7 +805,12 @@
 						stateChange = false;
 						for ( m in registry ) {
 							if ( registry[ m ].state !== 'error' && registry[ m ].state !== 'missing' ) {
-								if ( anyFailed( registry[ m ].dependencies ) ) {
+								// Always propagate errors from base modules to regular modules (implicit dependency).
+								// Between base modules or regular modules, consider direct dependencies only.
+								if (
+									( fromBaseModule && baseModules.indexOf( m ) === -1 ) ||
+									anyFailed( registry[ m ].dependencies )
+								) {
 									registry[ m ].state = 'error';
 									stateChange = true;
 								}
@@ -824,12 +849,16 @@
 					}
 				}
 
+				// The current module became 'ready'.
 				if ( registry[ module ].state === 'ready' ) {
-					// The current module became 'ready'. Set it in the module store, and recursively execute all
-					// dependent modules that are loaded and now have all dependencies satisfied.
+					// Save it to the module store.
 					mw.loader.store.set( module, registry[ module ] );
+					// Recursively execute all dependent modules that were already loaded
+					// (waiting for execution) and no longer have unsatisfied dependencies.
 					for ( m in registry ) {
-						if ( registry[ m ].state === 'loaded' && allReady( registry[ m ].dependencies ) ) {
+						// Base modules may have dependencies amongst eachother to ensure correct
+						// execution order. Regular modules wait for all base modules.
+						if ( registry[ m ].state === 'loaded' && allWithImplicitReady( m ) ) {
 							// eslint-disable-next-line no-use-before-define
 							execute( m );
 						}
@@ -879,6 +908,16 @@
 				if ( !unresolved ) {
 					unresolved = new StringSet();
 				}
+
+				// Add base modules
+				if ( baseModules.indexOf( module ) === -1 ) {
+					baseModules.forEach( function ( baseModule ) {
+						if ( resolved.indexOf( baseModule ) === -1 ) {
+							resolved.push( baseModule );
+						}
+					} );
+				}
+
 				// Tracks down dependencies
 				deps = registry[ module ].dependencies;
 				for ( i = 0; i < deps.length; i++ ) {
@@ -1152,9 +1191,19 @@
 						if ( Array.isArray( script ) ) {
 							nestedAddScript( script, markModuleReady, 0 );
 						} else if ( typeof script === 'function' ) {
-							// Pass jQuery twice so that the signature of the closure which wraps
-							// the script can bind both '$' and 'jQuery'.
-							script( window.$, window.$, mw.loader.require, registry[ module ].module );
+							if ( window.$ ) {
+								// Pass jQuery twice so that the signature of the closure which wraps
+								// the script can bind both '$' and 'jQuery'.
+								script( window.$, window.$, mw.loader.require, registry[ module ].module );
+							} else {
+								// This is a special case for when 'jquery' itself is being loaded.
+								// - The standard jquery.js distribution does not set `window.jQuery`
+								//   in CommonJS-compatible environments (Node.js, AMD, RequireJS, etc.).
+								// - MediaWiki's 'jquery' module also bundles jquery.migrate.js, which
+								//   in a CommonJS-compatible environment, will use require('jquery'),
+								//   but that can't work when we're still inside that module.
+								script();
+							}
 							markModuleReady();
 
 						} else if ( typeof script === 'string' ) {
@@ -1806,7 +1855,7 @@
 					// The module may already have been marked as erroneous
 					if ( registry[ name ].state !== 'error' && registry[ name ].state !== 'missing' ) {
 						registry[ name ].state = 'loaded';
-						if ( allReady( registry[ name ].dependencies ) ) {
+						if ( allWithImplicitReady( name ) ) {
 							execute( name );
 						}
 					}

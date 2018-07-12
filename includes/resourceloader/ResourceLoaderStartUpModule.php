@@ -320,17 +320,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param ResourceLoaderContext $context
-	 * @return array
-	 */
-	public function getPreloadLinks( ResourceLoaderContext $context ) {
-		$url = $this->getBaseModulesUrl( $context );
-		return [
-			$url => [ 'as' => 'script' ]
-		];
-	}
-
-	/**
 	 * Internal modules used by ResourceLoader that cannot be depended on.
 	 *
 	 * These module(s) should have isRaw() return true, and are not
@@ -354,9 +343,17 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * @private For internal use by SpecialJavaScriptTest
+	 * @since 1.32
+	 * @return array
+	 */
+	public function getBaseModulesInternal() {
+		return $this->getBaseModules();
+	}
+
+	/**
 	 * Base modules implicitly available to all modules.
 	 *
-	 * @since 1.32
 	 * @return array
 	 */
 	private function getBaseModules() {
@@ -371,25 +368,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the load URL of the startup modules.
-	 *
-	 * This is a helper for getScript().
-	 *
-	 * @param ResourceLoaderContext $context
-	 * @return string
-	 */
-	private function getBaseModulesUrl( ResourceLoaderContext $context ) {
-		$rl = $context->getResourceLoader();
-		$derivative = new DerivativeResourceLoaderContext( $context );
-		$derivative->setModules( $this->getBaseModules() );
-		$derivative->setOnly( 'scripts' );
-		// Must setModules() before makeVersionQuery()
-		$derivative->setVersion( $rl->makeVersionQuery( $derivative ) );
-
-		return $rl->createLoaderURL( 'local', $derivative );
-	}
-
-	/**
 	 * @param ResourceLoaderContext $context
 	 * @return string JavaScript code
 	 */
@@ -399,35 +377,43 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			return '/* Requires only=script */';
 		}
 
-		$out = file_get_contents( "$IP/resources/src/startup/startup.js" );
+		$startupCode = file_get_contents( "$IP/resources/src/startup/startup.js" );
 
-		// Keep in sync with maintenance/jsduck/eg-iframe.html and,
-		// keep in sync with 'fileHashes' in StartUpModule::getDefinitionSummary().
+		// The files read here MUST be kept in sync with maintenance/jsduck/eg-iframe.html,
+		// and MUST be considered by 'fileHashes' in StartUpModule::getDefinitionSummary().
 		$mwLoaderCode = file_get_contents( "$IP/resources/src/startup/mediawiki.js" ) .
 			file_get_contents( "$IP/resources/src/startup/mediawiki.requestIdleCallback.js" );
 		if ( $context->getDebug() ) {
 			$mwLoaderCode .= file_get_contents( "$IP/resources/src/startup/mediawiki.log.js" );
 		}
 
-		$pairs = array_map( function ( $value ) {
+		$mapToJson = function ( $value ) {
 			$value = FormatJson::encode( $value, ResourceLoader::inDebugMode(), FormatJson::ALL_OK );
 			// Fix indentation
 			$value = str_replace( "\n", "\n\t", $value );
 			return $value;
-		}, [
+		};
+
+		// Perform replacements for mediawiki.js
+		$mwLoaderCode = strtr( $mwLoaderCode, [
+			'$VARS.baseModules' => $mapToJson( $this->getBaseModules() ),
+		] );
+
+		// Perform replacements for startup.js
+		$pairs = array_map( $mapToJson, [
 			'$VARS.wgLegacyJavaScriptGlobals' => $this->getConfig()->get( 'LegacyJavaScriptGlobals' ),
 			'$VARS.configuration' => $this->getConfigSettings( $context ),
-			// This url may be preloaded. See getPreloadLinks().
-			'$VARS.baseModulesUri' => $this->getBaseModulesUrl( $context ),
 		] );
+		// Raw JavaScript code (not for JSON)
 		$pairs['$CODE.registrations();'] = str_replace(
 			"\n",
 			"\n\t",
 			trim( $this->getModuleRegistrations( $context ) )
 		);
 		$pairs['$CODE.defineLoader();'] = $mwLoaderCode;
+		$startupCode = strtr( $startupCode, $pairs );
 
-		return strtr( $out, $pairs );
+		return $startupCode;
 	}
 
 	/**
