@@ -355,7 +355,7 @@
 	"viewsourcetext": "Vu povas vidar ed kopiar la fonto-kodexo di ta pagino.",
 	"viewyourtext": "Vu darfas vidar e kopiar la fonto di <strong>vua redakti</strong> ad ita pagino.",
 	"protectedinterface": "Ita pagino provizas 'interface' texto por la programaro en ita wiki, ed esas protektita por preventar mis-uzo.\nPor introduktar o chanjar tradukaji di la wiki-i, voluntez vizitar [https://translatewiki.net/ translatewiki.net], la projeto qua provizas tradukaji a MediaWiki.",
-	"editinginterface": "<strong>Averto:</strong> Vu redaktas pagino qua uzesas por provizar 'interface' texto di la programaro.\nChanji a ta pagino chanjos la aspekto di pagini por altra uzeri di ta wiki.",
+	"editinginterface": "<strong>Averto:</strong> Vu redaktas pagino qua uzesas por furnisar texto di 'interface' por la programaro.\nModifiki en ica pagino chanjos l'aspekto di pagini por altra uzeri di ta wiki.",
 	"translateinterface": "Por introduktar o chanjar tradukaji en omna wiki-i, voluntez uzar [https://translatewiki.net/ translatewiki.net], la komuna projeto MediaWiki.",
 	"cascadeprotected": "Ica pagino protektesis kontre l'editado pro ke lua kontenajo transskribesas en la sequanta {{PLURAL:$1|pagino, qua esas|pagini, qui esas}} protektita kande selektesis por ol la formo di \"protekto en kaskado\":\n$2",
 	"namespaceprotected": "Vu ne es permisita redaktar pagini en la nomaro <strong>$1</strong>.",

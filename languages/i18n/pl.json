@@ -2101,6 +2101,9 @@
 	"speciallogtitlelabel": "Co (tytuł lub {{ns:user}}:nick użytkownika):",
 	"log": "Rejestr operacji",
 	"logeventslist-submit": "Pokaż",
+	"logeventslist-more-filters": "Więcej filtrów:",
+	"logeventslist-patrol-log": "Rejestr patrolowania",
+	"logeventslist-tag-log": "Rejestr znaczników",
 	"all-logs-page": "Wszystkie publiczne operacje",
 	"alllogstext": "Wspólny rejestr wszystkich typów operacji dla {{GRAMMAR:D.lp|{{SITENAME}}}}.\nMożesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytkownika lub tytułu strony.",
 	"logempty": "W rejestrze nie znaleziono pozycji odpowiadających zapytaniu.",
@@ -4137,5 +4140,6 @@
 	"passwordpolicies-policy-minimalpasswordlength": "Hasło musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Aby się zalogować, hasło musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Hasło nie może być takie samo jak nazwa użytkownika",
-	"passwordpolicies-policy-maximalpasswordlength": "Hasło musi mieć mniej niż $1 {{PLURAL:$1|znak|znaki|znaków}}"
+	"passwordpolicies-policy-maximalpasswordlength": "Hasło musi mieć mniej niż $1 {{PLURAL:$1|znak|znaki|znaków}}",
+	"passwordpolicies-policy-passwordcannotbepopular": "Hasło nie może być {{PLURAL:$1|popularne|na liście $1 popularnych haseł}}"
 }
