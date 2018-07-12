@@ -166,18 +166,7 @@ class WebInstaller extends Installer {
 		if ( ( $this->getVar( '_InstallDone' ) || $this->getVar( '_UpgradeDone' ) )
 			&& $this->request->getVal( 'localsettings' )
 		) {
-			$this->request->response()->header( 'Content-type: application/x-httpd-php' );
-			$this->request->response()->header(
-				'Content-Disposition: attachment; filename="LocalSettings.php"'
-			);
-
-			$ls = InstallerOverrides::getLocalSettingsGenerator( $this );
-			$rightsProfile = $this->rightsProfiles[$this->getVar( '_RightsProfile' )];
-			foreach ( $rightsProfile as $group => $rightsArr ) {
-				$ls->setGroupRights( $group, $rightsArr );
-			}
-			echo $ls->getText();
-
+			$this->outputLS();
 			return $this->session;
 		}
 
@@ -1229,6 +1218,25 @@ class WebInstaller extends Installer {
 	 */
 	protected function envGetDefaultServer() {
 		return WebRequest::detectServer();
+	}
+
+	/**
+	 * Actually output LocalSettings.php for download
+	 *
+	 * @suppress SecurityCheck-XSS
+	 */
+	private function outputLS() {
+		$this->request->response()->header( 'Content-type: application/x-httpd-php' );
+		$this->request->response()->header(
+			'Content-Disposition: attachment; filename="LocalSettings.php"'
+		);
+
+		$ls = InstallerOverrides::getLocalSettingsGenerator( $this );
+		$rightsProfile = $this->rightsProfiles[$this->getVar( '_RightsProfile' )];
+		foreach ( $rightsProfile as $group => $rightsArr ) {
+			$ls->setGroupRights( $group, $rightsArr );
+		}
+		echo $ls->getText();
 	}
 
 	/**

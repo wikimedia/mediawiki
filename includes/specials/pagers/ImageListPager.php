@@ -159,6 +159,9 @@ class ImageListPager extends TablePager {
 	}
 
 	/**
+	 * The array keys (but not the array values) are used in sql. Phan
+	 * gets confused by this, so mark this method as being ok for sql in general.
+	 * @return-taint onlysafefor_sql
 	 * @return array
 	 */
 	function getFieldNames() {

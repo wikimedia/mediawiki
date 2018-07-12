@@ -1628,6 +1628,7 @@ function wfClientAcceptsGzip( $force = false ) {
  * As required by the callers, "<nowiki>" is not used.
  *
  * @param string $text Text to be escaped
+ * @param-taint $text escapes_html
  * @return string
  */
 function wfEscapeWikiText( $text ) {

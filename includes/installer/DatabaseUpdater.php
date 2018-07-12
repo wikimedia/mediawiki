@@ -208,6 +208,7 @@ abstract class DatabaseUpdater {
 	 * Output some text. If we're running from web, escape the text first.
 	 *
 	 * @param string $str Text to output
+	 * @param-taint $str escapes_html
 	 */
 	public function output( $str ) {
 		if ( $this->maintenance->isQuiet() ) {
