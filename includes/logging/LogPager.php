@@ -63,13 +63,14 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param array $conds Extra conditions for the query
 	 * @param int|bool $year The year to start from. Default: false
 	 * @param int|bool $month The month to start from. Default: false
+	 * @param int|bool $day The day to start from. Default: false
 	 * @param string $tagFilter Tag
 	 * @param string $action Specific action (subtype) requested
 	 * @param int $logId Log entry ID, to limit to a single log entry.
 	 */
 	public function __construct( $list, $types = [], $performer = '', $title = '',
-		$pattern = false, $conds = [], $year = false, $month = false, $tagFilter = '',
-		$action = '', $logId = false
+		$pattern = false, $conds = [], $year = false, $month = false, $day = false,
+		$tagFilter = '', $action = '', $logId = false
 	) {
 		parent::__construct( $list->getContext() );
 		$this->mConds = $conds;
@@ -80,7 +81,7 @@ class LogPager extends ReverseChronologicalPager {
 		$this->limitPerformer( $performer );
 		$this->limitTitle( $title, $pattern );
 		$this->limitAction( $action );
-		$this->getDateCond( $year, $month );
+		$this->getDateCond( $year, $month, $day );
 		$this->mTagFilter = $tagFilter;
 		$this->limitLogId( $logId );
 
@@ -91,6 +92,7 @@ class LogPager extends ReverseChronologicalPager {
 		$query = parent::getDefaultQuery();
 		$query['type'] = $this->typeCGI; // arrays won't work here
 		$query['user'] = $this->performer;
+		$query['day'] = $this->mDay;
 		$query['month'] = $this->mMonth;
 		$query['year'] = $this->mYear;
 
@@ -104,8 +106,12 @@ class LogPager extends ReverseChronologicalPager {
 		if ( count( $this->types ) ) {
 			return $filters;
 		}
+
+		$request_filters = $this->getRequest()->getArray( "wpfilters" );
+		$request_filters = $request_filters === null ? [] : $request_filters;
+
 		foreach ( $wgFilterLogTypes as $type => $default ) {
-			$hide = $this->getRequest()->getBool( "hide_{$type}_log", $default );
+			$hide = !in_array( $type, $request_filters );
 
 			$filters[$type] = $hide;
 			if ( $hide ) {
@@ -411,6 +417,10 @@ class LogPager extends ReverseChronologicalPager {
 
 	public function getMonth() {
 		return $this->mMonth;
+	}
+
+	public function getDay() {
+		return $this->mDay;
 	}
 
 	public function getTagFilter() {
