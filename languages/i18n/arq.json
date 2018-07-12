@@ -8,7 +8,8 @@
 			"GeekEmad",
 			"Macofe",
 			"Mekakem",
-			"Vikoula5"
+			"Vikoula5",
+			"Qchmqs"
 		]
 	},
 	"tog-underline": "تسطار الوصيلات:",
@@ -703,6 +704,7 @@
 	"search-result-category-size": "$1 عضو{{PLURAL:$1||s}} ($2 كاتيكورى فرعيه{{PLURAL:$2||s}}, $3 فيشيي{{PLURAL:$3||يات}})",
 	"search-redirect": "(تحويل من $1)",
 	"search-section": "(قسمت‘ $1)",
+	"search-file-match": "(كيما الدخلاني تاع الفيشي)",
 	"search-suggest": "كنت باغي تقول: $1",
 	"searchrelated": "مرتابطه",
 	"searchall": "ألكل",
@@ -726,6 +728,7 @@
 	"recentchanges": "التبدالات الاخّرة",
 	"recentchanges-legend": "واش تختار ف`التبدالات التوالا",
 	"recentchanges-summary": "اجبر التبدالات اللواخر الّي صراو ف هاد الصفحة.",
+	"recentchanges-noresult": "مكاش حتى تبدال في الوقت لي مخير كيما وش تحوس",
 	"recentchanges-feed-description": "تبع التبديلات الجدد للويكي في هاذ التيار .",
 	"recentchanges-label-newpage": " هاد التبدال راه صنع باجة جديدة",
 	"recentchanges-label-minor": "هاذا تبديل صغير",
@@ -1029,6 +1032,7 @@
 	"htmlform-yes": "إيه",
 	"logentry-delete-delete": "$1 {{GENDER:$2| راه محا|راهي محات}}الصفحة $3",
 	"logentry-move-move": "{{GENDER:$2|نقّل|نقّلت}} $1 الصفحة $3 لـ $4",
+	"logentry-move-move-noredirect": "{{GENDER:$2|هز|هزت}} $1 صفحة $3 لل $4 بلا {{GENDER:$2|ميخلي|متخلي}} رديركسيون",
 	"logentry-newusers-create": "راه تفتح حساب {{GENDER:$2|المستخدم|المستخدمه}} $1",
 	"logentry-upload-upload": " {{GENDER:$2|نزّل|نزّلت}} $1 $3",
 	"feedback-error2": "غلطة: تبديلتك ما صلحتش",
