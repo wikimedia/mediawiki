@@ -13,7 +13,8 @@ describe( 'Special:RecentChanges', function () {
 		name = Util.getTestString();
 	} );
 
-	it( 'shows page creation', function () {
+	// Disabled because flaky (T198137)
+	it.skip( 'shows page creation', function () {
 		browser.call( function () {
 			return Api.edit( name, content );
 		} );
