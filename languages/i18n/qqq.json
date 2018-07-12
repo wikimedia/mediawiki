@@ -1999,6 +1999,7 @@
 	"http-timed-out": "Used as error message when executing HTTP request.\n\nSee also:\n* {{msg-mw|Http-request-error}}\n* {{msg-mw|Http-read-error}}\n* {{msg-mw|Http-host-unreachable|6}}",
 	"http-curl-error": "Used as curl error message when the error is other than known messages.\n* $1 - error code; not URL\nKnown messages are:\n* {{msg-mw|http-host-unreachable}}\n* {{msg-mw|http-timed-out}}",
 	"http-bad-status": "Parameters:\n* $1 - an HTTP error code (e.g. 404)\n* $2 - the HTTP error message (e.g. File Not Found)",
+	"http-internal-error": "Used as generic error message when executing HTTP request and no more specific message is available.",
 	"upload-curl-error6": "See also:\n* {{msg-mw|Upload-curl-error6|title}}\n* {{msg-mw|Upload-curl-error6-text|body}}",
 	"upload-curl-error6-text": "See also:\n* {{msg-mw|Upload-curl-error6|title}}\n* {{msg-mw|Upload-curl-error6-text|body}}",
 	"upload-curl-error28": "See also:\n* {{msg-mw|Upload-curl-error28|title}}\n* {{msg-mw|Upload-curl-error28-text|body}}",

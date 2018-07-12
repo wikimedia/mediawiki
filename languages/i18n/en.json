@@ -1799,6 +1799,7 @@
 	"http-timed-out": "HTTP request timed out.",
 	"http-curl-error": "Error fetching URL: $1",
 	"http-bad-status": "There was a problem during the HTTP request: $1 $2",
+	"http-internal-error": "HTTP internal error.",
 	"upload-curl-error6": "Could not reach URL",
 	"upload-curl-error6-text": "The URL provided could not be reached.\nPlease double-check that the URL is correct and the site is up.",
 	"upload-curl-error28": "Upload timeout",
