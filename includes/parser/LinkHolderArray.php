@@ -406,12 +406,13 @@ class LinkHolderArray {
 				$replacePairs[$searchkey] = $link;
 			}
 		}
-		$replacer = new HashtableReplacer( $replacePairs, 1 );
 
 		# Do the thing
 		$text = preg_replace_callback(
 			'/(<!--LINK\'" .*?-->)/',
-			$replacer->cb(),
+			function ( array $matches ) use ( $replacePairs ) {
+				return $replacePairs[$matches[1]];
+			},
 			$text
 		);
 	}
@@ -436,12 +437,14 @@ class LinkHolderArray {
 			);
 			$output->addInterwikiLink( $link['title'] );
 		}
-		$replacer = new HashtableReplacer( $replacePairs, 1 );
 
 		$text = preg_replace_callback(
 			'/<!--IWLINK\'" (.*?)-->/',
-			$replacer->cb(),
-			$text );
+			function ( array $matches ) use ( $replacePairs ) {
+				return $replacePairs[$matches[1]];
+			},
+			$text
+		);
 	}
 
 	/**

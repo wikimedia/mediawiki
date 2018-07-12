@@ -20,6 +20,8 @@
 
 /**
  * Class to perform secondary replacement within each replacement string
+ *
+ * @deprecated since 1.32, use a Closure instead
  */
 class DoubleReplacer extends Replacer {
 	/**
@@ -28,6 +30,7 @@ class DoubleReplacer extends Replacer {
 	 * @param int $index
 	 */
 	public function __construct( $from, $to, $index = 0 ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		$this->from = $from;
 		$this->to = $to;
 		$this->index = $index;

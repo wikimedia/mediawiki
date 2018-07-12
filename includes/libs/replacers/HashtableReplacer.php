@@ -20,6 +20,8 @@
 
 /**
  * Class to perform replacement based on a simple hashtable lookup
+ *
+ * @deprecated since 1.32, use a Closure instead
  */
 class HashtableReplacer extends Replacer {
 	private $table, $index;
@@ -29,6 +31,7 @@ class HashtableReplacer extends Replacer {
 	 * @param int $index
 	 */
 	public function __construct( $table, $index = 0 ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		$this->table = $table;
 		$this->index = $index;
 	}
