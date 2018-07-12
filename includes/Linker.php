@@ -1496,7 +1496,7 @@ class Linker {
 	 * @return string
 	 */
 	public static function tocIndent() {
-		return "\n<ul>";
+		return "\n<ul>\n";
 	}
 
 	/**
@@ -1527,9 +1527,9 @@ class Linker {
 			$classes .= " tocsection-$sectionIndex";
 		}
 
-		// \n<li class="$classes"><a href="#$anchor"><span class="tocnumber">
+		// <li class="$classes"><a href="#$anchor"><span class="tocnumber">
 		// $tocnumber</span> <span class="toctext">$tocline</span></a>
-		return "\n" . Html::openElement( 'li', [ 'class' => $classes ] )
+		return Html::openElement( 'li', [ 'class' => $classes ] )
 			. Html::rawElement( 'a',
 				[ 'href' => "#$anchor" ],
 				Html::element( 'span', [ 'class' => 'tocnumber' ], $tocnumber )
