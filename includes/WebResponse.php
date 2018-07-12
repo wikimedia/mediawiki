@@ -151,21 +151,19 @@ class WebResponse {
 			$expire = time() + $wgCookieExpiration;
 		}
 
-		$cookie = $options['prefix'] . $name;
-		$data = [
-			'name' => (string)$cookie,
-			'value' => (string)$value,
-			'expire' => (int)$expire,
-			'path' => (string)$options['path'],
-			'domain' => (string)$options['domain'],
-			'secure' => (bool)$options['secure'],
-			'httpOnly' => (bool)$options['httpOnly'],
-		];
-
 		if ( self::$disableForPostSend ) {
+			$cookie = $options['prefix'] . $name;
 			wfDebugLog( 'cookie', 'ignored post-send cookie {cookie}', 'all', [
 				'cookie' => $cookie,
-				'data' => $data,
+				'data' => [
+					'name' => (string)$cookie,
+					'value' => (string)$value,
+					'expire' => (int)$expire,
+					'path' => (string)$options['path'],
+					'domain' => (string)$options['domain'],
+					'secure' => (bool)$options['secure'],
+					'httpOnly' => (bool)$options['httpOnly'],
+				],
 				'exception' => new RuntimeException( 'Ignored post-send cookie' ),
 			] );
 			return;
@@ -174,6 +172,19 @@ class WebResponse {
 		$func = $options['raw'] ? 'setrawcookie' : 'setcookie';
 
 		if ( Hooks::run( 'WebResponseSetCookie', [ &$name, &$value, &$expire, &$options ] ) ) {
+			// Note: Don't try to move this earlier to reuse it for self::$disableForPostSend,
+			// we need to use the altered values from the hook here. (T198525)
+			$cookie = $options['prefix'] . $name;
+			$data = [
+				'name' => (string)$cookie,
+				'value' => (string)$value,
+				'expire' => (int)$expire,
+				'path' => (string)$options['path'],
+				'domain' => (string)$options['domain'],
+				'secure' => (bool)$options['secure'],
+				'httpOnly' => (bool)$options['httpOnly'],
+			];
+
 			// Per RFC 6265, key is name + domain + path
 			$key = "{$data['name']}\n{$data['domain']}\n{$data['path']}";
 
