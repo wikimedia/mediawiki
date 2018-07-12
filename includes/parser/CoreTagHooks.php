@@ -46,6 +46,10 @@ class CoreTagHooks {
 	 * Text is treated roughly as 'nowiki' wrapped in an HTML 'pre' tag;
 	 * valid HTML attributes are passed on.
 	 *
+	 * Uses custom html escaping which phan-taint-check won't recognize
+	 * hence we suppress the error.
+	 * @suppress SecurityCheck-XSS
+	 *
 	 * @param string $text
 	 * @param array $attribs
 	 * @param Parser $parser
@@ -75,6 +79,7 @@ class CoreTagHooks {
 	 *
 	 * Uses undocumented extended tag hook return values, introduced in r61913.
 	 *
+	 * @suppress SecurityCheck-XSS
 	 * @param string $content
 	 * @param array $attributes
 	 * @param Parser $parser
@@ -109,6 +114,10 @@ class CoreTagHooks {
 	 * references, and wiki markup within it will not be expanded.
 	 *
 	 * Uses undocumented extended tag hook return values, introduced in r61913.
+	 *
+	 * Uses custom html escaping which phan-taint-check won't recognize
+	 * hence we suppress the error.
+	 * @suppress SecurityCheck-XSS
 	 *
 	 * @param string $content
 	 * @param array $attributes

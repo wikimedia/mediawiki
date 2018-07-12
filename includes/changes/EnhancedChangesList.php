@@ -409,14 +409,14 @@ class EnhancedChangesList extends ChangesList {
 
 		# Log timestamp
 		if ( $type == RC_LOG ) {
-			$link = $rcObj->timestamp;
+			$link = htmlspecialchars( $rcObj->timestamp );
 			# Revision link
 		} elseif ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
-			$link = '<span class="history-deleted">' . $rcObj->timestamp . '</span> ';
+			$link = Html::element( 'span', [ 'class' => 'history-deleted' ], $rcObj->timestamp );
 		} else {
 			$link = $this->linkRenderer->makeKnownLink(
 				$rcObj->getTitle(),
-				new HtmlArmor( $rcObj->timestamp ),
+				$rcObj->timestamp,
 				[],
 				$params
 			);
@@ -642,7 +642,7 @@ class EnhancedChangesList extends ChangesList {
 		];
 		// timestamp is not really a link here, but is called timestampLink
 		// for consistency with EnhancedChangesListModifyLineData
-		$data['timestampLink'] = $rcObj->timestamp;
+		$data['timestampLink'] = htmlspecialchars( $rcObj->timestamp );
 
 		# Article or log link
 		if ( $logType ) {

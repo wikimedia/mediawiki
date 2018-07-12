@@ -507,7 +507,7 @@ class TransformParameterError extends MediaTransformError {
 class TransformTooBigImageAreaError extends MediaTransformError {
 	function __construct( $params, $maxImageArea ) {
 		$msg = wfMessage( 'thumbnail_toobigimagearea' );
-		$msg->rawParams(
+		$msg->params(
 			$msg->getLanguage()->formatComputingNumbers( $maxImageArea, 1000, "size-$1pixel" )
 		);
 

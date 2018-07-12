@@ -440,7 +440,7 @@ class ImagePage extends Article {
 						// in the mediawiki.page.image.pagination module
 						$link = Linker::linkKnown(
 							$this->getTitle(),
-							$label,
+							htmlspecialchars( $label ),
 							[],
 							[ 'page' => $page - 1 ]
 						);
@@ -460,7 +460,7 @@ class ImagePage extends Article {
 						$label = $this->getContext()->msg( 'imgmultipagenext' )->text();
 						$link = Linker::linkKnown(
 							$this->getTitle(),
-							$label,
+							htmlspecialchars( $label ),
 							[],
 							[ 'page' => $page + 1 ]
 						);
