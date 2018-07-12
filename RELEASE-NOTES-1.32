@@ -181,6 +181,8 @@ because of Phabricator reports.
   CapsuleMultiselectWidget. The following methods may no longer be used:
   * setItemsFromData: Use setValue instead
   * getItemsData: Use getItems instead and get the data property
+* The hook 'LogEventsListGetExtraInputs' now needs a form descriptor array
+  and not plain HTML.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
