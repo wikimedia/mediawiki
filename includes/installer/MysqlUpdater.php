@@ -1231,7 +1231,7 @@ class MysqlUpdater extends DatabaseUpdater {
 				'Extending edit summary lengths (and setting defaults)'
 			);
 		} else {
-			$this->output( '...comment fields are up to date' );
+			$this->output( "...comment fields are up to date.\n" );
 		}
 	}
 
