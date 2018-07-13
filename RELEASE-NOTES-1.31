@@ -21,6 +21,7 @@ THIS IS NOT A RELEASE YET
 * (T113042) Do not allow loading pages raw with a text/javascript MIME type if
   non-admins can edit the page.
 * (T194052) Updated wikimedia/base-convert from 1.0.1 to 2.0.0.
+* (T199494) Fix notices in maintenance/removeUnusuedAccounts.php
 
 == MediaWiki 1.31.1 ==
 
