@@ -501,7 +501,7 @@ abstract class AbstractContent implements Content {
 		ParserOptions $options = null, $generateHtml = true
 	) {
 		if ( $options === null ) {
-			$options = $this->getContentHandler()->makeParserOptions( 'canonical' );
+			$options = ParserOptions::newCanonical( 'canonical' );
 		}
 
 		$po = new ParserOutput();

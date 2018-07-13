@@ -42,6 +42,68 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		parent::tearDown();
 	}
 
+	public function testNewCanonical() {
+		$wgUser = $this->getMutableTestUser()->getUser();
+		$wgLang = Language::factory( 'fr' );
+		$wgContLang = Language::factory( 'qqx' );
+
+		$this->setMwGlobals( [
+			'wgUser' => $wgUser,
+			'wgLang' => $wgLang,
+			'wgContLang' => $wgContLang,
+		] );
+
+		$user = $this->getMutableTestUser()->getUser();
+		$lang = Language::factory( 'de' );
+		$lang2 = Language::factory( 'bug' );
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $user );
+		$context->setLanguage( $lang );
+
+		// No parameters picks up $wgUser and $wgLang
+		$popt = ParserOptions::newCanonical();
+		$this->assertSame( $wgUser, $popt->getUser() );
+		$this->assertSame( $wgLang, $popt->getUserLangObj() );
+
+		// Just a user uses $wgLang
+		$popt = ParserOptions::newCanonical( $user );
+		$this->assertSame( $user, $popt->getUser() );
+		$this->assertSame( $wgLang, $popt->getUserLangObj() );
+
+		// Just a language uses $wgUser
+		$popt = ParserOptions::newCanonical( null, $lang );
+		$this->assertSame( $wgUser, $popt->getUser() );
+		$this->assertSame( $lang, $popt->getUserLangObj() );
+
+		// Passing both works
+		$popt = ParserOptions::newCanonical( $user, $lang );
+		$this->assertSame( $user, $popt->getUser() );
+		$this->assertSame( $lang, $popt->getUserLangObj() );
+
+		// Passing 'canonical' uses an anon and $wgContLang, and ignores
+		// any passed $userLang
+		$popt = ParserOptions::newCanonical( 'canonical' );
+		$this->assertTrue( $popt->getUser()->isAnon() );
+		$this->assertSame( $wgContLang, $popt->getUserLangObj() );
+		$popt = ParserOptions::newCanonical( 'canonical', $lang2 );
+		$this->assertSame( $wgContLang, $popt->getUserLangObj() );
+
+		// Passing an IContextSource uses the user and lang from it, and ignores
+		// any passed $userLang
+		$popt = ParserOptions::newCanonical( $context );
+		$this->assertSame( $user, $popt->getUser() );
+		$this->assertSame( $lang, $popt->getUserLangObj() );
+		$popt = ParserOptions::newCanonical( $context, $lang2 );
+		$this->assertSame( $lang, $popt->getUserLangObj() );
+
+		// Passing something else raises an exception
+		try {
+			$popt = ParserOptions::newCanonical( 'bogus' );
+			$this->fail( 'Excpected exception not thrown' );
+		} catch ( InvalidArgumentException $ex ) {
+		}
+	}
+
 	/**
 	 * @dataProvider provideIsSafeToCache
 	 * @param bool $expect Expected value
