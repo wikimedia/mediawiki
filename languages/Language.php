@@ -3413,32 +3413,26 @@ class Language {
 	 * Take a list of strings and build a locale-friendly comma-separated
 	 * list, using the local comma-separator message.
 	 * The last two strings are chained with an "and".
-	 * NOTE: This function will only work with standard numeric array keys (0, 1, 2…)
 	 *
-	 * @param string[] $l
+	 * @param string[] $list
 	 * @return string
 	 */
-	function listToText( array $l ) {
-		$m = count( $l ) - 1;
-		if ( $m < 0 ) {
+	public function listToText( array $list ) {
+		$itemCount = count( $list );
+		if ( $itemCount < 1 ) {
 			return '';
 		}
-		if ( $m > 0 ) {
+		$text = array_pop( $list );
+		if ( $itemCount > 1 ) {
 			$and = $this->msg( 'and' )->escaped();
 			$space = $this->msg( 'word-separator' )->escaped();
-			if ( $m > 1 ) {
+			$comma = '';
+			if ( $itemCount > 2 ) {
 				$comma = $this->msg( 'comma-separator' )->escaped();
 			}
+			$text = implode( $comma, $list ) . $and . $space . $text;
 		}
-		$s = $l[$m];
-		for ( $i = $m - 1; $i >= 0; $i-- ) {
-			if ( $i == $m - 1 ) {
-				$s = $l[$i] . $and . $space . $s;
-			} else {
-				$s = $l[$i] . $comma . $s;
-			}
-		}
-		return $s;
+		return $text;
 	}
 
 	/**
