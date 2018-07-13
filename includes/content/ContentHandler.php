@@ -1128,6 +1128,7 @@ abstract class ContentHandler {
 	 * @return ParserOptions
 	 */
 	public function makeParserOptions( $context ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		return ParserOptions::newCanonical( $context );
 	}
 
