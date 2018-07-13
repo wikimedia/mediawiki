@@ -1175,8 +1175,21 @@ class LanguageConverter {
 			//    [1] => 'zh-hant:<span style="font-size:120%;">yyy</span>'
 			//    [2] => ''
 			//  ]
-			$pat = '/;\s*(?=';
+			$expandedVariants = [];
 			foreach ( $this->mVariants as $variant ) {
+				$expandedVariants[ $variant ] = 1;
+				// Accept standard BCP 47 names for variants as well.
+				$expandedVariants[ LanguageCode::bcp47( $variant ) ] = 1;
+			}
+			// Accept old deprecated names for variants
+			foreach ( LanguageCode::getDeprecatedCodeMapping() as $old => $new ) {
+				if ( isset( $expandedVariants[ $new ] ) ) {
+					$expandedVariants[ $old ] = 1;
+				}
+			}
+
+			$pat = '/;\s*(?=';
+			foreach ( $expandedVariants as $variant => $ignore ) {
 				// zh-hans:xxx;zh-hant:yyy
 				$pat .= $variant . '\s*:|';
 				// xxx=>zh-hans:yyy; xxx=>zh-hant:zzz
