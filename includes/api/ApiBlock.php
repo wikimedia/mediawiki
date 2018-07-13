@@ -98,6 +98,11 @@ class ApiBlock extends ApiBase {
 			'Confirm' => true,
 		];
 
+		$status = SpecialBlock::validateTarget( $params['user'], $user );
+		if ( !$status->isOK() ) {
+			$this->dieStatus( $status );
+		}
+
 		$retval = SpecialBlock::processForm( $data, $this->getContext() );
 		if ( $retval !== true ) {
 			// We don't care about multiple errors, just report one of them
