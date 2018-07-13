@@ -21,6 +21,10 @@ class ApiBlockTest extends ApiTestCase {
 		);
 
 		$this->mUser = $this->getMutableTestUser()->getUser();
+		$this->setMwGlobals( 'wgBlockCIDRLimit', [
+			'IPv4' => 16,
+			'IPv6' => 19,
+		] );
 	}
 
 	protected function getTokens() {
@@ -40,7 +44,6 @@ class ApiBlockTest extends ApiTestCase {
 		$tokens = $this->getTokens();
 
 		$this->assertNotNull( $this->mUser, 'Sanity check' );
-		$this->assertNotSame( 0, $this->mUser->getId(), 'Sanity check' );
 
 		$this->assertArrayHasKey( 'blocktoken', $tokens, 'Sanity check' );
 
@@ -273,50 +276,17 @@ class ApiBlockTest extends ApiTestCase {
 		);
 	}
 
-	/**
-	 * @expectedException ApiUsageException
-	 * @expectedExceptionMessage Invalid value "127.0.0.1/64" for user parameter "user".
-	 */
-	public function testBlockWithLargeRange() {
-		$tokens = $this->getTokens();
-
-		$this->doApiRequest(
-			[
-				'action' => 'block',
-				'user' => '127.0.0.1/64',
-				'reason' => 'Some reason',
-				'token' => $tokens['blocktoken'],
-			],
-			null,
-			false,
-			self::$users['sysop']->getUser()
-		);
+	public function testRangeBlock() {
+		$this->mUser = User::newFromName( '128.0.0.0/16', false );
+		$this->doBlock();
 	}
 
 	/**
 	 * @expectedException ApiUsageException
-	 * @expectedExceptionMessage Too many values supplied for parameter "pagerestrictions". The
-	 * limit is 10.
+	 * @expectedExceptionMessage Range blocks larger than /16 are not allowed.
 	 */
-	public function testBlockingToManyPageRestrictions() {
-		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => true,
-		] );
-
-		$tokens = $this->getTokens();
-
-		$this->doApiRequest(
-			[
-				'action' => 'block',
-				'user' => $this->mUser->getName(),
-				'reason' => 'Some reason',
-				'partial' => true,
-				'pagerestrictions' => 'One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven',
-				'token' => $tokens['blocktoken'],
-			],
-			null,
-			false,
-			self::$users['sysop']->getUser()
-		);
+	public function testVeryLargeRangeBlock() {
+		$this->mUser = User::newFromName( '128.0.0.0/1', false );
+		$this->doBlock();
 	}
 }
