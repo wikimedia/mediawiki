@@ -229,6 +229,12 @@ because of Phabricator reports.
   it had unexpected behavior (only marking text if it looked like a URL)
   and was only used in a single place in the code.  Use
   LanguageConverter::markNoConversion() instead.
+* (T197492) Language::truncate() was soft deprecated in 1.31 and is
+  hard deprecated in this release.  It has been split into two similar
+  methods, Language::truncateForVisual() and Language::truncateForDatabase(),
+  which measure length in characters and bytes, respectively.  Use
+  Language::truncateForVisual() when possible to provide equity to users
+  of multibyte scripts.
 * (T176526) EditPage::getContextTitle() falling back to $wgTitle when the
   context title is unset is now deprecated; anything creating an EditPage
   instance should set the context title via ::setContextTitle().
