@@ -187,6 +187,8 @@
 	"talk": "Rimachina",
 	"views": "Rikunakuna",
 	"toolbox": "Llamk'anakuna",
+	"tool-link-userrights": "{{GENDER:$1|Ruraqpa}} huñunkunata llamk'apuy",
+	"tool-link-emailuser": "Kay {{GENDER:$1|ruraqman}} e-chaskita kachay",
 	"imagepage": "Willañiqimanta p'anqata qhaway",
 	"mediawikipage": "Willay p'anqata qhaway",
 	"templatepage": "Plantilla p'anqata qhaway",
@@ -911,7 +913,7 @@
 	"userrights-user-editname": "Ruraqpa sutinta qillqamuy:",
 	"editusergroup": "Ruraqkunap huñunkunata hukchay",
 	"editinguser": "Kay ruraqpa hayñinkunata hukchaspa: '''[[User:$1|$1]]''' $2",
-	"userrights-editusergroup": "Ruraqkunap huñunkunata hukchay",
+	"userrights-editusergroup": "{{GENDER:$1|Ruraqpa}} huñunkunata llamk'apuy",
 	"saveusergroups": "Ruraq huñukunata waqaychay",
 	"userrights-groupsmember": "Kayman kapuq:",
 	"userrights-groupsmember-auto": "Ch'aqtasqalla wankurisqa kaypi:",
@@ -1804,6 +1806,7 @@
 	"sp-contributions-username": "IP huchha icha ruraqpa sutin:",
 	"sp-contributions-toponly": "Pata musuqchasqakunallata rikuchiy",
 	"sp-contributions-newonly": "P'anqa kamarisqakunallata rikuchiy",
+	"sp-contributions-hideminor": "Aslla llamk'apusqakunata pakay",
 	"sp-contributions-submit": "Maskay",
 	"whatlinkshere": "Kayman t'inkimuq",
 	"whatlinkshere-title": "$1 sutiyuq p'anqaman t'inkimuqkuna",
@@ -2934,5 +2937,8 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "kuru aspi",
 	"special-characters-title-emdash": "suni aspi",
-	"special-characters-title-minus": "qichuy sanancha"
+	"special-characters-title-minus": "qichuy sanancha",
+	"mw-widgets-dateinput-no-date": "Manam akllasqa p'unchaw kanchu",
+	"date-range-from": "Kay p'unchawmanta:",
+	"date-range-to": "Kay p'unchawkama:"
 }
