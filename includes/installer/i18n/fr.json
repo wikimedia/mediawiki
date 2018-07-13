@@ -185,7 +185,7 @@
 	"config-db-web-create": "Créez le compte s'il n'existe pas déjà",
 	"config-db-web-no-create-privs": "Le compte que vous avez spécifié pour l'installation n'a pas de privilèges suffisants pour créer un compte.\nLe compte que vous spécifiez ici doit déjà exister.",
 	"config-mysql-engine": "Moteur de stockage :",
-	"config-mysql-innodb": "InnoDB",
+	"config-mysql-innodb": "InnoDB (recommandé)",
 	"config-mysql-myisam": "MyISAM",
 	"config-mysql-myisam-dep": "<strong> Avertissement </strong>: vous avez sélectionné MyISAM comme moteur de stockage pour MySQL, ce qui n’est pas recommandé pour une utilisation avec MediaWiki, parce que :\n * il prend à peine en charge la simultanéité en raison de verrouillage de table\n * il est plus sujet à la corruption que les autres moteurs\n * le code de base MediaWiki ne gère pas toujours MyISAM comme il se doit\n\nSi votre installation MySQL prenden charge InnoDB, il est fortement recommandé que vous le choisissiez plutôt. \nSi votre installation MySQL ne prend pas en charge les tables InnoDB, il est peut-être temps de faire une mise à niveau.",
 	"config-mysql-only-myisam-dep": "<strong>Attention :</strong> MyISAM est le seul moteur de stockage disponible pour MySQL sur cette machine, et cela n’est pas recommandé pour une utilisation avec MédiaWiki, car :\n* il prend très peu en charge les accès concurrents à cause du verrouillage des tables\n* il est plus sujet à corruption que les autres moteurs\n* le code de base de MédiaWiki ne gère pas toujours MyISAM comme il faudrait\n\nVotre installation MySQL ne prend pas en charge InnoDB ; il est peut-être temps de la mettre à jour.",

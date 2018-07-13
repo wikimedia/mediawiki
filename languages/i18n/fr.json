@@ -163,7 +163,8 @@
 			"Djiboun",
 			"Pols12",
 			"KATRINE1992",
-			"Friday83260"
+			"Friday83260",
+			"Niridya"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -443,7 +444,7 @@
 	"nstab-user": "Page d’{{GENDER:{{ROOTPAGENAME}}|utilisateur|utilisatrice}}",
 	"nstab-media": "Média",
 	"nstab-special": "Page spéciale",
-	"nstab-project": "À propos",
+	"nstab-project": "Page de projet",
 	"nstab-image": "Fichier",
 	"nstab-mediawiki": "Message",
 	"nstab-template": "Modèle",
@@ -1667,7 +1668,7 @@
 	"recentchanges-page-removed-from-category": "[[:$1]] supprimé de la catégorie",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] supprimée de la catégorie, [[Special:WhatLinksHere/$1|cette page est incluse dans d’autres]]",
 	"autochange-username": "Modification automatique de MediaWiki",
-	"upload": "Importer un fichier",
+	"upload": "Téléverser un fichier",
 	"uploadbtn": "Importer le fichier",
 	"reuploaddesc": "Annuler l'importation et retourner au formulaire d'import",
 	"upload-tryagain": "Envoyer la description du fichier modifiée",

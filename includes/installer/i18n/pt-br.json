@@ -178,7 +178,7 @@
 	"config-db-web-create": "Crie a conta se esta ainda não existir",
 	"config-db-web-no-create-privs": "A conta que você especificou para a instalação não possui privilégios suficientes para criar uma conta.\nA conta que for especificada aqui já deve existir.",
 	"config-mysql-engine": "Mecanismo de armazenamento:",
-	"config-mysql-innodb": "InnoDB",
+	"config-mysql-innodb": "InnoDB (recomendado)",
 	"config-mysql-myisam": "MyISAM",
 	"config-mysql-myisam-dep": "<strong>Aviso:</strong> Você selecionou MyISAM como mecanismo de armazenamento para o MySQL, o que não é recomendado para uso com o MediaWiki, porque:\n* dificilmente suporta concorrência devido ao bloqueio da tabela\n* é mais propenso à corrupção do que outros motores\n*a base de código MediaWiki nem sempre lida com o MyISAM como deveria\n\nSe sua instalação MySQL suportar o InnoDB, é altamente recomendável que você escolha ele.\nSe sua instalação MySQL não suportar o InnoDB, talvez seja hora de uma atualização.",
 	"config-mysql-only-myisam-dep": "<strong>Aviso:</strong> O MyISAM é o único mecanismo de armazenamento disponível para o MySQL nesta máquina e isso não é recomendado para uso com o MediaWiki, porque:\n* dificilmente suporta concorrência devido ao bloqueio da tabela\n* é mais propenso à corrupção do que outros motores\n*a base de código MediaWiki nem sempre lida com o MyISAM como deveria\n\nA sua instalação no MySQL não suporta InnoDB, talvez seja hora de uma atualização.",
