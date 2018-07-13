@@ -293,7 +293,7 @@ class BlockLevelPass {
 				# @todo consider using a stack for nestable elements like span, table and div
 
 				// P-wrapping and indent-pre are suppressed inside, not outside
-				$blockElems = 'table|h1|h2|h3|h4|h5|h6|pre|p|ul|ol|dl|li';
+				$blockElems = 'table|h1|h2|h3|h4|h5|h6|pre|p|ul|ol|dl';
 				// P-wrapping and indent-pre are suppressed outside, not inside
 				$antiBlockElems = 'td|th';
 
@@ -301,7 +301,7 @@ class BlockLevelPass {
 					'/<('
 						. "({$blockElems})|\\/({$antiBlockElems})|"
 						// Always suppresses
-						. '\\/?(tr)'
+						. '\\/?(tr|dt|dd|li)'
 						. ')\\b/iS',
 					$t
 				);
