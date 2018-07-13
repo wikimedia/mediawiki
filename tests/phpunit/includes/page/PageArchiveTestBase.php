@@ -312,4 +312,58 @@ abstract class PageArchiveTestBase extends MediaWikiTestCase {
 		$this->assertNull( $rev );
 	}
 
+	/**
+	 * @covers PageArchive::getPreviousRevision
+	 */
+	public function testGetPreviousRevision() {
+		$rev = $this->archivedPage->getPreviousRevision( $this->ipRev->getTimestamp() );
+		$this->assertNotNull( $rev );
+		$this->assertSame( $this->firstRev->getId(), $rev->getId() );
+
+		$rev = $this->archivedPage->getPreviousRevision( $this->firstRev->getTimestamp() );
+		$this->assertNull( $rev );
+
+		// Re-create our dummy page
+		$title = Title::newFromText( 'PageArchiveTest_thePage' );
+		$page = new WikiPage( $title );
+		$content = ContentHandler::makeContent(
+			'testing again',
+			$page->getTitle(),
+			CONTENT_MODEL_WIKITEXT
+		);
+
+		$user = $this->getTestUser()->getUser();
+		$status = $page->doEditContent( $content, 'testing', EDIT_NEW, false, $user );
+
+		/** @var Revision $newRev */
+		$newRev = $status->value['revision'];
+
+		// force the revision timestamp
+		$newTimestamp = wfTimestamp(
+			TS_MW,
+			wfTimestamp( TS_UNIX, $this->ipRev->getTimestamp() ) + 1
+		);
+
+		$this->db->update(
+			'revision',
+			[ 'rev_timestamp' => $this->db->timestamp( $newTimestamp ) ],
+			[ 'rev_id' => $newRev->getId() ]
+		);
+
+		// check that we don't get the existing revision too soon.
+		$rev = $this->archivedPage->getPreviousRevision( $newTimestamp );
+		$this->assertNotNull( $rev );
+		$this->assertSame( $this->ipRev->getId(), $rev->getId() );
+
+		// check that we do get the existing revision when appropriate.
+		$afterNewTimestamp = wfTimestamp(
+			TS_MW,
+			wfTimestamp( TS_UNIX, $newTimestamp ) + 1
+		);
+
+		$rev = $this->archivedPage->getPreviousRevision( $afterNewTimestamp );
+		$this->assertNotNull( $rev );
+		$this->assertSame( $newRev->getId(), $rev->getId() );
+	}
+
 }
