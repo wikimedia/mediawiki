@@ -1085,7 +1085,6 @@ $wgAutoloadLocalClasses = [
 	'PasswordReset' => __DIR__ . '/includes/user/PasswordReset.php',
 	'PatchSql' => __DIR__ . '/maintenance/patchSql.php',
 	'PathRouter' => __DIR__ . '/includes/PathRouter.php',
-	'PathRouterPatternReplacer' => __DIR__ . '/includes/PathRouter.php',
 	'PatrolLog' => __DIR__ . '/includes/logging/PatrolLog.php',
 	'PatrolLogFormatter' => __DIR__ . '/includes/logging/PatrolLogFormatter.php',
 	'Pbkdf2Password' => __DIR__ . '/includes/password/Pbkdf2Password.php',
