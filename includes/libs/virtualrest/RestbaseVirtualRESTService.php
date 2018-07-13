@@ -153,8 +153,10 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 	 * @param Closure $idGeneratorFunc
 	 * @return array
 	 * @throws Exception
+	 * @deprecated since 1.26, upgrade your client to issue v3 requests.
 	 */
 	public function onParsoid1Request( array $req, Closure $idGeneratorFunc ) {
+		wfDeprecated( __METHOD__, '1.26' );
 		$parts = explode( '/', $req['url'] );
 		list(
 			$targetWiki, // 'local'
