@@ -13,12 +13,20 @@ class ApiBlockTest extends ApiTestCase {
 		$this->doLogin();
 	}
 
+<<<<<<< HEAD
 	protected function tearDown() {
 		$block = Block::newFromTarget( 'UTApiBlockee' );
 		if ( !is_null( $block ) ) {
 			$block->delete();
 		}
 		parent::tearDown();
+=======
+		$this->mUser = $this->getMutableTestUser()->getUser();
+		$this->setMwGlobals( 'wgBlockCIDRLimit', [
+			'IPv4' => 16,
+			'IPv6' => 19,
+		] );
+>>>>>>> 87993240db... SECURITY: API: Respect $wgBlockCIDRLimit in action=block
 	}
 
 	protected function getTokens() {
@@ -47,11 +55,15 @@ class ApiBlockTest extends ApiTestCase {
 	public function testMakeNormalBlock() {
 		$tokens = $this->getTokens();
 
+<<<<<<< HEAD
 		$user = User::newFromName( 'UTApiBlockee' );
 
 		if ( !$user->getId() ) {
 			$this->markTestIncomplete( "The user UTApiBlockee does not exist" );
 		}
+=======
+		$this->assertNotNull( $this->mUser, 'Sanity check' );
+>>>>>>> 87993240db... SECURITY: API: Respect $wgBlockCIDRLimit in action=block
 
 		if ( !array_key_exists( 'blocktoken', $tokens ) ) {
 			$this->markTestIncomplete( "No block token found" );
@@ -116,5 +128,19 @@ class ApiBlockTest extends ApiTestCase {
 			false,
 			self::$users['sysop']->getUser()
 		);
+	}
+
+	public function testRangeBlock() {
+		$this->mUser = User::newFromName( '128.0.0.0/16', false );
+		$this->doBlock();
+	}
+
+	/**
+	 * @expectedException ApiUsageException
+	 * @expectedExceptionMessage Range blocks larger than /16 are not allowed.
+	 */
+	public function testVeryLargeRangeBlock() {
+		$this->mUser = User::newFromName( '128.0.0.0/1', false );
+		$this->doBlock();
 	}
 }
