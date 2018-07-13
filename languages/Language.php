@@ -3497,6 +3497,7 @@ class Language {
 	 * @return string
 	 */
 	function truncate( $string, $length, $ellipsis = '...', $adjustLength = true ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->truncateForDatabase( $string, $length, $ellipsis, $adjustLength );
 	}
 
