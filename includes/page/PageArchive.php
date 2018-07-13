@@ -329,7 +329,7 @@ class PageArchive {
 
 		// Check the previous deleted revision...
 		$row = $dbr->selectRow( 'archive',
-			[ 'ar_id', 'ar_timestamp' ],
+			[ 'ar_rev_id', 'ar_timestamp' ],
 			[ 'ar_namespace' => $this->title->getNamespace(),
 				'ar_title' => $this->title->getDBkey(),
 				'ar_timestamp < ' .
