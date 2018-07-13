@@ -123,9 +123,19 @@ class LogEventsList extends ContextSource {
 		$formDescriptor['page'] = $this->getTitleInputDesc( $title );
 
 		// Add extra inputs if any
+		// This could either be a form descriptor array or a string with raw HTML.
+		// We need it to work in both cases and show a deprecation warning if it
+		// is a string. See T199495.
 		$extraInputsDescriptor = $this->getExtraInputsDesc( $types );
-		if ( !empty( $extraInputsDescriptor ) ) {
+		if (
+			is_array( $extraInputsDescriptor ) &&
+			!empty( $extraInputsDescriptor )
+		) {
 			$formDescriptor[ 'extra' ] = $extraInputsDescriptor;
+		} elseif ( is_string( $extraInputsDescriptor ) ) {
+			// We'll add this to the footer of the form later
+			$extraInputsString = $extraInputsDescriptor;
+			wfDeprecated( 'Using $input in LogEventsListGetExtraInputs hook', '1.32' );
 		}
 
 		// Title pattern, if allowed
@@ -164,6 +174,15 @@ class LogEventsList extends ContextSource {
 		$htmlForm
 			->setSubmitText( $this->msg( 'logeventslist-submit' )->text() )
 			->setWrapperLegendMsg( 'log' );
+
+		// TODO This will should be removed at some point. See T199495.
+		if ( isset( $extraInputsString ) ) {
+			$htmlForm->addFooterText( Html::rawElement(
+				'div',
+				null,
+				$extraInputsString
+			) );
+		}
 
 		$htmlForm->prepareForm()->displayForm( false );
 	}
@@ -279,7 +298,7 @@ class LogEventsList extends ContextSource {
 
 	/**
 	 * @param array $types
-	 * @return array Form descriptor
+	 * @return array|string Form descriptor or string with HTML
 	 */
 	private function getExtraInputsDesc( $types ) {
 		if ( count( $types ) == 1 ) {
@@ -297,9 +316,12 @@ class LogEventsList extends ContextSource {
 				];
 			} else {
 				// Allow extensions to add their own extra inputs
+				// This could be an array or string. See T199495.
+				$input = ''; // Deprecated
 				$formDescriptor = [];
-				Hooks::run( 'LogEventsListGetExtraInputs', [ $types[0], $this, &$formDescriptor ] );
-				return $formDescriptor;
+				Hooks::run( 'LogEventsListGetExtraInputs', [ $types[0], $this, &$input, &$formDescriptor ] );
+
+				return empty( $formDescriptor ) ? $input : $formDescriptor;
 			}
 		}
 

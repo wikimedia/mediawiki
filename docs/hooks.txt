@@ -2187,6 +2187,7 @@ $autocreated: Boolean, whether this was an auto-creation
 Special:Log for a specific log type
 $type: String of log type being displayed
 $logEventsList: LogEventsList object for context and access to the WebRequest
+&$input: string HTML of an input element (deprecated, use $formDescriptor instead)
 &$formDescriptor: array HTMLForm's form descriptor
 
 'LogEventsListShowLogExtract': Called before the string is added to OutputPage.
