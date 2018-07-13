@@ -251,7 +251,7 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 	 * @return void
 	 */
 	public function clear( $keys = null ) {
-		if ( $keys === null ) {
+		if ( func_num_args() == 0 ) {
 			$this->cache = [];
 			$this->timestamps = [];
 		} else {
