@@ -1155,9 +1155,10 @@ class Sanitizer {
 		$fixtags = [
 			# French spaces, last one Guillemet-left
 			# only if there is something before the space
-			'/(.) (?=[?:;!%»])/u' => "\\1$space",
+			# and a non-word character after the punctuation.
+			'/(\S) (?=[?:;!%»›](?!\w))/u' => "\\1$space",
 			# French spaces, Guillemet-right
-			'/(«) /u' => "\\1$space",
+			'/([«‹]) /u' => "\\1$space",
 		];
 		return preg_replace( array_keys( $fixtags ), array_values( $fixtags ), $text );
 	}

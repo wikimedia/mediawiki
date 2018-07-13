@@ -3962,7 +3962,7 @@ Simple definition
 !! wikitext
 ;name :Definition
 !! html
-<dl><dt>name&#160;</dt>
+<dl><dt>name</dt>
 <dd>Definition</dd></dl>
 
 !! end
@@ -3991,7 +3991,7 @@ Definition list with URL link
 !! wikitext
 ;http://example.com/ :definition
 !! html
-<dl><dt><a rel="nofollow" class="external free" href="http://example.com/">http://example.com/</a>&#160;</dt>
+<dl><dt><a rel="nofollow" class="external free" href="http://example.com/">http://example.com/</a></dt>
 <dd>definition</dd></dl>
 
 !! end
@@ -4022,7 +4022,7 @@ Definition list with news link containing colon
 !! wikitext
 ;news:alt.wikipedia.rox :This isn't even a real newsgroup!
 !! html/php
-<dl><dt><a rel="nofollow" class="external free" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a>&#160;</dt>
+<dl><dt><a rel="nofollow" class="external free" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a></dt>
 <dd>This isn't even a real newsgroup!</dd></dl>
 
 !! html/parsoid
@@ -4043,7 +4043,7 @@ Definition lists: colon in external link text
 !! wikitext
 ;[http://www.wikipedia2.org/ Wikipedia :The Next Generation] :OK, I made that up
 !! html
-<dl><dt><a rel="nofollow" class="external text" href="http://www.wikipedia2.org/">Wikipedia&#160;:The Next Generation</a>&#160;</dt>
+<dl><dt><a rel="nofollow" class="external text" href="http://www.wikipedia2.org/">Wikipedia :The Next Generation</a></dt>
 <dd>OK, I made that up</dd></dl>
 
 !! end
@@ -4062,7 +4062,7 @@ Definition lists: self-closed tag
 !! wikitext
 ;one<br/>two :two-line fun
 !! html
-<dl><dt>one<br />two&#160;</dt>
+<dl><dt>one<br />two</dt>
 <dd>two-line fun</dd></dl>
 
 !! end
@@ -4082,7 +4082,7 @@ Definition lists: excess closed tags
 !! wikitext
 ;one</b>two :bad tag fun
 !! html/php+tidy
-<dl><dt>onetwo&#160;</dt>
+<dl><dt>onetwo</dt>
 <dd>bad tag fun</dd></dl>
 !! html/parsoid
 <dl>
@@ -4119,7 +4119,7 @@ Definition and unordered list using wiki syntax nested in unordered list using h
 </li></ul>
 !! html
 <ul><li>
-<dl><dt>term&#160;</dt>
+<dl><dt>term</dt>
 <dd>description</dd></dl>
 <ul><li>unordered</li></ul>
 </li></ul>
@@ -4519,9 +4519,9 @@ Definition Lists: Mixed Lists: Test 4
 *;d1 :d2
 *;d3 :d4
 !! html
-<ul><li><dl><dt>d1&#160;</dt>
+<ul><li><dl><dt>d1</dt>
 <dd>d2</dd>
-<dt>d3&#160;</dt>
+<dt>d3</dt>
 <dd>d4</dd></dl></li></ul>
 
 !! end
@@ -4580,7 +4580,7 @@ Definition Lists: Mixed Lists: Test 9
 !! wikitext
 *;foo :bar
 !! html
-<ul><li><dl><dt>foo&#160;</dt>
+<ul><li><dl><dt>foo</dt>
 <dd>bar</dd></dl></li></ul>
 
 !! end
@@ -4591,7 +4591,7 @@ Definition Lists: Mixed Lists: Test 10
 !! wikitext
 *#;foo :bar
 !! html
-<ul><li><ol><li><dl><dt>foo&#160;</dt>
+<ul><li><ol><li><dl><dt>foo</dt>
 <dd>bar</dd></dl></li></ol></li></ul>
 
 !! end
@@ -4624,15 +4624,15 @@ Definition Lists: Mixed Lists: Test 12
 *#*#;*;;foo :bar
 *#*#;boo :baz
 !! html/php
-<ul><li><ol><li><ul><li><ol><li><dl><dt>foo&#160;</dt>
+<ul><li><ol><li><ul><li><ol><li><dl><dt>foo</dt>
 <dd><ul><li><dl><dt><dl><dt>bar</dt></dl></dd></dl></li></ul></dd></dl>
-<dl><dt>boo&#160;</dt>
+<dl><dt>boo</dt>
 <dd>baz</dd></dl></li></ol></li></ul></li></ol></li></ul>
 
 !! html/php+tidy
-<ul><li><ol><li><ul><li><ol><li><dl><dt>foo&#160;</dt>
+<ul><li><ol><li><ul><li><ol><li><dl><dt>foo</dt>
 <dd><ul><li><dl><dt><dl><dt>bar</dt></dl></dt></dl></li></ul></dd></dl></li></ol></li></ul>
-<dl><dt>boo&#160;</dt>
+<dl><dt>boo</dt>
 <dd>baz</dd></dl></li></ol></li></ul>
 !! html/parsoid
 <ul>
@@ -4650,18 +4650,30 @@ Definition Lists: Mixed Lists: Test 12
 <dl>
 <dt>
 <dl>
-<dt>foo<span typeof="mw:Placeholder" data-parsoid='{"src":" "}'>&nbsp;</span></dt>
+<dt>foo</dt>
 <dd data-parsoid='{"stx":"row"}'>bar</dd>
 </dl></dt>
 </dl></li>
 </ul></dt>
-<dt>boo<span typeof="mw:Placeholder" data-parsoid='{"src":" "}'>&nbsp;</span></dt>
+<dt>boo</dt>
 <dd data-parsoid='{"stx":"row"}'>baz</dd>
 </dl></li>
 </ol></li>
 </ul></li>
 </ol></li>
 </ul>
+!! end
+
+!! test
+Definition Lists: Mixed Lists: Test 13
+!! wikitext
+*#*#;*;;foo : bar
+*#*#;boo : baz
+!! html+tidy
+<ul><li><ol><li><ul><li><ol><li><dl><dt>foo&#160;</dt>
+<dd><ul><li><dl><dt><dl><dt>bar</dt></dl></dt></dl></li></ul></dd></dl></li></ol></li></ul>
+<dl><dt>boo&#160;</dt>
+<dd>baz</dd></dl></li></ol></li></ul>
 !! end
 
 # FIXME: Maybe get rid of this test?
@@ -4673,7 +4685,7 @@ Definition Lists: Weird Ones: Test 1
 !! wikitext
 *#;*::;;foo :bar (who uses this?)
 !! html/php+tidy
-<ul><li><ol><li><dl><dt>foo&#160;</dt>
+<ul><li><ol><li><dl><dt>foo</dt>
 <dd><ul><li><dl><dd><dl><dd><dl><dt><dl><dt>bar (who uses this?)</dt></dl></dt></dl></dd></dl></dd></dl></li></ul></dd></dl></li></ol></li></ul>
 !! html/parsoid
 <ul>
@@ -4691,7 +4703,7 @@ Definition Lists: Weird Ones: Test 1
 <dl>
 <dt>
 <dl>
-<dt>foo<span typeof="mw:DisplaySpace mw:Placeholder" data-parsoid='{"src":" ","isDisplayHack":true}'> </span></dt>
+<dt>foo</dt>
 <dd data-parsoid='{"stx":"row"}'>bar (who uses this?)</dd>
 </dl></dt>
 </dl></dd>
@@ -6798,7 +6810,7 @@ Element attributes with double ! should not be broken up by <th>
 !! html/php
 <table>
 <tr>
-<td><div style="color: red&#32;!important;" data-contrived="put this here &#124;&#124;">hi</div>
+<td><div style="color: red !important;" data-contrived="put this here &#124;&#124;">hi</div>
 </td></tr></table>
 
 !! html/parsoid
@@ -6819,7 +6831,7 @@ parsoid=wt2html
 !! html/php
 <table>
 <tr>
-<td>style="color: red&#160;!important;" data-contrived="put this here</td>
+<td>style="color: red !important;" data-contrived="put this here</td>
 <td>foo
 </td></tr></table>
 
@@ -18885,7 +18897,7 @@ Punctuation: CSS !important (T13874)
 !! wikitext
 <div style="width:50% !important">important</div>
 !! html
-<div style="width:50%&#32;!important">important</div>
+<div style="width:50% !important">important</div>
 
 !!end
 
@@ -21663,16 +21675,16 @@ Definition list code coverage
 ;title :def
 ;title:def
 !! html/php
-<dl><dt>title  &#160;</dt>
+<dl><dt>title</dt>
 <dd>def</dd>
-<dt>title&#160;</dt>
+<dt>title</dt>
 <dd>def</dd>
 <dt>title</dt>
 <dd>def</dd></dl>
 
 !! html/parsoid
-<dl><dt>title  <span typeof="mw:Placeholder"> </span></dt><dd>def</dd>
-<dt>title<span typeof="mw:Placeholder"> </span></dt><dd>def</dd>
+<dl><dt>title   </dt><dd>def</dd>
+<dt>title </dt><dd>def</dd>
 <dt>title</dt><dd>def</dd></dl>
 !! end
 
@@ -24182,7 +24194,7 @@ Play a bit with r67090 and T5158
 <div style="width:50%&#160;!important">&nbsp;</div>
 <div style="border : solid;">&nbsp;</div>
 !! html/php
-<div style="width:50%&#32;!important">&#160;</div>
+<div style="width:50% !important">&#160;</div>
 <div style="width:50% !important">&#160;</div>
 <div style="width:50% !important">&#160;</div>
 <div style="border&#32;: solid;">&#160;</div>
@@ -24193,6 +24205,29 @@ Play a bit with r67090 and T5158
 <div style="width:50% !important" data-parsoid='{"stx":"html","a":{"style":"width:50% !important"},"sa":{"style":"width:50%&amp;#160;!important"}}'><span typeof="mw:Entity" data-parsoid='{"srcContent":" "}'> </span></div>
 <div style="border : solid;" data-parsoid='{"stx":"html"}'><span typeof="mw:Entity" data-parsoid='{"srcContent":" "}'> </span></div>
 
+!! end
+
+!! test
+French spaces in wikitext
+!! wikitext
+foo ! bar ? bat 50 % is less than 75 %.
+
+Hello : this ; is « something ‹ else › again »
+!! html
+<p>foo&#160;! bar&#160;? bat 50&#160;% is less than 75&#160;%.
+</p><p>Hello&#160;: this&#160;; is «&#160;something ‹&#160;else&#160;› again&#160;»
+</p>
+!! end
+
+# It would be reasonable for Parsoid and PHP to differ here.
+# The PHP behavior is arguably a bug.
+!! test
+Corner case: french spaces in definition list
+!! wikitext
+;foo : bar
+!! html+tidy
+<dl><dt>foo&#160;</dt>
+<dd>bar</dd></dl>
 !! end
 
 !! test
