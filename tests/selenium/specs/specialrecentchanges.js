@@ -1,5 +1,5 @@
 const assert = require( 'assert' ),
-	Api = require( 'wdio-mediawiki/Api' ),
+	EditPage = require( '../pageobjects/edit.page' ),
 	RecentChangesPage = require( '../pageobjects/recentchanges.page' ),
 	Util = require( 'wdio-mediawiki/Util' );
 
@@ -13,11 +13,8 @@ describe( 'Special:RecentChanges', function () {
 		name = Util.getTestString();
 	} );
 
-	// Disabled because flaky (T198137)
-	it.skip( 'shows page creation', function () {
-		browser.call( function () {
-			return Api.edit( name, content );
-		} );
+	it( 'shows page creation', function () {
+		EditPage.edit( name, content );
 
 		RecentChangesPage.open();
 
