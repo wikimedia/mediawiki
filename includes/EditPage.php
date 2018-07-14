@@ -1774,7 +1774,7 @@ ERROR;
 			if ( $this->summary === '' ) {
 				$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
 				return $this->context->msg( 'newsectionsummary' )
-					->rawParams( $cleanSectionTitle )->inContentLanguage()->text();
+					->plaintextParams( $cleanSectionTitle )->inContentLanguage()->text();
 			}
 		} elseif ( $this->summary !== '' ) {
 			$sectionanchor = $this->guessSectionName( $this->summary );
@@ -1782,7 +1782,7 @@ ERROR;
 			# in the revision summary.
 			$cleanSummary = $wgParser->stripSectionName( $this->summary );
 			return $this->context->msg( 'newsectionsummary' )
-				->rawParams( $cleanSummary )->inContentLanguage()->text();
+				->plaintextParams( $cleanSummary )->inContentLanguage()->text();
 		}
 		return $this->summary;
 	}

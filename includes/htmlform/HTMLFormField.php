@@ -855,8 +855,13 @@ abstract class HTMLFormField {
 	 * Determine form errors to display and their classes
 	 * @since 1.20
 	 *
+	 * phan-taint-check gets confused with returning both classes
+	 * and errors and thinks double escaping is happening, so specify
+	 * that return value has no taint.
+	 *
 	 * @param string $value The value of the input
 	 * @return array array( $errors, $errorClass )
+	 * @return-taint none
 	 */
 	public function getErrorsAndErrorClass( $value ) {
 		$errors = $this->validate( $value, $this->mParent->mFieldData );
@@ -1119,6 +1124,12 @@ abstract class HTMLFormField {
 	 * Formats one or more errors as accepted by field validation-callback.
 	 *
 	 * @param string|Message|array $errors Array of strings or Message instances
+	 * To work around limitations in phan-taint-check the calling
+	 * class has taintedness disabled. So instead we pretend that
+	 * this method outputs html, since the result is eventually
+	 * outputted anyways without escaping and this allows us to verify
+	 * stuff is safe even though the caller has taintedness cleared.
+	 * @param-taint $errors exec_html
 	 * @return string HTML
 	 * @since 1.18
 	 */
