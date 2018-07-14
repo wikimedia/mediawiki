@@ -51,6 +51,8 @@ production.
 * Added new 'ArticleShowPatrolFooter' hook, which allows extensions to determine
   if the [mark as patrolled] link should be shown at the footer of patrollable
   pages.
+* The array of hidden options ($opts) passed to the 'SpecialSearchPowerBox' hook
+  is now passed by reference, allowing extensions to modify or even unset it.
 
 === External library changes in 1.32 ===
 * …

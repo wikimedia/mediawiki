@@ -3344,7 +3344,7 @@ called.
 the advanced form, a.k.a. power search box.
 &$showSections: an array to add values with more options to
 $term: the search term (not a title object)
-$opts: an array of hidden options (containing 'redirs' and 'profile')
+&$opts: an array of hidden options (containing 'redirs' and 'profile')
 
 'SpecialSearchProfileForm': Allows modification of search profile forms.
 $search: special page object
