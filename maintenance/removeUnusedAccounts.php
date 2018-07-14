@@ -75,12 +75,12 @@ class RemoveUnusedAccounts extends Maintenance {
 			# group or if it's touched within the $touchedSeconds seconds.
 			$instance = User::newFromId( $row->user_id );
 			if ( count( array_intersect( $instance->getEffectiveGroups(), $excludedGroups ) ) == 0
-				&& $this->isInactiveAccount( $row->user_id, $row->actor_id, true )
+				&& $this->isInactiveAccount( $row->user_id, $row->actor_id ?? null, true )
 				&& wfTimestamp( TS_UNIX, $row->user_touched ) < wfTimestamp( TS_UNIX, time() - $touchedSeconds )
 			) {
 				# Inactive; print out the name and flag it
 				$delUser[] = $row->user_id;
-				if ( $row->actor_id ) {
+				if ( isset( $row->actor_id ) && $row->actor_id ) {
 					$delActor[] = $row->actor_id;
 				}
 				$this->output( $row->user_name . "\n" );
@@ -138,7 +138,7 @@ class RemoveUnusedAccounts extends Maintenance {
 	 * (No edits, no deleted edits, no log entries, no current/old uploads)
 	 *
 	 * @param int $id User's ID
-	 * @param int $actor User's actor ID
+	 * @param int|null $actor User's actor ID
 	 * @param bool $master Perform checking on the master
 	 * @return bool
 	 */
