@@ -80,12 +80,18 @@ class ApiOptions extends ApiBase {
 			switch ( $prefsKinds[$key] ) {
 				case 'registered':
 					// Regular option.
-					if ( $htmlForm === null ) {
-						// We need a dummy HTMLForm for the validate callback...
-						$htmlForm = new HTMLForm( [], $this );
+					if ( $value === null ) {
+						// Reset it
+						$validation = true;
+					} else {
+						// Validate
+						if ( $htmlForm === null ) {
+							// We need a dummy HTMLForm for the validate callback...
+							$htmlForm = new HTMLForm( [], $this );
+						}
+						$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key], $htmlForm );
+						$validation = $field->validate( $value, $user->getOptions() );
 					}
-					$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key], $htmlForm );
-					$validation = $field->validate( $value, $user->getOptions() );
 					break;
 				case 'registered-multiselect':
 				case 'registered-checkmatrix':
