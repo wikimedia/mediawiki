@@ -68,7 +68,7 @@
 	"config-env-php": "PHP $1 on asennettu.",
 	"config-env-hhvm": "HHVM $1 on asennettu.",
 	"config-unicode-using-intl": "Käyttää [https://pecl.php.net/intl intl PECL-laajennusta] Unicode-normalisaatioon.",
-	"config-no-db": "Sopivaa tietokanta-ajuria ei löytynyt! Sinun täytyy asentaa tietokanta-ajuri PHP:lle.\n{{PLURAL:$2|Seuraava tietokantatyyppi on tuettu|Seuraavat tietokantatyypit ovat tuettuja}}: $1.\n\nJos koostit PHP:n itse, määritä se uudelleen tietokanta-asiakkaan ollessa käytössä, esimerkiksi koodilla <code>./configure --with-mysqli</code>.\nJos asensit PHP:n Debian- tai Ubuntu-pakkauksesta, sinun on myös asennettava esimerkiksi <code>php5-mysql</code>-pakkaus.",
+	"config-no-db": "Sopivaa tietokanta-ajuria ei löytynyt! Sinun täytyy asentaa tietokanta-ajuri PHP:lle.\n{{PLURAL:$2|Seuraava tietokantatyyppi on tuettu|Seuraavat tietokantatyypit ovat tuettuja}}: $1.\n\nJos koostit PHP:n itse, määritä se uudelleen tietokanta-asiakkaan ollessa käytössä, esimerkiksi koodilla <code>./configure --with-mysqli</code>.\nJos asensit PHP:n Debian- tai Ubuntu-pakkauksesta, sinun on myös asennettava esimerkiksi <code>php-mysql</code>-pakkaus.",
 	"config-outdated-sqlite": "<strong>Varoitus:</strong> sinulla on käytössä SQLite $1, joke on vanhempi kuin vähintään vaadittava versio $2. SQLite ei ole saatavilla.",
 	"config-no-fts3": "<strong>Varoitus:</strong> SQLite on koostettu ilman [//sqlite.org/fts3.html FTS3-moduulia], hakuominaisuudet eivät ole käytössä tässä taustajärjestelmässä.",
 	"config-pcre-old": "<strong>Tärkeää:</strong> PCRE $1 tai uudempi versio tarvitaan.\nPHP-binäärisi on linkitetty versiolla PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Lisätietoja].",

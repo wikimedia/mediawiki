@@ -769,6 +769,7 @@
 	"powersearch-remember": "Memorez la selektajo por futura serchi",
 	"search-external": "Extera sercho",
 	"searchdisabled": "La sercho en la kompleta texto desaktivigesis temporale pro superkargo dil servanto. Ni esperas riaktivigar ol pos facar ula proxima aktualigi. Dum ica tempo, vu povas serchar per Google.",
+	"search-error": "Eventis eroro dum serchado: $1",
 	"preferences": "Preferaji",
 	"mypreferences": "Preferaji",
 	"prefs-edits": "Nombro di redaktaji:",
