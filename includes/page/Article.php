@@ -976,6 +976,11 @@ class Article implements Page {
 	public function showPatrolFooter() {
 		global $wgUseNPPatrol, $wgUseRCPatrol, $wgUseFilePatrol;
 
+		// Allow hooks to decide whether to not output this at all
+		if ( !Hooks::run( 'ArticleShowPatrolFooter', [ $this ] ) ) {
+			return false;
+		}
+
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
 		$title = $this->getTitle();
