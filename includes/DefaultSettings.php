@@ -377,7 +377,13 @@ $wgActionPaths = [];
  */
 
 /**
- * Uploads have to be specially set up to be secure
+ * Allow users to upload files.
+ *
+ * Use $wgLocalFileRepo to control how and where uploads are stored.
+ * Disabled by default as for security reasons.
+ * See <https://www.mediawiki.org/wiki/Manual:Configuring_file_uploads>.
+ *
+ * @since 1.5
  */
 $wgEnableUploads = false;
 
@@ -491,8 +497,8 @@ $wgImgAuthUrlPathMap = [];
  *   - scriptDirUrl      URL of the MediaWiki installation, equivalent to $wgScriptPath, e.g.
  *                       https://en.wikipedia.org/w
  *   - articleUrl        Equivalent to $wgArticlePath, e.g. https://en.wikipedia.org/wiki/$1
- *   - fetchDescription  Fetch the text of the remote file description page. Equivalent to
- *                       $wgFetchCommonsDescriptions.
+ *   - fetchDescription  Fetch the text of the remote file description page and display them
+ *                       on the local wiki.
  *   - abbrvThreshold    File names over this size will use the short form of thumbnail names.
  *                       Short thumbnail names only have the width, parameters, and the extension.
  *
@@ -500,7 +506,8 @@ $wgImgAuthUrlPathMap = [];
  *   - dbType, dbServer, dbUser, dbPassword, dbName, dbFlags
  *                       equivalent to the corresponding member of $wgDBservers
  *   - tablePrefix       Table prefix, the foreign wiki's $wgDBprefix
- *   - hasSharedCache    True if the wiki's shared cache is accessible via the local $wgMemc
+ *   - hasSharedCache    Set to true if the foreign wiki's $wgMainCacheType is identical to,
+ *                       and accesible from, this wiki.
  *
  * ForeignAPIRepo:
  *   - apibase              Use for the foreign API's URL
@@ -518,16 +525,132 @@ $wgImgAuthUrlPathMap = [];
 $wgLocalFileRepo = false;
 
 /**
+ * Enable the use of files from one or more other wikis.
+ *
+ * If you operate multiple wikis, you can declare a shared upload path here.
+ * Uploads to the local wiki will NOT be stored here - See $wgLocalFileRepo
+ * and $wgUploadDirectory for that.
+ *
+ * The wiki will only consider the foreign repository if no file of the given name
+ * is found in the local repository (e.g. via `[[File:..]]` syntax).
+ *
+ * @since 1.11
  * @see $wgLocalFileRepo
  */
 $wgForeignFileRepos = [];
 
 /**
- * Use Commons as a remote file repository. Essentially a wrapper, when this
- * is enabled $wgForeignFileRepos will point at Commons with a set of default
- * settings
+ * Use Wikimedia Commons as a foreign file repository.
+ *
+ * This is a shortcut for adding an entry to to $wgForeignFileRepos
+ * for https://commons.wikimedia.org, using ForeignAPIRepo with the
+ * default settings.
+ *
+ * @since 1.16
  */
 $wgUseInstantCommons = false;
+
+/**
+ * Shortcut for adding an entry to $wgForeignFileRepos.
+ *
+ * Uses the folowing variables:
+ *
+ * - directory: $wgSharedUploadDirectory.
+ * - url: $wgSharedUploadPath.
+ * - hashLevels: Based on $wgHashedSharedUploadDirectory.
+ * - thumbScriptUrl: $wgSharedThumbnailScriptPath.
+ * - transformVia404: Based on $wgGenerateThumbnailOnParse.
+ * - descBaseUrl: $wgRepositoryBaseUrl.
+ * - fetchDescription: $wgFetchCommonsDescriptions.
+ *
+ * If $wgSharedUploadDBname is set, it uses the ForeignDBRepo
+ * class, with also the following variables:
+ *
+ * - dbName: $wgSharedUploadDBname.
+ * - dbType: $wgDBtype.
+ * - dbServer: $wgDBserver.
+ * - dbUser: $wgDBuser.
+ * - dbPassword: $wgDBpassword.
+ * - dbFlags: Based on $wgDebugDumpSql.
+ * - tablePrefix: $wgSharedUploadDBprefix,
+ * - hasSharedCache: $wgCacheSharedUploads.
+ *
+ * @var bool
+ * @since 1.3
+ */
+$wgUseSharedUploads = false;
+
+/**
+ * Shortcut for the 'directory' setting of $wgForeignFileRepos.
+ * Only used if $wgUseSharedUploads is enabled.
+ *
+ * @var string
+ * @since 1.3
+ */
+$wgSharedUploadDirectory = null;
+
+/**
+ * Shortcut for the 'url' setting of $wgForeignFileRepos.
+ * Only used if $wgUseSharedUploads is enabled.
+ *
+ * @var string
+ * @since 1.3
+ */
+$wgSharedUploadPath = null;
+
+/**
+ * Shortcut for the 'hashLevels' setting of $wgForeignFileRepos.
+ * Only used if $wgUseSharedUploads is enabled.
+ *
+ * @var bool
+ * @since 1.3
+ */
+$wgHashedSharedUploadDirectory = true;
+
+/**
+ * Shortcut for the 'descBaseUrl' setting of $wgForeignFileRepos.
+ * Only used if $wgUseSharedUploads is enabled.
+ *
+ * @since 1.5
+ */
+$wgRepositoryBaseUrl = 'https://commons.wikimedia.org/wiki/File:';
+
+/**
+ * Shortcut for the 'fetchDescription' setting of $wgForeignFileRepos.
+ * Only used if $wgUseSharedUploads is enabled.
+ *
+ * @var bool
+ * @since 1.5
+ */
+$wgFetchCommonsDescriptions = false;
+
+/**
+ * Shortcut for the ForeignDBRepo 'dbName' setting in $wgForeignFileRepos.
+ * Set this to false if the uploads do not come from a wiki.
+ * Only used if $wgUseSharedUploads is enabled.
+ *
+ * @var bool|string
+ * @since 1.4
+ */
+$wgSharedUploadDBname = false;
+
+/**
+ * Shortcut for the ForeignDBRepo 'tablePrefix' setting in $wgForeignFileRepos.
+ * Only used if $wgUseSharedUploads is enabled.
+ *
+ * @var string
+ * @since 1.5
+ */
+$wgSharedUploadDBprefix = '';
+
+/**
+ * Shortcut for the ForeignDBRepo 'hasSharedCache' setting in $wgForeignFileRepos.
+ * Only used if $wgUseSharedUploads is enabled.
+ *
+ * @var bool
+ * @since 1.5
+ */
+$wgCacheSharedUploads = true;
 
 /**
  * Array of foreign file repo names (set in $wgForeignFileRepos above) that
@@ -677,53 +800,6 @@ $wgShowEXIF = function_exists( 'exif_read_data' );
 $wgUpdateCompatibleMetadata = false;
 
 /**
- * If you operate multiple wikis, you can define a shared upload path here.
- * Uploads to this wiki will NOT be put there - they will be put into
- * $wgUploadDirectory.
- * If $wgUseSharedUploads is set, the wiki will look in the shared repository if
- * no file of the given name is found in the local repository (for [[File:..]],
- * [[Media:..]] links). Thumbnails will also be looked for and generated in this
- * directory.
- *
- * Note that these configuration settings can now be defined on a per-
- * repository basis for an arbitrary number of file repositories, using the
- * $wgForeignFileRepos variable.
- */
-$wgUseSharedUploads = false;
-
-/**
- * Full path on the web server where shared uploads can be found
- */
-$wgSharedUploadPath = null;
-
-/**
- * Fetch commons image description pages and display them on the local wiki?
- */
-$wgFetchCommonsDescriptions = false;
-
-/**
- * Path on the file system where shared uploads can be found.
- */
-$wgSharedUploadDirectory = null;
-
-/**
- * DB name with metadata about shared directory.
- * Set this to false if the uploads do not come from a wiki.
- */
-$wgSharedUploadDBname = false;
-
-/**
- * Optional table prefix used in database.
- */
-$wgSharedUploadDBprefix = '';
-
-/**
- * Cache shared metadata in memcached.
- * Don't do this if the commons wiki is in a different memcached domain
- */
-$wgCacheSharedUploads = true;
-
-/**
  * Allow for upload to be copied from an URL.
  * The timeout for copy uploads is set by $wgCopyUploadTimeout.
  * You have to assign the user right 'upload_by_url' to a user group, to use this.
@@ -821,7 +897,11 @@ $wgUploadMissingFileUrl = false;
 $wgThumbnailScriptPath = false;
 
 /**
- * @see $wgThumbnailScriptPath
+ * Shortcut for the 'thumbScriptUrl' setting of $wgForeignFileRepos.
+ * Only used if $wgUseSharedUploads is enabled.
+ *
+ * @var string
+ * @since 1.3
  */
 $wgSharedThumbnailScriptPath = false;
 
@@ -839,23 +919,6 @@ $wgSharedThumbnailScriptPath = false;
  * @todo Deprecate the setting and ultimately remove it from Core.
  */
 $wgHashedUploadDirectory = true;
-
-/**
- * Set the following to false especially if you have a set of files that need to
- * be accessible by all wikis, and you do not want to use the hash (path/a/aa/)
- * directory layout.
- */
-$wgHashedSharedUploadDirectory = true;
-
-/**
- * Base URL for a repository wiki. Leave this blank if uploads are just stored
- * in a shared directory and not meant to be accessible through a separate wiki.
- * Otherwise the image description pages on the local wiki will link to the
- * image description page on this wiki.
- *
- * Please specify the namespace, as in the example below.
- */
-$wgRepositoryBaseUrl = "https://commons.wikimedia.org/wiki/File:";
 
 /**
  * This is the list of preferred extensions for uploading files. Uploading files

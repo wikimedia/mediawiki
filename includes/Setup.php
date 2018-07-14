@@ -278,7 +278,7 @@ $wgGalleryOptions += [
 ];
 
 /**
- * Initialise $wgLocalFileRepo from backwards-compatible settings
+ * Shortcuts for $wgLocalFileRepo
  */
 if ( !$wgLocalFileRepo ) {
 	$wgLocalFileRepo = [
@@ -294,8 +294,15 @@ if ( !$wgLocalFileRepo ) {
 		'deletedHashLevels' => $wgHashedUploadDirectory ? 3 : 0
 	];
 }
+
+if ( !isset( $wgLocalFileRepo['backend'] ) ) {
+	// Create a default FileBackend name.
+	// FileBackendGroup will register a default, if absent from $wgFileBackends.
+	$wgLocalFileRepo['backend'] = $wgLocalFileRepo['name'] . '-backend';
+}
+
 /**
- * Initialise shared repo from backwards-compatible settings
+ * Shortcuts for $wgForeignFileRepos
  */
 if ( $wgUseSharedUploads ) {
 	if ( $wgSharedUploadDBname ) {
@@ -345,13 +352,6 @@ if ( $wgUseInstantCommons ) {
 		'descriptionCacheExpiry' => 43200,
 		'apiThumbCacheExpiry' => 0,
 	];
-}
-/*
- * Add on default file backend config for file repos.
- * FileBackendGroup will handle initializing the backends.
- */
-if ( !isset( $wgLocalFileRepo['backend'] ) ) {
-	$wgLocalFileRepo['backend'] = $wgLocalFileRepo['name'] . '-backend';
 }
 foreach ( $wgForeignFileRepos as &$repo ) {
 	if ( !isset( $repo['directory'] ) && $repo['class'] === ForeignAPIRepo::class ) {
