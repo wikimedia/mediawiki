@@ -2439,6 +2439,12 @@ users and/or IP addresses too.
 &$otherBlockLink: An array with links to other block logs
 $ip: The requested IP address or username
 
+'OutputPageAfterGetHeadLinksArray': Called in OutputPage#getHeadLinksArray right
+before returning the result.
+&$tags: array containing all <head> links generated so far. The array format is
+"link name or number => 'link HTML'".
+$out: the OutputPage object
+
 'OutputPageBeforeHTML': A page has been processed by the parser and the
 resulting HTML is about to be displayed.
 &$parserOutput: the parserOutput (object) that corresponds to the page
