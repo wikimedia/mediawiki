@@ -51,7 +51,7 @@
 	"config-unicode-using-intl": "用 [https://pecl.php.net/intl intl PECL 擴充套件] 做 Unicode 正規化。",
 	"config-unicode-pure-php-warning": "<strong>Kéng-kò:</strong> Bô-hoat-tō͘ iōng [https://pecl.php.net/intl intl PECL extension] chhú-lí Unicode chèng-kui-hoà, só͘-í thè kàu iōng sûn PHP si̍t-chok--ê chèng-kui-hoà têng-sek, chit khoán hong-sek chhú-lí sok-tō͘ khah bān. Nā lí--ê bāng-chām liú-lám--ê lâng chiâⁿ chē, lí èng-kai ài khoàⁿ [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations/zh Unicode chèng-kui-hoà].",
 	"config-unicode-update-warning": "<strong>警告</strong>：這馬安裝的 Unicode 正規化包裝程式用舊版 [http://site.icu-project.org/ ICU 計劃] 的程式庫。\n若你需要用 Unicode，你應該先進行 [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations 升級]。",
-	"config-no-db": "揣無適合的資料庫驅動程式！你需要安裝 PHP 資料庫驅動程式。\n這馬支援下跤類型的資料庫： $1 。\n\n若你是家己編譯 PHP，你需要重新設定並且開資料庫客戶端，譬如：用 <code>./configure --with-mysqli</code> 指令參數。\n如你是用 Debian 或 Ubuntu 的套件安裝，你著需要閣另外安裝，例：<code>php5-mysql</code> 套件。",
+	"config-no-db": "揣無適合的資料庫驅動程式！你需要安裝 PHP 資料庫驅動程式。\n這馬支援下跤類型的資料庫： $1 。\n\n若你是家己編譯 PHP，你需要重新設定並且開資料庫客戶端，譬如：用 <code>./configure --with-mysqli</code> 指令參數。\n如你是用 Debian 或 Ubuntu 的套件安裝，你著需要閣另外安裝，例：<code>php-mysql</code> 套件。",
 	"config-outdated-sqlite": "<strong>Kéng-kò:</strong> Lí í-keng an-chng SQLite $1, m̄-koh i--ê pán-pún pí thang-chng--ê pán-pún $2 khah kū. Só͘-í lí bô-hoat-tō͘ ēng SQLite.",
 	"config-no-fts3": "<strong>Kéng-kò: </strong> SQLite tī pian-e̍k--ê sî-chūn bô pau-koat  [//sqlite.org/fts3.html FTS3 module], āu-tâi chhiau-chhoē kong-lêng tiō ē bô-hoat-tō͘ iōng.",
 	"mainpagetext": "'''MediaWiki已經裝好矣。'''",
