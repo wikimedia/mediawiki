@@ -204,7 +204,14 @@ abstract class IndexPager extends ContextSource implements Pager {
 			# $index is not an array
 			$this->mOrderType = null;
 			$this->mIndexField = $index;
-			$this->mExtraSortFields = (array)$extraSort;
+			$isSortAssociative = array_values( $extraSort ) !== $extraSort;
+			if ( $isSortAssociative ) {
+				$this->mExtraSortFields = isset( $extraSort[$index] )
+					? (array)$extraSort[$index]
+					: [];
+			} else {
+				$this->mExtraSortFields = (array)$extraSort;
+			}
 		}
 
 		if ( !isset( $this->mDefaultDirection ) ) {
@@ -757,6 +764,11 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * If getIndexField() returns an array of 'querykey' => 'indexfield' pairs then
 	 * this must return a corresponding array of 'querykey' => [ fields... ] pairs
 	 * in order for a request with &count=querykey to use [ fields... ] to sort.
+	 *
+	 * If getIndexField() returns a string with the field to sort by, this must either:
+	 * 1 - return an associative array like above, but only the elements for the current
+	 *   field will be used.
+	 * 2 - return a non-associative array, for secondary keys to use always.
 	 *
 	 * This is useful for pagers that GROUP BY a unique column (say page_id)
 	 * and ORDER BY another (say page_len). Using GROUP BY and ORDER BY both on
