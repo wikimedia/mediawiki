@@ -13,7 +13,8 @@ describe( 'Special:RecentChanges', function () {
 		name = Util.getTestString();
 	} );
 
-	it( 'shows page creation', function () {
+	// Skip due to failures on many repos (T199644)
+	it.skip( 'shows page creation', function () {
 		EditPage.edit( name, content );
 
 		RecentChangesPage.open();
