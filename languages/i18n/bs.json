@@ -1421,6 +1421,8 @@
 	"rcfilters-watchlist-showupdated": "Izmjene na stranicama koje niste posjetili otkako su izvršene istaknute su <strong>podebljanim slovima</strong>, s ispunjenim kružićima.",
 	"rcfilters-preference-label": "Sakrij poboljšanu verziju nedavnih izmjena",
 	"rcfilters-preference-help": "Poništava novi izgled interfejsa iz 2017. i sve alate dodane od tada.",
+	"rcfilters-watchlist-preference-label": "Sakrij poboljšanu verziju spiska praćenja",
+	"rcfilters-watchlist-preference-help": "Poništava novi izgled interfejsa iz 2017. i sve alate dodane od tada.",
 	"rcnotefrom": "Ispod {{PLURAL:$5|je izmjena|su izmjene}} od <strong>$3, $4</strong> (do <strong>$1</strong> prikazano).",
 	"rclistfromreset": "Resetiraj izbor datuma",
 	"rclistfrom": "Prikaži nove izmjene počev od $3 u $2",

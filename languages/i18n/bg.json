@@ -2087,6 +2087,7 @@
 	"dellogpage": "Дневник на изтриванията",
 	"dellogpagetext": "Списък на последните изтривания.",
 	"deletionlog": "дневник на изтриванията",
+	"logentry-create-create": "$1 {{GENDER:$2|създаде}} страница $3",
 	"reverted": "Възвръщане към предишна версия",
 	"deletecomment": "Причина:",
 	"deleteotherreason": "Друга/допълнителна причина:",

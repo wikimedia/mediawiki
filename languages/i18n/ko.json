@@ -824,6 +824,7 @@
 	"converter-manual-rule-error": "언어 변환 규칙을 수동으로 지정하는 도중 오류",
 	"undo-success": "편집을 되돌릴 수 있습니다.\n이 편집을 되돌리려면 아래의 바뀐 내용을 확인한 후 저장해주세요.",
 	"undo-failure": "중간의 다른 편집과 충돌하여 이 편집을 되돌릴 수 없습니다.",
+	"undo-main-slot-only": "메인 슬롯 이외의 내용을 수반하기 때문에 이 편집의 실행을 취소할 수 없습니다.",
 	"undo-norev": "문서가 없거나 삭제되었기 때문에 편집을 되돌릴 수 없습니다.",
 	"undo-nochange": "편집이 이미 되돌려진 것으로 나타납니다.",
 	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|토론]])의 $1판 편집을 되돌림",
