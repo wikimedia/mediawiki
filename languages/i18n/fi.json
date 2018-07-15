@@ -2259,7 +2259,7 @@
 	"changecontentmodel-nodirectediting": "Sisältömalli $1 ei tue suoraa muokkaamista",
 	"changecontentmodel-emptymodels-title": "Mitään sisältömallia ei ole saatavilla",
 	"changecontentmodel-emptymodels-text": "Sisältöä sivulla [[:$1]] ei voida muuntaa mihinkään muotoon.",
-	"log-name-contentmodel": "Sisältömallin muutosloki",
+	"log-name-contentmodel": "Sisältömallin muutosten loki",
 	"log-description-contentmodel": "Tällä sivulla on lueteltu muutokset sivujen sisältömalliin, ja sivut, jotka on luotu muulla kuin oletussisältömallilla.",
 	"logentry-contentmodel-new": "$1 {{GENDER:$2|loi}} sivun $3 käyttäen normaalista poikkeavaa sisältömallia \"$5\"",
 	"logentry-contentmodel-change": "$1 {{GENDER:$2|muutti}} sivun $3 sisältömallia muodosta \"$4\" muotoon \"$5\"",

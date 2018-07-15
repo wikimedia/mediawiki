@@ -33,7 +33,8 @@
 			"Ole Yves",
 			"AttemptToCallNil",
 			"Movses",
-			"Stjn"
+			"Stjn",
+			"Edward Chernenko"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> MediaWiki API — зрелый и стабильный интерфейс, активно поддерживаемый и улучшаемый. Мы стараемся избегать ломающих изменений, однако изредка они могут быть необходимы. Подпишитесь на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].</p>",
@@ -368,7 +369,7 @@
 	"apihelp-parse-paramvalue-prop-headitems": "Возвращает элементы, которые следует поместить в <code>&lt;head&gt;</code> страницы.",
 	"apihelp-parse-paramvalue-prop-headhtml": "Возвращает распарсенный <code>&lt;head&gt;</code> страницы.",
 	"apihelp-parse-paramvalue-prop-modules": "Возвращает использованные на странице модули ResourceLoader. Для загрузки, используйте <code>mw.loader.using()</code>. Одновременно с <kbd>modules</kbd> должно быть запрошено либо <kbd>jsconfigvars</kbd>, либо <kbd>encodedjsconfigvars</kbd>.",
-	"apihelp-parse-paramvalue-prop-jsconfigvars": "Возвращает переменные JavaScript с данными настроек для этой страницы. Для их применения используйте <code>mw.condig.set()</code>.",
+	"apihelp-parse-paramvalue-prop-jsconfigvars": "Возвращает переменные JavaScript с данными настроек для этой страницы. Для их применения используйте <code>mw.config.set()</code>.",
 	"apihelp-parse-paramvalue-prop-encodedjsconfigvars": "Возвращает переменные JavaScript с данными настроек для этой страницы в виде JSON-строки.",
 	"apihelp-parse-paramvalue-prop-indicators": "Возвращает HTML-код индикаторов, использованных на данной странице.",
 	"apihelp-parse-paramvalue-prop-iwlinks": "Возвращает интервики-ссылки из распарсенного вики-текста.",

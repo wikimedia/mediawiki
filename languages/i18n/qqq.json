@@ -2338,7 +2338,7 @@
 	"logeventslist-submit": "Submit button on [[Special:Log]]\n{{Identical|Show}}",
 	"logeventslist-more-filters": "More filters label on [[Special:Log]]",
 	"logeventslist-patrol-log": "Patrol log option label on [[Special:Log]]",
-	"logeventslist-tag-log": "Patrol log option label on [[Special:Log]]",
+	"logeventslist-tag-log": "Tag log option label on [[Special:Log]]",
 	"all-logs-page": "{{doc-logpage}}\nTitle of [[Special:Log]].",
 	"alllogstext": "Header of [[Special:Log]]",
 	"logempty": "Used as warning when there are no items to show.",
