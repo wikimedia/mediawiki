@@ -193,6 +193,8 @@ because of Phabricator reports.
   Title::getDBKey(), which doesn't vary case.
 * User::getPasswordValidity() is now deprecated. User::checkPasswordValidity()
   returns the same information in a more useful format.
+* For Linker::generateTOC() and Linker::tocList(), passing strings or booleans
+  as the $lang parameter was deprecated. The same applies to DummyLinker.
 * …
 
 === Other changes in 1.33 ===
