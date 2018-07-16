@@ -16,7 +16,8 @@
 class ResourcesTest extends MediaWikiTestCase {
 
 	/**
-	 *
+	 * @dataProvider provideResourceFiles
+	 */
 	public function testFileExistence( $filename, $module, $resource ) {
 		$this->assertFileExists( $filename,
 			"File '$resource' referenced by '$module' must exist."
@@ -24,7 +25,8 @@ class ResourcesTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 *
+	 * @dataProvider provideMediaStylesheets
+	 */
 	public function testStyleMedia( $moduleName, $media, $filename, $css ) {
 		$cssText = CSSMin::minify( $css->cssText );
 
@@ -32,7 +34,7 @@ class ResourcesTest extends MediaWikiTestCase {
 			strpos( $cssText, '@media' ) === false,
 			'Stylesheets should not both specify "media" and contain @media'
 		);
-	}*/
+	}
 
 	public function testVersionHash() {
 		$data = self::getAllModules();

@@ -23,10 +23,6 @@ class LessTestSuite extends PHPUnit_Framework_TestSuite {
 					continue;
 				}
 
-				// dumb hack for fundraising/REL1_27 branch to pass tests
-				if ( stristr( $styleFile, 'Vector' ) !== false ) {
-					continue;
-				}
 				$this->addTest( new LessFileCompilationTest( $styleFile, $module ) );
 			}
 		}
