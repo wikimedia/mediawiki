@@ -2,7 +2,7 @@
 
 #require_once __DIR__ . "/../extensions/Arrays/Arrays.php";
 require_once __DIR__ . "/../extensions/CategoryTree/CategoryTree.php";
-require_once __DIR__ . "/../extensions/DynamicPageList/DynamicPageList.php";
+wfLoadExtension( 'DynamicPageList.php' );
 require_once __DIR__ . "/../extensions/HitCounters/HitCounters.php";
 require_once __DIR__ . "/../extensions/ImageMapEdit/ImageMapEdit.php";
 wfLoadExtension( 'Lockdown' );
