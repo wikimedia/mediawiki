@@ -17,6 +17,8 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 	/** @var ScopedCallback */
 	private $ptTeardownScope;
 
+	private $oldTablePrefix = '';
+
 	/**
 	 * @defgroup filtering_constants Filtering constants
 	 *
@@ -137,7 +139,9 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 		$type = $db->getType();
 		$prefix = $type === 'oracle' ?
 			MediaWikiTestCase::ORA_DB_PREFIX : MediaWikiTestCase::DB_PREFIX;
+		$this->oldTablePrefix = $db->tablePrefix();
 		MediaWikiTestCase::setupTestDB( $db, $prefix );
+		CloneDatabase::changePrefix( $prefix );
 		$teardown = $this->ptRunner->setDatabase( $db );
 		$teardown = $this->ptRunner->setupUploads( $teardown );
 		$this->ptTeardownScope = $teardown;
@@ -148,6 +152,7 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 		if ( $this->ptTeardownScope ) {
 			ScopedCallback::consume( $this->ptTeardownScope );
 		}
+		CloneDatabase::changePrefix( $this->oldTablePrefix );
 	}
 
 	/**
