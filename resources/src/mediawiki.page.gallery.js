@@ -22,20 +22,17 @@
 	 */
 	function justify() {
 		var lastTop,
-			$img,
-			imgWidth,
-			imgHeight,
-			captionWidth,
 			rows = [],
 			$gallery = $( this );
 
 		$gallery.children( 'li.gallerybox' ).each( function () {
-			// Math.floor to be paranoid if things are off by 0.00000000001
-			var top = Math.floor( $( this ).position().top ),
+			var $img, imgWidth, imgHeight, outerWidth, captionWidth,
+				// Math.floor, to be paranoid if things are off by 0.00000000001
+				top = Math.floor( $( this ).position().top ),
 				$this = $( this );
 
 			if ( top !== lastTop ) {
-				rows[ rows.length ] = [];
+				rows.push( [] );
 				lastTop = top;
 			}
 
@@ -59,20 +56,21 @@
 			}
 
 			captionWidth = $this.children().children( 'div.gallerytextwrapper' ).width();
-			rows[ rows.length - 1 ][ rows[ rows.length - 1 ].length ] = {
+			outerWidth = $this.outerWidth();
+			rows[ rows.length - 1 ].push( {
 				$elm: $this,
-				width: $this.outerWidth(),
+				width: outerWidth,
 				imgWidth: imgWidth,
-				// XXX: can divide by 0 ever happen?
+				// FIXME: Deal with devision by 0.
 				aspect: imgWidth / imgHeight,
 				captionWidth: captionWidth,
 				height: imgHeight
-			};
+			} );
 
 			// Save all boundaries so we can restore them on window resize
 			$this.data( 'imgWidth', imgWidth );
 			$this.data( 'imgHeight', imgHeight );
-			$this.data( 'width', $this.outerWidth() );
+			$this.data( 'width', outerWidth );
 			$this.data( 'captionWidth', captionWidth );
 		} );
 
@@ -173,7 +171,6 @@
 					$innerDiv = $outerDiv.children( 'div' ).first();
 					$imageDiv = $innerDiv.children( 'div.thumb' );
 					$imageElm = $imageDiv.find( 'img' ).first();
-					imageElm = $imageElm.length ? $imageElm[ 0 ] : null;
 					$caption = $outerDiv.find( 'div.gallerytextwrapper' );
 
 					// Since we are going to re-adjust the height, the vertical
@@ -195,8 +192,9 @@
 						$caption.width( curRow[ j ].captionWidth + ( newWidth - curRow[ j ].imgWidth ) );
 					}
 
-					if ( imageElm ) {
-						// We don't always have an img, e.g. in the case of an invalid file.
+					// We don't always have an img, e.g. in the case of an invalid file.
+					if ( $imageElm[ 0 ] ) {
+						imageElm = $imageElm[ 0 ];
 						imageElm.width = newWidth;
 						imageElm.height = preferredHeight;
 					} else {
@@ -235,8 +233,8 @@
 			$( this ).find( 'div.gallerytextwrapper' ).width( captionWidth );
 
 			$imageElm = $( this ).find( 'img' ).first();
-			imageElm = $imageElm.length ? $imageElm[ 0 ] : null;
-			if ( imageElm ) {
+			if ( $imageElm[ 0 ] ) {
+				imageElm = $imageElm[ 0 ];
 				imageElm.width = imgWidth;
 				imageElm.height = imgHeight;
 			} else {
