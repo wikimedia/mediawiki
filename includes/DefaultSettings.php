@@ -8912,7 +8912,7 @@ $wgCommentTableSchemaMigrationStage = MIGRATION_OLD;
  * @since 1.32
  * @var int An appropriate combination of SCHEMA_COMPAT_XXX flags.
  */
-$wgMultiContentRevisionSchemaMigrationStage = MIGRATION_OLD;
+$wgMultiContentRevisionSchemaMigrationStage = SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD;
 
 /**
  * Actor table schema migration stage.
