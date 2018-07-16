@@ -3530,6 +3530,13 @@ class OutputPage extends ContextSource {
 			] );
 		}
 
+		// Allow extensions to add, remove and/or otherwise manipulate these links
+		// If you want only to *add* <head> links, please use the addHeadItem()
+		// (or addHeadItems() for multiple items) method instead.
+		// This hook is provided as a last resort for extensions to modify these
+		// links before the output is sent to client.
+		Hooks::run( 'OutputPageAfterGetHeadLinksArray', [ &$tags, $this ] );
+
 		return $tags;
 	}
 

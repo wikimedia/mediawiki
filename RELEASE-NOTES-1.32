@@ -53,6 +53,9 @@ production.
   pages.
 * The array of hidden options ($opts) passed to the 'SpecialSearchPowerBox' hook
   is now passed by reference, allowing extensions to modify or even unset it.
+* Added new 'OutputPageAfterGetHeadLinksArray' hook, allowing extensions to
+  modify the return value of OutputPage#getHeadLinksArray in order to add,
+  remove or otherwise alter the elements to be output in the page <head>.
 
 === External library changes in 1.32 ===
 * …
