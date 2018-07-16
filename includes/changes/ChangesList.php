@@ -44,7 +44,7 @@ class ChangesList extends ContextSource {
 	/** @var callable */
 	protected $changeLinePrefixer;
 
-	/** @var BagOStuff */
+	/** @var MapCacheLRU */
 	protected $watchMsgCache;
 
 	/**
@@ -72,7 +72,7 @@ class ChangesList extends ContextSource {
 			$this->skin = $obj;
 		}
 		$this->preCacheMessages();
-		$this->watchMsgCache = new HashBagOStuff( [ 'maxKeys' => 50 ] );
+		$this->watchMsgCache = new MapCacheLRU( 50 );
 		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$this->filterGroups = $filterGroups;
 	}
@@ -602,10 +602,9 @@ class ChangesList extends ContextSource {
 		if ( $count <= 0 ) {
 			return '';
 		}
-		$cache = $this->watchMsgCache;
-		return $cache->getWithSetCallback(
-			$cache->makeKey( 'watching-users-msg', $count ),
-			$cache::TTL_INDEFINITE,
+
+		return $this->watchMsgCache->getWithSetCallback(
+			"watching-users-msg:$count",
 			function () use ( $count ) {
 				return $this->msg( 'number_of_watching_users_RCview' )
 					->numParams( $count )->escaped();
