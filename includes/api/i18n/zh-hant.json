@@ -204,6 +204,8 @@
 	"apihelp-query+allredirects-param-limit": "要回傳的項目總數。",
 	"apihelp-query+allrevisions-summary": "列出所有修訂版本。",
 	"apihelp-query+alltransclusions-param-limit": "要回傳的項目總數。",
+	"apihelp-query+allusers-param-from": "起始列舉的使用者名稱。",
+	"apihelp-query+allusers-example-Y": "列出以<kbd>Y</kbd>開頭的使用者。",
 	"apihelp-query+authmanagerinfo-summary": "取得目前身分核對狀態的資訊。",
 	"apihelp-query+categories-param-limit": "要回傳的分類數量。",
 	"apihelp-query+categoryinfo-summary": "回傳有關指定分類的資訊。",

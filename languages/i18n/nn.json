@@ -1896,6 +1896,7 @@
 	"dellogpage": "Slettelogg",
 	"dellogpagetext": "Her er ei liste over dei siste slettingane.",
 	"deletionlog": "slettelogg",
+	"logentry-create-create": "$1 {{GENDER:$2|oppretta}} sida $3",
 	"reverted": "Attenderulla til ein tidlegare versjon",
 	"deletecomment": "Årsak:",
 	"deleteotherreason": "Annan grunn:",
