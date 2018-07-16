@@ -16666,7 +16666,7 @@ Section headings with TOC
 Some text
 ===Another headline===
 !! html
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Headline_1"><span class="tocnumber">1</span> <span class="toctext">Headline 1</span></a>
 <ul>
@@ -16709,7 +16709,7 @@ __FORCETOC__
 ==Headline 2==
 ==Headline==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Headline_2"><span class="tocnumber">1</span> <span class="toctext">Headline 2</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Headline"><span class="tocnumber">2</span> <span class="toctext">Headline</span></a></li>
@@ -16743,7 +16743,7 @@ parsoid=wt2html
 =========Level 9 Heading=========
 ==========Level 10 Heading==========
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Level_1_Heading"><span class="tocnumber">1</span> <span class="toctext">Level 1 Heading</span></a>
 <ul>
@@ -16807,7 +16807,7 @@ TOC regression (T11764)
 ==title 2==
 ===title 2.1===
 !! html
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
 <ul>
@@ -16842,7 +16842,7 @@ TOC for heading containing <span id="..."></span> (T96153)
 __FORCETOC__
 ==<span id="old-anchor"></span>New title==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#New_title"><span class="tocnumber">1</span> <span class="toctext">New title</span></a></li>
 </ul>
@@ -16864,7 +16864,7 @@ wgMaxTocLevel=3
 ==title 2==
 ===title 2.1===
 !! html
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
 <ul>
@@ -16900,7 +16900,7 @@ wgMaxTocLevel=3
 ====Section 1.1.1.1====
 ==Section 2==
 !! html
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a>
 <ul>
@@ -16993,7 +16993,7 @@ __TOC__
 ===title 1.1===
 ==title 2==
 !! html
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
 <ul>
@@ -17069,7 +17069,7 @@ section 5
 !! html/php
 <p>The tooltips shall not show entities to the user (ie. be double escaped)
 </p>
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#text_.3E_text"><span class="tocnumber">1</span> <span class="toctext">text &gt; text</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#text_.3C_text"><span class="tocnumber">2</span> <span class="toctext">text &lt; text</span></a></li>
@@ -17145,7 +17145,7 @@ section 6
 !! html/php
 <p>Id should not contain + for spaces
 </p>
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Space_between_Text"><span class="tocnumber">1</span> <span class="toctext">Space between Text</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Space-Entity_between_Text"><span class="tocnumber">2</span> <span class="toctext">Space-Entity&#32;between&#32;Text</span></a></li>
@@ -17221,7 +17221,7 @@ parsoid=wt2html,wt2wt,html2html
 =''italic'' heading==
 ==''italic'' heading=
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#foo.3D"><span class="tocnumber">1</span> <span class="toctext">foo=</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#.3Dfoo"><span class="tocnumber">2</span> <span class="toctext">=foo</span></a></li>
@@ -17256,7 +17256,7 @@ HTML headers vs TOC (T25393)
 ==Header 2.2==
 __NOEDITSECTION__
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1"><a href="#Header_1"><span class="tocnumber">1</span> <span class="toctext">Header 1</span></a>
 <ul>
@@ -19182,7 +19182,7 @@ Fuzz testing: Parser14
 http://__TOC__
 !! html/php
 <h2><span class="mw-headline" id="onmouseover.3D">onmouseover=</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: onmouseover=">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-http://<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+http://<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#onmouseover.3D"><span class="tocnumber">1</span> <span class="toctext">onmouseover=</span></a></li>
 </ul>
@@ -19191,7 +19191,7 @@ http://<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" c
 
 !! html/php+tidy
 <h2><span class="mw-headline" id="onmouseover.3D">onmouseover=</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: onmouseover=">edit</a><span class="mw-editsection-bracket">]</span></span></h2><p>
-http://</p><div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+http://</p><div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#onmouseover.3D"><span class="tocnumber">1</span> <span class="toctext">onmouseover=</span></a></li>
 </ul>
@@ -21763,7 +21763,7 @@ Out-of-order TOC heading levels
 =====5=====
 ==2==
 !! html
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#2"><span class="tocnumber">1</span> <span class="toctext">2</span></a>
 <ul>
@@ -24433,7 +24433,7 @@ title=[[Main Page]]
 __TOC__
 ==''Lost'' episodes==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Lost_episodes"><span class="tocnumber">1</span> <span class="toctext"><i>Lost</i> episodes</span></a></li>
 </ul>
@@ -24454,7 +24454,7 @@ title=[[Main Page]]
 __TOC__
 =='''should be bold''' then normal text==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#should_be_bold_then_normal_text"><span class="tocnumber">1</span> <span class="toctext"><b>should be bold</b> then normal text</span></a></li>
 </ul>
@@ -24475,7 +24475,7 @@ title=[[Main Page]]
 __TOC__
 ==Image [[Image:foobar.jpg]]==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Image"><span class="tocnumber">1</span> <span class="toctext">Image</span></a></li>
 </ul>
@@ -24496,7 +24496,7 @@ title=[[Main Page]]
 __TOC__
 ==<blockquote>Quote</blockquote>==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Quote"><span class="tocnumber">1</span> <span class="toctext">Quote</span></a></li>
 </ul>
@@ -24505,7 +24505,7 @@ __TOC__
 <h2><span class="mw-headline" id="Quote"><blockquote>Quote</blockquote></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Quote">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
 !! html/php+tidy
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Quote"><span class="tocnumber">1</span> <span class="toctext">Quote</span></a></li>
 </ul>
@@ -24529,7 +24529,7 @@ __TOC__
 <small>Hanc marginis exiguitas non caperet.</small>
 QED
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Proof:_2_&lt;_3"><span class="tocnumber">1</span> <span class="toctext">Proof: 2 &lt; 3</span></a></li>
 </ul>
@@ -24554,7 +24554,7 @@ __TOC__
 
 ==<i>Foo</i> <blockquote>Bar</blockquote>==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Foo_Bar"><span class="tocnumber">1</span> <span class="toctext"><i>Foo</i> <b>Bar</b></span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext"><i>Foo</i> Bar</span></a></li>
@@ -24565,7 +24565,7 @@ __TOC__
 <h2><span class="mw-headline" id="Foo_Bar_2"><i>Foo</i> <blockquote>Bar</blockquote></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
 !! html/php+tidy
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Foo_Bar"><span class="tocnumber">1</span> <span class="toctext"><i>Foo</i> <b>Bar</b></span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext"><i>Foo</i> Bar</span></a></li>
@@ -24593,7 +24593,7 @@ __TOC__
 
 ==<sup class="a > b">Evilbye</sup>==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Hello"><span class="tocnumber">1</span> <span class="toctext"><sup>Hello</sup></span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#b.22.3EEvilbye"><span class="tocnumber">2</span> <span class="toctext"><sup> b"&gt;Evilbye</sup></span></a></li>
@@ -24624,7 +24624,7 @@ __TOC__
 
 ==<span dir="ltr" style="font-style: italic">Attributes after dir on these span tags must be deleted from the TOC</span>==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#C.2B.2B"><span class="tocnumber">1</span> <span class="toctext"><span dir="ltr">C++</span></span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#.D7.96.D7.91.D7.A0.D7.92.21"><span class="tocnumber">2</span> <span class="toctext"><span dir="rtl">זבנג!</span></span></a></li>
@@ -24655,7 +24655,7 @@ T74884: bdi element in ToC
 __TOC__
 ==<bdi>test</bdi>==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#test"><span class="tocnumber">1</span> <span class="toctext"><bdi>test</bdi></span></a></li>
 </ul>
@@ -24674,7 +24674,7 @@ T35715: s/strike element in ToC
 __TOC__
 ==<s>test</s> test <strike>test</strike>==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#test_test_test"><span class="tocnumber">1</span> <span class="toctext"><s>test</s> test <strike>test</strike></span></a></li>
 </ul>
@@ -24693,7 +24693,7 @@ Empty <p> tag in TOC, removed by Sanitizer (T92892)
 __TOC__
 ==x==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#x"><span class="tocnumber">1</span> <span class="toctext">x</span></a></li>
 </ul>
@@ -30615,7 +30615,7 @@ wgFragmentMode=[ 'html5', 'legacy' ]
 [[#啤酒]] [[#%E5%95%A4%E9%85%92]]
 
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Foo_bar"><span class="tocnumber">1</span> <span class="toctext">Foo bar</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext">foo Bar</span></a></li>
@@ -30681,7 +30681,7 @@ wgFragmentMode=[ 'legacy', 'html5' ]
 [[#啤酒]] [[#%E5%95%A4%E9%85%92]]
 
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Foo_bar"><span class="tocnumber">1</span> <span class="toctext">Foo bar</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext">foo Bar</span></a></li>
@@ -30729,7 +30729,7 @@ wgFragmentMode=[ 'html5' ]
 [[#啤酒]] [[#%E5%95%A4%E9%85%92]]
 
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Foo_bar"><span class="tocnumber">1</span> <span class="toctext">Foo bar</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext">foo Bar</span></a></li>
