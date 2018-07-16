@@ -1734,6 +1734,7 @@
 	"tags-delete-too-many-uses": "L'etiketo \"$1\" uzesas en plua kam $2 {{PLURAL:$2|revizo|revizi}}, do ol ne povas eskartesar.",
 	"tags-delete-warnings-after-delete": "L'etiketo \"$1\" efacesis, ma la sequanta {{PLURAL:$2|avizo|avizi}} renkontresis:",
 	"tags-activate-not-found": "L'etiketo \"$1\" ne existas.",
+	"tags-update-blocked": "Dum ke {{GENDER:$1|vu}} blokusabos, vu ne povos modifikar od efacar etiketi.",
 	"dberr-problems": "Pardonez! Ica retopagino subisas teknikala problemi.",
 	"dberr-again": "Voluntez vartar kelka minuti, e riprobez acesar ol.",
 	"dberr-info": "(Ne povis acesar la datumaro: $1)",

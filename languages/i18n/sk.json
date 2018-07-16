@@ -2080,6 +2080,8 @@
 	"dellogpage": "Záznam zmazaní",
 	"dellogpagetext": "Tu je zoznam posledných zmazaní.",
 	"deletionlog": "záznam zmazaní",
+	"log-name-create": "Záznam vytvorení stránok",
+	"log-description-create": "Toto je zoznam posledných vytvorených stránok.",
 	"reverted": "Obnovené na skoršiu verziu",
 	"deletecomment": "Dôvod:",
 	"deleteotherreason": "Iný/ďalší dôvod:",
