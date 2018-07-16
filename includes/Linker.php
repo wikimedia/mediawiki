@@ -1564,6 +1564,7 @@ class Linker {
 		return '<div id="toc" class="toc">'
 			. Html::element( 'input', [
 				'type' => 'checkbox',
+				'role' => 'button',
 				'id' => 'toctogglecheckbox',
 				'class' => 'toctogglecheckbox',
 				'style' => 'display:none',
