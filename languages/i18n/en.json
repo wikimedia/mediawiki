@@ -3107,8 +3107,6 @@
 	"markedaspatrollederrornotify": "Marking as patrolled failed.",
 	"patrol-log-page": "Patrol log",
 	"patrol-log-header": "This is a log of patrolled revisions.",
-	"log-show-hide-patrol": "$1 patrol log",
-	"log-show-hide-tag": "$1 tag log",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Mark revision $3 of $2 as patrolled?",
 	"deletedrevision": "Deleted old revision $1",
