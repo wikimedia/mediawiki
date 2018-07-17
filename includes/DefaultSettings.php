@@ -7766,8 +7766,8 @@ $wgLogRestrictions = [
  * hidden by default unless the link is clicked. Import logs will be shown by
  * default, and hidden when the link is clicked.
  *
- * A message of the form log-show-hide-[type] should be added, and will be used
- * for the link text.
+ * A message of the form logeventslist-[type]-log should be added, and will be
+ * used for the link text.
  */
 $wgFilterLogTypes = [
 	'patrol' => true,
