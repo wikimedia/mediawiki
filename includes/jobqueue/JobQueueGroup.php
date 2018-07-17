@@ -62,7 +62,7 @@ class JobQueueGroup {
 	protected function __construct( $wiki, $readOnlyReason ) {
 		$this->wiki = $wiki;
 		$this->readOnlyReason = $readOnlyReason;
-		$this->cache = new ProcessCacheLRU( 10 );
+		$this->cache = new MapCacheLRU( 10 );
 	}
 
 	/**
@@ -154,8 +154,8 @@ class JobQueueGroup {
 			$this->get( $type )->push( $jobs );
 		}
 
-		if ( $this->cache->has( 'queues-ready', 'list' ) ) {
-			$list = $this->cache->get( 'queues-ready', 'list' );
+		if ( $this->cache->hasField( 'queues-ready', 'list' ) ) {
+			$list = $this->cache->getField( 'queues-ready', 'list' );
 			if ( count( array_diff( array_keys( $jobsByType ), $list ) ) ) {
 				$this->cache->clear( 'queues-ready' );
 			}
@@ -244,10 +244,10 @@ class JobQueueGroup {
 			}
 		} else { // any job in the "default" jobs types
 			if ( $flags & self::USE_CACHE ) {
-				if ( !$this->cache->has( 'queues-ready', 'list', self::PROC_CACHE_TTL ) ) {
-					$this->cache->set( 'queues-ready', 'list', $this->getQueuesWithJobs() );
+				if ( !$this->cache->hasField( 'queues-ready', 'list', self::PROC_CACHE_TTL ) ) {
+					$this->cache->setField( 'queues-ready', 'list', $this->getQueuesWithJobs() );
 				}
-				$types = $this->cache->get( 'queues-ready', 'list' );
+				$types = $this->cache->getField( 'queues-ready', 'list' );
 			} else {
 				$types = $this->getQueuesWithJobs();
 			}
