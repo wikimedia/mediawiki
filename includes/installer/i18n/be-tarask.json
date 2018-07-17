@@ -124,7 +124,7 @@
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] — невялікая сыстэма базы зьвестак, якая мае вельмі добрую падтрымку. ([https://secure.php.net/manual/en/pdo.installation.php Як кампіляваць PHP з падтрымкай SQLite], выкарыстоўвае PDO)",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] зьяўляецца камэрцыйнай прафэсійнай базай зьвестак. ([https://secure.php.net/manual/en/oci8.installation.php Як скампіляваць PHP з падтрымкай OCI8])",
 	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] — камэрцыйная база зьвестак для Windows. ([https://secure.php.net/manual/en/sqlsrv.installation.php Як скампіляваць PHP з падтрымкай SQLSRV])",
-	"config-header-mysql": "Налады MySQL",
+	"config-header-mysql": "Налады MariaDB/MySQL",
 	"config-header-postgres": "Налады PostgreSQL",
 	"config-header-sqlite": "Налады SQLite",
 	"config-header-oracle": "Налады Oracle",

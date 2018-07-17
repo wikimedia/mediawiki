@@ -783,7 +783,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Tyhjä objekti",
 	"content-json-empty-array": "Tyhjä array",
-	"deprecated-self-close-category": "Sivut, joissa on virheellisiä itsensäsulkevia HTLM-tageja",
+	"deprecated-self-close-category": "Sivut, joissa on virheellisiä itsensäsulkevia HTML-tageja",
 	"deprecated-self-close-category-desc": "Sivulla on virheellisiä itsensäsulkevia HTML-tageja, kuten <code>&lt;b/></code> tai <code>&lt;span/></code>. Niiden käyttäytyminen muuttuu pian HTLM5:n määritysten mukaiseksi, joten niiden käyttö wikitekstissä on vanhentunut.",
 	"duplicate-args-warning": "<strong>Varoitus:</strong> [[:$1]] kutsuu mallinetta [[:$2]] niin, että parametrille \"$3\" on annettu enemmän kuin yksi arvo. Ainoastaan viimeksi annettu arvo otetaan huomioon.",
 	"duplicate-args-category": "Sivut, jotka käyttävät kaksinkertaisia argumentteja mallinekutsuissa",
