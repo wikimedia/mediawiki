@@ -189,8 +189,6 @@ because of Phabricator reports.
   CapsuleMultiselectWidget. The following methods may no longer be used:
   * setItemsFromData: Use setValue instead
   * getItemsData: Use getItems instead and get the data property
-* The hook 'LogEventsListGetExtraInputs' now needs a form descriptor array
-  and not plain HTML.
 * LanguageCode::bcp47() now always returns a valid BCP 47 code.  This means
   that some MediaWiki-specific language codes, such as `simple`, are mapped
   into valid BCP 47 codes (eg `en-simple`).
@@ -264,6 +262,8 @@ because of Phabricator reports.
 * (T100681) Use of the Parsoid v1 API with the VirtualRESTService, deprecated in
   MediaWiki 1.26,  is now hard-deprecated. All known clients were converted to
   the Parsoid v3 API in May 2015.
+* $input is deprecated in hook 'LogEventsListGetExtraInputs'. Use
+  $formDescriptor instead.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
