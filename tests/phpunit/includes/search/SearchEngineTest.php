@@ -340,4 +340,120 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			EDIT_NEW | EDIT_SUPPRESS_RC
 		);
 	}
+
+	public function provideDataForParseNamespacePrefix() {
+		return [
+			'noop' => [
+				[
+					'query' => 'foo',
+				],
+				false
+			],
+			'empty' => [
+				[
+					'query' => '',
+				],
+				false,
+			],
+			'namespace prefix' => [
+				[
+					'query' => 'help:test',
+				],
+				[ 'test', [ NS_HELP ] ],
+			],
+			'accented namespace prefix with hook' => [
+				[
+					'query' => 'hélp:test',
+					'withHook' => true,
+				],
+				[ 'test', [ NS_HELP ] ],
+			],
+			'accented namespace prefix without hook' => [
+				[
+					'query' => 'hélp:test',
+					'withHook' => false,
+				],
+				false,
+			],
+			'all with all keyword allowed' => [
+				[
+					'query' => 'all:test',
+					'withAll' => true,
+				],
+				[ 'test', null ],
+			],
+			'all with all keyword disallowed' => [
+				[
+					'query' => 'all:test',
+					'withAll' => false,
+				],
+				false
+			],
+			'ns only' => [
+				[
+					'query' => 'help:',
+				],
+				[ '', [ NS_HELP ] ]
+			],
+			'all only' => [
+				[
+					'query' => 'all:',
+					'withAll' => true,
+				],
+				[ '', null ]
+			],
+			'all wins over namespace when first' => [
+				[
+					'query' => 'all:help:test',
+					'withAll' => true,
+				],
+				[ 'help:test', null ]
+			],
+			'ns wins over all when first' => [
+				[
+					'query' => 'help:all:test',
+					'withAll' => true,
+				],
+				[ 'all:test', [ NS_HELP ] ]
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideDataForParseNamespacePrefix
+	 * @param array $params
+	 * @param  array|false $expected
+	 * @throws FatalError
+	 * @throws MWException
+	 */
+	public function testParseNamespacePrefix( array $params, $expected ) {
+		$this->setTemporaryHook( 'PrefixSearchExtractNamespace', function ( &$namespaces, &$query ) {
+			if ( strpos( $query, 'hélp:' ) === 0 ) {
+				$namespaces = [ NS_HELP ];
+				$query = substr( $query, strlen( 'hélp:' ) );
+			}
+			return false;
+		} );
+		$testSet = [];
+		if ( isset( $params['withAll'] ) && isset( $params['withHook'] ) ) {
+			$testSet[] = $params;
+		} elseif ( isset( $params['withAll'] ) ) {
+			$testSet[] = $params + [ 'withHook' => true ];
+			$testSet[] = $params + [ 'withHook' => false ];
+		} elseif ( isset( $params['withHook'] ) ) {
+			$testSet[] = $params + [ 'withAll' => true ];
+			$testSet[] = $params + [ 'withAll' => false ];
+		} else {
+			$testSet[] = $params + [ 'withAll' => true, 'withHook' => true ];
+			$testSet[] = $params + [ 'withAll' => true, 'withHook' => false ];
+			$testSet[] = $params + [ 'withAll' => false, 'withHook' => false ];
+			$testSet[] = $params + [ 'withAll' => true, 'withHook' => false ];
+		}
+
+		foreach ( $testSet as $test ) {
+			$actual = SearchEngine::parseNamespacePrefixes( $test['query'],
+				$test['withAll'], $test['withHook'] );
+			$this->assertEquals( $expected, $actual, 'with params: ' . print_r( $test, true ) );
+		}
+	}
 }

@@ -58,52 +58,12 @@ abstract class PrefixSearch {
 			return []; // Return empty result
 		}
 
-		$hasNamespace = $this->extractNamespace( $search );
-		if ( $hasNamespace ) {
-			list( $namespace, $search ) = $hasNamespace;
-			$namespaces = [ $namespace ];
-		} else {
-			$namespaces = $this->validateNamespaces( $namespaces );
-			Hooks::run( 'PrefixSearchExtractNamespace', [ &$namespaces, &$search ] );
+		$hasNamespace = SearchEngine::parseNamespacePrefixes( $search, false, true );
+		if ( $hasNamespace !== false ) {
+			list( $search, $namespaces ) = $hasNamespace;
 		}
 
 		return $this->searchBackend( $namespaces, $search, $limit, $offset );
-	}
-
-	/**
-	 * Figure out if given input contains an explicit namespace.
-	 *
-	 * @param string $input
-	 * @return false|array Array of namespace and remaining text, or false if no namespace given.
-	 */
-	protected function extractNamespace( $input ) {
-		if ( strpos( $input, ':' ) === false ) {
-			return false;
-		}
-
-		// Namespace prefix only
-		$title = Title::newFromText( $input . 'Dummy' );
-		if (
-			$title &&
-			$title->getText() === 'Dummy' &&
-			!$title->inNamespace( NS_MAIN ) &&
-			!$title->isExternal()
-		) {
-			return [ $title->getNamespace(), '' ];
-		}
-
-		// Namespace prefix with additional input
-		$title = Title::newFromText( $input );
-		if (
-			$title &&
-			!$title->inNamespace( NS_MAIN ) &&
-			!$title->isExternal()
-		) {
-			// getText provides correct capitalization
-			return [ $title->getNamespace(), $title->getText() ];
-		}
-
-		return false;
 	}
 
 	/**

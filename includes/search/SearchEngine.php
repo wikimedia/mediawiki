@@ -404,11 +404,21 @@ abstract class SearchEngine {
 	 * or namespace names
 	 *
 	 * @param string $query
+	 * @param bool $withAllKeyword activate support of the "all:" keyword and its
+	 * translations to activate searching on all namespaces.
+	 * @param bool $withPrefixSearchExtractNamespaceHook call the PrefixSearchExtractNamespace hook
+	 *  if classic namespace identification did not match.
 	 * @return false|array false if no namespace was extracted, an array
 	 * with the parsed query at index 0 and an array of namespaces at index
 	 * 1 (or null for all namespaces).
+	 * @throws FatalError
+	 * @throws MWException
 	 */
-	public static function parseNamespacePrefixes( $query ) {
+	public static function parseNamespacePrefixes(
+		$query,
+		$withAllKeyword = true,
+		$withPrefixSearchExtractNamespaceHook = false
+	) {
 		global $wgContLang;
 
 		$parsed = $query;
@@ -416,38 +426,46 @@ abstract class SearchEngine {
 			return false;
 		}
 		$extractedNamespace = null;
-		$allkeywords = [];
-
-		$allkeywords[] = wfMessage( 'searchall' )->inContentLanguage()->text() . ":";
-		// force all: so that we have a common syntax for all the wikis
-		if ( !in_array( 'all:', $allkeywords ) ) {
-			$allkeywords[] = 'all:';
-		}
 
 		$allQuery = false;
-		foreach ( $allkeywords as $kw ) {
-			if ( strncmp( $query, $kw, strlen( $kw ) ) == 0 ) {
-				$extractedNamespace = null;
-				$parsed = substr( $query, strlen( $kw ) );
-				$allQuery = true;
-				break;
+		if ( $withAllKeyword ) {
+			$allkeywords = [];
+
+			$allkeywords[] = wfMessage( 'searchall' )->inContentLanguage()->text() . ":";
+			// force all: so that we have a common syntax for all the wikis
+			if ( !in_array( 'all:', $allkeywords ) ) {
+				$allkeywords[] = 'all:';
+			}
+
+			foreach ( $allkeywords as $kw ) {
+				if ( strncmp( $query, $kw, strlen( $kw ) ) == 0 ) {
+					$extractedNamespace = null;
+					$parsed = substr( $query, strlen( $kw ) );
+					$allQuery = true;
+					break;
+				}
 			}
 		}
 
 		if ( !$allQuery && strpos( $query, ':' ) !== false ) {
-			// TODO: should we unify with PrefixSearch::extractNamespace ?
 			$prefix = str_replace( ' ', '_', substr( $query, 0, strpos( $query, ':' ) ) );
 			$index = $wgContLang->getNsIndex( $prefix );
 			if ( $index !== false ) {
 				$extractedNamespace = [ $index ];
 				$parsed = substr( $query, strlen( $prefix ) + 1 );
+			} elseif ( $withPrefixSearchExtractNamespaceHook ) {
+				$hookNamespaces = [ NS_MAIN ];
+				$hookQuery = $query;
+				Hooks::run( 'PrefixSearchExtractNamespace', [ &$hookNamespaces, &$hookQuery ] );
+				if ( $hookQuery !== $query ) {
+					$parsed = $hookQuery;
+					$extractedNamespace = $hookNamespaces;
+				} else {
+					return false;
+				}
 			} else {
 				return false;
 			}
-		}
-
-		if ( trim( $parsed ) == '' ) {
-			$parsed = $query; // prefix was the whole query
 		}
 
 		return [ $parsed, $extractedNamespace ];
@@ -532,34 +550,11 @@ abstract class SearchEngine {
 	 * @return string Simplified search string
 	 */
 	protected function normalizeNamespaces( $search ) {
-		// Find a Title which is not an interwiki and is in NS_MAIN
-		$title = Title::newFromText( $search );
-		$ns = $this->namespaces;
-		if ( $title && !$title->isExternal() ) {
-			$ns = [ $title->getNamespace() ];
-			$search = $title->getText();
-			if ( $ns[0] == NS_MAIN ) {
-				$ns = $this->namespaces; // no explicit prefix, use default namespaces
-				Hooks::run( 'PrefixSearchExtractNamespace', [ &$ns, &$search ] );
-			}
-		} else {
-			$title = Title::newFromText( $search . 'Dummy' );
-			if ( $title && $title->getText() == 'Dummy'
-					&& $title->getNamespace() != NS_MAIN
-					&& !$title->isExternal()
-			) {
-				$ns = [ $title->getNamespace() ];
-				$search = '';
-			} else {
-				Hooks::run( 'PrefixSearchExtractNamespace', [ &$ns, &$search ] );
-			}
+		$queryAndNs = self::parseNamespacePrefixes( $search, false, true );
+		if ( $queryAndNs !== false ) {
+			$this->setNamespaces( $queryAndNs[1] );
+			return $queryAndNs[0];
 		}
-
-		$ns = array_map( function ( $space ) {
-			return $space == NS_MEDIA ? NS_FILE : $space;
-		}, $ns );
-
-		$this->setNamespaces( $ns );
 		return $search;
 	}
 
