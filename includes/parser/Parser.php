@@ -4216,6 +4216,13 @@ class Parser {
 			# Avoid insertion of weird stuff like <math> by expanding the relevant sections
 			$safeHeadline = $this->mStripState->unstripBoth( $safeHeadline );
 
+			# Remove any <style> or <script> tags (T198618)
+			$safeHeadline = preg_replace(
+				'#<(style|script)(?: [^>]*[^>/])?>.*?</\1>#is',
+				'',
+				$safeHeadline
+			);
+
 			# Strip out HTML (first regex removes any tag not allowed)
 			# Allowed tags are:
 			# * <sup> and <sub> (T10393)
