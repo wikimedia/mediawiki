@@ -24,8 +24,6 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\TimestampException;
-use Wikimedia\Rdbms\DBQueryError;
-use Wikimedia\Rdbms\DBError;
 
 /**
  * This is the main API class, used for both external and internal processing.
@@ -1038,9 +1036,7 @@ class ApiMain extends ApiBase {
 			$config = $this->getConfig();
 			$class = preg_replace( '#^Wikimedia\\\Rdbms\\\#', '', get_class( $e ) );
 			$code = 'internal_api_error_' . $class;
-			if ( ( $e instanceof DBQueryError ) && !$config->get( 'ShowSQLErrors' ) ) {
-				$params = [ 'apierror-databaseerror', WebRequest::getRequestId() ];
-			} else {
+			if ( $config->get( 'ShowExceptionDetails' ) ) {
 				if ( $e instanceof ILocalizedException ) {
 					$msg = $e->getMessageObject();
 				} elseif ( $e instanceof MessageSpecifier ) {
@@ -1049,7 +1045,10 @@ class ApiMain extends ApiBase {
 					$msg = wfEscapeWikiText( $e->getMessage() );
 				}
 				$params = [ 'apierror-exceptioncaught', WebRequest::getRequestId(), $msg ];
+			} else {
+				$params = [ 'apierror-exceptioncaughttype', WebRequest::getRequestId(), get_class( $e ) ];
 			}
+
 			$messages[] = ApiMessage::create( $params, $code );
 		}
 		return $messages;
@@ -1113,9 +1112,7 @@ class ApiMain extends ApiBase {
 				)
 			);
 		} else {
-			if ( $config->get( 'ShowExceptionDetails' ) &&
-				( !$e instanceof DBError || $config->get( 'ShowDBErrorBacktrace' ) )
-			) {
+			if ( $config->get( 'ShowExceptionDetails' ) ) {
 				$result->addContentValue(
 					$path,
 					'trace',

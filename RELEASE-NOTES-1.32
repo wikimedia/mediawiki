@@ -279,6 +279,10 @@ because of Phabricator reports.
   'log-show-hide-[type]' format. Instead use 'logeventslist-[type]-log'.
 * Global functions  wfArrayFilter() and wfArrayFilterByKey() are deprecated.
   use array_filter() directly.
+* The $wgShowSQLErrors global is deprecated and nonfunctional.
+  Set $wgShowExceptionDetails and/or $wgShowHostnames instead.
+* The $wgShowDBErrorBacktrace global is deprecated and nonfunctional.
+  Set $wgShowExceptionDetails instead.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into

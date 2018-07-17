@@ -1725,12 +1725,9 @@ abstract class Installer {
 		$GLOBALS['wgLanguageConverterCacheType'] = CACHE_NONE;
 		// Debug-friendly
 		$GLOBALS['wgShowExceptionDetails'] = true;
+		$GLOBALS['wgShowHostnames'] = true;
 		// Don't break forms
 		$GLOBALS['wgExternalLinkTarget'] = '_blank';
-
-		// Extended debugging
-		$GLOBALS['wgShowSQLErrors'] = true;
-		$GLOBALS['wgShowDBErrorBacktrace'] = true;
 
 		// Allow multiple ob_flush() calls
 		$GLOBALS['wgDisableOutputCompression'] = true;

@@ -17,7 +17,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 
 		$contLang = Language::factory( 'en' );
 		$this->setMwGlobals( [
-			'wgShowDBErrorBacktrace' => true,
+			'wgShowExceptionDetails' => true,
 			'wgCleanSignatures' => true,
 		] );
 		$this->setUserLang( 'en' );
