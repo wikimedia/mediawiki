@@ -1394,7 +1394,7 @@ Non-word characters don't terminate tag names (T19663, T42670, T54022)
 <s.foo> doesn't terminate </s.foo>
 
 <sub-ID#1>
-!! html
+!! html/php
 <p>&lt;blockquote|&gt;a&lt;/blockquote&gt;
 </p><p>&lt;b→&gt; doesn't terminate &lt;/b→&gt;
 </p><p>&lt;bä&gt; doesn't terminate &lt;/bä&gt;
@@ -1457,12 +1457,10 @@ parsoid=wt2html
 </b>
 
 <s.foo>s</s>
-!! html/php+tidy
+!! html+tidy
 <p class="mw-empty-elt">
 </p><p>&lt;s.foo&gt;s
 </p>
-!! html/parsoid
-<p>&lt;s.foo&gt;s</p>
 !! end
 
 ###
@@ -2021,22 +2019,18 @@ a <div>foo</div>
 </p>
 !! end
 
-# Remex wraps empty tag runs with p-tags.
-# Parsoid strips them out during p-wrapping.
 !! test
 No p-wrappable content
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 <span><div>x</div></span>
 <span><s><div>x</div></s></span>
 <small><em></em></small><span><s><div>x</div></s></span>
-!! html/php+tidy
+!! html+tidy
 <span><div>x</div></span>
 <span><s><div>x</div></s></span>
 <p><small><em></em></small></p><span><s><div>x</div></s></span>
-!! html/parsoid
-<span><div>x</div></span>
-<span><s><div>x</div></s></span>
-<small><em></em></small><span><s><div>x</div></s></span>
 !! end
 
 # T177612: Parsoid-only test
@@ -2052,6 +2046,8 @@ x
 
 !! test
 Block tag on one line (<blockquote>)
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 a <blockquote>foo</blockquote>
 
@@ -2083,6 +2079,8 @@ b </p><div>foo</div>
 
 !! test
 Block tag on both lines (<blockquote>)
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 a <blockquote>foo</blockquote>
 
@@ -2122,12 +2120,6 @@ x </p><div>foo</div><p> z
 </p>
 !! end
 
-# The difference between Parsoid & Remex here
-# is because of Parsoid's Tidy-emulation code
-# for p-wrapping. We'll start work to remove this
-# emulation code in Parsoid sooner than later.
-# Remex wraps empty tag runs with p-tags.
-# Parsoid strips them out in a separate pass.
 !! test
 Empty lines between lines with block tags
 !! wikitext
@@ -2349,6 +2341,22 @@ hi
 </p>
 !! end
 
+!! test
+Dangling table row doesn't prevent p-wrapping
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+{|
+| hi
+|-
+|} ho
+!! html/parsoid
+<table>
+<tbody><tr><td>hi</td></tr>
+<tr class="mw-empty-elt"></tr>
+</tbody></table><p> ho</p>
+!! end
+
 ###
 ### Preformatted text
 ###
@@ -2486,6 +2494,8 @@ Bar
 
 !! test
 T17491: <ins>/<del> in blockquote
+!! options
+parsoid=wt2html
 !! wikitext
 <blockquote>
 Foo <del>bar</del> <ins>baz</ins> quux
@@ -2505,6 +2515,8 @@ Foo <del>bar</del> <ins>baz</ins> quux
 
 !! test
 T17491: <ins>/<del> in blockquote (2)
+!! options
+parsoid=wt2html
 !! wikitext
 <blockquote>Foo <del>bar</del> <ins>baz</ins> quux
 </blockquote>
@@ -2838,6 +2850,7 @@ Barack Obama <President> of the United States
 </p>
 !! end
 
+## Remex doesn't account for fostered content.
 !! test
 Handle broken pre-like tags (T66025)
 !! options
@@ -2856,7 +2869,7 @@ parsoid=wt2html
 !! html/parsoid
 <pre typeof="mw:Transclusion mw:Extension/pre" about="#mwt2" data-parsoid='{"stx":"html","a":{"&lt;pre":null},"sa":{"&lt;pre":""},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;pre &lt;pre>x&lt;/pre>"}},"i":0}}]}'>x</pre>
 
-<span data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'>&lt;pre </span><table data-parsoid='{"stx":"html"}'></table>
+<p data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'>&lt;pre </p><table data-parsoid='{"stx":"html"}'></table>
 !! end
 
 !! test
@@ -3518,8 +3531,10 @@ parsoid=wt2html,html2html
 </td></tr></tbody></table>
 !! end
 
-!!test
+!! test
 3a. Indent-Pre and block tags (single-line html)
+!! options
+parsoid=wt2html,html2html
 !! wikitext
  a <p> foo </p>
  b <div> foo </div>
@@ -3531,18 +3546,17 @@ parsoid=wt2html,html2html
  c <blockquote> foo </blockquote>
 <pre><span> foo </span>
 </pre>
-!! html/parsoid
- <p>a </p><p data-parsoid='{"stx":"html"}'> foo </p>
- <p>b </p><div data-parsoid='{"stx":"html"}'> foo </div>
- <p>c </p><blockquote data-parsoid='{"stx":"html"}'> foo </blockquote>
-<pre><span> foo </span>
-</pre>
 !! html/php+tidy
 <p> a </p><p> foo </p><p>
  b </p><div> foo </div><p>
  c </p><blockquote><p> foo </p></blockquote>
 <pre><span> foo </span>
 </pre>
+!! html/parsoid
+<p> a </p><p data-parsoid='{"stx":"html"}'> foo </p><p>
+ b </p><div data-parsoid='{"stx":"html"}'> foo </div><p>
+ c </p><blockquote data-parsoid='{"stx":"html"}'><p> foo </p></blockquote>
+<pre><span data-parsoid='{"stx":"html"}'> foo </span></pre>
 !! end
 
 !! test
@@ -3630,17 +3644,17 @@ foo
 
 !! test
 4. Indent-Pre and extension tags
+!! options
+parsoid=wt2html,html2html
 !! wikitext
  a <tag />
-!! html/php
- a <pre>
-NULL
+!! html/php+tidy
+<p> a </p><pre>NULL
 array (
 )
 </pre>
-
 !! html/parsoid
- a <pre typeof="mw:Extension/tag" about="#mwt2" data-parsoid='{}' data-mw='{"name":"tag","attrs":{},"body":null}'></pre>
+<p> a </p><pre typeof="mw:Extension/tag" about="#mwt2" data-mw='{"name":"tag","attrs":{},"body":null}'></pre>
 !! end
 
 !! test
@@ -6851,7 +6865,7 @@ parsoid=wt2html,html2html
 <p>ho"&gt;ha&lt;/div&gt;
 </p>
 !! html/parsoid
-<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"ho\">ha&lt;/div>"}},"i":0}}]}'>ho">ha</span>
+<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"ho\">ha&lt;/div>"}},"i":0}}]}'>ho">ha</p>
 !! end
 
 !! test
@@ -7313,10 +7327,11 @@ Wikitext table with html-syntax row
 <td>foo</td></tr></tbody></table>
 !! end
 
+## Remex doesn't account for fostered content.
 !! test
 Fostered content in tables: Plain text
 !! options
-parsoid=wt2html,html2html
+parsoid=wt2html
 !! wikitext
 {|
 |-
@@ -7334,9 +7349,9 @@ a
 a
 <table></table>
 !! html/parsoid
-<span data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'>
-a
-</span><table>
+<p data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'>
+a</p>
+<table>
 <tbody><tr class="mw-empty-elt" data-parsoid='{"startTagSrc":"|-"}'></tr></tbody></table>
 !! end
 
@@ -10150,6 +10165,8 @@ Unbalanced closing block tags break a list
 
 !! test
 Unbalanced closing non-block tags don't break a list
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 <span>
 *a</span><span>
@@ -10160,12 +10177,9 @@ Unbalanced closing non-block tags don't break a list
 <ul><li>a<span></span></li>
 <li>b</li></ul>
 !! html/parsoid
-<span>
-<ul>
-<li>a<span></span></li>
-<li>b</li>
-</ul>
-</span>
+<p><span data-parsoid='{"stx":"html","autoInsertedEnd":true}'></span></p>
+<ul><li>a<span data-parsoid='{"stx":"html","autoInsertedEnd":true}'></span></li>
+<li>b</li></ul>
 !! end
 
 # Parsoid does some post-dom-building cleanup
@@ -10186,14 +10200,7 @@ parsoid=wt2html,wt2wt,html2html
 !! end
 
 # Output is ugly because of all the misnested tag fixups.
-# Remex is wrapping p-tags around empty elements.
-# Parsoid has special-case handling of this pattern of
-# wrapping lists in formatting tags.
-# FIXME: Should we remove this code from Parsoid? Or add
-# special support in Remex? If the latter, maybe just wait
-# for Parsoid to become the default parser.
-# See T70395.
-!!test
+!! test
 1. List embedded in a formatting tag
 !! wikitext
 <small>
@@ -10204,17 +10211,13 @@ parsoid=wt2html,wt2wt,html2html
 </small></p><small><ul><li>foo</li></ul></small><small></small><p><small></small>
 </p>
 !! html/parsoid
-<small>
-<ul>
-<li>foo</li>
-</ul>
-</small>
-!!end
+<p><small data-parsoid='{"stx":"html","autoInsertedEnd":true}'></small></p><small data-parsoid='{"stx":"html","autoInsertedEnd":true,"autoInsertedStart":true}'>
+<ul><li data-parsoid='{}'>foo</li></ul></small>
+<p><small data-parsoid='{"stx":"html","autoInsertedStart":true}'></small></p>
+!! end
 
-# Output is ugly because of all the misnested tag fixups
-# Remex is wrapping p-tags around empty elements.
-# Parsoid has code that strips useless p-tags.
-!!test
+# Output is ugly because of all the misnested tag fixups.
+!! test
 2. List embedded in a formatting tag in a misnested way
 !! wikitext
 <small>
@@ -10225,13 +10228,10 @@ parsoid=wt2html,wt2wt,html2html
 </small></p><small></small><ul><small><li>a</li>
 </small><li><small>b</small></li></ul>
 !! html/parsoid
-<small></small>
-<ul><small>
-<li>a</li>
-</small>
-<li><small>b</small></li>
-</ul>
-!!end
+<p><small data-parsoid='{"stx":"html","autoInsertedEnd":true}'></small></p><p></p>
+<ul><small data-parsoid='{"stx":"html","autoInsertedEnd":true,"autoInsertedStart":true}'><li>a</li></small>
+<li><small data-parsoid='{"stx":"html","autoInsertedStart":true}'>b</small></li></ul>
+!! end
 
 ###
 ### Magic Words
@@ -12918,10 +12918,7 @@ Templates: Block Tags: 2. Back-to-back template uses
 
 !!end
 
-## This is an edge case relating to paragraph wrapping.
-## Note that Parsoid fails to match Remex because it's using the closing tag
-## as a heuristic to determine if it's in a block, rather than SAX based events.
-## And Parsoid drops empty elements in templates.
+## Parsoid drops empty elements in templates.
 !! test
 Templates: Correctly encapsulate templates producing </p> tag without a corresponding <p> tag
 !! wikitext
@@ -12933,7 +12930,7 @@ b</p>}}
 b</p><p class="mw-empty-elt"></p>
 !! html/parsoid
 <p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"a\nb&lt;/p>"}},"i":0}}]}'>a</p><span about="#mwt1">
-</span><span about="#mwt1">b</span>
+</span><p about="#mwt1">b</p>
 !! end
 
 !!test
@@ -13303,6 +13300,7 @@ parsoid=wt2html,wt2wt
 <link rel="mw:PageProp/Category" href="./Category:Bar1"><link rel="mw:PageProp/Category" href="./Category:Bar2"><table><tbody><tr><td>foo</td></tr></tbody></table>
 !!end
 
+## Remex doesn't account for fostered content.
 !! test
 Templates: Wiki Tables: 1a. Fostering of entire template content
 !! wikitext
@@ -13319,7 +13317,7 @@ a
 a
 <table><tbody><tr><td></td></tr></tbody></table>
 !! html/parsoid
-<span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"firstWikitextNode":"TABLE","pi":[[{"k":"1"}]]}' data-mw='{"parts":["{|\n",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"a"}},"i":0}},"\n|}"]}'>a</span><table about="#mwt2">
+<p about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"firstWikitextNode":"TABLE","pi":[[{"k":"1"}]]}' data-mw='{"parts":["{|\n",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"a"}},"i":0}},"\n|}"]}'>a</p><table about="#mwt2">
 
 </table>
 !! end
@@ -13355,6 +13353,7 @@ foo
 </table>
 !! end
 
+## Remex doesn't account for fostered content.
 !! test
 Templates: Wiki Tables: 2. Fostering of partial template content
 !! wikitext
@@ -13374,7 +13373,7 @@ a
 <div>b</div><table>
 <tbody><tr><td></td></tr></tbody></table>
 !! html/parsoid
-<span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"firstWikitextNode":"TABLE","pi":[[{"k":"1"}]]}' data-mw='{"parts":["{|\n",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"a\n&lt;div>b&lt;/div>"}},"i":0}},"\n|}"]}'>a</span><div about="#mwt2">b</div><table about="#mwt2">
+<p about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"firstWikitextNode":"TABLE","pi":[[{"k":"1"}]]}' data-mw='{"parts":["{|\n",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"a\n&lt;div>b&lt;/div>"}},"i":0}},"\n|}"]}'>a</p><div about="#mwt2">b</div><table about="#mwt2">
 
 
 </table>
@@ -13438,20 +13437,20 @@ Templates: Wiki Tables: 6. Templated tags, templated td-tags
 ## a <meta> marker tag for <ref> tags and they are expanded
 ## much later. We are verifying that this <meta> tag usage
 ## doesn't prevent foster parenting.
-!!test
+!! test
 Templates: Wiki Tables: 7. Fosterable <ref>s should get fostered
-!!wikitext
+!! wikitext
 {{PartialTable}}<ref>foo</ref>
 |}
 
 <references />
-!!html/parsoid
-<sup about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Transclusion  mw:Extension/ref" data-mw='{"parts":[{"template":{"target":{"wt":"PartialTable","href":"./Template:PartialTable"},"params":{},"i":0}},"&lt;ref>foo&lt;/ref>\n|}"]}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></sup><table about="#mwt2">
+!! html/parsoid
+<p about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"PartialTable","href":"./Template:PartialTable"},"params":{},"i":0}},"&lt;ref>foo&lt;/ref>\n|}"]}'><sup about="#mwt3" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></sup></p><table about="#mwt2">
 <tbody>
 </tbody></table>
 
-<ol class="mw-references references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li></ol>
-!!end
+<ol class="mw-references references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li></ol>
+!! end
 
 !! test
 Templates: Wiki Tables: 8. Fosterable meta-tags should get fostered
@@ -14579,8 +14578,8 @@ thumbsize=220
 </p>
 !! html/parsoid
 <p>123<figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></figure-inline>456</p>
-<p>123</p><figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></figure><p>456</p>
-<p>123</p><figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a></figure><p>456</p>
+<p>123</p><figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></figure><p>456
+123</p><figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a></figure><p>456</p>
 !! end
 
 !! test
@@ -17730,6 +17729,8 @@ Media link with text
 # Parsoid & Remex fix the p-wrapping since they operate on the DOM.
 !! test
 Media link with nasty text
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 [[Media:Foobar.jpg|Safe Link<div style=display:none>" onmouseover="alert(document.cookie)" onfoo="</div>]]
 !! html/php
@@ -17738,8 +17739,7 @@ Media link with nasty text
 !! html/php+tidy
 <p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Safe Link</a></p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg"><div style="display:none">" onmouseover="alert(document.cookie)" onfoo="</div></a>
 !! html/parsoid
-<p><a rel="mw:MediaLink" href="//example.com/images/3/3a/Foobar.jpg" title="Foobar.jpg" data-parsoid='{"autoInsertedEnd":true}'>Safe Link</a></p><div style="display:none" data-parsoid='{"stx":"html"}'><a rel="mw:MediaLink" href="//example.com/images/3/3a/Foobar.jpg" title="Foobar.jpg" data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'>" onmouseover="alert(document.cookie)" onfoo="</a></div>
-
+<p><a rel="mw:MediaLink" href="//example.com/images/3/3a/Foobar.jpg" title="Foobar.jpg">Safe Link</a></p><a rel="mw:MediaLink" href="//example.com/images/3/3a/Foobar.jpg" title="Foobar.jpg"><div style="display:none" data-parsoid='{"stx":"html"}'>" onmouseover="alert(document.cookie)" onfoo="</div></a>
 !! end
 
 !! test
@@ -18453,6 +18453,8 @@ array (
 
 !! test
 Parser hook: nested tags
+!! options
+parsoid=wt2html
 !! wikitext
 <tag><tag></tag></tag>
 !! html/php
@@ -18462,8 +18464,14 @@ array (
 )
 </pre>&lt;/tag&gt;
 
+!! html/php+tidy
+<pre>'<tag>'
+array (
+)
+</tag></pre><p>&lt;/tag&gt;
+</p>
 !! html/parsoid
-<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"&lt;tag>"}}' data-parsoid='{}' about="#mwt2"></pre>&lt;/tag>
+<pre typeof="mw:Extension/tag" about="#mwt2" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"&lt;tag>"}}'></pre><p>&lt;/tag></p>
 !! end
 
 !! test
@@ -18539,7 +18547,7 @@ array (
 </pre>text
 
 !! html/parsoid
-<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{"foo":"bar"},"body":null}' data-parsoid='{}' about="#mwt2"></pre>text
+<pre typeof="mw:Extension/tag" about="#mwt2" data-mw='{"name":"tag","attrs":{"foo":"bar"},"body":null}'></pre><p>text</p>
 !! end
 
 ## </tag> should be output literally since there is no matching tag that begins it
@@ -18671,8 +18679,6 @@ Nested template calls
 ### Sanitizer
 ###
 
-# Remex wraps empty tag runs with p-tags.
-# Parsoid strips them out during p-wrapping.
 !! test
 Sanitizer: Closing of open tags
 !! wikitext
@@ -18680,7 +18686,7 @@ Sanitizer: Closing of open tags
 !! html/php+tidy
 <p><s></s></p><table></table>
 !! html/parsoid
-<s></s><table></table>
+<p><s data-parsoid='{"stx":"html"}'></s></p><table data-parsoid='{"stx":"html"}'></table>
 !! end
 
 !! test
@@ -18698,10 +18704,9 @@ Sanitizer: Closing of closed but not open tags
 parsoid=wt2html
 !! wikitext
 </s>
-!! html/php+tidy
+!! html+tidy
 <p class="mw-empty-elt">
 </p>
-!! html/parsoid
 !! end
 
 !! test
@@ -19278,7 +19283,8 @@ http://===r:::https://b
 
 !! end
 
-# Known to produce bad XML for now
+## Remex doesn't account for fostered content.
+## Known to produce bad XML for now
 !! test
 Fuzz testing: Parser24
 !! options
@@ -19305,14 +19311,27 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 </tr>
 </table>
 
+!! html/php+tidy
+
+{{{|
+<u class="&#124;">}}}} &gt;
+<br style="onmouseover=&#39;alert(document.cookie);&#39;" />
+
+MOVE YOUR MOUSE CURSOR OVER THIS TEXT
+</u><table><tbody><tr>
+<td>
+</td>
+</tr>
+</tbody></table><p><u class="&#124;">
+</u></p>
 !! html/parsoid
-<p data-parsoid='{"fostered":true,"autoInsertedEnd":true}'>{{{|
+<p data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'>
+{{{|
 <u class="|" data-parsoid='{"stx":"html","a":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":null},"sa":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":""},"autoInsertedEnd":true}'><meta typeof="mw:Includes/NoInclude" data-parsoid='{"src":"&lt;noinclude>"}'/>}}}} >
-<br style="onmouseover='alert(document.cookie);' " data-parsoid='{"stx":"html","selfClose":true}'/></u></p><p data-parsoid='{"fostered":true,"autoInsertedEnd":true}'><u class="|" data-parsoid='{"stx":"html","a":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":null},"sa":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":""},"autoInsertedEnd":true,"autoInsertedStart":true}'>MOVE YOUR MOUSE CURSOR OVER THIS TEXT</u></p><table data-parsoid='{"autoInsertedEnd":true}'>
+<br style="onmouseover='alert(document.cookie);' " data-parsoid='{"stx":"html","selfClose":true}'/>
 
-
-
-<tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'></td></tr></tbody></table>
+MOVE YOUR MOUSE CURSOR OVER THIS TEXT</u></p>
+<table data-parsoid='{"autoInsertedEnd":true}'><tbody><tr data-parsoid='{"autoInsertedStart":true}'><td></td></tr></tbody></table>
 !! end
 
 # Note: the current result listed for this is not what the original one was,
@@ -19504,6 +19523,10 @@ New wiki paragraph
 <p><b>Bold paragraph
 </p><p>New wiki paragraph</b>
 </p>
+!! html/php+tidy
+<p><b>Bold paragraph
+</b></p><p><b>New wiki paragraph
+</b></p>
 !! html/parsoid
 <p><b>Bold paragraph</b>
 </p><p>New wiki paragraph
@@ -20453,7 +20476,7 @@ parsoid=wt2html
 '''''
 !! html/php
 !! html/parsoid
-<b><i></i></b>
+<p><b><i></i></b></p>
 !! end
 
 # same html as previous, but wikitext adjusted to match parsoid html2wt
@@ -22807,11 +22830,11 @@ language=zh variant=zh-cn
 <span>ad
 </span></div></span></div></span>
 !! html/parsoid
-<p><span data-parsoid='{"stx":"html","autoInsertedEnd":true}'>a</span></p><div typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"b&lt;div data-parsoid=&#39;{\"stx\":\"html\",\"autoInsertedEnd\":true,\"dsr\":[10,16,5,0]}&#39;>c&lt;/div>"}}'></div><p>d</p>
+<span data-parsoid='{"stx":"html","autoInsertedEnd":true}'>a<div typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"b&lt;div data-parsoid=&apos;{\"stx\":\"html\",\"autoInsertedEnd\":true,\"dsr\":[10,16,5,0]}&apos;>c&lt;/div>"}}'></div>d
 
-<p><span data-parsoid='{"stx":"html","autoInsertedEnd":true}'>a</span></p><div typeof="mw:LanguageVariant" data-mw-variant='{"filter":{"l":["zh","zh-hans","zh-hant"],"t":"b&lt;div data-parsoid=&#39;{\"stx\":\"html\",\"autoInsertedEnd\":true,\"dsr\":[50,56,5,0]}&#39;>c&lt;/div>"}}'></div><p>d</p>
+<span data-parsoid='{"stx":"html","autoInsertedEnd":true}'>a<div typeof="mw:LanguageVariant" data-mw-variant='{"filter":{"l":["zh","zh-hans","zh-hant"],"t":"b&lt;div data-parsoid=&apos;{\"stx\":\"html\",\"autoInsertedEnd\":true,\"dsr\":[50,56,5,0]}&apos;>c&lt;/div>"}}'></div>d
 
-<p><span data-parsoid='{"stx":"html","autoInsertedEnd":true}'>a<meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"0","l":"zh-cn","t":"x&lt;span data-parsoid=&#39;{\"stx\":\"html\",\"autoInsertedEnd\":true,\"dsr\":[82,89,6,0]}&#39;>y&lt;/span>"},{"f":"0","l":"zh-tw","t":"b&lt;div data-parsoid=&#39;{\"stx\":\"html\",\"autoInsertedEnd\":true,\"dsr\":[100,106,5,0]}&#39;>c&lt;/div>"}]}'/>d</span></p>
+<p><span data-parsoid='{"stx":"html","autoInsertedEnd":true}'>a<meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"0","l":"zh-cn","t":"x&lt;span data-parsoid=&apos;{\"stx\":\"html\",\"autoInsertedEnd\":true,\"dsr\":[82,89,6,0]}&apos;>y&lt;/span>"},{"f":"0","l":"zh-tw","t":"b&lt;div data-parsoid=&apos;{\"stx\":\"html\",\"autoInsertedEnd\":true,\"dsr\":[100,106,5,0]}&apos;>c&lt;/div>"}]}'/>d</span></p></span></span>
 !! end
 
 !! test
@@ -23095,10 +23118,8 @@ language=zh variant=zh-cn
 <dt>-{zh-cn:AAA</dt></b></dl><p><b>
 </b></p>
 !! html/parsoid
-<dl><dt data-parsoid='{"dsr":[0,11,1,0]}'><b data-parsoid='{"stx":"html","autoInsertedEnd":true}'>foo:bar</b></dt><b data-parsoid='{"stx":"html","autoInsertedEnd":true,"autoInsertedStart":true}'>
-<dt data-parsoid='{"dsr":[12,20,1,0]}'>-{zh-cn</dt>
-<dd data-parsoid='{"stx":"row","dsr":[20,24,1,0]}'>AAA</dd>
-</b></dl>
+<dl><dt data-parsoid='{}'><b data-parsoid='{"stx":"html","autoInsertedEnd":true}'>foo:bar</b></dt><b data-parsoid='{"stx":"html","autoInsertedEnd":true,"autoInsertedStart":true}'>
+<dt data-parsoid='{}'>-{zh-cn</dt><dd data-parsoid='{"stx":"row"}'>AAA</dd></b></dl>
 !! end
 
 !! test
@@ -23463,7 +23484,6 @@ Line two
 !! end
 
 # doBlockLevels screws up this output and Remex cleans up as much as it can.
-# Parsoid seems to do a better job here since its p-wrapper is probably smarter.
 !! test
 Nesting tags, paragraphs on lines which begin with <div>
 !! wikitext
@@ -23474,15 +23494,15 @@ B</strong>
 </strong></p><strong></strong><p><strong>B</strong>
 </p>
 !! html/parsoid
-<div></div>
-<p><strong>A
-B</strong>
-</p>
+<div data-parsoid='{"stx":"html"}'></div><p><strong data-parsoid='{"stx":"html","autoInsertedEnd":true}'>A</strong></p>
+<p><strong data-parsoid='{"stx":"html","autoInsertedStart":true}'>B</strong></p>
 !! end
 
 # T8200: <blockquote> should behave like <div> with respect to line breaks
 !! test
 T8200: paragraphs inside blockquotes (no extra line breaks)
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 <blockquote>Line one
 
@@ -23498,6 +23518,8 @@ Line two</p></blockquote>
 
 !! test
 T8200: paragraphs inside blockquotes (extra line break on open)
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 <blockquote>
 Line one
@@ -23516,9 +23538,10 @@ Line two</blockquote>
 Line two</p></blockquote>
 !! end
 
-# Parsoid's output is broken on this because of Tidy-compatibility cruft
 !! test
 T8200: paragraphs inside blockquotes (extra line break on close)
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 <blockquote>Line one
 
@@ -24514,7 +24537,7 @@ __TOC__
 <h2><span class="mw-headline" id="Quote"><blockquote><p>Quote</p></blockquote></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Quote">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 !! html/parsoid
 <meta property="mw:PageProp/toc" data-parsoid='{}'/>
-<h2 id="Quote" data-parsoid='{}'><blockquote>Quote</blockquote></h2>
+<h2 id="Quote" data-parsoid='{}'><blockquote><p>Quote</p></blockquote></h2>
 !! end
 
 !! test
@@ -24578,7 +24601,7 @@ __TOC__
 <meta property="mw:PageProp/toc" data-parsoid='{}'/>
 <h2 id="Foo_Bar" data-parsoid='{}'><i data-parsoid='{"stx":"html"}'>Foo</i> <b data-parsoid='{"stx":"html"}'>Bar</b></h2>
 
-<h2 id="Foo_Bar_2" data-parsoid='{}'><i data-parsoid='{"stx":"html"}'>Foo</i> <blockquote>Bar</blockquote></h2>
+<h2 id="Foo_Bar_2" data-parsoid='{}'><i data-parsoid='{"stx":"html"}'>Foo</i> <blockquote><p>Bar</p></blockquote></h2>
 !! end
 
 # Don't expect Parsoid to roundtrip this until the php parser comes closer to
@@ -25028,13 +25051,13 @@ parsoid=wt2html,wt2wt
 #### Parsoid-specific functionality tests
 #### -----------------------------------------------------------------
 
-# T65642/T68749: Formatting elt fixup around images is cleaned up.
+# T65642/T68749: Formatting elt fixup around images.
 # We know wt2wt will fail, but we expect selser to pass.
 # Due to the nature of our testing, wt2wt and selser tests will enter the
 # blacklist and we'll catch selser regressions based on changes to the
 # blacklist entries for selser tests.
 !! test
-1. Bad treebuilder fixup of formatting elt is cleaned up
+1. Treebuilder fixup of formatting elt
 !! options
 parsoid=wt2html,wt2wt
 !! wikitext
@@ -25044,50 +25067,63 @@ parsoid=wt2html,wt2wt
 [[Image:Foobar.jpg|right|Test]]
 </small>
 |}
+!! html/php+tidy
+<table>
+<tbody><tr>
+<td>
+<p><small>
+</small></p><small>
+<div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Test"><img alt="Test" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
+</small><p><small></small>
+</p>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr><td>
-<small>
-<figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a><figcaption>Test</figcaption></figure>
-</small>
-</td></tr>
+<p><small data-parsoid='{"stx":"html","autoInsertedEnd":true}'></small></p><small data-parsoid='{"stx":"html","autoInsertedEnd":true,"autoInsertedStart":true}'>
+<figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a><figcaption>Test</figcaption></figure></small>
+<p><small data-parsoid='{"stx":"html","autoInsertedStart":true}'></small></p></td></tr>
 </tbody></table>
 !! end
 
 !! test
-2. Bad treebuilder fixup of formatting elt is cleaned up
+2. Treebuilder fixup of formatting elt
 !! options
 parsoid=wt2html,wt2wt
 !! wikitext
 '''foo[[File:Foobar.jpg|thumb|caption]]bar'''
 
 <small>[[Image:Foobar.jpg|right|300px]]</small>
+!! html/php+tidy
+<p><b>foo</b></p><b><div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div></b><p><b>bar</b>
+</p><small><div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" width="300" height="34" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/450px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/600px-Foobar.jpg 2x" /></a></div></small>
 !! html/parsoid
+<p><b>foo</b></p><b><figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>caption</figcaption></figure></b><p><b>bar</b></p>
 
-<p><b>foo</b></p>
-<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><b>caption</b></figcaption></figure>
-<p><b>bar</b></p>
 <small><figure class="mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="34" width="300"/></a></figure></small>
 !! end
 
 !! test
-3. Bad treebuilder fixup of formatting elt is cleaned up
+3. Treebuilder fixup of formatting elt
 !! options
 parsoid=wt2html,wt2wt
 !! wikitext
 <small>'''foo[[File:Foobar.jpg|thumb|caption]]bar'''</small>
+!! html/php+tidy
+<p><small><b>foo</b></small></p><small><b><div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div></b></small><p><small><b>bar</b></small>
+</p>
 !! html/parsoid
-<p><small><b>foo</b></small></p>
-<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><small><b>caption</b></small></figcaption></figure>
-<p><small><b>bar</b></small></p>
+<p><small><b>foo</b></small></p><small><b><figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>caption</figcaption></figure></b></small><p><small><b>bar</b></small></p>
 !! end
 
 !! test
-4. Bad treebuilder fixup of formatting elt is cleaned up: formatting tags around captionless images are ignored
+4. Treebuilder fixup of formatting elt: formatting tags around captionless images
 !! options
 parsoid=wt2html,wt2wt
 !! wikitext
 '''<small>[[Image:Foobar.jpg|right|300px]]</small>'''
+!! html/php+tidy
+<b><small><div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" width="300" height="34" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/450px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/600px-Foobar.jpg 2x" /></a></div></small></b>
 !! html/parsoid
 <b><small><figure class="mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="34" width="300"/></a></figure></small></b>
 !! end
@@ -27433,16 +27469,17 @@ Encapsulate protected attributes from wt
 ## Currently the p-wrapper is fragile in how it adds / removes transformations.
 ## Having nested or stray pre tags results in the attempt to add duplicates,
 ## causing an assertion fail. This test tries to prevent that situation.
-!!test
+!! test
 Ensure ParagraphWrapper can deal with stray closing pre tags
-!!options
+!! options
 parsoid=wt2html
 !! wikitext
 plain text</pre>
 !! html/parsoid
-plain text
-!!end
+<p>plain text</p>
+!! end
 
+## Remex doesn't account for fostered content.
 !! test
 1. Ensure fostered text content is wrapped in element nodes
 !! options
@@ -27452,9 +27489,10 @@ parsoid=wt2html
 !! html/php+tidy
 hi<table></table>ho<table></table>
 !! html/parsoid
-<span data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'>hi</span><table data-parsoid='{"stx":"html"}'></table><span data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'>ho</span><table data-parsoid='{"stx":"html"}'></table>
+<p data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'>hi</p><table data-parsoid='{"stx":"html"}'></table><p data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'>ho</p><table data-parsoid='{"stx":"html"}'></table>
 !! end
 
+## Remex doesn't account for fostered content.
 !! test
 2. Ensure fostered text content is wrapped in element nodes (traps regressions around fostered marker on the element getting lost)
 !! options
@@ -27470,12 +27508,13 @@ parsoid=wt2html,wt2wt
 <tbody><tr><td> a
 </td></tr></tbody></table>
 !! html/parsoid
-<span data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'> || ||
-</span><table data-parsoid='{"stx":"html"}'>
+<p data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'> || ||</p>
+<table data-parsoid='{"stx":"html"}'>
 <tbody><tr data-parsoid='{"stx":"html","autoInsertedEnd":true}'><td data-parsoid='{"stx":"html","autoInsertedEnd":true}'> a
 </td></tr></tbody></table>
 !! end
 
+## Remex doesn't account for fostered content.
 !! test
 Encapsulation properly handles null DSR information from foster box
 !! options
@@ -27483,9 +27522,10 @@ parsoid=wt2html,wt2wt
 !! wikitext
 {{echo|<table>foo<tr><td>bar</td></tr></table>}}
 !! html/parsoid
-<span typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;<table>foo<tr><td>bar</td></tr></table>&quot;}},&quot;i&quot;:0}}]}">foo</span><table><tbody><tr><td>bar</td></tr></tbody></table>
+<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;table>foo&lt;tr>&lt;td>bar&lt;/td>&lt;/tr>&lt;/table>"}},"i":0}}]}'>foo</p><table about="#mwt1" data-parsoid='{"stx":"html"}'><tbody><tr><td>bar</td></tr></tbody></table>
 !! end
 
+## Remex doesn't account for fostered content.
 !! test
 1. Encapsulate foster-parented transclusion content
 !! options
@@ -27495,7 +27535,7 @@ parsoid=wt2wt,wt2html
 !! html/php+tidy
 foo<table><tbody><tr><td>bar</td></tr></tbody></table>
 !! html/parsoid
-<span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"firstWikitextNode":"TABLE_html","pi":[[{"k":"1"}]]}' data-mw='{"parts":["&lt;table>",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo&lt;tr>&lt;td>bar&lt;/td>&lt;/tr>"}},"i":0}},"&lt;/table>"]}'>foo</span><table about="#mwt2" data-parsoid='{"stx":"html}'><tbody><tr><td>bar</td></tr></tbody></table>
+<p about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"firstWikitextNode":"TABLE_html","pi":[[{"k":"1"}]]}' data-mw='{"parts":["&lt;table>",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo&lt;tr>&lt;td>bar&lt;/td>&lt;/tr>"}},"i":0}},"&lt;/table>"]}'>foo</p><table about="#mwt2" data-parsoid='{"stx":"html"}'><tbody><tr><td>bar</td></tr></tbody></table>
 !! end
 
 !! test
@@ -27553,6 +27593,7 @@ parsoid=wt2wt,wt2html
 </table>
 !! end
 
+## Remex doesn't account for fostered content.
 !! test
 5. Encapsulate foster-parented transclusion content
 !!options
@@ -27562,9 +27603,10 @@ parsoid=wt2wt,wt2html
 !! html/php+tidy
 foo<table><tbody><tr><td><div><p>foo</p></div></td></tr></tbody></table>
 !! html/parsoid
-<span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"firstWikitextNode":"TABLE_html","pi":[[{"k":"1"}]]}' data-mw='{"parts":["&lt;table>&lt;tr>&lt;td>&lt;div>&lt;p>",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo&lt;/p>&lt;/div>&lt;/td>foo"}},"i":0}},"&lt;/tr>&lt;/table>"]}'>foo</span><table about="#mwt2" data-parsoid='{"stx":"html"}'><tbody><tr><td><div><p>foo</p></div></td></tr></tbody></table>
+<p about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"firstWikitextNode":"TABLE_html","pi":[[{"k":"1"}]]}' data-mw='{"parts":["&lt;table>&lt;tr>&lt;td>&lt;div>&lt;p>",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo&lt;/p>&lt;/div>&lt;/td>foo"}},"i":0}},"&lt;/tr>&lt;/table>"]}'>foo</p><table about="#mwt2" data-parsoid='{"stx":"html"}'><tbody><tr><td><div><p>foo</p></div></td></tr></tbody></table>
 !! end
 
+## Remex doesn't account for fostered content.
 !! test
 6. Encapsulate foster-parented transclusion content
 !! options
@@ -27574,7 +27616,7 @@ parsoid=wt2wt,wt2html
 !! html/php+tidy
 foo<table><tbody><tr><td><div><p>foo</p></div></td></tr></tbody></table><p>ok</p>
 !! html/parsoid
-<span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"firstWikitextNode":"TABLE_html","pi":[[{"k":"1"}]]}' data-mw='{"parts":["&lt;table>&lt;tr>&lt;td>&lt;div>&lt;p>",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo&lt;/p>&lt;/div>&lt;/td>foo&lt;/tr>&lt;/table>"}},"i":0}}]}'>foo</span><table about="#mwt2" data-parsoid='{"stx":"html"}'><tbody><tr><td><div><p>foo</p></div></td></tr></tbody></table><p data-parsoid='{"stx":"html"}'>ok</p>
+<p about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"firstWikitextNode":"TABLE_html","pi":[[{"k":"1"}]]}' data-mw='{"parts":["&lt;table>&lt;tr>&lt;td>&lt;div>&lt;p>",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo&lt;/p>&lt;/div>&lt;/td>foo&lt;/tr>&lt;/table>"}},"i":0}}]}'>foo</p><table about="#mwt2" data-parsoid='{"stx":"html"}'><tbody><tr><td><div><p>foo</p></div></td></tr></tbody></table><p data-parsoid='{"stx":"html"}'>ok</p>
 !! end
 
 !! test
@@ -27594,6 +27636,7 @@ parsoid=wt2wt,wt2html
 </table>
 !! end
 
+## Remex doesn't account for fostered content.
 # Note that the wt is broken on purpose: the = should be {{=}} if you
 # don't want it to be a template parameter key.
 !! test
@@ -27616,12 +27659,13 @@ parsoid=wt2wt,wt2html
 </td></tr></tbody></table>
 !! html/parsoid
 <p about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"a\n"}},"i":0}}]}'>a</p><span about="#mwt1">
-</span><span about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"firstWikitextNode":"TABLE","pi":[[{"k":"style","named":true}]]}' data-mw='{"parts":["{|",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"style":{"wt":"&apos;color:red&apos;"}},"i":0}},"\n|-\n|b\n|}"]}'>{{{1}}}</span><table about="#mwt3">
+</span><p about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"firstWikitextNode":"TABLE","pi":[[{"k":"style","named":true}]]}' data-mw='{"parts":["{|",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"style":{"wt":"&apos;color:red&apos;"}},"i":0}},"\n|-\n|b\n|}"]}'>{{{1}}}</p><table about="#mwt3">
 <tbody><tr>
 <td>b
 </td></tr></tbody></table>
 !! end
 
+## Remex doesn't account for fostered content.
 !! test
 9. Encapsulate foster-parented transclusion content
 !!options
@@ -27632,7 +27676,7 @@ parsoid=wt2wt,wt2html
 hi<table></table><p>hello
 </p>
 !! html/parsoid
-<span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"firstWikitextNode":"TABLE_html","pi":[[{"k":"1"}]]}' data-mw='{"parts":["&lt;table>",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"hi&lt;/table>hello"}},"i":0}}]}'>hi</span><table about="#mwt2"></table><p about="#mwt2">hello</p>
+<p about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"firstWikitextNode":"TABLE_html","pi":[[{"k":"1"}]]}' data-mw='{"parts":["&lt;table>",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"hi&lt;/table>hello"}},"i":0}}]}'>hi</p><table about="#mwt2"></table><p about="#mwt2">hello</p>
 !! end
 
 !! test
@@ -31377,7 +31421,7 @@ __NOTOC__
 </tbody></table>
 <dl><dd><table>
   <tbody><tr><td><!--c1--><!--c2-->Table Cell 1<!--c3--><!--c4--></td><td>Table Cell 2<!--c5--></td></tr>
-  </tbody></table><p> foo   </p><!--c1--></dd></dl>
+  </tbody></table> foo<!--c1--></dd></dl>
 !! end
 
 # Looks like <caption> is not accepted in HTML
