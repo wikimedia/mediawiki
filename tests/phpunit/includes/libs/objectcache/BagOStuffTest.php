@@ -68,8 +68,11 @@ class BagOStuffTest extends MediaWikiTestCase {
 	 * @covers BagOStuff::mergeViaCas
 	 */
 	public function testMerge() {
+		$calls = 0;
 		$key = $this->cache->makeKey( self::TEST_KEY );
-		$callback = function ( BagOStuff $cache, $key, $oldVal ) {
+		$callback = function ( BagOStuff $cache, $key, $oldVal ) use ( &$calls ) {
+			++$calls;
+
 			return ( $oldVal === false ) ? 'merged' : $oldVal . 'merged';
 		};
 
@@ -82,6 +85,12 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$merged = $this->cache->merge( $key, $callback, 5 );
 		$this->assertTrue( $merged );
 		$this->assertEquals( 'mergedmerged', $this->cache->get( $key ) );
+
+		$calls = 0;
+		$this->cache->lock( $key );
+		$this->assertFalse( $this->cache->merge( $key, $callback, 1 ), 'Non-blocking merge' );
+		$this->cache->unlock( $key );
+		$this->assertEquals( 0, $calls );
 	}
 
 	/**
@@ -304,5 +313,22 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$cache->get( 'foo' );
 
 		DeferredUpdates::doUpdates();
+	}
+
+	/**
+	 * @covers BagOStuff::lock()
+	 * @covers BagOStuff::unlock()
+	 */
+	public function testLocking() {
+		$key = 'test';
+		$this->assertTrue( $this->cache->lock( $key ) );
+		$this->assertFalse( $this->cache->lock( $key ) );
+		$this->assertTrue( $this->cache->unlock( $key ) );
+
+		$key2 = 'test2';
+		$this->assertTrue( $this->cache->lock( $key2, 5, 5, 'rclass' ) );
+		$this->assertTrue( $this->cache->lock( $key2, 5, 5, 'rclass' ) );
+		$this->assertTrue( $this->cache->unlock( $key2 ) );
+		$this->assertTrue( $this->cache->unlock( $key2 ) );
 	}
 }

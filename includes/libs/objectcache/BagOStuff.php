@@ -371,7 +371,13 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @return bool Success
 	 */
 	protected function mergeViaLock( $key, $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
-		if ( !$this->lock( $key, 6 ) ) {
+		if ( $attempts <= 1 ) {
+			$timeout = 0; // clearly intended to be "non-blocking"
+		} else {
+			$timeout = 3;
+		}
+
+		if ( !$this->lock( $key, $timeout ) ) {
 			return false;
 		}
 
