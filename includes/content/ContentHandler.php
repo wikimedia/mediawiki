@@ -1,9 +1,4 @@
 <?php
-
-use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Search\ParserOutputSearchDataExtractor;
-
 /**
  * Base class for content handling.
  *
@@ -29,6 +24,12 @@ use MediaWiki\Search\ParserOutputSearchDataExtractor;
  *
  * @author Daniel Kinzler
  */
+
+use Wikimedia\Assert\Assert;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Search\ParserOutputSearchDataExtractor;
+
 /**
  * A content handler knows how do deal with a specific type of content on a wiki
  * page. Content is stored in the database in a serialized form (using a
@@ -1129,31 +1130,52 @@ abstract class ContentHandler {
 	 * must exist and must not be deleted.
 	 *
 	 * @since 1.21
+	 * @since 1.32 accepts Content objects for all parameters instead of Revision objects.
+	 *  Passing Revision objects is deprecated.
 	 *
-	 * @param Revision $current The current text
-	 * @param Revision $undo The revision to undo
-	 * @param Revision $undoafter Must be an earlier revision than $undo
+	 * @param Revision|Content $current The current text
+	 * @param Revision|Content $undo The content of the revision to undo
+	 * @param Revision|Content $undoafter Must be from an earlier revision than $undo
+	 * @param bool $undoIsLatest Set true if $undo is from the current revision (since 1.32)
 	 *
 	 * @return mixed Content on success, false on failure
 	 */
-	public function getUndoContent( Revision $current, Revision $undo, Revision $undoafter ) {
-		$cur_content = $current->getContent();
+	public function getUndoContent( $current, $undo, $undoafter, $undoIsLatest = false ) {
+		Assert::parameterType( Revision::class . '|' . Content::class, $current, '$current' );
+		if ( $current instanceof Content ) {
+			Assert::parameter( $undo instanceof Content, '$undo',
+				'Must be Content when $current is Content' );
+			Assert::parameter( $undoafter instanceof Content, '$undoafter',
+				'Must be Content when $current is Content' );
+			$cur_content = $current;
+			$undo_content = $undo;
+			$undoafter_content = $undoafter;
+		} else {
+			Assert::parameter( $undo instanceof Revision, '$undo',
+				'Must be Revision when $current is Revision' );
+			Assert::parameter( $undoafter instanceof Revision, '$undoafter',
+				'Must be Revision when $current is Revision' );
 
-		if ( empty( $cur_content ) ) {
-			return false; // no page
-		}
+			$cur_content = $current->getContent();
 
-		$undo_content = $undo->getContent();
-		$undoafter_content = $undoafter->getContent();
+			if ( empty( $cur_content ) ) {
+				return false; // no page
+			}
 
-		if ( !$undo_content || !$undoafter_content ) {
-			return false; // no content to undo
+			$undo_content = $undo->getContent();
+			$undoafter_content = $undoafter->getContent();
+
+			if ( !$undo_content || !$undoafter_content ) {
+				return false; // no content to undo
+			}
+
+			$undoIsLatest = $current->getId() === $undo->getId();
 		}
 
 		try {
 			$this->checkModelID( $cur_content->getModel() );
 			$this->checkModelID( $undo_content->getModel() );
-			if ( $current->getId() !== $undo->getId() ) {
+			if ( !$undoIsLatest ) {
 				// If we are undoing the most recent revision,
 				// its ok to revert content model changes. However
 				// if we are undoing a revision in the middle, then

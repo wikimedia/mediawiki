@@ -75,6 +75,11 @@ production.
   render diffs between two Content objects, and DifferenceEngine::setRevisions()
   to render diffs between two custom (potentially multi-content) revisions.
   Added GetSlotDiffRenderer hook which works like GetDifferenceEngine for slots.
+* Added a temporary action=mcrundo to the web UI, as the normal undo logic
+  can't yet handle MCR and deadlines are forcing is to put off fixing that.
+  This action should be considered deprecated and should not be used directly.
+* Extensions overriding ContentHandler::getUndoContent() will need to be
+  updated for the changed method signature.
 
 === External library changes in 1.32 ===
 * …
@@ -377,6 +382,8 @@ because of Phabricator reports.
   MediaWikiServices.
 * mw.user.stickyRandomId was renamed to the more explicit
   mw.user.getPageviewToken to better capture its function.
+* Passing Revision objects to ContentHandler::getUndoContent() is deprecated,
+  Content object should be passed instead.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
