@@ -3343,23 +3343,10 @@ class WikiPage implements Page, IDBAccessObject {
 		foreach ( $deleted as $catName ) {
 			$cat = Category::newFromName( $catName );
 			Hooks::run( 'CategoryAfterPageRemoved', [ $cat, $this, $id ] );
-		}
-
-		// Refresh counts on categories that should be empty now
-		if ( count( $deleted ) ) {
-			$rows = $dbw->select(
-				'category',
-				[ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ],
-				[ 'cat_title' => $deleted, 'cat_pages <= 100' ],
-				__METHOD__
-			);
-			foreach ( $rows as $row ) {
-				$cat = Category::newFromRow( $row );
-				// T166757: do the update after this DB commit
-				DeferredUpdates::addCallableUpdate( function () use ( $cat ) {
-					$cat->refreshCounts();
-				} );
-			}
+			// Refresh counts on categories that should be empty now (after commit, T166757)
+			DeferredUpdates::addCallableUpdate( function () use ( $cat ) {
+				$cat->refreshCountsIfEmpty();
+			} );
 		}
 	}
 
