@@ -20,6 +20,30 @@ class CSSMinTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider providesReferencedFiles
+	 * @covers CSSMin::getLocalFileReferences
+	 */
+	public function testGetLocalFileReferences( $input, $expected ) {
+		$output = CSSMin::getLocalFileReferences( $input, '/' );
+		$this->assertEquals(
+			$expected,
+			$output,
+			'getLocalFileReferences() must find the local file properly'
+		);
+	}
+
+	public static function providesReferencedFiles() {
+		// input, array of expected local file names
+		return [
+			[ 'url("//example.org")', [] ],
+			[ 'url("https://example.org")', [] ],
+			[ 'url("#default#")', [] ],
+			[ 'url("WikiFont-Glyphs.svg#wikiglyph")', [ '/WikiFont-Glyphs.svg' ] ],
+			[ 'url("#some-anchor")', [] ],
+		];
+	}
+
+	/**
 	 * @dataProvider provideSerializeStringValue
 	 * @covers CSSMin::serializeStringValue
 	 */
@@ -285,6 +309,16 @@ class CSSMinTest extends MediaWikiTestCase {
 				"Don't barf at behavior: url(#default#behaviorName) - T162973",
 				[ 'foo { behavior: url(#default#bar); }', false, '/w/', false ],
 				'foo { behavior: url("#default#bar"); }',
+			],
+			[
+				'Keeps anchors',
+				[ 'url(#other)', false, '/', false ],
+				'url("#other")'
+			],
+			[
+				'Keeps anchors after a path',
+				[ 'url(images/file.svg#id)', false, '/', false ],
+				'url("/images/file.svg#id")'
 			],
 		];
 	}
