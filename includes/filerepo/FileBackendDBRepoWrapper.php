@@ -45,7 +45,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 	protected $repoName;
 	/** @var Closure */
 	protected $dbHandleFunc;
-	/** @var ProcessCacheLRU */
+	/** @var MapCacheLRU */
 	protected $resolvedPathCache;
 	/** @var DBConnRef[] */
 	protected $dbs;
@@ -59,7 +59,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 		$this->backend = $config['backend'];
 		$this->repoName = $config['repoName'];
 		$this->dbHandleFunc = $config['dbHandleFactory'];
-		$this->resolvedPathCache = new ProcessCacheLRU( 100 );
+		$this->resolvedPathCache = new MapCacheLRU( 100 );
 	}
 
 	/**
@@ -102,8 +102,8 @@ class FileBackendDBRepoWrapper extends FileBackend {
 		// @TODO: batching
 		$resolved = [];
 		foreach ( $paths as $i => $path ) {
-			if ( !$latest && $this->resolvedPathCache->has( $path, 'target', 10 ) ) {
-				$resolved[$i] = $this->resolvedPathCache->get( $path, 'target' );
+			if ( !$latest && $this->resolvedPathCache->hasField( $path, 'target', 10 ) ) {
+				$resolved[$i] = $this->resolvedPathCache->getField( $path, 'target' );
 				continue;
 			}
 
@@ -127,12 +127,12 @@ class FileBackendDBRepoWrapper extends FileBackend {
 					continue;
 				}
 				$resolved[$i] = $this->getPathForSHA1( $sha1 );
-				$this->resolvedPathCache->set( $path, 'target', $resolved[$i] );
+				$this->resolvedPathCache->setField( $path, 'target', $resolved[$i] );
 			} elseif ( $container === "{$this->repoName}-deleted" ) {
 				$name = basename( $path ); // <hash>.<ext>
 				$sha1 = substr( $name, 0, strpos( $name, '.' ) ); // ignore extension
 				$resolved[$i] = $this->getPathForSHA1( $sha1 );
-				$this->resolvedPathCache->set( $path, 'target', $resolved[$i] );
+				$this->resolvedPathCache->setField( $path, 'target', $resolved[$i] );
 			} else {
 				$resolved[$i] = $path;
 			}

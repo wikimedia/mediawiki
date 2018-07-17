@@ -98,7 +98,7 @@ class RepoGroup {
 	function __construct( $localInfo, $foreignInfo ) {
 		$this->localInfo = $localInfo;
 		$this->foreignInfo = $foreignInfo;
-		$this->cache = new ProcessCacheLRU( self::MAX_CACHE_SIZE );
+		$this->cache = new MapCacheLRU( self::MAX_CACHE_SIZE );
 	}
 
 	/**
@@ -141,8 +141,8 @@ class RepoGroup {
 			&& empty( $options['latest'] )
 		) {
 			$time = $options['time'] ?? '';
-			if ( $this->cache->has( $dbkey, $time, 60 ) ) {
-				return $this->cache->get( $dbkey, $time );
+			if ( $this->cache->hasField( $dbkey, $time, 60 ) ) {
+				return $this->cache->getField( $dbkey, $time );
 			}
 			$useCache = true;
 		} else {
@@ -166,7 +166,7 @@ class RepoGroup {
 		$image = $image ?: false; // type sanity
 		# Cache file existence or non-existence
 		if ( $useCache && ( !$image || $image->isCacheable() ) ) {
-			$this->cache->set( $dbkey, $time, $image );
+			$this->cache->setField( $dbkey, $time, $image );
 		}
 
 		return $image;
