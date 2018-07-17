@@ -2136,7 +2136,7 @@
 	"speciallogtitlelabel": "Target (title or {{ns:user}}:username for user):",
 	"log": "Logs",
 	"logeventslist-submit": "Show",
-	"logeventslist-more-filters": "More filters:",
+	"logeventslist-more-filters": "Show additional logs:",
 	"logeventslist-patrol-log": "Patrol log",
 	"logeventslist-tag-log": "Tag log",
 	"all-logs-page": "All public logs",
