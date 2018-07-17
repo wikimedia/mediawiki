@@ -2214,7 +2214,7 @@
 	"cantrollback": "Ne mogu da vratim izmenu.\nPoslednji autor je ujedno i jedini.",
 	"alreadyrolled": "Vraćanje poslednje izmene stranice [[:$1]] od strane {{GENDER:$2|korisnika|korisnice|korisnika}} [[User:$2|$2]] ([[User talk:$2|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) nije uspelo; neko drugi je u međuvremenu izmenio ili vratio stranicu.\n\nPoslednju izmenu je {{GENDER:$3|napravio|napravila|napravio}} [[User:$3|$3]] ([[User talk:$3|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Opis izmene: <em>$1</em>.",
-	"revertpage": "!!FUZZY!!Vraćene izmene {{GENDER:$2|korisnika|korisnice}} [[Special:Contribs/$2|$2]] ([[User talk:$2|razgovor]]) na poslednju izmenu {{GENDER:$1|korisnika|korisnice}} [[User:$1|$1]]",
+	"revertpage": "Vraćene izmene {{GENDER:$2|korisnika|korisnice}} [[Special:Contribs/$2|$2]] ([[User talk:$2|razgovor]]) na poslednju izmenu {{GENDER:$1|korisnika|korisnice}} [[User:$1|$1]]",
 	"revertpage-nouser": "Izmene skrivenog korisnika su vraćene na poslednju izmenu {{GENDER:$1|korisnika|korisnice}} [[User:$1|$1]]",
 	"rollback-success": "Izmene {{GENDER:$1|korisnika|korisnice}} {{GENDER:$3|$1}} su vraćene na poslednju izmenu {{GENDER:$2|korisnika|korisnice}} {{GENDER:$4|$2}}.",
 	"rollback-success-notify": "Vraćene izmene korisnika $1;\nvraćeno na poslednju izmenu korisnika $2. [$3 Prikaži izmene]",

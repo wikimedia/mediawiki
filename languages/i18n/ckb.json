@@ -718,7 +718,7 @@
 	"history-feed-item-nocomment": "$1 لە $2",
 	"history-feed-empty": "لاپەڕەی داخوازی‌کراو بوونی نیە.<br />\nلەوانەیە لەسەر ویکی سڕدرابێتەوە یان ناوی گۆڕدرابێت.<br />\nبۆ لاپەڕەی وەک ئەوە هەوڵی [[Special:Search|گەڕان لەسەر ویکی]] بدە.",
 	"rev-deleted-comment": "(کورتەی دەستکاری سڕایەوە)",
-	"rev-deleted-user": "(ناوی بەکارهێنەر سڕایەوە)",
+	"rev-deleted-user": "(ناوی بەکارهێنەر سڕدراوەتەوە)",
 	"rev-deleted-event": "(لۆگی کردەوە سڕایەوە)",
 	"rev-deleted-text-permission": "ئەم پێداچوونەوەیە لەم پەڕەیە '''سڕدراوەتەوە'''.\nوردەکاری سەبارەت بەوە لە [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} لۆگی سڕینەوە]دا دەست دەکەوێت.",
 	"rev-deleted-text-unhide": "ئەم پێداچوونەوەیە لەم پەڕەیە '''سڕدراوەتەوە'''.\nوردەکاری سەبارەت بەوە لە [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} لۆگی سڕینەوە]دا دەست دەکەوێت.\nھێشتا ئەگەر بتەوێ دەتوانی [$1 ئەم پێداچوونەوەیە ببینی].",

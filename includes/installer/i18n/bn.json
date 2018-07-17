@@ -65,6 +65,7 @@
 	"config-sqlite-dir": "এসকিউলাইট ডেটা ডিরেক্টরি:",
 	"config-oracle-def-ts": "পূর্বনির্ধারিত টেবিলস্পেস",
 	"config-oracle-temp-ts": "সাময়কি টেবিলস্পেস:",
+	"config-type-mysql": "MariaDB, MySQL, বা উপযুক্তগুলি",
 	"config-type-mssql": "মাইক্রোসফট এসকিউএল সার্ভার",
 	"config-dbsupport-postgres": "* MySQL-এর বিকল্প হিসেবে [{{int:version-db-postgres-url}} PostgreSQL] হচ্ছে একটি জনপ্রিয় ওপেন সোর্স ডাটাবেস ব্যবস্থা। ([https://secure.php.net/manual/en/pgsql.installation.php PostgreSQL সমর্থনসহ কিভাবে PHP সঙ্কলন করবেন])",
 	"config-header-mysql": "MariaDB/MySQL সেটিং",
