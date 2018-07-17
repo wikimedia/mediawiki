@@ -72,8 +72,13 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			wfDeprecated( 'SearchEngine::transformSearchTerm() (overridden by ' .
 				get_class( $search ) . ')', '1.32' );
 		}
-		$query = $search->replacePrefixes( $query );
 
+		$nquery = $search->replacePrefixes( $query );
+		if ( $nquery !== $query ) {
+			$query = $nquery;
+			wfDeprecated( 'SearchEngine::replacePrefixes() (overridden by ' .
+						  get_class( $search ) . ')', '1.32' );
+		}
 		// Perform the actual search
 		if ( $what == 'text' ) {
 			$matches = $search->searchText( $query );

@@ -387,16 +387,12 @@ abstract class SearchEngine {
 	 * or namespace names and set the list of namespaces
 	 * of this class accordingly.
 	 *
+	 * @deprecated since 1.32; should be handled internally by the search engine
 	 * @param string $query
 	 * @return string
 	 */
 	function replacePrefixes( $query ) {
-		$queryAndNs = self::parseNamespacePrefixes( $query );
-		if ( $queryAndNs === false ) {
-			return $query;
-		}
-		$this->namespaces = $queryAndNs[1];
-		return $queryAndNs[0];
+		return $query;
 	}
 
 	/**
