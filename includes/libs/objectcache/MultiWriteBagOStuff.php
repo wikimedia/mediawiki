@@ -202,7 +202,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		$ret = true;
 		$args = array_slice( func_get_args(), 3 );
 
-		if ( count( $indexes ) > 1 && $asyncWrites ) {
+		if ( array_diff( $indexes, [ 0 ] ) && $asyncWrites ) {
 			// Deep-clone $args to prevent misbehavior when something writes an
 			// object to the BagOStuff then modifies it afterwards, e.g. T168040.
 			$args = unserialize( serialize( $args ) );
