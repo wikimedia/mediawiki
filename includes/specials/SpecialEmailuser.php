@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Preferences\MultiUsernameFilter;
 
 /**
  * A special page that allows users to send e-mails to other users
@@ -247,8 +248,9 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		}
 
 		if ( $sender !== null ) {
-			$blacklist = $target->getOption( 'email-blacklist', [] );
+			$blacklist = $target->getOption( 'email-blacklist', '' );
 			if ( $blacklist ) {
+				$blacklist = MultiUsernameFilter::splitIds( $blacklist );
 				$lookup = CentralIdLookup::factory();
 				$senderId = $lookup->centralIdFromLocalUser( $sender );
 				if ( $senderId !== 0 && in_array( $senderId, $blacklist ) ) {

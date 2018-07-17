@@ -301,30 +301,6 @@ class Preferences {
 	}
 
 	/**
-	 * Handle the form submission if everything validated properly
-	 *
-	 * @deprecated since 1.31, use PreferencesFactory
-	 *
-	 * @param array $formData
-	 * @param HTMLForm $form
-	 * @return bool|Status|string
-	 */
-	public static function tryFormSubmit( $formData, $form ) {
-		$preferencesFactory = self::getDefaultPreferencesFactory();
-		return $preferencesFactory->legacySaveFormData( $formData, $form );
-	}
-
-	/**
-	 * @param array $formData
-	 * @param HTMLForm $form
-	 * @return Status
-	 */
-	public static function tryUISubmit( $formData, $form ) {
-		$preferencesFactory = self::getDefaultPreferencesFactory();
-		return $preferencesFactory->legacySubmitForm( $formData, $form );
-	}
-
-	/**
 	 * Get a list of all time zones
 	 * @param Language $language Language used for the localized names
 	 * @return array A list of all time zones. The system name of the time zone is used as key and

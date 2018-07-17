@@ -40,6 +40,10 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mUserMock->expects( $this->any() )
 			->method( 'getInstanceForUpdate' )->will( $this->returnValue( $this->mUserMock ) );
 
+		// Needs to return something
+		$this->mUserMock->method( 'getOptions' )
+			->willReturn( [] );
+
 		// Create a new context
 		$this->mContext = new DerivativeContext( new RequestContext() );
 		$this->mContext->getContext()->setTitle( Title::newFromText( 'Test' ) );

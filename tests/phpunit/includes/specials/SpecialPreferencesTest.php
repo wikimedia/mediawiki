@@ -43,6 +43,10 @@ class SpecialPreferencesTest extends MediaWikiTestCase {
 			]
 			) );
 
+		# Needs to return something
+		$user->method( 'getOptions' )
+			->willReturn( [] );
+
 		# Forge a request to call the special page
 		$context = new RequestContext();
 		$context->setRequest( new FauxRequest() );
