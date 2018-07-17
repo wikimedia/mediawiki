@@ -123,7 +123,13 @@ class WebRequestTest extends MediaWikiTestCase {
 		];
 	}
 
-	protected function mockWebRequest( $data = [] ) {
+	/**
+	 * @param array $data Request data
+	 * @param array $config
+	 *  - float 'requestTime': Mock value for `$_SERVER['REQUEST_TIME_FLOAT']`.
+	 * @return WebRequest
+	 */
+	protected function mockWebRequest( array $data = [], array $config = [] ) {
 		// Cannot use PHPUnit getMockBuilder() as it does not support
 		// overriding protected properties afterwards
 		$reflection = new ReflectionClass( WebRequest::class );
@@ -133,9 +139,11 @@ class WebRequestTest extends MediaWikiTestCase {
 		$prop->setAccessible( true );
 		$prop->setValue( $req, $data );
 
-		$prop = $reflection->getProperty( 'requestTime' );
-		$prop->setAccessible( true );
-		$prop->setValue( $req, microtime( true ) );
+		if ( isset( $config['requestTime'] ) ) {
+			$prop = $reflection->getProperty( 'requestTime' );
+			$prop->setAccessible( true );
+			$prop->setValue( $req, $config['requestTime'] );
+		}
 
 		return $req;
 	}
@@ -144,9 +152,11 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @covers WebRequest::getElapsedTime
 	 */
 	public function testGetElapsedTime() {
-		$req = $this->mockWebRequest();
-		$this->assertGreaterThanOrEqual( 0.0, $req->getElapsedTime() );
-		$this->assertEquals( 0.0, $req->getElapsedTime(), '', /*delta*/ 0.2 );
+		$now = microtime( true ) - 10.0;
+		$req = $this->mockWebRequest( [], [ 'requestTime' => $now ] );
+		$this->assertGreaterThanOrEqual( 10.0, $req->getElapsedTime() );
+		// Catch common errors, but don't fail on slow hardware or VMs (T199764).
+		$this->assertEquals( 10.0, $req->getElapsedTime(), '', 60.0 );
 	}
 
 	/**
