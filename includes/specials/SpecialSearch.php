@@ -194,6 +194,9 @@ class SpecialSearch extends SpecialPage {
 		$request = $this->getRequest();
 		list( $this->limit, $this->offset ) = $request->getLimitOffset( 20, '' );
 		$this->mPrefix = $request->getVal( 'prefix', '' );
+		if ( $this->mPrefix !== '' ) {
+			$this->setExtraParam( 'prefix', $this->mPrefix );
+		}
 
 		$user = $this->getUser();
 
@@ -300,7 +303,6 @@ class SpecialSearch extends SpecialPage {
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
 		$search->prefix = $this->mPrefix;
-		$term = $search->transformSearchTerm( $term );
 
 		Hooks::run( 'SpecialSearchSetupEngine', [ $this, $this->profile, $search ] );
 		if ( !Hooks::run( 'SpecialSearchResultsPrepend', [ $this, $out, $term ] ) ) {
@@ -311,6 +313,13 @@ class SpecialSearch extends SpecialPage {
 		$title = Title::newFromText( $term );
 		$showSuggestion = $title === null || !$title->isKnown();
 		$search->setShowSuggestion( $showSuggestion );
+
+		$nterm = $search->transformSearchTerm( $term );
+		if ( $nterm !== $term ) {
+			$term = $nterm;
+			wfDeprecated( 'SearchEngine::transformSearchTerm() (overridden by ' .
+				get_class( $search ) . ')', '1.32' );
+		}
 
 		// fetch search results
 		$rewritten = $search->replacePrefixes( $term );
@@ -531,6 +540,28 @@ class SpecialSearch extends SpecialPage {
 			);
 		}
 
+		if ( $this->mPrefix !== '' ) {
+			$subtitle = $this->msg( 'search-filter-title-prefix' )->plaintextParams( $this->mPrefix );
+			$params = $this->powerSearchOptions();
+			unset( $params['prefix'] );
+			$params += [
+				'search' => $term,
+				'fulltext' => 1,
+			];
+
+			$subtitle .= ' (';
+			$subtitle .= Xml::element(
+				'a',
+				[
+					'href' => $this->getPageTitle()->getLocalURL( $params ),
+					'title' => $this->msg( 'search-filter-title-prefix-reset' ),
+				],
+				$this->msg( 'search-filter-title-prefix-reset' )
+			);
+			$subtitle .= ')';
+			$out->setSubtitle( $subtitle );
+		}
+
 		$out->addJsConfigVars( [ 'searchTerm' => $term ] );
 		$out->addModules( 'mediawiki.special.search' );
 		$out->addModuleStyles( [
@@ -710,6 +741,18 @@ class SpecialSearch extends SpecialPage {
 	 */
 	public function setExtraParam( $key, $value ) {
 		$this->extraParams[$key] = $value;
+	}
+
+	/**
+	 * The prefix value send to Special:Search using the 'prefix' URI param
+	 * It means that the user is willing to search for pages whose titles start with
+	 * this prefix value.
+	 * (Used by the InputBox extension)
+	 *
+	 * @return string
+	 */
+	public function getPrefix() {
+		return $this->mPrefix;
 	}
 
 	protected function getGroupName() {

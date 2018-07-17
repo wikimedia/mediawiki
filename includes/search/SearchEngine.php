@@ -244,6 +244,8 @@ abstract class SearchEngine {
 	 * search=test&prefix=Main_Page/Archive -> test prefix:Main Page/Archive
 	 * @param string $term
 	 * @return string
+	 * @deprecated since 1.32 this should now be handled internally by the
+	 * search engine
 	 */
 	public function transformSearchTerm( $term ) {
 		return $term;
