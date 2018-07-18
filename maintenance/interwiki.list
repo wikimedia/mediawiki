@@ -56,7 +56,7 @@ wikidata|https://www.wikidata.org/wiki/$1|0|https://www.wikidata.org/w/api.php
 wikif1|http://www.wikif1.org/$1|0|
 wikihow|https://www.wikihow.com/$1|0|https://www.wikihow.com/api.php
 wikinfo|http://wikinfo.co/English/index.php/$1|0|
-wikimedia|https://wikimediafoundation.org/wiki/$1|0|https://wikimediafoundation.org/w/api.php
+wikimedia|https://foundation.wikimedia.org/wiki/$1|0|https://foundation.wikimedia.org/w/api.php
 wikinews|https://en.wikinews.org/wiki/$1|0|https://en.wikinews.org/w/api.php
 wikipedia|https://en.wikipedia.org/wiki/$1|0|https://en.wikipedia.org/w/api.php
 wikiquote|https://en.wikiquote.org/wiki/$1|0|https://en.wikiquote.org/w/api.php
