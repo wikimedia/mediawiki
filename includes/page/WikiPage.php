@@ -1470,7 +1470,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$bSlots = $b->getRevisionRecord()->getSlots();
 		$changedRoles = $aSlots->getRolesWithDifferentContent( $bSlots );
 
-		return ( $changedRoles !== [ 'main' ] );
+		return ( $changedRoles !== [ 'main' ] && $changedRoles !== [] );
 	}
 
 	/**
