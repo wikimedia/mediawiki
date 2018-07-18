@@ -53,6 +53,10 @@ class ExtensionJsonValidatorTest extends MediaWikiTestCase {
 				'notjson.txt is not valid JSON'
 			],
 			[
+				'duplicate_keys.json',
+				'Duplicate key: name'
+			],
+			[
 				'no_manifest_version.json',
 				'no_manifest_version.json does not have manifest_version set.'
 			],
