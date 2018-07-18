@@ -41,6 +41,11 @@ class HTMLTitleTextField extends HTMLTextField {
 			return parent::validate( $value, $alldata );
 		}
 
+		// Default value (from getDefault()) is null, which breaks Title::newFromTextThrow() below
+		if ( $value === null ) {
+			$value = '';
+		}
+
 		if ( !$this->mParams['required'] && $value === '' ) {
 			// If this field is not required and the value is empty, that's okay, skip validation
 			return parent::validate( $value, $alldata );
