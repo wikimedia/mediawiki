@@ -114,27 +114,28 @@
 		left: 50%;
 		// Make sure the middle of the spinner is centered, rather than its left edge
 		margin-left: -3 * @rcfilters-spinner-size / 2;
-
-		opacity: 0.8;
 		white-space: nowrap;
 
 		& .rcfilters-spinner-bounce,
 		&:before,
 		&:after {
 			content: '';
-			display: inline-block;
+			background-color: @colorGray7;
+			display: block;
+			float: left;
 			width: @rcfilters-spinner-size;
 			height: @rcfilters-spinner-size;
-			background-color: @colorGray12;
 			border-radius: 100%;
-			.animation( rcfiltersBouncedelay 1.5s ease-in-out -0.16s infinite both );
+			.animation( rcfiltersBouncedelay 1600ms ease-in-out -160ms infinite both );
 		}
 
 		&:before {
-			.animation-delay( -0.33s );
+			margin-right: 4px;
+			.animation-delay( -330ms );
 		}
 
 		&:after {
+			margin-left: 4px;
 			.animation-delay( 0s );
 		}
 	}
@@ -178,40 +179,36 @@
 
 @-webkit-keyframes rcfiltersBouncedelay {
 	0%,
-	80%,
+	50%, // equals 800ms
 	100% {
-		-webkit-transform: scale( 0.7 );
-		transform: scale( 0.7 );
+		-webkit-transform: scale( 0.625 );
 	}
-	40% {
-		background-color: @colorGray10;
+	20% { // equals 320ms
+		opacity: 0.87;
 		-webkit-transform: scale( 1 );
-		transform: scale( 1 );
 	}
 }
 
 @-moz-keyframes rcfiltersBouncedelay {
 	0%,
-	80%,
+	50%,
 	100% {
-		-moz-transform: scale( 0.7 );
-		transform: scale( 0.7 );
+		-moz-transform: scale( 0.625 );
 	}
-	40% {
-		background-color: @colorGray10;
-		-moz-transform: scale( 0.7 );
-		transform: scale( 1 );
+	20% {
+		opacity: 0.87;
+		-moz-transform: scale( 1 );
 	}
 }
 
 @keyframes rcfiltersBouncedelay {
 	0%,
-	80%,
+	50%,
 	100% {
-		transform: scale( 0.7 );
+		transform: scale( 0.625 );
 	}
-	40% {
-		background-color: @colorGray10;
+	20% { // equals 320ms
+		opacity: 0.87;
 		transform: scale( 1 );
 	}
 }
