@@ -87,7 +87,7 @@ use Psr\Log\NullLogger;
 class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/** @var BagOStuff The local datacenter cache */
 	protected $cache;
-	/** @var HashBagOStuff[] Map of group PHP instance caches */
+	/** @var MapCacheLRU[] Map of group PHP instance caches */
 	protected $processCaches = [];
 	/** @var string Purge channel name */
 	protected $purgeChannel;
@@ -1061,7 +1061,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		if ( $pcTTL >= 0 && $this->callbackDepth == 0 ) {
 			$group = $opts['pcGroup'] ?? self::PC_PRIMARY;
 			$procCache = $this->getProcessCache( $group );
-			$value = $procCache->get( $key );
+			$value = $procCache->has( $key, $pcTTL ) ? $procCache->get( $key ) : false;
 		} else {
 			$procCache = false;
 			$value = false;
@@ -1117,7 +1117,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 			// Update the process cache if enabled
 			if ( $procCache && $value !== false ) {
-				$procCache->set( $key, $value, $pcTTL );
+				$procCache->set( $key, $value );
 			}
 		}
 
@@ -1385,10 +1385,11 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	) {
 		$valueKeys = array_keys( $keyedIds->getArrayCopy() );
 		$checkKeys = $opts['checkKeys'] ?? [];
+		$pcTTL = $opts['pcTTL'] ?? self::TTL_UNCACHEABLE;
 
 		// Load required keys into process cache in one go
 		$this->warmupCache = $this->getRawKeysForWarmup(
-			$this->getNonProcessCachedKeys( $valueKeys, $opts ),
+			$this->getNonProcessCachedKeys( $valueKeys, $opts, $pcTTL ),
 			$checkKeys
 		);
 		$this->warmupKeyMisses = 0;
@@ -1480,11 +1481,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$idsByValueKey = $keyedIds->getArrayCopy();
 		$valueKeys = array_keys( $idsByValueKey );
 		$checkKeys = $opts['checkKeys'] ?? [];
+		$pcTTL = $opts['pcTTL'] ?? self::TTL_UNCACHEABLE;
 		unset( $opts['lockTSE'] ); // incompatible
 		unset( $opts['busyValue'] ); // incompatible
 
 		// Load required keys into process cache in one go
-		$keysGet = $this->getNonProcessCachedKeys( $valueKeys, $opts );
+		$keysGet = $this->getNonProcessCachedKeys( $valueKeys, $opts, $pcTTL );
 		$this->warmupCache = $this->getRawKeysForWarmup( $keysGet, $checkKeys );
 		$this->warmupKeyMisses = 0;
 
@@ -2103,12 +2105,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 	/**
 	 * @param string $group
-	 * @return HashBagOStuff
+	 * @return MapCacheLRU
 	 */
 	protected function getProcessCache( $group ) {
 		if ( !isset( $this->processCaches[$group] ) ) {
 			list( , $n ) = explode( ':', $group );
-			$this->processCaches[$group] = new HashBagOStuff( [ 'maxKeys' => (int)$n ] );
+			$this->processCaches[$group] = new MapCacheLRU( (int)$n );
 		}
 
 		return $this->processCaches[$group];
@@ -2117,15 +2119,16 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/**
 	 * @param array $keys
 	 * @param array $opts
+	 * @param int $pcTTL
 	 * @return array List of keys
 	 */
-	private function getNonProcessCachedKeys( array $keys, array $opts ) {
+	private function getNonProcessCachedKeys( array $keys, array $opts, $pcTTL ) {
 		$keysFound = [];
 		if ( isset( $opts['pcTTL'] ) && $opts['pcTTL'] > 0 && $this->callbackDepth == 0 ) {
 			$pcGroup = $opts['pcGroup'] ?? self::PC_PRIMARY;
 			$procCache = $this->getProcessCache( $pcGroup );
 			foreach ( $keys as $key ) {
-				if ( $procCache->get( $key ) !== false ) {
+				if ( $procCache->has( $key, $pcTTL ) ) {
 					$keysFound[] = $key;
 				}
 			}
