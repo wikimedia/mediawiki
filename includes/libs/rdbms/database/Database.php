@@ -3844,9 +3844,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->assertOpen();
 
 		$this->runOnTransactionPreCommitCallbacks();
+
 		$writeTime = $this->pendingWriteQueryDuration( self::ESTIMATE_DB_APPLY );
 		$this->doCommit( $fname );
 		$this->trxStatus = self::STATUS_TRX_NONE;
+
 		if ( $this->trxDoneWrites ) {
 			$this->lastWriteTime = microtime( true );
 			$this->trxProfiler->transactionWritingOut(
@@ -3894,14 +3896,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// Avoid fatals if close() was called
 			$this->assertOpen();
 
+			$writeTime = $this->pendingWriteQueryDuration( self::ESTIMATE_DB_APPLY );
 			$this->doRollback( $fname );
 			$this->trxStatus = self::STATUS_TRX_NONE;
 			$this->trxAtomicLevels = [];
+
 			if ( $this->trxDoneWrites ) {
 				$this->trxProfiler->transactionWritingOut(
 					$this->server,
 					$this->dbName,
-					$this->trxShortId
+					$this->trxShortId,
+					$writeTime,
+					$this->trxWriteAffectedRows
 				);
 			}
 		}
