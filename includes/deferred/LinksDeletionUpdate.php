@@ -101,7 +101,8 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		if ( $title->getNamespace() === NS_CATEGORY ) {
 			// T166757: do the update after the main job DB commit
 			DeferredUpdates::addCallableUpdate( function () use ( $title ) {
-				$this->refreshCategoryIfEmpty( $title );
+				$cat = Category::newFromName( $title->getDBkey() );
+				$cat->refreshCountsIfEmpty();
 			} );
 		}
 
@@ -185,35 +186,6 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 
 		// Commit and release the lock (if set)
 		ScopedCallback::consume( $scopedLock );
-	}
-
-	/**
-	 * @param Title $title
-	 */
-	private function refreshCategoryIfEmpty( Title $title ) {
-		$dbw = $this->getDB();
-
-		$row = $dbw->selectRow(
-			'category',
-			[ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ],
-			[ 'cat_title' => $title->getDBkey(), 'cat_pages <= 100' ],
-			__METHOD__
-		);
-
-		if ( !$row ) {
-			return; // nothing to delete
-		}
-
-		$cat = Category::newFromRow( $row, $title );
-		$hasLink = $dbw->selectField(
-			'categorylinks',
-			'1',
-			[ 'cl_to' => $title->getDBkey() ],
-			__METHOD__
-		);
-		if ( !$hasLink ) {
-			$cat->refreshCounts(); // delete the category table entry
-		}
 	}
 
 	private function batchDeleteByPK( $table, array $conds, array $pk, $bSize ) {
