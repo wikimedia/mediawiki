@@ -240,7 +240,9 @@ class PasswordReset implements LoggerAwareInterface {
 
 		$passwords = [];
 		foreach ( $reqs as $req ) {
-			$this->authManager->changeAuthenticationData( $req );
+			// This is adding a new temporary password, not intentionally changing anything
+			// (even though it might technically invalidate an old temporary password).
+			$this->authManager->changeAuthenticationData( $req, /* $isAddition */ true );
 		}
 
 		$this->logger->info(
