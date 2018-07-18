@@ -277,6 +277,8 @@ because of Phabricator reports.
   to running searchText/searchTitle.
 * (T199657) Messages for $wgFilterLogTypes labels should be no longer be in the
   'log-show-hide-[type]' format. Instead use 'logeventslist-[type]-log'.
+* Global functions  wfArrayFilter() and wfArrayFilterByKey() are deprecated.
+  use array_filter() directly.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into

@@ -437,12 +437,12 @@ class Command {
 			@trigger_error( '' );
 			restore_error_handler();
 
-			$readPipes = wfArrayFilterByKey( $pipes, function ( $fd ) use ( $desc ) {
+			$readPipes = array_filter( $pipes, function ( $fd ) use ( $desc ) {
 				return $desc[$fd][0] === 'pipe' && $desc[$fd][1] === 'r';
-			} );
-			$writePipes = wfArrayFilterByKey( $pipes, function ( $fd ) use ( $desc ) {
+			}, ARRAY_FILTER_USE_KEY );
+			$writePipes = array_filter( $pipes, function ( $fd ) use ( $desc ) {
 				return $desc[$fd][0] === 'pipe' && $desc[$fd][1] === 'w';
-			} );
+			}, ARRAY_FILTER_USE_KEY );
 			// stream_select parameter names are from the POV of us being able to do the operation;
 			// proc_open desriptor types are from the POV of the process doing it.
 			// So $writePipes is passed as the $read parameter and $readPipes as $write.

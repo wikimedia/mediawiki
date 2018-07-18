@@ -141,7 +141,7 @@ function wfArrayDiff2_cmp( $a, $b ) {
 }
 
 /**
- * Like array_filter with ARRAY_FILTER_USE_BOTH, but works pre-5.6.
+ * @deprecated since 1.32, use array_filter() with ARRAY_FILTER_USE_BOTH directly
  *
  * @param array $arr
  * @param callable $callback Will be called with the array value and key (in that order) and
@@ -149,17 +149,11 @@ function wfArrayDiff2_cmp( $a, $b ) {
  * @return array
  */
 function wfArrayFilter( array $arr, callable $callback ) {
-	if ( defined( 'ARRAY_FILTER_USE_BOTH' ) ) {
-		return array_filter( $arr, $callback, ARRAY_FILTER_USE_BOTH );
-	}
-	$filteredKeys = array_filter( array_keys( $arr ), function ( $key ) use ( $arr, $callback ) {
-		return call_user_func( $callback, $arr[$key], $key );
-	} );
-	return array_intersect_key( $arr, array_fill_keys( $filteredKeys, true ) );
+	return array_filter( $arr, $callback, ARRAY_FILTER_USE_BOTH );
 }
 
 /**
- * Like array_filter with ARRAY_FILTER_USE_KEY, but works pre-5.6.
+ * @deprecated since 1.32, use array_filter() with ARRAY_FILTER_USE_KEY directly
  *
  * @param array $arr
  * @param callable $callback Will be called with the array key and should return a bool which
@@ -167,9 +161,7 @@ function wfArrayFilter( array $arr, callable $callback ) {
  * @return array
  */
 function wfArrayFilterByKey( array $arr, callable $callback ) {
-	return wfArrayFilter( $arr, function ( $val, $key ) use ( $callback ) {
-		return call_user_func( $callback, $key );
-	} );
+	return array_filter( $arr, $callback, ARRAY_FILTER_USE_KEY );
 }
 
 /**

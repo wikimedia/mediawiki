@@ -593,7 +593,10 @@ class ContribsPager extends RangeChronologicalPager {
 
 		// Let extensions add data
 		Hooks::run( 'ContributionsLineEnding', [ $this, &$ret, $row, &$classes, &$attribs ] );
-		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
+		$attribs = array_filter( $attribs,
+			[ Sanitizer::class, 'isReservedDataAttribute' ],
+			ARRAY_FILTER_USE_KEY
+		);
 
 		// TODO: Handle exceptions in the catch block above.  Do any extensions rely on
 		// receiving empty rows?
