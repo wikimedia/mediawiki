@@ -196,7 +196,12 @@ class LogEventsList extends ContextSource {
 		$options = [];
 		$default = [];
 		foreach ( $filter as $type => $val ) {
-			$options[ $this->msg( "logeventslist-{$type}-log" )->text() ] = $type;
+			$message = $this->msg( "logeventslist-{$type}-log" );
+			// FIXME: Remove this check once T199657 is fully resolved.
+			if ( !$message->exists() ) {
+				$message = $this->msg( "log-show-hide-{$type}" )->params( $this->msg( 'show' )->text() );
+			}
+			$options[ $message->text() ] = $type;
 
 			if ( $val === 0 ) {
 				$default[] = $type;

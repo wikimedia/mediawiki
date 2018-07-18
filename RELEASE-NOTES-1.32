@@ -275,6 +275,8 @@ because of Phabricator reports.
   override this methods.
 * SearchEngine::replacePrefixes( $query ) should no longer be called prior
   to running searchText/searchTitle.
+* (T199657) Messages for $wgFilterLogTypes labels should be no longer be in the
+  'log-show-hide-[type]' format. Instead use 'logeventslist-[type]-log'.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
