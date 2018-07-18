@@ -1315,7 +1315,6 @@
 	"spam_blanking": "Bar olğan versiyalarda $1 saytına bağlantılar bar, temizlev",
 	"pageinfo-language": "Saife içindekisiniñ tili",
 	"patrol-log-page": "Teşkerüv jurnalı",
-	"log-show-hide-patrol": "Teşkerüv jurnalını $1",
 	"deletedrevision": "$1 sayılı eski versiya yoq etildi.",
 	"filedeleteerror-short": "Fayl yoq etkende hata çıqtı: $1",
 	"filedelete-missing": "\"$1\" adlı fayl yoq etilip olamay, çünki öyle bir fayl yoq.",

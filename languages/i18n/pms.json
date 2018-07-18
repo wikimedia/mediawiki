@@ -2344,8 +2344,6 @@
 	"markedaspatrollederrornotify": "Marcadura com verificà falìa.",
 	"patrol-log-page": "Registr dij contròj",
 	"patrol-log-header": "Cost-sì a l'é un registr ëd le revision controlà.",
-	"log-show-hide-patrol": "$1 registr verificà",
-	"log-show-hide-tag": "tichëtta d'argistr $1",
 	"deletedrevision": "Veja version scancelà $1",
 	"filedeleteerror-short": "Eror ën scanceland l'archivi: $1",
 	"filedeleteerror-long": "A-i son ësta-ie dj'eror ën scanceland l'archivi:\n\n$1",

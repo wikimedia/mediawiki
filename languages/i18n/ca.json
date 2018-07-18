@@ -2867,8 +2867,6 @@
 	"markedaspatrollederrornotify": "Ha fallat la marca com a patrullat.",
 	"patrol-log-page": "Registre de supervisió",
 	"patrol-log-header": "Això és un registre de les revisions patrullades.",
-	"log-show-hide-patrol": "$1 el registre de patrulla",
-	"log-show-hide-tag": "$1 el registre d’etiquetes",
 	"confirm-markpatrolled-button": "D'acord",
 	"confirm-markpatrolled-top": "Voleu marcar la revisió $3 de $2 com a patrullada?",
 	"deletedrevision": "S'ha eliminat la revisió antiga $1.",

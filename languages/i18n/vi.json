@@ -2875,8 +2875,6 @@
 	"markedaspatrollederrornotify": "Đánh dấu tuần tra bị thất bại.",
 	"patrol-log-page": "Nhật trình tuần tra",
 	"patrol-log-header": "Đây là nhật trình tuần tra phiên bản.",
-	"log-show-hide-patrol": "$1 nhật trình tuần tra",
-	"log-show-hide-tag": "Nhật trình đánh dấu $1",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Đánh dấu tuần tra phiên bản $3 của $2?",
 	"deletedrevision": "Đã xóa phiên bản cũ $1",

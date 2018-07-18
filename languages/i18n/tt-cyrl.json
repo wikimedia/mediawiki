@@ -1835,7 +1835,6 @@
 	"markedaspatrolledtext": "Сайланган [[:$1]] мәкаләсенең әлеге юрамасы тикшерелгән дип тамгаланды.",
 	"patrol-log-page": "Тикшерү көндәлеге",
 	"patrol-log-header": "Бу тикшерелгән битләрнең көндәлеге.",
-	"log-show-hide-patrol": "$1 тикшерү көндәлеге",
 	"confirm-markpatrolled-button": "Ярый",
 	"deletedrevision": "$1 битенең иске юрамасы бетерелде",
 	"filedeleteerror-short": "Файлны бетерү хатасы: $1",

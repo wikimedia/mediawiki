@@ -2750,8 +2750,6 @@
 	"markedaspatrollederrornotify": "Malsukcesis marki la dosieron kiel patrolatan.",
 	"patrol-log-page": "Protokolo pri patrolado",
 	"patrol-log-header": "Jen protokolo de patrolitaj versioj.",
-	"log-show-hide-patrol": "$1 protokolo pri patrolado",
-	"log-show-hide-tag": "$1 etikedan protokolon",
 	"confirm-markpatrolled-button": "Ek!",
 	"confirm-markpatrolled-top": "Marki version $3 el $2 kiel patrolita?",
 	"deletedrevision": "Forigita malnova versio $1",

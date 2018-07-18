@@ -9,7 +9,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Wikicology",
-			"Fitoschido"
+			"Fitoschido",
+			"Olaniyan Olushola"
 		]
 	},
 	"tog-underline": "Ìfàlàsábẹ́ àwọn àjápọ̀:",
@@ -1045,6 +1046,7 @@
 	"recentchanges": "Àwọn àtúnṣe tuntun",
 	"recentchanges-legend": "Àwọn àṣàyàn fún àtúnṣe tuntun",
 	"recentchanges-summary": "Ẹ tẹ̀ lé àwọn àtúnṣe tuntun sí wiki lórí ojúewé yìí.",
+	"recentchanges-noresult": "Kò sì áwọ́n iyipada ni akókò yì ti o ba àwon ìlànà yí mu.",
 	"recentchanges-feed-description": "Ẹ tẹ̀ lé àwọn àtúnṣe àìpẹ́ ọjọ́ sí wiki nínú àkótán feed yìí.",
 	"recentchanges-label-newpage": "Àtúnṣe yìí dá ojúewé tuntun",
 	"recentchanges-label-minor": "Àtùnṣe kékeré nìyí",
@@ -2216,7 +2218,6 @@
 	"markedaspatrollederrornotify": "Ìkùnà ìṣàmìsí bíi sísọ́.",
 	"patrol-log-page": "Àkọọ́lẹ̀ ìsọ́",
 	"patrol-log-header": "Àkọọ́lẹ̀ àwọn àtúnyẹ̀wò sísọ́ nì yí.",
-	"log-show-hide-patrol": "$1 àkọọ́lẹ̀ ìsọ́",
 	"confirm-markpatrolled-button": "OK",
 	"deletedrevision": "Àtúnyẹ̀wò àtijọ́ píparẹ́ $1",
 	"filedeleteerror-short": "Àsìṣe ìparẹ́ fáílì: $1",

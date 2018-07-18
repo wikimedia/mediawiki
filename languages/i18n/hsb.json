@@ -2415,8 +2415,6 @@
 	"markedaspatrollederrornotify": "Markěrowanje jako dohladowane je so njeporadźiło.",
 	"patrol-log-page": "Protokol přepruwowanjow",
 	"patrol-log-header": "To je protokol dohladowanych wersijow.",
-	"log-show-hide-patrol": "Protokol dohladowanja $1",
-	"log-show-hide-tag": "Protokol markěrowanjow $1",
 	"confirm-markpatrolled-button": "W porjadku",
 	"confirm-markpatrolled-top": "Wersiju $3 strony $2 jako přehladowanu markěrować?",
 	"deletedrevision": "Stara wersija $1 wušmórnjena",

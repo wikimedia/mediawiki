@@ -2899,8 +2899,6 @@
 	"markedaspatrollederrornotify": "סימון השינוי כבדוק נכשל.",
 	"patrol-log-page": "יומן שינויים בדוקים",
 	"patrol-log-header": "יומן זה מציג גרסאות שנבדקו.",
-	"log-show-hide-patrol": "$1 יומן שינויים בדוקים",
-	"log-show-hide-tag": "$1 יומן תגיות",
 	"confirm-markpatrolled-button": "אישור",
 	"confirm-markpatrolled-top": "לסמן את גרסה $3 בדף $2 כבדוקה?",
 	"deletedrevision": "מחיקת גרסה ישנה ($1)",

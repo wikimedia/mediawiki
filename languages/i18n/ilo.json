@@ -2793,8 +2793,6 @@
 	"markedaspatrollederrornotify": "Ti panagmarka a kas napatruliaan ket napaay.",
 	"patrol-log-page": "Listaan ti napatruliaan",
 	"patrol-log-header": "Daytoy ket listaan dagiti napatruliaan a rebision.",
-	"log-show-hide-patrol": "$1 listaan ti napatruliaan",
-	"log-show-hide-tag": "$1 ti listaan ti etiketa",
 	"confirm-markpatrolled-button": "Sige",
 	"confirm-markpatrolled-top": "Markaan ti rebision $3 iti $2 a kas napatruliaan?",
 	"deletedrevision": "Naikkat a daan a rebision ti $1",

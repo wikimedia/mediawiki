@@ -2253,8 +2253,6 @@
 	"markedaspatrollederrornotify": "जाँचा हुआ चिन्हित करना असफल रहा।",
 	"patrol-log-page": "परीक्षण लॉग",
 	"patrol-log-header": "यह परीक्षित अवतरणों की लॉग है।",
-	"log-show-hide-patrol": "परीक्षण लॉग $1",
-	"log-show-hide-tag": "$1 चिप्पी लग",
 	"deletedrevision": "पुरान अवतरण $1 हटाय दिहा गा है",
 	"filedeleteerror-short": "फ़ाईल हटावै मा समस्या: $1",
 	"filedeleteerror-long": "फ़ाइल हटावै में आवा गल्ती:\n\n$1",

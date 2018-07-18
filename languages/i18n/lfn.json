@@ -2824,8 +2824,6 @@
 	"markedaspatrollederrornotify": "La marca como patruliada ia fali.",
 	"patrol-log-page": "Arcivo de patrulias",
 	"patrol-log-header": "Esta es un rejistra de revisas patruliada.",
-	"log-show-hide-patrol": "$1 rejistra de patrulias",
-	"log-show-hide-tag": "$1 rejistra de eticetas",
 	"confirm-markpatrolled-button": "Oce",
 	"confirm-markpatrolled-top": "Marca revisa $3 de $2 como patruliada?",
 	"deletedrevision": "Sutrae revisa vea $1",

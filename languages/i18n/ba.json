@@ -2770,8 +2770,6 @@
 	"markedaspatrollederrornotify": "Патрулләнгән тип билдәләү уңышһыҙ тамамланды.",
 	"patrol-log-page": "Тикшереү яҙмалары журналы",
 	"patrol-log-header": "Был — тикшерелгән өлгөләр яҙмалары журналы.",
-	"log-show-hide-patrol": "тикшереү яҙмалары журналын $1",
-	"log-show-hide-tag": "$1 билдәләр журналы",
 	"confirm-markpatrolled-button": "Яҡшы",
 	"confirm-markpatrolled-top": "$2 битенең $3 версияһын тикшерелгән тип һанарғамы?",
 	"deletedrevision": "Иҫке $1 өлгөһө юйылды",

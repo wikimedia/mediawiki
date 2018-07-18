@@ -1407,7 +1407,6 @@
 	"markedaspatrollederror-noautopatrol": "Is ies ne erlaubt, eigene Beoarbeetunga ols kontrolliert zu markieren.",
 	"patrol-log-page": "Kontroll-Logbichl",
 	"patrol-log-header": "Dies ies doas Kontroll-Logbuch.",
-	"log-show-hide-patrol": "Kontroll-Logbichl $1",
 	"deletedrevision": "aale Version: $1",
 	"filedeleteerror-short": "Fahler bei Datei-Läschung: $1",
 	"filedeleteerror-long": "Bei dar Datei-Läschung wurden Fahler festgestellt:\n\n$1",

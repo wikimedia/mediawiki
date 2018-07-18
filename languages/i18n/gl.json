@@ -2908,8 +2908,6 @@
 	"markedaspatrollederrornotify": "Erro ao marcar como revisada.",
 	"patrol-log-page": "Rexistro de revisións patrulladas",
 	"patrol-log-header": "Este é un rexistro das revisións patrulladas.",
-	"log-show-hide-patrol": "$1 o rexistro de patrullas",
-	"log-show-hide-tag": "$1 o rexistro de etiquetas",
 	"confirm-markpatrolled-button": "Aceptar",
 	"confirm-markpatrolled-top": "Quere marcar a revisión $3 de \"$2\" como patrullada?",
 	"deletedrevision": "Revisión vella e borrada de \"$1\"",

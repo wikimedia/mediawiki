@@ -2199,7 +2199,6 @@
 	"markedaspatrollederrornotify": "Eror durante ła verifega.",
 	"patrol-log-page": "Modifiche verificàe",
 	"patrol-log-header": "Qua de sèvito xe elencàe le verifiche de le modifiche.",
-	"log-show-hide-patrol": "$1 el registro dei canbiamenti verificài",
 	"deletedrevision": "Vecia version scancełà $1",
 	"filedeleteerror-short": "Eror ne la scancelazion del file: $1",
 	"filedeleteerror-long": "Se gà verificà dei eror nel tentativo de scancelar el file:\n\n$1",

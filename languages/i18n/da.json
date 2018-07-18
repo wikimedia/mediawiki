@@ -2755,8 +2755,6 @@
 	"markedaspatrollederrornotify": "Markering som patruljeret mislykkedes.",
 	"patrol-log-page": "Kontrollog",
 	"patrol-log-header": "Patruljerede versioner.",
-	"log-show-hide-patrol": "$1 patruljeringslog",
-	"log-show-hide-tag": "$1 taglog",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Marker version $3 af $2 som patruljeret?",
 	"deletedrevision": "Slettede gammel version $1",

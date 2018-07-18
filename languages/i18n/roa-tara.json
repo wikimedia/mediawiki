@@ -2649,8 +2649,6 @@
 	"markedaspatrollederrornotify": "Signate cumme condrollate fallite.",
 	"patrol-log-page": "Archivije de le condrolle",
 	"patrol-log-header": "Quiste è l'archivije de le revisiune condrollate.",
-	"log-show-hide-patrol": "$1 archivije de le condrolle",
-	"log-show-hide-tag": "$1 archivije de le tag",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Signe 'a revisione $3 de $2 cumme condrollate?",
 	"deletedrevision": "Vecchia revisione scangellete $1",

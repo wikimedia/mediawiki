@@ -2795,8 +2795,6 @@
 	"markedaspatrollederrornotify": "Не ўдалося пазначыць як ухваленую.",
 	"patrol-log-page": "Журнал ухваленых",
 	"patrol-log-header": "Журнал ухваленых версій",
-	"log-show-hide-patrol": "$1 журнал ухваленняў",
-	"log-show-hide-tag": "$1 журнал бірак",
 	"confirm-markpatrolled-button": "Добра",
 	"confirm-markpatrolled-top": "Пазначыць версію $3 старонкі $2 як патруляваную?",
 	"deletedrevision": "Сцёрта старая версія $1",

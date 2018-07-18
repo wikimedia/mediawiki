@@ -2385,8 +2385,6 @@
 	"markedaspatrollederrornotify": "Хийцамаш хьаьжжина сана билгал бан цабелира.",
 	"patrol-log-page": "ТӀехьажаран тептар",
 	"patrol-log-header": "Хьажжина версеш йолу тептар.",
-	"log-show-hide-patrol": "$1 тӀехьажаран тептар",
-	"log-show-hide-tag": "$1 билгалонийн тептар",
 	"confirm-markpatrolled-button": "ХӀаъ",
 	"deletedrevision": "ДӀаяьккхина шира верси $1",
 	"filedeleteerror-short": "Файл дӀаяккхаран гӀалат: $1",

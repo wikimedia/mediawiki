@@ -2867,8 +2867,6 @@
 	"markedaspatrollederrornotify": "Marcarea ca patrulată a eșuat.",
 	"patrol-log-page": "Jurnal verificări",
 	"patrol-log-header": "Aceasta este o listă a tuturor versiunilor marcate ca verificate.",
-	"log-show-hide-patrol": "$1 jurnalul versiunilor verificate",
-	"log-show-hide-tag": "$1 jurnal etichete",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Marcați revizia $3 a $2 ca patrulată?",
 	"deletedrevision": "A fost ștearsă vechea versiune $1.",

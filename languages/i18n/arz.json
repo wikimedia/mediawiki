@@ -1801,7 +1801,6 @@
 	"markedaspatrollederror-noautopatrol": "مش مسموح ليك تعلم على تغييراتك الشخصية كأنها متراجعة.",
 	"patrol-log-page": "سجل المراجعة",
 	"patrol-log-header": "دا سجل بالنسخ المتراجعة",
-	"log-show-hide-patrol": "$1 سجل المراجعة",
 	"deletedrevision": "مسح النسخة القديمة $1",
 	"filedeleteerror-short": "غلط مسح الملف: $1",
 	"filedeleteerror-long": "حصلت غلطات و الملف دا بيتمسح :\n\n$1",

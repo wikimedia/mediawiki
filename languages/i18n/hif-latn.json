@@ -2747,8 +2747,6 @@
 	"markedaspatrollederrornotify": "Patrolled mark kare ke kosis fail hoe gais hae.",
 	"patrol-log-page": "Pahraa de waala suchi",
 	"patrol-log-header": "Ii pahraa dewa gais badlao ke suchi hai.",
-	"log-show-hide-patrol": "$1 pahraa de waala suchi",
-	"log-show-hide-tag": "$1 tag log",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Mark karo ki ii revision $3 of $2 patrolled hai?",
 	"deletedrevision": "Purana badlao ke mitae dia hai $1",

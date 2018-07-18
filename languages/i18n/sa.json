@@ -2331,8 +2331,6 @@
 	"markedaspatrollederrornotify": "समीक्षितम् इति चिह्नीकरणं विफलम्।",
 	"patrol-log-page": "निरीक्षिता संरक्षितावलिः",
 	"patrol-log-header": "इयम् आरक्षितपुनरावृत्तीनां सूचिका अस्ति ।",
-	"log-show-hide-patrol": "$1 इत्यनेन निरीक्षिता संरक्षितावलिः",
-	"log-show-hide-tag": "$1 चिह्नाऽऽवलिः",
 	"deletedrevision": "अपमर्जितप्राचीनपुनरावृत्तिः $1",
 	"filedeleteerror-short": "सञ्चिकानपमर्जने दोषः : $1",
 	"filedeleteerror-long": " सञ्चिकानामपमर्जने आगता समस्या  $1",

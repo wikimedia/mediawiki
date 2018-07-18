@@ -2931,8 +2931,6 @@
 	"markedaspatrollederrornotify": "لم ينجح وسم هذه النسخة بأنها مراجعة",
 	"patrol-log-page": "سجل الخفر",
 	"patrol-log-header": "هذا سجل بالمراجعات المراجعة.",
-	"log-show-hide-patrol": "$1 سجل الخفر",
-	"log-show-hide-tag": "$1 سجل الوسوم",
 	"confirm-markpatrolled-button": "موافق",
 	"confirm-markpatrolled-top": "علم على المراجعة $3 من $2 كمراجعة؟",
 	"deletedrevision": "حذف المراجعة القديمة $1",

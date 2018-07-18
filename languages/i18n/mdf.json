@@ -1605,7 +1605,6 @@
 	"markedaspatrollederror-noautopatrol": "Тондейть аф мярьгови тяштемс эсь полфнемацень кода патрулень варжафт.",
 	"patrol-log-page": "Патрулень лувомась",
 	"patrol-log-header": "Патруль ала верзиетнень лувомась.",
-	"log-show-hide-patrol": "$1 патрулень лувомась",
 	"deletedrevision": "Нардаф сире илякстоптома $1",
 	"filedeleteerror-short": "Лиссь эльбятькс нардамста файл: $1",
 	"filedeleteerror-long": "Лиссть эльбятькст нардамста файл:\n\n$1",

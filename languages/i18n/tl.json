@@ -2233,7 +2233,6 @@
 	"markedaspatrollederror-noautopatrol": "Wala kang pahintulot para tatakan ang ginawa mong mga pagbabago bilang napatrolya na.",
 	"patrol-log-page": "Tala ng Pagpapatrolya",
 	"patrol-log-header": "Tala ito ng mga pagbabagong napatrolya na.",
-	"log-show-hide-patrol": "$1 tala ng pagpatrolya",
 	"deletedrevision": "Binurang lumang pagbabago $1",
 	"filedeleteerror-short": "Kamalian sa pagbubura ng talaksan: $1",
 	"filedeleteerror-long": "Nakaranas ng mga kamalian habang binubura ang talaksan:\n\n$1",

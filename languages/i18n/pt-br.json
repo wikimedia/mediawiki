@@ -2965,8 +2965,6 @@
 	"markedaspatrollederrornotify": "Falha ao marcar como patrulhada.",
 	"patrol-log-page": "Registro de edições patrulhadas",
 	"patrol-log-header": "Este é um registro de edições patrulhadas.",
-	"log-show-hide-patrol": "$1 registro de edições patrulhadas",
-	"log-show-hide-tag": "$1 etiqueta de log",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Marque a revisão $3 de $2 como patrulhado?",
 	"deletedrevision": "Apagou a versão antiga $1",

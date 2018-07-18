@@ -2690,8 +2690,6 @@
 	"markedaspatrollederrornotify": "การทำเครื่องหมายว่าตรวจสอบแล้วล้มเหลว",
 	"patrol-log-page": "ปูมการตรวจสอบ",
 	"patrol-log-header": "หน้านี้คือปูมรุ่นการแก้ไขที่กำหนดว่าตรวจสอบแล้ว",
-	"log-show-hide-patrol": "$1 ปูมการตรวจสอบ",
-	"log-show-hide-tag": "$1ปูมป้ายระบุ",
 	"confirm-markpatrolled-button": "ตกลง",
 	"confirm-markpatrolled-top": "ทำเครื่องหมายรุ่น $3 ของ $2 ว่าตรวจสอบแล้วหรือไม่",
 	"deletedrevision": "รุ่นเก่าที่ถูกลบ $1",

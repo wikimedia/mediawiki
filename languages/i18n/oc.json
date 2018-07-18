@@ -2695,8 +2695,6 @@
 	"markedaspatrollederrornotify": "Fracàs del marcatge coma contrarotlat.",
 	"patrol-log-page": "Istoric de las versions patrolhadas",
 	"patrol-log-header": "Vaquí un jornal de las versions patrolhadas.",
-	"log-show-hide-patrol": "$1 l'istoric de las relecturas",
-	"log-show-hide-tag": "$1 lo jornal de las balisas",
 	"confirm-markpatrolled-button": "D'acòrdi",
 	"deletedrevision": "La version anciana $1 es estada suprimida.",
 	"filedeleteerror-short": "Error al moment de la supression del fichièr : $1",

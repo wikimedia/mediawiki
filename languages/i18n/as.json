@@ -2333,7 +2333,6 @@
 	"markedaspatrollederrornotify": "নিৰীক্ষণবিহীন ৰূপে চিহ্নিত কৰা হ’ল",
 	"patrol-log-page": "নিৰীক্ষণ অভিলেখ",
 	"patrol-log-header": "এইখন নিৰীক্ষিত সংশোধনসমূহৰ অভিলেখ ।",
-	"log-show-hide-patrol": "নিৰীক্ষণ অভিলেখ $1",
 	"deletedrevision": "পুৰণি সংশোধনী $1 বিলোপ কৰা হ’ল",
 	"filedeleteerror-short": "নথি বিলোপ কৰাত ত্ৰুটি: $1",
 	"filedeleteerror-long": "এই নথিখন বিলোপ কৰাত সমস্যা হৈছে :\n\n$1",

@@ -169,7 +169,8 @@
 			"Athena in Wonderland",
 			"Truebamateo",
 			"La Mantis",
-			"Amaia"
+			"Amaia",
+			"Tiberius1701"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -1598,9 +1599,9 @@
 	"rcfilters-watchlist-edit-watchlist-button": "Edita tu lista de seguimiento",
 	"rcfilters-watchlist-showupdated": "Los cambios hechos a páginas que no has visitado desde que se efectuaron aparecen en <strong>negrita</strong>, acompañados de marcadores sólidos.",
 	"rcfilters-preference-label": "Ocultar la versión mejorada de Cambios recientes",
-	"rcfilters-preference-help": "Revierte el rediseño de interfaz de 2017 y desactiva todas las herramientas añadidas desde entonces.",
+	"rcfilters-preference-help": "Revierte el rediseño de la interfaz de 2017 y desactiva todas las herramientas añadidas desde entonces.",
 	"rcfilters-watchlist-preference-label": "Ocultar la versión mejorada de la lista de seguimiento",
-	"rcfilters-watchlist-preference-help": "Revierte el rediseño de la interfaz de 2017 e indisponibiliza todas las herramientas añadidas desde entonces.",
+	"rcfilters-watchlist-preference-help": "Revierte el rediseño de la interfaz de 2017 y desactiva todas las herramientas añadidas desde entonces.",
 	"rcfilters-filter-showlinkedfrom-label": "Mostrar cambios en páginas enlazadas desde",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Páginas enlazadas desde</strong> la página seleccionada",
 	"rcfilters-filter-showlinkedto-label": "Mostrar cambios en páginas que enlazan a",
@@ -3027,8 +3028,6 @@
 	"markedaspatrollederrornotify": "Error al marcar como verificado.",
 	"patrol-log-page": "Registro de revisiones",
 	"patrol-log-header": "Este es un registro de revisiones verificadas.",
-	"log-show-hide-patrol": "$1 registro de verificación",
-	"log-show-hide-tag": "$1 registro de etiquetas",
 	"confirm-markpatrolled-button": "Aceptar",
 	"confirm-markpatrolled-top": "¿Marcar la revisión $3 de $2 como verificada?",
 	"deletedrevision": "Borrada revisión antigua $1",

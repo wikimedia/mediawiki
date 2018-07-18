@@ -2476,8 +2476,6 @@
 	"markedaspatrollederrornotify": "Det gjekk ikkje å merkja endringa som patruljert.",
 	"patrol-log-page": "Patruljeringslogg",
 	"patrol-log-header": "Dette er ein logg over patruljerte sideversjonar.",
-	"log-show-hide-patrol": "$1 patruljeringslogg",
-	"log-show-hide-tag": "$1 merkelogg",
 	"deletedrevision": "Slett gammal versjon $1",
 	"filedeleteerror-short": "Feil ved sletting av fila: $1",
 	"filedeleteerror-long": "Det vart ein feil under filslettinga av:\n\n$1",

@@ -2230,8 +2230,6 @@
 	"markedaspatrollederrornotify": "L-ivverifikar tal-modifika falla.",
 	"patrol-log-page": "Modifiki verifikati",
 	"patrol-log-header": "Dan huwa reġistru ta' reviżjonijiet verifikati.",
-	"log-show-hide-patrol": "$1 r-reġistru tal-modifiki verifikati",
-	"log-show-hide-tag": "$1 r-reġistru tat-tikketti",
 	"deletedrevision": "Reviżjoni preċedenti, mħassra: $1",
 	"filedeleteerror-short": "Problema waqt li kont qiegħed tħassar il-fajl: $1",
 	"filedeleteerror-long": "Ġew verifikati xi problemi waqt li kont qiegħed tħassar il-fajl:\n\n$1",

@@ -1559,7 +1559,6 @@
 	"markedaspatrollederrortext": "የተመለከተ ሆኖ ለማሳለፍ አንድን ዕትም መወሰን አለብዎት።",
 	"markedaspatrollederror-noautopatrol": "የራስዎን ለውጥ የተመለከተ ሆኖ ለማሳለፍ አይችሉም።",
 	"patrol-log-page": "የማሳለፊያ መዝገብ",
-	"log-show-hide-patrol": "ማሳለፊያ መዝገቦች",
 	"deletedrevision": "የቆየው ዕትም $1 አጠፋ",
 	"filedeleteerror-short": "የፋይል ማጥፋት ስኅተት፦ $1",
 	"filedeleteerror-long": "ፋይሉን በማጥፋት ስህተቶች ተነስተዋል፦\n\n$1",

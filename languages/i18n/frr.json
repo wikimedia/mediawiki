@@ -2470,8 +2470,6 @@
 	"markedaspatrollederrornotify": "Det werjuun küd ei üs kontroliaret kääntiakent wurd.",
 	"patrol-log-page": "Kontrol-logbuk",
 	"patrol-log-header": "Det as det kontrol-logbuk.",
-	"log-show-hide-patrol": "Kontrol-logbuk $1",
-	"log-show-hide-tag": "Markiarang-logbuk $1",
 	"deletedrevision": "Ual werjuun $1 stregen",
 	"filedeleteerror-short": "Bi't striken faan det datei $1 as wat skiaf gingen.",
 	"filedeleteerror-long": "Bi't striken faan det datei as wat skiaf gingen:\n\n$1",

@@ -298,7 +298,6 @@ abstract class TablePager extends IndexPager {
 		$types = [ 'first', 'prev', 'next', 'last' ];
 
 		$queries = $this->getPagingQueries();
-		$links = [];
 
 		$buttons = [];
 

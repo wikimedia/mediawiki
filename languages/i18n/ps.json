@@ -2340,8 +2340,6 @@
 	"markedaspatrollederrornotify": "د څارل شوي په توگه په نښه کول نابريال شو.",
 	"patrol-log-page": "د څارنې يادښت",
 	"patrol-log-header": "دا د څارل شويو مخکتنو يو يادښت دی.",
-	"log-show-hide-patrol": "د څارنې يادښت $1",
-	"log-show-hide-tag": "نښلن يادښت $1",
 	"confirm-markpatrolled-button": "ښه",
 	"deletedrevision": "د $1 زړه ړنگه شوې بڼه",
 	"filedeleteerror-short": "د دوتنې د ړنگولو ستونزه: $1",

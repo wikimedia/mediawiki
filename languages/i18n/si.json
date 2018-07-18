@@ -2361,8 +2361,6 @@
 	"markedaspatrollederror-noautopatrol": "ඔබගේ ස්වීය වෙනස්වීම් පරික්‍ෂාකර බැලූ ලෙස සලකුණු කිරීමට ඔබ හට ඉඩ දෙනු නොලැබේ.",
 	"patrol-log-page": "පරික්ෂාකිරීම් සටහන",
 	"patrol-log-header": "මෙය පරික්‍ෂාකර බැලූ සංශෝධනයන්ගේ ලඝු-සටහනකි.",
-	"log-show-hide-patrol": "පරික්‍ෂාකිරීම් ලඝු-සටහන් $1",
-	"log-show-hide-tag": "$1 ටැගය ලඝු-සටහන",
 	"deletedrevision": "පැරැණි සංශෝධනය $1 මකාදමන ලදි",
 	"filedeleteerror-short": "ගොනුව මකාදැමීමේ දෝෂය: $1",
 	"filedeleteerror-long": "ගොනුව මකාදැමීමේදී දෝෂයන් හමුවුණි:\n\n$1",

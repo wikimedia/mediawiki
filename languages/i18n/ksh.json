@@ -2578,8 +2578,6 @@
 	"markedaspatrollederrornotify": "Dat di Sigg nohjekik es, kunnte mer nit faßhalde.",
 	"patrol-log-page": "Logbohch vun de nohjelohrte Änderonge",
 	"patrol-log-header": "<!-- -->",
-	"log-show-hide-patrol": "$1 et Logbuch vum Sigge nohlooere",
-	"log-show-hide-tag": "Donn et Logbohch vun de Makkehronge $1",
 	"deletedrevision": "De ahle Väsjohn „$1“ es fottjeschmeße",
 	"filedeleteerror-short": "Fähler bem Dattei-Fottschmiiße: $1",
 	"filedeleteerror-long": "Bem Fosooch, de Dattei fottzeschmihße, hatte mer Fähler:\n\n$1",

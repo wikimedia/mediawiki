@@ -2921,8 +2921,6 @@
 	"markedaspatrollederrornotify": "जाँचा हुआ चिन्हित करना असफल रहा।",
 	"patrol-log-page": "परीक्षण लॉग",
 	"patrol-log-header": "यह परीक्षित अवतरणों की लॉग है।",
-	"log-show-hide-patrol": "परीक्षण लॉग $1",
-	"log-show-hide-tag": "$1 टैग लॉग",
 	"confirm-markpatrolled-button": "ठीक है",
 	"confirm-markpatrolled-top": "$2 के $3 संशोधन को परीक्षित चिन्ह्नत करे?",
 	"deletedrevision": "पुराना अवतरण $1 हटा दिया",

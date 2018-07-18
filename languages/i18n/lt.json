@@ -2778,8 +2778,6 @@
 	"markedaspatrollederrornotify": "Nepavyko pažymėti kaip patikrinto.",
 	"patrol-log-page": "Patikrinimų sąrašas",
 	"patrol-log-header": "Tai patvirtintų versijų sąrašas.",
-	"log-show-hide-patrol": "$1 patvirtinimų sąrašą",
-	"log-show-hide-tag": "$1 žymės žurnalas",
 	"confirm-markpatrolled-button": "GERAI",
 	"deletedrevision": "Ištrinta sena versija $1",
 	"filedeleteerror-short": "Klaida trinant rinkmeną: $1",

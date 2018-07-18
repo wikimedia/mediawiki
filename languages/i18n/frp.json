@@ -2539,8 +2539,6 @@
 	"markedaspatrollederrornotify": "Falyita du marcâjo du changement coment gouardâ.",
 	"patrol-log-page": "Jornâl de gouârda",
 	"patrol-log-header": "Vê-que un jornâl de les vèrsions gouardâyes.",
-	"log-show-hide-patrol": "$1 lo jornâl de gouârda",
-	"log-show-hide-tag": "$1 lo jornâl de les balises",
 	"deletedrevision": "Vielye vèrsion $1 suprimâye",
 	"filedeleteerror-short": "Fôta pendent la suprèssion du fichiér : $1",
 	"filedeleteerror-long": "Des fôtes sont étâyes rencontrâyes pendent la suprèssion du fichiér :\n\n$1",

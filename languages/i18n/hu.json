@@ -2898,8 +2898,6 @@
 	"markedaspatrollederrornotify": "Nem sikerült ellenőrzöttnek jelölni.",
 	"patrol-log-page": "Ellenőrzési napló (patrol)",
 	"patrol-log-header": "Ez az ellenőrzött változatok naplója.",
-	"log-show-hide-patrol": "járőrnapló $1",
-	"log-show-hide-tag": "címkenapló $1",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Ellenőrzöttnek jelölöd a(z) $2 lap $3 változatát?",
 	"deletedrevision": "Régebbi változat törölve: $1",
