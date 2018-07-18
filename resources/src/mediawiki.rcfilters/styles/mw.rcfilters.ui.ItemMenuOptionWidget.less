@@ -60,6 +60,12 @@
 			display: block;
 			padding-top: 1em;
 		}
+
+		label {
+			// Workaround for Chrome browser bug (T199932)
+			// Override padding rule from FieldLayout
+			padding-left: 0 !important; /* stylelint-disable-line declaration-no-important */
+		}
 	}
 
 	.mw-rcfilters-ui-cell {
