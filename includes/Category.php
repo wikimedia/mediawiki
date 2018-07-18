@@ -420,4 +420,45 @@ class Category {
 
 		return true;
 	}
+
+	/**
+	 * Call refreshCounts() if there are no entries in the categorylinks table
+	 * or if the category table has a row that states that there are no entries
+	 *
+	 * Due to lock errors or other failures, the precomputed counts can get out of sync,
+	 * making it hard to know when to delete the category row without checking the
+	 * categorylinks table.
+	 *
+	 * @return bool Whether links were refreshed
+	 * @since 1.32
+	 */
+	public function refreshCountsIfEmpty() {
+		$dbw = wfGetDB( DB_MASTER );
+
+		$hasLink = $dbw->selectField(
+			'categorylinks',
+			'1',
+			[ 'cl_to' => $this->getName() ],
+			__METHOD__
+		);
+		if ( !$hasLink ) {
+			$this->refreshCounts(); // delete any category table entry
+
+			return true;
+		}
+
+		$hasBadRow = $dbw->selectField(
+			'category',
+			'1',
+			[ 'cat_title' => $this->getName(), 'cat_pages <= 0' ],
+			__METHOD__
+		);
+		if ( $hasBadRow ) {
+			$this->refreshCounts(); // clean up this row
+
+			return true;
+		}
+
+		return false;
+	}
 }
