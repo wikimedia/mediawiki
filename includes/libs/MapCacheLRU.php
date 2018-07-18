@@ -135,7 +135,7 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 	 * Check if a key exists
 	 *
 	 * @param string $key
-	 * @param float $maxAge Ignore items older than this many seconds (since 1.32)
+	 * @param float $maxAge Ignore items older than this many seconds [optional] (since 1.32)
 	 * @return bool
 	 */
 	public function has( $key, $maxAge = 0.0 ) {
@@ -157,10 +157,11 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 	 * If the item is already set, it will be pushed to the top of the cache.
 	 *
 	 * @param string $key
-	 * @return mixed Returns null if the key was not found
+	 * @param float $maxAge Ignore items older than this many seconds [optional] (since 1.32)
+	 * @return mixed Returns null if the key was not found or is older than $maxAge
 	 */
-	public function get( $key ) {
-		if ( !$this->has( $key ) ) {
+	public function get( $key, $maxAge = 0.0 ) {
+		if ( !$this->has( $key, $maxAge ) ) {
 			return null;
 		}
 
@@ -193,7 +194,7 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 	/**
 	 * @param string|int $key
 	 * @param string|int $field
-	 * @param float $maxAge
+	 * @param float $maxAge Ignore items older than this many seconds [optional] (since 1.32)
 	 * @return bool
 	 */
 	public function hasField( $key, $field, $maxAge = 0.0 ) {
@@ -205,8 +206,18 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 		return ( $maxAge <= 0 || $this->getAge( $key, $field ) <= $maxAge );
 	}
 
-	public function getField( $key, $field ) {
-		return $this->get( $key )[$field] ?? null;
+	/**
+	 * @param string|int $key
+	 * @param string|int $field
+	 * @param float $maxAge Ignore items older than this many seconds [optional] (since 1.32)
+	 * @return mixed Returns null if the key was not found or is older than $maxAge
+	 */
+	public function getField( $key, $field, $maxAge = 0.0 ) {
+		if ( !$this->hasField( $key, $field, $maxAge ) ) {
+			return null;
+		}
+
+		return $this->cache[$key][$field];
 	}
 
 	/**
