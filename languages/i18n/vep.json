@@ -1764,7 +1764,6 @@
 	"markedaspatrollederror-noautopatrol": "Teile ei sa znamoita ičetoi toižetusid kut patruliruidud.",
 	"patrol-log-page": "Patruliruindan aigkirj",
 	"patrol-log-header": "Nece om patruliruidud versijoiden aiglehtez.",
-	"log-show-hide-patrol": "$1 patruliruindan aigkirj",
 	"deletedrevision": "$1-lehtpolen vanh versii om čutud",
 	"filedeleteerror-short": "Failan čudandan petuz: $1",
 	"filedeleteerror-long": "Necen failan heitmižen aigan ozaižihe petused:\n\n$1",

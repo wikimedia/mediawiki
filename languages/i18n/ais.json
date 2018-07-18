@@ -2604,8 +2604,6 @@
 	"markedaspatrollederrornotify": "silusi tayza-mikibi mungangaw.",
 	"patrol-log-page": "tayza mikibi nasulitan nazipa’an",
 	"patrol-log-header": "uyniyan sa u tayza-mikibi masumaday baziyong a nasulitan-nazipa’an.",
-	"log-show-hide-patrol": "$1 tayza mikibi nasulitan nazipa’an",
-	"log-show-hide-tag": "$1 tazihan-paya nasulitan nazipa’an",
 	"confirm-markpatrolled-button": "malucekay",
 	"confirm-markpatrolled-top": "silusi $2 a sumad $3 ku tayza-mikibi?",
 	"deletedrevision": "masipu malumanay misumad nu ayaway $1",

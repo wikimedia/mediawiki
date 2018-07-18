@@ -2060,7 +2060,6 @@
 	"markedaspatrollederrornotify": "Sbagl durant marcar sco controllà.",
 	"patrol-log-page": "Protocol da controllas",
 	"patrol-log-header": "Quai è il protocol da las versiuns controlladas.",
-	"log-show-hide-patrol": "$1 il protocol da controllas",
 	"deletedrevision": "Stizzà la versiun veglia $1.",
 	"filedeleteerror-short": "Errur cun stizzar la datoteca: $1",
 	"filedeleteerror-long": "Cun stizzar la datoteca èn errurs vegnidas constatadas:\n\n$1",

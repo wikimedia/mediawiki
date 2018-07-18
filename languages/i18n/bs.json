@@ -2791,8 +2791,6 @@
 	"markedaspatrollederrornotify": "Označavanje stranice pregledanom nije uspjelo.",
 	"patrol-log-page": "Zapisnik patroliranja",
 	"patrol-log-header": "Ovo je zapisnik patroliranih izmjena.",
-	"log-show-hide-patrol": "$1 zapisnik patroliranja",
-	"log-show-hide-tag": "$1 zapisnik oznaka",
 	"confirm-markpatrolled-button": "U redu",
 	"confirm-markpatrolled-top": "Označiti izmjenu $3 stranice $2 patroliranom?",
 	"deletedrevision": "Obrisana stara izmjena $1",

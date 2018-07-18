@@ -2361,8 +2361,6 @@
 	"markedaspatrollederrornotify": "La marcatura comu virificatu nun arriniscìu.",
 	"patrol-log-page": "Riggistru dî canciamenti virificati",
 	"patrol-log-header": "Chistu è nu riggistru dî virsioni virificati.",
-	"log-show-hide-patrol": "$1 lu riggistru dî canciamenti virificati",
-	"log-show-hide-tag": "$1 lu riggistru di l'etichetti",
 	"deletedrevision": "Cancillata na virsioni vecchia di $1",
 	"filedeleteerror-short": "Erruri ntâ cancillazzioni dû file: $1",
 	"filedeleteerror-long": "Ammatteru erruri ntô tintativu di cancillari lu file:\n\n$1",

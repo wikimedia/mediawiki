@@ -2128,7 +2128,6 @@
 	"markedaspatrollederror-noautopatrol": "Та өөрийн өөрчлөлтүүдээ эргүүлээр хянагдсан гэж тэмдэглэж болохгүй.",
 	"patrol-log-page": "Эргүүлийн лог",
 	"patrol-log-header": "Энэ нь манагдсан засваруудын лог юм.",
-	"log-show-hide-patrol": "мануулын логийг $1",
 	"deletedrevision": "Хуучин засвар $1 нь устгагдлаа",
 	"filedeleteerror-short": "Файлыг устгахад алдаа гарлаа: $1",
 	"filedeleteerror-long": "Дараах файлыг устгахад алдаа гарлаа:\n\n$1",

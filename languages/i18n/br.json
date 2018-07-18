@@ -2775,8 +2775,6 @@
 	"markedaspatrollederrornotify": "N'eus ket bet gallet merkañ evel gwiriet.",
 	"patrol-log-page": "Log gwiriañ",
 	"patrol-log-header": "Setu ur marilh eus ar stummoù patrouilhet.",
-	"log-show-hide-patrol": "$1 istor ar stummoù gwiriet",
-	"log-show-hide-tag": "$1 marilh an dikedenn",
 	"confirm-markpatrolled-button": "Mat eo",
 	"confirm-markpatrolled-top": "Merkañ adweladenn $3 eus $2 evel gwiriet ?",
 	"deletedrevision": "Diverket stumm kozh $1.",

@@ -2368,8 +2368,6 @@
 	"markedaspatrollederrornotify": "دولانماق برچسبی مووفقیت سیز اولدو",
 	"patrol-log-page": "دولانما ژورنالی",
 	"patrol-log-header": "بو یوخلانمیش دییشیک‌لیک‌لرین ژورنالی‌دیر.",
-	"log-show-hide-patrol": "$1 دولانما ژورنالی",
-	"log-show-hide-tag": "اِتیکت ژورنالی $1",
 	"deletedrevision": "کؤهنه نوسخه لری سیلیندی $1.",
 	"filedeleteerror-short": "فایل سیلینرکن ختا: $1",
 	"filedeleteerror-long": "فایل سیلینرکن اوزه چیخان ختا‌لار:\n\n$1",

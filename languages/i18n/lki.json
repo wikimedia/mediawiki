@@ -2486,8 +2486,6 @@
 	"markedaspatrollederrornotify": "زدن برچسب گشت، ناموفق بود.",
 	"patrol-log-page": "سیاههٔ گشت",
 	"patrol-log-header": "این سیاهه‌ای از ویرایش‌های گشت‌خورده است.",
-	"log-show-hide-patrol": "$1 سیاههٔ گشت‌زنی",
-	"log-show-hide-tag": "$1 سیاهه برچسب",
 	"deletedrevision": "$1 نسخهٔ حذف شدهٔ قدیمی",
 	"filedeleteerror-short": "خطا در حذف پرونده: $1",
 	"filedeleteerror-long": "در زمان حذف پرونده خطا رخ داد:\n\n$1",

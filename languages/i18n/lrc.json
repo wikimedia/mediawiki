@@ -2372,8 +2372,6 @@
 	"markedaspatrollederrornotify": "نشودار کردن چی نشودار بیه شکست حرده",
 	"patrol-log-page": "پهرستنومه گشتن",
 	"patrol-log-header": "یه پهرستنومه وانئریا سردیاری کرده هئ.",
-	"log-show-hide-patrol": "$1 پهرستنومه سردیاری کردن",
-	"log-show-hide-tag": "سردیس پهرستنومه $1",
 	"deletedrevision": "وانئری دماتری پاکسابیه د $1",
 	"filedeleteerror-short": "خطا پاک نبیئن جانیا:$1",
 	"filedeleteerror-long": "د گات پاکسا کردن جانیا یه گل خطا پیش اوما:\n\n\n$1",

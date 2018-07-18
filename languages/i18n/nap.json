@@ -2609,8 +2609,6 @@
 	"markedaspatrollederrornotify": "Errore pe' tramente ca se nzegnava comme cuntrullata.",
 	"patrol-log-page": "Riggistro 'e cuntrolle",
 	"patrol-log-header": "Chest'è nu riggistro ch' 'e verziune cuntrullate.",
-	"log-show-hide-patrol": "$1 riggistro 'e cuntrolle",
-	"log-show-hide-tag": "$1 tag log",
 	"deletedrevision": "Viecchia verziona scancellata $1",
 	"filedeleteerror-short": "Errore pe' tramente ca se scancellava nu file: $1",
 	"filedeleteerror-long": "N'errore s'è apprisentato pe' tramente ca se scancellava 'o file:\n\n$1",

@@ -2952,8 +2952,6 @@
 	"markedaspatrollederrornotify": "Oznaczenie strony jako sprawdzonej nie powiodło się.",
 	"patrol-log-page": "Rejestr patrolowania",
 	"patrol-log-header": "Poniżej znajduje się rejestr patrolowania stron.",
-	"log-show-hide-patrol": "$1 rejestr sprawdzania",
-	"log-show-hide-tag": "$1 rejestr znaczników",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Oznaczyć wersję $3 strony $2 jako sprawdzoną?",
 	"deletedrevision": "Usunięto poprzednie wersje $1",

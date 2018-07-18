@@ -2688,7 +2688,6 @@
 	"markedaspatrollederrornotify": "'पहारा दिला' म्हणून अंकित करणे विफल झाले.",
 	"patrol-log-page": "टेहळणीतील नोंदी",
 	"patrol-log-header": "ही पाहणीनंतरच्या निरीक्षणाची नोंद आहे.",
-	"log-show-hide-patrol": "$1 गस्तीची नोंद",
 	"confirm-markpatrolled-button": "ठीक आहे",
 	"confirm-markpatrolled-top": "$2च्या $3 आवृत्तीवर पहारा दिला म्हणून खूण करायची?",
 	"deletedrevision": "जुनी आवृत्ती ($1) वगळली.",

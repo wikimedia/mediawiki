@@ -2895,8 +2895,6 @@
 	"markedaspatrollederrornotify": "Означувањето како испатролирано не успеа.",
 	"patrol-log-page": "Дневник на патролирања",
 	"patrol-log-header": "Ова е дневник на патролирани преработки.",
-	"log-show-hide-patrol": "$1 дневник на патролирање",
-	"log-show-hide-tag": "$1 дневник на ознаки",
 	"confirm-markpatrolled-button": "ОК",
 	"confirm-markpatrolled-top": "Да ја означан преработката $3 на $2 како испатролирана?",
 	"deletedrevision": "Избришана стара преработка $1.",

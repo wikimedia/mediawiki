@@ -2414,8 +2414,6 @@
 	"markedaspatrollederrornotify": "Тексерілді деп белгіленбеді.",
 	"patrol-log-page": "Тексеру журналы",
 	"patrol-log-header": "Бұл тексерілген нұсқалар журналы",
-	"log-show-hide-patrol": "$1 тексеру журналы",
-	"log-show-hide-tag": "$1 белгі журналы",
 	"deletedrevision": "Ескі түзетуін жойды: $1",
 	"filedeleteerror-short": "Файл жою қатесі: $1",
 	"filedeleteerror-long": "Файлды жойғанда қателер кездесті:\n\n$1",

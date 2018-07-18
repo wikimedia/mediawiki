@@ -2830,8 +2830,6 @@
 	"markedaspatrollederrornotify": "პატრულირებულად მონიშვნა ვერ მოხერხდა.",
 	"patrol-log-page": "პატრულირების ჟურნალი",
 	"patrol-log-header": "ეს არის პატრულირებულ ვერსიათა ჟურნალი.",
-	"log-show-hide-patrol": "$1 პატრულირების ჟურნალი",
-	"log-show-hide-tag": "$1 დასათაურების ჟურნალი",
 	"confirm-markpatrolled-button": "კარგი",
 	"confirm-markpatrolled-top": "მოინიშნოს $2-ის $3 ცვლილება  შემოწმებულად?",
 	"deletedrevision": "წაშლილია ძველი ვერსია $1.",

@@ -2285,7 +2285,6 @@
 	"markedaspatrollederrornotify": "Markeren as nao-ekeken is mislokt.",
 	"patrol-log-page": "Markeerlogboek",
 	"patrol-log-header": "In dit logboek staon de versies die op nao-ekeken ezet bin.",
-	"log-show-hide-patrol": "Markeerlogboek $1",
 	"deletedrevision": "Vortedaone ouwe versie $1.",
 	"filedeleteerror-short": "Fout bie t vortdoon van bestaand: $1",
 	"filedeleteerror-long": "Der waren fouten bie t vortdoon van t bestaand:\n\n$1",

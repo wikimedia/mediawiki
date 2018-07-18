@@ -2726,8 +2726,6 @@
 	"markedaspatrollederrornotify": "Nepodarilo sa označiť ako preverené.",
 	"patrol-log-page": "Záznam preverených úprav",
 	"patrol-log-header": "Toto je záznam preverených revízií.",
-	"log-show-hide-patrol": "$1 záznam preverených úprav",
-	"log-show-hide-tag": "$1 záznam značiek",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Označiť revíziu $3 stránky $2 ako preverenú?",
 	"deletedrevision": "Zmazať staré verzie $1",

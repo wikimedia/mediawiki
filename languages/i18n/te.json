@@ -2647,8 +2647,6 @@
 	"markedaspatrollednotify": "$1 లో చేసిన ఈ మార్పు పర్యవేక్షణలో ఉన్నట్టుగా గుర్తించబడింది.",
 	"patrol-log-page": "నిఘా చిట్టా",
 	"patrol-log-header": "ఇది పర్యవేక్షించిన కూర్పుల చిట్టా.",
-	"log-show-hide-patrol": "$1 పర్యవేక్షణ చిట్టా",
-	"log-show-hide-tag": "ట్యాగుల చిట్టాను $1",
 	"confirm-markpatrolled-button": "సరే",
 	"deletedrevision": "పాత సంచిక $1 తొలగించబడినది.",
 	"filedeleteerror-short": "ఫైలు తొలగించడంలో పొరపాటు: $1",

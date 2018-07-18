@@ -2524,8 +2524,6 @@
 	"markedaspatrollederrornotify": "Penandaan sebagai dironda gagal.",
 	"patrol-log-page": "Log pemeriksaan",
 	"patrol-log-header": "Yang berikut ialah log rondaan bagi semakan.",
-	"log-show-hide-patrol": "$1 log rondaan",
-	"log-show-hide-tag": "$1 log teg",
 	"deletedrevision": "Menghapuskan semakan lama $1.",
 	"filedeleteerror-short": "Ralat ketika menghapuskan fail: $1",
 	"filedeleteerror-long": "Berlaku ralat ketika menghapuskan fail tersebut:\n\n$1",

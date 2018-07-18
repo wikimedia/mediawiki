@@ -2711,8 +2711,6 @@
 	"markedaspatrollederrornotify": "Неуспешно отбелязване на редакция като патрулирана.",
 	"patrol-log-page": "Дневник на патрула",
 	"patrol-log-header": "Тази страница съдържа дневник на проверените версии.",
-	"log-show-hide-patrol": "$1 на дневника на патрула",
-	"log-show-hide-tag": "$1 на дневника на отбелязванията",
 	"confirm-markpatrolled-button": "Добре",
 	"confirm-markpatrolled-top": "Маркиране на редакция $3 на $2 като патрулирана?",
 	"deletedrevision": "Изтрита стара версия $1",

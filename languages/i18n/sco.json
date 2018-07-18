@@ -2596,8 +2596,6 @@
 	"markedaspatrollederrornotify": "Maurking aes patrowed failed.",
 	"patrol-log-page": "Patrow log",
 	"patrol-log-header": "This is ae log o patrowed reveesions.",
-	"log-show-hide-patrol": "$1 patrow log",
-	"log-show-hide-tag": "$1 tag log",
 	"deletedrevision": "Delytit auld reveesion $1.",
 	"filedeleteerror-short": "Mistak delytin file: $1",
 	"filedeleteerror-long": "mistaks were encoontered while delytin the file:\n\n$1",

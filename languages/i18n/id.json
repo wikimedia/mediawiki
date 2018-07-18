@@ -2884,8 +2884,6 @@
 	"markedaspatrollederrornotify": "Menandai sebagai terpatroli gagal.",
 	"patrol-log-page": "Log patroli",
 	"patrol-log-header": "Ini adalah log revisi terpatroli.",
-	"log-show-hide-patrol": "$1 log patroli",
-	"log-show-hide-tag": "log tag $1",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Tandai revisi $3 dari $2 sebagai terperiksa?",
 	"deletedrevision": "Revisi lama yang dihapus $1",

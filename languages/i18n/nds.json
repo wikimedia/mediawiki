@@ -1739,7 +1739,6 @@
 	"markedaspatrollederror-noautopatrol": "Du kannst de Saken, de du sülvst ännert hest, nich as nakeken marken.",
 	"patrol-log-page": "Nakiek-Logbook",
 	"patrol-log-header": "Dit is dat Patrolleer-Logbook.",
-	"log-show-hide-patrol": "Nakiek-Logbook $1",
 	"deletedrevision": "Löschte ole Version $1",
 	"filedeleteerror-short": "Fehler bi dat Wegsmieten vun de Datei: $1",
 	"filedeleteerror-long": "Dat geev Fehlers bi dat Wegsmieten vun de Datei:\n\n$1",

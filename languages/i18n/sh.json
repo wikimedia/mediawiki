@@ -2371,7 +2371,6 @@
 	"markedaspatrollederrornotify": "Nije uspjelo označavanje ove stranice kao patrolirane.",
 	"patrol-log-page": "Evidencija patroliranja",
 	"patrol-log-header": "Ovdje se nalazi evidencija patroliranih revizija.",
-	"log-show-hide-patrol": "$1 zapis patroliranja",
 	"deletedrevision": "Obrisana stara revizija $1",
 	"filedeleteerror-short": "Greška pri brisanju datoteke: $1",
 	"filedeleteerror-long": "Desile su se greške pri brisanju datoteke:\n\n$1",

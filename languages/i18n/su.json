@@ -2606,8 +2606,6 @@
 	"markedaspatrollederrornotify": "Nandaan minangka kaawas gagal.",
 	"patrol-log-page": "Log patroli",
 	"patrol-log-header": "Ieu minangka log pikeun révisi nu geus diroris.",
-	"log-show-hide-patrol": "$1 log rorisan",
-	"log-show-hide-tag": "log tag $1",
 	"confirm-markpatrolled-button": "Heug",
 	"confirm-markpatrolled-top": "Tandaan révisi $3 ti $2 minangka kaawas?",
 	"deletedrevision": "Révisi heubeul nu dihapus $1",

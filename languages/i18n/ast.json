@@ -2865,8 +2865,6 @@
 	"markedaspatrollederrornotify": "Falló l'aición de marcar como revisáu.",
 	"patrol-log-page": "Rexistru de supervisión",
 	"patrol-log-header": "Esti ye un rexistru de les revisiones supervisaes.",
-	"log-show-hide-patrol": "$1 rexistru de supervisión",
-	"log-show-hide-tag": "$1 rexistru d'etiquetes",
 	"confirm-markpatrolled-button": "Aceutar",
 	"confirm-markpatrolled-top": "¿Marcar la revisión $3 de $2 como patrullada?",
 	"deletedrevision": "Desaniciada la revisión antigua $1",

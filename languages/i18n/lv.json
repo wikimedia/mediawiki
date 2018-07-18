@@ -2353,7 +2353,6 @@
 	"markedaspatrollednotify": "Šī izmaiņa lapā \"$1\" ir atzīmēta kā patrulēta.",
 	"patrol-log-page": "Pārbaudes reģistrs",
 	"patrol-log-header": "Šis ir pārbaudīto versiju reģistrs.",
-	"log-show-hide-patrol": "$1 pārbaudes reģistrs",
 	"confirm-markpatrolled-button": "Labi",
 	"confirm-markpatrolled-top": "Atzīmēt lapas \"$2\" versiju $3 kā pārbaudītu?",
 	"deletedrevision": "Izdzēstā vecā versija $1",

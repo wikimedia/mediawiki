@@ -2738,8 +2738,6 @@
 	"markedaspatrollederrornotify": "Kontrol edildi olarak işaretleme başarısız oldu.",
 	"patrol-log-page": "Devriye günlüğü",
 	"patrol-log-header": "Bu gözlenmiş revizyonların günlüğüdür.",
-	"log-show-hide-patrol": "Gözetim günlüğünü $1",
-	"log-show-hide-tag": "Etiket günlüğünü $1",
 	"deletedrevision": "$1 sayılı eski sürüm silindi.",
 	"filedeleteerror-short": "$1 dosyanın silinmesinde hata oldu",
 	"filedeleteerror-long": "Dosyayı silerken hatalarla karşılaşıldı:\n\n$1",

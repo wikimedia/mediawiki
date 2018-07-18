@@ -2065,8 +2065,6 @@
 	"markedaspatrollederrornotify": "گشت وارته ئی برچسپ جتین ناکام ات.",
 	"patrol-log-page": "گشتئ سیاه چال",
 	"patrol-log-header": "ای سیاهه شه گشت وارته ئین ایڈیٹ ئان است.",
-	"log-show-hide-patrol": "$1 گشت جنوکین سیاهه",
-	"log-show-hide-tag": "$1 خالیجای ٹاپه",
 	"deletedrevision": "$1 قدیمی پاک بوته ئین نخسه ئی است",
 	"filedeleteerror-short": "خطا بئ فایلی پاک کورتین: $1",
 	"filedeleteerror-long": "بی پدا  پاک کورتین ئی وختا خطا رخ دات:\n\n$1",

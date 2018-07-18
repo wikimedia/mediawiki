@@ -2878,8 +2878,6 @@
 	"markedaspatrollederrornotify": "Kontrollituks märkimine ebaõnnestus.",
 	"patrol-log-page": "Kontrollimislogi",
 	"patrol-log-header": "See on kontrollitud redaktsioonide logi.",
-	"log-show-hide-patrol": "$1 kontrollimislogi",
-	"log-show-hide-tag": "$1 märgiste logi",
 	"confirm-markpatrolled-button": "Sobib",
 	"confirm-markpatrolled-top": "Kas märgid lehekülje $2 redaktsiooni $3 kontrollituks?",
 	"deletedrevision": "Kustutatud vanem versioon $1",

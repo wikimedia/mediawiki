@@ -2705,8 +2705,6 @@
 	"markedaspatrollederrornotify": "Mistókst að merkja síðuna sem yfirfarna.",
 	"patrol-log-page": "Yfirferðarskrá",
 	"patrol-log-header": "Þetta er skrá yfir yfirfarnar breytingar.",
-	"log-show-hide-patrol": "$1 listi yfir yfirfarnar síður",
-	"log-show-hide-tag": "$1 merkjaannáll",
 	"confirm-markpatrolled-button": "Í lagi",
 	"deletedrevision": "Eyddi gamla útgáfu $1",
 	"filedeleteerror-short": "Villa við eyðingu: $1",

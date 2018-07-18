@@ -2540,8 +2540,6 @@
 	"markedaspatrollederrornotify": "Tsy nahamarika azy ho voaara-maso.",
 	"patrol-log-page": "Laogin'ny fanovana voamarina",
 	"patrol-log-header": "Ity dia laogy mikasikan'ny fanovana voamarina.",
-	"log-show-hide-patrol": "$1 ny laogy mikasikan'ny versiona voamarina",
-	"log-show-hide-tag": "$1 laogim-balizy",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Hanamarika ny reviziôna $3 an'i $2 ho voamarina?",
 	"deletedrevision": "Fanovana an'i $1 taloha voafafa.",

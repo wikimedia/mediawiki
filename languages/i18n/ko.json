@@ -2932,8 +2932,6 @@
 	"markedaspatrollederrornotify": "점검한 것으로 표시를 실패했습니다.",
 	"patrol-log-page": "점검 기록",
 	"patrol-log-header": "문서 점검에 대한 기록입니다.",
-	"log-show-hide-patrol": "점검 기록을 $1",
-	"log-show-hide-tag": "태그 기록을 $1",
 	"confirm-markpatrolled-button": "확인",
 	"confirm-markpatrolled-top": "$2의 $3 판을 점검한 것으로 표시하시겠습니까?",
 	"deletedrevision": "예전 $1 판이 삭제되었습니다.",

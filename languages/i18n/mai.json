@@ -2475,8 +2475,6 @@
 	"markedaspatrollederrornotify": "जाँचल चिन्हासी असफल भेल।",
 	"patrol-log-page": "परीक्षण लौग",
 	"patrol-log-header": "ई परीक्षित अवतरणसभक लौग छी।",
-	"log-show-hide-patrol": "$1 निरीक्षण लौग",
-	"log-show-hide-tag": "$1 ट्याग लग",
 	"deletedrevision": "पुरान संशोधन $1 हटा देलौं",
 	"filedeleteerror-short": "संचिका मेटेबामे भ्रम : $1",
 	"filedeleteerror-long": "संचिका मेटेबा काल भ्रम संकेत भेटल:\n$1",

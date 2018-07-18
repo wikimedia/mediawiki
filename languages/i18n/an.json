@@ -1951,7 +1951,6 @@
 	"markedaspatrollederror-noautopatrol": "No tiene premisos ta sinyalar os suyos propios cambios como controlatos.",
 	"patrol-log-page": "Rechistro de control de revisions",
 	"patrol-log-header": "Iste ye un rechistro de revisions patrullatas.",
-	"log-show-hide-patrol": "$1 o rechistro de patrullache",
 	"deletedrevision": "S'ha borrato a versión antiga $1",
 	"filedeleteerror-short": "Error borrando o fichero: $1",
 	"filedeleteerror-long": "Se troboron errors borrando o fichero:\n\n$1",

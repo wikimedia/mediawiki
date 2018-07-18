@@ -2329,7 +2329,6 @@
 	"markedaspatrollederrornotify": "چارلىيالمىغانلىق بەلگىسى قويۇلدى.",
 	"patrol-log-page": "چارلاش خاتىرىسى",
 	"patrol-log-header": "بۇ چارلانغان تۈزىتىلگەن نەشرى.",
-	"log-show-hide-patrol": "$1 چارلاش خاتىرىسى",
 	"deletedrevision": "$1 كونا تۈزىتىلگەن نەشرى ئۆچۈرۈلدى",
 	"filedeleteerror-short": "ھۆججەت ئۆچۈرۈش خاتالىقى: $1",
 	"filedeleteerror-long": "ھۆججەت ئۆچۈرۈۋاتقاندا خاتالىق كۆرۈلدى:\n\n$1",

@@ -2600,7 +2600,6 @@
 	"markedaspatrollederrornotify": "Methwyd rhoi marc ymweliad patrôl arni.",
 	"patrol-log-page": "Lòg patrolio",
 	"patrol-log-header": "Mae'r lòg hwn yn dangos y golygiadau sydd wedi derbyn ymweliad patrôl.",
-	"log-show-hide-patrol": "$1 lòg patrolio",
 	"confirm-markpatrolled-button": "Iawn",
 	"confirm-markpatrolled-top": "Nodi fod diwygiad $3 o $2 wedi cael sêl-bendith golygydd?",
 	"deletedrevision": "Wedi dileu hen ddiwygiad $1.",

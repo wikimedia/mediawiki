@@ -2939,8 +2939,6 @@
 	"markedaspatrollederrornotify": "Markering som patrullerad misslyckades.",
 	"patrol-log-page": "Patrulleringslogg",
 	"patrol-log-header": "Detta är en logg över patrullerade sidversioner.",
-	"log-show-hide-patrol": "$1 patrulleringslogg",
-	"log-show-hide-tag": "$1 märkeslogg",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Markera sidversionen $3 av $2 som patrullerad?",
 	"deletedrevision": "Raderade gammal sidversion $1",

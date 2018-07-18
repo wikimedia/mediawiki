@@ -2733,8 +2733,6 @@
 	"markedaspatrollederrornotify": "റോന്തുചുറ്റിയതെന്ന് അടയാളപ്പെടുത്തൽ പരാജയപ്പെട്ടു.",
 	"patrol-log-page": "റോന്തുചുറ്റൽ പ്രവർത്തനരേഖ",
 	"patrol-log-header": "റോന്തുചുറ്റപ്പെട്ട നാൾപ്പതിപ്പുകളുടെ രേഖയാണിത്",
-	"log-show-hide-patrol": "റോന്തുചുറ്റൽ രേഖ $1",
-	"log-show-hide-tag": "ടാഗ് രേഖ $1",
 	"confirm-markpatrolled-button": "ശരി",
 	"confirm-markpatrolled-top": "$2 താളിലെ $3 നാൾപ്പതിപ്പ് റോന്തുചുറ്റിയതായി അടയാളപ്പെടുത്തണോ?",
 	"deletedrevision": "$1 എന്ന പഴയ പതിപ്പ് മായ്ച്ചിരിക്കുന്നു",

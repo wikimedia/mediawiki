@@ -2154,7 +2154,6 @@
 	"markedaspatrollederrornotify": "Не вдало ся поставити позначку про патролёваня",
 	"patrol-log-page": "Книга перевіреных едітовань",
 	"patrol-log-header": "Тото є книга перевіреных верзій.",
-	"log-show-hide-patrol": "$1 книгу записів патролованя",
 	"deletedrevision": "Змазана стара ревізія $1",
 	"filedeleteerror-short": "Хыба мазаня файлу: $1",
 	"filedeleteerror-long": "Выникла хыба під час мазаня файлу:\n\n$1",

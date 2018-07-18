@@ -51,7 +51,8 @@
 			"Nemo bis",
 			"Telaneo",
 			"Jon Harald Søby",
-			"Fitoschido"
+			"Fitoschido",
+			"Orf3us"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -955,6 +956,7 @@
 	"diff-paragraph-moved-toold": "Avsnittet ble flyttet. Klikk for å hoppe til den gamle plasseringen.",
 	"difference-missing-revision": "{{PLURAL:$2|En revisjon|$2 revisjoner}} av denne forskjellen ($1) {{PLURAL:$2|ble|ble}} ikke funnet.\n\nDette skyldes som regel at en gammel forskjell-lenke er fulgt til en side som er slettet.\nDetaljer kan finnes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
 	"searchresults": "Søkeresultater",
+	"search-filter-title-prefix-reset": "Søk i alle sider",
 	"searchresults-title": "Søkeresultater for «$1»",
 	"titlematches": "Artikkeltitler med treff på forespørselen",
 	"textmatches": "Artikkeltekster med treff på forespørselen",
@@ -2912,8 +2914,6 @@
 	"markedaspatrollederrornotify": "Patruljering feilet.",
 	"patrol-log-page": "Patruljeringslogg",
 	"patrol-log-header": "Dette er en logg over patruljerte sideversjoner.",
-	"log-show-hide-patrol": "$1 patruljeringslogg",
-	"log-show-hide-tag": "$1 merkelogg",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Merk revisjon $3 av $2 som patruljert?",
 	"deletedrevision": "Slettet gammel revisjon $1.",

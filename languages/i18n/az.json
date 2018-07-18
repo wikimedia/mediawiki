@@ -2019,7 +2019,6 @@
 	"markedaspatrollednotify": "\"$1\" səhifəsindəki bu redaktə patrullanmış kimi işarələndi.",
 	"patrol-log-page": "Patrul gündəliyi",
 	"patrol-log-header": "Bu yoxlanmış dəyişikliklərin gündəliyidir.",
-	"log-show-hide-patrol": "$1 patrul gündəliyi",
 	"deletedrevision": "Köhnə versiyaları silindi $1.",
 	"filedeleteerror-short": "Fayl silinərkən xəta: $1",
 	"filedeleteerror-long": "Fayl silinərkən üzə çıxan xətalar:\n\n$1",

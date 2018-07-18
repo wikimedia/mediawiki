@@ -2965,8 +2965,6 @@
 	"markedaspatrollederrornotify": "巡回済みにするのに失敗しました。",
 	"patrol-log-page": "巡回記録",
 	"patrol-log-header": "以下は巡回された版の記録です。",
-	"log-show-hide-patrol": "巡回記録を$1",
-	"log-show-hide-tag": "タグ記録を$1",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "ページ$2の$3の版を巡回済みにマークしますか？",
 	"deletedrevision": "古い版 $1 を削除しました",

@@ -1932,7 +1932,6 @@
 	"markedaspatrollederror-noautopatrol": "己易不可自審。",
 	"patrol-log-page": "誌哨",
 	"patrol-log-header": "此乃誌哨也。",
-	"log-show-hide-patrol": "$1誌巡",
 	"deletedrevision": "刪舊審$1",
 	"filedeleteerror-short": "刪檔有誤：$1",
 	"filedeleteerror-long": "刪檔有誤：\n\n$1",

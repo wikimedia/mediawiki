@@ -2822,8 +2822,6 @@
 	"markedaspatrollederrornotify": "Σήμανση ως ελεγμένη απέτυχε.",
 	"patrol-log-page": "Αρχείο καταγραφής περιπολιών",
 	"patrol-log-header": "Αυτό είναι μητρώο ελεγμένων αναθεωρήσεων.",
-	"log-show-hide-patrol": "$1 μητρώου ελέγχου επεξεργασιών",
-	"log-show-hide-tag": "$1 ετικέττα καταγραφής",
 	"confirm-markpatrolled-button": "Εντάξει",
 	"deletedrevision": "Η παλιά έκδοση της $1 διαγράφτηκε",
 	"filedeleteerror-short": "Σφάλμα κατά τη διαγραφή του αρχείου: $1",

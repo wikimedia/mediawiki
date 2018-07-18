@@ -2723,8 +2723,6 @@
 	"markedaspatrollederrornotify": "Errô durante a veifica.",
 	"patrol-log-page": "Modiffiche controlæ",
 	"patrol-log-header": "Questo o l'è 'n registro de revixoin controlæ.",
-	"log-show-hide-patrol": "$1 registro di controlli",
-	"log-show-hide-tag": "$1 registro di etichette",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Marca verscion $3 de $2 comme veificâ?",
 	"deletedrevision": "Scassou a vegia verscion de $1.",

@@ -2814,8 +2814,6 @@
 	"markedaspatrollederrornotify": "Бэлиэтэммит курдук бэлиэтиир сатаммата.",
 	"patrol-log-page": "Бэрэбиэркэ сурунаала",
 	"patrol-log-header": "Ботуруулламмыт торумнар сурунааллара.",
-	"log-show-hide-patrol": "$1 ботурууллааһын сурунаала",
-	"log-show-hide-tag": "$1 тиэк сурунаала",
 	"confirm-markpatrolled-button": "Сөп",
 	"confirm-markpatrolled-top": "$2 сирэй $3 торумун ботуруулламмыт курдук бэлиэтиигин дуо?",
 	"deletedrevision": "$1 урукку торума сотулунна",

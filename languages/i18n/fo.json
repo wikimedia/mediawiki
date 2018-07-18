@@ -2085,7 +2085,6 @@
 	"markedaspatrollederrornotify": "Tað miseydnaðist at merkja sum eftirkannað.",
 	"patrol-log-page": "Eftirlitsloggur",
 	"patrol-log-header": "Hetta er ein loggur yvir patruljeraðum síðuversjónum.",
-	"log-show-hide-patrol": "$1 patrulleringsloggur",
 	"deletedrevision": "Slettaði gamla síðuversjón $1",
 	"filedeleteerror-short": "Feilur hendi við sletting av fílu: $1",
 	"previousdiff": "← Eldri broytingar",

@@ -2538,8 +2538,6 @@
 	"markedaspatrollederrornotify": "சுற்றுக்காவல் தோல்வியடைந்ததாக குறிக்கப்பட்டது.",
 	"patrol-log-page": "சுற்றுக்காவல் பதிகை",
 	"patrol-log-header": "இது ரோந்து செய்யப்பட்ட  பரிசீலனைகளுக்கான  குறிப்பேடு.",
-	"log-show-hide-patrol": "$1 ரோந்து குறிப்பேடு",
-	"log-show-hide-tag": "$1 அடையாள பதிவு",
 	"confirm-markpatrolled-button": "சரி",
 	"deletedrevision": "பழைய திருத்தம் $1 நீக்கப்பட்டது",
 	"filedeleteerror-short": "பின்வரும் கோப்பை நீக்குவதில் தவறு: $1",

@@ -2834,8 +2834,6 @@
 	"markedaspatrollederrornotify": "Markere es gecontroleerd mislök.",
 	"patrol-log-page": "Markeerlogbook",
 	"patrol-log-header": "Dit logbook bevat versies die gemarkeerd zeen es gecontroleerd.",
-	"log-show-hide-patrol": "Markeerlogbook $1",
-	"log-show-hide-tag": "$1 labellogbook",
 	"confirm-markpatrolled-button": "Ok",
 	"confirm-markpatrolled-top": "Markeer bewirking $3 van $2 es gecontroleerd?",
 	"deletedrevision": "Aw versie $1 gewis",

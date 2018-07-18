@@ -2041,7 +2041,6 @@
 	"markedaspatrollederror-noautopatrol": "شما را اجازت نیست وتی تغییراتء په عنوان نظارت بیتگین نشان کنیت.",
 	"patrol-log-page": "آمار نظارت",
 	"patrol-log-header": "شی آماری چه بازبینی آن گشتی انت.",
-	"log-show-hide-patrol": "$1  آمار گشت",
 	"deletedrevision": "قدیمی بازبینی $1 حذف بوت",
 	"filedeleteerror-short": "حطا حذف فایل: $1",
 	"filedeleteerror-long": "حطای پیش آتک وهدی که فایل حذف بیگت:\n\n$1",

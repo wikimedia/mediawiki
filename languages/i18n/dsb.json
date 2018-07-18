@@ -2233,7 +2233,6 @@
 	"markedaspatrollederrornotify": "Markěrowanje ako doglědowane njejo se raźiło.",
 	"patrol-log-page": "Protokol kontrolow",
 	"patrol-log-header": "To jo protokol pśekontrolowanych wersijow.",
-	"log-show-hide-patrol": "Protokol doglědowanja $1",
 	"deletedrevision": "wulašowana stara wersija: $1",
 	"filedeleteerror-short": "Zmólka pśi wulašowanju dataje: $1",
 	"filedeleteerror-long": "Pśi wulašowanju dataje su se zwěsćili zmólki:\n\n$1",

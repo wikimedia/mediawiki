@@ -3,7 +3,8 @@
 		"authors": [
 			"Kizito",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Erinamukuta"
 		]
 	},
 	"tog-underline": "Enyunzi ebengako olukoloboze?",
@@ -235,6 +236,7 @@
 	"nstab-template": "Lutiba",
 	"nstab-help": "Buyambi",
 	"nstab-category": "Ttuluba lya",
+	"mainpage-nstab": "Olupapula Olusinga Omugaso",
 	"nosuchaction": "Ekikolwa ekyo tekisoboka",
 	"nosuchactiontext": "Ekikolwa ekikongojedwa mu URL tekisoboka.<br />\nOyinza okuba nga URL wagiwandise bubi, oba yo URL y'eyinza okuba nga ya nsobi.<br />\nKiyinza ate okuba nti sofutiweya {{SITENAME}} gy'ekozesa erimu ebitali bituufu.",
 	"nosuchspecialpage": "Olwo olupapula olwawule teruliwo",

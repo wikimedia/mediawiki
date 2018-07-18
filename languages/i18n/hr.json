@@ -2676,8 +2676,6 @@
 	"markedaspatrollederrornotify": "Označavanje stranice pregledanom nije uspjelo.",
 	"patrol-log-page": "Evidencija ophodnji i samoophodnji",
 	"patrol-log-header": "Ovo su evidencije ophođenih izmjena.",
-	"log-show-hide-patrol": "$1 evidenciju ophodnji",
-	"log-show-hide-tag": "$1 evidenciju oznaka",
 	"confirm-markpatrolled-button": "U redu",
 	"confirm-markpatrolled-top": "Označiti izmjenu $3 stranice $2 pregledanom?",
 	"deletedrevision": "izbrisana stara inačica $1",

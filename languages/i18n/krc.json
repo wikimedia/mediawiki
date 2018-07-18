@@ -2072,7 +2072,6 @@
 	"markedaspatrollednotify": "«$1» бетдеги бу тюрлениу тинтиб къаралгъанча белгиленди.",
 	"patrol-log-page": "Патруль этиуню журналы",
 	"patrol-log-header": "Бу осмакъланнган версияланы журналыды.",
-	"log-show-hide-patrol": "Осмакълауну журналы $1",
 	"deletedrevision": "$1 эски версия кетерилгенди.",
 	"filedeleteerror-short": "Файл кетериуню халаты: $1",
 	"filedeleteerror-long": "Файлны кетериуде халатлагъа тюбелди:\n\n$1",

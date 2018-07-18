@@ -2952,8 +2952,6 @@
 	"markedaspatrollederrornotify": "Не вдалося поставити позначку про патрулювання.",
 	"patrol-log-page": "Журнал патрулювання",
 	"patrol-log-header": "Це журнал перевірених змін.",
-	"log-show-hide-patrol": "$1 журнал патрулювання",
-	"log-show-hide-tag": "$1 мітку журналу",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Позначити версію $3 сторінки $2 як відпатрульовану?",
 	"deletedrevision": "Вилучена стара версія $1",

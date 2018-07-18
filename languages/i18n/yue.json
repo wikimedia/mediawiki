@@ -2608,7 +2608,6 @@
 	"markedaspatrollederrornotify": "標做睇過失敗。",
 	"patrol-log-page": "巡查日誌",
 	"patrol-log-header": "呢個係已經巡查過嘅日誌。",
-	"log-show-hide-patrol": "$1巡查紀錄",
 	"confirm-markpatrolled-button": "好",
 	"deletedrevision": "刪除咗$1嘅舊有修訂",
 	"filedeleteerror-short": "刪除檔案出錯: $1",

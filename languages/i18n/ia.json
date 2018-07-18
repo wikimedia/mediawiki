@@ -2864,8 +2864,6 @@
 	"markedaspatrollederrornotify": "Le marcar como patruliate ha fallite.",
 	"patrol-log-page": "Registro de patrulia",
 	"patrol-log-header": "Isto es un registro de versiones patruliate.",
-	"log-show-hide-patrol": "$1 le registro de versiones patruliate",
-	"log-show-hide-tag": "$1 registro de etiquettas",
 	"confirm-markpatrolled-button": "OK",
 	"confirm-markpatrolled-top": "Marcar le version $3 de $2 como patruliate?",
 	"deletedrevision": "Deleva le ancian version $1",
