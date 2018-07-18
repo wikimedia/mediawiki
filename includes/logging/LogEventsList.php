@@ -280,7 +280,6 @@ class LogEventsList extends ContextSource {
 			'class' => 'HTMLTitleTextField',
 			'label-message' => 'speciallogtitlelabel',
 			'name' => 'page',
-			'value' => $title,
 			'required' => false
 		];
 	}
@@ -304,16 +303,10 @@ class LogEventsList extends ContextSource {
 	private function getExtraInputsDesc( $types ) {
 		if ( count( $types ) == 1 ) {
 			if ( $types[0] == 'suppress' ) {
-				$offender = $this->getRequest()->getVal( 'offender' );
-				$user = User::newFromName( $offender, false );
-				if ( !$user || ( $user->getId() == 0 && !IP::isIPAddress( $offender ) ) ) {
-					$offender = ''; // Blank field if invalid
-				}
 				return [
 					'type' => 'text',
 					'label-message' => 'revdelete-offender',
 					'name' => 'offender',
-					'value' => $offender,
 				];
 			} else {
 				// Allow extensions to add their own extra inputs
