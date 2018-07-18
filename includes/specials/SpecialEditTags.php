@@ -166,7 +166,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 				[],
 				[
 					'page' => $this->targetObj->getPrefixedText(),
-					'hide_tag_log' => '0',
+					'wpfilters' => [ 'tag' ],
 				]
 			);
 			if ( !$this->targetObj->isSpecialPage() ) {
