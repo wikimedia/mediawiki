@@ -173,6 +173,7 @@ class LogEventsList extends ContextSource {
 		$htmlForm = new HTMLForm( $formDescriptor, $this->getContext() );
 		$htmlForm
 			->setSubmitText( $this->msg( 'logeventslist-submit' )->text() )
+			->setMethod( 'get' )
 			->setWrapperLegendMsg( 'log' );
 
 		// TODO This will should be removed at some point. See T199495.
