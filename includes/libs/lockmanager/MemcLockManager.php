@@ -46,7 +46,7 @@ class MemcLockManager extends QuorumLockManager {
 
 	/** @var MemcachedBagOStuff[] Map of (server name => MemcachedBagOStuff) */
 	protected $cacheServers = [];
-	/** @var HashBagOStuff Server status cache */
+	/** @var MapCacheLRU Server status cache */
 	protected $statusCache;
 
 	/**
@@ -81,7 +81,7 @@ class MemcLockManager extends QuorumLockManager {
 			$this->cacheServers[$name] = new $class( $params );
 		}
 
-		$this->statusCache = new HashBagOStuff();
+		$this->statusCache = new MapCacheLRU( 100 );
 	}
 
 	protected function getLocksOnServer( $lockSrv, array $pathsByType ) {
@@ -252,13 +252,13 @@ class MemcLockManager extends QuorumLockManager {
 			throw new InvalidArgumentException( "Invalid cache server '$lockSrv'." );
 		}
 
-		$online = $this->statusCache->get( "online:$lockSrv" );
-		if ( $online === false ) {
+		$online = $this->statusCache->get( "online:$lockSrv", 30 );
+		if ( $online === null ) {
 			$online = $this->cacheServers[$lockSrv]->set( __CLASS__ . ':ping', 1, 1 );
 			if ( !$online ) { // server down?
 				$this->logger->warning( __METHOD__ . ": Could not contact $lockSrv." );
 			}
-			$this->statusCache->set( "online:$lockSrv", (int)$online, 30 );
+			$this->statusCache->set( "online:$lockSrv", (int)$online );
 		}
 
 		return $online ? $this->cacheServers[$lockSrv] : null;
