@@ -364,6 +364,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'ExternalStoreFactory' => [ 'ExternalStoreFactory', ExternalStoreFactory::class ],
 			'PreferencesFactory' => [ 'PreferencesFactory', PreferencesFactory::class ],
 			'ActorMigration' => [ 'ActorMigration', ActorMigration::class ],
+			'ConfigRepository' => [ 'ConfigRepository', \MediaWiki\Config\ConfigRepository::class ],
 		];
 	}
 
