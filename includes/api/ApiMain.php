@@ -486,7 +486,7 @@ class ApiMain extends ApiBase {
 	 * @return ApiFormatBase
 	 */
 	public function createPrinterByName( $format ) {
-		$printer = $this->mModuleMgr->getModule( $format, 'format' );
+		$printer = $this->mModuleMgr->getModule( $format, 'format', /* $ignoreCache */ true );
 		if ( $printer === null ) {
 			$this->dieWithError(
 				[ 'apierror-unknownformat', wfEscapeWikiText( $format ) ], 'unknown_format'
