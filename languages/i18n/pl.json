@@ -1004,6 +1004,7 @@
 	"diff-paragraph-moved-toold": "Akapit został przeniesiony. Kliknij aby przeskoczyć do jego poprzedniego położenia.",
 	"difference-missing-revision": "{{PLURAL:$2|Wersja|$2 wersje|$2 wersji}} #$1 strony \"{{PAGENAME}}\" nie {{PLURAL:$2|została znaleziona|zostały znalezione|zostało znalezionych}}.\n\nZazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powód usunięcia znajduje się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze].",
 	"searchresults": "Wyniki wyszukiwania",
+	"search-filter-title-prefix": "Wyszukiwanie tylko na stronach, których tytuł zaczyna się od „$1”",
 	"searchresults-title": "Wyniki wyszukiwania „$1”",
 	"titlematches": "Znaleziono w tytułach",
 	"textmatches": "Znaleziono w treści stron",

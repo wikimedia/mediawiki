@@ -1804,6 +1804,8 @@
 	"dellogpage": "لۆگی سڕینەوە",
 	"dellogpagetext": "ئەوەی خوارەوە لیستێكە لە دوایین سڕینەوەکان",
 	"deletionlog": "لۆگی سڕینەوە",
+	"log-name-create": "لۆگی دروستکردنی پەڕە",
+	"logentry-create-create": "$1 پەڕەی $3ی دروست کرد",
 	"reverted": "گەڕێندراوە بۆ پێداچوونەوەی پێشووتر",
 	"deletecomment": "ھۆکار:",
 	"deleteotherreason": "ھۆکاری تر/زیاتر:",
