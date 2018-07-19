@@ -25,6 +25,7 @@ interface Processor {
 	 * @return array With following keys:
 	 *     'globals' - variables to be set to $GLOBALS
 	 *     'defines' - constants to define
+	 *     'config' - configuration information
 	 *     'callbacks' - functions to be executed by the registry
 	 *     'credits' - metadata to be stored by registry
 	 *     'attributes' - registration info which isn't a global variable
