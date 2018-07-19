@@ -102,7 +102,7 @@ class FiltersTest extends MediaWikiTestCase {
 			[ '', '' ],
 			[ "\n", '' ],
 			[ '1', 'Foo' ],
-			[ "\n1\n\n2\666\n", "Foo\nBar" ],
+			[ "\n1\n\n2\377\n", "Foo\nBar" ],
 			[ "666\n667", '' ],
 		];
 	}
