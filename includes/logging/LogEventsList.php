@@ -198,7 +198,7 @@ class LogEventsList extends ContextSource {
 		foreach ( $filter as $type => $val ) {
 			$options[ $this->msg( "logeventslist-{$type}-log" )->text() ] = $type;
 
-			if ( $val === 0 ) {
+			if ( $val === false ) {
 				$default[] = $type;
 			}
 		}
