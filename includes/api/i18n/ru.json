@@ -34,7 +34,8 @@
 			"AttemptToCallNil",
 			"Movses",
 			"Stjn",
-			"Edward Chernenko"
+			"Edward Chernenko",
+			"Vlad5250"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> MediaWiki API — зрелый и стабильный интерфейс, активно поддерживаемый и улучшаемый. Мы стараемся избегать ломающих изменений, однако изредка они могут быть необходимы. Подпишитесь на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].</p>",
@@ -784,6 +785,8 @@
 	"apihelp-query+filearchive-example-simple": "Список всех удалённых файлов.",
 	"apihelp-query+filerepoinfo-summary": "Возвращает мета-информацию о файловых репозиториях, настроенных в вики.",
 	"apihelp-query+filerepoinfo-param-prop": "Какие свойства хранилища получить (доступность свойств может отличаться в разных вики).",
+	"apihelp-query+filerepoinfo-paramvalue-prop-rootUrl": "Корневой URL для изображений.",
+	"apihelp-query+filerepoinfo-paramvalue-prop-url": "URL путь публичной зоны.",
 	"apihelp-query+filerepoinfo-example-simple": "Получить информацию о файловых репозиториях.",
 	"apihelp-query+fileusage-summary": "Поиск всех страниц, использующих данный файл.",
 	"apihelp-query+fileusage-param-prop": "Какие свойства получить:",

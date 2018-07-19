@@ -170,7 +170,8 @@
 			"Truebamateo",
 			"La Mantis",
 			"Amaia",
-			"Tiberius1701"
+			"Tiberius1701",
+			"Astroemi"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -2170,7 +2171,7 @@
 	"speciallogtitlelabel": "Objetivo (título o {{ns:user}}:nombre de usuario):",
 	"log": "Registros",
 	"logeventslist-submit": "Mostrar",
-	"logeventslist-more-filters": "Más filtros:",
+	"logeventslist-more-filters": "Mostrar registros adicionales:",
 	"logeventslist-patrol-log": "Registro de revisiones",
 	"logeventslist-tag-log": "Registro de etiquetas",
 	"all-logs-page": "Todos los registros públicos",

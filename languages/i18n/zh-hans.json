@@ -99,7 +99,8 @@
 			"WhitePhosphorus",
 			"A2093064",
 			"EagerLin",
-			"Deathkon"
+			"Deathkon",
+			"RyRubyy"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -554,7 +555,7 @@
 	"noemailcreate": "您需要提供一个有效的电子邮件地址",
 	"passwordsent": "用户\"$1\"的新密码已经寄往所登记的电子邮件地址。\n请在收到后再登录。",
 	"blocked-mailpassword": "您的IP地址被禁止编辑，为预防滥用，也不允许从该IP地址使用密码恢复功能。",
-	"eauthentsent": "一封确认信已经发送至您设定的邮件地址。\n在任何其他邮件发送至您的账户前，您将不得不根据邮件中的指示，确认那个账户确实是您的。",
+	"eauthentsent": "一封确认信已经发送至您设定的邮件地址。\n在任何其他邮件发送至您的账户前，您将需要根据邮件中的指示，确认那个账户确实是您的。",
 	"throttled-mailpassword": "密码提醒已在最近$1小时内发送。为了安全起见，在每$1小时内只能发送一个密码提醒。",
 	"mailerror": "发送邮件错误：$1",
 	"acct_creation_throttle_hit": "使用您的IP地址访问本wiki的访客在过去$2中创建了{{PLURAL:$1|$1个账户}}，达到了这段时间所允许的最大值。因此，使用该IP地址的访客现在不能再创建账户。",
