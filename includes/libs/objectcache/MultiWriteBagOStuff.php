@@ -122,7 +122,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 			&& $missIndexes
 			&& ( $flags & self::READ_VERIFIED ) == self::READ_VERIFIED
 		) {
-			// Backfill the value to the lower (and often larger) cache tiers
+			// Backfill the value to the higher (and often faster/smaller) cache tiers
 			$this->doWrite(
 				$missIndexes, $this->asyncWrites, 'set', $key, $value, self::UPGRADE_TTL
 			);
@@ -171,6 +171,23 @@ class MultiWriteBagOStuff extends BagOStuff {
 		return $this->doWrite( $this->cacheIndexes, $this->asyncWrites, 'decr', $key, $value );
 	}
 
+	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
+		$asyncWrites = ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC )
+			? false
+			: $this->asyncWrites;
+
+		return $this->doWrite(
+			$this->cacheIndexes,
+			$asyncWrites,
+			'merge',
+			$key,
+			$callback,
+			$exptime,
+			$attempts,
+			$flags
+		);
+	}
+
 	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
 		// Only need to lock the first cache; also avoids deadlocks
 		return $this->caches[0]->lock( $key, $timeout, $expiry, $rclass );
@@ -202,7 +219,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		$ret = true;
 		$args = array_slice( func_get_args(), 3 );
 
-		if ( array_diff( $indexes, [ 0 ] ) && $asyncWrites ) {
+		if ( array_diff( $indexes, [ 0 ] ) && $asyncWrites && $method !== 'merge' ) {
 			// Deep-clone $args to prevent misbehavior when something writes an
 			// object to the BagOStuff then modifies it afterwards, e.g. T168040.
 			$args = unserialize( serialize( $args ) );
