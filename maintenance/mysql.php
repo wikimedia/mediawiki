@@ -165,6 +165,12 @@ class MysqlMaintenance extends Maintenance {
 
 		$args = array_merge( $args, $this->mArgs );
 
+		// Ignore SIGINT if possible, otherwise the wrapper terminates when the user presses
+		// ctrl-C to kill a query.
+		if ( function_exists( 'pcntl_signal' ) ) {
+			pcntl_signal( SIGINT, SIG_IGN );
+		}
+
 		$pipes = [];
 		$proc = proc_open( Shell::escape( $args ), $desc, $pipes );
 		if ( $proc === false ) {
