@@ -25,6 +25,15 @@ use Seld\JsonLint\JsonParser;
 use Seld\JsonLint\ParsingException;
 
 /**
+ * Validate extension.json files against their JSON schema.
+ *
+ * This is used for static validation from the command-line via
+ * validateRegistrationFile.php, and the PHPUnit structure test suite
+ * (ExtensionJsonValidationTest).
+ *
+ * The files are normally read by the ExtensionRegistry
+ * and ExtensionProcessor classes.
+ *
  * @since 1.29
  */
 class ExtensionJsonValidator {
