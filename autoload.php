@@ -703,7 +703,6 @@ $wgAutoloadLocalClasses = [
 	'JobQueueMemory' => __DIR__ . '/includes/jobqueue/JobQueueMemory.php',
 	'JobQueueReadOnlyError' => __DIR__ . '/includes/jobqueue/JobQueue.php',
 	'JobQueueRedis' => __DIR__ . '/includes/jobqueue/JobQueueRedis.php',
-	'JobQueueSecondTestQueue' => __DIR__ . '/includes/jobqueue/JobQueueSecondTestQueue.php',
 	'JobRunner' => __DIR__ . '/includes/jobqueue/JobRunner.php',
 	'JobSpecification' => __DIR__ . '/includes/jobqueue/JobSpecification.php',
 	'JpegHandler' => __DIR__ . '/includes/media/JpegHandler.php',
