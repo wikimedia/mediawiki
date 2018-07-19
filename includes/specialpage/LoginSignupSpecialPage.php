@@ -265,6 +265,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			 $this->getUser()->isLoggedIn()
 		) {
 			$this->successfulAction();
+			return;
 		}
 
 		// If logging in and not on HTTPS, either redirect to it or offer a link.
