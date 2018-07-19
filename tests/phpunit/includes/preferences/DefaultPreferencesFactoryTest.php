@@ -63,6 +63,8 @@ class DefaultPreferencesFactoryTest extends MediaWikiTestCase {
 	 * @covers MediaWiki\Preferences\DefaultPreferencesFactory::getForm()
 	 */
 	public function testGetForm() {
+		$this->setTemporaryHook( 'GetPreferences', null );
+
 		$testUser = $this->getTestUser();
 		$form = $this->getPreferencesFactory()->getForm( $testUser->getUser(), $this->context );
 		$this->assertInstanceOf( PreferencesFormLegacy::class, $form );
