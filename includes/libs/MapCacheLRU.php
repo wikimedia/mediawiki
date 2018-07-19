@@ -141,7 +141,7 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 	public function has( $key, $maxAge = 0.0 ) {
 		if ( !is_int( $key ) && !is_string( $key ) ) {
 			throw new UnexpectedValueException(
-				__METHOD__ . ' called with invalid key. Must be string or integer.' );
+				__METHOD__ . ': invalid key; must be string or integer.' );
 		}
 
 		if ( !array_key_exists( $key, $this->cache ) ) {
@@ -183,6 +183,11 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 			$this->set( $key, [], $initRank );
 		}
 
+		if ( !is_int( $field ) && !is_string( $field ) ) {
+			throw new UnexpectedValueException(
+				__METHOD__ . ": invalid field for '$key'; must be string or integer." );
+		}
+
 		if ( !is_array( $this->cache[$key] ) ) {
 			throw new UnexpectedValueException( "The value of '$key' is not an array." );
 		}
@@ -199,6 +204,12 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 	 */
 	public function hasField( $key, $field, $maxAge = 0.0 ) {
 		$value = $this->get( $key );
+
+		if ( !is_int( $field ) && !is_string( $field ) ) {
+			throw new UnexpectedValueException(
+				__METHOD__ . ": invalid field for '$key'; must be string or integer." );
+		}
+
 		if ( !is_array( $value ) || !array_key_exists( $field, $value ) ) {
 			return false;
 		}
