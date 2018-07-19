@@ -423,7 +423,10 @@ class LogEventsList extends ContextSource {
 
 		// Let extensions add data
 		Hooks::run( 'LogEventsListLineEnding', [ $this, &$ret, $entry, &$classes, &$attribs ] );
-		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
+		$attribs = array_filter( $attribs,
+			[ Sanitizer::class, 'isReservedDataAttribute' ],
+			ARRAY_FILTER_USE_KEY
+		);
 		$attribs['class'] = implode( ' ', $classes );
 
 		return Html::rawElement( 'li', $attribs, $ret ) . "\n";

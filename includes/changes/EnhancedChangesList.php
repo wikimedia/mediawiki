@@ -472,7 +472,10 @@ class EnhancedChangesList extends ChangesList {
 			// skip entry if hook aborted it
 			return [];
 		}
-		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
+		$attribs = array_filter( $attribs,
+			[ Sanitizer::class, 'isReservedDataAttribute' ],
+			ARRAY_FILTER_USE_KEY
+		);
 
 		$lineParams['recentChangesFlagsRaw'] = [];
 		if ( isset( $data['recentChangesFlags'] ) ) {
@@ -704,9 +707,9 @@ class EnhancedChangesList extends ChangesList {
 		}
 		$attribs = $data['attribs'];
 		unset( $data['attribs'] );
-		$attribs = wfArrayFilterByKey( $attribs, function ( $key ) {
+		$attribs = array_filter( $attribs, function ( $key ) {
 			return $key === 'class' || Sanitizer::isReservedDataAttribute( $key );
-		} );
+		}, ARRAY_FILTER_USE_KEY );
 
 		$prefix = '';
 		if ( is_callable( $this->changeLinePrefixer ) ) {

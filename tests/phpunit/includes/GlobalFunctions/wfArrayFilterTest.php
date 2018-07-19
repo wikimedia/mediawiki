@@ -5,8 +5,9 @@
  * @covers ::wfArrayFilter
  * @covers ::wfArrayFilterByKey
  */
-class WfArrayFilterTest extends \PHPUnit\Framework\TestCase {
+class WfArrayFilterTest extends MediaWikiTestCase {
 	public function testWfArrayFilter() {
+		$this->hideDeprecated( 'wfArrayFilter' );
 		$arr = [ 'a' => 1, 'b' => 2, 'c' => 3 ];
 		$filtered = wfArrayFilter( $arr, function ( $val, $key ) {
 			return $key !== 'b';
@@ -27,6 +28,7 @@ class WfArrayFilterTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testWfArrayFilterByKey() {
+		$this->hideDeprecated( 'wfArrayFilterByKey' );
 		$arr = [ 'a' => 1, 'b' => 2, 'c' => 3 ];
 		$filtered = wfArrayFilterByKey( $arr, function ( $key ) {
 			return $key !== 'b';
