@@ -7,6 +7,7 @@
 		"bluespice/visualeditorconnector": "dev-master",
 		"hallowelt/filter-special-pages": "dev-REL1_31",
 		"mediawiki/arrays": "dev-REL1_31",
+		"mediawiki/cookie-warning": "dev-REL1_31",
 		"mediawiki/dynamic-page-list": "3.2.1",
 		"mediawiki/echo": "dev-REL1_31",
 		"mediawiki/edit-notify": "dev-REL1_31",
