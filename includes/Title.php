@@ -37,7 +37,7 @@ use MediaWiki\MediaWikiServices;
  *       and does not rely on global state or the database.
  */
 class Title implements LinkTarget {
-	/** @var HashBagOStuff */
+	/** @var MapCacheLRU */
 	static private $titleCache = null;
 
 	/**
@@ -371,11 +371,11 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * @return HashBagOStuff
+	 * @return MapCacheLRU
 	 */
 	private static function getTitleCache() {
 		if ( self::$titleCache == null ) {
-			self::$titleCache = new HashBagOStuff( [ 'maxKeys' => self::CACHE_MAX ] );
+			self::$titleCache = new MapCacheLRU( self::CACHE_MAX );
 		}
 		return self::$titleCache;
 	}
