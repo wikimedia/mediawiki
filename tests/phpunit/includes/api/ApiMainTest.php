@@ -1098,4 +1098,21 @@ class ApiMainTest extends ApiTestCase {
 			],
 		];
 	}
+
+	public function testPrinterParameterValidationError() {
+		$api = $this->getNonInternalApiMain( [
+			'action' => 'query', 'meta' => 'siteinfo', 'format' => 'json', 'formatversion' => 'bogus',
+		] );
+
+		ob_start();
+		$api->execute();
+		$txt = ob_get_clean();
+
+		// Test that the actual output is valid JSON, not just the format of the ApiResult.
+		$data = FormatJson::decode( $txt, true );
+		$this->assertInternalType( 'array', $data );
+		$this->assertArrayHasKey( 'error', $data );
+		$this->assertArrayHasKey( 'code', $data['error'] );
+		$this->assertSame( 'unknown_formatversion', $data['error']['code'] );
+	}
 }
