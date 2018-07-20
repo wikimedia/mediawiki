@@ -1,0 +1,19 @@
+#!/bin/bash -eu
+
+clear_temp() {
+	rm -f allkeys.txt ucd.all.grouped.zip ucd.all.grouped.xml
+}
+
+# Setup
+clear_temp
+export MW_INSTALL_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../.. && pwd)"
+
+
+# Generate includes/collation/data/first-letters-root.php
+wget https://www.unicode.org/Public/UCA/6.0.0/allkeys.txt
+wget https://www.unicode.org/Public/6.0.0/ucdxml/ucd.all.grouped.zip
+unzip ucd.all.grouped.zip ucd.all.grouped.xml
+php "$MW_INSTALL_PATH/maintenance/language/generateCollationData.php"
+
+# Teardown
+clear_temp
