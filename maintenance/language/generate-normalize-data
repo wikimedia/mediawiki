@@ -1,0 +1,19 @@
+#!/bin/bash -eu
+
+clear_temp() {
+	rm -f UnicodeData.txt
+}
+
+# Setup
+clear_temp
+export MW_INSTALL_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../.. && pwd)"
+
+# Generate languages/data/normalize-ar.php
+wget https://unicode.org/Public/6.0.0/ucd/UnicodeData.txt
+php "$MW_INSTALL_PATH/maintenance/language/generateNormalizerDataAr.php" --unicode-data-file UnicodeData.txt
+
+# Generate languages/data/normalize-ml.php
+php "$MW_INSTALL_PATH/maintenance/language/generateNormalizerDataMl.php"
+
+# Teardown
+clear_temp
