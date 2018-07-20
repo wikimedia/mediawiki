@@ -142,7 +142,7 @@
 	"config-sqlite-dir-help": "SQLite almacena todos los datos en un único archivo.\n\nEl directorio que proporciones debe poder escribirse por el servidor web durante la instalación.\n\n'''No''' debería ser accesible a través de Internet. Por eso no vamos a ponerlo en el sitio donde están los archivos PHP.\n\nEl instalador escribirá un archivo <code>.htaccess</code> junto con él, pero si falla alguien podría tener acceso a la base de datos en bloque.\nEso incluye los datos de usuario en bloque (direcciones de correo electrónico, las contraseñas con hash) así como revisiones eliminadas y otros datos restringidos del wiki.\n\nConsidera poner la base de datos en algún otro sitio, por ejemplo en <code>/var/lib/mediawiki/tuwiki</code> .",
 	"config-oracle-def-ts": "Espacio de tablas predeterminado:",
 	"config-oracle-temp-ts": "Espacio de tablas temporal:",
-	"config-type-mysql": "MySQL (o compatible)",
+	"config-type-mysql": "MariaDB, MySQL o un sistema compatible",
 	"config-type-postgres": "PostgreSQL",
 	"config-type-sqlite": "SQLite",
 	"config-type-oracle": "Oracle",
