@@ -1,5 +1,5 @@
 <?php
-// File created by maintenance/generateNormalizerDataMl.php
+// File created by generateNormalizerDataMl.php
 return [
 	'ണ്‍' => 'ൺ',
 	'ന്‍' => 'ൻ',

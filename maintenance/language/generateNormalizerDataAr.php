@@ -28,6 +28,11 @@ require_once __DIR__ . '/../Maintenance.php';
  *
  * This data file is used after normalizing to NFC.
  *
+ * Example usage:
+ *
+ *    curl 'https://unicode.org/Public/6.0.0/ucd/UnicodeData.txt' > /tmp/UnicodeData.txt
+ *    php generateNormalizerDataAr.php --unicode-data-file /tmp/UnicodeData.txt
+ *
  * @ingroup MaintenanceLanguage
  */
 class GenerateNormalizerDataAr extends Maintenance {
