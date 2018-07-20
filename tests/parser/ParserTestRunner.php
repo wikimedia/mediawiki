@@ -117,6 +117,30 @@ class ParserTestRunner {
 	private $normalizationFunctions = [];
 
 	/**
+	 * Run disabled parser tests
+	 * @var bool
+	 */
+	private $runDisabled;
+
+	/**
+	 * Run tests intended only for parsoid
+	 * @var bool
+	 */
+	private $runParsoid;
+
+	/**
+	 * Disable parse on article insertion
+	 * @var bool
+	 */
+	private $disableSaveParse;
+
+	/**
+	 * Reuse upload directory
+	 * @var bool
+	 */
+	private $keepUploads;
+
+	/**
 	 * @param TestRecorder $recorder
 	 * @param array $options
 	 */
@@ -147,6 +171,8 @@ class ParserTestRunner {
 
 		$this->runDisabled = !empty( $options['run-disabled'] );
 		$this->runParsoid = !empty( $options['run-parsoid'] );
+
+		$this->disableSaveParse = !empty( $options['disable-save-parse'] );
 
 		$this->tidySupport = new TidySupport( !empty( $options['use-tidy-config'] ) );
 		if ( !$this->tidySupport->isEnabled() ) {
@@ -1184,7 +1210,8 @@ class ParserTestRunner {
 			'site_stats', 'ipblocks', 'image', 'oldimage',
 			'recentchanges', 'watchlist', 'interwiki', 'logging', 'log_search',
 			'querycache', 'objectcache', 'job', 'l10n_cache', 'redirect', 'querycachetwo',
-			'archive', 'user_groups', 'page_props', 'category'
+			'archive', 'user_groups', 'page_props', 'category',
+			'slots', 'content', 'slot_roles', 'content_models',
 		];
 
 		if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
@@ -1451,7 +1478,6 @@ class ParserTestRunner {
 		$this->checkSetupDone( 'setupDatabase' );
 
 		$this->dbClone->destroy();
-		$this->databaseSetupDone = false;
 
 		if ( $this->useTemporaryTables ) {
 			if ( $this->db->getType() == 'sqlite' ) {
@@ -1651,11 +1677,15 @@ class ParserTestRunner {
 			);
 		}
 
-		// Use mock parser, to make debugging of actual parser tests simpler.
+		// Optionally use mock parser, to make debugging of actual parser tests simpler.
 		// But initialise the MessageCache clone first, don't let MessageCache
 		// get a reference to the mock object.
-		MessageCache::singleton()->getParser();
-		$restore = $this->executeSetupSnippets( [ 'wgParser' => new ParserTestMockParser ] );
+		if ( $this->disableSaveParse ) {
+			MessageCache::singleton()->getParser();
+			$restore = $this->executeSetupSnippets( [ 'wgParser' => new ParserTestMockParser ] );
+		} else {
+			$restore = false;
+		}
 		try {
 			$status = $page->doEditContent(
 				$newContent,
@@ -1663,7 +1693,9 @@ class ParserTestRunner {
 				EDIT_NEW | EDIT_INTERNAL
 			);
 		} finally {
-			$restore();
+			if ( $restore ) {
+				$restore();
+			}
 		}
 
 		if ( !$status->isOK() ) {

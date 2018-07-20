@@ -62,6 +62,8 @@ class ParserTestsMaintenance extends Maintenance {
 			'be used.', false, true );
 		$this->addOption( 'run-disabled', 'run disabled tests' );
 		$this->addOption( 'run-parsoid', 'run parsoid tests (normally disabled)' );
+		$this->addOption( 'disable-save-parse', 'Don\'t run the parser when ' .
+			'inserting articles	into the database' );
 		$this->addOption( 'dwdiff', 'Use dwdiff to display diff output' );
 		$this->addOption( 'mark-ws', 'Mark whitespace in diffs by replacing it with symbols' );
 		$this->addOption( 'norm', 'Apply a comma-separated list of normalization functions to ' .
@@ -180,6 +182,7 @@ class ParserTestsMaintenance extends Maintenance {
 			'keep-uploads' => $this->hasOption( 'keep-uploads' ),
 			'run-disabled' => $this->hasOption( 'run-disabled' ),
 			'run-parsoid' => $this->hasOption( 'run-parsoid' ),
+			'disable-save-parse' => $this->hasOption( 'disable-save-parse' ),
 			'use-tidy-config' => $this->hasOption( 'use-tidy-config' ),
 			'file-backend' => $this->getOption( 'file-backend' ),
 			'upload-dir' => $this->getOption( 'upload-dir' ),
