@@ -123,9 +123,7 @@ class FileBackendGroup {
 			}
 			$class = $config['class'];
 
-			$config['readOnly'] = !empty( $config['readOnly'] )
-				? $config['readOnly']
-				: $readOnlyReason;
+			$config['readOnly'] = $config['readOnly'] ?? $readOnlyReason;
 
 			unset( $config['class'] ); // backend won't need this
 			$this->backends[$name] = [
