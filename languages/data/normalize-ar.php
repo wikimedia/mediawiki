@@ -1,5 +1,5 @@
 <?php
-// File created by maintenance/generateNormalizerDataAr.php
+// File created by generateNormalizerDataAr.php
 return [
 	'ﭐ' => 'ٱ',
 	'ﭑ' => 'ٱ',
