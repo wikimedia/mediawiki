@@ -4,6 +4,7 @@
 *~ export-ignore
 \#*\# export-ignore
 .* export-ignore
+*.htaccess -export-ignore
 package.json export-ignore
 README.mediawiki export-ignore
 Gemfile* export-ignore
