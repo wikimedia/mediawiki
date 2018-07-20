@@ -535,11 +535,9 @@ class ApiMain extends ApiBase {
 			$this->executeAction();
 			$runTime = microtime( true ) - $t;
 			$this->logRequest( $runTime );
-			if ( $this->mModule->isWriteMode() && $this->getRequest()->wasPosted() ) {
-				MediaWikiServices::getInstance()->getStatsdDataFactory()->timing(
-					'api.' . $this->mModule->getModuleName() . '.executeTiming', 1000 * $runTime
-				);
-			}
+			MediaWikiServices::getInstance()->getStatsdDataFactory()->timing(
+				'api.' . $this->mModule->getModuleName() . '.executeTiming', 1000 * $runTime
+			);
 		} catch ( Exception $e ) {
 			$this->handleException( $e );
 			$this->logRequest( microtime( true ) - $t, $e );
