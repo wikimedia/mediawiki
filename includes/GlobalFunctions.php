@@ -866,18 +866,11 @@ function wfParseUrl( $url ) {
 function wfExpandIRI( $url ) {
 	return preg_replace_callback(
 		'/((?:%[89A-F][0-9A-F])+)/i',
-		'wfExpandIRI_callback',
+		function ( array $matches ) {
+			return urldecode( $matches[1] );
+		},
 		wfExpandUrl( $url )
 	);
-}
-
-/**
- * Private callback for wfExpandIRI
- * @param array $matches
- * @return string
- */
-function wfExpandIRI_callback( $matches ) {
-	return urldecode( $matches[1] );
 }
 
 /**
