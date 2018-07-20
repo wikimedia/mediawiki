@@ -150,7 +150,7 @@ class PasswordPolicyChecksTest extends MediaWikiTestCase {
 		global $IP;
 		$this->setMwGlobals( [
 			'wgSitename' => 'sitename',
-			'wgPopularPasswordFile' => "$IP/serialized/commonpasswords.cdb"
+			'wgPopularPasswordFile' => "$IP/includes/password/commonpasswords.cdb"
 		] );
 		$user = User::newFromName( 'username' );
 		$status = PasswordPolicyChecks::checkPopularPasswordBlacklist( PHP_INT_MAX, $user, $password );

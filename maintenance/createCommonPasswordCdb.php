@@ -1,6 +1,6 @@
 <?php
 /**
- * Create serialized/commonpasswords.cdb
+ * Generate includes/password/commonpasswords.cdb
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
  * For example:
  * https://github.com/danielmiessler/SecLists/blob/fe2b40dd84/Passwords/rockyou.txt?raw=true
  *
- * @see serialized/commonpasswords.cdb and PasswordPolicyChecks::checkPopularPasswordBlacklist
+ * @see PasswordPolicyChecks::checkPopularPasswordBlacklist
  * @since 1.27
  * @ingroup Maintenance
  */
@@ -44,7 +44,7 @@ class CreateCommonPasswordCdb extends Maintenance {
 		$this->addArg( 'inputfile', 'List of passwords (one per line) to use or - for stdin', true );
 		$this->addArg(
 			'output',
-			"Location to write CDB file to (Try $IP/serialized/commonpasswords.cdb)",
+			"Location to write CDB file to (Try $IP/includes/password/commonpasswords.cdb)",
 			true
 		);
 	}
