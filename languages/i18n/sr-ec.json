@@ -38,7 +38,8 @@
 			"Acamicamacaraca",
 			"BokicaK",
 			"BadDog",
-			"Fitoschido"
+			"Fitoschido",
+			"Stalker"
 		]
 	},
 	"tog-underline": "Подвлачење веза:",
@@ -2377,7 +2378,7 @@
 	"whatlinkshere": "Шта води овде",
 	"whatlinkshere-title": "Странице које су повезане са „$1”",
 	"whatlinkshere-page": "Страница:",
-	"linkshere": "Следеће странице имају везу до <strong>$1</strong>:",
+	"linkshere": "Следеће странице имају везу до <strong>$2</strong>:",
 	"nolinkshere": "Ниједна страница није повезана са: <strong>$2</strong>.",
 	"nolinkshere-ns": "Ниједна страница не води до '''$2''' у изабраном именском простору.",
 	"isredirect": "преусмерење",
