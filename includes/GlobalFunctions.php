@@ -197,11 +197,10 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
  *       [ 'y' ]
  *     ]
  *
- * @param array $array1,...
+ * @param array ...$args
  * @return array
  */
-function wfMergeErrorArrays( /*...*/ ) {
-	$args = func_get_args();
+function wfMergeErrorArrays( ...$args ) {
 	$out = [];
 	foreach ( $args as $errors ) {
 		foreach ( $errors as $params ) {
@@ -2196,13 +2195,13 @@ function wfStringToBool( $val ) {
  * (https://bugs.php.net/bug.php?id=26285) and the locale problems on Linux in
  * PHP 5.2.6+ (bug backported to earlier distro releases of PHP).
  *
- * @param string $args,... strings to escape and glue together,
+ * @param string|string[] ...$args strings to escape and glue together,
  *  or a single array of strings parameter
  * @return string
  * @deprecated since 1.30 use MediaWiki\Shell::escape()
  */
-function wfEscapeShellArg( /*...*/ ) {
-	return Shell::escape( ...func_get_args() );
+function wfEscapeShellArg( ...$args ) {
+	return Shell::escape( ...$args );
 }
 
 /**
@@ -2645,11 +2644,11 @@ function wfGetPrecompiledData( $name ) {
  * Make a cache key for the local wiki.
  *
  * @deprecated since 1.30 Call makeKey on a BagOStuff instance
- * @param string $args,...
+ * @param string ...$args
  * @return string
  */
-function wfMemcKey( /*...*/ ) {
-	return ObjectCache::getLocalClusterInstance()->makeKey( ...func_get_args() );
+function wfMemcKey( ...$args ) {
+	return ObjectCache::getLocalClusterInstance()->makeKey( ...$args );
 }
 
 /**
@@ -2659,11 +2658,10 @@ function wfMemcKey( /*...*/ ) {
  *
  * @param string $db
  * @param string $prefix
- * @param string $args,...
+ * @param string ...$args
  * @return string
  */
-function wfForeignMemcKey( $db, $prefix /*...*/ ) {
-	$args = array_slice( func_get_args(), 2 );
+function wfForeignMemcKey( $db, $prefix, ...$args ) {
 	$keyspace = $prefix ? "$db-$prefix" : $db;
 	return ObjectCache::getLocalClusterInstance()->makeKeyInternal( $keyspace, $args );
 }
@@ -2677,11 +2675,11 @@ function wfForeignMemcKey( $db, $prefix /*...*/ ) {
  *
  * @deprecated since 1.30 Call makeGlobalKey on a BagOStuff instance
  * @since 1.26
- * @param string $args,...
+ * @param string ...$args
  * @return string
  */
-function wfGlobalCacheKey( /*...*/ ) {
-	return ObjectCache::getLocalClusterInstance()->makeGlobalKey( ...func_get_args() );
+function wfGlobalCacheKey( ...$args ) {
+	return ObjectCache::getLocalClusterInstance()->makeGlobalKey( ...$args );
 }
 
 /**
