@@ -2102,7 +2102,7 @@
 	"speciallogtitlelabel": "Co (tytuł lub {{ns:user}}:nick użytkownika):",
 	"log": "Rejestr operacji",
 	"logeventslist-submit": "Pokaż",
-	"logeventslist-more-filters": "Więcej filtrów:",
+	"logeventslist-more-filters": "Pokaż dodatkowe rejestry:",
 	"logeventslist-patrol-log": "Rejestr patrolowania",
 	"logeventslist-tag-log": "Rejestr znaczników",
 	"all-logs-page": "Wszystkie publiczne operacje",

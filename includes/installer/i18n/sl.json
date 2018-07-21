@@ -4,7 +4,8 @@
 			"Dbc334",
 			"Eleassar",
 			"Yerpo",
-			"HairyFotr"
+			"HairyFotr",
+			"Janezdrilc"
 		]
 	},
 	"config-desc": "Namestitveni program za MediaWiki",
@@ -76,9 +77,9 @@
 	"config-db-schema-help": "Ta shema je po navadi v redu.\nSpremenite jo samo, če veste, da jo morate.",
 	"config-pg-test-error": "Ne morem se povezati z zbirko podatkov <strong>$1</strong>: $2",
 	"config-sqlite-dir": "Mapa podatkov SQLite:",
-	"config-type-mysql": "MySQL (ali združljiv)",
+	"config-type-mysql": "MySQL, MySQL ali združljiv",
 	"config-support-info": "MediaWiki podpira naslednje sisteme zbirk podatkov:\n\n$1\n\nČe zgoraj ne vidite navedenega sistema zbirk podatkov, ki ga poskušate uporabiti, sledite navodilom na spodnji povezavi, da omogočite podporo.",
-	"config-header-mysql": "Nastavitve MySQL",
+	"config-header-mysql": "Nastavitve MariaDB/MySQL",
 	"config-header-postgres": "Nastavitve PostgreSQL",
 	"config-header-sqlite": "Nastavitve SQLite",
 	"config-header-oracle": "Nastavitve Oracle",
@@ -103,7 +104,7 @@
 	"config-db-web-account-same": "Uporabi enak račun kot za namestitev",
 	"config-db-web-create": "Ustvari račun, če že ne obstaja",
 	"config-mysql-engine": "Pogon skladiščenja:",
-	"config-mysql-innodb": "InnoDB",
+	"config-mysql-innodb": "InnoDB (priporočeno)",
 	"config-mysql-myisam": "MyISAM",
 	"config-mssql-auth": "Tip avtentikacije:",
 	"config-site-name": "Ime wikija:",

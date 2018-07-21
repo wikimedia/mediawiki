@@ -950,6 +950,8 @@
 	"diff-paragraph-moved-toold": "A szakaszt áthelyezték. Kattints ide a régi helyére való ugráshoz.",
 	"difference-missing-revision": "Az összehasonlítandó változatok {{PLURAL:$2|egyike ($1) nem található|($1) nem találhatóak}}.\n\nEzt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás használata okozza. Részletek a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatóak.",
 	"searchresults": "A keresés eredménye",
+	"search-filter-title-prefix": "Keresés csak olyan lapokban, amelyek címe a következőképp kezdődik: „$1”",
+	"search-filter-title-prefix-reset": "Keresés az összes lapban",
 	"searchresults-title": "Keresési eredmények: „$1”",
 	"titlematches": "Címbeli egyezések",
 	"textmatches": "Szövegbeli egyezések",
