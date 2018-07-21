@@ -401,15 +401,14 @@ abstract class Skin extends ContextSource {
 	 * @param string|null $nonce OutputPage::getCSPNonce()
 	 * @return string|WrappedString HTML
 	 */
-	static function makeVariablesScript( $data, $nonce = null ) {
+	public static function makeVariablesScript( $data, $nonce = null ) {
 		if ( $data ) {
 			return ResourceLoader::makeInlineScript(
 				ResourceLoader::makeConfigSetScript( $data ),
 				$nonce
 			);
-		} else {
-			return '';
 		}
+		return '';
 	}
 
 	/**
