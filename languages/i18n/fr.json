@@ -1078,7 +1078,7 @@
 	"diff-paragraph-moved-toold": "Le paragraphe a été déplacé. Cliquez pour accéder à l'ancien emplacement.",
 	"difference-missing-revision": "{{PLURAL:$2|Une révision|$2 révisions}} de cette différence ($1) {{PLURAL:$2|n’a pas été trouvée|n’ont pas été trouvées}}.\n\nCela survient en général en suivant un lien de différence désuet vers une page qui a été supprimée.\nVous pouvez trouver des détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
 	"searchresults": "Résultats de la recherche",
-	"search-filter-title-prefix": "Recherche seulement des pages dont le titre commence par « $1 »",
+	"search-filter-title-prefix": "Recherche seulement les pages dont le titre commence par « $1 »",
 	"search-filter-title-prefix-reset": "Rechercher toutes les pages",
 	"searchresults-title": "Résultats de recherche pour « $1 »",
 	"titlematches": "Correspondances dans les titres des pages",

@@ -226,7 +226,7 @@
 	"config-license-help": "Mange åpne wikier legger alle bidrag under en [https://freedomdefined.org/Definition gratislisens].\nDette gir en følelse av felleseie og stimulerer til langvarige bidrag.\nDette er normalt unødvendig for en privat eller virksomhetsbegrenset wiki.\n\nHvis du ønsker å kunne bruke tekst fra Wikipedia, og at Wikipedia skal kunne ta i mot tekst kopiert fra din wiki, bør du velge <strong>{{int:config-license-cc-by-sa}}</strong>.\n\nWikipedia brukte tidligere GNU Free Documentation License.\nGFDL er en grei lisens, med vanskelig å forstå.\nDet er også vanskelig å gjenbruke innhold lisensiert under GFDL.",
 	"config-email-settings": "E-postinnstillinger",
 	"config-enable-email": "Aktiver utgående e-post",
-	"config-enable-email-help": "Hvis du vil at e-post skal virke, må [https://secure.php.net/manual/en/mail.configuration.php PHPs e-post-innstillinger] konfigureres riktig.\nHvis du ikke ønsker noen e-postfunksjoner, kan du deaktivere dem her.",
+	"config-enable-email-help": "Hvis du vil at e-post skal virke, må [https://secure.php.net/manual/en/mail.configuration.php PHPs epostinnstillinger] konfigureres riktig.\nHvis du ikke ønsker noen epostfunksjoner, kan du deaktivere dem her.",
 	"config-email-user": "Aktiver e-post mellom brukere",
 	"config-email-user-help": "Tillat alle brukere å sende hverandre e-post hvis de har aktivert det i deres innstillinger.",
 	"config-email-usertalk": "Aktiver brukerdiskusjonssidevarsler",

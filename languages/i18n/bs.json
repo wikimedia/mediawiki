@@ -1954,6 +1954,7 @@
 	"speciallogtitlelabel": "Cilj (naslov ili {{ns:user}}:korisničko ime):",
 	"log": "Zapisnici",
 	"logeventslist-submit": "Prikaži",
+	"logeventslist-more-filters": "Prikaži dodatne zapisnike:",
 	"all-logs-page": "Svi javni zapisnici",
 	"alllogstext": "Skupni prikaz svih dostupnih zapisnika sa {{GRAMMAR:genitiv|{{SITENAME}}}}.\nMožete suziti prikaz izabiranjem specifičnog zapisnika, korisničkog imena (razlikovati velika i mala slova) ili izmijenjenog članka (također treba razlikovati velika i mala slova).",
 	"logempty": "Nema zatraženih stavki u zapisniku.",
