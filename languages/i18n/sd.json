@@ -1931,6 +1931,7 @@
 	"logentry-delete-revision": "$1 $3: $4 صفحي تي {{PLURAL:$5|ھڪ مسودي|$5 مسودن}} جي ظاھريت {{GENDER:$2|تبديل ڪئي}}",
 	"revdelete-content-hid": "مواد لڪيل",
 	"revdelete-uname-hid": "واپرائيندڙ-نانءُ لڪل",
+	"logentry-block-block": "$1، {{GENDER:$4|$3}} تي $5 وقت جي خاتمي تائين {{GENDER:$2|بندش هئي آهي}} $6",
 	"logentry-move-move": "$1 {{GENDER:$2|چوريو}} صفحو $3 ڏانهن $4",
 	"logentry-move-move-noredirect": "$1 $3 صفحي کي $4 ڏانھن {{GENDER:$2|چوريو}} سواءِ ڪو ريڊائريڪٽ ڇڏيندي",
 	"logentry-move-move_redir": "$1 $3 کي $4 ڏانھن ريڊائريڪٽ مٿان {{GENDER:$2|چوريو}}",

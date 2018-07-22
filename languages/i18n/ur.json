@@ -2145,7 +2145,7 @@
 	"deletepage": "حذف کریں",
 	"confirm": "یقین",
 	"excontent": "'$1':مواد تھا",
-	"excontentauthor": "حذف شدہ مواد: «$1» اور صرف «[[Special:Contributions/$2|$2]]» ([[User talk:$2|تبادلۂ خیال]]) نے اس میں ترمیم کی",
+	"excontentauthor": "مواد «$1» تھا اور صرف «[[Special:Contributions/$2|$2]]» ([[User talk:$2|تبادلۂ خیال]]) نے اس میں ترمیم کی تھی",
 	"exbeforeblank": "خالی کرنے سے قبل موجود مواد: «$1»",
 	"delete-confirm": "حذف ''$1''",
 	"delete-legend": "حذف",
