@@ -3453,7 +3453,7 @@
 	"logentry-protect-protect-cascade": "$1 ने $3 $4 [निपतन]ला {{GENDER:$2|सुरक्षित केले}}",
 	"logentry-protect-modify": "$1 ने $3 $4 ची  सुरक्षा पातळी {{GENDER:$2|बदलली}}",
 	"logentry-protect-modify-cascade": "$1 ने $3 $4 [निपतन]ची  सुरक्षा पातळी {{GENDER:$2|बदलली}}",
-	"logentry-rights-rights": "$1 ने {{GENDER:$6|$3}} साठी $4 वरुन $5 ला गट सदस्यता{{GENDER:$2|बदलली}}",
+	"logentry-rights-rights": "$1 ने {{GENDER:$6|$3}} साठी $4 वरुन $5 ला गट सदस्यता {{GENDER:$2|बदलली}}",
 	"logentry-rights-rights-legacy": "$1 ने $3 साठी गट सदस्यता {{GENDER:$2|बदलली}}",
 	"logentry-rights-autopromote": "$1 ला स्वयंचलितरित्या $4 वरुन $5 ला {{GENDER:$2|बढती दिल्या गेली}}",
 	"logentry-upload-upload": "$1 {{GENDER:$2|अपभारीत केली}} $3",

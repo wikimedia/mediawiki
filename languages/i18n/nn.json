@@ -368,7 +368,7 @@
 	"cascadeprotected": "Denne sida er verna mot endring fordi ho er inkludert i fylgjande {{PLURAL:$1|side|sider}} som har djupvern slått på:\n$2",
 	"namespaceprotected": "Du har ikkje tilgang til å endre sidene i '''$1'''-namnerommet.",
 	"customcssprotected": "↓Du har ikkje tilgang til å endre denne sida, fordi ho inneheld ein annan brukar sine personlege innstillingar.",
-	"customjsprotected": "↓Du har ikkje tilgang til å endra denne JavaScript-sida fordi ho inneheld ein annen brukar sine personlege innstillingar.",
+	"customjsprotected": "↓Du har ikkje løyve til å endra denne JavaScript-sida fordi ho inneheld dei personlege innstillingane til ein annan brukar.",
 	"mycustomcssprotected": "Du har ikkje løyve til å endra denne CSS-sida.",
 	"mycustomjsprotected": "Du har ikkje løyve til å endra denne JavaScript-sida.",
 	"myprivateinfoprotected": "Du har ikkje løyve til endra den private informasjonen din.",

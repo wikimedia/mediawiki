@@ -1091,7 +1091,7 @@
 	"prevn-title": "$1 {{PLURAL:$1|résultat précédent|résultats précédents}}",
 	"nextn-title": "$1 {{PLURAL:$1|résultat suivant|résultats suivants}}",
 	"shown-title": "Afficher $1 résultat{{PLURAL:$1||s}} par page",
-	"viewprevnext": "Voir ($1 {{int:pipe-separator}} $2) ($3).",
+	"viewprevnext": "Voir ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "<strong>Il existe une page nommée « [[:$1]] » sur ce wiki.</strong> {{PLURAL:$2|0=|Voyez également les autres résultats de votre recherche.}}",
 	"searchmenu-new": "<strong>Créer la page « [[:$1|$1]] » sur ce wiki !</strong> {{PLURAL:$2|0=Voyez également la page trouvée avec votre recherche.|Voyez également les résultats de votre recherche.}}",
 	"searchprofile-articles": "Pages de contenu",

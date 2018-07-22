@@ -3959,6 +3959,13 @@
 	"pagedata-title": "Datele paginii",
 	"pagedata-not-acceptable": "Niciun format corespunzător găsit. Tipuri MIME acceptate: $1",
 	"pagedata-bad-title": "Titlu invalid: $1.",
+	"passwordpolicies": "Politică parole",
 	"passwordpolicies-group": "Grup",
-	"passwordpolicies-policies": "Politici"
+	"passwordpolicies-policies": "Politici",
+	"passwordpolicies-policy-minimalpasswordlength": "Parola trebuie să aibă cel puțin $1 {{PLURAL:$1|caracter|caractere|de caractere}}.",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "Parola trebuie să aibă cel puțin $1 {{PLURAL:$1|caracter|caractere|de caractere}} pentru a vă putea autentifica.",
+	"passwordpolicies-policy-passwordcannotmatchusername": "Parola nu poate fi identică cu numele de utilizator",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "Parolele nu pot fi cele de pe lista neagră",
+	"passwordpolicies-policy-maximalpasswordlength": "Parola trebuie să aibă cel puțin $1 {{PLURAL:$1|caracter|caractere|de caractere}}.",
+	"passwordpolicies-policy-passwordcannotbepopular": "Parola nu poate fi {{PLURAL:$1|o parolă populară|în lista celor $1 parole populare|în lista celor $1 de parole populare}}."
 }
