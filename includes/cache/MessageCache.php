@@ -55,7 +55,7 @@ class MessageCache {
 	/**
 	 * @var bool[] Map of (language code => boolean)
 	 */
-	protected $mCacheVolatile = [];
+	protected $cacheVolatile = [];
 
 	/**
 	 * Should mean that database cannot be used, but check
@@ -272,7 +272,7 @@ class MessageCache {
 		# Hash of the contents is stored in memcache, to detect if data-center cache
 		# or local cache goes out of date (e.g. due to replace() on some other server)
 		list( $hash, $hashVolatile ) = $this->getValidationHash( $code );
-		$this->mCacheVolatile[$code] = $hashVolatile;
+		$this->cacheVolatile[$code] = $hashVolatile;
 
 		# Try the local cache and check against the cluster hash key...
 		$cache = $this->getLocalCache( $code );
@@ -966,10 +966,13 @@ class MessageCache {
 	 * @return string|bool The message, or false if it does not exist or on error
 	 */
 	public function getMsgFromNamespace( $title, $code ) {
+		// Load all MediaWiki page definitions into cache. Note that individual keys
+		// already loaded into cache during this request remain in the cache, which
+		// includes the value of hook-defined messages.
 		$this->load( $code );
 
-		if ( $this->cache->hasField( $code, $title ) ) {
-			$entry = $this->cache->getField( $code, $title );
+		$entry = $this->cache->getField( $code, $title );
+		if ( $entry !== null ) {
 			if ( substr( $entry, 0, 1 ) === ' ' ) {
 				// The message exists and is not '!TOO BIG'
 				return (string)substr( $entry, 1 );
@@ -978,6 +981,7 @@ class MessageCache {
 			}
 			// Fall through and try invididual message cache below
 		} else {
+			// Message does not have a MediaWiki page definition
 			$message = false;
 			Hooks::run( 'MessagesPreLoad', [ $title, &$message, $code ] );
 			if ( $message !== false ) {
@@ -989,75 +993,72 @@ class MessageCache {
 			return $message;
 		}
 
-		// Individual message cache key
-		$bigKey = $this->bigMessageCacheKey( $this->cache->getField( $code, 'HASH' ), $title );
-
-		if ( $this->mCacheVolatile[$code] ) {
+		if ( $this->cacheVolatile[$code] ) {
 			$entry = false;
 			// Make sure that individual keys respect the WAN cache holdoff period too
 			LoggerFactory::getInstance( 'MessageCache' )->debug(
 				__METHOD__ . ': loading volatile key \'{titleKey}\'',
-				[ 'titleKey' => $bigKey, 'code' => $code ] );
+				[ 'titleKey' => $title, 'code' => $code ] );
 		} else {
 			// Try the individual message cache
-			$entry = $this->wanCache->get( $bigKey );
-		}
-
-		if ( $entry !== false ) {
-			if ( substr( $entry, 0, 1 ) === ' ' ) {
-				$this->cache->setField( $code, $title, $entry );
-				// The message exists, so make sure a string is returned
-				return (string)substr( $entry, 1 );
-			} elseif ( $entry === '!NONEXISTENT' ) {
-				$this->cache->setField( $code, $title, '!NONEXISTENT' );
-
-				return false;
-			} else {
-				// Corrupt/obsolete entry, delete it
-				$this->wanCache->delete( $bigKey );
-			}
-		}
-
-		// Try loading the message from the database
-		$dbr = wfGetDB( DB_REPLICA );
-		$cacheOpts = Database::getCacheSetOptions( $dbr );
-		// Use newKnownCurrent() to avoid querying revision/user tables
-		$titleObj = Title::makeTitle( NS_MEDIAWIKI, $title );
-		if ( $titleObj->getLatestRevID() ) {
-			$revision = Revision::newKnownCurrent(
-				$dbr,
-				$titleObj
+			$entry = $this->loadCachedMessagePageEntry(
+				$title,
+				$code,
+				$this->cache->getField( $code, 'HASH' )
 			);
-		} else {
-			$revision = false;
 		}
 
-		if ( $revision ) {
-			$content = $revision->getContent();
-			if ( $content ) {
-				$message = $this->getMessageTextFromContent( $content );
-				if ( is_string( $message ) ) {
-					$this->cache->setField( $code, $title, ' ' . $message );
-					$this->wanCache->set( $bigKey, ' ' . $message, $this->mExpiry, $cacheOpts );
+		if ( $entry !== false && substr( $entry, 0, 1 ) === ' ' ) {
+			$this->cache->setField( $code, $title, $entry );
+			// The message exists, so make sure a string is returned
+			return (string)substr( $entry, 1 );
+		}
+
+		$this->cache->setField( $code, $title, '!NONEXISTENT' );
+
+		return false;
+	}
+
+	/**
+	 * @param string $dbKey
+	 * @param string $code
+	 * @param string $hash
+	 * @return string Either " <MESSAGE>" or "!NONEXISTANT"
+	 */
+	private function loadCachedMessagePageEntry( $dbKey, $code, $hash ) {
+		return $this->wanCache->getWithSetCallback(
+			$this->bigMessageCacheKey( $hash, $dbKey ),
+			$this->mExpiry,
+			function ( $oldValue, &$ttl, &$setOpts ) use ( $dbKey, $code ) {
+				// Try loading the message from the database
+				$dbr = wfGetDB( DB_REPLICA );
+				$setOpts += Database::getCacheSetOptions( $dbr );
+				// Use newKnownCurrent() to avoid querying revision/user tables
+				$title = Title::makeTitle( NS_MEDIAWIKI, $dbKey );
+				$revision = Revision::newKnownCurrent( $dbr, $title );
+				if ( !$revision ) {
+					return '!NONEXISTENT';
 				}
-			} else {
-				// A possibly temporary loading failure
-				LoggerFactory::getInstance( 'MessageCache' )->warning(
-					__METHOD__ . ': failed to load message page text for \'{titleKey}\'',
-					[ 'titleKey' => $bigKey, 'code' => $code ] );
-				$message = null; // no negative caching
+				$content = $revision->getContent();
+				if ( $content ) {
+					$message = $this->getMessageTextFromContent( $content );
+				} else {
+					LoggerFactory::getInstance( 'MessageCache' )->warning(
+						__METHOD__ . ': failed to load page text for \'{titleKey}\'',
+						[ 'titleKey' => $dbKey, 'code' => $code ]
+					);
+					$message = null;
+				}
+
+				if ( is_string( $message ) ) {
+					return ' ' . $message;
+				}
+
+				$ttl = 5; // possibly a temporary loading failure
+
+				return '!NONEXISTENT';
 			}
-		} else {
-			$message = false; // negative caching
-		}
-
-		if ( $message === false ) {
-			// Negative caching in case a "too big" message is no longer available (deleted)
-			$this->cache->setField( $code, $title, '!NONEXISTENT' );
-			$this->wanCache->set( $bigKey, '!NONEXISTENT', $this->mExpiry, $cacheOpts );
-		}
-
-		return $message;
+		);
 	}
 
 	/**
