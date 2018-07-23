@@ -37,8 +37,6 @@
 		 *  - `pluralRules`
 		 *  - `digitGroupingPattern`
 		 *  - `fallbackLanguages`
-		 *  - `bcp47Map`
-		 *  - `languageNames`
 		 *
 		 * @property
 		 */
