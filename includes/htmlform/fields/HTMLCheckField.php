@@ -116,10 +116,9 @@ class HTMLCheckField extends HTMLFormField {
 	public function loadDataFromRequest( $request ) {
 		$invert = isset( $this->mParams['invert'] ) && $this->mParams['invert'];
 
-		// GetCheck won't work like we want for checks.
 		// Fetch the value in either one of the two following case:
-		// - we have a valid submit attempt (form was just submitted, or a GET URL forged by the user)
-		// - checkbox name has a value (false or true), ie is not null
+		// - we have a valid submit attempt (form was just submitted)
+		// - we have a value (an URL manually built by the user, or GET form with no wpFormIdentifier)
 		if ( $this->isSubmitAttempt( $request ) || $request->getVal( $this->mName ) !== null ) {
 			return $invert
 				? !$request->getBool( $this->mName )
