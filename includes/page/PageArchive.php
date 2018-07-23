@@ -767,7 +767,7 @@ class PageArchive {
 					0,
 					$this->title,
 					[
-						'page' => $pageId,
+						'page_id' => $pageId,
 						'deleted' => $unsuppress ? 0 : $row->ar_deleted
 					]
 				);
