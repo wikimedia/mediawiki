@@ -780,7 +780,7 @@ class OutputPage extends ContextSource {
 		# this breaks strtotime().
 		$clientHeader = preg_replace( '/;.*$/', '', $clientHeader );
 
-		Wikimedia\suppressWarnings(); // E_STRICT system time bitching
+		Wikimedia\suppressWarnings(); // E_STRICT system time warnings
 		$clientHeaderTime = strtotime( $clientHeader );
 		Wikimedia\restoreWarnings();
 		if ( !$clientHeaderTime ) {
