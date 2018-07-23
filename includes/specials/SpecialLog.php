@@ -64,8 +64,6 @@ class SpecialLog extends SpecialPage {
 		$dateString = $this->getRequest()->getVal( 'wpdate' );
 		if ( !empty( $dateString ) ) {
 			$dateStamp = MWTimestamp::getInstance( $dateString . ' 00:00:00' );
-			$dateStamp->setTimezone( $this->getConfig()->get( 'Localtimezone' ) );
-
 			$opts->setValue( 'year', (int)$dateStamp->format( 'Y' ) );
 			$opts->setValue( 'month', (int)$dateStamp->format( 'm' ) );
 			$opts->setValue( 'day', (int)$dateStamp->format( 'd' ) );
