@@ -332,6 +332,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		if ( is_null( $callback ) ) {
 			$callback = [ $this, 'read' ];
 		} elseif ( !is_callable( $callback ) ) {
+			$this->status->fatal( 'http-internal-error' );
 			throw new InvalidArgumentException( __METHOD__ . ': invalid callback' );
 		}
 		$this->callback = $callback;
@@ -386,6 +387,11 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 */
 	protected function parseHeader() {
 		$lastname = "";
+
+		// Failure without (valid) headers gets a response status of zero
+		if ( !$this->status->isOK() ) {
+			$this->respStatus = '0';
+		}
 
 		foreach ( $this->headerList as $header ) {
 			if ( preg_match( "#^HTTP/([0-9.]+) (.*)#", $header, $match ) ) {

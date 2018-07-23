@@ -98,6 +98,7 @@ class CurlHttpRequest extends MWHttpRequest {
 		$curlHandle = curl_init( $this->url );
 
 		if ( !curl_setopt_array( $curlHandle, $this->curlOptions ) ) {
+			$this->status->fatal( 'http-internal-error' );
 			throw new InvalidArgumentException( "Error setting curl options." );
 		}
 
