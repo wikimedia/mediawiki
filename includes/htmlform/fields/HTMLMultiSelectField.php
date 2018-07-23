@@ -214,10 +214,14 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	 * @return string|array
 	 */
 	public function loadDataFromRequest( $request ) {
-		if ( $this->isSubmitAttempt( $request ) ) {
+		$fromRequest = $request->getArray( $this->mName, [] );
+		// Fetch the value in either one of the two following case:
+		// - we have a valid submit attempt (form was just submitted)
+		// - we have a value (an URL manually built by the user, or GET form with no wpFormIdentifier)
+		if ( $this->isSubmitAttempt( $request ) || $fromRequest ) {
 			// Checkboxes are just not added to the request arrays if they're not checked,
 			// so it's perfectly possible for there not to be an entry at all
-			return $request->getArray( $this->mName, [] );
+			return $fromRequest;
 		} else {
 			// That's ok, the user has not yet submitted the form, so show the defaults
 			return $this->getDefault();
