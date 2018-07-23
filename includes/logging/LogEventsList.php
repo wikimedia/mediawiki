@@ -170,7 +170,9 @@ class LogEventsList extends ContextSource {
 			$formDescriptor['subtype'] = $this->getActionSelectorDesc( $types, $action );
 		}
 
-		$htmlForm = new HTMLForm( $formDescriptor, $this->getContext() );
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $title ); // Remove subpage
+		$htmlForm = new HTMLForm( $formDescriptor, $context );
 		$htmlForm
 			->setSubmitText( $this->msg( 'logeventslist-submit' )->text() )
 			->setMethod( 'get' )
