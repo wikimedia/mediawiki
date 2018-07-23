@@ -416,7 +416,7 @@
 	"apihelp-purge-example-simple": "刷新<kbd>Main Page</kbd>和<kbd>API</kbd>页面。",
 	"apihelp-purge-example-generator": "刷新主名字空间的前10个页面。",
 	"apihelp-query-summary": "取得来自并有关MediaWiki的数据。",
-	"apihelp-query-extended-description": "所有数据修改将首先不得不使用查询来获得令牌，以阻止来自恶意网站的滥用行为。",
+	"apihelp-query-extended-description": "所有数据修改须首先使用查询来获得令牌，以阻止来自恶意网站的滥用行为。",
 	"apihelp-query-param-prop": "要为已查询页面获取的属性。",
 	"apihelp-query-param-list": "要获取的列表。",
 	"apihelp-query-param-meta": "要获取的元数据。",

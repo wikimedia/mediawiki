@@ -1892,6 +1892,7 @@
 	"http-timed-out": "La requête HTTP a expiré.",
 	"http-curl-error": "Erreur lors de la récupération de l'URL : $1",
 	"http-bad-status": "Il y a eu un problème lors de la requête HTTP : $1 $2",
+	"http-internal-error": "Erreur interne HTTP.",
 	"upload-curl-error6": "URL injoignable",
 	"upload-curl-error6-text": "L’URL fournie ne peut pas être atteinte. \nVeuillez vérifier que l’URL est correcte et que le site est en ligne.",
 	"upload-curl-error28": "Dépassement du délai lors de l'import",

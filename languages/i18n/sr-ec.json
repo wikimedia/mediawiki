@@ -551,7 +551,7 @@
 	"botpasswords-label-resetpassword": "Ресетуј лозинку",
 	"botpasswords-label-grants": "Применљиве дозволе:",
 	"botpasswords-label-grants-column": "Одобрено",
-	"botpasswords-bad-appid": "Име бота „$1” није ваљано.",
+	"botpasswords-bad-appid": "Име бота „$1” није валидно.",
 	"botpasswords-insert-failed": "Неуспешно додавање бота \"$1\". Да ли је већ додат?",
 	"botpasswords-update-failed": "Није могуће ажурирати бота \"$1\". Да ли је обрисан?",
 	"botpasswords-created-title": "Направљена лозинка бота",
