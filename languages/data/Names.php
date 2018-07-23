@@ -82,7 +82,7 @@ class Names {
 		'ba' => 'башҡортса', # Bashkir
 		'ban' => 'Basa Bali', # Balinese
 		'bar' => 'Boarisch', # Bavarian (Austro-Bavarian and South Tyrolean)
-		'bat-smg' => 'žemaitėška', # Samogitian (deprecated code, 'sgs' in ISO 639-3 since 2010-06-30 )
+		'bat-smg' => 'žemaitėška', # Samogitian (deprecated code, 'sgs' in ISO 693-3 since 2010-06-30 )
 		'bbc' => 'Batak Toba', # Batak Toba (falls back to bbc-latn)
 		'bbc-latn' => 'Batak Toba', # Batak Toba
 		'bcc' => 'جهلسری بلوچی', # Southern Balochi
@@ -287,7 +287,7 @@ class Names {
 		'lzh' => '文言', # Literary Chinese, T10217
 		'lzz' => 'Lazuri', # Laz
 		'mai' => 'मैथिली', # Maithili
-		'map-bms' => 'Basa Banyumasan', # Banyumasan ('jv-x-bms')
+		'map-bms' => 'Basa Banyumasan', # Banyumasan
 		'mdf' => 'мокшень', # Moksha
 		'mg' => 'Malagasy', # Malagasy
 		'mh' => 'Ebon', # Marshallese
@@ -298,7 +298,7 @@ class Names {
 		'ml' => 'മലയാളം', # Malayalam
 		'mn' => 'монгол', # Halh Mongolian (Cyrillic) (ISO 639-3: khk)
 		'mni' => 'মেইতেই লোন্', # Manipuri/Meitei
-		'mo' => 'молдовеняскэ', # Moldovan, deprecated (ISO 639-2: ro-MD)
+		'mo' => 'молдовеняскэ', # Moldovan, deprecated
 		'mr' => 'मराठी', # Marathi
 		'mrj' => 'кырык мары', # Hill Mari
 		'ms' => 'Bahasa Melayu', # Malay
@@ -309,7 +309,7 @@ class Names {
 		'myv' => 'эрзянь', # Erzya
 		'mzn' => 'مازِرونی', # Mazanderani
 		'na' => 'Dorerin Naoero', # Nauruan
-		'nah' => 'Nāhuatl', # Nahuatl (added to ISO 639-3 on 2006-10-31)
+		'nah' => 'Nāhuatl', # Nahuatl (not in ISO 639-3)
 		'nan' => 'Bân-lâm-gú', # Min-nan, T10217
 		'nap' => 'Napulitano', # Neapolitan, T45793
 		'nb' => 'norsk bokmål', # Norwegian (Bokmal)
@@ -324,7 +324,7 @@ class Names {
 		'nn' => 'norsk nynorsk', # Norwegian (Nynorsk)
 		'no' => 'norsk', # Norwegian macro language (falls back to nb).
 		'nov' => 'Novial', # Novial
-		'nrm' => 'Nouormand', # Norman (invalid code; 'nrf' in ISO 639 since 2014)
+		'nrm' => 'Nouormand', # Norman
 		'nso' => 'Sesotho sa Leboa', # Northern Sotho
 		'nv' => 'Diné bizaad', # Navajo
 		'ny' => 'Chi-Chewa', # Chichewa
@@ -360,8 +360,8 @@ class Names {
 		'rmy' => 'Romani', # Vlax Romany
 		'rn' => 'Kirundi', # Rundi/Kirundi/Urundi
 		'ro' => 'română', # Romanian
-		'roa-rup' => 'armãneashti', # Aromanian (deprecated code, 'rup' exists in ISO 639-3)
-		'roa-tara' => 'tarandíne', # Tarantino ('nap-x-tara')
+		'roa-rup' => 'armãneashti', # Aromanian (deprecated code, 'rup' exists in ISO 693-3)
+		'roa-tara' => 'tarandíne', # Tarantino
 		'ru' => 'русский', # Russian
 		'rue' => 'русиньскый', # Rusyn
 		'rup' => 'armãneashti', # Aromanian
@@ -437,7 +437,7 @@ class Names {
 		'tt-cyrl' => 'татарча', # Tatar (Cyrillic script) (default)
 		'tt-latn' => 'tatarça', # Tatar (Latin script)
 		'tum' => 'chiTumbuka', # Tumbuka
-		'tw' => 'Twi', # Twi
+		'tw' => 'Twi', # Twi, (FIXME!)
 		'ty' => 'reo tahiti', # Tahitian
 		'tyv' => 'тыва дыл', # Tyvan
 		'tzm' => 'ⵜⴰⵎⴰⵣⵉⵖⵜ', # Tamazight

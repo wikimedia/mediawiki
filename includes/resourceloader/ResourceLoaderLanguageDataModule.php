@@ -46,7 +46,6 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderFileModule {
 			'pluralRules' => $language->getPluralRules(),
 			'digitGroupingPattern' => $language->digitGroupingPattern(),
 			'fallbackLanguages' => $language->getFallbackLanguages(),
-			'bcp47Map' => LanguageCode::getNonstandardLanguageCodeMapping(),
 		];
 	}
 

@@ -191,27 +191,18 @@
 		},
 
 		/**
-		 * Formats language tags according the BCP 47 standard.
+		 * Formats language tags according the BCP47 standard.
 		 * See LanguageCode::bcp47 for the PHP implementation.
 		 *
 		 * @param {string} languageTag Well-formed language tag
 		 * @return {string}
 		 */
 		bcp47: function ( languageTag ) {
-			var bcp47Map,
-				formatted,
-				segments,
+			var formatted,
 				isFirstSegment = true,
-				isPrivate = false;
+				isPrivate = false,
+				segments = languageTag.split( '-' );
 
-			languageTag = languageTag.toLowerCase();
-
-			bcp47Map = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'bcp47Map' );
-			if ( bcp47Map && Object.prototype.hasOwnProperty.call( bcp47Map, languageTag ) ) {
-				languageTag = bcp47Map[ languageTag ];
-			}
-
-			segments = languageTag.split( '-' );
 			formatted = segments.map( function ( segment ) {
 				var newSegment;
 

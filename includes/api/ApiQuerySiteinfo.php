@@ -705,10 +705,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data = [];
 
 		foreach ( $langNames as $code => $name ) {
-			$lang = [
-				'code' => $code,
-				'bcp47' => LanguageCode::bcp47( $code ),
-			];
+			$lang = [ 'code' => $code ];
 			ApiResult::setContentValue( $lang, 'name', $name );
 			$data[] = $lang;
 		}
