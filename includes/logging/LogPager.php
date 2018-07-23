@@ -107,11 +107,16 @@ class LogPager extends ReverseChronologicalPager {
 			return $filters;
 		}
 
-		$request_filters = $this->getRequest()->getArray( "wpfilters" );
-		$request_filters = $request_filters === null ? [] : $request_filters;
+		$wpfilters = $this->getRequest()->getArray( "wpfilters" );
+		$request_filters = $wpfilters === null ? [] : $wpfilters;
 
 		foreach ( $wgFilterLogTypes as $type => $default ) {
 			$hide = !in_array( $type, $request_filters );
+
+			// Back-compat: Check old URL params if the new param wasn't passed
+			if ( $wpfilters === null ) {
+				$hide = $this->getRequest()->getBool( "hide_{$type}_log", $default );
+			}
 
 			$filters[$type] = $hide;
 			if ( $hide ) {

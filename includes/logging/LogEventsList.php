@@ -205,7 +205,7 @@ class LogEventsList extends ContextSource {
 			}
 			$options[ $message->text() ] = $type;
 
-			if ( $val === 0 ) {
+			if ( $val === false ) {
 				$default[] = $type;
 			}
 		}
