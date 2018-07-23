@@ -3543,7 +3543,7 @@
 	"watchlistedit-raw-removed": "{{PLURAL:$1|Una página ha sido borrada|$1 páginas han sido borradas}}:",
 	"watchlistedit-clear-title": "Vaciar la lista de seguimiento",
 	"watchlistedit-clear-legend": "Vaciar la lista de seguimiento",
-	"watchlistedit-clear-explain": "Todos los títulos serán eliminados de tu lista de seguimiento",
+	"watchlistedit-clear-explain": "Se quitarán todos los títulos de la lista de seguimiento",
 	"watchlistedit-clear-titles": "Títulos:",
 	"watchlistedit-clear-submit": "Vaciar la lista de seguimiento (¡permanente!)",
 	"watchlistedit-clear-done": "Se ha vaciado tu lista de seguimiento.",

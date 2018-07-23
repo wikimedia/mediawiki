@@ -1830,6 +1830,7 @@
 	"http-timed-out": "Esgotado o tempo de espera da requisição HTTP.",
 	"http-curl-error": "Erro ao requisitar a URL: $1",
 	"http-bad-status": "Ocorreu um problema durante a requisição HTTP: $1 $2",
+	"http-internal-error": "Erro interno do HTTP.",
 	"upload-curl-error6": "Não foi possível acessar a URL",
 	"upload-curl-error6-text": "Não foi possível acessar o endereço (URL) fornecido. Por gentileza, se certifique que o endereço foi fornecido corretamente e de que o site esteja acessível.",
 	"upload-curl-error28": "Tempo limite para o envio do arquivo excedido",

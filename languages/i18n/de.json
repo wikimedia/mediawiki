@@ -1809,6 +1809,7 @@
 	"http-timed-out": "Zeitüberschreitung bei der HTTP-Anfrage.",
 	"http-curl-error": "Fehler beim Abruf der URL: $1",
 	"http-bad-status": "Während der HTTP-Anfrage ist ein Fehler aufgetreten: $1 $2",
+	"http-internal-error": "Interner HTTP-Fehler.",
 	"upload-curl-error6": "URL ist nicht erreichbar",
 	"upload-curl-error6-text": "Die angegebene URL ist nicht erreichbar. Prüfe sowohl die URL auf Fehler als auch den Online-Status der Seite.",
 	"upload-curl-error28": "Zeitüberschreitung beim Hochladen",

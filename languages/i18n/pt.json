@@ -1804,6 +1804,7 @@
 	"http-timed-out": "O pedido HTTP expirou.",
 	"http-curl-error": "Ocorreu um erro ao aceder ao URL: $1",
 	"http-bad-status": "Ocorreu um problema durante o pedido HTTP: $1 $2",
+	"http-internal-error": "Erro interno do HTTP.",
 	"upload-curl-error6": "Não foi possível aceder ao URL",
 	"upload-curl-error6-text": "Não foi possível aceder ao URL.\nVerifique se o endereço está correto e o sítio disponível, por favor.",
 	"upload-curl-error28": "Tempo limite para o envio do ficheiro excedido",
