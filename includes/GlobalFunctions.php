@@ -548,16 +548,23 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 	} elseif ( substr( $url, 0, 1 ) == '/' ) {
 		// If $serverUrl is protocol-relative, prepend $defaultProtoWithoutSlashes,
 		// otherwise leave it alone.
-		$url = ( $serverHasProto ? '' : $defaultProtoWithoutSlashes ) . $serverUrl . $url;
+		if ( $serverHasProto ) {
+			$url = $serverUrl . $url;
+		} else {
+			// If an HTTPS URL is synthesized from a protocol-relative $wgServer, allow the
+			// user to override the port number (T67184)
+			if ( $defaultProto === PROTO_HTTPS && $wgHttpsPort != 443 ) {
+				if ( isset( $bits['port'] ) ) {
+					throw new Exception( 'A protocol-relative $wgServer may not contain a port number' );
+				}
+				$url = $defaultProtoWithoutSlashes . $serverUrl . ':' . $wgHttpsPort . $url;
+			} else {
+				$url = $defaultProtoWithoutSlashes . $serverUrl . $url;
+			}
+		}
 	}
 
 	$bits = wfParseUrl( $url );
-
-	// ensure proper port for HTTPS arrives in URL
-	// https://phabricator.wikimedia.org/T67184
-	if ( $defaultProto === PROTO_HTTPS && $wgHttpsPort != 443 ) {
-		$bits['port'] = $wgHttpsPort;
-	}
 
 	if ( $bits && isset( $bits['path'] ) ) {
 		$bits['path'] = wfRemoveDotSegments( $bits['path'] );
