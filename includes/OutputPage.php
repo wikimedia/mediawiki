@@ -55,9 +55,8 @@ class OutputPage extends ContextSource {
 	protected $mCanonicalUrl = false;
 
 	/**
-	 * @var string Should be private - has getter and setter. Contains
-	 *   the HTML title */
-	public $mPagetitle = '';
+	 * @var string The contents of <h1> */
+	private $mPageTitle = '';
 
 	/**
 	 * @var string Contains all of the "<body>" content. Should be private we
@@ -992,7 +991,7 @@ class OutputPage extends ContextSource {
 		# change "<script>foo&bar</script>" to "&lt;script&gt;foo&amp;bar&lt;/script&gt;"
 		# but leave "<i>foobar</i>" alone
 		$nameWithTags = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $name ) );
-		$this->mPagetitle = $nameWithTags;
+		$this->mPageTitle = $nameWithTags;
 
 		# change "<i>foo&amp;bar</i>" to "foo&bar"
 		$this->setHTMLTitle(
@@ -1007,7 +1006,7 @@ class OutputPage extends ContextSource {
 	 * @return string
 	 */
 	public function getPageTitle() {
-		return $this->mPagetitle;
+		return $this->mPageTitle;
 	}
 
 	/**
