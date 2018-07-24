@@ -1741,6 +1741,7 @@
 	"http-timed-out": "HTTP-барањето истече.",
 	"http-curl-error": "Грешка при добивањето на URL: $1",
 	"http-bad-status": "Се појави проблем во текот на обработката на HTTP-барањето: $1 $2",
+	"http-internal-error": "Внатрешна грешка со HTTP.",
 	"upload-curl-error6": "Не може да се пристапи до URL-то",
 	"upload-curl-error6-text": "Наведеното URL не е достапно.\nПроверете дали URL-то е исправно и достапно.",
 	"upload-curl-error28": "Истече времето за подигање",

@@ -19,7 +19,8 @@
 			"Kwisha",
 			"Macofe",
 			"Muddyb",
-			"Fitoschido"
+			"Fitoschido",
+			"Rance"
 		]
 	},
 	"tog-underline": "Wekea mstari viungo:",
@@ -783,6 +784,8 @@
 	"editundo": "tengua",
 	"diff-empty": "(Hakuna tofauti)",
 	"searchresults": "Matokeo ya utafutaji",
+	"search-filter-title-prefix": "Kutafuta katika kurasa zenye kichwa kianzacho na \"$1\" pekee",
+	"search-filter-title-prefix-reset": "Tafuta kurasa zote",
 	"searchresults-title": "Matokeo ya utafutaji kwa ajili ya \"$1\"",
 	"titlematches": "Kurasa zinazo majina yenye maneno ya ulizo",
 	"textmatches": "Kurasa zinazo maandishi yenye maneno ya ulizo",
@@ -1491,6 +1494,7 @@
 	"specialloguserlabel": "Mtendaji:",
 	"speciallogtitlelabel": "Kusudio (jina la ukurasa au mtumiaji):",
 	"log": "Kumbukumbu",
+	"logeventslist-more-filters": "Onyesha taarifa za ziada",
 	"all-logs-page": "Kumbukumbu zote zilizo wazi",
 	"alllogstext": "Hapa panaonyeshwa kumbukumbu zote za {{SITENAME}} kwa pamoja.\nUnaweza kuona baadhi yao tu kwa kuchagua aina fulani ya kumbukumbu, jina la mtumiaji fulani (zingatia herufi kubwa na ndogo), au jina la ukurasa fulani (zingatia herufi kubwa na ndogo).",
 	"logempty": "Vitu vyenye vipengele hivi havipo kwenye kumbukumbu.",

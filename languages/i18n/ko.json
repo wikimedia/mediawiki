@@ -1779,6 +1779,7 @@
 	"http-timed-out": "HTTP 요청 시간 초과입니다.",
 	"http-curl-error": "URL 열기 오류: $1",
 	"http-bad-status": "HTTP 요청 중 오류 발생: $1 $2",
+	"http-internal-error": "HTTP 내부 오류.",
 	"upload-curl-error6": "URL 접근 불가",
 	"upload-curl-error6-text": "URL에 접근할 수 없습니다.\nURL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.",
 	"upload-curl-error28": "올리기 시간 초과",
