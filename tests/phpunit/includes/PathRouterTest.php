@@ -145,6 +145,58 @@ class PathRouterTest extends MediaWikiTestCase {
 				[ 'title' => "Title_With Space" ]
 			],
 
+			// Double slash and dot expansion
+			'Double slash in prefix' => [
+				'/wiki/$1',
+				'//wiki/Foo',
+				[ 'title' => 'Foo' ]
+			],
+			'Double slash at start of $1' => [
+				'/wiki/$1',
+				'/wiki//Foo',
+				[ 'title' => '/Foo' ]
+			],
+			'Double slash in middle of $1' => [
+				'/wiki/$1',
+				'/wiki/.hack//SIGN',
+				[ 'title' => '.hack//SIGN' ]
+			],
+			'Dots removed 1' => [
+				'/wiki/$1',
+				'/x/../wiki/Foo',
+				[ 'title' => 'Foo' ]
+			],
+			'Dots removed 2' => [
+				'/wiki/$1',
+				'/./wiki/Foo',
+				[ 'title' => 'Foo' ]
+			],
+			'Dots retained 1' => [
+				'/wiki/$1',
+				'/wiki/../wiki/Foo',
+				[ 'title' => '../wiki/Foo' ]
+			],
+			'Dots retained 2' => [
+				'/wiki/$1',
+				'/wiki/./Foo',
+				[ 'title' => './Foo' ]
+			],
+			'Triple slash' => [
+				'/wiki/$1',
+				'///wiki/Foo',
+				[ 'title' => 'Foo' ]
+			],
+			// '..' only traverses one slash, see e.g. RFC 3986
+			'Dots traversing double slash 1' => [
+				'/wiki/$1',
+				'/a//b/../../wiki/Foo',
+				[]
+			],
+			'Dots traversing double slash 2' => [
+				'/wiki/$1',
+				'/a//b/../../../wiki/Foo',
+				[ 'title' => 'Foo' ]
+			],
 		];
 
 		// Make sure the router doesn't break on special characters like $ used in regexp replacements

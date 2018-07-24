@@ -1,6 +1,8 @@
 <?php
 
 class MediaWikiTest extends MediaWikiTestCase {
+	private $oldServer, $oldGet, $oldPost;
+
 	protected function setUp() {
 		parent::setUp();
 
@@ -11,6 +13,18 @@ class MediaWikiTest extends MediaWikiTestCase {
 			'wgArticlePath' => '/wiki/$1',
 			'wgActionPaths' => [],
 		] );
+
+		// phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
+		$this->oldServer = $_SERVER;
+		$this->oldGet = $_GET;
+		$this->oldPost = $_POST;
+	}
+
+	protected function tearDown() {
+		parent::tearDown();
+		$_SERVER = $this->oldServer;
+		$_GET = $this->oldGet;
+		$_POST = $this->oldPost;
 	}
 
 	public static function provideTryNormaliseRedirect() {
@@ -113,6 +127,13 @@ class MediaWikiTest extends MediaWikiTestCase {
 				'title' => 'Foo_Bar',
 				'redirect' => false,
 			],
+			[
+				// Path with double slash prefix (T100782)
+				'url' => 'http://example.org//wiki/Double_slash',
+				'query' => [],
+				'title' => 'Double_slash',
+				'redirect' => false,
+			],
 		];
 	}
 
@@ -122,11 +143,13 @@ class MediaWikiTest extends MediaWikiTestCase {
 	 */
 	public function testTryNormaliseRedirect( $url, $query, $title, $expectedRedirect = false ) {
 		// Set SERVER because interpolateTitle() doesn't use getRequestURL(),
-		// whereas tryNormaliseRedirect does().
+		// whereas tryNormaliseRedirect does(). Also, using WebRequest allows
+		// us to test some quirks in that class.
 		$_SERVER['REQUEST_URI'] = $url;
+		$_POST = [];
+		$_GET = $query;
+		$req = new WebRequest;
 
-		$req = new FauxRequest( $query );
-		$req->setRequestURL( $url );
 		// This adds a virtual 'title' query parameter. Normally called from Setup.php
 		$req->interpolateTitle();
 

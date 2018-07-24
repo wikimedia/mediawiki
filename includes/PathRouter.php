@@ -240,6 +240,28 @@ class PathRouter {
 		// matches are tested first
 		$this->sortByWeight();
 
+		$matches = $this->internalParse( $path );
+		if ( is_null( $matches ) ) {
+			// Try with the normalized path (T100782)
+			$path = wfRemoveDotSegments( $path );
+			$path = preg_replace( '#/+#', '/', $path );
+			$matches = $this->internalParse( $path );
+		}
+
+		// We know the difference between null (no matches) and
+		// array() (a match with no data) but our WebRequest caller
+		// expects array() even when we have no matches so return
+		// a array() when we have null
+		return is_null( $matches ) ? [] : $matches;
+	}
+
+	/**
+	 * Match a path against each defined pattern
+	 *
+	 * @param string $path
+	 * @return array|null
+	 */
+	protected function internalParse( $path ) {
 		$matches = null;
 
 		foreach ( $this->patterns as $pattern ) {
@@ -248,12 +270,7 @@ class PathRouter {
 				break;
 			}
 		}
-
-		// We know the difference between null (no matches) and
-		// array() (a match with no data) but our WebRequest caller
-		// expects array() even when we have no matches so return
-		// a array() when we have null
-		return is_null( $matches ) ? [] : $matches;
+		return $matches;
 	}
 
 	/**
