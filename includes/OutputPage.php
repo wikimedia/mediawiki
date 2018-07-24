@@ -404,18 +404,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add a new \<link\> with "rel" attribute set to "meta"
-	 *
-	 * @param array $linkarr Associative array mapping attribute names to their
-	 *                 values, both keys and values will be escaped, and the
-	 *                 "rel" attribute will be automatically added
-	 */
-	function addMetadataLink( array $linkarr ) {
-		$linkarr['rel'] = $this->getMetadataAttribute();
-		$this->addLink( $linkarr );
-	}
-
-	/**
 	 * Set the URL to be used for the <link rel=canonical>. This should be used
 	 * in preference to addLink(), to avoid duplicate link tags.
 	 * @param string $url
@@ -433,22 +421,6 @@ class OutputPage extends ContextSource {
 	 */
 	public function getCanonicalUrl() {
 		return $this->mCanonicalUrl;
-	}
-
-	/**
-	 * Get the value of the "rel" attribute for metadata links
-	 *
-	 * @return string
-	 */
-	public function getMetadataAttribute() {
-		# note: buggy CC software only reads first "meta" link
-		static $haveMeta = false;
-		if ( $haveMeta ) {
-			return 'alternate meta';
-		} else {
-			$haveMeta = true;
-			return 'meta';
-		}
 	}
 
 	/**
