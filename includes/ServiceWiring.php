@@ -600,6 +600,11 @@ return [
 		);
 	},
 
+	'MagicWordFactory' => function ( MediaWikiServices $services ) {
+		global $wgContLang;
+		return new MagicWordFactory( $wgContLang );
+	},
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call

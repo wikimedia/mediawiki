@@ -21,19 +21,17 @@
  * @ingroup Parser
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class encapsulates "magic words" such as "#redirect", __NOTOC__, etc.
  *
  * @par Usage:
  * @code
- *     if (MagicWord::get( 'redirect' )->match( $text ) ) {
+ *     if ( $magicWordFactory->get( 'redirect' )->match( $text ) ) {
  *       // some code
  *     }
  * @endcode
- *
- * Possible future improvements:
- *   * Simultaneous searching for a number of magic words
- *   * MagicWord::$mObjects in shared memory
  *
  * Please avoid reading the data out of one of these objects and then writing
  * special case code. If possible, add another match()-like function here.
@@ -92,170 +90,12 @@ class MagicWord {
 	/** @var bool */
 	private $mFound = false;
 
-	/** @var bool */
-	public static $mVariableIDsInitialised = false;
-
-	/** @var string[] */
-	public static $mVariableIDs = [
-		'!',
-		'currentmonth',
-		'currentmonth1',
-		'currentmonthname',
-		'currentmonthnamegen',
-		'currentmonthabbrev',
-		'currentday',
-		'currentday2',
-		'currentdayname',
-		'currentyear',
-		'currenttime',
-		'currenthour',
-		'localmonth',
-		'localmonth1',
-		'localmonthname',
-		'localmonthnamegen',
-		'localmonthabbrev',
-		'localday',
-		'localday2',
-		'localdayname',
-		'localyear',
-		'localtime',
-		'localhour',
-		'numberofarticles',
-		'numberoffiles',
-		'numberofedits',
-		'articlepath',
-		'pageid',
-		'sitename',
-		'server',
-		'servername',
-		'scriptpath',
-		'stylepath',
-		'pagename',
-		'pagenamee',
-		'fullpagename',
-		'fullpagenamee',
-		'namespace',
-		'namespacee',
-		'namespacenumber',
-		'currentweek',
-		'currentdow',
-		'localweek',
-		'localdow',
-		'revisionid',
-		'revisionday',
-		'revisionday2',
-		'revisionmonth',
-		'revisionmonth1',
-		'revisionyear',
-		'revisiontimestamp',
-		'revisionuser',
-		'revisionsize',
-		'subpagename',
-		'subpagenamee',
-		'talkspace',
-		'talkspacee',
-		'subjectspace',
-		'subjectspacee',
-		'talkpagename',
-		'talkpagenamee',
-		'subjectpagename',
-		'subjectpagenamee',
-		'numberofusers',
-		'numberofactiveusers',
-		'numberofpages',
-		'currentversion',
-		'rootpagename',
-		'rootpagenamee',
-		'basepagename',
-		'basepagenamee',
-		'currenttimestamp',
-		'localtimestamp',
-		'directionmark',
-		'contentlanguage',
-		'pagelanguage',
-		'numberofadmins',
-		'cascadingsources',
-	];
-
-	/** Array of caching hints for ParserCache
-	 * @var array [ string => int ]
-	 */
-	public static $mCacheTTLs = [
-		'currentmonth' => 86400,
-		'currentmonth1' => 86400,
-		'currentmonthname' => 86400,
-		'currentmonthnamegen' => 86400,
-		'currentmonthabbrev' => 86400,
-		'currentday' => 3600,
-		'currentday2' => 3600,
-		'currentdayname' => 3600,
-		'currentyear' => 86400,
-		'currenttime' => 3600,
-		'currenthour' => 3600,
-		'localmonth' => 86400,
-		'localmonth1' => 86400,
-		'localmonthname' => 86400,
-		'localmonthnamegen' => 86400,
-		'localmonthabbrev' => 86400,
-		'localday' => 3600,
-		'localday2' => 3600,
-		'localdayname' => 3600,
-		'localyear' => 86400,
-		'localtime' => 3600,
-		'localhour' => 3600,
-		'numberofarticles' => 3600,
-		'numberoffiles' => 3600,
-		'numberofedits' => 3600,
-		'currentweek' => 3600,
-		'currentdow' => 3600,
-		'localweek' => 3600,
-		'localdow' => 3600,
-		'numberofusers' => 3600,
-		'numberofactiveusers' => 3600,
-		'numberofpages' => 3600,
-		'currentversion' => 86400,
-		'currenttimestamp' => 3600,
-		'localtimestamp' => 3600,
-		'pagesinnamespace' => 3600,
-		'numberofadmins' => 3600,
-		'numberingroup' => 3600,
-	];
-
-	/** @var string[] */
-	public static $mDoubleUnderscoreIDs = [
-		'notoc',
-		'nogallery',
-		'forcetoc',
-		'toc',
-		'noeditsection',
-		'newsectionlink',
-		'nonewsectionlink',
-		'hiddencat',
-		'index',
-		'noindex',
-		'staticredirect',
-		'notitleconvert',
-		'nocontentconvert',
-	];
-
-	/** @var string[] */
-	public static $mSubstIDs = [
-		'subst',
-		'safesubst',
-	];
-
-	/** @var array [ string => MagicWord ] */
-	public static $mObjects = [];
-
-	/** @var MagicWordArray */
-	public static $mDoubleUnderscoreArray = null;
-
 	/**#@-*/
 
 	/**
 	 * Create a new MagicWord object
 	 *
-	 * Use factory instead: MagicWord::get
+	 * Use factory instead: MagicWordFactory::get
 	 *
 	 * @param string|null $id The internal name of the magic word
 	 * @param string[]|string $syn synonyms for the magic word
@@ -273,36 +113,29 @@ class MagicWord {
 	 * @param string $id The internal name of the magic word
 	 *
 	 * @return MagicWord
+	 * @deprecated since 1.32, use MagicWordFactory::get
 	 */
-	public static function &get( $id ) {
-		if ( !isset( self::$mObjects[$id] ) ) {
-			$mw = new MagicWord();
-			$mw->load( $id );
-			self::$mObjects[$id] = $mw;
-		}
-		return self::$mObjects[$id];
+	public static function get( $id ) {
+		return MediaWikiServices::getInstance()->getMagicWordFactory()->get( $id );
 	}
 
 	/**
 	 * Get an array of parser variable IDs
 	 *
 	 * @return string[]
+	 * @deprecated since 1.32, use MagicWordFactory::getVariableIDs
 	 */
 	public static function getVariableIDs() {
-		if ( !self::$mVariableIDsInitialised ) {
-			# Get variable IDs
-			Hooks::run( 'MagicWordwgVariableIDs', [ &self::$mVariableIDs ] );
-			self::$mVariableIDsInitialised = true;
-		}
-		return self::$mVariableIDs;
+		return MediaWikiServices::getInstance()->getMagicWordFactory()->getVariableIDs();
 	}
 
 	/**
 	 * Get an array of parser substitution modifier IDs
 	 * @return string[]
+	 * @deprecated since 1.32, use MagicWordFactory::getSubstIDs
 	 */
 	public static function getSubstIDs() {
-		return self::$mSubstIDs;
+		return MediaWikiServices::getInstance()->getMagicWordFactory()->getSubstIDs();
 	}
 
 	/**
@@ -310,34 +143,20 @@ class MagicWord {
 	 *
 	 * @param string $id
 	 * @return int
+	 * @deprecated since 1.32, use MagicWordFactory::getCacheTTL
 	 */
 	public static function getCacheTTL( $id ) {
-		if ( array_key_exists( $id, self::$mCacheTTLs ) ) {
-			return self::$mCacheTTLs[$id];
-		} else {
-			return -1;
-		}
+		return MediaWikiServices::getInstance()->getMagicWordFactory()->getCacheTTL( $id );
 	}
 
 	/**
 	 * Get a MagicWordArray of double-underscore entities
 	 *
 	 * @return MagicWordArray
+	 * @deprecated since 1.32, use MagicWordFactory::getDoubleUnderscoreArray
 	 */
 	public static function getDoubleUnderscoreArray() {
-		if ( is_null( self::$mDoubleUnderscoreArray ) ) {
-			Hooks::run( 'GetDoubleUnderscoreIDs', [ &self::$mDoubleUnderscoreIDs ] );
-			self::$mDoubleUnderscoreArray = new MagicWordArray( self::$mDoubleUnderscoreIDs );
-		}
-		return self::$mDoubleUnderscoreArray;
-	}
-
-	/**
-	 * Clear the self::$mObjects variable
-	 * For use in parser tests
-	 */
-	public static function clearCache() {
-		self::$mObjects = [];
+		return MediaWikiServices::getInstance()->getMagicWordFactory()->getDoubleUnderscoreArray();
 	}
 
 	/**

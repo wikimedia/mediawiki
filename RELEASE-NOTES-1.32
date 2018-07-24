@@ -209,6 +209,11 @@ because of Phabricator reports.
   * getItemsData: Use getItems instead and get the data property
 * Two OutputPage methods, addMetadataLink() and getMetadataAttribute(), were
   removed.  Use addLink() instead.
+* All MagicWord static member variables have been removed.  Use appropriate
+  hooks or MagicWordFactory methods instead.
+* MagicWord::clearCache() has been removed.  Instead, create a new
+  MagicWordFactory, such as by calling
+  resetServiceForTesting( 'MagicWordFactory' ) on a MediaWikiServices.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
@@ -304,6 +309,8 @@ because of Phabricator reports.
 * The $wgExternalDiffEngine value 'wikidiff2' is deprecated. To use wikidiff2
   just enable the PHP extension, and it will be autodetected.
 * The wfUseMW function, soft-deprecated in 1.26, is now hard deprecated.
+* All MagicWord static methods are now deprecated.  Use the MagicWordFactory
+  methods instead.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
