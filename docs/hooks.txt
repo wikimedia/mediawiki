@@ -473,6 +473,15 @@ can alter or append to the array.
       (url), 'width', 'height', 'alt', 'align'.
     - url: Url for the given title.
 
+'ApiOptions': Called by action=options before applying changes to user
+preferences.
+$apiModule: Calling ApiOptions object
+$user: User object whose preferences are being changed
+$changes: Associative array of preference name => value
+$resetKinds: Array of strings specifying which options kinds to reset.
+  See User::resetOptions() and User::getOptionKinds() for possible
+  values.
+
 'ApiParseMakeOutputPage': Called when preparing the OutputPage object for
 ApiParse. This is mainly intended for calling OutputPage::addContentOverride()
 or OutputPage::addContentOverrideCallback().
