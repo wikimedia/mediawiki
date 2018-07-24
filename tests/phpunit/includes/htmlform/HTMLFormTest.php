@@ -5,7 +5,6 @@
  *
  * @license GPL-2.0-or-later
  * @author Gergő Tisza
- * @author Thiemo Mättig
  */
 class HTMLFormTest extends MediaWikiTestCase {
 
