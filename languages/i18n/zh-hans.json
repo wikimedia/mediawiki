@@ -100,7 +100,8 @@
 			"A2093064",
 			"EagerLin",
 			"Deathkon",
-			"RyRubyy"
+			"RyRubyy",
+			"Wxyveronica"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -1813,6 +1814,7 @@
 	"http-timed-out": "HTTP请求已过时。",
 	"http-curl-error": "撷取URL时出错：$1",
 	"http-bad-status": "进行HTTP请求时出现问题：$1 $2",
+	"http-internal-error": "HTTP内部错误。",
 	"upload-curl-error6": "无法访问URL",
 	"upload-curl-error6-text": "无法访问提供的URL。请检查该URL是否正确，及其网站是否在线。",
 	"upload-curl-error28": "上传超时",

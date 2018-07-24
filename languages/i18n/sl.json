@@ -1728,6 +1728,7 @@
 	"http-timed-out": "Zahteva HTTP je potekla.",
 	"http-curl-error": "Napaka pri doseganju URL: $1",
 	"http-bad-status": "Med zahtevo HTTP je prišlo do težave: $1 $2",
+	"http-internal-error": "Notranja napaka HTTP.",
 	"upload-curl-error6": "Ni možno doseči URL",
 	"upload-curl-error6-text": "Navedenega naslova URL ni mogoče doseči.\nProsimo, ponovno preverite pravilnost URL-a in delovanje strani.",
 	"upload-curl-error28": "Časovna prekinitev nalaganja",
