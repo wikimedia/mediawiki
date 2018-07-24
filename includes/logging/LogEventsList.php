@@ -110,8 +110,6 @@ class LogEventsList extends ContextSource {
 	public function showOptions( $types = [], $user = '', $page = '', $pattern = false, $year = 0,
 		$month = 0, $day = 0, $filter = null, $tagFilter = '', $action = null
 	) {
-		$title = SpecialPage::getTitleFor( 'Log' );
-
 		// For B/C, we take strings, but make sure they are converted...
 		$types = ( $types === '' ) ? [] : (array)$types;
 
@@ -120,7 +118,7 @@ class LogEventsList extends ContextSource {
 		// Basic selectors
 		$formDescriptor['type'] = $this->getTypeMenuDesc( $types );
 		$formDescriptor['user'] = $this->getUserInputDesc( $user );
-		$formDescriptor['page'] = $this->getTitleInputDesc( $title );
+		$formDescriptor['page'] = $this->getTitleInputDesc( $page );
 
 		// Add extra inputs if any
 		// This could either be a form descriptor array or a string with raw HTML.
@@ -171,7 +169,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $title ); // Remove subpage
+		$context->setTitle( SpecialPage::getTitleFor( 'Log' ) ); // Remove subpage
 		$htmlForm = new HTMLForm( $formDescriptor, $context );
 		$htmlForm
 			->setSubmitText( $this->msg( 'logeventslist-submit' )->text() )
