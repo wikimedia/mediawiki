@@ -582,6 +582,19 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 }
 
 /**
+ * Get the wiki's "server", i.e. the protocol and host part of the URL, with a
+ * protocol specified using a PROTO_* constant as in wfExpandUrl()
+ *
+ * @since 1.32
+ * @param string|int|null $proto One of the PROTO_* constants.
+ * @return string The URL
+ */
+function wfGetServerUrl( $proto ) {
+	$url = wfExpandUrl( '/', $proto );
+	return substr( $url, 0, -1 );
+}
+
+/**
  * This function will reassemble a URL parsed with wfParseURL.  This is useful
  * if you need to edit part of a URL and put it back together.
  *

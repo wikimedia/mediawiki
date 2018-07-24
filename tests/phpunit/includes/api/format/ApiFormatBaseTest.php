@@ -10,6 +10,13 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 
 	protected $printerName = 'mockbase';
 
+	protected function setUp() {
+		parent::setUp();
+		$this->setMwGlobals( [
+			'wgServer' => 'http://example.org'
+		] );
+	}
+
 	public function getMockFormatter( ApiMain $main = null, $format, $methods = [] ) {
 		if ( $main === null ) {
 			$context = new RequestContext;
@@ -352,7 +359,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 	public function testHtmlHeader( $post, $registerNonHtml, $expect ) {
 		$context = new RequestContext;
 		$request = new FauxRequest( [ 'a' => 1, 'b' => 2 ], $post );
-		$request->setRequestURL( 'http://example.org/wx/api.php' );
+		$request->setRequestURL( '/wx/api.php' );
 		$context->setRequest( $request );
 		$context->setLanguage( 'qqx' );
 		$main = new ApiMain( $context );
