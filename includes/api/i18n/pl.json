@@ -661,7 +661,6 @@
 	"apierror-cantimport": "Nie masz uprawnień do importowania stron.",
 	"apierror-cantsend": "Nie jesteś zalogowany, nie masz potwierdzonego adresu e-mail, albo nie masz prawa wysyłać e-maili do innych użytkowników, więc nie możesz wysłać wiadomości e-mail.",
 	"apierror-cantundelete": "Nie można przywrócić: dana wersja nie istnieje albo została już przywrócona.",
-	"apierror-databaseerror": "[$1] Błąd zapytania do bazy danych.",
 	"apierror-exceptioncaught": "[$1] Stwierdzono wyjątek: $2",
 	"apierror-filedoesnotexist": "Plik nie istnieje.",
 	"apierror-import-unknownerror": "Nieznany błąd podczas importowania: $1.",

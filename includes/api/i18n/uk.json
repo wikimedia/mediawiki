@@ -1565,7 +1565,6 @@
 	"apierror-copyuploadbadurl": "Завантаження з цієї URL-адреси недозволені.",
 	"apierror-create-titleexists": "Наявні назви не можна захистити за допомогою <kbd>create</kbd>.",
 	"apierror-csp-report": "Помилка при опрацюванні CSP-звіту: $1.",
-	"apierror-databaseerror": "[$1] Помилка запиту до бази даних.",
 	"apierror-deletedrevs-param-not-1-2": "Параметр <var>$1</var> не може використовуватись у режимах 1 або 2.",
 	"apierror-deletedrevs-param-not-3": "Параметр <var>$1</var> не може використовуватись у режимі 3.",
 	"apierror-emptynewsection": "Створення нових порожніх розділів неможливе.",

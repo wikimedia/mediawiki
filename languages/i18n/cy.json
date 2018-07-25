@@ -20,7 +20,8 @@
 			"Dafyddt",
 			"Jdforrester",
 			"Irus",
-			"Fitoschido"
+			"Fitoschido",
+			"Nrowe"
 		]
 	},
 	"tog-underline": "Tanlinellu cysylltiadau:",
@@ -1333,7 +1334,7 @@
 	"rcfilters-filter-newpages-description": "Golygiadau creu dalennau",
 	"rcfilters-filter-categorization-label": "Newidiadau i'r Categoriau",
 	"rcfilters-filter-categorization-description": "Cofnodion y dalennau a ychwanegwyd neu a symudwyd o'r categoriau.",
-	"rcfilters-filter-logactions-label": "Gweithredoedd a logiwyd",
+	"rcfilters-filter-logactions-label": "Gwriansow kovskrifys",
 	"rcfilters-filtergroup-lastRevision": "Yr adolygiadau diweddaraf",
 	"rcfilters-filter-lastrevision-label": "Yr adolygiad diweddaraf",
 	"rcfilters-filter-lastrevision-description": "Dim ond yn newidiadau diweddaraf i'r ddalen.",

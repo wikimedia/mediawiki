@@ -1536,7 +1536,6 @@
 	"apierror-copyuploadbadurl": "As subas non están permitidas para esta URL.",
 	"apierror-create-titleexists": "Os títulos existentes non poden ser protexidos con <kbd>create</kbd>.",
 	"apierror-csp-report": "Erro procesando o informe CSPː $1.",
-	"apierror-databaseerror": "[$1] erro de consulta da base de datos.",
 	"apierror-deletedrevs-param-not-1-2": "O parámetro <var>$1</var> non pode usarse nos modos 1 e 2.",
 	"apierror-deletedrevs-param-not-3": "O parámetro <var>$1</var> non pode usarse no modo 3.",
 	"apierror-emptynewsection": "Non é posible crear novas seccións baleiras.",

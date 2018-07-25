@@ -610,7 +610,6 @@
 	"apierror-copyuploadbadurl": "Opplasting tillates ikke fra denne URL-en.",
 	"apierror-create-titleexists": "Eksisterende titler kan ikke beskyttes med <kbd>create</kbd>.",
 	"apierror-csp-report": "Feil under prosessering av CSP-rapport: $1.",
-	"apierror-databaseerror": "[$1] Databasespørringsfeil.",
 	"apierror-deletedrevs-param-not-1-2": "Parameteren <var>$1</var> kan ikke brukes i modus 1 eller 2.",
 	"apierror-deletedrevs-param-not-3": "Parameteren <var>$1</var> kan ikke brukes i modus 3.",
 	"apierror-emptynewsection": "Oppretting av tomme nye seksjoner er ikke mulig.",

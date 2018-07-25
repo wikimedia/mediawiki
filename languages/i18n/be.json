@@ -33,7 +33,8 @@
 			"Artsiom91",
 			"Andrus",
 			"Da voli",
-			"OlegCinema"
+			"OlegCinema",
+			"Gorgich"
 		]
 	},
 	"tog-underline": "Падкрэсліваць спасылкі:",
@@ -932,6 +933,7 @@
 	"diff-paragraph-moved-toold": "Параграф быў перамешчаны. Клікніце, каб перайсці да старога месцазнаходжання.",
 	"difference-missing-revision": "{{PLURAL:$2|$2 версія|$2 версіі|$2 версій}} гэтай розніцы ($1) {{PLURAL:$2|не знойдзена|не знойдзены}}.\n\nЗвычайна такое здараецца з-за пераходу па састарэлай спасылцы на розніцу ў старонцы, якая была выдалена.\nПадрабязнасці могуць быць у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журнале выдаленняў].",
 	"searchresults": "Вынікі пошуку",
+	"search-filter-title-prefix": "Шукаць толькі на старонках, назва якіх пачынаецца з «$1»",
 	"searchresults-title": "Вынікі пошуку «$1»",
 	"titlematches": "Знойдзена ў назвах",
 	"textmatches": "Знойдзена ў тэкстах",
@@ -1333,6 +1335,7 @@
 	"rcfilters-other-review-tools": "Іншыя інструменты праверкі",
 	"rcfilters-group-results-by-page": "Групіраваць вынікі паводле старонкі",
 	"rcfilters-activefilters": "Актыўныя фільтры",
+	"rcfilters-activefilters-show": "Паказаць",
 	"rcfilters-advancedfilters": "Пашыраныя фільтры",
 	"rcfilters-limit-title": "Вынікі для паказу",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|змена|змены|змен}}, $2",
@@ -1941,6 +1944,7 @@
 	"apisandbox-dynamic-error-exists": "Параметр з назвай \"$1\" ужо існуе.",
 	"apisandbox-deprecated-parameters": "Састарэлыя параметры",
 	"apisandbox-fetch-token": "Аўтазапаўненне токена",
+	"apisandbox-add-multi": "Дадаць",
 	"apisandbox-submit-invalid-fields-title": "Некаторыя палі недапушчальныя",
 	"apisandbox-submit-invalid-fields-message": "Калі ласка, выпраўце адзначаныя палі і паспрабуйце ізноў.",
 	"apisandbox-results": "Вынікі",
