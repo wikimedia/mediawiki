@@ -63,7 +63,7 @@ class ParserTestsMaintenance extends Maintenance {
 		$this->addOption( 'run-disabled', 'run disabled tests' );
 		$this->addOption( 'run-parsoid', 'run parsoid tests (normally disabled)' );
 		$this->addOption( 'disable-save-parse', 'Don\'t run the parser when ' .
-			'inserting articles	into the database' );
+			'inserting articles into the database' );
 		$this->addOption( 'dwdiff', 'Use dwdiff to display diff output' );
 		$this->addOption( 'mark-ws', 'Mark whitespace in diffs by replacing it with symbols' );
 		$this->addOption( 'norm', 'Apply a comma-separated list of normalization functions to ' .
