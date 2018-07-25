@@ -594,7 +594,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$context = \RequestContext::getMain();
 		$reset = new ScopedCallback( [ $context, 'setLanguage' ], [ $context->getLanguage() ] );
 		$context->setLanguage( 'de' );
-		$this->setMwGlobals( 'wgContLang', \Language::factory( 'zh' ) );
+		$this->setContentLang( 'zh' );
 
 		$user = \User::newFromName( self::usernameForCreation() );
 		$user->addToDatabase();
@@ -614,7 +614,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->assertSame( 'de', $user->getOption( 'language' ) );
 		$this->assertSame( 'zh', $user->getOption( 'variant' ) );
 
-		$this->setMwGlobals( 'wgContLang', \Language::factory( 'fr' ) );
+		$this->setContentLang( 'fr' );
 
 		$user = \User::newFromName( self::usernameForCreation() );
 		$user->addToDatabase();

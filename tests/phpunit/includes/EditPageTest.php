@@ -16,11 +16,12 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		parent::setUp();
 
+		$this->setContentLang( $wgContLang );
+
 		$this->setMwGlobals( [
 			'wgExtraNamespaces' => $wgExtraNamespaces,
 			'wgNamespaceContentModels' => $wgNamespaceContentModels,
 			'wgContentHandlers' => $wgContentHandlers,
-			'wgContLang' => $wgContLang,
 		] );
 
 		$wgExtraNamespaces[12312] = 'Dummy';

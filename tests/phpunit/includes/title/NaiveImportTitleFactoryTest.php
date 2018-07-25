@@ -29,9 +29,8 @@ class NaiveImportTitleFactoryTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		$this->setContentLang( 'en' );
 		$this->setMwGlobals( [
-			'wgLanguageCode' => 'en',
-			'wgContLang' => Language::factory( 'en' ),
 			'wgExtraNamespaces' => [ 100 => 'Portal' ],
 		] );
 	}

@@ -29,10 +29,7 @@ class NamespaceImportTitleFactoryTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgLanguageCode' => 'en',
-			'wgContLang' => Language::factory( 'en' ),
-		] );
+		$this->setContentLang( 'en' );
 	}
 
 	public function basicProvider() {
