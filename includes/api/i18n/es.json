@@ -1499,7 +1499,6 @@
 	"apierror-copyuploadbadurl": "No se permite realizar cargas a partir de este URL.",
 	"apierror-create-titleexists": "Los títulos existentes no se pueden proteger con <kbd>create</kbd>.",
 	"apierror-csp-report": "Error de procesamiento del informe CSP: $1.",
-	"apierror-databaseerror": "[$1] Error en la consulta de la base de datos.",
 	"apierror-deletedrevs-param-not-1-2": "El parámetro <var>$1</var> no se puede utilizar en los modos 1 o 2.",
 	"apierror-deletedrevs-param-not-3": "El parámetro <var>$1</var> no se puede usar en modo 3.",
 	"apierror-emptynewsection": "Crear secciones vacías no es posible.",

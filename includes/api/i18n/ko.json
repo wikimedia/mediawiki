@@ -835,7 +835,6 @@
 	"apierror-cantimport-upload": "업로드된 페이지를 가져올 권한이 없습니다.",
 	"apierror-cantimport": "페이지를 가져올 권한이 없습니다.",
 	"apierror-cantsend": "로그인하지 않았거나 인증된 이메일 주소가 없거나 다른 사용자로 이메일을 보낼 권한이 없기 때문에 이메일을 보낼 수 없습니다.",
-	"apierror-databaseerror": "[$1] 데이터베이스 쿼리 오류.",
 	"apierror-emptynewsection": "비어있는 새 문단을 만들 수 없습니다.",
 	"apierror-emptypage": "새 문서로 빈 문서를 만들 수 없습니다.",
 	"apierror-exceptioncaught": "[$1] 예외가 발생했습니다: $2",

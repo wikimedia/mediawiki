@@ -1610,7 +1610,6 @@
 	"apierror-copyuploadbadurl": "Les téléversements ne sont pas autorisés depuis cette URL.",
 	"apierror-create-titleexists": "Les titres existants ne peuvent pas être protégés avec <kbd>create</kbd>.",
 	"apierror-csp-report": "Erreur lors du traitement du rapport CSP: $1.",
-	"apierror-databaseerror": "[$1] erreur de requête de base de données.",
 	"apierror-deletedrevs-param-not-1-2": "Le paramètre <var>$1</var> ne peut pas être utilisé dans les modes 1 ou 2.",
 	"apierror-deletedrevs-param-not-3": "Le paramètre <var>$1</var> ne peut pas être utilisé dans le mode 3.",
 	"apierror-emptynewsection": "Il n'est pas possible de créer de nouvelles sections vides.",

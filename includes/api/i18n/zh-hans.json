@@ -1603,7 +1603,6 @@
 	"apierror-copyuploadbadurl": "不允许从此URL上传。",
 	"apierror-create-titleexists": "现有标题不能通过<kbd>create</kbd>保护。",
 	"apierror-csp-report": "处理CSP报告时出错：$1。",
-	"apierror-databaseerror": "[$1]数据库查询错误。",
 	"apierror-deletedrevs-param-not-1-2": "<var>$1</var>参数不能用于模式1或2。",
 	"apierror-deletedrevs-param-not-3": "<var>$1</var>参数不能用于模式3。",
 	"apierror-emptynewsection": "无法创建空白新章节。",

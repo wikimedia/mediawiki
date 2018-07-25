@@ -1586,7 +1586,6 @@
 	"apierror-copyuploadbadurl": "لا يُسمَح بالرفع من هذا المسار.",
 	"apierror-create-titleexists": "لا يمكن حماية العناوين الموجودة باستخدام <kbd>create</kbd>.",
 	"apierror-csp-report": "خطأ في معالجة تقرير CSP: $1.",
-	"apierror-databaseerror": "[$1] خطأ في استعلام قاعدة البيانات.",
 	"apierror-deletedrevs-param-not-1-2": "لا يمكن استخدام الوسيط <var>$1</var> في الأوضاع 1 أو 2.",
 	"apierror-deletedrevs-param-not-3": "لا يمكن استخدام الوسيط <var>$1</var> في الوضع 3.",
 	"apierror-emptynewsection": "إنشاء أقسام جديدة فارغة غير ممكن.",

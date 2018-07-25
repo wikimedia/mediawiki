@@ -1594,7 +1594,6 @@
 	"apierror-copyuploadbadurl": "העלאה אינה מותרת מה־URL הזה.",
 	"apierror-create-titleexists": "כותרות קיימות אינם יכולות מוגנות עם <kbd>create</kbd>.",
 	"apierror-csp-report": "בעיבוד דו\"ח CSP אירעה שגיאה: $1",
-	"apierror-databaseerror": "[$1] שגיאת שאילתת מסד נתונים.",
 	"apierror-deletedrevs-param-not-1-2": "הפרמטר <var>$1</var> אינו יכול לשמש במצבים 1 או 2.",
 	"apierror-deletedrevs-param-not-3": "הפרמטר <var>$1</var> אינו יכול במצב 3.",
 	"apierror-emptynewsection": "יצירת פסקאות חדשות ריקות בלתי־אפשרי.",

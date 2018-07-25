@@ -370,7 +370,6 @@
 	"apierror-cantimport-upload": "Neturite teisės importuoti įkeltų puslapių.",
 	"apierror-cantimport": "Neturite teisės importuoti puslapių.",
 	"apierror-copyuploadbadurl": "Įkėlimas neleidžiamas iš šio URL.",
-	"apierror-databaseerror": "[$1] Duomenų bazės užklausos klaida.",
 	"apierror-emptynewsection": "Neįmanoma kurti naujų tuščių skyrių.",
 	"apierror-filedoesnotexist": "Failas neegzistuoja.",
 	"apierror-filetypecannotberotated": "Failo tipas negali būti pasuktas.",

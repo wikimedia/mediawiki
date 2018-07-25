@@ -1602,7 +1602,6 @@
 	"apierror-copyuploadbadurl": "Загрузка по этой ссылке недоступна.",
 	"apierror-create-titleexists": "Существующие названия не могут быть защищены с помощью <kbd>create</kbd>.",
 	"apierror-csp-report": "Ошибка при обработке отчёта CSP: $1.",
-	"apierror-databaseerror": "[$1] Ошибка запроса к базе данных.",
 	"apierror-deletedrevs-param-not-1-2": "Параметр <var>$1</var> не может быть использован в режимах 1 и 2.",
 	"apierror-deletedrevs-param-not-3": "Параметр <var>$1</var> не может быть использован в третьем режиме.",
 	"apierror-emptynewsection": "Создание пустых секций невозможно.",

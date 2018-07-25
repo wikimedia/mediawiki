@@ -3419,7 +3419,7 @@
 	"confirm-purge-title": "Purgar esta página",
 	"confirm_purge_button": "OK",
 	"confirm-purge-top": "Limpar esta página da memória cache?",
-	"confirm-purge-bottom": "Recarregar uma página limpa-a da ''cache'' e força a sua versão mais recente a aparecer.",
+	"confirm-purge-bottom": "Purgar uma página limpa-a da ''cache'' e força a sua versão mais recente a aparecer.",
 	"confirm-watch-button": "OK",
 	"confirm-watch-top": "Adicionar esta página à lista de páginas vigiadas?",
 	"confirm-unwatch-button": "OK",
