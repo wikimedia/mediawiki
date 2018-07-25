@@ -24,18 +24,16 @@ ini_set( 'display_errors', 1 );
 /**
  * Debugging: MediaWiki
  */
-global $wgDevelopmentWarnings, $wgShowDBErrorBacktrace, $wgShowExceptionDetails,
-	$wgShowSQLErrors, $wgDebugRawPage,
-	$wgDebugComments, $wgDebugDumpSql, $wgDebugTimestamps,
+global $wgDevelopmentWarnings, $wgShowExceptionDetails, $wgShowHostnames,
+	$wgDebugRawPage, $wgDebugComments, $wgDebugDumpSql, $wgDebugTimestamps,
 	$wgCommandLineMode, $wgDebugLogFile, $wgDBerrorLog, $wgDebugLogGroups;
 
 // Use of wfWarn() should cause tests to fail
 $wgDevelopmentWarnings = true;
 
 // Enable showing of errors
-$wgShowDBErrorBacktrace = true;
 $wgShowExceptionDetails = true;
-$wgShowSQLErrors = true;
+$wgShowHostnames = true;
 $wgDebugRawPage = true; // T49960
 
 // Enable log files
