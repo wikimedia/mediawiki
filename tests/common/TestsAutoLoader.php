@@ -109,6 +109,10 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/db
 	'DatabaseTestHelper' => "$testDir/phpunit/includes/db/DatabaseTestHelper.php",
 
+	# tests/phpunit/includes/debug
+	'TestDeprecatedClass' => "$testDir/phpunit/includes/debug/TestDeprecatedClass.php",
+	'TestDeprecatedSubclass' => "$testDir/phpunit/includes/debug/TestDeprecatedSubclass.php",
+
 	# tests/phpunit/includes/diff
 	'FakeDiffOp' => "$testDir/phpunit/includes/diff/FakeDiffOp.php",
 
