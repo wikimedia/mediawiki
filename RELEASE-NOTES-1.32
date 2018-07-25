@@ -95,6 +95,9 @@ production.
 * (T198935) User list preferences such as `email-blacklist` and similar
   extension preferences are no longer represented as arrays when returned by
   action=query&meta=userinfo&uiprop=options.
+* 'missingparam' errors will now use the prefixed parameter name in the code
+  and error text, e.g. "noxxfoo" and "The 'xxfoo' parameter must be set" rather
+  than "nofoo" and "The 'foo' parameter must be set".
 
 === Action API internal changes in 1.32 ===
 * Added 'ApiParseMakeOutputPage' hook.

@@ -256,7 +256,6 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideGetParameterFromSettings
 	 * @param string|null $input
 	 * @param array $paramSettings
 	 * @param mixed $expected
@@ -264,13 +263,20 @@ class ApiBaseTest extends ApiTestCase {
 	 *   'parseLimits': true|false
 	 *   'apihighlimits': true|false
 	 *   'internalmode': true|false
+	 *   'prefix': true|false
 	 * @param string[] $warnings
 	 */
-	public function testGetParameterFromSettings(
+	private function doGetParameterFromSettings(
 		$input, $paramSettings, $expected, $warnings, $options = []
 	) {
 		$mock = new MockApi();
 		$wrapper = TestingAccessWrapper::newFromObject( $mock );
+		if ( $options['prefix'] ) {
+			$wrapper->mModulePrefix = 'my';
+			$paramName = 'Param';
+		} else {
+			$paramName = 'myParam';
+		}
 
 		$context = new DerivativeContext( $mock );
 		$context->setRequest( new FauxRequest(
@@ -298,14 +304,14 @@ class ApiBaseTest extends ApiTestCase {
 
 		if ( $expected instanceof Exception ) {
 			try {
-				$wrapper->getParameterFromSettings( 'myParam', $paramSettings,
+				$wrapper->getParameterFromSettings( $paramName, $paramSettings,
 					$parseLimits );
 				$this->fail( 'No exception thrown' );
 			} catch ( Exception $ex ) {
 				$this->assertEquals( $expected, $ex );
 			}
 		} else {
-			$result = $wrapper->getParameterFromSettings( 'myParam',
+			$result = $wrapper->getParameterFromSettings( $paramName,
 				$paramSettings, $parseLimits );
 			if ( isset( $paramSettings[ApiBase::PARAM_TYPE] ) &&
 				$paramSettings[ApiBase::PARAM_TYPE] === 'timestamp' &&
@@ -337,6 +343,28 @@ class ApiBaseTest extends ApiTestCase {
 			$this->assertSame( [ 'myParam' ],
 				$mainWrapper->getSensitiveParams() );
 		}
+	}
+
+	/**
+	 * @dataProvider provideGetParameterFromSettings
+	 * @see self::doGetParameterFromSettings()
+	 */
+	public function testGetParameterFromSettings_noprefix(
+		$input, $paramSettings, $expected, $warnings, $options = []
+	) {
+		$options['prefix'] = false;
+		$this->doGetParameterFromSettings( $input, $paramSettings, $expected, $warnings, $options );
+	}
+
+	/**
+	 * @dataProvider provideGetParameterFromSettings
+	 * @see self::doGetParameterFromSettings()
+	 */
+	public function testGetParameterFromSettings_prefix(
+		$input, $paramSettings, $expected, $warnings, $options = []
+	) {
+		$options['prefix'] = true;
+		$this->doGetParameterFromSettings( $input, $paramSettings, $expected, $warnings, $options );
 	}
 
 	public static function provideGetParameterFromSettings() {
