@@ -1289,7 +1289,7 @@ abstract class ApiBase extends ContextSource {
 					case 'text':
 					case 'password':
 						if ( $required && $value === '' ) {
-							$this->dieWithError( [ 'apierror-missingparam', $paramName ] );
+							$this->dieWithError( [ 'apierror-missingparam', $encParamName ] );
 						}
 						break;
 					case 'integer': // Force everything using intval() and optionally validate limits
@@ -1443,7 +1443,7 @@ abstract class ApiBase extends ContextSource {
 				}
 			}
 		} elseif ( $required ) {
-			$this->dieWithError( [ 'apierror-missingparam', $paramName ] );
+			$this->dieWithError( [ 'apierror-missingparam', $encParamName ] );
 		}
 
 		return $value;
