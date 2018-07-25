@@ -8,8 +8,6 @@
  *
  */
 
-$fallback = 'bn';
-
 $namespaceNames = [
 	NS_MEDIA            => 'ᱢᱤᱰᱤᱭᱟ',
 	NS_SPECIAL          => 'ᱟᱥᱚᱠᱟᱭ',
