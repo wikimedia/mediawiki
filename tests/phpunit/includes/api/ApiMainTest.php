@@ -967,8 +967,7 @@ class ApiMainTest extends ApiTestCase {
 		$context->setLanguage( 'en' );
 		$context->setConfig( new MultiConfig( [
 			new HashConfig( [
-				'ShowHostnames' => true, 'ShowSQLErrors' => false,
-				'ShowExceptionDetails' => true, 'ShowDBErrorBacktrace' => true,
+				'ShowHostnames' => true, 'ShowExceptionDetails' => true,
 			] ),
 			$context->getConfig()
 		] ) );
@@ -1052,7 +1051,8 @@ class ApiMainTest extends ApiTestCase {
 						[ 'code' => 'existing-error', 'text' => 'existing error', 'module' => 'main' ],
 						[
 							'code' => 'internal_api_error_DBQueryError',
-							'text' => "[$reqId] Database query error.",
+							'text' => "[$reqId] Exception caught: A database query error has occurred. " .
+								"This may indicate a bug in the software.",
 						]
 					],
 					'trace' => $dbtrace,
