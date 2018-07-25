@@ -269,7 +269,7 @@ class RebuildRecentchanges extends Maintenance {
 	 * Rebuild pass 3: Insert `recentchanges` entries for action logs.
 	 */
 	private function rebuildRecentChangesTablePass3( ILBFactory $lbFactory ) {
-		global $wgLogTypes, $wgLogRestrictions;
+		global $wgLogRestrictions;
 
 		$dbw = $this->getDB( DB_MASTER );
 		$commentStore = CommentStore::getStore();
@@ -296,7 +296,7 @@ class RebuildRecentchanges extends Maintenance {
 				'log_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
 				// Some logs don't go in RC since they are private.
 				// @FIXME: core/extensions also have spammy logs that don't go in RC.
-				'log_type' => array_diff( $wgLogTypes, array_keys( $wgLogRestrictions ) ),
+				'log_type' => array_diff( LogPage::validTypes(), array_keys( $wgLogRestrictions ) ),
 			],
 			__METHOD__,
 			[ 'ORDER BY' => 'log_timestamp DESC' ],
