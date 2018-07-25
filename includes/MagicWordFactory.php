@@ -254,8 +254,18 @@ class MagicWordFactory {
 	public function getDoubleUnderscoreArray() {
 		if ( is_null( $this->mDoubleUnderscoreArray ) ) {
 			Hooks::run( 'GetDoubleUnderscoreIDs', [ &$this->mDoubleUnderscoreIDs ] );
-			$this->mDoubleUnderscoreArray = new MagicWordArray( $this->mDoubleUnderscoreIDs );
+			$this->mDoubleUnderscoreArray = $this->newArray( $this->mDoubleUnderscoreIDs );
 		}
 		return $this->mDoubleUnderscoreArray;
+	}
+
+	/**
+	 * Get a new MagicWordArray with provided $names
+	 *
+	 * @param array $names
+	 * @return MagicWordArray
+	 */
+	public function newArray( array $names = [] ) : MagicWordArray {
+		return new MagicWordArray( $names, $this );
 	}
 }

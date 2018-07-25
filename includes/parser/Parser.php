@@ -2881,8 +2881,8 @@ class Parser {
 		$variableIDs = $this->magicWordFactory->getVariableIDs();
 		$substIDs = $this->magicWordFactory->getSubstIDs();
 
-		$this->mVariables = new MagicWordArray( $variableIDs );
-		$this->mSubstWords = new MagicWordArray( $substIDs );
+		$this->mVariables = $this->magicWordFactory->newArray( $variableIDs );
+		$this->mSubstWords = $this->magicWordFactory->newArray( $substIDs );
 	}
 
 	/**
@@ -5066,7 +5066,7 @@ class Parser {
 				unset( $paramMap['img_width'] );
 			}
 
-			$mwArray = new MagicWordArray( array_keys( $paramMap ) );
+			$mwArray = $this->magicWordFactory->newArray( array_keys( $paramMap ) );
 
 			$label = '';
 			$alt = '';
@@ -5185,7 +5185,8 @@ class Parser {
 				}
 			}
 			$this->mImageParams[$handlerClass] = $paramMap;
-			$this->mImageParamsMagicArray[$handlerClass] = new MagicWordArray( array_keys( $paramMap ) );
+			$this->mImageParamsMagicArray[$handlerClass] =
+				$this->magicWordFactory->newArray( array_keys( $paramMap ) );
 		}
 		return [ $this->mImageParams[$handlerClass], $this->mImageParamsMagicArray[$handlerClass] ];
 	}
