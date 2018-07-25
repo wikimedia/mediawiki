@@ -133,7 +133,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 
 	/**
 	 * @param LoggerInterface $logger
-	 * @return null
+	 * @return void
 	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
@@ -308,6 +308,11 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 			$this->reportDupes = $reportDupes;
 
 			if ( $this->getLastError() ) {
+				$this->logger->warning(
+					__METHOD__ . ' failed due to I/O error on get() for {key}.',
+					[ 'key' => $key ]
+				);
+
 				return false; // don't spam retries (retry only on races)
 			}
 
@@ -325,6 +330,11 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 				$success = $this->cas( $casToken, $key, $value, $exptime );
 			}
 			if ( $this->getLastError() ) {
+				$this->logger->warning(
+					__METHOD__ . ' failed due to I/O error for {key}.',
+					[ 'key' => $key ]
+				);
+
 				return false; // IO error; don't spam retries
 			}
 		} while ( !$success && --$attempts );
@@ -352,6 +362,11 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		if ( $casToken === $curCasToken ) {
 			$success = $this->set( $key, $value, $exptime );
 		} else {
+			$this->logger->info(
+				__METHOD__ . ' failed due to race condition for {key}.',
+				[ 'key' => $key ]
+			);
+
 			$success = false; // mismatched or failed
 		}
 
@@ -388,6 +403,11 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		$this->reportDupes = $reportDupes;
 
 		if ( $this->getLastError() ) {
+			$this->logger->warning(
+				__METHOD__ . ' failed due to I/O error on get() for {key}.',
+				[ 'key' => $key ]
+			);
+
 			$success = false;
 		} else {
 			// Derive the new value from the old value
@@ -443,13 +463,19 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 			}
 		}
 
+		$fname = __METHOD__;
 		$expiry = min( $expiry ?: INF, self::TTL_DAY );
 		$loop = new WaitConditionLoop(
-			function () use ( $key, $timeout, $expiry ) {
+			function () use ( $key, $timeout, $expiry, $fname ) {
 				$this->clearLastError();
 				if ( $this->add( "{$key}:lock", 1, $expiry ) ) {
 					return true; // locked!
 				} elseif ( $this->getLastError() ) {
+					$this->logger->warning(
+						$fname . ' failed due to I/O error for {key}.',
+						[ 'key' => $key ]
+					);
+
 					return WaitConditionLoop::CONDITION_ABORTED; // network partition?
 				}
 
@@ -458,9 +484,15 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 			$timeout
 		);
 
-		$locked = ( $loop->invoke() === $loop::CONDITION_REACHED );
+		$code = $loop->invoke();
+		$locked = ( $code === $loop::CONDITION_REACHED );
 		if ( $locked ) {
 			$this->locks[$key] = [ 'class' => $rclass, 'depth' => 1 ];
+		} elseif ( $code === $loop::CONDITION_TIMED_OUT ) {
+			$this->logger->warning(
+				"$fname failed due to timeout for {key}.",
+				[ 'key' => $key, 'timeout' => $timeout ]
+			);
 		}
 
 		return $locked;
@@ -476,7 +508,15 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		if ( isset( $this->locks[$key] ) && --$this->locks[$key]['depth'] <= 0 ) {
 			unset( $this->locks[$key] );
 
-			return $this->delete( "{$key}:lock" );
+			$ok = $this->delete( "{$key}:lock" );
+			if ( !$ok ) {
+				$this->logger->warning(
+					__METHOD__ . ' failed to release lock for {key}.',
+					[ 'key' => $key ]
+				);
+			}
+
+			return $ok;
 		}
 
 		return true;
@@ -511,7 +551,10 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 			$latency = 0.050; // latency skew (err towards keeping lock present)
 			$age = ( $this->getCurrentTime() - $lSince + $latency );
 			if ( ( $age + $latency ) >= $expiry ) {
-				$this->logger->warning( "Lock for $key held too long ($age sec)." );
+				$this->logger->warning(
+					"Lock for {key} held too long ({age} sec).",
+					[ 'key' => $key, 'age' => $age ]
+				);
 				return; // expired; it's not "safe" to delete the key
 			}
 			$this->unlock( $key );
@@ -573,6 +616,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @return bool Success
 	 */
 	public function add( $key, $value, $exptime = 0 ) {
+		// @note: avoid lock() here since that method uses *this* method by default
 		if ( $this->get( $key ) === false ) {
 			return $this->set( $key, $value, $exptime );
 		}
@@ -586,7 +630,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @return int|bool New value or false on failure
 	 */
 	public function incr( $key, $value = 1 ) {
-		if ( !$this->lock( $key ) ) {
+		if ( !$this->lock( $key, 1 ) ) {
 			return false;
 		}
 		$n = $this->get( $key );
@@ -624,14 +668,15 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @since 1.24
 	 */
 	public function incrWithInit( $key, $ttl, $value = 1, $init = 1 ) {
+		$this->clearLastError();
 		$newValue = $this->incr( $key, $value );
-		if ( $newValue === false ) {
+		if ( $newValue === false && !$this->getLastError() ) {
 			// No key set; initialize
 			$newValue = $this->add( $key, (int)$init, $ttl ) ? $init : false;
-		}
-		if ( $newValue === false ) {
-			// Raced out initializing; increment
-			$newValue = $this->incr( $key, $value );
+			if ( $newValue === false && !$this->getLastError() ) {
+				// Raced out initializing; increment
+				$newValue = $this->incr( $key, $value );
+			}
 		}
 
 		return $newValue;
