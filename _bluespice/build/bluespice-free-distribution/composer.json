@@ -14,6 +14,7 @@
 		"mediawiki/embed-video": "2.7.3",
 		"mediawiki/hit-counters": "dev-REL1_31",
 		"mediawiki/image-map-edit": "dev-REL1_31",
+		"mediawiki/lingo": "~3.0",
 		"mediawiki/lockdown": "dev-REL1_31",
 		"mediawiki/nuke": "dev-REL1_31",
 		"mediawiki/pluggable-auth": "dev-master",
