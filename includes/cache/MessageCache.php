@@ -592,13 +592,15 @@ class MessageCache {
 						[ 'title' => $title, 'code' => $code ] );
 					return;
 				}
-				// Load the messages from the master DB to avoid race conditions
+				// Reload messages from the database and pre-populate dc-local caches
+				// as optimisation. Use the master DB to avoid race conditions.
 				$cache = $this->loadFromDB( $code, self::FOR_UPDATE );
 				// Check if an individual cache key should exist and update cache accordingly
 				$page = WikiPage::factory( Title::makeTitle( NS_MEDIAWIKI, $title ) );
 				$page->loadPageData( $page::READ_LATEST );
 				$text = $this->getMessageTextFromContent( $page->getContent() );
 				if ( is_string( $text ) && strlen( $text ) > $wgMaxMsgCacheEntrySize ) {
+					// Match logic of loadCachedMessagePageEntry()
 					$this->wanCache->set(
 						$this->bigMessageCacheKey( $cache['HASH'], $title ),
 						' ' . $text,
@@ -1037,6 +1039,8 @@ class MessageCache {
 				$title = Title::makeTitle( NS_MEDIAWIKI, $dbKey );
 				$revision = Revision::newKnownCurrent( $dbr, $title );
 				if ( !$revision ) {
+					// The wiki doesn't have a local override page. Cache absence with normal TTL.
+					// When overrides are created, self::replace() takes care of the cache.
 					return '!NONEXISTENT';
 				}
 				$content = $revision->getContent();
@@ -1050,13 +1054,14 @@ class MessageCache {
 					$message = null;
 				}
 
-				if ( is_string( $message ) ) {
-					return ' ' . $message;
+				if ( !is_string( $message ) ) {
+					// Revision failed to load Content, or Content is incompatible with wikitext.
+					// Possibly a temporary loading failure.
+					$ttl = 5;
+					return '!NONEXISTENT';
 				}
 
-				$ttl = 5; // possibly a temporary loading failure
-
-				return '!NONEXISTENT';
+				return ' ' . $message;
 			}
 		);
 	}
