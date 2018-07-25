@@ -121,7 +121,7 @@ class FileDuplicateSearchPage extends QueryPage {
 				'label-message' => 'fileduplicatesearch-filename',
 				'id' => 'filename',
 				'size' => 50,
-				'value' => $this->filename,
+				'default' => $this->filename,
 			],
 		];
 		$hiddenFields = [
