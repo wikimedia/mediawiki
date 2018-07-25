@@ -119,8 +119,14 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			$dropdownInputAttribs['classes'] = [ $this->mClass ];
 		}
 
+		$disabled = false;
+		if ( isset( $this->mParams[ 'disabled' ] ) && $this->mParams[ 'disabled' ] ) {
+			$disabled = true;
+		}
+
 		return $this->getInputWidget( [
 			'id' => $this->mID,
+			'disabled' => $disabled,
 			'textinput' => $textAttribs,
 			'dropdowninput' => $dropdownInputAttribs,
 			'or' => false,
