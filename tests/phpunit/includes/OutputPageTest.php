@@ -242,6 +242,35 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers OutputPage::getHeadItemsArray
+	 * @covers OutputPage::addParserOutputMetadata
+	 */
+	public function testHeadItemsParserOutput() {
+		$op = $this->newInstance();
+		$stubPO1 = $this->createParserOutputStub( 'getHeadItems', [ 'a' => 'b' ] );
+		$op->addParserOutputMetadata( $stubPO1 );
+		$stubPO2 = $this->createParserOutputStub( 'getHeadItems',
+			[ 'c' => '<d>&amp;', 'e' => 'f', 'a' => 'q' ] );
+		$op->addParserOutputMetadata( $stubPO2 );
+		$stubPO3 = $this->createParserOutputStub( 'getHeadItems', [ 'e' => 'g' ] );
+		$op->addParserOutputMetadata( $stubPO3 );
+		$stubPO4 = $this->createParserOutputStub( 'getHeadItems', [ 'x' ] );
+		$op->addParserOutputMetadata( $stubPO4 );
+
+		$this->assertSame( [ 'a' => 'q', 'c' => '<d>&amp;', 'e' => 'g', 'x' ],
+			$op->getHeadItemsArray() );
+
+		$this->assertTrue( $op->hasHeadItem( 'a' ) );
+		$this->assertTrue( $op->hasHeadItem( 'c' ) );
+		$this->assertTrue( $op->hasHeadItem( 'e' ) );
+		$this->assertTrue( $op->hasHeadItem( '0' ) );
+		$this->assertFalse( $op->hasHeadItem( 'b' ) );
+
+		$this->assertContains( "\nq\n<d>&amp;\ng\nx\n",
+			'' . $op->headElement( $op->getContext()->getSkin() ) );
+	}
+
+	/**
 	 * @covers OutputPage::addBodyClasses
 	 */
 	public function testAddBodyClasses() {
@@ -616,7 +645,16 @@ class OutputPageTest extends MediaWikiTestCase {
 	 *
 	 * @covers OutputPage::buildBacklinkSubtitle
 	 */
-	public function testBuildBacklinkSubtitle( Title $title, $query, $contains, $notContains ) {
+	public function testBuildBacklinkSubtitle( $titles, $queries, $contains, $notContains ) {
+		if ( count( $titles ) > 1 ) {
+			// Not applicable
+			$this->assertTrue( true );
+			return;
+		}
+
+		$title = Title::newFromText( $titles[0] );
+		$query = $queries[0];
+
 		$this->editPage( 'Page 1', '' );
 		$this->editPage( 'Page 2', '#REDIRECT [[Page 1]]' );
 
@@ -637,12 +675,14 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::addBacklinkSubtitle
 	 * @covers OutputPage::getSubtitle
 	 */
-	public function testAddBacklinkSubtitle( Title $title, $query, $contains, $notContains ) {
+	public function testAddBacklinkSubtitle( $titles, $queries, $contains, $notContains ) {
 		$this->editPage( 'Page 1', '' );
 		$this->editPage( 'Page 2', '#REDIRECT [[Page 1]]' );
 
 		$op = $this->newInstance();
-		$op->addBacklinkSubtitle( $title, $query );
+		foreach ( $titles as $i => $unused ) {
+			$op->addBacklinkSubtitle( Title::newFromText( $titles[$i] ), $queries[$i] );
+		}
 
 		$str = $op->getSubtitle();
 
@@ -656,47 +696,812 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	public function provideBacklinkSubtitle() {
-		$page1 = Title::newFromText( 'Page 1' );
-		$page2 = Title::newFromText( 'Page 2' );
-
 		return [
-			[ $page1, [], [ 'Page 1' ], [ 'redirect', 'Page 2' ] ],
-			[ $page2, [], [ 'redirect=no' ], [ 'Page 1' ] ],
-			[ $page1, [ 'action' => 'edit' ], [ 'action=edit' ], [] ],
+			[
+				[ 'Page 1' ],
+				[ [] ],
+				[ 'Page 1' ],
+				[ 'redirect', 'Page 2' ],
+			],
+			[
+				[ 'Page 2' ],
+				[ [] ],
+				[ 'redirect=no' ],
+				[ 'Page 1' ],
+			],
+			[
+				[ 'Page 1' ],
+				[ [ 'action' => 'edit' ] ],
+				[ 'action=edit' ],
+				[],
+			],
+			[
+				[ 'Page 1', 'Page 2' ],
+				[ [], [] ],
+				[ 'Page 1', 'Page 2', "<br />\n\t\t\t\t" ],
+				[],
+			],
 			// @todo Anything else to test?
 		];
 	}
 
 	/**
+	 * @covers OutputPage::setPrintable
+	 * @covers OutputPage::isPrintable
+	 */
+	public function testPrintable() {
+		$op = $this->newInstance();
+
+		$this->assertFalse( $op->isPrintable() );
+
+		$op->setPrintable();
+
+		$this->assertTrue( $op->isPrintable() );
+	}
+
+	/**
+	 * @covers OutputPage::disable
+	 * @covers OutputPage::isDisabled
+	 */
+	public function testDisable() {
+		$op = $this->newInstance();
+
+		$this->assertFalse( $op->isDisabled() );
+		$this->assertNotSame( '', $op->output( true ) );
+
+		$op->disable();
+
+		$this->assertTrue( $op->isDisabled() );
+		$this->assertSame( '', $op->output( true ) );
+	}
+
+	/**
+	 * @covers OutputPage::showNewSectionLink
+	 * @covers OutputPage::addParserOutputMetadata
+	 */
+	public function testShowNewSectionLink() {
+		$op = $this->newInstance();
+
+		$this->assertFalse( $op->showNewSectionLink() );
+
+		$po = new ParserOutput();
+		$po->setNewSection( true );
+		$op->addParserOutputMetadata( $po );
+
+		$this->assertTrue( $op->showNewSectionLink() );
+	}
+
+	/**
+	 * @covers OutputPage::forceHideNewSectionLink
+	 * @covers OutputPage::addParserOutputMetadata
+	 */
+	public function testForceHideNewSectionLink() {
+		$op = $this->newInstance();
+
+		$this->assertFalse( $op->forceHideNewSectionLink() );
+
+		$po = new ParserOutput();
+		$po->hideNewSection( true );
+		$op->addParserOutputMetadata( $po );
+
+		$this->assertTrue( $op->forceHideNewSectionLink() );
+	}
+
+	/**
+	 * @covers OutputPage::setSyndicated
+	 * @covers OutputPage::isSyndicated
+	 */
+	public function testSetSyndicated() {
+		$op = $this->newInstance();
+		$this->assertFalse( $op->isSyndicated() );
+
+		$op->setSyndicated();
+		$this->assertTrue( $op->isSyndicated() );
+
+		$op->setSyndicated( false );
+		$this->assertFalse( $op->isSyndicated() );
+	}
+
+	/**
+	 * @covers OutputPage::isSyndicated
+	 * @covers OutputPage::setFeedAppendQuery
+	 * @covers OutputPage::addFeedLink
+	 * @covers OutputPage::getSyndicationLinks()
+	 */
+	public function testFeedLinks() {
+		$op = $this->newInstance();
+		$this->assertSame( [], $op->getSyndicationLinks() );
+
+		$op->addFeedLink( 'not a supported format', 'abc' );
+		$this->assertFalse( $op->isSyndicated() );
+		$this->assertSame( [], $op->getSyndicationLinks() );
+
+		$feedTypes = $op->getConfig()->get( 'AdvertisedFeedTypes' );
+
+		$op->addFeedLink( $feedTypes[0], 'def' );
+		$this->assertTrue( $op->isSyndicated() );
+		$this->assertSame( [ $feedTypes[0] => 'def' ], $op->getSyndicationLinks() );
+
+		$op->setFeedAppendQuery( false );
+		$expected = [];
+		foreach ( $feedTypes as $type ) {
+			$expected[$type] = $op->getTitle()->getLocalURL( "feed=$type" );
+		}
+		$this->assertSame( $expected, $op->getSyndicationLinks() );
+
+		$op->setFeedAppendQuery( 'apples=oranges' );
+		foreach ( $feedTypes as $type ) {
+			$expected[$type] = $op->getTitle()->getLocalURL( "feed=$type&apples=oranges" );
+		}
+		$this->assertSame( $expected, $op->getSyndicationLinks() );
+	}
+
+	/**
+	 * @covers OutputPage::setArticleFlag
+	 * @covers OutputPage::isArticle
+	 * @covers OutputPage::setArticleRelated
+	 * @covers OutputPage::isArticleRelated
+	 */
+	function testArticleFlags() {
+		$op = $this->newInstance();
+		$this->assertFalse( $op->isArticle() );
+		$this->assertTrue( $op->isArticleRelated() );
+
+		$op->setArticleRelated( false );
+		$this->assertFalse( $op->isArticle() );
+		$this->assertFalse( $op->isArticleRelated() );
+
+		$op->setArticleFlag( true );
+		$this->assertTrue( $op->isArticle() );
+		$this->assertTrue( $op->isArticleRelated() );
+
+		$op->setArticleFlag( false );
+		$this->assertFalse( $op->isArticle() );
+		$this->assertTrue( $op->isArticleRelated() );
+
+		$op->setArticleFlag( true );
+		$op->setArticleRelated( false );
+		$this->assertFalse( $op->isArticle() );
+		$this->assertFalse( $op->isArticleRelated() );
+	}
+
+	/**
+	 * @covers OutputPage::addLanguageLinks
+	 * @covers OutputPage::setLanguageLinks
+	 * @covers OutputPage::getLanguageLinks
+	 * @covers OutputPage::addParserOutputMetadata
+	 */
+	function testLanguageLinks() {
+		$op = $this->newInstance();
+		$this->assertSame( [], $op->getLanguageLinks() );
+
+		$op->addLanguageLinks( [ 'fr:A', 'it:B' ] );
+		$this->assertSame( [ 'fr:A', 'it:B' ], $op->getLanguageLinks() );
+
+		$op->addLanguageLinks( [ 'de:C', 'es:D' ] );
+		$this->assertSame( [ 'fr:A', 'it:B', 'de:C', 'es:D' ], $op->getLanguageLinks() );
+
+		$op->setLanguageLinks( [ 'pt:E' ] );
+		$this->assertSame( [ 'pt:E' ], $op->getLanguageLinks() );
+
+		$po = new ParserOutput();
+		$po->setLanguageLinks( [ 'he:F', 'ar:G' ] );
+		$op->addParserOutputMetadata( $po );
+		$this->assertSame( [ 'pt:E', 'he:F', 'ar:G' ], $op->getLanguageLinks() );
+	}
+
+	// @todo Are these category links tests too abstract and complicated for what they test?  Would
+	// it make sense to just write out all the tests by hand with maybe some copy-and-paste?
+
+	/**
+	 * @dataProvider provideGetCategories
+	 *
 	 * @covers OutputPage::addCategoryLinks
 	 * @covers OutputPage::getCategories
+	 * @covers OutputPage::getCategoryLinks
+	 *
+	 * @param array $args Array of form [ category name => sort key ]
+	 * @param array $fakeResults Array of form [ category name => value to return from mocked
+	 *   LinkBatch ]
+	 * @param callback $variantLinkCallback Callback to replace findVariantLink() call
+	 * @param array $expectedNormal Expected return value of getCategoryLinks['normal']
+	 * @param array $expectedHidden Expected return value of getCategoryLinks['hidden']
 	 */
-	public function testGetCategories() {
-		$fakeResultWrapper = new FakeResultWrapper( [
-			(object)[
-				'pp_value' => 1,
-				'page_title' => 'Test'
-			],
-			(object)[
-				'page_title' => 'Test2'
-			]
-		] );
+	public function testAddCategoryLinks(
+		array $args, array $fakeResults, callable $variantLinkCallback = null,
+		array $expectedNormal, array $expectedHidden
+	) {
+		$expectedNormal = $this->extractExpectedCategories( $expectedNormal, 'add' );
+		$expectedHidden = $this->extractExpectedCategories( $expectedHidden, 'add' );
+
+		$op = $this->setupCategoryTests( $fakeResults, $variantLinkCallback );
+
+		$op->addCategoryLinks( $args );
+
+		$this->doCategoryAsserts( $op, $expectedNormal, $expectedHidden );
+		$this->doCategoryLinkAsserts( $op, $expectedNormal, $expectedHidden );
+	}
+
+	/**
+	 * @dataProvider provideGetCategories
+	 *
+	 * @covers OutputPage::addCategoryLinks
+	 * @covers OutputPage::getCategories
+	 * @covers OutputPage::getCategoryLinks
+	 */
+	public function testAddCategoryLinksOneByOne(
+		array $args, array $fakeResults, callable $variantLinkCallback = null,
+		array $expectedNormal, array $expectedHidden
+	) {
+		if ( count( $args ) <= 1 ) {
+			// @todo Should this be skipped instead of passed?
+			$this->assertTrue( true );
+			return;
+		}
+
+		$expectedNormal = $this->extractExpectedCategories( $expectedNormal, 'onebyone' );
+		$expectedHidden = $this->extractExpectedCategories( $expectedHidden, 'onebyone' );
+
+		$op = $this->setupCategoryTests( $fakeResults, $variantLinkCallback );
+
+		foreach ( $args as $key => $val ) {
+			$op->addCategoryLinks( [ $key => $val ] );
+		}
+
+		$this->doCategoryAsserts( $op, $expectedNormal, $expectedHidden );
+		$this->doCategoryLinkAsserts( $op, $expectedNormal, $expectedHidden );
+	}
+
+	/**
+	 * @dataProvider provideGetCategories
+	 *
+	 * @covers OutputPage::setCategoryLinks
+	 * @covers OutputPage::getCategories
+	 * @covers OutputPage::getCategoryLinks
+	 */
+	public function testSetCategoryLinks(
+		array $args, array $fakeResults, callable $variantLinkCallback = null,
+		array $expectedNormal, array $expectedHidden
+	) {
+		$expectedNormal = $this->extractExpectedCategories( $expectedNormal, 'set' );
+		$expectedHidden = $this->extractExpectedCategories( $expectedHidden, 'set' );
+
+		$op = $this->setupCategoryTests( $fakeResults, $variantLinkCallback );
+
+		$op->setCategoryLinks( [ 'Initial page' => 'Initial page' ] );
+		$op->setCategoryLinks( $args );
+
+		// We don't reset the categories, for some reason, only the links
+		$expectedNormalCats = array_merge( [ 'Initial page' ], $expectedNormal );
+		$expectedCats = array_merge( $expectedHidden, $expectedNormalCats );
+
+		$this->doCategoryAsserts( $op, $expectedNormalCats, $expectedHidden );
+		$this->doCategoryLinkAsserts( $op, $expectedNormal, $expectedHidden );
+	}
+
+	/**
+	 * @dataProvider provideGetCategories
+	 *
+	 * @covers OutputPage::addParserOutputMetadata
+	 * @covers OutputPage::getCategories
+	 * @covers OutputPage::getCategoryLinks
+	 */
+	public function testParserOutputCategoryLinks(
+		array $args, array $fakeResults, callable $variantLinkCallback = null,
+		array $expectedNormal, array $expectedHidden
+	) {
+		$expectedNormal = $this->extractExpectedCategories( $expectedNormal, 'pout' );
+		$expectedHidden = $this->extractExpectedCategories( $expectedHidden, 'pout' );
+
+		$op = $this->setupCategoryTests( $fakeResults, $variantLinkCallback );
+
+		$stubPO = $this->createParserOutputStub( 'getCategories', $args );
+
+		$op->addParserOutputMetadata( $stubPO );
+
+		$this->doCategoryAsserts( $op, $expectedNormal, $expectedHidden );
+		$this->doCategoryLinkAsserts( $op, $expectedNormal, $expectedHidden );
+	}
+
+	/**
+	 * We allow different expectations for different tests as an associative array, like
+	 * [ 'set' => [ ... ], 'default' => [ ... ] ] if setCategoryLinks() will give a different
+	 * result.
+	 */
+	private function extractExpectedCategories( array $expected, $key ) {
+		if ( !$expected || isset( $expected[0] ) ) {
+			return $expected;
+		}
+		return $expected[$key] ?? $expected['default'];
+	}
+
+	private function setupCategoryTests(
+		array $fakeResults, callable $variantLinkCallback = null
+	) : OutputPage {
+		$this->setMwGlobals( 'wgUsePigLatinVariant', true );
+
 		$op = $this->getMockBuilder( OutputPage::class )
 			->setConstructorArgs( [ new RequestContext() ] )
 			->setMethods( [ 'addCategoryLinksToLBAndGetResult' ] )
 			->getMock();
+
 		$op->expects( $this->any() )
 			->method( 'addCategoryLinksToLBAndGetResult' )
-			->will( $this->returnValue( $fakeResultWrapper ) );
+			->will( $this->returnCallback( function ( array $categories ) use ( $fakeResults ) {
+				$return = [];
+				foreach ( $categories as $category => $unused ) {
+					if ( isset( $fakeResults[$category] ) ) {
+						$return[] = $fakeResults[$category];
+					}
+				}
+				return new FakeResultWrapper( $return );
+			} ) );
 
-		$op->addCategoryLinks( [
-			'Test' => 'Test',
-			'Test2' => 'Test2',
-		] );
-		$this->assertEquals( [ 0 => 'Test', '1' => 'Test2' ], $op->getCategories() );
-		$this->assertEquals( [ 0 => 'Test2' ], $op->getCategories( 'normal' ) );
-		$this->assertEquals( [ 0 => 'Test' ], $op->getCategories( 'hidden' ) );
+		if ( $variantLinkCallback ) {
+			$mockContLang = $this->getMockBuilder( Language::class )
+				->setConstructorArgs( [ 'en' ] )
+				->setMethods( [ 'findVariantLink' ] )
+				->getMock();
+			$mockContLang->expects( $this->any() )
+				->method( 'findVariantLink' )
+				->will( $this->returnCallback( $variantLinkCallback ) );
+			$this->setContentLang( $mockContLang );
+		}
+
+		$this->assertSame( [], $op->getCategories() );
+
+		return $op;
 	}
+
+	private function doCategoryAsserts( $op, $expectedNormal, $expectedHidden ) {
+		$this->assertSame( array_merge( $expectedHidden, $expectedNormal ), $op->getCategories() );
+		$this->assertSame( $expectedNormal, $op->getCategories( 'normal' ) );
+		$this->assertSame( $expectedHidden, $op->getCategories( 'hidden' ) );
+	}
+
+	private function doCategoryLinkAsserts( $op, $expectedNormal, $expectedHidden ) {
+		$catLinks = $op->getCategoryLinks();
+		$this->assertSame( (bool)$expectedNormal + (bool)$expectedHidden, count( $catLinks ) );
+		if ( $expectedNormal ) {
+			$this->assertSame( count( $expectedNormal ), count( $catLinks['normal'] ) );
+		}
+		if ( $expectedHidden ) {
+			$this->assertSame( count( $expectedHidden ), count( $catLinks['hidden'] ) );
+		}
+
+		foreach ( $expectedNormal as $i => $name ) {
+			$this->assertContains( $name, $catLinks['normal'][$i] );
+		}
+		foreach ( $expectedHidden as $i => $name ) {
+			$this->assertContains( $name, $catLinks['hidden'][$i] );
+		}
+	}
+
+	public function provideGetCategories() {
+		return [
+			'No categories' => [ [], [], null, [], [] ],
+			'Simple test' => [
+				[ 'Test1' => 'Some sortkey', 'Test2' => 'A different sortkey' ],
+				[ 'Test1' => (object)[ 'pp_value' => 1, 'page_title' => 'Test1' ],
+					'Test2' => (object)[ 'page_title' => 'Test2' ] ],
+				null,
+				[ 'Test2' ],
+				[ 'Test1' ],
+			],
+			'Invalid title' => [
+				[ '[' => '[', 'Test' => 'Test' ],
+				[ 'Test' => (object)[ 'page_title' => 'Test' ] ],
+				null,
+				[ 'Test' ],
+				[],
+			],
+			'Variant link' => [
+				[ 'Test' => 'Test', 'Estay' => 'Estay' ],
+				[ 'Test' => (object)[ 'page_title' => 'Test' ] ],
+				function ( &$link, &$title ) {
+					if ( $link === 'Estay' ) {
+						$link = 'Test';
+						$title = Title::makeTitleSafe( NS_CATEGORY, $link );
+					}
+				},
+				// For adding one by one, the variant gets added as well as the original category,
+				// but if you add them all together the second time gets skipped.
+				[ 'onebyone' => [ 'Test', 'Test' ], 'default' => [ 'Test' ] ],
+				[],
+			],
+		];
+	}
+
+	/**
+	 * @covers OutputPage::getCategories
+	 */
+	public function testGetCategoriesInvalid() {
+		$this->setExpectedException( InvalidArgumentException::class,
+			'Invalid category type given: hiddne' );
+
+		$op = $this->newInstance();
+		$op->getCategories( 'hiddne' );
+	}
+
+	// @todo Should we test addCategoryLinksToLBAndGetResult?  If so, how?  Insert some test rows in
+	// the DB?
+
+	/**
+	 * @covers OutputPage::setIndicators
+	 * @covers OutputPage::getIndicators
+	 * @covers OutputPage::addParserOutputMetadata
+	 */
+	public function testIndicators() {
+		$op = $this->newInstance();
+		$this->assertSame( [], $op->getIndicators() );
+
+		$op->setIndicators( [] );
+		$this->assertSame( [], $op->getIndicators() );
+
+		// Test sorting alphabetically
+		$op->setIndicators( [ 'b' => 'x', 'a' => 'y' ] );
+		$this->assertSame( [ 'a' => 'y', 'b' => 'x' ], $op->getIndicators() );
+
+		// Test overwriting existing keys
+		$op->setIndicators( [ 'c' => 'z', 'a' => 'w' ] );
+		$this->assertSame( [ 'a' => 'w', 'b' => 'x', 'c' => 'z' ], $op->getIndicators() );
+
+		// Test with ParserOutput
+		$stubPO = $this->createParserOutputStub( 'getIndicators', [ 'c' => 'u', 'd' => 'v' ] );
+		$op->addParserOutputMetadata( $stubPO );
+		$this->assertSame( [ 'a' => 'w', 'b' => 'x', 'c' => 'u', 'd' => 'v' ],
+			$op->getIndicators() );
+	}
+
+	/**
+	 * @covers OutputPage::addHelpLink
+	 * @covers OutputPage::getIndicators
+	 */
+	public function testAddHelpLink() {
+		$op = $this->newInstance();
+
+		$op->addHelpLink( 'Manual:PHP unit testing' );
+		$indicators = $op->getIndicators();
+		$this->assertSame( [ 'mw-helplink' ], array_keys( $indicators ) );
+		$this->assertContains( 'Manual:PHP_unit_testing', $indicators['mw-helplink'] );
+
+		$op->addHelpLink( 'https://phpunit.de', true );
+		$indicators = $op->getIndicators();
+		$this->assertSame( [ 'mw-helplink' ], array_keys( $indicators ) );
+		$this->assertContains( 'https://phpunit.de', $indicators['mw-helplink'] );
+		$this->assertNotContains( 'mediawiki', $indicators['mw-helplink'] );
+		$this->assertNotContains( 'Manual:PHP', $indicators['mw-helplink'] );
+	}
+
+	/**
+	 * @covers OutputPage::prependHTML
+	 * @covers OutputPage::addHTML
+	 * @covers OutputPage::addElement
+	 * @covers OutputPage::clearHTML
+	 * @covers OutputPage::getHTML
+	 */
+	public function testBodyHTML() {
+		$op = $this->newInstance();
+		$this->assertSame( '', $op->getHTML() );
+
+		$op->addHTML( 'a' );
+		$this->assertSame( 'a', $op->getHTML() );
+
+		$op->addHTML( 'b' );
+		$this->assertSame( 'ab', $op->getHTML() );
+
+		$op->prependHTML( 'c' );
+		$this->assertSame( 'cab', $op->getHTML() );
+
+		$op->addElement( 'p', [ 'id' => 'foo' ], 'd' );
+		$this->assertSame( 'cab<p id="foo">d</p>', $op->getHTML() );
+
+		$op->clearHTML();
+		$this->assertSame( '', $op->getHTML() );
+	}
+
+	/**
+	 * @dataProvider provideRevisionId
+	 * @covers OutputPage::setRevisionId
+	 * @covers OutputPage::getRevisionId
+	 */
+	public function testRevisionId( $newVal, $expected ) {
+		$op = $this->newInstance();
+
+		$this->assertNull( $op->setRevisionId( $newVal ) );
+		$this->assertSame( $expected, $op->getRevisionId() );
+		$this->assertSame( $expected, $op->setRevisionId( null ) );
+		$this->assertNull( $op->getRevisionId() );
+	}
+
+	public function provideRevisionId() {
+		return [
+			[ null, null ],
+			[ 7, 7 ],
+			[ -1, -1 ],
+			[ 3.2, 3 ],
+			[ '0', 0 ],
+			[ '32% finished', 32 ],
+			[ false, 0 ],
+		];
+	}
+
+	/**
+	 * @covers OutputPage::setRevisionTimestamp
+	 * @covers OutputPage::getRevisionTimestamp
+	 */
+	public function testRevisionTimestamp() {
+		$op = $this->newInstance();
+		$this->assertNull( $op->getRevisionTimestamp() );
+
+		$this->assertNull( $op->setRevisionTimestamp( 'abc' ) );
+		$this->assertSame( 'abc', $op->getRevisionTimestamp() );
+		$this->assertSame( 'abc', $op->setRevisionTimestamp( null ) );
+		$this->assertNull( $op->getRevisionTimestamp() );
+	}
+
+	/**
+	 * @covers OutputPage::setFileVersion
+	 * @covers OutputPage::getFileVersion
+	 */
+	public function testFileVersion() {
+		$op = $this->newInstance();
+		$this->assertNull( $op->getFileVersion() );
+
+		$stubFile = $this->createMock( File::class );
+		$stubFile->method( 'exists' )->willReturn( true );
+		$stubFile->method( 'getTimestamp' )->willReturn( '12211221123321' );
+		$stubFile->method( 'getSha1' )->willReturn( 'bf3ffa7047dc080f5855377a4f83cd18887e3b05' );
+
+		$op->setFileVersion( $stubFile );
+
+		$this->assertEquals(
+			[ 'time' => '12211221123321', 'sha1' => 'bf3ffa7047dc080f5855377a4f83cd18887e3b05' ],
+			$op->getFileVersion()
+		);
+
+		$stubMissingFile = $this->createMock( File::class );
+		$stubMissingFile->method( 'exists' )->willReturn( false );
+
+		$op->setFileVersion( $stubMissingFile );
+		$this->assertNull( $op->getFileVersion() );
+
+		$op->setFileVersion( $stubFile );
+		$this->assertNotNull( $op->getFileVersion() );
+
+		$op->setFileVersion( null );
+		$this->assertNull( $op->getFileVersion() );
+	}
+
+	private function createParserOutputStub( $method = '', $retVal = [] ) {
+		$pOut = $this->getMock( ParserOutput::class );
+		if ( $method !== '' ) {
+			$pOut->method( $method )->willReturn( $retVal );
+		}
+
+		$arrayReturningMethods = [
+			'getCategories',
+			'getFileSearchOptions',
+			'getHeadItems',
+			'getIndicators',
+			'getLanguageLinks',
+			'getOutputHooks',
+			'getTemplateIds',
+		];
+
+		foreach ( $arrayReturningMethods as $method ) {
+			$pOut->method( $method )->willReturn( [] );
+		}
+
+		return $pOut;
+	}
+
+	/**
+	 * @covers OutputPage::getTemplateIds
+	 * @covers OutputPage::addParserOutputMetadata
+	 */
+	public function testTemplateIds() {
+		$op = $this->newInstance();
+		$this->assertSame( [], $op->getTemplateIds() );
+
+		// Test with no template id's
+		$stubPOEmpty = $this->createParserOutputStub();
+		$op->addParserOutputMetadata( $stubPOEmpty );
+		$this->assertSame( [], $op->getTemplateIds() );
+
+		// Test with some arbitrary template id's
+		$ids = [
+			NS_MAIN => [ 'A' => 3, 'B' => 17 ],
+			NS_TALK => [ 'C' => 31 ],
+			NS_MEDIA => [ 'D' => -1 ],
+		];
+
+		$stubPO1 = $this->createParserOutputStub( 'getTemplateIds', $ids );
+
+		$op->addParserOutputMetadata( $stubPO1 );
+		$this->assertSame( $ids, $op->getTemplateIds() );
+
+		// Test merging with a second set of id's
+		$stubPO2 = $this->createParserOutputStub( 'getTemplateIds', [
+			NS_MAIN => [ 'E' => 1234 ],
+			NS_PROJECT => [ 'F' => 5678 ],
+		] );
+
+		$finalIds = [
+			NS_MAIN => [ 'E' => 1234, 'A' => 3, 'B' => 17 ],
+			NS_TALK => [ 'C' => 31 ],
+			NS_MEDIA => [ 'D' => -1 ],
+			NS_PROJECT => [ 'F' => 5678 ],
+		];
+
+		$op->addParserOutputMetadata( $stubPO2 );
+		$this->assertSame( $finalIds, $op->getTemplateIds() );
+
+		// Test merging with an empty set of id's
+		$op->addParserOutputMetadata( $stubPOEmpty );
+		$this->assertSame( $finalIds, $op->getTemplateIds() );
+	}
+
+	/**
+	 * @covers OutputPage::getFileSearchOptions
+	 * @covers OutputPage::addParserOutputMetadata
+	 */
+	public function testFileSearchOptions() {
+		$op = $this->newInstance();
+		$this->assertSame( [], $op->getFileSearchOptions() );
+
+		// Test with no files
+		$stubPOEmpty = $this->createParserOutputStub();
+
+		$op->addParserOutputMetadata( $stubPOEmpty );
+		$this->assertSame( [], $op->getFileSearchOptions() );
+
+		// Test with some arbitrary files
+		$files1 = [
+			'A' => [ 'time' => null, 'sha1' => '' ],
+			'B' => [
+				'time' => '12211221123321',
+				'sha1' => 'bf3ffa7047dc080f5855377a4f83cd18887e3b05',
+			],
+		];
+
+		$stubPO1 = $this->createParserOutputStub( 'getFileSearchOptions', $files1 );
+
+		$op->addParserOutputMetadata( $stubPO1 );
+		$this->assertSame( $files1, $op->getFileSearchOptions() );
+
+		// Test merging with a second set of files
+		$files2 = [
+			'C' => [ 'time' => null, 'sha1' => '' ],
+			'B' => [ 'time' => null, 'sha1' => '' ],
+		];
+
+		$stubPO2 = $this->createParserOutputStub( 'getFileSearchOptions', $files2 );
+
+		$op->addParserOutputMetadata( $stubPO2 );
+		$this->assertSame( array_merge( $files1, $files2 ), $op->getFileSearchOptions() );
+
+		// Test merging with an empty set of files
+		$op->addParserOutputMetadata( $stubPOEmpty );
+		$this->assertSame( array_merge( $files1, $files2 ), $op->getFileSearchOptions() );
+	}
+
+	/**
+	 * @dataProvider provideAddWikiText
+	 * @covers OutputPage::addWikiText
+	 * @covers OutputPage::addWikiTextWithTitle
+	 * @covers OutputPage::addWikiTextTitle
+	 * @covers OutputPage::getHTML
+	 */
+	public function testAddWikiText( $method, array $args, $expected ) {
+		$op = $this->newInstance();
+		$this->assertSame( '', $op->getHTML() );
+
+		if ( in_array(
+			$method,
+			[ 'addWikiTextWithTitle', 'addWikiTextTitleTidy', 'addWikiTextTitle' ]
+		) && count( $args ) >= 2 && $args[1] === null ) {
+			// Special placeholder because we can't get the actual title in the provider
+			$args[1] = $op->getTitle();
+		}
+
+		$op->$method( ...$args );
+		$this->assertSame( $expected, $op->getHTML() );
+	}
+
+	public function provideAddWikiText() {
+		$tests = [
+			'addWikiText' => [
+				'Simple wikitext' => [
+					[ "'''Bold'''" ],
+					"<p><b>Bold</b>\n</p>",
+				], 'List at start' => [
+					[ '* List' ],
+					"<ul><li>List</li></ul>\n",
+				], 'List not at start' => [
+					[ '* Not a list', false ],
+					'* Not a list',
+				], 'Non-interface' => [
+					[ "'''Bold'''", true, false ],
+					"<div class=\"mw-parser-output\"><p><b>Bold</b>\n</p></div>",
+				], 'No section edit links' => [
+					[ '== Title ==' ],
+					"<h2><span class=\"mw-headline\" id=\"Title\">Title</span></h2>\n",
+				],
+			],
+			'addWikiTextWithTitle' => [
+				'With title at start' => [
+					[ '* {{PAGENAME}}', Title::newFromText( 'Talk:Some page' ) ],
+					"<div class=\"mw-parser-output\"><ul><li>Some page</li></ul>\n</div>",
+				], 'With title at start' => [
+					[ '* {{PAGENAME}}', Title::newFromText( 'Talk:Some page' ), false ],
+					"<div class=\"mw-parser-output\">* Some page</div>",
+				],
+			],
+		];
+
+		// Test all the others on addWikiTextTitle as well
+		foreach ( $tests['addWikiText'] as $key => $val ) {
+			$args = [ $val[0][0], null, $val[0][1] ?? true, false, $val[0][2] ?? true ];
+			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
+				array_merge( [ $args ], array_slice( $val, 1 ) );
+		}
+		foreach ( $tests['addWikiTextWithTitle'] as $key => $val ) {
+			$args = [ $val[0][0], $val[0][1], $val[0][2] ?? true ];
+			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
+				array_merge( [ $args ], array_slice( $val, 1 ) );
+		}
+
+		// We have to reformat our array to match what PHPUnit wants
+		$ret = [];
+		foreach ( $tests as $key => $subarray ) {
+			foreach ( $subarray as $subkey => $val ) {
+				$val = array_merge( [ $key ], $val );
+				$ret[$subkey] = $val;
+			}
+		}
+
+		return $ret;
+	}
+
+	/**
+	 * @covers OutputPage::addWikiText
+	 */
+	public function testAddWikiTextNoTitle() {
+		$this->setExpectedException( MWException::class, 'Title is null' );
+
+		$op = $this->newInstance( [], null, 'notitle' );
+		$op->addWikiText( 'a' );
+	}
+
+	// @todo How should we cover the Tidy variants?
+
+	/**
+	 * @covers OutputPage::addParserOutputMetadata
+	 */
+	public function testNoGallery() {
+		$op = $this->newInstance();
+		$this->assertFalse( $op->mNoGallery );
+
+		$stubPO1 = $this->createParserOutputStub( 'getNoGallery', true );
+		$op->addParserOutputMetadata( $stubPO1 );
+		$this->assertTrue( $op->mNoGallery );
+
+		$stubPO2 = $this->createParserOutputStub( 'getNoGallery', false );
+		$op->addParserOutputMetadata( $stubPO2 );
+		$this->assertFalse( $op->mNoGallery );
+	}
+
+	// @todo Make sure to test the following in addParserOutputMetadata() as well when we add tests
+	// for them:
+	//   * enableClientCache()
+	//   * addModules()
+	//   * addModuleScripts()
+	//   * addModuleStyles()
+	//   * addJsConfigVars()
+	//   * preventClickJacking()
+	// Otherwise those lines of addParserOutputMetadata() will be reported as covered, but we won't
+	// be testing they actually work.
 
 	/**
 	 * @covers OutputPage::haveCacheVaryCookies
@@ -1324,7 +2129,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	/**
 	 * @return OutputPage
 	 */
-	private function newInstance( $config = [], WebRequest $request = null ) {
+	private function newInstance( $config = [], WebRequest $request = null, $options = [] ) {
 		$context = new RequestContext();
 
 		$context->setConfig( new MultiConfig( [
@@ -1343,7 +2148,9 @@ class OutputPageTest extends MediaWikiTestCase {
 			$context->getConfig()
 		] ) );
 
-		$context->setTitle( Title::newFromText( 'My test page' ) );
+		if ( !in_array( 'notitle', (array)$options ) ) {
+			$context->setTitle( Title::newFromText( 'My test page' ) );
+		}
 
 		if ( $request ) {
 			$context->setRequest( $request );

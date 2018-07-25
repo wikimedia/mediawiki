@@ -71,7 +71,7 @@ class OutputPage extends ContextSource {
 	 * @var bool Is the displayed content related to the source of the
 	 *   corresponding wiki article.
 	 */
-	private $mIsarticle = false;
+	private $mIsArticle = false;
 
 	/** @var bool Stores "article flag" toggle. */
 	private $mIsArticleRelated = true;
@@ -1186,12 +1186,12 @@ class OutputPage extends ContextSource {
 	 * corresponding article on the wiki
 	 * Setting true will cause the change "article related" toggle to true
 	 *
-	 * @param bool $v
+	 * @param bool $newVal
 	 */
-	public function setArticleFlag( $v ) {
-		$this->mIsarticle = $v;
-		if ( $v ) {
-			$this->mIsArticleRelated = $v;
+	public function setArticleFlag( $newVal ) {
+		$this->mIsArticle = $newVal;
+		if ( $newVal ) {
+			$this->mIsArticleRelated = $newVal;
 		}
 	}
 
@@ -1202,19 +1202,19 @@ class OutputPage extends ContextSource {
 	 * @return bool
 	 */
 	public function isArticle() {
-		return $this->mIsarticle;
+		return $this->mIsArticle;
 	}
 
 	/**
 	 * Set whether this page is related an article on the wiki
 	 * Setting false will cause the change of "article flag" toggle to false
 	 *
-	 * @param bool $v
+	 * @param bool $newVal
 	 */
-	public function setArticleRelated( $v ) {
-		$this->mIsArticleRelated = $v;
-		if ( !$v ) {
-			$this->mIsarticle = false;
+	public function setArticleRelated( $newVal ) {
+		$this->mIsArticleRelated = $newVal;
+		if ( !$newVal ) {
+			$this->mIsArticle = false;
 		}
 	}
 
@@ -1264,7 +1264,7 @@ class OutputPage extends ContextSource {
 	public function addCategoryLinks( array $categories ) {
 		global $wgContLang;
 
-		if ( !is_array( $categories ) || count( $categories ) == 0 ) {
+		if ( !$categories ) {
 			return;
 		}
 
@@ -1601,12 +1601,12 @@ class OutputPage extends ContextSource {
 	 * Set the revision ID which will be seen by the wiki text parser
 	 * for things such as embedded {{REVISIONID}} variable use.
 	 *
-	 * @param int|null $revid An positive integer, or null
+	 * @param int|null $revid A positive integer, or null
 	 * @return mixed Previous value
 	 */
 	public function setRevisionId( $revid ) {
 		$val = is_null( $revid ) ? null : intval( $revid );
-		return wfSetVar( $this->mRevisionId, $val );
+		return wfSetVar( $this->mRevisionId, $val, true );
 	}
 
 	/**
@@ -1626,7 +1626,7 @@ class OutputPage extends ContextSource {
 	 * @return mixed Previous value
 	 */
 	public function setRevisionTimestamp( $timestamp ) {
-		return wfSetVar( $this->mRevisionTimestamp, $timestamp );
+		return wfSetVar( $this->mRevisionTimestamp, $timestamp, true );
 	}
 
 	/**
@@ -1642,7 +1642,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set the displayed file version
 	 *
-	 * @param File|bool $file
+	 * @param File|null $file
 	 * @return mixed Previous value
 	 */
 	public function setFileVersion( $file ) {
@@ -1703,10 +1703,10 @@ class OutputPage extends ContextSource {
 	 * Add wikitext with a custom Title object
 	 *
 	 * @param string $text Wikitext
-	 * @param Title &$title
+	 * @param Title $title
 	 * @param bool $linestart Is this the start of a line?
 	 */
-	public function addWikiTextWithTitle( $text, &$title, $linestart = true ) {
+	public function addWikiTextWithTitle( $text, Title $title, $linestart = true ) {
 		$this->addWikiTextTitle( $text, $title, $linestart );
 	}
 
@@ -1714,10 +1714,10 @@ class OutputPage extends ContextSource {
 	 * Add wikitext with a custom Title object and tidy enabled.
 	 *
 	 * @param string $text Wikitext
-	 * @param Title &$title
+	 * @param Title $title
 	 * @param bool $linestart Is this the start of a line?
 	 */
-	function addWikiTextTitleTidy( $text, &$title, $linestart = true ) {
+	function addWikiTextTitleTidy( $text, Title $title, $linestart = true ) {
 		$this->addWikiTextTitle( $text, $title, $linestart, true );
 	}
 
