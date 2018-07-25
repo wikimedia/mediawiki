@@ -1028,40 +1028,47 @@ class MessageCache {
 	 * @return string Either " <MESSAGE>" or "!NONEXISTANT"
 	 */
 	private function loadCachedMessagePageEntry( $dbKey, $code, $hash ) {
-		return $this->wanCache->getWithSetCallback(
-			$this->bigMessageCacheKey( $hash, $dbKey ),
-			$this->mExpiry,
-			function ( $oldValue, &$ttl, &$setOpts ) use ( $dbKey, $code ) {
-				// Try loading the message from the database
-				$dbr = wfGetDB( DB_REPLICA );
-				$setOpts += Database::getCacheSetOptions( $dbr );
-				// Use newKnownCurrent() to avoid querying revision/user tables
-				$title = Title::makeTitle( NS_MEDIAWIKI, $dbKey );
-				$revision = Revision::newKnownCurrent( $dbr, $title );
-				if ( !$revision ) {
-					// The wiki doesn't have a local override page. Cache absence with normal TTL.
-					// When overrides are created, self::replace() takes care of the cache.
-					return '!NONEXISTENT';
-				}
-				$content = $revision->getContent();
-				if ( $content ) {
-					$message = $this->getMessageTextFromContent( $content );
-				} else {
-					LoggerFactory::getInstance( 'MessageCache' )->warning(
-						__METHOD__ . ': failed to load page text for \'{titleKey}\'',
-						[ 'titleKey' => $dbKey, 'code' => $code ]
-					);
-					$message = null;
-				}
+		return $this->srvCache->getWithSetCallback(
+			$this->srvCache->makeKey( 'messages-big', $hash, $dbKey ),
+			IExpiringStore::TTL_MINUTE,
+			function () use ( $code, $dbKey, $hash ) {
+				return $this->wanCache->getWithSetCallback(
+					$this->bigMessageCacheKey( $hash, $dbKey ),
+					$this->mExpiry,
+					function ( $oldValue, &$ttl, &$setOpts ) use ( $dbKey, $code ) {
+						// Try loading the message from the database
+						$dbr = wfGetDB( DB_REPLICA );
+						$setOpts += Database::getCacheSetOptions( $dbr );
+						// Use newKnownCurrent() to avoid querying revision/user tables
+						$title = Title::makeTitle( NS_MEDIAWIKI, $dbKey );
+						$revision = Revision::newKnownCurrent( $dbr, $title );
+						if ( !$revision ) {
+							// The wiki doesn't have a local override page. Cache absence with normal TTL.
+							// When overrides are created, self::replace() takes care of the cache.
+							return '!NONEXISTENT';
+						}
+						$content = $revision->getContent();
+						if ( $content ) {
+							$message = $this->getMessageTextFromContent( $content );
+						} else {
+							LoggerFactory::getInstance( 'MessageCache' )->warning(
+								__METHOD__ . ': failed to load page text for \'{titleKey}\'',
+								[ 'titleKey' => $dbKey, 'code' => $code ]
+							);
+							$message = null;
+						}
 
-				if ( !is_string( $message ) ) {
-					// Revision failed to load Content, or Content is incompatible with wikitext.
-					// Possibly a temporary loading failure.
-					$ttl = 5;
-					return '!NONEXISTENT';
-				}
+						if ( !is_string( $message ) ) {
+							// Revision failed to load Content, or Content is incompatible with wikitext.
+							// Possibly a temporary loading failure.
+							$ttl = 5;
 
-				return ' ' . $message;
+							return '!NONEXISTENT';
+						}
+
+						return ' ' . $message;
+					}
+				);
 			}
 		);
 	}
