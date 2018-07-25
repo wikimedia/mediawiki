@@ -3,7 +3,7 @@ jQuery.i18n
 
 jQuery.i18n is a jQuery based Javascript internationalization library. It helps you to internationalize your web applications easily.
 
-This is a project by Wikimedia foundation's [Language Engineering team](http://wikimediafoundation.org/wiki/Language_Engineering_team) and used in some of the Wikimedia Foundation projects like Universal Language Selector.
+This is a project by Wikimedia foundation's [Language Engineering team](https://www.mediawiki.org/wiki/Wikimedia_Language_engineering) and used in some of the Wikimedia Foundation projects like Universal Language Selector.
 
 The jquery.i18n library uses a json based localization file format, "banana", which is used as the localization file format for  MediaWiki and other projects.
 
@@ -20,7 +20,7 @@ Features
 * Dynamic change of interface language without refreshing a webpage.
 * Nestable grammar, plural, gender support. These constructs can be nested to any arbitrary level for supporting sophisticated message localization
 * Message documentation through special language code ```qqq```
-* Extensible message parser to add or customize magic words in the messages. Example: ```{sitename}``` or ```[[link]]``
+* Extensible message parser to add or customize magic words in the messages. Example: ```{sitename}``` or ```[[link]]```
 
 
 Quick start
@@ -231,7 +231,7 @@ It is also possible to refer messages from an external URL. See below example
 $.i18n().load( {
 	en: {
 		message_hello: 'Hello World',
-    	message_welcome: 'Welcome'
+		message_welcome: 'Welcome'
 	},
 	hi: 'i18n/messages-hi.json', // Messages for Hindi
 	de: 'i18n/messages-de.json'
@@ -244,7 +244,7 @@ Messages for a locale can be also loaded in parts. Example
 $.i18n().load( {
 	en: {
 		message_hello: 'Hello World',
-    	message_welcome: 'Welcome'
+		message_welcome: 'Welcome'
 	}
 } );
 
@@ -273,7 +273,7 @@ $.i18n( 'message-key-sample1' );
 $.i18n( 'message-key-sample1' );
 $.i18n( 'Found $1 {{plural:$1|result|results}}', 10 ); // Message key itself is message text
 $.i18n( 'Showing $1 out of $2 {{plural:$2|result|results}}', 5,100 );
-$.i18n(' User X updated {{gender|his|her}} profile', 'male' );
+$.i18n( 'User X updated {{gender|his|her}} profile', 'male' );
 
 $( '#foo' ).i18n(); // to translate the element matching jquery selector based on data-i18n key
 ```
@@ -299,7 +299,7 @@ Note that if data-i18n contains html markup, that html will not be used as the e
 Examples
 ========
 
-See http://thottingal.in/projects/js/jquery.i18n/demo/
+See https://thottingal.in/projects/js/jquery.i18n/demo/
 
 Message format
 ==============
@@ -327,7 +327,20 @@ $.i18n(message, 4); // This gives "Found 4 results"
 ```
 Note that {{PLURAL:...}} is not case sensitive. It can be {{plural:...}} too.
 
-In case of English, there are only 2 plural forms, but many languages use more than 2 plural forms. All the plural forms can be given in the above syntax, separated by pipe(|)
+In case of English, there are only 2 plural forms, but many languages use more than 2 plural forms. All the plural forms can be given in the above syntax, separated by pipe(|). The number of plural forms for each language is defined in [CLDR](https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html). You need to provide all those plural forms for a language.
+
+For example, English has 2 plural forms and the message format will look like `{{PLURAL:$1|one|other}}`. for Arabic there are 6 plural forms and format will look like `{{PLURAL:$1|zero|one|two|few|many|other}}`.
+
+You cannot skip a plural form from the middle or beginning. However you can skip from end. For example, in arabic, if the message is like
+`{{PLURAL:$1|A|B}}`, for 0, A will be used, for numbers that fall under one,two,few,many,other categories B will be used.
+
+If there is an explicit plural form to be given for a specific number, it is possible with the following syntax
+
+```
+var message = 'Box has {{PLURAL:$1|one egg|$1 eggs|12=a dozen eggs}}.';
+$.i18n(message, 4 ); // Gives "Box has 4 eggs."
+$.i18n(message, 12 ); // Gives "Box has a dozen eggs."
+```
 
 ## Gender
 Similar to plural, depending on gender of placeholders, mostly user names, the syntax changes dynamically. An example in English is "Alice changed her profile picture" and "Bob changed his profile picture". To support this {{GENDER...}} syntax can be used as show in example
@@ -397,13 +410,13 @@ $.extend( $.i18n.parser.emitter, {
 
 This will parse the message
 ```javascript
-$.i18n( '{{link:{{SITENAME}}|http://en.wikipedia.org}}' );
+$.i18n( '{{link:{{SITENAME}}|https://en.wikipedia.org}}' );
 ```
 
 to
 
 ```html
-<a href="http://en.wikipedia.org">Wikipedia</a>
+<a href="https://en.wikipedia.org">Wikipedia</a>
 ```
 
 Message documentation
