@@ -201,6 +201,11 @@ abstract class LockManager {
 	final protected function normalizePathsByType( array $pathsByType ) {
 		$res = [];
 		foreach ( $pathsByType as $type => $paths ) {
+			foreach ( $paths as $path ) {
+				if ( (string)$path === '' ) {
+					throw new InvalidArgumentException( __METHOD__ . ": got empty path." );
+				}
+			}
 			$res[$this->lockTypeMap[$type]] = array_unique( $paths );
 		}
 

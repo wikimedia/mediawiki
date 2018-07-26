@@ -2333,28 +2333,29 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	private function doTestLockCalls() {
 		$backendName = $this->backendClass();
+		$base = $this->backend->getContainerStoragePath( 'test' );
 
 		$paths = [
-			"test1.txt",
-			"test2.txt",
-			"test3.txt",
-			"subdir1",
-			"subdir1", // duplicate
-			"subdir1/test1.txt",
-			"subdir1/test2.txt",
-			"subdir2",
-			"subdir2", // duplicate
-			"subdir2/test3.txt",
-			"subdir2/test4.txt",
-			"subdir2/subdir",
-			"subdir2/subdir/test1.txt",
-			"subdir2/subdir/test2.txt",
-			"subdir2/subdir/test3.txt",
-			"subdir2/subdir/test4.txt",
-			"subdir2/subdir/test5.txt",
-			"subdir2/subdir/sub",
-			"subdir2/subdir/sub/test0.txt",
-			"subdir2/subdir/sub/120-px-file.txt",
+			"$base/test1.txt",
+			"$base/test2.txt",
+			"$base/test3.txt",
+			"$base/subdir1",
+			"$base/subdir1", // duplicate
+			"$base/subdir1/test1.txt",
+			"$base/subdir1/test2.txt",
+			"$base/subdir2",
+			"$base/subdir2", // duplicate
+			"$base/subdir2/test3.txt",
+			"$base/subdir2/test4.txt",
+			"$base/subdir2/subdir",
+			"$base/subdir2/subdir/test1.txt",
+			"$base/subdir2/subdir/test2.txt",
+			"$base/subdir2/subdir/test3.txt",
+			"$base/subdir2/subdir/test4.txt",
+			"$base/subdir2/subdir/test5.txt",
+			"$base/subdir2/subdir/sub",
+			"$base/subdir2/subdir/sub/test0.txt",
+			"$base/subdir2/subdir/sub/120-px-file.txt",
 		];
 
 		for ( $i = 0; $i < 25; $i++ ) {
