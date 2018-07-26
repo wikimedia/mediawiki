@@ -236,36 +236,6 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Test, if for all rights a right- message exist,
-	 * which is used on Special:ListGroupRights as help text
-	 * Extensions and core
-	 *
-	 * @coversNothing
-	 */
-	public function testAllRightsWithMessage() {
-		// Getting all user rights, for core: User::$mCoreRights, for extensions: $wgAvailableRights
-		$allRights = User::getAllRights();
-		$allMessageKeys = Language::getMessageKeysFor( 'en' );
-
-		$rightsWithMessage = [];
-		foreach ( $allMessageKeys as $message ) {
-			// === 0: must be at beginning of string (position 0)
-			if ( strpos( $message, 'right-' ) === 0 ) {
-				$rightsWithMessage[] = substr( $message, strlen( 'right-' ) );
-			}
-		}
-
-		sort( $allRights );
-		sort( $rightsWithMessage );
-
-		$this->assertEquals(
-			$allRights,
-			$rightsWithMessage,
-			'Each user rights (core/extensions) has a corresponding right- message.'
-		);
-	}
-
-	/**
 	 * Test User::editCount
 	 * @group medium
 	 * @covers User::getEditCount
