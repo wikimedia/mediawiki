@@ -966,7 +966,7 @@ class DifferenceEngine extends ContextSource {
 			wfDeprecated( "\$wgExternalDiffEngine = '{$wgExternalDiffEngine}'", '1.27' );
 			$wgExternalDiffEngine = false;
 		} elseif ( $wgExternalDiffEngine == 'wikidiff2' ) {
-			// Same as above, but with no deprecation warnings
+			wfDeprecated( "\$wgExternalDiffEngine = '{$wgExternalDiffEngine}'", '1.32' );
 			$wgExternalDiffEngine = false;
 		} elseif ( !is_string( $wgExternalDiffEngine ) && $wgExternalDiffEngine !== false ) {
 			// And prevent people from shooting themselves in the foot...
