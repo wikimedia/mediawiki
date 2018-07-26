@@ -58,11 +58,11 @@ class MWGrants {
 		// Give grep a chance to find the usages:
 		// grant-blockusers, grant-createeditmovepage, grant-delete,
 		// grant-editinterface, grant-editmycssjs, grant-editmywatchlist,
-		// grant-editpage, grant-editprotected, grant-highvolume,
-		// grant-oversight, grant-patrol, grant-protect, grant-rollback,
-		// grant-sendemail, grant-uploadeditmovefile, grant-uploadfile,
-		// grant-basic, grant-viewdeleted, grant-viewmywatchlist,
-		// grant-createaccount
+		// grant-editsiteconfig, grant-editpage, grant-editprotected,
+		// grant-highvolume, grant-oversight, grant-patrol, grant-protect,
+		// grant-rollback, grant-sendemail, grant-uploadeditmovefile,
+		// grant-uploadfile, grant-basic, grant-viewdeleted,
+		// grant-viewmywatchlist, grant-createaccount
 		$msg = wfMessage( "grant-$grant" );
 		if ( $lang !== null ) {
 			if ( is_string( $lang ) ) {
