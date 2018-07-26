@@ -679,11 +679,11 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 *
 	 * @see docs/pageupdater.txt for more information on when thie method can and should be called.
 	 *
-	 * @note: Calling this method more than once with the same $slotsUpdate
+	 * @note Calling this method more than once with the same $slotsUpdate
 	 * has no effect. Calling this method multiple times with different content will cause
 	 * an exception.
 	 *
-	 * @note: Calling this method after prepareUpdate() has been called will cause an exception.
+	 * @note Calling this method after prepareUpdate() has been called will cause an exception.
 	 *
 	 * @param User $user The user to act as context for pre-save transformation (PST).
 	 *        Type hint should be reduced to UserIdentity at some point.
@@ -826,7 +826,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	/**
 	 * Whether the edit created, or should create, a new revision (that is, it's not a null-edit).
 	 *
-	 * @warning: at present, "null-revisions" that do not change content but do have a revision
+	 * @warning at present, "null-revisions" that do not change content but do have a revision
 	 * record would return false after prepareContent(), but true after prepareUpdate()!
 	 * This should probably be fixed.
 	 *
@@ -931,11 +931,11 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 *
 	 * @see docs/pageupdater.txt for more information on when thie method can and should be called.
 	 *
-	 * @note: Calling this method more than once with the same revision has no effect.
+	 * @note Calling this method more than once with the same revision has no effect.
 	 * $options are only used for the first call. Calling this method multiple times with
 	 * different revisions will cause an exception.
 	 *
-	 * @note: If grabCurrentRevision() (or prepareContent()) has been called before
+	 * @note If grabCurrentRevision() (or prepareContent()) has been called before
 	 * calling this method, $revision->getParentRevision() has to refer to the revision that
 	 * was the current revision at the time grabCurrentRevision() was called.
 	 *

@@ -359,7 +359,7 @@ class Status extends StatusValue {
 	/**
 	 * Returns a list of status messages of the given type (or all if false)
 	 *
-	 * @note: this handles RawMessage poorly
+	 * @note this handles RawMessage poorly
 	 *
 	 * @param string|bool $type
 	 * @return array

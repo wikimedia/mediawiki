@@ -94,7 +94,7 @@ abstract class DBLockManager extends QuorumLockManager {
 	}
 
 	/**
-	 * @TODO change this code to work in one batch
+	 * @todo change this code to work in one batch
 	 * @param string $lockSrv
 	 * @param array $pathsByType
 	 * @return StatusValue

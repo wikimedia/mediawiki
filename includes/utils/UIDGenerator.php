@@ -84,7 +84,7 @@ class UIDGenerator {
 	}
 
 	/**
-	 * @todo: move to MW-specific factory class and inject temp dir
+	 * @todo move to MW-specific factory class and inject temp dir
 	 * @return UIDGenerator
 	 */
 	protected static function singleton() {

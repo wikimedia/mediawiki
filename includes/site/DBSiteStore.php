@@ -45,7 +45,7 @@ class DBSiteStore implements SiteStore {
 	/**
 	 * @since 1.27
 	 *
-	 * @todo: inject some kind of connection manager that is aware of the target wiki,
+	 * @todo inject some kind of connection manager that is aware of the target wiki,
 	 * instead of injecting a LoadBalancer.
 	 *
 	 * @param LoadBalancer $dbLoadBalancer

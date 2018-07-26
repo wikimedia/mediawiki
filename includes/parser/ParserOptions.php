@@ -666,7 +666,7 @@ class ParserOptions {
 	/**
 	 * Get the user language used by the parser for this page and split the parser cache.
 	 *
-	 * @warning: Calling this causes the parser cache to be fragmented by user language!
+	 * @warning Calling this causes the parser cache to be fragmented by user language!
 	 * To avoid cache fragmentation, output should not depend on the user language.
 	 * Use Parser::getFunctionLang() or Parser::getTargetLanguage() instead!
 	 *
@@ -687,7 +687,7 @@ class ParserOptions {
 	/**
 	 * Same as getUserLangObj() but returns a string instead.
 	 *
-	 * @warning: Calling this causes the parser cache to be fragmented by user language!
+	 * @warning Calling this causes the parser cache to be fragmented by user language!
 	 * To avoid cache fragmentation, output should not depend on the user language.
 	 * Use Parser::getFunctionLang() or Parser::getTargetLanguage() instead!
 	 *
