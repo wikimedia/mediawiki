@@ -2629,6 +2629,15 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.widgets.CheckMatrixWidget' => [
+		'scripts' => [
+			'resources/src/mediawiki.widgets/mw.widgets.CheckMatrixWidget.js',
+		],
+		'dependencies' => [
+			'oojs-ui-core',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.widgets.CategoryMultiselectWidget' => [
 		'scripts' => [
 			'resources/src/mediawiki.widgets/mw.widgets.CategoryTagItemWidget.js',

@@ -926,6 +926,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Site\\MediaWikiPageNameNormalizer' => __DIR__ . '/includes/site/MediaWikiPageNameNormalizer.php',
 	'MediaWiki\\User\\UserIdentity' => __DIR__ . '/includes/user/UserIdentity.php',
 	'MediaWiki\\User\\UserIdentityValue' => __DIR__ . '/includes/user/UserIdentityValue.php',
+	'MediaWiki\\Widget\\CheckMatrixWidget' => __DIR__ . '/includes/widget/CheckMatrixWidget.php',
 	'MediaWiki\\Widget\\ComplexNamespaceInputWidget' => __DIR__ . '/includes/widget/ComplexNamespaceInputWidget.php',
 	'MediaWiki\\Widget\\ComplexTitleInputWidget' => __DIR__ . '/includes/widget/ComplexTitleInputWidget.php',
 	'MediaWiki\\Widget\\DateInputWidget' => __DIR__ . '/includes/widget/DateInputWidget.php',
