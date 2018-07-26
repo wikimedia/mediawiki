@@ -64,6 +64,8 @@ production.
 * Added new 'OutputPageAfterGetHeadLinksArray' hook, allowing extensions to
   modify the return value of OutputPage#getHeadLinksArray in order to add,
   remove or otherwise alter the elements to be output in the page <head>.
+* (T28934) The 'HistoryPageToolLinks' hook allows extensions to append
+  additional links to the subtitle of a history page.
 
 === External library changes in 1.32 ===
 * …
