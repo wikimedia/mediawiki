@@ -115,10 +115,9 @@ return [
 	},
 
 	'InterwikiLookup' => function ( MediaWikiServices $services ) {
-		global $wgContLang; // TODO: manage $wgContLang as a service
 		$config = $services->getMainConfig();
 		return new ClassicInterwikiLookup(
-			$wgContLang,
+			$services->getContentLanguage(),
 			$services->getMainWANObjectCache(),
 			$config->get( 'InterwikiExpiry' ),
 			$config->get( 'InterwikiCache' ),
@@ -150,8 +149,8 @@ return [
 	},
 
 	'SearchEngineConfig' => function ( MediaWikiServices $services ) {
-		global $wgContLang;
-		return new SearchEngineConfig( $services->getMainConfig(), $wgContLang );
+		return new SearchEngineConfig( $services->getMainConfig(),
+			$services->getContentLanguage() );
 	},
 
 	'SkinFactory' => function ( MediaWikiServices $services ) {
@@ -345,10 +344,8 @@ return [
 	},
 
 	'_MediaWikiTitleCodec' => function ( MediaWikiServices $services ) {
-		global $wgContLang;
-
 		return new MediaWikiTitleCodec(
-			$wgContLang,
+			$services->getContentLanguage(),
 			$services->getGenderCache(),
 			$services->getMainConfig()->get( 'LocalInterwikis' )
 		);
@@ -508,12 +505,11 @@ return [
 	},
 
 	'BlobStoreFactory' => function ( MediaWikiServices $services ) {
-		global $wgContLang;
 		return new BlobStoreFactory(
 			$services->getDBLoadBalancer(),
 			$services->getMainWANObjectCache(),
 			$services->getMainConfig(),
-			$wgContLang
+			$services->getContentLanguage()
 		);
 	},
 
@@ -573,11 +569,11 @@ return [
 	},
 
 	'PreferencesFactory' => function ( MediaWikiServices $services ) {
-		global $wgContLang;
 		$authManager = AuthManager::singleton();
 		$linkRenderer = $services->getLinkRendererFactory()->create();
 		$config = $services->getMainConfig();
-		$factory = new DefaultPreferencesFactory( $config, $wgContLang, $authManager, $linkRenderer );
+		$factory = new DefaultPreferencesFactory( $config, $services->getContentLanguage(),
+			$authManager, $linkRenderer );
 		$factory->setLogger( LoggerFactory::getInstance( 'preferences' ) );
 
 		return $factory;
@@ -588,9 +584,8 @@ return [
 	},
 
 	'CommentStore' => function ( MediaWikiServices $services ) {
-		global $wgContLang;
 		return new CommentStore(
-			$wgContLang,
+			$services->getContentLanguage(),
 			$services->getMainConfig()->get( 'CommentTableSchemaMigrationStage' )
 		);
 	},
@@ -602,8 +597,7 @@ return [
 	},
 
 	'MagicWordFactory' => function ( MediaWikiServices $services ) {
-		global $wgContLang;
-		return new MagicWordFactory( $wgContLang );
+		return new MagicWordFactory( $services->getContentLanguage() );
 	},
 
 	'ContentLanguage' => function ( MediaWikiServices $services ) {
