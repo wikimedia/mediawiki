@@ -17,7 +17,8 @@
  *  just that it was. If you want to change this, you can set $wgImgAuthDetails to 'true'
  *  in localsettings.php and it will give the user the reason why access was denied.
  *
- * Your server needs to support PATH_INFO; CGI-based configurations usually don't.
+ * Your server needs to support REQUEST_URI or PATH_INFO; CGI-based
+ * configurations sometimes don't.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
