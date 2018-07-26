@@ -306,6 +306,10 @@ class Title implements LinkTarget {
 	public static function newFromTextThrow( $text, $defaultNamespace = NS_MAIN ) {
 		if ( is_object( $text ) ) {
 			throw new MWException( '$text must be a string, given an object' );
+		} elseif ( $text === null ) {
+			// Legacy code relies on MalformedTitleException being thrown in this case
+			// (happens when URL with no title in it is parsed). TODO fix
+			throw new MalformedTitleException( 'title-invalid-empty' );
 		}
 
 		$titleCache = self::getTitleCache();
