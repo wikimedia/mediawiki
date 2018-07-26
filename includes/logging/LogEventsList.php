@@ -273,6 +273,7 @@ class LogEventsList extends ContextSource {
 			'class' => 'HTMLUserTextField',
 			'label-message' => 'specialloguserlabel',
 			'name' => 'user',
+			'default' => $user,
 		];
 	}
 
