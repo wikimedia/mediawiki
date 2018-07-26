@@ -11,6 +11,7 @@ class WfExpandUrlTest extends MediaWikiTestCase {
 		$server, $canServer, $httpsMode, $httpsPort, $message
 	) {
 		// Fake $wgServer, $wgCanonicalServer and $wgRequest->getProtocol()
+		// fake edit to fake globals
 		$this->setMwGlobals( [
 			'wgServer' => $server,
 			'wgCanonicalServer' => $canServer,
