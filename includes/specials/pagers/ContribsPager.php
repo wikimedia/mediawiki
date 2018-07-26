@@ -407,6 +407,32 @@ class ContribsPager extends RangeChronologicalPager {
 	}
 
 	/**
+	 * Check whether the revision associated is valid for formatting. If has no associated revision
+	 * id then null is returned.
+	 *
+	 * @param object $row
+	 * @return Revision|null
+	 */
+	public function tryToCreateValidRevision( $row ) {
+		/*
+		 * There may be more than just revision rows. To make sure that we'll only be processing
+		 * revisions here, let's _try_ to build a revision out of our row (without displaying
+		 * notices though) and then trying to grab data from the built object. If we succeed,
+		 * we're definitely dealing with revision data and we may proceed, if not, we'll leave it
+		 * to extensions to subscribe to the hook to parse the row.
+		 */
+		Wikimedia\suppressWarnings();
+		try {
+			$rev = new Revision( $row );
+			$validRevision = (bool)$rev->getId();
+		} catch ( Exception $e ) {
+			$validRevision = false;
+		}
+		Wikimedia\restoreWarnings();
+		return $validRevision ? $rev : null;
+	}
+
+	/**
 	 * Generates each row in the contributions list.
 	 *
 	 * Contributions which are marked "top" are currently on top of the history.
@@ -425,23 +451,8 @@ class ContribsPager extends RangeChronologicalPager {
 
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
-		/*
-		 * There may be more than just revision rows. To make sure that we'll only be processing
-		 * revisions here, let's _try_ to build a revision out of our row (without displaying
-		 * notices though) and then trying to grab data from the built object. If we succeed,
-		 * we're definitely dealing with revision data and we may proceed, if not, we'll leave it
-		 * to extensions to subscribe to the hook to parse the row.
-		 */
-		Wikimedia\suppressWarnings();
-		try {
-			$rev = new Revision( $row );
-			$validRevision = (bool)$rev->getId();
-		} catch ( Exception $e ) {
-			$validRevision = false;
-		}
-		Wikimedia\restoreWarnings();
-
-		if ( $validRevision ) {
+		$rev = $this->tryToCreateValidRevision( $row );
+		if ( $rev ) {
 			$attribs['data-mw-revid'] = $rev->getId();
 
 			$page = Title::newFromRow( $row );
