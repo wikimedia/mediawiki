@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use DumpBackup;
-use Language;
 use Title;
 use WikiExporter;
 use WikiPage;
@@ -30,10 +29,7 @@ class BackupDumperPageTest extends DumpTestCase {
 
 	function addDBData() {
 		// be sure, titles created here using english namespace names
-		$this->setMwGlobals( [
-			'wgLanguageCode' => 'en',
-			'wgContLang' => Language::factory( 'en' ),
-		] );
+		$this->setContentLang( 'en' );
 
 		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'revision';

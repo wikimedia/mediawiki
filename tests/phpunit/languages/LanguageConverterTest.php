@@ -9,9 +9,9 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		$this->setContentLang( 'tg' );
+
 		$this->setMwGlobals( [
-			'wgContLang' => Language::factory( 'tg' ),
-			'wgLanguageCode' => 'tg',
 			'wgDefaultLanguageVariant' => false,
 			'wgRequest' => new FauxRequest( [] ),
 			'wgUser' => new User,

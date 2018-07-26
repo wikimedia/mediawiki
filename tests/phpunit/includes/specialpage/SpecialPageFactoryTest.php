@@ -105,7 +105,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	 * @covers SpecialPageFactory::resolveAlias
 	 */
 	public function testResolveAlias() {
-		$this->setMwGlobals( 'wgContLang', Language::factory( 'de' ) );
+		$this->setContentLang( 'de' );
 		SpecialPageFactory::resetList();
 
 		list( $name, $param ) = SpecialPageFactory::resolveAlias( 'Spezialseiten/Foo' );
@@ -117,7 +117,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	 * @covers SpecialPageFactory::getLocalNameFor
 	 */
 	public function testGetLocalNameFor() {
-		$this->setMwGlobals( 'wgContLang', Language::factory( 'de' ) );
+		$this->setContentLang( 'de' );
 		SpecialPageFactory::resetList();
 
 		$name = SpecialPageFactory::getLocalNameFor( 'Specialpages', 'Foo' );
@@ -128,7 +128,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	 * @covers SpecialPageFactory::getTitleForAlias
 	 */
 	public function testGetTitleForAlias() {
-		$this->setMwGlobals( 'wgContLang', Language::factory( 'de' ) );
+		$this->setContentLang( 'de' );
 		SpecialPageFactory::resetList();
 
 		$title = SpecialPageFactory::getTitleForAlias( 'Specialpages/Foo' );
@@ -145,7 +145,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 		global $wgContLang;
 		$lang = clone $wgContLang;
 		$lang->mExtendedSpecialPageAliases = $aliasesList;
-		$this->setMwGlobals( 'wgContLang', $lang );
+		$this->setContentLang( $lang );
 		$this->setMwGlobals( 'wgSpecialPages',
 			array_combine( array_keys( $aliasesList ), array_keys( $aliasesList ) )
 		);

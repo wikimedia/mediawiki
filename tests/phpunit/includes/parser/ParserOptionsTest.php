@@ -47,10 +47,10 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		$wgLang = Language::factory( 'fr' );
 		$wgContLang = Language::factory( 'qqx' );
 
+		$this->setContentLang( $wgContLang );
 		$this->setMwGlobals( [
 			'wgUser' => $wgUser,
 			'wgLang' => $wgLang,
-			'wgContLang' => $wgContLang,
 		] );
 
 		$user = $this->getMutableTestUser()->getUser();

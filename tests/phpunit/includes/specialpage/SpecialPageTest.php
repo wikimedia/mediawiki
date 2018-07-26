@@ -12,9 +12,9 @@ class SpecialPageTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		$this->setContentLang( 'en' );
 		$this->setMwGlobals( [
 			'wgScript' => '/index.php',
-			'wgContLang' => Language::factory( 'en' )
 		] );
 	}
 
