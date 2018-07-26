@@ -283,6 +283,10 @@ because of Phabricator reports.
   Set $wgShowExceptionDetails and/or $wgShowHostnames instead.
 * The $wgShowDBErrorBacktrace global is deprecated and nonfunctional.
   Set $wgShowExceptionDetails instead.
+* Public access to the DifferenceEngine properties mOldid, mNewid, mOldPage,
+  mNewPage, mOldContent, mNewContent, mRevisionsLoaded, mTextLoaded and
+  mCacheHit is deprecated. Use getOldid() / getNewid() for the first two,
+  do your own lookup for page/content. mNewRev / mOldRev remains public.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
