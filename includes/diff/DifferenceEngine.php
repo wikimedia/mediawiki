@@ -1015,6 +1015,34 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
+	 * Get the diff table body for one slot, without header
+	 *
+	 * @param string $role
+	 * @return string|false
+	 */
+	public function getDiffBodyForRole( $role ) {
+		$diffRenderers = $this->getSlotDiffRenderers();
+		if ( !isset( $diffRenderers[$role] ) ) {
+			return false;
+		}
+
+		$slotContents = $this->getSlotContents();
+		$slotDiff = $diffRenderers[$role]->getDiff( $slotContents[$role]['old'],
+			$slotContents[$role]['new'] );
+		if ( !$slotDiff ) {
+			return false;
+		}
+
+		if ( $role !== 'main' ) {
+			// TODO use human-readable role name at least
+			$slotTitle = $role;
+			$slotDiff = $this->getSlotHeader( $slotTitle ) . $slotDiff;
+		}
+
+		return $this->localiseDiff( $slotDiff );
+	}
+
+	/**
 	 * Get a slot header for inclusion in a diff body (as a table row).
 	 *
 	 * @param string $headerText The text of the header

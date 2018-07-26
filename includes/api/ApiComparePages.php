@@ -19,141 +19,136 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\MutableRevisionRecord;
+use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\RevisionStore;
+
 class ApiComparePages extends ApiBase {
 
-	private $guessed = false, $guessedTitle, $guessedModel, $props;
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	private $guessedTitle = false, $props;
+
+	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
+		parent::__construct( $mainModule, $moduleName, $modulePrefix );
+		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+	}
 
 	public function execute() {
 		$params = $this->extractRequestParams();
 
 		// Parameter validation
-		$this->requireAtLeastOneParameter( $params, 'fromtitle', 'fromid', 'fromrev', 'fromtext' );
-		$this->requireAtLeastOneParameter( $params, 'totitle', 'toid', 'torev', 'totext', 'torelative' );
+		$this->requireAtLeastOneParameter(
+			$params, 'fromtitle', 'fromid', 'fromrev', 'fromtext', 'fromslots'
+		);
+		$this->requireAtLeastOneParameter(
+			$params, 'totitle', 'toid', 'torev', 'totext', 'torelative', 'toslots'
+		);
 
 		$this->props = array_flip( $params['prop'] );
 
 		// Cache responses publicly by default. This may be overridden later.
 		$this->getMain()->setCacheMode( 'public' );
 
-		// Get the 'from' Revision and Content
-		list( $fromRev, $fromContent, $relRev ) = $this->getDiffContent( 'from', $params );
+		// Get the 'from' RevisionRecord
+		list( $fromRev, $fromRelRev, $fromValsRev ) = $this->getDiffRevision( 'from', $params );
 
-		// Get the 'to' Revision and Content
+		// Get the 'to' RevisionRecord
 		if ( $params['torelative'] !== null ) {
-			if ( !$relRev ) {
+			if ( !$fromRelRev ) {
 				$this->dieWithError( 'apierror-compare-relative-to-nothing' );
 			}
 			switch ( $params['torelative'] ) {
 				case 'prev':
 					// Swap 'from' and 'to'
-					$toRev = $fromRev;
-					$toContent = $fromContent;
-					$fromRev = $relRev->getPrevious();
-					$fromContent = $fromRev
-						? $fromRev->getContent( Revision::FOR_THIS_USER, $this->getUser() )
-						: $toContent->getContentHandler()->makeEmptyContent();
-					if ( !$fromContent ) {
-						$this->dieWithError(
-							[ 'apierror-missingcontent-revid', $fromRev->getId() ], 'missingcontent'
-						);
-					}
+					list( $toRev, $toRelRev2, $toValsRev ) = [ $fromRev, $fromRelRev, $fromValsRev ];
+					$fromRev = $this->revisionStore->getPreviousRevision( $fromRelRev );
+					$fromRelRev = $fromRev;
+					$fromValsRev = $fromRev;
 					break;
 
 				case 'next':
-					$toRev = $relRev->getNext();
-					$toContent = $toRev
-						? $toRev->getContent( Revision::FOR_THIS_USER, $this->getUser() )
-						: $fromContent;
-					if ( !$toContent ) {
-						$this->dieWithError( [ 'apierror-missingcontent-revid', $toRev->getId() ], 'missingcontent' );
-					}
+					$toRev = $this->revisionStore->getNextRevision( $fromRelRev );
+					$toRelRev = $toRev;
+					$toValsRev = $toRev;
 					break;
 
 				case 'cur':
-					$title = $relRev->getTitle();
-					$id = $title->getLatestRevID();
-					$toRev = $id ? Revision::newFromId( $id ) : null;
+					$title = $fromRelRev->getPageAsLinkTarget();
+					$toRev = $this->revisionStore->getRevisionByTitle( $title );
 					if ( !$toRev ) {
+						$title = Title::newFromLinkTarget( $title );
 						$this->dieWithError(
 							[ 'apierror-missingrev-title', wfEscapeWikiText( $title->getPrefixedText() ) ], 'nosuchrevid'
 						);
 					}
-					$toContent = $toRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
-					if ( !$toContent ) {
-						$this->dieWithError( [ 'apierror-missingcontent-revid', $toRev->getId() ], 'missingcontent' );
-					}
+					$toRelRev = $toRev;
+					$toValsRev = $toRev;
 					break;
 			}
-			$relRev2 = null;
 		} else {
-			list( $toRev, $toContent, $relRev2 ) = $this->getDiffContent( 'to', $params );
+			list( $toRev, $toRelRev, $toValsRev ) = $this->getDiffRevision( 'to', $params );
 		}
 
-		// Should never happen, but just in case...
-		if ( !$fromContent || !$toContent ) {
+		// Handle missing from or to revisions
+		if ( !$fromRev || !$toRev ) {
 			$this->dieWithError( 'apierror-baddiff' );
 		}
 
-		// Extract sections, if told to
-		if ( isset( $params['fromsection'] ) ) {
-			$fromContent = $fromContent->getSection( $params['fromsection'] );
-			if ( !$fromContent ) {
-				$this->dieWithError(
-					[ 'apierror-compare-nosuchfromsection', wfEscapeWikiText( $params['fromsection'] ) ],
-					'nosuchfromsection'
-				);
-			}
+		// Handle revdel
+		if ( !$fromRev->audienceCan(
+			RevisionRecord::DELETED_TEXT, RevisionRecord::FOR_THIS_USER, $this->getUser()
+		) ) {
+			$this->dieWithError( [ 'apierror-missingcontent-revid', $fromRev->getId() ], 'missingcontent' );
 		}
-		if ( isset( $params['tosection'] ) ) {
-			$toContent = $toContent->getSection( $params['tosection'] );
-			if ( !$toContent ) {
-				$this->dieWithError(
-					[ 'apierror-compare-nosuchtosection', wfEscapeWikiText( $params['tosection'] ) ],
-					'nosuchtosection'
-				);
-			}
+		if ( !$toRev->audienceCan(
+			RevisionRecord::DELETED_TEXT, RevisionRecord::FOR_THIS_USER, $this->getUser()
+		) ) {
+			$this->dieWithError( [ 'apierror-missingcontent-revid', $toRev->getId() ], 'missingcontent' );
 		}
 
 		// Get the diff
 		$context = new DerivativeContext( $this->getContext() );
-		if ( $relRev && $relRev->getTitle() ) {
-			$context->setTitle( $relRev->getTitle() );
-		} elseif ( $relRev2 && $relRev2->getTitle() ) {
-			$context->setTitle( $relRev2->getTitle() );
+		if ( $fromRelRev && $fromRelRev->getPageAsLinkTarget() ) {
+			$context->setTitle( Title::newFromLinkTarget( $fromRelRev->getPageAsLinkTarget() ) );
+		} elseif ( $toRelRev && $toRelRev->getPageAsLinkTarget() ) {
+			$context->setTitle( Title::newFromLinkTarget( $toRelRev->getPageAsLinkTarget() ) );
 		} else {
-			$this->guessTitleAndModel();
-			if ( $this->guessedTitle ) {
-				$context->setTitle( $this->guessedTitle );
+			$guessedTitle = $this->guessTitle();
+			if ( $guessedTitle ) {
+				$context->setTitle( $guessedTitle );
 			}
 		}
-		$de = $fromContent->getContentHandler()->createDifferenceEngine(
-			$context,
-			$fromRev ? $fromRev->getId() : 0,
-			$toRev ? $toRev->getId() : 0,
-			/* $rcid = */ null,
-			/* $refreshCache = */ false,
-			/* $unhide = */ true
-		);
-		$de->setContent( $fromContent, $toContent );
-		$difftext = $de->getDiffBody();
-		if ( $difftext === false ) {
-			$this->dieWithError( 'apierror-baddiff' );
+		$de = new DifferenceEngine( $context );
+		$de->setRevisions( $fromRev, $toRev );
+		if ( $params['slots'] === null ) {
+			$difftext = $de->getDiffBody();
+			if ( $difftext === false ) {
+				$this->dieWithError( 'apierror-baddiff' );
+			}
+		} else {
+			$difftext = [];
+			foreach ( $params['slots'] as $role ) {
+				$difftext[$role] = $de->getDiffBodyForRole( $role );
+			}
 		}
 
 		// Fill in the response
 		$vals = [];
-		$this->setVals( $vals, 'from', $fromRev );
-		$this->setVals( $vals, 'to', $toRev );
+		$this->setVals( $vals, 'from', $fromValsRev );
+		$this->setVals( $vals, 'to', $toValsRev );
 
 		if ( isset( $this->props['rel'] ) ) {
-			if ( $fromRev ) {
-				$rev = $fromRev->getPrevious();
+			if ( !$fromRev instanceof MutableRevisionRecord ) {
+				$rev = $this->revisionStore->getPreviousRevision( $fromRev );
 				if ( $rev ) {
 					$vals['prev'] = $rev->getId();
 				}
 			}
-			if ( $toRev ) {
-				$rev = $toRev->getNext();
+			if ( !$toRev instanceof MutableRevisionRecord ) {
+				$rev = $this->revisionStore->getNextRevision( $toRev );
 				if ( $rev ) {
 					$vals['next'] = $rev->getId();
 				}
@@ -161,10 +156,18 @@ class ApiComparePages extends ApiBase {
 		}
 
 		if ( isset( $this->props['diffsize'] ) ) {
-			$vals['diffsize'] = strlen( $difftext );
+			$vals['diffsize'] = 0;
+			foreach ( (array)$difftext as $text ) {
+				$vals['diffsize'] += strlen( $text );
+			}
 		}
 		if ( isset( $this->props['diff'] ) ) {
-			ApiResult::setContentValue( $vals, 'body', $difftext );
+			if ( is_array( $difftext ) ) {
+				ApiResult::setArrayType( $difftext, 'kvp', 'diff' );
+				$vals['bodies'] = $difftext;
+			} else {
+				ApiResult::setContentValue( $vals, 'body', $difftext );
+			}
 		}
 
 		// Diffs can be really big and there's little point in having
@@ -174,49 +177,55 @@ class ApiComparePages extends ApiBase {
 	}
 
 	/**
-	 * Guess an appropriate default Title and content model for this request
+	 * Load a revision by ID
 	 *
-	 * Fills in $this->guessedTitle based on the first of 'fromrev',
-	 * 'fromtitle', 'fromid', 'torev', 'totitle', and 'toid' that's present and
-	 * valid.
+	 * Falls back to checking the archive table if appropriate.
 	 *
-	 * Fills in $this->guessedModel based on the Revision or Title used to
-	 * determine $this->guessedTitle, or the 'fromcontentmodel' or
-	 * 'tocontentmodel' parameters if no title was guessed.
+	 * @param int $id
+	 * @return RevisionRecord|null
 	 */
-	private function guessTitleAndModel() {
-		if ( $this->guessed ) {
-			return;
+	private function getRevisionById( $id ) {
+		$rev = $this->revisionStore->getRevisionById( $id );
+		if ( !$rev && $this->getUser()->isAllowedAny( 'deletedtext', 'undelete' ) ) {
+			// Try the 'archive' table
+			$arQuery = $this->revisionStore->getArchiveQueryInfo();
+			$row = $this->getDB()->selectRow(
+				$arQuery['tables'],
+				array_merge(
+					$arQuery['fields'],
+					[ 'ar_namespace', 'ar_title' ]
+				),
+				[ 'ar_rev_id' => $id ],
+				__METHOD__,
+				[],
+				$arQuery['joins']
+			);
+			if ( $row ) {
+				$rev = $this->revisionStore->newRevisionFromArchiveRow( $row );
+				$rev->isArchive = true;
+			}
+		}
+		return $rev;
+	}
+
+	/**
+	 * Guess an appropriate default Title for this request
+	 *
+	 * @return Title|null
+	 */
+	private function guessTitle() {
+		if ( $this->guessedTitle !== false ) {
+			return $this->guessedTitle;
 		}
 
-		$this->guessed = true;
+		$this->guessedTitle = null;
 		$params = $this->extractRequestParams();
 
 		foreach ( [ 'from', 'to' ] as $prefix ) {
 			if ( $params["{$prefix}rev"] !== null ) {
-				$revId = $params["{$prefix}rev"];
-				$rev = Revision::newFromId( $revId );
-				if ( !$rev ) {
-					// Titles of deleted revisions aren't secret, per T51088
-					$arQuery = Revision::getArchiveQueryInfo();
-					$row = $this->getDB()->selectRow(
-						$arQuery['tables'],
-						array_merge(
-							$arQuery['fields'],
-							[ 'ar_namespace', 'ar_title' ]
-						),
-						[ 'ar_rev_id' => $revId ],
-						__METHOD__,
-						[],
-						$arQuery['joins']
-					);
-					if ( $row ) {
-						$rev = Revision::newFromArchiveRow( $row );
-					}
-				}
+				$rev = $this->getRevisionById( $params["{$prefix}rev"] );
 				if ( $rev ) {
-					$this->guessedTitle = $rev->getTitle();
-					$this->guessedModel = $rev->getContentModel();
+					$this->guessedTitle = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
 					break;
 				}
 			}
@@ -238,38 +247,84 @@ class ApiComparePages extends ApiBase {
 			}
 		}
 
-		if ( !$this->guessedModel ) {
-			if ( $this->guessedTitle ) {
-				$this->guessedModel = $this->guessedTitle->getContentModel();
-			} elseif ( $params['fromcontentmodel'] !== null ) {
-				$this->guessedModel = $params['fromcontentmodel'];
-			} elseif ( $params['tocontentmodel'] !== null ) {
-				$this->guessedModel = $params['tocontentmodel'];
-			}
-		}
+		return $this->guessedTitle;
 	}
 
 	/**
-	 * Get the Revision and Content for one side of the diff
+	 * Guess an appropriate default content model for this request
+	 * @param string $role Slot for which to guess the model
+	 * @return string|null Guessed content model
+	 */
+	private function guessModel( $role ) {
+		$params = $this->extractRequestParams();
+
+		$title = null;
+		foreach ( [ 'from', 'to' ] as $prefix ) {
+			if ( $params["{$prefix}rev"] !== null ) {
+				$rev = $this->getRevisionById( $params["{$prefix}rev"] );
+				if ( $rev ) {
+					if ( $rev->hasSlot( $role ) ) {
+						return $rev->getSlot( $role, RevisionRecord::RAW )->getModel();
+					}
+				}
+			}
+		}
+
+		$guessedTitle = $this->guessTitle();
+		if ( $guessedTitle && $role === 'main' ) {
+			// @todo: Use SlotRoleRegistry and do this for all slots
+			return $guessedTitle->getContentModel();
+		}
+
+		if ( isset( $params["fromcontentmodel-$role"] ) ) {
+			return $params["fromcontentmodel-$role"];
+		}
+		if ( isset( $params["tocontentmodel-$role"] ) ) {
+			return $params["tocontentmodel-$role"];
+		}
+
+		if ( $role === 'main' ) {
+			if ( isset( $params['fromcontentmodel'] ) ) {
+				return $params['fromcontentmodel'];
+			}
+			if ( isset( $params['tocontentmodel'] ) ) {
+				return $params['tocontentmodel'];
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Get the RevisionRecord for one side of the diff
 	 *
-	 * This uses the appropriate set of 'rev', 'id', 'title', 'text', 'pst',
-	 * 'contentmodel', and 'contentformat' parameters to determine what content
+	 * This uses the appropriate set of parameters to determine what content
 	 * should be diffed.
 	 *
 	 * Returns three values:
-	 * - The revision used to retrieve the content, if any
-	 * - The content to be diffed
-	 * - The revision specified, if any, even if not used to retrieve the
-	 *   Content
+	 * - A RevisionRecord holding the content
+	 * - The revision specified, if any, even if content was supplied
+	 * - The revision to pass to setVals(), if any
 	 *
 	 * @param string $prefix 'from' or 'to'
 	 * @param array $params
-	 * @return array [ Revision|null, Content, Revision|null ]
+	 * @return array [ RevisionRecord|null, RevisionRecord|null, RevisionRecord|null ]
 	 */
-	private function getDiffContent( $prefix, array $params ) {
+	private function getDiffRevision( $prefix, array $params ) {
+		// Back compat params
+		$this->requireMaxOneParameter( $params, "{$prefix}text", "{$prefix}slots" );
+		$this->requireMaxOneParameter( $params, "{$prefix}section", "{$prefix}slots" );
+		if ( $params["{$prefix}text"] !== null ) {
+			$params["{$prefix}slots"] = [ 'main' ];
+			$params["{$prefix}text-main"] = $params["{$prefix}text"];
+			$params["{$prefix}section-main"] = null;
+			$params["{$prefix}contentmodel-main"] = $params["{$prefix}contentmodel"];
+			$params["{$prefix}contentformat-main"] = $params["{$prefix}contentformat"];
+		}
+
 		$title = null;
 		$rev = null;
-		$suppliedContent = $params["{$prefix}text"] !== null;
+		$suppliedContent = $params["{$prefix}slots"] !== null;
 
 		// Get the revision and title, if applicable
 		$revId = null;
@@ -308,94 +363,146 @@ class ApiComparePages extends ApiBase {
 			}
 		}
 		if ( $revId !== null ) {
-			$rev = Revision::newFromId( $revId );
-			if ( !$rev && $this->getUser()->isAllowedAny( 'deletedtext', 'undelete' ) ) {
-				// Try the 'archive' table
-				$arQuery = Revision::getArchiveQueryInfo();
-				$row = $this->getDB()->selectRow(
-					$arQuery['tables'],
-					array_merge(
-						$arQuery['fields'],
-						[ 'ar_namespace', 'ar_title' ]
-					),
-					[ 'ar_rev_id' => $revId ],
-					__METHOD__,
-					[],
-					$arQuery['joins']
-				);
-				if ( $row ) {
-					$rev = Revision::newFromArchiveRow( $row );
-					$rev->isArchive = true;
-				}
-			}
+			$rev = $this->getRevisionById( $revId );
 			if ( !$rev ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $revId ] );
 			}
-			$title = $rev->getTitle();
+			$title = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
 
 			// If we don't have supplied content, return here. Otherwise,
 			// continue on below with the supplied content.
 			if ( !$suppliedContent ) {
-				$content = $rev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
-				if ( !$content ) {
-					$this->dieWithError( [ 'apierror-missingcontent-revid', $revId ], 'missingcontent' );
+				$newRev = $rev;
+
+				// Deprecated 'fromsection'/'tosection'
+				if ( isset( $params["{$prefix}section"] ) ) {
+					$section = $params["{$prefix}section"];
+					$newRev = MutableRevisionRecord::newFromParentRevision( $rev );
+					$content = $rev->getContent( 'main', RevisionRecord::FOR_THIS_USER, $this->getUser() );
+					if ( !$content ) {
+						$this->dieWithError(
+							[ 'apierror-missingcontent-revid-role', $rev->getId(), 'main' ], 'missingcontent'
+						);
+					}
+					$content = $content ? $content->getSection( $section ) : null;
+					if ( !$content ) {
+						$this->dieWithError(
+							[ "apierror-compare-nosuch{$prefix}section", wfEscapeWikiText( $section ) ],
+							"nosuch{$prefix}section"
+						);
+					}
+					$newRev->setContent( 'main', $content );
 				}
-				return [ $rev, $content, $rev ];
+
+				return [ $newRev, $rev, $rev ];
 			}
 		}
 
 		// Override $content based on supplied text
-		$model = $params["{$prefix}contentmodel"];
-		$format = $params["{$prefix}contentformat"];
-
-		if ( !$model && $rev ) {
-			$model = $rev->getContentModel();
-		}
-		if ( !$model && $title ) {
-			$model = $title->getContentModel();
-		}
-		if ( !$model ) {
-			$this->guessTitleAndModel();
-			$model = $this->guessedModel;
-		}
-		if ( !$model ) {
-			$model = CONTENT_MODEL_WIKITEXT;
-			$this->addWarning( [ 'apiwarn-compare-nocontentmodel', $model ] );
-		}
-
 		if ( !$title ) {
-			$this->guessTitleAndModel();
-			$title = $this->guessedTitle;
+			$title = $this->guessTitle();
 		}
-
-		try {
-			$content = ContentHandler::makeContent( $params["{$prefix}text"], $title, $model, $format );
-		} catch ( MWContentSerializationException $ex ) {
-			$this->dieWithException( $ex, [
-				'wrap' => ApiMessage::create( 'apierror-contentserializationexception', 'parseerror' )
+		if ( $rev ) {
+			$newRev = MutableRevisionRecord::newFromParentRevision( $rev );
+		} else {
+			$newRev = $this->revisionStore->newMutableRevisionFromArray( [
+				'title' => $title ?: Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __METHOD__ )
 			] );
 		}
-
-		if ( $params["{$prefix}pst"] ) {
-			if ( !$title ) {
-				$this->dieWithError( 'apierror-compare-no-title' );
+		foreach ( $params["{$prefix}slots"] as $role ) {
+			$text = $params["{$prefix}text-{$role}"];
+			if ( $text === null ) {
+				$newRev->removeSlot( $role );
+				continue;
 			}
-			$popts = ParserOptions::newFromContext( $this->getContext() );
-			$content = $content->preSaveTransform( $title, $this->getUser(), $popts );
-		}
 
-		return [ null, $content, $rev ];
+			$model = $params["{$prefix}contentmodel-{$role}"];
+			$format = $params["{$prefix}contentformat-{$role}"];
+
+			if ( !$model && $rev && $rev->hasSlot( $role ) ) {
+				$model = $rev->getSlot( $role, RevisionRecord::RAW )->getModel();
+			}
+			if ( !$model && $title && $role === 'main' ) {
+				// @todo: Use SlotRoleRegistry and do this for all slots
+				$model = $title->getContentModel();
+			}
+			if ( !$model ) {
+				$model = $this->guessModel( $role );
+			}
+			if ( !$model ) {
+				$model = CONTENT_MODEL_WIKITEXT;
+				$this->addWarning( [ 'apiwarn-compare-nocontentmodel', $model ] );
+			}
+
+			try {
+				$content = ContentHandler::makeContent( $text, $title, $model, $format );
+			} catch ( MWContentSerializationException $ex ) {
+				$this->dieWithException( $ex, [
+					'wrap' => ApiMessage::create( 'apierror-contentserializationexception', 'parseerror' )
+				] );
+			}
+
+			if ( $params["{$prefix}pst"] ) {
+				if ( !$title ) {
+					$this->dieWithError( 'apierror-compare-no-title' );
+				}
+				$popts = ParserOptions::newFromContext( $this->getContext() );
+				$content = $content->preSaveTransform( $title, $this->getUser(), $popts );
+			}
+
+			$section = $params["{$prefix}section-{$role}"];
+			if ( $section !== null && $section !== '' ) {
+				if ( !$rev ) {
+					$this->dieWithError( "apierror-compare-no{$prefix}revision" );
+				}
+				$oldContent = $rev->getContent( $role, RevisionRecord::FOR_THIS_USER, $this->getUser() );
+				if ( !$oldContent ) {
+					$this->dieWithError(
+						[ 'apierror-missingcontent-revid-role', $rev->getId(), wfEscapeWikiText( $role ) ],
+						'missingcontent'
+					);
+				}
+				if ( !$oldContent->getContentHandler()->supportsSections() ) {
+					$this->dieWithError( [ 'apierror-sectionsnotsupported', $content->getModel() ] );
+				}
+				try {
+					$content = $oldContent->replaceSection( $section, $content, '' );
+				} catch ( Exception $ex ) {
+					// Probably a content model mismatch.
+					$content = null;
+				}
+				if ( !$content ) {
+					$this->dieWithError( [ 'apierror-sectionreplacefailed' ] );
+				}
+			}
+
+			// Deprecated 'fromsection'/'tosection'
+			if ( $role === 'main' && isset( $params["{$prefix}section"] ) ) {
+				$section = $params["{$prefix}section"];
+				$content = $content->getSection( $section );
+				if ( !$content ) {
+					$this->dieWithError(
+						[ "apierror-compare-nosuch{$prefix}section", wfEscapeWikiText( $section ) ],
+						"nosuch{$prefix}section"
+					);
+				}
+			}
+
+			$newRev->setContent( $role, $content );
+		}
+		return [ $newRev, $rev, null ];
 	}
 
 	/**
-	 * Set value fields from a Revision object
+	 * Set value fields from a RevisionRecord object
+	 *
 	 * @param array &$vals Result array to set data into
 	 * @param string $prefix 'from' or 'to'
-	 * @param Revision|null $rev
+	 * @param RevisionRecord|null $rev
 	 */
 	private function setVals( &$vals, $prefix, $rev ) {
 		if ( $rev ) {
-			$title = $rev->getTitle();
+			$title = $rev->getPageAsLinkTarget();
 			if ( isset( $this->props['ids'] ) ) {
 				$vals["{$prefix}id"] = $title->getArticleID();
 				$vals["{$prefix}revid"] = $rev->getId();
@@ -408,41 +515,42 @@ class ApiComparePages extends ApiBase {
 			}
 
 			$anyHidden = false;
-			if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+			if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				$vals["{$prefix}texthidden"] = true;
 				$anyHidden = true;
 			}
 
-			if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
+			if ( $rev->isDeleted( RevisionRecord::DELETED_USER ) ) {
 				$vals["{$prefix}userhidden"] = true;
 				$anyHidden = true;
 			}
-			if ( isset( $this->props['user'] ) &&
-				$rev->userCan( Revision::DELETED_USER, $this->getUser() )
-			) {
-				$vals["{$prefix}user"] = $rev->getUserText( Revision::RAW );
-				$vals["{$prefix}userid"] = $rev->getUser( Revision::RAW );
+			if ( isset( $this->props['user'] ) ) {
+				$user = $rev->getUser( RevisionRecord::FOR_THIS_USER, $this->getUser() );
+				if ( $user ) {
+					$vals["{$prefix}user"] = $user->getName();
+					$vals["{$prefix}userid"] = $user->getId();
+				}
 			}
 
-			if ( $rev->isDeleted( Revision::DELETED_COMMENT ) ) {
+			if ( $rev->isDeleted( RevisionRecord::DELETED_COMMENT ) ) {
 				$vals["{$prefix}commenthidden"] = true;
 				$anyHidden = true;
 			}
-			if ( $rev->userCan( Revision::DELETED_COMMENT, $this->getUser() ) ) {
-				if ( isset( $this->props['comment'] ) ) {
-					$vals["{$prefix}comment"] = $rev->getComment( Revision::RAW );
-				}
-				if ( isset( $this->props['parsedcomment'] ) ) {
+			if ( isset( $this->props['comment'] ) || isset( $this->props['parsedcomment'] ) ) {
+				$comment = $rev->getComment( RevisionRecord::FOR_THIS_USER, $this->getUser() );
+				if ( $comment !== null ) {
+					if ( isset( $this->props['comment'] ) ) {
+						$vals["{$prefix}comment"] = $comment->text;
+					}
 					$vals["{$prefix}parsedcomment"] = Linker::formatComment(
-						$rev->getComment( Revision::RAW ),
-						$rev->getTitle()
+						$comment->text, Title::newFromLinkTarget( $title )
 					);
 				}
 			}
 
 			if ( $anyHidden ) {
 				$this->getMain()->setCacheMode( 'private' );
-				if ( $rev->isDeleted( Revision::DELETED_RESTRICTED ) ) {
+				if ( $rev->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ) {
 					$vals["{$prefix}suppressed"] = true;
 				}
 			}
@@ -455,6 +563,12 @@ class ApiComparePages extends ApiBase {
 	}
 
 	public function getAllowedParams() {
+		$slotRoles = MediaWikiServices::getInstance()->getSlotRoleStore()->getMap();
+		if ( !in_array( 'main', $slotRoles, true ) ) {
+			$slotRoles[] = 'main';
+		}
+		sort( $slotRoles, SORT_STRING );
+
 		// Parameters for the 'from' and 'to' content
 		$fromToParams = [
 			'title' => null,
@@ -464,24 +578,58 @@ class ApiComparePages extends ApiBase {
 			'rev' => [
 				ApiBase::PARAM_TYPE => 'integer'
 			],
-			'text' => [
-				ApiBase::PARAM_TYPE => 'text'
+
+			'slots' => [
+				ApiBase::PARAM_TYPE => $slotRoles,
+				ApiBase::PARAM_ISMULTI => true,
 			],
-			'section' => null,
+			'text-{slot}' => [
+				ApiBase::PARAM_TEMPLATE_VARS => [ 'slot' => 'slots' ], // fixed below
+				ApiBase::PARAM_TYPE => 'text',
+			],
+			'section-{slot}' => [
+				ApiBase::PARAM_TEMPLATE_VARS => [ 'slot' => 'slots' ], // fixed below
+				ApiBase::PARAM_TYPE => 'string',
+			],
+			'contentformat-{slot}' => [
+				ApiBase::PARAM_TEMPLATE_VARS => [ 'slot' => 'slots' ], // fixed below
+				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
+			],
+			'contentmodel-{slot}' => [
+				ApiBase::PARAM_TEMPLATE_VARS => [ 'slot' => 'slots' ], // fixed below
+				ApiBase::PARAM_TYPE => ContentHandler::getContentModels(),
+			],
 			'pst' => false,
+
+			'text' => [
+				ApiBase::PARAM_TYPE => 'text',
+				ApiBase::PARAM_DEPRECATED => true,
+			],
 			'contentformat' => [
 				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
+				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'contentmodel' => [
 				ApiBase::PARAM_TYPE => ContentHandler::getContentModels(),
-			]
+				ApiBase::PARAM_DEPRECATED => true,
+			],
+			'section' => [
+				ApiBase::PARAM_DFLT => null,
+				ApiBase::PARAM_DEPRECATED => true,
+			],
 		];
 
 		$ret = [];
 		foreach ( $fromToParams as $k => $v ) {
+			if ( isset( $v[ApiBase::PARAM_TEMPLATE_VARS]['slot'] ) ) {
+				$v[ApiBase::PARAM_TEMPLATE_VARS]['slot'] = 'fromslots';
+			}
 			$ret["from$k"] = $v;
 		}
 		foreach ( $fromToParams as $k => $v ) {
+			if ( isset( $v[ApiBase::PARAM_TEMPLATE_VARS]['slot'] ) ) {
+				$v[ApiBase::PARAM_TEMPLATE_VARS]['slot'] = 'toslots';
+			}
 			$ret["to$k"] = $v;
 		}
 
@@ -506,6 +654,12 @@ class ApiComparePages extends ApiBase {
 			],
 			ApiBase::PARAM_ISMULTI => true,
 			ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+		];
+
+		$ret['slots'] = [
+			ApiBase::PARAM_TYPE => $slotRoles,
+			ApiBase::PARAM_ISMULTI => true,
+			ApiBase::PARAM_ALL => true,
 		];
 
 		return $ret;

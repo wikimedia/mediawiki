@@ -136,6 +136,18 @@ production.
 * action=query&prop=deletedrevisions, action=query&list=allrevisions, and
   action=query&list=alldeletedrevisions are changed similarly to
   &prop=revisions (see the three previous items).
+* (T174032) action=compare now supports multi-content revisions.
+  * It has a 'slots' parameter to select diffing of individual slots. The
+    default behavior is to return one combined diff.
+  * The 'fromtext', 'fromsection', 'fromcontentmodel', 'fromcontentformat',
+    'totext', 'tosection', 'tocontentmodel', and 'tocontentformat' parameters
+    are deprecated. Specify the new 'fromslots' and 'toslots' to identify which
+    slots have text supplied and the corresponding templated parameters for
+    each slot.
+  * The behavior of 'fromsection' and 'tosection' of extracting one section's
+    content is not being preserved. 'fromsection-{slot}' and 'tosection-{slot}'
+    instead expand the given text as if for a section edit. This effectively
+    declines T183823 in favor of T185723.
 
 === Action API internal changes in 1.32 ===
 * Added 'ApiParseMakeOutputPage' hook.

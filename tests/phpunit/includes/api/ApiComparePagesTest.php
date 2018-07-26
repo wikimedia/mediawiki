@@ -73,6 +73,9 @@ class ApiComparePagesTest extends ApiTestCase {
 		self::$repl['revF1'] = $this->addPage( 'F', "== Section 1 ==\nF 1.1\n\n== Section 2 ==\nF 1.2" );
 		self::$repl['pageF'] = Title::newFromText( 'ApiComparePagesTest F' )->getArticleId();
 
+		self::$repl['revG1'] = $this->addPage( 'G', "== Section 1 ==\nG 1.1", CONTENT_MODEL_TEXT );
+		self::$repl['pageG'] = Title::newFromText( 'ApiComparePagesTest G' )->getArticleId();
+
 		WikiPage::factory( Title::newFromText( 'ApiComparePagesTest C' ) )
 			->doDeleteArticleReal( 'Test for ApiComparePagesTest' );
 
@@ -132,6 +135,7 @@ class ApiComparePagesTest extends ApiTestCase {
 
 		$params += [
 			'action' => 'compare',
+			'errorformat' => 'none',
 		];
 
 		$user = $sysop
@@ -151,6 +155,25 @@ class ApiComparePagesTest extends ApiTestCase {
 			$this->doReplacements( $expect );
 			$this->assertEquals( $expect, $apiResult );
 		}
+	}
+
+	private static function makeDeprecationWarnings( ...$params ) {
+		$warn = [];
+		foreach ( $params as $p ) {
+			$warn[] = [
+				'code' => 'deprecation',
+				'data' => [ 'feature' => "action=compare&{$p}" ],
+				'module' => 'compare',
+			];
+			if ( count( $warn ) === 1 ) {
+				$warn[] = [
+					'code' => 'deprecation-help',
+					'module' => 'main',
+				];
+			}
+		}
+
+		return $warn;
 	}
 
 	public static function provideDiff() {
@@ -269,10 +292,12 @@ class ApiComparePagesTest extends ApiTestCase {
 			],
 			'Basic diff, text' => [
 				[
-					'fromtext' => 'From text',
-					'fromcontentmodel' => 'wikitext',
-					'totext' => 'To text {{subst:PAGENAME}}',
-					'tocontentmodel' => 'wikitext',
+					'fromslots' => 'main',
+					'fromtext-main' => 'From text',
+					'fromcontentmodel-main' => 'wikitext',
+					'toslots' => 'main',
+					'totext-main' => 'To text {{subst:PAGENAME}}',
+					'tocontentmodel-main' => 'wikitext',
 				],
 				[
 					'compare' => [
@@ -284,9 +309,11 @@ class ApiComparePagesTest extends ApiTestCase {
 			],
 			'Basic diff, text 2' => [
 				[
-					'fromtext' => 'From text',
-					'totext' => 'To text {{subst:PAGENAME}}',
-					'tocontentmodel' => 'wikitext',
+					'fromslots' => 'main',
+					'fromtext-main' => 'From text',
+					'toslots' => 'main',
+					'totext-main' => 'To text {{subst:PAGENAME}}',
+					'tocontentmodel-main' => 'wikitext',
 				],
 				[
 					'compare' => [
@@ -298,15 +325,13 @@ class ApiComparePagesTest extends ApiTestCase {
 			],
 			'Basic diff, guessed model' => [
 				[
-					'fromtext' => 'From text',
-					'totext' => 'To text',
+					'fromslots' => 'main',
+					'fromtext-main' => 'From text',
+					'toslots' => 'main',
+					'totext-main' => 'To text',
 				],
 				[
-					'warnings' => [
-						'compare' => [
-							'warnings' => 'No content model could be determined, assuming wikitext.',
-						],
-					],
+					'warnings' => [ [ 'code' => 'compare-nocontentmodel', 'module' => 'compare' ] ],
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1" >Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
@@ -316,9 +341,11 @@ class ApiComparePagesTest extends ApiTestCase {
 			],
 			'Basic diff, text with title and PST' => [
 				[
-					'fromtext' => 'From text',
+					'fromslots' => 'main',
+					'fromtext-main' => 'From text',
 					'totitle' => 'Test',
-					'totext' => 'To text {{subst:PAGENAME}}',
+					'toslots' => 'main',
+					'totext-main' => 'To text {{subst:PAGENAME}}',
 					'topst' => true,
 				],
 				[
@@ -331,9 +358,11 @@ class ApiComparePagesTest extends ApiTestCase {
 			],
 			'Basic diff, text with page ID and PST' => [
 				[
-					'fromtext' => 'From text',
+					'fromslots' => 'main',
+					'fromtext-main' => 'From text',
 					'toid' => '{{REPL:pageB}}',
-					'totext' => 'To text {{subst:PAGENAME}}',
+					'toslots' => 'main',
+					'totext-main' => 'To text {{subst:PAGENAME}}',
 					'topst' => true,
 				],
 				[
@@ -346,9 +375,11 @@ class ApiComparePagesTest extends ApiTestCase {
 			],
 			'Basic diff, text with revision and PST' => [
 				[
-					'fromtext' => 'From text',
+					'fromslots' => 'main',
+					'fromtext-main' => 'From text',
 					'torev' => '{{REPL:revB2}}',
-					'totext' => 'To text {{subst:PAGENAME}}',
+					'toslots' => 'main',
+					'totext-main' => 'To text {{subst:PAGENAME}}',
 					'topst' => true,
 				],
 				[
@@ -361,9 +392,11 @@ class ApiComparePagesTest extends ApiTestCase {
 			],
 			'Basic diff, text with deleted revision and PST' => [
 				[
-					'fromtext' => 'From text',
+					'fromslots' => 'main',
+					'fromtext-main' => 'From text',
 					'torev' => '{{REPL:revC2}}',
-					'totext' => 'To text {{subst:PAGENAME}}',
+					'toslots' => 'main',
+					'totext-main' => 'To text {{subst:PAGENAME}}',
 					'topst' => true,
 				],
 				[
@@ -378,20 +411,23 @@ class ApiComparePagesTest extends ApiTestCase {
 			'Basic diff, test with sections' => [
 				[
 					'fromtitle' => 'ApiComparePagesTest F',
-					'fromsection' => 1,
-					'totext' => "== Section 1 ==\nTo text\n\n== Section 2 ==\nTo text?",
-					'tosection' => 2,
+					'fromslots' => 'main',
+					'fromtext-main' => "== Section 2 ==\nFrom text?",
+					'fromsection-main' => 2,
+					'totitle' => 'ApiComparePagesTest F',
+					'toslots' => 'main',
+					'totext-main' => "== Section 1 ==\nTo text?",
+					'tosection-main' => 1,
 				],
 				[
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1" >Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div>== Section <del class="diffchange diffchange-inline">1 </del>==</div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div>== Section <ins class="diffchange diffchange-inline">2 </ins>==</div></td></tr>' . "\n"
-							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div><del class="diffchange diffchange-inline">F 1.1</del></div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div><ins class="diffchange diffchange-inline">To text?</ins></div></td></tr>' . "\n",
-						'fromid' => '{{REPL:pageF}}',
-						'fromrevid' => '{{REPL:revF1}}',
-						'fromns' => '0',
-						'fromtitle' => 'ApiComparePagesTest F',
+							. '<tr><td class=\'diff-marker\'> </td><td class=\'diff-context\'><div>== Section 1 ==</div></td><td class=\'diff-marker\'> </td><td class=\'diff-context\'><div>== Section 1 ==</div></td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div><del class="diffchange diffchange-inline">F 1.1</del></div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div><ins class="diffchange diffchange-inline">To text?</ins></div></td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'> </td><td class=\'diff-context\'></td><td class=\'diff-marker\'> </td><td class=\'diff-context\'></td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'> </td><td class=\'diff-context\'><div>== Section 2 ==</div></td><td class=\'diff-marker\'> </td><td class=\'diff-context\'><div>== Section 2 ==</div></td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div><del class="diffchange diffchange-inline">From text?</del></div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div><ins class="diffchange diffchange-inline">F 1.2</ins></div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -516,6 +552,197 @@ class ApiComparePagesTest extends ApiTestCase {
 						'next' => '{{REPL:revE4}}',
 					]
 				],
+			],
+			'Diff for specific slots' => [
+				// @todo Use a page with multiple slots here
+				[
+					'fromrev' => '{{REPL:revA1}}',
+					'torev' => '{{REPL:revA3}}',
+					'prop' => 'diff',
+					'slots' => 'main',
+				],
+				[
+					'compare' => [
+						'bodies' => [
+							'main' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1" >Line 1:</td>' . "\n"
+								. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
+								. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div>A <del class="diffchange diffchange-inline">1</del></div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div>A <ins class="diffchange diffchange-inline">3</ins></div></td></tr>' . "\n",
+						],
+					],
+				],
+			],
+			// @todo Add a test for diffing with a deleted slot. Deleting 'main' doesn't work.
+
+			'Basic diff, deprecated text' => [
+				[
+					'fromtext' => 'From text',
+					'fromcontentmodel' => 'wikitext',
+					'totext' => 'To text {{subst:PAGENAME}}',
+					'tocontentmodel' => 'wikitext',
+				],
+				[
+					'warnings' => self::makeDeprecationWarnings( 'fromtext', 'fromcontentmodel', 'totext', 'tocontentmodel' ),
+					'compare' => [
+						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1" >Line 1:</td>' . "\n"
+							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">{{subst:PAGENAME}}</ins></div></td></tr>' . "\n",
+					]
+				],
+			],
+			'Basic diff, deprecated text 2' => [
+				[
+					'fromtext' => 'From text',
+					'totext' => 'To text {{subst:PAGENAME}}',
+					'tocontentmodel' => 'wikitext',
+				],
+				[
+					'warnings' => self::makeDeprecationWarnings( 'fromtext', 'totext', 'tocontentmodel' ),
+					'compare' => [
+						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1" >Line 1:</td>' . "\n"
+							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">{{subst:PAGENAME}}</ins></div></td></tr>' . "\n",
+					]
+				],
+			],
+			'Basic diff, deprecated text, guessed model' => [
+				[
+					'fromtext' => 'From text',
+					'totext' => 'To text',
+				],
+				[
+					'warnings' => array_merge( self::makeDeprecationWarnings( 'fromtext', 'totext' ), [
+						[ 'code' => 'compare-nocontentmodel', 'module' => 'compare' ],
+					] ),
+					'compare' => [
+						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1" >Line 1:</td>' . "\n"
+							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div><ins class="diffchange diffchange-inline">To </ins>text</div></td></tr>' . "\n",
+					]
+				],
+			],
+			'Basic diff, deprecated text with title and PST' => [
+				[
+					'fromtext' => 'From text',
+					'totitle' => 'Test',
+					'totext' => 'To text {{subst:PAGENAME}}',
+					'topst' => true,
+				],
+				[
+					'warnings' => self::makeDeprecationWarnings( 'fromtext', 'totext' ),
+					'compare' => [
+						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1" >Line 1:</td>' . "\n"
+							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">Test</ins></div></td></tr>' . "\n",
+					]
+				],
+			],
+			'Basic diff, deprecated text with page ID and PST' => [
+				[
+					'fromtext' => 'From text',
+					'toid' => '{{REPL:pageB}}',
+					'totext' => 'To text {{subst:PAGENAME}}',
+					'topst' => true,
+				],
+				[
+					'warnings' => self::makeDeprecationWarnings( 'fromtext', 'totext' ),
+					'compare' => [
+						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1" >Line 1:</td>' . "\n"
+							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest B</ins></div></td></tr>' . "\n",
+					]
+				],
+			],
+			'Basic diff, deprecated text with revision and PST' => [
+				[
+					'fromtext' => 'From text',
+					'torev' => '{{REPL:revB2}}',
+					'totext' => 'To text {{subst:PAGENAME}}',
+					'topst' => true,
+				],
+				[
+					'warnings' => self::makeDeprecationWarnings( 'fromtext', 'totext' ),
+					'compare' => [
+						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1" >Line 1:</td>' . "\n"
+							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest B</ins></div></td></tr>' . "\n",
+					]
+				],
+			],
+			'Basic diff, deprecated text with deleted revision and PST' => [
+				[
+					'fromtext' => 'From text',
+					'torev' => '{{REPL:revC2}}',
+					'totext' => 'To text {{subst:PAGENAME}}',
+					'topst' => true,
+				],
+				[
+					'warnings' => self::makeDeprecationWarnings( 'fromtext', 'totext' ),
+					'compare' => [
+						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1" >Line 1:</td>' . "\n"
+							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest C</ins></div></td></tr>' . "\n",
+					]
+				],
+				false, true
+			],
+			'Basic diff, test with deprecated sections' => [
+				[
+					'fromtitle' => 'ApiComparePagesTest F',
+					'fromsection' => 1,
+					'totext' => "== Section 1 ==\nTo text\n\n== Section 2 ==\nTo text?",
+					'tosection' => 2,
+				],
+				[
+					'warnings' => self::makeDeprecationWarnings( 'fromsection', 'totext', 'tosection' ),
+					'compare' => [
+						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1" >Line 1:</td>' . "\n"
+							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div>== Section <del class="diffchange diffchange-inline">1 </del>==</div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div>== Section <ins class="diffchange diffchange-inline">2 </ins>==</div></td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div><del class="diffchange diffchange-inline">F 1.1</del></div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div><ins class="diffchange diffchange-inline">To text?</ins></div></td></tr>' . "\n",
+						'fromid' => '{{REPL:pageF}}',
+						'fromrevid' => '{{REPL:revF1}}',
+						'fromns' => '0',
+						'fromtitle' => 'ApiComparePagesTest F',
+					]
+				],
+			],
+			'Basic diff, test with deprecated sections and revdel, non-sysop' => [
+				[
+					'fromrev' => '{{REPL:revB2}}',
+					'fromsection' => 0,
+					'torev' => '{{REPL:revB4}}',
+					'tosection' => 0,
+				],
+				[],
+				'missingcontent'
+			],
+			'Basic diff, test with deprecated sections and revdel, sysop' => [
+				[
+					'fromrev' => '{{REPL:revB2}}',
+					'fromsection' => 0,
+					'torev' => '{{REPL:revB4}}',
+					'tosection' => 0,
+				],
+				[
+					'warnings' => self::makeDeprecationWarnings( 'fromsection', 'tosection' ),
+					'compare' => [
+						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1" >Line 1:</td>' . "\n"
+							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div>B <del class="diffchange diffchange-inline">2</del></div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div>B <ins class="diffchange diffchange-inline">4</ins></div></td></tr>' . "\n",
+						'fromid' => '{{REPL:pageB}}',
+						'fromrevid' => '{{REPL:revB2}}',
+						'fromns' => 0,
+						'fromtitle' => 'ApiComparePagesTest B',
+						'fromtexthidden' => true,
+						'fromuserhidden' => true,
+						'fromcommenthidden' => true,
+						'toid' => '{{REPL:pageB}}',
+						'torevid' => '{{REPL:revB4}}',
+						'tons' => 0,
+						'totitle' => 'ApiComparePagesTest B',
+					]
+				],
+				false, true,
 			],
 
 			'Error, missing title' => [
@@ -646,6 +873,68 @@ class ApiComparePagesTest extends ApiTestCase {
 				],
 				[],
 				'missingcontent'
+			],
+			'Error, Relative diff, no prev' => [
+				[
+					'fromrev' => '{{REPL:revA1}}',
+					'torelative' => 'prev',
+					'prop' => 'ids',
+				],
+				[],
+				'baddiff'
+			],
+			'Error, Relative diff, no next' => [
+				[
+					'fromrev' => '{{REPL:revA4}}',
+					'torelative' => 'next',
+					'prop' => 'ids',
+				],
+				[],
+				'baddiff'
+			],
+			'Error, section diff with no revision' => [
+				[
+					'fromtitle' => 'ApiComparePagesTest F',
+					'toslots' => 'main',
+					'totext-main' => "== Section 1 ==\nTo text?",
+					'tosection-main' => 1,
+				],
+				[],
+				'compare-notorevision',
+			],
+			'Error, section diff with revdeleted revision' => [
+				[
+					'fromtitle' => 'ApiComparePagesTest F',
+					'torev' => '{{REPL:revB2}}',
+					'toslots' => 'main',
+					'totext-main' => "== Section 1 ==\nTo text?",
+					'tosection-main' => 1,
+				],
+				[],
+				'missingcontent',
+			],
+			'Error, section diff with a content model not supporting sections' => [
+				[
+					'fromtitle' => 'ApiComparePagesTest G',
+					'torev' => '{{REPL:revG1}}',
+					'toslots' => 'main',
+					'totext-main' => "== Section 1 ==\nTo text?",
+					'tosection-main' => 1,
+				],
+				[],
+				'sectionsnotsupported',
+			],
+			'Error, section diff with bad content model' => [
+				[
+					'fromtitle' => 'ApiComparePagesTest F',
+					'torev' => '{{REPL:revF1}}',
+					'toslots' => 'main',
+					'totext-main' => "== Section 1 ==\nTo text?",
+					'tosection-main' => 1,
+					'tocontentmodel-main' => CONTENT_MODEL_TEXT,
+				],
+				[],
+				'sectionreplacefailed',
 			],
 		];
 		// phpcs:enable
