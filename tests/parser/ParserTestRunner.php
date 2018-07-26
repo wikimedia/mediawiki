@@ -1250,7 +1250,7 @@ class ParserTestRunner {
 	 * For best performance, call this once only for all tests. However, it can
 	 * be called at the start of each test if more isolation is desired.
 	 *
-	 * @todo: This is basically an unrefactored copy of
+	 * @todo This is basically an unrefactored copy of
 	 * MediaWikiTestCase::setupAllTestDBs. They should be factored out somehow.
 	 *
 	 * Do not call this function from a MediaWikiTestCase subclass, since

@@ -161,7 +161,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	/**
 	 * Update link tables with outgoing links from an updated article
 	 *
-	 * @note: this is managed by DeferredUpdates::execute(). Do not run this in a transaction.
+	 * @note this is managed by DeferredUpdates::execute(). Do not run this in a transaction.
 	 */
 	public function doUpdate() {
 		if ( $this->ticket ) {

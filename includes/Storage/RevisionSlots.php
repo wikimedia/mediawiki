@@ -139,7 +139,7 @@ class RevisionSlots {
 	/**
 	 * Computes the total nominal size of the revision's slots, in bogo-bytes.
 	 *
-	 * @warn This is potentially expensive! It may cause all slot's content to be loaded
+	 * @warning This is potentially expensive! It may cause all slot's content to be loaded
 	 * and deserialized.
 	 *
 	 * @return int
@@ -181,7 +181,7 @@ class RevisionSlots {
 	 * is that slot's hash. For consistency, the combined hash of an empty set of slots
 	 * is the hash of the empty string.
 	 *
-	 * @warn This is potentially expensive! It may cause all slot's content to be loaded
+	 * @warning This is potentially expensive! It may cause all slot's content to be loaded
 	 * and deserialized, then re-serialized and hashed.
 	 *
 	 * @return string

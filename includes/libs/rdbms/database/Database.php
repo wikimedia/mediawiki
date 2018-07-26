@@ -287,7 +287,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	const STATUS_TRX_NONE = 3;
 
 	/**
-	 * @note: exceptions for missing libraries/drivers should be thrown in initConnection()
+	 * @note exceptions for missing libraries/drivers should be thrown in initConnection()
 	 * @param array $params Parameters passed from Database::factory()
 	 */
 	protected function __construct( array $params ) {

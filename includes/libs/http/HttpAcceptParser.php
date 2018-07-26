@@ -23,7 +23,7 @@ class HttpAcceptParser {
 	 * Note that type parameters and accept extension like the "level" parameter
 	 * are not supported, weights are derived from "q" values only.
 	 *
-	 * @todo: If additional type parameters are present, ignore them cleanly.
+	 * @todo If additional type parameters are present, ignore them cleanly.
 	 *        At present, they often confuse the result.
 	 *
 	 * See HTTP/1.1 section 14 for details.

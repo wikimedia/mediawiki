@@ -2,6 +2,7 @@
 <ruleset name="MediaWiki">
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<exclude name="Generic.ControlStructures.InlineControlStructure" />
+		<exclude name="MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamTag" />
@@ -12,15 +13,16 @@
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentStart" />
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentEnd" />
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
+		<exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
-		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
-		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.SingleSpaceBeforeSingleLineComment" />
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
 		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage" />
+		<exclude name="MediaWiki.Usage.ForbiddenFunctions.passthru" />
 		<exclude name="MediaWiki.VariableAnalysis.ForbiddenGlobalVariables.ForbiddenGlobal$wgTitle" />
+		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
+		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.SingleSpaceBeforeSingleLineComment" />
 		<exclude name="Squiz.Scope.MethodScope.Missing" />
 		<exclude name="Squiz.Scope.MemberVarScope.Missing" />
-		<exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>
@@ -64,6 +66,13 @@
 		<properties>
 			<property name="ignoreList" type="array" value="$IP,$messageMemc" />
 		</properties>
+	</rule>
+	<rule ref="MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix">
+		<exclude-pattern>profileinfo\.php</exclude-pattern>
+		<exclude-pattern>maintenance/language/checkLanguage\.inc</exclude-pattern>
+		<exclude-pattern>maintenance/doMaintenance\.php</exclude-pattern>
+		<exclude-pattern>maintenance/mergeMessageFileList\.php</exclude-pattern>
+		<exclude-pattern>maintenance/commandLine\.inc</exclude-pattern>
 	</rule>
 	<rule ref="Generic.Files.LineLength">
 		<exclude-pattern>*/languages/messages/Messages*\.php</exclude-pattern>

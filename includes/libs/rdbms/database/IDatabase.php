@@ -32,7 +32,7 @@ use stdClass;
 /**
  * Basic database interface for live and lazy-loaded relation database handles
  *
- * @note: IDatabase and DBConnRef should be updated to reflect any changes
+ * @note IDatabase and DBConnRef should be updated to reflect any changes
  * @ingroup Database
  */
 interface IDatabase {
@@ -1500,7 +1500,7 @@ interface IDatabase {
 	 *
 	 * This is useful for combining cooperative locks and DB transactions.
 	 *
-	 * @note: do not assume that *other* IDatabase instances will be AUTOCOMMIT mode
+	 * @note do not assume that *other* IDatabase instances will be AUTOCOMMIT mode
 	 *
 	 * The callback takes the following arguments:
 	 *   - How the transaction ended (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_ROLLBACK)
@@ -1535,7 +1535,7 @@ interface IDatabase {
 	 *
 	 * Updates will execute in the order they were enqueued.
 	 *
-	 * @note: do not assume that *other* IDatabase instances will be AUTOCOMMIT mode
+	 * @note do not assume that *other* IDatabase instances will be AUTOCOMMIT mode
 	 *
 	 * The callback takes the following arguments:
 	 *   - How the transaction ended (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_IDLE)
@@ -1623,7 +1623,7 @@ interface IDatabase {
 	 *   - The failures are from contention solvable via onTransactionPreCommitOrIdle()
 	 *   - The failures are deadlocks; the RDBMs usually discard the whole transaction
 	 *
-	 * @note: callers must use additional measures for situations involving two or more
+	 * @note callers must use additional measures for situations involving two or more
 	 *   (peer) transactions (e.g. updating two database servers at once). The transaction
 	 *   and savepoint logic of this method only applies to this specific IDatabase instance.
 	 *
@@ -1702,7 +1702,7 @@ interface IDatabase {
 	 * corresponding startAtomic() implicitly started a transaction, that
 	 * transaction is rolled back.
 	 *
-	 * @note: callers must use additional measures for situations involving two or more
+	 * @note callers must use additional measures for situations involving two or more
 	 *   (peer) transactions (e.g. updating two database servers at once). The transaction
 	 *   and savepoint logic of startAtomic() are bound to specific IDatabase instances.
 	 *

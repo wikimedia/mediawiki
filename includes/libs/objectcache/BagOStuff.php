@@ -238,7 +238,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	abstract protected function doGet( $key, $flags = 0 );
 
 	/**
-	 * @note: This method is only needed if merge() uses mergeViaCas()
+	 * @note This method is only needed if merge() uses mergeViaCas()
 	 *
 	 * @param string $key
 	 * @param mixed &$casToken

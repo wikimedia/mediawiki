@@ -739,7 +739,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Set the title of the revision
 	 *
-	 * @deprecated: since 1.31, this is now a noop. Pass the Title to the constructor instead.
+	 * @deprecated since 1.31, this is now a noop. Pass the Title to the constructor instead.
 	 *
 	 * @param Title $title
 	 */
@@ -927,7 +927,7 @@ class Revision implements IDBAccessObject {
 	 * used to determine the content model to use. If no title is know, CONTENT_MODEL_WIKITEXT
 	 * is used as a last resort.
 	 *
-	 * @todo: drop this, with MCR, there no longer is a single model associated with a revision.
+	 * @todo drop this, with MCR, there no longer is a single model associated with a revision.
 	 *
 	 * @return string The content model id associated with this revision,
 	 *     see the CONTENT_MODEL_XXX constants.
@@ -942,7 +942,7 @@ class Revision implements IDBAccessObject {
 	 * If no content format was stored in the database, the default format for this
 	 * revision's content model is returned.
 	 *
-	 * @todo: drop this, the format is irrelevant to the revision!
+	 * @todo drop this, the format is irrelevant to the revision!
 	 *
 	 * @return string The content format id associated with this revision,
 	 *     see the CONTENT_FORMAT_XXX constants.

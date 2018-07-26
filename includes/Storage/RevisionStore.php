@@ -917,7 +917,7 @@ class RevisionStore
 	 * Such revisions can for instance identify page rename
 	 * operations and other such meta-modifications.
 	 *
-	 * @note: This method grabs a FOR UPDATE lock on the relevant row of the page table,
+	 * @note This method grabs a FOR UPDATE lock on the relevant row of the page table,
 	 * to prevent a new revision from being inserted before the null revision has been written
 	 * to the database.
 	 *
