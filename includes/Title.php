@@ -1293,12 +1293,9 @@ class Title implements LinkTarget {
 	 */
 	public function isSiteConfigPage() {
 		return (
-			NS_MEDIAWIKI == $this->mNamespace
-			&& (
-				$this->hasContentModel( CONTENT_MODEL_CSS )
-				|| $this->hasContentModel( CONTENT_MODEL_JSON )
-				|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
-			)
+			$this->isSiteCssConfigPage()
+			|| $this->isSiteJsonConfigPage()
+			|| $this->isSiteJsConfigPage()
 		);
 	}
 
@@ -1321,13 +1318,9 @@ class Title implements LinkTarget {
 	 */
 	public function isUserConfigPage() {
 		return (
-			NS_USER == $this->mNamespace
-			&& $this->isSubpage()
-			&& (
-				$this->hasContentModel( CONTENT_MODEL_CSS )
-				|| $this->hasContentModel( CONTENT_MODEL_JSON )
-				|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
-			)
+			$this->isUserCssConfigPage()
+			|| $this->isUserJsonConfigPage()
+			|| $this->isUserJsConfigPage()
 		);
 	}
 
@@ -1425,6 +1418,60 @@ class Title implements LinkTarget {
 	public function isJsSubpage() {
 		wfDeprecated( __METHOD__, '1.31' );
 		return $this->isUserJsConfigPage();
+	}
+
+	/**
+	 * Is this a sitewide CSS "config" page?
+	 *
+	 * @return bool
+	 * @since 1.32
+	 */
+	public function isSiteCssConfigPage() {
+		return (
+			NS_MEDIAWIKI == $this->mNamespace
+			&& (
+				$this->hasContentModel( CONTENT_MODEL_CSS )
+				// paranoia - a MediaWiki: namespace page with mismatching extension and content
+				// model is probably by mistake and might get handled incorrectly (see e.g. T112937)
+				|| substr( $this->getDBkey(), -4 ) === '.css'
+			)
+		);
+	}
+
+	/**
+	 * Is this a sitewide JSON "config" page?
+	 *
+	 * @return bool
+	 * @since 1.32
+	 */
+	public function isSiteJsonConfigPage() {
+		return (
+			NS_MEDIAWIKI == $this->mNamespace
+			&& (
+				$this->hasContentModel( CONTENT_MODEL_JSON )
+				// paranoia - a MediaWiki: namespace page with mismatching extension and content
+				// model is probably by mistake and might get handled incorrectly (see e.g. T112937)
+				|| substr( $this->getDBkey(), -5 ) === '.json'
+			)
+		);
+	}
+
+	/**
+	 * Is this a sitewide JS "config" page?
+	 *
+	 * @return bool
+	 * @since 1.31
+	 */
+	public function isSiteJsConfigPage() {
+		return (
+			NS_MEDIAWIKI == $this->mNamespace
+			&& (
+				$this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
+				// paranoia - a MediaWiki: namespace page with mismatching extension and content
+				// model is probably by mistake and might get handled incorrectly (see e.g. T112937)
+				|| substr( $this->getDBkey(), -3 ) === '.js'
+			)
+		);
 	}
 
 	/**
@@ -2318,6 +2365,33 @@ class Title implements LinkTarget {
 	}
 
 	/**
+	 * Check sitewide CSS/JSON/JS permissions
+	 *
+	 * @param string $action The action to check
+	 * @param User $user User to check
+	 * @param array $errors List of current errors
+	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
+	 * @param bool $short Short circuit on first error
+	 *
+	 * @return array List of errors
+	 */
+	private function checkSiteConfigPermissions( $action, $user, $errors, $rigor, $short ) {
+		if ( $action != 'patrol' ) {
+			// Sitewide CSS/JSON/JS changes, like all NS_MEDIAWIKI changes, also require the
+			// editinterface right. That's implemented as a restriction so no check needed here.
+			if ( $this->isSiteCssConfigPage() && !$user->isAllowed( 'editsitecss' ) ) {
+				$errors[] = [ 'sitecssprotected', $action ];
+			} elseif ( $this->isSiteJsonConfigPage() && !$user->isAllowed( 'editsitejson' ) ) {
+				$errors[] = [ 'sitejsonprotected', $action ];
+			} elseif ( $this->isSiteJsConfigPage() && !$user->isAllowed( 'editsitejs' ) ) {
+				$errors[] = [ 'sitejsprotected', $action ];
+			}
+		}
+
+		return $errors;
+	}
+
+	/**
 	 * Check CSS/JSON/JS sub-page permissions
 	 *
 	 * @param string $action The action to check
@@ -2705,10 +2779,10 @@ class Title implements LinkTarget {
 				'checkReadPermissions',
 				'checkUserBlock', // for wgBlockDisablesLogin
 			];
-		# Don't call checkSpecialsAndNSPermissions or checkUserConfigPermissions
-		# here as it will lead to duplicate error messages. This is okay to do
-		# since anywhere that checks for create will also check for edit, and
-		# those checks are called for edit.
+		# Don't call checkSpecialsAndNSPermissions, checkSiteConfigPermissions
+		# or checkUserConfigPermissions here as it will lead to duplicate
+		# error messages. This is okay to do since anywhere that checks for
+		# create will also check for edit, and those checks are called for edit.
 		} elseif ( $action == 'create' ) {
 			$checks = [
 				'checkQuickPermissions',
@@ -2723,6 +2797,7 @@ class Title implements LinkTarget {
 				'checkQuickPermissions',
 				'checkPermissionHooks',
 				'checkSpecialsAndNSPermissions',
+				'checkSiteConfigPermissions',
 				'checkUserConfigPermissions',
 				'checkPageRestrictions',
 				'checkCascadingSourcesRestrictions',
