@@ -135,14 +135,13 @@ class CoreParserFunctions {
 	}
 
 	public static function ns( $parser, $part1 = '' ) {
-		global $wgContLang;
 		if ( intval( $part1 ) || $part1 == "0" ) {
 			$index = intval( $part1 );
 		} else {
-			$index = $wgContLang->getNsIndex( str_replace( ' ', '_', $part1 ) );
+			$index = $parser->getContentLanguage()->getNsIndex( str_replace( ' ', '_', $part1 ) );
 		}
 		if ( $index !== false ) {
-			return $wgContLang->getFormattedNsText( $index );
+			return $parser->getContentLanguage()->getFormattedNsText( $index );
 		} else {
 			return [ 'found' => false ];
 		}
@@ -197,13 +196,11 @@ class CoreParserFunctions {
 	}
 
 	public static function lcfirst( $parser, $s = '' ) {
-		global $wgContLang;
-		return $wgContLang->lcfirst( $s );
+		return $parser->getContentLanguage()->lcfirst( $s );
 	}
 
 	public static function ucfirst( $parser, $s = '' ) {
-		global $wgContLang;
-		return $wgContLang->ucfirst( $s );
+		return $parser->getContentLanguage()->ucfirst( $s );
 	}
 
 	/**
@@ -212,8 +209,7 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function lc( $parser, $s = '' ) {
-		global $wgContLang;
-		return $parser->markerSkipCallback( $s, [ $wgContLang, 'lc' ] );
+		return $parser->markerSkipCallback( $s, [ $parser->getContentLanguage(), 'lc' ] );
 	}
 
 	/**
@@ -222,8 +218,7 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function uc( $parser, $s = '' ) {
-		global $wgContLang;
-		return $parser->markerSkipCallback( $s, [ $wgContLang, 'uc' ] );
+		return $parser->markerSkipCallback( $s, [ $parser->getContentLanguage(), 'uc' ] );
 	}
 
 	public static function localurl( $parser, $s = '', $arg = null ) {
@@ -742,7 +737,6 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function pagesincategory( $parser, $name = '', $arg1 = null, $arg2 = null ) {
-		global $wgContLang;
 		static $magicWords = null;
 		if ( is_null( $magicWords ) ) {
 			$magicWords = $parser->getMagicWordFactory()->newArray( [
@@ -772,7 +766,7 @@ class CoreParserFunctions {
 		if ( !$title ) { # invalid title
 			return self::formatRaw( 0, $raw, $parser->getFunctionLang() );
 		}
-		$wgContLang->findVariantLink( $name, $title, true );
+		$parser->getContentLanguage()->findVariantLink( $name, $title, true );
 
 		// Normalize name for cache
 		$name = $title->getDBkey();
