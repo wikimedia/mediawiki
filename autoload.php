@@ -434,6 +434,7 @@ $wgAutoloadLocalClasses = [
 	'DumpStringOutput' => __DIR__ . '/includes/export/DumpStringOutput.php',
 	'DumpUploads' => __DIR__ . '/maintenance/dumpUploads.php',
 	'DuplicateJob' => __DIR__ . '/includes/jobqueue/jobs/DuplicateJob.php',
+	'EasyDeflate' => __DIR__ . '/includes/libs/EasyDeflate.php',
 	'EditAction' => __DIR__ . '/includes/actions/EditAction.php',
 	'EditCLI' => __DIR__ . '/maintenance/edit.php',
 	'EditPage' => __DIR__ . '/includes/EditPage.php',
