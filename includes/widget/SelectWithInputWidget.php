@@ -36,6 +36,11 @@ class SelectWithInputWidget extends \OOUI\Widget {
 			$config
 		);
 
+		if ( isset( $config['disabled'] ) && $config['disabled'] == true ) {
+			$config['textinput']['disabled'] = true;
+			$config['dropdowninput']['disabled'] = true;
+		}
+
 		parent::__construct( $config );
 
 		// Properties

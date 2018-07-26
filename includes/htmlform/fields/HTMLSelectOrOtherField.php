@@ -125,8 +125,14 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 			$textAttribs['placeholder'] = $this->mPlaceholder;
 		}
 
+		$disabled = false;
+		if ( isset( $this->mParams[ 'disabled' ] ) && $this->mParams[ 'disabled' ] ) {
+			$disabled = true;
+		}
+
 		return $this->getInputWidget( [
 			'id' => $this->mID,
+			'disabled' => $disabled,
 			'textinput' => $textAttribs,
 			'dropdowninput' => $dropdownAttribs,
 			'or' => true,
