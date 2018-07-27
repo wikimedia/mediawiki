@@ -114,11 +114,11 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'migrateComments' ],
 
 			// 1.31
-			[ 'addTable', 'slots', 'patch-slots.sql' ],
-			[ 'addField', 'slots', 'slot_origin', 'patch-slot-origin.sql' ],
-			[ 'addTable', 'content', 'patch-content.sql' ],
 			[ 'addTable', 'slot_roles', 'patch-slot_roles.sql' ],
 			[ 'addTable', 'content_models', 'patch-content_models.sql' ],
+			[ 'addTable', 'content', 'patch-content.sql' ],
+			[ 'addTable', 'slots', 'patch-slots.sql' ],
+			[ 'addField', 'slots', 'slot_origin', 'patch-slot-origin.sql' ],
 			[ 'migrateArchiveText' ],
 			[ 'addTable', 'actor', 'patch-actor-table.sql' ],
 			[ 'migrateActors' ],

@@ -43,26 +43,26 @@ ALTER TABLE &mw_prefix.image_comment_temp ADD CONSTRAINT &mw_prefix.image_commen
 CREATE UNIQUE INDEX &mw_prefix.imgcomment_name ON &mw_prefix.image_comment_temp (imgcomment_name);
 
 
-ALTER TABLE &mw_prefix.archive ADD COLUMN ar_comment_id NUMBER DEFAULT 0 NOT NULL;
+ALTER TABLE &mw_prefix.archive ADD ( ar_comment_id NUMBER DEFAULT 0 NOT NULL );
 ALTER TABLE &mw_prefix.archive ADD CONSTRAINT &mw_prefix.archive_fk2 FOREIGN KEY (ar_comment_id) REFERENCES &mw_prefix."COMMENT"(comment_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE &mw_prefix.ipblocks ALTER COLUMN ipb_reason VARCHAR2(255) NULL;
-ALTER TABLE &mw_prefix.ipblocks ADD COLUMN ipb_reason_id NUMBER DEFAULT 0 NOT NULL;
+ALTER TABLE &mw_prefix.ipblocks MODIFY ( ipb_reason NULL );
+ALTER TABLE &mw_prefix.ipblocks ADD ( ipb_reason_id NUMBER DEFAULT 0 NOT NULL );
 ALTER TABLE &mw_prefix.ipblocks ADD CONSTRAINT &mw_prefix.ipblocks_fk3 FOREIGN KEY (ipb_reason_id) REFERENCES &mw_prefix."COMMENT"(comment_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE &mw_prefix.oldimage ADD COLUMN oi_description_id NUMBER DEFAULT 0 NOT NULL;
+ALTER TABLE &mw_prefix.oldimage ADD ( oi_description_id NUMBER DEFAULT 0 NOT NULL );
 ALTER TABLE &mw_prefix.oldimage ADD CONSTRAINT &mw_prefix.oldimage_fk3 FOREIGN KEY (oi_description_id) REFERENCES &mw_prefix."COMMENT"(comment_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE &mw_prefix.filearchive ADD COLUMN fa_deleted_reason_id NUMBER DEFAULT 0 NOT NULL;
-ALTER TABLE &mw_prefix.filearchive ADD COLUMN fa_description_id NUMBER DEFAULT 0 NOT NULL;
+ALTER TABLE &mw_prefix.filearchive ADD ( fa_deleted_reason_id NUMBER DEFAULT 0 NOT NULL );
+ALTER TABLE &mw_prefix.filearchive ADD ( fa_description_id NUMBER DEFAULT 0 NOT NULL );
 ALTER TABLE &mw_prefix.filearchive ADD CONSTRAINT &mw_prefix.filearchive_fk3 FOREIGN KEY (fa_deleted_reason_id) REFERENCES &mw_prefix."COMMENT"(comment_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE &mw_prefix.filearchive ADD CONSTRAINT &mw_prefix.filearchive_fk4 FOREIGN KEY (fa_description_id) REFERENCES &mw_prefix."COMMENT"(comment_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE &mw_prefix.recentchanges ADD COLUMN rc_comment_id NUMBER DEFAULT 0 NOT NULL;
+ALTER TABLE &mw_prefix.recentchanges ADD ( rc_comment_id NUMBER DEFAULT 0 NOT NULL );
 ALTER TABLE &mw_prefix.recentchanges ADD CONSTRAINT &mw_prefix.recentchanges_fk3 FOREIGN KEY (rc_comment_id) REFERENCES &mw_prefix."COMMENT"(comment_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE &mw_prefix.logging ADD COLUMN log_comment_id NUMBER DEFAULT 0 NOT NULL;
+ALTER TABLE &mw_prefix.logging ADD ( log_comment_id NUMBER DEFAULT 0 NOT NULL );
 ALTER TABLE &mw_prefix.logging ADD CONSTRAINT &mw_prefix.logging_fk2 FOREIGN KEY (log_comment_id) REFERENCES &mw_prefix."COMMENT"(comment_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE &mw_prefix.protected_titles ADD COLUMN pt_reason_id NUMBER DEFAULT 0 NOT NULL;
+ALTER TABLE &mw_prefix.protected_titles ADD ( pt_reason_id NUMBER DEFAULT 0 NOT NULL );
 ALTER TABLE &mw_prefix.protected_titles ADD CONSTRAINT &mw_prefix.protected_titles_fk1 FOREIGN KEY (pt_reason_id) REFERENCES &mw_prefix."COMMENT"(comment_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
