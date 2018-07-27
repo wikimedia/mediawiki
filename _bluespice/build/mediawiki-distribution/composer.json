@@ -1,0 +1,34 @@
+{
+	"repositories": [{
+		"type": "composer",
+		"url": "https://packages.bluespice.com/"
+	}],
+	"require": {
+		"mediawiki/category-tree": "dev-master",
+		"mediawiki/cite": "dev-master",
+		"mediawiki/cite-this-page": "dev-master",
+		"mediawiki/code-editor": "dev-master",
+		"mediawiki/confirm-edit": "dev-master",
+		"mediawiki/gadgets": "dev-master",
+		"mediawiki/image-map": "dev-master",
+		"mediawiki/input-box": "dev-master",
+		"mediawiki/interwiki": "dev-master",
+		"mediawiki/localisation-update": "dev-master",
+		"mediawiki/multimedia-viewer": "dev-master",
+		"mediawiki/nuke": "dev-master",
+		"mediawiki/o-a-t-h-auth": "dev-master",
+		"mediawiki/parser-functions": "dev-master",
+		"mediawiki/pdf-handler": "dev-master",
+		"mediawiki/poem": "dev-master",
+		"mediawiki/renameuser": "dev-master",
+		"mediawiki/replace-text": "dev-master",
+		"mediawiki/spam-blacklist": "dev-master",
+		"mediawiki/syntax-highlight": "dev-master",
+		"mediawiki/title-blacklist": "dev-master",
+		"mediawiki/wiki-editor": "dev-master",
+
+		"mediawiki/monobook-skin": "dev-master",
+		"mediawiki/vector-skin": "dev-master",
+		"mediawiki/timeless-skin": "dev-master"
+	}
+}

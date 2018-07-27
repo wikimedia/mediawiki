@@ -1,0 +1,24 @@
+{
+    "packages": {
+        "mediawiki/core": {
+            "dev-d600583": {
+              "name": "mediawiki/core",
+              "version": "dev-d600583",
+              "source": {
+                  "url": "https://github.com/hallowelt/mediawiki.git",
+                  "type": "git",
+                  "reference": "d600583"
+              }
+            },
+            "2.27.2": {
+              "name": "mediawiki/core",
+              "version": "2.27.2",
+              "source": {
+                  "url": "https://github.com/hallowelt/mediawiki.git",
+                  "type": "git",
+                  "reference": "bs_2_27_2"
+              }
+            }
+        }
+    }
+}
