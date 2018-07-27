@@ -117,7 +117,7 @@ class VersionChecker {
 						}
 						break;
 					case 'extensions':
-					case 'skin':
+					case 'skins':
 						foreach ( $values as $dependency => $constraint ) {
 							$extError = $this->handleExtensionDependency(
 								$dependency, $constraint, $extension, $dependencyType
@@ -169,7 +169,7 @@ class VersionChecker {
 	 * @param string $dependencyName The name of the dependency
 	 * @param string $constraint The required version constraint for this dependency
 	 * @param string $checkedExt The Extension, which depends on this dependency
-	 * @param string $type Either 'extension' or 'skin'
+	 * @param string $type Either 'extensions' or 'skins'
 	 * @return bool|array false for no errors, or an array of info
 	 */
 	private function handleExtensionDependency( $dependencyName, $constraint, $checkedExt,
