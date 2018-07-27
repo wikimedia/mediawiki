@@ -1615,6 +1615,7 @@
 	"apierror-emptynewsection": "Il n'est pas possible de créer de nouvelles sections vides.",
 	"apierror-emptypage": "Il n'est pas possible de créer de nouvelles pages vides.",
 	"apierror-exceptioncaught": "[$1] Exception interceptée: $2",
+	"apierror-exceptioncaughttype": "[$1] Exception interceptée de type $2",
 	"apierror-filedoesnotexist": "Le fichier n’existe pas.",
 	"apierror-fileexists-sharedrepo-perm": "Le fichier cible existe dans un dépôt partagé. Utilisr le paramètre <var>ignorewarnings</var> pour l’écraser.",
 	"apierror-filenopath": "Il n'est pas possible de récupérer le chemin du fichier local.",

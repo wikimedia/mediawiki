@@ -1732,7 +1732,7 @@
 	"uploadstash-zero-length": "הקובץ באורך אפס.",
 	"invalid-chunk-offset": "היסט גוש לא תקין",
 	"img-auth-accessdenied": "הגישה נדחתה",
-	"img-auth-nopathinfo": "PATH_INFO חסר.\nהשרת אינו מוגדר להעברת מידע זה.\nייתכן שהוא מבוסס על CGI ולכן אינו יכול לתמוך ב־img_auth.\nלמידע נוסף: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "חסר מידע על הנתיב.\nהשרת חייב להיות מוגדר להעברת המשתנים REQUEST_URI ו/או PATH_INFO.\nאם הוא אכן מוגדר כך, ניתן לנסות להפעיל את ‎$wgUsePathInfo.\nלמידע נוסף: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "הנתיב המבוקש אינו בתיקיית ההעלאות שהוגדרה.",
 	"img-auth-badtitle": "לא ניתן ליצור כותרת תקינה מתוך \"$1\".",
 	"img-auth-nologinnWL": "לא נכנסת לחשבון, והדף \"$1\" אינו ברשימה המותרת.",
@@ -1748,6 +1748,7 @@
 	"http-timed-out": "עבר זמן ההמתנה של בקשת ה־HTTP.",
 	"http-curl-error": "שגיאה בקבלת כתובת ה־URL‏: $1",
 	"http-bad-status": "הייתה בעיה בשליחת בקשת ה־HTTP‏: $1 $2",
+	"http-internal-error": "שגיאת HTTP פנימית.",
 	"upload-curl-error6": "לא ניתן להגיע ל־URL",
 	"upload-curl-error6-text": "לא ניתן להגיע לכתובת ה־URL שנכתבה.\nיש לבדוק אם כתובת זו נכונה ואם האתר זמין.",
 	"upload-curl-error28": "הסתיים זמן ההמתנה להעלאה",
@@ -4147,5 +4148,6 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "הסיסמה לא יכולה להיות זהה לשם המשתמש",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "הסיסמה לא יכולה להתאים לסיסמאות מסוימות שנמצאות ברשימה השחורה",
 	"passwordpolicies-policy-maximalpasswordlength": "הסיסמה חייבת להיות קצרה יותר {{PLURAL:$1|מתו אחד|מ־$1 תווים}}",
-	"passwordpolicies-policy-passwordcannotbepopular": "הסיסמה לא יכולה להיות זהה {{PLURAL:$1|לסיסמה נפוצה|לאחת הסיסמאות שנמצאות ברשימה של $1 הסיסמאות הנפוצות}}"
+	"passwordpolicies-policy-passwordcannotbepopular": "הסיסמה לא יכולה להיות זהה {{PLURAL:$1|לסיסמה נפוצה|לאחת הסיסמאות שנמצאות ברשימה של $1 הסיסמאות הנפוצות}}",
+	"easydeflate-invaliddeflate": "התוכן שהועבר אינו דחוס כנדרש"
 }

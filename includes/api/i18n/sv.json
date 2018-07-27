@@ -542,6 +542,7 @@
 	"api-help-param-maxchars": "Kan inte vara längre än $1 {{PLURAL:$1|tecken}}.",
 	"apierror-articleexists": "Artikeln du försökte skapa har redan skapats.",
 	"apierror-baddiff": "Diff kan inte hämtas. En eller båda sidversioner finns inte eller du har inte behörighet för att visa dem.",
+	"apierror-exceptioncaughttype": "[$1] Fångade undantag av typen $2",
 	"apierror-invalidoldimage": "Parametern <var>oldimage</var> har ett ogiltigt format.",
 	"apierror-invalidsection": "Parametern <var>section</var> måste vara ett giltigt avsnitts-ID eller <kbd>new</kbd>.",
 	"apierror-maxbytes": "Parametern <var>$1</var> kan inte var längre än $2 {{PLURAL:$2|byte}}",
