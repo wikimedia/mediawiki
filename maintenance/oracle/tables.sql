@@ -496,7 +496,7 @@ CREATE TABLE &mw_prefix.ipblocks (
   ipb_user              NUMBER      DEFAULT 0 NOT  NULL,
   ipb_by                NUMBER      DEFAULT 0 NOT NULL,
   ipb_by_text           VARCHAR2(255)      NULL,
-  ipb_by_actor          NUMBER      DEFUALT 0 NOT NULL,
+  ipb_by_actor          NUMBER      DEFAULT 0 NOT NULL,
   ipb_reason            VARCHAR2(255)      NULL,
   ipb_reason_id         NUMBER DEFAULT 0 NOT NULL,
   ipb_timestamp         TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
