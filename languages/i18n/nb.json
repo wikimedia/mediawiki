@@ -1765,6 +1765,7 @@
 	"http-timed-out": "Tidsavbrudd på HTTP-forespørsel.",
 	"http-curl-error": "Feil under henting av adresse: $1",
 	"http-bad-status": "Det var et problem under HTTP-forespørselen: $1 $2",
+	"http-internal-error": "Intern HTTP-feil.",
 	"upload-curl-error6": "Klarte ikke nå adressen",
 	"upload-curl-error6-text": "Adressen kunne ikke nås. Vennligst dobbelsjekk at adressen er korrekt og at siden er oppe.",
 	"upload-curl-error28": "Opplastingstimeout",

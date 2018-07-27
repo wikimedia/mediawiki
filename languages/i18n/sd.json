@@ -766,6 +766,7 @@
 	"prefs-namespaces": "نانءُپولار",
 	"default": "ڏنل",
 	"prefs-files": "فائيلس",
+	"prefs-reset-intro": "اوهان هن صفحي جي مدد سان مرتب ڪيل ترجيحات کي اصل ترجيحات ۾ بدلائي سگھو ٿا.\nياد رکو، هي عمل واپس نٿو ٿي سگھي.",
 	"prefs-emailconfirm-label": "برقٽپال خاطري:",
 	"youremail": "برقٽپال:",
 	"username": "{{GENDER:$1|واپرائيندڙ-نانءُ}}",

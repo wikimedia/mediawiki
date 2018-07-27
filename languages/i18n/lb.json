@@ -1619,6 +1619,7 @@
 	"http-timed-out": "HTTP-Ufro huet ze laang gebraucht (time out).",
 	"http-curl-error": "Feeler beim Ofruff vun der URL: $1",
 	"http-bad-status": "Et gouf e Problem bei der HTTP-Ufro: $1 $2",
+	"http-internal-error": "Internen HTTP-Feeler.",
 	"upload-curl-error6": "URL ass net z'erreechen",
 	"upload-curl-error6-text": "Déi URL déi Dir uginn hutt kann net erreecht ginn.\nKuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.",
 	"upload-curl-error28": "D'Eroplueden huet ze laang gedauert (timeout)",
