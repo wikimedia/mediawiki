@@ -750,7 +750,7 @@ class Article implements Page {
 	 * @return array The policy that should be set
 	 * @todo actions other than 'view'
 	 */
-	public function getRobotPolicy( $action, $pOutput = null ) {
+	public function getRobotPolicy( $action, ParserOutput $pOutput = null ) {
 		global $wgArticleRobotPolicies, $wgNamespaceRobotPolicies, $wgDefaultRobotPolicy;
 
 		$ns = $this->getTitle()->getNamespace();
