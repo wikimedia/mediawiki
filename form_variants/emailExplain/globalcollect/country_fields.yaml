@@ -1,0 +1,8 @@
+AU:
+    state_province: true
+CA:
+    address: true
+GB:
+    address: true
+US:
+    address: true
