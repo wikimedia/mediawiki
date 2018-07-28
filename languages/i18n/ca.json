@@ -1353,6 +1353,7 @@
 	"recentchanges-noresult": "Cap canvi corresponent a aquests criteris en el període indicat.",
 	"recentchanges-timeout": "Aquesta cerca ha temporitzat. Podeu provar amb paràmetres de cerca diferents.",
 	"recentchanges-network": "A causa d'un error tècnic no s'ha pogut recuperar cap resultat. Intenteu refrescar la pàgina.",
+	"recentchanges-notargetpage": "Introduïu un nom de pàgina a dalt per veure els canvis relacionats amb aquesta pàgina.",
 	"recentchanges-feed-description": "Segueix en aquest canal els canvis més recents del wiki.",
 	"recentchanges-label-newpage": "Aquesta modificació creà una pàgina",
 	"recentchanges-label-minor": "Aquesta és una modificació menor",
