@@ -28,7 +28,8 @@
 			"Asmen",
 			"Obsuser",
 			"Fitoschido",
-			"BadDog"
+			"BadDog",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Podvlačenje linkova:",
@@ -1175,8 +1176,10 @@
 	"right-editcontentmodel": "Uređivanje modela sadržaja stranice",
 	"right-editinterface": "Uređivanje korisničkog interfejsa",
 	"right-editusercss": "Uređivanje tuđih CSS datoteka",
+	"right-edituserjson": "Uređivanje tuđih JSON datoteka",
 	"right-edituserjs": "Uređivanje tuđih JavaScript datoteka",
 	"right-editmyusercss": "Uređivanje vlastitih CSS datoteka",
+	"right-editmyuserjson": "Uređivanje vlastitih JSON datoteka",
 	"right-editmyuserjs": "Uređivanje vlastitih JavaScript datoteka",
 	"right-viewmywatchlist": "Pregledanje vlastitog spiska praćenja",
 	"right-editmywatchlist": "Uređivanje vlastitog spiska praćenja. Važno je spomenuti da će neke radnje dodati stranice na spisak, čak i bez ovog prava.",

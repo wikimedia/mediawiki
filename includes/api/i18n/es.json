@@ -1639,6 +1639,7 @@
 	"apiwarn-invalidxmlstylesheetns": "La hoja de estilos debería estar en el espacio de nombres {{ns:MediaWiki}}.",
 	"apiwarn-moduleswithoutvars": "La propiedad <kbd>modules</kbd> está definida, pero no lo está <kbd>jsconfigvars</kbd> ni <kbd>encodedjsconfigvars</kbd>. Las variables de configuración son necesarias para el correcto uso del módulo.",
 	"apiwarn-notfile": "\"$1\" no es un archivo.",
+	"apiwarn-nothumb-noimagehandler": "No se pudo crear la miniatura porque «$1» no tiene ningún manipulador de imágenes asociado.",
 	"apiwarn-parse-nocontentmodel": "No se proporcionó <var>title</var> ni <var>contentmodel</var>. Se asume $1.",
 	"apiwarn-tokennotallowed": "La acción «$1» no está permitida para el usuario actual.",
 	"apiwarn-truncatedresult": "Se ha truncado este resultado porque de otra manera sobrepasaría el límite de $1 bytes.",
