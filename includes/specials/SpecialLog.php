@@ -176,7 +176,7 @@ class SpecialLog extends SpecialPage {
 	 * @return string[] subpages
 	 */
 	public function getSubpagesForPrefixSearch() {
-		$subpages = $this->getConfig()->get( 'LogTypes' );
+		$subpages = LogPage::validTypes();
 		$subpages[] = 'all';
 		sort( $subpages );
 		return $subpages;
@@ -198,7 +198,7 @@ class SpecialLog extends SpecialPage {
 		$parms = explode( '/', $par );
 		$symsForAll = [ '*', 'all' ];
 		if ( $parms[0] != '' &&
-			( in_array( $par, $this->getConfig()->get( 'LogTypes' ) ) || in_array( $par, $symsForAll ) )
+			( in_array( $par, LogPage::validTypes() ) || in_array( $par, $symsForAll ) )
 		) {
 			$opts->setValue( 'type', $par );
 		} elseif ( count( $parms ) == 2 ) {
