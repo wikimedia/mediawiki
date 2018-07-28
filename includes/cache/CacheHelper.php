@@ -350,7 +350,7 @@ class CacheHelper implements ICacheHelper {
 			throw new MWException( 'No cache key set, so cannot obtain or save the CacheHelper values.' );
 		}
 
-		return wfMemcKey( ...$this->cacheKey );
+		return wfMemcKey( ...array_values( $this->cacheKey ) );
 	}
 
 	/**
