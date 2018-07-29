@@ -772,7 +772,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		] ) );
 		asort( $hours );
 
-		$select = new XmlSelect( 'days', 'days', $selectedHours / 24 );
+		$select = new XmlSelect( 'days', 'days', (float)( $selectedHours / 24 ) );
 
 		foreach ( $hours as $value ) {
 			if ( $value < 24 ) {
@@ -780,7 +780,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			} else {
 				$name = $this->msg( 'days' )->numParams( $value / 24 )->text();
 			}
-			$select->addOption( $name, $value / 24 );
+			$select->addOption( $name, (float)( $value / 24 ) );
 		}
 
 		return $select->getHTML() . "\n<br />\n";
