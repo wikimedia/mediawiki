@@ -58,7 +58,8 @@
 			"Pahkiqaz",
 			"Rueter",
 			"Kyykaarme",
-			"Surjection"
+			"Surjection",
+			"OneMember"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -406,6 +407,9 @@
 	"customcssprotected": "Sinulla ei ole oikeutta muuttaa tätä CSS-sivua, koska se sisältää toisen käyttäjän henkilökohtaisia asetuksia.",
 	"customjsonprotected": "Sinulla ei ole oikeutta muuttaa tätä JSON-sivua, koska se sisältää toisen käyttäjän henkilökohtaisia asetuksia.",
 	"customjsprotected": "Sinulla ei ole oikeutta muuttaa tätä JavaScript-sivua, koska se sisältää toisen käyttäjän henkilökohtaisia asetuksia.",
+	"sitecssprotected": "Sinulla ei ole oikeuksia muokata tätä CSS-sivua, koska se voi vaikuttaa muihin käyttäjiin",
+	"sitejsonprotected": "Sinulla ei ole oikeuksia muokata tätä JSON-sivua, koska se voi vaikuttaa muihin käyttäjiin",
+	"sitejsprotected": "Sinulla ei ole oikeuksia muokata tätä JavaScript-sivua, koska se voi vaikuttaa muihin käyttäjiin",
 	"mycustomcssprotected": "Sinulla ei ole oikeutta muokata tätä CSS-sivua.",
 	"mycustomjsonprotected": "Sinulla ei ole oikeutta muokata tätä JSON-sivua.",
 	"mycustomjsprotected": "Sinulla ei ole oikeutta muokata tätä JavaScript-sivua.",
@@ -1165,6 +1169,7 @@
 	"group-autoconfirmed": "automaattisesti hyväksytyt käyttäjät",
 	"group-bot": "botit",
 	"group-sysop": "ylläpitäjät",
+	"group-interface-admin": "Käyttöliittymän ylläpitäjät",
 	"group-bureaucrat": "byrokraatit",
 	"group-suppress": "häivyttäjät (suppressors)",
 	"group-all": "(kaikki)",
@@ -1172,6 +1177,7 @@
 	"group-autoconfirmed-member": "{{GENDER:$1|automaattisesti hyväksytty käyttäjä}}",
 	"group-bot-member": "{{GENDER:$1|botti}}",
 	"group-sysop-member": "{{GENDER:$1|ylläpitäjä}}",
+	"group-interface-admin-member": "{{GENDER:$1|käyttöliittymän ylläpitäjä}}",
 	"group-bureaucrat-member": "{{GENDER:$1|byrokraatti}}",
 	"group-suppress-member": "{{GENDER:$1|häivyttäjä (suppressor)}}",
 	"grouppage-user": "{{ns:project}}:Käyttäjät",
