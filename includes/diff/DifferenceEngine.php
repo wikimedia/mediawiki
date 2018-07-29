@@ -992,8 +992,6 @@ class DifferenceEngine extends ContextSource {
 	 * @return bool|string
 	 */
 	protected function textDiff( $otext, $ntext ) {
-		global $wgContLang;
-
 		$otext = str_replace( "\r\n", "\n", $otext );
 		$ntext = str_replace( "\r\n", "\n", $ntext );
 
@@ -1067,11 +1065,12 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		# Native PHP diff
-		$ota = explode( "\n", $wgContLang->segmentForDiff( $otext ) );
-		$nta = explode( "\n", $wgContLang->segmentForDiff( $ntext ) );
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$ota = explode( "\n", $contLang->segmentForDiff( $otext ) );
+		$nta = explode( "\n", $contLang->segmentForDiff( $ntext ) );
 		$diffs = new Diff( $ota, $nta );
 		$formatter = new TableDiffFormatter();
-		$difftext = $wgContLang->unsegmentForDiff( $formatter->format( $diffs ) );
+		$difftext = $contLang->unsegmentForDiff( $formatter->format( $diffs ) );
 		$difftext .= $this->debug( 'native PHP' );
 
 		return $difftext;

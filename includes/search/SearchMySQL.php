@@ -24,6 +24,8 @@
  * @ingroup Search
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Search engine hook for MySQL 4+
  * @ingroup Search
@@ -43,8 +45,6 @@ class SearchMySQL extends SearchDatabase {
 	 * @return array
 	 */
 	private function parseQuery( $filteredText, $fulltext ) {
-		global $wgContLang;
-
 		$lc = $this->legalSearchChars( self::CHARS_NO_SYNTAX ); // Minus syntax chars (" and *)
 		$searchon = '';
 		$this->searchTerms = [];
@@ -76,7 +76,8 @@ class SearchMySQL extends SearchDatabase {
 
 				// Some languages such as Serbian store the input form in the search index,
 				// so we may need to search for matches in multiple writing system variants.
-				$convertedVariants = $wgContLang->autoConvertToAllVariants( $term );
+				$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+				$convertedVariants = $contLang->autoConvertToAllVariants( $term );
 				if ( is_array( $convertedVariants ) ) {
 					$variants = array_unique( array_values( $convertedVariants ) );
 				} else {
@@ -87,9 +88,7 @@ class SearchMySQL extends SearchDatabase {
 				// around problems with minimum lengths and encoding in MySQL's
 				// fulltext engine.
 				// For Chinese this also inserts spaces between adjacent Han characters.
-				$strippedVariants = array_map(
-					[ $wgContLang, 'normalizeForSearch' ],
-					$variants );
+				$strippedVariants = array_map( [ $contLang, 'normalizeForSearch' ], $variants );
 
 				// Some languages such as Chinese force all variants to a canonical
 				// form when stripping to the low-level search index, so to be sure
@@ -134,10 +133,8 @@ class SearchMySQL extends SearchDatabase {
 	}
 
 	private function regexTerm( $string, $wildcard ) {
-		global $wgContLang;
-
 		$regex = preg_quote( $string, '/' );
-		if ( $wgContLang->hasWordBreaks() ) {
+		if ( MediaWikiServices::getInstance()->getContentLanguage()->hasWordBreaks() ) {
 			if ( $wildcard ) {
 				// Don't cut off the final bit!
 				$regex = "\b$regex";
@@ -389,8 +386,6 @@ class SearchMySQL extends SearchDatabase {
 	 * @return mixed|string
 	 */
 	function normalizeText( $string ) {
-		global $wgContLang;
-
 		$out = parent::normalizeText( $string );
 
 		// MySQL fulltext index doesn't grok utf-8, so we
@@ -398,7 +393,7 @@ class SearchMySQL extends SearchDatabase {
 		$out = preg_replace_callback(
 			"/([\\xc0-\\xff][\\x80-\\xbf]*)/",
 			[ $this, 'stripForSearchCallback' ],
-			$wgContLang->lc( $out ) );
+			MediaWikiServices::getInstance()->getContentLanguage()->lc( $out ) );
 
 		// And to add insult to injury, the default indexing
 		// ignores short words... Pad them so we can pass them

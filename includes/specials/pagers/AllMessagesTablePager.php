@@ -19,6 +19,7 @@
  * @ingroup Pager
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
@@ -27,8 +28,6 @@ use Wikimedia\Rdbms\FakeResultWrapper;
  *
  * @ingroup Pager
  */
-use MediaWiki\MediaWikiServices;
-
 class AllMessagesTablePager extends TablePager {
 
 	protected $filter, $prefix, $langcode, $displayPrefix;
@@ -54,13 +53,12 @@ class AllMessagesTablePager extends TablePager {
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 		$this->mLimitsShown = [ 20, 50, 100, 250, 500, 5000 ];
 
-		global $wgContLang;
-
 		$this->talk = $this->msg( 'talkpagelinktext' )->escaped();
 
-		$this->lang = $langObj ?: $wgContLang;
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$this->lang = $langObj ?: $contLang;
 		$this->langcode = $this->lang->getCode();
-		$this->foreign = !$this->lang->equals( $wgContLang );
+		$this->foreign = !$this->lang->equals( $contLang );
 
 		$request = $this->getRequest();
 

@@ -449,7 +449,7 @@ class TitleTest extends MediaWikiTestCase {
 		# Format:
 		# - expected
 		# - Title name
-		# - wgContLang (expected in most case)
+		# - content language (expected in most cases)
 		# - wgLang (on some specific pages)
 		# - wgDefaultLanguageVariant
 		# - Optional message

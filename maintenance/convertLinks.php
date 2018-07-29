@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -74,8 +76,6 @@ class ConvertLinks extends Maintenance {
 
 			return;
 		}
-
-		global $wgContLang;
 
 		# counters etc
 		$numBadLinks = $curRowsRead = 0;
@@ -153,7 +153,8 @@ class ConvertLinks extends Maintenance {
 			foreach ( $res as $row ) {
 				$title = $row->cur_title;
 				if ( $row->cur_namespace ) {
-					$title = $wgContLang->getNsText( $row->cur_namespace ) . ":$title";
+					$title = MediaWikiServices::getInstance()->getContentLanguage()->
+						getNsText( $row->cur_namespace ) . ":$title";
 				}
 				$ids[$title] = $row->cur_id;
 				$curRowsRead++;

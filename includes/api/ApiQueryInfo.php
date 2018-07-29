@@ -764,12 +764,12 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	private function getAllVariants( $text, $ns = NS_MAIN ) {
-		global $wgContLang;
 		$result = [];
-		foreach ( $wgContLang->getVariants() as $variant ) {
-			$convertTitle = $wgContLang->autoConvert( $text, $variant );
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		foreach ( $contLang->getVariants() as $variant ) {
+			$convertTitle = $contLang->autoConvert( $text, $variant );
 			if ( $ns !== NS_MAIN ) {
-				$convertNs = $wgContLang->convertNamespace( $ns, $variant );
+				$convertNs = $contLang->convertNamespace( $ns, $variant );
 				$convertTitle = $convertNs . ':' . $convertTitle;
 			}
 			$result[$variant] = $convertTitle;

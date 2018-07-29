@@ -244,8 +244,7 @@ class ApiMain extends ApiBase {
 			// for uselang=user (see T85635).
 		} else {
 			if ( $uselang === 'content' ) {
-				global $wgContLang;
-				$uselang = $wgContLang->getCode();
+				$uselang = MediaWikiServices::getInstance()->getContentLanguage()->getCode();
 			}
 			$code = RequestContext::sanitizeLangCode( $uselang );
 			$this->getContext()->setLanguage( $code );
@@ -265,8 +264,7 @@ class ApiMain extends ApiBase {
 			if ( $errorLangCode === 'uselang' ) {
 				$errorLang = $this->getLanguage();
 			} elseif ( $errorLangCode === 'content' ) {
-				global $wgContLang;
-				$errorLang = $wgContLang;
+				$errorLang = MediaWikiServices::getInstance()->getContentLanguage();
 			} else {
 				$errorLangCode = RequestContext::sanitizeLangCode( $errorLangCode );
 				$errorLang = Language::factory( $errorLangCode );

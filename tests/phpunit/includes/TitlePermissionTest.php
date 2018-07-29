@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Database
  *
@@ -99,8 +101,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 * @covers Title::checkQuickPermissions
 	 */
 	public function testQuickPermissions() {
-		global $wgContLang;
-		$prefix = $wgContLang->getFormattedNsText( NS_PROJECT );
+		$prefix = MediaWikiServices::getInstance()->getContentLanguage()->
+			getFormattedNsText( NS_PROJECT );
 
 		$this->setUser( 'anon' );
 		$this->setTitle( NS_TALK );
@@ -643,9 +645,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 * @covers Title::checkPageRestrictions
 	 */
 	public function testPageRestrictions() {
-		global $wgContLang;
-
-		$prefix = $wgContLang->getFormattedNsText( NS_PROJECT );
+		$prefix = MediaWikiServices::getInstance()->getContentLanguage()->
+			getFormattedNsText( NS_PROJECT );
 
 		$this->setTitle( NS_MAIN );
 		$this->title->mRestrictionsLoaded = true;

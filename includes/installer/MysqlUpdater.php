@@ -756,8 +756,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			'Converting links and brokenlinks tables to pagelinks'
 		);
 
-		global $wgContLang;
-		foreach ( $wgContLang->getNamespaces() as $ns => $name ) {
+		foreach (
+			MediaWikiServices::getInstance()->getContentLanguage()->getNamespaces() as $ns => $name
+		) {
 			if ( $ns == 0 ) {
 				continue;
 			}

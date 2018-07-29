@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @covers Preprocessor
  *
@@ -42,9 +44,9 @@ class PreprocessorTest extends MediaWikiTestCase {
 	];
 
 	protected function setUp() {
-		global $wgContLang;
 		parent::setUp();
-		$this->mOptions = ParserOptions::newFromUserAndLang( new User, $wgContLang );
+		$this->mOptions = ParserOptions::newFromUserAndLang( new User,
+			MediaWikiServices::getInstance()->getContentLanguage() );
 
 		$this->mPreprocessors = [];
 		foreach ( self::$classNames as $className ) {

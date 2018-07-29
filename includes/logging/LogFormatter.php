@@ -227,8 +227,6 @@ class LogFormatter {
 	 * @return string Text
 	 */
 	public function getIRCActionText() {
-		global $wgContLang;
-
 		$this->plaintext = true;
 		$this->irctext = true;
 
@@ -238,6 +236,7 @@ class LogFormatter {
 		// Text of title the action is aimed at.
 		$target = $entry->getTarget()->getPrefixedText();
 		$text = null;
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		switch ( $entry->getType() ) {
 			case 'move':
 				switch ( $entry->getSubtype() ) {
@@ -383,12 +382,12 @@ class LogFormatter {
 							$rawDuration = $parameters['5::duration'];
 							$rawFlags = $parameters['6::flags'];
 						}
-						$duration = $wgContLang->translateBlockExpiry(
+						$duration = $contLang->translateBlockExpiry(
 							$rawDuration,
 							null,
 							wfTimestamp( TS_UNIX, $entry->getTimestamp() )
 						);
-						$flags = BlockLogFormatter::formatBlockFlags( $rawFlags, $wgContLang );
+						$flags = BlockLogFormatter::formatBlockFlags( $rawFlags, $contLang );
 						$text = wfMessage( 'blocklogentry' )
 							->rawParams( $target, $duration, $flags )->inContentLanguage()->escaped();
 						break;
@@ -397,12 +396,13 @@ class LogFormatter {
 							->rawParams( $target )->inContentLanguage()->escaped();
 						break;
 					case 'reblock':
-						$duration = $wgContLang->translateBlockExpiry(
+						$duration = $contLang->translateBlockExpiry(
 							$parameters['5::duration'],
 							null,
 							wfTimestamp( TS_UNIX, $entry->getTimestamp() )
 						);
-						$flags = BlockLogFormatter::formatBlockFlags( $parameters['6::flags'], $wgContLang );
+						$flags = BlockLogFormatter::formatBlockFlags( $parameters['6::flags'],
+							$contLang );
 						$text = wfMessage( 'reblock-logentry' )
 							->rawParams( $target, $duration, $flags )->inContentLanguage()->escaped();
 						break;

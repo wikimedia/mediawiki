@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 require __DIR__ . '/../Maintenance.php';
 
 class BenchmarkTidy extends Maintenance {
@@ -35,8 +37,7 @@ class BenchmarkTidy extends Maintenance {
 	}
 
 	private function benchmark( $driver, $html ) {
-		global $wgContLang;
-
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$times = [];
 		$innerCount = 10;
 		$outerCount = 10;
@@ -44,7 +45,7 @@ class BenchmarkTidy extends Maintenance {
 			$t = microtime( true );
 			for ( $i = 0; $i < $innerCount; $i++ ) {
 				$driver->tidy( $html );
-				print $wgContLang->formatSize( memory_get_usage( true ) ) . "\n";
+				print $contLang->formatSize( memory_get_usage( true ) ) . "\n";
 			}
 			$t = ( ( microtime( true ) - $t ) / $innerCount ) * 1000;
 			$times[] = $t;
@@ -67,10 +68,9 @@ class BenchmarkTidy extends Maintenance {
 		print "Median: $median ms\n";
 		print "Mean: $mean ms\n";
 		print "Maximum: $max ms\n";
-		print "Memory usage: " .
-			$wgContLang->formatSize( memory_get_usage( true ) ) . "\n";
+		print "Memory usage: " .  $contLang->formatSize( memory_get_usage( true ) ) . "\n";
 		print "Peak memory usage: " .
-			$wgContLang->formatSize( memory_get_peak_usage( true ) ) . "\n";
+			$contLang->formatSize( memory_get_peak_usage( true ) ) . "\n";
 	}
 }
 

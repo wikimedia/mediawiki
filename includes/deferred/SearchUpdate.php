@@ -117,15 +117,14 @@ class SearchUpdate implements DeferrableUpdate {
 	 * @return string
 	 */
 	public function updateText( $text, SearchEngine $se = null ) {
-		global $wgContLang;
-
 		# Language-specific strip/conversion
-		$text = $wgContLang->normalizeForSearch( $text );
+		$text = MediaWikiServices::getInstance()->getContentLanguage()->normalizeForSearch( $text );
 		$se = $se ?: MediaWikiServices::getInstance()->newSearchEngine();
 		$lc = $se->legalSearchChars() . '&#;';
 
+		# Strip HTML markup
 		$text = preg_replace( "/<\\/?\\s*[A-Za-z][^>]*?>/",
-			' ', $wgContLang->lc( " " . $text . " " ) ); # Strip HTML markup
+			' ', MediaWikiServices::getInstance()->getContentLanguage()->lc( " " . $text . " " ) );
 		$text = preg_replace( "/(^|\\n)==\\s*([^\\n]+)\\s*==(\\s)/sD",
 			"\\1\\2 \\2 \\2\\3", $text ); # Emphasize headings
 
@@ -200,15 +199,13 @@ class SearchUpdate implements DeferrableUpdate {
 	 * @return string A stripped-down title string ready for the search index
 	 */
 	private function getNormalizedTitle( SearchEngine $search ) {
-		global $wgContLang;
-
 		$ns = $this->title->getNamespace();
 		$title = $this->title->getText();
 
 		$lc = $search->legalSearchChars() . '&#;';
-		$t = $wgContLang->normalizeForSearch( $title );
+		$t = MediaWikiServices::getInstance()->getContentLanguage()->normalizeForSearch( $title );
 		$t = preg_replace( "/[^{$lc}]+/", ' ', $t );
-		$t = $wgContLang->lc( $t );
+		$t = MediaWikiServices::getInstance()->getContentLanguage()->lc( $t );
 
 		# Handle 's, s'
 		$t = preg_replace( "/([{$lc}]+)'s( |$)/", "\\1 \\1's ", $t );

@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Image gallery
  *
@@ -99,7 +101,6 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @throws MWException
 	 */
 	static function factory( $mode = false, IContextSource $context = null ) {
-		global $wgContLang;
 		self::loadModes();
 		if ( !$context ) {
 			$context = RequestContext::getMainAndWarn( __METHOD__ );
@@ -109,7 +110,7 @@ abstract class ImageGalleryBase extends ContextSource {
 			$mode = $galleryOptions['mode'];
 		}
 
-		$mode = $wgContLang->lc( $mode );
+		$mode = MediaWikiServices::getInstance()->getContentLanguage()->lc( $mode );
 
 		if ( isset( self::$modeMapping[$mode] ) ) {
 			$class = self::$modeMapping[$mode];

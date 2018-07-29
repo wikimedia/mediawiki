@@ -578,10 +578,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param FormOptions $opts Unused
 	 */
 	function setTopText( FormOptions $opts ) {
-		global $wgContLang;
-
 		$message = $this->msg( 'recentchangestext' )->inContentLanguage();
 		if ( !$message->isDisabled() ) {
+			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			// Parse the message in this weird ugly way to preserve the ability to include interlanguage
 			// links in it (T172461). In the future when T66969 is resolved, perhaps we can just use
 			// $message->parse() instead. This code is copied from Message::parseText().
@@ -592,7 +591,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				// Message class sets the interface flag to false when parsing in a language different than
 				// user language, and this is wiki content language
 				/*interface*/false,
-				$wgContLang
+				$contLang
 			);
 			$content = $parserOutput->getText( [
 				'enableSectionEditLinks' => false,
@@ -601,8 +600,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$this->getOutput()->addParserOutputMetadata( $parserOutput );
 
 			$langAttributes = [
-				'lang' => $wgContLang->getHtmlCode(),
-				'dir' => $wgContLang->getDir(),
+				'lang' => $contLang->getHtmlCode(),
+				'dir' => $contLang->getDir(),
 			];
 
 			$topLinksAttributes = [ 'class' => 'mw-recentchanges-toplinks' ];

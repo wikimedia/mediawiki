@@ -110,7 +110,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	/**
 	 * @var Language
 	 */
-	private $contentLanguage;
+	private $contLang;
 
 	/**
 	 * @var LoggerInterface
@@ -251,7 +251,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 * @param ParserCache $parserCache
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param MessageCache $messageCache
-	 * @param Language $contentLanguage
+	 * @param Language $contLang
 	 * @param LoggerInterface|null $saveParseLogger
 	 */
 	public function __construct(
@@ -260,7 +260,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		ParserCache $parserCache,
 		JobQueueGroup $jobQueueGroup,
 		MessageCache $messageCache,
-		Language $contentLanguage,
+		Language $contLang,
 		LoggerInterface $saveParseLogger = null
 	) {
 		$this->wikiPage = $wikiPage;
@@ -269,7 +269,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		$this->revisionStore = $revisionStore;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->messageCache = $messageCache;
-		$this->contentLanguage = $contentLanguage;
+		$this->contLang = $contLang;
 
 		// XXX: replace all wfDebug calls with a Logger. Do we nede more than one logger here?
 		$this->saveParseLogger = $saveParseLogger ?: new NullLogger();
@@ -762,7 +762,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			$this->canonicalParserOutput = $output;
 		}
 
-		$userPopts = ParserOptions::newFromUserAndLang( $user, $this->contentLanguage );
+		$userPopts = ParserOptions::newFromUserAndLang( $user, $this->contLang );
 		Hooks::run( 'ArticlePrepareTextForEdit', [ $wikiPage, $userPopts ] );
 
 		$this->user = $user;

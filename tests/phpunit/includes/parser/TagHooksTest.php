@@ -47,8 +47,8 @@ class TagHooksTest extends MediaWikiTestCase {
 	}
 
 	private function getParserOptions() {
-		global $wgContLang;
-		$popt = ParserOptions::newFromUserAndLang( new User, $wgContLang );
+		$popt = ParserOptions::newFromUserAndLang( new User,
+			MediaWikiServices::getInstance()->getContentLanguage() );
 		return $popt;
 	}
 

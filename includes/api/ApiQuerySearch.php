@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Query module to perform full text search within wiki titles and content
  *
@@ -48,7 +50,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
-		global $wgContLang;
 		$params = $this->extractRequestParams();
 
 		// Extract parameters
@@ -152,7 +153,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		}
 
 		// Add the search results to the result
-		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
+		$terms = MediaWikiServices::getInstance()->getContentLanguage()->
+			convertForSearchResult( $matches->termMatches() );
 		$titles = [];
 		$count = 0;
 		$limit = $params['limit'];

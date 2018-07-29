@@ -23,6 +23,8 @@
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A License class for use on Special:Upload
  */
@@ -57,8 +59,6 @@ class Licenses extends HTMLFormField {
 	 * @return string
 	 */
 	protected static function getMessageFromParams( $params ) {
-		global $wgContLang;
-
 		if ( !empty( $params['licenses'] ) ) {
 			return $params['licenses'];
 		}
@@ -72,7 +72,8 @@ class Licenses extends HTMLFormField {
 		// Also see https://phabricator.wikimedia.org/T3495
 		$defaultMsg = wfMessage( 'licenses' )->inContentLanguage();
 		if ( !$defaultMsg->exists() || $defaultMsg->plain() === '-' ) {
-			$defaultMsg = wfMessage( 'licenses' )->inLanguage( $wgContLang );
+			$defaultMsg = wfMessage( 'licenses' )->inLanguage(
+				MediaWikiServices::getInstance()->getContentLanguage() );
 		}
 
 		return $defaultMsg->plain();

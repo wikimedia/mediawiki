@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Handles searching prefixes of titles and finding any page
  * names that match. Used largely by the OpenSearch implementation.
@@ -81,9 +83,8 @@ abstract class PrefixSearch {
 		// if the content language has variants, try to retrieve fallback results
 		$fallbackLimit = $limit - count( $searches );
 		if ( $fallbackLimit > 0 ) {
-			global $wgContLang;
-
-			$fallbackSearches = $wgContLang->autoConvertToAllVariants( $search );
+			$fallbackSearches = MediaWikiServices::getInstance()->getContentLanguage()->
+				autoConvertToAllVariants( $search );
 			$fallbackSearches = array_diff( array_unique( $fallbackSearches ), [ $search ] );
 
 			foreach ( $fallbackSearches as $fbs ) {
@@ -167,8 +168,6 @@ abstract class PrefixSearch {
 	 * @return array
 	 */
 	protected function specialSearch( $search, $limit, $offset ) {
-		global $wgContLang;
-
 		$searchParts = explode( '/', $search, 2 );
 		$searchKey = $searchParts[0];
 		$subpageSearch = $searchParts[1] ?? null;
@@ -192,23 +191,24 @@ abstract class PrefixSearch {
 		}
 
 		# normalize searchKey, so aliases with spaces can be found - T27675
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$searchKey = str_replace( ' ', '_', $searchKey );
-		$searchKey = $wgContLang->caseFold( $searchKey );
+		$searchKey = $contLang->caseFold( $searchKey );
 
 		// Unlike SpecialPage itself, we want the canonical forms of both
 		// canonical and alias title forms...
 		$keys = [];
 		foreach ( SpecialPageFactory::getNames() as $page ) {
-			$keys[$wgContLang->caseFold( $page )] = [ 'page' => $page, 'rank' => 0 ];
+			$keys[$contLang->caseFold( $page )] = [ 'page' => $page, 'rank' => 0 ];
 		}
 
-		foreach ( $wgContLang->getSpecialPageAliases() as $page => $aliases ) {
+		foreach ( $contLang->getSpecialPageAliases() as $page => $aliases ) {
 			if ( !in_array( $page, SpecialPageFactory::getNames() ) ) {# T22885
 				continue;
 			}
 
 			foreach ( $aliases as $key => $alias ) {
-				$keys[$wgContLang->caseFold( $alias )] = [ 'page' => $alias, 'rank' => $key ];
+				$keys[$contLang->caseFold( $alias )] = [ 'page' => $alias, 'rank' => $key ];
 			}
 		}
 		ksort( $keys );
@@ -307,10 +307,8 @@ abstract class PrefixSearch {
 	 * @return array (default: contains only NS_MAIN)
 	 */
 	protected function validateNamespaces( $namespaces ) {
-		global $wgContLang;
-
-		// We will look at each given namespace against wgContLang namespaces
-		$validNamespaces = $wgContLang->getNamespaces();
+		// We will look at each given namespace against content language namespaces
+		$validNamespaces = MediaWikiServices::getInstance()->getContentLanguage()->getNamespaces();
 		if ( is_array( $namespaces ) && count( $namespaces ) > 0 ) {
 			$valid = [];
 			foreach ( $namespaces as $ns ) {

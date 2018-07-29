@@ -21,6 +21,7 @@
  * @ingroup Database
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\ResultWrapper;
@@ -446,8 +447,6 @@ class DatabaseOracle extends Database {
 	 * @throws DBUnexpectedError
 	 */
 	private function insertOneRow( $table, $row, $fname ) {
-		global $wgContLang;
-
 		$table = $this->tableName( $table );
 		// "INSERT INTO tables (a, b, c)"
 		$sql = "INSERT INTO " . $table . " (" . implode( ',', array_keys( $row ) ) . ')';
@@ -493,7 +492,8 @@ class DatabaseOracle extends Database {
 					$val = $this->getInfinity();
 				}
 
-				$val = ( $wgContLang != null ) ? $wgContLang->checkTitleEncoding( $val ) : $val;
+				$val = MediaWikiServices::getInstance()->getContentLanguage()->
+					checkTitleEncoding( $val );
 				if ( oci_bind_by_name( $stmt, ":$col", $val, -1, SQLT_CHR ) === false ) {
 					$e = oci_error( $stmt );
 					$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
@@ -1067,9 +1067,9 @@ class DatabaseOracle extends Database {
 	}
 
 	function addQuotes( $s ) {
-		global $wgContLang;
-		if ( isset( $wgContLang->mLoaded ) && $wgContLang->mLoaded ) {
-			$s = $wgContLang->checkTitleEncoding( $s );
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		if ( isset( $contLang->mLoaded ) && $contLang->mLoaded ) {
+			$s = $contLang->checkTitleEncoding( $s );
 		}
 
 		return "'" . $this->strencode( $s ) . "'";
@@ -1092,15 +1092,15 @@ class DatabaseOracle extends Database {
 	}
 
 	private function wrapFieldForWhere( $table, &$col, &$val ) {
-		global $wgContLang;
-
 		$col_info = $this->fieldInfoMulti( $table, $col );
 		$col_type = $col_info != false ? $col_info->type() : 'CONSTANT';
 		if ( $col_type == 'CLOB' ) {
 			$col = 'TO_CHAR(' . $col . ')';
-			$val = $wgContLang->checkTitleEncoding( $val );
+			$val =
+				MediaWikiServices::getInstance()->getContentLanguage()->checkTitleEncoding( $val );
 		} elseif ( $col_type == 'VARCHAR2' ) {
-			$val = $wgContLang->checkTitleEncoding( $val );
+			$val =
+				MediaWikiServices::getInstance()->getContentLanguage()->checkTitleEncoding( $val );
 		}
 	}
 
@@ -1225,8 +1225,6 @@ class DatabaseOracle extends Database {
 	 * @throws DBUnexpectedError
 	 */
 	function update( $table, $values, $conds, $fname = __METHOD__, $options = [] ) {
-		global $wgContLang;
-
 		$table = $this->tableName( $table );
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET ";
@@ -1270,7 +1268,8 @@ class DatabaseOracle extends Database {
 					$val = '31-12-2030 12:00:00.000000';
 				}
 
-				$val = ( $wgContLang != null ) ? $wgContLang->checkTitleEncoding( $val ) : $val;
+				$val = MediaWikiServices::getInstance()->getContentLanguage()->
+					checkTitleEncoding( $val );
 				if ( oci_bind_by_name( $stmt, ":$col", $val ) === false ) {
 					$e = oci_error( $stmt );
 					$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );

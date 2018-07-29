@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Implements Special:Ancientpages
  *
@@ -74,14 +76,13 @@ class AncientPagesPage extends QueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
-
 		$d = $this->getLanguage()->userTimeAndDate( $result->value, $this->getUser() );
 		$title = Title::makeTitle( $result->namespace, $result->title );
 		$linkRenderer = $this->getLinkRenderer();
 		$link = $linkRenderer->makeKnownLink(
 			$title,
-			$wgContLang->convert( $title->getPrefixedText() )
+			MediaWikiServices::getInstance()->getContentLanguage()->
+				convert( $title->getPrefixedText() )
 		);
 
 		return $this->getLanguage()->specialList( $link, htmlspecialchars( $d ) );

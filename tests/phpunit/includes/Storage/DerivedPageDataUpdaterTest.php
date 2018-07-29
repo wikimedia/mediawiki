@@ -94,8 +94,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getCanonicalParserOptions()
 	 */
 	public function testGetCanonicalParserOptions() {
-		global $wgContLang;
-
 		$user = $this->getTestUser()->getUser();
 		$page = $this->getPage( __METHOD__ );
 
@@ -109,7 +107,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$updater->prepareContent( $user, $update, false );
 
 		$options1 = $updater->getCanonicalParserOptions();
-		$this->assertSame( $wgContLang, $options1->getUserLangObj() );
+		$this->assertSame( MediaWikiServices::getInstance()->getContentLanguage(),
+			$options1->getUserLangObj() );
 
 		$speculativeId = call_user_func( $options1->getSpeculativeRevIdCallback(), $page->getTitle() );
 		$this->assertSame( $parentRev->getId() + 1, $speculativeId );

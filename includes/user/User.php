@@ -986,13 +986,13 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool
 	 */
 	public static function isValidUserName( $name ) {
-		global $wgContLang, $wgMaxNameChars;
+		global $wgMaxNameChars;
 
 		if ( $name == ''
 			|| self::isIP( $name )
 			|| strpos( $name, '/' ) !== false
 			|| strlen( $name ) > $wgMaxNameChars
-			|| $name != $wgContLang->ucfirst( $name )
+			|| $name != MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $name )
 		) {
 			return false;
 		}
@@ -1228,8 +1228,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public static function getCanonicalName( $name, $validate = 'valid' ) {
 		// Force usernames to capital
-		global $wgContLang;
-		$name = $wgContLang->ucfirst( $name );
+		$name = MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $name );
 
 		# Reject names containing '#'; these will be cleaned up
 		# with title normalisation, but then it's too late to
@@ -1761,24 +1760,29 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return array Array of String options
 	 */
 	public static function getDefaultOptions() {
-		global $wgNamespacesToBeSearchedDefault, $wgDefaultUserOptions, $wgContLang, $wgDefaultSkin;
+		global $wgNamespacesToBeSearchedDefault, $wgDefaultUserOptions, $wgDefaultSkin;
 
 		static $defOpt = null;
 		static $defOptLang = null;
 
-		if ( $defOpt !== null && $defOptLang === $wgContLang->getCode() ) {
-			// $wgContLang does not change (and should not change) mid-request,
-			// but the unit tests change it anyway, and expect this method to
-			// return values relevant to the current $wgContLang.
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		if ( $defOpt !== null && $defOptLang === $contLang->getCode() ) {
+			// The content language does not change (and should not change) mid-request, but the
+			// unit tests change it anyway, and expect this method to return values relevant to the
+			// current content language.
 			return $defOpt;
 		}
 
 		$defOpt = $wgDefaultUserOptions;
 		// Default language setting
-		$defOptLang = $wgContLang->getCode();
+		$defOptLang = $contLang->getCode();
 		$defOpt['language'] = $defOptLang;
 		foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
-			$defOpt[$langCode == $wgContLang->getCode() ? 'variant' : "variant-$langCode"] = $langCode;
+			if ( $langCode === $contLang->getCode() ) {
+				$defOpt['variant'] = $langCode;
+			} else {
+				$defOpt["variant-$langCode"] = $langCode;
+			}
 		}
 
 		// NOTE: don't use SearchEngineConfig::getSearchableNamespaces here,
@@ -5453,8 +5457,6 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param array|null $data Rows for the current user out of the user_properties table
 	 */
 	protected function loadOptions( $data = null ) {
-		global $wgContLang;
-
 		$this->load();
 
 		if ( $this->mOptionsLoaded ) {
@@ -5468,7 +5470,7 @@ class User implements IDBAccessObject, UserIdentity {
 			// There's no need to do it for logged-in users: they can set preferences,
 			// and handling of page content is done by $pageLang->getPreferredVariant() and such,
 			// so don't override user's choice (especially when the user chooses site default).
-			$variant = $wgContLang->getDefaultVariant();
+			$variant = MediaWikiServices::getInstance()->getContentLanguage()->getDefaultVariant();
 			$this->mOptions['variant'] = $variant;
 			$this->mOptions['language'] = $variant;
 			$this->mOptionsLoaded = true;

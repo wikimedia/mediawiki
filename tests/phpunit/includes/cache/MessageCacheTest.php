@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Database
  * @group Cache
@@ -10,6 +12,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	protected function setUp() {
 		parent::setUp();
 		$this->configureLanguages();
+		MessageCache::destroyInstance();
 		MessageCache::singleton()->enable();
 	}
 
@@ -57,12 +60,10 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	 * @param string|null $content Content of the created page, or null for a generic string
 	 */
 	protected function makePage( $title, $lang, $content = null ) {
-		global $wgContLang;
-
 		if ( $content === null ) {
 			$content = $lang;
 		}
-		if ( $lang !== $wgContLang->getCode() ) {
+		if ( $lang !== MediaWikiServices::getInstance()->getContentLanguage()->getCode() ) {
 			$title = "$title/$lang";
 		}
 
@@ -100,11 +101,9 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	}
 
 	public function testReplaceMsg() {
-		global $wgContLang;
-
 		$messageCache = MessageCache::singleton();
 		$message = 'go';
-		$uckey = $wgContLang->ucfirst( $message );
+		$uckey = MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $message );
 		$oldText = $messageCache->get( $message ); // "Ausführen"
 
 		$dbw = wfGetDB( DB_MASTER );

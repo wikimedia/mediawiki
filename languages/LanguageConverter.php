@@ -250,7 +250,7 @@ class LanguageConverter {
 	 * @return mixed Variant if one found, null otherwise
 	 */
 	protected function getUserVariant() {
-		global $wgUser, $wgContLang;
+		global $wgUser;
 
 		// memoizing this function wreaks havoc on parserTest.php
 		/*
@@ -266,7 +266,10 @@ class LanguageConverter {
 			return false;
 		}
 		if ( $wgUser->isLoggedIn() ) {
-			if ( $this->mMainLanguageCode == $wgContLang->getCode() ) {
+			if (
+				$this->mMainLanguageCode ==
+				MediaWikiServices::getInstance()->getContentLanguage()->getCode()
+			) {
 				$ret = $wgUser->getOption( 'variant' );
 			} else {
 				$ret = $wgUser->getOption( 'variant-' . $this->mMainLanguageCode );

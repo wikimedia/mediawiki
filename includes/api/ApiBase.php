@@ -1246,8 +1246,8 @@ abstract class ApiBase extends ContextSource {
 			// Preserve U+001F for self::parseMultiValue(), or error out if that won't be called
 			if ( isset( $value ) && substr( $rawValue, 0, 1 ) === "\x1f" ) {
 				if ( $multi ) {
-					// This loses the potential $wgContLang->checkTitleEncoding() transformation
-					// done by WebRequest for $_GET. Let's call that a feature.
+					// This loses the potential checkTitleEncoding() transformation done by
+					// WebRequest for $_GET. Let's call that a feature.
 					$value = implode( "\x1f", $request->normalizeUnicode( explode( "\x1f", $rawValue ) ) );
 				} else {
 					$this->dieWithError( 'apierror-badvalue-notmultivalue', 'badvalue_notmultivalue' );

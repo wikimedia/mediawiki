@@ -66,7 +66,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/** @var Config */
 	protected $config;
 
-	/** @var Language The wiki's content language, equivalent to $wgContLang. */
+	/** @var Language The wiki's content language. */
 	protected $contLang;
 
 	/** @var AuthManager */

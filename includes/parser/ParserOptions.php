@@ -968,8 +968,8 @@ class ParserOptions {
 	 * @return ParserOptions
 	 */
 	public static function newFromAnon() {
-		global $wgContLang;
-		return new ParserOptions( new User, $wgContLang );
+		return new ParserOptions( new User,
+			MediaWikiServices::getInstance()->getContentLanguage() );
 	}
 
 	/**
@@ -1021,7 +1021,7 @@ class ParserOptions {
 	 * @param IContextSource|string|User|null $context
 	 *  - If an IContextSource, the options are initialized based on the source's User and Language.
 	 *  - If the string 'canonical', the options are initialized with an anonymous user and
-	 *    $wgContLang.
+	 *    the content language.
 	 *  - If a User or null, the options are initialized for that User (or $wgUser if null).
 	 *    'userlang' is taken from the $userLang parameter, defaulting to $wgLang if that is null.
 	 * @param Language|StubObject|null $userLang (see above)
@@ -1061,7 +1061,7 @@ class ParserOptions {
 			$wgMaxArticleSize, $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth,
 			$wgCleanSignatures, $wgExternalLinkTarget, $wgExpensiveParserFunctionLimit,
 			$wgMaxGeneratedPPNodeCount, $wgDisableLangConversion, $wgDisableTitleConversion,
-			$wgEnableMagicLinks, $wgContLang;
+			$wgEnableMagicLinks;
 
 		if ( self::$defaults === null ) {
 			// *UPDATE* ParserOptions::matches() if any of this changes as needed
@@ -1115,7 +1115,7 @@ class ParserOptions {
 			'numberheadings' => User::getDefaultOption( 'numberheadings' ),
 			'thumbsize' => User::getDefaultOption( 'thumbsize' ),
 			'stubthreshold' => 0,
-			'userlang' => $wgContLang,
+			'userlang' => MediaWikiServices::getInstance()->getContentLanguage(),
 		];
 	}
 
@@ -1329,8 +1329,8 @@ class ParserOptions {
 		if ( !is_null( $title ) ) {
 			$confstr .= $title->getPageLanguage()->getExtraHashOptions();
 		} else {
-			global $wgContLang;
-			$confstr .= $wgContLang->getExtraHashOptions();
+			$confstr .=
+				MediaWikiServices::getInstance()->getContentLanguage()->getExtraHashOptions();
 		}
 
 		$confstr .= $wgRenderHashAppend;

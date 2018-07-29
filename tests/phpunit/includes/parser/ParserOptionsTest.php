@@ -45,9 +45,9 @@ class ParserOptionsTest extends MediaWikiTestCase {
 	public function testNewCanonical() {
 		$wgUser = $this->getMutableTestUser()->getUser();
 		$wgLang = Language::factory( 'fr' );
-		$wgContLang = Language::factory( 'qqx' );
+		$contLang = Language::factory( 'qqx' );
 
-		$this->setContentLang( $wgContLang );
+		$this->setContentLang( $contLang );
 		$this->setMwGlobals( [
 			'wgUser' => $wgUser,
 			'wgLang' => $wgLang,
@@ -80,13 +80,12 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		$this->assertSame( $user, $popt->getUser() );
 		$this->assertSame( $lang, $popt->getUserLangObj() );
 
-		// Passing 'canonical' uses an anon and $wgContLang, and ignores
-		// any passed $userLang
+		// Passing 'canonical' uses an anon and $contLang, and ignores any passed $userLang
 		$popt = ParserOptions::newCanonical( 'canonical' );
 		$this->assertTrue( $popt->getUser()->isAnon() );
-		$this->assertSame( $wgContLang, $popt->getUserLangObj() );
+		$this->assertSame( $contLang, $popt->getUserLangObj() );
 		$popt = ParserOptions::newCanonical( 'canonical', $lang2 );
-		$this->assertSame( $wgContLang, $popt->getUserLangObj() );
+		$this->assertSame( $contLang, $popt->getUserLangObj() );
 
 		// Passing an IContextSource uses the user and lang from it, and ignores
 		// any passed $userLang

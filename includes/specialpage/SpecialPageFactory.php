@@ -22,6 +22,7 @@
  * @defgroup SpecialPage SpecialPage
  */
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\ObjectFactory;
 
 /**
@@ -270,9 +271,9 @@ class SpecialPageFactory {
 	 * @return array
 	 */
 	private static function getAliasList() {
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		if ( is_null( self::$aliases ) ) {
-			global $wgContLang;
-			$aliases = $wgContLang->getSpecialPageAliases();
+			$aliases = $contLang->getSpecialPageAliases();
 			$pageList = self::getPageList();
 
 			self::$aliases = [];
@@ -280,7 +281,7 @@ class SpecialPageFactory {
 
 			// Force every canonical name to be an alias for itself.
 			foreach ( $pageList as $name => $stuff ) {
-				$caseFoldedAlias = $wgContLang->caseFold( $name );
+				$caseFoldedAlias = $contLang->caseFold( $name );
 				self::$aliases[$caseFoldedAlias] = $name;
 				$keepAlias[$caseFoldedAlias] = 'canonical';
 			}
@@ -290,7 +291,7 @@ class SpecialPageFactory {
 				foreach ( $aliases as $realName => $aliasList ) {
 					$aliasList = array_values( $aliasList );
 					foreach ( $aliasList as $i => $alias ) {
-						$caseFoldedAlias = $wgContLang->caseFold( $alias );
+						$caseFoldedAlias = $contLang->caseFold( $alias );
 
 						if ( isset( self::$aliases[$caseFoldedAlias] ) &&
 							$realName === self::$aliases[$caseFoldedAlias]
@@ -327,10 +328,10 @@ class SpecialPageFactory {
 	 * @return array Array( String, String|null ), or array( null, null ) if the page is invalid
 	 */
 	public static function resolveAlias( $alias ) {
-		global $wgContLang;
 		$bits = explode( '/', $alias, 2 );
 
-		$caseFoldedAlias = $wgContLang->caseFold( $bits[0] );
+		$caseFoldedAlias = MediaWikiServices::getInstance()->getContentLanguage()->
+			caseFold( $bits[0] );
 		$caseFoldedAlias = str_replace( ' ', '_', $caseFoldedAlias );
 		$aliases = self::getAliasList();
 		if ( isset( $aliases[$caseFoldedAlias] ) ) {
@@ -646,15 +647,15 @@ class SpecialPageFactory {
 	 * @return string
 	 */
 	public static function getLocalNameFor( $name, $subpage = false ) {
-		global $wgContLang;
-		$aliases = $wgContLang->getSpecialPageAliases();
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$aliases = $contLang->getSpecialPageAliases();
 		$aliasList = self::getAliasList();
 
 		// Find the first alias that maps back to $name
 		if ( isset( $aliases[$name] ) ) {
 			$found = false;
 			foreach ( $aliases[$name] as $alias ) {
-				$caseFoldedAlias = $wgContLang->caseFold( $alias );
+				$caseFoldedAlias = $contLang->caseFold( $alias );
 				$caseFoldedAlias = str_replace( ' ', '_', $caseFoldedAlias );
 				if ( isset( $aliasList[$caseFoldedAlias] ) &&
 					$aliasList[$caseFoldedAlias] === $name
@@ -690,7 +691,7 @@ class SpecialPageFactory {
 			$name = "$name/$subpage";
 		}
 
-		return $wgContLang->ucfirst( $name );
+		return $contLang->ucfirst( $name );
 	}
 
 	/**

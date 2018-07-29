@@ -25,6 +25,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/cleanupTable.inc';
 
 /**
@@ -46,8 +48,6 @@ class CleanupImages extends TableCleanup {
 	}
 
 	protected function processRow( $row ) {
-		global $wgContLang;
-
 		$source = $row->img_name;
 		if ( $source == '' ) {
 			// Ye olde empty rows. Just kill them.
@@ -64,11 +64,13 @@ class CleanupImages extends TableCleanup {
 		// We also have some HTML entities there
 		$cleaned = Sanitizer::decodeCharReferences( $cleaned );
 
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+
 		// Some are old latin-1
-		$cleaned = $wgContLang->checkTitleEncoding( $cleaned );
+		$cleaned = $contLang->checkTitleEncoding( $cleaned );
 
 		// Many of remainder look like non-normalized unicode
-		$cleaned = $wgContLang->normalize( $cleaned );
+		$cleaned = $contLang->normalize( $cleaned );
 
 		$title = Title::makeTitleSafe( NS_FILE, $cleaned );
 

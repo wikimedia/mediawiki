@@ -24,6 +24,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -131,13 +133,13 @@ TEXT
 	}
 
 	private function getNsIndex( $namespace ) {
-		global $wgContLang;
-		$result = $wgContLang->getNsIndex( $namespace );
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$result = $contLang->getNsIndex( $namespace );
 		if ( $result !== false ) {
 			return $result;
 		}
 		$ns = intval( $namespace );
-		if ( strval( $ns ) === $namespace && $wgContLang->getNsText( $ns ) !== false ) {
+		if ( strval( $ns ) === $namespace && $contLang->getNsText( $ns ) !== false ) {
 			return $ns;
 		}
 		$this->fatalError( "Unknown namespace text / index specified: $namespace" );

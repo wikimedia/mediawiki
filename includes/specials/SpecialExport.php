@@ -421,8 +421,6 @@ class SpecialExport extends SpecialPage {
 	 * @return array
 	 */
 	private function getPagesFromCategory( $title ) {
-		global $wgContLang;
-
 		$maxPages = $this->getConfig()->get( 'ExportPagelistLimit' );
 
 		$name = $title->getDBkey();
@@ -441,7 +439,8 @@ class SpecialExport extends SpecialPage {
 		foreach ( $res as $row ) {
 			$n = $row->page_title;
 			if ( $row->page_namespace ) {
-				$ns = $wgContLang->getNsText( $row->page_namespace );
+				$ns = MediaWikiServices::getInstance()->getContentLanguage()->getNsText(
+					$row->page_namespace );
 				$n = $ns . ':' . $n;
 			}
 
@@ -456,8 +455,6 @@ class SpecialExport extends SpecialPage {
 	 * @return array
 	 */
 	private function getPagesFromNamespace( $nsindex ) {
-		global $wgContLang;
-
 		$maxPages = $this->getConfig()->get( 'ExportPagelistLimit' );
 
 		$dbr = wfGetDB( DB_REPLICA );
@@ -475,7 +472,8 @@ class SpecialExport extends SpecialPage {
 			$n = $row->page_title;
 
 			if ( $row->page_namespace ) {
-				$ns = $wgContLang->getNsText( $row->page_namespace );
+				$ns = MediaWikiServices::getInstance()->getContentLanguage()->getNsText(
+					$row->page_namespace );
 				$n = $ns . ':' . $n;
 			}
 

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Search\ParserOutputSearchDataExtractor;
 
 /**
@@ -642,7 +643,7 @@ abstract class ContentHandler {
 	/**
 	 * Get the language in which the content of the given page is written.
 	 *
-	 * This default implementation just returns $wgContLang (except for pages
+	 * This default implementation just returns the content language (except for pages
 	 * in the MediaWiki namespace)
 	 *
 	 * Note that the pages language is not cacheable, since it may in some
@@ -659,8 +660,8 @@ abstract class ContentHandler {
 	 * @return Language The page's language
 	 */
 	public function getPageLanguage( Title $title, Content $content = null ) {
-		global $wgContLang, $wgLang;
-		$pageLang = $wgContLang;
+		global $wgLang;
+		$pageLang = MediaWikiServices::getInstance()->getContentLanguage();
 
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
 			// Parse mediawiki messages with correct target language

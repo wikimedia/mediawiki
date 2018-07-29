@@ -24,6 +24,7 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -71,8 +72,6 @@ class MostlinkedCategoriesPage extends QueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
-
 		$nt = Title::makeTitleSafe( NS_CATEGORY, $result->title );
 		if ( !$nt ) {
 			return Html::element(
@@ -85,7 +84,7 @@ class MostlinkedCategoriesPage extends QueryPage {
 			);
 		}
 
-		$text = $wgContLang->convert( $nt->getText() );
+		$text = MediaWikiServices::getInstance()->getContentLanguage()->convert( $nt->getText() );
 		$plink = $this->getLinkRenderer()->makeLink( $nt, $text );
 		$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
 

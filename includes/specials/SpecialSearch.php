@@ -269,8 +269,6 @@ class SpecialSearch extends SpecialPage {
 	 * @param string $term
 	 */
 	public function showResults( $term ) {
-		global $wgContLang;
-
 		if ( $this->searchEngineType !== null ) {
 			$this->setExtraParam( 'srbackend', $this->searchEngineType );
 		}
@@ -281,7 +279,8 @@ class SpecialSearch extends SpecialPage {
 			$this->searchConfig,
 			$this->getSearchProfiles()
 		);
-		$filePrefix = $wgContLang->getFormattedNsText( NS_FILE ) . ':';
+		$filePrefix = MediaWikiServices::getInstance()->getContentLanguage()->
+			getFormattedNsText( NS_FILE ) . ':';
 		if ( trim( $term ) === '' || $filePrefix === trim( $term ) ) {
 			// Empty query -- straight view of search form
 			if ( !Hooks::run( 'SpecialSearchResultsPrepend', [ $this, $out, $term ] ) ) {

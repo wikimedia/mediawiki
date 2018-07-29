@@ -22,6 +22,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * This class is a collection of static functions that serve two purposes:
@@ -824,8 +825,6 @@ class Html {
 	 * @return array
 	 */
 	public static function namespaceSelectorOptions( array $params = [] ) {
-		global $wgContLang;
-
 		$options = [];
 
 		if ( !isset( $params['exclude'] ) || !is_array( $params['exclude'] ) ) {
@@ -838,7 +837,8 @@ class Html {
 			$options[$params['all']] = wfMessage( 'namespacesall' )->text();
 		}
 		// Add all namespaces as options (in the content language)
-		$options += $wgContLang->getFormattedNamespaces();
+		$options +=
+			MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces();
 
 		$optionsOut = [];
 		// Filter out namespaces below 0 and massage labels
@@ -851,7 +851,8 @@ class Html {
 				// main we don't use "" but the user message describing it (e.g. "(Main)" or "(Article)")
 				$nsName = wfMessage( 'blanknamespace' )->text();
 			} elseif ( is_int( $nsId ) ) {
-				$nsName = $wgContLang->convertNamespace( $nsId );
+				$nsName = MediaWikiServices::getInstance()->getContentLanguage()->
+					convertNamespace( $nsId );
 			}
 			$optionsOut[$nsId] = $nsName;
 		}

@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A form to make the database readonly (eg for maintenance purposes).
  *
@@ -74,8 +76,6 @@ class SpecialLockdb extends FormSpecialPage {
 	}
 
 	public function onSubmit( array $data ) {
-		global $wgContLang;
-
 		if ( !$data['Confirm'] ) {
 			return Status::newFatal( 'locknoconfirm' );
 		}
@@ -92,10 +92,11 @@ class SpecialLockdb extends FormSpecialPage {
 		}
 		fwrite( $fp, $data['Reason'] );
 		$timestamp = wfTimestampNow();
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		fwrite( $fp, "\n<p>" . $this->msg( 'lockedbyandtime',
 			$this->getUser()->getName(),
-			$wgContLang->date( $timestamp, false, false ),
-			$wgContLang->time( $timestamp, false, false )
+			$contLang->date( $timestamp, false, false ),
+			$contLang->time( $timestamp, false, false )
 		)->inContentLanguage()->text() . "</p>\n" );
 		fclose( $fp );
 

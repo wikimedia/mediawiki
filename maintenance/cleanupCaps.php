@@ -29,6 +29,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/cleanupTable.inc';
 
 /**
@@ -71,12 +73,10 @@ class CleanupCaps extends TableCleanup {
 	}
 
 	protected function processRowToUppercase( $row ) {
-		global $wgContLang;
-
 		$current = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$display = $current->getPrefixedText();
 		$lower = $row->page_title;
-		$upper = $wgContLang->ucfirst( $row->page_title );
+		$upper = MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $row->page_title );
 		if ( $upper == $lower ) {
 			$this->output( "\"$display\" already uppercase.\n" );
 
@@ -109,12 +109,10 @@ class CleanupCaps extends TableCleanup {
 	}
 
 	protected function processRowToLowercase( $row ) {
-		global $wgContLang;
-
 		$current = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$display = $current->getPrefixedText();
 		$upper = $row->page_title;
-		$lower = $wgContLang->lcfirst( $row->page_title );
+		$lower = MediaWikiServices::getInstance()->getContentLanguage()->lcfirst( $row->page_title );
 		if ( $upper == $lower ) {
 			$this->output( "\"$display\" already lowercase.\n" );
 

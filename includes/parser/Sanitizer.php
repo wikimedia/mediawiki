@@ -24,6 +24,8 @@
  * @ingroup Parser
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * HTML sanitizer for MediaWiki
  * @ingroup Parser
@@ -1657,7 +1659,6 @@ class Sanitizer {
 	 * @return string Still normalized, without entities
 	 */
 	public static function decodeCharReferencesAndNormalize( $text ) {
-		global $wgContLang;
 		$text = preg_replace_callback(
 			self::CHAR_REFS_REGEX,
 			[ self::class, 'decodeCharReferencesCallback' ],
@@ -1667,7 +1668,7 @@ class Sanitizer {
 		);
 
 		if ( $count ) {
-			return $wgContLang->normalize( $text );
+			return MediaWikiServices::getInstance()->getContentLanguage()->normalize( $text );
 		} else {
 			return $text;
 		}

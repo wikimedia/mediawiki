@@ -24,6 +24,7 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -109,15 +110,14 @@ class UnwatchedpagesPage extends QueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
-
 		$nt = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$nt ) {
 			return Html::element( 'span', [ 'class' => 'mw-invalidtitle' ],
 				Linker::getInvalidTitleDescription( $this->getContext(), $result->namespace, $result->title ) );
 		}
 
-		$text = $wgContLang->convert( $nt->getPrefixedText() );
+		$text = MediaWikiServices::getInstance()->getContentLanguage()->
+			convert( $nt->getPrefixedText() );
 
 		$linkRenderer = $this->getLinkRenderer();
 

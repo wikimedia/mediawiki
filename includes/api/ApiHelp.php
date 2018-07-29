@@ -91,8 +91,6 @@ class ApiHelp extends ApiBase {
 	 * @param array $options Formatting options (described above)
 	 */
 	public static function getHelp( IContextSource $context, $modules, array $options ) {
-		global $wgContLang;
-
 		if ( !is_array( $modules ) ) {
 			$modules = [ $modules ];
 		}
@@ -108,10 +106,12 @@ class ApiHelp extends ApiBase {
 		}
 		$out->setPageTitle( $context->msg( 'api-help-title' ) );
 
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$services = MediaWikiServices::getInstance();
+		$cache = $services->getMainWANObjectCache();
 		$cacheKey = null;
 		if ( count( $modules ) == 1 && $modules[0] instanceof ApiMain &&
-			$options['recursivesubmodules'] && $context->getLanguage() === $wgContLang
+			$options['recursivesubmodules'] &&
+			$context->getLanguage()->equals( $services->getContentLanguage() )
 		) {
 			$cacheHelpTimeout = $context->getConfig()->get( 'APICacheHelpTimeout' );
 			if ( $cacheHelpTimeout > 0 ) {

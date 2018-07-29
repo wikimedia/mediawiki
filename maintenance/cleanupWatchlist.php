@@ -29,6 +29,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/cleanupTable.inc';
 
 /**
@@ -58,10 +60,9 @@ class CleanupWatchlist extends TableCleanup {
 	}
 
 	protected function processRow( $row ) {
-		global $wgContLang;
 		$current = Title::makeTitle( $row->wl_namespace, $row->wl_title );
 		$display = $current->getPrefixedText();
-		$verified = $wgContLang->normalize( $display );
+		$verified = MediaWikiServices::getInstance()->getContentLanguage()->normalize( $display );
 		$title = Title::newFromText( $verified );
 
 		if ( $row->wl_user == 0 || is_null( $title ) || !$title->equals( $current ) ) {

@@ -66,8 +66,6 @@ class MediaWiki {
 	 * @return Title Title object to be $wgTitle
 	 */
 	private function parseTitle() {
-		global $wgContLang;
-
 		$request = $this->context->getRequest();
 		$curid = $request->getInt( 'curid' );
 		$title = $request->getVal( 'title' );
@@ -88,12 +86,13 @@ class MediaWiki {
 			if ( !is_null( $ret ) && $ret->getNamespace() == NS_MEDIA ) {
 				$ret = Title::makeTitle( NS_FILE, $ret->getDBkey() );
 			}
+			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			// Check variant links so that interwiki links don't have to worry
 			// about the possible different language variants
-			if ( $wgContLang->hasVariants()
-				&& !is_null( $ret ) && $ret->getArticleID() == 0
+			if (
+				$contLang->hasVariants() && !is_null( $ret ) && $ret->getArticleID() == 0
 			) {
-				$wgContLang->findVariantLink( $title, $ret );
+				$contLang->findVariantLink( $title, $ret );
 			}
 		}
 

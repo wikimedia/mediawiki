@@ -325,8 +325,6 @@ class RequestContext implements IContextSource, MutableContext {
 		} elseif ( $this->lang === null ) {
 			$this->recursion = true;
 
-			global $wgContLang;
-
 			try {
 				$request = $this->getRequest();
 				$user = $this->getUser();
@@ -340,7 +338,7 @@ class RequestContext implements IContextSource, MutableContext {
 				Hooks::run( 'UserGetLanguageObject', [ $user, &$code, $this ] );
 
 				if ( $code === $this->getConfig()->get( 'LanguageCode' ) ) {
-					$this->lang = $wgContLang;
+					$this->lang = MediaWikiServices::getInstance()->getContentLanguage();
 				} else {
 					$obj = Language::factory( $code );
 					$this->lang = $obj;

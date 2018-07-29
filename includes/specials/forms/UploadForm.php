@@ -260,12 +260,11 @@ class UploadForm extends HTMLForm {
 				$file = null;
 			}
 			if ( $file ) {
-				global $wgContLang;
-
 				$mto = $file->transform( [ 'width' => 120 ] );
 				if ( $mto ) {
 					$this->addHeaderText(
-						'<div class="thumb t' . $wgContLang->alignEnd() . '">' .
+						'<div class="thumb t' .
+						MediaWikiServices::getInstance()->getContentLanguage()->alignEnd() . '">' .
 						Html::element( 'img', [
 							'src' => $mto->getUrl(),
 							'class' => 'thumbimage',

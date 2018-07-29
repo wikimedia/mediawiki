@@ -26,6 +26,8 @@
  * @see http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -316,7 +318,7 @@ class GenerateSitemap extends Maintenance {
 	 * Main loop
 	 */
 	public function main() {
-		global $wgContLang;
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 
 		fwrite( $this->findex, $this->openIndex() );
 
@@ -327,7 +329,7 @@ class GenerateSitemap extends Maintenance {
 			$length = $this->limit[0];
 			$i = $smcount = 0;
 
-			$fns = $wgContLang->getFormattedNsText( $namespace );
+			$fns = $contLang->getFormattedNsText( $namespace );
 			$this->output( "$namespace ($fns)\n" );
 			$skippedRedirects = 0; // Number of redirects skipped for that namespace
 			foreach ( $res as $row ) {
@@ -358,10 +360,10 @@ class GenerateSitemap extends Maintenance {
 				$length += strlen( $entry );
 				$this->write( $this->file, $entry );
 				// generate pages for language variants
-				if ( $wgContLang->hasVariants() ) {
-					$variants = $wgContLang->getVariants();
+				if ( $contLang->hasVariants() ) {
+					$variants = $contLang->getVariants();
 					foreach ( $variants as $vCode ) {
-						if ( $vCode == $wgContLang->getCode() ) {
+						if ( $vCode == $contLang->getCode() ) {
 							continue; // we don't want default variant
 						}
 						$entry = $this->fileEntry(

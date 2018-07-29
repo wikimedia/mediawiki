@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @since 1.16.3
  * @author Tim Starling
@@ -46,13 +48,12 @@ abstract class Collation {
 	 * @return Collation
 	 */
 	public static function factory( $collationName ) {
-		global $wgContLang;
-
 		switch ( $collationName ) {
 			case 'uppercase':
 				return new UppercaseCollation;
 			case 'numeric':
-				return new NumericUppercaseCollation( $wgContLang );
+				return new NumericUppercaseCollation(
+					MediaWikiServices::getInstance()->getContentLanguage() );
 			case 'identity':
 				return new IdentityCollation;
 			case 'uca-default':

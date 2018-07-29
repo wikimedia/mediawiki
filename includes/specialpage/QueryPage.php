@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBError;
@@ -690,8 +691,6 @@ abstract class QueryPage extends SpecialPage {
 	 * @param int $offset Paging offset
 	 */
 	protected function outputResults( $out, $skin, $dbr, $res, $num, $offset ) {
-		global $wgContLang;
-
 		if ( $num > 0 ) {
 			$html = [];
 			if ( !$this->listoutput ) {
@@ -726,7 +725,7 @@ abstract class QueryPage extends SpecialPage {
 			}
 
 			$html = $this->listoutput
-				? $wgContLang->listToText( $html )
+				? MediaWikiServices::getInstance()->getContentLanguage()->listToText( $html )
 				: implode( '', $html );
 
 			$out->addHTML( $html );

@@ -88,6 +88,8 @@ class MessageCache {
 	protected $clusterCache;
 	/** @var BagOStuff */
 	protected $srvCache;
+	/** @var Language */
+	protected $contLang;
 
 	/**
 	 * Singleton instance
@@ -112,7 +114,8 @@ class MessageCache {
 					? MediaWikiServices::getInstance()->getLocalServerObjectCache()
 					: new EmptyBagOStuff(),
 				$wgUseDatabaseMessages,
-				$wgMsgCacheExpiry
+				$wgMsgCacheExpiry,
+				MediaWikiServices::getInstance()->getContentLanguage()
 			);
 		}
 
@@ -135,13 +138,11 @@ class MessageCache {
 	 * @return string Normalized message key
 	 */
 	public static function normalizeKey( $key ) {
-		global $wgContLang;
-
 		$lckey = strtr( $key, ' ', '_' );
 		if ( ord( $lckey ) < 128 ) {
 			$lckey[0] = strtolower( $lckey[0] );
 		} else {
-			$lckey = $wgContLang->lcfirst( $lckey );
+			$lckey = MediaWikiServices::getInstance()->getContentLanguage()->lcfirst( $lckey );
 		}
 
 		return $lckey;
@@ -153,13 +154,15 @@ class MessageCache {
 	 * @param BagOStuff $serverCache
 	 * @param bool $useDB Whether to look for message overrides (e.g. MediaWiki: pages)
 	 * @param int $expiry Lifetime for cache. @see $mExpiry.
+	 * @param Language|null $contLang Content language of site
 	 */
 	public function __construct(
 		WANObjectCache $wanCache,
 		BagOStuff $clusterCache,
 		BagOStuff $serverCache,
 		$useDB,
-		$expiry
+		$expiry,
+		Language $contLang = null
 	) {
 		$this->wanCache = $wanCache;
 		$this->clusterCache = $clusterCache;
@@ -169,6 +172,7 @@ class MessageCache {
 
 		$this->mDisable = !$useDB;
 		$this->mExpiry = $expiry;
+		$this->contLang = $contLang ?? MediaWikiServices::getInstance()->getContentLanguage();
 	}
 
 	/**
@@ -581,7 +585,7 @@ class MessageCache {
 		// (b) Update the shared caches in a deferred update with a fresh DB snapshot
 		DeferredUpdates::addCallableUpdate(
 			function () use ( $title, $msg, $code ) {
-				global $wgContLang, $wgMaxMsgCacheEntrySize;
+				global $wgMaxMsgCacheEntrySize;
 				// Allow one caller at a time to avoid race conditions
 				$scopedLock = $this->getReentrantScopedLock(
 					$this->clusterCache->makeKey( 'messages', $code )
@@ -627,7 +631,7 @@ class MessageCache {
 				// Purge the message in the message blob store
 				$resourceloader = RequestContext::getMain()->getOutput()->getResourceLoader();
 				$blobStore = $resourceloader->getMessageBlobStore();
-				$blobStore->updateMessage( $wgContLang->lcfirst( $msg ) );
+				$blobStore->updateMessage( $this->contLang->lcfirst( $msg ) );
 
 				Hooks::run( 'MessageCacheReplace', [ $title, $text ] );
 			},
@@ -860,8 +864,6 @@ class MessageCache {
 	 * @return string|bool The message, or false if not found
 	 */
 	protected function getMessageFromFallbackChain( $lang, $lckey, $useDB ) {
-		global $wgContLang;
-
 		$alreadyTried = [];
 
 		// First try the requested language.
@@ -871,7 +873,7 @@ class MessageCache {
 		}
 
 		// Now try checking the site language.
-		$message = $this->getMessageForLang( $wgContLang, $lckey, $useDB, $alreadyTried );
+		$message = $this->getMessageForLang( $this->contLang, $lckey, $useDB, $alreadyTried );
 		return $message;
 	}
 
@@ -886,13 +888,11 @@ class MessageCache {
 	 * @return string|bool The message, or false if not found
 	 */
 	private function getMessageForLang( $lang, $lckey, $useDB, &$alreadyTried ) {
-		global $wgContLang;
-
 		$langcode = $lang->getCode();
 
 		// Try checking the database for the requested language
 		if ( $useDB ) {
-			$uckey = $wgContLang->ucfirst( $lckey );
+			$uckey = $this->contLang->ucfirst( $lckey );
 
 			if ( !isset( $alreadyTried[$langcode] ) ) {
 				$message = $this->getMsgFromNamespace(
@@ -1241,8 +1241,6 @@ class MessageCache {
 	 * @return array Array of message keys (strings)
 	 */
 	public function getAllMessageKeys( $code ) {
-		global $wgContLang;
-
 		$this->load( $code );
 		if ( !$this->cache->has( $code ) ) {
 			// Apparently load() failed
@@ -1257,7 +1255,7 @@ class MessageCache {
 		$cache = array_diff( $cache, [ '!NONEXISTENT' ] );
 
 		// Keys may appear with a capital first letter. lcfirst them.
-		return array_map( [ $wgContLang, 'lcfirst' ], array_keys( $cache ) );
+		return array_map( [ $this->contLang, 'lcfirst' ], array_keys( $cache ) );
 	}
 
 	/**
@@ -1268,8 +1266,6 @@ class MessageCache {
 	 * @since 1.29
 	 */
 	public function updateMessageOverride( Title $title, Content $content = null ) {
-		global $wgContLang;
-
 		$msgText = $this->getMessageTextFromContent( $content );
 		if ( $msgText === null ) {
 			$msgText = false; // treat as not existing
@@ -1277,8 +1273,8 @@ class MessageCache {
 
 		$this->replace( $title->getDBkey(), $msgText );
 
-		if ( $wgContLang->hasVariants() ) {
-			$wgContLang->updateConversionTable( $title );
+		if ( $this->contLang->hasVariants() ) {
+			$this->contLang->updateConversionTable( $title );
 		}
 	}
 

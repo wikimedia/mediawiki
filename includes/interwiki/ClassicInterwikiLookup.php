@@ -53,7 +53,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	/**
 	 * @var Language
 	 */
-	private $contentLanguage;
+	private $contLang;
 
 	/**
 	 * @var WANObjectCache
@@ -91,7 +91,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	private $thisSite = null;
 
 	/**
-	 * @param Language $contentLanguage Language object used to convert prefixes to lower case
+	 * @param Language $contLang Language object used to convert prefixes to lower case
 	 * @param WANObjectCache $objectCache Cache for interwiki info retrieved from the database
 	 * @param int $objectCacheExpiry Expiry time for $objectCache, in seconds
 	 * @param bool|array|string $cdbData The path of a CDB file, or
@@ -104,7 +104,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 * @param string $fallbackSite The code to assume for the local site,
 	 */
 	function __construct(
-		Language $contentLanguage,
+		Language $contLang,
 		WANObjectCache $objectCache,
 		$objectCacheExpiry,
 		$cdbData,
@@ -113,7 +113,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	) {
 		$this->localCache = new MapCacheLRU( 100 );
 
-		$this->contentLanguage = $contentLanguage;
+		$this->contLang = $contLang;
 		$this->objectCache = $objectCache;
 		$this->objectCacheExpiry = $objectCacheExpiry;
 		$this->cdbData = $cdbData;
@@ -144,7 +144,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 			return null;
 		}
 
-		$prefix = $this->contentLanguage->lc( $prefix );
+		$prefix = $this->contLang->lc( $prefix );
 		if ( $this->localCache->has( $prefix ) ) {
 			return $this->localCache->get( $prefix );
 		}

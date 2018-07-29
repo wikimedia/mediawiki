@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Editing
  *
@@ -13,6 +15,9 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 	protected function setUp() {
 		parent::setUp();
+
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$this->setContentLang( $contLang );
 
 		$this->setMwGlobals( [
 			'wgExtraNamespaces' => [

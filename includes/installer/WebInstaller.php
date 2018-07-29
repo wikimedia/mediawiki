@@ -21,6 +21,8 @@
  * @ingroup Deployment
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Class for the core installer web interface.
  *
@@ -500,14 +502,14 @@ class WebInstaller extends Installer {
 
 		if ( $this->getSession( 'test' ) === null && !$this->request->wasPosted() ) {
 			$wgLanguageCode = $this->getAcceptLanguage();
-			$wgLang = $wgContLang = Language::factory( $wgLanguageCode );
+			$wgLang = Language::factory( $wgLanguageCode );
 			RequestContext::getMain()->setLanguage( $wgLang );
 			$this->setVar( 'wgLanguageCode', $wgLanguageCode );
 			$this->setVar( '_UserLang', $wgLanguageCode );
 		} else {
 			$wgLanguageCode = $this->getVar( 'wgLanguageCode' );
-			$wgContLang = Language::factory( $wgLanguageCode );
 		}
+		$wgContLang = MediaWikiServices::getInstance()->getContentLanguage();
 	}
 
 	/**

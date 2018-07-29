@@ -20,6 +20,8 @@
  * @author Roan Kattouw
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Module for ResourceLoader initialization.
  *
@@ -53,7 +55,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			return $this->configVars[$hash];
 		}
 
-		global $wgContLang;
 		$conf = $this->getConfig();
 
 		// We can't use Title::newMainPage() if 'mainpage' is in
@@ -71,10 +72,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		 * - wgNamespaceIds: Key-value pairs of all localized, canonical and aliases for namespaces.
 		 * - wgCaseSensitiveNamespaces: Array of namespaces that are case-sensitive.
 		 */
-		$namespaceIds = $wgContLang->getNamespaceIds();
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$namespaceIds = $contLang->getNamespaceIds();
 		$caseSensitiveNamespaces = [];
 		foreach ( MWNamespace::getCanonicalNamespaces() as $index => $name ) {
-			$namespaceIds[$wgContLang->lc( $name )] = $index;
+			$namespaceIds[$contLang->lc( $name )] = $index;
 			if ( !MWNamespace::isCapitalized( $index ) ) {
 				$caseSensitiveNamespaces[] = $index;
 			}
@@ -101,13 +103,13 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgServer' => $conf->get( 'Server' ),
 			'wgServerName' => $conf->get( 'ServerName' ),
 			'wgUserLanguage' => $context->getLanguage(),
-			'wgContentLanguage' => $wgContLang->getCode(),
+			'wgContentLanguage' => $contLang->getCode(),
 			'wgTranslateNumerals' => $conf->get( 'TranslateNumerals' ),
 			'wgVersion' => $conf->get( 'Version' ),
 			'wgEnableAPI' => true, // Deprecated since MW 1.32
 			'wgEnableWriteAPI' => true, // Deprecated since MW 1.32
 			'wgMainPageTitle' => $mainPage->getPrefixedText(),
-			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
+			'wgFormattedNamespaces' => $contLang->getFormattedNamespaces(),
 			'wgNamespaceIds' => $namespaceIds,
 			'wgContentNamespaces' => MWNamespace::getContentNamespaces(),
 			'wgSiteName' => $conf->get( 'Sitename' ),

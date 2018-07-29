@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Module of static functions for generating XML
  */
@@ -79,9 +81,8 @@ class Xml {
 	}
 
 	/**
-	 * Format an XML element as with self::element(), but run text through the
-	 * $wgContLang->normalize() validator first to ensure that no invalid UTF-8
-	 * is passed.
+	 * Format an XML element as with self::element(), but run text through the content language's
+	 * normalize() validator first to ensure that no invalid UTF-8 is passed.
 	 *
 	 * @param string $element
 	 * @param array $attribs Name=>value pairs. Values will be escaped.
@@ -89,12 +90,12 @@ class Xml {
 	 * @return string
 	 */
 	public static function elementClean( $element, $attribs = [], $contents = '' ) {
-		global $wgContLang;
 		if ( $attribs ) {
 			$attribs = array_map( [ 'UtfNormal\Validator', 'cleanUp' ], $attribs );
 		}
 		if ( $contents ) {
-			$contents = $wgContLang->normalize( $contents );
+			$contents =
+				MediaWikiServices::getInstance()->getContentLanguage()->normalize( $contents );
 		}
 		return self::element( $element, $attribs, $contents );
 	}

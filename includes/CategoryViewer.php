@@ -221,8 +221,6 @@ class CategoryViewer extends ContextSource {
 	 * @return string
 	 */
 	function getSubcategorySortChar( $title, $sortkey ) {
-		global $wgContLang;
-
 		if ( $title->getPrefixedText() == $sortkey ) {
 			$word = $title->getDBkey();
 		} else {
@@ -231,7 +229,7 @@ class CategoryViewer extends ContextSource {
 
 		$firstChar = $this->collation->getFirstLetter( $word );
 
-		return $wgContLang->convert( $firstChar );
+		return MediaWikiServices::getInstance()->getContentLanguage()->convert( $firstChar );
 	}
 
 	/**
@@ -242,7 +240,6 @@ class CategoryViewer extends ContextSource {
 	 * @param bool $isRedirect
 	 */
 	function addImage( Title $title, $sortkey, $pageLength, $isRedirect = false ) {
-		global $wgContLang;
 		if ( $this->showGallery ) {
 			$flip = $this->flip['file'];
 			if ( $flip ) {
@@ -253,8 +250,8 @@ class CategoryViewer extends ContextSource {
 		} else {
 			$this->imgsNoGallery[] = $this->generateLink( 'image', $title, $isRedirect );
 
-			$this->imgsNoGallery_start_char[] = $wgContLang->convert(
-				$this->collation->getFirstLetter( $sortkey ) );
+			$this->imgsNoGallery_start_char[] = MediaWikiServices::getInstance()->
+				getContentLanguage()->convert( $this->collation->getFirstLetter( $sortkey ) );
 		}
 	}
 
@@ -266,12 +263,10 @@ class CategoryViewer extends ContextSource {
 	 * @param bool $isRedirect
 	 */
 	function addPage( $title, $sortkey, $pageLength, $isRedirect = false ) {
-		global $wgContLang;
-
 		$this->articles[] = $this->generateLink( 'page', $title, $isRedirect );
 
-		$this->articles_start_char[] = $wgContLang->convert(
-			$this->collation->getFirstLetter( $sortkey ) );
+		$this->articles_start_char[] = MediaWikiServices::getInstance()->
+			getContentLanguage()->convert( $this->collation->getFirstLetter( $sortkey ) );
 	}
 
 	function finaliseCategoryState() {

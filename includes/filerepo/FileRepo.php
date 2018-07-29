@@ -7,6 +7,8 @@
  * @details
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Base code for file repositories.
  *
@@ -638,11 +640,10 @@ class FileRepo {
 	 * @return string
 	 */
 	public function getNameFromTitle( Title $title ) {
-		global $wgContLang;
 		if ( $this->initialCapital != MWNamespace::isCapitalized( NS_FILE ) ) {
 			$name = $title->getUserCaseDBKey();
 			if ( $this->initialCapital ) {
-				$name = $wgContLang->ucfirst( $name );
+				$name = MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $name );
 			}
 		} else {
 			$name = $title->getDBkey();

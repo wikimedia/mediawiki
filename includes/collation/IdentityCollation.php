@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Collation class that's essentially a no-op.
  *
@@ -33,12 +35,11 @@ class IdentityCollation extends Collation {
 	}
 
 	public function getFirstLetter( $string ) {
-		global $wgContLang;
 		// Copied from UppercaseCollation.
 		// I'm kind of unclear on when this could happen...
 		if ( $string[0] == "\0" ) {
 			$string = substr( $string, 1 );
 		}
-		return $wgContLang->firstChar( $string );
+		return MediaWikiServices::getInstance()->getContentLanguage()->firstChar( $string );
 	}
 }

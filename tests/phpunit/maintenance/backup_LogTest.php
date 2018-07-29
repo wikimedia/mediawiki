@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
+use MediaWiki\MediaWikiServices;
 use DumpBackup;
 use ManualLogEntry;
 use Title;
@@ -145,8 +146,6 @@ class BackupDumperLoggerTest extends DumpTestCase {
 	}
 
 	function testPlain() {
-		global $wgContLang;
-
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
 
@@ -165,8 +164,9 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		$this->assertLogItem( $this->logId1, "BackupDumperLogUserA",
 			$this->userId1, null, "type", "subtype", "PageA" );
 
-		$this->assertNotNull( $wgContLang, "Content language object validation" );
-		$namespace = $wgContLang->getNsText( NS_TALK );
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$this->assertNotNull( $contLang, "Content language object validation" );
+		$namespace = $contLang->getNsText( NS_TALK );
 		$this->assertInternalType( 'string', $namespace );
 		$this->assertGreaterThan( 0, strlen( $namespace ) );
 		$this->assertLogItem( $this->logId2, "BackupDumperLogUserB",
@@ -181,8 +181,6 @@ class BackupDumperLoggerTest extends DumpTestCase {
 	}
 
 	function testXmlDumpsBackupUseCaseLogging() {
-		global $wgContLang;
-
 		$this->checkHasGzip();
 
 		// Preparing the dump
@@ -218,8 +216,9 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		$this->assertLogItem( $this->logId1, "BackupDumperLogUserA",
 			$this->userId1, null, "type", "subtype", "PageA" );
 
-		$this->assertNotNull( $wgContLang, "Content language object validation" );
-		$namespace = $wgContLang->getNsText( NS_TALK );
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$this->assertNotNull( $contLang, "Content language object validation" );
+		$namespace = $contLang->getNsText( NS_TALK );
 		$this->assertInternalType( 'string', $namespace );
 		$this->assertGreaterThan( 0, strlen( $namespace ) );
 		$this->assertLogItem( $this->logId2, "BackupDumperLogUserB",

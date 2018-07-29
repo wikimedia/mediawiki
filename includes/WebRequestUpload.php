@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Object to access the $_FILES array
  *
@@ -63,13 +65,12 @@ class WebRequestUpload {
 			return null;
 		}
 
-		global $wgContLang;
 		$name = $this->fileInfo['name'];
 
 		# Safari sends filenames in HTML-encoded Unicode form D...
 		# Horrid and evil! Let's try to make some kind of sense of it.
 		$name = Sanitizer::decodeCharReferences( $name );
-		$name = $wgContLang->normalize( $name );
+		$name = MediaWikiServices::getInstance()->getContentLanguage()->normalize( $name );
 		wfDebug( __METHOD__ . ": {$this->fileInfo['name']} normalized to '$name'\n" );
 		return $name;
 	}

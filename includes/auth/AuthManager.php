@@ -2408,15 +2408,15 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param bool $useContextLang Use 'uselang' to set the user's language
 	 */
 	private function setDefaultUserOptions( User $user, $useContextLang ) {
-		global $wgContLang;
-
 		$user->setToken();
 
-		$lang = $useContextLang ? \RequestContext::getMain()->getLanguage() : $wgContLang;
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+
+		$lang = $useContextLang ? \RequestContext::getMain()->getLanguage() : $contLang;
 		$user->setOption( 'language', $lang->getPreferredVariant() );
 
-		if ( $wgContLang->hasVariants() ) {
-			$user->setOption( 'variant', $wgContLang->getPreferredVariant() );
+		if ( $contLang->hasVariants() ) {
+			$user->setOption( 'variant', $contLang->getPreferredVariant() );
 		}
 	}
 

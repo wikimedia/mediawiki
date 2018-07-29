@@ -30,6 +30,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
@@ -97,8 +98,6 @@ class Orphans extends Maintenance {
 		);
 		$orphans = $result->numRows();
 		if ( $orphans > 0 ) {
-			global $wgContLang;
-
 			$this->output( "$orphans orphan revisions...\n" );
 			$this->output( sprintf(
 				"%10s %10s %14s %20s %s\n",
@@ -107,10 +106,11 @@ class Orphans extends Maintenance {
 
 			foreach ( $result as $row ) {
 				$comment = $commentStore->getComment( 'rev_comment', $row )->text;
+				$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 				if ( $comment !== '' ) {
-					$comment = '(' . $wgContLang->truncateForVisual( $comment, 40 ) . ')';
+					$comment = '(' . $contLang->truncateForVisual( $comment, 40 ) . ')';
 				}
-				$rev_user_text = $wgContLang->truncateForVisual( $row->rev_user_text, 20 );
+				$rev_user_text = $contLang->truncateForVisual( $row->rev_user_text, 20 );
 				# pad $rev_user_text to 20 characters.  Note that this may
 				# yield poor results if $rev_user_text contains combining
 				# or half-width characters.  Alas.

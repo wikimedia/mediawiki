@@ -1526,7 +1526,7 @@ abstract class Skin extends ContextSource {
 	 *   should fall back to the next notice in its sequence
 	 */
 	private function getCachedNotice( $name ) {
-		global $wgRenderHashAppend, $wgContLang;
+		global $wgRenderHashAppend;
 
 		$needParse = false;
 
@@ -1559,12 +1559,13 @@ abstract class Skin extends ContextSource {
 			}
 		);
 
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		return Html::rawElement(
 			'div',
 			[
 				'id' => 'localNotice',
-				'lang' => $wgContLang->getHtmlCode(),
-				'dir' => $wgContLang->getDir()
+				'lang' => $contLang->getHtmlCode(),
+				'dir' => $contLang->getDir()
 			],
 			$parsed
 		);

@@ -24,6 +24,8 @@
  * @ingroup Search
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Search engine hook base class for Oracle (ConText).
  * @ingroup Search
@@ -173,7 +175,6 @@ class SearchOracle extends SearchDatabase {
 	 * @return string
 	 */
 	private function parseQuery( $filteredText, $fulltext ) {
-		global $wgContLang;
 		$lc = $this->legalSearchChars( self::CHARS_NO_SYNTAX );
 		$this->searchTerms = [];
 
@@ -185,7 +186,8 @@ class SearchOracle extends SearchDatabase {
 			foreach ( $m as $terms ) {
 				// Search terms in all variant forms, only
 				// apply on wiki with LanguageConverter
-				$temp_terms = $wgContLang->autoConvertToAllVariants( $terms[2] );
+				$temp_terms = MediaWikiServices::getInstance()->getContentLanguage()->
+					autoConvertToAllVariants( $terms[2] );
 				if ( is_array( $temp_terms ) ) {
 					$temp_terms = array_unique( array_values( $temp_terms ) );
 					foreach ( $temp_terms as $t ) {
@@ -212,8 +214,7 @@ class SearchOracle extends SearchDatabase {
 	}
 
 	private function escapeTerm( $t ) {
-		global $wgContLang;
-		$t = $wgContLang->normalizeForSearch( $t );
+		$t = MediaWikiServices::getInstance()->getContentLanguage()->normalizeForSearch( $t );
 		$t = isset( $this->reservedWords[strtoupper( $t )] ) ? '{' . $t . '}' : $t;
 		$t = preg_replace( '/^"(.*)"$/', '($1)', $t );
 		$t = preg_replace( '/([-&|])/', '\\\\$1', $t );

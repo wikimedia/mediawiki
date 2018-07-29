@@ -207,8 +207,6 @@ class InfoAction extends FormlessAction {
 	 * @return array
 	 */
 	protected function pageInfo() {
-		global $wgContLang;
-
 		$services = MediaWikiServices::getInstance();
 
 		$user = $this->getUser();
@@ -607,7 +605,7 @@ class InfoAction extends FormlessAction {
 		$wordIDs = $magicWords->names;
 
 		// Array of IDs => localized magic words
-		$localizedWords = $wgContLang->getMagicWords();
+		$localizedWords = $services->getContentLanguage()->getMagicWords();
 
 		$listItems = [];
 		foreach ( $pageProperties as $property => $value ) {

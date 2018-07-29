@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * Basic tests for Parser::getPreloadText
  * @author Antoine Musso
@@ -42,10 +45,9 @@ class ParserPreloadTest extends MediaWikiTestCase {
 	private $title;
 
 	protected function setUp() {
-		global $wgContLang;
-
 		parent::setUp();
-		$this->testParserOptions = ParserOptions::newFromUserAndLang( new User, $wgContLang );
+		$this->testParserOptions = ParserOptions::newFromUserAndLang( new User,
+			MediaWikiServices::getInstance()->getContentLanguage() );
 
 		$this->testParser = new Parser();
 		$this->testParser->Options( $this->testParserOptions );

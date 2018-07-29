@@ -1625,7 +1625,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return DerivedPageDataUpdater
 	 */
 	private function newDerivedDataUpdater() {
-		global $wgContLang, $wgRCWatchCategoryMembership, $wgArticleCountMethod;
+		global $wgRCWatchCategoryMembership, $wgArticleCountMethod;
 
 		$derivedDataUpdater = new DerivedPageDataUpdater(
 			$this, // NOTE: eventually, PageUpdater should not know about WikiPage
@@ -1633,7 +1633,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->getParserCache(),
 			JobQueueGroup::singleton(),
 			MessageCache::singleton(),
-			$wgContLang,
+			MediaWikiServices::getInstance()->getContentLanguage(),
 			LoggerFactory::getInstance( 'SaveParse' )
 		);
 
@@ -2301,14 +2301,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return string
 	 */
 	protected function formatExpiry( $expiry ) {
-		global $wgContLang;
-
 		if ( $expiry != 'infinity' ) {
+			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			return wfMessage(
 				'protect-expiring',
-				$wgContLang->timeanddate( $expiry, false, false ),
-				$wgContLang->date( $expiry, false, false ),
-				$wgContLang->time( $expiry, false, false )
+				$contLang->timeanddate( $expiry, false, false ),
+				$contLang->date( $expiry, false, false ),
+				$contLang->time( $expiry, false, false )
 			)->inContentLanguage()->text();
 		} else {
 			return wfMessage( 'protect-expiry-indefinite' )
@@ -2366,13 +2365,12 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return string
 	 */
 	public function protectDescriptionLog( array $limit, array $expiry ) {
-		global $wgContLang;
-
 		$protectDescriptionLog = '';
 
 		foreach ( array_filter( $limit ) as $action => $restrictions ) {
 			$expiryText = $this->formatExpiry( $expiry[$action] );
-			$protectDescriptionLog .= $wgContLang->getDirMark() .
+			$protectDescriptionLog .=
+				MediaWikiServices::getInstance()->getContentLanguage()->getDirMark() .
 				"[$action=$restrictions] ($expiryText)";
 		}
 
@@ -2841,7 +2839,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function commitRollback( $fromP, $summary, $bot,
 		&$resultDetails, User $guser, $tags = null
 	) {
-		global $wgUseRCPatrol, $wgContLang;
+		global $wgUseRCPatrol;
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -2922,13 +2920,14 @@ class WikiPage implements Page, IDBAccessObject {
 		$targetEditorForPublic = $target->getUser( RevisionRecord::FOR_PUBLIC );
 
 		// Allow the custom summary to use the same args as the default message
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$args = [
 			$targetEditorForPublic ? $targetEditorForPublic->getName() : null,
 			$currentEditorForPublic ? $currentEditorForPublic->getName() : null,
 			$s->rev_id,
-			$wgContLang->timeanddate( wfTimestamp( TS_MW, $s->rev_timestamp ) ),
+			$contLang->timeanddate( wfTimestamp( TS_MW, $s->rev_timestamp ) ),
 			$current->getId(),
-			$wgContLang->timeanddate( $current->getTimestamp() )
+			$contLang->timeanddate( $current->getTimestamp() )
 		];
 		if ( $summary instanceof Message ) {
 			$summary = $summary->params( $args )->inContentLanguage()->text();

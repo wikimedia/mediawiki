@@ -22,6 +22,8 @@
  * @since 1.26
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class formats protect log entries.
  *
@@ -146,13 +148,12 @@ class ProtectLogFormatter extends LogFormatter {
 	}
 
 	public function formatParametersForApi() {
-		global $wgContLang;
-
 		$ret = parent::formatParametersForApi();
 		if ( isset( $ret['details'] ) && is_array( $ret['details'] ) ) {
 			foreach ( $ret['details'] as &$detail ) {
 				if ( isset( $detail['expiry'] ) ) {
-					$detail['expiry'] = $wgContLang->formatExpiry( $detail['expiry'], TS_ISO_8601, 'infinite' );
+					$detail['expiry'] = MediaWikiServices::getInstance()->getContentLanguage()->
+						formatExpiry( $detail['expiry'], TS_ISO_8601, 'infinite' );
 				}
 			}
 		}

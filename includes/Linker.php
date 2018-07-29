@@ -184,14 +184,13 @@ class Linker {
 	 * @return string
 	 */
 	public static function getInvalidTitleDescription( IContextSource $context, $namespace, $title ) {
-		global $wgContLang;
-
 		// First we check whether the namespace exists or not.
 		if ( MWNamespace::exists( $namespace ) ) {
 			if ( $namespace == NS_MAIN ) {
 				$name = $context->msg( 'blanknamespace' )->text();
 			} else {
-				$name = $wgContLang->getFormattedNsText( $namespace );
+				$name = MediaWikiServices::getInstance()->getContentLanguage()->
+					getFormattedNsText( $namespace );
 			}
 			return $context->msg( 'invalidtitle-knownnamespace', $namespace, $name, $title )->text();
 		} else {
@@ -1227,10 +1226,11 @@ class Linker {
 				([^[]*) # 3. link trail (the text up until the next link)
 			/x',
 			function ( $match ) use ( $title, $local, $wikiId ) {
-				global $wgContLang;
-
 				$medians = '(?:' . preg_quote( MWNamespace::getCanonicalName( NS_MEDIA ), '/' ) . '|';
-				$medians .= preg_quote( $wgContLang->getNsText( NS_MEDIA ), '/' ) . '):';
+				$medians .= preg_quote(
+					MediaWikiServices::getInstance()->getContentLanguage()->getNsText( NS_MEDIA ),
+					'/'
+				) . '):';
 
 				$comment = $match[0];
 
@@ -1264,7 +1264,11 @@ class Linker {
 						$match[1] = substr( $match[1], 1 );
 					}
 					if ( $match[1] !== false && $match[1] !== '' ) {
-						if ( preg_match( $wgContLang->linkTrail(), $match[3], $submatch ) ) {
+						if ( preg_match(
+							MediaWikiServices::getInstance()->getContentLanguage()->linkTrail(),
+							$match[3],
+							$submatch
+						) ) {
 							$trail = $submatch[1];
 						} else {
 							$trail = "";
@@ -1655,8 +1659,7 @@ class Linker {
 	 * @return array
 	 */
 	static function splitTrail( $trail ) {
-		global $wgContLang;
-		$regex = $wgContLang->linkTrail();
+		$regex = MediaWikiServices::getInstance()->getContentLanguage()->linkTrail();
 		$inside = '';
 		if ( $trail !== '' ) {
 			$m = [];

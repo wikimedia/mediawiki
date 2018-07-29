@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -23,8 +24,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 * @return CommentStore
 	 */
 	protected function makeStore( $stage ) {
-		global $wgContLang;
-		$store = new CommentStore( $wgContLang, $stage );
+		$store = new CommentStore( MediaWikiServices::getInstance()->getContentLanguage(), $stage );
 		return $store;
 	}
 

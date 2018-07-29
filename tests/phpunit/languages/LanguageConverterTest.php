@@ -103,9 +103,9 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @covers LanguageConverter::getUserVariant
 	 */
 	public function testGetPreferredVariantUserOptionForForeignLanguage() {
-		global $wgContLang, $wgUser;
+		global $wgUser;
 
-		$wgContLang = Language::factory( 'en' );
+		$this->setContentLang( 'en' );
 		$wgUser = new User;
 		$wgUser->load(); // from 'defaults'
 		$wgUser->mId = 1;
@@ -122,9 +122,9 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @covers LanguageConverter::getURLVariant
 	 */
 	public function testGetPreferredVariantHeaderUserVsUrl() {
-		global $wgContLang, $wgRequest, $wgUser;
+		global $wgRequest, $wgUser;
 
-		$wgContLang = Language::factory( 'tg-latn' );
+		$this->setContentLang( 'tg-latn' );
 		$wgRequest->setVal( 'variant', 'tg' );
 		$wgUser = User::newFromId( "admin" );
 		$wgUser->setId( 1 );
@@ -150,9 +150,9 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @covers LanguageConverter::getURLVariant
 	 */
 	public function testGetPreferredVariantDefaultLanguageVsUrlVariant() {
-		global $wgDefaultLanguageVariant, $wgRequest, $wgContLang;
+		global $wgDefaultLanguageVariant, $wgRequest;
 
-		$wgContLang = Language::factory( 'tg-latn' );
+		$this->setContentLang( 'tg-latn' );
 		$wgDefaultLanguageVariant = 'tg';
 		$wgRequest->setVal( 'variant', null );
 		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
