@@ -452,19 +452,6 @@ class OutputPageTest extends MediaWikiTestCase {
 		$this->assertContains( '<meta name="robots" content="noindex,nofollow"/>', $links );
 	}
 
-	// @todo mPageTitleActionText has done nothing and has no callers for a long time:
-	//
-	//   * e4d21170 inadvertently made it do nothing (Apr 2009)
-	//   * 10ecfcb0/cadc951d removed the dead code that would have at least indicated what it was
-	//   supposed to do (Nov 2010)
-	//   * 9e230f30/2d045fa1 removed from history pages because it did nothing (Oct/Aug 2011)
-	//   * e275ea28 removed from articles (Oct 2011)
-	//   * ae45908c removed from EditPage (Oct 2011)
-	//
-	// Nice if we had had tests so these things couldn't happen by mistake, right?!
-	//
-	// https://phabricator.wikimedia.org/T200643
-
 	private function extractHTMLTitle( OutputPage $op ) {
 		$html = $op->headElement( $op->getContext()->getSkin() );
 
