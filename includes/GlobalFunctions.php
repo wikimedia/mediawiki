@@ -2529,6 +2529,8 @@ function wfUsePHP( $req_ver ) {
 function wfUseMW( $req_ver ) {
 	global $wgVersion;
 
+	wfDeprecated( __FUNCTION__, '1.26' );
+
 	if ( version_compare( $wgVersion, (string)$req_ver, '<' ) ) {
 		throw new MWException( "MediaWiki $req_ver required--this is only $wgVersion" );
 	}
