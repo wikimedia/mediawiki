@@ -22,7 +22,8 @@
 			"Kaldari",
 			"Xð",
 			"Srdjan m",
-			"Acamicamacaraca"
+			"Acamicamacaraca",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Потцртување на врски:",
@@ -1204,9 +1205,9 @@
 	"right-editusercss": "Уредување на CSS податотеки на други корисници",
 	"right-edituserjson": "Уредување на JSON-податотеките на други корисници",
 	"right-edituserjs": "Уредување на JS податотеки на други корисници",
-	"right-editsitecss": "Измена на CSS за цело вики",
-	"right-editsitejson": "Измена на JSON за цело вики",
-	"right-editsitejs": "Измена на JavaScript за цело вики",
+	"right-editsitecss": "Уредување на CSS за цело вики",
+	"right-editsitejson": "Уредување на JSON за цело вики",
+	"right-editsitejs": "Уредување на JavaScript за цело вики",
 	"right-editmyusercss": "Уредување на сопствени кориснички каскадни стилски податотеки (CSS)",
 	"right-editmyuserjson": "Уредување на сопствените кориснички JSON-податотеки",
 	"right-editmyuserjs": "Уредување на сопствени кориснички податотеки со JavaScript",

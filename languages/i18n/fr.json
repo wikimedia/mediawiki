@@ -1303,6 +1303,7 @@
 	"grouppage-autoconfirmed": "{{ns:project}}:Utilisateurs autoconfirmés",
 	"grouppage-bot": "{{ns:project}}:Robots",
 	"grouppage-sysop": "{{ns:project}}:Administrateurs",
+	"grouppage-interface-admin": "{{ns:project}}:Administrateurs d'interface",
 	"grouppage-bureaucrat": "{{ns:project}}:Bureaucrates",
 	"grouppage-suppress": "{{ns:project}}:Suppress",
 	"right-read": "Lire les pages",
@@ -1354,6 +1355,8 @@
 	"right-edituserjson": "Modifier les fichiers JSON d’un autre utilisateur",
 	"right-edituserjs": "Modifier les fichiers JavaScript d'autres utilisateurs",
 	"right-editsitecss": "Modifier le CSS du site",
+	"right-editsitejson": "Modifier le JSON du site",
+	"right-editsitejs": "Modifier le JavaScript du site",
 	"right-editmyusercss": "Modifier vos propres fichiers CSS utilisateur",
 	"right-editmyuserjson": "Modifier vos propres fichiers utilisateur JSON",
 	"right-editmyuserjs": "Modifier vos propres fichiers JavaScript utilisateur",
@@ -1399,6 +1402,7 @@
 	"grant-editmycssjs": "Modifier votre CSS/JSON/JavaScript utilisateur",
 	"grant-editmyoptions": "Modifier vos préférences utilisateur",
 	"grant-editmywatchlist": "Modifier votre liste de suivi",
+	"grant-editsiteconfig": "Modifier les CSS/JS du site et ceux de l'utilisateur",
 	"grant-editpage": "Modifier des pages existantes",
 	"grant-editprotected": "Modifier des pages protégées",
 	"grant-highvolume": "Modification de gros volumes",
@@ -1882,7 +1886,7 @@
 	"uploadstash-zero-length": "La taille du fichier est zéro.",
 	"invalid-chunk-offset": "Offset de segment non valide",
 	"img-auth-accessdenied": "Accès refusé",
-	"img-auth-nopathinfo": "PATH_INFO manquant.\nVotre serveur n’est pas paramétré pour transmettre cette information.\nIl fonctionne peut-être en CGI et ne prend pas en charge img_auth.\nVoir : https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Manque l'information de chemin.\nVotre serveur doit être paramétré pour transmettre la variable REQUEST_URI et/ou PATH_INFO .\nSi c'est le cas, essayez d'activer $wgUsePathInfo.\nVoir https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Le chemin demandé n'est pas le répertoire d'import configuré.",
 	"img-auth-badtitle": "Impossible de construire un titre valide à partir de « $1 ».",
 	"img-auth-nologinnWL": "Vous n'êtes pas connecté et « $1 » n'est pas dans la liste blanche.",
@@ -4303,5 +4307,6 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "Le mot de passe ne peut pas être le même que le nom d'utilisateur",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Les mots de passe ne peuvent pas être identiques à ceux qui sont dans la liste noire.",
 	"passwordpolicies-policy-maximalpasswordlength": "Les mots de passe doivent avoir moins de $1 caractère{{PLURAL:$1||s}} de long",
-	"passwordpolicies-policy-passwordcannotbepopular": "Le mot de passe ne peut pas être {{PLURAL:$1|le mot de passe populaire|dans la liste des $1 mots de passe populaires}}"
+	"passwordpolicies-policy-passwordcannotbepopular": "Le mot de passe ne peut pas être {{PLURAL:$1|le mot de passe populaire|dans la liste des $1 mots de passe populaires}}",
+	"easydeflate-invaliddeflate": "Le contenu fourni n'est pas correctement développé"
 }

@@ -1315,7 +1315,7 @@
 	"recentchanges": "Skorašnje izmene",
 	"recentchanges-legend": "Opcije skorašnjih izmena",
 	"recentchanges-summary": "Pratite skorašnje izmene na ovoj stranici.",
-	"recentchanges-noresult": "Nema izmena u zadatom periodu koji odgovaraju ovim kriterijumima.",
+	"recentchanges-noresult": "Nema izmena tokom datog perioda a koje odgovaraju ovim kriterijumima.",
 	"recentchanges-timeout": "Ova pretraga je istekla. Možda želite da pokušate drugačije parametre pretrage.",
 	"recentchanges-network": "Zbog tehničkog problema ne mogu da učitam rezultate. Pokušajte da osvežite stranicu.",
 	"recentchanges-notargetpage": "Unesite naziv stranice kako biste videli srodne izmene.",
