@@ -449,6 +449,7 @@ $wgAutoloadLocalClasses = [
 	'EmailNotification' => __DIR__ . '/includes/mail/EmailNotification.php',
 	'EmaillingJob' => __DIR__ . '/includes/jobqueue/jobs/EmaillingJob.php',
 	'EmptyBagOStuff' => __DIR__ . '/includes/libs/objectcache/EmptyBagOStuff.php',
+	'EmptyUserGroup' => __DIR__ . '/maintenance/emptyUserGroup.php',
 	'EnConverter' => __DIR__ . '/languages/classes/LanguageEn.php',
 	'EncryptedPassword' => __DIR__ . '/includes/password/EncryptedPassword.php',
 	'EnhancedChangesList' => __DIR__ . '/includes/changes/EnhancedChangesList.php',
