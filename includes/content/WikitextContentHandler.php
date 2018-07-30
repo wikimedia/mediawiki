@@ -23,6 +23,8 @@
  * @ingroup Content
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Content handler for wiki text pages.
  *
@@ -60,7 +62,7 @@ class WikitextContentHandler extends TextContentHandler {
 			}
 		}
 
-		$mwRedir = MagicWord::get( 'redirect' );
+		$mwRedir = MediaWikiServices::getInstance()->getMagicWordFactory()->get( 'redirect' );
 		$redirectText = $mwRedir->getSynonym( 0 ) .
 			' [[' . $optionalColon . $destination->getFullText() . ']]';
 

@@ -25,6 +25,8 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Content object for wiki text pages.
  *
@@ -182,7 +184,7 @@ class WikitextContent extends TextContent {
 			return $this->redirectTargetAndText;
 		}
 
-		$redir = MagicWord::get( 'redirect' );
+		$redir = MediaWikiServices::getInstance()->getMagicWordFactory()->get( 'redirect' );
 		$text = ltrim( $this->getNativeData() );
 		if ( $redir->matchStartAndRemove( $text ) ) {
 			// Extract the first link and see if it's usable

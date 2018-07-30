@@ -808,7 +808,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendVariables( $property ) {
-		$variables = MagicWord::getVariableIDs();
+		$variables = MediaWikiServices::getInstance()->getMagicWordFactory()->getVariableIDs();
 		ApiResult::setArrayType( $variables, 'BCarray' );
 		ApiResult::setIndexedTagName( $variables, 'v' );
 
