@@ -14,8 +14,7 @@ This is a security and maintenance release of the MediaWiki 1.31 branch.
 * (T198037) GitInfo: Don't try shelling out if it's disabled.
 * (T151415) Log email changes.
 * (T197206) Fix performance regression when multiple DB used without caching.
-
-== MediaWiki 1.31 ==
+* (T197030) PHPSessionHandler: Suppress headers warnings in initialize().
 
 === Changes since MediaWiki 1.31.0-rc.2 ===
 * (T195783) Initialize PSR-4 namespaces at same stage as normal autoloader.
