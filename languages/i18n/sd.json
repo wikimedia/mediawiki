@@ -1055,6 +1055,7 @@
 	"uploadnologin": "داخل ٿيل ناھيو",
 	"uploadnologintext": "فائيل چاڙهڻ لاءِ $1.",
 	"uploaderror": "چاڙھ چُڪَ",
+	"uploadtext": "فائل چاڙهڻ لاءِ هيٺيون فارم استعمال ڪيو.\nپراڻا چاڙهيل فائل ڏسڻ يا ڳولڻ لاءِ [[Special:FileList|چاڙهيل فائلن جي فهرست]] تي وڃو، ٻهير چاڙهيل فائل [[Special:Log/upload|چاڙهيل لاگ]] ۽ ختم ڪيل [[Special:Log/delete|ڊاٺ لاگ]] تي ڏسي سگھجن ٿا.\n\nفائل جي استعمال لاءِ هيٺ ڏيکاريل طريقو استعمال ڪري سگھجي ٿو:\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:فائل جو نالو.jpg]]</nowiki></code></strong> فائل جي مڪمل استعمال لاءِ\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:فائل جو نالو.png|200px|thumb|left|متبادل اکر]]</nowiki></code></strong> هن جي مدد سان تصوير جي سائيز ڏئي سگھجي ٿي جيئن 200 پگزل\n* <strong><code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code></strong> فائل کي ڏيکارڻ کان بغير شامل ڪرڻ",
 	"uploadlogpage": "چاڙھ لاگ",
 	"filename": "فائيل نانءُ",
 	"filedesc": "خلاصو",

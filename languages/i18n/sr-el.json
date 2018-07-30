@@ -2003,6 +2003,7 @@
 	"speciallogtitlelabel": "Cilj (naslov ili {{ns:user}}:korisničko ime):",
 	"log": "Dnevnici",
 	"logeventslist-submit": "Prikaži",
+	"logeventslist-more-filters": "Prikaz dodatnih dnevnika:",
 	"all-logs-page": "Svi javni dnevnici",
 	"alllogstext": "Skupni prikaz svih dostupnih istorija ovog vikija.\nMožete suziti prikaz odabirući vrstu istorije, korisničkog imena ili tražene stranice.",
 	"logempty": "Nema pronađenih unosa u dnevniku.",
