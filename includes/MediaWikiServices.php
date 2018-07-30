@@ -857,6 +857,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.32
 	 * @return ConfigRepository
 	 */
 	public function getConfigRepository() {
