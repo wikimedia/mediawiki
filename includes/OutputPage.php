@@ -1234,7 +1234,7 @@ class OutputPage extends ContextSource {
 	 *                               (e.g. 'fr:Test page')
 	 */
 	public function addLanguageLinks( array $newLinkArray ) {
-		$this->mLanguageLinks += $newLinkArray;
+		$this->mLanguageLinks = array_merge( $this->mLanguageLinks, $newLinkArray );
 	}
 
 	/**
@@ -1772,7 +1772,8 @@ class OutputPage extends ContextSource {
 	 * @param ParserOutput $parserOutput
 	 */
 	public function addParserOutputMetadata( $parserOutput ) {
-		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
+		$this->mLanguageLinks =
+			array_merge( $this->mLanguageLinks, $parserOutput->getLanguageLinks() );
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->setIndicators( $parserOutput->getIndicators() );
 		$this->mNewSectionLink = $parserOutput->getNewSection();
