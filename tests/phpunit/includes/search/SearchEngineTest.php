@@ -315,7 +315,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			$availableResults[] = $title;
 			// pages not created must be filtered
 			if ( $i % 2 == 0 ) {
-				$this->editPage( $title );
+				$this->editSearchResultPage( $title );
 			}
 		}
 		MockCompletionSearchEngine::addMockResults( 'foo', $availableResults );
@@ -332,7 +332,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $results->hasMoreResults() );
 	}
 
-	private function editPage( $title ) {
+	private function editSearchResultPage( $title ) {
 		$page = WikiPage::factory( Title::newFromText( $title ) );
 		$page->doEditContent(
 			new WikitextContent( 'UTContent' ),
