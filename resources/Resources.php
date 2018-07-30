@@ -1979,6 +1979,7 @@ return [
 			'resources/src/mediawiki.special/comparepages.less',
 			'resources/src/mediawiki.special/edittags.css',
 			'resources/src/mediawiki.special/movePage.css',
+			'resources/src/mediawiki.special/newpages.less',
 			'resources/src/mediawiki.special/pagesWithProp.css',
 			'resources/src/mediawiki.special/upload.css',
 			'resources/src/mediawiki.special/userrights.css',
