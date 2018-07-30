@@ -1135,6 +1135,7 @@
 	"group-autoconfirmed-member": "{{GENDER:$1|ავტომატურად დადასტურებული მომხმარებელი}}",
 	"group-bot-member": "{{GENDER:$1|ბოტი}}",
 	"group-sysop-member": "{{GENDER:$1|ადმინისტრატორი}}",
+	"group-interface-admin-member": "{{GENDER:$1|ინტერფეისის ადმინისტრატორი}}",
 	"group-bureaucrat-member": "{{GENDER:$1|ბიუროკრატი}}",
 	"group-suppress-member": "{{GENDER:$1|რევიზორები}}",
 	"grouppage-user": "{{ns:project}}:მომხმარებლები",

@@ -1008,6 +1008,7 @@
 	"group-autoconfirmed-member": "{{GENDER:$1|بەکارھێنەرە خۆبەخۆ پەسندکراوەکان}}",
 	"group-bot-member": "بۆت",
 	"group-sysop-member": "{{GENDER:$1|بەڕێوەبەر}}",
+	"group-interface-admin-member": "{{GENDER:$1|بەڕێوەبەری ڕووکار}}",
 	"group-bureaucrat-member": "{{GENDER:$1|بیوروکرات}}",
 	"group-suppress-member": "{{GENDER:$1|چاودێر}}",
 	"grouppage-user": "{{ns:project}}:بەکارھێنەران",

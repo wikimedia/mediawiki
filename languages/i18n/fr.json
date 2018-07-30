@@ -164,7 +164,8 @@
 			"Pols12",
 			"KATRINE1992",
 			"Friday83260",
-			"Niridya"
+			"Niridya",
+			"Pamputt"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -1296,7 +1297,7 @@
 	"group-autoconfirmed-member": "{{GENDER:$1|utilisateur autoconfirmé|utilisatrice autoconfirmée}}",
 	"group-bot-member": "{{GENDER:$1|robot}}",
 	"group-sysop-member": "{{GENDER:$1|administrateur|administratrice}}",
-	"group-interface-admin-member": "{{GENDER:$1|administrateur d'interface}}",
+	"group-interface-admin-member": "{{GENDER:$1|administrateur d’interface}}",
 	"group-bureaucrat-member": "{{GENDER:$1|bureaucrate}}",
 	"group-suppress-member": "{{GENDER:$1|limitateur|limitatrice}}",
 	"grouppage-user": "{{ns:project}}:Utilisateurs",

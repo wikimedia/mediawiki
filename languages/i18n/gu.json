@@ -2079,7 +2079,7 @@
 	"imported-log-entries": "આયાતી $1 {{PLURAL:$1|log entry|log entries}}.",
 	"importfailed": "આયાત નિષ્ફળ: <nowiki>$1</nowiki>",
 	"importunknownsource": "અજ્ઞાત આયાતી સ્રોત પ્રકાર",
-	"importcantopen": "આયાતી ફાઈલ નાખોલી શકાઈ",
+	"importcantopen": "આયાતી ફાઈલ ન ખોલી શકાઈ",
 	"importbadinterwiki": "ખરાબ આંતરીકા વિકિ કડી",
 	"importsuccess": "આયાત સંપૂર્ણ",
 	"importnosources": "કોઇ પણ આંતર વિકિ સ્રોત જણાવાયા નથી અને સીધા ઇતિહાસ ફાઇલ ચડાવવા પર રોક લાગેલી છે.",

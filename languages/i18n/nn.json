@@ -758,6 +758,8 @@
 	"revdelete-show-file-submit": "Ja",
 	"revdelete-selected-text": "{{PLURAL:$1|Vald versjon|Valde versjonar}} av [[:$2]]:",
 	"logdelete-selected": "{{PLURAL:$1|Vald loggoppføring|Valde loggoppføringar}}:",
+	"revdelete-text-text": "Sletta versjonar vil framleis syna i historikken til sida, men delar av innhaldet deira vil vera utilgjengeleg for ålmenta.",
+	"revdelete-text-others": "Andre administratorar vil framleis ha tilgang til det løynde innhaldet og kan attoppretta det, minder vidare avgrensingar er sette.",
 	"revdelete-confirm": "Stadfest at du ynskjer å gjera dette, at du skjønar konsekvensane, og at du gjer det i samsvar med [[{{MediaWiki:Policy-url}}|retningslinene]].",
 	"revdelete-suppress-text": "Løyning av sideversjonar bør '''berre''' nyttast i desse tilfella:\n* Mogeleg ærekrenkjande informasjon\n* Upassanda personleg informasjon\n*: ''heimeadresser og -telefonnummer,  personnummer, osb.''",
 	"revdelete-legend": "Set avgrensing av synlegdom",
