@@ -360,7 +360,7 @@ class LinkHolderArray {
 		}
 		if ( count( $linkcolour_ids ) ) {
 			// pass an array of page_ids to an extension
-			Hooks::run( 'GetLinkColours', [ $linkcolour_ids, &$colours ] );
+			Hooks::run( 'GetLinkColours', [ $linkcolour_ids, &$colours, $this->parent->getTitle() ] );
 		}
 
 		# Do a second query for different language variants of links and categories
@@ -589,7 +589,7 @@ class LinkHolderArray {
 					}
 				}
 			}
-			Hooks::run( 'GetLinkColours', [ $linkcolour_ids, &$colours ] );
+			Hooks::run( 'GetLinkColours', [ $linkcolour_ids, &$colours, $this->parent->getTitle() ] );
 
 			// rebuild the categories in original order (if there are replacements)
 			if ( count( $varCategories ) > 0 ) {

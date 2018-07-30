@@ -66,6 +66,8 @@ production.
   remove or otherwise alter the elements to be output in the page <head>.
 * (T28934) The 'HistoryPageToolLinks' hook allows extensions to append
   additional links to the subtitle of a history page.
+* The 'GetLinkColours' hook now receives an additional $title parameter,
+  the Title object of the page being parsed, on which the links will be shown.
 
 === External library changes in 1.32 ===
 * …
