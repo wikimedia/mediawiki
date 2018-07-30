@@ -20,6 +20,9 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
+
 /**
  * A query action to enumerate revisions of a given page, or show top revisions
  * of multiple pages. Various pieces of information may be shown - flags,
@@ -81,6 +84,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 	protected function run( ApiPageSet $resultPageSet = null ) {
 		$params = $this->extractRequestParams( false );
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 
 		// If any of those parameters are used, work in 'enumeration' mode.
 		// Enum mode can only be used when exactly one page is provided.
@@ -139,7 +143,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			if ( $this->fld_user ) {
 				$opts[] = 'user';
 			}
-			$revQuery = Revision::getQueryInfo( $opts );
+			$revQuery = $revisionStore->getQueryInfo( $opts );
 			$this->addTables( $revQuery['tables'] );
 			$this->addFields( $revQuery['fields'] );
 			$this->addJoinConds( $revQuery['joins'] );
@@ -301,9 +305,9 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
 				// Paranoia: avoid brute force searches (T19342)
 				if ( !$this->getUser()->isAllowed( 'deletedhistory' ) ) {
-					$bitmask = Revision::DELETED_USER;
+					$bitmask = RevisionRecord::DELETED_USER;
 				} elseif ( !$this->getUser()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
-					$bitmask = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
+					$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 				} else {
 					$bitmask = 0;
 				}
@@ -382,14 +386,15 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			if ( $resultPageSet !== null ) {
 				$generated[] = $row->rev_id;
 			} else {
-				$revision = new Revision( $row );
+				$revision = $revisionStore->newRevisionFromRow( $row );
 				$rev = $this->extractRevisionInfo( $revision, $row );
 
 				if ( $this->token !== null ) {
-					$title = $revision->getTitle();
+					$title = Title::newFromLinkTarget( $revision->getPageAsLinkTarget() );
+					$revisionCompat = new Revision( $revision );
 					$tokenFunctions = $this->getTokenFunctions();
 					foreach ( $this->token as $t ) {
-						$val = call_user_func( $tokenFunctions[$t], $title->getArticleID(), $title, $revision );
+						$val = call_user_func( $tokenFunctions[$t], $title->getArticleID(), $title, $revisionCompat );
 						if ( $val === false ) {
 							$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
 						} else {

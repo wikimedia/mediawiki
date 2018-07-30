@@ -22,6 +22,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Allows user to patrol pages
  * @ingroup API
@@ -41,11 +43,12 @@ class ApiPatrol extends ApiBase {
 				$this->dieWithError( [ 'apierror-nosuchrcid', $params['rcid'] ] );
 			}
 		} else {
-			$rev = Revision::newFromId( $params['revid'] );
+			$store = MediaWikiServices::getInstance()->getRevisionStore();
+			$rev = $store->getRevisionById( $params['revid'] );
 			if ( !$rev ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['revid'] ] );
 			}
-			$rc = $rev->getRecentChange();
+			$rc = $store->getRecentChange( $rev );
 			if ( !$rc ) {
 				$this->dieWithError( [ 'apierror-notpatrollable', $params['revid'] ] );
 			}
