@@ -590,7 +590,10 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testVariables() {
-		$this->assertSame( MagicWord::getVariableIDs(), $this->doQuery( 'variables' ) );
+		$this->assertSame(
+			MediaWikiServices::getInstance()->getMagicWordFactory()->getVariableIDs(),
+			$this->doQuery( 'variables' )
+		);
 	}
 
 	public function testProtocols() {
