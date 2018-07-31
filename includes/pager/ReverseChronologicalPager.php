@@ -81,14 +81,16 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			return null;
 		}
 
-		// Treat the given time in the wiki timezone and get a UTC timestamp for the database lookup
 		$timestamp = self::getOffsetDate( $year, $month, $day );
-		$timestamp->setTimezone( $this->getConfig()->get( 'Localtimezone' ) );
 
 		try {
-			$this->mYear = (int)$timestamp->format( 'Y' );
-			$this->mMonth = (int)$timestamp->format( 'm' );
-			$this->mDay = (int)$timestamp->format( 'd' );
+			// The timestamp used for DB queries is at midnight of the *next* day after the selected date.
+			$selectedDate = new DateTime( $timestamp->getTimestamp( TS_ISO_8601 ) );
+			$selectedDate = $selectedDate->modify( '-1 day' );
+
+			$this->mYear = (int)$selectedDate->format( 'Y' );
+			$this->mMonth = (int)$selectedDate->format( 'm' );
+			$this->mDay = (int)$selectedDate->format( 'd' );
 			$this->mOffset = $this->mDb->timestamp( $timestamp->getTimestamp() );
 		} catch ( TimestampException $e ) {
 			// Invalid user provided timestamp (T149257)
