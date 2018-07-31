@@ -301,7 +301,8 @@ return [
 
 	'Parser' => function ( MediaWikiServices $services ) {
 		$conf = $services->getMainConfig()->get( 'ParserConf' );
-		return ObjectFactory::constructClassInstance( $conf['class'], [ $conf ] );
+		return ObjectFactory::constructClassInstance( $conf['class'],
+			[ $conf, $services->getMagicWordFactory() ] );
 	},
 
 	'ParserCache' => function ( MediaWikiServices $services ) {

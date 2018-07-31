@@ -260,10 +260,14 @@ class Parser {
 	 */
 	protected $mLinkRenderer;
 
+	/** @var MagicWordFactory */
+	private $magicWordFactory;
+
 	/**
 	 * @param array $conf
+	 * @param MagicWordFactory|null $magicWordFactory
 	 */
-	public function __construct( $conf = [] ) {
+	public function __construct( $conf = [], MagicWordFactory $magicWordFactory = null ) {
 		$this->mConf = $conf;
 		$this->mUrlProtocols = wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->mUrlProtocols . ')' .
@@ -284,6 +288,11 @@ class Parser {
 			$this->mPreprocessorClass = Preprocessor_Hash::class;
 		}
 		wfDebug( __CLASS__ . ": using preprocessor: {$this->mPreprocessorClass}\n" );
+
+		$this->magicWordFactory = $magicWordFactory;
+		if ( !$magicWordFactory ) {
+			$this->magicWordFactory = MediaWikiServices::getInstance()->getMagicWordFactory();
+		}
 	}
 
 	/**
@@ -2482,7 +2491,7 @@ class Parser {
 	 *
 	 * @private
 	 *
-	 * @param string $index Magic variable identifier as mapped in MagicWord::$mVariableIDs
+	 * @param string $index Magic variable identifier as mapped in MagicWordFactory::$mVariableIDs
 	 * @param bool|PPFrame $frame
 	 *
 	 * @throws MWException
@@ -2859,8 +2868,8 @@ class Parser {
 	 * @private
 	 */
 	public function initialiseVariables() {
-		$variableIDs = MagicWord::getVariableIDs();
-		$substIDs = MagicWord::getSubstIDs();
+		$variableIDs = $this->magicWordFactory->getVariableIDs();
+		$substIDs = $this->magicWordFactory->getSubstIDs();
 
 		$this->mVariables = new MagicWordArray( $variableIDs );
 		$this->mSubstWords = new MagicWordArray( $substIDs );
@@ -3098,8 +3107,9 @@ class Parser {
 			$id = $this->mVariables->matchStartToEnd( $part1 );
 			if ( $id !== false ) {
 				$text = $this->getVariableValue( $id, $frame );
-				if ( MagicWord::getCacheTTL( $id ) > -1 ) {
-					$this->mOutput->updateCacheExpiry( MagicWord::getCacheTTL( $id ) );
+				if ( $this->magicWordFactory->getCacheTTL( $id ) > -1 ) {
+					$this->mOutput->updateCacheExpiry(
+						$this->magicWordFactory->getCacheTTL( $id ) );
 				}
 				$found = true;
 			}
@@ -3108,17 +3118,17 @@ class Parser {
 		# MSG, MSGNW and RAW
 		if ( !$found ) {
 			# Check for MSGNW:
-			$mwMsgnw = MagicWord::get( 'msgnw' );
+			$mwMsgnw = $this->magicWordFactory->get( 'msgnw' );
 			if ( $mwMsgnw->matchStartAndRemove( $part1 ) ) {
 				$nowiki = true;
 			} else {
 				# Remove obsolete MSG:
-				$mwMsg = MagicWord::get( 'msg' );
+				$mwMsg = $this->magicWordFactory->get( 'msg' );
 				$mwMsg->matchStartAndRemove( $part1 );
 			}
 
 			# Check for RAW:
-			$mwRaw = MagicWord::get( 'raw' );
+			$mwRaw = $this->magicWordFactory->get( 'raw' );
 			if ( $mwRaw->matchStartAndRemove( $part1 ) ) {
 				$forceRawInterwiki = true;
 			}
@@ -3985,7 +3995,7 @@ class Parser {
 	 */
 	public function doDoubleUnderscore( $text ) {
 		# The position of __TOC__ needs to be recorded
-		$mw = MagicWord::get( 'toc' );
+		$mw = $this->magicWordFactory->get( 'toc' );
 		if ( $mw->match( $text ) ) {
 			$this->mShowToc = true;
 			$this->mForceTocPosition = true;
@@ -3998,7 +4008,7 @@ class Parser {
 		}
 
 		# Now match and remove the rest of them
-		$mwa = MagicWord::getDoubleUnderscoreArray();
+		$mwa = $this->magicWordFactory->getDoubleUnderscoreArray();
 		$this->mDoubleUnderscores = $mwa->matchAndRemove( $text );
 
 		if ( isset( $this->mDoubleUnderscores['nogallery'] ) ) {
@@ -4649,7 +4659,7 @@ class Parser {
 
 		# @todo FIXME: Regex doesn't respect extension tags or nowiki
 		#  => Move this logic to braceSubstitution()
-		$substWord = MagicWord::get( 'subst' );
+		$substWord = $this->magicWordFactory->get( 'subst' );
 		$substRegex = '/\{\{(?!(?:' . $substWord->getBaseRegex() . '))/x' . $substWord->getRegexCase();
 		$substText = '{{' . $substWord->getSynonym( 0 );
 
@@ -4862,7 +4872,7 @@ class Parser {
 		$this->mFunctionHooks[$id] = [ $callback, $flags ];
 
 		# Add to function cache
-		$mw = MagicWord::get( $id );
+		$mw = $this->magicWordFactory->get( $id );
 		if ( !$mw ) {
 			throw new MWException( __METHOD__ . '() expecting a magic word identifier.' );
 		}
