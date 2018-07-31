@@ -832,6 +832,7 @@ $wgAutoloadLocalClasses = [
 	'MachineReadableRCFeedFormatter' => __DIR__ . '/includes/rcfeed/MachineReadableRCFeedFormatter.php',
 	'MagicWord' => __DIR__ . '/includes/MagicWord.php',
 	'MagicWordArray' => __DIR__ . '/includes/MagicWordArray.php',
+	'MagicWordFactory' => __DIR__ . '/includes/MagicWordFactory.php',
 	'MailAddress' => __DIR__ . '/includes/mail/MailAddress.php',
 	'MainConfigDependency' => __DIR__ . '/includes/cache/CacheDependency.php',
 	'MaintainableDBConnRef' => __DIR__ . '/includes/libs/rdbms/database/MaintainableDBConnRef.php',

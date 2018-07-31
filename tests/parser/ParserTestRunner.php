@@ -1152,7 +1152,7 @@ class ParserTestRunner {
 		$lang->resetNamespaces();
 		$setup['wgContLang'] = $lang;
 		$reset = function () {
-			MagicWord::clearCache();
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'MagicWordFactory' );
 			$this->resetTitleServices();
 		};
 		$setup[] = $reset;

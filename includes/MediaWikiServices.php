@@ -51,6 +51,7 @@ use TitleFormatter;
 use TitleParser;
 use VirtualRESTServiceClient;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MagicWordFactory;
 
 /**
  * Service locator for MediaWiki core services.
@@ -862,6 +863,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getConfigRepository() {
 		return $this->getService( 'ConfigRepository' );
+	}
+
+	/**
+	 * @since 1.32
+	 * @return MagicWordFactory
+	 */
+	public function getMagicWordFactory() {
+		return $this->getService( 'MagicWordFactory' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

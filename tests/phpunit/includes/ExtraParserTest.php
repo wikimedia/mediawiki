@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Parser-related tests that don't suit for parserTests.txt
  *
@@ -28,7 +30,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 		$this->options->setTemplateCallback( [ __CLASS__, 'statelessFetchTemplate' ] );
 		$this->parser = new Parser;
 
-		MagicWord::clearCache();
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'MagicWordFactory' );
 	}
 
 	/**
