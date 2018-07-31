@@ -540,7 +540,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 			'forceHTTPS' => [
 				'value' => $secure ? 'true' : '',
 				'secure' => false,
-				'expire' => $secure ? $remember ? $defaults['expire'] : 0 : -31536000,
+				'expire' => $secure ? ( $remember ? $defaults['expire'] : 0 ) : -31536000,
 			] + $defaults,
 		];
 		foreach ( $expect as $key => $value ) {

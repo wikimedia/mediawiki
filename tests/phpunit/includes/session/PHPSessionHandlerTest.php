@@ -126,7 +126,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		$wrap = TestingAccessWrapper::newFromObject( $rProp->getValue() );
 		$reset[] = new \Wikimedia\ScopedCallback(
 			[ $wrap, 'setEnableFlags' ],
-			[ $wrap->enable ? $wrap->warn ? 'warn' : 'enable' : 'disable' ]
+			[ $wrap->enable ? ( $wrap->warn ? 'warn' : 'enable' ) : 'disable' ]
 		);
 		$wrap->setEnableFlags( 'warn' );
 
