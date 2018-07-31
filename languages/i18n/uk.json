@@ -1262,6 +1262,9 @@
 	"right-editusercss": "редагування CSS-файлів інших користувачів",
 	"right-edituserjson": "редагування JSON-файлів інших користувачів",
 	"right-edituserjs": "редагування JS-файлів інших користувачів",
+	"right-editsitecss": "Редагувати загальний CSS",
+	"right-editsitejson": "Редагувати загальний JSON",
+	"right-editsitejs": "Редагувати загальний JavaScript",
 	"right-editmyusercss": "редагування власних CSS-файлів користувача",
 	"right-editmyuserjson": "редагування власних JSON-файлів користувача",
 	"right-editmyuserjs": "редагування власних JavaScript-файлів користувача",
@@ -1303,10 +1306,11 @@
 	"grant-createaccount": "Створювати облікові записи",
 	"grant-createeditmovepage": "Створювати, редагувати та перейменовувати сторінки",
 	"grant-delete": "Вилучати сторінки, версії і записи журналів",
-	"grant-editinterface": "Редагувати простір назв MediaWiki та CSS/JSON/JavaScript користувача",
+	"grant-editinterface": "Редагувати простір назв MediaWiki та загальний/користувацький JSON",
 	"grant-editmycssjs": "Редагувати Ваш користувацький CSS/JSON/JavaScript",
 	"grant-editmyoptions": "Редагувати Ваші налаштування користувача",
 	"grant-editmywatchlist": "Редагувати Ваш список спостереження",
+	"grant-editsiteconfig": "Редагувати загальний та користувацький CSS/JS",
 	"grant-editpage": "Редагувати наявні сторінки",
 	"grant-editprotected": "Редагувати захищені сторінки",
 	"grant-highvolume": "Редагування у великих обсягах",
@@ -1806,6 +1810,7 @@
 	"http-timed-out": "Перевищення часу очікування HTTP-запиту.",
 	"http-curl-error": "Помилка звертання до URL: $1",
 	"http-bad-status": "Під час HTTP-запиту виникла проблема: $1 $2",
+	"http-internal-error": "Внутрішня помилка HTTP.",
 	"upload-curl-error6": "Неможливо досягнути вказану адресу.",
 	"upload-curl-error6-text": "Неможливо досягнути вказану адресу. Будь-ласка, перевірте, що вказана адреса вірна, а сайт доступний.",
 	"upload-curl-error28": "Час виділений на завантаження вичерпано",
@@ -4246,5 +4251,6 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "Пароль не може збігатися з назвою облікового запису",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Пароль не може збігатися з паролями із чорного списку",
 	"passwordpolicies-policy-maximalpasswordlength": "Пароль повинен бути коротшим $1 {{PLURAL:$1|символа|символів}}",
-	"passwordpolicies-policy-passwordcannotbepopular": "Пароль не може бути {{PLURAL:$1|часто вживаним|будь-яким з $1 часто вживаних паролів}}"
+	"passwordpolicies-policy-passwordcannotbepopular": "Пароль не може бути {{PLURAL:$1|часто вживаним|будь-яким з $1 часто вживаних паролів}}",
+	"easydeflate-invaliddeflate": "Наданий вміст не стиснений належним чином"
 }

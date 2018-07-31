@@ -846,7 +846,7 @@
 	"converter-manual-rule-error": "Erro detetado na regra de conversão de língua manual",
 	"undo-success": "É possível desfazer a edição.\nVerifique a comparação abaixo, por favor, para se certificar de que corresponde ao que pretende fazer.\nDepois grave as alterações, para finalizar e desfazer a edição.",
 	"undo-failure": "Não foi possível desfazer a edição por conflito com alterações intermédias.",
-	"undo-main-slot-only": "Não foi possível desfazer a edição porque ela envolve conteúdo fora da zona principal.",
+	"undo-main-slot-only": "Não foi possível desfazer a edição porque ela envolve conteúdo fora do segmento de revisão principal.",
 	"undo-norev": "Não foi possível desfazer a edição porque não existe ou foi apagada.",
 	"undo-nochange": "A edição parece já ter sido desfeita.",
 	"undo-summary": "Desfez a edição $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussão]])",

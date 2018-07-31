@@ -704,7 +704,7 @@
 	"apierror-sectionreplacefailed": "Kunne ikke flette oppdatert seksjon.",
 	"apierror-sectionsnotsupported": "Seksjoner støttes ikke for innholdsmodellen $1.",
 	"apierror-sectionsnotsupported-what": "Seksjoner støttes ikke av $1.",
-	"apierror-siteinfo-includealldenied": "Kan ikke vise alle tjenernes info med mindre </var>$wgShowHostNames</var> er sann.",
+	"apierror-siteinfo-includealldenied": "Kan ikke vise alle tjenernes info med mindre </var>$wgShowHostnames</var> er sann.",
 	"apierror-sizediffdisabled": "Størrelsesforskjell er slått av i Miser-modus.",
 	"apierror-timeout": "Tjeneren svarte ikke innenfor forventet tid.",
 	"apiwarn-validationfailed": "Bekreftelsesfeil <kbd>$1</kbd>: $2"

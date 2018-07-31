@@ -1328,6 +1328,10 @@
 	"rcfilters-other-review-tools": "შემოწმების სხვა ხელსაწყოები",
 	"rcfilters-group-results-by-page": "ჯგუფის შედეგები გვერდების მიხედვით",
 	"rcfilters-activefilters": "აქტიური ფილტრები",
+	"rcfilters-activefilters-hide": "დამალვა",
+	"rcfilters-activefilters-show": "ჩვენება",
+	"rcfilters-activefilters-hide-tooltip": "აქტიური ფილტრების ადგილის დამალვა",
+	"rcfilters-activefilters-show-tooltip": "აქტიური ფილტრების ადგილის ჩვენება",
 	"rcfilters-advancedfilters": "გაფართოებული ფილტრები",
 	"rcfilters-limit-title": "ცვლილელების ნახვა",
 	"rcfilters-limit-and-date-label": "{{PLURAL:$1|ცვლილება|$1 ცვლილება}}, $2",
@@ -1443,6 +1447,8 @@
 	"rcfilters-preference-help": "გათიშავს 2017 წლის ინტერფეისის დიზაინზე გაკეთებულ განახლებას, გაითიშება მას შემდეგ დამატებული ყველა ხელსაწყო.",
 	"rcfilters-watchlist-preference-label": "კონტროლის სიის გაუმჯობესებული ვერსიის დამალვა",
 	"rcfilters-watchlist-preference-help": "აუქმებს 2017 წლის ინტერფეისისა და ყველა ხელსაწყოს რედიზაინს დამატებულს მაშინ და შემდგომ.",
+	"rcfilters-filter-showlinkedfrom-label": "ცვლილებების ჩვენება დაკავშირებულ გვერდებზე",
+	"rcfilters-filter-showlinkedto-option-label": "<strong>არჩეულზე, დაკავშირებული</strong> გვერდები",
 	"rcnotefrom": "ქვემოთ {{PLURAL:$5|ნაჩვენებია ცვლილება|ნაჩვენებია ცვლილებები}} <strong>$3, $4</strong>-დან (ნაჩვენებია არაუმეტეს <strong>$1</strong>).",
 	"rclistfromreset": "თარიღის საწყის კონფიგურაციაზე დაბრუნება",
 	"rclistfrom": "ახალი ცვლილებების ჩვენება დაწყებული $3 $2-დან",
@@ -1784,7 +1790,7 @@
 	"filedelete-edit-reasonlist": "წაშლის მიზეზების რედაქტირება",
 	"filedelete-maintenance": "ფაილების წაშლა და აღდგენა დროებით გათიშულია ტექნიკური სამუშაობის განმავლობაში.",
 	"filedelete-maintenance-title": "ფაილის წაშლა ვერ ხერხდება",
-	"mimesearch": "MIME ძიება",
+	"mimesearch": "MIME-ის ძიება",
 	"mimesearch-summary": "ამ გვერდის მეშვეობით შესაძლებელია ფაილების მოძიება მათი MIME-ტიპის მიხედვით. შეტანის ფორმა: შიგთავსის ტიპი/ქვეტიპი, მაგ <code>image/jpeg</code>.",
 	"mimetype": "MIME ტიპი:",
 	"download": "გადმოტვირთვა",
@@ -4021,5 +4027,6 @@
 	"pagedata-title": "გვერდის მონაცემი",
 	"pagedata-text": "ეს გვერდი აჩვენებს მონაცემის ინტერფეისს გვერდებზე. გთხოვთ წარმოადგინეთ გვერდის სათაური URL-ში, ქვეგვერდის სინტაქსის გამოყენებით.\n* Content negotiation მუშაობს კლიენტის Accept ჰედერზე დაფუძნებით. ეს ნიშნავს, რომ გვერდის მონაცემი გამოჩნდება თქვენი კლიენტის ფორმატით.",
 	"pagedata-not-acceptable": "შესაბამისი ფორმატი ვერ მოიძებნა. მხარდაჭერილი MIME ტიპები: $1",
-	"pagedata-bad-title": "არასწორი სათაური: \"$1\"."
+	"pagedata-bad-title": "არასწორი სათაური: \"$1\".",
+	"passwordpolicies": "პაროლების პოლიტიკა"
 }
