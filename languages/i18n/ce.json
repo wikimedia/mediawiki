@@ -1267,6 +1267,8 @@
 	"rcfilters-liveupdates-button-title-off": "Керла хийцамаш ма-бинехь гайта",
 	"rcfilters-preference-label": "Керла хийцамийн дика кечйина верси къайлаяккха",
 	"rcfilters-preference-help": "2017 шеран интерфейсан редизайн а, оцу хенахь дуьйна тӀетоьхна гӀирсаш а къайлайоху.",
+	"rcfilters-watchlist-preference-label": "Дика кечбина тергаме могӀам къайлабаккха",
+	"rcfilters-watchlist-preference-help": "ДӀайоху 2017 шеран интерфейсан редизайн, а оцу хенахь а, цул тӀехьа а тӀетоьхна болу гӀирсаш а.",
 	"rcfilters-filter-showlinkedfrom-label": "Хьажоргаш йолучу агӀонашна тӀехь нисдарш гайта",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Хаьржиначунна хьажоргаш йолу агӀонаш</strong>",
 	"rcfilters-filter-showlinkedto-label": "Хьажоргаш йолучу агӀонашна тӀехь нисдарш гайта",

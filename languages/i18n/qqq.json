@@ -1400,7 +1400,7 @@
 	"grouppage-bureaucrat": "{{doc-group|bureaucrat|page}}",
 	"grouppage-suppress": "{{doc-group|suppress|page}}\n{{Identical|Suppress}}",
 	"right-read": "{{doc-right|read}}\nBasic right to read any page.",
-	"right-edit": "Description of edit right",
+	"right-edit": "{{doc-right|edit}}\nBasic right to edit pages that are not protected.\n{{Identical|Edit page}}",
 	"right-createpage": "{{doc-right|createpage}}\nBasic right to create pages. The right to edit discussion/talk pages is {{msg-mw|right-createtalk}}.",
 	"right-createtalk": "{{doc-right|createtalk}}\nBasic right to create discussion/talk pages. The right to edit other pages is {{msg-mw|right-createpage}}.",
 	"right-createaccount": "{{doc-right|createaccount}}\nThe right to [[Special:CreateAccount|create a user account]].",

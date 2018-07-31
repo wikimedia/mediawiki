@@ -1443,6 +1443,7 @@
 	"rcfilters-filter-humans-description": "ویرایش توسط انسان.",
 	"rcfilters-filtergroup-reviewstatus": "وضعیت بازبینی",
 	"rcfilters-filter-reviewstatus-unpatrolled-label": "گشت‌نخورده",
+	"rcfilters-filter-reviewstatus-manual-label": "به طور دستی گشت خورد",
 	"rcfilters-filtergroup-significance": "اهمیت",
 	"rcfilters-filter-minor-label": "ویرایش‌های جزئی",
 	"rcfilters-filter-minor-description": "ویرایش‌هایی که به عنوان جزئی برچسب خورده‌اند.",
