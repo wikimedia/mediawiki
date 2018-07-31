@@ -42,7 +42,8 @@ describe( 'User', function () {
 		assert.strictEqual( UserLoginPage.userPage.getText(), username );
 	} );
 
-	it( 'should be able to change preferences', function () {
+	// Disabled due to flakiness (T199446)
+	it.skip( 'should be able to change preferences', function () {
 		var realName = Util.getTestString();
 
 		// create
