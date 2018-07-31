@@ -5073,10 +5073,10 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public static function getAllGroups() {
 		global $wgGroupPermissions, $wgRevokePermissions;
-		return array_diff(
+		return array_values( array_diff(
 			array_merge( array_keys( $wgGroupPermissions ), array_keys( $wgRevokePermissions ) ),
 			self::getImplicitGroups()
-		);
+		) );
 	}
 
 	/**
