@@ -357,7 +357,7 @@ $magicWords = [
 ];
 
 # LinkTrail for Urdu language
-$linkTrail = "/^([ابپتٹثجچحخدڈذر​ڑ​زژسشصضطظعغفقکگل​م​نوؤہھیئےآأءۃ]+)(.*)$/sDu";
+$linkTrail = "/^([ابپتٹثجچحخدڈذر​ڑ​زژسشصضطظعغفقکگل​م​نںوؤہھیئےآأءۃ]+)(.*)$/sDu";
 
 $defaultDateFormat = 'dmy';
 
