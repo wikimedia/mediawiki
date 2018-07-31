@@ -1827,7 +1827,7 @@
 	"apierror-sectionsnotsupported": "Sections are not supported for content model $1.",
 	"apierror-sectionsnotsupported-what": "Sections are not supported by $1.",
 	"apierror-show": "Incorrect parameter - mutually exclusive values may not be supplied.",
-	"apierror-siteinfo-includealldenied": "Cannot view all servers' info unless <var>$wgShowHostNames</var> is true.",
+	"apierror-siteinfo-includealldenied": "Cannot view all servers' info unless <var>$wgShowHostnames</var> is true.",
 	"apierror-sizediffdisabled": "Size difference is disabled in Miser Mode.",
 	"apierror-spamdetected": "Your edit was refused because it contained a spam fragment: <code>$1</code>.",
 	"apierror-specialpage-cantexecute": "You don't have permission to view the results of this special page.",
