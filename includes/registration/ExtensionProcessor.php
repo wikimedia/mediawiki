@@ -45,6 +45,7 @@ class ExtensionProcessor implements Processor {
 		'MediaHandlers',
 		'PasswordPolicy',
 		'RateLimits',
+		'RawHtmlMessages',
 		'RecentChangesFlags',
 		'RemoveCredentialsBlacklist',
 		'RemoveGroups',

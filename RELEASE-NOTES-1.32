@@ -40,6 +40,8 @@ production.
 * The $wgPasswordSenderName setting, ignored since 1.23 by MediaWiki and almost
   all extensions, is no longer set at all. Instead, you can modify the system
   message `emailsender`.
+* A new configuration setting, $wgRawHtmlMessages, is added, for listing
+  messages which are displayed as raw HTML.
 
 === New features in 1.32 ===
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
