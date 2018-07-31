@@ -2377,14 +2377,25 @@ class Title implements LinkTarget {
 	 */
 	private function checkSiteConfigPermissions( $action, $user, $errors, $rigor, $short ) {
 		if ( $action != 'patrol' ) {
+			$error = null;
 			// Sitewide CSS/JSON/JS changes, like all NS_MEDIAWIKI changes, also require the
 			// editinterface right. That's implemented as a restriction so no check needed here.
 			if ( $this->isSiteCssConfigPage() && !$user->isAllowed( 'editsitecss' ) ) {
-				$errors[] = [ 'sitecssprotected', $action ];
+				$error = [ 'sitecssprotected', $action ];
 			} elseif ( $this->isSiteJsonConfigPage() && !$user->isAllowed( 'editsitejson' ) ) {
-				$errors[] = [ 'sitejsonprotected', $action ];
+				$error = [ 'sitejsonprotected', $action ];
 			} elseif ( $this->isSiteJsConfigPage() && !$user->isAllowed( 'editsitejs' ) ) {
-				$errors[] = [ 'sitejsprotected', $action ];
+				$error = [ 'sitejsprotected', $action ];
+			}
+
+			if ( $error ) {
+				if ( $user->isAllowed( 'editinterface' ) ) {
+					// Most users / site admins will probably find out about the new, more restrictive
+					// permissions by failing to edit something. Give them more info.
+					// TODO remove this a few release cycles after 1.32
+					$error = [ 'interfaceadmin-info', wfMessage( $error[0], $error[1] ) ];
+				}
+				$errors[] = $error;
 			}
 		}
 
