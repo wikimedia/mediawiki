@@ -1730,6 +1730,7 @@ $query: query options passed to Title::getInternalURL()
 $linkcolour_ids: array of prefixed DB keys of the pages linked to,
   indexed by page_id.
 &$colours: (output) array of CSS classes, indexed by prefixed DB keys
+$title: Title object of the page being parsed, on which the links will be shown
 
 'GetLocalURL': Modify local URLs as output into page links. Note that if you are
 working with internal urls (non-interwiki) then it may be preferable to work
