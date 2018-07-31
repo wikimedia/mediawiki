@@ -296,9 +296,11 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function formatnum( $parser, $num = '', $arg = null ) {
-		if ( self::matchAgainstMagicword( 'rawsuffix', $arg ) ) {
+		if ( self::matchAgainstMagicword( $parser->getMagicWordFactory(), 'rawsuffix', $arg ) ) {
 			$func = [ $parser->getFunctionLang(), 'parseFormattedNumber' ];
-		} elseif ( self::matchAgainstMagicword( 'nocommafysuffix', $arg ) ) {
+		} elseif (
+			self::matchAgainstMagicword( $parser->getMagicWordFactory(), 'nocommafysuffix', $arg )
+		) {
 			$func = [ $parser->getFunctionLang(), 'formatNumNoSeparators' ];
 		} else {
 			$func = [ $parser->getFunctionLang(), 'formatNum' ];
@@ -475,16 +477,20 @@ class CoreParserFunctions {
 	/**
 	 * Matches the given value against the value of given magic word
 	 *
+	 * @param MagicWordFactory $magicWordFactory A factory to get the word from, e.g., from
+	 *   $parser->getMagicWordFactory()
 	 * @param string $magicword Magic word key
 	 * @param string $value Value to match
 	 * @return bool True on successful match
 	 */
-	private static function matchAgainstMagicword( $magicword, $value ) {
+	private static function matchAgainstMagicword(
+		MagicWordFactory $magicWordFactory, $magicword, $value
+	) {
 		$value = trim( strval( $value ) );
 		if ( $value === '' ) {
 			return false;
 		}
-		$mwObject = MagicWord::get( $magicword );
+		$mwObject = $magicWordFactory->get( $magicword );
 		return $mwObject->matchStartToEnd( $value );
 	}
 
@@ -494,10 +500,18 @@ class CoreParserFunctions {
 	 * @param int|float $num
 	 * @param string $raw
 	 * @param Language|StubUserLang $language
+	 * @param MagicWordFactory|null $magicWordFactory To evaluate $raw
 	 * @return string
 	 */
-	public static function formatRaw( $num, $raw, $language ) {
-		if ( self::matchAgainstMagicword( 'rawsuffix', $raw ) ) {
+	public static function formatRaw(
+		$num, $raw, $language, MagicWordFactory $magicWordFactory = null
+	) {
+		if ( $raw !== null && !$magicWordFactory ) {
+			$magicWordFactory = MediaWikiServices::getInstance()->getMagicWordFactory();
+		}
+		if (
+			$raw !== null && self::matchAgainstMagicword( $magicWordFactory, 'rawsuffix', $raw )
+		) {
 			return $num;
 		} else {
 			return $language->formatNum( $num );
@@ -739,7 +753,7 @@ class CoreParserFunctions {
 		static $cache = [];
 
 		// split the given option to its variable
-		if ( self::matchAgainstMagicword( 'rawsuffix', $arg1 ) ) {
+		if ( self::matchAgainstMagicword( $parser->getMagicWordFactory(), 'rawsuffix', $arg1 ) ) {
 			// {{pagesincategory:|raw[|type]}}
 			$raw = $arg1;
 			$type = $magicWords->matchStartToEnd( $arg2 );
