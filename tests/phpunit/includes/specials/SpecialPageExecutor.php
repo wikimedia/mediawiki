@@ -73,6 +73,9 @@ class SpecialPageExecutor {
 
 		$this->setEditTokenFromUser( $context );
 
+		// Make sure the skin context is correctly set https://phabricator.wikimedia.org/T200771
+		$context->getSkin()->setContext( $context );
+
 		return $context;
 	}
 
