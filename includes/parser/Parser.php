@@ -958,6 +958,16 @@ class Parser {
 	}
 
 	/**
+	 * Get the MagicWordFactory that this Parser is using
+	 *
+	 * @since 1.32
+	 * @return MagicWordFactory
+	 */
+	public function getMagicWordFactory() {
+		return $this->magicWordFactory;
+	}
+
+	/**
 	 * Replaces all occurrences of HTML-style comments and the given tags
 	 * in the text with a random marker and returns the next text. The output
 	 * parameter $matches will be an associative array filled with data in
