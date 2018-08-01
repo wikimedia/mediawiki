@@ -171,7 +171,8 @@ class CoreParserFunctions {
 	public static function urlencode( $parser, $s = '', $arg = null ) {
 		static $magicWords = null;
 		if ( is_null( $magicWords ) ) {
-			$magicWords = new MagicWordArray( [ 'url_path', 'url_query', 'url_wiki' ] );
+			$magicWords =
+				$parser->getMagicWordFactory()->newArray( [ 'url_path', 'url_query', 'url_wiki' ] );
 		}
 		switch ( $magicWords->matchStartToEnd( $arg ) ) {
 			// Encode as though it's a wiki page, '_' for ' '.
@@ -393,7 +394,8 @@ class CoreParserFunctions {
 
 		static $magicWords = null;
 		if ( is_null( $magicWords ) ) {
-			$magicWords = new MagicWordArray( [ 'displaytitle_noerror', 'displaytitle_noreplace' ] );
+			$magicWords = $parser->getMagicWordFactory()->newArray(
+				[ 'displaytitle_noerror', 'displaytitle_noreplace' ] );
 		}
 		$arg = $magicWords->matchStartToEnd( $uarg );
 
@@ -743,7 +745,7 @@ class CoreParserFunctions {
 		global $wgContLang;
 		static $magicWords = null;
 		if ( is_null( $magicWords ) ) {
-			$magicWords = new MagicWordArray( [
+			$magicWords = $parser->getMagicWordFactory()->newArray( [
 				'pagesincategory_all',
 				'pagesincategory_pages',
 				'pagesincategory_subcats',
@@ -980,7 +982,8 @@ class CoreParserFunctions {
 	public static function defaultsort( $parser, $text, $uarg = '' ) {
 		static $magicWords = null;
 		if ( is_null( $magicWords ) ) {
-			$magicWords = new MagicWordArray( [ 'defaultsort_noerror', 'defaultsort_noreplace' ] );
+			$magicWords = $parser->getMagicWordFactory()->newArray(
+				[ 'defaultsort_noerror', 'defaultsort_noreplace' ] );
 		}
 		$arg = $magicWords->matchStartToEnd( $uarg );
 
