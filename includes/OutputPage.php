@@ -222,9 +222,6 @@ class OutputPage extends ContextSource {
 	 */
 	public $mNoGallery = false;
 
-	/** @var string */
-	private $mPageTitleActionText = '';
-
 	/** @var int Cache stuff. Looks like mEnableClientCache */
 	protected $mCdnMaxage = 0;
 	/** @var int Upper limit on mCdnMaxage */
@@ -892,25 +889,6 @@ class OutputPage extends ContextSource {
 		if ( in_array( $policy, [ 'follow', 'nofollow' ] ) ) {
 			$this->mFollowPolicy = $policy;
 		}
-	}
-
-	/**
-	 * Set the new value of the "action text", this will be added to the
-	 * "HTML title", separated from it with " - ".
-	 *
-	 * @param string $text New value of the "action text"
-	 */
-	public function setPageTitleActionText( $text ) {
-		$this->mPageTitleActionText = $text;
-	}
-
-	/**
-	 * Get the value of the "action text"
-	 *
-	 * @return string
-	 */
-	public function getPageTitleActionText() {
-		return $this->mPageTitleActionText;
 	}
 
 	/**

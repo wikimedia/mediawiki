@@ -231,6 +231,9 @@ because of Phabricator reports.
   * getItemsData: Use getItems instead and get the data property
 * Two OutputPage methods, addMetadataLink() and getMetadataAttribute(), were
   removed.  Use addLink() instead.
+* Another two OutputPage methods, setPageTitleActionText() and
+  getPageTitleActionText(), were removed.  They did nothing since 1.15 (almost
+  ten years).  Use setHTMLTitle() directly.
 * All MagicWord static member variables have been removed.  Use appropriate
   hooks or MagicWordFactory methods instead.
 * MagicWord::clearCache() has been removed.  Instead, create a new
