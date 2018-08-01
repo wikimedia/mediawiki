@@ -21,6 +21,8 @@
  * @ingroup JobQueue
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Job to fix double redirects after moving a page
  *
@@ -116,7 +118,7 @@ class DoubleRedirectJob extends Job {
 		}
 
 		// Check for a suppression tag (used e.g. in periodically archived discussions)
-		$mw = MagicWord::get( 'staticredirect' );
+		$mw = MediaWikiServices::getInstance()->getMagicWordFactory()->get( 'staticredirect' );
 		if ( $content->matchMagicWord( $mw ) ) {
 			wfDebug( __METHOD__ . ": skipping: suppressed with __STATICREDIRECT__\n" );
 

@@ -209,12 +209,14 @@ class InfoAction extends FormlessAction {
 	protected function pageInfo() {
 		global $wgContLang;
 
+		$services = MediaWikiServices::getInstance();
+
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$title = $this->getTitle();
 		$id = $title->getArticleID();
 		$config = $this->context->getConfig();
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$linkRenderer = $services->getLinkRenderer();
 
 		$pageCounts = $this->pageCounts( $this->page );
 
@@ -599,7 +601,7 @@ class InfoAction extends FormlessAction {
 		];
 
 		// Array of MagicWord objects
-		$magicWords = MagicWord::getDoubleUnderscoreArray();
+		$magicWords = $services->getMagicWordFactory()->getDoubleUnderscoreArray();
 
 		// Array of magic word IDs
 		$wordIDs = $magicWords->names;
