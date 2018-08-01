@@ -288,7 +288,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 				'div',
 				null,
 				$this->filterLinks()
-			) )
+			) . $hidden )
 			->show();
 		$out->addModuleStyles( 'mediawiki.special' );
 	}
