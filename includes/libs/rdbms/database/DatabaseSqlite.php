@@ -207,10 +207,6 @@ class DatabaseSqlite extends Database {
 		return false;
 	}
 
-	public function selectDB( $db ) {
-		return false; // doesn't make sense
-	}
-
 	/**
 	 * @return string SQLite DB file path
 	 * @since 1.25

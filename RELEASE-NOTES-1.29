@@ -65,6 +65,7 @@ This is a security and maintenance release of the MediaWiki 1.29 branch.
 * (T119158) SECURITY: Handle -{}- syntax in attributes safely.
 * (T180488) (T125177) "api.log contains passwords in plaintext" wasn't correctly fixed in all
   branches in the previous security release.
+* (T200861) Fix total breakage of SQLite web upgrade.
 
 == MediaWiki 1.29.1 ==
 
