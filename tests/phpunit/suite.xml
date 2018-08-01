@@ -73,6 +73,8 @@
 			<directory suffix=".php">../../maintenance</directory>
 			<exclude>
 				<directory suffix=".php">../../languages/messages</directory>
+				<file>../../languages/data/normalize-ar.php</file>
+				<file>../../languages/data/normalize-ml.php</file>
 			</exclude>
 		</whitelist>
 	</filter>
