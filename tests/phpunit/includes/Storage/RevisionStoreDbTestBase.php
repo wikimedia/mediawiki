@@ -64,10 +64,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 */
 	abstract protected function getMcrTablesToReset();
 
-	public function needsDB() {
-		return true;
-	}
-
 	public function setUp() {
 		parent::setUp();
 		$this->tablesUsed[] = 'archive';
