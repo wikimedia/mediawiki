@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.5
+ * OOUI v0.27.6
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-07-11T18:13:04Z
+ * Date: 2018-08-01T22:17:59Z
  */
 ( function ( OO ) {
 
@@ -5945,6 +5945,19 @@ OO.ui.MenuTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
 	} else {
 		// Use the default
 		OO.ui.MenuTagMultiselectWidget.parent.prototype.onTagSelect.call( this, tagItem );
+	}
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.MenuTagMultiselectWidget.prototype.setDisabled = function ( isDisabled ) {
+	// Parent method
+	OO.ui.MenuTagMultiselectWidget.parent.prototype.setDisabled.call( this, isDisabled );
+
+	if ( this.menu ) {
+		// Protect against calling setDisabled() before the menu was initialized
+		this.menu.setDisabled( isDisabled );
 	}
 };
 
