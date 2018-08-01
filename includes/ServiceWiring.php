@@ -137,7 +137,7 @@ return [
 		$config = $services->getMainConfig();
 		$wiki = $config->get( 'DBname' );
 		return new BufferingStatsdDataFactory(
-			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ) ) . '.' . $wiki
+			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' ) . '.' . $wiki
 		);
 	},
 
