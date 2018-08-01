@@ -99,7 +99,7 @@ class Pingback {
 		return $dbw->upsert(
 			'updatelog',
 			[ 'ul_key' => $this->key, 'ul_value' => $timestamp ],
-			[ 'ul_key' => $this->key ],
+			[ 'ul_key' ],
 			[ 'ul_value' => $timestamp ],
 			__METHOD__
 		);
