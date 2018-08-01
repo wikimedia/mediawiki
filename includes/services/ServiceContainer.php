@@ -56,6 +56,11 @@ class ServiceContainer implements DestructibleService {
 	private $serviceInstantiators = [];
 
 	/**
+	 * @var callable[][]
+	 */
+	private $serviceManipulators = [];
+
+	/**
 	 * @var bool[] disabled status, per service name
 	 */
 	private $disabled = [];
@@ -151,6 +156,22 @@ class ServiceContainer implements DestructibleService {
 			$this->serviceInstantiators,
 			$newInstantiators
 		);
+
+		$newManipulators = array_diff(
+			array_keys( $container->serviceManipulators ),
+			$skip
+		);
+
+		foreach ( $newManipulators as $name ) {
+			if ( isset( $this->serviceManipulators[$name] ) ) {
+				$this->serviceManipulators[$name] = array_merge(
+					$this->serviceManipulators[$name],
+					$container->serviceManipulators[$name]
+				);
+			} else {
+				$this->serviceManipulators[$name] = $container->serviceManipulators[$name];
+			}
+		}
 	}
 
 	/**
@@ -199,7 +220,7 @@ class ServiceContainer implements DestructibleService {
 	 * Define a new service. The service must not be known already.
 	 *
 	 * @see getService().
-	 * @see replaceService().
+	 * @see redefineService().
 	 *
 	 * @param string $name The name of the service to register, for use with getService().
 	 * @param callable $instantiator Callback that returns a service instance.
@@ -224,7 +245,9 @@ class ServiceContainer implements DestructibleService {
 	 *
 	 * @see defineService().
 	 *
-	 * @note This causes any previously instantiated instance of the service to be discarded.
+	 * @note This will fail if the service was already instantiated. If the service was previously
+	 * disabled, it will be re-enabled by this call. Any manipulators registered for the service
+	 * will remain in place.
 	 *
 	 * @param string $name The name of the service to register.
 	 * @param callable $instantiator Callback function that returns a service instance.
@@ -233,7 +256,8 @@ class ServiceContainer implements DestructibleService {
 	 *        Any extra instantiation parameters provided to the constructor will be
 	 *        passed as subsequent parameters when invoking the instantiator.
 	 *
-	 * @throws RuntimeException if $name is not a known service.
+	 * @throws NoSuchServiceException if $name is not a known service.
+	 * @throws CannotReplaceActiveServiceException if the service was already instantiated.
 	 */
 	public function redefineService( $name, callable $instantiator ) {
 		Assert::parameterType( 'string', $name, '$name' );
@@ -248,6 +272,46 @@ class ServiceContainer implements DestructibleService {
 
 		$this->serviceInstantiators[$name] = $instantiator;
 		unset( $this->disabled[$name] );
+	}
+
+	/**
+	 * Add a service manipulator callback for the given service.
+	 * This method may be used by extensions that need to wrap, replace, or re-configure a
+	 * service. It would typically be called from a MediaWikiServices hook handler.
+	 *
+	 * The manipulator callback is called just after the service is instantiated.
+	 * It can call methods on the service to change configuration, or wrap or otherwise
+	 * replace it.
+	 *
+	 * @see defineService().
+	 * @see redefineService().
+	 *
+	 * @note This will fail if the service was already instantiated.
+	 *
+	 * @since 1.32
+	 *
+	 * @param string $name The name of the service to manipulate.
+	 * @param callable $manipulator Callback function that manipulates, wraps or replaces a
+	 * service instance. The callback receives the new service instance and this the
+	 * ServiceContainer as parameters, as well as any extra instantiation parameters specified
+	 * when constructing this ServiceContainer. If the callback returns a value, that
+	 * value replaces the original service instance.
+	 *
+	 * @throws NoSuchServiceException if $name is not a known service.
+	 * @throws CannotReplaceActiveServiceException if the service was already instantiated.
+	 */
+	public function addServiceManipulator( $name, callable $manipulator ) {
+		Assert::parameterType( 'string', $name, '$name' );
+
+		if ( !$this->hasService( $name ) ) {
+			throw new NoSuchServiceException( $name );
+		}
+
+		if ( isset( $this->services[$name] ) ) {
+			throw new CannotReplaceActiveServiceException( $name );
+		}
+
+		$this->serviceManipulators[$name][] = $manipulator;
 	}
 
 	/**
@@ -359,6 +423,23 @@ class ServiceContainer implements DestructibleService {
 				$this,
 				...$this->extraInstantiationParams
 			);
+
+			if ( isset( $this->serviceManipulators[$name] ) ) {
+				foreach ( $this->serviceManipulators[$name] as $callback ) {
+					$ret = call_user_func_array(
+						$callback,
+						array_merge( [ $service, $this ], $this->extraInstantiationParams )
+					);
+
+					// If the manipulator callback returns an object, that object replaces
+					// the original service instance. This allows the manipulator to wrap
+					// or fully replace the service.
+					if ( $ret !== null ) {
+						$service = $ret;
+					}
+				}
+			}
+
 			// NOTE: when adding more wiring logic here, make sure importWiring() is kept in sync!
 		} else {
 			throw new NoSuchServiceException( $name );
