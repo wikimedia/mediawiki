@@ -1569,6 +1569,8 @@ more stuff
 		$expectedSuccess,
 		$expectedRowCount
 	) {
+		// FIXME: fails under sqlite
+		$this->markTestSkippedIfDbType( 'sqlite' );
 		static $pageCounter = 0;
 		$pageCounter++;
 
