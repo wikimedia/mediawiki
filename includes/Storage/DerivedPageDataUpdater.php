@@ -152,9 +152,20 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	/**
 	 * The state of the relevant row in page table before the edit.
 	 * This is determined by the first call to grabCurrentRevision, prepareContent,
-	 * or prepareUpdate.
+	 * or prepareUpdate (so it is only accessible in 'knows-current' or a later stage).
 	 * If pageState was not initialized when prepareUpdate() is called, prepareUpdate() will
 	 * attempt to emulate the state of the page table before the edit.
+	 *
+	 * Contains the following fields:
+	 * - oldRevision (RevisionRecord|null): the revision that was current before the change
+	 *   associated with this update. Might not be set, use getOldRevision() instead of direct
+	 *   access.
+	 * - oldId (int|null): the id of the above revision. 0 if there is no such revision (the change
+	 *   was about creating a new page); null if not known (that should not happen).
+	 * - oldIsRedirect (bool|null): whether the page was a redirect before the change. Lazy-loaded,
+	 *   can be null; use wasRedirect() instead of direct access.
+	 * - oldCountable (bool|null): whether the page was countable before the change (or null
+	 *   if we don't have that information)
 	 *
 	 * @var array
 	 */
@@ -958,7 +969,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 *    - null: if created is false, don't update the article count; if created
 	 *      is true, do update the article count
 	 *    - 'no-change': don't update the article count, ever
-	 *
+	 *    When set to null, pageState['oldCountable'] will be used instead if available.
 	 */
 	public function prepareUpdate( RevisionRecord $revision, array $options = [] ) {
 		Assert::parameter(
@@ -1469,6 +1480,9 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		} elseif ( $this->options['oldcountable'] !== null ) {
 			$good = (int)$this->isCountable()
 				- (int)$this->options['oldcountable'];
+		} elseif ( isset( $this->pageState['oldCountable'] ) ) {
+			$good = (int)$this->isCountable()
+				- (int)$this->pageState['oldCountable'];
 		} else {
 			$good = 0;
 		}
