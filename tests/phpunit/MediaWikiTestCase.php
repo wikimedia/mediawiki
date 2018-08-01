@@ -2171,6 +2171,18 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Skip the test if using the specified database type
+	 *
+	 * @param string $type Database type
+	 * @since 1.32
+	 */
+	protected function markTestSkippedIfDbType( $type ) {
+		if ( $this->db->getType() === $type ) {
+			$this->markTestSkipped( "The $type database type isn't supported for this test" );
+		}
+	}
+
+	/**
 	 * Used as a marker to prevent wfResetOutputBuffers from breaking PHPUnit.
 	 * @param string $buffer
 	 * @return string
