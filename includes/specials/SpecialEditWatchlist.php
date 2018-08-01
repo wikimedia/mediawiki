@@ -634,7 +634,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		if ( $title->getNamespace() == NS_USER && !$title->isSubpage() ) {
 			$tools['contributions'] = $linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Contributions', $title->getText() ),
-				$this->msg( 'contributions' )->text()
+				$this->msg( 'contribslink' )->text()
 			);
 		}
 
