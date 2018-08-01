@@ -1,7 +1,8 @@
-/*global pluralRuleParser */
+/* global pluralRuleParser */
 ( function ( $ ) {
 	'use strict';
 
+	// jscs:disable
 	var language = {
 		// CLDR plural rules generated using
 		// libs/CLDRPluralRuleParser/tools/PluralXML2JSON.html
@@ -18,6 +19,16 @@
 				two: 'n = 2',
 				few: 'n % 100 = 3..10',
 				many: 'n % 100 = 11..99'
+			},
+			ars: {
+				zero: 'n = 0',
+				one: 'n = 1',
+				two: 'n = 2',
+				few: 'n % 100 = 3..10',
+				many: 'n % 100 = 11..99'
+			},
+			as: {
+				one: 'i = 0 or n = 1'
 			},
 			be: {
 				one: 'n % 10 = 1 and n % 100 != 11',
@@ -55,6 +66,11 @@
 			da: {
 				one: 'n = 1 or t != 0 and i = 0,1'
 			},
+			dsb: {
+				one: 'v = 0 and i % 100 = 1 or f % 100 = 1',
+				two: 'v = 0 and i % 100 = 2 or f % 100 = 2',
+				few: 'v = 0 and i % 100 = 3..4 or f % 100 = 3..4'
+			},
 			fa: {
 				one: 'i = 0 or n = 1'
 			},
@@ -62,7 +78,7 @@
 				one: 'i = 0,1'
 			},
 			fil: {
-				one: 'i = 0..1 and v = 0'
+				one: 'v = 0 and i = 1,2,3 or v = 0 and i % 10 != 4,6,9 or v != 0 and f % 10 != 4,6,9'
 			},
 			fr: {
 				one: 'i = 0,1'
@@ -85,9 +101,10 @@
 				one: 'n = 0..1'
 			},
 			gv: {
-				one: 'n % 10 = 1',
-				two: 'n % 10 = 2',
-				few: 'n % 100 = 0,20,40,60'
+				one: 'v = 0 and i % 10 = 1',
+				two: 'v = 0 and i % 10 = 2',
+				few: 'v = 0 and i % 100 = 0,20,40,60,80',
+				many: 'v != 0'
 			},
 			he: {
 				one: 'i = 1 and v = 0',
@@ -100,6 +117,11 @@
 			hr: {
 				one: 'v = 0 and i % 10 = 1 and i % 100 != 11 or f % 10 = 1 and f % 100 != 11',
 				few: 'v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14'
+			},
+			hsb: {
+				one: 'v = 0 and i % 100 = 1 or f % 100 = 1',
+				two: 'v = 0 and i % 100 = 2 or f % 100 = 2',
+				few: 'v = 0 and i % 100 = 3..4 or f % 100 = 3..4'
 			},
 			hy: {
 				one: 'i = 0,1'
@@ -175,20 +197,20 @@
 				few: 'v = 0 and i % 10 = 2..4 and i % 100 != 12..14',
 				many: 'v = 0 and i != 1 and i % 10 = 0..1 or v = 0 and i % 10 = 5..9 or v = 0 and i % 100 = 12..14'
 			},
+			prg: {
+				zero: 'n % 10 = 0 or n % 100 = 11..19 or v = 2 and f % 100 = 11..19',
+				one: 'n % 10 = 1 and n % 100 != 11 or v = 2 and f % 10 = 1 and f % 100 != 11 or v != 2 and f % 10 = 1'
+			},
 			pt: {
-				one: 'i = 1 and v = 0 or i = 0 and t = 1'
+				one: 'i = 0..1'
 			},
-			// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
-			pt_PT: {
-				one: 'n = 1 and v = 0'
-			},
-			// jscs:enable requireCamelCaseOrUpperCaseIdentifiers
 			ro: {
 				one: 'i = 1 and v = 0',
 				few: 'v != 0 or n = 0 or n != 1 and n % 100 = 1..19'
 			},
 			ru: {
 				one: 'v = 0 and i % 10 = 1 and i % 100 != 11',
+				few: 'v = 0 and i % 10 = 2..4 and i % 100 != 12..14',
 				many: 'v = 0 and i % 10 = 0 or v = 0 and i % 10 = 5..9 or v = 0 and i % 100 = 11..14'
 			},
 			se: {
@@ -244,7 +266,7 @@
 				one: 'n = 0..1'
 			},
 			tl: {
-				one: 'i = 0..1 and v = 0'
+				one: 'v = 0 and i = 1,2,3 or v = 0 and i % 10 != 4,6,9 or v != 0 and f % 10 != 4,6,9'
 			},
 			tzm: {
 				one: 'n = 0..1 or n = 11..99'
@@ -261,15 +283,16 @@
 				one: 'i = 0 or n = 1'
 			}
 		},
+		// jscs:enable
 
 		/**
 		 * Plural form transformations, needed for some languages.
 		 *
-		 * @param count
-		 *            integer Non-localized quantifier
-		 * @param forms
-		 *            array List of plural forms
-		 * @return string Correct form for quantifier in this language
+		 * @param {integer} count
+		 *            Non-localized quantifier
+		 * @param {Array} forms
+		 *            List of plural forms
+		 * @return {string} Correct form for quantifier in this language
 		 */
 		convertPlural: function ( count, forms ) {
 			var pluralRules,
@@ -285,13 +308,13 @@
 
 			// Handle for Explicit 0= & 1= values
 			for ( index = 0; index < forms.length; index++ ) {
-				form = forms[index];
+				form = forms[ index ];
 				if ( explicitPluralPattern.test( form ) ) {
-					formCount = parseInt( form.substring( 0, form.indexOf( '=' ) ), 10 );
+					formCount = parseInt( form.slice( 0, form.indexOf( '=' ) ), 10 );
 					if ( formCount === count ) {
-						return ( form.substr( form.indexOf( '=' ) + 1 ) );
+						return ( form.slice( form.indexOf( '=' ) + 1 ) );
 					}
-					forms[index] = undefined;
+					forms[ index ] = undefined;
 				}
 			}
 
@@ -301,25 +324,25 @@
 				}
 			} );
 
-			pluralRules = this.pluralRules[$.i18n().locale];
+			pluralRules = this.pluralRules[ $.i18n().locale ];
 
 			if ( !pluralRules ) {
 				// default fallback.
-				return ( count === 1 ) ? forms[0] : forms[1];
+				return ( count === 1 ) ? forms[ 0 ] : forms[ 1 ];
 			}
 
 			pluralFormIndex = this.getPluralForm( count, pluralRules );
 			pluralFormIndex = Math.min( pluralFormIndex, forms.length - 1 );
 
-			return forms[pluralFormIndex];
+			return forms[ pluralFormIndex ];
 		},
 
 		/**
 		 * For the number, get the plural for index
 		 *
-		 * @param number
-		 * @param pluralRules
-		 * @return plural form index
+		 * @param {integer} number
+		 * @param {Object} pluralRules
+		 * @return {integer} plural form index
 		 */
 		getPluralForm: function ( number, pluralRules ) {
 			var i,
@@ -327,8 +350,8 @@
 				pluralFormIndex = 0;
 
 			for ( i = 0; i < pluralForms.length; i++ ) {
-				if ( pluralRules[pluralForms[i]] ) {
-					if ( pluralRuleParser( pluralRules[pluralForms[i]], number ) ) {
+				if ( pluralRules[ pluralForms[ i ] ] ) {
+					if ( pluralRuleParser( pluralRules[ pluralForms[ i ] ], number ) ) {
 						return pluralFormIndex;
 					}
 
@@ -344,6 +367,7 @@
 		 *
 		 * @param {number} num Value to be converted
 		 * @param {boolean} integer Convert the return value to an integer
+		 * @return {string} The number converted into a String.
 		 */
 		convertNumber: function ( num, integer ) {
 			var tmp, item, i,
@@ -367,17 +391,17 @@
 				tmp = [];
 
 				for ( item in transformTable ) {
-					tmp[transformTable[item]] = item;
+					tmp[ transformTable[ item ] ] = item;
 				}
 
 				transformTable = tmp;
 			}
 
 			for ( i = 0; i < numberString.length; i++ ) {
-				if ( transformTable[numberString[i]] ) {
-					convertedNumber += transformTable[numberString[i]];
+				if ( transformTable[ numberString[ i ] ] ) {
+					convertedNumber += transformTable[ numberString[ i ] ];
 				} else {
-					convertedNumber += numberString[i];
+					convertedNumber += numberString[ i ];
 				}
 			}
 
@@ -390,11 +414,12 @@
 		 * Override this method for languages that need special grammar rules
 		 * applied dynamically.
 		 *
-		 * @param word {String}
-		 * @param form {String}
-		 * @return {String}
+		 * @param {string} word
+		 * @param {string} form
+		 * @return {string}
 		 */
-		convertGrammar: function ( word, form ) { /*jshint unused: false */
+		// eslint-disable-next-line no-unused-vars
+		convertGrammar: function ( word, form ) {
 			return word;
 		},
 
@@ -405,12 +430,12 @@
 		 *
 		 * These details may be overriden per language.
 		 *
-		 * @param gender
-		 *      string male, female, or anything else for neutral.
-		 * @param forms
-		 *      array List of gender forms
+		 * @param {string} gender
+		 *      male, female, or anything else for neutral.
+		 * @param {Array} forms
+		 *      List of gender forms
 		 *
-		 * @return string
+		 * @return {string}
 		 */
 		gender: function ( gender, forms ) {
 			if ( !forms || forms.length === 0 ) {
@@ -418,25 +443,26 @@
 			}
 
 			while ( forms.length < 2 ) {
-				forms.push( forms[forms.length - 1] );
+				forms.push( forms[ forms.length - 1 ] );
 			}
 
 			if ( gender === 'male' ) {
-				return forms[0];
+				return forms[ 0 ];
 			}
 
 			if ( gender === 'female' ) {
-				return forms[1];
+				return forms[ 1 ];
 			}
 
-			return ( forms.length === 3 ) ? forms[2] : forms[0];
+			return ( forms.length === 3 ) ? forms[ 2 ] : forms[ 0 ];
 		},
 
 		/**
 		 * Get the digit transform table for the given language
 		 * See http://cldr.unicode.org/translation/numbering-systems
-		 * @param language
-		 * @returns {Array|boolean} List of digits in the passed language or false
+		 *
+		 * @param {string} language
+		 * @return {Array|boolean} List of digits in the passed language or false
 		 * representation, or boolean false if there is no information.
 		 */
 		digitTransformTable: function ( language ) {
@@ -458,11 +484,11 @@
 				bo: '༠༡༢༣༤༥༦༧༨༩' // FIXME use iso 639 codes
 			};
 
-			if ( !tables[language] ) {
+			if ( !tables[ language ] ) {
 				return false;
 			}
 
-			return tables[language].split( '' );
+			return tables[ language ].split( '' );
 		}
 	};
 
