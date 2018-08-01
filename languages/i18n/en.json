@@ -373,6 +373,7 @@
 	"ns-specialprotected": "Special pages cannot be edited.",
 	"titleprotected": "This title has been protected from creation by [[User:$1|$1]].\nThe reason given is <em>$2</em>.",
 	"filereadonlyerror": "Unable to modify the file \"$1\" because the file repository \"$2\" is in read-only mode.\n\nThe system administrator who locked it offered this explanation: \"$3\".",
+	"invalidtitle": "Invalid title",
 	"invalidtitle-knownnamespace": "Invalid title with namespace \"$2\" and text \"$3\"",
 	"invalidtitle-unknownnamespace": "Invalid title with unknown namespace number $1 and text \"$2\"",
 	"exception-nologin": "Not logged in",
