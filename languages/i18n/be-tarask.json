@@ -1125,6 +1125,7 @@
 	"group-autoconfirmed": "Аўтаматычна пацьверджаныя ўдзельнікі",
 	"group-bot": "Робаты",
 	"group-sysop": "Адміністрацыя",
+	"group-interface-admin": "Адміністратары інтэрфэйсу",
 	"group-bureaucrat": "Бюракраты",
 	"group-suppress": "Падаўляльнікі вэрсіяў",
 	"group-all": "(усе)",

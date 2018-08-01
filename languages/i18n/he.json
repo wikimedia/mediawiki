@@ -4138,6 +4138,7 @@
 	"edit-error-long": "שגיאות:\n\n$1",
 	"revid": "גרסה $1",
 	"pageid": "מזהה דף $1",
+	"interfaceadmin-info": "$1\n\nההרשאות לעריכה של קובצי CSS/JS/JSON עבור כל האתר הופרדו לאחרונה מההרשאה <code>editinterface</code>. אם לא ברור לך מדוע קיבלת את השגיאה הזאת, ר' [[mw:MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "לא ניתן להשתמש בתגיות &lt;html&gt; מחוץ לדפים רגילים.",
 	"gotointerwiki": "עזיבת {{SITENAME}}",
 	"gotointerwiki-invalid": "הכותרת שצוינה אינה תקינה.",
