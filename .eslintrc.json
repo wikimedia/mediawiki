@@ -11,6 +11,34 @@
 		"OO": false
 	},
 	"rules": {
+		"no-restricted-properties": [
+			1,
+			{
+				"object": "$",
+				"property": "map",
+				"message": "Please use Array.prototype.map instead"
+			},
+			{
+				"object": "$",
+				"property": "isArray",
+				"message": "Please use Array.isArray instead"
+			},
+			{
+				"object": "$",
+				"property": "isFunction",
+				"message": "Please use typeof (e.g. typeof e === 'function') instead"
+			},
+			{
+				"object": "$",
+				"property": "grep",
+				"message": "Please use Array.prototype.filter instead"
+			},
+			{
+				"object": "$",
+				"property": "trim",
+				"message": "Please use String.prototype.trim instead"
+			}
+		],
 		"dot-notation": 0,
 		"max-len": 0
 	}
