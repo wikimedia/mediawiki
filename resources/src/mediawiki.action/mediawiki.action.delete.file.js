@@ -6,11 +6,11 @@
 		var colonSeparator = mw.message( 'colon-separator' ).text(),
 			summaryCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),
 			summaryByteLimit = mw.config.get( 'wgCommentByteLimit' ),
-			$wpDeleteReasonList = $( '#wpDeleteReasonList' ),
-			$wpReason = $( '#wpReason' ),
+			reasonList = OO.ui.infuse( $( '#wpDeleteReasonList' ).closest( '.oo-ui-widget' ) ),
+			reason = OO.ui.infuse( $( '#wpReason' ).closest( '.oo-ui-widget' ) ),
 			filterFn = function ( input ) {
 				// Should be built the same as in SpecialRevisionDelete::submit()
-				var comment = $wpDeleteReasonList.val();
+				var comment = reasonList.getValue();
 				if ( comment === 'other' ) {
 					comment = input;
 				} else if ( input !== '' ) {
@@ -22,9 +22,9 @@
 
 		// Limit to bytes or UTF-8 codepoints, depending on MediaWiki's configuration
 		if ( summaryCodePointLimit ) {
-			$wpReason.codePointLimit( summaryCodePointLimit, filterFn );
+			reason.$input.codePointLimit( summaryCodePointLimit, filterFn );
 		} else if ( summaryByteLimit ) {
-			$wpReason.byteLimit( summaryByteLimit, filterFn );
+			reason.$input.byteLimit( summaryByteLimit, filterFn );
 		}
 	} );
 
