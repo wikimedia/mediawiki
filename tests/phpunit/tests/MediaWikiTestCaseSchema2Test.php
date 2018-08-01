@@ -16,9 +16,8 @@ class MediaWikiTestCaseSchema2Test extends MediaWikiTestCase {
 
 	public function setUp() {
 		parent::setUp();
-		if ( $this->db->getType() == 'postgres' ) {
-			$this->markTestSkipped( __CLASS__ . ' does not support postgres' );
-		}
+		// FIXME: fails under postgres
+		$this->markTestSkippedIfDbType( 'postgres' );
 	}
 
 	public function testMediaWikiTestCaseSchemaTestOrder() {
