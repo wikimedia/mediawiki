@@ -4288,6 +4288,7 @@
 	"edit-error-long": "Erreurs :\n\n$1",
 	"revid": "version $1",
 	"pageid": "ID de page $1",
+	"interfaceadmin-info": "$1\n\nLes droits pour modifier les fichiers CSS/JS/JSON globaux au site ont été récemment séparés du droit <code>editinterface</code>. Si vous ne comprenez pas pourquoi vous avez cette erreur, voyez [[mw:MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "Les balises &lt;html&gt; ne peuvent pas être utilisées en dehors des pages normales.",
 	"gotointerwiki": "Quitter {{SITENAME}}",
 	"gotointerwiki-invalid": "Le titre spécifié n’est pas valide.",

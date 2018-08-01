@@ -790,7 +790,7 @@
 	"undo-failure": "Ezin izan da aldaketa desegin tarteko aldaketekin gatazkak direla-eta.",
 	"undo-main-slot-only": "Aldaketa ezin da desegin, slot nagusitik kanpoko edukia daukalako.",
 	"undo-norev": "Aldaketa ezin da desegin ez delako existitzen edo ezabatu zutelako.",
-	"undo-nochange": "Aldaketa hau honezkero desegin da.",
+	"undo-nochange": "Aldaketa hau dagoeneko desegin da.",
 	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|eztabaida]]) wikilariaren $1 berrikuspena desegin da",
 	"undo-summary-username-hidden": "Deuseztatu ezkutuko erabiltzaile batek egindako $1 berrikusketa",
 	"cantcreateaccount-text": "IP helbide honetatik ('''$1''') kontu berria sortzeko aukera blokeatu du [[User:$3|$3]](e)k.\n\n$3(e)k emandako arrazoia: ''$2''",

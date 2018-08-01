@@ -1602,6 +1602,7 @@
 	"apierror-emptynewsection": "A criação de novas seções vazias não é possível.",
 	"apierror-emptypage": "Não é permitido criar páginas novas e vazias.",
 	"apierror-exceptioncaught": "[$1] Exceção detectada: $2",
+	"apierror-exceptioncaughttype": "[$1] Foi capturada uma exceção do tipo $2",
 	"apierror-filedoesnotexist": "Arquivo não existe.",
 	"apierror-fileexists-sharedrepo-perm": "O arquivo de destino existe em um repositório compartilhado. Use o parâmetro <var>ignorewarnings</var> para substituí-lo.",
 	"apierror-filenopath": "Não é possível obter o caminho do arquivo local.",

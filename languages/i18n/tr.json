@@ -1955,6 +1955,7 @@
 	"protectedtitles-submit": "Başlıkları görüntüle",
 	"listusers": "Kullanıcı listesi",
 	"listusers-editsonly": "Sadece değişiklik yapan kullanıcıları göster",
+	"listusers-temporarygroupsonly": "Yalnızca geçici kullanıcı gruplarında olan kullanıcıları göster",
 	"listusers-creationsort": "Oluşturma tarihine göre sırala",
 	"listusers-desc": "Azalan sırada sırala",
 	"usereditcount": "$1 {{PLURAL:$1|değişiklik|değişiklik}}",
