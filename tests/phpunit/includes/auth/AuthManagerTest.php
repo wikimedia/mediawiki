@@ -83,6 +83,31 @@ class AuthManagerTest extends \MediaWikiTestCase {
 	}
 
 	/**
+	 * Test two AuthenticationResponses for equality.  We don't want to use regular assertEquals
+	 * because that recursively compares members, which leads to false negatives if e.g. Language
+	 * caches are reset.
+	 *
+	 * @param AuthenticationResponse $response1
+	 * @param AuthenticationResponse $response2
+	 * @param string $msg
+	 * @return bool
+	 */
+	private function assertResponseEquals(
+		AuthenticationResponse $expected, AuthenticationResponse $actual, $msg = ''
+	) {
+		foreach ( ( new \ReflectionClass( $expected ) )->getProperties() as $prop ) {
+			$name = $prop->getName();
+			$usedMsg = ltrim( "$msg ($name)" );
+			if ( $name === 'message' && $expected->message ) {
+				$this->assertSame( $expected->message->serialize(), $actual->message->serialize(),
+					$usedMsg );
+			} else {
+				$this->assertEquals( $expected->$name, $actual->$name, $usedMsg );
+			}
+		}
+	}
+
+	/**
 	 * Initialize the AuthManagerConfig variable in $this->config
 	 *
 	 * Uses data from the various 'mocks' fields.
@@ -1030,7 +1055,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$this->assertSame( 'http://localhost/', $req->returnToUrl );
 
 			$ret->message = $this->message( $ret->message );
-			$this->assertEquals( $response, $ret, "Response $i, response" );
+			$this->assertResponseEquals( $response, $ret, "Response $i, response" );
 			if ( $success ) {
 				$this->assertSame( $id, $session->getUser()->getId(),
 					"Response $i, authn" );
@@ -2082,7 +2107,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 					"Response $i, login marker" );
 			}
 			$ret->message = $this->message( $ret->message );
-			$this->assertEquals( $response, $ret, "Response $i, response" );
+			$this->assertResponseEquals( $response, $ret, "Response $i, response" );
 			if ( $success || $response->status === AuthenticationResponse::FAIL ) {
 				$this->assertNull(
 					$this->request->getSession()->getSecret( 'AuthManager::accountCreationState' ),
@@ -3517,7 +3542,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$this->assertSame( 'http://localhost/', $req->returnToUrl );
 
 			$ret->message = $this->message( $ret->message );
-			$this->assertEquals( $response, $ret, "Response $i, response" );
+			$this->assertResponseEquals( $response, $ret, "Response $i, response" );
 			if ( $response->status === AuthenticationResponse::PASS ||
 				$response->status === AuthenticationResponse::FAIL
 			) {

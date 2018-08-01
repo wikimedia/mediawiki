@@ -14,42 +14,25 @@
 class ApiEditPageTest extends ApiTestCase {
 
 	protected function setUp() {
-		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
-
 		parent::setUp();
 
-		$this->setContentLang( $wgContLang );
-
 		$this->setMwGlobals( [
-			'wgExtraNamespaces' => $wgExtraNamespaces,
-			'wgNamespaceContentModels' => $wgNamespaceContentModels,
-			'wgContentHandlers' => $wgContentHandlers,
+			'wgExtraNamespaces' => [
+				12312 => 'Dummy',
+				12313 => 'Dummy_talk',
+				12314 => 'DummyNonText',
+				12315 => 'DummyNonText_talk',
+			],
+			'wgNamespaceContentModels' => [
+				12312 => 'testing',
+				12314 => 'testing-nontext',
+			],
 		] );
-
-		$wgExtraNamespaces[12312] = 'Dummy';
-		$wgExtraNamespaces[12313] = 'Dummy_talk';
-		$wgExtraNamespaces[12314] = 'DummyNonText';
-		$wgExtraNamespaces[12315] = 'DummyNonText_talk';
-
-		$wgNamespaceContentModels[12312] = "testing";
-		$wgNamespaceContentModels[12314] = "testing-nontext";
-
-		$wgContentHandlers["testing"] = 'DummyContentHandlerForTesting';
-		$wgContentHandlers["testing-nontext"] = 'DummyNonTextContentHandler';
-		$wgContentHandlers["testing-serialize-error"] =
-			'DummySerializeErrorContentHandler';
-
-		MWNamespace::clearCaches();
-		$wgContLang->resetNamespaces(); # reset namespace cache
-	}
-
-	protected function tearDown() {
-		global $wgContLang;
-
-		MWNamespace::clearCaches();
-		$wgContLang->resetNamespaces(); # reset namespace cache
-
-		parent::tearDown();
+		$this->mergeMwGlobalArrayValue( 'wgContentHandlers', [
+			'testing' => 'DummyContentHandlerForTesting',
+			'testing-nontext' => 'DummyNonTextContentHandler',
+			'testing-serialize-error' => 'DummySerializeErrorContentHandler',
+		] );
 	}
 
 	public function testEdit() {

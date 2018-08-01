@@ -50,7 +50,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 			$this->markTestSkipped( 'Main namespace does not support wikitext.' );
 		}
 
-		// Avoid special pages from extensions interferring with the tests
+		// Avoid special pages from extensions interfering with the tests
 		$this->setMwGlobals( [
 			'wgSpecialPages' => [],
 			'wgHooks' => [],
@@ -61,17 +61,10 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		$this->originalHandlers = TestingAccessWrapper::newFromClass( Hooks::class )->handlers;
 		TestingAccessWrapper::newFromClass( Hooks::class )->handlers = [];
 
-		// Clear caches so that our new namespace appears
-		MWNamespace::clearCaches();
-		Language::factory( 'en' )->resetNamespaces();
-
 		SpecialPageFactory::resetList();
 	}
 
 	public function tearDown() {
-		MWNamespace::clearCaches();
-		Language::factory( 'en' )->resetNamespaces();
-
 		parent::tearDown();
 
 		TestingAccessWrapper::newFromClass( Hooks::class )->handlers = $this->originalHandlers;

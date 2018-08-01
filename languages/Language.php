@@ -245,6 +245,24 @@ class Language {
 	}
 
 	/**
+	 * Intended for tests that may change configuration in a way that invalidates caches.
+	 *
+	 * @since 1.32
+	 */
+	public static function clearCaches() {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new MWException( __METHOD__ . ' must not be used outside tests' );
+		}
+		self::$dataCache = null;
+		// Reinitialize $dataCache, since it's expected to always be available
+		self::getLocalisationCache();
+		self::$mLangObjCache = [];
+		self::$fallbackLanguageCache = [];
+		self::$grammarTransformations = null;
+		self::$languageNameCache = null;
+	}
+
+	/**
 	 * Checks whether any localisation is available for that language tag
 	 * in MediaWiki (MessagesXx.php exists).
 	 *

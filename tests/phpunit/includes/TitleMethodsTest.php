@@ -12,8 +12,6 @@ use MediaWiki\MediaWikiServices;
 class TitleMethodsTest extends MediaWikiLangTestCase {
 
 	protected function setUp() {
-		global $wgContLang;
-
 		parent::setUp();
 
 		$this->mergeMwGlobalArrayValue(
@@ -30,18 +28,6 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 				12302 => CONTENT_MODEL_JAVASCRIPT,
 			]
 		);
-
-		MWNamespace::clearCaches();
-		$wgContLang->resetNamespaces(); # reset namespace cache
-	}
-
-	protected function tearDown() {
-		global $wgContLang;
-
-		parent::tearDown();
-
-		MWNamespace::clearCaches();
-		$wgContLang->resetNamespaces(); # reset namespace cache
 	}
 
 	public static function provideEquals() {
