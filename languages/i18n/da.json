@@ -416,6 +416,7 @@
 	"customcssprotected": "Du har ikke tilladelse til at redigere denne CSS-side, da den indeholder en anden brugers personlige indstillinger.",
 	"customjsprotected": "Du har ikke tilladelse til at redigere denne JavaScript-side, da den indeholder en anden brugers personlige indstillinger.",
 	"mycustomcssprotected": "Du har ikke rettigheder til at redigere denne CSS-side.",
+	"mycustomjsonprotected": "Du har ikke rettigheder til at redigere denne JSON-side.",
 	"mycustomjsprotected": "Du har ikke rettigheder til at redigere denne JavaScript-side.",
 	"myprivateinfoprotected": "Du har ikke rettigheder til at redigere dine private oplysninger.",
 	"mypreferencesprotected": "Du har ikke rettigheder til at redigere dine indstillinger.",
@@ -949,6 +950,7 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|En mellemliggende version|$1 mellemliggende versioner}} af mere end $2 {{PLURAL:$2|bruger|brugere}} ikke vist)",
 	"difference-missing-revision": "{{PLURAL:$2|En revision|$2 revisioner}} af denne forskel ($1) {{PLURAL:$2|blev|blev}} ikke fundet.\n\nDette skyldes normalt et forældet diff link til en side der er slettet.\nDetaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].",
 	"searchresults": "Søgeresultater",
+	"search-filter-title-prefix-reset": "Søg i alle sider",
 	"searchresults-title": "Søgeresultater for \"$1\"",
 	"titlematches": "Artikeltitler der opfyldte forespørgslen",
 	"textmatches": "Artikeltekster der opfyldte forespørgslen",
@@ -1927,6 +1929,7 @@
 	"apisandbox-dynamic-parameters-add-placeholder": "Parameternavn",
 	"apisandbox-dynamic-error-exists": "En parameter navngivet »$1« findes allerede.",
 	"apisandbox-deprecated-parameters": "Forældede parametre",
+	"apisandbox-add-multi": "Tilføj",
 	"apisandbox-submit-invalid-fields-title": "Nogle felter er ugyldige",
 	"apisandbox-results": "Resultater",
 	"apisandbox-sending-request": "Sender API-forespørgsel ...",
@@ -3424,7 +3427,8 @@
 	"compare-invalid-title": "Den titel, du har angivet, er ugyldig.",
 	"compare-title-not-exists": "Den titel, du har angivet, findes ikke.",
 	"compare-revision-not-exists": "Den version, du har angivet, findes ikke.",
-	"diff-form": "et '''skema'''",
+	"diff-form": "Forskelle",
+	"diff-form-submit": "Vis forskelle",
 	"dberr-problems": "Undskyld! Siden har tekniske problemer.",
 	"dberr-again": "Prøv at vente et par minutter og opdater så siden igen.",
 	"dberr-info": "(Kan ikke tilgå databasen: $1)",
@@ -3668,5 +3672,7 @@
 	"credentialsform-account": "Kontonavn:",
 	"edit-error-short": "Fejl: $1",
 	"edit-error-long": "Fejl:\n\n$1",
-	"pagedata-bad-title": "Ugyldig titel: $1"
+	"gotointerwiki": "Forlader {{SITENAME}}",
+	"pagedata-bad-title": "Ugyldig titel: $1",
+	"passwordpolicies-group": "Gruppe"
 }

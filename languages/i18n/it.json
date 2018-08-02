@@ -2128,7 +2128,7 @@
 	"cachedspecial-refresh-now": "Mostra la più recente.",
 	"categories": "Categorie",
 	"categories-submit": "Mostra",
-	"categoriespagetext": "{{PLURAL:$1|La categoria indicata di seguito contiene|Le categorie indicate di seguito contengono}} pagine o file multimediali.\nLe [[Special:UnusedCategories|categorie vuote]] non sono mostrate qui.\nVedi anche le [[Special:WantedCategories|categorie richieste]].",
+	"categoriespagetext": "{{PLURAL:$1|La categoria indicata di seguito esiste|Le categorie indicate di seguito esistono}} nel wiki, e potrebbero o no essere inutilizzate.\nVedi anche le [[Special:WantedCategories|categorie richieste]].",
 	"categoriesfrom": "Mostra le categorie a partire da:",
 	"deletedcontributions": "Contributi utente cancellati",
 	"deletedcontributions-title": "Contributi utente cancellati",

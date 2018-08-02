@@ -24,7 +24,8 @@
 			"Penguinlay",
 			"Nemo bis",
 			"Stephanecbisson",
-			"Fitoschido"
+			"Fitoschido",
+			"Dr Lotus Black"
 		]
 	},
 	"tog-underline": "လင့်ကို မျဉ်းသားသည့် ပုံစံ -",
@@ -657,6 +658,7 @@
 	"diff-multi-sameuser": "(တူညီသော အသုံးပြုသူ၏ {{PLURAL:$1|အလယ်ကြား မူတစ်ခု|အလယ်ကြား မူများ $1 ခု}} အား ပြသမထားပါ)",
 	"diff-multi-otherusers": "({{PLURAL:$2|အခြား အသုံးပြုသူ|အသုံးပြုသူ $2 ဦးတို့}}၏ {{PLURAL:$1|အလယ်ကြား မူတစ်ခု|အလယ်ကြား မူများ $1 ခု}} အား ပြသမထားပါ)",
 	"searchresults": "ရှာဖွေမှု ရလဒ်များ",
+	"search-filter-title-prefix-reset": "စာမျက်နှာအားလုံး ရှာဖွေရန်",
 	"searchresults-title": "\"$1\" အတွက် ရှာတွေ့သည့် ရလဒ်များ",
 	"titlematches": "စာမျက်နှာခေါင်းစဉ်ကိုက်ညီသည်",
 	"textmatches": "စာမျက်နှာစာသားကိုက်ညီသည်",

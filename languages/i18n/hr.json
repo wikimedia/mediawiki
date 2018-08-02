@@ -3455,7 +3455,7 @@
 	"htmlform-datetime-invalid": "Ne mogu prepoznati uneseno oblikovanje za datum i vrijeme. Pokušajte rabiti oblik GGGG-MM-DD HH:MM:SS.",
 	"htmlform-date-toolow": "Navedena je vrijednost prije najranijega dopuštenog nadnevka – $1.",
 	"htmlform-datetime-toohigh": "Uneseni datum i vrijeme su veći od $1",
-	"logentry-delete-delete": "$1 je {{GENDER:$2|obrisao|obrisala}} stranicu $3",
+	"logentry-delete-delete": "$1 {{GENDER:$2|obrisao|obrisala}} je stranicu $3",
 	"logentry-delete-delete_redir": "$1 premještanjem je {{GENDER:$2|pobrisao|pobrisala}} preusmjeravanje $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|vratio|vratila}} je stranicu $3 ($4)",
 	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|vratio|vratila}} je stranicu $3",

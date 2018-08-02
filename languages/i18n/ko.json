@@ -3764,7 +3764,7 @@
 	"logentry-patrol-patrol": "$1님이 $3 문서의 $4판을 점검한 것으로 {{GENDER:$2|표시했습니다}}",
 	"logentry-patrol-patrol-auto": "$1님이 자동으로 $3 문서의 $4판을 점검한 것으로 {{GENDER:$2|표시했습니다}}",
 	"logentry-newusers-newusers": "$1 사용자 계정을 {{GENDER:$2|만들었습니다}}",
-	"logentry-newusers-create": "$1 사용자 계정을 {{GENDER:$2|만들었습니다}}",
+	"logentry-newusers-create": "$1 계정이 생성되었습니다.",
 	"logentry-newusers-create2": "$3 사용자 계정을 $1님이 {{GENDER:$2|만들었습니다}}",
 	"logentry-newusers-byemail": "$3 사용자 계정을 $1님이 {{GENDER:$2|만들었고}} 비밀번호는 이메일로 보냈습니다",
 	"logentry-newusers-autocreate": "$1 사용자 계정을 자동으로 {{GENDER:$2|만들었습니다}}",

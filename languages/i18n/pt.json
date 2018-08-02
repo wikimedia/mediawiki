@@ -2137,7 +2137,7 @@
 	"cachedspecial-refresh-now": "Ver mais recente.",
 	"categories": "Categorias",
 	"categories-submit": "Mostrar",
-	"categoriespagetext": "{{PLURAL:$1|A seguinte categoria contém páginas ou ficheiros multimédia|As seguintes categorias contêm páginas ou ficheiros multimédia}}.\nAs [[Special:UnusedCategories|categorias não utilizadas]] não são apresentadas nesta lista.\nVeja também as [[Special:WantedCategories|categorias desejadas]].",
+	"categoriespagetext": "{{PLURAL:$1|A seguinte categoria existe na wiki e pode, ou não, ser usada|As seguintes categorias existem na wiki e podem, ou não, ser usadas}}.\nVeja também as [[Special:WantedCategories|categorias desejadas]].",
 	"categoriesfrom": "Mostrar categorias que comecem por:",
 	"deletedcontributions": "Edições eliminadas",
 	"deletedcontributions-title": "Edições eliminadas",

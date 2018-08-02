@@ -2229,7 +2229,7 @@
 	"cachedspecial-refresh-now": "Voir le plus récent.",
 	"categories": "Liste des catégories",
 	"categories-submit": "Lister",
-	"categoriespagetext": "{{PLURAL:$1|La catégorie suivante est utilisée|Les catégories suivantes sont utilisées}} par des pages ou fichiers.\n[[Special:UnusedCategories|Les catégories inutilisées]] ne sont pas affichées ici.\nVoyez aussi [[Special:WantedCategories|les catégories demandées]].",
+	"categoriespagetext": "Sur le wiki, {{PLURAL:$1|la catégorie suivante existe et peut ou non être inutilisée|Les catégories suivantes existent et peuvent ou non être inutilisées}}.\nVoir aussi [[Special:WantedCategories|Les catégories demandées]].",
 	"categoriesfrom": "Afficher les catégories à partir de :",
 	"deletedcontributions": "Contributions supprimées",
 	"deletedcontributions-title": "Contributions supprimées",
