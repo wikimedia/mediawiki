@@ -1118,7 +1118,7 @@ abstract class Maintenance {
 	 * Handle some last-minute setup here.
 	 */
 	public function finalSetup() {
-		global $wgCommandLineMode, $wgShowSQLErrors, $wgServer;
+		global $wgCommandLineMode, $wgServer, $wgShowExceptionDetails, $wgShowHostnames;
 		global $wgDBadminuser, $wgDBadminpassword, $wgDBDefaultGroup;
 		global $wgDBuser, $wgDBpassword, $wgDBservers, $wgLBFactoryConf;
 
@@ -1177,7 +1177,8 @@ abstract class Maintenance {
 
 		$this->afterFinalSetup();
 
-		$wgShowSQLErrors = true;
+		$wgShowExceptionDetails = true;
+		$wgShowHostnames = true;
 
 		Wikimedia\suppressWarnings();
 		set_time_limit( 0 );
