@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Let users manage bot passwords
@@ -166,8 +167,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 
 		} else {
 			$linkRenderer = $this->getLinkRenderer();
-			$passwordFactory = new PasswordFactory();
-			$passwordFactory->init( $this->getConfig() );
+			$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 
 			$dbr = BotPassword::getDB( DB_REPLICA );
 			$res = $dbr->select(
@@ -321,8 +321,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 
 		if ( $this->operation === 'insert' || !empty( $data['resetPassword'] ) ) {
 			$this->password = BotPassword::generatePassword( $this->getConfig() );
-			$passwordFactory = new PasswordFactory();
-			$passwordFactory->init( RequestContext::getMain()->getConfig() );
+			$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 			$password = $passwordFactory->newFromPlaintext( $this->password );
 		} else {
 			$password = null;

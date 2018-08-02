@@ -36,6 +36,7 @@ final class PasswordFactory {
 
 	/**
 	 * Mapping of password types to classes
+	 *
 	 * @var array
 	 * @see PasswordFactory::register
 	 * @see Setup.php
@@ -45,10 +46,30 @@ final class PasswordFactory {
 	];
 
 	/**
+	 * Construct a new password factory.
+	 * Most of the time you'll want to use MediaWikiServices::getPasswordFactory instead.
+	 * @param array $config Mapping of password type => config
+	 * @param string $default Default password type
+	 * @see PasswordFactory::register
+	 * @see PasswordFactory::setDefaultType
+	 */
+	public function __construct( array $config = [], $default = '' ) {
+		foreach ( $config as $type => $options ) {
+			$this->register( $type, $options );
+		}
+
+		if ( $default !== '' ) {
+			$this->setDefaultType( $default );
+		}
+	}
+
+	/**
 	 * Register a new type of password hash
 	 *
-	 * @param string $type Unique type name for the hash
-	 * @param array $config Array of configuration options
+	 * @param string $type Unique type name for the hash. Will be prefixed to the password hashes
+	 *   to identify what hashing method was used.
+	 * @param array $config Array of configuration options. 'class' is required (the Password
+	 *   subclass name), everything else is passed to the constructor of that class.
 	 */
 	public function register( $type, array $config ) {
 		$config['type'] = $type;
@@ -58,8 +79,11 @@ final class PasswordFactory {
 	/**
 	 * Set the default password type
 	 *
-	 * @throws InvalidArgumentException If the type is not registered
+	 * This type will be used for creating new passwords when the type is not specified.
+	 * Passwords of a different type will be considered outdated and in need of update.
+	 *
 	 * @param string $type Password hash type
+	 * @throws InvalidArgumentException If the type is not registered
 	 */
 	public function setDefaultType( $type ) {
 		if ( !isset( $this->types[$type] ) ) {
@@ -78,6 +102,8 @@ final class PasswordFactory {
 	}
 
 	/**
+	 * @deprecated since 1.32 Initialize settings using the constructor
+	 *
 	 * Initialize the internal static variables using the global variables
 	 *
 	 * @param Config $config Configuration object to load data from

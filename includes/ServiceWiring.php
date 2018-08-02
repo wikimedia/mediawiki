@@ -604,6 +604,14 @@ return [
 		return Language::factory( $services->getMainConfig()->get( 'LanguageCode' ) );
 	},
 
+	'PasswordFactory' => function ( MediaWikiServices $services ) {
+		$config = $services->getMainConfig();
+		return new PasswordFactory(
+			$config->get( 'PasswordConfig' ),
+			$config->get( 'PasswordDefault' )
+		);
+	},
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call
