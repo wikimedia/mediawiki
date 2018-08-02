@@ -130,7 +130,12 @@ class RevisionStore
 	 *
 	 * @param ILoadBalancer $loadBalancer
 	 * @param SqlBlobStore $blobStore
-	 * @param WANObjectCache $cache
+	 * @param WANObjectCache $cache A cache for caching revision rows. This can be the local
+	 *        wiki's default instance even if $wikiId refers to a different wiki, since
+	 *        makeGlobalKey() is used to constructed a key that allows cached revision rows from
+	 *        the same database to be re-used between wikis. For example, enwiki and frwiki will
+	 *        use the same cache keys for revision rows from the wikidatawiki database, regardless
+	 *        of the cache's default key space.
 	 * @param CommentStore $commentStore
 	 * @param NameTableStore $contentModelStore
 	 * @param NameTableStore $slotRoleStore
