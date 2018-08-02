@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once __DIR__ . '/includes/deleteLocalPasswords.php';
+require_once __DIR__ . '/includes/DeleteLocalPasswords.php';
 
-$maintClass = "DeleteLocalPasswords";
+$maintClass = DeleteLocalPasswords::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
