@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 class LanguageTest extends LanguageClassesTestCase {
 	/**
 	 * @covers Language::convertDoubleWidth
@@ -1769,6 +1771,45 @@ class LanguageTest extends LanguageClassesTestCase {
 		$this->assertEquals( "a{$and}{$s}b", $lang->listToText( [ 'a', 'b' ] ) );
 		$this->assertEquals( "a{$c}b{$and}{$s}c", $lang->listToText( [ 'a', 'b', 'c' ] ) );
 		$this->assertEquals( "a{$c}b{$c}c{$and}{$s}d", $lang->listToText( [ 'a', 'b', 'c', 'd' ] ) );
+	}
+
+	/**
+	 * @covers Language::clearCaches
+	 */
+	public function testClearCaches() {
+		$languageClass = TestingAccessWrapper::newFromClass( Language::class );
+
+		// Populate $dataCache
+		Language::getLocalisationCache()->getItem( 'zh', 'mainpage' );
+		$oldCacheObj = Language::$dataCache;
+		$this->assertNotCount( 0,
+			TestingAccessWrapper::newFromObject( Language::$dataCache )->loadedItems );
+
+		// Populate $mLangObjCache
+		$lang = Language::factory( 'en' );
+		$this->assertNotCount( 0, Language::$mLangObjCache );
+
+		// Populate $fallbackLanguageCache
+		Language::getFallbacksIncludingSiteLanguage( 'en' );
+		$this->assertNotCount( 0, $languageClass->fallbackLanguageCache );
+
+		// Populate $grammarTransformations
+		$lang->getGrammarTransformations();
+		$this->assertNotNull( $languageClass->grammarTransformations );
+
+		// Populate $languageNameCache
+		Language::fetchLanguageNames();
+		$this->assertNotNull( $languageClass->languageNameCache );
+
+		Language::clearCaches();
+
+		$this->assertNotSame( $oldCacheObj, Language::$dataCache );
+		$this->assertCount( 0,
+			TestingAccessWrapper::newFromObject( Language::$dataCache )->loadedItems );
+		$this->assertCount( 0, Language::$mLangObjCache );
+		$this->assertCount( 0, $languageClass->fallbackLanguageCache );
+		$this->assertNull( $languageClass->grammarTransformations );
+		$this->assertNull( $languageClass->languageNameCache );
 	}
 
 	/**

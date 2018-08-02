@@ -58,8 +58,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	abstract protected function getMcrTablesToReset();
 
 	protected function setUp() {
-		global $wgContLang;
-
 		$this->tablesUsed += $this->getMcrTablesToReset();
 
 		parent::setUp();
@@ -93,10 +91,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			$this->getMcrMigrationStage()
 		);
 
-		MWNamespace::clearCaches();
-		// Reset namespace cache
-		$wgContLang->resetNamespaces();
-
 		$this->overrideMwServices();
 
 		if ( !$this->testPage ) {
@@ -106,16 +100,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			 */
 			$this->testPage = $this->createPage( __CLASS__, __CLASS__ );
 		}
-	}
-
-	protected function tearDown() {
-		global $wgContLang;
-
-		parent::tearDown();
-
-		MWNamespace::clearCaches();
-		// Reset namespace cache
-		$wgContLang->resetNamespaces();
 	}
 
 	abstract protected function getContentHandlerUseDB();

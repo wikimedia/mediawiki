@@ -628,6 +628,12 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		foreach ( $this->mwGlobalsToUnset as $value ) {
 			unset( $GLOBALS[$value] );
 		}
+		if (
+			array_key_exists( 'wgExtraNamespaces', $this->mwGlobals ) ||
+			in_array( 'wgExtraNamespaces', $this->mwGlobalsToUnset )
+		) {
+			$this->resetNamespaces();
+		}
 		$this->mwGlobals = [];
 		$this->mwGlobalsToUnset = [];
 		$this->restoreLoggers();
@@ -745,6 +751,26 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		foreach ( $pairs as $key => $value ) {
 			$GLOBALS[$key] = $value;
 		}
+
+		if ( array_key_exists( 'wgExtraNamespaces', $pairs ) ) {
+			$this->resetNamespaces();
+		}
+	}
+
+	/**
+	 * Must be called whenever namespaces are changed, e.g., $wgExtraNamespaces is altered.
+	 * Otherwise old namespace data will lurk and cause bugs.
+	 */
+	private function resetNamespaces() {
+		MWNamespace::clearCaches();
+		Language::clearCaches();
+
+		// We can't have the TitleFormatter holding on to an old Language object either
+		// @todo We shouldn't need to reset all the aliases here.
+		$services = MediaWikiServices::getInstance();
+		$services->resetServiceForTesting( 'TitleFormatter' );
+		$services->resetServiceForTesting( 'TitleParser' );
+		$services->resetServiceForTesting( '_MediaWikiTitleCodec' );
 	}
 
 	/**
