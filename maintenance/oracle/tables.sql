@@ -721,6 +721,7 @@ CREATE INDEX &mw_prefix.recentchanges_i07 ON &mw_prefix.recentchanges (rc_user_t
 CREATE INDEX &mw_prefix.rc_ns_actor ON &mw_prefix.recentchanges (rc_namespace, rc_actor);
 CREATE INDEX &mw_prefix.rc_actor ON &mw_prefix.recentchanges (rc_actor, rc_timestamp);
 CREATE INDEX &mw_prefix.recentchanges_i08 ON &mw_prefix.recentchanges (rc_namespace, rc_type, rc_patrolled, rc_timestamp);
+CREATE INDEX &mw_prefix.recentchanges_i10 ON &mw_prefix.recentchanges (rc_this_oldid);
 /*$mw$*/
 CREATE TRIGGER &mw_prefix.recentchanges_seq_trg BEFORE INSERT ON &mw_prefix.recentchanges
 	FOR EACH ROW WHEN (new.rc_id IS NULL)
