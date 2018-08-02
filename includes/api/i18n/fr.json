@@ -1725,7 +1725,7 @@
 	"apierror-sectionsnotsupported": "Les sections ne sont pas prises en charge pour le modèle de contenu $1.",
 	"apierror-sectionsnotsupported-what": "Les sections ne sont pas prises en charge par $1.",
 	"apierror-show": "Paramètre incorrect - des valeurs mutuellement exclusives ne peuvent pas être fournies.",
-	"apierror-siteinfo-includealldenied": "Impossible d’afficher toutes les informatiosn du serveur, sauf si <var>$wgShowHostnames</var> vaut vrai.",
+	"apierror-siteinfo-includealldenied": "Impossible d’afficher toutes les informations du serveur, sauf si <var>$wgShowHostnames</var> vaut vrai.",
 	"apierror-sizediffdisabled": "La différence de taille est désactivée dans le mode Miser.",
 	"apierror-spamdetected": "Votre modification a été refusée parce qu’elle contenait un fragment de pourriel : <code>$1</code>.",
 	"apierror-specialpage-cantexecute": "Vous n'avez pas l'autorisation d'afficher les résultats de cette page spéciale.",

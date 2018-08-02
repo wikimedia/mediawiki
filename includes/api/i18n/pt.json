@@ -1065,7 +1065,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-content": "Conteúdo de cada segmento de revisão.",
 	"apihelp-query+revisions+base-paramvalue-prop-tags": "As etiquetas para a revisão.",
 	"apihelp-query+revisions+base-paramvalue-prop-roles": "Listar as funções dos segmentos de conteúdo que existem na revisão.",
-	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "Usar antes <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> ou <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>. A árvore XML da análise sintática do conteúdo da revisão <code>$1</code>).",
+	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "Usar antes <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> ou <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>. A árvore XML da análise sintática do conteúdo da revisão <code>$1</code>.",
 	"apihelp-query+revisions+base-param-slots": "Quais os segmentos de revisão cujos dados devem ser devolvidos quando propriedades relacionadas com segmentos são incluídas em <var>$1props</var>. Se for omitido, serão devolvidos dados do segmento principal (<kbd>main</kbd>) num formato compatível com versões anteriores.",
 	"apihelp-query+revisions+base-param-limit": "Limitar o número de revisões que serão devolvidas.",
 	"apihelp-query+revisions+base-param-expandtemplates": "Em substituição, use <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd>. Expandir predefinições no conteúdo da revisão (requer $1prop=content).",
