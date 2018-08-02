@@ -324,6 +324,11 @@ class OutputPage extends ContextSource {
 	private $CSPNonce;
 
 	/**
+	 * @var array A cache of the names of the cookies that will influence the cache
+	 */
+	private static $cacheVaryCookies = null;
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -2100,6 +2105,9 @@ class OutputPage extends ContextSource {
 	/**
 	 * Parse wikitext, strip paragraphs, and return the HTML.
 	 *
+	 * @todo This doesn't work as expected at all.  If $interface is false, there's always a
+	 * wrapping <div>, so stripOuterParagraph() does nothing.
+	 *
 	 * @param string $text
 	 * @param bool $linestart Is this the start of a line?
 	 * @param bool $interface Use interface language (instead of content language) while parsing
@@ -2144,8 +2152,6 @@ class OutputPage extends ContextSource {
 	 * @param string|int|float|bool|null $mtime Last-Modified timestamp
 	 * @param int $minTTL Minimum TTL in seconds [default: 1 minute]
 	 * @param int $maxTTL Maximum TTL in seconds [default: $wgSquidMaxage]
-	 * @return int TTL in seconds passed to lowerCdnMaxage() (may not be the same as the new
-	 *  s-maxage)
 	 * @since 1.28
 	 */
 	public function adaptCdnTTL( $mtime, $minTTL = 0, $maxTTL = 0 ) {
@@ -2156,13 +2162,11 @@ class OutputPage extends ContextSource {
 			return $minTTL; // entity does not exist
 		}
 
-		$age = time() - wfTimestamp( TS_UNIX, $mtime );
+		$age = MWTimestamp::time() - wfTimestamp( TS_UNIX, $mtime );
 		$adaptiveTTL = max( 0.9 * $age, $minTTL );
 		$adaptiveTTL = min( $adaptiveTTL, $maxTTL );
 
 		$this->lowerCdnMaxage( (int)$adaptiveTTL );
-
-		return $adaptiveTTL;
 	}
 
 	/**
@@ -2182,19 +2186,18 @@ class OutputPage extends ContextSource {
 	 * @return array
 	 */
 	function getCacheVaryCookies() {
-		static $cookies;
-		if ( $cookies === null ) {
+		if ( self::$cacheVaryCookies === null ) {
 			$config = $this->getConfig();
-			$cookies = array_merge(
+			self::$cacheVaryCookies = array_values( array_unique( array_merge(
 				SessionManager::singleton()->getVaryCookies(),
 				[
 					'forceHTTPS',
 				],
 				$config->get( 'CacheVaryCookies' )
-			);
-			Hooks::run( 'GetCacheVaryCookies', [ $this, &$cookies ] );
+			) ) );
+			Hooks::run( 'GetCacheVaryCookies', [ $this, &self::$cacheVaryCookies ] );
 		}
-		return $cookies;
+		return self::$cacheVaryCookies;
 	}
 
 	/**

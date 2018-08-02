@@ -255,6 +255,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	/**
 	 * @covers OutputPage::getHeadItemsArray
 	 * @covers OutputPage::addParserOutputMetadata
+	 * @covers OutputPage::addParserOutput
 	 */
 	public function testHeadItemsParserOutput() {
 		$op = $this->newInstance();
@@ -264,7 +265,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			[ 'c' => '<d>&amp;', 'e' => 'f', 'a' => 'q' ] );
 		$op->addParserOutputMetadata( $stubPO2 );
 		$stubPO3 = $this->createParserOutputStub( 'getHeadItems', [ 'e' => 'g' ] );
-		$op->addParserOutputMetadata( $stubPO3 );
+		$op->addParserOutput( $stubPO3 );
 		$stubPO4 = $this->createParserOutputStub( 'getHeadItems', [ 'x' ] );
 		$op->addParserOutputMetadata( $stubPO4 );
 
@@ -756,33 +757,39 @@ class OutputPageTest extends MediaWikiTestCase {
 	/**
 	 * @covers OutputPage::showNewSectionLink
 	 * @covers OutputPage::addParserOutputMetadata
+	 * @covers OutputPage::addParserOutput
 	 */
 	public function testShowNewSectionLink() {
 		$op = $this->newInstance();
 
 		$this->assertFalse( $op->showNewSectionLink() );
 
-		$po = new ParserOutput();
-		$po->setNewSection( true );
-		$op->addParserOutputMetadata( $po );
-
+		$pOut1 = $this->createParserOutputStub( 'getNewSection', true );
+		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertTrue( $op->showNewSectionLink() );
+
+		$pOut2 = $this->createParserOutputStub( 'getNewSection', false );
+		$op->addParserOutput( $pOut2 );
+		$this->assertFalse( $op->showNewSectionLink() );
 	}
 
 	/**
 	 * @covers OutputPage::forceHideNewSectionLink
 	 * @covers OutputPage::addParserOutputMetadata
+	 * @covers OutputPage::addParserOutput
 	 */
 	public function testForceHideNewSectionLink() {
 		$op = $this->newInstance();
 
 		$this->assertFalse( $op->forceHideNewSectionLink() );
 
-		$po = new ParserOutput();
-		$po->hideNewSection( true );
-		$op->addParserOutputMetadata( $po );
-
+		$pOut1 = $this->createParserOutputStub( 'getHideNewSection', true );
+		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertTrue( $op->forceHideNewSectionLink() );
+
+		$pOut2 = $this->createParserOutputStub( 'getHideNewSection', false );
+		$op->addParserOutput( $pOut2 );
+		$this->assertFalse( $op->forceHideNewSectionLink() );
 	}
 
 	/**
@@ -868,6 +875,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::setLanguageLinks
 	 * @covers OutputPage::getLanguageLinks
 	 * @covers OutputPage::addParserOutputMetadata
+	 * @covers OutputPage::addParserOutput
 	 */
 	function testLanguageLinks() {
 		$op = $this->newInstance();
@@ -882,10 +890,13 @@ class OutputPageTest extends MediaWikiTestCase {
 		$op->setLanguageLinks( [ 'pt:E' ] );
 		$this->assertSame( [ 'pt:E' ], $op->getLanguageLinks() );
 
-		$po = new ParserOutput();
-		$po->setLanguageLinks( [ 'he:F', 'ar:G' ] );
-		$op->addParserOutputMetadata( $po );
+		$pOut1 = $this->createParserOutputStub( 'getLanguageLinks', [ 'he:F', 'ar:G' ] );
+		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertSame( [ 'pt:E', 'he:F', 'ar:G' ], $op->getLanguageLinks() );
+
+		$pOut2 = $this->createParserOutputStub( 'getLanguageLinks', [ 'pt:H' ] );
+		$op->addParserOutput( $pOut2 );
+		$this->assertSame( [ 'pt:E', 'he:F', 'ar:G', 'pt:H' ], $op->getLanguageLinks() );
 	}
 
 	// @todo Are these category links tests too abstract and complicated for what they test?  Would
@@ -981,6 +992,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @dataProvider provideGetCategories
 	 *
 	 * @covers OutputPage::addParserOutputMetadata
+	 * @covers OutputPage::addParserOutput
 	 * @covers OutputPage::getCategories
 	 * @covers OutputPage::getCategoryLinks
 	 */
@@ -995,7 +1007,12 @@ class OutputPageTest extends MediaWikiTestCase {
 
 		$stubPO = $this->createParserOutputStub( 'getCategories', $args );
 
-		$op->addParserOutputMetadata( $stubPO );
+		// addParserOutput and addParserOutputMetadata should behave identically for us, so
+		// alternate to get coverage for both without adding extra tests
+		static $idx = 0;
+		$idx++;
+		$method = [ 'addParserOutputMetadata', 'addParserOutput' ][$idx % 2];
+		$op->$method( $stubPO );
 
 		$this->doCategoryAsserts( $op, $expectedNormal, $expectedHidden );
 		$this->doCategoryLinkAsserts( $op, $expectedNormal, $expectedHidden );
@@ -1133,6 +1150,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::setIndicators
 	 * @covers OutputPage::getIndicators
 	 * @covers OutputPage::addParserOutputMetadata
+	 * @covers OutputPage::addParserOutput
 	 */
 	public function testIndicators() {
 		$op = $this->newInstance();
@@ -1149,10 +1167,16 @@ class OutputPageTest extends MediaWikiTestCase {
 		$op->setIndicators( [ 'c' => 'z', 'a' => 'w' ] );
 		$this->assertSame( [ 'a' => 'w', 'b' => 'x', 'c' => 'z' ], $op->getIndicators() );
 
-		// Test with ParserOutput
-		$stubPO = $this->createParserOutputStub( 'getIndicators', [ 'c' => 'u', 'd' => 'v' ] );
-		$op->addParserOutputMetadata( $stubPO );
+		// Test with addParserOutputMetadata
+		$pOut1 = $this->createParserOutputStub( 'getIndicators', [ 'c' => 'u', 'd' => 'v' ] );
+		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertSame( [ 'a' => 'w', 'b' => 'x', 'c' => 'u', 'd' => 'v' ],
+			$op->getIndicators() );
+
+		// Test with addParserOutput
+		$pOut2 = $this->createParserOutputStub( 'getIndicators', [ 'a' => '!!!' ] );
+		$op->addParserOutput( $pOut2 );
+		$this->assertSame( [ 'a' => '!!!', 'b' => 'x', 'c' => 'u', 'd' => 'v' ],
 			$op->getIndicators() );
 	}
 
@@ -1276,9 +1300,20 @@ class OutputPageTest extends MediaWikiTestCase {
 		$this->assertNull( $op->getFileVersion() );
 	}
 
-	private function createParserOutputStub( $method = '', $retVal = [] ) {
+	/**
+	 * Call either with arguments $methodName, $returnValue; or an array
+	 * [ $methodName => $returnValue, $methodName => $returnValue, ... ]
+	 */
+	private function createParserOutputStub( ...$args ) {
+		if ( count( $args ) === 0 ) {
+			$retVals = [];
+		} elseif ( count( $args ) === 1 ) {
+			$retVals = $args[0];
+		} elseif ( count( $args ) === 2 ) {
+			$retVals = [ $args[0] => $args[1] ];
+		}
 		$pOut = $this->getMock( ParserOutput::class );
-		if ( $method !== '' ) {
+		foreach ( $retVals as $method => $retVal ) {
 			$pOut->method( $method )->willReturn( $retVal );
 		}
 
@@ -1302,6 +1337,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	/**
 	 * @covers OutputPage::getTemplateIds
 	 * @covers OutputPage::addParserOutputMetadata
+	 * @covers OutputPage::addParserOutput
 	 */
 	public function testTemplateIds() {
 		$op = $this->newInstance();
@@ -1337,7 +1373,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			NS_PROJECT => [ 'F' => 5678 ],
 		];
 
-		$op->addParserOutputMetadata( $stubPO2 );
+		$op->addParserOutput( $stubPO2 );
 		$this->assertSame( $finalIds, $op->getTemplateIds() );
 
 		// Test merging with an empty set of id's
@@ -1348,6 +1384,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	/**
 	 * @covers OutputPage::getFileSearchOptions
 	 * @covers OutputPage::addParserOutputMetadata
+	 * @covers OutputPage::addParserOutput
 	 */
 	public function testFileSearchOptions() {
 		$op = $this->newInstance();
@@ -1370,7 +1407,7 @@ class OutputPageTest extends MediaWikiTestCase {
 
 		$stubPO1 = $this->createParserOutputStub( 'getFileSearchOptions', $files1 );
 
-		$op->addParserOutputMetadata( $stubPO1 );
+		$op->addParserOutput( $stubPO1 );
 		$this->assertSame( $files1, $op->getFileSearchOptions() );
 
 		// Test merging with a second set of files
@@ -1385,7 +1422,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		$this->assertSame( array_merge( $files1, $files2 ), $op->getFileSearchOptions() );
 
 		// Test merging with an empty set of files
-		$op->addParserOutputMetadata( $stubPOEmpty );
+		$op->addParserOutput( $stubPOEmpty );
 		$this->assertSame( array_merge( $files1, $files2 ), $op->getFileSearchOptions() );
 	}
 
@@ -1619,6 +1656,7 @@ class OutputPageTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers OutputPage::addParserOutputMetadata
+	 * @covers OutputPage::addParserOutput
 	 */
 	public function testNoGallery() {
 		$op = $this->newInstance();
@@ -1629,29 +1667,386 @@ class OutputPageTest extends MediaWikiTestCase {
 		$this->assertTrue( $op->mNoGallery );
 
 		$stubPO2 = $this->createParserOutputStub( 'getNoGallery', false );
-		$op->addParserOutputMetadata( $stubPO2 );
+		$op->addParserOutput( $stubPO2 );
 		$this->assertFalse( $op->mNoGallery );
+	}
+
+	private static $parserOutputHookCalled;
+
+	/**
+	 * @covers OutputPage::addParserOutputMetadata
+	 */
+	public function testParserOutputHooks() {
+		$op = $this->newInstance();
+		$pOut = $this->createParserOutputStub( 'getOutputHooks', [
+			[ 'myhook', 'banana' ],
+			[ 'yourhook', 'kumquat' ],
+			[ 'theirhook', 'hippopotamus' ],
+		] );
+
+		self::$parserOutputHookCalled = [];
+
+		$this->setMwGlobals( 'wgParserOutputHooks', [
+			'myhook' => function ( OutputPage $innerOp, ParserOutput $innerPOut, $data )
+			use ( $op, $pOut ) {
+				$this->assertSame( $op, $innerOp );
+				$this->assertSame( $pOut, $innerPOut );
+				$this->assertSame( 'banana', $data );
+				self::$parserOutputHookCalled[] = 'closure';
+			},
+			'yourhook' => [ $this, 'parserOutputHookCallback' ],
+			'theirhook' => [ __CLASS__, 'parserOutputHookCallbackStatic' ],
+			'uncalled' => function () {
+				$this->assertTrue( false );
+			},
+		] );
+
+		$op->addParserOutputMetadata( $pOut );
+
+		$this->assertSame( [ 'closure', 'callback', 'static' ], self::$parserOutputHookCalled );
+	}
+
+	public function parserOutputHookCallback(
+		OutputPage $op, ParserOutput $pOut, $data
+	) {
+		$this->assertSame( 'kumquat', $data );
+
+		self::$parserOutputHookCalled[] = 'callback';
+	}
+
+	public static function parserOutputHookCallbackStatic(
+		OutputPage $op, ParserOutput $pOut, $data
+	) {
+		// All the assert methods are actually static, who knew!
+		self::assertSame( 'hippopotamus', $data );
+
+		self::$parserOutputHookCalled[] = 'static';
 	}
 
 	// @todo Make sure to test the following in addParserOutputMetadata() as well when we add tests
 	// for them:
-	//   * enableClientCache()
 	//   * addModules()
 	//   * addModuleScripts()
 	//   * addModuleStyles()
 	//   * addJsConfigVars()
-	//   * preventClickJacking()
+	//   * enableOOUI()
 	// Otherwise those lines of addParserOutputMetadata() will be reported as covered, but we won't
 	// be testing they actually work.
+
+	/**
+	 * @covers OutputPage::addParserOutputText
+	 */
+	public function testAddParserOutputText() {
+		$op = $this->newInstance();
+		$this->assertSame( '', $op->getHTML() );
+
+		$pOut = $this->createParserOutputStub( 'getText', '<some text>' );
+
+		$op->addParserOutputMetadata( $pOut );
+		$this->assertSame( '', $op->getHTML() );
+
+		$op->addParserOutputText( $pOut );
+		$this->assertSame( '<some text>', $op->getHTML() );
+	}
+
+	/**
+	 * @covers OutputPage::addParserOutput
+	 */
+	public function testAddParserOutput() {
+		$op = $this->newInstance();
+		$this->assertSame( '', $op->getHTML() );
+		$this->assertFalse( $op->showNewSectionLink() );
+
+		$pOut = $this->createParserOutputStub( [
+			'getText' => '<some text>',
+			'getNewSection' => true,
+		] );
+
+		$op->addParserOutput( $pOut );
+		$this->assertSame( '<some text>', $op->getHTML() );
+		$this->assertTrue( $op->showNewSectionLink() );
+	}
+
+	/**
+	 * @covers OutputPage::addTemplate
+	 */
+	public function testAddTemplate() {
+		$template = $this->getMock( QuickTemplate::class );
+		$template->method( 'getHTML' )->willReturn( '<abc>&def;' );
+
+		$op = $this->newInstance();
+		$op->addTemplate( $template );
+
+		$this->assertSame( '<abc>&def;', $op->getHTML() );
+	}
+
+	/**
+	 * @dataProvider provideParse
+	 * @covers OutputPage::parse
+	 * @param array $args To pass to parse()
+	 * @param string $expectedHTML Expected return value for parse()
+	 * @param string $expectedHTML Expected return value for parseInline(), if different
+	 */
+	public function testParse( array $args, $expectedHTML ) {
+		$op = $this->newInstance();
+		$this->assertSame( $expectedHTML, $op->parse( ...$args ) );
+	}
+
+	/**
+	 * @dataProvider provideParse
+	 * @covers OutputPage::parseInline
+	 */
+	public function testParseInline( array $args, $expectedHTML, $expectedHTMLInline = null ) {
+		if ( count( $args ) > 3 ) {
+			// $language param not supported
+			$this->assertTrue( true );
+			return;
+		}
+		$op = $this->newInstance();
+		$this->assertSame( $expectedHTMLInline ?? $expectedHTML, $op->parseInline( ...$args ) );
+	}
+
+	public function provideParse() {
+		return [
+			'List at start of line' => [
+				[ '* List' ],
+				"<div class=\"mw-parser-output\"><ul><li>List</li></ul>\n</div>",
+			],
+			'List not at start' => [
+				[ "* ''Not'' list", false ],
+				'<div class="mw-parser-output">* <i>Not</i> list</div>',
+			],
+			'Interface' => [
+				[ "''Italic''", true, true ],
+				"<p><i>Italic</i>\n</p>",
+				'<i>Italic</i>',
+			],
+			'formatnum' => [
+				[ '{{formatnum:123456.789}}' ],
+				"<div class=\"mw-parser-output\"><p>123,456.789\n</p></div>",
+			],
+			'Language' => [
+				[ '{{formatnum:123456.789}}', true, false, Language::factory( 'is' ) ],
+				"<div class=\"mw-parser-output\"><p>123.456,789\n</p></div>",
+			],
+			'Language with interface' => [
+				[ '{{formatnum:123456.789}}', true, true, Language::factory( 'is' ) ],
+				"<p>123.456,789\n</p>",
+				'123.456,789',
+			],
+			'No section edit links' => [
+				[ '== Header ==' ],
+				'<div class="mw-parser-output"><h2><span class="mw-headline" id="Header">' .
+					"Header</span></h2>\n</div>",
+			]
+		];
+	}
+
+	/**
+	 * @covers OutputPage::parse
+	 */
+	public function testParseNullTitle() {
+		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parse' );
+		$op = $this->newInstance( [], null, 'notitle' );
+		$op->parse( '' );
+	}
+
+	/**
+	 * @covers OutputPage::parse
+	 */
+	public function testParseInlineNullTitle() {
+		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parse' );
+		$op = $this->newInstance( [], null, 'notitle' );
+		$op->parseInline( '' );
+	}
+
+	/**
+	 * @covers OutputPage::setCdnMaxage
+	 * @covers OutputPage::lowerCdnMaxage
+	 */
+	public function testCdnMaxage() {
+		$op = $this->newInstance();
+		$wrapper = TestingAccessWrapper::newFromObject( $op );
+		$this->assertSame( 0, $wrapper->mCdnMaxage );
+
+		$op->setCdnMaxage( -1 );
+		$this->assertSame( -1, $wrapper->mCdnMaxage );
+
+		$op->setCdnMaxage( 120 );
+		$this->assertSame( 120, $wrapper->mCdnMaxage );
+
+		$op->setCdnMaxage( 60 );
+		$this->assertSame( 60, $wrapper->mCdnMaxage );
+
+		$op->setCdnMaxage( 180 );
+		$this->assertSame( 180, $wrapper->mCdnMaxage );
+
+		$op->lowerCdnMaxage( 240 );
+		$this->assertSame( 180, $wrapper->mCdnMaxage );
+
+		$op->setCdnMaxage( 300 );
+		$this->assertSame( 240, $wrapper->mCdnMaxage );
+
+		$op->lowerCdnMaxage( 120 );
+		$this->assertSame( 120, $wrapper->mCdnMaxage );
+
+		$op->setCdnMaxage( 180 );
+		$this->assertSame( 120, $wrapper->mCdnMaxage );
+
+		$op->setCdnMaxage( 60 );
+		$this->assertSame( 60, $wrapper->mCdnMaxage );
+
+		$op->setCdnMaxage( 240 );
+		$this->assertSame( 120, $wrapper->mCdnMaxage );
+	}
+
+	/** @var int Faked time to set for tests that need it */
+	private static $fakeTime;
+
+	/**
+	 * @dataProvider provideAdaptCdnTTL
+	 * @covers OutputPage::adaptCdnTTL
+	 * @param array $args To pass to adaptCdnTTL()
+	 * @param int $expected Expected new value of mCdnMaxageLimit
+	 * @param array $options Associative array:
+	 *  initialMaxage => Maxage to set before calling adaptCdnTTL() (default 86400)
+	 */
+	public function testAdaptCdnTTL( array $args, $expected, array $options = [] ) {
+		try {
+			MWTimestamp::setFakeTime( self::$fakeTime );
+
+			$op = $this->newInstance();
+			// Set a high maxage so that it will get reduced by adaptCdnTTL().  The default maxage
+			// is 0, so adaptCdnTTL() won't mutate the object at all.
+			$initial = $options['initialMaxage'] ?? 86400;
+			$op->setCdnMaxage( $initial );
+
+			$op->adaptCdnTTL( ...$args );
+		} finally {
+			MWTimestamp::setFakeTime( false );
+		}
+
+		$wrapper = TestingAccessWrapper::newFromObject( $op );
+
+		// Special rules for false/null
+		if ( $args[0] === null || $args[0] === false ) {
+			$this->assertSame( $initial, $wrapper->mCdnMaxage, 'member value' );
+			$op->setCdnMaxage( $expected + 1 );
+			$this->assertSame( $expected + 1, $wrapper->mCdnMaxage, 'member value after new set' );
+			return;
+		}
+
+		$this->assertSame( $expected, $wrapper->mCdnMaxageLimit, 'limit value' );
+
+		if ( $initial >= $expected ) {
+			$this->assertSame( $expected, $wrapper->mCdnMaxage, 'member value' );
+		} else {
+			$this->assertSame( $initial, $wrapper->mCdnMaxage, 'member value' );
+		}
+
+		$op->setCdnMaxage( $expected + 1 );
+		$this->assertSame( $expected, $wrapper->mCdnMaxage, 'member value after new set' );
+	}
+
+	public function provideAdaptCdnTTL() {
+		global $wgSquidMaxage;
+		$now = time();
+		self::$fakeTime = $now;
+		return [
+			'Five minutes ago' => [ [ $now - 300 ], 270 ],
+			'Now' => [ [ +0 ], IExpiringStore::TTL_MINUTE ],
+			'Five minutes from now' => [ [ $now + 300 ], IExpiringStore::TTL_MINUTE ],
+			'Five minutes ago, initial maxage four minutes' =>
+				[ [ $now - 300 ], 270, [ 'initialMaxage' => 240 ] ],
+			'A very long time ago' => [ [ $now - 1000000000 ], $wgSquidMaxage ],
+			'Initial maxage zero' => [ [ $now - 300 ], 270, [ 'initialMaxage' => 0 ] ],
+
+			'false' => [ [ false ], IExpiringStore::TTL_MINUTE ],
+			'null' => [ [ null ], IExpiringStore::TTL_MINUTE ],
+			"'0'" => [ [ '0' ], IExpiringStore::TTL_MINUTE ],
+			'Empty string' => [ [ '' ], IExpiringStore::TTL_MINUTE ],
+			// @todo These give incorrect results due to timezones, how to test?
+			//"'now'" => [ [ 'now' ], IExpiringStore::TTL_MINUTE ],
+			//"'parse error'" => [ [ 'parse error' ], IExpiringStore::TTL_MINUTE ],
+
+			'Now, minTTL 0' => [ [ $now, 0 ], IExpiringStore::TTL_MINUTE ],
+			'Now, minTTL 0.000001' => [ [ $now, 0.000001 ], 0 ],
+			'A very long time ago, maxTTL even longer' =>
+				[ [ $now - 1000000000, 0, 1000000001 ], 900000000 ],
+		];
+	}
+
+	/**
+	 * @covers OutputPage::enableClientCache
+	 * @covers OutputPage::addParserOutputMetadata
+	 * @covers OutputPage::addParserOutput
+	 */
+	public function testClientCache() {
+		$op = $this->newInstance();
+
+		// Test initial value
+		$this->assertSame( true, $op->enableClientCache( null ) );
+		// Test that calling with null doesn't change the value
+		$this->assertSame( true, $op->enableClientCache( null ) );
+
+		// Test setting to false
+		$this->assertSame( true, $op->enableClientCache( false ) );
+		$this->assertSame( false, $op->enableClientCache( null ) );
+		// Test that calling with null doesn't change the value
+		$this->assertSame( false, $op->enableClientCache( null ) );
+
+		// Test that a cacheable ParserOutput doesn't set to true
+		$pOutCacheable = $this->createParserOutputStub( 'isCacheable', true );
+		$op->addParserOutputMetadata( $pOutCacheable );
+		$this->assertSame( false, $op->enableClientCache( null ) );
+
+		// Test setting back to true
+		$this->assertSame( false, $op->enableClientCache( true ) );
+		$this->assertSame( true, $op->enableClientCache( null ) );
+
+		// Test that an uncacheable ParserOutput does set to false
+		$pOutUncacheable = $this->createParserOutputStub( 'isCacheable', false );
+		$op->addParserOutput( $pOutUncacheable );
+		$this->assertSame( false, $op->enableClientCache( null ) );
+	}
+
+	/**
+	 * @covers OutputPage::getCacheVaryCookies
+	 */
+	public function testGetCacheVaryCookies() {
+		global $wgCookiePrefix, $wgDBname;
+		$op = $this->newInstance();
+		$prefix = $wgCookiePrefix !== false ? $wgCookiePrefix : $wgDBname;
+		$expectedCookies = [
+			"{$prefix}Token",
+			"{$prefix}LoggedOut",
+			"{$prefix}_session",
+			'forceHTTPS',
+			'cookie1',
+			'cookie2',
+		];
+
+		// We have to reset the cookies because getCacheVaryCookies may have already been called
+		TestingAccessWrapper::newFromClass( OutputPage::class )->cacheVaryCookies = null;
+
+		$this->setMwGlobals( 'wgCacheVaryCookies', [ 'cookie1' ] );
+		$this->setTemporaryHook( 'GetCacheVaryCookies',
+			function ( $innerOP, &$cookies ) use ( $op, $expectedCookies ) {
+				$this->assertSame( $op, $innerOP );
+				$cookies[] = 'cookie2';
+				$this->assertSame( $expectedCookies, $cookies );
+			}
+		);
+
+		$this->assertSame( $expectedCookies, $op->getCacheVaryCookies() );
+	}
 
 	/**
 	 * @covers OutputPage::haveCacheVaryCookies
 	 */
 	public function testHaveCacheVaryCookies() {
 		$request = new FauxRequest();
-		$context = new RequestContext();
-		$context->setRequest( $request );
-		$op = new OutputPage( $context );
+		$op = $this->newInstance( [], $request );
 
 		// No cookies are set.
 		$this->assertFalse( $op->haveCacheVaryCookies() );
@@ -1671,20 +2066,25 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::addVaryHeader
 	 * @covers OutputPage::getVaryHeader
 	 * @covers OutputPage::getKeyHeader
+	 *
+	 * @param array[] $calls For each array, call addVaryHeader() with those arguments
+	 * @param string[] $cookies Array of cookie names to vary on
+	 * @param string $vary Text of expected Vary header (including the 'Vary: ')
+	 * @param string $key Text of expected Key header (including the 'Key: ')
 	 */
-	public function testVaryHeaders( $calls, $vary, $key ) {
-		// get rid of default Vary fields
+	public function testVaryHeaders( array $calls, array $cookies, $vary, $key ) {
+		// Get rid of default Vary fields
 		$op = $this->getMockBuilder( OutputPage::class )
 			->setConstructorArgs( [ new RequestContext() ] )
 			->setMethods( [ 'getCacheVaryCookies' ] )
 			->getMock();
 		$op->expects( $this->any() )
 			->method( 'getCacheVaryCookies' )
-			->will( $this->returnValue( [] ) );
+			->will( $this->returnValue( $cookies ) );
 		TestingAccessWrapper::newFromObject( $op )->mVaryHeader = [];
 
 		foreach ( $calls as $call ) {
-			call_user_func_array( [ $op, 'addVaryHeader' ], $call );
+			$op->addVaryHeader( ...$call );
 		}
 		$this->assertEquals( $vary, $op->getVaryHeader(), 'Vary:' );
 		$this->assertEquals( $key, $op->getKeyHeader(), 'Key:' );
@@ -1693,55 +2093,106 @@ class OutputPageTest extends MediaWikiTestCase {
 	public function provideVaryHeaders() {
 		// note: getKeyHeader() automatically adds Vary: Cookie
 		return [
-			[ // single header
+			'No header' => [
+				[],
+				[],
+				'Vary: ',
+				'Key: Cookie',
+			],
+			'Single header' => [
 				[
 					[ 'Cookie' ],
 				],
+				[],
 				'Vary: Cookie',
 				'Key: Cookie',
 			],
-			[ // non-unique headers
+			'Non-unique headers' => [
 				[
 					[ 'Cookie' ],
 					[ 'Accept-Language' ],
 					[ 'Cookie' ],
 				],
+				[],
 				'Vary: Cookie, Accept-Language',
 				'Key: Cookie,Accept-Language',
 			],
-			[ // two headers with single options
+			'Two headers with single options' => [
 				[
 					[ 'Cookie', [ 'param=phpsessid' ] ],
 					[ 'Accept-Language', [ 'substr=en' ] ],
 				],
+				[],
 				'Vary: Cookie, Accept-Language',
 				'Key: Cookie;param=phpsessid,Accept-Language;substr=en',
 			],
-			[ // one header with multiple options
+			'One header with multiple options' => [
 				[
 					[ 'Cookie', [ 'param=phpsessid', 'param=userId' ] ],
 				],
+				[],
 				'Vary: Cookie',
 				'Key: Cookie;param=phpsessid;param=userId',
 			],
-			[ // Duplicate option
+			'Duplicate option' => [
 				[
 					[ 'Cookie', [ 'param=phpsessid' ] ],
 					[ 'Cookie', [ 'param=phpsessid' ] ],
 					[ 'Accept-Language', [ 'substr=en', 'substr=en' ] ],
 				],
+				[],
 				'Vary: Cookie, Accept-Language',
 				'Key: Cookie;param=phpsessid,Accept-Language;substr=en',
 			],
-			[ // Same header, different options
+			'Same header, different options' => [
 				[
 					[ 'Cookie', [ 'param=phpsessid' ] ],
 					[ 'Cookie', [ 'param=userId' ] ],
 				],
+				[],
 				'Vary: Cookie',
 				'Key: Cookie;param=phpsessid;param=userId',
 			],
+			'No header, vary cookies' => [
+				[],
+				[ 'cookie1', 'cookie2' ],
+				'Vary: Cookie',
+				'Key: Cookie;param=cookie1;param=cookie2',
+			],
+			'Cookie header with option plus vary cookies' => [
+				[
+					[ 'Cookie', [ 'param=cookie1' ] ],
+				],
+				[ 'cookie2', 'cookie3' ],
+				'Vary: Cookie',
+				'Key: Cookie;param=cookie1;param=cookie2;param=cookie3',
+			],
+			'Non-cookie header plus vary cookies' => [
+				[
+					[ 'Accept-Language' ],
+				],
+				[ 'cookie' ],
+				'Vary: Accept-Language, Cookie',
+				'Key: Accept-Language,Cookie;param=cookie',
+			],
+			'Cookie and non-cookie headers plus vary cookies' => [
+				[
+					[ 'Cookie', [ 'param=cookie1' ] ],
+					[ 'Accept-Language' ],
+				],
+				[ 'cookie2' ],
+				'Vary: Cookie, Accept-Language',
+				'Key: Cookie;param=cookie1;param=cookie2,Accept-Language',
+			],
 		];
+	}
+
+	/**
+	 * @covers OutputPage::getVaryHeader
+	 */
+	public function testVaryHeaderDefault() {
+		$op = $this->newInstance();
+		$this->assertSame( 'Vary: Accept-Encoding, Cookie', $op->getVaryHeader() );
 	}
 
 	/**
@@ -1750,7 +2201,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::addLinkHeader
 	 * @covers OutputPage::getLinkHeader
 	 */
-	public function testLinkHeaders( $headers, $result ) {
+	public function testLinkHeaders( array $headers, $result ) {
 		$op = $this->newInstance();
 
 		foreach ( $headers as $header ) {
@@ -1771,9 +2222,147 @@ class OutputPageTest extends MediaWikiTestCase {
 				'Link: <https://foo/bar.jpg>;rel=preload;as=image',
 			],
 			[
-				[ '<https://foo/bar.jpg>;rel=preload;as=image','<https://foo/baz.jpg>;rel=preload;as=image' ],
-				'Link: <https://foo/bar.jpg>;rel=preload;as=image,<https://foo/baz.jpg>;rel=preload;as=image',
+				[
+					'<https://foo/bar.jpg>;rel=preload;as=image',
+					'<https://foo/baz.jpg>;rel=preload;as=image'
+				],
+				'Link: <https://foo/bar.jpg>;rel=preload;as=image,<https://foo/baz.jpg>;' .
+					'rel=preload;as=image',
 			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideAddAcceptLanguage
+	 * @covers OutputPage::addAcceptLanguage
+	 */
+	public function testAddAcceptLanguage(
+		$code, array $variants, array $expected, array $options = []
+	) {
+		$req = new FauxRequest( in_array( 'varianturl', $options ) ? [ 'variant' => 'x' ] : [] );
+		$op = $this->newInstance( [], $req, in_array( 'notitle', $options ) ? 'notitle' : null );
+
+		if ( !in_array( 'notitle', $options ) ) {
+			$mockLang = $this->getMock( Language::class );
+
+			if ( in_array( 'varianturl', $options ) ) {
+				$mockLang->expects( $this->never() )->method( $this->anything() );
+			} else {
+				$mockLang->method( 'hasVariants' )->willReturn( count( $variants ) > 1 );
+				$mockLang->method( 'getVariants' )->willReturn( $variants );
+				$mockLang->method( 'getCode' )->willReturn( $code );
+			}
+
+			$mockTitle = $this->getMock( Title::class );
+			$mockTitle->method( 'getPageLanguage' )->willReturn( $mockLang );
+
+			$op->setTitle( $mockTitle );
+		}
+
+		// This will run addAcceptLanguage()
+		$op->sendCacheControl();
+
+		$keyHeader = $op->getKeyHeader();
+
+		if ( !$expected ) {
+			$this->assertFalse( strpos( 'Accept-Language', $keyHeader ) );
+			return;
+		}
+
+		$keyHeader = explode( ' ', $keyHeader, 2 )[1];
+		$keyHeader = explode( ',', $keyHeader );
+
+		$acceptLanguage = null;
+		foreach ( $keyHeader as $item ) {
+			if ( strpos( $item, 'Accept-Language;' ) === 0 ) {
+				$acceptLanguage = $item;
+				break;
+			}
+		}
+
+		$expectedString = 'Accept-Language;substr=' . implode( ';substr=', $expected );
+		$this->assertSame( $expectedString, $acceptLanguage );
+	}
+
+	public function provideAddAcceptLanguage() {
+		return [
+			'No variants' => [ 'en', [ 'en' ], [] ],
+			'One simple variant' => [ 'en', [ 'en', 'en-x-piglatin' ], [ 'en-x-piglatin' ] ],
+			'Multiple variants with BCP47 alternatives' => [
+				'zh',
+				[ 'zh', 'zh-hans', 'zh-cn', 'zh-tw' ],
+				[ 'zh-hans', 'zh-Hans', 'zh-cn', 'zh-Hans-CN', 'zh-tw', 'zh-Hant-TW' ],
+			],
+			'No title' => [ 'en', [ 'en', 'en-x-piglatin' ], [], [ 'notitle' ] ],
+			'Variant in URL' => [ 'en', [ 'en', 'en-x-piglatin' ], [], [ 'varianturl' ] ],
+		];
+	}
+
+	/**
+	 * @covers OutputPage::preventClickjacking
+	 * @covers OutputPage::allowClickjacking
+	 * @covers OutputPage::getPreventClickjacking
+	 * @covers OutputPage::addParserOutputMetadata
+	 * @covers OutputPage::addParserOutput
+	 */
+	public function testClickjacking() {
+		$op = $this->newInstance();
+		$this->assertTrue( $op->getPreventClickjacking() );
+
+		$op->allowClickjacking();
+		$this->assertFalse( $op->getPreventClickjacking() );
+
+		$op->preventClickjacking();
+		$this->assertTrue( $op->getPreventClickjacking() );
+
+		$op->preventClickjacking( false );
+		$this->assertFalse( $op->getPreventClickjacking() );
+
+		$pOut1 = $this->createParserOutputStub( 'preventClickjacking', true );
+		$op->addParserOutputMetadata( $pOut1 );
+		$this->assertTrue( $op->getPreventClickjacking() );
+
+		// The ParserOutput can't allow, only prevent
+		$pOut2 = $this->createParserOutputStub( 'preventClickjacking', false );
+		$op->addParserOutputMetadata( $pOut2 );
+		$this->assertTrue( $op->getPreventClickjacking() );
+
+		// Reset to test with addParserOutput()
+		$op->allowClickjacking();
+		$this->assertFalse( $op->getPreventClickjacking() );
+
+		$op->addParserOutput( $pOut1 );
+		$this->assertTrue( $op->getPreventClickjacking() );
+
+		$op->addParserOutput( $pOut2 );
+		$this->assertTrue( $op->getPreventClickjacking() );
+	}
+
+	/**
+	 * @dataProvider provideGetFrameOptions
+	 * @covers OutputPage::getFrameOptions
+	 * @covers OutputPage::preventClickjacking
+	 */
+	public function testGetFrameOptions(
+		$breakFrames, $preventClickjacking, $editPageFrameOptions, $expected
+	) {
+		$op = $this->newInstance( [
+			'BreakFrames' => $breakFrames,
+			'EditPageFrameOptions' => $editPageFrameOptions,
+		] );
+		$op->preventClickjacking( $preventClickjacking );
+
+		$this->assertSame( $expected, $op->getFrameOptions() );
+	}
+
+	public function provideGetFrameOptions() {
+		return [
+			'BreakFrames true' => [ true, false, false, 'DENY' ],
+			'Allow clickjacking locally' => [ false, false, 'DENY', false ],
+			'Allow clickjacking globally' => [ false, true, false, false ],
+			'DENY globally' => [ false, true, 'DENY', 'DENY' ],
+			'SAMEORIGIN' => [ false, true, 'SAMEORIGIN', 'SAMEORIGIN' ],
+			'BreakFrames with SAMEORIGIN' => [ true, true, 'SAMEORIGIN', 'DENY' ],
 		];
 	}
 
@@ -2189,6 +2778,103 @@ class OutputPageTest extends MediaWikiTestCase {
 			'expectedReturn' => null,
 			'message' => 'On request with handheld querystring and media is screen, returns null'
 		] );
+	}
+
+	/**
+	 * @covers OutputPage::isTOCEnabled
+	 * @covers OutputPage::addParserOutputMetadata
+	 * @covers OutputPage::addParserOutput
+	 */
+	public function testIsTOCEnabled() {
+		$op = $this->newInstance();
+		$this->assertFalse( $op->isTOCEnabled() );
+
+		$pOut1 = $this->createParserOutputStub( 'getTOCHTML', false );
+		$op->addParserOutputMetadata( $pOut1 );
+		$this->assertFalse( $op->isTOCEnabled() );
+
+		$pOut2 = $this->createParserOutputStub( 'getTOCHTML', true );
+		$op->addParserOutput( $pOut2 );
+		$this->assertTrue( $op->isTOCEnabled() );
+
+		// The parser output doesn't disable the TOC after it was enabled
+		$op->addParserOutputMetadata( $pOut1 );
+		$this->assertTrue( $op->isTOCEnabled() );
+	}
+
+	/**
+	 * @dataProvider providePreloadLinkHeaders
+	 * @covers ResourceLoaderSkinModule::getPreloadLinks
+	 * @covers ResourceLoaderSkinModule::getLogoPreloadlinks
+	 */
+	public function testPreloadLinkHeaders( $config, $result ) {
+		$this->setMwGlobals( $config );
+		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
+			->disableOriginalConstructor()->getMock();
+		$module = new ResourceLoaderSkinModule();
+
+		$this->assertEquals( [ $result ], $module->getHeaders( $ctx ) );
+	}
+
+	public function providePreloadLinkHeaders() {
+		return [
+			[
+				[
+					'wgResourceBasePath' => '/w',
+					'wgLogo' => '/img/default.png',
+					'wgLogoHD' => [
+						'1.5x' => '/img/one-point-five.png',
+						'2x' => '/img/two-x.png',
+					],
+				],
+				'Link: </img/default.png>;rel=preload;as=image;media=' .
+				'not all and (min-resolution: 1.5dppx),' .
+				'</img/one-point-five.png>;rel=preload;as=image;media=' .
+				'(min-resolution: 1.5dppx) and (max-resolution: 1.999999dppx),' .
+				'</img/two-x.png>;rel=preload;as=image;media=(min-resolution: 2dppx)'
+			],
+			[
+				[
+					'wgResourceBasePath' => '/w',
+					'wgLogo' => '/img/default.png',
+					'wgLogoHD' => false,
+				],
+				'Link: </img/default.png>;rel=preload;as=image'
+			],
+			[
+				[
+					'wgResourceBasePath' => '/w',
+					'wgLogo' => '/img/default.png',
+					'wgLogoHD' => [
+						'2x' => '/img/two-x.png',
+					],
+				],
+				'Link: </img/default.png>;rel=preload;as=image;media=' .
+				'not all and (min-resolution: 2dppx),' .
+				'</img/two-x.png>;rel=preload;as=image;media=(min-resolution: 2dppx)'
+			],
+			[
+				[
+					'wgResourceBasePath' => '/w',
+					'wgLogo' => '/img/default.png',
+					'wgLogoHD' => [
+						'svg' => '/img/vector.svg',
+					],
+				],
+				'Link: </img/vector.svg>;rel=preload;as=image'
+
+			],
+			[
+				[
+					'wgResourceBasePath' => '/w',
+					'wgLogo' => '/w/test.jpg',
+					'wgLogoHD' => false,
+					'wgUploadPath' => '/w/images',
+					'IP' => dirname( __DIR__ ) . '/data/media',
+				],
+				'Link: </w/test.jpg?edcf2>;rel=preload;as=image',
+			],
+		];
 	}
 
 	/**
