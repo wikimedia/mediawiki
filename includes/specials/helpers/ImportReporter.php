@@ -158,15 +158,13 @@ class ImportReporter extends ContextSource {
 			$logEntry->setComment( $this->reason );
 			$logEntry->setPerformer( $this->getUser() );
 			$logEntry->setParameters( $logParams );
-			$logid = $logEntry->insert();
+			// Make sure the null revision will be tagged as well
+			$logEntry->setAssociatedRevId( $nullRevId );
 			if ( count( $this->logTags ) ) {
 				$logEntry->setTags( $this->logTags );
 			}
-			// Make sure the null revision will be tagged as well
-			$logEntry->setAssociatedRevId( $nullRevId );
-
+			$logid = $logEntry->insert();
 			$logEntry->publish( $logid );
-
 		} else {
 			$this->getOutput()->addHTML( "<li>" . $linkRenderer->makeKnownLink( $title ) . " " .
 				$this->msg( 'import-nonewrevisions' )->escaped() . "</li>\n" );
