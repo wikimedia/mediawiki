@@ -94,7 +94,12 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 	/**
 	 * @param LoadBalancer $dbLoadBalancer A load balancer for acquiring database connections
-	 * @param WANObjectCache $cache A cache manager for caching blobs
+	 * @param WANObjectCache $cache A cache manager for caching blobs. This can be the local
+	 *        wiki's default instance even if $wikiId refers to a different wiki, since
+	 *        makeGlobalKey() is used to constructed a key that allows cached blobs from the
+	 *        same database to be re-used between wikis. For example, enwiki and frwiki will
+	 *        use the same cache keys for blobs from the wikidatawiki database, regardless of
+	 *        the cache's default key space.
 	 * @param bool|string $wikiId The ID of the target wiki database. Use false for the local wiki.
 	 */
 	public function __construct(

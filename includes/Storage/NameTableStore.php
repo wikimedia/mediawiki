@@ -26,6 +26,7 @@ use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LoadBalancer;
 
 /**
@@ -64,8 +65,13 @@ class NameTableStore {
 	private $insertCallback = null;
 
 	/**
-	 * @param LoadBalancer $dbLoadBalancer A load balancer for acquiring database connections
-	 * @param WANObjectCache $cache A cache manager for caching data
+	 * @param ILoadBalancer $dbLoadBalancer A load balancer for acquiring database connections
+	 * @param WANObjectCache $cache A cache manager for caching data. This can be the local
+	 *        wiki's default instance even if $wikiId refers to a different wiki, since
+	 *        makeGlobalKey() is used to constructed a key that allows cached names from
+	 *        the same database to be re-used between wikis. For example, enwiki and frwiki will
+	 *        use the same cache keys for names from the wikidatawiki database, regardless
+	 *        of the cache's default key space.
 	 * @param LoggerInterface $logger
 	 * @param string $table
 	 * @param string $idField
@@ -77,7 +83,7 @@ class NameTableStore {
 	 * This parameter was introduced in 1.32
 	 */
 	public function __construct(
-		LoadBalancer $dbLoadBalancer,
+		ILoadBalancer $dbLoadBalancer,
 		WANObjectCache $cache,
 		LoggerInterface $logger,
 		$table,

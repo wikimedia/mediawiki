@@ -56,7 +56,7 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Service for looking up page revisions.
@@ -88,7 +88,7 @@ class RevisionStore
 	private $contentHandlerUseDB = true;
 
 	/**
-	 * @var LoadBalancer
+	 * @var ILoadBalancer
 	 */
 	private $loadBalancer;
 
@@ -128,9 +128,14 @@ class RevisionStore
 	/**
 	 * @todo $blobStore should be allowed to be any BlobStore!
 	 *
-	 * @param LoadBalancer $loadBalancer
+	 * @param ILoadBalancer $loadBalancer
 	 * @param SqlBlobStore $blobStore
-	 * @param WANObjectCache $cache
+	 * @param WANObjectCache $cache A cache for caching revision rows. This can be the local
+	 *        wiki's default instance even if $wikiId refers to a different wiki, since
+	 *        makeGlobalKey() is used to constructed a key that allows cached revision rows from
+	 *        the same database to be re-used between wikis. For example, enwiki and frwiki will
+	 *        use the same cache keys for revision rows from the wikidatawiki database, regardless
+	 *        of the cache's default key space.
 	 * @param CommentStore $commentStore
 	 * @param NameTableStore $contentModelStore
 	 * @param NameTableStore $slotRoleStore
@@ -141,7 +146,7 @@ class RevisionStore
 	 * @throws MWException if $mcrMigrationStage or $wikiId is invalid.
 	 */
 	public function __construct(
-		LoadBalancer $loadBalancer,
+		ILoadBalancer $loadBalancer,
 		SqlBlobStore $blobStore,
 		WANObjectCache $cache,
 		CommentStore $commentStore,
@@ -239,7 +244,7 @@ class RevisionStore
 	}
 
 	/**
-	 * @return LoadBalancer
+	 * @return ILoadBalancer
 	 */
 	private function getDBLoadBalancer() {
 		return $this->loadBalancer;
