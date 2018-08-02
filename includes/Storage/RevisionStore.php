@@ -56,7 +56,7 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Service for looking up page revisions.
@@ -88,7 +88,7 @@ class RevisionStore
 	private $contentHandlerUseDB = true;
 
 	/**
-	 * @var LoadBalancer
+	 * @var ILoadBalancer
 	 */
 	private $loadBalancer;
 
@@ -128,7 +128,7 @@ class RevisionStore
 	/**
 	 * @todo $blobStore should be allowed to be any BlobStore!
 	 *
-	 * @param LoadBalancer $loadBalancer
+	 * @param ILoadBalancer $loadBalancer
 	 * @param SqlBlobStore $blobStore
 	 * @param WANObjectCache $cache
 	 * @param CommentStore $commentStore
@@ -141,7 +141,7 @@ class RevisionStore
 	 * @throws MWException if $mcrMigrationStage or $wikiId is invalid.
 	 */
 	public function __construct(
-		LoadBalancer $loadBalancer,
+		ILoadBalancer $loadBalancer,
 		SqlBlobStore $blobStore,
 		WANObjectCache $cache,
 		CommentStore $commentStore,
@@ -239,7 +239,7 @@ class RevisionStore
 	}
 
 	/**
-	 * @return LoadBalancer
+	 * @return ILoadBalancer
 	 */
 	private function getDBLoadBalancer() {
 		return $this->loadBalancer;

@@ -26,6 +26,7 @@ use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LoadBalancer;
 
 /**
@@ -64,7 +65,7 @@ class NameTableStore {
 	private $insertCallback = null;
 
 	/**
-	 * @param LoadBalancer $dbLoadBalancer A load balancer for acquiring database connections
+	 * @param ILoadBalancer $dbLoadBalancer A load balancer for acquiring database connections
 	 * @param WANObjectCache $cache A cache manager for caching data
 	 * @param LoggerInterface $logger
 	 * @param string $table
@@ -77,7 +78,7 @@ class NameTableStore {
 	 * This parameter was introduced in 1.32
 	 */
 	public function __construct(
-		LoadBalancer $dbLoadBalancer,
+		ILoadBalancer $dbLoadBalancer,
 		WANObjectCache $cache,
 		LoggerInterface $logger,
 		$table,

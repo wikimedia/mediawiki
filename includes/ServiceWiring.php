@@ -47,8 +47,7 @@ use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
-use MediaWiki\Storage\RevisionStore;
-use MediaWiki\Storage\SqlBlobStore;
+use MediaWiki\Storage\RevisionStoreFactory;
 use Wikimedia\ObjectFactory;
 
 return [
@@ -474,24 +473,21 @@ return [
 	},
 
 	'RevisionStore' => function ( MediaWikiServices $services ) {
-		/** @var SqlBlobStore $blobStore */
-		$blobStore = $services->getService( '_SqlBlobStore' );
+		return $services->getRevisionStoreFactory()->getRevisionStore();
+	},
 
-		$store = new RevisionStore(
-			$services->getDBLoadBalancer(),
-			$blobStore,
+	'RevisionStoreFactory' => function ( MediaWikiServices $services ) {
+		$config = $services->getMainConfig();
+		$store = new RevisionStoreFactory(
+			$services->getDBLoadBalancerFactory(),
+			$services->getBlobStoreFactory(),
 			$services->getMainWANObjectCache(),
 			$services->getCommentStore(),
-			$services->getContentModelStore(),
-			$services->getSlotRoleStore(),
-			$services->getMainConfig()->get( 'MultiContentRevisionSchemaMigrationStage' ),
-			$services->getActorMigration()
+			$services->getActorMigration(),
+			$config->get( 'MultiContentRevisionSchemaMigrationStage' ),
+			LoggerFactory::getProvider(),
+			$config->get( 'ContentHandlerUseDB' )
 		);
-
-		$store->setLogger( LoggerFactory::getInstance( 'RevisionStore' ) );
-
-		$config = $services->getMainConfig();
-		$store->setContentHandlerUseDB( $config->get( 'ContentHandlerUseDB' ) );
 
 		return $store;
 	},
