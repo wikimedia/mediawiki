@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.5
+ * OOUI v0.27.6
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-07-11T18:13:08Z
+ * Date: 2018-08-01T22:18:03Z
  */
 .oo-ui-actionWidget.oo-ui-pendingElement-pending {
   background-image: /* @embed */ url(themes/wikimediaui/images/textures/pending.gif);
@@ -406,6 +406,6 @@
   max-height: 100%;
   max-height: calc( 100% - 2em );
   border: 1px solid #ccc;
-  border-radius: 0.5em;
+  border-radius: 3px;
   box-shadow: 0 0.2em 1em rgba(0, 0, 0, 0.3);
 }

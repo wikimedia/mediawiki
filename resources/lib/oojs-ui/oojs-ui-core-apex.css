@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.5
+ * OOUI v0.27.6
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-07-11T18:13:08Z
+ * Date: 2018-08-01T22:18:03Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -585,7 +585,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-panelLayout-framed {
   border: 1px solid #ccc;
-  border-radius: 0.5em;
+  border-radius: 3px;
 }
 .oo-ui-panelLayout-padded.oo-ui-panelLayout-framed {
   margin: 1em 0;
