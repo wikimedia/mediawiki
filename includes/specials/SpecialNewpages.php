@@ -229,13 +229,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$ut = Title::makeTitleSafe( NS_USER, $username );
 		$userText = $ut ? $ut->getText() : '';
 
-		// Store query values in hidden fields so that form submission doesn't lose them
-		$hidden = [];
-		foreach ( $this->opts->getUnconsumedValues() as $key => $value ) {
-			$hidden[] = Html::hidden( $key, $value );
-		}
-		$hidden = implode( "\n", $hidden );
-
 		$formDescriptor = [
 			'namespace' => [
 				'type' => 'namespaceselect',
@@ -272,6 +265,12 @@ class SpecialNewpages extends IncludableSpecialPage {
 		];
 
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+
+		// Store query values in hidden fields so that form submission doesn't lose them
+		foreach ( $this->opts->getUnconsumedValues() as $key => $value ) {
+			$htmlForm->addHiddenField( $key, $value );
+		}
+
 		$htmlForm
 			->setMethod( 'get' )
 			->setFormIdentifier( 'newpagesform' )
@@ -288,7 +287,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 				'div',
 				null,
 				$this->filterLinks()
-			) . $hidden )
+			) )
 			->show();
 		$out->addModuleStyles( 'mediawiki.special' );
 	}
