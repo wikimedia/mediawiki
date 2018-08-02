@@ -98,6 +98,12 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	private $mwGlobalsToUnset = [];
 
 	/**
+	 * Holds original contents of interwiki table
+	 * @var IResultWrapper
+	 */
+	private $interwikiTable = null;
+
+	/**
 	 * Holds original loggers which have been replaced by setLogger()
 	 * @var LoggerInterface[]
 	 */
@@ -561,6 +567,12 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			if ( $this->db->getType() === 'mysql' ) {
 				$this->db->query( "SET sql_mode = 'STRICT_ALL_TABLES'" );
 			}
+		}
+
+		// Store contents of interwiki table in case it changes.  Unfortunately, we seem to have no
+		// way to do this only when needed, because tablesUsed can be changed mid-test.
+		if ( $this->db ) {
+			$this->interwikiTable = $this->db->select( 'interwiki', '*', '', __METHOD__ );
 		}
 
 		// Reset all caches between tests.
@@ -1707,11 +1719,6 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 			$truncate = in_array( $db->getType(), [ 'oracle', 'mysql' ] );
 			foreach ( $tablesUsed as $tbl ) {
-				// TODO: reset interwiki table to its original content.
-				if ( $tbl == 'interwiki' ) {
-					continue;
-				}
-
 				if ( !$db->tableExists( $tbl ) ) {
 					continue;
 				}
@@ -1725,6 +1732,19 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				if ( in_array( $db->getType(), [ 'postgres', 'sqlite' ], true ) ) {
 					// Reset the table's sequence too.
 					$db->resetSequenceForTable( $tbl, __METHOD__ );
+				}
+
+				if ( $tbl === 'interwiki' ) {
+					if ( !$this->interwikiTable ) {
+						// @todo We should probably throw here, but this causes test failures that I
+						// can't figure out, so for now we silently continue.
+						continue;
+					}
+					$db->insert(
+						'interwiki',
+						array_map( 'get_object_vars', iterator_to_array( $this->interwikiTable ) ),
+						__METHOD__
+					);
 				}
 
 				if ( $tbl === 'page' ) {
