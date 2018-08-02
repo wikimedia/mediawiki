@@ -153,6 +153,9 @@ class Parser {
 	public $mImageParams = [];
 	public $mImageParamsMagicArray = [];
 	public $mMarkerIndex = 0;
+	/**
+	 * @var bool Whether firstCallInit still needs to be called
+	 */
 	public $mFirstCall = true;
 
 	# Initialised by initialiseVariables()
@@ -354,9 +357,7 @@ class Parser {
 	 * @private
 	 */
 	public function clearState() {
-		if ( $this->mFirstCall ) {
-			$this->firstCallInit();
-		}
+		$this->firstCallInit();
 		$this->mOutput = new ParserOutput;
 		$this->mOptions->registerWatcher( [ $this->mOutput, 'recordOption' ] );
 		$this->mAutonumber = 0;
