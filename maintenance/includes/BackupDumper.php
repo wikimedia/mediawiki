@@ -1,6 +1,6 @@
 <?php
 /**
- * Base classes for database dumpers
+ * Base classes for database-dumping maintenance scripts.
  *
  * Copyright © 2005 Brion Vibber <brion@pobox.com>
  * https://www.mediawiki.org/
@@ -21,19 +21,21 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Dump Maintenance
+ * @ingroup Dump
+ * @ingroup Maintenance
  */
 
-require_once __DIR__ . '/Maintenance.php';
+require_once __DIR__ . '/../Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * @ingroup Dump Maintenance
+ * @ingroup Dump
+ * @ingroup Maintenance
  */
-class BackupDumper extends Maintenance {
+abstract class BackupDumper extends Maintenance {
 	public $reporting = true;
 	public $pages = null; // all pages
 	public $skipHeader = false; // don't output <mediawiki> and <siteinfo>
