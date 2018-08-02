@@ -794,9 +794,9 @@ $ps_globals = Profiler::instance()->scopedProfileIn( $fname . '-globals' );
 
 /**
  * @var Language $wgContLang
+ * @deprecated since 1.32, use the ContentLanguage service directly
  */
-$wgContLang = Language::factory( $wgLanguageCode );
-$wgContLang->initContLang();
+$wgContLang = MediaWikiServices::getInstance()->getContentLanguage();
 
 // Now that variant lists may be available...
 $wgRequest->interpolateTitle();
