@@ -12,34 +12,19 @@
 class EditPageTest extends MediaWikiLangTestCase {
 
 	protected function setUp() {
-		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
-
 		parent::setUp();
 
-		$this->setContentLang( $wgContLang );
-
 		$this->setMwGlobals( [
-			'wgExtraNamespaces' => $wgExtraNamespaces,
-			'wgNamespaceContentModels' => $wgNamespaceContentModels,
-			'wgContentHandlers' => $wgContentHandlers,
+			'wgExtraNamespaces' => [
+				12312 => 'Dummy',
+				12313 => 'Dummy_talk',
+			],
+			'wgNamespaceContentModels' => [ 12312 => 'testing' ],
 		] );
-
-		$wgExtraNamespaces[12312] = 'Dummy';
-		$wgExtraNamespaces[12313] = 'Dummy_talk';
-
-		$wgNamespaceContentModels[12312] = "testing";
-		$wgContentHandlers["testing"] = 'DummyContentHandlerForTesting';
-
-		MWNamespace::clearCaches();
-		$wgContLang->resetNamespaces(); # reset namespace cache
-	}
-
-	protected function tearDown() {
-		global $wgContLang;
-
-		MWNamespace::clearCaches();
-		$wgContLang->resetNamespaces(); # reset namespace cache
-		parent::tearDown();
+		$this->mergeMwGlobalArrayValue(
+			'wgContentHandlers',
+			[ 'testing' => 'DummyContentHandlerForTesting' ]
+		);
 	}
 
 	/**

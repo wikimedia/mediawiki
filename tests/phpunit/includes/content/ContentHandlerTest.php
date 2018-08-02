@@ -8,7 +8,6 @@ use MediaWiki\MediaWikiServices;
 class ContentHandlerTest extends MediaWikiTestCase {
 
 	protected function setUp() {
-		global $wgContLang;
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -34,20 +33,12 @@ class ContentHandlerTest extends MediaWikiTestCase {
 			],
 		] );
 
-		// Reset namespace cache
-		MWNamespace::clearCaches();
-		$wgContLang->resetNamespaces();
-		// And LinkCache
+		// Reset LinkCache
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'LinkCache' );
 	}
 
 	protected function tearDown() {
-		global $wgContLang;
-
-		// Reset namespace cache
-		MWNamespace::clearCaches();
-		$wgContLang->resetNamespaces();
-		// And LinkCache
+		// Reset LinkCache
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'LinkCache' );
 
 		parent::tearDown();
