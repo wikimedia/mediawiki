@@ -704,6 +704,10 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				return $object;
 			}
 		);
+
+		if ( $name === 'ContentLanguage' ) {
+			$this->doSetMwGlobals( [ 'wgContLang' => $object ] );
+		}
 	}
 
 	/**
@@ -746,6 +750,20 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			$pairs = [ $pairs => $value ];
 		}
 
+		if ( isset( $pairs['wgContLang'] ) ) {
+			throw new MWException(
+				'No setting $wgContLang, use setContentLang() or setService( \'ContentLanguage\' )'
+			);
+		}
+
+		$this->doSetMwGlobals( $pairs, $value );
+	}
+
+	/**
+	 * An internal method that allows setService() to set globals that tests are not supposed to
+	 * touch.
+	 */
+	private function doSetMwGlobals( $pairs, $value = null ) {
 		$this->stashMwGlobals( array_keys( $pairs ) );
 
 		foreach ( $pairs as $key => $value ) {
@@ -984,10 +1002,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			$langCode = $lang;
 			$langObj = Language::factory( $langCode );
 		}
-		$this->setMwGlobals( [
-			'wgLanguageCode' => $langCode,
-			'wgContLang' => $langObj,
-		] );
+		$this->setMwGlobals( 'wgLanguageCode', $langCode );
+		$this->setService( 'ContentLanguage', $langObj );
 	}
 
 	/**

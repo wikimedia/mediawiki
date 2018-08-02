@@ -366,6 +366,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'ActorMigration' => [ 'ActorMigration', ActorMigration::class ],
 			'ConfigRepository' => [ 'ConfigRepository', \MediaWiki\Config\ConfigRepository::class ],
 			'MagicWordFactory' => [ 'MagicWordFactory', MagicWordFactory::class ],
+			'ContentLanguage' => [ 'ContentLanguage', Language::class ],
 		];
 	}
 

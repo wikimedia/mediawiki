@@ -873,6 +873,14 @@ class MediaWikiServices extends ServiceContainer {
 		return $this->getService( 'MagicWordFactory' );
 	}
 
+	/**
+	 * @since 1.32
+	 * @return \Language
+	 */
+	public function getContentLanguage() {
+		return $this->getService( 'ContentLanguage' );
+	}
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service getter here, don't forget to add a test
 	// case for it in MediaWikiServicesTest::provideGetters() and in
