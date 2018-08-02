@@ -15,6 +15,7 @@ This is a security and maintenance release of the MediaWiki 1.31 branch.
 * (T151415) Log email changes.
 * (T197206) Fix performance regression when multiple DB used without caching.
 * (T197030) PHPSessionHandler: Suppress headers warnings in initialize().
+* (T182377, T196793) Exif: Guard against uncountable tag values.
 
 === Changes since MediaWiki 1.31.0-rc.2 ===
 * (T195783) Initialize PSR-4 namespaces at same stage as normal autoloader.
