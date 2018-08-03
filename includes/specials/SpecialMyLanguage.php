@@ -23,6 +23,8 @@
  * @copyright Copyright © 2010-2013 Niklas Laxström, Siebrand Mazeland
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Unlisted special page just to redirect the user to the translated version of
  * a page, if it exists.
@@ -90,17 +92,17 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 			$base = $page->getRedirectTarget();
 		}
 
-		$uiCode = $this->getLanguage()->getCode();
-		$wikiLangCode = $this->getConfig()->get( 'LanguageCode' );
+		$uiLang = $this->getLanguage();
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 
-		if ( $uiCode === $wikiLangCode ) {
+		if ( $uiLang->equals( $contLang ) ) {
 			// Short circuit when the current UI language is the
 			// wiki's default language to avoid unnecessary page lookups.
 			return $base;
 		}
 
 		// Check for a subpage in current UI language
-		$proposed = $base->getSubpage( $uiCode );
+		$proposed = $base->getSubpage( $uiLang->getCode() );
 		if ( $proposed && $proposed->exists() ) {
 			return $proposed;
 		}
@@ -111,9 +113,9 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		}
 
 		// Check for fallback languages specified by the UI language
-		$possibilities = Language::getFallbacksFor( $uiCode );
+		$possibilities = $uiLang->getFallbackLanguages();
 		foreach ( $possibilities as $lang ) {
-			if ( $lang !== $wikiLangCode ) {
+			if ( $lang !== $contLang->getCode() ) {
 				$proposed = $base->getSubpage( $lang );
 				if ( $proposed && $proposed->exists() ) {
 					return $proposed;
