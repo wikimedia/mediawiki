@@ -1547,7 +1547,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 
 		// TODO: In the wiring, register a listener for this on the new PageEventEmitter
 		ResourceLoaderWikiModule::invalidateModuleCache(
-			$title, $oldLegacyRevision, $legacyRevision, $this->getWikiId()
+			$title, $oldLegacyRevision, $legacyRevision, $this->getWikiId() ?: wfWikiID()
 		);
 
 		$this->doTransition( 'done' );
