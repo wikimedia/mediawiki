@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * Parse some wikitext.
  *
@@ -103,9 +106,7 @@ class CLIParser extends Maintenance {
 	}
 
 	protected function initParser() {
-		global $wgParserConf;
-		$parserClass = $wgParserConf['class'];
-		$this->parser = new $parserClass();
+		$this->parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 	}
 
 	/**

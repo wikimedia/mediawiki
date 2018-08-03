@@ -3,7 +3,6 @@
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
-use Wikimedia\ObjectFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -38,13 +37,13 @@ class DefaultPreferencesFactoryTest extends MediaWikiTestCase {
 
 	public function setUp() {
 		parent::setUp();
-		global $wgParserConf;
 		$this->context = new RequestContext();
 		$this->context->setTitle( Title::newFromText( self::class ) );
-		$this->setMwGlobals( 'wgParser',
-			ObjectFactory::constructClassInstance( $wgParserConf['class'], [ $wgParserConf ] )
-		);
-		$this->config = MediaWikiServices::getInstance()->getMainConfig();
+
+		$services = MediaWikiServices::getInstance();
+
+		$this->setMwGlobals( 'wgParser', $services->getParserFactory()->create() );
+		$this->config = $services->getMainConfig();
 	}
 
 	/**

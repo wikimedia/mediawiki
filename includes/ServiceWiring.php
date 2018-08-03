@@ -56,7 +56,6 @@ use MediaWiki\Storage\RevisionLookup;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\RevisionStoreFactory;
 use MediaWiki\Storage\SqlBlobStore;
-use Wikimedia\ObjectFactory;
 
 return [
 	'ActorMigration' => function ( MediaWikiServices $services ) : ActorMigration {
@@ -367,9 +366,7 @@ return [
 	},
 
 	'Parser' => function ( MediaWikiServices $services ) : Parser {
-		$conf = $services->getMainConfig()->get( 'ParserConf' );
-		return ObjectFactory::constructClassInstance( $conf['class'],
-			[ $conf, $services->getMagicWordFactory() ] );
+		return $services->getParserFactory()->create();
 	},
 
 	'ParserCache' => function ( MediaWikiServices $services ) : ParserCache {
