@@ -309,67 +309,71 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 	public function provideGetService() {
 		// NOTE: This should list all service getters defined in ServiceWiring.php.
 		return [
+			'_MediaWikiTitleCodec' => [ '_MediaWikiTitleCodec', MediaWikiTitleCodec::class ],
+			'_SqlBlobStore' => [ '_SqlBlobStore', SqlBlobStore::class ],
+			'ActorMigration' => [ 'ActorMigration', ActorMigration::class ],
+			'BlobStore' => [ 'BlobStore', BlobStore::class ],
+			'BlobStoreFactory' => [ 'BlobStoreFactory', BlobStoreFactory::class ],
 			'BootstrapConfig' => [ 'BootstrapConfig', Config::class ],
+			'ChangeTagDefStore' => [ 'ChangeTagDefStore', NameTableStore::class ],
+			'CommentStore' => [ 'CommentStore', CommentStore::class ],
 			'ConfigFactory' => [ 'ConfigFactory', ConfigFactory::class ],
-			'MainConfig' => [ 'MainConfig', Config::class ],
-			'SiteStore' => [ 'SiteStore', SiteStore::class ],
-			'SiteLookup' => [ 'SiteLookup', SiteLookup::class ],
-			'StatsdDataFactory' => [ 'StatsdDataFactory', IBufferingStatsdDataFactory::class ],
-			'PerDbNameStatsdDataFactory' =>
-				[ 'PerDbNameStatsdDataFactory', IBufferingStatsdDataFactory::class ],
-			'InterwikiLookup' => [ 'InterwikiLookup', InterwikiLookup::class ],
-			'EventRelayerGroup' => [ 'EventRelayerGroup', EventRelayerGroup::class ],
-			'SearchEngineFactory' => [ 'SearchEngineFactory', SearchEngineFactory::class ],
-			'SearchEngineConfig' => [ 'SearchEngineConfig', SearchEngineConfig::class ],
-			'SkinFactory' => [ 'SkinFactory', SkinFactory::class ],
-			'DBLoadBalancerFactory' => [ 'DBLoadBalancerFactory', Wikimedia\Rdbms\LBFactory::class ],
-			'DBLoadBalancer' => [ 'DBLoadBalancer', Wikimedia\Rdbms\LoadBalancer::class ],
-			'WatchedItemStore' => [ 'WatchedItemStore', WatchedItemStore::class ],
-			'WatchedItemQueryService' => [ 'WatchedItemQueryService', WatchedItemQueryService::class ],
-			'CryptRand' => [ 'CryptRand', CryptRand::class ],
+			'ConfigRepository' => [ 'ConfigRepository', \MediaWiki\Config\ConfigRepository::class ],
+			'ConfiguredReadOnlyMode' => [ 'ConfiguredReadOnlyMode', ConfiguredReadOnlyMode::class ],
+			'ContentLanguage' => [ 'ContentLanguage', Language::class ],
+			'ContentModelStore' => [ 'ContentModelStore', NameTableStore::class ],
 			'CryptHKDF' => [ 'CryptHKDF', CryptHKDF::class ],
-			'MediaHandlerFactory' => [ 'MediaHandlerFactory', MediaHandlerFactory::class ],
-			'Parser' => [ 'Parser', Parser::class ],
-			'ParserCache' => [ 'ParserCache', ParserCache::class ],
+			'CryptRand' => [ 'CryptRand', CryptRand::class ],
+			'DBLoadBalancer' => [ 'DBLoadBalancer', Wikimedia\Rdbms\LoadBalancer::class ],
+			'DBLoadBalancerFactory' =>
+				[ 'DBLoadBalancerFactory', Wikimedia\Rdbms\LBFactory::class ],
+			'EventRelayerGroup' => [ 'EventRelayerGroup', EventRelayerGroup::class ],
+			'ExternalStoreFactory' => [ 'ExternalStoreFactory', ExternalStoreFactory::class ],
 			'GenderCache' => [ 'GenderCache', GenderCache::class ],
+			'HttpRequestFactory' => [ 'HttpRequestFactory', HttpRequestFactory::class ],
+			'InterwikiLookup' => [ 'InterwikiLookup', InterwikiLookup::class ],
 			'LinkCache' => [ 'LinkCache', LinkCache::class ],
 			'LinkRenderer' => [ 'LinkRenderer', LinkRenderer::class ],
 			'LinkRendererFactory' => [ 'LinkRendererFactory', LinkRendererFactory::class ],
-			'_MediaWikiTitleCodec' => [ '_MediaWikiTitleCodec', MediaWikiTitleCodec::class ],
-			'MimeAnalyzer' => [ 'MimeAnalyzer', MimeAnalyzer::class ],
-			'TitleFormatter' => [ 'TitleFormatter', TitleFormatter::class ],
-			'TitleParser' => [ 'TitleParser', TitleParser::class ],
-			'ProxyLookup' => [ 'ProxyLookup', ProxyLookup::class ],
+			'LocalServerObjectCache' => [ 'LocalServerObjectCache', BagOStuff::class ],
+			'MagicWordFactory' => [ 'MagicWordFactory', MagicWordFactory::class ],
+			'MainConfig' => [ 'MainConfig', Config::class ],
 			'MainObjectStash' => [ 'MainObjectStash', BagOStuff::class ],
 			'MainWANObjectCache' => [ 'MainWANObjectCache', WANObjectCache::class ],
-			'LocalServerObjectCache' => [ 'LocalServerObjectCache', BagOStuff::class ],
-			'VirtualRESTServiceClient' => [ 'VirtualRESTServiceClient', VirtualRESTServiceClient::class ],
-			'ShellCommandFactory' => [ 'ShellCommandFactory', CommandFactory::class ],
-			'BlobStoreFactory' => [ 'BlobStoreFactory', BlobStoreFactory::class ],
-			'BlobStore' => [ 'BlobStore', BlobStore::class ],
-			'_SqlBlobStore' => [ '_SqlBlobStore', SqlBlobStore::class ],
+			'MediaHandlerFactory' => [ 'MediaHandlerFactory', MediaHandlerFactory::class ],
+			'MimeAnalyzer' => [ 'MimeAnalyzer', MimeAnalyzer::class ],
+			'OldRevisionImporter' => [ 'OldRevisionImporter', OldRevisionImporter::class ],
+			'Parser' => [ 'Parser', Parser::class ],
+			'ParserCache' => [ 'ParserCache', ParserCache::class ],
+			'PasswordFactory' => [ 'PasswordFactory', PasswordFactory::class ],
+			'PerDbNameStatsdDataFactory' =>
+				[ 'PerDbNameStatsdDataFactory', IBufferingStatsdDataFactory::class ],
+			'PreferencesFactory' => [ 'PreferencesFactory', PreferencesFactory::class ],
+			'ProxyLookup' => [ 'ProxyLookup', ProxyLookup::class ],
+			'ReadOnlyMode' => [ 'ReadOnlyMode', ReadOnlyMode::class ],
+			'RevisionFactory' => [ 'RevisionFactory', RevisionFactory::class ],
+			'RevisionLookup' => [ 'RevisionLookup', RevisionLookup::class ],
 			'RevisionStore' => [ 'RevisionStore', RevisionStore::class ],
 			'RevisionStoreFactory' => [ 'RevisionStoreFactory', RevisionStoreFactory::class ],
-			'RevisionLookup' => [ 'RevisionLookup', RevisionLookup::class ],
-			'RevisionFactory' => [ 'RevisionFactory', RevisionFactory::class ],
-			'ContentModelStore' => [ 'ContentModelStore', NameTableStore::class ],
+			'SearchEngineConfig' => [ 'SearchEngineConfig', SearchEngineConfig::class ],
+			'SearchEngineFactory' => [ 'SearchEngineFactory', SearchEngineFactory::class ],
+			'ShellCommandFactory' => [ 'ShellCommandFactory', CommandFactory::class ],
+			'SiteLookup' => [ 'SiteLookup', SiteLookup::class ],
+			'SiteStore' => [ 'SiteStore', SiteStore::class ],
+			'SkinFactory' => [ 'SkinFactory', SkinFactory::class ],
 			'SlotRoleStore' => [ 'SlotRoleStore', NameTableStore::class ],
-			'HttpRequestFactory' => [ 'HttpRequestFactory', HttpRequestFactory::class ],
-			'CommentStore' => [ 'CommentStore', CommentStore::class ],
-			'ChangeTagDefStore' => [ 'ChangeTagDefStore', NameTableStore::class ],
-			'ConfiguredReadOnlyMode' => [ 'ConfiguredReadOnlyMode', ConfiguredReadOnlyMode::class ],
-			'ReadOnlyMode' => [ 'ReadOnlyMode', ReadOnlyMode::class ],
+			'StatsdDataFactory' => [ 'StatsdDataFactory', IBufferingStatsdDataFactory::class ],
+			'TitleFormatter' => [ 'TitleFormatter', TitleFormatter::class ],
+			'TitleParser' => [ 'TitleParser', TitleParser::class ],
 			'UploadRevisionImporter' => [ 'UploadRevisionImporter', UploadRevisionImporter::class ],
-			'OldRevisionImporter' => [ 'OldRevisionImporter', OldRevisionImporter::class ],
+			'VirtualRESTServiceClient' =>
+				[ 'VirtualRESTServiceClient', VirtualRESTServiceClient::class ],
+			'WatchedItemQueryService' =>
+				[ 'WatchedItemQueryService', WatchedItemQueryService::class ],
+			'WatchedItemStore' => [ 'WatchedItemStore', WatchedItemStore::class ],
 			'WikiRevisionOldRevisionImporterNoUpdates' =>
-				[ 'WikiRevisionOldRevisionImporterNoUpdates', ImportableOldRevisionImporter::class ],
-			'ExternalStoreFactory' => [ 'ExternalStoreFactory', ExternalStoreFactory::class ],
-			'PreferencesFactory' => [ 'PreferencesFactory', PreferencesFactory::class ],
-			'ActorMigration' => [ 'ActorMigration', ActorMigration::class ],
-			'ConfigRepository' => [ 'ConfigRepository', \MediaWiki\Config\ConfigRepository::class ],
-			'MagicWordFactory' => [ 'MagicWordFactory', MagicWordFactory::class ],
-			'ContentLanguage' => [ 'ContentLanguage', Language::class ],
-			'PasswordFactory' => [ 'PasswordFactory', PasswordFactory::class ],
+				[ 'WikiRevisionOldRevisionImporterNoUpdates',
+				ImportableOldRevisionImporter::class ],
 		];
 	}
 
@@ -409,4 +413,24 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function testGettersAreSorted() {
+		$methods = ( new ReflectionClass( MediaWikiServices::class ) )
+			->getMethods( ReflectionMethod::IS_STATIC | ReflectionMethod::IS_PUBLIC );
+
+		$names = array_map( function ( $method ) {
+			return $method->getName();
+		}, $methods );
+		$serviceNames = array_map( function ( $name ) {
+			return "get$name";
+		}, array_keys( $this->provideGetService() ) );
+		$names = array_values( array_filter( $names, function ( $name ) use ( $serviceNames ) {
+			return in_array( $name, $serviceNames );
+		} ) );
+
+		$sortedNames = $names;
+		sort( $sortedNames );
+
+		$this->assertSame( $sortedNames, $names,
+			'Please keep service getters sorted alphabetically' );
+	}
 }
