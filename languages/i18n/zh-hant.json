@@ -99,7 +99,8 @@
 			"Dongzn",
 			"Shangkuanlc",
 			"Kanashimi",
-			"Hello903hello"
+			"Hello903hello",
+			"Luuva"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -2143,7 +2144,7 @@
 	"cachedspecial-refresh-now": "檢視最新版本。",
 	"categories": "分類",
 	"categories-submit": "顯示",
-	"categoriespagetext": "下列為包含頁面或媒體的{{PLURAL:$1|分類}}。\n[[Special:UnusedCategories|未使用的分類]] 不會在此顯示。\n請參考 [[Special:WantedCategories|需要的分類]]。",
+	"categoriespagetext": "下列為存在於 wiki 裡可能有、或可能沒被使用到的{{PLURAL:$1|分類|分類}}。\n請參考[[Special:WantedCategories|所需的分類]]。",
 	"categoriesfrom": "顯示分類開始於：",
 	"deletedcontributions": "已刪除的使用者貢獻",
 	"deletedcontributions-title": "已刪除的使用者貢獻",
