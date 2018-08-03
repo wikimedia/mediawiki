@@ -51,9 +51,6 @@ use Wikimedia\ScopedCallback;
  * - Parser::getPreloadText()
  *     removes <noinclude> sections and <includeonly> tags
  *
- * Globals used:
- *    object: $wgContLang
- *
  * @warning $wgUser or $wgTitle or $wgRequest or $wgLang. Keep them away!
  *
  * @par Settings:
@@ -966,6 +963,16 @@ class Parser {
 	 */
 	public function getMagicWordFactory() {
 		return $this->magicWordFactory;
+	}
+
+	/**
+	 * Get the content language that this Parser is using
+	 *
+	 * @since 1.32
+	 * @return Language
+	 */
+	public function getContentLanguage() {
+		return $this->magicWordFactory->getContentLanguage();
 	}
 
 	/**
@@ -2147,8 +2154,7 @@ class Parser {
 		if ( $useLinkPrefixExtension ) {
 			# Match the end of a line for a word that's not followed by whitespace,
 			# e.g. in the case of 'The Arab al[[Razi]]', 'al' will be matched
-			global $wgContLang;
-			$charset = $wgContLang->linkPrefixCharset();
+			$charset = $this->getContentLanguage()->linkPrefixCharset();
 			$e2 = "/^((?>.*[^$charset]|))(.+)$/sDu";
 		}
 
@@ -2509,7 +2515,7 @@ class Parser {
 	 * @return string
 	 */
 	public function getVariableValue( $index, $frame = false ) {
-		global $wgContLang, $wgSitename, $wgServer, $wgServerName;
+		global $wgSitename, $wgServer, $wgServerName;
 		global $wgArticlePath, $wgScriptPath, $wgStylePath;
 
 		if ( is_null( $this->mTitle ) ) {
@@ -2703,10 +2709,12 @@ class Parser {
 				$value = $this->getRevisionSize();
 				break;
 			case 'namespace':
-				$value = str_replace( '_', ' ', $wgContLang->getNsText( $this->mTitle->getNamespace() ) );
+				$value = str_replace( '_', ' ',
+					$this->getContentLanguage()->getNsText( $this->mTitle->getNamespace() ) );
 				break;
 			case 'namespacee':
-				$value = wfUrlencode( $wgContLang->getNsText( $this->mTitle->getNamespace() ) );
+				$value = wfUrlencode( $this->getContentLanguage()->
+					getNsText( $this->mTitle->getNamespace() ) );
 				break;
 			case 'namespacenumber':
 				$value = $this->mTitle->getNamespace();
@@ -2849,15 +2857,13 @@ class Parser {
 	 * @return string
 	 */
 	private function getRevisionTimestampSubstring( $start, $len, $mtts, $variable ) {
-		global $wgContLang;
-
 		# Get the timezone-adjusted timestamp to be used for this revision
 		$resNow = substr( $this->getRevisionTimestamp(), $start, $len );
 		# Possibly set vary-revision if there is not yet an associated revision
 		if ( !$this->getRevisionObject() ) {
 			# Get the timezone-adjusted timestamp $mtts seconds in the future
 			$resThen = substr(
-				$wgContLang->userAdjust( wfTimestamp( TS_MW, time() + $mtts ), '' ),
+				$this->getContentLanguage()->userAdjust( wfTimestamp( TS_MW, time() + $mtts ), '' ),
 				$start,
 				$len
 			);
@@ -3404,14 +3410,12 @@ class Parser {
 	 * @return array
 	 */
 	public function callParserFunction( $frame, $function, array $args = [] ) {
-		global $wgContLang;
-
 		# Case sensitive functions
 		if ( isset( $this->mFunctionSynonyms[1][$function] ) ) {
 			$function = $this->mFunctionSynonyms[1][$function];
 		} else {
 			# Case insensitive functions
-			$function = $wgContLang->lc( $function );
+			$function = $this->getContentLanguage()->lc( $function );
 			if ( isset( $this->mFunctionSynonyms[0][$function] ) ) {
 				$function = $this->mFunctionSynonyms[0][$function];
 			} else {
@@ -3676,8 +3680,8 @@ class Parser {
 					break;
 				}
 			} elseif ( $title->getNamespace() == NS_MEDIAWIKI ) {
-				global $wgContLang;
-				$message = wfMessage( $wgContLang->lcfirst( $title->getText() ) )->inContentLanguage();
+				$message = wfMessage( MediaWikiServices::getInstance()->getContentLanguage()->
+					lcfirst( $title->getText() ) )->inContentLanguage();
 				if ( !$message->exists() ) {
 					$text = false;
 					break;
@@ -4514,19 +4518,15 @@ class Parser {
 	 * @return string
 	 */
 	private function pstPass2( $text, $user ) {
-		global $wgContLang;
-
-		# Note: This is the timestamp saved as hardcoded wikitext to
-		# the database, we use $wgContLang here in order to give
-		# everyone the same signature and use the default one rather
-		# than the one selected in each user's preferences.
-		# (see also T14815)
+		# Note: This is the timestamp saved as hardcoded wikitext to the database, we use
+		# $this->getContentLanguage() here in order to give everyone the same signature and use the
+		# default one rather than the one selected in each user's preferences.  (see also T14815)
 		$ts = $this->mOptions->getTimestamp();
 		$timestamp = MWTimestamp::getLocalInstance( $ts );
 		$ts = $timestamp->format( 'YmdHis' );
 		$tzMsg = $timestamp->getTimezoneMessage()->inContentLanguage()->text();
 
-		$d = $wgContLang->timeanddate( $ts, false, false ) . " ($tzMsg)";
+		$d = $this->getContentLanguage()->timeanddate( $ts, false, false ) . " ($tzMsg)";
 
 		# Variable replacement
 		# Because mOutputType is OT_WIKI, this will only process {{subst:xxx}} type tags
@@ -4877,8 +4877,6 @@ class Parser {
 	 * @return string|callable The old callback function for this name, if any
 	 */
 	public function setFunctionHook( $id, callable $callback, $flags = 0 ) {
-		global $wgContLang;
-
 		$oldVal = isset( $this->mFunctionHooks[$id] ) ? $this->mFunctionHooks[$id][0] : null;
 		$this->mFunctionHooks[$id] = [ $callback, $flags ];
 
@@ -4894,7 +4892,7 @@ class Parser {
 		foreach ( $synonyms as $syn ) {
 			# Case
 			if ( !$sensitive ) {
-				$syn = $wgContLang->lc( $syn );
+				$syn = $this->getContentLanguage()->lc( $syn );
 			}
 			# Add leading hash
 			if ( !( $flags & self::SFH_NO_HASH ) ) {
@@ -5730,8 +5728,6 @@ class Parser {
 	 */
 	public function getRevisionTimestamp() {
 		if ( is_null( $this->mRevisionTimestamp ) ) {
-			global $wgContLang;
-
 			$revObject = $this->getRevisionObject();
 			$timestamp = $revObject ? $revObject->getTimestamp() : wfTimestampNow();
 
@@ -5740,7 +5736,7 @@ class Parser {
 			# Since this value will be saved into the parser cache, served
 			# to other users, and potentially even used inside links and such,
 			# it needs to be consistent for all visitors.
-			$this->mRevisionTimestamp = $wgContLang->userAdjust( $timestamp, '' );
+			$this->mRevisionTimestamp = $this->getContentLanguage()->userAdjust( $timestamp, '' );
 
 		}
 		return $this->mRevisionTimestamp;
