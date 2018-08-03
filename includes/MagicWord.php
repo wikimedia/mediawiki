@@ -90,6 +90,9 @@ class MagicWord {
 	/** @var bool */
 	private $mFound = false;
 
+	/** @var Language */
+	private $contLang;
+
 	/**#@-*/
 
 	/**
@@ -100,11 +103,17 @@ class MagicWord {
 	 * @param string|null $id The internal name of the magic word
 	 * @param string[]|string $syn synonyms for the magic word
 	 * @param bool $cs If magic word is case sensitive
+	 * @param Language|null $contLang Content language
 	 */
-	public function __construct( $id = null, $syn = [], $cs = false ) {
+	public function __construct( $id = null, $syn = [], $cs = false, Language $contLang = null ) {
 		$this->mId = $id;
 		$this->mSynonyms = (array)$syn;
 		$this->mCaseSensitive = $cs;
+		$this->contLang = $contLang;
+
+		if ( !$contLang ) {
+			$this->contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		}
 	}
 
 	/**
@@ -166,9 +175,8 @@ class MagicWord {
 	 * @throws MWException
 	 */
 	public function load( $id ) {
-		global $wgContLang;
 		$this->mId = $id;
-		$wgContLang->getMagic( $this );
+		$this->contLang->getMagic( $this );
 		if ( !$this->mSynonyms ) {
 			$this->mSynonyms = [ 'brionmademeputthishere' ];
 			throw new MWException( "Error: invalid magic word '$id'" );
@@ -486,9 +494,8 @@ class MagicWord {
 	 * @param string $value
 	 */
 	public function addToArray( &$array, $value ) {
-		global $wgContLang;
 		foreach ( $this->mSynonyms as $syn ) {
-			$array[$wgContLang->lc( $syn )] = $value;
+			$array[$this->contLang->lc( $syn )] = $value;
 		}
 	}
 

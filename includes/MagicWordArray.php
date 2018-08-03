@@ -81,14 +81,13 @@ class MagicWordArray {
 	 */
 	public function getHash() {
 		if ( is_null( $this->hash ) ) {
-			global $wgContLang;
 			$this->hash = [ 0 => [], 1 => [] ];
 			foreach ( $this->names as $name ) {
 				$magic = $this->factory->get( $name );
 				$case = intval( $magic->isCaseSensitive() );
 				foreach ( $magic->getSynonyms() as $syn ) {
 					if ( !$case ) {
-						$syn = $wgContLang->lc( $syn );
+						$syn = $this->factory->getContentLanguage()->lc( $syn );
 					}
 					$this->hash[$case][$syn] = $name;
 				}
@@ -268,8 +267,7 @@ class MagicWordArray {
 		if ( isset( $hash[1][$text] ) ) {
 			return $hash[1][$text];
 		}
-		global $wgContLang;
-		$lc = $wgContLang->lc( $text );
+		$lc = $this->factory->getContentLanguage()->lc( $text );
 		if ( isset( $hash[0][$lc] ) ) {
 			return $hash[0][$lc];
 		}
