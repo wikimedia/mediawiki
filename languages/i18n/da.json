@@ -3674,5 +3674,7 @@
 	"edit-error-long": "Fejl:\n\n$1",
 	"gotointerwiki": "Forlader {{SITENAME}}",
 	"pagedata-bad-title": "Ugyldig titel: $1",
-	"passwordpolicies-group": "Gruppe"
+	"passwordpolicies": "Password politikker",
+	"passwordpolicies-group": "Gruppe",
+	"passwordpolicies-policies": "Politikker"
 }

@@ -1140,6 +1140,7 @@
 	"grouppage-autoconfirmed": "{{ns:project}}:Аўтаматычна пацьверджаныя ўдзельнікі",
 	"grouppage-bot": "{{ns:project}}:Робаты",
 	"grouppage-sysop": "{{ns:project}}:Адміністрацыя",
+	"grouppage-interface-admin": "{{ns:project}}:Адміністратары інтэрфэйсу",
 	"grouppage-bureaucrat": "{{ns:project}}:Бюракраты",
 	"grouppage-suppress": "{{ns:project}}:Падаўляльнікі_вэрсіяў",
 	"right-read": "Прагляд старонак",
