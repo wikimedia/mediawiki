@@ -192,7 +192,21 @@ class MagicWordFactory {
 	/** @var MagicWordArray */
 	private $mDoubleUnderscoreArray = null;
 
+	/** @var Language */
+	private $contLang;
+
 	/**#@-*/
+
+	/**
+	 * @param Language $contLang Content language
+	 */
+	public function __construct( Language $contLang ) {
+		$this->contLang = $contLang;
+	}
+
+	public function getContentLanguage() {
+		return $this->contLang;
+	}
 
 	/**
 	 * Factory: creates an object representing an ID
@@ -203,7 +217,7 @@ class MagicWordFactory {
 	 */
 	public function get( $id ) {
 		if ( !isset( $this->mObjects[$id] ) ) {
-			$mw = new MagicWord();
+			$mw = new MagicWord( null, [], false, $this->contLang );
 			$mw->load( $id );
 			$this->mObjects[$id] = $mw;
 		}
