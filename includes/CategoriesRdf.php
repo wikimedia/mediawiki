@@ -85,6 +85,10 @@ class CategoriesRdf {
 	 * @param int $subcategories Subcategory count
 	 */
 	public function writeCategoryData( $categoryName, $isHidden, $pages, $subcategories ) {
+		if ( $pages < 0 ) {
+			// Bugfix for T201119
+			$pages = 0;
+		}
 		$title = Title::makeTitle( NS_CATEGORY, $categoryName );
 		$this->rdfWriter->about( $this->titleToUrl( $title ) )
 			->say( 'a' )
