@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -534,6 +535,8 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		Title $title, Revision $old = null, Revision $new = null, $wikiId
 	) {
 		static $formats = [ CONTENT_FORMAT_CSS, CONTENT_FORMAT_JAVASCRIPT ];
+
+		Assert::parameterType( 'string', $wikiId, '$wikiId' );
 
 		// TODO: MCR: differentiate between page functionality and content model!
 		//       Not all pages containing CSS or JS have to be modules! [PageType]
