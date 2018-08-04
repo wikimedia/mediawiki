@@ -236,7 +236,7 @@ class EditPage {
 	public $action = 'submit';
 
 	/** @var bool Whether an edit conflict needs to be resolved. Detected based on whether
-	 * $editRevId is different from the current revision. When a conflict has successfully
+	 * $editRevId is different than the latest revision. When a conflict has successfully
 	 * been resolved by a 3-way-merge, this field is set to false.
 	 */
 	public $isConflict = false;
@@ -250,7 +250,10 @@ class EditPage {
 	/** @var string */
 	public $formtype;
 
-	/** @var bool */
+	/** @var bool
+	 * True the first time the edit form is rendered, false after re-rendering
+	 * with diff, save prompts, etc.
+	 */
 	public $firsttime;
 
 	/** @var bool|stdClass */
@@ -330,7 +333,9 @@ class EditPage {
 	/** @var bool */
 	public $recreate = false;
 
-	/** @var string */
+	/** @var string
+	 * Page content input field.
+	 */
 	public $textbox1 = '';
 
 	/** @var string */
@@ -339,18 +344,24 @@ class EditPage {
 	/** @var string */
 	public $summary = '';
 
-	/** @var bool */
+	/** @var bool
+	 * If true, hide the summary field.
+	 */
 	public $nosummary = false;
 
-	/** @var string */
+	/** @var string
+	 * Timestamp of the latest revision of the page when editing was initiated
+	 * on the client.
+	 */
 	public $edittime = '';
 
-	/** @var int ID of the current revision at the time editing was initiated on the client.
-	 * This is used to detect and resolve edit conflicts.
+	/** @var int Revision ID of the latest revision of the page when editing
+	 * was initiated on the client.  This is used to detect and resolve edit
+	 * conflicts.
 	 *
 	 * @note 0 if the page did not exist at that time.
 	 * @note When starting an edit from an old revision, this still records the current
-	 * revision at the time , not the one the edit is based on.
+	 * revision at the time, not the one the edit is based on.
 	 *
 	 * @see $oldid
 	 * @see getBaseRevision()
@@ -363,10 +374,14 @@ class EditPage {
 	/** @var string */
 	public $sectiontitle = '';
 
-	/** @var string */
+	/** @var string
+	 * Timestamp from the first time the edit form was rendered.
+	 */
 	public $starttime = '';
 
 	/** @var int Revision ID the edit is based on, or 0 if it's the current revision.
+	 * FIXME: This isn't used in conflict resolution--provide a better
+	 * justification or merge with parentRevId.
 	 * @see $editRevId
 	 */
 	public $oldid = 0;
@@ -3764,6 +3779,8 @@ ERROR;
 	}
 
 	/**
+	 * Get the last log record of this page being deleted, if ever.  This is
+	 * used to detect whether a delete occured during editing.
 	 * @return bool|stdClass
 	 */
 	protected function getLastDelete() {
