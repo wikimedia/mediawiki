@@ -365,11 +365,7 @@
 		 * @return {string}
 		 */
 		text = function ( s ) {
-			if ( s !== null && s !== undefined ) {
-				return s.replace( /_/g, ' ' );
-			} else {
-				return '';
-			}
+			return s.replace( /_/g, ' ' );
 		},
 
 		/**
