@@ -460,7 +460,8 @@ return [
 				DefaultPreferencesFactory::$constructorOptions, $services->getMainConfig() ),
 			$services->getContentLanguage(),
 			AuthManager::singleton(),
-			$services->getLinkRendererFactory()->create()
+			$services->getLinkRendererFactory()->create(),
+			$services->getNamespaceInfo()
 		);
 		$factory->setLogger( LoggerFactory::getInstance( 'preferences' ) );
 

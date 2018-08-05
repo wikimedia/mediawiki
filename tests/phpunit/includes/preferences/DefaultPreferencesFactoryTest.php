@@ -52,11 +52,19 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 	 * @return DefaultPreferencesFactory
 	 */
 	protected function getPreferencesFactory() {
+		$mockNsInfo = $this->createMock( NamespaceInfo::class );
+		$mockNsInfo->method( 'getValidNamespaces' )->willReturn( [
+			NS_MAIN, NS_TALK, NS_USER, NS_USER_TALK
+		] );
+		$mockNsInfo->expects( $this->never() )
+			->method( $this->anythingBut( 'getValidNamespaces', '__destruct' ) );
+
 		return new DefaultPreferencesFactory(
 			new ServiceOptions( DefaultPreferencesFactory::$constructorOptions, $this->config ),
 			new Language(),
 			AuthManager::singleton(),
-			MediaWikiServices::getInstance()->getLinkRenderer()
+			MediaWikiServices::getInstance()->getLinkRenderer(),
+			$mockNsInfo
 		);
 	}
 
