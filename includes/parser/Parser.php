@@ -280,6 +280,9 @@ class Parser {
 	/** @var LinkRendererFactory */
 	private $linkRendererFactory;
 
+	/** @var NamespaceInfo */
+	private $nsInfo;
+
 	/**
 	 * @param array $parserConf See $wgParserConf documentation
 	 * @param MagicWordFactory|null $magicWordFactory
@@ -289,12 +292,14 @@ class Parser {
 	 * @param SpecialPageFactory|null $spFactory
 	 * @param Config|null $siteConfig
 	 * @param LinkRendererFactory|null $linkRendererFactory
+	 * @param NamespaceInfo|null $nsInfo
 	 */
 	public function __construct(
 		array $parserConf = [], MagicWordFactory $magicWordFactory = null,
 		Language $contLang = null, ParserFactory $factory = null, $urlProtocols = null,
 		SpecialPageFactory $spFactory = null, Config $siteConfig = null,
-		LinkRendererFactory $linkRendererFactory = null
+		LinkRendererFactory $linkRendererFactory = null,
+		NamespaceInfo $nsInfo = null
 	) {
 		$this->mConf = $parserConf;
 		$this->mUrlProtocols = $urlProtocols ?? wfUrlProtocols();
@@ -325,10 +330,10 @@ class Parser {
 
 		$this->factory = $factory ?? $services->getParserFactory();
 		$this->specialPageFactory = $spFactory ?? $services->getSpecialPageFactory();
-		$this->siteConfig = $siteConfig ?? MediaWikiServices::getInstance()->getMainConfig();
-
+		$this->siteConfig = $siteConfig ?? $services->getMainConfig();
 		$this->linkRendererFactory =
-			$linkRendererFactory ?? MediaWikiServices::getInstance()->getLinkRendererFactory();
+			$linkRendererFactory ?? $services->getLinkRendererFactory();
+		$this->nsInfo = $nsInfo ?? $services->getNamespaceInfo();
 	}
 
 	/**
@@ -2529,7 +2534,7 @@ class Parser {
 	 */
 	public function areSubpagesAllowed() {
 		# Some namespaces don't allow subpages
-		return MWNamespace::hasSubpages( $this->mTitle->getNamespace() );
+		return $this->nsInfo->hasSubpages( $this->mTitle->getNamespace() );
 	}
 
 	/**
@@ -2600,7 +2605,7 @@ class Parser {
 			$this->siteConfig->get( 'MiserMode' ) &&
 			!$this->mOptions->getInterfaceMessage() &&
 			// @TODO: disallow this word on all namespaces
-			MWNamespace::isContent( $this->mTitle->getNamespace() )
+			$this->nsInfo->isContent( $this->mTitle->getNamespace() )
 		) {
 			return $this->mRevisionId ? '-' : '';
 		};
@@ -3339,7 +3344,7 @@ class Parser {
 							);
 						}
 					}
-				} elseif ( MWNamespace::isNonincludable( $title->getNamespace() ) ) {
+				} elseif ( $this->nsInfo->isNonincludable( $title->getNamespace() ) ) {
 					$found = false; # access denied
 					wfDebug( __METHOD__ . ": template inclusion denied for " .
 						$title->getPrefixedDBkey() . "\n" );

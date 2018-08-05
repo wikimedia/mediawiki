@@ -19,7 +19,7 @@
  * @ingroup Parser
  */
 use MediaWiki\Linker\LinkRendererFactory;
-
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Special\SpecialPageFactory;
 
 /**
@@ -47,6 +47,9 @@ class ParserFactory {
 	/** @var LinkRendererFactory */
 	private $linkRendererFactory;
 
+	/** @var NamespaceInfo */
+	private $nsInfo;
+
 	/**
 	 * @param array $parserConf See $wgParserConf documentation
 	 * @param MagicWordFactory $magicWordFactory
@@ -55,12 +58,18 @@ class ParserFactory {
 	 * @param SpecialPageFactory $spFactory
 	 * @param Config $siteConfig
 	 * @param LinkRendererFactory $linkRendererFactory
+	 * @param NamespaceInfo|null $nsInfo
 	 * @since 1.32
 	 */
 	public function __construct(
 		array $parserConf, MagicWordFactory $magicWordFactory, Language $contLang, $urlProtocols,
-		SpecialPageFactory $spFactory, Config $siteConfig, LinkRendererFactory $linkRendererFactory
+		SpecialPageFactory $spFactory, Config $siteConfig,
+		LinkRendererFactory $linkRendererFactory, NamespaceInfo $nsInfo = null
 	) {
+		if ( !$nsInfo ) {
+			wfDeprecated( __METHOD__ . ' with no NamespaceInfo argument', '1.34' );
+			$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		}
 		$this->parserConf = $parserConf;
 		$this->magicWordFactory = $magicWordFactory;
 		$this->contLang = $contLang;
@@ -68,6 +77,7 @@ class ParserFactory {
 		$this->specialPageFactory = $spFactory;
 		$this->siteConfig = $siteConfig;
 		$this->linkRendererFactory = $linkRendererFactory;
+		$this->nsInfo = $nsInfo;
 	}
 
 	/**
@@ -77,6 +87,6 @@ class ParserFactory {
 	public function create() : Parser {
 		return new Parser( $this->parserConf, $this->magicWordFactory, $this->contLang, $this,
 			$this->urlProtocols, $this->specialPageFactory, $this->siteConfig,
-			$this->linkRendererFactory );
+			$this->linkRendererFactory, $this->nsInfo );
 	}
 }
