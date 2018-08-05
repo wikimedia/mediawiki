@@ -388,10 +388,10 @@ class ParserTestRunner {
 			100 => 'MemoryAlpha',
 			101 => 'MemoryAlpha_talk'
 		];
-		// Changing wgExtraNamespaces invalidates caches in MWNamespace and
-		// any live Language object, both on setup and teardown
+		// Changing wgExtraNamespaces invalidates caches in NamespaceInfo and any live Language
+		// object, both on setup and teardown
 		$reset = function () {
-			MWNamespace::clearCaches();
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'NamespaceInfo' );
 			MediaWikiServices::getInstance()->getContentLanguage()->resetNamespaces();
 		};
 		$setup[] = $reset;

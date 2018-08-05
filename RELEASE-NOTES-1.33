@@ -37,6 +37,7 @@ Some specific notes for MediaWiki 1.33 upgrades are below:
 For notes on 1.32.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.33 ===
+
 ==== New configuration ====
 * $wgEnablePartialBlocks – This enables the Partial Blocks feature, which gives
   accounts with block permissions the ability to block users, IPs, and IP ranges
@@ -114,6 +115,7 @@ For notes on 1.32.x and older releases, see HISTORY.
   associated with this entry in the patrol log.
 
 === External library changes in 1.33 ===
+
 ==== New external libraries ====
 * Added wikimedia/password-blacklist 0.1.4.
 * Added guzzlehttp/guzzle 6.3.3.
@@ -353,6 +355,13 @@ because of Phabricator reports.
 * MessageBlobStore::getBlob(), deprecated in 1.27, has been removed.
   Use ::getBlobs() instead.
 * The .background-size() LESS mixin, deprecated in 1.27, has been removed.
+* MWNamespace::clearCaches() has been removed.  So has the $rebuild parameter
+  to MWNamespace::getCanonicalNamespaces(), which was deprecated since 1.31.
+  Instead, create a new NamespaceInfo, such as by calling
+  resetServiceForTesting( 'NamespaceInfo' ) on a MediaWikiServices.
+  For classes that inherit from MediaWikiTestCase and used setMwGlobals() to
+  modify a variable that affects namespaces, caches will automatically be
+  reset and any calls to MWNamespace::clearCaches() can be removed entirely.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
@@ -421,6 +430,7 @@ because of Phabricator reports.
 * Block::isValid is deprecated, since it is no longer needed in core.
 * Calling Maintenance::hasArg() as well as Maintenance::getArg() with no
   parameter has been deprecated. Please pass the argument number 0.
+* The MWNamespace class is deprecated.  Use MediaWikiServices::getNamespaceInfo.
 
 === Other changes in 1.33 ===
 * (T201747) Html::openElement() warns if given an element name with a space

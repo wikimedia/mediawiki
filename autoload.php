@@ -1015,6 +1015,7 @@ $wgAutoloadLocalClasses = [
 	'NamespaceAwareForeignTitleFactory' => __DIR__ . '/includes/title/NamespaceAwareForeignTitleFactory.php',
 	'NamespaceDupes' => __DIR__ . '/maintenance/namespaceDupes.php',
 	'NamespaceImportTitleFactory' => __DIR__ . '/includes/title/NamespaceImportTitleFactory.php',
+	'NamespaceInfo' => __DIR__ . '/includes/title/NamespaceInfo.php',
 	'NewFilesPager' => __DIR__ . '/includes/specials/pagers/NewFilesPager.php',
 	'NewPagesPager' => __DIR__ . '/includes/specials/pagers/NewPagesPager.php',
 	'NewUsersLogFormatter' => __DIR__ . '/includes/logging/NewUsersLogFormatter.php',

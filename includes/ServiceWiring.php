@@ -338,6 +338,10 @@ return [
 		);
 	},
 
+	'NamespaceInfo' => function ( MediaWikiServices $services ) : NamespaceInfo {
+		return new NamespaceInfo( $services->getMainConfig() );
+	},
+
 	'OldRevisionImporter' => function ( MediaWikiServices $services ) : OldRevisionImporter {
 		return new ImportableOldRevisionImporter(
 			true,

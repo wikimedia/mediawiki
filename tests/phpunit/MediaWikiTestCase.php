@@ -544,6 +544,24 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		$this->tmpFiles = array_merge( $this->tmpFiles, (array)$files );
 	}
 
+	// @todo Make const when we no longer support HHVM (T192166)
+	private static $namespaceAffectingSettings = [
+		'wgAllowImageMoving',
+		'wgCanonicalNamespaceNames',
+		'wgCapitalLinkOverrides',
+		'wgCapitalLinks',
+		'wgContentNamespaces',
+		'wgExtensionMessagesFiles',
+		'wgExtensionNamespaces',
+		'wgExtraNamespaces',
+		'wgExtraSignatureNamespaces',
+		'wgNamespaceContentModels',
+		'wgNamespaceProtection',
+		'wgNamespacesWithSubpages',
+		'wgNonincludableNamespaces',
+		'wgRestrictionLevels',
+	];
+
 	protected function tearDown() {
 		global $wgRequest, $wgSQLMode;
 
@@ -588,8 +606,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			ini_set( $name, $value );
 		}
 		if (
-			array_key_exists( 'wgExtraNamespaces', $this->mwGlobals ) ||
-			in_array( 'wgExtraNamespaces', $this->mwGlobalsToUnset )
+			array_intersect( self::$namespaceAffectingSettings, array_keys( $this->mwGlobals ) ) ||
+			array_intersect( self::$namespaceAffectingSettings, $this->mwGlobalsToUnset )
 		) {
 			$this->resetNamespaces();
 		}
@@ -731,7 +749,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			$GLOBALS[$key] = $value;
 		}
 
-		if ( array_key_exists( 'wgExtraNamespaces', $pairs ) ) {
+		if ( array_intersect( self::$namespaceAffectingSettings, array_keys( $pairs ) ) ) {
 			$this->resetNamespaces();
 		}
 	}
@@ -762,14 +780,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				. 'instance has been replaced by test code.' );
 		}
 
-		MWNamespace::clearCaches();
 		Language::clearCaches();
-
-		// We can't have the TitleFormatter holding on to an old Language object either
-		// @todo We shouldn't need to reset all the aliases here.
-		$this->localServices->resetServiceForTesting( 'TitleFormatter' );
-		$this->localServices->resetServiceForTesting( 'TitleParser' );
-		$this->localServices->resetServiceForTesting( '_MediaWikiTitleCodec' );
 	}
 
 	/**
