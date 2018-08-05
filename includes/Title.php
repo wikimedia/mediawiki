@@ -618,7 +618,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		// NOTE: ideally, this would just call makeTitle() and then isValid(),
 		// but presently, that means more overhead on a potential performance hotspot.
 
-		if ( !MWNamespace::exists( $ns ) ) {
+		if ( !MediaWikiServices::getInstance()->getNamespaceInfo()->exists( $ns ) ) {
 			return null;
 		}
 
@@ -820,7 +820,8 @@ class Title implements LinkTarget, IDBAccessObject {
 		$canonicalNamespace = false
 	) {
 		if ( $canonicalNamespace ) {
-			$namespace = MWNamespace::getCanonicalName( $ns );
+			$namespace = MediaWikiServices::getInstance()->getNamespaceInfo()->
+				getCanonicalName( $ns );
 		} else {
 			$namespace = MediaWikiServices::getInstance()->getContentLanguage()->getNsText( $ns );
 		}
@@ -862,13 +863,13 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isValid() {
-		if ( !MWNamespace::exists( $this->mNamespace ) ) {
+		$services = MediaWikiServices::getInstance();
+		if ( !$services->getNamespaceInfo()->exists( $this->mNamespace ) ) {
 			return false;
 		}
 
 		try {
-			$parser = MediaWikiServices::getInstance()->getTitleParser();
-			$parser->parseTitle( $this->mDbkeyform, $this->mNamespace );
+			$services->getTitleParser()->parseTitle( $this->mDbkeyform, $this->mNamespace );
 			return true;
 		} catch ( MalformedTitleException $ex ) {
 			return false;
@@ -1086,7 +1087,8 @@ class Title implements LinkTarget, IDBAccessObject {
 		if ( $this->isExternal() ) {
 			// This probably shouldn't even happen, except for interwiki transclusion.
 			// If possible, use the canonical name for the foreign namespace.
-			$nsText = MWNamespace::getCanonicalName( $this->mNamespace );
+			$nsText = MediaWikiServices::getInstance()->getNamespaceInfo()->
+				getCanonicalName( $this->mNamespace );
 			if ( $nsText !== false ) {
 				return $nsText;
 			}
@@ -1107,8 +1109,9 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return string Namespace text
 	 */
 	public function getSubjectNsText() {
-		return MediaWikiServices::getInstance()->getContentLanguage()->
-			getNsText( MWNamespace::getSubject( $this->mNamespace ) );
+		$services = MediaWikiServices::getInstance();
+		return $services->getContentLanguage()->
+			getNsText( $services->getNamespaceInfo()->getSubject( $this->mNamespace ) );
 	}
 
 	/**
@@ -1117,20 +1120,22 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return string Namespace text
 	 */
 	public function getTalkNsText() {
-		return MediaWikiServices::getInstance()->getContentLanguage()->
-			getNsText( MWNamespace::getTalk( $this->mNamespace ) );
+		$services = MediaWikiServices::getInstance();
+		return $services->getContentLanguage()->
+			getNsText( $services->getNamespaceInfo()->getTalk( $this->mNamespace ) );
 	}
 
 	/**
 	 * Can this title have a corresponding talk page?
 	 *
-	 * @see MWNamespace::hasTalkNamespace
+	 * @see NamespaceInfo::hasTalkNamespace
 	 * @since 1.30
 	 *
 	 * @return bool True if this title either is a talk page or can have a talk page associated.
 	 */
 	public function canHaveTalkPage() {
-		return MWNamespace::hasTalkNamespace( $this->mNamespace );
+		return MediaWikiServices::getInstance()->getNamespaceInfo()->
+			hasTalkNamespace( $this->mNamespace );
 	}
 
 	/**
@@ -1148,7 +1153,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isWatchable() {
-		return !$this->isExternal() && MWNamespace::isWatchable( $this->mNamespace );
+		return !$this->isExternal() && MediaWikiServices::getInstance()->getNamespaceInfo()->
+			isWatchable( $this->mNamespace );
 	}
 
 	/**
@@ -1209,7 +1215,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @since 1.19
 	 */
 	public function inNamespace( $ns ) {
-		return MWNamespace::equals( $this->mNamespace, $ns );
+		return MediaWikiServices::getInstance()->getNamespaceInfo()->
+			equals( $this->mNamespace, $ns );
 	}
 
 	/**
@@ -1248,7 +1255,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return bool
 	 */
 	public function hasSubjectNamespace( $ns ) {
-		return MWNamespace::subjectEquals( $this->mNamespace, $ns );
+		return MediaWikiServices::getInstance()->getNamespaceInfo()->
+			subjectEquals( $this->mNamespace, $ns );
 	}
 
 	/**
@@ -1259,7 +1267,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isContentPage() {
-		return MWNamespace::isContent( $this->mNamespace );
+		return MediaWikiServices::getInstance()->getNamespaceInfo()->
+			isContent( $this->mNamespace );
 	}
 
 	/**
@@ -1269,7 +1278,10 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isMovable() {
-		if ( !MWNamespace::isMovable( $this->mNamespace ) || $this->isExternal() ) {
+		if (
+			!MediaWikiServices::getInstance()->getNamespaceInfo()->
+				isMovable( $this->mNamespace ) || $this->isExternal()
+		) {
 			// Interwiki title or immovable namespace. Hooks don't get to override here
 			return false;
 		}
@@ -1299,7 +1311,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isSubpage() {
-		return MWNamespace::hasSubpages( $this->mNamespace )
+		return MediaWikiServices::getInstance()->getNamespaceInfo()->
+			hasSubpages( $this->mNamespace )
 			? strpos( $this->getText(), '/' ) !== false
 			: false;
 	}
@@ -1495,7 +1508,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isTalkPage() {
-		return MWNamespace::isTalk( $this->mNamespace );
+		return MediaWikiServices::getInstance()->getNamespaceInfo()->
+			isTalk( $this->mNamespace );
 	}
 
 	/**
@@ -1724,7 +1738,10 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @since 1.20
 	 */
 	public function getRootText() {
-		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
+		if (
+			!MediaWikiServices::getInstance()->getNamespaceInfo()->
+				hasSubpages( $this->mNamespace )
+		) {
 			return $this->getText();
 		}
 
@@ -1760,7 +1777,10 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public function getBaseText() {
 		$text = $this->getText();
-		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
+		if (
+			!MediaWikiServices::getInstance()->getNamespaceInfo()->
+				hasSubpages( $this->mNamespace )
+		) {
 			return $text;
 		}
 
@@ -1801,7 +1821,10 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return string Subpage name
 	 */
 	public function getSubpageText() {
-		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
+		if (
+			!MediaWikiServices::getInstance()->getNamespaceInfo()->
+				hasSubpages( $this->mNamespace )
+		) {
 			return $this->mTextform;
 		}
 		$parts = explode( '/', $this->mTextform );
@@ -2868,7 +2891,10 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return bool
 	 */
 	public function hasSubpages() {
-		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
+		if (
+			!MediaWikiServices::getInstance()->getNamespaceInfo()->
+				hasSubpages( $this->mNamespace )
+		) {
 			# Duh
 			return false;
 		}
@@ -2896,7 +2922,10 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *  doesn't allow subpages
 	 */
 	public function getSubpages( $limit = -1 ) {
-		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
+		if (
+			!MediaWikiServices::getInstance()->getNamespaceInfo()->
+				hasSubpages( $this->mNamespace )
+		) {
 			return [];
 		}
 
@@ -3130,7 +3159,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return string Containing capitalized title
 	 */
 	public static function capitalize( $text, $ns = NS_MAIN ) {
-		if ( MWNamespace::isCapitalized( $ns ) ) {
+		$services = MediaWikiServices::getInstance();
+		if ( $services->getNamespaceInfo()->isCapitalized( $ns ) ) {
 			return MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $text );
 		} else {
 			return $text;
@@ -3472,14 +3502,15 @@ class Title implements LinkTarget, IDBAccessObject {
 			];
 		}
 		// Do the source and target namespaces support subpages?
-		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		if ( !$nsInfo->hasSubpages( $this->mNamespace ) ) {
 			return [
-				[ 'namespace-nosubpages', MWNamespace::getCanonicalName( $this->mNamespace ) ],
+				[ 'namespace-nosubpages', $nsInfo->getCanonicalName( $this->mNamespace ) ],
 			];
 		}
-		if ( !MWNamespace::hasSubpages( $nt->getNamespace() ) ) {
+		if ( !$nsInfo->hasSubpages( $nt->getNamespace() ) ) {
 			return [
-				[ 'namespace-nosubpages', MWNamespace::getCanonicalName( $nt->getNamespace() ) ],
+				[ 'namespace-nosubpages', $nsInfo->getCanonicalName( $nt->getNamespace() ) ],
 			];
 		}
 
@@ -4293,9 +4324,10 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public function getNamespaceKey( $prepend = 'nstab-' ) {
 		// Gets the subject namespace of this title
-		$subjectNS = MWNamespace::getSubject( $this->mNamespace );
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		$subjectNS = $nsInfo->getSubject( $this->mNamespace );
 		// Prefer canonical namespace name for HTML IDs
-		$namespaceKey = MWNamespace::getCanonicalName( $subjectNS );
+		$namespaceKey = $nsInfo->getCanonicalName( $subjectNS );
 		if ( $namespaceKey === false ) {
 			// Fallback to localised text
 			$namespaceKey = $this->getSubjectNsText();
@@ -4391,7 +4423,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	public function canUseNoindex() {
 		global $wgExemptFromUserRobotsControl;
 
-		$bannedNamespaces = $wgExemptFromUserRobotsControl ?? MWNamespace::getContentNamespaces();
+		$bannedNamespaces = $wgExemptFromUserRobotsControl ??
+			MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces();
 
 		return !in_array( $this->mNamespace, $bannedNamespaces );
 	}
@@ -4558,7 +4591,10 @@ class Title implements LinkTarget, IDBAccessObject {
 			}
 		}
 
-		if ( MWNamespace::hasSubpages( $this->mNamespace ) ) {
+		if (
+			MediaWikiServices::getInstance()->getNamespaceInfo()->
+				hasSubpages( $this->mNamespace )
+		) {
 			// Optional notice for page itself and any parent page
 			$editnotice_base = $editnotice_ns;
 			foreach ( explode( '/', $this->mDbkeyform ) as $part ) {

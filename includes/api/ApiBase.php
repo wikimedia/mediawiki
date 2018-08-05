@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -1198,7 +1199,8 @@ abstract class ApiBase extends ContextSource {
 			$provided = $this->getMain()->getCheck( $encParamName );
 
 			if ( isset( $value ) && $type == 'namespace' ) {
-				$type = MWNamespace::getValidNamespaces();
+				$type = MediaWikiServices::getInstance()->getNamespaceInfo()->
+					getValidNamespaces();
 				if ( isset( $paramSettings[self::PARAM_EXTRA_NAMESPACES] ) &&
 					is_array( $paramSettings[self::PARAM_EXTRA_NAMESPACES] )
 				) {

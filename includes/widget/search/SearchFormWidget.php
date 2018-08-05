@@ -6,7 +6,6 @@ use Hooks;
 use Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Widget\SearchInputWidget;
-use MWNamespace;
 use SearchEngineConfig;
 use SpecialSearch;
 use Xml;
@@ -240,7 +239,8 @@ class SearchFormWidget {
 		$activeNamespaces = $this->specialSearch->getNamespaces();
 		$langConverter = $this->specialSearch->getLanguage();
 		foreach ( $this->searchConfig->searchableNamespaces() as $namespace => $name ) {
-			$subject = MWNamespace::getSubject( $namespace );
+			$subject = MediaWikiServices::getInstance()->getNamespaceInfo()->
+				getSubject( $namespace );
 			if ( !isset( $rows[$subject] ) ) {
 				$rows[$subject] = "";
 			}

@@ -327,7 +327,8 @@ class MovePage {
 			[ 'cl_from' => $pageid ],
 			__METHOD__
 		);
-		$type = MediaWikiServices::getInstance()->getNamespaceInfo()->
+		$services = MediaWikiServices::getInstance();
+		$type = $services->getNamespaceInfo()->
 			getCategoryLinkType( $this->newTitle->getNamespace() );
 		foreach ( $prefixes as $prefixRow ) {
 			$prefix = $prefixRow->cl_sortkey_prefix;
@@ -428,11 +429,13 @@ class MovePage {
 		# Update watchlists
 		$oldtitle = $this->oldTitle->getDBkey();
 		$newtitle = $this->newTitle->getDBkey();
-		$oldsnamespace = MWNamespace::getSubject( $this->oldTitle->getNamespace() );
-		$newsnamespace = MWNamespace::getSubject( $this->newTitle->getNamespace() );
+		$oldsnamespace = $services->getNamespaceInfo()->
+			getSubject( $this->oldTitle->getNamespace() );
+		$newsnamespace = $services->getNamespaceInfo()->
+			getSubject( $this->newTitle->getNamespace() );
 		if ( $oldsnamespace != $newsnamespace || $oldtitle != $newtitle ) {
-			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
-			$store->duplicateAllAssociatedEntries( $this->oldTitle, $this->newTitle );
+			$services->getWatchedItemStore()->duplicateAllAssociatedEntries(
+				$this->oldTitle, $this->newTitle );
 		}
 
 		// If it is a file then move it last.

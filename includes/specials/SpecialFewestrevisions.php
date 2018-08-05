@@ -52,7 +52,8 @@ class FewestrevisionsPage extends QueryPage {
 				'redirect' => 'page_is_redirect'
 			],
 			'conds' => [
-				'page_namespace' => MWNamespace::getContentNamespaces(),
+				'page_namespace' => MediaWikiServices::getInstance()->getNamespaceInfo()->
+					getContentNamespaces(),
 				'page_id = rev_page' ],
 			'options' => [
 				'GROUP BY' => [ 'page_namespace', 'page_title', 'page_is_redirect' ]

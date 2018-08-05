@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -102,7 +104,8 @@ class RebuildFileCache extends Maintenance {
 			// Get the pages
 			$res = $dbr->select( 'page',
 				[ 'page_namespace', 'page_title', 'page_id' ],
-				[ 'page_namespace' => MWNamespace::getContentNamespaces(),
+				[ 'page_namespace' => MediaWikiServices::getInstance()->getNamespaceInfo()->
+					getContentNamespaces(),
 					"page_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd ],
 				__METHOD__,
 				[ 'ORDER BY' => 'page_id ASC', 'USE INDEX' => 'PRIMARY' ]

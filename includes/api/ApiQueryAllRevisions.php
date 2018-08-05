@@ -44,7 +44,8 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$services = MediaWikiServices::getInstance();
+		$revisionStore = $services->getRevisionStore();
 
 		$result = $this->getResult();
 
@@ -70,7 +71,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		if ( $params['namespace'] !== null ) {
 			$params['namespace'] = array_unique( $params['namespace'] );
 			sort( $params['namespace'] );
-			if ( $params['namespace'] != MWNamespace::getValidNamespaces() ) {
+			if ( $params['namespace'] != $services->getNamespaceInfo()->getValidNamespaces() ) {
 				$needPageTable = true;
 				if ( $this->getConfig()->get( 'MiserMode' ) ) {
 					$miser_ns = $params['namespace'];

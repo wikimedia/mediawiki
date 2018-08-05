@@ -57,9 +57,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$namespaceIds = $contLang->getNamespaceIds();
 		$caseSensitiveNamespaces = [];
-		foreach ( MWNamespace::getCanonicalNamespaces() as $index => $name ) {
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		foreach ( $nsInfo->getCanonicalNamespaces() as $index => $name ) {
 			$namespaceIds[$contLang->lc( $name )] = $index;
-			if ( !MWNamespace::isCapitalized( $index ) ) {
+			if ( !$nsInfo->isCapitalized( $index ) ) {
 				$caseSensitiveNamespaces[] = $index;
 			}
 		}
@@ -92,7 +93,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgEnableWriteAPI' => true, // Deprecated since MW 1.32
 			'wgFormattedNamespaces' => $contLang->getFormattedNamespaces(),
 			'wgNamespaceIds' => $namespaceIds,
-			'wgContentNamespaces' => MWNamespace::getContentNamespaces(),
+			'wgContentNamespaces' => $nsInfo->getContentNamespaces(),
 			'wgSiteName' => $conf->get( 'Sitename' ),
 			'wgDBname' => $conf->get( 'DBname' ),
 			'wgExtraSignatureNamespaces' => $conf->get( 'ExtraSignatureNamespaces' ),

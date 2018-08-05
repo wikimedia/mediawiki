@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page looking for page without any category.
  *
@@ -60,7 +62,8 @@ class UncategorizedPagesPage extends PageQueryPage {
 				'cl_from IS NULL',
 				'page_namespace' => $this->requestedNamespace !== false
 						? $this->requestedNamespace
-						: MWNamespace::getContentNamespaces(),
+						: MediaWikiServices::getInstance()->getNamespaceInfo()->
+							getContentNamespaces(),
 				'page_is_redirect' => 0
 			],
 			'join_conds' => [
@@ -72,7 +75,10 @@ class UncategorizedPagesPage extends PageQueryPage {
 	function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort
-		if ( $this->requestedNamespace === false && count( MWNamespace::getContentNamespaces() ) > 1 ) {
+		if ( $this->requestedNamespace === false &&
+			count( MediaWikiServices::getInstance()->getNamespaceInfo()->
+				getContentNamespaces() ) > 1
+		) {
 			return [ 'page_namespace', 'page_title' ];
 		}
 

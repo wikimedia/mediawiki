@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -45,7 +46,10 @@ class ShortPagesPage extends QueryPage {
 		$blacklist = $config->get( 'ShortPagesNamespaceBlacklist' );
 		$tables = [ 'page' ];
 		$conds = [
-			'page_namespace' => array_diff( MWNamespace::getContentNamespaces(), $blacklist ),
+			'page_namespace' => array_diff(
+				MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces(),
+				$blacklist
+			),
 			'page_is_redirect' => 0
 		];
 		$joinConds = [];

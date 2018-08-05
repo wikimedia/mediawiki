@@ -191,7 +191,7 @@ class Linker {
 	 */
 	public static function getInvalidTitleDescription( IContextSource $context, $namespace, $title ) {
 		// First we check whether the namespace exists or not.
-		if ( MWNamespace::exists( $namespace ) ) {
+		if ( MediaWikiServices::getInstance()->getNamespaceInfo()->exists( $namespace ) ) {
 			if ( $namespace == NS_MAIN ) {
 				$name = $context->msg( 'blanknamespace' )->text();
 			} else {
@@ -1302,7 +1302,12 @@ class Linker {
 				([^[]*) # 3. link trail (the text up until the next link)
 			/x',
 			function ( $match ) use ( $title, $local, $wikiId ) {
-				$medians = '(?:' . preg_quote( MWNamespace::getCanonicalName( NS_MEDIA ), '/' ) . '|';
+				$services = MediaWikiServices::getInstance();
+
+				$medians = '(?:';
+				$medians .= preg_quote(
+					$services->getNamespaceInfo()->getCanonicalName( NS_MEDIA ), '/' );
+				$medians .= '|';
 				$medians .= preg_quote(
 					MediaWikiServices::getInstance()->getContentLanguage()->getNsText( NS_MEDIA ),
 					'/'
@@ -1410,8 +1415,9 @@ class Linker {
 					$wikiId,
 					$linkTarget->getNamespace() === 0
 						? $linkTarget->getDBkey()
-						: MWNamespace::getCanonicalName( $linkTarget->getNamespace() ) . ':'
-							. $linkTarget->getDBkey(),
+						: MediaWikiServices::getInstance()->getNamespaceInfo()->
+							getCanonicalName( $linkTarget->getNamespace() ) .
+							':' . $linkTarget->getDBkey(),
 					$linkTarget->getFragment()
 				),
 				$text,
@@ -1446,7 +1452,10 @@ class Linker {
 
 		# Some namespaces don't allow subpages,
 		# so only perform processing if subpages are allowed
-		if ( $contextTitle && MWNamespace::hasSubpages( $contextTitle->getNamespace() ) ) {
+		if (
+			$contextTitle && MediaWikiServices::getInstance()->getNamespaceInfo()->
+			hasSubpages( $contextTitle->getNamespace() )
+		) {
 			$hash = strpos( $target, '#' );
 			if ( $hash !== false ) {
 				$suffix = substr( $target, $hash );

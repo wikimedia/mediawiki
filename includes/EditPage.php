@@ -2609,7 +2609,8 @@ ERROR;
 				LogEventsList::showLogExtract(
 					$out,
 					'block',
-					MWNamespace::getCanonicalName( NS_USER ) . ':' . $block->getTarget(),
+					MediaWikiServices::getInstance()->getNamespaceInfo()->
+						getCanonicalName( NS_USER ) . ':' . $block->getTarget(),
 					'',
 					[
 						'lim' => 1,
@@ -4451,7 +4452,9 @@ ERROR;
 	protected function addPageProtectionWarningHeaders() {
 		$out = $this->context->getOutput();
 		if ( $this->mTitle->isProtected( 'edit' ) &&
-			MWNamespace::getRestrictionLevels( $this->mTitle->getNamespace() ) !== [ '' ]
+			MediaWikiServices::getInstance()->getNamespaceInfo()->getRestrictionLevels(
+				$this->mTitle->getNamespace()
+			) !== [ '' ]
 		) {
 			# Is the title semi-protected?
 			if ( $this->mTitle->isSemiProtected() ) {

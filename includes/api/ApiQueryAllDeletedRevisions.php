@@ -49,7 +49,8 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		$user = $this->getUser();
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$services = MediaWikiServices::getInstance();
+		$revisionStore = $services->getRevisionStore();
 
 		$result = $this->getResult();
 
@@ -156,7 +157,8 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		$miser_ns = null;
 
 		if ( $mode == 'all' ) {
-			$namespaces = $params['namespace'] ?? MWNamespace::getValidNamespaces();
+			$namespaces = $params['namespace'] ??
+				$services->getNamespaceInfo()->getValidNamespaces();
 			$this->addWhereFld( 'ar_namespace', $namespaces );
 
 			// For from/to/prefix, we have to consider the potential

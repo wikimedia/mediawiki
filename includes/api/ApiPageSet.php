@@ -866,6 +866,8 @@ class ApiPageSet extends ApiBase {
 			ApiBase::dieDebug( __METHOD__, 'Missing $processTitles parameter when $remaining is provided' );
 		}
 
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+
 		$usernames = [];
 		if ( $res ) {
 			foreach ( $res as $row ) {
@@ -884,7 +886,7 @@ class ApiPageSet extends ApiBase {
 				$this->processDbRow( $row );
 
 				// Need gender information
-				if ( MWNamespace::hasGenderDistinction( $row->page_namespace ) ) {
+				if ( $nsInfo->hasGenderDistinction( $row->page_namespace ) ) {
 					$usernames[] = $row->page_title;
 				}
 			}
@@ -907,7 +909,7 @@ class ApiPageSet extends ApiBase {
 						$this->mTitles[] = $title;
 
 						// need gender information
-						if ( MWNamespace::hasGenderDistinction( $ns ) ) {
+						if ( $nsInfo->hasGenderDistinction( $ns ) ) {
 							$usernames[] = $dbkey;
 						}
 					}
@@ -1249,7 +1251,10 @@ class ApiPageSet extends ApiBase {
 			}
 
 			// Need gender information
-			if ( MWNamespace::hasGenderDistinction( $titleObj->getNamespace() ) ) {
+			if (
+				MediaWikiServices::getInstance()->getNamespaceInfo()->
+					hasGenderDistinction( $titleObj->getNamespace() )
+			) {
 				$usernames[] = $titleObj->getText();
 			}
 		}
