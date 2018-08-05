@@ -657,7 +657,8 @@ return [
 			$services->getContentLanguage(),
 			$services->getGenderCache(),
 			$services->getMainConfig()->get( 'LocalInterwikis' ),
-			$services->getInterwikiLookup()
+			$services->getInterwikiLookup(),
+			$services->getNamespaceInfo()
 		);
 	},
 
