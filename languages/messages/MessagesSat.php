@@ -1,5 +1,5 @@
 <?php
-/** Santali (sat)
+/** ᱥᱟᱱᱛᱟᱲᱤ (Santali)
  *
  * To improve a translation please visit https://translatewiki.net
  *
