@@ -1262,7 +1262,7 @@
 	"right-editcontentmodel": "Het paginainhoudmodel bewerken",
 	"right-editinterface": "De gebruikersinterface bewerken",
 	"right-editusercss": "De CSS-bestanden van andere gebruikers bewerken",
-	"right-edituserjson": "De JSONbestanden van andere gebruikers bewerken",
+	"right-edituserjson": "De JSON-bestanden van andere gebruikers bewerken",
 	"right-edituserjs": "De JavaScriptbestanden van andere gebruikers bewerken",
 	"right-editsitecss": "Wikibrede CSS bewerken",
 	"right-editsitejson": "Wikibrede JSON bewerken",

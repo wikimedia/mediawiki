@@ -3,7 +3,8 @@
 		"authors": [
 			"C.R.",
 			"Chelin",
-			"Macofe"
+			"Macofe",
+			"Fitoschido"
 		]
 	},
 	"config-desc": "'O prugramma d'istallazione 'e MediaWiki",
@@ -107,7 +108,7 @@
 	"config-sqlite-dir-help": "SQLite astipa tutte 'e date dint'a n'uneco file.\n\n'A cartella ca starraje a innecà adda essere scrivibbele d' 'o server webe pe' tramente ca sta l'istallazione.\n\nAvess'a essere <strong>nun trasibbele via web</strong>, è pecchesto ca nun se sta mettenno addò stanno 'e file PHP.\n\nL'installatore scriverrà nzieme a chesta nu file <code>.htaccess</code>, ma si 'o tentativo scassasse, coccheruno putesse tenè acciesso dint' 'o database ncruro.\nChesto pure cunzidera 'e date ncruro 'e ll'utente (indirizze, password cifrate) accussì comme 'e verziune luvate e ati dati d'accesso limmetato dint' 'o wiki.\n\nCunzidera ll'opportunità 'e sistimà ô tiempo 'o database 'a n'ata parte, p'esempio int'a <code>/var/lib/mediawiki/tuowiki</code>.",
 	"config-oracle-def-ts": "Tablespace 'e default:",
 	"config-oracle-temp-ts": "Tablespace temporaneo:",
-	"config-type-mysql": "MySQL (o compatibbele)",
+	"config-type-mysql": "MariaDB, MySQL o compatibbele",
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-support-info": "MediaWiki supporta 'e sisteme 'e database ccà abbascio:\n\n$1\n\nSi nfra chiste ccà nun vedite 'o sistema 'e database ca vulite ausà, allora avite liegge 'e instruziune ccà ncoppa pe' ne dà supporto.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] è 'a configurazione cchiù mmeglio p' 'o MediaWiki e è chilla meglio suppurtata. MediaWiki può faticà pure cu' [{{int:version-db-mariadb-url}} MariaDB] e [{{int:version-db-percona-url}} Percona Server], ca fossero MySQL cumpatibbele. ([https://secure.php.net/manual/en/mysqli.installation.php Comme s'adda fà pe' cumpilà PHP cu suppuorto MySQL])",

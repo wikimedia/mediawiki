@@ -1171,7 +1171,7 @@
 	"grouppage-bureaucrat": "{{ns:project}}:Bürokraták",
 	"grouppage-suppress": "{{ns:project}}:Adatvédelmi biztosok",
 	"right-read": "lapok olvasása",
-	"right-edit": "lapok szerkesztése",
+	"right-edit": "Lapok szerkesztése",
 	"right-createpage": "lapok készítése (nem vitalapok)",
 	"right-createtalk": "vitalapok készítése",
 	"right-createaccount": "új felhasználói fiók készítése",

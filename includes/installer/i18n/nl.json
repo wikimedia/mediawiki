@@ -21,7 +21,8 @@
 			"Mainframe98",
 			"Rcdeboer",
 			"Festina90",
-			"MarcoSwart"
+			"MarcoSwart",
+			"Kippenvlees1"
 		]
 	},
 	"config-desc": "Het installatieprogramma voor MediaWiki",
@@ -133,7 +134,7 @@
 	"config-type-oracle": "Oracle",
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-support-info": "MediaWiki ondersteunt de volgende databasesystemen:\n\n$1\n\nAls u het databasesysteem dat u wilt gebruiken niet in de lijst terugvindt, volg dan de handleiding waarnaar hierboven wordt verwezen om ondersteuning toe te voegen.",
-	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] is de primaire database voor MediaWiki en wordt het best ondersteund. MediaWiki werkt ook met [{{int:version-db-mariadb-url}} MariaDB] en [{{int:version-db-percona-url}} Percona Server], die MySQL compatibel zijn ([https://secure.php.net/manual/en/mysqli.installation.php hoe PHP te compileren met MySQL-ondersteuning]).",
+	"config-dbsupport-mysql": "* [{{int:version-db-mariadb-url}} MariaDB] is de primaire database voor MediaWiki en wordt het best ondersteund. MediaWiki werkt ook met [{{int:version-db-mysql-url}} MySQL] en [{{int:version-db-percona-url}} Percona Server], die MariaDB-compatibel zijn ([https://secure.php.net/manual/en/mysqli.installation.php hoe PHP te compileren met MySQL-ondersteuning]).",
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] is een populair open source databasesysteem als alternatief voor MySQL.([https://secure.php.net/manual/en/pgsql.installation.php Hoe u PHP kunt compileren met ondersteuning voor PostgreSQL])",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] is een zeer goed ondersteund lichtgewicht databasesysteem ([https://secure.php.net/manual/en/pdo.installation.php hoe PHP gecompileerd moet zijn met ondersteuning voor SQLite]; gebruikt PDO).",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] is een commerciële database voor grote bedrijven ([https://secure.php.net/manual/en/oci8.installation.php PHP compileren met ondersteuning voor OCI8]).",

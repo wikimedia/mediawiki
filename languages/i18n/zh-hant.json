@@ -1402,7 +1402,7 @@
 	"recentchanges-summary": "追蹤 Wiki 中此頁面的近期變更。",
 	"recentchanges-noresult": "於指定時間內沒有符合條件的變更。",
 	"recentchanges-timeout": "此搜尋已逾時。您可以採用不同的搜尋參數試試。",
-	"recentchanges-network": "由於技術方面的錯誤，沒有結果被載入。請嘗試重新整理頁面。",
+	"recentchanges-network": "由於技術錯誤，沒有載入任何結果。請嘗試重新整理頁面。",
 	"recentchanges-notargetpage": "在上方輸入頁面名稱來查看相關於該頁面的變更。",
 	"recentchanges-feed-description": "追蹤 Wiki 中此摘要的近期變更。",
 	"recentchanges-label-newpage": "該編輯建立了新頁面",
