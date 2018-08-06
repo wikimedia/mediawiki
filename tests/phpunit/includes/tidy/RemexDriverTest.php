@@ -257,6 +257,11 @@ class RemexDriverTest extends MediaWikiTestCase {
 			'<i><blockquote>x</i></blockquote>',
 			'<i></i><blockquote><p><i>x</i></p></blockquote>',
 		],
+		[
+			'p-wrap ended by reparenting (T200827)',
+			'<i><blockquote><p></i>',
+			'<i></i><blockquote><p><i></i></p><p><i></i></p></blockquote>',
+		],
 	];
 
 	public function provider() {
