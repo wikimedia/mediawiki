@@ -241,6 +241,8 @@ because of Phabricator reports.
 * MagicWord::clearCache() has been removed.  Instead, create a new
   MagicWordFactory, such as by calling
   resetServiceForTesting( 'MagicWordFactory' ) on a MediaWikiServices.
+* mw.util.init() has been removed. This function is not needed anymore and was
+  a no-op function since 1.30.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
