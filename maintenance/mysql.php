@@ -106,9 +106,9 @@ class MysqlMaintenance extends Maintenance {
 	 * Run the mysql client for the given server info
 	 *
 	 * @param array $info
-	 * @param string|false The DB name, or false to use the main wiki DB
+	 * @param string|false $dbName The DB name, or false to use the main wiki DB
 	 *
-	 * @return The desired exit status
+	 * @return int The desired exit status
 	 */
 	private function runMysql( $info, $dbName ) {
 		// Write the password to an option file to avoid disclosing it to other
