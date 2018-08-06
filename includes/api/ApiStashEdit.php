@@ -401,7 +401,7 @@ class ApiStashEdit extends ApiBase {
 	) {
 		// If an item is renewed, mind the cache TTL determined by config and parser functions.
 		// Put an upper limit on the TTL for sanity to avoid extreme template/file staleness.
-		$since = time() - wfTimestamp( TS_UNIX, $parserOutput->getTimestamp() );
+		$since = time() - wfTimestamp( TS_UNIX, $parserOutput->getCacheTime() );
 		$ttl = min( $parserOutput->getCacheExpiry() - $since, self::MAX_CACHE_TTL );
 
 		// Avoid extremely stale user signature timestamps (T84843)
