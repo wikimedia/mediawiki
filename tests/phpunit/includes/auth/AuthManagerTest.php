@@ -38,7 +38,6 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		parent::setUp();
 
 		$this->setMwGlobals( [ 'wgAuth' => null ] );
-		$this->stashMwGlobals( [ 'wgHooks' ] );
 	}
 
 	/**
@@ -48,11 +47,10 @@ class AuthManagerTest extends \MediaWikiTestCase {
 	 * @return object $mock->expects( $expect )->method( ... ).
 	 */
 	protected function hook( $hook, $expect ) {
-		global $wgHooks;
 		$mock = $this->getMockBuilder( __CLASS__ )
 			->setMethods( [ "on$hook" ] )
 			->getMock();
-		$wgHooks[$hook] = [ $mock ];
+		$this->setTemporaryHook( $hook, $mock );
 		return $mock->expects( $expect )->method( "on$hook" );
 	}
 
@@ -613,42 +611,35 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		);
 	}
 
-	public function testSetDefaultUserOptions() {
+	/**
+	 * @dataProvider provideSetDefaultUserOptions
+	 */
+	public function testSetDefaultUserOptions(
+		$contLang, $useContextLang, $expectedLang, $expectedVariant
+	) {
 		$this->initializeManager();
 
+		$this->setContentLang( $contLang );
 		$context = \RequestContext::getMain();
 		$reset = new ScopedCallback( [ $context, 'setLanguage' ], [ $context->getLanguage() ] );
 		$context->setLanguage( 'de' );
-		$this->setContentLang( 'zh' );
 
 		$user = \User::newFromName( self::usernameForCreation() );
 		$user->addToDatabase();
 		$oldToken = $user->getToken();
-		$this->managerPriv->setDefaultUserOptions( $user, false );
+		$this->managerPriv->setDefaultUserOptions( $user, $useContextLang );
 		$user->saveSettings();
 		$this->assertNotEquals( $oldToken, $user->getToken() );
-		$this->assertSame( 'zh', $user->getOption( 'language' ) );
-		$this->assertSame( 'zh', $user->getOption( 'variant' ) );
+		$this->assertSame( $expectedLang, $user->getOption( 'language' ) );
+		$this->assertSame( $expectedVariant, $user->getOption( 'variant' ) );
+	}
 
-		$user = \User::newFromName( self::usernameForCreation() );
-		$user->addToDatabase();
-		$oldToken = $user->getToken();
-		$this->managerPriv->setDefaultUserOptions( $user, true );
-		$user->saveSettings();
-		$this->assertNotEquals( $oldToken, $user->getToken() );
-		$this->assertSame( 'de', $user->getOption( 'language' ) );
-		$this->assertSame( 'zh', $user->getOption( 'variant' ) );
-
-		$this->setContentLang( 'fr' );
-
-		$user = \User::newFromName( self::usernameForCreation() );
-		$user->addToDatabase();
-		$oldToken = $user->getToken();
-		$this->managerPriv->setDefaultUserOptions( $user, true );
-		$user->saveSettings();
-		$this->assertNotEquals( $oldToken, $user->getToken() );
-		$this->assertSame( 'de', $user->getOption( 'language' ) );
-		$this->assertSame( null, $user->getOption( 'variant' ) );
+	public function provideSetDefaultUserOptions() {
+		return [
+			[ 'zh', false, 'zh', 'zh' ],
+			[ 'zh', true, 'de', 'zh' ],
+			[ 'fr', true, 'de', null ],
+		];
 	}
 
 	public function testForcePrimaryAuthenticationProviders() {
@@ -2380,7 +2371,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$wgGroupPermissions['*']['createaccount'] = true;
 		$wgGroupPermissions['*']['autocreateaccount'] = false;
 
-		\ObjectCache::$instances[__METHOD__] = new \HashBagOStuff();
+		$this->mergeMwGlobalArrayValue( 'wgObjectCaches',
+			[ __METHOD__ => [ 'class' => 'HashBagOStuff' ] ] );
 		$this->setMwGlobals( [ 'wgMainCacheType' => __METHOD__ ] );
 
 		// Set up lots of mocks...
