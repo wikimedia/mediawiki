@@ -1784,7 +1784,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 					}
 					$db->insert(
 						'interwiki',
-						array_map( 'get_object_vars', iterator_to_array( $this->interwikiTable ) ),
+						array_values( array_map( 'get_object_vars', iterator_to_array( $this->interwikiTable ) ) ),
 						__METHOD__
 					);
 				}
