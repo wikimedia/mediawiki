@@ -1208,10 +1208,10 @@ interface IDatabase {
 	 * errors which wouldn't have occurred in MySQL.
 	 *
 	 * @param string $table The table to replace the row(s) in.
-	 * @param array $uniqueIndexes Is an array of indexes. Each element may be either
-	 *    a field name or an array of field names
+	 * @param array $uniqueIndexes Either a list of fields that define a unique index or
+	 *   an array of such lists if there are multiple unique indexes defined in the schema
 	 * @param array $rows Can be either a single row to insert, or multiple rows,
-	 *    in the same format as for IDatabase::insert()
+	 *   in the same format as for IDatabase::insert()
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @throws DBError
 	 */
@@ -1243,7 +1243,8 @@ interface IDatabase {
 	 *
 	 * @param string $table Table name. This will be passed through Database::tableName().
 	 * @param array $rows A single row or list of rows to insert
-	 * @param array $uniqueIndexes List of single field names or field name tuples
+	 * @param array $uniqueIndexes Either a list of fields that define a unique index or
+	 *   an array of such lists if there are multiple unique indexes defined in the schema
 	 * @param array $set An array of values to SET. For each array element, the
 	 *   key gives the field name, and the value gives the data to set that
 	 *   field to. The data will be quoted by IDatabase::addQuotes().
