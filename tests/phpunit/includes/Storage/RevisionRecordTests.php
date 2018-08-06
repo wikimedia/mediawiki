@@ -13,9 +13,6 @@ use MediaWiki\User\UserIdentityValue;
 use TextContent;
 use Title;
 
-// PHPCS should not complain about @covers and @dataProvider being used in traits, see T192384
-// phpcs:disable MediaWiki.Commenting.PhpunitAnnotations.NotTestClass
-
 /**
  * @covers \MediaWiki\Storage\RevisionRecord
  *
