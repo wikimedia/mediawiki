@@ -35,6 +35,12 @@ use MediaWiki\MediaWikiServices;
 class WikitextContent extends TextContent {
 	private $redirectTargetAndText = null;
 
+	/**
+	 * @var bool Tracks if the parser set the user-signature flag when creating this content, which
+	 *   would make it expire faster in ApiStashEdit.
+	 */
+	private $hadSignature = false;
+
 	public function __construct( $text ) {
 		parent::__construct( $text, CONTENT_MODEL_WIKITEXT );
 	}
@@ -140,7 +146,17 @@ class WikitextContent extends TextContent {
 		$text = $this->getNativeData();
 		$pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
 
-		return ( $text === $pst ) ? $this : new static( $pst );
+		if ( $text === $pst ) {
+			return $this;
+		}
+
+		$ret = new static( $pst );
+
+		if ( $wgParser->getOutput()->getFlag( 'user-signature' ) ) {
+			$ret->hadSignature = true;
+		}
+
+		return $ret;
 	}
 
 	/**
@@ -336,6 +352,11 @@ class WikitextContent extends TextContent {
 				);
 				$output->addModuleStyles( 'mediawiki.action.view.redirectPage' );
 			}
+		}
+
+		// Pass along user-signature flag
+		if ( $this->hadSignature ) {
+			$output->setFlag( 'user-signature' );
 		}
 	}
 
