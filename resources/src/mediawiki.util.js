@@ -586,14 +586,6 @@
 		}() );
 	}
 
-	/**
-	 * Former public initialisation. Now a no-op function.
-	 *
-	 * @method util_init
-	 * @deprecated since 1.30
-	 */
-	mw.log.deprecate( util, 'init', $.noop, 'Remove the call of mw.util.init().', 'mw.util.init' );
-
 	$( init );
 
 	mw.util = util;
