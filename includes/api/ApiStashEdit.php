@@ -151,14 +151,13 @@ class ApiStashEdit extends ApiBase {
 		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		$stats->increment( "editstash.cache_stores.$status" );
 
-		$this->getResult()->addValue(
-			null,
-			$this->getModuleName(),
-			[
-				'status' => $status,
-				'texthash' => $textHash
-			]
-		);
+		$ret = [ 'status' => $status ];
+		// If we were rate-limited, we still return the pre-existing valid hash if one was passed
+		if ( $status !== 'ratelimited' || $params['stashedtexthash'] !== null ) {
+			$ret['texthash'] = $textHash;
+		}
+
+		$this->getResult()->addValue( null, $this->getModuleName(), $ret );
 	}
 
 	/**
