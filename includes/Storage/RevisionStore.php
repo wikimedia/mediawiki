@@ -207,6 +207,20 @@ class RevisionStore
 		return ( $this->mcrMigrationStage & $flags ) === $flags;
 	}
 
+	/**
+	 * Throws a RevisionAccessException if this RevisionStore is configured for cross-wiki loading
+	 * and still reading from the old DB schema.
+	 *
+	 * @throws RevisionAccessException
+	 */
+	private function assertCrossWikiContentLoadingIsSafe() {
+		if ( $this->wikiId !== false && $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
+			throw new RevisionAccessException(
+				"Cross-wiki content loading is not supported by the pre-MCR schema"
+			);
+		}
+	}
+
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
 	}
@@ -780,6 +794,8 @@ class RevisionStore
 
 			// MCR migration note: rev_content_model and rev_content_format will go away
 			if ( $this->contentHandlerUseDB ) {
+				$this->assertCrossWikiContentLoadingIsSafe();
+
 				$defaultModel = ContentHandler::getDefaultModelFor( $title );
 				$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
 
@@ -887,6 +903,8 @@ class RevisionStore
 		if ( !$this->contentHandlerUseDB ) {
 			// if $wgContentHandlerUseDB is not set,
 			// all revisions must use the default content model and format.
+
+			$this->assertCrossWikiContentLoadingIsSafe();
 
 			$defaultModel = ContentHandler::getDefaultModelFor( $title );
 			$defaultHandler = ContentHandler::getForModelID( $defaultModel );
@@ -1207,6 +1225,8 @@ class RevisionStore
 
 		if ( $mainSlotRow->model_name === null ) {
 			$mainSlotRow->model_name = function ( SlotRecord $slot ) use ( $title ) {
+				$this->assertCrossWikiContentLoadingIsSafe();
+
 				// TODO: MCR: consider slot role in getDefaultModelFor()! Use LinkTarget!
 				// TODO: MCR: deprecate $title->getModel().
 				return ContentHandler::getDefaultModelFor( $title );
