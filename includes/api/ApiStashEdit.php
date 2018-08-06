@@ -67,11 +67,11 @@ class ApiStashEdit extends ApiBase {
 			);
 		}
 
-		$this->requireAtLeastOneParameter( $params, 'stashedtexthash', 'text' );
+		$this->requireOnlyOneParameter( $params, 'stashedtexthash', 'text' );
 
 		$text = null;
 		$textHash = null;
-		if ( strlen( $params['stashedtexthash'] ) ) {
+		if ( $params['stashedtexthash'] !== null ) {
 			// Load from cache since the client indicates the text is the same as last stash
 			$textHash = $params['stashedtexthash'];
 			if ( !preg_match( '/^[0-9a-f]{40}$/', $textHash ) ) {
@@ -82,16 +82,11 @@ class ApiStashEdit extends ApiBase {
 			if ( !is_string( $text ) ) {
 				$this->dieWithError( 'apierror-stashedit-missingtext', 'missingtext' );
 			}
-		} elseif ( $params['text'] !== null ) {
-			// Trim and fix newlines so the key SHA1's match (see WebRequest::getText())
+		} else {
+			// 'text' was passed.  Trim and fix newlines so the key SHA1's
+			// match (see WebRequest::getText())
 			$text = rtrim( str_replace( "\r\n", "\n", $params['text'] ) );
 			$textHash = sha1( $text );
-		} else {
-			$this->dieWithError( [
-				'apierror-missingparam-at-least-one-of',
-				Message::listParam( [ '<var>stashedtexthash</var>', '<var>text</var>' ] ),
-				2,
-			], 'missingparam' );
 		}
 
 		$textContent = ContentHandler::makeContent(
