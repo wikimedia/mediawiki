@@ -203,6 +203,7 @@ class Names {
 		'hu' => 'magyar', # Hungarian
 		'hu-formal' => "magyar (formal)\u{200E}", # Hungarian formal address
 		'hy' => 'Հայերեն', # Armenian
+		'hyw' => 'արեւմտահայերէն', # Western Armenian, T201276
 		'hz' => 'Otsiherero', # Herero
 		'ia' => 'interlingua', # Interlingua (IALA)
 		'id' => 'Bahasa Indonesia', # Indonesian
