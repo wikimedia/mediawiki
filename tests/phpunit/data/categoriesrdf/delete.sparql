@@ -1,8 +1,6 @@
 # Deletes
 DELETE {
 ?category ?x ?y
-} INSERT {
-
 } WHERE {
    VALUES ?category {
      <http://acme.test/wiki/Category:Test> <http://acme.test/wiki/Category:Test_2>

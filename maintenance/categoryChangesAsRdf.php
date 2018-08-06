@@ -40,6 +40,20 @@ INSERT DATA {
 SPARQL;
 
 	/**
+	 * Delete query
+	 */
+	const SPARQL_DELETE = <<<SPARQLD
+DELETE {
+?category ?x ?y
+} WHERE {
+   VALUES ?category {
+     %s
+   }
+};
+
+SPARQLD;
+
+	/**
 	 * Delete/Insert query
 	 */
 	const SPARQL_DELETE_INSERT = <<<SPARQLDI
@@ -102,8 +116,8 @@ SPARQLDI;
 		global $wgRCMaxAge;
 
 		$this->initialize();
-
 		$startTS = new MWTimestamp( $this->getOption( "start" ) );
+
 		$endTS = new MWTimestamp( $this->getOption( "end" ) );
 		$now = new MWTimestamp();
 
@@ -151,6 +165,18 @@ SPARQLDI;
 	}
 
 	/**
+	 * Get the text of SPARQL INSERT DATA clause
+	 * @return string
+	 */
+	private function getInsertRdf() {
+		$rdfText = $this->getRdf();
+		if ( !$rdfText ) {
+			return "";
+		}
+		return sprintf( self::SPARQL_INSERT, $rdfText );
+	}
+
+	/**
 	 * Get SPARQL for updating set of categories
 	 * @param IDatabase $dbr
 	 * @param string[] $deleteUrls List of URIs to be deleted, with <>
@@ -167,9 +193,8 @@ SPARQLDI;
 			$this->writeParentCategories( $dbr, $pages );
 		}
 
-		return "# $mark\n" . sprintf( self::SPARQL_DELETE_INSERT,
-				$this->getRdf(),
-				implode( ' ', $deleteUrls ) );
+		return "# $mark\n" . sprintf( self::SPARQL_DELETE, implode( ' ', $deleteUrls ) ) .
+			$this->getInsertRdf();
 	}
 
 	/**
@@ -483,7 +508,7 @@ SPARQL;
 
 			$this->writeParentCategories( $dbr, $pages );
 
-			fwrite( $output, sprintf( self::SPARQL_INSERT, $this->getRdf() ) );
+			fwrite( $output, $this->getInsertRdf() );
 		}
 	}
 
@@ -510,7 +535,7 @@ SPARQL;
 			}
 
 			$this->writeParentCategories( $dbr, $pages );
-			fwrite( $output, sprintf( self::SPARQL_INSERT, $this->getRdf() ) );
+			fwrite( $output, $this->getInsertRdf() );
 		}
 	}
 
