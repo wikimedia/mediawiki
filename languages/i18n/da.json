@@ -3393,6 +3393,7 @@
 	"tags-delete-title": "Slet mærke",
 	"tags-delete-explanation-initial": "Du er ved at slette mærket »$1« fra databasen.",
 	"tags-delete-reason": "Årsag:",
+	"tags-delete-not-found": "Tagget \"$1\" findes ikke.",
 	"tags-activate-title": "Aktiver mærke",
 	"tags-activate-question": "Du er ved at aktivere mærket »$1«.",
 	"tags-activate-reason": "Årsag:",

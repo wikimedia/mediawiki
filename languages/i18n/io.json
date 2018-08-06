@@ -1385,6 +1385,7 @@
 	"ipb-hardblock": "Impedar redakturi e modifikuri de uzeri qui facas 'login' de ica IP-adreso",
 	"ipbcreateaccount": "Preventez kreo di konti",
 	"ipbemailban": "Impedar l'uzero sendar e-posto",
+	"ipbenableautoblock": "Automatale blokusar la lasta IP-adreso uzita da ica uzero, ed altra sequanta IP-adresi quin ilu probus uzar por redaktar",
 	"ipbsubmit": "Blokusar ica uzero",
 	"ipbother": "Altra tempo:",
 	"ipboptions": "2 hori:2 hours,1 dio:1 day,3 dii:3 days,1 semano:1 week,2 semani:2 weeks,1 monato:1 month,3 monati:3 months,6 monati:6 months,1 yaro:1 year,nefinita:infinite",

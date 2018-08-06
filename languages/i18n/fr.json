@@ -2982,7 +2982,7 @@
 	"lastmodifiedatby": "Cette page a été modifiée pour la dernière fois le $1 à $2 par $3.",
 	"othercontribs": "Basé sur le travail de $1.",
 	"others": "autres",
-	"siteusers": "{{PLURAL:$2|{{GENDER:$1|l’utilisateur|l’utilisatrice}}|{{Gender:$1|les utilisateurs|les utilisatrices}}}} $1 de {{SITENAME}}",
+	"siteusers": "{{PLURAL:$2|{{GENDER:$1|l’utilisateur|l’utilisatrice}}|{{GENDER:$1|les utilisateurs|les utilisatrices}}}} $1 de {{SITENAME}}",
 	"anonusers": "{{PLURAL:$2|l'utilisateur anonyme|les utilisateurs anonymes}} $1 de {{SITENAME}}",
 	"creditspage": "Crédits de la page",
 	"nocredits": "Il n'y a pas d'informations d'attribution disponibles pour cette page.",

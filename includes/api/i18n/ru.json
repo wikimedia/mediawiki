@@ -785,6 +785,7 @@
 	"apihelp-query+filearchive-example-simple": "Список всех удалённых файлов.",
 	"apihelp-query+filerepoinfo-summary": "Возвращает мета-информацию о файловых репозиториях, настроенных в вики.",
 	"apihelp-query+filerepoinfo-param-prop": "Какие свойства хранилища получить (доступность свойств может отличаться в разных вики).",
+	"apihelp-query+filerepoinfo-paramvalue-prop-apiurl": "Ссылка на API репозитория — полезно для получения информации об изображении с сервера.",
 	"apihelp-query+filerepoinfo-paramvalue-prop-rootUrl": "Корневой URL для изображений.",
 	"apihelp-query+filerepoinfo-paramvalue-prop-url": "URL путь публичной зоны.",
 	"apihelp-query+filerepoinfo-example-simple": "Получить информацию о файловых репозиториях.",

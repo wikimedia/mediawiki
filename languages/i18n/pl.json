@@ -2144,7 +2144,7 @@
 	"cachedspecial-refresh-now": "Najpóźniejszy widok.",
 	"categories": "Kategorie",
 	"categories-submit": "Pokaż",
-	"categoriespagetext": "Strona przedstawia {{PLURAL:$1|kategorię zawierającą|listę kategorii zawierających}} strony lub pliki.\n[[Special:UnusedCategories|Nieużywane kategorie]] zostały ukryte.\nZobacz również [[Special:WantedCategories|brakujące kategorie]].",
+	"categoriespagetext": "Strona przedstawia {{PLURAL:$1|istniejącą kategorię zawierającą|istniejące kategorie}} na wiki. Wymienione są także puste kategorie.\nZobacz również [[Special:WantedCategories|brakujące kategorie]].",
 	"categoriesfrom": "Wyświetl kategorie, zaczynając od:",
 	"deletedcontributions": "Usunięty wkład użytkownika",
 	"deletedcontributions-title": "Usunięty wkład użytkownika",

@@ -84,7 +84,7 @@
 	"tog-watchlisthidepatrolled": "Ẩn sửa đổi đã tuần tra trong danh sách theo dõi",
 	"tog-watchlisthidecategorization": "Ẩn việc xếp thể loại",
 	"tog-ccmeonemails": "Gửi bản sao cho tôi khi gửi thư điện tử cho người khác",
-	"tog-diffonly": "Không hiển thị nội dung trang dưới phần so sánh phiên bản",
+	"tog-diffonly": "Ẩn nội dung trang dưới phần so sánh phiên bản",
 	"tog-showhiddencats": "Hiển thị thể loại ẩn",
 	"tog-norollbackdiff": "Bỏ qua bản so sánh sau khi lùi sửa",
 	"tog-useeditwarning": "Cảnh báo khi tôi thoát trang sửa đổi mà chưa lưu trang",

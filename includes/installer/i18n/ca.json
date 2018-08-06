@@ -98,7 +98,7 @@
 	"config-sqlite-dir": "Directori de dades de l'SQLite",
 	"config-oracle-def-ts": "Espai de taules per defecte:",
 	"config-oracle-temp-ts": "Espai de taules temporal:",
-	"config-type-mysql": "MySQL (o compatible)",
+	"config-type-mysql": "MariaDB, MySQL o compatible",
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-support-info": "MediaWiki és compatible amb els següents sistemes de bases de dades:\n$1\nSi el sistema de bases de dades que intenteu utilitzar no apareix a la llista, seguiu les instruccions enllaçades més amunt per habilitar el suport.",
 	"config-header-mysql": "Paràmetres de MySQL",

@@ -4,7 +4,8 @@
 			"McDutchie",
 			"아라",
 			"Macofe",
-			"Fanjiayi"
+			"Fanjiayi",
+			"Fitoschido"
 		]
 	},
 	"config-desc": "Le installator de MediaWiki",
@@ -110,7 +111,7 @@
 	"config-sqlite-dir-help": "SQLite immagazina tote le datos in un sol file.\n\nLe directorio que tu forni debe permitter le accesso de scriptura al servitor web durante le installation.\n\nIllo '''non''' debe esser accessibile via web. Pro isto, nos non lo pone ubi tu files PHP es.\n\nLe installator scribera un file <code>.htaccess</code> insimul a illo, ma si isto falli, alcuno pote ganiar accesso directe a tu base de datos.\nIsto include le crude datos de usator (adresses de e-mail, contrasignos codificate) assi como versiones delite e altere datos restringite super le wiki.\n\nConsidera poner le base de datos in un loco completemente differente, per exemplo in <code>/var/lib/mediawiki/yourwiki</code>.",
 	"config-oracle-def-ts": "Spatio de tabellas predefinite:",
 	"config-oracle-temp-ts": "Spatio de tabellas temporari:",
-	"config-type-mysql": "MySQL (o compatibile)",
+	"config-type-mysql": "MariaDB, MySQL o compatibile",
 	"config-type-postgres": "PostgreSQL",
 	"config-type-sqlite": "SQLite",
 	"config-type-oracle": "Oracle",

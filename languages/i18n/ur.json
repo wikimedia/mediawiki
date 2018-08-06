@@ -1450,6 +1450,8 @@
 	"rcfilters-watchlist-showupdated": "تبدیلیوں کے رونما ہونے کے بعد جن صفحات کو آپ نے نہیں دیکھا وہ <strong>جلی</strong> حرفوں میں ٹھوس علامتوں کے ساتھ نظر آئیں گے۔",
 	"rcfilters-preference-label": "حالیہ تبدیلیوں کا اصلاح شدہ نسخہ چھپائیں",
 	"rcfilters-preference-help": "سنہ 2017ء کے انٹرفیس کو واپس لایا گیا ہے اور تمام آلات کو شامل کیا گیا ہے۔",
+	"rcfilters-watchlist-preference-label": "زیر نظر فہرست کے ترقی یافتہ نسخہ کو چھپائیں",
+	"rcfilters-watchlist-preference-help": "اسے فعال کرنے کے بعد 2017ء کا نسخہ واپس نافذ ہو جائے گا اور بعد میں شامل کیے جانے والے آلات بھی غیر فعال ہو جائیں گے۔",
 	"rcfilters-filter-showlinkedfrom-label": "سے منسلک صفحات پر تبدیلیاں دکھائیں",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>صفحات سے منسلک</strong> چنندہ صفحہ",
 	"rcfilters-filter-showlinkedto-label": "صفحات",
