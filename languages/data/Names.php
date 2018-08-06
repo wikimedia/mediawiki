@@ -373,7 +373,7 @@ class Names {
 		'rw' => 'Kinyarwanda', # Kinyarwanda, should possibly be Kinyarwandi
 		'sa' => 'संस्कृतम्', # Sanskrit
 		'sah' => 'саха тыла', # Sakha
-		'sat' => 'Santali', # Santali
+		'sat' => 'ᱥᱟᱱᱛᱟᱲᱤ', # Santali
 		'sc' => 'sardu', # Sardinian
 		'scn' => 'sicilianu', # Sicilian
 		'sco' => 'Scots', # Scots
