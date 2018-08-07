@@ -123,4 +123,20 @@
 		);
 	} );
 
+	QUnit.test( 'RLQ.push', function ( assert ) {
+		/* global RLQ */
+		var loaded = 0,
+			done = assert.async();
+		mw.loader.testCallback = function () {
+			loaded++;
+			delete mw.loader.testCallback;
+		};
+		mw.loader.implement( 'test.rlq-push', [ QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mwLoaderTestCallback.js' ) ] );
+
+		RLQ.push( [ 'test.rlq-push', function () {
+			assert.strictEqual( loaded, 1, 'Load the required module' );
+			done();
+		} ] );
+	} );
+
 }( mediaWiki ) );
