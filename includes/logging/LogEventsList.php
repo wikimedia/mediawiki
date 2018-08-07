@@ -130,10 +130,13 @@ class LogEventsList extends ContextSource {
 			!empty( $extraInputsDescriptor )
 		) {
 			$formDescriptor[ 'extra' ] = $extraInputsDescriptor;
-		} elseif ( is_string( $extraInputsDescriptor ) ) {
+		} elseif (
+			is_string( $extraInputsDescriptor ) &&
+			$extraInputsDescriptor !== ''
+		) {
 			// We'll add this to the footer of the form later
 			$extraInputsString = $extraInputsDescriptor;
-			wfDeprecated( 'Using $input in LogEventsListGetExtraInputs hook', '1.32' );
+			wfDeprecated( '$input in LogEventsListGetExtraInputs hook', '1.32' );
 		}
 
 		// Title pattern, if allowed
