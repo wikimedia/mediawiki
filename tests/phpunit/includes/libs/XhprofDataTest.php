@@ -19,8 +19,6 @@
  */
 
 /**
- * @uses XhprofData
- * @uses AutoLoader
  * @copyright © 2014 Wikimedia Foundation and contributors
  * @since 1.25
  */
@@ -154,7 +152,6 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @covers XhprofData::getCallers
 	 * @covers XhprofData::getCallees
-	 * @uses XhprofData
 	 */
 	public function testEdges() {
 		$xhprofData = $this->getXhprofDataFixture();
@@ -170,7 +167,6 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers XhprofData::getCriticalPath
-	 * @uses XhprofData
 	 */
 	public function testCriticalPath() {
 		$xhprofData = $this->getXhprofDataFixture();
