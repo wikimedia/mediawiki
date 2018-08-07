@@ -27,8 +27,6 @@
 class ContentSecurityPolicy {
 	const REPORT_ONLY_MODE = 1;
 	const FULL_MODE = 2;
-	/** Used for meta tag. Does not include report urls or nonce sources */
-	const FULL_MODE_RESTRICTED = 3;
 
 	/** @var string The nonce to use for inline scripts (from OutputPage) */
 	private $nonce;
@@ -66,20 +64,6 @@ class ContentSecurityPolicy {
 	}
 
 	/**
-	 * Return the meta header to use for after load restricted mode
-	 *
-	 * This should restrict browsers that don't support nonce-sources.
-	 * Idea stolen from
-	 * https://blogs.dropbox.com/tech/2015/09/unsafe-inline-and-nonce-deployment/
-	 *
-	 * @param array $csp CSP configuration
-	 * @return string Content for meta tag
-	 */
-	public function getMetaHeader( $csp ) {
-		return $this->makeCSPDirectives( $csp, self::FULL_MODE_RESTRICTED );
-	}
-
-	/**
 	 * Send CSP headers based on wiki config
 	 *
 	 * Main method that callers are expected to use
@@ -100,39 +84,13 @@ class ContentSecurityPolicy {
 		$csp->sendCSPHeader( $cspConfig, self::FULL_MODE );
 		$csp->sendCSPHeader( $cspConfigReportOnly, self::REPORT_ONLY_MODE );
 
-		// Include <meta> header which increases security level after initial load.
-		// This helps mitigate attacks on browsers not supporting CSP2. It also
-		// helps mitigate attacks due to the shared nonce that non-logged in users
-		// get due to varnish cache.
-		// Unclear if this is the best place to insert the meta tag, or if
-		// it should be in a RL module. I figure its best to do this as early
-		// as possible.
-		// FIXME: Needs testing to see if this actually works properly
-		$metaHeader = $csp->getMetaHeader( $cspConfig );
-		if ( $metaHeader ) {
-			$context->getOutput()->addScript(
-				ResourceLoader::makeInlineScript(
-					$csp->makeMetaInsertScript(
-						$metaHeader
-					),
-					$out->getCSPNonce()
-				)
-			);
-		}
-	}
-
-	/**
-	 * Makes javascript to insert a meta CSP header after page load
-	 *
-	 * @see https://blogs.dropbox.com/tech/2015/09/unsafe-inline-and-nonce-deployment/
-	 * @param string $metaContents content of meta tag
-	 * @return string JS for including in page
-	 */
-	private function makeMetaInsertScript( $metaContents ) {
-		return "$('\\x3Cmeta http-equiv=\"Content-Security-Policy\"\\x3E')" .
-			'.attr("content",' .
-			Xml::encodeJsVar( $metaContents ) .
-			').prependTo($("head"))';
+		// This used to insert a <meta> tag here, per advice at
+		// https://blogs.dropbox.com/tech/2015/09/unsafe-inline-and-nonce-deployment/
+		// The goal was to prevent nonce from working after the page hit onready,
+		// This would help in old browsers that didn't support nonces, and
+		// also assist for varnish-cached pages which repeat nonces.
+		// However, this is incompatible with how resource loader storage works
+		// via mw.domEval() so it was removed.
 	}
 
 	/**
@@ -140,7 +98,6 @@ class ContentSecurityPolicy {
 	 *
 	 * @param int $reportOnly Either self::REPORT_ONLY_MODE or self::FULL_MODE
 	 * @return string Name of http header
-	 * @throws UnexpectedValueException if you feed it self::FULL_MODE_RESTRICTED.
 	 */
 	private function getHeaderName( $reportOnly ) {
 		if ( $reportOnly === self::REPORT_ONLY_MODE ) {
@@ -155,7 +112,7 @@ class ContentSecurityPolicy {
 	 * Determine what CSP policies to set for this page
 	 *
 	 * @param array|bool $config Policy configuration (Either $wgCSPHeader or $wgCSPReportOnlyHeader)
-	 * @param int $mode self::REPORT_ONLY_MODE, self::FULL_MODE or Self::FULL_MODE_RESTRICTED
+	 * @param int $mode self::REPORT_ONLY_MODE, self::FULL_MODE
 	 * @return string Policy directives, or empty string for no policy.
 	 */
 	private function makeCSPDirectives( $policyConfig, $mode ) {
@@ -182,13 +139,10 @@ class ContentSecurityPolicy {
 		$cssSrc = false;
 		$imgSrc = false;
 		$scriptSrc = [ "'unsafe-eval'", "'self'" ];
-		if (
-			$mode !== self::FULL_MODE_RESTRICTED &&
-			( !isset( $policyConfig['useNonces'] ) || $policyConfig['useNonces'] )
-		) {
-			$nonceSrc = "'nonce-" . $this->nonce . "'";
-			$scriptSrc[] = $nonceSrc;
+		if ( !isset( $policyConfig['useNonces'] ) || $policyConfig['useNonces'] ) {
+			$scriptSrc[] = "'nonce-" . $this->nonce . "'";
 		}
+
 		$scriptSrc = array_merge( $scriptSrc, $additionalSelfUrlsScript );
 		if ( isset( $policyConfig['script-src'] )
 			&& is_array( $policyConfig['script-src'] )
@@ -200,7 +154,6 @@ class ContentSecurityPolicy {
 		// Note: default on if unspecified.
 		if ( ( !isset( $policyConfig['unsafeFallback'] )
 			|| $policyConfig['unsafeFallback'] )
-			&& $mode !== self::FULL_MODE_RESTRICTED
 		) {
 			// unsafe-inline should be ignored on browsers
 			// that support 'nonce-foo' sources.
@@ -247,10 +200,7 @@ class ContentSecurityPolicy {
 			$cssSrc = array_merge( $defaultSrc, [ "'unsafe-inline'" ] );
 		}
 
-		if ( $mode === self::FULL_MODE_RESTRICTED ) {
-			// report-uri disallowed in <meta> tags.
-			$reportUri = false;
-		} elseif ( isset( $policyConfig['report-uri'] ) && $policyConfig['report-uri'] !== true ) {
+		if ( isset( $policyConfig['report-uri'] ) && $policyConfig['report-uri'] !== true ) {
 			if ( $policyConfig['report-uri'] === false ) {
 				$reportUri = false;
 			} else {
@@ -311,14 +261,11 @@ class ContentSecurityPolicy {
 	/**
 	 * Get the default report uri.
 	 *
-	 * @param int $mode self::*_MODE constant. Do not use with self::FULL_MODE_RESTRICTED
+	 * @param int $mode self::*_MODE constant.
 	 * @return string The URI to send reports to.
 	 * @throws UnexpectedValueException if given invalid mode.
 	 */
 	private function getReportUri( $mode ) {
-		if ( $mode === self::FULL_MODE_RESTRICTED ) {
-			throw new UnexpectedValueException( $mode );
-		}
 		$apiArguments = [
 			'action' => 'cspreport',
 			'format' => 'json'
