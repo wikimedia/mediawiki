@@ -24,7 +24,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 // phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
-global $optionsWithArgs, $optionsWithoutArgs;
+global $optionsWithArgs, $optionsWithoutArgs, $allowUnregisteredOptions;
 
 if ( !isset( $optionsWithArgs ) ) {
 	$optionsWithArgs = [];
@@ -32,19 +32,25 @@ if ( !isset( $optionsWithArgs ) ) {
 if ( !isset( $optionsWithoutArgs ) ) {
 	$optionsWithoutArgs = [];
 }
+if ( !isset( $allowUnregisteredOptions ) ) {
+	$allowUnregisteredOptions = false;
+}
 
 class CommandLineInc extends Maintenance {
 	public function __construct() {
 		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
-		global $optionsWithArgs, $optionsWithoutArgs;
+		global $optionsWithArgs, $optionsWithoutArgs, $allowUnregisteredOptions;
 
 		parent::__construct();
+
 		foreach ( $optionsWithArgs as $name ) {
 			$this->addOption( $name, '', false, true );
 		}
 		foreach ( $optionsWithoutArgs as $name ) {
 			$this->addOption( $name, '', false, false );
 		}
+
+		$this->setAllowUnregisteredOptions( $allowUnregisteredOptions );
 	}
 
 	/**
