@@ -4138,7 +4138,7 @@ ERROR;
 			]
 		];
 
-		$script = 'mw.loader.using("mediawiki.toolbar", function () {';
+		$script = '';
 		foreach ( $toolarray as $tool ) {
 			if ( !$tool ) {
 				continue;
@@ -4165,15 +4165,16 @@ ERROR;
 			);
 		}
 
-		$script .= '});';
-
 		$toolbar = '<div id="toolbar"></div>';
 
 		if ( Hooks::run( 'EditPageBeforeEditToolbar', [ &$toolbar ] ) ) {
 			// Only add the old toolbar cruft to the page payload if the toolbar has not
 			// been over-written by a hook caller
 			$nonce = $wgOut->getCSPNonce();
-			$wgOut->addScript( ResourceLoader::makeInlineScript( $script, $nonce ) );
+			$wgOut->addScript( Html::inlineScript(
+				ResourceLoader::makeInlineCodeWithModule( 'mediawiki.toolbar', $script ),
+				$nonce
+			) );
 		};
 
 		return $toolbar;
