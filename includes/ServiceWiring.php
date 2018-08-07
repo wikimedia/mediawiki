@@ -57,6 +57,7 @@ use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
@@ -166,7 +167,8 @@ return [
 	},
 
 	'ContentLanguage' => function ( MediaWikiServices $services ) : Language {
-		return Language::factory( $services->getMainConfig()->get( 'LanguageCode' ) );
+		return $services->getLanguageFactory()->getLanguage(
+			$services->getMainConfig()->get( 'LanguageCode' ) );
 	},
 
 	'CryptHKDF' => function ( MediaWikiServices $services ) : CryptHKDF {
@@ -262,6 +264,15 @@ return [
 			$config->get( 'InterwikiCache' ),
 			$config->get( 'InterwikiScopes' ),
 			$config->get( 'InterwikiFallbackSite' )
+		);
+	},
+
+	'LanguageFactory' => function ( MediaWikiServices $services ) : LanguageFactory {
+		return new LanguageFactory(
+			new ServiceOptions( LanguageFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getLocalisationCache(),
+			$services->getLanguageNameUtils(),
+			$services->getLanguageFallback()
 		);
 	},
 

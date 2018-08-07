@@ -230,9 +230,7 @@ class KuConverter extends LanguageConverter {
  */
 class LanguageKu extends Language {
 
-	function __construct() {
-		parent::__construct();
-
+	protected function newConverter() : KuConverter {
 		$variants = [ 'ku', 'ku-arab', 'ku-latn' ];
 		$variantfallbacks = [
 			'ku' => 'ku-latn',
@@ -240,6 +238,6 @@ class LanguageKu extends Language {
 			'ku-latn' => 'ku-arab',
 		];
 
-		$this->mConverter = new KuConverter( $this, 'ku', $variants, $variantfallbacks );
+		return new KuConverter( $this, 'ku', $variants, $variantfallbacks );
 	}
 }

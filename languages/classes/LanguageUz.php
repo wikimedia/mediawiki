@@ -130,9 +130,7 @@ class UzConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageUz extends Language {
-	function __construct() {
-		parent::__construct();
-
+	protected function newConverter() : UzConverter {
 		$variants = [ 'uz', 'uz-latn', 'uz-cyrl' ];
 		$variantfallbacks = [
 			'uz' => 'uz-latn',
@@ -140,6 +138,6 @@ class LanguageUz extends Language {
 			'uz-latn' => 'uz',
 		];
 
-		$this->mConverter = new UzConverter( $this, 'uz', $variants, $variantfallbacks );
+		return new UzConverter( $this, 'uz', $variants, $variantfallbacks );
 	}
 }

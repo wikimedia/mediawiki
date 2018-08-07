@@ -127,9 +127,7 @@ class ShiConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageShi extends Language {
-	function __construct() {
-		parent::__construct();
-
+	protected function newConverter() : ShiConverter {
 		$variants = [ 'shi', 'shi-tfng', 'shi-latn' ];
 		$variantfallbacks = [
 			'shi' => 'shi-tfng',
@@ -138,6 +136,6 @@ class LanguageShi extends Language {
 		];
 
 		$flags = [];
-		$this->mConverter = new ShiConverter( $this, 'shi', $variants, $variantfallbacks, $flags );
+		return new ShiConverter( $this, 'shi', $variants, $variantfallbacks, $flags );
 	}
 }

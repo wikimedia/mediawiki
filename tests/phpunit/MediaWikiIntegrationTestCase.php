@@ -387,7 +387,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		$wgRequest = new FauxRequest();
 		MediaWiki\Session\SessionManager::resetCache();
-		Language::clearCaches();
 	}
 
 	public function run( TestResult $result = null ) {
@@ -893,7 +892,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		self::resetGlobalParser();
-		Language::clearCaches();
+		MediaWikiServices::getInstance()->resetLanguageServices();
 	}
 
 	/**
@@ -947,6 +946,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		self::resetGlobalParser();
+		$newInstance->resetLanguageServices();
 
 		return $newInstance;
 	}

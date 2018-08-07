@@ -13,6 +13,7 @@ use GenderCache;
 use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
+use Language;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LocalisationCache;
 use MediaWiki\Block\BlockErrorFormatter;
@@ -22,6 +23,7 @@ use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Http\HttpRequestFactory;
 use PasswordReset;
+use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use TitleFactory;
@@ -123,6 +125,16 @@ class MediaWikiServices extends ServiceContainer {
 	 * @var MediaWikiServices|null
 	 */
 	private static $instance = null;
+
+	/**
+	 * Returns true if an instance has already been initialized. This can be used to avoid accessing
+	 * services if it's not safe, such as in unit tests or early setup.
+	 *
+	 * @return bool
+	 */
+	public static function hasInstance() {
+		return self::$instance !== null;
+	}
 
 	/**
 	 * Returns the global default instance of the top level service locator.
@@ -345,6 +357,26 @@ class MediaWikiServices extends ServiceContainer {
 		// Child, reseed because there is no bug in PHP:
 		// https://bugs.php.net/bug.php?id=42465
 		mt_srand( getmypid() );
+	}
+
+	/**
+	 * Intended for tests that may change configuration in a way that invalidates caches.
+	 *
+	 * @throws MWException if called outside of PHPUnit tests or installer.
+	 * @since 1.35
+	 */
+	public function resetLanguageServices() {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MEDIAWIKI_INSTALL' ) ) {
+			throw new MWException( __METHOD__ . ' must not be used outside tests/installer' );
+		}
+		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+			$this->resetServiceForTesting( 'LanguageFallback' );
+			$this->resetServiceForTesting( 'LanguageNameUtils' );
+			$this->resetServiceForTesting( 'LocalisationCache' );
+		}
+
+		$this->resetService( 'LanguageFactory' );
+		Language::$mLangObjCache = [];
 	}
 
 	/**
@@ -637,6 +669,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getInterwikiLookup() {
 		return $this->getService( 'InterwikiLookup' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return LanguageFactory
+	 */
+	public function getLanguageFactory() : LanguageFactory {
+		return $this->getService( 'LanguageFactory' );
 	}
 
 	/**

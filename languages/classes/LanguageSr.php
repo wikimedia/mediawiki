@@ -172,9 +172,7 @@ class SrConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageSr extends Language {
-	function __construct() {
-		parent::__construct();
-
+	protected function newConverter() : SrConverter {
 		$variants = [ 'sr', 'sr-ec', 'sr-el' ];
 		$variantfallbacks = [
 			'sr' => 'sr-ec',
@@ -186,6 +184,6 @@ class LanguageSr extends Language {
 			'S' => 'S', 'писмо' => 'S', 'pismo' => 'S',
 			'W' => 'W', 'реч' => 'W', 'reč' => 'W', 'ријеч' => 'W', 'riječ' => 'W'
 		];
-		$this->mConverter = new SrConverter( $this, 'sr', $variants, $variantfallbacks, $flags );
+		return new SrConverter( $this, 'sr', $variants, $variantfallbacks, $flags );
 	}
 }

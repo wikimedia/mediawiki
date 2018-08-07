@@ -118,9 +118,8 @@ class TgConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageTg extends Language {
-	function __construct() {
-		parent::__construct();
+	protected function newConverter() : TgConverter {
 		$variants = [ 'tg', 'tg-latn' ];
-		$this->mConverter = new TgConverter( $this, 'tg', $variants );
+		return new TgConverter( $this, 'tg', $variants );
 	}
 }
