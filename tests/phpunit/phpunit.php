@@ -29,6 +29,7 @@ class PHPUnitMaintClass extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
+		$this->setAllowUnregisteredOptions( true );
 		$this->addOption(
 			'with-phpunitclass',
 			'Class name of the PHPUnit entry point to use',

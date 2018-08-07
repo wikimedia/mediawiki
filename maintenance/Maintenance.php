@@ -85,6 +85,9 @@ abstract class Maintenance {
 	// This is the list of arguments that were actually passed
 	protected $mArgs = [];
 
+	// Allow arbitrary options to be passed, or only specified ones?
+	protected $mAllowUnregisteredOptions = false;
+
 	// Name of the script currently running
 	protected $mSelf;
 
@@ -211,6 +214,16 @@ abstract class Maintenance {
 	abstract public function execute();
 
 	/**
+	 * Checks to see if a particular option in supported.  Normally this means it
+	 * has been registered by the script via addOption.
+	 * @param string $name The name of the option
+	 * @return bool true if the option exists, false otherwise
+	 */
+	protected function supportsOption( $name ) {
+		return isset( $this->mParams[$name] );
+	}
+
+	/**
 	 * Add a parameter to the script. Will be displayed on --help
 	 * with the associated description
 	 *
@@ -238,8 +251,8 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Checks to see if a particular param exists.
-	 * @param string $name The name of the param
+	 * Checks to see if a particular option exists.
+	 * @param string $name The name of the option
 	 * @return bool
 	 */
 	protected function hasOption( $name ) {
@@ -287,6 +300,15 @@ abstract class Maintenance {
 	 */
 	protected function deleteOption( $name ) {
 		unset( $this->mParams[$name] );
+	}
+
+	/**
+	 * Sets whether to allow unregistered options, which are options passed to
+	 * a script that do not match an expected parameter.
+	 * @param bool $allow Should we allow?
+	 */
+	protected function setAllowUnregisteredOptions( $allow ) {
+		$this->mAllowUnregisteredOptions = $allow;
 	}
 
 	/**
@@ -972,6 +994,15 @@ abstract class Maintenance {
 			if ( $info['require'] && !$this->hasArg( $k ) ) {
 				$this->error( 'Argument <' . $info['name'] . '> required!' );
 				$die = true;
+			}
+		}
+		if ( !$this->mAllowUnregisteredOptions ) {
+			# Check for unexpected options
+			foreach ( $this->mOptions as $opt => $val ) {
+				if ( !$this->supportsOption( $opt ) ) {
+					$this->error( "Unexpected option $opt!" );
+					$die = true;
+				}
 			}
 		}
 
