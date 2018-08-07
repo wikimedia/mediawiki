@@ -51,7 +51,6 @@ abstract class PasswordTestCase extends MediaWikiTestCase {
 	 * parameter (a password) should match.
 	 * @return array
 	 * @throws MWException
-	 * @abstract
 	 */
 	public static function providePasswordTests() {
 		throw new MWException( "Not implemented" );

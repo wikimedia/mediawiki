@@ -19,6 +19,7 @@
  */
 
 // phpcs:disable Generic.Arrays.DisallowLongArraySyntax,PSR2.Classes.PropertyDeclaration,MediaWiki.Usage.DirUsage
+// phpcs:disable Squiz.Scope.MemberVarScope.Missing,Squiz.Scope.MethodScope.Missing
 /**
  * Check PHP Version, as well as for composer dependencies in entry points,
  * and display something vaguely comprehensible in the event of a totally
