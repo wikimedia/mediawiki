@@ -28,7 +28,6 @@ trait McrReadNewSchemaOverride {
 	}
 
 	/**
-	 * @override MediaWikiTestCase::getSchemaOverrides
 	 * @return array[]
 	 */
 	protected function getSchemaOverrides( IMaintainableDatabase $db ) {
