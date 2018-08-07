@@ -1203,7 +1203,7 @@
 	"grant-createaccount": "開戶口",
 	"grant-createeditmovepage": "開版、改版同搬版",
 	"grant-delete": "刪版、修訂同日誌紀錄",
-	"grant-editinterface": "改 MediaWiki 空間名同用戶 CSS/JSON/JavaScript",
+	"grant-editinterface": "改MediaWiki空間名同成個網站/用戶嘅JSON",
 	"grant-editmycssjs": "改你嘅用戶CSS/JSON/JavaScript",
 	"grant-editmyoptions": "改你嘅用戶設定",
 	"grant-editmywatchlist": "改你嘅監視清單",
