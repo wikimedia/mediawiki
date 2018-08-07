@@ -394,7 +394,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *                           This should only be used if all entries in the process
 	 *                           cache were added after the files were already locked. (since 1.20)
 	 *
-	 * @remarks Remarks on locking:
+	 * @note Remarks on locking:
 	 * File system paths given to operations should refer to files that are
 	 * already locked or otherwise safe from modification from other processes.
 	 * Normally these files will be new temp files, which should be adequate.
