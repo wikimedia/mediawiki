@@ -26,6 +26,17 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 		$this->assertMetadata( $infile, $expected );
 	}
 
+	/**
+	 * @dataProvider provideSvgUnits
+	 */
+	public function testScaleSVGUnit( $inUnit, $expected ) {
+		$this->assertEquals(
+			$expected,
+			SVGReader::scaleSVGUnit( $inUnit ),
+			'SVG unit conversion and scaling failure'
+		);
+	}
+
 	function assertMetadata( $infile, $expected ) {
 		try {
 			$data = SVGMetadataExtractor::getMetadata( $infile );
@@ -150,6 +161,36 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 					'translations' => [],
 				]
 			],
+		];
+	}
+
+	public static function provideSvgUnits() {
+		return [
+			[ '1' , 1 ],
+			[ '1.1' , 1.1 ],
+			[ '0.1' , 0.1 ],
+			[ '.1' , 0.1 ],
+			[ '1e2' , 100 ],
+			[ '1E2' , 100 ],
+			[ '+1' , 1 ],
+			[ '-1' , -1 ],
+			[ '-1.1' , -1.1 ],
+			[ '1e+2' , 100 ],
+			[ '1e-2' , 0.01 ],
+			[ '10px' , 10 ],
+			[ '10pt' , 10 * 1.25 ],
+			[ '10pc' , 10 * 15 ],
+			[ '10mm' , 10 * 3.543307 ],
+			[ '10cm' , 10 * 35.43307 ],
+			[ '10in' , 10 * 90 ],
+			[ '10em' , 10 * 16 ],
+			[ '10ex' , 10 * 12 ],
+			[ '10%' , 51.2 ],
+			[ '10 px' , 10 ],
+			// Invalid values
+			[ '1e1.1', 10 ],
+			[ '10bp', 10 ],
+			[ 'p10', null ],
 		];
 	}
 }
