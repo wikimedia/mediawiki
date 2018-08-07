@@ -75,7 +75,8 @@ class RevisionStoreFactory {
 	 * @param ActorMigration $actorMigration
 	 * @param int $migrationStage
 	 * @param LoggerSpi $loggerProvider
-	 * @param bool $contentHandlerUseDB see {@link $wgContentHandlerUseDB}
+	 * @param bool $contentHandlerUseDB see {@link $wgContentHandlerUseDB}. Must be the same
+	 *        for all wikis in the cluster. Will go away after MCR migration.
 	 */
 	public function __construct(
 		ILBFactory $dbLoadBalancerFactory,
