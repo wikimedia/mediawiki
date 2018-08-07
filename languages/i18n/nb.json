@@ -2098,7 +2098,7 @@
 	"cachedspecial-refresh-now": "Vis siste.",
 	"categories": "Kategorier",
 	"categories-submit": "Vis",
-	"categoriespagetext": "Følgende {{PLURAL:$1|kategori|kategorier}} inneholder sider eller media.\n[[Special:UnusedCategories|Ubrukte kategorier]] vises ikke her.\nSe også [[Special:WantedCategories|ønskede kategorier]].",
+	"categoriespagetext": "Følgende {{PLURAL:$1|kategori|kategorier}} eksisterer på wikien, og er muligens {{PLURAL:$1|ubrukt|ubrukte}}.\nSe også [[Special:WantedCategories|ønskede kategorier]].",
 	"categoriesfrom": "Vis kategorier fra og med:",
 	"deletedcontributions": "Slettede brukerbidrag",
 	"deletedcontributions-title": "Slettede brukerbidrag",
@@ -4099,6 +4099,7 @@
 	"edit-error-long": "Feil:\n\n$1",
 	"revid": "revisjon $1",
 	"pageid": "side-ID $1",
+	"interfaceadmin-info": "$1\n\nTillatelse til å redigere CSS, JavaScript og JSON som gjelder hele nettstedet ble nylig utskilt til rettigheten <code>editinterface</code>. Om du ikke forstår hvorfor du får denne feilmeldingen, se [[mw:MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "&lt;html&gt;-tagger kan ikke brukes utenfor normale sider.",
 	"gotointerwiki": "Forlater {{SITENAME}}",
 	"gotointerwiki-invalid": "Den gitte tittelen er ugyldig.",
@@ -4118,7 +4119,7 @@
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Passordet må være på minst $1 {{PLURAL:$1|tegn}} for å kunne logge inn",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Passordet kan ikke være det samme som brukernavnet",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Passordet kan ikke matche spesifikt svartelistede passord",
-	"passwordpolicies-policy-maximalpasswordlength": "Passordet må være på minst $1 {{PLURAL:$1|tegn}}",
+	"passwordpolicies-policy-maximalpasswordlength": "Passordet kan maksimalt være på $1 {{PLURAL:$1|tegn}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "Passordet kan ikke være {{PLURAL:$1|det populære passordet|i lista over $1 populære passord}}",
 	"easydeflate-invaliddeflate": "Det gitte innholdet er ikke riktig komprimert"
 }

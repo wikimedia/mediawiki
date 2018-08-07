@@ -50,7 +50,8 @@
 			"Urbalazs",
 			"Bencemac",
 			"Rodrigo",
-			"Tothasze"
+			"Tothasze",
+			"David92003"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -2048,7 +2049,7 @@
 	"speciallogtitlelabel": "Cél (cím vagy felhasználóhoz {{ns:user}}:felhasználói név):",
 	"log": "Rendszernaplók",
 	"logeventslist-submit": "Mutat",
-	"logeventslist-more-filters": "További szűrők:",
+	"logeventslist-more-filters": "Egyéb naplók megjelenítése:",
 	"logeventslist-patrol-log": "Ellenőrzési napló (patrol)",
 	"logeventslist-tag-log": "Címkenapló",
 	"all-logs-page": "Minden nyilvános napló",

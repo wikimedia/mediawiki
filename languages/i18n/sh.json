@@ -980,7 +980,7 @@
 	"userrights": "Postavke korisničkih prava",
 	"userrights-lookup-user": "Menadžment korisničkih prava",
 	"userrights-user-editname": "Unesi korisničko ime:",
-	"editusergroup": "Menjaj Grupe Korisnika",
+	"editusergroup": "Učitaj korisničke grupe",
 	"editinguser": "Mijenjate korisnička prava {{GENDER:$1|korisnika|korisnice}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Uredi korisničke grupe",
 	"saveusergroups": "Snimi korisničke grupe",
