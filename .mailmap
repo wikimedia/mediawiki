@@ -24,6 +24,7 @@
 [BOT] jenkins-bot <jenkins-bot@gerrit.wikimedia.org>
 [BOT] jenkins-bot <jenkins-bot@gerrit.wikimedia.org> <jenkins-bot@wikimedia.org>
 [BOT] Translation updater bot <l10n-bot@translatewiki.net>
+[BOT] libraryupgrader <tools.libraryupgrader@tools.wmflabs.org>
 Aaron Schulz <aschulz@wikimedia.org>
 Aaron Schulz <aschulz@wikimedia.org> <aaron@users.mediawiki.org>
 Adam Roses Wight <awight@wikimedia.org>
