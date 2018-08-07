@@ -1,10 +1,11 @@
 <?php
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
  *        ^--- trigger DB shadowing because we are using Title magic
  */
-class ParserOutputTest extends MediaWikiTestCase {
+class ParserOutputTest extends MediaWikiLangTestCase {
 
 	public static function provideIsLinkInternal() {
 		return [
@@ -304,6 +305,565 @@ EOF
 			],
 		];
 		// phpcs:enable
+	}
+
+	public function provideMergeHtmlMetaDataFrom() {
+		// title text ------------
+		$a = new ParserOutput();
+		$a->setTitleText( 'X' );
+		$b = new ParserOutput();
+		yield 'only left title text' => [ $a, $b, [ 'getTitleText' => 'X' ] ];
+
+		$a = new ParserOutput();
+		$b = new ParserOutput();
+		$b->setTitleText( 'Y' );
+		yield 'only right title text' => [ $a, $b, [ 'getTitleText' => 'Y' ] ];
+
+		$a = new ParserOutput();
+		$a->setTitleText( 'X' );
+		$b = new ParserOutput();
+		$b->setTitleText( 'Y' );
+		yield 'left title text wins' => [ $a, $b, [ 'getTitleText' => 'X' ] ];
+
+		// index policy ------------
+		$a = new ParserOutput();
+		$a->setIndexPolicy( 'index' );
+		$b = new ParserOutput();
+		yield 'only left index policy' => [ $a, $b, [ 'getIndexPolicy' => 'index' ] ];
+
+		$a = new ParserOutput();
+		$b = new ParserOutput();
+		$b->setIndexPolicy( 'index' );
+		yield 'only right index policy' => [ $a, $b, [ 'getIndexPolicy' => 'index' ] ];
+
+		$a = new ParserOutput();
+		$a->setIndexPolicy( 'noindex' );
+		$b = new ParserOutput();
+		$b->setIndexPolicy( 'index' );
+		yield 'left noindex wins' => [ $a, $b, [ 'getIndexPolicy' => 'noindex' ] ];
+
+		$a = new ParserOutput();
+		$a->setIndexPolicy( 'index' );
+		$b = new ParserOutput();
+		$b->setIndexPolicy( 'noindex' );
+		yield 'right noindex wins' => [ $a, $b, [ 'getIndexPolicy' => 'noindex' ] ];
+
+		// head items and friends ------------
+		$a = new ParserOutput();
+		$a->addHeadItem( '<foo1>' );
+		$a->addHeadItem( '<bar1>', 'bar' );
+		$a->addModules( 'test-module-a' );
+		$a->addModuleScripts( 'test-module-script-a' );
+		$a->addModuleStyles( 'test-module-styles-a' );
+		$b->addJsConfigVars( 'test-config-var-a', 'a' );
+
+		$b = new ParserOutput();
+		$b->setIndexPolicy( 'noindex' );
+		$b->addHeadItem( '<foo2>' );
+		$b->addHeadItem( '<bar2>', 'bar' );
+		$b->addModules( 'test-module-b' );
+		$b->addModuleScripts( 'test-module-script-b' );
+		$b->addModuleStyles( 'test-module-styles-b' );
+		$b->addJsConfigVars( 'test-config-var-b', 'b' );
+		$b->addJsConfigVars( 'test-config-var-a', 'X' );
+
+		yield 'head items and friends' => [ $a, $b, [
+			'getHeadItems' => [
+				'<foo1>',
+				'<foo2>',
+				'bar' => '<bar2>', // overwritten
+			],
+			'getModules' => [
+				'test-module-a',
+				'test-module-b',
+			],
+			'getModuleScripts' => [
+				'test-module-script-a',
+				'test-module-script-b',
+			],
+			'getModuleStyles' => [
+				'test-module-styles-a',
+				'test-module-styles-b',
+			],
+			'getJsConfigVars' => [
+				'test-config-var-a' => 'X', // overwritten
+				'test-config-var-b' => 'b',
+			],
+		] ];
+
+		// TOC ------------
+		$a = new ParserOutput();
+		$a->setTOCHTML( '<p>TOC A</p>' );
+		$a->setSections( [ [ 'fromtitle' => 'A1' ], [ 'fromtitle' => 'A2' ] ] );
+
+		$b = new ParserOutput();
+		$b->setTOCHTML( '<p>TOC B</p>' );
+		$b->setSections( [ [ 'fromtitle' => 'B1' ], [ 'fromtitle' => 'B2' ] ] );
+
+		yield 'concat TOC' => [ $a, $b, [
+			'getTOCHTML' => '<p>TOC A</p><p>TOC B</p>',
+			'getSections' => [
+				[ 'fromtitle' => 'A1' ],
+				[ 'fromtitle' => 'A2' ],
+				[ 'fromtitle' => 'B1' ],
+				[ 'fromtitle' => 'B2' ]
+			],
+		] ];
+
+		// Skin Control  ------------
+		$a = new ParserOutput();
+		$a->setNewSection( true );
+		$a->hideNewSection( true );
+		$a->setNoGallery( true );
+		$a->addWrapperDivClass( 'foo' );
+
+		$a->setIndicator( 'foo', 'Foo!' );
+		$a->setIndicator( 'bar', 'Bar!' );
+
+		$a->setExtensionData( 'foo', 'Foo!' );
+		$a->setExtensionData( 'bar', 'Bar!' );
+
+		$b = new ParserOutput();
+		$b->setNoGallery( true );
+		$b->setEnableOOUI( true );
+		$b->preventClickjacking( true );
+		$a->addWrapperDivClass( 'bar' );
+
+		$b->setIndicator( 'zoo', 'Zoo!' );
+		$b->setIndicator( 'bar', 'Barrr!' );
+
+		$b->setExtensionData( 'zoo', 'Zoo!' );
+		$b->setExtensionData( 'bar', 'Barrr!' );
+
+		yield 'skin control flags' => [ $a, $b, [
+			'getNewSection' => true,
+			'getHideNewSection' => true,
+			'getNoGallery' => true,
+			'getEnableOOUI' => true,
+			'preventClickjacking' => true,
+			'getIndicators' => [
+				'foo' => 'Foo!',
+				'bar' => 'Barrr!',
+				'zoo' => 'Zoo!',
+			],
+			'getWrapperDivClass' => 'foo bar',
+			'$mExtensionData' => [
+				'foo' => 'Foo!',
+				'bar' => 'Barrr!',
+				'zoo' => 'Zoo!',
+			],
+		] ];
+	}
+
+	/**
+	 * @dataProvider provideMergeHtmlMetaDataFrom
+	 * @covers ParserOutput::mergeHtmlMetaDataFrom
+	 *
+	 * @param ParserOutput $a
+	 * @param ParserOutput $b
+	 * @param array $expected
+	 */
+	public function testMergeHtmlMetaDataFrom( ParserOutput $a, ParserOutput $b, $expected ) {
+		$a->mergeHtmlMetaDataFrom( $b );
+
+		$this->assertFieldValues( $a, $expected );
+
+		// test twice, to make sure the operation is idempotent (except for the TOC, see below)
+		$a->mergeHtmlMetaDataFrom( $b );
+
+		// XXX: TOC joining should get smarter. Can we make it idempotent as well?
+		unset( $expected['getTOCHTML'] );
+		unset( $expected['getSections'] );
+
+		$this->assertFieldValues( $a, $expected );
+	}
+
+	private function assertFieldValues( ParserOutput $po, $expected ) {
+		$po = TestingAccessWrapper::newFromObject( $po );
+
+		foreach ( $expected as $method => $value ) {
+			if ( $method[0] === '$' ) {
+				$field = substr( $method, 1 );
+				$actual = $po->__get( $field );
+			} else {
+				$actual = $po->__call( $method, [] );
+			}
+
+			$this->assertEquals( $value, $actual, $method );
+		}
+	}
+
+	public function provideMergeTrackingMetaDataFrom() {
+		// links ------------
+		$a = new ParserOutput();
+		$a->addLink( Title::makeTitle( NS_MAIN, 'Kittens' ), 6 );
+		$a->addLink( Title::makeTitle( NS_TALK, 'Kittens' ), 16 );
+		$a->addLink( Title::makeTitle( NS_MAIN, 'Goats' ), 7 );
+
+		$a->addTemplate( Title::makeTitle( NS_TEMPLATE, 'Goats' ), 107, 1107 );
+
+		$a->addLanguageLink( 'de' );
+		$a->addLanguageLink( 'ru' );
+		$a->addInterwikiLink( Title::makeTitle( NS_MAIN, 'Kittens DE', '', 'de' ) );
+		$a->addInterwikiLink( Title::makeTitle( NS_MAIN, 'Kittens RU', '', 'ru' ) );
+		$a->addExternalLink( 'https://kittens.wikimedia.test' );
+		$a->addExternalLink( 'https://goats.wikimedia.test' );
+
+		$a->addCategory( 'Foo', 'X' );
+		$a->addImage( 'Billy.jpg', '20180101000013', 'DEAD' );
+
+		$b = new ParserOutput();
+		$b->addLink( Title::makeTitle( NS_MAIN, 'Goats' ), 7 );
+		$b->addLink( Title::makeTitle( NS_TALK, 'Goats' ), 17 );
+		$b->addLink( Title::makeTitle( NS_MAIN, 'Dragons' ), 8 );
+		$b->addLink( Title::makeTitle( NS_FILE, 'Dragons.jpg' ), 28 );
+
+		$b->addTemplate( Title::makeTitle( NS_TEMPLATE, 'Dragons' ), 108, 1108 );
+		$a->addTemplate( Title::makeTitle( NS_MAIN, 'Dragons' ), 118, 1118 );
+
+		$b->addLanguageLink( 'fr' );
+		$b->addLanguageLink( 'ru' );
+		$b->addInterwikiLink( Title::makeTitle( NS_MAIN, 'Kittens FR', '', 'fr' ) );
+		$b->addInterwikiLink( Title::makeTitle( NS_MAIN, 'Dragons RU', '', 'ru' ) );
+		$b->addExternalLink( 'https://dragons.wikimedia.test' );
+		$b->addExternalLink( 'https://goats.wikimedia.test' );
+
+		$b->addCategory( 'Bar', 'Y' );
+		$b->addImage( 'Puff.jpg', '20180101000017', 'BEEF' );
+
+		yield 'all kinds of links' => [ $a, $b, [
+			'getLinks' => [
+				NS_MAIN => [
+					'Kittens' => 6,
+					'Goats' => 7,
+					'Dragons' => 8,
+				],
+				NS_TALK => [
+					'Kittens' => 16,
+					'Goats' => 17,
+				],
+				NS_FILE => [
+					'Dragons.jpg' => 28,
+				],
+			],
+			'getTemplates' => [
+				NS_MAIN => [
+					'Dragons' => 118,
+				],
+				NS_TEMPLATE => [
+					'Dragons' => 108,
+					'Goats' => 107,
+				],
+			],
+			'getTemplateIds' => [
+				NS_MAIN => [
+					'Dragons' => 1118,
+				],
+				NS_TEMPLATE => [
+					'Dragons' => 1108,
+					'Goats' => 1107,
+				],
+			],
+			'getLanguageLinks' => [ 'de', 'ru', 'fr' ],
+			'getInterwikiLinks' => [
+				'de' => [ 'Kittens_DE' => 1 ],
+				'ru' => [ 'Kittens_RU' => 1, 'Dragons_RU' => 1, ],
+				'fr' => [ 'Kittens_FR' => 1 ],
+			],
+			'getCategories' => [ 'Foo' => 'X', 'Bar' => 'Y' ],
+			'getImages' => [ 'Billy.jpg' => 1, 'Puff.jpg' => 1 ],
+			'getFileSearchOptions' => [
+				'Billy.jpg' => [ 'time' => '20180101000013', 'sha1' => 'DEAD' ],
+				'Puff.jpg' => [ 'time' => '20180101000017', 'sha1' => 'BEEF' ],
+			],
+			'getExternalLinks' => [
+				'https://dragons.wikimedia.test' => 1,
+				'https://kittens.wikimedia.test' => 1,
+				'https://goats.wikimedia.test' => 1,
+			]
+		] ];
+
+		// properties ------------
+		$a = new ParserOutput();
+
+		$a->setProperty( 'foo', 'Foo!' );
+		$a->setProperty( 'bar', 'Bar!' );
+
+		$a->setExtensionData( 'foo', 'Foo!' );
+		$a->setExtensionData( 'bar', 'Bar!' );
+
+		$b = new ParserOutput();
+
+		$b->setProperty( 'zoo', 'Zoo!' );
+		$b->setProperty( 'bar', 'Barrr!' );
+
+		$b->setExtensionData( 'zoo', 'Zoo!' );
+		$b->setExtensionData( 'bar', 'Barrr!' );
+
+		yield 'properties' => [ $a, $b, [
+			'getProperties' => [
+				'foo' => 'Foo!',
+				'bar' => 'Barrr!',
+				'zoo' => 'Zoo!',
+			],
+			'$mExtensionData' => [
+				'foo' => 'Foo!',
+				'bar' => 'Barrr!',
+				'zoo' => 'Zoo!',
+			],
+		] ];
+	}
+
+	/**
+	 * @dataProvider provideMergeTrackingMetaDataFrom
+	 * @covers ParserOutput::mergeTrackingMetaDataFrom
+	 *
+	 * @param ParserOutput $a
+	 * @param ParserOutput $b
+	 * @param array $expected
+	 */
+	public function testMergeTrackingMetaDataFrom( ParserOutput $a, ParserOutput $b, $expected ) {
+		$a->mergeTrackingMetaDataFrom( $b );
+
+		$this->assertFieldValues( $a, $expected );
+
+		// test twice, to make sure the operation is idempotent
+		$a->mergeTrackingMetaDataFrom( $b );
+
+		$this->assertFieldValues( $a, $expected );
+	}
+
+	public function provideMergeInternalMetaDataFrom() {
+		// hooks
+		$a = new ParserOutput();
+
+		$a->addOutputHook( 'foo', 'X' );
+		$a->addOutputHook( 'bar' );
+
+		$b = new ParserOutput();
+
+		$b->addOutputHook( 'foo', 'Y' );
+		$b->addOutputHook( 'bar' );
+		$b->addOutputHook( 'zoo' );
+
+		yield 'hooks' => [ $a, $b, [
+			'getOutputHooks' => [
+				[ 'foo', 'X' ],
+				[ 'bar', false ],
+				[ 'foo', 'Y' ],
+				[ 'zoo', false ],
+			],
+		] ];
+
+		// flags & co
+		$a = new ParserOutput();
+
+		$a->addWarning( 'Oops' );
+		$a->addWarning( 'Whoops' );
+
+		$a->setFlag( 'foo' );
+		$a->setFlag( 'bar' );
+
+		$a->recordOption( 'Foo' );
+		$a->recordOption( 'Bar' );
+
+		$b = new ParserOutput();
+
+		$b->addWarning( 'Yikes' );
+		$b->addWarning( 'Whoops' );
+
+		$b->setFlag( 'zoo' );
+		$b->setFlag( 'bar' );
+
+		$b->recordOption( 'Zoo' );
+		$b->recordOption( 'Bar' );
+
+		yield 'flags' => [ $a, $b, [
+			'getWarnings' => [ 'Oops', 'Whoops', 'Yikes' ],
+			'$mFlags' => [ 'foo' => true, 'bar' => true, 'zoo' => true ],
+			'getUsedOptions' => [ 'Foo', 'Bar', 'Zoo' ],
+		] ];
+
+		// timestamp ------------
+		$a = new ParserOutput();
+		$a->setTimestamp( '20180101000011' );
+		$b = new ParserOutput();
+		yield 'only left timestamp' => [ $a, $b, [ 'getTimestamp' => '20180101000011' ] ];
+
+		$a = new ParserOutput();
+		$b = new ParserOutput();
+		$b->setTimestamp( '20180101000011' );
+		yield 'only right timestamp' => [ $a, $b, [ 'getTimestamp' => '20180101000011' ] ];
+
+		$a = new ParserOutput();
+		$a->setTimestamp( '20180101000011' );
+		$b = new ParserOutput();
+		$b->setTimestamp( '20180101000001' );
+		yield 'left timestamp wins' => [ $a, $b, [ 'getTimestamp' => '20180101000011' ] ];
+
+		$a = new ParserOutput();
+		$a->setTimestamp( '20180101000001' );
+		$b = new ParserOutput();
+		$b->setTimestamp( '20180101000011' );
+		yield 'right timestamp wins' => [ $a, $b, [ 'getTimestamp' => '20180101000011' ] ];
+
+		// speculative rev id ------------
+		$a = new ParserOutput();
+		$a->setSpeculativeRevIdUsed( 9 );
+		$b = new ParserOutput();
+		yield 'only left speculative rev id' => [ $a, $b, [ 'getSpeculativeRevIdUsed' => 9 ] ];
+
+		$a = new ParserOutput();
+		$b = new ParserOutput();
+		$b->setSpeculativeRevIdUsed( 9 );
+		yield 'only right speculative rev id' => [ $a, $b, [ 'getSpeculativeRevIdUsed' => 9 ] ];
+
+		$a = new ParserOutput();
+		$a->setSpeculativeRevIdUsed( 9 );
+		$b = new ParserOutput();
+		$b->setSpeculativeRevIdUsed( 9 );
+		yield 'same speculative rev id' => [ $a, $b, [ 'getSpeculativeRevIdUsed' => 9 ] ];
+
+		// limit report (recursive max) ------------
+		$a = new ParserOutput();
+
+		$a->setLimitReportData( 'naive1', 7 );
+		$a->setLimitReportData( 'naive2', 27 );
+
+		$a->setLimitReportData( 'limitreport-simple1', 7 );
+		$a->setLimitReportData( 'limitreport-simple2', 27 );
+
+		$a->setLimitReportData( 'limitreport-pair1', [ 7, 9 ] );
+		$a->setLimitReportData( 'limitreport-pair2', [ 27, 29 ] );
+
+		$a->setLimitReportData( 'limitreport-more1', [ 7, 9, 1 ] );
+		$a->setLimitReportData( 'limitreport-more2', [ 27, 29, 21 ] );
+
+		$a->setLimitReportData( 'limitreport-only-a', 13 );
+
+		$b = new ParserOutput();
+
+		$b->setLimitReportData( 'naive1', 17 );
+		$b->setLimitReportData( 'naive2', 17 );
+
+		$b->setLimitReportData( 'limitreport-simple1', 17 );
+		$b->setLimitReportData( 'limitreport-simple2', 17 );
+
+		$b->setLimitReportData( 'limitreport-pair1', [ 17, 19 ] );
+		$b->setLimitReportData( 'limitreport-pair2', [ 17, 19 ] );
+
+		$b->setLimitReportData( 'limitreport-more1', [ 17, 19, 11 ] );
+		$b->setLimitReportData( 'limitreport-more2', [ 17, 19, 11 ] );
+
+		$b->setLimitReportData( 'limitreport-only-b', 23 );
+
+		// first write wins
+		yield 'limit report' => [ $a, $b, [
+			'getLimitReportData' => [
+				'naive1' => 7,
+				'naive2' => 27,
+				'limitreport-simple1' => 7,
+				'limitreport-simple2' => 27,
+				'limitreport-pair1' => [ 7, 9 ],
+				'limitreport-pair2' => [ 27, 29 ],
+				'limitreport-more1' => [ 7, 9, 1 ],
+				'limitreport-more2' => [ 27, 29, 21 ],
+				'limitreport-only-a' => 13,
+			],
+			'getLimitReportJSData' => [
+				'naive1' => 7,
+				'naive2' => 27,
+				'limitreport' => [
+					'simple1' => 7,
+					'simple2' => 27,
+					'pair1' => [ 'value' => 7, 'limit' => 9 ],
+					'pair2' => [ 'value' => 27, 'limit' => 29 ],
+					'more1' => [ 7, 9, 1 ],
+					'more2' => [ 27, 29, 21 ],
+					'only-a' => 13,
+				],
+			],
+		] ];
+	}
+
+	/**
+	 * @dataProvider provideMergeInternalMetaDataFrom
+	 * @covers ParserOutput::mergeInternalMetaDataFrom
+	 *
+	 * @param ParserOutput $a
+	 * @param ParserOutput $b
+	 * @param array $expected
+	 */
+	public function testMergeInternalMetaDataFrom( ParserOutput $a, ParserOutput $b, $expected ) {
+		$a->mergeInternalMetaDataFrom( $b );
+
+		$this->assertFieldValues( $a, $expected );
+
+		// test twice, to make sure the operation is idempotent
+		$a->mergeInternalMetaDataFrom( $b );
+
+		$this->assertFieldValues( $a, $expected );
+	}
+
+	public function testMergeInternalMetaDataFrom_parseStartTime() {
+		/** @var object $a */
+		$a = new ParserOutput();
+		$a = TestingAccessWrapper::newFromObject( $a );
+
+		$a->resetParseStartTime();
+		$aClocks = $a->mParseStartTime;
+
+		$b = new ParserOutput();
+
+		$a->mergeInternalMetaDataFrom( $b );
+		$mergedClocks = $a->mParseStartTime;
+
+		foreach ( $mergedClocks as $clock => $timestamp ) {
+			$this->assertSame( $aClocks[$clock], $timestamp, $clock );
+		}
+
+		// try again, with times in $b also set, and later than $a's
+		usleep( 1234 );
+
+		/** @var object $b */
+		$b = new ParserOutput();
+		$b = TestingAccessWrapper::newFromObject( $b );
+
+		$b->resetParseStartTime();
+
+		$bClocks = $b->mParseStartTime;
+
+		$a->mergeInternalMetaDataFrom( $b->object, 'b' );
+		$mergedClocks = $a->mParseStartTime;
+
+		foreach ( $mergedClocks as $clock => $timestamp ) {
+			$this->assertSame( $aClocks[$clock], $timestamp, $clock );
+			$this->assertLessThanOrEqual( $bClocks[$clock], $timestamp, $clock );
+		}
+
+		// try again, with $a's times being later
+		usleep( 1234 );
+		$a->resetParseStartTime();
+		$aClocks = $a->mParseStartTime;
+
+		$a->mergeInternalMetaDataFrom( $b->object, 'b' );
+		$mergedClocks = $a->mParseStartTime;
+
+		foreach ( $mergedClocks as $clock => $timestamp ) {
+			$this->assertSame( $bClocks[$clock], $timestamp, $clock );
+			$this->assertLessThanOrEqual( $aClocks[$clock], $timestamp, $clock );
+		}
+
+		// try again, with no times in $a set
+		$a = new ParserOutput();
+		$a = TestingAccessWrapper::newFromObject( $a );
+
+		$a->mergeInternalMetaDataFrom( $b->object, 'b' );
+		$mergedClocks = $a->mParseStartTime;
+
+		foreach ( $mergedClocks as $clock => $timestamp ) {
+			$this->assertSame( $bClocks[$clock], $timestamp, $clock );
+		}
 	}
 
 }

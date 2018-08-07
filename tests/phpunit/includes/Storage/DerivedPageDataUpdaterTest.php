@@ -73,14 +73,22 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$user = $this->getTestUser()->getUser();
 		$comment = CommentStoreComment::newUnsavedComment( $summary );
 
-		if ( !$content instanceof Content ) {
+		if ( $content === null || is_string( $content ) ) {
 			$content = new WikitextContent( $content ?? $summary );
+		}
+
+		if ( !is_array( $content ) ) {
+			$content = [ 'main' => $content ];
 		}
 
 		$this->getDerivedPageDataUpdater( $page ); // flush cached instance before.
 
 		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( 'main', $content );
+
+		foreach ( $content as $role => $c ) {
+			$updater->setContent( $role, $c );
+		}
+
 		$rev = $updater->saveRevision( $comment );
 
 		$this->getDerivedPageDataUpdater( $page ); // flush cached instance after.
@@ -110,7 +118,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$this->assertSame( MediaWikiServices::getInstance()->getContentLanguage(),
 			$options1->getUserLangObj() );
 
-		$speculativeId = call_user_func( $options1->getSpeculativeRevIdCallback(), $page->getTitle() );
+		$speculativeId = $options1->getSpeculativeRevId();
 		$this->assertSame( $parentRev->getId() + 1, $speculativeId );
 
 		$rev = $this->makeRevision(
@@ -123,7 +131,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$updater->prepareUpdate( $rev );
 
 		$options2 = $updater->getCanonicalParserOptions();
-		$this->assertNotSame( $options1, $options2 );
 
 		$currentRev = call_user_func( $options2->getCurrentRevisionCallback(), $page->getTitle() );
 		$this->assertSame( $rev->getId(), $currentRev->getId() );
@@ -167,7 +174,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getCanonicalParserOutput()
 	 */
 	public function testPrepareContent() {
-		$user = $this->getTestUser()->getUser();
+		$sysop = $this->getTestUser( [ 'sysop' ] )->getUser();
 		$updater = $this->getDerivedPageDataUpdater( __METHOD__ );
 
 		$this->assertFalse( $updater->isContentPrepared() );
@@ -186,10 +193,10 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$update->modifySlot( SlotRecord::newInherited( $auxSlot ) );
 		// TODO: MCR: test removing slots!
 
-		$updater->prepareContent( $user, $update, false );
+		$updater->prepareContent( $sysop, $update, false );
 
 		// second be ok to call again with the same params
-		$updater->prepareContent( $user, $update, false );
+		$updater->prepareContent( $sysop, $update, false );
 
 		$this->assertNull( $updater->grabCurrentRevision() );
 		$this->assertTrue( $updater->isContentPrepared() );
@@ -197,7 +204,10 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$this->assertFalse( $updater->pageExisted() );
 		$this->assertTrue( $updater->isCreation() );
 		$this->assertTrue( $updater->isChange() );
-		$this->assertTrue( $updater->isContentPublic() );
+		$this->assertFalse( $updater->isContentDeleted() );
+
+		$this->assertNotNull( $updater->getRevision() );
+		$this->assertNotNull( $updater->getRenderedRevision() );
 
 		$this->assertEquals( [ 'main', 'aux' ], $updater->getSlots()->getSlotRoles() );
 		$this->assertEquals( [ 'main' ], array_keys( $updater->getSlots()->getOriginalSlots() ) );
@@ -208,7 +218,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$mainSlot = $updater->getRawSlot( 'main' );
 		$this->assertInstanceOf( SlotRecord::class, $mainSlot );
 		$this->assertNotContains( '~~~', $mainSlot->getContent()->serialize(), 'PST should apply.' );
-		$this->assertContains( $user->getName(), $mainSlot->getContent()->serialize() );
+		$this->assertContains( $sysop->getName(), $mainSlot->getContent()->serialize() );
 
 		$auxSlot = $updater->getRawSlot( 'aux' );
 		$this->assertInstanceOf( SlotRecord::class, $auxSlot );
@@ -222,6 +232,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$canonicalOutput = $updater->getCanonicalParserOutput();
 		$this->assertContains( 'first', $canonicalOutput->getText() );
 		$this->assertContains( '<a ', $canonicalOutput->getText() );
+		$this->assertContains( 'inherited ', $canonicalOutput->getText() );
 		$this->assertNotEmpty( $canonicalOutput->getLinks() );
 	}
 
@@ -232,18 +243,19 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::isChange()
 	 */
 	public function testPrepareContentInherit() {
-		$user = $this->getTestUser()->getUser();
+		$sysop = $this->getTestUser( [ 'sysop' ] )->getUser();
 		$page = $this->getPage( __METHOD__ );
 
-		$mainContent1 = new WikitextContent( 'first [[main]] ~~~' );
+		$mainContent1 = new WikitextContent( 'first [[main]] ({{REVISIONUSER}}) ~~~' );
 		$mainContent2 = new WikitextContent( 'second' );
 
-		$this->createRevision( $page, 'first', $mainContent1 );
+		$rev = $this->createRevision( $page, 'first', $mainContent1 );
+		$mainContent1 = $rev->getContent( 'main' ); // get post-pst content
 
 		$update = new RevisionSlotsUpdate();
 		$update->modifyContent( 'main', $mainContent1 );
 		$updater1 = $this->getDerivedPageDataUpdater( $page );
-		$updater1->prepareContent( $user, $update, false );
+		$updater1->prepareContent( $sysop, $update, false );
 
 		$this->assertNotNull( $updater1->grabCurrentRevision() );
 		$this->assertTrue( $updater1->isContentPrepared() );
@@ -251,11 +263,20 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$this->assertFalse( $updater1->isCreation() );
 		$this->assertFalse( $updater1->isChange() );
 
+		$this->assertNotNull( $updater1->getRevision() );
+		$this->assertNotNull( $updater1->getRenderedRevision() );
+
+		// parser-output for null-edit uses the original author's name
+		$html = $updater1->getRenderedRevision()->getRevisionParserOutput()->getText();
+		$this->assertNotContains( $sysop->getName(), $html, '{{REVISIONUSER}}' );
+		$this->assertNotContains( '{{REVISIONUSER}}', $html, '{{REVISIONUSER}}' );
+		$this->assertContains( '(' . $rev->getUser()->getName() . ')', $html, '{{REVISIONUSER}}' );
+
 		// TODO: MCR: test inheritance from parent
 		$update = new RevisionSlotsUpdate();
 		$update->modifyContent( 'main', $mainContent2 );
 		$updater2 = $this->getDerivedPageDataUpdater( $page );
-		$updater2->prepareContent( $user, $update, false );
+		$updater2->prepareContent( $sysop, $update, false );
 
 		$this->assertFalse( $updater2->isCreation() );
 		$this->assertTrue( $updater2->isChange() );
@@ -292,7 +313,10 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$this->assertTrue( $updater1->isContentPrepared() );
 		$this->assertTrue( $updater1->isCreation() );
 		$this->assertTrue( $updater1->isChange() );
-		$this->assertTrue( $updater1->isContentPublic() );
+		$this->assertFalse( $updater1->isContentDeleted() );
+
+		$this->assertNotNull( $updater1->getRevision() );
+		$this->assertNotNull( $updater1->getRenderedRevision() );
 
 		$this->assertEquals( [ 'main' ], $updater1->getSlots()->getSlotRoles() );
 		$this->assertEquals( [ 'main' ], array_keys( $updater1->getSlots()->getOriginalSlots() ) );
@@ -698,10 +722,20 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 	public function testDoUpdates() {
 		$page = $this->getPage( __METHOD__ );
 
-		$mainContent1 = new WikitextContent( 'first [[main]]' );
-		$rev = $this->createRevision( $page, 'first', $mainContent1 );
+		$content = [ 'main' => new WikitextContent( 'first [[main]]' ) ];
+
+		if ( $this->hasMultiSlotSupport() ) {
+			$content['aux'] = new WikitextContent( 'Aux [[Nix]]' );
+		}
+
+		$rev = $this->createRevision( $page, 'first', $content );
 		$pageId = $page->getId();
+
 		$oldStats = $this->db->selectRow( 'site_stats', '*', '1=1' );
+		$this->db->delete( 'pagelinks', '*' );
+
+		$pcache = MediaWikiServices::getInstance()->getParserCache();
+		$pcache->deleteOptionsKey( $page );
 
 		$updater = $this->getDerivedPageDataUpdater( $page, $rev );
 		$updater->setArticleCountMethod( 'link' );
@@ -712,15 +746,25 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$updater->doUpdates();
 
 		// links table update
-		$linkCount = $this->db->selectRowCount( 'pagelinks', '*', [ 'pl_from' => $pageId ] );
-		$this->assertSame( 1, $linkCount );
+		$pageLinks = $this->db->select(
+			'pagelinks',
+			'*',
+			[ 'pl_from' => $pageId ],
+			__METHOD__,
+			[ 'ORDER BY' => 'pl_namespace, pl_title' ]
+		);
 
-		$pageLinksRow = $this->db->selectRow( 'pagelinks', '*', [ 'pl_from' => $pageId ] );
+		$pageLinksRow = $pageLinks->fetchObject();
 		$this->assertInternalType( 'object', $pageLinksRow );
 		$this->assertSame( 'Main', $pageLinksRow->pl_title );
 
+		if ( $this->hasMultiSlotSupport() ) {
+			$pageLinksRow = $pageLinks->fetchObject();
+			$this->assertInternalType( 'object', $pageLinksRow );
+			$this->assertSame( 'Nix', $pageLinksRow->pl_title );
+		}
+
 		// parser cache update
-		$pcache = MediaWikiServices::getInstance()->getParserCache();
 		$cached = $pcache->get( $page, $updater->getCanonicalParserOptions() );
 		$this->assertInternalType( 'object', $cached );
 		$this->assertSame( $updater->getCanonicalParserOutput(), $cached );
@@ -740,6 +784,13 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		// TODO: test search update
 		// TODO: test site stats good_articles while turning the page into (or back from) a redir.
 		// TODO: test category membership update (with setRcWatchCategoryMembership())
+	}
+
+	private function hasMultiSlotSupport() {
+		global $wgMultiContentRevisionSchemaMigrationStage;
+
+		return ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW )
+			&& ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW );
 	}
 
 }

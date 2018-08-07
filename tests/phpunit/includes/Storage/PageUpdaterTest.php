@@ -7,6 +7,7 @@ use Content;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWikiTestCase;
+use ParserOptions;
 use RecentChange;
 use Revision;
 use TextContent;
@@ -492,6 +493,77 @@ class PageUpdaterTest extends MediaWikiTestCase {
 			[ 'log_page' => $rev->getPageId() ],
 			$expected
 		);
+	}
+
+	public function provideMagicWords() {
+		yield 'PAGEID' => [
+			'Test {{PAGEID}} Test',
+			function ( RevisionRecord $rev ) {
+				return $rev->getPageId();
+			}
+		];
+
+		yield 'REVISIONID' => [
+			'Test {{REVISIONID}} Test',
+			function ( RevisionRecord $rev ) {
+				return $rev->getId();
+			}
+		];
+
+		yield 'REVISIONUSER' => [
+			'Test {{REVISIONUSER}} Test',
+			function ( RevisionRecord $rev ) {
+				return $rev->getUser()->getName();
+			}
+		];
+
+		yield 'REVISIONTIMESTAMP' => [
+			'Test {{REVISIONTIMESTAMP}} Test',
+			function ( RevisionRecord $rev ) {
+				return $rev->getTimestamp();
+			}
+		];
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
+	 *
+	 * Integration test for PageUpdater, DerivedPageDataUpdater, RevisionRenderer
+	 * and RenderedRevision, that ensures that magic words depending on revision meta-data
+	 * are handled correctly. Note that each magic word needs to be tested separately,
+	 * to assert correct behavior for each "vary" flag in the ParserOutput.
+	 *
+	 * @dataProvider provideMagicWords
+	 */
+	public function testMagicWords( $wikitext, $callback ) {
+		$user = $this->getTestUser()->getUser();
+
+		$title = $this->getDummyTitle( __METHOD__ . '-' . $this->getName() );
+		$page = WikiPage::factory( $title );
+		$updater = $page->newPageUpdater( $user );
+
+		$updater->setContent( 'main', new \WikitextContent( $wikitext ) );
+
+		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
+		$rev = $updater->saveRevision( $summary, EDIT_NEW );
+
+		if ( !$rev ) {
+			$this->fail( $updater->getStatus()->getWikiText() );
+		}
+
+		$expected = strval( $callback( $rev ) );
+
+		$cache = MediaWikiServices::getInstance()->getParserCache();
+		$output = $cache->get(
+			$page,
+			ParserOptions::newCanonical(
+				'canonical'
+			)
+		);
+
+		$this->assertNotNull( $output, 'ParserCache::get' );
+
+		$this->assertContains( $expected, $output->getText() );
 	}
 
 }
