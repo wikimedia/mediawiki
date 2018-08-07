@@ -61,7 +61,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		$this->originalHandlers = TestingAccessWrapper::newFromClass( Hooks::class )->handlers;
 		TestingAccessWrapper::newFromClass( Hooks::class )->handlers = [];
 
-		SpecialPageFactory::resetList();
+		$this->overrideMwServices();
 	}
 
 	public function tearDown() {
@@ -69,7 +69,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 
 		TestingAccessWrapper::newFromClass( Hooks::class )->handlers = $this->originalHandlers;
 
-		SpecialPageFactory::resetList();
+		$this->overrideMwServices();
 	}
 
 	protected function searchProvision( array $results = null ) {

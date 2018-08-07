@@ -48,6 +48,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Special\SpecialPageFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
@@ -542,6 +543,13 @@ return [
 			'role_id',
 			'role_name',
 			'strtolower'
+		);
+	},
+
+	'SpecialPageFactory' => function ( MediaWikiServices $services ) : SpecialPageFactory {
+		return new SpecialPageFactory(
+			$services->getMainConfig(),
+			$services->getContentLanguage()
 		);
 	},
 

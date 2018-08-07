@@ -14,11 +14,11 @@ class SpecialPageFatalTest extends MediaWikiTestCase {
 
 	public static function setUpBeforeClass() {
 		parent::setUpBeforeClass();
-		SpecialPageFactory::resetList();
+		self::overrideMwServices();
 	}
 
 	public static function tearDownAfterClass() {
-		SpecialPageFactory::resetList();
+		self::overrideMwServices();
 		parent::tearDownAfterClass();
 	}
 
