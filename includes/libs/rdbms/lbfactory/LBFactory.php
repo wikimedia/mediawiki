@@ -135,6 +135,7 @@ abstract class LBFactory implements ILBFactory {
 			'IPAddress' => $_SERVER[ 'REMOTE_ADDR' ] ?? '',
 			'UserAgent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
 			// Headers application can inject via LBFactory::setRequestInfo()
+			'ChronologyProtection' => null,
 			'ChronologyClientId' => null, // prior $cpClientId value from LBFactory::shutdown()
 			'ChronologyPositionIndex' => null // prior $cpIndex value from LBFactory::shutdown()
 		];
