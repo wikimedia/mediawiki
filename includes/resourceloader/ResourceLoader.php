@@ -1490,8 +1490,25 @@ MESSAGE;
 	 * @return string JavaScript code
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
+		// Adds a function to lazy-created RLQ
 		return '(window.RLQ=window.RLQ||[]).push(function(){' .
 			trim( $script ) . '});';
+	}
+
+	/**
+	 * Wraps JavaScript code to run after a required module.
+	 *
+	 * @since 1.32
+	 * @param string|string[] $modules Module name(s)
+	 * @param string $script JavaScript code
+	 * @return string JavaScript code
+	 */
+	public static function makeInlineCodeWithModule( $modules, $script ) {
+		// Adds an array to lazy-created RLQ
+		return '(window.RLQ=window.RLQ||[]).push(['
+			. json_encode( $modules ) . ','
+			. 'function(){' . trim( $script ) . '}'
+			. ']);';
 	}
 
 	/**
