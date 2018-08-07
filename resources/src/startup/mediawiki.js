@@ -1028,6 +1028,9 @@
 			 */
 			function domEval( code ) {
 				var script = document.createElement( 'script' );
+				if ( mw.config.get( 'wgCSPNonce' ) !== false ) {
+					script.nonce = mw.config.get( 'wgCSPNonce' );
+				}
 				script.text = code;
 				document.head.appendChild( script );
 				script.parentNode.removeChild( script );

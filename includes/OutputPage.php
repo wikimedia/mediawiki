@@ -3125,6 +3125,7 @@ class OutputPage extends ContextSource {
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
 			'wgRelevantArticleId' => $relevantTitle->getArticleID(),
 			'wgRequestId' => WebRequest::getRequestId(),
+			'wgCSPNonce' => $this->getCSPNonce(),
 		];
 
 		if ( $user->isLoggedIn() ) {
