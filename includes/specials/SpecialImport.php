@@ -79,7 +79,7 @@ class SpecialImport extends SpecialPage {
 		}
 
 		# @todo Allow Title::getUserPermissionsErrors() to take an array
-		# @todo FIXME: Title::checkSpecialsAndNSPermissions() has a very wierd expectation of what
+		# @todo FIXME: Title::checkSpecialsAndNSPermissions() has a very weird expectation of what
 		# getUserPermissionsErrors() might actually be used for, hence the 'ns-specialprotected'
 		$errors = wfMergeErrorArrays(
 			$this->getPageTitle()->getUserPermissionsErrors(
