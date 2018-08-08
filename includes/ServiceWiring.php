@@ -368,7 +368,8 @@ return [
 			$services->getContentLanguage(),
 			wfUrlProtocols(),
 			$services->getSpecialPageFactory(),
-			$services->getMainConfig()
+			$services->getMainConfig(),
+			$services->getLinkRendererFactory()
 		);
 	},
 
