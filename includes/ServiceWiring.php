@@ -361,7 +361,8 @@ return [
 			$services->getMagicWordFactory(),
 			$services->getContentLanguage(),
 			wfUrlProtocols(),
-			$services->getSpecialPageFactory()
+			$services->getSpecialPageFactory(),
+			$services->getMainConfig()
 		);
 	},
 
