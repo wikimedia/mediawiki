@@ -35,7 +35,9 @@
 	</script>
 	<script>
 		// Mock startup.js
-		var mwNow = Date.now;
+		window.$VARS = {
+			baseModules: []
+		};
 
 		function startUp() {
 			mw.config = new mw.Map();

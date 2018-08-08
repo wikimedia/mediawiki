@@ -3,6 +3,9 @@
  * Copyright jQuery Foundation and other contributors
  *
  * Patched for MediaWiki:
+ * - Qualify the global lookup for 'jQuery' as 'window.jQuery',
+ *   because within mw.loader.implement() for 'jquery', the closure
+ *   specifies '$' and 'jQuery', which are undefined.
  * - Add mw.track instrumentation for statistics.
  * - Disable jQuery.migrateTrace by default. They are slow and
  *   redundant given console.warn() already provides a trace.
@@ -20,7 +23,8 @@
 	} else {
 
 		// Browser globals
-		factory( jQuery, window );
+		// PATCH: Qualify jQuery lookup as window.jQuery. --Krinkle
+		factory( window.jQuery, window );
 	}
 } )( function( jQuery, window ) {
 "use strict";

@@ -80,7 +80,7 @@ window.isCompatible = function ( str ) {
 };
 
 ( function () {
-	var NORLQ, script;
+	var NORLQ;
 	// Handle Grade C
 	if ( !isCompatible() ) {
 		// Undo speculative Grade A <html> class. See ResourceLoaderClientHtml::getDocumentAttributes().
@@ -119,19 +119,20 @@ window.isCompatible = function ( str ) {
 		// Process callbacks for Grade A
 		// Must be after registrations and mw.config.set, which mw.loader depends on.
 		var queue = window.RLQ;
-		window.RLQ = {
-			push: function ( fn ) {
-				if ( typeof fn === 'function' ) {
-					fn();
-				} else {
-					// This callback has a requirement.
-					mw.loader.using( fn[ 0 ], fn[ 1 ] );
-				}
+		// Redefine push(), but keep type as array for storing callbacks that require modules.
+		window.RLQ = [];
+		/* global RLQ */
+		RLQ.push = function ( fn ) {
+			if ( typeof fn === 'function' ) {
+				fn();
+			} else {
+				// This callback requires a module, handled in mediawiki.base.
+				RLQ[ RLQ.length ] = fn;
 			}
 		};
 		while ( queue && queue[ 0 ] ) {
 			// Re-use our push()
-			window.RLQ.push( queue.shift() );
+			RLQ.push( queue.shift() );
 		}
 
 		// Clear and disable the Grade C queue
@@ -147,14 +148,5 @@ window.isCompatible = function ( str ) {
 	// This embeds mediawiki.js, which defines 'mw' and 'mw.loader'.
 	$CODE.defineLoader();
 
-	script = document.createElement( 'script' );
-	script.src = $VARS.baseModulesUri;
-	script.onload = function () {
-		// Clean up
-		script.onload = null;
-		script = null;
-		// Callback
-		startUp();
-	};
-	document.head.appendChild( script );
+	mw.requestIdleCallback( startUp );
 }() );

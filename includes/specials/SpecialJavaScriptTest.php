@@ -103,65 +103,56 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$query['only'] = 'scripts';
 		$startupContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
 
-		$query['raw'] = true;
-
 		$modules = $rl->getTestModuleNames( 'qunit' );
 
 		// Disable autostart because we load modules asynchronously. By default, QUnit would start
 		// at domready when there are no tests loaded and also fire 'QUnit.done' which then instructs
-		// Karma to end the run before the tests even started.
+		// Karma to exit the browser process before the tests even finished loading.
 		$qunitConfig = 'QUnit.config.autostart = false;'
 			. 'if (window.__karma__) {'
 			// karma-qunit's use of autostart=false and QUnit.start conflicts with ours.
-			// Hack around this by replacing 'karma.loaded' with a no-op and call it ourselves later.
-			// See <https://github.com/karma-runner/karma-qunit/issues/27>.
+			// Hack around this by replacing 'karma.loaded' with a no-op and perfom its duty of calling
+			// `__karma__.start()` ourselves. See <https://github.com/karma-runner/karma-qunit/issues/27>.
 			. 'window.__karma__.loaded = function () {};'
 			. '}';
 
 		// The below is essentially a pure-javascript version of OutputPage::headElement().
-		$startup = $rl->makeModuleResponse( $startupContext, [
+		$code = $rl->makeModuleResponse( $startupContext, [
 			'startup' => $rl->getModule( 'startup' ),
 		] );
-		// Embed page-specific mw.config variables.
-		// The current Special page shouldn't be relevant to tests, but various modules (which
-		// are loaded before the test suites), reference mw.config while initialising.
-		$code = ResourceLoader::makeConfigSetScript( $out->getJSVars() );
-		// Embed private modules as they're not allowed to be loaded dynamically
-		$code .= $rl->makeModuleResponse( $embedContext, [
-			'user.options' => $rl->getModule( 'user.options' ),
-			'user.tokens' => $rl->getModule( 'user.tokens' ),
-		] );
-		// Catch exceptions (such as "dependency missing" or "unknown module") so that we
-		// always start QUnit. Re-throw so that they are caught and reported as global exceptions
-		// by QUnit and Karma.
-		$modules = Xml::encodeJsVar( $modules );
-		$code .= <<<CODE
-(function () {
+		// The following has to be deferred via RLQ because the startup module is asynchronous.
+		$code .= ResourceLoader::makeLoaderConditionalScript(
+			// Embed page-specific mw.config variables.
+			// The current Special page shouldn't be relevant to tests, but various modules (which
+			// are loaded before the test suites), reference mw.config while initialising.
+			ResourceLoader::makeConfigSetScript( $out->getJSVars() )
+			// Embed private modules as they're not allowed to be loaded dynamically
+			. $rl->makeModuleResponse( $embedContext, [
+				'user.options' => $rl->getModule( 'user.options' ),
+				'user.tokens' => $rl->getModule( 'user.tokens' ),
+			] )
+			// Load all the test suites
+			. Xml::encodeJsCall( 'mw.loader.load', [ $modules ] )
+		);
+		$encModules = Xml::encodeJsVar( $modules );
+		$code .= ResourceLoader::makeInlineCodeWithModule( 'mediawiki.base', <<<JAVASCRIPT
 	var start = window.__karma__ ? window.__karma__.start : QUnit.start;
-	try {
-		mw.loader.using( $modules )
-			.always( function () {
-				start();
-			} )
-			.fail( function ( e ) {
-				setTimeout( function () {
-					throw e;
-				} );
-			} );
-	} catch ( e ) {
-		start();
-		throw e;
-	}
-}());
-CODE;
+	mw.loader.using( $encModules ).always( start );
+	mw.trackSubscribe( 'resourceloader.exception', function ( topic, err ) {
+		// Things like "dependency missing" or "unknown module".
+		// Re-throw so that they are reported as global exceptions by QUnit and Karma.
+		setTimeout( function () {
+			throw e;
+		} );
+	} );
+JAVASCRIPT
+	);
 
 		header( 'Content-Type: text/javascript; charset=utf-8' );
 		header( 'Cache-Control: private, no-cache, must-revalidate' );
 		header( 'Pragma: no-cache' );
 		echo $qunitConfig;
-		echo $startup;
-		// The following has to be deferred via RLQ because the startup module is asynchronous.
-		echo ResourceLoader::makeLoaderConditionalScript( $code );
+		echo $code;
 	}
 
 	private function plainQUnit() {
