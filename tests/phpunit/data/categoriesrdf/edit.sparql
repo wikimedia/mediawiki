@@ -1,4 +1,4 @@
-# Changes
+# Edits
 DELETE {
 ?category ?x ?y
 } WHERE {
