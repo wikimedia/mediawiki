@@ -55,11 +55,11 @@ $datePreferenceMigrationMap = [
 $dateFormats = [
 	'dmy time' => 'H:i',
 	'dmy date' => 'j xg Y',
-	'dmy both' => 'H:i، j xg Y',
+	'dmy both' => 'H:i, j xg Y',
 
 	'persian time' => 'H:i',
 	'persian date' => 'xij xiF xiY',
-	'persian both' => 'H:i، xij xiF xiY',
+	'persian both' => 'H:i, xij xiF xiY',
 
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
