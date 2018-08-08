@@ -27,7 +27,8 @@
 			"Hamilton Abreu",
 			"Athena in Wonderland",
 			"Navhy",
-			"PokéDex Nacional"
+			"PokéDex Nacional",
+			"Maria zaos"
 		]
 	},
 	"tog-underline": "Subliñar as ligazóns:",
@@ -1039,7 +1040,7 @@
 	"recentchangescount": "Número de edicións a amosar por defecto nos cambios recentes, nos historiais de páxina e nos rexistrosː",
 	"prefs-help-recentchangescount": "Número máximo: 1000",
 	"prefs-help-watchlist-token2": "Esta é a clave secreta da fonte de novas web para a súa lista de vixilancia.\nCalquera persoa que a saiba poderá ler a súa lista de vixilancia; non comparta esta clave.\nSe o precisa, [[Special:ResetTokens|pode restablecela]].",
-	"prefs-help-tokenmanagement": "Podes ver e restaurar a chave secreta para a túa conta que pode acceder á fonte web da túa lista de vixiancia. Calquera que coñeza a chave poderá leer a túa lista de vixiancia, non a comparta.",
+	"prefs-help-tokenmanagement": "Podes ver e restaurar a chave secreta da túa conta que permite acceder á fonte web da túa lista de vixiancia. Calquera que coñeza a chave poderá leer a túa lista de vixiancia, así que non a compartas.",
 	"savedprefs": "Gardáronse as súas preferencias.",
 	"savedrights": "Gardáronse os grupos de {{GENDER:$1|usuario|usuaria}} de $1.",
 	"timezonelegend": "Fuso horario:",

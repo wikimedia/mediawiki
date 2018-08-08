@@ -2150,7 +2150,7 @@
 	"cachedspecial-refresh-now": "查看最新的。",
 	"categories": "分类",
 	"categories-submit": "显示",
-	"categoriespagetext": "以下{{PLURAL:$1|分类包含}}页面或媒体文件。[[Special:UnusedCategories|未使用分类]]不在这里显示。另请见[[Special:WantedCategories|需要的分类]]。",
+	"categoriespagetext": "以下{{PLURAL:$1|分类}}在wiki存在，并且可能被也可能未被使用。另见[[Special:WantedCategories|需要的分类]]。",
 	"categoriesfrom": "显示分类开始于：",
 	"deletedcontributions": "被删除的用户贡献",
 	"deletedcontributions-title": "被删除的用户贡献",
