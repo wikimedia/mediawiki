@@ -143,7 +143,6 @@ return [
 			'resources/lib/jquery/jquery.js',
 			'resources/lib/jquery/jquery.migrate.js',
 		],
-		'raw' => true,
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
@@ -834,11 +833,14 @@ return [
 	/* MediaWiki */
 
 	'mediawiki.base' => [
-		// Keep in sync with maintenance/jsduck/eg-iframe.html
 		'scripts' => [
+			// This MUST be kept in sync with maintenance/jsduck/eg-iframe.html
 			'resources/src/mediawiki.base/mediawiki.errorLogger.js',
 			'resources/src/mediawiki.base/mediawiki.base.js',
 		],
+		// - These dependencies MUST NOT also have dependencies (would cause recursion).
+		// - These dependencies MUST also be returned from StartUpModule::getBaseModules().
+		'dependencies' => 'jquery',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.apihelp' => [

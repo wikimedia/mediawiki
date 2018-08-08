@@ -22,7 +22,8 @@
 		mwLoaderTrack = mw.track,
 		trackCallbacks = $.Callbacks( 'memory' ),
 		trackHandlers = [],
-		hasOwn = Object.prototype.hasOwnProperty;
+		hasOwn = Object.prototype.hasOwnProperty,
+		queue;
 
 	/**
 	 * Object constructor for messages.
@@ -642,4 +643,17 @@
 	// Alias $j to jQuery for backwards compatibility
 	// @deprecated since 1.23 Use $ or jQuery instead
 	mw.log.deprecate( window, '$j', $, 'Use $ or jQuery instead.' );
+
+	// Process callbacks for Grade A that require modules.
+	// Plain ones were already processed by startup.js.
+	queue = window.RLQ;
+	// Redefine publicly to capture any late arrivals
+	window.RLQ = {
+		push: function ( entry ) {
+			mw.loader.using( entry[ 0 ], entry[ 1 ] );
+		}
+	};
+	while ( queue[ 0 ] ) {
+		window.RLQ.push( queue.shift() );
+	}
 }() );
