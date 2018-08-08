@@ -107,6 +107,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	protected $useInterimHoldOffCaching = true;
 	/** @var callable|null Function that takes a WAN cache callback and runs it later */
 	protected $asyncHandler;
+	/** @var float Unix timestamp of the oldest possible valid values */
+	protected $epoch;
 
 	/** @var int ERR_* constant for the "last error" registry */
 	protected $lastRelayError = self::ERR_NONE;
@@ -223,6 +225,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *   - mcrouterAware: set as true if mcrouter is the backing store proxy and mcrouter
 	 *       is configured to interpret /<region>/<cluster>/ key prefixes as routes. This
 	 *       requires that "region" and "cluster" are both set above. [optional]
+	 *   - epoch: lowest UNIX timestamp a value/tombstone must have to be valid. [optional]
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
@@ -231,6 +234,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$this->region = $params['region'] ?? 'main';
 		$this->cluster = $params['cluster'] ?? 'wan-main';
 		$this->mcrouterAware = !empty( $params['mcrouterAware'] );
+		$this->epoch = $params['epoch'] ?? 1.0;
 
 		$this->setLogger( $params['logger'] ?? new NullLogger() );
 		$this->stats = $params['stats'] ?? new NullStatsdDataFactory();
@@ -2042,6 +2046,11 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			$curTTL = INF;
 		}
 
+		if ( $wrapped[self::FLD_TIME] < $this->epoch ) {
+			// Values this old are ignored
+			return [ false, null ];
+		}
+
 		return [ $wrapped[self::FLD_VALUE], $curTTL ];
 	}
 
@@ -2070,7 +2079,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * @param string $value Wrapped value like "PURGED:<timestamp>:<holdoff>"
+	 * @param string|array|bool $value Possible string of the form "PURGED:<timestamp>:<holdoff>"
 	 * @return array|bool Array containing a UNIX timestamp (float) and holdoff period (integer),
 	 *  or false if value isn't a valid purge value
 	 */
@@ -2078,16 +2087,24 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		if ( !is_string( $value ) ) {
 			return false;
 		}
+
 		$segments = explode( ':', $value, 3 );
 		if ( !isset( $segments[0] ) || !isset( $segments[1] )
 			|| "{$segments[0]}:" !== self::PURGE_VAL_PREFIX
 		) {
 			return false;
 		}
+
 		if ( !isset( $segments[2] ) ) {
 			// Back-compat with old purge values without holdoff
 			$segments[2] = self::HOLDOFF_TTL;
 		}
+
+		if ( $segments[1] < $this->epoch ) {
+			// Values this old are ignored
+			return false;
+		}
+
 		return [
 			self::FLD_TIME => (float)$segments[1],
 			self::FLD_HOLDOFF => (int)$segments[2],
