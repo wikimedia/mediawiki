@@ -258,7 +258,7 @@ EOD;
 	 * @return string
 	 */
 	public function getAutoload( $commandName = 'AutoloadGenerator' ) {
-		// We need to check whether an extenson.json or skin.json exists or not, and
+		// We need to check whether an extension.json or skin.json exists or not, and
 		// incase it doesn't, update the autoload.php file.
 
 		$fileinfo = $this->getTargetFileinfo();
