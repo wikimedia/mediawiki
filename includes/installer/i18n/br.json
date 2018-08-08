@@ -9,7 +9,7 @@
 			"Macofe"
 		]
 	},
-	"config-desc": "Poellad staliañ MediaWIki",
+	"config-desc": "Poellad staliañ MediaWiki",
 	"config-title": "Staliadur MediaWiki $1",
 	"config-information": "Titouroù",
 	"config-localsettings-upgrade": "Kavet ez eus bet ur restr <code>LocalSettings.php</code>.\nEvit hizivaat ar staliadur-se, merkit an talvoud <code>$wgUpgradeKey</code> er voest dindan.\nE gavout a rit e <code>LocalSettings.php</code>.",
