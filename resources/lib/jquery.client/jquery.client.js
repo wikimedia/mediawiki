@@ -93,7 +93,7 @@
 					'camino', 'chrome', 'firefox', 'iceweasel', 'netscape', 'konqueror', 'lynx', 'msie', 'opera',
 					'safari', 'ipod', 'iphone', 'blackberry', 'ps3', 'rekonq', 'android'
 				],
-				// Tanslations for conforming browser names
+				// Translations for conforming browser names
 				nameTranslations = [],
 				// Names of known layout engines
 				layouts = ['gecko', 'konqueror', 'msie', 'trident', 'edge', 'opera', 'webkit'],
