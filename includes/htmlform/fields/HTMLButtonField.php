@@ -34,6 +34,11 @@ class HTMLButtonField extends HTMLFormField {
 
 	public function __construct( $info ) {
 		$info['nodata'] = true;
+
+		$this->setShowEmptyLabel( false );
+
+		parent::__construct( $info );
+
 		if ( isset( $info['flags'] ) ) {
 			$this->mFlags = $info['flags'];
 		}
@@ -55,10 +60,6 @@ class HTMLButtonField extends HTMLFormField {
 		} elseif ( isset( $info['buttonlabel-raw'] ) ) {
 			$this->buttonLabel = $info['buttonlabel-raw'];
 		}
-
-		$this->setShowEmptyLabel( false );
-
-		parent::__construct( $info );
 	}
 
 	public function getInputHTML( $value ) {
