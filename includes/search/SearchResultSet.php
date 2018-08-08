@@ -81,7 +81,7 @@ class SearchResultSet implements Countable, IteratorAggregate {
 	 *  results available.
 	 */
 	public function __construct( $containedSyntax = false, $hasMoreResults = false ) {
-		if ( static::class === __CLASS__ ) {
+		if ( static::class === self::class ) {
 			// This class will eventually be abstract. SearchEngine implementations
 			// already have to extend this class anyways to provide the actual
 			// search results.
