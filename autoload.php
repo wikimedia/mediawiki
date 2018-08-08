@@ -1012,7 +1012,6 @@ $wgAutoloadLocalClasses = [
 	'NewUsersLogFormatter' => __DIR__ . '/includes/logging/NewUsersLogFormatter.php',
 	'NoWriteWatchedItemStore' => __DIR__ . '/includes/watcheditem/NoWriteWatchedItemStore.php',
 	'NolinesImageGallery' => __DIR__ . '/includes/gallery/NolinesImageGallery.php',
-	'NorthernSamiUppercaseCollation' => __DIR__ . '/includes/collation/NorthernSamiUppercaseCollation.php',
 	'NotRecursiveIterator' => __DIR__ . '/includes/libs/iterators/NotRecursiveIterator.php',
 	'NukeNS' => __DIR__ . '/maintenance/nukeNS.php',
 	'NukePage' => __DIR__ . '/maintenance/nukePage.php',
