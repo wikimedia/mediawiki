@@ -151,6 +151,7 @@ because of Phabricator reports.
 * (T137491) Added language support for Standard Moroccan Amazigh (zgh).
 * (T198132) Added language support for Manipuri (mni).
 * (T201276) Added language support for Western Armenian (hyw).
+* (T201583) Added language support for Mon (mnw).
 
 === Breaking changes in 1.32 ===
 * $wgRequestTime, deprecated in 1.25, was removed. Use
