@@ -1386,7 +1386,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 */
 	public function testNewKnownCurrent() {
 		// Setup the services
-		$this->resetGlobalServices();
+		$this->overrideMwServices();
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 		$this->setService( 'MainWANObjectCache', $cache );
 		$db = wfGetDB( DB_MASTER );
