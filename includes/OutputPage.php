@@ -255,6 +255,11 @@ class OutputPage extends ContextSource {
 
 	private $mIndexPolicy = 'index';
 	private $mFollowPolicy = 'follow';
+
+	/**
+	 * @var array Headers that cause the cache to vary.  Key is header name, value is an array of
+	 * options for the Key header.
+	 */
 	private $mVaryHeader = [
 		'Accept-Encoding' => [ 'match=gzip' ],
 	];
@@ -1787,7 +1792,7 @@ class OutputPage extends ContextSource {
 		foreach ( $parserOutput->getOutputHooks() as $hookInfo ) {
 			list( $hookName, $data ) = $hookInfo;
 			if ( isset( $parserOutputHooks[$hookName] ) ) {
-				call_user_func( $parserOutputHooks[$hookName], $this, $parserOutput, $data );
+				$parserOutputHooks[$hookName]( $this, $parserOutput, $data );
 			}
 		}
 
@@ -1940,7 +1945,10 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Lower the value of the "s-maxage" part of the "Cache-control" HTTP header
+	 * Set the value of the "s-maxage" part of the "Cache-control" HTTP header to $maxage if that is
+	 * lower than the current s-maxage.  Either way, $maxage is now an upper limit on s-maxage, so
+	 * that future calls to setCdnMaxage() will no longer be able to raise the s-maxage above
+	 * $maxage.
 	 *
 	 * @param int $maxage Maximum cache time on the CDN, in seconds
 	 * @since 1.27
@@ -1958,9 +1966,10 @@ class OutputPage extends ContextSource {
 	 * TTL is 90% of the age of the object, subject to the min and max.
 	 *
 	 * @param string|int|float|bool|null $mtime Last-Modified timestamp
-	 * @param int $minTTL Mimimum TTL in seconds [default: 1 minute]
+	 * @param int $minTTL Minimum TTL in seconds [default: 1 minute]
 	 * @param int $maxTTL Maximum TTL in seconds [default: $wgSquidMaxage]
-	 * @return int TTL in seconds
+	 * @return int TTL in seconds passed to lowerCdnMaxage() (may not be the same as the new
+	 *  s-maxage)
 	 * @since 1.28
 	 */
 	public function adaptCdnTTL( $mtime, $minTTL = 0, $maxTTL = 0 ) {
@@ -1983,16 +1992,16 @@ class OutputPage extends ContextSource {
 	/**
 	 * Use enableClientCache(false) to force it to send nocache headers
 	 *
-	 * @param bool $state
+	 * @param bool|null $state New value, or null to not set the value
 	 *
-	 * @return bool
+	 * @return bool Old value
 	 */
 	public function enableClientCache( $state ) {
 		return wfSetVar( $this->mEnableClientCache, $state );
 	}
 
 	/**
-	 * Get the list of cookies that will influence on the cache
+	 * Get the list of cookie names that will influence the cache
 	 *
 	 * @return array
 	 */
@@ -2045,7 +2054,8 @@ class OutputPage extends ContextSource {
 		if ( !is_array( $option ) ) {
 			$option = [];
 		}
-		$this->mVaryHeader[$header] = array_unique( array_merge( $this->mVaryHeader[$header], $option ) );
+		$this->mVaryHeader[$header] =
+			array_unique( array_merge( $this->mVaryHeader[$header], $option ) );
 	}
 
 	/**
@@ -2120,14 +2130,13 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * T23672: Add Accept-Language to Vary and Key headers
-	 * if there's no 'variant' parameter existed in GET.
+	 * T23672: Add Accept-Language to Vary and Key headers if there's no 'variant' parameter in GET.
 	 *
 	 * For example:
-	 *   /w/index.php?title=Main_page should always be served; but
-	 *   /w/index.php?title=Main_page&variant=zh-cn should never be served.
+	 *   /w/index.php?title=Main_page will vary based on Accept-Language; but
+	 *   /w/index.php?title=Main_page&variant=zh-cn will not.
 	 */
-	function addAcceptLanguage() {
+	private function addAcceptLanguage() {
 		$title = $this->getTitle();
 		if ( !$title instanceof Title ) {
 			return;
@@ -2140,16 +2149,15 @@ class OutputPage extends ContextSource {
 			foreach ( $variants as $variant ) {
 				if ( $variant === $lang->getCode() ) {
 					continue;
-				} else {
-					$aloption[] = 'substr=' . $variant;
+				}
 
-					// IE and some other browsers use BCP 47 standards in
-					// their Accept-Language header, like "zh-CN" or "zh-Hant".
-					// We should handle these too.
-					$variantBCP47 = LanguageCode::bcp47( $variant );
-					if ( $variantBCP47 !== $variant ) {
-						$aloption[] = 'substr=' . $variantBCP47;
-					}
+				$aloption[] = "substr=$variant";
+
+				// IE and some other browsers use BCP 47 standards in their Accept-Language header,
+				// like "zh-CN" or "zh-Hant".  We should handle these too.
+				$variantBCP47 = LanguageCode::bcp47( $variant );
+				if ( $variantBCP47 !== $variant ) {
+					$aloption[] = "substr=$variantBCP47";
 				}
 			}
 			$this->addVaryHeader( 'Accept-Language', $aloption );
@@ -2751,7 +2759,7 @@ class OutputPage extends ContextSource {
 				$this->rlClientContext = new DerivativeResourceLoaderContext( $this->rlClientContext );
 				$this->rlClientContext->setContentOverrideCallback( function ( Title $title ) {
 					foreach ( $this->contentOverrideCallbacks as $callback ) {
-						$content = call_user_func( $callback, $title );
+						$content = $callback( $title );
 						if ( $content !== null ) {
 							return $content;
 						}
