@@ -145,6 +145,9 @@
 		}
 	};
 
+	// Import i18n messages from config
+	mw.messages.set( mw.config.get( 'wgStructuredChangeFiltersMessages' ) );
+
 	// Early execute of init
 	if ( document.readyState === 'interactive' || document.readyState === 'complete' ) {
 		rcfilters.init();
