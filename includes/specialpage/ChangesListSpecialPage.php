@@ -780,26 +780,20 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$out = $this->getOutput();
 		if ( $this->isStructuredFilterUiEnabled() && !$this->including() ) {
 			$jsData = $this->getStructuredFilterJsData();
-
 			$messages = [];
 			foreach ( $jsData['messageKeys'] as $key ) {
 				$messages[$key] = $this->msg( $key )->plain();
 			}
-			$out->addBodyClasses( 'mw-rcfilters-enabled' );
 
+			$out->addBodyClasses( 'mw-rcfilters-enabled' );
 			$collapsed = $this->getUser()->getBoolOption( static::$collapsedPreferenceName );
 			if ( $collapsed ) {
 				$out->addBodyClasses( 'mw-rcfilters-collapsed' );
 			}
 
-			$out->addHTML(
-				ResourceLoader::makeInlineScript(
-					ResourceLoader::makeMessageSetScript( $messages ),
-					$out->getCSPNonce()
-				)
-			);
-
+			// These config and message exports should be moved into a ResourceLoader data module (T201574)
 			$out->addJsConfigVars( 'wgStructuredChangeFilters', $jsData['groups'] );
+			$out->addJsConfigVars( 'wgStructuredChangeFiltersMessages', $messages );
 			$out->addJsConfigVars( 'wgStructuredChangeFiltersCollapsedState', $collapsed );
 
 			$out->addJsConfigVars(
