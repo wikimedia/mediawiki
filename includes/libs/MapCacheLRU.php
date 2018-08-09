@@ -64,7 +64,7 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 		Assert::parameter( $maxKeys > 0, '$maxKeys', 'must be above zero' );
 
 		$this->maxCacheKeys = $maxKeys;
-		// Use the current time as the default "as of" timesamp of entries
+		// Use the current time as the default "as of" timestamp of entries
 		$this->epoch = $this->getCurrentTime();
 	}
 
