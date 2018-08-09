@@ -1350,7 +1350,7 @@ class FileRepo {
 	}
 
 	/**
-	 * Checks existence of a a file
+	 * Checks existence of a file
 	 *
 	 * @param string $file Virtual URL (or storage path) of file to check
 	 * @return bool

@@ -67,7 +67,7 @@ class TemplateParser {
 	}
 
 	/**
-	 * Constructs the location of the the source Mustache template
+	 * Constructs the location of the source Mustache template
 	 * @param string $templateName The name of the template
 	 * @return string
 	 * @throws UnexpectedValueException If $templateName attempts upwards directory traversal

@@ -220,7 +220,7 @@ class ActorMigration {
 	 * @param UserIdentity $user User to set in the update
 	 * @return array with two values:
 	 *  - array to merge into `$values` to `IDatabase->update()` or `$a` to `IDatabase->insert()`
-	 *  - callback to call with the the primary key for the main table insert
+	 *  - callback to call with the primary key for the main table insert
 	 *    and extra fields needed for the temp table.
 	 */
 	public function getInsertValuesWithTempTable( IDatabase $dbw, $key, UserIdentity $user ) {
