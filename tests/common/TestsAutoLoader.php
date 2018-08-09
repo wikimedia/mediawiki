@@ -126,7 +126,7 @@ $wgAutoloadClasses += [
 	'WikiPageDbTestBase' => "$testDir/phpunit/includes/page/WikiPageDbTestBase.php",
 
 	# tests/phpunit/includes/parser
-	'ParserIntegrationTest' => "$testDir/phpunit/includes/parser/ParserIntegrationTest.php",
+	'ParserIntegrationTest' => "$testDir/phpunit/suites/ParserIntegrationTest.php",
 
 	# tests/phpunit/includes/password
 	'PasswordTestCase' => "$testDir/phpunit/includes/password/PasswordTestCase.php",
