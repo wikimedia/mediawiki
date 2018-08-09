@@ -275,7 +275,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 *        MediaWikiServices.
 	 * @return MediaWikiServices
 	 */
-	protected static function resetGlobalServices( Config $bootstrapConfig = null ) {
+	private static function resetGlobalServices( Config $bootstrapConfig = null ) {
 		$oldServices = MediaWikiServices::getInstance();
 		$oldConfigFactory = $oldServices->getConfigFactory();
 		$oldLoadBalancerFactory = $oldServices->getDBLoadBalancerFactory();
