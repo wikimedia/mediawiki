@@ -42,9 +42,6 @@ class ResourceLoader implements LoggerAwareInterface {
 	/** @var bool */
 	protected static $debugMode = null;
 
-	/** @var array */
-	private $lessVars = null;
-
 	/**
 	 * Module name/ResourceLoaderModule object pairs
 	 * @var array
@@ -1749,12 +1746,10 @@ MESSAGE;
 	 * Get global LESS variables.
 	 *
 	 * @since 1.27
+	 * @deprecated since 1.32 Use ResourceLoderModule::getLessVars() instead.
 	 * @return array Map of variable names to string CSS values.
 	 */
 	public function getLessVars() {
-		if ( $this->lessVars === null ) {
-			$this->lessVars = $this->config->get( 'ResourceLoaderLESSVars' );
-		}
-		return $this->lessVars;
+		return [];
 	}
 }

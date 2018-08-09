@@ -48,7 +48,6 @@ class ExtensionProcessor implements Processor {
 		'RecentChangesFlags',
 		'RemoveCredentialsBlacklist',
 		'RemoveGroups',
-		'ResourceLoaderLESSVars',
 		'ResourceLoaderSources',
 		'RevokePermissions',
 		'SessionProviders',

@@ -3810,38 +3810,6 @@ $wgResourceLoaderValidateJS = true;
 $wgResourceLoaderValidateStaticJS = false;
 
 /**
- * Global LESS variables. An associative array binding variable names to
- * LESS code snippets representing their values.
- *
- * Adding an item here is equivalent to writing `@variable: value;`
- * at the beginning of all your .less files, with all the consequences.
- * In particular, string values must be escaped and quoted.
- *
- * Changes to this configuration do NOT trigger cache invalidation.
- *
- * @par Example:
- * @code
- *   $wgResourceLoaderLESSVars = [
- *     'exampleFontSize'  => '1em',
- *     'exampleBlue' => '#36c',
- *   ];
- * @endcode
- * @since 1.22
- * @deprecated since 1.30 Use ResourceLoaderModule::getLessVars() instead to
- *  add variables to individual modules that need them.
- */
-$wgResourceLoaderLESSVars = [
-	/**
-	 * Minimum available screen width at which a device can be considered a tablet
-	 * The number is currently based on the device width of a Samsung Galaxy S5 mini and is low
-	 * enough to cover iPad (768px). Number is prone to change with new information.
-	 * @since 1.27
-	 * @deprecated 1.31 Use mediawiki.ui/variables instead
-	 */
-	'deviceWidthTablet' => '720px',
-];
-
-/**
  * Whether ResourceLoader should attempt to persist modules in localStorage on
  * browsers that support the Web Storage API.
  */

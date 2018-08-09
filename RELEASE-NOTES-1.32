@@ -206,6 +206,9 @@ because of Phabricator reports.
 * (T140807) The wgResourceLoaderLESSImportPaths configuration option was removed
   from ResourceLoader. Instead, use `@import` statements in LESS to import
   files directly from nearby directories within the same project.
+* (T140804) The wgResourceLoaderLESSVars configuration option, deprecated
+  since 1.30, was removed. Instead, to expose variables from PHP to LESS, use
+  the ResourceLoaderModule::getLessVars() method.
 * The protected methods PHPSessionHandler::returnSuccess() and returnFailure(),
   only needed for PHP5 compatibility, have been removed. It now uses the boolean
   values `true` and `false` respectively.
