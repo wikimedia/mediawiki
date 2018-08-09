@@ -612,7 +612,7 @@ final class SessionBackend {
 	 * Save the session
 	 *
 	 * Update both the backend data and the associated WebRequest(s) to
-	 * reflect the state of the the SessionBackend. This might include
+	 * reflect the state of the SessionBackend. This might include
 	 * persisting or unpersisting the session.
 	 *
 	 * @param bool $closing Whether the session is being closed

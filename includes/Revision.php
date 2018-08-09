@@ -1013,7 +1013,7 @@ class Revision implements IDBAccessObject {
 	 * @param stdClass $row The text data
 	 * @param string $prefix Table prefix (default 'old_')
 	 * @param string|bool $wiki The name of the wiki to load the revision text from
-	 *   (same as the the wiki $row was loaded from) or false to indicate the local
+	 *   (same as the wiki $row was loaded from) or false to indicate the local
 	 *   wiki (this is the default). Otherwise, it must be a symbolic wiki database
 	 *   identifier as understood by the LoadBalancer class.
 	 * @return string|false Text the text requested or false on failure
