@@ -50,7 +50,8 @@ class SearchFormWidget {
 		$offset,
 		$isPowerSearch
 	) {
-		return Xml::openElement(
+		return '<div class="mw-search-form-wrapper">' .
+			Xml::openElement(
 				'form',
 				[
 					'id' => $isPowerSearch ? 'powersearch' : 'search',
@@ -67,7 +68,8 @@ class SearchFormWidget {
 					"<div style='clear:both'></div>" .
 				"</div>" .
 				$this->optionsHtml( $term, $isPowerSearch, $profile ) .
-			'</form>';
+			'</form>' .
+		'</div>';
 	}
 
 	/**
