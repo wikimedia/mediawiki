@@ -1004,6 +1004,8 @@
 			/**
 			 * Queue the loading and execution of a script for a particular module.
 			 *
+			 * This does for debug mode what runScript() does for production.
+			 *
 			 * @private
 			 * @param {string} src URL of the script
 			 * @param {string} moduleName Name of currently executing module
@@ -1011,8 +1013,8 @@
 			 */
 			function queueModuleScript( src, moduleName, callback ) {
 				pendingRequests.push( function () {
-					if ( hasOwn.call( registry, moduleName ) ) {
-						// Emulate runScript() part of execute()
+					// Keep in sync with execute()/runScript().
+					if ( moduleName !== 'jquery' && hasOwn.call( registry, moduleName ) ) {
 						window.require = mw.loader.require;
 						window.module = registry[ moduleName ].module;
 					}
@@ -1191,11 +1193,8 @@
 						if ( Array.isArray( script ) ) {
 							nestedAddScript( script, markModuleReady, 0 );
 						} else if ( typeof script === 'function' ) {
-							if ( window.$ ) {
-								// Pass jQuery twice so that the signature of the closure which wraps
-								// the script can bind both '$' and 'jQuery'.
-								script( window.$, window.$, mw.loader.require, registry[ module ].module );
-							} else {
+							// Keep in sync with queueModuleScript() for debug mode
+							if ( module === 'jquery' ) {
 								// This is a special case for when 'jquery' itself is being loaded.
 								// - The standard jquery.js distribution does not set `window.jQuery`
 								//   in CommonJS-compatible environments (Node.js, AMD, RequireJS, etc.).
@@ -1203,6 +1202,10 @@
 								//   in a CommonJS-compatible environment, will use require('jquery'),
 								//   but that can't work when we're still inside that module.
 								script();
+							} else {
+								// Pass jQuery twice so that the signature of the closure which wraps
+								// the script can bind both '$' and 'jQuery'.
+								script( window.$, window.$, mw.loader.require, registry[ module ].module );
 							}
 							markModuleReady();
 

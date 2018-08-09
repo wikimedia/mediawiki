@@ -136,13 +136,29 @@ return [
 		],
 	],
 
-	/* jQuery */
+	/* Base modules */
+	// These modules' dependencies MUST also be included in StartUpModule::getBaseModules().
+	// These modules' dependencies MUST be dependency-free (having dependencies would cause recursion).
 
 	'jquery' => [
 		'scripts' => [
 			'resources/lib/jquery/jquery.js',
 			'resources/lib/jquery/jquery.migrate.js',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'mediawiki.base' => [
+		'scripts' => [
+			// This MUST be kept in sync with maintenance/jsduck/eg-iframe.html
+			'resources/src/mediawiki.base/mediawiki.errorLogger.js',
+			'resources/src/mediawiki.base/mediawiki.base.js',
+		],
+		'dependencies' => 'jquery',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'mediawiki.legacy.wikibits' => [
+		'scripts' => 'resources/src/mediawiki.legacy/wikibits.js',
+		'dependencies' => 'jquery',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
@@ -831,18 +847,6 @@ return [
 	],
 
 	/* MediaWiki */
-
-	'mediawiki.base' => [
-		'scripts' => [
-			// This MUST be kept in sync with maintenance/jsduck/eg-iframe.html
-			'resources/src/mediawiki.base/mediawiki.errorLogger.js',
-			'resources/src/mediawiki.base/mediawiki.base.js',
-		],
-		// - These dependencies MUST NOT also have dependencies (would cause recursion).
-		// - These dependencies MUST also be returned from StartUpModule::getBaseModules().
-		'dependencies' => 'jquery',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'mediawiki.apihelp' => [
 		'styles' => 'resources/src/mediawiki.apihelp.css',
 		'targets' => [ 'desktop' ],
@@ -2390,10 +2394,6 @@ return [
 		'styles' => [
 			'resources/src/mediawiki.legacy/oldshared.css' => [ 'media' => 'screen' ]
 		],
-	],
-	'mediawiki.legacy.wikibits' => [
-		'scripts' => 'resources/src/mediawiki.legacy/wikibits.js',
-		'targets' => [ 'desktop', 'mobile' ],
 	],
 
 	/* MediaWiki UI */
