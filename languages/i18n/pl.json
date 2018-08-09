@@ -459,6 +459,7 @@
 	"ns-specialprotected": "Stron specjalnych nie można edytować.",
 	"titleprotected": "Utworzenie strony o tej nazwie zostało zablokowane przez [[User:$1|$1]].\nUzasadnienie blokady: <em>$2</em>.",
 	"filereadonlyerror": "Nie można zmodyfikować pliku „$1”, ponieważ repozytorium plików „$2” jest w trybie tylko do odczytu.\n\nBlokujący go administrator systemu podał następujący powód: „$3”.",
+	"invalidtitle": "Nieprawidłowy tytuł",
 	"invalidtitle-knownnamespace": "Nieprawidłowa nazwa \"$3\" w przestrzeni nazw \"$2\"",
 	"invalidtitle-unknownnamespace": "Nieprawidłowy tytuł \"$2\" z nieznanym numerem przestrzeni nazw $1",
 	"exception-nologin": "Nie jesteś zalogowany/a",

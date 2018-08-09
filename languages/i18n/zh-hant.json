@@ -458,6 +458,7 @@
 	"ns-specialprotected": "特殊頁面無法編輯。",
 	"titleprotected": "此標題已經被 [[User:$1|$1]] 保護以防止建立，原因是 <em>$2</em>。",
 	"filereadonlyerror": "無法修改檔案 \"$1\" 因為檔案庫 \"$2\" 目前處於唯讀模式。\n\n鎖定的系統管理員說明：\"$3\"。",
+	"invalidtitle": "無效標題",
 	"invalidtitle-knownnamespace": "命名空間 \"$2\" 與名稱 \"$3\" 是無效的標題",
 	"invalidtitle-unknownnamespace": "不明的命名空間編號 $1 與名稱 \"$2\" 是無效的標題",
 	"exception-nologin": "未登入",

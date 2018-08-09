@@ -1642,7 +1642,7 @@
 	"uploadwarning": "Yükleme uyarısı",
 	"uploadwarning-text": "Lütfen aşağıdaki dosya açıklamasını değiştirin ve tekrar deneyin.",
 	"savefile": "Dosyayı kaydet",
-	"uploaddisabled": "Geçici olarak şu anda herhangi bir dosya yüklenmez. Biraz sonra bir daha deneyiniz.",
+	"uploaddisabled": "Geçici olarak şu anda bu wiki'ye herhangi bir dosya yüklenemez. Lütfen daha sonra bir daha deneyiniz.",
 	"copyuploaddisabled": "URL ile yükleme devre dışı.",
 	"uploaddisabledtext": "Dosya yüklemeleri devredışı bırakılmıştır.",
 	"php-uploaddisabledtext": "PHP dosyası yüklemeleri devre dışıdır. Lütfen file_uploads ayarını kontrol edin.",

@@ -400,6 +400,7 @@
 	"ns-specialprotected": "Stránky ve jmenném prostoru {{ns:special}} nelze editovat.",
 	"titleprotected": "Stránku s tímto názvem nelze založit, protože název {{GENDER:$1|zamkl|zamkla|zamkl uživatel}} [[User:$1|$1]].\nUdaným důvodem bylo <em>$2</em>.",
 	"filereadonlyerror": "Nelze změnit soubor „$1“, protože úložiště souborů „$2“ je pouze pro čtení.\n\nSprávce serveru, který úložiště zamkl, poskytl toto zdůvodnění: „$3“.",
+	"invalidtitle": "Neplatný název",
 	"invalidtitle-knownnamespace": "Neplatný název se jmenným prostorem „$2“ a textem „$3“",
 	"invalidtitle-unknownnamespace": "Neplatný název s neznámým číslem jmenného prostoru $1 a textem „$2“",
 	"exception-nologin": "Nejste přihlášen(a)",

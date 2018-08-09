@@ -411,6 +411,7 @@
 	"ns-specialprotected": "Spesialsider kan ikke redigeres.",
 	"titleprotected": "Denne tittelen har blitt låst for oppretting av [[User:$1|$1]].\nDen angitte grunnen er <em>$2</em>.",
 	"filereadonlyerror": "Kan ikke endre filen «$1» fordi filsamlingen «$2» er skrivebeskyttet.\n\nSystemadministrator ga følgende begrunnelse: «$3».",
+	"invalidtitle": "Ugyldig tittel",
 	"invalidtitle-knownnamespace": "Ugyldig tittel med navnerommet «$2» og teksten «$3»",
 	"invalidtitle-unknownnamespace": "Ugyldig tittel med ukjent navneromsnummer $1 og teksten «$2»",
 	"exception-nologin": "Ikke innlogget",

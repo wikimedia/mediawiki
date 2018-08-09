@@ -453,6 +453,7 @@
 	"ns-specialprotected": "Spezialseiten können nicht bearbeitet werden.",
 	"titleprotected": "Eine Seite mit diesem Namen kann nicht angelegt werden.\nDie Sperre wurde durch [[User:$1|$1]] mit der Begründung <em>$2</em> eingerichtet.",
 	"filereadonlyerror": "Die Datei „$1“ kann nicht verändert werden, da auf das Dateirepositorium „$2“ nur Lesezugriff möglich ist.\n\nDer Systemadministrator, der den Schreibzugriff sperrte, gab folgenden Grund an: „$3“.",
+	"invalidtitle": "Ungültiger Titel",
 	"invalidtitle-knownnamespace": "Ungültiger Titel mit Namensraum „$2“ und Text „$3“",
 	"invalidtitle-unknownnamespace": "Ungültiger Titel mit unbekannter Namensraumnummer $1 und Text „$2“",
 	"exception-nologin": "Nicht angemeldet",

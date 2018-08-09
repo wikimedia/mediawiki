@@ -462,6 +462,7 @@
 	"ns-specialprotected": "特殊页面不可编辑。",
 	"titleprotected": "此标题已被[[User:$1|$1]]保护以防止创建。理由是<em>$2</em>。",
 	"filereadonlyerror": "因为媒体库“$2”处于只读模式而无法修改文件“$1”。\n\n锁定数据库的系统管理员做出如下解释：“$3”。",
+	"invalidtitle": "无效标题",
 	"invalidtitle-knownnamespace": "使用名字空间“$2”和文本“$3”的无效标题",
 	"invalidtitle-unknownnamespace": "使用未知名字空间编号$1和文本“$2”的无效标题",
 	"exception-nologin": "未登录",
