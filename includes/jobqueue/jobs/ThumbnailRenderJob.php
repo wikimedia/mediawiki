@@ -43,29 +43,18 @@ class ThumbnailRenderJob extends Job {
 			if ( $wgUploadThumbnailRenderMethod === 'jobqueue' ) {
 				$thumb = $file->transform( $transformParams, File::RENDER_NOW );
 
-				if ( $thumb && !$thumb->isError() ) {
-					return true;
-				} else {
-					$this->setLastError( __METHOD__ . ': thumbnail couln\'t be generated' );
+				if ( !$thumb || $thumb->isError() ) {
+					if ( $thumb instanceof MediaTransformError ) {
+						$this->setLastError( __METHOD__ . ': thumbnail couln\'t be generated:' .
+							$thumb->toText() );
+					} else {
+						$this->setLastError( __METHOD__ . ': thumbnail couln\'t be generated' );
+					}
 					return false;
 				}
+				return true;
 			} elseif ( $wgUploadThumbnailRenderMethod === 'http' ) {
-				$thumbUrl = '';
-				$status = $this->hitThumbUrl( $file, $transformParams, $thumbUrl );
-
-				wfDebug( __METHOD__ . ": received status {$status}\n" );
-
-				// 400 happens when requesting a size greater or equal than the original
-				if ( $status === 200 || $status === 301 || $status === 302 || $status === 400 ) {
-					return true;
-				} elseif ( $status ) {
-					$this->setLastError( __METHOD__ . ': incorrect HTTP status ' .
-						$status . ' when hitting ' . $thumbUrl );
-					return false;
-				} else {
-					$this->setLastError( __METHOD__ . ': HTTP request failure' );
-					return false;
-				}
+				return $this->hitThumbUrl( $file, $transformParams );
 			} else {
 				$this->setLastError( __METHOD__ . ': unknown thumbnail render method ' .
 					$wgUploadThumbnailRenderMethod );
@@ -77,16 +66,35 @@ class ThumbnailRenderJob extends Job {
 		}
 	}
 
-	protected function hitThumbUrl( LocalFile $file, $transformParams, &$thumbUrl ) {
+	/**
+	 * @param LocalFile $file
+	 * @param array $transformParams
+	 * @return bool Success status (error will be set via setLastError() when false)
+	 */
+	protected function hitThumbUrl( LocalFile $file, $transformParams ) {
 		global $wgUploadThumbnailRenderHttpCustomHost, $wgUploadThumbnailRenderHttpCustomDomain;
 
+		$handler = $file->getHandler();
+		if ( !$handler ) {
+			$this->setLastError( __METHOD__ . ': could not get handler' );
+			return false;
+		} elseif ( !$handler->normaliseParams( $file, $transformParams ) ) {
+			$this->setLastError( __METHOD__ . ': failed to normalize' );
+			return false;
+		}
 		$thumbName = $file->thumbName( $transformParams );
 		$thumbUrl = $file->getThumbUrl( $thumbName );
+
+		if ( $thumbUrl === null ) {
+			$this->setLastError( __METHOD__ . ': could not get thumb URL' );
+			return false;
+		}
 
 		if ( $wgUploadThumbnailRenderHttpCustomDomain ) {
 			$parsedUrl = wfParseUrl( $thumbUrl );
 
 			if ( !$parsedUrl || !isset( $parsedUrl['path'] ) || !strlen( $parsedUrl['path'] ) ) {
+				$this->setLastError( __METHOD__ . ": invalid thumb URL: $thumbUrl" );
 				return false;
 			}
 
@@ -105,7 +113,19 @@ class ThumbnailRenderJob extends Job {
 		}
 
 		$status = $request->execute();
+		$statusCode = $request->getStatus();
+		wfDebug( __METHOD__ . ": received status {$statusCode}\n" );
 
-		return $request->getStatus();
+		// 400 happens when requesting a size greater or equal than the original
+		// TODO use proper error signaling. 400 could mean a number of other things.
+		if ( $statusCode === 200 || $statusCode === 301 || $statusCode === 302 || $statusCode === 400 ) {
+			return true;
+		} elseif ( $statusCode ) {
+			$this->setLastError( __METHOD__ . ": incorrect HTTP status $statusCode when hitting $thumbUrl" );
+		} else {
+			$this->setLastError( __METHOD__ . ': HTTP request failure: '
+				. Status::wrap( $status )->getWikiText( null, null, 'en' ) );
+		}
+		return false;
 	}
 }
