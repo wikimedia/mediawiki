@@ -840,7 +840,7 @@
 
 				// Get the CSS class names, could be done elsewhere
 				sortCSS = [ config.cssAsc, config.cssDesc ];
-				// Messages tell the the user what the *next* state will be
+				// Messages tell the user what the *next* state will be
 				// so are in reverse order to the CSS classes.
 				sortMsg = [ mw.msg( 'sort-descending' ), mw.msg( 'sort-ascending' ) ];
 

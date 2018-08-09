@@ -320,7 +320,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 
 	/**
 	 * Checks whether this DerivedPageDataUpdater can be re-used for running updates targeting
-	 * the the given revision.
+	 * the given revision.
 	 *
 	 * @param UserIdentity|null $user The user creating the revision in question
 	 * @param RevisionRecord|null $revision New revision (after save, if already saved)

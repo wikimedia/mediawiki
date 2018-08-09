@@ -1306,7 +1306,7 @@ abstract class Skin extends ContextSource {
 				[
 					'checkKeys' => [
 						// Unless there is both no exact $code override nor an i18n definition
-						// in the the software, the only MediaWiki page to check is for $code.
+						// in the software, the only MediaWiki page to check is for $code.
 						$msgCache->getCheckKey( $this->getLanguage()->getCode() )
 					],
 					'lockTSE' => 30
