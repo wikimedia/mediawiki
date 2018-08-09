@@ -380,7 +380,11 @@ class SVGReader {
 			'' => 1.0, // "User units" pixels by default
 		];
 		$matches = [];
-		if ( preg_match( '/^\s*(\d+(?:\.\d+)?)(em|ex|px|pt|pc|cm|mm|in|%|)\s*$/', $length, $matches ) ) {
+		if ( preg_match(
+			'/^\s*([-+]?\d*(?:\.\d+|\d+)(?:[Ee][-+]?\d+)?)\s*(em|ex|px|pt|pc|cm|mm|in|%|)\s*$/',
+			$length,
+			$matches
+		) ) {
 			$length = floatval( $matches[1] );
 			$unit = $matches[2];
 			if ( $unit == '%' ) {
