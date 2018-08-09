@@ -443,6 +443,7 @@
 	"ns-specialprotected": "Não é possível editar páginas especiais.",
 	"titleprotected": "Este título foi protegido contra criação por [[User:$1|$1]].\nA justificação dada foi <em>$2</em>.",
 	"filereadonlyerror": "Não é possível modificar o ficheiro \"$1\" porque o repositório de ficheiros \"$2\" está em modo de leitura.\n\nO administrador do sistema que efetuou o bloqueio deu a seguinte explicação: \"$3\".",
+	"invalidtitle": "Título inválido",
 	"invalidtitle-knownnamespace": "Título inválido com o domínio \"$2\" e texto \"$3\"",
 	"invalidtitle-unknownnamespace": "Título inválido com número de domínio $1 desconhecido e texto \"$2\"",
 	"exception-nologin": "Não está autenticado",

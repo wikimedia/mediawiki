@@ -530,6 +530,7 @@
 	"ns-specialprotected": "Les pages spéciales ne peuvent pas être modifiés.",
 	"titleprotected": "Ce titre a été protégé contre toute création par [[User:$1|$1]].\nLe motif fourni est <em>$2</em>.",
 	"filereadonlyerror": "Impossible de modifier le fichier « $1 » parce que le répertoire de fichiers « $2 » est en lecture seule.\n\nL’administrateur système qui l’a verrouillé a fourni ce motif : « $3 ».",
+	"invalidtitle": "Titre non valide",
 	"invalidtitle-knownnamespace": "Titre non valide avec l’espace de noms « $2 » et l’intitulé « $3 »",
 	"invalidtitle-unknownnamespace": "Titre non valide avec le numéro d’espace de noms $1 inconnu et l’intitulé « $2 »",
 	"exception-nologin": "Non connecté",

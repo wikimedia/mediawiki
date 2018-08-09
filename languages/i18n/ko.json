@@ -429,6 +429,7 @@
 	"ns-specialprotected": "특수 문서는 편집할 수 없습니다.",
 	"titleprotected": "[[User:$1|$1]]님이 문서 만들기를 보호했습니다.\n이유는 다음과 같습니다. <em>$2</em>",
 	"filereadonlyerror": "\"$2\" 파일 저장소가 읽기 전용이기 때문에 \"$1\" 파일을 바꿀 수 없습니다.\n\n파일 저장소를 잠근 시스템 관리자가 다음과 같은 설명을 남겼습니다: \"$3\".",
+	"invalidtitle": "잘못된 제목",
 	"invalidtitle-knownnamespace": "제목 오류: \"$2\" 이름공간과 \"$3\" 텍스트",
 	"invalidtitle-unknownnamespace": "제목 오류: 알 수 없는 $1 이름공간 번호와 \"$2\" 텍스트",
 	"exception-nologin": "로그인하지 않음",

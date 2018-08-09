@@ -480,6 +480,7 @@
 	"ns-specialprotected": "Não é possível editar páginas especiais",
 	"titleprotected": "Este título foi protegido, para que não seja criado.\nQuem o protegeu foi [[User:$1|$1]], com a justificativa: <em>$2</em>.",
 	"filereadonlyerror": "Não é possível modificar o arquivo \"$1\" porque o repositório do arquivo \"$2\" está em modo somente leitura.\n\nO administrador de sistema que bloqueou ofereceu a seguinte explicação: \"$3\".",
+	"invalidtitle": "Título inválido",
 	"invalidtitle-knownnamespace": "Título inválido para o espaço nominal \"$2\" e texto \"$3\"",
 	"invalidtitle-unknownnamespace": "Título inválido para o espaço nominal de número desconhecido ($1) e texto \"$2\"",
 	"exception-nologin": "Não está autenticado",

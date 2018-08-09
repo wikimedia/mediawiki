@@ -1077,7 +1077,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-parsedcomment": "Распарсенное описание правки.",
 	"apihelp-query+revisions+base-paramvalue-prop-content": "Текст версии.",
 	"apihelp-query+revisions+base-paramvalue-prop-tags": "Метки версии.",
-	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "<span class=\"apihelp-deprecated\">Устарело.</span> Вместо этого используйте <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> или <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>. Дерево парсинга XML содержимого версии (требуется модель содержимого <code>$1</code>).",
+	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "Используйте <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> или <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>. Дерево парсинга XML-содержимого версии (требуется модель содержимого <code>$1</code>).",
 	"apihelp-query+revisions+base-param-limit": "Сколько версий вернуть.",
 	"apihelp-query+revisions+base-param-expandtemplates": "Вместо этого используйте <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd>. Раскрыть шаблоны в содержимом версии (требуется $1prop=content).",
 	"apihelp-query+revisions+base-param-generatexml": "Вместо этого используйте <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> или <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>. Сгенерировать дерево парсинга XML содержимого версии (требуется $1prop=content).",

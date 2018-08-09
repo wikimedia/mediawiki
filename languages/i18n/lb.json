@@ -367,6 +367,7 @@
 	"ns-specialprotected": "Spezialsäite kënnen net verännert ginn.",
 	"titleprotected": "Dësen Titel gouf vum [[User:$1|$1]] esou gespaart datt en net kann ugeluecht ginn. De Grond deen ugi gouf ass <em>$2</em>",
 	"filereadonlyerror": "De Fichier \"$1\" konnt net geännert ginn well de Repertoire vun de Fichieren \"$2\" nëmme gelies däerf ginn.\n\nDe System-Administrateur deen d'Schreiwe gespaart huet, huet dës Erklärung uginn: \"$3\"",
+	"invalidtitle": "Net valabelen Titel",
 	"invalidtitle-knownnamespace": "Net valabelen Titel mam Nummraum \"$2\" a mam Text \"$3\"",
 	"invalidtitle-unknownnamespace": "Net valabelen Titel mat der onbekannter Nummraum-Zuel $1 a mam Text \"$2\"",
 	"exception-nologin": "Net ageloggt",
