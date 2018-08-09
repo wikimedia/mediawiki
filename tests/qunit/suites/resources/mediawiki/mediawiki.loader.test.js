@@ -124,11 +124,11 @@
 		var done = assert.async();
 
 		mw.loader.register( [
-			[ 'test.circle1', '0', [ 'test.circle2' ] ],
-			[ 'test.circle2', '0', [ 'test.circle3' ] ],
-			[ 'test.circle3', '0', [ 'test.circle1' ] ]
+			[ 'test.set.circleA', '0', [ 'test.set.circleB' ] ],
+			[ 'test.set.circleB', '0', [ 'test.set.circleC' ] ],
+			[ 'test.set.circleC', '0', [ 'test.set.circleA' ] ]
 		] );
-		mw.loader.using( 'test.circle3' ).then(
+		mw.loader.using( 'test.set.circleC' ).then(
 			function done() {
 				assert.ok( false, 'Unexpected resolution, expected error.' );
 			},
@@ -154,11 +154,11 @@
 		mw.redefineFallbacksForTest();
 
 		mw.loader.register( [
-			[ 'test.shim.circle1', '0', [ 'test.shim.circle2' ] ],
-			[ 'test.shim.circle2', '0', [ 'test.shim.circle3' ] ],
-			[ 'test.shim.circle3', '0', [ 'test.shim.circle1' ] ]
+			[ 'test.shim.circleA', '0', [ 'test.shim.circleB' ] ],
+			[ 'test.shim.circleB', '0', [ 'test.shim.circleC' ] ],
+			[ 'test.shim.circleC', '0', [ 'test.shim.circleA' ] ]
 		] );
-		mw.loader.using( 'test.shim.circle3' ).then(
+		mw.loader.using( 'test.shim.circleC' ).then(
 			function done() {
 				assert.ok( false, 'Unexpected resolution, expected error.' );
 			},
@@ -172,9 +172,9 @@
 	QUnit.test( '.load() - Error: Circular dependency', function ( assert ) {
 		var capture = [];
 		mw.loader.register( [
-			[ 'test.circleA', '0', [ 'test.circleB' ] ],
-			[ 'test.circleB', '0', [ 'test.circleC' ] ],
-			[ 'test.circleC', '0', [ 'test.circleA' ] ]
+			[ 'test.load.circleA', '0', [ 'test.load.circleB' ] ],
+			[ 'test.load.circleB', '0', [ 'test.load.circleC' ] ],
+			[ 'test.load.circleC', '0', [ 'test.load.circleA' ] ]
 		] );
 		this.sandbox.stub( mw, 'track', function ( topic, data ) {
 			capture.push( {
@@ -184,15 +184,40 @@
 			} );
 		} );
 
-		mw.loader.load( 'test.circleC' );
+		mw.loader.load( 'test.load.circleC' );
 		assert.deepEqual(
 			[ {
 				topic: 'resourceloader.exception',
-				error: 'Circular reference detected: test.circleB -> test.circleC',
+				error: 'Circular reference detected: test.load.circleB -> test.load.circleC',
 				source: 'resolve'
 			} ],
 			capture,
 			'Detect circular dependency'
+		);
+	} );
+
+	QUnit.test( '.load() - Error: Circular dependency (direct)', function ( assert ) {
+		var capture = [];
+		mw.loader.register( [
+			[ 'test.load.circleDirect', '0', [ 'test.load.circleDirect' ] ]
+		] );
+		this.sandbox.stub( mw, 'track', function ( topic, data ) {
+			capture.push( {
+				topic: topic,
+				error: data.exception && data.exception.message,
+				source: data.source
+			} );
+		} );
+
+		mw.loader.load( 'test.load.circleDirect' );
+		assert.deepEqual(
+			[ {
+				topic: 'resourceloader.exception',
+				error: 'Circular reference detected: test.load.circleDirect -> test.load.circleDirect',
+				source: 'resolve'
+			} ],
+			capture,
+			'Detect a direct self-dependency'
 		);
 	} );
 

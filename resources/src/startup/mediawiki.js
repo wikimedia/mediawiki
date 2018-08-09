@@ -920,6 +920,7 @@
 
 				// Tracks down dependencies
 				deps = registry[ module ].dependencies;
+				unresolved.add( module );
 				for ( i = 0; i < deps.length; i++ ) {
 					if ( resolved.indexOf( deps[ i ] ) === -1 ) {
 						if ( unresolved.has( deps[ i ] ) ) {
@@ -928,7 +929,6 @@
 							);
 						}
 
-						unresolved.add( module );
 						sortDependencies( deps[ i ], resolved, unresolved );
 					}
 				}
