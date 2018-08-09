@@ -926,6 +926,13 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		if ( $autoCommit && $conn instanceof IDatabase ) {
+			if ( $conn->trxLevel() ) { // sanity
+				throw new DBUnexpectedError(
+					$conn,
+					__METHOD__ . ': CONN_TRX_AUTOCOMMIT handle has a transaction.'
+				);
+			}
+
 			$conn->clearFlag( $conn::DBO_TRX ); // auto-commit mode
 		}
 

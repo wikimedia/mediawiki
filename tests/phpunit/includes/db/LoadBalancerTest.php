@@ -311,6 +311,20 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				$lb->getAnyOpenConnection( $i, $lb::CONN_TRX_AUTOCOMMIT ) );
 			$this->assertEquals( $conn2,
 				$lb->getConnection( $i, [], false, $lb::CONN_TRX_AUTOCOMMIT ) );
+
+			$conn2->startAtomic( __METHOD__ );
+			try {
+				$lb->getConnection( $i, [], false, $lb::CONN_TRX_AUTOCOMMIT );
+				$conn2->endAtomic( __METHOD__ );
+				$this->fail( "No exception thrown." );
+			} catch ( DBUnexpectedError $e ) {
+				$this->assertEquals(
+					'Wikimedia\Rdbms\LoadBalancer::openConnection: ' .
+					'CONN_TRX_AUTOCOMMIT handle has a transaction.',
+					$e->getMessage()
+				);
+			}
+			$conn2->endAtomic( __METHOD__ );
 		}
 
 		$lb->closeAll();

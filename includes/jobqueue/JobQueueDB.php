@@ -221,7 +221,7 @@ class JobQueueDB extends JobQueue {
 		$rowSet = []; // (sha1 => job) map for jobs that are de-duplicated
 		$rowList = []; // list of jobs for jobs that are not de-duplicated
 		foreach ( $jobs as $job ) {
-			$row = $this->insertFields( $job );
+			$row = $this->insertFields( $job, $dbw );
 			if ( $job->ignoreDuplicates() ) {
 				$rowSet[$row['job_sha1']] = $row;
 			} else {
@@ -722,11 +722,10 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @param IJobSpecification $job
+	 * @param IDatabase $db
 	 * @return array
 	 */
-	protected function insertFields( IJobSpecification $job ) {
-		$dbw = $this->getMasterDB();
-
+	protected function insertFields( IJobSpecification $job, IDatabase $db ) {
 		return [
 			// Fields that describe the nature of the job
 			'job_cmd' => $job->getType(),
@@ -734,7 +733,7 @@ class JobQueueDB extends JobQueue {
 			'job_title' => $job->getTitle()->getDBkey(),
 			'job_params' => self::makeBlob( $job->getParams() ),
 			// Additional job metadata
-			'job_timestamp' => $dbw->timestamp(),
+			'job_timestamp' => $db->timestamp(),
 			'job_sha1' => Wikimedia\base_convert(
 				sha1( serialize( $job->getDeduplicationInfo() ) ),
 				16, 36, 31
