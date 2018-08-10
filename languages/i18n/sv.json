@@ -436,6 +436,7 @@
 	"ns-specialprotected": "Specialsidor kan inte redigeras.",
 	"titleprotected": "Denna sidtitel har skyddats från att skapas av [[User:$1|$1]].\nDen angivna anledningen är <em>$2</em>.",
 	"filereadonlyerror": "Det går inte att ändra filen \"$1\", eftersom fildatabasen \"$2\" är i skrivskyddat läge.\n\nDen systemadministratör som låste den angav följande anledning: \"$3\".",
+	"invalidtitle": "Ogiltig titel",
 	"invalidtitle-knownnamespace": "Ogiltig titel med namnrymden \"$2\" och texten \"$3\"",
 	"invalidtitle-unknownnamespace": "Ogiltig titel med okänt namnrymdsnummer $1 och texten \"$2\"",
 	"exception-nologin": "Inte inloggad",

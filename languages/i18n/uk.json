@@ -2569,7 +2569,7 @@
 	"expiringblock": "закінчиться $1 $2",
 	"anononlyblock": "тільки анонімів",
 	"noautoblockblock": "автоблокування вимкнене",
-	"createaccountblock": "Створення облікових записів заблоковане",
+	"createaccountblock": "створення облікових записів заблоковане",
 	"emailblock": "листи заборонені",
 	"blocklist-nousertalk": "не може редагувати свою сторінку обговорення",
 	"ipblocklist-empty": "Список блокувань порожній.",
