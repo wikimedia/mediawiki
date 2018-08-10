@@ -134,6 +134,16 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 					'translations' => []
 				],
 			],
+			[
+				"$base/comma_separated_viewbox.svg",
+				[
+					'width' => 512,
+					'height' => 594,
+					'originalWidth' => '100%',
+					'originalHeight' => '100%',
+					'translations' => []
+				],
+			],
 		];
 	}
 
