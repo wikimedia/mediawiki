@@ -373,6 +373,7 @@
 				} else {
 					maxlength = spec.size;
 					if ( spec.intercalarySize ) {
+						// eslint-disable-next-line no-restricted-properties
 						$.each( spec.intercalarySize, reduceFunc );
 					}
 					$field = $( '<input>' ).attr( 'type', 'text' )

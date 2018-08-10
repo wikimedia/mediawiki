@@ -149,6 +149,7 @@
 				}
 
 				newList = [];
+				// eslint-disable-next-line no-restricted-properties
 				$.each( response.parse.indicators, function ( name, indicator ) {
 					newList.push(
 						$( '<div>' )

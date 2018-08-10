@@ -74,6 +74,7 @@
 		} );
 	}
 
+	// eslint-disable-next-line no-restricted-properties
 	$.each( pluralTestcases, function ( langCode, tests ) {
 		if ( langCode === mw.config.get( 'wgUserLanguage' ) ) {
 			pluralTest( langCode, tests );

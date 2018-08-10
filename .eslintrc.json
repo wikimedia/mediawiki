@@ -27,6 +27,11 @@
 			},
 			{
 				"object": "$",
+				"property": "each",
+				"message": "Please consider different approaches to $.each, especially when using Array's. You can override this warning if necessary with eslint-disable-next-line."
+			},
+			{
+				"object": "$",
 				"property": "isArray",
 				"message": "Please use Array.isArray instead"
 			},

@@ -598,6 +598,7 @@
 		]
 	};
 
+	// eslint-disable-next-line no-restricted-properties
 	$.each( grammarTests, function ( langCode, test ) {
 		if ( langCode === mw.config.get( 'wgUserLanguage' ) ) {
 			grammarTest( langCode, test );
