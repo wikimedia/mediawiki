@@ -44,23 +44,23 @@ class JavaScriptMinifier {
 	const PROPERTY_EXPRESSION_FUNC = 15;
 
 	/* Token types */
-	const TYPE_UN_OP       = 1; // unary operators
-	const TYPE_INCR_OP     = 2; // ++ and --
-	const TYPE_BIN_OP      = 3; // binary operators
-	const TYPE_ADD_OP      = 4; // + and - which can be either unary or binary ops
-	const TYPE_HOOK        = 5; // ?
-	const TYPE_COLON       = 6; // :
-	const TYPE_COMMA       = 7; // ,
-	const TYPE_SEMICOLON   = 8; // ;
-	const TYPE_BRACE_OPEN  = 9; // {
-	const TYPE_BRACE_CLOSE = 10; // }
-	const TYPE_PAREN_OPEN  = 11; // ( and [
-	const TYPE_PAREN_CLOSE = 12; // ) and ]
-	const TYPE_RETURN      = 13; // keywords: break, continue, return, throw
-	const TYPE_IF          = 14; // keywords: catch, for, with, switch, while, if
-	const TYPE_DO          = 15; // keywords: case, var, finally, else, do, try
-	const TYPE_FUNC        = 16; // keywords: function
-	const TYPE_LITERAL     = 17; // all literals, identifiers and unrecognised tokens
+	const TYPE_UN_OP       = 101; // unary operators
+	const TYPE_INCR_OP     = 102; // ++ and --
+	const TYPE_BIN_OP      = 103; // binary operators
+	const TYPE_ADD_OP      = 104; // + and - which can be either unary or binary ops
+	const TYPE_HOOK        = 105; // ?
+	const TYPE_COLON       = 106; // :
+	const TYPE_COMMA       = 107; // ,
+	const TYPE_SEMICOLON   = 108; // ;
+	const TYPE_BRACE_OPEN  = 109; // {
+	const TYPE_BRACE_CLOSE = 110; // }
+	const TYPE_PAREN_OPEN  = 111; // ( and [
+	const TYPE_PAREN_CLOSE = 112; // ) and ]
+	const TYPE_RETURN      = 113; // keywords: break, continue, return, throw
+	const TYPE_IF          = 114; // keywords: catch, for, with, switch, while, if
+	const TYPE_DO          = 115; // keywords: case, var, finally, else, do, try
+	const TYPE_FUNC        = 116; // keywords: function
+	const TYPE_LITERAL     = 117; // all literals, identifiers and unrecognised tokens
 
 	// Sanity limit to avoid excessive memory usage
 	const STACK_LIMIT = 1000;
