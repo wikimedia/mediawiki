@@ -401,11 +401,12 @@ return [
 	},
 
 	'PreferencesFactory' => function ( MediaWikiServices $services ) : PreferencesFactory {
-		$authManager = AuthManager::singleton();
-		$linkRenderer = $services->getLinkRendererFactory()->create();
-		$config = $services->getMainConfig();
-		$factory = new DefaultPreferencesFactory( $config, $services->getContentLanguage(),
-			$authManager, $linkRenderer );
+		$factory = new DefaultPreferencesFactory(
+			$services->getMainConfig(),
+			$services->getContentLanguage(),
+			AuthManager::singleton(),
+			$services->getLinkRendererFactory()->create()
+		);
 		$factory->setLogger( LoggerFactory::getInstance( 'preferences' ) );
 
 		return $factory;
