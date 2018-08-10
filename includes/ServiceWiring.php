@@ -40,60 +40,70 @@
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
+use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
+use MediaWiki\Storage\RevisionFactory;
+use MediaWiki\Storage\RevisionLookup;
+use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\RevisionStoreFactory;
+use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\ObjectFactory;
 
 return [
-	'DBLoadBalancerFactory' => function ( MediaWikiServices $services ) {
-		$mainConfig = $services->getMainConfig();
-
-		$lbConf = MWLBFactory::applyDefaultConfig(
-			$mainConfig->get( 'LBFactoryConf' ),
-			$mainConfig,
-			$services->getConfiguredReadOnlyMode()
+	'ActorMigration' => function ( MediaWikiServices $services ) : ActorMigration {
+		return new ActorMigration(
+			$services->getMainConfig()->get( 'ActorTableSchemaMigrationStage' )
 		);
-		$class = MWLBFactory::getLBFactoryClass( $lbConf );
-
-		$instance = new $class( $lbConf );
-		MWLBFactory::setSchemaAliases( $instance, $mainConfig );
-
-		return $instance;
 	},
 
-	'DBLoadBalancer' => function ( MediaWikiServices $services ) {
-		// just return the default LB from the DBLoadBalancerFactory service
-		return $services->getDBLoadBalancerFactory()->getMainLB();
+	'BlobStore' => function ( MediaWikiServices $services ) : BlobStore {
+		return $services->getService( '_SqlBlobStore' );
 	},
 
-	'SiteStore' => function ( MediaWikiServices $services ) {
-		$rawSiteStore = new DBSiteStore( $services->getDBLoadBalancer() );
-
-		// TODO: replace wfGetCache with a CacheFactory service.
-		// TODO: replace wfIsHHVM with a capabilities service.
-		$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
-
-		return new CachingSiteStore( $rawSiteStore, $cache );
+	'BlobStoreFactory' => function ( MediaWikiServices $services ) : BlobStoreFactory {
+		return new BlobStoreFactory(
+			$services->getDBLoadBalancer(),
+			$services->getMainWANObjectCache(),
+			$services->getMainConfig(),
+			$services->getContentLanguage()
+		);
 	},
 
-	'SiteLookup' => function ( MediaWikiServices $services ) {
-		$cacheFile = $services->getMainConfig()->get( 'SitesCacheFile' );
-
-		if ( $cacheFile !== false ) {
-			return new FileBasedSiteLookup( $cacheFile );
-		} else {
-			// Use the default SiteStore as the SiteLookup implementation for now
-			return $services->getSiteStore();
-		}
+	'ChangeTagDefStore' => function ( MediaWikiServices $services ) : NameTableStore {
+		return new NameTableStore(
+			$services->getDBLoadBalancer(),
+			$services->getMainWANObjectCache(),
+			LoggerFactory::getInstance( 'NameTableSqlStore' ),
+			'change_tag_def',
+			'ctd_id',
+			'ctd_name',
+			null,
+			false,
+			function ( $insertFields ) {
+				$insertFields['ctd_user_defined'] = 0;
+				$insertFields['ctd_count'] = 0;
+				return $insertFields;
+			}
+		);
 	},
 
-	'ConfigFactory' => function ( MediaWikiServices $services ) {
+	'CommentStore' => function ( MediaWikiServices $services ) : CommentStore {
+		return new CommentStore(
+			$services->getContentLanguage(),
+			$services->getMainConfig()->get( 'CommentTableSchemaMigrationStage' )
+		);
+	},
+
+	'ConfigFactory' => function ( MediaWikiServices $services ) : ConfigFactory {
 		// Use the bootstrap config to initialize the ConfigFactory.
 		$registry = $services->getBootstrapConfig()->get( 'ConfigRegistry' );
 		$factory = new ConfigFactory();
@@ -104,106 +114,36 @@ return [
 		return $factory;
 	},
 
-	'ConfigRepository' => function ( MediaWikiServices $services ) {
+	'ConfigRepository' => function ( MediaWikiServices $services ) : ConfigRepository {
 		return new ConfigRepository( $services->getConfigFactory() );
 	},
 
-	'MainConfig' => function ( MediaWikiServices $services ) {
-		// Use the 'main' config from the ConfigFactory service.
-		return $services->getConfigFactory()->makeConfig( 'main' );
+	'ConfiguredReadOnlyMode' => function ( MediaWikiServices $services ) : ConfiguredReadOnlyMode {
+		return new ConfiguredReadOnlyMode( $services->getMainConfig() );
 	},
 
-	'InterwikiLookup' => function ( MediaWikiServices $services ) {
-		$config = $services->getMainConfig();
-		return new ClassicInterwikiLookup(
-			$services->getContentLanguage(),
+	'ContentLanguage' => function ( MediaWikiServices $services ) : Language {
+		return Language::factory( $services->getMainConfig()->get( 'LanguageCode' ) );
+	},
+
+	'ContentModelStore' => function ( MediaWikiServices $services ) : NameTableStore {
+		return new NameTableStore(
+			$services->getDBLoadBalancer(),
 			$services->getMainWANObjectCache(),
-			$config->get( 'InterwikiExpiry' ),
-			$config->get( 'InterwikiCache' ),
-			$config->get( 'InterwikiScopes' ),
-			$config->get( 'InterwikiFallbackSite' )
+			LoggerFactory::getInstance( 'NameTableSqlStore' ),
+			'content_models',
+			'model_id',
+			'model_name'
+			/**
+			 * No strtolower normalization is added to the service as there are examples of
+			 * extensions that do not stick to this assumption.
+			 * - extensions/examples/DataPages define( 'CONTENT_MODEL_XML_DATA','XML_DATA' );
+			 * - extensions/Scribunto define( 'CONTENT_MODEL_SCRIBUNTO', 'Scribunto' );
+			 */
 		);
 	},
 
-	'StatsdDataFactory' => function ( MediaWikiServices $services ) {
-		return new BufferingStatsdDataFactory(
-			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' )
-		);
-	},
-
-	'PerDbNameStatsdDataFactory' => function ( MediaWikiServices $services ) {
-		$config = $services->getMainConfig();
-		$wiki = $config->get( 'DBname' );
-		return new BufferingStatsdDataFactory(
-			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' ) . '.' . $wiki
-		);
-	},
-
-	'EventRelayerGroup' => function ( MediaWikiServices $services ) {
-		return new EventRelayerGroup( $services->getMainConfig()->get( 'EventRelayerConfig' ) );
-	},
-
-	'SearchEngineFactory' => function ( MediaWikiServices $services ) {
-		return new SearchEngineFactory( $services->getSearchEngineConfig() );
-	},
-
-	'SearchEngineConfig' => function ( MediaWikiServices $services ) {
-		return new SearchEngineConfig( $services->getMainConfig(),
-			$services->getContentLanguage() );
-	},
-
-	'SkinFactory' => function ( MediaWikiServices $services ) {
-		$factory = new SkinFactory();
-
-		$names = $services->getMainConfig()->get( 'ValidSkinNames' );
-
-		foreach ( $names as $name => $skin ) {
-			$factory->register( $name, $skin, function () use ( $name, $skin ) {
-				$class = "Skin$skin";
-				return new $class( $name );
-			} );
-		}
-		// Register a hidden "fallback" skin
-		$factory->register( 'fallback', 'Fallback', function () {
-			return new SkinFallback;
-		} );
-		// Register a hidden skin for api output
-		$factory->register( 'apioutput', 'ApiOutput', function () {
-			return new SkinApi;
-		} );
-
-		return $factory;
-	},
-
-	'WatchedItemStore' => function ( MediaWikiServices $services ) {
-		$store = new WatchedItemStore(
-			$services->getDBLoadBalancer(),
-			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
-			$services->getReadOnlyMode(),
-			$services->getMainConfig()->get( 'UpdateRowsPerQuery' )
-		);
-		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
-
-		if ( $services->getMainConfig()->get( 'ReadOnlyWatchedItemStore' ) ) {
-			$store = new NoWriteWatchedItemStore( $store );
-		}
-
-		return $store;
-	},
-
-	'WatchedItemQueryService' => function ( MediaWikiServices $services ) {
-		return new WatchedItemQueryService(
-			$services->getDBLoadBalancer(),
-			$services->getCommentStore(),
-			$services->getActorMigration()
-		);
-	},
-
-	'CryptRand' => function () {
-		return new CryptRand();
-	},
-
-	'CryptHKDF' => function ( MediaWikiServices $services ) {
+	'CryptHKDF' => function ( MediaWikiServices $services ) : CryptHKDF {
 		$config = $services->getMainConfig();
 
 		$secret = $config->get( 'HKDFSecret' ) ?: $config->get( 'SecretKey' );
@@ -224,13 +164,142 @@ return [
 		return new CryptHKDF( $secret, $config->get( 'HKDFAlgorithm' ), $cache, $context );
 	},
 
-	'MediaHandlerFactory' => function ( MediaWikiServices $services ) {
+	'CryptRand' => function () : CryptRand {
+		return new CryptRand();
+	},
+
+	'DBLoadBalancer' => function ( MediaWikiServices $services ) : Wikimedia\Rdbms\LoadBalancer {
+		// just return the default LB from the DBLoadBalancerFactory service
+		return $services->getDBLoadBalancerFactory()->getMainLB();
+	},
+
+	'DBLoadBalancerFactory' =>
+	function ( MediaWikiServices $services ) : Wikimedia\Rdbms\LBFactory {
+		$mainConfig = $services->getMainConfig();
+
+		$lbConf = MWLBFactory::applyDefaultConfig(
+			$mainConfig->get( 'LBFactoryConf' ),
+			$mainConfig,
+			$services->getConfiguredReadOnlyMode()
+		);
+		$class = MWLBFactory::getLBFactoryClass( $lbConf );
+
+		$instance = new $class( $lbConf );
+		MWLBFactory::setSchemaAliases( $instance, $mainConfig );
+
+		return $instance;
+	},
+
+	'EventRelayerGroup' => function ( MediaWikiServices $services ) : EventRelayerGroup {
+		return new EventRelayerGroup( $services->getMainConfig()->get( 'EventRelayerConfig' ) );
+	},
+
+	'ExternalStoreFactory' => function ( MediaWikiServices $services ) : ExternalStoreFactory {
+		$config = $services->getMainConfig();
+
+		return new ExternalStoreFactory(
+			$config->get( 'ExternalStores' )
+		);
+	},
+
+	'GenderCache' => function ( MediaWikiServices $services ) : GenderCache {
+		return new GenderCache();
+	},
+
+	'HttpRequestFactory' =>
+	function ( MediaWikiServices $services ) : \MediaWiki\Http\HttpRequestFactory {
+		return new \MediaWiki\Http\HttpRequestFactory();
+	},
+
+	'InterwikiLookup' => function ( MediaWikiServices $services ) : InterwikiLookup {
+		$config = $services->getMainConfig();
+		return new ClassicInterwikiLookup(
+			$services->getContentLanguage(),
+			$services->getMainWANObjectCache(),
+			$config->get( 'InterwikiExpiry' ),
+			$config->get( 'InterwikiCache' ),
+			$config->get( 'InterwikiScopes' ),
+			$config->get( 'InterwikiFallbackSite' )
+		);
+	},
+
+	'LinkCache' => function ( MediaWikiServices $services ) : LinkCache {
+		return new LinkCache(
+			$services->getTitleFormatter(),
+			$services->getMainWANObjectCache()
+		);
+	},
+
+	'LinkRenderer' => function ( MediaWikiServices $services ) : LinkRenderer {
+		global $wgUser;
+
+		if ( defined( 'MW_NO_SESSION' ) ) {
+			return $services->getLinkRendererFactory()->create();
+		} else {
+			return $services->getLinkRendererFactory()->createForUser( $wgUser );
+		}
+	},
+
+	'LinkRendererFactory' => function ( MediaWikiServices $services ) : LinkRendererFactory {
+		return new LinkRendererFactory(
+			$services->getTitleFormatter(),
+			$services->getLinkCache()
+		);
+	},
+
+	'LocalServerObjectCache' => function ( MediaWikiServices $services ) : BagOStuff {
+		$cacheId = \ObjectCache::detectLocalServerCache();
+		return \ObjectCache::newFromId( $cacheId );
+	},
+
+	'MagicWordFactory' => function ( MediaWikiServices $services ) : MagicWordFactory {
+		return new MagicWordFactory( $services->getContentLanguage() );
+	},
+
+	'MainConfig' => function ( MediaWikiServices $services ) : Config {
+		// Use the 'main' config from the ConfigFactory service.
+		return $services->getConfigFactory()->makeConfig( 'main' );
+	},
+
+	'MainObjectStash' => function ( MediaWikiServices $services ) : BagOStuff {
+		$mainConfig = $services->getMainConfig();
+
+		$id = $mainConfig->get( 'MainStash' );
+		if ( !isset( $mainConfig->get( 'ObjectCaches' )[$id] ) ) {
+			throw new UnexpectedValueException(
+				"Cache type \"$id\" is not present in \$wgObjectCaches." );
+		}
+
+		return \ObjectCache::newFromParams( $mainConfig->get( 'ObjectCaches' )[$id] );
+	},
+
+	'MainWANObjectCache' => function ( MediaWikiServices $services ) : WANObjectCache {
+		$mainConfig = $services->getMainConfig();
+
+		$id = $mainConfig->get( 'MainWANCache' );
+		if ( !isset( $mainConfig->get( 'WANObjectCaches' )[$id] ) ) {
+			throw new UnexpectedValueException(
+				"WAN cache type \"$id\" is not present in \$wgWANObjectCaches." );
+		}
+
+		$params = $mainConfig->get( 'WANObjectCaches' )[$id];
+		$objectCacheId = $params['cacheId'];
+		if ( !isset( $mainConfig->get( 'ObjectCaches' )[$objectCacheId] ) ) {
+			throw new UnexpectedValueException(
+				"Cache type \"$objectCacheId\" is not present in \$wgObjectCaches." );
+		}
+		$params['store'] = $mainConfig->get( 'ObjectCaches' )[$objectCacheId];
+
+		return \ObjectCache::newWANCacheFromParams( $params );
+	},
+
+	'MediaHandlerFactory' => function ( MediaWikiServices $services ) : MediaHandlerFactory {
 		return new MediaHandlerFactory(
 			$services->getMainConfig()->get( 'MediaHandlers' )
 		);
 	},
 
-	'MimeAnalyzer' => function ( MediaWikiServices $services ) {
+	'MimeAnalyzer' => function ( MediaWikiServices $services ) : MimeAnalyzer {
 		$logger = LoggerFactory::getInstance( 'Mime' );
 		$mainConfig = $services->getMainConfig();
 		$params = [
@@ -289,21 +358,21 @@ return [
 		return new MimeMagic( $params );
 	},
 
-	'ProxyLookup' => function ( MediaWikiServices $services ) {
-		$mainConfig = $services->getMainConfig();
-		return new ProxyLookup(
-			$mainConfig->get( 'SquidServers' ),
-			$mainConfig->get( 'SquidServersNoPurge' )
+	'OldRevisionImporter' => function ( MediaWikiServices $services ) : OldRevisionImporter {
+		return new ImportableOldRevisionImporter(
+			true,
+			LoggerFactory::getInstance( 'OldRevisionImporter' ),
+			$services->getDBLoadBalancer()
 		);
 	},
 
-	'Parser' => function ( MediaWikiServices $services ) {
+	'Parser' => function ( MediaWikiServices $services ) : Parser {
 		$conf = $services->getMainConfig()->get( 'ParserConf' );
 		return ObjectFactory::constructClassInstance( $conf['class'],
 			[ $conf, $services->getMagicWordFactory() ] );
 	},
 
-	'ParserCache' => function ( MediaWikiServices $services ) {
+	'ParserCache' => function ( MediaWikiServices $services ) : ParserCache {
 		$config = $services->getMainConfig();
 		$cache = ObjectCache::getInstance( $config->get( 'ParserCacheType' ) );
 		wfDebugLog( 'caches', 'parser: ' . get_class( $cache ) );
@@ -314,138 +383,87 @@ return [
 		);
 	},
 
-	'LinkCache' => function ( MediaWikiServices $services ) {
-		return new LinkCache(
-			$services->getTitleFormatter(),
-			$services->getMainWANObjectCache()
+	'PasswordFactory' => function ( MediaWikiServices $services ) : PasswordFactory {
+		$config = $services->getMainConfig();
+		return new PasswordFactory(
+			$config->get( 'PasswordConfig' ),
+			$config->get( 'PasswordDefault' )
 		);
 	},
 
-	'LinkRendererFactory' => function ( MediaWikiServices $services ) {
-		return new LinkRendererFactory(
-			$services->getTitleFormatter(),
-			$services->getLinkCache()
+	'PerDbNameStatsdDataFactory' =>
+	function ( MediaWikiServices $services ) : IBufferingStatsdDataFactory {
+		$config = $services->getMainConfig();
+		$wiki = $config->get( 'DBname' );
+		return new BufferingStatsdDataFactory(
+			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' ) . '.' . $wiki
 		);
 	},
 
-	'LinkRenderer' => function ( MediaWikiServices $services ) {
-		global $wgUser;
+	'PreferencesFactory' => function ( MediaWikiServices $services ) : PreferencesFactory {
+		$authManager = AuthManager::singleton();
+		$linkRenderer = $services->getLinkRendererFactory()->create();
+		$config = $services->getMainConfig();
+		$factory = new DefaultPreferencesFactory( $config, $services->getContentLanguage(),
+			$authManager, $linkRenderer );
+		$factory->setLogger( LoggerFactory::getInstance( 'preferences' ) );
 
-		if ( defined( 'MW_NO_SESSION' ) ) {
-			return $services->getLinkRendererFactory()->create();
-		} else {
-			return $services->getLinkRendererFactory()->createForUser( $wgUser );
-		}
+		return $factory;
 	},
 
-	'GenderCache' => function ( MediaWikiServices $services ) {
-		return new GenderCache();
-	},
-
-	'_MediaWikiTitleCodec' => function ( MediaWikiServices $services ) {
-		return new MediaWikiTitleCodec(
-			$services->getContentLanguage(),
-			$services->getGenderCache(),
-			$services->getMainConfig()->get( 'LocalInterwikis' )
-		);
-	},
-
-	'TitleFormatter' => function ( MediaWikiServices $services ) {
-		return $services->getService( '_MediaWikiTitleCodec' );
-	},
-
-	'TitleParser' => function ( MediaWikiServices $services ) {
-		return $services->getService( '_MediaWikiTitleCodec' );
-	},
-
-	'MainObjectStash' => function ( MediaWikiServices $services ) {
+	'ProxyLookup' => function ( MediaWikiServices $services ) : ProxyLookup {
 		$mainConfig = $services->getMainConfig();
-
-		$id = $mainConfig->get( 'MainStash' );
-		if ( !isset( $mainConfig->get( 'ObjectCaches' )[$id] ) ) {
-			throw new UnexpectedValueException(
-				"Cache type \"$id\" is not present in \$wgObjectCaches." );
-		}
-
-		return \ObjectCache::newFromParams( $mainConfig->get( 'ObjectCaches' )[$id] );
+		return new ProxyLookup(
+			$mainConfig->get( 'SquidServers' ),
+			$mainConfig->get( 'SquidServersNoPurge' )
+		);
 	},
 
-	'MainWANObjectCache' => function ( MediaWikiServices $services ) {
-		$mainConfig = $services->getMainConfig();
-
-		$id = $mainConfig->get( 'MainWANCache' );
-		if ( !isset( $mainConfig->get( 'WANObjectCaches' )[$id] ) ) {
-			throw new UnexpectedValueException(
-				"WAN cache type \"$id\" is not present in \$wgWANObjectCaches." );
-		}
-
-		$params = $mainConfig->get( 'WANObjectCaches' )[$id];
-		$objectCacheId = $params['cacheId'];
-		if ( !isset( $mainConfig->get( 'ObjectCaches' )[$objectCacheId] ) ) {
-			throw new UnexpectedValueException(
-				"Cache type \"$objectCacheId\" is not present in \$wgObjectCaches." );
-		}
-		$params['store'] = $mainConfig->get( 'ObjectCaches' )[$objectCacheId];
-
-		return \ObjectCache::newWANCacheFromParams( $params );
-	},
-
-	'LocalServerObjectCache' => function ( MediaWikiServices $services ) {
-		$cacheId = \ObjectCache::detectLocalServerCache();
-		return \ObjectCache::newFromId( $cacheId );
-	},
-
-	'VirtualRESTServiceClient' => function ( MediaWikiServices $services ) {
-		$config = $services->getMainConfig()->get( 'VirtualRestConfig' );
-
-		$vrsClient = new VirtualRESTServiceClient( new MultiHttpClient( [] ) );
-		foreach ( $config['paths'] as $prefix => $serviceConfig ) {
-			$class = $serviceConfig['class'];
-			// Merge in the global defaults
-			$constructArg = $serviceConfig['options'] ?? [];
-			$constructArg += $config['global'];
-			// Make the VRS service available at the mount point
-			$vrsClient->mount( $prefix, [ 'class' => $class, 'config' => $constructArg ] );
-		}
-
-		return $vrsClient;
-	},
-
-	'ConfiguredReadOnlyMode' => function ( MediaWikiServices $services ) {
-		return new ConfiguredReadOnlyMode( $services->getMainConfig() );
-	},
-
-	'ReadOnlyMode' => function ( MediaWikiServices $services ) {
+	'ReadOnlyMode' => function ( MediaWikiServices $services ) : ReadOnlyMode {
 		return new ReadOnlyMode(
 			$services->getConfiguredReadOnlyMode(),
 			$services->getDBLoadBalancer()
 		);
 	},
 
-	'UploadRevisionImporter' => function ( MediaWikiServices $services ) {
-		return new ImportableUploadRevisionImporter(
-			$services->getMainConfig()->get( 'EnableUploads' ),
-			LoggerFactory::getInstance( 'UploadRevisionImporter' )
-		);
+	'RevisionFactory' => function ( MediaWikiServices $services ) : RevisionFactory {
+		return $services->getRevisionStore();
 	},
 
-	'OldRevisionImporter' => function ( MediaWikiServices $services ) {
-		return new ImportableOldRevisionImporter(
-			true,
-			LoggerFactory::getInstance( 'OldRevisionImporter' ),
-			$services->getDBLoadBalancer()
-		);
+	'RevisionLookup' => function ( MediaWikiServices $services ) : RevisionLookup {
+		return $services->getRevisionStore();
 	},
 
-	'WikiRevisionOldRevisionImporterNoUpdates' => function ( MediaWikiServices $services ) {
-		return new ImportableOldRevisionImporter(
-			false,
-			LoggerFactory::getInstance( 'OldRevisionImporter' ),
-			$services->getDBLoadBalancer()
-		);
+	'RevisionStore' => function ( MediaWikiServices $services ) : RevisionStore {
+		return $services->getRevisionStoreFactory()->getRevisionStore();
 	},
 
-	'ShellCommandFactory' => function ( MediaWikiServices $services ) {
+	'RevisionStoreFactory' => function ( MediaWikiServices $services ) : RevisionStoreFactory {
+		$config = $services->getMainConfig();
+		$store = new RevisionStoreFactory(
+			$services->getDBLoadBalancerFactory(),
+			$services->getBlobStoreFactory(),
+			$services->getMainWANObjectCache(),
+			$services->getCommentStore(),
+			$services->getActorMigration(),
+			$config->get( 'MultiContentRevisionSchemaMigrationStage' ),
+			LoggerFactory::getProvider(),
+			$config->get( 'ContentHandlerUseDB' )
+		);
+
+		return $store;
+	},
+
+	'SearchEngineConfig' => function ( MediaWikiServices $services ) : SearchEngineConfig {
+		return new SearchEngineConfig( $services->getMainConfig(),
+			$services->getContentLanguage() );
+	},
+
+	'SearchEngineFactory' => function ( MediaWikiServices $services ) : SearchEngineFactory {
+		return new SearchEngineFactory( $services->getSearchEngineConfig() );
+	},
+
+	'ShellCommandFactory' => function ( MediaWikiServices $services ) : CommandFactory {
 		$config = $services->getMainConfig();
 
 		$limits = [
@@ -464,77 +482,51 @@ return [
 		return $factory;
 	},
 
-	'ExternalStoreFactory' => function ( MediaWikiServices $services ) {
-		$config = $services->getMainConfig();
+	'SiteLookup' => function ( MediaWikiServices $services ) : SiteLookup {
+		$cacheFile = $services->getMainConfig()->get( 'SitesCacheFile' );
 
-		return new ExternalStoreFactory(
-			$config->get( 'ExternalStores' )
-		);
+		if ( $cacheFile !== false ) {
+			return new FileBasedSiteLookup( $cacheFile );
+		} else {
+			// Use the default SiteStore as the SiteLookup implementation for now
+			return $services->getSiteStore();
+		}
 	},
 
-	'RevisionStore' => function ( MediaWikiServices $services ) {
-		return $services->getRevisionStoreFactory()->getRevisionStore();
+	'SiteStore' => function ( MediaWikiServices $services ) : SiteStore {
+		$rawSiteStore = new DBSiteStore( $services->getDBLoadBalancer() );
+
+		// TODO: replace wfGetCache with a CacheFactory service.
+		// TODO: replace wfIsHHVM with a capabilities service.
+		$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
+
+		return new CachingSiteStore( $rawSiteStore, $cache );
 	},
 
-	'RevisionStoreFactory' => function ( MediaWikiServices $services ) {
-		$config = $services->getMainConfig();
-		$store = new RevisionStoreFactory(
-			$services->getDBLoadBalancerFactory(),
-			$services->getBlobStoreFactory(),
-			$services->getMainWANObjectCache(),
-			$services->getCommentStore(),
-			$services->getActorMigration(),
-			$config->get( 'MultiContentRevisionSchemaMigrationStage' ),
-			LoggerFactory::getProvider(),
-			$config->get( 'ContentHandlerUseDB' )
-		);
+	'SkinFactory' => function ( MediaWikiServices $services ) : SkinFactory {
+		$factory = new SkinFactory();
 
-		return $store;
+		$names = $services->getMainConfig()->get( 'ValidSkinNames' );
+
+		foreach ( $names as $name => $skin ) {
+			$factory->register( $name, $skin, function () use ( $name, $skin ) {
+				$class = "Skin$skin";
+				return new $class( $name );
+			} );
+		}
+		// Register a hidden "fallback" skin
+		$factory->register( 'fallback', 'Fallback', function () {
+			return new SkinFallback;
+		} );
+		// Register a hidden skin for api output
+		$factory->register( 'apioutput', 'ApiOutput', function () {
+			return new SkinApi;
+		} );
+
+		return $factory;
 	},
 
-	'RevisionLookup' => function ( MediaWikiServices $services ) {
-		return $services->getRevisionStore();
-	},
-
-	'RevisionFactory' => function ( MediaWikiServices $services ) {
-		return $services->getRevisionStore();
-	},
-
-	'BlobStoreFactory' => function ( MediaWikiServices $services ) {
-		return new BlobStoreFactory(
-			$services->getDBLoadBalancer(),
-			$services->getMainWANObjectCache(),
-			$services->getMainConfig(),
-			$services->getContentLanguage()
-		);
-	},
-
-	'BlobStore' => function ( MediaWikiServices $services ) {
-		return $services->getService( '_SqlBlobStore' );
-	},
-
-	'_SqlBlobStore' => function ( MediaWikiServices $services ) {
-		return $services->getBlobStoreFactory()->newSqlBlobStore();
-	},
-
-	'ContentModelStore' => function ( MediaWikiServices $services ) {
-		return new NameTableStore(
-			$services->getDBLoadBalancer(),
-			$services->getMainWANObjectCache(),
-			LoggerFactory::getInstance( 'NameTableSqlStore' ),
-			'content_models',
-			'model_id',
-			'model_name'
-			/**
-			 * No strtolower normalization is added to the service as there are examples of
-			 * extensions that do not stick to this assumption.
-			 * - extensions/examples/DataPages define( 'CONTENT_MODEL_XML_DATA','XML_DATA' );
-			 * - extensions/Scribunto define( 'CONTENT_MODEL_SCRIBUNTO', 'Scribunto' );
-			 */
-		);
-	},
-
-	'SlotRoleStore' => function ( MediaWikiServices $services ) {
+	'SlotRoleStore' => function ( MediaWikiServices $services ) : NameTableStore {
 		return new NameTableStore(
 			$services->getDBLoadBalancer(),
 			$services->getMainWANObjectCache(),
@@ -546,66 +538,88 @@ return [
 		);
 	},
 
-	'ChangeTagDefStore' => function ( MediaWikiServices $services ) {
-		return new NameTableStore(
+	'StatsdDataFactory' => function ( MediaWikiServices $services ) : IBufferingStatsdDataFactory {
+		return new BufferingStatsdDataFactory(
+			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' )
+		);
+	},
+
+	'TitleFormatter' => function ( MediaWikiServices $services ) : TitleFormatter {
+		return $services->getService( '_MediaWikiTitleCodec' );
+	},
+
+	'TitleParser' => function ( MediaWikiServices $services ) : TitleParser {
+		return $services->getService( '_MediaWikiTitleCodec' );
+	},
+
+	'UploadRevisionImporter' => function ( MediaWikiServices $services ) : UploadRevisionImporter {
+		return new ImportableUploadRevisionImporter(
+			$services->getMainConfig()->get( 'EnableUploads' ),
+			LoggerFactory::getInstance( 'UploadRevisionImporter' )
+		);
+	},
+
+	'VirtualRESTServiceClient' =>
+	function ( MediaWikiServices $services ) : VirtualRESTServiceClient {
+		$config = $services->getMainConfig()->get( 'VirtualRestConfig' );
+
+		$vrsClient = new VirtualRESTServiceClient( new MultiHttpClient( [] ) );
+		foreach ( $config['paths'] as $prefix => $serviceConfig ) {
+			$class = $serviceConfig['class'];
+			// Merge in the global defaults
+			$constructArg = $serviceConfig['options'] ?? [];
+			$constructArg += $config['global'];
+			// Make the VRS service available at the mount point
+			$vrsClient->mount( $prefix, [ 'class' => $class, 'config' => $constructArg ] );
+		}
+
+		return $vrsClient;
+	},
+
+	'WatchedItemQueryService' =>
+	function ( MediaWikiServices $services ) : WatchedItemQueryService {
+		return new WatchedItemQueryService(
 			$services->getDBLoadBalancer(),
-			$services->getMainWANObjectCache(),
-			LoggerFactory::getInstance( 'NameTableSqlStore' ),
-			'change_tag_def',
-			'ctd_id',
-			'ctd_name',
-			null,
+			$services->getCommentStore(),
+			$services->getActorMigration()
+		);
+	},
+
+	'WatchedItemStore' => function ( MediaWikiServices $services ) : WatchedItemStore {
+		$store = new WatchedItemStore(
+			$services->getDBLoadBalancer(),
+			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
+			$services->getReadOnlyMode(),
+			$services->getMainConfig()->get( 'UpdateRowsPerQuery' )
+		);
+		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
+
+		if ( $services->getMainConfig()->get( 'ReadOnlyWatchedItemStore' ) ) {
+			$store = new NoWriteWatchedItemStore( $store );
+		}
+
+		return $store;
+	},
+
+	'WikiRevisionOldRevisionImporterNoUpdates' =>
+	function ( MediaWikiServices $services ) : ImportableOldRevisionImporter {
+		return new ImportableOldRevisionImporter(
 			false,
-			function ( $insertFields ) {
-				$insertFields['ctd_user_defined'] = 0;
-				$insertFields['ctd_count'] = 0;
-				return $insertFields;
-			}
+			LoggerFactory::getInstance( 'OldRevisionImporter' ),
+			$services->getDBLoadBalancer()
 		);
 	},
 
-	'PreferencesFactory' => function ( MediaWikiServices $services ) {
-		$authManager = AuthManager::singleton();
-		$linkRenderer = $services->getLinkRendererFactory()->create();
-		$config = $services->getMainConfig();
-		$factory = new DefaultPreferencesFactory( $config, $services->getContentLanguage(),
-			$authManager, $linkRenderer );
-		$factory->setLogger( LoggerFactory::getInstance( 'preferences' ) );
-
-		return $factory;
-	},
-
-	'HttpRequestFactory' => function ( MediaWikiServices $services ) {
-		return new \MediaWiki\Http\HttpRequestFactory();
-	},
-
-	'CommentStore' => function ( MediaWikiServices $services ) {
-		return new CommentStore(
+	'_MediaWikiTitleCodec' => function ( MediaWikiServices $services ) : MediaWikiTitleCodec {
+		return new MediaWikiTitleCodec(
 			$services->getContentLanguage(),
-			$services->getMainConfig()->get( 'CommentTableSchemaMigrationStage' )
+			$services->getGenderCache(),
+			$services->getMainConfig()->get( 'LocalInterwikis' )
 		);
 	},
 
-	'ActorMigration' => function ( MediaWikiServices $services ) {
-		return new ActorMigration(
-			$services->getMainConfig()->get( 'ActorTableSchemaMigrationStage' )
-		);
-	},
-
-	'MagicWordFactory' => function ( MediaWikiServices $services ) {
-		return new MagicWordFactory( $services->getContentLanguage() );
-	},
-
-	'ContentLanguage' => function ( MediaWikiServices $services ) {
-		return Language::factory( $services->getMainConfig()->get( 'LanguageCode' ) );
-	},
-
-	'PasswordFactory' => function ( MediaWikiServices $services ) {
-		$config = $services->getMainConfig();
-		return new PasswordFactory(
-			$config->get( 'PasswordConfig' ),
-			$config->get( 'PasswordDefault' )
-		);
+	'_SqlBlobStore' => function ( MediaWikiServices $services ) : SqlBlobStore {
+		return $services->getBlobStoreFactory()->newSqlBlobStore();
 	},
 
 	///////////////////////////////////////////////////////////////////////////
