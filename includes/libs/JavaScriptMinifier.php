@@ -17,6 +17,13 @@
  * slow, because they construct a complete parse tree before outputting the code minified.
  * So this class is meant to allow arbitrary (but syntactically correct) input, while being
  * fast enough to be used for on-the-fly minifying.
+ *
+ * This class was written with ECMA-262 Edition 3 in mind ("ECMAScript 3"). Parsing features
+ * new to ECMAScript 5 or later might not be supported. However, Edition 5.1 better reflects
+ * how actual JS engines worked and work and is simpler and more readable prose. As such,
+ * the below code will refer to sections of the 5.1 specification.
+ *
+ * See <https://www.ecma-international.org/ecma-262/5.1/>.
  */
 class JavaScriptMinifier {
 
@@ -81,109 +88,191 @@ class JavaScriptMinifier {
 	public static function minify( $s ) {
 		// First we declare a few tables that contain our parsing rules
 
-		// $opChars : characters, which can be combined without whitespace in between them
+		// $opChars : Characters which can be combined without whitespace between them.
 		$opChars = [
-			'!' => true,
-			'"' => true,
-			'%' => true,
-			'&' => true,
-			"'" => true,
+			// ECMAScript 5.1 § 7.7 Punctuators
+			// Unlike the spec, these are individual symbols, not sequences.
+			'{' => true,
+			'}' => true,
 			'(' => true,
 			')' => true,
-			'*' => true,
-			'+' => true,
-			',' => true,
-			'-' => true,
-			'.' => true,
-			'/' => true,
-			':' => true,
-			';' => true,
-			'<' => true,
-			'=' => true,
-			'>' => true,
-			'?' => true,
 			'[' => true,
 			']' => true,
-			'^' => true,
-			'{' => true,
+			'.' => true,
+			';' => true,
+			',' => true,
+			'<' => true,
+			'>' => true,
+			'=' => true,
+			'!' => true,
+			'+' => true,
+			'-' => true,
+			'*' => true,
+			'%' => true,
+			'&' => true,
 			'|' => true,
-			'}' => true,
-			'~' => true
+			'^' => true,
+			'~' => true,
+			'?' => true,
+			':' => true,
+			'/' => true,
+			// ECMAScript 5.1 § 7.8.4 String Literals
+			'"' => true,
+			"'" => true,
 		];
 
-		// $tokenTypes : maps keywords and operators to their corresponding token type
+		// $tokenTypes : Map keywords and operators to their corresponding token type
 		$tokenTypes = [
-			'!'          => self::TYPE_UN_OP,
-			'~'          => self::TYPE_UN_OP,
-			'delete'     => self::TYPE_UN_OP,
+			// ECMAScript 5.1 § 11.4 Unary Operators
+			// ECMAScript 5.1 § 11.6 Additive Operators
+			// UnaryExpression includes PostfixExpression, which includes 'new'.
 			'new'        => self::TYPE_UN_OP,
-			'typeof'     => self::TYPE_UN_OP,
+			'delete'     => self::TYPE_UN_OP,
 			'void'       => self::TYPE_UN_OP,
+			'typeof'     => self::TYPE_UN_OP,
 			'++'         => self::TYPE_INCR_OP,
 			'--'         => self::TYPE_INCR_OP,
-			'!='         => self::TYPE_BIN_OP,
-			'!=='        => self::TYPE_BIN_OP,
-			'%'          => self::TYPE_BIN_OP,
-			'%='         => self::TYPE_BIN_OP,
-			'&'          => self::TYPE_BIN_OP,
-			'&&'         => self::TYPE_BIN_OP,
-			'&='         => self::TYPE_BIN_OP,
-			'*'          => self::TYPE_BIN_OP,
-			'*='         => self::TYPE_BIN_OP,
-			'+='         => self::TYPE_BIN_OP,
-			'-='         => self::TYPE_BIN_OP,
-			'.'          => self::TYPE_BIN_OP,
-			'/'          => self::TYPE_BIN_OP,
-			'/='         => self::TYPE_BIN_OP,
-			'<'          => self::TYPE_BIN_OP,
-			'<<'         => self::TYPE_BIN_OP,
-			'<<='        => self::TYPE_BIN_OP,
-			'<='         => self::TYPE_BIN_OP,
-			'='          => self::TYPE_BIN_OP,
-			'=='         => self::TYPE_BIN_OP,
-			'==='        => self::TYPE_BIN_OP,
-			'>'          => self::TYPE_BIN_OP,
-			'>='         => self::TYPE_BIN_OP,
-			'>>'         => self::TYPE_BIN_OP,
-			'>>='        => self::TYPE_BIN_OP,
-			'>>>'        => self::TYPE_BIN_OP,
-			'>>>='       => self::TYPE_BIN_OP,
-			'^'          => self::TYPE_BIN_OP,
-			'^='         => self::TYPE_BIN_OP,
-			'|'          => self::TYPE_BIN_OP,
-			'|='         => self::TYPE_BIN_OP,
-			'||'         => self::TYPE_BIN_OP,
-			'in'         => self::TYPE_BIN_OP,
-			'instanceof' => self::TYPE_BIN_OP,
 			'+'          => self::TYPE_ADD_OP,
 			'-'          => self::TYPE_ADD_OP,
+			'~'          => self::TYPE_UN_OP,
+			'!'          => self::TYPE_UN_OP,
+			// ECMAScript 5.1 § 11.5 Multiplicative Operators
+			'*'          => self::TYPE_BIN_OP,
+			'/'          => self::TYPE_BIN_OP,
+			'%'          => self::TYPE_BIN_OP,
+			// ECMAScript 5.1 § 11.7 Bitwise Shift Operators
+			'<<'         => self::TYPE_BIN_OP,
+			'>>'         => self::TYPE_BIN_OP,
+			'>>>'        => self::TYPE_BIN_OP,
+			// ECMAScript 5.1 § 11.8 Relational Operators
+			'<'          => self::TYPE_BIN_OP,
+			'>'          => self::TYPE_BIN_OP,
+			'<='         => self::TYPE_BIN_OP,
+			'>='         => self::TYPE_BIN_OP,
+			// ECMAScript 5.1 § 11.9 Equality Operators
+			'=='         => self::TYPE_BIN_OP,
+			'!='         => self::TYPE_BIN_OP,
+			'==='        => self::TYPE_BIN_OP,
+			'!=='        => self::TYPE_BIN_OP,
+			'instanceof' => self::TYPE_BIN_OP,
+			'in'         => self::TYPE_BIN_OP,
+			// ECMAScript 5.1 § 11.10 Binary Bitwise Operators
+			'&'          => self::TYPE_BIN_OP,
+			'^'          => self::TYPE_BIN_OP,
+			'|'          => self::TYPE_BIN_OP,
+			// ECMAScript 5.1 § 11.11 Binary Logical Operators
+			'&&'         => self::TYPE_BIN_OP,
+			'||'         => self::TYPE_BIN_OP,
+			// ECMAScript 5.1 § 11.12 Conditional Operator
+			// Also known as ternary.
 			'?'          => self::TYPE_HOOK,
 			':'          => self::TYPE_COLON,
+			// ECMAScript 5.1 § 11.13 Assignment Operators
+			'='          => self::TYPE_BIN_OP,
+			'*='         => self::TYPE_BIN_OP,
+			'/='         => self::TYPE_BIN_OP,
+			'%='         => self::TYPE_BIN_OP,
+			'+='         => self::TYPE_BIN_OP,
+			'-='         => self::TYPE_BIN_OP,
+			'<<='        => self::TYPE_BIN_OP,
+			'>>='        => self::TYPE_BIN_OP,
+			'>>>='       => self::TYPE_BIN_OP,
+			'&='         => self::TYPE_BIN_OP,
+			'^='         => self::TYPE_BIN_OP,
+			'|='         => self::TYPE_BIN_OP,
+			// ECMAScript 5.1 § 11.14 Comma Operator
 			','          => self::TYPE_COMMA,
-			';'          => self::TYPE_SEMICOLON,
-			'{'          => self::TYPE_BRACE_OPEN,
-			'}'          => self::TYPE_BRACE_CLOSE,
-			'('          => self::TYPE_PAREN_OPEN,
-			'['          => self::TYPE_PAREN_OPEN,
-			')'          => self::TYPE_PAREN_CLOSE,
-			']'          => self::TYPE_PAREN_CLOSE,
-			'break'      => self::TYPE_RETURN,
+
+			// The keywords that disallow LineTerminator before their
+			// (sometimes optional) Expression or Identifier.
+			//
+			//    keyword ;
+			//    keyword [no LineTerminator here] Identifier ;
+			//    keyword [no LineTerminator here] Expression ;
+			//
+			// See also ECMAScript 5.1:
+			// - § 12.7 The continue Statement
+			// - $ 12.8 The break Statement
+			// - § 12.9 The return Statement
+			// - § 12.13 The throw Statement
 			'continue'   => self::TYPE_RETURN,
+			'break'      => self::TYPE_RETURN,
 			'return'     => self::TYPE_RETURN,
 			'throw'      => self::TYPE_RETURN,
-			'catch'      => self::TYPE_IF,
-			'for'        => self::TYPE_IF,
+
+			// The keywords require a parenthesised Expression or Identifier
+			// before the next Statement.
+			//
+			//     keyword ( Expression ) Statement
+			//     keyword ( Identifier ) Statement
+			//
+			// See also ECMAScript 5.1:
+			// - § 12.5 The if Statement
+			// - § 12.6 Iteration Statements (do, while, for)
+			// - § 12.10 The with Statement
+			// - § 12.11 The switch Statement
+			// - § 12.13 The throw Statement
 			'if'         => self::TYPE_IF,
-			'switch'     => self::TYPE_IF,
+			'catch'      => self::TYPE_IF,
 			'while'      => self::TYPE_IF,
+			'for'        => self::TYPE_IF,
+			'switch'     => self::TYPE_IF,
 			'with'       => self::TYPE_IF,
-			'case'       => self::TYPE_DO,
-			'do'         => self::TYPE_DO,
-			'else'       => self::TYPE_DO,
-			'finally'    => self::TYPE_DO,
-			'try'        => self::TYPE_DO,
+
+			// The keywords followed by an Identifier, Statement,
+			// Expression, or Block.
+			//
+			//     var Identifier
+			//     else Statement
+			//     do Statement
+			//     case Expression
+			//     try Block
+			//     finally Block
+			//
+			// See also ECMAScript 5.1:
+			// - § 12.2 Variable Statement
+			// - § 12.5 The if Statement (else)
+			// - § 12.6 Iteration Statements (do, while, for)
+			// - § 12.11 The switch Statement (case)
+			// - § 12.14 The try Statement
 			'var'        => self::TYPE_DO,
-			'function'   => self::TYPE_FUNC
+			'else'       => self::TYPE_DO,
+			'do'         => self::TYPE_DO,
+			'case'       => self::TYPE_DO,
+			'try'        => self::TYPE_DO,
+			'finally'    => self::TYPE_DO,
+
+			// ECMAScript 5.1 § 13 Function Definition
+			'function'   => self::TYPE_FUNC,
+
+			// Can be one of:
+			// - DecimalLiteral (ECMAScript 5.1 § 7.8.3 Numeric Literals)
+			// - MemberExpression (ECMAScript 5.1 § 11.2 Left-Hand-Side Expressions)
+			'.'          => self::TYPE_BIN_OP,
+
+			// Can be one of:
+			// - Block (ECMAScript 5.1 § 12.1 Block)
+			// - ObjectLiteral (ECMAScript 5.1 § 11.1 Primary Expressions)
+			'{'          => self::TYPE_BRACE_OPEN,
+			'}'          => self::TYPE_BRACE_CLOSE,
+
+			// Can be one of:
+			// - Parenthesised Identifier or Expression after a
+			//   TYPE_IF or TYPE_FUNC keyword.
+			// - PrimaryExpression (ECMAScript 5.1 § 11.1 Primary Expressions)
+			// - CallExpression (ECMAScript 5.1 § 11.2 Left-Hand-Side Expressions)
+			'('          => self::TYPE_PAREN_OPEN,
+			')'          => self::TYPE_PAREN_CLOSE,
+
+			// Can be one of:
+			// - ArrayLiteral (ECMAScript 5.1 § 11.1 Primary Expressions)
+			'['          => self::TYPE_PAREN_OPEN,
+			']'          => self::TYPE_PAREN_CLOSE,
+
+			// Can be one of:
+			// - End of any statement
+			// - EmptyStatement (ECMAScript 5.1 § 12.3 Empty Statement)
+			';'          => self::TYPE_SEMICOLON,
 		];
 
 		// $goto : This is the main table for our state machine. For every state/token pair
