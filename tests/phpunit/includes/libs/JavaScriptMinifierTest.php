@@ -203,6 +203,33 @@ class JavaScriptMinifierTest extends PHPUnit\Framework\TestCase {
 		);
 	}
 
+	/**
+	 * @covers JavaScriptMinifier::minify
+	 */
+	public function testReturnLineBreak() {
+		// Regression test for T201606.
+		$lineFill = str_repeat( 'x', 993 );
+		$code = <<<JAVASCRIPT
+call( function () {
+	try {
+	} catch (e) {
+		push = {
+			apply: 1 ? 0 : {}
+		};
+	}
+	{$lineFill}
+	return name === 'input';
+} );
+JAVASCRIPT;
+		$this->assertSame(
+			"call(function(){try{}catch(e){push={apply:1?0:{}};}"
+				// FIXME: Token `name` must be on line 2 instead of line 3
+				. "\n$lineFill return"
+				. "\nname==='input';});",
+			JavaScriptMinifier::minify( $code )
+		);
+	}
+
 	public static function provideExponentLineBreaking() {
 		return [
 			[
