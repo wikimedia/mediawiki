@@ -1,23 +1,9 @@
 <?php
 
-use Mediawiki\Http\HttpRequestFactory;
-use MediaWiki\Interwiki\InterwikiLookup;
-use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Services\DestructibleService;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceDisabledException;
-use MediaWiki\Shell\CommandFactory;
-use MediaWiki\Storage\BlobStore;
-use MediaWiki\Storage\BlobStoreFactory;
-use MediaWiki\Storage\NameTableStore;
-use MediaWiki\Storage\RevisionFactory;
-use MediaWiki\Storage\RevisionLookup;
-use MediaWiki\Storage\RevisionStore;
-use MediaWiki\Storage\RevisionStoreFactory;
-use MediaWiki\Storage\SqlBlobStore;
 
 /**
  * @covers MediaWiki\MediaWikiServices
@@ -307,74 +293,18 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 	}
 
 	public function provideGetService() {
-		// NOTE: This should list all service getters defined in ServiceWiring.php.
-		return [
-			'_MediaWikiTitleCodec' => [ '_MediaWikiTitleCodec', MediaWikiTitleCodec::class ],
-			'_SqlBlobStore' => [ '_SqlBlobStore', SqlBlobStore::class ],
-			'ActorMigration' => [ 'ActorMigration', ActorMigration::class ],
-			'BlobStore' => [ 'BlobStore', BlobStore::class ],
-			'BlobStoreFactory' => [ 'BlobStoreFactory', BlobStoreFactory::class ],
-			'BootstrapConfig' => [ 'BootstrapConfig', Config::class ],
-			'ChangeTagDefStore' => [ 'ChangeTagDefStore', NameTableStore::class ],
-			'CommentStore' => [ 'CommentStore', CommentStore::class ],
-			'ConfigFactory' => [ 'ConfigFactory', ConfigFactory::class ],
-			'ConfigRepository' => [ 'ConfigRepository', \MediaWiki\Config\ConfigRepository::class ],
-			'ConfiguredReadOnlyMode' => [ 'ConfiguredReadOnlyMode', ConfiguredReadOnlyMode::class ],
-			'ContentLanguage' => [ 'ContentLanguage', Language::class ],
-			'ContentModelStore' => [ 'ContentModelStore', NameTableStore::class ],
-			'CryptHKDF' => [ 'CryptHKDF', CryptHKDF::class ],
-			'CryptRand' => [ 'CryptRand', CryptRand::class ],
-			'DBLoadBalancer' => [ 'DBLoadBalancer', Wikimedia\Rdbms\LoadBalancer::class ],
-			'DBLoadBalancerFactory' =>
-				[ 'DBLoadBalancerFactory', Wikimedia\Rdbms\LBFactory::class ],
-			'EventRelayerGroup' => [ 'EventRelayerGroup', EventRelayerGroup::class ],
-			'ExternalStoreFactory' => [ 'ExternalStoreFactory', ExternalStoreFactory::class ],
-			'GenderCache' => [ 'GenderCache', GenderCache::class ],
-			'HttpRequestFactory' => [ 'HttpRequestFactory', HttpRequestFactory::class ],
-			'InterwikiLookup' => [ 'InterwikiLookup', InterwikiLookup::class ],
-			'LinkCache' => [ 'LinkCache', LinkCache::class ],
-			'LinkRenderer' => [ 'LinkRenderer', LinkRenderer::class ],
-			'LinkRendererFactory' => [ 'LinkRendererFactory', LinkRendererFactory::class ],
-			'LocalServerObjectCache' => [ 'LocalServerObjectCache', BagOStuff::class ],
-			'MagicWordFactory' => [ 'MagicWordFactory', MagicWordFactory::class ],
-			'MainConfig' => [ 'MainConfig', Config::class ],
-			'MainObjectStash' => [ 'MainObjectStash', BagOStuff::class ],
-			'MainWANObjectCache' => [ 'MainWANObjectCache', WANObjectCache::class ],
-			'MediaHandlerFactory' => [ 'MediaHandlerFactory', MediaHandlerFactory::class ],
-			'MimeAnalyzer' => [ 'MimeAnalyzer', MimeAnalyzer::class ],
-			'OldRevisionImporter' => [ 'OldRevisionImporter', OldRevisionImporter::class ],
-			'Parser' => [ 'Parser', Parser::class ],
-			'ParserCache' => [ 'ParserCache', ParserCache::class ],
-			'PasswordFactory' => [ 'PasswordFactory', PasswordFactory::class ],
-			'PerDbNameStatsdDataFactory' =>
-				[ 'PerDbNameStatsdDataFactory', IBufferingStatsdDataFactory::class ],
-			'PreferencesFactory' => [ 'PreferencesFactory', PreferencesFactory::class ],
-			'ProxyLookup' => [ 'ProxyLookup', ProxyLookup::class ],
-			'ReadOnlyMode' => [ 'ReadOnlyMode', ReadOnlyMode::class ],
-			'RevisionFactory' => [ 'RevisionFactory', RevisionFactory::class ],
-			'RevisionLookup' => [ 'RevisionLookup', RevisionLookup::class ],
-			'RevisionStore' => [ 'RevisionStore', RevisionStore::class ],
-			'RevisionStoreFactory' => [ 'RevisionStoreFactory', RevisionStoreFactory::class ],
-			'SearchEngineConfig' => [ 'SearchEngineConfig', SearchEngineConfig::class ],
-			'SearchEngineFactory' => [ 'SearchEngineFactory', SearchEngineFactory::class ],
-			'ShellCommandFactory' => [ 'ShellCommandFactory', CommandFactory::class ],
-			'SiteLookup' => [ 'SiteLookup', SiteLookup::class ],
-			'SiteStore' => [ 'SiteStore', SiteStore::class ],
-			'SkinFactory' => [ 'SkinFactory', SkinFactory::class ],
-			'SlotRoleStore' => [ 'SlotRoleStore', NameTableStore::class ],
-			'StatsdDataFactory' => [ 'StatsdDataFactory', IBufferingStatsdDataFactory::class ],
-			'TitleFormatter' => [ 'TitleFormatter', TitleFormatter::class ],
-			'TitleParser' => [ 'TitleParser', TitleParser::class ],
-			'UploadRevisionImporter' => [ 'UploadRevisionImporter', UploadRevisionImporter::class ],
-			'VirtualRESTServiceClient' =>
-				[ 'VirtualRESTServiceClient', VirtualRESTServiceClient::class ],
-			'WatchedItemQueryService' =>
-				[ 'WatchedItemQueryService', WatchedItemQueryService::class ],
-			'WatchedItemStore' => [ 'WatchedItemStore', WatchedItemStore::class ],
-			'WikiRevisionOldRevisionImporterNoUpdates' =>
-				[ 'WikiRevisionOldRevisionImporterNoUpdates',
-				ImportableOldRevisionImporter::class ],
-		];
+		global $IP;
+		$serviceList = require "$IP/includes/ServiceWiring.php";
+		$ret = [];
+		foreach ( $serviceList as $name => $callback ) {
+			$fun = new ReflectionFunction( $callback );
+			if ( !$fun->hasReturnType() ) {
+				throw new MWException( 'All service callbacks must have a return type defined, ' .
+					"none found for $name" );
+			}
+			$ret[$name] = [ $name, $fun->getReturnType()->__toString() ];
+		}
+		return $ret;
 	}
 
 	/**
@@ -405,7 +335,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 	public function testDefaultServiceWiringServicesHaveTests() {
 		global $IP;
 		$testedServices = array_keys( $this->provideGetService() );
-		$allServices = array_keys( include $IP . '/includes/ServiceWiring.php' );
+		$allServices = array_keys( require "$IP/includes/ServiceWiring.php" );
 		$this->assertEquals(
 			[],
 			array_diff( $allServices, $testedServices ),
