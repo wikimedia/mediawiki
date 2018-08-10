@@ -4046,5 +4046,6 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "Пароль ня можа супадаць зь імем ўдзельніка",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Пароль ня можа супадаць з паролямі з чорнага сьпісу",
 	"passwordpolicies-policy-maximalpasswordlength": "Пароль мусіць быць даўжынёй менш за $1 {{PLURAL:$1|сымбаль|сымбалі|сымбаляў}}",
-	"passwordpolicies-policy-passwordcannotbepopular": "Пароль ня можа {{PLURAL:$1|супадаць з самым папулярным паролем|быць зь сьпісу $1 папулярных пароляў}}"
+	"passwordpolicies-policy-passwordcannotbepopular": "Пароль ня можа {{PLURAL:$1|супадаць з самым папулярным паролем|быць зь сьпісу $1 папулярных пароляў}}",
+	"easydeflate-invaliddeflate": "Пададзены зьмест ня сьціснуты адпаведным чынам"
 }
