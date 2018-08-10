@@ -434,6 +434,7 @@ class JavaScriptMinifier {
 				self::TYPE_PAREN_OPEN => self::PROPERTY_EXPRESSION_OP
 			],
 			self::PROPERTY_EXPRESSION_OP => [
+				self::TYPE_BRACE_OPEN => self::PROPERTY_EXPRESSION_OP,
 				self::TYPE_PAREN_OPEN => self::PROPERTY_EXPRESSION_OP
 			],
 			self::PROPERTY_EXPRESSION_FUNC => [
