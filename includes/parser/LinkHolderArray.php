@@ -282,8 +282,6 @@ class LinkHolderArray {
 			return;
 		}
 
-		global $wgContLang;
-
 		$colours = [];
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		$output = $this->parent->getOutput();
@@ -364,7 +362,7 @@ class LinkHolderArray {
 		}
 
 		# Do a second query for different language variants of links and categories
-		if ( $wgContLang->hasVariants() ) {
+		if ( $this->parent->getContentLanguage()->hasVariants() ) {
 			$this->doVariants( $colours );
 		}
 
@@ -452,7 +450,6 @@ class LinkHolderArray {
 	 * @param array &$colours
 	 */
 	protected function doVariants( &$colours ) {
-		global $wgContLang;
 		$linkBatch = new LinkBatch();
 		$variantMap = []; // maps $pdbkey_Variant => $keys (of link holders)
 		$output = $this->parent->getOutput();
@@ -480,7 +477,8 @@ class LinkHolderArray {
 		}
 
 		// Now do the conversion and explode string to text of titles
-		$titlesAllVariants = $wgContLang->autoConvertToAllVariants( rtrim( $titlesToBeConverted, "\0" ) );
+		$titlesAllVariants = $this->parent->getContentLanguage()->
+			autoConvertToAllVariants( rtrim( $titlesToBeConverted, "\0" ) );
 		$allVariantsName = array_keys( $titlesAllVariants );
 		foreach ( $titlesAllVariants as &$titlesVariant ) {
 			$titlesVariant = explode( "\0", $titlesVariant );
@@ -521,7 +519,7 @@ class LinkHolderArray {
 		foreach ( $output->getCategoryLinks() as $category ) {
 			$categoryTitle = Title::makeTitleSafe( NS_CATEGORY, $category );
 			$linkBatch->addObj( $categoryTitle );
-			$variants = $wgContLang->autoConvertToAllVariants( $category );
+			$variants = $this->parent->getContentLanguage()->autoConvertToAllVariants( $category );
 			foreach ( $variants as $variant ) {
 				if ( $variant !== $category ) {
 					$variantTitle = Title::makeTitleSafe( NS_CATEGORY, $variant );
