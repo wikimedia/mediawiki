@@ -73,11 +73,16 @@ class JavaScriptMinifier {
 	const STACK_LIMIT = 1000;
 
 	/**
-	 * NOTE: This isn't a strict maximum. Longer lines will be produced when
-	 *       literals (e.g. quoted strings) longer than this are encountered
-	 *       or when required to guard against semicolon insertion.
+	 * Maximum line length
+	 *
+	 * This is not a strict maximum, but a guideline. Longer lines will be
+	 * produced when literals (e.g. quoted strings) longer than this are
+	 * encountered, or when required to guard against semicolon insertion.
+	 *
+	 * This is a private member (instead of constant) to allow tests to
+	 * set it to 1, to verify ASI and line-breaking behaviour.
 	 */
-	const MAX_LINE_LENGTH = 1000;
+	private static $maxLineLength = 1000;
 
 	/**
 	 * Returns minified JavaScript code.
@@ -672,7 +677,7 @@ class JavaScriptMinifier {
 				$out .= "\n";
 				$state = self::STATEMENT;
 				$lineLength = 0;
-			} elseif ( $lineLength + $end - $pos > self::MAX_LINE_LENGTH &&
+			} elseif ( $lineLength + $end - $pos > self::$maxLineLength &&
 					!isset( $semicolon[$state][$type] ) && $type !== self::TYPE_INCR_OP ) {
 				// This line would get too long if we added $token, so add a newline first.
 				// Only do this if it won't trigger semicolon insertion and if it won't
