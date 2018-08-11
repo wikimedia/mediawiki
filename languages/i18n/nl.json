@@ -1199,7 +1199,7 @@
 	"group-autoconfirmed": "autobevestigde gebruikers",
 	"group-bot": "bots",
 	"group-sysop": "beheerders",
-	"group-interface-admin": "Interfacemoderator",
+	"group-interface-admin": "interfacemoderatoren",
 	"group-bureaucrat": "bureaucraten",
 	"group-suppress": "toezichthouders",
 	"group-all": "(iedereen)",

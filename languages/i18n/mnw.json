@@ -5,6 +5,10 @@
 			"Htawmonzel"
 		]
 	},
+	"tog-underline": "လေန် မတာပၞောန်သၟဝ်",
+	"tog-hideminor": "ပၞုက် အရာမပလေဝ်ဒါန်လဝ် ကိစ္စဟွံဇၞော် နူကဵု ပြဟ်ဟ်ဏအ်",
+	"tog-hidepatrolled": "ပၞုက် အရာမပလေဝ်ဒါန်လဝ် ကိစ္စဇၞော်ဇၞော် နူကဵု ပြဟ်ဟ်ဏအ်",
+	"tog-hidecategorization": "ပၞုက် အရာမဖျေဟ်ကဏ္ဍ ကုမုက်လိက်",
 	"sunday": "တ္ၚဲအဒိုက်",
 	"monday": "တ္ၚဲစန်",
 	"tuesday": "တ္ၚဲအၚာ",
@@ -534,6 +538,7 @@
 	"pageinfo-header-restrictions": "ပရေင်စဵုဒၞာ မုက်လိက်",
 	"pageinfo-header-properties": "ဒြပ်ရတ် မုက်လိက်",
 	"pageinfo-display-title": "က္ဍိုပ်ပရိုင် မထ္ၜးပျး",
+	"pageinfo-default-sort": "ရုဲစှ် ဂကူအဓိကတင်ဂၞင်",
 	"pageinfo-length": "ဇမၠိင် မုက်လိက် (နကဵု ဘာက်)",
 	"pageinfo-article-id": "မုက်လိက် ID",
 	"pageinfo-language": "မုက်လိက် အရေဝ်ဘာသာ ဖျုန်လိက်",

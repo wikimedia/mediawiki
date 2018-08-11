@@ -137,6 +137,6 @@
 	"config-skins-screenshots": "„$1” (снимци екрана: $2)",
 	"config-skins-screenshot": "$1 ($2)",
 	"config-screenshot": "снимак екрана",
-	"mainpagetext": "<strong>Медијавики је успешно инсталиран.</strong>",
+	"mainpagetext": "<strong>Медијавики је инсталиран.</strong>",
 	"mainpagedocfooter": "Погледајте [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents кориснички водич] за коришћење програма.\n\n== Увод ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Помоћ у вези са подешавањима]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Често постављана питања]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописни списак о издањима Медијавикија]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Научите како да се борите против спама на својој вики]"
 }

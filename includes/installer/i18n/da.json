@@ -7,7 +7,8 @@
 			"Thomsen",
 			"MGA73",
 			"Mads Haupt",
-			"Joedalton"
+			"Joedalton",
+			"Saederup92"
 		]
 	},
 	"config-desc": "Installationsprogrammet til MediaWiki",
@@ -53,7 +54,7 @@
 	"config-db-install-username": "Indtast brugernavnet som vil blive brugt til at forbinde til databasen under installationsprocessen.\nDette er ikke brugernavnet for MediaWiki-kontoen; det er brugernavnet på din database.",
 	"config-mysql-old": "MySQL $1 eller nyere kræves. Du har $2.",
 	"config-type-mssql": "Microsoft SQL-server",
-	"config-header-mysql": "MySQL-indstillinger",
+	"config-header-mysql": "MariaDB/MySQL-indstillinger",
 	"config-header-postgres": "PostgreSQL-indstillinger",
 	"config-header-sqlite": "SQLite-indstillinger",
 	"config-header-oracle": "Oracle-indstillinger",
@@ -78,6 +79,6 @@
 	"config-upload-deleted": "Mappe for slettede filer:",
 	"config-help": "hjælp",
 	"config-help-tooltip": "klik for at udvide",
-	"mainpagetext": "'''MediaWiki er nu installeret.'''",
+	"mainpagetext": "<strong>MediaWiki er nu installeret.</strong>",
 	"mainpagedocfooter": "Se [https://meta.wikimedia.org/wiki/Help:Contents brugervejledningen] for oplysninger om brugen af wikiprogrammellet.\n\n== At komme i gang ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Listen over opsætningsmuligheder]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki ofte stillede spørgsmål]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Postliste angående udgivelser af MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Oversæt MediaWiki til dit sprog]"
 }
