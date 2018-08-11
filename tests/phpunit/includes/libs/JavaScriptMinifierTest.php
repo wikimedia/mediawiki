@@ -257,8 +257,8 @@ class JavaScriptMinifierTest extends PHPUnit\Framework\TestCase {
 			call( function () {
 				try {
 				} catch (e) {
-					push = {
-						apply: 1 ? 0 : {}
+					obj = {
+						key: 1 ? 0 : {}
 					};
 				}
 				return name === 'input';
@@ -280,10 +280,10 @@ JAVASCRIPT
 					'e',
 					')',
 					'{',
-					'push',
+					'obj',
 					'=',
 					'{',
-					'apply',
+					'key',
 					':',
 					'1',
 					'?',
@@ -294,7 +294,9 @@ JAVASCRIPT
 					'}',
 					';',
 					'}',
-					'return', 'name', // FIXME
+					// The return Statement:
+					//     return [no LineTerminator here] Expression
+					'return name',
 					'===',
 					"'input'",
 					';',
