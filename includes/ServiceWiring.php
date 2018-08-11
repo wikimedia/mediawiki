@@ -383,6 +383,15 @@ return [
 		);
 	},
 
+	'ParserFactory' => function ( MediaWikiServices $services ) : ParserFactory {
+		return new ParserFactory(
+			$services->getMainConfig()->get( 'ParserConf' ),
+			$services->getMagicWordFactory(),
+			$services->getContentLanguage(),
+			wfUrlProtocols()
+		);
+	},
+
 	'PasswordFactory' => function ( MediaWikiServices $services ) : PasswordFactory {
 		$config = $services->getMainConfig();
 		return new PasswordFactory(

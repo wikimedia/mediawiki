@@ -39,6 +39,7 @@ use MimeAnalyzer;
 use ObjectCache;
 use Parser;
 use ParserCache;
+use ParserFactory;
 use PasswordFactory;
 use ProxyLookup;
 use SearchEngine;
@@ -680,6 +681,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getParserCache() {
 		return $this->getService( 'ParserCache' );
+	}
+
+	/**
+	 * @since 1.32
+	 * @return ParserFactory
+	 */
+	public function getParserFactory() {
+		return $this->getService( 'ParserFactory' );
 	}
 
 	/**

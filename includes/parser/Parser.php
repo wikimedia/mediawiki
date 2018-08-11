@@ -263,13 +263,21 @@ class Parser {
 	/** @var MagicWordFactory */
 	private $magicWordFactory;
 
+	/** @var Language */
+	private $contLang;
+
 	/**
-	 * @param array $conf
+	 * @param array $conf See $wgParserConf documentation
 	 * @param MagicWordFactory|null $magicWordFactory
+	 * @param Language|null $contLang Content language
+	 * @param string|null $urlProtocols As returned from wfUrlProtocols()
 	 */
-	public function __construct( $conf = [], MagicWordFactory $magicWordFactory = null ) {
+	public function __construct(
+		array $conf = [], MagicWordFactory $magicWordFactory = null, Language $contLang = null,
+		$urlProtocols = null
+	) {
 		$this->mConf = $conf;
-		$this->mUrlProtocols = wfUrlProtocols();
+		$this->mUrlProtocols = $urlProtocols ?? wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->mUrlProtocols . ')' .
 			self::EXT_LINK_ADDR .
 			self::EXT_LINK_URL_CLASS . '*)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F\\x{FFFD}]*?)\]/Su';
@@ -289,10 +297,10 @@ class Parser {
 		}
 		wfDebug( __CLASS__ . ": using preprocessor: {$this->mPreprocessorClass}\n" );
 
-		$this->magicWordFactory = $magicWordFactory;
-		if ( !$magicWordFactory ) {
-			$this->magicWordFactory = MediaWikiServices::getInstance()->getMagicWordFactory();
-		}
+		$this->magicWordFactory = $magicWordFactory ??
+			MediaWikiServices::getInstance()->getMagicWordFactory();
+
+		$this->contLang = $contLang ?? MediaWikiServices::getInstance()->getContentLanguage();
 	}
 
 	/**
@@ -972,7 +980,7 @@ class Parser {
 	 * @return Language
 	 */
 	public function getContentLanguage() {
-		return $this->magicWordFactory->getContentLanguage();
+		return $this->contLang;
 	}
 
 	/**
@@ -2154,7 +2162,7 @@ class Parser {
 		if ( $useLinkPrefixExtension ) {
 			# Match the end of a line for a word that's not followed by whitespace,
 			# e.g. in the case of 'The Arab al[[Razi]]', 'al' will be matched
-			$charset = $this->getContentLanguage()->linkPrefixCharset();
+			$charset = $this->contLang->linkPrefixCharset();
 			$e2 = "/^((?>.*[^$charset]|))(.+)$/sDu";
 		}
 
@@ -2710,11 +2718,10 @@ class Parser {
 				break;
 			case 'namespace':
 				$value = str_replace( '_', ' ',
-					$this->getContentLanguage()->getNsText( $this->mTitle->getNamespace() ) );
+					$this->contLang->getNsText( $this->mTitle->getNamespace() ) );
 				break;
 			case 'namespacee':
-				$value = wfUrlencode( $this->getContentLanguage()->
-					getNsText( $this->mTitle->getNamespace() ) );
+				$value = wfUrlencode( $this->contLang->getNsText( $this->mTitle->getNamespace() ) );
 				break;
 			case 'namespacenumber':
 				$value = $this->mTitle->getNamespace();
@@ -2863,7 +2870,7 @@ class Parser {
 		if ( !$this->getRevisionObject() ) {
 			# Get the timezone-adjusted timestamp $mtts seconds in the future
 			$resThen = substr(
-				$this->getContentLanguage()->userAdjust( wfTimestamp( TS_MW, time() + $mtts ), '' ),
+				$this->contLang->userAdjust( wfTimestamp( TS_MW, time() + $mtts ), '' ),
 				$start,
 				$len
 			);
@@ -3415,7 +3422,7 @@ class Parser {
 			$function = $this->mFunctionSynonyms[1][$function];
 		} else {
 			# Case insensitive functions
-			$function = $this->getContentLanguage()->lc( $function );
+			$function = $this->contLang->lc( $function );
 			if ( isset( $this->mFunctionSynonyms[0][$function] ) ) {
 				$function = $this->mFunctionSynonyms[0][$function];
 			} else {
@@ -4519,14 +4526,14 @@ class Parser {
 	 */
 	private function pstPass2( $text, $user ) {
 		# Note: This is the timestamp saved as hardcoded wikitext to the database, we use
-		# $this->getContentLanguage() here in order to give everyone the same signature and use the
-		# default one rather than the one selected in each user's preferences.  (see also T14815)
+		# $this->contLang here in order to give everyone the same signature and use the default one
+		# rather than the one selected in each user's preferences.  (see also T14815)
 		$ts = $this->mOptions->getTimestamp();
 		$timestamp = MWTimestamp::getLocalInstance( $ts );
 		$ts = $timestamp->format( 'YmdHis' );
 		$tzMsg = $timestamp->getTimezoneMessage()->inContentLanguage()->text();
 
-		$d = $this->getContentLanguage()->timeanddate( $ts, false, false ) . " ($tzMsg)";
+		$d = $this->contLang->timeanddate( $ts, false, false ) . " ($tzMsg)";
 
 		# Variable replacement
 		# Because mOutputType is OT_WIKI, this will only process {{subst:xxx}} type tags
@@ -4892,7 +4899,7 @@ class Parser {
 		foreach ( $synonyms as $syn ) {
 			# Case
 			if ( !$sensitive ) {
-				$syn = $this->getContentLanguage()->lc( $syn );
+				$syn = $this->contLang->lc( $syn );
 			}
 			# Add leading hash
 			if ( !( $flags & self::SFH_NO_HASH ) ) {
@@ -5736,7 +5743,7 @@ class Parser {
 			# Since this value will be saved into the parser cache, served
 			# to other users, and potentially even used inside links and such,
 			# it needs to be consistent for all visitors.
-			$this->mRevisionTimestamp = $this->getContentLanguage()->userAdjust( $timestamp, '' );
+			$this->mRevisionTimestamp = $this->contLang->userAdjust( $timestamp, '' );
 
 		}
 		return $this->mRevisionTimestamp;
