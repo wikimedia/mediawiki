@@ -266,15 +266,19 @@ class Parser {
 	/** @var Language */
 	private $contLang;
 
+	/** @var ParserFactory */
+	private $factory;
+
 	/**
 	 * @param array $conf See $wgParserConf documentation
 	 * @param MagicWordFactory|null $magicWordFactory
 	 * @param Language|null $contLang Content language
+	 * @param ParserFactory|null $factory
 	 * @param string|null $urlProtocols As returned from wfUrlProtocols()
 	 */
 	public function __construct(
 		array $conf = [], MagicWordFactory $magicWordFactory = null, Language $contLang = null,
-		$urlProtocols = null
+		ParserFactory $factory = null, $urlProtocols = null
 	) {
 		$this->mConf = $conf;
 		$this->mUrlProtocols = $urlProtocols ?? wfUrlProtocols();
@@ -301,6 +305,8 @@ class Parser {
 			MediaWikiServices::getInstance()->getMagicWordFactory();
 
 		$this->contLang = $contLang ?? MediaWikiServices::getInstance()->getContentLanguage();
+
+		$this->factory = $factory ?? MediaWikiServices::getInstance()->getParserFactory();
 	}
 
 	/**
@@ -6199,9 +6205,8 @@ class Parser {
 	 * @return Parser A parser object that is not parsing anything
 	 */
 	public function getFreshParser() {
-		global $wgParserConf;
 		if ( $this->mInParse ) {
-			return new $wgParserConf['class']( $wgParserConf );
+			return $this->factory->create();
 		} else {
 			return $this;
 		}

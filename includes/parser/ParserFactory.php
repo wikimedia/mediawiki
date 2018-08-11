@@ -57,7 +57,7 @@ class ParserFactory {
 	 * @since 1.32
 	 */
 	public function create() : Parser {
-		return new Parser( $this->conf, $this->magicWordFactory, $this->contLang,
+		return new Parser( $this->conf, $this->magicWordFactory, $this->contLang, $this,
 			$this->urlProtocols );
 	}
 }
