@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Database
  * @group Parser
@@ -54,8 +56,7 @@ class TagHooksTest extends MediaWikiTestCase {
 	 * @dataProvider provideValidNames
 	 */
 	public function testTagHooks( $tag ) {
-		global $wgParserConf;
-		$parser = new Parser( $wgParserConf );
+		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 
 		$parser->setHook( $tag, [ $this, 'tagCallback' ] );
 		$parserOutput = $parser->parse(
@@ -73,8 +74,7 @@ class TagHooksTest extends MediaWikiTestCase {
 	 * @expectedException MWException
 	 */
 	public function testBadTagHooks( $tag ) {
-		global $wgParserConf;
-		$parser = new Parser( $wgParserConf );
+		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 
 		$parser->setHook( $tag, [ $this, 'tagCallback' ] );
 		$parser->parse(
@@ -89,8 +89,7 @@ class TagHooksTest extends MediaWikiTestCase {
 	 * @dataProvider provideValidNames
 	 */
 	public function testFunctionTagHooks( $tag ) {
-		global $wgParserConf;
-		$parser = new Parser( $wgParserConf );
+		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 
 		$parser->setFunctionTagHook( $tag, [ $this, 'functionTagCallback' ], 0 );
 		$parserOutput = $parser->parse(
@@ -108,8 +107,7 @@ class TagHooksTest extends MediaWikiTestCase {
 	 * @expectedException MWException
 	 */
 	public function testBadFunctionTagHooks( $tag ) {
-		global $wgParserConf;
-		$parser = new Parser( $wgParserConf );
+		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 
 		$parser->setFunctionTagHook(
 			$tag,

@@ -12,7 +12,8 @@ class ParserFactoryTest extends MediaWikiTestCase {
 	public function testConstructorArgNum() {
 		$factoryConstructor = new ReflectionMethod( 'ParserFactory', '__construct' );
 		$instanceConstructor = new ReflectionMethod( 'Parser', '__construct' );
-		$this->assertSame( $instanceConstructor->getNumberOfParameters(),
+		// Subtract one for the ParserFactory itself
+		$this->assertSame( $instanceConstructor->getNumberOfParameters() - 1,
 			$factoryConstructor->getNumberOfParameters(),
 			'Parser and ParserFactory constructors have an inconsistent number of parameters. ' .
 			'Did you add a parameter to one and not the other?' );
