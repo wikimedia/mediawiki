@@ -165,9 +165,6 @@ class JavaScriptMinifierTest extends PHPUnit\Framework\TestCase {
 			],
 			[ "if(1)/a /g.exec('Pa ss');", "if(1)/a /g.exec('Pa ss');" ],
 
-			// newline insertion after 1000 chars: break after the "++", not before
-			[ str_repeat( ';', 996 ) . "if(x++);", str_repeat( ';', 996 ) . "if(x++\n);" ],
-
 			// Unicode letter characters should pass through ok in identifiers (T33187)
 			[ "var KaŝSkatolVal = {}", 'var KaŝSkatolVal={}' ],
 
@@ -247,6 +244,17 @@ class JavaScriptMinifierTest extends PHPUnit\Framework\TestCase {
 					'name',
 					'=',
 					'1.23456789E-5',
+					';',
+				],
+			],
+			[
+				// Must not break before '++'
+				'if(x++);',
+				[
+					'if',
+					'(',
+					'x++',
+					')',
 					';',
 				],
 			],
