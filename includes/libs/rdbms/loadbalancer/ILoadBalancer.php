@@ -336,6 +336,14 @@ interface ILoadBalancer {
 	public function getServerType( $i );
 
 	/**
+	 * Return the server info structure for a given index, or false if the index is invalid.
+	 * @param int $i
+	 * @return array|bool
+	 * @since 1.31
+	 */
+	public function getServerInfo( $i );
+
+	/**
 	 * @param int $i Server index
 	 * @return array (Database::ATTRIBUTE_* constant => value) for all such constants
 	 * @since 1.31
