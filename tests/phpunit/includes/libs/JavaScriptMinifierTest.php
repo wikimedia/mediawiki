@@ -261,6 +261,7 @@ class JavaScriptMinifierTest extends PHPUnit\Framework\TestCase {
 			[
 				// Regression test for T201606.
 				// Must not break between 'return' and Expression.
+				// Was caused by bad state after '{}' in property value.
 				<<<JAVASCRIPT
 			call( function () {
 				try {
@@ -312,7 +313,41 @@ JAVASCRIPT
 					')',
 					';',
 				]
-			]
+			],
+			[
+				// Regression test for T201606.
+				// Must not break between 'return' and Expression.
+				// FIXME: Cause?
+				<<<JAVASCRIPT
+call( {
+	key: 1 ? 0 : function () {
+		return this;
+	}
+} );
+JAVASCRIPT
+				,
+				[
+					'call',
+					'(',
+					'{',
+					'key',
+					':',
+					'1',
+					'?',
+					'0',
+					':',
+					'function',
+					'(',
+					')',
+					'{',
+					'return', 'this', // FIXME
+					';',
+					'}',
+					'}',
+					')',
+					';',
+				]
+			],
 		];
 	}
 
