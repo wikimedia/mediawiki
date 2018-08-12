@@ -67,11 +67,6 @@ div.floatleft {
 	margin: 0.3em 0.5em 0.5em 0;
 }
 
-/* @noflip */
-div.floatleft p {
-	font-style: italic;
-}
-
 /* table standards */
 table.rimage {
 	float: right;
