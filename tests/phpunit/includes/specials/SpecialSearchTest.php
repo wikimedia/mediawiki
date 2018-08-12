@@ -231,7 +231,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 
 		$ctx = new RequestContext;
 		$sp = Title::newFromText( 'Special:Search/foo_bar' );
-		SpecialPageFactory::executePath( $sp, $ctx );
+		MediaWikiServices::getInstance()->getSpecialPageFactory()->executePath( $sp, $ctx );
 		$url = $ctx->getOutput()->getRedirect();
 		// some older versions of hhvm have a bug that doesn't parse relative
 		// urls with a port, so help it out a little bit.

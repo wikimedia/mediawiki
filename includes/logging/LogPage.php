@@ -294,9 +294,11 @@ class LogPage {
 			return $title->getPrefixedText();
 		}
 
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$services = MediaWikiServices::getInstance();
+		$linkRenderer = $services->getLinkRenderer();
 		if ( $title->isSpecialPage() ) {
-			list( $name, $par ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
+			list( $name, $par ) = $services->getSpecialPageFactory()->
+				resolveAlias( $title->getDBkey() );
 
 			# Use the language name for log titles, rather than Log/X
 			if ( $name == 'Log' ) {

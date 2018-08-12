@@ -3075,7 +3075,8 @@ class OutputPage extends ContextSource {
 
 		if ( $ns == NS_SPECIAL ) {
 			list( $canonicalSpecialPageName, /*...*/ ) =
-				SpecialPageFactory::resolveAlias( $title->getDBkey() );
+				MediaWikiServices::getInstance()->getSpecialPageFactory()->
+					resolveAlias( $title->getDBkey() );
 		} elseif ( $this->canUseWikiPage() ) {
 			$wikiPage = $this->getWikiPage();
 			$curRevisionId = $wikiPage->getLatest();

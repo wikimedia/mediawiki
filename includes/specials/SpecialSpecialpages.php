@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page that lists special pages
  *
@@ -50,7 +52,8 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 	}
 
 	private function getPageGroups() {
-		$pages = SpecialPageFactory::getUsablePages( $this->getUser() );
+		$pages = MediaWikiServices::getInstance()->getSpecialPageFactory()->
+			getUsablePages( $this->getUser() );
 
 		if ( !count( $pages ) ) {
 			# Yeah, that was pointless. Thanks for coming.

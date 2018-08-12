@@ -1119,7 +1119,9 @@ class Title implements LinkTarget {
 	 */
 	public function isSpecial( $name ) {
 		if ( $this->isSpecialPage() ) {
-			list( $thisName, /* $subpage */ ) = SpecialPageFactory::resolveAlias( $this->mDbkeyform );
+			list( $thisName, /* $subpage */ ) =
+				MediaWikiServices::getInstance()->getSpecialPageFactory()->
+					resolveAlias( $this->mDbkeyform );
 			if ( $name == $thisName ) {
 				return true;
 			}
@@ -1135,9 +1137,10 @@ class Title implements LinkTarget {
 	 */
 	public function fixSpecialName() {
 		if ( $this->isSpecialPage() ) {
-			list( $canonicalName, $par ) = SpecialPageFactory::resolveAlias( $this->mDbkeyform );
+			$spFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
+			list( $canonicalName, $par ) = $spFactory->resolveAlias( $this->mDbkeyform );
 			if ( $canonicalName ) {
-				$localName = SpecialPageFactory::getLocalNameFor( $canonicalName, $par );
+				$localName = $spFactory->getLocalNameFor( $canonicalName, $par );
 				if ( $localName != $this->mDbkeyform ) {
 					return self::makeTitle( NS_SPECIAL, $localName );
 				}
@@ -2705,7 +2708,9 @@ class Title implements LinkTarget {
 			} elseif ( $this->isSpecialPage() ) {
 				# If it's a special page, ditch the subpage bit and check again
 				$name = $this->mDbkeyform;
-				list( $name, /* $subpage */ ) = SpecialPageFactory::resolveAlias( $name );
+				list( $name, /* $subpage */ ) =
+					MediaWikiServices::getInstance()->getSpecialPageFactory()->
+						resolveAlias( $name );
 				if ( $name ) {
 					$pure = SpecialPage::getTitleFor( $name )->getPrefixedText();
 					if ( in_array( $pure, $wgWhitelistRead, true ) ) {
@@ -4678,7 +4683,8 @@ class Title implements LinkTarget {
 				return (bool)wfFindFile( $this );
 			case NS_SPECIAL:
 				// valid special page
-				return SpecialPageFactory::exists( $this->mDbkeyform );
+				return MediaWikiServices::getInstance()->getSpecialPageFactory()->
+					exists( $this->mDbkeyform );
 			case NS_MAIN:
 				// selflink, possibly with fragment
 				return $this->mDbkeyform == '';

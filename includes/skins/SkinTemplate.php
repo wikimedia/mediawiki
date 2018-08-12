@@ -659,7 +659,9 @@ class SkinTemplate extends Skin {
 			# so it doesn't contain the original alias-with-subpage.
 			$origTitle = Title::newFromText( $request->getText( 'title' ) );
 			if ( $origTitle instanceof Title && $origTitle->isSpecialPage() ) {
-				list( $spName, $spPar ) = SpecialPageFactory::resolveAlias( $origTitle->getText() );
+				list( $spName, $spPar ) =
+					MediaWikiServices::getInstance()->getSpecialPageFactory()->
+						resolveAlias( $origTitle->getText() );
 				$active = $spName == 'Contributions'
 					&& ( ( $spPar && $spPar == $this->username )
 						|| $request->getText( 'target' ) == $this->username );
