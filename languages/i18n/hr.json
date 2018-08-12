@@ -1642,7 +1642,7 @@
 	"listfiles_date": "Datum",
 	"listfiles_name": "Naziv slike",
 	"listfiles_user": "Suradnik",
-	"listfiles_size": "Veličina (u bajtovima)",
+	"listfiles_size": "Veličina",
 	"listfiles_description": "Opis",
 	"listfiles_count": "Inačice",
 	"listfiles-show-all": "Uključujući starije inačice datoteka",

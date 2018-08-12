@@ -2021,7 +2021,7 @@
 	"pageswithprop-legend": "Páginas con una propiedad de página",
 	"pageswithprop-text": "Esta página muestra las páginas que usan una determinada propiedad de página.",
 	"pageswithprop-prop": "Nombre de la propiedad:",
-	"pageswithprop-reverse": "Ordenar en orden inverso",
+	"pageswithprop-reverse": "Ordenar en modo inverso",
 	"pageswithprop-sortbyvalue": "Ordenar por valor de propiedad",
 	"pageswithprop-submit": "Ir",
 	"pageswithprop-prophidden-long": "hay un largo valor en la propiedad texto oculta ($1)",
