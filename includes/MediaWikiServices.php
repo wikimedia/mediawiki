@@ -908,10 +908,4 @@ class MediaWikiServices extends ServiceContainer {
 		return $this->getService( 'UploadRevisionImporter' );
 	}
 
-	///////////////////////////////////////////////////////////////////////////
-	// NOTE: When adding a service getter here, don't forget to add a test
-	// case for it in MediaWikiServicesTest::provideGetters() and in
-	// MediaWikiServicesTest::provideGetService()!
-	///////////////////////////////////////////////////////////////////////////
-
 }
