@@ -1496,7 +1496,7 @@
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Lister",
 	"rcfilters-tag-remove": "Supprimer « $1 »",
-	"rcfilters-legend-heading": "<strong>Liste des abréviations : </strong>",
+	"rcfilters-legend-heading": "<strong>Liste des abréviations :&#32;</strong>",
 	"rcfilters-other-review-tools": "Autres outils de relecture",
 	"rcfilters-group-results-by-page": "Grouper les résultats par page",
 	"rcfilters-activefilters": "Filtres actifs",

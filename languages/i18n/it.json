@@ -1015,6 +1015,8 @@
 	"diff-paragraph-moved-toold": "Il paragrafo è stato spostato. Clicca per passare alla vecchia posizione.",
 	"difference-missing-revision": "{{PLURAL:$2|Una versione|$2 versioni}} di questa differenza ($1) {{PLURAL:$2|non è stata trovata|non sono state trovate}}.\n\nQuesto si verifica solitamente seguendo un collegamento obsoleto di un diff a una pagina cancellata.\nI dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro delle cancellazioni].",
 	"searchresults": "Risultati della ricerca",
+	"search-filter-title-prefix": "Ricerca effettuata solo nelle pagine con titolo che inizia con \"$1\"",
+	"search-filter-title-prefix-reset": "cerca in tutte le pagine",
 	"searchresults-title": "Risultati della ricerca di \"$1\"",
 	"titlematches": "Corrispondenze nel titolo delle pagine",
 	"textmatches": "Corrispondenze nel testo delle pagine",
