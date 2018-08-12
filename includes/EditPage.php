@@ -3601,10 +3601,10 @@ ERROR;
 	 * Get the Limit report for page previews
 	 *
 	 * @since 1.22
-	 * @param ParserOutput $output ParserOutput object from the parse
+	 * @param ParserOutput|null $output ParserOutput object from the parse
 	 * @return string HTML
 	 */
-	public static function getPreviewLimitReport( $output ) {
+	public static function getPreviewLimitReport( ParserOutput $output = null ) {
 		global $wgLang;
 
 		if ( !$output || !$output->getLimitReportData() ) {
