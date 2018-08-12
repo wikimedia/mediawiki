@@ -4,6 +4,7 @@ namespace MediaWiki\Widget\Search;
 
 use Hooks;
 use Html;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Widget\SearchInputWidget;
 use MWNamespace;
 use SearchEngineConfig;
@@ -171,11 +172,10 @@ class SearchFormWidget {
 	 * @return bool
 	 */
 	protected function startsWithImage( $term ) {
-		global $wgContLang;
-
 		$parts = explode( ':', $term );
 		return count( $parts ) > 1
-			? $wgContLang->getNsIndex( $parts[0] ) === NS_FILE
+			? MediaWikiServices::getInstance()->getContentLanguage()->getNsIndex( $parts[0] ) ===
+				NS_FILE
 			: false;
 	}
 
@@ -236,8 +236,6 @@ class SearchFormWidget {
 	 * @return string HTML
 	 */
 	protected function powerSearchBox( $term, array $opts ) {
-		global $wgContLang;
-
 		$rows = [];
 		$activeNamespaces = $this->specialSearch->getNamespaces();
 		foreach ( $this->searchConfig->searchableNamespaces() as $namespace => $name ) {
@@ -246,7 +244,8 @@ class SearchFormWidget {
 				$rows[$subject] = "";
 			}
 
-			$name = $wgContLang->getConverter()->convertNamespace( $namespace );
+			$name = MediaWikiServices::getInstance()->getContentLanguage()->getConverter()->
+				convertNamespace( $namespace );
 			if ( $name === '' ) {
 				$name = $this->specialSearch->msg( 'blanknamespace' )->text();
 			}

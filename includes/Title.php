@@ -745,12 +745,10 @@ class Title implements LinkTarget {
 	public static function makeName( $ns, $title, $fragment = '', $interwiki = '',
 		$canonicalNamespace = false
 	) {
-		global $wgContLang;
-
 		if ( $canonicalNamespace ) {
 			$namespace = MWNamespace::getCanonicalName( $ns );
 		} else {
-			$namespace = $wgContLang->getNsText( $ns );
+			$namespace = MediaWikiServices::getInstance()->getContentLanguage()->getNsText( $ns );
 		}
 		$name = $namespace == '' ? $title : "$namespace:$title";
 		if ( strval( $interwiki ) != '' ) {
@@ -1051,8 +1049,8 @@ class Title implements LinkTarget {
 	 * @return string Namespace text
 	 */
 	public function getSubjectNsText() {
-		global $wgContLang;
-		return $wgContLang->getNsText( MWNamespace::getSubject( $this->mNamespace ) );
+		return MediaWikiServices::getInstance()->getContentLanguage()->
+			getNsText( MWNamespace::getSubject( $this->mNamespace ) );
 	}
 
 	/**
@@ -1061,8 +1059,8 @@ class Title implements LinkTarget {
 	 * @return string Namespace text
 	 */
 	public function getTalkNsText() {
-		global $wgContLang;
-		return $wgContLang->getNsText( MWNamespace::getTalk( $this->mNamespace ) );
+		return MediaWikiServices::getInstance()->getContentLanguage()->
+			getNsText( MWNamespace::getTalk( $this->mNamespace ) );
 	}
 
 	/**
@@ -1632,8 +1630,6 @@ class Title implements LinkTarget {
 	 * @return string The prefixed text
 	 */
 	private function prefix( $name ) {
-		global $wgContLang;
-
 		$p = '';
 		if ( $this->isExternal() ) {
 			$p = $this->mInterwiki . ':';
@@ -1644,7 +1640,8 @@ class Title implements LinkTarget {
 
 			if ( $nsText === false ) {
 				// See T165149. Awkward, but better than erroneously linking to the main namespace.
-				$nsText = $wgContLang->getNsText( NS_SPECIAL ) . ":Badtitle/NS{$this->mNamespace}";
+				$nsText = MediaWikiServices::getInstance()->getContentLanguage()->
+					getNsText( NS_SPECIAL ) .  ":Badtitle/NS{$this->mNamespace}";
 			}
 
 			$p .= $nsText . ':';
@@ -1979,7 +1976,7 @@ class Title implements LinkTarget {
 				$titleRef = $this;
 				Hooks::run( 'GetLocalURL::Article', [ &$titleRef, &$url ] );
 			} else {
-				global $wgVariantArticlePath, $wgActionPaths, $wgContLang;
+				global $wgVariantArticlePath, $wgActionPaths;
 				$url = false;
 				$matches = [];
 
@@ -2002,7 +1999,8 @@ class Title implements LinkTarget {
 				if ( $url === false
 					&& $wgVariantArticlePath
 					&& preg_match( '/^variant=([^&]*)$/', $query, $matches )
-					&& $this->getPageLanguage()->equals( $wgContLang )
+					&& $this->getPageLanguage()->equals(
+						MediaWikiServices::getInstance()->getContentLanguage() )
 					&& $this->getPageLanguage()->hasVariants()
 				) {
 					$variant = urldecode( $matches[1] );
@@ -3677,10 +3675,8 @@ class Title implements LinkTarget {
 	 * @return string Containing capitalized title
 	 */
 	public static function capitalize( $text, $ns = NS_MAIN ) {
-		global $wgContLang;
-
 		if ( MWNamespace::isCapitalized( $ns ) ) {
-			return $wgContLang->ucfirst( $text );
+			return MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $text );
 		} else {
 			return $text;
 		}
@@ -4227,8 +4223,6 @@ class Title implements LinkTarget {
 	 *     $parent => $currentarticle
 	 */
 	public function getParentCategories() {
-		global $wgContLang;
-
 		$data = [];
 
 		$titleKey = $this->getArticleID();
@@ -4247,9 +4241,11 @@ class Title implements LinkTarget {
 		);
 
 		if ( $res->numRows() > 0 ) {
+			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			foreach ( $res as $row ) {
-				// $data[] = Title::newFromText($wgContLang->getNsText ( NS_CATEGORY ).':'.$row->cl_to);
-				$data[$wgContLang->getNsText( NS_CATEGORY ) . ':' . $row->cl_to] = $this->getFullText();
+				// $data[] = Title::newFromText( $contLang->getNsText ( NS_CATEGORY ).':'.$row->cl_to);
+				$data[$contLang->getNsText( NS_CATEGORY ) . ':' . $row->cl_to] =
+					$this->getFullText();
 			}
 		}
 		return $data;
@@ -4733,11 +4729,11 @@ class Title implements LinkTarget {
 			// message content will be displayed, same for language subpages-
 			// Use always content language to avoid loading hundreds of languages
 			// to get the link color.
-			global $wgContLang;
+			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			list( $name, ) = MessageCache::singleton()->figureMessage(
-				$wgContLang->lcfirst( $this->getText() )
+				$contLang->lcfirst( $this->getText() )
 			);
-			$message = wfMessage( $name )->inLanguage( $wgContLang )->useDatabase( false );
+			$message = wfMessage( $name )->inLanguage( $contLang )->useDatabase( false );
 			return $message->exists();
 		}
 
@@ -4750,14 +4746,12 @@ class Title implements LinkTarget {
 	 * @return string|bool
 	 */
 	public function getDefaultMessageText() {
-		global $wgContLang;
-
 		if ( $this->getNamespace() != NS_MEDIAWIKI ) { // Just in case
 			return false;
 		}
 
 		list( $name, $lang ) = MessageCache::singleton()->figureMessage(
-			$wgContLang->lcfirst( $this->getText() )
+			MediaWikiServices::getInstance()->getContentLanguage()->lcfirst( $this->getText() )
 		);
 		$message = wfMessage( $name )->inLanguage( $lang )->useDatabase( false );
 
@@ -4884,7 +4878,6 @@ class Title implements LinkTarget {
 	 * @return string XML 'id' name
 	 */
 	public function getNamespaceKey( $prepend = 'nstab-' ) {
-		global $wgContLang;
 		// Gets the subject namespace of this title
 		$subjectNS = MWNamespace::getSubject( $this->getNamespace() );
 		// Prefer canonical namespace name for HTML IDs
@@ -4894,7 +4887,7 @@ class Title implements LinkTarget {
 			$namespaceKey = $this->getSubjectNsText();
 		}
 		// Makes namespace key lowercase
-		$namespaceKey = $wgContLang->lc( $namespaceKey );
+		$namespaceKey = MediaWikiServices::getInstance()->getContentLanguage()->lc( $namespaceKey );
 		// Uses main
 		if ( $namespaceKey == '' ) {
 			$namespaceKey = 'main';
@@ -5043,7 +5036,7 @@ class Title implements LinkTarget {
 
 	/**
 	 * Get the language in which the content of this page is written in
-	 * wikitext. Defaults to $wgContLang, but in certain cases it can be
+	 * wikitext. Defaults to content language, but in certain cases it can be
 	 * e.g. $wgLang (such as special pages, which are in the user language).
 	 *
 	 * @since 1.18
@@ -5081,7 +5074,7 @@ class Title implements LinkTarget {
 
 	/**
 	 * Get the language in which the content of this page is written when
-	 * viewed by user. Defaults to $wgContLang, but in certain cases it can be
+	 * viewed by user. Defaults to content language, but in certain cases it can be
 	 * e.g. $wgLang (such as special pages, which are in the user language).
 	 *
 	 * @since 1.20

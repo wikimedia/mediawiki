@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 $optionsWithoutArgs = [ 'verbose' ];
 require_once __DIR__ . '/commandLine.inc';
 
@@ -123,8 +125,7 @@ class PPFuzzTester {
 		// This resolves a few differences between the old preprocessor and the
 		// XML-based one, which doesn't like illegals and converts line endings.
 		// It's done by the MW UI, so it's a reasonably legitimate thing to do.
-		global $wgContLang;
-		$s = $wgContLang->normalize( $s );
+		$s = MediaWikiServices::getInstance()->getContentLanguage()->normalize( $s );
 
 		return $s;
 	}

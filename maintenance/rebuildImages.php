@@ -32,6 +32,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
@@ -193,11 +194,10 @@ class ImageBuilder extends Maintenance {
 	}
 
 	function addMissingImage( $filename, $fullpath ) {
-		global $wgContLang;
-
 		$timestamp = $this->dbw->timestamp( $this->getRepo()->getFileTimestamp( $fullpath ) );
 
-		$altname = $wgContLang->checkTitleEncoding( $filename );
+		$altname = MediaWikiServices::getInstance()->getContentLanguage()->
+			checkTitleEncoding( $filename );
 		if ( $altname != $filename ) {
 			if ( $this->dryrun ) {
 				$filename = $altname;

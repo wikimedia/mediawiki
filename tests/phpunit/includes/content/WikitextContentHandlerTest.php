@@ -80,8 +80,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	 * @covers WikitextContentHandler::makeRedirectContent
 	 */
 	public function testMakeRedirectContent( $title, $expected ) {
-		global $wgContLang;
-		$wgContLang->resetNamespaces();
+		MediaWikiServices::getInstance()->getContentLanguage()->resetNamespaces();
 
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'MagicWordFactory' );
 

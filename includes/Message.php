@@ -20,6 +20,7 @@
  * @file
  * @author Niklas Laxström
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * The Message class provides methods which fulfil two basic services:
@@ -469,18 +470,20 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.26
 	 */
 	public function getTitle() {
-		global $wgContLang, $wgForceUIMsgAsContentMsg;
+		global $wgForceUIMsgAsContentMsg;
 
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$title = $this->key;
 		if (
-			!$this->language->equals( $wgContLang )
+			!$this->language->equals( $contLang )
 			&& in_array( $this->key, (array)$wgForceUIMsgAsContentMsg )
 		) {
 			$code = $this->language->getCode();
 			$title .= '/' . $code;
 		}
 
-		return Title::makeTitle( NS_MEDIAWIKI, $wgContLang->ucfirst( strtr( $title, ' ', '_' ) ) );
+		return Title::makeTitle(
+			NS_MEDIAWIKI, $contLang->ucfirst( strtr( $title, ' ', '_' ) ) );
 	}
 
 	/**
@@ -766,8 +769,7 @@ class Message implements MessageSpecifier, Serializable {
 			return $this;
 		}
 
-		global $wgContLang;
-		$this->inLanguage( $wgContLang );
+		$this->inLanguage( MediaWikiServices::getInstance()->getContentLanguage() );
 		return $this;
 	}
 

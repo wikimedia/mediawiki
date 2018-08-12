@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class represents the result of the API operations.
  * It simply wraps a nested array structure, adding some functions to simplify
@@ -330,8 +332,6 @@ class ApiResult implements ApiSerializable {
 	 * @return array|mixed|string
 	 */
 	private static function validateValue( $value ) {
-		global $wgContLang;
-
 		if ( is_object( $value ) ) {
 			// Note we use is_callable() here instead of instanceof because
 			// ApiSerializable is an informal protocol (see docs there for details).
@@ -374,7 +374,7 @@ class ApiResult implements ApiSerializable {
 		} elseif ( is_float( $value ) && !is_finite( $value ) ) {
 			throw new InvalidArgumentException( 'Cannot add non-finite floats to ApiResult' );
 		} elseif ( is_string( $value ) ) {
-			$value = $wgContLang->normalize( $value );
+			$value = MediaWikiServices::getInstance()->getContentLanguage()->normalize( $value );
 		} elseif ( $value !== null && !is_scalar( $value ) ) {
 			$type = gettype( $value );
 			if ( is_resource( $value ) ) {

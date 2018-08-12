@@ -23,6 +23,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @ingroup Dump
  */
@@ -38,7 +40,6 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	function openStream() {
-		global $wgContLang;
 		$ver = WikiExporter::schemaVersion();
 		return Xml::element( 'mediawiki', [
 			'xmlns'              => "http://www.mediawiki.org/xml/export-$ver/",
@@ -55,8 +56,8 @@ class XmlDumpWriter {
 			 */
 			'xsi:schemaLocation' => "http://www.mediawiki.org/xml/export-$ver/ " .
 				"http://www.mediawiki.org/xml/export-$ver.xsd",
-			'version'            => $ver,
-			'xml:lang'           => $wgContLang->getHtmlCode() ],
+			'version' => $ver,
+			'xml:lang' => MediaWikiServices::getInstance()->getContentLanguage()->getHtmlCode() ],
 			null ) .
 			"\n" .
 			$this->siteInfo();
@@ -123,9 +124,11 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	function namespaces() {
-		global $wgContLang;
 		$spaces = "<namespaces>\n";
-		foreach ( $wgContLang->getFormattedNamespaces() as $ns => $title ) {
+		foreach (
+			MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces()
+			as $ns => $title
+		) {
 			$spaces .= '      ' .
 				Xml::element( 'namespace',
 					[
@@ -434,8 +437,8 @@ class XmlDumpWriter {
 			return $title->getPrefixedText();
 		}
 
-		global $wgContLang;
-		$prefix = $wgContLang->getFormattedNsText( $title->getNamespace() );
+		$prefix = MediaWikiServices::getInstance()->getContentLanguage()->
+			getFormattedNsText( $title->getNamespace() );
 
 		// @todo Emit some kind of warning to the user if $title->getNamespace() !==
 		// NS_MAIN and $prefix === '' (viz. pages in an unregistered namespace)

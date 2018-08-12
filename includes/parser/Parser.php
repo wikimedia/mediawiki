@@ -5750,7 +5750,6 @@ class Parser {
 			# to other users, and potentially even used inside links and such,
 			# it needs to be consistent for all visitors.
 			$this->mRevisionTimestamp = $this->contLang->userAdjust( $timestamp, '' );
-
 		}
 		return $this->mRevisionTimestamp;
 	}

@@ -24,6 +24,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * XML file reader for the page data importer.
  *
@@ -286,11 +288,10 @@ class WikiImporter {
 				$status->fatal( 'import-rootpage-invalid' );
 			} else {
 				if ( !MWNamespace::hasSubpages( $title->getNamespace() ) ) {
-					global $wgContLang;
-
 					$displayNSText = $title->getNamespace() == NS_MAIN
 						? wfMessage( 'blanknamespace' )->text()
-						: $wgContLang->getNsText( $title->getNamespace() );
+						: MediaWikiServices::getInstance()->getContentLanguage()->
+							getNsText( $title->getNamespace() );
 					$status->fatal( 'import-rootpage-nosubpage', $displayNSText );
 				} else {
 					// set namespace to 'all', so the namespace check in processTitle() can pass

@@ -232,10 +232,8 @@ abstract class SearchEngine {
 	 * @return string
 	 */
 	public function normalizeText( $string ) {
-		global $wgContLang;
-
 		// Some languages such as Chinese require word segmentation
-		return $wgContLang->segmentByWord( $string );
+		return MediaWikiServices::getInstance()->getContentLanguage()->segmentByWord( $string );
 	}
 
 	/**
@@ -257,8 +255,8 @@ abstract class SearchEngine {
 	 * @return SearchNearMatcher
 	 */
 	public function getNearMatcher( Config $config ) {
-		global $wgContLang;
-		return new SearchNearMatcher( $config, $wgContLang );
+		return new SearchNearMatcher( $config,
+			MediaWikiServices::getInstance()->getContentLanguage() );
 	}
 
 	/**
@@ -415,8 +413,6 @@ abstract class SearchEngine {
 		$withAllKeyword = true,
 		$withPrefixSearchExtractNamespaceHook = false
 	) {
-		global $wgContLang;
-
 		$parsed = $query;
 		if ( strpos( $query, ':' ) === false ) { // nothing to do
 			return false;
@@ -445,7 +441,7 @@ abstract class SearchEngine {
 
 		if ( !$allQuery && strpos( $query, ':' ) !== false ) {
 			$prefix = str_replace( ' ', '_', substr( $query, 0, strpos( $query, ':' ) ) );
-			$index = $wgContLang->getNsIndex( $prefix );
+			$index = MediaWikiServices::getInstance()->getContentLanguage()->getNsIndex( $prefix );
 			if ( $index !== false ) {
 				$extractedNamespace = [ $index ];
 				$parsed = substr( $query, strlen( $prefix ) + 1 );
@@ -625,9 +621,8 @@ abstract class SearchEngine {
 		$results = $this->completionSearchBackendOverfetch( $search );
 		$fallbackLimit = 1 + $this->limit - $results->getSize();
 		if ( $fallbackLimit > 0 ) {
-			global $wgContLang;
-
-			$fallbackSearches = $wgContLang->autoConvertToAllVariants( $search );
+			$fallbackSearches = MediaWikiServices::getInstance()->getContentLanguage()->
+				autoConvertToAllVariants( $search );
 			$fallbackSearches = array_diff( array_unique( $fallbackSearches ), [ $search ] );
 
 			foreach ( $fallbackSearches as $fbs ) {

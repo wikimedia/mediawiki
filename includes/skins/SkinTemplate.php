@@ -268,7 +268,7 @@ class SkinTemplate extends Skin {
 	 * @return QuickTemplate The template to be executed by outputPage
 	 */
 	protected function prepareQuickTemplate() {
-		global $wgContLang, $wgScript, $wgStylePath, $wgMimeType, $wgJsMimeType,
+		global $wgScript, $wgStylePath, $wgMimeType, $wgJsMimeType,
 			$wgSitename, $wgLogo, $wgMaxCredits,
 			$wgShowCreditsIfMax, $wgArticlePath,
 			$wgScriptPath, $wgServer;
@@ -363,7 +363,11 @@ class SkinTemplate extends Skin {
 		// heading for the page title. Defaults to empty string.
 		$tpl->set( 'prebodyhtml', '' );
 
-		if ( $userLangCode !== $wgContLang->getHtmlCode() || $userLangDir !== $wgContLang->getDir() ) {
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		if (
+			$userLangCode !== $contLang->getHtmlCode() ||
+			$userLangDir !== $contLang->getDir()
+		) {
 			$escUserlang = htmlspecialchars( $userLangCode );
 			$escUserdir = htmlspecialchars( $userLangDir );
 			// Attributes must be in double quotes because htmlspecialchars() doesn't
@@ -783,9 +787,8 @@ class SkinTemplate extends Skin {
 		if ( $msg->exists() ) {
 			$text = $msg->text();
 		} else {
-			global $wgContLang;
-			$text = $wgContLang->getConverter()->convertNamespace(
-				MWNamespace::getSubject( $title->getNamespace() ) );
+			$text = MediaWikiServices::getInstance()->getContentLanguage()->getConverter()->
+				convertNamespace( MWNamespace::getSubject( $title->getNamespace() ) );
 		}
 
 		// Avoid PHP 7.1 warning of passing $this by reference

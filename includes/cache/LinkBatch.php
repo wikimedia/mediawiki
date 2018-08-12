@@ -222,8 +222,7 @@ class LinkBatch {
 			return false;
 		}
 
-		global $wgContLang;
-		if ( !$wgContLang->needsGenderDistinction() ) {
+		if ( !MediaWikiServices::getInstance()->getContentLanguage()->needsGenderDistinction() ) {
 			return false;
 		}
 

@@ -48,8 +48,6 @@ class SpecialPrefixindex extends SpecialAllPages {
 	 * @param string $par Becomes "FOO" when called like Special:Prefixindex/FOO (default null)
 	 */
 	function execute( $par ) {
-		global $wgContLang;
-
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -65,7 +63,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 		$this->hideRedirects = $request->getBool( 'hideredirects', $this->hideRedirects );
 		$this->stripPrefix = $request->getBool( 'stripprefix', $this->stripPrefix );
 
-		$namespaces = $wgContLang->getNamespaces();
+		$namespaces = MediaWikiServices::getInstance()->getContentLanguage()->getNamespaces();
 		$out->setPageTitle(
 			( $namespace > 0 && array_key_exists( $namespace, $namespaces ) )
 				? $this->msg( 'prefixindex-namespace', str_replace( '_', ' ', $namespaces[$namespace] ) )
@@ -143,15 +141,13 @@ class SpecialPrefixindex extends SpecialAllPages {
 	 * @param string|null $from List all pages from this name (default false)
 	 */
 	protected function showPrefixChunk( $namespace, $prefix, $from = null ) {
-		global $wgContLang;
-
 		if ( $from === null ) {
 			$from = $prefix;
 		}
 
 		$fromList = $this->getNamespaceKeyAndText( $namespace, $from );
 		$prefixList = $this->getNamespaceKeyAndText( $namespace, $prefix );
-		$namespaces = $wgContLang->getNamespaces();
+		$namespaces = MediaWikiServices::getInstance()->getContentLanguage()->getNamespaces();
 		$res = null;
 		$n = 0;
 		$nextRow = null;

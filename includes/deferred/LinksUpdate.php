@@ -581,12 +581,13 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	 * @return array
 	 */
 	private function getCategoryInsertions( $existing = [] ) {
-		global $wgContLang, $wgCategoryCollation;
+		global $wgCategoryCollation;
 		$diffs = array_diff_assoc( $this->mCategories, $existing );
 		$arr = [];
 		foreach ( $diffs as $name => $prefix ) {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
-			$wgContLang->findVariantLink( $name, $nt, true );
+			MediaWikiServices::getInstance()->getContentLanguage()->
+				findVariantLink( $name, $nt, true );
 
 			$type = MWNamespace::getCategoryLinkType( $this->mTitle->getNamespace() );
 

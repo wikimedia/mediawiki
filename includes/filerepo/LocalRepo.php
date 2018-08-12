@@ -278,7 +278,6 @@ class LocalRepo extends FileRepo {
 		$applyMatchingFiles = function ( ResultWrapper $res, &$searchSet, &$finalFiles )
 			use ( $fileMatchesSearch, $flags )
 		{
-			global $wgContLang;
 			$info = $this->getInfo();
 			foreach ( $res as $row ) {
 				$file = $this->newFileFromRow( $row );
@@ -287,7 +286,8 @@ class LocalRepo extends FileRepo {
 				$dbKeysLook = [ strtr( $file->getName(), ' ', '_' ) ];
 				if ( !empty( $info['initialCapital'] ) ) {
 					// Search keys for "hi.png" and "Hi.png" should use the "Hi.png file"
-					$dbKeysLook[] = $wgContLang->lcfirst( $file->getName() );
+					$dbKeysLook[] = MediaWikiServices::getInstance()->getContentLanguage()->
+						lcfirst( $file->getName() );
 				}
 				foreach ( $dbKeysLook as $dbKey ) {
 					if ( isset( $searchSet[$dbKey] )

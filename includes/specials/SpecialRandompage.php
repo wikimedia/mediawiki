@@ -22,6 +22,8 @@
  * @author Rob Church <robchur@gmail.com>, Ilmari Karonen
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Special page to direct the user to a random page
  *
@@ -54,12 +56,11 @@ class RandomPage extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgContLang;
-
 		if ( is_string( $par ) ) {
 			// Testing for stringiness since we want to catch
 			// the empty string to mean main namespace only.
-			$this->setNamespace( $wgContLang->getNsIndex( $par ) );
+			$this->setNamespace(
+				MediaWikiServices::getInstance()->getContentLanguage()->getNsIndex( $par ) );
 		}
 
 		$title = $this->getRandomTitle();
@@ -85,17 +86,17 @@ class RandomPage extends SpecialPage {
 	 * @return string
 	 */
 	private function getNsList() {
-		global $wgContLang;
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$nsNames = [];
 		foreach ( $this->namespaces as $n ) {
 			if ( $n === NS_MAIN ) {
 				$nsNames[] = $this->msg( 'blanknamespace' )->plain();
 			} else {
-				$nsNames[] = $wgContLang->getNsText( $n );
+				$nsNames[] = $contLang->getNsText( $n );
 			}
 		}
 
-		return $wgContLang->commaList( $nsNames );
+		return $contLang->commaList( $nsNames );
 	}
 
 	/**

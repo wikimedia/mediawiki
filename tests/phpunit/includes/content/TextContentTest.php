@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group ContentHandler
  * @group Database
@@ -115,9 +117,8 @@ class TextContentTest extends MediaWikiLangTestCase {
 	 * @covers TextContent::preSaveTransform
 	 */
 	public function testPreSaveTransform( $text, $expected ) {
-		global $wgContLang;
-
-		$options = ParserOptions::newFromUserAndLang( $this->context->getUser(), $wgContLang );
+		$options = ParserOptions::newFromUserAndLang( $this->context->getUser(),
+			MediaWikiServices::getInstance()->getContentLanguage() );
 
 		$content = $this->newContent( $text );
 		$content = $content->preSaveTransform(
@@ -143,8 +144,8 @@ class TextContentTest extends MediaWikiLangTestCase {
 	 * @covers TextContent::preloadTransform
 	 */
 	public function testPreloadTransform( $text, $expected ) {
-		global $wgContLang;
-		$options = ParserOptions::newFromUserAndLang( $this->context->getUser(), $wgContLang );
+		$options = ParserOptions::newFromUserAndLang( $this->context->getUser(),
+			MediaWikiServices::getInstance()->getContentLanguage() );
 
 		$content = $this->newContent( $text );
 		$content = $content->preloadTransform( $this->context->getTitle(), $options );

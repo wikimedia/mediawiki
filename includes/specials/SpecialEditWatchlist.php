@@ -535,8 +535,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @return HTMLForm
 	 */
 	protected function getNormalForm() {
-		global $wgContLang;
-
 		$fields = [];
 		$count = 0;
 
@@ -582,7 +580,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 				$nsText = ( $ns == NS_MAIN )
 					? $this->msg( 'blanknamespace' )->escaped()
-					: htmlspecialchars( $wgContLang->getFormattedNsText( $ns ) );
+					: htmlspecialchars( MediaWikiServices::getInstance()->getContentLanguage()->
+						getFormattedNsText( $ns ) );
 				$this->toc .= Linker::tocLine( "editwatchlist-{$data['section']}", $nsText,
 					$this->getLanguage()->formatNum( ++$tocLength ), 1 ) . Linker::tocLineEnd();
 			}

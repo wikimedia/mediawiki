@@ -1245,8 +1245,6 @@ class OutputPage extends ContextSource {
 	 * @param array $categories Mapping category name => sort key
 	 */
 	public function addCategoryLinks( array $categories ) {
-		global $wgContLang;
-
 		if ( !$categories ) {
 			return;
 		}
@@ -1270,7 +1268,8 @@ class OutputPage extends ContextSource {
 			'OutputPageMakeCategoryLinks',
 			[ &$outputPage, $categories, &$this->mCategoryLinks ] )
 		) {
-			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			$services = MediaWikiServices::getInstance();
+			$linkRenderer = $services->getLinkRenderer();
 			foreach ( $categories as $category => $type ) {
 				// array keys will cast numeric category names to ints, so cast back to string
 				$category = (string)$category;
@@ -1279,11 +1278,11 @@ class OutputPage extends ContextSource {
 				if ( !$title ) {
 					continue;
 				}
-				$wgContLang->findVariantLink( $category, $title, true );
+				$services->getContentLanguage()->findVariantLink( $category, $title, true );
 				if ( $category != $origcategory && array_key_exists( $category, $categories ) ) {
 					continue;
 				}
-				$text = $wgContLang->convertHtml( $title->getText() );
+				$text = $services->getContentLanguage()->convertHtml( $title->getText() );
 				$this->mCategories[$type][] = $title->getText();
 				$this->mCategoryLinks[$type][] = $linkRenderer->makeLink( $title, new HtmlArmor( $text ) );
 			}
@@ -1881,9 +1880,9 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param string $text
 	 * @param bool $linestart Is this the start of a line?
-	 * @param bool $interface Use interface language ($wgLang instead of
-	 *   $wgContLang) while parsing language sensitive magic words like GRAMMAR and PLURAL.
-	 *   This also disables LanguageConverter.
+	 * @param bool $interface Use interface language (instead of content language) while parsing
+	 *   language sensitive magic words like GRAMMAR and PLURAL.  This also disables
+	 *   LanguageConverter.
 	 * @param Language|null $language Target language object, will override $interface
 	 * @throws MWException
 	 * @return string HTML
@@ -1925,9 +1924,8 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param string $text
 	 * @param bool $linestart Is this the start of a line?
-	 * @param bool $interface Use interface language ($wgLang instead of
-	 *   $wgContLang) while parsing language sensitive magic
-	 *   words like GRAMMAR and PLURAL
+	 * @param bool $interface Use interface language (instead of content language) while parsing
+	 *   language sensitive magic words like GRAMMAR and PLURAL
 	 * @return string HTML
 	 */
 	public function parseInline( $text, $linestart = true, $interface = false ) {
@@ -2315,8 +2313,6 @@ class OutputPage extends ContextSource {
 	 * @throws MWException
 	 */
 	public function output( $return = false ) {
-		global $wgContLang;
-
 		if ( $this->mDoNothing ) {
 			return $return ? '' : null;
 		}
@@ -2363,7 +2359,8 @@ class OutputPage extends ContextSource {
 		ob_start();
 
 		$response->header( 'Content-type: ' . $config->get( 'MimeType' ) . '; charset=UTF-8' );
-		$response->header( 'Content-language: ' . $wgContLang->getHtmlCode() );
+		$response->header( 'Content-language: ' .
+			MediaWikiServices::getInstance()->getContentLanguage()->getHtmlCode() );
 
 		if ( !$this->mArticleBodyOnly ) {
 			$sk = $this->getSkin();
@@ -2861,10 +2858,8 @@ class OutputPage extends ContextSource {
 	 * @return string The doctype, opening "<html>", and head element.
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
-		global $wgContLang;
-
 		$userdir = $this->getLanguage()->getDir();
-		$sitedir = $wgContLang->getDir();
+		$sitedir = MediaWikiServices::getInstance()->getContentLanguage()->getDir();
 
 		$pieces = [];
 		$pieces[] = Html::htmlHeader( Sanitizer::mergeAttributes(
@@ -3062,8 +3057,6 @@ class OutputPage extends ContextSource {
 	 * @return array
 	 */
 	public function getJSVars() {
-		global $wgContLang;
-
 		$curRevisionId = 0;
 		$articleId = 0;
 		$canonicalSpecialPageName = false; # T23115
@@ -3147,8 +3140,9 @@ class OutputPage extends ContextSource {
 			$vars['wgUserNewMsgRevisionId'] = $user->getNewMessageRevisionId();
 		}
 
-		if ( $wgContLang->hasVariants() ) {
-			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		if ( $contLang->hasVariants() ) {
+			$vars['wgUserVariant'] = $contLang->getPreferredVariant();
 		}
 		// Same test as SkinTemplate
 		$vars['wgIsProbablyEditable'] = $title->quickUserCan( 'edit', $user )

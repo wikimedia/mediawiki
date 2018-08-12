@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Widget\Search;
 
+use MediaWiki\MediaWikiServices;
 use Message;
 use SearchResultSet;
 use SpecialSearch;
@@ -42,8 +43,6 @@ class BasicSearchResultSetWidget {
 		SearchResultSet $titleResultSet = null,
 		SearchResultSet $textResultSet = null
 	) {
-		global $wgContLang;
-
 		$hasTitle = $titleResultSet ? $titleResultSet->numRows() > 0 : false;
 		$hasText = $textResultSet ? $textResultSet->numRows() > 0 : false;
 		$hasSecondary = $textResultSet
@@ -95,7 +94,7 @@ class BasicSearchResultSetWidget {
 
 		// Convert the whole thing to desired language variant
 		// TODO: Move this up to Special:Search?
-		return $wgContLang->convert( $out );
+		return MediaWikiServices::getInstance()->getContentLanguage()->convert( $out );
 	}
 
 	/**
@@ -118,9 +117,8 @@ class BasicSearchResultSetWidget {
 	 * @return string HTML
 	 */
 	protected function renderResultSet( SearchResultSet $resultSet, $offset ) {
-		global $wgContLang;
-
-		$terms = $wgContLang->convertForSearchResult( $resultSet->termMatches() );
+		$terms = MediaWikiServices::getInstance()->getContentLanguage()->
+			convertForSearchResult( $resultSet->termMatches() );
 
 		$hits = [];
 		foreach ( $resultSet as $result ) {

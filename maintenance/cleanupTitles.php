@@ -45,9 +45,8 @@ class TitleCleanup extends TableCleanup {
 	 * @param object $row
 	 */
 	protected function processRow( $row ) {
-		global $wgContLang;
 		$display = Title::makeName( $row->page_namespace, $row->page_title );
-		$verified = $wgContLang->normalize( $display );
+		$verified = MediaWikiServices::getInstance()->getContentLanguage()->normalize( $display );
 		$title = Title::newFromText( $verified );
 
 		if ( !is_null( $title )

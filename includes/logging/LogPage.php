@@ -223,10 +223,10 @@ class LogPage {
 	public static function actionText( $type, $action, $title = null, $skin = null,
 		$params = [], $filterWikilinks = false
 	) {
-		global $wgLang, $wgContLang, $wgLogActions;
+		global $wgLang, $wgLogActions;
 
 		if ( is_null( $skin ) ) {
-			$langObj = $wgContLang;
+			$langObj = MediaWikiServices::getInstance()->getContentLanguage();
 			$langObjOrNull = null;
 		} else {
 			$langObj = $wgLang;

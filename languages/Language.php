@@ -550,7 +550,7 @@ class Language {
 	 * Get a namespace value by key
 	 *
 	 * <code>
-	 * $mw_ns = $wgContLang->getNsText( NS_MEDIAWIKI );
+	 * $mw_ns = $lang->getNsText( NS_MEDIAWIKI );
 	 * echo $mw_ns; // prints 'MediaWiki'
 	 * </code>
 	 *
@@ -568,7 +568,7 @@ class Language {
 	 * producing output.
 	 *
 	 * <code>
-	 * $mw_ns = $wgContLang->getFormattedNsText( NS_MEDIAWIKI_TALK );
+	 * $mw_ns = $lang->getFormattedNsText( NS_MEDIAWIKI_TALK );
 	 * echo $mw_ns; // prints 'MediaWiki talk'
 	 * </code>
 	 *

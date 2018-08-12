@@ -1,4 +1,6 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -142,8 +144,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	public function testConflictResolution(
 		$test, $aliasesList, $alias, $expectedName, $expectedAlias, $expectWarnings
 	) {
-		global $wgContLang;
-		$lang = clone $wgContLang;
+		$lang = clone MediaWikiServices::getInstance()->getContentLanguage();
 		$lang->mExtendedSpecialPageAliases = $aliasesList;
 		$this->setContentLang( $lang );
 		$this->setMwGlobals( 'wgSpecialPages',

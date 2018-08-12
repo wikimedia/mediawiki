@@ -91,7 +91,6 @@ class HTMLFileCache extends FileCacheBase {
 	 * @return bool
 	 */
 	public static function useFileCache( IContextSource $context, $mode = self::MODE_NORMAL ) {
-		global $wgContLang;
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		if ( !$config->get( 'UseFileCache' ) && $mode !== self::MODE_REBUILD ) {
@@ -124,7 +123,8 @@ class HTMLFileCache extends FileCacheBase {
 		$ulang = $context->getLanguage();
 
 		// Check that there are no other sources of variation
-		if ( $user->getId() || !$ulang->equals( $wgContLang ) ) {
+		if ( $user->getId() ||
+			!$ulang->equals( MediaWikiServices::getInstance()->getContentLanguage() ) ) {
 			return false;
 		}
 
@@ -145,7 +145,6 @@ class HTMLFileCache extends FileCacheBase {
 	 * @return void
 	 */
 	public function loadFromFileCache( IContextSource $context, $mode = self::MODE_NORMAL ) {
-		global $wgContLang;
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		wfDebug( __METHOD__ . "()\n" );
@@ -158,7 +157,8 @@ class HTMLFileCache extends FileCacheBase {
 
 		$context->getOutput()->sendCacheControl();
 		header( "Content-Type: {$config->get( 'MimeType' )}; charset=UTF-8" );
-		header( "Content-Language: {$wgContLang->getHtmlCode()}" );
+		header( 'Content-Language: ' .
+			MediaWikiServices::getInstance()->getContentLanguage()->getHtmlCode() );
 		if ( $this->useGzip() ) {
 			if ( wfClientAcceptsGzip() ) {
 				header( 'Content-Encoding: gzip' );

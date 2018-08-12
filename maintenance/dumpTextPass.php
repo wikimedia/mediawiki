@@ -705,7 +705,6 @@ TEXT
 	 * @throws MWException
 	 */
 	private function getTextDb( $id ) {
-		global $wgContLang;
 		if ( !isset( $this->db ) ) {
 			throw new MWException( __METHOD__ . "No database available" );
 		}
@@ -718,7 +717,8 @@ TEXT
 			return false;
 		}
 		$stripped = str_replace( "\r", "", $text );
-		$normalized = $wgContLang->normalize( $stripped );
+		$normalized = MediaWikiServices::getInstance()->getContentLanguage()->
+			normalize( $stripped );
 
 		return $normalized;
 	}
@@ -797,8 +797,6 @@ TEXT
 	}
 
 	private function getTextSpawnedOnce( $id ) {
-		global $wgContLang;
-
 		$ok = fwrite( $this->spawnWrite, "$id\n" );
 		// $this->progress( ">> $id" );
 		if ( !$ok ) {
@@ -853,7 +851,8 @@ TEXT
 
 		// Do normalization in the dump thread...
 		$stripped = str_replace( "\r", "", $text );
-		$normalized = $wgContLang->normalize( $stripped );
+		$normalized = MediaWikiServices::getInstance()->getContentLanguage()->
+			normalize( $stripped );
 
 		return $normalized;
 	}

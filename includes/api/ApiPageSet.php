@@ -512,11 +512,10 @@ class ApiPageSet extends ApiBase {
 	 * @since 1.21
 	 */
 	public function getNormalizedTitlesAsResult( $result = null ) {
-		global $wgContLang;
-
 		$values = [];
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		foreach ( $this->getNormalizedTitles() as $rawTitleStr => $titleStr ) {
-			$encode = ( $wgContLang->normalize( $rawTitleStr ) !== $rawTitleStr );
+			$encode = $contLang->normalize( $rawTitleStr ) !== $rawTitleStr;
 			$values[] = [
 				'fromencoded' => $encode,
 				'from' => $encode ? rawurlencode( $rawTitleStr ) : $rawTitleStr,
@@ -1198,15 +1197,14 @@ class ApiPageSet extends ApiBase {
 				$this->mInterwikiTitles[$unconvertedTitle] = $titleObj->getInterwiki();
 			} else {
 				// Variants checking
-				global $wgContLang;
-				if ( $this->mConvertTitles &&
-					$wgContLang->hasVariants() &&
-					!$titleObj->exists()
+				$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+				if (
+					$this->mConvertTitles && $contLang->hasVariants() && !$titleObj->exists()
 				) {
 					// Language::findVariantLink will modify titleText and titleObj into
 					// the canonical variant if possible
 					$titleText = is_string( $title ) ? $title : $titleObj->getPrefixedText();
-					$wgContLang->findVariantLink( $titleText, $titleObj );
+					$contLang->findVariantLink( $titleText, $titleObj );
 					$titleWasConverted = $unconvertedTitle !== $titleObj->getPrefixedText();
 				}
 

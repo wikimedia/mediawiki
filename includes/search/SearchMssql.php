@@ -21,6 +21,7 @@
  * @ingroup Search
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -133,7 +134,6 @@ class SearchMssql extends SearchDatabase {
 	 * @return string
 	 */
 	private function parseQuery( $filteredText, $fulltext ) {
-		global $wgContLang;
 		$lc = $this->legalSearchChars( self::CHARS_NO_SYNTAX );
 		$this->searchTerms = [];
 
@@ -144,7 +144,8 @@ class SearchMssql extends SearchDatabase {
 		if ( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 			$filteredText, $m, PREG_SET_ORDER ) ) {
 			foreach ( $m as $terms ) {
-				$q[] = $terms[1] . $wgContLang->normalizeForSearch( $terms[2] );
+				$q[] = $terms[1] . MediaWikiServices::getInstance()->getContentLanguage()->
+					normalizeForSearch( $terms[2] );
 
 				if ( !empty( $terms[3] ) ) {
 					$regexp = preg_quote( $terms[3], '/' );

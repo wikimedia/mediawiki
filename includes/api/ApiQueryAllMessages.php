@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A query action to return messages from site message cache
  *
@@ -110,15 +112,13 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		// Whether we have any sort of message customisation filtering
 		$customiseFilterEnabled = $params['customised'] !== 'all';
 		if ( $customiseFilterEnabled ) {
-			global $wgContLang;
-
 			$customisedMessages = AllMessagesTablePager::getCustomisedStatuses(
 				array_map(
 					[ $langObj, 'ucfirst' ],
 					$messages_target
 				),
 				$langObj->getCode(),
-				!$langObj->equals( $wgContLang )
+				!$langObj->equals( MediaWikiServices::getInstance()->getContentLanguage() )
 			);
 
 			$customised = $params['customised'] === 'modified';

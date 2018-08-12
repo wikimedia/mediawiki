@@ -21,6 +21,8 @@
  * @ingroup Deployment
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Class for the core installer command line interface.
  *
@@ -69,9 +71,9 @@ class CliInstaller extends Installer {
 		if ( isset( $option['lang'] ) ) {
 			global $wgLang, $wgLanguageCode;
 			$this->setVar( '_UserLang', $option['lang'] );
-			$wgContLang = Language::factory( $option['lang'] );
-			$wgLang = Language::factory( $option['lang'] );
 			$wgLanguageCode = $option['lang'];
+			$wgContLang = MediaWikiServices::getInstance()->getContentLanguage();
+			$wgLang = Language::factory( $option['lang'] );
 			RequestContext::getMain()->setLanguage( $wgLang );
 		}
 

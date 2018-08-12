@@ -162,11 +162,12 @@ class WebRequest {
 					$router->add( $wgActionPaths, [ 'action' => '$key' ] );
 				}
 
-				global $wgVariantArticlePath, $wgContLang;
+				global $wgVariantArticlePath;
 				if ( $wgVariantArticlePath ) {
 					$router->add( $wgVariantArticlePath,
 						[ 'variant' => '$2' ],
-						[ '$2' => $wgContLang->getVariants() ]
+						[ '$2' => MediaWikiServices::getInstance()->getContentLanguage()->
+						getVariants() ]
 					);
 				}
 
@@ -306,7 +307,7 @@ class WebRequest {
 	/**
 	 * Check for title, action, and/or variant data in the URL
 	 * and interpolate it into the GET variables.
-	 * This should only be run after $wgContLang is available,
+	 * This should only be run after the content language is available,
 	 * as we may need the list of language variants to determine
 	 * available variant URLs.
 	 */
@@ -364,9 +365,8 @@ class WebRequest {
 				$data[$key] = $this->normalizeUnicode( $val );
 			}
 		} else {
-			global $wgContLang;
-			$data = isset( $wgContLang ) ?
-				$wgContLang->normalize( $data ) :
+			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+			$data = $contLang ? $contLang->normalize( $data ) :
 				UtfNormal\Validator::cleanUp( $data );
 		}
 		return $data;
@@ -386,12 +386,12 @@ class WebRequest {
 		# Work around PHP *feature* to avoid *bugs* elsewhere.
 		$name = strtr( $name, '.', '_' );
 		if ( isset( $arr[$name] ) ) {
-			global $wgContLang;
 			$data = $arr[$name];
 			if ( isset( $_GET[$name] ) && !is_array( $data ) ) {
 				# Check for alternate/legacy character encoding.
-				if ( isset( $wgContLang ) ) {
-					$data = $wgContLang->checkTitleEncoding( $data );
+				$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+				if ( $contLang ) {
+					$data = $contLang->checkTitleEncoding( $data );
 				}
 			}
 			$data = $this->normalizeUnicode( $data );

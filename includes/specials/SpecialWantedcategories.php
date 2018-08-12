@@ -23,6 +23,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A querypage to list the most wanted categories - implements Special:Wantedcategories
  *
@@ -88,10 +90,8 @@ class WantedCategoriesPage extends WantedQueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
-
 		$nt = Title::makeTitle( $result->namespace, $result->title );
-		$text = $wgContLang->convert( $nt->getText() );
+		$text = MediaWikiServices::getInstance()->getContentLanguage()->convert( $nt->getText() );
 
 		if ( !$this->isCached() ) {
 			// We can assume the freshest data

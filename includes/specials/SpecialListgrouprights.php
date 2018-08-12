@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This special page lists all defined user groups and the associated rights.
  * See also @ref $wgGroupPermissions.
@@ -133,7 +135,6 @@ class SpecialListGroupRights extends SpecialPage {
 	}
 
 	private function outputNamespaceProtectionInfo() {
-		global $wgContLang;
 		$out = $this->getOutput();
 		$namespaceProtection = $this->getConfig()->get( 'NamespaceProtection' );
 
@@ -169,7 +170,8 @@ class SpecialListGroupRights extends SpecialPage {
 			if ( $namespace == NS_MAIN ) {
 				$namespaceText = $this->msg( 'blanknamespace' )->text();
 			} else {
-				$namespaceText = $wgContLang->convertNamespace( $namespace );
+				$namespaceText = MediaWikiServices::getInstance()->getContentLanguage()->
+					convertNamespace( $namespace );
 			}
 
 			$out->addHTML(

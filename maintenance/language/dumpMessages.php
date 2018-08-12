@@ -20,7 +20,7 @@
  *
  * @file
  * @ingroup MaintenanceLanguage
- * @todo Make this more useful, right now just dumps $wgContLang
+ * @todo Make this more useful, right now just dumps content language
  */
 
 require_once __DIR__ . '/../Maintenance.php';

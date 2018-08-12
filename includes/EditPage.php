@@ -1171,8 +1171,6 @@ class EditPage {
 	 * @since 1.21
 	 */
 	protected function getContentObject( $def_content = null ) {
-		global $wgContLang;
-
 		$content = false;
 
 		$user = $this->context->getUser();
@@ -1235,7 +1233,8 @@ class EditPage {
 
 						if ( $undoMsg === null ) {
 							$oldContent = $this->page->getContent( Revision::RAW );
-							$popts = ParserOptions::newFromUserAndLang( $user, $wgContLang );
+							$popts = ParserOptions::newFromUserAndLang(
+								$user, MediaWikiServices::getInstance()->getContentLanguage() );
 							$newContent = $content->preSaveTransform( $this->mTitle, $user, $popts );
 							if ( $newContent->getModel() !== $oldContent->getModel() ) {
 								// The undo may change content
@@ -3461,8 +3460,6 @@ ERROR;
 	 * save and then make a comparison.
 	 */
 	public function showDiff() {
-		global $wgContLang;
-
 		$oldtitlemsg = 'currentrev';
 		# if message does not exist, show diff against the preloaded default
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI && !$this->mTitle->exists() ) {
@@ -3492,7 +3489,8 @@ ERROR;
 			Hooks::run( 'EditPageGetDiffContent', [ $this, &$newContent ] );
 
 			$user = $this->context->getUser();
-			$popts = ParserOptions::newFromUserAndLang( $user, $wgContLang );
+			$popts = ParserOptions::newFromUserAndLang( $user,
+				MediaWikiServices::getInstance()->getContentLanguage() );
 			$newContent = $newContent->preSaveTransform( $this->mTitle, $user, $popts );
 		}
 
@@ -4047,14 +4045,15 @@ ERROR;
 	 * @return string
 	 */
 	public static function getEditToolbar( $title = null ) {
-		global $wgContLang, $wgOut;
-		global $wgEnableUploads, $wgForeignFileRepos;
+		global $wgOut, $wgEnableUploads, $wgForeignFileRepos;
 
 		$imagesAvailable = $wgEnableUploads || count( $wgForeignFileRepos );
 		$showSignature = true;
 		if ( $title ) {
 			$showSignature = MWNamespace::wantSignatures( $title->getNamespace() );
 		}
+
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 
 		/**
 		 * $toolarray is an array of arrays each of which includes the
@@ -4103,14 +4102,14 @@ ERROR;
 			],
 			$imagesAvailable ? [
 				'id'     => 'mw-editbutton-image',
-				'open'   => '[[' . $wgContLang->getNsText( NS_FILE ) . ':',
+				'open'   => '[[' . $contLang->getNsText( NS_FILE ) . ':',
 				'close'  => ']]',
 				'sample' => wfMessage( 'image_sample' )->text(),
 				'tip'    => wfMessage( 'image_tip' )->text(),
 			] : false,
 			$imagesAvailable ? [
 				'id'     => 'mw-editbutton-media',
-				'open'   => '[[' . $wgContLang->getNsText( NS_MEDIA ) . ':',
+				'open'   => '[[' . $contLang->getNsText( NS_MEDIA ) . ':',
 				'close'  => ']]',
 				'sample' => wfMessage( 'media_sample' )->text(),
 				'tip'    => wfMessage( 'media_tip' )->text(),

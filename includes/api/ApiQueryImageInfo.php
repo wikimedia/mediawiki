@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A query action to get image information and upload history.
  *
@@ -369,14 +371,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @return array Result array
 	 */
 	public static function getInfo( $file, $prop, $result, $thumbParams = null, $opts = false ) {
-		global $wgContLang;
-
 		$anyHidden = false;
 
 		if ( !$opts || is_string( $opts ) ) {
 			$opts = [
 				'version' => $opts ?: 'latest',
-				'language' => $wgContLang,
+				'language' => MediaWikiServices::getInstance()->getContentLanguage(),
 				'multilang' => false,
 				'extmetadatafilter' => [],
 				'revdelUser' => null,
@@ -650,8 +650,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgContLang;
-
 		return [
 			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
@@ -690,7 +688,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			],
 			'extmetadatalanguage' => [
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_DFLT => $wgContLang->getCode(),
+				ApiBase::PARAM_DFLT =>
+					MediaWikiServices::getInstance()->getContentLanguage()->getCode(),
 			],
 			'extmetadatamultilang' => [
 				ApiBase::PARAM_TYPE => 'boolean',

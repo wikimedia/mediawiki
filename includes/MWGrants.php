@@ -193,12 +193,10 @@ class MWGrants {
 	 * @return string Wikitext
 	 */
 	public static function getGrantsWikiText( $grantsFilter, $lang = null ) {
-		global $wgContLang;
-
 		if ( is_string( $lang ) ) {
 			$lang = Language::factory( $lang );
 		} elseif ( $lang === null ) {
-			$lang = $wgContLang;
+			$lang = MediaWikiServices::getInstance()->getContentLanguage();
 		}
 
 		$s = '';

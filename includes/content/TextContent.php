@@ -25,6 +25,8 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Content object implementation for representing flat text.
  *
@@ -71,13 +73,10 @@ class TextContent extends AbstractContent {
 	}
 
 	public function getTextForSummary( $maxlength = 250 ) {
-		global $wgContLang;
-
 		$text = $this->getNativeData();
 
-		$truncatedtext = $wgContLang->truncateForDatabase(
-			preg_replace( "/[\n\r]/", ' ', $text ),
-			max( 0, $maxlength ) );
+		$truncatedtext = MediaWikiServices::getInstance()->getContentLanguage()->
+			truncateForDatabase( preg_replace( "/[\n\r]/", ' ', $text ), max( 0, $maxlength ) );
 
 		return $truncatedtext;
 	}
@@ -195,20 +194,18 @@ class TextContent extends AbstractContent {
 	 *
 	 * @param Content $that The other content object to compare this content object to.
 	 * @param Language|null $lang The language object to use for text segmentation.
-	 *    If not given, $wgContentLang is used.
+	 *    If not given, the content language is used.
 	 *
 	 * @return Diff A diff representing the changes that would have to be
 	 *    made to this content object to make it equal to $that.
 	 */
 	public function diff( Content $that, Language $lang = null ) {
-		global $wgContLang;
-
 		$this->checkModelID( $that->getModel() );
 
 		// @todo could implement this in DifferenceEngine and just delegate here?
 
 		if ( !$lang ) {
-			$lang = $wgContLang;
+			$lang = MediaWikiServices::getInstance()->getContentLanguage();
 		}
 
 		$otext = $this->getNativeData();

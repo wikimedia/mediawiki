@@ -23,6 +23,8 @@
  * @since 1.22
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class formats rights log entries.
  *
@@ -30,10 +32,11 @@
  */
 class RightsLogFormatter extends LogFormatter {
 	protected function makePageLink( Title $title = null, $parameters = [], $html = null ) {
-		global $wgContLang, $wgUserrightsInterwikiDelimiter;
+		global $wgUserrightsInterwikiDelimiter;
 
 		if ( !$this->plaintext ) {
-			$text = $wgContLang->ucfirst( $title->getDBkey() );
+			$text = MediaWikiServices::getInstance()->getContentLanguage()->
+				ucfirst( $title->getDBkey() );
 			$parts = explode( $wgUserrightsInterwikiDelimiter, $text, 2 );
 
 			if ( count( $parts ) === 2 ) {

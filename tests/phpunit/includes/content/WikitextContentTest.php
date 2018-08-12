@@ -442,4 +442,19 @@ just a test"
 			// @todo more...?
 		];
 	}
+
+	/**
+	 * @covers WikitextContent::preSaveTransform
+	 * @covers WikitextContent::fillParserOutput
+	 */
+	public function testHadSignature() {
+		$titleObj = Title::newFromText( __CLASS__ );
+
+		$content = new WikitextContent( '~~~~' );
+		$pstContent = $content->preSaveTransform(
+			$titleObj, $this->getTestUser()->getUser(), new ParserOptions()
+		);
+
+		$this->assertTrue( $pstContent->getParserOutput( $titleObj )->getFlag( 'user-signature' ) );
+	}
 }

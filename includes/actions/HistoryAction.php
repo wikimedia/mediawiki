@@ -358,12 +358,13 @@ class HistoryAction extends FormlessAction {
 			$rev->getComment()
 		);
 		if ( $rev->getComment() == '' ) {
-			global $wgContLang;
+			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			$title = $this->msg( 'history-feed-item-nocomment',
 				$rev->getUserText(),
-				$wgContLang->timeanddate( $rev->getTimestamp() ),
-				$wgContLang->date( $rev->getTimestamp() ),
-				$wgContLang->time( $rev->getTimestamp() ) )->inContentLanguage()->text();
+				$contLang->timeanddate( $rev->getTimestamp() ),
+				$contLang->date( $rev->getTimestamp() ),
+				$contLang->time( $rev->getTimestamp() )
+			)->inContentLanguage()->text();
 		} else {
 			$title = $rev->getUserText() .
 				$this->msg( 'colon-separator' )->inContentLanguage()->text() .

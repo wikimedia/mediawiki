@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Test class for Export methods.
  *
@@ -20,7 +22,6 @@ class ExportTest extends MediaWikiLangTestCase {
 	 * @covers WikiExporter::pageByTitle
 	 */
 	public function testPageByTitle() {
-		global $wgContLang;
 		$pageTitle = 'UTPage';
 
 		$exporter = new WikiExporter(
@@ -51,7 +52,8 @@ class ExportTest extends MediaWikiLangTestCase {
 			}
 		}
 
-		$actualNamespaces = (array)$wgContLang->getNamespaces();
+		$actualNamespaces = (array)MediaWikiServices::getInstance()->getContentLanguage()->
+			getNamespaces();
 		$actualNamespaces = array_values( $actualNamespaces );
 		$this->assertEquals( $actualNamespaces, $xmlNamespaces );
 

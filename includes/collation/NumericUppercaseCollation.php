@@ -35,7 +35,7 @@
 class NumericUppercaseCollation extends UppercaseCollation {
 
 	/**
-	 * @var $digitTransformLang Language How to convert digits (usually $wgContLang)
+	 * @var $digitTransformLang Language How to convert digits (usually the content language)
 	 */
 	private $digitTransformLang;
 
@@ -43,7 +43,7 @@ class NumericUppercaseCollation extends UppercaseCollation {
 	 * @param Language $lang How to convert digits.
 	 *  For example, if given language "my" than ၇ is treated like 7.
 	 *
-	 * It is expected that usually this is given $wgContLang.
+	 * It is expected that usually this is given the content language.
 	 */
 	public function __construct( Language $lang ) {
 		$this->digitTransformLang = $lang;

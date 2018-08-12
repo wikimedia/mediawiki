@@ -19,6 +19,8 @@
  * @ingroup Deployment
  */
 
+use MediaWiki\MediaWikiServices;
+
 class WebInstallerName extends WebInstallerPage {
 
 	/**
@@ -186,8 +188,7 @@ class WebInstallerName extends WebInstallerPage {
 		}
 
 		// Make sure it won't conflict with any existing namespaces
-		global $wgContLang;
-		$nsIndex = $wgContLang->getNsIndex( $name );
+		$nsIndex = MediaWikiServices::getInstance()->getContentLanguage()->getNsIndex( $name );
 		if ( $nsIndex !== false && $nsIndex !== NS_PROJECT ) {
 			$this->parent->showError( 'config-ns-conflict', $name );
 			$retVal = false;

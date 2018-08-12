@@ -19,6 +19,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @defgroup Actions Action done on pages
  */
@@ -386,8 +388,7 @@ abstract class Action implements MessageLocalizer {
 	 * @since 1.25
 	 */
 	public function addHelpLink( $to, $overrideBaseUrl = false ) {
-		global $wgContLang;
-		$msg = wfMessage( $wgContLang->lc(
+		$msg = wfMessage( MediaWikiServices::getInstance()->getContentLanguage()->lc(
 			self::getActionName( $this->getContext() )
 			) . '-helppage' );
 

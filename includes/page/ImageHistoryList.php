@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Builds the image revision log shown on image pages
  *
@@ -111,8 +113,6 @@ class ImageHistoryList extends ContextSource {
 	 * @return string
 	 */
 	public function imageHistoryLine( $iscur, $file ) {
-		global $wgContLang;
-
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$timestamp = wfTimestamp( TS_MW, $file->getTimestamp() );
@@ -264,8 +264,9 @@ class ImageHistoryList extends ContextSource {
 			$row .= '<td><span class="history-deleted">' .
 				$this->msg( 'rev-deleted-comment' )->escaped() . '</span></td>';
 		} else {
-			$row .= '<td dir="' . $wgContLang->getDir() . '">' .
-				Linker::formatComment( $description, $this->title ) . '</td>';
+			$row .=
+				'<td dir="' . MediaWikiServices::getInstance()->getContentLanguage()->getDir() .
+				'">' .  Linker::formatComment( $description, $this->title ) . '</td>';
 		}
 
 		$rowClass = null;

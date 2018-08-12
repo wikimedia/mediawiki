@@ -1003,13 +1003,12 @@ class FormatMetadata extends ContextSource {
 	public static function flattenArrayContentLang( $vals, $type = 'ul',
 		$noHtml = false, $context = false
 	) {
-		global $wgContLang;
 		$obj = new FormatMetadata;
 		if ( $context ) {
 			$obj->setContext( $context );
 		}
 		$context = new DerivativeContext( $obj->getContext() );
-		$context->setLanguage( $wgContLang );
+		$context->setLanguage( MediaWikiServices::getInstance()->getContentLanguage() );
 		$obj->setContext( $context );
 
 		return $obj->flattenArrayReal( $vals, $type, $noHtml );
@@ -1056,7 +1055,7 @@ class FormatMetadata extends ContextSource {
 			 */
 			switch ( $type ) {
 				case 'lang':
-					// Display default, followed by ContLang,
+					// Display default, followed by ContentLanguage,
 					// followed by the rest in no particular
 					// order.
 
@@ -1218,13 +1217,15 @@ class FormatMetadata extends ContextSource {
 	 * @return string The text content of "exif-$tag-$val" message in lower case
 	 */
 	private function exifMsg( $tag, $val, $arg = null, $arg2 = null ) {
-		global $wgContLang;
-
 		if ( $val === '' ) {
 			$val = 'value';
 		}
 
-		return $this->msg( $wgContLang->lc( "exif-$tag-$val" ), $arg, $arg2 )->text();
+		return $this->msg(
+			MediaWikiServices::getInstance()->getContentLanguage()->lc( "exif-$tag-$val" ),
+			$arg,
+			$arg2
+		)->text();
 	}
 
 	/**

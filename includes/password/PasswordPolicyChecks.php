@@ -21,6 +21,7 @@
  */
 
 use Cdb\Reader as CdbReader;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Functions to check passwords against a policy requirement
@@ -81,10 +82,12 @@ class PasswordPolicyChecks {
 	 * @return Status error if username and password match, and policy is true
 	 */
 	public static function checkPasswordCannotMatchUsername( $policyVal, User $user, $password ) {
-		global $wgContLang;
 		$status = Status::newGood();
 		$username = $user->getName();
-		if ( $policyVal && $wgContLang->lc( $password ) === $wgContLang->lc( $username ) ) {
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		if (
+			$policyVal && $contLang->lc( $password ) === $contLang->lc( $username )
+		) {
 			$status->error( 'password-name-match' );
 		}
 		return $status;

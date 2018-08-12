@@ -207,11 +207,9 @@ class FileDuplicateSearchPage extends QueryPage {
 	 * @return string HTML
 	 */
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
-
 		$linkRenderer = $this->getLinkRenderer();
 		$nt = $result->getTitle();
-		$text = $wgContLang->convert( $nt->getText() );
+		$text = MediaWikiServices::getInstance()->getContentLanguage()->convert( $nt->getText() );
 		$plink = $linkRenderer->makeLink(
 			$nt,
 			$text

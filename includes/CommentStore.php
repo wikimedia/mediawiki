@@ -98,7 +98,7 @@ class CommentStore {
 
 	/**
 	 * @param Language $lang Language to use for comment truncation. Defaults
-	 *  to $wgContLang.
+	 *  to content language.
 	 * @param int $migrationStage One of the MIGRATION_* constants
 	 */
 	public function __construct( Language $lang, $migrationStage ) {
@@ -114,10 +114,11 @@ class CommentStore {
 	 * @return CommentStore
 	 */
 	public static function newKey( $key ) {
-		global $wgCommentTableSchemaMigrationStage, $wgContLang;
+		global $wgCommentTableSchemaMigrationStage;
 		// TODO uncomment once not used in extensions
 		// wfDeprecated( __METHOD__, '1.31' );
-		$store = new CommentStore( $wgContLang, $wgCommentTableSchemaMigrationStage );
+		$store = new CommentStore( MediaWikiServices::getInstance()->getContentLanguage(),
+			$wgCommentTableSchemaMigrationStage );
 		$store->key = $key;
 		return $store;
 	}
