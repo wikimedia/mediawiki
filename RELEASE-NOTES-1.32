@@ -82,7 +82,7 @@ production.
 * Updated jquery.i18n from 1.0.4 to 1.0.5.
 
 ==== New external libraries ====
-* Added wikimedia/xmp-reader 0.5.1
+* Added wikimedia/xmp-reader 0.6.0
 * …
 
 ==== Removed and replaced external libraries ====
