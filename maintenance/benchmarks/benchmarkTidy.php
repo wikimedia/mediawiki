@@ -2,12 +2,12 @@
 
 use MediaWiki\MediaWikiServices;
 
-require __DIR__ . '/../Maintenance.php';
+require __DIR__ . '/Benchmarker.php';
 
-class BenchmarkTidy extends Maintenance {
+class BenchmarkTidy extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
-		$this->addOption( 'file', 'A filename which contains the input text', true, true );
+		$this->addOption( 'file', 'Path to file containing the input text', false, true );
 		$this->addOption( 'driver', 'The Tidy driver name, or false to use the configured instance',
 			false,  true );
 		$this->addOption( 'tidy-config', 'JSON encoded value for the tidy configuration array',
@@ -15,7 +15,8 @@ class BenchmarkTidy extends Maintenance {
 	}
 
 	public function execute() {
-		$html = file_get_contents( $this->getOption( 'file' ) );
+		$file = $this->getOption( 'file', __DIR__ . '/tidy/australia-untidy.html.gz' );
+		$html = $this->loadFile( $file );
 		if ( $html === false ) {
 			$this->fatalError( "Unable to open input file" );
 		}
