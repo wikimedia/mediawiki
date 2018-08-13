@@ -44,7 +44,7 @@ class AllMessagesTablePager extends TablePager {
 	 */
 	public $custom;
 
-	function __construct( $page, $conds, $langObj = null ) {
+	function __construct( $page, $conds, Language $langObj = null ) {
 		parent::__construct( $page->getContext() );
 		$this->mIndexField = 'am_title';
 		$this->mPage = $page;
@@ -56,7 +56,7 @@ class AllMessagesTablePager extends TablePager {
 		$this->talk = $this->msg( 'talkpagelinktext' )->escaped();
 
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		$this->lang = $langObj ?: $contLang;
+		$this->lang = $langObj ?? $contLang;
 		$this->langcode = $this->lang->getCode();
 		$this->foreign = !$this->lang->equals( $contLang );
 
