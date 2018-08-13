@@ -1321,7 +1321,7 @@
 	"imagelinks": "Matumizi ya faili",
 	"linkstoimage": "{{PLURAL:$1|Ukurasa huu umeunganishwa|Kurasa hizi $1 zimeunganishwa}} na faili hili:",
 	"linkstoimage-more": "Zipo {{PLURAL:$1|kurasa|kurasa}} zaidi ya $1 zinazounga na faili hili.\nOrodha inayofuata inaonyesha {{PLURAL:$1|kiungo cha kwanza|viungo $1 vya kwanza}} tu vinavyoungana na faili hili.\n[[Special:WhatLinksHere/$2|Orodha nzima]] inapatikana.",
-	"nolinkstoimage": "Hakuna kurasa zozote zilizounganishwa na faili hii.",
+	"nolinkstoimage": "Hakuna kurasa zozote zinazotumia faili hii.",
 	"morelinkstoimage": "Tazama [[Special:WhatLinksHere/$1|viungo vingine]] vinavyoelekeza faili hili.",
 	"linkstoimage-redirect": "$1 (elekezo la faili) $2",
 	"duplicatesoffile": "{{PLURAL:$1|Faili linalofuata ni nakala ya|Mafaili $1 yanayofuata ni nakala za}} faili hili ([[Special:FileDuplicateSearch/$2|maelezo mengine]]):",

@@ -81,7 +81,7 @@
 	"config-ns-other": "Друго (наведите)",
 	"config-ns-other-default": "MyWiki",
 	"config-admin-box": "Налог администратора",
-	"config-admin-name": "Ваше корисничко име:",
+	"config-admin-name": "Корисничко име:",
 	"config-admin-password": "Лозинка:",
 	"config-admin-password-confirm": "Поново унесите лозинку:",
 	"config-admin-help": "Овде упишите жељено корисничко име; на пример, „Јован Крстић“.\nОво име ћете користити за пријаву на вики.",
