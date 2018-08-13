@@ -57,10 +57,12 @@ use Wikimedia\ObjectFactory;
  *    'cssclass'            -- CSS class
  *    'csshelpclass'        -- CSS class used to style help text
  *    'dir'                 -- Direction of the element.
- *    'options'             -- associative array mapping labels to values.
+ *    'options'             -- associative array mapping raw text labels to values.
  *                             Some field types support multi-level arrays.
+ *                             Overwrites 'options-message'.
  *    'options-messages'    -- associative array mapping message keys to values.
  *                             Some field types support multi-level arrays.
+ *                             Overwrites 'options' and 'options-message'.
  *    'options-message'     -- message key or object to be parsed to extract the list of
  *                             options (like 'ipbreason-dropdown').
  *    'label-message'       -- message key or object for a message to use as the label.
