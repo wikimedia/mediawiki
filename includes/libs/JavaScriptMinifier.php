@@ -70,6 +70,8 @@ class JavaScriptMinifier {
 	const TYPE_LITERAL     = 117; // all literals, identifiers and unrecognised tokens
 
 	const ACTION_GOTO = 201;
+	const ACTION_PUSH = 202;
+	const ACTION_POP = 203;
 
 	// Sanity limit to avoid excessive memory usage
 	const STACK_LIMIT = 1000;
@@ -284,6 +286,11 @@ class JavaScriptMinifier {
 
 		// $model : This is the main table for our state machine. For every state/token pair
 		//          the desired action is defined.
+		//
+		// The state pushed onto the stack by ACTION_PUSH will be returned to by ACTION_POP.
+		//
+		// A given state/token pair MAY NOT specify both ACTION_POP and ACTION_GOTO.
+		// In the event of such mistake, ACTION_POP is used instead of ACTION_GOTO.
 		$model = [
 			// Statement - This is the initial state.
 			self::STATEMENT => [
@@ -296,7 +303,16 @@ class JavaScriptMinifier {
 				self::TYPE_ADD_OP => [
 					self::ACTION_GOTO => self::EXPRESSION,
 				],
+				self::TYPE_BRACE_OPEN => [
+					// Use of '{' in statement context, creates a Block.
+					self::ACTION_PUSH => self::STATEMENT,
+				],
+				self::TYPE_BRACE_CLOSE => [
+					// Ends a Block
+					self::ACTION_POP => true,
+				],
 				self::TYPE_PAREN_OPEN => [
+					self::ACTION_PUSH => self::EXPRESSION_OP,
 					self::ACTION_GOTO => self::PAREN_EXPRESSION,
 				],
 				self::TYPE_RETURN => [
@@ -314,6 +330,7 @@ class JavaScriptMinifier {
 			],
 			self::CONDITION => [
 				self::TYPE_PAREN_OPEN => [
+					self::ACTION_PUSH => self::STATEMENT,
 					self::ACTION_GOTO => self::PAREN_EXPRESSION,
 				],
 			],
@@ -322,7 +339,11 @@ class JavaScriptMinifier {
 					self::ACTION_GOTO => self::PROPERTY_EXPRESSION,
 				],
 				self::TYPE_BRACE_OPEN => [
+					self::ACTION_PUSH => self::PROPERTY_ASSIGNMENT,
 					self::ACTION_GOTO => self::STATEMENT,
+				],
+				self::TYPE_BRACE_CLOSE => [
+					self::ACTION_POP => true,
 				],
 			],
 			self::EXPRESSION => [
@@ -330,9 +351,14 @@ class JavaScriptMinifier {
 					self::ACTION_GOTO => self::STATEMENT,
 				],
 				self::TYPE_BRACE_OPEN => [
+					self::ACTION_PUSH => self::EXPRESSION_OP,
 					self::ACTION_GOTO => self::PROPERTY_ASSIGNMENT,
 				],
+				self::TYPE_BRACE_CLOSE => [
+					self::ACTION_POP => true,
+				],
 				self::TYPE_PAREN_OPEN => [
+					self::ACTION_PUSH => self::EXPRESSION_OP,
 					self::ACTION_GOTO => self::PAREN_EXPRESSION,
 				],
 				self::TYPE_FUNC => [
@@ -347,9 +373,14 @@ class JavaScriptMinifier {
 					self::ACTION_GOTO => self::STATEMENT,
 				],
 				self::TYPE_BRACE_OPEN => [
+					self::ACTION_PUSH => self::EXPRESSION_OP,
 					self::ACTION_GOTO => self::PROPERTY_ASSIGNMENT,
 				],
+				self::TYPE_BRACE_CLOSE => [
+					self::ACTION_POP => true,
+				],
 				self::TYPE_PAREN_OPEN => [
+					self::ACTION_PUSH => self::EXPRESSION_OP,
 					self::ACTION_GOTO => self::PAREN_EXPRESSION,
 				],
 				self::TYPE_FUNC => [
@@ -367,6 +398,7 @@ class JavaScriptMinifier {
 					self::ACTION_GOTO => self::EXPRESSION,
 				],
 				self::TYPE_HOOK => [
+					self::ACTION_PUSH => self::EXPRESSION,
 					self::ACTION_GOTO => self::EXPRESSION_TERNARY,
 				],
 				self::TYPE_COLON => [
@@ -379,19 +411,26 @@ class JavaScriptMinifier {
 					self::ACTION_GOTO => self::STATEMENT,
 				],
 				self::TYPE_PAREN_OPEN => [
+					self::ACTION_PUSH => self::EXPRESSION_OP,
 					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
+				self::TYPE_BRACE_CLOSE => [
+					self::ACTION_POP => true,
 				],
 			],
 			self::EXPRESSION_FUNC => [
 				self::TYPE_BRACE_OPEN => [
+					self::ACTION_PUSH => self::EXPRESSION_OP,
 					self::ACTION_GOTO => self::STATEMENT,
 				],
 			],
 			self::EXPRESSION_TERNARY => [
 				self::TYPE_BRACE_OPEN => [
+					self::ACTION_PUSH => self::EXPRESSION_TERNARY_OP,
 					self::ACTION_GOTO => self::PROPERTY_ASSIGNMENT,
 				],
 				self::TYPE_PAREN_OPEN => [
+					self::ACTION_PUSH => self::EXPRESSION_TERNARY_OP,
 					self::ACTION_GOTO => self::PAREN_EXPRESSION,
 				],
 				self::TYPE_FUNC => [
@@ -409,26 +448,37 @@ class JavaScriptMinifier {
 					self::ACTION_GOTO => self::EXPRESSION_TERNARY,
 				],
 				self::TYPE_HOOK => [
+					self::ACTION_PUSH => self::EXPRESSION_TERNARY,
 					self::ACTION_GOTO => self::EXPRESSION_TERNARY,
 				],
 				self::TYPE_COMMA => [
 					self::ACTION_GOTO => self::EXPRESSION_TERNARY,
 				],
 				self::TYPE_PAREN_OPEN => [
+					self::ACTION_PUSH => self::EXPRESSION_TERNARY_OP,
 					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
+				self::TYPE_COLON => [
+					self::ACTION_POP => true,
 				],
 			],
 			self::EXPRESSION_TERNARY_FUNC => [
 				self::TYPE_BRACE_OPEN => [
+					self::ACTION_PUSH => self::EXPRESSION_TERNARY_OP,
 					self::ACTION_GOTO => self::STATEMENT,
 				],
 			],
 			self::PAREN_EXPRESSION => [
 				self::TYPE_BRACE_OPEN => [
+					self::ACTION_PUSH => self::PAREN_EXPRESSION_OP,
 					self::ACTION_GOTO => self::PROPERTY_ASSIGNMENT,
 				],
 				self::TYPE_PAREN_OPEN => [
+					self::ACTION_PUSH => self::PAREN_EXPRESSION_OP,
 					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
+				self::TYPE_PAREN_CLOSE => [
+					self::ACTION_POP => true,
 				],
 				self::TYPE_FUNC => [
 					self::ACTION_GOTO => self::PAREN_EXPRESSION_FUNC,
@@ -457,19 +507,29 @@ class JavaScriptMinifier {
 					self::ACTION_GOTO => self::PAREN_EXPRESSION,
 				],
 				self::TYPE_PAREN_OPEN => [
+					self::ACTION_PUSH => self::PAREN_EXPRESSION_OP,
 					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
+				self::TYPE_PAREN_CLOSE => [
+					self::ACTION_POP => true,
 				],
 			],
 			self::PAREN_EXPRESSION_FUNC => [
 				self::TYPE_BRACE_OPEN => [
+					self::ACTION_PUSH => self::PAREN_EXPRESSION_OP,
 					self::ACTION_GOTO => self::STATEMENT,
 				],
 			],
 			self::PROPERTY_EXPRESSION => [
 				self::TYPE_BRACE_OPEN => [
+					self::ACTION_PUSH => self::PROPERTY_EXPRESSION_OP,
 					self::ACTION_GOTO => self::PROPERTY_ASSIGNMENT,
 				],
+				self::TYPE_BRACE_CLOSE => [
+					self::ACTION_POP => true,
+				],
 				self::TYPE_PAREN_OPEN => [
+					self::ACTION_PUSH => self::PROPERTY_EXPRESSION_OP,
 					self::ACTION_GOTO => self::PAREN_EXPRESSION,
 				],
 				self::TYPE_FUNC => [
@@ -492,117 +552,48 @@ class JavaScriptMinifier {
 				self::TYPE_COMMA => [
 					self::ACTION_GOTO => self::PROPERTY_ASSIGNMENT,
 				],
+				self::TYPE_BRACE_OPEN => [
+					self::ACTION_PUSH => self::PROPERTY_EXPRESSION_OP,
+				],
+				self::TYPE_BRACE_CLOSE => [
+					self::ACTION_POP => true,
+				],
 				self::TYPE_PAREN_OPEN => [
+					self::ACTION_PUSH => self::PROPERTY_EXPRESSION_OP,
 					self::ACTION_GOTO => self::PAREN_EXPRESSION,
 				],
 			],
 			self::PROPERTY_EXPRESSION_FUNC => [
 				self::TYPE_BRACE_OPEN => [
+					self::ACTION_PUSH => self::PROPERTY_EXPRESSION_OP,
 					self::ACTION_GOTO => self::STATEMENT,
 				],
-			]
-		];
-
-		// $push : This table contains the rules for when to push a state onto the stack.
-		//         The pushed state is the state to return to when the corresponding
-		//         closing token is found
-		$push = [
-			self::STATEMENT => [
-				self::TYPE_BRACE_OPEN => self::STATEMENT,
-				self::TYPE_PAREN_OPEN => self::EXPRESSION_OP
 			],
-			self::CONDITION => [
-				self::TYPE_PAREN_OPEN => self::STATEMENT
-			],
-			self::PROPERTY_ASSIGNMENT => [
-				self::TYPE_BRACE_OPEN => self::PROPERTY_ASSIGNMENT
-			],
-			self::EXPRESSION => [
-				self::TYPE_BRACE_OPEN => self::EXPRESSION_OP,
-				self::TYPE_PAREN_OPEN => self::EXPRESSION_OP
-			],
-			self::EXPRESSION_NO_NL => [
-				self::TYPE_BRACE_OPEN => self::EXPRESSION_OP,
-				self::TYPE_PAREN_OPEN => self::EXPRESSION_OP
-			],
-			self::EXPRESSION_OP => [
-				self::TYPE_HOOK       => self::EXPRESSION,
-				self::TYPE_PAREN_OPEN => self::EXPRESSION_OP
-			],
-			self::EXPRESSION_FUNC => [
-				self::TYPE_BRACE_OPEN => self::EXPRESSION_OP
-			],
-			self::EXPRESSION_TERNARY => [
-				self::TYPE_BRACE_OPEN => self::EXPRESSION_TERNARY_OP,
-				self::TYPE_PAREN_OPEN => self::EXPRESSION_TERNARY_OP
-			],
-			self::EXPRESSION_TERNARY_OP => [
-				self::TYPE_HOOK       => self::EXPRESSION_TERNARY,
-				self::TYPE_PAREN_OPEN => self::EXPRESSION_TERNARY_OP
-			],
-			self::EXPRESSION_TERNARY_FUNC => [
-				self::TYPE_BRACE_OPEN => self::EXPRESSION_TERNARY_OP
-			],
-			self::PAREN_EXPRESSION => [
-				self::TYPE_BRACE_OPEN => self::PAREN_EXPRESSION_OP,
-				self::TYPE_PAREN_OPEN => self::PAREN_EXPRESSION_OP
-			],
-			self::PAREN_EXPRESSION_OP => [
-				self::TYPE_PAREN_OPEN => self::PAREN_EXPRESSION_OP
-			],
-			self::PAREN_EXPRESSION_FUNC => [
-				self::TYPE_BRACE_OPEN => self::PAREN_EXPRESSION_OP
-			],
-			self::PROPERTY_EXPRESSION => [
-				self::TYPE_BRACE_OPEN => self::PROPERTY_EXPRESSION_OP,
-				self::TYPE_PAREN_OPEN => self::PROPERTY_EXPRESSION_OP
-			],
-			self::PROPERTY_EXPRESSION_OP => [
-				self::TYPE_BRACE_OPEN => self::PROPERTY_EXPRESSION_OP,
-				self::TYPE_PAREN_OPEN => self::PROPERTY_EXPRESSION_OP
-			],
-			self::PROPERTY_EXPRESSION_FUNC => [
-				self::TYPE_BRACE_OPEN => self::PROPERTY_EXPRESSION_OP
-			]
-		];
-
-		// $pop : Rules for when to pop a state from the stack
-		$pop = [
-			self::STATEMENT              => [ self::TYPE_BRACE_CLOSE => true ],
-			self::PROPERTY_ASSIGNMENT    => [ self::TYPE_BRACE_CLOSE => true ],
-			self::EXPRESSION             => [ self::TYPE_BRACE_CLOSE => true ],
-			self::EXPRESSION_NO_NL       => [ self::TYPE_BRACE_CLOSE => true ],
-			self::EXPRESSION_OP          => [ self::TYPE_BRACE_CLOSE => true ],
-			self::EXPRESSION_TERNARY_OP  => [ self::TYPE_COLON       => true ],
-			self::PAREN_EXPRESSION       => [ self::TYPE_PAREN_CLOSE => true ],
-			self::PAREN_EXPRESSION_OP    => [ self::TYPE_PAREN_CLOSE => true ],
-			self::PROPERTY_EXPRESSION    => [ self::TYPE_BRACE_CLOSE => true ],
-			self::PROPERTY_EXPRESSION_OP => [ self::TYPE_BRACE_CLOSE => true ]
 		];
 
 		// $semicolon : Rules for when a semicolon insertion is appropriate
 		$semicolon = [
 			self::EXPRESSION_NO_NL => [
-				self::TYPE_UN_OP      => true,
-				self::TYPE_INCR_OP    => true,
-				self::TYPE_ADD_OP     => true,
+				self::TYPE_UN_OP => true,
+				self::TYPE_INCR_OP => true,
+				self::TYPE_ADD_OP => true,
 				self::TYPE_BRACE_OPEN => true,
 				self::TYPE_PAREN_OPEN => true,
-				self::TYPE_RETURN     => true,
-				self::TYPE_IF         => true,
-				self::TYPE_DO         => true,
-				self::TYPE_FUNC       => true,
-				self::TYPE_LITERAL    => true
+				self::TYPE_RETURN => true,
+				self::TYPE_IF => true,
+				self::TYPE_DO => true,
+				self::TYPE_FUNC => true,
+				self::TYPE_LITERAL => true
 			],
 			self::EXPRESSION_OP => [
-				self::TYPE_UN_OP      => true,
-				self::TYPE_INCR_OP    => true,
+				self::TYPE_UN_OP => true,
+				self::TYPE_INCR_OP => true,
 				self::TYPE_BRACE_OPEN => true,
-				self::TYPE_RETURN     => true,
-				self::TYPE_IF         => true,
-				self::TYPE_DO         => true,
-				self::TYPE_FUNC       => true,
-				self::TYPE_LITERAL    => true
+				self::TYPE_RETURN => true,
+				self::TYPE_IF => true,
+				self::TYPE_DO => true,
+				self::TYPE_FUNC => true,
+				self::TYPE_LITERAL => true
 			]
 		];
 
@@ -834,10 +825,12 @@ class JavaScriptMinifier {
 			$newlineFound = false;
 
 			// Now that we have output our token, transition into the new state.
-			if ( isset( $push[$state][$type] ) && count( $stack ) < self::STACK_LIMIT ) {
-				$stack[] = $push[$state][$type];
+			if ( isset( $model[$state][$type][self::ACTION_PUSH] ) &&
+				count( $stack ) < self::STACK_LIMIT
+			) {
+				$stack[] = $model[$state][$type][self::ACTION_PUSH];
 			}
-			if ( $stack && isset( $pop[$state][$type] ) ) {
+			if ( $stack && isset( $model[$state][$type][self::ACTION_POP] ) ) {
 				$state = array_pop( $stack );
 			} elseif ( isset( $model[$state][$type][self::ACTION_GOTO] ) ) {
 				$state = $model[$state][$type][self::ACTION_GOTO];
