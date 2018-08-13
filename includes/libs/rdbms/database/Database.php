@@ -1239,7 +1239,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$this->trxProfiler->recordQueryCompletion(
-			$queryProf, $startTime, $isWrite, $this->affectedRows()
+			$queryProf,
+			$startTime,
+			$isWrite,
+			$isWrite ? $this->affectedRows() : $this->numRows( $ret )
 		);
 		$this->queryLogger->debug( $sql, [
 			'method' => $fname,
