@@ -73,7 +73,7 @@
 		 * @ignore
 		 * @param {string} name the name of a tab without the prefix ("mw-prefsection-")
 		 * @param {string} [mode] A hash will be set according to the current
-		 *  open section. Set mode 'noHash' to supress this.
+		 *  open section. Set mode 'noHash' to suppress this.
 		 */
 		function switchPrefTab( name, mode ) {
 			if ( mode === 'noHash' ) {

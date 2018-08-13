@@ -123,7 +123,7 @@ class BitmapMetadataHandler {
 	 */
 	function getMetadataArray() {
 		// this seems a bit ugly... This is all so its merged in right order
-		// based on the MWG recomendation.
+		// based on the MWG recommendation.
 		$temp = [];
 		krsort( $this->metaPriority );
 		foreach ( $this->metaPriority as $pri ) {

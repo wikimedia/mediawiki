@@ -533,7 +533,7 @@ abstract class Maintenance {
 		# Generic (non script dependant) options:
 
 		$this->addOption( 'help', 'Display this help message', false, false, 'h' );
-		$this->addOption( 'quiet', 'Whether to supress non-error output', false, false, 'q' );
+		$this->addOption( 'quiet', 'Whether to suppress non-error output', false, false, 'q' );
 		$this->addOption( 'conf', 'Location of LocalSettings.php, if not default', false, true );
 		$this->addOption( 'wiki', 'For specifying the wiki ID', false, true );
 		$this->addOption( 'globals', 'Output globals at the end of processing for debugging' );

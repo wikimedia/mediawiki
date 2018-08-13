@@ -11,7 +11,7 @@ use Wikimedia\Rdbms\IDatabase;
  * recentchanges table as a reliable stream to make certain keys reach consistency
  * as soon as the underlying replica database catches up. These means that critical
  * keys will not escape getting purged simply due to brief hiccups in the network,
- * which are more prone to happen accross datacenters.
+ * which are more prone to happen across datacenters.
  *
  * ----
  * "I was trying to cheat death. I was only trying to surmount for a little while the

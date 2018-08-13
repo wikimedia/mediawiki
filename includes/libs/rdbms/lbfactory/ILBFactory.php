@@ -338,7 +338,7 @@ interface ILBFactory {
 	/**
 	 * Append ?cpPosIndex parameter to a URL for ChronologyProtector purposes if needed
 	 *
-	 * Note that unlike cookies, this works accross domains
+	 * Note that unlike cookies, this works across domains
 	 *
 	 * @param string $url
 	 * @param int $index Write counter index
