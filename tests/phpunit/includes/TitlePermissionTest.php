@@ -69,6 +69,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 			$this->user = $this->userUser;
 		}
+		$this->overrideMwServices();
 	}
 
 	protected function setUserPerm( $perm ) {
