@@ -127,6 +127,7 @@ TEXT
 			'first pageid written for the first %s (required) and the last pageid written for the ' .
 			'second %s if it exists.', false, true, false, true ); // This can be specified multiple times
 		$this->addOption( 'quiet', 'Don\'t dump status reports to stderr.' );
+		$this->addOption( 'full', 'Dump all revisions of every page' );
 		$this->addOption( 'current', 'Base ETA on number of pages in database instead of all revisions' );
 		$this->addOption( 'spawn', 'Spawn a subprocess for loading text records' );
 		$this->addOption( 'buffersize', 'Buffer size in bytes to use for reading the stub. ' .
