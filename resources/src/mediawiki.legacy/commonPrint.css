@@ -240,11 +240,6 @@ div.floatleft {
 	border: 0;
 }
 
-div.floatleft p,
-div.floatright p {
-	font-style: italic;
-}
-
 .center {
 	text-align: center;
 }

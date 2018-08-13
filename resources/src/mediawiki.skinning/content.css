@@ -117,18 +117,10 @@ table.floatright {
 	margin: 0 0 0.5em 0.5em;
 }
 
-div.floatright p {
-	font-style: italic;
-}
-
 /* @noflip */
 div.floatleft,
 table.floatleft {
 	margin: 0 0.5em 0.5em 0;
-}
-
-div.floatleft p {
-	font-style: italic;
 }
 
 /* Thumbnails */
