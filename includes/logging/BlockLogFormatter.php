@@ -130,7 +130,7 @@ class BlockLogFormatter extends LogFormatter {
 	 * @param Language $lang
 	 * @return string
 	 */
-	public static function formatBlockFlags( $flags, $lang ) {
+	public static function formatBlockFlags( $flags, Language $lang ) {
 		$flags = trim( $flags );
 		if ( $flags === '' ) {
 			return ''; // nothing to do
@@ -153,7 +153,7 @@ class BlockLogFormatter extends LogFormatter {
 	 * @param Language $lang Language object to use
 	 * @return string
 	 */
-	public static function formatBlockFlag( $flag, $lang ) {
+	public static function formatBlockFlag( $flag, Language $lang ) {
 		static $messages = [];
 
 		if ( !isset( $messages[$flag] ) ) {

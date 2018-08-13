@@ -85,7 +85,7 @@ class LanguageConverter {
 	 * @param array $flags Defining the custom strings that maps to the flags
 	 * @param array $manualLevel Limit for supported variants
 	 */
-	public function __construct( $langobj, $maincode, $variants = [],
+	public function __construct( Language $langobj, $maincode, $variants = [],
 								$variantfallbacks = [], $flags = [],
 								$manualLevel = [] ) {
 		global $wgDisabledVariants;

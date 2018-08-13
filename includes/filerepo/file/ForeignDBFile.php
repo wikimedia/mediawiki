@@ -126,14 +126,14 @@ class ForeignDBFile extends LocalFile {
 	 * @param Language|null $lang Optional language to fetch description in.
 	 * @return string|false
 	 */
-	function getDescriptionText( $lang = null ) {
+	function getDescriptionText( Language $lang = null ) {
 		global $wgLang;
 
 		if ( !$this->repo->fetchDescription ) {
 			return false;
 		}
 
-		$lang = $lang ?: $wgLang;
+		$lang = $lang ?? $wgLang;
 		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName(), $lang->getCode() );
 		if ( !$renderUrl ) {
 			return false;

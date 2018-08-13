@@ -32,7 +32,7 @@ class GanConverter extends LanguageConverter {
 	 * @param array $flags
 	 * @param array $manualLevel
 	 */
-	function __construct( $langobj, $maincode,
+	function __construct( Language $langobj, $maincode,
 		$variants = [],
 		$variantfallbacks = [],
 		$flags = [],
