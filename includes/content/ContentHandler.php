@@ -614,6 +614,14 @@ abstract class ContentHandler {
 	/**
 	 * Factory for creating an appropriate DifferenceEngine for this content model.
 	 *
+	 * The DifferenceEngine subclass to use is selected in getDiffEngineClass(). The
+	 * GetDifferenceEngine hook will receive the DifferenceEngine object and can replace or
+	 * wrap it.
+	 * (Note that in older versions of MediaWiki the hook documentation instructed extensions
+	 * to return false from the hook; you should not rely on always being able to decorate
+	 * the DifferenceEngine instance from the hook. If the owner of the content type wants to
+	 * decorare the instance, overriding this method is a safer approach.)
+	 *
 	 * @since 1.21
 	 *
 	 * @param IContextSource $context Context to use, anything else will be ignored.
@@ -629,15 +637,11 @@ abstract class ContentHandler {
 		$rcid = 0, // FIXME: Deprecated, no longer used
 		$refreshCache = false, $unhide = false
 	) {
-		// hook: get difference engine
-		$differenceEngine = null;
-		if ( !Hooks::run( 'GetDifferenceEngine',
-			[ $context, $old, $new, $refreshCache, $unhide, &$differenceEngine ]
-		) ) {
-			return $differenceEngine;
-		}
 		$diffEngineClass = $this->getDiffEngineClass();
-		return new $diffEngineClass( $context, $old, $new, $rcid, $refreshCache, $unhide );
+		$differenceEngine = new $diffEngineClass( $context, $old, $new, $rcid, $refreshCache, $unhide );
+		Hooks::run( 'GetDifferenceEngine', [ $context, $old, $new, $refreshCache, $unhide,
+			&$differenceEngine ] );
+		return $differenceEngine;
 	}
 
 	/**

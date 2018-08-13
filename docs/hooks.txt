@@ -1670,15 +1670,13 @@ $title: Title object that we need to get a sortkey for
 &$sortkey: Sortkey to use.
 
 'GetDifferenceEngine': Called when getting a new difference engine interface
-object Return false for valid object in $differenceEngine or true for the
-default difference engine.
+object.  Can be used to decorate or replace the default difference engine.
 $context: IContextSource context to be used for diff
 $old: Revision ID to show and diff with
 $new: Either a revision ID or one of the strings 'cur', 'prev' or 'next'
 $refreshCache: If set, refreshes the diff cache
 $unhide: If set, allow viewing deleted revs
-&$differenceEngine: output parameter, difference engine object to be used for
-  diff
+&$differenceEngine: The difference engine object to be used for the diff
 
 'GetDoubleUnderscoreIDs': Modify the list of behavior switch (double
 underscore) magic words. Called by MagicWord.
