@@ -1190,8 +1190,10 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 * @return ParserOutput
 	 */
 	public function getSlotParserOutput( $role, $generateHtml = true ) {
-		// XXX: $generateHtml is currently ignored. RenderedRevision could be made to use it.
-		return $this->getRenderedRevision()->getSlotParserOutput( $role );
+		return $this->getRenderedRevision()->getSlotParserOutput(
+			$role,
+			[ 'generate-html' => $generateHtml ]
+		);
 	}
 
 	/**

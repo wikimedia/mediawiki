@@ -307,6 +307,44 @@ EOF
 		// phpcs:enable
 	}
 
+	/**
+	 * @covers ParserOutput::hasText
+	 */
+	public function testHasText() {
+		$po = new ParserOutput();
+		$this->assertTrue( $po->hasText() );
+
+		$po = new ParserOutput( null );
+		$this->assertFalse( $po->hasText() );
+
+		$po = new ParserOutput( '' );
+		$this->assertTrue( $po->hasText() );
+
+		$po = new ParserOutput( null );
+		$po->setText( '' );
+		$this->assertTrue( $po->hasText() );
+	}
+
+	/**
+	 * @covers ParserOutput::getText
+	 */
+	public function testGetText_failsIfNoText() {
+		$po = new ParserOutput( null );
+
+		$this->setExpectedException( LogicException::class );
+		$po->getText();
+	}
+
+	/**
+	 * @covers ParserOutput::getRawText
+	 */
+	public function testGetRawText_failsIfNoText() {
+		$po = new ParserOutput( null );
+
+		$this->setExpectedException( LogicException::class );
+		$po->getRawText();
+	}
+
 	public function provideMergeHtmlMetaDataFrom() {
 		// title text ------------
 		$a = new ParserOutput();
