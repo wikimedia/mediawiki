@@ -1298,8 +1298,8 @@ MESSAGE;
 	}
 
 	/**
-	 * Returns a JS call to mw.loader.state, which sets the state of a
-	 * module or modules to a given value. Has two calling conventions:
+	 * Returns a JS call to mw.loader.state, which sets the state of one
+	 * ore more modules to a given value. Has two calling conventions:
 	 *
 	 *    - ResourceLoader::makeLoaderStateScript( $name, $state ):
 	 *         Set the state of a single module called $name to $state
@@ -1307,24 +1307,19 @@ MESSAGE;
 	 *    - ResourceLoader::makeLoaderStateScript( [ $name => $state, ... ] ):
 	 *         Set the state of modules with the given names to the given states
 	 *
-	 * @param string $name
+	 * @param array|string $states
 	 * @param string|null $state
 	 * @return string JavaScript code
 	 */
-	public static function makeLoaderStateScript( $name, $state = null ) {
-		if ( is_array( $name ) ) {
-			return Xml::encodeJsCall(
-				'mw.loader.state',
-				[ $name ],
-				self::inDebugMode()
-			);
-		} else {
-			return Xml::encodeJsCall(
-				'mw.loader.state',
-				[ $name, $state ],
-				self::inDebugMode()
-			);
+	public static function makeLoaderStateScript( $states, $state = null ) {
+		if ( !is_array( $states ) ) {
+			$states = [ $states => $state ];
 		}
+		return Xml::encodeJsCall(
+			'mw.loader.state',
+			[ $states ],
+			self::inDebugMode()
+		);
 	}
 
 	/**

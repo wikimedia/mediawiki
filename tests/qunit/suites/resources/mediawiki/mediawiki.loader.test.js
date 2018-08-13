@@ -665,7 +665,7 @@
 		assert.strictEqual( mw.loader.getState( 'test.module7' ), 'registered', 'Expected "registered" state for test.module7' );
 		assert.strictEqual( mw.loader.getState( 'test.module8' ), 'loaded', 'Expected "loaded" state for test.module8' );
 		assert.strictEqual( mw.loader.getState( 'test.module9' ), 'registered', 'Expected "registered" state for test.module9' );
-		mw.loader.state( 'test.module7', 'missing' );
+		mw.loader.state( { 'test.module7': 'missing' } );
 		assert.strictEqual( mw.loader.getState( 'test.module7' ), 'missing', 'Expected "missing" state for test.module7' );
 		assert.strictEqual( mw.loader.getState( 'test.module8' ), 'error', 'Expected "error" state for test.module8' );
 		assert.strictEqual( mw.loader.getState( 'test.module9' ), 'error', 'Expected "error" state for test.module9' );
@@ -732,7 +732,7 @@
 			},
 			function ( e, badmodules ) {
 				assert.ok( true, 'Error handler should be invoked.' );
-				// As soon as server spits out state('testMissing', 'missing');
+				// As soon as server sets state of 'testMissing' to 'missing'
 				// it will bubble up and trigger the error callback.
 				// Therefor the badmodules array is not testUsesMissing or testUsesNestedMissing.
 				assert.deepEqual( badmodules, [ 'testMissing' ], 'Bad modules as expected.' );
