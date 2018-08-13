@@ -23,45 +23,35 @@
 require_once __DIR__ . '/Benchmarker.php';
 
 /**
- * Maintenance script that benchmarks CSSMin.
+ * Maintenance script that benchmarks JavaScriptMinifier.
  *
  * @ingroup Benchmark
  */
-class BenchmarkCSSMin extends Benchmarker {
+class BenchmarkJavaScriptMinifier extends Benchmarker {
+	protected $defaultCount = 10;
+
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription( 'Benchmarks CSSMin.' );
-		$this->addOption( 'file', 'Path to CSS file (may be gzipped)', false, true );
-		$this->addOption( 'out', 'Echo output of one run to stdout for inspection', false, false );
+		$this->addDescription( 'Benchmark for JavaScriptMinifier.' );
+		$this->addOption( 'file', 'Path to JavaScript file (may be gzipped)', false, true );
 	}
 
 	public function execute() {
-		$file = $this->getOption( 'file', __DIR__ . '/cssmin/styles.css' );
+		$file = $this->getOption( 'file', __DIR__ . '/jsmin/jquery-3.2.1.js.gz' );
 		$filename = basename( $file );
-		$css = $this->loadFile( $file );
-
-		if ( $this->hasOption( 'out' ) ) {
-			echo "## minify\n\n",
-				CSSMin::minify( $css ),
-				"\n\n";
-			echo "## remap\n\n",
-				CSSMin::remap( $css, dirname( $file ), 'https://example.org/test/', true ),
-				"\n";
-			return;
+		$content = $this->loadFile( $file );
+		if ( $content === false ) {
+			$this->fatalError( 'Unable to open input file' );
 		}
 
 		$this->bench( [
 			"minify ($filename)" => [
-				'function' => [ CSSMin::class, 'minify' ],
-				'args' => [ $css ]
-			],
-			"remap ($filename)" => [
-				'function' => [ CSSMin::class, 'remap' ],
-				'args' => [ $css, dirname( $file ), 'https://example.org/test/', true ]
+				'function' => [ JavaScriptMinifier::class, 'minify' ],
+				'args' => [ $content ],
 			],
 		] );
 	}
 }
 
-$maintClass = BenchmarkCSSMin::class;
+$maintClass = BenchmarkJavaScriptMinifier::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
