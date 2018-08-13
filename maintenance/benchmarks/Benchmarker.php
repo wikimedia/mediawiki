@@ -162,4 +162,18 @@ abstract class Benchmarker extends Maintenance {
 			$this->lang->formatSize( memory_get_peak_usage( true ) )
 		) );
 	}
+
+	/**
+	 * @since 1.32
+	 * @param string $file Path to file (maybe compressed with gzip)
+	 * @return string Contents of file
+	 */
+	protected function loadFile( $file ) {
+		$content = file_get_contents( $file );
+		// Detect GZIP compression header
+		if ( substr( $content, 0, 2 ) === "\037\213" ) {
+			$content = gzdecode( $content );
+		}
+		return $content;
+	}
 }

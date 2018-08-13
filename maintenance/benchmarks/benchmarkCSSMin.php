@@ -61,15 +61,6 @@ class BenchmarkCSSMin extends Benchmarker {
 			],
 		] );
 	}
-
-	private function loadFile( $file ) {
-		$css = file_get_contents( $file );
-		// Detect GZIP compression header
-		if ( substr( $css, 0, 2 ) === "\037\213" ) {
-			$css = gzdecode( $css );
-		}
-		return $css;
-	}
 }
 
 $maintClass = BenchmarkCSSMin::class;
