@@ -1856,7 +1856,7 @@
 	"filehist-comment": "Opmerking",
 	"imagelinks": "Bestandsgebruik",
 	"linkstoimage": "Dit bestand wordt op de volgende {{PLURAL:$1|pagina|$1 pagina's}} gebruikt:",
-	"linkstoimage-more": "Er {{PLURAL:$2|is|zijn}} meer dan $1 {{PLURAL:$1|koppeling|koppelingen}} naar dit bestand.\nDe volgende lijst geeft alleen de eerste {{PLURAL:$1|koppeling|$1 koppelingen}} naar dit bestand weer.\nEr is ook een [[Special:WhatLinksHere/$2|volledige lijst]].",
+	"linkstoimage-more": "Meer dan $1 {{PLURAL:$1|pagina gebruikt|pagina's gebruiken}} dit bestand.\nDe volgende lijst geeft alleen de eerste {{PLURAL:$1|pagina|$1 pagina's}} die dit bestand gebruiken weer.\nEr is ook een [[Special:WhatLinksHere/$2|volledige lijst]] beschikbaar.",
 	"nolinkstoimage": "Geen enkele pagina gebruikt dit bestand.",
 	"morelinkstoimage": "[[Special:WhatLinksHere/$1|Meer koppelingen]] naar dit bestand bekijken.",
 	"linkstoimage-redirect": "$1 (bestandsdoorverwijzing) $2",
