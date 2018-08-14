@@ -75,7 +75,7 @@ class IcuCollation extends Collation {
 	 * letters (denoted by keys starting with '-').
 	 *
 	 * These are additions to (or subtractions from) the data stored in the
-	 * first-letters-root.ser file (which among others includes full basic latin,
+	 * first-letters-root.php data file (which among others includes full basic latin,
 	 * cyrillic and greek alphabets).
 	 *
 	 * "Separate letter" is a letter that would have a separate heading/section
@@ -348,9 +348,10 @@ class IcuCollation extends Collation {
 	 * @throws MWException
 	 */
 	private function fetchFirstLetterData() {
+		global $IP;
 		// Generate data from serialized data file
 		if ( isset( self::$tailoringFirstLetters[$this->locale] ) ) {
-			$letters = wfGetPrecompiledData( 'first-letters-root.ser' );
+			$letters = require "$IP/includes/collation/data/first-letters-root.php";
 			// Append additional characters
 			$letters = array_merge( $letters, self::$tailoringFirstLetters[$this->locale] );
 			// Remove unnecessary ones, if any
@@ -364,10 +365,15 @@ class IcuCollation extends Collation {
 				$letters[] = $this->digitTransformLanguage->formatNum( $digit, true );
 			}
 		} else {
-			$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
-			if ( $letters === false ) {
-				throw new MWException( "MediaWiki does not support ICU locale " .
-					"\"{$this->locale}\"" );
+			if ( $this->locale === 'root' ) {
+				$letters = require "$IP/includes/collation/data/first-letters-root.php";
+			} else {
+				// FIXME: Is this still used?
+				$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
+				if ( $letters === false ) {
+					throw new MWException( "MediaWiki does not support ICU locale " .
+						"\"{$this->locale}\"" );
+				}
 			}
 		}
 
