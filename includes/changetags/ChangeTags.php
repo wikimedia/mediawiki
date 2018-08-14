@@ -916,8 +916,8 @@ class ChangeTags {
 		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
 			$dbw->update(
 				'change_tag_def',
-				[ 'ctd_name' => $tag ],
 				[ 'ctd_user_defined' => 0 ],
+				[ 'ctd_name' => $tag ],
 				__METHOD__
 			);
 
