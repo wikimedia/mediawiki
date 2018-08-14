@@ -8826,7 +8826,7 @@ $wgSearchRunSuggestedQuery = true;
  * @since 1.27
  * @var string path to file
  */
-$wgPopularPasswordFile = __DIR__ . '/../serialized/commonpasswords.cdb';
+$wgPopularPasswordFile = __DIR__ . '/password/commonpasswords.cdb';
 
 /*
  * Max time (in seconds) a user-generated transaction can spend in writes.
