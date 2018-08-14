@@ -1922,26 +1922,21 @@
 				/**
 				 * Change the state of one or more modules.
 				 *
-				 * @param {string|Object} module Module name or object of module name/state pairs
-				 * @param {string} state State name
+				 * @param {Object|string} modules Object of module name/state pairs
 				 */
-				state: function ( module, state ) {
-					var m;
-
-					if ( typeof module === 'object' ) {
-						for ( m in module ) {
-							mw.loader.state( m, module[ m ] );
+				state: function ( modules ) {
+					var module, state;
+					for ( module in modules ) {
+						state = modules[ module ];
+						if ( !hasOwn.call( registry, module ) ) {
+							mw.loader.register( module );
 						}
-						return;
-					}
-					if ( !hasOwn.call( registry, module ) ) {
-						mw.loader.register( module );
-					}
-					registry[ module ].state = state;
-					if ( state === 'ready' || state === 'error' || state === 'missing' ) {
-						// Make sure pending modules depending on this one get executed if their
-						// dependencies are now fulfilled!
-						handlePending( module );
+						registry[ module ].state = state;
+						if ( state === 'ready' || state === 'error' || state === 'missing' ) {
+							// Make sure pending modules depending on this one get executed if their
+							// dependencies are now fulfilled!
+							handlePending( module );
+						}
 					}
 				},
 
