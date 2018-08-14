@@ -69,6 +69,8 @@ class JavaScriptMinifier {
 	const TYPE_FUNC        = 116; // keywords: function
 	const TYPE_LITERAL     = 117; // all literals, identifiers and unrecognised tokens
 
+	const ACTION_GOTO = 201;
+
 	// Sanity limit to avoid excessive memory usage
 	const STACK_LIMIT = 1000;
 
@@ -280,102 +282,224 @@ class JavaScriptMinifier {
 			';'          => self::TYPE_SEMICOLON,
 		];
 
-		// $goto : This is the main table for our state machine. For every state/token pair
-		//         the following state is defined. When no rule exists for a given pair,
-		//         the state is left unchanged.
-		$goto = [
+		// $model : This is the main table for our state machine. For every state/token pair
+		//          the desired action is defined.
+		$model = [
+			// Statement - This is the initial state.
 			self::STATEMENT => [
-				self::TYPE_UN_OP      => self::EXPRESSION,
-				self::TYPE_INCR_OP    => self::EXPRESSION,
-				self::TYPE_ADD_OP     => self::EXPRESSION,
-				self::TYPE_PAREN_OPEN => self::PAREN_EXPRESSION,
-				self::TYPE_RETURN     => self::EXPRESSION_NO_NL,
-				self::TYPE_IF         => self::CONDITION,
-				self::TYPE_FUNC       => self::CONDITION,
-				self::TYPE_LITERAL    => self::EXPRESSION_OP
+				self::TYPE_UN_OP => [
+					self::ACTION_GOTO => self::EXPRESSION,
+				],
+				self::TYPE_INCR_OP => [
+					self::ACTION_GOTO => self::EXPRESSION,
+				],
+				self::TYPE_ADD_OP => [
+					self::ACTION_GOTO => self::EXPRESSION,
+				],
+				self::TYPE_PAREN_OPEN => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
+				self::TYPE_RETURN => [
+					self::ACTION_GOTO => self::EXPRESSION_NO_NL,
+				],
+				self::TYPE_IF => [
+					self::ACTION_GOTO => self::CONDITION,
+				],
+				self::TYPE_FUNC => [
+					self::ACTION_GOTO => self::CONDITION,
+				],
+				self::TYPE_LITERAL => [
+					self::ACTION_GOTO => self::EXPRESSION_OP,
+				],
 			],
 			self::CONDITION => [
-				self::TYPE_PAREN_OPEN => self::PAREN_EXPRESSION
+				self::TYPE_PAREN_OPEN => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
 			],
 			self::PROPERTY_ASSIGNMENT => [
-				self::TYPE_COLON      => self::PROPERTY_EXPRESSION,
-				self::TYPE_BRACE_OPEN => self::STATEMENT
+				self::TYPE_COLON => [
+					self::ACTION_GOTO => self::PROPERTY_EXPRESSION,
+				],
+				self::TYPE_BRACE_OPEN => [
+					self::ACTION_GOTO => self::STATEMENT,
+				],
 			],
 			self::EXPRESSION => [
-				self::TYPE_SEMICOLON  => self::STATEMENT,
-				self::TYPE_BRACE_OPEN => self::PROPERTY_ASSIGNMENT,
-				self::TYPE_PAREN_OPEN => self::PAREN_EXPRESSION,
-				self::TYPE_FUNC       => self::EXPRESSION_FUNC,
-				self::TYPE_LITERAL    => self::EXPRESSION_OP
+				self::TYPE_SEMICOLON => [
+					self::ACTION_GOTO => self::STATEMENT,
+				],
+				self::TYPE_BRACE_OPEN => [
+					self::ACTION_GOTO => self::PROPERTY_ASSIGNMENT,
+				],
+				self::TYPE_PAREN_OPEN => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
+				self::TYPE_FUNC => [
+					self::ACTION_GOTO => self::EXPRESSION_FUNC,
+				],
+				self::TYPE_LITERAL => [
+					self::ACTION_GOTO => self::EXPRESSION_OP,
+				],
 			],
 			self::EXPRESSION_NO_NL => [
-				self::TYPE_SEMICOLON  => self::STATEMENT,
-				self::TYPE_BRACE_OPEN => self::PROPERTY_ASSIGNMENT,
-				self::TYPE_PAREN_OPEN => self::PAREN_EXPRESSION,
-				self::TYPE_FUNC       => self::EXPRESSION_FUNC,
-				self::TYPE_LITERAL    => self::EXPRESSION_OP
+				self::TYPE_SEMICOLON => [
+					self::ACTION_GOTO => self::STATEMENT,
+				],
+				self::TYPE_BRACE_OPEN => [
+					self::ACTION_GOTO => self::PROPERTY_ASSIGNMENT,
+				],
+				self::TYPE_PAREN_OPEN => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
+				self::TYPE_FUNC => [
+					self::ACTION_GOTO => self::EXPRESSION_FUNC,
+				],
+				self::TYPE_LITERAL => [
+					self::ACTION_GOTO => self::EXPRESSION_OP,
+				],
 			],
 			self::EXPRESSION_OP => [
-				self::TYPE_BIN_OP     => self::EXPRESSION,
-				self::TYPE_ADD_OP     => self::EXPRESSION,
-				self::TYPE_HOOK       => self::EXPRESSION_TERNARY,
-				self::TYPE_COLON      => self::STATEMENT,
-				self::TYPE_COMMA      => self::EXPRESSION,
-				self::TYPE_SEMICOLON  => self::STATEMENT,
-				self::TYPE_PAREN_OPEN => self::PAREN_EXPRESSION
+				self::TYPE_BIN_OP => [
+					self::ACTION_GOTO => self::EXPRESSION,
+				],
+				self::TYPE_ADD_OP => [
+					self::ACTION_GOTO => self::EXPRESSION,
+				],
+				self::TYPE_HOOK => [
+					self::ACTION_GOTO => self::EXPRESSION_TERNARY,
+				],
+				self::TYPE_COLON => [
+					self::ACTION_GOTO => self::STATEMENT,
+				],
+				self::TYPE_COMMA => [
+					self::ACTION_GOTO => self::EXPRESSION,
+				],
+				self::TYPE_SEMICOLON => [
+					self::ACTION_GOTO => self::STATEMENT,
+				],
+				self::TYPE_PAREN_OPEN => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
 			],
 			self::EXPRESSION_FUNC => [
-				self::TYPE_BRACE_OPEN => self::STATEMENT
+				self::TYPE_BRACE_OPEN => [
+					self::ACTION_GOTO => self::STATEMENT,
+				],
 			],
 			self::EXPRESSION_TERNARY => [
-				self::TYPE_BRACE_OPEN => self::PROPERTY_ASSIGNMENT,
-				self::TYPE_PAREN_OPEN => self::PAREN_EXPRESSION,
-				self::TYPE_FUNC       => self::EXPRESSION_TERNARY_FUNC,
-				self::TYPE_LITERAL    => self::EXPRESSION_TERNARY_OP
+				self::TYPE_BRACE_OPEN => [
+					self::ACTION_GOTO => self::PROPERTY_ASSIGNMENT,
+				],
+				self::TYPE_PAREN_OPEN => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
+				self::TYPE_FUNC => [
+					self::ACTION_GOTO => self::EXPRESSION_TERNARY_FUNC,
+				],
+				self::TYPE_LITERAL => [
+					self::ACTION_GOTO => self::EXPRESSION_TERNARY_OP,
+				],
 			],
 			self::EXPRESSION_TERNARY_OP => [
-				self::TYPE_BIN_OP     => self::EXPRESSION_TERNARY,
-				self::TYPE_ADD_OP     => self::EXPRESSION_TERNARY,
-				self::TYPE_HOOK       => self::EXPRESSION_TERNARY,
-				self::TYPE_COMMA      => self::EXPRESSION_TERNARY,
-				self::TYPE_PAREN_OPEN => self::PAREN_EXPRESSION
+				self::TYPE_BIN_OP => [
+					self::ACTION_GOTO => self::EXPRESSION_TERNARY,
+				],
+				self::TYPE_ADD_OP => [
+					self::ACTION_GOTO => self::EXPRESSION_TERNARY,
+				],
+				self::TYPE_HOOK => [
+					self::ACTION_GOTO => self::EXPRESSION_TERNARY,
+				],
+				self::TYPE_COMMA => [
+					self::ACTION_GOTO => self::EXPRESSION_TERNARY,
+				],
+				self::TYPE_PAREN_OPEN => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
 			],
 			self::EXPRESSION_TERNARY_FUNC => [
-				self::TYPE_BRACE_OPEN => self::STATEMENT
+				self::TYPE_BRACE_OPEN => [
+					self::ACTION_GOTO => self::STATEMENT,
+				],
 			],
 			self::PAREN_EXPRESSION => [
-				self::TYPE_BRACE_OPEN => self::PROPERTY_ASSIGNMENT,
-				self::TYPE_PAREN_OPEN => self::PAREN_EXPRESSION,
-				self::TYPE_FUNC       => self::PAREN_EXPRESSION_FUNC,
-				self::TYPE_LITERAL    => self::PAREN_EXPRESSION_OP
+				self::TYPE_BRACE_OPEN => [
+					self::ACTION_GOTO => self::PROPERTY_ASSIGNMENT,
+				],
+				self::TYPE_PAREN_OPEN => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
+				self::TYPE_FUNC => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION_FUNC,
+				],
+				self::TYPE_LITERAL => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION_OP,
+				],
 			],
 			self::PAREN_EXPRESSION_OP => [
-				self::TYPE_BIN_OP     => self::PAREN_EXPRESSION,
-				self::TYPE_ADD_OP     => self::PAREN_EXPRESSION,
-				self::TYPE_HOOK       => self::PAREN_EXPRESSION,
-				self::TYPE_COLON      => self::PAREN_EXPRESSION,
-				self::TYPE_COMMA      => self::PAREN_EXPRESSION,
-				self::TYPE_SEMICOLON  => self::PAREN_EXPRESSION,
-				self::TYPE_PAREN_OPEN => self::PAREN_EXPRESSION
+				self::TYPE_BIN_OP => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
+				self::TYPE_ADD_OP => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
+				self::TYPE_HOOK => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
+				self::TYPE_COLON => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
+				self::TYPE_COMMA => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
+				self::TYPE_SEMICOLON => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
+				self::TYPE_PAREN_OPEN => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
 			],
 			self::PAREN_EXPRESSION_FUNC => [
-				self::TYPE_BRACE_OPEN => self::STATEMENT
+				self::TYPE_BRACE_OPEN => [
+					self::ACTION_GOTO => self::STATEMENT,
+				],
 			],
 			self::PROPERTY_EXPRESSION => [
-				self::TYPE_BRACE_OPEN => self::PROPERTY_ASSIGNMENT,
-				self::TYPE_PAREN_OPEN => self::PAREN_EXPRESSION,
-				self::TYPE_FUNC       => self::PROPERTY_EXPRESSION_FUNC,
-				self::TYPE_LITERAL    => self::PROPERTY_EXPRESSION_OP
+				self::TYPE_BRACE_OPEN => [
+					self::ACTION_GOTO => self::PROPERTY_ASSIGNMENT,
+				],
+				self::TYPE_PAREN_OPEN => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
+				self::TYPE_FUNC => [
+					self::ACTION_GOTO => self::PROPERTY_EXPRESSION_FUNC,
+				],
+				self::TYPE_LITERAL => [
+					self::ACTION_GOTO => self::PROPERTY_EXPRESSION_OP,
+				],
 			],
 			self::PROPERTY_EXPRESSION_OP => [
-				self::TYPE_BIN_OP     => self::PROPERTY_EXPRESSION,
-				self::TYPE_ADD_OP     => self::PROPERTY_EXPRESSION,
-				self::TYPE_HOOK       => self::PROPERTY_EXPRESSION,
-				self::TYPE_COMMA      => self::PROPERTY_ASSIGNMENT,
-				self::TYPE_PAREN_OPEN => self::PAREN_EXPRESSION
+				self::TYPE_BIN_OP => [
+					self::ACTION_GOTO => self::PROPERTY_EXPRESSION,
+				],
+				self::TYPE_ADD_OP => [
+					self::ACTION_GOTO => self::PROPERTY_EXPRESSION,
+				],
+				self::TYPE_HOOK => [
+					self::ACTION_GOTO => self::PROPERTY_EXPRESSION,
+				],
+				self::TYPE_COMMA => [
+					self::ACTION_GOTO => self::PROPERTY_ASSIGNMENT,
+				],
+				self::TYPE_PAREN_OPEN => [
+					self::ACTION_GOTO => self::PAREN_EXPRESSION,
+				],
 			],
 			self::PROPERTY_EXPRESSION_FUNC => [
-				self::TYPE_BRACE_OPEN => self::STATEMENT
+				self::TYPE_BRACE_OPEN => [
+					self::ACTION_GOTO => self::STATEMENT,
+				],
 			]
 		];
 
@@ -715,8 +839,8 @@ class JavaScriptMinifier {
 			}
 			if ( $stack && isset( $pop[$state][$type] ) ) {
 				$state = array_pop( $stack );
-			} elseif ( isset( $goto[$state][$type] ) ) {
-				$state = $goto[$state][$type];
+			} elseif ( isset( $model[$state][$type][self::ACTION_GOTO] ) ) {
+				$state = $model[$state][$type][self::ACTION_GOTO];
 			}
 		}
 		return $out;
