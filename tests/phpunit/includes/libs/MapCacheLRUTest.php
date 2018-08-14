@@ -214,4 +214,54 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( 1983, $cache->getField( 'MPs', 'Edwina Currie' ) );
 		$this->assertEquals( 1970, $cache->getField( 'MPs', 'Neil Kinnock' ) );
 	}
+
+	/**
+	 * @covers MapCacheLRU::has()
+	 * @covers MapCacheLRU::get()
+	 * @covers MapCacheLRU::set()
+	 * @covers MapCacheLRU::hasField()
+	 * @covers MapCacheLRU::getField()
+	 * @covers MapCacheLRU::setField()
+	 */
+	public function testInvalidKeys() {
+		$cache = MapCacheLRU::newFromArray( [], 3 );
+
+		try {
+			$cache->has( 3.4 );
+			$this->fail( "No exception" );
+		} catch ( UnexpectedValueException $e ) {
+			$this->assertRegExp( '/must be string or integer/', $e->getMessage() );
+		}
+		try {
+			$cache->get( false );
+			$this->fail( "No exception" );
+		} catch ( UnexpectedValueException $e ) {
+			$this->assertRegExp( '/must be string or integer/', $e->getMessage() );
+		}
+		try {
+			$cache->set( 3.4, 'x' );
+			$this->fail( "No exception" );
+		} catch ( UnexpectedValueException $e ) {
+			$this->assertRegExp( '/must be string or integer/', $e->getMessage() );
+		}
+
+		try {
+			$cache->hasField( 'x', 3.4 );
+			$this->fail( "No exception" );
+		} catch ( UnexpectedValueException $e ) {
+			$this->assertRegExp( '/must be string or integer/', $e->getMessage() );
+		}
+		try {
+			$cache->getField( 'x', false );
+			$this->fail( "No exception" );
+		} catch ( UnexpectedValueException $e ) {
+			$this->assertRegExp( '/must be string or integer/', $e->getMessage() );
+		}
+		try {
+			$cache->setField( 'x', 3.4, 'x' );
+			$this->fail( "No exception" );
+		} catch ( UnexpectedValueException $e ) {
+			$this->assertRegExp( '/must be string or integer/', $e->getMessage() );
+		}
+	}
 }
