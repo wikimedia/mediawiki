@@ -19,7 +19,7 @@
 				auprefix: userInput[ 0 ].toUpperCase() + userInput.slice( 1 ),
 				aulimit: maxRows
 			} ).done( function ( data ) {
-				var users = $.map( data.query.allusers, function ( userObj ) {
+				var users = data.query.allusers.map( function ( userObj ) {
 					return userObj.name;
 				} );
 				response( users );

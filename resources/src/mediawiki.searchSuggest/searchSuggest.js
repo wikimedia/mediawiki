@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-properties */
 /*!
  * Add search suggestions to the search form.
  */

@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-properties */
 /*!
 * Experimental advanced wikitext parser-emitter.
 * See: https://www.mediawiki.org/wiki/Extension:UploadWizard/MessageParser for docs

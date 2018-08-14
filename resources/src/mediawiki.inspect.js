@@ -243,7 +243,7 @@
 			var module = mw.loader.moduleRegistry[ moduleName ];
 
 			// Grep module's JavaScript
-			if ( $.isFunction( module.script ) && pattern.test( module.script.toString() ) ) {
+			if ( typeof module.script === 'function' && pattern.test( module.script.toString() ) ) {
 				return true;
 			}
 

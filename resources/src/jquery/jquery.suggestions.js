@@ -116,7 +116,7 @@
 			if ( context.data.timerID !== null ) {
 				clearTimeout( context.data.timerID );
 			}
-			if ( $.isFunction( context.config.cancel ) ) {
+			if ( typeof context.config.cancel === 'function' ) {
 				context.config.cancel.call( context.data.$textbox );
 			}
 		},

@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function ( mw ) {
 	QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.server = this.sandbox.useFakeServer();
@@ -69,7 +69,7 @@
 
 		result = mw.user.generateRandomSessionId();
 		assert.strictEqual( typeof result, 'string', 'type' );
-		assert.strictEqual( $.trim( result ), result, 'no whitespace at beginning or end' );
+		assert.strictEqual( result.trim(), result, 'no whitespace at beginning or end' );
 		assert.strictEqual( result.length, 16, 'size' );
 
 		result2 = mw.user.generateRandomSessionId();
@@ -90,7 +90,7 @@
 
 		result = mw.user.generateRandomSessionId();
 		assert.strictEqual( typeof result, 'string', 'type' );
-		assert.strictEqual( $.trim( result ), result, 'no whitespace at beginning or end' );
+		assert.strictEqual( result.trim(), result, 'no whitespace at beginning or end' );
 		assert.strictEqual( result.length, 16, 'size' );
 
 		result2 = mw.user.generateRandomSessionId();
@@ -109,7 +109,7 @@
 		var result = mw.user.sessionId(),
 			result2 = mw.user.sessionId();
 		assert.strictEqual( typeof result, 'string', 'type' );
-		assert.strictEqual( $.trim( result ), result, 'no leading or trailing whitespace' );
+		assert.strictEqual( result.trim(), result, 'no leading or trailing whitespace' );
 		assert.strictEqual( result2, result, 'retained' );
 	} );
-}( mediaWiki, jQuery ) );
+}( mediaWiki ) );

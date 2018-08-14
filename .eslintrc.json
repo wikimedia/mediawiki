@@ -12,7 +12,7 @@
 	},
 	"rules": {
 		"no-restricted-properties": [
-			1,
+			2,
 			{
 				"object": "$",
 				"property": "map",
