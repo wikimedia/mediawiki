@@ -367,7 +367,7 @@ abstract class DatabaseMysqlBase extends Database {
 			$res = $res->result;
 		}
 		Wikimedia\suppressWarnings();
-		$n = $this->mysqlNumRows( $res );
+		$n = $res ? $this->mysqlNumRows( $res ) : 0;
 		Wikimedia\restoreWarnings();
 
 		// Unfortunately, mysql_num_rows does not reset the last errno.
