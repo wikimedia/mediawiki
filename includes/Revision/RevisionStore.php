@@ -2145,8 +2145,8 @@ class RevisionStore
 			return;
 		}
 
-		// XXX: we really want the default database ID...
-		$storeWiki = $storeWiki ?: wfWikiID();
+		$storeWiki = $storeWiki ?: $this->loadBalancer->getLocalDomainID();
+		// @FIXME: when would getDomainID() be false here?
 		$dbWiki = $dbWiki ?: wfWikiID();
 
 		if ( $dbWiki === $storeWiki ) {

@@ -100,7 +100,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	private function getMockForViews() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'fetchRow', 'query' ] )
+			->setMethods( [ 'fetchRow', 'query', 'getDBname' ] )
 			->getMock();
 
 		$db->method( 'query' )
@@ -110,6 +110,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 				(object)[ 'Tables_in_' => 'view2' ],
 				(object)[ 'Tables_in_' => 'myview' ]
 			] ) );
+		$db->method( 'getDBname' )->willReturn( '' );
 
 		return $db;
 	}
@@ -677,7 +678,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testIndexAliases() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'mysqlRealEscapeString' ] )
+			->setMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
 		$db->method( 'mysqlRealEscapeString' )->willReturnCallback(
 			function ( $s ) {
@@ -710,7 +711,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testTableAliases() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'mysqlRealEscapeString' ] )
+			->setMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
 		$db->method( 'mysqlRealEscapeString' )->willReturnCallback(
 			function ( $s ) {

@@ -77,7 +77,7 @@ class LoadBalancerSingle extends LoadBalancer {
 		) );
 	}
 
-	protected function reallyOpenConnection( array $server, DatabaseDomain $domainOverride ) {
+	protected function reallyOpenConnection( array $server, DatabaseDomain $domain ) {
 		return $this->db;
 	}
 }

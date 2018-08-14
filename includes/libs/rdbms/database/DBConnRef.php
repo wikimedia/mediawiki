@@ -375,6 +375,11 @@ class DBConnRef implements IDatabase {
 		throw new DBUnexpectedError( $this, "Database selection is disallowed to enable reuse." );
 	}
 
+	public function selectDomain( $domain ) {
+		// Disallow things that might confuse the LoadBalancer tracking
+		throw new DBUnexpectedError( $this, "Database selection is disallowed to enable reuse." );
+	}
+
 	public function getDBname() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

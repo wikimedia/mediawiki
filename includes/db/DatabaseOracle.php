@@ -23,10 +23,12 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBUnexpectedError;
+use Wikimedia\Rdbms\DBExpectedError;
 
 /**
  * @ingroup Database
@@ -81,8 +83,9 @@ class DatabaseOracle extends Database {
 		return false;
 	}
 
-	function open( $server, $user, $password, $dbName ) {
+	protected function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
 		global $wgDBOracleDRCP;
+
 		if ( !function_exists( 'oci_connect' ) ) {
 			throw new DBConnectionError(
 				$this,
@@ -94,20 +97,15 @@ class DatabaseOracle extends Database {
 		$this->close();
 		$this->user = $user;
 		$this->password = $password;
-		// changed internal variables functions
-		// mServer now holds the TNS endpoint
-		// mDBname is schema name if different from username
 		if ( !$server ) {
-			// backward compatibillity (server used to be null and TNS was supplied in dbname)
+			// Backward compatibility (server used to be null and TNS was supplied in dbname)
 			$this->server = $dbName;
-			$this->dbName = $user;
+			$realDatabase = $user;
 		} else {
+			// $server now holds the TNS endpoint
 			$this->server = $server;
-			if ( !$dbName ) {
-				$this->dbName = $user;
-			} else {
-				$this->dbName = $dbName;
-			}
+			// $dbName is schema name if different from username
+			$realDatabase = $dbName ?: $user;
 		}
 
 		if ( !strlen( $user ) ) { # e.g. the class is being loaded
@@ -148,9 +146,15 @@ class DatabaseOracle extends Database {
 		}
 		Wikimedia\restoreWarnings();
 
-		if ( $this->user != $this->dbName ) {
+		if ( $this->user != $realDatabase ) {
 			// change current schema in session
-			$this->selectDB( $this->dbName );
+			$this->selectDB( $realDatabase );
+		} else {
+			$this->currentDomain = new DatabaseDomain(
+				$realDatabase,
+				null,
+				$tablePrefix
+			);
 		}
 
 		if ( !$this->conn ) {
@@ -654,8 +658,8 @@ class DatabaseOracle extends Database {
 					atc.table_name
 				) || '_' ||
 				atc.column_name || '_SEQ' = '{$this->tablePrefix}' || asq.sequence_name
-				AND asq.sequence_owner = upper('{$this->dbName}')
-				AND atc.owner = upper('{$this->dbName}')" );
+				AND asq.sequence_owner = upper('{$this->getDBname()}')
+				AND atc.owner = upper('{$this->getDBname()}')" );
 
 			while ( ( $row = $result->fetchRow() ) !== false ) {
 				$this->sequenceData[$row[1]] = [
@@ -735,7 +739,7 @@ class DatabaseOracle extends Database {
 			$listWhere = ' AND table_name LIKE \'' . strtoupper( $prefix ) . '%\'';
 		}
 
-		$owner = strtoupper( $this->dbName );
+		$owner = strtoupper( $this->getDBname() );
 		$result = $this->doQuery( "SELECT table_name FROM all_tables " .
 			"WHERE owner='$owner' AND table_name NOT LIKE '%!_IDX\$_' ESCAPE '!' $listWhere" );
 
@@ -813,7 +817,7 @@ class DatabaseOracle extends Database {
 		$table = $this->tableName( $table );
 		$table = strtoupper( $this->removeIdentifierQuotes( $table ) );
 		$index = strtoupper( $index );
-		$owner = strtoupper( $this->dbName );
+		$owner = strtoupper( $this->getDBname() );
 		$sql = "SELECT 1 FROM all_indexes WHERE owner='$owner' AND index_name='{$table}_{$index}'";
 		$res = $this->doQuery( $sql );
 		if ( $res ) {
@@ -835,7 +839,7 @@ class DatabaseOracle extends Database {
 	function tableExists( $table, $fname = __METHOD__ ) {
 		$table = $this->tableName( $table );
 		$table = $this->addQuotes( strtoupper( $this->removeIdentifierQuotes( $table ) ) );
-		$owner = $this->addQuotes( strtoupper( $this->dbName ) );
+		$owner = $this->addQuotes( strtoupper( $this->getDBname() ) );
 		$sql = "SELECT 1 FROM all_tables WHERE owner=$owner AND table_name=$table";
 		$res = $this->doQuery( $sql );
 		if ( $res && $res->numRows() > 0 ) {
@@ -1031,23 +1035,33 @@ class DatabaseOracle extends Database {
 		return true;
 	}
 
-	function selectDB( $db ) {
-		$this->dbName = $db;
-		if ( $db == null || $db == $this->user ) {
+	protected function doSelectDomain( DatabaseDomain $domain ) {
+		if ( $domain->getSchema() !== null ) {
+			// We use the *database* aspect of $domain for schema, not the domain schema
+			throw new DBExpectedError( $this, __CLASS__ . ": domain schemas are not supported." );
+		}
+
+		$database = $domain->getDatabase();
+		if ( $database === null || $database === $this->user ) {
+			// Backward compatibility
+			$this->currentDomain = $domain;
+
 			return true;
 		}
-		$sql = 'ALTER SESSION SET CURRENT_SCHEMA=' . strtoupper( $db );
+
+		// https://docs.oracle.com/javadb/10.8.3.0/ref/rrefsqlj32268.html
+		$encDatabase = $this->addIdentifierQuotes( strtoupper( $database ) );
+		$sql = "ALTER SESSION SET CURRENT_SCHEMA=$encDatabase";
 		$stmt = oci_parse( $this->conn, $sql );
 		Wikimedia\suppressWarnings();
 		$success = oci_execute( $stmt );
 		Wikimedia\restoreWarnings();
-		if ( !$success ) {
+		if ( $success ) {
+			// Update that domain fields on success (no exception thrown)
+			$this->currentDomain = $domain;
+		} else {
 			$e = oci_error( $stmt );
-			if ( $e['code'] != '1435' ) {
-				$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
-			}
-
-			return false;
+			$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
 		}
 
 		return true;
@@ -1330,10 +1344,6 @@ class DatabaseOracle extends Database {
 
 	function bitOr( $fieldLeft, $fieldRight ) {
 		return 'BITOR(' . $fieldLeft . ', ' . $fieldRight . ')';
-	}
-
-	function getDBname() {
-		return $this->dbName;
 	}
 
 	function getServer() {
