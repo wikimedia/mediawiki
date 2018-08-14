@@ -1797,6 +1797,7 @@
 	"logentry-move-move": "$1 {{GENDER:$2|movis}} la pagino $3 a $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|movis}} la pagino $3 a $4 sen lasar ridirektilo",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|movis}} la pagino $3 a $4 sen lasar ridirekto",
+	"logentry-move-move_redir-noredirect": "$1 {{GENDER:$2|movis}} la pagino $3 a $4 super antea ridirekto sen lasar ridirekto",
 	"logentry-patrol-patrol-auto": "$1 automatale {{GENDER:$2|indikis}} ke la revizo $4 de la pagino $3 surveyesas",
 	"logentry-newusers-create": "La konto dil uzero $1 kreesis.",
 	"logentry-newusers-autocreate": "L'uzanto $1 {{GENDER:$2|kreesis}} automatale",
