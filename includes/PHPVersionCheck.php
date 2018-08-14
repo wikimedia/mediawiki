@@ -72,7 +72,7 @@ class PHPVersionCheck {
 	 *  - 'implementation': The name of the implementation used
 	 *  - 'vendor': The development group, vendor or developer of the implementation.
 	 *  - 'upstreamSupported': The minimum version of the implementation supported by the named vendor.
-	 *  - 'minSupported': The minimum version supported by MediWiki
+	 *  - 'minSupported': The minimum version supported by MediaWiki
 	 *  - 'upgradeURL': The URL to the website of the implementation that contains
 	 *  upgrade/installation instructions.
 	 */
