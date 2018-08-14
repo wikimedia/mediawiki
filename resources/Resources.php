@@ -2961,6 +2961,10 @@ return [
 		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-editing-advanced',
 	],
+	'oojs-ui.styles.icons-editing-citation' => [
+		'class' => ResourceLoaderOOUIImageModule::class,
+		'themeImages' => 'icons-editing-citation',
+	],
 	'oojs-ui.styles.icons-editing-core' => [
 		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-editing-core',
