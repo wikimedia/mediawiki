@@ -230,6 +230,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		$status = Status::newGood();
 		$status->merge( $this->makeStubDBFile( $dir, $db ) );
 		$status->merge( $this->makeStubDBFile( $dir, "wikicache" ) );
+		$status->merge( $this->makeStubDBFile( $dir, "{$db}_l10n_cache" ) );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
@@ -242,7 +243,8 @@ class SqliteInstaller extends DatabaseInstaller {
 
 		# Create the global cache DB
 		try {
-			$conn = Database::factory( 'sqlite', [ 'dbname' => 'wikicache', 'dbDirectory' => $dir ] );
+			$conn = Database::factory(
+				'sqlite', [ 'dbname' => 'wikicache', 'dbDirectory' => $dir ] );
 			# @todo: don't duplicate objectcache definition, though it's very simple
 			$sql =
 <<<EOT
@@ -254,6 +256,27 @@ class SqliteInstaller extends DatabaseInstaller {
 EOT;
 			$conn->query( $sql );
 			$conn->query( "CREATE INDEX IF NOT EXISTS exptime ON objectcache (exptime)" );
+			$conn->query( "PRAGMA journal_mode=WAL" ); // this is permanent
+			$conn->close();
+		} catch ( DBConnectionError $e ) {
+			return Status::newFatal( 'config-sqlite-connection-error', $e->getMessage() );
+		}
+
+		# Create the l10n cache DB
+		try {
+			$conn = Database::factory(
+				'sqlite', [ 'dbname' => "{$db}_l10n_cache", 'dbDirectory' => $dir ] );
+			# @todo: don't duplicate l10n_cache definition, though it's very simple
+			$sql =
+<<<EOT
+	CREATE TABLE l10n_cache (
+		lc_lang BLOB NOT NULL,
+		lc_key TEXT NOT NULL,
+		lc_value BLOB NOT NULL,
+		PRIMARY KEY (lc_lang, lc_key)
+	);
+EOT;
+			$conn->query( $sql );
 			$conn->query( "PRAGMA journal_mode=WAL" ); // this is permanent
 			$conn->close();
 		} catch ( DBConnectionError $e ) {
@@ -330,6 +353,13 @@ EOT;
 		'dbDirectory' => \$wgSQLiteDataDir,
 		'flags' => 0
 	]
+];
+\$wgLocalisationCacheConf['storeServer'] = [
+	'type' => 'sqlite',
+	'dbname' => \"{\$wgDBname}_l10n_cache\",
+	'tablePrefix' => '',
+	'dbDirectory' => \$wgSQLiteDataDir,
+	'flags' => 0
 ];";
 	}
 }
