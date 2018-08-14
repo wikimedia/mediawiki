@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.6
+ * OOUI v0.28.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-08-01T22:17:59Z
+ * Date: 2018-08-14T23:16:18Z
  */
 ( function ( OO ) {
 
@@ -318,6 +318,7 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 	this.toolFactory = toolFactory;
 	this.toolGroupFactory = toolGroupFactory;
 	this.groupsByName = {};
+	this.activeToolGroups = 0;
 	this.tools = {};
 	this.position = config.position || 'top';
 	this.$bar = $( '<div>' );
@@ -363,6 +364,15 @@ OO.mixinClass( OO.ui.Toolbar, OO.ui.mixin.GroupElement );
  * tools is required.
  *
  * @param {...Mixed} data Application-defined parameters
+ */
+
+/**
+ * @event active
+ *
+ * An 'active' event is emitted when the number of active toolgroups increases from 0, or
+ * returns to 0.
+ *
+ * @param {boolean} There are active toolgroups in this toolbar
  */
 
 /* Methods */
@@ -484,8 +494,29 @@ OO.ui.Toolbar.prototype.setup = function ( groups ) {
 			// Groups without name are deprecated
 			OO.ui.warnDeprecation( 'Toolgroups must have a \'name\' property' );
 		}
+		toolGroup.connect( this, { active: 'onToolGroupActive' } );
 	}
 	this.addItems( items );
+};
+
+/**
+ * Handle active events from tool groups
+ *
+ * @param {boolean} active Tool group has become active, inactive if false
+ * @fires active
+ */
+OO.ui.Toolbar.prototype.onToolGroupActive = function ( active ) {
+	if ( active ) {
+		this.activeToolGroups++;
+		if ( this.activeToolGroups === 1 ) {
+			this.emit( 'active', true );
+		}
+	} else {
+		this.activeToolGroups--;
+		if ( this.activeToolGroups === 0 ) {
+			this.emit( 'active', false );
+		}
+	}
 };
 
 /**
@@ -980,6 +1011,14 @@ OO.mixinClass( OO.ui.ToolGroup, OO.ui.mixin.GroupElement );
 
 /**
  * @event update
+ */
+
+/**
+ * @event active
+ *
+ * An 'active' event is emitted when any popup is shown/hidden.
+ *
+ * @param {boolean} The popup is visible
  */
 
 /* Static Properties */
@@ -1548,6 +1587,7 @@ OO.ui.PopupTool.prototype.onUpdateState = function () {
  */
 OO.ui.PopupTool.prototype.onPopupToggle = function ( isVisible ) {
 	this.setActive( isVisible );
+	this.toolGroup.emit( 'active', isVisible );
 };
 
 /**
@@ -1601,7 +1641,11 @@ OO.ui.ToolGroupTool = function OoUiToolGroupTool( toolGroup, config ) {
 	this.innerToolGroup = this.createGroup( this.constructor.static.groupConfig );
 
 	// Events
-	this.innerToolGroup.connect( this, { disable: 'onToolGroupDisable' } );
+	this.innerToolGroup.connect( this, {
+		disable: 'onToolGroupDisable',
+		// Re-emit active events from the innerToolGroup on the parent toolGroup
+		active: this.toolGroup.emit.bind( this.toolGroup, 'active' )
+	} );
 
 	// Initialization
 	this.$link.remove();
@@ -2044,6 +2088,7 @@ OO.ui.PopupToolGroup.prototype.isActive = function () {
  * deactivation.
  *
  * @param {boolean} value The active state to set
+ * @fires active
  */
 OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 	var containerWidth, containerLeft;
@@ -2090,6 +2135,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 			this.togglePositioning( false );
 			this.toggleClipping( false );
 		}
+		this.emit( 'active', this.active );
 		this.updateThemeClasses();
 	}
 };

@@ -92,10 +92,6 @@
 		"search": {
 			"file": "../wikimediaui/images/icons/search.svg"
 		},
-		"settings": {
-			"file": "../wikimediaui/images/icons/pageSettings.svg",
-			"deprecated": "Renamed since v0.27.0, use 'pageSettings' instead."
-		},
 		"subtract": {
 			"file": "../wikimediaui/images/icons/subtract.svg"
 		}

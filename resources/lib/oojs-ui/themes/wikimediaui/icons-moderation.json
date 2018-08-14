@@ -32,14 +32,6 @@
 		"unBlock": {
 			"file": "images/icons/unBlock.svg"
 		},
-		"clip": {
-			"file": "images/icons/bookmarkOutline.svg",
-			"deprecated": "Renamed since v0.26.1, use 'bookmarkOutline' instead."
-		},
-		"unClip": {
-			"file": "images/icons/bookmark.svg",
-			"deprecated": "Renamed since v0.26.1, use 'bookmark' instead."
-		},
 		"flag": {
 			"file": {
 				"ltr": "images/icons/flag-ltr.svg",
