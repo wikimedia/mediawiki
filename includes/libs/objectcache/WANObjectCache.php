@@ -946,7 +946,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @code
 	 *     $catSituationTolerabilityCache = $this->cache->getWithSetCallback(
 	 *         // Group by constraint ID/hash, cat family ID/hash, or something else useful
-	 *         $this->cache->makeKey( 'cat-situation-tolerablity-checks', $groupKey ),
+	 *         $this->cache->makeKey( 'cat-situation-tolerability-checks', $groupKey ),
 	 *         WANObjectCache::TTL_DAY, // rarely used groups should fade away
 	 *         // The $scenarioKey format is $constraintId:<ID/hash of $situation>
 	 *         function ( $cacheMap ) use ( $scenarioKey, $constraintId, $situation ) {

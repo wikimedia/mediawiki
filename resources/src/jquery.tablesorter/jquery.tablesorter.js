@@ -910,7 +910,7 @@
 
 					// Build the cache for the tbody cells
 					// to share between calculations for this sort action.
-					// Re-calculated each time a sort action is performed due to possiblity
+					// Re-calculated each time a sort action is performed due to possibility
 					// that sort values change. Shouldn't be too expensive, but if it becomes
 					// too slow an event based system should be implemented somehow where
 					// cells get event .change() and bubbles up to the <table> here

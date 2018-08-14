@@ -649,7 +649,7 @@ __INDEXATTR__;
 	 * be quoted with Database::addQuotes()
 	 * $conds may be "*" to copy the whole table
 	 * srcTable may be an array of tables.
-	 * @todo FIXME: Implement this a little better (seperate select/insert)?
+	 * @todo FIXME: Implement this a little better (separate select/insert)?
 	 *
 	 * @param string $destTable
 	 * @param array|string $srcTable

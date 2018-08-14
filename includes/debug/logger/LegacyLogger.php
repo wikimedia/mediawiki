@@ -193,7 +193,7 @@ class LegacyLogger extends AbstractLogger {
 	 * Format a message.
 	 *
 	 * Messages to the 'wfDebug', 'wfLogDBError' and 'wfErrorLog' channels
-	 * receive special fomatting to mimic the historic output of the functions
+	 * receive special formatting to mimic the historic output of the functions
 	 * of the same name. All other channel values are formatted based on the
 	 * historic output of the `wfDebugLog()` global function.
 	 *

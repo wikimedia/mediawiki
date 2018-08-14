@@ -1095,7 +1095,7 @@ MESSAGE;
 						break;
 					case 'styles':
 						$styles = $content['styles'];
-						// We no longer seperate into media, they are all combined now with
+						// We no longer separate into media, they are all combined now with
 						// custom media type groups into @media .. {} sections as part of the css string.
 						// Module returns either an empty array or a numerical array with css strings.
 						$strContent = isset( $styles['css'] ) ? implode( '', $styles['css'] ) : '';

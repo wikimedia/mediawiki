@@ -130,7 +130,7 @@ MemCachedClient::set_debug($do_debug);
 MemCachedClient::forget_dead_hosts();
 
 // When a function returns FALSE, an error code is set.
-// This funtion will return the error code.
+// This function will return the error code.
 // See error_string()
 // returns last error code set
 MemCachedClient::error()

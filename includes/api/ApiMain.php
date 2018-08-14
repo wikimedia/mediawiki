@@ -807,7 +807,7 @@ class ApiMain extends ApiBase {
 	 * Attempt to validate the value of Access-Control-Request-Headers against a list
 	 * of headers that we allow the follow up request to send.
 	 *
-	 * @param string $requestedHeaders Comma seperated list of HTTP headers
+	 * @param string $requestedHeaders Comma separated list of HTTP headers
 	 * @return bool True if all requested headers are in the list of allowed headers
 	 */
 	protected static function matchRequestedHeaders( $requestedHeaders ) {

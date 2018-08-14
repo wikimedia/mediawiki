@@ -232,13 +232,13 @@ class MessageCache {
 	 * (2) memcached
 	 * (3) from the database.
 	 *
-	 * When succesfully loading from (2) or (3), all higher level caches are
+	 * When successfully loading from (2) or (3), all higher level caches are
 	 * updated for the newest version.
 	 *
 	 * Nothing is loaded if member variable mDisable is true, either manually
 	 * set by calling code or if message loading fails (is this possible?).
 	 *
-	 * Returns true if cache is already populated or it was succesfully populated,
+	 * Returns true if cache is already populated or it was successfully populated,
 	 * or false if populating empty cache fails. Also returns true if MessageCache
 	 * is disabled.
 	 *

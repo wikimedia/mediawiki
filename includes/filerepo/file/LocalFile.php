@@ -3146,7 +3146,7 @@ class LocalFileRestoreBatch {
 
 	/**
 	 * Cleanup a failed batch. The batch was only partially successful, so
-	 * rollback by removing all items that were succesfully copied.
+	 * rollback by removing all items that were successfully copied.
 	 *
 	 * @param Status $storeStatus
 	 * @param array[] $storeBatch
