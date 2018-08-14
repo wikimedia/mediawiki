@@ -1,8 +1,7 @@
 {
 	"extends": [
-		"../../.eslintrc.json",
-		"plugin:qunit/recommended",
-		"plugin:qunit/two"
+		"wikimedia/qunit",
+		"../../.eslintrc.json"
 	],
 	"env": {
 		"qunit": true
@@ -14,11 +13,7 @@
 		"operator-linebreak": 0,
 		"quote-props": [ "error", "as-needed" ],
 		"valid-jsdoc": 0,
-		"qunit/no-assert-equal": "error",
-		"qunit/no-early-return": "error",
-		"qunit/no-negated-ok": "error",
 		"qunit/require-expect": 0,
 		"qunit/resolve-async": 0
-	},
-	"plugins": [ "qunit" ]
+	}
 }

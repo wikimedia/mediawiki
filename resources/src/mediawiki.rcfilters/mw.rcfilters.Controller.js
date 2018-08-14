@@ -337,8 +337,8 @@
 	/**
 	 * Create filter data from a number, for the filters that are numerical value
 	 *
-	 * @param {Number} num Number
-	 * @param {Number} numForDisplay Number for the label
+	 * @param {number} num Number
+	 * @param {number} numForDisplay Number for the label
 	 * @return {Object} Filter data
 	 */
 	mw.rcfilters.Controller.prototype._createFilterDataFromNumber = function ( num, numForDisplay ) {
