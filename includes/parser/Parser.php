@@ -5490,6 +5490,23 @@ class Parser {
 	}
 
 	/**
+	 * @since 1.32
+	 * @return array
+	 */
+	public function getFunctionSynonyms() {
+		$this->firstCallInit();
+		return $this->mFunctionSynonyms;
+	}
+
+	/**
+	 * @since 1.32
+	 * @return string
+	 */
+	public function getUrlProtocols() {
+		return $this->mUrlProtocols;
+	}
+
+	/**
 	 * Replace transparent tags in $text with the values given by the callbacks.
 	 *
 	 * Transparent tag hooks are like regular XML-style tag hooks, except they
