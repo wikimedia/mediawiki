@@ -39,11 +39,6 @@ class ExtensionRegistry {
 	const MERGE_STRATEGY = '_merge_strategy';
 
 	/**
-	 * @var BagOStuff
-	 */
-	protected $cache;
-
-	/**
 	 * Array of loaded things, keyed by name, values are credits information
 	 *
 	 * @var array
@@ -81,17 +76,6 @@ class ExtensionRegistry {
 		return self::$instance;
 	}
 
-	public function __construct() {
-		// We use a try/catch instead of the $fallback parameter because
-		// we don't want to fail here if $wgObjectCaches is not configured
-		// properly for APC setup
-		try {
-			$this->cache = ObjectCache::getLocalServerInstance();
-		} catch ( MWException $e ) {
-			$this->cache = new EmptyBagOStuff();
-		}
-	}
-
 	/**
 	 * @param string $path Absolute path to the JSON file
 	 */
@@ -126,12 +110,19 @@ class ExtensionRegistry {
 			'mediawiki' => $wgVersion
 		];
 
+		// We use a try/catch because we don't want to fail here
+		// if $wgObjectCaches is not configured properly for APC setup
+		try {
+			$cache = ObjectCache::getLocalServerInstance();
+		} catch ( MWException $e ) {
+			$cache = new EmptyBagOStuff();
+		}
 		// See if this queue is in APC
 		$key = wfMemcKey(
 			'registration',
 			md5( json_encode( $this->queued + $versions ) )
 		);
-		$data = $this->cache->get( $key );
+		$data = $cache->get( $key );
 		if ( $data ) {
 			$this->exportExtractedData( $data );
 		} else {
@@ -141,7 +132,7 @@ class ExtensionRegistry {
 			// did that, but it should be cached
 			$data['globals']['wgAutoloadClasses'] += $data['autoload'];
 			unset( $data['autoload'] );
-			$this->cache->set( $key, $data, 60 * 60 * 24 );
+			$cache->set( $key, $data, 60 * 60 * 24 );
 		}
 		$this->queued = [];
 	}
