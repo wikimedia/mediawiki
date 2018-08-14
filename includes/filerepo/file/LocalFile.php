@@ -2116,16 +2116,21 @@ class LocalFile extends File {
 	 * @return string|false
 	 */
 	function getDescriptionText( Language $lang = null ) {
-		$revision = Revision::newFromTitle( $this->title, false, Revision::READ_NORMAL );
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$revision = $store->getRevisionByTitle( $this->title, 0, Revision::READ_NORMAL );
 		if ( !$revision ) {
 			return false;
 		}
-		$content = $revision->getContent();
-		if ( !$content ) {
+
+		$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
+		$rendered = $renderer->getRenderedRevision( $revision, new ParserOptions( null, $lang ) );
+
+		if ( !$rendered ) {
+			// audience check failed
 			return false;
 		}
-		$pout = $content->getParserOutput( $this->title, null, new ParserOptions( null, $lang ) );
 
+		$pout = $rendered->getRevisionParserOutput();
 		return $pout->getText();
 	}
 

@@ -44,6 +44,7 @@ class CompareParserCache extends Maintenance {
 		$withcache = 0;
 		$withdiff = 0;
 		$parserCache = MediaWikiServices::getInstance()->getParserCache();
+		$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
 		while ( $pages-- > 0 ) {
 			$row = $dbr->selectRow( 'page',
 				// @todo Title::selectFields() or Title::getQueryInfo() or something
@@ -69,17 +70,16 @@ class CompareParserCache extends Maintenance {
 
 			$title = Title::newFromRow( $row );
 			$page = WikiPage::factory( $title );
-			$revision = $page->getRevision();
-			$content = $revision->getContent( Revision::RAW );
-
+			$revision = $page->getRevision()->getRevisionRecord();
 			$parserOptions = $page->makeParserOptions( 'canonical' );
 
 			$parserOutputOld = $parserCache->get( $page, $parserOptions );
 
 			if ( $parserOutputOld ) {
 				$t1 = microtime( true );
-				$parserOutputNew = $content->getParserOutput(
-					$title, $revision->getId(), $parserOptions, false );
+				$parserOutputNew = $renderer->getRenderedRevision( $revision, $parserOptions )
+					->getRevisionParserOutput();
+
 				$sec = microtime( true ) - $t1;
 				$totalsec += $sec;
 

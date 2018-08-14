@@ -1389,14 +1389,20 @@ abstract class ContentHandler {
 	 * @return ParserOutput
 	 */
 	public function getParserOutputForIndexing( WikiPage $page, ParserCache $cache = null ) {
+		// TODO: MCR: ContentHandler should be called per slot, not for the whole page.
+		// See T190066.
 		$parserOptions = $page->makeParserOptions( 'canonical' );
-		$revId = $page->getRevision()->getId();
 		if ( $cache ) {
 			$parserOutput = $cache->get( $page, $parserOptions );
 		}
+
 		if ( empty( $parserOutput ) ) {
+			$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
 			$parserOutput =
-				$page->getContent()->getParserOutput( $page->getTitle(), $revId, $parserOptions );
+				$renderer->getRenderedRevision(
+					$page->getRevision()->getRevisionRecord(),
+					$parserOptions
+				)->getRevisionParserOutput();
 			if ( $cache ) {
 				$cache->save( $parserOutput, $page, $parserOptions );
 			}

@@ -425,6 +425,44 @@ class ArticleViewTest extends MediaWikiTestCase {
 			}
 		);
 
+		$this->hideDeprecated(
+			'ArticleContentViewCustom hook (used in hook-ArticleContentViewCustom-closure)'
+		);
+
+		$article->view();
+
+		$output = $article->getContext()->getOutput();
+		$this->assertNotContains( 'Test A', $this->getHtml( $output ) );
+		$this->assertContains( 'Hook Text', $this->getHtml( $output ) );
+	}
+
+	public function testArticleRevisionViewCustomHook() {
+		$page = $this->getPage( __METHOD__, [ 1 => 'Test A' ] );
+
+		$article = new Article( $page->getTitle(), 0 );
+		$article->getContext()->getOutput()->setTitle( $page->getTitle() );
+
+		// use ArticleViewHeader hook to bypass the parser cache
+		$this->setTemporaryHook(
+			'ArticleViewHeader',
+			function ( Article $articlePage, &$outputDone, &$useParserCache ) use ( $article ) {
+				$useParserCache = false;
+			}
+		);
+
+		$this->setTemporaryHook(
+			'ArticleRevisionViewCustom',
+			function ( RevisionRecord $rev, Title $title, $oldid, OutputPage $output ) use ( $page ) {
+				$content = $rev->getContent( 'main' );
+
+				$this->assertSame( $page->getTitle(), $title, '$title' );
+				$this->assertSame( 'Test A', $content->getNativeData(), '$content' );
+
+				$output->addHTML( 'Hook Text' );
+				return false;
+			}
+		);
+
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
@@ -454,6 +492,11 @@ class ArticleViewTest extends MediaWikiTestCase {
 
 				$content = new WikitextContent( 'Hook Text' );
 			}
+		);
+
+		$this->hideDeprecated(
+			'ArticleAfterFetchContentObject hook'
+			. ' (used in hook-ArticleAfterFetchContentObject-closure)'
 		);
 
 		$article->view();
