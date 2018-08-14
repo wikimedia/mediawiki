@@ -348,6 +348,9 @@ because of Phabricator reports.
 * $wgContLang is deprecated, use MediaWikiServices::getContentLanguage()
   instead.
 * $wgParser is deprecated, use MediaWikiServices::getParser() instead.
+* wfGetMainCache() is deprecated, use ObjectCache::getLocalClusterInstance()
+  instead.
+* wfGetCache() is deprecated, use ObjectCache::getInstance() instead.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
