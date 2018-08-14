@@ -784,7 +784,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function appendExtensionTags( $property ) {
 		global $wgParser;
-		$wgParser->firstCallInit();
 		$tags = array_map(
 			function ( $item ) {
 				return "<$item>";
@@ -799,7 +798,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function appendFunctionHooks( $property ) {
 		global $wgParser;
-		$wgParser->firstCallInit();
 		$hooks = $wgParser->getFunctionHooks();
 		ApiResult::setArrayType( $hooks, 'BCarray' );
 		ApiResult::setIndexedTagName( $hooks, 'h' );

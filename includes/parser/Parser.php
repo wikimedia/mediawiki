@@ -4926,6 +4926,7 @@ class Parser {
 	 * @return array
 	 */
 	public function getFunctionHooks() {
+		$this->firstCallInit();
 		return array_keys( $this->mFunctionHooks );
 	}
 
@@ -5482,6 +5483,7 @@ class Parser {
 	 * @return array
 	 */
 	public function getTags() {
+		$this->firstCallInit();
 		return array_merge(
 			array_keys( $this->mTransparentTagHooks ),
 			array_keys( $this->mTagHooks ),
