@@ -727,10 +727,10 @@
 			 * @return {string} Hash of concatenated version hashes.
 			 */
 			function getCombinedVersion( modules ) {
-				var hashes = modules.map( function ( module ) {
-					return registry[ module ].version;
-				} );
-				return fnv132( hashes.join( '' ) );
+				var hashes = modules.reduce( function ( result, module ) {
+					return result + registry[ module ].version;
+				}, '' );
+				return fnv132( hashes );
 			}
 
 			/**
