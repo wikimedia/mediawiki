@@ -368,7 +368,7 @@ class MessageCache {
 		if ( !$success ) {
 			$where[] = 'loading FAILED - cache is disabled';
 			$this->mDisable = true;
-			$this->cache->set( $code, null );
+			$this->cache->set( $code, [] );
 			wfDebugLog( 'MessageCacheError', __METHOD__ . ": Failed to load $code\n" );
 			# This used to throw an exception, but that led to nasty side effects like
 			# the whole wiki being instantly down if the memcached server died
