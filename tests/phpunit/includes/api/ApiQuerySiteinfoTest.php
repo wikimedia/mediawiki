@@ -571,7 +571,6 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	public function testExtensionTags() {
 		global $wgParser;
 
-		$wgParser->firstCallInit();
 		$expected = array_map(
 			function ( $tag ) {
 				return "<$tag>";
@@ -585,7 +584,6 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	public function testFunctionHooks() {
 		global $wgParser;
 
-		$wgParser->firstCallInit();
 		$this->assertSame( $wgParser->getFunctionHooks(), $this->doQuery( 'functionhooks' ) );
 	}
 
