@@ -386,7 +386,8 @@ return [
 			$services->getMainConfig()->get( 'ParserConf' ),
 			$services->getMagicWordFactory(),
 			$services->getContentLanguage(),
-			wfUrlProtocols()
+			wfUrlProtocols(),
+			$services->getSpecialPageFactory()
 		);
 	},
 

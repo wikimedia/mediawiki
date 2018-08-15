@@ -22,6 +22,7 @@
  */
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Special\SpecialPageFactory;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -269,16 +270,20 @@ class Parser {
 	/** @var ParserFactory */
 	private $factory;
 
+	/** @var SpecialPageFactory */
+	private $specialPageFactory;
+
 	/**
 	 * @param array $conf See $wgParserConf documentation
 	 * @param MagicWordFactory|null $magicWordFactory
 	 * @param Language|null $contLang Content language
 	 * @param ParserFactory|null $factory
 	 * @param string|null $urlProtocols As returned from wfUrlProtocols()
+	 * @param SpecialPageFactory|null $spFactory
 	 */
 	public function __construct(
 		array $conf = [], MagicWordFactory $magicWordFactory = null, Language $contLang = null,
-		ParserFactory $factory = null, $urlProtocols = null
+		ParserFactory $factory = null, $urlProtocols = null, SpecialPageFactory $spFactory = null
 	) {
 		$this->mConf = $conf;
 		$this->mUrlProtocols = $urlProtocols ?? wfUrlProtocols();
@@ -301,12 +306,14 @@ class Parser {
 		}
 		wfDebug( __CLASS__ . ": using preprocessor: {$this->mPreprocessorClass}\n" );
 
+		$services = MediaWikiServices::getInstance();
 		$this->magicWordFactory = $magicWordFactory ??
-			MediaWikiServices::getInstance()->getMagicWordFactory();
+			$services->getMagicWordFactory();
 
-		$this->contLang = $contLang ?? MediaWikiServices::getInstance()->getContentLanguage();
+		$this->contLang = $contLang ?? $services->getContentLanguage();
 
-		$this->factory = $factory ?? MediaWikiServices::getInstance()->getParserFactory();
+		$this->factory = $factory ?? $services->getParserFactory();
+		$this->specialPageFactory = $spFactory ?? $services->getSpecialPageFactory();
 	}
 
 	/**
@@ -3244,7 +3251,7 @@ class Parser {
 					&& $this->mOptions->getAllowSpecialInclusion()
 					&& $this->ot['html']
 				) {
-					$specialPage = SpecialPageFactory::getPage( $title->getDBkey() );
+					$specialPage = $this->specialPageFactory->getPage( $title->getDBkey() );
 					// Pass the template arguments as URL parameters.
 					// "uselang" will have no effect since the Language object
 					// is forced to the one defined in ParserOptions.
@@ -3270,8 +3277,7 @@ class Parser {
 						$context->setUser( User::newFromName( '127.0.0.1', false ) );
 					}
 					$context->setLanguage( $this->mOptions->getUserLangObj() );
-					$ret = SpecialPageFactory::capturePath(
-						$title, $context, $this->getLinkRenderer() );
+					$ret = $this->specialPageFactory->capturePath( $title, $context, $this->getLinkRenderer() );
 					if ( $ret ) {
 						$text = $context->getOutput()->getHTML();
 						$this->mOutput->addOutputPageMetadata( $context->getOutput() );

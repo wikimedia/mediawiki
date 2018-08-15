@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +19,8 @@
  * @ingroup Parser
  */
 
+use MediaWiki\Special\SpecialPageFactory;
+
 /**
  * @since 1.32
  */
@@ -36,20 +37,26 @@ class ParserFactory {
 	/** @var string */
 	private $urlProtocols;
 
+	/** @var SpecialPageFactory */
+	private $specialPageFactory;
+
 	/**
 	 * @param array $conf See $wgParserConf documentation
 	 * @param MagicWordFactory $magicWordFactory
 	 * @param Language $contLang Content language
 	 * @param string $urlProtocols As returned from wfUrlProtocols()
+	 * @param SpecialPageFactory $spFactory
 	 * @since 1.32
 	 */
 	public function __construct(
-		array $conf, MagicWordFactory $magicWordFactory, Language $contLang, $urlProtocols
+		array $conf, MagicWordFactory $magicWordFactory, Language $contLang, $urlProtocols,
+		SpecialPageFactory $spFactory
 	) {
 		$this->conf = $conf;
 		$this->magicWordFactory = $magicWordFactory;
 		$this->contLang = $contLang;
 		$this->urlProtocols = $urlProtocols;
+		$this->specialPageFactory = $spFactory;
 	}
 
 	/**
@@ -58,6 +65,6 @@ class ParserFactory {
 	 */
 	public function create() : Parser {
 		return new Parser( $this->conf, $this->magicWordFactory, $this->contLang, $this,
-			$this->urlProtocols );
+			$this->urlProtocols, $this->specialPageFactory );
 	}
 }
