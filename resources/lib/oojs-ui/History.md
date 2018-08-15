@@ -1,4 +1,43 @@
 # OOUI Release History
+## v0.28.0 / 2018-08-14
+### Breaking changes
+* [BREAKING CHANGE] icons: Drop 'find' icon, deprecated in v0.26.2 (James D. Forrester)
+* [BREAKING CHANGE] icons: Drop 'settings' icon, deprecated in v0.27.0 (James D. Forrester)
+* [BREAKING CHANGE] icons: Drop cite icons, renamed and deprecated in v0.27.0 (James D. Forrester)
+* [BREAKING CHANGE] icons: Remove 'clip' & 'unClip', deprecated in v0.26.1 (Volker E.)
+* [BREAKING CHANGE] icons: Remove 'comment', deprecated in v0.26.1 (James D. Forrester)
+* [BREAKING CHANGE] icons: Remove deprecated 'userActive'/'userInactive' (Volker E.)
+
+### Styles
+* FieldLayout inline help: Move help after field when align=top (Ed Sanders)
+
+### Code
+* DropdownInputWidget: Add support for $overlay (Alangi Derick)
+* LookupElement: Fix empty search result menu (Tim Eulitz)
+* PopupTools & ToolGroupTools: Emit active events from PopupTools & ToolGroupTools (Ed Sanders)
+* Toolbar: Emit events to let user know if toolbar popups are visible (Ed Sanders)
+* Revert "FieldLayout: Avoid unclickable gap between widget and label in 'inline' align" (Bartosz Dziewoński)
+* Apex theme: Align `@transition` vars naming with WikimediaUI theme (Volker E.)
+* Apex theme: Rename `@destructive` var to naming convention (Volker E.)
+* Apex theme: Rename `@progressive*` vars to naming convention (Volker E.)
+* WikimediaUI theme: Fix regression on SelectFileWidget icon/indicator visibility (Volker E.)
+* WikimediaUI theme: Make use of further WikimediaUI Base variables (Volker E.)
+* docs: Always use the correct casing for MediaWiki (James D. Forrester)
+* tutorials Create 2 OOUI tutorials and an index page (Hagar Shilo)
+* tutorials: Don't load duplicate CSS (Bartosz Dziewoński)
+* tutorials: Fix CSS links (Moriel Schottlender)
+* build: Bump eslint-config-wikimedia to v0.7.2, disabling failing rules (James D. Forrester)
+* build: Bump grunt-contrib-less to v2.0.0 and enable javascriptEnabled (James D. Forrester)
+* build: Bump non-qunit devDependencies to latest where possible (James D. Forrester)
+* build: Bump OOjs to v2.2.2 (James D. Forrester)
+* build: Bump qunit-related devDependencies to latest (James D. Forrester)
+* build: Bump wikimedia-ui-base to v0.11.0 (Volker E.)
+* tests: Enable `qunit/no-assert-equal` and make pass (James D. Forrester)
+* tests: Enable `qunit/no-negated-ok` and make pass (James D. Forrester)
+* tests: Enable `qunit/no-ok-equality` and make pass (James D. Forrester)
+* tests: Enable `qunit/require-expect` and make pass (James D. Forrester)
+
+
 ## v0.27.6 / 2018-08-01
 ### Styles
 * WikimediaUI theme: Fix styling for focussed multiline text inputs in invalid state (Bartosz Dziewoński)
@@ -1213,7 +1252,7 @@
 * MediaWiki theme: Fix RTL version of largerText icon to be, well, RTL (James D. Forrester)
 * MediaWiki theme: Fix direction of shadow on position:bottom toolbars (Ed Sanders)
 * MediaWiki theme: Use correct `border-color` on PopupWidget anchor (Volker E)
-* Mediawiki theme: Fix focus inset to overlap scrollbars (Volker E)
+* MediaWiki theme: Fix focus inset to overlap scrollbars (Volker E)
 * icons: Provide a 'halfStar' vertical split star (codynguyen1116)
 
 ### Code
@@ -1938,7 +1977,7 @@
 * SelectWidget: Really prevent default action during type-to-select (Bartosz Dziewoński)
 * Put '@keyframes' rules inside a mixin to avoid duplicating them (Bartosz Dziewoński)
 * Apex theme: Remove unnecessary '@keyframes' prefixing (Bartosz Dziewoński)
-* Mediawiki theme: Align button mixins/states to CSS guidelines/standard (Volker E)
+* MediaWiki theme: Align button mixins/states to CSS guidelines/standard (Volker E)
 * Correct code using plain DOM events documented as jQuery events (Bartosz Dziewoński)
 * demo: Add a long DropdownInputWidget demo (Bartosz Dziewoński)
 * demo: In PHP demo, load oojs-ui-core only instead of whole oojs-ui (Bartosz Dziewoński)

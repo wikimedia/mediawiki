@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.6
+ * OOUI v0.28.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-08-01T22:17:59Z
+ * Date: 2018-08-14T23:16:18Z
  */
 ( function ( OO ) {
 
@@ -5056,7 +5056,7 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 /**
  * PopupWidget is a container for content. The popup is overlaid and positioned absolutely.
  * By default, each popup has an anchor that points toward its origin.
- * Please see the [OOUI documentation on Mediawiki] [1] for more information and examples.
+ * Please see the [OOUI documentation on MediaWiki.org] [1] for more information and examples.
  *
  * Unlike most widgets, PopupWidget is initially hidden and must be shown by calling #toggle.
  *
@@ -9251,13 +9251,22 @@ OO.ui.CheckboxInputWidget.prototype.restorePreInfuseState = function ( state ) {
  * @param {Object} [config] Configuration options
  * @cfg {Object[]} [options=[]] Array of menu options in the format `{ data: …, label: … }`
  * @cfg {Object} [dropdown] Configuration options for {@link OO.ui.DropdownWidget DropdownWidget}
+ * @cfg {jQuery} [$overlay] Render the menu into a separate layer. This configuration is useful in cases where
+ *  the expanded menu is larger than its containing `<div>`. The specified overlay layer is usually on top of the
+ *  containing `<div>` and has a larger area. By default, the menu uses relative positioning.
+ *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  */
 OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 	// Configuration initialization
 	config = config || {};
 
 	// Properties (must be done before parent constructor which calls #setDisabled)
-	this.dropdownWidget = new OO.ui.DropdownWidget( config.dropdown );
+	this.dropdownWidget = new OO.ui.DropdownWidget( $.extend(
+		{
+			$overlay: config.$overlay
+		},
+		config.dropdown
+	) );
 	// Set up the options before parent constructor, which uses them to validate config.value.
 	// Use this instead of setOptions() because this.$input is not set up yet.
 	this.setOptionsData( config.options || [] );
@@ -11521,7 +11530,10 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
 		// Reorder elements
 
 		if ( this.helpInline ) {
-			if ( value === 'inline' ) {
+			if ( value === 'top' ) {
+				this.$header.append( this.$label );
+				this.$body.append( this.$header, this.$field, this.$help );
+			} else if ( value === 'inline' ) {
 				this.$header.append( this.$label, this.$help );
 				this.$body.append( this.$field, this.$header );
 			} else {

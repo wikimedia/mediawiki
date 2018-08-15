@@ -14,14 +14,6 @@
 		"unBlock": {
 			"file": "../wikimediaui/images/icons/unBlock.svg"
 		},
-		"clip": {
-			"file": "../wikimediaui/images/icons/bookmarkOutline.svg",
-			"deprecated": "Renamed since v0.26.1, use 'bookmarkOutline' instead."
-		},
-		"unClip": {
-			"file": "../wikimediaui/images/icons/bookmark.svg",
-			"deprecated": "Renamed since v0.26.1, use 'bookmark' instead."
-		},
 		"flag": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/flag-ltr.svg",

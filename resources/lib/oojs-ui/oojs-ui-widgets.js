@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.6
+ * OOUI v0.28.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-08-01T22:17:59Z
+ * Date: 2018-08-14T23:16:18Z
  */
 ( function ( OO ) {
 
@@ -846,6 +846,7 @@ OO.ui.mixin.LookupElement.prototype.populateLookupMenu = function () {
 			} )
 			.fail( function () {
 				widget.lookupMenu.clearItems();
+				widget.lookupMenu.toggle( false );
 			} );
 	}
 

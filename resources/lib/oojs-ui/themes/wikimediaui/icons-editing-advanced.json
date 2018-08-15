@@ -37,10 +37,6 @@
 		"code": {
 			"file": "images/icons/code.svg"
 		},
-		"find": {
-			"file": "images/icons/articleSearch.svg",
-			"deprecated": "Will be removed in v0.28.0, use 'articleSearch' of 'content' pack instead."
-		},
 		"language": {
 			"file": "images/icons/language.svg"
 		},

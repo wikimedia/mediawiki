@@ -111,10 +111,6 @@
 		"search": {
 			"file": "images/icons/search.svg"
 		},
-		"settings": {
-			"file": "images/icons/pageSettings.svg",
-			"deprecated": "Renamed since v0.27.0, use 'pageSettings' instead."
-		},
 		"subtract": {
 			"file": "images/icons/subtract.svg",
 			"variants": [ "destructive" ]

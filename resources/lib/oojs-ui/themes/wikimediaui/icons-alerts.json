@@ -26,13 +26,6 @@
 		"bell": {
 			"file": "images/icons/bell.svg"
 		},
-		"comment": {
-			"file": {
-				"ltr": "images/icons/speechBubble-ltr.svg",
-				"rtl": "images/icons/speechBubble-rtl.svg"
-			},
-			"deprecated": "This will be removed in v0.28.0. Use 'speechBubble' instead."
-		},
 		"message": {
 			"file": "images/icons/message.svg"
 		},
