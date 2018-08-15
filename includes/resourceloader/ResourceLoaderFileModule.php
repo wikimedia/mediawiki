@@ -959,10 +959,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
 		}
 
-		$vars = array_merge(
-			$context->getResourceLoader()->getLessVars(),
-			$this->getLessVars( $context )
-		);
+		$vars = $this->getLessVars( $context );
 		// Construct a cache key from the LESS file name, and a hash digest
 		// of the LESS variables used for compilation.
 		ksort( $vars );

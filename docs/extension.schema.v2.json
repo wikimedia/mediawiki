@@ -355,10 +355,6 @@
 			"type": "object",
 			"description": "ResourceLoader sources to register"
 		},
-		"ResourceLoaderLESSVars": {
-			"type": "object",
-			"description": "ResourceLoader LESS variables"
-		},
 		"ConfigRegistry": {
 			"type": "object",
 			"description": "Registry of factory functions to create Config objects"

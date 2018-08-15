@@ -337,6 +337,23 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * @covers ResourceLoaderFileModule::compileLessFile
+	 */
+	public function testLessFileCompilation() {
+		$context = $this->getResourceLoaderContext();
+		$basePath = __DIR__ . '/../../data/less/module';
+		$module = new ResourceLoaderFileTestModule( [
+			'localBasePath' => $basePath,
+			'styles' => [ 'styles.less' ],
+		], [
+			'lessVars' => [ 'foo' => '2px', 'Foo' => '#eeeeee' ]
+		] );
+		$module->setName( 'test.less' );
+		$styles = $module->getStyles( $context );
+		$this->assertStringEqualsFile( $basePath . '/styles.css', $styles['all'] );
+	}
+
+	/**
 	 * @covers ResourceLoaderFileModule::getDefinitionSummary
 	 * @covers ResourceLoaderFileModule::getFileHashes
 	 */
