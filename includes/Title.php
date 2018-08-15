@@ -3695,13 +3695,6 @@ class Title implements LinkTarget {
 	 * @return bool True on success
 	 */
 	private function secureAndSplit() {
-		# Initialisation
-		$this->mInterwiki = '';
-		$this->mFragment = '';
-		$this->mNamespace = $this->mDefaultNamespace; # Usually NS_MAIN
-
-		$dbkey = $this->mDbkeyform;
-
 		// @note: splitTitleString() is a temporary hack to allow MediaWikiTitleCodec to share
 		//        the parsing code with Title, while avoiding massive refactoring.
 		// @todo: get rid of secureAndSplit, refactor parsing code.
@@ -3709,7 +3702,7 @@ class Title implements LinkTarget {
 		//        splitTitleString method, but the only implementation (MediaWikiTitleCodec) does
 		$titleCodec = MediaWikiServices::getInstance()->getTitleParser();
 		// MalformedTitleException can be thrown here
-		$parts = $titleCodec->splitTitleString( $dbkey, $this->getDefaultNamespace() );
+		$parts = $titleCodec->splitTitleString( $this->mDbkeyform, $this->getDefaultNamespace() );
 
 		# Fill fields
 		$this->setFragment( '#' . $parts['fragment'] );
