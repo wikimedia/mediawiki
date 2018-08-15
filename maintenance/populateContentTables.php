@@ -58,6 +58,8 @@ class PopulateContentTables extends Maintenance {
 			'Reuse content table rows when the address and model are the same. '
 			. 'This will increase the script\'s time and memory usage, perhaps significantly.',
 			false, false );
+		$this->addOption( 'start-revision', 'The rev_id to start at', false, true );
+		$this->addOption( 'start-archive', 'The ar_rev_id to start at', false, true );
 		$this->setBatchSize( 500 );
 	}
 
@@ -165,6 +167,7 @@ class PopulateContentTables extends Maintenance {
 				'slots' => [ 'LEFT JOIN', 'rev_id=slot_revision_id' ],
 				'page' => [ 'LEFT JOIN', 'rev_page=page_id' ],
 			];
+			$startOption = 'start-revision';
 		} else {
 			$idField = 'ar_rev_id';
 			$tables = [ 'archive', 'slots' ];
@@ -180,6 +183,7 @@ class PopulateContentTables extends Maintenance {
 			$joins = [
 				'slots' => [ 'LEFT JOIN', 'ar_rev_id=slot_revision_id' ],
 			];
+			$startOption = 'start-archive';
 		}
 
 		$minmax = $this->dbw->selectRow(
@@ -188,6 +192,9 @@ class PopulateContentTables extends Maintenance {
 			'',
 			__METHOD__
 		);
+		if ( $this->hasOption( $startOption ) ) {
+			$minmax->min = (int)$this->getOption( $startOption );
+		}
 		if ( !$minmax || !is_numeric( $minmax->min ) || !is_numeric( $minmax->max ) ) {
 			// No rows?
 			$minmax = (object)[ 'min' => 1, 'max' => 0 ];
