@@ -252,7 +252,7 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
-	 * Get metadata, unserializing it if neccessary.
+	 * Get metadata, unserializing it if necessary.
 	 *
 	 * @param File $file The DjVu file in question
 	 * @return string XML metadata as a string.

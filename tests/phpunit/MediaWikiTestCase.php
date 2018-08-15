@@ -1246,7 +1246,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				$user
 			);
 			// an edit always attempt to purge backlink links such as history
-			// pages. That is unneccessary.
+			// pages. That is unnecessary.
 			JobQueueGroup::singleton()->get( 'htmlCacheUpdate' )->delete();
 			// WikiPages::doEditUpdates randomly adds RC purges
 			JobQueueGroup::singleton()->get( 'recentChangesUpdate' )->delete();
