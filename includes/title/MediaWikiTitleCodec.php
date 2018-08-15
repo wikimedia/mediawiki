@@ -149,7 +149,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @throws MalformedTitleException
 	 * @return TitleValue
 	 */
-	public function parseTitle( $text, $defaultNamespace ) {
+	public function parseTitle( $text, $defaultNamespace = NS_MAIN ) {
 		// NOTE: this is an ugly cludge that allows this class to share the
 		// code for parsing with the old Title class. The parser code should
 		// be refactored to avoid this.
