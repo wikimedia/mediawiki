@@ -621,7 +621,8 @@ return [
 		return new MediaWikiTitleCodec(
 			$services->getContentLanguage(),
 			$services->getGenderCache(),
-			$services->getMainConfig()->get( 'LocalInterwikis' )
+			$services->getMainConfig()->get( 'LocalInterwikis' ),
+			$services->getInterwikiLookup()
 		);
 	},
 
