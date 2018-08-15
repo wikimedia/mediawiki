@@ -57,9 +57,12 @@ class LinkBatch {
 	 * @since 1.17
 	 *
 	 * @param string $caller
+	 * @return self (since 1.32)
 	 */
 	public function setCaller( $caller ) {
 		$this->caller = $caller;
+
+		return $this;
 	}
 
 	/**
