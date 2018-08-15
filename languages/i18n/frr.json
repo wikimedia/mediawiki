@@ -1094,6 +1094,7 @@
 	"group-autoconfirmed-member": "{{GENDER:$1|Registriaret brüker}}",
 	"group-bot-member": "{{GENDER:$1|Bot}}",
 	"group-sysop-member": "{{GENDER:$1|Administraator}}",
+	"group-interface-admin-member": "{{GENDER:$1|Skakadministraator}}",
 	"group-bureaucrat-member": "{{GENDER:$1|Bürokraat}}",
 	"group-suppress-member": "{{GENDER:$1|Fersteeger}}",
 	"grouppage-user": "{{ns:project}}:Brükern",
