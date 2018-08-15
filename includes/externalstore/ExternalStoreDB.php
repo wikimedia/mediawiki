@@ -166,6 +166,10 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @return string|bool Database domain ID or false
 	 */
 	private function getDomainId( array $server ) {
+		if ( isset( $this->params['wiki'] ) ) {
+			return $this->params['wiki']; // explicit domain
+		}
+
 		if ( isset( $server['dbname'] ) ) {
 			// T200471: for b/c, treat any "dbname" field as forcing which database to use.
 			// MediaWiki/LoadBalancer previously did not enforce any concept of a local DB
@@ -181,7 +185,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			return $domain->getId();
 		}
 
-		return $this->params['wiki'] ?? false; // local domain unless explictly given
+		return false; // local LB domain
 	}
 
 	/**
