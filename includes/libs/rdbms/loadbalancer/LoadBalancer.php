@@ -886,34 +886,7 @@ class LoadBalancer implements ILoadBalancer {
 			$conn = $this->openForeignConnection( $i, $domain, $flags );
 		} else {
 			// Connection is to the local domain
-			$connKey = $autoCommit ? self::KEY_LOCAL_NOROUND : self::KEY_LOCAL;
-			if ( isset( $this->conns[$connKey][$i][0] ) ) {
-				$conn = $this->conns[$connKey][$i][0];
-			} else {
-				if ( !isset( $this->servers[$i] ) || !is_array( $this->servers[$i] ) ) {
-					throw new InvalidArgumentException( "No server with index '$i'." );
-				}
-				// Open a new connection
-				$server = $this->servers[$i];
-				$server['serverIndex'] = $i;
-				$server['autoCommitOnly'] = $autoCommit;
-				if ( $this->localDomain->getDatabase() !== null ) {
-					// Use the local domain table prefix if the local domain is specified
-					$server['tablePrefix'] = $this->localDomain->getTablePrefix();
-				}
-				$conn = $this->reallyOpenConnection( $server, $this->localDomain );
-				$host = $this->getServerName( $i );
-				if ( $conn->isOpen() ) {
-					$this->connLogger->debug(
-						__METHOD__ . ": connected to database $i at '$host'." );
-					$this->conns[$connKey][$i][0] = $conn;
-				} else {
-					$this->connLogger->warning(
-						__METHOD__ . ": failed to connect to database $i at '$host'." );
-					$this->errorConnection = $conn;
-					$conn = false;
-				}
-			}
+			$conn = $this->openLocalConnection( $i, $flags );
 		}
 
 		if ( $conn instanceof IDatabase && !$conn->isOpen() ) {
@@ -934,6 +907,53 @@ class LoadBalancer implements ILoadBalancer {
 			}
 
 			$conn->clearFlag( $conn::DBO_TRX ); // auto-commit mode
+		}
+
+		return $conn;
+	}
+
+	/**
+	 * Open a connection to a local DB, or return one if it is already open.
+	 *
+	 * On error, returns false, and the connection which caused the
+	 * error will be available via $this->errorConnection.
+	 *
+	 * @note If disable() was called on this LoadBalancer, this method will throw a DBAccessError.
+	 *
+	 * @param int $i Server index
+	 * @param int $flags Class CONN_* constant bitfield
+	 * @return Database
+	 */
+	private function openLocalConnection( $i, $flags = 0 ) {
+		$autoCommit = ( ( $flags & self::CONN_TRX_AUTOCOMMIT ) == self::CONN_TRX_AUTOCOMMIT );
+
+		$connKey = $autoCommit ? self::KEY_LOCAL_NOROUND : self::KEY_LOCAL;
+		if ( isset( $this->conns[$connKey][$i][0] ) ) {
+			$conn = $this->conns[$connKey][$i][0];
+		} else {
+			if ( !isset( $this->servers[$i] ) || !is_array( $this->servers[$i] ) ) {
+				throw new InvalidArgumentException( "No server with index '$i'." );
+			}
+			// Open a new connection
+			$server = $this->servers[$i];
+			$server['serverIndex'] = $i;
+			$server['autoCommitOnly'] = $autoCommit;
+			if ( $this->localDomain->getDatabase() !== null ) {
+				// Use the local domain table prefix if the local domain is specified
+				$server['tablePrefix'] = $this->localDomain->getTablePrefix();
+			}
+			$conn = $this->reallyOpenConnection( $server, $this->localDomain );
+			$host = $this->getServerName( $i );
+			if ( $conn->isOpen() ) {
+				$this->connLogger->debug(
+					__METHOD__ . ": connected to database $i at '$host'." );
+				$this->conns[$connKey][$i][0] = $conn;
+			} else {
+				$this->connLogger->warning(
+					__METHOD__ . ": failed to connect to database $i at '$host'." );
+				$this->errorConnection = $conn;
+				$conn = false;
+			}
 		}
 
 		return $conn;
