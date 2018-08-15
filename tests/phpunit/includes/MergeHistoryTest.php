@@ -28,6 +28,12 @@ class MergeHistoryTest extends MediaWikiTestCase {
 	 */
 	public function testIsValidMerge( $source, $dest, $timestamp, $error ) {
 		$this->setMwGlobals( 'wgContentHandlerUseDB', false );
+		if ( $timestamp === true ) {
+			// Although this timestamp is after the latest timestamp of both pages,
+			// MergeHistory should select the latest source timestamp up to this which should
+			// still work for the merge.
+			$timestamp = time() + ( 24 * 3600 );
+		}
 		$mh = new MergeHistory(
 			Title::newFromText( $source ),
 			Title::newFromText( $dest ),
@@ -45,10 +51,8 @@ class MergeHistoryTest extends MediaWikiTestCase {
 		return [
 			// for MergeHistory::isValidMerge
 			[ 'Test', 'Test2', false, true ],
-			// Although this timestamp is after the latest timestamp of both pages,
-			// MergeHistory should select the latest source timestamp up to this which should
-			// still work for the merge.
-			[ 'Test', 'Test2', strtotime( 'tomorrow' ), true ],
+			// Timestamp of `true` is a placeholder for "in the future""
+			[ 'Test', 'Test2', true, true ],
 			[ 'Test', 'Test', false, 'mergehistory-fail-self-merge' ],
 			[ 'Nonexistant', 'Test2', false, 'mergehistory-fail-invalid-source' ],
 			[ 'Test', 'Nonexistant', false, 'mergehistory-fail-invalid-dest' ],
