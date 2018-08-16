@@ -1928,14 +1928,14 @@ class LoadBalancer implements ILoadBalancer {
 				"Foreign domain connections are still in use ($domains)." );
 		}
 
-		$oldDomain = $this->localDomain->getId();
 		$this->setLocalDomain( new DatabaseDomain(
 			$this->localDomain->getDatabase(),
 			$this->localDomain->getSchema(),
 			$prefix
 		) );
 
-		$this->forEachOpenConnection( function ( IDatabase $db ) use ( $prefix, $oldDomain ) {
+		// Update the prefix for all local connections...
+		$this->forEachOpenConnection( function ( IDatabase $db ) use ( $prefix ) {
 			if ( !$db->getLBInfo( 'foreign' ) ) {
 				$db->tablePrefix( $prefix );
 			}
