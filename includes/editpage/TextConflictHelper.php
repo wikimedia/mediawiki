@@ -165,10 +165,10 @@ class TextConflictHelper {
 	/**
 	 * HTML to build the textbox1 on edit conflicts
 	 *
-	 * @param mixed[]|null $customAttribs
+	 * @param array $customAttribs
 	 * @return string HTML
 	 */
-	public function getEditConflictMainTextBox( $customAttribs = [] ) {
+	public function getEditConflictMainTextBox( array $customAttribs = [] ) {
 		$builder = new TextboxBuilder();
 		$classes = $builder->getTextboxProtectionCSSClasses( $this->title );
 
