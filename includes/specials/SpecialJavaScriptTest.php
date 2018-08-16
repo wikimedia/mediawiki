@@ -142,7 +142,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 		// Things like "dependency missing" or "unknown module".
 		// Re-throw so that they are reported as global exceptions by QUnit and Karma.
 		setTimeout( function () {
-			throw e;
+			throw err;
 		} );
 	} );
 JAVASCRIPT
