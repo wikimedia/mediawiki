@@ -371,7 +371,8 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function selectDB( $db ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
+		// Disallow things that might confuse the LoadBalancer tracking
+		throw new DBUnexpectedError( $this, "Database selection is disallowed to enable reuse." );
 	}
 
 	public function getDBname() {
