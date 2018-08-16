@@ -53,6 +53,9 @@ abstract class Benchmarker extends Maintenance {
 		$this->startBench();
 		$count = $this->getOption( 'count', $this->defaultCount );
 		$verbose = $this->hasOption( 'verbose' );
+
+		// Normalise
+		$normBenchs = [];
 		foreach ( $benchs as $key => $bench ) {
 			// Shortcut for simple functions
 			if ( is_callable( $bench ) ) {
@@ -62,23 +65,6 @@ abstract class Benchmarker extends Maintenance {
 			// Default to no arguments
 			if ( !isset( $bench['args'] ) ) {
 				$bench['args'] = [];
-			}
-
-			// Optional setup called outside time measure
-			if ( isset( $bench['setup'] ) ) {
-				call_user_func( $bench['setup'] );
-			}
-
-			// Run benchmarks
-			$stat = new RunningStat();
-			for ( $i = 0; $i < $count; $i++ ) {
-				$t = microtime( true );
-				call_user_func_array( $bench['function'], $bench['args'] );
-				$t = ( microtime( true ) - $t ) * 1000;
-				if ( $verbose ) {
-					$this->verboseRun( $i );
-				}
-				$stat->addObservation( $t );
 			}
 
 			// Name defaults to name of called function
@@ -94,6 +80,27 @@ abstract class Benchmarker extends Maintenance {
 					$name,
 					implode( ', ', $bench['args'] )
 				);
+			}
+
+			$normBenchs[$name] = $bench;
+		}
+
+		foreach ( $normBenchs as $name => $bench ) {
+			// Optional setup called outside time measure
+			if ( isset( $bench['setup'] ) ) {
+				call_user_func( $bench['setup'] );
+			}
+
+			// Run benchmarks
+			$stat = new RunningStat();
+			for ( $i = 0; $i < $count; $i++ ) {
+				$t = microtime( true );
+				call_user_func_array( $bench['function'], $bench['args'] );
+				$t = ( microtime( true ) - $t ) * 1000;
+				if ( $verbose ) {
+					$this->verboseRun( $i );
+				}
+				$stat->addObservation( $t );
 			}
 
 			$this->addResult( [
