@@ -22,6 +22,8 @@
 
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\Block\BlockRestriction;
+use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\MediaWikiServices;
 
 class Block {
@@ -79,6 +81,12 @@ class Block {
 	/** @var string|null */
 	private $systemBlockType;
 
+	/** @var bool */
+	private $isSitewide;
+
+	/** @var Restriction[] */
+	private $restrictions;
+
 	# TYPE constants
 	const TYPE_USER = 1;
 	const TYPE_IP = 2;
@@ -129,6 +137,7 @@ class Block {
 			'allowUsertalk'   => false,
 			'byText'          => '',
 			'systemBlock'     => null,
+			'sitewide'        => true,
 		];
 
 		if ( func_num_args() > 1 || !is_array( $options ) ) {
@@ -165,6 +174,7 @@ class Block {
 		$this->mHideName = (bool)$options['hideName'];
 		$this->isHardblock( !$options['anonOnly'] );
 		$this->isAutoblocking( (bool)$options['enableAutoblock'] );
+		$this->isSitewide( (bool)$options['sitewide'] );
 
 		# Prevention measures
 		$this->prevents( 'sendemail', (bool)$options['blockEmail'] );
@@ -236,6 +246,7 @@ class Block {
 			'ipb_block_email',
 			'ipb_allow_usertalk',
 			'ipb_parent_block_id',
+			'ipb_sitewide',
 		] + CommentStore::getStore()->getFields( 'ipb_reason' );
 	}
 
@@ -266,6 +277,7 @@ class Block {
 				'ipb_block_email',
 				'ipb_allow_usertalk',
 				'ipb_parent_block_id',
+				'ipb_sitewide',
 			] + $commentQuery['fields'] + $actorQuery['fields'],
 			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
 		];
@@ -292,6 +304,10 @@ class Block {
 			&& $this->prevents( 'sendemail' ) == $block->prevents( 'sendemail' )
 			&& $this->prevents( 'editownusertalk' ) == $block->prevents( 'editownusertalk' )
 			&& $this->mReason == $block->mReason
+			&& $this->isSitewide() == $block->isSitewide()
+			// Block::getRestrictions() may perform a database query, so keep it at
+			// the end.
+			&& BlockRestriction::equals( $this->getRestrictions(), $block->getRestrictions() )
 		);
 	}
 
@@ -477,6 +493,7 @@ class Block {
 
 		$this->isHardblock( !$row->ipb_anon_only );
 		$this->isAutoblocking( $row->ipb_enable_autoblock );
+		$this->isSitewide( (bool)$row->ipb_sitewide );
 
 		$this->prevents( 'createaccount', $row->ipb_create_account );
 		$this->prevents( 'sendemail', $row->ipb_block_email );
@@ -510,7 +527,11 @@ class Block {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
+
+		BlockRestriction::deleteByParentBlockId( $this->getId() );
 		$dbw->delete( 'ipblocks', [ 'ipb_parent_block_id' => $this->getId() ], __METHOD__ );
+
+		BlockRestriction::deleteByBlockId( $this->getId() );
 		$dbw->delete( 'ipblocks', [ 'ipb_id' => $this->getId() ], __METHOD__ );
 
 		return $dbw->affectedRows() > 0;
@@ -546,7 +567,12 @@ class Block {
 
 		$dbw->insert( 'ipblocks', $row, __METHOD__, [ 'IGNORE' ] );
 		$affected = $dbw->affectedRows();
-		$this->mId = $dbw->insertId();
+		if ( $affected ) {
+			$this->setId( $dbw->insertId() );
+			if ( $this->restrictions ) {
+				BlockRestriction::insert( $this->restrictions );
+			}
+		}
 
 		# Don't collide with expired blocks.
 		# Do this after trying to insert to avoid locking.
@@ -564,9 +590,13 @@ class Block {
 			);
 			if ( $ids ) {
 				$dbw->delete( 'ipblocks', [ 'ipb_id' => $ids ], __METHOD__ );
+				BlockRestriction::deleteByBlockId( $ids );
 				$dbw->insert( 'ipblocks', $row, __METHOD__, [ 'IGNORE' ] );
 				$affected = $dbw->affectedRows();
-				$this->mId = $dbw->insertId();
+				$this->setId( $dbw->insertId() );
+				if ( $this->restrictions ) {
+					BlockRestriction::insert( $this->restrictions );
+				}
 			}
 		}
 
@@ -598,14 +628,24 @@ class Block {
 
 		$dbw->startAtomic( __METHOD__ );
 
-		$dbw->update(
+		$result = $dbw->update(
 			'ipblocks',
 			$this->getDatabaseArray( $dbw ),
 			[ 'ipb_id' => $this->getId() ],
 			__METHOD__
 		);
 
-		$affected = $dbw->affectedRows();
+		// Only update the restrictions if they have been modified.
+		if ( $this->restrictions !== null ) {
+			// An empty array should remove all of the restrictions.
+			if ( empty( $this->restrictions ) ) {
+				$success = BlockRestriction::deleteByBlockId( $this->getId() );
+			} else {
+				$success = BlockRestriction::update( $this->restrictions );
+			}
+			// Update the result. The first false is the result, otherwise, true.
+			$result = $result && $success;
+		}
 
 		if ( $this->isAutoblocking() ) {
 			// update corresponding autoblock(s) (T50813)
@@ -615,8 +655,14 @@ class Block {
 				[ 'ipb_parent_block_id' => $this->getId() ],
 				__METHOD__
 			);
+
+			// Only update the restrictions if they have been modified.
+			if ( $this->restrictions !== null ) {
+				BlockRestriction::updateByParentBlockId( $this->getId(), $this->restrictions );
+			}
 		} else {
 			// autoblock no longer required, delete corresponding autoblock(s)
+			BlockRestriction::deleteByParentBlockId( $this->getId() );
 			$dbw->delete(
 				'ipblocks',
 				[ 'ipb_parent_block_id' => $this->getId() ],
@@ -626,12 +672,12 @@ class Block {
 
 		$dbw->endAtomic( __METHOD__ );
 
-		if ( $affected ) {
+		if ( $result ) {
 			$auto_ipd_ids = $this->doRetroactiveAutoblock();
 			return [ 'id' => $this->mId, 'autoIds' => $auto_ipd_ids ];
 		}
 
-		return false;
+		return $result;
 	}
 
 	/**
@@ -662,7 +708,8 @@ class Block {
 			'ipb_deleted'          => intval( $this->mHideName ), // typecast required for SQLite
 			'ipb_block_email'      => $this->prevents( 'sendemail' ),
 			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' ),
-			'ipb_parent_block_id'  => $this->mParentBlockId
+			'ipb_parent_block_id'  => $this->mParentBlockId,
+			'ipb_sitewide'         => $this->isSitewide(),
 		] + CommentStore::getStore()->insert( $dbw, 'ipb_reason', $this->mReason )
 			+ ActorMigration::newMigration()->getInsertValues( $dbw, 'ipb_by', $this->getBlocker() );
 
@@ -865,6 +912,8 @@ class Block {
 		$autoblock->mHideName = $this->mHideName;
 		$autoblock->prevents( 'editownusertalk', $this->prevents( 'editownusertalk' ) );
 		$autoblock->mParentBlockId = $this->mId;
+		$autoblock->isSitewide( $this->isSitewide() );
+		$autoblock->setRestrictions( $this->getRestrictions() );
 
 		if ( $this->mExpiry == 'infinity' ) {
 			# Original block was indefinite, start an autoblock now
@@ -1015,6 +1064,22 @@ class Block {
 	}
 
 	/**
+	 * Set the block ID
+	 *
+	 * @param int $blockId
+	 * @return int
+	 */
+	private function setId( $blockId ) {
+		$this->mId = (int)$blockId;
+
+		if ( is_array( $this->restrictions ) ) {
+			$this->restrictions = BlockRestriction::setBlockId( $blockId, $this->restrictions );
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Get the system block type, if any
 	 * @since 1.29
 	 * @return string|null
@@ -1059,6 +1124,18 @@ class Block {
 		return $this->getType() == self::TYPE_USER
 			? $this->isAutoblocking
 			: false;
+	}
+
+	/**
+	 * Indicates that the block is a sitewide block. This means the user is
+	 * prohibited from editing any page on the site (other than their own talk
+	 * page).
+	 *
+	 * @param null|bool $x
+	 * @return bool
+	 */
+	public function isSitewide( $x = null ) {
+		return wfSetVar( $this->isSitewide, $x );
 	}
 
 	/**
@@ -1145,6 +1222,7 @@ class Block {
 					$fname
 				);
 				if ( $ids ) {
+					BlockRestriction::deleteByBlockId( $ids );
 					$dbw->delete( 'ipblocks', [ 'ipb_id' => $ids ], $fname );
 				}
 			}
@@ -1647,5 +1725,41 @@ class Block {
 			(string)$intended,
 			$lang->userTimeAndDate( $this->mTimestamp, $context->getUser() ),
 		];
+	}
+
+	/**
+	 * Get Restrictions.
+	 *
+	 * Getting the restrictions will perform a database query if the restrictions
+	 * are not already loaded.
+	 *
+	 * @return Restriction[]
+	 */
+	public function getRestrictions() {
+		if ( $this->restrictions === null ) {
+			// If the block id has not been set, then do not attempt to load the
+			// restrictions.
+			if ( !$this->mId ) {
+				return [];
+			}
+			$this->restrictions = BlockRestriction::loadByBlockId( $this->mId );
+		}
+
+		return $this->restrictions;
+	}
+
+	/**
+	 * Set Restrictions.
+	 *
+	 * @param Restriction[] $restrictions
+	 *
+	 * @return self
+	 */
+	public function setRestrictions( array $restrictions ) {
+		$this->restrictions = array_filter( $restrictions, function ( $restriction ) {
+			return $restriction instanceof Restriction;
+		} );
+
+		return $this;
 	}
 }

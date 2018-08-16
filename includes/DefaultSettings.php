@@ -9028,6 +9028,16 @@ $wgChangeTagsSchemaMigrationStage = MIGRATION_WRITE_BOTH;
 $wgTagStatisticsNewTable = false;
 
 /**
+ * Flag to enable Partial Blocks. This allows an admin to prevent a user from editing specific pages
+ * or namespaces.
+ *
+ * @since 1.32
+ * @deprecated 1.32
+ * @var bool
+ */
+$wgEnablePartialBlocks = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

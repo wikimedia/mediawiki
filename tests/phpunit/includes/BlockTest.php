@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Block\Restriction\PageRestriction;
+
 /**
  * @group Database
  * @group Blocking
@@ -458,6 +460,154 @@ class BlockTest extends MediaWikiLangTestCase {
 		} catch ( MWException $ex ) {
 			$this->assertSame( 'Cannot autoblock from a system block', $ex->getMessage() );
 		}
+	}
+
+	/**
+	 * @covers Block::newFromRow
+	 */
+	public function testNewFromRow() {
+		$badActor = $this->getTestUser()->getUser();
+		$sysop = $this->getTestSysop()->getUser();
+
+		$block = new Block( [
+			'address' => $badActor->getName(),
+			'user' => $badActor->getId(),
+			'by' => $sysop->getId(),
+			'expiry' => 'infinity',
+		] );
+		$block->insert();
+
+		$blockQuery = Block::getQueryInfo();
+		$row = $this->db->select(
+			$blockQuery['tables'],
+			$blockQuery['fields'],
+			[
+				'ipb_id' => $block->getId(),
+			],
+			__METHOD__,
+			[],
+			$blockQuery['joins']
+		)->fetchObject();
+
+		$block = Block::newFromRow( $row );
+		$this->assertInstanceOf( Block::class, $block );
+		$this->assertEquals( $block->getBy(), $sysop->getId() );
+		$this->assertEquals( $block->getTarget()->getName(), $badActor->getName() );
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::equals
+	 */
+	public function testEquals() {
+		$block = new Block();
+
+		$this->assertTrue( $block->equals( $block ) );
+
+		$partial = new Block( [
+			'sitewide' => false,
+		] );
+		$this->assertFalse( $block->equals( $partial ) );
+	}
+
+	/**
+	 * @covers Block::isSitewide
+	 */
+	public function testIsSitewide() {
+		$block = new Block();
+		$this->assertTrue( $block->isSitewide() );
+
+		$block = new Block( [
+			'sitewide' => true,
+		] );
+		$this->assertTrue( $block->isSitewide() );
+
+		$block = new Block( [
+			'sitewide' => false,
+		] );
+		$this->assertFalse( $block->isSitewide() );
+
+		$block = new Block( [
+			'sitewide' => false,
+		] );
+		$block->isSitewide( true );
+		$this->assertTrue( $block->isSitewide() );
+	}
+
+	/**
+	 * @covers Block::getRestrictions
+	 * @covers Block::setRestrictions
+	 */
+	public function testRestrictions() {
+		$block = new Block();
+		$restrictions = [
+			new PageRestriction( 0, 1 )
+		];
+		$block->setRestrictions( $restrictions );
+
+		$this->assertSame( $restrictions, $block->getRestrictions() );
+	}
+
+	/**
+	 * @covers Block::getRestrictions
+	 * @covers Block::insert
+	 */
+	public function testRestrictionsFromDatabase() {
+		$badActor = $this->getTestUser()->getUser();
+		$sysop = $this->getTestSysop()->getUser();
+
+		$block = new Block( [
+			'address' => $badActor->getName(),
+			'user' => $badActor->getId(),
+			'by' => $sysop->getId(),
+			'expiry' => 'infinity',
+		] );
+		$page = $this->getExistingTestPage( 'Foo' );
+		$restriction = new PageRestriction( 0, $page->getId() );
+		$block->setRestrictions( [ $restriction ] );
+		$block->insert();
+
+		// Refresh the block from the database.
+		$block = Block::newFromID( $block->getId() );
+		$restrictions = $block->getRestrictions();
+		$this->assertCount( 1, $restrictions );
+		$this->assertTrue( $restriction->equals( $restrictions[0] ) );
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::insert
+	 */
+	public function testInsertExistingBlock() {
+		$badActor = $this->getTestUser()->getUser();
+		$sysop = $this->getTestSysop()->getUser();
+
+		$block = new Block( [
+			'address' => $badActor->getName(),
+			'user' => $badActor->getId(),
+			'by' => $sysop->getId(),
+			'expiry' => 'infinity',
+		] );
+		$page = $this->getExistingTestPage( 'Foo' );
+		$restriction = new PageRestriction( 0, $page->getId() );
+		$block->setRestrictions( [ $restriction ] );
+		$block->insert();
+
+		// Insert the block again, which should result in a failur
+		$result = $block->insert();
+
+		$this->assertFalse( $result );
+
+		// Ensure that there are no restrictions where the blockId is 0.
+		$count = $this->db->selectRowCount(
+			'ipblocks_restrictions',
+			'*',
+			[ 'ir_ipb_id' => 0 ],
+			__METHOD__
+		);
+		$this->assertSame( 0, $count );
+
+		$block->delete();
 	}
 
 }
