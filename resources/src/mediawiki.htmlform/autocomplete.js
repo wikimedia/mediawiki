@@ -12,7 +12,7 @@
 					fetch: function ( val ) {
 						var $el = $( this );
 						$el.suggestions( 'suggestions',
-							$.grep( $el.data( 'autocomplete' ), function ( v ) {
+							$el.data( 'autocomplete' ).filter( function ( v ) {
 								return v.indexOf( val ) === 0;
 							} )
 						);

@@ -364,7 +364,7 @@
 	QUnit.test( 'Match PHP parser', function ( assert ) {
 		var tasks;
 		mw.messages.set( mw.libs.phpParserData.messages );
-		tasks = $.map( mw.libs.phpParserData.tests, function ( test ) {
+		tasks = mw.libs.phpParserData.tests.map( function ( test ) {
 			var done = assert.async();
 			return function ( next, abort ) {
 				getMwLanguage( test.lang )
