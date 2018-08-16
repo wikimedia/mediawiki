@@ -375,7 +375,7 @@ abstract class LBFactory implements ILBFactory {
 		$opts += [
 			'domain' => false,
 			'cluster' => false,
-			'timeout' => $this->cliMode ? 60 : 10,
+			'timeout' => $this->cliMode ? 60 : 1,
 			'ifWritesSince' => null
 		];
 
@@ -432,13 +432,7 @@ abstract class LBFactory implements ILBFactory {
 			}
 		}
 
-		if ( $failed ) {
-			throw new DBReplicationWaitError(
-				null,
-				"Could not wait for replica DBs to catch up to " .
-				implode( ', ', $failed )
-			);
-		}
+		return !$failed;
 	}
 
 	public function setWaitForReplicationListener( $name, callable $callback = null ) {
@@ -478,12 +472,13 @@ abstract class LBFactory implements ILBFactory {
 		}
 
 		$this->commitMasterChanges( $fnameEffective );
-		$this->waitForReplication( $opts );
+		$waitSucceeded = $this->waitForReplication( $opts );
 		// If a nested caller committed on behalf of $fname, start another empty $fname
 		// transaction, leaving the caller with the same empty transaction state as before.
 		if ( $fnameEffective !== $fname ) {
 			$this->beginMasterChanges( $fnameEffective );
 		}
+		return $waitSucceeded;
 	}
 
 	public function getChronologyProtectorTouched( $dbName ) {

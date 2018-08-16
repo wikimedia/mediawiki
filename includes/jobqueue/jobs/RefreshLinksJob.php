@@ -21,7 +21,6 @@
  * @ingroup JobQueue
  */
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\DBReplicationWaitError;
 
 /**
  * Job to update link tables for pages
@@ -89,13 +88,11 @@ class RefreshLinksJob extends Job {
 			// From then on, we know that any template changes at the time the base job was
 			// enqueued will be reflected in backlink page parses when the leaf jobs run.
 			if ( !isset( $this->params['range'] ) ) {
-				try {
-					$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-					$lbFactory->waitForReplication( [
+				$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+				if ( !$lbFactory->waitForReplication( [
 						'wiki'    => wfWikiID(),
 						'timeout' => self::LAG_WAIT_TIMEOUT
-					] );
-				} catch ( DBReplicationWaitError $e ) { // only try so hard
+				] ) ) { // only try so hard
 					$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 					$stats->increment( 'refreshlinks.lag_wait_failed' );
 				}

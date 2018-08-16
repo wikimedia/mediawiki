@@ -26,7 +26,6 @@ require_once __DIR__ . '/../includes/PHPVersionCheck.php';
 wfEntryPointCheck( 'cli' );
 
 use MediaWiki\Shell\Shell;
-use Wikimedia\Rdbms\DBReplicationWaitError;
 
 /**
  * @defgroup MaintenanceArchive Maintenance archives
@@ -1393,17 +1392,12 @@ abstract class Maintenance {
 	 */
 	protected function commitTransaction( IDatabase $dbw, $fname ) {
 		$dbw->commit( $fname );
-		try {
-			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-			$lbFactory->waitForReplication(
-				[ 'timeout' => 30, 'ifWritesSince' => $this->lastReplicationWait ]
-			);
-			$this->lastReplicationWait = microtime( true );
-
-			return true;
-		} catch ( DBReplicationWaitError $e ) {
-			return false;
-		}
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$waitSucceeded = $lbFactory->waitForReplication(
+			[ 'timeout' => 30, 'ifWritesSince' => $this->lastReplicationWait ]
+		);
+		$this->lastReplicationWait = microtime( true );
+		return $waitSucceeded;
 	}
 
 	/**
