@@ -4,6 +4,7 @@ const assert = require( 'assert' ),
 	RestorePage = require( '../pageobjects/restore.page' ),
 	EditPage = require( '../pageobjects/edit.page' ),
 	HistoryPage = require( '../pageobjects/history.page' ),
+	UndoPage = require( '../pageobjects/undo.page' ),
 	UserLoginPage = require( '../pageobjects/userlogin.page' ),
 	Util = require( 'wdio-mediawiki/Util' );
 
@@ -118,4 +119,26 @@ describe( 'Page', function () {
 		// check
 		assert.strictEqual( RestorePage.displayedContent.getText(), name + ' has been restored\nConsult the deletion log for a record of recent deletions and restorations.' );
 	} );
+
+	it( 'should be undoable', function () {
+		// create
+		browser.call( function () {
+			return Api.edit( name, content );
+		} );
+
+		// edit
+		let previousRev, undoRev;
+		browser.call( function () {
+			return Api.edit( name, Util.getTestString( 'editContent-' ) )
+				.then( ( response ) => {
+					previousRev = response.edit.oldrevid;
+					undoRev = response.edit.newrevid;
+				} );
+		} );
+
+		UndoPage.undo( name, previousRev, undoRev );
+
+		assert.strictEqual( EditPage.displayedContent.getText(), content );
+	} );
+
 } );
