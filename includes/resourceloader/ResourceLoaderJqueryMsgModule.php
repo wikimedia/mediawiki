@@ -33,8 +33,7 @@ class ResourceLoaderJqueryMsgModule extends ResourceLoaderFileModule {
 		$fileScript = parent::getScript( $context );
 
 		$tagData = Sanitizer::getRecognizedTagData();
-		$parserDefaults = [];
-		$parserDefaults['allowedHtmlElements'] = array_merge(
+		$allowedHtmlElements = array_merge(
 			array_keys( $tagData['htmlpairs'] ),
 			array_diff(
 				array_keys( $tagData['htmlsingle'] ),
@@ -42,26 +41,24 @@ class ResourceLoaderJqueryMsgModule extends ResourceLoaderFileModule {
 			)
 		);
 
-		$mainDataScript = Xml::encodeJsCall( 'mw.jqueryMsg.setParserDefaults', [ $parserDefaults ] );
-
-		// Associative array mapping magic words (e.g. SITENAME)
-		// to their values.
 		$magicWords = [
 			'SITENAME' => $this->getConfig()->get( 'Sitename' ),
 		];
-
 		Hooks::run( 'ResourceLoaderJqueryMsgModuleMagicWords', [ $context, &$magicWords ] );
 
-		$magicWordExtendData = [
+		$parserDefaults = [
+			'allowedHtmlElements' => $allowedHtmlElements,
 			'magic' => $magicWords,
 		];
 
-		$magicWordDataScript = Xml::encodeJsCall( 'mw.jqueryMsg.setParserDefaults', [
-			$magicWordExtendData,
-			/* deep= */ true
+		$setDataScript = Xml::encodeJsCall( 'mw.jqueryMsg.setParserDefaults', [
+			$parserDefaults,
+			// Pass deep=true because mediawiki.jqueryMsg.js contains
+			// page-specific magic words that must not be overwritten.
+			true,
 		] );
 
-		return $fileScript . $mainDataScript . $magicWordDataScript;
+		return $fileScript . $setDataScript;
 	}
 
 	/**
