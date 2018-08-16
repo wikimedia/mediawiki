@@ -45,14 +45,12 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 		try {
 			if ( $startStamp !== '' ) {
 				$startTimestamp = MWTimestamp::getInstance( $startStamp );
-				$startTimestamp->setTimezone( $this->getConfig()->get( 'Localtimezone' ) );
 				$startOffset = $this->mDb->timestamp( $startTimestamp->getTimestamp() );
 				$this->rangeConds[] = $this->mIndexField . '>=' . $this->mDb->addQuotes( $startOffset );
 			}
 
 			if ( $endStamp !== '' ) {
 				$endTimestamp = MWTimestamp::getInstance( $endStamp );
-				$endTimestamp->setTimezone( $this->getConfig()->get( 'Localtimezone' ) );
 				$endOffset = $this->mDb->timestamp( $endTimestamp->getTimestamp() );
 				$this->rangeConds[] = $this->mIndexField . '<=' . $this->mDb->addQuotes( $endOffset );
 
