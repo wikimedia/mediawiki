@@ -883,6 +883,7 @@
 	"apierror-readonly": "위키는 현재 읽기 전용 모드입니다.",
 	"apierror-revisions-badid": "<var>$1</var> 변수에 대한 판을 발견하지 못했습니다.",
 	"apierror-revwrongpage": "r$1은(는) $2의 판이 아닙니다.",
+	"apierror-siteinfo-includealldenied": "<var>$wgShowHostnames</var>가 참이 아닐 경우 모든 서버의 정보를 볼 수 없습니다.",
 	"apierror-specialpage-cantexecute": "특수 문서의 결과를 볼 권한이 없습니다.",
 	"apierror-stashwrongowner": "잘못된 소유자: $1",
 	"apierror-systemblocked": "당신은 미디어위키에 의해서 자동으로 차단되었습니다.",
