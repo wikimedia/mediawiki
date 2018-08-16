@@ -33,23 +33,30 @@ use MediaWiki\MediaWikiServices;
  * moved to separate EditPage and HTMLFileCache classes.
  */
 class Article implements Page {
-	/** @var IContextSource The context this Article is executed in */
+	/**
+	 * @var IContextSource|null The context this Article is executed in.
+	 * If null, REquestContext::getMain() is used.
+	 */
 	protected $mContext;
 
 	/** @var WikiPage The WikiPage object of this instance */
 	protected $mPage;
 
-	/** @var ParserOptions ParserOptions object for $wgUser articles */
+	/**
+	 * @var ParserOptions|null ParserOptions object for $wgUser articles.
+	 * Initialized by getParserOptions by calling $this->mPage->makeParserOptions().
+	 */
 	public $mParserOptions;
 
 	/**
-	 * @var string Text of the revision we are working on
+	 * @var string|null Text of the revision we are working on
 	 * @todo BC cruft
 	 */
 	public $mContent;
 
 	/**
-	 * @var Content Content of the revision we are working on
+	 * @var Content|null Content of the revision we are working on.
+	 * Initialized by fetchContentObject().
 	 * @since 1.21
 	 */
 	public $mContentObject;
@@ -60,7 +67,7 @@ class Article implements Page {
 	/** @var int|null The oldid of the article that is to be shown, 0 for the current revision */
 	public $mOldId;
 
-	/** @var Title Title from which we were redirected here */
+	/** @var Title|null Title from which we were redirected here, if any. */
 	public $mRedirectedFrom = null;
 
 	/** @var string|bool URL to redirect to or false if none */
@@ -69,10 +76,16 @@ class Article implements Page {
 	/** @var int Revision ID of revision we are working on */
 	public $mRevIdFetched = 0;
 
-	/** @var Revision Revision we are working on */
+	/**
+	 * @var Revision|null Revision we are working on. Initialized by getOldIDFromRequest()
+	 * or fetchContentObject().
+	 */
 	public $mRevision = null;
 
-	/** @var ParserOutput */
+	/**
+	 * @var ParserOutput|null|false The ParserOutput generated for viewing the page,
+	 * initialized by view(). If no ParserOutput could be generated, this is set to false.
+	 */
 	public $mParserOutput;
 
 	/**
@@ -641,7 +654,7 @@ class Article implements Page {
 		# Note that $this->mParserOutput is the *current*/oldid version output.
 		$pOutput = ( $outputDone instanceof ParserOutput )
 			? $outputDone // object fetched by hook
-			: $this->mParserOutput;
+			: $this->mParserOutput ?: null; // ParserOutput or null, avoid false
 
 		# Adjust title for main page & pages with displaytitle
 		if ( $pOutput ) {
