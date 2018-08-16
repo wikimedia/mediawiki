@@ -416,7 +416,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 
 			if ( !is_null( $deps ) ) {
 				$this->fileDeps[$vary] = self::expandRelativePaths(
-					(array)FormatJson::decode( $deps, true )
+					(array)json_decode( $deps, true )
 				);
 			} else {
 				$this->fileDeps[$vary] = [];
@@ -476,7 +476,9 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 					return; // T124649; avoid write slams
 				}
 
-				$deps = FormatJson::encode( $localPaths );
+				// No needless escaping as this isn't HTML output.
+				// Only stored in the database and parsed in PHP.
+				$deps = json_encode( $localPaths, JSON_UNESCAPED_SLASHES );
 				$dbw = wfGetDB( DB_MASTER );
 				$dbw->upsert( 'module_deps',
 					[
