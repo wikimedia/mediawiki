@@ -3181,7 +3181,7 @@ ERROR;
 	}
 
 	/**
-	 * Helper function for summary input functions, which returns the neccessary
+	 * Helper function for summary input functions, which returns the necessary
 	 * attributes for the input.
 	 *
 	 * @param array|null $inputAttrs Array of attrs to use on the input
