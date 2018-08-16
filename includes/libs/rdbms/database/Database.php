@@ -1132,11 +1132,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->trxLevel && !$this->trxDoneWrites && $isWrite ) {
 			$this->trxDoneWrites = true;
 			$this->trxProfiler->transactionWritingIn(
-				$this->server, $this->dbName, $this->trxShortId );
+				$this->server, $this->getDomainID(), $this->trxShortId );
 		}
 
 		if ( $this->getFlag( self::DBO_DEBUG ) ) {
-			$this->queryLogger->debug( "{$this->dbName} {$commentedSql}" );
+			$this->queryLogger->debug( "{$this->getDomainID()} {$commentedSql}" );
 		}
 
 		# Send the query to the server and fetch any corresponding errors
@@ -3856,7 +3856,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->lastWriteTime = microtime( true );
 			$this->trxProfiler->transactionWritingOut(
 				$this->server,
-				$this->dbName,
+				$this->getDomainID(),
 				$this->trxShortId,
 				$writeTime,
 				$this->trxWriteAffectedRows
@@ -3907,7 +3907,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( $this->trxDoneWrites ) {
 				$this->trxProfiler->transactionWritingOut(
 					$this->server,
-					$this->dbName,
+					$this->getDomainID(),
 					$this->trxShortId,
 					$writeTime,
 					$this->trxWriteAffectedRows

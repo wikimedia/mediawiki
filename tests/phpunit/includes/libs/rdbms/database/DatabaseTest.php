@@ -2,6 +2,7 @@
 
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseMysqli;
 use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\TransactionProfiler;
@@ -453,6 +454,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$wdb->trxProfiler = new TransactionProfiler();
 		$wdb->connLogger = new \Psr\Log\NullLogger();
 		$wdb->queryLogger = new \Psr\Log\NullLogger();
+		$wdb->currentDomain = DatabaseDomain::newUnspecified();
 		return $db;
 	}
 
