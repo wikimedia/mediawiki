@@ -317,7 +317,8 @@ JAVASCRIPT
 			[
 				// Regression test for T201606.
 				// Must not break between 'return' and Expression.
-				// FIXME: Cause?
+				// Was caused by bad state after a ternary in the expression value
+				// for a key in an object literal.
 				<<<JAVASCRIPT
 call( {
 	key: 1 ? 0 : function () {
@@ -340,7 +341,7 @@ JAVASCRIPT
 					'(',
 					')',
 					'{',
-					'return', 'this', // FIXME
+					'return this',
 					';',
 					'}',
 					'}',

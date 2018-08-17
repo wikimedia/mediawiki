@@ -334,6 +334,8 @@ class JavaScriptMinifier {
 					self::ACTION_GOTO => self::PAREN_EXPRESSION,
 				],
 			],
+			// Property assignment - This is an object literal declaration.
+			// For example: `{ key: value }`
 			self::PROPERTY_ASSIGNMENT => [
 				self::TYPE_COLON => [
 					self::ACTION_GOTO => self::PROPERTY_EXPRESSION,
@@ -520,6 +522,7 @@ class JavaScriptMinifier {
 					self::ACTION_GOTO => self::STATEMENT,
 				],
 			],
+			// Property expression - The value of a key in an object literal.
 			self::PROPERTY_EXPRESSION => [
 				self::TYPE_BRACE_OPEN => [
 					self::ACTION_PUSH => self::PROPERTY_EXPRESSION_OP,
@@ -547,7 +550,8 @@ class JavaScriptMinifier {
 					self::ACTION_GOTO => self::PROPERTY_EXPRESSION,
 				],
 				self::TYPE_HOOK => [
-					self::ACTION_GOTO => self::PROPERTY_EXPRESSION,
+					self::ACTION_PUSH => self::PROPERTY_EXPRESSION,
+					self::ACTION_GOTO => self::EXPRESSION_TERNARY,
 				],
 				self::TYPE_COMMA => [
 					self::ACTION_GOTO => self::PROPERTY_ASSIGNMENT,
