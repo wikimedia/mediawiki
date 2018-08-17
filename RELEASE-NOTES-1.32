@@ -249,6 +249,8 @@ because of Phabricator reports.
   resetServiceForTesting( 'MagicWordFactory' ) on a MediaWikiServices.
 * mw.util.init() has been removed. This function is not needed anymore and was
   a no-op function since 1.30.
+* SpecialPageFactory::resetList() is a no-op.  Call overrideMwServices()
+  instead.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
@@ -354,6 +356,9 @@ because of Phabricator reports.
 * wfGetMainCache() is deprecated, use ObjectCache::getLocalClusterInstance()
   instead.
 * wfGetCache() is deprecated, use ObjectCache::getInstance() instead.
+* All SpecialPageFactory static methods are deprecated. Instead, call the
+  methods on a SpecialPageFactory instance, which may be obtained from
+  MediaWikiServices.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into

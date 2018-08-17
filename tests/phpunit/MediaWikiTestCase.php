@@ -947,7 +947,9 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @return MediaWikiServices
 	 * @throws MWException
 	 */
-	protected function overrideMwServices( Config $configOverrides = null, array $services = [] ) {
+	protected static function overrideMwServices(
+		Config $configOverrides = null, array $services = []
+	) {
 		if ( !$configOverrides ) {
 			$configOverrides = new HashConfig();
 		}
