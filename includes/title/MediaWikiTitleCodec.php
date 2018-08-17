@@ -174,7 +174,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @return string $title->getText()
 	 */
 	public function getText( LinkTarget $title ) {
-		return $this->formatTitle( false, $title->getText(), '' );
+		return $title->getText();
 	}
 
 	/**
