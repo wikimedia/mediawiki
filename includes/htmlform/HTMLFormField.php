@@ -462,6 +462,16 @@ abstract class HTMLFormField {
 		if ( isset( $params['hide-if'] ) ) {
 			$this->mHideIf = $params['hide-if'];
 		}
+
+		if ( isset( $this->mParams['notice-message'] ) ) {
+			wfDeprecated( "'notice-message' parameter in HTMLForm", '1.32' );
+		}
+		if ( isset( $this->mParams['notice-messages'] ) ) {
+			wfDeprecated( "'notice-messages' parameter in HTMLForm", '1.32' );
+		}
+		if ( isset( $this->mParams['notice'] ) ) {
+			wfDeprecated( "'notice' parameter in HTMLForm", '1.32' );
+		}
 	}
 
 	/**
@@ -607,7 +617,7 @@ abstract class HTMLFormField {
 			$error = new OOUI\HtmlSnippet( $error );
 		}
 
-		$notices = $this->getNotices();
+		$notices = $this->getNotices( 'skip deprecation' );
 		foreach ( $notices as &$notice ) {
 			$notice = new OOUI\HtmlSnippet( $notice );
 		}
@@ -915,9 +925,16 @@ abstract class HTMLFormField {
 	 * Determine notices to display for the field.
 	 *
 	 * @since 1.28
+	 * @deprecated since 1.32
+	 * @param string $skipDeprecation Pass 'skip deprecation' to avoid the deprecation
+	 *   warning (since 1.32)
 	 * @return string[]
 	 */
-	public function getNotices() {
+	public function getNotices( $skipDeprecation = null ) {
+		if ( $skipDeprecation !== 'skip deprecation' ) {
+			wfDeprecated( __METHOD__, '1.32' );
+		}
+
 		$notices = [];
 
 		if ( isset( $this->mParams['notice-message'] ) ) {
