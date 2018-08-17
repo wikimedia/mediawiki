@@ -158,7 +158,7 @@ class TitleValue implements LinkTarget {
 	 * @return string
 	 */
 	public function getText() {
-		return str_replace( '_', ' ', $this->getDBkey() );
+		return str_replace( '_', ' ', $this->dbkey );
 	}
 
 	/**
