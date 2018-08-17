@@ -88,6 +88,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @param array $options (optional) extra params to pass (see Http::request())
 	 * @param string $caller The method making this request, for profiling
 	 * @param Profiler|null $profiler An instance of the profiler for profiling, or null
+	 * @throws Exception
 	 */
 	public function __construct(
 		$url, array $options = [], $caller = __METHOD__, $profiler = null
@@ -408,18 +409,20 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	/**
 	 * Sets HTTPRequest status member to a fatal value with the error
 	 * message if the returned integer value of the status code was
-	 * not successful (< 300) or a redirect (>=300 and < 400).  (see
-	 * RFC2616, section 10,
-	 * http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html for a
-	 * list of status codes.)
+	 * not successful (1-299) or a redirect (300-399).
+	 * See RFC2616, section 10, http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+	 * for a list of status codes.
 	 */
 	protected function setStatus() {
 		if ( !$this->respHeaders ) {
 			$this->parseHeader();
 		}
 
-		if ( (int)$this->respStatus > 399 ) {
+		if ( ( (int)$this->respStatus > 0 && (int)$this->respStatus < 400 ) ) {
+			$this->status->setResult( true, (int)$this->respStatus );
+		} else {
 			list( $code, $message ) = explode( " ", $this->respStatus, 2 );
+			$this->status->setResult( false, (int)$this->respStatus );
 			$this->status->fatal( "http-bad-status", $code, $message );
 		}
 	}

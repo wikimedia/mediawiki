@@ -44,6 +44,11 @@ production.
 ==== New external libraries ====
 * Added wikimedia/password-blacklist 0.1.4.
 * …
+* Added guzzlehttp/guzzle 6.3.3 and dependents:
+  * guzzlehttp/promises 1.3.1
+  * guzzlehttp/psr7 1.5.0
+  * psr/http-message 1.0.1
+  * ralouphie/getallheaders 2.0.5
 
 ==== Changed external libraries ====
 * Updated wikimedia/xmp-reader from 0.6.0 to 0.6.1.
