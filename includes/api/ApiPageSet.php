@@ -1217,7 +1217,8 @@ class ApiPageSet extends ApiBase {
 						$this->mAllSpecials[$ns][$dbkey] = $this->mFakePageId;
 						$target = null;
 						if ( $ns === NS_SPECIAL && $this->mResolveRedirects ) {
-							$special = SpecialPageFactory::getPage( $dbkey );
+							$spFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
+							$special = $spFactory->getPage( $dbkey );
 							if ( $special instanceof RedirectSpecialArticle ) {
 								// Only RedirectSpecialArticle is intended to redirect to an article, other kinds of
 								// RedirectSpecialPage are probably applying weird URL parameters we don't want to handle.
@@ -1225,7 +1226,7 @@ class ApiPageSet extends ApiBase {
 								$context->setTitle( $titleObj );
 								$context->setRequest( new FauxRequest );
 								$special->setContext( $context );
-								list( /* $alias */, $subpage ) = SpecialPageFactory::resolveAlias( $dbkey );
+								list( /* $alias */, $subpage ) = $spFactory->resolveAlias( $dbkey );
 								$target = $special->getRedirect( $subpage );
 							}
 						}

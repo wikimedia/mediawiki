@@ -173,13 +173,14 @@ abstract class PrefixSearch {
 		$subpageSearch = $searchParts[1] ?? null;
 
 		// Handle subpage search separately.
+		$spFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
 		if ( $subpageSearch !== null ) {
 			// Try matching the full search string as a page name
 			$specialTitle = Title::makeTitleSafe( NS_SPECIAL, $searchKey );
 			if ( !$specialTitle ) {
 				return [];
 			}
-			$special = SpecialPageFactory::getPage( $specialTitle->getText() );
+			$special = $spFactory->getPage( $specialTitle->getText() );
 			if ( $special ) {
 				$subpages = $special->prefixSearchSubpages( $subpageSearch, $limit, $offset );
 				return array_map( function ( $sub ) use ( $specialTitle ) {
@@ -198,12 +199,12 @@ abstract class PrefixSearch {
 		// Unlike SpecialPage itself, we want the canonical forms of both
 		// canonical and alias title forms...
 		$keys = [];
-		foreach ( SpecialPageFactory::getNames() as $page ) {
+		foreach ( $spFactory->getNames() as $page ) {
 			$keys[$contLang->caseFold( $page )] = [ 'page' => $page, 'rank' => 0 ];
 		}
 
 		foreach ( $contLang->getSpecialPageAliases() as $page => $aliases ) {
-			if ( !in_array( $page, SpecialPageFactory::getNames() ) ) {# T22885
+			if ( !in_array( $page, $spFactory->getNames() ) ) {# T22885
 				continue;
 			}
 

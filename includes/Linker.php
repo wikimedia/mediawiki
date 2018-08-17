@@ -205,7 +205,8 @@ class Linker {
 	 */
 	public static function normaliseSpecialPage( LinkTarget $target ) {
 		if ( $target->getNamespace() == NS_SPECIAL && !$target->isExternal() ) {
-			list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $target->getDBkey() );
+			list( $name, $subpage ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
+				resolveAlias( $target->getDBkey() );
 			if ( !$name ) {
 				return $target;
 			}

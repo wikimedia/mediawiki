@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Test that runs against all registered special pages to make sure that regular
  * execution of the special page does not cause a fatal error.
@@ -24,8 +26,9 @@ class SpecialPageFatalTest extends MediaWikiTestCase {
 
 	public function provideSpecialPages() {
 		$specialPages = [];
-		foreach ( SpecialPageFactory::getNames() as $name ) {
-			$specialPages[$name] = [ SpecialPageFactory::getPage( $name ) ];
+		$spf = MediaWikiServices::getInstance()->getSpecialPageFactory();
+		foreach ( $spf->getNames() as $name ) {
+			$specialPages[$name] = [ $spf->getPage( $name ) ];
 		}
 		return $specialPages;
 	}

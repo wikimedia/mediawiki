@@ -250,14 +250,15 @@ class MediaWiki {
 		// Redirect loops, titleless URL, $wgUsePathInfo URLs, and URLs with a variant
 		} elseif ( !$this->tryNormaliseRedirect( $title ) ) {
 			// Prevent information leak via Special:MyPage et al (T109724)
+			$spFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
 			if ( $title->isSpecialPage() ) {
-				$specialPage = SpecialPageFactory::getPage( $title->getDBkey() );
+				$specialPage = $spFactory->getPage( $title->getDBkey() );
 				if ( $specialPage instanceof RedirectSpecialPage ) {
 					$specialPage->setContext( $this->context );
 					if ( $this->config->get( 'HideIdentifiableRedirects' )
 						&& $specialPage->personallyIdentifiableTarget()
 					) {
-						list( , $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
+						list( , $subpage ) = $spFactory->resolveAlias( $title->getDBkey() );
 						$target = $specialPage->getRedirect( $subpage );
 						// target can also be true. We let that case fall through to normal processing.
 						if ( $target instanceof Title ) {
@@ -284,7 +285,7 @@ class MediaWiki {
 			// Special pages ($title may have changed since if statement above)
 			if ( $title->isSpecialPage() ) {
 				// Actions that need to be made when we have a special pages
-				SpecialPageFactory::executePath( $title, $this->context );
+				$spFactory->executePath( $title, $this->context );
 			} else {
 				// ...otherwise treat it as an article view. The article
 				// may still be a wikipage redirect to another article or URL.
@@ -338,7 +339,8 @@ class MediaWiki {
 		}
 
 		if ( $title->isSpecialPage() ) {
-			list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
+			list( $name, $subpage ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
+				resolveAlias( $title->getDBkey() );
 			if ( $name ) {
 				$title = SpecialPage::getTitleFor( $name, $subpage );
 			}
@@ -1055,7 +1057,8 @@ class MediaWiki {
 
 		$invokedWithSuccess = true;
 		if ( $sock ) {
-			$special = SpecialPageFactory::getPage( 'RunJobs' );
+			$special = MediaWikiServices::getInstance()->getSpecialPageFactory()->
+				getPage( 'RunJobs' );
 			$url = $special->getPageTitle()->getCanonicalURL( $query );
 			$req = (
 				"POST $url HTTP/1.1\r\n" .

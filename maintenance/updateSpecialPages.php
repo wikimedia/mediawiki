@@ -66,7 +66,8 @@ class UpdateSpecialPages extends Maintenance {
 				continue;
 			}
 
-			$specialObj = SpecialPageFactory::getPage( $special );
+			$specialObj = MediaWikiServices::getInstance()->getSpecialPageFactory()->
+				getPage( $special );
 			if ( !$specialObj ) {
 				$this->output( "No such special page: $special\n" );
 				exit;

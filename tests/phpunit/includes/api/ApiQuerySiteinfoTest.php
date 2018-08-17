@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group API
  * @group medium
@@ -107,7 +109,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 
 	public function testSpecialPageAliases() {
 		$this->assertCount(
-			count( SpecialPageFactory::getNames() ),
+			count( MediaWikiServices::getInstance()->getSpecialPageFactory()->getNames() ),
 			$this->doQuery( 'specialpagealiases' )
 		);
 	}
