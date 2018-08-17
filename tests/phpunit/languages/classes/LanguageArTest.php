@@ -1,32 +1,61 @@
 <?php
-/**
- * Based on LanguagMlTest
- * @file
- */
 
 /**
  * @covers LanguageAr
  */
 class LanguageArTest extends LanguageClassesTestCase {
+
 	/**
 	 * @covers Language::formatNum
-	 * @todo split into a test and a dataprovider
+	 * @dataProvider provideFormatNum
 	 */
-	public function testFormatNum() {
-		$this->assertEquals( '١٬٢٣٤٬٥٦٧', $this->getLang()->formatNum( '1234567' ) );
-		$this->assertEquals( '-١٢٫٨٩', $this->getLang()->formatNum( -12.89 ) );
+	public function testFormatNum( $num, $formatted ) {
+		$this->assertEquals( $formatted, $this->getLang()->formatNum( $num ) );
+	}
+
+	public static function provideFormatNum() {
+		return [
+			[ '1234567', '١٬٢٣٤٬٥٦٧' ],
+			[ -12.89, '-١٢٫٨٩' ],
+		];
+	}
+
+	/**
+	 * @covers LanguageAr::normalize
+	 * @covers Language::normalize
+	 * @dataProvider provideNormalize
+	 */
+	public function testNormalize( $input, $expected ) {
+		if ( $input === $expected ) {
+			throw new Exception( 'Expected output must differ.' );
+		}
+
+		$this->setMwGlobals( 'wgFixArabicUnicode', true );
+		$this->assertSame( $expected, $this->getLang()->normalize( $input ), 'ar-normalised form' );
+
+		$this->setMwGlobals( 'wgFixArabicUnicode', false );
+		$this->assertSame( $input, $this->getLang()->normalize( $input ), 'regular normalised form' );
+	}
+
+	public static function provideNormalize() {
+		return [
+			[
+				'ﷅ',
+				'صمم',
+			],
+		];
 	}
 
 	/**
 	 * Mostly to test the raw ascii feature.
-	 * @dataProvider providerSprintfDate
+	 * @dataProvider provideSprintfDate
 	 * @covers Language::sprintfDate
 	 */
 	public function testSprintfDate( $format, $date, $expected ) {
 		$this->assertEquals( $expected, $this->getLang()->sprintfDate( $format, $date ) );
 	}
 
-	public static function providerSprintfDate() {
+	public static function provideSprintfDate() {
 		return [
 			[
 				'xg "vs" g',
