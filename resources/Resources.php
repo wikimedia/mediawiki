@@ -224,9 +224,6 @@ return [
 		'scripts' => 'resources/lib/jquery/jquery.cookie.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'jquery.expandableField' => [
-		'scripts' => 'resources/src/jquery/jquery.expandableField.js',
-	],
 	'jquery.form' => [
 		'scripts' => 'resources/lib/jquery/jquery.form.js',
 	],
