@@ -37,7 +37,7 @@ use Wikimedia\WrappedString;
  */
 class ResourceLoader implements LoggerAwareInterface {
 	/** @var int */
-	protected static $filterCacheVersion = 7;
+	protected static $filterCacheVersion = 8;
 
 	/** @var bool */
 	protected static $debugMode = null;
