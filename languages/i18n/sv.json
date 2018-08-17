@@ -1197,7 +1197,7 @@
 	"group-autoconfirmed-member": "{{GENDER:$1|bekräftad användare}}",
 	"group-bot-member": "{{GENDER:$1|robot}}",
 	"group-sysop-member": "{{GENDER:$1|administratör}}",
-	"group-interface-admin-member": "{{GENDER:$1|gränssnittsadministratörer}}",
+	"group-interface-admin-member": "{{GENDER:$1|gränssnittsadministratör}}",
 	"group-bureaucrat-member": "{{GENDER:$1|byråkrat}}",
 	"group-suppress-member": "{{GENDER:$1|censor}}",
 	"grouppage-user": "{{ns:project}}:Användare",
