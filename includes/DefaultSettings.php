@@ -6412,6 +6412,13 @@ $wgDeprecationReleaseLimit = false;
 $wgProfiler = [];
 
 /**
+ * Allow the profileinfo.php entrypoint to be used.
+ *
+ * @since 1.5.0
+ */
+$wgEnableProfileInfo = false;
+
+/**
  * Only record profiling info for pages that took longer than this
  * @deprecated since 1.25: set $wgProfiler['threshold'] instead.
  */
