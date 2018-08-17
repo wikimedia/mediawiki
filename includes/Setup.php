@@ -774,7 +774,7 @@ if ( $wgCommandLineMode ) {
 	wfDebug( $debug );
 }
 
-$wgMemc = wfGetMainCache();
+$wgMemc = ObjectCache::getLocalClusterInstance();
 $messageMemc = wfGetMessageCacheStorage();
 
 wfDebugLog( 'caches',

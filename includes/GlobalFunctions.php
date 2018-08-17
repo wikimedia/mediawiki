@@ -3119,6 +3119,7 @@ function wfBCP47( $code ) {
 /**
  * Get a specific cache object.
  *
+ * @deprecated since 1.32, use ObjectCache::getInstance() instead
  * @param int|string $cacheType A CACHE_* constants, or other key in $wgObjectCaches
  * @return BagOStuff
  */
@@ -3129,11 +3130,11 @@ function wfGetCache( $cacheType ) {
 /**
  * Get the main cache object
  *
+ * @deprecated since 1.32, use ObjectCache::getLocalClusterInstance() instead
  * @return BagOStuff
  */
 function wfGetMainCache() {
-	global $wgMainCacheType;
-	return ObjectCache::getInstance( $wgMainCacheType );
+	return ObjectCache::getLocalClusterInstance();
 }
 
 /**
