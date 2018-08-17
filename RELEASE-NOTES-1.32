@@ -365,6 +365,9 @@ because of Phabricator reports.
 * (T198811) The following tables have had their UNIQUE indexes turned into
   proper PRIMARY KEYs for increased maintainability: interwiki, page_props,
   protected_titles and site_identifiers.
+* OOUI HTMLForm will now display help text inline after the input field,
+  rather than in a popup. Previous behavior can be restored by using
+  `'help-inline' => false`.
 * …
 
 == Compatibility ==
