@@ -1052,6 +1052,7 @@ CREATE INDEX /*i*/rc_user_text ON /*_*/recentchanges (rc_user_text, rc_timestamp
 CREATE INDEX /*i*/rc_ns_actor ON /*_*/recentchanges (rc_namespace, rc_actor);
 CREATE INDEX /*i*/rc_actor ON /*_*/recentchanges (rc_actor, rc_timestamp);
 CREATE INDEX /*i*/rc_name_type_patrolled_timestamp ON /*_*/recentchanges (rc_namespace, rc_type, rc_patrolled, rc_timestamp);
+CREATE INDEX /*i*/rc_this_oldid ON /*_*/recentchanges (rc_this_oldid);
 
 
 CREATE TABLE /*_*/watchlist (

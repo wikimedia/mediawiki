@@ -1471,6 +1471,8 @@ CREATE INDEX /*i*/rc_actor ON /*_*/recentchanges (rc_actor, rc_timestamp);
 -- ApiQueryRecentChanges (T140108)
 CREATE INDEX /*i*/rc_name_type_patrolled_timestamp ON /*_*/recentchanges (rc_namespace, rc_type, rc_patrolled, rc_timestamp);
 
+-- Article.php and friends (T139012)
+CREATE INDEX /*i*/rc_this_oldid ON /*_*/recentchanges (rc_this_oldid);
 
 CREATE TABLE /*_*/watchlist (
   wl_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
