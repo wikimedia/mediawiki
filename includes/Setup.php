@@ -898,6 +898,7 @@ $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
 
 /**
  * @var Parser $wgParser
+ * @deprecated since 1.32, use MediaWikiServices::getParser() instead
  */
 $wgParser = new StubObject( 'wgParser', function () {
 	return MediaWikiServices::getInstance()->getParser();
