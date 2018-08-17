@@ -28,19 +28,9 @@ Primary scripts:
     that points to the search engines of the wiki.
 
   profileinfo.php
-    Allow users to see the profiling information that are stored in the
-    database.
-
-    To save the profiling information in the database (required to use this
-    script), you have to modify StartProfiler.php to use the Profiler class and
-    not the stub profiler which is enabled by default.
-    You will also need to set $wgProfiler['output'] to 'db' in LocalSettings.php
-    to force the profiler to save the informations in the database and apply the
-    maintenance/archives/patch-profiling.sql patch to the database.
-
-    To enable the profileinfo.php itself, you'll need to set $wgDBadminuser
-    and $wgDBadminpassword in your LocalSettings.php, as well as $wgEnableProfileInfo
-    See also https://www.mediawiki.org/wiki/Manual:Profiling .
+    Simple interface for displaying request profiles that were stored in the
+    database. For more information, see the documentation in that file, and at
+    https://www.mediawiki.org/wiki/Manual:Profiling.
 
   thumb.php
     Script used to resize images if it is configured to be done when the web
