@@ -473,13 +473,13 @@ class Message implements MessageSpecifier, Serializable {
 		global $wgForceUIMsgAsContentMsg;
 
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$lang = $this->getLanguage();
 		$title = $this->key;
 		if (
-			!$this->language->equals( $contLang )
+			!$lang->equals( $contLang )
 			&& in_array( $this->key, (array)$wgForceUIMsgAsContentMsg )
 		) {
-			$code = $this->language->getCode();
-			$title .= '/' . $code;
+			$title .= '/' . $lang->getCode();
 		}
 
 		return Title::makeTitle(
