@@ -375,7 +375,9 @@
 
 			// Update tooltip for the access key after inserting into DOM
 			// to get a localized access key label (T69946).
-			$link.updateTooltipAccessKeys();
+			if ( accesskey ) {
+				$link.updateTooltipAccessKeys();
+			}
 
 			return $item[ 0 ];
 		},
