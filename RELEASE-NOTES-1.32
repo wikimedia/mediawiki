@@ -194,6 +194,7 @@ because of Phabricator reports.
 * The mediawiki.widgets.visibleByteLimit module alias, deprecated in 1.32, was
   removed. Use mediawiki.widgets.visibleLengthLimit instead.
 * The jquery.farbtastic module, unused since 1.18, was removed.
+* The 'jquery.expandableField' module, unused since 1.22, was removed.
 * (T181318) The $wgStyleVersion setting and its appendage to various script and
   style URLs in OutputPage, deprecated in 1.31, was removed.
 * The hooks 'PreferencesFormPreSave' and 'PreferencesGetLegend' may provide
