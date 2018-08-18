@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Widget\TitleInputWidget;
 
 /**
@@ -57,17 +56,10 @@ class HTMLTitleTextField extends HTMLTextField {
 				$title = Title::newFromTextThrow( $value );
 			} else {
 				// Can't use Title::makeTitleSafe(), because it doesn't throw useful exceptions
-				$namespaceName = MediaWikiServices::getInstance()->getContentLanguage()->
-					getNsText( $this->mParams['namespace'] );
-				$title = Title::newFromTextThrow( $namespaceName . ':' . $value );
+				$title = Title::newFromTextThrow( Title::makeName( $this->mParams['namespace'], $value ) );
 			}
 		} catch ( MalformedTitleException $e ) {
-			$msg = $this->msg( $e->getErrorMessage() );
-			$params = $e->getErrorMessageParameters();
-			if ( $params ) {
-				$msg->params( $params );
-			}
-			return $msg;
+			return $this->msg( $e->getErrorMessage(), $e->getErrorMessageParameters() );
 		}
 
 		$text = $title->getPrefixedText();
