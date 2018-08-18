@@ -186,12 +186,16 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @return string
 	 */
 	public function getPrefixedText( LinkTarget $title ) {
-		return $this->formatTitle(
-			$title->getNamespace(),
-			$title->getText(),
-			'',
-			$title->getInterwiki()
-		);
+		if ( !isset( $title->prefixedText ) ) {
+			$title->prefixedText = $this->formatTitle(
+				$title->getNamespace(),
+				$title->getText(),
+				'',
+				$title->getInterwiki()
+			);
+		}
+
+		return $title->prefixedText;
 	}
 
 	/**
