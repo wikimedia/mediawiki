@@ -1548,7 +1548,8 @@ abstract class Skin extends ContextSource {
 			$notice = $msg->plain();
 		}
 
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$services = MediaWikiServices::getInstance();
+		$cache = $services->getMainWANObjectCache();
 		$parsed = $cache->getWithSetCallback(
 			// Use the extra hash appender to let eg SSL variants separately cache
 			// Key is verified with md5 hash of unparsed wikitext
@@ -1560,7 +1561,7 @@ abstract class Skin extends ContextSource {
 			}
 		);
 
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$contLang = $services->getContentLanguage();
 		return Html::rawElement(
 			'div',
 			[

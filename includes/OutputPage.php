@@ -3060,6 +3060,7 @@ class OutputPage extends ContextSource {
 		$curRevisionId = 0;
 		$articleId = 0;
 		$canonicalSpecialPageName = false; # T23115
+		$services = MediaWikiServices::getInstance();
 
 		$title = $this->getTitle();
 		$ns = $title->getNamespace();
@@ -3075,7 +3076,7 @@ class OutputPage extends ContextSource {
 
 		if ( $ns == NS_SPECIAL ) {
 			list( $canonicalSpecialPageName, /*...*/ ) =
-				MediaWikiServices::getInstance()->getSpecialPageFactory()->
+				$services->getSpecialPageFactory()->
 					resolveAlias( $title->getDBkey() );
 		} elseif ( $this->canUseWikiPage() ) {
 			$wikiPage = $this->getWikiPage();
@@ -3141,7 +3142,7 @@ class OutputPage extends ContextSource {
 			$vars['wgUserNewMsgRevisionId'] = $user->getNewMessageRevisionId();
 		}
 
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$contLang = $services->getContentLanguage();
 		if ( $contLang->hasVariants() ) {
 			$vars['wgUserVariant'] = $contLang->getPreferredVariant();
 		}

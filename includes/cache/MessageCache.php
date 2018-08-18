@@ -107,15 +107,16 @@ class MessageCache {
 	public static function singleton() {
 		if ( self::$instance === null ) {
 			global $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgUseLocalMessageCache;
+			$services = MediaWikiServices::getInstance();
 			self::$instance = new self(
-				MediaWikiServices::getInstance()->getMainWANObjectCache(),
+				$services->getMainWANObjectCache(),
 				wfGetMessageCacheStorage(),
 				$wgUseLocalMessageCache
-					? MediaWikiServices::getInstance()->getLocalServerObjectCache()
+					? $services->getLocalServerObjectCache()
 					: new EmptyBagOStuff(),
 				$wgUseDatabaseMessages,
 				$wgMsgCacheExpiry,
-				MediaWikiServices::getInstance()->getContentLanguage()
+				$services->getContentLanguage()
 			);
 		}
 

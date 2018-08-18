@@ -75,13 +75,14 @@ class SearchUpdate implements DeferrableUpdate {
 	 * Perform actual update for the entry
 	 */
 	public function doUpdate() {
-		$config = MediaWikiServices::getInstance()->getSearchEngineConfig();
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getSearchEngineConfig();
 
 		if ( $config->getConfig()->get( 'DisableSearchUpdate' ) || !$this->id ) {
 			return;
 		}
 
-		$seFactory = MediaWikiServices::getInstance()->getSearchEngineFactory();
+		$seFactory = $services->getSearchEngineFactory();
 		foreach ( $config->getSearchTypes() as $type ) {
 			$search = $seFactory->create( $type );
 			if ( !$search->supports( 'search-update' ) ) {
@@ -117,14 +118,16 @@ class SearchUpdate implements DeferrableUpdate {
 	 * @return string
 	 */
 	public function updateText( $text, SearchEngine $se = null ) {
+		$services = MediaWikiServices::getInstance();
+		$contLang = $services->getContentLanguage();
 		# Language-specific strip/conversion
-		$text = MediaWikiServices::getInstance()->getContentLanguage()->normalizeForSearch( $text );
-		$se = $se ?: MediaWikiServices::getInstance()->newSearchEngine();
+		$text = $contLang->normalizeForSearch( $text );
+		$se = $se ?: $services->newSearchEngine();
 		$lc = $se->legalSearchChars() . '&#;';
 
 		# Strip HTML markup
 		$text = preg_replace( "/<\\/?\\s*[A-Za-z][^>]*?>/",
-			' ', MediaWikiServices::getInstance()->getContentLanguage()->lc( " " . $text . " " ) );
+			' ', $contLang->lc( " " . $text . " " ) );
 		$text = preg_replace( "/(^|\\n)==\\s*([^\\n]+)\\s*==(\\s)/sD",
 			"\\1\\2 \\2 \\2\\3", $text ); # Emphasize headings
 
@@ -199,13 +202,14 @@ class SearchUpdate implements DeferrableUpdate {
 	 * @return string A stripped-down title string ready for the search index
 	 */
 	private function getNormalizedTitle( SearchEngine $search ) {
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$ns = $this->title->getNamespace();
 		$title = $this->title->getText();
 
 		$lc = $search->legalSearchChars() . '&#;';
-		$t = MediaWikiServices::getInstance()->getContentLanguage()->normalizeForSearch( $title );
+		$t = $contLang->normalizeForSearch( $title );
 		$t = preg_replace( "/[^{$lc}]+/", ' ', $t );
-		$t = MediaWikiServices::getInstance()->getContentLanguage()->lc( $t );
+		$t = $contLang->lc( $t );
 
 		# Handle 's, s'
 		$t = preg_replace( "/([{$lc}]+)'s( |$)/", "\\1 \\1's ", $t );

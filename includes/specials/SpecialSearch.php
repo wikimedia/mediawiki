@@ -709,9 +709,10 @@ class SpecialSearch extends SpecialPage {
 	 */
 	public function getSearchEngine() {
 		if ( $this->searchEngine === null ) {
+			$services = MediaWikiServices::getInstance();
 			$this->searchEngine = $this->searchEngineType ?
-				MediaWikiServices::getInstance()->getSearchEngineFactory()->create( $this->searchEngineType ) :
-				MediaWikiServices::getInstance()->newSearchEngine();
+				$services->getSearchEngineFactory()->create( $this->searchEngineType ) :
+				$services->newSearchEngine();
 		}
 
 		return $this->searchEngine;
