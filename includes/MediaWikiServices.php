@@ -12,6 +12,7 @@ use GenderCache;
 use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
@@ -702,7 +703,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.32
-	 * @return IBufferingStatsdDataFactory
+	 * @return StatsdDataFactoryInterface
 	 */
 	public function getPerDbNameStatsdDataFactory() {
 		return $this->getService( 'PerDbNameStatsdDataFactory' );

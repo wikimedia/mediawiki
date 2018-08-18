@@ -37,6 +37,7 @@
  *      MediaWiki code base.
  */
 
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
@@ -400,11 +401,12 @@ return [
 	},
 
 	'PerDbNameStatsdDataFactory' =>
-	function ( MediaWikiServices $services ) : IBufferingStatsdDataFactory {
+	function ( MediaWikiServices $services ) : StatsdDataFactoryInterface {
 		$config = $services->getMainConfig();
 		$wiki = $config->get( 'DBname' );
-		return new BufferingStatsdDataFactory(
-			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' ) . '.' . $wiki
+		return new PrefixingStatsdDataFactoryProxy(
+			$services->getStatsdDataFactory(),
+			$wiki
 		);
 	},
 
