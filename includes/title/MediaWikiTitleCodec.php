@@ -112,18 +112,16 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @return string
 	 */
 	public function formatTitle( $namespace, $text, $fragment = '', $interwiki = '' ) {
-		if ( $namespace !== false ) {
+		if ( $namespace !== 0 && $namespace !== false ) {
 			// Try to get a namespace name, but fallback
-			// to empty string if it doesn't exist
+			// to empty string if it doesn't exist. And
+			// assume that ns 0 is the empty string.
 			try {
 				$nsName = $this->getNamespaceName( $namespace, $text );
 			} catch ( InvalidArgumentException $e ) {
 				$nsName = '';
 			}
-
-			if ( $namespace !== 0 ) {
-				$text = $nsName . ':' . $text;
-			}
+			$text = $nsName . ':' . $text;
 		}
 
 		if ( $fragment !== '' ) {
