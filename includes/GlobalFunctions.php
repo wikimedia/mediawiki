@@ -30,7 +30,6 @@ use MediaWiki\Session\SessionManager;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Wikimedia\ScopedCallback;
-use Wikimedia\StaticArrayWriter;
 use Wikimedia\Rdbms\DBReplicationWaitError;
 use Wikimedia\WrappedString;
 
@@ -2673,17 +2672,6 @@ function wfGetPrecompiledData( $name ) {
 		}
 	}
 	return false;
-}
-
-/**
- * @deprecated since 1.32 use StaticArrayWriter instead
- * @since 1.32
- * @param string[] $data Array with string keys/values to export
- * @param string $header
- * @return string PHP code
- */
-function wfMakeStaticArrayFile( array $data, $header = 'Automatically generated' ) {
-	return ( new StaticArrayWriter() )->create( $data, $header );
 }
 
 /**
