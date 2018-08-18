@@ -276,10 +276,10 @@ because of Phabricator reports.
   a no-op function since 1.30.
 * SpecialPageFactory::resetList() is a no-op.  Call overrideMwServices()
   instead.
+* MediaWiki no longer supports a StartProfiler.php file.
+  Define $wgProfiler via LocalSettings.php instead.
 
 === Deprecations in 1.32 ===
-* Use of a StartProfiler.php file is deprecated in favour of placing
-  configuration in LocalSettings.php.
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit
   button is already marked as progressive.
 * Skin::setupSkinUserCss() is deprecated. Adding of modules to load

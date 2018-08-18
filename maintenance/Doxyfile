@@ -177,7 +177,6 @@ EXCLUDE                = {{EXCLUDE}}
 EXCLUDE_SYMLINKS       = YES
 EXCLUDE_PATTERNS       = LocalSettings.php \
                          AdminSettings.php \
-                         StartProfiler.php \
                          .svn \
                          */.git/* \
                          {{EXCLUDE_PATTERNS}}
