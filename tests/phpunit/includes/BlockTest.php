@@ -84,7 +84,7 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * per T28425
 	 * @covers Block::__construct
 	 */
-	public function testBug26425BlockTimestampDefaultsToTime() {
+	public function testT28425BlockTimestampDefaultsToTime() {
 		$user = $this->getUserForBlocking();
 		$block = $this->addBlockForUser( $user );
 		$madeAt = wfTimestamp( TS_MW );
@@ -103,10 +103,10 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * because the new function didn't accept empty strings like Block::load()
 	 * had. Regression T31116.
 	 *
-	 * @dataProvider provideBug29116Data
+	 * @dataProvider provideT31116Data
 	 * @covers Block::newFromTarget
 	 */
-	public function testBug29116NewFromTargetWithEmptyIp( $vagueTarget ) {
+	public function testT31116NewFromTargetWithEmptyIp( $vagueTarget ) {
 		$user = $this->getUserForBlocking();
 		$initialBlock = $this->addBlockForUser( $user );
 		$block = Block::newFromTarget( $user->getName(), $vagueTarget );
@@ -118,7 +118,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public static function provideBug29116Data() {
+	public static function provideT31116Data() {
 		return [
 			[ null ],
 			[ '' ],
