@@ -224,12 +224,13 @@ class LinkBatch {
 		if ( $this->isEmpty() ) {
 			return false;
 		}
+		$services = MediaWikiServices::getInstance();
 
-		if ( !MediaWikiServices::getInstance()->getContentLanguage()->needsGenderDistinction() ) {
+		if ( !$services->getContentLanguage()->needsGenderDistinction() ) {
 			return false;
 		}
 
-		$genderCache = MediaWikiServices::getInstance()->getGenderCache();
+		$genderCache = $services->getGenderCache();
 		$genderCache->doLinkBatch( $this->data, $this->caller );
 
 		return true;

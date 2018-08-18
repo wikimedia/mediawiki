@@ -150,9 +150,10 @@ class ProtectLogFormatter extends LogFormatter {
 	public function formatParametersForApi() {
 		$ret = parent::formatParametersForApi();
 		if ( isset( $ret['details'] ) && is_array( $ret['details'] ) ) {
+			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			foreach ( $ret['details'] as &$detail ) {
 				if ( isset( $detail['expiry'] ) ) {
-					$detail['expiry'] = MediaWikiServices::getInstance()->getContentLanguage()->
+					$detail['expiry'] = $contLang->
 						formatExpiry( $detail['expiry'], TS_ISO_8601, 'infinite' );
 				}
 			}

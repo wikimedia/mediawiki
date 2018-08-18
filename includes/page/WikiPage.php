@@ -2367,10 +2367,11 @@ class WikiPage implements Page, IDBAccessObject {
 	public function protectDescriptionLog( array $limit, array $expiry ) {
 		$protectDescriptionLog = '';
 
+		$dirMark = MediaWikiServices::getInstance()->getContentLanguage()->getDirMark();
 		foreach ( array_filter( $limit ) as $action => $restrictions ) {
 			$expiryText = $this->formatExpiry( $expiry[$action] );
 			$protectDescriptionLog .=
-				MediaWikiServices::getInstance()->getContentLanguage()->getDirMark() .
+				$dirMark .
 				"[$action=$restrictions] ($expiryText)";
 		}
 

@@ -1170,6 +1170,8 @@ class ApiPageSet extends ApiBase {
 	private function processTitlesArray( $titles ) {
 		$usernames = [];
 		$linkBatch = new LinkBatch();
+		$services = MediaWikiServices::getInstance();
+		$contLang = $services->getContentLanguage();
 
 		foreach ( $titles as $title ) {
 			if ( is_string( $title ) ) {
@@ -1197,7 +1199,6 @@ class ApiPageSet extends ApiBase {
 				$this->mInterwikiTitles[$unconvertedTitle] = $titleObj->getInterwiki();
 			} else {
 				// Variants checking
-				$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 				if (
 					$this->mConvertTitles && $contLang->hasVariants() && !$titleObj->exists()
 				) {
@@ -1217,7 +1218,7 @@ class ApiPageSet extends ApiBase {
 						$this->mAllSpecials[$ns][$dbkey] = $this->mFakePageId;
 						$target = null;
 						if ( $ns === NS_SPECIAL && $this->mResolveRedirects ) {
-							$spFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
+							$spFactory = $services->getSpecialPageFactory();
 							$special = $spFactory->getPage( $dbkey );
 							if ( $special instanceof RedirectSpecialArticle ) {
 								// Only RedirectSpecialArticle is intended to redirect to an article, other kinds of
@@ -1264,7 +1265,7 @@ class ApiPageSet extends ApiBase {
 			}
 		}
 		// Get gender information
-		$genderCache = MediaWikiServices::getInstance()->getGenderCache();
+		$genderCache = $services->getGenderCache();
 		$genderCache->doQuery( $usernames, __METHOD__ );
 
 		return $linkBatch;

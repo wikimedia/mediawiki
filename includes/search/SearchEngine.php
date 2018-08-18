@@ -264,8 +264,9 @@ abstract class SearchEngine {
 	 * @return SearchNearMatcher
 	 */
 	protected static function defaultNearMatcher() {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		return MediaWikiServices::getInstance()->newSearchEngine()->getNearMatcher( $config );
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
+		return $services->newSearchEngine()->getNearMatcher( $config );
 	}
 
 	/**

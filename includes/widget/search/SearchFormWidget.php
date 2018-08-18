@@ -238,14 +238,14 @@ class SearchFormWidget {
 	protected function powerSearchBox( $term, array $opts ) {
 		$rows = [];
 		$activeNamespaces = $this->specialSearch->getNamespaces();
+		$langConverter = MediaWikiServices::getInstance()->getContentLanguage()->getConverter();
 		foreach ( $this->searchConfig->searchableNamespaces() as $namespace => $name ) {
 			$subject = MWNamespace::getSubject( $namespace );
 			if ( !isset( $rows[$subject] ) ) {
 				$rows[$subject] = "";
 			}
 
-			$name = MediaWikiServices::getInstance()->getContentLanguage()->getConverter()->
-				convertNamespace( $namespace );
+			$name = $langConverter->convertNamespace( $namespace );
 			if ( $name === '' ) {
 				$name = $this->specialSearch->msg( 'blanknamespace' )->text();
 			}

@@ -573,6 +573,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		if ( count( $fields ) > 1 && $count > 30 ) {
 			$this->toc = Linker::tocIndent();
 			$tocLength = 0;
+			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 
 			foreach ( $fields as $data ) {
 				# strip out the 'ns' prefix from the section name:
@@ -580,8 +581,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 				$nsText = ( $ns == NS_MAIN )
 					? $this->msg( 'blanknamespace' )->escaped()
-					: htmlspecialchars( MediaWikiServices::getInstance()->getContentLanguage()->
-						getFormattedNsText( $ns ) );
+					: htmlspecialchars( $contLang->getFormattedNsText( $ns ) );
 				$this->toc .= Linker::tocLine( "editwatchlist-{$data['section']}", $nsText,
 					$this->getLanguage()->formatNum( ++$tocLength ), 1 ) . Linker::tocLineEnd();
 			}
