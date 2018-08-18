@@ -1682,6 +1682,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\SessionConsistentConnectionManager' => __DIR__ . '/includes/libs/rdbms/connectionmanager/SessionConsistentConnectionManager.php',
 	'Wikimedia\\Rdbms\\Subquery' => __DIR__ . '/includes/libs/rdbms/encasing/Subquery.php',
 	'Wikimedia\\Rdbms\\TransactionProfiler' => __DIR__ . '/includes/libs/rdbms/TransactionProfiler.php',
+	'Wikimedia\\StaticArrayWriter' => __DIR__ . '/includes/libs/StaticArrayWriter.php',
 	'WikitextContent' => __DIR__ . '/includes/content/WikitextContent.php',
 	'WikitextContentHandler' => __DIR__ . '/includes/content/WikitextContentHandler.php',
 	'WikitextLogFormatter' => __DIR__ . '/includes/logging/WikitextLogFormatter.php',

@@ -127,7 +127,8 @@ class GenerateNormalizerDataAr extends Maintenance {
 		}
 
 		global $IP;
-		file_put_contents( "$IP/languages/data/normalize-ar.php", wfMakeStaticArrayFile(
+		$writer = new StaticArrayWriter();
+		file_put_contents( "$IP/languages/data/normalize-ar.php", $writer->create(
 			$pairs,
 			'File created by generateNormalizerDataAr.php'
 		) );

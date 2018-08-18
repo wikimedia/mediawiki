@@ -61,7 +61,8 @@ class GenerateNormalizerDataMl extends Maintenance {
 		}
 
 		global $IP;
-		file_put_contents( "$IP/languages/data/normalize-ml.php", wfMakeStaticArrayFile(
+		$writer = new StaticArrayWriter();
+		file_put_contents( "$IP/languages/data/normalize-ml.php", $writer->create(
 			$pairs,
 			'File created by generateNormalizerDataMl.php'
 		) );
