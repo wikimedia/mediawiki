@@ -1905,7 +1905,7 @@
 	"prefixindex-strip": "Sakrij prefiks u spisku",
 	"shortpages": "Kratke stranice",
 	"longpages": "Dugačke stranice",
-	"deadendpages": "Stranice bez unutrašnjih veza",
+	"deadendpages": "Stranice koje ne vode nikuda",
 	"deadendpagestext": "Sledeće stranice nemaju veze do drugih stranica na ovom vikiju.",
 	"protectedpages": "Zaštićene stranice",
 	"protectedpages-filters": "Filteri:",
