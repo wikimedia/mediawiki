@@ -164,7 +164,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 			// getGenderCache() provides a mock that considers first
 			// names ending in "a" to be female.
 			[ NS_USER, 'Lisa_Müller', '', 'de', 'Benutzerin:Lisa Müller' ],
-			[ 1000000, 'Invalid_namespace', '', 'en', ':Invalid namespace' ],
+			[ 1000000, 'Invalid_namespace', '', 'en', 'Special:Badtitle/NS1000000:Invalid namespace' ],
 		];
 	}
 
@@ -195,7 +195,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 			[ NS_MAIN, 'Remote_page', '', 'remotetestiw', 'en', 'remotetestiw:Remote_page' ],
 
 			// non-existent namespace
-			[ 10000000, 'Foobar', '', '', 'en', ':Foobar' ],
+			[ 10000000, 'Foobar', '', '', 'en', 'Special:Badtitle/NS10000000:Foobar' ],
 		];
 	}
 
