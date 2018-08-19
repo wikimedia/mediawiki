@@ -273,13 +273,9 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 	 * @covers ContentSecurityPolicy::isNonceRequired
 	 */
 	public function testCSPIsEnabled( $main, $reportOnly, $expected ) {
-		global $wgCSPReportOnlyHeader, $wgCSPHeader;
-		global $wgCSPHeader;
-		$oldReport = wfSetVar( $wgCSPReportOnlyHeader, $reportOnly );
-		$oldMain = wfSetVar( $wgCSPHeader, $main );
+		$this->setMwGlobals( 'wgCSPReportOnlyHeader', $reportOnly );
+		$this->setMwGlobals( 'wgCSPHeader', $main );
 		$res = ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() );
-		wfSetVar( $wgCSPReportOnlyHeader, $oldReport );
-		wfSetVar( $wgCSPHeader, $oldMain );
 		$this->assertEquals( $res, $expected );
 	}
 
