@@ -174,7 +174,7 @@ return [
 		'targets' => [ 'mobile', 'desktop' ],
 	],
 	'jquery.async' => [
-		'scripts' => 'resources/lib/jquery/jquery.async.js',
+		'scripts' => 'resources/lib/jquery.async.js',
 	],
 	'jquery.byteLength' => [
 		'scripts' => 'resources/src/jquery/jquery.byteLength.js',
@@ -221,14 +221,14 @@ return [
 		'dependencies' => 'mediawiki.jqueryMsg',
 	],
 	'jquery.cookie' => [
-		'scripts' => 'resources/lib/jquery/jquery.cookie.js',
+		'scripts' => 'resources/lib/jquery.cookie.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.form' => [
-		'scripts' => 'resources/lib/jquery/jquery.form.js',
+		'scripts' => 'resources/lib/jquery.form.js',
 	],
 	'jquery.fullscreen' => [
-		'scripts' => 'resources/lib/jquery/jquery.fullscreen.js',
+		'scripts' => 'resources/lib/jquery.fullscreen.js',
 	],
 	'jquery.getAttrs' => [
 		'targets' => [ 'desktop', 'mobile' ],
@@ -248,7 +248,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.hoverIntent' => [
-		'scripts' => 'resources/lib/jquery/jquery.hoverIntent.js',
+		'scripts' => 'resources/lib/jquery.hoverIntent.js',
 	],
 	'jquery.i18n' => [
 		'scripts' => [
@@ -295,7 +295,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.mockjax' => [
-		'scripts' => 'resources/lib/jquery/jquery.mockjax.js',
+		'scripts' => 'resources/lib/jquery.mockjax.js',
 	],
 	'jquery.mw-jump' => [
 		'scripts' => 'resources/src/jquery/jquery.mw-jump.js',
@@ -313,7 +313,7 @@ return [
 	],
 	'jquery.jStorage' => [
 		'deprecated' => 'Please use "mediawiki.storage" instead.',
-		'scripts' => 'resources/lib/jquery/jquery.jStorage.js',
+		'scripts' => 'resources/lib/jquery.jStorage.js',
 	],
 	'jquery.suggestions' => [
 		'targets' => [ 'desktop', 'mobile' ],
@@ -340,11 +340,11 @@ return [
 		'targets' => [ 'mobile', 'desktop' ],
 	],
 	'jquery.throttle-debounce' => [
-		'scripts' => 'resources/lib/jquery/jquery.ba-throttle-debounce.js',
+		'scripts' => 'resources/lib/jquery.ba-throttle-debounce.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.xmldom' => [
-		'scripts' => 'resources/lib/jquery/jquery.xmldom.js',
+		'scripts' => 'resources/lib/jquery.xmldom.js',
 	],
 
 	/* jQuery Tipsy */
