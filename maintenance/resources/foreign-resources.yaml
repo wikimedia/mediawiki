@@ -1,17 +1,22 @@
 ### Format of this file
 #
 # The top-level keys are module names (as registered in Resources.php).
-# The values of these keys are resource descriptors.
+# Each top-level key holds a resource descriptor that must have
+# the following `type` value:
 #
-# In each resource descriptor object, the `src` and `integrity` keys are required.
+# - `tar`: For tarball archive (may be gzip-compressed).
 #
-# * `src`: Full URL to a remote resource.
-# * `integrity`: Cryptographic hash used to verify the remote content.
-#    Uses the "integrity metadata" format defined at <https://www.w3.org/TR/SRI/>.
-# * `dest`: An object mapping paths from the remote resource to a destination in
-#    `/resources/lib/$module/`. The value may be omitted to indicate that
-#    paths should be extracted to the destination directory itself.
+### Type tar
+#
+# The `src` and `integrity` keys are quired.
+#
+# * `src`: Full URL to thes remote resource.
+# * `integrity`: Cryptographic hash (integrity metadata format per <https://www.w3.org/TR/SRI/>).
+# * `dest`: An object mapping paths to files or directory from the remote resource to a destination
+#    in the module directory. The value of key in dest may be omitted, which will extract the key
+#    directly to the module directory.
 oojs:
+  type: tar
   src: https://registry.npmjs.org/oojs/-/oojs-2.2.2.tgz
   integrity: sha256-ebgQW2EGrSkBCnDJBGqDpsBDjA3PMN/M8U5DyLHt9mw=
   dest:
@@ -20,6 +25,7 @@ oojs:
     package/LICENSE-MIT:
     package/README.md:
 oojs-ui:
+  type: tar
   src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.28.0.tgz
   integrity: sha384-j8bzlCPrfS4sca+U9JO9tdcewDlLlDlOVOsLn+Vqlcg5GU59vLSd7TVm4FiuTowy
   dest:
