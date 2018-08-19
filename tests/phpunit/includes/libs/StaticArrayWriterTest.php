@@ -29,6 +29,8 @@ class StaticArrayWriterTest extends PHPUnit\Framework\TestCase {
 			'foo' => 'bar',
 			'baz' => 'rawr',
 			"they're" => '"quoted properly"',
+			'nested' => [ 'elements', 'work' ],
+			'and' => [ 'these' => 'do too' ],
 		];
 		$writer = new StaticArrayWriter();
 		$actual = $writer->create( $data, "Header\nWith\nNewlines" );
@@ -41,6 +43,13 @@ return [
 	'foo' => 'bar',
 	'baz' => 'rawr',
 	'they\'re' => '"quoted properly"',
+	'nested' => [
+		0 => 'elements',
+		1 => 'work',
+	],
+	'and' => [
+		'these' => 'do too',
+	],
 ];
 
 PHP;

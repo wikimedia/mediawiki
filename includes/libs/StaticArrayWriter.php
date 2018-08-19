@@ -26,24 +26,47 @@ namespace Wikimedia;
 class StaticArrayWriter {
 
 	/**
-	 * @param string[] $data Array with string keys/values to export
+	 * @param array $data Array with keys/values to export
 	 * @param string $header
 	 *
 	 * @return string PHP code
 	 */
 	public function create( array $data, $header = 'Automatically generated' ) {
-		$format = "\t%s => %s,\n";
 		$code = "<?php\n"
 			. "// " . implode( "\n// ", explode( "\n", $header ) ) . "\n"
 			. "return [\n";
 		foreach ( $data as $key => $value ) {
-			$code .= sprintf(
-				$format,
-				var_export( $key, true ),
-				var_export( $value, true )
-			);
+			$code .= $this->encode( $key, $value, 1 );
 		}
 		$code .= "];\n";
 		return $code;
+	}
+
+	/**
+	 * Recursively turn one k/v pair into properly-indented PHP
+	 *
+	 * @param string|int $key
+	 * @param array|mixed $value
+	 * @param int $indent Indentation level
+	 *
+	 * @return string
+	 */
+	private function encode( $key, $value, $indent ) {
+		$tabs = str_repeat( "\t", $indent );
+		$line = $tabs .
+			var_export( $key, true ) .
+			' => ';
+		if ( is_array( $value ) ) {
+			$line .= "[\n";
+			foreach ( $value as $key2 => $value2 ) {
+				$line .= $this->encode( $key2, $value2, $indent + 1 );
+			}
+			$line .= "$tabs]";
+		} else {
+			$line .= var_export( $value, true );
+		}
+
+		$line .= ",\n";
+		return $line;
 	}
 }
