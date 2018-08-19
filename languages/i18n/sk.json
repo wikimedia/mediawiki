@@ -1115,7 +1115,7 @@
 	"grouppage-bureaucrat": "{{ns:project}}:Byrokrati",
 	"grouppage-suppress": "{{ns:project}}:Dozor",
 	"right-read": "Čítať stránky",
-	"right-edit": "Upravovať stránky (ktoré nie sú diskusné stránky)",
+	"right-edit": "Upravovať stránky",
 	"right-createpage": "Vytvárať stránky (ktoré nie sú diskusné stránky)",
 	"right-createtalk": "Vytvárať diskusné stránky",
 	"right-createaccount": "Vytvárať nové používateľské kontá",

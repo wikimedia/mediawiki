@@ -312,7 +312,7 @@
 	"pool-errorunknown": "不明錯誤",
 	"pool-servererror": "無法使用程序計數服務 ($1)。",
 	"poolcounter-usage-error": "用法錯誤：$1",
-	"aboutsite": "關於 {{SITENAME}}",
+	"aboutsite": "關於{{SITENAME}}",
 	"aboutpage": "Project:關於",
 	"copyright": "除非另有註明，否則所有內容皆以 $1 條款授權。",
 	"copyrightpage": "{{ns:project}}:版權",

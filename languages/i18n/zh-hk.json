@@ -16,7 +16,8 @@
 			"Liuxinyu970226",
 			"Quest for Truth",
 			"Wxyveronica",
-			"和平至上"
+			"和平至上",
+			"A2093064"
 		]
 	},
 	"tog-watchlisthidebots": "隱藏監視清單中機械人的編輯",
@@ -67,7 +68,7 @@
 	"jumpto": "跳到：",
 	"jumptonavigation": "導覽",
 	"jumptosearch": "搜尋",
-	"aboutsite": "關於 {{SITENAME}}",
+	"aboutsite": "關於{{SITENAME}}",
 	"aboutpage": "Project:關於我們",
 	"disclaimers": "免責聲明",
 	"disclaimerpage": "本專案：一般免責聲明",
