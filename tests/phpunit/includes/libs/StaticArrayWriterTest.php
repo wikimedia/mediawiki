@@ -20,11 +20,15 @@
 
 use Wikimedia\StaticArrayWriter;
 
+/**
+ * @covers \Wikimedia\StaticArrayWriter
+ */
 class StaticArrayWriterTest extends PHPUnit\Framework\TestCase {
 	public function testCreate() {
 		$data = [
 			'foo' => 'bar',
 			'baz' => 'rawr',
+			"they're" => '"quoted properly"',
 		];
 		$writer = new StaticArrayWriter();
 		$actual = $writer->create( $data, "Header\nWith\nNewlines" );
@@ -36,6 +40,7 @@ class StaticArrayWriterTest extends PHPUnit\Framework\TestCase {
 return [
 	'foo' => 'bar',
 	'baz' => 'rawr',
+	'they\'re' => '"quoted properly"',
 ];
 
 PHP;
