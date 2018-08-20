@@ -149,10 +149,10 @@ class CategoryChangesRdfTest extends MediaWikiLangTestCase {
 				],
 				[ 22 => true ],
 			],
-			'change in categories' => [
-				__DIR__ . "/../data/categoriesrdf/change.sparql",
+			'edit category' => [
+				__DIR__ . "/../data/categoriesrdf/edit.sparql",
 				'getChangedCatsIterator',
-				'handleChanges',
+				'handleEdits',
 				[
 					(object)[
 						'rc_title' => 'Changed category',
@@ -167,7 +167,7 @@ class CategoryChangesRdfTest extends MediaWikiLangTestCase {
 						'rc_title' => 'Changed again',
 						'rc_cur_id' => 30,
 						'pp_propname' => null,
-						'cat_pages' => 10,
+						'cat_pages' => 12,
 						'cat_subcats' => 2,
 						'cat_files' => 1,
 					],
@@ -182,7 +182,7 @@ class CategoryChangesRdfTest extends MediaWikiLangTestCase {
 				],
 				[ 31 => true ],
 			],
-
+			// TODO: not sure how to test categorization changes, it uses the database select...
 		];
 	}
 
