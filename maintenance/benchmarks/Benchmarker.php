@@ -94,6 +94,10 @@ abstract class Benchmarker extends Maintenance {
 			// Run benchmarks
 			$stat = new RunningStat();
 			for ( $i = 0; $i < $count; $i++ ) {
+				// Setup outside of time measure for each loop
+				if ( isset( $bench['setupEach'] ) ) {
+					$bench['setupEach']();
+				}
 				$t = microtime( true );
 				call_user_func_array( $bench['function'], $bench['args'] );
 				$t = ( microtime( true ) - $t ) * 1000;
