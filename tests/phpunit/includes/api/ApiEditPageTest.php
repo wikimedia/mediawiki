@@ -399,7 +399,7 @@ class ApiEditPageTest extends ApiTestCase {
 			"no edit conflict expected here" );
 	}
 
-	public function testEditConflict_bug41990() {
+	public function testEditConflict_T43990() {
 		static $count = 0;
 		$count++;
 
@@ -410,11 +410,11 @@ class ApiEditPageTest extends ApiTestCase {
 		*/
 
 		// assume NS_HELP defaults to wikitext
-		$name = "Help:ApiEditPageTest_testEditConflict_redirect_bug41990_$count";
+		$name = "Help:ApiEditPageTest_testEditConflict_redirect_T43990_$count";
 		$title = Title::newFromText( $name );
 		$page = WikiPage::factory( $title );
 
-		$rname = "Help:ApiEditPageTest_testEditConflict_redirect_bug41990_r$count";
+		$rname = "Help:ApiEditPageTest_testEditConflict_redirect_T43990_r$count";
 		$rtitle = Title::newFromText( $rname );
 		$rpage = WikiPage::factory( $rtitle );
 
