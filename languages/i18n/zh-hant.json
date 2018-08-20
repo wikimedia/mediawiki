@@ -2112,7 +2112,7 @@
 	"magiclink-tracking-isbn": "使用 ISBN 魔法連結的頁面",
 	"magiclink-tracking-isbn-desc": "此頁面使用 ISBN 魔法連結的頁面，請參考 [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] 的如何遷移。",
 	"specialloguserlabel": "執行者：",
-	"speciallogtitlelabel": "目標 (標題或以 {{ns:user}}:使用者 表示使用者)：",
+	"speciallogtitlelabel": "目標（標題或以 {{ns:user}}:使用者名稱 表示使用者）：",
 	"log": "日誌",
 	"logeventslist-submit": "顯示",
 	"logeventslist-more-filters": "顯示額外日誌：",
