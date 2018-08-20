@@ -86,14 +86,17 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	public function testLoadRevisionData() {
 		$cases = $this->getLoadRevisionDataCases();
 
-		foreach ( $cases as $case ) {
-			list( $expectedOld, $expectedNew, $old, $new, $message ) = $case;
+		foreach ( $cases as $testName => $case ) {
+			list( $expectedOld, $expectedNew, $expectedRet, $old, $new ) = $case;
 
 			$diffEngine = new DifferenceEngine( $this->context, $old, $new, 2, true, false );
-			$diffEngine->loadRevisionData();
+			$ret = $diffEngine->loadRevisionData();
+			$ret2 = $diffEngine->loadRevisionData();
 
-			$this->assertEquals( $diffEngine->getOldid(), $expectedOld, $message );
-			$this->assertEquals( $diffEngine->getNewid(), $expectedNew, $message );
+			$this->assertEquals( $expectedOld, $diffEngine->getOldid(), $testName );
+			$this->assertEquals( $expectedNew, $diffEngine->getNewid(), $testName );
+			$this->assertEquals( $expectedRet, $ret, $testName );
+			$this->assertEquals( $expectedRet, $ret2, $testName );
 		}
 	}
 
@@ -101,10 +104,12 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 		$revs = self::$revisions;
 
 		return [
-			[ $revs[2], $revs[3], $revs[3], 'prev', 'diff=prev' ],
-			[ $revs[2], $revs[3], $revs[2], 'next', 'diff=next' ],
-			[ $revs[1], $revs[3], $revs[1], $revs[3], 'diff=' . $revs[3] ],
-			[ $revs[1], $revs[3], $revs[1], 0, 'diff=0' ]
+			'diff=prev' => [ $revs[2], $revs[3], true, $revs[3], 'prev' ],
+			'diff=next' => [ $revs[2], $revs[3], true, $revs[2], 'next' ],
+			'diff=' . $revs[3] => [ $revs[1], $revs[3], true, $revs[1], $revs[3] ],
+			'diff=0' => [ $revs[1], $revs[3], true, $revs[1], 0 ],
+			'diff=prev&oldid=<first>' => [ false, $revs[0], true, $revs[0], 'prev' ],
+			'invalid' => [ 123456789, $revs[1], false, 123456789, $revs[1] ],
 		];
 	}
 

@@ -57,29 +57,41 @@ class DifferenceEngine extends ContextSource {
 	 */
 	const DIFF_VERSION = '1.12';
 
-	/** @var int Revision ID or 0 for current */
+	/**
+	 * Revision ID for the old revision. 0 for the revision previous to $mNewid, false
+	 * if the diff does not have an old revision (e.g. 'oldid=<first revision of page>&diff=prev'),
+	 * or the revision does not exist, null if the revision is unsaved.
+	 * @var int|false|null
+	 */
 	protected $mOldid;
 
-	/** @var int|string Revision ID or null for current or an alias such as 'next' */
+	/**
+	 * Revision ID for the new revision. 0 for the last revision of the current page
+	 * (as defined by the request context), false if the revision does not exist, null
+	 * if it is unsaved, or an alias such as 'next'.
+	 * @var int|string|false|null
+	 */
 	protected $mNewid;
-
-	private $mOldTags;
-	private $mNewTags;
 
 	/**
 	 * Old revision (left pane).
 	 * Allowed to be an unsaved revision, unlikely that's ever needed though.
-	 * Null when the old revision does not exist; this can happen when using
-	 * diff=prev on the first revision.
+	 * False when the old revision does not exist; this can happen when using
+	 * diff=prev on the first revision. Null when the revision should exist but
+	 * doesn't (e.g. load failure); loadRevisionData() will return false in that
+	 * case. Also null until lazy-loaded. Ignored completely when isContentOverridden
+	 * is set.
 	 * Since 1.32 public access is deprecated.
-	 * @var Revision|null
+	 * @var Revision|null|false
 	 */
 	protected $mOldRev;
 
 	/**
 	 * New revision (right pane).
 	 * Note that this might be an unsaved revision (e.g. for edit preview).
-	 * Null only in case of load failure; diff methods will just return an error message in that case.
+	 * Null in case of load failure; diff methods will just return an error message in that case,
+	 * and loadRevisionData() will return false. Also null until lazy-loaded. Ignored completely
+	 * when isContentOverridden is set.
 	 * Since 1.32 public access is deprecated.
 	 * @var Revision|null
 	 */
@@ -98,6 +110,18 @@ class DifferenceEngine extends ContextSource {
 	 * @var Title|null
 	 */
 	protected $mNewPage;
+
+	/**
+	 * Change tags of $mOldRev or null if it does not exist / is not saved.
+	 * @var string[]|null
+	 */
+	private $mOldTags;
+
+	/**
+	 * Change tags of $mNewRev or null if it does not exist / is not saved.
+	 * @var string[]|null
+	 */
+	private $mNewTags;
 
 	/**
 	 * @var Content|null
@@ -244,7 +268,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Get the old and new content objects for all slots.
 	 * This method does not do any permission checks.
-	 * @return array [ role => [ 'old' => SlotRecord, 'new' => SlotRecord ], ... ]
+	 * @return array [ role => [ 'old' => SlotRecord|null, 'new' => SlotRecord|null ], ... ]
 	 */
 	protected function getSlotContents() {
 		if ( $this->isContentOverridden ) {
@@ -254,16 +278,21 @@ class DifferenceEngine extends ContextSource {
 					'new' => $this->mNewContent,
 				]
 			];
+		} elseif ( !$this->loadRevisionData() ) {
+			return [];
 		}
 
-		$oldRev = $this->mOldRev->getRevisionRecord();
-		$newRev = $this->mNewRev->getRevisionRecord();
+		$newSlots = $this->mNewRev->getRevisionRecord()->getSlots()->getSlots();
+		if ( $this->mOldRev ) {
+			$oldSlots = $this->mOldRev->getRevisionRecord()->getSlots()->getSlots();
+		} else {
+			$oldSlots = [];
+		}
 		// The order here will determine the visual order of the diff. The current logic is
-		// changed first, then added, then deleted. This is ad hoc and should not be relied on
-		// - in the future we may want the ordering to depend on the page type.
-		$roles = array_merge( $newRev->getSlotRoles(), $oldRev->getSlotRoles() );
-		$oldSlots = $oldRev->getSlots()->getSlots();
-		$newSlots = $newRev->getSlots()->getSlots();
+		// slots of the new revision first in natural order, then deleted ones. This is ad hoc
+		// and should not be relied on - in the future we may want the ordering to depend
+		// on the page type.
+		$roles = array_merge( array_keys( $newSlots ), array_keys( $oldSlots ) );
 
 		$slots = [];
 		foreach ( $roles as $role ) {
@@ -311,7 +340,11 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * @return int
+	 * Get the ID of old revision (left pane) of the diff. 0 for the revision
+	 * previous to getNewid(), false if the old revision does not exist, null
+	 * if it's unsaved.
+	 * To get a real revision ID instead of 0, call loadRevisionData() first.
+	 * @return int|false|null
 	 */
 	public function getOldid() {
 		$this->loadRevisionIds();
@@ -320,7 +353,10 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * @return bool|int
+	 * Get the ID of new revision (right pane) of the diff. 0 for the current revision,
+	 * false if the new revision does not exist, null if it's unsaved.
+	 * To get a real revision ID instead of 0, call loadRevisionData() first.
+	 * @return int|false|null
 	 */
 	public function getNewid() {
 		$this->loadRevisionIds();
@@ -1548,7 +1584,8 @@ class DifferenceEngine extends ContextSource {
 			$this->mOldContent = $oldRevision ? $oldRevision->getContent( 'main',
 				RevisionRecord::FOR_THIS_USER, $this->getUser() ) : null;
 		} else {
-			$this->mOldRev = $this->mOldid = $this->mOldPage = null;
+			$this->mOldPage = null;
+			$this->mOldRev = $this->mOldid = false;
 		}
 		$this->mNewRev = new Revision( $newRevision );
 		$this->mNewid = $newRevision->getId();
@@ -1582,7 +1619,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param int $old Revision id, e.g. from URL parameter 'oldid'
 	 * @param int|string $new Revision id or strings 'next' or 'prev', e.g. from URL parameter 'diff'
 	 *
-	 * @return int[] List of two revision ids, older first, later second.
+	 * @return array List of two revision ids, older first, later second.
 	 *     Zero signifies invalid argument passed.
 	 *     false signifies that there is no previous/next revision ($old is the oldest/newest one).
 	 */
@@ -1630,20 +1667,21 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Load revision metadata for the specified articles. If newid is 0, then compare
-	 * the old article in oldid to the current article; if oldid is 0, then
-	 * compare the current article to the immediately previous one (ignoring the
-	 * value of newid).
+	 * Load revision metadata for the specified revisions. If newid is 0, then compare
+	 * the old revision in oldid to the current revision of the current page (as defined
+	 * by the request context); if oldid is 0, then compare the revision in newid to the
+	 * immediately previous one.
 	 *
 	 * If oldid is false, leave the corresponding revision object set
-	 * to false. This is impossible via ordinary user input, and is provided for
-	 * API convenience.
+	 * to false. This can happen with 'diff=prev' pointing to a non-existent revision,
+	 * and is also used directly by the API.
 	 *
-	 * @return bool Whether both revisions were loaded successfully.
+	 * @return bool Whether both revisions were loaded successfully. Setting mOldRev
+	 *   to false counts as successful loading.
 	 */
 	public function loadRevisionData() {
 		if ( $this->mRevisionsLoaded ) {
-			return $this->isContentOverridden || $this->mNewRev && $this->mOldRev;
+			return $this->isContentOverridden || $this->mNewRev && !is_null( $this->mOldRev );
 		}
 
 		// Whether it succeeds or fails, we don't want to try again
@@ -1724,12 +1762,16 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Load the text of the revisions, as well as revision data.
+	 * When the old revision is missing (mOldRev is false), loading mOldContent is not attempted.
 	 *
 	 * @return bool Whether the content of both revisions could be loaded successfully.
+	 *   (When mOldRev is false, that still counts as a success.)
+	 *
 	 */
 	public function loadText() {
 		if ( $this->mTextLoaded == 2 ) {
-			return $this->loadRevisionData() && $this->mOldContent && $this->mNewContent;
+			return $this->loadRevisionData() && ( $this->mOldRev === false || $this->mOldContent )
+				&& $this->mNewContent;
 		}
 
 		// Whether it succeeds or fails, we don't want to try again
@@ -1746,12 +1788,10 @@ class DifferenceEngine extends ContextSource {
 			}
 		}
 
-		if ( $this->mNewRev ) {
-			$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
-			Hooks::run( 'DifferenceEngineLoadTextAfterNewContentIsLoaded', [ $this ] );
-			if ( $this->mNewContent === null ) {
-				return false;
-			}
+		$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
+		Hooks::run( 'DifferenceEngineLoadTextAfterNewContentIsLoaded', [ $this ] );
+		if ( $this->mNewContent === null ) {
+			return false;
 		}
 
 		return true;
