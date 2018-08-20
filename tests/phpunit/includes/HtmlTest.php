@@ -476,6 +476,10 @@ class HtmlTest extends MediaWikiTestCase {
 			Html::errorBox( 'err', 'heading' ),
 			'<div class="errorbox"><h2>heading</h2>err</div>'
 		);
+		$this->assertEquals(
+			Html::errorBox( 'err', '0' ),
+			'<div class="errorbox"><h2>0</h2>err</div>'
+		);
 	}
 
 	/**
