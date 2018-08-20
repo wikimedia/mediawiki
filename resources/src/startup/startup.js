@@ -72,10 +72,7 @@ window.isCompatible = function ( str ) {
 		// Hardcoded exceptions for browsers that pass the requirement but we don't want to
 		// support in the modern run-time.
 		// Note: Please extend the regex instead of adding new ones
-		!(
-			ua.match( /MSIE 10|webOS\/1\.[0-4]|SymbianOS|Series60|NetFront|Opera Mini|S40OviBrowser|MeeGo|Android.+Glass|^Mozilla\/5\.0 .+ Gecko\/$|googleweblight/ ) ||
-			ua.match( /PlayStation/i )
-		)
+		!ua.match( /MSIE 10|webOS\/1\.[0-4]|SymbianOS|Series60|NetFront|Opera Mini|S40OviBrowser|MeeGo|Android.+Glass|^Mozilla\/5\.0 .+ Gecko\/$|googleweblight|PLAYSTATION|PlayStation/ )
 	);
 };
 
