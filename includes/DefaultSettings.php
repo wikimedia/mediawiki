@@ -3800,16 +3800,6 @@ $wgResourceLoaderMaxQueryLength = false;
 $wgResourceLoaderValidateJS = true;
 
 /**
- * If set to true, statically-sourced (file-backed) JavaScript resources will
- * be parsed for validity before being bundled up into ResourceLoader modules.
- *
- * This can be helpful for development by providing better error messages in
- * default (non-debug) mode, but JavaScript parsing is slow and memory hungry
- * and may fail on large pre-bundled frameworks.
- */
-$wgResourceLoaderValidateStaticJS = false;
-
-/**
  * Whether ResourceLoader should attempt to persist modules in localStorage on
  * browsers that support the Web Storage API.
  */

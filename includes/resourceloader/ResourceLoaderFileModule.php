@@ -460,9 +460,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			throw new MWException( __METHOD__ . ": skip function file not found: \"$localPath\"" );
 		}
 		$contents = $this->stripBom( file_get_contents( $localPath ) );
-		if ( $this->getConfig()->get( 'ResourceLoaderValidateStaticJS' ) ) {
-			$contents = $this->validateScriptFile( $localPath, $contents );
-		}
 		return $contents;
 	}
 
@@ -807,12 +804,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				throw new MWException( __METHOD__ . ": script file not found: \"$localPath\"" );
 			}
 			$contents = $this->stripBom( file_get_contents( $localPath ) );
-			if ( $this->getConfig()->get( 'ResourceLoaderValidateStaticJS' ) ) {
-				// Static files don't really need to be checked as often; unlike
-				// on-wiki module they shouldn't change unexpectedly without
-				// admin interference.
-				$contents = $this->validateScriptFile( $fileName, $contents );
-			}
 			$js .= $contents . "\n";
 		}
 		return $js;
