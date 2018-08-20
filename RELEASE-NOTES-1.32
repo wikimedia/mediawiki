@@ -37,6 +37,9 @@ production.
   sitewide CSS/JS (and editing other users' CSS/JS). No other group has
   'editsitecss', 'editusercss', 'editsitejs' or 'edituserjs' by default.
 * A new grant group, 'editsiteconfig', is added for granting the above rights.
+* The $wgPasswordSenderName setting, ignored since 1.23 by MediaWiki and almost
+  all extensions, is no longer set at all. Instead, you can modify the system
+  message `emailsender`.
 
 === New features in 1.32 ===
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules

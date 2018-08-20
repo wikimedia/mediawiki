@@ -1647,13 +1647,6 @@ $wgEmergencyContact = false;
 $wgPasswordSender = false;
 
 /**
- * Sender name for e-mail notifications.
- *
- * @deprecated since 1.23; use the system message 'emailsender' instead.
- */
-$wgPasswordSenderName = 'MediaWiki Mail';
-
-/**
  * Reply-To address for e-mail notifications.
  *
  * Defaults to $wgPasswordSender (in Setup.php).
