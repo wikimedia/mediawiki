@@ -1,6 +1,7 @@
 <?php
 
 class HtmlTest extends MediaWikiTestCase {
+	private $restoreWarnings;
 
 	protected function setUp() {
 		parent::setUp();
@@ -36,6 +37,15 @@ class HtmlTest extends MediaWikiTestCase {
 		] );
 		$this->setUserLang( $langObj );
 		$this->setContentLang( $langObj );
+		$this->restoreWarnings = false;
+	}
+
+	protected function tearDown() {
+		if ( $this->restoreWarnings ) {
+			$this->restoreWarnings = false;
+			Wikimedia\restoreWarnings();
+		}
+		parent::tearDown();
 	}
 
 	/**
@@ -802,21 +812,30 @@ class HtmlTest extends MediaWikiTestCase {
 			],
 			'Ampersand' => [
 				'EXAMPLE.is(a && b);',
-				'<script>/*<![CDATA[*/EXAMPLE.is(a && b);/*]]>*/</script>'
+				'<script>EXAMPLE.is(a && b);</script>'
 			],
 			'HTML' => [
 				'EXAMPLE.label("<a>");',
-				'<script>/*<![CDATA[*/EXAMPLE.label("<a>");/*]]>*/</script>'
+				'<script>EXAMPLE.label("<a>");</script>'
 			],
-			'Script closing string' => [
+			'Script closing string (lower)' => [
 				'EXAMPLE.label("</script>");',
-				// Broken: First </script> ends the script in HTML
-				'<script>/*<![CDATA[*/EXAMPLE.label("</script>");/*]]>*/</script>'
+				'<script>/* ERROR: Invalid script */</script>',
+				true,
 			],
-			'CDATA string' => [
-				'EXAMPLE.label("&> CDATA ]]>");',
-				// Broken: Works in HTML, but is invalid XML.
-				'<script>/*<![CDATA[*/EXAMPLE.label("&> CDATA ]]>");/*]]>*/</script>'
+			'Script closing with non-standard attributes (mixed)' => [
+				'EXAMPLE.label("</SCriPT and STyLE>");',
+				'<script>/* ERROR: Invalid script */</script>',
+				true,
+			],
+			'HTML-comment-open and script-open' => [
+				// In HTML, <script> contents aren't just plain CDATA until </script>,
+				// there are levels of escaping modes, and the below sequence puts an
+				// HTML parser in a state where </script> would *not* close the script.
+				// https://html.spec.whatwg.org/multipage/parsing.html#script-data-double-escape-end-state
+				'var a = "<!--<script>";',
+				'<script>/* ERROR: Invalid script */</script>',
+				true,
 			],
 		];
 	}
@@ -825,7 +844,11 @@ class HtmlTest extends MediaWikiTestCase {
 	 * @dataProvider provideInlineScript
 	 * @covers Html::inlineScript
 	 */
-	public function testInlineScript( $code, $expected ) {
+	public function testInlineScript( $code, $expected, $error = false ) {
+		if ( $error ) {
+			Wikimedia\suppressWarnings();
+			$this->restoreWarnings = true;
+		}
 		$this->assertSame( Html::inlineScript( $code ), $expected );
 	}
 }
