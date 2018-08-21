@@ -1183,7 +1183,7 @@ class ChangeTags {
 	 * Extensions should NOT use this function; they can use the ListDefinedTags
 	 * hook instead.
 	 *
-	 * Includes a call to ChangeTag::canDeleteTag(), so your code doesn't need to
+	 * Includes a call to ChangeTag::canCreateTag(), so your code doesn't need to
 	 * do that.
 	 *
 	 * @param string $tag
