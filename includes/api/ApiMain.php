@@ -534,7 +534,11 @@ class ApiMain extends ApiBase {
 			MediaWikiServices::getInstance()->getStatsdDataFactory()->timing(
 				'api.' . $this->mModule->getModuleName() . '.executeTiming', 1000 * $runTime
 			);
-		} catch ( Exception $e ) {
+		} catch ( Exception $e ) { // @todo Remove this block when HHVM is no longer supported
+			$this->handleException( $e );
+			$this->logRequest( microtime( true ) - $t, $e );
+			$isError = true;
+		} catch ( Throwable $e ) {
 			$this->handleException( $e );
 			$this->logRequest( microtime( true ) - $t, $e );
 			$isError = true;
@@ -558,9 +562,9 @@ class ApiMain extends ApiBase {
 	 * Handle an exception as an API response
 	 *
 	 * @since 1.23
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 */
-	protected function handleException( Exception $e ) {
+	protected function handleException( $e ) {
 		// T65145: Rollback any open database transactions
 		if ( !( $e instanceof ApiUsageException || $e instanceof UsageException ) ) {
 			// UsageExceptions are intentional, so don't rollback if that's the case
@@ -600,7 +604,10 @@ class ApiMain extends ApiBase {
 			foreach ( $ex->getStatusValue()->getErrors() as $error ) {
 				try {
 					$this->mPrinter->addWarning( $error );
-				} catch ( Exception $ex2 ) {
+				} catch ( Exception $ex2 ) { // @todo Remove this block when HHVM is no longer supported
+					// WTF?
+					$this->addWarning( $error );
+				} catch ( Throwable $ex2 ) {
 					// WTF?
 					$this->addWarning( $error );
 				}
@@ -631,17 +638,20 @@ class ApiMain extends ApiBase {
 	 * friendly to clients. If it fails, it will rethrow the exception.
 	 *
 	 * @since 1.23
-	 * @param Exception $e
-	 * @throws Exception
+	 * @param Exception|Throwable $e
+	 * @throws Exception|Throwable
 	 */
-	public static function handleApiBeforeMainException( Exception $e ) {
+	public static function handleApiBeforeMainException( $e ) {
 		ob_start();
 
 		try {
 			$main = new self( RequestContext::getMain(), false );
 			$main->handleException( $e );
 			$main->logRequest( 0, $e );
-		} catch ( Exception $e2 ) {
+		} catch ( Exception $e2 ) { // @todo Remove this block when HHVM is no longer supported
+			// Nope, even that didn't work. Punt.
+			throw $e;
+		} catch ( Throwable $e2 ) {
 			// Nope, even that didn't work. Punt.
 			throw $e;
 		}
@@ -1009,7 +1019,7 @@ class ApiMain extends ApiBase {
 	 * text around the exception's (presumably English) message as a single
 	 * error (no warnings).
 	 *
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @param string $type 'error' or 'warning'
 	 * @return ApiMessage[]
 	 * @since 1.27
@@ -1054,7 +1064,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Replace the result data with the information about an exception.
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return string[] Error codes
 	 */
 	protected function substituteResultWithError( $e ) {
@@ -1609,7 +1619,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Log the preceding request
 	 * @param float $time Time in seconds
-	 * @param Exception|null $e Exception caught while processing the request
+	 * @param Exception|Throwable|null $e Exception caught while processing the request
 	 */
 	protected function logRequest( $time, $e = null ) {
 		$request = $this->getRequest();
