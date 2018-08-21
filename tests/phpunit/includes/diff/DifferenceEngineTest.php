@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Storage\MutableRevisionRecord;
+use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\SlotRecord;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -143,6 +146,209 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 		$this->setContentLang( 'qqx' );
 		$diffEngine = TestingAccessWrapper::newFromObject( new DifferenceEngine() );
 		$this->assertEquals( $expected, $diffEngine->addLocalisedTitleTooltips( $input ) );
+	}
+
+	/**
+	 * @dataProvider provideGenerateContentDiffBody
+	 */
+	public function testGenerateContentDiffBody(
+		Content $oldContent, Content $newContent, $expectedDiff
+	) {
+		// Set $wgExternalDiffEngine to something bogus to try to force use of
+		// the PHP engine rather than wikidiff2.
+		$this->setMwGlobals( [
+			'wgExternalDiffEngine' => '/dev/null',
+		] );
+
+		$differenceEngine = new DifferenceEngine();
+		$diff = $differenceEngine->generateContentDiffBody( $oldContent, $newContent );
+		$this->assertSame( $expectedDiff, $this->getPlainDiff( $diff ) );
+	}
+
+	public function provideGenerateContentDiffBody() {
+		$this->mergeMwGlobalArrayValue( 'wgContentHandlers', [
+			'testing-nontext' => DummyNonTextContentHandler::class,
+		] );
+		$content1 = ContentHandler::makeContent( 'xxx', null, CONTENT_MODEL_TEXT );
+		$content2 = ContentHandler::makeContent( 'yyy', null, CONTENT_MODEL_TEXT );
+
+		return [
+			'self-diff' => [ $content1, $content1, '' ],
+			'text diff' => [ $content1, $content2, '-xxx+yyy' ],
+		];
+	}
+
+	public function testGenerateTextDiffBody() {
+		// Set $wgExternalDiffEngine to something bogus to try to force use of
+		// the PHP engine rather than wikidiff2.
+		$this->setMwGlobals( [
+			'wgExternalDiffEngine' => '/dev/null',
+		] );
+
+		$oldText = "aaa\nbbb\nccc";
+		$newText = "aaa\nxxx\nccc";
+		$expectedDiff = " aaa aaa\n-bbb+xxx\n ccc ccc";
+
+		$differenceEngine = new DifferenceEngine();
+		$diff = $differenceEngine->generateTextDiffBody( $oldText, $newText );
+		$this->assertSame( $expectedDiff, $this->getPlainDiff( $diff ) );
+	}
+
+	public function testSetContent() {
+		// Set $wgExternalDiffEngine to something bogus to try to force use of
+		// the PHP engine rather than wikidiff2.
+		$this->setMwGlobals( [
+			'wgExternalDiffEngine' => '/dev/null',
+		] );
+
+		$oldContent = ContentHandler::makeContent( 'xxx', null, CONTENT_MODEL_TEXT );
+		$newContent = ContentHandler::makeContent( 'yyy', null, CONTENT_MODEL_TEXT );
+
+		$differenceEngine = new DifferenceEngine();
+		$differenceEngine->setContent( $oldContent, $newContent );
+		$diff = $differenceEngine->getDiffBody();
+		$this->assertSame( "Line 1:\nLine 1:\n-xxx+yyy", $this->getPlainDiff( $diff ) );
+	}
+
+	public function testSetRevisions() {
+		$main1 = SlotRecord::newUnsaved( 'main',
+			ContentHandler::makeContent( 'xxx', null, CONTENT_MODEL_TEXT ) );
+		$main2 = SlotRecord::newUnsaved( 'main',
+			ContentHandler::makeContent( 'yyy', null, CONTENT_MODEL_TEXT ) );
+		$rev1 = $this->getRevisionRecord( $main1 );
+		$rev2 = $this->getRevisionRecord( $main2 );
+
+		$differenceEngine = new DifferenceEngine();
+		$differenceEngine->setRevisions( $rev1, $rev2 );
+		$this->assertSame( $rev1, $differenceEngine->getOldRevision() );
+		$this->assertSame( $rev2, $differenceEngine->getNewRevision() );
+		$this->assertSame( true, $differenceEngine->loadRevisionData() );
+		$this->assertSame( true, $differenceEngine->loadText() );
+
+		$differenceEngine->setRevisions( null, $rev2 );
+		$this->assertSame( null, $differenceEngine->getOldRevision() );
+	}
+
+	/**
+	 * @dataProvider provideGetDiffBody
+	 */
+	public function testGetDiffBody(
+		RevisionRecord $oldRevision = null, RevisionRecord $newRevision = null, $expectedDiff
+	) {
+		// Set $wgExternalDiffEngine to something bogus to try to force use of
+		// the PHP engine rather than wikidiff2.
+		$this->setMwGlobals( [
+			'wgExternalDiffEngine' => '/dev/null',
+		] );
+
+		if ( $expectedDiff instanceof Exception ) {
+			$this->setExpectedException( get_class( $expectedDiff ), $expectedDiff->getMessage() );
+		}
+		$differenceEngine = new DifferenceEngine();
+		$differenceEngine->setRevisions( $oldRevision, $newRevision );
+		if ( $expectedDiff instanceof Exception ) {
+			return;
+		}
+
+		$diff = $differenceEngine->getDiffBody();
+		$this->assertSame( $expectedDiff, $this->getPlainDiff( $diff ) );
+	}
+
+	public function provideGetDiffBody() {
+		$main1 = SlotRecord::newUnsaved( 'main',
+			ContentHandler::makeContent( 'xxx', null, CONTENT_MODEL_TEXT ) );
+		$main2 = SlotRecord::newUnsaved( 'main',
+			ContentHandler::makeContent( 'yyy', null, CONTENT_MODEL_TEXT ) );
+		$slot1 = SlotRecord::newUnsaved( 'slot',
+			ContentHandler::makeContent( 'aaa', null, CONTENT_MODEL_TEXT ) );
+		$slot2 = SlotRecord::newUnsaved( 'slot',
+			ContentHandler::makeContent( 'bbb', null, CONTENT_MODEL_TEXT ) );
+
+		return [
+			'revision vs. null' => [
+				null,
+				$this->getRevisionRecord( $main1, $slot1 ),
+				'',
+			],
+			'revision vs. itself' => [
+				$this->getRevisionRecord( $main1, $slot1 ),
+				$this->getRevisionRecord( $main1, $slot1 ),
+				'',
+			],
+			'different text in one slot' => [
+				$this->getRevisionRecord( $main1, $slot1 ),
+				$this->getRevisionRecord( $main1, $slot2 ),
+				"slotLine 1:\nLine 1:\n-aaa+bbb",
+			],
+			'different text in two slots' => [
+				$this->getRevisionRecord( $main1, $slot1 ),
+				$this->getRevisionRecord( $main2, $slot2 ),
+				"Line 1:\nLine 1:\n-xxx+yyy\nslotLine 1:\nLine 1:\n-aaa+bbb",
+			],
+			'new slot' => [
+				$this->getRevisionRecord( $main1 ),
+				$this->getRevisionRecord( $main1, $slot1 ),
+				"slotLine 1:\nLine 1:\n- +aaa",
+			],
+		];
+	}
+
+	public function testRecursion() {
+		// Set up a ContentHandler which will return a wrapped DifferenceEngine as
+		// SlotDiffRenderer, then pass it a content which uses the same ContentHandler.
+		// This tests the anti-recursion logic in DifferenceEngine::generateContentDiffBody.
+
+		$customDifferenceEngine = $this->getMockBuilder( DifferenceEngine::class )
+			->enableProxyingToOriginalMethods()
+			->getMock();
+		$customContentHandler = $this->getMockBuilder( ContentHandler::class )
+			->setConstructorArgs( [ 'foo', [] ] )
+			->setMethods( [ 'createDifferenceEngine' ] )
+			->getMockForAbstractClass();
+		$customContentHandler->expects( $this->any() )
+			->method( 'createDifferenceEngine' )
+			->willReturn( $customDifferenceEngine );
+		/** @var $customContentHandler ContentHandler */
+		$customContent = $this->getMockBuilder( Content::class )
+			->setMethods( [ 'getContentHandler' ] )
+			->getMockForAbstractClass();
+		$customContent->expects( $this->any() )
+			->method( 'getContentHandler' )
+			->willReturn( $customContentHandler );
+		/** @var $customContent Content */
+		$customContent2 = clone $customContent;
+
+		$slotDiffRenderer = $customContentHandler->getSlotDiffRenderer( RequestContext::getMain() );
+		$this->setExpectedException( Exception::class,
+			': could not maintain backwards compatibility. Please use a SlotDiffRenderer.' );
+		$slotDiffRenderer->getDiff( $customContent, $customContent2 );
+	}
+
+	/**
+	 * Convert a HTML diff to a human-readable format and hopefully make the test less fragile.
+	 * @param string diff
+	 * @return string
+	 */
+	private function getPlainDiff( $diff ) {
+		$replacements = [
+			html_entity_decode( '&nbsp;' ) => ' ',
+			html_entity_decode( '&minus;' ) => '-',
+		];
+		return str_replace( array_keys( $replacements ), array_values( $replacements ),
+			trim( strip_tags( $diff ), "\n" ) );
+	}
+
+	/**
+	 * @param SlotRecord[] $slots
+	 * @return MutableRevisionRecord
+	 */
+	private function getRevisionRecord( ...$slots ) {
+		$title = Title::newFromText( 'Foo' );
+		$revision = new MutableRevisionRecord( $title );
+		foreach ( $slots as $slot ) {
+			$revision->setSlot( $slot );
+		}
+		return $revision;
 	}
 
 }

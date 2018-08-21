@@ -126,6 +126,10 @@ td.diff-marker {
 	unicode-bidi: embed;
 }
 
+.mw-diff-slot-header {
+	text-align: center;
+}
+
 /*!
  * Wikidiff2 rendering for moved paragraphs
  */
