@@ -1,0 +1,50 @@
+### Format of this file
+#
+# The top-level keys are module names (as registered in Resources.php).
+# The values of these keys are resource descriptors.
+#
+# In each resource descriptor object, the `src` and `integrity` keys are required.
+#
+# * `src`: Full URL to a remote resource.
+# * `integrity`: Cryptographic hash used to verify the remote content.
+#    Uses the "integrity metadata" format defined at <https://www.w3.org/TR/SRI/>.
+# * `dest`: An object mapping paths from the remote resource to a destination in
+#    `/resources/lib/$module/`. The value may be omitted to indicate that
+#    paths should be extracted to the destination directory itself.
+oojs:
+  src: https://registry.npmjs.org/oojs/-/oojs-2.2.2.tgz
+  integrity: sha256-ebgQW2EGrSkBCnDJBGqDpsBDjA3PMN/M8U5DyLHt9mw=
+  dest:
+    package/dist/oojs.jquery.js:
+    package/AUTHORS.txt:
+    package/LICENSE-MIT:
+    package/README.md:
+oojs-ui:
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.28.0.tgz
+  integrity: sha384-j8bzlCPrfS4sca+U9JO9tdcewDlLlDlOVOsLn+Vqlcg5GU59vLSd7TVm4FiuTowy
+  dest:
+    # Main stuff
+    package/dist/oojs-ui-core.js{,.map.json}:
+    package/dist/oojs-ui-core-{wikimediaui,apex}.css:
+    package/dist/oojs-ui-widgets.js{,.map.json}:
+    package/dist/oojs-ui-widgets-{wikimediaui,apex}.css:
+    package/dist/oojs-ui-toolbars.js{,.map.json}:
+    package/dist/oojs-ui-toolbars-{wikimediaui,apex}.css:
+    package/dist/oojs-ui-windows.js{,.map.json}:
+    package/dist/oojs-ui-windows-{wikimediaui,apex}.css:
+    package/dist/oojs-ui-{wikimediaui,apex}.js{,.map.json}:
+    package/dist/i18n:
+    package/dist/images:
+    # WikimediaUI theme
+    package/dist/themes/wikimediaui/images/icons/*.{svg,png}: themes/wikimediaui/images/icons
+    package/dist/themes/wikimediaui/images/indicators/*.{svg,png}: themes/wikimediaui/images/indicators
+    package/dist/themes/wikimediaui/images/textures/*.{gif,svg}: themes/wikimediaui/images/textures
+    package/src/themes/wikimediaui/*.json: themes/wikimediaui
+    package/dist/wikimedia-ui-base.less:
+    # Apex theme (icons, indicators, and textures)
+    package/src/themes/apex/*.json: themes/apex
+    # Misc stuff
+    package/dist/AUTHORS.txt:
+    package/dist/History.md:
+    package/dist/LICENSE-MIT:
+    package/dist/README.md:

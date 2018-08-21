@@ -843,6 +843,7 @@ $wgAutoloadLocalClasses = [
 	'Maintenance' => __DIR__ . '/maintenance/Maintenance.php',
 	'MakeTestEdits' => __DIR__ . '/maintenance/makeTestEdits.php',
 	'MalformedTitleException' => __DIR__ . '/includes/title/MalformedTitleException.php',
+	'ManageForeignResources' => __DIR__ . '/maintenance/resources/manageForeignResources.php',
 	'ManageJobs' => __DIR__ . '/maintenance/manageJobs.php',
 	'ManualLogEntry' => __DIR__ . '/includes/logging/LogEntry.php',
 	'MapCacheLRU' => __DIR__ . '/includes/libs/MapCacheLRU.php',
