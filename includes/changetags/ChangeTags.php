@@ -201,9 +201,8 @@ class ChangeTags {
 		}
 
 		$taglessDesc = Sanitizer::stripAllTags( $originalDesc->parse() );
-		$escapedDesc = Sanitizer::escapeHtmlAllowEntities( $taglessDesc );
 
-		return $context->getLanguage()->truncateForVisual( $escapedDesc, $length );
+		return $context->getLanguage()->truncateForVisual( $taglessDesc, $length );
 	}
 
 	/**
