@@ -1258,7 +1258,7 @@
 	"grant-createaccount": "Oprette af konti",
 	"grant-createeditmovepage": "Oprette, redigere og flytte sider",
 	"grant-delete": "Slette sider, revisioner og logposter",
-	"grant-editinterface": "Redigere MediaWiki-navnerummet og bruger/side JSON",
+	"grant-editinterface": "Redigere MediaWiki-navnerummet og JSON for hele webstedet og brugere",
 	"grant-editmycssjs": "Redigere din bruger-CSS/JSON/JavaScript",
 	"grant-editmyoptions": "Redigere dine brugerindstillinger",
 	"grant-editmywatchlist": "Redigere din overvågningsliste",
