@@ -83,13 +83,21 @@ class BenchmarkTitleValue extends Benchmarker {
 			[
 				'function' => [ $this, 'getPrefixedTextTitle' ],
 			],
-			[
+			'parseTitleValue cached' => [
 				'function' => [ $this, 'parseTitleValue' ],
 				'setup' => [ $this, 'randomize' ],
 			],
-			[
+			'parseTitle cached' => [
 				'function' => [ $this, 'parseTitle' ],
 				'setup' => [ $this, 'randomize' ],
+			],
+			'parseTitleValue no cache' => [
+				'function' => [ $this, 'parseTitleValue' ],
+				'setupEach' => [ $this, 'randomize' ],
+			],
+			'parseTitle no cache' => [
+				'function' => [ $this, 'parseTitle' ],
+				'setupEach' => [ $this, 'randomize' ],
 			],
 		] );
 	}
