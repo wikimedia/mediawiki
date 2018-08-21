@@ -85,7 +85,15 @@
 	}
 }
 
-/* Align the toggle based on the direction of the content language */
+/* Collapsible elements in the UI (outside of the content area) are not in either .mw-content-ltr or
+ * .mw-content-rtl. Align them based on the user language. */
+.mw-collapsible:not( @{exclude} ) th:before,
+.mw-collapsible:not( @{exclude} ):before,
+.mw-collapsible-toggle {
+	float: right;
+}
+
+/* For collapsible elements in the content area, override the alginment based on the content language.  */
 /* @noflip */
 .mw-content-ltr,
 .mw-content-rtl .mw-content-ltr {
