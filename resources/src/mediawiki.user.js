@@ -4,7 +4,7 @@
  */
 /* global Uint32Array */
 ( function ( mw, $ ) {
-	var userInfoPromise, stickyRandomSessionId;
+	var userInfoPromise, pageviewRandomId;
 
 	/**
 	 * Get the current user's groups or rights
@@ -73,16 +73,17 @@
 
 		/**
 		 * A sticky generateRandomSessionId for the current JS execution context,
-		 * cached within this class.
+		 * cached within this class (also known as a page view token).
 		 *
+		 * @since 1.32
 		 * @return {string} 64 bit integer in hex format, padded
 		 */
-		stickyRandomId: function () {
-			if ( !stickyRandomSessionId ) {
-				stickyRandomSessionId = mw.user.generateRandomSessionId();
+		getPageviewToken: function () {
+			if ( !pageviewRandomId ) {
+				pageviewRandomId = mw.user.generateRandomSessionId();
 			}
 
-			return stickyRandomSessionId;
+			return pageviewRandomId;
 		},
 
 		/**
@@ -185,5 +186,11 @@
 			).done( callback );
 		}
 	} );
+
+	/**
+	 * @method stickyRandomId
+	 * @deprecated since 1.32 use getPageviewToken instead
+	 */
+	mw.log.deprecate( mw.user, 'stickyRandomId', mw.user.getPageviewToken, 'Please use getPageviewToken instead' );
 
 }( mediaWiki, jQuery ) );

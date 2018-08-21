@@ -375,6 +375,8 @@ because of Phabricator reports.
 * All SpecialPageFactory static methods are deprecated. Instead, call the
   methods on a SpecialPageFactory instance, which may be obtained from
   MediaWikiServices.
+* mw.user.stickyRandomId was renamed to the more explicit
+  mw.user.getPageviewToken to better capture its function.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
