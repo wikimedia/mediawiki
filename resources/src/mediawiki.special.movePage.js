@@ -15,9 +15,5 @@
 		} else if ( summaryByteLimit ) {
 			mw.widgets.visibleByteLimit( wpReason, summaryByteLimit );
 		}
-		// Infuse for nicer "help" popup
-		if ( $( '#wpMovetalk-field' ).length ) {
-			OO.ui.infuse( $( '#wpMovetalk-field' ) );
-		}
 	} );
 }( mediaWiki, jQuery ) );
