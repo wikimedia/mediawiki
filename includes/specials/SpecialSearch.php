@@ -77,6 +77,11 @@ class SpecialSearch extends SpecialPage {
 	protected $fulltext;
 
 	/**
+	 * @var string
+	 */
+	protected $sort;
+
+	/**
 	 * @var bool
 	 */
 	protected $runSuggestion = true;
@@ -198,6 +203,11 @@ class SpecialSearch extends SpecialPage {
 			$this->setExtraParam( 'prefix', $this->mPrefix );
 		}
 
+		$this->sort = $request->getVal( 'sort', SearchEngine::DEFAULT_SORT );
+		if ( $this->sort !== SearchEngine::DEFAULT_SORT ) {
+			$this->setExtraParam( 'sort', $this->sort );
+		}
+
 		$user = $this->getUser();
 
 		# Extract manually requested namespaces
@@ -301,6 +311,7 @@ class SpecialSearch extends SpecialPage {
 		$search->setFeatureData( 'rewrite', $this->runSuggestion );
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
+		$search->setSort( $this->sort );
 		$search->prefix = $this->mPrefix;
 
 		Hooks::run( 'SpecialSearchSetupEngine', [ $this, $this->profile, $search ] );
