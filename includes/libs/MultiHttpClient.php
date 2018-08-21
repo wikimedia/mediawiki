@@ -23,7 +23,8 @@
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use MediaWiki\MediaWikiServices;
+use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Client;
 
 /**
  * Class to handle multiple HTTP requests
@@ -41,7 +42,10 @@ use MediaWiki\MediaWikiServices;
  *                PUT requests, and a field/value array for POST request;
  *                array bodies are encoded as multipart/form-data and strings
  *                use application/x-www-form-urlencoded (headers sent automatically)
+ *   - sink     : resource to receive the HTTP response body (preferred over stream)
+ *                @since 1.33
  *   - stream   : resource to stream the HTTP response body to
+ *                @deprecated since 1.33, use sink instead
  *   - proxy    : HTTP proxy to use
  *   - flags    : map of boolean flags which supports:
  *                  - relayResponseHeaders : write out header via header()
@@ -50,58 +54,62 @@ use MediaWiki\MediaWikiServices;
  * @since 1.23
  */
 class MultiHttpClient implements LoggerAwareInterface {
-	/** @var resource */
-	protected $multiHandle = null; // curl_multi handle
-	/** @var string|null SSL certificates path */
-	protected $caBundlePath;
-	/** @var float */
+	/** @var float connection timeout in seconds, zero to wait indefinitely*/
 	protected $connTimeout = 10;
-	/** @var float */
+	/** @var float request timeout in seconds, zero to wait indefinitely*/
 	protected $reqTimeout = 300;
-	/** @var bool */
-	protected $usePipelining = false;
-	/** @var int */
-	protected $maxConnsPerHost = 50;
 	/** @var string|null proxy */
 	protected $proxy;
+	/** @var int CURLMOPT_PIPELINING value, only effective if curl is available */
+	protected $pipeliningMode = 0;
+	/** @var int CURLMOPT_MAXCONNECTS value, only effective if curl is available */
+	protected $maxConnsPerHost = 50;
 	/** @var string */
 	protected $userAgent = 'wikimedia/multi-http-client v1.0';
 	/** @var LoggerInterface */
 	protected $logger;
-
-	// In PHP 7 due to https://bugs.php.net/bug.php?id=76480 the request/connect
-	// timeouts are periodically polled instead of being accurately respected.
-	// The select timeout is set to the minimum timeout multiplied by this factor.
-	const TIMEOUT_ACCURACY_FACTOR = 0.1;
+	/** @var string|null SSL certificates path */
+	protected $caBundlePath;
 
 	/**
 	 * @param array $options
 	 *   - connTimeout     : default connection timeout (seconds)
 	 *   - reqTimeout      : default request timeout (seconds)
 	 *   - proxy           : HTTP proxy to use
-	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
+	 *   - pipeliningMode  : whether to use HTTP pipelining/multiplexing if possible (for all
+	 *                       hosts).  The exact behavior is dependent on curl version.
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
 	 *   - userAgent       : The User-Agent header value to send
 	 *   - logger          : a \Psr\Log\LoggerInterface instance for debug logging
 	 *   - caBundlePath    : path to specific Certificate Authority bundle (if any)
 	 * @throws Exception
+	 *
+	 * usePipelining is an alias for pipelining mode, retained for backward compatibility.
+	 * If both usePipelining and pipeliningMode are specified, pipeliningMode wins.
 	 */
 	public function __construct( array $options ) {
 		if ( isset( $options['caBundlePath'] ) ) {
 			$this->caBundlePath = $options['caBundlePath'];
 			if ( !file_exists( $this->caBundlePath ) ) {
-				throw new Exception( "Cannot find CA bundle: " . $this->caBundlePath );
+				throw new Exception( "Cannot find CA bundle: {$this->caBundlePath}" );
 			}
 		}
+
+		// Backward compatibility.  Defers to newer option naming if both are specified.
+		if ( isset( $options['usePipelining'] ) ) {
+			$this->pipeliningMode = $options['usePipelining'];
+		}
+
 		static $opts = [
-			'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost',
-			'proxy', 'userAgent', 'logger'
+			'connTimeout', 'reqTimeout', 'proxy', 'pipeliningMode', 'maxConnsPerHost',
+			'userAgent', 'logger'
 		];
 		foreach ( $opts as $key ) {
 			if ( isset( $options[$key] ) ) {
 				$this->$key = $options[$key];
 			}
 		}
+
 		if ( $this->logger === null ) {
 			$this->logger = new NullLogger;
 		}
@@ -114,17 +122,20 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - code    : HTTP response code or 0 if there was a serious error
 	 *   - reason  : HTTP response reason (empty if there was a serious error)
 	 *   - headers : <header name/value associative array>
-	 *   - body    : HTTP response body or resource (if "stream" was set)
-	 *   - error     : Any error string
+	 *   - body    : HTTP response body
+	 *   - error   : Any error string
 	 * The map also stores integer-indexed copies of these values. This lets callers do:
 	 * @code
-	 * 		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $http->run( $req );
+	 *        list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $http->run( $req );
 	 * @endcode
 	 * @param array $req HTTP request array
 	 * @param array $opts
 	 *   - connTimeout    : connection timeout per request (seconds)
 	 *   - reqTimeout     : post-connection timeout per request (seconds)
+	 *   - handler        : optional custom handler
+	 *                      See http://docs.guzzlephp.org/en/stable/handlers-and-middleware.html
 	 * @return array Response array for request
+	 * @throws Exception
 	 */
 	public function run( array $req, array $opts = [] ) {
 		return $this->runMulti( [ $req ], $opts )[0]['response'];
@@ -140,7 +151,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - code    : HTTP response code or 0 if there was a serious error
 	 *   - reason  : HTTP response reason (empty if there was a serious error)
 	 *   - headers : <header name/value associative array>
-	 *   - body    : HTTP response body or resource (if "stream" was set)
+	 *   - body    : HTTP response body
 	 *   - error   : Any error string
 	 * The map also stores integer-indexed copies of these values. This lets callers do:
 	 * @code
@@ -154,18 +165,20 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * @param array $opts
 	 *   - connTimeout     : connection timeout per request (seconds)
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
-	 *   - usePipelining   : whether to use HTTP pipelining if possible
+	 *   - pipeliningMode  : whether to use HTTP pipelining/multiplexing if possible (for all
+	 *                       hosts). The exact behavior is dependent on curl version.
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
+	 *   - handler         : optional custom handler.
+	 *                       See http://docs.guzzlephp.org/en/stable/handlers-and-middleware.html
 	 * @return array $reqs With response array populated for each
 	 * @throws Exception
+	 *
+	 * usePipelining is an alias for pipelining mode, retained for backward compatibility.
+	 * If both usePipelining and pipeliningMode are specified, pipeliningMode wins.
 	 */
 	public function runMulti( array $reqs, array $opts = [] ) {
 		$this->normalizeRequests( $reqs );
-		if ( $this->isCurlEnabled() ) {
-			return $this->runMultiCurl( $reqs, $opts );
-		} else {
-			return $this->runMultiHttp( $reqs, $opts );
-		}
+		return $this->runMultiGuzzle( $reqs, $opts );
 	}
 
 	/**
@@ -184,340 +197,102 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *
 	 * @param array $reqs Map of HTTP request arrays
 	 * @param array $opts
-	 *   - connTimeout     : connection timeout per request (seconds)
-	 *   - reqTimeout      : post-connection timeout per request (seconds)
-	 *   - usePipelining   : whether to use HTTP pipelining if possible
-	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
 	 * @return array $reqs With response array populated for each
 	 * @throws Exception
 	 */
-	private function runMultiCurl( array $reqs, array $opts = [] ) {
-		$chm = $this->getCurlMulti();
-
-		$selectTimeout = $this->getSelectTimeout( $opts );
-
-		// Add all of the required cURL handles...
-		$handles = [];
-		foreach ( $reqs as $index => &$req ) {
-			$handles[$index] = $this->getCurlHandle( $req, $opts );
-			if ( count( $reqs ) > 1 ) {
-				// https://github.com/guzzle/guzzle/issues/349
-				curl_setopt( $handles[$index], CURLOPT_FORBID_REUSE, true );
-			}
-		}
-		unset( $req ); // don't assign over this by accident
-
-		$indexes = array_keys( $reqs );
-		if ( isset( $opts['usePipelining'] ) ) {
-			curl_multi_setopt( $chm, CURLMOPT_PIPELINING, (int)$opts['usePipelining'] );
-		}
-		if ( isset( $opts['maxConnsPerHost'] ) ) {
-			// Keep these sockets around as they may be needed later in the request
-			curl_multi_setopt( $chm, CURLMOPT_MAXCONNECTS, (int)$opts['maxConnsPerHost'] );
-		}
-
-		// @TODO: use a per-host rolling handle window (e.g. CURLMOPT_MAX_HOST_CONNECTIONS)
-		$batches = array_chunk( $indexes, $this->maxConnsPerHost );
-		$infos = [];
-
-		foreach ( $batches as $batch ) {
-			// Attach all cURL handles for this batch
-			foreach ( $batch as $index ) {
-				curl_multi_add_handle( $chm, $handles[$index] );
-			}
-			// Execute the cURL handles concurrently...
-			$active = null; // handles still being processed
-			do {
-				// Do any available work...
-				do {
-					$mrc = curl_multi_exec( $chm, $active );
-					$info = curl_multi_info_read( $chm );
-					if ( $info !== false ) {
-						$infos[(int)$info['handle']] = $info;
-					}
-				} while ( $mrc == CURLM_CALL_MULTI_PERFORM );
-				// Wait (if possible) for available work...
-				if ( $active > 0 && $mrc == CURLM_OK ) {
-					if ( curl_multi_select( $chm, $selectTimeout ) == -1 ) {
-						// PHP bug 63411; https://curl.haxx.se/libcurl/c/curl_multi_fdset.html
-						usleep( 5000 ); // 5ms
-					}
-				}
-			} while ( $active > 0 && $mrc == CURLM_OK );
-		}
-
-		// Remove all of the added cURL handles and check for errors...
-		foreach ( $reqs as $index => &$req ) {
-			$ch = $handles[$index];
-			curl_multi_remove_handle( $chm, $ch );
-
-			if ( isset( $infos[(int)$ch] ) ) {
-				$info = $infos[(int)$ch];
-				$errno = $info['result'];
-				if ( $errno !== 0 ) {
-					$req['response']['error'] = "(curl error: $errno)";
-					if ( function_exists( 'curl_strerror' ) ) {
-						$req['response']['error'] .= " " . curl_strerror( $errno );
-					}
-					$this->logger->warning( "Error fetching URL \"{$req['url']}\": " .
-						$req['response']['error'] );
-				}
-			} else {
-				$req['response']['error'] = "(curl error: no status set)";
-			}
-
-			// For convenience with the list() operator
-			$req['response'][0] = $req['response']['code'];
-			$req['response'][1] = $req['response']['reason'];
-			$req['response'][2] = $req['response']['headers'];
-			$req['response'][3] = $req['response']['body'];
-			$req['response'][4] = $req['response']['error'];
-			curl_close( $ch );
-			// Close any string wrapper file handles
-			if ( isset( $req['_closeHandle'] ) ) {
-				fclose( $req['_closeHandle'] );
-				unset( $req['_closeHandle'] );
-			}
-		}
-		unset( $req ); // don't assign over this by accident
-
-		// Restore the default settings
-		curl_multi_setopt( $chm, CURLMOPT_PIPELINING, (int)$this->usePipelining );
-		curl_multi_setopt( $chm, CURLMOPT_MAXCONNECTS, (int)$this->maxConnsPerHost );
-
-		return $reqs;
-	}
-
-	/**
-	 * @param array &$req HTTP request map
-	 * @param array $opts
-	 *   - connTimeout    : default connection timeout
-	 *   - reqTimeout     : default request timeout
-	 * @return resource
-	 * @throws Exception
-	 */
-	protected function getCurlHandle( array &$req, array $opts = [] ) {
-		$ch = curl_init();
-
-		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT_MS,
-			( $opts['connTimeout'] ?? $this->connTimeout ) * 1000 );
-		curl_setopt( $ch, CURLOPT_PROXY, $req['proxy'] ?? $this->proxy );
-		curl_setopt( $ch, CURLOPT_TIMEOUT_MS,
-			( $opts['reqTimeout'] ?? $this->reqTimeout ) * 1000 );
-		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1 );
-		curl_setopt( $ch, CURLOPT_MAXREDIRS, 4 );
-		curl_setopt( $ch, CURLOPT_HEADER, 0 );
-		if ( !is_null( $this->caBundlePath ) ) {
-			curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, true );
-			curl_setopt( $ch, CURLOPT_CAINFO, $this->caBundlePath );
-		}
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-
-		$url = $req['url'];
-		$query = http_build_query( $req['query'], '', '&', PHP_QUERY_RFC3986 );
-		if ( $query != '' ) {
-			$url .= strpos( $req['url'], '?' ) === false ? "?$query" : "&$query";
-		}
-		curl_setopt( $ch, CURLOPT_URL, $url );
-
-		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, $req['method'] );
-		if ( $req['method'] === 'HEAD' ) {
-			curl_setopt( $ch, CURLOPT_NOBODY, 1 );
-		}
-
-		if ( $req['method'] === 'PUT' ) {
-			curl_setopt( $ch, CURLOPT_PUT, 1 );
-			if ( is_resource( $req['body'] ) ) {
-				curl_setopt( $ch, CURLOPT_INFILE, $req['body'] );
-				if ( isset( $req['headers']['content-length'] ) ) {
-					curl_setopt( $ch, CURLOPT_INFILESIZE, $req['headers']['content-length'] );
-				} elseif ( isset( $req['headers']['transfer-encoding'] ) &&
-					$req['headers']['transfer-encoding'] === 'chunks'
-				) {
-					curl_setopt( $ch, CURLOPT_UPLOAD, true );
-				} else {
-					throw new Exception( "Missing 'Content-Length' or 'Transfer-Encoding' header." );
-				}
-			} elseif ( $req['body'] !== '' ) {
-				$fp = fopen( "php://temp", "wb+" );
-				fwrite( $fp, $req['body'], strlen( $req['body'] ) );
-				rewind( $fp );
-				curl_setopt( $ch, CURLOPT_INFILE, $fp );
-				curl_setopt( $ch, CURLOPT_INFILESIZE, strlen( $req['body'] ) );
-				$req['_closeHandle'] = $fp; // remember to close this later
-			} else {
-				curl_setopt( $ch, CURLOPT_INFILESIZE, 0 );
-			}
-			curl_setopt( $ch, CURLOPT_READFUNCTION,
-				function ( $ch, $fd, $length ) {
-					$data = fread( $fd, $length );
-					$len = strlen( $data );
-					return $data;
-				}
-			);
-		} elseif ( $req['method'] === 'POST' ) {
-			curl_setopt( $ch, CURLOPT_POST, 1 );
-			// Don't interpret POST parameters starting with '@' as file uploads, because this
-			// makes it impossible to POST plain values starting with '@' (and causes security
-			// issues potentially exposing the contents of local files).
-			curl_setopt( $ch, CURLOPT_SAFE_UPLOAD, true );
-			curl_setopt( $ch, CURLOPT_POSTFIELDS, $req['body'] );
-		} else {
-			if ( is_resource( $req['body'] ) || $req['body'] !== '' ) {
-				throw new Exception( "HTTP body specified for a non PUT/POST request." );
-			}
-			$req['headers']['content-length'] = 0;
-		}
-
-		if ( !isset( $req['headers']['user-agent'] ) ) {
-			$req['headers']['user-agent'] = $this->userAgent;
-		}
-
-		$headers = [];
-		foreach ( $req['headers'] as $name => $value ) {
-			if ( strpos( $name, ': ' ) ) {
-				throw new Exception( "Headers cannot have ':' in the name." );
-			}
-			$headers[] = $name . ': ' . trim( $value );
-		}
-		curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
-
-		curl_setopt( $ch, CURLOPT_HEADERFUNCTION,
-			function ( $ch, $header ) use ( &$req ) {
-				if ( !empty( $req['flags']['relayResponseHeaders'] ) && trim( $header ) !== '' ) {
-					header( $header );
-				}
-				$length = strlen( $header );
-				$matches = [];
-				if ( preg_match( "/^(HTTP\/1\.[01]) (\d{3}) (.*)/", $header, $matches ) ) {
-					$req['response']['code'] = (int)$matches[2];
-					$req['response']['reason'] = trim( $matches[3] );
-					return $length;
-				}
-				if ( strpos( $header, ":" ) === false ) {
-					return $length;
-				}
-				list( $name, $value ) = explode( ":", $header, 2 );
-				$name = strtolower( $name );
-				$value = trim( $value );
-				if ( isset( $req['response']['headers'][$name] ) ) {
-					$req['response']['headers'][$name] .= ', ' . $value;
-				} else {
-					$req['response']['headers'][$name] = $value;
-				}
-				return $length;
-			}
-		);
-
-		if ( isset( $req['stream'] ) ) {
-			// Don't just use CURLOPT_FILE as that might give:
-			// curl_setopt(): cannot represent a stream of type Output as a STDIO FILE*
-			// The callback here handles both normal files and php://temp handles.
-			curl_setopt( $ch, CURLOPT_WRITEFUNCTION,
-				function ( $ch, $data ) use ( &$req ) {
-					return fwrite( $req['stream'], $data );
-				}
-			);
-		} else {
-			curl_setopt( $ch, CURLOPT_WRITEFUNCTION,
-				function ( $ch, $data ) use ( &$req ) {
-					$req['response']['body'] .= $data;
-					return strlen( $data );
-				}
-			);
-		}
-
-		return $ch;
-	}
-
-	/**
-	 * @return resource
-	 * @throws Exception
-	 */
-	protected function getCurlMulti() {
-		if ( !$this->multiHandle ) {
-			if ( !function_exists( 'curl_multi_init' ) ) {
-				throw new Exception( "PHP cURL function curl_multi_init missing. " .
-					"Check https://www.mediawiki.org/wiki/Manual:CURL" );
-			}
-			$cmh = curl_multi_init();
-			curl_multi_setopt( $cmh, CURLMOPT_PIPELINING, (int)$this->usePipelining );
-			curl_multi_setopt( $cmh, CURLMOPT_MAXCONNECTS, (int)$this->maxConnsPerHost );
-			$this->multiHandle = $cmh;
-		}
-		return $this->multiHandle;
-	}
-
-	/**
-	 * Execute a set of HTTP(S) requests sequentially.
-	 *
-	 * @see MultiHttpClient::runMulti()
-	 * @todo Remove dependency on MediaWikiServices: use a separate HTTP client
-	 *  library or copy code from PhpHttpRequest
-	 * @param array $reqs Map of HTTP request arrays
-	 * @param array $opts
-	 *   - connTimeout     : connection timeout per request (seconds)
-	 *   - reqTimeout      : post-connection timeout per request (seconds)
-	 * @return array $reqs With response array populated for each
-	 * @throws Exception
-	 */
-	private function runMultiHttp( array $reqs, array $opts = [] ) {
-		$httpOptions = [
+	private function runMultiGuzzle( array $reqs, array $opts = [] ) {
+		$guzzleOptions = [
 			'timeout' => $opts['reqTimeout'] ?? $this->reqTimeout,
-			'connectTimeout' => $opts['connTimeout'] ?? $this->connTimeout,
-			'logger' => $this->logger,
-			'caInfo' => $this->caBundlePath,
+			'connect_timeout' => $opts['connTimeout'] ?? $this->connTimeout,
+			'allow_redirects' => [
+				'max' => 4,
+			],
 		];
-		foreach ( $reqs as &$req ) {
-			$reqOptions = $httpOptions + [
-				'method' => $req['method'],
+
+		if ( !is_null( $this->caBundlePath ) ) {
+			$guzzleOptions['verify'] = $this->caBundlePath;
+		}
+
+		// Include curl-specific option section only if curl is available.
+		// Our defaults may differ from curl's defaults, depending on curl version.
+		if ( $this->isCurlEnabled() ) {
+			// Backward compatibility
+			$optsPipeliningMode = $opts['pipeliningMode'] ?? ( $opts['usePipelining'] ?? null );
+
+			// Per-request options override class-level options
+			$pipeliningMode = $optsPipeliningMode ?? $this->pipeliningMode;
+			$maxConnsPerHost = $opts['maxConnsPerHost'] ?? $this->maxConnsPerHost;
+
+			$guzzleOptions['curl'][CURLMOPT_PIPELINING] = (int)$pipeliningMode;
+			$guzzleOptions['curl'][CURLMOPT_MAXCONNECTS] = (int)$maxConnsPerHost;
+		}
+
+		if ( isset( $opts['handler'] ) ) {
+			$guzzleOptions['handler'] = $opts['handler'];
+		}
+
+		$guzzleOptions['headers']['user-agent'] = $this->userAgent;
+
+		$client = new Client( $guzzleOptions );
+		$promises = [];
+		foreach ( $reqs as $index => $req ) {
+			$reqOptions = [
 				'proxy' => $req['proxy'] ?? $this->proxy,
-				'userAgent' => $req['headers']['user-agent'] ?? $this->userAgent,
-				'postData' => $req['body'],
 			];
+
+			if ( $req['method'] == 'POST' ) {
+				$reqOptions['form_params'] = $req['body'];
+
+				// Suppress 'Expect: 100-continue' header, as some servers
+				// will reject it with a 417 and Curl won't auto retry
+				// with HTTP 1.0 fallback
+				$reqOptions['expect'] = false;
+			}
+
+			if ( isset( $req['headers']['user-agent'] ) ) {
+				$reqOptions['headers']['user-agent'] = $req['headers']['user-agent'];
+			}
+
+			// Backward compatibility for pre-Guzzle naming
+			if ( isset( $req['sink'] ) ) {
+				$reqOptions['sink'] = $req['sink'];
+			} elseif ( isset( $req['stream'] ) ) {
+				$reqOptions['sink'] = $req['stream'];
+			}
+
+			if ( !empty( $req['flags']['relayResponseHeaders'] ) ) {
+				$reqOptions['on_headers'] = function ( ResponseInterface $response ) {
+					foreach ( $response->getHeaders() as $name => $values ) {
+						foreach ( $values as $value ) {
+							header( $name . ': ' . $value . "\r\n" );
+						}
+					}
+				};
+			}
 
 			$url = $req['url'];
 			$query = http_build_query( $req['query'], '', '&', PHP_QUERY_RFC3986 );
 			if ( $query != '' ) {
 				$url .= strpos( $req['url'], '?' ) === false ? "?$query" : "&$query";
 			}
+			$promises[$index] = $client->requestAsync( $req['method'], $url, $reqOptions );
+		}
 
-			$httpRequest = MediaWikiServices::getInstance()->getHttpRequestFactory()->create(
-				$url, $reqOptions );
-			$sv = $httpRequest->execute()->getStatusValue();
+		$results = GuzzleHttp\Promise\settle( $promises )->wait();
 
-			$respHeaders = array_map(
-				function ( $v ) {
-					return implode( ', ', $v );
-				},
-				$httpRequest->getResponseHeaders() );
-
-			$req['response'] = [
-				'code' => $httpRequest->getStatus(),
-				'reason' => '',
-				'headers' => $respHeaders,
-				'body' => $httpRequest->getContent(),
-				'error' => '',
-			];
-
-			if ( !$sv->isOk() ) {
-				$svErrors = $sv->getErrors();
-				if ( isset( $svErrors[0] ) ) {
-					$req['response']['error'] = $svErrors[0]['message'];
-
-					// param values vary per failure type (ex. unknown host vs unknown page)
-					if ( isset( $svErrors[0]['params'][0] ) ) {
-						if ( is_numeric( $svErrors[0]['params'][0] ) ) {
-							if ( isset( $svErrors[0]['params'][1] ) ) {
-								$req['response']['reason'] = $svErrors[0]['params'][1];
-							}
-						} else {
-							$req['response']['reason'] = $svErrors[0]['params'][0];
-						}
-					}
-				}
+		foreach ( $results as $index => $result ) {
+			if ( $result['state'] === 'fulfilled' ) {
+				$this->guzzleHandleSuccess( $reqs[$index], $result['value'] );
+			} elseif ( $result['state'] === 'rejected' ) {
+				$this->guzzleHandleFailure( $reqs[$index], $result['reason'] );
+			} else {
+				// This should never happen, and exists only in case of changes to guzzle
+				throw new UnexpectedValueException(
+					"Unrecognized result state: {$result['state']}" );
 			}
+		}
 
+		foreach ( $reqs as &$req ) {
 			$req['response'][0] = $req['response']['code'];
 			$req['response'][1] = $req['response']['reason'];
 			$req['response'][2] = $req['response']['headers'];
@@ -529,9 +304,71 @@ class MultiHttpClient implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Called for successful requests
+	 *
+	 * @param array $req the original request
+	 * @param ResponseInterface $response
+	 */
+	private function guzzleHandleSuccess( &$req, $response ) {
+		$req['response'] = [
+			'code' => $response->getStatusCode(),
+			'reason' => $response->getReasonPhrase(),
+			'headers' => $this->parseHeaders( $response->getHeaders() ),
+			'body' => isset( $req['sink'] ) ? '' : $response->getBody()->getContents(),
+			'error' => '',
+		];
+	}
+
+	/**
+	 * Called for failed requests
+	 *
+	 * @param array $req the original request
+	 * @param Exception $reason
+	 */
+	private function guzzleHandleFailure( &$req, $reason ) {
+		$req['response'] = [
+			'code' => $reason->getCode(),
+			'reason' => '',
+			'headers' => [],
+			'body' => '',
+			'error' => $reason->getMessage(),
+		];
+
+		if (
+			$reason instanceof GuzzleHttp\Exception\RequestException &&
+			$reason->hasResponse()
+		) {
+			$response = $reason->getResponse();
+			if ( $response ) {
+				$req['response']['reason'] = $response->getReasonPhrase();
+				$req['response']['headers'] = $this->parseHeaders( $response->getHeaders() );
+				$req['response']['body'] = $response->getBody()->getContents();
+			}
+		}
+
+		$this->logger->warning( "Error fetching URL \"{$req['url']}\": " .
+			$req['response']['error'] );
+	}
+
+	/**
+	 * Parses response headers.
+	 *
+	 * @param string[][] $guzzleHeaders
+	 * @return array
+	 */
+	private function parseHeaders( $guzzleHeaders ) {
+		$headers = [];
+		foreach ( $guzzleHeaders as $name => $values ) {
+			$headers[strtolower( $name )] = implode( ', ', $values );
+		}
+		return $headers;
+	}
+
+	/**
 	 * Normalize request information
 	 *
 	 * @param array $reqs the requests to normalize
+	 * @throws Exception
 	 */
 	private function normalizeRequests( array &$reqs ) {
 		foreach ( $reqs as &$req ) {
@@ -573,39 +410,11 @@ class MultiHttpClient implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get a suitable select timeout for the given options.
-	 *
-	 * @param array $opts
-	 * @return float
-	 */
-	private function getSelectTimeout( $opts ) {
-		$connTimeout = $opts['connTimeout'] ?? $this->connTimeout;
-		$reqTimeout = $opts['reqTimeout'] ?? $this->reqTimeout;
-		$timeouts = array_filter( [ $connTimeout, $reqTimeout ] );
-		if ( count( $timeouts ) === 0 ) {
-			return 1;
-		}
-
-		$selectTimeout = min( $timeouts ) * self::TIMEOUT_ACCURACY_FACTOR;
-		// Minimum 10us for sanity
-		if ( $selectTimeout < 10e-6 ) {
-			$selectTimeout = 10e-6;
-		}
-		return $selectTimeout;
-	}
-
-	/**
 	 * Register a logger
 	 *
 	 * @param LoggerInterface $logger
 	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
-	}
-
-	function __destruct() {
-		if ( $this->multiHandle ) {
-			curl_multi_close( $this->multiHandle );
-		}
 	}
 }
