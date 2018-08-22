@@ -18,6 +18,8 @@ This is a security and maintenance release of the MediaWiki 1.31 branch.
 * (T182377, T196793) Exif: Guard against uncountable tag values.
 * (T200861) Fix total breakage of SQLite web upgrade.
 * (T200864) Fix pingback over-reporting on non-MySQL databases
+* (T202550) Unbreak SpecialListusersHeaderForm and SpecialListusersHeader
+  hooks. 
 
 === Changes since MediaWiki 1.31.0-rc.2 ===
 * (T195783) Initialize PSR-4 namespaces at same stage as normal autoloader.
