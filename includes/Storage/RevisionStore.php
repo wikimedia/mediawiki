@@ -2174,7 +2174,9 @@ class RevisionStore
 				// NOTE: even when this class is set to not read from the old schema, callers
 				// should still be able to join against the text table, as long as we are still
 				// writing the old schema for compatibility.
-				wfDeprecated( __METHOD__ . ' with `text` option', '1.32' );
+				// TODO: This should trigger a deprecation warning eventually (T200918), but not
+				// before all known usages are removed (see T198341 and T201164).
+				// wfDeprecated( __METHOD__ . ' with `text` option', '1.32' );
 			}
 
 			$ret['tables'][] = 'text';
