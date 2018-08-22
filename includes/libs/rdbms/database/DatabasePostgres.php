@@ -86,7 +86,7 @@ class DatabasePostgres extends Database {
 		return false;
 	}
 
-	public function open( $server, $user, $password, $dbName ) {
+	protected function open( $server, $user, $password, $dbName ) {
 		# Test for Postgres support, to avoid suppressed fatal error
 		if ( !function_exists( 'pg_connect' ) ) {
 			throw new DBConnectionError(

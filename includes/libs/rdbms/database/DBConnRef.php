@@ -178,10 +178,6 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function open( $server, $user, $password, $dbName ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function fetchObject( $res ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
