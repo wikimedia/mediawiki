@@ -70,7 +70,7 @@
 		result = mw.user.generateRandomSessionId();
 		assert.strictEqual( typeof result, 'string', 'type' );
 		assert.strictEqual( result.trim(), result, 'no whitespace at beginning or end' );
-		assert.strictEqual( result.length, 16, 'size' );
+		assert.strictEqual( result.length, 20, 'size' );
 
 		result2 = mw.user.generateRandomSessionId();
 		assert.notEqual( result, result2, 'different when called multiple times' );
@@ -91,7 +91,7 @@
 		result = mw.user.generateRandomSessionId();
 		assert.strictEqual( typeof result, 'string', 'type' );
 		assert.strictEqual( result.trim(), result, 'no whitespace at beginning or end' );
-		assert.strictEqual( result.length, 16, 'size' );
+		assert.strictEqual( result.length, 20, 'size' );
 
 		result2 = mw.user.generateRandomSessionId();
 		assert.notEqual( result, result2, 'different when called multiple times' );
@@ -101,7 +101,7 @@
 		var result = mw.user.getPageviewToken(),
 			result2 = mw.user.getPageviewToken();
 		assert.strictEqual( typeof result, 'string', 'type' );
-		assert.strictEqual( /^[a-f0-9]{16}$/.test( result ), true, '16 HEX symbols string' );
+		assert.strictEqual( /^[a-f0-9]{20}$/.test( result ), true, '20 HEX symbols string' );
 		assert.strictEqual( result2, result, 'sticky' );
 	} );
 

@@ -2,7 +2,7 @@
  * @class mw.user
  * @singleton
  */
-/* global Uint32Array */
+/* global Uint16Array */
 ( function ( mw, $ ) {
 	var userInfoPromise, pageviewRandomId;
 
@@ -36,34 +36,40 @@
 		 * mobile usages of this code is probably higher.
 		 *
 		 * Rationale:
-		 * We need about 64 bits to make sure that probability of collision
-		 * on 500 million (5*10^8) is <= 1%
-		 * See https://en.wikipedia.org/wiki/Birthday_problem#Probability_table
+		 * We need about 80 bits to make sure that probability of collision
+		 * on 155 billion  is <= 1%
 		 *
-		 * @return {string} 64 bit integer in hex format, padded
+		 * See https://en.wikipedia.org/wiki/Birthday_attack#Mathematics
+		 * n(p;H) = n(0.01,2^80)= sqrt (2 * 2^80 * ln(1/(1-0.01)))
+
+		 * @return {string} 80 bit integer in hex format, padded
 		 */
 		generateRandomSessionId: function () {
 			var rnds, i,
-				hexRnds = new Array( 2 ),
+				hexRnds = new Array( 5 ),
 				// Support: IE 11
 				crypto = window.crypto || window.msCrypto;
 
-			if ( crypto && crypto.getRandomValues && typeof Uint32Array === 'function' ) {
-				// Fill an array with 2 random values, each of which is 32 bits.
-				// Note that Uint32Array is array-like but does not implement Array.
-				rnds = new Uint32Array( 2 );
+			if ( crypto && crypto.getRandomValues && typeof Uint16Array === 'function' ) {
+
+				// Fill an array with 5 random values, each of which is 16 bits.
+				// Note that Uint16Array is array-like but does not implement Array.
+				rnds = new Uint16Array( 5 );
 				crypto.getRandomValues( rnds );
+
 			} else {
-				rnds = [
-					Math.floor( Math.random() * 0x100000000 ),
-					Math.floor( Math.random() * 0x100000000 )
-				];
+
+				// 0x10000 is 2^16 so the operation below will return a number
+				// between 2^16 and zero
+				for ( i = 0; i < 5; i++ ) {
+					rnds[ i ] = Math.floor( Math.random() * 0x10000 );
+				}
 			}
-			// Convert number to a string with 16 hex characters
-			for ( i = 0; i < 2; i++ ) {
-				// Add 0x100000000 before converting to hex and strip the extra character
+			// Convert the 5 16bit-numbers into 20 characters (4 hex chars per 16 bits)
+			for ( i = 0; i < 5; i++ ) {
+				// Add 0x1000 before converting to hex and strip the extra character
 				// after converting to keep the leading zeros.
-				hexRnds[ i ] = ( rnds[ i ] + 0x100000000 ).toString( 16 ).slice( 1 );
+				hexRnds[ i ] = ( rnds[ i ] + 0x10000 ).toString( 16 ).slice( 1 );
 			}
 
 			// Concatenation of two random integers with entropy n and m
