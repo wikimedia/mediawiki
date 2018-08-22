@@ -296,6 +296,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	public function msg( $key ) {
 		$args = func_get_args();
 
+		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
 		return wfMessage( ...$args )->setContext( $this );
 	}
 }

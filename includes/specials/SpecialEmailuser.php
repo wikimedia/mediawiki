@@ -438,7 +438,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			 * SPF and bounce problems with some mailers (see below).
 			 */
 			$mailFrom = new MailAddress( $config->get( 'PasswordSender' ),
-				wfMessage( 'emailsender' )->inContentLanguage()->text() );
+				$context->msg( 'emailsender' )->inContentLanguage()->text() );
 			$replyTo = $from;
 		} else {
 			/**
@@ -482,7 +482,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				if ( $config->get( 'UserEmailUseReplyTo' ) ) {
 					$mailFrom = new MailAddress(
 						$config->get( 'PasswordSender' ),
-						wfMessage( 'emailsender' )->inContentLanguage()->text()
+						$context->msg( 'emailsender' )->inContentLanguage()->text()
 					);
 					$replyTo = $ccFrom;
 				} else {

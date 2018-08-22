@@ -157,9 +157,9 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 
 		$form->addPreText(
 			Html::openElement( 'dl' )
-			. Html::element( 'dt', [], wfMessage( 'credentialsform-provider' )->text() )
+			. Html::element( 'dt', [], $this->msg( 'credentialsform-provider' )->text() )
 			. Html::element( 'dd', [], $info['provider'] )
-			. Html::element( 'dt', [], wfMessage( 'credentialsform-account' )->text() )
+			. Html::element( 'dt', [], $this->msg( 'credentialsform-account' )->text() )
 			. Html::element( 'dd', [], $info['account'] )
 			. Html::closeElement( 'dl' )
 		);

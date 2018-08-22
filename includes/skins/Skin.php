@@ -533,7 +533,7 @@ abstract class Skin extends ContextSource {
 			$t = $embed . implode( "{$pop}{$embed}", $allCats['normal'] ) . $pop;
 
 			$msg = $this->msg( 'pagecategories' )->numParams( count( $allCats['normal'] ) )->escaped();
-			$linkPage = wfMessage( 'pagecategorieslink' )->inContentLanguage()->text();
+			$linkPage = $this->msg( 'pagecategorieslink' )->inContentLanguage()->text();
 			$title = Title::newFromText( $linkPage );
 			$link = $title ? Linker::link( $title, $msg ) : $msg;
 			$s .= '<div id="mw-normal-catlinks" class="mw-normal-catlinks">' .
@@ -1331,7 +1331,7 @@ abstract class Skin extends ContextSource {
 	 * @param string $message
 	 */
 	public function addToSidebar( &$bar, $message ) {
-		$this->addToSidebarPlain( $bar, wfMessage( $message )->inContentLanguage()->plain() );
+		$this->addToSidebarPlain( $bar, $this->msg( $message )->inContentLanguage()->plain() );
 	}
 
 	/**
@@ -1621,13 +1621,13 @@ abstract class Skin extends ContextSource {
 
 		$attribs = [];
 		if ( !is_null( $tooltip ) ) {
-			$attribs['title'] = wfMessage( 'editsectionhint' )->rawParams( $tooltip )
+			$attribs['title'] = $this->msg( 'editsectionhint' )->rawParams( $tooltip )
 				->inLanguage( $lang )->text();
 		}
 
 		$links = [
 			'editsection' => [
-				'text' => wfMessage( 'editsection' )->inLanguage( $lang )->escaped(),
+				'text' => $this->msg( 'editsection' )->inLanguage( $lang )->escaped(),
 				'targetTitle' => $nt,
 				'attribs' => $attribs,
 				'query' => [ 'action' => 'edit', 'section' => $section ],
@@ -1652,7 +1652,7 @@ abstract class Skin extends ContextSource {
 
 		$result .= implode(
 			'<span class="mw-editsection-divider">'
-				. wfMessage( 'pipe-separator' )->inLanguage( $lang )->escaped()
+				. $this->msg( 'pipe-separator' )->inLanguage( $lang )->escaped()
 				. '</span>',
 			$linksHtml
 		);

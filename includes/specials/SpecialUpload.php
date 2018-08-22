@@ -116,7 +116,7 @@ class SpecialUpload extends SpecialPage {
 		$this->mForReUpload = $request->getBool( 'wpForReUpload' ); // updating a file
 
 		$commentDefault = '';
-		$commentMsg = wfMessage( 'upload-default-description' )->inContentLanguage();
+		$commentMsg = $this->msg( 'upload-default-description' )->inContentLanguage();
 		if ( !$this->mForReUpload && !$commentMsg->isDisabled() ) {
 			$commentDefault = $commentMsg->plain();
 		}
@@ -401,12 +401,12 @@ class SpecialUpload extends SpecialPage {
 			} elseif ( $warning == 'no-change' ) {
 				$file = $args;
 				$filename = $file->getTitle()->getPrefixedText();
-				$msg = "\t<li>" . wfMessage( 'fileexists-no-change', $filename )->parse() . "</li>\n";
+				$msg = "\t<li>" . $this->msg( 'fileexists-no-change', $filename )->parse() . "</li>\n";
 			} elseif ( $warning == 'duplicate-version' ) {
 				$file = $args[0];
 				$count = count( $args );
 				$filename = $file->getTitle()->getPrefixedText();
-				$message = wfMessage( 'fileexists-duplicate-version' )
+				$message = $this->msg( 'fileexists-duplicate-version' )
 					->params( $filename )
 					->numParams( $count );
 				$msg = "\t<li>" . $message->parse() . "</li>\n";
@@ -415,14 +415,14 @@ class SpecialUpload extends SpecialPage {
 				$ltitle = SpecialPage::getTitleFor( 'Log' );
 				$llink = $linkRenderer->makeKnownLink(
 					$ltitle,
-					wfMessage( 'deletionlog' )->text(),
+					$this->msg( 'deletionlog' )->text(),
 					[],
 					[
 						'type' => 'delete',
 						'page' => Title::makeTitle( NS_FILE, $args )->getPrefixedText(),
 					]
 				);
-				$msg = "\t<li>" . wfMessage( 'filewasdeleted' )->rawParams( $llink )->parse() . "</li>\n";
+				$msg = "\t<li>" . $this->msg( 'filewasdeleted' )->rawParams( $llink )->parse() . "</li>\n";
 			} elseif ( $warning == 'duplicate' ) {
 				$msg = $this->getDupeWarning( $args );
 			} elseif ( $warning == 'duplicate-archive' ) {
