@@ -266,7 +266,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var int[] Prior flags member variable values */
 	private $priorFlags = [];
 
-	/** @var object|string Class name or object With profileIn/profileOut methods */
+	/** @var mixed Class name or object With profileIn/profileOut methods */
 	protected $profiler;
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
@@ -3508,7 +3508,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					list( $phpCallback ) = $callback;
 					$phpCallback( $this );
 				} catch ( Exception $ex ) {
-					$this->errorLogger( $ex );
+					( $this->errorLogger )( $ex );
 					$e = $e ?: $ex;
 				}
 			}
@@ -4030,7 +4030,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * a wrapper. Nowadays, raw database objects are never exposed to external
 	 * callers, so this is unnecessary in external code.
 	 *
-	 * @param bool|ResultWrapper|resource|object $result
+	 * @param bool|ResultWrapper|resource $result
 	 * @return bool|ResultWrapper
 	 */
 	protected function resultObject( $result ) {
