@@ -134,8 +134,15 @@ class Title implements LinkTarget {
 	/** @var bool Boolean for initialisation on demand */
 	public $mRestrictionsLoaded = false;
 
-	/** @var string Text form including namespace/interwiki, initialised on demand */
-	protected $mPrefixedText = null;
+	/**
+	 * Text form including namespace/interwiki, initialised on demand
+	 *
+	 * Only public to share cache with TitleFormatter
+	 *
+	 * @private
+	 * @var string
+	 */
+	public $prefixedText = null;
 
 	/** @var mixed Cached value for getTitleProtection (create protection) */
 	public $mTitleProtection;
@@ -1669,12 +1676,12 @@ class Title implements LinkTarget {
 	 * @return string The prefixed title, with spaces
 	 */
 	public function getPrefixedText() {
-		if ( $this->mPrefixedText === null ) {
+		if ( $this->prefixedText === null ) {
 			$s = $this->prefix( $this->mTextform );
 			$s = strtr( $s, '_', ' ' );
-			$this->mPrefixedText = $s;
+			$this->prefixedText = $s;
 		}
-		return $this->mPrefixedText;
+		return $this->prefixedText;
 	}
 
 	/**

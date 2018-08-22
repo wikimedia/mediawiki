@@ -60,6 +60,16 @@ class TitleValue implements LinkTarget {
 	protected $interwiki;
 
 	/**
+	 * Text form including namespace/interwiki, initialised on demand
+	 *
+	 * Only public to share cache with TitleFormatter
+	 *
+	 * @private
+	 * @var string
+	 */
+	public $prefixedText = null;
+
+	/**
 	 * Constructs a TitleValue.
 	 *
 	 * @note TitleValue expects a valid DB key; typically, a TitleValue is constructed either
