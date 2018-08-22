@@ -72,7 +72,7 @@ return [
 
 	'BlobStoreFactory' => function ( MediaWikiServices $services ) : BlobStoreFactory {
 		return new BlobStoreFactory(
-			$services->getDBLoadBalancer(),
+			$services->getDBLoadBalancerFactory(),
 			$services->getMainWANObjectCache(),
 			$services->getMainConfig(),
 			$services->getContentLanguage()
