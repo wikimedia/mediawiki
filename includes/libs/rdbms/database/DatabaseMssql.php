@@ -234,7 +234,7 @@ class DatabaseMssql extends Database {
 	}
 
 	/**
-	 * @param MssqlResultWrapper $res
+	 * @param IResultWrapper $res
 	 * @return stdClass
 	 */
 	public function fetchObject( $res ) {
@@ -243,7 +243,7 @@ class DatabaseMssql extends Database {
 	}
 
 	/**
-	 * @param MssqlResultWrapper $res
+	 * @param IResultWrapper $res
 	 * @return array
 	 */
 	public function fetchRow( $res ) {
