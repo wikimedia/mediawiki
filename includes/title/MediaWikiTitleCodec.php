@@ -79,7 +79,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @param string $text
 	 *
 	 * @throws InvalidArgumentException If the namespace is invalid
-	 * @return string
+	 * @return string Namespace name with underscores (not spaces)
 	 */
 	public function getNamespaceName( $namespace, $text ) {
 		if ( $this->language->needsGenderDistinction() &&
@@ -112,29 +112,30 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @return string
 	 */
 	public function formatTitle( $namespace, $text, $fragment = '', $interwiki = '' ) {
-		if ( $namespace !== 0 && $namespace !== false ) {
-			// Try to get a namespace name, but fallback
-			// to empty string if it doesn't exist. And
-			// assume that ns 0 is the empty string.
+		$out = '';
+		if ( $interwiki !== '' ) {
+			$out = $interwiki . ':';
+		}
+
+		if ( $namespace != 0 ) {
 			try {
 				$nsName = $this->getNamespaceName( $namespace, $text );
 			} catch ( InvalidArgumentException $e ) {
-				$nsName = '';
+				// See T165149. Awkward, but better than erroneously linking to the main namespace.
+				$nsName = $this->language->getNsText( NS_SPECIAL ) . ":Badtitle/NS{$namespace}";
 			}
-			$text = $nsName . ':' . $text;
+
+			$out .= $nsName . ':';
 		}
+		$out .= $text;
 
 		if ( $fragment !== '' ) {
-			$text = $text . '#' . $fragment;
+			$out .= '#' . $fragment;
 		}
 
-		if ( $interwiki !== '' ) {
-			$text = $interwiki . ':' . $text;
-		}
+		$out = str_replace( '_', ' ', $out );
 
-		$text = str_replace( '_', ' ', $text );
-
-		return $text;
+		return $out;
 	}
 
 	/**
@@ -200,28 +201,12 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @return string
 	 */
 	public function getPrefixedDBkey( LinkTarget $target ) {
-		$key = '';
-		if ( $target->isExternal() ) {
-			$key .= $target->getInterwiki() . ':';
-		}
-		// Try to get a namespace name, but fallback
-		// to empty string if it doesn't exist
-		try {
-			$nsName = $this->getNamespaceName(
-				$target->getNamespace(),
-				$target->getText()
-			);
-		} catch ( InvalidArgumentException $e ) {
-			$nsName = '';
-		}
-
-		if ( $target->getNamespace() !== 0 ) {
-			$key .= $nsName . ':';
-		}
-
-		$key .= $target->getText();
-
-		return strtr( $key, ' ', '_' );
+		return strtr( $this->formatTitle(
+			$target->getNamespace(),
+			$target->getDBkey(),
+			'',
+			$target->getInterwiki()
+		), ' ', '_' );
 	}
 
 	/**
