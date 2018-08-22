@@ -1550,7 +1550,7 @@
 	"recentchangeslinked-page": "Sidenavn:",
 	"recentchangeslinked-to": "Vis endringer på sider som lenker til den gitte siden istedet",
 	"recentchanges-page-added-to-category": "[[:$1]] ble lagt til i kategorien",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] lagt til i kategori, [[Special:WhatLinksHere/$1|denne siden er inkludert i andre sider]]",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] lagt til i kategorien; [[Special:WhatLinksHere/$1|denne siden er inkludert i andre sider]]",
 	"recentchanges-page-removed-from-category": "[[:$1]] fjernet fra kategori",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] fjernet fra kategori, [[Special:WhatLinksHere/$1|denne siden er inkludert i andre sider]]",
 	"autochange-username": "Automatisk MediaWiki-endring",

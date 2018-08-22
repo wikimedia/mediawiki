@@ -2321,7 +2321,7 @@
 	"anonymous": "{{PLURAL:$1|1=ЦӀе хьулйина декъашхо|ЦӀе хьулйина декъашхой}} {{grammar:genitive|{{SITENAME}}}}",
 	"siteuser": "декъашхо {{grammar:genitive|{{SITENAME}}}} $1",
 	"anonuser": "цӀе хьулйина декъашхо {{grammar:genitive|{{SITENAME}}}} $1",
-	"lastmodifiedatby": "ХӀара агӀо тӀаьххьара хийцина: $1 $2, хийцам бина — $3",
+	"lastmodifiedatby": "ХӀара агӀо тӀаьххьара хийцам бина: $1 $2, хийцаман автор — $3",
 	"othercontribs": "Кхуллуш дакъалецира декъашхоша: $1.",
 	"others": "кхин",
 	"siteusers": "{{PLURAL:$2|1=декъашхо|декъашхой}} {{grammar:genitive|{{SITENAME}}}} $1",

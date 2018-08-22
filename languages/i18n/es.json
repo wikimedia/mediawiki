@@ -172,7 +172,8 @@
 			"Amaia",
 			"Tiberius1701",
 			"Astroemi",
-			"Jelou"
+			"Jelou",
+			"Ktranz"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -531,6 +532,7 @@
 	"ns-specialprotected": "No se pueden editar las páginas especiales.",
 	"titleprotected": "Este título ha sido protegido contra creación por [[User:$1|$1]].\nEl motivo proporcionado es <em>$2</em>.",
 	"filereadonlyerror": "No se puede modificar el archivo \"$1\" porque el repositorio de archivos \"$2\" es de solo lectura.\n\nEl administrador del sistema que lo ha bloqueado ofrece esta explicación: \"$3\".",
+	"invalidtitle": "Título inválido",
 	"invalidtitle-knownnamespace": "El título con el espacio de nombres «$2» y el texto «$3» no es válido",
 	"invalidtitle-unknownnamespace": "El título con el espacio de nombres desconocido (n.º $1) y el texto «$2» no es válido",
 	"exception-nologin": "No has accedido",
@@ -1877,7 +1879,7 @@
 	"uploadstash-zero-length": "El archivo está vacío.",
 	"invalid-chunk-offset": "Desplazamiento inválido del fragmento",
 	"img-auth-accessdenied": "Acceso denegado",
-	"img-auth-nopathinfo": "Falta PATH_INFO.\nEl servidor no está configurado para proporcionar esta información.\nEs posible que esté basado en CGI y que no sea compatible con img_auth.\nConsulte https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Falta la información de ruta.\nEl servidor tiene que estar configurado para proporcionar las variables REQUEST_URI y/o PATH_INFO.\nSi lo está, intentá habilitar $wgUsePathInfo.\nConsulte https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "La ruta solicitada no figura en la carpeta de subidas configurada.",
 	"img-auth-badtitle": "Incapaz de construir un título válido de «$1».",
 	"img-auth-nologinnWL": "No has iniciado sesión y «$1» no está en la lista blanca.",
@@ -1938,9 +1940,9 @@
 	"filehist-filesize": "Tamaño del archivo",
 	"filehist-comment": "Comentario",
 	"imagelinks": "Usos del archivo",
-	"linkstoimage": "{{PLURAL:$1|La siguiente página enlaza|Las siguientes páginas enlazan}} a este archivo:",
-	"linkstoimage-more": "Hay más de {{PLURAL:$1|una página que enlaza|$1 páginas que enlazan}} con este archivo.\nLa lista siguiente sólo muestra {{PLURAL:$1|la primera página que enlaza|las primeras $1 páginas que enlazan}} con este archivo.\nTambién puedes consultar la [[Special:WhatLinksHere/$2|lista completa]].",
-	"nolinkstoimage": "No hay páginas que enlacen a esta imagen.",
+	"linkstoimage": "{{PLURAL:$1|La siguiente página usa|Las siguientes páginas usan}} a este archivo:",
+	"linkstoimage-more": "Hay más de {{PLURAL:$1|una página que usa|$1 páginas que usan}} este archivo.\nLa lista siguiente sólo muestra {{PLURAL:$1|la primera página que usa|las primeras $1 páginas que usan}} este archivo.\nTambién puedes consultar la [[Special:WhatLinksHere/$2|lista completa]].",
+	"nolinkstoimage": "No hay páginas que enlacen a este archivo.",
 	"morelinkstoimage": "Mira [[Special:WhatLinksHere/$1|más enlaces]] a este archivo.",
 	"linkstoimage-redirect": "$1 (archivo de redirección) $2",
 	"duplicatesoffile": "{{PLURAL:$1|El siguiente archivo es un duplicado|Los siguientes $1 archivos son duplicados}} de éste ([[Special:FileDuplicateSearch/$2|más detalles]]):",
@@ -3948,6 +3950,7 @@
 	"limitreport-expansiondepth": "Profundidad máxima de expansión",
 	"limitreport-expensivefunctioncount": "Cuenta de la función expansiva del analizador",
 	"limitreport-unstrip-depth": "Profundidad de recursión de función «unstrip»",
+	"limitreport-unstrip-size": "Unstrip tamaño post-expandido",
 	"limitreport-unstrip-size-value": "$1/$2 {{PLURAL:$2|byte|bytes}}",
 	"expandtemplates": "Expandir plantillas",
 	"expand_templates_intro": "Esta página especial toma un texto wiki y expande todas sus plantillas recursivamente.\nTambién expande las funciones sintácticas como <code><nowiki>{{</nowiki>#language:…}}</code>, y variables como\n<code><nowiki>{{</nowiki>CURRENTDAY}}</code>. De hecho, expande casi cualquier cosa que esté entre llaves dobles.",
@@ -4210,5 +4213,6 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "La contraseña no puede ser la misma que el nombre de usuario",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "La contraseña no puede coincidir con la lista de contraseñas específicamente prohibidas",
 	"passwordpolicies-policy-maximalpasswordlength": "La contraseña no puede tener más de $1 {{PLURAL:$1|caracter|caracteres}}",
-	"passwordpolicies-policy-passwordcannotbepopular": "La contraseña no puede {{PLURAL:$1|ser la contraseña más popular|encontrarse en la lista de $1 contraseñas populares}}"
+	"passwordpolicies-policy-passwordcannotbepopular": "La contraseña no puede {{PLURAL:$1|ser la contraseña más popular|encontrarse en la lista de $1 contraseñas populares}}",
+	"easydeflate-invaliddeflate": "El contenido proporcionado no esta comprimido correctamente"
 }

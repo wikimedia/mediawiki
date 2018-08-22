@@ -1369,7 +1369,7 @@
 	"action-delete": "删除本页",
 	"action-deleterevision": "删除修订",
 	"action-deletelogentry": "删除日志记录",
-	"action-deletedhistory": "查看页面被删除的历史",
+	"action-deletedhistory": "查看已被删除的页面历史",
 	"action-deletedtext": "查看已删除的修订版本文字",
 	"action-browsearchive": "搜索已被删除的页面",
 	"action-undelete": "还原页面",

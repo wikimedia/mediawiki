@@ -1365,7 +1365,7 @@
 	"action-delete": "刪除此頁面",
 	"action-deleterevision": "刪除修訂",
 	"action-deletelogentry": "刪除日誌項目",
-	"action-deletedhistory": "檢視頁面的刪除歷史",
+	"action-deletedhistory": "檢視已被刪除的頁面歷史",
 	"action-deletedtext": "查看已刪除的修訂版本文字",
 	"action-browsearchive": "搜尋已刪除頁面",
 	"action-undelete": "取消刪除頁面",
