@@ -209,7 +209,8 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 			$wikidiff2Version = phpversion( 'wikidiff2' );
 			if (
 				$wikidiff2Version !== false &&
-				version_compare( $wikidiff2Version, '1.5.0', '>=' )
+				version_compare( $wikidiff2Version, '1.5.0', '>=' ) &&
+				version_compare( $wikidiff2Version, '1.8.0', '<' )
 			) {
 				$text = wikidiff2_do_diff(
 					$oldText,
@@ -218,7 +219,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 					$this->wikiDiff2MovedParagraphDetectionCutoff
 				);
 			} else {
-				// Don't pass the 4th parameter for compatibility with older versions of wikidiff2
+				// Don't pass the 4th parameter introduced in version 1.5.0 and removed in version 1.8.0
 				$text = wikidiff2_do_diff(
 					$oldText,
 					$newText,
