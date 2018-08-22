@@ -1547,6 +1547,10 @@ class RevisionStore
 		$slots = [];
 
 		foreach ( $res as $row ) {
+			// resolve role names and model names from in-memory cache, instead of joining.
+			$row->role_name = $this->slotRoleStore->getName( (int)$row->slot_role_id );
+			$row->model_name = $this->contentModelStore->getName( (int)$row->content_model );
+
 			$contentCallback = function ( SlotRecord $slot ) use ( $queryFlags, $row ) {
 				return $this->loadSlotContent( $slot, null, null, null, $queryFlags );
 			};
@@ -2268,6 +2272,9 @@ class RevisionStore
 	 *
 	 * @param array $options Any combination of the following strings
 	 *  - 'content': Join with the content table, and select content meta-data fields
+	 *  - 'model': Join with the content_models table, and select the model_name field.
+	 *             Only applicable if 'content' is also set.
+	 *  - 'role': Join with the slot_roles table, and select the role_name field
 	 *
 	 * @return array With three keys:
 	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()`
@@ -2304,26 +2311,39 @@ class RevisionStore
 			}
 		} else {
 			$ret['tables'][] = 'slots';
-			$ret['tables'][] = 'slot_roles';
 			$ret['fields'] = array_merge( $ret['fields'], [
 				'slot_revision_id',
 				'slot_content_id',
 				'slot_origin',
-				'role_name'
+				'slot_role_id',
 			] );
-			$ret['joins']['slot_roles'] = [ 'INNER JOIN', [ 'slot_role_id = role_id' ] ];
+
+			if ( in_array( 'role', $options, true ) ) {
+				// Use left join to attach role name, so we still find the revision row even
+				// if the role name is missing. This triggers a more obvious failure mode.
+				$ret['tables'][] = 'slot_roles';
+				$ret['joins']['slot_roles'] = [ 'LEFT JOIN', [ 'slot_role_id = role_id' ] ];
+				$ret['fields'][] = 'role_name';
+			}
 
 			if ( in_array( 'content', $options, true ) ) {
 				$ret['tables'][] = 'content';
-				$ret['tables'][] = 'content_models';
 				$ret['fields'] = array_merge( $ret['fields'], [
 					'content_size',
 					'content_sha1',
 					'content_address',
-					'model_name'
+					'content_model',
 				] );
 				$ret['joins']['content'] = [ 'INNER JOIN', [ 'slot_content_id = content_id' ] ];
-				$ret['joins']['content_models'] = [ 'INNER JOIN', [ 'content_model = model_id' ] ];
+
+				if ( in_array( 'model', $options, true ) ) {
+					// Use left join to attach model name, so we still find the revision row even
+					// if the model name is missing. This triggers a more obvious failure mode.
+					$ret['tables'][] = 'content_models';
+					$ret['joins']['content_models'] = [ 'LEFT JOIN', [ 'content_model = model_id' ] ];
+					$ret['fields'][] = 'model_name';
+				}
+
 			}
 		}
 
