@@ -44,7 +44,6 @@ return [
 		class_exists( PHPUnit_TextUI_Command::class ) ? [] : [ 'tests/phan/stubs/phpunit4.php' ],
 		[
 			'maintenance/7zip.inc',
-			'maintenance/backup.inc',
 			'maintenance/cleanupTable.inc',
 			'maintenance/CodeCleanerGlobalsPass.inc',
 			'maintenance/commandLine.inc',

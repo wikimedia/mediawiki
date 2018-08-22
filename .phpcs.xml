@@ -137,7 +137,6 @@
 		<exclude-pattern>*/maintenance/7zip.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/CodeCleanerGlobalsPass.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/archives/upgradeLogging\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/backup.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_HTTP_HTTPS\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_Wikimedia_base_convert\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_delete_truncate\.php</exclude-pattern>
