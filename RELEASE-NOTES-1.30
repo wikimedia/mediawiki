@@ -28,6 +28,8 @@ This is a security and maintenance release of the MediaWiki 1.30 branch.
 * (T193829) Indicate when a Bot Password needs reset.
 * (T151415) Log email changes.
 * (T200861) Fix total breakage of SQLite web upgrade.
+* (T202550) Unbreak SpecialListusersHeaderForm and SpecialListusersHeader
+  hooks.
 
 == MediaWiki 1.30 ==
 
