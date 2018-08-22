@@ -155,24 +155,14 @@ class DatabaseSqlite extends Database {
 		return false;
 	}
 
-	/** Open an SQLite database and return a resource handle to it
-	 *  NOTE: only $dbName is used, the other parameters are irrelevant for SQLite databases
-	 *
-	 * @param string $server
-	 * @param string $user Unused
-	 * @param string $pass
-	 * @param string $dbName
-	 *
-	 * @throws DBConnectionError
-	 * @return bool
-	 */
-	function open( $server, $user, $pass, $dbName ) {
+	protected function open( $server, $user, $pass, $dbName ) {
 		$this->close();
 		$fileName = self::generateFileName( $this->dbDir, $dbName );
 		if ( !is_readable( $fileName ) ) {
 			$this->conn = false;
 			throw new DBConnectionError( $this, "SQLite database not accessible" );
 		}
+		// Only $dbName is used, the other parameters are irrelevant for SQLite databases
 		$this->openFile( $fileName, $dbName );
 
 		return (bool)$this->conn;

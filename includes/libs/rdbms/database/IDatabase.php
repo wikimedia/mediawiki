@@ -371,18 +371,6 @@ interface IDatabase {
 	public function getType();
 
 	/**
-	 * Open a new connection to the database (closing any existing one)
-	 *
-	 * @param string $server Database server host
-	 * @param string $user Database user name
-	 * @param string $password Database user password
-	 * @param string $dbName Database name
-	 * @return bool
-	 * @throws DBConnectionError
-	 */
-	public function open( $server, $user, $password, $dbName );
-
-	/**
 	 * Fetch the next row from the given result object, in object form.
 	 * Fields can be retrieved with $row->fieldname, with fields acting like
 	 * member variables.

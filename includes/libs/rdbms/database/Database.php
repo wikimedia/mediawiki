@@ -374,6 +374,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * Open a new connection to the database (closing any existing one)
+	 *
+	 * @param string $server Database server host
+	 * @param string $user Database user name
+	 * @param string $password Database user password
+	 * @param string $dbName Database name
+	 * @return bool
+	 * @throws DBConnectionError
+	 */
+	abstract protected function open( $server, $user, $password, $dbName );
+
+	/**
 	 * Construct a Database subclass instance given a database type and parameters
 	 *
 	 * This also connects to the database immediately upon object construction
