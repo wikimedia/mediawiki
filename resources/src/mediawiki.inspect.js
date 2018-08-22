@@ -185,8 +185,6 @@
 	 */
 	inspect.dumpTable = function ( data ) {
 		try {
-			// Bartosz made me put this here.
-			if ( window.opera ) { throw window.opera; }
 			// Use Function.prototype#call to force an exception on Firefox,
 			// which doesn't define console#table but doesn't complain if you
 			// try to invoke it.
@@ -196,9 +194,7 @@
 		} catch ( e ) {}
 		try {
 			console.log( JSON.stringify( data, null, 2 ) );
-			return;
 		} catch ( e ) {}
-		mw.log( data );
 	};
 
 	/**
