@@ -35,6 +35,7 @@ class DeduplicateArchiveRevId extends LoggedUpdateMaintenance {
 		$this->output( "Deduplicating ar_rev_id...\n" );
 
 		$dbw = $this->getDB( DB_MASTER );
+		PopulateArchiveRevId::checkMysqlAutoIncrementBug( $dbw );
 
 		$minId = $dbw->selectField( 'archive', 'MIN(ar_rev_id)', [], __METHOD__ );
 		$maxId = $dbw->selectField( 'archive', 'MAX(ar_rev_id)', [], __METHOD__ );

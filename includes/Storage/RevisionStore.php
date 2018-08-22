@@ -746,6 +746,76 @@ class RevisionStore
 		if ( !isset( $revisionRow['rev_id'] ) ) {
 			// only if auto-increment was used
 			$revisionRow['rev_id'] = intval( $dbw->insertId() );
+
+			if ( $dbw->getType() === 'mysql' ) {
+				// (T202032) MySQL until 8.0 and MariaDB until some version after 10.1.34 don't save the
+				// auto-increment value to disk, so on server restart it might reuse IDs from deleted
+				// revisions. We can fix that with an insert with an explicit rev_id value, if necessary.
+
+				$maxRevId = intval( $dbw->selectField( 'archive', 'MAX(ar_rev_id)', '', __METHOD__ ) );
+				$table = 'archive';
+				if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW ) ) {
+					$maxRevId2 = intval( $dbw->selectField( 'slots', 'MAX(slot_revision_id)', '', __METHOD__ ) );
+					if ( $maxRevId2 >= $maxRevId ) {
+						$maxRevId = $maxRevId2;
+						$table = 'slots';
+					}
+				}
+
+				if ( $maxRevId >= $revisionRow['rev_id'] ) {
+					$this->logger->debug(
+						'__METHOD__: Inserted revision {revid} but {table} has revisions up to {maxrevid}.'
+							. ' Trying to fix it.',
+						[
+							'revid' => $revisionRow['rev_id'],
+							'table' => $table,
+							'maxrevid' => $maxRevId,
+						]
+					);
+
+					if ( !$dbw->lock( 'fix-for-T202032', __METHOD__ ) ) {
+						throw new MWException( 'Failed to get database lock for T202032' );
+					}
+					$fname = __METHOD__;
+					$dbw->onTransactionResolution( function ( $trigger, $dbw ) use ( $fname ) {
+						$dbw->unlock( 'fix-for-T202032', $fname );
+					} );
+
+					$dbw->delete( 'revision', [ 'rev_id' => $revisionRow['rev_id'] ], __METHOD__ );
+
+					// The locking here is mostly to make MySQL bypass the REPEATABLE-READ transaction
+					// isolation (weird MySQL "feature"). It does seem to block concurrent auto-incrementing
+					// inserts too, though, at least on MariaDB 10.1.29.
+					//
+					// Don't try to lock `revision` in this way, it'll deadlock if there are concurrent
+					// transactions in this code path thanks to the row lock from the original ->insert() above.
+					//
+					// And we have to use raw SQL to bypass the "aggregation used with a locking SELECT" warning
+					// that's for non-MySQL DBs.
+					$row1 = $dbw->query(
+						$dbw->selectSqlText( 'archive', [ 'v' => "MAX(ar_rev_id)" ], '', __METHOD__ ) . ' FOR UPDATE'
+					)->fetchObject();
+					if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW ) ) {
+						$row2 = $dbw->query(
+							$dbw->selectSqlText( 'slots', [ 'v' => "MAX(slot_revision_id)" ], '', __METHOD__ )
+								. ' FOR UPDATE'
+						)->fetchObject();
+					} else {
+						$row2 = null;
+					}
+					$maxRevId = max(
+						$maxRevId,
+						$row1 ? intval( $row1->v ) : 0,
+						$row2 ? intval( $row2->v ) : 0
+					);
+
+					// If we don't have SCHEMA_COMPAT_WRITE_NEW, all except the first of any concurrent
+					// transactions will throw a duplicate key error here. It doesn't seem worth trying
+					// to avoid that.
+					$revisionRow['rev_id'] = $maxRevId + 1;
+					$dbw->insert( 'revision', $revisionRow, __METHOD__ );
+				}
+			}
 		}
 
 		$commentCallback( $revisionRow['rev_id'] );

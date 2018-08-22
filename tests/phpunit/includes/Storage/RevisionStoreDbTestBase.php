@@ -244,14 +244,14 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertSame( 0, $count );
 	}
 
-	private function assertLinkTargetsEqual( LinkTarget $l1, LinkTarget $l2 ) {
+	protected function assertLinkTargetsEqual( LinkTarget $l1, LinkTarget $l2 ) {
 		$this->assertEquals( $l1->getDBkey(), $l2->getDBkey() );
 		$this->assertEquals( $l1->getNamespace(), $l2->getNamespace() );
 		$this->assertEquals( $l1->getFragment(), $l2->getFragment() );
 		$this->assertEquals( $l1->getInterwiki(), $l2->getInterwiki() );
 	}
 
-	private function assertRevisionRecordsEqual( RevisionRecord $r1, RevisionRecord $r2 ) {
+	protected function assertRevisionRecordsEqual( RevisionRecord $r1, RevisionRecord $r2 ) {
 		$this->assertEquals(
 			$r1->getPageAsLinkTarget()->getNamespace(),
 			$r2->getPageAsLinkTarget()->getNamespace()
@@ -291,7 +291,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		}
 	}
 
-	private function assertSlotRecordsEqual( SlotRecord $s1, SlotRecord $s2 ) {
+	protected function assertSlotRecordsEqual( SlotRecord $s1, SlotRecord $s2 ) {
 		$this->assertSame( $s1->getRole(), $s2->getRole() );
 		$this->assertSame( $s1->getModel(), $s2->getModel() );
 		$this->assertSame( $s1->getFormat(), $s2->getFormat() );
@@ -303,7 +303,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$s1->hasAddress() ? $this->assertSame( $s1->hasAddress(), $s2->hasAddress() ) : null;
 	}
 
-	private function assertRevisionCompleteness( RevisionRecord $r ) {
+	protected function assertRevisionCompleteness( RevisionRecord $r ) {
 		$this->assertTrue( $r->hasSlot( 'main' ) );
 		$this->assertInstanceOf( SlotRecord::class, $r->getSlot( 'main' ) );
 		$this->assertInstanceOf( Content::class, $r->getContent( 'main' ) );
@@ -313,7 +313,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		}
 	}
 
-	private function assertSlotCompleteness( RevisionRecord $r, SlotRecord $slot ) {
+	protected function assertSlotCompleteness( RevisionRecord $r, SlotRecord $slot ) {
 		$this->assertTrue( $slot->hasAddress() );
 		$this->assertSame( $r->getId(), $slot->getRevision() );
 
