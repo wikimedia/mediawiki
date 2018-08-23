@@ -61,7 +61,7 @@ class TempFSFile extends FSFile {
 			if ( !is_string( $tmpDirectory ) ) {
 				$tmpDirectory = self::getUsableTempDirectory();
 			}
-			$path = wfTempDir() . '/' . $prefix . $hex . $ext;
+			$path = $tmpDirectory . '/' . $prefix . $hex . $ext;
 			Wikimedia\suppressWarnings();
 			$newFileHandle = fopen( $path, 'x' );
 			Wikimedia\restoreWarnings();
