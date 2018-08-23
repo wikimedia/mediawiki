@@ -26,6 +26,10 @@ class NameTableStoreTest extends MediaWikiTestCase {
 		parent::setUp();
 	}
 
+	protected function addCoreDBData() {
+		// The default implementation causes the slot_roles to already have content. Skip that.
+	}
+
 	private function populateTable( $values ) {
 		$insertValues = [];
 		foreach ( $values as $name ) {
@@ -139,6 +143,9 @@ class NameTableStoreTest extends MediaWikiTestCase {
 		$name,
 		$expectedId
 	) {
+		// Make sure the table is empty!
+		$this->truncateTable( 'slot_roles' );
+
 		$this->populateTable( $existingValues );
 		$store = $this->getNameTableSqlStore( $cacheBag, (int)$needsInsert, $selectCalls );
 
@@ -264,6 +271,21 @@ class NameTableStoreTest extends MediaWikiTestCase {
 		$this->assertSame( $expected, $table );
 		// Make sure the table returned is the same as the cached table
 		$this->assertSame( $expected, TestingAccessWrapper::newFromObject( $store )->tableCache );
+	}
+
+	public function testReloadMap() {
+		$this->populateTable( [ 'foo' ] );
+		$store = $this->getNameTableSqlStore( new HashBagOStuff(), 0, 2 );
+
+		// force load
+		$this->assertCount( 1, $store->getMap() );
+
+		// add more stuff to the table, so the cache gets out of sync
+		$this->populateTable( [ 'bar' ] );
+
+		$expected = [ 1 => 'foo', 2 => 'bar' ];
+		$this->assertSame( $expected, $store->reloadMap() );
+		$this->assertSame( $expected, $store->getMap() );
 	}
 
 	public function testCacheRaceCondition() {

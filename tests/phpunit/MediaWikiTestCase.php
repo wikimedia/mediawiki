@@ -8,6 +8,7 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\TestingAccessWrapper;
 
@@ -1732,10 +1733,14 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	private function resetDB( $db, $tablesUsed ) {
 		if ( $db ) {
+			// NOTE: Do not reset the slot_roles and content_models tables, but let them
+			// leak across tests. Resetting them would require to reset all NamedTableStore
+			// instances for these tables, of which there may be several beyond the ones
+			// known to MediaWikiServices. See T202641.
 			$userTables = [ 'user', 'user_groups', 'user_properties', 'actor' ];
 			$pageTables = [
 				'page', 'revision', 'ip_changes', 'revision_comment_temp', 'comment', 'archive',
-				'revision_actor_temp', 'slots', 'content', 'content_models', 'slot_roles',
+				'revision_actor_temp', 'slots', 'content',
 			];
 			$coreDBDataTables = array_merge( $userTables, $pageTables );
 
@@ -1761,47 +1766,64 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				}
 			}
 
-			$truncate = in_array( $db->getType(), [ 'oracle', 'mysql' ] );
 			foreach ( $tablesUsed as $tbl ) {
-				if ( !$db->tableExists( $tbl ) ) {
-					continue;
-				}
-
-				if ( $truncate ) {
-					$db->query( 'TRUNCATE TABLE ' . $db->tableName( $tbl ), __METHOD__ );
-				} else {
-					$db->delete( $tbl, '*', __METHOD__ );
-				}
-
-				if ( in_array( $db->getType(), [ 'postgres', 'sqlite' ], true ) ) {
-					// Reset the table's sequence too.
-					$db->resetSequenceForTable( $tbl, __METHOD__ );
-				}
-
-				if ( $tbl === 'interwiki' ) {
-					if ( !$this->interwikiTable ) {
-						// @todo We should probably throw here, but this causes test failures that I
-						// can't figure out, so for now we silently continue.
-						continue;
-					}
-					$db->insert(
-						'interwiki',
-						array_values( array_map( 'get_object_vars', iterator_to_array( $this->interwikiTable ) ) ),
-						__METHOD__
-					);
-				}
-
-				if ( $tbl === 'page' ) {
-					// Forget about the pages since they don't
-					// exist in the DB.
-					MediaWikiServices::getInstance()->getLinkCache()->clear();
-				}
+				$this->truncateTable( $tbl, $db );
 			}
 
 			if ( array_intersect( $tablesUsed, $coreDBDataTables ) ) {
 				// Re-add core DB data that was deleted
 				$this->addCoreDBData();
 			}
+		}
+	}
+
+	/**
+	 * Empties the given table and resets any auto-increment counters.
+	 * Will also purge caches associated with some well known tables.
+	 * If the table is not know, this method just returns.
+	 *
+	 * @param string $tableName
+	 * @param IDatabase|null $db
+	 */
+	protected function truncateTable( $tableName, IDatabase $db = null ) {
+		if ( !$db ) {
+			$db = $this->db;
+		}
+
+		if ( !$db->tableExists( $tableName ) ) {
+			return;
+		}
+
+		$truncate = in_array( $db->getType(), [ 'oracle', 'mysql' ] );
+
+		if ( $truncate ) {
+			$db->query( 'TRUNCATE TABLE ' . $db->tableName( $tableName ), __METHOD__ );
+		} else {
+			$db->delete( $tableName, '*', __METHOD__ );
+		}
+
+		if ( in_array( $db->getType(), [ 'postgres', 'sqlite' ], true ) ) {
+			// Reset the table's sequence too.
+			$db->resetSequenceForTable( $tableName, __METHOD__ );
+		}
+
+		if ( $tableName === 'interwiki' ) {
+			if ( !$this->interwikiTable ) {
+				// @todo We should probably throw here, but this causes test failures that I
+				// can't figure out, so for now we silently continue.
+				return;
+			}
+			$db->insert(
+				'interwiki',
+				array_values( array_map( 'get_object_vars', iterator_to_array( $this->interwikiTable ) ) ),
+				__METHOD__
+			);
+		}
+
+		if ( $tableName === 'page' ) {
+			// Forget about the pages since they don't
+			// exist in the DB.
+			MediaWikiServices::getInstance()->getLinkCache()->clear();
 		}
 	}
 
