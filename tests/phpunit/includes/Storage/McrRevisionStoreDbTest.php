@@ -3,6 +3,7 @@ namespace MediaWiki\Tests\Storage;
 
 use CommentStoreComment;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\SlotRecord;
 use TextContent;
@@ -237,6 +238,58 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 				],
 			]
 		];
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
+	 * @covers \MediaWiki\Storage\RevisionStore::insertSlotRowOn
+	 * @covers \MediaWiki\Storage\RevisionStore::insertContentRowOn
+	 */
+	public function testInsertRevisionOn_T202032() {
+		// This test only makes sense for MySQL
+		if ( $this->db->getType() !== 'mysql' ) {
+			$this->assertTrue( true );
+			return;
+		}
+
+		// NOTE: must be done before checking MAX(rev_id)
+		$page = $this->getTestPage();
+
+		$maxRevId = $this->db->selectField( 'revision', 'MAX(rev_id)' );
+
+		// Construct a slot row that will conflict with the insertion of the next revision ID,
+		// to emulate the failure mode described in T202032. Nothing will ever read this row,
+		// we just need it to trigger a primary key conflict.
+		$this->db->insert( 'slots', [
+			'slot_revision_id' => $maxRevId + 1,
+			'slot_role_id' => 1,
+			'slot_content_id' => 0,
+			'slot_origin' => 0
+		], __METHOD__ );
+
+		$rev = new MutableRevisionRecord( $page->getTitle() );
+		$rev->setTimestamp( '20180101000000' );
+		$rev->setComment( CommentStoreComment::newUnsavedComment( 'test' ) );
+		$rev->setUser( $this->getTestUser()->getUser() );
+		$rev->setContent( 'main', new WikitextContent( 'Text' ) );
+		$rev->setPageId( $page->getId() );
+
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$return = $store->insertRevisionOn( $rev, $this->db );
+
+		$this->assertSame( $maxRevId + 2, $return->getId() );
+
+		// is the new revision correct?
+		$this->assertRevisionCompleteness( $return );
+		$this->assertRevisionRecordsEqual( $rev, $return );
+
+		// can we find it directly in the database?
+		$this->assertRevisionExistsInDatabase( $return );
+
+		// can we load it from the store?
+		$loaded = $store->getRevisionById( $return->getId() );
+		$this->assertRevisionCompleteness( $loaded );
+		$this->assertRevisionRecordsEqual( $return, $loaded );
 	}
 
 }
