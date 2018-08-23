@@ -3793,6 +3793,16 @@ $wgResourceLoaderMaxQueryLength = false;
 $wgResourceLoaderValidateJS = true;
 
 /**
+ * When enabled, execution of JavaScript modules is profiled client-side.
+ *
+ * Instrumentation happens in mw.loader.profiler.
+ * Use `mw.inspect('time')` from the browser console to display the data.
+ *
+ * @since 1.32
+ */
+$wgResourceLoaderEnableJSProfiler = false;
+
+/**
  * Whether ResourceLoader should attempt to persist modules in localStorage on
  * browsers that support the Web Storage API.
  */

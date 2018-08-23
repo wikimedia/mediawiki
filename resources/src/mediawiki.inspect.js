@@ -28,6 +28,10 @@
 	function sortByProperty( array, prop, descending ) {
 		var order = descending ? -1 : 1;
 		return array.sort( function ( a, b ) {
+			if ( a[ prop ] === undefined || b[ prop ] === undefined ) {
+				// Sort undefined to the end, regardless of direction
+				return a[ prop ] !== undefined ? -1 : b[ prop ] !== undefined ? 1 : 0;
+			}
 			return a[ prop ] > b[ prop ] ? order : a[ prop ] < b[ prop ] ? -order : 0;
 		} );
 	}
@@ -202,7 +206,7 @@
 	 *
 	 * When invoked without arguments, prints all available reports.
 	 *
-	 * @param {...string} [reports] One or more of "size", "css", or "store".
+	 * @param {...string} [reports] One or more of "size", "css", "store", or "time".
 	 */
 	inspect.runReports = function () {
 		var reports = arguments.length > 0 ?
@@ -257,6 +261,7 @@
 	};
 
 	/**
+	 * @private
 	 * @class mw.inspect.reports
 	 * @singleton
 	 */
@@ -335,6 +340,44 @@
 				} catch ( e ) {}
 			}
 			return [ stats ];
+		},
+
+		/**
+		 * Generate a breakdown of all loaded modules and their time
+		 * spent during initialisation (measured in milliseconds).
+		 *
+		 * This timing data is collected by mw.loader.profiler.
+		 *
+		 * @return {Object[]} Table rows
+		 */
+		time: function () {
+			var modules;
+
+			if ( !mw.loader.profiler ) {
+				mw.log.warn( 'mw.inspect: The time report requires $wgResourceLoaderEnableJSProfiler.' );
+				return [];
+			}
+
+			modules = inspect.getLoadedModules()
+				.map( function ( moduleName ) {
+					return mw.loader.profiler.getProfile( moduleName );
+				} )
+				.filter( function ( perf ) {
+					// Exclude modules that reached "ready" state without involvement from mw.loader.
+					// This is primarily styles-only as loaded via <link rel="stylesheet">.
+					return perf !== null;
+				} );
+
+			// Sort by total time spent, highest first.
+			sortByProperty( modules, 'total', true );
+
+			// Add human-readable strings
+			modules.forEach( function ( module ) {
+				module.totalInMs = module.total;
+				module.total = module.totalInMs.toLocaleString() + ' ms';
+			} );
+
+			return modules;
 		}
 	};
 
