@@ -1846,7 +1846,7 @@
 	"mimesearch": "MIME araması",
 	"mimesearch-summary": "Bu sayfa, dosyaların MIME türlerine göre filtrelenmesini sağlar. Girdi: içerik_türü/alt_tür veya içerik_türü/*, örn. <code>image/jpeg</code>.",
 	"mimetype": "MIME türü:",
-	"download": "yükle",
+	"download": "indir",
 	"unwatchedpages": "İzlenmeyen sayfalar",
 	"listredirects": "Yönlendirmeleri listele",
 	"listduplicatedfiles": "Kopyası bulunan dosyalar listesi",

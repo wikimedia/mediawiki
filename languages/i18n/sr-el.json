@@ -383,6 +383,7 @@
 	"cascadeprotected": "Ova stranica je zaključana jer sadrži {{PLURAL:$1|sledeću stranicu koja je zaštićena|sledeće stranice koje su zaštićene}} „prenosivom“ zaštitom:\n$2",
 	"namespaceprotected": "Nemate dozvolu da uređujete stranice u imenskom prostoru: <strong>$1</strong>.",
 	"customcssprotected": "Nemate dozvolu da menjate ovu CSS stranicu jer sadrži lična podešavanja drugog korisnika.",
+	"customjsonprotected": "Nemate dozvolu da menjate ovu JSON stranicu jer sadrži lična podešavanja drugog korisnika.",
 	"customjsprotected": "Nemate dozvolu da menjate ovu stranicu JavaScript jer sadrži lična podešavanja drugog korisnika.",
 	"mycustomcssprotected": "Nemate dozvolu za menjanje ove CSS stranice.",
 	"mycustomjsonprotected": "Nemate dozvolu za menjanje ove JSON stranice.",

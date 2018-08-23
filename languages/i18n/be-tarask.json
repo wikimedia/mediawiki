@@ -1650,7 +1650,7 @@
 	"upload-form-label-not-own-work-message-generic-foreign": "Калі вы ня можаце загрузіць гэты файл паводле правілаў агульнага сховішча, калі ласка, закрыйце гэты дыялёг і паспрабуйце іншы мэтад.",
 	"upload-form-label-not-own-work-local-generic-foreign": "Вы можаце паспрабаваць скарыстацца [[Special:Upload|старонкай загрузкі {{GRAMMAR:родны|{{SITENAME}}}}]], калі гэты файл можна туды загрузіць згодна з правіламі.",
 	"backend-fail-stream": "Немагчыма накіраваць файл $1.",
-	"backend-fail-backup": "Немагчыма зрабіць рэзэрвовую копію файла $1.",
+	"backend-fail-backup": "Немагчыма зрабіць рэзэрвовую копію файлу «$1».",
 	"backend-fail-notexists": "Файл $1 не існуе.",
 	"backend-fail-hashes": "Немагчыма атрымаць хэшы файлаў для параўнаньня.",
 	"backend-fail-notsame": "Неідэнтыфікаваны файл ужо існуе $1.",

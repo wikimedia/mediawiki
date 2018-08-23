@@ -1084,6 +1084,7 @@
 	"rcfilters-liveupdates-button": "Автоматик яңарту",
 	"rcfilters-watchlist-markseen-button": "Бар үзгәртүләрне каралган дип билгеләргә",
 	"rcfilters-watchlist-edit-watchlist-button": "Күзәтү исемлегегезне үзгәртү",
+	"rcfilters-watchlist-showupdated": "Сезнең соңгы төзәтмәләрдән соң үзгәргән битләр <strong>калын</strong> һәм тулы маркер белән күрсәтелгән",
 	"rcfilters-preference-label": "«Соңгы үзгәртүләр» битенең яңа юрамасын яшерү",
 	"rcnotefrom": "Астарак <strong>$3, $4</strong> өчен {{PLURAL:$5|үзгәртүләр күрсәтелгән}} (<strong>$1</strong> артык түгел).",
 	"rclistfrom": "$3 $2 башлап яңа үзгәртүләрне күрсәт",

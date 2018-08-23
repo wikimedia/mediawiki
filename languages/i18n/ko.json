@@ -4112,5 +4112,6 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "비밀번호는 사용자 이름과 같을 수 없습니다",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "비밀번호는 블랙리스트에 있는 비밀번호와 일치할 수 없습니다",
 	"passwordpolicies-policy-maximalpasswordlength": "비밀번호는 적어도 $1 {{PLURAL:$1|자}} 미만이어야 합니다",
-	"passwordpolicies-policy-passwordcannotbepopular": "비밀번호는 {{PLURAL:$1|저명한 비밀번호가 될|$1개의 저명한 비밀번호에 속할}} 수 없습니다"
+	"passwordpolicies-policy-passwordcannotbepopular": "비밀번호는 {{PLURAL:$1|저명한 비밀번호가 될|$1개의 저명한 비밀번호에 속할}} 수 없습니다",
+	"easydeflate-invaliddeflate": "주어진 컨텐츠가 적절히 압축되지 않았습니다"
 }
