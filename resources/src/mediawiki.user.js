@@ -46,35 +46,31 @@
 		 */
 		generateRandomSessionId: function () {
 			var rnds, i,
-				hexRnds = new Array( 5 ),
 				// Support: IE 11
 				crypto = window.crypto || window.msCrypto;
 
 			if ( crypto && crypto.getRandomValues && typeof Uint16Array === 'function' ) {
-
 				// Fill an array with 5 random values, each of which is 16 bits.
 				// Note that Uint16Array is array-like but does not implement Array.
 				rnds = new Uint16Array( 5 );
 				crypto.getRandomValues( rnds );
-
 			} else {
-
 				// 0x10000 is 2^16 so the operation below will return a number
 				// between 2^16 and zero
 				for ( i = 0; i < 5; i++ ) {
 					rnds[ i ] = Math.floor( Math.random() * 0x10000 );
 				}
 			}
-			// Convert the 5 16bit-numbers into 20 characters (4 hex chars per 16 bits)
-			for ( i = 0; i < 5; i++ ) {
-				// Add 0x1000 before converting to hex and strip the extra character
-				// after converting to keep the leading zeros.
-				hexRnds[ i ] = ( rnds[ i ] + 0x10000 ).toString( 16 ).slice( 1 );
-			}
 
+			// Convert the 5 16bit-numbers into 20 characters (4 hex per 16 bits).
 			// Concatenation of two random integers with entropy n and m
-			// returns a string with entropy n+m if those strings are independent
-			return hexRnds.join( '' );
+			// returns a string with entropy n+m if those strings are independent.
+			// Tested that below code is faster than array + loop + join.
+			return ( rnds[ 0 ] + 0x10000 ).toString( 16 ).slice( 1 ) +
+				( rnds[ 1 ] + 0x10000 ).toString( 16 ).slice( 1 ) +
+				( rnds[ 2 ] + 0x10000 ).toString( 16 ).slice( 1 ) +
+				( rnds[ 3 ] + 0x10000 ).toString( 16 ).slice( 1 ) +
+				( rnds[ 4 ] + 0x10000 ).toString( 16 ).slice( 1 );
 		},
 
 		/**
