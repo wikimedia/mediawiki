@@ -42,8 +42,8 @@ class SpecialLinkAccounts extends AuthManagerSpecialPage {
 		if ( !$this->isActionAllowed( $this->authAction ) ) {
 			if ( $this->authAction === AuthManager::ACTION_LINK ) {
 				// looks like no linking provider is installed or willing to take this user
-				$titleMessage = wfMessage( 'cannotlink-no-provider-title' );
-				$errorMessage = wfMessage( 'cannotlink-no-provider' );
+				$titleMessage = $this->msg( 'cannotlink-no-provider-title' );
+				$errorMessage = $this->msg( 'cannotlink-no-provider' );
 				throw new ErrorPageError( $titleMessage, $errorMessage );
 			} else {
 				// user probably back-button-navigated into an auth session that no longer exists

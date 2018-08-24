@@ -449,7 +449,7 @@ class ImageListPager extends TablePager {
 					if ( $thumb ) {
 						return $thumb->toHtml( [ 'desc-link' => true ] );
 					} else {
-						return wfMessage( 'thumbnail_error', '' )->escaped();
+						return $this->msg( 'thumbnail_error', '' )->escaped();
 					}
 				} else {
 					return htmlspecialchars( $value );

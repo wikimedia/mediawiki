@@ -706,7 +706,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$dateRangeSelection = Html::rawElement(
 			'div',
 			[],
-			Xml::label( wfMessage( 'date-range-from' )->text(), 'mw-date-start' ) . ' ' .
+			Xml::label( $this->msg( 'date-range-from' )->text(), 'mw-date-start' ) . ' ' .
 			new DateInputWidget( [
 				'infusable' => true,
 				'id' => 'mw-date-start',
@@ -714,7 +714,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				'value' => $this->opts['start'],
 				'longDisplayFormat' => true,
 			] ) . '<br>' .
-			Xml::label( wfMessage( 'date-range-to' )->text(), 'mw-date-end' ) . ' ' .
+			Xml::label( $this->msg( 'date-range-to' )->text(), 'mw-date-end' ) . ' ' .
 			new DateInputWidget( [
 				'infusable' => true,
 				'id' => 'mw-date-end',
