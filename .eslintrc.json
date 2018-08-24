@@ -20,6 +20,11 @@
 			},
 			{
 				"object": "$",
+				"property": "inArray",
+				"message": "Please use Array.prototype.indexOf instead"
+			},
+			{
+				"object": "$",
 				"property": "isArray",
 				"message": "Please use Array.isArray instead"
 			},

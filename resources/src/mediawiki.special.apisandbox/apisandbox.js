@@ -1996,7 +1996,7 @@
 				return widget.apiCheckValid();
 			} );
 			$.when.apply( $, promises ).then( function () {
-				that.apiIsValid = $.inArray( false, arguments ) === -1;
+				that.apiIsValid = Array.prototype.indexOf.call( arguments, false ) === -1;
 				if ( that.getOutlineItem() ) {
 					that.getOutlineItem().setIcon( that.apiIsValid || suppressErrors ? null : 'alert' );
 					that.getOutlineItem().setIconTitle(
