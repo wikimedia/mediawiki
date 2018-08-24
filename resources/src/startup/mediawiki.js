@@ -2175,12 +2175,6 @@
 								JSON.stringify( descriptor.messages ),
 								JSON.stringify( descriptor.templates )
 							];
-							// Attempted workaround for a possible Opera bug (bug T59567).
-							// This regex should never match under sane conditions.
-							if ( /^\s*\(/.test( args[ 1 ] ) ) {
-								args[ 1 ] = 'function' + args[ 1 ];
-								mw.trackError( 'resourceloader.assert', { source: 'bug-T59567' } );
-							}
 						} catch ( e ) {
 							mw.trackError( 'resourceloader.exception', {
 								exception: e,
