@@ -1043,6 +1043,8 @@
 	"rcfilters-invalid-filter": "Яраксыз фильтр",
 	"rcfilters-filterlist-title": "Фильтрлар",
 	"rcfilters-filterlist-feedbacklink": "Әлеге фильтрлау кораллары турында турында фикер калдырыгыз",
+	"rcfilters-highlightmenu-title": "Төсен сайлагыз",
+	"rcfilters-highlightmenu-help": "Үзлекләрен аеру өчен аның төсен сайлагыз",
 	"rcfilters-filtergroup-authorship": "Үзгәртүләрнең авторлыгы",
 	"rcfilters-filter-editsbyself-label": "Сезнең үзгәртүләр",
 	"rcfilters-filter-editsbyself-description": "Сезнең кертемегез.",
