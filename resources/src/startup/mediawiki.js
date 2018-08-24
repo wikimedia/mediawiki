@@ -1450,7 +1450,7 @@
 			 * @param {string[]} batch
 			 */
 			function batchRequest( batch ) {
-				var reqBase, splits, maxQueryLength, b, bSource, bGroup, bSourceGroup,
+				var reqBase, splits, maxQueryLength, b, bSource, bGroup,
 					source, group, i, modules, sourceLoadScript,
 					currReqBase, currReqBaseLength, moduleMap, currReqModules, l,
 					lastDotIndex, prefix, suffix, bytesAdded;
@@ -1492,22 +1492,20 @@
 				maxQueryLength = mw.config.get( 'wgResourceLoaderMaxQueryLength', 2000 );
 
 				// Split module list by source and by group.
-				splits = {};
+				splits = Object.create( null );
 				for ( b = 0; b < batch.length; b++ ) {
 					bSource = registry[ batch[ b ] ].source;
 					bGroup = registry[ batch[ b ] ].group;
-					if ( !hasOwn.call( splits, bSource ) ) {
-						splits[ bSource ] = {};
+					if ( !splits[ bSource ] ) {
+						splits[ bSource ] = Object.create( null );
 					}
-					if ( !hasOwn.call( splits[ bSource ], bGroup ) ) {
+					if ( !splits[ bSource ][ bGroup ] ) {
 						splits[ bSource ][ bGroup ] = [];
 					}
-					bSourceGroup = splits[ bSource ][ bGroup ];
-					bSourceGroup.push( batch[ b ] );
+					splits[ bSource ][ bGroup ].push( batch[ b ] );
 				}
 
 				for ( source in splits ) {
-
 					sourceLoadScript = sources[ source ];
 
 					for ( group in splits[ source ] ) {
@@ -1533,7 +1531,7 @@
 						// We may need to split up the request to honor the query string length limit,
 						// so build it piece by piece.
 						l = currReqBaseLength;
-						moduleMap = {}; // { prefix: [ suffixes ] }
+						moduleMap = Object.create( null ); // { prefix: [ suffixes ] }
 						currReqModules = [];
 
 						for ( i = 0; i < modules.length; i++ ) {
@@ -1542,7 +1540,7 @@
 							// If lastDotIndex is -1, substr() returns an empty string
 							prefix = modules[ i ].substr( 0, lastDotIndex );
 							suffix = modules[ i ].slice( lastDotIndex + 1 );
-							bytesAdded = hasOwn.call( moduleMap, prefix ) ?
+							bytesAdded = moduleMap[ prefix ] ?
 								suffix.length + 3 : // '%2C'.length == 3
 								modules[ i ].length + 3; // '%7C'.length == 3
 
@@ -1552,12 +1550,12 @@
 								doRequest();
 								// .. and start again.
 								l = currReqBaseLength;
-								moduleMap = {};
+								moduleMap = Object.create( null );
 								currReqModules = [];
 
 								mw.track( 'resourceloader.splitRequest', { maxQueryLength: maxQueryLength } );
 							}
-							if ( !hasOwn.call( moduleMap, prefix ) ) {
+							if ( !moduleMap[ prefix ] ) {
 								moduleMap[ prefix ] = [];
 							}
 							l += bytesAdded;
