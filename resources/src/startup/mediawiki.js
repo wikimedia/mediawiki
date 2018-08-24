@@ -1931,7 +1931,7 @@
 				/**
 				 * Change the state of one or more modules.
 				 *
-				 * @param {Object|string} modules Object of module name/state pairs
+				 * @param {Object} modules Object of module name/state pairs
 				 */
 				state: function ( modules ) {
 					var module, state;
