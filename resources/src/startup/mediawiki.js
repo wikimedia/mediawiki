@@ -1800,7 +1800,7 @@
 						module: {
 							exports: {}
 						},
-						version: version !== undefined ? String( version ) : '',
+						version: String( version || '' ),
 						dependencies: deps || [],
 						group: typeof group === 'string' ? group : null,
 						source: typeof source === 'string' ? source : 'local',
