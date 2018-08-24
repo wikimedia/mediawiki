@@ -82,8 +82,6 @@
 	"apihelp-compare-param-toslots": "Override content of the revision specified by <var>totitle</var>, <var>toid</var> or <var>torev</var>.\n\nThis parameter specifies the slots that are to be modified. Use <var>totext-&#x7B;slot}</var>, <var>tocontentmodel-&#x7B;slot}</var>, and <var>tocontentformat-&#x7B;slot}</var> to specify content for each slot.",
 	"apihelp-compare-param-totext-{slot}": "Text of the specified slot. If omitted, the slot is removed from the revision.",
 	"apihelp-compare-param-tosection-{slot}": "When <var>totext-&#x7B;slot}</var> is the content of a single section, this is the section number. It will be merged into the revision specified by <var>totitle</var>, <var>toid</var> or <var>torev</var> as if for a section edit.",
-	"apihelp-compare-param-toslots": "Specify content to use instead of the content of the revision specified by <var>totitle</var>, <var>toid</var> or <var>torev</var>.\n\nThis parameter specifies the slots that have content. Use <var>totext-&#x7B;slot}</var>, <var>tocontentmodel-&#x7B;slot}</var>, and <var>tocontentformat-&#x7B;slot}</var> to specify content for each slot.",
-	"apihelp-compare-param-totext-{slot}": "Text of the specified slot.",
 	"apihelp-compare-param-tocontentmodel-{slot}": "Content model of <var>totext-&#x7B;slot}</var>. If not supplied, it will be guessed based on the other parameters.",
 	"apihelp-compare-param-tocontentformat-{slot}": "Content serialization format of <var>totext-&#x7B;slot}</var>.",
 	"apihelp-compare-param-totext": "Specify <kbd>toslots=main</kbd> and use <var>totext-main</var> instead.",
