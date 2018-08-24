@@ -176,8 +176,21 @@ class MWExceptionHandler {
 			return self::handleFatalError( ...func_get_args() );
 		}
 
-		// Map error constant to error name (reverse-engineer PHP error
-		// reporting)
+		// Map PHP error constant to a PSR-3 severity level.
+		// Avoid use of "DEBUG" or "INFO" levels, unless the
+		// error should evade error monitoring and alerts.
+		//
+		// To decide the log level, ask yourself: "Has the
+		// program's behaviour diverged from what the written
+		// code expected?"
+		//
+		// For example, use of a deprecated method or violating a strict standard
+		// has no impact on functional behaviour (Warning). On the other hand,
+		// accessing an undefined variable makes behaviour diverge from what the
+		// author intended/expected. PHP recovers from an undefined variables by
+		// yielding null and continuing execution, but it remains a change in
+		// behaviour given the null was not part of the code and is likely not
+		// accounted for.
 		switch ( $level ) {
 			case E_RECOVERABLE_ERROR:
 				$levelName = 'Error';
@@ -186,23 +199,27 @@ class MWExceptionHandler {
 			case E_WARNING:
 			case E_CORE_WARNING:
 			case E_COMPILE_WARNING:
+				$levelName = 'Warning';
+				$severity = LogLevel::ERROR;
+				break;
+			case E_NOTICE:
+				$levelName = 'Notice';
+				$severity = LogLevel::ERROR;
+				break;
 			case E_USER_WARNING:
+			case E_USER_NOTICE:
+				// Used by wfWarn(), MWDebug::warning()
 				$levelName = 'Warning';
 				$severity = LogLevel::WARNING;
 				break;
-			case E_NOTICE:
-			case E_USER_NOTICE:
-				$levelName = 'Notice';
-				$severity = LogLevel::INFO;
-				break;
 			case E_STRICT:
 				$levelName = 'Strict Standards';
-				$severity = LogLevel::DEBUG;
+				$severity = LogLevel::WARNING;
 				break;
 			case E_DEPRECATED:
 			case E_USER_DEPRECATED:
 				$levelName = 'Deprecated';
-				$severity = LogLevel::INFO;
+				$severity = LogLevel::WARNING;
 				break;
 			default:
 				$levelName = 'Unknown error';
