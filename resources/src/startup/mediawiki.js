@@ -1093,7 +1093,6 @@
 					if ( ready !== undefined ) {
 						ready();
 					}
-
 					return;
 				}
 
@@ -1105,7 +1104,6 @@
 							dependencies
 						);
 					}
-
 					return;
 				}
 
@@ -1116,7 +1114,7 @@
 					jobs.push( {
 						// Narrow down the list to modules that are worth waiting for
 						dependencies: dependencies.filter( function ( module ) {
-							var state = mw.loader.getState( module );
+							var state = registry[ module ].state;
 							return state === 'registered' || state === 'loaded' || state === 'loading' || state === 'executing';
 						} ),
 						ready: ready,
@@ -1125,10 +1123,9 @@
 				}
 
 				dependencies.forEach( function ( module ) {
-					var state = mw.loader.getState( module );
 					// Only queue modules that are still in the initial 'registered' state
 					// (not ones already loading, ready or error).
-					if ( state === 'registered' && queue.indexOf( module ) === -1 ) {
+					if ( registry[ module ].state === 'registered' && queue.indexOf( module ) === -1 ) {
 						// Private modules must be embedded in the page. Don't bother queuing
 						// these as the server will deny them anyway (T101806).
 						if ( registry[ module ].group === 'private' ) {
