@@ -1961,7 +1961,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Purges pages that include this page if the text was changed here.
 	 * Every 100th edit, prune the recent changes table.
 	 *
-	 * @deprecated since 1.32, use PageUpdater::doEditUpdates instead.
+	 * @deprecated since 1.32, use PageUpdater::doUpdates instead.
 	 *
 	 * @param Revision $revision
 	 * @param User $user User object that did the revision
