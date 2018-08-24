@@ -8008,6 +8008,7 @@ $wgActions = [
 	'history' => true,
 	'info' => true,
 	'markpatrolled' => true,
+	'mcrundo' => McrUndoAction::class,
 	'protect' => true,
 	'purge' => true,
 	'raw' => true,

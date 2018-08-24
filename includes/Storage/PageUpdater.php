@@ -352,6 +352,15 @@ class PageUpdater {
 	}
 
 	/**
+	 * Set the new slot for the given slot role
+	 *
+	 * @param SlotRecord $slot
+	 */
+	public function setSlot( SlotRecord $slot ) {
+		$this->slotsUpdate->modifySlot( $slot );
+	}
+
+	/**
 	 * Explicitly inherit a slot from some earlier revision.
 	 *
 	 * The primary use case for this is rollbacks, when slots are to be inherited from
