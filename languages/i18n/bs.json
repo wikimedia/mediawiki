@@ -374,7 +374,7 @@
 	"cascadeprotected": "Uređivanje ove stranice zabranjeno je jer se koristi u {{PLURAL:$1|sljedećoj stranici, koja je zaštićena|sljedećim stranicama, koje su zaštićene}} prenosivom zaštitom:\n$2",
 	"namespaceprotected": "Vi nemate dozvulu da mijenjate stranicu '''$1'''.",
 	"customcssprotected": "Nemate dozvolu za mijenjanje ove CSS stranice jer sadrži osobne postavke nekog drugog korisnika.",
-	"customjsonprotected": "Nemate dozvolu za mijenjanje ove JSON stranice jer sadrži osobne postavke nekog drugog korisnika.",
+	"customjsonprotected": "Nemate dozvolu za mijenjanje ove JSON stranice jer sadrži lične postavke drugog korisnika.",
 	"customjsprotected": "Nemate dozvolu za mijenjanje ove JavaScript stranice jer sadrži osobne postavke nekog drugog korisnika.",
 	"mycustomcssprotected": "Nemate dozvolu da uređujete ovu CSS stranicu.",
 	"mycustomjsonprotected": "Nemate dozvolu da uređujete ovu JSON stranicu.",

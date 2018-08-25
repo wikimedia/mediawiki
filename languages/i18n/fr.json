@@ -1290,7 +1290,7 @@
 	"group-autoconfirmed": "Utilisateurs autoconfirmés",
 	"group-bot": "Robots",
 	"group-sysop": "Administrateurs",
-	"group-interface-admin": "Administrateurs d'interfaces",
+	"group-interface-admin": "Administrateurs d'interface",
 	"group-bureaucrat": "Bureaucrates",
 	"group-suppress": "Limitateurs",
 	"group-all": "(tous)",

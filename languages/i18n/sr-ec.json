@@ -1360,7 +1360,7 @@
 	"rcfilters-highlighted-filters-list": "Истакнуто: $1",
 	"rcfilters-quickfilters": "Сачувани филтери",
 	"rcfilters-quickfilters-placeholder-title": "Још нема сачуваних филтера",
-	"rcfilters-quickfilters-placeholder-description": "Да бисте сачували своја подешавања филтера и поново их употребљавали касније, кликните на икону за ознаку у подручју активних филтера — испод.",
+	"rcfilters-quickfilters-placeholder-description": "Да бисте сачували своја подешавања филтера и поново их употребљавали касније, кликните на икону за обележавање у подручју активних филтера — испод.",
 	"rcfilters-savedqueries-defaultlabel": "Сачувани филтери",
 	"rcfilters-savedqueries-rename": "Преименуј",
 	"rcfilters-savedqueries-setdefault": "Постави као подразумевано",
