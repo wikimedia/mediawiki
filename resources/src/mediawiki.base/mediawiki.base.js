@@ -22,7 +22,6 @@
 		mwLoaderTrack = mw.track,
 		trackCallbacks = $.Callbacks( 'memory' ),
 		trackHandlers = [],
-		hasOwn = Object.prototype.hasOwnProperty,
 		queue;
 
 	/**
@@ -401,7 +400,7 @@
 	 * @class mw.hook
 	 */
 	mw.hook = ( function () {
-		var lists = {};
+		var lists = Object.create( null );
 
 		/**
 		 * Create an instance of mw.hook.
@@ -412,9 +411,7 @@
 		 * @return {mw.hook}
 		 */
 		return function ( name ) {
-			var list = hasOwn.call( lists, name ) ?
-				lists[ name ] :
-				lists[ name ] = $.Callbacks( 'memory' );
+			var list = lists[ name ] || ( lists[ name ] = $.Callbacks( 'memory' ) );
 
 			return {
 				/**
