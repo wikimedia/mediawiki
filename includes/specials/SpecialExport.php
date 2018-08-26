@@ -437,7 +437,7 @@ class SpecialExport extends SpecialPage {
 		$pages = [];
 
 		foreach ( $res as $row ) {
-			$pages[] = Title::makeName( $row->page_title, $row->page_namespace );
+			$pages[] = Title::makeName( $row->page_namespace, $row->page_title );
 		}
 
 		return $pages;
@@ -462,7 +462,7 @@ class SpecialExport extends SpecialPage {
 		$pages = [];
 
 		foreach ( $res as $row ) {
-			$pages[] = Title::makeName( $row->page_title, $row->page_namespace );
+			$pages[] = Title::makeName( $row->page_namespace, $row->page_title );
 		}
 
 		return $pages;
