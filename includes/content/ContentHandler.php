@@ -664,7 +664,7 @@ abstract class ContentHandler {
 			$differenceEngine = $this->createDifferenceEngine( $context );
 			if ( get_class( $differenceEngine ) !== DifferenceEngine::class ) {
 				// TODO turn this into a deprecation warning in a later release
-				LoggerFactory::getInstance( 'diff' )->notice(
+				LoggerFactory::getInstance( 'diff' )->info(
 					'Falling back to DifferenceEngineSlotDiffRenderer', [
 						'modelID' => $this->getModelID(),
 						'DifferenceEngine' => get_class( $differenceEngine ),
