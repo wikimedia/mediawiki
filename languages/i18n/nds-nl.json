@@ -1774,7 +1774,7 @@
 	"protect-summary-cascade": "kaskade",
 	"protect-expiring": "löp aof op $1 (UTC)",
 	"protect-expiring-local": "vervölt op $1",
-	"protect-expiry-indefinite": "onbepark",
+	"protect-expiry-indefinite": "unbetöänd",
 	"protect-cascade": "Kaskadebeveiliging (beveilig alle ziejen en mallen die in disse zied op-eneumen bin)",
 	"protect-cantedit": "Je kunnen t beveiligingsnivo van disse zied niet wiezigen, umda'j gien rechten hebben um t te bewarken.",
 	"protect-othertime": "Aandere tiedsduur:",
