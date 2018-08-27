@@ -294,7 +294,7 @@ class profile_point {
 	public function fmttime() {
 		return sprintf( '%5.02f', $this->time );
 	}
-};
+}
 
 function compare_point( profile_point $a, profile_point $b ) {
 	// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
