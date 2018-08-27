@@ -1756,14 +1756,13 @@
 				 *  a list of arguments compatible with this method
 				 * @param {string|number} version Module version hash (falls backs to empty string)
 				 *  Can also be a number (timestamp) for compatibility with MediaWiki 1.25 and earlier.
-				 * @param {string|Array} dependencies One string or array of strings of module
-				 *  names on which this module depends.
+				 * @param {string[]} [dependencies] Array of module names on which this module depends.
 				 * @param {string} [group=null] Group which the module is in
 				 * @param {string} [source='local'] Name of the source
 				 * @param {string} [skip=null] Script body of the skip function
 				 */
 				register: function ( module, version, dependencies, group, source, skip ) {
-					var i, deps;
+					var i;
 					// Allow multiple registration
 					if ( typeof module === 'object' ) {
 						resolveIndexedDependencies( module );
@@ -1781,13 +1780,6 @@
 					if ( hasOwn.call( registry, module ) ) {
 						throw new Error( 'module already registered: ' + module );
 					}
-					if ( typeof dependencies === 'string' ) {
-						// A single module name
-						deps = [ dependencies ];
-					} else if ( typeof dependencies === 'object' ) {
-						// Array of module names
-						deps = dependencies;
-					}
 					// List the module as registered
 					registry[ module ] = {
 						// Exposed to execute() for mw.loader.implement() closures.
@@ -1796,7 +1788,7 @@
 							exports: {}
 						},
 						version: String( version || '' ),
-						dependencies: deps || [],
+						dependencies: dependencies || [],
 						group: typeof group === 'string' ? group : null,
 						source: typeof source === 'string' ? source : 'local',
 						state: 'registered',
