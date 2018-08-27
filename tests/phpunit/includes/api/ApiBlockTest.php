@@ -233,6 +233,26 @@ class ApiBlockTest extends ApiTestCase {
 		$this->doBlock( [ 'expiry' => '' ] );
 	}
 
+	public function testBlockWithRestrictions() {
+		$this->setMwGlobals( [
+			'wgEnablePartialBlocks' => true,
+		] );
+
+		$title = 'Foo';
+		$page = $this->getExistingTestPage( $title );
+
+		$this->doBlock( [
+			'partial' => true,
+			'pagerestrictions' => $title,
+		] );
+
+		$block = Block::newFromTarget( $this->mUser->getName() );
+
+		$this->assertFalse( $block->isSitewide() );
+		$this->assertCount( 1, $block->getRestrictions() );
+		$this->assertEquals( $title, $block->getRestrictions()[0]->getTitle()->getText() );
+	}
+
 	/**
 	 * @expectedException ApiUsageException
 	 * @expectedExceptionMessage The "token" parameter must be set
@@ -243,6 +263,52 @@ class ApiBlockTest extends ApiTestCase {
 				'action' => 'block',
 				'user' => $this->mUser->getName(),
 				'reason' => 'Some reason',
+			],
+			null,
+			false,
+			self::$users['sysop']->getUser()
+		);
+	}
+
+	/**
+	 * @expectedException ApiUsageException
+	 * @expectedExceptionMessage Invalid value "127.0.0.1/64" for user parameter "user".
+	 */
+	public function testBlockWithLargeRange() {
+		$tokens = $this->getTokens();
+
+		$this->doApiRequest(
+			[
+				'action' => 'block',
+				'user' => '127.0.0.1/64',
+				'reason' => 'Some reason',
+				'token' => $tokens['blocktoken'],
+			],
+			null,
+			false,
+			self::$users['sysop']->getUser()
+		);
+	}
+
+	/**
+	 * @expectedException ApiUsageException
+	 * @expectedExceptionMessage "pagerestrictions" may not be over 10 (set to 11) for bots or sysops.
+	 */
+	public function testBlockingToManyRestrictions() {
+		$this->setMwGlobals( [
+			'wgEnablePartialBlocks' => true,
+		] );
+
+		$tokens = $this->getTokens();
+
+		$this->doApiRequest(
+			[
+				'action' => 'block',
+				'user' => $this->mUser->getName(),
+				'reason' => 'Some reason',
+				'partial' => true,
+				'pagerestrictions' => 'One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven',
+				'token' => $tokens['blocktoken'],
 			],
 			null,
 			false,

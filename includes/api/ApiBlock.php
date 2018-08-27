@@ -54,6 +54,30 @@ class ApiBlock extends ApiBase {
 			}
 		}
 
+		$editingRestriction = 'sitewide';
+		$pageRestrictions = '';
+		if ( $this->getConfig()->get( 'EnablePartialBlocks' ) ) {
+			if ( $params['pagerestrictions'] ) {
+				$count = count( $params['pagerestrictions'] );
+				if ( $count > 10 ) {
+					$this->dieWithError(
+						$this->msg(
+							'apierror-integeroutofrange-abovebotmax',
+							'pagerestrictions',
+							10,
+							$count
+						)
+					);
+				}
+			}
+
+			if ( $params['partial'] ) {
+				$editingRestriction = 'partial';
+			}
+
+			$pageRestrictions = implode( "\n", $params['pagerestrictions'] );
+		}
+
 		if ( $params['userid'] !== null ) {
 			$username = User::whoIs( $params['userid'] );
 
@@ -107,6 +131,8 @@ class ApiBlock extends ApiBase {
 			'Watch' => $params['watchuser'],
 			'Confirm' => true,
 			'Tags' => $params['tags'],
+			'EditingRestriction' => $editingRestriction,
+			'PageRestrictions' => $pageRestrictions,
 		];
 
 		$retval = SpecialBlock::processForm( $data, $this->getContext() );
@@ -137,6 +163,11 @@ class ApiBlock extends ApiBase {
 		$res['allowusertalk'] = $params['allowusertalk'];
 		$res['watchuser'] = $params['watchuser'];
 
+		if ( $this->getConfig()->get( 'EnablePartialBlocks' ) ) {
+			$res['partial'] = $params['partial'];
+			$res['pagerestrictions'] = $params['pagerestrictions'];
+		}
+
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
 
@@ -149,7 +180,7 @@ class ApiBlock extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return [
+		$params = [
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
 			],
@@ -171,6 +202,15 @@ class ApiBlock extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true,
 			],
 		];
+
+		if ( $this->getConfig()->get( 'EnablePartialBlocks' ) ) {
+			$params['partial'] = false;
+			$params['pagerestrictions'] = [
+				ApiBase::PARAM_ISMULTI => true,
+			];
+		}
+
+		return $params;
 	}
 
 	public function needsToken() {

@@ -2067,6 +2067,7 @@ return [
 	],
 	'mediawiki.special.block' => [
 		'scripts' => 'resources/src/mediawiki.special.block.js',
+		'styles' => 'resources/src/mediawiki.special.block.less',
 		'dependencies' => [
 			'oojs-ui-core',
 			'oojs-ui.styles.icons-editing-core',
@@ -2077,6 +2078,7 @@ return [
 			'mediawiki.htmlform',
 			'moment',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.changecredentials.js' => [
 		'scripts' => 'resources/src/mediawiki.special.changecredentials.js',

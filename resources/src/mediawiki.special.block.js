@@ -19,7 +19,9 @@
 			enableAutoblockField = infuseOrNull( $( '#mw-input-wpAutoBlock' ).closest( '.oo-ui-fieldLayout' ) ),
 			hideUserField = infuseOrNull( $( '#mw-input-wpHideUser' ).closest( '.oo-ui-fieldLayout' ) ),
 			watchUserField = infuseOrNull( $( '#mw-input-wpWatch' ).closest( '.oo-ui-fieldLayout' ) ),
-			expiryWidget = infuseOrNull( 'mw-input-wpExpiry' );
+			expiryWidget = infuseOrNull( 'mw-input-wpExpiry' ),
+			editingRestrictionWidget = infuseOrNull( 'mw-input-wpEditingRestriction' ),
+			pageRestrictionsWidget = infuseOrNull( 'mw-input-wpPageRestrictions' );
 
 		function updateBlockOptions() {
 			var blocktarget = blockTargetWidget.getValue().trim(),
@@ -30,7 +32,8 @@
 				expiryValue = expiryWidget.getValue(),
 				// infinityValues  are the values the SpecialBlock class accepts as infinity (sf. wfIsInfinity)
 				infinityValues = [ 'infinite', 'indefinite', 'infinity', 'never' ],
-				isIndefinite = infinityValues.indexOf( expiryValue ) !== -1;
+				isIndefinite = infinityValues.indexOf( expiryValue ) !== -1,
+				editingRestrictionValue = editingRestrictionWidget ? editingRestrictionWidget.getValue() : undefined;
 
 			if ( enableAutoblockField ) {
 				enableAutoblockField.toggle( !( isNonEmptyIp ) );
@@ -44,12 +47,16 @@
 			if ( watchUserField ) {
 				watchUserField.toggle( !( isIpRange && !isEmpty ) );
 			}
+			if ( pageRestrictionsWidget ) {
+				pageRestrictionsWidget.setDisabled( editingRestrictionValue === 'sitewide' );
+			}
 		}
 
 		if ( blockTargetWidget ) {
 			// Bind functions so they're checked whenever stuff changes
 			blockTargetWidget.on( 'change', updateBlockOptions );
 			expiryWidget.on( 'change', updateBlockOptions );
+			editingRestrictionWidget.on( 'change', updateBlockOptions );
 
 			// Call them now to set initial state (ie. Special:Block/Foobar?wpBlockExpiry=2+hours)
 			updateBlockOptions();
