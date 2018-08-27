@@ -3152,6 +3152,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Image redirects
 		RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $title );
+
+		// Purge cross-wiki cache entities referencing this page
+		self::purgeInterwikiCheckKey( $title );
 	}
 
 	/**
@@ -3190,13 +3193,40 @@ class WikiPage implements Page, IDBAccessObject {
 		// Clear file cache for this page only
 		HTMLFileCache::clearFileCache( $title );
 
+		// Purge ?action=info cache
 		$revid = $revision ? $revision->getId() : null;
 		DeferredUpdates::addCallableUpdate( function () use ( $title, $revid ) {
 			InfoAction::invalidateCache( $title, $revid );
 		} );
+
+		// Purge cross-wiki cache entities referencing this page
+		self::purgeInterwikiCheckKey( $title );
 	}
 
 	/**#@-*/
+
+	/**
+	 * Purge the check key for cross-wiki cache entries referencing this page
+	 *
+	 * @param Title $title
+	 */
+	private static function purgeInterwikiCheckKey( Title $title ) {
+		global $wgEnableScaryTranscluding;
+
+		if ( !$wgEnableScaryTranscluding ) {
+			return; // @todo: perhaps this wiki is only used as a *source* for content?
+		}
+
+		DeferredUpdates::addCallableUpdate( function () use ( $title ) {
+			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+			$cache->resetCheckKey(
+				// Do not include the namespace since there can be multiple aliases to it
+				// due to different namespace text definitions on different wikis. This only
+				// means that some cache invalidations happen that are not strictly needed.
+				$cache->makeGlobalKey( 'interwiki-page', wfWikiID(), $title->getDBkey() )
+			);
+		} );
+	}
 
 	/**
 	 * Returns a list of categories this page is a member of.
