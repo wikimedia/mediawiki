@@ -177,7 +177,7 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		# Check blocks
-		if ( $user->isBlocked() ) {
+		if ( $user->isBlockedFromUpload() ) {
 			throw new UserBlockedError( $user->getBlock() );
 		}
 

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Block\BlockRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 
 /**
@@ -610,4 +611,115 @@ class BlockTest extends MediaWikiLangTestCase {
 		$block->delete();
 	}
 
+	/**
+	 * @covers Block::preventsEdit
+	 */
+	public function testPreventsEditReturnsTrueOnSitewideBlock() {
+		$user = $this->getTestUser()->getUser();
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+			'allowUsertalk' => true,
+			'sitewide' => true
+		] );
+
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		$title = $this->getExistingTestPage( 'Foo' )->getTitle();
+
+		$this->assertTrue( $block->preventsEdit( $title ) );
+
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::preventsEdit
+	 */
+	public function testPreventsEditOnPartialBlock() {
+		$user = $this->getTestUser()->getUser();
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+			'allowUsertalk' => true,
+			'sitewide' => false
+		] );
+
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		$pageFoo = $this->getExistingTestPage( 'Foo' );
+		$pageBar = $this->getExistingTestPage( 'Bar' );
+
+		$pageRestriction = new PageRestriction( $block->getId(), $pageFoo->getId() );
+		BlockRestriction::insert( [ $pageRestriction ] );
+
+		$this->assertTrue( $block->preventsEdit( $pageFoo->getTitle() ) );
+		$this->assertFalse( $block->preventsEdit( $pageBar->getTitle() ) );
+
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::preventsEdit
+	 * @dataProvider preventsEditOnUserTalkProvider
+	 */
+	public function testPreventsEditOnUserTalkPage(
+		$allowUsertalk, $sitewide, $result, $blockAllowsUTEdit = true
+	) {
+		$this->setMwGlobals( [
+			'wgBlockAllowsUTEdit' => $blockAllowsUTEdit,
+		] );
+
+		$user = $this->getTestUser()->getUser();
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+			'allowUsertalk' => $allowUsertalk,
+			'sitewide' => $sitewide
+		] );
+
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		$this->assertEquals( $result, $block->preventsEdit( $user->getTalkPage() ) );
+		$block->delete();
+	}
+
+	public function preventsEditOnUserTalkProvider() {
+		return [
+			[
+				'allowUsertalk' => false,
+				'sitewide' => true,
+				'result' => true,
+			],
+			[
+				'allowUsertalk' => true,
+				'sitewide' => true,
+				'result' => false,
+			],
+			[
+				'allowUsertalk' => true,
+				'sitewide' => false,
+				'result' => false,
+			],
+			[
+				'allowUsertalk' => false,
+				'sitewide' => false,
+				'result' => true,
+			],
+			[
+				'allowUsertalk' => true,
+				'sitewide' => true,
+				'result' => true,
+				'blockAllowsUTEdit' => false
+			],
+			[
+				'allowUsertalk' => true,
+				'sitewide' => false,
+				'result' => true,
+				'blockAllowsUTEdit' => false
+			],
+		];
+	}
 }

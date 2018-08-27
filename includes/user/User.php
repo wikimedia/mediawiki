@@ -2297,20 +2297,21 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Check if user is blocked from editing a particular article
 	 *
 	 * @param Title $title Title to check
-	 * @param bool $bFromSlave Whether to check the replica DB instead of the master
+	 * @param bool $fromSlave Whether to check the replica DB instead of the master
 	 * @return bool
 	 */
-	public function isBlockedFrom( $title, $bFromSlave = false ) {
-		global $wgBlockAllowsUTEdit;
+	public function isBlockedFrom( $title, $fromSlave = false ) {
+		$blocked = $this->isHidden();
 
-		$blocked = $this->isBlocked( $bFromSlave );
-		$allowUsertalk = ( $wgBlockAllowsUTEdit ? $this->mAllowUsertalk : false );
-		// If a user's name is suppressed, they cannot make edits anywhere
-		if ( !$this->mHideName && $allowUsertalk && $title->getText() === $this->getName()
-			&& $title->getNamespace() == NS_USER_TALK ) {
-			$blocked = false;
-			wfDebug( __METHOD__ . ": self-talk page, ignoring any blocks\n" );
+		if ( !$blocked ) {
+			$block = $this->getBlock( $fromSlave );
+			if ( $block ) {
+				$blocked = $block->preventsEdit( $title );
+			}
 		}
+
+		// only for the purpose of the hook. We really don't need this here.
+		$allowUsertalk = $this->mAllowUsertalk;
 
 		Hooks::run( 'UserIsBlockedFrom', [ $this, $title, &$blocked, &$allowUsertalk ] );
 
@@ -2418,7 +2419,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function isHidden() {
 		if ( $this->mHideName !== null ) {
-			return $this->mHideName;
+			return (bool)$this->mHideName;
 		}
 		$this->getBlockedStatus();
 		if ( !$this->mHideName ) {
@@ -2428,7 +2429,7 @@ class User implements IDBAccessObject, UserIdentity {
 			$this->mHideName = $authUser && $authUser->isHidden();
 			Hooks::run( 'UserIsHidden', [ $this, &$this->mHideName ] );
 		}
-		return $this->mHideName;
+		return (bool)$this->mHideName;
 	}
 
 	/**
@@ -4516,6 +4517,16 @@ class User implements IDBAccessObject, UserIdentity {
 	public function isBlockedFromEmailuser() {
 		$this->getBlockedStatus();
 		return $this->mBlock && $this->mBlock->prevents( 'sendemail' );
+	}
+
+	/**
+	 * Get whether the user is blocked from using Special:Upload
+	 *
+	 * @return bool
+	 */
+	public function isBlockedFromUpload() {
+		$this->getBlockedStatus();
+		return $this->mBlock && $this->mBlock->prevents( 'upload' );
 	}
 
 	/**

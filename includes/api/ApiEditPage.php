@@ -414,11 +414,7 @@ class ApiEditPage extends ApiBase {
 			// obvious that this is even possible.
 			// @codeCoverageIgnoreStart
 			case EditPage::AS_BLOCKED_PAGE_FOR_USER:
-				$this->dieWithError(
-					'apierror-blocked',
-					'blocked',
-					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
-				);
+				$this->dieBlocked( $user->getBlock() );
 
 			case EditPage::AS_READ_ONLY_PAGE:
 				$this->dieReadOnly();

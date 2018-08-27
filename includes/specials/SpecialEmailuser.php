@@ -131,7 +131,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			case 'badaccess':
 				throw new PermissionsError( 'sendemail' );
 			case 'blockedemailuser':
-				throw new UserBlockedError( $this->getUser()->mBlock );
+				throw $this->getBlockedEmailError();
 			case 'actionthrottledtext':
 				throw new ThrottledError;
 			case 'mailnologin':
@@ -523,5 +523,18 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 	protected function getGroupName() {
 		return 'users';
+	}
+
+	/**
+	 * Builds an error message based on the block params
+	 *
+	 * @return ErrorPageError
+	 */
+	private function getBlockedEmailError() {
+		$block = $this->getUser()->mBlock;
+		$params = $block->getBlockErrorParams( $this->getContext() );
+
+		$msg = $block->isSitewide() ? 'blockedtext' : 'blocked-email-user';
+		return new ErrorPageError( 'blockedtitle', $msg, $params );
 	}
 }
