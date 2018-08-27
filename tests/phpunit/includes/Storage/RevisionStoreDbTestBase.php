@@ -836,7 +836,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		return (object)$fields;
 	}
 
-	private function assertRevisionRecordMatchesRevision(
+	protected function assertRevisionRecordMatchesRevision(
 		Revision $rev,
 		RevisionRecord $record
 	) {
@@ -1049,9 +1049,13 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromArchiveRow
 	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
 	 */
 	public function testInsertRevisionOn_archive() {
+		// This is a round trip test for deletion and undeletion of a
+		// revision row via the archive table.
+
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$title = Title::newFromText( __METHOD__ );
 
@@ -1063,6 +1067,9 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$orig = $origRev->getRevisionRecord();
 		$page->doDeleteArticle( __METHOD__ );
 
+		// re-create page, so we can later load revisions for it
+		$page->doEditContent( new WikitextContent( 'Two' ), __METHOD__ );
+
 		$db = wfGetDB( DB_MASTER );
 		$arQuery = $store->getArchiveQueryInfo();
 		$row = $db->selectRow(
@@ -1070,34 +1077,37 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			__METHOD__, [], $arQuery['joins']
 		);
 
-		$record = $store->newRevisionFromArchiveRow( $row );
+		$this->assertNotFalse( $row, 'query failed' );
+
+		$record = $store->newRevisionFromArchiveRow(
+			$row,
+			0,
+			$title,
+			[ 'page_id' => $title->getArticleID() ]
+		);
 
 		$restored = $store->insertRevisionOn( $record, $db );
-		$this->assertSame( $orig->getPageId(), $restored->getPageId() );
-		$this->assertSame( $orig->getId(), $restored->getId() );
-		$this->assertSame( $orig->getComment()->text, $restored->getComment()->text );
 
-		$origMain = $orig->getSlot( 'main' );
-		$restoredMain = $restored->getSlot( 'main' );
-		$this->assertSame(
-			$origMain->getOrigin(),
-			$restoredMain->getOrigin()
-		);
+		// is the new revision correct?
+		$this->assertRevisionCompleteness( $restored );
+		$this->assertRevisionRecordsEqual( $record, $restored );
 
-		if ( $origMain->hasContentId() ) {
-			$this->assertSame(
-				$origMain->getContentId(),
-				$restoredMain->getContentId()
-			);
-		}
+		// does the new revision use the original slot?
+		$recMain = $record->getSlot( 'main' );
+		$restMain = $restored->getSlot( 'main' );
+		$this->assertSame( $recMain->getAddress(), $restMain->getAddress() );
+		$this->assertSame( $recMain->getContentId(), $restMain->getContentId() );
+		$this->assertSame( $recMain->getOrigin(), $restMain->getOrigin() );
+		$this->assertSame( 'Foo', $restMain->getContent()->serialize() );
 
-		// NOTE: we didn't restore the page row, so we can't use RevisionStore::getRevisionById
-		$this->assertSelect(
-			'revision',
-			[ 'rev_id' ],
-			[ 'rev_id' => $orig->getId() ],
-			[ [ $orig->getId() ] ]
-		);
+		// can we load it from the store?
+		$loaded = $store->getRevisionById( $restored->getId() );
+		$this->assertNotNull( $loaded );
+		$this->assertRevisionCompleteness( $loaded );
+		$this->assertRevisionRecordsEqual( $restored, $loaded );
+
+		// can we find it directly in the database?
+		$this->assertRevisionExistsInDatabase( $restored );
 	}
 
 	/**

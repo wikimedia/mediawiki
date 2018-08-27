@@ -2,6 +2,7 @@
 namespace MediaWiki\Tests\Storage;
 
 use InvalidArgumentException;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\SlotRecord;
 use Revision;
@@ -115,6 +116,70 @@ class McrWriteBothRevisionStoreDbTest extends RevisionStoreDbTestBase {
 				'content_model' => 'wikitext',
 			]
 		];
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromArchiveRow
+	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
+	 */
+	public function testInsertRevisionFromArchiveRow_unmigratedArchiveRow() {
+		// The main purpose of this test is to assert that after reading an archive
+		// row using the old schema it can be inserted into the revision table,
+		// and a slot row is created based on slot emulated from the old-style archive row,
+		// when none such slot row exists yet.
+
+		$title = $this->getTestPage()->getTitle();
+
+		$this->db->insert(
+			'text',
+			[ 'old_text' => 'Just a test', 'old_flags' => 'utf-8' ],
+			__METHOD__
+		);
+
+		$textId = $this->db->insertId();
+
+		$row = (object)[
+			'ar_minor_edit' => '0',
+			'ar_user' => '0',
+			'ar_user_text' => '127.0.0.1',
+			'ar_actor' => null,
+			'ar_len' => '11',
+			'ar_deleted' => '0',
+			'ar_rev_id' => 112277,
+			'ar_timestamp' => $this->db->timestamp( '20180101000000' ),
+			'ar_sha1' => 'deadbeef',
+			'ar_page_id' => $title->getArticleID(),
+			'ar_comment_text' => 'just a test',
+			'ar_comment_data' => null,
+			'ar_comment_cid' => null,
+			'ar_content_format' => null,
+			'ar_content_model' => null,
+			'ts_tags' => null,
+			'ar_id' => 17,
+			'ar_namespace' => $title->getNamespace(),
+			'ar_title' => $title->getDBkey(),
+			'ar_text_id' => $textId,
+			'ar_parent_id' => 112211,
+		];
+
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$rev = $store->newRevisionFromArchiveRow( $row );
+
+		// re-insert archived revision
+		$return = $store->insertRevisionOn( $rev, $this->db );
+
+		// is the new revision correct?
+		$this->assertRevisionCompleteness( $return );
+		$this->assertRevisionRecordsEqual( $rev, $return );
+
+		// can we load it from the store?
+		$loaded = $store->getRevisionById( $return->getId() );
+		$this->assertNotNull( $loaded );
+		$this->assertRevisionCompleteness( $loaded );
+		$this->assertRevisionRecordsEqual( $return, $loaded );
+
+		// can we find it directly in the database?
+		$this->assertRevisionExistsInDatabase( $return );
 	}
 
 }

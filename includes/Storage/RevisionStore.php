@@ -566,9 +566,14 @@ class RevisionStore
 		foreach ( $slotRoles as $role ) {
 			$slot = $rev->getSlot( $role, RevisionRecord::RAW );
 
-			if ( $slot->hasRevision() ) {
-				// If the SlotRecord already has a revision ID set, this means it already exists
-				// in the database, and should already belong to the current revision.
+			// If the SlotRecord already has a revision ID set, this means it already exists
+			// in the database, and should already belong to the current revision.
+			// However, a slot may already have a revision, but no content ID, if the slot
+			// is emulated based on the archive table, because we are in SCHEMA_COMPAT_READ_OLD
+			// mode, and the respective archive row was not yet migrated to the new schema.
+			// In that case, a new slot row (and content row) must be inserted even during
+			// undeletion.
+			if ( $slot->hasRevision() && $slot->hasContentId() ) {
 				// TODO: properly abort transaction if the assertion fails!
 				Assert::parameter(
 					$slot->getRevision() === $revisionId,
@@ -612,6 +617,8 @@ class RevisionStore
 	 * @param IDatabase $dbw
 	 * @param int $revisionId
 	 * @param string &$blobAddress (may change!)
+	 *
+	 * @return int the text row id
 	 */
 	private function updateRevisionTextId( IDatabase $dbw, $revisionId, &$blobAddress ) {
 		$textId = $this->blobStore->getTextIdFromAddress( $blobAddress );
@@ -631,6 +638,8 @@ class RevisionStore
 			[ 'rev_id' => $revisionId ],
 			__METHOD__
 		);
+
+		return $textId;
 	}
 
 	/**
@@ -654,11 +663,16 @@ class RevisionStore
 			$blobAddress = $this->storeContentBlob( $protoSlot, $title, $blobHints );
 		}
 
+		$contentId = null;
+
 		// Write the main slot's text ID to the revision table for backwards compatibility
 		if ( $protoSlot->getRole() === 'main'
 			&& $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_OLD )
 		) {
-			$this->updateRevisionTextId( $dbw, $revisionId, $blobAddress );
+			// If SCHEMA_COMPAT_WRITE_NEW is also set, the fake content ID is overwritten
+			// with the real content ID below.
+			$textId = $this->updateRevisionTextId( $dbw, $revisionId, $blobAddress );
+			$contentId = $this->emulateContentId( $textId );
 		}
 
 		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW ) ) {
@@ -669,8 +683,6 @@ class RevisionStore
 			}
 
 			$this->insertSlotRowOn( $protoSlot, $dbw, $revisionId, $contentId );
-		} else {
-			$contentId = null;
 		}
 
 		$savedSlot = SlotRecord::newSaved(
@@ -1194,6 +1206,7 @@ class RevisionStore
 		$mainSlotRow->role_name = 'main';
 		$mainSlotRow->model_name = null;
 		$mainSlotRow->slot_revision_id = null;
+		$mainSlotRow->slot_content_id = null;
 		$mainSlotRow->content_address = null;
 
 		$content = null;
@@ -1244,6 +1257,12 @@ class RevisionStore
 			$mainSlotRow->format_name = isset( $row->rev_content_format )
 				? strval( $row->rev_content_format )
 				: null;
+
+			if ( isset( $row->rev_text_id ) && intval( $row->rev_text_id ) > 0 ) {
+				// Overwritten below for SCHEMA_COMPAT_WRITE_NEW
+				$mainSlotRow->slot_content_id
+					= $this->emulateContentId( intval( $row->rev_text_id ) );
+			}
 		} elseif ( is_array( $row ) ) {
 			$mainSlotRow->slot_revision_id = isset( $row['id'] ) ? intval( $row['id'] ) : null;
 
@@ -1283,6 +1302,12 @@ class RevisionStore
 					$mainSlotRow->format_name = $handler->getDefaultFormat();
 				}
 			}
+
+			if ( isset( $row['text_id'] ) && intval( $row['text_id'] ) > 0 ) {
+				// Overwritten below for SCHEMA_COMPAT_WRITE_NEW
+				$mainSlotRow->slot_content_id
+					= $this->emulateContentId( intval( $row['text_id'] ) );
+			}
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
@@ -1320,16 +1345,36 @@ class RevisionStore
 			};
 		}
 
-		// NOTE: this callback will be looped through RevisionSlot::newInherited(), allowing
-		// the inherited slot to have the same content_id as the original slot. In that case,
-		// $slot will be the inherited slot, while $mainSlotRow still refers to the original slot.
-		$mainSlotRow->slot_content_id =
-			function ( SlotRecord $slot ) use ( $queryFlags, $mainSlotRow ) {
-				$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
-				return $this->findSlotContentId( $db, $mainSlotRow->slot_revision_id, 'main' );
-			};
+		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW ) ) {
+			// NOTE: this callback will be looped through RevisionSlot::newInherited(), allowing
+			// the inherited slot to have the same content_id as the original slot. In that case,
+			// $slot will be the inherited slot, while $mainSlotRow still refers to the original slot.
+			$mainSlotRow->slot_content_id =
+				function ( SlotRecord $slot ) use ( $queryFlags, $mainSlotRow ) {
+					$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
+					return $this->findSlotContentId( $db, $mainSlotRow->slot_revision_id, 'main' );
+				};
+		}
 
 		return new SlotRecord( $mainSlotRow, $content );
+	}
+
+	/**
+	 * Provides a content ID to use with emulated SlotRecords in SCHEMA_COMPAT_OLD mode,
+	 * based on the revision's text ID (rev_text_id or ar_text_id, respectively).
+	 * Note that in SCHEMA_COMPAT_WRITE_BOTH, a callback to findSlotContentId() should be used
+	 * instead, since in that mode, some revision rows may already have a real content ID,
+	 * while other's don't - and for the ones that don't, we should indicate that it
+	 * is missing and cause SlotRecords::hasContentId() to return false.
+	 *
+	 * @param int $textId
+	 * @return int The emulated content ID
+	 */
+	private function emulateContentId( $textId ) {
+		// Return a negative number to ensure the ID is distinct from any real content IDs
+		// that will be assigned in SCHEMA_COMPAT_WRITE_NEW mode and read in SCHEMA_COMPAT_READ_NEW
+		// mode.
+		return -$textId;
 	}
 
 	/**

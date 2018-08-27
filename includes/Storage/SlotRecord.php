@@ -451,6 +451,16 @@ class SlotRecord {
 	 * content has been stored in the content table. While building a new revision,
 	 * SlotRecords will not have an ID associated.
 	 *
+	 * Also, during schema migration, hasContentId() may return false when encountering an
+	 * un-migrated database entry in SCHEMA_COMPAT_WRITE_BOTH mode.
+	 * It will however always return true for saved revisions on SCHEMA_COMPAT_READ_NEW mode,
+	 * or without SCHEMA_COMPAT_WRITE_NEW mode. In the latter case, an emulated content ID
+	 * is used, derived from the revision's text ID.
+	 *
+	 * Note that hasContentId() returning false while hasRevision() returns true always
+	 * indicates an unmigrated row in SCHEMA_COMPAT_WRITE_BOTH mode, as described above.
+	 * For an unsaved slot, both these methods would return false.
+	 *
 	 * @since 1.32
 	 *
 	 * @return bool
@@ -493,6 +503,9 @@ class SlotRecord {
 	 * Returns the ID of the content meta data row associated with the slot.
 	 * This information should be irrelevant to application logic, it is here to allow
 	 * the construction of a full row for the revision table.
+	 *
+	 * Note that this method may return an emulated value during schema migration in
+	 * SCHEMA_COMPAT_WRITE_OLD mode. See RevisionStore::emulateContentId for more information.
 	 *
 	 * @return int
 	 */
