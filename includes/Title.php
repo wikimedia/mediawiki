@@ -2446,25 +2446,34 @@ class Title implements LinkTarget {
 		# Protect css/json/js subpages of user pages
 		# XXX: this might be better using restrictions
 
-		if ( $action != 'patrol' ) {
-			if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
-				if (
-					$this->isUserCssConfigPage()
-					&& !$user->isAllowedAny( 'editmyusercss', 'editusercss' )
-				) {
-					$errors[] = [ 'mycustomcssprotected', $action ];
-				} elseif (
-					$this->isUserJsonConfigPage()
-					&& !$user->isAllowedAny( 'editmyuserjson', 'edituserjson' )
-				) {
-					$errors[] = [ 'mycustomjsonprotected', $action ];
-				} elseif (
-					$this->isUserJsConfigPage()
-					&& !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' )
-				) {
-					$errors[] = [ 'mycustomjsprotected', $action ];
-				}
-			} else {
+		if ( $action === 'patrol' ) {
+			return [];
+		}
+
+		if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
+			// Users need editmyuser* to edit their own CSS/JSON/JS subpages.
+			if (
+				$this->isUserCssConfigPage()
+				&& !$user->isAllowedAny( 'editmyusercss', 'editusercss' )
+			) {
+				$errors[] = [ 'mycustomcssprotected', $action ];
+			} elseif (
+				$this->isUserJsonConfigPage()
+				&& !$user->isAllowedAny( 'editmyuserjson', 'edituserjson' )
+			) {
+				$errors[] = [ 'mycustomjsonprotected', $action ];
+			} elseif (
+				$this->isUserJsConfigPage()
+				&& !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' )
+			) {
+				$errors[] = [ 'mycustomjsprotected', $action ];
+			}
+		} else {
+			// Users need editmyuser* to edit their own CSS/JSON/JS subpages, except for
+			// deletion/suppression which cannot be used for attacks and we want to avoid the
+			// situation where an unprivileged user can post abusive content on their subpages
+			// and only very highly privileged users could remove it.
+			if ( !in_array( $action, [ 'delete', 'deleterevision', 'suppressrevision' ], true ) ) {
 				if (
 					$this->isUserCssConfigPage()
 					&& !$user->isAllowed( 'editusercss' )
