@@ -27,6 +27,8 @@ use Psr\Log\NullLogger;
 /**
  * Multi-datacenter aware caching interface
  *
+ * ### Using WANObjectCache
+ *
  * All operations go to the local datacenter cache, except for delete(),
  * touchCheckKey(), and resetCheckKey(), which broadcast to all datacenters.
  *
@@ -36,34 +38,63 @@ use Psr\Log\NullLogger;
  * The preferred way to do this logic is through getWithSetCallback().
  * When querying the store on cache miss, the closest DB replica
  * should be used. Try to avoid heavyweight DB master or quorum reads.
- * When the source data changes, a purge method should be called.
- * Since purges are expensive, they should be avoided. One can do so if:
- *   - a) The object cached is immutable; or
- *   - b) Validity is checked against the source after get(); or
- *   - c) Using a modest TTL is reasonably correct and performant
  *
+ * To ensure consumers of the cache see new values in a timely manner,
+ * you either need to follow either the validation strategy, or the
+ * purge strategy.
+ *
+ * The validation strategy refers to the natural avoidance of stale data
+ * by one of the following means:
+ *
+ *   - A) The cached value is immutable.
+ *        If the consumer has access to an identifier that uniquely describes a value,
+ *        cached value need not change. Instead, the key can change. This also allows
+ *        all servers to access their perceived current version. This is important
+ *        in context of multiple deployed versions of your application and/or cross-dc
+ *        database replication, to ensure deterministic values without oscillation.
+ *   - B) Validity is checked against the source after get().
+ *        This is the inverse of A. The unique identifier is embedded inside the value
+ *        and validated after on retreival. If outdated, the value is recomputed.
+ *   - C) The value is cached with a modest TTL (without validation).
+ *        If value recomputation is reasonably performant, and the value is allowed to
+ *        be stale, one should consider using TTL only – using the value's age as
+ *        method of validation.
+ *
+ * The purge strategy refers to the the approach whereby your application knows that
+ * source data has changed and can react by purging the relevant cache keys.
+ * As purges are expensive, this strategy should be avoided if possible.
  * The simplest purge method is delete().
  *
- * There are three supported ways to handle broadcasted operations:
- *   - a) Configure the 'purge' EventRelayer to point to a valid PubSub endpoint
- *         that has subscribed listeners on the cache servers applying the cache updates.
- *   - b) Ommit the 'purge' EventRelayer parameter and set up mcrouter as the underlying cache
+ * No matter which strategy you choose, callers must not rely on updates or purges
+ * being immediately visible to other servers. It should be treated similarly as
+ * one would a database replica.
+ *
+ * The need for immediate updates should be avoided. If needed, solutions must be
+ * sought outside WANObjectCache.
+ *
+ * ### Deploying WANObjectCache
+ *
+ * There are three supported ways to set up broadcasted operations:
+ *
+ *   - A) Configure the 'purge' EventRelayer to point to a valid PubSub endpoint
+ *        that has subscribed listeners on the cache servers applying the cache updates.
+ *   - B) Omit the 'purge' EventRelayer parameter and set up mcrouter as the underlying cache
  *        backend, using a memcached BagOStuff class for the 'cache' parameter. The 'region'
- *        and 'cluster' parameters must be provided and 'mcrouterAware' must be set to 'true'.
+ *        and 'cluster' parameters must be provided and 'mcrouterAware' must be set to `true`.
  *        Configure mcrouter as follows:
  *          - 1) Use Route Prefixing based on region (datacenter) and cache cluster.
- *                See https://github.com/facebook/mcrouter/wiki/Routing-Prefix and
- *                https://github.com/facebook/mcrouter/wiki/Multi-cluster-broadcast-setup
+ *               See https://github.com/facebook/mcrouter/wiki/Routing-Prefix and
+ *               https://github.com/facebook/mcrouter/wiki/Multi-cluster-broadcast-setup.
  *          - 2) To increase the consistency of delete() and touchCheckKey() during cache
- *                server membership changes, you can use the OperationSelectorRoute to
- *                configure 'set' and 'delete' operations to go to all servers in the cache
- *                cluster, instead of just one server determined by hashing.
- *                See https://github.com/facebook/mcrouter/wiki/List-of-Route-Handles
- *   - c) Ommit the 'purge' EventRelayer parameter and set up dynomite as cache middleware
- *         between the web servers and either memcached or redis. This will also broadcast all
- *         key setting operations, not just purges, which can be useful for cache warming.
- *         Writes are eventually consistent via the Dynamo replication model.
- *         See https://github.com/Netflix/dynomite
+ *               server membership changes, you can use the OperationSelectorRoute to
+ *               configure 'set' and 'delete' operations to go to all servers in the cache
+ *               cluster, instead of just one server determined by hashing.
+ *               See https://github.com/facebook/mcrouter/wiki/List-of-Route-Handles.
+ *   - C) Omit the 'purge' EventRelayer parameter and set up dynomite as cache middleware
+ *        between the web servers and either memcached or redis. This will broadcast all
+ *        key setting operations, not just purges, which can be useful for cache warming.
+ *        Writes are eventually consistent via the Dynamo replication model.
+ *        See https://github.com/Netflix/dynomite.
  *
  * Broadcasted operations like delete() and touchCheckKey() are done asynchronously
  * in all datacenters this way, though the local one should likely be near immediate.
