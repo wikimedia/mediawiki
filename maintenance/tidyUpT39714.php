@@ -2,9 +2,9 @@
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Fixes all rows affected by https://bugzilla.wikimedia.org/show_bug.cgi?id=37714
+ * Fixes all rows affected by T39714
  */
-class TidyUpBug37714 extends Maintenance {
+class TidyUpT39714 extends Maintenance {
 	public function execute() {
 		// Search for all log entries which are about changing the visability of other log entries.
 		$result = $this->getDB( DB_REPLICA )->select(
@@ -44,5 +44,5 @@ class TidyUpBug37714 extends Maintenance {
 	}
 }
 
-$maintClass = TidyUpBug37714::class;
+$maintClass = TidyUpT39714::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
