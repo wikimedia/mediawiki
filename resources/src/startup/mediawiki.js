@@ -1999,6 +1999,7 @@
 				 * modules and cache each of them separately, using each module's versioning scheme
 				 * to determine when the cache should be invalidated.
 				 *
+				 * @private
 				 * @singleton
 				 * @class mw.loader.store
 				 */
@@ -2042,11 +2043,9 @@
 					 * @return {string} String of concatenated vary conditions.
 					 */
 					getVary: function () {
-						return [
-							mw.config.get( 'skin' ),
-							mw.config.get( 'wgResourceLoaderStorageVersion' ),
-							mw.config.get( 'wgUserLanguage' )
-						].join( ':' );
+						return mw.config.get( 'skin' ) + ':' +
+							mw.config.get( 'wgResourceLoaderStorageVersion' ) + ':' +
+							mw.config.get( 'wgUserLanguage' );
 					},
 
 					/**
@@ -2089,9 +2088,11 @@
 						}
 
 						try {
+							// This a string we stored, or `null` if the key does not (yet) exist.
 							raw = localStorage.getItem( mw.loader.store.getStoreKey() );
 							// If we get here, localStorage is available; mark enabled
 							mw.loader.store.enabled = true;
+							// If null, JSON.parse() will cast to string and re-parse, still null.
 							data = JSON.parse( raw );
 							if ( data && typeof data.items === 'object' && data.vary === mw.loader.store.getVary() ) {
 								mw.loader.store.items = data.items;
@@ -2104,11 +2105,26 @@
 							} );
 						}
 
+						// If we get here, one of four things happened:
+						//
+						// 1. localStorage did not contain our store key.
+						//    This means `raw` is `null`, and we're on a fresh page view (cold cache).
+						//    The store was enabled, and `items` starts fresh.
+						//
+						// 2. localStorage contained parseable data under our store key,
+						//    but it's not applicable to our current context (see getVary).
+						//    The store was enabled, and `items` starts fresh.
+						//
+						// 3. JSON.parse threw (localStorage contained corrupt data).
+						//    This means `raw` contains a string.
+						//    The store was enabled, and `items` starts fresh.
+						//
+						// 4. localStorage threw (disabled or otherwise unavailable).
+						//    This means `raw` was never assigned.
+						//    We will disable the store below.
 						if ( raw === undefined ) {
 							// localStorage failed; disable store
 							mw.loader.store.enabled = false;
-						} else {
-							mw.loader.store.update();
 						}
 					},
 
@@ -2139,13 +2155,12 @@
 					 *
 					 * @param {string} module Module name
 					 * @param {Object} descriptor The module's descriptor as set in the registry
-					 * @return {boolean} Module was set
 					 */
 					set: function ( module, descriptor ) {
 						var args, key, src;
 
 						if ( !mw.loader.store.enabled ) {
-							return false;
+							return;
 						}
 
 						key = getModuleKey( module );
@@ -2165,7 +2180,7 @@
 								descriptor.templates ].indexOf( undefined ) !== -1
 						) {
 							// Decline to store
-							return false;
+							return;
 						}
 
 						try {
@@ -2189,30 +2204,23 @@
 								exception: e,
 								source: 'store-localstorage-json'
 							} );
-							return false;
+							return;
 						}
 
 						src = 'mw.loader.implement(' + args.join( ',' ) + ');';
 						if ( src.length > mw.loader.store.MODULE_SIZE_MAX ) {
-							return false;
+							return;
 						}
 						mw.loader.store.items[ key ] = src;
 						mw.loader.store.update();
-						return true;
 					},
 
 					/**
 					 * Iterate through the module store, removing any item that does not correspond
 					 * (in name and version) to an item in the module registry.
-					 *
-					 * @return {boolean} Store was pruned
 					 */
 					prune: function () {
 						var key, module;
-
-						if ( !mw.loader.store.enabled ) {
-							return false;
-						}
 
 						for ( key in mw.loader.store.items ) {
 							module = key.slice( 0, key.indexOf( '@' ) );
@@ -2224,7 +2232,6 @@
 								delete mw.loader.store.items[ key ];
 							}
 						}
-						return true;
 					},
 
 					/**
@@ -2234,29 +2241,30 @@
 						mw.loader.store.items = {};
 						try {
 							localStorage.removeItem( mw.loader.store.getStoreKey() );
-						} catch ( ignored ) {}
+						} catch ( e ) {}
 					},
 
 					/**
 					 * Sync in-memory store back to localStorage.
 					 *
-					 * This function debounces updates. When called with a flush already pending,
-					 * the call is coalesced into the pending update. The call to
-					 * localStorage.setItem will be naturally deferred until the page is quiescent.
+					 * This function debounces updates. When called with a flush already pending, the
+					 * scheduled flush is postponed. The call to localStorage.setItem will be keep
+					 * being deferred until the page is quiescent for 2 seconds.
 					 *
 					 * Because localStorage is shared by all pages from the same origin, if multiple
 					 * pages are loaded with different module sets, the possibility exists that
-					 * modules saved by one page will be clobbered by another. But the impact would
-					 * be minor and the problem would be corrected by subsequent page views.
+					 * modules saved by one page will be clobbered by another. The only impact of this
+					 * is minor (merely a less efficient cache use) and the problem would be corrected
+					 * by subsequent page views.
 					 *
 					 * @method
 					 */
 					update: ( function () {
-						var hasPendingWrite = false;
+						var timer, hasPendingWrites = false;
 
 						function flushWrites() {
 							var data, key;
-							if ( !hasPendingWrite || !mw.loader.store.enabled ) {
+							if ( !mw.loader.store.enabled ) {
 								return;
 							}
 
@@ -2277,14 +2285,23 @@
 								} );
 							}
 
-							hasPendingWrite = false;
+							hasPendingWrites = false;
+						}
+
+						function request() {
+							// If another mw.loader.store.set()/update() call happens in the narrow
+							// time window between requestIdleCallback() and flushWrites firing, ignore it.
+							// It'll be saved by the already-scheduled flush.
+							if ( !hasPendingWrites ) {
+								hasPendingWrites = true;
+								mw.requestIdleCallback( flushWrites );
+							}
 						}
 
 						return function () {
-							if ( !hasPendingWrite ) {
-								hasPendingWrite = true;
-								mw.requestIdleCallback( flushWrites );
-							}
+							// Cancel the previous timer (if it hasn't fired yet)
+							clearTimeout( timer );
+							timer = setTimeout( request, 2000 );
 						};
 					}() )
 				}
