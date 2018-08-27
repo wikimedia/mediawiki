@@ -1083,16 +1083,11 @@
 			 * See also #work().
 			 *
 			 * @private
-			 * @param {string|string[]} dependencies Module name or array of string module names
+			 * @param {string[]} dependencies Array of module names in the registry
 			 * @param {Function} [ready] Callback to execute when all dependencies are ready
 			 * @param {Function} [error] Callback to execute when any dependency fails
 			 */
 			function enqueue( dependencies, ready, error ) {
-				// Allow calling by single module name
-				if ( typeof dependencies === 'string' ) {
-					dependencies = [ dependencies ];
-				}
-
 				if ( allReady( dependencies ) ) {
 					// Run ready immediately
 					if ( ready !== undefined ) {
