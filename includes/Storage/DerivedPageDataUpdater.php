@@ -1408,21 +1408,16 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		$recursive = $this->options['changed']; // T52785
 		$updates = $this->getSecondaryDataUpdates( $recursive );
 
+		$triggeringUser = $this->options['triggeringuser'] ?? $this->user;
+		if ( !$triggeringUser instanceof User ) {
+			$triggeringUser = User::newFromIdentity( $triggeringUser );
+		}
 		foreach ( $updates as $update ) {
 			// TODO: make an $option field for the cause
-			$update->setCause( 'edit-page', $this->user->getName() );
+			$update->setCause( 'edit-page', $triggeringUser->getName() );
 			if ( $update instanceof LinksUpdate ) {
 				$update->setRevision( $legacyRevision );
-
-				if ( !empty( $this->options['triggeringuser'] ) ) {
-					/** @var UserIdentity|User $triggeringUser */
-					$triggeringUser = $this->options['triggeringuser'];
-					if ( !$triggeringUser instanceof User ) {
-						$triggeringUser = User::newFromIdentity( $triggeringUser );
-					}
-
-					$update->setTriggeringUser( $triggeringUser );
-				}
+				$update->setTriggeringUser( $triggeringUser );
 			}
 			DeferredUpdates::addUpdate( $update );
 		}
