@@ -8846,6 +8846,22 @@ $wgCSPHeader = false;
 $wgCSPReportOnlyHeader = false;
 
 /**
+ * List of messages which might contain raw HTML.
+ * Extensions should add their messages here. The list is used for access control:
+ * changing messages listed here will require editsitecss and editsitejs rights.
+ *
+ * @since 1.32
+ * @var string[]
+ */
+$wgRawHtmlMessages = [
+	'copyright',
+	'history_copyright',
+	'googlesearch',
+	'feedback-terms',
+	'feedback-termsofuse',
+];
+
+/**
  * Mapping of event channels (or channel categories) to EventRelayer configuration.
  *
  * By setting up a PubSub system (like Kafka) and enabling a corresponding EventRelayer class

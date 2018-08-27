@@ -668,6 +668,13 @@
 				"type": "string"
 			}
 		},
+		"RawHtmlMessages": {
+			"type": "array",
+			"description": "Messages which are rendered as raw HTML",
+			"items": {
+				"type": "string"
+			}
+		},
 		"callback": {
 			"type": [
 				"array",

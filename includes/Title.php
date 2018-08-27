@@ -1481,6 +1481,22 @@ class Title implements LinkTarget {
 	}
 
 	/**
+	 * Is this a message which can contain raw HTML?
+	 *
+	 * @return bool
+	 * @since 1.32
+	 */
+	public function isRawHtmlMessage() {
+		global $wgRawHtmlMessages;
+
+		if ( $this->inNamespace( NS_MEDIAWIKI ) ) {
+			return false;
+		}
+		$message = lcfirst( $this->getRootText() );
+		return in_array( $message, $wgRawHtmlMessages, true );
+	}
+
+	/**
 	 * Is this a talk page of some sort?
 	 *
 	 * @return bool
@@ -2392,6 +2408,13 @@ class Title implements LinkTarget {
 				$error = [ 'sitejsonprotected', $action ];
 			} elseif ( $this->isSiteJsConfigPage() && !$user->isAllowed( 'editsitejs' ) ) {
 				$error = [ 'sitejsprotected', $action ];
+			} elseif ( $this->isRawHtmlMessage() ) {
+				// Raw HTML can be used to deploy CSS or JS so require rights for both.
+				if ( !$user->isAllowed( 'editsitejs' ) ) {
+					$error = [ 'sitejsprotected', $action ];
+				} elseif ( !$user->isAllowed( 'editsitecss' ) ) {
+					$error = [ 'sitecssprotected', $action ];
+				}
 			}
 
 			if ( $error ) {
