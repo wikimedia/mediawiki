@@ -56,7 +56,11 @@ class LBFactorySingle extends LBFactory {
 	 * @since 1.28
 	 */
 	public static function newFromConnection( IDatabase $db, array $params = [] ) {
-		return new static( [ 'connection' => $db ] + $params );
+		return new static( array_merge(
+			[ 'localDomain' => $db->getDomainID() ],
+			$params,
+			[ 'connection' => $db ]
+		) );
 	}
 
 	/**

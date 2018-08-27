@@ -54,7 +54,8 @@ class LoadBalancerSingle extends LoadBalancer {
 			],
 			'trxProfiler' => $params['trxProfiler'] ?? null,
 			'srvCache' => $params['srvCache'] ?? null,
-			'wanCache' => $params['wanCache'] ?? null
+			'wanCache' => $params['wanCache'] ?? null,
+			'localDomain' => $params['localDomain'] ?? $this->db->getDomainID()
 		] );
 
 		if ( isset( $params['readOnlyReason'] ) ) {
@@ -69,7 +70,11 @@ class LoadBalancerSingle extends LoadBalancer {
 	 * @since 1.28
 	 */
 	public static function newFromConnection( IDatabase $db, array $params = [] ) {
-		return new static( [ 'connection' => $db ] + $params );
+		return new static( array_merge(
+			[ 'localDomain' => $db->getDomainID() ],
+			$params,
+			[ 'connection' => $db ]
+		) );
 	}
 
 	protected function reallyOpenConnection( array $server, DatabaseDomain $domainOverride ) {
