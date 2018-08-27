@@ -53,7 +53,7 @@
 	"apihelp-checktoken-example-simple": "Sprawdź poprawność tokenu <kbd>csrf</kbd>.",
 	"apihelp-clearhasmsg-summary": "Czyści flagę <code>hasmsg</code> dla bieżącego użytkownika.",
 	"apihelp-clearhasmsg-example-1": "Wyczyść flagę <code>hasmsg</code> dla bieżącego użytkownika.",
-	"apihelp-compare-summary": "Zauważ różnicę między dwoma stronami",
+	"apihelp-compare-summary": "Pokaż porównanie dwóch stron.",
 	"apihelp-compare-param-fromtitle": "Pierwszy tytuł do porównania.",
 	"apihelp-compare-param-fromid": "ID pierwszej strony do porównania.",
 	"apihelp-compare-param-fromrev": "Pierwsza wersja do porównania.",
