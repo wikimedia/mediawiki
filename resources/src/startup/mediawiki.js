@@ -633,10 +633,8 @@
 				 */
 				marker = document.querySelector( 'meta[name="ResourceLoaderDynamicStyles"]' ),
 
-				// For addEmbeddedCSS()
-				cssBuffer = '',
-				cssBufferTimer = null,
-				cssCallbacks = [],
+				// For #addEmbeddedCSS()
+				nextCssBuffer,
 				rAF = window.requestAnimationFrame || setTimeout;
 
 			/**
@@ -660,65 +658,61 @@
 			}
 
 			/**
+			 * @private
+			 * @param {Object} cssBuffer
+			 */
+			function flushCssBuffer( cssBuffer ) {
+				var i;
+				// Mark this object as inactive now so that further calls to addEmbeddedCSS() from
+				// the callbacks go to a new buffer instead of this one (T105973)
+				cssBuffer.active = false;
+				newStyleTag( cssBuffer.cssText, marker );
+				for ( i = 0; i < cssBuffer.callbacks.length; i++ ) {
+					cssBuffer.callbacks[ i ]();
+				}
+			}
+
+			/**
 			 * Add a bit of CSS text to the current browser page.
 			 *
-			 * The CSS will be appended to an existing ResourceLoader-created `<style>` tag
-			 * or create a new one based on whether the given `cssText` is safe for extension.
+			 * The creation and insertion of the `<style>` element is debounced for two reasons:
+			 *
+			 * - Performing the insertion before the next paint round via requestAnimationFrame
+			 *   avoids forced or wasted style recomputations, which are expensive in browsers.
+			 * - Reduce how often new stylesheets are inserted by letting additional calls to this
+			 *   function accumulate into a buffer for at least one JavaScript tick. Modules are
+			 *   received from the server in batches, which means there is likely going to be many
+			 *   calls to this function in a row within the same tick / the same call stack.
+			 *   See also T47810.
 			 *
 			 * @private
-			 * @param {string} [cssText=cssBuffer] If called without cssText,
-			 *  the internal buffer will be inserted instead.
-			 * @param {Function} [callback]
+			 * @param {string} cssText CSS text to be added in a `<style>` tag.
+			 * @param {Function} callback Called after the insertion has occurred
 			 */
 			function addEmbeddedCSS( cssText, callback ) {
-				function fireCallbacks() {
-					var i,
-						oldCallbacks = cssCallbacks;
-					// Reset cssCallbacks variable so it's not polluted by any calls to
-					// addEmbeddedCSS() from one of the callbacks (T105973)
-					cssCallbacks = [];
-					for ( i = 0; i < oldCallbacks.length; i++ ) {
-						oldCallbacks[ i ]();
-					}
+				// Create a buffer if:
+				// - We don't have one yet.
+				// - The previous one is closed.
+				// - The next CSS chunk syntactically needs to be at the start of a stylesheet (T37562).
+				if ( !nextCssBuffer || nextCssBuffer.active === false || cssText.slice( 0, '@import'.length ) === '@import' ) {
+					nextCssBuffer = {
+						cssText: '',
+						callbacks: [],
+						active: null
+					};
 				}
 
-				if ( callback ) {
-					cssCallbacks.push( callback );
+				// Linebreak for somewhat distinguishable sections
+				nextCssBuffer.cssText += '\n' + cssText;
+				nextCssBuffer.callbacks.push( callback );
+
+				if ( nextCssBuffer.active === null ) {
+					nextCssBuffer.active = true;
+					// The flushCssBuffer callback has its parameter bound by reference, which means
+					// 1) We can still extend the buffer from our object reference after this point.
+					// 2) We can safely re-assign the variable (not the object) to start a new buffer.
+					rAF( flushCssBuffer.bind( null, nextCssBuffer ) );
 				}
-
-				// Yield once before creating the <style> tag. This lets multiple stylesheets
-				// accumulate into one buffer, allowing us to reduce how often new stylesheets
-				// are inserted in the browser. Appending a stylesheet and waiting for the
-				// browser to repaint is fairly expensive. (T47810)
-				if ( cssText ) {
-					// Don't extend the buffer if the item needs its own stylesheet.
-					// Keywords like `@import` are only valid at the start of a stylesheet (T37562).
-					if ( !cssBuffer || cssText.slice( 0, '@import'.length ) !== '@import' ) {
-						// Linebreak for somewhat distinguishable sections
-						cssBuffer += '\n' + cssText;
-						if ( !cssBufferTimer ) {
-							cssBufferTimer = rAF( function () {
-								// Wrap in anonymous function that takes no arguments
-								// Support: Firefox < 13
-								// Firefox 12 has non-standard behaviour of passing a number
-								// as first argument to a setTimeout callback.
-								// http://benalman.com/news/2009/07/the-mysterious-firefox-settime/
-								addEmbeddedCSS();
-							} );
-						}
-						return;
-					}
-
-				// This is a scheduled flush for the buffer
-				} else {
-					cssBufferTimer = null;
-					cssText = cssBuffer;
-					cssBuffer = '';
-				}
-
-				newStyleTag( cssText, marker );
-
-				fireCallbacks();
 			}
 
 			/**
