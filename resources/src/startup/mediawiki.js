@@ -1141,8 +1141,8 @@
 			 * @param {string} module Module name to execute
 			 */
 			function execute( module ) {
-				var key, value, media, i, urls, cssHandle, checkCssHandles, runScript,
-					cssHandlesRegistered = false;
+				var key, value, media, i, urls, cssHandle, siteDeps, siteDepErr, runScript,
+					cssPending = 0;
 
 				if ( !hasOwn.call( registry, module ) ) {
 					throw new Error( 'Module has not been registered yet: ' + module );
@@ -1232,46 +1232,34 @@
 					mw.templates.set( module, registry[ module ].templates );
 				}
 
-				// Make sure we don't run the scripts until all stylesheet insertions have completed.
-				( function () {
-					var pending = 0;
-					checkCssHandles = function () {
-						var ex, dependencies;
-						// cssHandlesRegistered ensures we don't take off too soon, e.g. when
-						// one of the cssHandles is fired while we're still creating more handles.
-						if ( cssHandlesRegistered && pending === 0 && runScript ) {
-							if ( module === 'user' ) {
-								// Implicit dependency on the site module. Not real dependency because
-								// it should run after 'site' regardless of whether it succeeds or fails.
-								// Note: This is a simplified version of mw.loader.using(), inlined here
-								// as using() depends on jQuery (T192623).
-								try {
-									dependencies = resolve( [ 'site' ] );
-								} catch ( e ) {
-									ex = e;
-									runScript();
-								}
-								if ( ex === undefined ) {
-									enqueue( dependencies, runScript, runScript );
-								}
-							} else {
-								runScript();
-							}
-							runScript = undefined; // Revoke
+				// Adding of stylesheets is asynchronous via addEmbeddedCSS().
+				// The below function uses a counting semaphore to make sure we don't call
+				// runScript() until after this module's stylesheets have been inserted
+				// into the DOM.
+				cssHandle = function () {
+					// Increase semaphore, when creating a callback for addEmbeddedCSS.
+					cssPending++;
+					return function () {
+						var runScriptCopy;
+						// Decrease semaphore, when said callback is invoked.
+						cssPending--;
+						if ( cssPending === 0 ) {
+							// Paranoia:
+							// This callback is exposed to addEmbeddedCSS, which is outside the execute()
+							// function and is not concerned with state-machine integrity. In turn,
+							// addEmbeddedCSS() actually exposes stuff further into the browser (rAF).
+							// If increment and decrement callbacks happen in the wrong order, or start
+							// again afterwards, then this branch could be reached multiple times.
+							// To protect the integrity of the state-machine, prevent that from happening
+							// by making runScript() cannot be called more than once.  We store a private
+							// reference when we first reach this branch, then deference the original, and
+							// call our reference to it.
+							runScriptCopy = runScript;
+							runScript = undefined;
+							runScriptCopy();
 						}
 					};
-					cssHandle = function () {
-						var check = checkCssHandles;
-						pending++;
-						return function () {
-							if ( check ) {
-								pending--;
-								check();
-								check = undefined; // Revoke
-							}
-						};
-					};
-				}() );
+				};
 
 				// Process styles (see also mw.loader.implement)
 				// * back-compat: { <media>: css }
@@ -1325,14 +1313,29 @@
 					}
 				}
 
-				// End profiling of execute()-self before we call checkCssHandles(),
-				// which (sometimes asynchronously) calls runScript(), which we want
-				// to measure separately without overlap.
+				// End profiling of execute()-self before we call runScript(),
+				// which we want to measure separately without overlap.
 				$CODE.profileExecuteEnd();
 
-				// Kick off.
-				cssHandlesRegistered = true;
-				checkCssHandles();
+				if ( module === 'user' ) {
+					// Implicit dependency on the site module. Not a real dependency because it should
+					// run after 'site' regardless of whether it succeeds or fails.
+					// Note: This is a simplified version of mw.loader.using(), inlined here because
+					// mw.loader.using() is part of mediawiki.base (depends on jQuery; T192623).
+					try {
+						siteDeps = resolve( [ 'site' ] );
+					} catch ( e ) {
+						siteDepErr = e;
+						runScript();
+					}
+					if ( siteDepErr === undefined ) {
+						enqueue( siteDeps, runScript, runScript );
+					}
+				} else if ( cssPending === 0 ) {
+					// Regular module without styles
+					runScript();
+				}
+				// else: runScript will get called via cssHandle()
 			}
 
 			function sortQuery( o ) {
