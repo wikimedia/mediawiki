@@ -4399,7 +4399,7 @@ $wgPreprocessorCacheThreshold = 1000;
 $wgEnableScaryTranscluding = false;
 
 /**
- * Expiry time for transcluded templates cached in transcache database table.
+ * Expiry time for transcluded templates cached in object cache.
  * Only used $wgEnableInterwikiTranscluding is set to true.
  */
 $wgTranscludeCacheExpiry = 3600;
