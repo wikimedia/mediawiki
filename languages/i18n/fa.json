@@ -2140,7 +2140,7 @@
 	"activeusers-noresult": "کاربری پیدا نشد.",
 	"activeusers-submit": "نمایش کاربران فعال",
 	"listgrouprights": "اختیارات گروه‌های کاربری",
-	"listgrouprights-summary": "فهرست زیر شامل گروه‌های کاربری تعریف شده در این ویکی و اختیارات داده شده به آن‌ها است.\nاطلاعات بیشتر در مورد هر یک از اختیارات را در [[{{MediaWiki:Listgrouprights-helppage}}]] بیابید.",
+	"listgrouprights-summary": "فهرست زیر شامل گروه‌های کاربری تعریف شده در این ویکی و اختیارات داده شده به آن‌ها است.\nاطلاعات بیشتر در مورد هر کدام از آنها را در [[{{MediaWiki:Listgrouprights-helppage}}|اختیارات گروه‌های کاربری]] بیابید.",
 	"listgrouprights-key": "* <span class=\"listgrouprights-granted\">اختیارات داده‌شده</span>\n* <span class=\"listgrouprights-revoked\">اختیارات گرفته‌شده</span>",
 	"listgrouprights-group": "گروه",
 	"listgrouprights-rights": "دسترسی‌ها",

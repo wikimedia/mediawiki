@@ -3427,7 +3427,7 @@
 	"confirm-rollback-top": "Bewerkingen op deze pagina ongedaan maken?",
 	"confirm-mcrundo-title": "Een wijziging ongedaan maken",
 	"mcrundofailed": "Ongedaan maken mislukt",
-	"mcrundo-missingparam": "Er ontbreken benodigde parameters in het verzoek.",
+	"mcrundo-missingparam": "Er ontbreken nodige parameters in het verzoek.",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "← vorige pagina",
 	"imgmultipagenext": "volgende pagina →",
