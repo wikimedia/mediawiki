@@ -2053,25 +2053,31 @@ class Article implements Page {
 	 * Perform a deletion and output success or failure messages
 	 * @param string $reason
 	 * @param bool $suppress
+	 * @param bool $immediate false allows deleting over time via the job queue
+	 * @throws FatalError
+	 * @throws MWException
 	 */
-	public function doDelete( $reason, $suppress = false ) {
+	public function doDelete( $reason, $suppress = false, $immediate = false ) {
 		$error = '';
 		$context = $this->getContext();
 		$outputPage = $context->getOutput();
 		$user = $context->getUser();
-		$status = $this->mPage->doDeleteArticleReal( $reason, $suppress, 0, true, $error, $user );
+		$status = $this->mPage->doDeleteArticleReal( $reason, $suppress, 0, true, $error, $user,
+			[], 'delete', $immediate );
 
-		if ( $status->isGood() ) {
+		if ( $status->isOK() ) {
 			$deleted = $this->getTitle()->getPrefixedText();
 
 			$outputPage->setPageTitle( wfMessage( 'actioncomplete' ) );
 			$outputPage->setRobotPolicy( 'noindex,nofollow' );
 
-			$loglink = '[[Special:Log/delete|' . wfMessage( 'deletionlog' )->text() . ']]';
-
-			$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
-
-			Hooks::run( 'ArticleDeleteAfterSuccess', [ $this->getTitle(), $outputPage ] );
+			if ( $status->isGood() ) {
+				$loglink = '[[Special:Log/delete|' . wfMessage( 'deletionlog' )->text() . ']]';
+				$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
+				Hooks::run( 'ArticleDeleteAfterSuccess', [ $this->getTitle(), $outputPage ] );
+			} else {
+				$outputPage->addWikiMsg( 'delete-scheduled', wfEscapeWikiText( $deleted ) );
+			}
 
 			$outputPage->returnToMain( false );
 		} else {
@@ -2297,10 +2303,10 @@ class Article implements Page {
 	 */
 	public function doDeleteArticleReal(
 		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null,
-		$tags = []
+		$tags = [], $immediate = false
 	) {
 		return $this->mPage->doDeleteArticleReal(
-			$reason, $suppress, $u1, $u2, $error, $user, $tags
+			$reason, $suppress, $u1, $u2, $error, $user, $tags, 'delete', $immediate
 		);
 	}
 
@@ -2826,12 +2832,16 @@ class Article implements Page {
 	 * @param int|null $u1 Unused
 	 * @param bool|null $u2 Unused
 	 * @param string &$error
+	 * @param bool $immediate false allows deleting over time via the job queue
 	 * @return bool
+	 * @throws FatalError
+	 * @throws MWException
 	 */
 	public function doDeleteArticle(
-		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = ''
+		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', $immediate = false
 	) {
-		return $this->mPage->doDeleteArticle( $reason, $suppress, $u1, $u2, $error );
+		return $this->mPage->doDeleteArticle( $reason, $suppress, $u1, $u2, $error,
+			null, $immediate );
 	}
 
 	/**

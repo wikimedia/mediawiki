@@ -2513,6 +2513,28 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
+	 * Determines if deletion of this page would be batched (executed over time by the job queue)
+	 * or not (completed in the same request as the delete call).
+	 *
+	 * It is unlikely but possible that an edit from another request could push the page over the
+	 * batching threshold after this function is called, but before the caller acts upon the
+	 * return value.  Callers must decide for themselves how to deal with this.  $safetyMargin
+	 * is provided as an unreliable but situationally useful help for some common cases.
+	 *
+	 * @param int $safetyMargin Added to the revision count when checking for batching
+	 * @return bool True if deletion would be batched, false otherwise
+	 */
+	public function isBatchedDelete( $safetyMargin = 0 ) {
+		global $wgDeleteRevisionsBatchSize;
+
+		$dbr = wfGetDB( DB_REPLICA );
+		$revCount = $this->getRevisionStore()->countRevisionsByPageId( $dbr, $this->getId() );
+		$revCount += $safetyMargin;
+
+		return $revCount >= $wgDeleteRevisionsBatchSize;
+	}
+
+	/**
 	 * Same as doDeleteArticleReal(), but returns a simple boolean. This is kept around for
 	 * backwards compatibility, if you care about error reporting you should use
 	 * doDeleteArticleReal() instead.
@@ -2526,13 +2548,20 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param bool|null $u2 Unused
 	 * @param array|string &$error Array of errors to append to
 	 * @param User|null $user The deleting user
+	 * @param bool $immediate false allows deleting over time via the job queue
 	 * @return bool True if successful
+	 * @throws FatalError
+	 * @throws MWException
 	 */
 	public function doDeleteArticle(
-		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null
+		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null,
+		$immediate = false
 	) {
-		$status = $this->doDeleteArticleReal( $reason, $suppress, $u1, $u2, $error, $user );
-		return $status->isGood();
+		$status = $this->doDeleteArticleReal( $reason, $suppress, $u1, $u2, $error, $user,
+			[], 'delete', $immediate );
+
+		// Returns true if the page was actually deleted, or is scheduled for deletion
+		return $status->isOK();
 	}
 
 	/**
@@ -2550,26 +2579,22 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param User|null $deleter The deleting user
 	 * @param array $tags Tags to apply to the deletion action
 	 * @param string $logsubtype
+	 * @param bool $immediate false allows deleting over time via the job queue
 	 * @return Status Status object; if successful, $status->value is the log_id of the
 	 *   deletion log entry. If the page couldn't be deleted because it wasn't
 	 *   found, $status is a non-fatal 'cannotdelete' error
+	 * @throws FatalError
+	 * @throws MWException
 	 */
 	public function doDeleteArticleReal(
 		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $deleter = null,
-		$tags = [], $logsubtype = 'delete'
+		$tags = [], $logsubtype = 'delete', $immediate = false
 	) {
-		global $wgUser, $wgContentHandlerUseDB, $wgCommentTableSchemaMigrationStage,
-			$wgActorTableSchemaMigrationStage, $wgMultiContentRevisionSchemaMigrationStage;
+		global $wgUser;
 
 		wfDebug( __METHOD__ . "\n" );
 
 		$status = Status::newGood();
-
-		if ( $this->mTitle->getDBkey() === '' ) {
-			$status->error( 'cannotdelete',
-				wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
-			return $status;
-		}
 
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$wikiPage = $this;
@@ -2584,6 +2609,26 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 			return $status;
 		}
+
+		return $this->doDeleteArticleBatched( $reason, $suppress, $deleter, $tags,
+			$logsubtype, $immediate );
+	}
+
+	/**
+	 * Back-end article deletion
+	 *
+	 * Only invokes batching via the job queue if necessary per $wgDeleteRevisionsBatchSize.
+	 * Deletions can often be completed inline without involving the job queue.
+	 *
+	 * Potentially called many times per deletion operation for pages with many revisions.
+	 */
+	public function doDeleteArticleBatched(
+		$reason, $suppress, User $deleter, $tags,
+		$logsubtype, $immediate = false, $webRequestId = null
+	) {
+		wfDebug( __METHOD__ . "\n" );
+
+		$status = Status::newGood();
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
@@ -2603,11 +2648,7 @@ class WikiPage implements Page, IDBAccessObject {
 			return $status;
 		}
 
-		// Given the lock above, we can be confident in the title and page ID values
-		$namespace = $this->getTitle()->getNamespace();
-		$dbKey = $this->getTitle()->getDBkey();
-
-		// At this point we are now comitted to returning an OK
+		// At this point we are now committed to returning an OK
 		// status unless some DB query error or other exception comes up.
 		// This way callers don't have to call rollback() if $status is bad
 		// unless they actually try to catch exceptions (which is rare).
@@ -2622,6 +2663,133 @@ class WikiPage implements Page, IDBAccessObject {
 
 			$content = null;
 		}
+
+		// Archive revisions.  In immediate mode, archive all revisions.  Otherwise, archive
+		// one batch of revisions and defer archival of any others to the job queue.
+		$explictTrxLogged = false;
+		while ( true ) {
+			$done = $this->archiveRevisions( $dbw, $id, $suppress );
+			if ( $done || !$immediate ) {
+				break;
+			}
+			$dbw->endAtomic( __METHOD__ );
+			if ( $dbw->explicitTrxActive() ) {
+				// Explict transactions may never happen here in practice.  Log to be sure.
+				if ( !$explictTrxLogged ) {
+					$explictTrxLogged = true;
+					LoggerFactory::getInstance( 'wfDebug' )->debug(
+						'explicit transaction active in ' . __METHOD__ . ' while deleting {title}', [
+						'title' => $this->getTitle()->getText(),
+					] );
+				}
+				continue;
+			}
+			if ( $dbw->trxLevel() ) {
+				$dbw->commit();
+			}
+			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+			$lbFactory->waitForReplication();
+			$dbw->startAtomic( __METHOD__ );
+		}
+
+		// If done archiving, also delete the article.
+		if ( !$done ) {
+			$dbw->endAtomic( __METHOD__ );
+
+			$jobParams = [
+				'wikiPageId' => $id,
+				'requestId' => $webRequestId ?? WebRequest::getRequestId(),
+				'reason' => $reason,
+				'suppress' => $suppress,
+				'userId' => $deleter->getId(),
+				'tags' => json_encode( $tags ),
+				'logsubtype' => $logsubtype,
+			];
+
+			$job = new DeletePageJob( $this->getTitle(), $jobParams );
+			JobQueueGroup::singleton()->push( $job );
+
+			$status->warning( 'delete-scheduled',
+				wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
+		} else {
+			// Get archivedRevisionCount by db query, because there's no better alternative.
+			// Jobs cannot pass a count of archived revisions to the next job, because additional
+			// deletion operations can be started while the first is running.  Jobs from each
+			// gracefully interleave, but would not know about each other's count.  Deduplication
+			// in the job queue to avoid simultaneous deletion operations would add overhead.
+			// Number of archived revisions cannot be known beforehand, because edits can be made
+			// while deletion operations are being processed, changing the number of archivals.
+			$archivedRevisionCount = $dbw->selectRowCount(
+				'archive', '1', [ 'ar_page_id' => $id ], __METHOD__
+			);
+
+			// Clone the title and wikiPage, so we have the information we need when
+			// we log and run the ArticleDeleteComplete hook.
+			$logTitle = clone $this->mTitle;
+			$wikiPageBeforeDelete = clone $this;
+
+			// Now that it's safely backed up, delete it
+			$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
+
+			// Log the deletion, if the page was suppressed, put it in the suppression log instead
+			$logtype = $suppress ? 'suppress' : 'delete';
+
+			$logEntry = new ManualLogEntry( $logtype, $logsubtype );
+			$logEntry->setPerformer( $deleter );
+			$logEntry->setTarget( $logTitle );
+			$logEntry->setComment( $reason );
+			$logEntry->setTags( $tags );
+			$logid = $logEntry->insert();
+
+			$dbw->onTransactionPreCommitOrIdle(
+				function () use ( $logEntry, $logid ) {
+					// T58776: avoid deadlocks (especially from FileDeleteForm)
+					$logEntry->publish( $logid );
+				},
+				__METHOD__
+			);
+
+			$dbw->endAtomic( __METHOD__ );
+
+			$this->doDeleteUpdates( $id, $content, $revision, $deleter );
+
+			Hooks::run( 'ArticleDeleteComplete', [
+				&$wikiPageBeforeDelete,
+				&$deleter,
+				$reason,
+				$id,
+				$content,
+				$logEntry,
+				$archivedRevisionCount
+			] );
+			$status->value = $logid;
+
+			// Show log excerpt on 404 pages rather than just a link
+			$cache = MediaWikiServices::getInstance()->getMainObjectStash();
+			$key = $cache->makeKey( 'page-recent-delete', md5( $logTitle->getPrefixedText() ) );
+			$cache->set( $key, 1, $cache::TTL_DAY );
+		}
+
+		return $status;
+	}
+
+	/**
+	 * Archives revisions as part of page deletion.
+	 *
+	 * @param IDatabase $dbw
+	 * @param int $id
+	 * @param bool $suppress Suppress all revisions and log the deletion in
+	 *   the suppression log instead of the deletion log
+	 * @return bool
+	 */
+	protected function archiveRevisions( $dbw, $id, $suppress ) {
+		global $wgContentHandlerUseDB, $wgMultiContentRevisionSchemaMigrationStage,
+			$wgCommentTableSchemaMigrationStage, $wgActorTableSchemaMigrationStage,
+			$wgDeleteRevisionsBatchSize;
+
+		// Given the lock above, we can be confident in the title and page ID values
+		$namespace = $this->getTitle()->getNamespace();
+		$dbKey = $this->getTitle()->getDBkey();
 
 		$commentStore = CommentStore::getStore();
 		$actorMigration = ActorMigration::newMigration();
@@ -2669,13 +2837,14 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 		}
 
-			// Get all of the page revisions
+		// Get as many of the page revisions as we are allowed to.  The +1 lets us recognize the
+		// unusual case where there were exactly $wgDeleteRevisionBatchSize revisions remaining.
 		$res = $dbw->select(
 			$revQuery['tables'],
 			$revQuery['fields'],
 			[ 'rev_page' => $id ],
 			__METHOD__,
-			[],
+			[ 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => $wgDeleteRevisionsBatchSize + 1 ],
 			$revQuery['joins']
 		);
 
@@ -2686,16 +2855,22 @@ class WikiPage implements Page, IDBAccessObject {
 		/** @var int[] Revision IDs of edits that were made by IPs */
 		$ipRevIds = [];
 
+		$done = true;
 		foreach ( $res as $row ) {
+			if ( count( $revids ) >= $wgDeleteRevisionsBatchSize ) {
+				$done = false;
+				break;
+			}
+
 			$comment = $commentStore->getComment( 'rev_comment', $row );
 			$user = User::newFromAnyId( $row->rev_user, $row->rev_user_text, $row->rev_actor );
 			$rowInsert = [
-				'ar_namespace'  => $namespace,
-				'ar_title'      => $dbKey,
-				'ar_timestamp'  => $row->rev_timestamp,
-				'ar_minor_edit' => $row->rev_minor_edit,
-				'ar_rev_id'     => $row->rev_id,
-				'ar_parent_id'  => $row->rev_parent_id,
+					'ar_namespace'  => $namespace,
+					'ar_title'      => $dbKey,
+					'ar_timestamp'  => $row->rev_timestamp,
+					'ar_minor_edit' => $row->rev_minor_edit,
+					'ar_rev_id'     => $row->rev_id,
+					'ar_parent_id'  => $row->rev_parent_id,
 					/**
 					 * ar_text_id should probably not be written to when the multi content schema has
 					 * been migrated to (wgMultiContentRevisionSchemaMigrationStage) however there is no
@@ -2704,11 +2879,11 @@ class WikiPage implements Page, IDBAccessObject {
 					 * Task: https://phabricator.wikimedia.org/T190148
 					 * Copying the value from the revision table should not lead to any issues for now.
 					 */
-				'ar_len'        => $row->rev_len,
-				'ar_page_id'    => $id,
-				'ar_deleted'    => $suppress ? $bitfield : $row->rev_deleted,
-				'ar_sha1'       => $row->rev_sha1,
-			] + $commentStore->insert( $dbw, 'ar_comment', $comment )
+					'ar_len'        => $row->rev_len,
+					'ar_page_id'    => $id,
+					'ar_deleted'    => $suppress ? $bitfield : $row->rev_deleted,
+					'ar_sha1'       => $row->rev_sha1,
+				] + $commentStore->insert( $dbw, 'ar_comment', $comment )
 				+ $actorMigration->getInsertValues( $dbw, 'ar_user', $user );
 
 			if ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
@@ -2729,70 +2904,27 @@ class WikiPage implements Page, IDBAccessObject {
 				$ipRevIds[] = $row->rev_id;
 			}
 		}
-		// Copy them into the archive table
-		$dbw->insert( 'archive', $rowsInsert, __METHOD__ );
-		// Save this so we can pass it to the ArticleDeleteComplete hook.
-		$archivedRevisionCount = $dbw->affectedRows();
 
-		// Clone the title and wikiPage, so we have the information we need when
-		// we log and run the ArticleDeleteComplete hook.
-		$logTitle = clone $this->mTitle;
-		$wikiPageBeforeDelete = clone $this;
+		// This conditional is just a sanity check
+		if ( count( $revids ) > 0 ) {
+			// Copy them into the archive table
+			$dbw->insert( 'archive', $rowsInsert, __METHOD__ );
 
-		// Now that it's safely backed up, delete it
-		$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
-		$dbw->delete( 'revision', [ 'rev_page' => $id ], __METHOD__ );
-		if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
-			$dbw->delete( 'revision_comment_temp', [ 'revcomment_rev' => $revids ], __METHOD__ );
-		}
-		if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
-			$dbw->delete( 'revision_actor_temp', [ 'revactor_rev' => $revids ], __METHOD__ );
-		}
+			$dbw->delete( 'revision', [ 'rev_id' => $revids ], __METHOD__ );
+			if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
+				$dbw->delete( 'revision_comment_temp', [ 'revcomment_rev' => $revids ], __METHOD__ );
+			}
+			if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+				$dbw->delete( 'revision_actor_temp', [ 'revactor_rev' => $revids ], __METHOD__ );
+			}
 
-		// Also delete records from ip_changes as applicable.
-		if ( count( $ipRevIds ) > 0 ) {
-			$dbw->delete( 'ip_changes', [ 'ipc_rev_id' => $ipRevIds ], __METHOD__ );
+			// Also delete records from ip_changes as applicable.
+			if ( count( $ipRevIds ) > 0 ) {
+				$dbw->delete( 'ip_changes', [ 'ipc_rev_id' => $ipRevIds ], __METHOD__ );
+			}
 		}
 
-		// Log the deletion, if the page was suppressed, put it in the suppression log instead
-		$logtype = $suppress ? 'suppress' : 'delete';
-
-		$logEntry = new ManualLogEntry( $logtype, $logsubtype );
-		$logEntry->setPerformer( $deleter );
-		$logEntry->setTarget( $logTitle );
-		$logEntry->setComment( $reason );
-		$logEntry->setTags( $tags );
-		$logid = $logEntry->insert();
-
-		$dbw->onTransactionPreCommitOrIdle(
-			function () use ( $logEntry, $logid ) {
-				// T58776: avoid deadlocks (especially from FileDeleteForm)
-				$logEntry->publish( $logid );
-			},
-			__METHOD__
-		);
-
-		$dbw->endAtomic( __METHOD__ );
-
-		$this->doDeleteUpdates( $id, $content, $revision, $deleter );
-
-		Hooks::run( 'ArticleDeleteComplete', [
-			&$wikiPageBeforeDelete,
-			&$deleter,
-			$reason,
-			$id,
-			$content,
-			$logEntry,
-			$archivedRevisionCount
-		] );
-		$status->value = $logid;
-
-		// Show log excerpt on 404 pages rather than just a link
-		$cache = MediaWikiServices::getInstance()->getMainObjectStash();
-		$key = $cache->makeKey( 'page-recent-delete', md5( $logTitle->getPrefixedText() ) );
-		$cache->set( $key, 1, $cache::TTL_DAY );
-
-		return $status;
+		return $done;
 	}
 
 	/**
