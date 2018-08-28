@@ -55,13 +55,13 @@
 			 * @class
 			 */
 			function StringSet() {
-				this.set = {};
+				this.set = Object.create( null );
 			}
 			StringSet.prototype.add = function ( value ) {
 				this.set[ value ] = true;
 			};
 			StringSet.prototype.has = function ( value ) {
-				return hasOwn.call( this.set, value );
+				return value in this.set;
 			};
 			return StringSet;
 		}() );
@@ -140,7 +140,7 @@
 	 *  copied in one direction only. Changes to globals do not reflect in the map.
 	 */
 	function Map( global ) {
-		this.values = {};
+		this.values = Object.create( null );
 		if ( global === true ) {
 			// Override #set to also set the global variable
 			this.set = function ( selection, value ) {
@@ -185,7 +185,7 @@
 				results = {};
 				for ( i = 0; i < selection.length; i++ ) {
 					if ( typeof selection[ i ] === 'string' ) {
-						results[ selection[ i ] ] = hasOwn.call( this.values, selection[ i ] ) ?
+						results[ selection[ i ] ] = selection[ i ] in this.values ?
 							this.values[ selection[ i ] ] :
 							fallback;
 					}
@@ -194,7 +194,7 @@
 			}
 
 			if ( typeof selection === 'string' ) {
-				return hasOwn.call( this.values, selection ) ?
+				return selection in this.values ?
 					this.values[ selection ] :
 					fallback;
 			}
@@ -247,13 +247,13 @@
 			var i;
 			if ( Array.isArray( selection ) ) {
 				for ( i = 0; i < selection.length; i++ ) {
-					if ( typeof selection[ i ] !== 'string' || !hasOwn.call( this.values, selection[ i ] ) ) {
+					if ( typeof selection[ i ] !== 'string' || !( selection[ i ] in this.values ) ) {
 						return false;
 					}
 				}
 				return true;
 			}
-			return typeof selection === 'string' && hasOwn.call( this.values, selection );
+			return typeof selection === 'string' && selection in this.values;
 		}
 	};
 
