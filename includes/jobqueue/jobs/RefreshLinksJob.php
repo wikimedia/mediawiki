@@ -146,6 +146,11 @@ class RefreshLinksJob extends Job {
 		$dbw = $lbFactory->getMainLB()->getConnection( DB_MASTER );
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scopedLock = LinksUpdate::acquirePageLock( $dbw, $page->getId(), 'job' );
+		if ( $scopedLock === null ) {
+			// Another job is already updating the page, likely for an older revision (T170596).
+			$this->setLastError( 'LinksUpdate already running for this page, try again later.' );
+			return false;
+		}
 		// Get the latest ID *after* acquirePageLock() flushed the transaction.
 		// This is used to detect edits/moves after loadPageData() but before the scope lock.
 		// The works around the chicken/egg problem of determining the scope lock key.
