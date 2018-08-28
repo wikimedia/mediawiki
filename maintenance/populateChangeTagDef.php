@@ -23,7 +23,7 @@ require_once __DIR__ . '/Maintenance.php';
  *
  * @ingroup Maintenance
  */
-class PopulateChangeTagDef extends Maintenance {
+class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 	/** @var Wikimedia\Rdbms\ILBFactory */
 	protected $lbFactory;
 
@@ -43,11 +43,24 @@ class PopulateChangeTagDef extends Maintenance {
 
 	public function execute() {
 		global $wgChangeTagsSchemaMigrationStage;
+		if ( $wgChangeTagsSchemaMigrationStage === MIGRATION_OLD ) {
+			// Return "success", but don't flag it as done so the next run will retry
+			$this->output( '... Not run, $wgChangeTagsSchemaMigrationStage === MIGRATION_OLD' . "\n" );
+			return true;
+		}
+		return parent::execute();
+	}
+
+	protected function doDBUpdates() {
 		$this->lbFactory = MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$this->setBatchSize( $this->getOption( 'batch-size', $this->getBatchSize() ) );
 
-		$this->countDown( 5 );
-		if ( $wgChangeTagsSchemaMigrationStage < MIGRATION_NEW ) {
+		if ( $this->lbFactory->getMainLB()->getConnection( DB_REPLICA )->fieldExists(
+				'change_tag',
+				'ct_tag',
+				__METHOD__
+			)
+		) {
 			if ( !$this->hasOption( 'populate-only' ) ) {
 				$this->updateCountTag();
 			}
@@ -58,6 +71,8 @@ class PopulateChangeTagDef extends Maintenance {
 
 		// TODO: Implement
 		// $this->cleanZeroCountRows();
+
+		return true;
 	}
 
 	private function updateCountTagId() {
@@ -195,6 +210,9 @@ class PopulateChangeTagDef extends Maintenance {
 		$this->output( "Finished adding ct_tag_id = {$tagId} for ct_tag = {$tagName}\n" );
 	}
 
+	protected function getUpdateKey() {
+		return __CLASS__;
+	}
 }
 
 $maintClass = PopulateChangeTagDef::class;

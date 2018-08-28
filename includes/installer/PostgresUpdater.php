@@ -592,6 +592,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addIndex', 'site_identifiers', 'site_identifiers_pkey', 'patch-site_identifiers-pk.sql' ],
 			[ 'addPgIndex', 'recentchanges', 'rc_this_oldid', '(rc_this_oldid)' ],
 			[ 'dropTable', 'transcache' ],
+			[ 'runMaintenance', PopulateChangeTagDef::class, 'maintenance/populateChangeTagDef.php' ],
+			[ 'addIndex', 'change_tag', 'change_tag_rc_tag_id',
+				'patch-change_tag-change_tag_rc_tag_id.sql' ],
 		];
 	}
 

@@ -9028,7 +9028,7 @@ $wgExpiryWidgetNoDatePicker = false;
  * @since 1.32
  * @var int One of the MIGRATION_* constants
  */
-$wgChangeTagsSchemaMigrationStage = MIGRATION_OLD;
+$wgChangeTagsSchemaMigrationStage = MIGRATION_WRITE_BOTH;
 
 /**
  * Temporarily flag to use change_tag_def table as backend of change tag statistics.

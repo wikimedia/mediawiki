@@ -54,7 +54,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'doLogUsertextPopulation' ],
 			[ 'doLogSearchPopulation' ],
 			[ 'addTable', 'l10n_cache', 'patch-l10n_cache.sql' ],
-			[ 'addIndex', 'change_tag', 'change_tag_rc_tag', 'patch-change_tag-indexes.sql' ],
+			[ 'addIndex', 'tag_summary', 'tag_summary_rc_id', 'patch-change_tag-indexes.sql' ],
 			[ 'addField', 'redirect', 'rd_interwiki', 'patch-rd_interwiki.sql' ],
 			[ 'sqliteSetupSearchindex' ],
 
@@ -231,6 +231,9 @@ class SqliteUpdater extends DatabaseUpdater {
 				'patch-site_identifiers-fix-pk.sql' ],
 			[ 'addIndex', 'recentchanges', 'rc_this_oldid', 'patch-recentchanges-rc_this_oldid-index.sql' ],
 			[ 'dropTable', 'transcache' ],
+			[ 'runMaintenance', PopulateChangeTagDef::class, 'maintenance/populateChangeTagDef.php' ],
+			[ 'addIndex', 'change_tag', 'change_tag_rc_tag_id',
+				'patch-change_tag-change_tag_rc_tag_id.sql' ],
 		];
 	}
 
