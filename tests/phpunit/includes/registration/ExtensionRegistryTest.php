@@ -57,8 +57,27 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 		$registry->loadFromQueue();
 		$this->assertArrayHasKey( 'FooBar', $registry->getAllThings() );
 		$this->assertTrue( $registry->isLoaded( 'FooBar' ) );
+		$this->assertTrue( $registry->isLoaded( 'FooBar', '*' ) );
 		$this->assertSame( [ 'test' ], $registry->getAttribute( 'FooBarAttr' ) );
 		$this->assertSame( [], $registry->getAttribute( 'NotLoadedAttr' ) );
+	}
+
+	public function testLoadFromQueueWithConstraintWithVersion() {
+		$registry = new ExtensionRegistry();
+		$registry->queue( "{$this->dataDir}/good_with_version.json" );
+		$registry->loadFromQueue();
+		$this->assertTrue( $registry->isLoaded( 'FooBar', '>= 1.2.0' ) );
+		$this->assertFalse( $registry->isLoaded( 'FooBar', '^1.3.0' ) );
+	}
+
+	/**
+	 * @expectedException LogicException
+	 */
+	public function testLoadFromQueueWithConstraintWithoutVersion() {
+		$registry = new ExtensionRegistry();
+		$registry->queue( "{$this->dataDir}/good.json" );
+		$registry->loadFromQueue();
+		$registry->isLoaded( 'FooBar', '>= 1.2.0' );
 	}
 
 	/**
