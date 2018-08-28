@@ -56,7 +56,6 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'addTable', 'l10n_cache', 'patch-l10n_cache.sql' ],
 			[ 'addIndex', 'change_tag', 'change_tag_rc_tag', 'patch-change_tag-indexes.sql' ],
 			[ 'addField', 'redirect', 'rd_interwiki', 'patch-rd_interwiki.sql' ],
-			[ 'doUpdateTranscacheField' ],
 			[ 'sqliteSetupSearchindex' ],
 
 			// 1.17
@@ -184,7 +183,6 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'querycache_info', 'qci_type', 'PRIMARY', false,
 				'patch-querycache_info-fix-pk.sql' ],
 			[ 'renameIndex', 'site_stats', 'ss_row_id', 'PRIMARY', false, 'patch-site_stats-fix-pk.sql' ],
-			[ 'renameIndex', 'transcache', 'tc_url_idx', 'PRIMARY', false, 'patch-transcache-fix-pk.sql' ],
 			[ 'renameIndex', 'user_former_groups', 'ufg_user_group', 'PRIMARY', false,
 				'patch-user_former_groups-fix-pk.sql' ],
 			[ 'renameIndex', 'user_properties', 'user_properties_user_property', 'PRIMARY', false,
@@ -232,6 +230,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'site_identifiers', 'site_ids_type', 'PRIMARY', false,
 				'patch-site_identifiers-fix-pk.sql' ],
 			[ 'addIndex', 'recentchanges', 'rc_this_oldid', 'patch-recentchanges-rc_this_oldid-index.sql' ],
+			[ 'dropTable', 'transcache' ],
 		];
 	}
 

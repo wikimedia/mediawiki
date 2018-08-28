@@ -775,13 +775,6 @@ CREATE TABLE &mw_prefix.objectcache (
 );
 CREATE INDEX &mw_prefix.objectcache_i01 ON &mw_prefix.objectcache (exptime);
 
-CREATE TABLE &mw_prefix.transcache (
-  tc_url       VARCHAR2(255)         NOT NULL,
-  tc_contents  CLOB         NOT NULL,
-  tc_time      TIMESTAMP(6) WITH TIME ZONE  NOT NULL
-);
-CREATE UNIQUE INDEX &mw_prefix.transcache_u01 ON &mw_prefix.transcache (tc_url);
-
 
 CREATE SEQUENCE logging_log_id_seq;
 CREATE TABLE &mw_prefix.logging (
