@@ -90,6 +90,59 @@ class ParserOutputTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers ParserOutput::getWrapperDivClass
+	 * @covers ParserOutput::addWrapperDivClass
+	 * @covers ParserOutput::clearWrapperDivClass
+	 * @covers ParserOutput::getText
+	 */
+	public function testWrapperDivClass() {
+		$po = new ParserOutput();
+
+		$po->setText( 'Kittens' );
+		$this->assertContains( 'Kittens', $po->getText() );
+		$this->assertNotContains( '<div', $po->getText() );
+		$this->assertSame( 'Kittens', $po->getRawText() );
+
+		$po->addWrapperDivClass( 'foo' );
+		$text = $po->getText();
+		$this->assertContains( 'Kittens', $text );
+		$this->assertContains( '<div', $text );
+		$this->assertContains( 'class="foo"', $text );
+
+		$po->addWrapperDivClass( 'bar' );
+		$text = $po->getText();
+		$this->assertContains( 'Kittens', $text );
+		$this->assertContains( '<div', $text );
+		$this->assertContains( 'class="foo bar"', $text );
+
+		$po->addWrapperDivClass( 'bar' ); // second time does nothing, no "foo bar bar".
+		$text = $po->getText( [ 'unwrap' => true ] );
+		$this->assertContains( 'Kittens', $text );
+		$this->assertNotContains( '<div', $text );
+		$this->assertNotContains( 'class="foo bar"', $text );
+
+		$text = $po->getText( [ 'wrapperDivClass' => '' ] );
+		$this->assertContains( 'Kittens', $text );
+		$this->assertNotContains( '<div', $text );
+		$this->assertNotContains( 'class="foo bar"', $text );
+
+		$text = $po->getText( [ 'wrapperDivClass' => 'xyzzy' ] );
+		$this->assertContains( 'Kittens', $text );
+		$this->assertContains( '<div', $text );
+		$this->assertContains( 'class="xyzzy"', $text );
+		$this->assertNotContains( 'class="foo bar"', $text );
+
+		$text = $po->getRawText();
+		$this->assertSame( 'Kittens', $text );
+
+		$po->clearWrapperDivClass();
+		$text = $po->getText();
+		$this->assertContains( 'Kittens', $text );
+		$this->assertNotContains( '<div', $text );
+		$this->assertNotContains( 'class="foo bar"', $text );
+	}
+
+	/**
 	 * @covers ParserOutput::getText
 	 * @dataProvider provideGetText
 	 * @param array $options Options to getText()
@@ -111,7 +164,7 @@ class ParserOutputTest extends MediaWikiTestCase {
 	public static function provideGetText() {
 		// phpcs:disable Generic.Files.LineLength
 		$text = <<<EOF
-<div class="mw-parser-output"><p>Test document.
+<p>Test document.
 </p>
 <mw:toc><div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
 <ul>
@@ -136,7 +189,7 @@ class ParserOutputTest extends MediaWikiTestCase {
 </p>
 <h2><span class="mw-headline" id="Section_3">Section 3</span><mw:editsection page="Test Page" section="4">Section 3</mw:editsection></h2>
 <p>Three
-</p></div>
+</p>
 EOF;
 
 		$dedupText = <<<EOF
@@ -155,85 +208,6 @@ EOF;
 		return [
 			'No options' => [
 				[], $text, <<<EOF
-<div class="mw-parser-output"><p>Test document.
-</p>
-<div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
-<ul>
-<li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
-<li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
-<ul>
-<li class="toclevel-2 tocsection-3"><a href="#Section_2.1"><span class="tocnumber">2.1</span> <span class="toctext">Section 2.1</span></a></li>
-</ul>
-</li>
-<li class="toclevel-1 tocsection-4"><a href="#Section_3"><span class="tocnumber">3</span> <span class="toctext">Section 3</span></a></li>
-</ul>
-</div>
-
-<h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<p>One
-</p>
-<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<p>Two
-</p>
-<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=3" title="Edit section: Section 2.1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
-<p>Two point one
-</p>
-<h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<p>Three
-</p></div>
-EOF
-			],
-			'Disable section edit links' => [
-				[ 'enableSectionEditLinks' => false ], $text, <<<EOF
-<div class="mw-parser-output"><p>Test document.
-</p>
-<div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
-<ul>
-<li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
-<li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
-<ul>
-<li class="toclevel-2 tocsection-3"><a href="#Section_2.1"><span class="tocnumber">2.1</span> <span class="toctext">Section 2.1</span></a></li>
-</ul>
-</li>
-<li class="toclevel-1 tocsection-4"><a href="#Section_3"><span class="tocnumber">3</span> <span class="toctext">Section 3</span></a></li>
-</ul>
-</div>
-
-<h2><span class="mw-headline" id="Section_1">Section 1</span></h2>
-<p>One
-</p>
-<h2><span class="mw-headline" id="Section_2">Section 2</span></h2>
-<p>Two
-</p>
-<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span></h3>
-<p>Two point one
-</p>
-<h2><span class="mw-headline" id="Section_3">Section 3</span></h2>
-<p>Three
-</p></div>
-EOF
-			],
-			'Disable TOC' => [
-				[ 'allowTOC' => false ], $text, <<<EOF
-<div class="mw-parser-output"><p>Test document.
-</p>
-
-<h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<p>One
-</p>
-<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<p>Two
-</p>
-<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=3" title="Edit section: Section 2.1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
-<p>Two point one
-</p>
-<h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<p>Three
-</p></div>
-EOF
-			],
-			'Unwrap text' => [
-				[ 'unwrap' => true ], $text, <<<EOF
 <p>Test document.
 </p>
 <div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
@@ -262,13 +236,54 @@ EOF
 </p>
 EOF
 			],
-			'Unwrap without a mw-parser-output wrapper' => [
-				[ 'unwrap' => true ], '<div class="foobar">Content</div>', '<div class="foobar">Content</div>'
+			'Disable section edit links' => [
+				[ 'enableSectionEditLinks' => false ], $text, <<<EOF
+<p>Test document.
+</p>
+<div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Section_2.1"><span class="tocnumber">2.1</span> <span class="toctext">Section 2.1</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Section_3"><span class="tocnumber">3</span> <span class="toctext">Section 3</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Section_1">Section 1</span></h2>
+<p>One
+</p>
+<h2><span class="mw-headline" id="Section_2">Section 2</span></h2>
+<p>Two
+</p>
+<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span></h3>
+<p>Two point one
+</p>
+<h2><span class="mw-headline" id="Section_3">Section 3</span></h2>
+<p>Three
+</p>
+EOF
 			],
-			'Unwrap with extra comment at end' => [
-				[ 'unwrap' => true ], '<div class="mw-parser-output"><p>Test document.</p></div>
-<!-- Saved in parser cache... -->', '<p>Test document.</p>
-<!-- Saved in parser cache... -->'
+			'Disable TOC, but wrap' => [
+				[ 'allowTOC' => false, 'wrapperDivClass' => 'mw-parser-output' ], $text, <<<EOF
+<div class="mw-parser-output"><p>Test document.
+</p>
+
+<h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>One
+</p>
+<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Two
+</p>
+<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=3" title="Edit section: Section 2.1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>Two point one
+</p>
+<h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Three
+</p></div>
+EOF
 			],
 			'Style deduplication' => [
 				[], $dedupText, <<<EOF

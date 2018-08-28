@@ -180,6 +180,18 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	public function testWrapOutput() {
+		global $wgParser;
+		$title = Title::newFromText( 'foo' );
+		$po = new ParserOptions();
+		$wgParser->parse( 'Hello World', $title, $po );
+		$text = $wgParser->getOutput()->getText();
+
+		$this->assertContains( 'Hello World', $text );
+		$this->assertContains( '<div', $text );
+		$this->assertContains( 'class="mw-parser-output"', $text );
+	}
+
 	// @todo Add tests for cleanSig() / cleanSigInSig(), getSection(),
 	// replaceSection(), getPreloadText()
 }
