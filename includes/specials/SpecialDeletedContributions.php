@@ -61,7 +61,9 @@ class DeletedContributionsPage extends SpecialPage {
 		$opts->validateIntBounds( 'limit', 0, $this->getConfig()->get( 'QueryPageDefaultLimit' ) );
 
 		if ( $par !== null ) {
-			$opts->setValue( 'target', $par );
+			// Beautify the username
+			$par = User::getCanonicalName( $par, false );
+			$opts->setValue( 'target', (string)$par );
 		}
 
 		$ns = $opts->getValue( 'namespace' );
