@@ -99,6 +99,12 @@ TEXT
 				case 'tar':
 					$this->handleTypeTar( $moduleName, $destDir, $info );
 					break;
+				case 'file':
+					$this->handleTypeFile( $moduleName, $destDir, $info );
+					break;
+				case 'multi-file':
+					$this->handleTypeMultiFile( $moduleName, $destDir, $info );
+					break;
 				default:
 					$this->fatalError( "Unknown type '{$info['type']}' for '$moduleName'" );
 			}
@@ -132,6 +138,40 @@ TEXT
 			}
 		}
 		return $data;
+	}
+
+	private function handleTypeFile( $moduleName, $destDir, array $info ) {
+		if ( !isset( $info['src'] ) ) {
+			$this->fatalError( "Module '$moduleName' must have a 'src' key." );
+		}
+		$data = $this->fetch( $info['src'], $info['integrity'] ?? null );
+		$dest = $info['dest'] ?? basename( $info['src'] );
+		$path = "$destDir/$dest";
+		if ( $this->action === 'verify' && sha1_file( $path ) !== sha1( $data ) ) {
+			$this->fatalError( "File for '$moduleName' is different." );
+		} elseif ( $this->action === 'update' ) {
+			wfMkdirParents( $destDir );
+			file_put_contents( "$destDir/$dest", $data );
+		}
+	}
+
+	private function handleTypeMultiFile( $moduleName, $destDir, array $info ) {
+		if ( !isset( $info['files'] ) ) {
+			$this->fatalError( "Module '$moduleName' must have a 'files' key." );
+		}
+		foreach ( $info['files'] as $dest => $file ) {
+			if ( !isset( $file['src'] ) ) {
+				$this->fatalError( "Module '$moduleName' file '$dest' must have a 'src' key." );
+			}
+			$data = $this->fetch( $file['src'], $file['integrity'] ?? null );
+			$path = "$destDir/$dest";
+			if ( $this->action === 'verify' && sha1_file( $path ) !== sha1( $data ) ) {
+				$this->fatalError( "File '$dest' for '$moduleName' is different." );
+			} elseif ( $this->action === 'update' ) {
+				wfMkdirParents( $destDir );
+				file_put_contents( "$destDir/$dest", $data );
+			}
+		}
 	}
 
 	private function handleTypeTar( $moduleName, $destDir, array $info ) {

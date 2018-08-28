@@ -1,10 +1,12 @@
 ### Format of this file
 #
 # The top-level keys are module names (as registered in Resources.php).
-# Each top-level key holds a resource descriptor that must have
-# the following `type` value:
+# Each top-level key holds a resource descriptor that must have one of
+# the following `type` values:
 #
 # - `tar`: For tarball archive (may be gzip-compressed).
+# - `file: For a plain file.
+# - `multi-file`: For multiple plain files.
 #
 ### Type tar
 #
@@ -15,6 +17,21 @@
 # * `dest`: An object mapping paths to files or directory from the remote resource to a destination
 #    in the module directory. The value of key in dest may be omitted, which will extract the key
 #    directly to the module directory.
+#
+### Type file
+#
+# The `src` and `integrity` keys are quired.
+#
+# * `src`: Full URL to thes remote resource.
+# * `integrity`: Cryptographic hash (integrity metadata format per <https://www.w3.org/TR/SRI/>).
+# * `dest`: The name of the file in the module directory. Default: Basename of URL.
+#
+### Type mult-file
+#
+# The `files` key is required.
+#
+# * `files`: An object mapping destination paths to an object containing `src` and `integrity`
+#    keys.
 oojs:
   type: tar
   src: https://registry.npmjs.org/oojs/-/oojs-2.2.2.tgz
@@ -54,3 +71,18 @@ oojs-ui:
     package/dist/History.md:
     package/dist/LICENSE-MIT:
     package/dist/README.md:
+jquery:
+  type: file
+  src: https://code.jquery.com/jquery-3.2.1.js
+  # From https://code.jquery.com/jquery/
+  integrity: sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=
+  dest: jquery.js
+qunitjs:
+  type: multi-file
+  files:
+    qunit.js:
+      src: https://code.jquery.com/qunit/qunit-2.6.0.js
+      integrity: sha384-5O3bKbJBbAbxsqV+w/I1fcXgWJgbqM+hmYAPOE9aELSYpcTEsv48X8H+Hnq66V/9
+    qunit.css:
+      src: https://code.jquery.com/qunit/qunit-2.6.0.css
+      integrity: sha384-8vDvsmsuiD7tCQyC+pW2LOwDDgsluGsIPeCqr3rHsDSF2k4WpmfvKKxcgSV5zPai
