@@ -30,6 +30,8 @@ require_once __DIR__ . '/../Maintenance.php';
 class ManageForeignResources extends Maintenance {
 	private $defaultAlgo = 'sha384';
 	private $tmpParentDir;
+	private $action;
+	private $failAfterOutput = false;
 
 	public function __construct() {
 		global $IP;
@@ -40,17 +42,16 @@ Manage foreign resources registered with ResourceLoader.
 This helps developers to download, verify and update local copies of upstream
 libraries registered as ResourceLoader modules. See also foreign-resources.yaml.
 
-For sources that don't publish an integrity hash, leave the value empty at
-first, and run this script with --make-sri to compute the hashes.
+For sources that don't publish an integrity hash, omit "integrity" (or leave empty)
+and run the "make-sri" action to compute the missing hashes.
 
 This script runs in dry mode by default. Use --update to actually change, remove,
 or add files to /resources/lib/.
 TEXT
 		);
+		$this->addArg( 'action', 'One of "update", "verify" or "make-sri"', true );
 		$this->addArg( 'module', 'Name of a single module (Default: all)', false );
-		$this->addOption( 'update', ' resources/lib/ missing integrity metadata' );
-		$this->addOption( 'make-sri', 'Compute missing integrity metadata' );
-		$this->addOption( 'verbose', 'Be verbose' );
+		$this->addOption( 'verbose', 'Be verbose', false, false, 'v' );
 
 		// Use a directory in $IP instead of wfTempDir() because
 		// PHP's rename() does not work across file systems.
@@ -59,67 +60,87 @@ TEXT
 
 	public function execute() {
 		global $IP;
-		$module = $this->getArg();
-		$makeSRI = $this->hasOption( 'make-sri' );
+		$this->action = $this->getArg( 0 );
+		if ( !in_array( $this->action, [ 'update', 'verify', 'make-sri' ] ) ) {
+			$this->fatalError( "Invalid action argument." );
+		}
 
 		$registry = $this->parseBasicYaml(
 			file_get_contents( __DIR__ . '/foreign-resources.yaml' )
 		);
+		$module = $this->getArg( 1, 'all' );
 		foreach ( $registry as $moduleName => $info ) {
-			if ( $module !== null && $moduleName !== $module ) {
+			if ( $module !== 'all' && $moduleName !== $module ) {
 				continue;
 			}
 			$this->verbose( "\n### {$moduleName}\n\n" );
-
-			// Validate required keys
-			$info += [ 'src' => null, 'integrity' => null, 'dest' => null ];
-			if ( $info['src'] === null ) {
-				$this->fatalError( "Module '$moduleName' must have a 'src' key." );
-			}
-			$integrity = is_string( $info['integrity'] ) ? $info['integrity'] : $makeSRI;
-			if ( $integrity === false ) {
-				$this->fatalError( "Module '$moduleName' must have an 'integrity' key." );
-			}
-
-			// Download the resource
-			$data = Http::get( $info['src'], [ 'followRedirects' => false ] );
-			if ( $data === false ) {
-				$this->fatalError( "Failed to download resource for '$moduleName'." );
-			}
-
-			// Validate integrity metadata
-			$this->output( "... checking integrity of '{$moduleName}'\n" );
-			$algo = $integrity === true ? $this->defaultAlgo : explode( '-', $integrity )[0];
-			$actualIntegrity = $algo . '-' . base64_encode( hash( $algo, $data, true ) );
-			if ( $integrity === true ) {
-				$this->output( "Integrity for '{$moduleName}':\n\t${actualIntegrity}\n" );
-				continue;
-			} elseif ( $integrity !== $actualIntegrity ) {
-				$this->fatalError( "Integrity check failed for '{$moduleName}:\n" .
-					"Expected: {$integrity}\n" .
-					"Actual: {$actualIntegrity}"
-				);
-			}
-
-			// Determine destination
 			$destDir = "{$IP}/resources/lib/$moduleName";
-			$this->output( "... extracting files for '{$moduleName}'\n" );
-			$this->handleTypeTar( $moduleName, $data, $destDir, $info );
+
+			if ( $this->action === 'update' ) {
+				$this->output( "... updating '{$moduleName}'\n" );
+				$this->verbose( "... emptying /resources/lib/$moduleName\n" );
+				wfRecursiveRemoveDir( $destDir );
+			} elseif ( $this->action === 'verify' ) {
+				$this->output( "... verifying '{$moduleName}'\n" );
+			} else {
+				$this->output( "... checking '{$moduleName}'\n" );
+			}
+
+			$this->verbose( "... preparing {$this->tmpParentDir}\n" );
+			wfRecursiveRemoveDir( $this->tmpParentDir );
+			if ( !wfMkdirParents( $this->tmpParentDir ) ) {
+				$this->fatalError( "Unable to create {$this->tmpParentDir}" );
+			}
+
+			if ( !isset( $info['type'] ) ) {
+				$this->fatalError( "Module '$moduleName' must have a 'type' key." );
+			}
+			switch ( $info['type'] ) {
+				case 'tar':
+					$this->handleTypeTar( $moduleName, $destDir, $info );
+					break;
+				default:
+					$this->fatalError( "Unknown type '{$info['type']}' for '$moduleName'" );
+			}
 		}
 
-		// Clean up
-		wfRecursiveRemoveDir( $this->tmpParentDir );
+		$this->cleanUp();
 		$this->output( "\nDone!\n" );
+		if ( $this->failAfterOutput ) {
+			// The verify mode should check all modules/files and fail after, not during.
+			return false;
+		}
 	}
 
-	private function handleTypeTar( $moduleName, $data, $destDir, array $info ) {
-		global $IP;
-		wfRecursiveRemoveDir( $this->tmpParentDir );
-		if ( !wfMkdirParents( $this->tmpParentDir ) ) {
-			$this->fatalError( "Unable to create {$this->tmpParentDir}" );
+	private function fetch( $src, $integrity ) {
+		$data = Http::get( $src, [ 'followRedirects' => false ] );
+		if ( $data === false ) {
+			$this->fatalError( "Failed to download resource at {$src}" );
 		}
+		$algo = $integrity === null ? $this->defaultAlgo : explode( '-', $integrity )[0];
+		$actualIntegrity = $algo . '-' . base64_encode( hash( $algo, $data, true ) );
+		if ( $integrity === $actualIntegrity ) {
+			$this->verbose( "... passed integrity check for {$src}\n" );
+		} else {
+			if ( $this->action === 'make-sri' ) {
+				$this->output( "Integrity for {$src}\n\tintegrity: ${actualIntegrity}\n" );
+			} else {
+				$this->fatalError( "Integrity check failed for {$src}\n" .
+					"\tExpected: {$integrity}\n" .
+					"\tActual: {$actualIntegrity}"
+				);
+			}
+		}
+		return $data;
+	}
 
-		// Write resource to temporary file and open it
+	private function handleTypeTar( $moduleName, $destDir, array $info ) {
+		$info += [ 'src' => null, 'integrity' => null, 'dest' => null ];
+		if ( $info['src'] === null ) {
+			$this->fatalError( "Module '$moduleName' must have a 'src' key." );
+		}
+		// Download the resource to a temporary file and open it
+		$data = $this->fetch( $info['src'], $info['integrity' ] );
 		$tmpFile = "{$this->tmpParentDir}/$moduleName.tar";
 		$this->verbose( "... writing '$moduleName' src to $tmpFile\n" );
 		file_put_contents( $tmpFile, $data );
@@ -129,46 +150,45 @@ TEXT
 		unset( $data, $p );
 
 		if ( $info['dest'] === null ) {
-			// Replace the entire directory as-is
-			if ( !$this->hasOption( 'update' ) ) {
-				$this->output( "[dry run] Would replace /resources/lib/$moduleName\n" );
-			} else {
-				wfRecursiveRemoveDir( $destDir );
-				if ( !rename( $tmpDir, $destDir ) ) {
-					$this->fatalError( "Could not move $destDir to $tmpDir." );
-				}
-			}
-			return;
-		}
-
-		// Create and/or empty the destination
-		if ( !$this->hasOption( 'update' ) ) {
-			$this->output( "... [dry run] would empty /resources/lib/$moduleName\n" );
+			// Default: Replace the entire directory
+			$toCopy = [ $tmpDir => $destDir ];
 		} else {
-			wfRecursiveRemoveDir( $destDir );
-			wfMkdirParents( $destDir );
-		}
-
-		// Expand and normalise the 'dest' entries
-		$toCopy = [];
-		foreach ( $info['dest'] as $fromSubPath => $toSubPath ) {
-			// Use glob() to expand wildcards and check existence
-			$fromPaths = glob( "{$tmpDir}/{$fromSubPath}", GLOB_BRACE );
-			if ( !$fromPaths ) {
-				$this->fatalError( "Path '$fromSubPath' of '$moduleName' not found." );
-			}
-			foreach ( $fromPaths as $fromPath ) {
-				$toCopy[$fromPath] = $toSubPath === null
-					? "$destDir/" . basename( $fromPath )
-					: "$destDir/$toSubPath/" . basename( $fromPath );
+			// Expand and normalise the 'dest' entries
+			$toCopy = [];
+			foreach ( $info['dest'] as $fromSubPath => $toSubPath ) {
+				// Use glob() to expand wildcards and check existence
+				$fromPaths = glob( "{$tmpDir}/{$fromSubPath}", GLOB_BRACE );
+				if ( !$fromPaths ) {
+					$this->fatalError( "Path '$fromSubPath' of '$moduleName' not found." );
+				}
+				foreach ( $fromPaths as $fromPath ) {
+					$toCopy[$fromPath] = $toSubPath === null
+						? "$destDir/" . basename( $fromPath )
+						: "$destDir/$toSubPath/" . basename( $fromPath );
+				}
 			}
 		}
 		foreach ( $toCopy as $from => $to ) {
-			if ( !$this->hasOption( 'update' ) ) {
-				$shortFrom = strtr( $from, [ "$tmpDir/" => '' ] );
-				$shortTo = strtr( $to, [ "$IP/" => '' ] );
-				$this->output( "... [dry run] would move $shortFrom to $shortTo\n" );
-			} else {
+			if ( $this->action === 'verify' ) {
+				$this->verbose( "... verifying $to\n" );
+				if ( is_dir( $from ) ) {
+					$rii = new RecursiveIteratorIterator( new RecursiveDirectoryIterator(
+						$from,
+						RecursiveDirectoryIterator::SKIP_DOTS
+					) );
+					foreach ( $rii as $file ) {
+						$remote = $file->getPathname();
+						$local = strtr( $remote, [ $from => $to ] );
+						if ( sha1_file( $remote ) !== sha1_file( $local ) ) {
+							$this->error( "File '$local' is different." );
+							$this->failAfterOutput = true;
+						}
+					}
+				} elseif ( sha1_file( $from ) !== sha1_file( $to ) ) {
+					$this->error( "File '$to' is different." );
+					$this->failAfterOutput = true;
+				}
+			} elseif ( $this->action === 'update' ) {
 				$this->verbose( "... moving $from to $to\n" );
 				wfMkdirParents( dirname( $to ) );
 				if ( !rename( $from, $to ) ) {
@@ -182,6 +202,15 @@ TEXT
 		if ( $this->hasOption( 'verbose' ) ) {
 			$this->output( $text );
 		}
+	}
+
+	private function cleanUp() {
+		wfRecursiveRemoveDir( $this->tmpParentDir );
+	}
+
+	protected function fatalError( $msg, $exitCode = 1 ) {
+		$this->cleanUp();
+		parent::fatalError( $msg, $exitCode );
 	}
 
 	/**
