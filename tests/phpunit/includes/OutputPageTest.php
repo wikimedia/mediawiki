@@ -2039,26 +2039,26 @@ class OutputPageTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider providePreloadLinkHeaders
-	 * @covers OutputPage::addLogoPreloadLinkHeaders
+	 * @covers ResourceLoaderSkinModule::getPreloadLinks
+	 * @covers ResourceLoaderSkinModule::getLogoPreloadlinks
 	 * @covers ResourceLoaderSkinModule::getLogo
 	 */
-	public function testPreloadLinkHeaders( $config, $result, $baseDir = null ) {
-		if ( $baseDir ) {
-			$this->setMwGlobals( 'IP', $baseDir );
-		}
-		$out = TestingAccessWrapper::newFromObject( $this->newInstance( $config ) );
-		$out->addLogoPreloadLinkHeaders();
+	public function testPreloadLinkHeaders( $config, $result ) {
+		$this->setMwGlobals( $config );
+		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
+			->disableOriginalConstructor()->getMock();
+		$module = new ResourceLoaderSkinModule();
 
-		$this->assertEquals( $result, $out->getLinkHeader() );
+		$this->assertEquals( [ $result ], $module->getHeaders( $ctx ) );
 	}
 
 	public function providePreloadLinkHeaders() {
 		return [
 			[
 				[
-					'ResourceBasePath' => '/w',
-					'Logo' => '/img/default.png',
-					'LogoHD' => [
+					'wgResourceBasePath' => '/w',
+					'wgLogo' => '/img/default.png',
+					'wgLogoHD' => [
 						'1.5x' => '/img/one-point-five.png',
 						'2x' => '/img/two-x.png',
 					],
@@ -2071,17 +2071,17 @@ class OutputPageTest extends MediaWikiTestCase {
 			],
 			[
 				[
-					'ResourceBasePath' => '/w',
-					'Logo' => '/img/default.png',
-					'LogoHD' => false,
+					'wgResourceBasePath' => '/w',
+					'wgLogo' => '/img/default.png',
+					'wgLogoHD' => false,
 				],
 				'Link: </img/default.png>;rel=preload;as=image'
 			],
 			[
 				[
-					'ResourceBasePath' => '/w',
-					'Logo' => '/img/default.png',
-					'LogoHD' => [
+					'wgResourceBasePath' => '/w',
+					'wgLogo' => '/img/default.png',
+					'wgLogoHD' => [
 						'2x' => '/img/two-x.png',
 					],
 				],
@@ -2091,9 +2091,9 @@ class OutputPageTest extends MediaWikiTestCase {
 			],
 			[
 				[
-					'ResourceBasePath' => '/w',
-					'Logo' => '/img/default.png',
-					'LogoHD' => [
+					'wgResourceBasePath' => '/w',
+					'wgLogo' => '/img/default.png',
+					'wgLogoHD' => [
 						'svg' => '/img/vector.svg',
 					],
 				],
@@ -2102,13 +2102,13 @@ class OutputPageTest extends MediaWikiTestCase {
 			],
 			[
 				[
-					'ResourceBasePath' => '/w',
-					'Logo' => '/w/test.jpg',
-					'LogoHD' => false,
-					'UploadPath' => '/w/images',
+					'wgResourceBasePath' => '/w',
+					'wgLogo' => '/w/test.jpg',
+					'wgLogoHD' => false,
+					'wgUploadPath' => '/w/images',
+					'IP' => dirname( __DIR__ ) . '/data/media',
 				],
 				'Link: </w/test.jpg?edcf2>;rel=preload;as=image',
-				'baseDir' => dirname( __DIR__ ) . '/data/media',
 			],
 		];
 	}

@@ -503,6 +503,10 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Whether the logo should be preloaded with an HTTP link header or not
+	 *
+	 * @deprecated since 1.32 Redundant. It now happens automatically based on whether
+	 *  the skin loads a stylesheet based on ResourceLoaderSkinModule, which all
+	 *  skins that use wgLogo in CSS do, and other's would not.
 	 * @since 1.29
 	 * @return bool
 	 */
