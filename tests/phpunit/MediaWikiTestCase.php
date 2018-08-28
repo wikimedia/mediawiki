@@ -111,6 +111,11 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	private $loggers = [];
 
 	/**
+	 * @var LoggerInterface
+	 */
+	private $testLogger;
+
+	/**
 	 * Table name prefixes. Oracle likes it shorter.
 	 */
 	const DB_PREFIX = 'unittest_';
@@ -132,6 +137,11 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 		$this->backupGlobals = false;
 		$this->backupStaticAttributes = false;
+		$this->testLogger = self::getTestLogger();
+	}
+
+	private static function getTestLogger() {
+		return LoggerFactory::getInstance( 'tests-phpunit' );
 	}
 
 	public function __destruct() {
@@ -447,6 +457,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 		if ( !self::$dbSetup || $this->needsDB() ) {
 			// set up a DB connection for this test to use
+			$this->testLogger->info( "Setting up DB for " . $this->toString() );
 
 			self::$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
 			self::$reuseDB = $this->getCliArg( 'reuse-db' );
@@ -473,9 +484,12 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			$needsResetDB = true;
 		}
 
+		$this->testLogger->info( "Starting test " . $this->toString() );
 		parent::run( $result );
+		$this->testLogger->info( "Finished test " . $this->toString() );
 
 		if ( $needsResetDB ) {
+			$this->testLogger->info( "Resetting DB" );
 			$this->resetDB( $this->db, $this->tablesUsed );
 		}
 	}
@@ -566,7 +580,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			}
 			// Check for unsafe queries
 			if ( $this->db->getType() === 'mysql' ) {
-				$this->db->query( "SET sql_mode = 'STRICT_ALL_TABLES'" );
+				$this->db->query( "SET sql_mode = 'STRICT_ALL_TABLES'", __METHOD__ );
 			}
 		}
 
@@ -618,7 +632,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				$this->db->rollback( __METHOD__, 'flush' );
 			}
 			if ( $this->db->getType() === 'mysql' ) {
-				$this->db->query( "SET sql_mode = " . $this->db->addQuotes( $wgSQLMode ) );
+				$this->db->query( "SET sql_mode = " . $this->db->addQuotes( $wgSQLMode ),
+					__METHOD__ );
 			}
 		}
 
@@ -1205,6 +1220,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.32
 	 */
 	protected function addCoreDBData() {
+		$this->testLogger->info( __METHOD__ );
 		if ( $this->db->getType() == 'oracle' ) {
 			# Insert 0 user to prevent FK violations
 			# Anonymous user
@@ -1449,7 +1465,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		// Assuming this isn't needed for External Store database, and not sure if the procedure
 		// would be available there.
 		if ( $db->getType() == 'oracle' ) {
-			$db->query( 'BEGIN FILL_WIKI_INFO; END;' );
+			$db->query( 'BEGIN FILL_WIKI_INFO; END;', __METHOD__ );
 		}
 
 		Hooks::run( 'UnitTestsAfterDatabaseSetup', [ $db, $prefix ] );
