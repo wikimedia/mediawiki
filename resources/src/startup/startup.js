@@ -145,5 +145,5 @@ window.isCompatible = function ( str ) {
 	// This embeds mediawiki.js, which defines 'mw' and 'mw.loader'.
 	$CODE.defineLoader();
 
-	mw.requestIdleCallback( startUp );
+	startUp();
 }() );
