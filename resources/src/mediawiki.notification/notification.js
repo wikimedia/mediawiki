@@ -2,7 +2,7 @@
 	'use strict';
 
 	var notification,
-		// The #mw-notification-area div that all notifications are contained inside.
+		// The .mw-notification-area div that all notifications are contained inside.
 		$area,
 		// Number of open notification boxes at any time
 		openNotificationCount = 0,
@@ -292,6 +292,7 @@
 
 		// Write to the DOM:
 		// Prepend the notification area to the content area and save its object.
+		// The ID attribute here is deprecated.
 		$area = $( '<div id="mw-notification-area" class="mw-notification-area mw-notification-area-layout"></div>' )
 			// Pause auto-hide timers when the mouse is in the notification area.
 			.on( {
