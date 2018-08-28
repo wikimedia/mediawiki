@@ -51,6 +51,7 @@ use SiteStatsUpdate;
 use Title;
 use User;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\LBFactory;
 use WikiPage;
 
 /**
@@ -122,6 +123,11 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	private $messageCache;
 
 	/**
+	 * @var LBFactory
+	 */
+	private $loadbalancerFactory;
+
+	/**
 	 * @var string see $wgArticleCountMethod
 	 */
 	private $articleCountMethod;
@@ -132,15 +138,22 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	private $rcWatchCategoryMembership = false;
 
 	/**
-	 * See $options on prepareUpdate.
+	 * Stores (most of) the $options parameter of prepareUpdate().
+	 * @see prepareUpdate()
 	 */
 	private $options = [
 		'changed' => true,
 		'created' => false,
 		'moved' => false,
 		'restored' => false,
+		'oldrevision' => null,
 		'oldcountable' => null,
 		'oldredirect' => null,
+		'triggeringUser' => null,
+		// causeAction/causeAgent default to 'unknown' but that's handled where it's read,
+		// to make the life of prepareUpdate() callers easier.
+		'causeAction' => null,
+		'causeAgent' => null,
 	];
 
 	/**
@@ -235,6 +248,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param MessageCache $messageCache
 	 * @param Language $contLang
+	 * @param LBFactory $loadbalancerFactory
 	 */
 	public function __construct(
 		WikiPage $wikiPage,
@@ -243,7 +257,8 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		ParserCache $parserCache,
 		JobQueueGroup $jobQueueGroup,
 		MessageCache $messageCache,
-		Language $contLang
+		Language $contLang,
+		LBFactory $loadbalancerFactory
 	) {
 		$this->wikiPage = $wikiPage;
 
@@ -253,6 +268,9 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->messageCache = $messageCache;
 		$this->contLang = $contLang;
+		// XXX only needed for waiting for slaves to catch up; there should be a narrower
+		// interface for that.
+		$this->loadbalancerFactory = $loadbalancerFactory;
 	}
 
 	/**
@@ -868,6 +886,14 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		}
 	}
 
+	private function assertHasRevision( $method ) {
+		if ( !$this->revision->getId() ) {
+			throw new LogicException(
+				'Must call prepareUpdate() before calling ' . $method
+			);
+		}
+	}
+
 	/**
 	 * Whether the edit creates the page.
 	 *
@@ -998,7 +1024,8 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 * - moved: bool, whether the page was moved (default false)
 	 * - restored: bool, whether the page was undeleted (default false)
 	 * - oldrevision: Revision object for the pre-update revision (default null)
-	 * - triggeringuser: The user triggering the update (UserIdentity, default null)
+	 * - triggeringUser: The user triggering the update (UserIdentity, defaults to the
+	 *   user who created the revision)
 	 * - oldredirect: bool, null, or string 'no-change' (default null):
 	 *    - bool: whether the page was counted as a redirect before that
 	 *      revision, only used in changed is true and created is false
@@ -1010,6 +1037,10 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 *      is true, do update the article count
 	 *    - 'no-change': don't update the article count, ever
 	 *    When set to null, pageState['oldCountable'] will be used instead if available.
+	 *  - causeAction: an arbitrary string identifying the reason for the update.
+	 *    See DataUpdate::getCauseAction(). (default 'unknown')
+	 *  - causeAgent: name of the user who caused the update. See DataUpdate::getCauseAgent().
+	 *    (string, default 'unknown')
 	 */
 	public function prepareUpdate( RevisionRecord $revision, array $options = [] ) {
 		Assert::parameter(
@@ -1020,9 +1051,9 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			'must be a RevisionRecord (or Revision)'
 		);
 		Assert::parameter(
-			!isset( $options['triggeringuser'] )
-			|| $options['triggeringuser'] instanceof UserIdentity,
-			'$options["triggeringuser"]',
+			!isset( $options['triggeringUser'] )
+			|| $options['triggeringUser'] instanceof UserIdentity,
+			'$options["triggeringUser"]',
 			'must be a UserIdentity'
 		);
 
@@ -1260,40 +1291,16 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 
 		$wikiPage = $this->getWikiPage(); // TODO: use only for legacy hooks!
 
-		// NOTE: this may trigger the first parsing of the new content after an edit (when not
-		// using pre-generated stashed output).
-		// XXX: we may want to use the PoolCounter here. This would perhaps allow the initial parse
-		// to be perform post-send. The client could already follow a HTTP redirect to the
-		// page view, but would then have to wait for a response until rendering is complete.
-		$output = $this->getCanonicalParserOutput();
-
-		// Save it to the parser cache.
-		// Make sure the cache time matches page_touched to avoid double parsing.
-		$this->parserCache->save(
-			$output, $wikiPage, $this->getCanonicalParserOptions(),
-			$this->revision->getTimestamp(),  $this->revision->getId()
-		);
-
 		$legacyUser = User::newFromIdentity( $this->user );
 		$legacyRevision = new Revision( $this->revision );
 
-		// Update the links tables and other secondary data
-		$recursive = $this->options['changed']; // T52785
-		$updates = $this->getSecondaryDataUpdates( $recursive );
+		$this->doParserCacheUpdate();
 
-		$triggeringUser = $this->options['triggeringuser'] ?? $this->user;
-		if ( !$triggeringUser instanceof User ) {
-			$triggeringUser = User::newFromIdentity( $triggeringUser );
-		}
-		foreach ( $updates as $update ) {
-			// TODO: make an $option field for the cause
-			$update->setCause( 'edit-page', $triggeringUser->getName() );
-			if ( $update instanceof LinksUpdate ) {
-				$update->setRevision( $legacyRevision );
-				$update->setTriggeringUser( $triggeringUser );
-			}
-			DeferredUpdates::addUpdate( $update );
-		}
+		$this->doSecondaryDataUpdates( [
+			// T52785 do not update any other pages on a null edit
+			'recursive' => $this->options['changed'],
+			'defer' => DeferredUpdates::POSTSEND,
+		] );
 
 		// TODO: MCR: check if *any* changed slot supports categories!
 		if ( $this->rcWatchCategoryMembership
@@ -1419,6 +1426,93 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		);
 
 		$this->doTransition( 'done' );
+	}
+
+	/**
+	 * Do secondary data updates (such as updating link tables).
+	 *
+	 * MCR note: this method is temporarily exposed via WikiPage::doSecondaryDataUpdates.
+	 *
+	 * @param array $options
+	 *   - recursive: make the update recursive, i.e. also update pages which transclude the
+	 *     current page or otherwise depend on it (default: false)
+	 *   - defer: one of the DeferredUpdates constants, or false to run immediately after waiting
+	 *     for replication of the changes from the SecondaryDataUpdates hooks (default: false)
+	 *   - transactionTicket: a transaction ticket from LBFactory::getEmptyTransactionTicket(),
+	 *     only when defer is false (default: null)
+	 * @since 1.32
+	 */
+	public function doSecondaryDataUpdates( array $options = [] ) {
+		$this->assertHasRevision( __METHOD__ );
+		$options += [
+			'recursive' => false,
+			'defer' => false,
+			'transactionTicket' => null,
+		];
+		$deferValues = [ false, DeferredUpdates::PRESEND, DeferredUpdates::POSTSEND ];
+		if ( !in_array( $options['defer'], $deferValues, true ) ) {
+			throw new InvalidArgumentException( 'invalid value for defer: ' . $options['defer'] );
+		}
+		Assert::parameterType( 'integer|null', $options['transactionTicket'],
+			'$options[\'transactionTicket\']' );
+
+		$updates = $this->getSecondaryDataUpdates( $options['recursive'] );
+
+		$triggeringUser = $this->options['triggeringUser'] ?? $this->user;
+		if ( !$triggeringUser instanceof User ) {
+			$triggeringUser = User::newFromIdentity( $triggeringUser );
+		}
+		$causeAction = $this->options['causeAction'] ?? 'unknown';
+		$causeAgent = $this->options['causeAgent'] ?? 'unknown';
+		$legacyRevision = new Revision( $this->revision );
+
+		if ( $options['defer'] === false && $options['transactionTicket'] !== null ) {
+			// For legacy hook handlers doing updates via LinksUpdateConstructed, make sure
+			// any pending writes they made get flushed before the doUpdate() calls below.
+			// This avoids snapshot-clearing errors in LinksUpdate::acquirePageLock().
+			$this->loadbalancerFactory->commitAndWaitForReplication(
+				__METHOD__, $options['transactionTicket']
+			);
+		}
+
+		foreach ( $updates as $update ) {
+			$update->setCause( $causeAction, $causeAgent );
+			if ( $update instanceof LinksUpdate ) {
+				$update->setRevision( $legacyRevision );
+				$update->setTriggeringUser( $triggeringUser );
+			}
+			if ( $options['defer'] === false ) {
+				if ( $options['transactionTicket'] !== null ) {
+					$update->setTransactionTicket( $options['transactionTicket'] );
+				}
+				$update->doUpdate();
+			} else {
+				DeferredUpdates::addUpdate( $update, $options['defer'] );
+			}
+		}
+	}
+
+	public function doParserCacheUpdate() {
+		$this->assertHasRevision( __METHOD__ );
+
+		$wikiPage = $this->getWikiPage(); // TODO: ParserCache should accept a RevisionRecord instead
+
+		// NOTE: this may trigger the first parsing of the new content after an edit (when not
+		// using pre-generated stashed output).
+		// XXX: we may want to use the PoolCounter here. This would perhaps allow the initial parse
+		// to be performed post-send. The client could already follow a HTTP redirect to the
+		// page view, but would then have to wait for a response until rendering is complete.
+		$output = $this->getCanonicalParserOutput();
+
+		// Save it to the parser cache. Use the revision timestamp in the case of a
+		// freshly saved edit, as that matches page_touched and a mismatch would trigger an
+		// unnecessary reparse.
+		$timestamp = $this->options['changed'] ? $this->revision->getTimestamp()
+			: $output->getTimestamp();
+		$this->parserCache->save(
+			$output, $wikiPage, $this->getCanonicalParserOptions(),
+			$timestamp, $this->revision->getId()
+		);
 	}
 
 }
