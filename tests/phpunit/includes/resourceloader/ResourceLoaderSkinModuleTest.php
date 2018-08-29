@@ -1,9 +1,11 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group ResourceLoader
  */
-class ResourceLoaderSkinModuleTest extends PHPUnit\Framework\TestCase {
+class ResourceLoaderSkinModuleTest extends MediaWikiTestCase {
 
 	use MediaWikiCoversValidator;
 
@@ -107,25 +109,23 @@ CSS
 	}
 
 	/**
-	 * @dataProvider provideGetLogo
-	 * @covers ResourceLoaderSkinModule::getLogo
+	 * @dataProvider provideGetLogoData
+	 * @covers ResourceLoaderSkinModule::getLogoData
 	 */
-	public function testGetLogo( $config, $expected, $baseDir = null ) {
+	public function testGetLogoData( $config, $expected, $baseDir = null ) {
 		if ( $baseDir ) {
-			$oldIP = $GLOBALS['IP'];
-			$GLOBALS['IP'] = $baseDir;
-			$teardown = new Wikimedia\ScopedCallback( function () use ( $oldIP ) {
-				$GLOBALS['IP'] = $oldIP;
-			} );
+			$this->setMwGlobals( 'IP', $baseDir );
 		}
+		// Allow testing of protected method
+		$module = TestingAccessWrapper::newFromObject( new ResourceLoaderSkinModule() );
 
 		$this->assertEquals(
 			$expected,
-			ResourceLoaderSkinModule::getLogo( new HashConfig( $config ) )
+			$module->getLogoData( new HashConfig( $config ) )
 		);
 	}
 
-	public function provideGetLogo() {
+	public function provideGetLogoData() {
 		return [
 			'simple' => [
 				'config' => [
@@ -200,6 +200,82 @@ CSS
 				],
 				'expected' => '/w/test.jpg?edcf2',
 				'baseDir' => dirname( dirname( __DIR__ ) ) . '/data/media',
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider providePreloadLinks
+	 * @covers ResourceLoaderSkinModule::getPreloadLinks
+	 * @covers ResourceLoaderSkinModule::getLogoPreloadlinks
+	 * @covers ResourceLoaderSkinModule::getLogoData
+	 */
+	public function testPreloadLinkHeaders( $config, $result ) {
+		$this->setMwGlobals( $config );
+		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
+			->disableOriginalConstructor()->getMock();
+		$module = new ResourceLoaderSkinModule();
+
+		$this->assertEquals( [ $result ], $module->getHeaders( $ctx ) );
+	}
+
+	public function providePreloadLinks() {
+		return [
+			[
+				[
+					'wgResourceBasePath' => '/w',
+					'wgLogo' => '/img/default.png',
+					'wgLogoHD' => [
+						'1.5x' => '/img/one-point-five.png',
+						'2x' => '/img/two-x.png',
+					],
+				],
+				'Link: </img/default.png>;rel=preload;as=image;media=' .
+				'not all and (min-resolution: 1.5dppx),' .
+				'</img/one-point-five.png>;rel=preload;as=image;media=' .
+				'(min-resolution: 1.5dppx) and (max-resolution: 1.999999dppx),' .
+				'</img/two-x.png>;rel=preload;as=image;media=(min-resolution: 2dppx)'
+			],
+			[
+				[
+					'wgResourceBasePath' => '/w',
+					'wgLogo' => '/img/default.png',
+					'wgLogoHD' => false,
+				],
+				'Link: </img/default.png>;rel=preload;as=image'
+			],
+			[
+				[
+					'wgResourceBasePath' => '/w',
+					'wgLogo' => '/img/default.png',
+					'wgLogoHD' => [
+						'2x' => '/img/two-x.png',
+					],
+				],
+				'Link: </img/default.png>;rel=preload;as=image;media=' .
+				'not all and (min-resolution: 2dppx),' .
+				'</img/two-x.png>;rel=preload;as=image;media=(min-resolution: 2dppx)'
+			],
+			[
+				[
+					'wgResourceBasePath' => '/w',
+					'wgLogo' => '/img/default.png',
+					'wgLogoHD' => [
+						'svg' => '/img/vector.svg',
+					],
+				],
+				'Link: </img/vector.svg>;rel=preload;as=image'
+
+			],
+			[
+				[
+					'wgResourceBasePath' => '/w',
+					'wgLogo' => '/w/test.jpg',
+					'wgLogoHD' => false,
+					'wgUploadPath' => '/w/images',
+					'IP' => dirname( dirname( __DIR__ ) ) . '/data/media',
+				],
+				'Link: </w/test.jpg?edcf2>;rel=preload;as=image',
 			],
 		];
 	}

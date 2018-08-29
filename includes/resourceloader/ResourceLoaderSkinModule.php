@@ -176,25 +176,14 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	}
 
 	/**
-	 * Non-static proxy to ::getLogo (for overloading in sub classes or tests).
-	 *
-	 * @codeCoverageIgnore
 	 * @since 1.31
-	 * @param Config $conf
-	 * @return string|array
-	 */
-	protected function getLogoData( Config $conf ) {
-		return static::getLogo( $conf );
-	}
-
-	/**
 	 * @param Config $conf
 	 * @return string|array Single url if no variants are defined,
 	 *  or an array of logo urls keyed by dppx in form "<float>x".
 	 *  Key "1x" is always defined. Key "svg" may also be defined,
 	 *  in which case variants other than "1x" are omitted.
 	 */
-	public static function getLogo( Config $conf ) {
+	protected function getLogoData( Config $conf ) {
 		$logo = $conf->get( 'Logo' );
 		$logoHD = $conf->get( 'LogoHD' );
 
