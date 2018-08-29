@@ -4,7 +4,7 @@
  * - Beware: This file MUST parse without errors on even the most ancient of browsers!
  */
 /* eslint-disable vars-on-top, no-unmodified-loop-condition */
-/* global mw, isCompatible, $VARS, $CODE */
+/* global isCompatible, $VARS, $CODE */
 
 /**
  * See <https://www.mediawiki.org/wiki/Compatibility#Browsers>

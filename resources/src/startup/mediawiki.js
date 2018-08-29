@@ -1,7 +1,7 @@
 /**
  * Base library for MediaWiki.
  *
- * Exposed globally as `mediaWiki` with `mw` as shortcut.
+ * Exposed globally as `mw`, with `mediaWiki` as alias.
  *
  * @class mw
  * @alternateClassName mediaWiki
