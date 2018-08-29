@@ -3014,7 +3014,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function normalize( $s ) {
+	public function normalize( $s ) {
 		global $wgAllUnicodeFixes;
 		$s = UtfNormal\Validator::cleanUp( $s );
 		if ( $wgAllUnicodeFixes ) {

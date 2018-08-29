@@ -32,7 +32,8 @@
 			"Yogesh",
 			"Lokesha kunchadka",
 			"Anoop rao",
-			"Rakshika"
+			"Rakshika",
+			"Gopala Krishna A"
 		]
 	},
 	"tog-underline": "ಕೊಂಡಿಗಳ ಕೆಳಗೆ ಗೆರೆ ತೋರಿಸಿ",
@@ -521,6 +522,7 @@
 	"botpasswords-existing": "ಆಸ್ಥಿತ್ವದಲ್ಲಿರುವ ಬಾಟ್ ಪ್ರವೇಶಪದ",
 	"botpasswords-createnew": "ಹೊಸ ಬಾಟ್ ಪ್ರವೇಶಪದ ರಚಿಸಿ",
 	"botpasswords-editexisting": "ಆಸ್ಥಿತ್ವದಲ್ಲಿರುವ ಬಾಟ್ ಪ್ರವೇಶಪದ ಸ೦ಪಾದಿಸಿ",
+	"botpasswords-label-create": "ಸೃಷ್ಟಿಸು",
 	"resetpass_forbidden": "ಪ್ರವೇಶಪದಗಳನ್ನು ಬದಲಾಯಿಸುವಂತಿಲ್ಲ.",
 	"resetpass-no-info": "ನೀವು ಈ ಪುಟವನ್ನು ನೇರತಲುಪಲು ಲಾಗಿನ್ ಆಗಿರುವುದು ಆವಶ್ಯಕ.",
 	"resetpass-submit-loggedin": "ಪ್ರವೇಶಪದ ಬದಲಾಯಿಸು",

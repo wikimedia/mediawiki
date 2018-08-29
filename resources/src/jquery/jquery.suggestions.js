@@ -6,10 +6,6 @@
  *		$( '#textbox' ).suggestions( { option1: value1, option2: value2 } );
  *		$( '#textbox' ).suggestions( option, value );
  *
- * Get option:
- *
- *		value = $( '#textbox' ).suggestions( option );
- *
  * Initialize:
  *
  *		$( '#textbox' ).suggestions();
@@ -116,7 +112,7 @@
 			if ( context.data.timerID !== null ) {
 				clearTimeout( context.data.timerID );
 			}
-			if ( $.isFunction( context.config.cancel ) ) {
+			if ( typeof context.config.cancel === 'function' ) {
 				context.config.cancel.call( context.data.$textbox );
 			}
 		},
@@ -578,10 +574,8 @@
 
 	// See file header for method documentation
 	$.fn.suggestions = function () {
-
 		// Multi-context fields
-		var returnValue,
-			args = arguments;
+		var args = arguments;
 
 		$( this ).each( function () {
 			var context, key;
@@ -624,9 +618,6 @@
 					if ( args.length > 1 ) {
 						// Set property values
 						$.suggestions.configure( context, args[ 0 ], args[ 1 ] );
-					} else if ( returnValue === null || returnValue === undefined ) {
-						// Get property values, but don't give access to internal data - returns only the first
-						returnValue = ( args[ 0 ] in context.config ? undefined : context.config[ args[ 0 ] ] );
 					}
 				}
 			}
@@ -776,7 +767,7 @@
 			// Store the context for next time
 			$( this ).data( 'suggestions-context', context );
 		} );
-		return returnValue !== undefined ? returnValue : $( this );
+		return this;
 	};
 
 	/**

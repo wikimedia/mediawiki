@@ -128,7 +128,8 @@
 	 * @param {HTMLElement} titleElement Element with the title to update (may be the same as `element`)
 	 */
 	function updateTooltipOnElement( element, titleElement ) {
-		var oldTitle, parts, regexp, newTitle, accessKeyLabel;
+		var oldTitle, parts, regexp, newTitle, accessKeyLabel,
+			separatorMsg = mw.message( 'word-separator' ).plain();
 
 		oldTitle = titleElement.title;
 		if ( !oldTitle ) {
@@ -136,14 +137,14 @@
 			return;
 		}
 
-		parts = ( mw.msg( 'word-separator' ) + mw.msg( 'brackets' ) ).split( '$1' );
+		parts = ( separatorMsg + mw.message( 'brackets' ).plain() ).split( '$1' );
 		regexp = new RegExp( parts.map( mw.RegExp.escape ).join( '.*?' ) + '$' );
 		newTitle = oldTitle.replace( regexp, '' );
 		accessKeyLabel = getAccessKeyLabel( element );
 
 		if ( accessKeyLabel ) {
 			// Should be build the same as in Linker::titleAttrib
-			newTitle += mw.msg( 'word-separator' ) + mw.msg( 'brackets', accessKeyLabel );
+			newTitle += separatorMsg + mw.message( 'brackets', accessKeyLabel ).plain();
 		}
 		if ( oldTitle !== newTitle ) {
 			titleElement.title = newTitle;

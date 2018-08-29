@@ -356,8 +356,8 @@ class MovePageForm extends UnlistedSpecialPage {
 				[
 					'label' => $this->msg( 'movetalk' )->text(),
 					'help' => new OOUI\HtmlSnippet( $this->msg( 'movepagetalktext' )->parseAsBlock() ),
+					'helpInline' => true,
 					'align' => 'inline',
-					'infusable' => true,
 					'id' => 'wpMovetalk-field',
 				]
 			);

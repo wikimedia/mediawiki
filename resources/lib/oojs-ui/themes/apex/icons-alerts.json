@@ -8,13 +8,6 @@
 		"bell": {
 			"file": "../wikimediaui/images/icons/bell.svg"
 		},
-		"comment": {
-			"file": {
-				"ltr": "../wikimediaui/images/icons/speechBubble-ltr.svg",
-				"rtl": "../wikimediaui/images/icons/speechBubble-rtl.svg"
-			},
-			"deprecated": "This will be removed in v0.28.0. Use 'speechBubble' instead."
-		},
 		"message": {
 			"file": "../wikimediaui/images/icons/message.svg"
 		},

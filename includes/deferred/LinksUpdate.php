@@ -584,10 +584,11 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		global $wgCategoryCollation;
 		$diffs = array_diff_assoc( $this->mCategories, $existing );
 		$arr = [];
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$collation = Collation::singleton();
 		foreach ( $diffs as $name => $prefix ) {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
-			MediaWikiServices::getInstance()->getContentLanguage()->
-				findVariantLink( $name, $nt, true );
+			$contLang->findVariantLink( $name, $nt, true );
 
 			$type = MWNamespace::getCategoryLinkType( $this->mTitle->getNamespace() );
 
@@ -595,8 +596,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			# things are forced to sort as '*' or something, they'll
 			# sort properly in the category rather than in page_id
 			# order or such.
-			$sortkey = Collation::singleton()->getSortKey(
-				$this->mTitle->getCategorySortkey( $prefix ) );
+			$sortkey = $collation->getSortKey( $this->mTitle->getCategorySortkey( $prefix ) );
 
 			$arr[] = [
 				'cl_from' => $this->mId,

@@ -104,9 +104,9 @@ class Orphans extends Maintenance {
 				'rev_id', 'rev_page', 'rev_timestamp', 'rev_user_text', 'rev_comment'
 			) );
 
+			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			foreach ( $result as $row ) {
 				$comment = $commentStore->getComment( 'rev_comment', $row )->text;
-				$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 				if ( $comment !== '' ) {
 					$comment = '(' . $contLang->truncateForVisual( $comment, 40 ) . ')';
 				}

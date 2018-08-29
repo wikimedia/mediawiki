@@ -33,6 +33,7 @@ trait ResourceLoaderOOUIModule {
 		'icons-alerts',
 		'icons-content',
 		'icons-editing-advanced',
+		'icons-editing-citation',
 		'icons-editing-core',
 		'icons-editing-list',
 		'icons-editing-styling',

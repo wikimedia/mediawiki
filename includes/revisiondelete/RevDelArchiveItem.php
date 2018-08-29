@@ -23,10 +23,9 @@
  * Item class for a archive table row
  */
 class RevDelArchiveItem extends RevDelRevisionItem {
-	public function __construct( $list, $row ) {
-		RevDelItem::__construct( $list, $row );
-		$this->revision = Revision::newFromArchiveRow( $row,
-			[ 'page' => $this->list->title->getArticleID() ] );
+	protected static function initRevision( $list, $row ) {
+		return Revision::newFromArchiveRow( $row,
+			[ 'page' => $list->title->getArticleID() ] );
 	}
 
 	public function getIdField() {

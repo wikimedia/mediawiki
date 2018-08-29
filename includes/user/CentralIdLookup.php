@@ -67,6 +67,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 
 	/**
 	 * Reset internal cache for unit testing
+	 * @codeCoverageIgnore
 	 */
 	public static function resetCache() {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {

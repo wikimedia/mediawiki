@@ -2675,28 +2675,6 @@ function wfGetPrecompiledData( $name ) {
 }
 
 /**
- * @since 1.32
- * @param string[] $data Array with string keys/values to export
- * @param string $header
- * @return string PHP code
- */
-function wfMakeStaticArrayFile( array $data, $header = 'Automatically generated' ) {
-	$format = "\t%s => %s,\n";
-	$code = "<?php\n"
-		. "// " . implode( "\n// ", explode( "\n", $header ) ) . "\n"
-		. "return [\n";
-	foreach ( $data as $key => $value ) {
-		$code .= sprintf(
-			$format,
-			var_export( $key, true ),
-			var_export( $value, true )
-		);
-	}
-	$code .= "];\n";
-	return $code;
-}
-
-/**
  * Make a cache key for the local wiki.
  *
  * @deprecated since 1.30 Call makeKey on a BagOStuff instance
@@ -3119,6 +3097,7 @@ function wfBCP47( $code ) {
 /**
  * Get a specific cache object.
  *
+ * @deprecated since 1.32, use ObjectCache::getInstance() instead
  * @param int|string $cacheType A CACHE_* constants, or other key in $wgObjectCaches
  * @return BagOStuff
  */
@@ -3129,11 +3108,11 @@ function wfGetCache( $cacheType ) {
 /**
  * Get the main cache object
  *
+ * @deprecated since 1.32, use ObjectCache::getLocalClusterInstance() instead
  * @return BagOStuff
  */
 function wfGetMainCache() {
-	global $wgMainCacheType;
-	return ObjectCache::getInstance( $wgMainCacheType );
+	return ObjectCache::getLocalClusterInstance();
 }
 
 /**

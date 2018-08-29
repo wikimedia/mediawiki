@@ -1,0 +1,17 @@
+# Edits
+DELETE {
+?category ?x ?y
+} WHERE {
+   VALUES ?category {
+     <http://acme.test/wiki/Category:Changed_category>
+   }
+};
+INSERT DATA {
+
+<http://acme.test/wiki/Category:Changed_category> a mediawiki:Category ;
+	rdfs:label "Changed category" ;
+	mediawiki:pages "7"^^xsd:integer ;
+	mediawiki:subcategories "2"^^xsd:integer ;
+	mediawiki:isInCategory <http://acme.test/wiki/Category:Parent_of_30> .
+
+};

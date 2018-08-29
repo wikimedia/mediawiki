@@ -28,7 +28,18 @@ class RevDelRevisionItem extends RevDelItem {
 
 	public function __construct( $list, $row ) {
 		parent::__construct( $list, $row );
-		$this->revision = new Revision( $row );
+		$this->revision = static::initRevision( $list, $row );
+	}
+
+	/**
+	 * Create revision object from $row sourced from $list
+	 *
+	 * @param RevisionListBase $list
+	 * @param mixed $row
+	 * @return Revision
+	 */
+	protected static function initRevision( $list, $row ) {
+		return new Revision( $row );
 	}
 
 	public function getIdField() {

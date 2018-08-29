@@ -196,11 +196,6 @@ class GenerateCollationData extends Maintenance {
 		if ( !$file ) {
 			$this->fatalError( "Unable to open allkeys.txt" );
 		}
-		global $IP;
-		$outFile = fopen( "$IP/serialized/first-letters-root.ser", 'w' );
-		if ( !$outFile ) {
-			$this->fatalError( "Unable to open output file first-letters-root.ser" );
-		}
 
 		$goodTertiaryChars = [];
 
@@ -325,7 +320,13 @@ class GenerateCollationData extends Maintenance {
 
 		print "Out of order: $numOutOfOrder / " . count( $headerChars ) . "\n";
 
-		fwrite( $outFile, serialize( $headerChars ) );
+		global $IP;
+		$writer = new StaticArrayWriter();
+		file_put_contents(
+			"$IP/includes/collation/data/first-letters-root.php",
+			$writer->create( $headerChars, 'File created by generateCollationData.php' )
+		);
+		echo "first-letters-root: file written.\n";
 	}
 }
 

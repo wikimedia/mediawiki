@@ -19,19 +19,11 @@
 		}
 	},
 	"images": {
-		"userActive": {
-			"file": "images/icons/userActive.svg",
-			"deprecated": "Renamed since v0.26.2, use 'userAvatar' instead."
-		},
 		"userAnonymous": {
 			"file": "images/icons/userAnonymous.svg"
 		},
 		"userAvatar": {
 			"file": "images/icons/userAvatar.svg"
-		},
-		"userInactive": {
-			"file": "images/icons/userAnonymous.svg",
-			"deprecated": "Renamed since v0.26.2, use 'userAnonymous' instead."
 		},
 		"userTalk": {
 			"file": {

@@ -634,7 +634,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( $user2->isBlocked() );
 		// Non-strict type-check.
 		$this->assertEquals( true, $user2->getBlock()->isAutoblocking(), 'Autoblock does not work' );
-		// Can't directly compare the objects becuase of member type differences.
+		// Can't directly compare the objects because of member type differences.
 		// One day this will work: $this->assertEquals( $block, $user2->getBlock() );
 		$this->assertEquals( $block->getId(), $user2->getBlock()->getId() );
 		$this->assertEquals( $block->getExpiry(), $user2->getBlock()->getExpiry() );

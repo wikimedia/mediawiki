@@ -15,7 +15,8 @@
 			"Mikławš",
 			"Macofe",
 			"Matma Rex",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Wotkazy podšmórnić:",
@@ -345,8 +346,10 @@
 	"cascadeprotected": "Tuta strona je za wobdźěłowanje zawrjena, dokelž je w {{PLURAL:$1|slědowacej stronje|slědowacymaj stronomaj|slědowacych stronach}} zapřijata, {{PLURAL:$1|kotraž je|kotrejž stej|kotrež su}} přez kaskadowu opciju {{PLURAL:$1|škitana|škitanej|škitane}}:\n$2",
 	"namespaceprotected": "Nimaš dowolnosć, zo by stronu w mjenowym rumje '''$1''' wobdźěłał.",
 	"customcssprotected": "Nimaš prawo, zo by tutu CSS-stronu wobdźěłał, dokelž wosobinske nastajenja druheho wužiwarja wobsahuje.",
+	"customjsonprotected": "Nimaš prawo, zo by tutu JSON-stronu wobdźěłał, dokelž wosobinske nastajenja druheho wužiwarja wobsahuje.",
 	"customjsprotected": "Nimaš prawo, zo by tutu JavaScript-stronu wobdźěłał, dokelž wosobinske nastajenja druheho wužiwarja wobsahuje.",
 	"mycustomcssprotected": "Nimaš prawo tutu CSS-stronu wobdźěłać.",
+	"mycustomjsonprotected": "Nimaš prawo tutu JSON-stronu wobdźěłać.",
 	"mycustomjsprotected": "Nimaš prawo tutu JavaScript-stronu wobdźěłać.",
 	"myprivateinfoprotected": "Nimaš prawo swoje priwatne informacije wobdźěłać.",
 	"mypreferencesprotected": "Nimaš prawo swoje nastajenja wobdźěłać.",

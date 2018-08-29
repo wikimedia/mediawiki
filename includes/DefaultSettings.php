@@ -1647,13 +1647,6 @@ $wgEmergencyContact = false;
 $wgPasswordSender = false;
 
 /**
- * Sender name for e-mail notifications.
- *
- * @deprecated since 1.23; use the system message 'emailsender' instead.
- */
-$wgPasswordSenderName = 'MediaWiki Mail';
-
-/**
  * Reply-To address for e-mail notifications.
  *
  * Defaults to $wgPasswordSender (in Setup.php).
@@ -3800,46 +3793,14 @@ $wgResourceLoaderMaxQueryLength = false;
 $wgResourceLoaderValidateJS = true;
 
 /**
- * If set to true, statically-sourced (file-backed) JavaScript resources will
- * be parsed for validity before being bundled up into ResourceLoader modules.
+ * When enabled, execution of JavaScript modules is profiled client-side.
  *
- * This can be helpful for development by providing better error messages in
- * default (non-debug) mode, but JavaScript parsing is slow and memory hungry
- * and may fail on large pre-bundled frameworks.
+ * Instrumentation happens in mw.loader.profiler.
+ * Use `mw.inspect('time')` from the browser console to display the data.
+ *
+ * @since 1.32
  */
-$wgResourceLoaderValidateStaticJS = false;
-
-/**
- * Global LESS variables. An associative array binding variable names to
- * LESS code snippets representing their values.
- *
- * Adding an item here is equivalent to writing `@variable: value;`
- * at the beginning of all your .less files, with all the consequences.
- * In particular, string values must be escaped and quoted.
- *
- * Changes to this configuration do NOT trigger cache invalidation.
- *
- * @par Example:
- * @code
- *   $wgResourceLoaderLESSVars = [
- *     'exampleFontSize'  => '1em',
- *     'exampleBlue' => '#36c',
- *   ];
- * @endcode
- * @since 1.22
- * @deprecated since 1.30 Use ResourceLoaderModule::getLessVars() instead to
- *  add variables to individual modules that need them.
- */
-$wgResourceLoaderLESSVars = [
-	/**
-	 * Minimum available screen width at which a device can be considered a tablet
-	 * The number is currently based on the device width of a Samsung Galaxy S5 mini and is low
-	 * enough to cover iPad (768px). Number is prone to change with new information.
-	 * @since 1.27
-	 * @deprecated 1.31 Use mediawiki.ui/variables instead
-	 */
-	'deviceWidthTablet' => '720px',
-];
+$wgResourceLoaderEnableJSProfiler = false;
 
 /**
  * Whether ResourceLoader should attempt to persist modules in localStorage on
@@ -4438,7 +4399,7 @@ $wgPreprocessorCacheThreshold = 1000;
 $wgEnableScaryTranscluding = false;
 
 /**
- * Expiry time for transcluded templates cached in transcache database table.
+ * Expiry time for transcluded templates cached in object cache.
  * Only used $wgEnableInterwikiTranscluding is set to true.
  */
 $wgTranscludeCacheExpiry = 3600;
@@ -6387,8 +6348,6 @@ $wgDeprecationReleaseLimit = false;
  * Profiler configuration.
  *
  * To use a profiler, set $wgProfiler in LocalSetings.php.
- * For backwards-compatibility, it is also allowed to set the variable from
- * a separate file called StartProfiler.php, which MediaWiki will include.
  *
  * Example:
  *
@@ -6442,6 +6401,13 @@ $wgDeprecationReleaseLimit = false;
  * @since 1.17.0
  */
 $wgProfiler = [];
+
+/**
+ * Allow the profileinfo.php entrypoint to be used.
+ *
+ * @since 1.5.0
+ */
+$wgEnableProfileInfo = false;
 
 /**
  * Only record profiling info for pages that took longer than this
@@ -8040,6 +8006,7 @@ $wgActions = [
 	'history' => true,
 	'info' => true,
 	'markpatrolled' => true,
+	'mcrundo' => McrUndoAction::class,
 	'protect' => true,
 	'purge' => true,
 	'raw' => true,
@@ -8826,7 +8793,7 @@ $wgSearchRunSuggestedQuery = true;
  * @since 1.27
  * @var string path to file
  */
-$wgPopularPasswordFile = __DIR__ . '/../serialized/commonpasswords.cdb';
+$wgPopularPasswordFile = __DIR__ . '/password/commonpasswords.cdb';
 
 /*
  * Max time (in seconds) a user-generated transaction can spend in writes.
@@ -8875,6 +8842,22 @@ $wgCSPHeader = false;
  * @var bool|array Same as $wgCSPHeader
  */
 $wgCSPReportOnlyHeader = false;
+
+/**
+ * List of messages which might contain raw HTML.
+ * Extensions should add their messages here. The list is used for access control:
+ * changing messages listed here will require editsitecss and editsitejs rights.
+ *
+ * @since 1.32
+ * @var string[]
+ */
+$wgRawHtmlMessages = [
+	'copyright',
+	'history_copyright',
+	'googlesearch',
+	'feedback-terms',
+	'feedback-termsofuse',
+];
 
 /**
  * Mapping of event channels (or channel categories) to EventRelayer configuration.

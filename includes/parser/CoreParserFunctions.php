@@ -98,11 +98,6 @@ class CoreParserFunctions {
 			$args = array_slice( func_get_args(), 2 );
 			$message = wfMessage( $part1, $args )
 				->inLanguage( $parser->getOptions()->getUserLangObj() );
-			if ( !$message->exists() ) {
-				// When message does not exists, the message name is surrounded by angle
-				// and can result in a tag, therefore escape the angles
-				return $message->escaped();
-			}
 			return [ $message->plain(), 'noparse' => false ];
 		} else {
 			return [ 'found' => false ];
@@ -950,7 +945,8 @@ class CoreParserFunctions {
 	}
 
 	public static function special( $parser, $text ) {
-		list( $page, $subpage ) = SpecialPageFactory::resolveAlias( $text );
+		list( $page, $subpage ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
+			resolveAlias( $text );
 		if ( $page ) {
 			$title = SpecialPage::getTitleFor( $page, $subpage );
 			return $title->getPrefixedText();

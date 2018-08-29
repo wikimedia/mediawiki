@@ -129,7 +129,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 					$thisAttribs['class'] = 'checkmatrix-forced checkmatrix-forced-on';
 				}
 
-				$checkbox = $this->getOneCheckbox( $checked, $attribs + $thisAttribs );
+				$checkbox = $this->getOneCheckboxHTML( $checked, $attribs + $thisAttribs );
 
 				$rowContents .= Html::rawElement(
 					'td',
@@ -148,24 +148,35 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		return $html;
 	}
 
-	protected function getOneCheckbox( $checked, $attribs ) {
-		if ( $this->mParent instanceof OOUIHTMLForm ) {
-			return new OOUI\CheckboxInputWidget( [
-				'name' => "{$this->mName}[]",
-				'selected' => $checked,
-			] + OOUI\Element::configFromHtmlAttributes(
-				$attribs
-			) );
-		} else {
-			$checkbox = Xml::check( "{$this->mName}[]", $checked, $attribs );
-			if ( $this->mParent->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
-				$checkbox = Html::openElement( 'div', [ 'class' => 'mw-ui-checkbox' ] ) .
-					$checkbox .
-					Html::element( 'label', [ 'for' => $attribs['id'] ] ) .
-					Html::closeElement( 'div' );
-			}
-			return $checkbox;
+	public function getInputOOUI( $value ) {
+		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ] );
+
+		return new MediaWiki\Widget\CheckMatrixWidget(
+			[
+				'name' => $this->mName,
+				'infusable' => true,
+				'id' => $this->mID,
+				'rows' => $this->mParams['rows'],
+				'columns' => $this->mParams['columns'],
+				'tooltips' => $this->mParams['tooltips'],
+				'forcedOff' => isset( $this->mParams['force-options-off'] ) ?
+					$this->mParams['force-options-off'] : [],
+				'forcedOn' => isset( $this->mParams['force-options-on'] ) ?
+					$this->mParams['force-options-on'] : [],
+				'values' => $value
+			] + OOUI\Element::configFromHtmlAttributes( $attribs )
+		);
+	}
+
+	protected function getOneCheckboxHTML( $checked, $attribs ) {
+		$checkbox = Xml::check( "{$this->mName}[]", $checked, $attribs );
+		if ( $this->mParent->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
+			$checkbox = Html::openElement( 'div', [ 'class' => 'mw-ui-checkbox' ] ) .
+				$checkbox .
+				Html::element( 'label', [ 'for' => $attribs['id'] ] ) .
+				Html::closeElement( 'div' );
 		}
+		return $checkbox;
 	}
 
 	protected function isTagForcedOff( $tag ) {
@@ -261,5 +272,13 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		}
 
 		return $res;
+	}
+
+	protected function getOOUIModules() {
+		return [ 'mediawiki.widgets.CheckMatrixWidget' ];
+	}
+
+	protected function shouldInfuseOOUI() {
+		return true;
 	}
 }

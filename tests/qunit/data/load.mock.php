@@ -103,7 +103,7 @@ if ( isset( $_GET['modules'] ) ) {
 				. '} );';
 		} else {
 			// Default
-			$response .= 'mw.loader.state(' . json_encode( $module ) . ', "missing" );' . "\n";
+			$response .= 'mw.loader.state(' . json_encode( [ $module => 'missing' ] ) . ');' . "\n";
 		}
 	}
 }

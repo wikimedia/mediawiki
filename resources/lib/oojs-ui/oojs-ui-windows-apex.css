@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.6
+ * OOUI v0.28.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-08-01T22:18:03Z
+ * Date: 2018-08-14T23:16:22Z
  */
 .oo-ui-actionWidget.oo-ui-pendingElement-pending {
   background-image: /* @embed */ url(themes/wikimediaui/images/textures/pending.gif);
@@ -375,9 +375,9 @@
 .oo-ui-windowManager-modal > .oo-ui-dialog {
   background-color: rgba(255, 255, 255, 0.5);
   opacity: 0;
-  -webkit-transition: opacity 250ms ease;
-  -moz-transition: opacity 250ms ease;
-  transition: opacity 250ms ease;
+  -webkit-transition: opacity 250ms;
+  -moz-transition: opacity 250ms;
+  transition: opacity 250ms;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog > .oo-ui-window-frame {
   background-color: #fff;
@@ -386,9 +386,9 @@
   -moz-transform: scale(0.5);
   -ms-transform: scale(0.5);
   transform: scale(0.5);
-  -webkit-transition: all 250ms ease;
-  -moz-transition: all 250ms ease;
-  transition: all 250ms ease;
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  transition: all 250ms;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-setup {
   opacity: 1;

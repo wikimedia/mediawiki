@@ -89,7 +89,8 @@
 			"Ooswesthoesbes",
 			"MarcoSwart",
 			"Pahles",
-			"Optilete"
+			"Optilete",
+			"Goefie"
 		]
 	},
 	"tog-underline": "Verwijzingen onderstrepen:",
@@ -1199,7 +1200,7 @@
 	"group-autoconfirmed": "autobevestigde gebruikers",
 	"group-bot": "bots",
 	"group-sysop": "beheerders",
-	"group-interface-admin": "interfacemoderatoren",
+	"group-interface-admin": "interfacebeheerders",
 	"group-bureaucrat": "bureaucraten",
 	"group-suppress": "toezichthouders",
 	"group-all": "(iedereen)",
@@ -1856,7 +1857,7 @@
 	"filehist-comment": "Opmerking",
 	"imagelinks": "Bestandsgebruik",
 	"linkstoimage": "Dit bestand wordt op de volgende {{PLURAL:$1|pagina|$1 pagina's}} gebruikt:",
-	"linkstoimage-more": "Meer dan $1 {{PLURAL:$1|pagina gebruikt|pagina's gebruiken}} dit bestand.\nDe volgende lijst geeft alleen de eerste {{PLURAL:$1|pagina|$1 pagina's}} die dit bestand gebruiken weer.\nEr is ook een [[Special:WhatLinksHere/$2|volledige lijst]] beschikbaar.",
+	"linkstoimage-more": "Meer dan $1 {{PLURAL:$1|page uses|pagina's gebruiken}} dit bestand.\nDe volgende lijst geeft alleen de {{PLURAL:$1|first page|eerste $1 pagina's}} weer die dit bestand gebruiken.\nEr is ook een [[Special:WhatLinksHere/$2|volledige lijst]] beschikbaar.",
 	"nolinkstoimage": "Geen enkele pagina gebruikt dit bestand.",
 	"morelinkstoimage": "[[Special:WhatLinksHere/$1|Meer koppelingen]] naar dit bestand bekijken.",
 	"linkstoimage-redirect": "$1 (bestandsdoorverwijzing) $2",
@@ -3424,6 +3425,9 @@
 	"confirm-unwatch-top": "Deze pagina verwijderen uit uw volglijst?",
 	"confirm-rollback-button": "OK",
 	"confirm-rollback-top": "Bewerkingen op deze pagina ongedaan maken?",
+	"confirm-mcrundo-title": "Een wijziging ongedaan maken",
+	"mcrundofailed": "Ongedaan maken mislukt",
+	"mcrundo-missingparam": "Er ontbreken nodige parameters in het verzoek.",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "← vorige pagina",
 	"imgmultipagenext": "volgende pagina →",

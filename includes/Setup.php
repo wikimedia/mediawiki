@@ -86,11 +86,6 @@ MediaWiki\HeaderCallback::register();
  * Load LocalSettings.php
  */
 
-if ( is_readable( "$IP/StartProfiler.php" ) ) {
-	// @deprecated since 1.32: Use LocalSettings.php instead.
-	require "$IP/StartProfiler.php";
-}
-
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	call_user_func( MW_CONFIG_CALLBACK );
 } else {
@@ -774,7 +769,7 @@ if ( $wgCommandLineMode ) {
 	wfDebug( $debug );
 }
 
-$wgMemc = wfGetMainCache();
+$wgMemc = ObjectCache::getLocalClusterInstance();
 $messageMemc = wfGetMessageCacheStorage();
 
 wfDebugLog( 'caches',
@@ -898,6 +893,7 @@ $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
 
 /**
  * @var Parser $wgParser
+ * @deprecated since 1.32, use MediaWikiServices::getParser() instead
  */
 $wgParser = new StubObject( 'wgParser', function () {
 	return MediaWikiServices::getInstance()->getParser();

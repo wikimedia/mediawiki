@@ -18,6 +18,8 @@
  * @ingroup Actions
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * An action that just passes the request to the relevant special page
  *
@@ -92,6 +94,7 @@ class SpecialPageAction extends FormlessAction {
 		}
 
 		// map actions to (whitelisted) special pages
-		return SpecialPageFactory::getPage( self::$actionToSpecialPageMapping[$action] );
+		return MediaWikiServices::getInstance()->getSpecialPageFactory()->
+			getPage( self::$actionToSpecialPageMapping[$action] );
 	}
 }

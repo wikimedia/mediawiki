@@ -13,7 +13,7 @@
 		$( this ).find( '[tabindex]' ).each( function () {
 			var tabIndex = parseInt( $( this ).prop( 'tabindex' ), 10 );
 			// In IE6/IE7 the above jQuery selector returns all elements,
-			// becuase it has a default value for tabIndex in IE6/IE7 of 0
+			// because it has a default value for tabIndex in IE6/IE7 of 0
 			// (rather than null/undefined). Therefore check "> 0" as well.
 			// Under IE7 under Windows NT 5.2 is also capable of returning NaN.
 			if ( tabIndex > 0 && !isNaN( tabIndex ) ) {

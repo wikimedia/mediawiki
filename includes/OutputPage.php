@@ -2364,10 +2364,6 @@ class OutputPage extends ContextSource {
 
 		if ( !$this->mArticleBodyOnly ) {
 			$sk = $this->getSkin();
-
-			if ( $sk->shouldPreloadLogo() ) {
-				$this->addLogoPreloadLinkHeaders();
-			}
 		}
 
 		$linkHeader = $this->getLinkHeader();
@@ -3060,6 +3056,7 @@ class OutputPage extends ContextSource {
 		$curRevisionId = 0;
 		$articleId = 0;
 		$canonicalSpecialPageName = false; # T23115
+		$services = MediaWikiServices::getInstance();
 
 		$title = $this->getTitle();
 		$ns = $title->getNamespace();
@@ -3075,7 +3072,8 @@ class OutputPage extends ContextSource {
 
 		if ( $ns == NS_SPECIAL ) {
 			list( $canonicalSpecialPageName, /*...*/ ) =
-				SpecialPageFactory::resolveAlias( $title->getDBkey() );
+				$services->getSpecialPageFactory()->
+					resolveAlias( $title->getDBkey() );
 		} elseif ( $this->canUseWikiPage() ) {
 			$wikiPage = $this->getWikiPage();
 			$curRevisionId = $wikiPage->getLatest();
@@ -3140,7 +3138,7 @@ class OutputPage extends ContextSource {
 			$vars['wgUserNewMsgRevisionId'] = $user->getNewMessageRevisionId();
 		}
 
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$contLang = $services->getContentLanguage();
 		if ( $contLang->hasVariants() ) {
 			$vars['wgUserVariant'] = $contLang->getPreferredVariant();
 		}
@@ -3911,80 +3909,6 @@ class OutputPage extends ContextSource {
 			'oojs-ui.styles.icons-alerts',
 			'oojs-ui.styles.icons-interactions',
 		] );
-	}
-
-	/**
-	 * Add Link headers for preloading the wiki's logo.
-	 *
-	 * @since 1.26
-	 */
-	protected function addLogoPreloadLinkHeaders() {
-		$logo = ResourceLoaderSkinModule::getLogo( $this->getConfig() );
-
-		$tags = [];
-		$logosPerDppx = [];
-		$logos = [];
-
-		if ( !is_array( $logo ) ) {
-			// No media queries required if we only have one variant
-			$this->addLinkHeader( '<' . $logo . '>;rel=preload;as=image' );
-			return;
-		}
-
-		if ( isset( $logo['svg'] ) ) {
-			// No media queries required if we only have a 1x and svg variant
-			// because all preload-capable browsers support SVGs
-			$this->addLinkHeader( '<' . $logo['svg'] . '>;rel=preload;as=image' );
-			return;
-		}
-
-		foreach ( $logo as $dppx => $src ) {
-			// Keys are in this format: "1.5x"
-			$dppx = substr( $dppx, 0, -1 );
-			$logosPerDppx[$dppx] = $src;
-		}
-
-		// Because PHP can't have floats as array keys
-		uksort( $logosPerDppx, function ( $a , $b ) {
-			$a = floatval( $a );
-			$b = floatval( $b );
-			// Sort from smallest to largest (e.g. 1x, 1.5x, 2x)
-			return $a <=> $b;
-		} );
-
-		foreach ( $logosPerDppx as $dppx => $src ) {
-			$logos[] = [ 'dppx' => $dppx, 'src' => $src ];
-		}
-
-		$logosCount = count( $logos );
-		// Logic must match ResourceLoaderSkinModule:
-		// - 1x applies to resolution < 1.5dppx
-		// - 1.5x applies to resolution >= 1.5dppx && < 2dppx
-		// - 2x applies to resolution >= 2dppx
-		// Note that min-resolution and max-resolution are both inclusive.
-		for ( $i = 0; $i < $logosCount; $i++ ) {
-			if ( $i === 0 ) {
-				// Smallest dppx
-				// min-resolution is ">=" (larger than or equal to)
-				// "not min-resolution" is essentially "<"
-				$media_query = 'not all and (min-resolution: ' . $logos[ 1 ]['dppx'] . 'dppx)';
-			} elseif ( $i !== $logosCount - 1 ) {
-				// In between
-				// Media query expressions can only apply "not" to the entire expression
-				// (e.g. can't express ">= 1.5 and not >= 2).
-				// Workaround: Use <= 1.9999 in place of < 2.
-				$upper_bound = floatval( $logos[ $i + 1 ]['dppx'] ) - 0.000001;
-				$media_query = '(min-resolution: ' . $logos[ $i ]['dppx'] .
-					'dppx) and (max-resolution: ' . $upper_bound . 'dppx)';
-			} else {
-				// Largest dppx
-				$media_query = '(min-resolution: ' . $logos[ $i ]['dppx'] . 'dppx)';
-			}
-
-			$this->addLinkHeader(
-				'<' . $logos[$i]['src'] . '>;rel=preload;as=image;media=' . $media_query
-			);
-		}
 	}
 
 	/**

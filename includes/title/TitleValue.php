@@ -22,6 +22,7 @@
  */
 use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Assert\ParameterTypeException;
 
 /**
  * Represents a page (or page fragment) title within MediaWiki.
@@ -59,6 +60,16 @@ class TitleValue implements LinkTarget {
 	protected $interwiki;
 
 	/**
+	 * Text form including namespace/interwiki, initialised on demand
+	 *
+	 * Only public to share cache with TitleFormatter
+	 *
+	 * @private
+	 * @var string
+	 */
+	public $prefixedText = null;
+
+	/**
 	 * Constructs a TitleValue.
 	 *
 	 * @note TitleValue expects a valid DB key; typically, a TitleValue is constructed either
@@ -76,10 +87,18 @@ class TitleValue implements LinkTarget {
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $namespace, $dbkey, $fragment = '', $interwiki = '' ) {
-		Assert::parameterType( 'integer', $namespace, '$namespace' );
-		Assert::parameterType( 'string', $dbkey, '$dbkey' );
-		Assert::parameterType( 'string', $fragment, '$fragment' );
-		Assert::parameterType( 'string', $interwiki, '$interwiki' );
+		if ( !is_int( $namespace ) ) {
+			throw new ParameterTypeException( '$namespace', 'int' );
+		}
+		if ( !is_string( $dbkey ) ) {
+			throw new ParameterTypeException( '$dbkey', 'string' );
+		}
+		if ( !is_string( $fragment ) ) {
+			throw new ParameterTypeException( '$fragment', 'string' );
+		}
+		if ( !is_string( $interwiki ) ) {
+			throw new ParameterTypeException( '$interwiki', 'string' );
+		}
 
 		// Sanity check, no full validation or normalization applied here!
 		Assert::parameter( !preg_match( '/^_|[ \r\n\t]|_$/', $dbkey ), '$dbkey',
@@ -149,7 +168,7 @@ class TitleValue implements LinkTarget {
 	 * @return string
 	 */
 	public function getText() {
-		return str_replace( '_', ' ', $this->getDBkey() );
+		return str_replace( '_', ' ', $this->dbkey );
 	}
 
 	/**

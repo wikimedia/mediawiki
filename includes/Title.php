@@ -134,8 +134,15 @@ class Title implements LinkTarget {
 	/** @var bool Boolean for initialisation on demand */
 	public $mRestrictionsLoaded = false;
 
-	/** @var string Text form including namespace/interwiki, initialised on demand */
-	protected $mPrefixedText = null;
+	/**
+	 * Text form including namespace/interwiki, initialised on demand
+	 *
+	 * Only public to share cache with TitleFormatter
+	 *
+	 * @private
+	 * @var string
+	 */
+	public $prefixedText = null;
 
 	/** @var mixed Cached value for getTitleProtection (create protection) */
 	public $mTitleProtection;
@@ -805,15 +812,13 @@ class Title implements LinkTarget {
 	 * @return bool
 	 */
 	public function isValid() {
-		$ns = $this->getNamespace();
-
-		if ( !MWNamespace::exists( $ns ) ) {
+		if ( !MWNamespace::exists( $this->mNamespace ) ) {
 			return false;
 		}
 
 		try {
 			$parser = MediaWikiServices::getInstance()->getTitleParser();
-			$parser->parseTitle( $this->getDBkey(), $ns );
+			$parser->parseTitle( $this->mDbkeyform, $this->mNamespace );
 			return true;
 		} catch ( MalformedTitleException $ex ) {
 			return false;
@@ -906,10 +911,10 @@ class Title implements LinkTarget {
 		if ( $this->mTitleValue === null ) {
 			try {
 				$this->mTitleValue = new TitleValue(
-					$this->getNamespace(),
-					$this->getDBkey(),
-					$this->getFragment(),
-					$this->getInterwiki()
+					$this->mNamespace,
+					$this->mDbkeyform,
+					$this->mFragment,
+					$this->mInterwiki
 				);
 			} catch ( InvalidArgumentException $ex ) {
 				wfDebug( __METHOD__ . ': Can\'t create a TitleValue for [[' .
@@ -1101,7 +1106,7 @@ class Title implements LinkTarget {
 	 * @return bool
 	 */
 	public function isWatchable() {
-		return !$this->isExternal() && MWNamespace::isWatchable( $this->getNamespace() );
+		return !$this->isExternal() && MWNamespace::isWatchable( $this->mNamespace );
 	}
 
 	/**
@@ -1110,7 +1115,7 @@ class Title implements LinkTarget {
 	 * @return bool
 	 */
 	public function isSpecialPage() {
-		return $this->getNamespace() == NS_SPECIAL;
+		return $this->mNamespace == NS_SPECIAL;
 	}
 
 	/**
@@ -1121,7 +1126,9 @@ class Title implements LinkTarget {
 	 */
 	public function isSpecial( $name ) {
 		if ( $this->isSpecialPage() ) {
-			list( $thisName, /* $subpage */ ) = SpecialPageFactory::resolveAlias( $this->getDBkey() );
+			list( $thisName, /* $subpage */ ) =
+				MediaWikiServices::getInstance()->getSpecialPageFactory()->
+					resolveAlias( $this->mDbkeyform );
 			if ( $name == $thisName ) {
 				return true;
 			}
@@ -1137,9 +1144,10 @@ class Title implements LinkTarget {
 	 */
 	public function fixSpecialName() {
 		if ( $this->isSpecialPage() ) {
-			list( $canonicalName, $par ) = SpecialPageFactory::resolveAlias( $this->mDbkeyform );
+			$spFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
+			list( $canonicalName, $par ) = $spFactory->resolveAlias( $this->mDbkeyform );
 			if ( $canonicalName ) {
-				$localName = SpecialPageFactory::getLocalNameFor( $canonicalName, $par );
+				$localName = $spFactory->getLocalNameFor( $canonicalName, $par );
 				if ( $localName != $this->mDbkeyform ) {
 					return self::makeTitle( NS_SPECIAL, $localName );
 				}
@@ -1159,7 +1167,7 @@ class Title implements LinkTarget {
 	 * @since 1.19
 	 */
 	public function inNamespace( $ns ) {
-		return MWNamespace::equals( $this->getNamespace(), $ns );
+		return MWNamespace::equals( $this->mNamespace, $ns );
 	}
 
 	/**
@@ -1198,7 +1206,7 @@ class Title implements LinkTarget {
 	 * @return bool
 	 */
 	public function hasSubjectNamespace( $ns ) {
-		return MWNamespace::subjectEquals( $this->getNamespace(), $ns );
+		return MWNamespace::subjectEquals( $this->mNamespace, $ns );
 	}
 
 	/**
@@ -1209,7 +1217,7 @@ class Title implements LinkTarget {
 	 * @return bool
 	 */
 	public function isContentPage() {
-		return MWNamespace::isContent( $this->getNamespace() );
+		return MWNamespace::isContent( $this->mNamespace );
 	}
 
 	/**
@@ -1219,7 +1227,7 @@ class Title implements LinkTarget {
 	 * @return bool
 	 */
 	public function isMovable() {
-		if ( !MWNamespace::isMovable( $this->getNamespace() ) || $this->isExternal() ) {
+		if ( !MWNamespace::isMovable( $this->mNamespace ) || $this->isExternal() ) {
 			// Interwiki title or immovable namespace. Hooks don't get to override here
 			return false;
 		}
@@ -1262,7 +1270,7 @@ class Title implements LinkTarget {
 	public function isConversionTable() {
 		// @todo ConversionTable should become a separate content model.
 
-		return $this->getNamespace() == NS_MEDIAWIKI &&
+		return $this->mNamespace == NS_MEDIAWIKI &&
 			strpos( $this->getText(), 'Conversiontable/' ) === 0;
 	}
 
@@ -1431,7 +1439,7 @@ class Title implements LinkTarget {
 				$this->hasContentModel( CONTENT_MODEL_CSS )
 				// paranoia - a MediaWiki: namespace page with mismatching extension and content
 				// model is probably by mistake and might get handled incorrectly (see e.g. T112937)
-				|| substr( $this->getDBkey(), -4 ) === '.css'
+				|| substr( $this->mDbkeyform, -4 ) === '.css'
 			)
 		);
 	}
@@ -1449,7 +1457,7 @@ class Title implements LinkTarget {
 				$this->hasContentModel( CONTENT_MODEL_JSON )
 				// paranoia - a MediaWiki: namespace page with mismatching extension and content
 				// model is probably by mistake and might get handled incorrectly (see e.g. T112937)
-				|| substr( $this->getDBkey(), -5 ) === '.json'
+				|| substr( $this->mDbkeyform, -5 ) === '.json'
 			)
 		);
 	}
@@ -1467,9 +1475,25 @@ class Title implements LinkTarget {
 				$this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
 				// paranoia - a MediaWiki: namespace page with mismatching extension and content
 				// model is probably by mistake and might get handled incorrectly (see e.g. T112937)
-				|| substr( $this->getDBkey(), -3 ) === '.js'
+				|| substr( $this->mDbkeyform, -3 ) === '.js'
 			)
 		);
+	}
+
+	/**
+	 * Is this a message which can contain raw HTML?
+	 *
+	 * @return bool
+	 * @since 1.32
+	 */
+	public function isRawHtmlMessage() {
+		global $wgRawHtmlMessages;
+
+		if ( $this->inNamespace( NS_MEDIAWIKI ) ) {
+			return false;
+		}
+		$message = lcfirst( $this->getRootText() );
+		return in_array( $message, $wgRawHtmlMessages, true );
 	}
 
 	/**
@@ -1478,7 +1502,7 @@ class Title implements LinkTarget {
 	 * @return bool
 	 */
 	public function isTalkPage() {
-		return MWNamespace::isTalk( $this->getNamespace() );
+		return MWNamespace::isTalk( $this->mNamespace );
 	}
 
 	/**
@@ -1487,7 +1511,7 @@ class Title implements LinkTarget {
 	 * @return Title The object for the talk page
 	 */
 	public function getTalkPage() {
-		return self::makeTitle( MWNamespace::getTalk( $this->getNamespace() ), $this->getDBkey() );
+		return self::makeTitle( MWNamespace::getTalk( $this->mNamespace ), $this->mDbkeyform );
 	}
 
 	/**
@@ -1515,11 +1539,11 @@ class Title implements LinkTarget {
 	 */
 	public function getSubjectPage() {
 		// Is this the same title?
-		$subjectNS = MWNamespace::getSubject( $this->getNamespace() );
-		if ( $this->getNamespace() == $subjectNS ) {
+		$subjectNS = MWNamespace::getSubject( $this->mNamespace );
+		if ( $this->mNamespace == $subjectNS ) {
 			return $this;
 		}
-		return self::makeTitle( $subjectNS, $this->getDBkey() );
+		return self::makeTitle( $subjectNS, $this->mDbkeyform );
 	}
 
 	/**
@@ -1585,9 +1609,9 @@ class Title implements LinkTarget {
 		} elseif ( $this->isExternal()
 			&& !self::getInterwikiLookup()->fetch( $this->mInterwiki )->isLocal()
 		) {
-			return '#' . Sanitizer::escapeIdForExternalInterwiki( $this->getFragment() );
+			return '#' . Sanitizer::escapeIdForExternalInterwiki( $this->mFragment );
 		}
-		return '#' . Sanitizer::escapeIdForLink( $this->getFragment() );
+		return '#' . Sanitizer::escapeIdForLink( $this->mFragment );
 	}
 
 	/**
@@ -1615,10 +1639,10 @@ class Title implements LinkTarget {
 	 */
 	public function createFragmentTarget( $fragment ) {
 		return self::makeTitle(
-			$this->getNamespace(),
+			$this->mNamespace,
 			$this->getText(),
 			$fragment,
-			$this->getInterwiki()
+			$this->mInterwiki
 		);
 	}
 
@@ -1668,12 +1692,12 @@ class Title implements LinkTarget {
 	 * @return string The prefixed title, with spaces
 	 */
 	public function getPrefixedText() {
-		if ( $this->mPrefixedText === null ) {
+		if ( $this->prefixedText === null ) {
 			$s = $this->prefix( $this->mTextform );
 			$s = strtr( $s, '_', ' ' );
-			$this->mPrefixedText = $s;
+			$this->prefixedText = $s;
 		}
-		return $this->mPrefixedText;
+		return $this->prefixedText;
 	}
 
 	/**
@@ -1694,7 +1718,7 @@ class Title implements LinkTarget {
 	public function getFullText() {
 		$text = $this->getPrefixedText();
 		if ( $this->hasFragment() ) {
-			$text .= '#' . $this->getFragment();
+			$text .= '#' . $this->mFragment;
 		}
 		return $text;
 	}
@@ -1732,7 +1756,7 @@ class Title implements LinkTarget {
 	 * @since 1.20
 	 */
 	public function getRootTitle() {
-		return self::makeTitle( $this->getNamespace(), $this->getRootText() );
+		return self::makeTitle( $this->mNamespace, $this->getRootText() );
 	}
 
 	/**
@@ -1772,7 +1796,7 @@ class Title implements LinkTarget {
 	 * @since 1.20
 	 */
 	public function getBaseTitle() {
-		return self::makeTitle( $this->getNamespace(), $this->getBaseText() );
+		return self::makeTitle( $this->mNamespace, $this->getBaseText() );
 	}
 
 	/**
@@ -1808,7 +1832,7 @@ class Title implements LinkTarget {
 	 * @since 1.20
 	 */
 	public function getSubpage( $text ) {
-		return self::makeTitleSafe( $this->getNamespace(), $this->getText() . '/' . $text );
+		return self::makeTitleSafe( $this->mNamespace, $this->getText() . '/' . $text );
 	}
 
 	/**
@@ -1966,7 +1990,7 @@ class Title implements LinkTarget {
 				# Yes! It can in interwiki transclusion. But... it probably shouldn't.
 				$namespace .= ':';
 			}
-			$url = $interwiki->getURL( $namespace . $this->getDBkey() );
+			$url = $interwiki->getURL( $namespace . $this->mDbkeyform );
 			$url = wfAppendQuery( $url, $query );
 		} else {
 			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
@@ -2384,6 +2408,13 @@ class Title implements LinkTarget {
 				$error = [ 'sitejsonprotected', $action ];
 			} elseif ( $this->isSiteJsConfigPage() && !$user->isAllowed( 'editsitejs' ) ) {
 				$error = [ 'sitejsprotected', $action ];
+			} elseif ( $this->isRawHtmlMessage() ) {
+				// Raw HTML can be used to deploy CSS or JS so require rights for both.
+				if ( !$user->isAllowed( 'editsitejs' ) ) {
+					$error = [ 'sitejsprotected', $action ];
+				} elseif ( !$user->isAllowed( 'editsitecss' ) ) {
+					$error = [ 'sitecssprotected', $action ];
+				}
 			}
 
 			if ( $error ) {
@@ -2415,25 +2446,34 @@ class Title implements LinkTarget {
 		# Protect css/json/js subpages of user pages
 		# XXX: this might be better using restrictions
 
-		if ( $action != 'patrol' ) {
-			if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
-				if (
-					$this->isUserCssConfigPage()
-					&& !$user->isAllowedAny( 'editmyusercss', 'editusercss' )
-				) {
-					$errors[] = [ 'mycustomcssprotected', $action ];
-				} elseif (
-					$this->isUserJsonConfigPage()
-					&& !$user->isAllowedAny( 'editmyuserjson', 'edituserjson' )
-				) {
-					$errors[] = [ 'mycustomjsonprotected', $action ];
-				} elseif (
-					$this->isUserJsConfigPage()
-					&& !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' )
-				) {
-					$errors[] = [ 'mycustomjsprotected', $action ];
-				}
-			} else {
+		if ( $action === 'patrol' ) {
+			return [];
+		}
+
+		if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
+			// Users need editmyuser* to edit their own CSS/JSON/JS subpages.
+			if (
+				$this->isUserCssConfigPage()
+				&& !$user->isAllowedAny( 'editmyusercss', 'editusercss' )
+			) {
+				$errors[] = [ 'mycustomcssprotected', $action ];
+			} elseif (
+				$this->isUserJsonConfigPage()
+				&& !$user->isAllowedAny( 'editmyuserjson', 'edituserjson' )
+			) {
+				$errors[] = [ 'mycustomjsonprotected', $action ];
+			} elseif (
+				$this->isUserJsConfigPage()
+				&& !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' )
+			) {
+				$errors[] = [ 'mycustomjsprotected', $action ];
+			}
+		} else {
+			// Users need editmyuser* to edit their own CSS/JSON/JS subpages, except for
+			// deletion/suppression which cannot be used for attacks and we want to avoid the
+			// situation where an unprivileged user can post abusive content on their subpages
+			// and only very highly privileged users could remove it.
+			if ( !in_array( $action, [ 'delete', 'deleterevision', 'suppressrevision' ], true ) ) {
 				if (
 					$this->isUserCssConfigPage()
 					&& !$user->isAllowed( 'editusercss' )
@@ -2698,7 +2738,7 @@ class Title implements LinkTarget {
 			// Check for explicit whitelisting with and without underscores
 			if ( in_array( $name, $wgWhitelistRead, true ) || in_array( $dbName, $wgWhitelistRead, true ) ) {
 				$whitelisted = true;
-			} elseif ( $this->getNamespace() == NS_MAIN ) {
+			} elseif ( $this->mNamespace == NS_MAIN ) {
 				# Old settings might have the title prefixed with
 				# a colon for main-namespace pages
 				if ( in_array( ':' . $name, $wgWhitelistRead ) ) {
@@ -2706,8 +2746,10 @@ class Title implements LinkTarget {
 				}
 			} elseif ( $this->isSpecialPage() ) {
 				# If it's a special page, ditch the subpage bit and check again
-				$name = $this->getDBkey();
-				list( $name, /* $subpage */ ) = SpecialPageFactory::resolveAlias( $name );
+				$name = $this->mDbkeyform;
+				list( $name, /* $subpage */ ) =
+					MediaWikiServices::getInstance()->getSpecialPageFactory()->
+						resolveAlias( $name );
 				if ( $name ) {
 					$pure = SpecialPage::getTitleFor( $name )->getPrefixedText();
 					if ( in_array( $pure, $wgWhitelistRead, true ) ) {
@@ -2857,7 +2899,7 @@ class Title implements LinkTarget {
 
 		$types = self::getFilteredRestrictionTypes( $this->exists() );
 
-		if ( $this->getNamespace() != NS_FILE ) {
+		if ( $this->mNamespace != NS_FILE ) {
 			# Remove the upload restriction for non-file titles
 			$types = array_diff( $types, [ 'upload' ] );
 		}
@@ -2902,7 +2944,7 @@ class Title implements LinkTarget {
 	 */
 	protected function getTitleProtectionInternal() {
 		// Can't protect pages in special namespaces
-		if ( $this->getNamespace() < 0 ) {
+		if ( $this->mNamespace < 0 ) {
 			return false;
 		}
 
@@ -2922,7 +2964,7 @@ class Title implements LinkTarget {
 					'expiry' => 'pt_expiry',
 					'permission' => 'pt_create_perm'
 				] + $commentQuery['fields'],
-				[ 'pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey() ],
+				[ 'pt_namespace' => $this->mNamespace, 'pt_title' => $this->mDbkeyform ],
 				__METHOD__,
 				[],
 				$commentQuery['joins']
@@ -2952,7 +2994,7 @@ class Title implements LinkTarget {
 
 		$dbw->delete(
 			'protected_titles',
-			[ 'pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey() ],
+			[ 'pt_namespace' => $this->mNamespace, 'pt_title' => $this->mDbkeyform ],
 			__METHOD__
 		);
 		$this->mTitleProtection = false;
@@ -3085,18 +3127,18 @@ class Title implements LinkTarget {
 
 		$dbr = wfGetDB( DB_REPLICA );
 
-		if ( $this->getNamespace() == NS_FILE ) {
+		if ( $this->mNamespace == NS_FILE ) {
 			$tables = [ 'imagelinks', 'page_restrictions' ];
 			$where_clauses = [
-				'il_to' => $this->getDBkey(),
+				'il_to' => $this->mDbkeyform,
 				'il_from=pr_page',
 				'pr_cascade' => 1
 			];
 		} else {
 			$tables = [ 'templatelinks', 'page_restrictions' ];
 			$where_clauses = [
-				'tl_namespace' => $this->getNamespace(),
-				'tl_title' => $this->getDBkey(),
+				'tl_namespace' => $this->mNamespace,
+				'tl_title' => $this->mDbkeyform,
 				'tl_from=pr_page',
 				'pr_cascade' => 1
 			];
@@ -3439,13 +3481,13 @@ class Title implements LinkTarget {
 	 *  doesn't allow subpages
 	 */
 	public function getSubpages( $limit = -1 ) {
-		if ( !MWNamespace::hasSubpages( $this->getNamespace() ) ) {
+		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
 			return [];
 		}
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$conds['page_namespace'] = $this->getNamespace();
-		$conds[] = 'page_title ' . $dbr->buildLike( $this->getDBkey() . '/', $dbr->anyString() );
+		$conds['page_namespace'] = $this->mNamespace;
+		$conds[] = 'page_title ' . $dbr->buildLike( $this->mDbkeyform . '/', $dbr->anyString() );
 		$options = [];
 		if ( $limit > -1 ) {
 			$options['LIMIT'] = $limit;
@@ -3466,18 +3508,18 @@ class Title implements LinkTarget {
 	 * @return int The number of archived revisions
 	 */
 	public function isDeleted() {
-		if ( $this->getNamespace() < 0 ) {
+		if ( $this->mNamespace < 0 ) {
 			$n = 0;
 		} else {
 			$dbr = wfGetDB( DB_REPLICA );
 
 			$n = $dbr->selectField( 'archive', 'COUNT(*)',
-				[ 'ar_namespace' => $this->getNamespace(), 'ar_title' => $this->getDBkey() ],
+				[ 'ar_namespace' => $this->mNamespace, 'ar_title' => $this->mDbkeyform ],
 				__METHOD__
 			);
-			if ( $this->getNamespace() == NS_FILE ) {
+			if ( $this->mNamespace == NS_FILE ) {
 				$n += $dbr->selectField( 'filearchive', 'COUNT(*)',
-					[ 'fa_name' => $this->getDBkey() ],
+					[ 'fa_name' => $this->mDbkeyform ],
 					__METHOD__
 				);
 			}
@@ -3491,17 +3533,17 @@ class Title implements LinkTarget {
 	 * @return bool
 	 */
 	public function isDeletedQuick() {
-		if ( $this->getNamespace() < 0 ) {
+		if ( $this->mNamespace < 0 ) {
 			return false;
 		}
 		$dbr = wfGetDB( DB_REPLICA );
 		$deleted = (bool)$dbr->selectField( 'archive', '1',
-			[ 'ar_namespace' => $this->getNamespace(), 'ar_title' => $this->getDBkey() ],
+			[ 'ar_namespace' => $this->mNamespace, 'ar_title' => $this->mDbkeyform ],
 			__METHOD__
 		);
-		if ( !$deleted && $this->getNamespace() == NS_FILE ) {
+		if ( !$deleted && $this->mNamespace == NS_FILE ) {
 			$deleted = (bool)$dbr->selectField( 'filearchive', '1',
-				[ 'fa_name' => $this->getDBkey() ],
+				[ 'fa_name' => $this->mDbkeyform ],
 				__METHOD__
 			);
 		}
@@ -3517,7 +3559,7 @@ class Title implements LinkTarget {
 	 * @return int The ID
 	 */
 	public function getArticleID( $flags = 0 ) {
-		if ( $this->getNamespace() < 0 ) {
+		if ( $this->mNamespace < 0 ) {
 			$this->mArticleID = 0;
 			return $this->mArticleID;
 		}
@@ -3695,13 +3737,6 @@ class Title implements LinkTarget {
 	 * @return bool True on success
 	 */
 	private function secureAndSplit() {
-		# Initialisation
-		$this->mInterwiki = '';
-		$this->mFragment = '';
-		$this->mNamespace = $this->mDefaultNamespace; # Usually NS_MAIN
-
-		$dbkey = $this->mDbkeyform;
-
 		// @note: splitTitleString() is a temporary hack to allow MediaWikiTitleCodec to share
 		//        the parsing code with Title, while avoiding massive refactoring.
 		// @todo: get rid of secureAndSplit, refactor parsing code.
@@ -3709,7 +3744,7 @@ class Title implements LinkTarget {
 		//        splitTitleString method, but the only implementation (MediaWikiTitleCodec) does
 		$titleCodec = MediaWikiServices::getInstance()->getTitleParser();
 		// MalformedTitleException can be thrown here
-		$parts = $titleCodec->splitTitleString( $dbkey, $this->getDefaultNamespace() );
+		$parts = $titleCodec->splitTitleString( $this->mDbkeyform, $this->mDefaultNamespace );
 
 		# Fill fields
 		$this->setFragment( '#' . $parts['fragment'] );
@@ -3754,8 +3789,8 @@ class Title implements LinkTarget {
 			self::getSelectFields(),
 			[
 				"{$prefix}_from=page_id",
-				"{$prefix}_namespace" => $this->getNamespace(),
-				"{$prefix}_title" => $this->getDBkey() ],
+				"{$prefix}_namespace" => $this->mNamespace,
+				"{$prefix}_title" => $this->mDbkeyform ],
 			__METHOD__,
 			$options
 		);
@@ -4061,9 +4096,9 @@ class Title implements LinkTarget {
 			];
 		}
 		// Do the source and target namespaces support subpages?
-		if ( !MWNamespace::hasSubpages( $this->getNamespace() ) ) {
+		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
 			return [
-				[ 'namespace-nosubpages', MWNamespace::getCanonicalName( $this->getNamespace() ) ],
+				[ 'namespace-nosubpages', MWNamespace::getCanonicalName( $this->mNamespace ) ],
 			];
 		}
 		if ( !MWNamespace::hasSubpages( $nt->getNamespace() ) ) {
@@ -4095,7 +4130,7 @@ class Title implements LinkTarget {
 				continue;
 			}
 			$newPageName = preg_replace(
-					'#^' . preg_quote( $this->getDBkey(), '#' ) . '#',
+					'#^' . preg_quote( $this->mDbkeyform, '#' ) . '#',
 					StringUtils::escapeRegexReplacement( $nt->getDBkey() ), # T23234
 					$oldSubpage->getDBkey() );
 			if ( $oldSubpage->isTalkPage() ) {
@@ -4154,8 +4189,8 @@ class Title implements LinkTarget {
 		# Does the article have a history?
 		$row = $dbw->selectField( [ 'page', 'revision' ],
 			'rev_id',
-			[ 'page_namespace' => $this->getNamespace(),
-				'page_title' => $this->getDBkey(),
+			[ 'page_namespace' => $this->mNamespace,
+				'page_title' => $this->mDbkeyform,
 				'page_id=rev_page',
 				'page_latest != rev_id'
 			],
@@ -4607,9 +4642,9 @@ class Title implements LinkTarget {
 	 */
 	public function equals( Title $title ) {
 		// Note: === is necessary for proper matching of number-like titles.
-		return $this->getInterwiki() === $title->getInterwiki()
-			&& $this->getNamespace() == $title->getNamespace()
-			&& $this->getDBkey() === $title->getDBkey();
+		return $this->mInterwiki === $title->mInterwiki
+			&& $this->mNamespace == $title->mNamespace
+			&& $this->mDbkeyform === $title->mDbkeyform;
 	}
 
 	/**
@@ -4619,9 +4654,9 @@ class Title implements LinkTarget {
 	 * @return bool
 	 */
 	public function isSubpageOf( Title $title ) {
-		return $this->getInterwiki() === $title->getInterwiki()
-			&& $this->getNamespace() == $title->getNamespace()
-			&& strpos( $this->getDBkey(), $title->getDBkey() . '/' ) === 0;
+		return $this->mInterwiki === $title->mInterwiki
+			&& $this->mNamespace == $title->mNamespace
+			&& strpos( $this->mDbkeyform, $title->mDbkeyform . '/' ) === 0;
 	}
 
 	/**
@@ -4687,7 +4722,8 @@ class Title implements LinkTarget {
 				return (bool)wfFindFile( $this );
 			case NS_SPECIAL:
 				// valid special page
-				return SpecialPageFactory::exists( $this->getDBkey() );
+				return MediaWikiServices::getInstance()->getSpecialPageFactory()->
+					exists( $this->mDbkeyform );
 			case NS_MAIN:
 				// selflink, possibly with fragment
 				return $this->mDbkeyform == '';
@@ -4746,7 +4782,7 @@ class Title implements LinkTarget {
 	 * @return string|bool
 	 */
 	public function getDefaultMessageText() {
-		if ( $this->getNamespace() != NS_MEDIAWIKI ) { // Just in case
+		if ( $this->mNamespace != NS_MEDIAWIKI ) { // Just in case
 			return false;
 		}
 
@@ -4812,7 +4848,7 @@ class Title implements LinkTarget {
 	 */
 	public function touchLinks() {
 		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this, 'pagelinks', 'page-touch' ) );
-		if ( $this->getNamespace() == NS_CATEGORY ) {
+		if ( $this->mNamespace == NS_CATEGORY ) {
 			DeferredUpdates::addUpdate(
 				new HTMLCacheUpdate( $this, 'categorylinks', 'category-touch' )
 			);
@@ -4879,7 +4915,7 @@ class Title implements LinkTarget {
 	 */
 	public function getNamespaceKey( $prepend = 'nstab-' ) {
 		// Gets the subject namespace of this title
-		$subjectNS = MWNamespace::getSubject( $this->getNamespace() );
+		$subjectNS = MWNamespace::getSubject( $this->mNamespace );
 		// Prefer canonical namespace name for HTML IDs
 		$namespaceKey = MWNamespace::getCanonicalName( $subjectNS );
 		if ( $namespaceKey === false ) {
@@ -4910,12 +4946,12 @@ class Title implements LinkTarget {
 
 		$dbr = wfGetDB( DB_REPLICA );
 		$where = [
-			'rd_namespace' => $this->getNamespace(),
-			'rd_title' => $this->getDBkey(),
+			'rd_namespace' => $this->mNamespace,
+			'rd_title' => $this->mDbkeyform,
 			'rd_from = page_id'
 		];
 		if ( $this->isExternal() ) {
-			$where['rd_interwiki'] = $this->getInterwiki();
+			$where['rd_interwiki'] = $this->mInterwiki;
 		} else {
 			$where[] = 'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL';
 		}
@@ -5128,7 +5164,7 @@ class Title implements LinkTarget {
 		$notices = [];
 
 		// Optional notice for the entire namespace
-		$editnotice_ns = 'editnotice-' . $this->getNamespace();
+		$editnotice_ns = 'editnotice-' . $this->mNamespace;
 		$msg = wfMessage( $editnotice_ns );
 		if ( $msg->exists() ) {
 			$html = $msg->parseAsBlock();
@@ -5146,9 +5182,9 @@ class Title implements LinkTarget {
 			}
 		}
 
-		if ( MWNamespace::hasSubpages( $this->getNamespace() ) ) {
+		if ( MWNamespace::hasSubpages( $this->mNamespace ) ) {
 			// Optional notice for page itself and any parent page
-			$parts = explode( '/', $this->getDBkey() );
+			$parts = explode( '/', $this->mDbkeyform );
 			$editnotice_base = $editnotice_ns;
 			while ( count( $parts ) > 0 ) {
 				$editnotice_base .= '-' . array_shift( $parts );
@@ -5170,7 +5206,7 @@ class Title implements LinkTarget {
 			}
 		} else {
 			// Even if there are no subpages in namespace, we still don't want "/" in MediaWiki message keys
-			$editnoticeText = $editnotice_ns . '-' . strtr( $this->getDBkey(), '/', '-' );
+			$editnoticeText = $editnotice_ns . '-' . strtr( $this->mDbkeyform, '/', '-' );
 			$msg = wfMessage( $editnoticeText );
 			if ( $msg->exists() ) {
 				$html = $msg->parseAsBlock();

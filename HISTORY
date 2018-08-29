@@ -4730,7 +4730,7 @@ This is a maintenance release of the MediaWiki 1.22 branch.
 
 === Changes since 1.22.9 ===
 * (bug 64970) Fix support for blobs on DatabaseOracle::update
-* (bug 60719) In MediaWiki 1.22, the job queue execution on each page request was changed (Gerrit change 59797) so, instead of executing the job inside the same PHP process that's rendering the page, a new PHP cli command is spawned to execute runJobs.php in the background. It will only work if $wgPhpCli is set to an actual path or safe mode is off, otherwise, the old method will be used. https://www.mediawiki.org/wiki/Manual:Job_queue#Changes_introduced_in_MediaWiki_1.22 for more infomation. This change was in earlier releases of 1.22 but was not noted here until now.
+* (bug 60719) In MediaWiki 1.22, the job queue execution on each page request was changed (Gerrit change 59797) so, instead of executing the job inside the same PHP process that's rendering the page, a new PHP cli command is spawned to execute runJobs.php in the background. It will only work if $wgPhpCli is set to an actual path or safe mode is off, otherwise, the old method will be used. https://www.mediawiki.org/wiki/Manual:Job_queue#Changes_introduced_in_MediaWiki_1.22 for more information. This change was in earlier releases of 1.22 but was not noted here until now.
 
 == MediaWiki 1.22.9 ==
 This is a security and maintenance release of the MediaWiki 1.22 branch.
@@ -5808,7 +5808,7 @@ This is a security and maintenance release of the MediaWiki 1.20 branch.
 * Localisation updates from http://translatewiki.net.
 * mwdocgen.php: Implement --version option.
 * Remove svnstat stuff used in Doxygen generation
-* (bug 43594) Correctly supress warnings that were missed after the upstream
+* (bug 43594) Correctly suppress warnings that were missed after the upstream
 * PHP change to E_STRICT being included in E_ALL.
 
 == MediaWiki 1.20.4 ==
@@ -11905,7 +11905,7 @@ it from source control: https://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11082) Fix check for fully-specced table names in Database::tableName
 * (bug 11067) Fix regression in upload conflict thumbnail display
 * (bug 10985) Resolved cached entries on Special:DoubleRedirects were being
-  supressed, breaking paging - now strikes out "fixed" results
+  suppressed, breaking paging - now strikes out "fixed" results
 * (bug 8393) <sup> and <sub> need to be preserved (without attributes) for
   entries in the table of contents
 * (bug 11114) Fix regression in read-only mode error display during editing
@@ -16315,7 +16315,7 @@ pages for purposes of page relevancy ranking.
 * (bug 1241) Don't show 'cont.' for first entry of the category list
 * (bug 1240) Special:Preferences was broken in Slovenian locale when
   $wgUseDynamicDates is enabled
-* Added magic word MAG_NOCONTENTCONVERT to supress the conversion of the
+* Added magic word MAG_NOCONTENTCONVERT to suppress the conversion of the
   content of an article. Useful in zh:
 * write-lock for updating the zh conversion tables in memcache
 * recursively parse subpages of MediaWiki:Zhconversiontable

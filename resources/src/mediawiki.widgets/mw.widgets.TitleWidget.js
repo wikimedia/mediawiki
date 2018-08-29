@@ -113,7 +113,7 @@
 				// Workaround T97096 by setting uselang=content
 				uselang: 'content'
 			} ).then( function ( data ) {
-				return $.map( data.query.interwikimap, function ( interwiki ) {
+				return data.query.interwikimap.map( function ( interwiki ) {
 					return interwiki.prefix;
 				} );
 			} );

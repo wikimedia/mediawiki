@@ -38,6 +38,7 @@ class PopulateChangeTagDef extends Maintenance {
 			false,
 			true
 		);
+		$this->addOption( 'populate-only', 'Do not update change_tag_def table' );
 	}
 
 	public function execute() {
@@ -47,7 +48,9 @@ class PopulateChangeTagDef extends Maintenance {
 
 		$this->countDown( 5 );
 		if ( $wgChangeTagsSchemaMigrationStage < MIGRATION_NEW ) {
-			$this->updateCountTag();
+			if ( !$this->hasOption( 'populate-only' ) ) {
+				$this->updateCountTag();
+			}
 			$this->backpopulateChangeTagId();
 		} else {
 			$this->updateCountTagId();

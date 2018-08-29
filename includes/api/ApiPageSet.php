@@ -1170,6 +1170,8 @@ class ApiPageSet extends ApiBase {
 	private function processTitlesArray( $titles ) {
 		$usernames = [];
 		$linkBatch = new LinkBatch();
+		$services = MediaWikiServices::getInstance();
+		$contLang = $services->getContentLanguage();
 
 		foreach ( $titles as $title ) {
 			if ( is_string( $title ) ) {
@@ -1197,7 +1199,6 @@ class ApiPageSet extends ApiBase {
 				$this->mInterwikiTitles[$unconvertedTitle] = $titleObj->getInterwiki();
 			} else {
 				// Variants checking
-				$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 				if (
 					$this->mConvertTitles && $contLang->hasVariants() && !$titleObj->exists()
 				) {
@@ -1217,7 +1218,8 @@ class ApiPageSet extends ApiBase {
 						$this->mAllSpecials[$ns][$dbkey] = $this->mFakePageId;
 						$target = null;
 						if ( $ns === NS_SPECIAL && $this->mResolveRedirects ) {
-							$special = SpecialPageFactory::getPage( $dbkey );
+							$spFactory = $services->getSpecialPageFactory();
+							$special = $spFactory->getPage( $dbkey );
 							if ( $special instanceof RedirectSpecialArticle ) {
 								// Only RedirectSpecialArticle is intended to redirect to an article, other kinds of
 								// RedirectSpecialPage are probably applying weird URL parameters we don't want to handle.
@@ -1225,7 +1227,7 @@ class ApiPageSet extends ApiBase {
 								$context->setTitle( $titleObj );
 								$context->setRequest( new FauxRequest );
 								$special->setContext( $context );
-								list( /* $alias */, $subpage ) = SpecialPageFactory::resolveAlias( $dbkey );
+								list( /* $alias */, $subpage ) = $spFactory->resolveAlias( $dbkey );
 								$target = $special->getRedirect( $subpage );
 							}
 						}
@@ -1263,7 +1265,7 @@ class ApiPageSet extends ApiBase {
 			}
 		}
 		// Get gender information
-		$genderCache = MediaWikiServices::getInstance()->getGenderCache();
+		$genderCache = $services->getGenderCache();
 		$genderCache->doQuery( $usernames, __METHOD__ );
 
 		return $linkBatch;
@@ -1400,7 +1402,7 @@ class ApiPageSet extends ApiBase {
 				if ( isset( $data[$toPageId] ) &&
 					isset( $this->mGeneratorData[$fromNs][$fromDBkey] )
 				) {
-					// It is necesary to set both $data and add to $result, if an ApiResult,
+					// It is necessary to set both $data and add to $result, if an ApiResult,
 					// to ensure multiple redirects to the same destination are all merged.
 					$data[$toPageId] = call_user_func(
 						$this->mRedirectMergePolicy,

@@ -77,16 +77,7 @@ class DatabaseMssql extends Database {
 		parent::__construct( $params );
 	}
 
-	/**
-	 * Usually aborts on failure
-	 * @param string $server
-	 * @param string $user
-	 * @param string $password
-	 * @param string $dbName
-	 * @throws DBConnectionError
-	 * @return bool|resource|null
-	 */
-	public function open( $server, $user, $password, $dbName ) {
+	protected function open( $server, $user, $password, $dbName ) {
 		# Test for driver support, to avoid suppressed fatal error
 		if ( !function_exists( 'sqlsrv_connect' ) ) {
 			throw new DBConnectionError(
@@ -130,7 +121,7 @@ class DatabaseMssql extends Database {
 
 		$this->opened = true;
 
-		return $this->conn;
+		return (bool)$this->conn;
 	}
 
 	/**
@@ -243,7 +234,7 @@ class DatabaseMssql extends Database {
 	}
 
 	/**
-	 * @param MssqlResultWrapper $res
+	 * @param IResultWrapper $res
 	 * @return stdClass
 	 */
 	public function fetchObject( $res ) {
@@ -252,7 +243,7 @@ class DatabaseMssql extends Database {
 	}
 
 	/**
-	 * @param MssqlResultWrapper $res
+	 * @param IResultWrapper $res
 	 * @return array
 	 */
 	public function fetchRow( $res ) {

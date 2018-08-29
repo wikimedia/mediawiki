@@ -8,7 +8,6 @@
 					"mw",
 					"mw.Message",
 					"mw.loader",
-					"mw.loader.store",
 					"mw.html",
 					"mw.html.Cdata",
 					"mw.html.Raw",
@@ -83,7 +82,6 @@
 				"classes": [
 					"mw.log",
 					"mw.inspect",
-					"mw.inspect.reports",
 					"mw.Debug"
 				]
 			}

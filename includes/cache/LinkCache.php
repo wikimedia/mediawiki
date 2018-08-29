@@ -283,11 +283,11 @@ class LinkCache {
 
 	/**
 	 * @param WANObjectCache $cache
-	 * @param TitleValue $t
+	 * @param LinkTarget $t
 	 * @return string[]
 	 * @since 1.28
 	 */
-	public function getMutableCacheKeys( WANObjectCache $cache, TitleValue $t ) {
+	public function getMutableCacheKeys( WANObjectCache $cache, LinkTarget $t ) {
 		if ( $this->isCacheable( $t ) ) {
 			return [ $cache->makeKey( 'page', $t->getNamespace(), sha1( $t->getDBkey() ) ) ];
 		}

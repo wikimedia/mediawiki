@@ -886,34 +886,7 @@ class LoadBalancer implements ILoadBalancer {
 			$conn = $this->openForeignConnection( $i, $domain, $flags );
 		} else {
 			// Connection is to the local domain
-			$connKey = $autoCommit ? self::KEY_LOCAL_NOROUND : self::KEY_LOCAL;
-			if ( isset( $this->conns[$connKey][$i][0] ) ) {
-				$conn = $this->conns[$connKey][$i][0];
-			} else {
-				if ( !isset( $this->servers[$i] ) || !is_array( $this->servers[$i] ) ) {
-					throw new InvalidArgumentException( "No server with index '$i'." );
-				}
-				// Open a new connection
-				$server = $this->servers[$i];
-				$server['serverIndex'] = $i;
-				$server['autoCommitOnly'] = $autoCommit;
-				if ( $this->localDomain->getDatabase() !== null ) {
-					// Use the local domain table prefix if the local domain is specified
-					$server['tablePrefix'] = $this->localDomain->getTablePrefix();
-				}
-				$conn = $this->reallyOpenConnection( $server, $this->localDomain );
-				$host = $this->getServerName( $i );
-				if ( $conn->isOpen() ) {
-					$this->connLogger->debug(
-						__METHOD__ . ": connected to database $i at '$host'." );
-					$this->conns[$connKey][$i][0] = $conn;
-				} else {
-					$this->connLogger->warning(
-						__METHOD__ . ": failed to connect to database $i at '$host'." );
-					$this->errorConnection = $conn;
-					$conn = false;
-				}
-			}
+			$conn = $this->openLocalConnection( $i, $flags );
 		}
 
 		if ( $conn instanceof IDatabase && !$conn->isOpen() ) {
@@ -934,6 +907,49 @@ class LoadBalancer implements ILoadBalancer {
 			}
 
 			$conn->clearFlag( $conn::DBO_TRX ); // auto-commit mode
+		}
+
+		return $conn;
+	}
+
+	/**
+	 * Open a connection to a local DB, or return one if it is already open.
+	 *
+	 * On error, returns false, and the connection which caused the
+	 * error will be available via $this->errorConnection.
+	 *
+	 * @note If disable() was called on this LoadBalancer, this method will throw a DBAccessError.
+	 *
+	 * @param int $i Server index
+	 * @param int $flags Class CONN_* constant bitfield
+	 * @return Database
+	 */
+	private function openLocalConnection( $i, $flags = 0 ) {
+		$autoCommit = ( ( $flags & self::CONN_TRX_AUTOCOMMIT ) == self::CONN_TRX_AUTOCOMMIT );
+
+		$connKey = $autoCommit ? self::KEY_LOCAL_NOROUND : self::KEY_LOCAL;
+		if ( isset( $this->conns[$connKey][$i][0] ) ) {
+			$conn = $this->conns[$connKey][$i][0];
+		} else {
+			if ( !isset( $this->servers[$i] ) || !is_array( $this->servers[$i] ) ) {
+				throw new InvalidArgumentException( "No server with index '$i'." );
+			}
+			// Open a new connection
+			$server = $this->servers[$i];
+			$server['serverIndex'] = $i;
+			$server['autoCommitOnly'] = $autoCommit;
+			$conn = $this->reallyOpenConnection( $server, $this->localDomain );
+			$host = $this->getServerName( $i );
+			if ( $conn->isOpen() ) {
+				$this->connLogger->debug(
+					__METHOD__ . ": connected to database $i at '$host'." );
+				$this->conns[$connKey][$i][0] = $conn;
+			} else {
+				$this->connLogger->warning(
+					__METHOD__ . ": failed to connect to database $i at '$host'." );
+				$this->errorConnection = $conn;
+				$conn = false;
+			}
 		}
 
 		return $conn;
@@ -1017,7 +1033,6 @@ class LoadBalancer implements ILoadBalancer {
 				$this->errorConnection = $conn;
 				$conn = false;
 			} else {
-				$conn->tablePrefix( $prefix ); // as specified
 				// Note that if $domain is an empty string, getDomainID() might not match it
 				$this->conns[$connInUseKey][$i][$conn->getDomainID()] = $conn;
 				$this->connLogger->debug( __METHOD__ . ": opened new connection for $i/$domain" );
@@ -1061,20 +1076,20 @@ class LoadBalancer implements ILoadBalancer {
 	 * Returns a Database object whether or not the connection was successful.
 	 *
 	 * @param array $server
-	 * @param DatabaseDomain $domainOverride Use an unspecified domain to not select any database
+	 * @param DatabaseDomain $domain Domain the connection is for, possibly unspecified
 	 * @return Database
 	 * @throws DBAccessError
 	 * @throws InvalidArgumentException
 	 */
-	protected function reallyOpenConnection( array $server, DatabaseDomain $domainOverride ) {
+	protected function reallyOpenConnection( array $server, DatabaseDomain $domain ) {
 		if ( $this->disabled ) {
 			throw new DBAccessError();
 		}
 
-		// Handle $domainOverride being a specified or an unspecified domain
-		if ( $domainOverride->getDatabase() === null ) {
-			// Normally, an RDBMS requires a DB name specified on connection and the $server
-			// configuration array is assumed to already specify an appropriate DB name.
+		if ( $domain->getDatabase() === null ) {
+			// The database domain does not specify a DB name and some database systems require a
+			// valid DB specified on connection. The $server configuration array contains a default
+			// DB name to use for connections in such cases.
 			if ( $server['type'] === 'mysql' ) {
 				// For MySQL, DATABASE and SCHEMA are synonyms, connections need not specify a DB,
 				// and the DB name in $server might not exist due to legacy reasons (the default
@@ -1082,9 +1097,15 @@ class LoadBalancer implements ILoadBalancer {
 				$server['dbname'] = null;
 			}
 		} else {
-			$server['dbname'] = $domainOverride->getDatabase();
-			$server['schema'] = $domainOverride->getSchema();
+			$server['dbname'] = $domain->getDatabase();
 		}
+
+		if ( $domain->getSchema() !== null ) {
+			$server['schema'] = $domain->getSchema();
+		}
+
+		// It is always possible to connect with any prefix, even the empty string
+		$server['tablePrefix'] = $domain->getTablePrefix();
 
 		// Let the handle know what the cluster master is (e.g. "db1052")
 		$masterName = $this->getServerName( $this->getWriterIndex() );
@@ -1908,14 +1929,14 @@ class LoadBalancer implements ILoadBalancer {
 				"Foreign domain connections are still in use ($domains)." );
 		}
 
-		$oldDomain = $this->localDomain->getId();
 		$this->setLocalDomain( new DatabaseDomain(
 			$this->localDomain->getDatabase(),
 			$this->localDomain->getSchema(),
 			$prefix
 		) );
 
-		$this->forEachOpenConnection( function ( IDatabase $db ) use ( $prefix, $oldDomain ) {
+		// Update the prefix for all local connections...
+		$this->forEachOpenConnection( function ( IDatabase $db ) use ( $prefix ) {
 			if ( !$db->getLBInfo( 'foreign' ) ) {
 				$db->tablePrefix( $prefix );
 			}

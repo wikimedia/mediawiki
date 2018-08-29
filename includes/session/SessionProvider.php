@@ -521,7 +521,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 		if ( strlen( $hash ) < 32 ) {
 			// Should never happen, even md5 is 128 bits
 			// @codeCoverageIgnoreStart
-			throw new \UnexpectedValueException( 'Hash fuction returned less than 128 bits' );
+			throw new \UnexpectedValueException( 'Hash function returned less than 128 bits' );
 			// @codeCoverageIgnoreEnd
 		}
 		if ( strlen( $hash ) >= 40 ) {

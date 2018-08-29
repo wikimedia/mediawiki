@@ -57,9 +57,12 @@ class LinkBatch {
 	 * @since 1.17
 	 *
 	 * @param string $caller
+	 * @return self (since 1.32)
 	 */
 	public function setCaller( $caller ) {
 		$this->caller = $caller;
+
+		return $this;
 	}
 
 	/**
@@ -221,12 +224,13 @@ class LinkBatch {
 		if ( $this->isEmpty() ) {
 			return false;
 		}
+		$services = MediaWikiServices::getInstance();
 
-		if ( !MediaWikiServices::getInstance()->getContentLanguage()->needsGenderDistinction() ) {
+		if ( !$services->getContentLanguage()->needsGenderDistinction() ) {
 			return false;
 		}
 
-		$genderCache = MediaWikiServices::getInstance()->getGenderCache();
+		$genderCache = $services->getGenderCache();
 		$genderCache->doLinkBatch( $this->data, $this->caller );
 
 		return true;

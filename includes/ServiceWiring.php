@@ -37,6 +37,7 @@
  *      MediaWiki code base.
  */
 
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
@@ -48,6 +49,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Special\SpecialPageFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
@@ -70,7 +72,7 @@ return [
 
 	'BlobStoreFactory' => function ( MediaWikiServices $services ) : BlobStoreFactory {
 		return new BlobStoreFactory(
-			$services->getDBLoadBalancer(),
+			$services->getDBLoadBalancerFactory(),
 			$services->getMainWANObjectCache(),
 			$services->getMainConfig(),
 			$services->getContentLanguage()
@@ -385,7 +387,8 @@ return [
 			$services->getMainConfig()->get( 'ParserConf' ),
 			$services->getMagicWordFactory(),
 			$services->getContentLanguage(),
-			wfUrlProtocols()
+			wfUrlProtocols(),
+			$services->getSpecialPageFactory()
 		);
 	},
 
@@ -398,11 +401,12 @@ return [
 	},
 
 	'PerDbNameStatsdDataFactory' =>
-	function ( MediaWikiServices $services ) : IBufferingStatsdDataFactory {
+	function ( MediaWikiServices $services ) : StatsdDataFactoryInterface {
 		$config = $services->getMainConfig();
 		$wiki = $config->get( 'DBname' );
-		return new BufferingStatsdDataFactory(
-			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' ) . '.' . $wiki
+		return new PrefixingStatsdDataFactoryProxy(
+			$services->getStatsdDataFactory(),
+			$wiki
 		);
 	},
 
@@ -545,6 +549,13 @@ return [
 		);
 	},
 
+	'SpecialPageFactory' => function ( MediaWikiServices $services ) : SpecialPageFactory {
+		return new SpecialPageFactory(
+			$services->getMainConfig(),
+			$services->getContentLanguage()
+		);
+	},
+
 	'StatsdDataFactory' => function ( MediaWikiServices $services ) : IBufferingStatsdDataFactory {
 		return new BufferingStatsdDataFactory(
 			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' )
@@ -621,7 +632,8 @@ return [
 		return new MediaWikiTitleCodec(
 			$services->getContentLanguage(),
 			$services->getGenderCache(),
-			$services->getMainConfig()->get( 'LocalInterwikis' )
+			$services->getMainConfig()->get( 'LocalInterwikis' ),
+			$services->getInterwikiLookup()
 		);
 	},
 

@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function ( mw ) {
 	QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.server = this.sandbox.useFakeServer();
@@ -69,8 +69,8 @@
 
 		result = mw.user.generateRandomSessionId();
 		assert.strictEqual( typeof result, 'string', 'type' );
-		assert.strictEqual( $.trim( result ), result, 'no whitespace at beginning or end' );
-		assert.strictEqual( result.length, 16, 'size' );
+		assert.strictEqual( result.trim(), result, 'no whitespace at beginning or end' );
+		assert.strictEqual( result.length, 20, 'size' );
 
 		result2 = mw.user.generateRandomSessionId();
 		assert.notEqual( result, result2, 'different when called multiple times' );
@@ -90,18 +90,18 @@
 
 		result = mw.user.generateRandomSessionId();
 		assert.strictEqual( typeof result, 'string', 'type' );
-		assert.strictEqual( $.trim( result ), result, 'no whitespace at beginning or end' );
-		assert.strictEqual( result.length, 16, 'size' );
+		assert.strictEqual( result.trim(), result, 'no whitespace at beginning or end' );
+		assert.strictEqual( result.length, 20, 'size' );
 
 		result2 = mw.user.generateRandomSessionId();
 		assert.notEqual( result, result2, 'different when called multiple times' );
 	} );
 
-	QUnit.test( 'stickyRandomId', function ( assert ) {
-		var result = mw.user.stickyRandomId(),
-			result2 = mw.user.stickyRandomId();
+	QUnit.test( 'getPageviewToken', function ( assert ) {
+		var result = mw.user.getPageviewToken(),
+			result2 = mw.user.getPageviewToken();
 		assert.strictEqual( typeof result, 'string', 'type' );
-		assert.strictEqual( /^[a-f0-9]{16}$/.test( result ), true, '16 HEX symbols string' );
+		assert.strictEqual( /^[a-f0-9]{20}$/.test( result ), true, '20 HEX symbols string' );
 		assert.strictEqual( result2, result, 'sticky' );
 	} );
 
@@ -109,7 +109,7 @@
 		var result = mw.user.sessionId(),
 			result2 = mw.user.sessionId();
 		assert.strictEqual( typeof result, 'string', 'type' );
-		assert.strictEqual( $.trim( result ), result, 'no leading or trailing whitespace' );
+		assert.strictEqual( result.trim(), result, 'no leading or trailing whitespace' );
 		assert.strictEqual( result2, result, 'retained' );
 	} );
-}( mediaWiki, jQuery ) );
+}( mediaWiki ) );

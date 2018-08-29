@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-properties */
 ( function ( $, mw, OO ) {
 	'use strict';
 	var ApiSandbox, Util, WidgetMethods, Validators,

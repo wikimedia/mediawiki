@@ -619,6 +619,7 @@ abstract class HTMLFormField {
 			'errors' => $errors,
 			'notices' => $notices,
 			'infusable' => $infusable,
+			'helpInline' => $this->isHelpInline(),
 		];
 
 		$preloadModules = false;
@@ -679,8 +680,8 @@ abstract class HTMLFormField {
 	 * @return bool
 	 */
 	protected function shouldInfuseOOUI() {
-		// Always infuse fields with help text, since the interface for it is nicer with JS
-		return $this->getHelpText() !== null;
+		// Always infuse fields with popup help text, since the interface for it is nicer with JS
+		return $this->getHelpText() !== null && !$this->isHelpInline();
 	}
 
 	/**
@@ -849,6 +850,18 @@ abstract class HTMLFormField {
 		}
 
 		return $helptext;
+	}
+
+	/**
+	 * Determine if the help text should be displayed inline.
+	 *
+	 * Only applies to OOUI forms.
+	 *
+	 * @since 1.31
+	 * @return bool
+	 */
+	public function isHelpInline() {
+		return isset( $this->mParams['help-inline'] ) ? $this->mParams['help-inline'] : true;
 	}
 
 	/**

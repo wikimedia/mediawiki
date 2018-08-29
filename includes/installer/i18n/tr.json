@@ -19,7 +19,8 @@
 			"Elftrkn",
 			"Vito Genovese",
 			"Incelemeelemani",
-			"Hedda"
+			"Hedda",
+			"By erdo can"
 		]
 	},
 	"config-desc": "MediaWiki yükleyicisi",
@@ -92,6 +93,7 @@
 	"config-using-uri": "Sunucu URLsi olarak \"<nowiki>$1$2</nowiki>\" kullanılıyor.",
 	"config-uploads-not-safe": "<strong>Uyarı:</strong> Yüklemeler için varsayılan dizininiz <code>$1</code>, rastgele komut dosyalarının yürütülmesine karşı savunmasızdır.\nMediaWiki, karşıya yüklenen tüm dosyaları güvenlik tehditlerine karşı denetlese de, yüklemeleri etkinleştirmeden önce [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security bu güvenlik açığını kapatmanız] önemle tavsiye edilir.",
 	"config-no-cli-uploads-check": "<strong>Uyarı:</strong> Yüklemeler için varsayılan dizininiz (<code>$1</code>), CLI yüklemesi sırasında rastgele kod yürütme güvenlik açığı açısından denetlenmez.",
+	"config-brokenlibxml": "Sisteminizde, \"buggy\" olan ve MediaWiki ve diğer web uygulamalarında gizli veri bozulmasına neden olabilecek PHP ve libxml2 sürümlerinin bir kombinasyonu vardır.\nLibxml2 2.7.3 veya sonraki bir sürüme yükseltin ([https://bugs.php.net/bug.php?id=45996 PHP ile dosyalanmış hata]).\nKurulum iptal edildi.",
 	"config-db-type": "Veritabanı tipi:",
 	"config-db-host": "Veritabanı sunucusu:",
 	"config-db-host-help": "Veritabanı sunucunuz farklı bir sunucu üzerinde ise, ana bilgisayar adını veya IP adresini buraya girin.\n\nPaylaşılan ağ barındırma hizmeti kullanıyorsanız, barındırma sağlayıcınız size doğru bir ana bilgisayar adını kendi belgelerinde vermiştir.\n\nEğer MySQL kullanan bir Windows sunucusuna yükleme yapıyorsanız, sunucu adı olarak \"localhost\" kullanırsanız çalışmayabilir. Çalışmazsa, yerel IP adresi için \"127.0.0.1\" deneyin.\n\nPostgreSQL kullanıyorsanız, bu alanı bir Unix soketi ile bağlanmak için boş bırakın.",
@@ -251,6 +253,6 @@
 	"config-extension-link": "Vikinizin [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions eklentileri] desteklediğini biliyor musunuz?\n\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category Eklentileri kategorilerine göre] inceleyebilir ya da tüm eklentilerin listesini görmek için [https://www.mediawiki.org/wiki/Extension_Matrix Eklenti Matrisine] bakabilirsiniz.",
 	"config-skins-screenshots": "$1 (ekran görüntüleri: $2)",
 	"config-screenshot": "ekran görüntüsü",
-	"mainpagetext": "'''MediaWiki başarı ile kuruldu.'''",
-	"mainpagedocfooter": "Viki yazılımının kullanımı hakkında bilgi almak için [https://meta.wikimedia.org/wiki/Help:Contents kullanıcı rehberine] bakınız.\n\n== Yeni Başlayanlar ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Yapılandırma ayarlarının listesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki SSS]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-posta listesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Kendi diliniz için MediaWiki yerelleştirmesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Kendi vikinizde spam ile nasıl savaşılacağını öğrennin]"
+	"mainpagetext": "<strong>MediaWiki başarı ile kuruldu.</strong>",
+	"mainpagedocfooter": "Viki yazılımının kullanımı hakkında bilgi almak için [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents kullanıcı rehberine] bakınız.\n\n== Yeni Başlayanlar ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Yapılandırma ayarlarının listesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki SSS]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-posta listesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Kendi diliniz için MediaWiki yerelleştirmesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Kendi vikinizde spam ile nasıl savaşılacağını öğrennin]"
 }

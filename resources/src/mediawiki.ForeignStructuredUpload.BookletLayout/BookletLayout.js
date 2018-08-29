@@ -148,8 +148,7 @@
 
 		// These elements are filled with text in #initialize
 		// TODO Refactor this to be in one place
-		this.$ownWorkMessage = $( '<p>' )
-			.addClass( 'mw-foreignStructuredUpload-bookletLayout-license' );
+		this.$ownWorkMessage = $( '<p>' );
 		this.$notOwnWorkMessage = $( '<p>' );
 		this.$notOwnWorkLocal = $( '<p>' );
 
@@ -173,10 +172,9 @@
 			} ),
 			new OO.ui.FieldLayout( this.ownWorkCheckbox, {
 				align: 'inline',
-				label: $( '<div>' ).append(
-					$( '<p>' ).text( mw.msg( 'upload-form-label-own-work' ) ),
-					this.$ownWorkMessage
-				)
+				label: mw.msg( 'upload-form-label-own-work' ),
+				help: this.$ownWorkMessage,
+				helpInline: true
 			} ),
 			new OO.ui.FieldLayout( this.messageLabel, {
 				align: 'top'
@@ -254,14 +252,14 @@
 		this.filenameField = new OO.ui.FieldLayout( this.filenameWidget, {
 			label: mw.msg( 'upload-form-label-infoform-name' ),
 			align: 'top',
-			classes: [ 'mw-foreignStructuredUploa-bookletLayout-small-notice' ],
-			notices: [ mw.msg( 'upload-form-label-infoform-name-tooltip' ) ]
+			help: mw.msg( 'upload-form-label-infoform-name-tooltip' ),
+			helpInline: true
 		} );
 		this.descriptionField = new OO.ui.FieldLayout( this.descriptionWidget, {
 			label: mw.msg( 'upload-form-label-infoform-description' ),
 			align: 'top',
-			classes: [ 'mw-foreignStructuredUploa-bookletLayout-small-notice' ],
-			notices: [ mw.msg( 'upload-form-label-infoform-description-tooltip' ) ]
+			help: mw.msg( 'upload-form-label-infoform-description-tooltip' ),
+			helpInline: true
 		} );
 		this.categoriesField = new OO.ui.FieldLayout( this.categoriesWidget, {
 			label: mw.msg( 'upload-form-label-infoform-categories' ),

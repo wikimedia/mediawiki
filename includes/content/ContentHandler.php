@@ -1,8 +1,4 @@
 <?php
-
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Search\ParserOutputSearchDataExtractor;
-
 /**
  * Base class for content handling.
  *
@@ -28,6 +24,12 @@ use MediaWiki\Search\ParserOutputSearchDataExtractor;
  *
  * @author Daniel Kinzler
  */
+
+use Wikimedia\Assert\Assert;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Search\ParserOutputSearchDataExtractor;
+
 /**
  * A content handler knows how do deal with a specific type of content on a wiki
  * page. Content is stored in the database in a serialized form (using a
@@ -613,6 +615,19 @@ abstract class ContentHandler {
 
 	/**
 	 * Factory for creating an appropriate DifferenceEngine for this content model.
+	 * Since 1.32, this is only used for page-level diffs; to diff two content objects,
+	 * use getSlotDiffRenderer.
+	 *
+	 * The DifferenceEngine subclass to use is selected in getDiffEngineClass(). The
+	 * GetDifferenceEngine hook will receive the DifferenceEngine object and can replace or
+	 * wrap it.
+	 * (Note that in older versions of MediaWiki the hook documentation instructed extensions
+	 * to return false from the hook; you should not rely on always being able to decorate
+	 * the DifferenceEngine instance from the hook. If the owner of the content type wants to
+	 * decorare the instance, overriding this method is a safer approach.)
+	 *
+	 * @todo This is page-level functionality so it should not belong to ContentHandler.
+	 *   Move it to a better place once one exists (e.g. PageTypeHandler).
 	 *
 	 * @since 1.21
 	 *
@@ -629,15 +644,65 @@ abstract class ContentHandler {
 		$rcid = 0, // FIXME: Deprecated, no longer used
 		$refreshCache = false, $unhide = false
 	) {
-		// hook: get difference engine
-		$differenceEngine = null;
-		if ( !Hooks::run( 'GetDifferenceEngine',
-			[ $context, $old, $new, $refreshCache, $unhide, &$differenceEngine ]
-		) ) {
-			return $differenceEngine;
-		}
 		$diffEngineClass = $this->getDiffEngineClass();
-		return new $diffEngineClass( $context, $old, $new, $rcid, $refreshCache, $unhide );
+		$differenceEngine = new $diffEngineClass( $context, $old, $new, $rcid, $refreshCache, $unhide );
+		Hooks::run( 'GetDifferenceEngine', [ $context, $old, $new, $refreshCache, $unhide,
+			&$differenceEngine ] );
+		return $differenceEngine;
+	}
+
+	/**
+	 * Get an appropriate SlotDiffRenderer for this content model.
+	 * @since 1.32
+	 * @param IContextSource $context
+	 * @return SlotDiffRenderer
+	 */
+	final public function getSlotDiffRenderer( IContextSource $context ) {
+		$slotDiffRenderer = $this->getSlotDiffRendererInternal( $context );
+		if ( get_class( $slotDiffRenderer ) === TextSlotDiffRenderer::class ) {
+			//  To keep B/C, when SlotDiffRenderer is not overridden for a given content type
+			// but DifferenceEngine is, use that instead.
+			$differenceEngine = $this->createDifferenceEngine( $context );
+			if ( get_class( $differenceEngine ) !== DifferenceEngine::class ) {
+				// TODO turn this into a deprecation warning in a later release
+				LoggerFactory::getInstance( 'diff' )->info(
+					'Falling back to DifferenceEngineSlotDiffRenderer', [
+						'modelID' => $this->getModelID(),
+						'DifferenceEngine' => get_class( $differenceEngine ),
+					] );
+				$slotDiffRenderer = new DifferenceEngineSlotDiffRenderer( $differenceEngine );
+			}
+		}
+		Hooks::run( 'GetSlotDiffRenderer', [ $this, &$slotDiffRenderer, $context ] );
+		return $slotDiffRenderer;
+	}
+
+	/**
+	 * Return the SlotDiffRenderer appropriate for this content handler.
+	 * @param IContextSource $context
+	 * @return SlotDiffRenderer
+	 */
+	protected function getSlotDiffRendererInternal( IContextSource $context ) {
+		$contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
+		$statsdDataFactory = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$slotDiffRenderer = new TextSlotDiffRenderer();
+		$slotDiffRenderer->setStatsdDataFactory( $statsdDataFactory );
+		// XXX using the page language would be better, but it's unclear how that should be injected
+		$slotDiffRenderer->setLanguage( $contentLanguage );
+		$slotDiffRenderer->setWikiDiff2MovedParagraphDetectionCutoff(
+			$context->getConfig()->get( 'WikiDiff2MovedParagraphDetectionCutoff' )
+		);
+
+		$engine = DifferenceEngine::getEngine();
+		if ( $engine === false ) {
+			$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_PHP );
+		} elseif ( $engine === 'wikidiff2' ) {
+			$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_WIKIDIFF2 );
+		} else {
+			$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_EXTERNAL, $engine );
+		}
+
+		return $slotDiffRenderer;
 	}
 
 	/**
@@ -1065,31 +1130,52 @@ abstract class ContentHandler {
 	 * must exist and must not be deleted.
 	 *
 	 * @since 1.21
+	 * @since 1.32 accepts Content objects for all parameters instead of Revision objects.
+	 *  Passing Revision objects is deprecated.
 	 *
-	 * @param Revision $current The current text
-	 * @param Revision $undo The revision to undo
-	 * @param Revision $undoafter Must be an earlier revision than $undo
+	 * @param Revision|Content $current The current text
+	 * @param Revision|Content $undo The content of the revision to undo
+	 * @param Revision|Content $undoafter Must be from an earlier revision than $undo
+	 * @param bool $undoIsLatest Set true if $undo is from the current revision (since 1.32)
 	 *
 	 * @return mixed Content on success, false on failure
 	 */
-	public function getUndoContent( Revision $current, Revision $undo, Revision $undoafter ) {
-		$cur_content = $current->getContent();
+	public function getUndoContent( $current, $undo, $undoafter, $undoIsLatest = false ) {
+		Assert::parameterType( Revision::class . '|' . Content::class, $current, '$current' );
+		if ( $current instanceof Content ) {
+			Assert::parameter( $undo instanceof Content, '$undo',
+				'Must be Content when $current is Content' );
+			Assert::parameter( $undoafter instanceof Content, '$undoafter',
+				'Must be Content when $current is Content' );
+			$cur_content = $current;
+			$undo_content = $undo;
+			$undoafter_content = $undoafter;
+		} else {
+			Assert::parameter( $undo instanceof Revision, '$undo',
+				'Must be Revision when $current is Revision' );
+			Assert::parameter( $undoafter instanceof Revision, '$undoafter',
+				'Must be Revision when $current is Revision' );
 
-		if ( empty( $cur_content ) ) {
-			return false; // no page
-		}
+			$cur_content = $current->getContent();
 
-		$undo_content = $undo->getContent();
-		$undoafter_content = $undoafter->getContent();
+			if ( empty( $cur_content ) ) {
+				return false; // no page
+			}
 
-		if ( !$undo_content || !$undoafter_content ) {
-			return false; // no content to undo
+			$undo_content = $undo->getContent();
+			$undoafter_content = $undoafter->getContent();
+
+			if ( !$undo_content || !$undoafter_content ) {
+				return false; // no content to undo
+			}
+
+			$undoIsLatest = $current->getId() === $undo->getId();
 		}
 
 		try {
 			$this->checkModelID( $cur_content->getModel() );
 			$this->checkModelID( $undo_content->getModel() );
-			if ( $current->getId() !== $undo->getId() ) {
+			if ( !$undoIsLatest ) {
 				// If we are undoing the most recent revision,
 				// its ok to revert content model changes. However
 				// if we are undoing a revision in the middle, then

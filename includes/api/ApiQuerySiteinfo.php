@@ -341,8 +341,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendSpecialPageAliases( $property ) {
 		$data = [];
-		$aliases = MediaWikiServices::getInstance()->getContentLanguage()->getSpecialPageAliases();
-		foreach ( SpecialPageFactory::getNames() as $specialpage ) {
+		$services = MediaWikiServices::getInstance();
+		$aliases = $services->getContentLanguage()->getSpecialPageAliases();
+		foreach ( $services->getSpecialPageFactory()->getNames() as $specialpage ) {
 			if ( isset( $aliases[$specialpage] ) ) {
 				$arr = [ 'realname' => $specialpage, 'aliases' => $aliases[$specialpage] ];
 				ApiResult::setIndexedTagName( $arr['aliases'], 'alias' );
@@ -784,7 +785,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function appendExtensionTags( $property ) {
 		global $wgParser;
-		$wgParser->firstCallInit();
 		$tags = array_map(
 			function ( $item ) {
 				return "<$item>";
@@ -799,7 +799,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function appendFunctionHooks( $property ) {
 		global $wgParser;
-		$wgParser->firstCallInit();
 		$hooks = $wgParser->getFunctionHooks();
 		ApiResult::setArrayType( $hooks, 'BCarray' );
 		ApiResult::setIndexedTagName( $hooks, 'h' );

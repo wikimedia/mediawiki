@@ -472,7 +472,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 		}
 
 		if ( in_array( $type, [ 'asc', 'desc' ] ) ) {
-			$attrs['title'] = wfMessage( $type == 'asc' ? 'sort-ascending' : 'sort-descending' )->text();
+			$attrs['title'] = $this->msg( $type == 'asc' ? 'sort-ascending' : 'sort-descending' )->text();
 		}
 
 		if ( $type ) {

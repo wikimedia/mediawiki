@@ -418,7 +418,7 @@ class SpecialExport extends SpecialPage {
 
 	/**
 	 * @param Title $title
-	 * @return array
+	 * @return string[]
 	 */
 	private function getPagesFromCategory( $title ) {
 		$maxPages = $this->getConfig()->get( 'ExportPagelistLimit' );
@@ -437,14 +437,7 @@ class SpecialExport extends SpecialPage {
 		$pages = [];
 
 		foreach ( $res as $row ) {
-			$n = $row->page_title;
-			if ( $row->page_namespace ) {
-				$ns = MediaWikiServices::getInstance()->getContentLanguage()->getNsText(
-					$row->page_namespace );
-				$n = $ns . ':' . $n;
-			}
-
-			$pages[] = $n;
+			$pages[] = Title::makeName( $row->page_namespace, $row->page_title );
 		}
 
 		return $pages;
@@ -452,7 +445,7 @@ class SpecialExport extends SpecialPage {
 
 	/**
 	 * @param int $nsindex
-	 * @return array
+	 * @return string[]
 	 */
 	private function getPagesFromNamespace( $nsindex ) {
 		$maxPages = $this->getConfig()->get( 'ExportPagelistLimit' );
@@ -469,15 +462,7 @@ class SpecialExport extends SpecialPage {
 		$pages = [];
 
 		foreach ( $res as $row ) {
-			$n = $row->page_title;
-
-			if ( $row->page_namespace ) {
-				$ns = MediaWikiServices::getInstance()->getContentLanguage()->getNsText(
-					$row->page_namespace );
-				$n = $ns . ':' . $n;
-			}
-
-			$pages[] = $n;
+			$pages[] = Title::makeName( $row->page_namespace, $row->page_title );
 		}
 
 		return $pages;

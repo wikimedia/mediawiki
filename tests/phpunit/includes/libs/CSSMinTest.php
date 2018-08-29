@@ -667,7 +667,7 @@ class CSSMinTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Seperated because they are currently broken (T37492)
+	 * Separated because they are currently broken (T37492)
 	 *
 	 * @group Broken
 	 * @dataProvider provideStringCases

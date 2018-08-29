@@ -16,7 +16,8 @@
 			"Rockyfelle",
 			"Macofe",
 			"Magol",
-			"Bengtsson96"
+			"Bengtsson96",
+			"Larske"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentation]]\n* [[mw:Special:MyLanguage/API:FAQ|Vanliga frågor]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Sändlista]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-nyheter]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Buggar och begäran]\n</div>\n<strong>Status:</strong> Alla funktioner som visas på denna sida bör fungera, men API:et är fortfarande under utveckling och kan ändras när som helst. Prenumerera på [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ sändlistan mediawiki-api-announce] för uppdateringsaviseringar.\n\n<strong>Felaktiga begäran:</strong> När felaktiga begäran skickas till API:et kommer en HTTP-header skickas med nyckeln \"MediaWiki-API-Error\" och sedan kommer både värdet i headern och felkoden som skickades tillbaka anges som samma värde. För mer information se [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Fel och varningar]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testning:</strong> För enkelt testning av API-begäran, se [[Special:ApiSandbox]].</p>",
@@ -447,7 +448,7 @@
 	"apihelp-query+images-param-limit": "Hur många filer att returnera.",
 	"apihelp-query+images-param-dir": "Riktningen att lista mot.",
 	"apihelp-query+images-example-simple": "Hämta en lista över filer som används på [[Main Page]].",
-	"apihelp-query+imageusage-summary": "Hitta alla sidor som användare angiven bildtitel.",
+	"apihelp-query+imageusage-summary": "Hitta alla sidor som använder angiven bildtitel.",
 	"apihelp-query+imageusage-param-dir": "Riktningen att lista mot.",
 	"apihelp-query+imageusage-example-simple": "Visa sidor med hjälp av [[:File:Albert Einstein Head.jpg]].",
 	"apihelp-query+imageusage-example-generator": "Hämta information om sidor med hjälp av [[:File:Albert Einstein Head.jpg]].",

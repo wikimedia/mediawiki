@@ -355,10 +355,6 @@
 			"type": "object",
 			"description": "ResourceLoader sources to register"
 		},
-		"ResourceLoaderLESSVars": {
-			"type": "object",
-			"description": "ResourceLoader LESS variables"
-		},
 		"ConfigRegistry": {
 			"type": "object",
 			"description": "Registry of factory functions to create Config objects"
@@ -690,6 +686,13 @@
 		"FileExtensions": {
 			"type": "array",
 			"description": "Preferred file extensions for uploading",
+			"items": {
+				"type": "string"
+			}
+		},
+		"RawHtmlMessages": {
+			"type": "array",
+			"description": "Messages which are rendered as raw HTML",
 			"items": {
 				"type": "string"
 			}

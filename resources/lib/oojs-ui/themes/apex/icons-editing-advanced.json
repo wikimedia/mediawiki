@@ -20,10 +20,6 @@
 		"code": {
 			"file": "../wikimediaui/images/icons/code.svg"
 		},
-		"find": {
-			"file": "../wikimediaui/images/icons/articleSearch.svg",
-			"deprecated": "Will be removed in v0.28.0, use 'articleSearch' of 'content' pack instead."
-		},
 		"language": {
 			"file": "../wikimediaui/images/icons/language.svg"
 		},

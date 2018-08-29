@@ -41,7 +41,7 @@ class UploadStashTest extends MediaWikiTestCase {
 	/**
 	 * @todo give this test a real name explaining what is being tested here
 	 */
-	public function testBug29408() {
+	public function testT31408() {
 		$this->setMwGlobals( 'wgUser', self::$users['uploader']->getUser() );
 
 		$repo = RepoGroup::singleton()->getLocalRepo();

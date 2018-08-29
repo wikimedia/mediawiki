@@ -43,5 +43,5 @@ interface TitleParser {
 	 * @throws MalformedTitleException If the text is not a valid representation of a page title.
 	 * @return TitleValue
 	 */
-	public function parseTitle( $text, $defaultNamespace );
+	public function parseTitle( $text, $defaultNamespace = NS_MAIN );
 }

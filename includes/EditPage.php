@@ -684,7 +684,10 @@ class EditPage {
 		# checking, etc.
 		if ( 'initial' == $this->formtype || $this->firsttime ) {
 			if ( $this->initialiseForm() === false ) {
-				$this->noSuchSectionPage();
+				$out = $this->context->getOutput();
+				if ( $out->getRedirect() === '' ) { // mcrundo hack redirects, don't override it
+					$this->noSuchSectionPage();
+				}
 				return;
 			}
 
@@ -1220,8 +1223,13 @@ class EditPage {
 						!$oldrev->isDeleted( Revision::DELETED_TEXT )
 					) {
 						if ( WikiPage::hasDifferencesOutsideMainSlot( $undorev, $oldrev ) ) {
-							// Cannot yet undo edits that involve anything other the main slot.
-							$undoMsg = 'main-slot-only';
+							// Hack for undo while EditPage can't handle multi-slot editing
+							$this->context->getOutput()->redirect( $this->mTitle->getFullURL( [
+								'action' => 'mcrundo',
+								'undo' => $undo,
+								'undoafter' => $undoafter,
+							] ) );
+							return false;
 						} else {
 							$content = $this->page->getUndoContent( $undorev, $oldrev );
 
@@ -3181,7 +3189,7 @@ ERROR;
 	}
 
 	/**
-	 * Helper function for summary input functions, which returns the neccessary
+	 * Helper function for summary input functions, which returns the necessary
 	 * attributes for the input.
 	 *
 	 * @param array|null $inputAttrs Array of attrs to use on the input

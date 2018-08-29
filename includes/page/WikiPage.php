@@ -1961,7 +1961,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Purges pages that include this page if the text was changed here.
 	 * Every 100th edit, prune the recent changes table.
 	 *
-	 * @deprecated since 1.32, use PageUpdater::doEditUpdates instead.
+	 * @deprecated since 1.32, use PageUpdater::doUpdates instead.
 	 *
 	 * @param Revision $revision
 	 * @param User $user User object that did the revision
@@ -2367,10 +2367,11 @@ class WikiPage implements Page, IDBAccessObject {
 	public function protectDescriptionLog( array $limit, array $expiry ) {
 		$protectDescriptionLog = '';
 
+		$dirMark = MediaWikiServices::getInstance()->getContentLanguage()->getDirMark();
 		foreach ( array_filter( $limit ) as $action => $restrictions ) {
 			$expiryText = $this->formatExpiry( $expiry[$action] );
 			$protectDescriptionLog .=
-				MediaWikiServices::getInstance()->getContentLanguage()->getDirMark() .
+				$dirMark .
 				"[$action=$restrictions] ($expiryText)";
 		}
 
@@ -3151,6 +3152,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Image redirects
 		RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $title );
+
+		// Purge cross-wiki cache entities referencing this page
+		self::purgeInterwikiCheckKey( $title );
 	}
 
 	/**
@@ -3189,13 +3193,40 @@ class WikiPage implements Page, IDBAccessObject {
 		// Clear file cache for this page only
 		HTMLFileCache::clearFileCache( $title );
 
+		// Purge ?action=info cache
 		$revid = $revision ? $revision->getId() : null;
 		DeferredUpdates::addCallableUpdate( function () use ( $title, $revid ) {
 			InfoAction::invalidateCache( $title, $revid );
 		} );
+
+		// Purge cross-wiki cache entities referencing this page
+		self::purgeInterwikiCheckKey( $title );
 	}
 
 	/**#@-*/
+
+	/**
+	 * Purge the check key for cross-wiki cache entries referencing this page
+	 *
+	 * @param Title $title
+	 */
+	private static function purgeInterwikiCheckKey( Title $title ) {
+		global $wgEnableScaryTranscluding;
+
+		if ( !$wgEnableScaryTranscluding ) {
+			return; // @todo: perhaps this wiki is only used as a *source* for content?
+		}
+
+		DeferredUpdates::addCallableUpdate( function () use ( $title ) {
+			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+			$cache->resetCheckKey(
+				// Do not include the namespace since there can be multiple aliases to it
+				// due to different namespace text definitions on different wikis. This only
+				// means that some cache invalidations happen that are not strictly needed.
+				$cache->makeGlobalKey( 'interwiki-page', wfWikiID(), $title->getDBkey() )
+			);
+		} );
+	}
 
 	/**
 	 * Returns a list of categories this page is a member of.
@@ -3478,7 +3509,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function getMutableCacheKeys( WANObjectCache $cache ) {
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 
-		return $linkCache->getMutableCacheKeys( $cache, $this->getTitle()->getTitleValue() );
+		return $linkCache->getMutableCacheKeys( $cache, $this->getTitle() );
 	}
 
 }

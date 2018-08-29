@@ -476,6 +476,10 @@ class HtmlTest extends MediaWikiTestCase {
 			Html::errorBox( 'err', 'heading' ),
 			'<div class="errorbox"><h2>heading</h2>err</div>'
 		);
+		$this->assertEquals(
+			Html::errorBox( 'err', '0' ),
+			'<div class="errorbox"><h2>0</h2>err</div>'
+		);
 	}
 
 	/**
@@ -784,6 +788,45 @@ class HtmlTest extends MediaWikiTestCase {
 	 */
 	public function testSrcSet( $images, $expected, $message ) {
 		$this->assertEquals( Html::srcSet( $images ), $expected, $message );
+	}
+
+	public static function provideInlineScript() {
+		return [
+			'Empty' => [
+				'',
+				'<script></script>'
+			],
+			'Simple' => [
+				'EXAMPLE.label("foo");',
+				'<script>EXAMPLE.label("foo");</script>'
+			],
+			'Ampersand' => [
+				'EXAMPLE.is(a && b);',
+				'<script>/*<![CDATA[*/EXAMPLE.is(a && b);/*]]>*/</script>'
+			],
+			'HTML' => [
+				'EXAMPLE.label("<a>");',
+				'<script>/*<![CDATA[*/EXAMPLE.label("<a>");/*]]>*/</script>'
+			],
+			'Script closing string' => [
+				'EXAMPLE.label("</script>");',
+				// Broken: First </script> ends the script in HTML
+				'<script>/*<![CDATA[*/EXAMPLE.label("</script>");/*]]>*/</script>'
+			],
+			'CDATA string' => [
+				'EXAMPLE.label("&> CDATA ]]>");',
+				// Broken: Works in HTML, but is invalid XML.
+				'<script>/*<![CDATA[*/EXAMPLE.label("&> CDATA ]]>");/*]]>*/</script>'
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideInlineScript
+	 * @covers Html::inlineScript
+	 */
+	public function testInlineScript( $code, $expected ) {
+		$this->assertSame( Html::inlineScript( $code ), $expected );
 	}
 }
 

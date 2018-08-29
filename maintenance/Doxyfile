@@ -165,26 +165,11 @@ FILE_PATTERNS          = *.c \
                          *.odl \
                          *.cs \
                          *.php \
-                         *.php5 \
                          *.inc \
                          *.m \
                          *.mm \
                          *.dox \
                          *.py \
-                         *.C \
-                         *.CC \
-                         *.C++ \
-                         *.II \
-                         *.I++ \
-                         *.H \
-                         *.HH \
-                         *.H++ \
-                         *.CS \
-                         *.PHP \
-                         *.PHP5 \
-                         *.M \
-                         *.MM \
-                         *.PY \
                          *.txt \
                          README
 RECURSIVE              = YES
@@ -192,7 +177,6 @@ EXCLUDE                = {{EXCLUDE}}
 EXCLUDE_SYMLINKS       = YES
 EXCLUDE_PATTERNS       = LocalSettings.php \
                          AdminSettings.php \
-                         StartProfiler.php \
                          .svn \
                          */.git/* \
                          {{EXCLUDE_PATTERNS}}

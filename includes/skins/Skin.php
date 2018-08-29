@@ -449,7 +449,8 @@ abstract class Skin extends ContextSource {
 		if ( $title->isSpecialPage() ) {
 			$type = 'ns-special';
 			// T25315: provide a class based on the canonical special page name without subpages
-			list( $canonicalName ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
+			list( $canonicalName ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
+				resolveAlias( $title->getDBkey() );
 			if ( $canonicalName ) {
 				$type .= ' ' . Sanitizer::escapeClass( "mw-special-$canonicalName" );
 			} else {
@@ -502,6 +503,10 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Whether the logo should be preloaded with an HTTP link header or not
+	 *
+	 * @deprecated since 1.32 Redundant. It now happens automatically based on whether
+	 *  the skin loads a stylesheet based on ResourceLoaderSkinModule, which all
+	 *  skins that use wgLogo in CSS do, and other's would not.
 	 * @since 1.29
 	 * @return bool
 	 */
@@ -532,7 +537,7 @@ abstract class Skin extends ContextSource {
 			$t = $embed . implode( "{$pop}{$embed}", $allCats['normal'] ) . $pop;
 
 			$msg = $this->msg( 'pagecategories' )->numParams( count( $allCats['normal'] ) )->escaped();
-			$linkPage = wfMessage( 'pagecategorieslink' )->inContentLanguage()->text();
+			$linkPage = $this->msg( 'pagecategorieslink' )->inContentLanguage()->text();
 			$title = Title::newFromText( $linkPage );
 			$link = $title ? Linker::link( $title, $msg ) : $msg;
 			$s .= '<div id="mw-normal-catlinks" class="mw-normal-catlinks">' .
@@ -1330,7 +1335,7 @@ abstract class Skin extends ContextSource {
 	 * @param string $message
 	 */
 	public function addToSidebar( &$bar, $message ) {
-		$this->addToSidebarPlain( $bar, wfMessage( $message )->inContentLanguage()->plain() );
+		$this->addToSidebarPlain( $bar, $this->msg( $message )->inContentLanguage()->plain() );
 	}
 
 	/**
@@ -1471,7 +1476,7 @@ abstract class Skin extends ContextSource {
 				$uTalkTitle,
 				$this->msg( 'newmessageslinkplural' )->params( $plural )->escaped(),
 				[],
-				[ 'redirect' => 'no' ]
+				$uTalkTitle->isRedirect() ? [ 'redirect' => 'no' ] : []
 			);
 
 			$newMessagesDiffLink = Linker::linkKnown(
@@ -1547,7 +1552,8 @@ abstract class Skin extends ContextSource {
 			$notice = $msg->plain();
 		}
 
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$services = MediaWikiServices::getInstance();
+		$cache = $services->getMainWANObjectCache();
 		$parsed = $cache->getWithSetCallback(
 			// Use the extra hash appender to let eg SSL variants separately cache
 			// Key is verified with md5 hash of unparsed wikitext
@@ -1559,7 +1565,7 @@ abstract class Skin extends ContextSource {
 			}
 		);
 
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$contLang = $services->getContentLanguage();
 		return Html::rawElement(
 			'div',
 			[
@@ -1619,13 +1625,13 @@ abstract class Skin extends ContextSource {
 
 		$attribs = [];
 		if ( !is_null( $tooltip ) ) {
-			$attribs['title'] = wfMessage( 'editsectionhint' )->rawParams( $tooltip )
+			$attribs['title'] = $this->msg( 'editsectionhint' )->rawParams( $tooltip )
 				->inLanguage( $lang )->text();
 		}
 
 		$links = [
 			'editsection' => [
-				'text' => wfMessage( 'editsection' )->inLanguage( $lang )->escaped(),
+				'text' => $this->msg( 'editsection' )->inLanguage( $lang )->escaped(),
 				'targetTitle' => $nt,
 				'attribs' => $attribs,
 				'query' => [ 'action' => 'edit', 'section' => $section ],
@@ -1650,7 +1656,7 @@ abstract class Skin extends ContextSource {
 
 		$result .= implode(
 			'<span class="mw-editsection-divider">'
-				. wfMessage( 'pipe-separator' )->inLanguage( $lang )->escaped()
+				. $this->msg( 'pipe-separator' )->inLanguage( $lang )->escaped()
 				. '</span>',
 			$linksHtml
 		);

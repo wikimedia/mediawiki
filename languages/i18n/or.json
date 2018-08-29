@@ -211,7 +211,7 @@
 	"redirectedfrom": "($1 ରୁ ଲେଉଟି ଆସିଛି)",
 	"redirectpagesub": "ପୁନଃପ୍ରେରଣ ପୃଷ୍ଠା",
 	"redirectto": "କେଉଁଠାକୁ ଲେଉଟାଣି:",
-	"lastmodifiedat": "ଏହି ପୃଷ୍ଠାଟି $1 ତାରିଖ $2 ବେଳେ ବଦଳାଯାଇଥିଲା ।",
+	"lastmodifiedat": "ଏହି ପୃଷ୍ଠାଟି $1 ଦିନ $2 ବେଳେ ବଦଳାଯାଇଥିଲା ।",
 	"viewcount": "ଏହି ପୃଷ୍ଠାଟି {{PLURAL:$1|ଥରେ|$1 ଥର}} ଖୋଲାଯାଇଛି ।",
 	"protectedpage": "କିଳାଯାଇଥିବା ପୃଷ୍ଠା",
 	"jumpto": "ସିଧାସଳଖ ଯିବେ",
@@ -2249,7 +2249,7 @@
 	"tooltip-feed-rss": "ଏହି ପୃଷ୍ଠାଟି ପାଇଁ RSS ଫିଡ଼",
 	"tooltip-feed-atom": "ଏହି ପୃଷ୍ଠାଟି ପାଇଁ ଆଟମ ଫିଡ଼",
 	"tooltip-t-contributions": "{{GENDER:$1|ଏହି ଇଉଜରଙ୍କର}} ଦ୍ଵାରା ହୋଇଥିବା ବଦଳ ତାଲିକା",
-	"tooltip-t-emailuser": "ଏହି ସଭ୍ୟଙ୍କୁ ଇ-ମେଲଟିଏ ପଠାଇବେ",
+	"tooltip-t-emailuser": "ଏହି {{GENDER:$1|ସଭ୍ୟ}}ଙ୍କୁ ଇ-ମେଲଟିଏ ପଠାଇବେ",
 	"tooltip-t-upload": "ଫାଇଲ ଅପଲୋଡ଼ କରିବେ",
 	"tooltip-t-specialpages": "ବିଶେଷ ପୃଷ୍ଠାମାନଙ୍କର ଏକ ତାଲିକା",
 	"tooltip-t-print": "ଏହି ପୃଷ୍ଠାର ଛପାହୋଇପାରିବା ସଙ୍କଳନ",
@@ -3163,5 +3163,6 @@
 	"special-characters-title-endash": "en ଡ୍ୟାସ",
 	"special-characters-title-emdash": "em dash",
 	"special-characters-title-minus": "ମେନୁଗୁଡିକର ଚିହ୍ନ",
-	"mw-widgets-titleinput-description-redirect": "$1କୁ ପୁନଃପ୍ରେରଣ କରିବେ"
+	"mw-widgets-titleinput-description-redirect": "$1କୁ ପୁନଃପ୍ରେରଣ କରିବେ",
+	"randomrootpage": "ଜାହିତାହି ମୁଳ ପୃଷ୍ଠା"
 }

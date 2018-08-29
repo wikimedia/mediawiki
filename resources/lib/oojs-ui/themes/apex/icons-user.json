@@ -2,19 +2,11 @@
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
 	"images": {
-		"userActive": {
-			"file": "../wikimediaui/images/icons/userActive.svg",
-			"deprecated": "Renamed since v0.26.2, use 'userAvatar' instead."
-		},
 		"userAnonymous": {
 			"file": "../wikimediaui/images/icons/userAnonymous.svg"
 		},
 		"userAvatar": {
 			"file": "../wikimediaui/images/icons/userAvatar.svg"
-		},
-		"userInactive": {
-			"file": "../wikimediaui/images/icons/userAnonymous.svg",
-			"deprecated": "Renamed since v0.26.2, use 'userAnonymous' instead."
 		},
 		"userTalk": {
 			"file": {

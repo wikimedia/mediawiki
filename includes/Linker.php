@@ -205,7 +205,8 @@ class Linker {
 	 */
 	public static function normaliseSpecialPage( LinkTarget $target ) {
 		if ( $target->getNamespace() == NS_SPECIAL && !$target->isExternal() ) {
-			list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $target->getDBkey() );
+			list( $name, $subpage ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
+				resolveAlias( $target->getDBkey() );
 			if ( !$name ) {
 				return $target;
 			}
@@ -430,7 +431,11 @@ class Linker {
 			$s = $thumb->toHtml( $params );
 		}
 		if ( $frameParams['align'] != '' ) {
-			$s = "<div class=\"float{$frameParams['align']}\">{$s}</div>";
+			$s = Html::rawElement(
+				'div',
+				[ 'class' => 'float' . $frameParams['align'] ],
+				$s
+			);
 		}
 		return str_replace( "\n", ' ', $prefix . $s . $postfix );
 	}

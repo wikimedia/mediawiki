@@ -12,9 +12,11 @@ use GenderCache;
 use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Special\SpecialPageFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
@@ -701,7 +703,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.32
-	 * @return IBufferingStatsdDataFactory
+	 * @return StatsdDataFactoryInterface
 	 */
 	public function getPerDbNameStatsdDataFactory() {
 		return $this->getService( 'PerDbNameStatsdDataFactory' );
@@ -826,6 +828,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getSlotRoleStore() {
 		return $this->getService( 'SlotRoleStore' );
+	}
+
+	/**
+	 * @since 1.32
+	 * @return SpecialPageFactory
+	 */
+	public function getSpecialPageFactory() : SpecialPageFactory {
+		return $this->getService( 'SpecialPageFactory' );
 	}
 
 	/**

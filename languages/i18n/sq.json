@@ -319,7 +319,7 @@
 	"nosuchaction": "Nuk ekziston ky veprim",
 	"nosuchactiontext": "Veprimi i specifikuar nga URL është i pavlefshëm.\nJu mund të keni bërë një gabim në shkrimin e URL-së, ose keni ndjekur një lidhje të pasaktë.\nKjo mund të vijë edhe si rezultat i një gabimi në programin e përdorur nga {{SITENAME}}.",
 	"nosuchspecialpage": "Nuk ekziston kjo faqe speciale",
-	"nospecialpagetext": "<strong>Ju keni kërkuar një faqe speciale të pavlefshme.</strong> \n\n Një listë e faqeve speciale të vlefshme mund të gjendet në [[Special:SpecialPages|{{int: specialpages }}]].",
+	"nospecialpagetext": "<strong>Ju keni kërkuar një faqe speciale të pavlefshme.</strong> \n\nNjë listë e faqeve speciale të vlefshme mund të gjendet në [[Special:SpecialPages|{{int: specialpages }}]].",
 	"error": "Gabim",
 	"databaseerror": "Gabim në databazë",
 	"databaseerror-text": "\nKjo mund të tregojë një gabim në software.",

@@ -81,15 +81,6 @@ class DatabaseOracle extends Database {
 		return false;
 	}
 
-	/**
-	 * Usually aborts on failure
-	 * @param string $server
-	 * @param string $user
-	 * @param string $password
-	 * @param string $dbName
-	 * @throws DBConnectionError
-	 * @return resource|null
-	 */
 	function open( $server, $user, $password, $dbName ) {
 		global $wgDBOracleDRCP;
 		if ( !function_exists( 'oci_connect' ) ) {
@@ -173,7 +164,7 @@ class DatabaseOracle extends Database {
 		$this->doQuery( 'ALTER SESSION SET NLS_TIMESTAMP_TZ_FORMAT=\'DD-MM-YYYY HH24:MI:SS.FF6\'' );
 		$this->doQuery( 'ALTER SESSION SET NLS_NUMERIC_CHARACTERS=\'.,\'' );
 
-		return $this->conn;
+		return (bool)$this->conn;
 	}
 
 	/**

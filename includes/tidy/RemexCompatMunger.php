@@ -89,11 +89,19 @@ class RemexCompatMunger implements TreeHandler {
 		'u' => true,
 	];
 
+	/** @var Serializer */
+	private $serializer;
+
+	/** @var bool */
+	private $trace;
+
 	/**
 	 * @param Serializer $serializer
+	 * @param bool $trace
 	 */
-	public function __construct( Serializer $serializer ) {
+	public function __construct( Serializer $serializer, $trace = false ) {
 		$this->serializer = $serializer;
+		$this->trace = $trace;
 	}
 
 	public function startDocument( $fragmentNamespace, $fragmentName ) {
@@ -184,7 +192,9 @@ class RemexCompatMunger implements TreeHandler {
 	}
 
 	private function trace( $msg ) {
-		// echo "[RCM] $msg\n";
+		if ( $this->trace ) {
+			wfDebug( "[RCM] $msg" );
+		}
 	}
 
 	/**
@@ -245,12 +255,11 @@ class RemexCompatMunger implements TreeHandler {
 	) {
 		list( $parent, $newRef ) = $this->getParentForInsert( $preposition, $refElement );
 		$parentData = $parent->snData;
-		$parentNs = $parent->namespace;
-		$parentName = $parent->name;
 		$elementName = $element->htmlName;
 
 		$inline = isset( self::$onlyInlineElements[$elementName] );
 		$under = $preposition === TreeBuilder::UNDER;
+		$elementToEnd = null;
 
 		if ( $under && $parentData->isPWrapper && !$inline ) {
 			// [B/b] The element is non-inline and the parent is a p-wrapper,
@@ -349,7 +358,6 @@ class RemexCompatMunger implements TreeHandler {
 		$root = $serializer->getRootNode();
 		$nodes = [];
 		$removableNodes = [];
-		$haveContent = false;
 		while ( $node !== $cloneEnd ) {
 			$nextParent = $serializer->getParentNode( $node );
 			if ( $nextParent === $root ) {

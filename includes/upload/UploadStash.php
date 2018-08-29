@@ -325,7 +325,7 @@ class UploadStash {
 		);
 
 		// store the insertid in the class variable so immediate retrieval
-		// (possibly laggy) isn't necesary.
+		// (possibly laggy) isn't necessary.
 		$this->fileMetadata[$key]['us_id'] = $dbw->insertId();
 
 		# create the UploadStashFile object for this file.

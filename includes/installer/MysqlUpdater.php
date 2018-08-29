@@ -367,6 +367,7 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-protected_titles-fix-pk.sql' ],
 			[ 'renameIndex', 'site_identifiers', 'site_ids_type', 'PRIMARY', false,
 				'patch-site_identifiers-fix-pk.sql' ],
+			[ 'addIndex', 'recentchanges', 'rc_this_oldid', 'patch-recentchanges-rc_this_oldid-index.sql' ],
 		];
 	}
 

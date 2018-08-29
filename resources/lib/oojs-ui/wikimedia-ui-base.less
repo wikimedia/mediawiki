@@ -1,39 +1,31 @@
 /**
- * WikimediaUI Base v0.10.0
+ * WikimediaUI Base v0.11.0
  * Wikimedia Foundation user interface base variables
  */
 
+// Local hack:
+// * Define @background-color-base--hover.
+
 // == Breakpoints ==
+// The following numbers are prone to change with new information.
+
 // Minimum available screen width at which a device can be considered a mobile device
 // Many older feature phones have screens smaller than this value.
-// Number is prone to change with new information.
-
 @width-breakpoint-mobile: 320px;
-
 
 // Minimum available screen width at which a device can be considered a tablet
 // The number is currently based on the device width of a Samsung Galaxy S5 mini and is low
-// enough to cover iPad (768px). Number is prone to change with new information.
-
+// enough to cover iPad (768px).
 @width-breakpoint-tablet: 720px;
 
-
 // Minimum available screen width at which a device can be considered a desktop
-// Number is prone to change with new information.
-
 @width-breakpoint-desktop: 1000px;
 
-
 // Wider desktop breakpoint, currently used in Flow.
-// Number is prone to change with new information.
-
 @width-breakpoint-desktop-wide: 1200px;
 
-
 // Extra wide desktop breakpoint
-// Number is prone to change with new information.
-
-@width-breapoint-desktop-extrawide: 2000px;
+@width-breakpoint-desktop-extrawide: 2000px;
 
 
 // == Colors ==
@@ -68,125 +60,141 @@
 @wmui-color-green90:  #d5fdf4; // = HSB 166°, 16%, 99%
 
 // Background Colors
-@background-color-base:       @wmui-color-base100;
-@background-color-code:       @wmui-color-base90;
-// 'Framed' UI elements (Framed Buttons, Dropdowns, ToggleSwitches...)
-@background-color-framed:     @wmui-color-base90;
-@background-color-framed--hover: @wmui-color-base100;
+@background-color-base:           @wmui-color-base100;
+@background-color-base--hover:    @wmui-color-base80;
+@background-color-base--disabled: @wmui-color-base80;
+@background-color-code:           @wmui-color-base90;
+// 'Framed' UI elements (Framed Buttons, Dropdowns, ToggleSwitches…)
+@background-color-framed:         @wmui-color-base90;
+@background-color-framed--hover:  @wmui-color-base100;
 @background-color-framed--active: @wmui-color-base70;
+// 'Filled' UI elements (Checkboxes, Radios, ProgressBars…)
+@background-color-filled--disabled: @wmui-color-base70;
+// Toolbar and Tools
+@background-color-toolbar:        @background-color-base;
+@background-color-tool--hover:    @background-color-base--hover;
+@background-color-tool--active:   @background-color-primary;
+@background-color-tool--active-hover: @background-color-primary--hover;
 // Tabs Navigation Background Color
-@background-color-tabs:       @wmui-color-base80;
+@background-color-tabs:           @wmui-color-base80;
 // Highlight Colors, RGBA Colors include hex fallback on `#fff` for IE 6/7/8
-@background-color-highlight:  rgba( 255, 182, 13, 0.4 );
+@background-color-highlight:      rgba( 255, 182, 13, 0.4 );
 @background-color-highlight--fallback: #ffe29e;
 
 // Foreground Colors
-@color-base:                  @wmui-color-base10;
-@color-base--hover:           #444;
-@color-base--active:          @wmui-color-base0;
-@color-base--inverted:        @wmui-color-base100;
-@color-base--emphasized:      @wmui-color-base0;
-@color-base--subtle:          @wmui-color-base30;
-@color-base--disabled:        @wmui-color-base30;
-@color-filled--disabled:      @color-base--inverted;
-@color-placeholder:           @wmui-color-base30;
+@color-base:                      @wmui-color-base10;
+@color-base--hover:               #444;
+@color-base--active:              @wmui-color-base0;
+@color-base--inverted:            @wmui-color-base100;
+@color-base--emphasized:          @wmui-color-base0;
+@color-base--subtle:              @wmui-color-base30;
+@color-base--disabled:            @wmui-color-base30;
+@color-filled--disabled:          @color-base--inverted;
+@color-placeholder:               @wmui-color-base30;
 // Primary 'Progressive' Color, Background Color and states
-@background-color-primary:    @wmui-color-accent90;
+@background-color-primary:        @wmui-color-accent90;
 @background-color-primary--hover: rgba( 41, 98, 204, 0.1 );
-@color-primary:               @wmui-color-accent50;
-@color-primary--hover:        #447ff5; // = `lighten( @color-primary, 3 )`
-@color-primary--active:       @wmui-color-accent30;
-@color-primary--focus:        @color-primary;
+@color-primary:                   @wmui-color-accent50;
+@color-primary--hover:            #447ff5; // = `lighten( @color-primary, 3 )`
+@color-primary--active:           @wmui-color-accent30;
+@color-primary--focus:            @color-primary;
 // 'Destructive' Color, Background Color and states
-@background-color-destructive: @wmui-color-red90;
-@color-destructive:           @wmui-color-red50;
-@color-destructive--hover:    #ff4242;
-@color-destructive--active:   @wmui-color-red30;
-@color-destructive--focus:    @color-destructive;
+@background-color-destructive:    @wmui-color-red90;
+@color-destructive:               @wmui-color-red50;
+@color-destructive--hover:        #ff4242;
+@color-destructive--active:       @wmui-color-red30;
+@color-destructive--focus:        @color-destructive;
 // Secondary Color and states (links only)
-@color-secondary:             @wmui-color-green50;
-@color-secondary--hover:      #1c6665;
-@color-secondary--active:     @wmui-color-green30;
-@color-secondary--focus:      @color-secondary;
+@color-secondary:                 @wmui-color-green50;
+@color-secondary--hover:          #1c6665;
+@color-secondary--active:         @wmui-color-green30;
+@color-secondary--focus:          @color-secondary;
 // Validation error feedback
-@color-erroneous:             @wmui-color-red50;
+@color-erroneous:                 @wmui-color-red50;
+// Toolbar and Tools
+@color-tool--hover:               @color-base--emphasized; // Used here in combination with `:hover` background-color turning light grey
+@color-tool--active:              @color-primary;
 
 
 // Opacity
-@opacity-base:                1;
-@opacity-base--disabled:      0.51; // = `#7d7d7d` on `background-color: #fff`; HSB 0°, 0%, 49%
-@opacity-icon-base:           0.87; // = `#222` on `background-color: #fff`
-@opacity-icon-base--hover:    0.73; // = `#454545` on `background-color: #fff`, closest to `#444`
-@opacity-icon-base--selected: 1;
+@opacity-base:                    1;
+@opacity-base--disabled:          0.51; // = `#7d7d7d` on `background-color: #fff`; HSB 0°, 0%, 49%
+@opacity-icon-base:               0.87; // = `#222` on `background-color: #fff`
+@opacity-icon-base--hover:        0.73; // = `#454545` on `background-color: #fff`, closest to `#444`
+@opacity-icon-base--selected:     1;
 
 
 // == Positioning ==
 // Z-Index
-@z-index-base:                0;
+@z-index-base:                    0;
 
 
 // == Box Model properties ==
 // Max Widths
-@max-width-button:            28.75em; // = `460px` at `16px` base, see T95367
-@max-width-input-inline:      100%;
+@max-width-button:                28.75em; // = `460px` at `16px` base, see T95367
+@max-width-input-inline:          100%;
 
 // Border
-@border-base:                 @border-width-base solid @border-color-base;
-@border-dialog:               @border-base;
-@border-menu:                 @border-base;
+@border-base:                     @border-width-base @border-style-base @border-color-base;
+@border-dialog:                   @border-base;
+@border-menu:                     @border-base;
 // Border Colors
-@border-color-base:           @wmui-color-base50;
-@border-color-base--hover:    @wmui-color-base50;
-@border-color-base--active:   @wmui-color-base30;
-@border-color-base--disabled: @wmui-color-base70;
-@border-color-filled--disabled: @color-filled--disabled;
-@border-color-primary--active: #859dcc;
+@border-color-base:               @wmui-color-base50;
+@border-color-base--hover:        @wmui-color-base50;
+@border-color-base--active:       @wmui-color-base30;
+@border-color-base--disabled:     @wmui-color-base70;
+@border-color-filled--disabled:   @color-filled--disabled;
+@border-color-primary--active:    #859dcc;
 @border-color-destructive--active: #b77c79;
-@border-color-inset--focus:   @color-base--inverted;
-@border-color-heading:        @wmui-color-base70;
-@border-color-wikitable:      rgba( 84, 89, 93, 0.3 ); // See T168029
+@border-color-inset--focus:       @color-base--inverted;
+@border-color-heading:            @wmui-color-base70;
+@border-color-wikitable:          rgba( 84, 89, 93, 0.3 ); // See T168029
+// Border Styles
+@border-style-base:               solid;
 // Border Widths
-@border-width-base:           1px;
+@border-width-base:               1px;
 // Border Radius
-@border-radius-base:          2px;
+@border-radius-base:              2px;
 
 // Box Shadows
-@box-shadow-base--focus:      inset 0 0 0 1px @wmui-color-accent50;
-@box-shadow-primary--focus:   inset 0 0 0 1px @color-primary, inset 0 0 0 2px @color-base--inverted;
-@box-shadow-inset--inverted:  inset 0 0 0 1px @color-base--inverted;
-@box-shadow-filled--disabled: inset 0 0 0 1px @color-filled--disabled;
-@box-shadow-card:             0 1px 1px rgba( 0, 0, 0, 0.15 );
-@box-shadow-dialog:           0 2px 2px 0 rgba( 0, 0, 0, 0.25 );
-@box-shadow-menu:             @box-shadow-dialog;
+@box-shadow-base--focus:          inset 0 0 0 1px @wmui-color-accent50;
+@box-shadow-primary--focus:       inset 0 0 0 1px @color-primary, inset 0 0 0 2px @color-base--inverted;
+@box-shadow-inset--inverted:      inset 0 0 0 1px @color-base--inverted;
+@box-shadow-filled--disabled:     inset 0 0 0 1px @color-filled--disabled;
+@box-shadow-card:                 0 1px 1px rgba( 0, 0, 0, 0.15 );
+@box-shadow-dialog:               0 2px 2px 0 rgba( 0, 0, 0, 0.25 );
+@box-shadow-menu:                 @box-shadow-dialog;
 
 
 // == Typography incl. print properties ==
 // Font Families
-@font-family-base:            @font-family-sans;
-@font-family-heading-main:    @font-family-serif;
-@font-family-sans:            'Helvetica Neue', 'Helvetica', 'Nimbus Sans L', 'Arial', 'Liberation Sans', sans-serif;
-@font-family-sans--fallback:  sans-serif;
-@font-family-serif:           'Linux Libertine', 'Georgia', 'Times', serif;
-@font-family-serif--fallback: serif;
-@font-family-monospace:       monospace, monospace; // See T176636
+@font-family-base:                @font-family-sans;
+@font-family-heading-main:        @font-family-serif;
+@font-family-sans:                'Helvetica Neue', 'Helvetica', 'Nimbus Sans L', 'Arial', 'Liberation Sans', sans-serif;
+@font-family-sans--fallback:      sans-serif;
+@font-family-serif:               'Linux Libertine', 'Georgia', 'Times', serif;
+@font-family-serif--fallback:     serif;
+@font-family-monospace:           monospace, monospace; // See T176636
 // Line Heights
-@line-height-base:            1.6;
-@line-height-heading:         1.25;
-@text-decoration-link--hover: none;
+@line-height-base:                1.6;
+@line-height-heading:             1.25;
+@text-decoration-link--hover:     none;
 // Text Shadows
-@text-shadow-base:            0 1px 1px @color-base--inverted; // 'coined' effect
-@text-shadow-base--disabled:  @text-shadow-base;
+@text-shadow-base:                0 1px 1px @color-base--inverted; // 'coined' effect
+@text-shadow-base--disabled:      @text-shadow-base;
 
 
 // == Other Properties ==
 // Cursors
-@cursor-base--disabled:       default;
+@cursor-base--disabled:           default;
 
 
 // == Animation & Transition ==
 // Transitions
-@transition-base:             @transition-duration-base;
-@transition-medium:           @transition-duration-medium;
+@transition-base:                 @transition-duration-base; // `ease` is the initial value
+@transition-ease-medium:          @transition-duration-medium;
+// `ease-out` is preferably used on human initiated transitions, for example dialogs
+@transition-ease-out-medium:      ease-out @transition-duration-medium;
 // Transitions > Durations
-@transition-duration-base:    100ms;
-@transition-duration-medium:  250ms;
+@transition-duration-base:        100ms;
+@transition-duration-medium:      250ms;

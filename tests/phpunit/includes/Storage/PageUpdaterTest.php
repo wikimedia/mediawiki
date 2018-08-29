@@ -19,6 +19,13 @@ use WikiPage;
  */
 class PageUpdaterTest extends MediaWikiTestCase {
 
+	public static function setUpBeforeClass() {
+		parent::setUpBeforeClass();
+
+		// force service reset!
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'RevisionStore' );
+	}
+
 	private function getDummyTitle( $method ) {
 		return Title::newFromText( $method, $this->getDefaultWikitextNS() );
 	}
@@ -217,6 +224,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 
 		// check site stats - this asserts that derived data updates where run.
 		$stats = $this->db->selectRow( 'site_stats', '*', '1=1' );
+		$this->assertNotNull( $stats, 'site_stats' );
 		$this->assertSame( $oldStats->ss_total_pages + 0, (int)$stats->ss_total_pages );
 		$this->assertSame( $oldStats->ss_total_edits + 2, (int)$stats->ss_total_edits );
 	}

@@ -114,6 +114,7 @@ $wgAutoloadClasses += [
 	'TestDeprecatedSubclass' => "$testDir/phpunit/includes/debug/TestDeprecatedSubclass.php",
 
 	# tests/phpunit/includes/diff
+	'CustomDifferenceEngine' => "$testDir/phpunit/includes/diff/CustomDifferenceEngine.php",
 	'FakeDiffOp' => "$testDir/phpunit/includes/diff/FakeDiffOp.php",
 
 	# tests/phpunit/includes/externalstore

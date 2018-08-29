@@ -16,7 +16,6 @@
 		<exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
-		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage" />
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.passthru" />
 		<exclude name="MediaWiki.VariableAnalysis.ForbiddenGlobalVariables.ForbiddenGlobal$wgTitle" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
@@ -137,7 +136,6 @@
 		<exclude-pattern>*/maintenance/7zip.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/CodeCleanerGlobalsPass.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/archives/upgradeLogging\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/backup.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_HTTP_HTTPS\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_Wikimedia_base_convert\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_delete_truncate\.php</exclude-pattern>
@@ -356,5 +354,4 @@
 	<exclude-pattern type="relative">^skins/</exclude-pattern>
 	<exclude-pattern>AdminSettings\.php</exclude-pattern>
 	<exclude-pattern>LocalSettings\.php</exclude-pattern>
-	<exclude-pattern>StartProfiler\.php</exclude-pattern>
 </ruleset>

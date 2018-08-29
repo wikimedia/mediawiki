@@ -388,31 +388,50 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		if ( $context->getDebug() ) {
 			$mwLoaderCode .= file_get_contents( "$IP/resources/src/startup/mediawiki.log.js" );
 		}
+		if ( $this->getConfig()->get( 'ResourceLoaderEnableJSProfiler' ) ) {
+			$mwLoaderCode .= file_get_contents( "$IP/resources/src/startup/profiler.js" );
+		}
 
-		$mapToJson = function ( $value ) {
-			$value = FormatJson::encode( $value, ResourceLoader::inDebugMode(), FormatJson::ALL_OK );
-			// Fix indentation
-			$value = str_replace( "\n", "\n\t", $value );
-			return $value;
-		};
+		// Keep output as small as possible by disabling needless escapes that PHP uses by default.
+		// This is not HTML output, only used in a JS response.
+		$jsonFlags = JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
+		if ( ResourceLoader::inDebugMode() ) {
+			$jsonFlags |= JSON_PRETTY_PRINT;
+		}
 
 		// Perform replacements for mediawiki.js
-		$mwLoaderCode = strtr( $mwLoaderCode, [
-			'$VARS.baseModules' => $mapToJson( $this->getBaseModules() ),
-		] );
+		$mwLoaderPairs = [
+			'$VARS.baseModules' => json_encode( $this->getBaseModules(), $jsonFlags ),
+		];
+		$profilerStubs = [
+			'$CODE.profileExecuteStart();' => 'mw.loader.profiler.onExecuteStart( module );',
+			'$CODE.profileExecuteEnd();' => 'mw.loader.profiler.onExecuteEnd( module );',
+			'$CODE.profileScriptStart();' => 'mw.loader.profiler.onScriptStart( module );',
+			'$CODE.profileScriptEnd();' => 'mw.loader.profiler.onScriptEnd( module );',
+		];
+		if ( $this->getConfig()->get( 'ResourceLoaderEnableJSProfiler' ) ) {
+			// When profiling is enabled, insert the calls.
+			$mwLoaderPairs += $profilerStubs;
+		} else {
+			// When disabled (by default), insert nothing.
+			$mwLoaderPairs += array_fill_keys( array_keys( $profilerStubs ), '' );
+		}
+		$mwLoaderCode = strtr( $mwLoaderCode, $mwLoaderPairs );
 
-		// Perform replacements for startup.js
-		$pairs = array_map( $mapToJson, [
-			'$VARS.wgLegacyJavaScriptGlobals' => $this->getConfig()->get( 'LegacyJavaScriptGlobals' ),
-			'$VARS.configuration' => $this->getConfigSettings( $context ),
-		] );
-		// Raw JavaScript code (not for JSON)
-		$pairs['$CODE.registrations();'] = str_replace(
-			"\n",
-			"\n\t",
-			trim( $this->getModuleRegistrations( $context ) )
-		);
-		$pairs['$CODE.defineLoader();'] = $mwLoaderCode;
+		// Perform string replacements for startup.js
+		$pairs = [
+			'$VARS.wgLegacyJavaScriptGlobals' => json_encode(
+				$this->getConfig()->get( 'LegacyJavaScriptGlobals' ),
+				$jsonFlags
+			),
+			'$VARS.configuration' => json_encode(
+				$this->getConfigSettings( $context ),
+				$jsonFlags
+			),
+			// Raw JavaScript code (not JSON)
+			'$CODE.registrations();' => trim( $this->getModuleRegistrations( $context ) ),
+			'$CODE.defineLoader();' => $mwLoaderCode,
+		];
 		$startupCode = strtr( $startupCode, $pairs );
 
 		return $startupCode;
@@ -434,13 +453,15 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
 		global $IP;
 		$summary = parent::getDefinitionSummary( $context );
-		$summary[] = [
-			// Detect changes to variables exposed in mw.config (T30899).
+		$startup = [
+			// getScript() exposes these variables to mw.config (T30899).
 			'vars' => $this->getConfigSettings( $context ),
-			// Changes how getScript() creates mw.Map for mw.config
+			// getScript() uses this to decide how configure mw.Map for mw.config.
 			'wgLegacyJavaScriptGlobals' => $this->getConfig()->get( 'LegacyJavaScriptGlobals' ),
-			// Detect changes to the module registrations
+			// Detect changes to the module registrations output by getScript().
 			'moduleHashes' => $this->getAllModuleHashes( $context ),
+			// Detect changes to base modules listed by getScript().
+			'baseModules' => $this->getBaseModules(),
 
 			'fileHashes' => [
 				$this->safeFileHash( "$IP/resources/src/startup/startup.js" ),
@@ -448,6 +469,13 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				$this->safeFileHash( "$IP/resources/src/startup/mediawiki.requestIdleCallback.js" ),
 			],
 		];
+		if ( $context->getDebug() ) {
+			$startup['fileHashes'][] = $this->safeFileHash( "$IP/resources/src/startup/mediawiki.log.js" );
+		}
+		if ( $this->getConfig()->get( 'ResourceLoaderEnableJSProfiler' ) ) {
+			$startup['fileHashes'][] = $this->safeFileHash( "$IP/resources/src/startup/profiling.js" );
+		}
+		$summary[] = $startup;
 		return $summary;
 	}
 

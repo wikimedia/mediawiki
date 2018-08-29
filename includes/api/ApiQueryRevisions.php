@@ -486,7 +486,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	protected function getExamplesMessages() {
 		return [
 			'action=query&prop=revisions&titles=API|Main%20Page&' .
-				'rvprop=timestamp|user|comment|content'
+				'rvslots=*&rvprop=timestamp|user|comment|content'
 				=> 'apihelp-query+revisions-example-content',
 			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
 				'rvprop=timestamp|user|comment'

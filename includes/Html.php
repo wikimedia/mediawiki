@@ -704,7 +704,7 @@ class Html {
 	 * @return string of HTML representing a box.
 	 */
 	private static function messageBox( $html, $className, $heading = '' ) {
-		if ( $heading ) {
+		if ( $heading !== '' ) {
 			$html = self::element( 'h2', [], $heading ) . $html;
 		}
 		return self::rawElement( 'div', [ 'class' => $className ], $html );

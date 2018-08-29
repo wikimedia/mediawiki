@@ -8,15 +8,6 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		parent::setUp();
 
 		$this->setMwGlobals( [
-			'wgResourceLoaderLESSVars' => [
-				'foo'  => '2px',
-				'Foo' => '#eeeeee',
-				'bar' => 5,
-			],
-			// Clear ResourceLoaderGetConfigVars hooks (called by StartupModule)
-			// to avoid notices during testMakeModuleResponse for missing
-			// wgResourceLoaderLESSVars keys in extension hooks.
-			'wgHooks' => [],
 			'wgShowExceptionDetails' => true,
 		] );
 	}
@@ -247,26 +238,11 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	}
 
 	/**
-	 * @covers ResourceLoaderFileModule::compileLessFile
-	 */
-	public function testLessFileCompilation() {
-		$context = $this->getResourceLoaderContext();
-		$basePath = __DIR__ . '/../../data/less/module';
-		$module = new ResourceLoaderFileModule( [
-			'localBasePath' => $basePath,
-			'styles' => [ 'styles.less' ],
-		] );
-		$module->setName( 'test.less' );
-		$styles = $module->getStyles( $context );
-		$this->assertStringEqualsFile( $basePath . '/styles.css', $styles['all'] );
-	}
-
-	/**
 	 * @covers ResourceLoader::getLessCompiler
 	 */
 	public function testLessImportDirs() {
 		$rl = new EmptyResourceLoader();
-		$lc = $rl->getLessCompiler( $rl->getLessVars() );
+		$lc = $rl->getLessCompiler( [ 'foo'  => '2px', 'Foo' => '#eeeeee' ] );
 		$basePath = dirname( dirname( __DIR__ ) ) . '/data/less';
 		$lc->SetImportDirs( [
 			 "$basePath/common" => '',

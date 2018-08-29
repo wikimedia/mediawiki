@@ -35,11 +35,12 @@ class Preferences {
 	 * @return DefaultPreferencesFactory
 	 */
 	protected static function getDefaultPreferencesFactory() {
+		$services = MediaWikiServices::getInstance();
 		$authManager = AuthManager::singleton();
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$linkRenderer = $services->getLinkRenderer();
+		$config = $services->getMainConfig();
 		$preferencesFactory = new DefaultPreferencesFactory(
-			$config, MediaWikiServices::getInstance()->getContentLanguage(), $authManager,
+			$config, $services->getContentLanguage(), $authManager,
 			$linkRenderer
 		);
 		return $preferencesFactory;

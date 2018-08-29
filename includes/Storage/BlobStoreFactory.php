@@ -23,7 +23,7 @@ namespace MediaWiki\Storage;
 use Config;
 use Language;
 use WANObjectCache;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\LBFactory;
 
 /**
  * Service for instantiating BlobStores
@@ -35,9 +35,9 @@ use Wikimedia\Rdbms\LoadBalancer;
 class BlobStoreFactory {
 
 	/**
-	 * @var LoadBalancer
+	 * @var LBFactory
 	 */
-	private $loadBalancer;
+	private $lbFactory;
 
 	/**
 	 * @var WANObjectCache
@@ -55,12 +55,12 @@ class BlobStoreFactory {
 	private $contLang;
 
 	public function __construct(
-		LoadBalancer $loadBalancer,
+		LBFactory $lbFactory,
 		WANObjectCache $cache,
 		Config $mainConfig,
 		Language $contLang
 	) {
-		$this->loadBalancer = $loadBalancer;
+		$this->lbFactory = $lbFactory;
 		$this->cache = $cache;
 		$this->config = $mainConfig;
 		$this->contLang = $contLang;
@@ -85,8 +85,9 @@ class BlobStoreFactory {
 	 * @return SqlBlobStore
 	 */
 	public function newSqlBlobStore( $wikiId = false ) {
+		$lb = $this->lbFactory->getMainLB( $wikiId );
 		$store = new SqlBlobStore(
-			$this->loadBalancer,
+			$lb,
 			$this->cache,
 			$wikiId
 		);

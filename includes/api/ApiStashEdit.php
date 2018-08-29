@@ -234,6 +234,7 @@ class ApiStashEdit extends ApiBase {
 					return self::ERROR_CACHE;
 				}
 			} else {
+				// @todo Doesn't seem reachable, see @todo in buildStashValue
 				$logger->info( "Uncacheable parser output for key '{cachekey}' ('{title}') [{code}].",
 					[ 'cachekey' => $key, 'title' => $titleStr, 'code' => $code ] );
 				return self::ERROR_UNCACHEABLE;
@@ -410,6 +411,9 @@ class ApiStashEdit extends ApiBase {
 		}
 
 		if ( $ttl <= 0 ) {
+			// @todo It doesn't seem like this can occur, because it would mean an entry older than
+			// getCacheExpiry() seconds, which is much longer than PRESUME_FRESH_TTL_SEC, and
+			// anything older than PRESUME_FRESH_TTL_SEC will have been thrown out already.
 			return [ null, 0, 'no_ttl' ];
 		}
 

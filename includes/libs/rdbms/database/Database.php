@@ -266,7 +266,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var int[] Prior flags member variable values */
 	private $priorFlags = [];
 
-	/** @var object|string Class name or object With profileIn/profileOut methods */
+	/** @var mixed Class name or object With profileIn/profileOut methods */
 	protected $profiler;
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
@@ -372,6 +372,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new InvalidArgumentException( "No database user provided." );
 		}
 	}
+
+	/**
+	 * Open a new connection to the database (closing any existing one)
+	 *
+	 * @param string $server Database server host
+	 * @param string $user Database user name
+	 * @param string $password Database user password
+	 * @param string $dbName Database name
+	 * @return bool
+	 * @throws DBConnectionError
+	 */
+	abstract protected function open( $server, $user, $password, $dbName );
 
 	/**
 	 * Construct a Database subclass instance given a database type and parameters
@@ -1132,11 +1144,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->trxLevel && !$this->trxDoneWrites && $isWrite ) {
 			$this->trxDoneWrites = true;
 			$this->trxProfiler->transactionWritingIn(
-				$this->server, $this->dbName, $this->trxShortId );
+				$this->server, $this->getDomainID(), $this->trxShortId );
 		}
 
 		if ( $this->getFlag( self::DBO_DEBUG ) ) {
-			$this->queryLogger->debug( "{$this->dbName} {$commentedSql}" );
+			$this->queryLogger->debug( "{$this->getDomainID()} {$commentedSql}" );
 		}
 
 		# Send the query to the server and fetch any corresponding errors
@@ -3496,7 +3508,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					list( $phpCallback ) = $callback;
 					$phpCallback( $this );
 				} catch ( Exception $ex ) {
-					$this->errorLogger( $ex );
+					( $this->errorLogger )( $ex );
 					$e = $e ?: $ex;
 				}
 			}
@@ -3856,7 +3868,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->lastWriteTime = microtime( true );
 			$this->trxProfiler->transactionWritingOut(
 				$this->server,
-				$this->dbName,
+				$this->getDomainID(),
 				$this->trxShortId,
 				$writeTime,
 				$this->trxWriteAffectedRows
@@ -3907,7 +3919,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( $this->trxDoneWrites ) {
 				$this->trxProfiler->transactionWritingOut(
 					$this->server,
-					$this->dbName,
+					$this->getDomainID(),
 					$this->trxShortId,
 					$writeTime,
 					$this->trxWriteAffectedRows
@@ -4018,7 +4030,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * a wrapper. Nowadays, raw database objects are never exposed to external
 	 * callers, so this is unnecessary in external code.
 	 *
-	 * @param bool|ResultWrapper|resource|object $result
+	 * @param bool|ResultWrapper|resource $result
 	 * @return bool|ResultWrapper
 	 */
 	protected function resultObject( $result ) {
@@ -4590,7 +4602,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	public function __clone() {
 		$this->connLogger->warning(
-			"Cloning " . static::class . " is not recomended; forking connection:\n" .
+			"Cloning " . static::class . " is not recommended; forking connection:\n" .
 			( new RuntimeException() )->getTraceAsString()
 		);
 

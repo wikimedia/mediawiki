@@ -41,7 +41,7 @@ class LanguageMl extends Language {
 	 *
 	 * @return string
 	 */
-	function normalize( $s ) {
+	public function normalize( $s ) {
 		global $wgFixMalayalamUnicode;
 		$s = parent::normalize( $s );
 		if ( $wgFixMalayalamUnicode ) {

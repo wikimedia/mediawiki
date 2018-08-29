@@ -22,6 +22,7 @@
  */
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Special\SpecialPageFactory;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -269,16 +270,20 @@ class Parser {
 	/** @var ParserFactory */
 	private $factory;
 
+	/** @var SpecialPageFactory */
+	private $specialPageFactory;
+
 	/**
 	 * @param array $conf See $wgParserConf documentation
 	 * @param MagicWordFactory|null $magicWordFactory
 	 * @param Language|null $contLang Content language
 	 * @param ParserFactory|null $factory
 	 * @param string|null $urlProtocols As returned from wfUrlProtocols()
+	 * @param SpecialPageFactory|null $spFactory
 	 */
 	public function __construct(
 		array $conf = [], MagicWordFactory $magicWordFactory = null, Language $contLang = null,
-		ParserFactory $factory = null, $urlProtocols = null
+		ParserFactory $factory = null, $urlProtocols = null, SpecialPageFactory $spFactory = null
 	) {
 		$this->mConf = $conf;
 		$this->mUrlProtocols = $urlProtocols ?? wfUrlProtocols();
@@ -301,12 +306,14 @@ class Parser {
 		}
 		wfDebug( __CLASS__ . ": using preprocessor: {$this->mPreprocessorClass}\n" );
 
+		$services = MediaWikiServices::getInstance();
 		$this->magicWordFactory = $magicWordFactory ??
-			MediaWikiServices::getInstance()->getMagicWordFactory();
+			$services->getMagicWordFactory();
 
-		$this->contLang = $contLang ?? MediaWikiServices::getInstance()->getContentLanguage();
+		$this->contLang = $contLang ?? $services->getContentLanguage();
 
-		$this->factory = $factory ?? MediaWikiServices::getInstance()->getParserFactory();
+		$this->factory = $factory ?? $services->getParserFactory();
+		$this->specialPageFactory = $spFactory ?? $services->getSpecialPageFactory();
 	}
 
 	/**
@@ -3244,7 +3251,7 @@ class Parser {
 					&& $this->mOptions->getAllowSpecialInclusion()
 					&& $this->ot['html']
 				) {
-					$specialPage = SpecialPageFactory::getPage( $title->getDBkey() );
+					$specialPage = $this->specialPageFactory->getPage( $title->getDBkey() );
 					// Pass the template arguments as URL parameters.
 					// "uselang" will have no effect since the Language object
 					// is forced to the one defined in ParserOptions.
@@ -3270,8 +3277,7 @@ class Parser {
 						$context->setUser( User::newFromName( '127.0.0.1', false ) );
 					}
 					$context->setLanguage( $this->mOptions->getUserLangObj() );
-					$ret = SpecialPageFactory::capturePath(
-						$title, $context, $this->getLinkRenderer() );
+					$ret = $this->specialPageFactory->capturePath( $title, $context, $this->getLinkRenderer() );
 					if ( $ret ) {
 						$text = $context->getOutput()->getHTML();
 						$this->mOutput->addOutputPageMetadata( $context->getOutput() );
@@ -3777,57 +3783,68 @@ class Parser {
 	 * Transclude an interwiki link.
 	 *
 	 * @param Title $title
-	 * @param string $action
+	 * @param string $action Usually one of (raw, render)
 	 *
 	 * @return string
 	 */
 	public function interwikiTransclude( $title, $action ) {
-		global $wgEnableScaryTranscluding;
+		global $wgEnableScaryTranscluding, $wgTranscludeCacheExpiry;
 
 		if ( !$wgEnableScaryTranscluding ) {
 			return wfMessage( 'scarytranscludedisabled' )->inContentLanguage()->text();
 		}
 
 		$url = $title->getFullURL( [ 'action' => $action ] );
-
-		if ( strlen( $url ) > 255 ) {
+		if ( strlen( $url ) > 1024 ) {
 			return wfMessage( 'scarytranscludetoolong' )->inContentLanguage()->text();
 		}
-		return $this->fetchScaryTemplateMaybeFromCache( $url );
-	}
 
-	/**
-	 * @param string $url
-	 * @return mixed|string
-	 */
-	public function fetchScaryTemplateMaybeFromCache( $url ) {
-		global $wgTranscludeCacheExpiry;
-		$dbr = wfGetDB( DB_REPLICA );
-		$tsCond = $dbr->timestamp( time() - $wgTranscludeCacheExpiry );
-		$obj = $dbr->selectRow( 'transcache', [ 'tc_time', 'tc_contents' ],
-				[ 'tc_url' => $url, "tc_time >= " . $dbr->addQuotes( $tsCond ) ] );
-		if ( $obj ) {
-			return $obj->tc_contents;
-		}
+		$wikiId = $title->getTransWikiID(); // remote wiki ID or false
 
-		$req = MWHttpRequest::factory( $url, [], __METHOD__ );
-		$status = $req->execute(); // Status object
-		if ( $status->isOK() ) {
-			$text = $req->getContent();
-		} elseif ( $req->getStatus() != 200 ) {
+		$fname = __METHOD__;
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+
+		$data = $cache->getWithSetCallback(
+			$cache->makeGlobalKey(
+				'interwiki-transclude',
+				( $wikiId !== false ) ? $wikiId : 'external',
+				sha1( $url )
+			),
+			$wgTranscludeCacheExpiry,
+			function ( $oldValue, &$ttl ) use ( $url, $fname, $cache ) {
+				$req = MWHttpRequest::factory( $url, [], $fname );
+
+				$status = $req->execute(); // Status object
+				if ( !$status->isOK() ) {
+					$ttl = $cache::TTL_UNCACHEABLE;
+				} elseif ( $req->getResponseHeader( 'X-Database-Lagged' ) !== null ) {
+					$ttl = min( $cache::TTL_LAGGED, $ttl );
+				}
+
+				return [
+					'text' => $status->isOK() ? $req->getContent() : null,
+					'code' => $req->getStatus()
+				];
+			},
+			[
+				'checkKeys' => ( $wikiId !== false )
+					? [ $cache->makeGlobalKey( 'interwiki-page', $wikiId, $title->getDBkey() ) ]
+					: [],
+				'pcGroup' => 'interwiki-transclude:5',
+				'pcTTL' => $cache::TTL_PROC_LONG
+			]
+		);
+
+		if ( is_string( $data['text'] ) ) {
+			$text = $data['text'];
+		} elseif ( $data['code'] != 200 ) {
 			// Though we failed to fetch the content, this status is useless.
-			return wfMessage( 'scarytranscludefailed-httpstatus' )
-				->params( $url, $req->getStatus() /* HTTP status */ )->inContentLanguage()->text();
+			$text = wfMessage( 'scarytranscludefailed-httpstatus' )
+				->params( $url, $data['code'] )->inContentLanguage()->text();
 		} else {
-			return wfMessage( 'scarytranscludefailed', $url )->inContentLanguage()->text();
+			$text = wfMessage( 'scarytranscludefailed', $url )->inContentLanguage()->text();
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->replace( 'transcache', [ 'tc_url' ], [
-			'tc_url' => $url,
-			'tc_time' => $dbw->timestamp( time() ),
-			'tc_contents' => $text
-		] );
 		return $text;
 	}
 
@@ -4926,6 +4943,7 @@ class Parser {
 	 * @return array
 	 */
 	public function getFunctionHooks() {
+		$this->firstCallInit();
 		return array_keys( $this->mFunctionHooks );
 	}
 
@@ -5482,11 +5500,29 @@ class Parser {
 	 * @return array
 	 */
 	public function getTags() {
+		$this->firstCallInit();
 		return array_merge(
 			array_keys( $this->mTransparentTagHooks ),
 			array_keys( $this->mTagHooks ),
 			array_keys( $this->mFunctionTagHooks )
 		);
+	}
+
+	/**
+	 * @since 1.32
+	 * @return array
+	 */
+	public function getFunctionSynonyms() {
+		$this->firstCallInit();
+		return $this->mFunctionSynonyms;
+	}
+
+	/**
+	 * @since 1.32
+	 * @return string
+	 */
+	public function getUrlProtocols() {
+		return $this->mUrlProtocols;
 	}
 
 	/**

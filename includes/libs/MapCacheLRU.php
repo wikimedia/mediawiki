@@ -189,7 +189,9 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 		}
 
 		if ( !is_array( $this->cache[$key] ) ) {
-			throw new UnexpectedValueException( "The value of '$key' is not an array." );
+			$type = gettype( $this->cache[$key] );
+
+			throw new UnexpectedValueException( "The value of '$key' ($type) is not an array." );
 		}
 
 		$this->cache[$key][$field] = $value;

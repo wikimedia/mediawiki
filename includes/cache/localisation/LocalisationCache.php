@@ -203,6 +203,7 @@ class LocalisationCache {
 					break;
 				case 'db':
 					$storeClass = LCStoreDB::class;
+					$storeConf['server'] = $conf['storeServer'] ?? [];
 					break;
 				case 'array':
 					$storeClass = LCStoreStaticArray::class;
@@ -215,6 +216,7 @@ class LocalisationCache {
 						$storeClass = LCStoreCDB::class;
 					} else {
 						$storeClass = LCStoreDB::class;
+						$storeConf['server'] = $conf['storeServer'] ?? [];
 					}
 					break;
 				default:

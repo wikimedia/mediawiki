@@ -47,7 +47,7 @@
 			showEventName += '.' + options.namespace;
 		}
 
-		if ( $.isFunction( options.message ) ) {
+		if ( typeof options.message === 'function' ) {
 			message = options.message();
 		} else {
 			message = options.message;

@@ -8,6 +8,7 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\TestingAccessWrapper;
 
@@ -110,6 +111,11 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	private $loggers = [];
 
 	/**
+	 * @var LoggerInterface
+	 */
+	private $testLogger;
+
+	/**
 	 * Table name prefixes. Oracle likes it shorter.
 	 */
 	const DB_PREFIX = 'unittest_';
@@ -131,6 +137,11 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 		$this->backupGlobals = false;
 		$this->backupStaticAttributes = false;
+		$this->testLogger = self::getTestLogger();
+	}
+
+	private static function getTestLogger() {
+		return LoggerFactory::getInstance( 'tests-phpunit' );
 	}
 
 	public function __destruct() {
@@ -446,6 +457,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 		if ( !self::$dbSetup || $this->needsDB() ) {
 			// set up a DB connection for this test to use
+			$this->testLogger->info( "Setting up DB for " . $this->toString() );
 
 			self::$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
 			self::$reuseDB = $this->getCliArg( 'reuse-db' );
@@ -472,9 +484,12 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			$needsResetDB = true;
 		}
 
+		$this->testLogger->info( "Starting test " . $this->toString() );
 		parent::run( $result );
+		$this->testLogger->info( "Finished test " . $this->toString() );
 
 		if ( $needsResetDB ) {
+			$this->testLogger->info( "Resetting DB" );
 			$this->resetDB( $this->db, $this->tablesUsed );
 		}
 	}
@@ -565,7 +580,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			}
 			// Check for unsafe queries
 			if ( $this->db->getType() === 'mysql' ) {
-				$this->db->query( "SET sql_mode = 'STRICT_ALL_TABLES'" );
+				$this->db->query( "SET sql_mode = 'STRICT_ALL_TABLES'", __METHOD__ );
 			}
 		}
 
@@ -617,7 +632,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				$this->db->rollback( __METHOD__, 'flush' );
 			}
 			if ( $this->db->getType() === 'mysql' ) {
-				$this->db->query( "SET sql_mode = " . $this->db->addQuotes( $wgSQLMode ) );
+				$this->db->query( "SET sql_mode = " . $this->db->addQuotes( $wgSQLMode ),
+					__METHOD__ );
 			}
 		}
 
@@ -947,7 +963,9 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @return MediaWikiServices
 	 * @throws MWException
 	 */
-	protected function overrideMwServices( Config $configOverrides = null, array $services = [] ) {
+	protected static function overrideMwServices(
+		Config $configOverrides = null, array $services = []
+	) {
 		if ( !$configOverrides ) {
 			$configOverrides = new HashConfig();
 		}
@@ -1202,6 +1220,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.32
 	 */
 	protected function addCoreDBData() {
+		$this->testLogger->info( __METHOD__ );
 		if ( $this->db->getType() == 'oracle' ) {
 			# Insert 0 user to prevent FK violations
 			# Anonymous user
@@ -1246,7 +1265,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				$user
 			);
 			// an edit always attempt to purge backlink links such as history
-			// pages. That is unneccessary.
+			// pages. That is unnecessary.
 			JobQueueGroup::singleton()->get( 'htmlCacheUpdate' )->delete();
 			// WikiPages::doEditUpdates randomly adds RC purges
 			JobQueueGroup::singleton()->get( 'recentChangesUpdate' )->delete();
@@ -1446,7 +1465,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		// Assuming this isn't needed for External Store database, and not sure if the procedure
 		// would be available there.
 		if ( $db->getType() == 'oracle' ) {
-			$db->query( 'BEGIN FILL_WIKI_INFO; END;' );
+			$db->query( 'BEGIN FILL_WIKI_INFO; END;', __METHOD__ );
 		}
 
 		Hooks::run( 'UnitTestsAfterDatabaseSetup', [ $db, $prefix ] );
@@ -1730,10 +1749,14 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	private function resetDB( $db, $tablesUsed ) {
 		if ( $db ) {
+			// NOTE: Do not reset the slot_roles and content_models tables, but let them
+			// leak across tests. Resetting them would require to reset all NamedTableStore
+			// instances for these tables, of which there may be several beyond the ones
+			// known to MediaWikiServices. See T202641.
 			$userTables = [ 'user', 'user_groups', 'user_properties', 'actor' ];
 			$pageTables = [
 				'page', 'revision', 'ip_changes', 'revision_comment_temp', 'comment', 'archive',
-				'revision_actor_temp', 'slots', 'content', 'content_models', 'slot_roles',
+				'revision_actor_temp', 'slots', 'content',
 			];
 			$coreDBDataTables = array_merge( $userTables, $pageTables );
 
@@ -1759,47 +1782,64 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				}
 			}
 
-			$truncate = in_array( $db->getType(), [ 'oracle', 'mysql' ] );
 			foreach ( $tablesUsed as $tbl ) {
-				if ( !$db->tableExists( $tbl ) ) {
-					continue;
-				}
-
-				if ( $truncate ) {
-					$db->query( 'TRUNCATE TABLE ' . $db->tableName( $tbl ), __METHOD__ );
-				} else {
-					$db->delete( $tbl, '*', __METHOD__ );
-				}
-
-				if ( in_array( $db->getType(), [ 'postgres', 'sqlite' ], true ) ) {
-					// Reset the table's sequence too.
-					$db->resetSequenceForTable( $tbl, __METHOD__ );
-				}
-
-				if ( $tbl === 'interwiki' ) {
-					if ( !$this->interwikiTable ) {
-						// @todo We should probably throw here, but this causes test failures that I
-						// can't figure out, so for now we silently continue.
-						continue;
-					}
-					$db->insert(
-						'interwiki',
-						array_map( 'get_object_vars', iterator_to_array( $this->interwikiTable ) ),
-						__METHOD__
-					);
-				}
-
-				if ( $tbl === 'page' ) {
-					// Forget about the pages since they don't
-					// exist in the DB.
-					MediaWikiServices::getInstance()->getLinkCache()->clear();
-				}
+				$this->truncateTable( $tbl, $db );
 			}
 
 			if ( array_intersect( $tablesUsed, $coreDBDataTables ) ) {
 				// Re-add core DB data that was deleted
 				$this->addCoreDBData();
 			}
+		}
+	}
+
+	/**
+	 * Empties the given table and resets any auto-increment counters.
+	 * Will also purge caches associated with some well known tables.
+	 * If the table is not know, this method just returns.
+	 *
+	 * @param string $tableName
+	 * @param IDatabase|null $db
+	 */
+	protected function truncateTable( $tableName, IDatabase $db = null ) {
+		if ( !$db ) {
+			$db = $this->db;
+		}
+
+		if ( !$db->tableExists( $tableName ) ) {
+			return;
+		}
+
+		$truncate = in_array( $db->getType(), [ 'oracle', 'mysql' ] );
+
+		if ( $truncate ) {
+			$db->query( 'TRUNCATE TABLE ' . $db->tableName( $tableName ), __METHOD__ );
+		} else {
+			$db->delete( $tableName, '*', __METHOD__ );
+		}
+
+		if ( in_array( $db->getType(), [ 'postgres', 'sqlite' ], true ) ) {
+			// Reset the table's sequence too.
+			$db->resetSequenceForTable( $tableName, __METHOD__ );
+		}
+
+		if ( $tableName === 'interwiki' ) {
+			if ( !$this->interwikiTable ) {
+				// @todo We should probably throw here, but this causes test failures that I
+				// can't figure out, so for now we silently continue.
+				return;
+			}
+			$db->insert(
+				'interwiki',
+				array_values( array_map( 'get_object_vars', iterator_to_array( $this->interwikiTable ) ) ),
+				__METHOD__
+			);
+		}
+
+		if ( $tableName === 'page' ) {
+			// Forget about the pages since they don't
+			// exist in the DB.
+			MediaWikiServices::getInstance()->getLinkCache()->clear();
 		}
 	}
 

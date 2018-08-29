@@ -21,7 +21,7 @@ class SpecialPreferencesTest extends MediaWikiTestCase {
 	 * Test specifications by Alexandre "ialex" Emsenhuber.
 	 * @todo give this test a real name explaining what is being tested here
 	 */
-	public function testBug41337() {
+	public function testT43337() {
 		// Set a low limit
 		$this->setMwGlobals( 'wgMaxSigChars', 2 );
 

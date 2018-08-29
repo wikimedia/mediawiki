@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Purodha",
-			"Macofe"
+			"Macofe",
+			"Als-Holder"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page/de|Dokemäntazjohn]]\n* [[mw:API:FAQ/de|Öff jefrohch]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mäileng_Leß]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Aanköndejonge zom <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i>]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Jemäldte Fähler un Wönsch]\n</div>\n<strong>Status:</strong> Alle op heh dä Sigg aanjzeischte Ußwahle sullte donn, ävver et <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> weed jrahd noch äntwekeld un et kann sesch alle Nahslangs jädd ändere. Holl Der de [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ Mäileng_Leß med Aanköndejonge], öm automattesch övver Neujeschkeite enfommehrt ze wähde.\n\n<strong>Kapodde Aanfrohre:</strong> Wam_mer kapodde Aanfroheaan et API <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> schek, kritt mer ene <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Transfer Protocol\">HTTP</i>-Kopp ußjejovve met däm Täx „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">MediaWiki-API-Error</code>“ dren, dä mer als ene Schlößel bedraachte kann. Mih dohzoh fengk met op dä Sigg [[mw:API:Errors_and_warnings|<i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i>: Fähler un Warnonge]].",
@@ -289,7 +290,7 @@
 	"apihelp-protect-param-cascade": "Donn en Schotz-Kaskahd zohlohße, alsu ene Schoz för ennjeföhschte Schablohne un upjerohfe Bellder vun dä Sigg. Deiht nix, wann keine von dä aanjejovve Zoote Schoz en Kaskahd zohlöht.",
 	"apihelp-protect-param-watchlist": "Donn di Sigg ohne Bedengonge op däm aktoälle Metmaacher sing Oppaßleß udder nemm se druß fott, donn de Enschtällonge nämme, udder donn de Oppaßleß jaa nit verändere.",
 	"apihelp-protect-example-protect": "Donn en Sigg schöze.",
-	"apihelp-protect-example-unprotect": "Donn en Sigg nit mih schöze un doh för saz de Beschrängkonge op <kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">all</kbd>“. <!--  https://phabricator.wikimedia.org/T141367 -->",
+	"apihelp-protect-example-unprotect": "Donn en Sigg nit mih schöze un doh för saz de Beschrängkonge op <kbd>all</kbd>.",
 	"apihelp-protect-example-unprotect2": "Donn dä Schoz för en Sigg ophävve, un doh för kein Beschrängkonge säze.",
 	"apihelp-purge-param-forcelinkupdate": "Bräng de Tabälle met de lengks obb ene neue Schtand.",
 	"apihelp-purge-example-simple": "Donn fö de Sigge „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Main Page</kbd>“ un „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">API</kbd>“ de zweschejeschpeijscherte Väsjohn fottschmiiße.",

@@ -201,9 +201,8 @@ class ChangeTags {
 		}
 
 		$taglessDesc = Sanitizer::stripAllTags( $originalDesc->parse() );
-		$escapedDesc = Sanitizer::escapeHtmlAllowEntities( $taglessDesc );
 
-		return $context->getLanguage()->truncateForVisual( $escapedDesc, $length );
+		return $context->getLanguage()->truncateForVisual( $taglessDesc, $length );
 	}
 
 	/**
@@ -916,8 +915,8 @@ class ChangeTags {
 		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
 			$dbw->update(
 				'change_tag_def',
-				[ 'ctd_name' => $tag ],
 				[ 'ctd_user_defined' => 0 ],
+				[ 'ctd_name' => $tag ],
 				__METHOD__
 			);
 
@@ -1184,7 +1183,7 @@ class ChangeTags {
 	 * Extensions should NOT use this function; they can use the ListDefinedTags
 	 * hook instead.
 	 *
-	 * Includes a call to ChangeTag::canDeleteTag(), so your code doesn't need to
+	 * Includes a call to ChangeTag::canCreateTag(), so your code doesn't need to
 	 * do that.
 	 *
 	 * @param string $tag

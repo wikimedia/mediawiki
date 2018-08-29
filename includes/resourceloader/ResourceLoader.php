@@ -37,13 +37,10 @@ use Wikimedia\WrappedString;
  */
 class ResourceLoader implements LoggerAwareInterface {
 	/** @var int */
-	protected static $filterCacheVersion = 7;
+	protected static $filterCacheVersion = 8;
 
 	/** @var bool */
 	protected static $debugMode = null;
-
-	/** @var array */
-	private $lessVars = null;
 
 	/**
 	 * Module name/ResourceLoaderModule object pairs
@@ -138,7 +135,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			$module = $this->getModule( $row->md_module );
 			if ( $module ) {
 				$module->setFileDependencies( $context, ResourceLoaderModule::expandRelativePaths(
-					FormatJson::decode( $row->md_deps, true )
+					json_decode( $row->md_deps, true )
 				) );
 				$modulesWithDeps[] = $row->md_module;
 			}
@@ -1095,7 +1092,7 @@ MESSAGE;
 						break;
 					case 'styles':
 						$styles = $content['styles'];
-						// We no longer seperate into media, they are all combined now with
+						// We no longer separate into media, they are all combined now with
 						// custom media type groups into @media .. {} sections as part of the css string.
 						// Module returns either an empty array or a numerical array with css strings.
 						$strContent = isset( $styles['css'] ) ? implode( '', $styles['css'] ) : '';
@@ -1166,9 +1163,9 @@ MESSAGE;
 				$out = $this->ensureNewline( $out ) . $stateScript;
 			}
 		} else {
-			if ( count( $states ) ) {
-				$this->errors[] = 'Problematic modules: ' .
-					FormatJson::encode( $states, self::inDebugMode() );
+			if ( $states ) {
+				// Keep default escaping of slashes (e.g. "</script>") for ResourceLoaderClientHtml.
+				$this->errors[] = 'Problematic modules: ' . json_encode( $states, JSON_PRETTY_PRINT );
 			}
 		}
 
@@ -1298,8 +1295,8 @@ MESSAGE;
 	}
 
 	/**
-	 * Returns a JS call to mw.loader.state, which sets the state of a
-	 * module or modules to a given value. Has two calling conventions:
+	 * Returns a JS call to mw.loader.state, which sets the state of one
+	 * ore more modules to a given value. Has two calling conventions:
 	 *
 	 *    - ResourceLoader::makeLoaderStateScript( $name, $state ):
 	 *         Set the state of a single module called $name to $state
@@ -1307,24 +1304,19 @@ MESSAGE;
 	 *    - ResourceLoader::makeLoaderStateScript( [ $name => $state, ... ] ):
 	 *         Set the state of modules with the given names to the given states
 	 *
-	 * @param string $name
+	 * @param array|string $states
 	 * @param string|null $state
 	 * @return string JavaScript code
 	 */
-	public static function makeLoaderStateScript( $name, $state = null ) {
-		if ( is_array( $name ) ) {
-			return Xml::encodeJsCall(
-				'mw.loader.state',
-				[ $name ],
-				self::inDebugMode()
-			);
-		} else {
-			return Xml::encodeJsCall(
-				'mw.loader.state',
-				[ $name, $state ],
-				self::inDebugMode()
-			);
+	public static function makeLoaderStateScript( $states, $state = null ) {
+		if ( !is_array( $states ) ) {
+			$states = [ $states => $state ];
 		}
+		return Xml::encodeJsCall(
+			'mw.loader.state',
+			[ $states ],
+			self::inDebugMode()
+		);
 	}
 
 	/**
@@ -1749,12 +1741,10 @@ MESSAGE;
 	 * Get global LESS variables.
 	 *
 	 * @since 1.27
+	 * @deprecated since 1.32 Use ResourceLoderModule::getLessVars() instead.
 	 * @return array Map of variable names to string CSS values.
 	 */
 	public function getLessVars() {
-		if ( $this->lessVars === null ) {
-			$this->lessVars = $this->config->get( 'ResourceLoaderLESSVars' );
-		}
-		return $this->lessVars;
+		return [];
 	}
 }

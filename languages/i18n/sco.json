@@ -26,7 +26,8 @@
 			"C.R.",
 			"Anomie",
 			"Pierpao",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Unnerline airtins:",
@@ -1161,8 +1162,10 @@
 	"right-editcontentmodel": "Eedit the content model o ae page",
 	"right-editinterface": "Eedit the uiser interface",
 	"right-editusercss": "Eedit ither uisers' CSS files",
+	"right-edituserjson": "Eedit ither uisers' JSON files",
 	"right-edituserjs": "Eedit ither uisers' JavaScript files",
 	"right-editmyusercss": "Eidit yer ain uiser CSS files",
+	"right-editmyuserjson": "Eedit yer ain uiser JSON files",
 	"right-editmyuserjs": "Eedit yer ain uiser JavaScript files",
 	"right-viewmywatchlist": "See yer ain watchleet",
 	"right-editmywatchlist": "Eedit yer ain watchleet. Mynd that some actions will still eik pages even wioot this richt.",

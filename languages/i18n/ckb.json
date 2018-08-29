@@ -1251,6 +1251,8 @@
 	"rcfilters-view-tags": "دەستکارییە تاگکراوەکان",
 	"rcfilters-view-tags-help-icon-tooltip": "زیاتر بزانە لەسەر دەستکارییە تاگکراوەکان",
 	"rcfilters-liveupdates-button": "نوێکردنەوەی زیندوو",
+	"rcfilters-watchlist-edit-watchlist-button": "دەستکاریکردنی پێڕستی پەڕە چاودێریکراوەکانت",
+	"rcfilters-watchlist-showupdated": "ئەو پەڕانەی دەستکاریکراون و لەکاتی دەستکاریکردنەکەوە سەردانت نەکردوونەتەوە بە <strong>تۆخ</strong> دەردەکەون، بە نیشانی پڕکراوەوە.",
 	"rcnotefrom": "ژێرەوە {{PLURAL:$5|گۆڕانکارییەکەیە|گۆڕانکارییەکانە}} لە <strong>$3، $4</strong>ەوە (ھەتا <strong>$1</strong> نیشان دراوە).",
 	"rclistfromreset": "گەڕاندنەوەی ھەڵبژاردەی بەروار",
 	"rclistfrom": "گۆڕانکارییە نوێکان نیشان بدە بە دەستپێکردن لە $3 $2",

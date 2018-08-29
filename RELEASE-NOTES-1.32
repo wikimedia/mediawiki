@@ -37,6 +37,11 @@ production.
   sitewide CSS/JS (and editing other users' CSS/JS). No other group has
   'editsitecss', 'editusercss', 'editsitejs' or 'edituserjs' by default.
 * A new grant group, 'editsiteconfig', is added for granting the above rights.
+* The $wgPasswordSenderName setting, ignored since 1.23 by MediaWiki and almost
+  all extensions, is no longer set at all. Instead, you can modify the system
+  message `emailsender`.
+* A new configuration setting, $wgRawHtmlMessages, is added, for listing
+  messages which are displayed as raw HTML.
 
 === New features in 1.32 ===
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
@@ -68,6 +73,15 @@ production.
   additional links to the subtitle of a history page.
 * The 'GetLinkColours' hook now receives an additional $title parameter,
   the Title object of the page being parsed, on which the links will be shown.
+* (T194731) DifferenceEngine supports multiple slots. Added SlotDiffRenderer to
+  render diffs between two Content objects, and DifferenceEngine::setRevisions()
+  to render diffs between two custom (potentially multi-content) revisions.
+  Added GetSlotDiffRenderer hook which works like GetDifferenceEngine for slots.
+* Added a temporary action=mcrundo to the web UI, as the normal undo logic
+  can't yet handle MCR and deadlines are forcing is to put off fixing that.
+  This action should be considered deprecated and should not be used directly.
+* Extensions overriding ContentHandler::getUndoContent() will need to be
+  updated for the changed method signature.
 
 === External library changes in 1.32 ===
 * …
@@ -81,6 +95,7 @@ production.
 * Updated composer/spdx-licenses from 1.3.0 to 1.4.0.
 * Updated jquery.i18n from 1.0.4 to 1.0.5.
 * Updated wikimedia/timestamp from 1.0.0 to 2.0.0.
+* Updated wikimedia/remex-html from 1.0.3 to 2.0.0.
 
 ==== New external libraries ====
 * Added wikimedia/xmp-reader 0.6.0
@@ -128,6 +143,18 @@ production.
 * action=query&prop=deletedrevisions, action=query&list=allrevisions, and
   action=query&list=alldeletedrevisions are changed similarly to
   &prop=revisions (see the three previous items).
+* (T174032) action=compare now supports multi-content revisions.
+  * It has a 'slots' parameter to select diffing of individual slots. The
+    default behavior is to return one combined diff.
+  * The 'fromtext', 'fromsection', 'fromcontentmodel', 'fromcontentformat',
+    'totext', 'tosection', 'tocontentmodel', and 'tocontentformat' parameters
+    are deprecated. Specify the new 'fromslots' and 'toslots' to identify which
+    slots have text supplied and the corresponding templated parameters for
+    each slot.
+  * The behavior of 'fromsection' and 'tosection' of extracting one section's
+    content is not being preserved. 'fromsection-{slot}' and 'tosection-{slot}'
+    instead expand the given text as if for a section edit. This effectively
+    declines T183823 in favor of T185723.
 
 === Action API internal changes in 1.32 ===
 * Added 'ApiParseMakeOutputPage' hook.
@@ -193,6 +220,7 @@ because of Phabricator reports.
 * The mediawiki.widgets.visibleByteLimit module alias, deprecated in 1.32, was
   removed. Use mediawiki.widgets.visibleLengthLimit instead.
 * The jquery.farbtastic module, unused since 1.18, was removed.
+* The 'jquery.expandableField' module, unused since 1.22, was removed.
 * (T181318) The $wgStyleVersion setting and its appendage to various script and
   style URLs in OutputPage, deprecated in 1.31, was removed.
 * The hooks 'PreferencesFormPreSave' and 'PreferencesGetLegend' may provide
@@ -207,6 +235,9 @@ because of Phabricator reports.
 * (T140807) The wgResourceLoaderLESSImportPaths configuration option was removed
   from ResourceLoader. Instead, use `@import` statements in LESS to import
   files directly from nearby directories within the same project.
+* (T140804) The wgResourceLoaderLESSVars configuration option, deprecated
+  since 1.30, was removed. Instead, to expose variables from PHP to LESS, use
+  the ResourceLoaderModule::getLessVars() method.
 * The protected methods PHPSessionHandler::returnSuccess() and returnFailure(),
   only needed for PHP5 compatibility, have been removed. It now uses the boolean
   values `true` and `false` respectively.
@@ -245,10 +276,12 @@ because of Phabricator reports.
   resetServiceForTesting( 'MagicWordFactory' ) on a MediaWikiServices.
 * mw.util.init() has been removed. This function is not needed anymore and was
   a no-op function since 1.30.
+* SpecialPageFactory::resetList() is a no-op.  Call overrideMwServices()
+  instead.
+* MediaWiki no longer supports a StartProfiler.php file.
+  Define $wgProfiler via LocalSettings.php instead.
 
 === Deprecations in 1.32 ===
-* Use of a StartProfiler.php file is deprecated in favour of placing
-  configuration in LocalSettings.php.
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit
   button is already marked as progressive.
 * Skin::setupSkinUserCss() is deprecated. Adding of modules to load
@@ -333,22 +366,46 @@ because of Phabricator reports.
   Set $wgShowExceptionDetails and/or $wgShowHostnames instead.
 * The $wgShowDBErrorBacktrace global is deprecated and nonfunctional.
   Set $wgShowExceptionDetails instead.
-* Public access to the DifferenceEngine properties mOldid, mNewid, mOldPage,
-  mNewPage, mOldContent, mNewContent, mRevisionsLoaded, mTextLoaded and
-  mCacheHit is deprecated. Use getOldid() / getNewid() for the first two,
-  do your own lookup for page/content. mNewRev / mOldRev remains public.
+* Public access to the DifferenceEngine properties mOldid, mNewid, mOldRev,
+  mNewRev, mOldPage, mNewPage, mOldContent, mNewContent, mRevisionsLoaded,
+  mTextLoaded and mCacheHit is deprecated. Use getOldid() / getNewid() /
+  getOldRevision() / getNewRevision() for the first four (note that the
+  revision ones return a RevisionRecord, not a Revision), do your own lookup
+  for page/content.
 * The $wgExternalDiffEngine value 'wikidiff2' is deprecated. To use wikidiff2
   just enable the PHP extension, and it will be autodetected.
+* (T194731) DifferenceEngine properties mOldContent and mNewContent and methods
+  setContent(), generateContentDiffBody(), generateTextDiffBody() and textDiff()
+  are deprecated. To interact with a single slot, use a SlotDiffRenderer (and
+  subclass it to customize diff rendering); to diff custom (e.g. unsaved)
+  content, use setRevisions(). Subclassing DifferenceEngine should only be done
+  to customize page-level diff properties (such as the navigation header).
 * The wfUseMW function, soft-deprecated in 1.26, is now hard deprecated.
 * All MagicWord static methods are now deprecated.  Use the MagicWordFactory
   methods instead.
 * PasswordFactory::init is deprecated. To get a password factory with the
   standard configuration, use MediaWikiServices::getPasswordFactory.
+* $wgContLang is deprecated, use MediaWikiServices::getContentLanguage()
+  instead.
+* $wgParser is deprecated, use MediaWikiServices::getParser() instead.
+* wfGetMainCache() is deprecated, use ObjectCache::getLocalClusterInstance()
+  instead.
+* wfGetCache() is deprecated, use ObjectCache::getInstance() instead.
+* All SpecialPageFactory static methods are deprecated. Instead, call the
+  methods on a SpecialPageFactory instance, which may be obtained from
+  MediaWikiServices.
+* mw.user.stickyRandomId was renamed to the more explicit
+  mw.user.getPageviewToken to better capture its function.
+* Passing Revision objects to ContentHandler::getUndoContent() is deprecated,
+  Content object should be passed instead.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
   proper PRIMARY KEYs for increased maintainability: interwiki, page_props,
   protected_titles and site_identifiers.
+* OOUI HTMLForm will now display help text inline after the input field,
+  rather than in a popup. Previous behavior can be restored by using
+  `'help-inline' => false`.
 * …
 
 == Compatibility ==

@@ -107,15 +107,16 @@ class MessageCache {
 	public static function singleton() {
 		if ( self::$instance === null ) {
 			global $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgUseLocalMessageCache;
+			$services = MediaWikiServices::getInstance();
 			self::$instance = new self(
-				MediaWikiServices::getInstance()->getMainWANObjectCache(),
+				$services->getMainWANObjectCache(),
 				wfGetMessageCacheStorage(),
 				$wgUseLocalMessageCache
-					? MediaWikiServices::getInstance()->getLocalServerObjectCache()
+					? $services->getLocalServerObjectCache()
 					: new EmptyBagOStuff(),
 				$wgUseDatabaseMessages,
 				$wgMsgCacheExpiry,
-				MediaWikiServices::getInstance()->getContentLanguage()
+				$services->getContentLanguage()
 			);
 		}
 
@@ -232,13 +233,13 @@ class MessageCache {
 	 * (2) memcached
 	 * (3) from the database.
 	 *
-	 * When succesfully loading from (2) or (3), all higher level caches are
+	 * When successfully loading from (2) or (3), all higher level caches are
 	 * updated for the newest version.
 	 *
 	 * Nothing is loaded if member variable mDisable is true, either manually
 	 * set by calling code or if message loading fails (is this possible?).
 	 *
-	 * Returns true if cache is already populated or it was succesfully populated,
+	 * Returns true if cache is already populated or it was successfully populated,
 	 * or false if populating empty cache fails. Also returns true if MessageCache
 	 * is disabled.
 	 *
@@ -368,7 +369,7 @@ class MessageCache {
 		if ( !$success ) {
 			$where[] = 'loading FAILED - cache is disabled';
 			$this->mDisable = true;
-			$this->cache->set( $code, null );
+			$this->cache->set( $code, [] );
 			wfDebugLog( 'MessageCacheError', __METHOD__ . ": Failed to load $code\n" );
 			# This used to throw an exception, but that led to nasty side effects like
 			# the whole wiki being instantly down if the memcached server died

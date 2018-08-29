@@ -32,6 +32,8 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Search
  */
 abstract class SearchEngine {
+	const DEFAULT_SORT = 'relevance';
+
 	/** @var string */
 	public $prefix = '';
 
@@ -49,7 +51,7 @@ abstract class SearchEngine {
 
 	/** @var bool */
 	protected $showSuggestion = true;
-	private $sort = 'relevance';
+	private $sort = self::DEFAULT_SORT;
 
 	/** @var array Feature values */
 	protected $features = [];
@@ -264,8 +266,9 @@ abstract class SearchEngine {
 	 * @return SearchNearMatcher
 	 */
 	protected static function defaultNearMatcher() {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		return MediaWikiServices::getInstance()->newSearchEngine()->getNearMatcher( $config );
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
+		return $services->newSearchEngine()->getNearMatcher( $config );
 	}
 
 	/**
@@ -345,13 +348,13 @@ abstract class SearchEngine {
 
 	/**
 	 * Get the valid sort directions.  All search engines support 'relevance' but others
-	 * might support more. The default in all implementations should be 'relevance.'
+	 * might support more. The default in all implementations must be 'relevance.'
 	 *
 	 * @since 1.25
 	 * @return string[] the valid sort directions for setSort
 	 */
 	public function getValidSorts() {
-		return [ 'relevance' ];
+		return [ self::DEFAULT_SORT ];
 	}
 
 	/**

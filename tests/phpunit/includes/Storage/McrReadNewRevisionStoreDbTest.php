@@ -173,51 +173,84 @@ class McrReadNewRevisionStoreDbTest extends RevisionStoreDbTestBase {
 	}
 
 	public function provideGetSlotsQueryInfo() {
-		yield [
+		yield 'no options' => [
 			[],
+			[
+				'tables' => [
+					'slots'
+				],
+				'fields' => [
+					'slot_revision_id',
+					'slot_content_id',
+					'slot_origin',
+					'slot_role_id',
+				],
+				'joins' => [],
+			]
+		];
+		yield 'role option' => [
+			[ 'role' ],
 			[
 				'tables' => [
 					'slots',
 					'slot_roles',
 				],
-				'fields' => array_merge(
-					[
-						'slot_revision_id',
-						'slot_content_id',
-						'slot_origin',
-						'role_name',
-					]
-				),
+				'fields' => [
+					'slot_revision_id',
+					'slot_content_id',
+					'slot_origin',
+					'slot_role_id',
+					'role_name',
+				],
 				'joins' => [
-					'slot_roles' => [ 'INNER JOIN', [ 'slot_role_id = role_id' ] ],
+					'slot_roles' => [ 'LEFT JOIN', [ 'slot_role_id = role_id' ] ],
 				],
 			]
 		];
-		yield [
+		yield 'content option' => [
 			[ 'content' ],
 			[
 				'tables' => [
 					'slots',
-					'slot_roles',
+					'content',
+				],
+				'fields' => [
+					'slot_revision_id',
+					'slot_content_id',
+					'slot_origin',
+					'slot_role_id',
+					'content_size',
+					'content_sha1',
+					'content_address',
+					'content_model',
+				],
+				'joins' => [
+					'content' => [ 'INNER JOIN', [ 'slot_content_id = content_id' ] ],
+				],
+			]
+		];
+		yield 'content and model options' => [
+			[ 'content', 'model' ],
+			[
+				'tables' => [
+					'slots',
 					'content',
 					'content_models',
 				],
-				'fields' => array_merge(
-					[
-						'slot_revision_id',
-						'slot_content_id',
-						'slot_origin',
-						'role_name',
-						'content_size',
-						'content_sha1',
-						'content_address',
-						'model_name',
-					]
-				),
+				'fields' => [
+					'slot_revision_id',
+					'slot_content_id',
+					'slot_origin',
+					'slot_role_id',
+					'content_size',
+					'content_sha1',
+					'content_address',
+					'content_model',
+					'model_name',
+				],
 				'joins' => [
-					'slot_roles' => [ 'INNER JOIN', [ 'slot_role_id = role_id' ] ],
 					'content' => [ 'INNER JOIN', [ 'slot_content_id = content_id' ] ],
-					'content_models' => [ 'INNER JOIN', [ 'content_model = model_id' ] ],
+					'content_models' => [ 'LEFT JOIN', [ 'content_model = model_id' ] ],
 				],
 			]
 		];

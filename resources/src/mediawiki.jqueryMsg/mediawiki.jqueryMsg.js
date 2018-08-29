@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-properties */
 /*!
 * Experimental advanced wikitext parser-emitter.
 * See: https://www.mediawiki.org/wiki/Extension:UploadWizard/MessageParser for docs
@@ -20,7 +21,7 @@
 			},
 			// Whitelist for allowed HTML elements in wikitext.
 			// Self-closing tags are not currently supported.
-			// Can be populated via setPrivateData().
+			// Can be populated via setParserDefaults().
 			allowedHtmlElements: [],
 			// Key tag name, value allowed attributes for that tag.
 			// See Sanitizer::setupAttributeWhitelist

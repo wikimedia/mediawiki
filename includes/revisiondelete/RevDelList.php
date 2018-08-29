@@ -207,7 +207,7 @@ abstract class RevDelList extends RevisionListBase {
 
 			if ( $ok ) {
 				$idsForLog[] = $item->getId();
-				// If any item field was suppressed or unsupressed
+				// If any item field was suppressed or unsuppressed
 				if ( ( $oldBits | $newBits ) & $this->getSuppressBit() ) {
 					$logType = 'suppress';
 				}

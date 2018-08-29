@@ -399,13 +399,14 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 		// If we have more than one engine the list of available sorts is
 		// difficult to represent. For now don't expose it.
-		$alternatives = MediaWiki\MediaWikiServices::getInstance()
+		$services = MediaWiki\MediaWikiServices::getInstance();
+		$alternatives = $services
 			->getSearchEngineConfig()
 			->getSearchTypes();
 		if ( count( $alternatives ) == 1 ) {
 			$this->allowedParams['sort'] = [
 				ApiBase::PARAM_DFLT => 'relevance',
-				ApiBase::PARAM_TYPE => MediaWiki\MediaWikiServices::getInstance()
+				ApiBase::PARAM_TYPE => $services
 					->newSearchEngine()
 					->getValidSorts(),
 			];

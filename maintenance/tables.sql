@@ -687,6 +687,8 @@ CREATE TABLE /*_*/slots (
 
   -- The revision ID of the revision that originated the slot's content.
   -- To find revisions that changed slots, look for slot_origin = slot_revision_id.
+  -- TODO: Is that actually true? Rollback seems to violate it by setting
+  --  slot_origin to an older rev_id. Undeletions could result in the same situation.
   slot_origin bigint unsigned NOT NULL,
 
   PRIMARY KEY ( slot_revision_id, slot_role_id )
@@ -1471,6 +1473,8 @@ CREATE INDEX /*i*/rc_actor ON /*_*/recentchanges (rc_actor, rc_timestamp);
 -- ApiQueryRecentChanges (T140108)
 CREATE INDEX /*i*/rc_name_type_patrolled_timestamp ON /*_*/recentchanges (rc_namespace, rc_type, rc_patrolled, rc_timestamp);
 
+-- Article.php and friends (T139012)
+CREATE INDEX /*i*/rc_this_oldid ON /*_*/recentchanges (rc_this_oldid);
 
 CREATE TABLE /*_*/watchlist (
   wl_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
