@@ -212,6 +212,11 @@ class ParserOutput extends CacheTime {
 	/** @var int|null Assumed rev ID for {{REVISIONID}} if no revision is set */
 	private $mSpeculativeRevId;
 
+	/** string CSS classes to use for the wrapping div, stored in the array keys.
+	 * If no class is given, no wrapper is added.
+	 */
+	private $mWrapperDivClasses = [];
+
 	/** @var int Upper bound of expiry based on parse duration */
 	private $mMaxAdaptiveExpiry = INF;
 
@@ -258,7 +263,12 @@ class ParserOutput extends CacheTime {
 	 *  - enableSectionEditLinks: (bool) Include section edit links, assuming
 	 *     section edit link tokens are present in the HTML. Default is true,
 	 *     but might be statefully overridden.
-	 *  - unwrap: (bool) Remove a wrapping mw-parser-output div. Default is false.
+	 *  - unwrap: (bool) Return text without a wrapper div. Default is false,
+	 *    meaning a wrapper div will be added if getWrapperDivClass() returns
+	 *    a non-empty string.
+	 *  - wrapperDivClass: (string) Wrap the output in a div and apply the given
+	 *    CSS class to that div. This overrides the output of getWrapperDivClass().
+	 *    Setting this to an empty string has the same effect as 'unwrap' => true.
 	 *  - deduplicateStyles: (bool) When true, which is the default, `<style>`
 	 *    tags with the `data-mw-deduplicate` attribute set are deduplicated by
 	 *    value of the attribute: all but the first will be replaced by `<link
@@ -273,28 +283,14 @@ class ParserOutput extends CacheTime {
 			'enableSectionEditLinks' => true,
 			'unwrap' => false,
 			'deduplicateStyles' => true,
+			'wrapperDivClass' => $this->getWrapperDivClass(),
 		];
 		$text = $this->mText;
 
 		Hooks::runWithoutAbort( 'ParserOutputPostCacheTransform', [ $this, &$text, &$options ] );
 
-		if ( $options['unwrap'] !== false ) {
-			$start = Html::openElement( 'div', [
-				'class' => 'mw-parser-output'
-			] );
-			$startLen = strlen( $start );
-			$end = Html::closeElement( 'div' );
-			$endPos = strrpos( $text, $end );
-			$endLen = strlen( $end );
-
-			if ( substr( $text, 0, $startLen ) === $start && $endPos !== false
-				// if the closing div is followed by real content, bail out of unwrapping
-				&& preg_match( '/^(?>\s*<!--.*?-->)*\s*$/s', substr( $text, $endPos + $endLen ) )
-			) {
-				$text = substr( $text, $startLen );
-				$text = substr( $text, 0, $endPos - $startLen )
-					. substr( $text, $endPos - $startLen + $endLen );
-			}
+		if ( $options['wrapperDivClass'] !== '' && !$options['unwrap'] ) {
+			$text = Html::rawElement( 'div', [ 'class' => $options['wrapperDivClass'] ], $text );
 		}
 
 		if ( $options['enableSectionEditLinks'] ) {
@@ -363,6 +359,34 @@ class ParserOutput extends CacheTime {
 		}
 
 		return $text;
+	}
+
+	/**
+	 * Add a CSS class to use for the wrapping div. If no class is given, no wrapper is added.
+	 *
+	 * @param string $class
+	 */
+	public function addWrapperDivClass( $class ) {
+		$this->mWrapperDivClasses[$class] = true;
+	}
+
+	/**
+	 * Clears the CSS class to use for the wrapping div, effectively disabling the wrapper div
+	 * until addWrapperDivClass() is called.
+	 */
+	public function clearWrapperDivClass() {
+		$this->mWrapperDivClasses = [];
+	}
+
+	/**
+	 * Returns the class (or classes) to be used with the wrapper div for this otuput.
+	 * If there is no wrapper class given, no wrapper div should be added.
+	 * The wrapper div is added automatically by getText().
+	 *
+	 * @return string
+	 */
+	public function getWrapperDivClass() {
+		return implode( ' ', array_keys( $this->mWrapperDivClasses ) );
 	}
 
 	/**

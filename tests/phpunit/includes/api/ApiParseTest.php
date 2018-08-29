@@ -77,11 +77,15 @@ class ApiParseTest extends ApiTestCase {
 			$expectedEnd = "</div>";
 			$this->assertSame( $expectedEnd, substr( $html, -strlen( $expectedEnd ) ) );
 
+			$unexpectedEnd = '#<!-- \nNewPP limit report|' .
+				'<!--\nTransclusion expansion time report#s';
+			$this->assertNotRegExp( $unexpectedEnd, $html );
+
 			$html = substr( $html, 0, strlen( $html ) - strlen( $expectedEnd ) );
 		} else {
 			$expectedEnd = '#\n<!-- \nNewPP limit report\n(?>.+?\n-->)\n' .
 				'<!--\nTransclusion expansion time report \(%,ms,calls,template\)\n(?>.*?\n-->)\n' .
-				'</div>(\n<!-- Saved in parser cache (?>.*?\n -->)\n)?$#s';
+				'(\n<!-- Saved in parser cache (?>.*?\n -->)\n)?</div>$#s';
 			$this->assertRegExp( $expectedEnd, $html );
 
 			$html = preg_replace( $expectedEnd, '', $html );

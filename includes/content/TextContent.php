@@ -253,6 +253,7 @@ class TextContent extends AbstractContent {
 			$html = '';
 		}
 
+		$output->clearWrapperDivClass();
 		$output->setText( $html );
 	}
 
