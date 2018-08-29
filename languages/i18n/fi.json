@@ -4110,13 +4110,13 @@
 	"pagedata-bad-title": "Virheellinen otsikko: $1.",
 	"unregistered-user-config": "Turvallisuussyistä JavaScript-, CSS- ja JSON-käyttäjäalasivuja ei voi ladata rekisteröimättömiltä käyttäjiltä.",
 	"passwordpolicies": "Salasanakäytännöt",
-	"passwordpolicies-summary": "Tämä on luettelo käytössä olevista salasanakäytännöistä tämän wikin käyttäjäryhmille.",
+	"passwordpolicies-summary": "Tämä on luettelo voimassa olevista salasanakäytännöistä tämän wikin käyttäjäryhmille.",
 	"passwordpolicies-group": "Ryhmä",
 	"passwordpolicies-policies": "Käytännöt",
-	"passwordpolicies-policy-minimalpasswordlength": "Salasanan on oltava ainakin $1 {{PLURAL:$1|merkki|merkkiä}} pitkä",
+	"passwordpolicies-policy-minimalpasswordlength": "Salasanan tulee olla vähintään {{PLURAL:$1|yhden merkin|$1 merkin}} pituinen",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Salasanassa on oltava vähintään $1 {{PLURAL:$1|merkki|merkkiä}} pystyäksesi kirjautumaan",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Salasana ei voi olla sama kuin käyttäjänimi",
-	"passwordpolicies-policy-passwordcannotmatchblacklist": "Salasana ei voi vastata mustalla listalla olevia salasanoja",
-	"passwordpolicies-policy-maximalpasswordlength": "Salasanan on oltava vähemmän kuin $1 {{PLURAL:$1|merkki|merkkiä}} pitkä",
-	"passwordpolicies-policy-passwordcannotbepopular": "Salasana ei voi olla {{PLURAL:$1|suosittu salasana|$1 suositun salasanan listalla}}"
+	"passwordpolicies-policy-passwordcannotmatchusername": "Salasana ei saa olla sama kuin käyttäjänimi",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "Salasana ei saa olla mustalla listalla",
+	"passwordpolicies-policy-maximalpasswordlength": "Salasanan tulee olla lyhyempi kuin $1 {{PLURAL:$1|merkki|merkkiä}}",
+	"passwordpolicies-policy-passwordcannotbepopular": "Salasana ei saa olla {{PLURAL:$1|suosittu salasana|$1 suosituimman salasanan listalla}}"
 }

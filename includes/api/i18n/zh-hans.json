@@ -25,7 +25,8 @@
 			"Umherirrender",
 			"NeverBehave",
 			"Wbxshiori",
-			"Wxyveronica"
+			"Wxyveronica",
+			"WhitePhosphorus"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|文档]]\n* [[mw:Special:MyLanguage/API:FAQ|常见问题]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 邮件列表]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 程序错误与功能请求]\n</div>\n<strong>状态信息：</strong>MediaWiki API是一个成熟稳定的，不断受到支持和改进的界面。尽管我们尽力避免，但偶尔也需要作出重大更新；请订阅[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong>当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与error code将会送回并设置为相同的值。详细信息请参阅[[mw:Special:MyLanguage/API:Errors_and_warnings|API：错误与警告]]。\n\n<p class=\"mw-apisandbox-link\"><strong>测试中：</strong>测试API请求的易用性，请参见[[Special:ApiSandbox]]。</p>",
@@ -1662,7 +1663,7 @@
 	"apierror-mustbeloggedin-linkaccounts": "您必须登录以链接账户。",
 	"apierror-mustbeloggedin-removeauth": "您必须登录以移除身份验证数据。",
 	"apierror-mustbeloggedin-uploadstash": "上传暂存功能只对已登录用户可用。",
-	"apierror-mustbeloggedin": "您必须登录至$1。",
+	"apierror-mustbeloggedin": "您必须登录才能$1。",
 	"apierror-mustbeposted": "<kbd>$1</kbd>模块需要POST请求。",
 	"apierror-mustpostparams": "以下{{PLURAL:$2|参数}}在查询字符串中被找到，但必须在POST正文中：$1。",
 	"apierror-noapiwrite": "通过API编辑此wiki已禁用。请确保<code>$wgEnableWriteAPI=true;</code>声明包含在wiki的<code>LocalSettings.php</code>文件中。",
