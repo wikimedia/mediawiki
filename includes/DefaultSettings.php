@@ -6348,8 +6348,6 @@ $wgDeprecationReleaseLimit = false;
  * Profiler configuration.
  *
  * To use a profiler, set $wgProfiler in LocalSetings.php.
- * For backwards-compatibility, it is also allowed to set the variable from
- * a separate file called StartProfiler.php, which MediaWiki will include.
  *
  * Example:
  *

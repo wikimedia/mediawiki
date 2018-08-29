@@ -354,5 +354,4 @@
 	<exclude-pattern type="relative">^skins/</exclude-pattern>
 	<exclude-pattern>AdminSettings\.php</exclude-pattern>
 	<exclude-pattern>LocalSettings\.php</exclude-pattern>
-	<exclude-pattern>StartProfiler\.php</exclude-pattern>
 </ruleset>
