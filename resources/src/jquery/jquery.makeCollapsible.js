@@ -10,7 +10,7 @@
  *
  * @class jQuery.plugin.makeCollapsible
  */
-( function ( $, mw ) {
+( function () {
 	/**
 	 * Handler for a click on a collapsible toggler.
 	 *
@@ -364,4 +364,4 @@
 	 * @mixins jQuery.plugin.makeCollapsible
 	 */
 
-}( jQuery, mediaWiki ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Extend OOUI's FilterTagItemWidget to also display a popup on hover.
 	 *
@@ -42,4 +42,4 @@
 			invalid: this.itemModel.isSelected() && this.itemModel.isConflicted()
 		} );
 	};
-}( mediaWiki, jQuery ) );
+}() );

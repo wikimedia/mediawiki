@@ -2,7 +2,7 @@
  * HTMLForm enhancements:
  * Convert multiselect fields from checkboxes to Chosen selector when requested.
  */
-( function ( mw, $ ) {
+( function () {
 
 	function addMulti( $oldContainer, $container ) {
 		var name = $oldContainer.find( 'input:first-child' ).attr( 'name' ),
@@ -112,4 +112,4 @@
 		}
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

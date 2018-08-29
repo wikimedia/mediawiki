@@ -43,7 +43,7 @@
  *
  * @author Christian Bach/christian.bach@polyester.se
  */
-( function ( $, mw ) {
+( function () {
 	var ts,
 		parsers = [];
 
@@ -1281,4 +1281,4 @@
 		type: 'numeric'
 	} );
 
-}( jQuery, mediaWiki ) );
+}() );

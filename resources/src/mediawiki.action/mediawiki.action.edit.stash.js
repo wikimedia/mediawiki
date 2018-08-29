@@ -2,7 +2,7 @@
  * Scripts for pre-emptive edit preparing on action=edit
  */
 
-( function ( mw, $ ) {
+( function () {
 	if ( !mw.config.get( 'wgAjaxEditStash' ) ) {
 		return;
 	}
@@ -162,4 +162,4 @@
 			checkStash();
 		}
 	} );
-}( mediaWiki, jQuery ) );
+}() );

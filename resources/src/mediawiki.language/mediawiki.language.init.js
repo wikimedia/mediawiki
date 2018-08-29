@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Base language object with methods related to language support, attempting to mirror some of the
 	 * functionality of the Language class in MediaWiki:
@@ -85,4 +85,4 @@
 		}
 	};
 
-}( mediaWiki ) );
+}() );

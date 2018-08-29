@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * List displaying all filter groups
 	 *
@@ -128,4 +128,4 @@
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.onNewChangesExist = function ( newChangesExist ) {
 		this.showNewChangesLink.toggle( newChangesExist );
 	};
-}( mediaWiki ) );
+}() );

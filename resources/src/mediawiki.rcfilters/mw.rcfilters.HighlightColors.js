@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Supported highlight colors.
 	 * Warning: These are also hardcoded in "styles/mw.rcfilters.variables.less"
@@ -7,4 +7,4 @@
 	 * @property {string[]}
 	 */
 	mw.rcfilters.HighlightColors = [ 'c1', 'c2', 'c3', 'c4', 'c5' ];
-}( mediaWiki ) );
+}() );

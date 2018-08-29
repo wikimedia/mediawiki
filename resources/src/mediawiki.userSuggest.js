@@ -1,7 +1,7 @@
 /*!
  * Add autocomplete suggestions for names of registered users.
  */
-( function ( mw, $ ) {
+( function () {
 	var api, config;
 
 	config = {
@@ -39,4 +39,4 @@
 	$( function () {
 		$( '.mw-autocomplete-user' ).suggestions( config );
 	} );
-}( mediaWiki, jQuery ) );
+}() );

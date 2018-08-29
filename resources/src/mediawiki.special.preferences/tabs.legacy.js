@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:Preferences: Tab navigation.
  */
-( function ( mw, $ ) {
+( function () {
 	$( function () {
 		var $preftoc, $preferences, $fieldsets, labelFunc, previousTab;
 
@@ -140,4 +140,4 @@
 		} );
 
 	} );
-}( mediaWiki, jQuery ) );
+}() );

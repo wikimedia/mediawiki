@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Quick links menu option widget
 	 *
@@ -326,4 +326,4 @@
 		return this.model.getID();
 	};
 
-}( mediaWiki ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * A widget representing a single toggle filter
 	 *
@@ -60,4 +60,4 @@
 	mw.rcfilters.ui.CheckboxInputWidget.prototype.onUserChange = function () {
 		this.emit( 'userChange', this.$input.prop( 'checked' ) );
 	};
-}( mediaWiki ) );
+}() );

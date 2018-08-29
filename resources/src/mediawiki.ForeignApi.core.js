@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 
 	/**
 	 * Create an object like mw.Api, but automatically handling everything required to communicate
@@ -116,4 +116,4 @@
 	// Expose
 	mw.ForeignApi = CoreForeignApi;
 
-}( mediaWiki, jQuery ) );
+}() );

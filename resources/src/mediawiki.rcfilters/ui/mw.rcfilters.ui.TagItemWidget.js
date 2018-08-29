@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	/**
 	 * Extend OOUI's TagItemWidget to also display a popup on hover.
 	 *
@@ -220,4 +220,4 @@
 		this.itemModel.disconnect( this );
 		this.closeButton.disconnect( this );
 	};
-}( mediaWiki, jQuery ) );
+}() );

@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-properties */
-( function ( $, mw, OO ) {
+( function () {
 	'use strict';
 	var ApiSandbox, Util, WidgetMethods, Validators,
 		$content, panel, booklet, oldhash, windowManager,
@@ -2072,4 +2072,4 @@
 
 	module.exports = ApiSandbox;
 
-}( jQuery, mediaWiki, OO ) );
+}() );

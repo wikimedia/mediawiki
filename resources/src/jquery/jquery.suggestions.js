@@ -90,7 +90,7 @@
  *  input or not.
  */
 
-( function ( $, mw ) {
+( function () {
 
 	var hasOwn = Object.hasOwnProperty;
 
@@ -775,4 +775,4 @@
 	 * @mixins jQuery.plugin.suggestions
 	 */
 
-}( jQuery, mediaWiki ) );
+}() );

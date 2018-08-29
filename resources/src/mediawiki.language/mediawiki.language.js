@@ -1,7 +1,7 @@
 /*
  * Methods for transforming message syntax.
  */
-( function ( mw, $ ) {
+( function () {
 
 	/**
 	 * @class mw.language
@@ -129,7 +129,7 @@
 				return forms[ form ][ word ];
 			}
 
-			transformations = mediaWiki.language.getData( userLanguage, 'grammarTransformations' );
+			transformations = mw.language.getData( userLanguage, 'grammarTransformations' );
 
 			if ( !( transformations && transformations[ form ] ) ) {
 				return word;
@@ -230,4 +230,4 @@
 		}
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

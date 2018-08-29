@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	QUnit.module( 'mediawiki.api.upload', QUnit.newMwEnvironment( {} ) );
 
 	QUnit.test( 'Basic functionality', function ( assert ) {
@@ -30,4 +30,4 @@
 		assert.strictEqual( $input.val(), 'Testing API upload.jpg', 'input value' );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

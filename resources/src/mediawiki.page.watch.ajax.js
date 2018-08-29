@@ -14,7 +14,7 @@
  * @class mw.plugin.page.watch.ajax
  * @singleton
  */
-( function ( mw, $ ) {
+( function () {
 	var watch,
 		// The name of the page to watch or unwatch
 		title = mw.config.get( 'wgRelevantPageName' );
@@ -187,4 +187,4 @@
 		} );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

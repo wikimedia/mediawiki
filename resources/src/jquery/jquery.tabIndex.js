@@ -1,7 +1,7 @@
 /**
  * @class jQuery.plugin.tabIndex
  */
-( function ( $ ) {
+( function () {
 
 	/**
 	 * Find the lowest tabindex in use within a selection.
@@ -54,4 +54,4 @@
 	 * @mixins jQuery.plugin.tabIndex
 	 */
 
-}( jQuery ) );
+}() );

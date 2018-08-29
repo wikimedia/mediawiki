@@ -2,7 +2,7 @@
 // (It is excluded in jsduck.json.)
 // ESLint suggests unquoting some object keys, which would render the file unparseable by Opera 12.
 /* eslint-disable quote-props */
-( function ( mw ) {
+( function () {
 	var toUpperMapping = {
 		'ß': 'ß',
 		'ŉ': 'ŉ',
@@ -252,4 +252,4 @@
 		var mapped = toUpperMapping[ chr ];
 		return mapped || chr.toUpperCase();
 	};
-}( mediaWiki ) );
+}() );

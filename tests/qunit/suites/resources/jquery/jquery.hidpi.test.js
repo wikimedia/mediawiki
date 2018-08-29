@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	QUnit.module( 'jquery.hidpi', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'devicePixelRatio', function ( assert ) {
@@ -35,4 +35,4 @@
 		assert.strictEqual( $.matchSrcSet( 1.75, srcset ), 'onefive.png', '1.75 gives match to 1.5' );
 		assert.strictEqual( $.matchSrcSet( 2.25, srcset ), 'two.png', '2.25 gives match to 2' );
 	} );
-}( jQuery ) );
+}() );

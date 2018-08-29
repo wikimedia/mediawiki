@@ -7,7 +7,7 @@
  *
  * - 2011-01-05: Forked for MediaWiki. See also jQuery.colorUtil plugin
  */
-( function ( $ ) {
+( function () {
 
 	function getColor( elem, attr ) {
 		var color;
@@ -52,4 +52,4 @@
 		};
 	} );
 
-}( jQuery ) );
+}() );

@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-properties */
-( function ( $, mw ) {
+( function () {
 
 	/**
 	 * Provides various methods needed for formatting dates and times.
@@ -625,4 +625,4 @@
 		};
 	};
 
-}( jQuery, mediaWiki ) );
+}() );

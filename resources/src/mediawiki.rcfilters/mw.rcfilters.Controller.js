@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-properties */
-( function ( mw, $ ) {
+( function () {
 
 	var byteLength = require( 'mediawiki.String' ).byteLength;
 
@@ -1217,4 +1217,4 @@
 			this.filtersModel.getViewTrigger( view )
 		);
 	};
-}( mediaWiki, jQuery ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	var getAccessKeyPrefixTestData, updateTooltipAccessKeysTestData;
 
 	QUnit.module( 'jquery.accessKeyLabel', QUnit.newMwEnvironment( {
@@ -118,4 +118,4 @@
 		$.fn.updateTooltipAccessKeys.setTestMode( false );
 	} );
 
-}( jQuery ) );
+}() );

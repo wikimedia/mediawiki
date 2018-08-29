@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * A widget representing a base toggle item
 	 *
@@ -162,4 +162,4 @@
 		return this.itemModel;
 	};
 
-}( mediaWiki ) );
+}() );

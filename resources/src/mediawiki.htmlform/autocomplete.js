@@ -2,7 +2,7 @@
  * HTMLForm enhancements:
  * Set up autocomplete fields.
  */
-( function ( mw, $ ) {
+( function () {
 
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		var $autocomplete = $root.find( '.mw-htmlform-autocomplete' );
@@ -22,4 +22,4 @@
 		}
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

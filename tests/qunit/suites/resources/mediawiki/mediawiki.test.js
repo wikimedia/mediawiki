@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	var specialCharactersPageName,
 		// Can't mock SITENAME since jqueryMsg caches it at load
 		siteName = mw.config.get( 'wgSiteName' );
@@ -353,4 +353,4 @@
 
 		assert.strictEqual( mw.msg( 'int-msg' ), 'Some Other Message', 'int is resolved' );
 	} );
-}( mediaWiki ) );
+}() );

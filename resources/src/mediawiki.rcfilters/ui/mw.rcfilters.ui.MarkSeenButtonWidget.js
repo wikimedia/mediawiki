@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Button for marking all changes as seen on the Watchlist
 	 *
@@ -52,4 +52,4 @@
 		this.setDisabled( !this.model.hasUnseenWatchedChanges() );
 	};
 
-}( mediaWiki ) );
+}() );

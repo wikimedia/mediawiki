@@ -1,7 +1,7 @@
 /*
  * Language-fallback-chain-related utilities for mediawiki.language.
  */
-( function ( mw, $ ) {
+( function () {
 	/**
 	 * @class mw.language
 	 */
@@ -32,4 +32,4 @@
 
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

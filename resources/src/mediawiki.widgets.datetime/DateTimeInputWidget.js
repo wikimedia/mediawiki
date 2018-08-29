@@ -1,4 +1,4 @@
-( function ( $, mw ) {
+( function () {
 
 	/**
 	 * DateTimeInputWidgets can be used to input a date, a time, or a date and
@@ -835,4 +835,4 @@
 		this.focus();
 	};
 
-}( jQuery, mediaWiki ) );
+}() );

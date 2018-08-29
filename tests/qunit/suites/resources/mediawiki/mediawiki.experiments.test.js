@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 
 	var getBucket = mw.experiments.getBucket;
 
@@ -60,4 +60,4 @@
 		);
 	} );
 
-}( mediaWiki ) );
+}() );

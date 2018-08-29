@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * A group widget to allow for aggregation of events
 	 *
@@ -39,4 +39,4 @@
 
 	OO.inheritClass( mw.rcfilters.ui.GroupWidget, OO.ui.Widget );
 	OO.mixinClass( mw.rcfilters.ui.GroupWidget, OO.ui.mixin.GroupWidget );
-}( mediaWiki ) );
+}() );

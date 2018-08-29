@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * This is the abstract base class for MessagePoster implementations.
 	 *
@@ -37,4 +37,4 @@
 	 * something.
 	 */
 	mw.messagePoster.MessagePoster.prototype.post = function () {};
-}( mediaWiki ) );
+}() );

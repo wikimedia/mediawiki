@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	var grammarTests, bcp47Tests;
@@ -707,4 +707,4 @@
 			assert.strictEqual( mw.language.bcp47( input ), expected );
 		} );
 	} );
-}( mediaWiki, jQuery ) );
+}() );

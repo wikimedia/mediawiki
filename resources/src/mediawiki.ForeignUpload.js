@@ -1,4 +1,4 @@
-( function ( mw, OO, $ ) {
+( function () {
 	/**
 	 * Used to represent an upload in progress on the frontend.
 	 *
@@ -140,4 +140,4 @@
 	};
 
 	mw.ForeignUpload = ForeignUpload;
-}( mediaWiki, OO, jQuery ) );
+}() );

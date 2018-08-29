@@ -1,7 +1,7 @@
 /*!
  * Scripts for action=delete at domready
  */
-( function ( mw, $ ) {
+( function () {
 	$( function () {
 		var colonSeparator = mw.message( 'colon-separator' ).text(),
 			summaryCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),
@@ -27,4 +27,4 @@
 			reason.$input.byteLimit( summaryByteLimit, filterFn );
 		}
 	} );
-}( mediaWiki, jQuery ) );
+}() );

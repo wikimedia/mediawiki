@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 
 	var api = new mw.Api(),
 		pageUrl = new mw.Uri(),
@@ -75,4 +75,4 @@
 		} );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

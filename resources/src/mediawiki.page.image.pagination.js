@@ -2,7 +2,7 @@
  * Implement AJAX navigation for multi-page images so the user may browse without a full page reload.
  */
 
-( function ( mw, $ ) {
+( function () {
 	var jqXhr, $multipageimage, $spinner,
 		cache = {},
 		cacheOrder = [];
@@ -139,4 +139,4 @@
 			} );
 		}
 	} );
-}( mediaWiki, jQuery ) );
+}() );

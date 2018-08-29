@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	QUnit.module( 'mediawiki.toc', QUnit.newMwEnvironment( {
 		setup: function () {
 			// Prevent live cookies from interferring with the test
@@ -36,4 +36,4 @@
 			return $tocList.promise();
 		} );
 	} );
-}( mediaWiki, jQuery ) );
+}() );

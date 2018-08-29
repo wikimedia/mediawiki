@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-( function ( mw ) {
+( function () {
 	var itemData = {
 		params: {
 			param1: '1',
@@ -91,4 +91,4 @@
 			'Default state represented when item initialized with default:true.'
 		);
 	} );
-}( mediaWiki ) );
+}() );

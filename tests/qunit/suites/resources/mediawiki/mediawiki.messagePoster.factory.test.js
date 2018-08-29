@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	var TEST_MODEL = 'test-content-model';
 
 	QUnit.module( 'mediawiki.messagePoster', QUnit.newMwEnvironment( {
@@ -25,4 +25,4 @@
 			'Throws exception is same model is registered a second time'
 		);
 	} );
-}( mediaWiki ) );
+}() );

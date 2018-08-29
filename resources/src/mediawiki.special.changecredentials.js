@@ -1,7 +1,7 @@
 /*!
  * JavaScript for change credentials form.
  */
-( function ( mw, $, OO ) {
+( function () {
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		var api = new mw.Api();
 
@@ -52,4 +52,4 @@
 			} );
 		} );
 	} );
-}( mediaWiki, jQuery, OO ) );
+}() );

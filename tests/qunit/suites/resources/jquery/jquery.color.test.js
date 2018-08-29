@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	QUnit.module( 'jquery.color', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'animate', function ( assert ) {
@@ -12,4 +12,4 @@
 			} )
 			.always( done );
 	} );
-}( jQuery ) );
+}() );

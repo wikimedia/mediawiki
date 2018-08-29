@@ -6,7 +6,7 @@
  * Mostly based on other plugins and functions (linted and optimized a little).
  * Sources cited inline.
  */
-( function ( $ ) {
+( function () {
 	/**
 	 * @class jQuery.colorUtil
 	 * @singleton
@@ -265,4 +265,4 @@
 
 	};
 
-}( jQuery ) );
+}() );

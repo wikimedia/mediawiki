@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	/**
 	 * Menu header for the RCFilters filters menu
 	 *
@@ -179,4 +179,4 @@
 	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onInvertNamespacesButtonClick = function () {
 		this.controller.toggleInvertedNamespaces();
 	};
-}( mediaWiki, jQuery ) );
+}() );

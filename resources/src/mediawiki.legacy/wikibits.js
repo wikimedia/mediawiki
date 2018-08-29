@@ -1,7 +1,7 @@
 /**
  * MediaWiki legacy wikibits
  */
-( function ( mw, $ ) {
+( function () {
 	var msg,
 		loadedScripts = {};
 
@@ -102,4 +102,4 @@
 		}, 'Use jQuery or mw.loader.load instead.', 'document.' + method );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

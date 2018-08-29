@@ -6,7 +6,7 @@
  * @class mw.Api.plugin.messages
  * @since 1.27
  */
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	$.extend( mw.Api.prototype, {
@@ -75,4 +75,4 @@
 	 * @mixins mw.Api.plugin.messages
 	 */
 
-}( mediaWiki, jQuery ) );
+}() );

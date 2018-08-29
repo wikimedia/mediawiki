@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	QUnit.module( 'jquery.getAttrs', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'getAttrs()', function ( assert ) {
@@ -11,4 +11,4 @@
 
 		assert.propEqual( $el.getAttrs(), attrs, 'keys and values match' );
 	} );
-}( jQuery ) );
+}() );

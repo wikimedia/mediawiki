@@ -4,7 +4,7 @@
  * @copyright 2011-2017 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
-( function ( $, mw ) {
+( function () {
 
 	/**
 	 * Select with input widget. Displays an OO.ui.TextInputWidget along with
@@ -189,4 +189,4 @@
 		this.emit( 'change', this.getValue() );
 	};
 
-}( jQuery, mediaWiki ) );
+}() );

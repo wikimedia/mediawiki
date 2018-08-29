@@ -1,5 +1,5 @@
 /* global Mustache */
-( function ( mw, $ ) {
+( function () {
 	// Register mustache compiler
 	mw.template.registerCompiler( 'mustache', {
 		compile: function ( src ) {
@@ -32,4 +32,4 @@
 		}
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

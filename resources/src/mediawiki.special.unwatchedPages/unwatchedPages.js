@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:UnwatchedPages
  */
-( function ( mw, $ ) {
+( function () {
 	$( function () {
 		$( 'a.mw-watch-link' ).click( function ( e ) {
 			var promise,
@@ -46,4 +46,4 @@
 			e.preventDefault();
 		} );
 	} );
-}( mediaWiki, jQuery ) );
+}() );

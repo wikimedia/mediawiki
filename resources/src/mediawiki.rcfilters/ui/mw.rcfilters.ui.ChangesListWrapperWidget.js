@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * List of changes
 	 *
@@ -380,4 +380,4 @@
 		// Turn off highlights
 		this.$element.removeClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlighted' );
 	};
-}( mediaWiki ) );
+}() );

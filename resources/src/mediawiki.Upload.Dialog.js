@@ -1,4 +1,4 @@
-( function ( $, mw ) {
+( function () {
 
 	/**
 	 * mw.Upload.Dialog controls a {@link mw.Upload.BookletLayout BookletLayout}.
@@ -227,4 +227,4 @@
 				this.uploadBooklet.clear();
 			}, this );
 	};
-}( jQuery, mediaWiki ) );
+}() );

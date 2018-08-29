@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Widget to select and display target page on Special:RecentChangesLinked (AKA Related Changes)
 	 *
@@ -76,4 +76,4 @@
 		this.titleSearch.setValue( text );
 		this.titleSearch.setTitle( text );
 	};
-}( mediaWiki ) );
+}() );

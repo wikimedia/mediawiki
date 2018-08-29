@@ -3,7 +3,7 @@
  *
  * Loading this module also ensures the availability of appropriate messages via mw.msg.
  */
-( function ( mw ) {
+( function () {
 	var
 		monthMessages = [
 			'january', 'february', 'march', 'april',
@@ -53,4 +53,4 @@
 		abbrev: monthAbbrevMessages.map( mwMsgMapper )
 	};
 
-}( mediaWiki ) );
+}() );

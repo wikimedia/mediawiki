@@ -1,4 +1,4 @@
-( function ( $, mw ) {
+( function () {
 
 	/**
 	 * CalendarWidget displays a calendar that can be used to select a date. It
@@ -593,4 +593,4 @@
 		return this;
 	};
 
-}( jQuery, mediaWiki ) );
+}() );

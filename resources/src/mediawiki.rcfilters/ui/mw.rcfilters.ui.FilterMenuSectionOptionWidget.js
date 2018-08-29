@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * A widget representing a menu section for filter groups
 	 *
@@ -122,4 +122,4 @@
 		return this.model.getName();
 	};
 
-}( mediaWiki ) );
+}() );

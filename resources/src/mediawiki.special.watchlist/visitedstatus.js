@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:Watchlist
  */
-( function ( $ ) {
+( function () {
 	$( function () {
 		$( '.mw-changeslist-line-watched .mw-title a' ).on( 'click', function () {
 			$( this )
@@ -9,4 +9,4 @@
 				.removeClass( 'mw-changeslist-line-watched' );
 		} );
 	} );
-}( jQuery ) );
+}() );

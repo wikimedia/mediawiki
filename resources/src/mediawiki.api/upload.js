@@ -4,7 +4,7 @@
  * @class mw.Api.plugin.upload
  * @singleton
  */
-( function ( mw, $ ) {
+( function () {
 	var nonce = 0,
 		fieldsAllowed = {
 			stash: true,
@@ -664,4 +664,4 @@
 	 * @class mw.Api
 	 * @mixins mw.Api.plugin.upload
 	 */
-}( mediaWiki, jQuery ) );
+}() );

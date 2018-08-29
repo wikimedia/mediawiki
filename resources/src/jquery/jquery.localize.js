@@ -1,7 +1,7 @@
 /**
  * @class jQuery.plugin.localize
  */
-( function ( $, mw ) {
+( function () {
 
 	/**
 	 * Gets a localized message, using parameters from options if present.
@@ -177,4 +177,4 @@
 	 * @mixins jQuery.plugin.localize
 	 */
 
-}( jQuery, mediaWiki ) );
+}() );

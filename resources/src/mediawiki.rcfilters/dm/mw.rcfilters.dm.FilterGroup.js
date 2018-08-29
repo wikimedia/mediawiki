@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-properties */
-( function ( mw ) {
+( function () {
 	/**
 	 * View model for a filter group
 	 *
@@ -981,4 +981,4 @@
 			itemModel.toggleVisible( visibleItems.indexOf( itemModel ) !== -1 );
 		} );
 	};
-}( mediaWiki ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		var $sortable, $collapsible;
 
@@ -55,4 +55,4 @@
 		} );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

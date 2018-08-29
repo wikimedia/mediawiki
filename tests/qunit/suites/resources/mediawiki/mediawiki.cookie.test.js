@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 
 	var NOW = 9012, // miliseconds
 		DEFAULT_DURATION = 5678, // seconds
@@ -176,4 +176,4 @@
 		assert.strictEqual( key, 'barfoo' );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

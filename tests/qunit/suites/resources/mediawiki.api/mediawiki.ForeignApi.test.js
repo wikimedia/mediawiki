@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	QUnit.module( 'mediawiki.ForeignApi', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.server = this.sandbox.useFakeServer();
@@ -29,4 +29,4 @@
 		return api.post( {} );
 	} );
 
-}( mediaWiki ) );
+}() );

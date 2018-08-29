@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Widget for toggling live updates
 	 *
@@ -66,4 +66,4 @@
 		this.setState( enable );
 	};
 
-}( mediaWiki ) );
+}() );

@@ -2,7 +2,7 @@
  * Some misc JavaScript compatibility tests,
  * just to make sure the environments we run in are consistent.
  */
-( function ( $ ) {
+( function () {
 	QUnit.module( 'mediawiki.jscompat', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'Variable with Unicode letter in name', function ( assert ) {
@@ -66,4 +66,4 @@
 			assert.strictEqual( $textarea.val(), expected, 'Expecting ' + n + ' newlines (from DOM set with ' + n + ')' );
 		}
 	} );
-}( jQuery ) );
+}() );

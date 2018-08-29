@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	var isMobile;
 	// Connect OOUI to MediaWiki's localisation system
 	OO.ui.getUserLanguages = mw.language.getFallbackLanguageChain;
@@ -14,4 +14,4 @@
 		}
 		return isMobile;
 	};
-}( mediaWiki ) );
+}() );
