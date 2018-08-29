@@ -81,11 +81,9 @@ use Wikimedia\ObjectFactory;
  *    'help-inline'         -- Whether help text (defined using options above) will be shown
  *                             inline after the input field, rather than in a popup.
  *                             Defaults to true. Only used by OOUI form fields.
- *    'notice'              -- message text for a message to use as a notice in the field.
- *                             Currently used by OOUI form fields only.
- *    'notice-messages'     -- array of message keys/objects to use for notice.
- *                             Overrides 'notice'.
- *    'notice-message'      -- message key or object to use as a notice.
+ *    'notice'              -- (deprecated, use 'help' instead)
+ *    'notice-messages'     -- (deprecated, use 'help-messages' instead)
+ *    'notice-message'      -- (deprecated, use 'help-message' instead)
  *    'required'            -- passed through to the object, indicating that it
  *                             is a required field.
  *    'size'                -- the length of text fields

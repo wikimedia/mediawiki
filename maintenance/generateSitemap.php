@@ -485,7 +485,9 @@ class GenerateSitemap extends Maintenance {
 	 */
 	function indexEntry( $filename ) {
 		return "\t<sitemap>\n" .
-			"\t\t<loc>{$this->urlpath}$filename</loc>\n" .
+			"\t\t<loc>" . wfGetServerUrl( PROTO_CANONICAL ) .
+				( substr( $this->urlpath, 0, 1 ) === "/" ? "" : "/" ) .
+				"{$this->urlpath}$filename</loc>\n" .
 			"\t\t<lastmod>{$this->timestamp}</lastmod>\n" .
 			"\t</sitemap>\n";
 	}
