@@ -398,6 +398,10 @@ because of Phabricator reports.
   mw.user.getPageviewToken to better capture its function.
 * Passing Revision objects to ContentHandler::getUndoContent() is deprecated,
   Content object should be passed instead.
+* (T197179) Parameters 'notice', 'notice-messages', 'notice-message',
+  previously used by OOUI HTMLForm fields, are now deprecated. Use
+  'help', 'help-message', 'help-messages' instead.
+* (T197179) HTMLFormField::getNotices() is now deprecated.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
