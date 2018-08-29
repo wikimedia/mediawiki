@@ -47,6 +47,10 @@ class DeleteLinksJob extends Job {
 
 		// Serialize links updates by page ID so they see each others' changes
 		$scopedLock = LinksUpdate::acquirePageLock( wfGetDB( DB_MASTER ), $pageId, 'job' );
+		if ( $scopedLock === null ) {
+			$this->setLastError( 'LinksUpdate already running for this page, try again later.' );
+			return false;
+		}
 
 		if ( WikiPage::newFromID( $pageId, WikiPage::READ_LATEST ) ) {
 			// The page was restored somehow or something went wrong

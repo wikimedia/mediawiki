@@ -71,6 +71,9 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			// Make sure all links update threads see the changes of each other.
 			// This handles the case when updates have to batched into several COMMITs.
 			$scopedLock = LinksUpdate::acquirePageLock( $this->getDB(), $id );
+			if ( !$scopedLock ) {
+				throw new RuntimeException( "Could not acquire lock for page ID '{$id}'." );
+			}
 		}
 
 		$title = $this->page->getTitle();

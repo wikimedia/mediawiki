@@ -342,11 +342,10 @@ class ChangeTags {
 		}
 
 		// insert a row into change_tag for each new tag
+		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 		if ( count( $tagsToAdd ) ) {
 			$changeTagMapping = [];
 			if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
-				$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
-
 				foreach ( $tagsToAdd as $tag ) {
 					$changeTagMapping[$tag] = $changeTagDefStore->acquireId( $tag );
 				}
@@ -361,13 +360,18 @@ class ChangeTags {
 
 			$tagsRows = [];
 			foreach ( $tagsToAdd as $tag ) {
+				if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+					$tagName = null;
+				} else {
+					$tagName = $tag;
+				}
 				// Filter so we don't insert NULLs as zero accidentally.
 				// Keep in mind that $rc_id === null means "I don't care/know about the
 				// rc_id, just delete $tag on this revision/log entry". It doesn't
 				// mean "only delete tags on this revision/log WHERE rc_id IS NULL".
 				$tagsRows[] = array_filter(
 					[
-						'ct_tag' => $tag,
+						'ct_tag' => $tagName,
 						'ct_rc_id' => $rc_id,
 						'ct_log_id' => $log_id,
 						'ct_rev_id' => $rev_id,
@@ -384,12 +388,20 @@ class ChangeTags {
 		// delete from change_tag
 		if ( count( $tagsToRemove ) ) {
 			foreach ( $tagsToRemove as $tag ) {
+				if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+					$tagName = null;
+					$tagId = $changeTagDefStore->getId( $tag );
+				} else {
+					$tagName = $tag;
+					$tagId = null;
+				}
 				$conds = array_filter(
 					[
-						'ct_tag' => $tag,
+						'ct_tag' => $tagName,
 						'ct_rc_id' => $rc_id,
 						'ct_log_id' => $log_id,
-						'ct_rev_id' => $rev_id
+						'ct_rev_id' => $rev_id,
+						'ct_tag_id' => $tagId,
 					]
 				);
 				$dbw->delete( 'change_tag', $conds, __METHOD__ );
@@ -769,7 +781,7 @@ class ChangeTags {
 	public static function modifyDisplayQuery( &$tables, &$fields, &$conds,
 		&$join_conds, &$options, $filter_tag = ''
 	) {
-		global $wgUseTagFilter;
+		global $wgUseTagFilter, $wgChangeTagsSchemaMigrationStage;
 
 		// Normalize to arrays
 		$tables = (array)$tables;
@@ -790,8 +802,16 @@ class ChangeTags {
 			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
+		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+			$tables[] = 'change_tag_def';
+			$join_cond = [ $join_cond, 'ct_tag_id=ctd_id' ];
+			$field = 'ctd_name';
+		} else {
+			$field = 'ct_tag';
+		}
+
 		$fields['ts_tags'] = wfGetDB( DB_REPLICA )->buildGroupConcatField(
-			',', 'change_tag', 'ct_tag', $join_cond
+			',', 'change_tag', $field, $join_cond
 		);
 
 		if ( $wgUseTagFilter && $filter_tag ) {
@@ -800,7 +820,14 @@ class ChangeTags {
 
 			$tables[] = 'change_tag';
 			$join_conds['change_tag'] = [ 'INNER JOIN', $join_cond ];
-			$conds['ct_tag'] = $filter_tag;
+			if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+				$tables[] = 'change_tag_def';
+				$join_conds['change_tag_def'] = [ 'INNER JOIN', 'ct_tag_id=ctd_id' ];
+				$conds['ctd_name'] = $filter_tag;
+			} else {
+				$conds['ct_tag'] = $filter_tag;
+			}
+
 			if (
 				is_array( $filter_tag ) && count( $filter_tag ) > 1 &&
 				!in_array( 'DISTINCT', $options )
@@ -1236,10 +1263,17 @@ class ChangeTags {
 		// delete from valid_tag and/or set ctd_user_defined = 0
 		self::undefineTag( $tag );
 
+		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+			$tagId = MediaWikiServices::getInstance()->getChangeTagDefStore()->getId( $tag );
+			$conditions = [ 'ct_tag_id' => $tagId ];
+		} else {
+			$conditions = [ 'ct_tag' => $tag ];
+		}
+
 		// find out which revisions use this tag, so we can delete from tag_summary
 		$result = $dbw->select( 'change_tag',
-			[ 'ct_rc_id', 'ct_log_id', 'ct_rev_id', 'ct_tag' ],
-			[ 'ct_tag' => $tag ],
+			[ 'ct_rc_id', 'ct_log_id', 'ct_rev_id' ],
+			$conditions,
 			__METHOD__ );
 		foreach ( $result as $row ) {
 			// remove the tag from the relevant row of tag_summary
@@ -1250,7 +1284,12 @@ class ChangeTags {
 		}
 
 		// delete from change_tag
-		$dbw->delete( 'change_tag', [ 'ct_tag' => $tag ], __METHOD__ );
+		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+			$tagId = MediaWikiServices::getInstance()->getChangeTagDefStore()->getId( $tag );
+			$dbw->delete( 'change_tag', [ 'ct_tag_id' => $tagId ], __METHOD__ );
+		} else {
+			$dbw->delete( 'change_tag', [ 'ct_tag' => $tag ], __METHOD__ );
+		}
 
 		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
 			$dbw->delete( 'change_tag_def', [ 'ctd_name' => $tag ], __METHOD__ );
