@@ -135,7 +135,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			$module = $this->getModule( $row->md_module );
 			if ( $module ) {
 				$module->setFileDependencies( $context, ResourceLoaderModule::expandRelativePaths(
-					FormatJson::decode( $row->md_deps, true )
+					json_decode( $row->md_deps, true )
 				) );
 				$modulesWithDeps[] = $row->md_module;
 			}
@@ -1163,9 +1163,9 @@ MESSAGE;
 				$out = $this->ensureNewline( $out ) . $stateScript;
 			}
 		} else {
-			if ( count( $states ) ) {
-				$this->errors[] = 'Problematic modules: ' .
-					FormatJson::encode( $states, self::inDebugMode() );
+			if ( $states ) {
+				// Keep default escaping of slashes (e.g. "</script>") for ResourceLoaderClientHtml.
+				$this->errors[] = 'Problematic modules: ' . json_encode( $states, JSON_PRETTY_PRINT );
 			}
 		}
 
