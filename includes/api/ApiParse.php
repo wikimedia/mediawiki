@@ -341,7 +341,7 @@ class ApiParse extends ApiBase {
 			$result_array['text'] = $p_result->getText( [
 				'allowTOC' => !$params['disabletoc'],
 				'enableSectionEditLinks' => !$params['disableeditsection'],
-				'unwrap' => $params['wrapoutputclass'] === '',
+				'wrapperDivClass' => $params['wrapoutputclass'],
 				'deduplicateStyles' => !$params['disablestylededuplication'],
 			] );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';

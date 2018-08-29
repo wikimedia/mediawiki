@@ -517,7 +517,7 @@ class Parser {
 		# with CSS (T37247)
 		$class = $this->mOptions->getWrapOutputClass();
 		if ( $class !== false && !$this->mOptions->getInterfaceMessage() ) {
-			$text = Html::rawElement( 'div', [ 'class' => $class ], $text );
+			$this->mOutput->addWrapperDivClass( $class );
 		}
 
 		$this->mOutput->setText( $text );
