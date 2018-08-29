@@ -30,6 +30,7 @@ This is a security and maintenance release of the MediaWiki 1.30 branch.
 * (T200861) Fix total breakage of SQLite web upgrade.
 * (T202550) Unbreak SpecialListusersHeaderForm and SpecialListusersHeader
   hooks.
+* (T190539) Explicitly require Postgres 9.1.
 
 == MediaWiki 1.30 ==
 
@@ -303,7 +304,7 @@ Oracle and Microsoft SQL Server.
 The supported versions are:
 
 * MySQL 5.5.8 or later
-* PostgreSQL 8.3 or later
+* PostgreSQL 9.1 or later
 * SQLite 3.3.7 or later
 * Oracle 9.0.1 or later
 * Microsoft SQL Server 2005 (9.00.1399)
