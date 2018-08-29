@@ -284,10 +284,6 @@ return [
 		'dependencies' => 'mediawiki.String',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'jquery.localize' => [
-		'scripts' => 'resources/src/jquery/jquery.localize.js',
-		'deprecated' => 'Please use "jquery.i18n" instead.',
-	],
 	'jquery.makeCollapsible' => [
 		'dependencies' => [ 'jquery.makeCollapsible.styles' ],
 		'scripts' => 'resources/src/jquery/jquery.makeCollapsible.js',
