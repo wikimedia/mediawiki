@@ -4097,7 +4097,7 @@
 	"edit-error-long": "Chyby:\n\n$1",
 	"revid": "revize $1",
 	"pageid": "Stránka s ID $1",
-	"interfaceadmin-info": "$1\n\nOprávnění editovat celoprojektové soubory s CSS/JS/JSON bylo nedávno odděleno od práva <code>editinterface</code>. Pokud nerozumíte tomu, proč vidíte tuto chybu, podívejte se na [[mw:MediaWiki_1.32/interface-admin]].",
+	"interfaceadmin-info": "Oprávnění editovat celoprojektové soubory s CSS/JS/JSON bylo nedávno omezeno na členy skupiny [[{{int:grouppage-interface-admin}}|{{int:group-interface-admin}}]]. Pro více informací viz [[m:Creation of separate user group for editing sitewide CSS/JS]].",
 	"rawhtml-notallowed": "Značky &lt;html&gt; nelze používat mimo běžné stránky.",
 	"gotointerwiki": "Opustit {{GRAMMAR:4sg|{{SITENAME}}}}",
 	"gotointerwiki-invalid": "Zadaný název je neplatný.",
