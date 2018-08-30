@@ -1212,7 +1212,8 @@ class Linker {
 	 * @param string|null $wikiId Id of the wiki to link to (if not the local wiki),
 	 *  as used by WikiMap.
 	 *
-	 * @return string
+	 * @return string HTML
+	 * @return-taint escapes_html
 	 */
 	public static function formatLinksInComment(
 		$comment, $title = null, $local = false, $wikiId = null
