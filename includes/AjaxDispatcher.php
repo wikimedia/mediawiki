@@ -104,6 +104,9 @@ class AjaxDispatcher {
 	 * they should be carefully handled in the function processing the
 	 * request.
 	 *
+	 * phan-taint-check triggers as it is not smart enough to understand
+	 * the early return if func_name not in AjaxExportList.
+	 * @suppress SecurityCheck-XSS
 	 * @param User $user
 	 */
 	function performAction( User $user ) {
