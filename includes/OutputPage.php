@@ -2754,6 +2754,18 @@ class OutputPage extends ContextSource {
 					foreach ( $this->contentOverrideCallbacks as $callback ) {
 						$content = $callback( $title );
 						if ( $content !== null ) {
+							$text = ContentHandler::getContentText( $content );
+							if ( strpos( $text, '</script>' ) !== false ) {
+								// Proactively replace this so that we can display a message
+								// to the user, instead of letting it go to Html::inlineScript(),
+								// where it would be considered a server-side issue.
+								$titleFormatted = $title->getPrefixedText();
+								$content = new JavaScriptContent(
+									Xml::encodeJsCall( 'mw.log.error', [
+										"Cannot preview $titleFormatted due to script-closing tag."
+									] )
+								);
+							}
 							return $content;
 						}
 					}

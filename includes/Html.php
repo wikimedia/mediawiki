@@ -552,10 +552,13 @@ class Html {
 	}
 
 	/**
-	 * Output a "<script>" tag with the given contents.
+	 * Output an HTML script tag with the given contents.
 	 *
-	 * @todo do some useful escaping as well, like if $contents contains
-	 * literal "</script>" or (for XML) literal "]]>".
+	 * It is unsupported for the contents to contain the sequence `<script` or `</script`
+	 * (case-insensitive). This ensures the script can be terminated easily and consistently.
+	 * It is the responsibility of the caller to avoid such character sequence by escaping
+	 * or avoiding it. If found at run-time, the contents are replaced with a comment, and
+	 * a warning is logged server-side.
 	 *
 	 * @param string $contents JavaScript
 	 * @param string|null $nonce Nonce for CSP header, from OutputPage::getCSPNonce()
@@ -571,8 +574,9 @@ class Html {
 			}
 		}
 
-		if ( preg_match( '/[<&]/', $contents ) ) {
-			$contents = "/*<![CDATA[*/$contents/*]]>*/";
+		if ( preg_match( '/<\/?script/i', $contents ) ) {
+			wfLogWarning( __METHOD__ . ': Illegal character sequence found in inline script.' );
+			$contents = '/* ERROR: Invalid script */';
 		}
 
 		return self::rawElement( 'script', $attrs, $contents );
