@@ -175,6 +175,7 @@ class HTMLForm extends ContextSource {
 		'title' => HTMLTitleTextField::class,
 		'user' => HTMLUserTextField::class,
 		'usersmultiselect' => HTMLUsersMultiselectField::class,
+		'titlesmultiselect' => HTMLTitlesMultiselectField::class,
 	];
 
 	public $mFieldData;
