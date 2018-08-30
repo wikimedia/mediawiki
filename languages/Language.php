@@ -4194,8 +4194,8 @@ class Language {
 	/**
 	 * convert text to different variants of a language.
 	 *
-	 * @param string $text
-	 * @return string
+	 * @param string $text Content that has been already escaped for use in HTML
+	 * @return string HTML
 	 */
 	public function convert( $text ) {
 		return $this->mConverter->convert( $text );
