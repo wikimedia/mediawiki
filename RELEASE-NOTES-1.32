@@ -402,6 +402,7 @@ because of Phabricator reports.
   previously used by OOUI HTMLForm fields, are now deprecated. Use
   'help', 'help-message', 'help-messages' instead.
 * (T197179) HTMLFormField::getNotices() is now deprecated.
+* The jquery.localize module is now deprecated. Use jquery.i18n instead.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
