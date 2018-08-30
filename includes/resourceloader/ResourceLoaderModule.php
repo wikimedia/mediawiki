@@ -689,79 +689,77 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		$statStart = microtime( true );
 
-		// Only include properties that are relevant to this context (e.g. only=scripts)
-		// and that are non-empty (e.g. don't include "templates" for modules without
-		// templates). This helps prevent invalidating cache for all modules when new
-		// optional properties are introduced.
+		// This MUST build both scripts and styles, regardless of whether $context->getOnly()
+		// is 'scripts' or 'styles' because the result is used by getVersionHash which
+		// must be consistent regardles of the 'only' filter on the current request.
+		// Also, when introducing new module content resources (e.g. templates, headers),
+		// these should only be included in the array when they are non-empty so that
+		// existing modules not using them do not get their cache invalidated.
 		$content = [];
 
 		// Scripts
-		if ( $context->shouldIncludeScripts() ) {
-			// If we are in debug mode, we'll want to return an array of URLs if possible
-			// However, we can't do this if the module doesn't support it
-			// We also can't do this if there is an only= parameter, because we have to give
-			// the module a way to return a load.php URL without causing an infinite loop
-			if ( $context->getDebug() && !$context->getOnly() && $this->supportsURLLoading() ) {
-				$scripts = $this->getScriptURLsForDebug( $context );
-			} else {
-				$scripts = $this->getScript( $context );
-				// Make the script safe to concatenate by making sure there is at least one
-				// trailing new line at the end of the content. Previously, this looked for
-				// a semi-colon instead, but that breaks concatenation if the semicolon
-				// is inside a comment like "// foo();". Instead, simply use a
-				// line break as separator which matches JavaScript native logic for implicitly
-				// ending statements even if a semi-colon is missing.
-				// Bugs: T29054, T162719.
-				if ( is_string( $scripts )
-					&& strlen( $scripts )
-					&& substr( $scripts, -1 ) !== "\n"
-				) {
-					$scripts .= "\n";
-				}
+		// If we are in debug mode, we'll want to return an array of URLs if possible
+		// However, we can't do this if the module doesn't support it.
+		// We also can't do this if there is an only= parameter, because we have to give
+		// the module a way to return a load.php URL without causing an infinite loop
+		if ( $context->getDebug() && !$context->getOnly() && $this->supportsURLLoading() ) {
+			$scripts = $this->getScriptURLsForDebug( $context );
+		} else {
+			$scripts = $this->getScript( $context );
+			// Make the script safe to concatenate by making sure there is at least one
+			// trailing new line at the end of the content. Previously, this looked for
+			// a semi-colon instead, but that breaks concatenation if the semicolon
+			// is inside a comment like "// foo();". Instead, simply use a
+			// line break as separator which matches JavaScript native logic for implicitly
+			// ending statements even if a semi-colon is missing.
+			// Bugs: T29054, T162719.
+			if ( is_string( $scripts )
+				&& strlen( $scripts )
+				&& substr( $scripts, -1 ) !== "\n"
+			) {
+				$scripts .= "\n";
 			}
-			$content['scripts'] = $scripts;
 		}
+		$content['scripts'] = $scripts;
 
 		// Styles
-		if ( $context->shouldIncludeStyles() ) {
-			$styles = [];
-			// Don't create empty stylesheets like [ '' => '' ] for modules
-			// that don't *have* any stylesheets (T40024).
-			$stylePairs = $this->getStyles( $context );
-			if ( count( $stylePairs ) ) {
-				// If we are in debug mode without &only= set, we'll want to return an array of URLs
-				// See comment near shouldIncludeScripts() for more details
-				if ( $context->getDebug() && !$context->getOnly() && $this->supportsURLLoading() ) {
-					$styles = [
-						'url' => $this->getStyleURLsForDebug( $context )
-					];
-				} else {
-					// Minify CSS before embedding in mw.loader.implement call
-					// (unless in debug mode)
-					if ( !$context->getDebug() ) {
-						foreach ( $stylePairs as $media => $style ) {
-							// Can be either a string or an array of strings.
-							if ( is_array( $style ) ) {
-								$stylePairs[$media] = [];
-								foreach ( $style as $cssText ) {
-									if ( is_string( $cssText ) ) {
-										$stylePairs[$media][] =
-											ResourceLoader::filter( 'minify-css', $cssText );
-									}
+		$styles = [];
+		// Don't create empty stylesheets like [ '' => '' ] for modules
+		// that don't *have* any stylesheets (T40024).
+		$stylePairs = $this->getStyles( $context );
+		if ( count( $stylePairs ) ) {
+			// If we are in debug mode without &only= set, we'll want to return an array of URLs
+			// See comment near shouldIncludeScripts() for more details
+			if ( $context->getDebug() && !$context->getOnly() && $this->supportsURLLoading() ) {
+				$styles = [
+					'url' => $this->getStyleURLsForDebug( $context )
+				];
+			} else {
+				// Minify CSS before embedding in mw.loader.implement call
+				// (unless in debug mode)
+				if ( !$context->getDebug() ) {
+					foreach ( $stylePairs as $media => $style ) {
+						// Can be either a string or an array of strings.
+						if ( is_array( $style ) ) {
+							$stylePairs[$media] = [];
+							foreach ( $style as $cssText ) {
+								if ( is_string( $cssText ) ) {
+									$stylePairs[$media][] =
+										ResourceLoader::filter( 'minify-css', $cssText );
 								}
-							} elseif ( is_string( $style ) ) {
-								$stylePairs[$media] = ResourceLoader::filter( 'minify-css', $style );
 							}
+						} elseif ( is_string( $style ) ) {
+							$stylePairs[$media] = ResourceLoader::filter( 'minify-css', $style );
 						}
 					}
-					// Wrap styles into @media groups as needed and flatten into a numerical array
-					$styles = [
-						'css' => $rl->makeCombinedStyles( $stylePairs )
-					];
 				}
+				// Wrap styles into @media groups as needed and flatten into a numerical array
+				$styles = [
+					'css' => $rl->makeCombinedStyles( $stylePairs )
+				];
 			}
-			$content['styles'] = $styles;
 		}
+		$content['styles'] = $styles;
 
 		// Messages
 		$blob = $this->getMessageBlob( $context );
@@ -805,22 +803,12 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @return string Hash (should use ResourceLoader::makeHash)
 	 */
 	public function getVersionHash( ResourceLoaderContext $context ) {
-		// The startup module produces a manifest with versions representing the entire module.
-		// Typically, the request for the startup module itself has only=scripts. That must apply
-		// only to the startup module content, and not to the module version computed here.
-		$context = new DerivativeResourceLoaderContext( $context );
-		$context->setModules( [] );
-		// Version hash must cover all resources, regardless of startup request itself.
-		$context->setOnly( null );
-		// Compute version hash based on content, not debug urls.
-		$context->setDebug( false );
-
 		// Cache this somewhat expensive operation. Especially because some classes
 		// (e.g. startup module) iterate more than once over all modules to get versions.
 		$contextHash = $context->getHash();
 		if ( !array_key_exists( $contextHash, $this->versionHash ) ) {
 			if ( $this->enableModuleContentVersion() ) {
-				// Detect changes directly
+				// Detect changes directly by hashing the module contents.
 				$str = json_encode( $this->getModuleContent( $context ) );
 			} else {
 				// Infer changes based on definition and other metrics
