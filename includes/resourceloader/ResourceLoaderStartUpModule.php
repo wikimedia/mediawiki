@@ -40,21 +40,13 @@ use MediaWiki\MediaWikiServices;
  *   See also: OutputPage::disallowUserJs()
  */
 class ResourceLoaderStartUpModule extends ResourceLoaderModule {
-
-	// Cache for getConfigSettings() as it's called by multiple methods
-	protected $configVars = [];
 	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
-	protected function getConfigSettings( $context ) {
-		$hash = $context->getHash();
-		if ( isset( $this->configVars[$hash] ) ) {
-			return $this->configVars[$hash];
-		}
-
+	private function getConfigSettings( $context ) {
 		$conf = $this->getConfig();
 
 		// We can't use Title::newMainPage() if 'mainpage' is in
@@ -136,8 +128,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		Hooks::run( 'ResourceLoaderGetConfigVars', [ &$vars ] );
 
-		$this->configVars[$hash] = $vars;
-		return $this->configVars[$hash];
+		return $vars;
 	}
 
 	/**
@@ -222,9 +213,23 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$out = '';
 		$states = [];
 		$registryData = [];
+		$moduleNames = $resourceLoader->getModuleNames();
+
+		// Preload with a batch so that the below calls to getVersionHash() for each module
+		// don't require on-demand loading of more information.
+		try {
+			$resourceLoader->preloadModuleInfo( $moduleNames, $context );
+		} catch ( Exception $e ) {
+			// Don't fail the request (T152266)
+			// Also print the error in the main output
+			$resourceLoader->outputErrorAndLog( $e,
+				'Preloading module info from startup failed: {exception}',
+				[ 'exception' => $e ]
+			);
+		}
 
 		// Get registry data
-		foreach ( $resourceLoader->getModuleNames() as $name ) {
+		foreach ( $moduleNames as $name ) {
 			$module = $resourceLoader->getModule( $name );
 			$moduleTargets = $module->getTargets();
 			if (
@@ -235,18 +240,25 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			}
 
 			if ( $module->isRaw() ) {
-				// Don't register "raw" modules (like 'jquery' and 'mediawiki') client-side because
-				// depending on them is illegal anyway and would only lead to them being reloaded
-				// causing any state to be lost (like jQuery plugins, mw.config etc.)
+				// Don't register "raw" modules (like 'startup') client-side because depending on them
+				// is illegal anyway and would only lead to them being loaded a second time,
+				// causing any state to be lost.
+
+				// ATTENTION: Because of the line below, this is not going to cause infinite recursion.
+				// Think carefully before making changes to this code!
+				// The below code is going to call ResourceLoaderModule::getVersionHash() for every module.
+				// For StartUpModule (this module) the hash is computed based on the manifest content,
+				// which is the very thing we are computing right here. As such, this must skip iterating
+				// over 'startup' itself.
 				continue;
 			}
 
 			try {
 				$versionHash = $module->getVersionHash( $context );
 			} catch ( Exception $e ) {
-				// See also T152266 and ResourceLoader::getCombinedVersion()
-				MWExceptionHandler::logException( $e );
-				$context->getLogger()->warning(
+				// Don't fail the request (T152266)
+				// Also print the error in the main output
+				$resourceLoader->outputErrorAndLog( $e,
 					'Calculating version for "{module}" failed: {exception}',
 					[
 						'module' => $name,
@@ -445,59 +457,12 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the definition summary for this module.
-	 *
-	 * @param ResourceLoaderContext $context
-	 * @return array
+	 * @return bool
 	 */
-	public function getDefinitionSummary( ResourceLoaderContext $context ) {
-		global $IP;
-		$summary = parent::getDefinitionSummary( $context );
-		$startup = [
-			// getScript() exposes these variables to mw.config (T30899).
-			'vars' => $this->getConfigSettings( $context ),
-			// getScript() uses this to decide how configure mw.Map for mw.config.
-			'wgLegacyJavaScriptGlobals' => $this->getConfig()->get( 'LegacyJavaScriptGlobals' ),
-			// Detect changes to the module registrations output by getScript().
-			'moduleHashes' => $this->getAllModuleHashes( $context ),
-			// Detect changes to base modules listed by getScript().
-			'baseModules' => $this->getBaseModules(),
-
-			'fileHashes' => [
-				$this->safeFileHash( "$IP/resources/src/startup/startup.js" ),
-				$this->safeFileHash( "$IP/resources/src/startup/mediawiki.js" ),
-				$this->safeFileHash( "$IP/resources/src/startup/mediawiki.requestIdleCallback.js" ),
-			],
-		];
-		if ( $context->getDebug() ) {
-			$startup['fileHashes'][] = $this->safeFileHash( "$IP/resources/src/startup/mediawiki.log.js" );
-		}
-		if ( $this->getConfig()->get( 'ResourceLoaderEnableJSProfiler' ) ) {
-			$startup['fileHashes'][] = $this->safeFileHash( "$IP/resources/src/startup/profiling.js" );
-		}
-		$summary[] = $startup;
-		return $summary;
-	}
-
-	/**
-	 * Helper method for getDefinitionSummary().
-	 *
-	 * @param ResourceLoaderContext $context
-	 * @return string SHA-1
-	 */
-	protected function getAllModuleHashes( ResourceLoaderContext $context ) {
-		$rl = $context->getResourceLoader();
-		// Preload for getCombinedVersion()
-		$rl->preloadModuleInfo( $rl->getModuleNames(), $context );
-
-		// ATTENTION: Because of the line below, this is not going to cause infinite recursion.
-		// Think carefully before making changes to this code!
-		// Pre-populate versionHash with something because the loop over all modules below includes
-		// the startup module (this module).
-		// See ResourceLoaderModule::getVersionHash() for usage of this cache.
-		$this->versionHash[$context->getHash()] = null;
-
-		return $rl->getCombinedVersion( $context, $rl->getModuleNames() );
+	public function enableModuleContentVersion() {
+		// Enabling this means that ResourceLoader::getVersionHash will simply call getScript()
+		// and hash it to determine the version (as used by E-Tag HTTP response header).
+		return true;
 	}
 
 	/**

@@ -627,14 +627,13 @@ class ResourceLoader implements LoggerAwareInterface {
 	/**
 	 * Add an error to the 'errors' array and log it.
 	 *
-	 * Should only be called from within respond().
-	 *
+	 * @private For internal use by ResourceLoader and ResourceLoaderStartUpModule.
 	 * @since 1.29
 	 * @param Exception $e
 	 * @param string $msg
 	 * @param array $context
 	 */
-	protected function outputErrorAndLog( Exception $e, $msg, array $context = [] ) {
+	public function outputErrorAndLog( Exception $e, $msg, array $context = [] ) {
 		MWExceptionHandler::logException( $e );
 		$this->logger->warning(
 			$msg,
@@ -659,9 +658,8 @@ class ResourceLoader implements LoggerAwareInterface {
 			try {
 				return $this->getModule( $module )->getVersionHash( $context );
 			} catch ( Exception $e ) {
-				// If modules fail to compute a version, do still consider the versions
-				// of other modules - don't set an empty string E-Tag for the whole request.
-				// See also T152266 and StartupModule::getModuleRegistrations().
+				// If modules fail to compute a version, don't fail the request (T152266)
+				// and still compute versions of other modules.
 				$this->outputErrorAndLog( $e,
 					'Calculating version for "{module}" failed: {exception}',
 					[
