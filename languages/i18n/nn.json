@@ -3142,6 +3142,7 @@
 	"logentry-delete-delete": "$1 {{GENDER:$2|sletta}} sida $3",
 	"logentry-delete-delete_redir": "$1 {{GENDER:$2|sletta}} omdirigeringa $3 gjennom overskriving",
 	"logentry-delete-restore": "$1 {{GENDER:$2|attoppretta}} sida $3 ($4)",
+	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|attoppretta}} sida $3",
 	"restore-count-revisions": "{{PLURAL:$1|éin versjon|$1 versjonar}}",
 	"logentry-delete-event": "$1 {{GENDER:$2|endra}} synlegdomen av {{PLURAL:$5|éi loggoppføring|$5 loggoppføringar}} på $3: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|endra}} synlegdomen til {{PLURAL:$5|éin versjon|$5 versjonar}} på sida $3: $4",

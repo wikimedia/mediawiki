@@ -396,7 +396,7 @@
 	"virus-badscanner": "Konfiguracion i parregullt: Skaner i panjohur virusesh: ''$1''",
 	"virus-scanfailed": "skanimi dështoi (code $1)",
 	"virus-unknownscanner": "antivirus i pa njohur:",
-	"logouttext": "'''Ju keni dalë jashtë.''' \n \n Kini parasysh që disa faqe mund të shfaqen sikur të ishit i identifikuar derisa të fshini ''cache''-in e shfletuesit tuaj.",
+	"logouttext": "'''Ju keni dalë jashtë.''' \n \nKini parasysh që disa faqe mund të shfaqen sikur të ishit i/e identifikuar derisa të fshini ''cache''-in e shfletuesit tuaj.",
 	"cannotlogoutnow-title": "Nuk mund të çkyçeni tani",
 	"cannotlogoutnow-text": "Çregjistrimi nuk është i mundur kur përdorni $1.",
 	"welcomeuser": "Mirë se vini, $1!",

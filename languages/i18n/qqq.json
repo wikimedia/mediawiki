@@ -199,7 +199,8 @@
 			"Avatar6",
 			"Akapochtli",
 			"ديفيد",
-			"Daimona Eaytoy"
+			"Daimona Eaytoy",
+			"A2093064"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -377,7 +378,7 @@
 	"edit": "The text of the tab going to the edit form. When the page is protected, you will see {{msg-mw|Viewsource}}. Should be in the infinitive mood.\n\nSee also:\n* {{msg-mw|Edit}}\n* {{msg-mw|Accesskey-ca-edit}}\n* {{msg-mw|Tooltip-ca-edit}}\n{{Identical|Edit}}",
 	"edit-local": "The text on the tab going to the edit form for the local description page of a file from a foreign file repository (e.g. Wikimedia Commons). Should be in the infinitive mood.\n\nSee also:\n* {{msg-mw|Edit}}\n* {{msg-mw|Create-local}}",
 	"create": "The text on the tab of the edit form on unexisting pages starts editing them. Should be in the infinitive mood.\n\n{{Identical|Create}}",
-	"create-local": "The text on the tab going to the creation form for the (not yet existing) local description page of a file from a foreign file repository (e.g. Wikimedia Commons). Should be in the infinitive mood.\n\nSee also:\n* {{msg-mw|Create}}\n* {{msg-mw|Edit-local}}",
+	"create-local": "The text on the tab going to the creation form for the (not yet existing) local description page of a file from a foreign file repository (e.g. Wikimedia Commons). Should be in the infinitive mood.\n\nSee also:\n* {{msg-mw|Create}}\n* {{msg-mw|Edit-local}}\n* {{msg-mw|Visualeditor-ca-createlocaldescriptionsource}}",
 	"delete": "Name of the Delete tab shown for admins. Should be in the infinitive mood.\n\nSee also:\n* {{msg-mw|Delete}}\n* {{msg-mw|Accesskey-ca-delete}}\n* {{msg-mw|Tooltip-ca-delete}}\n{{Identical|Delete}}",
 	"undelete_short": "It is tab label. It's really can be named ''nstab-undelete''. Parameters:\n* $1 - number of edits",
 	"viewdeleted_short": "Tab label for the undelete button when the user has permission to view the deleted history but not undelete.\n\nParameters:\n* $1 - number of edits",
