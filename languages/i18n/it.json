@@ -926,7 +926,7 @@
 	"revdelete-show-file-submit": "Sì",
 	"revdelete-selected-text": "{{PLURAL:$1|Versione selezionata|Versioni selezionate}} di [[:$2]]:",
 	"revdelete-selected-file": "{{PLURAL:$1|Versione selezionata|Versioni selezionate}} del file [[:$2]]:",
-	"logdelete-selected": "{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionato}}:",
+	"logdelete-selected": "{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:",
 	"revdelete-text-text": "Le versioni cancellate appariranno ancora nella cronologia della pagina, ma parte del loro contenuto sarà inaccessibile al pubblico.",
 	"revdelete-text-file": "Le versioni di file cancellati appariranno ancora nella cronologia del file, ma parti del loro contenuto sarà inaccessibile al pubblico.",
 	"logdelete-text": "Gli eventi cancellati appariranno ancora nei registri, ma parti del loro contenuto sarà inaccessibile al pubblico.",

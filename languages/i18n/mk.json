@@ -4188,7 +4188,7 @@
 	"edit-error-long": "Грешки:\n\n$1",
 	"revid": "преработка $1",
 	"pageid": "назнака на страницата $1",
-	"interfaceadmin-info": "$1\n\nДозволите за уредување на податотеки од типовите CSS/JS/JSON низ цело вики неодамна беа одвоени од правото <code>editinterface</code>. Доколку не ви е јасно зошто ви се покажува оваа грешка, погледајте на [[mw:MediaWiki_1.32/interface-admin]].",
+	"interfaceadmin-info": "$1\n\nДозволата за уредување на податотеки од типовите CSS/JS/JSON низ цело вики неодамна е одвоено од правото <code>editinterface</code>. Ако не ви еј асно зошто ја добивате оваа грешка, погледајте ја страницата [[mw:MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "&lt;html&gt;-ознаките не може да се користат вон нормалните страници.",
 	"gotointerwiki": "Го напуштате {{SITENAME}}",
 	"gotointerwiki-invalid": "Укажаниот наслов е неважечки.",
