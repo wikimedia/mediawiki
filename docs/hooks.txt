@@ -348,6 +348,12 @@ $from: From address
 $subject: Subject of the email
 $body: Body of the message
 
+'AncientPagesQuery': Allow extensions to modify the query used by
+Special:AncientPages.
+&$tables: tables to join in the query
+&$conds: conditions for the query
+&$joinConds: join conditions for the query
+
 'APIAfterExecute': After calling the execute() method of an API module. Use
 this to extend core API modules.
 &$module: Module object
