@@ -151,8 +151,8 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		] );
 		$this->assertEquals( $raw, $module->getScript( $context ), 'Raw script' );
 		$this->assertEquals(
-			[ 'scripts' => $build ],
-			$module->getModuleContent( $context ),
+			$build,
+			$module->getModuleContent( $context )[ 'scripts' ],
 			$message
 		);
 	}
