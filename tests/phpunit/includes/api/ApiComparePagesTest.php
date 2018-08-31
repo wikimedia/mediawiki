@@ -936,6 +936,16 @@ class ApiComparePagesTest extends ApiTestCase {
 				[],
 				'sectionreplacefailed',
 			],
+			'Error, deleting the main slot' => [
+				[
+					'fromtitle' => 'ApiComparePagesTest A',
+					'totitle' => 'ApiComparePagesTest A',
+					'toslots' => 'main',
+				],
+				[],
+				'compare-maintextrequired',
+			],
+			// @todo Add a test for using 'tosection-foo' without 'totext-foo' (can't do it with main)
 		];
 		// phpcs:enable
 	}
