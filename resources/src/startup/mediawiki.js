@@ -2056,7 +2056,7 @@
 					init: function () {
 						var raw, data;
 
-						if ( mw.loader.store.enabled !== null ) {
+						if ( this.enabled !== null ) {
 							// Init already ran
 							return;
 						}
@@ -2071,25 +2071,25 @@
 							!mw.config.get( 'wgResourceLoaderStorageEnabled' )
 						) {
 							// Clear any previous store to free up space. (T66721)
-							mw.loader.store.clear();
-							mw.loader.store.enabled = false;
+							this.clear();
+							this.enabled = false;
 							return;
 						}
 						if ( mw.config.get( 'debug' ) ) {
 							// Disable module store in debug mode
-							mw.loader.store.enabled = false;
+							this.enabled = false;
 							return;
 						}
 
 						try {
 							// This a string we stored, or `null` if the key does not (yet) exist.
-							raw = localStorage.getItem( mw.loader.store.getStoreKey() );
+							raw = localStorage.getItem( this.getStoreKey() );
 							// If we get here, localStorage is available; mark enabled
-							mw.loader.store.enabled = true;
+							this.enabled = true;
 							// If null, JSON.parse() will cast to string and re-parse, still null.
 							data = JSON.parse( raw );
-							if ( data && typeof data.items === 'object' && data.vary === mw.loader.store.getVary() ) {
-								mw.loader.store.items = data.items;
+							if ( data && typeof data.items === 'object' && data.vary === this.getVary() ) {
+								this.items = data.items;
 								return;
 							}
 						} catch ( e ) {
@@ -2118,7 +2118,7 @@
 						//    We will disable the store below.
 						if ( raw === undefined ) {
 							// localStorage failed; disable store
-							mw.loader.store.enabled = false;
+							this.enabled = false;
 						}
 					},
 
@@ -2131,16 +2131,16 @@
 					get: function ( module ) {
 						var key;
 
-						if ( !mw.loader.store.enabled ) {
+						if ( !this.enabled ) {
 							return false;
 						}
 
 						key = getModuleKey( module );
-						if ( key in mw.loader.store.items ) {
-							mw.loader.store.stats.hits++;
-							return mw.loader.store.items[ key ];
+						if ( key in this.items ) {
+							this.stats.hits++;
+							return this.items[ key ];
 						}
-						mw.loader.store.stats.misses++;
+						this.stats.misses++;
 						return false;
 					},
 
@@ -2153,7 +2153,7 @@
 					set: function ( module, descriptor ) {
 						var args, key, src;
 
-						if ( !mw.loader.store.enabled ) {
+						if ( !this.enabled ) {
 							return;
 						}
 
@@ -2161,7 +2161,7 @@
 
 						if (
 							// Already stored a copy of this exact version
-							key in mw.loader.store.items ||
+							key in this.items ||
 							// Module failed to load
 							descriptor.state !== 'ready' ||
 							// Unversioned, private, or site-/user-specific
@@ -2196,11 +2196,11 @@
 						}
 
 						src = 'mw.loader.implement(' + args.join( ',' ) + ');';
-						if ( src.length > mw.loader.store.MODULE_SIZE_MAX ) {
+						if ( src.length > this.MODULE_SIZE_MAX ) {
 							return;
 						}
-						mw.loader.store.items[ key ] = src;
-						mw.loader.store.update();
+						this.items[ key ] = src;
+						this.update();
 					},
 
 					/**
@@ -2210,14 +2210,14 @@
 					prune: function () {
 						var key, module;
 
-						for ( key in mw.loader.store.items ) {
+						for ( key in this.items ) {
 							module = key.slice( 0, key.indexOf( '@' ) );
 							if ( getModuleKey( module ) !== key ) {
-								mw.loader.store.stats.expired++;
-								delete mw.loader.store.items[ key ];
-							} else if ( mw.loader.store.items[ key ].length > mw.loader.store.MODULE_SIZE_MAX ) {
+								this.stats.expired++;
+								delete this.items[ key ];
+							} else if ( this.items[ key ].length > this.MODULE_SIZE_MAX ) {
 								// This value predates the enforcement of a size limit on cached modules.
-								delete mw.loader.store.items[ key ];
+								delete this.items[ key ];
 							}
 						}
 					},
@@ -2226,9 +2226,9 @@
 					 * Clear the entire module store right now.
 					 */
 					clear: function () {
-						mw.loader.store.items = {};
+						this.items = {};
 						try {
-							localStorage.removeItem( mw.loader.store.getStoreKey() );
+							localStorage.removeItem( this.getStoreKey() );
 						} catch ( e ) {}
 					},
 
