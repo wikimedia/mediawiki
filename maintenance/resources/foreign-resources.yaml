@@ -74,15 +74,16 @@ oojs-ui:
 jquery:
   type: file
   src: https://code.jquery.com/jquery-3.2.1.js
-  # From https://code.jquery.com/jquery/
+  # Integrity from link modals https://code.jquery.com/jquery/
   integrity: sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=
   dest: jquery.js
 qunitjs:
   type: multi-file
+  # Integrity from link modals at https://code.jquery.com/qunit/
   files:
     qunit.js:
       src: https://code.jquery.com/qunit/qunit-2.6.0.js
-      integrity: sha384-5O3bKbJBbAbxsqV+w/I1fcXgWJgbqM+hmYAPOE9aELSYpcTEsv48X8H+Hnq66V/9
+      integrity: sha256-QdI40P4EEDzPRIS0mktlE0sSyoXCnOs8fB4OSmy+VxI=
     qunit.css:
       src: https://code.jquery.com/qunit/qunit-2.6.0.css
-      integrity: sha384-8vDvsmsuiD7tCQyC+pW2LOwDDgsluGsIPeCqr3rHsDSF2k4WpmfvKKxcgSV5zPai
+      integrity: sha256-F4O5nugrHEEjfO0tfu/LKnSRFKctZ9Rdmi1oj22UD1s=
