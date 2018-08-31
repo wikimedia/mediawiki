@@ -1213,7 +1213,7 @@ class Linker {
 	 *  as used by WikiMap.
 	 *
 	 * @return string HTML
-	 * @return-taint escapes_html
+	 * @return-taint onlysafefor_html
 	 */
 	public static function formatLinksInComment(
 		$comment, $title = null, $local = false, $wikiId = null
