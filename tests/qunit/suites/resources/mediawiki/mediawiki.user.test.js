@@ -2,15 +2,19 @@
 	QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.server = this.sandbox.useFakeServer();
-			this.crypto = window.crypto;
-			this.msCrypto = window.msCrypto;
+			// Cannot stub by simple assignment because read-only.
+			// Instead, stub in tests by using 'delete', and re-create
+			// in teardown using the original descriptor (including its
+			// accessors and readonly settings etc.)
+			this.crypto = Object.getOwnPropertyDescriptor( window, 'crypto' );
+			this.msCrypto = Object.getOwnPropertyDescriptor( window, 'msCrypto' );
 		},
 		teardown: function () {
 			if ( this.crypto ) {
-				window.crypto = this.crypto;
+				Object.defineProperty( window, 'crypto', this.crypto );
 			}
 			if ( this.msCrypto ) {
-				window.msCrypto = this.msCrypto;
+				Object.defineProperty( window, 'msCrypto', this.msCrypto );
 			}
 		}
 	} ) );
@@ -81,12 +85,14 @@
 		var result, result2;
 
 		// Pretend crypto API is not there to test the Math.random fallback
-		if ( window.crypto ) {
-			window.crypto = undefined;
-		}
-		if ( window.msCrypto ) {
-			window.msCrypto = undefined;
-		}
+		delete window.crypto;
+		delete window.msCrypto;
+		// Assert that the above actually worked. If we use the wrong method
+		// of stubbing, JavaScript silently continues and we need to know that
+		// it was the wrong method. As of writing, assigning undefined is
+		// ineffective as the window property for Crypto is read-only.
+		// However, deleting does work. (T203275)
+		assert.strictEqual( window.crypto || window.msCrypto, undefined, 'fallback is active' );
 
 		result = mw.user.generateRandomSessionId();
 		assert.strictEqual( typeof result, 'string', 'type' );

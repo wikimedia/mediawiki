@@ -55,6 +55,7 @@
 				rnds = new Uint16Array( 5 );
 				crypto.getRandomValues( rnds );
 			} else {
+				rnds = new Array( 5 );
 				// 0x10000 is 2^16 so the operation below will return a number
 				// between 2^16 and zero
 				for ( i = 0; i < 5; i++ ) {
