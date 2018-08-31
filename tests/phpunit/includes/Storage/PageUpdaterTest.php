@@ -523,6 +523,20 @@ class PageUpdaterTest extends MediaWikiTestCase {
 				return $rev->getTimestamp();
 			}
 		];
+
+		yield 'subst:REVISIONUSER' => [
+			'Test {{subst:REVISIONUSER}} Test',
+			function ( RevisionRecord $rev ) {
+				return $rev->getUser()->getName();
+			}
+		];
+
+		yield 'subst:PAGENAME' => [
+			'Test {{subst:PAGENAME}} Test',
+			function ( RevisionRecord $rev ) {
+				return 'PageUpdaterTest::testMagicWords';
+			}
+		];
 	}
 
 	/**
