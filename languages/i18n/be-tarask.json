@@ -1657,7 +1657,7 @@
 	"backend-fail-invalidpath": "«$1» не зьяўляецца слушным шляхам да сховішча.",
 	"backend-fail-delete": "Немагчыма выдаліць файл «$1».",
 	"backend-fail-describe": "Не атрымалася зьмяніць мэтазьвесткі для файлу «$1».",
-	"backend-fail-alreadyexists": "Файл $1 ужо існуе.",
+	"backend-fail-alreadyexists": "Файл «$1» ужо існуе.",
 	"backend-fail-store": "Немагчыма захаваць файл $1 у $2.",
 	"backend-fail-copy": "Немагчыма скапіяваць файл $1 у $2.",
 	"backend-fail-move": "Немагчыма перанесьці файл $1 у $2.",
