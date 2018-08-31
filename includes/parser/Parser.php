@@ -1313,6 +1313,7 @@ class Parser {
 	 * @private
 	 *
 	 * @param string $text The text to parse
+	 * @param-taint $text escapes_html
 	 * @param bool $isMain Whether this is being called from the main parse() function
 	 * @param PPFrame|bool $frame A pre-processor frame
 	 *
