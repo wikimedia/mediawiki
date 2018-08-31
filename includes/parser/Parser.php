@@ -425,12 +425,14 @@ class Parser {
 	 * Do not call this function recursively.
 	 *
 	 * @param string $text Text we want to parse
+	 * @param-taint $text escapes_htmlnoent
 	 * @param Title $title
 	 * @param ParserOptions $options
 	 * @param bool $linestart
 	 * @param bool $clearState
 	 * @param int|null $revid Number to pass in {{REVISIONID}}
 	 * @return ParserOutput A ParserOutput
+	 * @return-taint escaped
 	 */
 	public function parse(
 		$text, Title $title, ParserOptions $options,
@@ -671,8 +673,10 @@ class Parser {
 	 * $text are not expanded
 	 *
 	 * @param string $text Text extension wants to have parsed
+	 * @param-taint $text escapes_htmlnoent
 	 * @param bool|PPFrame $frame The frame to use for expanding any template variables
 	 * @return string UNSAFE half-parsed HTML
+	 * @return-taint escaped
 	 */
 	public function recursiveTagParse( $text, $frame = false ) {
 		// Avoid PHP 7.1 warning from passing $this by reference
@@ -697,8 +701,10 @@ class Parser {
 	 * @since 1.25
 	 *
 	 * @param string $text Text extension wants to have parsed
+	 * @param-taint $text escapes_htmlnoent
 	 * @param bool|PPFrame $frame The frame to use for expanding any template variables
 	 * @return string Fully parsed HTML
+	 * @return-taint escaped
 	 */
 	public function recursiveTagParseFully( $text, $frame = false ) {
 		$text = $this->recursiveTagParse( $text, $frame );
