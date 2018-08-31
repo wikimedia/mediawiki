@@ -15,7 +15,6 @@
 		"mediawiki/hit-counters": "dev-master",
 		"mediawiki/image-map-edit": "dev-master",
 		"mediawiki/lingo": "~3.0",
-		"mediawiki/lockdown": "dev-master",
 		"mediawiki/nuke": "dev-master",
 		"mediawiki/pluggable-auth": "dev-master",
 		"mediawiki/quiz": "dev-master",
