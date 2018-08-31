@@ -16,6 +16,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Special\SpecialPageFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
@@ -747,6 +748,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getRevisionLookup() {
 		return $this->getService( 'RevisionLookup' );
+	}
+
+	/**
+	 * @since 1.32
+	 * @return RevisionRenderer
+	 */
+	public function getRevisionRenderer() {
+		return $this->getService( 'RevisionRenderer' );
 	}
 
 	/**

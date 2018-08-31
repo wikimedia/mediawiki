@@ -505,6 +505,7 @@ abstract class AbstractContent implements Content {
 		}
 
 		$po = new ParserOutput();
+		$options->registerWatcher( [ $po, 'recordOption' ] );
 
 		if ( Hooks::run( 'ContentGetParserOutput',
 			[ $this, $title, $revId, $options, $generateHtml, &$po ] )
@@ -518,6 +519,7 @@ abstract class AbstractContent implements Content {
 		}
 
 		Hooks::run( 'ContentAlterParserOutput', [ $this, $title, $po ] );
+		$options->registerWatcher( null );
 
 		return $po;
 	}

@@ -51,6 +51,7 @@ use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Special\SpecialPageFactory;
 use MediaWiki\Storage\BlobStore;
+use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\RevisionFactory;
@@ -443,6 +444,10 @@ return [
 
 	'RevisionLookup' => function ( MediaWikiServices $services ) : RevisionLookup {
 		return $services->getRevisionStore();
+	},
+
+	'RevisionRenderer' => function ( MediaWikiServices $services ) : RevisionRenderer {
+		return new RevisionRenderer( $services->getDBLoadBalancer() );
 	},
 
 	'RevisionStore' => function ( MediaWikiServices $services ) : RevisionStore {

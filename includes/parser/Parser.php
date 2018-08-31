@@ -2693,9 +2693,19 @@ class Parser {
 				$this->mOutput->setFlag( 'vary-revision-id' );
 				wfDebug( __METHOD__ . ": {{REVISIONID}} used, setting vary-revision-id...\n" );
 				$value = $this->mRevisionId;
-				if ( !$value && $this->mOptions->getSpeculativeRevIdCallback() ) {
-					$value = call_user_func( $this->mOptions->getSpeculativeRevIdCallback() );
-					$this->mOutput->setSpeculativeRevIdUsed( $value );
+
+				if ( !$value ) {
+					$rev = $this->getRevisionObject();
+					if ( $rev ) {
+						$value = $rev->getId();
+					}
+				}
+
+				if ( !$value ) {
+					$value = $this->mOptions->getSpeculativeRevId();
+					if ( $value ) {
+						$this->mOutput->setSpeculativeRevIdUsed( $value );
+					}
 				}
 				break;
 			case 'revisionday':
@@ -5751,10 +5761,9 @@ class Parser {
 		if ( !is_null( $this->mRevisionObject ) ) {
 			return $this->mRevisionObject;
 		}
-		if ( is_null( $this->mRevisionId ) ) {
-			return null;
-		}
 
+		// NOTE: try to get the RevisionObject even if mRevisionId is null.
+		// This is useful when parsing revision that has not yet been saved.
 		$rev = call_user_func(
 			$this->mOptions->getCurrentRevisionCallback(), $this->getTitle(), $this
 		);
@@ -5762,7 +5771,7 @@ class Parser {
 		# If the parse is for a new revision, then the callback should have
 		# already been set to force the object and should match mRevisionId.
 		# If not, try to fetch by mRevisionId for sanity.
-		if ( $rev && $rev->getId() != $this->mRevisionId ) {
+		if ( $this->mRevisionId && $rev && $rev->getId() != $this->mRevisionId ) {
 			$rev = Revision::newFromId( $this->mRevisionId );
 		}
 
