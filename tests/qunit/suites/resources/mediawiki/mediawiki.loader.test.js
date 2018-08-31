@@ -859,6 +859,14 @@
 		mw.loader.register( 'test.stale', 'v2' );
 		assert.strictEqual( mw.loader.store.get( 'test.stale' ), false, 'Not in store' );
 
+		// Stub deferred timeout/idle callback
+		this.sandbox.stub( window, 'setTimeout', function ( fn ) {
+			fn();
+		} );
+		this.sandbox.stub( mw, 'requestIdleCallback', function ( fn ) {
+			fn();
+		} );
+
 		mw.loader.implement( 'test.stale@v1', function () {
 			count++;
 		} );
@@ -888,6 +896,14 @@
 		mw.loader.store.enabled = true;
 		mw.loader.register( 'test.stalebc', 'v2' );
 		assert.strictEqual( mw.loader.store.get( 'test.stalebc' ), false, 'Not in store' );
+
+		// Stub deferred timeout/idle callback
+		this.sandbox.stub( window, 'setTimeout', function ( fn ) {
+			fn();
+		} );
+		this.sandbox.stub( mw, 'requestIdleCallback', function ( fn ) {
+			fn();
+		} );
 
 		mw.loader.implement( 'test.stalebc', function () {
 			script++;
