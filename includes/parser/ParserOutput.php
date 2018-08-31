@@ -303,6 +303,7 @@ class ParserOutput extends CacheTime {
 	 *    the scheme-specific-part of the href is the (percent-encoded) value
 	 *    of the `data-mw-deduplicate` attribute.
 	 * @return string HTML
+	 * @return-taint escaped
 	 */
 	public function getText( $options = [] ) {
 		$options += [
