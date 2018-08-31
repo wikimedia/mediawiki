@@ -108,7 +108,7 @@
 		assert.strictEqual( conf.set( 'undef' ), false, 'Map.set requires explicit value (no undefined default)' );
 
 		assert.strictEqual( conf.set( 'undef', undefined ), true, 'Map.set allows setting value to `undefined`' );
-		assert.strictEqual( conf.get( 'undef', 'fallback' ), undefined, 'Map.get supports retreiving value of `undefined`' );
+		assert.strictEqual( conf.get( 'undef', 'fallback' ), undefined, 'Map.get supports retrieving value of `undefined`' );
 
 		assert.strictEqual( conf.set( funky, 'Funky' ), false, 'Map.set returns boolean false if key was invalid (Function)' );
 		assert.strictEqual( conf.set( arry, 'Arry' ), false, 'Map.set returns boolean false if key was invalid (Array)' );

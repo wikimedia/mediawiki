@@ -127,7 +127,7 @@ class SearchResultSet implements Countable, IteratorAggregate {
 	/**
 	 * Some search modes will run an alternative query that it thinks gives
 	 * a better result than the provided search. Returns true if this has
-	 * occured.
+	 * occurred.
 	 *
 	 * @return bool
 	 */

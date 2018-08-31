@@ -45,7 +45,7 @@ class DBQueryError extends DBExpectedError {
 	public function __construct( IDatabase $db, $error, $errno, $sql, $fname, $message = null ) {
 		if ( $message === null ) {
 			if ( $db instanceof Database && $db->wasConnectionError( $errno ) ) {
-				$message = "A connection error occured. \n" .
+				$message = "A connection error occurred. \n" .
 					 "Query: $sql\n" .
 					 "Function: $fname\n" .
 					 "Error: $errno $error\n";
