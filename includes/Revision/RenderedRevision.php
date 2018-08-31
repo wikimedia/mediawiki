@@ -157,11 +157,19 @@ class RenderedRevision {
 	}
 
 	/**
+	 * @param array $hints Hints given as an associative array. Known keys:
+	 *      - 'generate-html' => bool: Whether the caller is interested in output HTML (as opposed
+	 *        to just meta-data). Default is to generate HTML.
+	 *
 	 * @return ParserOutput
 	 */
-	public function getRevisionParserOutput() {
-		if ( !$this->revisionOutput ) {
-			$output = call_user_func( $this->combineOutput, $this );
+	public function getRevisionParserOutput( array $hints = [] ) {
+		$withHtml = $hints['generate-html'] ?? true;
+
+		if ( !$this->revisionOutput
+			|| ( $withHtml && !$this->revisionOutput->hasText() )
+		) {
+			$output = call_user_func( $this->combineOutput, $this, $hints );
 
 			Assert::postcondition(
 				$output instanceof ParserOutput,
@@ -176,15 +184,20 @@ class RenderedRevision {
 
 	/**
 	 * @param string $role
+	 * @param array $hints Hints given as an associative array. Known keys:
+	 *      - 'generate-html' => bool: Whether the caller is interested in output HTML (as opposed
+	 *        to just meta-data). Default is to generate HTML.
 	 *
 	 * @throws SuppressedDataException if the content is not accessible for the audience
 	 *         specified in the constructor.
 	 * @return ParserOutput
 	 */
-	public function getSlotParserOutput( $role ) {
-		// XXX: make html generation optional?
+	public function getSlotParserOutput( $role, array $hints = [] ) {
+		$withHtml = $hints['generate-html'] ?? true;
 
-		if ( !isset( $this->slotsOutput[$role] ) ) {
+		if ( !isset( $this->slotsOutput[ $role ] )
+			|| ( $withHtml && !$this->slotsOutput[ $role ]->hasText() )
+		) {
 			$content = $this->revision->getContent( $role, $this->audience, $this->forUser );
 
 			if ( !$content ) {
@@ -192,15 +205,26 @@ class RenderedRevision {
 					'Access to the content has been suppressed for this audience'
 				);
 			} else {
-				$this->slotsOutput[ $role ] = $content->getParserOutput(
+				$output = $content->getParserOutput(
 					$this->title,
 					$this->revision->getId(),
-					$this->options
+					$this->options,
+					$withHtml
 				);
+
+				if ( $withHtml && !$output->hasText() ) {
+					throw new LogicException(
+						'HTML generation was requested, but '
+						. get_class( $content )
+						. '::getParserOutput() returns a ParserOutput with no text set.'
+					);
+				}
 
 				// Detach watcher, to ensure option use is not recorded in the wrong ParserOutput.
 				$this->options->registerWatcher( null );
 			}
+
+			$this->slotsOutput[ $role ] = $output;
 		}
 
 		return $this->slotsOutput[$role];

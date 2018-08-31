@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Revision;
 
+use Content;
 use Language;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Storage\MutableRevisionRecord;
@@ -27,34 +28,47 @@ class RenderedRevisionTest extends MediaWikiTestCase {
 	public function setUp() {
 		parent::setUp();
 
-		$this->combinerCallback = function ( RenderedRevision $rr ) {
-			return $this->combineOutput( $rr );
+		$this->combinerCallback = function ( RenderedRevision $rr, array $hints = [] ) {
+			return $this->combineOutput( $rr, $hints );
 		};
 	}
 
-	private function combineOutput( RenderedRevision $rrev ) {
+	private function combineOutput( RenderedRevision $rrev, array $hints = [] ) {
+		// NOTE: the is a slightly simplified version of RevisionRenderer::combineSlotOutput
+
+		$withHtml = $hints['generate-html'] ?? true;
+
 		$revision = $rrev->getRevision();
 		$slots = $revision->getSlots()->getSlots();
 
-		$output = new ParserOutput();
-		$html = '';
+		$combinedOutput = new ParserOutput( null );
+		$slotOutput = [];
 		foreach ( $slots as $role => $slot ) {
+			$out = $rrev->getSlotParserOutput( $role, $hints );
+			$slotOutput[$role] = $out;
 
-			if ( $html !== '' ) {
-				// skip header for the first slot
-				$html .= "(($role))";
-			}
-
-			$slotOutput = $rrev->getSlotParserOutput( $role );
-			$html .= $slotOutput->getRawText();
-
-			$output->mergeInternalMetaDataFrom( $slotOutput, $role );
-			$output->mergeHtmlMetaDataFrom( $slotOutput );
-			$output->mergeTrackingMetaDataFrom( $slotOutput );
+			$combinedOutput->mergeInternalMetaDataFrom( $out );
+			$combinedOutput->mergeTrackingMetaDataFrom( $out );
 		}
 
-		$output->setText( $html );
-		return $output;
+		if ( $withHtml ) {
+			$html = '';
+			/** @var ParserOutput $out */
+			foreach ( $slotOutput as $role => $out ) {
+
+				if ( $html !== '' ) {
+					// skip header for the first slot
+					$html .= "(($role))";
+				}
+
+				$html .= $out->getRawText();
+				$combinedOutput->mergeHtmlMetaDataFrom( $out );
+			}
+
+			$combinedOutput->setText( $html );
+		}
+
+		return $combinedOutput;
 	}
 
 	/**
@@ -317,7 +331,7 @@ class RenderedRevisionTest extends MediaWikiTestCase {
 		$this->assertSame( $html, $rr->getSlotParserOutput( 'main' )->getText() );
 	}
 
-	public function testGetRenderedRevision_multi() {
+	public function testGetRevisionParserOutput_multi() {
 		$title = $this->getMockTitle( 7, 21 );
 
 		$rev = new MutableRevisionRecord( $title );
@@ -353,6 +367,40 @@ class RenderedRevisionTest extends MediaWikiTestCase {
 		$this->assertTrue( isset( $combinedLinks[NS_MAIN]['Goats'] ), 'links from aux slot' );
 		$this->assertFalse( isset( $mainLinks[NS_MAIN]['Goats'] ), 'no aux links in main' );
 		$this->assertFalse( isset( $auxLinks[NS_MAIN]['Kittens'] ), 'no main links in aux' );
+	}
+
+	public function testNoHtml() {
+		/** @var MockObject|Content $mockContent */
+		$mockContent = $this->getMockBuilder( WikitextContent::class )
+			->setMethods( [ 'getParserOutput' ] )
+			->setConstructorArgs( [ 'Whatever' ] )
+			->getMock();
+		$mockContent->method( 'getParserOutput' )
+			->willReturnCallback( function ( Title $title, $revId = null,
+				ParserOptions $options = null, $generateHtml = true
+			) {
+				if ( !$generateHtml ) {
+					return new ParserOutput( null );
+				} else {
+					$this->fail( 'Should not be called with $generateHtml == true' );
+					return null; // never happens, make analyzer happy
+				}
+			} );
+
+		$title = $this->getMockTitle( 7, 21 );
+
+		$rev = new MutableRevisionRecord( $title );
+		$rev->setContent( 'main', $mockContent );
+		$rev->setContent( 'aux', $mockContent );
+
+		$options = ParserOptions::newCanonical( 'canonical' );
+		$rr = new RenderedRevision( $title, $rev, $options, $this->combinerCallback );
+
+		$output = $rr->getSlotParserOutput( 'main', [ 'generate-html' => false ] );
+		$this->assertFalse( $output->hasText(), 'hasText' );
+
+		$output = $rr->getRevisionParserOutput( [ 'generate-html' => false ] );
+		$this->assertFalse( $output->hasText(), 'hasText' );
 	}
 
 	public function testUpdateRevision() {

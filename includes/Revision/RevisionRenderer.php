@@ -118,8 +118,8 @@ class RevisionRenderer {
 			$title,
 			$rev,
 			$options,
-			function ( RenderedRevision $rrev ) {
-				return $this->combineSlotOutput( $rrev );
+			function ( RenderedRevision $rrev, array $hints ) {
+				return $this->combineSlotOutput( $rrev, $hints );
 			},
 			$audience,
 			$forUser
@@ -154,11 +154,15 @@ class RevisionRenderer {
 	 * @todo Use placement hints from SlotRoleHandlers instead of hard-coding the layout.
 	 *
 	 * @param RenderedRevision $rrev
+	 * @param array $hints see RenderedRevision::getRevisionParserOutput()
+	 *
 	 * @return ParserOutput
 	 */
-	private function combineSlotOutput( RenderedRevision $rrev ) {
+	private function combineSlotOutput( RenderedRevision $rrev, array $hints = [] ) {
 		$revision = $rrev->getRevision();
 		$slots = $revision->getSlots()->getSlots();
+
+		$withHtml = $hints['generate-html'] ?? true;
 
 		// short circuit if there is only the main slot
 		if ( array_keys( $slots ) === [ 'main' ] ) {
@@ -172,36 +176,43 @@ class RevisionRenderer {
 			$slots = [ 'main' => $slots['main'] ] + $slots;
 		}
 
-		$output = new ParserOutput();
+		$combinedOutput = new ParserOutput( null );
+		$slotOutput = [];
+
 		$options = $rrev->getOptions();
-		$options->registerWatcher( [ $output, 'recordOption' ] );
+		$options->registerWatcher( [ $combinedOutput, 'recordOption' ] );
 
-		$html = '';
-		$first = true;
 		foreach ( $slots as $role => $slot ) {
+			$out = $rrev->getSlotParserOutput( $role, $hints );
+			$slotOutput[$role] = $out;
 
-			if ( $first ) {
-				// skip header for the first slot
-				$first = false;
-			} else {
-				// NOTE: this placeholder is hydrated by ParserOutput::getText().
-				$headText = Html::element( 'mw:slotheader', [], $role );
-				$html .= Html::rawElement( 'h1', [ 'class' => 'mw-slot-header' ], $headText );
-			}
-
-			$slotOutput = $rrev->getSlotParserOutput( $role );
-
-			$html .= $slotOutput->getRawText();
-
-			$output->mergeInternalMetaDataFrom( $slotOutput );
-			$output->mergeHtmlMetaDataFrom( $slotOutput );
-			$output->mergeTrackingMetaDataFrom( $slotOutput );
+			$combinedOutput->mergeInternalMetaDataFrom( $out, $role );
+			$combinedOutput->mergeTrackingMetaDataFrom( $out );
 		}
 
-		$output->setText( $html );
+		if ( $withHtml ) {
+			$html = '';
+			$first = true;
+			/** @var ParserOutput $out */
+			foreach ( $slotOutput as $role => $out ) {
+				if ( $first ) {
+					// skip header for the first slot
+					$first = false;
+				} else {
+					// NOTE: this placeholder is hydrated by ParserOutput::getText().
+					$headText = Html::element( 'mw:slotheader', [], $role );
+					$html .= Html::rawElement( 'h1', [ 'class' => 'mw-slot-header' ], $headText );
+				}
+
+				$html .= $out->getRawText();
+				$combinedOutput->mergeHtmlMetaDataFrom( $out );
+			}
+
+			$combinedOutput->setText( $html );
+		}
 
 		$options->registerWatcher( null );
-		return $output;
+		return $combinedOutput;
 	}
 
 }

@@ -31,9 +31,9 @@ class ParserOutput extends CacheTime {
 	const SUPPORTS_UNWRAP_TRANSFORM = 1;
 
 	/**
-	 * @var string $mText The output text
+	 * @var string|null $mText The output text
 	 */
-	public $mText;
+	public $mText = null;
 
 	/**
 	 * @var array $mLanguageLinks List of the full text of language links,
@@ -232,6 +232,15 @@ class ParserOutput extends CacheTime {
 	const SLOW_AR_TTL = 3600; // adaptive TTL for "slow" pages
 	const MIN_AR_TTL = 15; // min adaptive TTL (for sanity, pool counter, and edit stashing)
 
+	/**
+	 * @param string|null $text HTML. Use null to indicate that this ParserOutput contains only
+	 *        meta-data, and the HTML output is undetermined, as opposed to empty. Passing null
+	 *        here causes hasText() to return false.
+	 * @param array $languageLinks
+	 * @param array $categoryLinks
+	 * @param bool $unused
+	 * @param string $titletext
+	 */
 	public function __construct( $text = '', $languageLinks = [], $categoryLinks = [],
 		$unused = false, $titletext = ''
 	) {
@@ -239,6 +248,20 @@ class ParserOutput extends CacheTime {
 		$this->mLanguageLinks = $languageLinks;
 		$this->mCategories = $categoryLinks;
 		$this->mTitleText = $titletext;
+	}
+
+	/**
+	 * Returns true if text was passed to the constructor, or set using setText(). Returns false
+	 * if null was passed to the $text parameter of the constructor to indicate that this
+	 * ParserOutput only contains meta-data, and the HTML output is undetermined.
+	 *
+	 * @since 1.32
+	 *
+	 * @return bool Whether this ParserOutput contains rendered text. If this returns false, the
+	 *         ParserOutput contains meta-data only.
+	 */
+	public function hasText() {
+		return ( $this->mText !== null );
 	}
 
 	/**
@@ -250,6 +273,10 @@ class ParserOutput extends CacheTime {
 	 * @since 1.27
 	 */
 	public function getRawText() {
+		if ( $this->mText === null ) {
+			throw new LogicException( 'This ParserOutput contains no text!' );
+		}
+
 		return $this->mText;
 	}
 
@@ -285,7 +312,7 @@ class ParserOutput extends CacheTime {
 			'deduplicateStyles' => true,
 			'wrapperDivClass' => $this->getWrapperDivClass(),
 		];
-		$text = $this->mText;
+		$text = $this->getRawText();
 
 		Hooks::runWithoutAbort( 'ParserOutputPostCacheTransform', [ $this, &$text, &$options ] );
 

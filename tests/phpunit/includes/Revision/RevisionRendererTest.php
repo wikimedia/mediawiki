@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Revision;
 
+use Content;
 use Language;
 use LogicException;
 use MediaWiki\Revision\RevisionRenderer;
@@ -10,6 +11,7 @@ use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiTestCase;
 use ParserOptions;
+use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
 use Title;
 use User;
@@ -418,6 +420,41 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$this->assertTrue( isset( $combinedLinks[NS_MAIN]['Goats'] ), 'links from aux slot' );
 		$this->assertFalse( isset( $mainLinks[NS_MAIN]['Goats'] ), 'no aux links in main' );
 		$this->assertFalse( isset( $auxLinks[NS_MAIN]['Kittens'] ), 'no main links in aux' );
+	}
+
+	public function testGetRenderedRevision_noHtml() {
+		/** @var MockObject|Content $mockContent */
+		$mockContent = $this->getMockBuilder( WikitextContent::class )
+			->setMethods( [ 'getParserOutput' ] )
+			->setConstructorArgs( [ 'Whatever' ] )
+			->getMock();
+		$mockContent->method( 'getParserOutput' )
+			->willReturnCallback( function ( Title $title, $revId = null,
+				ParserOptions $options = null, $generateHtml = true
+			) {
+				if ( !$generateHtml ) {
+					return new ParserOutput( null );
+				} else {
+					$this->fail( 'Should not be called with $generateHtml == true' );
+					return null; // never happens, make analyzer happy
+				}
+			} );
+
+		$renderer = $this->newRevisionRenderer();
+		$title = $this->getMockTitle( 7, 21 );
+
+		$rev = new MutableRevisionRecord( $title );
+		$rev->setContent( 'main', $mockContent );
+		$rev->setContent( 'aux', $mockContent );
+
+		// NOTE: we are testing the private combineSlotOutput() callback here.
+		$rr = $renderer->getRenderedRevision( $rev );
+
+		$output = $rr->getSlotParserOutput( 'main', [ 'generate-html' => false ] );
+		$this->assertFalse( $output->hasText(), 'hasText' );
+
+		$output = $rr->getRevisionParserOutput( [ 'generate-html' => false ] );
+		$this->assertFalse( $output->hasText(), 'hasText' );
 	}
 
 }
