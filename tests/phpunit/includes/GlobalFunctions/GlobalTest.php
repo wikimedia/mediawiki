@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Logger\LegacyLogger;
+
 /**
  * @group Database
  * @group GlobalFunctions
@@ -325,8 +327,9 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgDebugLogFile' => $debugLogFile,
 			#  @todo FIXME: $wgDebugTimestamps should be tested
-			'wgDebugTimestamps' => false
+			'wgDebugTimestamps' => false,
 		] );
+		$this->setLogger( 'wfDebug', new LegacyLogger( 'wfDebug' ) );
 
 		wfDebug( "This is a normal string" );
 		$this->assertEquals( "This is a normal string\n", file_get_contents( $debugLogFile ) );
