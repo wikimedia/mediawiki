@@ -1489,10 +1489,10 @@ class Title implements LinkTarget {
 	public function isRawHtmlMessage() {
 		global $wgRawHtmlMessages;
 
-		if ( $this->inNamespace( NS_MEDIAWIKI ) ) {
+		if ( !$this->inNamespace( NS_MEDIAWIKI ) ) {
 			return false;
 		}
-		$message = lcfirst( $this->getRootText() );
+		$message = lcfirst( $this->getRootTitle()->getDBkey() );
 		return in_array( $message, $wgRawHtmlMessages, true );
 	}
 

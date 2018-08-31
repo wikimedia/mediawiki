@@ -8848,6 +8848,8 @@ $wgCSPReportOnlyHeader = false;
  * Extensions should add their messages here. The list is used for access control:
  * changing messages listed here will require editsitecss and editsitejs rights.
  *
+ * Message names must be given with underscores rather than spaces and with lowercase first letter.
+ *
  * @since 1.32
  * @var string[]
  */
