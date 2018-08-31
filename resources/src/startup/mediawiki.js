@@ -326,16 +326,21 @@
 		log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
 			obj[ key ] = val;
 		} : function ( obj, key, val, msg, logName ) {
-			var logged = new StringSet();
-			logName = logName || key;
-			msg = 'Use of "' + logName + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' );
-			function uniqueTrace() {
-				var trace = new Error().stack;
-				if ( logged.has( trace ) ) {
-					return false;
+			var stacks;
+			function maybeLog() {
+				var name,
+					trace = new Error().stack;
+				if ( !stacks ) {
+					stacks = new StringSet();
 				}
-				logged.add( trace );
-				return true;
+				if ( !stacks.has( trace ) ) {
+					stacks.add( trace );
+					name = logName || key;
+					mw.track( 'mw.deprecate', name );
+					mw.log.warn(
+						'Use of "' + name + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' )
+					);
+				}
 			}
 			// Support: Safari 5.0
 			// Throws "not supported on DOM Objects" for Node or Element objects (incl. document)
@@ -345,17 +350,11 @@
 					configurable: true,
 					enumerable: true,
 					get: function () {
-						if ( uniqueTrace() ) {
-							mw.track( 'mw.deprecate', logName );
-							mw.log.warn( msg );
-						}
+						maybeLog();
 						return val;
 					},
 					set: function ( newVal ) {
-						if ( uniqueTrace() ) {
-							mw.track( 'mw.deprecate', logName );
-							mw.log.warn( msg );
-						}
+						maybeLog();
 						val = newVal;
 					}
 				} );
