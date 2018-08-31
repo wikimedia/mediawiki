@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Storage;
 use CommentStoreComment;
 use InvalidArgumentException;
 use MediaWiki\Storage\MutableRevisionRecord;
+use MediaWiki\Storage\MutableRevisionSlots;
 use MediaWiki\Storage\RevisionAccessException;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
@@ -193,6 +194,11 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		$this->assertSame( 'phoiac9h4m842xq45sp7s6u21eteeq1', $record->getSha1() );
 		$record->setSha1( 'someHash' );
 		$this->assertSame( 'someHash', $record->getSha1() );
+	}
+
+	public function testGetSlots() {
+		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+		$this->assertInstanceOf( MutableRevisionSlots::class, $record->getSlots() );
 	}
 
 	public function testSetGetSize() {

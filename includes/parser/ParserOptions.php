@@ -61,6 +61,7 @@ class ParserOptions {
 	 */
 	private static $lazyOptions = [
 		'dateformat' => [ __CLASS__, 'initDateFormat' ],
+		'speculativeRevId' => [ __CLASS__, 'initSpeculativeRevId' ],
 	];
 
 	/**
@@ -832,8 +833,37 @@ class ParserOptions {
 	}
 
 	/**
+	 * A guess for {{REVISIONID}}, calculated using the callback provided via
+	 * setSpeculativeRevIdCallback(). For consistency, the value will be calculated upon the
+	 * first call of this method, and re-used for subsequent calls.
+	 *
+	 * If no callback was defined via setSpeculativeRevIdCallback(), this method will return false.
+	 *
+	 * @since 1.32
+	 * @return int|false
+	 */
+	public function getSpeculativeRevId() {
+		return $this->getOption( 'speculativeRevId' );
+	}
+
+	/**
+	 * Callback registered with ParserOptions::$lazyOptions, triggered by getSpeculativeRevId().
+	 *
+	 * @param ParserOptions $popt
+	 * @return bool|false
+	 */
+	private static function initSpeculativeRevId( ParserOptions $popt ) {
+		$cb = $popt->getOption( 'speculativeRevIdCallback' );
+		$id = $cb ? $cb() : null;
+
+		// returning null would result in this being re-called every access
+		return $id ?? false;
+	}
+
+	/**
 	 * Callback to generate a guess for {{REVISIONID}}
 	 * @since 1.28
+	 * @deprecated since 1.32, use getSpeculativeRevId() instead!
 	 * @return callable|null
 	 */
 	public function getSpeculativeRevIdCallback() {
@@ -847,6 +877,7 @@ class ParserOptions {
 	 * @return callable|null Old value
 	 */
 	public function setSpeculativeRevIdCallback( $x ) {
+		$this->setOption( 'speculativeRevId', null ); // reset
 		return $this->setOptionLegacy( 'speculativeRevIdCallback', $x );
 	}
 
@@ -1081,6 +1112,7 @@ class ParserOptions {
 				'currentRevisionCallback' => [ Parser::class, 'statelessFetchRevision' ],
 				'templateCallback' => [ Parser::class, 'statelessFetchTemplate' ],
 				'speculativeRevIdCallback' => null,
+				'speculativeRevId' => null,
 			];
 
 			Hooks::run( 'ParserOptionsRegister', [

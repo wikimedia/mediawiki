@@ -315,6 +315,17 @@ class MutableRevisionRecord extends RevisionRecord {
 	}
 
 	/**
+	 * Returns the slots defined for this revision as a MutableRevisionSlots instance,
+	 * which can be modified to defined the slots for this revision.
+	 *
+	 * @return MutableRevisionSlots
+	 */
+	public function getSlots() {
+		// Overwritten just guarantee the more narrow return type.
+		return parent::getSlots();
+	}
+
+	/**
 	 * Invalidate cached aggregate values such as hash and size.
 	 */
 	private function resetAggregateValues() {

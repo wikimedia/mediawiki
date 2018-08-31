@@ -23,6 +23,7 @@
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\RevisionRecord;
@@ -221,6 +222,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	private function getRevisionStore() {
 		return MediaWikiServices::getInstance()->getRevisionStore();
+	}
+
+	/**
+	 * @return RevisionRenderer
+	 */
+	private function getRevisionRenderer() {
+		return MediaWikiServices::getInstance()->getRevisionRenderer();
 	}
 
 	/**
@@ -931,6 +939,7 @@ class WikiPage implements Page, IDBAccessObject {
 				// links.
 				$hasLinks = (bool)count( $editInfo->output->getLinks() );
 			} else {
+				// NOTE: keep in sync with revisionRenderer::getLinkCount
 				$hasLinks = (bool)wfGetDB( DB_REPLICA )->selectField( 'pagelinks', 1,
 					[ 'pl_from' => $this->getId() ], __METHOD__ );
 			}
@@ -1630,6 +1639,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$derivedDataUpdater = new DerivedPageDataUpdater(
 			$this, // NOTE: eventually, PageUpdater should not know about WikiPage
 			$this->getRevisionStore(),
+			$this->getRevisionRenderer(),
 			$this->getParserCache(),
 			JobQueueGroup::singleton(),
 			MessageCache::singleton(),

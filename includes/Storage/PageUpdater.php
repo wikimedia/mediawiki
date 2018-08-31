@@ -344,10 +344,6 @@ class PageUpdater {
 		// TODO: MCR: check the role and the content's model against the list of supported
 		// roles, see T194046.
 
-		if ( $role !== 'main' ) {
-			throw new InvalidArgumentException( 'Only the main slot is presently supported' );
-		}
-
 		$this->slotsUpdate->modifyContent( $role, $content );
 	}
 
@@ -861,7 +857,11 @@ class PageUpdater {
 		$title = $this->getTitle();
 		$parent = $this->grabParentRevision();
 
-		$rev = new MutableRevisionRecord( $title, $this->getWikiId() );
+		// XXX: we expect to get a MutableRevisionRecord here, but that's a bit brittle!
+		// TODO: introduce something like an UnsavedRevisionFactory service instead!
+		/** @var MutableRevisionRecord $rev */
+		$rev = $this->derivedDataUpdater->getRevision();
+
 		$rev->setPageId( $title->getArticleID() );
 
 		if ( $parent ) {
@@ -876,16 +876,12 @@ class PageUpdater {
 		$rev->setTimestamp( $timestamp );
 		$rev->setMinorEdit( ( $flags & EDIT_MINOR ) > 0 );
 
-		foreach ( $this->derivedDataUpdater->getSlots()->getSlots() as $slot ) {
+		foreach ( $rev->getSlots()->getSlots() as $slot ) {
 			$content = $slot->getContent();
 
 			// XXX: We may push this up to the "edit controller" level, see T192777.
 			// TODO: change the signature of PrepareSave to not take a WikiPage!
 			$prepStatus = $content->prepareSave( $wikiPage, $flags, $oldid, $user );
-
-			if ( $prepStatus->isOK() ) {
-				$rev->setSlot( $slot );
-			}
 
 			// TODO: MCR: record which problem arose in which slot.
 			$status->merge( $prepStatus );

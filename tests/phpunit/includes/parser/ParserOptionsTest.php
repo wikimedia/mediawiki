@@ -13,6 +13,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		$wrap->defaults = null;
 		$wrap->lazyOptions = [
 			'dateformat' => [ ParserOptions::class, 'initDateFormat' ],
+			'speculativeRevId' => [ ParserOptions::class, 'initSpeculativeRevId' ],
 		];
 		$wrap->inCacheKey = [
 			'dateformat' => true,
@@ -307,6 +308,21 @@ class ParserOptionsTest extends MediaWikiTestCase {
 			'dateformat', 'foo', 'numberheadings', 'printable', 'stubthreshold',
 			'thumbsize', 'userlang'
 		], ParserOptions::allCacheVaryingOptions() );
+	}
+
+	public function testGetSpeculativeRevid() {
+		$options = new ParserOptions();
+
+		$this->assertFalse( $options->getSpeculativeRevId() );
+
+		$counter = 0;
+		$options->setSpeculativeRevIdCallback( function () use( &$counter ) {
+			return ++$counter;
+		} );
+
+		// make sure the same value is re-used once it is determined
+		$this->assertSame( 1, $options->getSpeculativeRevId() );
+		$this->assertSame( 1, $options->getSpeculativeRevId() );
 	}
 
 }
