@@ -4,28 +4,37 @@
  */
 class GitInfoTest extends MediaWikiTestCase {
 
+	private static $tempDir;
+
 	public static function setUpBeforeClass() {
-		mkdir( __DIR__ . '/../data/gitrepo' );
-		mkdir( __DIR__ . '/../data/gitrepo/1' );
-		mkdir( __DIR__ . '/../data/gitrepo/2' );
-		mkdir( __DIR__ . '/../data/gitrepo/3' );
-		mkdir( __DIR__ . '/../data/gitrepo/1/.git' );
-		mkdir( __DIR__ . '/../data/gitrepo/1/.git/refs' );
-		mkdir( __DIR__ . '/../data/gitrepo/1/.git/refs/heads' );
-		file_put_contents( __DIR__ . '/../data/gitrepo/1/.git/HEAD',
+		self::$tempDir = wfTempDir() . '/mw-phpunit-' . wfRandomString( 8 );
+		if ( !mkdir( self::$tempDir ) ) {
+			self::$tempDir = null;
+			throw new Exception( 'Unable to create temporary directory' );
+		}
+		mkdir( self::$tempDir . '/gitrepo' );
+		mkdir( self::$tempDir . '/gitrepo/1' );
+		mkdir( self::$tempDir . '/gitrepo/2' );
+		mkdir( self::$tempDir . '/gitrepo/3' );
+		mkdir( self::$tempDir . '/gitrepo/1/.git' );
+		mkdir( self::$tempDir . '/gitrepo/1/.git/refs' );
+		mkdir( self::$tempDir . '/gitrepo/1/.git/refs/heads' );
+		file_put_contents( self::$tempDir . '/gitrepo/1/.git/HEAD',
 			"ref: refs/heads/master\n" );
-		file_put_contents( __DIR__ . '/../data/gitrepo/1/.git/refs/heads/master',
+		file_put_contents( self::$tempDir . '/gitrepo/1/.git/refs/heads/master',
 			"0123456789012345678901234567890123abcdef\n" );
-		file_put_contents( __DIR__ . '/../data/gitrepo/1/.git/packed-refs',
+		file_put_contents( self::$tempDir . '/gitrepo/1/.git/packed-refs',
 			"abcdef6789012345678901234567890123456789 refs/heads/master\n" );
-		file_put_contents( __DIR__ . '/../data/gitrepo/2/.git',
+		file_put_contents( self::$tempDir . '/gitrepo/2/.git',
 			"gitdir: ../1/.git\n" );
-		file_put_contents( __DIR__ . '/../data/gitrepo/3/.git',
-			'gitdir: ' . __DIR__ . "/../data/gitrepo/1/.git\n" );
+		file_put_contents( self::$tempDir . '/gitrepo/3/.git',
+			'gitdir: ' . self::$tempDir . "/gitrepo/1/.git\n" );
 	}
 
 	public static function tearDownAfterClass() {
-		wfRecursiveRemoveDir( __DIR__ . '/../data/gitrepo' );
+		if ( self::$tempDir ) {
+			wfRecursiveRemoveDir( self::$tempDir );
+		}
 	}
 
 	protected function setUp() {
@@ -68,7 +77,7 @@ class GitInfoTest extends MediaWikiTestCase {
 	}
 
 	public function testReadingHead() {
-		$dir = __DIR__ . '/../data/gitrepo/1';
+		$dir = self::$tempDir . '/gitrepo/1';
 		$fixture = new GitInfo( $dir );
 
 		$this->assertEquals( 'refs/heads/master', $fixture->getHead() );
@@ -76,7 +85,7 @@ class GitInfoTest extends MediaWikiTestCase {
 	}
 
 	public function testIndirection() {
-		$dir = __DIR__ . '/../data/gitrepo/2';
+		$dir = self::$tempDir . '/gitrepo/2';
 		$fixture = new GitInfo( $dir );
 
 		$this->assertEquals( 'refs/heads/master', $fixture->getHead() );
@@ -84,7 +93,7 @@ class GitInfoTest extends MediaWikiTestCase {
 	}
 
 	public function testIndirection2() {
-		$dir = __DIR__ . '/../data/gitrepo/3';
+		$dir = self::$tempDir . '/gitrepo/3';
 		$fixture = new GitInfo( $dir );
 
 		$this->assertEquals( 'refs/heads/master', $fixture->getHead() );
@@ -92,8 +101,8 @@ class GitInfoTest extends MediaWikiTestCase {
 	}
 
 	public function testReadingPackedRefs() {
-		$dir = __DIR__ . '/../data/gitrepo/1';
-		unlink( __DIR__ . '/../data/gitrepo/1/.git/refs/heads/master' );
+		$dir = self::$tempDir . '/gitrepo/1';
+		unlink( self::$tempDir . '/gitrepo/1/.git/refs/heads/master' );
 		$fixture = new GitInfo( $dir );
 
 		$this->assertEquals( 'refs/heads/master', $fixture->getHead() );
