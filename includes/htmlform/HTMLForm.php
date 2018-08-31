@@ -1029,6 +1029,7 @@ class HTMLForm extends ContextSource {
 	 * @param bool|string|array|Status $submitResult Output from HTMLForm::trySubmit()
 	 *
 	 * @return string HTML
+	 * @return-taint escaped
 	 */
 	public function getHTML( $submitResult ) {
 		# For good measure (it is the default)
