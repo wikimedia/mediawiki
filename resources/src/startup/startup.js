@@ -55,7 +55,7 @@ window.isCompatible = function ( str ) {
 		// https://caniuse.com/#feat=json / https://phabricator.wikimedia.org/T141344#2784065
 		( function () {
 			'use strict';
-			return !this && !!Function.prototype.bind && !!window.JSON;
+			return !this && Function.prototype.bind && window.JSON;
 		}() ) &&
 
 		// https://caniuse.com/#feat=queryselector
