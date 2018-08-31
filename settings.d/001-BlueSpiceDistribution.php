@@ -5,7 +5,6 @@ require_once __DIR__ . "/../extensions/CategoryTree/CategoryTree.php";
 wfLoadExtension( 'DynamicPageList' );
 require_once __DIR__ . "/../extensions/HitCounters/HitCounters.php";
 require_once __DIR__ . "/../extensions/ImageMapEdit/ImageMapEdit.php";
-wfLoadExtension( 'Lockdown' );
 require_once __DIR__ . "/../extensions/Quiz/Quiz.php";
 wfLoadExtension( 'RSS' );
 wfLoadExtension( 'Echo');
