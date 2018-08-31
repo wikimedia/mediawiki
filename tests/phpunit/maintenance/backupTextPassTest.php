@@ -2,7 +2,9 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
+use Exception;
 use MediaWikiLangTestCase;
+use MWException;
 use TextContentHandler;
 use TextPassDumper;
 use Title;
