@@ -530,8 +530,26 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		return $rev;
 	}
 
+	/**
+	 * @param int $id
+	 * @return Title
+	 */
+	private function getMockTitle( $id = 23 ) {
+		$mock = $this->getMockBuilder( Title::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$mock->expects( $this->any() )
+			->method( 'getDBkey' )
+			->will( $this->returnValue( __CLASS__ ) );
+		$mock->expects( $this->any() )
+			->method( 'getArticleID' )
+			->will( $this->returnValue( $id ) );
+
+		return $mock;
+	}
+
 	public function provideIsReusableFor() {
-		$title = Title::makeTitleSafe( NS_MAIN, __METHOD__ );
+		$title = $this->getMockTitle();
 
 		$user1 = User::newFromName( 'Alice' );
 		$user2 = User::newFromName( 'Bob' );

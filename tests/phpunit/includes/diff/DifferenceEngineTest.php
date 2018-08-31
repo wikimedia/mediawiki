@@ -344,11 +344,29 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @param int $id
+	 * @return Title
+	 */
+	private function getMockTitle( $id = 23 ) {
+		$mock = $this->getMockBuilder( Title::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$mock->expects( $this->any() )
+			->method( 'getDBkey' )
+			->will( $this->returnValue( __CLASS__ ) );
+		$mock->expects( $this->any() )
+			->method( 'getArticleID' )
+			->will( $this->returnValue( $id ) );
+
+		return $mock;
+	}
+
+	/**
 	 * @param SlotRecord[] $slots
 	 * @return MutableRevisionRecord
 	 */
 	private function getRevisionRecord( ...$slots ) {
-		$title = Title::newFromText( 'Foo' );
+		$title = $this->getMockTitle();
 		$revision = new MutableRevisionRecord( $title );
 		foreach ( $slots as $slot ) {
 			$revision->setSlot( $slot );
