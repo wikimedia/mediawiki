@@ -301,6 +301,10 @@ class ParserCache {
 		$cacheTime = null,
 		$revId = null
 	) {
+		if ( !$parserOutput->hasText() ) {
+			throw new InvalidArgumentException( 'Attempt to cache a ParserOutput with no text set!' );
+		}
+
 		$expire = $parserOutput->getCacheExpiry();
 		if ( $expire > 0 && !$this->mMemc instanceof EmptyBagOStuff ) {
 			$cacheTime = $cacheTime ?: wfTimestampNow();
