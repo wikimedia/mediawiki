@@ -1584,16 +1584,6 @@ CREATE TABLE /*_*/objectcache (
 CREATE INDEX /*i*/exptime ON /*_*/objectcache (exptime);
 
 
---
--- Cache of interwiki transclusion
---
-CREATE TABLE /*_*/transcache (
-  tc_url varbinary(255) NOT NULL PRIMARY KEY,
-  tc_contents text,
-  tc_time binary(14) NOT NULL
-) /*$wgDBTableOptions*/;
-
-
 CREATE TABLE /*_*/logging (
   -- Log ID, for referring to this specific log entry, probably for deletion and such.
   log_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,

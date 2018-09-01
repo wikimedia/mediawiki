@@ -84,7 +84,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'doUserGroupsUpdate' ],
 			[ 'addField', 'site_stats', 'ss_total_pages', 'patch-ss_total_articles.sql' ],
 			[ 'addTable', 'user_newtalk', 'patch-usernewtalk.sql' ],
-			[ 'addTable', 'transcache', 'patch-transcache.sql' ],
 			[ 'addField', 'interwiki', 'iw_trans', 'patch-interwiki-trans.sql' ],
 
 			// 1.6
@@ -172,7 +171,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addTable', 'l10n_cache', 'patch-l10n_cache.sql' ],
 			[ 'addIndex', 'change_tag', 'change_tag_rc_tag', 'patch-change_tag-indexes.sql' ],
 			[ 'addField', 'redirect', 'rd_interwiki', 'patch-rd_interwiki.sql' ],
-			[ 'doUpdateTranscacheField' ],
 			[ 'doUpdateMimeMinorField' ],
 
 			// 1.17
@@ -319,7 +317,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'querycache_info', 'qci_type', 'PRIMARY', false,
 				'patch-querycache_info-fix-pk.sql' ],
 			[ 'renameIndex', 'site_stats', 'ss_row_id', 'PRIMARY', false, 'patch-site_stats-fix-pk.sql' ],
-			[ 'renameIndex', 'transcache', 'tc_url_idx', 'PRIMARY', false, 'patch-transcache-fix-pk.sql' ],
 			[ 'renameIndex', 'user_former_groups', 'ufg_user_group', 'PRIMARY', false,
 				'patch-user_former_groups-fix-pk.sql' ],
 			[ 'renameIndex', 'user_properties', 'user_properties_user_property', 'PRIMARY', false,
@@ -368,6 +365,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'site_identifiers', 'site_ids_type', 'PRIMARY', false,
 				'patch-site_identifiers-fix-pk.sql' ],
 			[ 'addIndex', 'recentchanges', 'rc_this_oldid', 'patch-recentchanges-rc_this_oldid-index.sql' ],
+			[ 'dropTable', 'transcache' ],
 		];
 	}
 
