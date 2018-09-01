@@ -120,6 +120,12 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$code = $rl->makeModuleResponse( $startupContext, [
 			'startup' => $rl->getModule( 'startup' ),
 		] );
+		$code .= <<<JAVASCRIPT
+	// Disable module storage.
+	// The unit test for mw.loader.store will enable it
+	// explicitly with a mock timer.
+	mw.loader.store.enabled = false;
+JAVASCRIPT;
 		// The following has to be deferred via RLQ because the startup module is asynchronous.
 		$code .= ResourceLoader::makeLoaderConditionalScript(
 			// Embed page-specific mw.config variables.

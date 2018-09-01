@@ -1,15 +1,12 @@
 ( function ( mw, $ ) {
 	QUnit.module( 'mediawiki.loader', QUnit.newMwEnvironment( {
 		setup: function ( assert ) {
-			mw.loader.store.enabled = false;
-
 			// Expose for load.mock.php
 			mw.loader.testFail = function ( reason ) {
 				assert.ok( false, reason );
 			};
 		},
 		teardown: function () {
-			mw.loader.store.enabled = false;
 			// Teardown for StringSet shim test
 			if ( this.nativeSet ) {
 				window.Set = this.nativeSet;
@@ -855,17 +852,17 @@
 
 	QUnit.test( 'Stale response caching - T117587', function ( assert ) {
 		var count = 0;
-		mw.loader.store.enabled = true;
-		mw.loader.register( 'test.stale', 'v2' );
-		assert.strictEqual( mw.loader.store.get( 'test.stale' ), false, 'Not in store' );
-
-		// Stub deferred timeout/idle callback
+		// Enable store and stub timeout/idle scheduling
+		this.sandbox.stub( mw.loader.store, 'enabled', true );
 		this.sandbox.stub( window, 'setTimeout', function ( fn ) {
 			fn();
 		} );
 		this.sandbox.stub( mw, 'requestIdleCallback', function ( fn ) {
 			fn();
 		} );
+
+		mw.loader.register( 'test.stale', 'v2' );
+		assert.strictEqual( mw.loader.store.get( 'test.stale' ), false, 'Not in store' );
 
 		mw.loader.implement( 'test.stale@v1', function () {
 			count++;
@@ -877,7 +874,7 @@
 				// After implementing, registry contains version as implemented by the response.
 				assert.strictEqual( mw.loader.getVersion( 'test.stale' ), 'v1', 'Override version' );
 				assert.strictEqual( mw.loader.getState( 'test.stale' ), 'ready' );
-				assert.ok( mw.loader.store.get( 'test.stale' ), 'In store' );
+				assert.strictEqual( typeof mw.loader.store.get( 'test.stale' ), 'string', 'In store' );
 			} )
 			.then( function () {
 				// Reset run time, but keep mw.loader.store
@@ -893,17 +890,17 @@
 
 	QUnit.test( 'Stale response caching - backcompat', function ( assert ) {
 		var script = 0;
-		mw.loader.store.enabled = true;
-		mw.loader.register( 'test.stalebc', 'v2' );
-		assert.strictEqual( mw.loader.store.get( 'test.stalebc' ), false, 'Not in store' );
-
-		// Stub deferred timeout/idle callback
+		// Enable store and stub timeout/idle scheduling
+		this.sandbox.stub( mw.loader.store, 'enabled', true );
 		this.sandbox.stub( window, 'setTimeout', function ( fn ) {
 			fn();
 		} );
 		this.sandbox.stub( mw, 'requestIdleCallback', function ( fn ) {
 			fn();
 		} );
+
+		mw.loader.register( 'test.stalebc', 'v2' );
+		assert.strictEqual( mw.loader.store.get( 'test.stalebc' ), false, 'Not in store' );
 
 		mw.loader.implement( 'test.stalebc', function () {
 			script++;
@@ -913,7 +910,7 @@
 			.then( function () {
 				assert.strictEqual( script, 1, 'module script ran' );
 				assert.strictEqual( mw.loader.getState( 'test.stalebc' ), 'ready' );
-				assert.ok( mw.loader.store.get( 'test.stalebc' ), 'In store' );
+				assert.strictEqual( typeof mw.loader.store.get( 'test.stalebc' ), 'string', 'In store' );
 			} )
 			.then( function () {
 				// Reset run time, but keep mw.loader.store
