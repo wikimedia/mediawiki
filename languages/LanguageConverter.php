@@ -642,8 +642,12 @@ class LanguageConverter {
 	 * -{flags|code1:text1;code2:text2;...}-  or
 	 * -{text}- in which case no conversion should take place for text
 	 *
-	 * @param string $text Text to be converted
-	 * @return string Converted text
+	 * @warning Glossary state is maintained between calls. Never feed this
+	 *   method input that hasn't properly been escaped as it may result in
+	 *   an XSS in subsequent calls, even if those subsequent calls properly
+	 *   escape things.
+	 * @param string $text Text to be converted, already html escaped.
+	 * @return string Converted text (html)
 	 */
 	public function convert( $text ) {
 		$variant = $this->getPreferredVariant();
@@ -653,9 +657,11 @@ class LanguageConverter {
 	/**
 	 * Same as convert() except a extra parameter to custom variant.
 	 *
-	 * @param string $text Text to be converted
+	 * @param string $text Text to be converted, already html escaped
+	 * @param-taint $text exec_html
 	 * @param string $variant The target variant code
 	 * @return string Converted text
+	 * @return-taint escaped
 	 */
 	public function convertTo( $text, $variant ) {
 		global $wgDisableLangConversion;
