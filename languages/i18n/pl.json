@@ -3433,6 +3433,7 @@
 	"confirm-unwatch-top": "Usunąć tę stronę z listy obserwowanych?",
 	"confirm-rollback-button": "OK",
 	"confirm-rollback-top": "Wycofać edycje tej strony?",
+	"mcrundofailed": "Cofnięcie nie powiodło się",
 	"percent": "$1%",
 	"quotation-marks": "„$1”",
 	"imgmultipageprev": "← poprzednia strona",
