@@ -1705,7 +1705,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 		$originalTables = $db->listTables( $db->_originalTablePrefix, __METHOD__ );
 		if ( $prefix === 'unprefixed' ) {
-			$originalPrefixRegex = '/^' . preg_quote( $db->_originalTablePrefix ) . '/';
+			$originalPrefixRegex = '/^' . preg_quote( $db->_originalTablePrefix, '/' ) . '/';
 			$originalTables = array_map(
 				function ( $pt ) use ( $originalPrefixRegex ) {
 					return preg_replace( $originalPrefixRegex, '', $pt );
