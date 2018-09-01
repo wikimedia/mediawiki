@@ -4194,6 +4194,11 @@ class Language {
 	/**
 	 * convert text to different variants of a language.
 	 *
+	 * @warning Glossary state is maintained between calls. This means
+	 *  if you pass unescaped text to this method it can cause an XSS
+	 *  in later calls to this method, even if the later calls have properly
+	 *  escaped the input. Never feed this method user controlled text that
+	 *  is not properly escaped!
 	 * @param string $text Content that has been already escaped for use in HTML
 	 * @return string HTML
 	 */
