@@ -226,7 +226,6 @@
 		<exclude-pattern>*/includes/api/ApiOpenSearch\.php</exclude-pattern>
 		<exclude-pattern>*/includes/api/ApiRsd\.php</exclude-pattern>
 		<exclude-pattern>*/includes/api/ApiUsageException\.php</exclude-pattern>
-		<exclude-pattern>*/includes/auth/AuthManagerAuthPlugin\.php</exclude-pattern>
 		<exclude-pattern>*/includes/AuthPlugin\.php</exclude-pattern>
 		<exclude-pattern>*/includes/cache/CacheDependency\.php</exclude-pattern>
 		<exclude-pattern>*/includes/cache/CacheHelper\.php</exclude-pattern>
