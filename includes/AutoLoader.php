@@ -129,6 +129,7 @@ class AutoLoader {
 	 */
 	public static function getAutoloadNamespaces() {
 		return [
+			'MediaWiki\\Auth\\' => __DIR__ . '/auth/',
 			'MediaWiki\\Edit\\' => __DIR__ . '/edit/',
 			'MediaWiki\\EditPage\\' => __DIR__ . '/editpage/',
 			'MediaWiki\\Linker\\' => __DIR__ .'/linker/',
