@@ -3958,7 +3958,7 @@
 	"mw-widgets-titleinput-description-new-page": "sivua ei ole olemassa vielä",
 	"mw-widgets-titleinput-description-redirect": "ohjaus kohteeseen $1",
 	"mw-widgets-categoryselector-add-category-placeholder": "Lisää luokka...",
-	"mw-widgets-usersmultiselect-placeholder": "Lisää enemmän...",
+	"mw-widgets-usersmultiselect-placeholder": "Lisää useampia...",
 	"date-range-from": "Aloituspäivä:",
 	"date-range-to": "Päättymispäivä:",
 	"sessionmanager-tie": "Monentyyppisiä kirjautumispyyntöjä ei voi yhdistää: $1.",

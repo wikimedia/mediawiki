@@ -42,7 +42,8 @@
 			"Phjtieudoc",
 			"Harriettruong3",
 			"Fitoschido",
-			"Leducthn"
+			"Leducthn",
+			"Nhatminh01"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -1810,7 +1811,7 @@
 	"filehist-comment": "Miêu tả",
 	"imagelinks": "Các trang sử dụng tập tin",
 	"linkstoimage": "{{PLURAL:$1|Trang|$1 trang}} sau có liên kết đến tập tin này:",
-	"linkstoimage-more": "Có hơn $1 trang liên kết đến tập tin này.\nDanh sách dưới đây chỉ hiển thị {{PLURAL:$1|liên kết|$1 liên kết}} đầu tiên đến tập tin này.\nCó [[Special:WhatLinksHere/$2|danh sách đầy đủ ở đây]].",
+	"linkstoimage-more": "Có hơn $1 trang liên kết đến tập tin này.\nDanh sách dưới đây chỉ hiển thị {{PLURAL:$1|liên kết|$1 liên kết}} đầu tiên đến tập tin này.\nMột danh sách đầy đủ có sẵn [[Special:WhatLinksHere/$2|tại đây]].",
 	"nolinkstoimage": "Không có trang nào chứa liên kết đến hình.",
 	"morelinkstoimage": "Xem [[Special:WhatLinksHere/$1|thêm liên kết]] đến tập tin này.",
 	"linkstoimage-redirect": "$1 (tập tin đổi hướng) $2",
@@ -4144,7 +4145,7 @@
 	"edit-error-long": "Lỗi:\n\n$1",
 	"revid": "phiên bản $1",
 	"pageid": "số trang $1",
-	"interfaceadmin-info": "$1\n\nMới đây phần mềm bắt đầu phân biệt quyền sửa đổi các tập tin CSS/JS/JSON toàn trang và quyền <code>editinterface</code>. Nếu bạn không hiểu lỗi này xuất hiện tại sao, hãy xem [[mw:MediaWiki_1.32/interface-admin]].",
+	"interfaceadmin-info": "$1\n\nMới đây phần mềm bắt đầu phân biệt quyền sửa đổi các tập tin CSS/JS/JSON toàn trang và quyền <code>editinterface</code>. Nếu bạn không hiểu tại sao bạn bị lỗi trên, hãy xem [[mw:MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "Không thể sử dụng thẻ &lt;html&gt; bên ngoài trang bình thường.",
 	"gotointerwiki": "Rời khỏi {{SITENAME}}",
 	"gotointerwiki-invalid": "Tên trang chỉ định không hợp lệ.",

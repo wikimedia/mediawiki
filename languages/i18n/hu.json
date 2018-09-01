@@ -3365,6 +3365,8 @@
 	"confirm-unwatch-top": "El szeretnéd távolítani a lapot a figyelőlistádról?",
 	"confirm-rollback-button": "OK",
 	"confirm-rollback-top": "Visszavonod a változtatásokat?",
+	"confirm-mcrundo-title": "Egy változtatás visszavonva",
+	"mcrundofailed": "A visszavonás nem sikerült",
 	"ellipsis": "…",
 	"quotation-marks": "„$1”",
 	"imgmultipageprev": "← előző oldal",
