@@ -1149,18 +1149,6 @@ CREATE TABLE /*_*/objectcache (
 CREATE INDEX /*i*/exptime ON /*_*/objectcache (exptime);
 
 
---
--- Cache of interwiki transclusion
---
-CREATE TABLE /*_*/transcache (
-  tc_url nvarchar(255) NOT NULL,
-  tc_contents nvarchar(max),
-  tc_time varchar(14) NOT NULL
-);
-
-CREATE UNIQUE INDEX /*i*/tc_url_idx ON /*_*/transcache (tc_url);
-
-
 CREATE TABLE /*_*/logging (
   -- Log ID, for referring to this specific log entry, probably for deletion and such.
   log_id int NOT NULL PRIMARY KEY IDENTITY(0,1),

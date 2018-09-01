@@ -394,14 +394,6 @@ CREATE UNIQUE INDEX /*i*/si_page ON /*_*/searchindex (si_page);
 CREATE INDEX /*i*/si_title ON /*_*/searchindex (si_title);
 CREATE INDEX /*i*/si_text ON /*_*/searchindex (si_text);
 
-DROP TABLE IF EXISTS /*_*/transcache;
-CREATE TABLE /*_*/transcache (
-  tc_url varbinary(255) NOT NULL,
-  tc_contents text,
-  tc_time int NOT NULL
-) /*$wgDBTableOptions*/;
-CREATE UNIQUE INDEX /*i*/tc_url_idx ON /*_*/transcache (tc_url);
-
 DROP TABLE IF EXISTS /*_*/querycache_info;
 CREATE TABLE /*_*/querycache_info (
   qci_type varbinary(32) NOT NULL default '',

@@ -1154,21 +1154,6 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Updates the timestamps in the transcache table
-	 * @return bool
-	 */
-	protected function doUpdateTranscacheField() {
-		if ( $this->updateRowExists( 'convert transcache field' ) ) {
-			$this->output( "...transcache tc_time already converted.\n" );
-
-			return true;
-		}
-
-		return $this->applyPatch( 'patch-tc-timestamp.sql', false,
-			"Converting tc_time from UNIX epoch to MediaWiki timestamp" );
-	}
-
-	/**
 	 * Update CategoryLinks collation
 	 */
 	protected function doCollationUpdate() {

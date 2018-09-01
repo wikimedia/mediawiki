@@ -647,12 +647,6 @@ CREATE TABLE objectcache (
 );
 CREATE INDEX objectcacache_exptime ON objectcache (exptime);
 
-CREATE TABLE transcache (
-  tc_url       TEXT         NOT NULL  UNIQUE,
-  tc_contents  TEXT         NOT NULL,
-  tc_time      TIMESTAMPTZ  NOT NULL
-);
-
 
 CREATE SEQUENCE logging_log_id_seq;
 CREATE TABLE logging (

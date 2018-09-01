@@ -145,6 +145,7 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'addIndex', 'page_props', 'PRIMARY', 'patch-page_props-pk.sql' ],
 			[ 'addIndex', 'site_identifiers', 'PRIMARY', 'patch-site_identifiers-pk.sql' ],
 			[ 'addIndex', 'recentchanges', 'rc_this_oldid', 'patch-recentchanges-rc_this_oldid-index.sql' ],
+			[ 'dropTable', 'transcache' ],
 		];
 	}
 
