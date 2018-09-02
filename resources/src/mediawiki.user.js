@@ -79,7 +79,7 @@
 		 * cached within this class (also known as a page view token).
 		 *
 		 * @since 1.32
-		 * @return {string} 64 bit integer in hex format, padded
+		 * @return {string} 80 bit integer in hex format, padded
 		 */
 		getPageviewToken: function () {
 			if ( !pageviewRandomId ) {
