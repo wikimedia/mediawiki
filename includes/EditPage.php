@@ -3786,7 +3786,7 @@ ERROR;
 
 	/**
 	 * Get the last log record of this page being deleted, if ever.  This is
-	 * used to detect whether a delete occured during editing.
+	 * used to detect whether a delete occurred during editing.
 	 * @return bool|stdClass
 	 */
 	protected function getLastDelete() {

@@ -500,7 +500,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 	}
 
 	/** @noinspection PhpUnusedLocalVariableInspection */
-	$done = true; // no PHP fatal occured
+	$done = true; // no PHP fatal occurred
 
 	if ( !$thumb || $thumb->isError() ) {
 		// Randomize TTL to reduce stampedes

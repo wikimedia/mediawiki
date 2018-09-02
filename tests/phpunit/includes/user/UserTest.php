@@ -524,13 +524,13 @@ class UserTest extends MediaWikiTestCase {
 
 		$touched = $user->getDBTouched();
 		$this->assertTrue(
-			$user->checkAndSetTouched(), "checkAndSetTouched() succeded" );
+			$user->checkAndSetTouched(), "checkAndSetTouched() succedeed" );
 		$this->assertGreaterThan(
 			$touched, $user->getDBTouched(), "user_touched increased with casOnTouched()" );
 
 		$touched = $user->getDBTouched();
 		$this->assertTrue(
-			$user->checkAndSetTouched(), "checkAndSetTouched() succeded #2" );
+			$user->checkAndSetTouched(), "checkAndSetTouched() succedeed #2" );
 		$this->assertGreaterThan(
 			$touched, $user->getDBTouched(), "user_touched increased with casOnTouched() #2" );
 	}
