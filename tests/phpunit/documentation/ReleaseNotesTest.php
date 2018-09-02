@@ -45,7 +45,7 @@ class ReleaseNotesTest extends MediaWikiTestCase {
 				$this->assertLessThanOrEqual(
 					// FILE_IGNORE_NEW_LINES drops the \n at the EOL, so max length is 80 not 81.
 					80,
-					strlen( $line ),
+					mb_strlen( $line ),
 					"Release notes file '$fileName' line $i is longer than 80 chars:\n\t'$line'"
 				);
 			}
