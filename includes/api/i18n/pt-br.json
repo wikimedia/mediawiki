@@ -82,6 +82,7 @@
 	"apihelp-compare-param-torev": "Segunda revisão para comparar.",
 	"apihelp-compare-param-torelative": "Use uma revisão relativa à revisão determinada de <var>fromtitle</var>, <var>fromid</var> ou <var>fromrev</var>. Todas as outras opções 'to' serão ignoradas.",
 	"apihelp-compare-param-topst": "Faz uma transformação pré-salvar em <var>totext</var>.",
+	"apihelp-compare-param-toslots": "Substituir o conteúdo da revisão especificada por <var>totitle</var>, <var>toid</var> ou <var>torev</var>.\n\nEste parâmetro especifica os slots que devem ser modificados. Usar <var>totext-&#x7B;slot}</var>, <var>tocontentmodel-&#x7B;slot}</var>, e <var>tocontentformat-&#x7B;slot}</var> para especificar o conteúdo de cada slot.",
 	"apihelp-compare-param-totext-{slot}": "Texto do slot especificado. Se omitido, o slot é removido da revisão.",
 	"apihelp-compare-param-tosection-{slot}": "Quando <var>totext-&#x7B;slot}</var> é o conteúdo de uma única secção, este é o número da secção. Será fundido na revisão especificada por <var>totitle</var>, <var>toid</var> ou <var>torev</var> tal como acontece na edição de uma secção.",
 	"apihelp-compare-param-tocontentmodel-{slot}": "Modelo de conteúdo de <var>totext-&#x7B;slot}</var>. Se não for fornecido, ele será deduzido a partir dos outros parâmetros.",

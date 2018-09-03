@@ -100,7 +100,8 @@
 			"Catrope",
 			"Hedda",
 			"Fitoschido",
-			"TmY e12"
+			"TmY e12",
+			"Dual"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çizme:",
@@ -452,6 +453,9 @@
 	"customcssprotected": "Bu sayfayı değiştirmeye yetkiniz bulunmamaktadır, çünkü bu sayfa başka bir kullanıcının kişisel ayarlarını içermektedir.",
 	"customjsonprotected": "Başka bir kullanıcının kişisel ayarlarını içerdiği için bu JSON sayfasını düzenleme izniniz yok.",
 	"customjsprotected": "Bu Java Script sayfasını değiştirmeye yetkiniz bulunmamaktadır, çünkü bu sayfa başka bir kullanıcının kişisel ayarlarını içermektedir.",
+	"sitecssprotected": "Bu CSS sayfasını düzenleyemezsiniz, çünkü bu tüm ziyaretçileri etkileyebilir.",
+	"sitejsonprotected": "Bu JSON sayfasını düzenleyemezsiniz, çünkü bu tüm ziyaretçileri etkileyebilir.",
+	"sitejsprotected": "Bu JavaScript sayfasını düzenleyemezsiniz, çünkü bu tüm ziyaretçileri etkileyebilir.",
 	"mycustomcssprotected": "Bu CSS sayfasını değiştirmeye yetkiniz yok.",
 	"mycustomjsonprotected": "Bu JSON sayfasını düzenleme izniniz yok.",
 	"mycustomjsprotected": "Bu JavaScript sayfasını değiştirmeye yetkiniz yok.",
