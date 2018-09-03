@@ -287,6 +287,8 @@ because of Phabricator reports.
   instead.
 * MediaWiki no longer supports a StartProfiler.php file.
   Define $wgProfiler via LocalSettings.php instead.
+* The mw.loader.addSource() is now considered a private method, and no longer
+  supports the `id, url` signature. Use the `Object` parameter instead.
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit
