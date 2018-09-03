@@ -1,10 +1,12 @@
 == MediaWiki 1.30.1 ==
 
-THIS IS NOT A RELEASE YET!
-
 This is a security and maintenance release of the MediaWiki 1.30 branch.
 
 === Changes since MediaWiki 1.30.0 ===
+* (T169545, CVE-2018-0503) SECURITY: $wgRateLimits entry for 'user' overrides
+  'newbie'.
+* (T194605, CVE-2018-0505) SECURITY: BotPasswords can bypass CentralAuth's
+  account lock.
 * (T87572) Make FormatMetadata::flattenArrayReal() work for an associative array.
 * Updated composer/spdx-licenses from 1.1.4 to 1.3.0 (development dependency).
 * (T189567) the CLI installer (maintenance/install.php) learned to detect and
