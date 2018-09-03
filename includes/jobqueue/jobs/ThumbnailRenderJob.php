@@ -103,8 +103,10 @@ class ThumbnailRenderJob extends Job {
 
 		wfDebug( __METHOD__ . ": hitting url {$thumbUrl}\n" );
 
+		// T203135 We don't wait for the request to complete, as this is mostly fire & forget.
+		// Looking at the HTTP status of requests that take less than 1s is a sanity check.
 		$request = MWHttpRequest::factory( $thumbUrl,
-			[ 'method' => 'HEAD', 'followRedirects' => true ],
+			[ 'method' => 'HEAD', 'followRedirects' => true, 'timeout' => 1 ],
 			__METHOD__
 		);
 
@@ -122,6 +124,10 @@ class ThumbnailRenderJob extends Job {
 			return true;
 		} elseif ( $statusCode ) {
 			$this->setLastError( __METHOD__ . ": incorrect HTTP status $statusCode when hitting $thumbUrl" );
+		} elseif ( $status->hasMessage( 'http-timed-out' ) ) {
+			// T203135 we ignore timeouts, as it would be inefficient for this job to wait for
+			// minutes for the slower thumbnails to complete.
+			return true;
 		} else {
 			$this->setLastError( __METHOD__ . ': HTTP request failure: '
 				. Status::wrap( $status )->getWikiText( null, null, 'en' ) );
