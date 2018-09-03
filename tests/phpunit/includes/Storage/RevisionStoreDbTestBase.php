@@ -271,7 +271,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertEquals( $r1->getSha1(), $r2->getSha1() );
 		$this->assertEquals( $r1->getSize(), $r2->getSize() );
 		$this->assertEquals( $r1->getPageId(), $r2->getPageId() );
-		$this->assertArrayEqualsIgnoringIntKeyOrder( $r1->getSlotRoles(), $r2->getSlotRoles() );
+		$this->assertArrayEquals( $r1->getSlotRoles(), $r2->getSlotRoles() );
 		$this->assertEquals( $r1->getWikiId(), $r2->getWikiId() );
 		$this->assertEquals( $r1->isMinor(), $r2->isMinor() );
 		foreach ( $r1->getSlotRoles() as $role ) {
@@ -617,7 +617,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertEquals( $user->getName(), $record->getUser()->getName() );
 		$this->assertEquals( $baseRev->getId(), $record->getParentId() );
 
-		$this->assertArrayEqualsIgnoringIntKeyOrder(
+		$this->assertArrayEquals(
 			$baseRev->getSlotRoles(),
 			$record->getSlotRoles()
 		);
@@ -889,6 +889,38 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
+	 * @covers \MediaWiki\Storage\RevisionStore::getQueryInfo
+	 */
+	public function testNewRevisionFromRow_getQueryInfo() {
+		$page = $this->getTestPage();
+		$text = __METHOD__ . 'a-ä';
+		/** @var Revision $rev */
+		$rev = $page->doEditContent(
+			new WikitextContent( $text ),
+			__METHOD__ . 'a'
+		)->value['revision'];
+
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$info = $store->getQueryInfo();
+		$row = $this->db->selectRow(
+			$info['tables'],
+			$info['fields'],
+			[ 'rev_id' => $rev->getId() ],
+			__METHOD__,
+			[],
+			$info['joins']
+		);
+		$record = $store->newRevisionFromRow(
+			$row,
+			[],
+			$page->getTitle()
+		);
+		$this->assertRevisionRecordMatchesRevision( $rev, $record );
+		$this->assertSame( $text, $rev->getContent()->serialize() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
 	 */
 	public function testNewRevisionFromRow_anonEdit() {
 		$page = $this->getTestPage();
@@ -960,8 +992,9 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromArchiveRow
+	 * @covers \MediaWiki\Storage\RevisionStore::getArchiveQueryInfo
 	 */
-	public function testNewRevisionFromArchiveRow() {
+	public function testNewRevisionFromArchiveRow_getArchiveQueryInfo() {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$title = Title::newFromText( __METHOD__ );
 		$text = __METHOD__ . '-bä';
@@ -1543,184 +1576,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->setService( 'BlobStoreFactory', $factory );
 
 		$this->testNewMutableRevisionFromArray( $array );
-	}
-
-	protected function getDefaultQueryFields( $returnTextIdField = true ) {
-		$fields = [
-			'rev_id',
-			'rev_page',
-			'rev_timestamp',
-			'rev_minor_edit',
-			'rev_deleted',
-			'rev_len',
-			'rev_parent_id',
-			'rev_sha1',
-		];
-		if ( $returnTextIdField ) {
-			$fields[] = 'rev_text_id';
-		}
-		return $fields;
-	}
-
-	protected function getCommentQueryFields() {
-		return [
-			'rev_comment_text' => 'rev_comment',
-			'rev_comment_data' => 'NULL',
-			'rev_comment_cid' => 'NULL',
-		];
-	}
-
-	protected function getActorQueryFields() {
-		return [
-			'rev_user' => 'rev_user',
-			'rev_user_text' => 'rev_user_text',
-			'rev_actor' => 'NULL',
-		];
-	}
-
-	protected function getContentHandlerQueryFields() {
-		return [
-			'rev_content_format',
-			'rev_content_model',
-		];
-	}
-
-	abstract public function provideGetQueryInfo();
-
-	/**
-	 * @dataProvider provideGetQueryInfo
-	 * @covers \MediaWiki\Storage\RevisionStore::getQueryInfo
-	 */
-	public function testGetQueryInfo( $options, $expected ) {
-		$store = MediaWikiServices::getInstance()->getRevisionStore();
-
-		$queryInfo = $store->getQueryInfo( $options );
-
-		$this->assertArrayEqualsIgnoringIntKeyOrder(
-			$expected['tables'],
-			$queryInfo['tables']
-		);
-		$this->assertArrayEqualsIgnoringIntKeyOrder(
-			$expected['fields'],
-			$queryInfo['fields']
-		);
-		$this->assertArrayEqualsIgnoringIntKeyOrder(
-			$expected['joins'],
-			$queryInfo['joins']
-		);
-	}
-
-	protected function getDefaultArchiveFields( $returnTextFields = true ) {
-		$fields = [
-			'ar_id',
-			'ar_page_id',
-			'ar_namespace',
-			'ar_title',
-			'ar_rev_id',
-			'ar_timestamp',
-			'ar_minor_edit',
-			'ar_deleted',
-			'ar_len',
-			'ar_parent_id',
-			'ar_sha1',
-		];
-		if ( $returnTextFields ) {
-			$fields[] = 'ar_text_id';
-		}
-		return $fields;
-	}
-
-	abstract public function provideGetArchiveQueryInfo();
-
-	/**
-	 * @dataProvider provideGetArchiveQueryInfo
-	 * @covers \MediaWiki\Storage\RevisionStore::getArchiveQueryInfo
-	 */
-	public function testGetArchiveQueryInfo( $expected ) {
-		$store = MediaWikiServices::getInstance()->getRevisionStore();
-
-		$archiveQueryInfo = $store->getArchiveQueryInfo();
-
-		$this->assertArrayEqualsIgnoringIntKeyOrder(
-			$expected['tables'],
-			$archiveQueryInfo['tables']
-		);
-
-		$this->assertArrayEqualsIgnoringIntKeyOrder(
-			$expected['fields'],
-			$archiveQueryInfo['fields']
-		);
-
-		$this->assertArrayEqualsIgnoringIntKeyOrder(
-			$expected['joins'],
-			$archiveQueryInfo['joins']
-		);
-	}
-
-	abstract public function provideGetSlotsQueryInfo();
-
-	/**
-	 * @dataProvider provideGetSlotsQueryInfo
-	 * @covers \MediaWiki\Storage\RevisionStore::getSlotsQueryInfo
-	 */
-	public function testGetSlotsQueryInfo( $options, $expected ) {
-		$store = MediaWikiServices::getInstance()->getRevisionStore();
-
-		$archiveQueryInfo = $store->getSlotsQueryInfo( $options );
-
-		$this->assertArrayEqualsIgnoringIntKeyOrder(
-			$expected['tables'],
-			$archiveQueryInfo['tables']
-		);
-
-		$this->assertArrayEqualsIgnoringIntKeyOrder(
-			$expected['fields'],
-			$archiveQueryInfo['fields']
-		);
-
-		$this->assertArrayEqualsIgnoringIntKeyOrder(
-			$expected['joins'],
-			$archiveQueryInfo['joins']
-		);
-	}
-
-	/**
-	 * Assert that the two arrays passed are equal, ignoring the order of the values that integer
-	 * keys.
-	 *
-	 * Note: Failures of this assertion can be slightly confusing as the arrays are actually
-	 * split into a string key array and an int key array before assertions occur.
-	 *
-	 * @param array $expected
-	 * @param array $actual
-	 */
-	private function assertArrayEqualsIgnoringIntKeyOrder( array $expected, array $actual ) {
-		$this->objectAssociativeSort( $expected );
-		$this->objectAssociativeSort( $actual );
-
-		// Separate the int key values from the string key values so that assertion failures are
-		// easier to understand.
-		$expectedIntKeyValues = [];
-		$actualIntKeyValues = [];
-
-		// Remove all int keys and re add them at the end after sorting by value
-		// This will result in all int keys being in the same order with same ints at the end of
-		// the array
-		foreach ( $expected as $key => $value ) {
-			if ( is_int( $key ) ) {
-				unset( $expected[$key] );
-				$expectedIntKeyValues[] = $value;
-			}
-		}
-		foreach ( $actual as $key => $value ) {
-			if ( is_int( $key ) ) {
-				unset( $actual[$key] );
-				$actualIntKeyValues[] = $value;
-			}
-		}
-
-		$this->assertArrayEquals( $expected, $actual, false, true );
-		$this->assertArrayEquals( $expectedIntKeyValues, $actualIntKeyValues, false, true );
 	}
 
 }

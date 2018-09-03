@@ -1,8 +1,10 @@
 <?php
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\IncompleteRevisionException;
 use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\SlotRecord;
 
 /**
  * RevisionDbTestBase contains test cases for the Revision class that have Database interactions.
@@ -85,11 +87,12 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			]
 		);
 
-		$this->setMwGlobals( 'wgContentHandlerUseDB', $this->getContentHandlerUseDB() );
-		$this->setMwGlobals(
-			'wgMultiContentRevisionSchemaMigrationStage',
-			$this->getMcrMigrationStage()
-		);
+		$this->setMwGlobals( [
+			'wgMultiContentRevisionSchemaMigrationStage' => $this->getMcrMigrationStage(),
+			'wgContentHandlerUseDB' => $this->getContentHandlerUseDB(),
+			'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+			'wgActorTableSchemaMigrationStage' => MIGRATION_OLD,
+		] );
 
 		$this->overrideMwServices();
 
@@ -100,6 +103,30 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			 */
 			$this->testPage = $this->createPage( __CLASS__, __CLASS__ );
 		}
+	}
+
+	/**
+	 * @param string $model
+	 * @return Title
+	 */
+	protected function getMockTitle() {
+		$mock = $this->getMockBuilder( Title::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$mock->expects( $this->any() )
+			->method( 'getNamespace' )
+			->will( $this->returnValue( $this->getDefaultWikitextNS() ) );
+		$mock->expects( $this->any() )
+			->method( 'getPrefixedText' )
+			->will( $this->returnValue( __CLASS__ ) );
+		$mock->expects( $this->any() )
+			->method( 'getDBkey' )
+			->will( $this->returnValue( __CLASS__ ) );
+		$mock->expects( $this->any() )
+			->method( 'getArticleID' )
+			->will( $this->returnValue( 23 ) );
+
+		return $mock;
 	}
 
 	abstract protected function getContentHandlerUseDB();
@@ -1544,6 +1571,34 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			$expected,
 			$revision->userCan( $field, $user )
 		);
+	}
+
+	public function provideGetTextId() {
+		yield [ [], null ];
+
+		$slot = new SlotRecord( (object)[
+			'slot_revision_id' => 42,
+			'slot_content_id' => 1,
+			'content_address' => 'tt:789',
+			'model_name' => CONTENT_MODEL_WIKITEXT,
+			'role_name' => 'main',
+			'slot_origin' => 1,
+		], new WikitextContent( 'Test' ) );
+
+		$rec = new MutableRevisionRecord( $this->testPage->getTitle() );
+		$rec->setId( 42 );
+		$rec->setSlot( $slot );
+
+		yield [ $rec, 789 ];
+	}
+
+	/**
+	 * @dataProvider provideGetTextId
+	 * @covers Revision::getTextId()
+	 */
+	public function testGetTextId( $spec, $expected ) {
+		$rev = new Revision( $spec, 0, $this->testPage->getTitle() );
+		$this->assertSame( $expected, $rev->getTextId() );
 	}
 
 }
