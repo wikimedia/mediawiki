@@ -82,7 +82,13 @@
 		 * @return {boolean}
 		 */
 		isCascadeableLevel: function ( level ) {
-			return $.inArray( level, mw.config.get( 'wgCascadeableLevels' ) ) !== -1;
+			var cascadeableLevels = mw.config.get( 'wgCascadeableLevels' );
+
+			if ( !Array.isArray( cascadeableLevels ) ) {
+				return false;
+			}
+
+			return cascadeableLevels.indexOf( level ) !== -1;
 		},
 
 		/**

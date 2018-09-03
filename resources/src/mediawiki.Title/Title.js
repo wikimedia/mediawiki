@@ -792,7 +792,7 @@
 		 */
 		getName: function () {
 			if (
-				$.inArray( this.namespace, mw.config.get( 'wgCaseSensitiveNamespaces' ) ) !== -1 ||
+				mw.config.get( 'wgCaseSensitiveNamespaces' ).indexOf( this.namespace ) !== -1 ||
 				!this.title.length
 			) {
 				return this.title;
