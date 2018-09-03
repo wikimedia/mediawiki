@@ -45,26 +45,18 @@ class CheckMatrixWidget extends \OOUI\Widget {
 
 		parent::__construct( $config );
 
-		$this->name = isset( $config['name'] ) ?
-			$config[ 'name' ] : null;
-		$this->id = isset( $config['id'] ) ?
-			$config['id'] : null;
+		$this->name = $config['name'] ?? null;
+		$this->id = $config['id'] ?? null;
 
 		// Properties
-		$this->rows = isset( $config['rows'] ) ?
-			$config['rows'] : [];
-		$this->columns = isset( $config['columns'] ) ?
-			$config['columns'] : [];
-		$this->tooltips = isset( $config['tooltips'] ) ?
-			$config['tooltips'] : [];
+		$this->rows = $config['rows'] ?? [];
+		$this->columns = $config['columns'] ?? [];
+		$this->tooltips = $config['tooltips'] ?? [];
 
-		$this->values = isset( $config['values'] ) ?
-			$config['values'] : [];
+		$this->values = $config['values'] ?? [];
 
-		$this->forcedOn = isset( $config['forcedOn'] ) ?
-			$config['forcedOn'] : [];
-		$this->forcedOff = isset( $config['forcedOff'] ) ?
-			$config['forcedOff'] : [];
+		$this->forcedOn = $config['forcedOn'] ?? [];
+		$this->forcedOff = $config['forcedOff'] ?? [];
 
 		// Build the table
 		$table = new \OOUI\Tag( 'table' );
@@ -180,8 +172,7 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	 * @return string Tooltip. Null if none is available.
 	 */
 	private function getTooltip( $label ) {
-		return isset( $this->tooltips[ $label ] ) ?
-			$this->tooltips[ $label ] : null;
+		return $this->tooltips[ $label ] ?? null;
 	}
 
 	protected function getJavaScriptClassName() {
