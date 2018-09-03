@@ -95,7 +95,11 @@ class RenderedRevision {
 	 * but should use a RevisionRenderer instead.
 	 *
 	 * @param Title $title
-	 * @param RevisionRecord $revision
+	 * @param RevisionRecord $revision The revision to render. The content for rendering will be
+	 *        taken from this RevisionRecord. However, if the RevisionRecord is not complete
+	 *        according isReadyForInsertion(), but a revision ID is known, the parser may load
+	 *        the revision from the database if it needs revision meta data to handle magic
+	 *        words like {{REVISIONUSER}}.
 	 * @param ParserOptions $options
 	 * @param callable $combineOutput Callback for combining slot output into revision output.
 	 *        Signature: function ( RenderedRevision $this ): ParserOutput.
@@ -287,19 +291,50 @@ class RenderedRevision {
 	private function setRevisionInternal( RevisionRecord $revision ) {
 		$this->revision = $revision;
 
-		// Make sure the parser uses the correct Revision object
-		$title = $this->title;
-		$oldCallback = $this->options->getCurrentRevisionCallback();
-		$this->options->setCurrentRevisionCallback(
-			function ( Title $parserTitle, $parser = false ) use ( $title, $oldCallback ) {
-				if ( $parserTitle->equals( $title ) ) {
-					$legacyRevision = new Revision( $this->revision );
-					return $legacyRevision;
-				} else {
-					return call_user_func( $oldCallback, $parserTitle, $parser );
+		// Force the parser to use  $this->revision to resolve magic words like {{REVISIONUSER}}
+		// if the revision is either known to be complete, or it doesn't have a revision ID set.
+		// If it's incomplete and we have a revision ID, the parser can do better by loading
+		// the revision from the database if needed to handle a magic word.
+		//
+		// The following considerations inform the logic described above:
+		//
+		// 1) If we have a saved revision already loaded, we want the parser to use it, instead of
+		// loading it again.
+		//
+		// 2) If the revision is a fake that wraps some kind of synthetic content, such as an
+		// error message from Article, it should be used directly and things like {{REVISIONUSER}}
+		// should not expected to work, since there may not even be an actual revision to
+		// refer to.
+		//
+		// 3) If the revision is a fake constructed around a Title, a Content object, and
+		// a revision ID, to provide backwards compatibility to code that has access to those
+		// but not to a complete RevisionRecord for rendering, then we want the Parser to
+		// load the actual revision from the database when it encounters a magic word like
+		// {{REVISIONUSER}}, but we don't want to load that revision ahead of time just in case.
+		//
+		// 4) Previewing an edit to a template should use the submitted unsaved
+		// MutableRevisionRecord for self-transclusions in the template's documentation (see T7278).
+		// That revision would be complete except for the ID field.
+		//
+		// 5) Pre-save transform would provide a RevisionRecord that has all meta-data but is
+		// incomplete due to not yet having content set. However, since it doesn't have a revision
+		// ID either, the below code would still force it to be used, allowing
+		// {{subst::REVISIONUSER}} to function as expected.
+
+		if ( $this->revision->isReadyForInsertion() || !$this->revision->getId() ) {
+			$title = $this->title;
+			$oldCallback = $this->options->getCurrentRevisionCallback();
+			$this->options->setCurrentRevisionCallback(
+				function ( Title $parserTitle, $parser = false ) use ( $title, $oldCallback ) {
+					if ( $title->equals( $parserTitle ) ) {
+						$legacyRevision = new Revision( $this->revision );
+						return $legacyRevision;
+					} else {
+						return call_user_func( $oldCallback, $parserTitle, $parser );
+					}
 				}
-			}
-		);
+			);
+		}
 	}
 
 	/**
