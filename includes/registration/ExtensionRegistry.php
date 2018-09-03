@@ -1,5 +1,7 @@
 <?php
 
+use Composer\Semver\Semver;
+
 /**
  * ExtensionRegistry class
  *
@@ -381,10 +383,24 @@ class ExtensionRegistry {
 	/**
 	 * Whether a thing has been loaded
 	 * @param string $name
+	 * @param string $constraint The required version constraint for this dependency
+	 * @throws LogicException if a specific contraint is asked for,
+	 *                        but the extension isn't versioned
 	 * @return bool
 	 */
-	public function isLoaded( $name ) {
-		return isset( $this->loaded[$name] );
+	public function isLoaded( $name, $constraint = '*' ) {
+		$isLoaded = isset( $this->loaded[$name] );
+		if ( $constraint === '*' || !$isLoaded ) {
+			return $isLoaded;
+		}
+		// if a specific constraint is requested, but no version is set, throw an exception
+		if ( !isset( $this->loaded[$name]['version'] ) ) {
+			$msg = "{$name} does not expose its version, but an extension or a skin"
+					. " requires: {$constraint}.";
+			throw new LogicException( $msg );
+		}
+
+		return SemVer::satisfies( $this->loaded[$name]['version'], $constraint );
 	}
 
 	/**

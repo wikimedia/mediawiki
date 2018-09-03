@@ -130,7 +130,7 @@ class SpecialPreferences extends SpecialPage {
 						'role' => 'presentation',
 						'class' => ( $key === 'personal' ) ? 'selected' : null
 					],
-					Html::rawElement( 'a',
+					Html::element( 'a',
 						[
 							'id' => 'preftab-' . $key,
 							'role' => 'tab',
