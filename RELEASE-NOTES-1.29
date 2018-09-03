@@ -1,10 +1,12 @@
 == MediaWiki 1.29.3 ==
 
-THIS IS NOT A RELEASE YET!
-
 This is a security and maintenance release of the MediaWiki 1.29 branch.
 
 === Changes since 1.29.2 ===
+* (T169545, CVE-2018-0503) SECURITY: $wgRateLimits entry for 'user' overrides
+  'newbie'.
+* (T194605, CVE-2018-0505) SECURITY: BotPasswords can bypass CentralAuth's
+  account lock.
 * (T180551) Fix LanguageSrTest for language converter
 * (T180552) Fix langauge converter parser test with self-close tags
 * (T180537) Remove $wgAuth usage from wrapOldPasswords.php
