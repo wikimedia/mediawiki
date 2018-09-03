@@ -107,9 +107,10 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	private $loggers = [];
 
 	/**
-	 * @var LoggerInterface
+	 * The CLI arguments passed through from phpunit.php
+	 * @var array
 	 */
-	private $testLogger;
+	private $cliArgs = [];
 
 	/**
 	 * Table name prefixes. Oracle likes it shorter.
@@ -133,11 +134,6 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 		$this->backupGlobals = false;
 		$this->backupStaticAttributes = false;
-		$this->testLogger = self::getTestLogger();
-	}
-
-	private static function getTestLogger() {
-		return LoggerFactory::getInstance( 'tests-phpunit' );
 	}
 
 	public function __destruct() {
@@ -386,13 +382,14 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	public function run( PHPUnit_Framework_TestResult $result = null ) {
+		if ( $result instanceof MediaWikiTestResult ) {
+			$this->cliArgs = $result->getMediaWikiCliArgs();
+		}
 		$this->overrideMwServices();
 
 		$needsResetDB = false;
-
 		if ( !self::$dbSetup || $this->needsDB() ) {
 			// set up a DB connection for this test to use
-			$this->testLogger->info( "Setting up DB for " . $this->toString() );
 
 			self::$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
 			self::$reuseDB = $this->getCliArg( 'reuse-db' );
@@ -419,12 +416,9 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			$needsResetDB = true;
 		}
 
-		$this->testLogger->info( "Starting test " . $this->toString() );
 		parent::run( $result );
-		$this->testLogger->info( "Finished test " . $this->toString() );
 
 		if ( $needsResetDB ) {
-			$this->testLogger->info( "Resetting DB" );
 			$this->resetDB( $this->db, $this->tablesUsed );
 		}
 
@@ -1154,7 +1148,6 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.32
 	 */
 	protected function addCoreDBData() {
-		$this->testLogger->info( __METHOD__ );
 		if ( $this->db->getType() == 'oracle' ) {
 			# Insert 0 user to prevent FK violations
 			# Anonymous user
@@ -1835,11 +1828,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @return mixed
 	 */
 	public function getCliArg( $offset ) {
-		if ( isset( PHPUnitMaintClass::$additionalOptions[$offset] ) ) {
-			return PHPUnitMaintClass::$additionalOptions[$offset];
-		}
-
-		return null;
+		return $this->cliArgs[$offset] ?? null;
 	}
 
 	/**
@@ -1848,7 +1837,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @param mixed $value
 	 */
 	public function setCliArg( $offset, $value ) {
-		PHPUnitMaintClass::$additionalOptions[$offset] = $value;
+		$this->cliArgs[$offset] = $value;
 	}
 
 	/**
