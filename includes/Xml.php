@@ -454,7 +454,7 @@ class Xml {
 	/**
 	 * Convenience function to build an HTML submit button
 	 * When $wgUseMediaWikiUIEverywhere is true it will default to a progressive button
-	 * @param string $value Label text for the button
+	 * @param string $value Label text for the button (unescaped)
 	 * @param array $attribs Optional custom attributes
 	 * @return string HTML
 	 */
