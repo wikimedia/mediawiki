@@ -159,10 +159,8 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 				'rows' => $this->mParams['rows'],
 				'columns' => $this->mParams['columns'],
 				'tooltips' => $this->mParams['tooltips'],
-				'forcedOff' => isset( $this->mParams['force-options-off'] ) ?
-					$this->mParams['force-options-off'] : [],
-				'forcedOn' => isset( $this->mParams['force-options-on'] ) ?
-					$this->mParams['force-options-on'] : [],
+				'forcedOff' => $this->mParams['force-options-off'] ?? [],
+				'forcedOn' => $this->mParams['force-options-on'] ?? [],
 				'values' => $value
 			] + OOUI\Element::configFromHtmlAttributes( $attribs )
 		);

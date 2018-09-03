@@ -156,7 +156,7 @@ trait SearchApi {
 			$searchEngine = MediaWikiServices::getInstance()->getSearchEngineFactory()->create( $type );
 			$limit = $params['limit'];
 			$searchEngine->setNamespaces( $params['namespace'] );
-			$offset = isset( $params['offset'] ) ? $params['offset'] : null;
+			$offset = $params['offset'] ?? null;
 			$searchEngine->setLimitOffset( $limit, $offset );
 
 			// Initialize requested search profiles.

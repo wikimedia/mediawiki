@@ -871,7 +871,7 @@ abstract class HTMLFormField {
 	 * @return bool
 	 */
 	public function isHelpInline() {
-		return isset( $this->mParams['help-inline'] ) ? $this->mParams['help-inline'] : true;
+		return $this->mParams['help-inline'] ?? true;
 	}
 
 	/**
