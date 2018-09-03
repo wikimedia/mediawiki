@@ -75,6 +75,22 @@ class HTMLInfoField extends HTMLFormField {
 		return parent::getRaw( $value );
 	}
 
+	/**
+	 * @param mixed $value
+	 * @return OOUI\FieldLayout
+	 * @since 1.32
+	 */
+	public function getOOUI( $value ) {
+		if ( !empty( $this->mParams['rawrow'] ) ) {
+			if ( !( $value instanceof OOUI\FieldLayout ) ) {
+				throw new Exception( "'default' must be a FieldLayout or subclass when using 'rawrow'" );
+			}
+			return $value;
+		}
+
+		return parent::getOOUI( $value );
+	}
+
 	protected function needsLabel() {
 		return false;
 	}
