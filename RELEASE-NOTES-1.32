@@ -106,6 +106,7 @@ production.
 * Updated jquery.i18n from 1.0.4 to 1.0.5.
 * Updated wikimedia/timestamp from 1.0.0 to 2.0.0.
 * Updated wikimedia/remex-html from 1.0.3 to 2.0.0.
+* Updated jquery from v3.2.1 to v3.3.1.
 
 ==== Removed external libraries ====
 * …
