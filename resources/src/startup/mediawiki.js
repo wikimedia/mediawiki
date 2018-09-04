@@ -2251,15 +2251,27 @@
 					/**
 					 * Request a sync of the in-memory store back to persisted localStorage.
 					 *
-					 * This function debounces updates. When called with a flush already pending, the
-					 * scheduled flush is postponed. The call to localStorage.setItem will be keep
-					 * being deferred until the page is quiescent for 2 seconds.
+					 * This function debounces updates. The debouncing logic should account
+					 * for the following factors:
 					 *
-					 * Because localStorage is shared by all pages from the same origin, if multiple
-					 * pages are loaded with different module sets, the possibility exists that
-					 * modules saved by one page will be clobbered by another. The only impact of this
-					 * is minor (merely a less efficient cache use) and the problem would be corrected
-					 * by subsequent page views.
+					 * - Writing to localStorage is an expensive operation that must not happen
+					 *   during the critical path of initialising and executing module code.
+					 *   Instead, it should happen at a later time after modules have been given
+					 *   time and priority to do their thing first.
+					 *
+					 * - This method is called from mw.loader.store.add(), which will be called
+					 *   hundreds of times on a typical page, including within the same call-stack
+					 *   and eventloop-tick. This is because responses from load.php happen in
+					 *   batches. As such, we want to allow all modules from the same load.php
+					 *   response to be written to disk with a single flush, not many.
+					 *
+					 * - Repeatedly deleting and creating timers is non-trivial.
+					 *
+					 * - localStorage is shared by all pages from the same origin, if multiple
+					 *   pages are loaded with different module sets, the possibility exists that
+					 *   modules saved by one page will be clobbered by another. The impact of
+					 *   this is minor, it merely causes a less efficient cache use, and the
+					 *   problem would be corrected by subsequent page views.
 					 *
 					 * This method is considered internal to mw.loader.store and must only
 					 * be called if the store is enabled.
@@ -2268,7 +2280,7 @@
 					 * @method
 					 */
 					requestUpdate: ( function () {
-						var timer, hasPendingWrites = false;
+						var hasPendingWrites = false;
 
 						function flushWrites() {
 							var data, key;
@@ -2297,23 +2309,25 @@
 								} );
 							}
 
+							// Let the next call to requestUpdate() create a new timer.
 							hasPendingWrites = false;
 						}
 
-						function request() {
-							// If another mw.loader.store.requestUpdate() call happens in the narrow
-							// time window between requestIdleCallback() and flushWrites firing, ignore it.
-							// It'll be saved by the already-scheduled flush.
-							if ( !hasPendingWrites ) {
-								hasPendingWrites = true;
-								mw.requestIdleCallback( flushWrites );
-							}
+						function onTimeout() {
+							// Defer the actual write via requestIdleCallback
+							mw.requestIdleCallback( flushWrites );
 						}
 
 						return function () {
-							// Cancel the previous timer (if it hasn't fired yet)
-							clearTimeout( timer );
-							timer = setTimeout( request, 2000 );
+							// On the first call to requestUpdate(), create a timer that
+							// waits at least two seconds, then calls onTimeout.
+							// The main purpose is to allow the current batch of load.php
+							// responses to complete before we do anything. This batch can
+							// trigger many hundreds of calls to requestUpdate().
+							if ( !hasPendingWrites ) {
+								hasPendingWrites = true;
+								setTimeout( onTimeout, 2000 );
+							}
 						};
 					}() )
 				}
