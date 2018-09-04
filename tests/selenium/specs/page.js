@@ -54,7 +54,7 @@ describe( 'Page', function () {
 		assert.strictEqual( EditPage.displayedContent.getText(), content );
 	} );
 
-	it( 'should be editable', function () {
+	it( 'should be editable @daily', function () {
 		// create
 		browser.call( function () {
 			return Api.edit( name, content );
@@ -69,7 +69,7 @@ describe( 'Page', function () {
 		assert.strictEqual( EditPage.displayedContent.getText(), editContent );
 	} );
 
-	it( 'should have history', function () {
+	it( 'should have history @daily', function () {
 		// create
 		browser.call( function () {
 			return Api.edit( name, content );
