@@ -1,68 +1,17 @@
 <?php
-$overrides['LocalSettingsGenerator'] = 'BSLocalSettingsGenerator';
 
-class BSLocalSettingsGenerator extends LocalSettingsGenerator {
-	function getText() {
-		// add a new setting
-		$ls = parent::getText();
-		return $ls . "\nrequire_once \"\$IP/LocalSettings.BlueSpice.php\";\n";
-	}
-}
+$GLOBALS['wgAutoloadClasses']['BsWebInstaller'] = __DIR__ . '/includes/BsWebInstaller.php';
+$GLOBALS['wgAutoloadClasses']['BsWebInstallerOptions'] = __DIR__ . '/includes/BsWebInstallerOptions.php';
+$GLOBALS['wgAutoloadClasses']['BsWebInstallerOutput'] = __DIR__ . '/includes/BsWebInstallerOutput.php';
+$GLOBALS['wgAutoloadClasses']['BsWebInstallerDBConnect'] = __DIR__ . '/includes/BsWebInstallerDBConnect.php';
+$GLOBALS['wgAutoloadClasses']['BSWebInstallerDBSettings'] = __DIR__ . '/includes/BSWebInstallerDBSettings.php';
+//$GLOBALS['wgAutoloadClasses']['BsLocalSettingsGenerator'] = __DIR__ . '/includes/BsLocalSettingsGenerator.php';
+require_once( __DIR__ . '/includes/BsLocalSettingsGenerator.php');
 
-$overrides['CliInstaller'] = 'BSCliInstaller';
+$overrides['LocalSettingsGenerator'] = 'BsLocalSettingsGenerator';
+$overrides['WebInstaller'] = 'BsWebInstaller';
 
-class BSCliInstaller extends CliInstaller {
-	protected function includeExtensions(){
-		global $IP;
-		$exts = $this->getVar( '_Extensions' );
-		$IP = $this->getVar( 'IP' );
+$GLOBALS['wgDefaultSkin'] = strtolower( 'BlueSpiceCalumma' );
 
-		/**
-		 * We need to include DefaultSettings before including extensions to avoid
-		 * warnings about unset variables. However, the only thing we really
-		 * want here is $wgHooks['LoadExtensionSchemaUpdates']. This won't work
-		 * if the extension has hidden hook registration in $wgExtensionFunctions,
-		 * but we're not opening that can of worms
-		 * @see https://phabricator.wikimedia.org/T28857
-		 */
-		global $wgAutoloadClasses;
-		$wgAutoloadClasses = [];
-		$queue = [];
-
-
-		require_once "$IP/includes/DefaultSettings.php";
-		require_once __DIR__ . '/../../extensions/BlueSpiceFoundation/includes/Defines.php';
-		require_once __DIR__ . '/../../LocalSettings.BlueSpice.php';
-
-		foreach ( $exts as $e ) {
-			if ( file_exists( "$IP/extensions/$e/extension.json" ) ) {
-				$queue["$IP/extensions/$e/extension.json"] = 1;
-			} else {
-				require_once "$IP/extensions/$e/$e.php";
-			}
-		}
-
-		$registry = new ExtensionRegistry();
-		$data = $registry->readFromQueue( $queue );
-		$wgAutoloadClasses += $data['autoload'];
-		if ( isset( $data['autoloaderNS'] ) ) {
-			AutoLoader::$psr4Namespaces += $data['autoloaderNS'];
-		}
-
-		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?
-			/** @suppress PhanUndeclaredVariable $wgHooks is set by DefaultSettings */
-			$wgHooks['LoadExtensionSchemaUpdates'] : [];
-
-		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
-			$hooksWeWant = array_merge_recursive(
-				$hooksWeWant,
-				$data['globals']['wgHooks']['LoadExtensionSchemaUpdates']
-			);
-		}
-		// Unset everyone else's hooks. Lord knows what someone might be doing
-		// in ParserFirstCallInit (see T29171)
-		$GLOBALS['wgHooks'] = [ 'LoadExtensionSchemaUpdates' => $hooksWeWant ];
-
-		return Status::newGood();
-	}
-}
+// for Echo:
+$GLOBALS['wgEchoCluster'] = false;
