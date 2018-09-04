@@ -572,6 +572,7 @@ mw.loader.register( [
 		$version1 = $module->getVersionHash( $context );
 		$module = new ResourceLoaderStartupModule();
 		$version2 = $module->getVersionHash( $context );
+
 		$this->setMwGlobals( 'wgArticlePath', '/w3' );
 		$module = new ResourceLoaderStartupModule();
 		$version3 = $module->getVersionHash( $context );
@@ -590,8 +591,7 @@ mw.loader.register( [
 	}
 
 	/**
-	 * @covers ResourceLoaderStartupModule::getAllModuleHashes
-	 * @covers ResourceLoaderStartupModule::getDefinitionSummary
+	 * @covers ResourceLoaderStartupModule
 	 */
 	public function testGetVersionHash_varyModule() {
 		$context1 = $this->getResourceLoaderContext();
@@ -621,16 +621,45 @@ mw.loader.register( [
 		$module = new ResourceLoaderStartupModule();
 		$version3 = $module->getVersionHash( $context3 );
 
-		$this->assertEquals(
+		// Module name *is* significant (T201686)
+		$this->assertNotEquals(
 			$version1,
 			$version2,
-			'Module name is insignificant'
+			'Module name is significant'
 		);
 
 		$this->assertNotEquals(
 			$version1,
 			$version3,
 			'Hash change of any module impacts startup hash'
+		);
+	}
+
+	/**
+	 * @covers ResourceLoaderStartupModule
+	 */
+	public function testGetVersionHash_varyDeps() {
+		$context = $this->getResourceLoaderContext();
+		$rl = $context->getResourceLoader();
+		$rl->register( [
+			'test.a' => new ResourceLoaderTestModule( [ 'dependencies' => [ 'x', 'y' ] ] ),
+		] );
+		$module = new ResourceLoaderStartupModule();
+		$version1 = $module->getVersionHash( $context );
+
+		$context = $this->getResourceLoaderContext();
+		$rl = $context->getResourceLoader();
+		$rl->register( [
+			'test.a' => new ResourceLoaderTestModule( [ 'dependencies' => [ 'x', 'z' ] ] ),
+		] );
+		$module = new ResourceLoaderStartupModule();
+		$version2 = $module->getVersionHash( $context );
+
+		// Dependencies *are* significant (T201686)
+		$this->assertNotEquals(
+			$version1,
+			$version2,
+			'Dependencies are significant'
 		);
 	}
 
