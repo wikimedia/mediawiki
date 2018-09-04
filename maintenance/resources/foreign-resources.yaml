@@ -73,9 +73,9 @@ oojs-ui:
     package/dist/README.md:
 jquery:
   type: file
-  src: https://code.jquery.com/jquery-3.2.1.js
+  src: https://code.jquery.com/jquery-3.3.1.js
   # Integrity from link modals https://code.jquery.com/jquery/
-  integrity: sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=
+  integrity: sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=
   dest: jquery.js
 qunitjs:
   type: multi-file
