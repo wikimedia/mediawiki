@@ -1828,7 +1828,7 @@
 						mw.loader.register( name );
 					}
 					// Check for duplicate implementation
-					if ( hasOwn.call( registry, name ) && registry[ name ].script !== undefined ) {
+					if ( registry[ name ].script !== undefined ) {
 						throw new Error( 'module already implemented: ' + name );
 					}
 					if ( version ) {
