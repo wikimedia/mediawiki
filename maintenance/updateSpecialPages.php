@@ -25,7 +25,6 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\DBReplicationWaitError;
 
 /**
  * Maintenance script to update cached special pages.
@@ -134,11 +133,7 @@ class UpdateSpecialPages extends Maintenance {
 			$this->output( "Reconnected\n\n" );
 		}
 		// Wait for the replica DB to catch up
-		try {
-			$lbFactory->waitForReplication();
-		} catch ( DBReplicationWaitError $e ) {
-			// ignore
-		}
+		$lbFactory->waitForReplication();
 	}
 
 	public function doSpecialPageCacheUpdates( $dbw ) {

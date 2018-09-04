@@ -19,7 +19,6 @@
  * @ingroup JobQueue
  */
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\DBReplicationWaitError;
 
 /**
  * Job for pruning recent changes
@@ -105,11 +104,9 @@ class RecentChangesUpdateJob extends Job {
 				$dbw->delete( 'recentchanges', [ 'rc_id' => $rcIds ], __METHOD__ );
 				Hooks::run( 'RecentChangesPurgeRows', [ $rows ] );
 				// There might be more, so try waiting for replica DBs
-				try {
-					$factory->commitAndWaitForReplication(
-						__METHOD__, $ticket, [ 'timeout' => 3 ]
-					);
-				} catch ( DBReplicationWaitError $e ) {
+				if ( !$factory->commitAndWaitForReplication(
+					__METHOD__, $ticket, [ 'timeout' => 3 ]
+				) ) {
 					// Another job will continue anyway
 					break;
 				}
