@@ -19,14 +19,6 @@ use WikiPage;
  * @group Database
  */
 class PageUpdaterTest extends MediaWikiTestCase {
-
-	public static function setUpBeforeClass() {
-		parent::setUpBeforeClass();
-
-		// force service reset!
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'RevisionStore' );
-	}
-
 	private function getDummyTitle( $method ) {
 		return Title::newFromText( $method, $this->getDefaultWikitextNS() );
 	}

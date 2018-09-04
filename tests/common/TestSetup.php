@@ -104,10 +104,6 @@ class TestSetup {
 		// may break testing against floating point values
 		// treated with PHP's serialize()
 		ini_set( 'serialize_precision', 17 );
-
-		// TODO: we should call MediaWikiTestCase::prepareServices( new GlobalVarConfig() ) here.
-		// But PHPUnit may not be loaded yet, so we have to wait until just
-		// before PHPUnit_TextUI_Command::main() is executed.
 	}
 
 }

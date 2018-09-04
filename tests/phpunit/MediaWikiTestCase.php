@@ -21,13 +21,16 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	use PHPUnit4And6Compat;
 
 	/**
-	 * The service locator created by prepareServices(). This service locator will
-	 * be restored after each test. Tests that pollute the global service locator
-	 * instance should use overrideMwServices() to isolate the test.
+	 * The original service locator. This is overridden during setUp().
 	 *
 	 * @var MediaWikiServices|null
 	 */
-	private static $serviceLocator = null;
+	private static $originalServices;
+
+	/**
+	 * The local service locator, created during setUp().
+	 */
+	private $localServices;
 
 	/**
 	 * $called tracks whether the setUp and tearDown method has been called.
@@ -155,8 +158,10 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	public static function setUpBeforeClass() {
 		parent::setUpBeforeClass();
 
-		// Get the service locator, and reset services if it's not done already
-		self::$serviceLocator = self::prepareServices( new GlobalVarConfig() );
+		// Get the original service locator
+		if ( !self::$originalServices ) {
+			self::$originalServices = MediaWikiServices::getInstance();
+		}
 	}
 
 	/**
@@ -245,63 +250,9 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Prepare service configuration for unit testing.
-	 *
-	 * This calls MediaWikiServices::resetGlobalInstance() to allow some critical services
-	 * to be overridden for testing.
-	 *
-	 * prepareServices() only needs to be called once, but should be called as early as possible,
-	 * before any class has a chance to grab a reference to any of the global services
-	 * instances that get discarded by prepareServices(). Only the first call has any effect,
-	 * later calls are ignored.
-	 *
-	 * @note This is called by PHPUnitMaintClass::finalSetup.
-	 *
-	 * @see MediaWikiServices::resetGlobalInstance()
-	 *
-	 * @param Config $bootstrapConfig The bootstrap config to use with the new
-	 *        MediaWikiServices. Only used for the first call to this method.
-	 * @return MediaWikiServices
+	 * @deprecated since 1.32
 	 */
 	public static function prepareServices( Config $bootstrapConfig ) {
-		static $services = null;
-
-		if ( !$services ) {
-			$services = self::resetGlobalServices( $bootstrapConfig );
-		}
-		return $services;
-	}
-
-	/**
-	 * Reset global services, and install testing environment.
-	 * This is the testing equivalent of MediaWikiServices::resetGlobalInstance().
-	 * This should only be used to set up the testing environment, not when
-	 * running unit tests. Use MediaWikiTestCase::overrideMwServices() for that.
-	 *
-	 * @see MediaWikiServices::resetGlobalInstance()
-	 * @see prepareServices()
-	 * @see MediaWikiTestCase::overrideMwServices()
-	 *
-	 * @param Config|null $bootstrapConfig The bootstrap config to use with the new
-	 *        MediaWikiServices.
-	 * @return MediaWikiServices
-	 */
-	private static function resetGlobalServices( Config $bootstrapConfig = null ) {
-		$oldServices = MediaWikiServices::getInstance();
-		$oldConfigFactory = $oldServices->getConfigFactory();
-		$oldLoadBalancerFactory = $oldServices->getDBLoadBalancerFactory();
-
-		$testConfig = self::makeTestConfig( $bootstrapConfig );
-
-		MediaWikiServices::resetGlobalInstance( $testConfig );
-
-		$serviceLocator = MediaWikiServices::getInstance();
-		self::installTestServices(
-			$oldConfigFactory,
-			$oldLoadBalancerFactory,
-			$serviceLocator
-		);
-		return $serviceLocator;
 	}
 
 	/**
@@ -320,7 +271,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		$defaultOverrides = new HashConfig();
 
 		if ( !$baseConfig ) {
-			$baseConfig = MediaWikiServices::getInstance()->getBootstrapConfig();
+			$baseConfig = self::$originalServices->getBootstrapConfig();
 		}
 
 		/* Some functions require some kind of caching, and will end up using the db,
@@ -415,17 +366,10 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Resets some well known services that typically have state that may interfere with unit tests.
-	 * This is a lightweight alternative to resetGlobalServices().
-	 *
-	 * @note There is no guarantee that no references remain to stale service instances destroyed
-	 * by a call to doLightweightServiceReset().
-	 *
-	 * @throws MWException if called outside of PHPUnit tests.
-	 *
-	 * @see resetGlobalServices()
+	 * Resets some non-service singleton instances and other static caches. It's not necessary to
+	 * reset services here.
 	 */
-	private function doLightweightServiceReset() {
+	private function resetNonServiceCaches() {
 		global $wgRequest, $wgJobClasses;
 
 		foreach ( $wgJobClasses as $type => $class ) {
@@ -434,10 +378,6 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		JobQueueGroup::destroySingletons();
 
 		ObjectCache::clear();
-		$services = MediaWikiServices::getInstance();
-		$services->resetServiceForTesting( 'MainObjectStash' );
-		$services->resetServiceForTesting( 'LocalServerObjectCache' );
-		$services->getMainWANObjectCache()->clearProcessCache();
 		FileBackendGroup::destroySingleton();
 		DeferredUpdates::clearPendingUpdates();
 
@@ -453,6 +393,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	public function run( PHPUnit_Framework_TestResult $result = null ) {
+		$this->overrideMwServices();
+
 		$needsResetDB = false;
 
 		if ( !self::$dbSetup || $this->needsDB() ) {
@@ -492,6 +434,10 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			$this->testLogger->info( "Resetting DB" );
 			$this->resetDB( $this->db, $this->tablesUsed );
 		}
+
+		$this->localServices->destroy();
+		$this->localServices = null;
+		MediaWikiServices::forceGlobalInstance( self::$originalServices );
 	}
 
 	/**
@@ -591,13 +537,12 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		// Reset all caches between tests.
-		$this->doLightweightServiceReset();
+		$this->resetNonServiceCaches();
 
 		// XXX: reset maintenance triggers
 		// Hook into period lag checks which often happen in long-running scripts
-		$services = MediaWikiServices::getInstance();
-		$lbFactory = $services->getDBLoadBalancerFactory();
-		Maintenance::setLBFactoryTriggers( $lbFactory, $services->getMainConfig() );
+		$lbFactory = $this->localServices->getDBLoadBalancerFactory();
+		Maintenance::setLBFactoryTriggers( $lbFactory, $this->localServices->getMainConfig() );
 
 		ob_start( 'MediaWikiTestCase::wfResetOutputBuffersBarrier' );
 	}
@@ -654,10 +599,6 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		$this->mwGlobalsToUnset = [];
 		$this->restoreLoggers();
 
-		if ( self::$serviceLocator && MediaWikiServices::getInstance() !== self::$serviceLocator ) {
-			MediaWikiServices::forceGlobalInstance( self::$serviceLocator );
-		}
-
 		// TODO: move global state into MediaWikiServices
 		RequestContext::resetMain();
 		if ( session_id() !== '' ) {
@@ -708,13 +649,12 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @param object $object
 	 */
 	protected function setService( $name, $object ) {
-		// If we did not yet override the service locator, so so now.
-		if ( MediaWikiServices::getInstance() === self::$serviceLocator ) {
-			$this->overrideMwServices();
+		if ( !$this->localServices ) {
+			throw new Exception( __METHOD__ . ' must be called after MediaWikiTestCase::run()' );
 		}
 
-		MediaWikiServices::getInstance()->disableService( $name );
-		MediaWikiServices::getInstance()->redefineService(
+		$this->localServices->disableService( $name );
+		$this->localServices->redefineService(
 			$name,
 			function () use ( $object ) {
 				return $object;
@@ -796,15 +736,17 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * Otherwise old namespace data will lurk and cause bugs.
 	 */
 	private function resetNamespaces() {
+		if ( !$this->localServices ) {
+			throw new Exception( __METHOD__ . ' must be called after MediaWikiTestCase::run()' );
+		}
 		MWNamespace::clearCaches();
 		Language::clearCaches();
 
 		// We can't have the TitleFormatter holding on to an old Language object either
 		// @todo We shouldn't need to reset all the aliases here.
-		$services = MediaWikiServices::getInstance();
-		$services->resetServiceForTesting( 'TitleFormatter' );
-		$services->resetServiceForTesting( 'TitleParser' );
-		$services->resetServiceForTesting( '_MediaWikiTitleCodec' );
+		$this->localServices->resetServiceForTesting( 'TitleFormatter' );
+		$this->localServices->resetServiceForTesting( 'TitleParser' );
+		$this->localServices->resetServiceForTesting( '_MediaWikiTitleCodec' );
 	}
 
 	/**
@@ -963,16 +905,15 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @return MediaWikiServices
 	 * @throws MWException
 	 */
-	protected static function overrideMwServices(
+	protected function overrideMwServices(
 		Config $configOverrides = null, array $services = []
 	) {
 		if ( !$configOverrides ) {
 			$configOverrides = new HashConfig();
 		}
 
-		$oldInstance = MediaWikiServices::getInstance();
-		$oldConfigFactory = $oldInstance->getConfigFactory();
-		$oldLoadBalancerFactory = $oldInstance->getDBLoadBalancerFactory();
+		$oldConfigFactory = self::$originalServices->getConfigFactory();
+		$oldLoadBalancerFactory = self::$originalServices->getDBLoadBalancerFactory();
 
 		$testConfig = self::makeTestConfig( null, $configOverrides );
 		$newInstance = new MediaWikiServices( $testConfig );
@@ -994,7 +935,13 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			$oldLoadBalancerFactory,
 			$newInstance
 		);
+
+		if ( $this->localServices ) {
+			$this->localServices->destroy();
+		}
+
 		MediaWikiServices::forceGlobalInstance( $newInstance );
+		$this->localServices = $newInstance;
 
 		return $newInstance;
 	}
@@ -1682,12 +1629,6 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		foreach ( $tables as $tbl ) {
 			$tbl = $db->tableName( $tbl );
 			$db->query( "DROP TABLE IF EXISTS $tbl", __METHOD__ );
-
-			if ( $tbl === 'page' ) {
-				// Forget about the pages since they don't
-				// exist in the DB.
-				MediaWikiServices::getInstance()->getLinkCache()->clear();
-			}
 		}
 	}
 
@@ -1834,12 +1775,6 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				array_values( array_map( 'get_object_vars', iterator_to_array( $this->interwikiTable ) ) ),
 				__METHOD__
 			);
-		}
-
-		if ( $tableName === 'page' ) {
-			// Forget about the pages since they don't
-			// exist in the DB.
-			MediaWikiServices::getInstance()->getLinkCache()->clear();
 		}
 	}
 
