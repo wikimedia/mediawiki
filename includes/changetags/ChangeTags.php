@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\NameTableAccessException;
 use Wikimedia\Rdbms\Database;
 
 class ChangeTags {
@@ -802,16 +803,18 @@ class ChangeTags {
 			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
+		$tagTables[] = 'change_tag';
 		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
-			$tables[] = 'change_tag_def';
-			$join_cond = [ $join_cond, 'ct_tag_id=ctd_id' ];
+			$tagTables[] = 'change_tag_def';
+			$join_cond_ts_tags = [ $join_cond, 'ct_tag_id=ctd_id' ];
 			$field = 'ctd_name';
 		} else {
 			$field = 'ct_tag';
+			$join_cond_ts_tags = $join_cond;
 		}
 
 		$fields['ts_tags'] = wfGetDB( DB_REPLICA )->buildGroupConcatField(
-			',', 'change_tag', $field, $join_cond
+			',', $tagTables, $field, $join_cond_ts_tags
 		);
 
 		if ( $wgUseTagFilter && $filter_tag ) {
@@ -821,9 +824,18 @@ class ChangeTags {
 			$tables[] = 'change_tag';
 			$join_conds['change_tag'] = [ 'INNER JOIN', $join_cond ];
 			if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
-				$tables[] = 'change_tag_def';
-				$join_conds['change_tag_def'] = [ 'INNER JOIN', 'ct_tag_id=ctd_id' ];
-				$conds['ctd_name'] = $filter_tag;
+				$filterTagIds = [];
+				$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
+				foreach ( (array)$filter_tag as $filterTagName ) {
+					try {
+						$filterTagIds[] = $changeTagDefStore->getId( $filterTagName );
+					} catch ( NameTableAccessException $exception ) {
+						// Return nothing.
+						$conds[] = '0';
+						break;
+					};
+				}
+				$conds['ct_tag_id'] = $filterTagIds;
 			} else {
 				$conds['ct_tag'] = $filter_tag;
 			}
