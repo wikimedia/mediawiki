@@ -510,7 +510,7 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'change_tag', '*' );
 		$dbw->delete( 'change_tag_def', '*' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'ChangeTagDefStore' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'NameTableStoreFactory' );
 
 		$rcId = 123;
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
@@ -564,7 +564,7 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'change_tag', '*' );
 		$dbw->delete( 'change_tag_def', '*' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'ChangeTagDefStore' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'NameTableStoreFactory' );
 
 		$rcId = 123;
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
@@ -582,7 +582,7 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'change_tag', '*' );
 		$dbw->delete( 'change_tag_def', '*' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'ChangeTagDefStore' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'NameTableStoreFactory' );
 
 		$rcId = 123;
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );

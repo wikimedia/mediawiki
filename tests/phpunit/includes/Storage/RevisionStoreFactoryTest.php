@@ -8,6 +8,7 @@ use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
+use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\RevisionStoreFactory;
 use MediaWiki\Storage\SqlBlobStore;
@@ -25,6 +26,7 @@ class RevisionStoreFactoryTest extends MediaWikiTestCase {
 		new RevisionStoreFactory(
 			$this->getMockLoadBalancerFactory(),
 			$this->getMockBlobStoreFactory(),
+			$this->getNameTableStoreFactory(),
 			$this->getHashWANObjectCache(),
 			$this->getMockCommentStore(),
 			ActorMigration::newMigration(),
@@ -53,6 +55,7 @@ class RevisionStoreFactoryTest extends MediaWikiTestCase {
 	) {
 		$lbFactory = $this->getMockLoadBalancerFactory();
 		$blobStoreFactory = $this->getMockBlobStoreFactory();
+		$nameTableStoreFactory = $this->getNameTableStoreFactory();
 		$cache = $this->getHashWANObjectCache();
 		$commentStore = $this->getMockCommentStore();
 		$actorMigration = ActorMigration::newMigration();
@@ -61,6 +64,7 @@ class RevisionStoreFactoryTest extends MediaWikiTestCase {
 		$factory = new RevisionStoreFactory(
 			$lbFactory,
 			$blobStoreFactory,
+			$nameTableStoreFactory,
 			$cache,
 			$commentStore,
 			$actorMigration,
@@ -136,6 +140,16 @@ class RevisionStoreFactoryTest extends MediaWikiTestCase {
 			} );
 
 		return $mock;
+	}
+
+	/**
+	 * @return NameTableStoreFactory
+	 */
+	private function getNameTableStoreFactory() {
+		return new NameTableStoreFactory(
+			$this->getMockLoadBalancerFactory(),
+			$this->getHashWANObjectCache(),
+			new NullLogger() );
 	}
 
 	/**

@@ -67,9 +67,13 @@ class RevisionStoreFactory {
 	 */
 	private $contentHandlerUseDB;
 
+	/** @var NameTableStoreFactory */
+	private $nameTables;
+
 	/**
 	 * @param ILBFactory $dbLoadBalancerFactory
 	 * @param BlobStoreFactory $blobStoreFactory
+	 * @param NameTableStoreFactory $nameTables
 	 * @param WANObjectCache $cache
 	 * @param CommentStore $commentStore
 	 * @param ActorMigration $actorMigration
@@ -81,6 +85,7 @@ class RevisionStoreFactory {
 	public function __construct(
 		ILBFactory $dbLoadBalancerFactory,
 		BlobStoreFactory $blobStoreFactory,
+		NameTableStoreFactory $nameTables,
 		WANObjectCache $cache,
 		CommentStore $commentStore,
 		ActorMigration $actorMigration,
@@ -91,6 +96,7 @@ class RevisionStoreFactory {
 		Assert::parameterType( 'integer', $migrationStage, '$migrationStage' );
 		$this->dbLoadBalancerFactory = $dbLoadBalancerFactory;
 		$this->blobStoreFactory = $blobStoreFactory;
+		$this->nameTables = $nameTables;
 		$this->cache = $cache;
 		$this->commentStore = $commentStore;
 		$this->actorMigration = $actorMigration;
@@ -98,7 +104,6 @@ class RevisionStoreFactory {
 		$this->loggerProvider = $loggerProvider;
 		$this->contentHandlerUseDB = $contentHandlerUseDB;
 	}
-	/**
 
 	/**
 	 * @since 1.32
@@ -115,8 +120,8 @@ class RevisionStoreFactory {
 			$this->blobStoreFactory->newSqlBlobStore( $wikiId ),
 			$this->cache, // Pass local cache instance; Leave cache sharing to RevisionStore.
 			$this->commentStore,
-			$this->getContentModelStore( $wikiId ),
-			$this->getSlotRoleStore( $wikiId ),
+			$this->nameTables->getContentModels( $wikiId ),
+			$this->nameTables->getSlotRoles( $wikiId ),
 			$this->mcrMigrationStage,
 			$this->actorMigration,
 			$wikiId
@@ -127,43 +132,4 @@ class RevisionStoreFactory {
 
 		return $store;
 	}
-
-	/**
-	 * @param string $wikiId
-	 * @return NameTableStore
-	 */
-	private function getContentModelStore( $wikiId ) {
-		// XXX: a dedicated ContentModelStore subclass would avoid hard-coding
-		// knowledge about the schema here.
-		return new NameTableStore(
-			$this->dbLoadBalancerFactory->getMainLB( $wikiId ),
-			$this->cache, // Pass local cache instance; Leave cache sharing to NameTableStore.
-			$this->loggerProvider->getLogger( 'NameTableSqlStore' ),
-			'content_models',
-			'model_id',
-			'model_name',
-			null,
-			$wikiId
-		);
-	}
-
-	/**
-	 * @param string $wikiId
-	 * @return NameTableStore
-	 */
-	private function getSlotRoleStore( $wikiId ) {
-		// XXX: a dedicated ContentModelStore subclass would avoid hard-coding
-		// knowledge about the schema here.
-		return new NameTableStore(
-			$this->dbLoadBalancerFactory->getMainLB( $wikiId ),
-			$this->cache, // Pass local cache instance; Leave cache sharing to NameTableStore.
-			$this->loggerProvider->getLogger( 'NameTableSqlStore' ),
-			'slot_roles',
-			'role_id',
-			'role_name',
-			'strtolower',
-			$wikiId
-		);
-	}
-
 }

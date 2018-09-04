@@ -21,6 +21,7 @@ use MediaWiki\Special\SpecialPageFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
+use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\RevisionFactory;
 use MediaWiki\Storage\RevisionLookup;
 use MediaWiki\Storage\RevisionStore;
@@ -452,7 +453,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return NameTableStore
 	 */
 	public function getChangeTagDefStore() {
-		return $this->getService( 'ChangeTagDefStore' );
+		return $this->getService( 'NameTableStoreFactory' )->getChangeTagDef();
 	}
 
 	/**
@@ -500,7 +501,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return NameTableStore
 	 */
 	public function getContentModelStore() {
-		return $this->getService( 'ContentModelStore' );
+		return $this->getService( 'NameTableStoreFactory' )->getContentModels();
 	}
 
 	/**
@@ -664,6 +665,13 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.32
+	 * @return NameTableStoreFactory
+	 */
+	public function getNameTableStoreFactory() {
+		return $this->getService( 'NameTableStoreFactory' );
+	}
+
+	/**
 	 * @return OldRevisionImporter
 	 */
 	public function getOldRevisionImporter() {
@@ -836,7 +844,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return NameTableStore
 	 */
 	public function getSlotRoleStore() {
-		return $this->getService( 'SlotRoleStore' );
+		return $this->getService( 'NameTableStoreFactory' )->getSlotRoles();
 	}
 
 	/**
