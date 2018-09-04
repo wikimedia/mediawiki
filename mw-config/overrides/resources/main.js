@@ -20,6 +20,9 @@ $( function () {
 	$( 'input[name=config_wgPingback]' ).parent().addClass( "hidden" );
 	$( 'input[name=config_wgPingback]' ).parent().prev().addClass( "hidden" );
 
+	$( 'input[name=config__NamespaceType]' ).parent().parent().addClass( "hidden" );
+	$( 'input[name=config__NamespaceType]' ).parent().parent().parent().prev().addClass( "hidden" );
+
 	$( 'input[name=config_wgEnableUserEmail]' ).parent().addClass( "hidden" );
 	$( 'input[name=config_wgEnotifUserTalk]' ).parent().addClass( "hidden" );
 	$( 'input[name=config_wgEnotifWatchlist]' ).parent().addClass( "hidden" );
@@ -30,8 +33,9 @@ $( function () {
 	$( 'input[name=config_wgEnotifWatchlist]' ).parent().parent().prev().addClass( "hidden" );
 	$( 'input[name=config_wgEmailAuthentication]' ).parent().parent().prev().addClass( "hidden" );
 	$( 'input[name=config_wgEnableEmail]' ).parent().parent().next().addClass( "hidden" );
-
+	$( 'label[for=config__LicenseCode]' ).parent().parent().prev().prev().addClass( "hidden" );
 	$( 'label[for=config__LicenseCode]' ).parent().parent().addClass( "hidden" );
+	$( 'label[for=config__LicenseCode]' ).parent().parent().next().next().addClass( "hidden" );
 	$( 'label[for=config__RightsProfile]' ).parent().parent().addClass( "hidden" );
 	$( '#uploadwrapper' ).show();
 } );

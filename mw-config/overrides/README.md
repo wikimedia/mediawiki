@@ -7,11 +7,6 @@ This repo contains all the implementation _and_ resources/assets that are requir
  cd bluespice3
  # switch to 1.31
  git checkout REL1_31
- cd mw-config
- # get installer
- rm -rf overrides
- git clone https://github.com/hallowelt/bluespice-config-mw-overrides overrides
- cd ..
  # init submodules
  git submodule update --init --recursive
  # run composer
