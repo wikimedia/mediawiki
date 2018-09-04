@@ -1452,14 +1452,14 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			Revision::DELETED_TEXT,
 			Revision::DELETED_TEXT,
 			[ 'sysop' ],
-			Title::newFromText( __METHOD__ ),
+			__METHOD__,
 			true,
 		];
 		yield [
 			Revision::DELETED_TEXT,
 			Revision::DELETED_TEXT,
 			[],
-			Title::newFromText( __METHOD__ ),
+			__METHOD__,
 			false,
 		];
 	}
@@ -1469,6 +1469,8 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 * @covers Revision::userCanBitfield
 	 */
 	public function testUserCanBitfield( $bitField, $field, $userGroups, $title, $expected ) {
+		$title = Title::newFromText( $title );
+
 		$this->setMwGlobals(
 			'wgGroupPermissions',
 			[

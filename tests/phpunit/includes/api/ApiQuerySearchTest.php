@@ -10,22 +10,22 @@ class ApiQuerySearchTest extends ApiTestCase {
 			'empty search result' => [ [], [] ],
 			'has search results' => [
 				[ 'Zomg' ],
-				[ $this->mockResult( 'Zomg' ) ],
+				[ $this->mockResultClosure( 'Zomg' ) ],
 			],
 			'filters broken search results' => [
 				[ 'A', 'B' ],
 				[
-					$this->mockResult( 'a' ),
-					$this->mockResult( 'Zomg' )->setBrokenTitle( true ),
-					$this->mockResult( 'b' ),
+					$this->mockResultClosure( 'a' ),
+					$this->mockResultClosure( 'Zomg', [ 'setBrokenTitle' => true ] ),
+					$this->mockResultClosure( 'b' ),
 				],
 			],
 			'filters results with missing revision' => [
 				[ 'B', 'A' ],
 				[
-					$this->mockResult( 'Zomg' )->setMissingRevision( true ),
-					$this->mockResult( 'b' ),
-					$this->mockResult( 'a' ),
+					$this->mockResultClosure( 'Zomg', [ 'setMissingRevision' => true ] ),
+					$this->mockResultClosure( 'b' ),
+					$this->mockResultClosure( 'a' ),
 				],
 			],
 		];
@@ -56,7 +56,10 @@ class ApiQuerySearchTest extends ApiTestCase {
 				[
 					SearchResultSet::SECONDARY_RESULTS => [
 						'utwiki' => new MockSearchResultSet( [
-							$this->mockResult( 'Qwerty' )->setInterwikiPrefix( 'utwiki' ),
+							$this->mockResultClosure(
+								'Qwerty',
+								[ 'setInterwikiPrefix' => 'utwiki' ]
+							),
 						] ),
 					],
 				]
@@ -102,8 +105,28 @@ class ApiQuerySearchTest extends ApiTestCase {
 		] );
 	}
 
-	private function mockResult( $title ) {
-		return MockSearchResult::newFromtitle( Title::newFromText( $title ) );
+	/**
+	 * Returns a closure that evaluates to a MockSearchResult, to be resolved by
+	 * MockSearchEngine::addMockResults() or MockresultSet::extractResults().
+	 *
+	 * This is needed because MockSearchResults cannot be instantiated in a data provider,
+	 * since they load revisions. This would hit the "real" database instead of the mock
+	 * database, which in turn may cause cache pollution and other inconsistencies, see T202641.
+	 *
+	 * @param string $title
+	 * @param array $setters
+	 * @return callable function(): MockSearchResult
+	 */
+	private function mockResultClosure( $title, $setters = [] ) {
+		return function () use ( $title, $setters ){
+			$result = MockSearchResult::newFromTitle( Title::newFromText( $title ) );
+
+			foreach ( $setters as $method => $param ) {
+				$result->$method( $param );
+			}
+
+			return $result;
+		};
 	}
 
 }

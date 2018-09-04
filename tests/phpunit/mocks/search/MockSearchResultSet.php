@@ -8,8 +8,8 @@ class MockSearchResultSet extends SearchResultSet {
 	private $interwikiResults;
 
 	/**
-	 * @param SearchResult[] $results
-	 * @param SearchResultSet[][] $interwikiResults Map from result type
+	 * @param SearchResult[]|callable[] $results
+	 * @param SearchResultSet[][]|callable[][] $interwikiResults Map from result type
 	 *  to list of results for that type.
 	 */
 	public function __construct( array $results, array $interwikiResults = [] ) {
@@ -25,6 +25,19 @@ class MockSearchResultSet extends SearchResultSet {
 	public function hasInterwikiResults( $type = self::SECONDARY_RESULTS ) {
 		return isset( $this->interwikiResults[$type] ) &&
 			count( $this->interwikiResults[$type] ) > 0;
+	}
+
+	public function extractResults() {
+		$results = parent::extractResults();
+
+		foreach ( $results as &$result ) {
+			// Resolve deferred results; needed to work around T203279
+			if ( is_callable( $result ) ) {
+				$result = $result();
+			}
+		}
+
+		return $results;
 	}
 
 	public function getInterwikiResults( $type = self::SECONDARY_RESULTS ) {
