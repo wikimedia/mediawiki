@@ -408,11 +408,7 @@ class ExtensionRegistry {
 	 * @return array
 	 */
 	public function getAttribute( $name ) {
-		if ( isset( $this->attributes[$name] ) ) {
-			return $this->attributes[$name];
-		} else {
-			return [];
-		}
+		return $this->attributes[$name] ?? [];
 	}
 
 	/**
