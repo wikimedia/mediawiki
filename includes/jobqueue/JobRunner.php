@@ -29,7 +29,6 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\DBError;
-use Wikimedia\Rdbms\DBReplicationWaitError;
 
 /**
  * Job queue runner utility methods
@@ -225,20 +224,15 @@ class JobRunner implements LoggerAwareInterface {
 				// other wikis in the farm (on different masters) get a chance.
 				$timePassed = microtime( true ) - $lastCheckTime;
 				if ( $timePassed >= self::LAG_CHECK_PERIOD || $timePassed < 0 ) {
-					try {
-						$lbFactory->waitForReplication( [
-							'ifWritesSince' => $lastCheckTime,
-							'timeout' => self::MAX_ALLOWED_LAG
-						] );
-					} catch ( DBReplicationWaitError $e ) {
+					$success = $lbFactory->waitForReplication( [
+						'ifWritesSince' => $lastCheckTime,
+						'timeout' => self::MAX_ALLOWED_LAG,
+					] );
+					if ( !$success ) {
 						$response['reached'] = 'replica-lag-limit';
 						break;
 					}
 					$lastCheckTime = microtime( true );
-				}
-				// Don't let any queue replica DBs/backups fall behind
-				if ( $jobsPopped > 0 && ( $jobsPopped % 100 ) == 0 ) {
-					$group->waitForBackups();
 				}
 
 				// Bail if near-OOM instead of in a job

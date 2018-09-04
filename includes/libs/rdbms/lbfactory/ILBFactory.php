@@ -269,9 +269,9 @@ interface ILBFactory {
 	 * @param array $opts Optional fields that include:
 	 *   - domain : wait on the load balancer DBs that handles the given domain ID
 	 *   - cluster : wait on the given external load balancer DBs
-	 *   - timeout : Max wait time. Default: ~60 seconds
+	 *   - timeout : Max wait time. Default: 60 seconds for CLI, 1 second for web.
 	 *   - ifWritesSince: Only wait if writes were done since this UNIX timestamp
-	 * @throws DBReplicationWaitError If a timeout or error occurred waiting on a DB cluster
+	 * @return bool True on success, false if a timeout or error occurred while waiting
 	 */
 	public function waitForReplication( array $opts = [] );
 
@@ -301,7 +301,7 @@ interface ILBFactory {
 	 * @param string $fname Caller name (e.g. __METHOD__)
 	 * @param mixed $ticket Result of getEmptyTransactionTicket()
 	 * @param array $opts Options to waitForReplication()
-	 * @throws DBReplicationWaitError
+	 * @return bool True if the wait was successful, false on timeout
 	 */
 	public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] );
 

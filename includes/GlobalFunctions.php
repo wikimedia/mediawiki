@@ -30,7 +30,6 @@ use MediaWiki\Session\SessionManager;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Wikimedia\ScopedCallback;
-use Wikimedia\Rdbms\DBReplicationWaitError;
 use Wikimedia\WrappedString;
 
 /**
@@ -2922,17 +2921,13 @@ function wfGetNull() {
  * @param float|null $ifWritesSince Only wait if writes were done since this UNIX timestamp
  * @param string|bool $wiki Wiki identifier accepted by wfGetLB
  * @param string|bool $cluster Cluster name accepted by LBFactory. Default: false.
- * @param int|null $timeout Max wait time. Default: 1 day (cli), ~10 seconds (web)
+ * @param int|null $timeout Max wait time. Default: 60 seconds (cli), 1 second (web)
  * @return bool Success (able to connect and no timeouts reached)
  * @deprecated since 1.27 Use LBFactory::waitForReplication
  */
 function wfWaitForSlaves(
 	$ifWritesSince = null, $wiki = false, $cluster = false, $timeout = null
 ) {
-	if ( $timeout === null ) {
-		$timeout = wfIsCLI() ? 60 : 10;
-	}
-
 	if ( $cluster === '*' ) {
 		$cluster = false;
 		$wiki = false;
@@ -2940,20 +2935,18 @@ function wfWaitForSlaves(
 		$wiki = wfWikiID();
 	}
 
-	try {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lbFactory->waitForReplication( [
-			'wiki' => $wiki,
-			'cluster' => $cluster,
-			'timeout' => $timeout,
-			// B/C: first argument used to be "max seconds of lag"; ignore such values
-			'ifWritesSince' => ( $ifWritesSince > 1e9 ) ? $ifWritesSince : null
-		] );
-	} catch ( DBReplicationWaitError $e ) {
-		return false;
+	$opts = [
+		'wiki' => $wiki,
+		'cluster' => $cluster,
+		// B/C: first argument used to be "max seconds of lag"; ignore such values
+		'ifWritesSince' => ( $ifWritesSince > 1e9 ) ? $ifWritesSince : null
+	];
+	if ( $timeout !== null ) {
+		$opts['timeout'] = $timeout;
 	}
 
-	return true;
+	$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+	return $lbFactory->waitForReplication( $opts );
 }
 
 /**
