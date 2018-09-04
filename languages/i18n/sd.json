@@ -700,6 +700,7 @@
 	"search-category": "(ذمرو $1)",
 	"search-file-match": "(فائيل جي مواد سان ملي ٿو)",
 	"search-suggest": "ڇا توهان جو مطلب ھيو: $1",
+	"search-rewritten": "نتيجا براءِ $1. يا $2 بابت نتيجا ڏسو.",
 	"search-interwiki-caption": "برادر رٿائن مان نتيجا",
 	"search-interwiki-default": "$1 مان نتيجا",
 	"search-interwiki-more": "(وڌيڪ)",
