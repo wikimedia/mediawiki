@@ -9,17 +9,18 @@
  *
  * Options:
  *   - columns
- *     - Required list of columns in the matrix.
+ *     - Required associative array mapping column labels (as HTML) to their tags.
  *   - rows
- *     - Required list of rows in the matrix.
+ *     - Required associative array mapping row labels (as HTML) to their tags.
  *   - force-options-on
- *     - Accepts array of column-row tags to be displayed as enabled but unavailable to change
+ *     - Array of column-row tags to be displayed as enabled but unavailable to change.
  *   - force-options-off
- *     - Accepts array of column-row tags to be displayed as disabled but unavailable to change.
+ *     - Array of column-row tags to be displayed as disabled but unavailable to change.
  *   - tooltips
- *     - Optional array mapping row label to tooltip content
+ *     - Optional associative array mapping row labels to tooltips (as text, will be escaped).
  *   - tooltip-class
  *     - Optional CSS class used on tooltip container span. Defaults to mw-icon-question.
+ *       Not used by OOUI form fields.
  */
 class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	static private $requiredParams = [
@@ -158,10 +159,10 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 				'id' => $this->mID,
 				'rows' => $this->mParams['rows'],
 				'columns' => $this->mParams['columns'],
-				'tooltips' => $this->mParams['tooltips'],
+				'tooltips' => $this->mParams['tooltips'] ?? [],
 				'forcedOff' => $this->mParams['force-options-off'] ?? [],
 				'forcedOn' => $this->mParams['force-options-on'] ?? [],
-				'values' => $value
+				'values' => $value,
 			] + OOUI\Element::configFromHtmlAttributes( $attribs )
 		);
 	}

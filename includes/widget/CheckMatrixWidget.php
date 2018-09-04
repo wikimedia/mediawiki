@@ -28,17 +28,15 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	 *
 	 * @param array $config Configuration array with the following options:
 	 *   - columns
-	 *     - Required list of columns in the matrix.
+	 *     - Required associative array mapping column labels (as HTML) to their tags.
 	 *   - rows
-	 *     - Required list of rows in the matrix.
+	 *     - Required associative array mapping row labels (as HTML) to their tags.
 	 *   - force-options-on
-	 *     - Accepts array of column-row tags to be displayed as enabled but unavailable to change
+	 *     - Array of column-row tags to be displayed as enabled but unavailable to change.
 	 *   - force-options-off
-	 *     - Accepts array of column-row tags to be displayed as disabled but unavailable to change.
+	 *     - Array of column-row tags to be displayed as disabled but unavailable to change.
 	 *   - tooltips
-	 *     - Optional array mapping row label to tooltip content
-	 *   - tooltip-class
-	 *     - Optional CSS class used on tooltip container span. Defaults to mw-icon-question.
+	 *     - Optional associative array mapping row labels to tooltips (as text, will be escaped).
 	 */
 	public function __construct( array $config = [] ) {
 		// Configuration initialization
@@ -65,7 +63,7 @@ class CheckMatrixWidget extends \OOUI\Widget {
 		$tr->appendContent( $this->getCellTag( "\u{00A0}" ) );
 		foreach ( $this->columns as $columnLabel => $columnTag ) {
 			$tr->appendContent(
-				$this->getCellTag( $columnLabel )
+				$this->getCellTag( new \OOUI\HtmlSnippet( $columnLabel ) )
 			);
 		}
 		$table->appendContent( $tr );
@@ -86,7 +84,7 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	 * Get a formatted table row for the option, with
 	 * a checkbox widget.
 	 *
-	 * @param  string $label Row label
+	 * @param  string $label Row label (as HTML)
 	 * @param  string $tag   Row tag name
 	 * @return \OOUI\Tag The resulting table row
 	 */
@@ -98,7 +96,7 @@ class CheckMatrixWidget extends \OOUI\Widget {
 		$labelField = new \OOUI\FieldLayout(
 			new \OOUI\Widget(), // Empty widget, since we don't have the checkboxes here
 			[
-				'label' => $label,
+				'label' => new \OOUI\HtmlSnippet( $label ),
 				'align' => 'inline',
 			] + $labelFieldConfig
 		);
@@ -125,7 +123,7 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	/**
 	 * Get an individual cell tag with requested content
 	 *
-	 * @param  string $content Content for the <td> cell
+	 * @param  mixed $content Content for the <td> cell
 	 * @return \OOUI\Tag Resulting cell
 	 */
 	private function getCellTag( $content ) {
