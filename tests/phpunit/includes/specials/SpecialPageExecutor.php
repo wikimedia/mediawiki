@@ -117,14 +117,9 @@ class SpecialPageExecutor {
 			} else {
 				$html = $output->getHTML();
 			}
-		} catch ( Exception $ex ) {
+		} finally {
 			ob_end_clean();
-
-			// Re-throw exception after "finally" handling because PHP 5.3 doesn't have "finally".
-			throw $ex;
 		}
-
-		ob_end_clean();
 
 		return $html;
 	}
