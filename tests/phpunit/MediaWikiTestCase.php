@@ -8,7 +8,6 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\TestingAccessWrapper;
 
@@ -100,12 +99,6 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @var array
 	 */
 	private $mwGlobalsToUnset = [];
-
-	/**
-	 * Holds original contents of interwiki table
-	 * @var IResultWrapper
-	 */
-	private $interwikiTable = null;
 
 	/**
 	 * Holds original loggers which have been replaced by setLogger()
@@ -528,12 +521,6 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			if ( $this->db->getType() === 'mysql' ) {
 				$this->db->query( "SET sql_mode = 'STRICT_ALL_TABLES'", __METHOD__ );
 			}
-		}
-
-		// Store contents of interwiki table in case it changes.  Unfortunately, we seem to have no
-		// way to do this only when needed, because tablesUsed can be changed mid-test.
-		if ( $this->db ) {
-			$this->interwikiTable = $this->db->select( 'interwiki', '*', '', __METHOD__ );
 		}
 
 		// Reset all caches between tests.
@@ -1762,19 +1749,6 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		if ( in_array( $db->getType(), [ 'postgres', 'sqlite' ], true ) ) {
 			// Reset the table's sequence too.
 			$db->resetSequenceForTable( $tableName, __METHOD__ );
-		}
-
-		if ( $tableName === 'interwiki' ) {
-			if ( !$this->interwikiTable ) {
-				// @todo We should probably throw here, but this causes test failures that I
-				// can't figure out, so for now we silently continue.
-				return;
-			}
-			$db->insert(
-				'interwiki',
-				array_values( array_map( 'get_object_vars', iterator_to_array( $this->interwikiTable ) ) ),
-				__METHOD__
-			);
 		}
 	}
 
