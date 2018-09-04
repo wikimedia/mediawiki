@@ -1760,14 +1760,10 @@
 					// Allow multiple registration
 					if ( typeof module === 'object' ) {
 						resolveIndexedDependencies( module );
+						// module is an array of arrays
 						for ( i = 0; i < module.length; i++ ) {
 							// module is an array of module names
-							if ( typeof module[ i ] === 'string' ) {
-								mw.loader.register( module[ i ] );
-							// module is an array of arrays
-							} else if ( typeof module[ i ] === 'object' ) {
-								mw.loader.register.apply( mw.loader, module[ i ] );
-							}
+							mw.loader.register.apply( mw.loader, module[ i ] );
 						}
 						return;
 					}
