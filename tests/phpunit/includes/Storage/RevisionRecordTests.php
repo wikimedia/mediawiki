@@ -343,14 +343,14 @@ trait RevisionRecordTests {
 			RevisionRecord::DELETED_TEXT,
 			RevisionRecord::DELETED_TEXT,
 			[ 'sysop' ],
-			Title::newFromText( __METHOD__ ),
+			__METHOD__,
 			true,
 		];
 		yield [
 			RevisionRecord::DELETED_TEXT,
 			RevisionRecord::DELETED_TEXT,
 			[],
-			Title::newFromText( __METHOD__ ),
+			__METHOD__,
 			false,
 		];
 	}
@@ -360,6 +360,11 @@ trait RevisionRecordTests {
 	 * @covers \MediaWiki\Storage\RevisionRecord::userCanBitfield
 	 */
 	public function testUserCanBitfield( $bitField, $field, $userGroups, $title, $expected ) {
+		if ( is_string( $title ) ) {
+			// NOTE: Data providers cannot instantiate Title objects! See T202641.
+			$title = Title::newFromText( $title );
+		}
+
 		$this->forceStandardPermissions();
 
 		$user = $this->getTestUser( $userGroups )->getUser();
@@ -371,70 +376,73 @@ trait RevisionRecordTests {
 	}
 
 	public function provideHasSameContent() {
-		/**
-		 * @param SlotRecord[] $slots
-		 * @param int $revId
-		 * @return RevisionStoreRecord
-		 */
-		$recordCreator = function ( array $slots, $revId ) {
-			$title = Title::newFromText( 'provideHasSameContent' );
-			$title->resetArticleID( 19 );
-			$slots = new RevisionSlots( $slots );
-
-			return new RevisionStoreRecord(
-				$title,
-				new UserIdentityValue( 11, __METHOD__, 0 ),
-				CommentStoreComment::newUnsavedComment( __METHOD__ ),
-				(object)[
-					'rev_id' => strval( $revId ),
-					'rev_page' => strval( $title->getArticleID() ),
-					'rev_timestamp' => '20200101000000',
-					'rev_deleted' => 0,
-					'rev_minor_edit' => 0,
-					'rev_parent_id' => '5',
-					'rev_len' => $slots->computeSize(),
-					'rev_sha1' => $slots->computeSha1(),
-					'page_latest' => '18',
-				],
-				$slots
-			);
-		};
-
 		// Create some slots with content
 		$mainA = SlotRecord::newUnsaved( 'main', new TextContent( 'A' ) );
 		$mainB = SlotRecord::newUnsaved( 'main', new TextContent( 'B' ) );
 		$auxA = SlotRecord::newUnsaved( 'aux', new TextContent( 'A' ) );
 		$auxB = SlotRecord::newUnsaved( 'aux', new TextContent( 'A' ) );
 
-		$initialRecord = $recordCreator( [ $mainA ], 12 );
+		$initialRecordSpec = [ [ $mainA ], 12 ];
 
 		return [
 			'same record object' => [
 				true,
-				$initialRecord,
-				$initialRecord,
+				$initialRecordSpec,
+				$initialRecordSpec,
 			],
 			'same record content, different object' => [
 				true,
-				$recordCreator( [ $mainA ], 12 ),
-				$recordCreator( [ $mainA ], 13 ),
+				[ [ $mainA ], 12 ],
+				[ [ $mainA ], 13 ],
 			],
 			'same record content, aux slot, different object' => [
 				true,
-				$recordCreator( [ $auxA ], 12 ),
-				$recordCreator( [ $auxB ], 13 ),
+				[ [ $auxA ], 12 ],
+				[ [ $auxB ], 13 ],
 			],
 			'different content' => [
 				false,
-				$recordCreator( [ $mainA ], 12 ),
-				$recordCreator( [ $mainB ], 13 ),
+				[ [ $mainA ], 12 ],
+				[ [ $mainB ], 13 ],
 			],
 			'different content and number of slots' => [
 				false,
-				$recordCreator( [ $mainA ], 12 ),
-				$recordCreator( [ $mainA, $mainB ], 13 ),
+				[ [ $mainA ], 12 ],
+				[ [ $mainA, $mainB ], 13 ],
 			],
 		];
+	}
+
+	/**
+	 * @note Do not call directly from a data provider! Data providers cannot instantiate
+	 * Title objects! See T202641.
+	 *
+	 * @param SlotRecord[] $slots
+	 * @param int $revId
+	 * @return RevisionStoreRecord
+	 */
+	private function makeHasSameContentTestRecord( array $slots, $revId ) {
+		$title = Title::newFromText( 'provideHasSameContent' );
+		$title->resetArticleID( 19 );
+		$slots = new RevisionSlots( $slots );
+
+		return new RevisionStoreRecord(
+			$title,
+			new UserIdentityValue( 11, __METHOD__, 0 ),
+			CommentStoreComment::newUnsavedComment( __METHOD__ ),
+			(object)[
+				'rev_id' => strval( $revId ),
+				'rev_page' => strval( $title->getArticleID() ),
+				'rev_timestamp' => '20200101000000',
+				'rev_deleted' => 0,
+				'rev_minor_edit' => 0,
+				'rev_parent_id' => '5',
+				'rev_len' => $slots->computeSize(),
+				'rev_sha1' => $slots->computeSha1(),
+				'page_latest' => '18',
+			],
+			$slots
+		);
 	}
 
 	/**
@@ -444,9 +452,12 @@ trait RevisionRecordTests {
 	 */
 	public function testHasSameContent(
 		$expected,
-		RevisionRecord $record1,
-		RevisionRecord $record2
+		$recordSpec1,
+		$recordSpec2
 	) {
+		$record1 = $this->makeHasSameContentTestRecord( ...$recordSpec1 );
+		$record2 = $this->makeHasSameContentTestRecord( ...$recordSpec2 );
+
 		$this->assertSame(
 			$expected,
 			$record1->hasSameContent( $record2 )

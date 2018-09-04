@@ -19,12 +19,17 @@ class MockSearchEngine extends SearchEngine {
 	 * @param SearchResult[] $results The results to return for $query
 	 */
 	public static function addMockResults( $query, array $results ) {
-		self::$results[$query] = $results;
 		$lc = MediaWikiServices::getInstance()->getLinkCache();
-		foreach ( $results as $result ) {
+		foreach ( $results as &$result ) {
+			// Resolve deferred results; needed to work around T203279
+			if ( is_callable( $result ) ) {
+				$result = $result();
+			}
+
 			// TODO: better page ids? Does it matter?
 			$lc->addGoodLinkObj( mt_rand(), $result->getTitle() );
 		}
+		self::$results[$query] = $results;
 	}
 
 	/**

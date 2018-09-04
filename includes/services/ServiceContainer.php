@@ -100,6 +100,12 @@ class ServiceContainer implements DestructibleService {
 			}
 		}
 
+		// Break circular references due to the $this reference in closures, by
+		// erasing the instantiator array. This allows the ServiceContainer to
+		// be deleted when it goes out of scope.
+		$this->serviceInstantiators = [];
+		// Also remove the services themselves, to avoid confusion.
+		$this->services = [];
 		$this->destroyed = true;
 	}
 

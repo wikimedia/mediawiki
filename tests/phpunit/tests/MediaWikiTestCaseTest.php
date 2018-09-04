@@ -114,9 +114,6 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 
 		$this->overrideMwServices();
 		$this->assertNotSame( $initialServices, MediaWikiServices::getInstance() );
-
-		$this->tearDown();
-		$this->assertSame( $initialServices, MediaWikiServices::getInstance() );
 	}
 
 	public function testSetService() {
@@ -126,17 +123,11 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()->getMock();
 
 		$this->setService( 'DBLoadBalancer', $mockService );
-		$this->assertNotSame( $initialServices, MediaWikiServices::getInstance() );
 		$this->assertNotSame(
 			$initialService,
 			MediaWikiServices::getInstance()->getDBLoadBalancer()
 		);
 		$this->assertSame( $mockService, MediaWikiServices::getInstance()->getDBLoadBalancer() );
-
-		$this->tearDown();
-		$this->assertSame( $initialServices, MediaWikiServices::getInstance() );
-		$this->assertNotSame( $mockService, MediaWikiServices::getInstance()->getDBLoadBalancer() );
-		$this->assertSame( $initialService, MediaWikiServices::getInstance()->getDBLoadBalancer() );
 	}
 
 	/**

@@ -13,17 +13,6 @@ use MediaWiki\MediaWikiServices;
  * @author Addshore
  */
 class SpecialPageFatalTest extends MediaWikiTestCase {
-
-	public static function setUpBeforeClass() {
-		parent::setUpBeforeClass();
-		self::overrideMwServices();
-	}
-
-	public static function tearDownAfterClass() {
-		self::overrideMwServices();
-		parent::tearDownAfterClass();
-	}
-
 	public function provideSpecialPages() {
 		$specialPages = [];
 		$spf = MediaWikiServices::getInstance()->getSpecialPageFactory();
