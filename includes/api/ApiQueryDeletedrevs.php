@@ -20,6 +20,9 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\NameTableAccessException;
+
 /**
  * Query module to enumerate all deleted revisions.
  *
@@ -33,6 +36,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	}
 
 	public function execute() {
+		global $wgChangeTagsSchemaMigrationStage;
+
 		// Before doing anything at all, let's check permissions
 		$this->checkUserRightsAny( 'deletedhistory' );
 
@@ -140,7 +145,17 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addJoinConds(
 				[ 'change_tag' => [ 'INNER JOIN', [ 'ar_rev_id=ct_rev_id' ] ] ]
 			);
-			$this->addWhereFld( 'ct_tag', $params['tag'] );
+			if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+				$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
+				try {
+					$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $params['tag'] ) );
+				} catch ( NameTableAccessException $exception ) {
+					// Return nothing.
+					$this->addWhere( '1=0' );
+				}
+			} else {
+				$this->addWhereFld( 'ct_tag', $params['tag'] );
+			}
 		}
 
 		if ( $fld_content ) {

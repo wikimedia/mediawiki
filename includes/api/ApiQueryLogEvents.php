@@ -20,6 +20,9 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\NameTableAccessException;
+
 /**
  * Query action to List the log events, with optional filtering by various parameters.
  *
@@ -39,6 +42,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$fld_details = false, $fld_tags = false;
 
 	public function execute() {
+		global $wgChangeTagsSchemaMigrationStage;
+
 		$params = $this->extractRequestParams();
 		$db = $this->getDB();
 		$this->commentStore = CommentStore::getStore();
@@ -113,7 +118,17 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds( [ 'change_tag' => [ 'INNER JOIN',
 				[ 'log_id=ct_log_id' ] ] ] );
-			$this->addWhereFld( 'ct_tag', $params['tag'] );
+			if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+				$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
+				try {
+					$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $params['tag'] ) );
+				} catch ( NameTableAccessException $exception ) {
+					// Return nothing.
+					$this->addWhere( '1=0' );
+				}
+			} else {
+				$this->addWhereFld( 'ct_tag', $params['tag'] );
+			}
 		}
 
 		if ( !is_null( $params['action'] ) ) {
