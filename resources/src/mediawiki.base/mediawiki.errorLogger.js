@@ -4,7 +4,7 @@
  * @class mw.errorLogger
  * @singleton
  */
-( function ( mw ) {
+( function () {
 	'use strict';
 
 	mw.errorLogger = {
@@ -55,4 +55,4 @@
 	};
 
 	mw.errorLogger.installGlobalHandler( window );
-}( mediaWiki ) );
+}() );

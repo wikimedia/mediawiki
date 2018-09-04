@@ -1,13 +1,15 @@
 {
 	"extends": "wikimedia",
 	"env": {
-		"browser": true,
-		"jquery": true
+		"browser": true
 	},
 	"globals": {
 		"require": false,
 		"module": false,
+		"mw": false,
+		"$": false,
 		"mediaWiki": false,
+		"jQuery": false,
 		"OO": false
 	},
 	"rules": {
