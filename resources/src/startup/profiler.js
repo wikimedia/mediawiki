@@ -4,7 +4,6 @@
  * @author Timo Tijhof
  * @since 1.32
  */
-/* global mw */
 ( function () {
 	'use strict';
 

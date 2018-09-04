@@ -6,7 +6,7 @@
  * @author Michael Dale <mdale@wikimedia.org>
  * @author Trevor Parscal <tparscal@wikimedia.org>
  */
-( function ( mw ) {
+( function () {
 	/* global console */
 	/* eslint-disable no-console */
 	var original = mw.log;
@@ -22,4 +22,4 @@
 		mw.log.error = original.error;
 		mw.log.deprecate = original.deprecate;
 	}
-}( mediaWiki ) );
+}() );

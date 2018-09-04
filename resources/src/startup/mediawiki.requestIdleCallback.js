@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	var maxBusy = 50;
 
 	mw.requestIdleCallbackInternal = function ( callback ) {
@@ -49,4 +49,4 @@
 	// Note: Polyfill was previously disabled due to
 	// https://bugs.chromium.org/p/chromium/issues/detail?id=647870
 	// See also <http://codepen.io/Krinkle/full/XNGEvv>
-}( mediaWiki ) );
+}() );

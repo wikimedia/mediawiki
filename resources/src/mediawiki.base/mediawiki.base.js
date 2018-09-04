@@ -14,7 +14,6 @@
  *   "mediawiki" module, and will remain a default/implicit dependency for all
  *   regular modules, just like jquery and wikibits already are.
  */
-/* globals mw */
 ( function () {
 	'use strict';
 
