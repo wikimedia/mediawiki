@@ -12,6 +12,15 @@
  * @covers ApiDelete
  */
 class ApiDeleteTest extends ApiTestCase {
+
+	protected function setUp() {
+		parent::setUp();
+		$this->tablesUsed = array_merge(
+			$this->tablesUsed,
+			[ 'change_tag', 'change_tag_def', 'logging' ]
+		);
+	}
+
 	public function testDelete() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
@@ -65,6 +74,7 @@ class ApiDeleteTest extends ApiTestCase {
 	}
 
 	public function testDeleteWithTag() {
+		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
 		ChangeTags::defineTag( 'custom tag' );
@@ -90,6 +100,39 @@ class ApiDeleteTest extends ApiTestCase {
 			__METHOD__,
 			[],
 			[ 'change_tag' => [ 'INNER JOIN', 'ct_log_id = log_id' ] ]
+		) );
+	}
+
+	public function testDeleteWithTagNewBackend() {
+		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_NEW );
+		$name = 'Help:' . ucfirst( __FUNCTION__ );
+
+		ChangeTags::defineTag( 'custom tag' );
+
+		$this->editPage( $name, 'Some text' );
+
+		$this->doApiRequestWithToken( [
+			'action' => 'delete',
+			'title' => $name,
+			'tags' => 'custom tag',
+		] );
+
+		$this->assertFalse( Title::newFromText( $name )->exists() );
+
+		$dbw = wfGetDB( DB_MASTER );
+		$this->assertSame( 'custom tag', $dbw->selectField(
+			[ 'change_tag', 'logging', 'change_tag_def' ],
+			'ctd_name',
+			[
+				'log_namespace' => NS_HELP,
+				'log_title' => ucfirst( __FUNCTION__ ),
+			],
+			__METHOD__,
+			[],
+			[
+				'change_tag' => [ 'INNER JOIN', 'ct_log_id = log_id' ],
+				'change_tag_def' => [ 'INNER JOIN', 'ctd_id = ct_tag_id' ]
+			]
 		) );
 	}
 
