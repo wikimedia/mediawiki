@@ -255,6 +255,12 @@ class Html {
 		// consistency and better compression.
 		$element = strtolower( $element );
 
+		// Some people were abusing this by passing things like
+		// 'h1 id="foo" to $element, which we don't want.
+		if ( strpos( $element, ' ' ) !== false ) {
+			wfWarn( __METHOD__ . " given element name with space '$element'" );
+		}
+
 		// Remove invalid input types
 		if ( $element == 'input' ) {
 			$validTypes = [

@@ -77,6 +77,15 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @expectedException PHPUnit_Framework_Error_Notice
+	 * @expectedExceptionMessage given element name with space
+	 * @covers Html::openElement
+	 */
+	public function testOpenElement() {
+		Html::openElement( 'span id="x"' );
+	}
+
+	/**
 	 * @covers Html::element
 	 * @covers Html::rawElement
 	 * @covers Html::openElement
