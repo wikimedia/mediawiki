@@ -7,15 +7,16 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {Object} columns Required object representing the column labels and associated
-	 *  tags in the matrix.
-	 * @cfg {Object} rows Required object representing the row labels and associated
-	 *  tags in the matrix.
-	 * @cfg {string[]} [forcedOn] An array of column-row tags to be displayed as
-	 *  enabled but unavailable to change
-	 * @cfg {string[]} [forcedOff] An array of column-row tags to be displayed as
-	 *  disnabled but unavailable to change
-	 * @cfg {Object} Object mapping row label to tooltip content
+	 * @cfg {Object} columns Required object mapping column labels (as HTML) to
+	 *  their tags.
+	 * @cfg {Object} rows Required object mapping row labels (as HTML) to their
+	 *  tags.
+	 * @cfg {string[]} [forcedOn] Array of column-row tags to be displayed as
+	 *  enabled but unavailable to change.
+	 * @cfg {string[]} [forcedOff] Array of column-row tags to be displayed as
+	 *  disabled but unavailable to change.
+	 * @cfg {Object} [tooltips] Optional object mapping row labels to tooltips
+	 *  (as text, will be escaped).
 	 */
 	mw.widgets.CheckMatrixWidget = function MWWCheckMatrixWidget( config ) {
 		var $headRow = $( '<tr>' ),
@@ -36,11 +37,11 @@
 		this.forcedOff = config.forcedOff || [];
 
 		// Build header
-		$headRow.append( $( '<td>' ).html( '&#160;' ) );
+		$headRow.append( $( '<td>' ).text( '\u00A0' ) );
 
 		// Iterate over the columns object (ignore the value)
 		$.each( this.columns, function ( columnLabel ) {
-			$headRow.append( $( '<td>' ).text( columnLabel ) );
+			$headRow.append( $( '<td>' ).html( columnLabel ) );
 		} );
 		$table.append( $headRow );
 
@@ -50,7 +51,7 @@
 				labelField = new OO.ui.FieldLayout(
 					new OO.ui.Widget(), // Empty widget, since we don't have the checkboxes here
 					{
-						label: rowLabel,
+						label: new OO.ui.HtmlSnippet( rowLabel ),
 						help: widget.tooltips[ rowLabel ],
 						align: 'inline'
 					}
