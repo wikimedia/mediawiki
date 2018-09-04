@@ -53,7 +53,7 @@ use MediaWiki\Special\SpecialPageFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Storage\BlobStoreFactory;
-use MediaWiki\Storage\NameTableStore;
+use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\RevisionFactory;
 use MediaWiki\Storage\RevisionLookup;
 use MediaWiki\Storage\RevisionStore;
@@ -77,24 +77,6 @@ return [
 			$services->getMainWANObjectCache(),
 			$services->getMainConfig(),
 			$services->getContentLanguage()
-		);
-	},
-
-	'ChangeTagDefStore' => function ( MediaWikiServices $services ) : NameTableStore {
-		return new NameTableStore(
-			$services->getDBLoadBalancer(),
-			$services->getMainWANObjectCache(),
-			LoggerFactory::getInstance( 'NameTableSqlStore' ),
-			'change_tag_def',
-			'ctd_id',
-			'ctd_name',
-			null,
-			false,
-			function ( $insertFields ) {
-				$insertFields['ctd_user_defined'] = 0;
-				$insertFields['ctd_count'] = 0;
-				return $insertFields;
-			}
 		);
 	},
 
@@ -126,23 +108,6 @@ return [
 
 	'ContentLanguage' => function ( MediaWikiServices $services ) : Language {
 		return Language::factory( $services->getMainConfig()->get( 'LanguageCode' ) );
-	},
-
-	'ContentModelStore' => function ( MediaWikiServices $services ) : NameTableStore {
-		return new NameTableStore(
-			$services->getDBLoadBalancer(),
-			$services->getMainWANObjectCache(),
-			LoggerFactory::getInstance( 'NameTableSqlStore' ),
-			'content_models',
-			'model_id',
-			'model_name'
-			/**
-			 * No strtolower normalization is added to the service as there are examples of
-			 * extensions that do not stick to this assumption.
-			 * - extensions/examples/DataPages define( 'CONTENT_MODEL_XML_DATA','XML_DATA' );
-			 * - extensions/Scribunto define( 'CONTENT_MODEL_SCRIBUNTO', 'Scribunto' );
-			 */
-		);
 	},
 
 	'CryptHKDF' => function ( MediaWikiServices $services ) : CryptHKDF {
@@ -360,6 +325,14 @@ return [
 		return new MimeMagic( $params );
 	},
 
+	'NameTableStoreFactory' => function ( MediaWikiServices $services ) : NameTableStoreFactory {
+		return new NameTableStoreFactory(
+			$services->getDBLoadBalancerFactory(),
+			$services->getMainWANObjectCache(),
+			LoggerFactory::getInstance( 'NameTableSqlStore' )
+		);
+	},
+
 	'OldRevisionImporter' => function ( MediaWikiServices $services ) : OldRevisionImporter {
 		return new ImportableOldRevisionImporter(
 			true,
@@ -459,6 +432,7 @@ return [
 		$store = new RevisionStoreFactory(
 			$services->getDBLoadBalancerFactory(),
 			$services->getBlobStoreFactory(),
+			$services->getNameTableStoreFactory(),
 			$services->getMainWANObjectCache(),
 			$services->getCommentStore(),
 			$services->getActorMigration(),
@@ -540,18 +514,6 @@ return [
 		} );
 
 		return $factory;
-	},
-
-	'SlotRoleStore' => function ( MediaWikiServices $services ) : NameTableStore {
-		return new NameTableStore(
-			$services->getDBLoadBalancer(),
-			$services->getMainWANObjectCache(),
-			LoggerFactory::getInstance( 'NameTableSqlStore' ),
-			'slot_roles',
-			'role_id',
-			'role_name',
-			'strtolower'
-		);
 	},
 
 	'SpecialPageFactory' => function ( MediaWikiServices $services ) : SpecialPageFactory {

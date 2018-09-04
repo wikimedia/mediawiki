@@ -1677,14 +1677,10 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	private function resetDB( $db, $tablesUsed ) {
 		if ( $db ) {
-			// NOTE: Do not reset the slot_roles and content_models tables, but let them
-			// leak across tests. Resetting them would require to reset all NamedTableStore
-			// instances for these tables, of which there may be several beyond the ones
-			// known to MediaWikiServices. See T202641.
 			$userTables = [ 'user', 'user_groups', 'user_properties', 'actor' ];
 			$pageTables = [
 				'page', 'revision', 'ip_changes', 'revision_comment_temp', 'comment', 'archive',
-				'revision_actor_temp', 'slots', 'content',
+				'revision_actor_temp', 'slots', 'content', 'content_models', 'slot_roles',
 			];
 			$coreDBDataTables = array_merge( $userTables, $pageTables );
 
@@ -1715,6 +1711,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			}
 
 			if ( array_intersect( $tablesUsed, $coreDBDataTables ) ) {
+				// Reset services that may contain information relating to the truncated tables
+				$this->overrideMwServices();
 				// Re-add core DB data that was deleted
 				$this->addCoreDBData();
 			}
@@ -1746,9 +1744,14 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			$db->delete( $tableName, '*', __METHOD__ );
 		}
 
-		if ( in_array( $db->getType(), [ 'postgres', 'sqlite' ], true ) ) {
+		if ( $db instanceof DatabasePostgres || $db instanceof DatabaseSqlite ) {
 			// Reset the table's sequence too.
 			$db->resetSequenceForTable( $tableName, __METHOD__ );
+		}
+
+		// re-initialize site_stats table
+		if ( $tableName === 'site_stats' ) {
+			SiteStatsInit::doPlaceholderInit();
 		}
 	}
 

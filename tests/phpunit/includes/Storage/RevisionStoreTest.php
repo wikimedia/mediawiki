@@ -110,13 +110,15 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			$this->setExpectedException( MWException::class );
 		}
 
+		$nameTables = MediaWikiServices::getInstance()->getNameTableStoreFactory();
+
 		$store = new RevisionStore(
 			$this->getMockLoadBalancer(),
 			$this->getMockSqlBlobStore(),
 			$this->getHashWANObjectCache(),
 			$this->getMockCommentStore(),
-			MediaWikiServices::getInstance()->getContentModelStore(),
-			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			$nameTables->getContentModels(),
+			$nameTables->getSlotRoles(),
 			$migrationMode,
 			MediaWikiServices::getInstance()->getActorMigration()
 		);
@@ -508,17 +510,19 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$blobStore = $this->getMockSqlBlobStore();
 		$cache = $this->getHashWANObjectCache();
 		$commentStore = $this->getMockCommentStore();
-		$contentModelStore = MediaWikiServices::getInstance()->getContentModelStore();
-		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
+		$services = MediaWikiServices::getInstance();
+		$nameTables = $services->getNameTableStoreFactory();
+		$contentModelStore = $nameTables->getContentModels();
+		$slotRoleStore = $nameTables->getSlotRoles();
 		$store = new RevisionStore(
 			$loadBalancer,
 			$blobStore,
 			$cache,
 			$commentStore,
-			MediaWikiServices::getInstance()->getContentModelStore(),
-			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			$nameTables->getContentModels(),
+			$nameTables->getSlotRoles(),
 			$migration,
-			MediaWikiServices::getInstance()->getActorMigration()
+			$services->getActorMigration()
 		);
 		if ( !$expectException ) {
 			$store = TestingAccessWrapper::newFromObject( $store );
