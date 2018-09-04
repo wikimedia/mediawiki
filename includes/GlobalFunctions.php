@@ -1718,7 +1718,7 @@ function wfResetOutputBuffers( $resetGzipEncoding = true ) {
 			// output behavior.
 			break;
 		}
-		if ( $status['name'] === 'MediaWikiTestCase::wfResetOutputBuffersBarrier' ) {
+		if ( $status['name'] === 'MediaWikiIntegrationTestCase::wfResetOutputBuffersBarrier' ) {
 			// Unit testing barrier to prevent this function from breaking PHPUnit.
 			break;
 		}

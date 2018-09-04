@@ -58,7 +58,7 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 			'Global failed to correctly set'
 		);
 
-		$this->tearDown();
+		$this->mediaWikiTearDown();
 
 		$this->assertEquals(
 			self::$startGlobals[$globalKey],
@@ -79,7 +79,7 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 			'Global failed to correctly set'
 		);
 
-		$this->tearDown();
+		$this->mediaWikiTearDown();
 
 		$this->assertFalse(
 			isset( $GLOBALS[$globalKey] ),
@@ -116,7 +116,7 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 		$logger1 = LoggerFactory::getInstance( 'foo' );
 		$this->setLogger( 'foo', $this->createMock( LoggerInterface::class ) );
 		$logger2 = LoggerFactory::getInstance( 'foo' );
-		$this->tearDown();
+		$this->mediaWikiTearDown();
 		$logger3 = LoggerFactory::getInstance( 'foo' );
 
 		$this->assertSame( $logger1, $logger3 );
@@ -130,7 +130,7 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 	public function testLoggersAreRestoredOnTearDown_replacingNonExistingLogger() {
 		$this->setLogger( 'foo', $this->createMock( LoggerInterface::class ) );
 		$logger1 = LoggerFactory::getInstance( 'foo' );
-		$this->tearDown();
+		$this->mediaWikiTearDown();
 		$logger2 = LoggerFactory::getInstance( 'foo' );
 
 		$this->assertNotSame( $logger1, $logger2 );
@@ -145,7 +145,7 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 		$logger1 = LoggerFactory::getInstance( 'baz' );
 		$this->setLogger( 'foo', $this->createMock( LoggerInterface::class ) );
 		$this->setLogger( 'foo', $this->createMock( LoggerInterface::class ) );
-		$this->tearDown();
+		$this->mediaWikiTearDown();
 		$logger2 = LoggerFactory::getInstance( 'baz' );
 
 		$this->assertSame( $logger1, $logger2 );

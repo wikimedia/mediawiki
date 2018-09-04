@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
 
 use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LoggerFactory;
@@ -41,20 +42,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @var MediaWikiServices
 	 */
 	private $localServices;
-
-	/**
-	 * $called tracks whether the setUp and tearDown method has been called.
-	 * class extending MediaWikiTestCase usually override setUp and tearDown
-	 * but forget to call the parent.
-	 *
-	 * The array format takes a method name as key and anything as a value.
-	 * By asserting the key exist, we know the child class has called the
-	 * parent.
-	 *
-	 * This property must be private, we do not want child to override it,
-	 * they should call the appropriate parent method instead.
-	 */
-	private $called = [];
 
 	/**
 	 * @var TestUser[]
@@ -158,14 +145,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		$this->backupGlobals = false;
 		$this->backupStaticAttributes = false;
-	}
-
-	public function __destruct() {
-		// Complain if self::setUp() was called, but not self::tearDown()
-		// $this->called['setUp'] will be checked by self::testMediaWikiTestCaseParentSetupCalled()
-		if ( isset( $this->called['setUp'] ) && !isset( $this->called['tearDown'] ) ) {
-			throw new MWException( static::class . "::tearDown() must call parent::tearDown()" );
-		}
 	}
 
 	private static function initializeForStandardPhpunitEntrypointIfNeeded() {
@@ -541,16 +520,18 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		return $fileName;
 	}
 
-	protected function setUp() {
-		parent::setUp();
+	/**
+	 * The annotation causes this to be called immediately before setUp()
+	 * @before
+	 */
+	protected function mediaWikiSetUp() {
+		$this->phpErrorLevel = intval( ini_get( 'error_reporting' ) );
+
 		$reflection = new ReflectionClass( $this );
 		// TODO: Eventually we should assert for test presence in /integration/
 		if ( strpos( $reflection->getFilename(), '/unit/' ) !== false ) {
 			$this->fail( 'This integration test should not be in "tests/phpunit/unit" !' );
 		}
-		$this->called['setUp'] = true;
-
-		$this->phpErrorLevel = intval( ini_get( 'error_reporting' ) );
 
 		$this->overriddenServices = [];
 
@@ -582,7 +563,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$lbFactory = $this->localServices->getDBLoadBalancerFactory();
 		Maintenance::setLBFactoryTriggers( $lbFactory, $this->localServices->getMainConfig() );
 
-		ob_start( 'MediaWikiTestCase::wfResetOutputBuffersBarrier' );
+		ob_start( 'MediaWikiIntegrationTestCase::wfResetOutputBuffersBarrier' );
 	}
 
 	protected function addTmpFiles( $files ) {
@@ -600,17 +581,20 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 	}
 
-	protected function tearDown() {
+	/**
+	 * The annotation causes this to be called immediately after tearDown()
+	 * @after
+	 */
+	protected function mediaWikiTearDown() {
 		global $wgRequest, $wgSQLMode;
 
 		$status = ob_get_status();
 		if ( isset( $status['name'] ) &&
-			$status['name'] === 'MediaWikiTestCase::wfResetOutputBuffersBarrier'
+			$status['name'] === 'MediaWikiIntegrationTestCase::wfResetOutputBuffersBarrier'
 		) {
 			ob_end_flush();
 		}
 
-		$this->called['tearDown'] = true;
 		// Cleaning up temporary files
 		foreach ( $this->tmpFiles as $fileName ) {
 			if ( is_file( $fileName ) || ( is_link( $fileName ) ) ) {
@@ -675,22 +659,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		// If anything faked the time, reset it
 		ConvertibleTimestamp::setFakeTime( false );
-
-		parent::tearDown();
-	}
-
-	/**
-	 * Make sure MediaWikiTestCase extending classes have called their
-	 * parent setUp method
-	 *
-	 * With strict coverage activated in PHP_CodeCoverage, this test would be
-	 * marked as risky without the following annotation (T152923).
-	 * @coversNothing
-	 */
-	final public function testMediaWikiTestCaseParentSetupCalled() {
-		$this->assertArrayHasKey( 'setUp', $this->called,
-			static::class . '::setUp() must call parent::setUp()'
-		);
 	}
 
 	/**
@@ -712,7 +680,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	protected function setService( $name, $service ) {
 		if ( !$this->localServices ) {
-			throw new Exception( __METHOD__ . ' must be called after MediaWikiTestCase::run()' );
+			throw new Exception( __METHOD__ . ' must be called after MediaWikiIntegrationTestCase::run()' );
 		}
 
 		if ( $this->localServices !== MediaWikiServices::getInstance() ) {
