@@ -510,8 +510,8 @@
 			 *   - resolve: failed to sort dependencies for a module in mw.loader.load
 			 *   - store-eval: could not evaluate module code cached in localStorage
 			 *   - store-localstorage-init: localStorage or JSON parse error in mw.loader.store.init
-			 *   - store-localstorage-json: JSON conversion error in mw.loader.store.set
-			 *   - store-localstorage-update: localStorage or JSON conversion error in mw.loader.store.update
+			 *   - store-localstorage-json: JSON conversion error in mw.loader.store
+			 *   - store-localstorage-update: localStorage conversion error in mw.loader.store.
 			 */
 
 			/**
@@ -844,8 +844,8 @@
 
 				// The current module became 'ready'.
 				if ( registry[ module ].state === 'ready' ) {
-					// Save it to the module store.
-					mw.loader.store.set( module, registry[ module ] );
+					// Queue it for later syncing to the module store.
+					mw.loader.store.add( module );
 					// Recursively execute all dependent modules that were already loaded
 					// (waiting for execution) and no longer have unsatisfied dependencies.
 					for ( m in registry ) {
@@ -2004,6 +2004,10 @@
 					// to module implementations.
 					items: {},
 
+					// Names of modules to be stored during the next update.
+					// See add() and update().
+					queue: [],
+
 					// Cache hit stats
 					stats: { hits: 0, misses: 0, expired: 0, failed: 0 },
 
@@ -2140,17 +2144,34 @@
 					},
 
 					/**
-					 * Stringify a module and queue it for storage.
+					 * Queue the name of a module that the next update should consider storing.
 					 *
+					 * @since 1.32
 					 * @param {string} module Module name
-					 * @param {Object} descriptor The module's descriptor as set in the registry
 					 */
-					set: function ( module, descriptor ) {
-						var args, key, src;
-
+					add: function ( module ) {
 						if ( !this.enabled ) {
 							return;
 						}
+						this.queue.push( module );
+						this.requestUpdate();
+					},
+
+					/**
+					 * Add the contents of the named module to the in-memory store.
+					 *
+					 * This method does not guarantee that the module will be stored.
+					 * Inspection of the module's meta data and size will ultimately decide that.
+					 *
+					 * This method is considered internal to mw.loader.store and must only
+					 * be called if the store is enabled.
+					 *
+					 * @private
+					 * @param {string} module Module name
+					 */
+					set: function ( module ) {
+						var key, args, src,
+							descriptor = mw.loader.moduleRegistry[ module ];
 
 						key = getModuleKey( module );
 
@@ -2158,6 +2179,7 @@
 							// Already stored a copy of this exact version
 							key in this.items ||
 							// Module failed to load
+							!descriptor ||
 							descriptor.state !== 'ready' ||
 							// Unversioned, private, or site-/user-specific
 							!descriptor.version ||
@@ -2195,7 +2217,6 @@
 							return;
 						}
 						this.items[ key ] = src;
-						this.update();
 					},
 
 					/**
@@ -2228,7 +2249,7 @@
 					},
 
 					/**
-					 * Sync in-memory store back to localStorage.
+					 * Request a sync of the in-memory store back to persisted localStorage.
 					 *
 					 * This function debounces updates. When called with a flush already pending, the
 					 * scheduled flush is postponed. The call to localStorage.setItem will be keep
@@ -2240,18 +2261,26 @@
 					 * is minor (merely a less efficient cache use) and the problem would be corrected
 					 * by subsequent page views.
 					 *
+					 * This method is considered internal to mw.loader.store and must only
+					 * be called if the store is enabled.
+					 *
+					 * @private
 					 * @method
 					 */
-					update: ( function () {
+					requestUpdate: ( function () {
 						var timer, hasPendingWrites = false;
 
 						function flushWrites() {
 							var data, key;
-							if ( !mw.loader.store.enabled ) {
-								return;
+
+							// Remove anything from the in-memory store that came from previous page
+							// loads that no longer corresponds with current module names and versions.
+							mw.loader.store.prune();
+							// Process queued module names, serialise their contents to the in-memory store.
+							while ( mw.loader.store.queue.length ) {
+								mw.loader.store.set( mw.loader.store.queue.shift() );
 							}
 
-							mw.loader.store.prune();
 							key = mw.loader.store.getStoreKey();
 							try {
 								// Replacing the content of the module store might fail if the new
@@ -2272,7 +2301,7 @@
 						}
 
 						function request() {
-							// If another mw.loader.store.set()/update() call happens in the narrow
+							// If another mw.loader.store.requestUpdate() call happens in the narrow
 							// time window between requestIdleCallback() and flushWrites firing, ignore it.
 							// It'll be saved by the already-scheduled flush.
 							if ( !hasPendingWrites ) {
