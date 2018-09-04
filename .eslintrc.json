@@ -44,6 +44,11 @@
 				"object": "$",
 				"property": "trim",
 				"message": "Please use String.prototype.trim instead"
+			},
+			{
+				"object": "$",
+				"property": "proxy",
+				"message": "Please use Function.prototype.bind instead"
 			}
 		],
 		"dot-notation": 0,

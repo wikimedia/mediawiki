@@ -46,7 +46,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		loadMessages: function ( messages, options ) {
-			return this.getMessages( messages, options ).then( $.proxy( mw.messages, 'set' ) );
+			return this.getMessages( messages, options ).then( mw.messages.set.bind( mw.messages ) );
 		},
 
 		/**
