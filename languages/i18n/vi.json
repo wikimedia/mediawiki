@@ -2187,7 +2187,7 @@
 	"watchlistanontext": "Xin hãy đăng nhập để xem hay sửa đổi các trang trong danh sách theo dõi của bạn.",
 	"watchnologin": "Chưa đăng nhập",
 	"addwatch": "Thêm vào danh sách theo dõi",
-	"addedwatchtext": "“[[:$1]]” cùng trang thảo luận đã vào [[Special:Watchlist|danh sách theo dõi]] của bạn.",
+	"addedwatchtext": "Trang “[[:$1]]” cùng trang thảo luận đã được thêm vào [[Special:Watchlist|danh sách theo dõi]] của bạn.",
 	"addedwatchtext-talk": "“[[:$1]]” cùng trang đi kèm đã vào [[Special:Watchlist|danh sách theo dõi]] của bạn.",
 	"addedwatchtext-short": "Trang “$1” đã được thêm vào danh sách theo dõi của bạn.",
 	"removewatch": "Gỡ khỏi danh sách theo dõi",

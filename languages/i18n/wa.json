@@ -136,6 +136,7 @@
 	"category-file-count": "{{PLURAL:$2|Dins cisse categoreye ci, gn a k' ene pådje.|{{PLURAL:$1|Gn a cisse pådje ci|Gn a les $1 pådjes ki shuvèt}} dins cisse categoreye ci, po $2 pådjes å totå.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Gn a k' cisse pådje cial|Gn a les $1 pådjes ciddé padzo}} dins cisse categoreye ci.",
 	"listingcontinuesabbrev": "(shûte)",
+	"broken-file-category": "Pådjes avou des hårdêyes esketêyes",
 	"about": "Åd fwait",
 	"article": "Årtike",
 	"newwindow": "(drovant en on novea purnea)",
