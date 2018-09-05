@@ -41,9 +41,7 @@ class TemplateParser {
 	/**
 	 * @var int Compilation flags passed to LightnCandy
 	 */
-	// Do not add more flags here without discussion.
-	// If you do add more flags, be sure to update unit tests as well.
-	protected $compileFlags = LightnCandy::FLAG_ERROR_EXCEPTION;
+	protected $compileFlags;
 
 	/**
 	 * @param string|null $templateDir
@@ -52,6 +50,10 @@ class TemplateParser {
 	public function __construct( $templateDir = null, $forceRecompile = false ) {
 		$this->templateDir = $templateDir ?: __DIR__ . '/templates';
 		$this->forceRecompile = $forceRecompile;
+
+		// Do not add more flags here without discussion.
+		// If you do add more flags, be sure to update unit tests as well.
+		$this->compileFlags = LightnCandy::FLAG_ERROR_EXCEPTION | LightnCandy::FLAG_MUSTACHELOOKUP;
 	}
 
 	/**
