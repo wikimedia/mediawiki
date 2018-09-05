@@ -412,6 +412,23 @@ class ApiComparePages extends ApiBase {
 		foreach ( $params["{$prefix}slots"] as $role ) {
 			$text = $params["{$prefix}text-{$role}"];
 			if ( $text === null ) {
+				// The 'main' role can't be deleted
+				if ( $role === 'main' ) {
+					$this->dieWithError( [ 'apierror-compare-maintextrequired', $prefix ] );
+				}
+
+				// These parameters make no sense without text. Reject them to avoid
+				// confusion.
+				foreach ( [ 'section', 'contentmodel', 'contentformat' ] as $param ) {
+					if ( isset( $params["{$prefix}{$param}-{$role}"] ) ) {
+						$this->dieWithError( [
+							'apierror-compare-notext',
+							wfEscapeWikiText( "{$prefix}{$param}-{$role}" ),
+							wfEscapeWikiText( "{$prefix}text-{$role}" ),
+						] );
+					}
+				}
+
 				$newRev->removeSlot( $role );
 				continue;
 			}
