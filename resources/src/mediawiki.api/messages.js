@@ -66,7 +66,7 @@
 				return $.Deferred().resolve();
 			}
 
-			return this.getMessages( missing, options ).then( $.proxy( mw.messages, 'set' ) );
+			return this.loadMessages( missing, options );
 		}
 	} );
 
