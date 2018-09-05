@@ -308,6 +308,11 @@ class DifferenceEngine extends ContextSource {
 		return $slots;
 	}
 
+	public function getTitle() {
+		// T202454 avoid errors when there is no title
+		return parent::getTitle() ?: Title::makeTitle( NS_SPECIAL, 'BadTitle/DifferenceEngine' );
+	}
+
 	/**
 	 * Set reduced line numbers mode.
 	 * When set, line X is not displayed when X is 1, for example to increase readability and
