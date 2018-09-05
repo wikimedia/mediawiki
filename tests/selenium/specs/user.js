@@ -29,7 +29,7 @@ describe( 'User', function () {
 		assert.strictEqual( CreateAccountPage.heading.getText(), `Welcome, ${username}!` );
 	} );
 
-	it( 'should be able to log in', function () {
+	it( 'should be able to log in @daily', function () {
 		// create
 		browser.call( function () {
 			return Api.createAccount( username, password );
