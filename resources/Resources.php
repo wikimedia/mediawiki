@@ -1450,6 +1450,7 @@ return [
 			'oojs-ui-core',
 			'mediawiki.widgets.visibleLengthLimit',
 			'mediawiki.api',
+			'mediawiki.util',
 		],
 	],
 	'mediawiki.action.edit.styles' => [
