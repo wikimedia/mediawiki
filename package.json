@@ -28,7 +28,7 @@
     "karma-mocha-reporter": "2.2.5",
     "karma-qunit": "2.1.0",
     "postcss-less": "2.0.0",
-    "qunit": "2.6.0",
+    "qunit": "2.6.2",
     "stylelint": "9.2.0",
     "stylelint-config-wikimedia": "0.4.3",
     "wdio-junit-reporter": "0.2.0",
