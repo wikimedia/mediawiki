@@ -2278,7 +2278,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	protected function assertFileContains(
 		$fileName,
 		$actualData,
-		$createIfMissing = true,
+		$createIfMissing = false,
 		$msg = ''
 	) {
 		if ( $createIfMissing ) {
