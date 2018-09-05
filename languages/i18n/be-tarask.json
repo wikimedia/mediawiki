@@ -1660,7 +1660,7 @@
 	"backend-fail-alreadyexists": "Файл «$1» ужо існуе.",
 	"backend-fail-store": "Немагчыма захаваць файл «$1» у «$2».",
 	"backend-fail-copy": "Немагчыма скапіяваць файл «$1» у «$2».",
-	"backend-fail-move": "Немагчыма перанесьці файл $1 у $2.",
+	"backend-fail-move": "Немагчыма перанесьці файл «$1» у «$2».",
 	"backend-fail-opentemp": "Немагчыма адкрыць часовы файл.",
 	"backend-fail-writetemp": "Немагчыма запісаць часовы файл.",
 	"backend-fail-closetemp": "Немагчыма закрыць часовы файл.",
