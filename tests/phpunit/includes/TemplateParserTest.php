@@ -105,6 +105,17 @@ class TemplateParserTest extends MediaWikiTestCase {
 				false,
 				'Exception',
 			],
+			[
+				'parentvars',
+				[
+					'foo' => 'f',
+					'bar' => [
+						[ 'baz' => 'x' ],
+						[ 'baz' => 'y' ]
+					]
+				],
+				"f\n\n\tf x\n\n\tf y\n\n"
+			]
 		];
 	}
 
