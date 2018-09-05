@@ -3997,6 +3997,12 @@ ERROR;
 		$parserOptions->setIsPreview( true );
 		$parserOptions->setIsSectionPreview( !is_null( $this->section ) && $this->section !== '' );
 		$parserOptions->enableLimitReport();
+
+		// XXX: we could call $parserOptions->setCurrentRevisionCallback here to force the
+		// current revision to be null during PST, until setupFakeRevision is called on
+		// the ParserOptions. Currently, we rely on Parser::getRevisionObject() to ignore
+		// existing revisions in preview mode.
+
 		return $parserOptions;
 	}
 
@@ -4012,9 +4018,14 @@ ERROR;
 	protected function doPreviewParse( Content $content ) {
 		$user = $this->context->getUser();
 		$parserOptions = $this->getPreviewParserOptions();
+
+		// NOTE: preSaveTransform doesn't have a fake revision to operate on.
+		// Parser::getRevisionObject() will return null in preview mode,
+		// causing the context user to be used for {{subst:REVISIONUSER}}.
+		// XXX: Alternatively, we could also call setupFakeRevision() a second time:
+		// once before PST with $content, and then after PST with $pstContent.
 		$pstContent = $content->preSaveTransform( $this->mTitle, $user, $parserOptions );
-		$scopedCallback = $parserOptions->setupFakeRevision(
-			$this->mTitle, $pstContent, $user );
+		$scopedCallback = $parserOptions->setupFakeRevision( $this->mTitle, $pstContent, $user );
 		$parserOutput = $pstContent->getParserOutput( $this->mTitle, null, $parserOptions );
 		ScopedCallback::consume( $scopedCallback );
 		return [

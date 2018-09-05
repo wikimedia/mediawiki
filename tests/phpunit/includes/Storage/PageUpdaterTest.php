@@ -12,6 +12,7 @@ use RecentChange;
 use Revision;
 use TextContent;
 use Title;
+use User;
 use WikiPage;
 
 /**
@@ -19,6 +20,7 @@ use WikiPage;
  * @group Database
  */
 class PageUpdaterTest extends MediaWikiTestCase {
+
 	private function getDummyTitle( $method ) {
 		return Title::newFromText( $method, $this->getDefaultWikitextNS() );
 	}
@@ -520,14 +522,16 @@ class PageUpdaterTest extends MediaWikiTestCase {
 			'Test {{subst:REVISIONUSER}} Test',
 			function ( RevisionRecord $rev ) {
 				return $rev->getUser()->getName();
-			}
+			},
+			'subst'
 		];
 
 		yield 'subst:PAGENAME' => [
 			'Test {{subst:PAGENAME}} Test',
 			function ( RevisionRecord $rev ) {
 				return 'PageUpdaterTest::testMagicWords';
-			}
+			},
+			'subst'
 		];
 	}
 
@@ -541,17 +545,20 @@ class PageUpdaterTest extends MediaWikiTestCase {
 	 *
 	 * @dataProvider provideMagicWords
 	 */
-	public function testMagicWords( $wikitext, $callback ) {
-		$user = $this->getTestUser()->getUser();
+	public function testMagicWords( $wikitext, $callback, $subst = false ) {
+		$user = User::newFromName( 'A user for ' . __METHOD__ );
+		$user->addToDatabase();
 
 		$title = $this->getDummyTitle( __METHOD__ . '-' . $this->getName() );
+		$this->insertPage( $title );
+
 		$page = WikiPage::factory( $title );
 		$updater = $page->newPageUpdater( $user );
 
 		$updater->setContent( 'main', new \WikitextContent( $wikitext ) );
 
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
-		$rev = $updater->saveRevision( $summary, EDIT_NEW );
+		$rev = $updater->saveRevision( $summary, EDIT_UPDATE );
 
 		if ( !$rev ) {
 			$this->fail( $updater->getStatus()->getWikiText() );
@@ -559,17 +566,15 @@ class PageUpdaterTest extends MediaWikiTestCase {
 
 		$expected = strval( $callback( $rev ) );
 
-		$cache = MediaWikiServices::getInstance()->getParserCache();
-		$output = $cache->get(
-			$page,
-			ParserOptions::newCanonical(
-				'canonical'
-			)
-		);
+		$output = $page->getParserOutput( ParserOptions::newCanonical( 'canonical' ) );
+		$html = $output->getText();
+		$text = $rev->getContent( 'main' )->serialize();
 
-		$this->assertNotNull( $output, 'ParserCache::get' );
+		if ( $subst ) {
+			$this->assertContains( $expected, $text, 'In Wikitext' );
+		}
 
-		$this->assertContains( $expected, $output->getText() );
+		$this->assertContains( $expected, $html, 'In HTML' );
 	}
 
 }
