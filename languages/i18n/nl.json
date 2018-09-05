@@ -1200,7 +1200,7 @@
 	"group-autoconfirmed": "autobevestigde gebruikers",
 	"group-bot": "bots",
 	"group-sysop": "beheerders",
-	"group-interface-admin": "interfacebeheerders",
+	"group-interface-admin": "interfacemoderatoren",
 	"group-bureaucrat": "bureaucraten",
 	"group-suppress": "toezichthouders",
 	"group-all": "(iedereen)",
