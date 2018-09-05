@@ -268,17 +268,14 @@ class RefreshLinks extends Maintenance {
 			return;
 		}
 
-		$content = $page->getContent( Revision::RAW );
-		if ( $content === null ) {
-			return;
-		}
-
-		$updates = $content->getSecondaryDataUpdates(
-			$page->getTitle(), /* $old = */ null, /* $recursive = */ false );
-		foreach ( $updates as $update ) {
-			DeferredUpdates::addUpdate( $update );
-			DeferredUpdates::doUpdates();
-		}
+		// Defer updates to post-send but then immediately execute deferred updates;
+		// this is the simplest way to run all updates immediately (including updates
+		// scheduled by other updates).
+		$page->doSecondaryDataUpdates( [
+			'defer' => DeferredUpdates::POSTSEND,
+			'recursive' => false,
+		] );
+		DeferredUpdates::doUpdates();
 	}
 
 	/**

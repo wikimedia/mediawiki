@@ -22,7 +22,7 @@ use WikitextContent;
 /**
  * @group Database
  *
- * @covers MediaWiki\Storage\DerivedPageDataUpdater
+ * @covers \MediaWiki\Storage\DerivedPageDataUpdater
  */
 class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
@@ -736,6 +736,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doSecondaryDataUpdates()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
 	 */
 	public function testDoUpdates() {
 		$page = $this->getPage( __METHOD__ );
