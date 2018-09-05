@@ -1187,6 +1187,10 @@ class PageUpdater {
 				$wikiPage, $newRevisionRecord, $user,
 				$summary, $flags, $status, $hints
 			) {
+				// set debug data
+				$hints['causeAction'] = 'edit-page';
+				$hints['causeAgent'] = $user->getName();
+
 				$newLegacyRevision = new Revision( $newRevisionRecord );
 				$mainContent = $newRevisionRecord->getContent( 'main', RevisionRecord::RAW );
 

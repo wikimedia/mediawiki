@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use Wikimedia\TestingAccessWrapper;
@@ -164,14 +165,14 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 
 		// Re-using the prepared info if possible
 		$sameEdit = $page->prepareContentForEdit( $content, null, $user, null, false );
-		$this->assertEquals( $edit, $sameEdit, 'equivalent PreparedEdit' );
+		$this->assertPreparedEditEquals( $edit, $sameEdit, 'equivalent PreparedEdit' );
 		$this->assertSame( $edit->pstContent, $sameEdit->pstContent, 're-use output' );
 		$this->assertSame( $edit->output, $sameEdit->output, 're-use output' );
 
 		// Not re-using the same PreparedEdit if not possible
 		$rev = $page->getRevision();
 		$edit2 = $page->prepareContentForEdit( $content2, null, $user, null, false );
-		$this->assertNotEquals( $edit, $edit2 );
+		$this->assertPreparedEditNotEquals( $edit, $edit2 );
 		$this->assertContains( 'At vero eos', $edit2->pstContent->serialize(), "content" );
 
 		// Check pre-safe transform
@@ -179,7 +180,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$this->assertNotContains( '~~~~', $edit2->pstContent->serialize() );
 
 		$edit3 = $page->prepareContentForEdit( $content2, null, $sysop, null, false );
-		$this->assertNotEquals( $edit2, $edit3 );
+		$this->assertPreparedEditNotEquals( $edit2, $edit3 );
 
 		// TODO: test with passing revision, then same without revision.
 	}
@@ -2394,6 +2395,27 @@ more stuff
 		// Don't re-use cached "virgin" unprepared updater
 		$updater6 = $page->getDerivedDataUpdater( $admin, $revision );
 		$this->assertNotSame( $updater5, $updater6 );
+	}
+
+	protected function assertPreparedEditEquals(
+		PreparedEdit $edit, PreparedEdit $edit2, $message = ''
+	) {
+		// suppress differences caused by a clock tick between generating the two PreparedEdits
+		if ( abs( $edit->timestamp - $edit2->timestamp ) < 3 ) {
+			$edit2 = clone $edit2;
+			$edit2->timestamp = $edit->timestamp;
+		}
+		$this->assertEquals( $edit, $edit2, $message );
+	}
+
+	protected function assertPreparedEditNotEquals(
+		PreparedEdit $edit, PreparedEdit $edit2, $message = ''
+	) {
+		if ( abs( $edit->timestamp - $edit2->timestamp ) < 3 ) {
+			$edit2 = clone $edit2;
+			$edit2->timestamp = $edit->timestamp;
+		}
+		$this->assertNotEquals( $edit, $edit2, $message );
 	}
 
 }

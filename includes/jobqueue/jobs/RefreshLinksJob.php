@@ -247,43 +247,24 @@ class RefreshLinksJob extends Job {
 			$stats->increment( 'refreshlinks.parser_uncached' );
 		}
 
-		$updates = $content->getSecondaryDataUpdates(
-			$title,
-			null,
-			!empty( $this->params['useRecursiveLinksUpdate'] ),
-			$parserOutput
-		);
-
-		// For legacy hook handlers doing updates via LinksUpdateConstructed, make sure
-		// any pending writes they made get flushed before the doUpdate() calls below.
-		// This avoids snapshot-clearing errors in LinksUpdate::acquirePageLock().
-		$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
-
-		foreach ( $updates as $update ) {
-			// Carry over cause in case so the update can do extra logging
-			$update->setCause( $this->params['causeAction'], $this->params['causeAgent'] );
-			// FIXME: This code probably shouldn't be here?
-			// Needed by things like Echo notifications which need
-			// to know which user caused the links update
-			if ( $update instanceof LinksUpdate ) {
-				$update->setRevision( $revision );
-				if ( !empty( $this->params['triggeringUser'] ) ) {
-					$userInfo = $this->params['triggeringUser'];
-					if ( $userInfo['userId'] ) {
-						$user = User::newFromId( $userInfo['userId'] );
-					} else {
-						// Anonymous, use the username
-						$user = User::newFromName( $userInfo['userName'], false );
-					}
-					$update->setTriggeringUser( $user );
-				}
+		$options = [
+			'recursive' => !empty( $this->params['useRecursiveLinksUpdate'] ),
+			// Carry over cause so the update can do extra logging
+			'causeAction' => $this->params['causeAction'],
+			'causeAgent' => $this->params['causeAgent'],
+			'defer' => false,
+			'transactionTicket' => $ticket,
+		];
+		if ( !empty( $this->params['triggeringUser'] ) ) {
+			$userInfo = $this->params['triggeringUser'];
+			if ( $userInfo['userId'] ) {
+				$options['triggeringUser'] = User::newFromId( $userInfo['userId'] );
+			} else {
+				// Anonymous, use the username
+				$options['triggeringUser'] = User::newFromName( $userInfo['userName'], false );
 			}
 		}
-
-		foreach ( $updates as $update ) {
-			$update->setTransactionTicket( $ticket );
-			$update->doUpdate();
-		}
+		$page->doSecondaryDataUpdates( $options );
 
 		InfoAction::invalidateCache( $title );
 

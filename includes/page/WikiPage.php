@@ -770,6 +770,18 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
+	 * Get the latest revision
+	 * @return RevisionRecord|null
+	 */
+	public function getRevisionRecord() {
+		$this->loadLastEdit();
+		if ( $this->mLastRevision ) {
+			return $this->mLastRevision->getRevisionRecord();
+		}
+		return null;
+	}
+
+	/**
 	 * Get the content of the current revision. No side-effects...
 	 *
 	 * @param int $audience One of:
@@ -1163,6 +1175,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * The parser cache will be used if possible. Cache misses that result
 	 * in parser runs are debounced with PoolCounter.
+	 *
+	 * XXX merge this with updateParserCache()?
 	 *
 	 * @since 1.19
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse operation
@@ -1644,7 +1658,7 @@ class WikiPage implements Page, IDBAccessObject {
 			JobQueueGroup::singleton(),
 			MessageCache::singleton(),
 			MediaWikiServices::getInstance()->getContentLanguage(),
-			LoggerFactory::getInstance( 'SaveParse' )
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
 		);
 
 		$derivedDataUpdater->setRcWatchCategoryMembership( $wgRCWatchCategoryMembership );
@@ -1958,7 +1972,13 @@ class WikiPage implements Page, IDBAccessObject {
 			$updater->prepareContent( $user, $slots, $useCache );
 
 			if ( $revision ) {
-				$updater->prepareUpdate( $revision );
+				$updater->prepareUpdate(
+					$revision,
+					[
+						'causeAction' => 'prepare-edit',
+						'causeAgent' => $user->getName(),
+					]
+				);
 			}
 		}
 
@@ -1987,8 +2007,17 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   - null: if created is false, don't update the article count; if created
 	 *     is true, do update the article count
 	 *   - 'no-change': don't update the article count, ever
+	 *  - causeAction: an arbitrary string identifying the reason for the update.
+	 *    See DataUpdate::getCauseAction(). (default 'edit-page')
+	 *  - causeAgent: name of the user who caused the update. See DataUpdate::getCauseAgent().
+	 *    (string, defaults to the passed user)
 	 */
 	public function doEditUpdates( Revision $revision, User $user, array $options = [] ) {
+		$options += [
+			'causeAction' => 'edit-page',
+			'causeAgent' => $user->getName(),
+		];
+
 		$revision = $revision->getRevisionRecord();
 
 		$updater = $this->getDerivedDataUpdater( $user, $revision );
@@ -1996,6 +2025,76 @@ class WikiPage implements Page, IDBAccessObject {
 		$updater->prepareUpdate( $revision, $options );
 
 		$updater->doUpdates();
+	}
+
+	/**
+	 * Update the parser cache.
+	 *
+	 * @note This is a temporary workaround until there is a proper data updater class.
+	 *   It will become deprecated soon.
+	 *
+	 * @param array $options
+	 *   - causeAction: an arbitrary string identifying the reason for the update.
+	 *     See DataUpdate::getCauseAction(). (default 'edit-page')
+	 *   - causeAgent: name of the user who caused the update (string, defaults to the
+	 *     user who created the revision)
+	 * @since 1.32
+	 */
+	public function updateParserCache( array $options = [] ) {
+		$revision = $this->getRevisionRecord();
+		if ( !$revision || !$revision->getId() ) {
+			LoggerFactory::getInstance( 'wikipage' )->info(
+				__METHOD__ . 'called with ' . ( $revision ? 'unsaved' : 'no' ) . ' revision'
+			);
+			return;
+		}
+		$user = User::newFromIdentity( $revision->getUser( RevisionRecord::RAW ) );
+
+		$updater = $this->getDerivedDataUpdater( $user, $revision );
+		$updater->prepareUpdate( $revision, $options );
+		$updater->doParserCacheUpdate();
+	}
+
+	/**
+	 * Do secondary data updates (such as updating link tables).
+	 * Secondary data updates are only a small part of the updates needed after saving
+	 * a new revision; normally PageUpdater::doUpdates should be used instead (which includes
+	 * secondary data updates). This method is provided for partial purges.
+	 *
+	 * @note This is a temporary workaround until there is a proper data updater class.
+	 *   It will become deprecated soon.
+	 *
+	 * @param array $options
+	 *   - recursive (bool, default true): whether to do a recursive update (update pages that
+	 *     depend on this page, e.g. transclude it). This will set the $recursive parameter of
+	 *     Content::getSecondaryDataUpdates. Typically this should be true unless the update
+	 *     was something that did not really change the page, such as a null edit.
+	 *   - triggeringUser: The user triggering the update (UserIdentity, defaults to the
+	 *     user who created the revision)
+	 *   - causeAction: an arbitrary string identifying the reason for the update.
+	 *     See DataUpdate::getCauseAction(). (default 'unknown')
+	 *   - causeAgent: name of the user who caused the update (string, default 'unknown')
+	 *   - defer: one of the DeferredUpdates constants, or false to run immediately (default: false).
+	 *     Note that even when this is set to false, some updates might still get deferred (as
+	 *     some update might directly add child updates to DeferredUpdates).
+	 *   - transactionTicket: a transaction ticket from LBFactory::getEmptyTransactionTicket(),
+	 *     only when defer is false (default: null)
+	 * @since 1.32
+	 */
+	public function doSecondaryDataUpdates( array $options = [] ) {
+		$options['recursive'] = $options['recursive'] ?? true;
+		$revision = $this->getRevisionRecord();
+		if ( !$revision || !$revision->getId() ) {
+			LoggerFactory::getInstance( 'wikipage' )->info(
+				__METHOD__ . 'called with ' . ( $revision ? 'unsaved' : 'no' ) . ' revision'
+			);
+			return;
+		}
+		$user = User::newFromIdentity( $revision->getUser( RevisionRecord::RAW ) );
+
+		$updater = $this->getDerivedDataUpdater( $user, $revision );
+		$updater->prepareUpdate( $revision, $options );
+		$updater->doSecondaryDataUpdates( $options );
 	}
 
 	/**
