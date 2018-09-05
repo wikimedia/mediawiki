@@ -71,7 +71,7 @@
 			message: mw.msg( 'prefswarning-warning', mw.msg( 'saveprefs' ) ),
 			namespace: 'prefswarning'
 		} );
-		$( '#mw-prefs-form' ).on( 'submit', $.proxy( allowCloseWindow, 'release' ) );
+		$( '#mw-prefs-form' ).on( 'submit', allowCloseWindow.release );
 		if ( oouiEnabled ) {
 			restoreButton.on( 'click', function () {
 				allowCloseWindow.release();
@@ -80,7 +80,7 @@
 				location.href = restoreButton.getHref();
 			} );
 		} else {
-			$( '#mw-prefs-restoreprefs' ).on( 'click', $.proxy( allowCloseWindow, 'release' ) );
+			$( '#mw-prefs-restoreprefs' ).on( 'click', allowCloseWindow.release );
 		}
 	} );
 }( mediaWiki, jQuery ) );
