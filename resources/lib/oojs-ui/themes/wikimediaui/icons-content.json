@@ -59,7 +59,12 @@
 			"file": "images/icons/history.svg"
 		},
 		"info": {
-			"file": "images/icons/info.svg"
+			"file": {
+				"default": "images/icons/info.svg",
+				"lang": {
+					"ar": "images/icons/lightbulb.svg"
+				}
+			}
 		},
 		"tag": {
 			"file": {

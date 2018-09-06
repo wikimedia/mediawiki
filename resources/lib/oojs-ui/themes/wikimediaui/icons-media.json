@@ -19,6 +19,12 @@
 		}
 	},
 	"images": {
+		"camera": {
+			"file": "images/icons/camera.svg"
+		},
+		"chart": {
+			"file": "images/icons/chart.svg"
+		},
 		"exitFullscreen": {
 			"file": "images/icons/exitFullscreen.svg"
 		},
@@ -46,8 +52,8 @@
 		"imageGallery": {
 			"file": "images/icons/imageGallery.svg"
 		},
-		"camera": {
-			"file": "images/icons/camera.svg"
+		"musicalScore": {
+			"file": "images/icons/musicalScore.svg"
 		},
 		"pause": {
 			"file": "images/icons/pause.svg"
@@ -57,6 +63,12 @@
 		},
 		"stop": {
 			"file": "images/icons/stop.svg"
+		},
+		"zoomIn": {
+			"file": "images/icons/zoomIn.svg"
+		},
+		"zoomOut": {
+			"file": "images/icons/zoomOut.svg"
 		}
 	}
 }

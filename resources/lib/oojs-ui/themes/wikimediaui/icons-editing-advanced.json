@@ -31,11 +31,17 @@
 		"attachment": {
 			"file": "images/icons/attachment.svg"
 		},
+		"beaker": {
+			"file": "images/icons/beaker.svg"
+		},
 		"calendar": {
 			"file": "images/icons/calendar.svg"
 		},
 		"code": {
 			"file": "images/icons/code.svg"
+		},
+		"hieroglyph": {
+			"file": "images/icons/hieroglyph.svg"
 		},
 		"language": {
 			"file": "images/icons/language.svg"
@@ -48,6 +54,18 @@
 		},
 		"markup": {
 			"file": "images/icons/markup.svg"
+		},
+		"mathematics": {
+			"file": "images/icons/mathematics.svg"
+		},
+		"mathematicsDisplayBlock": {
+			"file": "images/icons/mathematicsDisplayBlock.svg"
+		},
+		"mathematicsDisplayDefault": {
+			"file": "images/icons/mathematicsDisplayDefault.svg"
+		},
+		"mathematicsDisplayInline": {
+			"file": "images/icons/mathematicsDisplayInline.svg"
 		},
 		"newline": {
 			"file": {

@@ -14,11 +14,17 @@
 		"attachment": {
 			"file": "../wikimediaui/images/icons/attachment.svg"
 		},
+		"beaker": {
+			"file": "../wikimediaui/images/icons/beaker.svg"
+		},
 		"calendar": {
 			"file": "../wikimediaui/images/icons/calendar.svg"
 		},
 		"code": {
 			"file": "../wikimediaui/images/icons/code.svg"
+		},
+		"hieroglyph": {
+			"file": "../wikimediaui/images/icons/hieroglyph.svg"
 		},
 		"language": {
 			"file": "../wikimediaui/images/icons/language.svg"
@@ -31,6 +37,18 @@
 		},
 		"markup": {
 			"file": "../wikimediaui/images/icons/markup.svg"
+		},
+		"mathematics": {
+			"file": "../wikimediaui/images/icons/mathematics.svg"
+		},
+		"mathematicsDisplayBlock": {
+			"file": "../wikimediaui/images/icons/mathematicsDisplayBlock.svg"
+		},
+		"mathematicsDisplayDefault": {
+			"file": "../wikimediaui/images/icons/mathematicsDisplayDefault.svg"
+		},
+		"mathematicsDisplayInline": {
+			"file": "../wikimediaui/images/icons/mathematicsDisplayInline.svg"
 		},
 		"newline": {
 			"file": {
