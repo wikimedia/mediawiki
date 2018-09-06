@@ -12,5 +12,5 @@ DROP INDEX /*i*/change_tag_rc_tag;
 DROP INDEX /*i*/change_tag_log_tag;
 DROP INDEX /*i*/change_tag_rev_tag;
 
-ALTER TABLE /*i*/change_tag
+ALTER TABLE /*_*/change_tag
   ALTER COLUMN ct_tag SET DEFAULT '';
