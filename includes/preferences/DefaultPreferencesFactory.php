@@ -1123,7 +1123,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$defaultPreferences['watchlistdays'] = [
 			'type' => 'float',
-			'min' => 0,
+			'min' => 1 / 24,
 			'max' => $watchlistdaysMax,
 			'section' => 'watchlist/displaywatchlist',
 			'help' => $context->msg( 'prefs-watchlist-days-max' )->numParams(
@@ -1132,7 +1132,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		];
 		$defaultPreferences['wllimit'] = [
 			'type' => 'int',
-			'min' => 0,
+			'min' => 1,
 			'max' => 1000,
 			'label-message' => 'prefs-watchlist-edits',
 			'help' => $context->msg( 'prefs-watchlist-edits-max' )->escaped(),
