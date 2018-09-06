@@ -1,4 +1,26 @@
 # OOUI Release History
+## v0.28.1 / 2018-09-04
+### Styles
+* icons: Add several 'editing-advanced' and 'media' pack icons (Volker E.)
+* icons: Make 'camera' visible in demos (Volker E.)
+* icons: Swap LTR and RTL versions of 'stripeToC' (Roan Kattouw)
+* icons: Use 'lightbulb' in Arabic in place of 'info' (Volker E.)
+* Apex theme: Fix NumberInputWidget button width (Volker E.)
+
+### Code
+* Improve PHPCS performance by not listing ignored files (Bartosz Dziewoński)
+* Restore missing icons and fix broken docs link in OOUI tutorials toolbar (Hagar Shilo)
+* themes: Cleanup `@min-size` & remove `*-numberinput` variables (Volker E.)
+* build: Bump wikimedia-ui-base (James D. Forrester)
+* icons: Update 'pageSettings' SVG title (Volker E.)
+* docs: Correct documentation for Window#open and Window#close (Bartosz Dziewoński)
+* docs: Don't refer to a renamed icon 'settings', use 'advanced' (James D. Forrester)
+* demos: Don't try to use the removed 'comment' icon (Bartosz Dziewoński)
+* demos: Remove some irrelevant icons in toolbars demo (Bartosz Dziewoński)
+* demos: Use renamed 'pageSettings' icon (Volker E.)
+* tests: Add tests for Tag::appendContent, Tag::prependContent, Tag::clearContent (Bartosz Dziewoński)
+
+
 ## v0.28.0 / 2018-08-14
 ### Breaking changes
 * [BREAKING CHANGE] icons: Drop 'find' icon, deprecated in v0.26.2 (James D. Forrester)

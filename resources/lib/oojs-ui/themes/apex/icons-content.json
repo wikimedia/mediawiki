@@ -42,7 +42,12 @@
 			"file": "../wikimediaui/images/icons/history.svg"
 		},
 		"info": {
-			"file": "../wikimediaui/images/icons/info.svg"
+			"file": {
+				"default": "../wikimediaui/images/icons/info.svg",
+				"lang": {
+					"ar": "../wikimediaui/images/icons/lightbulb.svg"
+				}
+			}
 		},
 		"tag": {
 			"file": {

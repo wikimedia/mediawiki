@@ -2,6 +2,12 @@
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
 	"images": {
+		"camera": {
+			"file": "../wikimediaui/images/icons/camera.svg"
+		},
+		"chart": {
+			"file": "../wikimediaui/images/icons/chart.svg"
+		},
 		"exitFullscreen": {
 			"file": "../wikimediaui/images/icons/exitFullscreen.svg"
 		},
@@ -29,8 +35,8 @@
 		"imageGallery": {
 			"file": "../wikimediaui/images/icons/imageGallery.svg"
 		},
-		"camera": {
-			"file": "../wikimediaui/images/icons/camera.svg"
+		"musicalScore": {
+			"file": "../wikimediaui/images/icons/musicalScore.svg"
 		},
 		"pause": {
 			"file": "../wikimediaui/images/icons/pause.svg"
@@ -40,6 +46,12 @@
 		},
 		"stop": {
 			"file": "../wikimediaui/images/icons/stop.svg"
+		},
+		"zoomIn": {
+			"file": "../wikimediaui/images/icons/zoomIn.svg"
+		},
+		"zoomOut": {
+			"file": "../wikimediaui/images/icons/zoomOut.svg"
 		}
 	}
 }
