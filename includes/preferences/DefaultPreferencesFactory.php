@@ -127,7 +127,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->watchlistPreferences( $user, $context, $preferences );
 		$this->searchPreferences( $preferences );
 
-		Hooks::run( 'GetPreferences', [ $user, &$preferences ] );
+		Hooks::run( 'GetPreferences', [ $user, &$preferences, $context ] );
 
 		$this->loadPreferenceValues( $user, $context, $preferences );
 		$this->logger->debug( "Created form descriptor for user '{$user->getName()}'" );
