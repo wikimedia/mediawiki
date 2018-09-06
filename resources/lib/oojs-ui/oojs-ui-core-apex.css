@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.28.0
+ * OOUI v0.28.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-08-14T23:16:22Z
+ * Date: 2018-09-05T00:41:53Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -1561,7 +1561,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   width: 100%;
 }
 .oo-ui-numberInputWidget-field > .oo-ui-buttonWidget {
-  width: 2.25em;
+  width: 2.5em;
 }
 .oo-ui-numberInputWidget-buttoned .oo-ui-buttonElement-button .oo-ui-iconElement-icon {
   min-width: 20px;

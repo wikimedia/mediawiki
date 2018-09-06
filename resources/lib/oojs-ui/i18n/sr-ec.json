@@ -10,8 +10,8 @@
 			"BadDog"
 		]
 	},
-	"ooui-outline-control-move-down": "Премести ставку надоле",
-	"ooui-outline-control-move-up": "Премести ставку нагоре",
+	"ooui-outline-control-move-down": "Преместите ставку надоле",
+	"ooui-outline-control-move-up": "Преместите ставку нагоре",
 	"ooui-outline-control-remove": "Уклони ставку",
 	"ooui-toolbar-more": "Више",
 	"ooui-toolgroup-expand": "Више",
@@ -26,5 +26,6 @@
 	"ooui-selectfile-button-select": "Изабери датотеку",
 	"ooui-selectfile-not-supported": "Избор датотеке није подржан",
 	"ooui-selectfile-placeholder": "Није изабрана ниједна датотека",
-	"ooui-selectfile-dragdrop-placeholder": "Превуците датотеку овде"
+	"ooui-selectfile-dragdrop-placeholder": "Овде отпустите датотеку",
+	"ooui-field-help": "Помоћ"
 }

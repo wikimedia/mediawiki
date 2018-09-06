@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.28.0
+ * OOUI v0.28.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-08-14T23:16:18Z
+ * Date: 2018-09-05T00:41:49Z
  */
 ( function ( OO ) {
 
@@ -1301,7 +1301,7 @@ OO.ui.WindowManager.prototype.getCurrentWindow = function () {
  * @param {Object} [data] Window opening data
  * @param {jQuery|null} [data.$returnFocusTo] Element to which the window will return focus when closed.
  *  Defaults the current activeElement. If set to null, focus isn't changed on close.
- * @return {OO.ui.WindowInstance|jQuery.Promise} A lifecycle object representing this particular
+ * @return {OO.ui.WindowInstance} A lifecycle object representing this particular
  *  opening of the window. For backwards-compatibility, then object is also a Thenable that is resolved
  *  when the window is done opening, with nested promise for when closing starts. This behaviour
  *  is deprecated and is not compatible with jQuery 3. See T163510.
@@ -1404,7 +1404,7 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, comp
  *
  * @param {OO.ui.Window|string} win Window object or symbolic name of window to close
  * @param {Object} [data] Window closing data
- * @return {OO.ui.WindowInstance|jQuery.Promise} A lifecycle object representing this particular
+ * @return {OO.ui.WindowInstance} A lifecycle object representing this particular
  *  opening of the window. For backwards-compatibility, the object is also a Thenable that is resolved
  *  when the window is done closing, see T163510.
  * @fires closing
@@ -2305,15 +2305,13 @@ OO.ui.Window.prototype.onFocusTrapFocused = function ( event ) {
 /**
  * Open the window.
  *
- * This method is a wrapper around a call to the window manager’s {@link OO.ui.WindowManager#openWindow openWindow}
- * method, which returns a promise resolved when the window is done opening.
+ * This method is a wrapper around a call to the window
+ * manager’s {@link OO.ui.WindowManager#openWindow openWindow} method.
  *
  * To customize the window each time it opens, use #getSetupProcess or #getReadyProcess.
  *
  * @param {Object} [data] Window opening data
- * @return {jQuery.Promise} Promise resolved with a value when the window is opened, or rejected
- *  if the window fails to open. When the promise is resolved successfully, the first argument of the
- *  value is a new promise, which is resolved when the window begins closing.
+ * @return {OO.ui.WindowInstance} See OO.ui.WindowManager#openWindow
  * @throws {Error} An error is thrown if the window is not attached to a window manager
  */
 OO.ui.Window.prototype.open = function ( data ) {
@@ -2328,15 +2326,14 @@ OO.ui.Window.prototype.open = function ( data ) {
  * Close the window.
  *
  * This method is a wrapper around a call to the window
- * manager’s {@link OO.ui.WindowManager#closeWindow closeWindow} method,
- * which returns a closing promise resolved when the window is done closing.
+ * manager’s {@link OO.ui.WindowManager#closeWindow closeWindow} method.
  *
  * The window's #getHoldProcess and #getTeardownProcess methods are called during the closing
  * phase of the window’s lifecycle and can be used to specify closing behavior each time
  * the window closes.
  *
  * @param {Object} [data] Window closing data
- * @return {jQuery.Promise} Promise resolved when window is closed
+ * @return {OO.ui.WindowInstance} See OO.ui.WindowManager#closeWindow
  * @throws {Error} An error is thrown if the window is not attached to a window manager
  */
 OO.ui.Window.prototype.close = function ( data ) {

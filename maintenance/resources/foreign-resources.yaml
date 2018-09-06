@@ -43,8 +43,8 @@ oojs:
     package/README.md:
 oojs-ui:
   type: tar
-  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.28.0.tgz
-  integrity: sha384-j8bzlCPrfS4sca+U9JO9tdcewDlLlDlOVOsLn+Vqlcg5GU59vLSd7TVm4FiuTowy
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.28.1.tgz
+  integrity: sha384-7fme1YXFt2pg+f7zeeexPcoA8GCHORZb3yKVSd/yUtfeu8xwAYEZKnaKYSU9FSYj
   dest:
     # Main stuff
     package/dist/oojs-ui-core.js{,.map.json}:
