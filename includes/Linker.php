@@ -1221,6 +1221,7 @@ class Linker {
 		return preg_replace_callback(
 			'/
 				\[\[
+				\s*+ # ignore leading whitespace, the *+ quantifier disallows backtracking
 				:? # ignore optional leading colon
 				([^\]|]+) # 1. link target; page names cannot include ] or |
 				(?:\|
