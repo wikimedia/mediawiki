@@ -523,15 +523,6 @@ class MovePage {
 
 		$newpage = WikiPage::factory( $nt );
 
-		# Save a null revision in the page's history notifying of the move
-		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true, $user );
-		if ( !is_object( $nullRevision ) ) {
-			throw new MWException( 'No valid null revision produced in ' . __METHOD__ );
-		}
-
-		$nullRevId = $nullRevision->insertOn( $dbw );
-		$logEntry->setAssociatedRevId( $nullRevId );
-
 		# Change the name of the target page:
 		$dbw->update( 'page',
 			/* SET */ [
@@ -541,6 +532,15 @@ class MovePage {
 			/* WHERE */ [ 'page_id' => $oldid ],
 			__METHOD__
 		);
+
+		# Save a null revision in the page's history notifying of the move
+		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true, $user );
+		if ( !is_object( $nullRevision ) ) {
+			throw new MWException( 'No valid null revision produced in ' . __METHOD__ );
+		}
+
+		$nullRevId = $nullRevision->insertOn( $dbw );
+		$logEntry->setAssociatedRevId( $nullRevId );
 
 		if ( !$redirectContent ) {
 			// Clean up the old title *before* reset article id - T47348
