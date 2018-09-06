@@ -16,7 +16,7 @@ class PopulateChangeTagDefTest extends MaintenanceBaseTestCase {
 
 	public function setUp() {
 		parent::setUp();
-		$this->tablesUsed = [ 'change_tag', 'change_tag_def' ];
+		$this->tablesUsed = [ 'change_tag', 'change_tag_def', 'updatelog' ];
 
 		$this->cleanChangeTagTables();
 		$this->insertChangeTagData();
@@ -25,6 +25,7 @@ class PopulateChangeTagDefTest extends MaintenanceBaseTestCase {
 	private function cleanChangeTagTables() {
 		wfGetDB( DB_MASTER )->delete( 'change_tag', '*' );
 		wfGetDB( DB_MASTER )->delete( 'change_tag_def', '*' );
+		wfGetDB( DB_MASTER )->delete( 'updatelog', '*' );
 	}
 
 	private function insertChangeTagData() {
