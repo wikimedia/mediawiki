@@ -117,6 +117,7 @@ class HTMLTextField extends HTMLFormField {
 			switch ( $this->mParams['type'] ) {
 				case 'int':
 					$type = 'number';
+					$attribs['step'] = 1;
 					break;
 				case 'float':
 					$type = 'number';
@@ -181,6 +182,9 @@ class HTMLTextField extends HTMLFormField {
 		}
 
 		$type = $this->getType( $attribs );
+		if ( isset( $attribs['step'] ) && $attribs['step'] === 'any' ) {
+			$attribs['step'] = null;
+		}
 
 		return $this->getInputWidget( [
 			'id' => $this->mID,
