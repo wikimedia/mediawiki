@@ -57,10 +57,10 @@
 			var
 				normalized = {},
 				pages = {};
-			$.each( response.query.normalized || [], function ( index, data ) {
+			( response.query.normalized || [] ).forEach( function ( data ) {
 				normalized[ data.fromencoded ? decodeURIComponent( data.from ) : data.from ] = data.to;
 			} );
-			$.each( response.query.pages, function ( index, page ) {
+			response.query.pages.forEach( function ( page ) {
 				pages[ page.title ] = !page.missing;
 			} );
 			titles.forEach( function ( title ) {

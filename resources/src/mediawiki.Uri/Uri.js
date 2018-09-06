@@ -368,6 +368,7 @@
 			 */
 			getQueryString: function () {
 				var args = [];
+				// eslint-disable-next-line no-restricted-properties
 				$.each( this.query, function ( key, val ) {
 					var k = Uri.encode( key ),
 						vals = Array.isArray( val ) ? val : [ val ];

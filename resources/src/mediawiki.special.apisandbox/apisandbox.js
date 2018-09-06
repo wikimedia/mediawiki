@@ -1597,6 +1597,7 @@
 		}
 
 		toRemove = {};
+		// eslint-disable-next-line no-restricted-properties
 		$.each( this.templatedItemsCache, function ( k, el ) {
 			if ( el.widget.isElementAttached() ) {
 				toRemove[ k ] = el;

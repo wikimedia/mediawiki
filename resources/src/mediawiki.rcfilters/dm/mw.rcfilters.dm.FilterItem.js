@@ -94,6 +94,7 @@
 
 		key = key || 'contextDescription';
 
+		// eslint-disable-next-line no-restricted-properties
 		$.each( conflicts, function ( filterName, conflict ) {
 			if ( !conflict.item.isSelected() ) {
 				return;

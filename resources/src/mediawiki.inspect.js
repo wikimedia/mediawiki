@@ -153,6 +153,7 @@
 
 		style.textContent = css;
 		document.body.appendChild( style );
+		// eslint-disable-next-line no-restricted-properties
 		$.each( style.sheet.cssRules, function ( index, rule ) {
 			selectors.total++;
 			// document.querySelector() on prefixed pseudo-elements can throw exceptions

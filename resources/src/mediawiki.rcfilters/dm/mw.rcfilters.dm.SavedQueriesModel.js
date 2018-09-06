@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-properties */
 ( function ( mw, $ ) {
 	/**
 	 * View model for saved queries

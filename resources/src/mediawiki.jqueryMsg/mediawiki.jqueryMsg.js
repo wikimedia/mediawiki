@@ -957,6 +957,7 @@
 	mw.jqueryMsg.HtmlEmitter = function ( language, magic ) {
 		var jmsg = this;
 		this.language = language;
+		// eslint-disable-next-line no-restricted-properties
 		$.each( magic, function ( key, val ) {
 			jmsg[ key.toLowerCase() ] = function () {
 				return val;
@@ -1022,6 +1023,7 @@
 		 */
 		concat: function ( nodes ) {
 			var $span = $( '<span>' ).addClass( 'mediaWiki_htmlEmitter' );
+			// eslint-disable-next-line no-restricted-properties
 			$.each( nodes, function ( i, node ) {
 				// Let jQuery append nodes, arrays of nodes and jQuery objects
 				// other things (strings, numbers, ..) are appended as text nodes (not as HTML strings)

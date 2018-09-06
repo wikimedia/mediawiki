@@ -233,6 +233,7 @@
 
 			file.name = 'file';
 
+			// eslint-disable-next-line no-restricted-properties
 			$.each( data, function ( key, val ) {
 				$form.append( getHiddenInput( key, val ) );
 			} );

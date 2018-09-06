@@ -22,6 +22,7 @@
 
 		if ( config.events ) {
 			// Aggregate events
+			// eslint-disable-next-line no-restricted-properties
 			$.each( config.events, function ( eventName, eventEmit ) {
 				aggregate[ eventName ] = eventEmit;
 			} );

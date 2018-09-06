@@ -321,7 +321,7 @@
 				} ).done( function ( res ) {
 					var categories = [];
 
-					$.each( res.query.pages, function ( index, page ) {
+					res.query.pages.forEach( function ( page ) {
 						if ( !page.missing ) {
 							categories.push( page.title );
 						}
@@ -367,7 +367,7 @@
 				} ).done( function ( res ) {
 					var categories = [];
 
-					$.each( res.query.pages, function ( index, page ) {
+					res.query.pages.forEach( function ( page ) {
 						if ( !page.missing && Array.isArray( page.categories ) ) {
 							categories.push.apply( categories, page.categories.map( function ( category ) {
 								return category.title;
