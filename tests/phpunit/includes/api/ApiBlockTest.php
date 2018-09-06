@@ -12,6 +12,10 @@ class ApiBlockTest extends ApiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
+		$this->tablesUsed = array_merge(
+			$this->tablesUsed,
+			[ 'change_tag', 'change_tag_def', 'logging' ]
+		);
 
 		$this->mUser = $this->getMutableTestUser()->getUser();
 	}
@@ -120,6 +124,7 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithTag() {
+		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
 		ChangeTags::defineTag( 'custom tag' );
 
 		$this->doBlock( [ 'tags' => 'custom tag' ] );
@@ -132,6 +137,26 @@ class ApiBlockTest extends ApiTestCase {
 			__METHOD__,
 			[],
 			[ 'change_tag' => [ 'INNER JOIN', 'ct_log_id = log_id' ] ]
+		) );
+	}
+
+	public function testBlockWithTagNewBackend() {
+		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_NEW );
+		ChangeTags::defineTag( 'custom tag' );
+
+		$this->doBlock( [ 'tags' => 'custom tag' ] );
+
+		$dbw = wfGetDB( DB_MASTER );
+		$this->assertSame( 1, (int)$dbw->selectField(
+			[ 'change_tag', 'logging', 'change_tag_def' ],
+			'COUNT(*)',
+			[ 'log_type' => 'block', 'ctd_name' => 'custom tag' ],
+			__METHOD__,
+			[],
+			[
+				'change_tag' => [ 'INNER JOIN', 'ct_log_id = log_id' ],
+				'change_tag_def' => [ 'INNER JOIN', 'ctd_id = ct_tag_id' ],
+			]
 		) );
 	}
 

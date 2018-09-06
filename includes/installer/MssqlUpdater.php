@@ -146,6 +146,9 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'addIndex', 'site_identifiers', 'PRIMARY', 'patch-site_identifiers-pk.sql' ],
 			[ 'addIndex', 'recentchanges', 'rc_this_oldid', 'patch-recentchanges-rc_this_oldid-index.sql' ],
 			[ 'dropTable', 'transcache' ],
+			[ 'runMaintenance', PopulateChangeTagDef::class, 'maintenance/populateChangeTagDef.php' ],
+			[ 'addIndex', 'change_tag', 'change_tag_rc_tag_id',
+				'patch-change_tag-change_tag_rc_tag_id.sql' ],
 		];
 	}
 

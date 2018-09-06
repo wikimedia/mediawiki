@@ -33,6 +33,10 @@ class ApiEditPageTest extends ApiTestCase {
 			'testing-nontext' => 'DummyNonTextContentHandler',
 			'testing-serialize-error' => 'DummySerializeErrorContentHandler',
 		] );
+		$this->tablesUsed = array_merge(
+			$this->tablesUsed,
+			[ 'change_tag', 'change_tag_def', 'logging' ]
+		);
 	}
 
 	public function testEdit() {
@@ -1328,6 +1332,7 @@ class ApiEditPageTest extends ApiTestCase {
 	}
 
 	public function testEditWithTag() {
+		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
 		ChangeTags::defineTag( 'custom tag' );
@@ -1342,6 +1347,30 @@ class ApiEditPageTest extends ApiTestCase {
 		$dbw = wfGetDB( DB_MASTER );
 		$this->assertSame( 'custom tag', $dbw->selectField(
 			'change_tag', 'ct_tag', [ 'ct_rev_id' => $revId ], __METHOD__ ) );
+	}
+
+	public function testEditWithTagNewBackend() {
+		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_NEW );
+		$name = 'Help:' . ucfirst( __FUNCTION__ );
+
+		ChangeTags::defineTag( 'custom tag' );
+
+		$revId = $this->doApiRequestWithToken( [
+			'action' => 'edit',
+			'title' => $name,
+			'text' => 'Some text',
+			'tags' => 'custom tag',
+		] )[0]['edit']['newrevid'];
+
+		$dbw = wfGetDB( DB_MASTER );
+		$this->assertSame( 'custom tag', $dbw->selectField(
+			[ 'change_tag', 'change_tag_def' ],
+			'ctd_name',
+			[ 'ct_rev_id' => $revId ],
+			__METHOD__,
+			[ 'change_tag_def' => [ 'INNER JOIN', 'ctd_id = ct_tag_id' ] ]
+			)
+		);
 	}
 
 	public function testEditWithoutTagPermission() {

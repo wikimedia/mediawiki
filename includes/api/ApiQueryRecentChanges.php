@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\RevisionRecord;
 
 /**
@@ -141,6 +143,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 * @param ApiPageSet|null $resultPageSet
 	 */
 	public function run( $resultPageSet = null ) {
+		global $wgChangeTagsSchemaMigrationStage;
+
 		$user = $this->getUser();
 		/* Get the parameters of the request. */
 		$params = $this->extractRequestParams();
@@ -361,7 +365,17 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		if ( !is_null( $params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds( [ 'change_tag' => [ 'INNER JOIN', [ 'rc_id=ct_rc_id' ] ] ] );
-			$this->addWhereFld( 'ct_tag', $params['tag'] );
+			if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+				$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
+				try {
+					$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $params['tag'] ) );
+				} catch ( NameTableAccessException $exception ) {
+					// Return nothing.
+					$this->addWhere( '1=0' );
+				}
+			} else {
+				$this->addWhereFld( 'ct_tag', $params['tag'] );
+			}
 		}
 
 		// Paranoia: avoid brute force searches (T19342)
