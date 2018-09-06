@@ -246,11 +246,13 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$sysop = $this->getTestUser( [ 'sysop' ] )->getUser();
 		$page = $this->getPage( __METHOD__ );
 
-		$mainContent1 = new WikitextContent( 'first [[main]] ({{REVISIONUSER}}) ~~~' );
-		$mainContent2 = new WikitextContent( 'second' );
+		$mainContent1 = new WikitextContent( 'first [[main]] ({{REVISIONUSER}}) #~~~#' );
+		$mainContent2 = new WikitextContent( 'second ({{subst:REVISIONUSER}}) #~~~#' );
 
 		$rev = $this->createRevision( $page, 'first', $mainContent1 );
 		$mainContent1 = $rev->getContent( 'main' ); // get post-pst content
+		$userName = $rev->getUser()->getName();
+		$sysopName = $sysop->getName();
 
 		$update = new RevisionSlotsUpdate();
 		$update->modifyContent( 'main', $mainContent1 );
@@ -268,15 +270,24 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
 		// parser-output for null-edit uses the original author's name
 		$html = $updater1->getRenderedRevision()->getRevisionParserOutput()->getText();
-		$this->assertNotContains( $sysop->getName(), $html, '{{REVISIONUSER}}' );
+		$this->assertNotContains( $sysopName, $html, '{{REVISIONUSER}}' );
 		$this->assertNotContains( '{{REVISIONUSER}}', $html, '{{REVISIONUSER}}' );
-		$this->assertContains( '(' . $rev->getUser()->getName() . ')', $html, '{{REVISIONUSER}}' );
+		$this->assertNotContains( '~~~', $html, 'signature ~~~' );
+		$this->assertContains( '(' . $userName . ')', $html, '{{REVISIONUSER}}' );
+		$this->assertContains( '>' . $userName . '<', $html, 'signature ~~~' );
 
 		// TODO: MCR: test inheritance from parent
 		$update = new RevisionSlotsUpdate();
 		$update->modifyContent( 'main', $mainContent2 );
 		$updater2 = $this->getDerivedPageDataUpdater( $page );
 		$updater2->prepareContent( $sysop, $update, false );
+
+		// non-null edit use the new user name in PST
+		$pstText = $updater2->getSlots()->getContent( 'main' )->serialize();
+		$this->assertNotContains( '{{subst:REVISIONUSER}}', $pstText, '{{subst:REVISIONUSER}}' );
+		$this->assertNotContains( '~~~', $pstText, 'signature ~~~' );
+		$this->assertContains( '(' . $sysopName . ')', $pstText, '{{subst:REVISIONUSER}}' );
+		$this->assertContains( ':' . $sysopName . '|', $pstText, 'signature ~~~' );
 
 		$this->assertFalse( $updater2->isCreation() );
 		$this->assertTrue( $updater2->isChange() );

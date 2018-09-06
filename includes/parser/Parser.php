@@ -5770,13 +5770,27 @@ class Parser {
 
 		// NOTE: try to get the RevisionObject even if mRevisionId is null.
 		// This is useful when parsing revision that has not yet been saved.
+		// However, if we get back a saved revision even though we are in
+		// preview mode, we'll have to ignore it, see below.
+		// NOTE: This callback may be used to inject an OLD revision that was
+		// already loaded, so "current" is a bit of a misnomer. We can't just
+		// skip it if mRevisionId is set.
 		$rev = call_user_func(
 			$this->mOptions->getCurrentRevisionCallback(), $this->getTitle(), $this
 		);
 
-		# If the parse is for a new revision, then the callback should have
-		# already been set to force the object and should match mRevisionId.
-		# If not, try to fetch by mRevisionId for sanity.
+		if ( $this->mRevisionId === null && $rev && $rev->getId() ) {
+			// We are in preview mode (mRevisionId is null), and the current revision callback
+			// returned an existing revision. Ignore it and return null, it's probably the page's
+			// current revision, which is not what we want here. Note that we do want to call the
+			// callback to allow the unsaved revision to be injected here, e.g. for
+			// self-transclusion previews.
+			return null;
+		}
+
+		// If the parse is for a new revision, then the callback should have
+		// already been set to force the object and should match mRevisionId.
+		// If not, try to fetch by mRevisionId for sanity.
 		if ( $this->mRevisionId && $rev && $rev->getId() != $this->mRevisionId ) {
 			$rev = Revision::newFromId( $this->mRevisionId );
 		}

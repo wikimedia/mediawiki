@@ -1,4 +1,7 @@
 <?php
+use MediaWiki\Storage\MutableRevisionRecord;
+use MediaWiki\Storage\RevisionStore;
+use MediaWiki\User\UserIdentityValue;
 
 /**
  * @group Database
@@ -190,6 +193,180 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$this->assertContains( 'Hello World', $text );
 		$this->assertContains( '<div', $text );
 		$this->assertContains( 'class="mw-parser-output"', $text );
+	}
+
+	/**
+	 * @param string $name
+	 * @return Title
+	 */
+	private function getMockTitle( $name ) {
+		$title = $this->getMock( Title::class );
+		$title->method( 'getPrefixedDBkey' )->willReturn( $name );
+		$title->method( 'getPrefixedText' )->willReturn( $name );
+		$title->method( 'getDBkey' )->willReturn( $name );
+		$title->method( 'getText' )->willReturn( $name );
+		$title->method( 'getNamespace' )->willReturn( 0 );
+		$title->method( 'getPageLanguage' )->willReturn( Language::factory( 'en' ) );
+
+		return $title;
+	}
+
+	public function provideRevisionAccess() {
+		$title = $this->getMockTitle( 'ParserRevisionAccessTest' );
+
+		$frank = $this->getMockBuilder( User::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$frank->method( 'getName' )->willReturn( 'Frank' );
+
+		$text = '* user:{{REVISIONUSER}};id:{{REVISIONID}};time:{{REVISIONTIMESTAMP}};';
+		$po = new ParserOptions( $frank );
+
+		yield 'current' => [ $text, $po, 0, 'user:CurrentAuthor;id:200;time:20160606000000;' ];
+		yield 'current with ID' => [ $text, $po, 200, 'user:CurrentAuthor;id:200;time:20160606000000;' ];
+
+		$text = '* user:{{REVISIONUSER}};id:{{REVISIONID}};time:{{REVISIONTIMESTAMP}};';
+		$po = new ParserOptions( $frank );
+
+		yield 'old' => [ $text, $po, 100, 'user:OldAuthor;id:100;time:20140404000000;' ];
+
+		$oldRevision = new MutableRevisionRecord( $title );
+		$oldRevision->setId( 100 );
+		$oldRevision->setUser( new UserIdentityValue( 7, 'FauxAuthor', 0 ) );
+		$oldRevision->setTimestamp( '20141111111111' );
+		$oldRevision->setContent( 'main', new WikitextContent( 'FAUX' ) );
+
+		$po = new ParserOptions( $frank );
+		$po->setCurrentRevisionCallback( function () use ( $oldRevision ) {
+			return new Revision( $oldRevision );
+		} );
+
+		yield 'old with override' => [ $text, $po, 100, 'user:FauxAuthor;id:100;time:20141111111111;' ];
+
+		$text = '* user:{{REVISIONUSER}};user-subst:{{subst:REVISIONUSER}};';
+
+		$po = new ParserOptions( $frank );
+		$po->setIsPreview( true );
+
+		yield 'preview without override, using context' => [
+			$text,
+			$po,
+			null,
+			'user:Frank;',
+			'user-subst:Frank;',
+		];
+
+		$text = '* user:{{REVISIONUSER}};time:{{REVISIONTIMESTAMP}};'
+			. 'user-subst:{{subst:REVISIONUSER}};time-subst:{{subst:REVISIONTIMESTAMP}};';
+
+		$newRevision = new MutableRevisionRecord( $title );
+		$newRevision->setUser( new UserIdentityValue( 9, 'NewAuthor', 0 ) );
+		$newRevision->setTimestamp( '20180808000000' );
+		$newRevision->setContent( 'main', new WikitextContent( 'NEW' ) );
+
+		$po = new ParserOptions( $frank );
+		$po->setIsPreview( true );
+		$po->setCurrentRevisionCallback( function () use ( $newRevision ) {
+			return new Revision( $newRevision );
+		} );
+
+		yield 'preview' => [
+			$text,
+			$po,
+			null,
+			'user:NewAuthor;time:20180808000000;',
+			'user-subst:NewAuthor;time-subst:20180808000000;',
+		];
+
+		$po = new ParserOptions( $frank );
+		$po->setCurrentRevisionCallback( function () use ( $newRevision ) {
+			return new Revision( $newRevision );
+		} );
+
+		yield 'pre-save' => [
+			$text,
+			$po,
+			null,
+			'user:NewAuthor;time:20180808000000;',
+			'user-subst:NewAuthor;time-subst:20180808000000;',
+		];
+
+		$text = "(ONE)<includeonly>(TWO)</includeonly>"
+			. "<noinclude>#{{:ParserRevisionAccessTest}}#</noinclude>";
+
+		$newRevision = new MutableRevisionRecord( $title );
+		$newRevision->setUser( new UserIdentityValue( 9, 'NewAuthor', 0 ) );
+		$newRevision->setTimestamp( '20180808000000' );
+		$newRevision->setContent( 'main', new WikitextContent( $text ) );
+
+		$po = new ParserOptions( $frank );
+		$po->setIsPreview( true );
+		$po->setCurrentRevisionCallback( function () use ( $newRevision ) {
+			return new Revision( $newRevision );
+		} );
+
+		yield 'preview with self-transclude' => [ $text, $po, null, '(ONE)#(ONE)(TWO)#' ];
+	}
+
+	/**
+	 * @dataProvider provideRevisionAccess
+	 */
+	public function testRevisionAccess(
+		$text,
+		ParserOptions $po,
+		$revId,
+		$expectedInHtml,
+		$expectedInPst = null
+	) {
+		global $wgParser;
+
+		$title = $this->getMockTitle( 'ParserRevisionAccessTest' );
+
+		$po->enableLimitReport( false );
+
+		$oldRevision = new MutableRevisionRecord( $title );
+		$oldRevision->setId( 100 );
+		$oldRevision->setUser( new UserIdentityValue( 7, 'OldAuthor', 0 ) );
+		$oldRevision->setTimestamp( '20140404000000' );
+		$oldRevision->setContent( 'main', new WikitextContent( 'OLD' ) );
+
+		$currentRevision = new MutableRevisionRecord( $title );
+		$currentRevision->setId( 200 );
+		$currentRevision->setUser( new UserIdentityValue( 9, 'CurrentAuthor', 0 ) );
+		$currentRevision->setTimestamp( '20160606000000' );
+		$currentRevision->setContent( 'main', new WikitextContent( 'CURRENT' ) );
+
+		$revisionStore = $this->getMockBuilder( RevisionStore::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$revisionStore
+			->method( 'getKnownCurrentRevision' )
+			->willReturnMap( [
+				[ $title, 100, $oldRevision ],
+				[ $title, 200, $currentRevision ],
+				[ $title, 0, $currentRevision ],
+			] );
+
+		$revisionStore
+			->method( 'getRevisionById' )
+			->willReturnMap( [
+				[ 100, 0, $oldRevision ],
+				[ 200, 0, $currentRevision ],
+			] );
+
+		$this->setService( 'RevisionStore', $revisionStore );
+
+		$wgParser->parse( $text, $title, $po, true, true, $revId );
+		$html = $wgParser->getOutput()->getText();
+
+		$this->assertContains( $expectedInHtml, $html, 'In HTML' );
+
+		if ( $expectedInPst !== null ) {
+			$pst = $wgParser->preSaveTransform( $text, $title, $po->getUser(), $po );
+			$this->assertContains( $expectedInPst, $pst, 'After Pre-Safe Transform' );
+		}
 	}
 
 	// @todo Add tests for cleanSig() / cleanSigInSig(), getSection(),

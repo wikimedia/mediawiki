@@ -558,14 +558,6 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	}
 
 	/**
-	 * @return string
-	 */
-	private function getTimestampNow() {
-		// TODO: allow an override to be injected for testing
-		return wfTimestampNow();
-	}
-
-	/**
 	 * Whether the content is deleted and thus not visible to the public.
 	 *
 	 * @return bool
@@ -777,6 +769,24 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			$this->revision = new MutableRevisionRecord( $title );
 		}
 
+		// NOTE: user and timestamp must be set, so they can be used for
+		// {{subst:REVISIONUSER}} and {{subst:REVISIONTIMESTAMP}} in PST!
+		$this->revision->setTimestamp( wfTimestampNow() );
+		$this->revision->setUser( $user );
+
+		// Set up ParserOptions to operate on the new revision
+		$oldCallback = $userPopts->getCurrentRevisionCallback();
+		$userPopts->setCurrentRevisionCallback(
+			function ( Title $parserTitle, $parser = false ) use ( $title, $oldCallback ) {
+				if ( $parserTitle->equals( $title ) ) {
+					$legacyRevision = new Revision( $this->revision );
+					return $legacyRevision;
+				} else {
+					return call_user_func( $oldCallback, $parserTitle, $parser );
+				}
+			}
+		);
+
 		$pstContentSlots = $this->revision->getSlots();
 
 		foreach ( $slotsUpdate->getModifiedRoles() as $role ) {
@@ -824,8 +834,6 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 
 			// prepareUpdate() is redundant for null-edits
 			$this->doTransition( 'has-revision' );
-		} else {
-			$this->revision->setUser( $user );
 		}
 	}
 
