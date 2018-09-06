@@ -840,7 +840,6 @@ class PageUpdater {
 	 *
 	 * @param CommentStoreComment $comment
 	 * @param User $user
-	 * @param string $timestamp
 	 * @param int $flags
 	 * @param Status $status
 	 *
@@ -849,7 +848,6 @@ class PageUpdater {
 	private function makeNewRevision(
 		CommentStoreComment $comment,
 		User $user,
-		$timestamp,
 		$flags,
 		Status $status
 	) {
@@ -873,7 +871,6 @@ class PageUpdater {
 
 		$rev->setComment( $comment );
 		$rev->setUser( $user );
-		$rev->setTimestamp( $timestamp );
 		$rev->setMinorEdit( ( $flags & EDIT_MINOR ) > 0 );
 
 		foreach ( $rev->getSlots()->getSlots() as $slot ) {
@@ -904,9 +901,6 @@ class PageUpdater {
 		// Update article, but only if changed.
 		$status = Status::newGood( [ 'new' => false, 'revision' => null, 'revision-record' => null ] );
 
-		// Convenience variables
-		$now = $this->getTimestampNow();
-
 		$oldRev = $this->grabParentRevision();
 		$oldid = $oldRev ? $oldRev->getId() : 0;
 
@@ -920,7 +914,6 @@ class PageUpdater {
 		$newRevisionRecord = $this->makeNewRevision(
 			$summary,
 			$user,
-			$now,
 			$flags,
 			$status
 		);
@@ -928,6 +921,8 @@ class PageUpdater {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
+
+		$now = $newRevisionRecord->getTimestamp();
 
 		// XXX: we may want a flag that allows a null revision to be forced!
 		$changed = $this->derivedDataUpdater->isChange();
@@ -1060,12 +1055,9 @@ class PageUpdater {
 
 		$status = Status::newGood( [ 'new' => true, 'revision' => null, 'revision-record' => null ] );
 
-		$now = $this->getTimestampNow();
-
 		$newRevisionRecord = $this->makeNewRevision(
 			$summary,
 			$user,
-			$now,
 			$flags,
 			$status
 		);
@@ -1073,6 +1065,8 @@ class PageUpdater {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
+
+		$now = $newRevisionRecord->getTimestamp();
 
 		$dbw = $this->getDBConnectionRef( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
