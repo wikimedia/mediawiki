@@ -1,12 +1,20 @@
 /*!
  * JavaScript for Special:Preferences: editfont field enhancements.
  */
-( function ( mw, $ ) {
-	$( function () {
-		var widget, lastValue;
+( function ( mw ) {
+	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
+		var widget, lastValue,
+			$target = $root.find( '#mw-input-wpeditfont' );
+
+		if (
+			!$target.length ||
+			$target.closest( '.mw-htmlform-autoinfuse-lazy' ).length
+		) {
+			return;
+		}
 
 		try {
-			widget = OO.ui.infuse( $( '#mw-input-wpeditfont' ) );
+			widget = OO.ui.infuse( $target );
 		} catch ( err ) {
 			// This preference could theoretically be disabled ($wgHiddenPrefs)
 			return;
@@ -29,4 +37,4 @@
 		updateLabel( widget.getValue() );
 
 	} );
-}( mediaWiki, jQuery ) );
+}( mediaWiki ) );

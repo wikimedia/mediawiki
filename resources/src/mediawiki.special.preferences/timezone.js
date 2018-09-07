@@ -2,9 +2,17 @@
  * JavaScript for Special:Preferences: Timezone field enhancements.
  */
 ( function ( mw, $ ) {
-	$( function () {
+	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		var $tzSelect, $tzTextbox, timezoneWidget, $localtimeHolder, servertime,
+			$target = $root.find( '#wpTimeCorrection' ),
 			oouiEnabled = $( '#mw-prefs-form' ).hasClass( 'mw-htmlform-ooui' );
+
+		if (
+			!$target.length ||
+			$target.closest( '.mw-htmlform-autoinfuse-lazy' ).length
+		) {
+			return;
+		}
 
 		// Timezone functions.
 		// Guesses Timezone from browser and updates fields onchange.
@@ -12,13 +20,13 @@
 		if ( oouiEnabled ) {
 			// This is identical to OO.ui.infuse( ... ), but it makes the class name of the result known.
 			try {
-				timezoneWidget = mw.widgets.SelectWithInputWidget.static.infuse( $( '#wpTimeCorrection' ) );
+				timezoneWidget = mw.widgets.SelectWithInputWidget.static.infuse( $target );
 			} catch ( err ) {
 				// This preference could theoretically be disabled ($wgHiddenPrefs)
 				timezoneWidget = null;
 			}
 		} else {
-			$tzSelect = $( '#wpTimeCorrection' );
+			$tzSelect = $target;
 			$tzTextbox = $( '#wpTimeCorrection-other' );
 		}
 
