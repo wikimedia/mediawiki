@@ -423,13 +423,22 @@ CREATE TABLE ipblocks (
   ipb_deleted           SMALLINT     NOT NULL  DEFAULT 0,
   ipb_block_email       SMALLINT     NOT NULL  DEFAULT 0,
   ipb_allow_usertalk    SMALLINT     NOT NULL  DEFAULT 0,
-  ipb_parent_block_id             INTEGER          NULL  REFERENCES ipblocks(ipb_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED
+  ipb_parent_block_id   INTEGER          NULL            REFERENCES ipblocks(ipb_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
+  ipb_sitewide          SMALLINT     NOT NULL  DEFAULT 1
 );
 ALTER SEQUENCE ipblocks_ipb_id_seq OWNED BY ipblocks.ipb_id;
 CREATE UNIQUE INDEX ipb_address_unique ON ipblocks (ipb_address,ipb_user,ipb_auto,ipb_anon_only);
 CREATE INDEX ipb_user    ON ipblocks (ipb_user);
 CREATE INDEX ipb_range   ON ipblocks (ipb_range_start,ipb_range_end);
 CREATE INDEX ipb_parent_block_id   ON ipblocks (ipb_parent_block_id);
+
+CREATE TABLE ipblocks_restrictions (
+  ir_ipb_id INTEGER  NOT NULL REFERENCES ipblocks(ipb_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  ir_type   SMALLINT NOT NULL,
+  ir_value  INTEGER  NOT NULL,
+  PRIMARY KEY (ir_ipb_id, ir_type, ir_value)
+);
+CREATE INDEX /*i*/ir_type_value ON /*_*/ipblocks_restrictions (ir_type, ir_value);
 
 
 CREATE TABLE image (

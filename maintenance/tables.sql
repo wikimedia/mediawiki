@@ -1091,7 +1091,11 @@ CREATE TABLE /*_*/ipblocks (
   -- Autoblocks set this to the original block
   -- so that the original block being deleted also
   -- deletes the autoblocks
-  ipb_parent_block_id int default NULL
+  ipb_parent_block_id int default NULL,
+
+  -- Block user from editing any page on the site (other than their own user
+  -- talk page).
+  ipb_sitewide bool NOT NULL default 1
 
 ) /*$wgDBTableOptions*/;
 
@@ -1114,6 +1118,26 @@ CREATE INDEX /*i*/ipb_expiry ON /*_*/ipblocks (ipb_expiry);
 -- Index for removing autoblocks when a parent block is removed
 CREATE INDEX /*i*/ipb_parent_block_id ON /*_*/ipblocks (ipb_parent_block_id);
 
+--
+-- Partial Block Restrictions
+--
+CREATE TABLE /*_*/ipblocks_restrictions (
+
+  -- The ipb_id from ipblocks
+  ir_ipb_id int NOT NULL,
+
+  -- The restriction type id.
+  ir_type tinyint(1) NOT NULL,
+
+  -- The restriction id that corrposponds to the type. Typically a Page ID or a
+  -- Namespace ID.
+  ir_value int NOT NULL,
+
+  PRIMARY KEY (ir_ipb_id, ir_type, ir_value)
+) /*$wgDBTableOptions*/;
+
+-- Index to query restrictions by the page or namespace.
+CREATE INDEX /*i*/ir_type_value ON /*_*/ipblocks_restrictions (ir_type, ir_value);
 
 --
 -- Uploaded images and other files.
