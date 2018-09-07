@@ -263,6 +263,8 @@ class WikiExporter {
 	 * @throws Exception
 	 */
 	protected function dumpFrom( $cond = '', $orderRevs = false ) {
+		global $wgMultiContentRevisionSchemaMigrationStage;
+
 		# For logging dumps...
 		if ( $this->history & self::LOGS ) {
 			$where = [];
@@ -330,8 +332,17 @@ class WikiExporter {
 			}
 		# For page dumps...
 		} else {
+			if ( !( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
+				// TODO: Make XmlDumpWriter use a RevisionStore! (see T198706 and T174031)
+				throw new MWException(
+					'Cannot use WikiExporter with SCHEMA_COMPAT_WRITE_OLD mode disabled!'
+					. ' Support for dumping from the new schema is not implemented yet!'
+				);
+			}
+
 			$revOpts = [ 'page' ];
 			if ( $this->text != self::STUB ) {
+				// TODO: remove the text and make XmlDumpWriter use a RevisionStore instead! (T198706)
 				$revOpts[] = 'text';
 			}
 			$revQuery = Revision::getQueryInfo( $revOpts );
@@ -343,7 +354,8 @@ class WikiExporter {
 			];
 			unset( $join['page'] );
 
-			$fields = array_merge( $revQuery['fields'], [ 'page_restrictions' ] );
+			// TODO: remove rev_text_id and make XmlDumpWriter use a RevisionStore instead! (T198706)
+			$fields = array_merge( $revQuery['fields'], [ 'page_restrictions, rev_text_id' ] );
 
 			$conds = [];
 			if ( $cond !== '' ) {

@@ -1290,6 +1290,42 @@ class ParserOutput extends CacheTime {
 		);
 	}
 
+	// TODO remove this method once old parser cache objects have expired, probably mid-October 2018
+	public function __wakeup() {
+		// T203716 remove wrapper that was added by logic in an older version of this class,
+		// where the wrapper was included in mText. This might sometimes remove a wrapper that's
+		// genuine content (manually added to a system message), but that will work out OK, see below.
+		$text = $this->getRawText();
+		$start = Html::openElement( 'div', [
+			'class' => 'mw-parser-output'
+		] );
+		$startLen = strlen( $start );
+		$end = Html::closeElement( 'div' );
+		$endPos = strrpos( $text, $end );
+		$endLen = strlen( $end );
+		if ( substr( $text, 0, $startLen ) === $start && $endPos !== false
+			 // if the closing div is followed by real content, bail out of unwrapping
+			 && preg_match( '/^(?>\s*<!--.*?-->)*\s*$/s', substr( $text, $endPos + $endLen ) )
+		) {
+			$text = substr( $text, $startLen );
+			$text = substr( $text, 0, $endPos - $startLen ) .
+					substr( $text, $endPos - $startLen + $endLen );
+			$this->setText( $text );
+			// We found a wrapper to remove, so the ParserOutput was probably created by the
+			// code path that now contains an addWrapperDivClass( 'mw-parser-output' ) call,
+			// but it did not contain it when this object was cached, so we need to fix the
+			// wrapper class variable.
+			// If this was a message with a manually added wrapper, we are technically wrong about
+			// this but we were wrong about the unwrapping as well so it will work out just right,
+			// except when this is a normal page view of such a message page, in which case
+			// it will be single-wrapped instead of double-wrapped (harmless) or something wants
+			// render the message with unwrap=true (in which case the message won't be wrapped even
+			// though it should, but the few code paths using unwrap=true only do it for real pages).
+			$this->clearWrapperDivClass();
+			$this->addWrapperDivClass( 'mw-parser-output' );
+		}
+	}
+
 	/**
 	 * Merges internal metadata such as flags, accessed options, and profiling info
 	 * from $source into this ParserOutput. This should be used whenever the state of $source
