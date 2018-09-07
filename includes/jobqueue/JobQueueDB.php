@@ -264,8 +264,6 @@ class JobQueueDB extends JobQueue {
 		if ( $flags & self::QOS_ATOMIC ) {
 			$dbw->endAtomic( $method );
 		}
-
-		return;
 	}
 
 	/**

@@ -1077,7 +1077,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			} else {
 				throw new LogicException(
 					'Trying to re-use DerivedPageDataUpdater with revision '
-					.$revision->getId()
+					. $revision->getId()
 					. ', but it\'s already bound to revision '
 					. $this->revision->getId()
 				);
@@ -1138,7 +1138,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			if ( !$this->user->equals( $user ) ) {
 				throw new LogicException(
 					'The Revision provided has a mismatching actor: expected '
-					.$this->user->getName()
+					. $this->user->getName()
 					. ', got '
 					. $user->getName()
 				);

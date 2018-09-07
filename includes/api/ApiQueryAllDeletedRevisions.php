@@ -76,7 +76,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 				if ( !is_null( $params[$param] ) ) {
 					$p = $this->getModulePrefix();
 					$this->dieWithError(
-						[ 'apierror-invalidparammix-cannotusewith', $p.$param, "{$p}user" ],
+						[ 'apierror-invalidparammix-cannotusewith', $p . $param, "{$p}user" ],
 						'invalidparammix'
 					);
 				}
@@ -86,7 +86,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 				if ( !is_null( $params[$param] ) ) {
 					$p = $this->getModulePrefix();
 					$this->dieWithError(
-						[ 'apierror-invalidparammix-mustusewith', $p.$param, "{$p}user" ],
+						[ 'apierror-invalidparammix-mustusewith', $p . $param, "{$p}user" ],
 						'invalidparammix'
 					);
 				}

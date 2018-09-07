@@ -1689,7 +1689,7 @@ class EditPage {
 				// is if an extension hook aborted from inside ArticleSave.
 				// Render the status object into $this->hookError
 				// FIXME this sucks, we should just use the Status object throughout
-				$this->hookError = '<div class="error">' ."\n" . $status->getWikiText() .
+				$this->hookError = '<div class="error">' . "\n" . $status->getWikiText() .
 					'</div>';
 				return true;
 		}

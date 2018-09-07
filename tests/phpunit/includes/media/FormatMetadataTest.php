@@ -126,10 +126,10 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 			],
 			[
 				[ 'Software' => [ 'x-default' => 'paint.net 4.0.12', '_type' => 'lang' ] ],
-				[ 'Software' => '<ul class="metadata-langlist">'.
-						'<li class="mw-metadata-lang-default">'.
-							'<span class="mw-metadata-lang-value">paint.net 4.0.12</span>'.
-						"</li>\n".
+				[ 'Software' => '<ul class="metadata-langlist">' .
+						'<li class="mw-metadata-lang-default">' .
+							'<span class="mw-metadata-lang-value">paint.net 4.0.12</span>' .
+						"</li>\n" .
 					'</ul>'
 				],
 			],

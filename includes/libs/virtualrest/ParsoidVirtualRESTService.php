@@ -181,7 +181,7 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 				unset( $req['query']['oldid'] );
 			}
 		} elseif ( $reqType === 'transform' ) {
-			$req['url'] .= 'transform/'. $parts[3] . '/to/' . $parts[5];
+			$req['url'] .= 'transform/' . $parts[3] . '/to/' . $parts[5];
 			// the title
 			if ( isset( $parts[6] ) ) {
 				$req['url'] .= '/' . $parts[6];

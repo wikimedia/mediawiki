@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__.'/../../maintenance/Maintenance.php';
+require __DIR__ . '/../../maintenance/Maintenance.php';
 
 define( 'MW_PARSER_TEST', true );
 

@@ -286,7 +286,6 @@ TEXT
 		}
 
 		$this->outputStatus( "\n" );
-		return;
 	}
 
 	/**

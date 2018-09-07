@@ -132,14 +132,14 @@ class AutoLoader {
 			'MediaWiki\\Auth\\' => __DIR__ . '/auth/',
 			'MediaWiki\\Edit\\' => __DIR__ . '/edit/',
 			'MediaWiki\\EditPage\\' => __DIR__ . '/editpage/',
-			'MediaWiki\\Linker\\' => __DIR__ .'/linker/',
-			'MediaWiki\\Preferences\\' => __DIR__ .'/preferences/',
-			'MediaWiki\\Services\\' => __DIR__ .'/services/',
-			'MediaWiki\\Session\\' => __DIR__ .'/session/',
-			'MediaWiki\\Shell\\' => __DIR__ .'/shell/',
-			'MediaWiki\\Sparql\\' => __DIR__ .'/sparql/',
-			'MediaWiki\\Storage\\' => __DIR__ .'/Storage/',
-			'MediaWiki\\Tidy\\' => __DIR__ .'/tidy/',
+			'MediaWiki\\Linker\\' => __DIR__ . '/linker/',
+			'MediaWiki\\Preferences\\' => __DIR__ . '/preferences/',
+			'MediaWiki\\Services\\' => __DIR__ . '/services/',
+			'MediaWiki\\Session\\' => __DIR__ . '/session/',
+			'MediaWiki\\Shell\\' => __DIR__ . '/shell/',
+			'MediaWiki\\Sparql\\' => __DIR__ . '/sparql/',
+			'MediaWiki\\Storage\\' => __DIR__ . '/Storage/',
+			'MediaWiki\\Tidy\\' => __DIR__ . '/tidy/',
 		];
 	}
 }

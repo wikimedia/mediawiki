@@ -172,7 +172,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 					'div',
 					[
 						'class' =>
-							'oo-ui-widget oo-ui-widget-enabled oo-ui-optionWidget '.
+							'oo-ui-widget oo-ui-widget-enabled oo-ui-optionWidget ' .
 							'oo-ui-tabOptionWidget oo-ui-labelElement' .
 							( $i === 0 ? ' oo-ui-optionWidget-selected' : '' )
 					],
@@ -193,7 +193,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 			[ 'class' => 'oo-ui-layout oo-ui-panelLayout oo-ui-indexLayout-tabPanel' ],
 			Html::rawElement(
 				'div',
-				[ 'class' => 'oo-ui-widget oo-ui-widget-enabled oo-ui-selectWidget '.
+				[ 'class' => 'oo-ui-widget oo-ui-widget-enabled oo-ui-selectWidget ' .
 					'oo-ui-selectWidget-depressed oo-ui-tabSelectWidget' ],
 				implode( $fakeTabs )
 			)

@@ -329,21 +329,18 @@ class KkConverter extends LanguageConverter {
 					$text = preg_replace( $pat, $rep, $text );
 				}
 				return $text;
-				break;
 			case 'kk-latn':
 			case 'kk-tr':
 				foreach ( $this->mCyrl2Latn as $pat => $rep ) {
 					$text = preg_replace( $pat, $rep, $text );
 				}
 				return $text;
-				break;
 			case 'kk-cyrl':
 			case 'kk-kz':
 				foreach ( $this->mLatn2Cyrl as $pat => $rep ) {
 					$text = preg_replace( $pat, $rep, $text );
 				}
 				return $text;
-				break;
 			default:
 				return $text;
 		}
