@@ -785,7 +785,7 @@
 	"protectedpagewarning": "<strong>警告：本頁已經被保護，只有擁有管理員權限的使用者才可編輯。</strong>\n以下提供最近的日誌以便參考：",
 	"semiprotectedpagewarning": "<strong>注意：</strong>本頁已經被保護，只有自動確認使用者才可編輯。\n以下提供最近的日誌以便參考：",
 	"cascadeprotectedwarning": "<strong>警告：</strong>由於本頁被下列{{PLURAL:$1|頁面|頁面}}嵌入，所以受連鎖保護。只有得到[[Special:ListGroupRights|特殊權限]]的使用者才可編輯。",
-	"titleprotectedwarning": "<strong>警告：本頁面已被保護，需要 [[Special:ListGroupRights|特殊權限]] 方可建立。</strong>\n以下提供最近的日誌以便參考：",
+	"titleprotectedwarning": "<strong>警告：本頁面已被保護，需要[[Special:ListGroupRights|特殊權限]]方可建立。</strong>以下提供最近的日誌以便參考：",
 	"templatesused": "此頁面使用了以下{{PLURAL:$1|模板}}：",
 	"templatesusedpreview": "此預覽使用了以下{{PLURAL:$1|模板}}：",
 	"templatesusedsection": "此頁面使用了以下 {{PLURAL:$1|模板}} ：",
