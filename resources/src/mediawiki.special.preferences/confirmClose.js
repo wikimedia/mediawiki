@@ -52,8 +52,18 @@
 			// Disable the button to save preferences unless preferences have changed
 			// Check if preferences have been changed before JS has finished loading
 			saveButton.setDisabled( !isPrefsChanged() );
-			$( '#preferences .oo-ui-fieldsetLayout' ).on( 'change keyup mouseup', function () {
-				saveButton.setDisabled( !isPrefsChanged() );
+			// Attach capturing event handlers to the document, to catch events inside OOUI dropdowns:
+			// * Use capture because OO.ui.SelectWidget also does, and it stops event propagation,
+			//   so the event is not fired on descendant elements
+			// * Attach to the document because the dropdowns are in the .oo-ui-defaultOverlay element
+			//   (and it doesn't exist yet at this point, so we can't attach them to it)
+			[ 'change', 'keyup', 'mouseup' ].forEach( function ( eventType ) {
+				document.addEventListener( eventType, function () {
+					// Make sure SelectWidget's event handlers run first
+					setTimeout( function () {
+						saveButton.setDisabled( !isPrefsChanged() );
+					} );
+				}, true );
 			} );
 		} else {
 			// Disable the button to save preferences unless preferences have changed
