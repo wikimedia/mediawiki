@@ -495,6 +495,7 @@
 	"resetpass-temp-password": "ယာယီစကားဝှက်:",
 	"resetpass-expired": "သင်၏ စကားဝှက် သက်တမ်းကုန်သွားပါသည်။ လော့အင်ဝင်ရန် စကားဝှက်အသစ် သတ်မှတ်ပါ။",
 	"passwordreset": "စကားဝှက်အသစ် ပြုလုပ်ရန်",
+	"passwordreset-disabled": "စကားဝှက်ပြန်ချိန်ခြင်းကို ဤဝီကီတွင် ပိတ်ထားပါသည်။",
 	"passwordreset-emaildisabled": "အီးမေးလ် ကြန်အင်လက္ခဏာများကို ဤဝီကီတွင် ပိတ်ထားခဲ့သည်။",
 	"passwordreset-username": "အသုံးပြုသူအမည်:",
 	"passwordreset-domain": "ဒိုမိန်း:",

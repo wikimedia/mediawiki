@@ -1082,6 +1082,8 @@
 	"rcfilters-filter-lastrevision-description": "Битнең соңгы гына үзгәртүе.",
 	"rcfilters-filter-previousrevision-label": "Соңгы булмаган юрама",
 	"rcfilters-filter-previousrevision-description": "«Соңгы юрама» булмаган барлык үзгәртүләр.",
+	"rcfilters-filter-excluded": "Рөхсәт юк",
+	"rcfilters-tag-prefix-namespace-inverted": "<strong>:not</strong> $1",
 	"rcfilters-view-tags": "Тәгләнгән үзгәртүләр",
 	"rcfilters-liveupdates-button": "Автоматик яңарту",
 	"rcfilters-watchlist-markseen-button": "Бар үзгәртүләрне каралган дип билгеләргә",

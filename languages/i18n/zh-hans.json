@@ -102,7 +102,8 @@
 			"Deathkon",
 			"RyRubyy",
 			"Wxyveronica",
-			"夢蝶葬花"
+			"夢蝶葬花",
+			"Dcljr"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -2288,10 +2289,10 @@
 	"enotif_subject_moved": "{{SITENAME}}页面$1已被$2移动",
 	"enotif_subject_restored": "{{SITENAME}}页面$1已经被$2{{GENDER:$2|还原}}",
 	"enotif_subject_changed": "{{SITENAME}}页面$1被$2更改",
-	"enotif_body_intro_deleted": "{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|删除}}，请见$3。",
+	"enotif_body_intro_deleted": "{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|删除}}，请见<$3>。",
 	"enotif_body_intro_created": "{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|创建}}，请浏览<$3>查看当前版本。",
 	"enotif_body_intro_moved": "{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|移动}}，请浏览<$3>查看当前版本。",
-	"enotif_body_intro_restored": "{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|还原}}，请浏览$3查看当前版本。",
+	"enotif_body_intro_restored": "{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|还原}}，请浏览<$3>查看当前版本。",
 	"enotif_body_intro_changed": "{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|更改}}，请浏览 $3 查看当前版本。",
 	"enotif_lastvisited": "要查看您上次访问以来的所有更改，请参见$1",
 	"enotif_lastdiff": "要浏览此次更改，请参见$1",
