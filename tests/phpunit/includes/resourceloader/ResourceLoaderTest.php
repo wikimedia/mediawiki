@@ -846,7 +846,7 @@ mw.example();
 		$this->assertRegExp( '/Ferry not found/', $errors[0] );
 		$this->assertCount( 1, $errors );
 		$this->assertRegExp(
-			'/isCompatible.*function startUp/s',
+			'/isCompatible.*window\.RLQ/s',
 			$response,
 			'startup response undisrupted (T152266)'
 		);
