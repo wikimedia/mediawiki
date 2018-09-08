@@ -1,0 +1,10 @@
+{
+	"root": true,
+	"extends": "wikimedia",
+	"env": {
+		"browser": true
+	},
+	"rules": {
+		"max-len": 0
+	}
+}
