@@ -569,8 +569,8 @@
 			 *    The contents are then stashed in the registry via mw.loader#implement.
 			 * - `loaded`:
 			 *    The module has been loaded from the server and stashed via mw.loader#implement.
-			 *    If the module has no more dependencies in-flight, the module will be executed
-			 *    immediately. Otherwise execution is deferred, controlled via #handlePending.
+			 *    Once the module has no more dependencies in-flight, the module will be executed,
+			 *    controlled via #requestPropagation and #doPropagation.
 			 * - `executing`:
 			 *    The module is being executed.
 			 * - `ready`:
@@ -605,8 +605,7 @@
 				/**
 				 * List of callback jobs waiting for modules to be ready.
 				 *
-				 * Jobs are created by #enqueue() and run by #handlePending().
-				 *
+				 * Jobs are created by #enqueue() and run by #doPropagation().
 				 * Typically when a job is created for a module, the job's dependencies contain
 				 * both the required module and all its recursive dependencies.
 				 *
@@ -622,6 +621,10 @@
 				 * @private
 				 */
 				jobs = [],
+
+				// For #requestPropagation() and #doPropagation()
+				willPropagate = false,
+				errorModules = [],
 
 				/**
 				 * @private
@@ -781,86 +784,133 @@
 			}
 
 			/**
-			 * A module has entered state 'ready', 'error', or 'missing'. Automatically update
-			 * pending jobs and modules that depend upon this module. If the given module failed,
-			 * propagate the 'error' state up the dependency tree. Otherwise, go ahead and execute
-			 * all jobs/modules now having their dependencies satisfied.
+			 * Handle propagation of module state changes and reactions to them.
 			 *
-			 * Jobs that depend on a failed module, will have their error callback ran (if any).
+			 * - When a module reaches a failure state, this should be propagated to
+			 *   modules that depend on the failed module.
+			 * - When a module reaches a final state, pending job callbacks for the
+			 *   module from mw.loader.using() should be called.
+			 * - When a module reaches the 'ready' state from #execute(), consider
+			 *   executing dependant modules now having their dependencies satisfied.
+			 * - When a module reaches the 'loaded' state from mw.loader.implement,
+			 *   consider executing it, if it has no unsatisfied dependencies.
 			 *
 			 * @private
-			 * @param {string} module Name of module that entered one of the states 'ready', 'error', or 'missing'.
 			 */
-			function handlePending( module ) {
-				var j, job, hasErrors, m, stateChange, fromBaseModule;
+			function doPropagation() {
+				var errorModule, baseModuleError, module, i, failed, job,
+					didPropagate = true;
 
-				if ( registry[ module ].state === 'error' || registry[ module ].state === 'missing' ) {
-					fromBaseModule = baseModules.indexOf( module ) !== -1;
-					// If the current module failed, mark all dependent modules also as failed.
-					// Iterate until steady-state to propagate the error state upwards in the
-					// dependency tree.
-					do {
-						stateChange = false;
-						for ( m in registry ) {
-							if ( registry[ m ].state !== 'error' && registry[ m ].state !== 'missing' ) {
-								// Always propagate errors from base modules to regular modules (implicit dependency).
-								// Between base modules or regular modules, consider direct dependencies only.
-								if (
-									( fromBaseModule && baseModules.indexOf( m ) === -1 ) ||
-									anyFailed( registry[ m ].dependencies )
-								) {
-									registry[ m ].state = 'error';
-									stateChange = true;
+				// Keep going until the last iteration performed no actions.
+				do {
+					didPropagate = false;
+
+					// Stage 1: Propagate failures
+					while ( errorModules.length ) {
+						errorModule = errorModules.shift();
+						baseModuleError = baseModules.indexOf( errorModule ) !== -1;
+						for ( module in registry ) {
+							if ( registry[ module ].state !== 'error' && registry[ module ].state !== 'missing' ) {
+								if ( baseModuleError && baseModules.indexOf( module ) === -1 ) {
+									// Propate error from base module to all regular (non-base) modules
+									registry[ module ].state = 'error';
+									didPropagate = true;
+								} else if ( registry[ module ].dependencies.indexOf( errorModule ) !== -1 ) {
+									// Propagate error from dependency to depending module
+									registry[ module ].state = 'error';
+									// .. and propagate it further
+									errorModules.push( module );
+									didPropagate = true;
 								}
 							}
 						}
-					} while ( stateChange );
-				}
+					}
 
-				// Execute all jobs whose dependencies are either all satisfied or contain at least one failed module.
-				for ( j = 0; j < jobs.length; j++ ) {
-					hasErrors = anyFailed( jobs[ j ].dependencies );
-					if ( hasErrors || allReady( jobs[ j ].dependencies ) ) {
-						// All dependencies satisfied, or some have errors
-						job = jobs[ j ];
-						jobs.splice( j, 1 );
-						j -= 1;
-						try {
-							if ( hasErrors ) {
-								if ( typeof job.error === 'function' ) {
-									job.error( new Error( 'Module ' + module + ' has failed dependencies' ), [ module ] );
-								}
-							} else {
-								if ( typeof job.ready === 'function' ) {
+					// Stage 2: Execute 'loaded' modules with no unsatisfied dependencies
+					for ( module in registry ) {
+						if ( registry[ module ].state === 'loaded' && allWithImplicitReady( module ) ) {
+							// Recursively execute all dependent modules that were already loaded
+							// (waiting for execution) and no longer have unsatisfied dependencies.
+							// Base modules may have dependencies amongst eachother to ensure correct
+							// execution order. Regular modules wait for all base modules.
+							// eslint-disable-next-line no-use-before-define
+							execute( module );
+							didPropagate = true;
+						}
+					}
+
+					// Stage 3: Invoke job callbacks that are no longer blocked
+					for ( i = 0; i < jobs.length; i++ ) {
+						job = jobs[ i ];
+						failed = anyFailed( job.dependencies );
+						if ( failed || allReady( job.dependencies ) ) {
+							jobs.splice( i, 1 );
+							i -= 1;
+							try {
+								if ( failed && job.error ) {
+									job.error( new Error( 'Module has failed dependencies' ), job.dependencies );
+								} else if ( !failed && job.ready ) {
 									job.ready();
 								}
+							} catch ( e ) {
+								// A user-defined callback raised an exception.
+								// Swallow it to protect our state machine!
+								mw.trackError( 'resourceloader.exception', {
+									exception: e,
+									source: 'load-callback'
+								} );
 							}
-						} catch ( e ) {
-							// A user-defined callback raised an exception.
-							// Swallow it to protect our state machine!
-							mw.trackError( 'resourceloader.exception', {
-								exception: e,
-								module: module,
-								source: 'load-callback'
-							} );
+							didPropagate = true;
 						}
 					}
-				}
+				} while ( didPropagate );
 
-				// The current module became 'ready'.
-				if ( registry[ module ].state === 'ready' ) {
-					// Queue it for later syncing to the module store.
-					mw.loader.store.add( module );
-					// Recursively execute all dependent modules that were already loaded
-					// (waiting for execution) and no longer have unsatisfied dependencies.
-					for ( m in registry ) {
-						// Base modules may have dependencies amongst eachother to ensure correct
-						// execution order. Regular modules wait for all base modules.
-						if ( registry[ m ].state === 'loaded' && allWithImplicitReady( m ) ) {
-							// eslint-disable-next-line no-use-before-define
-							execute( m );
-						}
+				willPropagate = false;
+			}
+
+			/**
+			 * Request a (debounced) call to doPropagation().
+			 *
+			 * @private
+			 */
+			function requestPropagation() {
+				if ( willPropagate ) {
+					// Already scheduled, or, we're already in a doPropagation stack.
+					return;
+				}
+				willPropagate = true;
+				// Yield for two reasons:
+				// * Allow successive calls to mw.loader.implement() from the same
+				//   load.php response, or from the same asyncEval() to be in the
+				//   propagation batch.
+				// * Allow the browser to breathe between the reception of
+				//   module source code and the execution of it.
+				//
+				// Use a high priority because the user may be waiting for interactions
+				// to start being possible. But, first provide a moment (up to 'timeout')
+				// for native input event handling (e.g. scrolling/typing/clicking).
+				mw.requestIdleCallback( doPropagation, { timeout: 1 } );
+			}
+
+			/**
+			 * Update a module's state in the registry and make sure any neccesary
+			 * propagation will occur. See #doPropagation for more about propagation.
+			 * See #registry for more about how states are used.
+			 *
+			 * @private
+			 * @param {string} module
+			 * @param {string} state
+			 */
+			function setAndPropagate( module, state ) {
+				registry[ module ].state = state;
+				if ( state === 'loaded' || state === 'ready' || state === 'error' || state === 'missing' ) {
+					if ( state === 'ready' ) {
+						// Queue to later be synced to the local module store.
+						mw.loader.store.add( module );
+					} else if ( state === 'error' || state === 'missing' ) {
+						errorModules.push( module );
 					}
+					requestPropagation();
 				}
 			}
 
@@ -892,8 +942,7 @@
 					if ( skip() ) {
 						registry[ module ].skipped = true;
 						registry[ module ].dependencies = [];
-						registry[ module ].state = 'ready';
-						handlePending( module );
+						setAndPropagate( module, 'ready' );
 						return;
 					}
 				}
@@ -1127,8 +1176,7 @@
 						// Private modules must be embedded in the page. Don't bother queuing
 						// these as the server will deny them anyway (T101806).
 						if ( registry[ module ].group === 'private' ) {
-							registry[ module ].state = 'error';
-							handlePending( module );
+							setAndPropagate( module, 'error' );
 							return;
 						}
 						queue.push( module );
@@ -1165,8 +1213,7 @@
 					script = registry[ module ].script;
 					markModuleReady = function () {
 						$CODE.profileScriptEnd();
-						registry[ module ].state = 'ready';
-						handlePending( module );
+						setAndPropagate( module, 'ready' );
 					};
 					nestedAddScript = function ( arr, callback, i ) {
 						// Recursively call queueModuleScript() in its own callback
@@ -1216,13 +1263,13 @@
 					} catch ( e ) {
 						// Use mw.track instead of mw.log because these errors are common in production mode
 						// (e.g. undefined variable), and mw.log is only enabled in debug mode.
-						registry[ module ].state = 'error';
+						setAndPropagate( module, 'error' );
 						$CODE.profileScriptEnd();
 						mw.trackError( 'resourceloader.exception', {
-							exception: e, module:
-							module, source: 'module-execute'
+							exception: e,
+							module: module,
+							source: 'module-execute'
 						} );
-						handlePending( module );
 					}
 				};
 
@@ -1855,10 +1902,7 @@
 					registry[ name ].templates = templates || null;
 					// The module may already have been marked as erroneous
 					if ( registry[ name ].state !== 'error' && registry[ name ].state !== 'missing' ) {
-						registry[ name ].state = 'loaded';
-						if ( allWithImplicitReady( name ) ) {
-							execute( name );
-						}
+						setAndPropagate( name, 'loaded' );
 					}
 				},
 
@@ -1929,12 +1973,7 @@
 						if ( !hasOwn.call( registry, module ) ) {
 							mw.loader.register( module );
 						}
-						registry[ module ].state = state;
-						if ( state === 'ready' || state === 'error' || state === 'missing' ) {
-							// Make sure pending modules depending on this one get executed if their
-							// dependencies are now fulfilled!
-							handlePending( module );
-						}
+						setAndPropagate( module, state );
 					}
 				},
 
