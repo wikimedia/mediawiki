@@ -1076,10 +1076,6 @@ class Linker {
 	 * @author Erik Moeller <moeller@scireview.de>
 	 * @since 1.16.3. $wikiId added in 1.26
 	 *
-	 * Note: there's not always a title to pass to this function.
-	 * Since you can't set a default parameter for a reference, I've turned it
-	 * temporarily to a value pass. Should be adjusted further. --brion
-	 *
 	 * @param string $comment
 	 * @param Title|null $title Title object (to generate link to the section in autocomment)
 	 *  or null
