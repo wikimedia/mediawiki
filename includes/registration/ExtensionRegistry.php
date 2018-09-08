@@ -213,7 +213,8 @@ class ExtensionRegistry {
 		$autoloadNamespaces = [];
 		$autoloaderPaths = [];
 		$processor = new ExtensionProcessor();
-		$versionChecker = new VersionChecker( $wgVersion );
+		$phpVersion = PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION . '.' . PHP_RELEASE_VERSION;
+		$versionChecker = new VersionChecker( $wgVersion, $phpVersion );
 		$extDependencies = [];
 		$incompatible = [];
 		$warnings = false;
