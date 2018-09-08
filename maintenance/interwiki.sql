@@ -9,7 +9,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local,iw_api) VALUES
 ('cache','https://www.google.com/search?q=cache:$1',0,''),
 ('commons','https://commons.wikimedia.org/wiki/$1',0,'https://commons.wikimedia.org/w/api.php'),
 ('dictionary','http://www.dict.org/bin/Dict?Database=*&Form=Dict1&Strategy=*&Query=$1',0,''),
-('doi','https://dx.doi.org/$1',0,''),
+('doi','https://oadoi.org/$1',0,''),
 ('drumcorpswiki','http://www.drumcorpswiki.com/$1',0,'http://drumcorpswiki.com/api.php'),
 ('dwjwiki','http://www.suberic.net/cgi-bin/dwj/wiki.cgi?$1',0,''),
 ('elibre','http://enciclopedia.us.es/index.php/$1',0,'http://enciclopedia.us.es/api.php'),
