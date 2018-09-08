@@ -381,19 +381,24 @@
 		/**
 		 * Get the current time, measured in milliseconds since January 1, 1970 (UTC).
 		 *
-		 * On browsers that implement the Navigation Timing API, this function will produce floating-point
-		 * values with microsecond precision that are guaranteed to be monotonic. On all other browsers,
-		 * it will fall back to using `Date`.
+		 * On browsers that implement the Navigation Timing API, this function will produce
+		 * floating-point values with microsecond precision that are guaranteed to be monotonic.
+		 * On all other browsers, it will fall back to using `Date`.
 		 *
 		 * @return {number} Current time
 		 */
-		now: ( function () {
+		now: function () {
+			// Optimisation: Define the shortcut on first call, not at module definition.
 			var perf = window.performance,
 				navStart = perf && perf.timing && perf.timing.navigationStart;
-			return navStart && typeof perf.now === 'function' ?
+
+			// Define the relevant shortcut
+			mw.now = navStart && typeof perf.now === 'function' ?
 				function () { return navStart + perf.now(); } :
-				function () { return Date.now(); };
-		}() ),
+				Date.now;
+
+			return mw.now();
+		},
 
 		/**
 		 * List of all analytic events emitted so far.
