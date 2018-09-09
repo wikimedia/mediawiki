@@ -3817,5 +3817,12 @@
 	"authmanager-realname-help": "Kullanıcının gerçek adı",
 	"authmanager-provider-temporarypassword": "Geçici parola",
 	"authprovider-resetpass-skip-label": "Atla",
-	"authprovider-resetpass-skip-help": "Parola sıfırlamayı atla."
+	"authprovider-resetpass-skip-help": "Parola sıfırlamayı atla.",
+	"passwordpolicies": "Şifre politikaları",
+	"passwordpolicies-summary": "Bu, bu vikide tanımlanan kullanıcı grupları için etkili parola ilkelerinin bir listesidir.",
+	"passwordpolicies-policy-minimalpasswordlength": "Şifre en az $1 karakter uzunluğunda olmalı",
+	"passwordpolicies-policy-passwordcannotmatchusername": "Şifre kullanıcı adıyla aynı olamaz",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "Şifre özellikle kara listeye alınmış şifrelerle aynı olamaz",
+	"passwordpolicies-policy-maximalpasswordlength": "Şifre $1 karakterden az olmalı",
+	"passwordpolicies-policy-passwordcannotbepopular": "Şifre, $1 popüler şifrenin listesinde olamaz"
 }
