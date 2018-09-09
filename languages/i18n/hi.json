@@ -2077,7 +2077,7 @@
 	"magiclink-tracking-isbn": "आईएसबीएन के जादुई कड़ियों का उपयोग करने वाले पृष्ठ",
 	"magiclink-tracking-isbn-desc": "यह पृष्ठ आईएसबीएन जादू लिंक का उपयोग करता है। कैसे माइग्रेट करें [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] पर देखें।",
 	"specialloguserlabel": "कर्ता:",
-	"speciallogtitlelabel": "लक्ष्य (शीर्षक या \"{{ns:सदस्यनाम}}:सदस्यनाम\" सदस्य हेतु):",
+	"speciallogtitlelabel": "लक्ष्य (शीर्षक या \"{{ns:user}}:सदस्यनाम\" सदस्य हेतु):",
 	"log": "लॉग",
 	"logeventslist-submit": "दिखाएँ",
 	"all-logs-page": "सभी सार्वजनिक लॉग",

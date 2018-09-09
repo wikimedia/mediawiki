@@ -611,6 +611,7 @@
 	"edit-gone-missing": "Səhifəni yeniləmək mümkün deyil.\nÇox güman ki, səhifə silinmişdir.",
 	"edit-conflict": "Düzəlişlər münaqişəsi",
 	"edit-no-change": "Sizin redaktələr qeydə alınmamışdır. Belə ki, mətndə heç bir düzəliş edilməmişdir.",
+	"postedit-confirmation-created": "Səhifə yaradıldı.",
 	"postedit-confirmation-saved": "Redaktəniz qeyd edildi.",
 	"edit-already-exists": "Yeni səhifəni yaratmaq mümkün deyil.\nBelə ki, bu adda səhifə artıq mövcuddur.",
 	"content-not-allowed-here": "\"$1\" tərkibi [[$2]] səhifəsi üçün icazə verilmir.",
