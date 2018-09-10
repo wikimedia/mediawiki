@@ -974,7 +974,9 @@ class DatabaseSqlite extends Database {
 		}
 		$sql = $obj->sql;
 		$sql = preg_replace(
-			'/(?<=\W)"?' . preg_quote( trim( $this->addIdentifierQuotes( $oldName ), '"' ) ) . '"?(?=\W)/',
+			'/(?<=\W)"?' .
+				preg_quote( trim( $this->addIdentifierQuotes( $oldName ), '"' ), '/' ) .
+				'"?(?=\W)/',
 			$this->addIdentifierQuotes( $newName ),
 			$sql,
 			1

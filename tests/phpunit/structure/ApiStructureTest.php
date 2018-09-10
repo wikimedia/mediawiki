@@ -454,7 +454,12 @@ class ApiStructureTest extends MediaWikiTestCase {
 					}
 
 					$keys = implode( '|',
-						array_map( 'preg_quote', array_keys( $config[ApiBase::PARAM_TEMPLATE_VARS] ) )
+						array_map(
+							function ( $key ) {
+								return preg_quote( $key, '/' );
+							},
+							array_keys( $config[ApiBase::PARAM_TEMPLATE_VARS] )
+						)
 					);
 					$this->assertRegExp( '/^(?>[^{}]+|\{(?:' . $keys . ')\})+$/', $param,
 						"$param: Name may not contain '{' or '}' other than as defined by PARAM_TEMPLATE_VARS" );
