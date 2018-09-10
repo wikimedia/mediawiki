@@ -7359,7 +7359,7 @@ $wgExtensionMessagesFiles = [];
  * @code
  *    $wgMessagesDirs['Example'] = [
  *        __DIR__ . '/lib/ve/i18n',
- *        __DIR__ . '/lib/oojs-ui/i18n',
+ *        __DIR__ . '/lib/ooui/i18n',
  *        __DIR__ . '/i18n',
  *    ]
  * @endcode

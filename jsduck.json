@@ -25,11 +25,11 @@
 		"resources/src",
 		"resources/lib/jquery.client/jquery.client.js",
 		"resources/lib/oojs/oojs.jquery.js",
-		"resources/lib/oojs-ui/oojs-ui-core.js",
-		"resources/lib/oojs-ui/oojs-ui-widgets.js",
-		"resources/lib/oojs-ui/oojs-ui-toolbars.js",
-		"resources/lib/oojs-ui/oojs-ui-windows.js",
-		"resources/lib/oojs-ui/oojs-ui-wikimediaui.js",
-		"resources/lib/oojs-ui/oojs-ui-apex.js"
+		"resources/lib/ooui/oojs-ui-core.js",
+		"resources/lib/ooui/oojs-ui-widgets.js",
+		"resources/lib/ooui/oojs-ui-toolbars.js",
+		"resources/lib/ooui/oojs-ui-windows.js",
+		"resources/lib/ooui/oojs-ui-wikimediaui.js",
+		"resources/lib/ooui/oojs-ui-apex.js"
 	]
 }

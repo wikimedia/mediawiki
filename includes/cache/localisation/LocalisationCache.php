@@ -800,7 +800,7 @@ class LocalisationCache {
 		return [
 			'core' => "$IP/languages/i18n",
 			'api' => "$IP/includes/api/i18n",
-			'oojs-ui' => "$IP/resources/lib/oojs-ui/i18n",
+			'oojs-ui' => "$IP/resources/lib/ooui/i18n",
 		] + $messagesDirs;
 	}
 
