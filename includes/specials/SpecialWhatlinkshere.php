@@ -515,7 +515,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			[
 				'selected' => $namespace,
 				'all' => '',
-				'label' => $this->msg( 'namespace' )->text()
+				'label' => $this->msg( 'namespace' )->text(),
+				'in-user-lang' => true,
 			], [
 				'name' => 'namespace',
 				'id' => 'namespace',

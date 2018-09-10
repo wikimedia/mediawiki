@@ -652,7 +652,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			[
 				'selected' => $opts['namespace'],
 				'all' => '',
-				'label' => $this->msg( 'namespace' )->text()
+				'label' => $this->msg( 'namespace' )->text(),
+				'in-user-lang' => true,
 			], [
 				'name' => 'namespace',
 				'id' => 'namespace',

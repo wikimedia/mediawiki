@@ -279,6 +279,7 @@ class SpecialImport extends SpecialPage {
 							'selected' => ( $isSameSourceAsBefore ?
 								$this->namespace :
 								( $defaultNamespace || '' ) ),
+							'in-user-lang' => true,
 						], [
 							'name' => "namespace",
 							// mw-import-namespace-interwiki, mw-import-namespace-upload
