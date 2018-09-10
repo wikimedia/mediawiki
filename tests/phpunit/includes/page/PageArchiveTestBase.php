@@ -187,9 +187,6 @@ abstract class PageArchiveTestBase extends MediaWikiTestCase {
 	 * @covers PageArchive::listRevisions
 	 */
 	public function testListRevisions() {
-		// FIXME: fails under postgres
-		$this->markTestSkippedIfDbType( 'postgres' );
-
 		$revisions = $this->archivedPage->listRevisions();
 		$this->assertEquals( 2, $revisions->numRows() );
 
