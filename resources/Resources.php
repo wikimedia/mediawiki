@@ -2847,8 +2847,8 @@ return [
 	'oojs-ui-core' => [
 		'class' => ResourceLoaderOOUIFileModule::class,
 		'scripts' => [
-			'resources/lib/oojs-ui/oojs-ui-core.js',
-			'resources/src/oojs-ui-local.js',
+			'resources/lib/ooui/oojs-ui-core.js',
+			'resources/src/ooui-local.js',
 		],
 		'themeScripts' => 'core',
 		'dependencies' => [
@@ -2870,7 +2870,7 @@ return [
 	'oojs-ui-core.styles' => [
 		'class' => ResourceLoaderOOUIFileModule::class,
 		'styles' => [
-			'resources/lib/oojs-ui/wikimedia-ui-base.less', // Providing Wikimedia UI LESS variables to all
+			'resources/lib/ooui/wikimedia-ui-base.less', // Providing Wikimedia UI LESS variables to all
 		],
 		'themeStyles' => 'core',
 		'targets' => [ 'desktop', 'mobile' ],
@@ -2878,7 +2878,7 @@ return [
 	// Additional widgets and layouts module.
 	'oojs-ui-widgets' => [
 		'class' => ResourceLoaderOOUIFileModule::class,
-		'scripts' => 'resources/lib/oojs-ui/oojs-ui-widgets.js',
+		'scripts' => 'resources/lib/ooui/oojs-ui-widgets.js',
 		'themeStyles' => 'widgets',
 		'dependencies' => [
 			'oojs-ui-core',
@@ -2911,7 +2911,7 @@ return [
 	// Toolbar and tools module.
 	'oojs-ui-toolbars' => [
 		'class' => ResourceLoaderOOUIFileModule::class,
-		'scripts' => 'resources/lib/oojs-ui/oojs-ui-toolbars.js',
+		'scripts' => 'resources/lib/ooui/oojs-ui-toolbars.js',
 		'themeStyles' => 'toolbars',
 		'dependencies' => [
 			'oojs-ui-core',
@@ -2927,7 +2927,7 @@ return [
 	// Windows and dialogs module.
 	'oojs-ui-windows' => [
 		'class' => ResourceLoaderOOUIFileModule::class,
-		'scripts' => 'resources/lib/oojs-ui/oojs-ui-windows.js',
+		'scripts' => 'resources/lib/ooui/oojs-ui-windows.js',
 		'themeStyles' => 'windows',
 		'dependencies' => [
 			'oojs-ui-core',
