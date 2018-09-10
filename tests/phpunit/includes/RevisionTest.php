@@ -19,7 +19,10 @@ class RevisionTest extends MediaWikiTestCase {
 
 	public function setUp() {
 		parent::setUp();
-		$this->setMwGlobals( 'wgMultiContentRevisionSchemaMigrationStage', MIGRATION_OLD );
+		$this->setMwGlobals(
+			'wgMultiContentRevisionSchemaMigrationStage',
+			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
+		);
 	}
 
 	public function provideConstructFromArray() {
@@ -159,8 +162,9 @@ class RevisionTest extends MediaWikiTestCase {
 				'content' => new WikitextContent( 'GOAT' ),
 				'text_id' => 'someid',
 			],
-			new MWException( 'Text already stored in external store (id someid),' )
+			new MWException( 'The text_id field is only available in the pre-MCR schema' )
 		];
+
 		yield 'with bad content object (class)' => [
 			[ 'content' => new stdClass() ],
 			new MWException( 'content field must contain a Content object' )
@@ -207,7 +211,6 @@ class RevisionTest extends MediaWikiTestCase {
 			[
 				'rev_id' => '42',
 				'rev_page' => '23',
-				'rev_text_id' => '2',
 				'rev_timestamp' => '20171017114835',
 				'rev_user_text' => '127.0.0.1',
 				'rev_user' => '0',
@@ -219,13 +222,10 @@ class RevisionTest extends MediaWikiTestCase {
 				'rev_comment_text' => 'Goat Comment!',
 				'rev_comment_data' => null,
 				'rev_comment_cid' => null,
-				'rev_content_format' => 'GOATFORMAT',
-				'rev_content_model' => 'GOATMODEL',
 			],
 			function ( RevisionTest $testCase, Revision $rev ) {
 				$testCase->assertSame( 42, $rev->getId() );
 				$testCase->assertSame( 23, $rev->getPage() );
-				$testCase->assertSame( 2, $rev->getTextId() );
 				$testCase->assertSame( '20171017114835', $rev->getTimestamp() );
 				$testCase->assertSame( '127.0.0.1', $rev->getUserText() );
 				$testCase->assertSame( 0, $rev->getUser() );
@@ -235,15 +235,12 @@ class RevisionTest extends MediaWikiTestCase {
 				$testCase->assertSame( 1, $rev->getParentId() );
 				$testCase->assertSame( 'rdqbbzs3pkhihgbs8qf2q9jsvheag5z', $rev->getSha1() );
 				$testCase->assertSame( 'Goat Comment!', $rev->getComment() );
-				$testCase->assertSame( 'GOATFORMAT', $rev->getContentFormat() );
-				$testCase->assertSame( 'GOATMODEL', $rev->getContentModel() );
 			}
 		];
 		yield 'default field values' => [
 			[
 				'rev_id' => '42',
 				'rev_page' => '23',
-				'rev_text_id' => '2',
 				'rev_timestamp' => '20171017114835',
 				'rev_user_text' => '127.0.0.1',
 				'rev_user' => '0',
@@ -264,14 +261,6 @@ class RevisionTest extends MediaWikiTestCase {
 				$testCase->assertSame( $rev->getComment(), 'Goat Comment!' );
 				$testCase->assertSame( false, $rev->isMinor(), 'minor edit' );
 				$testCase->assertSame( 0, $rev->getVisibility(), 'visibility flags' );
-
-				// computed fields
-				$testCase->assertNotNull( $rev->getSize(), 'size' );
-				$testCase->assertNotNull( $rev->getSha1(), 'hash' );
-
-				// NOTE: model and format will be detected based on the namespace of the (mock) title
-				$testCase->assertSame( 'text/x-wiki', $rev->getContentFormat(), 'format' );
-				$testCase->assertSame( 'wikitext', $rev->getContentModel(), 'model' );
 			}
 		];
 	}
@@ -281,30 +270,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::__construct
 	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
 	 */
-	public function testConstructFromRow( array $arrayData, $assertions ) {
-		$data = 'Hello goat.'; // needs to match model and format
-
-		$blobStore = $this->getMockBuilder( SqlBlobStore::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$blobStore->method( 'getBlob' )
-			->will( $this->returnValue( $data ) );
-
-		$blobStore->method( 'getTextIdFromAddress' )
-			->will( $this->returnCallback(
-				function ( $address ) {
-					// Turn "tt:1234" into 12345.
-					// Note that this must be functional so we can test getTextId().
-					// Ideally, we'd un-mock getTextIdFromAddress and use its actual implementation.
-					$parts = explode( ':', $address );
-					return (int)array_pop( $parts );
-				}
-			) );
-
-		// Note override internal service, so RevisionStore uses it as well.
-		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
-
+	public function testConstructFromRow( array $arrayData, callable $assertions ) {
 		$row = (object)$arrayData;
 		$rev = new Revision( $row, 0, $this->getMockTitle() );
 		$assertions( $this, $rev );
@@ -382,21 +348,6 @@ class RevisionTest extends MediaWikiTestCase {
 		$rev->setUserIdAndName( $inputId, $name );
 		$this->assertSame( $expectedId, $rev->getUser( Revision::RAW ) );
 		$this->assertEquals( $name, $rev->getUserText( Revision::RAW ) );
-	}
-
-	public function provideGetTextId() {
-		yield [ [], null ];
-		yield [ [ 'text_id' => '123' ], 123 ];
-		yield [ [ 'text_id' => 456 ], 456 ];
-	}
-
-	/**
-	 * @dataProvider provideGetTextId
-	 * @covers Revision::getTextId()
-	 */
-	public function testGetTextId( $rowArray, $expected ) {
-		$rev = new Revision( $rowArray, 0, $this->getMockTitle() );
-		$this->assertSame( $expected, $rev->getTextId() );
 	}
 
 	public function provideGetParentId() {
@@ -656,7 +607,6 @@ class RevisionTest extends MediaWikiTestCase {
 		$row = (object)[
 			'rev_id' => '42',
 			'rev_page' => $title->getArticleID(),
-			'rev_text_id' => '2',
 			'rev_timestamp' => '20171017114835',
 			'rev_user_text' => '127.0.0.1',
 			'rev_user' => '0',
@@ -902,598 +852,6 @@ class RevisionTest extends MediaWikiTestCase {
 			'tt:7777'
 		);
 		$this->assertSame( 'AAAABBAAA', $cache->get( $cacheKey ) );
-	}
-
-	/**
-	 * @covers Revision::userJoinCond
-	 */
-	public function testUserJoinCond() {
-		$this->hideDeprecated( 'Revision::userJoinCond' );
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
-		$this->overrideMwServices();
-		$this->assertEquals(
-			[ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ],
-			Revision::userJoinCond()
-		);
-	}
-
-	/**
-	 * @covers Revision::pageJoinCond
-	 */
-	public function testPageJoinCond() {
-		$this->hideDeprecated( 'Revision::pageJoinCond' );
-		$this->assertEquals(
-			[ 'INNER JOIN', [ 'page_id = rev_page' ] ],
-			Revision::pageJoinCond()
-		);
-	}
-
-	private function overrideCommentStoreAndActorMigration() {
-		$mockStore = $this->getMockBuilder( CommentStore::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$mockStore->expects( $this->any() )
-			->method( 'getFields' )
-			->willReturn( [ 'commentstore' => 'fields' ] );
-		$mockStore->expects( $this->any() )
-			->method( 'getJoin' )
-			->willReturn( [
-				'tables' => [ 'commentstore' => 'table' ],
-				'fields' => [ 'commentstore' => 'field' ],
-				'joins' => [ 'commentstore' => 'join' ],
-			] );
-		$this->setService( 'CommentStore', $mockStore );
-
-		$mockStore = $this->getMockBuilder( ActorMigration::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$mockStore->expects( $this->any() )
-			->method( 'getJoin' )
-			->willReturnCallback( function ( $key ) {
-				$p = strtok( $key, '_' );
-				return [
-					'tables' => [ 'actormigration' => 'table' ],
-					'fields' => [
-						$p . '_user' => 'actormigration_user',
-						$p . '_user_text' => 'actormigration_user_text',
-						$p . '_actor' => 'actormigration_actor',
-					],
-					'joins' => [ 'actormigration' => 'join' ],
-				];
-			} );
-		$this->setService( 'ActorMigration', $mockStore );
-	}
-
-	public function provideSelectFields() {
-		yield [
-			true,
-			[
-				'rev_id',
-				'rev_page',
-				'rev_text_id',
-				'rev_timestamp',
-				'rev_user_text',
-				'rev_user',
-				'rev_actor' => 'NULL',
-				'rev_minor_edit',
-				'rev_deleted',
-				'rev_len',
-				'rev_parent_id',
-				'rev_sha1',
-				'commentstore' => 'fields',
-				'rev_content_format',
-				'rev_content_model',
-			]
-		];
-		yield [
-			false,
-			[
-				'rev_id',
-				'rev_page',
-				'rev_text_id',
-				'rev_timestamp',
-				'rev_user_text',
-				'rev_user',
-				'rev_actor' => 'NULL',
-				'rev_minor_edit',
-				'rev_deleted',
-				'rev_len',
-				'rev_parent_id',
-				'rev_sha1',
-				'commentstore' => 'fields',
-			]
-		];
-	}
-
-	/**
-	 * @dataProvider provideSelectFields
-	 * @covers Revision::selectFields
-	 */
-	public function testSelectFields( $contentHandlerUseDB, $expected ) {
-		$this->hideDeprecated( 'Revision::selectFields' );
-		$this->setMwGlobals( 'wgContentHandlerUseDB', $contentHandlerUseDB );
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
-		$this->overrideCommentStoreAndActorMigration();
-		$this->assertEquals( $expected, Revision::selectFields() );
-	}
-
-	public function provideSelectArchiveFields() {
-		yield [
-			true,
-			[
-				'ar_id',
-				'ar_page_id',
-				'ar_rev_id',
-				'ar_text_id',
-				'ar_timestamp',
-				'ar_user_text',
-				'ar_user',
-				'ar_actor' => 'NULL',
-				'ar_minor_edit',
-				'ar_deleted',
-				'ar_len',
-				'ar_parent_id',
-				'ar_sha1',
-				'commentstore' => 'fields',
-				'ar_content_format',
-				'ar_content_model',
-			]
-		];
-		yield [
-			false,
-			[
-				'ar_id',
-				'ar_page_id',
-				'ar_rev_id',
-				'ar_text_id',
-				'ar_timestamp',
-				'ar_user_text',
-				'ar_user',
-				'ar_actor' => 'NULL',
-				'ar_minor_edit',
-				'ar_deleted',
-				'ar_len',
-				'ar_parent_id',
-				'ar_sha1',
-				'commentstore' => 'fields',
-			]
-		];
-	}
-
-	/**
-	 * @dataProvider provideSelectArchiveFields
-	 * @covers Revision::selectArchiveFields
-	 */
-	public function testSelectArchiveFields( $contentHandlerUseDB, $expected ) {
-		$this->hideDeprecated( 'Revision::selectArchiveFields' );
-		$this->setMwGlobals( 'wgContentHandlerUseDB', $contentHandlerUseDB );
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
-		$this->overrideCommentStoreAndActorMigration();
-		$this->assertEquals( $expected, Revision::selectArchiveFields() );
-	}
-
-	/**
-	 * @covers Revision::selectTextFields
-	 */
-	public function testSelectTextFields() {
-		$this->hideDeprecated( 'Revision::selectTextFields' );
-		$this->assertEquals(
-			[
-				'old_text',
-				'old_flags',
-			],
-			Revision::selectTextFields()
-		);
-	}
-
-	/**
-	 * @covers Revision::selectPageFields
-	 */
-	public function testSelectPageFields() {
-		$this->hideDeprecated( 'Revision::selectPageFields' );
-		$this->assertEquals(
-			[
-				'page_namespace',
-				'page_title',
-				'page_id',
-				'page_latest',
-				'page_is_redirect',
-				'page_len',
-			],
-			Revision::selectPageFields()
-		);
-	}
-
-	/**
-	 * @covers Revision::selectUserFields
-	 */
-	public function testSelectUserFields() {
-		$this->hideDeprecated( 'Revision::selectUserFields' );
-		$this->assertEquals(
-			[
-				'user_name',
-			],
-			Revision::selectUserFields()
-		);
-	}
-
-	public function provideGetArchiveQueryInfo() {
-		yield 'wgContentHandlerUseDB false' => [
-			[
-				'wgContentHandlerUseDB' => false,
-			],
-			[
-				'tables' => [
-					'archive',
-					'commentstore' => 'table',
-					'actormigration' => 'table',
-				],
-				'fields' => [
-					'ar_id',
-					'ar_page_id',
-					'ar_namespace',
-					'ar_title',
-					'ar_rev_id',
-					'ar_text_id',
-					'ar_timestamp',
-					'ar_minor_edit',
-					'ar_deleted',
-					'ar_len',
-					'ar_parent_id',
-					'ar_sha1',
-					'commentstore' => 'field',
-					'ar_user' => 'actormigration_user',
-					'ar_user_text' => 'actormigration_user_text',
-					'ar_actor' => 'actormigration_actor',
-				],
-				'joins' => [ 'commentstore' => 'join', 'actormigration' => 'join' ],
-			]
-		];
-		yield 'wgContentHandlerUseDB true' => [
-			[
-				'wgContentHandlerUseDB' => true,
-			],
-			[
-				'tables' => [
-					'archive',
-					'commentstore' => 'table',
-					'actormigration' => 'table',
-				],
-				'fields' => [
-					'ar_id',
-					'ar_page_id',
-					'ar_namespace',
-					'ar_title',
-					'ar_rev_id',
-					'ar_text_id',
-					'ar_timestamp',
-					'ar_minor_edit',
-					'ar_deleted',
-					'ar_len',
-					'ar_parent_id',
-					'ar_sha1',
-					'commentstore' => 'field',
-					'ar_user' => 'actormigration_user',
-					'ar_user_text' => 'actormigration_user_text',
-					'ar_actor' => 'actormigration_actor',
-					'ar_content_format',
-					'ar_content_model',
-				],
-				'joins' => [ 'commentstore' => 'join', 'actormigration' => 'join' ],
-			]
-		];
-	}
-
-	/**
-	 * @covers Revision::getArchiveQueryInfo
-	 * @dataProvider provideGetArchiveQueryInfo
-	 */
-	public function testGetArchiveQueryInfo( $globals, $expected ) {
-		$this->setMwGlobals( $globals );
-		$this->overrideCommentStoreAndActorMigration();
-
-		$revisionStore = $this->getRevisionStore();
-		$revisionStore->setContentHandlerUseDB( $globals['wgContentHandlerUseDB'] );
-		$this->setService( 'RevisionStore', $revisionStore );
-
-		$queryInfo = Revision::getArchiveQueryInfo();
-
-		$this->assertArrayEqualsIgnoringIntKeyOrder(
-			$expected['tables'],
-			$queryInfo['tables']
-		);
-		$this->assertArrayEqualsIgnoringIntKeyOrder(
-			$expected['fields'],
-			$queryInfo['fields']
-		);
-		$this->assertArrayEqualsIgnoringIntKeyOrder(
-			$expected['joins'],
-			$queryInfo['joins']
-		);
-	}
-
-	/**
-	 * Assert that the two arrays passed are equal, ignoring the order of the values that integer
-	 * keys.
-	 *
-	 * Note: Failures of this assertion can be slightly confusing as the arrays are actually
-	 * split into a string key array and an int key array before assertions occur.
-	 *
-	 * @param array $expected
-	 * @param array $actual
-	 */
-	private function assertArrayEqualsIgnoringIntKeyOrder( array $expected, array $actual ) {
-		$this->objectAssociativeSort( $expected );
-		$this->objectAssociativeSort( $actual );
-
-		// Separate the int key values from the string key values so that assertion failures are
-		// easier to understand.
-		$expectedIntKeyValues = [];
-		$actualIntKeyValues = [];
-
-		// Remove all int keys and re add them at the end after sorting by value
-		// This will result in all int keys being in the same order with same ints at the end of
-		// the array
-		foreach ( $expected as $key => $value ) {
-			if ( is_int( $key ) ) {
-				unset( $expected[$key] );
-				$expectedIntKeyValues[] = $value;
-			}
-		}
-		foreach ( $actual as $key => $value ) {
-			if ( is_int( $key ) ) {
-				unset( $actual[$key] );
-				$actualIntKeyValues[] = $value;
-			}
-		}
-
-		$this->assertArrayEquals( $expected, $actual, false, true );
-		$this->assertArrayEquals( $expectedIntKeyValues, $actualIntKeyValues, false, true );
-	}
-
-	public function provideGetQueryInfo() {
-		yield 'wgContentHandlerUseDB false, opts none' => [
-			[
-				'wgContentHandlerUseDB' => false,
-			],
-			[],
-			[
-				'tables' => [ 'revision', 'commentstore' => 'table', 'actormigration' => 'table' ],
-				'fields' => [
-					'rev_id',
-					'rev_page',
-					'rev_text_id',
-					'rev_timestamp',
-					'rev_minor_edit',
-					'rev_deleted',
-					'rev_len',
-					'rev_parent_id',
-					'rev_sha1',
-					'commentstore' => 'field',
-					'rev_user' => 'actormigration_user',
-					'rev_user_text' => 'actormigration_user_text',
-					'rev_actor' => 'actormigration_actor',
-				],
-				'joins' => [ 'commentstore' => 'join', 'actormigration' => 'join' ],
-			],
-		];
-		yield 'wgContentHandlerUseDB false, opts page' => [
-			[
-				'wgContentHandlerUseDB' => false,
-			],
-			[ 'page' ],
-			[
-				'tables' => [ 'revision', 'commentstore' => 'table', 'actormigration' => 'table', 'page' ],
-				'fields' => [
-					'rev_id',
-					'rev_page',
-					'rev_text_id',
-					'rev_timestamp',
-					'rev_minor_edit',
-					'rev_deleted',
-					'rev_len',
-					'rev_parent_id',
-					'rev_sha1',
-					'commentstore' => 'field',
-					'rev_user' => 'actormigration_user',
-					'rev_user_text' => 'actormigration_user_text',
-					'rev_actor' => 'actormigration_actor',
-					'page_namespace',
-					'page_title',
-					'page_id',
-					'page_latest',
-					'page_is_redirect',
-					'page_len',
-				],
-				'joins' => [
-					'page' => [
-						'INNER JOIN',
-						[ 'page_id = rev_page' ],
-					],
-					'commentstore' => 'join',
-					'actormigration' => 'join',
-				],
-			],
-		];
-		yield 'wgContentHandlerUseDB false, opts user' => [
-			[
-				'wgContentHandlerUseDB' => false,
-			],
-			[ 'user' ],
-			[
-				'tables' => [ 'revision', 'commentstore' => 'table', 'actormigration' => 'table', 'user' ],
-				'fields' => [
-					'rev_id',
-					'rev_page',
-					'rev_text_id',
-					'rev_timestamp',
-					'rev_minor_edit',
-					'rev_deleted',
-					'rev_len',
-					'rev_parent_id',
-					'rev_sha1',
-					'commentstore' => 'field',
-					'rev_user' => 'actormigration_user',
-					'rev_user_text' => 'actormigration_user_text',
-					'rev_actor' => 'actormigration_actor',
-					'user_name',
-				],
-				'joins' => [
-					'user' => [
-						'LEFT JOIN',
-						[
-							'actormigration_user != 0',
-							'user_id = actormigration_user',
-						],
-					],
-					'commentstore' => 'join',
-					'actormigration' => 'join',
-				],
-			],
-		];
-		yield 'wgContentHandlerUseDB false, opts text' => [
-			[
-				'wgContentHandlerUseDB' => false,
-			],
-			[ 'text' ],
-			[
-				'tables' => [ 'revision', 'commentstore' => 'table', 'actormigration' => 'table', 'text' ],
-				'fields' => [
-					'rev_id',
-					'rev_page',
-					'rev_text_id',
-					'rev_timestamp',
-					'rev_minor_edit',
-					'rev_deleted',
-					'rev_len',
-					'rev_parent_id',
-					'rev_sha1',
-					'commentstore' => 'field',
-					'rev_user' => 'actormigration_user',
-					'rev_user_text' => 'actormigration_user_text',
-					'rev_actor' => 'actormigration_actor',
-					'old_text',
-					'old_flags',
-				],
-				'joins' => [
-					'text' => [
-						'INNER JOIN',
-						[ 'rev_text_id=old_id' ],
-					],
-					'commentstore' => 'join',
-					'actormigration' => 'join',
-				],
-			],
-		];
-		yield 'wgContentHandlerUseDB false, opts 3' => [
-			[
-				'wgContentHandlerUseDB' => false,
-			],
-			[ 'text', 'page', 'user' ],
-			[
-				'tables' => [
-					'revision', 'commentstore' => 'table', 'actormigration' => 'table', 'page', 'user', 'text'
-				],
-				'fields' => [
-					'rev_id',
-					'rev_page',
-					'rev_text_id',
-					'rev_timestamp',
-					'rev_minor_edit',
-					'rev_deleted',
-					'rev_len',
-					'rev_parent_id',
-					'rev_sha1',
-					'commentstore' => 'field',
-					'rev_user' => 'actormigration_user',
-					'rev_user_text' => 'actormigration_user_text',
-					'rev_actor' => 'actormigration_actor',
-					'page_namespace',
-					'page_title',
-					'page_id',
-					'page_latest',
-					'page_is_redirect',
-					'page_len',
-					'user_name',
-					'old_text',
-					'old_flags',
-				],
-				'joins' => [
-					'page' => [
-						'INNER JOIN',
-						[ 'page_id = rev_page' ],
-					],
-					'user' => [
-						'LEFT JOIN',
-						[
-							'actormigration_user != 0',
-							'user_id = actormigration_user',
-						],
-					],
-					'text' => [
-						'INNER JOIN',
-						[ 'rev_text_id=old_id' ],
-					],
-					'commentstore' => 'join',
-					'actormigration' => 'join',
-				],
-			],
-		];
-		yield 'wgContentHandlerUseDB true, opts none' => [
-			[
-				'wgContentHandlerUseDB' => true,
-			],
-			[],
-			[
-				'tables' => [ 'revision', 'commentstore' => 'table', 'actormigration' => 'table' ],
-				'fields' => [
-					'rev_id',
-					'rev_page',
-					'rev_text_id',
-					'rev_timestamp',
-					'rev_minor_edit',
-					'rev_deleted',
-					'rev_len',
-					'rev_parent_id',
-					'rev_sha1',
-					'commentstore' => 'field',
-					'rev_user' => 'actormigration_user',
-					'rev_user_text' => 'actormigration_user_text',
-					'rev_actor' => 'actormigration_actor',
-					'rev_content_format',
-					'rev_content_model',
-				],
-				'joins' => [ 'commentstore' => 'join', 'actormigration' => 'join' ],
-			],
-		];
-	}
-
-	/**
-	 * @covers Revision::getQueryInfo
-	 * @dataProvider provideGetQueryInfo
-	 */
-	public function testGetQueryInfo( $globals, $options, $expected ) {
-		$this->setMwGlobals( $globals );
-		$this->overrideCommentStoreAndActorMigration();
-
-		$revisionStore = $this->getRevisionStore();
-		$revisionStore->setContentHandlerUseDB( $globals['wgContentHandlerUseDB'] );
-		$this->setService( 'RevisionStore', $revisionStore );
-
-		$queryInfo = Revision::getQueryInfo( $options );
-
-		$this->assertArrayEqualsIgnoringIntKeyOrder(
-			$expected['tables'],
-			$queryInfo['tables']
-		);
-		$this->assertArrayEqualsIgnoringIntKeyOrder(
-			$expected['fields'],
-			$queryInfo['fields']
-		);
-		$this->assertArrayEqualsIgnoringIntKeyOrder(
-			$expected['joins'],
-			$queryInfo['joins']
-		);
 	}
 
 	/**
