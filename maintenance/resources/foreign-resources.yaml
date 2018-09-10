@@ -42,7 +42,7 @@ oojs:
     package/LICENSE-MIT:
     package/README.md:
 
-oojs-ui:
+ooui:
   type: tar
   src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.28.1.tgz
   integrity: sha384-7fme1YXFt2pg+f7zeeexPcoA8GCHORZb3yKVSd/yUtfeu8xwAYEZKnaKYSU9FSYj
