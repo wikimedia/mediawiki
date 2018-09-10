@@ -97,7 +97,7 @@ production.
 * …
 
 ==== Changed external libraries ====
-* Updated qunitjs from 2.4.0 to 2.6.0.
+* Updated qunitjs from 2.4.0 to 2.6.2.
 * Updated wikimedia/scoped-callback from 1.0.0 to 2.0.0.
 ** ScopedCallback objects can no longer be serialized.
 * Updated wikimedia/wrappedstring from 2.3.0 to 3.0.1.

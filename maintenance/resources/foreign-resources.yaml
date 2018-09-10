@@ -82,11 +82,11 @@ qunitjs:
   # Integrity from link modals at https://code.jquery.com/qunit/
   files:
     qunit.js:
-      src: https://code.jquery.com/qunit/qunit-2.6.0.js
-      integrity: sha256-QdI40P4EEDzPRIS0mktlE0sSyoXCnOs8fB4OSmy+VxI=
+      src: https://code.jquery.com/qunit/qunit-2.6.2.js
+      integrity: sha256-72OhbBvECs6Z5vG0GfPqiyYvTf8vhdEVHKQcacIcIeM=
     qunit.css:
-      src: https://code.jquery.com/qunit/qunit-2.6.0.css
-      integrity: sha256-F4O5nugrHEEjfO0tfu/LKnSRFKctZ9Rdmi1oj22UD1s=
+      src: https://code.jquery.com/qunit/qunit-2.6.2.css
+      integrity: sha256-qpkurjTvVTJJCSpMABcvF4IlYUJkd8saxiHgUQpEjX8=
 CLDRPluralRuleParser:
   type: file
   src: https://raw.githubusercontent.com/santhoshtr/CLDRPluralRuleParser/v1.1.3/src/CLDRPluralRuleParser.js
