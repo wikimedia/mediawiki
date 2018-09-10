@@ -53,7 +53,6 @@ class SearchNearMatcher {
 	 */
 	protected function getNearMatchInternal( $searchterm ) {
 		$lang = $this->language;
-
 		$allSearchTerms = [ $searchterm ];
 
 		if ( $lang->hasVariants() ) {
@@ -66,6 +65,13 @@ class SearchNearMatcher {
 		$titleResult = null;
 		if ( !Hooks::run( 'SearchGetNearMatchBefore', [ $allSearchTerms, &$titleResult ] ) ) {
 			return $titleResult;
+		}
+
+		// Most of our handling here deals with finding a valid title for the search term,
+		// but almost anything starting with '#' is "valid" and points to Main_Page#searchterm.
+		// Rather than doing something completely wrong, do nothing.
+		if ( $searchterm === '' || $searchterm[0] === '#' ) {
+			return null;
 		}
 
 		foreach ( $allSearchTerms as $term ) {
