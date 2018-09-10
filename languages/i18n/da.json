@@ -1215,7 +1215,7 @@
 	"right-editcontentmodel": "Redigere indholdsmodellen for en side",
 	"right-editinterface": "Ændre brugergrænsefladens tekster",
 	"right-editusercss": "Ændre andre brugeres CSS filer",
-	"right-edituserjson": "Redigér andre brugeres JSON-filter",
+	"right-edituserjson": "Redigér andre brugeres JSON-filer",
 	"right-edituserjs": "Ændre andre brugeres JS filer",
 	"right-editsitecss": "Rediger CSS for hele siden",
 	"right-editsitejson": "Rediger JSON for hele siden",

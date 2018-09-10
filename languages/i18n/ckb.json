@@ -1790,7 +1790,7 @@
 	"enotif_lastvisited": "بۆ بینینی ھەموو گۆرانکارییەکانی پاش دوایین سەردانت $1 ببینە.",
 	"enotif_lastdiff": "بۆ بینینی ئەم گۆڕانکارییە $1 ببینە.",
 	"enotif_anon_editor": "بەکارھێنەری نەناسراو $1",
-	"enotif_body": "‫$WATCHINGUSERNAMEی بەڕێز،\n\n$PAGEINTRO $NEWPAG\n\nکورتەی دەستکارییەکەی: $PAGESUMMARY $PAGEMINOREDIT\n\nپەیوەندی لەگەڵ دەستکاریکەر:\nنامە: $PAGEEDITOR_EMAIL\nویکی: $PAGEEDITOR_WIKI\n\nتا سەردانی ئەم پەڕەیە نەکەیت، گۆڕانکارییەکانی داھاتووی پەڕەکەت پێ ڕاناگەیێندرێت. هەروەھا دەتوانی ئاڵاکانی ڕاگەیاندن لە پەڕەی چاودێرییەکەتدا لە سەرەتاوە ڕێک بخەیتەوە.\n\nبە سوپاسەوە، سیستمی ڕاگەیاندنی {{SITENAME}}\n\n--\nبۆ گۆڕینی رێکخستنەکانی ڕاگەیاندن بە ئیمەیل، بڕوانە\n{{canonicalurl:{{#special:Preferences}}}}\n\nبۆ گۆڕینی ڕێکخستنەکانی پێرستی چاودێرییەکەت، بڕوانە\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nبۆ سڕینەوەی پەڕەکە لە پێرستی چاودێرییەکەت، بڕوانە\n$UNWATCHURL\n\nکاردانەوە و یارمەتیی زۆرتر:\n$HELPPAGE",
+	"enotif_body": "‫$WATCHINGUSERNAMEی بەڕێز،\n\n$PAGEINTRO $NEWPAGE\n\nکورتەی دەستکارییەکەی: $PAGESUMMARY $PAGEMINOREDIT\n\nپەیوەندی لەگەڵ دەستکاریکەر:\nنامە: $PAGEEDITOR_EMAIL\nویکی: $PAGEEDITOR_WIKI\n\nتا سەردانی ئەم پەڕەیە نەکەیت، گۆڕانکارییەکانی داھاتووی پەڕەکەت پێ ڕاناگەیێندرێت. هەروەھا دەتوانی ئاڵاکانی ڕاگەیاندن لە پەڕەی چاودێرییەکەتدا لە سەرەتاوە ڕێک بخەیتەوە.\n\nبە سوپاسەوە، سیستمی ڕاگەیاندنی {{SITENAME}}\n\n--\nبۆ گۆڕینی رێکخستنەکانی ڕاگەیاندن بە ئیمەیل، بڕوانە\n{{canonicalurl:{{#special:Preferences}}}}\n\nبۆ گۆڕینی ڕێکخستنەکانی پێرستی چاودێرییەکەت، بڕوانە\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nبۆ سڕینەوەی پەڕەکە لە پێرستی چاودێرییەکەت، بڕوانە\n$UNWATCHURL\n\nکاردانەوە و یارمەتیی زۆرتر:\n$HELPPAGE",
 	"created": "دروستکرا",
 	"changed": "گۆڕدرا",
 	"deletepage": "پەڕە بسڕەوە",
