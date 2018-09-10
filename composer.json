@@ -48,7 +48,7 @@
 		"wikimedia/running-stat": "1.2.1",
 		"wikimedia/scoped-callback": "2.0.0",
 		"wikimedia/utfnormal": "2.0.0",
-		"wikimedia/timestamp": "2.1.0",
+		"wikimedia/timestamp": "2.1.1",
 		"wikimedia/wait-condition-loop": "1.0.1",
 		"wikimedia/wrappedstring": "3.0.1",
 		"wikimedia/xmp-reader": "0.6.0",
