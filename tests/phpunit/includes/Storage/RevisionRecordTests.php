@@ -517,4 +517,9 @@ trait RevisionRecordTests {
 		}
 	}
 
+	public function testIsReadyForInsertion() {
+		$rev = $this->newRevision();
+		$this->assertTrue( $rev->isReadyForInsertion() );
+	}
+
 }

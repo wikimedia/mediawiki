@@ -14,6 +14,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiTestCase;
 use TextContent;
 use Title;
+use User;
 use WikitextContent;
 
 /**
@@ -53,6 +54,7 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		$record->setContent( 'main', new TextContent( 'Lorem Ipsum' ) );
 		$record->setComment( $comment );
 		$record->setUser( $user );
+		$record->setTimestamp( '20101010000000' );
 
 		return $record;
 	}
@@ -294,4 +296,52 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		$this->assertFalse( $record->hasSlot( 'c' ) );
 	}
 
+	public function provideNotReadyForInsertion() {
+		/** @var Title $title */
+		$title = $this->getMock( Title::class );
+
+		/** @var User $user */
+		$user = $this->getMock( User::class );
+
+		/** @var CommentStoreComment $comment */
+		$comment = $this->getMockBuilder( CommentStoreComment::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$content = new TextContent( 'Test' );
+
+		$rev = new MutableRevisionRecord( $title );
+		yield 'empty' => [ $rev ];
+
+		$rev = new MutableRevisionRecord( $title );
+		$rev->setContent( 'main', $content );
+		$rev->setUser( $user );
+		$rev->setComment( $comment );
+		yield 'no timestamp' => [ $rev ];
+
+		$rev = new MutableRevisionRecord( $title );
+		$rev->setUser( $user );
+		$rev->setComment( $comment );
+		$rev->setTimestamp( '20101010000000' );
+		yield 'no content' => [ $rev ];
+
+		$rev = new MutableRevisionRecord( $title );
+		$rev->setContent( 'main', $content );
+		$rev->setComment( $comment );
+		$rev->setTimestamp( '20101010000000' );
+		yield 'no user' => [ $rev ];
+
+		$rev = new MutableRevisionRecord( $title );
+		$rev->setUser( $user );
+		$rev->setContent( 'main', $content );
+		$rev->setTimestamp( '20101010000000' );
+		yield 'no comment' => [ $rev ];
+	}
+
+	/**
+	 * @dataProvider provideNotReadyForInsertion
+	 */
+	public function testNotReadyForInsertion( $rev ) {
+		$this->assertFalse( $rev->isReadyForInsertion() );
+	}
 }
