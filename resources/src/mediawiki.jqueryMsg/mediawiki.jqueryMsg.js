@@ -1042,7 +1042,7 @@
 		 *
 		 * @param {Array} nodes List of one element, integer, n >= 0
 		 * @param {Array} replacements List of at least n strings
-		 * @return {string} replacement
+		 * @return {string|jQuery} replacement
 		 */
 		replace: function ( nodes, replacements ) {
 			var index = parseInt( nodes[ 0 ], 10 );
@@ -1115,7 +1115,7 @@
 		 * Handles an (already-validated) HTML element.
 		 *
 		 * @param {Array} nodes Nodes to process when creating element
-		 * @return {jQuery|Array} jQuery node for valid HTML or array for disallowed element
+		 * @return {jQuery}
 		 */
 		htmlelement: function ( nodes ) {
 			var tagName, attributes, contents, $element;
@@ -1173,13 +1173,13 @@
 		 * So convert it back with the current language's convertNumber.
 		 *
 		 * @param {Array} nodes List of nodes, [ {string|number}, {string}, {string} ... ]
-		 * @return {string} selected pluralized form according to current language
+		 * @return {string|jQuery} selected pluralized form according to current language
 		 */
 		plural: function ( nodes ) {
 			var forms, firstChild, firstChildText, explicitPluralFormNumber, formIndex, form, count,
 				explicitPluralForms = {};
 
-			count = parseFloat( this.language.convertNumber( nodes[ 0 ], true ) );
+			count = parseFloat( this.language.convertNumber( textify( nodes[ 0 ] ), true ) );
 			forms = nodes.slice( 1 );
 			for ( formIndex = 0; formIndex < forms.length; formIndex++ ) {
 				form = forms[ formIndex ];
@@ -1225,7 +1225,7 @@
 		 * - a gender string ('male', 'female' or 'unknown')
 		 *
 		 * @param {Array} nodes List of nodes, [ {string|mw.user}, {string}, {string}, {string} ]
-		 * @return {string} Selected gender form according to current language
+		 * @return {string|jQuery} Selected gender form according to current language
 		 */
 		gender: function ( nodes ) {
 			var gender,
@@ -1241,7 +1241,7 @@
 			if ( maybeUser && maybeUser.options instanceof mw.Map ) {
 				gender = maybeUser.options.get( 'gender' );
 			} else {
-				gender = maybeUser;
+				gender = textify( maybeUser );
 			}
 
 			return this.language.gender( gender, forms );
@@ -1252,23 +1252,30 @@
 		 * Invoked by putting `{{grammar:form|word}}` in a message
 		 *
 		 * @param {Array} nodes List of nodes [{Grammar case eg: genitive}, {string word}]
-		 * @return {string} selected grammatical form according to current language
+		 * @return {string|jQuery} selected grammatical form according to current language
 		 */
 		grammar: function ( nodes ) {
 			var form = nodes[ 0 ],
 				word = nodes[ 1 ];
-			return word && form && this.language.convertGrammar( word, form );
+			// These could be jQuery objects (passed as message parameters),
+			// in which case we can't transform them (like rawParams() in PHP).
+			if ( typeof form === 'string' && typeof word === 'string' ) {
+				return this.language.convertGrammar( word, form );
+			}
+			return word;
 		},
 
 		/**
 		 * Tranform parsed structure into a int: (interface language) message include
 		 * Invoked by putting `{{int:othermessage}}` into a message
 		 *
+		 * TODO Syntax in the included message is not parsed, this seems like a bug?
+		 *
 		 * @param {Array} nodes List of nodes
 		 * @return {string} Other message
 		 */
 		'int': function ( nodes ) {
-			var msg = nodes[ 0 ];
+			var msg = textify( nodes[ 0 ] );
 			return mw.jqueryMsg.getMessageFunction()( msg.charAt( 0 ).toLowerCase() + msg.slice( 1 ) );
 		},
 
@@ -1294,13 +1301,18 @@
 		 * separator, according to the current language.
 		 *
 		 * @param {Array} nodes List of nodes
-		 * @return {number|string} Formatted number
+		 * @return {number|string|jQuery} Formatted number
 		 */
 		formatnum: function ( nodes ) {
 			var isInteger = !!nodes[ 1 ] && nodes[ 1 ] === 'R',
 				number = nodes[ 0 ];
 
-			return this.language.convertNumber( number, isInteger );
+			// These could be jQuery objects (passed as message parameters),
+			// in which case we can't transform them (like rawParams() in PHP).
+			if ( typeof number === 'string' || typeof number === 'number' ) {
+				return this.language.convertNumber( number, isInteger );
+			}
+			return number;
 		},
 
 		/**
