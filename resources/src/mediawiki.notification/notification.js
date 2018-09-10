@@ -30,7 +30,7 @@
 		var $notification, $notificationContent;
 
 		$notification = $( '<div class="mw-notification"></div>' )
-			.data( 'mw.notification', this )
+			.data( 'mw-notification', this )
 			.addClass( options.autoHide ? 'mw-notification-autohide' : 'mw-notification-noautohide' );
 
 		if ( options.tag ) {
@@ -134,7 +134,7 @@
 			// While there can be only one "open" notif with a given tag, there can be several
 			// matches here because they remain in the DOM until the animation is finished.
 			$tagMatches.each( function () {
-				var notif = $( this ).data( 'mw.notification' );
+				var notif = $( this ).data( 'mw-notification' );
 				if ( notif && notif.isOpen ) {
 					// Detach from render flow with position absolute so that the new tag can
 					// occupy its space instead.
@@ -262,7 +262,7 @@
 	 */
 	function callEachNotification( $notifications, fn ) {
 		$notifications.each( function () {
-			var notif = $( this ).data( 'mw.notification' );
+			var notif = $( this ).data( 'mw-notification' );
 			if ( notif ) {
 				notif[ fn ]();
 			}
@@ -309,7 +309,7 @@
 			} )
 			// When clicking on a notification close it.
 			.on( 'click', '.mw-notification', function () {
-				var notif = $( this ).data( 'mw.notification' );
+				var notif = $( this ).data( 'mw-notification' );
 				if ( notif ) {
 					notif.close();
 				}
