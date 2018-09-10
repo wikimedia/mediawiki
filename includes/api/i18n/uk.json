@@ -66,7 +66,7 @@
 	"apihelp-compare-param-fromtitle": "Перший заголовок для порівняння.",
 	"apihelp-compare-param-fromid": "Перший ID сторінки для порівняння.",
 	"apihelp-compare-param-fromrev": "Перша версія для порівняння.",
-	"apihelp-compare-param-frompst": "Зробити трансформацію перед збереженням на <var>fromtext</var>.",
+	"apihelp-compare-param-frompst": "Зробити трансформацію перед збереженням на <var>fromtext-&#x7B;slot}</var>.",
 	"apihelp-compare-param-fromtext": "Використати цей текст замість контенту версії, вказаної через <var>fromtitle</var>, <var>fromid</var> або <var>fromrev</var>.",
 	"apihelp-compare-param-fromcontentmodel": "Контентна модель <var>fromtext</var>. Якщо не вказано, буде використано припущення на основі інших параметрів.",
 	"apihelp-compare-param-fromcontentformat": "Формат серіалізації контенту <var>fromtext</var>.",
