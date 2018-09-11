@@ -387,6 +387,12 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		}
 		$this->overrideMwServices();
 
+		if ( $this->needsDB() && !$this->isTestInDatabaseGroup() ) {
+			throw new Exception(
+				get_class( $this ) . ' apparently needsDB but is not in the Database group'
+			);
+		}
+
 		$needsResetDB = false;
 		if ( !self::$dbSetup || $this->needsDB() ) {
 			// set up a DB connection for this test to use
@@ -1062,18 +1068,18 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	public function needsDB() {
 		// If the test says it uses database tables, it needs the database
-		if ( $this->tablesUsed ) {
-			return true;
-		}
+		return $this->tablesUsed || $this->isTestInDatabaseGroup();
+	}
 
+	/**
+	 * @return bool
+	 * @since 1.32
+	 */
+	protected function isTestInDatabaseGroup() {
 		// If the test class says it belongs to the Database group, it needs the database.
 		// NOTE: This ONLY checks for the group in the class level doc comment.
 		$rc = new ReflectionClass( $this );
-		if ( preg_match( '/@group +Database/im', $rc->getDocComment() ) ) {
-			return true;
-		}
-
-		return false;
+		return (bool)preg_match( '/@group +Database/im', $rc->getDocComment() );
 	}
 
 	/**
