@@ -62,8 +62,6 @@ abstract class Collation {
 				return new IcuCollation( 'root-u-kn' );
 			case 'xx-uca-ckb':
 				return new CollationCkb;
-			case 'xx-uca-et':
-				return new CollationEt;
 			case 'uppercase-ab':
 				return new AbkhazUppercaseCollation;
 			case 'uppercase-ba':
