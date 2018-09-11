@@ -14,6 +14,7 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		$this->tablesUsed[] = 'change_tag';
 		$this->tablesUsed[] = 'change_tag_def';
 		$this->tablesUsed[] = 'tag_summary';
+		$this->tablesUsed[] = 'valid_tag';
 	}
 
 	// TODO only modifyDisplayQuery and getSoftwareTags are tested, nothing else is
@@ -591,5 +592,84 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		ChangeTags::updateTags( [ 'tag1' ], [], $rcId );
 
 		$this->assertEquals( [ 'tag1' => 2, 'tag2' => 1 ], ChangeTags::tagUsageStatistics() );
+	}
+
+	public function testListExplicitlyDefinedTagsOld() {
+		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_OLD );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'change_tag', '*' );
+		$dbw->delete( 'change_tag_def', '*' );
+		$dbw->delete( 'valid_tag', '*' );
+
+		$rcId = 123;
+		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
+		ChangeTags::defineTag( 'tag2' );
+
+		$this->assertEquals( [ 'tag2' ], ChangeTags::listExplicitlyDefinedTags() );
+		$dbr = wfGetDB( DB_REPLICA );
+		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_user_defined' ], '' );
+		$this->assertEquals( [], iterator_to_array( $res, false ) );
+
+		$this->assertEquals( [ 'tag2' ], $dbr->selectFieldValues( 'valid_tag', 'vt_tag', '' ) );
+	}
+
+	public function testListExplicitlyDefinedTagsWriteBoth() {
+		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'change_tag', '*' );
+		$dbw->delete( 'change_tag_def', '*' );
+		$dbw->delete( 'valid_tag', '*' );
+
+		$rcId = 123;
+		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
+		ChangeTags::defineTag( 'tag2' );
+
+		$this->assertEquals( [ 'tag2' ], ChangeTags::listExplicitlyDefinedTags() );
+		$dbr = wfGetDB( DB_REPLICA );
+
+		$expected = [
+			(object)[
+				'ctd_name' => 'tag1',
+				'ctd_user_defined' => 0
+			],
+			(object)[
+				'ctd_name' => 'tag2',
+				'ctd_user_defined' => 1
+			],
+		];
+		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_user_defined' ], '' );
+		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
+
+		$this->assertEquals( [ 'tag2' ], $dbr->selectFieldValues( 'valid_tag', 'vt_tag', '' ) );
+	}
+
+	public function testListExplicitlyDefinedTagsNew() {
+		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_NEW );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'change_tag', '*' );
+		$dbw->delete( 'change_tag_def', '*' );
+		$dbw->delete( 'valid_tag', '*' );
+
+		$rcId = 123;
+		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
+		ChangeTags::defineTag( 'tag2' );
+
+		$this->assertEquals( [ 'tag2' ], ChangeTags::listExplicitlyDefinedTags() );
+		$dbr = wfGetDB( DB_REPLICA );
+
+		$expected = [
+			(object)[
+				'ctd_name' => 'tag1',
+				'ctd_user_defined' => 0
+			],
+			(object)[
+				'ctd_name' => 'tag2',
+				'ctd_user_defined' => 1
+			],
+		];
+		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_user_defined' ], '' );
+		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
+
+		$this->assertEquals( [], $dbr->selectFieldValues( 'valid_tag', 'vt_tag', '' ) );
 	}
 }

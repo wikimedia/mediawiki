@@ -927,13 +927,14 @@ class ChangeTags {
 			);
 		}
 
-		$dbw->replace(
-			'valid_tag',
-			[ 'vt_tag' ],
-			[ 'vt_tag' => $tag ],
-			__METHOD__
-		);
-
+		if ( $wgChangeTagsSchemaMigrationStage < MIGRATION_NEW ) {
+			$dbw->replace(
+				'valid_tag',
+				[ 'vt_tag' ],
+				[ 'vt_tag' => $tag ],
+				__METHOD__
+			);
+		}
 		// clear the memcache of defined tags
 		self::purgeTagCacheAll();
 	}
@@ -966,7 +967,9 @@ class ChangeTags {
 			);
 		}
 
-		$dbw->delete( 'valid_tag', [ 'vt_tag' => $tag ], __METHOD__ );
+		if ( $wgChangeTagsSchemaMigrationStage < MIGRATION_NEW ) {
+			$dbw->delete( 'valid_tag', [ 'vt_tag' => $tag ], __METHOD__ );
+		}
 
 		// clear the memcache of defined tags
 		self::purgeTagCacheAll();
@@ -1457,7 +1460,7 @@ class ChangeTags {
 	/**
 	 * Lists tags explicitly defined in the `valid_tag` table of the database.
 	 * Tags in table 'change_tag' which are not in table 'valid_tag' are not
-	 * included.
+	 * included. In case of new backend loads the data from `change_tag_def` table.
 	 *
 	 * Tries memcached first.
 	 *
@@ -1472,11 +1475,16 @@ class ChangeTags {
 			$cache->makeKey( 'valid-tags-db' ),
 			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
+				global $wgChangeTagsSchemaMigrationStage;
 				$dbr = wfGetDB( DB_REPLICA );
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
-				$tags = $dbr->selectFieldValues( 'valid_tag', 'vt_tag', [], $fname );
+				if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+					$tags = self::listExplicitlyDefinedTagsNewBackend();
+				} else {
+					$tags = $dbr->selectFieldValues( 'valid_tag', 'vt_tag', [], $fname );
+				}
 
 				return array_filter( array_unique( $tags ) );
 			},
@@ -1485,6 +1493,22 @@ class ChangeTags {
 				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
+		);
+	}
+
+	/**
+	 * Lists tags explicitly user defined tags. When ctd_user_defined is true.
+	 *
+	 * @return string[] Array of strings: tags
+	 * @since 1.25
+	 */
+	private static function listExplicitlyDefinedTagsNewBackend() {
+		$dbr = wfGetDB( DB_REPLICA );
+		return $dbr->selectFieldValues(
+			'change_tag_def',
+			'ctd_name',
+			[ 'ctd_user_defined' => 1 ],
+			__METHOD__
 		);
 	}
 
