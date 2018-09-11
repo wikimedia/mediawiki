@@ -12,7 +12,7 @@
   "devDependencies": {
     "deepmerge": "1.3.2",
     "eslint": "5.0.1",
-    "eslint-config-wikimedia": "0.7.2",
+    "eslint-config-wikimedia": "0.8.1",
     "eslint-plugin-qunit": "3.3.1",
     "grunt": "1.0.3",
     "grunt-banana-checker": "0.6.0",
