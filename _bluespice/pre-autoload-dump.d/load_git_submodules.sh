@@ -6,5 +6,7 @@
 # Copyright: 2017
 # License: GPLv3
 
+mv vendor vendor_by_composer
 git submodule update --init --recursive
-
+rm -rf vendor
+mv vendor_by_composer vendor
