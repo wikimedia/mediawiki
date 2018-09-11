@@ -1453,24 +1453,19 @@ MESSAGE;
 	 *   - ResourceLoader::makeLoaderSourcesScript( [ $id1 => $loadUrl, $id2 => $loadUrl, ... ] );
 	 *       Register sources with the given IDs and properties.
 	 *
-	 * @param string $id Source ID
+	 * @param string|array $sources Source ID
 	 * @param string|null $loadUrl load.php url
 	 * @return string JavaScript code
 	 */
-	public static function makeLoaderSourcesScript( $id, $loadUrl = null ) {
-		if ( is_array( $id ) ) {
-			return Xml::encodeJsCall(
-				'mw.loader.addSource',
-				[ $id ],
-				self::inDebugMode()
-			);
-		} else {
-			return Xml::encodeJsCall(
-				'mw.loader.addSource',
-				[ $id, $loadUrl ],
-				self::inDebugMode()
-			);
+	public static function makeLoaderSourcesScript( $sources, $loadUrl = null ) {
+		if ( !is_array( $sources ) ) {
+			$sources = [ $sources => $loadUrl ];
 		}
+		return Xml::encodeJsCall(
+			'mw.loader.addSource',
+			[ $sources ],
+			self::inDebugMode()
+		);
 	}
 
 	/**

@@ -1392,7 +1392,7 @@
 			/**
 			 * Resolve indexed dependencies.
 			 *
-			 * ResourceLoader uses an optimization to save space which replaces module names in
+			 * ResourceLoader uses an optimisation to save space which replaces module names in
 			 * dependency lists with the index of that module within the array of module
 			 * registration data if it exists. The benefit is a significant reduction in the data
 			 * size of the startup module. This function changes those dependency lists back to
@@ -1610,6 +1610,34 @@
 				};
 			}
 
+			/**
+			 * @private
+			 * @param {string} module
+			 * @param {string|number} [version]
+			 * @param {string[]} [dependencies]
+			 * @param {string} [group]
+			 * @param {string} [source]
+			 * @param {string} [skip]
+			 */
+			function registerOne( module, version, dependencies, group, source, skip ) {
+				if ( hasOwn.call( registry, module ) ) {
+					throw new Error( 'module already registered: ' + module );
+				}
+				registry[ module ] = {
+					// Exposed to execute() for mw.loader.implement() closures.
+					// Import happens via require().
+					module: {
+						exports: {}
+					},
+					version: String( version || '' ),
+					dependencies: dependencies || [],
+					group: typeof group === 'string' ? group : null,
+					source: typeof source === 'string' ? source : 'local',
+					state: 'registered',
+					skip: typeof skip === 'string' ? skip : null
+				};
+			}
+
 			/* Public Members */
 			return {
 				/**
@@ -1635,7 +1663,7 @@
 				/**
 				 * Start loading of all queued module dependencies.
 				 *
-				 * @protected
+				 * @private
 				 */
 				work: function () {
 					var q, batch, implementations, sourceModules;
@@ -1713,76 +1741,58 @@
 				 *
 				 * The #work() method will use this information to split up requests by source.
 				 *
-				 *     mw.loader.addSource( 'mediawikiwiki', '//www.mediawiki.org/w/load.php' );
+				 *     mw.loader.addSource( { mediawikiwiki: 'https://www.mediawiki.org/w/load.php' } );
 				 *
-				 * @param {string|Object} id Source ID, or object mapping ids to load urls
-				 * @param {string} loadUrl Url to a load.php end point
+				 * @private
+				 * @param {Object} ids An object mapping ids to load.php end point urls
 				 * @throws {Error} If source id is already registered
 				 */
-				addSource: function ( id, loadUrl ) {
-					var source;
-					// Allow multiple additions
-					if ( typeof id === 'object' ) {
-						for ( source in id ) {
-							mw.loader.addSource( source, id[ source ] );
+				addSource: function ( ids ) {
+					var id;
+					for ( id in ids ) {
+						if ( hasOwn.call( sources, id ) ) {
+							throw new Error( 'source already registered: ' + id );
 						}
-						return;
+						sources[ id ] = ids[ id ];
 					}
-
-					if ( hasOwn.call( sources, id ) ) {
-						throw new Error( 'source already registered: ' + id );
-					}
-
-					sources[ id ] = loadUrl;
 				},
 
 				/**
 				 * Register a module, letting the system know about it and its properties.
 				 *
-				 * The startup modules contain calls to this method.
+				 * The startup module calls this method.
 				 *
 				 * When using multiple module registration by passing an array, dependencies that
 				 * are specified as references to modules within the array will be resolved before
 				 * the modules are registered.
 				 *
-				 * @param {string|Array} module Module name or array of arrays, each containing
+				 * @param {string|Array} modules Module name or array of arrays, each containing
 				 *  a list of arguments compatible with this method
-				 * @param {string|number} version Module version hash (falls backs to empty string)
+				 * @param {string|number} [version] Module version hash (falls backs to empty string)
 				 *  Can also be a number (timestamp) for compatibility with MediaWiki 1.25 and earlier.
 				 * @param {string[]} [dependencies] Array of module names on which this module depends.
 				 * @param {string} [group=null] Group which the module is in
 				 * @param {string} [source='local'] Name of the source
 				 * @param {string} [skip=null] Script body of the skip function
 				 */
-				register: function ( module, version, dependencies, group, source, skip ) {
+				register: function ( modules ) {
 					var i;
-					// Allow multiple registration
-					if ( typeof module === 'object' ) {
-						resolveIndexedDependencies( module );
-						// module is an array of arrays
-						for ( i = 0; i < module.length; i++ ) {
-							// module is an array of module names
-							mw.loader.register.apply( mw.loader, module[ i ] );
+					if ( typeof modules === 'object' ) {
+						resolveIndexedDependencies( modules );
+						// Optimisation: Up to 55% faster.
+						// Typically called only once, and with a batch.
+						// See <https://gist.github.com/Krinkle/f06fdb3de62824c6c16f02a0e6ce0e66>
+						// Benchmarks taught us that the code for adding an object to `registry`
+						// should actually be inline, or in a simple function that does no
+						// arguments manipulation, and isn't also the caller itself.
+						// JS semantics make it hard to optimise recursion to a different
+						// signature of itself.
+						for ( i = 0; i < modules.length; i++ ) {
+							registerOne.apply( null, modules[ i ] );
 						}
-						return;
+					} else {
+						registerOne.apply( null, arguments );
 					}
-					if ( hasOwn.call( registry, module ) ) {
-						throw new Error( 'module already registered: ' + module );
-					}
-					// List the module as registered
-					registry[ module ] = {
-						// Exposed to execute() for mw.loader.implement() closures.
-						// Import happens via require().
-						module: {
-							exports: {}
-						},
-						version: String( version || '' ),
-						dependencies: dependencies || [],
-						group: typeof group === 'string' ? group : null,
-						source: typeof source === 'string' ? source : 'local',
-						state: 'registered',
-						skip: typeof skip === 'string' ? skip : null
-					};
 				},
 
 				/**
@@ -1810,7 +1820,7 @@
 				 * The reason css strings are not concatenated anymore is T33676. We now check
 				 * whether it's safe to extend the stylesheet.
 				 *
-				 * @protected
+				 * @private
 				 * @param {Object} [messages] List of key/value pairs to be added to mw#messages.
 				 * @param {Object} [templates] List of key/value pairs to be added to mw#templates.
 				 */
@@ -2064,7 +2074,7 @@
 							// Disabled because localStorage quotas are tight and (in Firefox's case)
 							// shared by multiple origins.
 							// See T66721, and <https://bugzilla.mozilla.org/show_bug.cgi?id=1064466>.
-							/Firefox|Opera/.test( navigator.userAgent ) ||
+							/Firefox/.test( navigator.userAgent ) ||
 
 							// Disabled by configuration.
 							!mw.config.get( 'wgResourceLoaderStorageEnabled' )

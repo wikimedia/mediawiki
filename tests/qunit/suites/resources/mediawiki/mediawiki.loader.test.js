@@ -19,10 +19,10 @@
 		}
 	} ) );
 
-	mw.loader.addSource(
-		'testloader',
-		QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/load.mock.php' )
-	);
+	mw.loader.addSource( {
+		testloader:
+			QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/load.mock.php' )
+	} );
 
 	/**
 	 * The sync style load test, for @import. This is, in a way, also an open bug for
@@ -544,6 +544,18 @@
 	QUnit.test( '.implement( empty )', function ( assert ) {
 		mw.loader.implement( 'test.empty' );
 		assert.strictEqual( mw.loader.getState( 'test.empty' ), 'ready' );
+	} );
+
+	QUnit.test( '.addSource()', function ( assert ) {
+		mw.loader.addSource( { testsource1: 'https://1.test/src' } );
+
+		assert.throws( function () {
+			mw.loader.addSource( { testsource1: 'https://1.test/src' } );
+		}, /already registered/, 'duplicate pair from addSource(Object)' );
+
+		assert.throws( function () {
+			mw.loader.addSource( { testsource1: 'https://1.test/src-diff' } );
+		}, /already registered/, 'duplicate ID from addSource(Object)' );
 	} );
 
 	// @covers mw.loader#batchRequest
