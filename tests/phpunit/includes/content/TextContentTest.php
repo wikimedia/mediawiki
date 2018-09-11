@@ -13,6 +13,10 @@ class TextContentTest extends MediaWikiLangTestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		// trigger purging of all page related tables
+		$this->tablesUsed[] = 'page';
+		$this->tablesUsed[] = 'revision';
+
 		// Anon user
 		$user = new User();
 		$user->setName( '127.0.0.1' );
@@ -352,11 +356,11 @@ class TextContentTest extends MediaWikiLangTestCase {
 
 	public static function dataGetDeletionUpdates() {
 		return [
-			[ "TextContentTest_testGetSecondaryDataUpdates_1",
+			[
 				CONTENT_MODEL_TEXT, "hello ''world''\n",
 				[]
 			],
-			[ "TextContentTest_testGetSecondaryDataUpdates_2",
+			[
 				CONTENT_MODEL_TEXT, "hello [[world test 21344]]\n",
 				[]
 			],
@@ -368,13 +372,11 @@ class TextContentTest extends MediaWikiLangTestCase {
 	 * @dataProvider dataGetDeletionUpdates
 	 * @covers TextContent::getDeletionUpdates
 	 */
-	public function testDeletionUpdates( $title, $model, $text, $expectedStuff ) {
-		$ns = $this->getDefaultWikitextNS();
-		$title = Title::newFromText( $title, $ns );
+	public function testDeletionUpdates( $model, $text, $expectedStuff ) {
+		$page = $this->getNonexistingTestPage( get_class( $this ) . '-' . $this->getName() );
+		$title = $page->getTitle();
 
 		$content = ContentHandler::makeContent( $text, $title, $model );
-
-		$page = WikiPage::factory( $title );
 		$page->doEditContent( $content, '' );
 
 		$updates = $content->getDeletionUpdates( $page );
@@ -383,11 +385,6 @@ class TextContentTest extends MediaWikiLangTestCase {
 		foreach ( $updates as $update ) {
 			$class = get_class( $update );
 			$updates[$class] = $update;
-		}
-
-		if ( !$expectedStuff ) {
-			$this->assertTrue( true ); // make phpunit happy
-			return;
 		}
 
 		foreach ( $expectedStuff as $class => $fieldValues ) {
@@ -401,7 +398,8 @@ class TextContentTest extends MediaWikiLangTestCase {
 			}
 		}
 
-		$page->doDeleteArticle( '' );
+		// make phpunit happy even if $expectedStuff was empty
+		$this->assertTrue( true );
 	}
 
 	public static function provideConvert() {
