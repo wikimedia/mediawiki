@@ -17,8 +17,15 @@ use WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
+use WikitextContent;
 
 class RevisionStoreTest extends MediaWikiTestCase {
+
+	private function useTextId() {
+		global $wgMultiContentRevisionSchemaMigrationStage;
+
+		return (bool)( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_READ_OLD );
+	}
 
 	/**
 	 * @param LoadBalancer $loadBalancer
@@ -411,6 +418,10 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
 	 */
 	public function testNewRevisionFromRow_legacyEncoding_applied( $encoding, $locale, $row, $text ) {
+		if ( !$this->useTextId() ) {
+			$this->markTestSkipped( 'No longer applicable with MCR schema' );
+		}
+
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 
@@ -432,6 +443,10 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
 	 */
 	public function testNewRevisionFromRow_legacyEncoding_ignored() {
+		if ( !$this->useTextId() ) {
+			$this->markTestSkipped( 'No longer applicable with MCR schema' );
+		}
+
 		$row = [
 			'old_flags' => 'utf-8',
 			'old_text' => 'Söme Content',
@@ -457,7 +472,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$row = $array + [
 				'rev_id' => 7,
 				'rev_page' => 5,
-				'rev_text_id' => 11,
 				'rev_timestamp' => '20110101000000',
 				'rev_user_text' => 'Tester',
 				'rev_user' => 17,
@@ -469,8 +483,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 				'rev_comment_text' => 'Testing',
 				'rev_comment_data' => '{}',
 				'rev_comment_cid' => 111,
-				'rev_content_format' => CONTENT_FORMAT_TEXT,
-				'rev_content_model' => CONTENT_MODEL_TEXT,
 				'page_namespace' => 0,
 				'page_title' => 'TEST',
 				'page_id' => 5,
@@ -478,10 +490,24 @@ class RevisionStoreTest extends MediaWikiTestCase {
 				'page_is_redirect' => 0,
 				'page_len' => 100,
 				'user_name' => 'Tester',
-				'old_is' => 13,
+			];
+
+		if ( $this->useTextId() ) {
+			$row += [
+				'rev_content_format' => CONTENT_FORMAT_TEXT,
+				'rev_content_model' => CONTENT_MODEL_TEXT,
+				'rev_text_id' => 11,
+				'old_id' => 11,
 				'old_text' => 'Hello World',
 				'old_flags' => 'utf-8',
 			];
+		} else {
+			if ( !isset( $row['content'] ) && isset( $array['old_text'] ) ) {
+				$row['content'] = [
+					'main' => new WikitextContent( $array['old_text'] ),
+				];
+			}
+		}
 
 		return (object)$row;
 	}

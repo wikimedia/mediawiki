@@ -431,11 +431,11 @@ just a test"
 
 	public static function dataGetDeletionUpdates() {
 		return [
-			[ "WikitextContentTest_testGetSecondaryDataUpdates_1",
+			[
 				CONTENT_MODEL_WIKITEXT, "hello ''world''\n",
 				[ LinksDeletionUpdate::class => [] ]
 			],
-			[ "WikitextContentTest_testGetSecondaryDataUpdates_2",
+			[
 				CONTENT_MODEL_WIKITEXT, "hello [[world test 21344]]\n",
 				[ LinksDeletionUpdate::class => [] ]
 			],
