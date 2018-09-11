@@ -124,7 +124,7 @@ class IcuCollation extends Collation {
 		'en' => [],
 		'eo' => [ "Ĉ", "Ĝ", "Ĥ", "Ĵ", "Ŝ", "Ŭ" ],
 		'es' => [ "Ñ" ],
-		'et' => [ "Š", "Ž", "Õ", "Ä", "Ö", "Ü", "W" ], // added W for CollationEt (xx-uca-et)
+		'et' => [ "Š", "Ž", "Õ", "Ä", "Ö", "Ü" ],
 		'eu' => [ "Ñ" ], // not in libicu
 		'fa' => [
 			// RTL, let's put each letter on a new line
