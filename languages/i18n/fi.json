@@ -1787,7 +1787,7 @@
 	"upload-curl-error6-text": "Antamaasi osoitteeseen ei saatu yhteyttä. Varmista, että osoite on oikein ja että sivusto on saavutettavissa.",
 	"upload-curl-error28": "Etälähetyksen aikakatkaisu",
 	"upload-curl-error28-text": "Antamastasi osoitteesta ei saatu vastausta määräajassa. Varmista, että sivusto on saavutettavissa ja yritä uudelleen.",
-	"license": "Lisenssi",
+	"license": "Lisenssi:",
 	"license-header": "Lisenssi",
 	"nolicense": "Ei lisenssiä",
 	"licenses-edit": "Muokkaa lisenssivaihtoehtoja",
