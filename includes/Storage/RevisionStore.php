@@ -466,6 +466,12 @@ class RevisionStore
 		$this->failOnNull( $user->getId(), 'user field' );
 		$this->failOnEmpty( $user->getName(), 'user_text field' );
 
+		if ( !$rev->isReadyForInsertion() ) {
+			// This is here for future-proofing. At the time this check being added, it
+			// was redundant to the individual checks above.
+			throw new IncompleteRevisionException( 'Revision is incomplete' );
+		}
+
 		// TODO: we shouldn't need an actual Title here.
 		$title = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
 		$pageId = $this->failOnEmpty( $rev->getPageId(), 'rev_page field' ); // check this early

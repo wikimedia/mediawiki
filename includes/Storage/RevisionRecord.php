@@ -532,4 +532,29 @@ abstract class RevisionRecord {
 		}
 	}
 
+	/**
+	 * Returns whether this RevisionRecord is ready for insertion, that is, whether it contains all
+	 * information needed to save it to the database. This should trivially be true for
+	 * RevisionRecords loaded from the database.
+	 *
+	 * Note that this may return true even if getId() or getPage() return null or 0, since these
+	 * are generally assigned while the revision is saved to the database, and may not be available
+	 * before.
+	 *
+	 * @return bool
+	 */
+	public function isReadyForInsertion() {
+		// NOTE: don't check getSize() and getSha1(), since that may cause the full content to
+		// be loaded in order to calculate the values. Just assume these methods will not return
+		// null if mSlots is not empty.
+
+		// NOTE: getId() and getPageId() may return null before a revision is saved, so don't
+		//check them.
+
+		return $this->getTimestamp() !== null
+			&& $this->getComment( self::RAW ) !== null
+			&& $this->getUser( self::RAW ) !== null
+			&& $this->mSlots->getSlotRoles() !== [];
+	}
+
 }

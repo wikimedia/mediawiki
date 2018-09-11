@@ -167,4 +167,13 @@ class RevisionArchiveRecord extends RevisionRecord {
 		return parent::getTimestamp();
 	}
 
+	/**
+	 * @see RevisionStore::isComplete
+	 *
+	 * @return bool always true.
+	 */
+	public function isReadyForInsertion() {
+		return true;
+	}
+
 }
