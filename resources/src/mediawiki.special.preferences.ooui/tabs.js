@@ -3,7 +3,7 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var $preferences, tabs, wrapper, previousTab;
+		var $preferences, tabs, wrapper, previousTab, switchingNoHash;
 
 		$preferences = $( '#preferences' );
 
@@ -52,8 +52,20 @@
 		$preferences.prepend( wrapper.$element );
 		$( '.mw-prefs-faketabs' ).remove();
 
-		function updateHash( panel ) {
+		function enhancePanel( panel ) {
+			if ( !panel.$element.data( 'mw-section-infused' ) ) {
+				// mw-htmlform-autoinfuse-lazy class has been removed by replacing faketabs
+				mw.hook( 'htmlform.enhance' ).fire( panel.$element );
+				panel.$element.data( 'mw-section-infused', true );
+			}
+		}
+
+		function onTabPanelSet( panel ) {
 			var scrollTop, active;
+
+			if ( switchingNoHash ) {
+				return;
+			}
 			// Handle hash manually to prevent jumping,
 			// therefore save and restore scrollTop to prevent jumping.
 			scrollTop = $( window ).scrollTop();
@@ -67,21 +79,22 @@
 			$( window ).scrollTop( scrollTop );
 		}
 
-		tabs.on( 'set', updateHash );
+		tabs.on( 'set', onTabPanelSet );
 
 		/**
 		 * @ignore
 		 * @param {string} name the name of a tab without the prefix ("mw-prefsection-")
-		 * @param {string} [mode] A hash will be set according to the current
-		 *  open section. Set mode 'noHash' to suppress this.
+		 * @param {boolean} [noHash] A hash will be set according to the current
+		 *  open section. Use this flag to suppress this.
 		 */
-		function switchPrefTab( name, mode ) {
-			if ( mode === 'noHash' ) {
-				tabs.off( 'set', updateHash );
+		function switchPrefTab( name, noHash ) {
+			if ( noHash ) {
+				switchingNoHash = true;
 			}
 			tabs.setTabPanel( name );
-			if ( mode === 'noHash' ) {
-				tabs.on( 'set', updateHash );
+			enhancePanel( tabs.getCurrentTabPanel() );
+			if ( noHash ) {
+				switchingNoHash = false;
 			}
 		}
 
@@ -99,7 +112,7 @@
 				if ( parentSection.length ) {
 					mw.storage.session.remove( 'mwpreferences-prevTab' );
 					// Switch to proper tab and scroll to selected item.
-					switchPrefTab( parentSection.attr( 'id' ).replace( 'mw-prefsection-', '' ), 'noHash' );
+					switchPrefTab( parentSection.attr( 'id' ).replace( 'mw-prefsection-', '' ), true );
 					matchedElement.scrollIntoView();
 				}
 			}
@@ -110,7 +123,7 @@
 			if ( hash.match( /^#mw-[\w-]+/ ) ) {
 				detectHash();
 			} else if ( hash === '' ) {
-				switchPrefTab( 'personal', 'noHash' );
+				switchPrefTab( 'personal', true );
 			}
 		} )
 			// Run the function immediately to select the proper tab on startup.
@@ -119,7 +132,7 @@
 		// Restore the active tab after saving the preferences
 		previousTab = mw.storage.session.get( 'mwpreferences-prevTab' );
 		if ( previousTab ) {
-			switchPrefTab( previousTab, 'noHash' );
+			switchPrefTab( previousTab, true );
 			// Deleting the key, the tab states should be reset until we press Save
 			mw.storage.session.remove( 'mwpreferences-prevTab' );
 		}

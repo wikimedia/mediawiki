@@ -213,7 +213,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 				) .
 				Html::rawElement(
 					'div',
-					[ 'class' => 'oo-ui-menuLayout-content' ],
+					[ 'class' => 'oo-ui-menuLayout-content mw-htmlform-autoinfuse-lazy' ],
 					$this->displaySection( $this->mFieldTree, '', 'mw-prefsection-' )
 				)
 			)
