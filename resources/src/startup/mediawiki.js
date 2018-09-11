@@ -1635,7 +1635,7 @@
 				/**
 				 * Start loading of all queued module dependencies.
 				 *
-				 * @protected
+				 * @private
 				 */
 				work: function () {
 					var q, batch, implementations, sourceModules;
@@ -1713,27 +1713,20 @@
 				 *
 				 * The #work() method will use this information to split up requests by source.
 				 *
-				 *     mw.loader.addSource( 'mediawikiwiki', '//www.mediawiki.org/w/load.php' );
+				 *     mw.loader.addSource( { mediawikiwiki: 'https://www.mediawiki.org/w/load.php' } );
 				 *
-				 * @param {string|Object} id Source ID, or object mapping ids to load urls
-				 * @param {string} loadUrl Url to a load.php end point
+				 * @private
+				 * @param {Object} ids An object mapping ids to load.php end point urls
 				 * @throws {Error} If source id is already registered
 				 */
-				addSource: function ( id, loadUrl ) {
-					var source;
-					// Allow multiple additions
-					if ( typeof id === 'object' ) {
-						for ( source in id ) {
-							mw.loader.addSource( source, id[ source ] );
+				addSource: function ( ids ) {
+					var id;
+					for ( id in ids ) {
+						if ( hasOwn.call( sources, id ) ) {
+							throw new Error( 'source already registered: ' + id );
 						}
-						return;
+						sources[ id ] = ids[ id ];
 					}
-
-					if ( hasOwn.call( sources, id ) ) {
-						throw new Error( 'source already registered: ' + id );
-					}
-
-					sources[ id ] = loadUrl;
 				},
 
 				/**
@@ -1810,7 +1803,7 @@
 				 * The reason css strings are not concatenated anymore is T33676. We now check
 				 * whether it's safe to extend the stylesheet.
 				 *
-				 * @protected
+				 * @private
 				 * @param {Object} [messages] List of key/value pairs to be added to mw#messages.
 				 * @param {Object} [templates] List of key/value pairs to be added to mw#templates.
 				 */

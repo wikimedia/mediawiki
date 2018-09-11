@@ -513,7 +513,9 @@ mw.example();
 	 */
 	public function testMakeLoaderSourcesScript() {
 		$this->assertEquals(
-			'mw.loader.addSource( "local", "/w/load.php" );',
+			'mw.loader.addSource( {
+    "local": "/w/load.php"
+} );',
 			ResourceLoader::makeLoaderSourcesScript( 'local', '/w/load.php' )
 		);
 		$this->assertEquals(
