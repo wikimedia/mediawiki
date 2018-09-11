@@ -1294,7 +1294,7 @@
 	"rcfilters-highlighted-filters-list": "Istaknuto: $1",
 	"rcfilters-quickfilters": "Spremljeni filtri",
 	"rcfilters-quickfilters-placeholder-title": "Još nema spremljenih filtara",
-	"rcfilters-quickfilters-placeholder-description": "Da biste spremili postavke filtra i rabili ih poslije, kliknite ispod na oznaku dočitnice u polju Aktivni filtri.",
+	"rcfilters-quickfilters-placeholder-description": "Da biste spremili postavke filtra i rabili ih poslije, kliknite ispod na oznaku vrpce u polju Aktivni filtri.",
 	"rcfilters-savedqueries-defaultlabel": "Spremljeni filteri",
 	"rcfilters-savedqueries-rename": "Preimenuj",
 	"rcfilters-savedqueries-setdefault": "Postavi kao predodređeno",

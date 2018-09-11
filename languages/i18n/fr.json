@@ -527,7 +527,7 @@
 	"mycustomjsprotected": "Vous n’avez pas le droit de modifier cette page JavaScript.",
 	"myprivateinfoprotected": "Vous n’avez pas le droit de modifier vos informations personnelles.",
 	"mypreferencesprotected": "Vous n’avez pas le droit de modifier vos préférences.",
-	"ns-specialprotected": "Les pages spéciales ne peuvent pas être modifiés.",
+	"ns-specialprotected": "Les pages spéciales ne peuvent pas être modifiées.",
 	"titleprotected": "Ce titre a été protégé contre toute création par [[User:$1|$1]].\nLe motif fourni est <em>$2</em>.",
 	"filereadonlyerror": "Impossible de modifier le fichier « $1 » parce que le répertoire de fichiers « $2 » est en lecture seule.\n\nL’administrateur système qui l’a verrouillé a fourni ce motif : « $3 ».",
 	"invalidtitle": "Titre non valide",
