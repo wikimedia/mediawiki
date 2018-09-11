@@ -106,6 +106,7 @@ class MediaWikiPHPUnitTestListener extends PHPUnit_Framework_BaseTestListener {
 	 * @param PHPUnit_Framework_Test $test
 	 */
 	public function startTest( PHPUnit_Framework_Test $test ) {
+		Hooks::run( 'MediaWikiPHPUnitTest::startTest', [ $test ] );
 		wfDebugLog( $this->logChannel, 'Start test ' . $this->getTestName( $test ) );
 	}
 
@@ -116,6 +117,7 @@ class MediaWikiPHPUnitTestListener extends PHPUnit_Framework_BaseTestListener {
 	 * @param float $time
 	 */
 	public function endTest( PHPUnit_Framework_Test $test, $time ) {
+		Hooks::run( 'MediaWikiPHPUnitTest::endTest', [ $test, $time ] );
 		wfDebugLog( $this->logChannel, 'End test ' . $this->getTestName( $test ) );
 	}
 }
