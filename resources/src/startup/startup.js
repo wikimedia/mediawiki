@@ -3,8 +3,8 @@
  *
  * - Beware: This file MUST parse without errors on even the most ancient of browsers!
  */
-/* eslint-disable vars-on-top, no-unmodified-loop-condition */
-/* global isCompatible, $VARS, $CODE */
+/* eslint-disable no-implicit-globals, vars-on-top, no-unmodified-loop-condition */
+/* global $VARS, $CODE */
 
 /**
  * See <https://www.mediawiki.org/wiki/Compatibility#Browsers>
@@ -47,7 +47,7 @@
  * @param {string} [str] User agent, defaults to navigator.userAgent
  * @return {boolean} User agent is compatible with MediaWiki JS
  */
-window.isCompatible = function ( str ) {
+function isCompatible( str ) {
 	var ua = str || navigator.userAgent;
 	return !!(
 		// https://caniuse.com/#feat=es5
@@ -74,39 +74,42 @@ window.isCompatible = function ( str ) {
 		// Note: Please extend the regex instead of adding new ones
 		!ua.match( /MSIE 10|webOS\/1\.[0-4]|SymbianOS|Series60|NetFront|Opera Mini|S40OviBrowser|MeeGo|Android.+Glass|^Mozilla\/5\.0 .+ Gecko\/$|googleweblight|PLAYSTATION|PlayStation/ )
 	);
-};
+}
 
-( function () {
-	var NORLQ;
+if ( !isCompatible() ) {
 	// Handle Grade C
-	if ( !isCompatible() ) {
-		// Undo speculative Grade A <html> class. See ResourceLoaderClientHtml::getDocumentAttributes().
-		document.documentElement.className = document.documentElement.className
-			.replace( /(^|\s)client-js(\s|$)/, '$1client-nojs$2' );
+	// Undo speculative Grade A <html> class. See ResourceLoaderClientHtml::getDocumentAttributes().
+	document.documentElement.className = document.documentElement.className
+		.replace( /(^|\s)client-js(\s|$)/, '$1client-nojs$2' );
 
-		// Process any callbacks for Grade C
-		NORLQ = window.NORLQ;
-		while ( NORLQ && NORLQ[ 0 ] ) {
-			NORLQ.shift()();
-		}
-		window.NORLQ = {
-			push: function ( fn ) {
-				fn();
-			}
-		};
-
-		// Clear and disable the Grade A queue
-		window.RLQ = {
-			push: function () {}
-		};
-
-		return;
+	// Process any callbacks for Grade C
+	while ( window.NORLQ && window.NORLQ[ 0 ] ) {
+		window.NORLQ.shift()();
 	}
+	window.NORLQ = {
+		push: function ( fn ) {
+			fn();
+		}
+	};
+
+	// Clear and disable the Grade A queue
+	window.RLQ = {
+		push: function () {}
+	};
+} else {
+	// Handle Grade A
+
+	if ( window.performance && performance.mark ) {
+		performance.mark( 'mwStartup' );
+	}
+
+	// This embeds mediawiki.js, which defines 'mw' and 'mw.loader'.
+	$CODE.defineLoader();
 
 	/**
 	 * The $CODE and $VARS placeholders are substituted in ResourceLoaderStartUpModule.php.
 	 */
-	function startUp() {
+	( function () {
 		mw.config = new mw.Map( $VARS.wgLegacyJavaScriptGlobals );
 
 		$CODE.registrations();
@@ -136,14 +139,5 @@ window.isCompatible = function ( str ) {
 		window.NORLQ = {
 			push: function () {}
 		};
-	}
-
-	if ( window.performance && performance.mark ) {
-		performance.mark( 'mwStartup' );
-	}
-
-	// This embeds mediawiki.js, which defines 'mw' and 'mw.loader'.
-	$CODE.defineLoader();
-
-	startUp();
-}() );
+	}() );
+}
