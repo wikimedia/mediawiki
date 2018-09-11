@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -421,8 +423,9 @@ class SpecialUndelete extends SpecialPage {
 		$t = $lang->userTime( $timestamp, $user );
 		$userLink = Linker::revUserTools( $rev );
 
-		$content = $rev->getContent( Revision::FOR_THIS_USER, $user );
+		$content = $rev->getContent( RevisionRecord::FOR_THIS_USER, $user );
 
+		// TODO: MCR: this will have to become something like $hasTextSlots and $hasNonTextSlots
 		$isText = ( $content instanceof TextContent );
 
 		if ( $this->mPreview || $isText ) {
@@ -447,12 +450,23 @@ class SpecialUndelete extends SpecialPage {
 			return;
 		}
 
-		if ( ( $this->mPreview || !$isText ) && $content ) {
+		if ( $this->mPreview || !$isText ) {
 			// NOTE: non-text content has no source view, so always use rendered preview
 
 			$popts = $out->parserOptions();
+			$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
 
-			$pout = $content->getParserOutput( $this->mTargetObj, $rev->getId(), $popts, true );
+			$rendered = $renderer->getRenderedRevision(
+				$rev->getRevisionRecord(),
+				$popts,
+				$user,
+				[ 'audience' => RevisionRecord::FOR_THIS_USER ]
+			);
+
+			// Fail hard if the audience check fails, since we already checked
+			// at the beginning of this method.
+			$pout = $rendered->getRevisionParserOutput();
+
 			$out->addParserOutput( $pout, [
 				'enableSectionEditLinks' => false,
 			] );
@@ -462,6 +476,7 @@ class SpecialUndelete extends SpecialPage {
 		$buttonFields = [];
 
 		if ( $isText ) {
+			// TODO: MCR: make this work for multiple slots
 			// source view for textual content
 			$sourceView = Xml::element( 'textarea', [
 				'readonly' => 'readonly',

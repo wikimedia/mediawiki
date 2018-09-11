@@ -20,6 +20,8 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\MutableRevisionRecord;
+use MediaWiki\Storage\RevisionRecord;
 
 /**
  * Class for viewing MediaWiki article and history.
@@ -35,11 +37,11 @@ use MediaWiki\MediaWikiServices;
 class Article implements Page {
 	/**
 	 * @var IContextSource|null The context this Article is executed in.
-	 * If null, REquestContext::getMain() is used.
+	 * If null, RequestContext::getMain() is used.
 	 */
 	protected $mContext;
 
-	/** @var WikiPage The WikiPage object of this instance */
+	/** @var WikiPage|null The WikiPage object of this instance */
 	protected $mPage;
 
 	/**
@@ -49,22 +51,28 @@ class Article implements Page {
 	public $mParserOptions;
 
 	/**
-	 * @var string|null Text of the revision we are working on
-	 * @todo BC cruft
-	 */
-	public $mContent;
-
-	/**
-	 * @var Content|null Content of the revision we are working on.
-	 * Initialized by fetchContentObject().
+	 * @var Content|null Content of the main slot of $this->mRevision.
+	 * @note This variable is read only, setting it has no effect.
+	 *       Extensions that wish to override the output of Article::view should use a hook.
+	 * @todo MCR: Remove in 1.33
+	 * @deprecated since 1.32
 	 * @since 1.21
 	 */
 	public $mContentObject;
 
-	/** @var bool Is the content ($mContent) already loaded? */
+	/**
+	 * @var bool Is the target revision loaded? Set by fetchRevisionRecord().
+	 *
+	 * @deprecated since 1.32. Whether content has been loaded should not be relevant to
+	 * code outside this class.
+	 */
 	public $mContentLoaded = false;
 
-	/** @var int|null The oldid of the article that is to be shown, 0 for the current revision */
+	/**
+	 * @var int|null The oldid of the article that was requested to be shown,
+	 * 0 for the current revision.
+	 * @see $mRevIdFetched
+	 */
 	public $mOldId;
 
 	/** @var Title|null Title from which we were redirected here, if any. */
@@ -73,20 +81,38 @@ class Article implements Page {
 	/** @var string|bool URL to redirect to or false if none */
 	public $mRedirectUrl = false;
 
-	/** @var int Revision ID of revision we are working on */
+	/**
+	 * @var int Revision ID of revision that was loaded.
+	 * @see $mOldId
+	 * @deprecated since 1.32, use getRevIdFetched() instead.
+	 */
 	public $mRevIdFetched = 0;
 
 	/**
-	 * @var Revision|null Revision we are working on. Initialized by getOldIDFromRequest()
-	 * or fetchContentObject().
+	 * @var Status|null represents the outcome of fetchRevisionRecord().
+	 * $fetchResult->value is the RevisionRecord object, if the operation was successful.
+	 *
+	 * The information in $fetchResult is duplicated by the following deprecated public fields:
+	 * $mRevIdFetched, $mContentLoaded. $mRevision (and $mContentObject) also typically duplicate
+	 * information of the loaded revision, but may be overwritten by extensions or due to errors.
+	 */
+	private $fetchResult = null;
+
+	/**
+	 * @var Revision|null Revision to be shown. Initialized by getOldIDFromRequest()
+	 * or fetchContentObject(). Normally loaded from the database, but may be replaced
+	 * by an extension, or be a fake representing an error message or some such.
+	 * While the output of Article::view is typically based on this revision,
+	 * it may be overwritten by error messages or replaced by extensions.
 	 */
 	public $mRevision = null;
 
 	/**
 	 * @var ParserOutput|null|false The ParserOutput generated for viewing the page,
 	 * initialized by view(). If no ParserOutput could be generated, this is set to false.
+	 * @deprecated since 1.32
 	 */
-	public $mParserOutput;
+	public $mParserOutput = null;
 
 	/**
 	 * @var bool Whether render() was called. With the way subclasses work
@@ -132,7 +158,7 @@ class Article implements Page {
 	 */
 	public static function newFromTitle( $title, IContextSource $context ) {
 		if ( NS_MEDIA == $title->getNamespace() ) {
-			// FIXME: where should this go?
+			// XXX: This should not be here, but where should it go?
 			$title = Title::makeTitle( NS_FILE, $title->getDBkey() );
 		}
 
@@ -214,6 +240,11 @@ class Article implements Page {
 		$this->mRedirectedFrom = null; # Title object if set
 		$this->mRevIdFetched = 0;
 		$this->mRedirectUrl = false;
+		$this->mRevision = null;
+		$this->mContentObject = null;
+		$this->fetchResult = null;
+
+		// TODO hard-deprecate direct access to public fields
 
 		$this->mPage->clear();
 	}
@@ -229,25 +260,15 @@ class Article implements Page {
 	 * This function has side effects! Do not use this function if you
 	 * only want the real revision text if any.
 	 *
-	 * @return Content Return the content of this revision
+	 * @deprecated since 1.32, use getRevisionFetched() or fetchRevisionRecord() instead.
+	 *
+	 * @return Content
 	 *
 	 * @since 1.21
 	 */
 	protected function getContentObject() {
 		if ( $this->mPage->getId() === 0 ) {
-			# If this is a MediaWiki:x message, then load the messages
-			# and return the message value for x.
-			if ( $this->getTitle()->getNamespace() == NS_MEDIAWIKI ) {
-				$text = $this->getTitle()->getDefaultMessageText();
-				if ( $text === false ) {
-					$text = '';
-				}
-
-				$content = ContentHandler::makeContent( $text, $this->getTitle() );
-			} else {
-				$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
-				$content = new MessageContent( $message, null, 'parsemag' );
-			}
+			$content = $this->getSubstituteContent();
 		} else {
 			$this->fetchContentObject();
 			$content = $this->mContentObject;
@@ -257,7 +278,49 @@ class Article implements Page {
 	}
 
 	/**
-	 * @return int The oldid of the article that is to be shown, 0 for the current revision
+	 * Returns Content object to use when the page does not exist.
+	 *
+	 * @return Content
+	 */
+	private function getSubstituteContent() {
+		# If this is a MediaWiki:x message, then load the messages
+		# and return the message value for x.
+		if ( $this->getTitle()->getNamespace() == NS_MEDIAWIKI ) {
+			$text = $this->getTitle()->getDefaultMessageText();
+			if ( $text === false ) {
+				$text = '';
+			}
+
+			$content = ContentHandler::makeContent( $text, $this->getTitle() );
+		} else {
+			$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
+			$content = new MessageContent( $message, null, 'parsemag' );
+		}
+
+		return $content;
+	}
+
+	/**
+	 * Returns ParserOutput to use when a page does not exist. In some cases, we still want to show
+	 * "virtual" content, e.g. in the MediaWiki namespace, or in the File namespace for non-local
+	 * files.
+	 *
+	 * @param ParserOptions $options
+	 *
+	 * @return ParserOutput
+	 */
+	protected function getEmptyPageParserOutput( ParserOptions $options ) {
+		$content = $this->getSubstituteContent();
+
+		return $content->getParserOutput( $this->getTitle(), 0, $options );
+	}
+
+	/**
+	 * @see getOldIDFromRequest()
+	 * @see getRevIdFetched()
+	 *
+	 * @return int The oldid of the article that is was requested in the constructor or via the
+	 *         context's WebRequest.
 	 */
 	public function getOldID() {
 		if ( is_null( $this->mOldId ) ) {
@@ -315,6 +378,8 @@ class Article implements Page {
 			}
 		}
 
+		$this->mRevIdFetched = $this->mRevision ? $this->mRevision->getId() : 0;
+
 		return $oldid;
 	}
 
@@ -322,6 +387,7 @@ class Article implements Page {
 	 * Get text content object
 	 * Does *NOT* follow redirects.
 	 * @todo When is this null?
+	 * @deprecated since 1.32, use fetchRevisionRecord() instead.
 	 *
 	 * @note Code that wants to retrieve page content from the database should
 	 * use WikiPage::getContent().
@@ -331,74 +397,139 @@ class Article implements Page {
 	 * @since 1.21
 	 */
 	protected function fetchContentObject() {
-		if ( $this->mContentLoaded ) {
-			return $this->mContentObject;
+		if ( !$this->mContentLoaded ) {
+			$this->fetchRevisionRecord();
+		}
+
+		return $this->mContentObject;
+	}
+
+	/**
+	 * Fetches the revision to work on.
+	 * The revision is typically loaded from the database, but may also be a fake representing
+	 * an error message or content supplied by an extension. Refer to $this->fetchResult for
+	 * the revision actually loaded from the database, and any errors encountered while doing
+	 * that.
+	 *
+	 * @return RevisionRecord|null
+	 */
+	protected function fetchRevisionRecord() {
+		if ( $this->fetchResult ) {
+			return $this->mRevision ? $this->mRevision->getRevisionRecord() : null;
 		}
 
 		$this->mContentLoaded = true;
-		$this->mContent = null;
+		$this->mContentObject = null;
 
 		$oldid = $this->getOldID();
 
-		# Pre-fill content with error message so that if something
-		# fails we'll have something telling us what we intended.
-		// XXX: this isn't page content but a UI message. horrible.
-		$this->mContentObject = new MessageContent( 'missing-revision', [ $oldid ] );
-
-		if ( $oldid ) {
-			# $this->mRevision might already be fetched by getOldIDFromRequest()
-			if ( !$this->mRevision ) {
-				$this->mRevision = Revision::newFromId( $oldid );
-				if ( !$this->mRevision ) {
-					wfDebug( __METHOD__ . " failed to retrieve specified revision, id $oldid\n" );
-					return false;
-				}
-			}
-		} else {
-			$oldid = $this->mPage->getLatest();
+		// $this->mRevision might already be fetched by getOldIDFromRequest()
+		if ( !$this->mRevision ) {
 			if ( !$oldid ) {
-				wfDebug( __METHOD__ . " failed to find page data for title " .
-					$this->getTitle()->getPrefixedText() . "\n" );
-				return false;
-			}
+				$this->mRevision = $this->mPage->getRevision();
 
-			# Update error message with correct oldid
-			$this->mContentObject = new MessageContent( 'missing-revision', [ $oldid ] );
+				if ( !$this->mRevision ) {
+					wfDebug( __METHOD__ . " failed to find page data for title " .
+						$this->getTitle()->getPrefixedText() . "\n" );
 
-			$this->mRevision = $this->mPage->getRevision();
+					// Just for sanity, output for this case is done by showMissingArticle().
+					$this->fetchResult = Status::newFatal( 'noarticletext' );
+					$this->applyContentOverride( $this->makeFetchErrorContent() );
+					return null;
+				}
+			} else {
+				$this->mRevision = Revision::newFromId( $oldid );
 
-			if ( !$this->mRevision ) {
-				wfDebug( __METHOD__ . " failed to retrieve current page, rev_id $oldid\n" );
-				return false;
+				if ( !$this->mRevision ) {
+					wfDebug( __METHOD__ . " failed to load revision, rev_id $oldid\n" );
+
+					$this->fetchResult = Status::newFatal( 'missing-revision', $oldid );
+					$this->applyContentOverride( $this->makeFetchErrorContent() );
+					return null;
+				}
 			}
 		}
 
-		// @todo FIXME: Horrible, horrible! This content-loading interface just plain sucks.
-		// We should instead work with the Revision object when we need it...
-		// Loads if user is allowed
-		$content = $this->mRevision->getContent(
+		$this->mRevIdFetched = $this->mRevision->getId();
+		$this->fetchResult = Status::newGood( $this->mRevision );
+
+		if ( !$this->mRevision->userCan( Revision::DELETED_TEXT, $this->getContext()->getUser() ) ) {
+			wfDebug( __METHOD__ . " failed to retrieve content of revision " .
+				$this->mRevision->getId() . "\n" );
+
+			// Just for sanity, output for this case is done by showDeletedRevisionHeader().
+			$this->fetchResult = Status::newFatal( 'rev-deleted-text-permission' );
+			$this->applyContentOverride( $this->makeFetchErrorContent() );
+			return null;
+		}
+
+		if ( Hooks::isRegistered( 'ArticleAfterFetchContentObject' ) ) {
+			$contentObject = $this->mRevision->getContent(
+				Revision::FOR_THIS_USER,
+				$this->getContext()->getUser()
+			);
+
+			$hookContentObject = $contentObject;
+
+				// Avoid PHP 7.1 warning of passing $this by reference
+			$articlePage = $this;
+
+			Hooks::run(
+				'ArticleAfterFetchContentObject',
+				[ &$articlePage, &$hookContentObject ],
+				'1.32'
+			);
+
+			if ( $hookContentObject !== $contentObject ) {
+				// A hook handler is trying to override the content
+				$this->applyContentOverride( $hookContentObject );
+			}
+		}
+
+		// For B/C only
+		$this->mContentObject = $this->mRevision->getContent(
 			Revision::FOR_THIS_USER,
 			$this->getContext()->getUser()
 		);
 
-		if ( !$content ) {
-			wfDebug( __METHOD__ . " failed to retrieve content of revision " .
-				$this->mRevision->getId() . "\n" );
-			return false;
+		return $this->mRevision->getRevisionRecord();
+	}
+
+	/**
+	 * Returns a Content object representing any error in $this->fetchContent, or null
+	 * if there is no such error.
+	 *
+	 * @return Content|null
+	 */
+	private function makeFetchErrorContent() {
+		if ( !$this->fetchResult || $this->fetchResult->isOK() ) {
+			return null;
 		}
 
-		$this->mContentObject = $content;
-		$this->mRevIdFetched = $this->mRevision->getId();
+		return new MessageContent( $this->fetchResult->getMessage() );
+	}
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$articlePage = $this;
+	/**
+	 * Applies a content override by constructing a fake Revision object and assigning
+	 * it to mRevision. The fake revision will not have a user, timestamp or summary set.
+	 *
+	 * This mechanism exists mainly to accommodate extensions that use the
+	 * ArticleAfterFetchContentObject. Once that hook has been removed, there should no longer
+	 * be a need for a fake revision object. fetchRevisionRecord() presently also uses this mechanism
+	 * to report errors, but that could be changed to use $this->fetchResult instead.
+	 *
+	 * @param Content $override Content to be used instead of the actual page content,
+	 *        coming from an extension or representing an error message.
+	 */
+	private function applyContentOverride( Content $override ) {
+		// Construct a fake revision
+		$rev = new MutableRevisionRecord( $this->getTitle() );
+		$rev->setContent( 'main', $override );
 
-		Hooks::run(
-			'ArticleAfterFetchContentObject',
-			[ &$articlePage, &$this->mContentObject ]
-		);
+		$this->mRevision = new Revision( $rev );
 
-		return $this->mContentObject;
+		// For B/C only
+		$this->mContentObject = $override;
 	}
 
 	/**
@@ -417,25 +548,32 @@ class Article implements Page {
 
 	/**
 	 * Get the fetched Revision object depending on request parameters or null
-	 * on failure.
+	 * on failure. The revision returned may be a fake representing an error message or
+	 * wrapping content supplied by an extension. Refer to $this->fetchResult for the
+	 * revision actually loaded from the database.
 	 *
 	 * @since 1.19
 	 * @return Revision|null
 	 */
 	public function getRevisionFetched() {
-		$this->fetchContentObject();
+		$this->fetchRevisionRecord();
 
-		return $this->mRevision;
+		if ( $this->fetchResult->isOK() ) {
+			return $this->mRevision;
+		}
 	}
 
 	/**
 	 * Use this to fetch the rev ID used on page views
 	 *
+	 * Before fetchRevisionRecord was called, this returns the page's latest revision,
+	 * regardless of what getOldID() returns.
+	 *
 	 * @return int Revision ID of last article revision
 	 */
 	public function getRevIdFetched() {
-		if ( $this->mRevIdFetched ) {
-			return $this->mRevIdFetched;
+		if ( $this->fetchResult && $this->fetchResult->isOK() ) {
+			return $this->fetchResult->value->getId();
 		} else {
 			return $this->mPage->getLatest();
 		}
@@ -571,11 +709,9 @@ class Article implements Page {
 					}
 					break;
 				case 3:
-					# This will set $this->mRevision if needed
-					$this->fetchContentObject();
-
 					# Are we looking at an old revision
-					if ( $oldid && $this->mRevision ) {
+					$rev = $this->fetchRevisionRecord();
+					if ( $oldid && $this->fetchResult->isOK() ) {
 						$this->setOldSubtitle( $oldid );
 
 						if ( !$this->showDeletedRevisionHeader() ) {
@@ -599,10 +735,21 @@ class Article implements Page {
 							"<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
 							'clearyourcache'
 						);
-					} elseif ( !Hooks::run( 'ArticleContentViewCustom',
-						[ $this->fetchContentObject(), $this->getTitle(), $outputPage ] )
+					} elseif ( !Hooks::run( 'ArticleRevisionViewCustom', [
+							$rev,
+							$this->getTitle(),
+							$oldid,
+							$outputPage,
+						] )
 					) {
-						# Allow extensions do their own custom view for certain pages
+						// NOTE: sync with hooks called in DifferenceEngine::renderNewRevision()
+						// Allow extensions do their own custom view for certain pages
+						$outputDone = true;
+					} elseif ( !Hooks::run( 'ArticleContentViewCustom',
+						[ $this->fetchContentObject(), $this->getTitle(), $outputPage ], '1.32' )
+					) {
+						// NOTE: sync with hooks called in DifferenceEngine::renderNewRevision()
+						// Allow extensions do their own custom view for certain pages
 						$outputDone = true;
 					}
 					break;
@@ -610,12 +757,32 @@ class Article implements Page {
 					# Run the parse, protected by a pool counter
 					wfDebug( __METHOD__ . ": doing uncached parse\n" );
 
-					$content = $this->getContentObject();
-					$poolArticleView = new PoolWorkArticleView( $this->getPage(), $parserOptions,
-						$this->getRevIdFetched(), $useParserCache, $content );
+					$rev = $this->fetchRevisionRecord();
+					$error = null;
 
-					if ( !$poolArticleView->execute() ) {
+					if ( $rev ) {
+						$poolArticleView = new PoolWorkArticleView(
+							$this->getPage(),
+							$parserOptions,
+							$this->getRevIdFetched(),
+							$useParserCache,
+							$rev
+						);
+						$ok = $poolArticleView->execute();
 						$error = $poolArticleView->getError();
+						$this->mParserOutput = $poolArticleView->getParserOutput() ?: null;
+
+						# Don't cache a dirty ParserOutput object
+						if ( $poolArticleView->getIsDirty() ) {
+							$outputPage->setCdnMaxage( 0 );
+							$outputPage->addHTML( "<!-- parser cache is expired, " .
+								"sending anyway due to pool overload-->\n" );
+						}
+					} else {
+						$ok = false;
+					}
+
+					if ( !$ok ) {
 						if ( $error ) {
 							$outputPage->clearHTML(); // for release() errors
 							$outputPage->enableClientCache( false );
@@ -628,18 +795,13 @@ class Article implements Page {
 						return;
 					}
 
-					$this->mParserOutput = $poolArticleView->getParserOutput();
-					$outputPage->addParserOutput( $this->mParserOutput, $poOptions );
-					if ( $content->getRedirectTarget() ) {
-						$outputPage->addSubtitle( "<span id=\"redirectsub\">" .
-							$this->getContext()->msg( 'redirectpagesub' )->parse() . "</span>" );
+					if ( $this->mParserOutput ) {
+						$outputPage->addParserOutput( $this->mParserOutput, $poOptions );
 					}
 
-					# Don't cache a dirty ParserOutput object
-					if ( $poolArticleView->getIsDirty() ) {
-						$outputPage->setCdnMaxage( 0 );
-						$outputPage->addHTML( "<!-- parser cache is expired, " .
-							"sending anyway due to pool overload-->\n" );
+					if ( $rev && $this->getRevisionRedirectTarget( $rev ) ) {
+						$outputPage->addSubtitle( "<span id=\"redirectsub\">" .
+							$this->getContext()->msg( 'redirectpagesub' )->parse() . "</span>" );
 					}
 
 					$outputDone = true;
@@ -650,8 +812,10 @@ class Article implements Page {
 			}
 		}
 
-		# Get the ParserOutput actually *displayed* here.
-		# Note that $this->mParserOutput is the *current*/oldid version output.
+		// Get the ParserOutput actually *displayed* here.
+		// Note that $this->mParserOutput is the *current*/oldid version output.
+		// Note that the ArticleViewHeader hook is allowed to set $outputDone to a
+		// ParserOutput instance.
 		$pOutput = ( $outputDone instanceof ParserOutput )
 			? $outputDone // object fetched by hook
 			: $this->mParserOutput ?: null; // ParserOutput or null, avoid false
@@ -677,12 +841,12 @@ class Article implements Page {
 		$outputPage->adaptCdnTTL( $this->mPage->getTimestamp(), IExpiringStore::TTL_DAY );
 
 		# Check for any __NOINDEX__ tags on the page using $pOutput
-		$policy = $this->getRobotPolicy( 'view', $pOutput );
+		$policy = $this->getRobotPolicy( 'view', $pOutput ?: null );
 		$outputPage->setIndexPolicy( $policy['index'] );
-		$outputPage->setFollowPolicy( $policy['follow'] );
+		$outputPage->setFollowPolicy( $policy['follow'] ); // FIXME: test this
 
 		$this->showViewFooter();
-		$this->mPage->doViewUpdates( $user, $oldid );
+		$this->mPage->doViewUpdates( $user, $oldid ); // FIXME: test this
 
 		# Load the postEdit module if the user just saved this revision
 		# See also EditPage::setPostEditCookie
@@ -693,8 +857,20 @@ class Article implements Page {
 			# Clear the cookie. This also prevents caching of the response.
 			$request->response()->clearCookie( $cookieKey );
 			$outputPage->addJsConfigVars( 'wgPostEdit', $postEdit );
-			$outputPage->addModules( 'mediawiki.action.view.postEdit' );
+			$outputPage->addModules( 'mediawiki.action.view.postEdit' ); // FIXME: test this
 		}
+	}
+
+	/**
+	 * @param RevisionRecord $revision
+	 * @return null|Title
+	 */
+	private function getRevisionRedirectTarget( RevisionRecord $revision ) {
+		// TODO: find a *good* place for the code that determines the redirect target for
+		// a given revision!
+		// NOTE: Use main slot content. Compare code in DerivedPageDataUpdater::revisionIsRedirect.
+		$content = $revision->getContent( 'main' );
+		return $content ? $content->getRedirectTarget() : null;
 	}
 
 	/**
@@ -1261,7 +1437,9 @@ class Article implements Page {
 		# Show error message
 		$oldid = $this->getOldID();
 		if ( !$oldid && $title->getNamespace() === NS_MEDIAWIKI && $title->hasSourceText() ) {
-			$outputPage->addParserOutput( $this->getContentObject()->getParserOutput( $title ) );
+			// use fake Content object for system message
+			$parserOptions = ParserOptions::newCanonical( 'canonical' );
+			$outputPage->addParserOutput( $this->getEmptyPageParserOutput( $parserOptions ) );
 		} else {
 			if ( $oldid ) {
 				$text = wfMessage( 'missing-revision', $oldid )->plain();
@@ -1670,7 +1848,7 @@ class Article implements Page {
 				__METHOD__
 			);
 
-			// @todo FIXME: i18n issue/patchwork message
+			// @todo i18n issue/patchwork message
 			$context->getOutput()->addHTML(
 				'<strong class="mw-delete-warning-revisions">' .
 				$context->msg( 'historywarning' )->numParams( $revisions )->parse() .
@@ -1697,7 +1875,7 @@ class Article implements Page {
 
 	/**
 	 * Output deletion confirmation dialog
-	 * @todo FIXME: Move to another file?
+	 * @todo Move to another file?
 	 * @param string $reason Prefilled reason
 	 */
 	public function confirmDelete( $reason ) {

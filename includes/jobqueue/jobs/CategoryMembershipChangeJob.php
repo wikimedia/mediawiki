@@ -232,12 +232,14 @@ class CategoryMembershipChangeJob extends Job {
 	 * @return string[] category names
 	 */
 	private function getCategoriesAtRev( WikiPage $page, Revision $rev, $parseTimestamp ) {
-		$content = $rev->getContent();
+		$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
 		$options = $page->makeParserOptions( 'canonical' );
 		$options->setTimestamp( $parseTimestamp );
+
 		// This could possibly use the parser cache if it checked the revision ID,
 		// but that's more complicated than it's worth.
-		$output = $content->getParserOutput( $page->getTitle(), $rev->getId(), $options );
+		$output = $renderer->getRenderedRevision( $rev->getRevisionRecord(), $options )
+			->getRevisionParserOutput();
 
 		// array keys will cast numeric category names to ints
 		// so we need to cast them back to strings to avoid breaking things!

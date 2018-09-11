@@ -624,8 +624,8 @@ a chance to hide their (unrelated) log entries.
   AND in the final query)
 $logTypes: Array of log types being queried
 
-'ArticleAfterFetchContentObject': After fetching content of an article from the
-database.
+'ArticleAfterFetchContentObject': DEPRECATED since 1.32, use ArticleRevisionViewCustom
+to control output. After fetching content of an article from the database.
 &$article: the article (object) being loaded from the database
 &$content: the content of the article, as a Content object
 
@@ -640,12 +640,21 @@ this to change the content in this area or how it is loaded.
 $diffEngine: the DifferenceEngine
 $output: the OutputPage object
 
-'ArticleContentViewCustom': Allows to output the text of the article in a
-different format than wikitext. Note that it is preferable to implement proper
-handing for a custom data type using the ContentHandler facility.
+'ArticleRevisionViewCustom': Allows custom rendering of an article's content.
+Note that it is preferable to implement proper handing for a custom data type using
+the ContentHandler facility.
+$revision: content of the page, as a RevisionRecord object, or null if the revision
+  could not be loaded. May also be a fake that wraps content supplied by an extension.
+$title: title of the page
+$oldid: the requested revision id, or 0 for the currrent revision.
+$output: a ParserOutput object
+
+'ArticleContentViewCustom': DEPRECATED since 1.32, use ArticleRevisionViewCustom instead,
+or provide an appropriate ContentHandler. Allows to output the text of the article in a
+different format than wikitext.
 $content: content of the page, as a Content object
 $title: title of the page
-$output: reference to $wgOut
+$output: a ParserOutput object
 
 'ArticleDelete': Before an article is deleted.
 &$wikiPage: the WikiPage (object) being deleted
@@ -775,8 +784,8 @@ $article: the article
 $article: Article object
 $patrolFooterShown: boolean whether patrol footer is shown
 
-'ArticleViewHeader': Before the parser cache is about to be tried for article
-viewing.
+'ArticleViewHeader': Control article output. Called before the parser cache is about
+to be tried for article viewing.
 &$article: the article
 &$pcache: whether to try the parser cache or not
 &$outputDone: whether the output for this page finished or not. Set to

@@ -822,8 +822,20 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Show the new revision of the page.
+	 *
+	 * @note Not supported after calling setContent().
 	 */
 	public function renderNewRevision() {
+		if ( $this->isContentOverridden ) {
+			// The code below only works with a Revision object. We could construct a fake revision
+			// (here or in setContent), but since this does not seem needed at the moment,
+			// we'll just fail for now.
+			throw new LogicException(
+				__METHOD__
+				. ' is not supported after calling setContent(). Use setRevisions() instead.'
+			);
+		}
+
 		$out = $this->getOutput();
 		$revHeader = $this->getRevisionHeader( $this->mNewRev );
 		# Add "current version as of X" title
@@ -842,10 +854,16 @@ class DifferenceEngine extends ContextSource {
 			$out->setRevisionTimestamp( $this->mNewRev->getTimestamp() );
 			$out->setArticleFlag( true );
 
-			if ( !Hooks::run( 'ArticleContentViewCustom',
-				[ $this->mNewContent, $this->mNewPage, $out ] )
+			if ( !Hooks::run( 'ArticleRevisionViewCustom',
+				[ $this->mNewRev->getRevisionRecord(), $this->mNewPage, $out ] )
 			) {
 				// Handled by extension
+				// NOTE: sync with hooks called in Article::view()
+			} elseif ( !Hooks::run( 'ArticleContentViewCustom',
+				[ $this->mNewContent, $this->mNewPage, $out ], '1.32' )
+			) {
+				// Handled by extension
+				// NOTE: sync with hooks called in Article::view()
 			} else {
 				// Normal page
 				if ( $this->getTitle()->equals( $this->mNewPage ) ) {
@@ -889,6 +907,13 @@ class DifferenceEngine extends ContextSource {
 	 * @return ParserOutput|bool False if the revision was not found
 	 */
 	protected function getParserOutput( WikiPage $page, Revision $rev ) {
+		if ( !$rev->getId() ) {
+			// WikiPage::getParserOutput wants a revision ID. Passing 0 will incorrectly show
+			// the current revision, so fail instead. If need be, WikiPage::getParserOutput
+			// could be made to accept a Revision or RevisionRecord instead of the id.
+			return false;
+		}
+
 		$parserOptions = $page->makeParserOptions( $this->getContext() );
 		$parserOutput = $page->getParserOutput( $parserOptions, $rev->getId() );
 
