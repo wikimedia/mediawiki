@@ -1392,7 +1392,7 @@
 			/**
 			 * Resolve indexed dependencies.
 			 *
-			 * ResourceLoader uses an optimization to save space which replaces module names in
+			 * ResourceLoader uses an optimisation to save space which replaces module names in
 			 * dependency lists with the index of that module within the array of module
 			 * registration data if it exists. The benefit is a significant reduction in the data
 			 * size of the startup module. This function changes those dependency lists back to
@@ -1610,6 +1610,34 @@
 				};
 			}
 
+			/**
+			 * @private
+			 * @param {string} module
+			 * @param {string|number} [version]
+			 * @param {string[]} [dependencies]
+			 * @param {string} [group]
+			 * @param {string} [source]
+			 * @param {string} [skip]
+			 */
+			function registerOne( module, version, dependencies, group, source, skip ) {
+				if ( hasOwn.call( registry, module ) ) {
+					throw new Error( 'module already registered: ' + module );
+				}
+				registry[ module ] = {
+					// Exposed to execute() for mw.loader.implement() closures.
+					// Import happens via require().
+					module: {
+						exports: {}
+					},
+					version: String( version || '' ),
+					dependencies: dependencies || [],
+					group: typeof group === 'string' ? group : null,
+					source: typeof source === 'string' ? source : 'local',
+					state: 'registered',
+					skip: typeof skip === 'string' ? skip : null
+				};
+			}
+
 			/* Public Members */
 			return {
 				/**
@@ -1732,50 +1760,39 @@
 				/**
 				 * Register a module, letting the system know about it and its properties.
 				 *
-				 * The startup modules contain calls to this method.
+				 * The startup module calls this method.
 				 *
 				 * When using multiple module registration by passing an array, dependencies that
 				 * are specified as references to modules within the array will be resolved before
 				 * the modules are registered.
 				 *
-				 * @param {string|Array} module Module name or array of arrays, each containing
+				 * @param {string|Array} modules Module name or array of arrays, each containing
 				 *  a list of arguments compatible with this method
-				 * @param {string|number} version Module version hash (falls backs to empty string)
+				 * @param {string|number} [version] Module version hash (falls backs to empty string)
 				 *  Can also be a number (timestamp) for compatibility with MediaWiki 1.25 and earlier.
 				 * @param {string[]} [dependencies] Array of module names on which this module depends.
 				 * @param {string} [group=null] Group which the module is in
 				 * @param {string} [source='local'] Name of the source
 				 * @param {string} [skip=null] Script body of the skip function
 				 */
-				register: function ( module, version, dependencies, group, source, skip ) {
+				register: function ( modules ) {
 					var i;
-					// Allow multiple registration
-					if ( typeof module === 'object' ) {
-						resolveIndexedDependencies( module );
-						// module is an array of arrays
-						for ( i = 0; i < module.length; i++ ) {
-							// module is an array of module names
-							mw.loader.register.apply( mw.loader, module[ i ] );
+					if ( typeof modules === 'object' ) {
+						resolveIndexedDependencies( modules );
+						// Optimisation: Up to 55% faster.
+						// Typically called only once, and with a batch.
+						// See <https://gist.github.com/Krinkle/f06fdb3de62824c6c16f02a0e6ce0e66>
+						// Benchmarks taught us that the code for adding an object to `registry`
+						// should actually be inline, or in a simple function that does no
+						// arguments manipulation, and isn't also the caller itself.
+						// JS semantics make it hard to optimise recursion to a different
+						// signature of itself.
+						for ( i = 0; i < modules.length; i++ ) {
+							registerOne.apply( null, modules[ i ] );
 						}
-						return;
+					} else {
+						registerOne.apply( null, arguments );
 					}
-					if ( hasOwn.call( registry, module ) ) {
-						throw new Error( 'module already registered: ' + module );
-					}
-					// List the module as registered
-					registry[ module ] = {
-						// Exposed to execute() for mw.loader.implement() closures.
-						// Import happens via require().
-						module: {
-							exports: {}
-						},
-						version: String( version || '' ),
-						dependencies: dependencies || [],
-						group: typeof group === 'string' ? group : null,
-						source: typeof source === 'string' ? source : 'local',
-						state: 'registered',
-						skip: typeof skip === 'string' ? skip : null
-					};
 				},
 
 				/**
