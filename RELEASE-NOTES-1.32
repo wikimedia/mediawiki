@@ -289,6 +289,11 @@ because of Phabricator reports.
   Define $wgProfiler via LocalSettings.php instead.
 * The mw.loader.addSource() is now considered a private method, and no longer
   supports the `id, url` signature. Use the `Object` parameter instead.
+* Several collations were removed. They were workarounds for bugs in the ICU
+  library and they are no longer needed (as of ICU 57.1):
+  * 'uppercase-se' (NorthernSamiUppercaseCollation) - use 'uca-se' instead
+  * 'xx-uca-et' (CollationEt) - use 'uca-et' instead
+  * 'xx-uca-fa' (CollationFa) - use 'uca-fa' instead
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit
@@ -301,7 +306,6 @@ because of Phabricator reports.
 * Overriding SearchEngine::{searchText,searchTitle,searchArchiveTitle}
   in extending classes is deprecated.  Extend related doSearch* methods
   instead.
-* CollationFa has been removed completely as it's not needed anymore
 * The following 'mediawiki.api' plugin modules were merged into mediawiki.api
   and deprecated: mediawiki.api.category, mediawiki.api.edit,
   mediawiki.api.login, mediawiki.api.options, mediawiki.api.parse,
