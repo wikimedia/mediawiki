@@ -510,7 +510,7 @@ CREATE TABLE &mw_prefix.ipblocks (
   ipb_deleted           CHAR(1)      DEFAULT '0' NOT NULL,
   ipb_block_email       CHAR(1)      DEFAULT '0' NOT NULL,
   ipb_allow_usertalk    CHAR(1)      DEFAULT '0' NOT NULL,
-  ipb_parent_block_id             NUMBER       DEFAULT NULL
+  ipb_parent_block_id   NUMBER       DEFAULT NULL,
   ipb_sitewide          CHAR(1)      DEFAULT '1' NOT NULL
 );
 ALTER TABLE &mw_prefix.ipblocks ADD CONSTRAINT &mw_prefix.ipblocks_pk PRIMARY KEY (ipb_id);
