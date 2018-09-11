@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Revision;
 
+use CommentStoreComment;
 use Content;
 use Language;
 use LogicException;
@@ -143,6 +144,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$rev = new MutableRevisionRecord( $title );
 		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
 		$rev->setTimestamp( '20180101000003' );
+		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
 		$text = "";
 		$text .= "* page:{{PAGENAME}}\n";
@@ -179,6 +181,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$rev->setId( 21 ); // current!
 		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
 		$rev->setTimestamp( '20180101000003' );
+		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
 		$text = "";
 		$text .= "* page:{{PAGENAME}}\n";
@@ -214,6 +217,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$rev->setId( 21 ); // current!
 		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
 		$rev->setTimestamp( '20180101000003' );
+		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
 		$text = "";
 		$text .= "* page:{{PAGENAME}}\n";
@@ -243,6 +247,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$rev->setId( 11 ); // old!
 		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
 		$rev->setTimestamp( '20180101000003' );
+		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
 		$text = "";
 		$text .= "* page:{{PAGENAME}}\n";
@@ -279,6 +284,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$rev->setVisibility( RevisionRecord::DELETED_TEXT ); // suppressed!
 		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
 		$rev->setTimestamp( '20180101000003' );
+		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
 		$text = "";
 		$text .= "* page:{{PAGENAME}}\n";
@@ -303,6 +309,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$rev->setVisibility( RevisionRecord::DELETED_TEXT ); // suppressed!
 		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
 		$rev->setTimestamp( '20180101000003' );
+		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
 		$text = "";
 		$text .= "* page:{{PAGENAME}}\n";
@@ -341,6 +348,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$rev->setVisibility( RevisionRecord::DELETED_TEXT ); // suppressed!
 		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
 		$rev->setTimestamp( '20180101000003' );
+		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
 		$text = "";
 		$text .= "* page:{{PAGENAME}}\n";
@@ -381,6 +389,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$rev = new MutableRevisionRecord( $title );
 		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
 		$rev->setTimestamp( '20180101000003' );
+		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
 		$rev->setContent( 'main', new WikitextContent( '[[Kittens]]' ) );
 		$rev->setContent( 'aux', new WikitextContent( '[[Goats]]' ) );
