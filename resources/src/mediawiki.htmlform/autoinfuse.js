@@ -8,6 +8,11 @@
 		var $oouiNodes, modules, extraModules;
 
 		$oouiNodes = $root.find( '.mw-htmlform-field-autoinfuse' );
+
+		$oouiNodes = $oouiNodes.filter( function () {
+			return !$( this ).closest( '.mw-htmlform-autoinfuse-lazy' ).length;
+		} );
+
 		if ( $oouiNodes.length ) {
 			// The modules are preloaded (added server-side in HTMLFormField, and the individual fields
 			// which need extra ones), but this module doesn't depend on them. Wait until they're loaded.
