@@ -2057,7 +2057,7 @@
 							// Disabled because localStorage quotas are tight and (in Firefox's case)
 							// shared by multiple origins.
 							// See T66721, and <https://bugzilla.mozilla.org/show_bug.cgi?id=1064466>.
-							/Firefox|Opera/.test( navigator.userAgent ) ||
+							/Firefox/.test( navigator.userAgent ) ||
 
 							// Disabled by configuration.
 							!mw.config.get( 'wgResourceLoaderStorageEnabled' )
