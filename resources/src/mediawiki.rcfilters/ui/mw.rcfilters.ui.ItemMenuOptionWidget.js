@@ -117,7 +117,7 @@
 				classes.push( 'mw-rcfilters-ui-itemMenuOptionWidget-identifier-' + ident );
 			} );
 
-			this.$element.addClass( classes.join( ' ' ) );
+			this.$element.addClass( classes );
 		}
 
 		this.updateUiBasedOnState();
