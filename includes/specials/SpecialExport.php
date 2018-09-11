@@ -23,7 +23,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Logger\LoggerFactory;
 
 /**
@@ -379,23 +378,10 @@ class SpecialExport extends SpecialPage {
 		}
 
 		/* Ok, let's get to it... */
-		if ( $history == WikiExporter::CURRENT ) {
-			$lb = false;
-			$db = wfGetDB( DB_REPLICA );
-			$buffer = WikiExporter::BUFFER;
-		} else {
-			// Use an unbuffered query; histories may be very long!
-			$lb = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->newMainLB();
-			$db = $lb->getConnection( DB_REPLICA );
-			$buffer = WikiExporter::STREAM;
+		$lb = false;
+		$db = wfGetDB( DB_REPLICA );
 
-			// This might take a while... :D
-			Wikimedia\suppressWarnings();
-			set_time_limit( 0 );
-			Wikimedia\restoreWarnings();
-		}
-
-		$exporter = new WikiExporter( $db, $history, $buffer );
+		$exporter = new WikiExporter( $db, $history );
 		$exporter->list_authors = $list_authors;
 		$exporter->openStream();
 
