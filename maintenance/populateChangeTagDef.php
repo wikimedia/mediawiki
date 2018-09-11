@@ -39,6 +39,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 			true
 		);
 		$this->addOption( 'populate-only', 'Do not update change_tag_def table' );
+		$this->addOption( 'set-user-tags-only', 'Only update ctd_user_defined from valid_tag table' );
 	}
 
 	public function execute() {
@@ -61,10 +62,15 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 				__METHOD__
 			)
 		) {
+			if ( $this->hasOption( 'set-user-tags-only' ) ) {
+				$this->setUserDefinedTags();
+				return true;
+			}
 			if ( !$this->hasOption( 'populate-only' ) ) {
 				$this->updateCountTag();
 			}
 			$this->backpopulateChangeTagId();
+			$this->setUserDefinedTags();
 		} else {
 			$this->updateCountTagId();
 		}
@@ -73,6 +79,40 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 		// $this->cleanZeroCountRows();
 
 		return true;
+	}
+
+	private function setUserDefinedTags() {
+		$dbr = $this->lbFactory->getMainLB()->getConnection( DB_REPLICA );
+
+		$userTags = $dbr->selectFieldValues(
+			'valid_tag',
+			'vt_tag',
+			[],
+			__METHOD__
+		);
+
+		if ( empty( $userTags ) ) {
+			$this->output( "No user defined tags to set, moving on...\n" );
+			return;
+		}
+
+		if ( $this->hasOption( 'dry-run' ) ) {
+			$this->output(
+				'These tags will have ctd_user_defined=1 : ' . implode( ', ', $userTags ) . "\n"
+			);
+			return;
+		}
+
+		$dbw = $this->lbFactory->getMainLB()->getConnection( DB_MASTER );
+
+		$dbw->update(
+			'change_tag_def',
+			[ 'ctd_user_defined' => 1 ],
+			[ 'ctd_name' => $userTags ],
+			__METHOD__
+		);
+		$this->lbFactory->waitForReplication();
+		$this->output( "Finished setting user defined tags in change_tag_def table\n" );
 	}
 
 	private function updateCountTagId() {
