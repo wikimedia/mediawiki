@@ -8,7 +8,6 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -28,6 +27,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * The local service locator, created during setUp().
+	 * @var MediaWikiServices
 	 */
 	private $localServices;
 
@@ -292,38 +292,6 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @param ConfigFactory $oldConfigFactory
-	 * @param LBFactory $oldLoadBalancerFactory
-	 * @param MediaWikiServices $newServices
-	 *
-	 * @throws MWException
-	 */
-	private static function installTestServices(
-		ConfigFactory $oldConfigFactory,
-		LBFactory $oldLoadBalancerFactory,
-		MediaWikiServices $newServices
-	) {
-		// Use bootstrap config for all configuration.
-		// This allows config overrides via global variables to take effect.
-		$bootstrapConfig = $newServices->getBootstrapConfig();
-		$newServices->resetServiceForTesting( 'ConfigFactory' );
-		$newServices->redefineService(
-			'ConfigFactory',
-			self::makeTestConfigFactoryInstantiator(
-				$oldConfigFactory,
-				[ 'main' => $bootstrapConfig ]
-			)
-		);
-		$newServices->resetServiceForTesting( 'DBLoadBalancerFactory' );
-		$newServices->redefineService(
-			'DBLoadBalancerFactory',
-			function ( MediaWikiServices $services ) use ( $oldLoadBalancerFactory ) {
-				return $oldLoadBalancerFactory;
-			}
-		);
-	}
-
-	/**
 	 * @param ConfigFactory $oldFactory
 	 * @param Config[] $configurations
 	 *
@@ -358,7 +326,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * Resets some non-service singleton instances and other static caches. It's not necessary to
 	 * reset services here.
 	 */
-	private function resetNonServiceCaches() {
+	public static function resetNonServiceCaches() {
 		global $wgRequest, $wgJobClasses;
 
 		foreach ( $wgJobClasses as $type => $class ) {
@@ -428,9 +396,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			$this->resetDB( $this->db, $this->tablesUsed );
 		}
 
-		$this->localServices->destroy();
+		self::restoreMwServices();
 		$this->localServices = null;
-		MediaWikiServices::forceGlobalInstance( self::$originalServices );
 	}
 
 	/**
@@ -524,7 +491,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		// Reset all caches between tests.
-		$this->resetNonServiceCaches();
+		self::resetNonServiceCaches();
 
 		// XXX: reset maintenance triggers
 		// Hook into period lag checks which often happen in long-running scripts
@@ -640,6 +607,11 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			throw new Exception( __METHOD__ . ' must be called after MediaWikiTestCase::run()' );
 		}
 
+		if ( $this->localServices !== MediaWikiServices::getInstance() ) {
+			throw new Exception( __METHOD__ . ' will not work because the global MediaWikiServices '
+				. 'instance has been replaced by test code.' );
+		}
+
 		$this->localServices->disableService( $name );
 		$this->localServices->redefineService(
 			$name,
@@ -726,6 +698,12 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		if ( !$this->localServices ) {
 			throw new Exception( __METHOD__ . ' must be called after MediaWikiTestCase::run()' );
 		}
+
+		if ( $this->localServices !== MediaWikiServices::getInstance() ) {
+			throw new Exception( __METHOD__ . ' will not work because the global MediaWikiServices '
+				. 'instance has been replaced by test code.' );
+		}
+
 		MWNamespace::clearCaches();
 		Language::clearCaches();
 
@@ -895,6 +873,44 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	protected function overrideMwServices(
 		Config $configOverrides = null, array $services = []
 	) {
+		$newInstance = self::installMockMwServices( $configOverrides );
+
+		if ( $this->localServices ) {
+			$this->localServices->destroy();
+		}
+
+		$this->localServices = $newInstance;
+
+		foreach ( $services as $name => $callback ) {
+			$newInstance->redefineService( $name, $callback );
+		}
+
+		return $newInstance;
+	}
+
+	/**
+	 * Creates a new "mock" MediaWikiServices instance, and installs it.
+	 * This effectively resets all cached states in services, with the exception of
+	 * the ConfigFactory and the DBLoadBalancerFactory service, which are inherited from
+	 * the original MediaWikiServices.
+	 *
+	 * @note The new original MediaWikiServices instance can later be restored by calling
+	 * restoreMwServices(). That original is determined by the first call to this method, or
+	 * by setUpBeforeClass, whichever is called first. The caller is responsible for managing
+	 * and, when appropriate, destroying any other MediaWikiServices instances that may get
+	 * replaced when calling this method.
+	 *
+	 * @param Config|null $configOverrides Configuration overrides for the new MediaWikiServices
+	 *        instance.
+	 *
+	 * @return MediaWikiServices the new mock service locator.
+	 */
+	public static function installMockMwServices( Config $configOverrides = null ) {
+		// Make sure we have the original service locator
+		if ( !self::$originalServices ) {
+			self::$originalServices = MediaWikiServices::getInstance();
+		}
+
 		if ( !$configOverrides ) {
 			$configOverrides = new HashConfig();
 		}
@@ -903,34 +919,65 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		$oldLoadBalancerFactory = self::$originalServices->getDBLoadBalancerFactory();
 
 		$testConfig = self::makeTestConfig( null, $configOverrides );
-		$newInstance = new MediaWikiServices( $testConfig );
+		$newServices = new MediaWikiServices( $testConfig );
 
 		// Load the default wiring from the specified files.
 		// NOTE: this logic mirrors the logic in MediaWikiServices::newInstance.
 		$wiringFiles = $testConfig->get( 'ServiceWiringFiles' );
-		$newInstance->loadWiringFiles( $wiringFiles );
+		$newServices->loadWiringFiles( $wiringFiles );
 
 		// Provide a traditional hook point to allow extensions to configure services.
-		Hooks::run( 'MediaWikiServices', [ $newInstance ] );
+		Hooks::run( 'MediaWikiServices', [ $newServices ] );
 
-		foreach ( $services as $name => $callback ) {
-			$newInstance->redefineService( $name, $callback );
-		}
-
-		self::installTestServices(
-			$oldConfigFactory,
-			$oldLoadBalancerFactory,
-			$newInstance
+		// Use bootstrap config for all configuration.
+		// This allows config overrides via global variables to take effect.
+		$bootstrapConfig = $newServices->getBootstrapConfig();
+		$newServices->resetServiceForTesting( 'ConfigFactory' );
+		$newServices->redefineService(
+			'ConfigFactory',
+			self::makeTestConfigFactoryInstantiator(
+				$oldConfigFactory,
+				[ 'main' => $bootstrapConfig ]
+			)
+		);
+		$newServices->resetServiceForTesting( 'DBLoadBalancerFactory' );
+		$newServices->redefineService(
+			'DBLoadBalancerFactory',
+			function ( MediaWikiServices $services ) use ( $oldLoadBalancerFactory ) {
+				return $oldLoadBalancerFactory;
+			}
 		);
 
-		if ( $this->localServices ) {
-			$this->localServices->destroy();
+		MediaWikiServices::forceGlobalInstance( $newServices );
+		return $newServices;
+	}
+
+	/**
+	 * Restores the original, non-mock MediaWikiServices instance.
+	 * The previously active MediaWikiServices instance is destroyed,
+	 * if it is different from the original that is to be restored.
+	 *
+	 * @note this if for internal use by test framework code. It should never be
+	 * called from inside a test case, a data provider, or a setUp or tearDown method.
+	 *
+	 * @return bool true if the original service locator was restored,
+	 *         false if there was nothing  too do.
+	 */
+	public static function restoreMwServices() {
+		if ( !self::$originalServices ) {
+			return false;
 		}
 
-		MediaWikiServices::forceGlobalInstance( $newInstance );
-		$this->localServices = $newInstance;
+		$currentServices = MediaWikiServices::getInstance();
 
-		return $newInstance;
+		if ( self::$originalServices === $currentServices ) {
+			return false;
+		}
+
+		MediaWikiServices::forceGlobalInstance( self::$originalServices );
+		$currentServices->destroy();
+
+		return true;
 	}
 
 	/**
