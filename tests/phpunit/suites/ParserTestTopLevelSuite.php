@@ -1,4 +1,5 @@
 <?php
+
 use Wikimedia\ScopedCallback;
 
 /**
@@ -135,6 +136,7 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 
 	public function setUp() {
 		wfDebug( __METHOD__ );
+
 		$db = wfGetDB( DB_MASTER );
 		$type = $db->getType();
 		$prefix = $type === 'oracle' ?
@@ -142,7 +144,16 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 		$this->oldTablePrefix = $db->tablePrefix();
 		MediaWikiTestCase::setupTestDB( $db, $prefix );
 		CloneDatabase::changePrefix( $prefix );
-		$teardown = $this->ptRunner->setDatabase( $db );
+
+		$this->ptRunner->setDatabase( $db );
+
+		MediaWikiTestCase::resetNonServiceCaches();
+
+		MediaWikiTestCase::installMockMwServices();
+		$teardown = new ScopedCallback( function () {
+			MediaWikiTestCase::restoreMwServices();
+		} );
+
 		$teardown = $this->ptRunner->setupUploads( $teardown );
 		$this->ptTeardownScope = $teardown;
 	}
