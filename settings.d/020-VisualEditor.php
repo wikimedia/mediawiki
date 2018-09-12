@@ -1,4 +1,5 @@
 <?php
+return; // Disabled. Needs Parsoid
 //Config decription can be found here:
 //https://www.mediawiki.org/wiki/Extension:VisualEditor
 
