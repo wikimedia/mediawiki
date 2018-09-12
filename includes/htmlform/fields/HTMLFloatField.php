@@ -43,4 +43,8 @@ class HTMLFloatField extends HTMLTextField {
 
 		return true;
 	}
+
+	protected function getInputWidget( $params ) {
+		return new OOUI\NumberInputWidget( $params );
+	}
 }
