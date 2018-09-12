@@ -78,10 +78,6 @@ class BsWebInstaller extends WebInstaller {
 			if ( !is_dir( "$extDir/$file" ) ) {
 				continue;
 			}
-			if( in_array( $file, $GLOBALS['bsgSkipExtensions'] ) ) {
-				//We hide this from the user as he may not remove it
-				continue;
-			}
 			if ( file_exists( "$extDir/$file/$jsonFile" ) || file_exists( "$extDir/$file/$file.php" ) || file_exists( "$extDir/$file/$file.setup.php" ) ) {
 				if( !empty($sSubPath) ) {
 					$file = "$sSubPath/$file";
