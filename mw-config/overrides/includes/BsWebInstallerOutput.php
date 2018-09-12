@@ -56,11 +56,6 @@ class BsWebInstallerOutput extends WebInstallerOutput {
 	
 
 	public function outputFooter() {
-		if ( $this->useShortHeader ) {
-			echo Html::closeElement( 'body' ) . Html::closeElement( 'html' );
-
-			return;
-		}
 		echo '</div></div><div id="mw-panel">'."\n" ;
 		echo'<div class="portal" id="p-logo"></div>'."\n";
 
