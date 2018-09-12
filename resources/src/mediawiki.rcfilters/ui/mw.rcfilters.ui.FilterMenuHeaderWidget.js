@@ -37,7 +37,7 @@
 
 		// Help icon for Tagged edits
 		this.helpIcon = new OO.ui.ButtonWidget( {
-			icon: 'help',
+			icon: 'helpNotice',
 			framed: false,
 			title: mw.msg( 'rcfilters-view-tags-help-icon-tooltip' ),
 			classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-helpIcon' ],
