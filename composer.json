@@ -1,5 +1,5 @@
 {
-	"name": "mediawiki/core",
+	"name": "bluespice/core",
 	"description": "Free software wiki application developed by the Wikimedia Foundation and others",
 	"keywords": ["mediawiki", "wiki"],
 	"homepage": "https://www.mediawiki.org/",
@@ -115,7 +115,8 @@
 			"include": [
 				"composer.local.json"
 			],
-			"merge-dev": false
+			"merge-dev": false,
+			"merge-scripts": true
 		}
 	}
 }

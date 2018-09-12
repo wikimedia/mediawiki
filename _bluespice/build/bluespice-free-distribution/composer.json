@@ -1,0 +1,31 @@
+{
+	"repositories": [{
+		"type": "composer",
+		"url": "https://packages.bluespice.com/"
+	}],
+	"require": {
+		"bluespice/visualeditorconnector": "dev-master",
+		"hallowelt/filter-special-pages": "dev-REL1_31",
+		"mediawiki/arrays": "dev-REL1_31",
+		"mediawiki/cookie-warning": "dev-REL1_31",
+		"mediawiki/dynamic-page-list": "3.2.1",
+		"mediawiki/echo": "dev-REL1_31",
+		"mediawiki/edit-notify": "dev-REL1_31",
+		"mediawiki/embed-video": "2.7.3",
+		"mediawiki/hit-counters": "dev-REL1_31",
+		"mediawiki/image-map-edit": "dev-REL1_31",
+		"mediawiki/lingo": "~3.0",
+		"mediawiki/nuke": "dev-REL1_31",
+		"mediawiki/pluggable-auth": "dev-master",
+		"mediawiki/quiz": "dev-REL1_31",
+		"mediawiki/rss": "dev-REL1_31",
+		"mediawiki/simple-s-a-m-lphp": "dev-master",
+		"mediawiki/template-styles": "dev-REL1_31",
+		"mediawiki/title-key": "dev-REL1_31",
+		"mediawiki/two-col-conflict": "dev-REL1_31",
+		"mediawiki/user-functions": "dev-REL1_31",
+		"mediawiki/user-merge": "dev-REL1_31",
+		"mediawiki/variables": "dev-REL1_31",
+		"mediawiki/visual-editor": "dev-REL1_31"
+	}
+}
