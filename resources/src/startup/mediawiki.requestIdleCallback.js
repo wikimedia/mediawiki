@@ -1,3 +1,4 @@
+/* global mw */
 ( function () {
 	var maxBusy = 50;
 
@@ -44,7 +45,8 @@
 	 *  by that time.
 	 */
 	mw.requestIdleCallback = window.requestIdleCallback ?
-		window.requestIdleCallback.bind( window ) : // Bind because it throws TypeError if context is not window
+		// Bind because it throws TypeError if context is not window
+		window.requestIdleCallback.bind( window ) :
 		mw.requestIdleCallbackInternal;
 	// Note: Polyfill was previously disabled due to
 	// https://bugs.chromium.org/p/chromium/issues/detail?id=647870
