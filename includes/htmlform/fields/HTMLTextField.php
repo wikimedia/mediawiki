@@ -85,18 +85,19 @@ class HTMLTextField extends HTMLFormField {
 			'type',
 			'min',
 			'max',
-			'pattern',
-			'title',
 			'step',
-			'list',
+			'title',
 			'maxlength',
 			'tabindex',
 			'disabled',
 			'required',
 			'autofocus',
-			'multiple',
 			'readonly',
 			'autocomplete',
+			// Only used in HTML mode:
+			'pattern',
+			'list',
+			'multiple',
 		];
 
 		$attribs += $this->getAttributes( $allowedParams );
@@ -153,17 +154,22 @@ class HTMLTextField extends HTMLFormField {
 		# @todo Enforce pattern, step, required, readonly on the server side as
 		# well
 		$allowedParams = [
-			'autofocus',
-			'autosize',
+			'type',
+			'min',
+			'max',
+			'step',
+			'title',
+			'maxlength',
+			'tabindex',
 			'disabled',
+			'required',
+			'autofocus',
+			'readonly',
+			'autocomplete',
+			// Only used in OOUI mode:
+			'autosize',
 			'flags',
 			'indicator',
-			'maxlength',
-			'readonly',
-			'required',
-			'tabindex',
-			'type',
-			'autocomplete',
 		];
 
 		$attribs += OOUI\Element::configFromHtmlAttributes(
