@@ -1,6 +1,7 @@
 ### Format of this file
 #
-# The top-level keys are module names (as registered in Resources.php).
+# The top-level keys are directory names (under resources/lib/).
+# They should match module names (as registered in Resources.php), but there are exceptions.
 # Each top-level key holds a resource descriptor that must have one of
 # the following `type` values:
 #
@@ -10,9 +11,9 @@
 #
 ### Type tar
 #
-# The `src` and `integrity` keys are quired.
+# The `src` and `integrity` keys are required.
 #
-# * `src`: Full URL to thes remote resource.
+# * `src`: Full URL to the remote resource.
 # * `integrity`: Cryptographic hash (integrity metadata format per <https://www.w3.org/TR/SRI/>).
 # * `dest`: An object mapping paths to files or directory from the remote resource to a destination
 #    in the module directory. The value of key in dest may be omitted, which will extract the key
@@ -20,13 +21,13 @@
 #
 ### Type file
 #
-# The `src` and `integrity` keys are quired.
+# The `src` and `integrity` keys are required.
 #
-# * `src`: Full URL to thes remote resource.
+# * `src`: Full URL to the remote resource.
 # * `integrity`: Cryptographic hash (integrity metadata format per <https://www.w3.org/TR/SRI/>).
 # * `dest`: The name of the file in the module directory. Default: Basename of URL.
 #
-### Type mult-file
+### Type multi-file
 #
 # The `files` key is required.
 #
