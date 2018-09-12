@@ -45,8 +45,8 @@ libraries registered as ResourceLoader modules. See also foreign-resources.yaml.
 For sources that don't publish an integrity hash, omit "integrity" (or leave empty)
 and run the "make-sri" action to compute the missing hashes.
 
-This script runs in dry mode by default. Use --update to actually change, remove,
-or add files to /resources/lib/.
+This script runs in dry-run mode by default. Use --update to actually change,
+remove, or add files to resources/lib/.
 TEXT
 		);
 		$this->addArg( 'action', 'One of "update", "verify" or "make-sri"', true );
