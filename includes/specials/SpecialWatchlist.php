@@ -290,20 +290,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Get all custom filters
-	 *
-	 * @return array Map of filter URL param names to properties (msg/default)
-	 */
-	protected function getCustomFilters() {
-		if ( $this->customFilters === null ) {
-			$this->customFilters = parent::getCustomFilters();
-			Hooks::run( 'SpecialWatchlistFilters', [ $this, &$this->customFilters ], '1.23' );
-		}
-
-		return $this->customFilters;
-	}
-
-	/**
 	 * Fetch values for a FormOptions object from the WebRequest associated with this instance.
 	 *
 	 * Maps old pre-1.23 request parameters Watchlist used to use (different from Recentchanges' ones)

@@ -29,13 +29,6 @@ use Wikimedia\Rdbms\IDatabase;
  * @since 1.29
  */
 class ChangesListBooleanFilter extends ChangesListFilter {
-	// This can sometimes be different on Special:RecentChanges
-	// and Special:Watchlist, due to the double-legacy hooks
-	// (SpecialRecentChangesFilters and SpecialWatchlistFilters)
-
-	// but there will be separate sets of ChangesListFilterGroup and ChangesListFilter instances
-	// for those pages (it should work even if they're both loaded
-	// at once, but that can't happen).
 	/**
 	 * Main unstructured UI i18n key
 	 *
