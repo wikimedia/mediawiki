@@ -110,6 +110,7 @@ if ( !isCompatible() ) {
 	 * The $CODE and $VARS placeholders are substituted in ResourceLoaderStartUpModule.php.
 	 */
 	( function () {
+		/* global mw */
 		mw.config = new mw.Map( $VARS.wgLegacyJavaScriptGlobals );
 
 		$CODE.registrations();
