@@ -2,6 +2,9 @@
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
 	"images": {
+		"globe": {
+			"file": "../wikimediaui/images/icons/globe.svg"
+		},
 		"map": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/map-ltr.svg",

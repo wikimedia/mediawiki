@@ -19,6 +19,9 @@
 		}
 	},
 	"images": {
+		"globe": {
+			"file": "images/icons/globe.svg"
+		},
 		"map": {
 			"file": {
 				"ltr": "images/icons/map-ltr.svg",

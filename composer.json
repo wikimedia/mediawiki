@@ -25,7 +25,7 @@
 		"ext-mbstring": "*",
 		"ext-xml": "*",
 		"liuggio/statsd-php-client": "1.0.18",
-		"oojs/oojs-ui": "0.28.1",
+		"oojs/oojs-ui": "0.28.2",
 		"oyejorge/less.php": "1.7.0.14",
 		"pear/mail": "1.4.1",
 		"pear/mail_mime": "1.10.2",
