@@ -1,3 +1,3 @@
 <?php
-return; // Disabled. Needs parsoid
+return; // Disabled. Needs Parsoid
 wfLoadExtension( "BlueSpiceVisualEditorConnector" );
