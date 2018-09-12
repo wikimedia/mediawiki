@@ -290,6 +290,9 @@ because of Phabricator reports.
   Define $wgProfiler via LocalSettings.php instead.
 * The mw.loader.addSource() is now considered a private method, and no longer
   supports the `id, url` signature. Use the `Object` parameter instead.
+* The backwards-compatibility code in HTMLForm to add a drop-down control to an
+  option that is not set to be a drop-down if the "mw-chosen" class is present,
+  is now removed.
 * Several collations were removed. They were workarounds for bugs in the ICU
   library and they are no longer needed (as of ICU 57.1):
   * 'uppercase-se' (NorthernSamiUppercaseCollation) - use 'uca-se' instead
