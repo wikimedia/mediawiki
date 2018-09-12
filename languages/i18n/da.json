@@ -3245,6 +3245,8 @@
 	"confirm-unwatch-top": "Fjern denne side fra din overvågningsliste?",
 	"confirm-rollback-button": "OK",
 	"confirm-rollback-top": "Omgør redigering på denne side?",
+	"confirm-mcrundo-title": "Fortryd en ændring",
+	"mcrundofailed": "Omgørelse mislykkedes",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "← forrige side",
 	"imgmultipagenext": "næste side →",

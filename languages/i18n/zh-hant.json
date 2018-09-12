@@ -999,7 +999,7 @@
 	"lineno": "行 $1：",
 	"compareselectedversions": "比較已選擇的修訂",
 	"showhideselectedversions": "變更已選擇修訂的顯示設定",
-	"editundo": "復原",
+	"editundo": "撤銷",
 	"diff-empty": "(無差異)",
 	"diff-multi-sameuser": "(未顯示同一使用者於中間所作的 $1 次修訂)",
 	"diff-multi-otherusers": "(未顯示由 $2 位使用者於中間所作的 $1 次修訂)",
