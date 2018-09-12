@@ -157,7 +157,7 @@ ERROR
 	protected function getUserBatches() {
 		if ( !is_null( $this->user ) ) {
 			$this->output( "\t ... querying '$this->user'\n" );
-			yield [ $this->user ];
+			yield [ [ $this->user ] ];
 			return;
 		}
 
