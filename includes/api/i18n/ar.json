@@ -64,7 +64,7 @@
 	"apihelp-compare-param-fromtitle": "العنوان الأول للمقارنة.",
 	"apihelp-compare-param-fromid": "رقم الصفحة الأول للمقارنة.",
 	"apihelp-compare-param-fromrev": "أول مراجعة للمقارنة.",
-	"apihelp-compare-param-frompst": "قم بإجراء تحويل ما قبل الحفظ على <var>fromtext</var>.",
+	"apihelp-compare-param-frompst": "قم بإجراء تحويل ما قبل الحفظ على <var>fromtext-&#x7B;slot}</var>.",
 	"apihelp-compare-param-fromtext": "استخدم هذا النص بدلا من محتوى المراجعة المحدد بواسطة <var>fromtitle</var>، <var>fromid</var> أو <var>fromrev</var>.",
 	"apihelp-compare-param-fromcontentmodel": "نموذج محتوى <var>fromtext</var>، إذا لم يتم توفيره، فسيتم تخمينه استنادا إلى الوسائط الأخرى.",
 	"apihelp-compare-param-fromcontentformat": "تنسيق محتوى تسلسل <var>fromtext</var>.",

@@ -1234,7 +1234,7 @@
 	"right-sendemail": "slanje imejla drugim korisnicima",
 	"right-managechangetags": "pravljenje i (de)aktiviranje [[Special:Tags|oznaka]]",
 	"right-applychangetags": "primenjivanje [[Special:Tags|oznaka]] na nečije promene",
-	"right-changetags": "dodavanje i uklanjanje raznih [[Special:Tags|oznaka]] na pojedinačnim izmenama i unosima u evidencijama",
+	"right-changetags": "dodavanje i uklanjanje raznih [[Special:Tags|oznaka]] na pojedinačnim izmenama i unosima u dnevnicima",
 	"right-deletechangetags": "brisanje [[Special:Tags|oznaka]] iz baze podataka",
 	"grant-generic": "Skup prava „$1“",
 	"grant-group-page-interaction": "Uređivanje stranica",
