@@ -114,6 +114,7 @@ production.
 === Bug fixes in 1.32 ===
 * SpecialPage::execute() will now only call checkLoginSecurityLevel() if
   getLoginSecurityLevel() returns non-false.
+* (T43720, T46197) Improved page display title handling for category pages
 
 === Action API changes in 1.32 ===
 * Added templated parameters.
