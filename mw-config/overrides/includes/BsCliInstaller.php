@@ -1,6 +1,25 @@
 <?php
-class BSCliInstaller extends CliInstaller {
-	protected function includeExtensions(){
+
+//New constants
+$sTMPUploadDir = empty( $GLOBALS['wgUploadDirectory'] ) ? $GLOBALS['IP'] . DIRECTORY_SEPARATOR . 'images' : $GLOBALS['wgUploadDirectory'];
+
+$sTMPCacheDir = empty( $GLOBALS['wgFileCacheDirectory'] ) ? $sTMPUploadDir . DIRECTORY_SEPARATOR . 'cache' : $GLOBALS['wgFileCacheDirectory'];
+
+$sTMPUploadPath = empty( $GLOBALS['wgUploadPath'] ) ? $GLOBALS['wgScriptPath'] . "/images" : $GLOBALS['wgUploadPath'];
+
+if ( !defined( 'BS_DATA_DIR' ) ) {
+	define( 'BS_DATA_DIR', $sTMPUploadDir . DIRECTORY_SEPARATOR . 'bluespice' ); //Future
+}
+if ( !defined( 'BS_CACHE_DIR' ) ) {
+	define( 'BS_CACHE_DIR', $sTMPCacheDir . DIRECTORY_SEPARATOR . 'bluespice' ); //$wgCacheDirectory?
+}
+if ( !defined( 'BS_DATA_PATH' ) ) {
+	define( 'BS_DATA_PATH', $sTMPUploadPath . '/bluespice' );
+}
+
+class BsCliInstaller extends CliInstaller {
+
+	protected function includeExtensions() {
 		global $IP;
 		$exts = $this->getVar( '_Extensions' );
 		$IP = $this->getVar( 'IP' );
@@ -12,7 +31,7 @@ class BSCliInstaller extends CliInstaller {
 		 * but we're not opening that can of worms
 		 * @see https://phabricator.wikimedia.org/T28857
 		 */
-		global $wgAutoloadClasses;
+		global $wgAutoloadClasses, $wgVersion;
 		$wgAutoloadClasses = [];
 		$queue = [];
 		require_once "$IP/includes/DefaultSettings.php";
@@ -36,8 +55,7 @@ class BSCliInstaller extends CliInstaller {
 			$wgHooks['LoadExtensionSchemaUpdates'] : [];
 		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
 			$hooksWeWant = array_merge_recursive(
-				$hooksWeWant,
-				$data['globals']['wgHooks']['LoadExtensionSchemaUpdates']
+				$hooksWeWant, $data['globals']['wgHooks']['LoadExtensionSchemaUpdates']
 			);
 		}
 		// Unset everyone else's hooks. Lord knows what someone might be doing
@@ -45,4 +63,5 @@ class BSCliInstaller extends CliInstaller {
 		$GLOBALS['wgHooks'] = [ 'LoadExtensionSchemaUpdates' => $hooksWeWant ];
 		return Status::newGood();
 	}
+
 }

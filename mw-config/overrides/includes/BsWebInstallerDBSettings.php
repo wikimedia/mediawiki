@@ -19,7 +19,7 @@
  * @ingroup Deployment
  */
 
-class BSWebInstallerDBSettings extends WebInstallerDBSettings {
+class BsWebInstallerDBSettings extends WebInstallerDBSettings {
 
 	/**
 	 * @return string|null

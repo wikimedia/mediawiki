@@ -11,8 +11,19 @@ This repo contains all the implementation _and_ resources/assets that are requir
  git submodule update --init --recursive
  # run composer
  composer update
+ # copy directories
+ cp extensions/BlueSpiceFoundation/data.template/ extensions/BlueSpiceFoundation/data -r
+ cp extensions/BlueSpiceFoundation/config.template/ extensions/BlueSpiceFoundation/config -r
  # set rights the easy way - don't do that in production!
- chmod a+w * --recursive
+ # chmod a+w * --recursive
+ # set only right for those directories which need to be writable
+ # TODO: depends on server; is that all?
+ chmod og-w * --recursive
+ chmod a+w cache --recursive
+ chmod a+w images --recursive
+ chmod a+w extensions/BlueSpiceFoundation/data --recursive
+ chmod a+w extensions/BlueSpiceFoundation/config --recursive
+
  echo "ready for install with WebInstaller"
 ```
 
