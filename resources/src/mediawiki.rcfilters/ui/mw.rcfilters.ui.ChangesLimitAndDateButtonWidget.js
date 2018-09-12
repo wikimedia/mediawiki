@@ -73,7 +73,7 @@
 				mw.language.convertNumber( this.limitGroupModel.getDefaultParamValue() );
 
 			this.button = new OO.ui.PopupButtonWidget( {
-				icon: 'advanced',
+				icon: 'settings',
 				indicator: 'down',
 				label: mw.msg( 'rcfilters-limit-and-date-label', currentValue ),
 				$overlay: this.$overlay,
