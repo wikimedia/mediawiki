@@ -1,4 +1,5 @@
 <?php
+return; // Disabled. Needs LDAP to work against
 //Copy this File to 050-Auth.local.php and activate PluggableAuth and SimpleSAMLphp there 
 //by removing comments of the folowing lines:
 //wfLoadExtension( 'PluggableAuth' );
