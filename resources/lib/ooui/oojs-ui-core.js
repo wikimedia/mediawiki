@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.28.1
+ * OOUI v0.28.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-09-05T00:41:49Z
+ * Date: 2018-09-11T23:05:15Z
  */
 ( function ( OO ) {
 
@@ -12137,13 +12137,17 @@ OO.mixinClass( OO.ui.HorizontalLayout, OO.ui.mixin.GroupElement );
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {Object} [minusButton] Configuration options to pass to the {@link OO.ui.ButtonWidget decrementing button widget}.
- * @cfg {Object} [plusButton] Configuration options to pass to the {@link OO.ui.ButtonWidget incrementing button widget}.
- * @cfg {boolean} [allowInteger=false] Whether the field accepts only integer values.
+ * @cfg {Object} [minusButton] Configuration options to pass to the
+ *  {@link OO.ui.ButtonWidget decrementing button widget}.
+ * @cfg {Object} [plusButton] Configuration options to pass to the
+ *  {@link OO.ui.ButtonWidget incrementing button widget}.
  * @cfg {number} [min=-Infinity] Minimum allowed value
  * @cfg {number} [max=Infinity] Maximum allowed value
- * @cfg {number} [step=1] Delta when using the buttons or up/down arrow keys
- * @cfg {number|null} [pageStep] Delta when using the page-up/page-down keys. Defaults to 10 times #step.
+ * @cfg {number|null} [step] If specified, the field only accepts values that are multiples of this.
+ * @cfg {number} [buttonStep=step||1] Delta when using the buttons or up/down arrow keys.
+ *  Defaults to `step` if specified, otherwise `1`.
+ * @cfg {number} [pageStep=10*buttonStep] Delta when using the page-up/page-down keys.
+ *  Defaults to 10 times `buttonStep`.
  * @cfg {boolean} [showButtons=true] Whether to show the plus and minus buttons.
  */
 OO.ui.NumberInputWidget = function OoUiNumberInputWidget( config ) {
@@ -12152,11 +12156,8 @@ OO.ui.NumberInputWidget = function OoUiNumberInputWidget( config ) {
 
 	// Configuration initialization
 	config = $.extend( {
-		allowInteger: false,
 		min: -Infinity,
 		max: Infinity,
-		step: 1,
-		pageStep: null,
 		showButtons: true
 	}, config );
 
@@ -12215,10 +12216,13 @@ OO.ui.NumberInputWidget = function OoUiNumberInputWidget( config ) {
 	}
 
 	// Initialization
-	this.setAllowInteger( config.allowInteger || config.isInteger );
+	if ( config.allowInteger || config.isInteger ) {
+		// Backward compatibility
+		config.step = 1;
+	}
 	this.setRange( config.min, config.max );
-	this.setStep( config.step, config.pageStep );
-	// Set the validation method after we set allowInteger and range
+	this.setStep( config.buttonStep, config.pageStep, config.step );
+	// Set the validation method after we set step and range
 	// so that it doesn't immediately call setValidityFlag
 	this.setValidation( this.validateNumber.bind( this ) );
 
@@ -12234,25 +12238,16 @@ OO.inheritClass( OO.ui.NumberInputWidget, OO.ui.TextInputWidget );
 
 /* Methods */
 
-/**
- * Set whether only integers are allowed
- *
- * @param {boolean} flag
- */
+// Backward compatibility
 OO.ui.NumberInputWidget.prototype.setAllowInteger = function ( flag ) {
-	this.allowInteger = !!flag;
-	this.setValidityFlag();
+	this.setStep( flag ? 1 : null );
 };
 // Backward compatibility
 OO.ui.NumberInputWidget.prototype.setIsInteger = OO.ui.NumberInputWidget.prototype.setAllowInteger;
 
-/**
- * Get whether only integers are allowed
- *
- * @return {boolean} Flag value
- */
+// Backward compatibility
 OO.ui.NumberInputWidget.prototype.getAllowInteger = function () {
-	return this.allowInteger;
+	return this.step === 1;
 };
 // Backward compatibility
 OO.ui.NumberInputWidget.prototype.getIsInteger = OO.ui.NumberInputWidget.prototype.getAllowInteger;
@@ -12286,21 +12281,33 @@ OO.ui.NumberInputWidget.prototype.getRange = function () {
 /**
  * Set the stepping deltas
  *
- * @param {number} step Normal step
- * @param {number|null} pageStep Page step. If null, 10 * step will be used.
+ * @param {number} [buttonStep=step||1] Delta when using the buttons or up/down arrow keys.
+ *  Defaults to `step` if specified, otherwise `1`.
+ * @param {number} [pageStep=10*buttonStep] Delta when using the page-up/page-down keys.
+ *  Defaults to 10 times `buttonStep`.
+ * @param {number|null} [step] If specified, the field only accepts values that are multiples of this.
  */
-OO.ui.NumberInputWidget.prototype.setStep = function ( step, pageStep ) {
-	if ( step <= 0 ) {
-		throw new Error( 'Step value must be positive' );
+OO.ui.NumberInputWidget.prototype.setStep = function ( buttonStep, pageStep, step ) {
+	if ( buttonStep === undefined ) {
+		buttonStep = step || 1;
 	}
-	if ( pageStep === null ) {
-		pageStep = step * 10;
-	} else if ( pageStep <= 0 ) {
+	if ( pageStep === undefined ) {
+		pageStep = 10 * buttonStep;
+	}
+	if ( step !== null && step <= 0 ) {
+		throw new Error( 'Step value, if given, must be positive' );
+	}
+	if ( buttonStep <= 0 ) {
+		throw new Error( 'Button step value must be positive' );
+	}
+	if ( pageStep <= 0 ) {
 		throw new Error( 'Page step value must be positive' );
 	}
 	this.step = step;
+	this.buttonStep = buttonStep;
 	this.pageStep = pageStep;
-	this.$input.attr( 'step', this.step );
+	this.$input.attr( 'step', this.step || 'any' );
+	this.setValidityFlag();
 };
 
 /**
@@ -12318,10 +12325,10 @@ OO.ui.NumberInputWidget.prototype.setValue = function ( value ) {
 /**
  * Get the current stepping values
  *
- * @return {number[]} Step and page step
+ * @return {number[]} Button step, page step, and validity step
  */
 OO.ui.NumberInputWidget.prototype.getStep = function () {
-	return [ this.step, this.pageStep ];
+	return [ this.buttonStep, this.pageStep, this.step ];
 };
 
 /**
@@ -12351,8 +12358,8 @@ OO.ui.NumberInputWidget.prototype.adjustValue = function ( delta ) {
 	} else {
 		n = v + delta;
 		n = Math.max( Math.min( n, this.max ), this.min );
-		if ( this.allowInteger ) {
-			n = Math.round( n );
+		if ( this.step ) {
+			n = Math.round( n / this.step ) * this.step;
 		}
 	}
 
@@ -12377,7 +12384,7 @@ OO.ui.NumberInputWidget.prototype.validateNumber = function ( value ) {
 		return false;
 	}
 
-	if ( this.allowInteger && Math.floor( n ) !== n ) {
+	if ( this.step && Math.floor( n / this.step ) !== n / this.step ) {
 		return false;
 	}
 
@@ -12395,7 +12402,7 @@ OO.ui.NumberInputWidget.prototype.validateNumber = function ( value ) {
  * @param {number} dir +1 or -1
  */
 OO.ui.NumberInputWidget.prototype.onButtonClick = function ( dir ) {
-	this.adjustValue( dir * this.step );
+	this.adjustValue( dir * this.buttonStep );
 };
 
 /**
@@ -12433,7 +12440,7 @@ OO.ui.NumberInputWidget.prototype.onWheel = function ( event ) {
 
 		if ( delta ) {
 			delta = delta < 0 ? -1 : 1;
-			this.adjustValue( delta * this.step );
+			this.adjustValue( delta * this.buttonStep );
 		}
 
 		return false;
@@ -12450,10 +12457,10 @@ OO.ui.NumberInputWidget.prototype.onKeyDown = function ( e ) {
 	if ( !this.isDisabled() ) {
 		switch ( e.which ) {
 			case OO.ui.Keys.UP:
-				this.adjustValue( this.step );
+				this.adjustValue( this.buttonStep );
 				return false;
 			case OO.ui.Keys.DOWN:
-				this.adjustValue( -this.step );
+				this.adjustValue( -this.buttonStep );
 				return false;
 			case OO.ui.Keys.PAGEUP:
 				this.adjustValue( this.pageStep );

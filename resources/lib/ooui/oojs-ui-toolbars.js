@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.28.1
+ * OOUI v0.28.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-09-05T00:41:49Z
+ * Date: 2018-09-11T23:05:15Z
  */
 ( function ( OO ) {
 
@@ -73,7 +73,7 @@
  *     }
  *     OO.inheritClass( SettingsTool, OO.ui.Tool );
  *     SettingsTool.static.name = 'settings';
- *     SettingsTool.static.icon = 'advanced';
+ *     SettingsTool.static.icon = 'settings';
  *     SettingsTool.static.title = 'Change settings';
  *     SettingsTool.prototype.onSelect = function () {
  *         $area.text( 'Settings tool clicked!' );
@@ -194,7 +194,7 @@
  *     }
  *     OO.inheritClass( SettingsTool, OO.ui.Tool );
  *     SettingsTool.static.name = 'settings';
- *     SettingsTool.static.icon = 'advanced';
+ *     SettingsTool.static.icon = 'settings';
  *     SettingsTool.static.title = 'Change settings';
  *     SettingsTool.prototype.onSelect = function () {
  *         $area.text( 'Settings tool clicked!' );
@@ -1606,7 +1606,7 @@ OO.ui.PopupTool.prototype.onPopupToggle = function ( isVisible ) {
  *     SettingsTool.static.name = 'settings';
  *     SettingsTool.static.title = 'Change settings';
  *     SettingsTool.static.groupConfig = {
- *         icon: 'advanced',
+ *         icon: 'settings',
  *         label: 'ToolGroupTool',
  *         include: [  'setting1', 'setting2'  ]
  *     };
@@ -2167,7 +2167,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
  *     }
  *     OO.inheritClass( SettingsTool, OO.ui.Tool );
  *     SettingsTool.static.name = 'settings';
- *     SettingsTool.static.icon = 'advanced';
+ *     SettingsTool.static.icon = 'settings';
  *     SettingsTool.static.title = 'Change settings';
  *     SettingsTool.prototype.onSelect = function () {
  *         this.setActive( false );
@@ -2396,7 +2396,7 @@ OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
  *     }
  *     OO.inheritClass( SettingsTool, OO.ui.Tool );
  *     SettingsTool.static.name = 'settings';
- *     SettingsTool.static.icon = 'advanced';
+ *     SettingsTool.static.icon = 'settings';
  *     SettingsTool.static.title = 'Change settings';
  *     SettingsTool.prototype.onSelect = function () {
  *         $area.text( 'Settings tool clicked!' );

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.28.1
+ * OOUI v0.28.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-09-05T00:41:49Z
+ * Date: 2018-09-11T23:05:15Z
  */
 ( function ( OO ) {
 

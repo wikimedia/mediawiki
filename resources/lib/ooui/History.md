@@ -1,4 +1,21 @@
 # OOUI Release History
+## v0.28.2 / 2018-09-11
+### Deprecations
+* [DEPRECATING CHANGE]: icons: Rename 'advanced' to 'settings' (Volker E.)
+
+### Features
+* NumberInputWidget: Rethink 'step' semantics (Bartosz Dziewoński)
+
+### Styles
+* WikimediaUI theme: Slightly reduce 'close' icon in PopupWidget's popup (Volker E.)
+* icons: Add 'globe' to 'location' pack (Volker E.)
+* icons: Add 'helpNotice' to 'interactions' pack (Volker E.)
+
+### Code
+* build: Bump devDependencies to latest where possible (James D. Forrester)
+* docs: Revert "docs: Don't refer to a renamed icon 'settings', use 'advanced'" (James D. Forrester)
+
+
 ## v0.28.1 / 2018-09-04
 ### Styles
 * icons: Add several 'editing-advanced' and 'media' pack icons (Volker E.)

@@ -6,7 +6,8 @@
 			"file": "../wikimediaui/images/icons/add.svg"
 		},
 		"advanced": {
-			"file": "../wikimediaui/images/icons/advanced.svg"
+			"file": "../wikimediaui/images/icons/settings.svg",
+			"deprecated": "Renamed since v0.28.1, use 'settings' instead."
 		},
 		"browser": {
 			"file": {
@@ -59,6 +60,15 @@
 				}
 			}
 		},
+		"helpNotice": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/helpOutlined-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/helpOutlined-rtl.svg",
+				"lang": {
+					"he,yi": "../wikimediaui/images/icons/helpOutlined-ltr.svg"
+				}
+			}
+		},
 		"key": {
 			"file": "../wikimediaui/images/icons/key.svg"
 		},
@@ -91,6 +101,9 @@
 		},
 		"search": {
 			"file": "../wikimediaui/images/icons/search.svg"
+		},
+		"settings": {
+			"file": "../wikimediaui/images/icons/settings.svg"
 		},
 		"subtract": {
 			"file": "../wikimediaui/images/icons/subtract.svg"

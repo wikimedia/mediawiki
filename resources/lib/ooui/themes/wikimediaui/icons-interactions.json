@@ -23,7 +23,8 @@
 			"file": "images/icons/add.svg"
 		},
 		"advanced": {
-			"file": "images/icons/advanced.svg"
+			"file": "images/icons/settings.svg",
+			"deprecated": "Renamed since v0.28.1, use 'settings' instead."
 		},
 		"browser": {
 			"file": {
@@ -78,6 +79,15 @@
 				}
 			}
 		},
+		"helpNotice": {
+			"file": {
+				"ltr": "images/icons/helpOutlined-ltr.svg",
+				"rtl": "images/icons/helpOutlined-rtl.svg",
+				"lang": {
+					"he,yi": "images/icons/helpOutlined-ltr.svg"
+				}
+			}
+		},
 		"key": {
 			"file": "images/icons/key.svg"
 		},
@@ -110,6 +120,9 @@
 		},
 		"search": {
 			"file": "images/icons/search.svg"
+		},
+		"settings": {
+			"file": "images/icons/settings.svg"
 		},
 		"subtract": {
 			"file": "images/icons/subtract.svg",

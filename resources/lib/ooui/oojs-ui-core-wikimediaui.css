@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.28.1
+ * OOUI v0.28.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-09-05T00:41:53Z
+ * Date: 2018-09-11T23:05:21Z
  */
 /**
  * WikimediaUI Base v0.12.0
@@ -1101,6 +1101,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-popupWidget-head > .oo-ui-buttonWidget {
   right: 0;
+}
+.oo-ui-popupWidget-head > .oo-ui-buttonWidget .oo-ui-icon-close {
+  background-size: 1em 1em;
 }
 .oo-ui-popupWidget-body {
   line-height: 1.42857143em;
