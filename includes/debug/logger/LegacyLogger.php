@@ -29,7 +29,7 @@ use Psr\Log\LogLevel;
 use UDPTransport;
 
 /**
- * PSR-3 logger that mimics the historic implementation of MediaWiki's
+ * PSR-3 logger that mimics the historic implementation of MediaWiki's former
  * wfErrorLog logging implementation.
  *
  * This logger is configured by the following global configuration variables:
@@ -145,10 +145,6 @@ class LegacyLogger extends AbstractLogger {
 			// specfied.
 			$shouldEmit = (bool)$wgDBerrorLog;
 
-		} elseif ( $channel === 'wfErrorLog' ) {
-			// All messages on the wfErrorLog channel should be emitted.
-			$shouldEmit = true;
-
 		} elseif ( $channel === 'wfDebug' ) {
 			// wfDebug messages are emitted if a catch all logging file has
 			// been specified. Checked explicitly so that 'private' flagged
@@ -192,10 +188,9 @@ class LegacyLogger extends AbstractLogger {
 	/**
 	 * Format a message.
 	 *
-	 * Messages to the 'wfDebug', 'wfLogDBError' and 'wfErrorLog' channels
-	 * receive special formatting to mimic the historic output of the functions
-	 * of the same name. All other channel values are formatted based on the
-	 * historic output of the `wfDebugLog()` global function.
+	 * Messages to the 'wfDebug' and 'wfLogDBError' channels receive special formatting to mimic the
+	 * historic output of the functions of the same name. All other channel values are formatted
+	 * based on the historic output of the `wfDebugLog()` global function.
 	 *
 	 * @param string $channel
 	 * @param string $message
@@ -210,9 +205,6 @@ class LegacyLogger extends AbstractLogger {
 
 		} elseif ( $channel === 'wfLogDBError' ) {
 			$text = self::formatAsWfLogDBError( $channel, $message, $context );
-
-		} elseif ( $channel === 'wfErrorLog' ) {
-			$text = "{$message}\n";
 
 		} elseif ( $channel === 'profileoutput' ) {
 			// Legacy wfLogProfilingData formatitng

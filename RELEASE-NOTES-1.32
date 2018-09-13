@@ -323,6 +323,8 @@ because of Phabricator reports.
 * The '--tidy' option to maintenance/parse.php has been removed.  Tidying
   the output is now the default.  Use '--no-tidy' to bypass the tidy
   phase.
+* The global function wfErrorLog, deprecated since 1.25, has now been removed.
+  Use MWLoggerLegacyLogger::emit or UDPTransport.
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit

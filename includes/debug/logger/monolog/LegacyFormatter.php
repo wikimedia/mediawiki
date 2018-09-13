@@ -24,9 +24,9 @@ use MediaWiki\Logger\LegacyLogger;
 use Monolog\Formatter\NormalizerFormatter;
 
 /**
- * Log message formatter that mimics the legacy log message formatting of
- * `wfDebug`, `wfDebugLog`, `wfLogDBError` and `wfErrorLog` global functions by
- * delegating the formatting to \MediaWiki\Logger\LegacyLogger.
+ * Log message formatter that mimics the legacy log message formatting of `wfDebug`, `wfDebugLog`,
+ * `wfLogDBError` and the former `wfErrorLog` global functions by delegating the formatting to
+ * \MediaWiki\Logger\LegacyLogger.
  *
  * @since 1.25
  * @copyright © 2013 Wikimedia Foundation and contributors
