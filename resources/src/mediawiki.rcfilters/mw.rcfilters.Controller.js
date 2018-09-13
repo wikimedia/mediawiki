@@ -75,8 +75,8 @@
 					label: label || mw.msg( 'blanknamespace' ),
 					description: '',
 					identifiers: [
-						( namespaceID < 0 || namespaceID % 2 === 0 ) ?
-							'subject' : 'talk'
+						mw.Title.isTalkNamespace( namespaceID ) ?
+							'talk' : 'subject'
 					],
 					cssClass: 'mw-changeslist-ns-' + namespaceID
 				} );
