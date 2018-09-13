@@ -6,7 +6,7 @@
 
 	function addMulti( $oldContainer, $container ) {
 		var name = $oldContainer.find( 'input:first-child' ).attr( 'name' ),
-			oldClass = ( ' ' + $oldContainer.attr( 'class' ) + ' ' ).replace( /(mw-htmlform-field-HTMLMultiSelectField|mw-chosen|mw-htmlform-dropdown)/g, '' ),
+			oldClass = ( ' ' + $oldContainer.attr( 'class' ) + ' ' ).replace( /(mw-htmlform-field-HTMLMultiSelectField|mw-htmlform-dropdown)/g, '' ),
 			$select = $( '<select>' ),
 			dataPlaceholder = mw.message( 'htmlform-chosen-placeholder' );
 		oldClass = oldClass.trim();
