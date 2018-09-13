@@ -2504,38 +2504,6 @@ function wfUsePHP( $req_ver ) {
 }
 
 /**
- * This function works like "use VERSION" in Perl except it checks the version
- * of MediaWiki, the program will die with a backtrace if the current version
- * of MediaWiki is less than the version provided.
- *
- * This is useful for extensions which due to their nature are not kept in sync
- * with releases
- *
- * Note: Due to the behavior of PHP's version_compare() which is used in this
- * function, if you want to allow the 'wmf' development versions add a 'c' (or
- * any single letter other than 'a', 'b' or 'p') as a post-fix to your
- * targeted version number. For example if you wanted to allow any variation
- * of 1.22 use `wfUseMW( '1.22c' )`. Using an 'a' or 'b' instead of 'c' will
- * not result in the same comparison due to the internal logic of
- * version_compare().
- *
- * @see perldoc -f use
- *
- * @deprecated since 1.26, use the "requires" property of extension.json
- * @param string|int|float $req_ver The version to check, can be a string, an integer, or a float
- * @throws MWException
- */
-function wfUseMW( $req_ver ) {
-	global $wgVersion;
-
-	wfDeprecated( __FUNCTION__, '1.26' );
-
-	if ( version_compare( $wgVersion, (string)$req_ver, '<' ) ) {
-		throw new MWException( "MediaWiki $req_ver required--this is only $wgVersion" );
-	}
-}
-
-/**
  * Return the final portion of a pathname.
  * Reimplemented because PHP5's "basename()" is buggy with multibyte text.
  * https://bugs.php.net/bug.php?id=33898
