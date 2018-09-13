@@ -673,43 +673,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		return $now - $days * $secondsPerDay;
 	}
 
-	public function testGetFilterGroupDefinitionFromLegacyCustomFilters() {
-		$customFilters = [
-			'hidefoo' => [
-				'msg' => 'showhidefoo',
-				'default' => true,
-			],
-
-			'hidebar' => [
-				'msg' => 'showhidebar',
-				'default' => false,
-			],
-		];
-
-		$this->assertEquals(
-			[
-				'name' => 'unstructured',
-				'class' => ChangesListBooleanFilterGroup::class,
-				'priority' => -1,
-				'filters' => [
-					[
-						'name' => 'hidefoo',
-						'showHide' => 'showhidefoo',
-						'default' => true,
-					],
-					[
-						'name' => 'hidebar',
-						'showHide' => 'showhidebar',
-						'default' => false,
-					]
-				],
-			],
-			$this->changesListSpecialPage->getFilterGroupDefinitionFromLegacyCustomFilters(
-				$customFilters
-			)
-		);
-	}
-
 	public function testGetStructuredFilterJsData() {
 		$this->changesListSpecialPage->filterGroups = [];
 

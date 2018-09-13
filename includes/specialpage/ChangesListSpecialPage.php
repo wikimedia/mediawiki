@@ -69,9 +69,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/** @var FormOptions */
 	protected $rcOptions;
 
-	/** @var array */
-	protected $customFilters;
-
 	// Order of both groups and filters is significant; first is top-most priority,
 	// descending from there.
 	// 'showHideSuffix' is a shortcut to and avoid spelling out
@@ -84,8 +81,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * Groups are displayed to the user in the structured UI.  However, if necessary,
 	 * all of the filters in a group can be configured to only display on the
-	 * unstuctured UI, in which case you don't need a group title.  This is done in
-	 * getFilterGroupDefinitionFromLegacyCustomFilters, for example.
+	 * unstuctured UI, in which case you don't need a group title.
 	 *
 	 * @var array $filterGroupDefinitions
 	 */
@@ -987,11 +983,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		Hooks::run( 'ChangesListSpecialPageStructuredFilters', [ $this ] );
 
-		$unstructuredGroupDefinition =
-			$this->getFilterGroupDefinitionFromLegacyCustomFilters(
-				$this->getCustomFilters()
-			);
-		$this->registerFiltersFromDefinitions( [ $unstructuredGroupDefinition ] );
+		$this->registerFiltersFromDefinitions( [] );
 
 		$userExperienceLevel = $this->getFilterGroup( 'userExpLevel' );
 		$registered = $userExperienceLevel->getFilter( 'registered' );
@@ -1072,32 +1064,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 			$this->registerFilterGroup( new $className( $groupDefinition ) );
 		}
-	}
-
-	/**
-	 * Get filter group definition from legacy custom filters
-	 *
-	 * @param array $customFilters Custom filters from legacy hooks
-	 * @return array Group definition
-	 */
-	protected function getFilterGroupDefinitionFromLegacyCustomFilters( array $customFilters ) {
-		// Special internal unstructured group
-		$unstructuredGroupDefinition = [
-			'name' => 'unstructured',
-			'class' => ChangesListBooleanFilterGroup::class,
-			'priority' => -1, // Won't display in structured
-			'filters' => [],
-		];
-
-		foreach ( $customFilters as $name => $params ) {
-			$unstructuredGroupDefinition['filters'][] = [
-				'name' => $name,
-				'showHide' => $params['msg'],
-				'default' => $params['default'],
-			];
-		}
-
-		return $unstructuredGroupDefinition;
 	}
 
 	/**
@@ -1243,21 +1209,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		}
 
 		return $output;
-	}
-
-	/**
-	 * Get custom show/hide filters using deprecated ChangesListSpecialPageFilters
-	 * hook.
-	 *
-	 * @return array Map of filter URL param names to properties (msg/default)
-	 */
-	protected function getCustomFilters() {
-		if ( $this->customFilters === null ) {
-			$this->customFilters = [];
-			Hooks::run( 'ChangesListSpecialPageFilters', [ $this, &$this->customFilters ], '1.29' );
-		}
-
-		return $this->customFilters;
 	}
 
 	/**
