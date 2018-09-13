@@ -1289,52 +1289,6 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Prepares the given database connection for usage in the context of usage tests.
-	 * This sets up clones database tables and changes the table prefix as appropriate.
-	 * If the database connection already has cloned tables, calling this method has no
-	 * effect. The tables are not re-cloned or reset in that case.
-	 *
-	 * @param IMaintainableDatabase $db
-	 */
-	protected function prepareConnectionForTesting( IMaintainableDatabase $db ) {
-		if ( !self::$dbSetup ) {
-			throw new LogicException(
-				'Cannot use prepareConnectionForTesting()'
-				. ' if the test case is not defined to use the database!'
-			);
-		}
-
-		if ( isset( $db->_originalTablePrefix ) ) {
-			// The DB connection was already prepared for testing.
-			return;
-		}
-
-		$testPrefix = self::getTestPrefixFor( $db );
-		$oldPrefix = $db->tablePrefix();
-
-		$tablesCloned = self::listTables( $db );
-
-		if ( $oldPrefix === $testPrefix ) {
-			// The database connection already has the test prefix, but presumably not
-			// the cloned tables. This is the typical case, since the LBFactory will
-			// have the prefix set during testing, but LoadBalancers will still return
-			// connections that don't have the cloned table structure.
-			$oldPrefix = self::$oldTablePrefix;
-		}
-
-		$dbClone = new CloneDatabase( $db, $tablesCloned, $testPrefix, $oldPrefix );
-		$dbClone->useTemporaryTables( self::$useTemporaryTables );
-
-		$db->_originalTablePrefix = $oldPrefix;
-
-		if ( ( $db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
-			throw new LogicException( 'Cannot clone database tables' );
-		} else {
-			$dbClone->cloneTableStructure();
-		}
-	}
-
-	/**
 	 * Setups a database with cloned tables using the given prefix.
 	 *
 	 * If reuseDB is true and certain conditions apply, it will just change the prefix.
