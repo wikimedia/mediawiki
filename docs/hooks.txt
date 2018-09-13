@@ -3320,14 +3320,6 @@ use this to change some selection criteria or substitute a different title.
 &$title: If the hook returns false, a Title object to use instead of the
   result from the normal query
 
-'SpecialRecentChangesFilters': DEPRECATED since 1.23! Use
-ChangesListSpecialPageStructuredFilters instead.
-Called after building form options at RecentChanges.
-$special: the special page object
-&$filters: associative array of filter definitions. The keys are the HTML
-  name/URL parameters. Each key maps to an associative array with a 'msg'
-  (message key) and a 'default' value.
-
 'SpecialRecentChangesPanel': Called when building form options in
 SpecialRecentChanges.
 &$extraOpts: array of added items, to which can be added
@@ -3441,14 +3433,6 @@ Special:Upload.
 'SpecialVersionVersionUrl': Called when building the URL for Special:Version.
 $wgVersion: Current $wgVersion for you to use
 &$versionUrl: Raw url to link to (eg: release notes)
-
-'SpecialWatchlistFilters': DEPRECATED since 1.23! Use
-ChangesListSpecialPageStructuredFilters instead.
-Called after building form options at Watchlist.
-$special: the special page object
-&$filters: associative array of filter definitions. The keys are the HTML
-  name/URL parameters. Each key maps to an associative array with a 'msg'
-  (message key) and a 'default' value.
 
 'SpecialWatchlistGetNonRevisionTypes': Called when building sql query for
 SpecialWatchlist. Allows extensions to register custom values they have
