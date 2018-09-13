@@ -73,15 +73,23 @@ class MWException extends Exception {
 	 * @return string Message with arguments replaced
 	 */
 	public function msg( $key, $fallback /*[, params...] */ ) {
+		global $wgSitename;
 		$args = array_slice( func_get_args(), 2 );
 
+		$res = false;
 		if ( $this->useMessageCache() ) {
 			try {
-				return wfMessage( $key, $args )->text();
+				$res = wfMessage( $key, $args )->text();
 			} catch ( Exception $e ) {
 			}
 		}
-		return wfMsgReplaceArgs( $fallback, $args );
+		if ( $res === false ) {
+			$res = wfMsgReplaceArgs( $fallback, $args );
+			// If an exception happens inside message rendering,
+			// {{SITENAME}} sometimes won't be replaced.
+			$res = preg_replace( '/\{\{SITENAME\}\}/', $wgSitename, $res );
+		}
+		return $res;
 	}
 
 	/**
@@ -154,6 +162,16 @@ class MWException extends Exception {
 		global $wgOut, $wgSitename;
 		if ( $this->useOutputPage() ) {
 			$wgOut->prepareErrorPage( $this->getPageTitle() );
+			// Manually set the html title, since sometimes
+			// {{SITENAME}} does not get replaced for exceptions
+			// happening inside message rendering.
+			$wgOut->setHTMLTitle(
+				$this->msg(
+					'pagetitle',
+					"$1 - $wgSitename",
+					$this->getPageTitle()
+				)
+			);
 
 			$wgOut->addHTML( $this->getHTML() );
 
