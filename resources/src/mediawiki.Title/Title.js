@@ -663,11 +663,21 @@
 	};
 
 	/**
+	 * Check if a given namespace is a talk namespace
+	 * @param {number} namespaceId Namespace ID
+	 * @return {boolean} Namespace is a talk namespace
+	 */
+	Title.isTalkNamespace = function ( namespaceId ) {
+		return !!( namespaceId > NS_MAIN && namespaceId % 2 );
+	};
+
+	/**
 	 * Whether this title exists on the wiki.
 	 *
 	 * @static
 	 * @param {string|mw.Title} title prefixed db-key name (string) or instance of Title
 	 * @return {boolean|null} Boolean if the information is available, otherwise null
+	 * @throws {Error} If title is not a string or mw.Title
 	 */
 	Title.exists = function ( title ) {
 		var match,
@@ -929,6 +939,49 @@
 			} else {
 				return mw.util.getUrl( this.toString(), params );
 			}
+		},
+
+		/**
+		 * Check if the title is in a talk namespace
+		 *
+		 * @return {boolean} The title is in a talk namespace
+		 */
+		isTalkPage: function () {
+			return Title.isTalkNamespace( this.getNamespaceId() );
+		},
+
+		/**
+		 * Get the title for the associated talk page
+		 *
+		 * @return {mw.Title|null} The title for the associated talk page, null if not available
+		 */
+		getTalkPage: function () {
+			if ( !this.canHaveTalkPage() ) {
+				return null;
+			}
+			return this.isTalkPage() ?
+				this :
+				Title.makeTitle( this.getNamespaceId() + 1, this.getMainText() );
+		},
+
+		/**
+		 * Get the title for the subject page of a talk page
+		 *
+		 * @return {mw.Title|null} The title for the subject page of a talk page, null if not available
+		 */
+		getSubjectPage: function () {
+			return this.isTalkPage() ?
+				Title.makeTitle( this.getNamespaceId() - 1, this.getMainText() ) :
+				this;
+		},
+
+		/**
+		 * Check the the title can have an associated talk page
+		 *
+		 * @return {boolean} The title can have an associated talk page
+		 */
+		canHaveTalkPage: function () {
+			return this.getNamespaceId() >= NS_MAIN;
 		},
 
 		/**
