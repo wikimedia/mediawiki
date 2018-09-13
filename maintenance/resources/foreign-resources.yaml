@@ -39,6 +39,22 @@ CLDRPluralRuleParser:
   src: https://raw.githubusercontent.com/santhoshtr/CLDRPluralRuleParser/v1.1.3/src/CLDRPluralRuleParser.js
   integrity: sha384-Y0qxTEDVQgh+N5In+vLbZLL2H7PEROnicj8vxof0mxR8kXcGysGE6OcF+cS+Ao0u
 
+easy-deflate:
+  type: multi-file
+  files:
+    deflate.js:
+      src: https://raw.githubusercontent.com/edg2s/Easy-Deflate/7a6056e5302f6f385ff2efa60afda45b4ad81e51/deflate.js
+      integrity: sha384-sHnZLDSWMUhA2w9ygkzCK8YFvoh/fQKY6lXMbvmrYzjuNURiLB0DZFCDNMpGyZ77
+    easydeflate.js:
+      src: https://raw.githubusercontent.com/edg2s/Easy-Deflate/7a6056e5302f6f385ff2efa60afda45b4ad81e51/easydeflate.js
+      integrity: sha384-EwPfP2RMkDPa1HkzQsXgzTsy1KEjcIzQPA1HDS/JPHjvEMvVUsCxWwm1oXql/jk2
+    inflate.js:
+      src: https://raw.githubusercontent.com/edg2s/Easy-Deflate/7a6056e5302f6f385ff2efa60afda45b4ad81e51/inflate.js
+      integrity: sha384-hMg44Hw424mUYvmzKl0JT4J8UU/1YYhTiGRtR0YX/MXNLK9qWTK0d62FBCDGxmxw
+    README.md:
+      src: https://raw.githubusercontent.com/edg2s/Easy-Deflate/7a6056e5302f6f385ff2efa60afda45b4ad81e51/README.md
+      integrity: sha384-6kwcfCLivvqXBZy2ATyya+mTVWLk3eaQyBdC6tbpBtkygnBrM2SNkq3jz/l7IkvP
+
 html5shiv:
   type: file
   src: https://raw.githubusercontent.com/aFarkas/html5shiv/3.7.3/src/html5shiv.js
