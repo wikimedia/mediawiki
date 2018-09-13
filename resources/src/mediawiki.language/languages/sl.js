@@ -2,8 +2,8 @@
  * Slovenian (Slovenščina) language functions
  */
 
-mediaWiki.language.convertGrammar = function ( word, form ) {
-	var grammarForms = mediaWiki.language.getData( 'sl', 'grammarForms' );
+mw.language.convertGrammar = function ( word, form ) {
+	var grammarForms = mw.language.getData( 'sl', 'grammarForms' );
 	if ( grammarForms && grammarForms[ form ] ) {
 		return grammarForms[ form ][ word ];
 	}

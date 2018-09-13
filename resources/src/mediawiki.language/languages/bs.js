@@ -2,8 +2,8 @@
  * Bosnian (bosanski) language functions
  */
 
-mediaWiki.language.convertGrammar = function ( word, form ) {
-	var grammarForms = mediaWiki.language.getData( 'bs', 'grammarForms' );
+mw.language.convertGrammar = function ( word, form ) {
+	var grammarForms = mw.language.getData( 'bs', 'grammarForms' );
 	if ( grammarForms && grammarForms[ form ] ) {
 		return grammarForms[ form ][ word ];
 	}
