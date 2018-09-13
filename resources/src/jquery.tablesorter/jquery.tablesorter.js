@@ -431,7 +431,8 @@
 		headerToColumns.forEach( function ( columns, headerIndex ) {
 
 			columns.forEach( function ( columnIndex, i ) {
-				var header = $headers[ headerIndex ],
+				var j, sortColumn,
+					header = $headers[ headerIndex ],
 					$header = $( header );
 
 				if ( !isValueInArray( columnIndex, sortList ) ) {
@@ -442,15 +443,16 @@
 					} );
 				} else {
 					// Column shall be sorted: Apply designated count and order.
-					sortList.forEach( function ( sortColumn ) {
+					for ( j = 0; j < sortList.length; j++ ) {
+						sortColumn = sortList[ j ];
 						if ( sortColumn[ 0 ] === i ) {
 							$header.data( {
 								order: sortColumn[ 1 ],
 								count: sortColumn[ 1 ] + 1
 							} );
-							return false;
+							break;
 						}
-					} );
+					}
 				}
 			} );
 
