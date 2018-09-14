@@ -39,6 +39,7 @@
 		"bluespice/saferedit": "dev-master",
 		"bluespice/smartlist": "dev-master",
 		"bluespice/tagcloud": "dev-master",
+		"bluespice/qrcode": "dev-master",
 		"bluespice/uemodulepdf": "dev-master",
 		"bluespice/universalexport": "dev-master",
 		"bluespice/usagetracker": "dev-master",
