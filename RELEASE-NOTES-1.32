@@ -305,6 +305,8 @@ because of Phabricator reports.
   * ChangesListSpecialPage->getCustomFilters()
   * ChangesListSpecialPage->getFilterGroupDefinitionFromLegacyCustomFilters()
   * ChangesListSpecialPage::customFilters
+* The global function wfUseMW, deprecated since 1.26, has now been removed. Use
+  the "requires" property of static extension registration instead.
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit
