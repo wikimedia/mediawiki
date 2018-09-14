@@ -93,18 +93,38 @@ class LegacyLogger extends AbstractLogger {
 	 * @return null
 	 */
 	public function log( $level, $message, array $context = [] ) {
+		global $wgDBerrorLog;
+
 		if ( is_string( $level ) ) {
 			$level = self::$levelMapping[$level];
 		}
-		if ( $this->channel === 'DBQuery' && isset( $context['method'] )
-			&& isset( $context['master'] ) && isset( $context['runtime'] )
+		if ( $this->channel === 'DBQuery'
+			&& isset( $context['method'] )
+			&& isset( $context['master'] )
+			&& isset( $context['runtime'] )
 		) {
-			MWDebug::query( $message, $context['method'], $context['master'], $context['runtime'] );
-			return; // only send profiling data to MWDebug profiling
+			// Also give the query information to the MWDebug tools
+			$enabled = MWDebug::query(
+				$message,
+				$context['method'],
+				$context['master'],
+				$context['runtime']
+			);
+			if ( $enabled ) {
+				// If we the toolbar was enabled, return early so that we don't
+				// also log the query to the main debug output.
+				return;
+			}
 		}
 
+		// If this is a DB-related error, and the site has $wgDBerrorLog
+		// configured, rewrite the channel as wfLogDBError instead.
+		// Likewise, if the site does not use  $wgDBerrorLog, it should
+		// configurable like any other channel via $wgDebugLogGroups
+		// or $wgMWLoggerDefaultSpi.
 		if ( isset( self::$dbChannels[$this->channel] )
 			&& $level >= self::$levelMapping[LogLevel::ERROR]
+			&& $wgDBerrorLog
 		) {
 			// Format and write DB errors to the legacy locations
 			$effectiveChannel = 'wfLogDBError';

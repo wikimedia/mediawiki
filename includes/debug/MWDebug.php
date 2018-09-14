@@ -349,12 +349,11 @@ class MWDebug {
 	 * @param string $function
 	 * @param bool $isMaster
 	 * @param float $runTime Query run time
-	 * @return int ID number of the query to pass to queryTime or -1 if the
-	 *  debugger is disabled
+	 * @return bool True if debugger is enabled, false otherwise
 	 */
 	public static function query( $sql, $function, $isMaster, $runTime ) {
 		if ( !self::$enabled ) {
-			return -1;
+			return false;
 		}
 
 		// Replace invalid UTF-8 chars with a square UTF-8 character
@@ -389,7 +388,7 @@ class MWDebug {
 			'time' => $runTime,
 		];
 
-		return count( self::$query ) - 1;
+		return true;
 	}
 
 	/**
