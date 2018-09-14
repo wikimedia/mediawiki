@@ -9,34 +9,6 @@
 	$.extend( mw.language, {
 
 		/**
-		 * Process the PLURAL template substitution
-		 *
-		 * @private
-		 * @param {Object} template Template object
-		 * @param {string} template.title
-		 * @param {Array} template.parameters
-		 * @return {string}
-		 */
-		procPLURAL: function ( template ) {
-			var count;
-			if ( template.title && template.parameters && mw.language.convertPlural ) {
-				// Check if we have forms to replace
-				if ( template.parameters.length === 0 ) {
-					return '';
-				}
-				// Restore the count into a Number ( if it got converted earlier )
-				count = mw.language.convertNumber( template.title, true );
-				// Do convertPlural call
-				return mw.language.convertPlural( parseInt( count, 10 ), template.parameters );
-			}
-			// Could not process plural return first form or nothing
-			if ( template.parameters[ 0 ] ) {
-				return template.parameters[ 0 ];
-			}
-			return '';
-		},
-
-		/**
 		 * Plural form transformations, needed for some languages.
 		 *
 		 * @param {number} count Non-localized quantifier
