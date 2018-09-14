@@ -196,9 +196,17 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * @param Title|string|null $title
 	 * @return WikiPage
-	 * @throws MWException
+	 * @throws MWException If this test cases's needsDB() method doesn't return true.
+	 *         Test cases can use "@group Database" to enable database test support,
+	 *         or list the tables under testing in $this->tablesUsed, or override the
+	 *         needsDB() method.
 	 */
 	protected function getExistingTestPage( $title = null ) {
+		if ( !$this->needsDB() ) {
+			throw new MWException( 'When testing which pages, the test cases\'s needsDB()' .
+				' method should return true. Use @group Database or $this->tablesUsed.' );
+		}
+
 		$title = ( $title === null ) ? 'UTPage' : $title;
 		$title = is_string( $title ) ? Title::newFromText( $title ) : $title;
 		$page = WikiPage::factory( $title );
@@ -224,9 +232,17 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * @param Title|string|null $title
 	 * @return WikiPage
-	 * @throws MWException
+	 * @throws MWException If this test cases's needsDB() method doesn't return true.
+	 *         Test cases can use "@group Database" to enable database test support,
+	 *         or list the tables under testing in $this->tablesUsed, or override the
+	 *         needsDB() method.
 	 */
 	protected function getNonexistingTestPage( $title = null ) {
+		if ( !$this->needsDB() ) {
+			throw new MWException( 'When testing which pages, the test cases\'s needsDB()' .
+				' method should return true. Use @group Database or $this->tablesUsed.' );
+		}
+
 		$title = ( $title === null ) ? 'UTPage-' . rand( 0, 100000 ) : $title;
 		$title = is_string( $title ) ? Title::newFromText( $title ) : $title;
 		$page = WikiPage::factory( $title );
@@ -1140,6 +1156,10 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @param int|null $namespace Namespace id (name cannot already contain namespace)
 	 * @param User|null $user If null, static::getTestSysop()->getUser() is used.
 	 * @return array Title object and page id
+	 * @throws MWException If this test cases's needsDB() method doesn't return true.
+	 *         Test cases can use "@group Database" to enable database test support,
+	 *         or list the tables under testing in $this->tablesUsed, or override the
+	 *         needsDB() method.
 	 */
 	protected function insertPage(
 		$pageName,
@@ -1147,6 +1167,11 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		$namespace = null,
 		User $user = null
 	) {
+		if ( !$this->needsDB() ) {
+			throw new MWException( 'When testing which pages, the test cases\'s needsDB()' .
+				' method should return true. Use @group Database or $this->tablesUsed.' );
+		}
+
 		if ( is_string( $pageName ) ) {
 			$title = Title::newFromText( $pageName, $namespace );
 		} else {
@@ -2245,8 +2270,17 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @param string $summary Optional summary string for the revision
 	 * @param int $defaultNs Optional namespace id
 	 * @return array Array as returned by WikiPage::doEditContent()
+	 * @throws MWException If this test cases's needsDB() method doesn't return true.
+	 *         Test cases can use "@group Database" to enable database test support,
+	 *         or list the tables under testing in $this->tablesUsed, or override the
+	 *         needsDB() method.
 	 */
 	protected function editPage( $pageName, $text, $summary = '', $defaultNs = NS_MAIN ) {
+		if ( !$this->needsDB() ) {
+			throw new MWException( 'When testing which pages, the test cases\'s needsDB()' .
+				' method should return true. Use @group Database or $this->tablesUsed.' );
+		}
+
 		$title = Title::newFromText( $pageName, $defaultNs );
 		$page = WikiPage::factory( $title );
 
