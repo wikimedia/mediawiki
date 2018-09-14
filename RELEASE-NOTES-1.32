@@ -36,6 +36,10 @@ production.
   (e.g. MediaWiki:Common.js), CSS or JSON was separated from 'editinterface'
   and is available under 'editsitejs'/'editsitecss'/'editsitejson'. Having
   'editinterface' is still necessary to edit such pages.
+* $wgMultiContentRevisionSchemaMigrationStage now defaults to writing both the
+  old and the new schema, but reading the new schema, so Multi-Content Revisions
+  (MCR) are now functional per default. The new default value of the setting is
+  SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW.
 
 ==== Removed configuration ====
 * $wgEnableAPI and $wgEnableWriteAPI – These settings, deprecated in 1.31,
@@ -439,6 +443,11 @@ because of Phabricator reports.
   `'help-inline' => false`.
 * The archive table's ar_rev_id field is now unique.
 * Special:BotPasswords now requires reauthentication.
+* (T174023) Multi-Content Revision (MCR) capabilities were introduced into the
+  storage layer and have basic support for display. No user interface exists
+  yet for creating or managing content in slots beides the main slot. See
+  <https://www.mediawiki.org/wiki/Multi-Content_Revisions> for more
+  information.
 * …
 
 == Compatibility ==
