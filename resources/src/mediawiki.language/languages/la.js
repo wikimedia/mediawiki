@@ -3,8 +3,8 @@
  * @author Santhosh Thottingal
  */
 
-mediaWiki.language.convertGrammar = function ( word, form ) {
-	var grammarForms = mediaWiki.language.getData( 'la', 'grammarForms' );
+mw.language.convertGrammar = function ( word, form ) {
+	var grammarForms = mw.language.getData( 'la', 'grammarForms' );
 	if ( grammarForms && grammarForms[ form ] ) {
 		return grammarForms[ form ][ word ];
 	}

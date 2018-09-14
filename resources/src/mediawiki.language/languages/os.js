@@ -3,8 +3,8 @@
  * @author Santhosh Thottingal
  */
 
-mediaWiki.language.convertGrammar = function ( word, form ) {
-	var grammarForms = mediaWiki.language.getData( 'os', 'grammarForms' ),
+mw.language.convertGrammar = function ( word, form ) {
+	var grammarForms = mw.language.getData( 'os', 'grammarForms' ),
 		// Ending for allative case
 		endAllative = 'мæ',
 		// Variable for 'j' beetwen vowels
