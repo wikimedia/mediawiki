@@ -107,7 +107,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 				"</table>";
 		}
 
-		return "<li>{$html}</li>";
+		return "<li class='mw-search-result'>{$html}</li>";
 	}
 
 	/**
