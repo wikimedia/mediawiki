@@ -13,7 +13,6 @@
 	'use strict';
 
 	var mw, StringSet, log,
-		hasOwn = Object.prototype.hasOwnProperty,
 		trackQueue = [];
 
 	/**
@@ -584,7 +583,7 @@
 			 * @property
 			 * @private
 			 */
-			var registry = {},
+			var registry = Object.create( null ),
 				// Mapping of sources, keyed by source-id, values are strings.
 				//
 				// Format:
@@ -593,7 +592,7 @@
 				//         'sourceId': 'http://example.org/w/load.php'
 				//     }
 				//
-				sources = {},
+				sources = Object.create( null ),
 
 				// For queueModuleScript()
 				handlingPendingRequests = false,
@@ -931,7 +930,7 @@
 			function sortDependencies( module, resolved, unresolved ) {
 				var i, deps, skip;
 
-				if ( !hasOwn.call( registry, module ) ) {
+				if ( !( module in registry ) ) {
 					throw new Error( 'Unknown dependency: ' + module );
 				}
 
@@ -1636,8 +1635,7 @@
 			 *  or null if the module does not exist
 			 */
 			function getModuleKey( module ) {
-				return hasOwn.call( registry, module ) ?
-					( module + '@' + registry[ module ].version ) : null;
+				return module in registry ? ( module + '@' + registry[ module ].version ) : null;
 			}
 
 			/**
@@ -1669,7 +1667,7 @@
 			 * @param {string} [skip]
 			 */
 			function registerOne( module, version, dependencies, group, source, skip ) {
-				if ( hasOwn.call( registry, module ) ) {
+				if ( module in registry ) {
 					throw new Error( 'module already registered: ' + module );
 				}
 				registry[ module ] = {
@@ -1722,7 +1720,7 @@
 					// Appends a list of modules from the queue to the batch
 					for ( q = 0; q < queue.length; q++ ) {
 						// Only load modules which are registered
-						if ( hasOwn.call( registry, queue[ q ] ) && registry[ queue[ q ] ].state === 'registered' ) {
+						if ( queue[ q ] in registry && registry[ queue[ q ] ].state === 'registered' ) {
 							// Prevent duplicate entries
 							if ( batch.indexOf( queue[ q ] ) === -1 ) {
 								batch.push( queue[ q ] );
@@ -1799,7 +1797,7 @@
 				addSource: function ( ids ) {
 					var id;
 					for ( id in ids ) {
-						if ( hasOwn.call( sources, id ) ) {
+						if ( id in sources ) {
 							throw new Error( 'source already registered: ' + id );
 						}
 						sources[ id ] = ids[ id ];
@@ -1878,7 +1876,7 @@
 						name = split.name,
 						version = split.version;
 					// Automatically register module
-					if ( !hasOwn.call( registry, name ) ) {
+					if ( !( name in registry ) ) {
 						mw.loader.register( name );
 					}
 					// Check for duplicate implementation
@@ -1967,7 +1965,7 @@
 					var module, state;
 					for ( module in states ) {
 						state = states[ module ];
-						if ( !hasOwn.call( registry, module ) ) {
+						if ( !( module in registry ) ) {
 							mw.loader.register( module );
 						}
 						setAndPropagate( module, state );
@@ -1982,7 +1980,7 @@
 				 *  in the registry.
 				 */
 				getVersion: function ( module ) {
-					return hasOwn.call( registry, module ) ? registry[ module ].version : null;
+					return module in registry ? registry[ module ].version : null;
 				},
 
 				/**
@@ -1993,7 +1991,7 @@
 				 *  in the registry.
 				 */
 				getState: function ( module ) {
-					return hasOwn.call( registry, module ) ? registry[ module ].state : null;
+					return module in registry ? registry[ module ].state : null;
 				},
 
 				/**
