@@ -48,22 +48,19 @@
 
 	function defineFallbacks() {
 		// <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set>
-		StringSet = window.Set || ( function () {
-			/**
-			 * @private
-			 * @class
-			 */
-			function StringSet() {
-				this.set = Object.create( null );
-			}
-			StringSet.prototype.add = function ( value ) {
-				this.set[ value ] = true;
+		/**
+		 * @private
+		 * @class
+		 */
+		StringSet = window.Set || function StringSet() {
+			var set = Object.create( null );
+			this.add = function ( value ) {
+				set[ value ] = true;
 			};
-			StringSet.prototype.has = function ( value ) {
-				return value in this.set;
+			this.has = function ( value ) {
+				return value in set;
 			};
-			return StringSet;
-		}() );
+		};
 	}
 
 	/**
