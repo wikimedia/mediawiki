@@ -1317,31 +1317,6 @@ MESSAGE;
 		);
 	}
 
-	/**
-	 * Returns JS code which calls the script given by $script. The script will
-	 * be called with local variables name, version, dependencies and group,
-	 * which will have values corresponding to $name, $version, $dependencies
-	 * and $group as supplied.
-	 *
-	 * @param string $name Module name
-	 * @param string $version Module version hash
-	 * @param array $dependencies List of module names on which this module depends
-	 * @param string $group Group which the module is in.
-	 * @param string $source Source of the module, or 'local' if not foreign.
-	 * @param string $script JavaScript code
-	 * @return string JavaScript code
-	 */
-	public static function makeCustomLoaderScript( $name, $version, $dependencies,
-		$group, $source, $script
-	) {
-		$script = str_replace( "\n", "\n\t", trim( $script ) );
-		return Xml::encodeJsCall(
-			"( function ( name, version, dependencies, group, source ) {\n\t$script\n} )",
-			[ $name, $version, $dependencies, $group, $source ],
-			self::inDebugMode()
-		);
-	}
-
 	private static function isEmptyObject( stdClass $obj ) {
 		foreach ( $obj as $key => $value ) {
 			return false;
