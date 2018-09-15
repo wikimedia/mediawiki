@@ -1283,6 +1283,8 @@
 	"rcfilters-activefilters": "Aktivni filtri",
 	"rcfilters-activefilters-hide": "Skrij",
 	"rcfilters-activefilters-show": "Pokaži",
+	"rcfilters-activefilters-hide-tooltip": "Sakrij aktivne filtre",
+	"rcfilters-activefilters-show-tooltip": "Pokaži aktivne filtre",
 	"rcfilters-advancedfilters": "Napredni filtri",
 	"rcfilters-limit-title": "Rezultata za prikaz",
 	"rcfilters-limit-and-date-label": "{{PLURAL:$1|$1 izmjena|$1 izmjene|$1 izmjena}}, $2",
