@@ -1162,8 +1162,8 @@ MESSAGE;
 			}
 		} else {
 			if ( $states ) {
-				// Keep default escaping of slashes (e.g. "</script>") for ResourceLoaderClientHtml.
-				$this->errors[] = 'Problematic modules: ' . json_encode( $states, JSON_PRETTY_PRINT );
+				$this->errors[] = 'Problematic modules: '
+					. self::encodeJsonForScript( $states );
 			}
 		}
 
@@ -1290,6 +1290,35 @@ MESSAGE;
 			}
 		}
 		return $out;
+	}
+
+	/**
+	 * Wrapper around json_encode that avoids needless escapes,
+	 * and pretty-prints in debug mode.
+	 *
+	 * @internal
+	 * @since 1.32
+	 * @param bool|string|array $data
+	 * @return string JSON
+	 */
+	public static function encodeJsonForScript( $data ) {
+		// Keep output as small as possible by disabling needless escape modes
+		// that PHP uses by default.
+		// However, while most module scripts are only served on HTTP responses
+		// for JavaScript, some modules can also be embedded in the HTML as inline
+		// scripts. This, and the fact that we sometimes need to export strings
+		// containing user-generated content and labels that may genuinely contain
+		// a sequences like "</script>", we need to encode either '/' or '<'.
+		// By default PHP escapes '/'. Let's escape '<' instead which is less common
+		// and allows URLs to mostly remain readable.
+		$jsonFlags = JSON_UNESCAPED_SLASHES |
+			JSON_UNESCAPED_UNICODE |
+			JSON_HEX_TAG |
+			JSON_HEX_AMP;
+		if ( self::inDebugMode() ) {
+			$jsonFlags |= JSON_PRETTY_PRINT;
+		}
+		return json_encode( $data, $jsonFlags );
 	}
 
 	/**
@@ -1466,7 +1495,7 @@ MESSAGE;
 	public static function makeInlineCodeWithModule( $modules, $script ) {
 		// Adds an array to lazy-created RLQ
 		return '(window.RLQ=window.RLQ||[]).push(['
-			. json_encode( $modules ) . ','
+			. self::encodeJsonForScript( $modules ) . ','
 			. 'function(){' . trim( $script ) . '}'
 			. ']);';
 	}
