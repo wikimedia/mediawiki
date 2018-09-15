@@ -4201,7 +4201,7 @@
 	"edit-error-long": "Erros:\n$1",
 	"revid": "revisão $1",
 	"pageid": "ID da página $1",
-	"interfaceadmin-info": "$1\n\nAs permissões de edição de arquivos CSS/JS/JSON que afetam todo o ''site'' foram recentemente separadas do privilégio <code>editinterface</code>. Se não compreende porque está a receber este erro, consulte [[mw:MediaWiki_1.32/interface-admin]].",
+	"interfaceadmin-info": "$1\n\nAs permissões para edição de arquivos CSS/JS/JSON em todo o site foram separadas recentemente do direito <code>editinterface</code>. Se você não entende porque está recebendo este erro, veja [[mw:MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "As tags &lt;html&gt; não podem ser usadas fora das páginas normais.",
 	"gotointerwiki": "Saindo {{SITENAME}}",
 	"gotointerwiki-invalid": "O título especificado é inválido.",

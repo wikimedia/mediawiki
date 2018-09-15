@@ -53,7 +53,7 @@
 	"apihelp-clearhasmsg-example-1": "Fjern <code>hasmsg</code>-flagget for aktuell bruker.",
 	"apihelp-clientlogin-summary": "Logg inn på wikien med den interaktive flyten.",
 	"apihelp-clientlogin-example-login": "Start prosessen med å logge inn til wikien som bruker <kbd>Example</kbd> med passord <kbd>ExamplePassword</kbd>.",
-	"apihelp-clientlogin-example-login2": "Fortsett å logge inn etter en <samp>UI</samp>-respons for tofaktor-autentisering, ved å oppgi en <var>OATHToken</var> på <kbd>987654</kbd>.",
+	"apihelp-clientlogin-example-login2": "Fortsett å logge inn etter en <samp>UI</samp>-respons for totrinns pålogging, ved å oppgi en <var>OATHToken</var> på <kbd>987654</kbd>.",
 	"apihelp-compare-summary": "Hent forskjellen mellom to sider.",
 	"apihelp-compare-extended-description": "Et revisjonsnummer, en sidetittel eller en side-ID for både «fra» og «til» må sendes.",
 	"apihelp-compare-param-fromtitle": "Første tittel å sammenligne.",
