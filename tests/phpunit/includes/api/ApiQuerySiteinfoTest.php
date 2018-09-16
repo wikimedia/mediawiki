@@ -5,6 +5,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * @group API
  * @group medium
+ * @group Database
  *
  * @covers ApiQuerySiteinfo
  */

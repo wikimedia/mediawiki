@@ -5,6 +5,7 @@ use MediaWiki\Storage\RevisionRecord;
 
 /**
  * @covers PoolWorkArticleView
+ * @group Database
  */
 class PoolWorkArticleViewTest extends MediaWikiTestCase {
 
