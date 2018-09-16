@@ -4100,6 +4100,7 @@
 	"redirect-file": "Description of lookup type for [[Special:Redirect]].\n{{Identical|Filename}}",
 	"redirect-logid": "Description of lookup type for [[Special:Redirect]].\n{{Identical|Log ID}}",
 	"redirect-not-exists": "Used as error message in [[Special:Redirect]]",
+	"redirect-not-numeric": "Used as error message in [[Special:Redirect]]",
 	"fileduplicatesearch": "Name of special page [[Special:FileDuplicateSearch]].",
 	"fileduplicatesearch-summary": "Summary of [[Special:FileDuplicateSearch]]",
 	"fileduplicatesearch-filename": "Input form of [[Special:FileDuplicateSearch]]:\n\n{{Identical|Filename}}",
