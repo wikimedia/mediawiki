@@ -949,7 +949,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		/** @var Revision $rev */
 		$rev = $page->doEditContent(
 			new WikitextContent( $text ),
-			__METHOD__. 'a'
+			__METHOD__ . 'a'
 		)->value['revision'];
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();

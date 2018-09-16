@@ -69,7 +69,7 @@ class BenchmarkTidy extends Benchmarker {
 		print "Median: $median ms\n";
 		print "Mean: $mean ms\n";
 		print "Maximum: $max ms\n";
-		print "Memory usage: " .  $contLang->formatSize( memory_get_usage( true ) ) . "\n";
+		print "Memory usage: " . $contLang->formatSize( memory_get_usage( true ) ) . "\n";
 		print "Peak memory usage: " .
 			$contLang->formatSize( memory_get_peak_usage( true ) ) . "\n";
 	}

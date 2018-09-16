@@ -105,17 +105,16 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 		$this->assertHasCookie( 'foo', 'bar', $request->getCookieJar() );
 
 		$this->markTestIncomplete( 'CookieJar does not handle deletion' );
-		return;
 
-		$request = MWHttpRequest::factory( 'http://httpbin.org/cookies/delete?foo' );
-		$cookieJar = new CookieJar();
-		$cookieJar->setCookie( 'foo', 'bar', [ 'domain' => 'httpbin.org' ] );
-		$cookieJar->setCookie( 'foo2', 'bar2', [ 'domain' => 'httpbin.org' ] );
-		$request->setCookieJar( $cookieJar );
-		$status = $request->execute();
-		$this->assertTrue( $status->isGood() );
-		$this->assertNotHasCookie( 'foo', $request->getCookieJar() );
-		$this->assertHasCookie( 'foo2', 'bar2', $request->getCookieJar() );
+		// $request = MWHttpRequest::factory( 'http://httpbin.org/cookies/delete?foo' );
+		// $cookieJar = new CookieJar();
+		// $cookieJar->setCookie( 'foo', 'bar', [ 'domain' => 'httpbin.org' ] );
+		// $cookieJar->setCookie( 'foo2', 'bar2', [ 'domain' => 'httpbin.org' ] );
+		// $request->setCookieJar( $cookieJar );
+		// $status = $request->execute();
+		// $this->assertTrue( $status->isGood() );
+		// $this->assertNotHasCookie( 'foo', $request->getCookieJar() );
+		// $this->assertHasCookie( 'foo2', 'bar2', $request->getCookieJar() );
 	}
 
 	public function testGetResponseHeaders() {

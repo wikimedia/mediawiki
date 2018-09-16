@@ -266,7 +266,7 @@ class ImageHistoryList extends ContextSource {
 		} else {
 			$row .=
 				'<td dir="' . MediaWikiServices::getInstance()->getContentLanguage()->getDir() .
-				'">' .  Linker::formatComment( $description, $this->title ) . '</td>';
+				'">' . Linker::formatComment( $description, $this->title ) . '</td>';
 		}
 
 		$rowClass = null;

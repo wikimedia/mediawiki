@@ -856,7 +856,7 @@ class WebRequest {
 	 * @return string
 	 */
 	public function getFullRequestURL() {
-		return wfGetServerUrl( PROTO_CURRENT ) .  $this->getRequestURL();
+		return wfGetServerUrl( PROTO_CURRENT ) . $this->getRequestURL();
 	}
 
 	/**

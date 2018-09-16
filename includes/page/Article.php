@@ -355,7 +355,7 @@ class Article implements Page {
 				if ( $this->mRevision !== null ) {
 					// Revision title doesn't match the page title given?
 					if ( $this->mPage->getId() != $this->mRevision->getPage() ) {
-						$function = get_class( $this->mPage ). '::newFromID';
+						$function = get_class( $this->mPage ) . '::newFromID';
 						$this->mPage = $function( $this->mRevision->getPage() );
 					}
 				}
@@ -817,6 +817,7 @@ class Article implements Page {
 		// Note that the ArticleViewHeader hook is allowed to set $outputDone to a
 		// ParserOutput instance.
 		$pOutput = ( $outputDone instanceof ParserOutput )
+			// phpcs:ignore MediaWiki.Usage.NestedInlineTernary.UnparenthesizedTernary -- FIXME T203805
 			? $outputDone // object fetched by hook
 			: $this->mParserOutput ?: null; // ParserOutput or null, avoid false
 

@@ -461,7 +461,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			"(wl_notificationtimestamp >= 'TS111TS') OR (wl_notificationtimestamp IS NULL)" .
 			'))))' .
 			') OR ((wl_namespace = 1) AND (' .
-			"(((wl_title = 'AnotherDbKey') AND (".
+			"(((wl_title = 'AnotherDbKey') AND (" .
 			"(wl_notificationtimestamp >= 'TS123TS') OR (wl_notificationtimestamp IS NULL)" .
 			')))))';
 		$mockDb->expects( $this->once() )
@@ -564,7 +564,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			"(wl_notificationtimestamp >= 'TS111TS') OR (wl_notificationtimestamp IS NULL)" .
 			'))))' .
 			') OR ((wl_namespace = 1) AND (' .
-			"(((wl_title = 'AnotherDbKey') AND (".
+			"(((wl_title = 'AnotherDbKey') AND (" .
 			"(wl_notificationtimestamp >= 'TS123TS') OR (wl_notificationtimestamp IS NULL)" .
 			'))))' .
 			') OR ' .

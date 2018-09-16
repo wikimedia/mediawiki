@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable MediaWiki.Commenting.PhpunitAnnotations.NotClassTrait
+
 namespace MediaWiki\Tests\Storage;
 
 use CommentStoreComment;

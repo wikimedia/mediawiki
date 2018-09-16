@@ -146,12 +146,10 @@ abstract class DumpIterator extends Maintenance {
 
 	/* Stub function for processing additional options */
 	public function checkOptions() {
-		return;
 	}
 
 	/* Stub function for giving data about what was computed */
 	public function conclusions() {
-		return;
 	}
 
 	/* Core function which does whatever the maintenance script is designed to do */

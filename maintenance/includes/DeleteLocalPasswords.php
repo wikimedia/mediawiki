@@ -169,7 +169,7 @@ ERROR
 				'user',
 				'user_name',
 				[
-					'user_name > ' .$dbw->addQuotes( $lastUsername ),
+					'user_name > ' . $dbw->addQuotes( $lastUsername ),
 				],
 				__METHOD__,
 				[

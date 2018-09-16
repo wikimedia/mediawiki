@@ -262,7 +262,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 
 		// Set up objects
 		$module = $this->getMockBuilder( TestResourceLoaderWikiModule::class )
-			->setMethods( [ 'getPages' ] ) ->getMock();
+			->setMethods( [ 'getPages' ] )->getMock();
 		$module->method( 'getPages' )->willReturn( $pages );
 		$module::$returnFetchTitleInfo = $titleInfo;
 		$rl = new EmptyResourceLoader();
@@ -330,7 +330,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 	public function testGetContent( $expected, $title ) {
 		$context = $this->getResourceLoaderContext( [], new EmptyResourceLoader );
 		$module = $this->getMockBuilder( ResourceLoaderWikiModule::class )
-			->setMethods( [ 'getContentObj' ] ) ->getMock();
+			->setMethods( [ 'getContentObj' ] )->getMock();
 		$module->expects( $this->any() )
 			->method( 'getContentObj' )->willReturn( null );
 

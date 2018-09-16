@@ -31,7 +31,7 @@ class ComposerLockTest extends MediaWikiTestCase {
 						'email' => 'chad@wikimedia.org',
 					],
 				],
-				'description' => 'Constant Database (CDB) wrapper library for PHP. '.
+				'description' => 'Constant Database (CDB) wrapper library for PHP. ' .
 					'Provides pure-PHP fallback when dba_* functions are absent.',
 			],
 			'cssjanus/cssjanus' => [

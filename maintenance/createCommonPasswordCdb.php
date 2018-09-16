@@ -94,7 +94,7 @@ class CreateCommonPasswordCdb extends Maintenance {
 					continue;
 				}
 				if ( isset( $alreadyWritten[$line] ) ) {
-					$this->output( "Password '$line' already written (line " . ( $i + 1 ) .")\n" );
+					$this->output( "Password '$line' already written (line " . ( $i + 1 ) . ")\n" );
 					$skipped++;
 					continue;
 				}
