@@ -830,7 +830,7 @@ class ParserTestRunner {
 	 * @return ParserTestResult|false false if skipped
 	 */
 	public function runTest( $test ) {
-		wfDebug( __METHOD__.": running {$test['desc']}" );
+		wfDebug( __METHOD__ . ": running {$test['desc']}" );
 		$opts = $this->parseOptions( $test['options'] );
 		$teardownGuard = $this->perTestSetup( $test );
 

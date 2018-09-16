@@ -1669,7 +1669,6 @@ class FakeMaintenance extends Maintenance {
 	protected $mSelf = "FakeMaintenanceScript";
 
 	public function execute() {
-		return;
 	}
 }
 

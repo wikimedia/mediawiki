@@ -107,6 +107,5 @@ class PackedImageGallery extends TraditionalImageGallery {
 	 * @param int $num
 	 */
 	public function setPerRow( $num ) {
-		return;
 	}
 }

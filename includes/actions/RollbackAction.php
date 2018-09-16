@@ -151,7 +151,6 @@ class RollbackAction extends FormlessAction {
 			);
 			$de->showDiff( '', '' );
 		}
-		return;
 	}
 
 	protected function getDescription() {

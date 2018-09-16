@@ -525,11 +525,11 @@ class RevisionStore
 			$slot = $rev->getSlot( $role, RevisionRecord::RAW );
 			Assert::postcondition(
 				$slot->getContent() !== null,
-				$role .  ' slot must have content'
+				$role . ' slot must have content'
 			);
 			Assert::postcondition(
 				$slot->hasRevision(),
-				$role .  ' slot must have a revision associated'
+				$role . ' slot must have a revision associated'
 			);
 		}
 

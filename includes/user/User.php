@@ -1010,10 +1010,10 @@ class User implements IDBAccessObject, UserIdentity {
 		// Should these be merged into the title char list?
 		$unicodeBlacklist = '/[' .
 			'\x{0080}-\x{009f}' . # iso-8859-1 control chars
-			'\x{00a0}' .          # non-breaking space
+			'\x{00a0}' . # non-breaking space
 			'\x{2000}-\x{200f}' . # various whitespace
 			'\x{2028}-\x{202f}' . # breaks and control chars
-			'\x{3000}' .          # ideographic space
+			'\x{3000}' . # ideographic space
 			'\x{e000}-\x{f8ff}' . # private use
 			']/u';
 		if ( preg_match( $unicodeBlacklist, $name ) ) {

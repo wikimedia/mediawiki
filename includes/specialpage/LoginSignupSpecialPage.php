@@ -1127,7 +1127,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			if ( !$signupendMsg->isDisabled() ) {
 				$usingHTTPS = $this->getRequest()->getProtocol() === 'https';
 				$signupendText = ( $usingHTTPS && !$signupendHttpsMsg->isBlank() )
-					? $signupendHttpsMsg ->parse() : $signupendMsg->parse();
+					? $signupendHttpsMsg->parse() : $signupendMsg->parse();
 				$fieldDefinitions['signupend'] = [
 					'type' => 'info',
 					'raw' => true,

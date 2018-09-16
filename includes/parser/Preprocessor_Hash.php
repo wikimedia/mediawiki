@@ -1088,7 +1088,7 @@ class PPFrame_Hash implements PPFrame {
 			} elseif ( is_array( $contextNode ) ) {
 				// Node descriptor array
 				if ( count( $contextNode ) !== 2 ) {
-					throw new MWException( __METHOD__.
+					throw new MWException( __METHOD__ .
 						': found an array where a node descriptor should be' );
 				}
 				list( $contextName, $contextChildren ) = $contextNode;
@@ -1786,7 +1786,7 @@ class PPNode_Hash_Tree implements PPNode {
 				$class = self::class;
 			}
 		} else {
-			throw new MWException( __METHOD__.': invalid node descriptor' );
+			throw new MWException( __METHOD__ . ': invalid node descriptor' );
 		}
 		return new $class( $store, $index );
 	}
@@ -2206,7 +2206,7 @@ class PPNode_Hash_Attr implements PPNode {
 	public function __construct( array $store, $index ) {
 		$descriptor = $store[$index];
 		if ( $descriptor[PPNode_Hash_Tree::NAME][0] !== '@' ) {
-			throw new MWException( __METHOD__.': invalid name in attribute descriptor' );
+			throw new MWException( __METHOD__ . ': invalid name in attribute descriptor' );
 		}
 		$this->name = substr( $descriptor[PPNode_Hash_Tree::NAME], 1 );
 		$this->value = $descriptor[PPNode_Hash_Tree::CHILDREN][0];

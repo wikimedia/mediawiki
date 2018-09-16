@@ -1665,7 +1665,7 @@ class Title implements LinkTarget {
 			if ( $nsText === false ) {
 				// See T165149. Awkward, but better than erroneously linking to the main namespace.
 				$nsText = MediaWikiServices::getInstance()->getContentLanguage()->
-					getNsText( NS_SPECIAL ) .  ":Badtitle/NS{$this->mNamespace}";
+					getNsText( NS_SPECIAL ) . ":Badtitle/NS{$this->mNamespace}";
 			}
 
 			$p .= $nsText . ':';

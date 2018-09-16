@@ -117,7 +117,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		}
 
 		// Because PHP can't have floats as array keys
-		uksort( $logosPerDppx, function ( $a , $b ) {
+		uksort( $logosPerDppx, function ( $a, $b ) {
 			$a = floatval( $a );
 			$b = floatval( $b );
 			// Sort from smallest to largest (e.g. 1x, 1.5x, 2x)
