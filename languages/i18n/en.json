@@ -3898,6 +3898,7 @@
 	"redirect-file": "Filename",
 	"redirect-logid": "Log ID",
 	"redirect-not-exists": "Value not found",
+	"redirect-not-numeric": "Value not numeric",
 	"fileduplicatesearch": "Search for duplicate files",
 	"fileduplicatesearch-summary": "Search for duplicate files based on hash values.",
 	"fileduplicatesearch-filename": "Filename:",
