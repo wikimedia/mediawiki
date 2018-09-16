@@ -3,6 +3,7 @@
 /**
  * @group API
  * @group medium
+ * @group Database
  *
  * @covers ApiQueryPrefixSearch
  */
