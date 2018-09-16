@@ -1799,6 +1799,7 @@
 	"tooltip-feed-atom": "Այս էջի Ատոմ սնուցումը",
 	"tooltip-t-contributions": "Դիտել {{GENDER:$1|այս մասնակցի}} ներդրումների ցանկը",
 	"tooltip-t-emailuser": "Ուղարկել էլ․ նամակ {{GENDER:$1|այս մասնակցին}}",
+	"tooltip-t-info": "Վիճակագրական տվյալներ էջի մասին",
 	"tooltip-t-upload": "Բեռնել ֆայլեր",
 	"tooltip-t-specialpages": "Բոլոր սպասարկող էջերի ցանկը",
 	"tooltip-t-print": "Այս էջի տպելու տարբերակ",

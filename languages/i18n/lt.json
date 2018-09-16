@@ -1898,6 +1898,7 @@
 	"protectedtitles-submit": "Rodyti pavadinimus",
 	"listusers": "Naudotojų sąrašas",
 	"listusers-editsonly": "Rodyti tik keitimus atlikusius naudotojus",
+	"listusers-temporarygroupsonly": "Rodyti tik laikinųjų vartotojų grupių naudotojus",
 	"listusers-creationsort": "Rodyti pagal paskyros sukūrimo datą",
 	"listusers-desc": "Išdėstyti abėcėline tvarka",
 	"usereditcount": "$1 {{PLURAL:$1|keitimas|keitimai|keitimų}}",
