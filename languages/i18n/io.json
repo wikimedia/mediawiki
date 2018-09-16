@@ -1723,6 +1723,7 @@
 	"autosumm-blank": "Pagino vakuigesis",
 	"autosumm-replace": "Kontenajo remplasigesis kun '$1'",
 	"autoredircomment": "Ridirektas a [[$1]]",
+	"autosumm-changed-redirect-target": "Chanjis la ridirektilo de [[$1]] a [[$2]]",
 	"autosumm-new": "Pagino kreesis kun '$1'",
 	"autosumm-newblank": "Kreita vakua pagino",
 	"watchlistedit-normal-title": "Modifikez surveyo-listo",
