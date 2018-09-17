@@ -42,7 +42,7 @@ use Wikimedia\Assert\Assert;
  *
  * @since 1.32
  */
-class RenderedRevision {
+class RenderedRevision implements SlotRenderingProvider {
 
 	/**
 	 * @var Title

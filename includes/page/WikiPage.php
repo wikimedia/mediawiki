@@ -29,6 +29,7 @@ use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Storage\SlotRecord;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -2820,15 +2821,21 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Do some database updates after deletion
 	 *
 	 * @param int $id The page_id value of the page being deleted
-	 * @param Content|null $content Optional page content to be used when determining
+	 * @param Content|null $content Page content to be used when determining
 	 *   the required updates. This may be needed because $this->getContent()
 	 *   may already return null when the page proper was deleted.
-	 * @param Revision|null $revision The latest page revision
+	 * @param RevisionRecord|Revision|null $revision The current page revision at the time of
+	 *   deletion, used when determining the required updates. This may be needed because
+	 *   $this->getRevision() may already return null when the page proper was deleted.
 	 * @param User|null $user The user that caused the deletion
 	 */
 	public function doDeleteUpdates(
 		$id, Content $content = null, Revision $revision = null, User $user = null
 	) {
+		if ( $id !== $this->getId() ) {
+			throw new InvalidArgumentException( 'Mismatching page ID' );
+		}
+
 		try {
 			$countable = $this->isCountable();
 		} catch ( Exception $ex ) {
@@ -2843,7 +2850,9 @@ class WikiPage implements Page, IDBAccessObject {
 		) );
 
 		// Delete pagelinks, update secondary indexes, etc
-		$updates = $this->getDeletionUpdates( $content );
+		$updates = $this->getDeletionUpdates(
+			$revision ? $revision->getRevisionRecord() : $content
+		);
 		foreach ( $updates as $update ) {
 			DeferredUpdates::addUpdate( $update );
 		}
@@ -3545,32 +3554,68 @@ class WikiPage implements Page, IDBAccessObject {
 	 * updates should remove any information about this page from secondary data
 	 * stores such as links tables.
 	 *
-	 * @param Content|null $content Optional Content object for determining the
-	 *   necessary updates.
+	 * @param RevisionRecord|Content|null $rev The revision being deleted. Also accepts a Content
+	 *       object for backwards compatibility.
 	 * @return DeferrableUpdate[]
 	 */
-	public function getDeletionUpdates( Content $content = null ) {
-		if ( !$content ) {
-			// load content object, which may be used to determine the necessary updates.
-			// XXX: the content may not be needed to determine the updates.
+	public function getDeletionUpdates( $rev = null ) {
+		if ( !$rev ) {
+			wfDeprecated( __METHOD__ . ' without a RevisionRecord', '1.32' );
+
 			try {
-				$content = $this->getContent( Revision::RAW );
+				$rev = $this->getRevisionRecord();
 			} catch ( Exception $ex ) {
 				// If we can't load the content, something is wrong. Perhaps that's why
 				// the user is trying to delete the page, so let's not fail in that case.
 				// Note that doDeleteArticleReal() will already have logged an issue with
 				// loading the content.
+				wfDebug( __METHOD__ . ' failed to load current revision of page ' . $this->getId() );
 			}
 		}
 
-		if ( !$content ) {
-			$updates = [];
+		if ( !$rev ) {
+			$slotContent = [];
+		} elseif ( $rev instanceof Content ) {
+			wfDeprecated( __METHOD__ . ' with a Content object instead of a RevisionRecord', '1.32' );
+
+			$slotContent = [ 'main' => $rev ];
 		} else {
-			$updates = $content->getDeletionUpdates( $this );
+			$slotContent = array_map( function ( SlotRecord $slot ) {
+				return $slot->getContent( Revision::RAW );
+			}, $rev->getSlots()->getSlots() );
 		}
 
-		Hooks::run( 'WikiPageDeletionUpdates', [ $this, $content, &$updates ] );
-		return $updates;
+		$allUpdates = [ new LinksDeletionUpdate( $this ) ];
+
+		// NOTE: once Content::getDeletionUpdates() is removed, we only need to content
+		// model here, not the content object!
+		// TODO: consolidate with similar logic in DerivedPageDataUpdater::getSecondaryDataUpdates()
+		/** @var Content $content */
+		foreach ( $slotContent as $role => $content ) {
+			$handler = $content->getContentHandler();
+
+			$updates = $handler->getDeletionUpdates(
+				$this->getTitle(),
+				$role
+			);
+			$allUpdates = array_merge( $allUpdates, $updates );
+
+			// TODO: remove B/C hack in 1.32!
+			$legacyUpdates = $content->getDeletionUpdates( $this );
+
+			// HACK: filter out redundant and incomplete LinksDeletionUpdate
+			$legacyUpdates = array_filter( $legacyUpdates, function ( $update ) {
+				return !( $update instanceof LinksDeletionUpdate );
+			} );
+
+			$allUpdates = array_merge( $allUpdates, $legacyUpdates );
+		}
+
+		Hooks::run( 'PageDeletionDataUpdates', [ $this->getTitle(), $rev, &$allUpdates ] );
+
+		// TODO: hard deprecate old hook in 1.33
+		Hooks::run( 'WikiPageDeletionUpdates', [ $this, $content, &$allUpdates ] );
+		return $allUpdates;
 	}
 
 	/**

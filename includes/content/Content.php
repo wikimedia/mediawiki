@@ -284,13 +284,8 @@ interface Content {
 	 * made to replace information about the old content with information about
 	 * the new content.
 	 *
-	 * This default implementation calls
-	 * $this->getParserOutput( $content, $title, null, null, false ),
-	 * and then calls getSecondaryDataUpdates( $title, $recursive ) on the
-	 * resulting ParserOutput object.
-	 *
-	 * Subclasses may implement this to determine the necessary updates more
-	 * efficiently, or make use of information about the old content.
+	 * @deprecated since 1.32, call and override
+	 *   ContentHandler::getSecondaryDataUpdates instead.
 	 *
 	 * @note Implementations should call the SecondaryDataUpdates hook, like
 	 *   AbstractContent does.
@@ -481,8 +476,10 @@ interface Content {
 	 * the current state of the database.
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.32, call and override
+	 *   ContentHandler::getDeletionUpdates instead.
 	 *
-	 * @param WikiPage $page The deleted page
+	 * @param WikiPage $page The page the content was deleted from.
 	 * @param ParserOutput|null $parserOutput Optional parser output object
 	 *    for efficient access to meta-information about the content object.
 	 *    Provide if you have one handy.

@@ -433,6 +433,18 @@ because of Phabricator reports.
   'help', 'help-message', 'help-messages' instead.
 * (T197179) HTMLFormField::getNotices() is now deprecated.
 * The jquery.localize module is now deprecated. Use jquery.i18n instead.
+* The SecondaryDataUpdates hook was deprecated in favor of RevisionDataUpdates,
+  or overriding ContentHandler::getSecondaryDataUpdates (T194038).
+* The WikiPageDeletionUpdates hook was deprecated in favor of
+  PageDeletionDataUpdates, or overriding ContentHandler::getDeletionDataUpdates
+  (T194038).
+* Content::getSecondaryDataUpdates has been deprecated in favor of
+  ContentHandler::getSecondaryDataUpdates() for overriding by extensions
+  (T194038).
+  Application logic should call WikiPage::doSecondaryDataUpdates() (T194037).
+* Content::getDeletionUpdates has been deprecated in favor of
+  ContentHandler::getDeletionUpdates() for overriding by extensions (T194038).
+  Application logic should call WikiPage::doSecondaryDataUpdates() (T194037).
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
