@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	QUnit.module( 'mediawiki.special.recentchanges', QUnit.newMwEnvironment() );
 
 	// TODO: verify checkboxes == [ 'nsassociated', 'nsinvert' ]
@@ -61,4 +61,4 @@
 		// DOM cleanup
 		$env.remove();
 	} );
-}( jQuery ) );
+}() );

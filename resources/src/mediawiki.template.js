@@ -2,7 +2,7 @@
  * @class mw.template
  * @singleton
  */
-( function ( mw, $ ) {
+( function () {
 	var compiledTemplates = {},
 		compilers = {};
 
@@ -121,4 +121,4 @@
 		}
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

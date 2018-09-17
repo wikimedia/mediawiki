@@ -1,7 +1,7 @@
 /**
  * @class jQuery.plugin.checkboxShiftClick
  */
-( function ( $ ) {
+( function () {
 
 	/**
 	 * Enable checkboxes to be checked or unchecked in a row by clicking one,
@@ -40,4 +40,4 @@
 	 * @mixins jQuery.plugin.checkboxShiftClick
 	 */
 
-}( jQuery ) );
+}() );

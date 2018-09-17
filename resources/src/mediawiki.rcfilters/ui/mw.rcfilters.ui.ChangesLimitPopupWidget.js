@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Widget defining the popup to choose number of results
 	 *
@@ -75,4 +75,4 @@
 	mw.rcfilters.ui.ChangesLimitPopupWidget.prototype.onGroupByPageModelUpdate = function () {
 		this.groupByPageCheckbox.setSelected( this.groupByPageItemModel.isSelected() );
 	};
-}( mediaWiki ) );
+}() );

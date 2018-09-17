@@ -4,7 +4,7 @@
  * @copyright 2011-2018 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
-( function ( $, mw ) {
+( function () {
 
 	/**
 	 * RadioSelectInputWidget and a TextInputWidget to set minimum or maximum byte size
@@ -105,4 +105,4 @@
 		this.textinput.restorePreInfuseState( state.textinput );
 	};
 
-}( jQuery, mediaWiki ) );
+}() );

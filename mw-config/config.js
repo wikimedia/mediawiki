@@ -1,5 +1,5 @@
 /* global extDependencyMap */
-( function ( $ ) {
+( function () {
 	$( function () {
 		var $label, labelText;
 
@@ -148,4 +148,4 @@
 			} );
 		} );
 	} );
-}( jQuery ) );
+}() );

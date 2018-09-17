@@ -5,7 +5,7 @@
  * This is loaded in the top queue, so avoid unnecessary dependencies
  * like mediawiki.Title or mediawiki.Uri.
  */
-( function ( mw, $ ) {
+( function () {
 	var profile = $.client.profile(),
 		canonical = mw.config.get( 'wgInternalRedirectTargetUrl' ),
 		fragment = null,
@@ -62,4 +62,4 @@
 		} );
 	}
 
-}( mediaWiki, jQuery ) );
+}() );

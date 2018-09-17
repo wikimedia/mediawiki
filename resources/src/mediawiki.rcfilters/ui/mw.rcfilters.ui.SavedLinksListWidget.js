@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Quick links widget
 	 *
@@ -150,4 +150,4 @@
 		this.menu.removeItems( [ this.menu.findItemFromData( item.getID() ) ] );
 		this.placeholderItem.toggle( this.model.isEmpty() );
 	};
-}( mediaWiki ) );
+}() );

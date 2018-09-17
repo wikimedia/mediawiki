@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Top section (between page title and filters) on Special:Recentchanges
 	 *
@@ -110,4 +110,4 @@
 		}
 		this.$topLinks.toggleClass( 'mw-recentchanges-toplinks-collapsed', state === 'collapsed' );
 	};
-}( mediaWiki ) );
+}() );

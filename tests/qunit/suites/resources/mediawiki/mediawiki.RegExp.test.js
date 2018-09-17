@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	QUnit.module( 'mediawiki.RegExp' );
 
 	QUnit.test( 'escape', function ( assert ) {
@@ -35,4 +35,4 @@
 		assert.strictEqual( mw.RegExp.escape( normal ), normal, 'Alphanumerals are left alone' );
 	} );
 
-}( mediaWiki ) );
+}() );

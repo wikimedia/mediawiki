@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	var caretSample,
 		sig = {
 			pre: '--~~~~'
@@ -263,4 +263,4 @@
 		end: 11,
 		mode: 'set'
 	} );
-}( jQuery ) );
+}() );

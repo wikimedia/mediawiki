@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	var util;
@@ -593,4 +593,4 @@
 	mw.util = util;
 	module.exports = util;
 
-}( mediaWiki, jQuery ) );
+}() );

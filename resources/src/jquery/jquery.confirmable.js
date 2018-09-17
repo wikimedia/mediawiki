@@ -7,7 +7,7 @@
  *
  * @class jQuery.plugin.confirmable
  */
-( function ( $ ) {
+( function () {
 	var identity = function ( data ) {
 		return data;
 	};
@@ -180,4 +180,4 @@
 			noTitle: undefined
 		}
 	};
-}( jQuery ) );
+}() );

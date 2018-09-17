@@ -3,7 +3,7 @@
  *
  * @copyright 2011-2016 VisualEditor Team and others; see http://ve.mit-license.org
  */
-( function ( $, mw ) {
+( function () {
 
 	/**
 	 * API Results Queue object.
@@ -221,4 +221,4 @@
 	mw.widgets.APIResultsQueue.prototype.getThreshold = function () {
 		return this.threshold;
 	};
-}( jQuery, mediaWiki ) );
+}() );

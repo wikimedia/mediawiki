@@ -1,7 +1,7 @@
 /*!
  * Scripts for action=edit at domready
  */
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	/**
@@ -48,4 +48,4 @@
 			} );
 		}
 	} );
-}( mediaWiki, jQuery ) );
+}() );

@@ -1,7 +1,7 @@
 /**
  * @class jQuery.plugin.getAttrs
  */
-( function ( $ ) {
+( function () {
 	function serializeControls( controls ) {
 		var i,
 			data = {},
@@ -34,4 +34,4 @@
 	$.fn.serializeObject = function () {
 		return serializeControls( this.serializeArray() );
 	};
-}( jQuery ) );
+}() );

@@ -50,7 +50,7 @@
  * @class mw.Uri
  */
 
-( function ( mw, $ ) {
+( function () {
 	var parser, properties;
 
 	/**
@@ -435,4 +435,4 @@
 		return location.href;
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

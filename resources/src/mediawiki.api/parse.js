@@ -1,7 +1,7 @@
 /**
  * @class mw.Api.plugin.parse
  */
-( function ( mw, $ ) {
+( function () {
 
 	$.extend( mw.Api.prototype, {
 		/**
@@ -46,4 +46,4 @@
 	 * @mixins mw.Api.plugin.parse
 	 */
 
-}( mediaWiki, jQuery ) );
+}() );

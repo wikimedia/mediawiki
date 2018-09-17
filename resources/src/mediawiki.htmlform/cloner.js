@@ -2,7 +2,7 @@
  * HTMLForm enhancements:
  * Add/remove cloner clones without having to resubmit the form.
  */
-( function ( mw, $ ) {
+( function () {
 
 	var cloneCounter = 0;
 
@@ -33,4 +33,4 @@
 		} );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	var collapsibleLists, handleOne;
 
 	// Collapsible lists of categories and templates
@@ -63,4 +63,4 @@
 			);
 		}
 	} );
-}( mediaWiki ) );
+}() );

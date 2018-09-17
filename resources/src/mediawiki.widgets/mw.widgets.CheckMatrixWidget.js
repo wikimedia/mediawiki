@@ -1,4 +1,4 @@
-( function ( $, mw ) {
+( function () {
 	/**
 	 * A JavaScript version of CheckMatrixWidget.
 	 *
@@ -144,4 +144,4 @@
 			} );
 		}
 	};
-}( jQuery, mediaWiki ) );
+}() );

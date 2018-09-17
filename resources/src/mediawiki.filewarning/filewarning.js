@@ -4,7 +4,7 @@
  * @author Mark Holmquist, 2015
  * @since 1.25
  */
-( function ( mw, $, oo ) {
+( function () {
 	var warningConfig = mw.config.get( 'wgFileWarning' ),
 		warningMessages = warningConfig.messages,
 		warningLink = warningConfig.link,
@@ -18,7 +18,7 @@
 			.addClass( 'mediawiki-filewarning-info empty' ),
 		$footer = $( '<p>' )
 			.addClass( 'mediawiki-filewarning-footer empty' ),
-		dialog = new oo.ui.PopupButtonWidget( {
+		dialog = new OO.ui.PopupButtonWidget( {
 			classes: [ 'mediawiki-filewarning-anchor' ],
 			label: $mimetype,
 			flags: [ 'warning' ],
@@ -64,4 +64,4 @@
 		// object at all. Sort of nasty, but it gets the job done.
 		dialog.getPopup().toggle = $.noop;
 	}
-}( mediaWiki, jQuery, OO ) );
+}() );

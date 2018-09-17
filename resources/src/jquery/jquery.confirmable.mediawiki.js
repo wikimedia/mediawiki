@@ -4,7 +4,7 @@
  * This file serves to inject our localised messages into it.
  */
 
-( function ( mw, $ ) {
+( function () {
 	$.fn.confirmable.defaultOptions.i18n = {
 		space: mw.message( 'word-separator' ).text(),
 		confirm: mw.message( 'confirmable-confirm', mw.user ).text(),
@@ -13,4 +13,4 @@
 		yesTitle: undefined,
 		noTitle: undefined
 	};
-}( mediaWiki, jQuery ) );
+}() );

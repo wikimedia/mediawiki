@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	/* eslint-disable camelcase */
 	var formatText, formatParse, formatnumTests, specialCharactersPageName, expectedListUsers,
 		expectedListUsersSitename, expectedLinkPagenamee, expectedEntrypoints,
@@ -1221,4 +1221,4 @@
 			'setParserDefaults is deep if requested'
 		);
 	} );
-}( mediaWiki, jQuery ) );
+}() );

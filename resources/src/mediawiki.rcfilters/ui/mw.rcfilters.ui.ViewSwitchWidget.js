@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * A widget for the footer for the default view, allowing to switch views
 	 *
@@ -75,4 +75,4 @@
 	mw.rcfilters.ui.ViewSwitchWidget.prototype.onButtonClick = function ( buttonWidget ) {
 		this.controller.switchView( buttonWidget.getData() );
 	};
-}( mediaWiki ) );
+}() );

@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:Watchlist
  */
-( function ( mw, $, OO ) {
+( function () {
 	$( function () {
 		var api = new mw.Api(), $progressBar, $resetForm = $( '#mw-watchlist-resetbutton' );
 
@@ -154,5 +154,4 @@
 		}
 	} );
 
-}( mediaWiki, jQuery, OO )
-);
+}() );

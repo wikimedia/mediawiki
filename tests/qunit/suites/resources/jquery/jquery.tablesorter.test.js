@@ -1,4 +1,4 @@
-( function ( $, mw ) {
+( function () {
 	var header = [ 'Planet', 'Radius (km)' ],
 
 		// Data set "planets"
@@ -1528,4 +1528,4 @@
 		);
 	} );
 
-}( jQuery, mediaWiki ) );
+}() );

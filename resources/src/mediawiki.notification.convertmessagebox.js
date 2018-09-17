@@ -6,7 +6,7 @@
  * @class mw.plugin.convertmessagebox
  * @singleton
  */
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	/**
@@ -61,4 +61,4 @@
 
 	module.exports = convertmessagebox;
 
-}( mediaWiki, jQuery ) );
+}() );

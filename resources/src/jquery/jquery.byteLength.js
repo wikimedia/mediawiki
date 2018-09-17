@@ -12,7 +12,7 @@
  * @param {string} str
  * @return {number}
  */
-mediaWiki.log.deprecate( jQuery, 'byteLength', require( 'mediawiki.String' ).byteLength,
+mw.log.deprecate( $, 'byteLength', require( 'mediawiki.String' ).byteLength,
 	'Use require( \'mediawiki.String\' ).byteLength instead.', '$.byteLength' );
 
 /**

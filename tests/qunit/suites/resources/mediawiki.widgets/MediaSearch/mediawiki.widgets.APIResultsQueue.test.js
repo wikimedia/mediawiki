@@ -6,7 +6,7 @@
 
 QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 
-( function ( $, mw ) {
+( function () {
 	var itemCounter, FullResourceProvider, EmptyResourceProvider, SingleResultResourceProvider;
 
 	itemCounter = 0;
@@ -194,4 +194,4 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 			// Finish the async test
 			.then( done );
 	} );
-}( jQuery, mediaWiki ) );
+}() );

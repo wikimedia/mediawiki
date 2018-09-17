@@ -2,7 +2,7 @@
  * HTMLForm enhancements:
  * Infuse some OOUI HTMLForm fields (those which benefit from always being infused).
  */
-( function ( mw, $ ) {
+( function () {
 
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		var $oouiNodes, modules, extraModules;
@@ -34,4 +34,4 @@
 
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 
 	// FIXME: mw.htmlform.Element also sets this to empty object
 	mw.htmlform = {};
@@ -178,4 +178,4 @@
 		return this;
 	};
 
-}( mediaWiki, jQuery ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 
 	QUnit.module( 'mediawiki.template.mustache', {
 		beforeEach: function () {
@@ -29,4 +29,4 @@
 		assert.strictEqual( htmlPartial, 'Hello goodbye', 'Render with partial' );
 	} );
 
-}( mediaWiki ) );
+}() );

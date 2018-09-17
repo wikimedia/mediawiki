@@ -4,7 +4,7 @@
  * @class mw.toolbar
  * @singleton
  */
-( function ( mw, $ ) {
+( function () {
 	var toolbar, isReady, $toolbar, queue, slice, $currentFocused;
 
 	/**
@@ -205,4 +205,4 @@
 		} );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

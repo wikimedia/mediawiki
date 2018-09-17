@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 
 	/**
 	 * @class mw.Api
@@ -506,4 +506,4 @@
 	];
 	mw.log.deprecate( mw.Api, 'warnings', mw.Api.warnings, null, 'mw.Api.warnings' );
 
-}( mediaWiki, jQuery ) );
+}() );

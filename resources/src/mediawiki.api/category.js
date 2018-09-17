@@ -1,7 +1,7 @@
 /**
  * @class mw.Api.plugin.category
  */
-( function ( mw, $ ) {
+( function () {
 
 	$.extend( mw.Api.prototype, {
 		/**
@@ -98,4 +98,4 @@
 	 * @mixins mw.Api.plugin.category
 	 */
 
-}( mediaWiki, jQuery ) );
+}() );

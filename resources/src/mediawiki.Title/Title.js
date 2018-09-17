@@ -4,7 +4,7 @@
  * @since 1.18
  */
 
-( function ( mw, $ ) {
+( function () {
 	/**
 	 * Parse titles into an object structure. Note that when using the constructor
 	 * directly, passing invalid titles will result in an exception. Use #newFromText to use the
@@ -957,4 +957,4 @@
 	// Expose
 	mw.Title = Title;
 
-}( mediaWiki, jQuery ) );
+}() );

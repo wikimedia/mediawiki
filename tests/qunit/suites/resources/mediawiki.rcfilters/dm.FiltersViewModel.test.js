@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-( function ( mw, $ ) {
+( function () {
 	var filterDefinition = [ {
 			name: 'group1',
 			type: 'send_unselected_if_any',
@@ -1561,4 +1561,4 @@
 		} );
 		assert.strictEqual( model.areVisibleFiltersEmpty(), false );
 	} );
-}( mediaWiki, jQuery ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	QUnit.module( 'mediawiki.api', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.server = this.sandbox.useFakeServer();
@@ -453,7 +453,7 @@
 			var self = this,
 				requests = this.requests = [];
 			this.api = new mw.Api();
-			this.sandbox.stub( jQuery, 'ajax', function () {
+			this.sandbox.stub( $, 'ajax', function () {
 				var request = $.extend( {
 					abort: self.sandbox.spy()
 				}, $.Deferred() );
@@ -476,4 +476,4 @@
 			assert.ok( request.abort.calledOnce, 'abort request number ' + i );
 		} );
 	} );
-}( mediaWiki, jQuery ) );
+}() );

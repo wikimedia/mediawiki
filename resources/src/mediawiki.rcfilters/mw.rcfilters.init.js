@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:RecentChanges
  */
-( function ( mw, $ ) {
+( function () {
 	var rcfilters = {
 		/**
 		 * @member mw.rcfilters
@@ -157,4 +157,4 @@
 
 	module.exports = rcfilters;
 
-}( mediaWiki, jQuery ) );
+}() );

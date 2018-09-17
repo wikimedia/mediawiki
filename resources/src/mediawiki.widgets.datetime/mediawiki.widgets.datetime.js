@@ -1,2 +1,2 @@
 // Create the namespace object
-mediaWiki.widgets.datetime = {};
+mw.widgets.datetime = {};

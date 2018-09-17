@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * List displaying all filter groups
 	 *
@@ -756,4 +756,4 @@
 			} );
 		}
 	};
-}( mediaWiki ) );
+}() );

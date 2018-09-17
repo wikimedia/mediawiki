@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 
 	// Return a promise that is resolved when the element is blurred (loses focus).
 	// If it already is blurred, resolved immediately.
@@ -35,4 +35,4 @@
 		} );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

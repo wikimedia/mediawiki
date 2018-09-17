@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:RecentChanges
  */
-( function ( mw, $ ) {
+( function () {
 	var rc, $checkboxes, $select;
 
 	/**
@@ -35,4 +35,4 @@
 
 	module.exports = rc;
 
-}( mediaWiki, jQuery ) );
+}() );

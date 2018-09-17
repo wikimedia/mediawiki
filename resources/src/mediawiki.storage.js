@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	'use strict';
 
 	// Catch exceptions to avoid fatal in Chrome's "Block data storage" mode
@@ -91,4 +91,4 @@
 	 */
 	mw.storage.session = new SafeStorage( sessionStorage );
 
-}( mediaWiki ) );
+}() );

@@ -6,7 +6,7 @@
  * @author Moriel Schottlender, 2015
  * @since 1.19
  */
-( function ( mw, $ ) {
+( function () {
 	/**
 	 * This is a way of getting simple feedback from users. It's useful
 	 * for testing new features -- users can give you feedback without
@@ -512,4 +512,4 @@
 		return this.bugReportLink;
 	};
 
-}( mediaWiki, jQuery ) );
+}() );

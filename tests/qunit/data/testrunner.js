@@ -1,5 +1,5 @@
 /* global sinon */
-( function ( $, mw, QUnit ) {
+( function () {
 	'use strict';
 
 	var addons, nested;
@@ -654,4 +654,4 @@
 		} );
 	} );
 
-}( jQuery, mediaWiki, QUnit ) );
+}() );

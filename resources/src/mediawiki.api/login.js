@@ -5,7 +5,7 @@
  * @class mw.Api.plugin.login
  * @since 1.22
  */
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	$.extend( mw.Api.prototype, {
@@ -57,4 +57,4 @@
 	 * @mixins mw.Api.plugin.login
 	 */
 
-}( mediaWiki, jQuery ) );
+}() );

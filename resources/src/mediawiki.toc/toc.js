@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	// Table of contents toggle
@@ -58,4 +58,4 @@
 		} );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

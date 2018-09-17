@@ -9,7 +9,7 @@
  * Jeroen De Dauw <jeroendedauw at gmail dot com>
  */
 
-( function ( $ ) {
+( function () {
 	'use strict';
 
 	$( function () {
@@ -35,4 +35,4 @@
 
 	} );
 
-}( jQuery ) );
+}() );

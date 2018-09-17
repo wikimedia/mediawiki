@@ -1,7 +1,7 @@
 /*!
  * Live edit preview.
  */
-( function ( mw, $ ) {
+( function () {
 
 	/**
 	 * @ignore
@@ -329,4 +329,4 @@
 		$( document.body ).on( 'click', '#wpPreview, #wpDiff', doLivePreview );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

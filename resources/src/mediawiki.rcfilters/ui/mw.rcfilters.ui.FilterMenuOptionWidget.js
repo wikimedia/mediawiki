@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * A widget representing a single toggle filter
 	 *
@@ -87,4 +87,4 @@
 			} );
 		}
 	};
-}( mediaWiki ) );
+}() );

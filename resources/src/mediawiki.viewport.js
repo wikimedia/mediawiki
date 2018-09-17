@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	/**
@@ -98,4 +98,4 @@
 	};
 
 	mw.viewport = viewport;
-}( mediaWiki, jQuery ) );
+}() );

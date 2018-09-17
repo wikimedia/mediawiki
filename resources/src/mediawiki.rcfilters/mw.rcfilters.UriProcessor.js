@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	/* eslint no-underscore-dangle: "off" */
 	/**
 	 * URI Processor for RCFilters
@@ -291,4 +291,4 @@
 			{ urlversion: '2' }
 		);
 	};
-}( mediaWiki, jQuery ) );
+}() );

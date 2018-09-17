@@ -5,7 +5,7 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 /* global moment */
-( function ( $, mw ) {
+( function () {
 
 	/**
 	 * Creates an mw.widgets.CalendarWidget object.
@@ -588,4 +588,4 @@
 		return this;
 	};
 
-}( jQuery, mediaWiki ) );
+}() );

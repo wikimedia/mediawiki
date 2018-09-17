@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	var pluralTestcases = {
 		/*
 		 * Sample:
@@ -80,4 +80,4 @@
 			pluralTest( langCode, tests );
 		}
 	} );
-}( mediaWiki, jQuery ) );
+}() );

@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:RevisionDelete
  */
-( function ( mw, $ ) {
+( function () {
 	var colonSeparator = mw.message( 'colon-separator' ).text(),
 		summaryCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),
 		summaryByteLimit = mw.config.get( 'wgCommentByteLimit' ),
@@ -26,4 +26,4 @@
 		$wpReason.byteLimit( summaryByteLimit, filterFn );
 	}
 
-}( mediaWiki, jQuery ) );
+}() );

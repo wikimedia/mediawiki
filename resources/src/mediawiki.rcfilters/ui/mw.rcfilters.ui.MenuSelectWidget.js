@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * A floating menu widget for the filter list
 	 *
@@ -356,4 +356,4 @@
 	mw.rcfilters.ui.MenuSelectWidget.prototype.setUserSelecting = function ( isSelecting ) {
 		this.userSelecting = !!isSelecting;
 	};
-}( mediaWiki ) );
+}() );

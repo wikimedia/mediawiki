@@ -5,7 +5,7 @@
  * @since 1.28
  * @author Timo Tijhof
  */
-( function ( mw, $ ) {
+( function () {
 
 	$( function () {
 		$( '.mw-rollback-link' ).on( 'click', 'a[data-mw="interface"]', function ( e ) {
@@ -64,4 +64,4 @@
 		} );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

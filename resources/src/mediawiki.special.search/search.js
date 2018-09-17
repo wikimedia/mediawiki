@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:Search
  */
-( function ( mw, $ ) {
+( function () {
 	$( function () {
 		var $checkboxes, $headerLinks, updateHeaderLinks, searchWidget;
 
@@ -57,4 +57,4 @@
 
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

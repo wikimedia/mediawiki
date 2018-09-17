@@ -6,7 +6,7 @@
 * @author neilk@wikimedia.org
 * @author mflaschen@wikimedia.org
 */
-( function ( mw, $ ) {
+( function () {
 	/**
 	 * @class mw.jqueryMsg
 	 * @singleton
@@ -82,7 +82,7 @@
 			if ( typeof children[ i ] !== 'object' ) {
 				children[ i ] = document.createTextNode( children[ i ] );
 			}
-			if ( children[ i ] instanceof jQuery && children[ i ].hasClass( 'mediaWiki_htmlEmitter' ) ) {
+			if ( children[ i ] instanceof $ && children[ i ].hasClass( 'mediaWiki_htmlEmitter' ) ) {
 				children[ i ] = children[ i ].contents();
 			}
 		}
@@ -114,7 +114,7 @@
 	 * @return {string} Textual value of input
 	 */
 	function textify( input ) {
-		if ( input instanceof jQuery ) {
+		if ( input instanceof $ ) {
 			input = input.text();
 		}
 		return String( input );
@@ -1144,7 +1144,7 @@
 			var $el,
 				arg = nodes[ 0 ],
 				contents = nodes[ 1 ];
-			if ( arg instanceof jQuery && !arg.hasClass( 'mediaWiki_htmlEmitter' ) ) {
+			if ( arg instanceof $ && !arg.hasClass( 'mediaWiki_htmlEmitter' ) ) {
 				$el = arg;
 			} else {
 				$el = $( '<a>' );
@@ -1184,7 +1184,7 @@
 			for ( formIndex = 0; formIndex < forms.length; formIndex++ ) {
 				form = forms[ formIndex ];
 
-				if ( form instanceof jQuery && form.hasClass( 'mediaWiki_htmlEmitter' ) ) {
+				if ( form instanceof $ && form.hasClass( 'mediaWiki_htmlEmitter' ) ) {
 					// This is a nested node, may be an explicit plural form like 5=[$2 linktext]
 					firstChild = form.contents().get( 0 );
 					if ( firstChild && firstChild.nodeType === Node.TEXT_NODE ) {
@@ -1388,4 +1388,4 @@
 		};
 	}() );
 
-}( mediaWiki, jQuery ) );
+}() );

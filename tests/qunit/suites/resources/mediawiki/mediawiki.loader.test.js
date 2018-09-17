@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	QUnit.module( 'mediawiki.loader', QUnit.newMwEnvironment( {
 		setup: function ( assert ) {
 			// Expose for load.mock.php
@@ -1055,4 +1055,4 @@
 		} );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

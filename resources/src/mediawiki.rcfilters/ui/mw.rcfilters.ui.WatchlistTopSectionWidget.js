@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Top section (between page title and filters) on Special:Watchlist
 	 *
@@ -80,4 +80,4 @@
 	/* Initialization */
 
 	OO.inheritClass( mw.rcfilters.ui.WatchlistTopSectionWidget, OO.ui.Widget );
-}( mediaWiki ) );
+}() );

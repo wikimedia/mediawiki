@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	var UP;
 
 	/**
@@ -390,4 +390,4 @@
 	};
 
 	mw.Upload = Upload;
-}( mediaWiki, jQuery ) );
+}() );

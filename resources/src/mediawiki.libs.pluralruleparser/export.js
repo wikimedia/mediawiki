@@ -2,4 +2,4 @@
 module.exports = window.pluralRuleParser;
 
 // Back-compat: Also expose via mw.lib
-mediaWiki.libs.pluralRuleParser = window.pluralRuleParser;
+mw.libs.pluralRuleParser = window.pluralRuleParser;

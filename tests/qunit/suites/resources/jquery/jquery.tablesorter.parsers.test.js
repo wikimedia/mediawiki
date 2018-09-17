@@ -1,4 +1,4 @@
-( function ( $, mw ) {
+( function () {
 	/**
 	 * This module tests the input/output capabilities of the parsers of tablesorter.
 	 * It does not test actual sorting.
@@ -264,4 +264,4 @@
 
 	// TODO add numbers sorting tests for T10115 with a different language
 
-}( jQuery, mediaWiki ) );
+}() );

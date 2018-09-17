@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-( function ( mw ) {
+( function () {
 	QUnit.module( 'mediawiki.rcfilters - FilterItem' );
 
 	QUnit.test( 'Initializing filter item', function ( assert ) {
@@ -202,4 +202,4 @@
 
 		assert.strictEqual( item.getValue(), '1', 'Value is kept as-is' );
 	} );
-}( mediaWiki ) );
+}() );

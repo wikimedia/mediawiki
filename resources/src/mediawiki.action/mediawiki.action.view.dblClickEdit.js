@@ -1,7 +1,7 @@
 /*!
  * Enables double-click-to-edit functionality.
  */
-( function ( mw, $ ) {
+( function () {
 	$( function () {
 		mw.util.$content.dblclick( function ( e ) {
 			var $a;
@@ -17,4 +17,4 @@
 			}
 		} );
 	} );
-}( mediaWiki, jQuery ) );
+}() );

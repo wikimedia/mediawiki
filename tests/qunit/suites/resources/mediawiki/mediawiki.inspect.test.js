@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 
 	QUnit.module( 'mediawiki.inspect' );
 
@@ -71,4 +71,4 @@
 			);
 		} );
 	} );
-}( mediaWiki ) );
+}() );

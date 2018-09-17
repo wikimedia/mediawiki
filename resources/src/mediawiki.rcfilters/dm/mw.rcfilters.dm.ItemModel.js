@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * RCFilter base item model
 	 *
@@ -270,4 +270,4 @@
 	mw.rcfilters.dm.ItemModel.prototype.isHighlighted = function () {
 		return !!this.getHighlightColor();
 	};
-}( mediaWiki ) );
+}() );

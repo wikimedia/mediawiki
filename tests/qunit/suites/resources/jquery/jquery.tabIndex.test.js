@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	QUnit.module( 'jquery.tabIndex', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'firstTabIndex', function ( assert ) {
@@ -32,4 +32,4 @@
 		$testB = $( '<div>' );
 		assert.strictEqual( $testB.lastTabIndex(), null, 'Return null if none available.' );
 	} );
-}( jQuery ) );
+}() );

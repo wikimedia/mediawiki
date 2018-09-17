@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	QUnit.module( 'jquery.colorUtil', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'getRGB', function ( assert ) {
@@ -60,4 +60,4 @@
 		b = $.colorUtil.getColorBrightness( 'rgb(200,50,50)', -0.2 );
 		assert.strictEqual( b, 'rgb(118,29,29)', 'Start with rgb string "rgb(200,50,50)", darken 20%' );
 	} );
-}( jQuery ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	/**
 	 * A button to configure highlight for a filter item
 	 *
@@ -77,4 +77,4 @@
 				);
 		} );
 	};
-}( mediaWiki, jQuery ) );
+}() );

@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:Preferences: Timezone field enhancements.
  */
-( function ( mw, $ ) {
+( function () {
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		var $tzSelect, $tzTextbox, timezoneWidget, $localtimeHolder, servertime,
 			$target = $root.find( '#wpTimeCorrection' ),
@@ -116,4 +116,4 @@
 		}
 
 	} );
-}( mediaWiki, jQuery ) );
+}() );

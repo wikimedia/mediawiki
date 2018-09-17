@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	var debug,
@@ -387,4 +387,4 @@
 		debug.init();
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

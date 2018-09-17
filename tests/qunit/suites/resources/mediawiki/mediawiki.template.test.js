@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 
 	QUnit.module( 'mediawiki.template', {
 		beforeEach: function () {
@@ -60,4 +60,4 @@
 		);
 	} );
 
-}( mediaWiki ) );
+}() );

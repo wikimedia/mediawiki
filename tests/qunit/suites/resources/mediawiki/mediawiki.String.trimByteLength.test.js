@@ -1,4 +1,4 @@
-( function ( $, mw ) {
+( function () {
 	var simpleSample, U_20AC, poop, mbSample,
 		trimByteLength = require( 'mediawiki.String' ).trimByteLength;
 
@@ -147,4 +147,4 @@
 		expected: '\uD800'
 	} );
 
-}( jQuery, mediaWiki ) );
+}() );

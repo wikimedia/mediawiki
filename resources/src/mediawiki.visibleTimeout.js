@@ -1,7 +1,8 @@
-( function ( mw, document ) {
+( function () {
 	var hidden, visibilityChange,
 		nextVisibleTimeoutId = 0,
 		activeTimeouts = {},
+		document = window.document,
 		init = function ( overrideDoc ) {
 			if ( overrideDoc !== undefined ) {
 				document = overrideDoc;
@@ -111,4 +112,4 @@
 		module.exports.setDocument = init;
 	}
 
-}( mediaWiki, document ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Widget defining the popup to choose date for the results
 	 *
@@ -63,4 +63,4 @@
 	 *
 	 * A days item was chosen
 	 */
-}( mediaWiki ) );
+}() );

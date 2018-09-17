@@ -4,7 +4,7 @@
  * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
-( function ( $, mw ) {
+( function () {
 
 	/**
 	 * Namespace input widget. Displays a dropdown box with the choice of available namespaces, plus
@@ -133,4 +133,4 @@
 		return this;
 	};
 
-}( jQuery, mediaWiki ) );
+}() );

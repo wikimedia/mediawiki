@@ -1,4 +1,4 @@
-( function ( $, mw ) {
+( function () {
 	/**
 	 * Wrapper for changes list content
 	 *
@@ -127,4 +127,4 @@
 		return new mw.rcfilters.ui.FormWrapperWidget(
 			this.model, this.changesListModel, this.controller, this.$formContainer );
 	};
-}( jQuery, mediaWiki ) );
+}() );

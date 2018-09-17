@@ -2,7 +2,7 @@
  * HTMLForm enhancements:
  * Add a dynamic max length to the reason field of SelectAndOther.
  */
-( function ( mw, $ ) {
+( function () {
 
 	// cache the separator to avoid object creation on each keypress
 	var colonSeparator = mw.message( 'colon-separator' ).text();
@@ -63,4 +63,4 @@
 			} );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

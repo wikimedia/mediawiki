@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	/**
 	 * Prevent the closing of a window with a confirm message (the onbeforeunload event seems to
 	 * work in most browsers.)
@@ -108,4 +108,4 @@
 			}
 		};
 	};
-}( mediaWiki, jQuery ) );
+}() );
