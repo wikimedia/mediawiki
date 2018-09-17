@@ -3639,6 +3639,7 @@
 	"redirect-file": "اسم ملف",
 	"redirect-logid": "معرف السجل",
 	"redirect-not-exists": "المطلوب غير موجود",
+	"redirect-not-numeric": "قيمة غير رقمية",
 	"fileduplicatesearch": "بحث عن ملفات مكررة",
 	"fileduplicatesearch-summary": "ابحث عن الملفات المكررة بناء على قيم الهاش.",
 	"fileduplicatesearch-filename": "اسم الملف:",

@@ -3638,6 +3638,7 @@
 	"redirect-file": "Назив датотеке",
 	"redirect-logid": "ID дневника",
 	"redirect-not-exists": "Вредност није пронађена",
+	"redirect-not-numeric": "Вредност није нумеричка",
 	"fileduplicatesearch": "Претрага дупликата датотека",
 	"fileduplicatesearch-summary": "Претрага дуплираних датотека према хеш вредности.",
 	"fileduplicatesearch-filename": "Назив датотеке:",
