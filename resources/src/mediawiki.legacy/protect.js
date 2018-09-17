@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-properties */
-( function ( mw, $ ) {
+( function () {
 	var ProtectionForm,
 		reasonCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),
 		reasonByteLimit = mw.config.get( 'wgCommentByteLimit' );
@@ -257,4 +257,4 @@
 
 	$( ProtectionForm.init.bind( ProtectionForm ) );
 
-}( mediaWiki, jQuery ) );
+}() );

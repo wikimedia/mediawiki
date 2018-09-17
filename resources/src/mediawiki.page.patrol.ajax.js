@@ -5,7 +5,7 @@
  * @since 1.21
  * @author Marius Hoch <hoo@online.de>
  */
-( function ( mw, $ ) {
+( function () {
 	if ( !mw.user.tokens.exists( 'patrolToken' ) ) {
 		// Current user has no patrol right, or an old cached version of user.tokens
 		// that didn't have patrolToken yet.
@@ -61,4 +61,4 @@
 			e.preventDefault();
 		} );
 	} );
-}( mediaWiki, jQuery ) );
+}() );

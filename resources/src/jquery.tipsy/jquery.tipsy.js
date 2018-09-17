@@ -6,7 +6,7 @@
 // * This installation of tipsy includes several local modifications to both Javascript and CSS.
 //   Please be careful when upgrading.
 
-( function ( mw, $ ) {
+( function () {
 
     function maybeCall(thing, ctx) {
         return (typeof thing == 'function') ? (thing.call(ctx)) : thing;
@@ -278,4 +278,4 @@
         }
     };
 
-}( mediaWiki, jQuery ) );
+}() );

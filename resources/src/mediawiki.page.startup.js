@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	// Break out of framesets
 	if ( mw.config.get( 'wgBreakFrames' ) ) {
 		// Note: In IE < 9 strict comparison to window is non-standard (the standard didn't exist yet)
@@ -46,4 +46,4 @@
 		}
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

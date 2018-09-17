@@ -2,7 +2,7 @@
  * HTMLForm enhancements:
  * Set up 'hide-if' behaviors for form fields that have them.
  */
-( function ( mw, $ ) {
+( function () {
 
 	/**
 	 * Helper function for hide-if to find the nearby form field.
@@ -154,7 +154,7 @@
 				}
 				v = spec[ 2 ];
 
-				if ( !( field instanceof jQuery ) ) {
+				if ( !( field instanceof $ ) ) {
 					// field is a OO.ui.Widget
 					if ( field.supports( 'isSelected' ) ) {
 						getVal = function () {
@@ -252,7 +252,7 @@
 					// It is impossible to submit a form with hidden fields failing validation, e.g. one that
 					// is required. However, validity is not checked for disabled fields, as these are not
 					// submitted with the form. So we should also disable fields when hiding them.
-					if ( self instanceof jQuery ) {
+					if ( self instanceof $ ) {
 						// This also finds elements inside any nested fields (in case of HTMLFormFieldCloner),
 						// which is problematic. But it works because:
 						// * HTMLFormFieldCloner::createFieldsForKey() copies 'hide-if' rules to nested fields
@@ -292,4 +292,4 @@
 		} );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

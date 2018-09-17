@@ -4,7 +4,7 @@
  * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
-( function ( $, mw ) {
+( function () {
 	var hasOwn = Object.prototype.hasOwnProperty,
 		NS_CATEGORY = mw.config.get( 'wgNamespaceIds' ).category;
 
@@ -409,4 +409,4 @@
 		/** Search only parent categories */
 		ParentCategories: 4
 	};
-}( jQuery, mediaWiki ) );
+}() );

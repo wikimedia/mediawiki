@@ -1,5 +1,5 @@
 /* global moment, Uint8Array */
-( function ( $, mw ) {
+( function () {
 
 	/**
 	 * mw.ForeignStructuredUpload.BookletLayout encapsulates the process
@@ -459,4 +459,4 @@
 		this.dateWidget.setValue( '' ).setValidityFlag( true );
 	};
 
-}( jQuery, mediaWiki ) );
+}() );

@@ -6,7 +6,7 @@
  *
  * See also ImagePage.php#makeMetadataTable (creates the HTML)
  */
-( function ( mw, $ ) {
+( function () {
 	$( function () {
 		var $tables = $( '.mw_metadata' );
 		if ( !$tables.find( '.mw-metadata-collapsible, .collapsable' ).length ) {
@@ -54,4 +54,4 @@
 		$tables.addClass( 'collapsed' );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

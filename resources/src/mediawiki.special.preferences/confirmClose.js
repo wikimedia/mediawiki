@@ -2,7 +2,7 @@
  * JavaScript for Special:Preferences: Enable save button and prevent the window being accidentally
  * closed when any form field is changed.
  */
-( function ( mw, $ ) {
+( function () {
 	$( function () {
 		var allowCloseWindow, saveButton, restoreButton,
 			oouiEnabled = $( '#mw-prefs-form' ).hasClass( 'mw-htmlform-ooui' );
@@ -93,4 +93,4 @@
 			$( '#mw-prefs-restoreprefs' ).on( 'click', allowCloseWindow.release );
 		}
 	} );
-}( mediaWiki, jQuery ) );
+}() );

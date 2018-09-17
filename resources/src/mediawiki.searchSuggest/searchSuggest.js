@@ -2,7 +2,7 @@
 /*!
  * Add search suggestions to the search form.
  */
-( function ( mw, $ ) {
+( function () {
 	var searchNS = $.map( mw.config.get( 'wgFormattedNamespaces' ), function ( nsName, nsID ) {
 		if ( nsID >= 0 && mw.user.options.get( 'searchNs' + nsID ) ) {
 			// Cast string key to number
@@ -320,4 +320,4 @@
 			.find( '.mw-fallbackSearchButton' ).remove();
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

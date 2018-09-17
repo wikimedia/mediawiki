@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:EditTags
  */
-( function ( mw, $ ) {
+( function () {
 	$( function () {
 		var summaryCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),
 			summaryByteLimit = mw.config.get( 'wgCommentByteLimit' ),
@@ -35,4 +35,4 @@
 		}
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

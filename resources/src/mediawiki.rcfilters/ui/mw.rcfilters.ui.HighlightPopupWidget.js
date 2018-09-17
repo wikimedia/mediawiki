@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	/**
 	 * A popup containing a color picker, for setting highlight colors.
 	 *
@@ -60,4 +60,4 @@
 		this.toggle( false );
 	};
 
-}( mediaWiki, jQuery ) );
+}() );

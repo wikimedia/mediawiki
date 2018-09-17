@@ -3,7 +3,7 @@
  * @singleton
  */
 /* global Uint16Array */
-( function ( mw, $ ) {
+( function () {
 	var userInfoPromise, pageviewRandomId;
 
 	/**
@@ -196,4 +196,4 @@
 	 */
 	mw.log.deprecate( mw.user, 'stickyRandomId', mw.user.getPageviewToken, 'Please use getPageviewToken instead' );
 
-}( mediaWiki, jQuery ) );
+}() );

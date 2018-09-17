@@ -2,7 +2,7 @@
  * @private
  * @class jQuery.plugin.footHovzer
  */
-( function ( $ ) {
+( function () {
 	var $hovzer, footHovzer, $spacer;
 
 	function getHovzer() {
@@ -64,4 +64,4 @@
 	 * @mixins jQuery.plugin.footHovzer
 	 */
 
-}( jQuery ) );
+}() );

@@ -2,7 +2,7 @@
  * @class mw.Api.plugin.rollback
  * @since 1.28
  */
-( function ( mw, $ ) {
+( function () {
 
 	$.extend( mw.Api.prototype, {
 		/**
@@ -30,4 +30,4 @@
 	 * @mixins mw.Api.plugin.rollback
 	 */
 
-}( mediaWiki, jQuery ) );
+}() );

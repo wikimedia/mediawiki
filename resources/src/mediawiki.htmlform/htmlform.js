@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 
 	$( function () {
 		mw.hook( 'htmlform.enhance' ).fire( $( document ) );
@@ -11,4 +11,4 @@
 		$root.find( '.mw-htmlform' ).removeAttr( 'novalidate' );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

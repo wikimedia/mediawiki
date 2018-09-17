@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 
 	var CONTROL_BUCKET = 'control',
 		MAX_INT32_UNSIGNED = 4294967295;
@@ -106,4 +106,4 @@
 		}
 	};
 
-}( mediaWiki, jQuery ) );
+}() );

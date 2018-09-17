@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 
 	var byteLength = require( 'mediawiki.String' ).byteLength,
 		codePointLength = require( 'mediawiki.String' ).codePointLength;
@@ -63,4 +63,4 @@
 		textInputWidget.$input.codePointLimit( limit );
 	};
 
-}( mediaWiki ) );
+}() );

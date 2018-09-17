@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.server = this.sandbox.useFakeServer();
@@ -118,4 +118,4 @@
 		assert.strictEqual( result.trim(), result, 'no leading or trailing whitespace' );
 		assert.strictEqual( result2, result, 'retained' );
 	} );
-}( mediaWiki ) );
+}() );

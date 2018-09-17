@@ -3,7 +3,7 @@
  * TODO: Add a function for restoring the previous text.
  * TODO: Accept mappings for converting shortcuts like WP: to Wikipedia:.
  */
-( function ( $, mw ) {
+( function () {
 
 	$.highlightText = {
 
@@ -94,4 +94,4 @@
 		} );
 	};
 
-}( jQuery, mediaWiki ) );
+}() );

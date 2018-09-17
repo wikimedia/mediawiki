@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:Block
  */
-( function ( mw, $ ) {
+( function () {
 	// Like OO.ui.infuse(), but if the element doesn't exist, return null instead of throwing an exception.
 	function infuseOrNull( elem ) {
 		try {
@@ -55,4 +55,4 @@
 			updateBlockOptions();
 		}
 	} );
-}( mediaWiki, jQuery ) );
+}() );

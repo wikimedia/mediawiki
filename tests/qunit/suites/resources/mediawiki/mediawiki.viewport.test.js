@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 
 	// Simulate square element with 20px long edges placed at (20, 20) on the page
 	var
@@ -109,4 +109,4 @@
 			'It should default to a threshold of 50px and the window\'s viewport' );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

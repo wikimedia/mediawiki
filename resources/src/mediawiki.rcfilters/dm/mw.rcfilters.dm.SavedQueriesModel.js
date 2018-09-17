@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-properties */
-( function ( mw, $ ) {
+( function () {
 	/**
 	 * View model for saved queries
 	 *
@@ -404,4 +404,4 @@
 	mw.rcfilters.dm.SavedQueriesModel.prototype.isConverted = function () {
 		return this.converted;
 	};
-}( mediaWiki, jQuery ) );
+}() );

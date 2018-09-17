@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	/**
 	 * A widget representing a filter item highlight color picker
 	 *
@@ -119,4 +119,4 @@
 		}
 		this.emit( 'chooseColor', color );
 	};
-}( mediaWiki, jQuery ) );
+}() );

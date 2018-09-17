@@ -1,7 +1,7 @@
 /*!
  * JavaScript for signup form.
  */
-( function ( mw, $ ) {
+( function () {
 	// When sending password by email, hide the password input fields.
 	$( function () {
 		// Always required if checked, otherwise it depends, so we use the original
@@ -119,4 +119,4 @@
 		passwordChecker = new mw.htmlform.Checker( $passwordInput, checkPassword );
 		passwordChecker.attach( $usernameInput.add( $emailInput ).add( $realNameInput ) );
 	} );
-}( mediaWiki, jQuery ) );
+}() );

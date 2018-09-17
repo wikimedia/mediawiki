@@ -7,7 +7,7 @@
 
 /* eslint-disable no-console */
 
-( function ( mw, $ ) {
+( function () {
 
 	// mw.inspect is a singleton class with static methods
 	// that itself can also be invoked as a function (mediawiki.base/mw#inspect).
@@ -386,4 +386,4 @@
 		mw.log( 'mw.inspect: reports are not available in debug mode.' );
 	}
 
-}( mediaWiki, jQuery ) );
+}() );

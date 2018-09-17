@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 
 	QUnit.module( 'mediawiki.visibleTimeout', QUnit.newMwEnvironment( {
 		setup: function () {
@@ -112,4 +112,4 @@
 		this.sandbox.clock.tick( 50 );
 		assert.strictEqual( called, 1 );
 	} );
-}( mediaWiki ) );
+}() );

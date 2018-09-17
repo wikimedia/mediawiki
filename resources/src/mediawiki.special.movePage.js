@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:MovePage
  */
-( function ( mw, $ ) {
+( function () {
 	$( function () {
 		var summaryCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),
 			summaryByteLimit = mw.config.get( 'wgCommentByteLimit' ),
@@ -16,4 +16,4 @@
 			mw.widgets.visibleByteLimit( wpReason, summaryByteLimit );
 		}
 	} );
-}( mediaWiki, jQuery ) );
+}() );

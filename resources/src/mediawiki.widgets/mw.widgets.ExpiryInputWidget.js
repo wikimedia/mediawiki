@@ -5,7 +5,7 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 /* global moment */
-( function ( $, mw ) {
+( function () {
 
 	/**
 	 * Creates a mw.widgets.ExpiryWidget object.
@@ -224,4 +224,4 @@
 		return this.relativeField.getValue();
 	};
 
-}( jQuery, mediaWiki ) );
+}() );

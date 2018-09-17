@@ -2,7 +2,7 @@
  * HTMLForm enhancements:
  * Animate the SelectOrOther fields, to only show the text field when 'other' is selected.
  */
-( function ( mw, $ ) {
+( function () {
 
 	/**
 	 * @class jQuery.plugin.htmlform
@@ -59,4 +59,4 @@
 			} );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

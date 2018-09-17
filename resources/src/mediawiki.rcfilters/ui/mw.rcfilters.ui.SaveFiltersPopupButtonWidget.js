@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Save filters widget. This widget is displayed in the tag area
 	 * and allows the user to save the current state of the system
@@ -185,4 +185,4 @@
 			this.emit( 'saveCurrent' );
 		}
 	};
-}( mediaWiki ) );
+}() );

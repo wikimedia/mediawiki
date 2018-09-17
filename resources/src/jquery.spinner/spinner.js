@@ -5,7 +5,7 @@
  *
  * @class jQuery.plugin.spinner
  */
-( function ( $ ) {
+( function () {
 
 	// Default options for new spinners,
 	// stored outside the function to share between calls.
@@ -111,4 +111,4 @@
 	 * @mixins jQuery.plugin.spinner
 	 */
 
-}( jQuery ) );
+}() );

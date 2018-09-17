@@ -1,4 +1,4 @@
-( function ( $, mw ) {
+( function () {
 	var simpleSample, U_20AC, poop, mbSample;
 
 	QUnit.module( 'jquery.lengthLimit', QUnit.newMwEnvironment() );
@@ -283,4 +283,4 @@
 		expected: '\uD800'
 	} );
 
-}( jQuery, mediaWiki ) );
+}() );

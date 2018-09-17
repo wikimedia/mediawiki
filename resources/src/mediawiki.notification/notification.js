@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	var notification,
@@ -466,4 +466,4 @@
 
 	mw.notification = notification;
 
-}( mediaWiki, jQuery ) );
+}() );

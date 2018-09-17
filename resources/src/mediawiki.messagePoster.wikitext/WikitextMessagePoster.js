@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	/**
 	 * This is an implementation of MessagePoster for wikitext talk pages.
 	 *
@@ -50,4 +50,4 @@
 
 	mw.messagePoster.factory.register( 'wikitext', WikitextMessagePoster );
 	mw.messagePoster.WikitextMessagePoster = WikitextMessagePoster;
-}( mediaWiki, jQuery ) );
+}() );

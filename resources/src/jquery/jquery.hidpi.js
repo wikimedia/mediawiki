@@ -9,7 +9,7 @@
  *
  * @class jQuery.plugin.hidpi
  */
-( function ( $ ) {
+( function () {
 
 	/**
 	 * Get reported or approximate device pixel ratio.
@@ -174,4 +174,4 @@
 	 * @mixins jQuery.plugin.hidpi
 	 */
 
-}( jQuery ) );
+}() );

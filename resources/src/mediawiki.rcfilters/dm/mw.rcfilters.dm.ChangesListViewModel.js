@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * View model for the changes list
 	 *
@@ -163,4 +163,4 @@
 	mw.rcfilters.dm.ChangesListViewModel.prototype.hasUnseenWatchedChanges = function () {
 		return this.unseenWatchedChanges;
 	};
-}( mediaWiki ) );
+}() );

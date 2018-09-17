@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Wrapper for the RC form with hide/show links
 	 * Must be constructed after the model is initialized.
@@ -170,4 +170,4 @@
 			this.$element.detach();
 		}
 	};
-}( mediaWiki ) );
+}() );

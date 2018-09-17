@@ -4,7 +4,7 @@
  * - Toggle gallery captions when focused.
  * - Dynamically resize images to fill horizontal space.
  */
-( function ( mw, $ ) {
+( function () {
 	var $galleries,
 		bound = false,
 		lastWidth = window.innerWidth,
@@ -286,4 +286,4 @@
 			}
 		} );
 	} );
-}( mediaWiki, jQuery ) );
+}() );

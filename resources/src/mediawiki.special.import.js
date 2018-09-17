@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:Import
  */
-( function ( $ ) {
+( function () {
 	var subprojectListAlreadyShown;
 	function updateImportSubprojectList() {
 		var $projectField = $( '#mw-import-table-interwiki #interwiki' ),
@@ -34,4 +34,4 @@
 			updateImportSubprojectList();
 		}
 	} );
-}( jQuery ) );
+}() );

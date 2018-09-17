@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:Preferences: Email preferences better UX
  */
-( function ( $ ) {
+( function () {
 	$( function () {
 		var allowEmail, allowEmailFromNewUsers;
 
@@ -21,4 +21,4 @@
 			toggleDisabled();
 		}
 	} );
-}( jQuery ) );
+}() );

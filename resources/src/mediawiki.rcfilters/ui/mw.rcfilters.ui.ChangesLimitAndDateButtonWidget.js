@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Widget defining the button controlling the popup for the number of results
 	 *
@@ -165,4 +165,4 @@
 		}
 	};
 
-}( mediaWiki ) );
+}() );

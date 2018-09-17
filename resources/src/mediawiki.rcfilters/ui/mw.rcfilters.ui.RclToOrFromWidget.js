@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Widget to select to view changes that link TO or FROM the target page
 	 * on Special:RecentChangesLinked (AKA Related Changes)
@@ -70,4 +70,4 @@
 				'rcfilters-filter-showlinkedfrom-label'
 		) );
 	};
-}( mediaWiki ) );
+}() );

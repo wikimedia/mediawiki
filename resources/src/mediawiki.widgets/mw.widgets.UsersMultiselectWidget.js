@@ -4,7 +4,7 @@
  * @copyright 2017 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
-( function ( $, mw ) {
+( function () {
 
 	/**
 	 * UsersMultiselectWidget can be used to input list of users in a single
@@ -170,4 +170,4 @@
 		this.input.setValue( '' );
 	};
 
-}( jQuery, mediaWiki ) );
+}() );

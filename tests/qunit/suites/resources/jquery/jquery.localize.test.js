@@ -1,4 +1,4 @@
-( function ( $, mw ) {
+( function () {
 	QUnit.module( 'jquery.localize', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'Handle basic replacements', function ( assert ) {
@@ -132,4 +132,4 @@
 		assert.strictEqual( $lc.length, 1, 'link is created' );
 		assert.strictEqual( $lc.text(), 'link', 'the link text got added' );
 	} );
-}( jQuery, mediaWiki ) );
+}() );

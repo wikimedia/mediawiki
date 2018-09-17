@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:Preferences: Tab navigation.
  */
-( function ( mw, $ ) {
+( function () {
 	$( function () {
 		var $preferences, tabs, wrapper, previousTab, switchingNoHash;
 
@@ -143,4 +143,4 @@
 		} );
 
 	} );
-}( mediaWiki, jQuery ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	/* eslint-disable camelcase */
 	var repeat = function ( input, multiplier ) {
 			return new Array( multiplier + 1 ).join( input );
@@ -735,4 +735,4 @@
 		}
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

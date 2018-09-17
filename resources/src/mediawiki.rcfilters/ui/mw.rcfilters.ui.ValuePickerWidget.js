@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Widget defining the behavior used to choose from a set of values
 	 * in a single_value group
@@ -107,4 +107,4 @@
 			this.selectWidget.selectItemByData( selectedItem.getName() );
 		}
 	};
-}( mediaWiki ) );
+}() );

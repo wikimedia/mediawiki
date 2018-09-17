@@ -4,7 +4,7 @@
  * @copyright 2011-2016 VisualEditor Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
-( function ( $, mw ) {
+( function () {
 
 	/**
 	 * Creates an mw.widgets.MediaSearchWidget object.
@@ -470,4 +470,4 @@
 	mw.widgets.MediaSearchWidget.prototype.getLang = function () {
 		return this.lang;
 	};
-}( jQuery, mediaWiki ) );
+}() );

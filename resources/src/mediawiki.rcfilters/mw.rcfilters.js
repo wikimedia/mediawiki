@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * @class
 	 * @singleton
@@ -46,4 +46,4 @@
 			}
 		}
 	};
-}( mediaWiki ) );
+}() );

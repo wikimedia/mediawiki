@@ -1,4 +1,4 @@
-mediaWiki.template.registerCompiler( 'regexp', {
+mw.template.registerCompiler( 'regexp', {
 	compile: function ( src ) {
 		return {
 			render: function () {

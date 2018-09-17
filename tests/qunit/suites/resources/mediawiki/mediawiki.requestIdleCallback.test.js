@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	QUnit.module( 'mediawiki.requestIdleCallback', QUnit.newMwEnvironment( {
 		setup: function () {
 			var clock = this.clock = this.sandbox.useFakeTimers();
@@ -105,4 +105,4 @@
 		} );
 	}
 
-}( mediaWiki ) );
+}() );

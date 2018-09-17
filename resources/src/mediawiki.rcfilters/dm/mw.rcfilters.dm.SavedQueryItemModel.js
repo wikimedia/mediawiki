@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * View model for a single saved query
 	 *
@@ -122,4 +122,4 @@
 			this.emit( 'update' );
 		}
 	};
-}( mediaWiki ) );
+}() );

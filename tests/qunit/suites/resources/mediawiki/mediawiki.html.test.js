@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	QUnit.module( 'mediawiki.html' );
 
 	QUnit.test( 'escape', function ( assert ) {
@@ -102,4 +102,4 @@
 		);
 	} );
 
-}( mediaWiki ) );
+}() );

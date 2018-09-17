@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * @class mw.RegExp
 	 */
@@ -19,4 +19,4 @@
 			return str.replace( /([\\{}()|.?*+\-^$\[\]])/g, '\\$1' ); // eslint-disable-line no-useless-escape
 		}
 	};
-}( mediaWiki ) );
+}() );

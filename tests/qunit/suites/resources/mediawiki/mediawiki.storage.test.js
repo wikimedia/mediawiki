@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	QUnit.module( 'mediawiki.storage' );
 
 	QUnit.test( 'set/get with storage support', function ( assert ) {
@@ -53,4 +53,4 @@
 		mw.storage.store = old;
 	} );
 
-}( mediaWiki ) );
+}() );

@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:Undelete
  */
-( function ( mw, $ ) {
+( function () {
 	$( function () {
 		var summaryCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),
 			summaryByteLimit = mw.config.get( 'wgCommentByteLimit' ),
@@ -20,4 +20,4 @@
 			mw.widgets.visibleByteLimit( wpComment, summaryByteLimit );
 		}
 	} );
-}( mediaWiki, jQuery ) );
+}() );

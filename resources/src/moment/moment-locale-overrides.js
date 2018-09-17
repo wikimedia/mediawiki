@@ -1,6 +1,6 @@
-/* global mediaWiki, moment */
+/* global moment */
 
-( function ( mw ) {
+( function () {
 	// HACK: Overwrite moment's i18n with MediaWiki's for the current language so that
 	// wgTranslateNumerals is respected.
 	moment.updateLocale( moment.locale(), {
@@ -41,4 +41,4 @@
 			return s;
 		}
 	} );
-}( mediaWiki ) );
+}() );

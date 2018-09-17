@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 
 	// FIXME: mw.htmlform.Checker also sets this to empty object
 	mw.htmlform = {};
@@ -44,4 +44,4 @@
 	OO.inheritClass( mw.htmlform.ActionFieldLayout, OO.ui.ActionFieldLayout );
 	OO.mixinClass( mw.htmlform.ActionFieldLayout, mw.htmlform.Element );
 
-}( mediaWiki ) );
+}() );

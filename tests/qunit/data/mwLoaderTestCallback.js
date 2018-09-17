@@ -1,1 +1,1 @@
-mediaWiki.loader.testCallback();
+mw.loader.testCallback();

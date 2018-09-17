@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	QUnit.module( 'mediawiki.track' );
 
 	QUnit.test( 'track', function ( assert ) {
@@ -57,4 +57,4 @@
 			[ 'unsub', { key: 2 } ]
 		], 'Stop when unsubscribing' );
 	} );
-}( mediaWiki ) );
+}() );

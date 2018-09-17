@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:Preferences: editfont field enhancements.
  */
-( function ( mw ) {
+( function () {
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		var widget, lastValue,
 			$target = $root.find( '#mw-input-wpeditfont' );
@@ -37,4 +37,4 @@
 		updateLabel( widget.getValue() );
 
 	} );
-}( mediaWiki ) );
+}() );

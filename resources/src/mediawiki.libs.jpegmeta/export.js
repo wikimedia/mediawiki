@@ -1,5 +1,5 @@
 /* global JpegMeta */
-( function ( mw ) {
+( function () {
 
 	// Export as module
 	module.exports = function ( fileReaderResult, fileName ) {
@@ -9,4 +9,4 @@
 	// Back-compat: Also expose via mw.lib
 	// @deprecated since 1.31
 	mw.log.deprecate( mw.libs, 'jpegmeta', module.exports );
-}( mediaWiki ) );
+}() );

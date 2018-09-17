@@ -3,7 +3,7 @@
  *
  * @class jQuery.plugin.accessKeyLabel
  */
-( function ( $, mw ) {
+( function () {
 
 	// Cached access key modifiers for used browser
 	var cachedAccessKeyModifiers,
@@ -236,4 +236,4 @@
 	 * @mixins jQuery.plugin.accessKeyLabel
 	 */
 
-}( jQuery, mediaWiki ) );
+}() );

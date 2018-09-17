@@ -1,5 +1,5 @@
 /* global moment */
-( function ( $, mw, moment ) {
+( function () {
 
 	/**
 	 * mw.Upload.BookletLayout encapsulates the process of uploading a file
@@ -708,4 +708,4 @@
 		this.filenameUsageWidget.setValue( null );
 	};
 
-}( jQuery, mediaWiki, moment ) );
+}() );

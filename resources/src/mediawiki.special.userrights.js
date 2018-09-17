@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:UserRights
  */
-( function ( mw, $ ) {
+( function () {
 	var convertmessagebox = require( 'mediawiki.notification.convertmessagebox' ),
 		summaryCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),
 		summaryByteLimit = mw.config.get( 'wgCommentByteLimit' ),
@@ -22,4 +22,4 @@
 		$wpReason.byteLimit( summaryByteLimit );
 	}
 
-}( mediaWiki, jQuery ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	/**
 	 * Factory for MessagePoster objects. This provides a pluggable to way to script the action
 	 * of adding a message to someone's talk page.
@@ -104,4 +104,4 @@
 	mw.messagePoster = {
 		factory: new MessagePosterFactory()
 	};
-}( mediaWiki, jQuery ) );
+}() );

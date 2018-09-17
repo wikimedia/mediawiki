@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Top section (between page title and filters) on Special:RecentChangesLinked (AKA RelatedChanges)
 	 *
@@ -63,4 +63,4 @@
 	/* Initialization */
 
 	OO.inheritClass( mw.rcfilters.ui.RclTopSectionWidget, OO.ui.Widget );
-}( mediaWiki ) );
+}() );

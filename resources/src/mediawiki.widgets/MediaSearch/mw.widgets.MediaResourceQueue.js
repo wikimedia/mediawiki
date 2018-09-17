@@ -4,7 +4,7 @@
  * @copyright 2011-2016 VisualEditor Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
-( function ( $, mw ) {
+( function () {
 
 	/**
 	 * MediaWiki media resource queue.
@@ -65,4 +65,4 @@
 	mw.widgets.MediaResourceQueue.prototype.getMaxHeight = function () {
 		return this.maxHeight;
 	};
-}( jQuery, mediaWiki ) );
+}() );

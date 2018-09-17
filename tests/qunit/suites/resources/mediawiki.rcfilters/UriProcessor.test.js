@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint no-underscore-dangle: "off" */
-( function ( mw, $ ) {
+( function () {
 	var mockFilterStructure = [ {
 			name: 'group1',
 			title: 'Group 1',
@@ -351,4 +351,4 @@
 		} );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

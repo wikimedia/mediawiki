@@ -8,7 +8,7 @@
 
 /* global Uint8Array */
 
-( function ( mw, $ ) {
+( function () {
 	var uploadWarning, uploadTemplatePreview,
 		ajaxUploadDestCheck = mw.config.get( 'wgAjaxUploadDestCheck' ),
 		$license = $( '#wpLicense' );
@@ -651,4 +651,4 @@
 		$( '.mw-editTools' ).attr( 'tabindex', '0' );
 		setEditTabindex( '-1' );
 	} );
-}( mediaWiki, jQuery ) );
+}() );

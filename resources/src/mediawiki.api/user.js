@@ -2,7 +2,7 @@
  * @class mw.Api.plugin.user
  * @since 1.27
  */
-( function ( mw, $ ) {
+( function () {
 
 	$.extend( mw.Api.prototype, {
 
@@ -34,4 +34,4 @@
 	 * @mixins mw.Api.plugin.user
 	 */
 
-}( mediaWiki, jQuery ) );
+}() );

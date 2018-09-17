@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	/**
 	 * Filter item model
 	 *
@@ -396,4 +396,4 @@
 		return this.visible;
 	};
 
-}( mediaWiki ) );
+}() );

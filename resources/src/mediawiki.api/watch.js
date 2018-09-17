@@ -2,7 +2,7 @@
  * @class mw.Api.plugin.watch
  * @since 1.19
  */
-( function ( mw, $ ) {
+( function () {
 
 	/**
 	 * @private
@@ -67,4 +67,4 @@
 	 * @mixins mw.Api.plugin.watch
 	 */
 
-}( mediaWiki, jQuery ) );
+}() );

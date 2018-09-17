@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	QUnit.module( 'jquery.highlightText', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'Check', function ( assert ) {
@@ -232,4 +232,4 @@
 			);
 		} );
 	} );
-}( jQuery ) );
+}() );

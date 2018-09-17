@@ -1,7 +1,7 @@
 /**
  * @class jQuery.plugin.lengthLimit
  */
-( function ( $, mw ) {
+( function () {
 
 	var
 		eventKeys = [
@@ -211,4 +211,4 @@
 	 * @class jQuery
 	 * @mixins jQuery.plugin.lengthLimit
 	 */
-}( jQuery, mediaWiki ) );
+}() );

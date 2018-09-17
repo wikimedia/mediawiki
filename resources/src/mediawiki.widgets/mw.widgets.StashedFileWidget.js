@@ -4,7 +4,7 @@
  * @copyright 2011-2016 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
-( function ( $, mw, OO ) {
+( function () {
 
 	/**
 	 * Accepts a stashed file and displays the information for purposes of
@@ -155,4 +155,4 @@
 
 		return $.Deferred().reject( 'No filekey' );
 	};
-}( jQuery, mediaWiki, OO ) );
+}() );

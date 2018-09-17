@@ -1,7 +1,7 @@
 /*!
  * mw.GallerySlideshow: Interface controls for the slideshow gallery
  */
-( function ( mw, $, OO ) {
+( function () {
 	/**
 	 * mw.GallerySlideshow encapsulates the user interface of the slideshow
 	 * galleries. An object is instantiated for each `.mw-gallery-slideshow`
@@ -457,4 +457,4 @@
 			new mw.GallerySlideshow( this );
 		} );
 	} );
-}( mediaWiki, jQuery, OO ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	var util = require( 'mediawiki.util' ),
 		// Based on IPTest.php > testisIPv4
 		IPV4_CASES = [
@@ -283,7 +283,7 @@
 	} );
 
 	QUnit.test( '$content', function ( assert ) {
-		assert.ok( util.$content instanceof jQuery, 'mw.util.$content instance of jQuery' );
+		assert.ok( util.$content instanceof $, 'mw.util.$content instance of jQuery' );
 		assert.strictEqual( util.$content.length, 1, 'mw.util.$content must have length of 1' );
 	} );
 
@@ -424,4 +424,4 @@
 			assert.strictEqual( util.isIPv6Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
 		} );
 	} );
-}( mediaWiki, jQuery ) );
+}() );
