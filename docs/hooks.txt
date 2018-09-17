@@ -2546,6 +2546,12 @@ $originalRevId: if the edit restores or repeats an earlier revision (such as a
   (Used to be called $baseRevId.)
 $undidRevId: the rev ID (or 0) this edit undid
 
+'PageDeletionDataUpdates': Called when constructing a list of DeferrableUpdate to be
+executed when a page is deleted.
+$title The Title of the page being deleted.
+$revision A RevisionRecord representing the page's current revision at the time of deletion.
+&$updates A list of DeferrableUpdate that can be manipulated by the hook handler.
+
 'PageHistoryBeforeList': When a history page list is about to be constructed.
 &$article: the article that the history is loading for
 $context: RequestContext object
@@ -2919,6 +2925,13 @@ called after the addition of 'qunit' and MediaWiki testing resources.
   added to any module.
 &$ResourceLoader: object
 
+'RevisionDataUpdates': Called when constructing a list of DeferrableUpdate to be
+executed to record secondary data about a revision.
+$title The Title of the page the revision  belongs to
+$renderedRevision a RenderedRevision object representing the new revision and providing access
+  to the RevisionRecord as well as ParserOutput of that revision.
+&$updates A list of DeferrableUpdate that can be manipulated by the hook handler.
+
 'RevisionRecordInserted': Called after a revision is inserted into the database.
 $revisionRecord: the RevisionRecord that has just been inserted.
 
@@ -2978,9 +2991,9 @@ result augmentors.
 Note that lists should be in the format name => object and the names in both
   lists should be distinct.
 
-'SecondaryDataUpdates': Allows modification of the list of DataUpdates to
-perform when page content is modified. Currently called by
-AbstractContent::getSecondaryDataUpdates.
+'SecondaryDataUpdates': DEPRECATED! Use RevisionDataUpdates or override
+ContentHandler::getSecondaryDataUpdates instead.
+Allows modification of the list of DataUpdates to perform when page content is modified.
 $title: Title of the page that is being edited.
 $oldContent: Content object representing the page's content before the edit.
 $recursive: bool indicating whether DataUpdates should trigger recursive
@@ -4038,10 +4051,9 @@ dumps. One, and only one hook should set this, and return false.
 &$opts: Options to use for the query
 &$join: Join conditions
 
-'WikiPageDeletionUpdates': manipulate the list of DeferrableUpdates to be
-applied when a page is deleted. Called in WikiPage::getDeletionUpdates(). Note
-that updates specific to a content model should be provided by the respective
-Content's getDeletionUpdates() method.
+'WikiPageDeletionUpdates': DEPRECATED! Use PageDeletionDataUpdates or
+override ContentHandler::getDeletionDataUpdates instead.
+Manipulates the list of DeferrableUpdates to be applied when a page is deleted.
 $page: the WikiPage
 $content: the Content to generate updates for, or null in case the page revision
   could not be loaded. The delete will succeed despite this.

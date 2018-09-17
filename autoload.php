@@ -897,6 +897,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\ProcOpenError' => __DIR__ . '/includes/exception/ProcOpenError.php',
 	'MediaWiki\\Revision\\RenderedRevision' => __DIR__ . '/includes/Revision/RenderedRevision.php',
 	'MediaWiki\\Revision\\RevisionRenderer' => __DIR__ . '/includes/Revision/RevisionRenderer.php',
+	'MediaWiki\\Revision\\SlotRenderingProvider' => __DIR__ . '/includes/Revision/SlotRenderingProvider.php',
 	'MediaWiki\\Search\\ParserOutputSearchDataExtractor' => __DIR__ . '/includes/search/ParserOutputSearchDataExtractor.php',
 	'MediaWiki\\ShellDisabledError' => __DIR__ . '/includes/exception/ShellDisabledError.php',
 	'MediaWiki\\Site\\MediaWikiPageNameNormalizer' => __DIR__ . '/includes/site/MediaWikiPageNameNormalizer.php',
