@@ -226,7 +226,7 @@ Deprecation message.' ]
 			. 'mw.config.set({"key":"value"});'
 			. 'mw.loader.state({"test.exempt":"ready","test.private":"loading","test.styles.pure":"ready","test.styles.private":"ready","test.styles.deprecated":"ready","test.scripts":"loading"});'
 			. 'mw.loader.implement("test.private@{blankVer}",function($,jQuery,require,module){},{"css":[]});'
-			. 'mw.loader.load(["test"]);'
+			. 'RLPAGEMODULES=["test"];mw.loader.load(RLPAGEMODULES);'
 			. 'mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts\u0026only=scripts\u0026skin=fallback");'
 			. '});</script>' . "\n"
 			. '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.deprecated%2Cpure&amp;only=styles&amp;skin=fallback"/>' . "\n"
