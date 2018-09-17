@@ -41,12 +41,17 @@ class SpecialFilepath extends RedirectSpecialPage {
 	public function getRedirect( $par ) {
 		$file = $par ?: $this->getRequest()->getText( 'file' );
 
+		$redirect = null;
 		if ( $file ) {
-			$argument = "file/$file";
-		} else {
-			$argument = 'file';
+			$redirect = SpecialPage::getSafeTitleFor( 'Redirect', "file/$file" );
 		}
-		return SpecialPage::getSafeTitleFor( 'Redirect', $argument );
+		if ( $redirect === null ) {
+			// The user input is empty or an invalid title,
+			// redirect to form of Special:Redirect with the invalid value prefilled
+			$this->mAddedRedirectParams['wpvalue'] = $file;
+			$redirect = SpecialPage::getSafeTitleFor( 'Redirect', 'file' );
+		}
+		return $redirect;
 	}
 
 	protected function getGroupName() {
