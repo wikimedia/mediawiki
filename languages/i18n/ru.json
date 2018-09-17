@@ -3792,6 +3792,7 @@
 	"redirect-file": "Название файла",
 	"redirect-logid": "ID журнала",
 	"redirect-not-exists": "Значение не найдено",
+	"redirect-not-numeric": "Значение не числовое",
 	"fileduplicatesearch": "Поиск одинаковых файлов",
 	"fileduplicatesearch-summary": "Поиск одинаковых файлов по хэш-коду.",
 	"fileduplicatesearch-filename": "Имя файла:",

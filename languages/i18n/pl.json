@@ -1266,7 +1266,7 @@
 	"right-suppressionlog": "Podgląd rejestru ukrywania",
 	"right-block": "Blokowanie użytkownikom możliwości edycji",
 	"right-blockemail": "Blokowanie użytkownikom możliwości wysyłania wiadomości",
-	"right-hideuser": "Blokowanie użytkownika, niewidoczne publicznie",
+	"right-hideuser": "Blokowanie użytkownika i ukrywanie od publiczności",
 	"right-ipblock-exempt": "Obejście blokad, automatycznych blokad i blokad zakresów adresów IP",
 	"right-unblockself": "Odblokowanie samego siebie",
 	"right-protect": "Zmiana poziomu zabezpieczenia i edycja stron zabezpieczonych kaskadowo",

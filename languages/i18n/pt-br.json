@@ -3644,6 +3644,7 @@
 	"redirect-file": "Nome do arquivo",
 	"redirect-logid": "ID de log",
 	"redirect-not-exists": "Valor não encontrado",
+	"redirect-not-numeric": "Valor não numérico",
 	"fileduplicatesearch": "Procurar por arquivos duplicados",
 	"fileduplicatesearch-summary": "Procure por arquivos duplicados tendo por base seu valor \"hash\".",
 	"fileduplicatesearch-filename": "Nome do arquivo:",

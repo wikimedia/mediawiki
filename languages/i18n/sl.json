@@ -3464,6 +3464,7 @@
 	"redirect-file": "Ime datoteke",
 	"redirect-logid": "ID dnevnika",
 	"redirect-not-exists": "Vrednosti ni mogoče najti",
+	"redirect-not-numeric": "Vrednost ni številska",
 	"fileduplicatesearch": "Iskanje podvojenih datotek",
 	"fileduplicatesearch-summary": "Iskanje podvojenih datotek, ki temelji na podlagi njenih hashvrednosti.",
 	"fileduplicatesearch-filename": "Ime datoteke:",

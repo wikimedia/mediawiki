@@ -3577,6 +3577,7 @@
 	"redirect-file": "Datei",
 	"redirect-logid": "Logbucheintrag",
 	"redirect-not-exists": "Der Wert wurde nicht gefunden",
+	"redirect-not-numeric": "Der Wert ist nicht numerisch",
 	"fileduplicatesearch": "Dateiduplikatsuche",
 	"fileduplicatesearch-summary": "Suche nach Dateiduplikaten auf Basis ihres Hashwertes.",
 	"fileduplicatesearch-filename": "Dateiname:",

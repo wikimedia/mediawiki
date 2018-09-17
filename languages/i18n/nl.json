@@ -3559,6 +3559,7 @@
 	"redirect-file": "Bestandsnaam",
 	"redirect-logid": "Logboekregel-ID",
 	"redirect-not-exists": "Waarde niet gevonden",
+	"redirect-not-numeric": "Waarde is geen nummer",
 	"fileduplicatesearch": "Duplicaatbestanden zoeken",
 	"fileduplicatesearch-summary": "Duplicaatbestanden zoeken op basis van de hashwaarde.",
 	"fileduplicatesearch-filename": "Bestandsnaam:",
