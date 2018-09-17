@@ -522,7 +522,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		if ( $this->params['testactions'] ) {
-			$limit = $this->getMain()->canApiHighLimits() ? self::LIMIT_SML1 : self::LIMIT_SML2;
+			$limit = $this->getMain()->canApiHighLimits() ? self::LIMIT_SML2 : self::LIMIT_SML1;
 			if ( $this->countTestedActions >= $limit ) {
 				return null; // force a continuation
 			}
