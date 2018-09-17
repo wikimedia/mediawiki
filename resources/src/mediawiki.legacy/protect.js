@@ -1,5 +1,6 @@
 ( function () {
 	var ProtectionForm,
+		config = require( './config.json' ),
 		reasonCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),
 		reasonByteLimit = mw.config.get( 'wgCommentByteLimit' );
 
@@ -18,9 +19,7 @@
 				return false;
 			}
 
-			if ( mw.config.get( 'wgCascadeableLevels' ) !== undefined ) {
-				$( 'form#mw-Protect-Form' ).on( 'submit', this.toggleUnchainedInputs.bind( ProtectionForm, true ) );
-			}
+			$( 'form#mw-Protect-Form' ).on( 'submit', this.toggleUnchainedInputs.bind( ProtectionForm, true ) );
 			this.getExpirySelectors().each( function () {
 				$( this ).on( 'change', ProtectionForm.updateExpiryList.bind( ProtectionForm, this ) );
 			} );
@@ -81,13 +80,7 @@
 		 * @return {boolean}
 		 */
 		isCascadeableLevel: function ( level ) {
-			var cascadeableLevels = mw.config.get( 'wgCascadeableLevels' );
-
-			if ( !Array.isArray( cascadeableLevels ) ) {
-				return false;
-			}
-
-			return cascadeableLevels.indexOf( level ) !== -1;
+			return config.CascadingRestrictionLevels.indexOf( level ) !== -1;
 		},
 
 		/**
