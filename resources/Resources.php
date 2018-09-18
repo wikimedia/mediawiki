@@ -2087,7 +2087,13 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.changeslist' => [
-		'styles' => 'resources/src/mediawiki.special.changeslist.css',
+		'class' => ResourceLoaderLessVarFileModule::class,
+		'lessMessages' => [
+			'parentheses-start',
+			'parentheses-end',
+			'pipe-separator'
+		],
+		'styles' => 'resources/src/mediawiki.special.changeslist.less',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.changeslist.enhanced' => [

@@ -1,4 +1,4 @@
-/*!
+/*
  * Styling for Special:Watchlist and Special:RecentChanges
  */
 
@@ -65,4 +65,27 @@
 /* @todo FIXME: Hard coded ". .". Is there a message for this? Should there be? */
 .mw-changeslist-separator:empty:before {
 	content: '. .';
+}
+
+.mw-changeslist-link-list {
+	display: inline-block;
+	/* In @media print, list elements have margins and/or paddings defined.
+	We don't want to see margins/paddings on these elements under any circumstances. */
+	margin: 0;
+	padding: 0;
+
+	&:before {
+		content: '@{msg-parentheses-start}';
+	}
+	&:after {
+		content: '@{msg-parentheses-end}';
+	}
+
+	> li {
+		display: inline;
+
+		&:not( :first-child ):before {
+			content: '@{msg-pipe-separator}';
+		}
+	}
 }
