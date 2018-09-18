@@ -3560,6 +3560,7 @@
 	"redirect-file": "Nome do ficheiro",
 	"redirect-logid": "Identificador da entrada do registo",
 	"redirect-not-exists": "Valor não encontrado",
+	"redirect-not-numeric": "Valor não numérico",
 	"fileduplicatesearch": "Pesquisa de ficheiros duplicados",
 	"fileduplicatesearch-summary": "Pesquisa de ficheiros duplicados baseada no resumo criptográfico.",
 	"fileduplicatesearch-filename": "Nome do ficheiro:",

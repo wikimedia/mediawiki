@@ -3471,6 +3471,7 @@
 	"redirect-file": "Назва файлу",
 	"redirect-logid": "ID журнала",
 	"redirect-not-exists": "Значэньне ня знойдзена",
+	"redirect-not-numeric": "Значэньне ня лікавае",
 	"fileduplicatesearch": "Пошук дублікатаў файлаў",
 	"fileduplicatesearch-summary": "Пошук аднолькавых файлаў на падставе іх хэшаў.",
 	"fileduplicatesearch-filename": "Назва файла:",

@@ -410,7 +410,7 @@
 	"sort-descending": "Упорядочить по убыванию",
 	"sort-ascending": "Упорядочить по возрастанию",
 	"nstab-main": "Статья",
-	"nstab-user": "Участник",
+	"nstab-user": "{{GENDER:{{ROOTPAGENAME}}|Участник|Участница}}",
 	"nstab-media": "Мультимедиа",
 	"nstab-special": "Служебная страница",
 	"nstab-project": "О проекте",

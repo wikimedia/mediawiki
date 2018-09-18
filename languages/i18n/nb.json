@@ -3546,6 +3546,7 @@
 	"redirect-file": "Filnavn",
 	"redirect-logid": "Logg-ID",
 	"redirect-not-exists": "Verdi er ikke funnet",
+	"redirect-not-numeric": "Verdien er ikke numerisk",
 	"fileduplicatesearch": "Søk etter duplikatfiler",
 	"fileduplicatesearch-summary": "Søk etter duplikatfiler basert på dets hash-verdi.",
 	"fileduplicatesearch-filename": "Filnavn:",
