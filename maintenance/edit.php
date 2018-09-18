@@ -34,12 +34,14 @@ class EditCLI extends Maintenance {
 		$this->addDescription( 'Edit an article from the command line, text is from stdin' );
 		$this->addOption( 'user', 'Username', false, true, 'u' );
 		$this->addOption( 'summary', 'Edit summary', false, true, 's' );
+		$this->addOption( 'remove', 'Remove a slot (requires --slot).', false, false );
 		$this->addOption( 'minor', 'Minor edit', false, false, 'm' );
 		$this->addOption( 'bot', 'Bot edit', false, false, 'b' );
 		$this->addOption( 'autosummary', 'Enable autosummary', false, false, 'a' );
 		$this->addOption( 'no-rc', 'Do not show the change in recent changes', false, false, 'r' );
 		$this->addOption( 'nocreate', 'Don\'t create new pages', false, false );
 		$this->addOption( 'createonly', 'Only create new pages', false, false );
+		$this->addOption( 'slot', 'Slot role name', false, true );
 		$this->addArg( 'title', 'Title of article to edit' );
 	}
 
@@ -48,10 +50,12 @@ class EditCLI extends Maintenance {
 
 		$userName = $this->getOption( 'user', false );
 		$summary = $this->getOption( 'summary', '' );
+		$remove = $this->hasOption( 'remove' );
 		$minor = $this->hasOption( 'minor' );
 		$bot = $this->hasOption( 'bot' );
 		$autoSummary = $this->hasOption( 'autosummary' );
 		$noRC = $this->hasOption( 'no-rc' );
+		$slot = $this->getOption( 'slot', 'main' );
 
 		if ( $userName === false ) {
 			$wgUser = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
@@ -78,17 +82,36 @@ class EditCLI extends Maintenance {
 
 		$page = WikiPage::factory( $title );
 
-		# Read the text
-		$text = $this->getStdin( Maintenance::STDIN_ALL );
-		$content = ContentHandler::makeContent( $text, $title );
+		if ( $remove ) {
+			if ( $slot === 'main' ) {
+				$this->fatalError( "Cannot remove main slot! Use --slot to specify." );
+			}
+
+			$content = false;
+		} else {
+			# Read the text
+			$text = $this->getStdin( Maintenance::STDIN_ALL );
+			$content = ContentHandler::makeContent( $text, $title );
+		}
 
 		# Do the edit
 		$this->output( "Saving... " );
-		$status = $page->doEditContent( $content, $summary,
-			( $minor ? EDIT_MINOR : 0 ) |
+		$updater = $page->newPageUpdater( $wgUser );
+
+		$flags = ( $minor ? EDIT_MINOR : 0 ) |
 			( $bot ? EDIT_FORCE_BOT : 0 ) |
 			( $autoSummary ? EDIT_AUTOSUMMARY : 0 ) |
-			( $noRC ? EDIT_SUPPRESS_RC : 0 ) );
+			( $noRC ? EDIT_SUPPRESS_RC : 0 );
+
+		if ( $content === false ) {
+			$updater->removeSlot( $slot );
+		} else {
+			$updater->setContent( $slot, $content );
+		}
+
+		$updater->saveRevision( CommentStoreComment::newUnsavedComment( $summary ), $flags );
+		$status = $updater->getStatus();
+
 		if ( $status->isOK() ) {
 			$this->output( "done\n" );
 			$exit = 0;
