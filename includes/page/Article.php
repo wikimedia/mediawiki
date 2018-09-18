@@ -2155,7 +2155,7 @@ class Article implements Page {
 
 	/**
 	 * Lightweight method to get the parser output for a page, checking the parser cache
-	 * and so on. Doesn't consider most of the stuff that WikiPage::view is forced to
+	 * and so on. Doesn't consider most of the stuff that Article::view() is forced to
 	 * consider, so it's not appropriate to use there.
 	 *
 	 * @since 1.16 (r52326) for LiquidThreads
