@@ -3288,7 +3288,7 @@ $wgUseMediaWikiUIEverywhere = false;
  *
  * @since 1.32
  */
-$wgOOUIPreferences = false;
+$wgOOUIPreferences = true;
 
 /**
  * Whether to label the store-to-database-and-show-to-others button in the editor
