@@ -436,9 +436,18 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 		// Show form if the user can submit
 		if ( $this->mIsAllowed ) {
+			$suppressAllowed = $this->permissionManager
+				->userHasRight( $this->getUser(), 'suppressrevision' );
 			$out->addModules( [ 'mediawiki.special.revisionDelete' ] );
 			$out->addModuleStyles( [ 'mediawiki.special',
 				'mediawiki.interface.helpers.styles' ] );
+
+			$dropDownReason = $this->msg( 'revdelete-reason-dropdown' )->inContentLanguage()->text();
+			// Add additional specific reasons for suppress
+			if ( $suppressAllowed ) {
+				$dropDownReason .= "\n" . $this->msg( 'revdelete-reason-dropdown-suppress' )
+					->inContentLanguage()->text();
+			}
 
 			$form = Xml::openElement( 'form', [ 'method' => 'post',
 					'action' => $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] ),
@@ -452,7 +461,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					'</td>' .
 					'<td class="mw-input">' .
 						Xml::listDropDown( 'wpRevDeleteReasonList',
-							$this->msg( 'revdelete-reason-dropdown' )->inContentLanguage()->text(),
+							$dropDownReason,
 							$this->msg( 'revdelete-reasonotherlist' )->inContentLanguage()->text(),
 							$this->getRequest()->getText( 'wpRevDeleteReasonList', 'other' ), 'wpReasonDropDown'
 						) .
@@ -490,7 +499,18 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					->getPermissionManager()
 					->userHasRight( $this->getUser(), 'editinterface' )
 			) {
-				$link = $this->getLinkRenderer()->makeKnownLink(
+				$link = '';
+				$linkRenderer = $this->getLinkRenderer();
+				if ( $suppressAllowed ) {
+					$link .= $linkRenderer->makeKnownLink(
+						$this->msg( 'revdelete-reason-dropdown-suppress' )->inContentLanguage()->getTitle(),
+						$this->msg( 'revdelete-edit-reasonlist-suppress' )->text(),
+						[],
+						[ 'action' => 'edit' ]
+					);
+					$link .= $this->msg( 'pipe-separator' )->escaped();
+				}
+				$link .= $linkRenderer->makeKnownLink(
 					$this->msg( 'revdelete-reason-dropdown' )->inContentLanguage()->getTitle(),
 					$this->msg( 'revdelete-edit-reasonlist' )->text(),
 					[],
