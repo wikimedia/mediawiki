@@ -8017,6 +8017,7 @@ $wgActions = [
 	'info' => true,
 	'markpatrolled' => true,
 	'mcrundo' => McrUndoAction::class,
+	'mcrrestore' => McrRestoreAction::class,
 	'protect' => true,
 	'purge' => true,
 	'raw' => true,
