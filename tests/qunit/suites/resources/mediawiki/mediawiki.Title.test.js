@@ -291,6 +291,38 @@
 		assert.strictEqual( title.toString(), 'Penguins:Flightless_yet_cute.jpg' );
 	} );
 
+	QUnit.test( 'isTalkPage/getTalkPage/getSubjectPage', function ( assert ) {
+		var title;
+
+		title = new mw.Title( 'User:Foo' );
+		assert.strictEqual( title.isTalkPage(), false, 'Non-talk page detected as such' );
+		assert.strictEqual( title.getSubjectPage().getPrefixedText(), 'User:Foo', 'getSubjectPage on a subject page is a no-op' );
+
+		title = title.getTalkPage();
+		assert.strictEqual( title.getPrefixedText(), 'User talk:Foo', 'getTalkPage creates correct title' );
+		assert.strictEqual( title.getTalkPage().getPrefixedText(), 'User talk:Foo', 'getTalkPage on a talk page is a no-op' );
+		assert.strictEqual( title.isTalkPage(), true, 'Talk page is detected as such' );
+
+		title = title.getSubjectPage();
+		assert.strictEqual( title.getPrefixedText(), 'User:Foo', 'getSubjectPage creates correct title' );
+
+		title = new mw.Title( 'Special:AllPages' );
+		assert.strictEqual( title.isTalkPage(), false, 'Special page is not a talk page' );
+		assert.strictEqual( title.getTalkPage(), null, 'getTalkPage not valid for this namespace' );
+		assert.strictEqual( title.getSubjectPage().getPrefixedText(), 'Special:AllPages', 'getSubjectPage is self for special pages' );
+
+		title = new mw.Title( 'Category:Project:Maintenance' );
+		assert.strictEqual( title.getTalkPage().getPrefixedText(), 'Category talk:Project:Maintenance', 'getTalkPage is not confused by colon in main text' );
+		title = new mw.Title( 'Category talk:Project:Maintenance' );
+		assert.strictEqual( title.getSubjectPage().getPrefixedText(), 'Category:Project:Maintenance', 'getSubjectPage is not confused by colon in main text' );
+
+		title = new mw.Title( 'Foo#Caption' );
+		assert.strictEqual( title.getFragment(), 'Caption', 'Subject page has a fragment' );
+		title = title.getTalkPage();
+		assert.strictEqual( title.getPrefixedText(), 'Talk:Foo', 'getTalkPage creates correct title' );
+		assert.strictEqual( title.getFragment(), null, 'getTalkPage does not copy the fragment' );
+	} );
+
 	QUnit.test( 'Throw error on invalid title', function ( assert ) {
 		assert.throws( function () {
 			return new mw.Title( '' );
