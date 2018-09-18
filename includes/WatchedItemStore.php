@@ -295,6 +295,11 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 *         of watchers was below the minimumWatchers option if passed.
 	 */
 	public function countWatchersMultiple( array $targets, array $options = [] ) {
+		if ( $targets === [] ) {
+			// No titles requested => no results returned
+			return [];
+		}
+
 		$dbOptions = [ 'GROUP BY' => [ 'wl_namespace', 'wl_title' ] ];
 
 		$dbr = $this->getConnectionRef( DB_REPLICA );
