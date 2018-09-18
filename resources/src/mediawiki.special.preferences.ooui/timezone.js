@@ -3,9 +3,8 @@
  */
 ( function () {
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
-		var $tzSelect, $tzTextbox, timezoneWidget, $localtimeHolder, servertime,
-			$target = $root.find( '#wpTimeCorrection' ),
-			oouiEnabled = $( '#mw-prefs-form' ).hasClass( 'mw-htmlform-ooui' );
+		var timezoneWidget, $localtimeHolder, servertime,
+			$target = $root.find( '#wpTimeCorrection' );
 
 		if (
 			!$target.length ||
@@ -17,17 +16,12 @@
 		// Timezone functions.
 		// Guesses Timezone from browser and updates fields onchange.
 
-		if ( oouiEnabled ) {
-			// This is identical to OO.ui.infuse( ... ), but it makes the class name of the result known.
-			try {
-				timezoneWidget = mw.widgets.SelectWithInputWidget.static.infuse( $target );
-			} catch ( err ) {
-				// This preference could theoretically be disabled ($wgHiddenPrefs)
-				timezoneWidget = null;
-			}
-		} else {
-			$tzSelect = $target;
-			$tzTextbox = $( '#wpTimeCorrection-other' );
+		// This is identical to OO.ui.infuse( ... ), but it makes the class name of the result known.
+		try {
+			timezoneWidget = mw.widgets.SelectWithInputWidget.static.infuse( $target );
+		} catch ( err ) {
+			// This preference could theoretically be disabled ($wgHiddenPrefs)
+			timezoneWidget = null;
 		}
 
 		$localtimeHolder = $( '#wpLocalTime' );
@@ -67,25 +61,19 @@
 
 		function updateTimezoneSelection() {
 			var minuteDiff, localTime,
-				type = oouiEnabled ? timezoneWidget.dropdowninput.getValue() : $tzSelect.val(),
-				val = oouiEnabled ? timezoneWidget.textinput.getValue() : $tzTextbox.val();
+				type = timezoneWidget.dropdowninput.getValue();
 
 			if ( type === 'other' ) {
 				// User specified time zone manually in <input>
 				// Grab data from the textbox, parse it.
-				minuteDiff = hoursToMinutes( val );
+				minuteDiff = hoursToMinutes( timezoneWidget.textinput.getValue() );
 			} else {
 				// Time zone not manually specified by user
 				if ( type === 'guess' ) {
 					// Get browser timezone & fill it in
 					minuteDiff = -( new Date().getTimezoneOffset() );
-					if ( oouiEnabled ) {
-						timezoneWidget.textinput.setValue( minutesToHours( minuteDiff ) );
-						timezoneWidget.dropdowninput.setValue( 'other' );
-					} else {
-						$tzTextbox.val( minutesToHours( minuteDiff ) );
-						$tzSelect.val( 'other' );
-					}
+					timezoneWidget.textinput.setValue( minutesToHours( minuteDiff ) );
+					timezoneWidget.dropdowninput.setValue( 'other' );
 				} else {
 					// Grab data from the dropdown value
 					minuteDiff = parseInt( type.split( '|' )[ 1 ], 10 ) || 0;
@@ -101,18 +89,10 @@
 			$localtimeHolder.text( mw.language.convertNumber( minutesToHours( localTime ) ) );
 		}
 
-		if ( oouiEnabled ) {
-			if ( timezoneWidget ) {
-				timezoneWidget.dropdowninput.on( 'change', updateTimezoneSelection );
-				timezoneWidget.textinput.on( 'change', updateTimezoneSelection );
-				updateTimezoneSelection();
-			}
-		} else {
-			if ( $tzSelect.length && $tzTextbox.length ) {
-				$tzSelect.change( updateTimezoneSelection );
-				$tzTextbox.blur( updateTimezoneSelection );
-				updateTimezoneSelection();
-			}
+		if ( timezoneWidget ) {
+			timezoneWidget.dropdowninput.on( 'change', updateTimezoneSelection );
+			timezoneWidget.textinput.on( 'change', updateTimezoneSelection );
+			updateTimezoneSelection();
 		}
 
 	} );
