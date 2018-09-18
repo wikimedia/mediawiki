@@ -653,7 +653,7 @@
 	"next": "နောက်ထပ်",
 	"last": "ယခုမတိုင်မီ",
 	"page_first": "ပထမဆုံး",
-	"page_last": "အနောက်ဆုံး",
+	"page_last": "နောက်ဆုံး",
 	"histlegend": "တည်းဖြတ်မူများကို နှိုင်းယှဉ်ရန် radio boxes လေးများကို မှတ်သားပြီးနောက် Enter ရိုက်ချပါ သို့ အောက်ခြေမှ ခလုတ်ကို နှိပ်ပါ။<br />\nLegend: <strong>({{int:cur}})</strong> = နောက်ဆုံးမူနှင့် ကွဲပြားချက် <strong>({{int:last}})</strong> = ယင်းရှေ့မူနှင့် ကွဲပြားချက်, <strong>{{int:minoreditletter}}</strong> = အရေးမကြီးသော ပြုပြင်မှု.",
 	"history-fieldset-title": "ယခင်မူများ ရှာဖွေရန်",
 	"history-show-deleted": "ဖျက်ထားသော မူများသာ",

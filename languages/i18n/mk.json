@@ -3628,6 +3628,7 @@
 	"redirect-file": "Име на податотека",
 	"redirect-logid": "Назнака на дневникот",
 	"redirect-not-exists": "Вредноста не е најдена",
+	"redirect-not-numeric": "Вредноста не е бројчена",
 	"fileduplicatesearch": "Барање на дуплирани податотеки",
 	"fileduplicatesearch-summary": "Пребарување на дуплирани податотеки по тарабни вредности.",
 	"fileduplicatesearch-filename": "Податотека:",

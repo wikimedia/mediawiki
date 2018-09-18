@@ -3548,6 +3548,7 @@
 	"redirect-file": "Jméno souboru",
 	"redirect-logid": "ID protokolovacího záznamu",
 	"redirect-not-exists": "Hodnota nenalezena",
+	"redirect-not-numeric": "Hodnota není číslo",
 	"fileduplicatesearch": "Hledání duplicitních souborů",
 	"fileduplicatesearch-summary": "Hledání duplicitních souborů podle jejich hašů.",
 	"fileduplicatesearch-filename": "Jméno souboru:",

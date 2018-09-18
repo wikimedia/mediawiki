@@ -879,6 +879,8 @@
 	"unwatch": "伓使監視",
 	"unwatchthispage": "停止監視",
 	"watchlist-details": "Nṳ̄ gì găng-sê-dăng {{PLURAL:$1|ô $1 gó|dŭ liāng ô $1 gó}} hiĕk-miêng (bău-guák tō̤-lâung-hiĕk).",
+	"wlheader-enotif": "Ī-gĭng kŭi kó̤ diêng-piĕ tŭng-dĭ.",
+	"wlheader-showupdated": "Ṳ̀-guō ô diê-siŏh-hiĕk, găk nṳ̄ muōi-muōi siŏh-huòi káng guó cī-hâiu, bô ké̤ṳk nè̤ng gāi kó̤, hī-siŏh-hiĕk gì biĕu-dà̤ cêu-sê <strong>cū-tā̤</strong>.",
 	"wlshowlast": "顯示最$1點鐘$2日",
 	"watchlist-options": "監視單選項",
 	"watching": "監視...",

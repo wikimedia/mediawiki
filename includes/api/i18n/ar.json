@@ -876,6 +876,8 @@
 	"apihelp-query+iwbacklinks-paramvalue-prop-iwprefix": "يضيف بادئة الإنترويكي.",
 	"apihelp-query+iwbacklinks-paramvalue-prop-iwtitle": "يضيف عنوان الإنترويكي.",
 	"apihelp-query+iwbacklinks-param-dir": "الاتجاه للإدراج فيه.",
+	"apihelp-query+iwbacklinks-example-simple": "الحصول على الصفحات التي تصل إلى [[wikibooks:Test]].",
+	"apihelp-query+iwbacklinks-example-generator": "الحصول على معلومات عن الصفحات التي تصل إلى [[wikibooks:Test]].",
 	"apihelp-query+iwlinks-summary": "يعرض جميع روابط الإنترويكي من الصفحات المحددة.",
 	"apihelp-query+iwlinks-param-url": "ما إذا كنت تريد الحصول على المسار الكامل (لا يمكن استخدامه مع $1prop).",
 	"apihelp-query+iwlinks-param-prop": "الخصائص الإضافية التي يمكنك الحصول عليها لكل رابط بين اللغات:",

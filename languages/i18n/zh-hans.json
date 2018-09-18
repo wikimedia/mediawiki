@@ -3624,6 +3624,7 @@
 	"redirect-file": "文件名",
 	"redirect-logid": "日志ID",
 	"redirect-not-exists": "没找到相应值",
+	"redirect-not-numeric": "输入的数值并不是数字",
 	"fileduplicatesearch": "搜索重复文件",
 	"fileduplicatesearch-summary": "根据哈希（hash）值搜索重复文件。",
 	"fileduplicatesearch-filename": "文件名：",

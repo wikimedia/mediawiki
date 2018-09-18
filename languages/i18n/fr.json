@@ -3733,6 +3733,7 @@
 	"redirect-file": "Nom du fichier",
 	"redirect-logid": "ID de journal",
 	"redirect-not-exists": "Valeur non trouvée",
+	"redirect-not-numeric": "Valeur non numérique",
 	"fileduplicatesearch": "Recherche de doublons",
 	"fileduplicatesearch-summary": "Recherche des copies de fichiers identiques d'après leur empreinte de hachage.",
 	"fileduplicatesearch-filename": "Nom du fichier :",
