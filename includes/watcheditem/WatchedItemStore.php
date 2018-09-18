@@ -407,6 +407,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		array $targetsWithVisitThresholds,
 		$minimumWatchers = null
 	) {
+		if ( $targetsWithVisitThresholds === [] ) {
+			// No titles requested => no results returned
+			return [];
+		}
+
 		$dbr = $this->getConnectionRef( DB_REPLICA );
 
 		$conds = $this->getVisitingWatchersCondition( $dbr, $targetsWithVisitThresholds );
