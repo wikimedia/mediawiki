@@ -28,6 +28,53 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @dataProvider provideConstructor
+	 * @param int $stage
+	 * @param string|null $exceptionMsg
+	 */
+	public function testConstructor( $stage, $exceptionMsg ) {
+		try {
+			$m = new ActorMigration( $stage );
+			if ( $exceptionMsg !== null ) {
+				$this->fail( 'Expected exception not thrown' );
+			}
+			$this->assertInstanceOf( ActorMigration::class, $m );
+		} catch ( InvalidArgumentException $ex ) {
+			$this->assertSame( $exceptionMsg, $ex->getMessage() );
+		}
+	}
+
+	public static function provideConstructor() {
+		return [
+			[ 0, '$stage must include a write mode' ],
+			[ SCHEMA_COMPAT_READ_OLD, '$stage must include a write mode' ],
+			[ SCHEMA_COMPAT_READ_NEW, '$stage must include a write mode' ],
+			[ SCHEMA_COMPAT_READ_BOTH, '$stage must include a write mode' ],
+
+			[ SCHEMA_COMPAT_WRITE_OLD, '$stage must include a read mode' ],
+			[ SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_OLD, null ],
+			[
+				SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_NEW,
+				'Cannot read the new schema without also writing it'
+			],
+			[ SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_BOTH, 'Cannot read both schemas' ],
+
+			[ SCHEMA_COMPAT_WRITE_NEW, '$stage must include a read mode' ],
+			[
+				SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_OLD,
+				'Cannot read the old schema without also writing it'
+			],
+			[ SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW, null ],
+			[ SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_BOTH, 'Cannot read both schemas' ],
+
+			[ SCHEMA_COMPAT_WRITE_BOTH, '$stage must include a read mode' ],
+			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, null ],
+			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, null ],
+			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_BOTH, 'Cannot read both schemas' ],
+		];
+	}
+
+	/**
 	 * @dataProvider provideGetJoin
 	 * @param int $stage
 	 * @param string $key
@@ -42,7 +89,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	public static function provideGetJoin() {
 		return [
 			'Simple table, old' => [
-				MIGRATION_OLD, 'rc_user', [
+				SCHEMA_COMPAT_OLD, 'rc_user', [
 					'tables' => [],
 					'fields' => [
 						'rc_user' => 'rc_user',
@@ -52,34 +99,32 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 					'joins' => [],
 				],
 			],
-			'Simple table, write-both' => [
-				MIGRATION_WRITE_BOTH, 'rc_user', [
-					'tables' => [ 'actor_rc_user' => 'actor' ],
+			'Simple table, read-old' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'rc_user', [
+					'tables' => [],
 					'fields' => [
-						'rc_user' => 'COALESCE( actor_rc_user.actor_user, rc_user )',
-						'rc_user_text' => 'COALESCE( actor_rc_user.actor_name, rc_user_text )',
-						'rc_actor' => 'rc_actor',
+						'rc_user' => 'rc_user',
+						'rc_user_text' => 'rc_user_text',
+						'rc_actor' => 'NULL',
 					],
-					'joins' => [
-						'actor_rc_user' => [ 'LEFT JOIN', 'actor_rc_user.actor_id = rc_actor' ],
-					],
+					'joins' => [],
 				],
 			],
-			'Simple table, write-new' => [
-				MIGRATION_WRITE_NEW, 'rc_user', [
+			'Simple table, read-new' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'rc_user', [
 					'tables' => [ 'actor_rc_user' => 'actor' ],
 					'fields' => [
-						'rc_user' => 'COALESCE( actor_rc_user.actor_user, rc_user )',
-						'rc_user_text' => 'COALESCE( actor_rc_user.actor_name, rc_user_text )',
+						'rc_user' => 'actor_rc_user.actor_user',
+						'rc_user_text' => 'actor_rc_user.actor_name',
 						'rc_actor' => 'rc_actor',
 					],
 					'joins' => [
-						'actor_rc_user' => [ 'LEFT JOIN', 'actor_rc_user.actor_id = rc_actor' ],
+						'actor_rc_user' => [ 'JOIN', 'actor_rc_user.actor_id = rc_actor' ],
 					],
 				],
 			],
 			'Simple table, new' => [
-				MIGRATION_NEW, 'rc_user', [
+				SCHEMA_COMPAT_NEW, 'rc_user', [
 					'tables' => [ 'actor_rc_user' => 'actor' ],
 					'fields' => [
 						'rc_user' => 'actor_rc_user.actor_user',
@@ -93,7 +138,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			],
 
 			'ipblocks, old' => [
-				MIGRATION_OLD, 'ipb_by', [
+				SCHEMA_COMPAT_OLD, 'ipb_by', [
 					'tables' => [],
 					'fields' => [
 						'ipb_by' => 'ipb_by',
@@ -103,34 +148,32 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 					'joins' => [],
 				],
 			],
-			'ipblocks, write-both' => [
-				MIGRATION_WRITE_BOTH, 'ipb_by', [
-					'tables' => [ 'actor_ipb_by' => 'actor' ],
+			'ipblocks, read-old' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'ipb_by', [
+					'tables' => [],
 					'fields' => [
-						'ipb_by' => 'COALESCE( actor_ipb_by.actor_user, ipb_by )',
-						'ipb_by_text' => 'COALESCE( actor_ipb_by.actor_name, ipb_by_text )',
-						'ipb_by_actor' => 'ipb_by_actor',
+						'ipb_by' => 'ipb_by',
+						'ipb_by_text' => 'ipb_by_text',
+						'ipb_by_actor' => 'NULL',
 					],
-					'joins' => [
-						'actor_ipb_by' => [ 'LEFT JOIN', 'actor_ipb_by.actor_id = ipb_by_actor' ],
-					],
+					'joins' => [],
 				],
 			],
-			'ipblocks, write-new' => [
-				MIGRATION_WRITE_NEW, 'ipb_by', [
+			'ipblocks, read-new' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'ipb_by', [
 					'tables' => [ 'actor_ipb_by' => 'actor' ],
 					'fields' => [
-						'ipb_by' => 'COALESCE( actor_ipb_by.actor_user, ipb_by )',
-						'ipb_by_text' => 'COALESCE( actor_ipb_by.actor_name, ipb_by_text )',
+						'ipb_by' => 'actor_ipb_by.actor_user',
+						'ipb_by_text' => 'actor_ipb_by.actor_name',
 						'ipb_by_actor' => 'ipb_by_actor',
 					],
 					'joins' => [
-						'actor_ipb_by' => [ 'LEFT JOIN', 'actor_ipb_by.actor_id = ipb_by_actor' ],
+						'actor_ipb_by' => [ 'JOIN', 'actor_ipb_by.actor_id = ipb_by_actor' ],
 					],
 				],
 			],
 			'ipblocks, new' => [
-				MIGRATION_NEW, 'ipb_by', [
+				SCHEMA_COMPAT_NEW, 'ipb_by', [
 					'tables' => [ 'actor_ipb_by' => 'actor' ],
 					'fields' => [
 						'ipb_by' => 'actor_ipb_by.actor_user',
@@ -144,7 +187,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			],
 
 			'Revision, old' => [
-				MIGRATION_OLD, 'rev_user', [
+				SCHEMA_COMPAT_OLD, 'rev_user', [
 					'tables' => [],
 					'fields' => [
 						'rev_user' => 'rev_user',
@@ -154,42 +197,36 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 					'joins' => [],
 				],
 			],
-			'Revision, write-both' => [
-				MIGRATION_WRITE_BOTH, 'rev_user', [
-					'tables' => [
-						'temp_rev_user' => 'revision_actor_temp',
-						'actor_rev_user' => 'actor',
-					],
+			'Revision, read-old' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'rev_user', [
+					'tables' => [],
 					'fields' => [
-						'rev_user' => 'COALESCE( actor_rev_user.actor_user, rev_user )',
-						'rev_user_text' => 'COALESCE( actor_rev_user.actor_name, rev_user_text )',
-						'rev_actor' => 'temp_rev_user.revactor_actor',
+						'rev_user' => 'rev_user',
+						'rev_user_text' => 'rev_user_text',
+						'rev_actor' => 'NULL',
 					],
-					'joins' => [
-						'temp_rev_user' => [ 'LEFT JOIN', 'temp_rev_user.revactor_rev = rev_id' ],
-						'actor_rev_user' => [ 'LEFT JOIN', 'actor_rev_user.actor_id = temp_rev_user.revactor_actor' ],
-					],
+					'joins' => [],
 				],
 			],
-			'Revision, write-new' => [
-				MIGRATION_WRITE_NEW, 'rev_user', [
+			'Revision, read-new' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'rev_user', [
 					'tables' => [
 						'temp_rev_user' => 'revision_actor_temp',
 						'actor_rev_user' => 'actor',
 					],
 					'fields' => [
-						'rev_user' => 'COALESCE( actor_rev_user.actor_user, rev_user )',
-						'rev_user_text' => 'COALESCE( actor_rev_user.actor_name, rev_user_text )',
+						'rev_user' => 'actor_rev_user.actor_user',
+						'rev_user_text' => 'actor_rev_user.actor_name',
 						'rev_actor' => 'temp_rev_user.revactor_actor',
 					],
 					'joins' => [
-						'temp_rev_user' => [ 'LEFT JOIN', 'temp_rev_user.revactor_rev = rev_id' ],
-						'actor_rev_user' => [ 'LEFT JOIN', 'actor_rev_user.actor_id = temp_rev_user.revactor_actor' ],
+						'temp_rev_user' => [ 'JOIN', 'temp_rev_user.revactor_rev = rev_id' ],
+						'actor_rev_user' => [ 'JOIN', 'actor_rev_user.actor_id = temp_rev_user.revactor_actor' ],
 					],
 				],
 			],
 			'Revision, new' => [
-				MIGRATION_NEW, 'rev_user', [
+				SCHEMA_COMPAT_NEW, 'rev_user', [
 					'tables' => [
 						'temp_rev_user' => 'revision_actor_temp',
 						'actor_rev_user' => 'actor',
@@ -248,34 +285,28 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 
 		return [
 			'Simple table, old' => [
-				MIGRATION_OLD, 'rc_user', $genericUser, true, [
+				SCHEMA_COMPAT_OLD, 'rc_user', $genericUser, true, [
 					'tables' => [],
 					'orconds' => [ 'userid' => "rc_user = '1'" ],
 					'joins' => [],
 				],
 			],
-			'Simple table, write-both' => [
-				MIGRATION_WRITE_BOTH, 'rc_user', $genericUser, true, [
+			'Simple table, read-old' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'rc_user', $genericUser, true, [
 					'tables' => [],
-					'orconds' => [
-						'actor' => "rc_actor = '11'",
-						'userid' => "rc_actor = '0' AND rc_user = '1'"
-					],
+					'orconds' => [ 'userid' => "rc_user = '1'" ],
 					'joins' => [],
 				],
 			],
-			'Simple table, write-new' => [
-				MIGRATION_WRITE_NEW, 'rc_user', $genericUser, true, [
+			'Simple table, read-new' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'rc_user', $genericUser, true, [
 					'tables' => [],
-					'orconds' => [
-						'actor' => "rc_actor = '11'",
-						'userid' => "rc_actor = '0' AND rc_user = '1'"
-					],
+					'orconds' => [ 'actor' => "rc_actor = '11'" ],
 					'joins' => [],
 				],
 			],
 			'Simple table, new' => [
-				MIGRATION_NEW, 'rc_user', $genericUser, true, [
+				SCHEMA_COMPAT_NEW, 'rc_user', $genericUser, true, [
 					'tables' => [],
 					'orconds' => [ 'actor' => "rc_actor = '11'" ],
 					'joins' => [],
@@ -283,34 +314,28 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			],
 
 			'ipblocks, old' => [
-				MIGRATION_OLD, 'ipb_by', $genericUser, true, [
+				SCHEMA_COMPAT_OLD, 'ipb_by', $genericUser, true, [
 					'tables' => [],
 					'orconds' => [ 'userid' => "ipb_by = '1'" ],
 					'joins' => [],
 				],
 			],
-			'ipblocks, write-both' => [
-				MIGRATION_WRITE_BOTH, 'ipb_by', $genericUser, true, [
+			'ipblocks, read-old' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'ipb_by', $genericUser, true, [
 					'tables' => [],
-					'orconds' => [
-						'actor' => "ipb_by_actor = '11'",
-						'userid' => "ipb_by_actor = '0' AND ipb_by = '1'"
-					],
+					'orconds' => [ 'userid' => "ipb_by = '1'" ],
 					'joins' => [],
 				],
 			],
-			'ipblocks, write-new' => [
-				MIGRATION_WRITE_NEW, 'ipb_by', $genericUser, true, [
+			'ipblocks, read-new' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'ipb_by', $genericUser, true, [
 					'tables' => [],
-					'orconds' => [
-						'actor' => "ipb_by_actor = '11'",
-						'userid' => "ipb_by_actor = '0' AND ipb_by = '1'"
-					],
+					'orconds' => [ 'actor' => "ipb_by_actor = '11'" ],
 					'joins' => [],
 				],
 			],
 			'ipblocks, new' => [
-				MIGRATION_NEW, 'ipb_by', $genericUser, true, [
+				SCHEMA_COMPAT_NEW, 'ipb_by', $genericUser, true, [
 					'tables' => [],
 					'orconds' => [ 'actor' => "ipb_by_actor = '11'" ],
 					'joins' => [],
@@ -318,44 +343,32 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			],
 
 			'Revision, old' => [
-				MIGRATION_OLD, 'rev_user', $genericUser, true, [
+				SCHEMA_COMPAT_OLD, 'rev_user', $genericUser, true, [
 					'tables' => [],
 					'orconds' => [ 'userid' => "rev_user = '1'" ],
 					'joins' => [],
 				],
 			],
-			'Revision, write-both' => [
-				MIGRATION_WRITE_BOTH, 'rev_user', $genericUser, true, [
-					'tables' => [
-						'temp_rev_user' => 'revision_actor_temp',
-					],
-					'orconds' => [
-						'actor' =>
-							"(temp_rev_user.revactor_actor IS NOT NULL) AND temp_rev_user.revactor_actor = '11'",
-						'userid' => "temp_rev_user.revactor_actor IS NULL AND rev_user = '1'"
-					],
-					'joins' => [
-						'temp_rev_user' => [ 'LEFT JOIN', 'temp_rev_user.revactor_rev = rev_id' ],
-					],
+			'Revision, read-old' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'rev_user', $genericUser, true, [
+					'tables' => [],
+					'orconds' => [ 'userid' => "rev_user = '1'" ],
+					'joins' => [],
 				],
 			],
-			'Revision, write-new' => [
-				MIGRATION_WRITE_NEW, 'rev_user', $genericUser, true, [
+			'Revision, read-new' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'rev_user', $genericUser, true, [
 					'tables' => [
 						'temp_rev_user' => 'revision_actor_temp',
 					],
-					'orconds' => [
-						'actor' =>
-							"(temp_rev_user.revactor_actor IS NOT NULL) AND temp_rev_user.revactor_actor = '11'",
-						'userid' => "temp_rev_user.revactor_actor IS NULL AND rev_user = '1'"
-					],
+					'orconds' => [ 'actor' => "temp_rev_user.revactor_actor = '11'" ],
 					'joins' => [
-						'temp_rev_user' => [ 'LEFT JOIN', 'temp_rev_user.revactor_rev = rev_id' ],
+						'temp_rev_user' => [ 'JOIN', 'temp_rev_user.revactor_rev = rev_id' ],
 					],
 				],
 			],
 			'Revision, new' => [
-				MIGRATION_NEW, 'rev_user', $genericUser, true, [
+				SCHEMA_COMPAT_NEW, 'rev_user', $genericUser, true, [
 					'tables' => [
 						'temp_rev_user' => 'revision_actor_temp',
 					],
@@ -367,7 +380,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			],
 
 			'Multiple users, old' => [
-				MIGRATION_OLD, 'rc_user', $complicatedUsers, true, [
+				SCHEMA_COMPAT_OLD, 'rc_user', $complicatedUsers, true, [
 					'tables' => [],
 					'orconds' => [
 						'userid' => "rc_user IN ('1','2','3') ",
@@ -376,30 +389,25 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 					'joins' => [],
 				],
 			],
-			'Multiple users, write-both' => [
-				MIGRATION_WRITE_BOTH, 'rc_user', $complicatedUsers, true, [
+			'Multiple users, read-old' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'rc_user', $complicatedUsers, true, [
 					'tables' => [],
 					'orconds' => [
-						'actor' => "rc_actor IN ('11','12','34') ",
-						'userid' => "rc_actor = '0' AND rc_user IN ('1','2','3') ",
-						'username' => "rc_actor = '0' AND rc_user_text IN ('192.168.12.34','192.168.12.35') "
+						'userid' => "rc_user IN ('1','2','3') ",
+						'username' => "rc_user_text IN ('192.168.12.34','192.168.12.35') "
 					],
 					'joins' => [],
 				],
 			],
-			'Multiple users, write-new' => [
-				MIGRATION_WRITE_NEW, 'rc_user', $complicatedUsers, true, [
+			'Multiple users, read-new' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'rc_user', $complicatedUsers, true, [
 					'tables' => [],
-					'orconds' => [
-						'actor' => "rc_actor IN ('11','12','34') ",
-						'userid' => "rc_actor = '0' AND rc_user IN ('1','2','3') ",
-						'username' => "rc_actor = '0' AND rc_user_text IN ('192.168.12.34','192.168.12.35') "
-					],
+					'orconds' => [ 'actor' => "rc_actor IN ('11','12','34') " ],
 					'joins' => [],
 				],
 			],
 			'Multiple users, new' => [
-				MIGRATION_NEW, 'rc_user', $complicatedUsers, true, [
+				SCHEMA_COMPAT_NEW, 'rc_user', $complicatedUsers, true, [
 					'tables' => [],
 					'orconds' => [ 'actor' => "rc_actor IN ('11','12','34') " ],
 					'joins' => [],
@@ -407,7 +415,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			],
 
 			'Multiple users, no use ID, old' => [
-				MIGRATION_OLD, 'rc_user', $complicatedUsers, false, [
+				SCHEMA_COMPAT_OLD, 'rc_user', $complicatedUsers, false, [
 					'tables' => [],
 					'orconds' => [
 						'username' => "rc_user_text IN ('User1','User2','User3','192.168.12.34','192.168.12.35') "
@@ -415,30 +423,24 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 					'joins' => [],
 				],
 			],
-			'Multiple users, write-both' => [
-				MIGRATION_WRITE_BOTH, 'rc_user', $complicatedUsers, false, [
+			'Multiple users, read-old' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'rc_user', $complicatedUsers, false, [
 					'tables' => [],
 					'orconds' => [
-						'actor' => "rc_actor IN ('11','12','34') ",
-						'username' => "rc_actor = '0' AND "
-						. "rc_user_text IN ('User1','User2','User3','192.168.12.34','192.168.12.35') "
+						'username' => "rc_user_text IN ('User1','User2','User3','192.168.12.34','192.168.12.35') "
 					],
 					'joins' => [],
 				],
 			],
-			'Multiple users, write-new' => [
-				MIGRATION_WRITE_NEW, 'rc_user', $complicatedUsers, false, [
+			'Multiple users, read-new' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'rc_user', $complicatedUsers, false, [
 					'tables' => [],
-					'orconds' => [
-						'actor' => "rc_actor IN ('11','12','34') ",
-						'username' => "rc_actor = '0' AND "
-						. "rc_user_text IN ('User1','User2','User3','192.168.12.34','192.168.12.35') "
-					],
+					'orconds' => [ 'actor' => "rc_actor IN ('11','12','34') " ],
 					'joins' => [],
 				],
 			],
 			'Multiple users, new' => [
-				MIGRATION_NEW, 'rc_user', $complicatedUsers, false, [
+				SCHEMA_COMPAT_NEW, 'rc_user', $complicatedUsers, false, [
 					'tables' => [],
 					'orconds' => [ 'actor' => "rc_actor IN ('11','12','34') " ],
 					'joins' => [],
@@ -470,12 +472,34 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			$user->method( 'getActorId' )->willReturn( $this->db->insertId() );
 		}
 
+		$stageNames = [
+			SCHEMA_COMPAT_OLD => 'old',
+			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD => 'write-both-read-old',
+			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW => 'write-both-read-new',
+			SCHEMA_COMPAT_NEW => 'new',
+		];
+
 		$stages = [
-			MIGRATION_OLD => [ MIGRATION_OLD, MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW ],
-			MIGRATION_WRITE_BOTH => [ MIGRATION_OLD, MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW,
-				MIGRATION_NEW ],
-			MIGRATION_WRITE_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW, MIGRATION_NEW ],
-			MIGRATION_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW, MIGRATION_NEW ],
+			SCHEMA_COMPAT_OLD => [
+				SCHEMA_COMPAT_OLD,
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
+			],
+			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD => [
+				SCHEMA_COMPAT_OLD,
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW,
+				SCHEMA_COMPAT_NEW
+			],
+			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW => [
+				SCHEMA_COMPAT_OLD,
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW,
+				SCHEMA_COMPAT_NEW
+			],
+			SCHEMA_COMPAT_NEW => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW,
+				SCHEMA_COMPAT_NEW
+			],
 		];
 
 		$nameKey = $key . '_text';
@@ -483,7 +507,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 
 		foreach ( $stages as $writeStage => $possibleReadStages ) {
 			if ( $key === 'ipb_by' ) {
-				$extraFields['ipb_address'] = __CLASS__ . "#$writeStage";
+				$extraFields['ipb_address'] = __CLASS__ . "#{$stageNames[$writeStage]}";
 			}
 
 			$w = $this->makeMigration( $writeStage );
@@ -495,17 +519,21 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 				$fields = $w->getInsertValues( $this->db, $key, $user );
 			}
 
-			if ( $writeStage <= MIGRATION_WRITE_BOTH ) {
-				$this->assertSame( $user->getId(), $fields[$key], "old field, stage=$writeStage" );
-				$this->assertSame( $user->getName(), $fields[$nameKey], "old field, stage=$writeStage" );
+			if ( $writeStage & SCHEMA_COMPAT_WRITE_OLD ) {
+				$this->assertSame( $user->getId(), $fields[$key],
+					"old field, stage={$stageNames[$writeStage]}" );
+				$this->assertSame( $user->getName(), $fields[$nameKey],
+					"old field, stage={$stageNames[$writeStage]}" );
 			} else {
-				$this->assertArrayNotHasKey( $key, $fields, "old field, stage=$writeStage" );
-				$this->assertArrayNotHasKey( $nameKey, $fields, "old field, stage=$writeStage" );
+				$this->assertArrayNotHasKey( $key, $fields, "old field, stage={$stageNames[$writeStage]}" );
+				$this->assertArrayNotHasKey( $nameKey, $fields, "old field, stage={$stageNames[$writeStage]}" );
 			}
-			if ( $writeStage >= MIGRATION_WRITE_BOTH && !$usesTemp ) {
-				$this->assertSame( $user->getActorId(), $fields[$actorKey], "new field, stage=$writeStage" );
+			if ( ( $writeStage & SCHEMA_COMPAT_WRITE_NEW ) && !$usesTemp ) {
+				$this->assertSame( $user->getActorId(), $fields[$actorKey],
+					"new field, stage={$stageNames[$writeStage]}" );
 			} else {
-				$this->assertArrayNotHasKey( $actorKey, $fields, "new field, stage=$writeStage" );
+				$this->assertArrayNotHasKey( $actorKey, $fields,
+					"new field, stage={$stageNames[$writeStage]}" );
 			}
 
 			$this->db->insert( $table, $extraFields + $fields, __METHOD__ );
@@ -527,12 +555,14 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 					$queryInfo['joins']
 				);
 
-				$this->assertSame( $user->getId(), (int)$row->$key, "w=$writeStage, r=$readStage, id" );
-				$this->assertSame( $user->getName(), $row->$nameKey, "w=$writeStage, r=$readStage, name" );
+				$this->assertSame( $user->getId(), (int)$row->$key,
+					"w={$stageNames[$writeStage]}, r={$stageNames[$readStage]}, id" );
+				$this->assertSame( $user->getName(), $row->$nameKey,
+					"w={$stageNames[$writeStage]}, r={$stageNames[$readStage]}, name" );
 				$this->assertSame(
-					$readStage === MIGRATION_OLD || $writeStage === MIGRATION_OLD ? 0 : $user->getActorId(),
+					( $readStage & SCHEMA_COMPAT_READ_OLD ) ? 0 : $user->getActorId(),
 					(int)$row->$actorKey,
-					"w=$writeStage, r=$readStage, actor"
+					"w={$stageNames[$writeStage]}, r={$stageNames[$readStage]}, actor"
 				);
 			}
 		}
@@ -572,10 +602,10 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 
 	public static function provideStages() {
 		return [
-			'MIGRATION_OLD' => [ MIGRATION_OLD ],
-			'MIGRATION_WRITE_BOTH' => [ MIGRATION_WRITE_BOTH ],
-			'MIGRATION_WRITE_NEW' => [ MIGRATION_WRITE_NEW ],
-			'MIGRATION_NEW' => [ MIGRATION_NEW ],
+			'old' => [ SCHEMA_COMPAT_OLD ],
+			'read-old' => [ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD ],
+			'read-new' => [ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW ],
+			'new' => [ SCHEMA_COMPAT_NEW ],
 		];
 	}
 
@@ -630,6 +660,12 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	}
 
 	public function testInsertUserIdentity() {
+		$this->setMwGlobals( [
+			// for User::getActorId()
+			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+		] );
+		$this->overrideMwServices();
+
 		$user = $this->getTestUser()->getUser();
 		$userIdentity = $this->getMock( UserIdentity::class );
 		$userIdentity->method( 'getId' )->willReturn( $user->getId() );
@@ -638,7 +674,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 
 		list( $cFields, $cCallback ) = MediaWikiServices::getInstance()->getCommentStore()
 			->insertWithTempTable( $this->db, 'rev_comment', '' );
-		$m = $this->makeMigration( MIGRATION_WRITE_BOTH );
+		$m = $this->makeMigration( SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW );
 		list( $fields, $callback ) =
 			$m->getInsertValuesWithTempTable( $this->db, 'rev_user', $userIdentity );
 		$extraFields = [
@@ -652,22 +688,22 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$callback( $id, $extraFields );
 		$cCallback( $id );
 
-		$qi = Revision::getQueryInfo();
+		$qi = $m->getJoin( 'rev_user' );
 		$row = $this->db->selectRow(
-			$qi['tables'], $qi['fields'], [ 'rev_id' => $id ], __METHOD__, [], $qi['joins']
+			[ 'revision' ] + $qi['tables'], $qi['fields'], [ 'rev_id' => $id ], __METHOD__, [], $qi['joins']
 		);
 		$this->assertSame( $user->getId(), (int)$row->rev_user );
 		$this->assertSame( $user->getName(), $row->rev_user_text );
 		$this->assertSame( $user->getActorId(), (int)$row->rev_actor );
 
-		$m = $this->makeMigration( MIGRATION_WRITE_BOTH );
+		$m = $this->makeMigration( SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW );
 		$fields = $m->getInsertValues( $this->db, 'dummy_user', $userIdentity );
 		$this->assertSame( $user->getId(), $fields['dummy_user'] );
 		$this->assertSame( $user->getName(), $fields['dummy_user_text'] );
 		$this->assertSame( $user->getActorId(), $fields['dummy_actor'] );
 	}
 
-	public function testConstructor() {
+	public function testNewMigration() {
 		$m = ActorMigration::newMigration();
 		$this->assertInstanceOf( ActorMigration::class, $m );
 		$this->assertSame( $m, ActorMigration::newMigration() );
@@ -687,10 +723,12 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 
 	public static function provideIsAnon() {
 		return [
-			'MIGRATION_OLD' => [ MIGRATION_OLD, 'foo = 0', 'foo != 0' ],
-			'MIGRATION_WRITE_BOTH' => [ MIGRATION_WRITE_BOTH, 'foo = 0', 'foo != 0' ],
-			'MIGRATION_WRITE_NEW' => [ MIGRATION_WRITE_NEW, 'foo = 0', 'foo != 0' ],
-			'MIGRATION_NEW' => [ MIGRATION_NEW, 'foo IS NULL', 'foo IS NOT NULL' ],
+			'old' => [ SCHEMA_COMPAT_OLD, 'foo = 0', 'foo != 0' ],
+			'read-old' => [ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'foo = 0', 'foo != 0' ],
+			'read-new' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'foo IS NULL', 'foo IS NOT NULL'
+			],
+			'new' => [ SCHEMA_COMPAT_NEW, 'foo IS NULL', 'foo IS NOT NULL' ],
 		];
 	}
 

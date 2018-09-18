@@ -45,9 +45,9 @@ class MigrateActors extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		global $wgActorTableSchemaMigrationStage;
 
-		if ( $wgActorTableSchemaMigrationStage < MIGRATION_WRITE_NEW ) {
+		if ( !( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) ) {
 			$this->output(
-				"...cannot update while \$wgActorTableSchemaMigrationStage < MIGRATION_WRITE_NEW\n"
+				"...cannot update while \$wgActorTableSchemaMigrationStage lacks SCHEMA_COMPAT_WRITE_NEW\n"
 			);
 			return false;
 		}
@@ -266,7 +266,6 @@ class MigrateActors extends LoggedUpdateMaintenance {
 					$table,
 					[
 						$actorField => $row->actor_id,
-						$nameField => '',
 					],
 					array_intersect_key( (array)$row, $pkFilter ) + [
 						$actorField => 0
@@ -377,7 +376,6 @@ class MigrateActors extends LoggedUpdateMaintenance {
 				}
 				$this->beginTransaction( $dbw, __METHOD__ );
 				$dbw->insert( $newTable, $inserts, __METHOD__ );
-				$dbw->update( $table, [ $nameField => '' ], [ $primaryKey => $updates ], __METHOD__ );
 				$countUpdated += $dbw->affectedRows();
 				$this->commitTransaction( $dbw, __METHOD__ );
 			}

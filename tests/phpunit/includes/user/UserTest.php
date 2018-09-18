@@ -22,7 +22,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgGroupPermissions' => [],
 			'wgRevokePermissions' => [],
-			'wgActorTableSchemaMigrationStage' => MIGRATION_WRITE_BOTH,
+			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
 		] );
 		$this->overrideMwServices();
 

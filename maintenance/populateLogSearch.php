@@ -117,15 +117,17 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 					$tables = [ self::$tableMap[$prefix] ];
 					$fields = [];
 					$joins = [];
-					if ( $wgActorTableSchemaMigrationStage < MIGRATION_NEW ) {
+					if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
+						// Read the old fields if we're still writing them regardless of read mode, to handle upgrades
 						$fields['userid'] = $prefix . '_user';
 						$fields['username'] = $prefix . '_user_text';
 					}
-					if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+					if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+						// Read the new fields if we're writing them regardless of read mode, to handle upgrades
 						if ( $prefix === 'rev' ) {
 							$tables[] = 'revision_actor_temp';
 							$joins['revision_actor_temp'] = [
-								$wgActorTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+								( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ? 'LEFT JOIN' : 'JOIN',
 								'rev_id = revactor_rev',
 							];
 							$fields['actorid'] = 'revactor_actor';
@@ -147,11 +149,13 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 					$log->addRelations( 'log_id', $items, $row->log_id );
 					// Query item author relations...
 					$fields = [];
-					if ( $wgActorTableSchemaMigrationStage < MIGRATION_NEW ) {
+					if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
+						// Read the old fields if we're still writing them regardless of read mode, to handle upgrades
 						$fields['userid'] = 'log_user';
 						$fields['username'] = 'log_user_text';
 					}
-					if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+					if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+						// Read the new fields if we're writing them regardless of read mode, to handle upgrades
 						$fields['actorid'] = 'log_actor';
 					}
 
@@ -163,14 +167,14 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 				// Add item author relations...
 				$userIds = $userIPs = $userActors = [];
 				foreach ( $sres as $srow ) {
-					if ( $wgActorTableSchemaMigrationStage < MIGRATION_NEW ) {
+					if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 						if ( $srow->userid > 0 ) {
 							$userIds[] = intval( $srow->userid );
 						} elseif ( $srow->username != '' ) {
 							$userIPs[] = $srow->username;
 						}
 					}
-					if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+					if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 						if ( $srow->actorid ) {
 							$userActors[] = intval( $srow->actorid );
 						} elseif ( $srow->userid > 0 ) {
@@ -181,11 +185,11 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 					}
 				}
 				// Add item author relations...
-				if ( $wgActorTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ) {
+				if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 					$log->addRelations( 'target_author_id', $userIds, $row->log_id );
 					$log->addRelations( 'target_author_ip', $userIPs, $row->log_id );
 				}
-				if ( $wgActorTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
+				if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 					$log->addRelations( 'target_author_actor', $userActors, $row->log_id );
 				}
 			}

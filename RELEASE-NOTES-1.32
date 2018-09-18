@@ -40,6 +40,10 @@ production.
   old and the new schema, but reading the new schema, so Multi-Content Revisions
   (MCR) are now functional per default. The new default value of the setting is
   SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW.
+* $wgActorTableSchemaMigrationStage no longer accepts MIGRATION_WRITE_BOTH or
+  MIGRATION_WRITE_NEW. It instead uses SCHEMA_COMPAT_WRITE_BOTH |
+  SCHEMA_COMPAT_READ_OLD and SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
+  for intermediate stages of migration.
 
 ==== Removed configuration ====
 * $wgEnableAPI and $wgEnableWriteAPI – These settings, deprecated in 1.31,

@@ -102,10 +102,8 @@ class ApiQueryUserContribs extends ApiQueryBase {
 					$from = $fromName ? "$op= " . $dbSecondary->addQuotes( $fromName ) : false;
 
 					// For the new schema, pull from the actor table. For the
-					// old, pull from rev_user. For migration a FULL [OUTER]
-					// JOIN would be what we want, except MySQL doesn't support
-					// that so we have to UNION instead.
-					if ( $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {
+					// old, pull from rev_user.
+					if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
 						$res = $dbSecondary->select(
 							'actor',
 							[ 'actor_id', 'user_id' => 'COALESCE(actor_user,0)', 'user_name' => 'actor_name' ],
@@ -113,7 +111,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 							$fname,
 							[ 'ORDER BY' => [ "user_name $sort" ], 'LIMIT' => $limit ]
 						);
-					} elseif ( $wgActorTableSchemaMigrationStage === MIGRATION_OLD ) {
+					} else {
 						$res = $dbSecondary->select(
 							'revision',
 							[ 'actor_id' => 'NULL', 'user_id' => 'rev_user', 'user_name' => 'rev_user_text' ],
@@ -121,46 +119,6 @@ class ApiQueryUserContribs extends ApiQueryBase {
 							$fname,
 							[ 'DISTINCT', 'ORDER BY' => [ "rev_user_text $sort" ], 'LIMIT' => $limit ]
 						);
-					} else {
-						// There are three queries we have to combine to be sure of getting all results:
-						//  - actor table (any rows that have been migrated will have empty rev_user_text)
-						//  - revision+actor by user id
-						//  - revision+actor by name for anons
-						$options = $dbSecondary->unionSupportsOrderAndLimit()
-							? [ 'ORDER BY' => [ "user_name $sort" ], 'LIMIT' => $limit ] : [];
-						$subsql = [];
-						$subsql[] = $dbSecondary->selectSQLText(
-							'actor',
-							[ 'actor_id', 'user_id' => 'COALESCE(actor_user,0)', 'user_name' => 'actor_name' ],
-							array_merge( [ "actor_name$like" ], $from ? [ "actor_name $from" ] : [] ),
-							$fname,
-							$options
-						);
-						$subsql[] = $dbSecondary->selectSQLText(
-							[ 'revision', 'actor' ],
-							[ 'actor_id', 'user_id' => 'rev_user', 'user_name' => 'rev_user_text' ],
-							array_merge(
-								[ "rev_user_text$like", 'rev_user != 0' ],
-								$from ? [ "rev_user_text $from" ] : []
-							),
-							$fname,
-							array_merge( [ 'DISTINCT' ], $options ),
-							[ 'actor' => [ 'LEFT JOIN', 'rev_user = actor_user' ] ]
-						);
-						$subsql[] = $dbSecondary->selectSQLText(
-							[ 'revision', 'actor' ],
-							[ 'actor_id', 'user_id' => 'rev_user', 'user_name' => 'rev_user_text' ],
-							array_merge(
-								[ "rev_user_text$like", 'rev_user = 0' ],
-								$from ? [ "rev_user_text $from" ] : []
-							),
-							$fname,
-							array_merge( [ 'DISTINCT' ], $options ),
-							[ 'actor' => [ 'LEFT JOIN', 'rev_user_text = actor_name' ] ]
-						);
-						$sql = $dbSecondary->unionQueries( $subsql, false ) . " ORDER BY user_name $sort";
-						$sql = $dbSecondary->limitResult( $sql, $limit );
-						$res = $dbSecondary->query( $sql, $fname );
 					}
 
 					$count = 0;
@@ -205,9 +163,8 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			}
 
 			// For the new schema, just select from the actor table. For the
-			// old and transitional schemas, select from user and left join
-			// actor if it exists.
-			if ( $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {
+			// old, select from user.
+			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
 				$res = $dbSecondary->select(
 					'actor',
 					[ 'actor_id', 'user_id' => 'actor_user', 'user_name' => 'actor_name' ],
@@ -215,22 +172,13 @@ class ApiQueryUserContribs extends ApiQueryBase {
 					__METHOD__,
 					[ 'ORDER BY' => "user_id $sort" ]
 				);
-			} elseif ( $wgActorTableSchemaMigrationStage === MIGRATION_OLD ) {
+			} else {
 				$res = $dbSecondary->select(
 					'user',
 					[ 'actor_id' => 'NULL', 'user_id' => 'user_id', 'user_name' => 'user_name' ],
 					array_merge( [ 'user_id' => $ids ], $from ? [ "user_id $from" ] : [] ),
 					__METHOD__,
 					[ 'ORDER BY' => "user_id $sort" ]
-				);
-			} else {
-				$res = $dbSecondary->select(
-					[ 'user', 'actor' ],
-					[ 'actor_id', 'user_id', 'user_name' ],
-					array_merge( [ 'user_id' => $ids ], $from ? [ "user_id $from" ] : [] ),
-					__METHOD__,
-					[ 'ORDER BY' => "user_id $sort" ],
-					[ 'actor' => [ 'LEFT JOIN', 'actor_user = user_id' ] ]
 				);
 			}
 			$userIter = UserArray::newFromResult( $res );
@@ -278,9 +226,8 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			}
 
 			// For the new schema, just select from the actor table. For the
-			// old and transitional schemas, select from user and left join
-			// actor if it exists then merge in any unknown users (IPs and imports).
-			if ( $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {
+			// old, select from user then merge in any unknown users (IPs and imports).
+			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
 				$res = $dbSecondary->select(
 					'actor',
 					[ 'actor_id', 'user_id' => 'actor_user', 'user_name' => 'actor_name' ],
@@ -290,23 +237,12 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				);
 				$userIter = UserArray::newFromResult( $res );
 			} else {
-				if ( $wgActorTableSchemaMigrationStage === MIGRATION_OLD ) {
-					$res = $dbSecondary->select(
-						'user',
-						[ 'actor_id' => 'NULL', 'user_id', 'user_name' ],
-						array_merge( [ 'user_name' => array_keys( $names ) ], $from ? [ "user_name $from" ] : [] ),
-						__METHOD__
-					);
-				} else {
-					$res = $dbSecondary->select(
-						[ 'user', 'actor' ],
-						[ 'actor_id', 'user_id', 'user_name' ],
-						array_merge( [ 'user_name' => array_keys( $names ) ], $from ? [ "user_name $from" ] : [] ),
-						__METHOD__,
-						[],
-						[ 'actor' => [ 'LEFT JOIN', 'actor_user = user_id' ] ]
-					);
-				}
+				$res = $dbSecondary->select(
+					'user',
+					[ 'actor_id' => 'NULL', 'user_id', 'user_name' ],
+					array_merge( [ 'user_name' => array_keys( $names ) ], $from ? [ "user_name $from" ] : [] ),
+					__METHOD__
+				);
 				foreach ( $res as $row ) {
 					$names[$row->user_name] = $row;
 				}
@@ -328,17 +264,8 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$batchSize = count( $names );
 		}
 
-		// During migration, force ordering on the client side because we're
-		// having to combine multiple queries that would otherwise have
-		// different sort orders.
-		if ( $wgActorTableSchemaMigrationStage === MIGRATION_WRITE_BOTH ||
-			$wgActorTableSchemaMigrationStage === MIGRATION_WRITE_NEW
-		) {
-			$batchSize = 1;
-		}
-
 		// With the new schema, the DB query will order by actor so update $this->orderBy to match.
-		if ( $batchSize > 1 && $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {
+		if ( $batchSize > 1 && ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) ) {
 			$this->orderBy = 'actor';
 		}
 
@@ -352,64 +279,22 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				$userIter->next();
 			}
 
-			// Ugh. We have to run the query three times, once for each
-			// possible 'orcond' from ActorMigration, and then merge them all
-			// together in the proper order. And preserving the correct
-			// $hookData for each one.
-			// @todo When ActorMigration is removed, this can go back to a
-			//  single prepare and select.
-			$merged = [];
-			foreach ( [ 'actor', 'userid', 'username' ] as $which ) {
-				if ( $this->prepareQuery( $users, $limit - $count, $which ) ) {
-					$hookData = [];
-					$res = $this->select( __METHOD__, [], $hookData );
-					foreach ( $res as $row ) {
-						$merged[] = [ $row, &$hookData ];
-					}
-				}
-			}
-			$neg = $this->params['dir'] == 'newer' ? 1 : -1;
-			usort( $merged, function ( $a, $b ) use ( $neg, $batchSize ) {
-				if ( $batchSize === 1 ) { // One user, can't be different
-					$ret = 0;
-				} elseif ( $this->orderBy === 'id' ) {
-					$ret = $a[0]->rev_user <=> $b[0]->rev_user;
-				} elseif ( $this->orderBy === 'name' ) {
-					$ret = strcmp( $a[0]->rev_user_text, $b[0]->rev_user_text );
-				} else {
-					$ret = $a[0]->rev_actor <=> $b[0]->rev_actor;
-				}
-
-				if ( !$ret ) {
-					$ret = strcmp(
-						wfTimestamp( TS_MW, $a[0]->rev_timestamp ),
-						wfTimestamp( TS_MW, $b[0]->rev_timestamp )
-					);
-				}
-
-				if ( !$ret ) {
-					$ret = $a[0]->rev_id <=> $b[0]->rev_id;
-				}
-
-				return $neg * $ret;
-			} );
-			$merged = array_slice( $merged, 0, $limit - $count + 1 );
-			// (end "Ugh")
+			$hookData = [];
+			$this->prepareQuery( $users, $limit - $count );
+			$res = $this->select( __METHOD__, [], $hookData );
 
 			if ( $this->fld_sizediff ) {
 				$revIds = [];
-				foreach ( $merged as $data ) {
-					if ( $data[0]->rev_parent_id ) {
-						$revIds[] = $data[0]->rev_parent_id;
+				foreach ( $res as $row ) {
+					if ( $row->rev_parent_id ) {
+						$revIds[] = $row->rev_parent_id;
 					}
 				}
 				$this->parentLens = MediaWikiServices::getInstance()->getRevisionStore()
 					->listRevisionSizes( $dbSecondary, $revIds );
 			}
 
-			foreach ( $merged as $data ) {
-				$row = $data[0];
-				$hookData = &$data[1];
+			foreach ( $res as $row ) {
 				if ( ++$count > $limit ) {
 					// We've reached the one extra which shows that there are
 					// additional pages to be had. Stop here...
@@ -434,10 +319,8 @@ class ApiQueryUserContribs extends ApiQueryBase {
 	 * Prepares the query and returns the limit of rows requested
 	 * @param User[] $users
 	 * @param int $limit
-	 * @param string $which 'actor', 'userid', or 'username'
-	 * @return bool
 	 */
-	private function prepareQuery( array $users, $limit, $which ) {
+	private function prepareQuery( array $users, $limit ) {
 		global $wgActorTableSchemaMigrationStage, $wgChangeTagsSchemaMigrationStage;
 
 		$this->resetQueryParams();
@@ -448,26 +331,25 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		$this->addJoinConds( $revQuery['joins'] );
 		$this->addFields( $revQuery['fields'] );
 
-		$revWhere = ActorMigration::newMigration()->getWhere( $db, 'rev_user', $users );
-		if ( !isset( $revWhere['orconds'][$which] ) ) {
-			return false;
-		}
-		$this->addWhere( $revWhere['orconds'][$which] );
-
-		if ( $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {
+		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
+			$revWhere = ActorMigration::newMigration()->getWhere( $db, 'rev_user', $users );
 			$orderUserField = 'rev_actor';
 			$userField = $this->orderBy === 'actor' ? 'revactor_actor' : 'actor_name';
-		} else {
-			$orderUserField = $this->orderBy === 'id' ? 'rev_user' : 'rev_user_text';
-			$userField = $revQuery['fields'][$orderUserField];
-		}
-		if ( $which === 'actor' ) {
 			$tsField = 'revactor_timestamp';
 			$idField = 'revactor_rev';
 		} else {
+			// If we're dealing with user names (rather than IDs) in read-old mode,
+			// pass false for ActorMigration::getWhere()'s $useId parameter so
+			// $revWhere['conds'] isn't an OR.
+			$revWhere = ActorMigration::newMigration()
+				->getWhere( $db, 'rev_user', $users, $this->orderBy === 'id' );
+			$orderUserField = $this->orderBy === 'id' ? 'rev_user' : 'rev_user_text';
+			$userField = $revQuery['fields'][$orderUserField];
 			$tsField = 'rev_timestamp';
 			$idField = 'rev_id';
 		}
+
+		$this->addWhere( $revWhere['conds'] );
 
 		// Handle continue parameter
 		if ( !is_null( $this->params['continue'] ) ) {
@@ -620,8 +502,6 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				$this->addWhereFld( 'ct_tag', $this->params['tag'] );
 			}
 		}
-
-		return true;
 	}
 
 	/**

@@ -182,19 +182,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			// Actually count the actions using a subquery (T66505 and T66507)
 			$tables = [ 'recentchanges' ];
 			$joins = [];
-			if ( $wgActorTableSchemaMigrationStage === MIGRATION_OLD ) {
+			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
 				$userCond = 'rc_user_text = user_name';
 			} else {
 				$tables[] = 'actor';
-				$joins['actor'] = [
-					$wgActorTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
-					'rc_actor = actor_id'
-				];
-				if ( $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {
-					$userCond = 'actor_user = user_id';
-				} else {
-					$userCond = 'actor_user = user_id OR (rc_actor = 0 AND rc_user_text = user_name)';
-				}
+				$joins['actor'] = [ 'JOIN', 'rc_actor = actor_id' ];
+				$userCond = 'actor_user = user_id';
 			}
 			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
 			$this->addFields( [

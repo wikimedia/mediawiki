@@ -208,13 +208,14 @@ class Block {
 	public static function selectFields() {
 		global $wgActorTableSchemaMigrationStage;
 
-		if ( $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
 			// If code is using this instead of self::getQueryInfo(), there's a
 			// decent chance it's going to try to directly access
 			// $row->ipb_by or $row->ipb_by_text and we can't give it
-			// useful values here once those aren't being written anymore.
+			// useful values here once those aren't being used anymore.
 			throw new BadMethodCallException(
-				'Cannot use ' . __METHOD__ . ' when $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH'
+				'Cannot use ' . __METHOD__
+					. ' when $wgActorTableSchemaMigrationStage has SCHEMA_COMPAT_READ_NEW'
 			);
 		}
 
@@ -224,7 +225,7 @@ class Block {
 			'ipb_address',
 			'ipb_by',
 			'ipb_by_text',
-			'ipb_by_actor' => $wgActorTableSchemaMigrationStage > MIGRATION_OLD ? 'ipb_by_actor' : 'NULL',
+			'ipb_by_actor' => 'NULL',
 			'ipb_timestamp',
 			'ipb_auto',
 			'ipb_anon_only',

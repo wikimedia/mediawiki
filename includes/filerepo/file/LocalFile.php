@@ -201,13 +201,14 @@ class LocalFile extends File {
 		global $wgActorTableSchemaMigrationStage;
 
 		wfDeprecated( __METHOD__, '1.31' );
-		if ( $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
 			// If code is using this instead of self::getQueryInfo(), there's a
 			// decent chance it's going to try to directly access
 			// $row->img_user or $row->img_user_text and we can't give it
-			// useful values here once those aren't being written anymore.
+			// useful values here once those aren't being used anymore.
 			throw new BadMethodCallException(
-				'Cannot use ' . __METHOD__ . ' when $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH'
+				'Cannot use ' . __METHOD__
+					. ' when $wgActorTableSchemaMigrationStage has SCHEMA_COMPAT_READ_NEW'
 			);
 		}
 
@@ -223,7 +224,7 @@ class LocalFile extends File {
 			'img_minor_mime',
 			'img_user',
 			'img_user_text',
-			'img_actor' => $wgActorTableSchemaMigrationStage > MIGRATION_OLD ? 'img_actor' : 'NULL',
+			'img_actor' => 'NULL',
 			'img_timestamp',
 			'img_sha1',
 		] + MediaWikiServices::getInstance()->getCommentStore()->getFields( 'img_description' );
@@ -1573,16 +1574,16 @@ class LocalFile extends File {
 				}
 			}
 
-			if ( $wgActorTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ) {
+			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 				$fields['oi_user'] = 'img_user';
 				$fields['oi_user_text'] = 'img_user_text';
 			}
-			if ( $wgActorTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
+			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 				$fields['oi_actor'] = 'img_actor';
 			}
 
-			if ( $wgActorTableSchemaMigrationStage !== MIGRATION_OLD &&
-				$wgActorTableSchemaMigrationStage !== MIGRATION_NEW
+			if (
+				( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_BOTH ) === SCHEMA_COMPAT_WRITE_BOTH
 			) {
 				// Upgrade any rows that are still old-style. Otherwise an upgrade
 				// might be missed if a deletion happens while the migration script
@@ -2569,16 +2570,16 @@ class LocalFileDeleteBatch {
 				}
 			}
 
-			if ( $wgActorTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ) {
+			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 				$fields['fa_user'] = 'img_user';
 				$fields['fa_user_text'] = 'img_user_text';
 			}
-			if ( $wgActorTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
+			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 				$fields['fa_actor'] = 'img_actor';
 			}
 
-			if ( $wgActorTableSchemaMigrationStage !== MIGRATION_OLD &&
-				$wgActorTableSchemaMigrationStage !== MIGRATION_NEW
+			if (
+				( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_BOTH ) === SCHEMA_COMPAT_WRITE_BOTH
 			) {
 				// Upgrade any rows that are still old-style. Otherwise an upgrade
 				// might be missed if a deletion happens while the migration script

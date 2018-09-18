@@ -739,27 +739,18 @@ class InfoAction extends FormlessAction {
 				$dbrWatchlist = wfGetDB( DB_REPLICA, 'watchlist' );
 				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
 
-				if ( $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {
+				if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
 					$tables = [ 'revision_actor_temp' ];
 					$field = 'revactor_actor';
 					$pageField = 'revactor_page';
 					$tsField = 'revactor_timestamp';
 					$joins = [];
-				} elseif ( $wgActorTableSchemaMigrationStage === MIGRATION_OLD ) {
+				} else {
 					$tables = [ 'revision' ];
 					$field = 'rev_user_text';
 					$pageField = 'rev_page';
 					$tsField = 'rev_timestamp';
 					$joins = [];
-				} else {
-					$tables = [ 'revision', 'revision_actor_temp', 'actor' ];
-					$field = 'COALESCE( actor_name, rev_user_text)';
-					$pageField = 'rev_page';
-					$tsField = 'rev_timestamp';
-					$joins = [
-						'revision_actor_temp' => [ 'LEFT JOIN', 'revactor_rev = rev_id' ],
-						'actor' => [ 'LEFT JOIN', 'revactor_actor = actor_id' ],
-					];
 				}
 
 				$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();

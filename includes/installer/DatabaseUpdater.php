@@ -1300,7 +1300,7 @@ abstract class DatabaseUpdater {
 	 */
 	protected function migrateActors() {
 		global $wgActorTableSchemaMigrationStage;
-		if ( $wgActorTableSchemaMigrationStage >= MIGRATION_WRITE_NEW &&
+		if ( ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) &&
 			!$this->updateRowExists( 'MigrateActors' )
 		) {
 			$this->output(

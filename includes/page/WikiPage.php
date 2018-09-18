@@ -2914,7 +2914,7 @@ class WikiPage implements Page, IDBAccessObject {
 			if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
 				$dbw->delete( 'revision_comment_temp', [ 'revcomment_rev' => $revids ], __METHOD__ );
 			}
-			if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 				$dbw->delete( 'revision_actor_temp', [ 'revactor_rev' => $revids ], __METHOD__ );
 			}
 

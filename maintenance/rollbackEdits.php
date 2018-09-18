@@ -99,18 +99,16 @@ class RollbackEdits extends Maintenance {
 		$titles = [];
 		$actorQuery = ActorMigration::newMigration()
 			->getWhere( $dbr, 'rev_user', User::newFromName( $user, false ) );
-		foreach ( $actorQuery['orconds'] as $cond ) {
-			$results = $dbr->select(
-				[ 'page', 'revision' ] + $actorQuery['tables'],
-				[ 'page_namespace', 'page_title' ],
-				[ $cond ],
-				__METHOD__,
-				[],
-				[ 'revision' => [ 'JOIN', 'page_latest = rev_id' ] ] + $actorQuery['joins']
-			);
-			foreach ( $results as $row ) {
-				$titles[] = Title::makeTitle( $row->page_namespace, $row->page_title );
-			}
+		$results = $dbr->select(
+			[ 'page', 'revision' ] + $actorQuery['tables'],
+			[ 'page_namespace', 'page_title' ],
+			$actorQuery['conds'],
+			__METHOD__,
+			[],
+			[ 'revision' => [ 'JOIN', 'page_latest = rev_id' ] ] + $actorQuery['joins']
+		);
+		foreach ( $results as $row ) {
+			$titles[] = Title::makeTitle( $row->page_namespace, $row->page_title );
 		}
 
 		return $titles;
