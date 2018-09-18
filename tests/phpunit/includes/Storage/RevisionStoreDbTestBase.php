@@ -17,6 +17,7 @@ use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiTestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 use Revision;
@@ -1050,6 +1051,81 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromArchiveRow
+	 */
+	public function testNewRevisionFromArchiveRow_no_user() {
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+
+		$row = (object)[
+			'ar_id' => '1',
+			'ar_page_id' => '2',
+			'ar_namespace' => '0',
+			'ar_title' => 'Something',
+			'ar_rev_id' => '2',
+			'ar_text_id' => '47',
+			'ar_timestamp' => '20180528192356',
+			'ar_minor_edit' => '0',
+			'ar_deleted' => '0',
+			'ar_len' => '78',
+			'ar_parent_id' => '0',
+			'ar_sha1' => 'deadbeef',
+			'ar_comment_text' => 'whatever',
+			'ar_comment_data' => null,
+			'ar_comment_cid' => null,
+			'ar_user' => '0',
+			'ar_user_text' => '', // this is the important bit
+			'ar_actor' => null,
+			'ar_content_format' => null,
+			'ar_content_model' => null,
+		];
+
+		\Wikimedia\suppressWarnings();
+		$record = $store->newRevisionFromArchiveRow( $row );
+		\Wikimedia\suppressWarnings( true );
+
+		$this->assertInstanceOf( RevisionRecord::class, $record );
+		$this->assertInstanceOf( UserIdentityValue::class, $record->getUser() );
+		$this->assertSame( 'Unknown user', $record->getUser()->getName() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
+	 */
+	public function testNewRevisionFromRow_no_user() {
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$title = Title::newFromText( __METHOD__ );
+
+		$row = (object)[
+			'rev_id' => '2',
+			'rev_page' => '2',
+			'page_namespace' => '0',
+			'page_title' => $title->getText(),
+			'rev_text_id' => '47',
+			'rev_timestamp' => '20180528192356',
+			'rev_minor_edit' => '0',
+			'rev_deleted' => '0',
+			'rev_len' => '78',
+			'rev_parent_id' => '0',
+			'rev_sha1' => 'deadbeef',
+			'rev_comment_text' => 'whatever',
+			'rev_comment_data' => null,
+			'rev_comment_cid' => null,
+			'rev_user' => '0',
+			'rev_user_text' => '', // this is the important bit
+			'rev_actor' => null,
+			'rev_content_format' => null,
+			'rev_content_model' => null,
+		];
+
+		\Wikimedia\suppressWarnings();
+		$record = $store->newRevisionFromRow( $row, 0, $title );
+		\Wikimedia\suppressWarnings( true );
+
+		$this->assertNotNull( $record );
+		$this->assertNotNull( $record->getUser() );
+		$this->assertNotEmpty( $record->getUser()->getName() );
+	}
+
+	/**
 	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
 	 */
 	public function testInsertRevisionOn_archive() {

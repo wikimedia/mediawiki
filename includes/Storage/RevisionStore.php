@@ -1711,8 +1711,8 @@ class RevisionStore
 				$row->ar_actor ?? null
 			);
 		} catch ( InvalidArgumentException $ex ) {
-			wfWarn( __METHOD__ . ': ' . $ex->getMessage() );
-			$user = new UserIdentityValue( 0, '', 0 );
+			wfWarn( __METHOD__ . ': ' . $title->getPrefixedDBkey() . ': ' . $ex->getMessage() );
+			$user = new UserIdentityValue( 0, 'Unknown user', 0 );
 		}
 
 		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
@@ -1759,8 +1759,8 @@ class RevisionStore
 				$row->rev_actor ?? null
 			);
 		} catch ( InvalidArgumentException $ex ) {
-			wfWarn( __METHOD__ . ': ' . $ex->getMessage() );
-			$user = new UserIdentityValue( 0, '', 0 );
+			wfWarn( __METHOD__ . ': ' . $title->getPrefixedDBkey() . ': ' . $ex->getMessage() );
+			$user = new UserIdentityValue( 0, 'Unknown user', 0 );
 		}
 
 		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
