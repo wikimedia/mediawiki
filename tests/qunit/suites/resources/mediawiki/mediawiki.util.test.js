@@ -294,15 +294,14 @@
 	 * one element can have a given id.
 	 */
 	QUnit.test( 'addPortletLink', function ( assert ) {
-		var pTestTb, pCustom, vectorTabs, tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo,
+		var tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo,
 			addedAfter, tbRLDMnonexistentid, tbRLDMemptyjquery;
 
-		pTestTb =
+		$( '#qunit-fixture' ).append(
 			'<div class="portlet" id="p-test-tb">' +
 				'<h3>Toolbox</h3>' +
 				'<ul class="body"></ul>' +
-			'</div>';
-		pCustom =
+			'</div>' +
 			'<div class="portlet" id="p-test-custom">' +
 				'<h3>Views</h3>' +
 				'<ul class="body">' +
@@ -313,81 +312,92 @@
 						'</ul>' +
 					'</li>' +
 				'</ul>' +
-			'</div>';
-		vectorTabs =
+			'</div>' +
 			'<div id="p-test-views" class="vectorTabs">' +
 				'<h3>Views</h3>' +
 				'<ul></ul>' +
-			'</div>';
-
-		$( '#qunit-fixture' ).append( pTestTb, pCustom, vectorTabs );
-
-		tbRL = util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/ResourceLoader',
-			'ResourceLoader', 't-rl', 'More info about ResourceLoader on MediaWiki.org ', 'l'
+			'</div>'
 		);
 
-		assert.ok( tbRL && tbRL.nodeType, 'addPortletLink returns a DOM Node' );
+		tbRL = util.addPortletLink( 'p-test-tb', 'https://example.org/next',
+			'Next', 't-rl', 'More info about Example Next ', 'l'
+		);
+		assert.strictEqual( tbRL.nodeType, 1, 'returns a DOM Node' );
+		assert.strictEqual( tbRL.nodeName, 'LI', 'returns a list item element' );
 
-		tbMW = util.addPortletLink( 'p-test-tb', '//mediawiki.org/',
-			'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org', 'm', tbRL );
+		tbMW = util.addPortletLink( 'p-test-tb', '//example.org/',
+			'Example.org', 't-xmp', 'Go to Example', 'x', tbRL );
 		$tbMW = $( tbMW );
-
 		assert.propEqual(
 			$tbMW.getAttrs(),
 			{
-				id: 't-mworg'
+				id: 't-xmp'
 			},
-			'Validate attributes of created element'
+			'List item attributes'
 		);
-
 		assert.propEqual(
 			$tbMW.find( 'a' ).getAttrs(),
 			{
-				href: '//mediawiki.org/',
-				title: 'Go to MediaWiki.org [test-m]',
-				accesskey: 'm'
+				href: '//example.org/',
+				title: 'Go to Example [test-x]',
+				accesskey: 'x'
 			},
-			'Validate attributes of anchor tag in created element'
+			'Anchor link attributes'
 		);
-
-		assert.strictEqual( $tbMW.closest( '.portlet' ).attr( 'id' ), 'p-test-tb', 'Link was inserted within correct portlet' );
-		assert.strictEqual( $tbMW.next()[ 0 ], tbRL, 'Link is in the correct position (nextnode as Node object)' );
+		assert.strictEqual(
+			$tbMW.closest( '.portlet' ).attr( 'id' ),
+			'p-test-tb',
+			'Parent portlet ID'
+		);
+		assert.strictEqual(
+			$tbMW.next()[ 0 ],
+			tbRL,
+			'Next node (set as Node object)'
+		);
+		assert.strictEqual(
+			$tbMW.find( 'span' ).length,
+			0,
+			'No <span> wrap for porlets without vectorTabs class'
+		);
 
 		cuQuux = util.addPortletLink( 'p-test-custom', '#', 'Quux', null, 'Example [shift-x]', 'q' );
 		$cuQuux = $( cuQuux );
-
-		assert.strictEqual( $cuQuux.find( 'a' ).attr( 'title' ), 'Example [test-q]', 'Existing accesskey is stripped and updated' );
-
+		assert.strictEqual(
+			$cuQuux.find( 'a' ).attr( 'title' ),
+			'Example [test-q]',
+			'Title has new accesskey and label'
+		);
 		assert.strictEqual(
 			$( '#p-test-custom #c-barmenu ul li' ).length,
 			1,
-			'addPortletLink did not add the item to all <ul> elements in the portlet (T37082)'
+			'No items added to unrelated <ul> elsewhere in the portlet (T37082)'
 		);
 
 		tbRLDM = util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
 			'Default modules', 't-rldm', 'List of all default modules ', 'd', '#t-rl' );
-
-		assert.strictEqual( $( tbRLDM ).next()[ 0 ], tbRL, 'Link is in the correct position (CSS selector as nextnode)' );
+		assert.strictEqual( $( tbRLDM ).next()[ 0 ], tbRL, 'Next node (set as CSS selector)' );
 
 		caFoo = util.addPortletLink( 'p-test-views', '#', 'Foo' );
-
-		assert.strictEqual( $tbMW.find( 'span' ).length, 0, 'No <span> element should be added for porlets without vectorTabs class.' );
-		assert.strictEqual( $( caFoo ).find( 'span' ).length, 1, 'A <span> element should be added for porlets with vectorTabs class.' );
+		assert.strictEqual( $( caFoo ).find( 'span' ).length, 1, 'Added <span> element for porlet with vectorTabs class' );
 
 		addedAfter = util.addPortletLink( 'p-test-tb', '#', 'After foo', 'post-foo', 'After foo', null, $( tbRL ) );
-		assert.strictEqual( $( addedAfter ).next()[ 0 ], tbRL, 'Link is in the correct position (jQuery object as nextnode)' );
+		assert.strictEqual( $( addedAfter ).next()[ 0 ], tbRL, 'Next node (set as jQuery object)' );
 
-		// test case - nonexistent id as next node
 		tbRLDMnonexistentid = util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
 			'Default modules', 't-rldm-nonexistent', 'List of all default modules ', 'd', '#t-rl-nonexistent' );
+		assert.strictEqual(
+			tbRLDMnonexistentid,
+			$( '#p-test-tb li:last' )[ 0 ],
+			'Next node as non-matching CSS selector falls back to appending'
+		);
 
-		assert.strictEqual( tbRLDMnonexistentid, $( '#p-test-tb li:last' )[ 0 ], 'Fallback to adding at the end (nextnode non-matching CSS selector)' );
-
-		// test case - empty jquery object as next node
 		tbRLDMemptyjquery = util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
 			'Default modules', 't-rldm-empty-jquery', 'List of all default modules ', 'd', $( '#t-rl-nonexistent' ) );
-
-		assert.strictEqual( tbRLDMemptyjquery, $( '#p-test-tb li:last' )[ 0 ], 'Fallback to adding at the end (nextnode as empty jQuery object)' );
+		assert.strictEqual(
+			tbRLDMemptyjquery,
+			$( '#p-test-tb li:last' )[ 0 ],
+			'Next node as empty jQuery object falls back to appending'
+		);
 	} );
 
 	QUnit.test( 'validateEmail', function ( assert ) {
