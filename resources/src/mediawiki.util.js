@@ -269,117 +269,98 @@
 		 *         e.preventDefault();
 		 *     } );
 		 *
-		 * @param {string} portlet ID of the target portlet ( 'p-cactions' or 'p-personal' etc.)
+		 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
 		 * @param {string} href Link URL
 		 * @param {string} text Link text
-		 * @param {string} [id] ID of the new item, should be unique and preferably have
-		 *  the appropriate prefix ( 'ca-', 'pt-', 'n-' or 't-' )
+		 * @param {string} [id] ID of the list item, should be unique and preferably have
+		 *  the appropriate prefix ('ca-', 'pt-', 'n-' or 't-')
 		 * @param {string} [tooltip] Text to show when hovering over the link, without accesskey suffix
-		 * @param {string} [accesskey] Access key to activate this link (one character, try
-		 *  to avoid conflicts. Use `$( '[accesskey=x]' ).get()` in the console to
+		 * @param {string} [accesskey] Access key to activate this link. One character only,
+		 *  avoid conflicts with other links. Use `$( '[accesskey=x]' )` in the console to
 		 *  see if 'x' is already used.
-		 * @param {HTMLElement|jQuery|string} [nextnode] Element or jQuery-selector string to the item that
-		 *  the new item should be added before, should be another item in the same
-		 *  list, it will be ignored otherwise
-		 *
-		 * @return {HTMLElement|null} The added element (a ListItem or Anchor element,
-		 * depending on the skin) or null if no element was added to the document.
+		 * @param {HTMLElement|jQuery|string} [nextnode] Element that the new item should be added before.
+		 *  Must be another item in the same list, it will be ignored otherwise.
+		 *  Can be specified as DOM reference, as jQuery object, or as CSS selector string.
+		 * @return {HTMLElement|null} The added list item, or null if no element was added.
 		 */
-		addPortletLink: function ( portlet, href, text, id, tooltip, accesskey, nextnode ) {
-			var $item, $link, $portlet, $ul;
+		addPortletLink: function ( portletId, href, text, id, tooltip, accesskey, nextnode ) {
+			var item, link, $portlet, portlet, portletDiv, ul, next;
 
-			// Check if there's at least 3 arguments to prevent a TypeError
-			if ( arguments.length < 3 ) {
+			if ( !portletId ) {
+				// Avoid confusing id="undefined" lookup
 				return null;
 			}
-			// Setup the anchor tag
-			$link = $( '<a>' ).attr( 'href', href ).text( text );
+
+			portlet = document.getElementById( portletId );
+			if ( !portlet ) {
+				// Invalid portlet ID
+				return null;
+			}
+
+			// Setup the anchor tag and set any the properties
+			link = document.createElement( 'a' );
+			link.href = href;
+			link.textContent = text;
 			if ( tooltip ) {
-				$link.attr( 'title', tooltip );
+				link.title = tooltip;
 			}
-
-			// Select the specified portlet
-			$portlet = $( '#' + portlet );
-			if ( $portlet.length === 0 ) {
-				return null;
-			}
-			// Select the first (most likely only) unordered list inside the portlet
-			$ul = $portlet.find( 'ul' ).eq( 0 );
-
-			// If it didn't have an unordered list yet, create it
-			if ( $ul.length === 0 ) {
-
-				$ul = $( '<ul>' );
-
-				// If there's no <div> inside, append it to the portlet directly
-				if ( $portlet.find( 'div:first' ).length === 0 ) {
-					$portlet.append( $ul );
-				} else {
-					// otherwise if there's a div (such as div.body or div.pBody)
-					// append the <ul> to last (most likely only) div
-					$portlet.find( 'div' ).eq( -1 ).append( $ul );
-				}
-			}
-			// Just in case..
-			if ( $ul.length === 0 ) {
-				return null;
+			if ( accesskey ) {
+				link.accessKey = accesskey;
 			}
 
 			// Unhide portlet if it was hidden before
+			$portlet = $( portlet );
 			$portlet.removeClass( 'emptyPortlet' );
 
-			// Wrap the anchor tag in a list item (and a span if $portlet is a Vector tab)
-			// and back up the selector to the list item
+			// Setup the list item (and a span if $portlet is a Vector tab)
 			if ( $portlet.hasClass( 'vectorTabs' ) ) {
-				$item = $link.wrap( '<li><span></span></li>' ).parent().parent();
+				item = $( '<li>' ).append( $( '<span>' ).append( link )[ 0 ] )[ 0 ];
 			} else {
-				$item = $link.wrap( '<li></li>' ).parent();
+				item = $( '<li>' ).append( link )[ 0 ];
 			}
-
-			// Implement the properties passed to the function
 			if ( id ) {
-				$item.attr( 'id', id );
+				item.id = id;
 			}
 
-			if ( accesskey ) {
-				$link.attr( 'accesskey', accesskey );
-			}
-
-			if ( tooltip ) {
-				$link.attr( 'title', tooltip );
-			}
-
-			if ( nextnode ) {
-				// Case: nextnode is a DOM element (was the only option before MW 1.17, in wikibits.js)
-				// Case: nextnode is a CSS selector for jQuery
-				if ( nextnode.nodeType || typeof nextnode === 'string' ) {
-					nextnode = $ul.find( nextnode );
-				} else if ( !nextnode.jquery ) {
-					// Error: Invalid nextnode
-					nextnode = undefined;
-				}
-				if ( nextnode && ( nextnode.length !== 1 || nextnode[ 0 ].parentNode !== $ul[ 0 ] ) ) {
-					// Error: nextnode must resolve to a single node
-					// Error: nextnode must have the associated <ul> as its parent
-					nextnode = undefined;
+			// Select the first (most likely only) unordered list inside the portlet
+			ul = portlet.querySelector( 'ul' );
+			if ( !ul ) {
+				// If it didn't have an unordered list yet, create one
+				ul = document.createElement( 'ul' );
+				portletDiv = portlet.querySelector( 'div' );
+				if ( portletDiv ) {
+					// Support: Legacy skins have a div (such as div.body or div.pBody).
+					// Append the <ul> to that.
+					portletDiv.appendChild( ul );
+				} else {
+					// Append it to the portlet directly
+					portlet.appendChild( ul );
 				}
 			}
 
-			// Case: nextnode is a jQuery-wrapped DOM element
-			if ( nextnode ) {
-				nextnode.before( $item );
-			} else {
-				// Fallback (this is the default behavior)
-				$ul.append( $item );
+			if ( nextnode && ( typeof nextnode === 'string' || nextnode.nodeType || nextnode.jquery ) ) {
+				nextnode = $( ul ).find( nextnode );
+				if ( nextnode.length === 1 && nextnode[ 0 ].parentNode === ul ) {
+					// Insertion point: Before nextnode
+					nextnode.before( item );
+					next = true;
+				}
+				// Else: Invalid nextnode value (no match, more than one match, or not a direct child)
+				// Else: Invalid nextnode type
+			}
+
+			if ( !next ) {
+				// Insertion point: End of list (default)
+				ul.appendChild( item );
 			}
 
 			// Update tooltip for the access key after inserting into DOM
 			// to get a localized access key label (T69946).
 			if ( accesskey ) {
-				$link.updateTooltipAccessKeys();
+				$( link ).updateTooltipAccessKeys();
 			}
 
-			return $item[ 0 ];
+			return item;
 		},
 
 		/**
