@@ -667,7 +667,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->getOutput()->setPageTitle( $this->msg( 'actionfailed' ) );
 		$this->getOutput()->wrapWikiTextAsInterface(
 			'errorbox',
-			$status->getWikiText( $this->typeLabels['failure'] )
+			$status->getWikiText( $this->typeLabels['failure'], false, $this->getLanguage() )
 		);
 		$this->showForm();
 	}

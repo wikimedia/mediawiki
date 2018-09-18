@@ -333,7 +333,9 @@ class ProtectionForm {
 		);
 
 		if ( !$status->isOK() ) {
-			$this->show( $out->parseInlineAsInterface( $status->getWikiText() ) );
+			$this->show( $out->parseInlineAsInterface(
+				$status->getWikiText( false, false, $this->mContext->getLanguage() )
+			) );
 			return false;
 		}
 

@@ -141,7 +141,7 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 			return Status::newGood( $this->msg( 'confirmemail_sent' )->text() );
 		} else {
 			return Status::newFatal( new RawMessage(
-				$status->getWikiText( 'confirmemail_sendfailed' )
+				$status->getWikiText( 'confirmemail_sendfailed', false, $this->getLanguage() )
 			) );
 		}
 	}

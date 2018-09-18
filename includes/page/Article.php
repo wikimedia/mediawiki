@@ -808,7 +808,9 @@ class Article implements Page {
 							$outputPage->enableClientCache( false );
 							$outputPage->setRobotPolicy( 'noindex,nofollow' );
 
-							$errortext = $error->getWikiText( false, 'view-pool-error' );
+							$errortext = $error->getWikiText(
+								false, 'view-pool-error', $this->getContext()->getLanguage()
+							);
 							$outputPage->wrapWikiTextAsInterface( 'errorbox', $errortext );
 						}
 						# Connection or timeout error
@@ -2121,7 +2123,7 @@ class Article implements Page {
 			if ( $error == '' ) {
 				$outputPage->wrapWikiTextAsInterface(
 					'error mw-error-cannotdelete',
-					$status->getWikiText()
+					$status->getWikiText( false, false, $context->getLanguage() )
 				);
 				$deleteLogPage = new LogPage( 'delete' );
 				$outputPage->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName()->text() ) );
