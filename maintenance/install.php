@@ -90,6 +90,10 @@ class CommandLineInstaller extends Maintenance {
 		$this->addOption( 'env-checks', "Run environment checks only, don't change anything" );
 
 		$this->addOption( 'with-extensions', "Detect and include extensions" );
+		$this->addOption( 'extensions', 'Comma-separated list of extensions to install',
+			false, true, false, true );
+		$this->addOption( 'skins', 'Comma-separated list of skins to install (default: all)',
+			false, true, false, true );
 	}
 
 	public function getDbType() {
