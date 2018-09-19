@@ -259,7 +259,6 @@
 
 	defineFallbacks();
 
-	/* eslint-disable no-console */
 	log = ( function () {
 		/**
 		 * Write a verbose message to the browser's console in debug mode.
@@ -293,7 +292,7 @@
 		 *
 		 * @param {...string} msg Messages to output to console
 		 */
-		log.warn = console && console.warn && Function.prototype.bind ?
+		log.warn = console && console.warn ?
 			Function.prototype.bind.call( console.warn, console ) :
 			function () {};
 
@@ -308,7 +307,7 @@
 		 * @since 1.26
 		 * @param {...Mixed} msg Messages to output to console
 		 */
-		log.error = console && console.error && Function.prototype.bind ?
+		log.error = console && console.error ?
 			Function.prototype.bind.call( console.error, console ) :
 			function () {};
 
@@ -323,9 +322,7 @@
 		 * @param {string} [logName=key] Optional custom name for the feature.
 		 *  This is used instead of `key` in the message and `mw.deprecate` tracking.
 		 */
-		log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
-			obj[ key ] = val;
-		} : function ( obj, key, val, msg, logName ) {
+		log.deprecate = function ( obj, key, val, msg, logName ) {
 			var stacks;
 			function maybeLog() {
 				var name,
@@ -365,7 +362,6 @@
 
 		return log;
 	}() );
-	/* eslint-enable no-console */
 
 	/**
 	 * @class mw
