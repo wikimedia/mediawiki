@@ -404,16 +404,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$mwLoaderCode .= file_get_contents( "$IP/resources/src/startup/profiler.js" );
 		}
 
-		// Keep output as small as possible by disabling needless escapes that PHP uses by default.
-		// This is not HTML output, only used in a JS response.
-		$jsonFlags = JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
-		if ( ResourceLoader::inDebugMode() ) {
-			$jsonFlags |= JSON_PRETTY_PRINT;
-		}
-
 		// Perform replacements for mediawiki.js
 		$mwLoaderPairs = [
-			'$VARS.baseModules' => json_encode( $this->getBaseModules(), $jsonFlags ),
+			'$VARS.baseModules' => ResourceLoader::encodeJsonForScript( $this->getBaseModules() ),
 		];
 		$profilerStubs = [
 			'$CODE.profileExecuteStart();' => 'mw.loader.profiler.onExecuteStart( module );',
@@ -432,13 +425,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		// Perform string replacements for startup.js
 		$pairs = [
-			'$VARS.wgLegacyJavaScriptGlobals' => json_encode(
-				$this->getConfig()->get( 'LegacyJavaScriptGlobals' ),
-				$jsonFlags
+			'$VARS.wgLegacyJavaScriptGlobals' => ResourceLoader::encodeJsonForScript(
+				$this->getConfig()->get( 'LegacyJavaScriptGlobals' )
 			),
-			'$VARS.configuration' => json_encode(
-				$this->getConfigSettings( $context ),
-				$jsonFlags
+			'$VARS.configuration' => ResourceLoader::encodeJsonForScript(
+				$this->getConfigSettings( $context )
 			),
 			// Raw JavaScript code (not JSON)
 			'$CODE.registrations();' => trim( $this->getModuleRegistrations( $context ) ),
