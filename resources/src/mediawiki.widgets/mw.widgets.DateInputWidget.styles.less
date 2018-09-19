@@ -6,8 +6,8 @@
  */
 
 // Variables taken from OOUI's WikimediaUI theme
-@oo-ui-font-size-browser: 16; // assumed browser default of `16px`
-@oo-ui-font-size-base: 0.8em; // equals `12.8px` at browser default of `16px`
+@ooui-font-size-browser: 16; // assumed browser default of `16px`
+@ooui-font-size-base: 0.875em; // equals `14px` at browser default of `16px`
 
 @background-color-base: #fff;
 
@@ -19,16 +19,17 @@
 @border-radius-base: 2px;
 
 @padding-input-text: @padding-top-base @padding-horizontal-input-text @padding-bottom-base;
-@padding-horizontal-input-text: 8 / @oo-ui-font-size-browser / @oo-ui-font-size-base;
-@padding-top-base: 8 / @oo-ui-font-size-browser / @oo-ui-font-size-base; // equals `0.625em`≈`8px`
-@padding-bottom-base: 7 / @oo-ui-font-size-browser / @oo-ui-font-size-base; // equals `0.547em`≈`7px`
+@padding-horizontal-input-text: 8 / @ooui-font-size-browser / @ooui-font-size-base; // equals `0.57142857em`≈`7px`
+@padding-top-base: 8 / @ooui-font-size-browser / @ooui-font-size-base;
+@padding-bottom-base: 7 / @ooui-font-size-browser / @ooui-font-size-base; // equals `0.5em`≈`7px`
 
 @box-shadow-widget: inset 0 0 0 1px transparent;
 @box-shadow-widget--focus: inset 0 0 0 1px #36c;
 
-@line-height-widget-singleline: 1.172em; // Firefox needs a value, Chrome the unit; equals `15px` at base `font-size: 12.8px`
+@line-height-widget-singleline: 15 / @ooui-font-size-browser / @ooui-font-size-base; // equals `1.07142857em`≈`15px`; Firefox needs a value, Chrome the unit;
 
-@transition-ease-out-sine-medium: 200ms cubic-bezier( 0.39, 0.575, 0.565, 1 );
+@transition-ease-medium: @transition-duration-medium; // `ease` is the initial value
+@transition-duration-medium: 250ms;
 
 // Mixins taken from OOUI
 .oo-ui-box-sizing( @type: border-box ) {
@@ -93,8 +94,8 @@
 		.mw-widget-dateInputWidget-handle {
 			box-shadow: @box-shadow-widget; // necessary for smooth transition
 			.oo-ui-transition(
-				border-color @transition-ease-out-sine-medium,
-				box-shadow @transition-ease-out-sine-medium
+				border-color @transition-ease-medium,
+				box-shadow @transition-ease-medium
 			);
 
 			&:hover {
