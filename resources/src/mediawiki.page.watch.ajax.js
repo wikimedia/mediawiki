@@ -146,7 +146,7 @@
 				.done( function ( watchResponse ) {
 					var message, otherAction = action === 'watch' ? 'unwatch' : 'watch';
 
-					if ( mwTitle.getNamespaceId() > 0 && mwTitle.getNamespaceId() % 2 === 1 ) {
+					if ( mwTitle.isTalkPage() ) {
 						message = action === 'watch' ? 'addedwatchtext-talk' : 'removedwatchtext-talk';
 					} else {
 						message = action === 'watch' ? 'addedwatchtext' : 'removedwatchtext';

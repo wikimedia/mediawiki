@@ -64,17 +64,15 @@
 					$watchlistLine = $unwatchLink.closest( 'li, table' )
 						.find( '[data-target-page]' ),
 					pageTitle = $watchlistLine.data( 'targetPage' ),
-					isTalk = mw.Title.newFromText( pageTitle ).getNamespaceId() % 2 === 1;
+					isTalk = mw.Title.newFromText( pageTitle ).isTalkPage();
 
 				// Utility function for looping through each watchlist line that matches
 				// a certain page or its associated page (e.g. Talk)
 				function forEachMatchingTitle( title, callback ) {
 
 					var titleObj = mw.Title.newFromText( title ),
-						pageNamespaceId = titleObj.getNamespaceId(),
-						isTalk = pageNamespaceId % 2 === 1,
-						associatedTitle = mw.Title.makeTitle( isTalk ? pageNamespaceId - 1 : pageNamespaceId + 1,
-							titleObj.getMainText() ).getPrefixedText();
+						associatedTitleObj = titleObj.isTalkPage() ? titleObj.getSubjectPage() : titleObj.getTalkPage(),
+						associatedTitle = associatedTitleObj.getPrefixedText();
 					$( '.mw-changeslist-line' ).each( function () {
 						var $this = $( this ), $row, $unwatchLink;
 
