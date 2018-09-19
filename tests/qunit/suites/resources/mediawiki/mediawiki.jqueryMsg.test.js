@@ -1154,6 +1154,71 @@
 		assert.strictEqual( logSpy.callCount, 2, 'mw.log.warn calls' );
 	} );
 
+	QUnit.test( 'Non-string parameters to various functions', function ( assert ) {
+		var i, cases;
+
+		// For jquery-param-int
+		mw.messages.set( 'x', 'y' );
+		// For jquery-param-grammar
+		mw.language.setData( 'en', 'grammarTransformations', {
+			test: [
+				[ 'x', 'y' ]
+			]
+		} );
+
+		cases = [
+			{
+				key: 'jquery-param-wikilink',
+				msg: '[[$1]] [[$1|a]]',
+				expected: '<a title="x" href="/wiki/x">x</a> <a title="x" href="/wiki/x">a</a>'
+			},
+			{
+				key: 'jquery-param-plural',
+				msg: '{{PLURAL:$1|a|b}}',
+				expected: 'b'
+			},
+			{
+				key: 'jquery-param-gender',
+				msg: '{{GENDER:$1|a|b}}',
+				expected: 'a'
+			},
+			{
+				key: 'jquery-param-grammar',
+				msg: '{{GRAMMAR:test|$1}}',
+				expected: '<b>x</b>'
+			},
+			{
+				key: 'jquery-param-int',
+				msg: '{{int:$1}}',
+				expected: 'y'
+			},
+			{
+				key: 'jquery-param-ns',
+				msg: '{{ns:$1}}',
+				expected: ''
+			},
+			{
+				key: 'jquery-param-formatnum',
+				msg: '{{formatnum:$1}}',
+				expected: '<b>x</b>'
+			},
+			{
+				key: 'jquery-param-case',
+				msg: '{{lc:$1}} {{uc:$1}} {{lcfirst:$1}} {{ucfirst:$1}}',
+				expected: 'x X x X'
+			}
+		];
+
+		for ( i = 0; i < cases.length; i++ ) {
+			mw.messages.set( cases[ i ].key, cases[ i ].msg );
+			assert.strictEqual(
+				mw.message( cases[ i ].key, $( '<b>' ).text( 'x' ) ).parse(),
+				cases[ i ].expected,
+				cases[ i ].key
+			);
+		}
+	} );
+
 	QUnit.test( 'Integration', function ( assert ) {
 		var expected, msg;
 
