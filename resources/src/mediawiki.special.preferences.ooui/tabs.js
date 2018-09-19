@@ -7,12 +7,15 @@
 
 		$preferences = $( '#preferences' );
 
-		// Make sure the accessibility tip is selectable so that screen reader users take notice,
+		// Make sure the accessibility tip is focussable so that keyboard users take notice,
 		// but hide it by default to reduce visual clutter.
 		// Make sure it becomes visible when focused.
 		$( '<div>' ).addClass( 'mw-navigation-hint' )
 			.text( mw.msg( 'prefs-tabs-navigation-hint' ) )
-			.attr( 'tabIndex', 0 )
+			.attr( {
+				tabIndex: 0,
+				'aria-hidden': 'true'
+			} )
 			.prependTo( '#mw-content-text' );
 
 		tabs = new OO.ui.IndexLayout( {
