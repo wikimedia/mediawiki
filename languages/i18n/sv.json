@@ -3542,6 +3542,7 @@
 	"redirect-file": "Filnamn",
 	"redirect-logid": "Logg-ID",
 	"redirect-not-exists": "Värdet hittades inte",
+	"redirect-not-numeric": "Värdet är inte numeriskt",
 	"fileduplicatesearch": "Sök efter dubblettfiler",
 	"fileduplicatesearch-summary": "Sök efter dubblettfiler baserat på filernas hash-värden.",
 	"fileduplicatesearch-filename": "Filnamn:",

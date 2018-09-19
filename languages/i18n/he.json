@@ -3587,6 +3587,7 @@
 	"redirect-file": "שם קובץ",
 	"redirect-logid": "מזהה יומן",
 	"redirect-not-exists": "הערך לא נמצא",
+	"redirect-not-numeric": "הערך אינו מספרי",
 	"fileduplicatesearch": "חיפוש קבצים כפולים",
 	"fileduplicatesearch-summary": "חיפוש קבצים כפולים על בסיס ערכי הגיבוב שלהם.",
 	"fileduplicatesearch-filename": "קובץ:",

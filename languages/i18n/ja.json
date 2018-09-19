@@ -3747,6 +3747,7 @@
 	"redirect-file": "ファイル名",
 	"redirect-logid": "記録 ID",
 	"redirect-not-exists": "値が見つかりません",
+	"redirect-not-numeric": "値が数字ではありません",
 	"fileduplicatesearch": "重複ファイルの検索",
 	"fileduplicatesearch-summary": "重複ファイルをハッシュ値に基づいて検索します。",
 	"fileduplicatesearch-filename": "ファイル名:",
