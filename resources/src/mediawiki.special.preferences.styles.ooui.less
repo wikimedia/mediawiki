@@ -34,21 +34,11 @@
 	.mixin-screen-reader-text;
 }
 
-/* Override OOUI styles so that dropdowns near the bottom of the form don't get clipped,
- * e.g. 'Appearance' / 'Threshold for stub link formatting'. This is hacky and bad, it would be
- * better solved by setting overlays for the widgets, but we can't do it from PHP… */
-#preferences .oo-ui-panelLayout {
-	position: static;
-
-	overflow: visible;
-	.transform( none );
-
-	/* Most outer Panellayout:
-	 * Decrease contrast of `border` slightly as padding/border combination is sufficient
-	 * accessibility wise and focus of content is more important here. */
-	&-framed {
-		border-color: #c8ccd1;
-	}
+/* Most outer Panellayout:
+ * Decrease contrast of `border` slightly as padding/border combination is sufficient
+ * accessibility wise and focus of content is more important here. */
+#preferences .oo-ui-panelLayout-framed {
+	border-color: #c8ccd1;
 }
 
 #preferences .oo-ui-menuLayout .oo-ui-panelLayout-framed .oo-ui-panelLayout-framed {
