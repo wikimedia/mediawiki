@@ -1382,69 +1382,56 @@ MESSAGE;
 
 	/**
 	 * Returns JS code which calls mw.loader.register with the given
-	 * parameters. Has three calling conventions:
+	 * parameter.
 	 *
-	 *   - ResourceLoader::makeLoaderRegisterScript( $name, $version,
-	 *        $dependencies, $group, $source, $skip
-	 *     ):
-	 *        Register a single module.
+	 * @par Example
+	 * @code
 	 *
-	 *   - ResourceLoader::makeLoaderRegisterScript( [ $name1, $name2 ] ):
-	 *        Register modules with the given names.
-	 *
-	 *   - ResourceLoader::makeLoaderRegisterScript( [
+	 *     ResourceLoader::makeLoaderRegisterScript( [
 	 *        [ $name1, $version1, $dependencies1, $group1, $source1, $skip1 ],
 	 *        [ $name2, $version2, $dependencies1, $group2, $source2, $skip2 ],
 	 *        ...
 	 *     ] ):
-	 *        Registers modules with the given names and parameters.
+	 * @endcode
 	 *
-	 * @param string $name Module name
-	 * @param string|null $version Module version hash
-	 * @param array|null $dependencies List of module names on which this module depends
-	 * @param string|null $group Group which the module is in
-	 * @param string|null $source Source of the module, or 'local' if not foreign
-	 * @param string|null $skip Script body of the skip function
+	 * @internal
+	 * @since 1.32
+	 * @param array $modules Array of module registration arrays, each containing
+	 *  - string: module name
+	 *  - string: module version
+	 *  - array|null: List of dependencies (optional)
+	 *  - string|null: Module group (optional)
+	 *  - string|null: Name of foreign module source, or 'local' (optional)
+	 *  - string|null: Script body of a skip function (optional)
 	 * @return string JavaScript code
 	 */
-	public static function makeLoaderRegisterScript( $name, $version = null,
-		$dependencies = null, $group = null, $source = null, $skip = null
-	) {
-		if ( is_array( $name ) ) {
+	public static function makeLoaderRegisterScript( array $modules ) {
+		// Optimisation: Transform dependency names into indexes when possible
+		// to produce smaller output. They are expanded by mw.loader.register on
+		// the other end using resolveIndexedDependencies().
+		$index = [];
+		foreach ( $modules as $i => &$module ) {
 			// Build module name index
-			$index = [];
-			foreach ( $name as $i => &$module ) {
-				$index[$module[0]] = $i;
-			}
-
-			// Transform dependency names into indexes when possible, they will be resolved by
-			// mw.loader.register on the other end
-			foreach ( $name as &$module ) {
-				if ( isset( $module[2] ) ) {
-					foreach ( $module[2] as &$dependency ) {
-						if ( isset( $index[$dependency] ) ) {
-							$dependency = $index[$dependency];
-						}
+			$index[$module[0]] = $i;
+		}
+		foreach ( $modules as &$module ) {
+			if ( isset( $module[2] ) ) {
+				foreach ( $module[2] as &$dependency ) {
+					if ( isset( $index[$dependency] ) ) {
+						// Replace module name in dependency list with index
+						$dependency = $index[$dependency];
 					}
 				}
 			}
-
-			array_walk( $name, [ 'self', 'trimArray' ] );
-
-			return Xml::encodeJsCall(
-				'mw.loader.register',
-				[ $name ],
-				self::inDebugMode()
-			);
-		} else {
-			$registration = [ $name, $version, $dependencies, $group, $source, $skip ];
-			self::trimArray( $registration );
-			return Xml::encodeJsCall(
-				'mw.loader.register',
-				$registration,
-				self::inDebugMode()
-			);
 		}
+
+		array_walk( $modules, [ 'self', 'trimArray' ] );
+
+		return Xml::encodeJsCall(
+			'mw.loader.register',
+			[ $modules ],
+			self::inDebugMode()
+		);
 	}
 
 	/**
