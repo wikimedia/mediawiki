@@ -1157,6 +1157,8 @@
 	QUnit.test( 'Non-string parameters to various functions', function ( assert ) {
 		var i, cases;
 
+		// For jquery-param-int
+		mw.messages.set( 'x', 'y' );
 		// For jquery-param-grammar
 		mw.language.setData( 'en', 'grammarTransformations', {
 			test: [
@@ -1183,12 +1185,12 @@
 			{
 				key: 'jquery-param-grammar',
 				msg: '{{GRAMMAR:test|$1}}',
-				expected: '{{GRAMMAR:test|$1}}'
+				expected: '<b>x</b>'
 			},
 			{
 				key: 'jquery-param-int',
 				msg: '{{int:$1}}',
-				expected: '{{int:$1}}'
+				expected: 'y'
 			},
 			{
 				key: 'jquery-param-ns',
@@ -1198,7 +1200,7 @@
 			{
 				key: 'jquery-param-formatnum',
 				msg: '{{formatnum:$1}}',
-				expected: '[object Object]'
+				expected: '<b>x</b>'
 			},
 			{
 				key: 'jquery-param-case',
