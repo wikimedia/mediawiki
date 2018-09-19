@@ -80,6 +80,18 @@ class Language {
 
 	static public $mLangObjCache = [];
 
+	/**
+	 * Return a fallback chain for messages in getFallbacksFor
+	 * @since 1.32
+	 */
+	const MESSAGES_FALLBACKS = 0;
+
+	/**
+	 * Return a strict fallback chain in getFallbacksFor
+	 * @since 1.32
+	 */
+	const STRICT_FALLBACKS = 1;
+
 	static public $mWeekdayMsgs = [
 		'sunday', 'monday', 'tuesday', 'wednesday', 'thursday',
 		'friday', 'saturday'
@@ -4588,15 +4600,29 @@ class Language {
 	 *
 	 * @since 1.19
 	 * @param string $code Language code
-	 * @return array Non-empty array, ending in "en"
+	 * @param int $mode Fallback mode, either MESSAGES_FALLBACKS (which always falls back to 'en'),
+	 * or STRICT_FALLBACKS (whic honly falls back to 'en' when explicitly defined)
+	 * @throws MWException
+	 * @return array List of language codes
 	 */
-	public static function getFallbacksFor( $code ) {
+	public static function getFallbacksFor( $code, $mode = self::MESSAGES_FALLBACKS ) {
 		if ( $code === 'en' || !self::isValidBuiltInCode( $code ) ) {
 			return [];
 		}
-		// For unknown languages, fallbackSequence returns an empty array,
-		// hardcode fallback to 'en' in that case.
-		return self::getLocalisationCache()->getItem( $code, 'fallbackSequence' ) ?: [ 'en' ];
+		switch ( $mode ) {
+			case self::MESSAGES_FALLBACKS:
+				// For unknown languages, fallbackSequence returns an empty array,
+				// hardcode fallback to 'en' in that case as English messages are
+				// always defined.
+				return self::getLocalisationCache()->getItem( $code, 'fallbackSequence' ) ?: [ 'en' ];
+			case self::STRICT_FALLBACKS:
+				// Use this mode when you don't want to fallback to English unless
+				// explicitly defined, for example when you have language-variant icons
+				// and an international language-independent fallback.
+				return self::getLocalisationCache()->getItem( $code, 'originalFallbackSequence' );
+			default:
+				throw new MWException( "Invalid fallback mode \"$mode\"" );
+		}
 	}
 
 	/**

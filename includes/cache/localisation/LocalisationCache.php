@@ -838,17 +838,23 @@ class LocalisationCache {
 		}
 
 		# Fill in the fallback if it's not there already
-		if ( is_null( $coreData['fallback'] ) ) {
-			$coreData['fallback'] = $code === 'en' ? false : 'en';
-		}
-		if ( $coreData['fallback'] === false ) {
-			$coreData['fallbackSequence'] = [];
+		if ( ( is_null( $coreData['fallback'] ) || $coreData['fallback'] === false ) && $code === 'en' ) {
+			$coreData['fallback'] = false;
+			$coreData['originalFallbackSequence'] = $coreData['fallbackSequence'] = [];
 		} else {
-			$coreData['fallbackSequence'] = array_map( 'trim', explode( ',', $coreData['fallback'] ) );
+			if ( !is_null( $coreData['fallback'] ) ) {
+				$coreData['fallbackSequence'] = array_map( 'trim', explode( ',', $coreData['fallback'] ) );
+			} else {
+				$coreData['fallbackSequence'] = [];
+			}
 			$len = count( $coreData['fallbackSequence'] );
 
-			# Ensure that the sequence ends at en
-			if ( $coreData['fallbackSequence'][$len - 1] !== 'en' ) {
+			# Before we add the 'en' fallback for messages, keep a copy of
+			# the original fallback sequence
+			$coreData['originalFallbackSequence'] = $coreData['fallbackSequence'];
+
+			# Ensure that the sequence ends at 'en' for messages
+			if ( !$len || $coreData['fallbackSequence'][$len - 1] !== 'en' ) {
 				$coreData['fallbackSequence'][] = 'en';
 			}
 		}

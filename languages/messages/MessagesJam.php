@@ -1,5 +1,5 @@
 <?php
-/** Bislama (Bislama)
+/** Jamaican Creole English (Patois)
  *
  * To improve a translation please visit https://translatewiki.net
  *

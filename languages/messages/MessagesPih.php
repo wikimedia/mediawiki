@@ -1,5 +1,5 @@
 <?php
-/** Bislama (Bislama)
+/** Pitkern (Pitkern)
  *
  * To improve a translation please visit https://translatewiki.net
  *
