@@ -56,7 +56,7 @@ class LegacyHookPreAuthenticationProvider extends AbstractPreAuthenticationProvi
 		}
 
 		$msg = null;
-		if ( !\Hooks::run( 'LoginUserMigrated', [ $user, &$msg ] ) ) {
+		if ( !\Hooks::run( 'LoginUserMigrated', [ $user, &$msg ], '1.27' ) ) {
 			return $this->makeFailResponse(
 				$user, LoginForm::USER_MIGRATED, $msg, 'LoginUserMigrated'
 			);
@@ -64,7 +64,7 @@ class LegacyHookPreAuthenticationProvider extends AbstractPreAuthenticationProvi
 
 		$abort = LoginForm::ABORTED;
 		$msg = null;
-		if ( !\Hooks::run( 'AbortLogin', [ $user, $password, &$abort, &$msg ] ) ) {
+		if ( !\Hooks::run( 'AbortLogin', [ $user, $password, &$abort, &$msg ], '1.27' ) ) {
 			return $this->makeFailResponse( $user, $abort, $msg, 'AbortLogin' );
 		}
 
@@ -74,7 +74,7 @@ class LegacyHookPreAuthenticationProvider extends AbstractPreAuthenticationProvi
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
 		$abortError = '';
 		$abortStatus = null;
-		if ( !\Hooks::run( 'AbortNewAccount', [ $user, &$abortError, &$abortStatus ] ) ) {
+		if ( !\Hooks::run( 'AbortNewAccount', [ $user, &$abortError, &$abortStatus ], '1.27' ) ) {
 			// Hook point to add extra creation throttles and blocks
 			$this->logger->debug( __METHOD__ . ': a hook blocked creation' );
 			if ( $abortStatus === null ) {
@@ -99,7 +99,7 @@ class LegacyHookPreAuthenticationProvider extends AbstractPreAuthenticationProvi
 	public function testUserForCreation( $user, $autocreate, array $options = [] ) {
 		if ( $autocreate !== false ) {
 			$abortError = '';
-			if ( !\Hooks::run( 'AbortAutoAccount', [ $user, &$abortError ] ) ) {
+			if ( !\Hooks::run( 'AbortAutoAccount', [ $user, &$abortError ], '1.27' ) ) {
 				// Hook point to add extra creation throttles and blocks
 				$this->logger->debug( __METHOD__ . ": a hook blocked auto-creation: $abortError\n" );
 				return $this->makeFailResponse(
