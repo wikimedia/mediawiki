@@ -73,7 +73,8 @@
 		}
 	}
 
-	&:not( &-withDescriptions ) {
+	/* TODO: Should be able to use :not( &-withDescriptions ) but LESS version is buggy (T204816) */
+	&:not( .mw-widget-titleWidget-menu-withDescriptions ) {
 		.mw-widget-titleOptionWidget-description {
 			display: none;
 		}
