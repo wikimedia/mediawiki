@@ -638,7 +638,7 @@
 	"token_suffix_mismatch": "'''Dyyni Bearbeitig isch zruckgwise wore, wel Dyy Browser Zeiche im Bearbeite-Token verstimmlet het.\nS Spichere cha dr Inhalt vu dr Syte hii mache. Des git s e mänkmol, wänn eber e anonyme Proxy-Dienscht brucht, wu Fähler macht.'''",
 	"edit_form_incomplete": "'''Dr Inhalt vum Bearbeitigsformular isch nit vollständig zum Server chuu. Bitte prief Dyy Bearbeitigen uf Vollständigkeit un versuech s nomol.'''",
 	"editing": "Bearbeite vo «$1»",
-	"creating": "Am Aalege vu „$1“",
+	"creating": "„$1“ aalege",
 	"editingsection": "Bearbeite vo «$1» (Absatz)",
 	"editingcomment": "Bearbeite vu $1 (Neje Abschnitt)",
 	"editconflict": "Bearbeitigs-Konflikt: «$1»",

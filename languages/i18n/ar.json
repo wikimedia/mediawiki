@@ -75,7 +75,8 @@
 			"سامي الرحيلي",
 			"Azouz.anis",
 			"Elbasyouny",
-			"Omar Ghrida"
+			"Omar Ghrida",
+			"AHmed Khaled"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -582,10 +583,10 @@
 	"botpasswords-editexisting": "تعديل كلمة مرور موجودة للبوت",
 	"botpasswords-label-needsreset": "(تحتاج كلمة المرور إلى إعادة الضبط)",
 	"botpasswords-label-appid": "اسم البوت:",
-	"botpasswords-label-create": "أنشأ",
+	"botpasswords-label-create": "أنشـأ",
 	"botpasswords-label-update": "حدث",
 	"botpasswords-label-cancel": "ألغ",
-	"botpasswords-label-delete": "احذف",
+	"botpasswords-label-delete": "",
 	"botpasswords-label-resetpassword": "أعد ضبط كلمة السر",
 	"botpasswords-label-grants": "المنح التي يمكن تطبيقها:",
 	"botpasswords-help-grants": "كل منحة تعطي وصولا لصلاحيات المستخدم المعروضة التي يمتلكها حساب المستخدم بالفعل. انظر [[Special:ListGrants|جدول المنح]] للمزيد من المعلومات.",
