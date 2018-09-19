@@ -304,7 +304,10 @@ class ResourceLoaderClientHtml {
 		// Inline RLQ: Load general modules
 		if ( $data['general'] ) {
 			$chunks[] = ResourceLoader::makeInlineScript(
-				Xml::encodeJsCall( 'mw.loader.load', [ $data['general'] ] ),
+				'RLPAGEMODULES='
+					. ResourceLoader::encodeJsonForScript( $data['general'] )
+					. ';'
+					. 'mw.loader.load(RLPAGEMODULES);',
 				$nonce
 			);
 		}
