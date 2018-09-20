@@ -1291,10 +1291,10 @@ class Block {
 	 */
 	public function getRedactedName() {
 		if ( $this->mAuto ) {
-			return Html::rawElement(
+			return Html::element(
 				'span',
 				[ 'class' => 'mw-autoblockid' ],
-				wfMessage( 'autoblockid', $this->mId )
+				wfMessage( 'autoblockid', $this->mId )->text()
 			);
 		} else {
 			return htmlspecialchars( $this->getTarget() );
