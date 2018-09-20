@@ -34,7 +34,6 @@ use RequestContext;
 use SpecialPage;
 use Title;
 use User;
-use Wikimedia\ObjectFactory;
 
 /**
  * Factory for handling the special page list and generating SpecialPage objects.
@@ -401,16 +400,6 @@ class SpecialPageFactory {
 			} elseif ( is_string( $rec ) ) {
 				$className = $rec;
 				$page = new $className;
-			} elseif ( is_array( $rec ) ) {
-				$className = array_shift( $rec );
-				// @deprecated, officially since 1.18, unofficially since forever
-				wfDeprecated( "Array syntax for \$wgSpecialPages is deprecated ($className), " .
-					"define a subclass of SpecialPage instead.", '1.18' );
-				$page = ObjectFactory::getObjectFromSpec( [
-					'class' => $className,
-					'args' => $rec,
-					'closure_expansion' => false,
-				] );
 			} elseif ( $rec instanceof SpecialPage ) {
 				$page = $rec; // XXX: we should deep clone here
 			} else {
