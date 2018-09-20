@@ -19,11 +19,11 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
-use MediaWiki\Storage\MutableRevisionRecord;
-use MediaWiki\Storage\RevisionRecord;
-use MediaWiki\Storage\RevisionStore;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\SlotRecord;
 
 class PoolWorkArticleView extends PoolCounterWork {
 	/** @var WikiPage */

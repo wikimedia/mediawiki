@@ -20,8 +20,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\NameTableStore;
-use MediaWiki\Storage\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;

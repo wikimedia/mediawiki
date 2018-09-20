@@ -1,8 +1,8 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRenderingProvider;
-use MediaWiki\Storage\SlotRecord;
 
 /**
  * @group ContentHandler

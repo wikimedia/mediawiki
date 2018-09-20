@@ -23,6 +23,10 @@
 namespace MediaWiki\Storage;
 
 use Content;
+use MediaWiki\Revision\MutableRevisionSlots;
+use MediaWiki\Revision\RevisionAccessException;
+use MediaWiki\Revision\RevisionSlots;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * Value object representing a modification of revision slots.

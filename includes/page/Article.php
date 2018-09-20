@@ -20,9 +20,9 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\MutableRevisionRecord;
-use MediaWiki\Storage\RevisionRecord;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * Class for viewing MediaWiki article and history.

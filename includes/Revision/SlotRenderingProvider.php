@@ -7,7 +7,6 @@
  */
 namespace MediaWiki\Revision;
 
-use MediaWiki\Storage\SuppressedDataException;
 use ParserOutput;
 
 /**

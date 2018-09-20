@@ -21,7 +21,7 @@
  * @since 1.23
  */
 
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * API interface to RevDel. The API equivalent of Special:RevisionDelete.

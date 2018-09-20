@@ -1,8 +1,8 @@
 <?php
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
-use MediaWiki\Tests\Storage\PreMcrSchemaOverride;
+use MediaWiki\Tests\Revision\PreMcrSchemaOverride;
 
 /**
  * Test class for page archiving, using the pre-MCR schema.

@@ -1,5 +1,5 @@
 <?php
-use MediaWiki\Tests\Storage\PreMcrSchemaOverride;
+use MediaWiki\Tests\Revision\PreMcrSchemaOverride;
 
 /**
  * Tests WikiPage against the pre-MCR, pre ContentHandler DB schema.

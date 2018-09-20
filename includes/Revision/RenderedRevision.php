@@ -24,8 +24,6 @@ namespace MediaWiki\Revision;
 
 use InvalidArgumentException;
 use LogicException;
-use MediaWiki\Storage\RevisionRecord;
-use MediaWiki\Storage\SuppressedDataException;
 use ParserOptions;
 use ParserOutput;
 use Psr\Log\LoggerInterface;
