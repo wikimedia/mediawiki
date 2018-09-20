@@ -174,8 +174,6 @@ perhaps configure it to use them (see Configuration section of this document):
   "$wgAntivirus = 'clamav';".
   * DjVuLibre: Allows processing of DjVu files. To enable this, set
   "$wgDjvuDump = 'djvudump'; $wgDjvuRenderer = 'ddjvu'; $wgDjvuTxt = 'djvutxt';".
-  * HTML Tidy: Fixes errors in HTML at runtime. Can be enabled with
-	"$wgUseTidy = true;".
   * ImageMagick: For resizing images. "$wgUseImageMagick = true;" will enable
   it. PHP's GD can also be used, but ImageMagick is preferable.
   * HTTP cache such as Varnish or Squid: can provide a drastic speedup and a
