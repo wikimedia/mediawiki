@@ -419,16 +419,14 @@ class SpecialPageFactory {
 
 			if ( $page instanceof SpecialPage ) {
 				return $page;
-			} else {
-				// It's not a classname, nor a callback, nor a legacy constructor array,
-				// nor a special page object. Give up.
-				wfLogWarning( "Cannot instantiate special page $realName: bad spec!" );
-				return null;
 			}
 
-		} else {
-			return null;
+			// It's not a classname, nor a callback, nor a legacy constructor array,
+			// nor a special page object. Give up.
+			wfLogWarning( "Cannot instantiate special page $realName: bad spec!" );
 		}
+
+		return null;
 	}
 
 	/**
@@ -565,9 +563,9 @@ class SpecialPageFactory {
 				$context->getOutput()->redirect( $url );
 
 				return $title;
-			} else {
-				$context->setTitle( $page->getPageTitle( $par ) );
 			}
+
+			$context->setTitle( $page->getPageTitle( $par ) );
 		} elseif ( !$page->isIncludable() ) {
 			return false;
 		}
@@ -714,8 +712,8 @@ class SpecialPageFactory {
 		list( $name, $subpage ) = $this->resolveAlias( $alias );
 		if ( $name != null ) {
 			return SpecialPage::getTitleFor( $name, $subpage );
-		} else {
-			return null;
 		}
+
+		return null;
 	}
 }
