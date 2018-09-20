@@ -356,7 +356,7 @@
 		} );
 	};
 
-	// Fire events from before track() triggred fire()
+	// Fire events from before track() triggered fire()
 	trackCallbacks.fire( mw.trackQueue );
 
 	/**
@@ -546,11 +546,11 @@
 						} else if ( contents instanceof this.Cdata ) {
 							// CDATA
 							if ( /<\/[a-zA-z]/.test( contents.value ) ) {
-								throw new Error( 'mw.html.element: Illegal end tag found in CDATA' );
+								throw new Error( 'Illegal end tag found in CDATA' );
 							}
 							s += contents.value;
 						} else {
-							throw new Error( 'mw.html.element: Invalid type of contents' );
+							throw new Error( 'Invalid type of contents' );
 						}
 				}
 				s += '</' + name + '>';
