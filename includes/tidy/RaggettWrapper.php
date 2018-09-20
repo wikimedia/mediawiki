@@ -15,6 +15,7 @@ use Parser;
  * duplicated. Perhaps we should create an abstract marker hiding class.
  *
  * @ingroup Parser
+ * @deprecated since 1.32
  */
 class RaggettWrapper {
 
