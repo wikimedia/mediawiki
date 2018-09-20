@@ -75,6 +75,7 @@ abstract class QuickTemplate {
 	 * @param string $name Key for the data
 	 * @param mixed|null $default Optional default (or null)
 	 * @return mixed The value of the data requested or the deafult
+	 * @return-taint onlysafefor_htmlnoent
 	 */
 	public function get( $name, $default = null ) {
 		return $this->data[$name] ?? $default;
@@ -101,6 +102,7 @@ abstract class QuickTemplate {
 	/**
 	 * @private
 	 * @param string $str
+	 * @suppress SecurityCheck-DoubleEscaped $this->data can be either
 	 */
 	function text( $str ) {
 		echo htmlspecialchars( $this->data[$str] );
@@ -109,6 +111,7 @@ abstract class QuickTemplate {
 	/**
 	 * @private
 	 * @param string $str
+	 * @suppress SecurityCheck-XSS phan-taint-check cannot tell if $str is pre-escaped
 	 */
 	function html( $str ) {
 		echo $this->data[$str];
@@ -125,8 +128,13 @@ abstract class QuickTemplate {
 	/**
 	 * @private
 	 * @param string $msgKey
+	 * @warning You should never use this method. I18n messages should be escaped
+	 * @deprecated 1.32 Use ->msg() or ->msgWiki() instead.
+	 * @suppress SecurityCheck-XSS
+	 * @return-taint exec_html
 	 */
 	function msgHtml( $msgKey ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		echo wfMessage( $msgKey )->text();
 	}
 

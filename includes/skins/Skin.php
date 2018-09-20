@@ -1608,6 +1608,7 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Create a section edit link.
 	 *
+	 * @suppress SecurityCheck-XSS $links has keys of different taint types
 	 * @param Title $nt The title being linked to (may not be the same as
 	 *   the current page, if the section is included from a template)
 	 * @param string $section The designation of the section being pointed to,

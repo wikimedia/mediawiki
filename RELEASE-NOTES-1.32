@@ -456,6 +456,9 @@ because of Phabricator reports.
   $wgTidyConfig instead.
 * All Tidy configurations other than Remex have been hard deprecated;
   future parsers will not emit compatible output for these configurations.
+* QuickTemplate::msgHtml() and BaseTemplate::msgHtml() have been deprecated
+  as they promote bad practises. I18n messages should always be properly
+  escaped.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
