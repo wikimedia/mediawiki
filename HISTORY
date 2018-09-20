@@ -2,6 +2,32 @@ Change notes from older releases. For current info see RELEASE-NOTES-1.32.
 
 = MediaWiki 1.31 =
 
+== MediaWiki 1.31.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.31 branch.
+
+=== Changes since MediaWiki 1.31.0 ===
+* (T169545, CVE-2018-0503) SECURITY: $wgRateLimits entry for 'user' overrides
+  'newbie'.
+* (T194605, CVE-2018-0505) SECURITY: BotPasswords can bypass CentralAuth's
+  account lock.
+* (T199029, CVE-2018-13258) SECURITY: Tarball was missing .htaccess files.
+* (T197229) Bundle Nuke extension, it was accidentally omitted.
+* (T193995) Fix undefined patchPath() method call in parser tests.
+* (T198687) Fix various selectFields methods to use the string 'NULL', not null.
+* Special:BotPasswords now requires reauthentication.
+* (T191608, T187638) Add 'logid' parameter to Special:Log.
+* (T193829) Indicate when a Bot Password needs reset.
+* (T198037) GitInfo: Don't try shelling out if it's disabled.
+* (T151415) Log email changes.
+* (T197206) Fix performance regression when multiple DB used without caching.
+* (T197030) PHPSessionHandler: Suppress headers warnings in initialize().
+* (T182377, T196793) Exif: Guard against uncountable tag values.
+* (T200861) Fix total breakage of SQLite web upgrade.
+* (T200864) Fix pingback over-reporting on non-MySQL databases
+* (T202550) Unbreak SpecialListusersHeaderForm and SpecialListusersHeader
+  hooks.
+
 == MediaWiki 1.31.0 ==
 
 === Changes since MediaWiki 1.31.0-rc.2 ===
@@ -488,6 +514,43 @@ There's usually someone online in #mediawiki on irc.freenode.net.
 
 = MediaWiki 1.30 =
 
+== MediaWiki 1.30.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.30 branch.
+
+=== Changes since MediaWiki 1.30.0 ===
+* (T169545, CVE-2018-0503) SECURITY: $wgRateLimits entry for 'user' overrides
+  'newbie'.
+* (T194605, CVE-2018-0505) SECURITY: BotPasswords can bypass CentralAuth's
+  account lock.
+* (T87572) Make FormatMetadata::flattenArrayReal() work for an associative array.
+* Updated composer/spdx-licenses from 1.1.4 to 1.3.0 (development dependency).
+* (T189567) the CLI installer (maintenance/install.php) learned to detect and
+  include extensions. Pass --with-extensions to enable that feature.
+* (T190503) Let built-in web server (maintenance/dev) handle .php requests.
+* (T167507) selenium: Run Chrome headlessly.
+* selenium: Pass -no-sandbox to Chrome under Docker.
+* (T179190) selenium: Move logic for running tests from package.json to selenium.sh
+* (T192584) Stop incorrectly passing USE INDEX to RecentChange::newFromConds().
+* Add default edit rate limit of 90 edits/minute for all users.
+* (T186565) Fix PHP Notice from `ob_end_flush()` in `FileRepo::streamFile()`.
+* oojs/oojs-ui updated to remove an unnecessary dependancy.
+* (T196125) php-memcached 3.0 (provided with PHP 7.0) is now supported.
+* (T118683) Fix exception from &$user deref on HHVM in the TitleMoveComplete hook.
+* (T196672) The mtime of extension.json files is now able to be zero
+* (T180403) Validate $length in padleft/padright parser functions.
+* (T143790) Make $wgEmailConfirmToEdit only affect edit actions.
+* (T193995) Fix undefined patchPath() method call in parser tests.
+* Special:BotPasswords now requires reauthentication.
+* (T191608, T187638) Add 'logid' parameter to Special:Log.
+* (T193829) Indicate when a Bot Password needs reset.
+* (T151415) Log email changes.
+* (T200861) Fix total breakage of SQLite web upgrade.
+* (T202550) Unbreak SpecialListusersHeaderForm and SpecialListusersHeader
+  hooks.
+* (T190539) Explicitly require Postgres 9.1.
+* (T118420) Unbreak Oracle installer.
+
 == MediaWiki 1.30.0 ==
 
 === Changes since MediaWiki 1.30.0-rc.0 ===
@@ -750,6 +813,49 @@ changes to languages because of Phabricator reports.
 * (T165846) SECURITY: BotPassword login attempts weren't throttled.
 
 = MediaWiki 1.29 =
+
+== MediaWiki 1.29.3 ==
+
+This is a security and maintenance release of the MediaWiki 1.29 branch.
+
+=== Changes since 1.29.2 ===
+* (T169545, CVE-2018-0503) SECURITY: $wgRateLimits entry for 'user' overrides
+  'newbie'.
+* (T194605, CVE-2018-0505) SECURITY: BotPasswords can bypass CentralAuth's
+  account lock.
+* (T180551) Fix LanguageSrTest for language converter
+* (T180552) Fix langauge converter parser test with self-close tags
+* (T180537) Remove $wgAuth usage from wrapOldPasswords.php
+* (T180485) InputBox: Have inputbox langconvert certain attributes
+* (T161732, T181547) Upgraded Moment.js from v2.15.0 to v2.19.3.
+* (T172927) Drop vendor from MW release branch
+* (T87572) Make FormatMetadata::flattenArrayReal() work for an associative array
+* Updated composer/spdx-licenses from 1.1.4 to 1.3.0 (development dependency).
+* (T189567) the CLI installer (maintenance/install.php) learned to detect and
+  include extensions. Pass --with-extensions to enable that feature.
+* (T182381) Mask deprecated call in WatchedItemUnitTest
+* (T190503) Let built-in web server (maintenance/dev) handle .php requests.
+* The karma qunit tests would fail on some configuration due to headers already
+  sent. Check headers_sent() before sending cpPosTime headers
+* (T167507) selenium: Run Chrome headlessly.
+* selenium: Pass -no-sandbox to Chrome under Docker
+* (T191247) Use MediaWiki\SuppressWarnings around trigger_error('') instead @
+* (T75174, T161041) Unit test ChangesListSpecialPageTest::testFilterUserExpLevel
+  fails under SQLite.
+* (T192584) Stop incorrectly passing USE INDEX to RecentChange::newFromConds().
+* (T179190) selenium: Move test running logic from package.json to selenium.sh.
+* (T117839, T193200) PDFHandler: Fix for pdfinfo changes in poppler-utils 0.48.
+* Add default edit rate limit of 90 edits/minute for all users.
+* (T196125) php-memcached 3.0 (provided with PHP 7.0) is now supported.
+* (T196672) The mtime of extension.json files is now able to be zero
+* (T180403) Validate $length in padleft/padright parser functions.
+* (T143790) Make $wgEmailConfirmToEdit only affect edit actions.
+* (T194237) Special:BotPasswords now requires reauthentication.
+* (T191608, T187638) Add 'logid' parameter to Special:Log.
+* (T176097) resourceloader: Disable a flaky MessageBlobStoreTest case
+* (T193829) Indicate when a Bot Password needs reset.
+* (T151415) Log email changes.
+* (T118420) Unbreak Oracle installer.
 
 == MediaWiki 1.29.2 ==
 
@@ -1525,6 +1631,34 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 There's usually someone online in #mediawiki on irc.freenode.net.
 
 = MediaWiki 1.27 =
+
+== MediaWiki 1.27.5 ==
+
+This is a security and maintenance release of the MediaWiki 1.27 branch.
+
+=== Changes since 1.27.4 ===
+* (T169545, CVE-2018-0503) SECURITY: $wgRateLimits entry for 'user' overrides
+  'newbie'.
+* (T194605, CVE-2018-0505) SECURITY: BotPasswords can bypass CentralAuth's
+  account lock.
+* Upgraded Moment.js from v2.8.4 to v2.19.3.
+* (T160298) Fixed Special:ActiveUsers due to bad backport.
+* (T87572) Make FormatMetadata::flattenArrayReal() work for an associative array.
+* Updated list of SPDX licenses for extensions.
+* (T189567) the CLI installer (maintenance/install.php) learned to detect and
+  include extensions. Pass --with-extensions to enable that feature.
+* (T192584) Stop incorrectly passing USE INDEX to RecentChange::newFromConds().
+* Add default edit rate limit of 90 edits/minute for all users.
+* (T196125) php-memcached 3.0 (provided with PHP 7.0) is now supported.
+* (T196672) The mtime of extension.json files is now able to be zero.
+* (T118683) Fix exception from &$user deref on HHVM in the TitleMoveComplete hook.
+* (T180403) Validate $length in padleft/padright parser functions.
+* (T143790) Make $wgEmailConfirmToEdit only affect edit actions.
+* Special:BotPasswords now requires reauthentication.
+* (T191608, T187638) Add 'logid' parameter to Special:Log.
+* (T193829) Indicate when a Bot Password needs reset.
+* (T151415) Log email changes.
+* (T118420) Unbreak Oracle installer.
 
 == MediaWiki 1.27.4 ==
 This is a security and maintenance release of the MediaWiki 1.27 branch.
