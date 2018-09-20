@@ -1098,7 +1098,7 @@ class ParserOptions {
 			// *UPDATE* ParserOptions::matches() if any of this changes as needed
 			self::$defaults = [
 				'dateformat' => null,
-				'tidy' => false,
+				'tidy' => true,
 				'interfaceMessage' => false,
 				'targetLanguage' => null,
 				'removeComments' => true,
@@ -1164,7 +1164,6 @@ class ParserOptions {
 		global $wgEnableParserLimitReporting;
 
 		return [
-			'tidy' => true,
 			'enableLimitReport' => $wgEnableParserLimitReporting,
 		];
 	}
