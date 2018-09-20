@@ -1057,7 +1057,7 @@
 			function queueModuleScript( src, moduleName, callback ) {
 				pendingRequests.push( function () {
 					// Keep in sync with execute()/runScript().
-					if ( moduleName !== 'jquery' && hasOwn.call( registry, moduleName ) ) {
+					if ( moduleName !== 'jquery' ) {
 						window.require = mw.loader.require;
 						window.module = registry[ moduleName ].module;
 					}
@@ -1192,9 +1192,6 @@
 				var key, value, media, i, urls, cssHandle, siteDeps, siteDepErr, runScript,
 					cssPending = 0;
 
-				if ( !hasOwn.call( registry, module ) ) {
-					throw new Error( 'Module has not been registered yet: ' + module );
-				}
 				if ( registry[ module ].state !== 'loaded' ) {
 					throw new Error( 'Module in state "' + registry[ module ].state + '" may not be executed: ' + module );
 				}
@@ -1960,12 +1957,12 @@
 				/**
 				 * Change the state of one or more modules.
 				 *
-				 * @param {Object} modules Object of module name/state pairs
+				 * @param {Object} states Object of module name/state pairs
 				 */
-				state: function ( modules ) {
+				state: function ( states ) {
 					var module, state;
-					for ( module in modules ) {
-						state = modules[ module ];
+					for ( module in states ) {
+						state = states[ module ];
 						if ( !hasOwn.call( registry, module ) ) {
 							mw.loader.register( module );
 						}
