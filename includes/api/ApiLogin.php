@@ -132,7 +132,8 @@ class ApiLogin extends ApiBase {
 				$loginType = 'BotPassword';
 			} elseif ( !$botLoginData[2] ||
 				$status->hasMessage( 'login-throttled' ) ||
-				$status->hasMessage( 'botpasswords-needs-reset' )
+				$status->hasMessage( 'botpasswords-needs-reset' ) ||
+				$status->hasMessage( 'botpasswords-locked' )
 			) {
 				$authRes = 'Failed';
 				$message = $status->getMessage();

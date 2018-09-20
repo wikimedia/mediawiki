@@ -1,10 +1,13 @@
 == MediaWiki 1.31.1 ==
 
-THIS IS NOT A RELEASE YET!
-
 This is a security and maintenance release of the MediaWiki 1.31 branch.
 
 === Changes since MediaWiki 1.31.0 ===
+* (T169545, CVE-2018-0503) SECURITY: $wgRateLimits entry for 'user' overrides
+  'newbie'.
+* (T194605, CVE-2018-0505) SECURITY: BotPasswords can bypass CentralAuth's
+  account lock.
+* (T199029, CVE-2018-13258) SECURITY: Tarball was missing .htaccess files.
 * (T197229) Bundle Nuke extension, it was accidentally omitted.
 * (T193995) Fix undefined patchPath() method call in parser tests.
 * (T198687) Fix various selectFields methods to use the string 'NULL', not null.
