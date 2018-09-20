@@ -1222,7 +1222,7 @@
 	"group-interface-admin": "Arayüz yöneticileri",
 	"group-bureaucrat": "Bürokratlar",
 	"group-suppress": "Gözetmenler",
-	"group-all": "(hepsi)",
+	"group-all": "(tümü)",
 	"group-user-member": "{{GENDER:$1|kullanıcı}}",
 	"group-autoconfirmed-member": "{{GENDER:$1|otomatik onaylanmış kullanıcı}}",
 	"group-bot-member": "{{GENDER:$1|bot}}",

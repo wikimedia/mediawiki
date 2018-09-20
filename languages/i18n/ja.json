@@ -2087,6 +2087,7 @@
 	"apisandbox-dynamic-parameters-add-label": "引数の追加",
 	"apisandbox-dynamic-parameters-add-placeholder": "引数名",
 	"apisandbox-dynamic-error-exists": "引数名 \"$1\" は既に存在しています。",
+	"apisandbox-templated-parameter-reason": "この[[Special:ApiHelp/main#main/templatedparams|テンプレートパラメータ]]は、$2の{{PLURAL:$1|値}}に基づいて提供されます。",
 	"apisandbox-deprecated-parameters": "廃止予定の引数",
 	"apisandbox-fetch-token": "トークンを自動入力します",
 	"apisandbox-add-multi": "追加",
@@ -4069,6 +4070,7 @@
 	"limitreport-expensivefunctioncount-value": "$1/$2",
 	"limitreport-unstrip-depth": "\"unstrip\" を再帰的に実行する回数",
 	"limitreport-unstrip-depth-value": "$1/$2",
+	"limitreport-unstrip-size": "展開後読み込み量を解除する",
 	"limitreport-unstrip-size-value": "$1/$2 {{PLURAL:$2|バイト}}",
 	"expandtemplates": "テンプレートを展開",
 	"expand_templates_intro": "この特別ページは、入力したウィキテキストに含まれるすべてのテンプレートを再帰的に展開します。\n<code><nowiki>{{</nowiki>#language:…}}</code> のようなパーサー関数や、\n<code><nowiki>{{</nowiki>CURRENTDAY}}</code> のような変数も展開します。\nつまり、二重中括弧で囲まれたものほぼすべてを展開します。",
@@ -4321,6 +4323,7 @@
 	"undelete-cantedit": "このページを編集する許可がないため復元できません。",
 	"undelete-cantcreate": "同名のページが存在せず、このページを作成する許可がないため復元できません。",
 	"pagedata-title": "ページ・データ",
+	"pagedata-text": "このページは、ページへのデータインターフェースを提供します。サブページの構文を使用して、URLにページタイトルを入力してください。\n* コンテンツのネゴシエーションは、クライアントのAcceptヘッダーに基づいて適用されます。つまり、ページデータはクライアントが優先する形式で提供されます。",
 	"pagedata-not-acceptable": "該当する形式が見つかりません。対応している MIME タイプ: $1",
 	"pagedata-bad-title": "「$1」は無効なページ名です。",
 	"unregistered-user-config": "セキュリティ上の理由から、JavaScript、CSSおよびJSONの利用者サブページは、登録されていない利用者に対しては読み込みできません。",
@@ -4333,5 +4336,6 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "パスワードは利用者名と同じにすることはできません",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "パスワードは、特にブラックリストに載っているものと一致するものは設定できません",
 	"passwordpolicies-policy-maximalpasswordlength": "パスワードは$1{{PLURAL:$1|文字}}以下でなければなりません",
-	"passwordpolicies-policy-passwordcannotbepopular": "パスワードは{{PLURAL:$1|一般的なものにすることはできません|一般的な$1個のパスワードのリストと一致するものにすることはできません}}"
+	"passwordpolicies-policy-passwordcannotbepopular": "パスワードは{{PLURAL:$1|一般的なものにすることはできません|一般的な$1個のパスワードのリストと一致するものにすることはできません}}",
+	"easydeflate-invaliddeflate": "提供されたコンテンツが適切に圧縮されていません"
 }
