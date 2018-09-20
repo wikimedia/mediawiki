@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Logger\LoggerFactory;
 
 /**
  * A special page that allows users to export pages in a XML file
@@ -98,6 +99,15 @@ class SpecialExport extends SpecialPage {
 			$page = '';
 			$history = '';
 		} elseif ( $request->wasPosted() && $par == '' ) {
+			// Log to see if certain parameters are actually used.
+			// If not, we could deprecate them and do some cleanup, here and in WikiExporter.
+			LoggerFactory::getInstance( 'export' )->debug(
+				'Special:Export POST, dir: [{dir}], offset: [{offset}], limit: [{limit}]', [
+				'dir' => $request->getRawVal( 'dir' ),
+				'offset' => $request->getRawVal( 'offset' ),
+				'limit' => $request->getRawVal( 'limit' ),
+			] );
+
 			$page = $request->getText( 'pages' );
 			$this->curonly = $request->getCheck( 'curonly' );
 			$rawOffset = $request->getVal( 'offset' );
