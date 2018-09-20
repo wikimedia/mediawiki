@@ -445,6 +445,10 @@ because of Phabricator reports.
 * Content::getDeletionUpdates has been deprecated in favor of
   ContentHandler::getDeletionUpdates() for overriding by extensions (T194038).
   Application logic should call WikiPage::doSecondaryDataUpdates() (T194037).
+* (T198214) Old Tidy-related configuration settings, which were soft-deprecated
+  in MediaWiki 1.26, have now been hard deprecated. This affects $wgUseTidy,
+  $wgTidyBin, $wgTidyConf, $wgTidyOpts, $wgTidyInternal, and $wgDebugTidy. Use
+  $wgTidyConfig instead.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into

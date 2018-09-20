@@ -32,7 +32,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 				CONTENT_MODEL_CSS,
 				CONTENT_MODEL_JAVASCRIPT,
 			],
-			'wgUseTidy' => false,
+			'wgTidyConfig' => [ 'driver' => 'disabled' ],
 			'wgCapitalLinks' => true,
 			'wgHooks' => [], // bypass hook ContentGetParserOutput that force custom rendering
 		] );

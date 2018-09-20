@@ -4267,10 +4267,13 @@ $wgAllowImageTag = false;
  * library; historically, Dave Raggett's "HTML Tidy" was typically used.
  * See https://www.w3.org/People/Raggett/tidy/
  *
+ * Setting this to null is deprecated.
+ *
  * If this is null and $wgUseTidy is true, the deprecated configuration
  * parameters will be used instead.
  *
  * If this is null and $wgUseTidy is false, a pure PHP fallback will be used.
+ * (Equivalent to setting `$wgTidyConfig['driver'] = 'disabled'`.)
  *
  * Keys are:
  *  - driver: May be:
@@ -4278,6 +4281,8 @@ $wgAllowImageTag = false;
  *    - RaggettInternalPHP: Use the PECL extension
  *    - RaggettExternal: Shell out to an external binary (tidyBin)
  *    - RemexHtml: Use the RemexHtml library in PHP
+ *    - disabled: Disable tidy pass and use a hacky pure PHP workaround
+ *      (this is what setting $wgUseTidy to false used to do)
  *
  *  - tidyConfigFile: Path to configuration file for any of the Raggett drivers
  *  - debugComment: True to add a comment to the output with warning messages
@@ -4288,37 +4293,38 @@ $wgTidyConfig = [ 'driver' => 'RemexHtml' ];
 
 /**
  * Set this to true to use the deprecated tidy configuration parameters.
- * @deprecated use $wgTidyConfig
+ * @deprecated since 1.26, use $wgTidyConfig['driver'] = 'disabled'
  */
 $wgUseTidy = false;
 
 /**
  * The path to the tidy binary.
- * @deprecated Use $wgTidyConfig['tidyBin']
+ * @deprecated since 1.26, use $wgTidyConfig['tidyBin']
  */
 $wgTidyBin = 'tidy';
 
 /**
  * The path to the tidy config file
- * @deprecated Use $wgTidyConfig['tidyConfigFile']
+ * @deprecated since 1.26, use $wgTidyConfig['tidyConfigFile']
  */
 $wgTidyConf = $IP . '/includes/tidy/tidy.conf';
 
 /**
  * The command line options to the tidy binary
- * @deprecated Use $wgTidyConfig['tidyCommandLine']
+ * @deprecated since 1.26, use $wgTidyConfig['tidyCommandLine']
  */
 $wgTidyOpts = '';
 
 /**
  * Set this to true to use the tidy extension
- * @deprecated Use $wgTidyConfig['driver']
+ * @deprecated since 1.26, use $wgTidyConfig['driver']
  */
 $wgTidyInternal = extension_loaded( 'tidy' );
 
 /**
  * Put tidy warnings in HTML comments
  * Only works for internal tidy.
+ * @deprecated since 1.26, use $wgTidyConfig['debugComment']
  */
 $wgDebugTidy = false;
 
