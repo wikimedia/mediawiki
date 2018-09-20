@@ -1,10 +1,12 @@
 == MediaWiki 1.27.5 ==
 
-THIS IS NOT A RELEASE YET!
-
 This is a security and maintenance release of the MediaWiki 1.27 branch.
 
 === Changes since 1.27.4 ===
+* (T169545, CVE-2018-0503) SECURITY: $wgRateLimits entry for 'user' overrides
+  'newbie'.
+* (T194605, CVE-2018-0505) SECURITY: BotPasswords can bypass CentralAuth's
+  account lock.
 * Upgraded Moment.js from v2.8.4 to v2.19.3.
 * (T160298) Fixed Special:ActiveUsers due to bad backport.
 * (T87572) Make FormatMetadata::flattenArrayReal() work for an associative array.
@@ -22,6 +24,7 @@ This is a security and maintenance release of the MediaWiki 1.27 branch.
 * (T191608, T187638) Add 'logid' parameter to Special:Log.
 * (T193829) Indicate when a Bot Password needs reset.
 * (T151415) Log email changes.
+* (T118420) Unbreak Oracle installer.
 
 == MediaWiki 1.27.4 ==
 This is a security and maintenance release of the MediaWiki 1.27 branch.
