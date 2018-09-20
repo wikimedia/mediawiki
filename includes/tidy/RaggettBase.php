@@ -4,6 +4,9 @@ namespace MediaWiki\Tidy;
 
 use MWException;
 
+/**
+ * @deprecated since 1.32, use RemexDriver
+ */
 abstract class RaggettBase extends TidyDriverBase {
 	/**
 	 * Generic interface for wrapping and unwrapping HTML for Dave Raggett's tidy.

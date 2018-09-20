@@ -4277,12 +4277,16 @@ $wgAllowImageTag = false;
  *
  * Keys are:
  *  - driver: May be:
- *    - RaggettInternalHHVM: Use the limited-functionality HHVM extension
- *    - RaggettInternalPHP: Use the PECL extension
- *    - RaggettExternal: Shell out to an external binary (tidyBin)
  *    - RemexHtml: Use the RemexHtml library in PHP
+ *    - RaggettInternalHHVM: Use the limited-functionality HHVM extension
+ *      Deprecated since 1.32.
+ *    - RaggettInternalPHP: Use the PECL extension
+ *      Deprecated since 1.32.
+ *    - RaggettExternal: Shell out to an external binary (tidyBin)
+ *      Deprecated since 1.32.
  *    - disabled: Disable tidy pass and use a hacky pure PHP workaround
  *      (this is what setting $wgUseTidy to false used to do)
+ *      Deprecated since 1.32.
  *
  *  - tidyConfigFile: Path to configuration file for any of the Raggett drivers
  *  - debugComment: True to add a comment to the output with warning messages
