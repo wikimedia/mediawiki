@@ -117,11 +117,11 @@ class UnwatchedpagesPage extends QueryPage {
 		}
 
 		$text = MediaWikiServices::getInstance()->getContentLanguage()->
-			convert( $nt->getPrefixedText() );
+			convert( htmlspecialchars( $nt->getPrefixedText() ) );
 
 		$linkRenderer = $this->getLinkRenderer();
 
-		$plink = $linkRenderer->makeKnownLink( $nt, $text );
+		$plink = $linkRenderer->makeKnownLink( $nt, new HtmlArmor( $text ) );
 		$wlink = $linkRenderer->makeKnownLink(
 			$nt,
 			$this->msg( 'watch' )->text(),

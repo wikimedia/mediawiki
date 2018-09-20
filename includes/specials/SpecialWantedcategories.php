@@ -91,7 +91,8 @@ class WantedCategoriesPage extends WantedQueryPage {
 	 */
 	function formatResult( $skin, $result ) {
 		$nt = Title::makeTitle( $result->namespace, $result->title );
-		$text = MediaWikiServices::getInstance()->getContentLanguage()->convert( $nt->getText() );
+		$text = new HtmlArmor( MediaWikiServices::getInstance()->getContentLanguage()
+			->convert( htmlspecialchars( $nt->getText() ) ) );
 
 		if ( !$this->isCached() ) {
 			// We can assume the freshest data

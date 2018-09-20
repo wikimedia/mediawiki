@@ -568,9 +568,9 @@ class SpecialSearch extends SpecialPage {
 				'a',
 				[
 					'href' => $this->getPageTitle()->getLocalURL( $params ),
-					'title' => $this->msg( 'search-filter-title-prefix-reset' ),
+					'title' => $this->msg( 'search-filter-title-prefix-reset' )->text(),
 				],
-				$this->msg( 'search-filter-title-prefix-reset' )
+				$this->msg( 'search-filter-title-prefix-reset' )->text()
 			);
 			$subtitle .= ')';
 			$out->setSubtitle( $subtitle );

@@ -84,8 +84,9 @@ class MostlinkedCategoriesPage extends QueryPage {
 			);
 		}
 
-		$text = MediaWikiServices::getInstance()->getContentLanguage()->convert( $nt->getText() );
-		$plink = $this->getLinkRenderer()->makeLink( $nt, $text );
+		$text = MediaWikiServices::getInstance()->getContentLanguage()
+			->convert( new HtmlArmor( $nt->getText() ) );
+		$plink = $this->getLinkRenderer()->makeLink( $nt, new HtmlArmor( $text ) );
 		$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
 
 		return $this->getLanguage()->specialList( $plink, $nlinks );

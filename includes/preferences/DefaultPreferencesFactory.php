@@ -338,7 +338,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 					$lang->userTimeAndDate( $userRegistration, $displayUser ),
 					$lang->userDate( $userRegistration, $displayUser ),
 					$lang->userTime( $userRegistration, $displayUser )
-				)->parse(),
+				)->text(),
 				'section' => 'personal/info',
 			];
 		}

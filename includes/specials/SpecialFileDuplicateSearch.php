@@ -209,10 +209,12 @@ class FileDuplicateSearchPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		$linkRenderer = $this->getLinkRenderer();
 		$nt = $result->getTitle();
-		$text = MediaWikiServices::getInstance()->getContentLanguage()->convert( $nt->getText() );
+		$text = MediaWikiServices::getInstance()->getContentLanguage()->convert(
+			htmlspecialchars( $nt->getText() )
+		);
 		$plink = $linkRenderer->makeLink(
 			$nt,
-			$text
+			new HtmlArmor( $text )
 		);
 
 		$userText = $result->getUser( 'text' );
