@@ -27,6 +27,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\IPSet;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\Database;
@@ -4209,9 +4210,12 @@ class User implements IDBAccessObject, UserIdentity {
 				$this->clearSharedCache( 'refresh' );
 				// User was changed in the meantime or loaded with stale data
 				$from = ( $this->queryFlagsUsed & self::READ_LATEST ) ? 'master' : 'replica';
-				throw new MWException(
-					"CAS update failed on user_touched for user ID '{$this->mId}' (read from $from);" .
-					" the version of the user to be saved is older than the current version."
+				LoggerFactory::getInstance( 'preferences' )->warning(
+					"CAS update failed on user_touched for user ID '{user_id}' ({db_flag} read)",
+					[ 'user_id' => $this->mId, 'db_flag' => $from ]
+				);
+				throw new MWException( "CAS update failed on user_touched. " .
+					"The version of the user to be saved is older than the current version."
 				);
 			}
 
