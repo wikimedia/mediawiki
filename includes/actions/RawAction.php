@@ -47,6 +47,9 @@ class RawAction extends FormlessAction {
 		return false;
 	}
 
+	/**
+	 * @suppress SecurityCheck-XSS Non html mime type
+	 */
 	function onView() {
 		$this->getOutput()->disable();
 		$request = $this->getRequest();

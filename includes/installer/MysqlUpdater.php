@@ -601,7 +601,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			foreach ( $rows as $row ) {
 				if ( $prev_title == $row->cur_title && $prev_namespace == $row->cur_namespace ) {
-					$deleteId[] = $row->cur_id;
+					$deleteId[] = (int)$row->cur_id;
 				}
 				$prev_title = $row->cur_title;
 				$prev_namespace = $row->cur_namespace;
