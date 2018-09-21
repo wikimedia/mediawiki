@@ -1851,6 +1851,7 @@
 	"protectedtitles-submit": "Показване на заглавията",
 	"listusers": "Списък на потребителите",
 	"listusers-editsonly": "Показване само на потребители с редакции",
+	"listusers-temporarygroupsonly": "Показване само на потребители във временни потребителски групи",
 	"listusers-creationsort": "Сортиране по дата на създаване",
 	"listusers-desc": "Сортиране в низходящ ред",
 	"usereditcount": "$1 {{PLURAL:$1|редакция|редакции}}",

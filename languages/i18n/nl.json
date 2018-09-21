@@ -618,6 +618,7 @@
 	"botpasswords-invalid-name": "De gebruikersnaam bevat niet het scheidingsteken van het botwachtwoord (\"$1\").",
 	"botpasswords-not-exist": "Gebruiker \"$1\" heeft geen botwachtwoord genaamd \"$2\"",
 	"botpasswords-needs-reset": "Het botwachtwoord voor botnaam \"$2\" van {{GENDER:$1|gebruiker}} \"$1\" moet opnieuw worden ingesteld.",
+	"botpasswords-locked": "U kunt uzelf niet aanmelden met een botwachtwoord omdat uw account is vergrendeld.",
 	"resetpass_forbidden": "Wachtwoorden kunnen niet gewijzigd worden",
 	"resetpass_forbidden-reason": "Wachtwoorden kunnen niet gewijzigd worden: $1",
 	"resetpass-no-info": "U dient aangemeld zijn voordat u deze pagina kunt gebruiken.",

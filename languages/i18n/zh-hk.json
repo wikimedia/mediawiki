@@ -111,7 +111,7 @@
 	"rev-deleted-comment": "（註釋已除）",
 	"rev-deleted-event": "（日誌已除）",
 	"revdelete-suppress-text": "壓制'''只'''應用於以下的情況:\n* 不合適的個人資料\n*: ''地址、電話號碼、身份證號碼等。''",
-	"editundo": "撤銷",
+	"editundo": "復原",
 	"prefs-user-pages": "用戶頁面",
 	"username": "{{GENDER:$1|用戶名稱}}：",
 	"prefs-help-gender": "可選：用於軟件中的性別指定。此項資料將會被公開。",
