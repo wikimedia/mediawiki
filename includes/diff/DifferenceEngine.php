@@ -848,6 +848,7 @@ class DifferenceEngine extends ContextSource {
 				// New revision is unsaved; bail out.
 				// TODO in theory rendering the new revision is a meaningful thing to do
 				// even if it's unsaved, but a lot of untangling is required to do it safely.
+				return;
 			}
 
 			$out->setRevisionId( $this->mNewid );
