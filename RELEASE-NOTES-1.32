@@ -311,6 +311,7 @@ because of Phabricator reports.
   * ChangesListSpecialPage::customFilters
 * The global function wfUseMW, deprecated since 1.26, has now been removed. Use
   the "requires" property of static extension registration instead.
+* $wgSpecialPages no longer accepts array syntax, deprecated since 1.18.
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit
