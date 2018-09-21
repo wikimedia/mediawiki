@@ -312,6 +312,8 @@ because of Phabricator reports.
 * The global function wfUseMW, deprecated since 1.26, has now been removed. Use
   the "requires" property of static extension registration instead.
 * $wgSpecialPages no longer accepts array syntax, deprecated since 1.18.
+* The MailAddress constructor can no longer be called with a User object,
+  behaviour which has been deprecated since 1.24.
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit
