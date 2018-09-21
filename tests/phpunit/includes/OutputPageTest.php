@@ -1404,6 +1404,8 @@ class OutputPageTest extends MediaWikiTestCase {
 		$op = $this->newInstance();
 		$this->assertSame( '', $op->getHTML() );
 
+		$this->hideDeprecated( 'OutputPage::addWikiTextTitle' );
+		$this->hideDeprecated( 'OutputPage::addWikiTextWithTitle' );
 		if ( in_array(
 			$method,
 			[ 'addWikiTextWithTitle', 'addWikiTextTitleTidy', 'addWikiTextTitle' ]
