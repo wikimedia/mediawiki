@@ -1,7 +1,8 @@
 const assert = require( 'assert' ),
-	EditPage = require( '../pageobjects/edit.page' ),
+	Api = require( 'wdio-mediawiki/Api' ),
 	RecentChangesPage = require( '../pageobjects/recentchanges.page' ),
-	Util = require( 'wdio-mediawiki/Util' );
+	Util = require( 'wdio-mediawiki/Util' ),
+	RunJobs = require( 'wdio-mediawiki/RunJobs' );
 
 describe( 'Special:RecentChanges', function () {
 	let content,
@@ -13,9 +14,11 @@ describe( 'Special:RecentChanges', function () {
 		name = Util.getTestString();
 	} );
 
-	// Skip due to failures on many repos (T199644)
-	it.skip( 'shows page creation', function () {
-		EditPage.edit( name, content );
+	it( 'shows page creation', function () {
+		browser.call( function () {
+			return Api.edit( name, content );
+		} );
+		RunJobs.run();
 
 		RecentChangesPage.open();
 
