@@ -1440,7 +1440,7 @@ class Linker {
 	 * @return string
 	 */
 	public static function commentBlock(
-		$comment, $title = null, $local = false, $wikiId = null
+		$comment, $title = null, $local = false, $wikiId = null, $useParentheses = true
 	) {
 		// '*' used to be the comment inserted by the software way back
 		// in antiquity in case none was provided, here for backwards
@@ -1449,7 +1449,9 @@ class Linker {
 			return '';
 		} else {
 			$formatted = self::formatComment( $comment, $title, $local, $wikiId );
-			$formatted = wfMessage( 'parentheses' )->rawParams( $formatted )->escaped();
+			if ( $useParentheses ) {
+				$formatted = wfMessage( 'parentheses' )->rawParams( $formatted )->escaped();
+			}
 			return " <span class=\"comment\">$formatted</span>";
 		}
 	}
@@ -1462,9 +1464,12 @@ class Linker {
 	 * @param Revision $rev
 	 * @param bool $local Whether section links should refer to local page
 	 * @param bool $isPublic Show only if all users can see it
+	 * @param bool $useParentheses (optional) Wrap comments in parentheses where needed
 	 * @return string HTML fragment
 	 */
-	public static function revComment( Revision $rev, $local = false, $isPublic = false ) {
+	public static function revComment( Revision $rev, $local = false, $isPublic = false,
+		$useParentheses = true
+	) {
 		if ( $rev->getComment( Revision::RAW ) == "" ) {
 			return "";
 		}
@@ -1472,7 +1477,7 @@ class Linker {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
 		} elseif ( $rev->userCan( Revision::DELETED_COMMENT ) ) {
 			$block = self::commentBlock( $rev->getComment( Revision::FOR_THIS_USER ),
-				$rev->getTitle(), $local );
+				$rev->getTitle(), $local, null, $useParentheses );
 		} else {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
 		}
