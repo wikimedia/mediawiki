@@ -473,6 +473,14 @@ because of Phabricator reports.
   $wgTidyConfig instead.
 * All Tidy configurations other than Remex have been hard deprecated;
   future parsers will not emit compatible output for these configurations.
+* (T198214) OutputPage::addWikiText(), OutputPage::addWikiTextWithTitle(),
+  and OutputPage::addWikiTextTitle() have been deprecated, since they
+  can result in untidy output.  In addition OutputPage::addWikiTextTidy()
+  and OutputPage::addWikiTextTitleTidy() was deprecated to make naming new
+  methods consistent.  Use OutputPage::addWikiTextAsInterface() or
+  OutputPage::addWikiTextAsContent() instead, which ensures the output is
+  tidy and clarifies whether content-language specific postprocessing should
+  be done on the text.
 * QuickTemplate::msgHtml() and BaseTemplate::msgHtml() have been deprecated
   as they promote bad practises. I18n messages should always be properly
   escaped.

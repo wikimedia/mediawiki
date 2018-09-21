@@ -1392,6 +1392,8 @@ class OutputPageTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideAddWikiText
 	 * @covers OutputPage::addWikiText
+	 * @covers OutputPage::addWikiTextAsInterface
+	 * @covers OutputPage::addWikiTextAsContent
 	 * @covers OutputPage::addWikiTextWithTitle
 	 * @covers OutputPage::addWikiTextTitle
 	 * @covers OutputPage::addWikiTextTidy
@@ -1409,6 +1411,13 @@ class OutputPageTest extends MediaWikiTestCase {
 			// Special placeholder because we can't get the actual title in the provider
 			$args[1] = $op->getTitle();
 		}
+		if ( in_array(
+			$method,
+			[ 'addWikiTextAsInterface', 'addWikiTextAsContent' ]
+		) && count( $args ) >= 3 && $args[2] === null ) {
+			// Special placeholder because we can't get the actual title in the provider
+			$args[2] = $op->getTitle();
+		}
 
 		$op->$method( ...$args );
 		$this->assertSame( $expected, $op->getHTML() );
@@ -1417,6 +1426,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	public function provideAddWikiText() {
 		$tests = [
 			'addWikiText' => [
+				// Not tidied; this API is deprecated.
 				'Simple wikitext' => [
 					[ "'''Bold'''" ],
 					"<p><b>Bold</b>\n</p>",
@@ -1435,6 +1445,7 @@ class OutputPageTest extends MediaWikiTestCase {
 				],
 			],
 			'addWikiTextWithTitle' => [
+				// Untidied; this API is deprecated
 				'With title at start' => [
 					[ '* {{PAGENAME}}', Title::newFromText( 'Talk:Some page' ) ],
 					"<ul><li>Some page</li></ul>\n",
@@ -1443,7 +1454,36 @@ class OutputPageTest extends MediaWikiTestCase {
 					"* Some page",
 				],
 			],
-			'addWikiTextTidy' => [
+			'addWikiTextAsInterface' => [
+				// Preferred interface: output is tidied
+				'Simple wikitext' => [
+					[ "'''Bold'''" ],
+					"<p><b>Bold</b>\n</p>",
+				], 'Untidy wikitext' => [
+					[ "<b>Bold" ],
+					"<p><b>Bold\n</b></p>",
+				], 'List at start' => [
+					[ '* List' ],
+					"<ul><li>List</li></ul>\n",
+				], 'List not at start' => [
+					[ '* Not a list', false ],
+					'<p>* Not a list</p>',
+				], 'No section edit links' => [
+					[ '== Title ==' ],
+					"<h2><span class=\"mw-headline\" id=\"Title\">Title</span></h2>\n",
+				], 'With title at start' => [
+					[ '* {{PAGENAME}}', true, Title::newFromText( 'Talk:Some page' ) ],
+					"<ul><li>Some page</li></ul>\n",
+				], 'With title at start' => [
+					[ '* {{PAGENAME}}', false, Title::newFromText( 'Talk:Some page' ), false ],
+					"<p>* Some page</p>",
+				], 'Untidy input' => [
+					[ '<b>{{PAGENAME}}', true, Title::newFromText( 'Talk:Some page' ) ],
+					"<p><b>Some page\n</b></p>",
+				],
+			],
+			'addWikiTextAsContent' => [
+				// Preferred interface: output is tidied
 				'SpecialNewimages' => [
 					[ "<p lang='en' dir='ltr'>\nMy message" ],
 					'<p lang="en" dir="ltr">' . "\nMy message\n</p>"
@@ -1453,17 +1493,14 @@ class OutputPageTest extends MediaWikiTestCase {
 				], 'List not at start' => [
 					[ '* <b>Not a list', false ],
 					'<p>* <b>Not a list</b></p>',
-				],
-			],
-			'addWikiTextTitleTidy' => [
-				'With title at start' => [
-					[ '* {{PAGENAME}}', Title::newFromText( 'Talk:Some page' ) ],
+				], 'With title at start' => [
+					[ '* {{PAGENAME}}', true, Title::newFromText( 'Talk:Some page' ) ],
 					"<ul><li>Some page</li></ul>\n",
 				], 'With title at start' => [
-					[ '* {{PAGENAME}}', Title::newFromText( 'Talk:Some page' ), false ],
+					[ '* {{PAGENAME}}', false, Title::newFromText( 'Talk:Some page' ), false ],
 					"<p>* Some page</p>",
 				], 'EditPage' => [
-					[ "<div class='mw-editintro'>{{PAGENAME}}", Title::newFromText( 'Talk:Some page' ) ],
+					[ "<div class='mw-editintro'>{{PAGENAME}}", true, Title::newFromText( 'Talk:Some page' ) ],
 					'<div class="mw-editintro">' . "Some page\n</div>"
 				],
 			],
@@ -1480,15 +1517,28 @@ class OutputPageTest extends MediaWikiTestCase {
 			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
 				array_merge( [ $args ], array_slice( $val, 1 ) );
 		}
-		foreach ( $tests['addWikiTextTidy'] as $key => $val ) {
-			$args = [ $val[0][0], null, $val[0][1] ?? true, true, false ];
+		foreach ( $tests['addWikiTextAsInterface'] as $key => $val ) {
+			$args = [ $val[0][0], $val[0][2] ?? null, $val[0][1] ?? true, true, true ];
 			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
 				array_merge( [ $args ], array_slice( $val, 1 ) );
 		}
-		foreach ( $tests['addWikiTextTitleTidy'] as $key => $val ) {
-			$args = [ $val[0][0], $val[0][1], $val[0][2] ?? true, true, false ];
+		foreach ( $tests['addWikiTextAsContent'] as $key => $val ) {
+			$args = [ $val[0][0], $val[0][2] ?? null, $val[0][1] ?? true, true, false ];
 			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
 				array_merge( [ $args ], array_slice( $val, 1 ) );
+		}
+		// addWikiTextTidy / addWikiTextTitleTidy were old aliases of
+		// addWikiTextAsContent
+		foreach ( $tests['addWikiTextAsContent'] as $key => $val ) {
+			if ( count( $val[0] ) > 2 ) {
+				$args = [ $val[0][0], $val[0][2], $val[0][1] ?? true ];
+				$tests['addWikiTextTitleTidy']["$key (addWikiTextTitleTidy)"] =
+					array_merge( [ $args ], array_slice( $val, 1 ) );
+			} else {
+				$args = [ $val[0][0], $val[0][1] ?? true ];
+				$tests['addWikiTextTidy']["$key (addWikiTextTidy)"] =
+					array_merge( [ $args ], array_slice( $val, 1 ) );
+			}
 		}
 
 		// We have to reformat our array to match what PHPUnit wants
@@ -1511,6 +1561,26 @@ class OutputPageTest extends MediaWikiTestCase {
 
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->addWikiText( 'a' );
+	}
+
+	/**
+	 * @covers OutputPage::addWikiTextAsInterface
+	 */
+	public function testAddWikiTextAsInterfaceNoTitle() {
+		$this->setExpectedException( MWException::class, 'Title is null' );
+
+		$op = $this->newInstance( [], null, 'notitle' );
+		$op->addWikiTextAsInterface( 'a' );
+	}
+
+	/**
+	 * @covers OutputPage::addWikiTextAsContent
+	 */
+	public function testAddWikiTextAsContentNoTitle() {
+		$this->setExpectedException( MWException::class, 'Title is null' );
+
+		$op = $this->newInstance( [], null, 'notitle' );
+		$op->addWikiTextAsContent( 'a' );
 	}
 
 	/**
