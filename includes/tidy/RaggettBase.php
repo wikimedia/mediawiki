@@ -8,6 +8,14 @@ use MWException;
  * @deprecated since 1.32, use RemexDriver
  */
 abstract class RaggettBase extends TidyDriverBase {
+
+	function __construct( $config ) {
+		parent::__construct( $config );
+
+		// All tidy modes other than remex are deprecated.
+		wfDeprecated( __METHOD__, '1.32' );
+	}
+
 	/**
 	 * Generic interface for wrapping and unwrapping HTML for Dave Raggett's tidy.
 	 *
