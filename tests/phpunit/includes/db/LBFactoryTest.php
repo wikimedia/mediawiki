@@ -34,13 +34,14 @@ use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
  * @group Database
+ * @covers \Wikimedia\Rdbms\LBFactory
  * @covers \Wikimedia\Rdbms\LBFactorySimple
  * @covers \Wikimedia\Rdbms\LBFactoryMulti
  */
 class LBFactoryTest extends MediaWikiTestCase {
 
 	/**
-	 * @covers MWLBFactory::getLBFactoryClass
+	 * @covers MWLBFactory::getLBFactoryClass()
 	 * @dataProvider getLBFactoryClassProvider
 	 */
 	public function testGetLBFactoryClass( $expected, $deprecated ) {
@@ -76,8 +77,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers LBFactory::getLocalDomainID()
-	 * @covers LBFactory::resolveDomainID()
+	 * @covers \Wikimedia\Rdbms\LBFactory::getLocalDomainID()
+	 * @covers \Wikimedia\Rdbms\LBFactory::resolveDomainID()
 	 */
 	public function testLBFactorySimpleServer() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
