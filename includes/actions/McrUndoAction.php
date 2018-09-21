@@ -219,7 +219,7 @@ class McrUndoAction extends FormAction {
 		return $newRev;
 	}
 
-	private function generateDiff() {
+	private function generateDiffOrPreview() {
 		$newRev = $this->getNewRevision();
 		if ( $newRev->hasSameContent( $this->curRev ) ) {
 			throw new ErrorPageError( 'mcrundofailed', 'undo-nochange' );
@@ -232,13 +232,63 @@ class McrUndoAction extends FormAction {
 		$newtitle = $this->context->msg( 'yourtext' )->parse();
 
 		if ( $this->getRequest()->getCheck( 'wpPreview' ) ) {
-			$diffEngine->renderNewRevision();
+			$this->showPreview( $newRev );
 			return '';
 		} else {
 			$diffText = $diffEngine->getDiff( $oldtitle, $newtitle );
 			$diffEngine->showDiffStyle();
 			return '<div id="wikiDiff">' . $diffText . '</div>';
 		}
+	}
+
+	private function showPreview( RevisionRecord $rev ) {
+		// Mostly copied from EditPage::getPreviewText()
+		$out = $this->getOutput();
+
+		try {
+			$previewHTML = '';
+
+			# provide a anchor link to the form
+			$continueEditing = '<span class="mw-continue-editing">' .
+				'[[#mw-mcrundo-form|' .
+				$this->context->getLanguage()->getArrow() . ' ' .
+				$this->context->msg( 'continue-editing' )->text() . ']]</span>';
+
+			$note = $this->context->msg( 'previewnote' )->plain() . ' ' . $continueEditing;
+
+			$parserOptions = $this->page->makeParserOptions( $this->context );
+			$parserOptions->setIsPreview( true );
+			$parserOptions->setIsSectionPreview( false );
+			$parserOptions->enableLimitReport();
+
+			$parserOutput = MediaWikiServices::getInstance()->getRevisionRenderer()
+				->getRenderedRevision( $rev, $parserOptions, $this->context->getUser() )
+				->getRevisionParserOutput();
+			$previewHTML = $parserOutput->getText( [ 'enableSectionEditLinks' => false ] );
+
+			$out->addParserOutputMetadata( $parserOutput );
+			if ( count( $parserOutput->getWarnings() ) ) {
+				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
+			}
+		} catch ( MWContentSerializationException $ex ) {
+			$m = $this->context->msg(
+				'content-failed-to-parse',
+				$ex->getMessage()
+			);
+			$note .= "\n\n" . $m->parse();
+			$previewHTML = '';
+		}
+
+		$previewhead = "<div class='previewnote'>\n" .
+			'<h2 id="mw-previewheader">' . $this->context->msg( 'preview' )->escaped() . "</h2>" .
+			$out->parse( $note, true, /* interface */true ) . "<hr /></div>\n";
+
+		$pageViewLang = $this->getTitle()->getPageViewLanguage();
+		$attribs = [ 'lang' => $pageViewLang->getHtmlCode(), 'dir' => $pageViewLang->getDir(),
+			'class' => 'mw-content-' . $pageViewLang->getDir() ];
+		$previewHTML = Html::rawElement( 'div', $attribs, $previewHTML );
+
+		$out->addHtml( $previewhead . $previewHTML );
 	}
 
 	public function onSubmit( $data ) {
@@ -306,7 +356,7 @@ class McrUndoAction extends FormAction {
 				'vertical-label' => true,
 				'raw' => true,
 				'default' => function () {
-					return $this->generateDiff();
+					return $this->generateDiffOrPreview();
 				}
 			],
 			'summary' => [
@@ -343,6 +393,7 @@ class McrUndoAction extends FormAction {
 
 		$labelAsPublish = $this->context->getConfig()->get( 'EditSubmitButtonLabelPublish' );
 
+		$form->setId( 'mw-mcrundo-form' );
 		$form->setSubmitName( 'wpSave' );
 		$form->setSubmitTooltip( $labelAsPublish ? 'publish' : 'save' );
 		$form->setSubmitTextMsg( $labelAsPublish ? 'publishchanges' : 'savechanges' );
