@@ -981,14 +981,14 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'type' => 'float',
 			'label-message' => 'recentchangesdays',
 			'section' => 'rc/displayrc',
-			'min' => 1,
+			'min' => 1 / 24,
 			'max' => ceil( $rcMaxAge / ( 3600 * 24 ) ),
 			'help' => $l10n->msg( 'recentchangesdays-max' )->numParams(
 				ceil( $rcMaxAge / ( 3600 * 24 ) ) )->escaped()
 		];
 		$defaultPreferences['rclimit'] = [
 			'type' => 'int',
-			'min' => 0,
+			'min' => 1,
 			'max' => 1000,
 			'label-message' => 'recentchangescount',
 			'help-message' => 'prefs-help-recentchangescount',
