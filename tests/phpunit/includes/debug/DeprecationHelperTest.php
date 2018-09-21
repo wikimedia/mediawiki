@@ -20,11 +20,6 @@ class DeprecationHelperTest extends MediaWikiTestCase {
 		$this->setMwGlobals( 'wgDevelopmentWarnings', false );
 	}
 
-	public function tearDown() {
-		parent::tearDown();
-		MWDebug::clearLog();
-	}
-
 	/**
 	 * @dataProvider provideGet
 	 */
