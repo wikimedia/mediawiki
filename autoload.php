@@ -717,7 +717,6 @@ $wgAutoloadLocalClasses = [
 	'JsonContentHandler' => __DIR__ . '/includes/content/JsonContentHandler.php',
 	'KkConverter' => __DIR__ . '/languages/classes/LanguageKk.php',
 	'KuConverter' => __DIR__ . '/languages/classes/LanguageKu.php',
-	'LBFactory' => __DIR__ . '/includes/libs/rdbms/lbfactory/LBFactory.php',
 	'LCStore' => __DIR__ . '/includes/cache/localisation/LCStore.php',
 	'LCStoreCDB' => __DIR__ . '/includes/cache/localisation/LCStoreCDB.php',
 	'LCStoreDB' => __DIR__ . '/includes/cache/localisation/LCStoreDB.php',
