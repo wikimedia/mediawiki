@@ -23,6 +23,7 @@
  * @copyright © 2013 Wikimedia Foundation Inc.
  */
 
+use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LBFactorySimple;
 use Wikimedia\Rdbms\LBFactoryMulti;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -627,7 +628,6 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$time = 1526522031;
 		$agentId = md5( 'Ramsey\'s Loyal Presa Canario' );
 
-		$lbFactory = $this->newLBFactoryMulti();
 		$this->assertEquals(
 			'3@542#c47dcfb0566e7d7bc110a6128a45c93a',
 			LBFactory::makeCookieValueFromCPIndex( 3, 542, $agentId )
