@@ -536,6 +536,7 @@
 	"botpasswords-updated-body": "'A passuord pu bot de nome \"$1\" de l'{{GENDER:$2|utende}} \"$2\" ha state aggiornate.",
 	"botpasswords-deleted-title": "Passuord d'u bot scangellate",
 	"botpasswords-deleted-body": "'A passuord pu bot de nome \"$1\" de l'{{GENDER:$2|utende \"$2\"}} ha state scangellate.",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider non g'è disponibbile.",
 	"botpasswords-restriction-failed": "Le restrizziuyne de passuord bot non ge fanne trasè.",
 	"botpasswords-invalid-name": "'U nome de l'utende mise non ge tène 'u separatore pe passuord bot (\"$1\").",
 	"resetpass_forbidden": "Le Password non ge ponne cangià",
