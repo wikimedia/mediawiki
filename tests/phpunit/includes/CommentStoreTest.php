@@ -35,6 +35,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 * @return CommentStore
 	 */
 	protected function makeStoreWithKey( $stage, $key ) {
+		$this->hideDeprecated( 'CommentStore::newKey' );
 		$store = CommentStore::newKey( $key );
 		TestingAccessWrapper::newFromObject( $store )->stage = $stage;
 		return $store;
@@ -774,6 +775,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	}
 
 	public function testNewKey() {
+		$this->hideDeprecated( 'CommentStore::newKey' );
 		$this->assertInstanceOf( CommentStore::class, CommentStore::newKey( 'dummy' ) );
 	}
 

@@ -115,8 +115,7 @@ class CommentStore {
 	 */
 	public static function newKey( $key ) {
 		global $wgCommentTableSchemaMigrationStage;
-		// TODO uncomment once not used in extensions
-		// wfDeprecated( __METHOD__, '1.31' );
+		wfDeprecated( __METHOD__, '1.31' );
 		$store = new CommentStore( MediaWikiServices::getInstance()->getContentLanguage(),
 			$wgCommentTableSchemaMigrationStage );
 		$store->key = $key;

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\User\UserIdentity;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -635,8 +636,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$userIdentity->method( 'getName' )->willReturn( $user->getName() );
 		$userIdentity->method( 'getActorId' )->willReturn( 0 );
 
-		list( $cFields, $cCallback ) = CommentStore::newKey( 'rev_comment' )
-			->insertWithTempTable( $this->db, '' );
+		list( $cFields, $cCallback ) = MediaWikiServices::getInstance()->getCommentStore()
+			->insertWithTempTable( $this->db, 'rev_comment', '' );
 		$m = $this->makeMigration( MIGRATION_WRITE_BOTH );
 		list( $fields, $callback ) =
 			$m->getInsertValuesWithTempTable( $this->db, 'rev_user', $userIdentity );
