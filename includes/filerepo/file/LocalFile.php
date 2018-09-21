@@ -63,7 +63,7 @@ class LocalFile extends File {
 	/** @var string MEDIATYPE_xxx (bitmap, drawing, audio...) */
 	protected $media_type;
 
-	/** @var string MIME type, determined by MimeMagic::guessMimeType */
+	/** @var string MIME type, determined by MimeAnalyzer::guessMimeType */
 	protected $mime;
 
 	/** @var int Size in bytes (loadFromXxx) */

@@ -1380,14 +1380,14 @@ $wgAntivirusRequired = true;
 $wgVerifyMimeType = true;
 
 /**
- * Sets the MIME type definition file to use by MimeMagic.php.
+ * Sets the MIME type definition file to use by includes/libs/mime/MimeAnalyzer.php.
  * Set to null, to use built-in defaults only.
  * example: $wgMimeTypeFile = '/etc/mime.types';
  */
 $wgMimeTypeFile = 'includes/mime.types';
 
 /**
- * Sets the MIME type info file to use by MimeMagic.php.
+ * Sets the MIME type info file to use by includes/libs/mime/MimeAnalyzer.php.
  * Set to null, to use built-in defaults only.
  */
 $wgMimeInfoFile = 'includes/mime.info';
