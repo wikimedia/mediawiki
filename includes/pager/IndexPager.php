@@ -80,6 +80,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	public $mDefaultLimit = 50;
 	public $mOffset, $mLimit;
 	public $mQueryDone = false;
+	/** @var IDatabase */
 	public $mDb;
 	public $mPastTheEndRow;
 

@@ -861,6 +861,9 @@ __INDEXATTR__;
 		return false;
 	}
 
+	/**
+	 * @suppress SecurityCheck-SQLInjection array_map not recognized T204911
+	 */
 	public function listTables( $prefix = null, $fname = __METHOD__ ) {
 		$eschemas = implode( ',', array_map( [ $this, 'addQuotes' ], $this->getCoreSchemas() ) );
 		$result = $this->query(

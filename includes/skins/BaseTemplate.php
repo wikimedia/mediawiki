@@ -43,7 +43,15 @@ abstract class BaseTemplate extends QuickTemplate {
 		echo $this->getMsg( $str )->escaped();
 	}
 
+	/**
+	 * @param string $str
+	 * @warning You should never use this method. I18n messages should be escaped
+	 * @deprecated 1.32 Use ->msg() or ->msgWiki() instead.
+	 * @suppress SecurityCheck-XSS
+	 * @return-taint exec_html
+	 */
 	function msgHtml( $str ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		echo $this->getMsg( $str )->text();
 	}
 
