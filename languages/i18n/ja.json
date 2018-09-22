@@ -93,7 +93,8 @@
 			"Afaz",
 			"Oxbqskeptzwizkgdcxakhnrb",
 			"Suyama",
-			"고솜"
+			"고솜",
+			"Wat"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -629,6 +630,7 @@
 	"botpasswords-invalid-name": "指定された利用者名には、ボット用パスワードの区切りである「$1」 が含まれていません。",
 	"botpasswords-not-exist": "利用者「$1」はボット「$2」のパスワードを所持していません。",
 	"botpasswords-needs-reset": "{{GENDER:$1|利用者}}「$1」のボット名「$2」のためのパスワードはリセットする必要があります。",
+	"botpasswords-locked": "アカウントがロックされているため、bot用パスワードではログインできません。",
 	"resetpass_forbidden": "パスワードは変更できません",
 	"resetpass_forbidden-reason": "パスワードは変更できません: $1",
 	"resetpass-no-info": "このページに直接アクセスするためにはログインしている必要があります。",

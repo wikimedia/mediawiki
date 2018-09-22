@@ -1262,7 +1262,7 @@
 	"right-editinterface": "редагування інтерфейсу користувача",
 	"right-editusercss": "редагування CSS-файлів інших користувачів",
 	"right-edituserjson": "редагування JSON-файлів інших користувачів",
-	"right-edituserjs": "редагування JS-файлів інших користувачів",
+	"right-edituserjs": "редагування JavaScript-файлів інших користувачів",
 	"right-editsitecss": "Редагувати загальний CSS",
 	"right-editsitejson": "Редагувати загальний JSON",
 	"right-editsitejs": "Редагувати загальний JavaScript",

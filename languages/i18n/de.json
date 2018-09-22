@@ -623,6 +623,7 @@
 	"botpasswords-invalid-name": "Der angegebene Benutzername enthält keinen Botpassworttrenner („$1“).",
 	"botpasswords-not-exist": "Der Benutzer „$1“ hat kein Botpasswort mit dem Namen „$2“.",
 	"botpasswords-needs-reset": "Das Botpasswort für den Botnamen „$2“ {{GENDER:$1|des Benutzers|der Benutzerin}} „$1“ muss zurückgesetzt werden.",
+	"botpasswords-locked": "Du kannst dich nicht mit einem Botpasswort anmelden, da dein Benutzerkonto gesperrt ist.",
 	"resetpass_forbidden": "Das Passwort kann nicht geändert werden.",
 	"resetpass_forbidden-reason": "Die Passwörter können nicht geändert werden: $1",
 	"resetpass-no-info": "Du musst dich anmelden, um auf diese Seite direkt zuzugreifen.",

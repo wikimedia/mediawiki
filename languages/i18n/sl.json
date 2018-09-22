@@ -16,7 +16,8 @@
 			"NegativeTwelveDollars",
 			"Xð",
 			"HairyFotr",
-			"Upwinxp"
+			"Upwinxp",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Podčrtavanje povezav:",
@@ -1193,7 +1194,7 @@
 	"right-editinterface": "Urejanje uporabniškega vmesnika",
 	"right-editusercss": "Uredi CSS datotek drugih uporabnikov",
 	"right-edituserjson": "Urejanje JSON-datotek drugih uporabnikov",
-	"right-edituserjs": "Uredi JS datotek drugih uporabnikov",
+	"right-edituserjs": "Uredi JavaScript datotek drugih uporabnikov",
 	"right-editsitecss": "Urejanje CSS spletišča",
 	"right-editsitejson": "Urejanje JSON spletišča",
 	"right-editsitejs": "Urejanje JavaScripta spletišča",

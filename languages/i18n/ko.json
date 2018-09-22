@@ -599,6 +599,7 @@
 	"botpasswords-invalid-name": "지정된 사용자 이름은 봇 비밀번호 구분자(\"$1\")를 포함하고 있지 않습니다.",
 	"botpasswords-not-exist": "\"$1\" 사용자가 이름이 \"$2\"인 봇의 비밀번호를 가지고 있지 않습니다.",
 	"botpasswords-needs-reset": "{{GENDER:$1|사용자}} \"$1\"의 봇 이름 \"$2\"의 봇 비밀번호를 재설정해야 합니다.",
+	"botpasswords-locked": "계정이 잠겨있기 때문에 봇 비밀번호로 로그인할 수 없습니다.",
 	"resetpass_forbidden": "비밀번호를 바꿀 수 없습니다",
 	"resetpass_forbidden-reason": "암호를 변경할 수 없습니다: $1",
 	"resetpass-no-info": "이 페이지에 직접 접근하려면 로그인해야 합니다.",
