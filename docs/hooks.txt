@@ -3783,6 +3783,13 @@ $context: IContextSource object
 $user: User to get rights for
 &$rights: Current rights
 
+'UserGetRightsRemove': Called in User::getRights(). This hook override
+the UserGetRights hook. It can be used to remove rights from user
+and ensure that will not be reinserted by the other hook callbacks
+therefore this hook should not be used to add any rights, use UserGetRights instead.
+$user: User to get rights for
+&$rights: Current rights
+
 'UserGroupsChanged': Called after user groups are changed.
 $user: User whose groups changed
 $added: Groups added
