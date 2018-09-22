@@ -651,6 +651,7 @@
 	"botpasswords-invalid-name": "O nome de usuário especificado não contém o separador de senha de robô (\"$1\").",
 	"botpasswords-not-exist": "O usuário \"$1\" não possui uma senha de robô \"$2\".",
 	"botpasswords-needs-reset": "A senha do robô de nome \"$2\" {{GENDER:$1|do usuário|da usuária}} \"$1\" deve ser redefinida.",
+	"botpasswords-locked": "Você não pode entrar com uma senha de bot, pois sua conta está bloqueada.",
 	"resetpass_forbidden": "As senhas não podem ser alteradas",
 	"resetpass_forbidden-reason": "Senhas não podem ser alteradas: $1",
 	"resetpass-no-info": "Você precisa estar autenticado para acessar esta página diretamente.",

@@ -1276,7 +1276,7 @@
 	"right-editinterface": "Edycja interfejsu użytkownika",
 	"right-editusercss": "Edycja plików CSS innych użytkowników",
 	"right-edituserjson": "Edycja plików JSON innych użytkowników",
-	"right-edituserjs": "Edycja plików JS innych użytkowników",
+	"right-edituserjs": "Edycja plików JavaScript innych użytkowników",
 	"right-editsitecss": "Edycja plików CSS projektu",
 	"right-editsitejson": "Edycja plików JSON projektu",
 	"right-editsitejs": "Edycja plików JavaScript projektu",

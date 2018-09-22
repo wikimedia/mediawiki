@@ -568,6 +568,7 @@
 	"botpasswords-no-provider": "BotPasswordsSessionProvider није доступан.",
 	"botpasswords-restriction-failed": "Не можете се пријавити због ограничења лозинки за ботове.",
 	"botpasswords-not-exist": "Корисник „$1“ нема лозинку бота „$2“.",
+	"botpasswords-locked": "Не можете да се пријавите са лозинком бота пошто је ваш налог закључан.",
 	"resetpass_forbidden": "Не могу да променим лозинке",
 	"resetpass_forbidden-reason": "Не могу да променим лозинке: $1",
 	"resetpass-no-info": "Морате бити пријављени да бисте приступили овој страници.",
