@@ -84,8 +84,8 @@ class FewestrevisionsPage extends QueryPage {
 		}
 		$linkRenderer = $this->getLinkRenderer();
 		$text = MediaWikiServices::getInstance()->getContentLanguage()->
-			convert( $nt->getPrefixedText() );
-		$plink = $linkRenderer->makeLink( $nt, $text );
+			convert( htmlspecialchars( $nt->getPrefixedText() ) );
+		$plink = $linkRenderer->makeLink( $nt, new HtmlArmor( $text ) );
 
 		$nl = $this->msg( 'nrevisions' )->numParams( $result->value )->text();
 		$redirect = isset( $result->redirect ) && $result->redirect ?

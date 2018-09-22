@@ -94,8 +94,8 @@ class AncientPagesPage extends QueryPage {
 		$linkRenderer = $this->getLinkRenderer();
 		$link = $linkRenderer->makeKnownLink(
 			$title,
-			MediaWikiServices::getInstance()->getContentLanguage()->
-				convert( $title->getPrefixedText() )
+			new HtmlArmor( MediaWikiServices::getInstance()->getContentLanguage()->
+				convert( htmlspecialchars( $title->getPrefixedText() ) ) )
 		);
 
 		return $this->getLanguage()->specialList( $link, htmlspecialchars( $d ) );

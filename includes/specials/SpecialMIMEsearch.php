@@ -186,10 +186,11 @@ class MIMEsearchPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		$linkRenderer = $this->getLinkRenderer();
 		$nt = Title::makeTitle( $result->namespace, $result->title );
-		$text = MediaWikiServices::getInstance()->getContentLanguage()->convert( $nt->getText() );
+		$text = MediaWikiServices::getInstance()->getContentLanguage()
+			->convert( htmlspecialchars( $nt->getText() ) );
 		$plink = $linkRenderer->makeLink(
 			Title::newFromText( $nt->getPrefixedText() ),
-			$text
+			new HtmlArmor( $text )
 		);
 
 		$download = Linker::makeMediaLinkObj( $nt, $this->msg( 'download' )->escaped() );

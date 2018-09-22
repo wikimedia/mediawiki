@@ -55,8 +55,8 @@ abstract class PageQueryPage extends QueryPage {
 
 		if ( $title instanceof Title ) {
 			$text = MediaWikiServices::getInstance()->getContentLanguage()->
-				convert( $title->getPrefixedText() );
-			return $this->getLinkRenderer()->makeLink( $title, $text );
+				convert( htmlspecialchars( $title->getPrefixedText() ) );
+			return $this->getLinkRenderer()->makeLink( $title, new HtmlArmor( $text ) );
 		} else {
 			return Html::element( 'span', [ 'class' => 'mw-invalidtitle' ],
 				Linker::getInvalidTitleDescription( $this->getContext(), $row->namespace, $row->title ) );

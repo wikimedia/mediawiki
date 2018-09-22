@@ -611,7 +611,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$benefitList = '';
 			for ( $benefitIdx = 1; $benefitIdx <= $benefitCount; $benefitIdx++ ) {
 				$headUnescaped = $this->msg( "createacct-benefit-head$benefitIdx" )->text();
-				$iconClass = $this->msg( "createacct-benefit-icon$benefitIdx" )->escaped();
+				$iconClass = $this->msg( "createacct-benefit-icon$benefitIdx" )->text();
 				$benefitList .= Html::rawElement( 'div', [ 'class' => "mw-number-text $iconClass" ],
 					Html::rawElement( 'h3', [],
 						$this->msg( "createacct-benefit-head$benefitIdx" )->escaped()
