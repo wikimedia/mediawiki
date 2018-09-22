@@ -4427,7 +4427,7 @@ class Title implements LinkTarget {
 				$revQuery['joins']
 			);
 			if ( $row ) {
-				return new Revision( $row );
+				return new Revision( $row, 0, $this );
 			}
 		}
 		return null;
