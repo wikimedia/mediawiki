@@ -85,22 +85,28 @@ class LCStoreDB implements LCStore {
 			throw new MWException( __CLASS__ . ': must call startWrite() before finishWrite()' );
 		}
 
-		$dbw = $this->getWriteConnection();
-		$dbw->startAtomic( __METHOD__ );
+		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$oldSilenced = $trxProfiler->setSilenced( true );
 		try {
-			$dbw->delete( 'l10n_cache', [ 'lc_lang' => $this->currentLang ], __METHOD__ );
-			foreach ( array_chunk( $this->batch, 500 ) as $rows ) {
-				$dbw->insert( 'l10n_cache', $rows, __METHOD__ );
+			$dbw = $this->getWriteConnection();
+			$dbw->startAtomic( __METHOD__ );
+			try {
+				$dbw->delete( 'l10n_cache', [ 'lc_lang' => $this->currentLang ], __METHOD__ );
+				foreach ( array_chunk( $this->batch, 500 ) as $rows ) {
+					$dbw->insert( 'l10n_cache', $rows, __METHOD__ );
+				}
+				$this->writesDone = true;
+			} catch ( DBQueryError $e ) {
+				if ( $dbw->wasReadOnlyError() ) {
+					$this->readOnly = true; // just avoid site down time
+				} else {
+					throw $e;
+				}
 			}
-			$this->writesDone = true;
-		} catch ( DBQueryError $e ) {
-			if ( $dbw->wasReadOnlyError() ) {
-				$this->readOnly = true; // just avoid site down time
-			} else {
-				throw $e;
-			}
+			$dbw->endAtomic( __METHOD__ );
+		} finally {
+			$trxProfiler->setSilenced( $oldSilenced );
 		}
-		$dbw->endAtomic( __METHOD__ );
 
 		$this->currentLang = null;
 		$this->batch = [];

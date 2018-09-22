@@ -28,7 +28,7 @@ use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\LoadBalancer;
-use Wikimedia\Rdbms\TransactionProfiler;
+use Wikimedia\ScopedCallback;
 use Wikimedia\WaitConditionLoop;
 
 /**
@@ -171,8 +171,6 @@ class SqlBagOStuff extends BagOStuff {
 				$type = $info['type'] ?? 'mysql';
 				$host = $info['host'] ?? '[unknown]';
 				$this->logger->debug( __CLASS__ . ": connecting to $host" );
-				// Use a blank trx profiler to ignore expections as this is a cache
-				$info['trxProfiler'] = new TransactionProfiler();
 				$db = Database::factory( $type, $info );
 				$db->clearFlag( DBO_TRX ); // auto-commit mode
 			} else {
@@ -182,7 +180,6 @@ class SqlBagOStuff extends BagOStuff {
 				if ( $lb->getServerType( $lb->getWriterIndex() ) !== 'sqlite' ) {
 					// Keep a separate connection to avoid contention and deadlocks
 					$db = $lb->getConnection( $index, [], false, $lb::CONN_TRX_AUTOCOMMIT );
-					// @TODO: Use a blank trx profiler to ignore expections as this is a cache
 				} else {
 					// However, SQLite has the opposite behavior due to DB-level locking.
 					// Stock sqlite MediaWiki installs use a separate sqlite cache DB instead.
@@ -323,6 +320,7 @@ class SqlBagOStuff extends BagOStuff {
 
 		$result = true;
 		$exptime = (int)$expiry;
+		$silenceScope = $this->silenceTransactionProfiler();
 		foreach ( $keysByTable as $serverIndex => $serverKeys ) {
 			$db = null;
 			try {
@@ -384,6 +382,7 @@ class SqlBagOStuff extends BagOStuff {
 	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		$db = null;
+		$silenceScope = $this->silenceTransactionProfiler();
 		try {
 			$db = $this->getDB( $serverIndex );
 			$exptime = intval( $exptime );
@@ -425,6 +424,7 @@ class SqlBagOStuff extends BagOStuff {
 	public function delete( $key ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		$db = null;
+		$silenceScope = $this->silenceTransactionProfiler();
 		try {
 			$db = $this->getDB( $serverIndex );
 			$db->delete(
@@ -442,6 +442,7 @@ class SqlBagOStuff extends BagOStuff {
 	public function incr( $key, $step = 1 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		$db = null;
+		$silenceScope = $this->silenceTransactionProfiler();
 		try {
 			$db = $this->getDB( $serverIndex );
 			$step = intval( $step );
@@ -496,6 +497,7 @@ class SqlBagOStuff extends BagOStuff {
 	public function changeTTL( $key, $expiry = 0 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		$db = null;
+		$silenceScope = $this->silenceTransactionProfiler();
 		try {
 			$db = $this->getDB( $serverIndex );
 			$db->update(
@@ -564,6 +566,7 @@ class SqlBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function deleteObjectsExpiringBefore( $timestamp, $progressCallback = false ) {
+		$silenceScope = $this->silenceTransactionProfiler();
 		for ( $serverIndex = 0; $serverIndex < $this->numServers; $serverIndex++ ) {
 			$db = null;
 			try {
@@ -641,6 +644,7 @@ class SqlBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function deleteAll() {
+		$silenceScope = $this->silenceTransactionProfiler();
 		for ( $serverIndex = 0; $serverIndex < $this->numServers; $serverIndex++ ) {
 			$db = null;
 			try {
@@ -821,5 +825,19 @@ class SqlBagOStuff extends BagOStuff {
 		);
 
 		return ( $loop->invoke() === $loop::CONDITION_REACHED );
+	}
+
+	/**
+	 * Returns a ScopedCallback which resets the silence flag in the transaction profiler when it is
+	 * destroyed on the end of a scope, for example on return or throw
+	 * @return ScopedCallback
+	 * @since 1.32
+	 */
+	protected function silenceTransactionProfiler() {
+		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$oldSilenced = $trxProfiler->setSilenced( true );
+		return new ScopedCallback( function () use ( $trxProfiler, $oldSilenced ) {
+			$trxProfiler->setSilenced( $oldSilenced );
+		} );
 	}
 }
