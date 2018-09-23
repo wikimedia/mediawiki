@@ -543,6 +543,7 @@
 	"botpasswords-invalid-name": "El nome d'usuariu especificáu nun contien el separador de contraseña de bot («$1»).",
 	"botpasswords-not-exist": "L'usuariu «$1» nun tien una contraseña de bot llamada «$2».",
 	"botpasswords-needs-reset": "Tien de reniciase la contraseña del robot «$2», propiedá {{GENDER:$1|del usuariu|de la usuaria}} «$1».",
+	"botpasswords-locked": "Nun puedes aniciar sesión con una contraseña de bot porque la to cuenta ta bloquiada.",
 	"resetpass_forbidden": "Nun puen camudase les contraseñes",
 	"resetpass_forbidden-reason": "Les contraseñes nun pueden camudase: $1",
 	"resetpass-no-info": "Tienes d'aniciar sesión pa entrar direutamente a esta páxina.",

@@ -2410,7 +2410,7 @@
 	"undeleteinvert": "선택 반전",
 	"undeletecomment": "이유:",
 	"cannotundelete": "일부 또는 모든 항목의 되살리기를 실패했습니다:\n$1",
-	"undeletedpage": "<strong>$1 문서가 복구되었습니다.</strong>\n\n[[Special:Log/delete|삭제 기록]]에서 최근의 삭제 및 복구 기록을 볼 수 있습니다.",
+	"undeletedpage": "<strong>$1 문서가 복구되었습니다</strong>\n\n[[Special:Log/delete|삭제 기록]]에서 최근의 삭제 및 복구 기록을 볼 수 있습니다.",
 	"undelete-header": "최근에 삭제한 문서에 대한 기록은 [[Special:Log/delete|여기]]에서 볼 수 있습니다.",
 	"undelete-search-title": "삭제된 문서 검색",
 	"undelete-search-box": "삭제된 문서 검색",

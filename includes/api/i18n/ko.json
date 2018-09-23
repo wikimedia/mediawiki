@@ -629,6 +629,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-loginfo": "적절한 곳에 로그 정보를 추가합니다.",
 	"apihelp-query+watchlistraw-summary": "현재 사용자의 주시문서 목록의 모든 문서를 가져옵니다.",
 	"apihelp-removeauthenticationdata-summary": "현재 사용자의 인증 데이터를 제거합니다.",
+	"apihelp-removeauthenticationdata-example-simple": "<kbd>FooAuthenticationRequest</kbd>에 대한 현재 사용자의 데이터의 제거를 시도합니다.",
 	"apihelp-resetpassword-summary": "비밀번호 재설정 이메일을 사용자에게 보냅니다.",
 	"apihelp-resetpassword-param-user": "재설정할 사용자입니다.",
 	"apihelp-resetpassword-param-email": "재설정할 사용자의 이메일 주소입니다.",
