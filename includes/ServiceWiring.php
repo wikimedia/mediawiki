@@ -321,8 +321,7 @@ return [
 			};
 		}
 
-		// XXX: MimeMagic::singleton currently requires this service to return an instance of MimeMagic
-		return new MimeMagic( $params );
+		return new MimeAnalyzer( $params );
 	},
 
 	'NameTableStoreFactory' => function ( MediaWikiServices $services ) : NameTableStoreFactory {

@@ -950,7 +950,6 @@ $wgAutoloadLocalClasses = [
 	'MigrateFileRepoLayout' => __DIR__ . '/maintenance/migrateFileRepoLayout.php',
 	'MigrateUserGroup' => __DIR__ . '/maintenance/migrateUserGroup.php',
 	'MimeAnalyzer' => __DIR__ . '/includes/libs/mime/MimeAnalyzer.php',
-	'MimeMagic' => __DIR__ . '/includes/MimeMagic.php',
 	'MinifyScript' => __DIR__ . '/maintenance/minify.php',
 	'MostcategoriesPage' => __DIR__ . '/includes/specials/SpecialMostcategories.php',
 	'MostimagesPage' => __DIR__ . '/includes/specials/SpecialMostimages.php',
