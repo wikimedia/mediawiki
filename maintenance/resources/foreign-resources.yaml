@@ -71,10 +71,10 @@ mustache:
   type: multi-file
   files:
     mustache.js:
-      src: https://raw.githubusercontent.com/janl/mustache.js/d9aa70301432214ffe3c665a1d961fab705179c4/mustache.js
-      integrity: sha384-P2daDexXWeaWn28b70xr3OnPcWr/HxLvsNeC5OhLFATmDPQ+sNWIC+s8eCh1+F6Q
+      src: https://raw.githubusercontent.com/janl/mustache.js/v1.0.0/mustache.js
+      integrity: sha384-k2UYqmzoiq/qgIzZvcYBxbXQW4YdPAsXDOTkHTGb9TCZ9sjCkyT4TlaUN0wQRkql
     LICENSE:
-      src: https://raw.githubusercontent.com/janl/mustache.js/d9aa70301432214ffe3c665a1d961fab705179c4/LICENSE
+      src: https://raw.githubusercontent.com/janl/mustache.js/v1.0.0/LICENSE
       integrity: sha384-MYVwXwula9+YkyXexOJVZ0v0DaVvG22uX57mNq5Di+7u8OH9EG9q3yuXkp1Iehiq
 
 oojs:
