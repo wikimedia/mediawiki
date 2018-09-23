@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Timestamp\TimestampException;
+
 /**
  * A special page that lists log entries
  *
@@ -63,10 +65,18 @@ class SpecialLog extends SpecialPage {
 		// Set date values
 		$dateString = $this->getRequest()->getVal( 'wpdate' );
 		if ( !empty( $dateString ) ) {
-			$dateStamp = MWTimestamp::getInstance( $dateString . ' 00:00:00' );
-			$opts->setValue( 'year', (int)$dateStamp->format( 'Y' ) );
-			$opts->setValue( 'month', (int)$dateStamp->format( 'm' ) );
-			$opts->setValue( 'day', (int)$dateStamp->format( 'd' ) );
+			try {
+				$dateStamp = MWTimestamp::getInstance( $dateString . ' 00:00:00' );
+			} catch ( TimestampException $e ) {
+				// If users provide an invalid date, silently ignore it
+				// instead of letting an exception bubble up (T201411)
+				$dateStamp = false;
+			}
+			if ( $dateStamp ) {
+				$opts->setValue( 'year', (int)$dateStamp->format( 'Y' ) );
+				$opts->setValue( 'month', (int)$dateStamp->format( 'm' ) );
+				$opts->setValue( 'day', (int)$dateStamp->format( 'd' ) );
+			}
 		}
 
 		# Don't let the user get stuck with a certain date
