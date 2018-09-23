@@ -3354,11 +3354,12 @@ class Title implements LinkTarget {
 		$id = $this->getArticleID();
 		if ( $id ) {
 			$cache = ObjectCache::getMainWANInstance();
+			$fname = __METHOD__;
 			$rows = $cache->getWithSetCallback(
 				// Page protections always leave a new null revision
 				$cache->makeKey( 'page-restrictions', $id, $this->getLatestRevID() ),
 				$cache::TTL_DAY,
-				function ( $curValue, &$ttl, array &$setOpts ) {
+				function ( $curValue, &$ttl, array &$setOpts ) use ( $fname ) {
 					$dbr = wfGetDB( DB_REPLICA );
 
 					$setOpts += Database::getCacheSetOptions( $dbr );
@@ -3368,7 +3369,7 @@ class Title implements LinkTarget {
 							'page_restrictions',
 							[ 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ],
 							[ 'pr_page' => $this->getArticleID() ],
-							__METHOD__
+							$fname
 						)
 					);
 				}
