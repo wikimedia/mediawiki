@@ -316,6 +316,8 @@ because of Phabricator reports.
   behaviour which has been deprecated since 1.24.
 * LBFactory, deprecated since 1.28, has been removed. Instead, use
   Wikimedia\Rdbms\LBFactory.
+* The MimeMagic class, deprecated since 1.28 has been removed. Get a
+  MimeAnalyzer instance from MediaWikiServices instead.
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit

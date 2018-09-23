@@ -2353,7 +2353,7 @@ $title: title of the message (string)
 $code: code (string) denoting the language to try.
 
 'MimeMagicGuessFromContent': Allows MW extensions guess the MIME by content.
-$mimeMagic: Instance of MimeMagic.
+$mimeMagic: Instance of MimeAnalyzer.
 &$head: First 1024 bytes of the file in a string (in - Do not alter!).
 &$tail: More or equal than last 65558 bytes of the file in a string
   (in - Do not alter!).
@@ -2362,7 +2362,7 @@ $file: File path.
 
 'MimeMagicImproveFromExtension': Allows MW extensions to further improve the
 MIME type detected by considering the file extension.
-$mimeMagic: Instance of MimeMagic.
+$mimeMagic: Instance of MimeAnalyzer.
 $ext: File extension.
 &$mime: MIME type (in/out).
 
@@ -2370,7 +2370,7 @@ $ext: File extension.
 and the list mapping MIME types to file extensions.
 As an extension author, you are encouraged to submit patches to MediaWiki's
 core to add new MIME types to mime.types.
-$mimeMagic: Instance of MimeMagic.
+$mimeMagic: Instance of MimeAnalyzer.
   Use $mimeMagic->addExtraInfo( $stringOfInfo );
   for adding new MIME info to the list.
   Use $mimeMagic->addExtraTypes( $stringOfTypes );

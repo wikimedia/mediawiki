@@ -26,7 +26,7 @@
  * @since 1.28
  */
 class MWFileProps {
-	/** @var MimeMagic */
+	/** @var MimeAnalyzer */
 	private $magic;
 
 	/**
