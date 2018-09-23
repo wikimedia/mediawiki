@@ -1428,6 +1428,7 @@
 	"rollback": "ترميمن کي واپس ورايو",
 	"rollbacklink": "واپس ورايو",
 	"rollbacklinkcount": "اڻڪريو $1 {{PLURAL:$1|ترميم|ترميمون}}",
+	"revertpage": "ترميمون واپس ڪيون [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) [[User:$1|$1]] جي آخري ترميمن ڏانهن",
 	"changecontentmodel-title-label": "صفحي جو عنوان",
 	"changecontentmodel-reason-label": "سبب:",
 	"logentry-contentmodel-change-revertlink": "واپس ورايو",
