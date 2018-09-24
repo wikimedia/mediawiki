@@ -141,3 +141,9 @@ qunitjs:
     qunit.css:
       src: https://code.jquery.com/qunit/qunit-2.6.2.css
       integrity: sha256-qpkurjTvVTJJCSpMABcvF4IlYUJkd8saxiHgUQpEjX8=
+
+sinonjs:
+  type: file
+  src: https://sinonjs.org/releases/sinon-1.17.3.js
+  integrity: sha384-8+RlaM2FW7qMqjxpM5NTVM0y6sTY+vTi/AHnk7Fd7NHjBye9sVxxsMjyxVJnPBtU
+  dest: sinon-1.17.3.js
