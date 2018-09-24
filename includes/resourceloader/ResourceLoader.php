@@ -1584,6 +1584,9 @@ MESSAGE;
 	 * Global state and $wgRequest are evil, but we're using it right
 	 * now and sometimes we need to be able to force ResourceLoader to
 	 * re-evaluate the context because it has changed (e.g. in the test suite).
+	 *
+	 * @internal For use by unit tests
+	 * @codeCoverageIgnore
 	 */
 	public static function clearCache() {
 		self::$debugMode = null;
