@@ -813,7 +813,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 			} else {
 				// Infer changes based on definition and other metrics
 				$summary = $this->getDefinitionSummary( $context );
-				if ( !isset( $summary['_cacheEpoch'] ) ) {
+				if ( !isset( $summary['_class'] ) ) {
 					throw new LogicException( 'getDefinitionSummary must call parent method' );
 				}
 				$str = json_encode( $summary );
@@ -883,7 +883,9 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
 		return [
 			'_class' => static::class,
-			'_cacheEpoch' => $this->getConfig()->get( 'CacheEpoch' ),
+			// Make sure that when filter cache for minification is invalidated,
+			// we also change the HTTP urls and mw.loader.store keys (T176884).
+			'_cacheVersion' => ResourceLoader::CACHE_VERSION,
 		];
 	}
 

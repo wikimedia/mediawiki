@@ -3876,6 +3876,7 @@
 	"mcrundofailed": "Title of the error page when an editless undo fails.",
 	"mcrundo-missingparam": "Error displayed when parameters for action=mcrundo are missing",
 	"mcrundo-changed": "Message displayed when the page has been edited between the loading and submission of an editless undo.",
+	"mcrundo-parse-failed": "Error message indicating that the page's content can not be parsed because it is syntactically invalid. This may occurr for content types using serialization or a strict markup syntax.\n\nParameters:\n* $1 – specific error message",
 	"semicolon-separator": "{{optional}}",
 	"comma-separator": "{{optional}}\n\nWarning: languages have different usages of punctuation, and sometimes they are swapped (e.g. openining and closing quotation marks, or full stop and colon in Armenian), or change their form (the full stop in Chinese and Japanese, the prefered \"colon\" in Armenian used in fact as the regular full stop, the comma in Arabic, Armenian, and Chinese...)\n\nTheir spacing (before or after) may also vary across languages (for example French requires a non-breaking space, preferably narrow if the browser supports NNBSP, on the inner side of some punctuations like quotation/question/exclamation marks, colon, and semicolons).",
 	"colon-separator": "{{optional}}\nChange it only if your language uses another character for ':' or it needs an extra space before the colon.",

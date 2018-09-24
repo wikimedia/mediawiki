@@ -3674,6 +3674,7 @@
 	"mcrundofailed": "Undo failed",
 	"mcrundo-missingparam": "Missing required parameters on request.",
 	"mcrundo-changed": "The page has been changed since you viewed the diff. Please review the new change.",
+	"mcrundo-parse-failed": "Failed to parse the new revision: $1",
 	"semicolon-separator": ";&#32;",
 	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",

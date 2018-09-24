@@ -1800,7 +1800,7 @@ class OutputPageTest extends MediaWikiTestCase {
 				'exemptStyleModules' => [ 'site' => [ 'site.styles' ], 'user' => [ 'user.styles' ] ],
 				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=fallback"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=user.styles&amp;only=styles&amp;skin=fallback&amp;version=1e9z0ox"/>',
+				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=user.styles&amp;only=styles&amp;skin=fallback&amp;version=1ai9g6t"/>',
 			],
 			'custom modules' => [
 				'exemptStyleModules' => [
@@ -1811,7 +1811,7 @@ class OutputPageTest extends MediaWikiTestCase {
 				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=example.site.a%2Cb&amp;only=styles&amp;skin=fallback"/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=fallback"/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=example.user&amp;only=styles&amp;skin=fallback&amp;version=0a56zyi"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=user.styles&amp;only=styles&amp;skin=fallback&amp;version=1e9z0ox"/>',
+				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=user.styles&amp;only=styles&amp;skin=fallback&amp;version=1ai9g6t"/>',
 			],
 		];
 		// phpcs:enable

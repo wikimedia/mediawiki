@@ -221,7 +221,7 @@ return [
 		'dependencies' => 'mediawiki.jqueryMsg',
 	],
 	'jquery.cookie' => [
-		'scripts' => 'resources/lib/jquery.cookie.js',
+		'scripts' => 'resources/lib/jquery.cookie/jquery.cookie.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.form' => [
