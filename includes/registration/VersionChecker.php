@@ -36,6 +36,11 @@ class VersionChecker {
 	private $coreVersion = false;
 
 	/**
+	 * @var Constraint|bool representing PHP version
+	 */
+	private $phpVersion = false;
+
+	/**
 	 * @var array Loaded extensions
 	 */
 	private $loaded = [];
@@ -48,9 +53,10 @@ class VersionChecker {
 	/**
 	 * @param string $coreVersion Current version of core
 	 */
-	public function __construct( $coreVersion ) {
+	public function __construct( $coreVersion, $phpVersion ) {
 		$this->versionParser = new VersionParser();
 		$this->setCoreVersion( $coreVersion );
+		$this->setPhpVersion( $phpVersion );
 	}
 
 	/**
@@ -83,6 +89,21 @@ class VersionChecker {
 	}
 
 	/**
+	 * Set PHP version.
+	 *
+	 * @param string $phpVersion Current PHP version. Must be well-formed.
+	 * @throws UnexpectedValueException
+	 */
+	private function setPhpVersion( $phpVersion ) {
+		// normalize to make this throw an exception if the version is invalid
+		$this->phpVersion = new Constraint(
+			'==',
+			$this->versionParser->normalize( $phpVersion )
+		);
+		$this->phpVersion->setPrettyString( $phpVersion );
+	}
+
+	/**
 	 * Check all given dependencies if they are compatible with the named
 	 * installed extensions in the $credits array.
 	 *
@@ -90,6 +111,9 @@ class VersionChecker {
 	 *     {
 	 *       'FooBar' => {
 	 *         'MediaWiki' => '>= 1.25.0',
+	 *         'platform': {
+	 *           'php': '>= 7.0.0'
+	 *         },
 	 *         'extensions' => {
 	 *           'FooBaz' => '>= 1.25.0'
 	 *         },
@@ -108,12 +132,45 @@ class VersionChecker {
 			foreach ( $dependencies as $dependencyType => $values ) {
 				switch ( $dependencyType ) {
 					case ExtensionRegistry::MEDIAWIKI_CORE:
-						$mwError = $this->handleMediaWikiDependency( $values, $extension );
+						$mwError = $this->handleDependency(
+							$this->coreVersion,
+							$values,
+							$extension
+						);
 						if ( $mwError !== false ) {
 							$errors[] = [
-								'msg' => $mwError,
+								'msg' =>
+									"{$extension} is not compatible with the current MediaWiki "
+									. "core (version {$this->coreVersion->getPrettyString()}), "
+									. "it requires: $values."
+								,
 								'type' => 'incompatible-core',
 							];
+						}
+						break;
+					case 'platform':
+						foreach ( $values as $dependency => $constraint ) {
+							if ( $dependency === 'php' ) {
+								$phpError = $this->handleDependency(
+									$this->phpVersion,
+									$constraint,
+									$extension
+								);
+								if ( $phpError !== false ) {
+									$errors[] = [
+										'msg' =>
+											"{$extension} is not compatible with the current PHP "
+											. "version {$this->phpVersion->getPrettyString()}), "
+											. "it requires: $constraint."
+										,
+										'type' => 'incompatible-php',
+									];
+								}
+							} else {
+								// add other platform dependencies here
+								throw new UnexpectedValueException( 'Dependency type ' . $dependency .
+									' unknown in ' . $extension );
+							}
 						}
 						break;
 					case 'extensions':
@@ -138,29 +195,27 @@ class VersionChecker {
 	}
 
 	/**
-	 * Handle a dependency to MediaWiki core. It will check, if a MediaWiki version constraint was
-	 * set with self::setCoreVersion before this call (if not, it will return an empty array) and
-	 * checks the version constraint given against it.
+	 * Handle a simple dependency to MediaWiki core or PHP. See handleMediaWikiDependency and
+	 * handlePhpDependency for details.
 	 *
+	 * @param Constraint|bool $version The version installed
 	 * @param string $constraint The required version constraint for this dependency
 	 * @param string $checkedExt The Extension, which depends on this dependency
-	 * @return bool|string false if no error, or a string with the message
+	 * @return bool false if no error, true else
 	 */
-	private function handleMediaWikiDependency( $constraint, $checkedExt ) {
-		if ( $this->coreVersion === false ) {
-			// Couldn't parse the core version, so we can't check anything
+	private function handleDependency( $version, $constraint, $checkedExt ) {
+		if ( $version === false ) {
+			// Couldn't parse the version, so we can't check anything
 			return false;
 		}
 
 		// if the installed and required version are compatible, return an empty array
 		if ( $this->versionParser->parseConstraints( $constraint )
-			->matches( $this->coreVersion ) ) {
+			->matches( $version ) ) {
 			return false;
 		}
-		// otherwise mark this as incompatible.
-		return "{$checkedExt} is not compatible with the current "
-			. "MediaWiki core (version {$this->coreVersion->getPrettyString()}), it requires: "
-			. "$constraint.";
+
+		return true;
 	}
 
 	/**

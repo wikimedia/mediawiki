@@ -678,6 +678,9 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		$info = self::$default + [
 			'requires' => [
 				'MediaWiki' => '>= 1.25.0',
+				'platform' => [
+					'php' => '>= 5.5.9'
+				],
 				'extensions' => [
 					'Bar' => '*'
 				]
