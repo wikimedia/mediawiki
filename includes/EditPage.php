@@ -1222,7 +1222,9 @@ class EditPage {
 						!$undorev->isDeleted( Revision::DELETED_TEXT ) &&
 						!$oldrev->isDeleted( Revision::DELETED_TEXT )
 					) {
-						if ( WikiPage::hasDifferencesOutsideMainSlot( $undorev, $oldrev ) ) {
+						if ( WikiPage::hasDifferencesOutsideMainSlot( $undorev, $oldrev )
+							|| !$this->isSupportedContentModel( $oldrev->getContentModel() )
+						) {
 							// Hack for undo while EditPage can't handle multi-slot editing
 							$this->context->getOutput()->redirect( $this->mTitle->getFullURL( [
 								'action' => 'mcrundo',
@@ -1302,6 +1304,32 @@ class EditPage {
 					$class = ( $undoMsg == 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
 					$this->editFormPageTop .= $out->parse( "<div class=\"{$class}\">" .
 						$this->context->msg( 'undo-' . $undoMsg )->plain() . '</div>', true, /* interface */true );
+				}
+
+				if ( $content === false ) {
+					// Hack for restoring old revisions while EditPage
+					// can't handle multi-slot editing.
+
+					$curRevision = $this->page->getRevision();
+					$oldRevision = $this->mArticle->getRevisionFetched();
+
+					if ( $curRevision
+						&& $oldRevision
+						&& $curRevision->getId() !== $oldRevision->getId()
+						&& ( WikiPage::hasDifferencesOutsideMainSlot( $oldRevision, $curRevision )
+							|| !$this->isSupportedContentModel( $oldRevision->getContentModel() ) )
+					) {
+						$this->context->getOutput()->redirect(
+							$this->mTitle->getFullURL(
+								[
+									'action' => 'mcrrestore',
+									'restore' => $oldRevision->getId(),
+								]
+							)
+						);
+
+						return false;
+					}
 				}
 
 				if ( $content === false ) {
