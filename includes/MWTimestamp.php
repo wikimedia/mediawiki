@@ -93,9 +93,9 @@ class MWTimestamp extends ConvertibleTimestamp {
 			if ( $tz ) {
 				$this->timestamp->setTimezone( $tz );
 				return new DateInterval( 'P0Y' );
-			} else {
-				$data[0] = 'Offset';
 			}
+
+			$data[0] = 'Offset';
 		}
 
 		$diff = 0;
@@ -189,9 +189,9 @@ class MWTimestamp extends ConvertibleTimestamp {
 		$msg = wfMessage( $key );
 		if ( $msg->exists() ) {
 			return $msg;
-		} else {
-			return new RawMessage( $tzMsg );
 		}
+
+		return new RawMessage( $tzMsg );
 	}
 
 	/**
