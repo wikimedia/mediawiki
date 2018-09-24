@@ -3277,6 +3277,7 @@
 	"redirect-revision": "Versioun vun der Säit",
 	"redirect-file": "Numm vum Fichier",
 	"redirect-not-exists": "Wäert net fonnt",
+	"redirect-not-numeric": "Wäert ne tnumeresch",
 	"fileduplicatesearch": "No duebele Fichiere sichen",
 	"fileduplicatesearch-summary": "Sichen no Doublone vu Fichieren op der Basis vun hirem ''Hash-Wäert''.",
 	"fileduplicatesearch-filename": "Numm vum Fichier:",
