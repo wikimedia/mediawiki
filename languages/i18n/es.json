@@ -175,7 +175,9 @@
 			"Jelou",
 			"Ktranz",
 			"AVIADOR71",
-			"AHmed Khaled"
+			"AHmed Khaled",
+			"Caleidoscopic",
+			"ديفيد"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -3640,6 +3642,7 @@
 	"redirect-file": "Nombre del archivo",
 	"redirect-logid": "Identificador de registro",
 	"redirect-not-exists": "No se encontró el valor",
+	"redirect-not-numeric": "Valor no numérico",
 	"fileduplicatesearch": "Búsqueda de archivos duplicados",
 	"fileduplicatesearch-summary": "Búsqueda de archivos duplicados en base a su valor hash.",
 	"fileduplicatesearch-filename": "Nombre de archivo:",
