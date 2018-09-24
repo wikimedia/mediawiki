@@ -9,6 +9,7 @@ use Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionAccessException;
 use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Storage\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiTestCase;
 use MWException;
@@ -436,7 +437,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			Title::newFromText( __METHOD__ . '-UTPage' )
 		);
 
-		$this->assertSame( $text, $record->getContent( 'main' )->serialize() );
+		$this->assertSame( $text, $record->getContent( SlotRecord::MAIN )->serialize() );
 	}
 
 	/**
@@ -465,7 +466,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			0,
 			Title::newFromText( __METHOD__ . '-UTPage' )
 		);
-		$this->assertSame( 'Söme Content', $record->getContent( 'main' )->serialize() );
+		$this->assertSame( 'Söme Content', $record->getContent( SlotRecord::MAIN )->serialize() );
 	}
 
 	private function makeRow( array $array ) {

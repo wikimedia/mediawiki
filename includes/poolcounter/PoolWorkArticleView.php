@@ -23,6 +23,7 @@ use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Storage\SlotRecord;
 
 class PoolWorkArticleView extends PoolCounterWork {
 	/** @var WikiPage */
@@ -81,7 +82,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 			$revision = new MutableRevisionRecord( $page->getTitle() );
 			$revision->setId( $revid );
 			$revision->setPageId( $page->getId() );
-			$revision->setContent( 'main', $content );
+			$revision->setContent( SlotRecord::MAIN, $content );
 		}
 
 		if ( $revision ) {

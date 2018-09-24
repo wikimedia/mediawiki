@@ -1,6 +1,7 @@
 <?php
 use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Storage\SlotRecord;
 use MediaWiki\User\UserIdentityValue;
 
 /**
@@ -235,7 +236,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$oldRevision->setId( 100 );
 		$oldRevision->setUser( new UserIdentityValue( 7, 'FauxAuthor', 0 ) );
 		$oldRevision->setTimestamp( '20141111111111' );
-		$oldRevision->setContent( 'main', new WikitextContent( 'FAUX' ) );
+		$oldRevision->setContent( SlotRecord::MAIN, new WikitextContent( 'FAUX' ) );
 
 		$po = new ParserOptions( $frank );
 		$po->setCurrentRevisionCallback( function () use ( $oldRevision ) {
@@ -263,7 +264,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$newRevision = new MutableRevisionRecord( $title );
 		$newRevision->setUser( new UserIdentityValue( 9, 'NewAuthor', 0 ) );
 		$newRevision->setTimestamp( '20180808000000' );
-		$newRevision->setContent( 'main', new WikitextContent( 'NEW' ) );
+		$newRevision->setContent( SlotRecord::MAIN, new WikitextContent( 'NEW' ) );
 
 		$po = new ParserOptions( $frank );
 		$po->setIsPreview( true );
@@ -298,7 +299,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$newRevision = new MutableRevisionRecord( $title );
 		$newRevision->setUser( new UserIdentityValue( 9, 'NewAuthor', 0 ) );
 		$newRevision->setTimestamp( '20180808000000' );
-		$newRevision->setContent( 'main', new WikitextContent( $text ) );
+		$newRevision->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 
 		$po = new ParserOptions( $frank );
 		$po->setIsPreview( true );
@@ -329,13 +330,13 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$oldRevision->setId( 100 );
 		$oldRevision->setUser( new UserIdentityValue( 7, 'OldAuthor', 0 ) );
 		$oldRevision->setTimestamp( '20140404000000' );
-		$oldRevision->setContent( 'main', new WikitextContent( 'OLD' ) );
+		$oldRevision->setContent( SlotRecord::MAIN, new WikitextContent( 'OLD' ) );
 
 		$currentRevision = new MutableRevisionRecord( $title );
 		$currentRevision->setId( 200 );
 		$currentRevision->setUser( new UserIdentityValue( 9, 'CurrentAuthor', 0 ) );
 		$currentRevision->setTimestamp( '20160606000000' );
-		$currentRevision->setContent( 'main', new WikitextContent( 'CURRENT' ) );
+		$currentRevision->setContent( SlotRecord::MAIN, new WikitextContent( 'CURRENT' ) );
 
 		$revisionStore = $this->getMockBuilder( RevisionStore::class )
 			->disableOriginalConstructor()

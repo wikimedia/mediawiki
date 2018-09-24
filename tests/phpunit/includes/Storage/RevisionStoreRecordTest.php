@@ -34,7 +34,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$user = new UserIdentityValue( 11, 'Tester', 0 );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
-		$main = SlotRecord::newUnsaved( 'main', new TextContent( 'Lorem Ipsum' ) );
+		$main = SlotRecord::newUnsaved( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
 		$aux = SlotRecord::newUnsaved( 'aux', new TextContent( 'Frumious Bandersnatch' ) );
 		$slots = new RevisionSlots( [ $main, $aux ] );
 
@@ -62,7 +62,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$user = new UserIdentityValue( 11, 'Tester', 0 );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
-		$main = SlotRecord::newUnsaved( 'main', new TextContent( 'Lorem Ipsum' ) );
+		$main = SlotRecord::newUnsaved( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
 		$aux = SlotRecord::newUnsaved( 'aux', new TextContent( 'Frumious Bandersnatch' ) );
 		$slots = new RevisionSlots( [ $main, $aux ] );
 
@@ -220,7 +220,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
-		$main = SlotRecord::newUnsaved( 'main', new TextContent( 'Lorem Ipsum' ) );
+		$main = SlotRecord::newUnsaved( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
 		$aux = SlotRecord::newUnsaved( 'aux', new TextContent( 'Frumious Bandersnatch' ) );
 		$slots = new RevisionSlots( [ $main, $aux ] );
 
@@ -347,19 +347,20 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		);
 
 		// NOTE: slot meta-data is never suppressed, just the content is!
-		$this->assertNotNull( $rev->getSlot( 'main', RevisionRecord::RAW ), 'raw can' );
-		$this->assertNotNull( $rev->getSlot( 'main', RevisionRecord::FOR_PUBLIC ), 'public can' );
+		$this->assertNotNull( $rev->getSlot( SlotRecord::MAIN, RevisionRecord::RAW ), 'raw can' );
+		$this->assertNotNull( $rev->getSlot( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC ),
+			'public can' );
 
 		$this->assertNotNull(
-			$rev->getSlot( 'main', RevisionRecord::FOR_THIS_USER, $user ),
+			$rev->getSlot( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user ),
 			'user can'
 		);
 
-		$rev->getSlot( 'main', RevisionRecord::RAW )->getContent();
+		$rev->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getContent();
 		// NOTE: the content of the current revision is never suppressed!
 		// Check that getContent() doesn't throw SuppressedDataException
-		$rev->getSlot( 'main', RevisionRecord::FOR_PUBLIC )->getContent();
-		$rev->getSlot( 'main', RevisionRecord::FOR_THIS_USER, $user )->getContent();
+		$rev->getSlot( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC )->getContent();
+		$rev->getSlot( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user )->getContent();
 	}
 
 }

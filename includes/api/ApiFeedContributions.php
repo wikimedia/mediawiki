@@ -24,6 +24,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionAccessException;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Storage\SlotRecord;
 
 /**
  * @ingroup API
@@ -174,7 +175,7 @@ class ApiFeedContributions extends ApiBase {
 		if ( $revision ) {
 			$msg = wfMessage( 'colon-separator' )->inContentLanguage()->text();
 			try {
-				$content = $revision->getContent( 'main' );
+				$content = $revision->getContent( SlotRecord::MAIN );
 			} catch ( RevisionAccessException $e ) {
 				$content = null;
 			}

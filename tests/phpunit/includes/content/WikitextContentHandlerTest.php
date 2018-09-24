@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRenderingProvider;
+use MediaWiki\Storage\SlotRecord;
 
 /**
  * @group ContentHandler
@@ -373,7 +374,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$srp = $this->getMock( SlotRenderingProvider::class );
 
 		$handler = new WikitextContentHandler();
-		$updates = $handler->getSecondaryDataUpdates( $title, $content, 'main', $srp );
+		$updates = $handler->getSecondaryDataUpdates( $title, $content, SlotRecord::MAIN, $srp );
 
 		$this->assertEquals( [], $updates );
 	}
@@ -385,7 +386,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$srp = $this->getMock( SlotRenderingProvider::class );
 
 		$handler = new WikitextContentHandler();
-		$updates = $handler->getDeletionUpdates( $title, 'main' );
+		$updates = $handler->getDeletionUpdates( $title, SlotRecord::MAIN );
 
 		$this->assertEquals( [], $updates );
 	}

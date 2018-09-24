@@ -34,7 +34,7 @@ class RevisionArchiveRecordTest extends MediaWikiTestCase {
 		$user = new UserIdentityValue( 11, 'Tester', 0 );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
-		$main = SlotRecord::newUnsaved( 'main', new TextContent( 'Lorem Ipsum' ) );
+		$main = SlotRecord::newUnsaved( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
 		$aux = SlotRecord::newUnsaved( 'aux', new TextContent( 'Frumious Bandersnatch' ) );
 		$slots = new RevisionSlots( [ $main, $aux ] );
 
@@ -65,7 +65,7 @@ class RevisionArchiveRecordTest extends MediaWikiTestCase {
 		$user = new UserIdentityValue( 11, 'Tester', 0 );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
-		$main = SlotRecord::newUnsaved( 'main', new TextContent( 'Lorem Ipsum' ) );
+		$main = SlotRecord::newUnsaved( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
 		$aux = SlotRecord::newUnsaved( 'aux', new TextContent( 'Frumious Bandersnatch' ) );
 		$slots = new RevisionSlots( [ $main, $aux ] );
 
@@ -197,7 +197,7 @@ class RevisionArchiveRecordTest extends MediaWikiTestCase {
 
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
-		$main = SlotRecord::newUnsaved( 'main', new TextContent( 'Lorem Ipsum' ) );
+		$main = SlotRecord::newUnsaved( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
 		$aux = SlotRecord::newUnsaved( 'aux', new TextContent( 'Frumious Bandersnatch' ) );
 		$slots = new RevisionSlots( [ $main, $aux ] );
 

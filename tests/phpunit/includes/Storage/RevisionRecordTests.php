@@ -189,17 +189,18 @@ trait RevisionRecordTests {
 		$rev = $this->newRevision( [ 'rev_deleted' => $visibility ] );
 
 		// NOTE: slot meta-data is never suppressed, just the content is!
-		$this->assertTrue( $rev->hasSlot( 'main' ), 'hasSlot is never suppressed' );
-		$this->assertNotNull( $rev->getSlot( 'main', RevisionRecord::RAW ), 'raw meta' );
-		$this->assertNotNull( $rev->getSlot( 'main', RevisionRecord::FOR_PUBLIC ), 'public meta' );
+		$this->assertTrue( $rev->hasSlot( SlotRecord::MAIN ), 'hasSlot is never suppressed' );
+		$this->assertNotNull( $rev->getSlot( SlotRecord::MAIN, RevisionRecord::RAW ), 'raw meta' );
+		$this->assertNotNull( $rev->getSlot( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC ),
+			'public meta' );
 
 		$this->assertNotNull(
-			$rev->getSlot( 'main', RevisionRecord::FOR_THIS_USER, $user ),
+			$rev->getSlot( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user ),
 			'user can'
 		);
 
 		try {
-			$rev->getSlot( 'main', RevisionRecord::FOR_PUBLIC )->getContent();
+			$rev->getSlot( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC )->getContent();
 			$exception = null;
 		} catch ( SuppressedDataException $ex ) {
 			$exception = $ex;
@@ -212,7 +213,7 @@ trait RevisionRecordTests {
 		);
 
 		try {
-			$rev->getSlot( 'main', RevisionRecord::FOR_THIS_USER, $user )->getContent();
+			$rev->getSlot( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user )->getContent();
 			$exception = null;
 		} catch ( SuppressedDataException $ex ) {
 			$exception = $ex;
@@ -234,16 +235,16 @@ trait RevisionRecordTests {
 		$user = $this->getTestUser( $groups )->getUser();
 		$rev = $this->newRevision( [ 'rev_deleted' => $visibility ] );
 
-		$this->assertNotNull( $rev->getContent( 'main', RevisionRecord::RAW ), 'raw can' );
+		$this->assertNotNull( $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW ), 'raw can' );
 
 		$this->assertSame(
 			$publicCan,
-			$rev->getContent( 'main', RevisionRecord::FOR_PUBLIC ) !== null,
+			$rev->getContent( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC ) !== null,
 			'public can'
 		);
 		$this->assertSame(
 			$userCan,
-			$rev->getContent( 'main', RevisionRecord::FOR_THIS_USER, $user ) !== null,
+			$rev->getContent( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user ) !== null,
 			'user can'
 		);
 	}
@@ -251,7 +252,7 @@ trait RevisionRecordTests {
 	public function testGetSlot() {
 		$rev = $this->newRevision();
 
-		$slot = $rev->getSlot( 'main' );
+		$slot = $rev->getSlot( SlotRecord::MAIN );
 		$this->assertNotNull( $slot, 'getSlot()' );
 		$this->assertSame( 'main', $slot->getRole(), 'getRole()' );
 	}
@@ -259,14 +260,14 @@ trait RevisionRecordTests {
 	public function testHasSlot() {
 		$rev = $this->newRevision();
 
-		$this->assertTrue( $rev->hasSlot( 'main' ) );
+		$this->assertTrue( $rev->hasSlot( SlotRecord::MAIN ) );
 		$this->assertFalse( $rev->hasSlot( 'xyz' ) );
 	}
 
 	public function testGetContent() {
 		$rev = $this->newRevision();
 
-		$content = $rev->getSlot( 'main' );
+		$content = $rev->getSlot( SlotRecord::MAIN );
 		$this->assertNotNull( $content, 'getContent()' );
 		$this->assertSame( CONTENT_MODEL_TEXT, $content->getModel(), 'getModel()' );
 	}
@@ -379,8 +380,8 @@ trait RevisionRecordTests {
 
 	public function provideHasSameContent() {
 		// Create some slots with content
-		$mainA = SlotRecord::newUnsaved( 'main', new TextContent( 'A' ) );
-		$mainB = SlotRecord::newUnsaved( 'main', new TextContent( 'B' ) );
+		$mainA = SlotRecord::newUnsaved( SlotRecord::MAIN, new TextContent( 'A' ) );
+		$mainB = SlotRecord::newUnsaved( SlotRecord::MAIN, new TextContent( 'B' ) );
 		$auxA = SlotRecord::newUnsaved( 'aux', new TextContent( 'A' ) );
 		$auxB = SlotRecord::newUnsaved( 'aux', new TextContent( 'A' ) );
 

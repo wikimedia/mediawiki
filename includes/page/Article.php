@@ -22,6 +22,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\SlotRecord;
 
 /**
  * Class for viewing MediaWiki article and history.
@@ -524,7 +525,7 @@ class Article implements Page {
 	private function applyContentOverride( Content $override ) {
 		// Construct a fake revision
 		$rev = new MutableRevisionRecord( $this->getTitle() );
-		$rev->setContent( 'main', $override );
+		$rev->setContent( SlotRecord::MAIN, $override );
 
 		$this->mRevision = new Revision( $rev );
 
@@ -870,7 +871,7 @@ class Article implements Page {
 		// TODO: find a *good* place for the code that determines the redirect target for
 		// a given revision!
 		// NOTE: Use main slot content. Compare code in DerivedPageDataUpdater::revisionIsRedirect.
-		$content = $revision->getContent( 'main' );
+		$content = $revision->getContent( SlotRecord::MAIN );
 		return $content ? $content->getRedirectTarget() : null;
 	}
 

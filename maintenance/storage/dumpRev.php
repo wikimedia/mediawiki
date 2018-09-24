@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\SlotRecord;
 
 require_once __DIR__ . '/../Maintenance.php';
 
@@ -46,13 +47,13 @@ class DumpRev extends Maintenance {
 			$this->fatalError( "Row not found" );
 		}
 
-		$content = $rev->getContent( 'main' );
+		$content = $rev->getContent( SlotRecord::MAIN );
 		if ( !$content ) {
 			$this->fatalError( "Text not found" );
 		}
 
 		$blobStore = MediaWikiServices::getInstance()->getBlobStore();
-		$slot = $rev->getSlot( 'main' );
+		$slot = $rev->getSlot( SlotRecord::MAIN );
 		$text = $blobStore->getBlob( $slot->getAddress() );
 
 		$this->output( "Text length: " . strlen( $text ) . "\n" );
