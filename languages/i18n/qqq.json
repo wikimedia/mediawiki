@@ -3872,6 +3872,7 @@
 	"confirm-unwatch-top": "Used as confirmation message.",
 	"confirm-rollback-button": "Used as Submit button text.\n{{Identical|OK}}",
 	"confirm-rollback-top": "Used as confirmation message.",
+	"confirm-mcrrestore-title": "Title for the editless restore form.",
 	"confirm-mcrundo-title": "Title for the editless undo form.",
 	"mcrundofailed": "Title of the error page when an editless undo fails.",
 	"mcrundo-missingparam": "Error displayed when parameters for action=mcrundo are missing",

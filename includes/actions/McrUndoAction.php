@@ -28,10 +28,10 @@ use MediaWiki\Storage\SlotRecord;
  */
 class McrUndoAction extends FormAction {
 
-	private $undo = 0, $undoafter = 0, $cur = 0;
+	protected $undo = 0, $undoafter = 0, $cur = 0;
 
 	/** @param RevisionRecord|null */
-	private $curRev = null;
+	protected $curRev = null;
 
 	public function getName() {
 		return 'mcrundo';
@@ -90,9 +90,7 @@ class McrUndoAction extends FormAction {
 		parent::show();
 	}
 
-	protected function checkCanExecute( User $user ) {
-		parent::checkCanExecute( $user );
-
+	protected function initFromParameters() {
 		$this->undoafter = $this->getRequest()->getInt( 'undoafter' );
 		$this->undo = $this->getRequest()->getInt( 'undo' );
 
@@ -106,6 +104,12 @@ class McrUndoAction extends FormAction {
 		}
 		$this->curRev = $curRev->getRevisionRecord();
 		$this->cur = $this->getRequest()->getInt( 'cur', $this->curRev->getId() );
+	}
+
+	protected function checkCanExecute( User $user ) {
+		parent::checkCanExecute( $user );
+
+		$this->initFromParameters();
 
 		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 
@@ -412,6 +416,10 @@ class McrUndoAction extends FormAction {
 			'attribs' => Linker::tooltipAndAccesskeyAttribs( 'diff' ),
 		] );
 
+		$this->addStatePropagationFields( $form );
+	}
+
+	protected function addStatePropagationFields( HTMLForm $form ) {
 		$form->addHiddenField( 'undo', $this->undo );
 		$form->addHiddenField( 'undoafter', $this->undoafter );
 		$form->addHiddenField( 'cur', $this->curRev->getId() );

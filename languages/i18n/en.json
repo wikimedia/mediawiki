@@ -3670,6 +3670,7 @@
 	"confirm-unwatch-top": "Remove this page from your watchlist?",
 	"confirm-rollback-button": "OK",
 	"confirm-rollback-top": "Revert edits to this page?",
+	"confirm-mcrrestore-title": "Restore a revision",
 	"confirm-mcrundo-title": "Undo a change",
 	"mcrundofailed": "Undo failed",
 	"mcrundo-missingparam": "Missing required parameters on request.",
