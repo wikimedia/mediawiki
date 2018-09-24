@@ -68,9 +68,17 @@ jquery:
   dest: jquery.js
 
 jquery.cookie:
-  type: file
-  src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/jquery.cookie.js
-  integrity: sha384-Xxq63E9KDgzUJ6WPNPqVeOtRIwZyx6y9DzEwY2u6LYKSnWrjSoGtWSKmTindYBf2
+  type: multi-file
+  files:
+    jquery.cookie.js:
+      src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/jquery.cookie.js
+      integrity: sha384-Xxq63E9KDgzUJ6WPNPqVeOtRIwZyx6y9DzEwY2u6LYKSnWrjSoGtWSKmTindYBf2
+    MIT-LICENSE.txt:
+      src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/MIT-LICENSE.txt
+      integrity: sha384-zYsGf3KJ7S0AhOICjcoh0kkn7aGZlzYUXXX5xz8dwR9KjLMM+/JPR2g/jVOGGeId
+    CHANGELOG.md:
+      src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/CHANGELOG.md
+      integrity: sha384-SQOHhLc7PHxHDQpGE/zv9XfXKL0A7OBu8kuyVDnHVp+zSoWyRw4xUJ+LSm5ql4kS
 
 mustache:
   type: multi-file
