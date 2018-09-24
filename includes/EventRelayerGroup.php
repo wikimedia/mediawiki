@@ -44,6 +44,7 @@ class EventRelayerGroup {
 	 * @return EventRelayerGroup
 	 */
 	public static function singleton() {
+		wfDeprecated( __METHOD__, '1.27' );
 		return MediaWikiServices::getInstance()->getEventRelayerGroup();
 	}
 
