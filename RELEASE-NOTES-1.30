@@ -312,8 +312,10 @@ changes to languages because of Phabricator reports.
 * (T165846) SECURITY: BotPassword login attempts weren't throttled.
 
 == Compatibility ==
+
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
-HHVM 3.6.5 or later.
+HHVM 3.6.5 or later. MediaWiki requires that the mbstring, xml, ctype, json,
+iconv and fileinfo PHP extensions are loaded to work.
 
 MySQL/MariaDB is the recommended DBMS. PostgreSQL or SQLite can also be used,
 but support for them is somewhat less mature. There is experimental support for
