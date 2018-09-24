@@ -55,12 +55,23 @@
 		},
 		"requires": {
 			"type": "object",
-			"description": "Indicates what versions of MediaWiki core or extensions are required. This syntax may be extended in the future, for example to check dependencies between other services.",
+			"description": "Indicates what versions of PHP, MediaWiki core or extensions are required. This syntax may be extended in the future, for example to check dependencies between other services.",
 			"additionalProperties": false,
 			"properties": {
 				"MediaWiki": {
 					"type": "string",
 					"description": "Version constraint string against MediaWiki core."
+				},
+				"platform": {
+					"type": "object",
+					"description": "Indicates version constraints against platform services.",
+					"additionalProperties": false,
+					"properties": {
+						"php": {
+							"type": "string",
+							"description": "Version constraint string against PHP."
+						}
+					}
 				},
 				"extensions": {
 					"type": "object",
