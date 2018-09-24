@@ -20,6 +20,7 @@
 		"composer/semver": "1.4.2",
 		"cssjanus/cssjanus": "1.2.0",
 		"ext-ctype": "*",
+		"ext-fileinfo": "*",
 		"ext-iconv": "*",
 		"ext-json": "*",
 		"ext-mbstring": "*",
@@ -76,7 +77,6 @@
 	"suggest": {
 		"ext-apcu": "Local data cache for greatly improved performance",
 		"ext-curl": "Improved http communication abilities",
-		"ext-fileinfo": "Improved mime magic detection",
 		"ext-intl": "ICU integration",
 		"ext-wikidiff2": "Diff accelerator",
 		"monolog/monolog": "Flexible debug logging system",
