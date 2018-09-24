@@ -883,6 +883,9 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
 		return [
 			'_class' => static::class,
+			// Make sure that when filter cache for minification is invalidated,
+			// we also change the HTTP urls and mw.loader.store keys (T176884).
+			'_cacheVersion' => ResourceLoader::CACHE_VERSION,
 		];
 	}
 

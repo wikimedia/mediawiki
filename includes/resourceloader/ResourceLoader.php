@@ -37,7 +37,7 @@ use Wikimedia\WrappedString;
  */
 class ResourceLoader implements LoggerAwareInterface {
 	/** @var int */
-	protected static $filterCacheVersion = 8;
+	const CACHE_VERSION = 8;
 
 	/** @var bool */
 	protected static $debugMode = null;
@@ -199,7 +199,8 @@ class ResourceLoader implements LoggerAwareInterface {
 			'resourceloader',
 			'filter',
 			$filter,
-			self::$filterCacheVersion, md5( $data )
+			self::CACHE_VERSION,
+			md5( $data )
 		);
 
 		$result = $cache->get( $key );
