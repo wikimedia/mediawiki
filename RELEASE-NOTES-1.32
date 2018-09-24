@@ -173,7 +173,6 @@ production.
 * Parameter names may no longer contain '{' or '}', as these are now used for
   templated parameters.
 * (T194950) Added 'ApiMaxLagInfo' hook.
-* Added 'ApiParseMakeOutputPage' hook.
 * The following methods now take a RevisionRecord rather than a Revision. No
   external callers are known.
   * ApiFeedContributions::feedItemAuthor()
