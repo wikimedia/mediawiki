@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Assert\ParameterTypeException;
+
 /**
  * @covers TextSlotDiffRenderer
  */
@@ -63,12 +65,12 @@ class TextSlotDiffRendererTest extends MediaWikiTestCase {
 			'non-text left content' => [
 				$this->makeContent( '', 'testing-nontext' ),
 				$this->makeContent( "aaa\nbbb\nccc" ),
-				new InvalidArgumentException( 'TextSlotDiffRenderer does not handle DummyNonTextContent' ),
+				new ParameterTypeException( '$oldContent', 'TextContent|null' ),
 			],
 			'non-text right content' => [
 				$this->makeContent( "aaa\nbbb\nccc" ),
 				$this->makeContent( '', 'testing-nontext' ),
-				new InvalidArgumentException( 'TextSlotDiffRenderer does not handle DummyNonTextContent' ),
+				new ParameterTypeException( '$newContent', 'TextContent|null' ),
 			],
 		];
 	}

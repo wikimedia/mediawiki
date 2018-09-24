@@ -20,6 +20,7 @@
  * @file
  * @ingroup DifferenceEngine
  */
+use Wikimedia\Assert\Assert;
 
 /**
  * Renders a diff for a single slot (that is, a diff between two content objects).
@@ -60,6 +61,37 @@ abstract class SlotDiffRenderer {
 	 */
 	public function getExtraCacheKeys() {
 		return [];
+	}
+
+	/**
+	 * Helper method to normalize the input of getDiff().
+	 * Verifies that at least one of $oldContent and $newContent is not null, verifies that
+	 * they are instances of one of the allowed classes (if provided), and replaces null with
+	 * empty content.
+	 * @param Content|null &$oldContent
+	 * @param Content|null &$newContent
+	 * @param string|array|null $allowedClasses
+	 */
+	protected function normalizeContents(
+		Content &$oldContent = null, Content &$newContent = null, $allowedClasses = null
+	) {
+		if ( !$oldContent && !$newContent ) {
+			throw new InvalidArgumentException( '$oldContent and $newContent cannot both be null' );
+		}
+
+		if ( $allowedClasses ) {
+			if ( is_array( $allowedClasses ) ) {
+				$allowedClasses = implode( '|', $allowedClasses );
+			}
+			Assert::parameterType( $allowedClasses . '|null', $oldContent, '$oldContent' );
+			Assert::parameterType( $allowedClasses . '|null', $newContent, '$newContent' );
+		}
+
+		if ( !$oldContent ) {
+			$oldContent = $newContent->getContentHandler()->makeEmptyContent();
+		} elseif ( !$newContent ) {
+			$newContent = $oldContent->getContentHandler()->makeEmptyContent();
+		}
 	}
 
 }

@@ -46,15 +46,7 @@ class DifferenceEngineSlotDiffRenderer extends SlotDiffRenderer {
 
 	/** @inheritDoc */
 	public function getDiff( Content $oldContent = null, Content $newContent = null ) {
-		if ( !$oldContent && !$newContent ) {
-			throw new InvalidArgumentException( '$oldContent and $newContent cannot both be null' );
-		}
-		if ( !$oldContent || !$newContent ) {
-			$someContent = $newContent ?: $oldContent;
-			$emptyContent = $someContent->getContentHandler()->makeEmptyContent();
-			$oldContent = $oldContent ?: $emptyContent;
-			$newContent = $newContent ?: $emptyContent;
-		}
+		$this->normalizeContents( $oldContent, $newContent );
 		return $this->differenceEngine->generateContentDiffBody( $oldContent, $newContent );
 	}
 

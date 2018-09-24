@@ -116,19 +116,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 
 	/** @inheritDoc */
 	public function getDiff( Content $oldContent = null, Content $newContent = null ) {
-		if ( !$oldContent && !$newContent ) {
-			throw new InvalidArgumentException( '$oldContent and $newContent cannot both be null' );
-		} elseif ( $oldContent && !( $oldContent instanceof TextContent ) ) {
-			throw new InvalidArgumentException( __CLASS__ . ' does not handle ' . get_class( $oldContent ) );
-		} elseif ( $newContent && !( $newContent instanceof TextContent ) ) {
-			throw new InvalidArgumentException( __CLASS__ . ' does not handle ' . get_class( $newContent ) );
-		}
-
-		if ( !$oldContent ) {
-			$oldContent = $newContent->getContentHandler()->makeEmptyContent();
-		} elseif ( !$newContent ) {
-			$newContent = $oldContent->getContentHandler()->makeEmptyContent();
-		}
+		$this->normalizeContents( $oldContent, $newContent, TextContent::class );
 
 		$oldText = $oldContent->serialize();
 		$newText = $newContent->serialize();
