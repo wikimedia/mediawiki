@@ -22,6 +22,7 @@
 			} ).done( function ( data, jqXHR ) {
 				response( data[ 1 ], {
 					type: jqXHR.getResponseHeader( 'X-OpenSearch-Type' ),
+					searchId: jqXHR.getResponseHeader( 'X-Search-ID' ),
 					query: query
 				} );
 			} );
@@ -113,6 +114,7 @@
 				action: 'impression-results',
 				numberOfResults: context.config.suggestions.length,
 				resultSetType: metadata.type || 'unknown',
+				searchId: metadata.searchId || null,
 				query: metadata.query,
 				inputLocation: getInputLocation( context )
 			} );

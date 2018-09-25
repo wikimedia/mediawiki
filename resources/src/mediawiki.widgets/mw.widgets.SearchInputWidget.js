@@ -156,6 +156,7 @@
 		// tracking purposes
 		promise.done( function ( data, jqXHR ) {
 			self.requestType = jqXHR.getResponseHeader( 'X-OpenSearch-Type' );
+			self.searchId = jqXHR.getResponseHeader( 'X-Search-ID' );
 		} );
 
 		return promise;
@@ -173,10 +174,12 @@
 			data: response || {},
 			metadata: {
 				type: this.requestType || 'unknown',
+				searchId: this.searchId || null,
 				query: this.getQueryValue()
 			}
 		};
 		this.requestType = undefined;
+		this.searchId = undefined;
 
 		return resp;
 	};
@@ -215,6 +218,7 @@
 			action: 'impression-results',
 			numberOfResults: items.length,
 			resultSetType: data.metadata.type,
+			searchId: data.metadata.searchId,
 			query: data.metadata.query,
 			inputLocation: this.dataLocation || 'header'
 		} );
