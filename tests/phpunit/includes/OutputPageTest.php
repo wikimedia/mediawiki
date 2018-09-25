@@ -174,11 +174,12 @@ class OutputPageTest extends MediaWikiTestCase {
 
 	/**
 	 * Test the actual behavior of the method (in the case where it doesn't throw, e.g., in
-	 * production).  Since it threw an exception once in this file, it won't when we call it again.
+	 * production).
 	 *
 	 * @covers OutputPage::addScriptFile
 	 */
 	public function testAddDeprecatedScriptFileNoOp() {
+		$this->hideDeprecated( 'OutputPage::addScriptFile' );
 		$op = $this->newInstance();
 		$op->addScriptFile( 'ignored-script.js' );
 
