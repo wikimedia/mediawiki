@@ -71,7 +71,7 @@ class CLIParser extends Maintenance {
 			false,
 			true
 		);
-		$this->addOption( 'tidy', 'Tidy the output' );
+		$this->addOption( 'no-tidy', 'Don\'t tidy the output (deprecated)' );
 		$this->addArg( 'file', 'File containing wikitext (Default: stdin)', false );
 	}
 
@@ -85,7 +85,7 @@ class CLIParser extends Maintenance {
 	 * @return string HTML Rendering
 	 */
 	public function render( $wikitext ) {
-		return $this->parse( $wikitext )->getText();
+		return $this->parse( $wikitext )->getText( [ 'wrapperDivClass' => '' ] );
 	}
 
 	/**
@@ -129,9 +129,10 @@ class CLIParser extends Maintenance {
 	 * @return ParserOutput
 	 */
 	protected function parse( $wikitext ) {
-		$options = new ParserOptions;
-		if ( $this->getOption( 'tidy' ) ) {
-			$options->setTidy( true );
+		$options = ParserOptions::newCanonical();
+		$options->setOption( 'enableLimitReport', false );
+		if ( $this->getOption( 'no-tidy' ) ) {
+			$options->setTidy( false );
 		}
 		return $this->parser->parse(
 			$wikitext,

@@ -320,6 +320,9 @@ because of Phabricator reports.
   Wikimedia\Rdbms\LBFactory.
 * The MimeMagic class, deprecated since 1.28 has been removed. Get a
   MimeAnalyzer instance from MediaWikiServices instead.
+* The '--tidy' option to maintenance/parse.php has been removed.  Tidying
+  the output is now the default.  Use '--no-tidy' to bypass the tidy
+  phase.
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit
