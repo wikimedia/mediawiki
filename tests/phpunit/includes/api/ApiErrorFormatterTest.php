@@ -555,6 +555,10 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	 * @param array $expect
 	 */
 	public function testGetMessageFromException_BC( $exception, $options, $expect ) {
+		if ( $exception instanceof UsageException ) {
+			$this->hideDeprecated( 'UsageException::getMessageArray' );
+		}
+
 		$result = new ApiResult( 8388608 );
 		$formatter = new ApiErrorFormatter_BackCompat( $result );
 
