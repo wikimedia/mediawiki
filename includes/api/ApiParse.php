@@ -868,7 +868,10 @@ class ApiParse extends ApiBase {
 			],
 			'disablelimitreport' => false,
 			'disableeditsection' => false,
-			'disabletidy' => false,
+			'disabletidy' => [
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true, // Since 1.32
+			],
 			'disablestylededuplication' => false,
 			'generatexml' => [
 				ApiBase::PARAM_DFLT => false,

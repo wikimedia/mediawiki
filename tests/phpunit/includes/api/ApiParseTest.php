@@ -97,8 +97,7 @@ class ApiParseTest extends ApiTestCase {
 			$this->assertCount( 1, $res[0] );
 		} else {
 			$this->assertCount( 2, $res[0] );
-			// This deliberately fails if there are extra warnings
-			$this->assertSame( [ 'parse' => [ 'warnings' => $warnings ] ], $res[0]['warnings'] );
+			$this->assertSame( [ 'warnings' => $warnings ], $res[0]['warnings']['parse'] );
 		}
 	}
 
@@ -827,7 +826,8 @@ class ApiParseTest extends ApiTestCase {
 			'disabletidy' => '',
 		] );
 
-		$this->assertParsedTo( "<p><b>Mixed <i>up</b></i>\n</p>", $res2 );
+		$this->assertParsedTo( "<p><b>Mixed <i>up</b></i>\n</p>", $res2,
+			'The parameter "disabletidy" has been deprecated.' );
 	}
 
 	public function testFormatCategories() {

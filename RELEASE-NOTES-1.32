@@ -167,6 +167,9 @@ production.
     content is not being preserved. 'fromsection-{slot}' and 'tosection-{slot}'
     instead expand the given text as if for a section edit. This effectively
     declines T183823 in favor of T185723.
+* (T198214) The 'disabletidy' parameter to action=parse has been
+  deprecated; untidy output will not be supported by future wikitext
+  parsers.
 
 === Action API internal changes in 1.32 ===
 * Added 'ApiParseMakeOutputPage' hook.
