@@ -12,6 +12,16 @@ class OutputPageTest extends MediaWikiTestCase {
 	const SCREEN_MEDIA_QUERY = 'screen and (min-width: 982px)';
 	const SCREEN_ONLY_MEDIA_QUERY = 'only screen and (min-width: 982px)';
 
+	// Ensure that we don't affect the global ResourceLoader state.
+	protected function setUp() {
+		parent::setUp();
+		ResourceLoader::clearCache();
+	}
+	protected function tearDown() {
+		parent::tearDown();
+		ResourceLoader::clearCache();
+	}
+
 	/**
 	 * @dataProvider provideRedirect
 	 *
