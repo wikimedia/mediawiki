@@ -552,6 +552,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			}
 		}
 
+		// Re-enable any disabled deprecation warnings
+		MWDebug::clearLog();
 		// Restore mw globals
 		foreach ( $this->mwGlobals as $key => $value ) {
 			$GLOBALS[$key] = $value;
