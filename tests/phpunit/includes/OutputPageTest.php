@@ -1379,6 +1379,8 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::addWikiText
 	 * @covers OutputPage::addWikiTextWithTitle
 	 * @covers OutputPage::addWikiTextTitle
+	 * @covers OutputPage::addWikiTextTidy
+	 * @covers OutputPage::addWikiTextTitleTidy
 	 * @covers OutputPage::getHTML
 	 */
 	public function testAddWikiText( $method, array $args, $expected ) {
@@ -1411,7 +1413,7 @@ class OutputPageTest extends MediaWikiTestCase {
 					'* Not a list',
 				], 'Non-interface' => [
 					[ "'''Bold'''", true, false ],
-					"<div class=\"mw-parser-output\"><p><b>Bold</b>\n</p></div>",
+					"<p><b>Bold</b>\n</p>",
 				], 'No section edit links' => [
 					[ '== Title ==' ],
 					"<h2><span class=\"mw-headline\" id=\"Title\">Title</span></h2>\n",
@@ -1420,10 +1422,34 @@ class OutputPageTest extends MediaWikiTestCase {
 			'addWikiTextWithTitle' => [
 				'With title at start' => [
 					[ '* {{PAGENAME}}', Title::newFromText( 'Talk:Some page' ) ],
-					"<div class=\"mw-parser-output\"><ul><li>Some page</li></ul>\n</div>",
+					"<ul><li>Some page</li></ul>\n",
 				], 'With title at start' => [
 					[ '* {{PAGENAME}}', Title::newFromText( 'Talk:Some page' ), false ],
-					"<div class=\"mw-parser-output\">* Some page</div>",
+					"* Some page",
+				],
+			],
+			'addWikiTextTidy' => [
+				'SpecialNewimages' => [
+					[ "<p lang='en' dir='ltr'>\nMy message" ],
+					'<p lang="en" dir="ltr">' . "\nMy message\n</p>"
+				], 'List at start' => [
+					[ '* List' ],
+					"<ul><li>List</li></ul>\n",
+				], 'List not at start' => [
+					[ '* <b>Not a list', false ],
+					'<p>* <b>Not a list</b></p>',
+				],
+			],
+			'addWikiTextTitleTidy' => [
+				'With title at start' => [
+					[ '* {{PAGENAME}}', Title::newFromText( 'Talk:Some page' ) ],
+					"<ul><li>Some page</li></ul>\n",
+				], 'With title at start' => [
+					[ '* {{PAGENAME}}', Title::newFromText( 'Talk:Some page' ), false ],
+					"<p>* Some page</p>",
+				], 'EditPage' => [
+					[ "<div class='mw-editintro'>{{PAGENAME}}", Title::newFromText( 'Talk:Some page' ) ],
+					'<div class="mw-editintro">' . "Some page\n</div>"
 				],
 			],
 		];
@@ -1436,6 +1462,16 @@ class OutputPageTest extends MediaWikiTestCase {
 		}
 		foreach ( $tests['addWikiTextWithTitle'] as $key => $val ) {
 			$args = [ $val[0][0], $val[0][1], $val[0][2] ?? true ];
+			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
+				array_merge( [ $args ], array_slice( $val, 1 ) );
+		}
+		foreach ( $tests['addWikiTextTidy'] as $key => $val ) {
+			$args = [ $val[0][0], null, $val[0][1] ?? true, true, false ];
+			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
+				array_merge( [ $args ], array_slice( $val, 1 ) );
+		}
+		foreach ( $tests['addWikiTextTitleTidy'] as $key => $val ) {
+			$args = [ $val[0][0], $val[0][1], $val[0][2] ?? true, true, false ];
 			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
 				array_merge( [ $args ], array_slice( $val, 1 ) );
 		}
@@ -1461,8 +1497,6 @@ class OutputPageTest extends MediaWikiTestCase {
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->addWikiText( 'a' );
 	}
-
-	// @todo How should we cover the Tidy variants?
 
 	/**
 	 * @covers OutputPage::addParserOutputMetadata

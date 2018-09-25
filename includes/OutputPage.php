@@ -1766,7 +1766,8 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add wikitext with a custom Title object
+	 * Add wikitext with a custom Title object.
+	 * Output is unwrapped.
 	 *
 	 * @param string $text Wikitext
 	 * @param Title $title
@@ -1793,6 +1794,7 @@ class OutputPage extends ContextSource {
 
 		$this->addParserOutput( $parserOutput, [
 			'enableSectionEditLinks' => false,
+			'wrapperDivClass' => '',
 		] );
 	}
 
