@@ -89,8 +89,17 @@ class WebInstallerOutput {
 
 	/**
 	 * @param string $text
+	 * @deprecated since 1.32; use addWikiTextInterface instead
 	 */
 	public function addWikiText( $text ) {
+		wfDeprecated( __METHOD__, '1.32' );
+		$this->addWikiTextInterface( $text );
+	}
+
+	/**
+	 * @param string $text
+	 */
+	public function addWikiTextInterface( $text ) {
 		$this->addHTML( $this->parent->parse( $text ) );
 	}
 

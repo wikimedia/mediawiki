@@ -30,12 +30,12 @@ class WebInstallerWelcome extends WebInstallerPage {
 				return 'continue';
 			}
 		}
-		$this->parent->output->addWikiText( wfMessage( 'config-welcome' )->plain() );
+		$this->parent->output->addWikiTextInterface( wfMessage( 'config-welcome' )->plain() );
 		$status = $this->parent->doEnvironmentChecks();
 		if ( $status->isGood() ) {
 			$this->parent->output->addHTML( '<span class="success-message">' .
 				wfMessage( 'config-env-good' )->escaped() . '</span>' );
-			$this->parent->output->addWikiText( wfMessage( 'config-copyright',
+			$this->parent->output->addWikiTextInterface( wfMessage( 'config-copyright',
 				SpecialVersion::getCopyrightAndAuthorList() )->plain() );
 			$this->startForm();
 			$this->endForm();
