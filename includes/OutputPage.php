@@ -1758,6 +1758,7 @@ class OutputPage extends ContextSource {
 	 *    or else addWikiTextAsContent() if $interface is false.
 	 */
 	public function addWikiText( $text, $linestart = true, $interface = true ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		$title = $this->getTitle();
 		if ( !$title ) {
 			throw new MWException( 'Title is null' );
@@ -1935,6 +1936,10 @@ class OutputPage extends ContextSource {
 		$text, Title $title, $linestart, $tidy, $interface, $wrapperClass = null
 	) {
 		global $wgParser;
+
+		if ( !$tidy ) {
+			wfDeprecated( 'disabling tidy', '1.32' );
+		}
 
 		$popts = $this->parserOptions();
 		$oldTidy = $popts->setTidy( $tidy );
