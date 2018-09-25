@@ -106,7 +106,7 @@ class SpecialVersion extends SpecialPage {
 				}
 
 				$out->setPageTitle( $this->msg( 'version-credits-title', $extName ) );
-				$out->addWikiText( $wikiText );
+				$out->addWikiTextAsInterface( $wikiText );
 				break;
 
 			case 'license':
@@ -129,12 +129,12 @@ class SpecialVersion extends SpecialPage {
 				}
 
 				$out->setPageTitle( $this->msg( 'version-license-title', $extName ) );
-				$out->addWikiText( $wikiText );
+				$out->addWikiTextAsInterface( $wikiText );
 				break;
 
 			default:
 				$out->addModuleStyles( 'mediawiki.special.version' );
-				$out->addWikiText(
+				$out->addWikiTextAsInterface(
 					$this->getMediaWikiCredits() .
 					$this->softwareInformation() .
 					$this->getEntryPointInfo()
@@ -146,7 +146,7 @@ class SpecialVersion extends SpecialPage {
 					$this->getParserTags() .
 					$this->getParserFunctionHooks()
 				);
-				$out->addWikiText( $this->getWgHooks() );
+				$out->addWikiTextAsInterface( $this->getWgHooks() );
 				$out->addHTML( $this->IPInfo() );
 
 				break;

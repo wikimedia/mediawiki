@@ -794,7 +794,7 @@ class EditPage {
 		$out->addHTML( $this->editFormTextTop );
 
 		if ( $errorMessage !== '' ) {
-			$out->addWikiText( $errorMessage );
+			$out->addWikiTextAsInterface( $errorMessage );
 			$out->addHTML( "<hr />\n" );
 		}
 
@@ -1640,7 +1640,11 @@ class EditPage {
 			case self::AS_CANNOT_USE_CUSTOM_MODEL:
 			case self::AS_PARSE_ERROR:
 			case self::AS_UNICODE_NOT_SUPPORTED:
-				$out->addWikiText( '<div class="error">' . "\n" . $status->getWikiText() . '</div>' );
+				$out->addWikiTextAsInterface(
+					'<div class="error">' . "\n" .
+					$status->getWikiText() .
+					'</div>'
+				);
 				return true;
 
 			case self::AS_SUCCESS_NEW_ARTICLE:
@@ -2991,7 +2995,7 @@ ERROR;
 					$this->contentFormat,
 					$ex->getMessage()
 				);
-				$out->addWikiText( '<div class="error">' . $msg->plain() . '</div>' );
+				$out->addWikiTextAsInterface( '<div class="error">' . $msg->plain() . '</div>' );
 			}
 		}
 
@@ -3109,7 +3113,7 @@ ERROR;
 			}
 
 			if ( $this->hookError !== '' ) {
-				$out->addWikiText( $this->hookError );
+				$out->addWikiTextAsInterface( $this->hookError );
 			}
 
 			if ( $this->section != 'new' ) {
@@ -3466,7 +3470,7 @@ ERROR;
 					$this->contentFormat,
 					$ex->getMessage()
 				);
-				$out->addWikiText( '<div class="error">' . $msg->plain() . '</div>' );
+				$out->addWikiTextAsInterface( '<div class="error">' . $msg->plain() . '</div>' );
 			}
 		}
 	}
@@ -3707,7 +3711,7 @@ ERROR;
 		$out->addHTML( "<div class='editCheckboxes'>" . $checkboxesHTML . "</div>\n" );
 
 		// Show copyright warning.
-		$out->addWikiText( $this->getCopywarn() );
+		$out->addWikiTextAsInterface( $this->getCopywarn() );
 		$out->addHTML( $this->editFormTextAfterWarn );
 
 		$out->addHTML( "<div class='editButtons'>\n" );

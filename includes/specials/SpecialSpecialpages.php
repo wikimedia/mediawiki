@@ -151,7 +151,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 			$out->wrapWikiMsg(
 				"<h2 class=\"mw-specialpages-note-top\">$1</h2>", 'specialpages-note-top'
 			);
-			$out->addWikiText(
+			$out->addWikiTextAsInterface(
 				"<div class=\"mw-specialpages-notes\">\n" .
 				implode( "\n", $notes ) .
 				"\n</div>"

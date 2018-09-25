@@ -143,7 +143,7 @@ class MediaStatisticsPage extends QueryPage {
 			$this->outputTableEnd();
 			// add total size of all files
 			$this->outputMediaType( 'total' );
-			$this->getOutput()->addWikiText(
+			$this->getOutput()->addWikiTextAsInterface(
 				$this->msg( 'mediastatistics-allbytes' )
 					->numParams( $this->totalSize )
 					->sizeParams( $this->totalSize )
@@ -157,7 +157,7 @@ class MediaStatisticsPage extends QueryPage {
 	 */
 	protected function outputTableEnd() {
 		$this->getOutput()->addHTML( Html::closeElement( 'table' ) );
-		$this->getOutput()->addWikiText(
+		$this->getOutput()->addWikiTextAsInterface(
 				$this->msg( 'mediastatistics-bytespertype' )
 					->numParams( $this->totalPerType )
 					->sizeParams( $this->totalPerType )
