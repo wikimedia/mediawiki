@@ -468,7 +468,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			if ( $data['CCMe'] && $to != $from ) {
 				$ccTo = $from;
 				$ccFrom = $from;
-				$ccSubject = $context->msg( 'emailccsubject' )->rawParams(
+				$ccSubject = $context->msg( 'emailccsubject' )->plaintextParams(
 					$target->getName(), $subject )->text();
 				$ccText = $text;
 
