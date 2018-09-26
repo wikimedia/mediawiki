@@ -307,7 +307,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 			if ( $this->slotRoles === null ) {
 				try {
-					$slot = $revision->getSlot( 'main', RevisionRecord::RAW );
+					$slot = $revision->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
 				} catch ( RevisionAccessException $e ) {
 					// Back compat: If there's no slot, there's no content, so set 'textmissing'
 					// @todo: Gergő says to mention T198099 as a "todo" here.
@@ -621,8 +621,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 	public function getAllowedParams() {
 		$slotRoles = MediaWikiServices::getInstance()->getSlotRoleStore()->getMap();
-		if ( !in_array( 'main', $slotRoles, true ) ) {
-			$slotRoles[] = 'main';
+		if ( !in_array( SlotRecord::MAIN, $slotRoles, true ) ) {
+			$slotRoles[] = SlotRecord::MAIN;
 		}
 		sort( $slotRoles, SORT_STRING );
 

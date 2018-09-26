@@ -118,21 +118,21 @@ class SlotRecordTest extends MediaWikiTestCase {
 	}
 
 	public function testGetContentId_fails() {
-		$record = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$this->setExpectedException( IncompleteRevisionException::class );
 
 		$record->getContentId();
 	}
 
 	public function testGetAddress_fails() {
-		$record = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$this->setExpectedException( IncompleteRevisionException::class );
 
 		$record->getAddress();
 	}
 
 	public function provideIncomplete() {
-		$unsaved = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$unsaved = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		yield 'unsaved' => [ $unsaved ];
 
 		$parent = new SlotRecord( $this->makeRow(), new WikitextContent( 'A' ) );
@@ -144,7 +144,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 	 * @dataProvider provideIncomplete
 	 */
 	public function testGetRevision_fails( SlotRecord $record ) {
-		$record = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$this->setExpectedException( IncompleteRevisionException::class );
 
 		$record->getRevision();
@@ -154,7 +154,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 	 * @dataProvider provideIncomplete
 	 */
 	public function testGetOrigin_fails( SlotRecord $record ) {
-		$record = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$this->setExpectedException( IncompleteRevisionException::class );
 
 		$record->getOrigin();
@@ -173,7 +173,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 
 		$this->assertSame( $hash, SlotRecord::base36Sha1( $text ) );
 
-		$record = SlotRecord::newUnsaved( 'main', new WikitextContent( $text ) );
+		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( $text ) );
 		$this->assertSame( $hash, $record->getSha1() );
 	}
 
@@ -225,7 +225,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 
 	public function testNewSaved() {
 		// This would happen while doing an edit, before saving revision meta-data.
-		$unsaved = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$unsaved = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 
 		// This would happen while doing an edit, after saving the revision meta-data
 		// and content meta-data.
@@ -285,7 +285,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 	}
 
 	public function provideNewSaved_InvalidArgumentException() {
-		$unsaved = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$unsaved = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 
 		yield 'bad revision id' => [ 'xyzzy', 5, 'address', $unsaved ];
 		yield 'bad content id' => [ 7, 'xyzzy', 'address', $unsaved ];

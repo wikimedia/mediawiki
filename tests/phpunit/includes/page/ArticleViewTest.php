@@ -2,6 +2,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\SlotRecord;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
@@ -43,7 +44,7 @@ class ArticleViewTest extends MediaWikiTestCase {
 			}
 
 			$u = $page->newPageUpdater( $user );
-			$u->setContent( 'main', $cont );
+			$u->setContent( SlotRecord::MAIN, $cont );
 			$rev = $u->saveRevision( CommentStoreComment::newUnsavedComment( 'Rev ' . $key ) );
 
 			$revisions[ $key ] = $rev;
@@ -201,7 +202,7 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$rev->setComment( $dummyRev->getComment() );
 		$rev->setTimestamp( $dummyRev->getTimestamp() );
 
-		$rev->setContent( 'main', $content );
+		$rev->setContent( SlotRecord::MAIN, $content );
 
 		$rev = new Revision( $rev );
 
@@ -453,7 +454,7 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$this->setTemporaryHook(
 			'ArticleRevisionViewCustom',
 			function ( RevisionRecord $rev, Title $title, $oldid, OutputPage $output ) use ( $page ) {
-				$content = $rev->getContent( 'main' );
+				$content = $rev->getContent( SlotRecord::MAIN );
 
 				$this->assertSame( $page->getTitle(), $title, '$title' );
 				$this->assertSame( 'Test A', $content->getNativeData(), '$content' );

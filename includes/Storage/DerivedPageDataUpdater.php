@@ -659,7 +659,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		}
 
 		// TODO: MCR: ask all slots if they have links [SlotHandler/PageTypeHandler]
-		$mainContent = $this->getRawContent( 'main' );
+		$mainContent = $this->getRawContent( SlotRecord::MAIN );
 		return $mainContent->isCountable( $hasLinks );
 	}
 
@@ -668,7 +668,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 */
 	public function isRedirect() {
 		// NOTE: main slot determines redirect status
-		$mainContent = $this->getRawContent( 'main' );
+		$mainContent = $this->getRawContent( SlotRecord::MAIN );
 
 		return $mainContent->isRedirect();
 	}
@@ -680,7 +680,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 */
 	private function revisionIsRedirect( RevisionRecord $rev ) {
 		// NOTE: main slot determines redirect status
-		$mainContent = $rev->getContent( 'main', RevisionRecord::RAW );
+		$mainContent = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 
 		return $mainContent->isRedirect();
 	}
@@ -751,8 +751,8 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		$stashedEdit = false;
 
 		// TODO: MCR: allow output for all slots to be stashed.
-		if ( $useStash && $slotsUpdate->isModifiedSlot( 'main' ) ) {
-			$mainContent = $slotsUpdate->getModifiedSlot( 'main' )->getContent();
+		if ( $useStash && $slotsUpdate->isModifiedSlot( SlotRecord::MAIN ) ) {
+			$mainContent = $slotsUpdate->getModifiedSlot( SlotRecord::MAIN )->getContent();
 			$legacyUser = User::newFromIdentity( $user );
 			$stashedEdit = ApiStashEdit::checkCache( $title, $mainContent, $legacyUser );
 		}
@@ -807,7 +807,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 				// No PST for inherited slots! Note that "modified" slots may still be inherited
 				// from an earlier version, e.g. for rollbacks.
 				$pstSlot = $slot;
-			} elseif ( $role === 'main' && $stashedEdit ) {
+			} elseif ( $role === SlotRecord::MAIN && $stashedEdit ) {
 				// TODO: MCR: allow PST content for all slots to be stashed.
 				$pstSlot = SlotRecord::newUnsaved( $role, $stashedEdit->pstContent );
 			} else {
@@ -1223,11 +1223,11 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 
 		$preparedEdit->popts = $this->getCanonicalParserOptions();
 		$preparedEdit->output = $this->getCanonicalParserOutput();
-		$preparedEdit->pstContent = $this->revision->getContent( 'main' );
+		$preparedEdit->pstContent = $this->revision->getContent( SlotRecord::MAIN );
 		$preparedEdit->newContent =
-			$slotsUpdate->isModifiedSlot( 'main' )
-			? $slotsUpdate->getModifiedSlot( 'main' )->getContent()
-			: $this->revision->getContent( 'main' ); // XXX: can we just remove this?
+			$slotsUpdate->isModifiedSlot( SlotRecord::MAIN )
+			? $slotsUpdate->getModifiedSlot( SlotRecord::MAIN )->getContent()
+			: $this->revision->getContent( SlotRecord::MAIN ); // XXX: can we just remove this?
 		$preparedEdit->oldContent = null; // unused. // XXX: could get this from the parent revision
 		$preparedEdit->revid = $this->revision ? $this->revision->getId() : null;
 		$preparedEdit->timestamp = $preparedEdit->output->getCacheTime();
@@ -1394,7 +1394,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 
 		// TODO: MCR: check if *any* changed slot supports categories!
 		if ( $this->rcWatchCategoryMembership
-			&& $this->getContentHandler( 'main' )->supportsCategories() === true
+			&& $this->getContentHandler( SlotRecord::MAIN )->supportsCategories() === true
 			&& ( $this->options['changed'] || $this->options['created'] )
 			&& !$this->options['restored']
 		) {
@@ -1459,7 +1459,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		) );
 
 		// TODO: make search infrastructure aware of slots!
-		$mainSlot = $this->revision->getSlot( 'main' );
+		$mainSlot = $this->revision->getSlot( SlotRecord::MAIN );
 		if ( !$mainSlot->isInherited() && !$this->isContentDeleted() ) {
 			DeferredUpdates::addUpdate( new SearchUpdate( $id, $dbKey, $mainSlot->getContent() ) );
 		}
@@ -1493,9 +1493,9 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		}
 
 		if ( $title->getNamespace() == NS_MEDIAWIKI
-			&& $this->getRevisionSlotsUpdate()->isModifiedSlot( 'main' )
+			&& $this->getRevisionSlotsUpdate()->isModifiedSlot( SlotRecord::MAIN )
 		) {
-			$mainContent = $this->isContentDeleted() ? null : $this->getRawContent( 'main' );
+			$mainContent = $this->isContentDeleted() ? null : $this->getRawContent( SlotRecord::MAIN );
 
 			$this->messageCache->updateMessageOverride( $title, $mainContent );
 		}

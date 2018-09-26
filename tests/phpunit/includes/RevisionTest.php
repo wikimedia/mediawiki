@@ -931,7 +931,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertNull( $rev->getContent(), 'Content of no slots is null' );
 
 		$content = new TextContent( 'Hello Kittens!' );
-		$rec->setContent( 'main', $content );
+		$rec->setContent( SlotRecord::MAIN, $content );
 		$this->assertSame( $content, $rev->getContent() );
 	}
 

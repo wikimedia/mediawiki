@@ -437,21 +437,25 @@ class RevisionStore
 		$slotRoles = $rev->getSlotRoles();
 
 		// Make sure the main slot is always provided throughout migration
-		if ( !in_array( 'main', $slotRoles ) ) {
+		if ( !in_array( SlotRecord::MAIN, $slotRoles ) ) {
 			throw new InvalidArgumentException(
 				'main slot must be provided'
 			);
 		}
 
 		// If we are not writing into the new schema, we can't support extra slots.
-		if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW ) && $slotRoles !== [ 'main' ] ) {
+		if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW )
+			&& $slotRoles !== [ SlotRecord::MAIN ]
+		) {
 			throw new InvalidArgumentException(
 				'Only the main slot is supported when not writing to the MCR enabled schema!'
 			);
 		}
 
 		// As long as we are not reading from the new schema, we don't want to write extra slots.
-		if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_NEW ) && $slotRoles !== [ 'main' ] ) {
+		if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_NEW )
+			&& $slotRoles !== [ SlotRecord::MAIN ]
+		) {
 			throw new InvalidArgumentException(
 				'Only the main slot is supported when not reading from the MCR enabled schema!'
 			);
@@ -519,7 +523,7 @@ class RevisionStore
 		// Technically, this could go away after MCR migration: while
 		// calling code may require a main slot to exist, RevisionStore
 		// really should not know or care about that requirement.
-		$rev->getSlot( 'main', RevisionRecord::RAW );
+		$rev->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
 
 		foreach ( $slotRoles as $role ) {
 			$slot = $rev->getSlot( $role, RevisionRecord::RAW );
@@ -594,7 +598,7 @@ class RevisionStore
 				$newSlots[$role] = $slot;
 
 				// Write the main slot's text ID to the revision table for backwards compatibility
-				if ( $slot->getRole() === 'main'
+				if ( $slot->getRole() === SlotRecord::MAIN
 					&& $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_OLD )
 				) {
 					$blobAddress = $slot->getAddress();
@@ -672,7 +676,7 @@ class RevisionStore
 		$contentId = null;
 
 		// Write the main slot's text ID to the revision table for backwards compatibility
-		if ( $protoSlot->getRole() === 'main'
+		if ( $protoSlot->getRole() === SlotRecord::MAIN
 			&& $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_OLD )
 		) {
 			// If SCHEMA_COMPAT_WRITE_NEW is also set, the fake content ID is overwritten
@@ -876,7 +880,7 @@ class RevisionStore
 
 		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_OLD ) ) {
 			// In non MCR mode this IF section will relate to the main slot
-			$mainSlot = $rev->getSlot( 'main' );
+			$mainSlot = $rev->getSlot( SlotRecord::MAIN );
 			$model = $mainSlot->getModel();
 			$format = $mainSlot->getFormat();
 
@@ -1209,7 +1213,7 @@ class RevisionStore
 	 */
 	private function emulateMainSlot_1_29( $row, $queryFlags, Title $title ) {
 		$mainSlotRow = new stdClass();
-		$mainSlotRow->role_name = 'main';
+		$mainSlotRow->role_name = SlotRecord::MAIN;
 		$mainSlotRow->model_name = null;
 		$mainSlotRow->slot_revision_id = null;
 		$mainSlotRow->slot_content_id = null;
@@ -1358,7 +1362,7 @@ class RevisionStore
 			$mainSlotRow->slot_content_id =
 				function ( SlotRecord $slot ) use ( $queryFlags, $mainSlotRow ) {
 					$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
-					return $this->findSlotContentId( $db, $mainSlotRow->slot_revision_id, 'main' );
+					return $this->findSlotContentId( $db, $mainSlotRow->slot_revision_id, SlotRecord::MAIN );
 				};
 		}
 
@@ -1609,7 +1613,7 @@ class RevisionStore
 			$slots[$row->role_name] = new SlotRecord( $row, $contentCallback );
 		}
 
-		if ( !isset( $slots['main'] ) ) {
+		if ( !isset( $slots[SlotRecord::MAIN] ) ) {
 			throw new RevisionAccessException(
 				'Main slot of revision ' . $revId . ' not found in database!'
 			);
@@ -1640,7 +1644,7 @@ class RevisionStore
 	) {
 		if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_NEW ) ) {
 			$mainSlot = $this->emulateMainSlot_1_29( $revisionRow, $queryFlags, $title );
-			$slots = new RevisionSlots( [ 'main' => $mainSlot ] );
+			$slots = new RevisionSlots( [ SlotRecord::MAIN => $mainSlot ] );
 		} else {
 			// XXX: do we need the same kind of caching here
 			// that getKnownCurrentRevision uses (if $revId == page_latest?)
@@ -2346,7 +2350,7 @@ class RevisionStore
 			$ret['fields']['slot_revision_id'] = 'slots.rev_id';
 			$ret['fields']['slot_content_id'] = 'NULL';
 			$ret['fields']['slot_origin'] = 'slots.rev_id';
-			$ret['fields']['role_name'] = $db->addQuotes( 'main' );
+			$ret['fields']['role_name'] = $db->addQuotes( SlotRecord::MAIN );
 
 			if ( in_array( 'content', $options, true ) ) {
 				$ret['fields']['content_size'] = 'slots.rev_len';

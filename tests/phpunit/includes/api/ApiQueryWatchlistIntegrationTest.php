@@ -2,6 +2,7 @@
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\SlotRecord;
 
 /**
  * @group medium
@@ -93,7 +94,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$page = WikiPage::factory( $title );
 
 		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( 'main', ContentHandler::makeContent( $content, $title ) );
+		$updater->setContent( SlotRecord::MAIN, ContentHandler::makeContent( $content, $title ) );
 		$rev = $updater->saveRevision( $summary );
 
 		$rc = MediaWikiServices::getInstance()->getRevisionStore()->getRecentChange( $rev );

@@ -298,9 +298,9 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	}
 
 	protected function assertRevisionCompleteness( RevisionRecord $r ) {
-		$this->assertTrue( $r->hasSlot( 'main' ) );
-		$this->assertInstanceOf( SlotRecord::class, $r->getSlot( 'main' ) );
-		$this->assertInstanceOf( Content::class, $r->getContent( 'main' ) );
+		$this->assertTrue( $r->hasSlot( SlotRecord::MAIN ) );
+		$this->assertInstanceOf( SlotRecord::class, $r->getSlot( SlotRecord::MAIN ) );
+		$this->assertInstanceOf( Content::class, $r->getContent( SlotRecord::MAIN ) );
 
 		foreach ( $r->getSlotRoles() as $role ) {
 			$this->assertSlotCompleteness( $r, $r->getSlot( $role ) );
@@ -357,7 +357,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	public function provideInsertRevisionOn_successes() {
 		yield 'Bare minimum revision insertion' => [
 			[
-				'slot' => SlotRecord::newUnsaved( 'main', new WikitextContent( 'Chicken' ) ),
+				'slot' => SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'Chicken' ) ),
 				'page' => true,
 				'comment' => $this->getRandomCommentStoreComment(),
 				'timestamp' => '20171117010101',
@@ -366,7 +366,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		];
 		yield 'Detailed revision insertion' => [
 			[
-				'slot' => SlotRecord::newUnsaved( 'main', new WikitextContent( 'Chicken' ) ),
+				'slot' => SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'Chicken' ) ),
 				'parent' => true,
 				'page' => true,
 				'comment' => $this->getRandomCommentStoreComment(),
@@ -454,7 +454,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	public function testInsertRevisionOn_blobAddressExists() {
 		$title = $this->getTestPageTitle();
 		$revDetails = [
-			'slot' => SlotRecord::newUnsaved( 'main', new WikitextContent( 'Chicken' ) ),
+			'slot' => SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'Chicken' ) ),
 			'parent' => true,
 			'comment' => $this->getRandomCommentStoreComment(),
 			'timestamp' => '20171117010101',
@@ -471,14 +471,14 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertRevisionRecordsEqual( $revOne, $firstReturn );
 
 		// Insert a second revision inheriting the same blob address
-		$revDetails['slot'] = SlotRecord::newInherited( $firstReturn->getSlot( 'main' ) );
+		$revDetails['slot'] = SlotRecord::newInherited( $firstReturn->getSlot( SlotRecord::MAIN ) );
 		$revTwo = $this->getRevisionRecordFromDetailsArray( $revDetails );
 		$secondReturn = $store->insertRevisionOn( $revTwo, wfGetDB( DB_MASTER ) );
 		$this->assertLinkTargetsEqual( $title, $secondReturn->getPageAsLinkTarget() );
 		$this->assertRevisionRecordsEqual( $revTwo, $secondReturn );
 
-		$firstMainSlot = $firstReturn->getSlot( 'main' );
-		$secondMainSlot = $secondReturn->getSlot( 'main' );
+		$firstMainSlot = $firstReturn->getSlot( SlotRecord::MAIN );
+		$secondMainSlot = $secondReturn->getSlot( SlotRecord::MAIN );
 
 		$this->assertSameSlotContent( $firstMainSlot, $secondMainSlot );
 
@@ -510,7 +510,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		];
 		yield 'no timestamp' => [
 			[
-				'slot' => SlotRecord::newUnsaved( 'main', new WikitextContent( 'Chicken' ) ),
+				'slot' => SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'Chicken' ) ),
 				'comment' => $this->getRandomCommentStoreComment(),
 				'user' => true,
 			],
@@ -518,7 +518,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		];
 		yield 'no comment' => [
 			[
-				'slot' => SlotRecord::newUnsaved( 'main', new WikitextContent( 'Chicken' ) ),
+				'slot' => SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'Chicken' ) ),
 				'timestamp' => '20171117010101',
 				'user' => true,
 			],
@@ -526,7 +526,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		];
 		yield 'no user' => [
 			[
-				'slot' => SlotRecord::newUnsaved( 'main', new WikitextContent( 'Chicken' ) ),
+				'slot' => SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'Chicken' ) ),
 				'comment' => $this->getRandomCommentStoreComment(),
 				'timestamp' => '20171117010101',
 			],
@@ -717,7 +717,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$revRecord = $store->getRevisionById( $rev->getId() );
 
 		$this->assertSame( $rev->getId(), $revRecord->getId() );
-		$this->assertTrue( $revRecord->getSlot( 'main' )->getContent()->equals( $content ) );
+		$this->assertTrue( $revRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
 		$this->assertSame( __METHOD__, $revRecord->getComment()->text );
 	}
 
@@ -735,7 +735,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$revRecord = $store->getRevisionByTitle( $page->getTitle() );
 
 		$this->assertSame( $rev->getId(), $revRecord->getId() );
-		$this->assertTrue( $revRecord->getSlot( 'main' )->getContent()->equals( $content ) );
+		$this->assertTrue( $revRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
 		$this->assertSame( __METHOD__, $revRecord->getComment()->text );
 	}
 
@@ -753,7 +753,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$revRecord = $store->getRevisionByPageId( $page->getId() );
 
 		$this->assertSame( $rev->getId(), $revRecord->getId() );
-		$this->assertTrue( $revRecord->getSlot( 'main' )->getContent()->equals( $content ) );
+		$this->assertTrue( $revRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
 		$this->assertSame( __METHOD__, $revRecord->getComment()->text );
 	}
 
@@ -778,7 +778,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		);
 
 		$this->assertSame( $rev->getId(), $revRecord->getId() );
-		$this->assertTrue( $revRecord->getSlot( 'main' )->getContent()->equals( $content ) );
+		$this->assertTrue( $revRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
 		$this->assertSame( __METHOD__, $revRecord->getComment()->text );
 	}
 
@@ -856,13 +856,14 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertSame( $expectedParent, $record->getParentId() );
 		$this->assertSame( $rev->getSha1(), $record->getSha1() );
 		$this->assertSame( $rev->getComment(), $record->getComment()->text );
-		$this->assertSame( $rev->getContentFormat(), $record->getContent( 'main' )->getDefaultFormat() );
-		$this->assertSame( $rev->getContentModel(), $record->getContent( 'main' )->getModel() );
+		$this->assertSame( $rev->getContentFormat(),
+			$record->getContent( SlotRecord::MAIN )->getDefaultFormat() );
+		$this->assertSame( $rev->getContentModel(), $record->getContent( SlotRecord::MAIN )->getModel() );
 		$this->assertLinkTargetsEqual( $rev->getTitle(), $record->getPageAsLinkTarget() );
 
 		$revRec = $rev->getRevisionRecord();
-		$revMain = $revRec->getSlot( 'main' );
-		$recMain = $record->getSlot( 'main' );
+		$revMain = $revRec->getSlot( SlotRecord::MAIN );
+		$recMain = $record->getSlot( SlotRecord::MAIN );
 
 		$this->assertSame( $revMain->hasOrigin(), $recMain->hasOrigin(), 'hasOrigin' );
 		$this->assertSame( $revMain->hasAddress(), $recMain->hasAddress(), 'hasAddress' );
@@ -1011,7 +1012,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$record = $store->newRevisionFromArchiveRow( $row );
 
 		$this->assertRevisionRecordMatchesRevision( $orig, $record );
-		$this->assertSame( $text, $record->getContent( 'main' )->serialize() );
+		$this->assertSame( $text, $record->getContent( SlotRecord::MAIN )->serialize() );
 	}
 
 	/**
@@ -1042,7 +1043,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$record = $store->newRevisionFromArchiveRow( $row );
 
 		$this->assertRevisionRecordMatchesRevision( $orig, $record );
-		$this->assertSame( $text, $record->getContent( 'main' )->serialize() );
+		$this->assertSame( $text, $record->getContent( SlotRecord::MAIN )->serialize() );
 	}
 
 	/**
@@ -1165,8 +1166,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertRevisionRecordsEqual( $record, $restored );
 
 		// does the new revision use the original slot?
-		$recMain = $record->getSlot( 'main' );
-		$restMain = $restored->getSlot( 'main' );
+		$recMain = $record->getSlot( SlotRecord::MAIN );
+		$restMain = $restored->getSlot( SlotRecord::MAIN );
 		$this->assertSame( $recMain->getAddress(), $restMain->getAddress() );
 		$this->assertSame( $recMain->getContentId(), $restMain->getContentId() );
 		$this->assertSame( $recMain->getOrigin(), $restMain->getOrigin() );
@@ -1621,13 +1622,14 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 				);
 			}
 		} elseif ( isset( $array['text'] ) ) {
-			$this->assertSame( $array['text'], $result->getSlot( 'main' )->getContent()->serialize() );
+			$this->assertSame( $array['text'],
+				$result->getSlot( SlotRecord::MAIN )->getContent()->serialize() );
 		} elseif ( isset( $array['content_format'] ) ) {
 			$this->assertSame(
 				$array['content_format'],
-				$result->getSlot( 'main' )->getContent()->getDefaultFormat()
+				$result->getSlot( SlotRecord::MAIN )->getContent()->getDefaultFormat()
 			);
-			$this->assertSame( $array['content_model'], $result->getSlot( 'main' )->getModel() );
+			$this->assertSame( $array['content_model'], $result->getSlot( SlotRecord::MAIN )->getModel() );
 		}
 	}
 

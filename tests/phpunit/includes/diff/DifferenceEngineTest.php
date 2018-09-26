@@ -216,9 +216,9 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	}
 
 	public function testSetRevisions() {
-		$main1 = SlotRecord::newUnsaved( 'main',
+		$main1 = SlotRecord::newUnsaved( SlotRecord::MAIN,
 			ContentHandler::makeContent( 'xxx', null, CONTENT_MODEL_TEXT ) );
-		$main2 = SlotRecord::newUnsaved( 'main',
+		$main2 = SlotRecord::newUnsaved( SlotRecord::MAIN,
 			ContentHandler::makeContent( 'yyy', null, CONTENT_MODEL_TEXT ) );
 		$rev1 = $this->getRevisionRecord( $main1 );
 		$rev2 = $this->getRevisionRecord( $main2 );
@@ -260,9 +260,9 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	}
 
 	public function provideGetDiffBody() {
-		$main1 = SlotRecord::newUnsaved( 'main',
+		$main1 = SlotRecord::newUnsaved( SlotRecord::MAIN,
 			ContentHandler::makeContent( 'xxx', null, CONTENT_MODEL_TEXT ) );
-		$main2 = SlotRecord::newUnsaved( 'main',
+		$main2 = SlotRecord::newUnsaved( SlotRecord::MAIN,
 			ContentHandler::makeContent( 'yyy', null, CONTENT_MODEL_TEXT ) );
 		$slot1 = SlotRecord::newUnsaved( 'slot',
 			ContentHandler::makeContent( 'aaa', null, CONTENT_MODEL_TEXT ) );

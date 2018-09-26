@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Storage\SlotRecord;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -55,7 +57,7 @@ class EditCLI extends Maintenance {
 		$bot = $this->hasOption( 'bot' );
 		$autoSummary = $this->hasOption( 'autosummary' );
 		$noRC = $this->hasOption( 'no-rc' );
-		$slot = $this->getOption( 'slot', 'main' );
+		$slot = $this->getOption( 'slot', SlotRecord::MAIN );
 
 		if ( $userName === false ) {
 			$wgUser = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
@@ -83,7 +85,7 @@ class EditCLI extends Maintenance {
 		$page = WikiPage::factory( $title );
 
 		if ( $remove ) {
-			if ( $slot === 'main' ) {
+			if ( $slot === SlotRecord::MAIN ) {
 				$this->fatalError( "Cannot remove main slot! Use --slot to specify." );
 			}
 

@@ -2,6 +2,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\SlotRecord;
 
 /**
  * @covers PoolWorkArticleView
@@ -13,7 +14,7 @@ class PoolWorkArticleViewTest extends MediaWikiTestCase {
 		$user = $this->getTestUser()->getUser();
 		$updater = $page->newPageUpdater( $user );
 
-		$updater->setContent( 'main', new WikitextContent( $text ) );
+		$updater->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 		return $updater->saveRevision( CommentStoreComment::newUnsavedComment( 'testing' ) );
 	}
 
@@ -57,7 +58,7 @@ class PoolWorkArticleViewTest extends MediaWikiTestCase {
 		$fakeRev = new MutableRevisionRecord( $page->getTitle() );
 		$fakeRev->setId( $rev->getId() );
 		$fakeRev->setPageId( $page->getId() );
-		$fakeRev->setContent( 'main', new WikitextContent( 'YES!' ) );
+		$fakeRev->setContent( SlotRecord::MAIN, new WikitextContent( 'YES!' ) );
 
 		$work = new PoolWorkArticleView( $page, $options, $rev->getId(), false, $fakeRev );
 		$work->execute();
@@ -157,7 +158,7 @@ class PoolWorkArticleViewTest extends MediaWikiTestCase {
 		$fakeRev = new MutableRevisionRecord( $page->getTitle() );
 		$fakeRev->setId( $rev1->getId() );
 		$fakeRev->setPageId( $page->getId() );
-		$fakeRev->setContent( 'main', new WikitextContent( 'SECRET' ) );
+		$fakeRev->setContent( SlotRecord::MAIN, new WikitextContent( 'SECRET' ) );
 		$fakeRev->setVisibility( RevisionRecord::DELETED_TEXT );
 
 		$work = new PoolWorkArticleView( $page, $options, $rev1->getId(), false, $fakeRev );

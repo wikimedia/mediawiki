@@ -3,6 +3,7 @@
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionSlotsUpdate;
+use MediaWiki\Storage\SlotRecord;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
@@ -1232,7 +1233,7 @@ more stuff
 		);
 
 		// TODO: MCR: assert origin once we write slot data
-		// $mainSlot = $page->getRevision()->getRevisionRecord()->getSlot( 'main' );
+		// $mainSlot = $page->getRevision()->getRevisionRecord()->getSlot( SlotRecord::MAIN );
 		// $this->assertTrue( $mainSlot->isInherited(), 'isInherited' );
 		// $this->assertSame( $rev2->getId(), $mainSlot->getOrigin(), 'getOrigin' );
 	}
@@ -2416,10 +2417,10 @@ more stuff
 
 		// provide context, so the cache can be kept in place
 		$slotsUpdate = new revisionSlotsUpdate();
-		$slotsUpdate->modifyContent( 'main', $content );
+		$slotsUpdate->modifyContent( SlotRecord::MAIN, $content );
 
 		$updater = $page->newPageUpdater( $user, $slotsUpdate );
-		$updater->setContent( 'main', $content );
+		$updater->setContent( SlotRecord::MAIN, $content );
 		$revision = $updater->saveRevision(
 			CommentStoreComment::newUnsavedComment( 'test' ),
 			EDIT_NEW
@@ -2448,7 +2449,7 @@ more stuff
 		$user = $revision->getUser();
 
 		$slotsUpdate = new RevisionSlotsUpdate();
-		$slotsUpdate->modifyContent( 'main', new WikitextContent( 'Hello World' ) );
+		$slotsUpdate->modifyContent( SlotRecord::MAIN, new WikitextContent( 'Hello World' ) );
 
 		// get a virgin updater
 		$updater1 = $page->getDerivedDataUpdater( $user );
@@ -2460,7 +2461,7 @@ more stuff
 		$this->assertSame( $updater1, $page->getDerivedDataUpdater( $user, $revision ) );
 
 		$slotsUpdate = RevisionSlotsUpdate::newFromContent(
-			[ 'main' => $revision->getContent( 'main' ) ]
+			[ SlotRecord::MAIN => $revision->getContent( SlotRecord::MAIN ) ]
 		);
 		$this->assertSame( $updater1, $page->getDerivedDataUpdater( $user, null, $slotsUpdate ) );
 

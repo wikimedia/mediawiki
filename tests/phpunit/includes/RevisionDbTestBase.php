@@ -259,7 +259,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		// getTextId() must be an int!
 		$this->assertInternalType( 'integer', $rev->getTextId() );
 
-		$mainSlot = $rev->getRevisionRecord()->getSlot( 'main', RevisionRecord::RAW );
+		$mainSlot = $rev->getRevisionRecord()->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
 
 		// we currently only support storage in the text table
 		$textId = MediaWikiServices::getInstance()
@@ -1581,7 +1581,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			'slot_content_id' => 1,
 			'content_address' => 'tt:789',
 			'model_name' => CONTENT_MODEL_WIKITEXT,
-			'role_name' => 'main',
+			'role_name' => SlotRecord::MAIN,
 			'slot_origin' => 1,
 		], new WikitextContent( 'Test' ) );
 

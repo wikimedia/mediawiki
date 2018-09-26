@@ -51,7 +51,7 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 			$record->setPageId( $rowOverrides['rev_page'] );
 		}
 
-		$record->setContent( 'main', new TextContent( 'Lorem Ipsum' ) );
+		$record->setContent( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
 		$record->setComment( $comment );
 		$record->setUser( $user );
 		$record->setTimestamp( '20101010000000' );
@@ -141,33 +141,33 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 	public function testGetMainContentWhenEmpty() {
 		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
 		$this->setExpectedException( RevisionAccessException::class );
-		$this->assertNull( $record->getContent( 'main' ) );
+		$this->assertNull( $record->getContent( SlotRecord::MAIN ) );
 	}
 
 	public function testSetGetMainContent() {
 		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
 		$content = new WikitextContent( 'Badger' );
-		$record->setContent( 'main', $content );
-		$this->assertSame( $content, $record->getContent( 'main' ) );
+		$record->setContent( SlotRecord::MAIN, $content );
+		$this->assertSame( $content, $record->getContent( SlotRecord::MAIN ) );
 	}
 
 	public function testGetSlotWhenEmpty() {
 		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
-		$this->assertFalse( $record->hasSlot( 'main' ) );
+		$this->assertFalse( $record->hasSlot( SlotRecord::MAIN ) );
 
 		$this->setExpectedException( RevisionAccessException::class );
-		$record->getSlot( 'main' );
+		$record->getSlot( SlotRecord::MAIN );
 	}
 
 	public function testSetGetSlot() {
 		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
 		$slot = SlotRecord::newUnsaved(
-			'main',
+			SlotRecord::MAIN,
 			new WikitextContent( 'x' )
 		);
 		$record->setSlot( $slot );
-		$this->assertTrue( $record->hasSlot( 'main' ) );
-		$this->assertSame( $slot, $record->getSlot( 'main' ) );
+		$this->assertTrue( $record->hasSlot( SlotRecord::MAIN ) );
+		$this->assertSame( $slot, $record->getSlot( SlotRecord::MAIN ) );
 	}
 
 	public function testSetGetMinor() {
@@ -249,7 +249,7 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		$record->setSlot( $auxSlot );
 
 		$this->assertSame( [ 'main' ], $record->getOriginalSlots()->getSlotRoles() );
-		$this->assertSame( $mainSlot, $record->getOriginalSlots()->getSlot( 'main' ) );
+		$this->assertSame( $mainSlot, $record->getOriginalSlots()->getSlot( SlotRecord::MAIN ) );
 
 		$this->assertSame( [ 'aux' ], $record->getInheritedSlots()->getSlotRoles() );
 		$this->assertSame( $auxSlot, $record->getInheritedSlots()->getSlot( 'aux' ) );
@@ -314,7 +314,7 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		yield 'empty' => [ $rev ];
 
 		$rev = new MutableRevisionRecord( $title );
-		$rev->setContent( 'main', $content );
+		$rev->setContent( SlotRecord::MAIN, $content );
 		$rev->setUser( $user );
 		$rev->setComment( $comment );
 		yield 'no timestamp' => [ $rev ];
@@ -326,14 +326,14 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		yield 'no content' => [ $rev ];
 
 		$rev = new MutableRevisionRecord( $title );
-		$rev->setContent( 'main', $content );
+		$rev->setContent( SlotRecord::MAIN, $content );
 		$rev->setComment( $comment );
 		$rev->setTimestamp( '20101010000000' );
 		yield 'no user' => [ $rev ];
 
 		$rev = new MutableRevisionRecord( $title );
 		$rev->setUser( $user );
-		$rev->setContent( 'main', $content );
+		$rev->setContent( SlotRecord::MAIN, $content );
 		$rev->setTimestamp( '20101010000000' );
 		yield 'no comment' => [ $rev ];
 	}

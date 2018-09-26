@@ -1494,7 +1494,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$bSlots = $b->getRevisionRecord()->getSlots();
 		$changedRoles = $aSlots->getRolesWithDifferentContent( $bSlots );
 
-		return ( $changedRoles !== [ 'main' ] && $changedRoles !== [] );
+		return ( $changedRoles !== [ SlotRecord::MAIN ] && $changedRoles !== [] );
 	}
 
 	/**
@@ -1853,13 +1853,13 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$slotsUpdate = new RevisionSlotsUpdate();
-		$slotsUpdate->modifyContent( 'main', $content );
+		$slotsUpdate->modifyContent( SlotRecord::MAIN, $content );
 
 		// NOTE: while doEditContent() executes, callbacks to getDerivedDataUpdater and
 		// prepareContentForEdit will generally use the DerivedPageDataUpdater that is also
 		// used by this PageUpdater. However, there is no guarantee for this.
 		$updater = $this->newPageUpdater( $user, $slotsUpdate );
-		$updater->setContent( 'main', $content );
+		$updater->setContent( SlotRecord::MAIN, $content );
 		$updater->setOriginalRevisionId( $originalRevId );
 		$updater->setUndidRevisionId( $undidRevId );
 
@@ -1966,7 +1966,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$revision = $revision->getRevisionRecord();
 		}
 
-		$slots = RevisionSlotsUpdate::newFromContent( [ 'main' => $content ] );
+		$slots = RevisionSlotsUpdate::newFromContent( [ SlotRecord::MAIN => $content ] );
 		$updater = $this->getDerivedDataUpdater( $user, $revision, $slots );
 
 		if ( !$updater->isUpdatePrepared() ) {
@@ -3069,8 +3069,8 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// TODO: MCR: also log model changes in other slots, in case that becomes possible!
-		$currentContent = $current->getContent( 'main' );
-		$targetContent = $target->getContent( 'main' );
+		$currentContent = $current->getContent( SlotRecord::MAIN );
+		$targetContent = $target->getContent( SlotRecord::MAIN );
 		$changingContentModel = $targetContent->getModel() !== $currentContent->getModel();
 
 		if ( in_array( 'mw-rollback', ChangeTags::getSoftwareTags() ) ) {
@@ -3290,7 +3290,7 @@ class WikiPage implements Page, IDBAccessObject {
 	) {
 		// TODO: move this into a PageEventEmitter service
 
-		if ( $slotsChanged === null || in_array( 'main',  $slotsChanged ) ) {
+		if ( $slotsChanged === null || in_array( SlotRecord::MAIN,  $slotsChanged ) ) {
 			// Invalidate caches of articles which include this page.
 			// Only for the main slot, because only the main slot is transcluded.
 			// TODO: MCR: not true for TemplateStyles! [SlotHandler]
@@ -3578,7 +3578,7 @@ class WikiPage implements Page, IDBAccessObject {
 		} elseif ( $rev instanceof Content ) {
 			wfDeprecated( __METHOD__ . ' with a Content object instead of a RevisionRecord', '1.32' );
 
-			$slotContent = [ 'main' => $rev ];
+			$slotContent = [ SlotRecord::MAIN => $rev ];
 		} else {
 			$slotContent = array_map( function ( SlotRecord $slot ) {
 				return $slot->getContent( Revision::RAW );
