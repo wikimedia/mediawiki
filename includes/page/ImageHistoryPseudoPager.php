@@ -18,6 +18,8 @@
  * @file
  */
 
+use Wikimedia\Timestamp\TimestampException;
+
 class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	protected $preventClickjacking = false;
 
@@ -137,6 +139,14 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		$this->mImg = $this->mImagePage->getPage()->getFile(); // ensure loading
 		if ( !$this->mImg->exists() ) {
 			return;
+		}
+		// Make sure the date (probably from user input) is valid; if not, drop it.
+		if ( $this->mOffset !== null ) {
+			try {
+				$sadlyWeCannotPassThisTimestampDownTheStack = $this->mDb->timestamp( $this->mOffset );
+			} catch ( TimestampException $e ) {
+				$this->mOffset = null;
+			}
 		}
 		$queryLimit = $this->mLimit + 1; // limit plus extra row
 		if ( $this->mIsBackwards ) {
