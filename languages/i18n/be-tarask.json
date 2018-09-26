@@ -3339,6 +3339,7 @@
 	"confirm-unwatch-top": "Выдаліць гэтую старонку з Вашага сьпісу назіраньня?",
 	"confirm-rollback-button": "Так",
 	"confirm-rollback-top": "Адкаціць праўкі на гэтай старонцы?",
+	"confirm-mcrrestore-title": "Аднавіць вэрсію",
 	"confirm-mcrundo-title": "Адмяніць зьмену",
 	"mcrundofailed": "Адмена не атрымалася",
 	"mcrundo-missingparam": "Адсутнічаюць абавязковыя парамэтры для запыту.",
