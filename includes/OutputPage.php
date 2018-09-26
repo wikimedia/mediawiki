@@ -1840,6 +1840,7 @@ class OutputPage extends ContextSource {
 	 *   addWikiTextAsContent()
 	 */
 	function addWikiTextTitleTidy( $text, Title $title, $linestart = true ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*tidy*/true, /*interface*/false );
 	}
 
@@ -1852,6 +1853,7 @@ class OutputPage extends ContextSource {
 	 *   addWikiTextAsContent()
 	 */
 	public function addWikiTextTidy( $text, $linestart = true ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		$title = $this->getTitle();
 		if ( !$title ) {
 			throw new MWException( 'Title is null' );
