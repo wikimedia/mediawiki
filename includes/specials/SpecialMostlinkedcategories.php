@@ -85,7 +85,7 @@ class MostlinkedCategoriesPage extends QueryPage {
 		}
 
 		$text = MediaWikiServices::getInstance()->getContentLanguage()
-			->convert( new HtmlArmor( $nt->getText() ) );
+			->convert( htmlspecialchars( $nt->getText() ) );
 		$plink = $this->getLinkRenderer()->makeLink( $nt, new HtmlArmor( $text ) );
 		$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
 
