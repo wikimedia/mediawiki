@@ -33,17 +33,6 @@ class SpecialPreferences extends SpecialPage {
 		parent::__construct( 'Preferences' );
 	}
 
-	/**
-	 *
-	 * @since 1.32
-	 * @deprecated since 1.32
-	 * @return bool
-	 */
-	public static function isOouiEnabled() {
-		// wfDeprecated( __METHOD__, '1.31' );
-		return true;
-	}
-
 	public function doesWrites() {
 		return true;
 	}
