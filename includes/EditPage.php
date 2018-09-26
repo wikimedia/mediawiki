@@ -2666,8 +2666,9 @@ ERROR;
 			$title = Title::newFromText( $this->editintro );
 			if ( $title instanceof Title && $title->exists() && $title->userCan( 'read' ) ) {
 				// Added using template syntax, to take <noinclude>'s into account.
-				$this->context->getOutput()->addWikiTextTitleTidy(
+				$this->context->getOutput()->addWikiTextAsContent(
 					'<div class="mw-editintro">{{:' . $title->getFullText() . '}}</div>',
+					/*linestart*/true,
 					$this->mTitle
 				);
 				return true;
