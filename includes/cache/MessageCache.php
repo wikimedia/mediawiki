@@ -613,11 +613,17 @@ class MessageCache {
 			return;
 		}
 
-		// Reload messages from the database and pre-populate dc-local caches
-		// as optimisation. Use the master DB to avoid race conditions.
-		$cache = $this->loadFromDB( $code, self::FOR_UPDATE );
+		// Load the existing cache to update it in the local DC cache.
+		// The other DCs will see a hash mismatch.
+		if ( $this->load( $code, self::FOR_UPDATE ) ) {
+			$cache = $this->cache->get( $code );
+		} else {
+			// Err? Fall back to loading from the database.
+			$cache = $this->loadFromDB( $code, self::FOR_UPDATE );
+		}
 		// Check if individual cache keys should exist and update cache accordingly
 		$newTextByTitle = []; // map of (title => content)
+		$newBigTitles = []; // map of (title => latest revision ID), like EXCESSIVE in loadFromDB()
 		foreach ( $replacements as list( $title ) ) {
 			$page = WikiPage::factory( Title::makeTitle( NS_MEDIAWIKI, $title ) );
 			$page->loadPageData( $page::READ_LATEST );
@@ -625,14 +631,28 @@ class MessageCache {
 			// Remember the text for the blob store update later on
 			$newTextByTitle[$title] = $text;
 			// Note that if $text is false, then $cache should have a !NONEXISTANT entry
-			if ( is_string( $text ) && strlen( $text ) > $wgMaxMsgCacheEntrySize ) {
-				// Match logic of loadCachedMessagePageEntry()
-				$this->wanCache->set(
-					$this->bigMessageCacheKey( $cache['HASH'], $title ),
-					' ' . $text,
-					$this->mExpiry
-				);
+			if ( !is_string( $text ) ) {
+				$cache[$title] = '!NONEXISTENT';
+			} elseif ( strlen( $text ) > $wgMaxMsgCacheEntrySize ) {
+				$cache[$title] = '!TOO BIG';
+				$newBigTitles[$title] = $page->getLatest();
+			} else {
+				$cache[$title] = ' ' . $text;
 			}
+		}
+		// Update HASH for the new key. Incorporates various administrative keys,
+		// including the old HASH (and thereby the EXCESSIVE value from loadFromDB()
+		// and previous replace() calls), but that doesn't really matter since we
+		// only ever compare it for equality with a copy saved by saveToCaches().
+		$cache['HASH'] = md5( serialize( $cache + [ 'EXCESSIVE' => $newBigTitles ] ) );
+		// Update the too-big WAN cache entries now that we have the new HASH
+		foreach ( $newBigTitles as $title => $id ) {
+			// Match logic of loadCachedMessagePageEntry()
+			$this->wanCache->set(
+				$this->bigMessageCacheKey( $cache['HASH'], $title ),
+				' ' . $newTextByTitle[$title],
+				$this->mExpiry
+			);
 		}
 		// Mark this cache as definitely being "latest" (non-volatile) so
 		// load() calls do not try to refresh the cache with replica DB data
