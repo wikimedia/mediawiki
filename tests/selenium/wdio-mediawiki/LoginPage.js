@@ -1,4 +1,4 @@
-const Page = require( 'wdio-mediawiki/Page' );
+const Page = require( './Page' );
 
 class LoginPage extends Page {
 	get username() { return browser.element( '#wpName1' ); }
