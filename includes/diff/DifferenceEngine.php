@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\SlotRecord;
 
 /**
  * DifferenceEngine is responsible for rendering the difference between two revisions as HTML.
@@ -273,7 +274,7 @@ class DifferenceEngine extends ContextSource {
 	protected function getSlotContents() {
 		if ( $this->isContentOverridden ) {
 			return [
-				'main' => [
+				SlotRecord::MAIN => [
 					'old' => $this->mOldContent,
 					'new' => $this->mNewContent,
 				]
@@ -302,8 +303,8 @@ class DifferenceEngine extends ContextSource {
 			];
 		}
 		// move main slot to front
-		if ( isset( $slots['main'] ) ) {
-			$slots = [ 'main' => $slots['main'] ] + $slots;
+		if ( isset( $slots[SlotRecord::MAIN] ) ) {
+			$slots = [ SlotRecord::MAIN => $slots[SlotRecord::MAIN] ] + $slots;
 		}
 		return $slots;
 	}
@@ -1053,7 +1054,7 @@ class DifferenceEngine extends ContextSource {
 		foreach ( $this->getSlotDiffRenderers() as $role => $slotDiffRenderer ) {
 			$slotDiff = $slotDiffRenderer->getDiff( $slotContents[$role]['old'],
 				$slotContents[$role]['new'] );
-			if ( $slotDiff && $role !== 'main' ) {
+			if ( $slotDiff && $role !== SlotRecord::MAIN ) {
 				// TODO use human-readable role name at least
 				$slotTitle = $role;
 				$difftext .= $this->getSlotHeader( $slotTitle );
@@ -1100,7 +1101,7 @@ class DifferenceEngine extends ContextSource {
 			return false;
 		}
 
-		if ( $role !== 'main' ) {
+		if ( $role !== SlotRecord::MAIN ) {
 			// TODO use human-readable role name at least
 			$slotTitle = $role;
 			$slotDiff = $this->getSlotHeader( $slotTitle ) . $slotDiff;
@@ -1640,7 +1641,7 @@ class DifferenceEngine extends ContextSource {
 			$this->mOldPage = Title::newFromLinkTarget( $oldRevision->getPageAsLinkTarget() );
 			// This method is meant for edit diffs and such so there is no reason to provide a
 			// revision that's not readable to the user, but check it just in case.
-			$this->mOldContent = $oldRevision ? $oldRevision->getContent( 'main',
+			$this->mOldContent = $oldRevision ? $oldRevision->getContent( SlotRecord::MAIN,
 				RevisionRecord::FOR_THIS_USER, $this->getUser() ) : null;
 		} else {
 			$this->mOldPage = null;
@@ -1649,7 +1650,7 @@ class DifferenceEngine extends ContextSource {
 		$this->mNewRev = new Revision( $newRevision );
 		$this->mNewid = $newRevision->getId();
 		$this->mNewPage = Title::newFromLinkTarget( $newRevision->getPageAsLinkTarget() );
-		$this->mNewContent = $newRevision->getContent( 'main',
+		$this->mNewContent = $newRevision->getContent( SlotRecord::MAIN,
 			RevisionRecord::FOR_THIS_USER, $this->getUser() );
 
 		$this->mRevisionsIdsLoaded = $this->mRevisionsLoaded = true;

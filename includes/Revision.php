@@ -691,7 +691,7 @@ class Revision implements IDBAccessObject {
 	 * @return SlotRecord
 	 */
 	private function getMainSlotRaw() {
-		return $this->mRecord->getSlot( 'main', RevisionRecord::RAW );
+		return $this->mRecord->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
 	}
 
 	/**
@@ -926,7 +926,7 @@ class Revision implements IDBAccessObject {
 		}
 
 		try {
-			return $this->mRecord->getContent( 'main', $audience, $user );
+			return $this->mRecord->getContent( SlotRecord::MAIN, $audience, $user );
 		}
 		catch ( RevisionAccessException $e ) {
 			return null;

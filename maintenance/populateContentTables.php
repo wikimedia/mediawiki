@@ -21,6 +21,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
+use MediaWiki\Storage\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
@@ -66,7 +67,8 @@ class PopulateContentTables extends Maintenance {
 	private function initServices() {
 		$this->dbw = $this->getDB( DB_MASTER );
 		$this->contentModelStore = MediaWikiServices::getInstance()->getContentModelStore();
-		$this->mainRoleId = MediaWikiServices::getInstance()->getSlotRoleStore()->acquireId( 'main' );
+		$this->mainRoleId = MediaWikiServices::getInstance()->getSlotRoleStore()
+			->acquireId( SlotRecord::MAIN );
 	}
 
 	public function execute() {

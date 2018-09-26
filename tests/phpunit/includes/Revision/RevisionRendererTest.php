@@ -9,6 +9,7 @@ use LogicException;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\SlotRecord;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiTestCase;
 use ParserOptions;
@@ -153,7 +154,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$text .= "* time:{{REVISIONTIMESTAMP}}\n";
 		$text .= "* [[Link It]]\n";
 
-		$rev->setContent( 'main', new WikitextContent( $text ) );
+		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
 		$rr = $renderer->getRenderedRevision( $rev, $options );
@@ -170,7 +171,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$this->assertContains( 'user:Frank', $html );
 		$this->assertContains( 'time:20180101000003', $html );
 
-		$this->assertSame( $html, $rr->getSlotParserOutput( 'main' )->getText() );
+		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getText() );
 	}
 
 	public function testGetRenderedRevision_current() {
@@ -189,7 +190,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$text .= "* user:{{REVISIONUSER}}\n";
 		$text .= "* time:{{REVISIONTIMESTAMP}}\n";
 
-		$rev->setContent( 'main', new WikitextContent( $text ) );
+		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
 		$rr = $renderer->getRenderedRevision( $rev, $options );
@@ -206,7 +207,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$this->assertContains( 'user:Frank', $html );
 		$this->assertContains( 'time:20180101000003', $html );
 
-		$this->assertSame( $html, $rr->getSlotParserOutput( 'main' )->getText() );
+		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getText() );
 	}
 
 	public function testGetRenderedRevision_master() {
@@ -225,7 +226,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$text .= "* user:{{REVISIONUSER}}\n";
 		$text .= "* time:{{REVISIONTIMESTAMP}}\n";
 
-		$rev->setContent( 'main', new WikitextContent( $text ) );
+		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
 		$rr = $renderer->getRenderedRevision( $rev, $options, null, [ 'use-master' => true ] );
@@ -236,7 +237,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 
 		$this->assertContains( 'rev:21', $html );
 
-		$this->assertSame( $html, $rr->getSlotParserOutput( 'main' )->getText() );
+		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getText() );
 	}
 
 	public function testGetRenderedRevision_old() {
@@ -255,7 +256,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$text .= "* user:{{REVISIONUSER}}\n";
 		$text .= "* time:{{REVISIONTIMESTAMP}}\n";
 
-		$rev->setContent( 'main', new WikitextContent( $text ) );
+		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
 		$rr = $renderer->getRenderedRevision( $rev, $options );
@@ -292,7 +293,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$text .= "* user:{{REVISIONUSER}}\n";
 		$text .= "* time:{{REVISIONTIMESTAMP}}\n";
 
-		$rev->setContent( 'main', new WikitextContent( $text ) );
+		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
 		$rr = $renderer->getRenderedRevision( $rev, $options );
@@ -317,7 +318,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$text .= "* user:{{REVISIONUSER}}\n";
 		$text .= "* time:{{REVISIONTIMESTAMP}}\n";
 
-		$rev->setContent( 'main', new WikitextContent( $text ) );
+		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
 		$sysop = $this->getTestUser( [ 'sysop' ] )->getUser(); // privileged!
@@ -356,7 +357,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$text .= "* user:{{REVISIONUSER}}\n";
 		$text .= "* time:{{REVISIONTIMESTAMP}}\n";
 
-		$rev->setContent( 'main', new WikitextContent( $text ) );
+		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
 		$rr = $renderer->getRenderedRevision(
@@ -391,13 +392,13 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$rev->setTimestamp( '20180101000003' );
 		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
-		$rev->setContent( 'main', new WikitextContent( '[[Kittens]]' ) );
+		$rev->setContent( SlotRecord::MAIN, new WikitextContent( '[[Kittens]]' ) );
 		$rev->setContent( 'aux', new WikitextContent( '[[Goats]]' ) );
 
 		$rr = $renderer->getRenderedRevision( $rev );
 
 		$combinedOutput = $rr->getRevisionParserOutput();
-		$mainOutput = $rr->getSlotParserOutput( 'main' );
+		$mainOutput = $rr->getSlotParserOutput( SlotRecord::MAIN );
 		$auxOutput = $rr->getSlotParserOutput( 'aux' );
 
 		$combinedHtml = $combinedOutput->getText();
@@ -453,13 +454,13 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$title = $this->getMockTitle( 7, 21 );
 
 		$rev = new MutableRevisionRecord( $title );
-		$rev->setContent( 'main', $mockContent );
+		$rev->setContent( SlotRecord::MAIN, $mockContent );
 		$rev->setContent( 'aux', $mockContent );
 
 		// NOTE: we are testing the private combineSlotOutput() callback here.
 		$rr = $renderer->getRenderedRevision( $rev );
 
-		$output = $rr->getSlotParserOutput( 'main', [ 'generate-html' => false ] );
+		$output = $rr->getSlotParserOutput( SlotRecord::MAIN, [ 'generate-html' => false ] );
 		$this->assertFalse( $output->hasText(), 'hasText' );
 
 		$output = $rr->getRevisionParserOutput( [ 'generate-html' => false ] );

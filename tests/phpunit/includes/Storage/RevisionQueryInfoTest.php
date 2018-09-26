@@ -2,6 +2,7 @@
 namespace MediaWiki\Tests\Storage;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\SlotRecord;
 use MediaWikiTestCase;
 use Revision;
 
@@ -737,7 +738,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 						'slot_revision_id' => 'slots.rev_id',
 						'slot_content_id' => 'NULL',
 						'slot_origin' => 'slots.rev_id',
-						'role_name' => $db->addQuotes( 'main' ),
+						'role_name' => $db->addQuotes( SlotRecord::MAIN ),
 					]
 				),
 				'joins' => [],
@@ -758,7 +759,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 						'slot_revision_id' => 'slots.rev_id',
 						'slot_content_id' => 'NULL',
 						'slot_origin' => 'slots.rev_id',
-						'role_name' => $db->addQuotes( 'main' ),
+						'role_name' => $db->addQuotes( SlotRecord::MAIN ),
 						'content_size' => 'slots.rev_len',
 						'content_sha1' => 'slots.rev_sha1',
 						'content_address' => $db->buildConcat( [
@@ -784,7 +785,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 						'slot_revision_id' => 'slots.rev_id',
 						'slot_content_id' => 'NULL',
 						'slot_origin' => 'slots.rev_id',
-						'role_name' => $db->addQuotes( 'main' ),
+						'role_name' => $db->addQuotes( SlotRecord::MAIN ),
 						'content_size' => 'slots.rev_len',
 						'content_sha1' => 'slots.rev_sha1',
 						'content_address' => $db->buildConcat( [
@@ -810,7 +811,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 						'slot_revision_id' => 'slots.rev_id',
 						'slot_content_id' => 'NULL',
 						'slot_origin' => 'slots.rev_id',
-						'role_name' => $db->addQuotes( 'main' ),
+						'role_name' => $db->addQuotes( SlotRecord::MAIN ),
 					]
 				),
 				'joins' => [],
@@ -831,7 +832,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 						'slot_revision_id' => 'slots.rev_id',
 						'slot_content_id' => 'NULL',
 						'slot_origin' => 'slots.rev_id',
-						'role_name' => $db->addQuotes( 'main' ),
+						'role_name' => $db->addQuotes( SlotRecord::MAIN ),
 						'content_size' => 'slots.rev_len',
 						'content_sha1' => 'slots.rev_sha1',
 						'content_address' =>

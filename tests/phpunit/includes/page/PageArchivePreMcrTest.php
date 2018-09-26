@@ -1,5 +1,6 @@
 <?php
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\Tests\Storage\PreMcrSchemaOverride;
 
@@ -27,7 +28,7 @@ class PageArchivePreMcrTest extends PageArchiveTestBase {
 		$blobStore = MediaWikiServices::getInstance()->getBlobStore();
 
 		$textId = $blobStore->getTextIdFromAddress(
-			$this->firstRev->getSlot( 'main' )->getAddress()
+			$this->firstRev->getSlot( SlotRecord::MAIN )->getAddress()
 		);
 
 		$row = (object)[ 'ar_text_id' => $textId ];
@@ -61,7 +62,7 @@ class PageArchivePreMcrTest extends PageArchiveTestBase {
 				'ar_namespace' => '0',
 				'ar_title' => 'PageArchiveTest_thePage',
 				'ar_text_id' => (string)$blobStore->getTextIdFromAddress(
-					$this->ipRev->getSlot( 'main' )->getAddress()
+					$this->ipRev->getSlot( SlotRecord::MAIN )->getAddress()
 				),
 				'ar_parent_id' => strval( $this->ipRev->getParentId() ),
 			],
@@ -86,7 +87,7 @@ class PageArchivePreMcrTest extends PageArchiveTestBase {
 				'ar_namespace' => '0',
 				'ar_title' => 'PageArchiveTest_thePage',
 				'ar_text_id' => (string)$blobStore->getTextIdFromAddress(
-					$this->firstRev->getSlot( 'main' )->getAddress()
+					$this->firstRev->getSlot( SlotRecord::MAIN )->getAddress()
 				),
 				'ar_parent_id' => '0',
 			],

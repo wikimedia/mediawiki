@@ -46,11 +46,11 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionSlots::getSlot
 	 */
 	public function testGetSlot() {
-		$mainSlot = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$mainSlot = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$auxSlot = SlotRecord::newUnsaved( 'aux', new WikitextContent( 'B' ) );
 		$slots = $this->newRevisionSlots( [ $mainSlot, $auxSlot ] );
 
-		$this->assertSame( $mainSlot, $slots->getSlot( 'main' ) );
+		$this->assertSame( $mainSlot, $slots->getSlot( SlotRecord::MAIN ) );
 		$this->assertSame( $auxSlot, $slots->getSlot( 'aux' ) );
 		$this->setExpectedException( RevisionAccessException::class );
 		$slots->getSlot( 'nothere' );
@@ -60,11 +60,11 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionSlots::hasSlot
 	 */
 	public function testHasSlot() {
-		$mainSlot = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$mainSlot = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$auxSlot = SlotRecord::newUnsaved( 'aux', new WikitextContent( 'B' ) );
 		$slots = $this->newRevisionSlots( [ $mainSlot, $auxSlot ] );
 
-		$this->assertTrue( $slots->hasSlot( 'main' ) );
+		$this->assertTrue( $slots->hasSlot( SlotRecord::MAIN ) );
 		$this->assertTrue( $slots->hasSlot( 'aux' ) );
 		$this->assertFalse( $slots->hasSlot( 'AUX' ) );
 		$this->assertFalse( $slots->hasSlot( 'xyz' ) );
@@ -76,11 +76,11 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 	public function testGetContent() {
 		$mainContent = new WikitextContent( 'A' );
 		$auxContent = new WikitextContent( 'B' );
-		$mainSlot = SlotRecord::newUnsaved( 'main', $mainContent );
+		$mainSlot = SlotRecord::newUnsaved( SlotRecord::MAIN, $mainContent );
 		$auxSlot = SlotRecord::newUnsaved( 'aux', $auxContent );
 		$slots = $this->newRevisionSlots( [ $mainSlot, $auxSlot ] );
 
-		$this->assertSame( $mainContent, $slots->getContent( 'main' ) );
+		$this->assertSame( $mainContent, $slots->getContent( SlotRecord::MAIN ) );
 		$this->assertSame( $auxContent, $slots->getContent( 'aux' ) );
 		$this->setExpectedException( RevisionAccessException::class );
 		$slots->getContent( 'nothere' );
@@ -90,7 +90,7 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionSlots::getSlotRoles
 	 */
 	public function testGetSlotRoles_someSlots() {
-		$mainSlot = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$mainSlot = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$auxSlot = SlotRecord::newUnsaved( 'aux', new WikitextContent( 'B' ) );
 		$slots = $this->newRevisionSlots( [ $mainSlot, $auxSlot ] );
 
@@ -110,7 +110,7 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionSlots::getSlots
 	 */
 	public function testGetSlots() {
-		$mainSlot = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$mainSlot = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$auxSlot = SlotRecord::newUnsaved( 'aux', new WikitextContent( 'B' ) );
 		$slotsArray = [ $mainSlot, $auxSlot ];
 		$slots = $this->newRevisionSlots( $slotsArray );
@@ -122,7 +122,7 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionSlots::getInheritedSlots
 	 */
 	public function testGetInheritedSlots() {
-		$mainSlot = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$mainSlot = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$auxSlot = SlotRecord::newInherited(
 			SlotRecord::newSaved(
 				7, 7, 'foo',
@@ -139,7 +139,7 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionSlots::getOriginalSlots
 	 */
 	public function testGetOriginalSlots() {
-		$mainSlot = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$mainSlot = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$auxSlot = SlotRecord::newInherited(
 			SlotRecord::newSaved(
 				7, 7, 'foo',

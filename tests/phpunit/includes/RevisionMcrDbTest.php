@@ -35,7 +35,7 @@ class RevisionMcrDbTest extends RevisionDbTestBase {
 			'slot_content_id' => 1,
 			'content_address' => 'tt:789',
 			'model_name' => CONTENT_MODEL_WIKITEXT,
-			'role_name' => 'main',
+			'role_name' => SlotRecord::MAIN,
 			'slot_origin' => 1,
 		], new WikitextContent( 'Test' ) );
 

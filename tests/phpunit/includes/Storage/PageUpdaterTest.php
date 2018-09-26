@@ -6,6 +6,7 @@ use CommentStoreComment;
 use Content;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\SlotRecord;
 use MediaWikiTestCase;
 use ParserOptions;
 use RecentChange;
@@ -72,7 +73,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 
 		// TODO: MCR: test additional slots
 		$content = new TextContent( 'Lorem Ipsum' );
-		$updater->setContent( 'main', $content );
+		$updater->setContent( SlotRecord::MAIN, $content );
 
 		$parent = $updater->grabParentRevision();
 
@@ -102,7 +103,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		$this->assertInstanceOf( Revision::class, $updater->getStatus()->value['revision'] );
 
 		$rev = $updater->getNewRevision();
-		$revContent = $rev->getContent( 'main' );
+		$revContent = $rev->getContent( SlotRecord::MAIN );
 		$this->assertSame( 'Lorem Ipsum', $revContent->serialize(), 'revision content' );
 
 		// were the WikiPage and Title objects updated?
@@ -128,7 +129,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 
 		// re-edit with same content - should be a "null-edit"
 		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( 'main', $content );
+		$updater->setContent( SlotRecord::MAIN, $content );
 
 		$summary = CommentStoreComment::newUnsavedComment( 'to to re-edit' );
 		$rev = $updater->saveRevision( $summary );
@@ -167,7 +168,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		$this->assertTrue( $updater->hasEditConflict( 0 ), 'hasEditConflict' );
 
 		// TODO: MCR: test additional slots
-		$updater->setContent( 'main', new TextContent( 'Lorem Ipsum' ) );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
 
 		// TODO: test all flags for saveRevision()!
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
@@ -189,7 +190,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		// TODO: Test null revision (with different user): new revision!
 
 		$rev = $updater->getNewRevision();
-		$revContent = $rev->getContent( 'main' );
+		$revContent = $rev->getContent( SlotRecord::MAIN );
 		$this->assertSame( 'Lorem Ipsum', $revContent->serialize(), 'revision content' );
 
 		// were the WikiPage and Title objects updated?
@@ -210,7 +211,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 
 		// re-edit
 		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( 'main', new TextContent( 'dolor sit amet' ) );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'dolor sit amet' ) );
 
 		$summary = CommentStoreComment::newUnsavedComment( 're-edit' );
 		$updater->saveRevision( $summary );
@@ -242,7 +243,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		}
 
 		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( 'main', $content );
+		$updater->setContent( SlotRecord::MAIN, $content );
 		$rev = $updater->saveRevision( $comment );
 		return $rev;
 	}
@@ -267,7 +268,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 
 		// try creating the page - should trigger CAS failure.
 		$summary = CommentStoreComment::newUnsavedComment( 'create?!' );
-		$updater->setContent( 'main', new TextContent( 'Lorem ipsum' ) );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem ipsum' ) );
 		$updater->saveRevision( $summary );
 		$status = $updater->getStatus();
 
@@ -287,7 +288,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 
 		// try creating the page - should trigger CAS failure.
 		$summary = CommentStoreComment::newUnsavedComment( 'edit?!' );
-		$updater->setContent( 'main', new TextContent( 'dolor sit amet' ) );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'dolor sit amet' ) );
 		$updater->saveRevision( $summary );
 		$status = $updater->getStatus();
 
@@ -311,7 +312,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 
 		// update with EDIT_UPDATE flag should fail
 		$summary = CommentStoreComment::newUnsavedComment( 'udpate?!' );
-		$updater->setContent( 'main', new TextContent( 'Lorem ipsum' ) );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem ipsum' ) );
 		$updater->saveRevision( $summary, EDIT_UPDATE );
 		$status = $updater->getStatus();
 
@@ -326,7 +327,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		// update with EDIT_NEW flag should fail
 		$summary = CommentStoreComment::newUnsavedComment( 'create?!' );
 		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( 'main', new TextContent( 'dolor sit amet' ) );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'dolor sit amet' ) );
 		$updater->saveRevision( $summary, EDIT_NEW );
 		$status = $updater->getStatus();
 
@@ -356,7 +357,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		$updater = $page->newPageUpdater( $user );
 
 		$summary = CommentStoreComment::newUnsavedComment( 'Lorem ipsum ' . $patrolled );
-		$updater->setContent( 'main', new TextContent( 'Lorem ipsum ' . $patrolled ) );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem ipsum ' . $patrolled ) );
 		$updater->setRcPatrolStatus( $patrolled );
 		$rev = $updater->saveRevision( $summary );
 
@@ -375,24 +376,24 @@ class PageUpdaterTest extends MediaWikiTestCase {
 
 		$updater = $page->newPageUpdater( $user );
 		$summary = CommentStoreComment::newUnsavedComment( 'one' );
-		$updater->setContent( 'main', new TextContent( 'Lorem ipsum' ) );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem ipsum' ) );
 		$rev1 = $updater->saveRevision( $summary, EDIT_NEW );
 
 		$updater = $page->newPageUpdater( $user );
 		$summary = CommentStoreComment::newUnsavedComment( 'two' );
-		$updater->setContent( 'main', new TextContent( 'Foo Bar' ) );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Foo Bar' ) );
 		$rev2 = $updater->saveRevision( $summary, EDIT_UPDATE );
 
 		$updater = $page->newPageUpdater( $user );
 		$summary = CommentStoreComment::newUnsavedComment( 'three' );
-		$updater->inheritSlot( $rev1->getSlot( 'main' ) );
+		$updater->inheritSlot( $rev1->getSlot( SlotRecord::MAIN ) );
 		$rev3 = $updater->saveRevision( $summary, EDIT_UPDATE );
 
 		$this->assertNotSame( $rev1->getId(), $rev3->getId() );
 		$this->assertNotSame( $rev2->getId(), $rev3->getId() );
 
-		$main1 = $rev1->getSlot( 'main' );
-		$main3 = $rev3->getSlot( 'main' );
+		$main1 = $rev1->getSlot( SlotRecord::MAIN );
+		$main3 = $rev3->getSlot( SlotRecord::MAIN );
 
 		$this->assertNotSame( $main1->getRevision(), $main3->getRevision() );
 		$this->assertSame( $main1->getAddress(), $main3->getAddress() );
@@ -410,7 +411,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 
 		$updater = $page->newPageUpdater( $user );
 		$updater->setUseAutomaticEditSummaries( true );
-		$updater->setContent( 'main', new TextContent( 'Lorem Ipsum' ) );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
 
 		// empty comment triggers auto-summary
 		$summary = CommentStoreComment::newUnsavedComment( '' );
@@ -423,7 +424,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		// check that this also works when blanking the page
 		$updater = $page->newPageUpdater( $user );
 		$updater->setUseAutomaticEditSummaries( true );
-		$updater->setContent( 'main', new TextContent( '' ) );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( '' ) );
 
 		$summary = CommentStoreComment::newUnsavedComment( '' );
 		$updater->saveRevision( $summary, EDIT_AUTOSUMMARY );
@@ -438,7 +439,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 
 		$updater = $page2->newPageUpdater( $user );
 		$updater->setUseAutomaticEditSummaries( false );
-		$updater->setContent( 'main', new TextContent( 'Lorem Ipsum' ) );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
 
 		$summary = CommentStoreComment::newUnsavedComment( '' );
 		$updater->saveRevision( $summary, EDIT_AUTOSUMMARY );
@@ -450,7 +451,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		// check that we don't do auto.summaries without the EDIT_AUTOSUMMARY flag
 		$updater = $page2->newPageUpdater( $user );
 		$updater->setUseAutomaticEditSummaries( true );
-		$updater->setContent( 'main', new TextContent( '' ) );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( '' ) );
 
 		$summary = CommentStoreComment::newUnsavedComment( '' );
 		$updater->saveRevision( $summary, 0 );
@@ -477,7 +478,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		$updater = $page->newPageUpdater( $user );
 		$updater->setUsePageCreationLog( $use );
 		$summary = CommentStoreComment::newUnsavedComment( 'cmt' );
-		$updater->setContent( 'main', new TextContent( 'Lorem Ipsum' ) );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
 		$updater->saveRevision( $summary, EDIT_NEW );
 
 		$rev = $updater->getNewRevision();
@@ -555,7 +556,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		$page = WikiPage::factory( $title );
 		$updater = $page->newPageUpdater( $user );
 
-		$updater->setContent( 'main', new \WikitextContent( $wikitext ) );
+		$updater->setContent( SlotRecord::MAIN, new \WikitextContent( $wikitext ) );
 
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
 		$rev = $updater->saveRevision( $summary, EDIT_UPDATE );
@@ -568,7 +569,7 @@ class PageUpdaterTest extends MediaWikiTestCase {
 
 		$output = $page->getParserOutput( ParserOptions::newCanonical( 'canonical' ) );
 		$html = $output->getText();
-		$text = $rev->getContent( 'main' )->serialize();
+		$text = $rev->getContent( SlotRecord::MAIN )->serialize();
 
 		if ( $subst ) {
 			$this->assertContains( $expected, $text, 'In Wikitext' );

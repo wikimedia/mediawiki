@@ -388,7 +388,7 @@ class PageUpdater {
 	 * @param string $role A slot role name (but not "main")
 	 */
 	public function removeSlot( $role ) {
-		if ( $role === 'main' ) {
+		if ( $role === SlotRecord::MAIN ) {
 			throw new InvalidArgumentException( 'Cannot remove the main slot!' );
 		}
 
@@ -635,7 +635,7 @@ class PageUpdater {
 
 		// Make sure the given content type is allowed for this page
 		// TODO: decide: Extend check to other slots? Consider the role in check? [PageType]
-		$mainContentHandler = $this->getContentHandler( 'main' );
+		$mainContentHandler = $this->getContentHandler( SlotRecord::MAIN );
 		if ( !$mainContentHandler->canBeUsedOn( $this->getTitle() ) ) {
 			$this->status = Status::newFatal( 'content-not-allowed-here',
 				ContentHandler::getLocalizedName( $mainContentHandler->getModelID() ),
@@ -701,7 +701,7 @@ class PageUpdater {
 		 */
 		$this->derivedDataUpdater->getCanonicalParserOutput();
 
-		$mainContent = $this->derivedDataUpdater->getSlots()->getContent( 'main' );
+		$mainContent = $this->derivedDataUpdater->getSlots()->getContent( SlotRecord::MAIN );
 
 		// Trigger pre-save hook (using provided edit summary)
 		$hookStatus = Status::newGood( [] );
@@ -1049,7 +1049,7 @@ class PageUpdater {
 	private function doCreate( CommentStoreComment $summary, User $user, $flags ) {
 		$wikiPage = $this->getWikiPage(); // TODO: use for legacy hooks only!
 
-		if ( !$this->derivedDataUpdater->getSlots()->hasSlot( 'main' ) ) {
+		if ( !$this->derivedDataUpdater->getSlots()->hasSlot( SlotRecord::MAIN ) ) {
 			throw new PageUpdateException( 'Must provide a main slot when creating a page!' );
 		}
 
@@ -1186,7 +1186,7 @@ class PageUpdater {
 				$hints['causeAgent'] = $user->getName();
 
 				$newLegacyRevision = new Revision( $newRevisionRecord );
-				$mainContent = $newRevisionRecord->getContent( 'main', RevisionRecord::RAW );
+				$mainContent = $newRevisionRecord->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 
 				// Update links tables, site stats, etc.
 				$this->derivedDataUpdater->prepareUpdate( $newRevisionRecord, $hints );

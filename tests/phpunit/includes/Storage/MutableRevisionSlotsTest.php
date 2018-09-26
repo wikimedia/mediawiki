@@ -65,14 +65,14 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 
 		$this->assertSame( [], $slots->getSlots() );
 
-		$slotA = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$slotA = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$slots->setSlot( $slotA );
-		$this->assertSame( $slotA, $slots->getSlot( 'main' ) );
+		$this->assertSame( $slotA, $slots->getSlot( SlotRecord::MAIN ) );
 		$this->assertSame( [ 'main' => $slotA ], $slots->getSlots() );
 
-		$slotB = SlotRecord::newUnsaved( 'main', new WikitextContent( 'B' ) );
+		$slotB = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'B' ) );
 		$slots->setSlot( $slotB );
-		$this->assertSame( $slotB, $slots->getSlot( 'main' ) );
+		$this->assertSame( $slotB, $slots->getSlot( SlotRecord::MAIN ) );
 		$this->assertSame( [ 'main' => $slotB ], $slots->getSlots() );
 	}
 
@@ -87,18 +87,18 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 
 	public function testInheritSlotOverwritesSlot() {
 		$slots = new MutableRevisionSlots();
-		$slotA = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$slotA = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$slots->setSlot( $slotA );
-		$slotB = $this->newSavedSlot( 'main', new WikitextContent( 'B' ) );
+		$slotB = $this->newSavedSlot( SlotRecord::MAIN, new WikitextContent( 'B' ) );
 		$slotC = $this->newSavedSlot( 'foo', new WikitextContent( 'C' ) );
 		$slots->inheritSlot( $slotB );
 		$slots->inheritSlot( $slotC );
 		$this->assertSame( [ 'main', 'foo' ], $slots->getSlotRoles() );
-		$this->assertNotSame( $slotB, $slots->getSlot( 'main' ) );
+		$this->assertNotSame( $slotB, $slots->getSlot( SlotRecord::MAIN ) );
 		$this->assertNotSame( $slotC, $slots->getSlot( 'foo' ) );
-		$this->assertTrue( $slots->getSlot( 'main' )->isInherited() );
+		$this->assertTrue( $slots->getSlot( SlotRecord::MAIN )->isInherited() );
 		$this->assertTrue( $slots->getSlot( 'foo' )->isInherited() );
-		$this->assertSame( $slotB->getContent(), $slots->getSlot( 'main' )->getContent() );
+		$this->assertSame( $slotB->getContent(), $slots->getSlot( SlotRecord::MAIN )->getContent() );
 		$this->assertSame( $slotC->getContent(), $slots->getSlot( 'foo' )->getContent() );
 	}
 
@@ -107,26 +107,26 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 
 		$this->assertSame( [], $slots->getSlots() );
 
-		$slotA = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$slotA = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$slots->setSlot( $slotA );
-		$this->assertSame( $slotA, $slots->getSlot( 'main' ) );
+		$this->assertSame( $slotA, $slots->getSlot( SlotRecord::MAIN ) );
 		$this->assertSame( [ 'main' => $slotA ], $slots->getSlots() );
 
 		$newContent = new WikitextContent( 'B' );
-		$slots->setContent( 'main', $newContent );
-		$this->assertSame( $newContent, $slots->getContent( 'main' ) );
+		$slots->setContent( SlotRecord::MAIN, $newContent );
+		$this->assertSame( $newContent, $slots->getContent( SlotRecord::MAIN ) );
 	}
 
 	public function testRemoveExistingSlot() {
-		$slotA = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$slotA = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$slots = new MutableRevisionSlots( [ $slotA ] );
 
 		$this->assertSame( [ 'main' => $slotA ], $slots->getSlots() );
 
-		$slots->removeSlot( 'main' );
+		$slots->removeSlot( SlotRecord::MAIN );
 		$this->assertSame( [], $slots->getSlots() );
 		$this->setExpectedException( RevisionAccessException::class );
-		$slots->getSlot( 'main' );
+		$slots->getSlot( SlotRecord::MAIN );
 	}
 
 	public function testNewFromParentRevisionSlots() {

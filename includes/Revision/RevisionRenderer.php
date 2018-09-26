@@ -25,6 +25,7 @@ namespace MediaWiki\Revision;
 use Html;
 use InvalidArgumentException;
 use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\SlotRecord;
 use ParserOptions;
 use ParserOutput;
 use Psr\Log\LoggerInterface;
@@ -165,15 +166,15 @@ class RevisionRenderer {
 		$withHtml = $hints['generate-html'] ?? true;
 
 		// short circuit if there is only the main slot
-		if ( array_keys( $slots ) === [ 'main' ] ) {
-			return $rrev->getSlotParserOutput( 'main' );
+		if ( array_keys( $slots ) === [ SlotRecord::MAIN ] ) {
+			return $rrev->getSlotParserOutput( SlotRecord::MAIN );
 		}
 
 		// TODO: put fancy layout logic here, see T200915.
 
 		// move main slot to front
-		if ( isset( $slots['main'] ) ) {
-			$slots = [ 'main' => $slots['main'] ] + $slots;
+		if ( isset( $slots[SlotRecord::MAIN] ) ) {
+			$slots = [ SlotRecord::MAIN => $slots[SlotRecord::MAIN] ] + $slots;
 		}
 
 		$combinedOutput = new ParserOutput( null );

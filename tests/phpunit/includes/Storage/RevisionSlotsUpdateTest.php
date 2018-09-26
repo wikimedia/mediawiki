@@ -158,25 +158,25 @@ class RevisionSlotsUpdateTest extends MediaWikiTestCase {
 	public function testRemoveSlot() {
 		$slots = new RevisionSlotsUpdate();
 
-		$slotA = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$slotA = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$slots->modifySlot( $slotA );
 
 		$this->assertSame( [ 'main' ], $slots->getModifiedRoles() );
 
-		$slots->removeSlot( 'main' );
+		$slots->removeSlot( SlotRecord::MAIN );
 		$slots->removeSlot( 'other' );
 		$this->assertSame( [], $slots->getModifiedRoles() );
 		$this->assertSame( [ 'main', 'other' ], $slots->getRemovedRoles() );
-		$this->assertTrue( $slots->isRemovedSlot( 'main' ) );
+		$this->assertTrue( $slots->isRemovedSlot( SlotRecord::MAIN ) );
 		$this->assertTrue( $slots->isRemovedSlot( 'other' ) );
-		$this->assertFalse( $slots->isModifiedSlot( 'main' ) );
+		$this->assertFalse( $slots->isModifiedSlot( SlotRecord::MAIN ) );
 
 		// removing the same slot again should not trigger an error
-		$slots->removeSlot( 'main' );
+		$slots->removeSlot( SlotRecord::MAIN );
 
 		// getting a slot after removing it should fail
 		$this->setExpectedException( RevisionAccessException::class );
-		$slots->getModifiedSlot( 'main' );
+		$slots->getModifiedSlot( SlotRecord::MAIN );
 	}
 
 	public function testGetModifiedRoles() {
@@ -184,26 +184,26 @@ class RevisionSlotsUpdateTest extends MediaWikiTestCase {
 
 		$this->assertSame( [], $slots->getModifiedRoles() );
 
-		$slots->modifyContent( 'main', new WikitextContent( 'A' ) );
+		$slots->modifyContent( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$slots->modifyContent( 'foo', new WikitextContent( 'Foo' ) );
 		$this->assertSame( [ 'main', 'foo' ], $slots->getModifiedRoles() );
 
-		$slots->removeSlot( 'main' );
+		$slots->removeSlot( SlotRecord::MAIN );
 		$this->assertSame( [ 'foo' ], $slots->getModifiedRoles() );
 	}
 
 	public function testGetRemovedRoles() {
-		$slotA = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$slotA = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$slots = new RevisionSlotsUpdate( [ $slotA ] );
 
 		$this->assertSame( [], $slots->getRemovedRoles() );
 
-		$slots->removeSlot( 'main', new WikitextContent( 'A' ) );
+		$slots->removeSlot( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$slots->removeSlot( 'foo', new WikitextContent( 'Foo' ) );
 
 		$this->assertSame( [ 'main', 'foo' ], $slots->getRemovedRoles() );
 
-		$slots->modifyContent( 'main', new WikitextContent( 'A' ) );
+		$slots->modifyContent( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$this->assertSame( [ 'foo' ], $slots->getRemovedRoles() );
 	}
 

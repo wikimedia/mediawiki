@@ -23,6 +23,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Storage\SlotRecord;
 
 class ApiComparePages extends ApiBase {
 
@@ -271,7 +272,7 @@ class ApiComparePages extends ApiBase {
 		}
 
 		$guessedTitle = $this->guessTitle();
-		if ( $guessedTitle && $role === 'main' ) {
+		if ( $guessedTitle && $role === SlotRecord::MAIN ) {
 			// @todo: Use SlotRoleRegistry and do this for all slots
 			return $guessedTitle->getContentModel();
 		}
@@ -283,7 +284,7 @@ class ApiComparePages extends ApiBase {
 			return $params["tocontentmodel-$role"];
 		}
 
-		if ( $role === 'main' ) {
+		if ( $role === SlotRecord::MAIN ) {
 			if ( isset( $params['fromcontentmodel'] ) ) {
 				return $params['fromcontentmodel'];
 			}
@@ -315,7 +316,7 @@ class ApiComparePages extends ApiBase {
 		$this->requireMaxOneParameter( $params, "{$prefix}text", "{$prefix}slots" );
 		$this->requireMaxOneParameter( $params, "{$prefix}section", "{$prefix}slots" );
 		if ( $params["{$prefix}text"] !== null ) {
-			$params["{$prefix}slots"] = [ 'main' ];
+			$params["{$prefix}slots"] = [ SlotRecord::MAIN ];
 			$params["{$prefix}text-main"] = $params["{$prefix}text"];
 			$params["{$prefix}section-main"] = null;
 			$params["{$prefix}contentmodel-main"] = $params["{$prefix}contentmodel"];
@@ -378,10 +379,11 @@ class ApiComparePages extends ApiBase {
 				if ( isset( $params["{$prefix}section"] ) ) {
 					$section = $params["{$prefix}section"];
 					$newRev = MutableRevisionRecord::newFromParentRevision( $rev );
-					$content = $rev->getContent( 'main', RevisionRecord::FOR_THIS_USER, $this->getUser() );
+					$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER,
+						$this->getUser() );
 					if ( !$content ) {
 						$this->dieWithError(
-							[ 'apierror-missingcontent-revid-role', $rev->getId(), 'main' ], 'missingcontent'
+							[ 'apierror-missingcontent-revid-role', $rev->getId(), SlotRecord::MAIN ], 'missingcontent'
 						);
 					}
 					$content = $content ? $content->getSection( $section ) : null;
@@ -391,7 +393,7 @@ class ApiComparePages extends ApiBase {
 							"nosuch{$prefix}section"
 						);
 					}
-					$newRev->setContent( 'main', $content );
+					$newRev->setContent( SlotRecord::MAIN, $content );
 				}
 
 				return [ $newRev, $rev, $rev ];
@@ -412,8 +414,8 @@ class ApiComparePages extends ApiBase {
 		foreach ( $params["{$prefix}slots"] as $role ) {
 			$text = $params["{$prefix}text-{$role}"];
 			if ( $text === null ) {
-				// The 'main' role can't be deleted
-				if ( $role === 'main' ) {
+				// The SlotRecord::MAIN role can't be deleted
+				if ( $role === SlotRecord::MAIN ) {
 					$this->dieWithError( [ 'apierror-compare-maintextrequired', $prefix ] );
 				}
 
@@ -439,7 +441,7 @@ class ApiComparePages extends ApiBase {
 			if ( !$model && $rev && $rev->hasSlot( $role ) ) {
 				$model = $rev->getSlot( $role, RevisionRecord::RAW )->getModel();
 			}
-			if ( !$model && $title && $role === 'main' ) {
+			if ( !$model && $title && $role === SlotRecord::MAIN ) {
 				// @todo: Use SlotRoleRegistry and do this for all slots
 				$model = $title->getContentModel();
 			}
@@ -494,7 +496,7 @@ class ApiComparePages extends ApiBase {
 			}
 
 			// Deprecated 'fromsection'/'tosection'
-			if ( $role === 'main' && isset( $params["{$prefix}section"] ) ) {
+			if ( $role === SlotRecord::MAIN && isset( $params["{$prefix}section"] ) ) {
 				$section = $params["{$prefix}section"];
 				$content = $content->getSection( $section );
 				if ( !$content ) {
@@ -581,8 +583,8 @@ class ApiComparePages extends ApiBase {
 
 	public function getAllowedParams() {
 		$slotRoles = MediaWikiServices::getInstance()->getSlotRoleStore()->getMap();
-		if ( !in_array( 'main', $slotRoles, true ) ) {
-			$slotRoles[] = 'main';
+		if ( !in_array( SlotRecord::MAIN, $slotRoles, true ) ) {
+			$slotRoles[] = SlotRecord::MAIN;
 		}
 		sort( $slotRoles, SORT_STRING );
 
