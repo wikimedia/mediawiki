@@ -16,7 +16,8 @@
 			"Pippinu",
 			"Macofe",
 			"S4b1nuz E.656",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Suttalìnia li lijami:",
@@ -1052,8 +1053,10 @@
 	"right-editcontentmodel": "Canciari lu mudellu di cuntinutu di na pàggina",
 	"right-editinterface": "Canciari la ntirfaccia utenti",
 	"right-editusercss": "Canciari li file CSS di l'àutri utenti",
+	"right-edituserjson": "Canciari li file JSON di l'àutri utenti",
 	"right-edituserjs": "Canciari li file JavaScript di l'àutri utenti",
 	"right-editmyusercss": "Canciari li file CSS dû propiu utenti",
+	"right-editmyuserjson": "Canciari li file JSON dû propiu utenti",
 	"right-editmyuserjs": "Canciari li file JavaScript dû propiu utenti",
 	"right-viewmywatchlist": "Taliari la propia lista taliata",
 	"right-editmywatchlist": "Canciari la propia lista taliata. Nota chi certi azzioni ci ponnu agghiùnciri pàggini macari senza di stu drittu.",

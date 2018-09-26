@@ -103,7 +103,8 @@
 			"RyRubyy",
 			"Wxyveronica",
 			"夢蝶葬花",
-			"Dcljr"
+			"Dcljr",
+			"Phenolla"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -633,6 +634,7 @@
 	"botpasswords-invalid-name": "指定的用户名不包含机器人密码分隔符（“$1”）。",
 	"botpasswords-not-exist": "用户“$1”没有名叫“$2”的机器人密码。",
 	"botpasswords-needs-reset": "用于{{GENDER:$1|用户}}“$1”的机器人名称“$2”的机器人密码必须重置。",
+	"botpasswords-locked": "由于您的账户已被锁定，您不可以使用机器人密码进行登录。",
 	"resetpass_forbidden": "无法更改密码",
 	"resetpass_forbidden-reason": "密码不能更改：$1",
 	"resetpass-no-info": "您必须登录后直接进入这个页面。",
@@ -3466,6 +3468,7 @@
 	"confirm-unwatch-top": "从监视列表中删除此页吗？",
 	"confirm-rollback-button": "确定",
 	"confirm-rollback-top": "回退此页面的编辑么？",
+	"confirm-mcrrestore-title": "还原版本",
 	"confirm-mcrundo-title": "撤销一次更改",
 	"mcrundofailed": "撤销失败",
 	"mcrundo-missingparam": "请求中缺少必需参数。",

@@ -3427,6 +3427,7 @@
 	"confirm-unwatch-top": "Deze pagina verwijderen uit uw volglijst?",
 	"confirm-rollback-button": "OK",
 	"confirm-rollback-top": "Bewerkingen op deze pagina ongedaan maken?",
+	"confirm-mcrrestore-title": "Een versie terugplaatsen",
 	"confirm-mcrundo-title": "Een wijziging ongedaan maken",
 	"mcrundofailed": "Ongedaan maken mislukt",
 	"mcrundo-missingparam": "Er ontbreken nodige parameters in het verzoek.",
