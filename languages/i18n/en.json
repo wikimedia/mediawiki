@@ -3134,7 +3134,7 @@
 	"previousdiff": "← Older edit",
 	"nextdiff": "Newer edit →",
 	"mediawarning": "<strong>Warning:</strong> This file type may contain malicious code.\nBy executing it, your system may be compromised.",
-	"imagemaxsize": "Image size limit:<br /><em>(for file description pages)</em>",
+	"imagemaxsize": "Image size limit on file description pages:",
 	"thumbsize": "Thumbnail size:",
 	"widthheight": "$1 × $2",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|page|pages}}",
