@@ -63,6 +63,10 @@ This is a security and maintenance release of the MediaWiki 1.31 branch.
   to the ar_text and ar_flags columns of the archive table or make those
   columns nullable before upgrading to MediaWiki 1.31.
   maintenance/archives/patch-nullable-ar_text.sql shows how to do this for MySQL.
+* The CologneBlue and Modern skins are no longer bundled with the tarball. You
+  will need to remove the wfLoadSkin() calls from your LocalSettings.php or
+  download them separately
+  (<https://www.mediawiki.org/wiki/Special:SkinDistributor>).
 
 === Configuration changes in 1.31 ===
 * $wgEnableAPI and $wgEnableWriteAPI are now deprecated and will be removed in
