@@ -1,4 +1,4 @@
-const Page = require( 'wdio-mediawiki/Page' );
+const Page = require( './Page' );
 
 class BlankPage extends Page {
 	get heading() { return browser.element( '#firstHeading' ); }

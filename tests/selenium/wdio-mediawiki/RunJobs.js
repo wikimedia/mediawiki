@@ -1,5 +1,5 @@
 const MWBot = require( 'mwbot' ),
-	Page = require( 'wdio-mediawiki/Page' ),
+	Page = require( './Page' ),
 	FRONTPAGE_REQUESTS_MAX_RUNS = 10; // (arbitrary) safe-guard against endless execution
 
 /**
