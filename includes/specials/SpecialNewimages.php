@@ -219,16 +219,14 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		if ( !$message->isDisabled() ) {
 			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			$this->getOutput()->addWikiTextTidy(
-				Html::rawElement( 'p',
+				Html::rawElement( 'div',
 					[
 
 						'lang' => $contLang->getHtmlCode(),
 						'dir' => $contLang->getDir()
 					],
 					"\n" . $message->plain() . "\n"
-				),
-				/* $lineStart */ false,
-				/* $interface */ false
+				)
 			);
 		}
 	}
