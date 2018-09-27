@@ -163,64 +163,35 @@ class RawAction extends FormlessAction {
 		$title = $this->getTitle();
 		$request = $this->getRequest();
 
-		// If it's a page in the MediaWiki namespace, we can just hit the message cache
-		if ( $request->getBool( 'usemsgcache' ) && $title->getNamespace() == NS_MEDIAWIKI ) {
-			// FIXME: The overhead and complexity of using MessageCache for serving
-			// source code is not worth the marginal gain in performance. This should
-			// instead use Revision::getRevisionText, which already has its own caching
-			// layer, which is good enough fine given action=raw only responds with
-			// a single page (no need for batch).
-			//
-			// Use of MessageCache:
-			// - is unsustainable (T193271),
-			// - can cause bugs due to "post-processing" (see MessageCache::get) not
-			//   intending to apply to program source code,
-			// - causes uncertaintly around whether or not localisation default
-			//   placeholders are, can, and should be used, or not.
-			$text = MessageCache::singleton()->get(
-				$title->getDBkey(),
-				// Yes, use the database.
-				true,
-				// Yes, use the content language.
-				true,
-				// Yes, the message key already contains the language in it ("/de", etc.)
-				true
-			);
-			// If the local page doesn't exist, return a blank (not the default)
-			if ( $text === false ) {
-				$text = '';
-			}
-		} else {
-			// Get it from the DB
-			$rev = Revision::newFromTitle( $title, $this->getOldId() );
-			if ( $rev ) {
-				$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
-				$request->response()->header( "Last-modified: $lastmod" );
+		// Get it from the DB
+		$rev = Revision::newFromTitle( $title, $this->getOldId() );
+		if ( $rev ) {
+			$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
+			$request->response()->header( "Last-modified: $lastmod" );
 
-				// Public-only due to cache headers
-				$content = $rev->getContent();
+			// Public-only due to cache headers
+			$content = $rev->getContent();
 
-				if ( $content === null ) {
-					// revision not found (or suppressed)
+			if ( $content === null ) {
+				// revision not found (or suppressed)
+				$text = false;
+			} elseif ( !$content instanceof TextContent ) {
+				// non-text content
+				wfHttpError( 415, "Unsupported Media Type", "The requested page uses the content model `"
+					. $content->getModel() . "` which is not supported via this interface." );
+				die();
+			} else {
+				// want a section?
+				$section = $request->getIntOrNull( 'section' );
+				if ( $section !== null ) {
+					$content = $content->getSection( $section );
+				}
+
+				if ( $content === null || $content === false ) {
+					// section not found (or section not supported, e.g. for JS, JSON, and CSS)
 					$text = false;
-				} elseif ( !$content instanceof TextContent ) {
-					// non-text content
-					wfHttpError( 415, "Unsupported Media Type", "The requested page uses the content model `"
-						. $content->getModel() . "` which is not supported via this interface." );
-					die();
 				} else {
-					// want a section?
-					$section = $request->getIntOrNull( 'section' );
-					if ( $section !== null ) {
-						$content = $content->getSection( $section );
-					}
-
-					if ( $content === null || $content === false ) {
-						// section not found (or section not supported, e.g. for JS, JSON, and CSS)
-						$text = false;
-					} else {
-						$text = $content->getNativeData();
-					}
+					$text = $content->getNativeData();
 				}
 			}
 		}
