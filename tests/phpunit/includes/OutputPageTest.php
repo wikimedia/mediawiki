@@ -1509,6 +1509,36 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers OutputPage::addWikiMsg
+	 */
+	public function testAddWikiMsg() {
+		$msg = wfMessage( 'parentheses' );
+		$this->assertSame( '(a)', $msg->rawParams( 'a' )->plain() );
+
+		$op = $this->newInstance();
+		$this->assertSame( '', $op->getHTML() );
+		$op->addWikiMsg( 'parentheses', "<b>a" );
+		// This is known to be bad unbalanced HTML; this will be fixed
+		// by I743f4185a03403f8d9b9db010ff1ee4e9342e062 (T198214)
+		$this->assertSame( "<p>(<b>a)\n</p>", $op->getHTML() );
+	}
+
+	/**
+	 * @covers OutputPage::wrapWikiMsg
+	 */
+	public function testWrapWikiMsg() {
+		$msg = wfMessage( 'parentheses' );
+		$this->assertSame( '(a)', $msg->rawParams( 'a' )->plain() );
+
+		$op = $this->newInstance();
+		$this->assertSame( '', $op->getHTML() );
+		$op->wrapWikiMsg( '[$1]', [ 'parentheses', "<b>a" ] );
+		// This is known to be bad unbalanced HTML; this will be fixed
+		// by I743f4185a03403f8d9b9db010ff1ee4e9342e062 (T198214)
+		$this->assertSame( "<p>[(<b>a)]\n</p>", $op->getHTML() );
+	}
+
+	/**
 	 * @covers OutputPage::addParserOutputMetadata
 	 */
 	public function testNoGallery() {
