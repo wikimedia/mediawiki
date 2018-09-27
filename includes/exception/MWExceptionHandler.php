@@ -35,12 +35,35 @@ class MWExceptionHandler {
 	 * @var string $reservedMemory
 	 */
 	protected static $reservedMemory;
+
 	/**
+	 * Error types that, if unhandled, are fatal to the request.
+	 *
+	 * On PHP 7, these error types may be thrown as Error objects, which
+	 * implement Throwable (but not Exception).
+	 *
+	 * On HHVM, these invoke the set_error_handler callback, similar to how
+	 * (non-fatal) warnings and notices are reported, except that after this
+	 * handler runs for fatal error tpyes, script execution stops!
+	 *
+	 * The user will be shown an HTTP 500 Internal Server Error.
+	 * As such, these should be sent to MediaWiki's "fatal" or "exception"
+	 * channel. Normally, the error handler logs them to the "error" channel.
+	 *
 	 * @var array $fatalErrorTypes
 	 */
 	protected static $fatalErrorTypes = [
-		E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR,
-		/* HHVM's FATAL_ERROR level */ 16777217,
+		E_ERROR,
+		E_PARSE,
+		E_CORE_ERROR,
+		E_COMPILE_ERROR,
+		E_USER_ERROR,
+
+		// E.g. "Catchable fatal error: Argument X must be Y, null given"
+		E_RECOVERABLE_ERROR,
+
+		// HHVM's FATAL_ERROR constant
+		16777217,
 	];
 	/**
 	 * @var bool $handledFatalCallback
@@ -192,10 +215,6 @@ class MWExceptionHandler {
 		// behaviour given the null was not part of the code and is likely not
 		// accounted for.
 		switch ( $level ) {
-			case E_RECOVERABLE_ERROR:
-				$levelName = 'Error';
-				$severity = LogLevel::ERROR;
-				break;
 			case E_WARNING:
 			case E_CORE_WARNING:
 			case E_COMPILE_WARNING:
@@ -231,9 +250,9 @@ class MWExceptionHandler {
 		self::logError( $e, 'error', $severity );
 
 		// If $wgPropagateErrors is true return false so PHP shows/logs the error normally.
-		// Ignore $wgPropagateErrors if the error should break execution, or track_errors is set
+		// Ignore $wgPropagateErrors if track_errors is set
 		// (which means someone is counting on regular PHP error handling behavior).
-		return !( $wgPropagateErrors || $level == E_RECOVERABLE_ERROR || ini_get( 'track_errors' ) );
+		return !( $wgPropagateErrors || ini_get( 'track_errors' ) );
 	}
 
 	/**
