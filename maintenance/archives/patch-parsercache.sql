@@ -1,6 +1,6 @@
 --
--- parsercache table, for cacheing complete parsed articles
--- before they are imbedded in the skin.
+-- parsercache table, for caching completly parsed articles
+-- before they are embedded in the skin.
 --
 
 CREATE TABLE /*$wgDBprefix*/parsercache (
