@@ -87,7 +87,9 @@ class MWException extends Exception {
 			$res = wfMsgReplaceArgs( $fallback, $args );
 			// If an exception happens inside message rendering,
 			// {{SITENAME}} sometimes won't be replaced.
-			$res = preg_replace( '/\{\{SITENAME\}\}/', $wgSitename, $res );
+			$res = strtr( $res, [
+				'{{SITENAME}}' => $wgSitename,
+			] );
 		}
 		return $res;
 	}
