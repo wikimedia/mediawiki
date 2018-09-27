@@ -4519,5 +4519,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Password cannot match specifically blacklisted passwords",
 	"passwordpolicies-policy-maximalpasswordlength": "Password must be less than $1 {{PLURAL:$1|character|characters}} long",
 	"passwordpolicies-policy-passwordcannotbepopular": "Password cannot be {{PLURAL:$1|the popular password|in the list of $1 popular passwords}}",
-	"easydeflate-invaliddeflate": "Content provided is not properly deflated"
+	"easydeflate-invaliddeflate": "Content provided is not properly deflated",
+	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage"
 }
