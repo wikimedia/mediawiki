@@ -179,8 +179,8 @@ class SpecialImport extends SpecialPage {
 
 		$out = $this->getOutput();
 		if ( !$source->isGood() ) {
-			$out->addWikiText( "<p class=\"error\">\n" .
-				$this->msg( 'importfailed', $source->getWikiText() )->parse() . "\n</p>" );
+			$out->addWikiText( "<div class=\"error\">\n" .
+				$this->msg( 'importfailed', $source->getWikiText() )->parse() . "\n</div>" );
 		} else {
 			$importer = new WikiImporter( $source->value, $this->getConfig() );
 			if ( !is_null( $this->namespace ) ) {
@@ -189,7 +189,7 @@ class SpecialImport extends SpecialPage {
 				$statusRootPage = $importer->setTargetRootPage( $this->rootpage );
 				if ( !$statusRootPage->isGood() ) {
 					$out->wrapWikiMsg(
-						"<p class=\"error\">\n$1\n</p>",
+						"<div class=\"error\">\n$1\n</div>",
 						[
 							'import-options-wrong',
 							$statusRootPage->getWikiText(),
@@ -224,13 +224,13 @@ class SpecialImport extends SpecialPage {
 			if ( $exception ) {
 				# No source or XML parse error
 				$out->wrapWikiMsg(
-					"<p class=\"error\">\n$1\n</p>",
+					"<div class=\"error\">\n$1\n</div>",
 					[ 'importfailed', $exception->getMessage() ]
 				);
 			} elseif ( !$result->isGood() ) {
 				# Zero revisions
 				$out->wrapWikiMsg(
-					"<p class=\"error\">\n$1\n</p>",
+					"<div class=\"error\">\n$1\n</div>",
 					[ 'importfailed', $result->getWikiText() ]
 				);
 			} else {
