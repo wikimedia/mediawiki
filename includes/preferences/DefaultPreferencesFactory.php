@@ -1060,14 +1060,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 
-		if ( $this->config->get( 'StructuredChangeFiltersShowPreference' ) ) {
-			$defaultPreferences['rcenhancedfilters-disable'] = [
-				'type' => 'toggle',
-				'section' => 'rc/optoutrc',
-				'label-message' => 'rcfilters-preference-label',
-				'help-message' => 'rcfilters-preference-help',
-			];
-		}
+		$defaultPreferences['rcenhancedfilters-disable'] = [
+			'type' => 'toggle',
+			'section' => 'rc/optoutrc',
+			'label-message' => 'rcfilters-preference-label',
+			'help-message' => 'rcfilters-preference-help',
+		];
 	}
 
 	/**
@@ -1264,14 +1262,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 
-		if ( $this->config->get( 'StructuredChangeFiltersShowWatchlistPreference' ) ) {
-			$defaultPreferences['wlenhancedfilters-disable'] = [
-				'type' => 'toggle',
-				'section' => 'watchlist/optoutwatchlist',
-				'label-message' => 'rcfilters-watchlist-preference-label',
-				'help-message' => 'rcfilters-watchlist-preference-help',
-			];
-		}
+		$defaultPreferences['wlenhancedfilters-disable'] = [
+			'type' => 'toggle',
+			'section' => 'watchlist/optoutwatchlist',
+			'label-message' => 'rcfilters-watchlist-preference-label',
+			'help-message' => 'rcfilters-watchlist-preference-help',
+		];
 	}
 
 	/**

@@ -15,13 +15,6 @@ use Wikimedia\TestingAccessWrapper;
  * @covers ChangesListSpecialPage
  */
 class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase {
-	public function setUp() {
-		parent::setUp();
-		$this->setMwGlobals( [
-			'wgStructuredChangeFiltersShowPreference' => true,
-		] );
-	}
-
 	protected function getPage() {
 		$mock = $this->getMockBuilder( ChangesListSpecialPage::class )
 			->setConstructorArgs(
@@ -1004,57 +997,68 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 				[ 'hideanons' => 1, 'hideliu' => 1, 'hidebots' => 1 ],
 				true,
 				[ 'userExpLevel' => 'unregistered', 'hidebots' => 1, ],
+				true,
 			],
 			[
 				[ 'hideanons' => 1, 'hideliu' => 1, 'hidebots' => 0 ],
 				true,
 				[ 'hidebots' => 0, 'hidehumans' => 1 ],
+				true,
 			],
 			[
 				[ 'hideanons' => 1 ],
 				true,
-				[ 'userExpLevel' => 'registered' ]
+				[ 'userExpLevel' => 'registered' ],
+				true,
 			],
 			[
 				[ 'hideliu' => 1 ],
 				true,
-				[ 'userExpLevel' => 'unregistered' ]
+				[ 'userExpLevel' => 'unregistered' ],
+				true,
 			],
 			[
 				[ 'hideanons' => 1, 'hidebots' => 1 ],
 				true,
-				[ 'userExpLevel' => 'registered', 'hidebots' => 1 ]
+				[ 'userExpLevel' => 'registered', 'hidebots' => 1 ],
+				true,
 			],
 			[
 				[ 'hideliu' => 1, 'hidebots' => 0 ],
 				true,
-				[ 'userExpLevel' => 'unregistered', 'hidebots' => 0 ]
+				[ 'userExpLevel' => 'unregistered', 'hidebots' => 0 ],
+				true,
 			],
 			[
 				[ 'hidemyself' => 1, 'hidebyothers' => 1 ],
 				true,
 				[],
+				true,
 			],
 			[
 				[ 'hidebots' => 1, 'hidehumans' => 1 ],
 				true,
 				[],
+				true,
 			],
 			[
 				[ 'hidepatrolled' => 1, 'hideunpatrolled' => 1 ],
 				true,
 				[],
+				true,
 			],
 			[
 				[ 'hideminor' => 1, 'hidemajor' => 1 ],
 				true,
 				[],
+				true,
 			],
 			[
 				// changeType
 				[ 'hidepageedits' => 1, 'hidenewpages' => 1, 'hidecategorization' => 1, 'hidelog' => 1, ],
 				true,
 				[],
+				true,
 			],
 		];
 	}

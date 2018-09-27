@@ -46,6 +46,7 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 				[ 'hideanons' => 1, 'hideliu' => 1 ],
 				true,
 				[ 'hideliu' => 1 ],
+				false,
 			],
 		];
 	}

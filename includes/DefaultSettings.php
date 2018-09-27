@@ -6930,34 +6930,6 @@ $wgRCWatchCategoryMembership = false;
 $wgUseRCPatrol = true;
 
 /**
- * Whether a preference is displayed for structured change filters.
- * If false, no preference is displayed and structured change filters are disabled.
- * If true, structured change filters are *enabled* by default, and a preference is displayed
- * that lets users disable them.
- *
- * Temporary variable during development and will be removed.
- *
- * @since 1.30
- */
-$wgStructuredChangeFiltersShowPreference = false;
-
-/**
- * Whether a preference is displayed for structured change filters on watchlist.
- * Works just like $wgStructuredChangeFiltersShowPreference.
- *
- * Temporary variable during development and will be removed
- * @since 1.32
- */
-$wgStructuredChangeFiltersShowWatchlistPreference = false;
-
-/**
- * Whether to enable RCFilters app on Special:Watchlist
- *
- * Temporary variable during development and will be removed.
- */
-$wgStructuredChangeFiltersOnWatchlist = false;
-
-/**
  * Polling rate, in seconds, used by the 'live update' and 'view newest' features
  * of the RCFilters app on SpecialRecentChanges and Special:Watchlist.
  * 0 to disable completely.
