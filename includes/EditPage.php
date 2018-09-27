@@ -2716,7 +2716,7 @@ ERROR;
 	 *
 	 * @param string|null|bool $text Text to unserialize
 	 * @return Content|bool|null The content object created from $text. If $text was false
-	 *   or null, false resp. null will be  returned instead.
+	 *   or null, then false or null will be returned instead.
 	 *
 	 * @throws MWException If unserializing the text results in a Content
 	 *   object that is not an instance of TextContent and

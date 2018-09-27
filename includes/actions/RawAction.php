@@ -163,13 +163,30 @@ class RawAction extends FormlessAction {
 		$title = $this->getTitle();
 		$request = $this->getRequest();
 
-		// If it's a MediaWiki message we can just hit the message cache
+		// If it's a page in the MediaWiki namespace, we can just hit the message cache
 		if ( $request->getBool( 'usemsgcache' ) && $title->getNamespace() == NS_MEDIAWIKI ) {
-			// The first "true" is to use the database, the second is to use
-			// the content langue and the last one is to specify the message
-			// key already contains the language in it ("/de", etc.).
-			$text = MessageCache::singleton()->get( $title->getDBkey(), true, true, true );
-			// If the message doesn't exist, return a blank
+			// FIXME: The overhead and complexity of using MessageCache for serving
+			// source code is not worth the marginal gain in performance. This should
+			// instead use Revision::getRevisionText, which already has its own caching
+			// layer, which is good enough fine given action=raw only responds with
+			// a single page (no need for batch).
+			//
+			// Use of MessageCache:
+			// - is unsustainable (T193271),
+			// - can cause bugs due to "post-processing" (see MessageCache::get) not
+			//   intending to apply to program source code,
+			// - causes uncertaintly around whether or not localisation default
+			//   placeholders are, can, and should be used, or not.
+			$text = MessageCache::singleton()->get(
+				$title->getDBkey(),
+				// Yes, use the database.
+				true,
+				// Yes, use the content language.
+				true,
+				// Yes, the message key already contains the language in it ("/de", etc.)
+				true
+			);
+			// If the local page doesn't exist, return a blank (not the default)
 			if ( $text === false ) {
 				$text = '';
 			}
