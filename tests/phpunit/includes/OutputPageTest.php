@@ -1020,8 +1020,13 @@ class OutputPageTest extends MediaWikiTestCase {
 
 		$op = $this->getMockBuilder( OutputPage::class )
 			->setConstructorArgs( [ new RequestContext() ] )
-			->setMethods( [ 'addCategoryLinksToLBAndGetResult' ] )
+				   ->setMethods( [ 'addCategoryLinksToLBAndGetResult', 'getTitle' ] )
 			->getMock();
+
+		$title = Title::newFromText( 'My test page' );
+		$op->expects( $this->any() )
+			->method( 'getTitle' )
+			->will( $this->returnValue( $title ) );
 
 		$op->expects( $this->any() )
 			->method( 'addCategoryLinksToLBAndGetResult' )
