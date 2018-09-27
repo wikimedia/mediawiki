@@ -10,6 +10,8 @@ THIS IS NOT A RELEASE YET
 * (T205765) Don't link to the obsolete "Extension Matrix" page in installer.
 * (T207603) User JS may no longer be loaded with mime type text/javascript if
   there is no account associated with the username.
+* (T113042) Do not allow loading pages raw with a text/javascript MIME type if
+  non-admins can edit the page.
 
 == MediaWiki 1.30.1 ==
 
