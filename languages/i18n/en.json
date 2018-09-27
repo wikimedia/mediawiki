@@ -4180,5 +4180,6 @@
 	"gotointerwiki-external": "You are about to leave {{SITENAME}} to visit [[$2]] which is a separate website.\n\n[$1 Click here to continue on to $1].",
 	"undelete-cantedit": "You cannot undelete this page as you are not allowed to edit this page.",
 	"undelete-cantcreate": "You cannot undelete this page as there is no existing page with this name and you are not allowed to create this page.",
-	"unregistered-user-config": "For security reasons JavaScript, CSS and JSON user subpages cannot be loaded for unregistered users."
+	"unregistered-user-config": "For security reasons JavaScript, CSS and JSON user subpages cannot be loaded for unregistered users.",
+	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage"
 }
