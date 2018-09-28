@@ -220,7 +220,43 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 			);
 		}
 		if ( !$rev ) {
-			throw new UnexpectedValueException( 'No revisions are available to copy' );
+			// Since no revisions are available to copy, generate a dummy
+			// revision to a dummy page, then rollback the commit
+			wfDebug( __METHOD__ . ": No revisions are available to copy\n" );
+
+			$dbw->begin();
+
+			// Make a title and revision and insert them
+			$title = Title::newFromText( "PopulateArchiveRevId_4b05b46a81e29" );
+			$page = WikiPage::factory( $title );
+			$updater = $page->newPageUpdater(
+				User::newSystemUser( 'Maintenance script', [ 'steal' => true ] )
+			);
+			$updater->setContent(
+				'main',
+				ContentHandler::makeContent( "Content for dummy rev", $title )
+			);
+			$updater->saveRevision(
+				CommentStoreComment::newUnsavedComment( 'dummy rev summary' ),
+				EDIT_NEW | EDIT_SUPPRESS_RC
+			);
+
+			// get the revision row just inserted
+			$rev = $dbw->selectRow(
+				'revision',
+				'*',
+				[],
+				__METHOD__,
+				[ 'ORDER BY' => 'rev_timestamp ASC' ]
+			);
+
+			$dbw->rollback();
+		}
+		if ( !$rev ) {
+			// This should never happen.
+			throw new UnexpectedValueException(
+				'No revisions are available to copy, and one couldn\'t be created'
+			);
 		}
 
 		unset( $rev->rev_id );
