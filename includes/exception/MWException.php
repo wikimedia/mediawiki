@@ -76,6 +76,7 @@ class MWException extends Exception {
 		global $wgSitename;
 		$args = array_slice( func_get_args(), 2 );
 
+		// FIXME: Keep logic in sync with MWExceptionRenderer::msg.
 		$res = false;
 		if ( $this->useMessageCache() ) {
 			try {
