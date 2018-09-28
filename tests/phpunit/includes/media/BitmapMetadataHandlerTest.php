@@ -127,9 +127,8 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 	 * @covers BitmapMetadataHandler::png
 	 */
 	public function testPNGXMP() {
-		if ( !extension_loaded( 'xml' ) ) {
-			$this->markTestSkipped( "This test needs the xml extension." );
-		}
+		$this->checkPHPExtension( 'xml' );
+
 		$handler = new BitmapMetadataHandler();
 		$result = $handler->PNG( $this->filePath . 'xmp.png' );
 		$expected = [
