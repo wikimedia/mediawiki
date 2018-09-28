@@ -199,6 +199,8 @@ class MWExceptionRenderer {
 	private static function msg( $key, $fallback /*[, params...] */ ) {
 		global $wgSitename;
 		$args = array_slice( func_get_args(), 2 );
+
+		// FIXME: Keep logic in sync with MWException::msg.
 		try {
 			$res = wfMessage( $key, $args )->text();
 		} catch ( Exception $e ) {
