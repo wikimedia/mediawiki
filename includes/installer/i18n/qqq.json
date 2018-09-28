@@ -20,7 +20,8 @@
 			"Jdforrester",
 			"Liuxinyu970226",
 			"Metalhead64",
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"Zoranzoki21"
 		]
 	},
 	"config-desc": "Short description of the installer.",
@@ -172,8 +173,8 @@
 	"config-unknown-collation": "Warning messages in the MediaWiki installer for the database type MySQL when an unrecognised collation is used.",
 	"config-db-web-account": "Fieldset legend in MediaWiki installer",
 	"config-db-web-help": "Help text in MediaWiki installer.",
-	"config-db-web-account-same": "checkbox label",
-	"config-db-web-create": "checkbox label",
+	"config-db-web-account-same": "Checkbox label about setting of database account for web access.",
+	"config-db-web-create": "Checkbox label about creating of new database account.",
 	"config-db-web-no-create-privs": "Error message in the MediaWiki installer.",
 	"config-mysql-engine": "Field label for MySQL storage engine in the MediaWiki installer.",
 	"config-mysql-innodb": "Option for the MySQL storage engine in the MediaWiki installer.",
