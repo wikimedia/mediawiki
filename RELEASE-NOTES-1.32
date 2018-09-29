@@ -470,6 +470,7 @@ because of Phabricator reports.
   escaped.
 * Skin::getDynamicStylesheetQuery() has been deprecated. It always
   returns action=raw&ctype=text/css which callers should use directly.
+* Class LegacyFormatter is deprecated.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
