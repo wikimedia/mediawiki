@@ -27,7 +27,7 @@ use Monolog\Logger;
 use UnexpectedValueException;
 
 /**
- * Log handler that replicates the behavior of MediaWiki's wfErrorLog()
+ * Log handler that replicates the behavior of MediaWiki's former wfErrorLog()
  * logging service. Log output can be directed to a local file, a PHP stream,
  * or a udp2log server.
  *
