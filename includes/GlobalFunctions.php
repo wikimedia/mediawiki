@@ -1148,26 +1148,6 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
 }
 
 /**
- * Log to a file without getting "file size exceeded" signals.
- *
- * Can also log to TCP or UDP with the syntax udp://host:port/prefix. This will
- * send lines to the specified port, prefixed by the specified prefix and a space.
- * @since 1.25 support for additional context data
- *
- * @param string $text
- * @param string $file Filename
- * @param array $context Additional logging context data
- * @throws MWException
- * @deprecated since 1.25 Use \MediaWiki\Logger\LegacyLogger::emit or UDPTransport
- */
-function wfErrorLog( $text, $file, array $context = [] ) {
-	wfDeprecated( __METHOD__, '1.25' );
-	$logger = LoggerFactory::getInstance( 'wfErrorLog' );
-	$context['destination'] = $file;
-	$logger->info( trim( $text ), $context );
-}
-
-/**
  * @todo document
  * @todo Move logic to MediaWiki.php
  */
