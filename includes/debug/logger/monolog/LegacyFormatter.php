@@ -28,6 +28,7 @@ use Monolog\Formatter\NormalizerFormatter;
  * `wfLogDBError` and the former `wfErrorLog` global functions by delegating the formatting to
  * \MediaWiki\Logger\LegacyLogger.
  *
+ * @deprecated since 1.32
  * @since 1.25
  * @copyright © 2013 Wikimedia Foundation and contributors
  * @see \MediaWiki\Logger\LegacyLogger
