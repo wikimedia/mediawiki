@@ -308,7 +308,7 @@
 	"config-help": "help",
 	"config-help-tooltip": "click to expand",
 	"config-nofile": "File \"$1\" could not be found. Has it been deleted?",
-	"config-extension-link": "Did you know that your wiki supports [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensions]?\n\nYou can browse [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions by category] or the [https://www.mediawiki.org/wiki/Extension_Matrix Extension Matrix] to see the full list of extensions.",
+	"config-extension-link": "Did you know that your wiki supports [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensions]?\n\nYou can browse [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions by category].",
 	"config-skins-screenshots": "$1 (screenshots: $2)",
 	"config-skins-screenshot": "$1 ($2)",
 	"config-screenshot": "screenshot",

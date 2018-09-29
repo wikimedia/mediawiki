@@ -7,6 +7,7 @@ THIS IS NOT A RELEASE YET
   titles when asked for none
 * (T109121) Remove deprecated pear/mail_mime-decode from composer suggested libraries.
 * (T207540) Include IP address in "Login for $1 succeeded" log entry.
+* (T205765) Don't link to the obsolete "Extension Matrix" page in installer.
 
 == MediaWiki 1.30.1 ==
 
