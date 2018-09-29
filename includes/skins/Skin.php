@@ -414,17 +414,13 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Get the query to generate a dynamic stylesheet
 	 *
+	 * @deprecated since 1.32 Use action=raw&ctype=text/css directly.
 	 * @return array
 	 */
 	public static function getDynamicStylesheetQuery() {
-		global $wgSquidMaxage;
-
 		return [
 				'action' => 'raw',
-				'maxage' => $wgSquidMaxage,
-				'usemsgcache' => 'yes',
 				'ctype' => 'text/css',
-				'smaxage' => $wgSquidMaxage,
 			];
 	}
 

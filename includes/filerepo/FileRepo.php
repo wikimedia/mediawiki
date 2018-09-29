@@ -810,8 +810,9 @@ class FileRepo {
 	 */
 	public function getDescriptionStylesheetUrl() {
 		if ( isset( $this->scriptDirUrl ) ) {
-			return $this->makeUrl( 'title=MediaWiki:Filepage.css&' .
-				wfArrayToCgi( Skin::getDynamicStylesheetQuery() ) );
+			// Must match canonical query parameter order for optimum caching
+			// See Title::getCdnUrls
+			return $this->makeUrl( 'title=MediaWiki:Filepage.css&action=raw&ctype=text/css' );
 		}
 
 		return false;
