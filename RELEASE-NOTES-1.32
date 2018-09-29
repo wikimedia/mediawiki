@@ -468,6 +468,8 @@ because of Phabricator reports.
 * QuickTemplate::msgHtml() and BaseTemplate::msgHtml() have been deprecated
   as they promote bad practises. I18n messages should always be properly
   escaped.
+* Skin::getDynamicStylesheetQuery() has been deprecated. It always
+  returns action=raw&ctype=text/css which callers should use directly.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into

@@ -163,47 +163,35 @@ class RawAction extends FormlessAction {
 		$title = $this->getTitle();
 		$request = $this->getRequest();
 
-		// If it's a MediaWiki message we can just hit the message cache
-		if ( $request->getBool( 'usemsgcache' ) && $title->getNamespace() == NS_MEDIAWIKI ) {
-			// The first "true" is to use the database, the second is to use
-			// the content langue and the last one is to specify the message
-			// key already contains the language in it ("/de", etc.).
-			$text = MessageCache::singleton()->get( $title->getDBkey(), true, true, true );
-			// If the message doesn't exist, return a blank
-			if ( $text === false ) {
-				$text = '';
-			}
-		} else {
-			// Get it from the DB
-			$rev = Revision::newFromTitle( $title, $this->getOldId() );
-			if ( $rev ) {
-				$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
-				$request->response()->header( "Last-modified: $lastmod" );
+		// Get it from the DB
+		$rev = Revision::newFromTitle( $title, $this->getOldId() );
+		if ( $rev ) {
+			$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
+			$request->response()->header( "Last-modified: $lastmod" );
 
-				// Public-only due to cache headers
-				$content = $rev->getContent();
+			// Public-only due to cache headers
+			$content = $rev->getContent();
 
-				if ( $content === null ) {
-					// revision not found (or suppressed)
+			if ( $content === null ) {
+				// revision not found (or suppressed)
+				$text = false;
+			} elseif ( !$content instanceof TextContent ) {
+				// non-text content
+				wfHttpError( 415, "Unsupported Media Type", "The requested page uses the content model `"
+					. $content->getModel() . "` which is not supported via this interface." );
+				die();
+			} else {
+				// want a section?
+				$section = $request->getIntOrNull( 'section' );
+				if ( $section !== null ) {
+					$content = $content->getSection( $section );
+				}
+
+				if ( $content === null || $content === false ) {
+					// section not found (or section not supported, e.g. for JS, JSON, and CSS)
 					$text = false;
-				} elseif ( !$content instanceof TextContent ) {
-					// non-text content
-					wfHttpError( 415, "Unsupported Media Type", "The requested page uses the content model `"
-						. $content->getModel() . "` which is not supported via this interface." );
-					die();
 				} else {
-					// want a section?
-					$section = $request->getIntOrNull( 'section' );
-					if ( $section !== null ) {
-						$content = $content->getSection( $section );
-					}
-
-					if ( $content === null || $content === false ) {
-						// section not found (or section not supported, e.g. for JS, JSON, and CSS)
-						$text = false;
-					} else {
-						$text = $content->getNativeData();
-					}
+					$text = $content->getNativeData();
 				}
 			}
 		}
