@@ -33,7 +33,7 @@ use Wikimedia\Rdbms\DBConnectionError;
  */
 class SqliteInstaller extends DatabaseInstaller {
 
-	public static $minimumVersion = '3.3.7';
+	public static $minimumVersion = '3.8.0';
 	protected static $notMiniumumVerisonMessage = 'config-outdated-sqlite';
 
 	/**
