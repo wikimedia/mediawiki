@@ -1051,7 +1051,7 @@ class User implements IDBAccessObject, UserIdentity {
 		// Certain names may be reserved for batch processes.
 		foreach ( $reservedUsernames as $reserved ) {
 			if ( substr( $reserved, 0, 4 ) == 'msg:' ) {
-				$reserved = wfMessage( substr( $reserved, 4 ) )->inContentLanguage()->text();
+				$reserved = wfMessage( substr( $reserved, 4 ) )->inContentLanguage()->plain();
 			}
 			if ( $reserved == $name ) {
 				return false;
