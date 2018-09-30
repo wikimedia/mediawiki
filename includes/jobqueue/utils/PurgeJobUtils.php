@@ -36,11 +36,12 @@ class PurgeJobUtils {
 		if ( $dbkeys === [] ) {
 			return;
 		}
+		$fname = __METHOD__;
 
 		DeferredUpdates::addUpdate( new AutoCommitUpdate(
 			$dbw,
 			__METHOD__,
-			function () use ( $dbw, $namespace, $dbkeys ) {
+			function () use ( $dbw, $namespace, $dbkeys, $fname ) {
 				$services = MediaWikiServices::getInstance();
 				$lbFactory = $services->getDBLoadBalancerFactory();
 				// Determine which pages need to be updated.
@@ -55,7 +56,7 @@ class PurgeJobUtils {
 						'page_title' => $dbkeys,
 						'page_touched < ' . $dbw->addQuotes( $now )
 					],
-					__METHOD__
+					$fname
 				);
 
 				if ( !$ids ) {
@@ -63,7 +64,7 @@ class PurgeJobUtils {
 				}
 
 				$batchSize = $services->getMainConfig()->get( 'UpdateRowsPerQuery' );
-				$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
+				$ticket = $lbFactory->getEmptyTransactionTicket( $fname );
 				foreach ( array_chunk( $ids, $batchSize ) as $idBatch ) {
 					$dbw->update(
 						'page',
@@ -72,9 +73,9 @@ class PurgeJobUtils {
 							'page_id' => $idBatch,
 							'page_touched < ' . $dbw->addQuotes( $now ) // handle races
 						],
-						__METHOD__
+						$fname
 					);
-					$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+					$lbFactory->commitAndWaitForReplication( $fname, $ticket );
 				}
 			}
 		) );
