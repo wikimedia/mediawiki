@@ -174,6 +174,7 @@ class ApiStashEdit extends ApiBase {
 
 		$title = $page->getTitle();
 		$key = self::getStashKey( $title, self::getContentHash( $content ), $user );
+		$fname = __METHOD__;
 
 		// Use the master DB to allow for fast blocking locks on the "save path" where this
 		// value might actually be used to complete a page edit. If the edit submission request
@@ -182,13 +183,13 @@ class ApiStashEdit extends ApiBase {
 		// need to duplicate parsing of the same content/user/summary bundle, so try to avoid
 		// blocking at all here.
 		$dbw = wfGetDB( DB_MASTER );
-		if ( !$dbw->lock( $key, __METHOD__, 0 ) ) {
+		if ( !$dbw->lock( $key, $fname, 0 ) ) {
 			// De-duplicate requests on the same key
 			return self::ERROR_BUSY;
 		}
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$unlocker = new ScopedCallback( function () use ( $dbw, $key ) {
-			$dbw->unlock( $key, __METHOD__ );
+		$unlocker = new ScopedCallback( function () use ( $dbw, $key, $fname ) {
+			$dbw->unlock( $key, $fname );
 		} );
 
 		$cutoffTime = time() - self::PRESUME_FRESH_TTL_SEC;
