@@ -823,7 +823,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 					$dbw = $this->getConnectionRef( DB_MASTER );
 					$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-					$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
+					$ticket = $factory->getEmptyTransactionTicket( $fname );
 
 					$watchersChunks = array_chunk( $watchers, $wgUpdateRowsPerQuery );
 					foreach ( $watchersChunks as $watchersChunk ) {
@@ -838,7 +838,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 						);
 						if ( count( $watchersChunks ) > 1 ) {
 							$factory->commitAndWaitForReplication(
-								__METHOD__, $ticket, [ 'domain' => $dbw->getDomainID() ]
+								$fname, $ticket, [ 'domain' => $dbw->getDomainID() ]
 							);
 						}
 					}

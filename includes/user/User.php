@@ -4389,7 +4389,7 @@ class User implements IDBAccessObject, UserIdentity {
 					'user',
 					'user_id',
 					[ 'user_name' => $this->mName ],
-					__METHOD__,
+					$fname,
 					[ 'LOCK IN SHARE MODE' ]
 				);
 				$loaded = false;
@@ -4399,7 +4399,7 @@ class User implements IDBAccessObject, UserIdentity {
 					}
 				}
 				if ( !$loaded ) {
-					throw new MWException( __METHOD__ . ": hit a key conflict attempting " .
+					throw new MWException( $fname . ": hit a key conflict attempting " .
 						"to insert user '{$this->mName}' row, but it was not present in select!" );
 				}
 				return Status::newFatal( 'userexists' );
