@@ -262,11 +262,12 @@ class NameTableStore {
 		if ( array_key_exists( $id, $table ) ) {
 			return $table[$id];
 		}
+		$fname = __METHOD__;
 
 		$table = $this->cache->getWithSetCallback(
 			$this->getCacheKey(),
 			$this->cacheTTL,
-			function ( $oldValue, &$ttl, &$setOpts ) use ( $id ) {
+			function ( $oldValue, &$ttl, &$setOpts ) use ( $id, $fname ) {
 				// Check if cached value is up-to-date enough to have $id
 				if ( is_array( $oldValue ) && array_key_exists( $id, $oldValue ) ) {
 					// Completely leave the cache key alone
@@ -279,7 +280,7 @@ class NameTableStore {
 					// Log a fallback to master
 					if ( $source === DB_MASTER ) {
 						$this->logger->info(
-							__METHOD__ . 'falling back to master select from ' .
+							$fname . ' falling back to master select from ' .
 							$this->table . ' with id ' . $id
 						);
 					}
