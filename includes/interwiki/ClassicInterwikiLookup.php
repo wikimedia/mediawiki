@@ -279,10 +279,11 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 			}
 		}
 
+		$fname = __METHOD__;
 		$iwData = $this->objectCache->getWithSetCallback(
 			$this->objectCache->makeKey( 'interwiki', $prefix ),
 			$this->objectCacheExpiry,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $prefix ) {
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $prefix, $fname ) {
 				$dbr = wfGetDB( DB_REPLICA ); // TODO: inject LoadBalancer
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
@@ -291,7 +292,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 					'interwiki',
 					self::selectFields(),
 					[ 'iw_prefix' => $prefix ],
-					__METHOD__
+					$fname
 				);
 
 				return $row ? (array)$row : '!NONEXISTENT';
