@@ -149,11 +149,12 @@ class SiteStats {
 	 */
 	public static function numberingroup( $group ) {
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$fname = __METHOD__;
 
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'SiteStats', 'groupcounts', $group ),
 			$cache::TTL_HOUR,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $group ) {
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $group, $fname ) {
 				$dbr = self::getLB()->getConnection( DB_REPLICA );
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
@@ -164,7 +165,7 @@ class SiteStats {
 						'ug_group' => $group,
 						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
 					],
-					__METHOD__
+					$fname
 				);
 			},
 			[ 'pcTTL' => $cache::TTL_PROC_LONG ]
@@ -199,11 +200,12 @@ class SiteStats {
 	 */
 	public static function pagesInNs( $ns ) {
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$fname = __METHOD__;
 
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'SiteStats', 'page-in-namespace', $ns ),
 			$cache::TTL_HOUR,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $ns ) {
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $ns, $fname ) {
 				$dbr = self::getLB()->getConnection( DB_REPLICA );
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
@@ -211,7 +213,7 @@ class SiteStats {
 					'page',
 					'COUNT(*)',
 					[ 'page_namespace' => $ns ],
-					__METHOD__
+					$fname
 				);
 			},
 			[ 'pcTTL' => $cache::TTL_PROC_LONG ]
