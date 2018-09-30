@@ -136,7 +136,8 @@ class LocalPasswordPrimaryAuthenticationProvider
 		// @codeCoverageIgnoreStart
 		if ( $this->getPasswordFactory()->needsUpdate( $pwhash ) ) {
 			$newHash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
-			\DeferredUpdates::addCallableUpdate( function () use ( $newHash, $oldRow ) {
+			$fname = __METHOD__;
+			\DeferredUpdates::addCallableUpdate( function () use ( $newHash, $oldRow, $fname ) {
 				$dbw = wfGetDB( DB_MASTER );
 				$dbw->update(
 					'user',
@@ -145,7 +146,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 						'user_id' => $oldRow->user_id,
 						'user_password' => $oldRow->user_password
 					],
-					__METHOD__
+					$fname
 				);
 			} );
 		}
