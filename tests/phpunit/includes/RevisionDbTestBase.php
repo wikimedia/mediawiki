@@ -1601,4 +1601,38 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$this->assertSame( $expected, $rev->getTextId() );
 	}
 
+	public function provideGetRevisionText() {
+		yield [
+			[ 'text' ]
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetRevisionText
+	 * @covers Revision::getRevisionText
+	 */
+	public function testGetRevisionText( array $queryInfoOptions, array $queryInfoExtra = [] ) {
+		$rev = $this->testPage->getRevisionRecord();
+
+		$queryInfo = Revision::getQueryInfo( $queryInfoOptions );
+		$queryInfo['tables'] = array_merge( $queryInfo['tables'], $queryInfoExtra['tables'] ?? [] );
+		$queryInfo['fields'] = array_merge( $queryInfo['fields'], $queryInfoExtra['fields'] ?? [] );
+		$queryInfo['joins'] = array_merge( $queryInfo['joins'], $queryInfoExtra['joins'] ?? [] );
+
+		$conds = [ 'rev_id' => $rev->getId() ];
+		$row = $this->db->selectRow(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
+			$conds,
+			__METHOD__,
+			[],
+			$queryInfo['joins']
+		);
+
+		$expected = $rev->getContent( SlotRecord::MAIN )->serialize();
+
+		$this->hideDeprecated( 'Revision::getRevisionText (MCR without SCHEMA_COMPAT_WRITE_OLD)' );
+		$this->assertSame( $expected, Revision::getRevisionText( $row ) );
+	}
+
 }
