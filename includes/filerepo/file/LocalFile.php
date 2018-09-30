@@ -1696,6 +1696,7 @@ class LocalFile extends File {
 		# Defer purges, page creation, and link updates in case they error out.
 		# The most important thing is that files and the DB registry stay synced.
 		$dbw->endAtomic( __METHOD__ );
+		$fname = __METHOD__;
 
 		# Do some cache purges after final commit so that:
 		# a) Changes are more likely to be seen post-purge
@@ -1706,7 +1707,7 @@ class LocalFile extends File {
 				__METHOD__,
 				function () use (
 					$reupload, $wikiPage, $newPageContent, $comment, $user,
-					$logEntry, $logId, $descId, $tags
+					$logEntry, $logId, $descId, $tags, $fname
 				) {
 					# Update memcache after the commit
 					$this->invalidateCache();
@@ -1758,7 +1759,7 @@ class LocalFile extends File {
 						'logging',
 						$update,
 						[ 'log_id' => $logId ],
-						__METHOD__
+						$fname
 					);
 					$this->getRepo()->getMasterDB()->insert(
 						'log_search',
@@ -1767,7 +1768,7 @@ class LocalFile extends File {
 							'ls_value' => $logEntry->getAssociatedRevId(),
 							'ls_log_id' => $logId,
 						],
-						__METHOD__
+						$fname
 					);
 
 					# Add change tags, if any
