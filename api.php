@@ -41,7 +41,7 @@ if ( !$wgRequest->checkUrlExtension() ) {
 	return;
 }
 
-// Pathinfo can be used for stupid things. We don't support it for api.php at
+// PATH_INFO can be used for stupid things. We don't support it for api.php at
 // all, so error out if it's present.
 if ( isset( $_SERVER['PATH_INFO'] ) && $_SERVER['PATH_INFO'] != '' ) {
 	$correctUrl = wfAppendQuery( wfScript( 'api' ), $wgRequest->getQueryValues() );
