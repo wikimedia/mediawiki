@@ -1256,10 +1256,11 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function closeAll() {
-		$this->forEachOpenConnection( function ( IDatabase $conn ) {
+		$fname = __METHOD__;
+		$this->forEachOpenConnection( function ( IDatabase $conn ) use ( $fname ) {
 			$host = $conn->getServer();
 			$this->connLogger->debug(
-				__METHOD__ . ": closing connection to database '$host'." );
+				$fname . ": closing connection to database '$host'." );
 			$conn->close();
 		} );
 
@@ -1447,6 +1448,7 @@ class LoadBalancer implements ILoadBalancer {
 		} );
 
 		$e = null; // first exception
+		$fname = __METHOD__;
 		// Loop until callbacks stop adding callbacks on other connections
 		do {
 			// Run any pending callbacks for each connection...
@@ -1464,13 +1466,13 @@ class LoadBalancer implements ILoadBalancer {
 				}
 			);
 			// Clear out any active transactions left over from callbacks...
-			$this->forEachOpenMasterConnection( function ( Database $conn ) use ( &$e ) {
+			$this->forEachOpenMasterConnection( function ( Database $conn ) use ( &$e, $fname ) {
 				if ( $conn->writesPending() ) {
 					// A callback from another handle wrote to this one and DBO_TRX is set
-					$this->queryLogger->warning( __METHOD__ . ": found writes pending." );
+					$this->queryLogger->warning( $fname . ": found writes pending." );
 					$fnames = implode( ', ', $conn->pendingWriteAndCallbackCallers() );
 					$this->queryLogger->warning(
-						__METHOD__ . ": found writes pending ($fnames).",
+						$fname . ": found writes pending ($fnames).",
 						[
 							'db_server' => $conn->getServer(),
 							'db_name' => $conn->getDBname()
@@ -1479,10 +1481,10 @@ class LoadBalancer implements ILoadBalancer {
 				} elseif ( $conn->trxLevel() ) {
 					// A callback from another handle read from this one and DBO_TRX is set,
 					// which can easily happen if there is only one DB (no replicas)
-					$this->queryLogger->debug( __METHOD__ . ": found empty transaction." );
+					$this->queryLogger->debug( $fname . ": found empty transaction." );
 				}
 				try {
-					$conn->commit( __METHOD__, $conn::FLUSHING_ALL_PEERS );
+					$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
 				} catch ( Exception $ex ) {
 					$e = $e ?: $ex;
 				}

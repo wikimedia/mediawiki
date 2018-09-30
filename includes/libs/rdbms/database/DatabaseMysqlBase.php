@@ -824,11 +824,12 @@ abstract class DatabaseMysqlBase extends Database {
 			// Using one key for all cluster replica DBs is preferable
 			$this->getLBInfo( 'clusterMasterHost' ) ?: $this->getServer()
 		);
+		$fname = __METHOD__;
 
 		return $cache->getWithSetCallback(
 			$key,
 			$cache::TTL_INDEFINITE,
-			function () use ( $cache, $key ) {
+			function () use ( $cache, $key, $fname ) {
 				// Get and leave a lock key in place for a short period
 				if ( !$cache->lock( $key, 0, 10 ) ) {
 					return false; // avoid master connection spike slams
@@ -841,7 +842,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 				// Connect to and query the master; catch errors to avoid outages
 				try {
-					$res = $conn->query( 'SELECT @@server_id AS id', __METHOD__ );
+					$res = $conn->query( 'SELECT @@server_id AS id', $fname );
 					$row = $res ? $res->fetchObject() : false;
 					$id = $row ? (int)$row->id : 0;
 				} catch ( DBError $e ) {
@@ -1043,11 +1044,12 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @throws DBQueryError If the variable doesn't exist for some reason
 	 */
 	protected function getServerId() {
+		$fname = __METHOD__;
 		return $this->srvCache->getWithSetCallback(
 			$this->srvCache->makeGlobalKey( 'mysql-server-id', $this->getServer() ),
 			self::SERVER_ID_CACHE_TTL,
-			function () {
-				$res = $this->query( "SELECT @@server_id AS id", __METHOD__ );
+			function () use ( $fname ) {
+				$res = $this->query( "SELECT @@server_id AS id", $fname );
 				return intval( $this->fetchObject( $res )->id );
 			}
 		);

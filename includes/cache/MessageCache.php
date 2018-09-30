@@ -582,10 +582,11 @@ class MessageCache {
 			// Ignore $wgMaxMsgCacheEntrySize so the process cache is up to date
 			$this->cache->setField( $code, $title, ' ' . $text );
 		}
+		$fname = __METHOD__;
 
 		// (b) Update the shared caches in a deferred update with a fresh DB snapshot
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $title, $msg, $code ) {
+			function () use ( $title, $msg, $code, $fname ) {
 				global $wgMaxMsgCacheEntrySize;
 				// Allow one caller at a time to avoid race conditions
 				$scopedLock = $this->getReentrantScopedLock(
@@ -593,7 +594,7 @@ class MessageCache {
 				);
 				if ( !$scopedLock ) {
 					LoggerFactory::getInstance( 'MessageCache' )->error(
-						__METHOD__ . ': could not acquire lock to update {title} ({code})',
+						$fname . ': could not acquire lock to update {title} ({code})',
 						[ 'title' => $title, 'code' => $code ] );
 					return;
 				}
@@ -1029,14 +1030,15 @@ class MessageCache {
 	 * @return string Either " <MESSAGE>" or "!NONEXISTANT"
 	 */
 	private function loadCachedMessagePageEntry( $dbKey, $code, $hash ) {
+		$fname = __METHOD__;
 		return $this->srvCache->getWithSetCallback(
 			$this->srvCache->makeKey( 'messages-big', $hash, $dbKey ),
 			IExpiringStore::TTL_MINUTE,
-			function () use ( $code, $dbKey, $hash ) {
+			function () use ( $code, $dbKey, $hash, $fname ) {
 				return $this->wanCache->getWithSetCallback(
 					$this->bigMessageCacheKey( $hash, $dbKey ),
 					$this->mExpiry,
-					function ( $oldValue, &$ttl, &$setOpts ) use ( $dbKey, $code ) {
+					function ( $oldValue, &$ttl, &$setOpts ) use ( $dbKey, $code, $fname ) {
 						// Try loading the message from the database
 						$dbr = wfGetDB( DB_REPLICA );
 						$setOpts += Database::getCacheSetOptions( $dbr );
@@ -1053,7 +1055,7 @@ class MessageCache {
 							$message = $this->getMessageTextFromContent( $content );
 						} else {
 							LoggerFactory::getInstance( 'MessageCache' )->warning(
-								__METHOD__ . ': failed to load page text for \'{titleKey}\'',
+								$fname . ': failed to load page text for \'{titleKey}\'',
 								[ 'titleKey' => $dbKey, 'code' => $code ]
 							);
 							$message = null;
