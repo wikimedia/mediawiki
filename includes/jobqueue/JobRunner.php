@@ -576,12 +576,12 @@ class JobRunner implements LoggerAwareInterface {
 		$this->debugCallback( $msg );
 
 		// Wait for an exclusive lock to commit
-		if ( !$dbwSerial->lock( 'jobrunner-serial-commit', __METHOD__, 30 ) ) {
+		if ( !$dbwSerial->lock( 'jobrunner-serial-commit', $fnameTrxOwner, 30 ) ) {
 			// This will trigger a rollback in the main loop
 			throw new DBError( $dbwSerial, "Timed out waiting on commit queue." );
 		}
-		$unlocker = new ScopedCallback( function () use ( $dbwSerial ) {
-			$dbwSerial->unlock( 'jobrunner-serial-commit', __METHOD__ );
+		$unlocker = new ScopedCallback( function () use ( $dbwSerial, $fnameTrxOwner ) {
+			$dbwSerial->unlock( 'jobrunner-serial-commit', $fnameTrxOwner );
 		} );
 
 		// Wait for the replica DBs to catch up
