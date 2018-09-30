@@ -116,8 +116,8 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 					$toDelete[] = $id;
 
 					$maxId = max(
-						(int)$dbw->selectField( 'archive', 'MAX(ar_rev_id)', [], __METHOD__ ),
-						(int)$dbw->selectField( 'slots', 'MAX(slot_revision_id)', [], __METHOD__ )
+						(int)$dbw->selectField( 'archive', 'MAX(ar_rev_id)', [], $fname ),
+						(int)$dbw->selectField( 'slots', 'MAX(slot_revision_id)', [], $fname )
 					);
 					if ( $id <= $maxId ) {
 						$dbw->insert( 'revision', [ 'rev_id' => $maxId + 1 ] + self::$dummyRev, $fname );
