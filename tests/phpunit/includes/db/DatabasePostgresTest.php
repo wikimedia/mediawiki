@@ -11,15 +11,17 @@ use Wikimedia\TestingAccessWrapper;
 class DatabasePostgresTest extends MediaWikiTestCase {
 
 	private function doTestInsertIgnore() {
-		$reset = new ScopedCallback( function () {
+		$fname = __METHOD__;
+		$reset = new ScopedCallback( function () use ( $fname ) {
 			if ( $this->db->explicitTrxActive() ) {
-				$this->db->rollback( __METHOD__ );
+				$this->db->rollback( $fname );
 			}
-			$this->db->query( 'DROP TABLE IF EXISTS ' . $this->db->tableName( 'foo' ) );
+			$this->db->query( 'DROP TABLE IF EXISTS ' . $this->db->tableName( 'foo' ), $fname );
 		} );
 
 		$this->db->query(
-			"CREATE TEMPORARY TABLE {$this->db->tableName( 'foo' )} (i INTEGER NOT NULL PRIMARY KEY)"
+			"CREATE TEMPORARY TABLE {$this->db->tableName( 'foo' )} (i INTEGER NOT NULL PRIMARY KEY)",
+			__METHOD__
 		);
 		$this->db->insert( 'foo', [ [ 'i' => 1 ], [ 'i' => 2 ] ], __METHOD__ );
 
@@ -92,19 +94,22 @@ class DatabasePostgresTest extends MediaWikiTestCase {
 	}
 
 	private function doTestInsertSelectIgnore() {
-		$reset = new ScopedCallback( function () {
+		$fname = __METHOD__;
+		$reset = new ScopedCallback( function () use ( $fname ) {
 			if ( $this->db->explicitTrxActive() ) {
-				$this->db->rollback( __METHOD__ );
+				$this->db->rollback( $fname );
 			}
-			$this->db->query( 'DROP TABLE IF EXISTS ' . $this->db->tableName( 'foo' ) );
-			$this->db->query( 'DROP TABLE IF EXISTS ' . $this->db->tableName( 'bar' ) );
+			$this->db->query( 'DROP TABLE IF EXISTS ' . $this->db->tableName( 'foo' ), $fname );
+			$this->db->query( 'DROP TABLE IF EXISTS ' . $this->db->tableName( 'bar' ), $fname );
 		} );
 
 		$this->db->query(
-			"CREATE TEMPORARY TABLE {$this->db->tableName( 'foo' )} (i INTEGER)"
+			"CREATE TEMPORARY TABLE {$this->db->tableName( 'foo' )} (i INTEGER)",
+			__METHOD__
 		);
 		$this->db->query(
-			"CREATE TEMPORARY TABLE {$this->db->tableName( 'bar' )} (i INTEGER NOT NULL PRIMARY KEY)"
+			"CREATE TEMPORARY TABLE {$this->db->tableName( 'bar' )} (i INTEGER NOT NULL PRIMARY KEY)",
+			__METHOD__
 		);
 		$this->db->insert( 'bar', [ [ 'i' => 1 ], [ 'i' => 2 ] ], __METHOD__ );
 
