@@ -3540,6 +3540,7 @@ class User implements IDBAccessObject, UserIdentity {
 				}
 			}
 
+			Hooks::run( 'UserGetRightsRemove', [ $this, &$this->mRights ] );
 			// Force reindexation of rights when a hook has unset one of them
 			$this->mRights = array_values( array_unique( $this->mRights ) );
 
