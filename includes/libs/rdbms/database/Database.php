@@ -1020,13 +1020,35 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	abstract protected function doQuery( $sql );
 
 	/**
-	 * Determine whether a query writes to the DB.
-	 * Should return true if unsure.
+	 * Determine whether a query writes to the DB. When in doubt, this returns true.
+	 *
+	 * Main use cases:
+	 *
+	 * - Subsequent web requests should not need to wait for replication from
+	 *   the master position seen by this web request, unless this request made
+	 *   changes to the master. This is handled by ChronologyProtector by checking
+	 *   doneWrites() at the end of the request. doneWrites() returns true if any
+	 *   query set lastWriteTime; which query() does based on isWriteQuery().
+	 *
+	 * - Reject write queries to replica DBs, in query().
 	 *
 	 * @param string $sql
 	 * @return bool
 	 */
 	protected function isWriteQuery( $sql ) {
+		// BEGIN and COMMIT queries are considered read queries here.
+		// Database backends and drivers (MySQL, MariaDB, php-mysqli) generally
+		// treat these as write queries, in that their results have "affected rows"
+		// as meta data as from writes, instead of "num rows" as from reads.
+		// But, we treat them as read queries because when reading data (from
+		// either replica or master) we use transactions to enable repeatable-read
+		// snapshots, which ensures we get consistent results from the same snapshot
+		// for all queries within a request. Use cases:
+		// - Treating these as writes would trigger ChronologyProtector (see method doc).
+		// - We use this method to reject writes to replicas, but we need to allow
+		//   use of transactions on replicas for read snapshots. This fine given
+		//   that transactions by themselves don't make changes, only actual writes
+		//   within the transaction matter, which we still detect.
 		return !preg_match(
 			'/^(?:SELECT|BEGIN|ROLLBACK|COMMIT|SET|SHOW|EXPLAIN|\(SELECT)\b/i', $sql );
 	}
@@ -1041,9 +1063,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * Determine whether a SQL statement is sensitive to isolation level.
+	 *
 	 * A SQL statement is considered transactable if its result could vary
 	 * depending on the transaction isolation level. Operational commands
 	 * such as 'SET' and 'SHOW' are not considered to be transactable.
+	 *
+	 * Main purpose: Used by query() to decide whether to begin a transaction
+	 * before the current query (in DBO_TRX mode, on by default).
 	 *
 	 * @param string $sql
 	 * @return bool
@@ -1051,7 +1077,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected function isTransactableQuery( $sql ) {
 		return !in_array(
 			$this->getQueryVerb( $sql ),
-			[ 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW', 'SET', 'CREATE', 'ALTER' ],
+			[ 'BEGIN', 'ROLLBACK', 'COMMIT', 'SET', 'SHOW', 'CREATE', 'ALTER' ],
 			true
 		);
 	}

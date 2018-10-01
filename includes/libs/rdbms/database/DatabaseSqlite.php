@@ -297,7 +297,7 @@ class DatabaseSqlite extends Database {
 		return $this->query( "ATTACH DATABASE $file AS $name", $fname );
 	}
 
-	function isWriteQuery( $sql ) {
+	protected function isWriteQuery( $sql ) {
 		return parent::isWriteQuery( $sql ) && !preg_match( '/^(ATTACH|PRAGMA)\b/i', $sql );
 	}
 
