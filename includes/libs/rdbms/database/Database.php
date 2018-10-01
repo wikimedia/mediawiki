@@ -1742,7 +1742,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$conds = '';
 		}
 
-		if ( $conds === '' ) {
+		if ( $conds === '' || $conds === '*' ) {
 			$sql = "SELECT $startOpts $fields $from $useIndex $ignoreIndex $preLimitTail";
 		} elseif ( is_string( $conds ) ) {
 			$sql = "SELECT $startOpts $fields $from $useIndex $ignoreIndex " .
