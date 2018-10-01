@@ -102,9 +102,15 @@ Then we got more<br>text
 END;
 		$struct = $this->getStructure( $text );
 		$this->assertEquals( "Opening text is opening.", $struct->getOpeningText() );
-		$this->assertEquals( "Opening text is opening.   Then we got more text",
+		$this->assertEquals( "Opening text is opening. Then we got more text",
 			$struct->getMainText() );
 		$this->assertEquals( [ "Header table row in table another row in table" ],
 			$struct->getAuxiliaryText() );
+	}
+
+	public function testPreservesWordSpacing() {
+		$text = "<dd><dl>foo</dl><dl>bar</dl></dd><p>baz</p>";
+		$struct = $this->getStructure( $text );
+		$this->assertEquals( "foo bar baz", $struct->getMainText() );
 	}
 }

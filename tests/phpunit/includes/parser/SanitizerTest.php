@@ -514,7 +514,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	public function provideStripAllTags() {
 		return [
 			[ '<p>Foo</p>', 'Foo' ],
-			[ '<p id="one">Foo</p><p id="two">Bar</p>', 'FooBar' ],
+			[ '<p id="one">Foo</p><p id="two">Bar</p>', 'Foo Bar' ],
 			[ "<p>Foo</p>\n<p>Bar</p>", 'Foo Bar' ],
 			[ '<p>Hello &lt;strong&gt; wor&#x6c;&#100; caf&eacute;</p>', 'Hello <strong> world café' ],
 			[
