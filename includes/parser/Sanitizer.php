@@ -1508,10 +1508,10 @@ class Sanitizer {
 	 * @return string
 	 */
 	private static function normalizeWhitespace( $text ) {
-		return preg_replace(
-			'/\r\n|[\x20\x0d\x0a\x09]/',
+		return trim( preg_replace(
+			'/(?:\r\n|[\x20\x0d\x0a\x09])+/',
 			' ',
-			$text );
+			$text ) );
 	}
 
 	/**
