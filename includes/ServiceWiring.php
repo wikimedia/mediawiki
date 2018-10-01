@@ -278,7 +278,7 @@ return [
 					// Also test DjVu
 					$deja = new DjVuImage( $file );
 					if ( $deja->isValid() ) {
-						$logger->info( __METHOD__ . ": detected $file as image/vnd.djvu\n" );
+						$logger->info( "Detected $file as image/vnd.djvu\n" );
 						$mime = 'image/vnd.djvu';
 
 						return;
