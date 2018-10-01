@@ -91,7 +91,12 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiTestCase 
 	/**
 	 * @dataProvider validateOptionsProvider
 	 */
-	public function testValidateOptions( $optionsToSet, $expectedRedirect, $expectedRedirectOptions ) {
+	public function testValidateOptions(
+		$optionsToSet,
+		$expectedRedirect,
+		$expectedRedirectOptions,
+		$rcfilters
+	) {
 		$redirectQuery = [];
 		$redirected = false;
 		$output = $this->getMockBuilder( OutputPage::class )
@@ -110,6 +115,7 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiTestCase 
 
 		// Give users patrol permissions so we can test that.
 		$user = $this->getTestSysop()->getUser();
+		$user->setOption( 'rcenhancedfilters-disable', $rcfilters ? 0 : 1 );
 		$ctx->setUser( $user );
 
 		// Disable this hook or it could break changeType

@@ -111,15 +111,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	public static function checkStructuredFilterUiEnabled( Config $config, User $user ) {
-		if ( !$config->get( 'StructuredChangeFiltersOnWatchlist' ) ) {
-			return false;
-		}
-
-		if ( $config->get( 'StructuredChangeFiltersShowWatchlistPreference' ) ) {
-			return !$user->getOption( 'wlenhancedfilters-disable' );
-		} else {
-			return $user->getOption( 'rcenhancedfilters' );
-		}
+		return !$user->getOption( 'wlenhancedfilters-disable' );
 	}
 
 	/**

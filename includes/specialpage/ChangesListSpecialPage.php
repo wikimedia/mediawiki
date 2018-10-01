@@ -1846,11 +1846,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return bool
 	 */
 	public function isStructuredFilterUiEnabledByDefault() {
-		if ( $this->getConfig()->get( 'StructuredChangeFiltersShowPreference' ) ) {
-			return !$this->getUser()->getDefaultOption( 'rcenhancedfilters-disable' );
-		} else {
-			return $this->getUser()->getDefaultOption( 'rcenhancedfilters' );
-		}
+		return true;
 	}
 
 	/**
@@ -1862,11 +1858,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return bool
 	 */
 	public static function checkStructuredFilterUiEnabled( Config $config, User $user ) {
-		if ( $config->get( 'StructuredChangeFiltersShowPreference' ) ) {
-			return !$user->getOption( 'rcenhancedfilters-disable' );
-		} else {
-			return $user->getOption( 'rcenhancedfilters' );
-		}
+		return !$user->getOption( 'rcenhancedfilters-disable' );
 	}
 
 	/**
