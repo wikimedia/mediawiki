@@ -1303,12 +1303,13 @@ class LocalFile extends File {
 	 *   (This doesn't check $user's permissions.)
 	 * @param bool $createNullRevision Set to false to avoid creation of a null revision on file
 	 *   upload, see T193621
+	 * @param bool $revert If this file upload is a revert
 	 * @return Status On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
 	function upload( $src, $comment, $pageText, $flags = 0, $props = false,
 		$timestamp = false, $user = null, $tags = [],
-		$createNullRevision = true
+		$createNullRevision = true, $revert = false
 	) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
@@ -1366,7 +1367,8 @@ class LocalFile extends File {
 				$timestamp,
 				$user,
 				$tags,
-				$createNullRevision
+				$createNullRevision,
+				$revert
 			);
 			if ( !$uploadStatus->isOK() ) {
 				if ( $uploadStatus->hasMessage( 'filenotfound' ) ) {
@@ -1425,11 +1427,12 @@ class LocalFile extends File {
 	 * @param string[] $tags
 	 * @param bool $createNullRevision Set to false to avoid creation of a null revision on file
 	 *   upload, see T193621
+	 * @param bool $revert If this file upload is a revert
 	 * @return Status
 	 */
 	function recordUpload2(
 		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = [],
-		$createNullRevision = true
+		$createNullRevision = true, $revert = false
 	) {
 		global $wgActorTableSchemaMigrationStage;
 
@@ -1602,8 +1605,16 @@ class LocalFile extends File {
 		$wikiPage = new WikiFilePage( $descTitle );
 		$wikiPage->setFile( $this );
 
+		// Determine log action. If reupload is done by reverting, use a special log_action.
+		if ( $revert === true ) {
+			$logAction = 'revert';
+		} elseif ( $reupload === true ) {
+			$logAction = 'overwrite';
+		} else {
+			$logAction = 'upload';
+		}
 		// Add the log entry...
-		$logEntry = new ManualLogEntry( 'upload', $reupload ? 'overwrite' : 'upload' );
+		$logEntry = new ManualLogEntry( 'upload', $logAction );
 		$logEntry->setTimestamp( $this->timestamp );
 		$logEntry->setPerformer( $user );
 		$logEntry->setComment( $comment );
