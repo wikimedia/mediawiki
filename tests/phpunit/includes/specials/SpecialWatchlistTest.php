@@ -19,11 +19,6 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 		);
 
 		$this->setTemporaryHook(
-			'SpecialWatchlistQuery',
-			null
-		);
-
-		$this->setTemporaryHook(
 			'ChangesListSpecialPageQuery',
 			null
 		);
