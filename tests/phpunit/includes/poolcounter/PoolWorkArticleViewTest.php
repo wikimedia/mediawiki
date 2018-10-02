@@ -164,6 +164,10 @@ class PoolWorkArticleViewTest extends MediaWikiTestCase {
 		$work = new PoolWorkArticleView( $page, $options, $rev1->getId(), false, $fakeRev );
 		$this->assertFalse( $work->execute() );
 
+		$work = new PoolWorkArticleView( $page, $options, $rev1->getId(), false, $fakeRev,
+			RevisionRecord::RAW );
+		$this->assertNotFalse( $work->execute() );
+
 		// a deleted current revision should still be show
 		$fakeRev->setId( $rev2->getId() );
 		$work = new PoolWorkArticleView( $page, $options, $rev2->getId(), false, $fakeRev );
