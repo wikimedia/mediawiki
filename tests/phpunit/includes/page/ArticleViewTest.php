@@ -298,6 +298,34 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$this->assertNotContains( 'Test B', $this->getHtml( $output ) );
 	}
 
+	public function testUnhiddenViewOfDeletedRevision() {
+		$revisions = [];
+		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
+		$idA = $revisions[1]->getId();
+
+		$revDelList = new RevDelRevisionList(
+			RequestContext::getMain(), $page->getTitle(), [ $idA ]
+		);
+		$revDelList->setVisibility( [
+			'value' => [ RevisionRecord::DELETED_TEXT => 1 ],
+			'comment' => "Testing",
+		] );
+
+		$article = new Article( $page->getTitle(), $idA );
+		$context = new DerivativeContext( $article->getContext() );
+		$article->setContext( $context );
+		$context->getOutput()->setTitle( $page->getTitle() );
+		$context->getRequest()->setVal( 'unhide', 1 );
+		$context->setUser( $this->getTestUser( [ 'sysop' ] )->getUser() );
+		$article->view();
+
+		$output = $article->getContext()->getOutput();
+		$this->assertContains( '(rev-deleted-text-view)', $this->getHtml( $output ) );
+
+		$this->assertContains( 'Test A', $this->getHtml( $output ) );
+		$this->assertNotContains( 'Test B', $this->getHtml( $output ) );
+	}
+
 	public function testViewMissingPage() {
 		$page = $this->getPage( __METHOD__ );
 

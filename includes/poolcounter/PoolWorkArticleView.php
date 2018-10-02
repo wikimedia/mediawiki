@@ -44,6 +44,9 @@ class PoolWorkArticleView extends PoolCounterWork {
 	/** @var RevisionRecord|null */
 	private $revision = null;
 
+	/** @var int */
+	private $audience;
+
 	/** @var RevisionStore */
 	private $revisionStore = null;
 
@@ -67,9 +70,10 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 *   operation.
 	 * @param RevisionRecord|Content|string|null $revision Revision to render, or null to load it;
 	 *        may also be given as a wikitext string, or a Content object, for BC.
+	 * @param int $audience One of the RevisionRecord audience constants
 	 */
 	public function __construct( WikiPage $page, ParserOptions $parserOptions,
-		$revid, $useParserCache, $revision = null
+		$revid, $useParserCache, $revision = null, $audience = RevisionRecord::FOR_PUBLIC
 	) {
 		if ( is_string( $revision ) ) { // BC: very old style call
 			$modelId = $page->getRevision()->getContentModel();
@@ -108,6 +112,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 		$this->cacheable = $useParserCache;
 		$this->parserOptions = $parserOptions;
 		$this->revision = $revision;
+		$this->audience = $audience;
 		$this->cacheKey = $this->parserCache->getKey( $page, $parserOptions );
 		$keyPrefix = $this->cacheKey ?: wfMemcKey( 'articleview', 'missingcachekey' );
 
@@ -152,8 +157,8 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 		$isCurrent = $this->revid === $this->page->getLatest();
 
-		// Bypass audience check for current revision
-		$audience = $isCurrent ? RevisionRecord::RAW : RevisionRecord::FOR_PUBLIC;
+		// The current revision cannot be hidden so we can skip some checks.
+		$audience = $isCurrent ? RevisionRecord::RAW : $this->audience;
 
 		if ( $this->revision !== null ) {
 			$rev = $this->revision;
