@@ -405,7 +405,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	/**
 	 * @param array $images
 	 */
-	private function invalidateImageDescriptions( $images ) {
+	private function invalidateImageDescriptions( array $images ) {
 		PurgeJobUtils::invalidatePages( $this->getDB(), NS_FILE, array_keys( $images ) );
 	}
 
