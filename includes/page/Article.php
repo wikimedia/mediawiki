@@ -767,7 +767,9 @@ class Article implements Page {
 							$parserOptions,
 							$this->getRevIdFetched(),
 							$useParserCache,
-							$rev
+							$rev,
+							// permission checking was done earlier via showDeletedRevisionHeader()
+							RevisionRecord::RAW
 						);
 						$ok = $poolArticleView->execute();
 						$error = $poolArticleView->getError();
