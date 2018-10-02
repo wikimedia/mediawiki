@@ -316,4 +316,14 @@ interface WatchedItemStoreInterface {
 	 */
 	public function clearUserWatchedItemsUsingJobQueue( User $user );
 
+	/**
+	 * @since 1.32
+	 *
+	 * @param User $user
+	 * @param LinkTarget[] $targets
+	 *
+	 * @return bool success
+	 */
+	public function removeWatchBatchForUser( User $user, array $targets );
+
 }
