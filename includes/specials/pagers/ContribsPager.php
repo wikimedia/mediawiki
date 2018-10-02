@@ -502,22 +502,22 @@ class ContribsPager extends RangeChronologicalPager {
 				// For some reason rev_parent_id isn't populated for this row.
 				// Its rumoured this is true on wikipedia for some revisions (T36922).
 				// Next best thing is to have the total number of bytes.
-				$chardiff = ' <span class="mw-changeslist-separator">. .</span> ';
+				$chardiff = ' <span class="mw-changeslist-separator"></span> ';
 				$chardiff .= Linker::formatRevisionSize( $row->rev_len );
-				$chardiff .= ' <span class="mw-changeslist-separator">. .</span> ';
+				$chardiff .= ' <span class="mw-changeslist-separator"></span> ';
 			} else {
 				$parentLen = 0;
 				if ( isset( $this->mParentLens[$row->rev_parent_id] ) ) {
 					$parentLen = $this->mParentLens[$row->rev_parent_id];
 				}
 
-				$chardiff = ' <span class="mw-changeslist-separator">. .</span> ';
+				$chardiff = ' <span class="mw-changeslist-separator"></span> ';
 				$chardiff .= ChangesList::showCharacterDifference(
 					$parentLen,
 					$row->rev_len,
 					$this->getContext()
 				);
-				$chardiff .= ' <span class="mw-changeslist-separator">. .</span> ';
+				$chardiff .= ' <span class="mw-changeslist-separator"></span> ';
 			}
 
 			$lang = $this->getLanguage();
@@ -543,7 +543,8 @@ class ContribsPager extends RangeChronologicalPager {
 			$userlink = '';
 			if ( ( $this->contribs == 'newbie' && !$rev->isDeleted( Revision::DELETED_USER ) )
 				|| $this->isQueryableRange( $this->target ) ) {
-				$userlink = ' . . ' . $lang->getDirMark()
+				$userlink = ' <span class="mw-changeslist-separator"></span> '
+					. $lang->getDirMark()
 					. Linker::userLink( $rev->getUser(), $rev->getUserText() );
 				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
 					Linker::userTalkLink( $rev->getUser(), $rev->getUserText() ) )->escaped() . ' ';
