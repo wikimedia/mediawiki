@@ -60,3 +60,9 @@
 .mw-rcfilters-ui-highlights {
 	display: none;
 }
+
+/* Content dividers */
+/* @todo FIXME: Hard coded ". .". Is there a message for this? Should there be? */
+.mw-changeslist-separator:empty:before {
+	content: '. .';
+}
