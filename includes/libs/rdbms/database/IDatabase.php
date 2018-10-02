@@ -670,6 +670,8 @@ interface IDatabase {
 	 * Escaping of untrusted input used in values of numeric keys should be done via
 	 * IDatabase::addQuotes()
 	 *
+	 * Use an empty array, string, or '*' to update all rows.
+	 *
 	 * @param string|array $options
 	 *
 	 * Optional: Array of query options. Boolean options are specified by

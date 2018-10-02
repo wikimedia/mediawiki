@@ -674,9 +674,9 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 				"INSERT INTO insert_table " .
 					"(field_insert,field) " .
 					"SELECT field_select,field2 " .
-					"FROM select_table WHERE *",
+					"FROM select_table",
 				"SELECT field_select AS field_insert,field2 AS field " .
-				"FROM select_table WHERE *   FOR UPDATE",
+				"FROM select_table      FOR UPDATE",
 				"INSERT INTO insert_table (field_insert,field) VALUES ('0','1')"
 			],
 			[
@@ -755,7 +755,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			__METHOD__
 		);
 		$this->assertLastSqlDb( implode( '; ', [
-			'SELECT field2 AS field FROM select_table WHERE *   FOR UPDATE',
+			'SELECT field2 AS field FROM select_table      FOR UPDATE',
 			'BEGIN',
 			"INSERT INTO insert_table (field) VALUES ('" . implode( "'),('", range( 0, 9999 ) ) . "')",
 			"INSERT INTO insert_table (field) VALUES ('" . implode( "'),('", range( 10000, 19999 ) ) . "')",
