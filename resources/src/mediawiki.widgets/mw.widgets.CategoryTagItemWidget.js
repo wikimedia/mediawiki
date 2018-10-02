@@ -112,7 +112,7 @@
 	};
 
 	/**
-	 * Category selector capsule item widget. Extends OO.ui.CapsuleItemWidget with the ability to link
+	 * Category selector tag item widget. Extends OO.ui.TagItemWidget with the ability to link
 	 * to the given page, and to show its existence status (i.e., whether it is a redlink).
 	 *
 	 * @class mw.widgets.CategoryTagItemWidget
@@ -203,7 +203,4 @@
 				.addClass( 'new' );
 		}
 	};
-
-	// For backwards compatibility. See T183299.
-	mw.widgets.CategoryCapsuleItemWidget = mw.widgets.CategoryTagItemWidget;
 }() );
