@@ -703,6 +703,14 @@ class Language {
 			}
 
 			$this->namespaceAliases = $aliases + $convertedNames;
+
+			# Filter out aliases to namespaces that don't exist, e.g. from extensions
+			# that aren't loaded here but are included in the l10n cache.
+			# (array_intersect preserves keys from its first argument)
+			$this->namespaceAliases = array_intersect(
+				$this->namespaceAliases,
+				array_keys( $this->getNamespaces() )
+			);
 		}
 
 		return $this->namespaceAliases;
