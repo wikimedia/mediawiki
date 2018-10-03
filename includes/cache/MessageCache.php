@@ -776,13 +776,12 @@ class MessageCache {
 	 *   - If boolean and false, create object from the current users language
 	 *   - If boolean and true, create object from the wikis content language
 	 *   - If language object, use it as given
-	 * @param bool $isFullKey Specifies whether $key is a two part key "msg/lang".
 	 *
 	 * @throws MWException When given an invalid key
 	 * @return string|bool False if the message doesn't exist, otherwise the
 	 *   message (which can be empty)
 	 */
-	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
+	function get( $key, $useDB = true, $langcode = true ) {
 		if ( is_int( $key ) ) {
 			// Fix numerical strings that somehow become ints
 			// on their way here
@@ -792,13 +791,6 @@ class MessageCache {
 		} elseif ( $key === '' ) {
 			// Shortcut: the empty key is always missing
 			return false;
-		}
-
-		// For full keys, get the language code from the key
-		$pos = strrpos( $key, '/' );
-		if ( $isFullKey && $pos !== false ) {
-			$langcode = substr( $key, $pos + 1 );
-			$key = substr( $key, 0, $pos );
 		}
 
 		// Normalise title-case input (with some inlining)

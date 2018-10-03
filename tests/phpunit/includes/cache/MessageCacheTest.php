@@ -130,25 +130,6 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * There's a fallback case where the message key is given as fully qualified -- this
-	 * should ignore the passed $lang and use the language from the key
-	 *
-	 * @dataProvider provideMessagesForFullKeys
-	 */
-	public function testFullKeyBehaviour( $message, $lang, $expectedContent ) {
-		$result = MessageCache::singleton()->get( $message, true, $lang, true );
-		$this->assertEquals( $expectedContent, $result, "Full key message fallback failed." );
-	}
-
-	function provideMessagesForFullKeys() {
-		return [
-			[ 'MessageCacheTest-FullKeyTest/ru', 'ru', 'ru' ],
-			[ 'MessageCacheTest-FullKeyTest/ru', 'ab', 'ru' ],
-			[ 'MessageCacheTest-FullKeyTest/ru/foo', 'ru', false ],
-		];
-	}
-
-	/**
 	 * @dataProvider provideNormalizeKey
 	 */
 	public function testNormalizeKey( $key, $expected ) {
