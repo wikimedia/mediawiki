@@ -660,10 +660,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( $resultNone, $result );
 
-		$this->setUserPerm( '' );
-		$result = $this->title->getUserPermissionsErrors( 'patrol', $this->user );
-		$this->assertEquals( $resultPatrol, $result );
-
 		$this->setUserPerm( 'editmyusercss' );
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( $resultMyCss, $result );
@@ -687,6 +683,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->setUserPerm( 'edituserjs' );
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( $resultUserJs, $result );
+
+		$this->setUserPerm( '' );
+		$result = $this->title->getUserPermissionsErrors( 'patrol', $this->user );
+		$this->assertEquals( $resultPatrol, $result );
 
 		$this->setUserPerm( [ 'edituserjs', 'edituserjson', 'editusercss' ] );
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
