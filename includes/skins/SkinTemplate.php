@@ -385,16 +385,20 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'lastmod', false );
 		$tpl->set( 'credits', false );
 		$tpl->set( 'numberofwatchingusers', false );
-		if ( $out->isArticle() && $title->exists() ) {
-			if ( $this->isRevisionCurrent() ) {
-				if ( $wgMaxCredits != 0 ) {
-					$tpl->set( 'credits', Action::factory( 'credits', $this->getWikiPage(),
-						$this->getContext() )->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) );
-				} else {
-					$tpl->set( 'lastmod', $this->lastModified() );
+		if ( $title->exists() ) {
+			if ( $out->isArticle() ) {
+				if ( $this->isRevisionCurrent() ) {
+					if ( $wgMaxCredits != 0 ) {
+						$tpl->set( 'credits', Action::factory( 'credits', $this->getWikiPage(),
+							$this->getContext() )->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) );
+					} else {
+						$tpl->set( 'lastmod', $this->lastModified() );
+					}
 				}
 			}
-			$tpl->set( 'copyright', $this->getCopyright() );
+			if ( $out->showsCopyright() ) {
+				$tpl->set( 'copyright', $this->getCopyright() );
+			}
 		}
 
 		$tpl->set( 'copyrightico', $this->getCopyrightIcon() );

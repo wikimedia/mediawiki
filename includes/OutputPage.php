@@ -85,6 +85,9 @@ class OutputPage extends ContextSource {
 	/** @var bool Stores "article flag" toggle. */
 	private $mIsArticleRelated = true;
 
+	/** @var bool Is the content subject to copyright */
+	private $mHasCopyright = false;
+
 	/**
 	 * @var bool We have to set isPrintable(). Some pages should
 	 * never be printed (ex: redirections).
@@ -1259,6 +1262,28 @@ class OutputPage extends ContextSource {
 	 */
 	public function isArticleRelated() {
 		return $this->mIsArticleRelated;
+	}
+
+	/**
+	 * Set whether the standard copyright should be shown for the current page.
+	 *
+	 * @param bool $hasCopyright
+	 */
+	public function setCopyright( $hasCopyright ) {
+		$this->mHasCopyright = $hasCopyright;
+	}
+
+	/**
+	 * Return whether the standard copyright should be shown for the current page.
+	 * By default, it is true for all articles but other pages
+	 * can signal it by using setCopyright( true ).
+	 *
+	 * Used by SkinTemplate to decided whether to show the copyright.
+	 *
+	 * @return bool
+	 */
+	public function showsCopyright() {
+		return $this->isArticle() || $this->mHasCopyright;
 	}
 
 	/**
@@ -3997,4 +4022,5 @@ class OutputPage extends ContextSource {
 		}
 		return $this->CSPNonce;
 	}
+
 }
