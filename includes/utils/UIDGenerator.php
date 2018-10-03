@@ -475,11 +475,12 @@ class UIDGenerator {
 		// microtime() and gettimeofday() can drift from time() at least on Windows.
 		// The drift is immediate for processes running while the system clock changes.
 		// time() does not have this problem. See https://bugs.php.net/bug.php?id=42659.
-		if ( abs( time() - $time[0] ) >= 2 ) {
+		$drift = time() - $time[0];
+		if ( abs( $drift ) >= 2 ) {
 			// We don't want processes using too high or low timestamps to avoid duplicate
 			// UIDs and clock sequence number churn. This process should just be restarted.
 			flock( $handle, LOCK_UN ); // abort
-			throw new RuntimeException( "Process clock is outdated or drifted." );
+			throw new RuntimeException( "Process clock is outdated or drifted ({$drift}s)." );
 		}
 		// If microtime() is synced and a clock change was detected, then the clock went back
 		if ( $clockChanged ) {

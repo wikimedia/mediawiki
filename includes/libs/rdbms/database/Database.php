@@ -911,7 +911,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$exception = null; // error to throw after disconnecting
 
 		if ( $this->conn ) {
-			// Resolve any dangling transaction first
+			// Roll back any dangling transaction first
 			if ( $this->trxLevel ) {
 				if ( $this->trxAtomicLevels ) {
 					// Cannot let incomplete atomic sections be committed
@@ -922,6 +922,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					);
 				} elseif ( $this->trxAutomatic ) {
 					// Only the connection manager can commit non-empty DBO_TRX transactions
+					// (empty ones we can silently roll back)
 					if ( $this->writesOrCallbacksPending() ) {
 						$exception = new DBUnexpectedError(
 							$this,
@@ -929,11 +930,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 							": mass commit/rollback of peer transaction required (DBO_TRX set)."
 						);
 					}
-				} elseif ( $this->trxLevel ) {
-					// Commit explicit transactions as if this was commit()
-					$this->queryLogger->warning(
-						__METHOD__ . ": writes or callbacks still pending.",
-						[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+				} else {
+					// Manual transactions should have been committed or rolled
+					// back, even if empty.
+					$exception = new DBUnexpectedError(
+						$this,
+						__METHOD__ . ": transaction is still open (from {$this->trxFname})."
 					);
 				}
 
@@ -944,15 +946,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					);
 				}
 
-				// Commit or rollback the changes and run any callbacks as needed
-				if ( $this->trxStatus === self::STATUS_TRX_OK && !$exception ) {
-					$this->commit(
-						__METHOD__,
-						$this->trxAutomatic ? self::FLUSHING_INTERNAL : self::FLUSHING_ONE
-					);
-				} else {
-					$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
-				}
+				// Rollback the changes and run any callbacks as needed
+				$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
 			}
 
 			// Close the actual connection in the binding handle
