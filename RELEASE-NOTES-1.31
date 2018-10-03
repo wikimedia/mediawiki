@@ -5,6 +5,7 @@ THIS IS NOT A RELEASE YET
 === Changes since MediaWiki 1.31.1 ===
 * (T204729) WatchedItemStore::countVisitingWatchersMultiple() shouldn't query all
   titles when asked for none
+* (T205967) Fix syntax error typo in postgres database upgrade file.
 
 == MediaWiki 1.31.1 ==
 
