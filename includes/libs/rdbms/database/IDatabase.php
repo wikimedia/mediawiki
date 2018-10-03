@@ -486,8 +486,8 @@ interface IDatabase {
 	 * Close the database connection
 	 *
 	 * This should only be called after any transactions have been resolved,
-	 * aside from read-only transactions (assuming no callbacks are registered).
-	 * If a transaction is still open anyway, it will be committed if possible.
+	 * aside from read-only automatic transactions (assuming no callbacks are registered).
+	 * If a transaction is still open anyway, it will be rolled back.
 	 *
 	 * @throws DBError
 	 * @return bool Operation success. true if already closed.
