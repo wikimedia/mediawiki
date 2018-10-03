@@ -151,6 +151,7 @@ class MssqlUpdater extends DatabaseUpdater {
 				'patch-change_tag-change_tag_rc_tag_id.sql' ],
 			[ 'addField', 'ipblocks', 'ipb_sitewide', 'patch-ipb_sitewide.sql' ],
 			[ 'addTable', 'ipblocks_restrictions', 'patch-ipblocks_restrictions-table.sql' ],
+			[ 'migrateImageCommentTemp' ],
 		];
 	}
 

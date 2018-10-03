@@ -950,6 +950,7 @@ $wgAutoloadLocalClasses = [
 	'MigrateArchiveText' => __DIR__ . '/maintenance/migrateArchiveText.php',
 	'MigrateComments' => __DIR__ . '/maintenance/migrateComments.php',
 	'MigrateFileRepoLayout' => __DIR__ . '/maintenance/migrateFileRepoLayout.php',
+	'MigrateImageCommentTemp' => __DIR__ . '/maintenance/migrateImageCommentTemp.php',
 	'MigrateUserGroup' => __DIR__ . '/maintenance/migrateUserGroup.php',
 	'MimeAnalyzer' => __DIR__ . '/includes/libs/mime/MimeAnalyzer.php',
 	'MinifyScript' => __DIR__ . '/maintenance/minify.php',

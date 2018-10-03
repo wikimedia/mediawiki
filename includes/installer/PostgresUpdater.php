@@ -597,6 +597,7 @@ class PostgresUpdater extends DatabaseUpdater {
 				'patch-change_tag-change_tag_rc_tag_id.sql' ],
 			[ 'addPgField', 'ipblocks', 'ipb_sitewide', 'SMALLINT NOT NULL DEFAULT 1' ],
 			[ 'addTable', 'ipblocks_restrictions', 'patch-ipblocks_restrictions-table.sql' ],
+			[ 'migrateImageCommentTemp' ],
 		];
 	}
 

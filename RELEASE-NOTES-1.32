@@ -475,6 +475,8 @@ because of Phabricator reports.
 * Skin::getDynamicStylesheetQuery() has been deprecated. It always
   returns action=raw&ctype=text/css which callers should use directly.
 * Class LegacyFormatter is deprecated.
+* Use of CommentStore::insertWithTempTable() with 'img_description' is
+  deprecated. Use CommentStore::insert() instead.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
@@ -490,7 +492,9 @@ because of Phabricator reports.
   yet for creating or managing content in slots beides the main slot. See
   <https://www.mediawiki.org/wiki/Multi-Content_Revisions> for more
   information.
-* …
+* The image_comment_temp database table is merged into the image table and
+  deprecated. Since access should be mediated by the CommentStore class, this
+  change shouldn't affect external code.
 
 == Compatibility ==
 MediaWiki 1.32 requires PHP 7.0.0 or later. Although HHVM 3.18.5 or later is
