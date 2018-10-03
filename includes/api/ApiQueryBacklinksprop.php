@@ -129,6 +129,9 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		if ( !$titles ) {
 			return; // nothing to do
 		}
+		if ( $params['namespace'] !== null && count( $params['namespace'] ) === 0 ) {
+			return; // nothing to do
+		}
 
 		// Figure out what we're sorting by, and add associated WHERE clauses.
 		// MySQL's query planner screws up if we include a field in ORDER BY

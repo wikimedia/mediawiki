@@ -130,6 +130,11 @@ class AutoLoaderStructureTest extends MediaWikiTestCase {
 		$expected = $wgAutoloadLocalClasses + $wgAutoloadClasses;
 		$actual = [];
 
+		$psr4Namespaces = [];
+		foreach ( AutoLoader::getAutoloadNamespaces() as $ns => $path ) {
+			$psr4Namespaces[rtrim( $ns, '\\' ) . '\\'] = rtrim( $path, '/' );
+		}
+
 		$files = array_unique( $expected );
 
 		foreach ( $files as $class => $file ) {
@@ -158,6 +163,21 @@ class AutoLoaderStructureTest extends MediaWikiTestCase {
 			list( $classesInFile, $aliasesInFile ) = self::parseFile( $contents );
 
 			foreach ( $classesInFile as $className => $ignore ) {
+				// Skip if it's a PSR4 class
+				$parts = explode( '\\', $className );
+				for ( $i = count( $parts ) - 1; $i > 0; $i-- ) {
+					$ns = implode( '\\', array_slice( $parts, 0, $i ) ) . '\\';
+					if ( isset( $psr4Namespaces[$ns] ) ) {
+						$expectedPath = $psr4Namespaces[$ns] . '/'
+							. implode( '/', array_slice( $parts, $i ) )
+							. '.php';
+						if ( $filePath === $expectedPath ) {
+							continue 2;
+						}
+					}
+				}
+
+				// Nope, add it.
 				$actual[$className] = $file;
 			}
 
@@ -183,7 +203,7 @@ class AutoLoaderStructureTest extends MediaWikiTestCase {
 		$path = realpath( __DIR__ . '/../../..' );
 		$oldAutoload = file_get_contents( $path . '/autoload.php' );
 		$generator = new AutoloadGenerator( $path, 'local' );
-		$generator->setExcludePaths( array_values( AutoLoader::getAutoloadNamespaces() ) );
+		$generator->setPsr4Namespaces( AutoLoader::getAutoloadNamespaces() );
 		$generator->initMediaWikiDefault();
 		$newAutoload = $generator->getAutoload( 'maintenance/generateLocalAutoload.php' );
 

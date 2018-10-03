@@ -50,6 +50,13 @@ class AutoloadGenerator {
 	protected $excludePaths = [];
 
 	/**
+	 * Configured PSR4 namespaces
+	 *
+	 * @var string[] namespace => path
+	 */
+	protected $psr4Namespaces = [];
+
+	/**
 	 * @param string $basepath Root path of the project being scanned for classes
 	 * @param array|string $flags
 	 *
@@ -76,6 +83,22 @@ class AutoloadGenerator {
 	public function setExcludePaths( array $paths ) {
 		foreach ( $paths as $path ) {
 			$this->excludePaths[] = self::normalizePathSeparator( $path );
+		}
+	}
+
+	/**
+	 * Set PSR4 namespaces
+	 *
+	 * Unlike self::setExcludePaths(), this will only skip outputting the
+	 * autoloader entry when the namespace matches the path.
+	 *
+	 * @since 1.32
+	 * @param string[] $namespaces Associative array mapping namespace to path
+	 */
+	public function setPsr4Namespaces( array $namespaces ) {
+		foreach ( $namespaces as $ns => $path ) {
+			$ns = rtrim( $ns, '\\' ) . '\\';
+			$this->psr4Namespaces[$ns] = rtrim( self::normalizePathSeparator( $path ), '/' );
 		}
 	}
 
@@ -135,6 +158,25 @@ class AutoloadGenerator {
 		$result = $this->collector->getClasses(
 			file_get_contents( $inputPath )
 		);
+
+		// Filter out classes that will be found by PSR4
+		$result = array_filter( $result, function ( $class ) use ( $inputPath ) {
+			$parts = explode( '\\', $class );
+			for ( $i = count( $parts ) - 1; $i > 0; $i-- ) {
+				$ns = implode( '\\', array_slice( $parts, 0, $i ) ) . '\\';
+				if ( isset( $this->psr4Namespaces[$ns] ) ) {
+					$expectedPath = $this->psr4Namespaces[$ns] . '/'
+						. implode( '/', array_slice( $parts, $i ) )
+						. '.php';
+					if ( $inputPath === $expectedPath ) {
+						return false;
+					}
+				}
+			}
+
+			return true;
+		} );
+
 		if ( $result ) {
 			$shortpath = substr( $inputPath, $len );
 			$this->classes[$shortpath] = $result;

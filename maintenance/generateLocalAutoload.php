@@ -11,7 +11,7 @@ require_once __DIR__ . '/../includes/utils/AutoloadGenerator.php';
 $base = dirname( __DIR__ );
 
 $generator = new AutoloadGenerator( $base, 'local' );
-$generator->setExcludePaths( array_values( AutoLoader::getAutoloadNamespaces() ) );
+$generator->setPsr4Namespaces( AutoLoader::getAutoloadNamespaces() );
 $generator->initMediaWikiDefault();
 
 // Write out the autoload
