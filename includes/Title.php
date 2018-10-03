@@ -2447,7 +2447,7 @@ class Title implements LinkTarget {
 		# XXX: this might be better using restrictions
 
 		if ( $action === 'patrol' ) {
-			return [];
+			return $errors;
 		}
 
 		if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
