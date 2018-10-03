@@ -425,17 +425,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		);
 	}
 
-	protected function runMainQueryHook( &$tables, &$fields, &$conds, &$query_options,
-		&$join_conds, $opts
-	) {
-		return parent::runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds, $opts )
-			&& Hooks::run(
-				'SpecialWatchlistQuery',
-				[ &$conds, &$tables, &$join_conds, &$fields, $opts ],
-				'1.23'
-			);
-	}
-
 	/**
 	 * Return a IDatabase object for reading
 	 *

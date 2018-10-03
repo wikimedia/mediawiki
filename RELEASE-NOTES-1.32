@@ -329,6 +329,9 @@ because of Phabricator reports.
   phase.
 * The global function wfErrorLog, deprecated since 1.25, has now been removed.
   Use MWLoggerLegacyLogger::emit or UDPTransport.
+ The hooks 'SpecialRecentChangesQuery' & 'SpecialWatchlistQuery', deprecated in
+  1.23, were removed. Instead, use ChangesListSpecialPageStructuredFilters or
+  ChangesListSpecialPageQuery.
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit
