@@ -2057,11 +2057,22 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->onTransactionCommitOrIdle( function () use ( $fname ) {
 			$this->database->query( 'SELECT 1', $fname );
 		} );
+		$this->database->onTransactionResolution( function () use ( $fname ) {
+			$this->database->query( 'SELECT 2', $fname );
+		} );
 		$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
-		$this->database->close();
+		try {
+			$this->database->close();
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( DBUnexpectedError $ex ) {
+			$this->assertSame(
+				"Wikimedia\Rdbms\Database::close: transaction is still open (from $fname).",
+				$ex->getMessage()
+			);
+		}
 
 		$this->assertFalse( $this->database->isOpen() );
-		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; COMMIT; SELECT 1' );
+		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; ROLLBACK; SELECT 2' );
 		$this->assertEquals( 0, $this->database->trxLevel() );
 	}
 
@@ -2125,7 +2136,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->clearFlag( IDatabase::DBO_TRX );
 
 		$this->assertFalse( $this->database->isOpen() );
-		$this->assertLastSql( 'BEGIN; SELECT 1; COMMIT' );
+		$this->assertLastSql( 'BEGIN; SELECT 1; ROLLBACK' );
 		$this->assertEquals( 0, $this->database->trxLevel() );
 	}
 }
