@@ -837,7 +837,7 @@
 	"revdelete-no-change": "'''Opgepasst:''' D'Element vum $2 ëm $1 Auer huet schonn déi ugefrote Sichtbarkeetsastellung.",
 	"revdelete-concurrent-change": "Feeler beim Ännere vum Element vum $1 ëm $2 Auer: säit Statut schéngt geännert ginn ze si während Dir vericht hutt et z'änneren.\nKuckt w.e.g. an de Logbicher no.",
 	"revdelete-only-restricted": "Feeler beim verstoppe vum Element vum $2, $1: Dir kënnt keng Elementer virun den Administrateure verstoppen ouni och eng vun den aneren Optiounen vum weisen erauszesichen.",
-	"revdelete-reason-dropdown": "* Generell Läschgrënn\n** Verletzung vun den Auteursrechter\n** Net ubruechte perséinlech Informatioun\n** Inadequate Benotzernumm\n** Informatioun déi beleidege kann",
+	"revdelete-reason-dropdown": "* Generell Läschgrënn\n** Verletzung vun den Auteursrechter\n** Perséinlech Informatioun déi net ubruecht ass\n** Inadequate Benotzernumm\n** Informatioun déi beleidege kann",
 	"revdelete-otherreason": "Aneren/zousätzleche Grond:",
 	"revdelete-reasonotherlist": "Anere Grond:",
 	"revdelete-edit-reasonlist": "Läschgrënn änneren",

@@ -233,7 +233,7 @@
 	"privacypage": "Project:Prawidła chrōniyniŏ prywŏtności",
 	"badaccess": "Felerne uprawńyńo",
 	"badaccess-group0": "Ńy mosz uprawńyń coby wykůnać ta uoperacyjo.",
-	"badaccess-groups": "Ta uoperacyjo mogům wykůnać ino użytkownicy ze keryjś z grup {{PLURAL:$2|grupa|grupy}}:$1.",
+	"badaccess-groups": "Ta uoperacyjo mogům wykůnać ino użytkownicy ze keryjś z {{PLURAL:$2|grupy|grup}}: $1.",
 	"versionrequired": "Wymagano MediaWiki we wersyji $1",
 	"versionrequiredtext": "Wymagano jest MediaWiki we wersji $1 coby skorzistać zr tyj zajty. Uobocz [[Special:Version]]",
 	"ok": "OK",

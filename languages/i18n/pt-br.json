@@ -3032,7 +3032,7 @@
 	"previousdiff": "← Edição anterior",
 	"nextdiff": "Edição posterior →",
 	"mediawarning": "'''Aviso''': Este tipo de arquivo pode conter código malicioso.\nExecutá-lo poderá comprometer a segurança do seu sistema.",
-	"imagemaxsize": "Limite de tamanho de imagem:<br />''(para páginas de descrição de arquivos)''",
+	"imagemaxsize": "Limite de tamanho de imagem nas páginas de descrição do arquivo:",
 	"thumbsize": "Tamanho de miniaturas:",
 	"widthheight": "$1 × $2",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|página|páginas}}",

@@ -2980,7 +2980,7 @@
 	"previousdiff": "← Edição anterior",
 	"nextdiff": "Edição posterior →",
 	"mediawarning": "<strong>Aviso:</strong> Este tipo de ficheiro pode conter código malicioso.\nSe o executar, o seu sistema pode ficar comprometido.",
-	"imagemaxsize": "Tamanho limite da imagem:<br /><em>(para páginas de descrição de ficheiros)</em>",
+	"imagemaxsize": "Tamanho limite das imagens nas páginas de descrição de ficheiros:",
 	"thumbsize": "Tamanho da miniatura:",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|página|páginas}}",
 	"file-info": "tamanho: $1, tipo MIME: $2",

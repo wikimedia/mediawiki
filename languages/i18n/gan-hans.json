@@ -18,7 +18,8 @@
 			"Babanwalia",
 			"Macofe",
 			"Fanjiayi",
-			"Fitoschido"
+			"Fitoschido",
+			"A Chinese Wikipedian"
 		]
 	},
 	"tog-underline": "下划链接",
@@ -1052,7 +1053,7 @@
 	"nolinkshere-ns": "选正𠮶空间名内冇页面链接到$2。",
 	"isredirect": "重定向页面",
 	"istemplate": "含到",
-	"isimage": "档案连结",
+	"isimage": "档案链接",
 	"whatlinkshere-prev": "先$1只",
 	"whatlinkshere-next": "末$1只",
 	"whatlinkshere-links": "←链接",

@@ -2890,7 +2890,7 @@
 	"previousdiff": "← Prejšnje urejanje",
 	"nextdiff": "Novejše urejanje →",
 	"mediawarning": "'''Opozorilo''': Tovrstni tip datotek lahko vsebuje zlonamerno kodo.\nZ njenim zagonom lahko ogrozite vaš sistem.",
-	"imagemaxsize": "Omejitev velikosti slik:<br />''(za opisne strani datotek)''",
+	"imagemaxsize": "Omejitev velikosti slik na opisnih straneh datotek:",
 	"thumbsize": "Velikost sličice (thumbnail):",
 	"widthheight": "$1&nbsp;×&nbsp;$2",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|stran|strani}}",

@@ -3073,7 +3073,7 @@
 	"previousdiff": "← Modification précédente",
 	"nextdiff": "Modification suivante →",
 	"mediawarning": "<strong>Attention :</strong> ce type de fichier peut contenir du code malveillant.\nSi vous l'exécutez, votre système peut être compromis.",
-	"imagemaxsize": "Taille maximale des images :<br /><em>(pour les pages de description de fichier)</em>",
+	"imagemaxsize": "Taille maximale des images sur les pages de description de fichiers :",
 	"thumbsize": "Taille de la miniature :",
 	"widthheight": "$1&nbsp;×&nbsp;$2",
 	"widthheightpage": "$1 × $2, $3 page{{PLURAL:$3||s}}",
