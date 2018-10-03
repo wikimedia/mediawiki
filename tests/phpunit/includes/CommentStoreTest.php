@@ -115,15 +115,26 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			],
 			'Image, write-both' => [
 				MIGRATION_WRITE_BOTH, 'img_description',
-				[ 'img_description_old' => 'img_description', 'img_description_pk' => 'img_name' ],
+				[
+					'img_description_old' => 'img_description',
+					'img_description_pk' => 'img_name',
+					'img_description_id' => 'img_description_id'
+				],
 			],
 			'Image, write-new' => [
 				MIGRATION_WRITE_NEW, 'img_description',
-				[ 'img_description_old' => 'img_description', 'img_description_pk' => 'img_name' ],
+				[
+					'img_description_old' => 'img_description',
+					'img_description_pk' => 'img_name',
+					'img_description_id' => 'img_description_id'
+				],
 			],
 			'Image, new' => [
 				MIGRATION_NEW, 'img_description',
-				[ 'img_description_pk' => 'img_name' ],
+				[
+					'img_description_pk' => 'img_name',
+					'img_description_id' => 'img_description_id'
+				],
 			],
 		];
 	}
@@ -296,7 +307,9 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 					'joins' => [
 						'temp_img_description' => [ 'LEFT JOIN', 'temp_img_description.imgcomment_name = img_name' ],
 						'comment_img_description' => [ 'LEFT JOIN',
-							'comment_img_description.comment_id = temp_img_description.imgcomment_description_id' ],
+							// phpcs:ignore Generic.Files.LineLength
+							'comment_img_description.comment_id = (CASE WHEN img_description_id != 0 THEN img_description_id ELSE temp_img_description.imgcomment_description_id END)',
+						],
 					],
 				],
 			],
@@ -314,7 +327,9 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 					'joins' => [
 						'temp_img_description' => [ 'LEFT JOIN', 'temp_img_description.imgcomment_name = img_name' ],
 						'comment_img_description' => [ 'LEFT JOIN',
-							'comment_img_description.comment_id = temp_img_description.imgcomment_description_id' ],
+							// phpcs:ignore Generic.Files.LineLength
+							'comment_img_description.comment_id = (CASE WHEN img_description_id != 0 THEN img_description_id ELSE temp_img_description.imgcomment_description_id END)',
+						],
 					],
 				],
 			],
@@ -330,9 +345,11 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 						'img_description_cid' => 'comment_img_description.comment_id',
 					],
 					'joins' => [
-						'temp_img_description' => [ 'JOIN', 'temp_img_description.imgcomment_name = img_name' ],
+						'temp_img_description' => [ 'LEFT JOIN', 'temp_img_description.imgcomment_name = img_name' ],
 						'comment_img_description' => [ 'JOIN',
-							'comment_img_description.comment_id = temp_img_description.imgcomment_description_id' ],
+							// phpcs:ignore Generic.Files.LineLength
+							'comment_img_description.comment_id = (CASE WHEN img_description_id != 0 THEN img_description_id ELSE temp_img_description.imgcomment_description_id END)',
+						],
 					],
 				],
 			],
@@ -736,11 +753,14 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 * @param int $stage
 	 */
 	public function testInsertWithTempTableDeprecated( $stage ) {
-		$wrap = TestingAccessWrapper::newFromClass( CommentStore::class );
-		$wrap->formerTempTables += [ 'ipb_reason' => '1.30' ];
+		$store = $this->makeStore( $stage );
+		$wrap = TestingAccessWrapper::newFromObject( $store );
+		$wrap->tempTables += [ 'ipb_reason' => [
+			'stage' => MIGRATION_NEW,
+			'deprecatedIn' => '1.30',
+		] ];
 
 		$this->hideDeprecated( 'CommentStore::insertWithTempTable for ipb_reason' );
-		$store = $this->makeStore( $stage );
 		list( $fields, $callback ) = $store->insertWithTempTable( $this->db, 'ipb_reason', 'foo' );
 		$this->assertTrue( is_callable( $callback ) );
 	}
