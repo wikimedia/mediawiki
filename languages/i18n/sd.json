@@ -757,7 +757,7 @@
 	"prefs-help-recentchangescount": "وڌ ۾ وڌ انگ: 1000",
 	"savedprefs": "توھان جون ترجيحون سانڍجي چڪيون آھن.",
 	"savedrights": "{{GENDER:$1|$1}} جا واپرائيندڙ گروھ سانڍجي چڪا آھن.",
-	"timezonelegend": "اوقاتي زون:",
+	"timezonelegend": "ٽائيم زون:",
 	"localtime": "مقامي وقت:",
 	"timezoneuseserverdefault": "وڪي عدم پيروي استعمال ڪريو ($1)",
 	"timezoneuseoffset": "ٻيو (ڄاڻايو)",

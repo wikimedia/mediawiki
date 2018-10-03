@@ -91,7 +91,8 @@
 			"Pahles",
 			"Optilete",
 			"Goefie",
-			"AHmed Khaled"
+			"AHmed Khaled",
+			"Jeroen N"
 		]
 	},
 	"tog-underline": "Verwijzingen onderstrepen:",
@@ -119,7 +120,7 @@
 	"tog-enotifminoredits": "Mij e-mailen bij kleine bewerkingen van pagina’s en bestanden op mijn volglijst",
 	"tog-enotifrevealaddr": "Mijn e-mailadres weergeven in e-mailberichten",
 	"tog-shownumberswatching": "Het aantal gebruikers weergeven dat deze pagina volgt",
-	"tog-oldsig": "Uw bestaande handtekening:",
+	"tog-oldsig": "Uw huidige handtekening:",
 	"tog-fancysig": "Handtekening als wikitekst behandelen (zonder automatische koppeling)",
 	"tog-uselivepreview": "Voorvertoning weergeven zonder de pagina opnieuw te laden",
 	"tog-forceeditsummary": "Een melding geven bij een lege bewerkingssamenvatting",
@@ -2976,7 +2977,7 @@
 	"previousdiff": "← Oudere bewerking",
 	"nextdiff": "Nieuwere bewerking →",
 	"mediawarning": "'''Waarschuwing''': dit bestandstype bevat mogelijk programmacode die uw systeem schade kan berokkenen.",
-	"imagemaxsize": "Maximale afmetingen van afbeeldingen:<br />''(voor op de beschrijvingspagina)''",
+	"imagemaxsize": "Maximale afmetingen van afbeeldingen op de beschrijvingspagina:",
 	"thumbsize": "Grootte miniatuurafbeelding:",
 	"widthheight": "$1 × $2",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|pagina|pagina's}}",
