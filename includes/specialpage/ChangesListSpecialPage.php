@@ -1840,16 +1840,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Check whether the structured filter UI is enabled by default (regardless of
-	 * this particular user's setting)
-	 *
-	 * @return bool
-	 */
-	public function isStructuredFilterUiEnabledByDefault() {
-		return true;
-	}
-
-	/**
 	 * Static method to check whether StructuredFilter UI is enabled for the given user
 	 *
 	 * @since 1.31
