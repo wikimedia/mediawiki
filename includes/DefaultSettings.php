@@ -3283,14 +3283,6 @@ $wgHTMLFormAllowTableFormat = true;
 $wgUseMediaWikiUIEverywhere = false;
 
 /**
- * Temporary variable that determines whether Special:Preferences should use OOUI or not.
- * This will be removed later and OOUI will become the only option.
- *
- * @since 1.32
- */
-$wgOOUIPreferences = true;
-
-/**
  * Whether to label the store-to-database-and-show-to-others button in the editor
  * as "Save page"/"Save changes" if false (the default) or, if true, instead as
  * "Publish page"/"Publish changes".

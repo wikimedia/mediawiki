@@ -2139,42 +2139,15 @@ return [
 			'oojs-ui-core',
 		],
 	],
-	'mediawiki.special.preferences' => [
-		'targets' => [ 'desktop', 'mobile' ],
-		'scripts' => [
-			'resources/src/mediawiki.special.preferences/confirmClose.js',
-			'resources/src/mediawiki.special.preferences/convertmessagebox.js',
-			'resources/src/mediawiki.special.preferences/tabs.legacy.js',
-			'resources/src/mediawiki.special.preferences/timezone.js',
-			'resources/src/mediawiki.special.preferences/personalEmail.js',
-		],
-		'messages' => [
-			'prefs-tabs-navigation-hint',
-			'prefswarning-warning',
-			'saveprefs',
-			'savedprefs',
-		],
-		'dependencies' => [
-			'mediawiki.language',
-			'mediawiki.confirmCloseWindow',
-			'mediawiki.notification.convertmessagebox',
-		],
-	],
-	'mediawiki.special.preferences.styles' => [
-		'targets' => [ 'desktop', 'mobile' ],
-		// legacy
-		'styles' => 'resources/src/mediawiki.special.preferences.styles.css',
-	],
 	'mediawiki.special.preferences.ooui' => [
 		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => [
-			// FIXME: This uses files already belonging to another module
-			'resources/src/mediawiki.special.preferences/confirmClose.js',
-			'resources/src/mediawiki.special.preferences/convertmessagebox.js',
+			'resources/src/mediawiki.special.preferences.ooui/confirmClose.js',
+			'resources/src/mediawiki.special.preferences.ooui/convertmessagebox.js',
 			'resources/src/mediawiki.special.preferences.ooui/editfont.js',
 			'resources/src/mediawiki.special.preferences.ooui/tabs.js',
-			'resources/src/mediawiki.special.preferences/timezone.js',
-			'resources/src/mediawiki.special.preferences/personalEmail.js',
+			'resources/src/mediawiki.special.preferences.ooui/timezone.js',
+			'resources/src/mediawiki.special.preferences.ooui/personalEmail.js',
 		],
 		'messages' => [
 			'prefs-tabs-navigation-hint',
