@@ -445,7 +445,7 @@ interface ILoadBalancer {
 	public function beginMasterChanges( $fname = __METHOD__ );
 
 	/**
-	 * Issue COMMIT on all master connections where writes where done
+	 * Issue COMMIT on all open master connections to flush changes and view snapshots
 	 * @param string $fname Caller name
 	 * @throws DBExpectedError
 	 */
