@@ -3338,17 +3338,6 @@ SpecialRecentChanges.
 &$extraOpts: array of added items, to which can be added
 $opts: FormOptions for this request
 
-'SpecialRecentChangesQuery': DEPRECATED since 1.23! Use
-ChangesListSpecialPageStructuredFilters or ChangesListSpecialPageQuery instead.
-Called when building SQL query for SpecialRecentChanges and
-SpecialRecentChangesLinked.
-&$conds: array of WHERE conditionals for query
-&$tables: array of tables to be queried
-&$join_conds: join conditions for the tables
-$opts: FormOptions for this request
-&$query_options: array of options for the database request
-&$select: Array of columns to select
-
 'SpecialResetTokensTokens': Called when building token list for
 SpecialResetTokens.
 &$tokens: array of token information arrays in the format of
@@ -3451,15 +3440,6 @@ $wgVersion: Current $wgVersion for you to use
 SpecialWatchlist. Allows extensions to register custom values they have
 inserted to rc_type so they can be returned as part of the watchlist.
 &$nonRevisionTypes: array of values in the rc_type field of recentchanges table
-
-'SpecialWatchlistQuery': DEPRECATED since 1.23! Use
-ChangesListSpecialPageStructuredFilters or ChangesListSpecialPageQuery instead.
-Called when building sql query for SpecialWatchlist.
-&$conds: array of WHERE conditionals for query
-&$tables: array of tables to be queried
-&$join_conds: join conditions for the tables
-&$fields: array of query fields
-$opts: A FormOptions object with watchlist options for the current request
 
 'TestCanonicalRedirect': Called when about to force a redirect to a canonical
 URL for a title when we have no other parameters on the URL. Gives a chance for
