@@ -14,8 +14,10 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 	 * Test that generated UIDs have the expected properties
 	 *
 	 * @dataProvider provider_testTimestampedUID
-	 * @covers UIDGenerator::newTimestampedUID128
 	 * @covers UIDGenerator::newTimestampedUID88
+	 * @covers UIDGenerator::getTimestampedID88
+	 * @covers UIDGenerator::newTimestampedUID128
+	 * @covers UIDGenerator::getTimestampedID128
 	 */
 	public function testTimestampedUID( $method, $digitlen, $bits, $tbits, $hostbits ) {
 		$id = call_user_func( [ UIDGenerator::class, $method ] );
@@ -78,6 +80,7 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers UIDGenerator::newUUIDv1
+	 * @covers UIDGenerator::getUUIDv1
 	 */
 	public function testUUIDv1() {
 		$ids = [];
@@ -157,6 +160,7 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers UIDGenerator::newSequentialPerNodeIDs
+	 * @covers UIDGenerator::getSequentialPerNodeIDs
 	 */
 	public function testNewSequentialIDs() {
 		$ids = UIDGenerator::newSequentialPerNodeIDs( 'test', 32, 5 );
