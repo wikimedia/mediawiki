@@ -14,18 +14,10 @@ class ApiBlockTest extends ApiTestCase {
 		parent::setUp();
 		$this->tablesUsed = array_merge(
 			$this->tablesUsed,
-			[ 'change_tag', 'change_tag_def', 'logging' ]
+			[ 'ipblocks', 'change_tag', 'change_tag_def', 'logging' ]
 		);
 
 		$this->mUser = $this->getMutableTestUser()->getUser();
-	}
-
-	protected function tearDown() {
-		$block = Block::newFromTarget( $this->mUser->getName() );
-		if ( !is_null( $block ) ) {
-			$block->delete();
-		}
-		parent::tearDown();
 	}
 
 	protected function getTokens() {
