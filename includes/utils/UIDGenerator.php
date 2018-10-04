@@ -30,17 +30,22 @@ use MediaWiki\MediaWikiServices;
 class UIDGenerator {
 	/** @var UIDGenerator */
 	protected static $instance = null;
+	/** @var string Local file path */
+	protected $nodeIdFile;
+	/** @var string Node ID in binary (32 bits) */
+	protected $nodeId32;
+	/** @var string Node ID in binary (48 bits) */
+	protected $nodeId48;
 
-	protected $nodeIdFile; // string; local file path
-	protected $nodeId32; // string; node ID in binary (32 bits)
-	protected $nodeId48; // string; node ID in binary (48 bits)
+	/** @var string Local file path */
+	protected $lockFile88;
+	/** @var string Local file path */
+	protected $lockFile128;
+	/** @var string Local file path */
+	protected $lockFileUUID;
 
-	protected $lockFile88; // string; local file path
-	protected $lockFile128; // string; local file path
-	protected $lockFileUUID; // string; local file path
-
-	/** @var array */
-	protected $fileHandles = []; // cache file handles
+	/** @var array Cached file handles */
+	protected $fileHandles = []; // cached file handles
 
 	const QUICK_RAND = 1; // get randomness from fast and insecure sources
 	const QUICK_VOLATILE = 2; // use an APC like in-memory counter if available
