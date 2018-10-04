@@ -200,7 +200,7 @@ interface ILBFactory {
 	public function beginMasterChanges( $fname = __METHOD__ );
 
 	/**
-	 * Commit changes on all master connections
+	 * Commit changes and clear view snapshots on all master connections
 	 * @param string $fname Caller name
 	 * @param array $options Options map:
 	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
