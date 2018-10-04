@@ -48,6 +48,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RecentChange;
 use Revision;
+use RuntimeException;
 use stdClass;
 use Title;
 use User;
@@ -1058,13 +1059,15 @@ class RevisionStore
 	) {
 		$this->checkDatabaseWikiId( $dbw );
 
+		$pageId = $title->getArticleID();
+
 		// T51581: Lock the page table row to ensure no other process
 		// is adding a revision to the page at the same time.
 		// Avoid locking extra tables, compare T191892.
 		$pageLatest = $dbw->selectField(
 			'page',
 			'page_latest',
-			[ 'page_id' => $title->getArticleID() ],
+			[ 'page_id' => $pageId ],
 			__METHOD__,
 			[ 'FOR UPDATE' ]
 		);
@@ -1080,6 +1083,15 @@ class RevisionStore
 			self::READ_LATEST,
 			$title
 		);
+
+		if ( !$oldRevision ) {
+			$msg = "Failed to load latest revision ID $pageLatest of page ID $pageId.";
+			$this->logger->error(
+				$msg,
+				[ 'exception' => new RuntimeException( $msg ) ]
+			);
+			return null;
+		}
 
 		// Construct the new revision
 		$timestamp = wfTimestampNow(); // TODO: use a callback, so we can override it for testing.

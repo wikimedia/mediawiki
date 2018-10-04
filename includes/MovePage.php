@@ -536,7 +536,8 @@ class MovePage {
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true, $user );
 		if ( !is_object( $nullRevision ) ) {
-			throw new MWException( 'No valid null revision produced in ' . __METHOD__ );
+			throw new MWException( 'Failed to create null revision while moving page ID '
+				. $oldid . ' to ' . $nt->getPrefixedDBkey() );
 		}
 
 		$nullRevId = $nullRevision->insertOn( $dbw );
