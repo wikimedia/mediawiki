@@ -551,6 +551,7 @@ class MessageCache {
 		# stored and fetched from memcache.
 		$cache['HASH'] = md5( serialize( $cache ) );
 		$cache['EXPIRY'] = wfTimestamp( TS_MW, time() + $this->mExpiry );
+		unset( $cache['EXCESSIVE'] ); // only needed for hash
 
 		return $cache;
 	}
