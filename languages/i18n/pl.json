@@ -4160,6 +4160,7 @@
 	"pagedata-bad-title": "Niepoprawny tytuł: $1.",
 	"unregistered-user-config": "Ze względów bezpieczeństwa podstrony użytkownika: JavaScript, CSS i JSON nie mogą być załadowane dla niezarejestrowanych użytkowników.",
 	"passwordpolicies": "Zasady dotyczące haseł",
+	"passwordpolicies-summary": "Poniżej znajduje się lista aktywnych zasad dotyczących haseł dla grup użytkowników zdefiniowanych na tej wiki.",
 	"passwordpolicies-group": "Grupa",
 	"passwordpolicies-policies": "Zasady",
 	"passwordpolicies-policy-minimalpasswordlength": "Hasło musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}",
