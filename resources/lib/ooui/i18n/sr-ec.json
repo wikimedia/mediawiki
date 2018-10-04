@@ -25,7 +25,7 @@
 	"ooui-dialog-process-continue": "Настави",
 	"ooui-selectfile-button-select": "Изабери датотеку",
 	"ooui-selectfile-not-supported": "Избор датотеке није подржан",
-	"ooui-selectfile-placeholder": "Није изабрана ниједна датотека",
+	"ooui-selectfile-placeholder": "Датотека није изабрана",
 	"ooui-selectfile-dragdrop-placeholder": "Овде отпустите датотеку",
 	"ooui-field-help": "Помоћ"
 }
