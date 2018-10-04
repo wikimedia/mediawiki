@@ -158,7 +158,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * @since 1.28
 	 *
-	 * @param string[] $groups Groups the test user should be in.
+	 * @param string|string[] $groups Groups the test user should be in.
 	 * @return TestUser
 	 */
 	public static function getTestUser( $groups = [] ) {
@@ -170,7 +170,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * @since 1.28
 	 *
-	 * @param string[] $groups Groups the test user should be added in.
+	 * @param string|string[] $groups Groups the test user should be added in.
 	 * @return TestUser
 	 */
 	public static function getMutableTestUser( $groups = [] ) {

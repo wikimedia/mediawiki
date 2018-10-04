@@ -28,7 +28,7 @@ class TestUserRegistry {
 	 *
 	 * @param string $testName Caller's __CLASS__. Used to generate the
 	 *  user's username.
-	 * @param string[] $groups Groups the test user should be added to.
+	 * @param string|string[] $groups Groups the test user should be added to.
 	 * @return TestUser
 	 */
 	public static function getMutableTestUser( $testName, $groups = [] ) {
@@ -38,7 +38,7 @@ class TestUserRegistry {
 			"TestUser $testName $id",  // username
 			"Name $id",                // real name
 			"$id@mediawiki.test",      // e-mail
-			$groups,                   // groups
+			(array)$groups,            // groups
 			$password                  // password
 		);
 		$testUser->getUser()->clearInstanceCache();
@@ -54,11 +54,11 @@ class TestUserRegistry {
 	 *
 	 * @since 1.28
 	 *
-	 * @param string[] $groups Groups the test user should be added to.
+	 * @param string|string[] $groups Groups the test user should be added to.
 	 * @return TestUser
 	 */
 	public static function getImmutableTestUser( $groups = [] ) {
-		$groups = array_unique( $groups );
+		$groups = array_unique( (array)$groups );
 		sort( $groups );
 		$key = implode( ',', $groups );
 
