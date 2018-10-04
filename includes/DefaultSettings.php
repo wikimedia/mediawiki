@@ -9002,15 +9002,6 @@ $wgMultiContentRevisionSchemaMigrationStage = SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_
 $wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_OLD;
 
 /**
- * Temporary option to disable the date picker from the Expiry Widget.
- *
- * @since 1.32
- * @deprecated 1.32
- * @var bool
- */
-$wgExpiryWidgetNoDatePicker = false;
-
-/**
  * change_tag table schema migration stage.
  *
  * - MIGRATION_OLD: Do not use change_tag_def table or ct_tag_id.
