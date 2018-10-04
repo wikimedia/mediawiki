@@ -23,11 +23,6 @@ class ExpiryInputWidget extends Widget {
 	/**
 	 * @var bool
 	 */
-	protected $noDatePicker;
-
-	/**
-	 * @var bool
-	 */
 	protected $required;
 
 	/**
@@ -37,11 +32,8 @@ class ExpiryInputWidget extends Widget {
 	public function __construct( Widget $relativeInput, array $options = [] ) {
 		$config = \RequestContext::getMain()->getConfig();
 
-		$options['noDatePicker'] = $config->get( 'ExpiryWidgetNoDatePicker' );
-
 		parent::__construct( $options );
 
-		$this->noDatePicker = $options['noDatePicker'];
 		$this->required = $options['required'] ?? false;
 
 		// Properties
@@ -49,14 +41,11 @@ class ExpiryInputWidget extends Widget {
 		$this->relativeInput->addClasses( [ 'mw-widget-ExpiryWidget-relative' ] );
 
 		// Initialization
-		$classes = [
-			'mw-widget-ExpiryWidget',
-		];
-		if ( $options['noDatePicker'] === false ) {
-			$classes[] = 'mw-widget-ExpiryWidget-hasDatePicker';
-		}
 		$this
-			->addClasses( $classes )
+			->addClasses( [
+				'mw-widget-ExpiryWidget',
+				'mw-widget-ExpiryWidget-hasDatePicker'
+			] )
 			->appendContent( $this->relativeInput );
 	}
 
@@ -68,7 +57,6 @@ class ExpiryInputWidget extends Widget {
 	 * {@inheritdoc}
 	 */
 	public function getConfig( &$config ) {
-		$config['noDatePicker'] = $this->noDatePicker;
 		$config['required'] = $this->required;
 		$config['relativeInput'] = [];
 		$this->relativeInput->getConfig( $config['relativeInput'] );
