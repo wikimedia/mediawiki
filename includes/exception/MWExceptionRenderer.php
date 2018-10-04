@@ -272,7 +272,7 @@ class MWExceptionRenderer {
 	 */
 	private static function printError( $message ) {
 		// NOTE: STDERR may not be available, especially if php-cgi is used from the
-		// command line (bug #15602). Try to produce meaningful output anyway. Using
+		// command line (T17602). Try to produce meaningful output anyway. Using
 		// echo may corrupt output to STDOUT though.
 		if ( defined( 'STDERR' ) ) {
 			fwrite( STDERR, $message );

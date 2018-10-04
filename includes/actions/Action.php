@@ -132,7 +132,7 @@ abstract class Action implements MessageLocalizer {
 			$actionName = 'nosuchaction';
 		}
 
-		// Workaround for bug #20966: inability of IE to provide an action dependent
+		// Workaround for T22966: inability of IE to provide an action dependent
 		// on which submit button is clicked.
 		if ( $actionName === 'historysubmit' ) {
 			if ( $request->getBool( 'revisiondelete' ) ) {

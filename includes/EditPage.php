@@ -943,7 +943,7 @@ class EditPage {
 			# Note that wpSectionTitle is not yet a part of the actual edit form, as wpSummary is
 			# currently doing double duty as both edit summary and section title. Right now this
 			# is just to allow API edits to work around this limitation, but this should be
-			# incorporated into the actual edit form when EditPage is rewritten (Bugs 18654, 26312).
+			# incorporated into the actual edit form when EditPage is rewritten (T20654, T28312).
 			$this->sectiontitle = $request->getText( 'wpSectionTitle' );
 			$this->sectiontitle = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->sectiontitle );
 

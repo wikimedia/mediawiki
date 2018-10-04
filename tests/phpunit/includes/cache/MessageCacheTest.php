@@ -74,7 +74,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * Test message fallbacks, bug #1495
+	 * Test message fallbacks, T3495
 	 *
 	 * @dataProvider provideMessagesForFallback
 	 */

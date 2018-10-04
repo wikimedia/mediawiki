@@ -5,7 +5,7 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 
 	protected function tearDown() {
-		// Bug: 44850
+		// T46850
 		UIDGenerator::unitTestTearDown();
 		parent::tearDown();
 	}
