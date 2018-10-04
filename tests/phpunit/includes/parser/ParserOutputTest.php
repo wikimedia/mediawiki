@@ -32,6 +32,12 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	public function tearDown() {
+		MWTimestamp::setFakeTime( false );
+
+		parent::tearDown();
+	}
+
 	/**
 	 * Test to make sure ParserOutput::isLinkInternal behaves properly
 	 * @dataProvider provideIsLinkInternal
@@ -933,6 +939,35 @@ EOF
 		foreach ( $mergedClocks as $clock => $timestamp ) {
 			$this->assertSame( $bClocks[$clock], $timestamp, $clock );
 		}
+	}
+
+	/**
+	 * @covers ParserOutput::getCacheTime
+	 * @covers ParserOutput::setCacheTime
+	 */
+	public function testGetCacheTime() {
+		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
+		MWTimestamp::setFakeTime( function () use ( &$clock ) {
+			return $clock++;
+		} );
+
+		$po = new ParserOutput();
+		$time = $po->getCacheTime();
+
+		// Use current (fake) time per default. Ignore the last digit.
+		// Subsequent calls must yield the exact same timestamp as the first.
+		$this->assertStringStartsWith( '2010010100000', $time );
+		$this->assertSame( $time, $po->getCacheTime() );
+
+		// After setting, the getter must return the time that was set.
+		$time = '20110606112233';
+		$po->setCacheTime( $time );
+		$this->assertSame( $time, $po->getCacheTime() );
+
+		// support -1 as a marker for "not cacheable"
+		$time = -1;
+		$po->setCacheTime( $time );
+		$this->assertSame( $time, $po->getCacheTime() );
 	}
 
 }

@@ -15,6 +15,7 @@ use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Storage\SlotRecord;
 use MediaWikiTestCase;
 use MWCallableUpdate;
+use MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
 use TextContent;
 use TextContentHandler;
@@ -30,6 +31,12 @@ use WikitextContent;
  * @covers \MediaWiki\Storage\DerivedPageDataUpdater
  */
 class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
+
+	public function tearDown() {
+		MWTimestamp::setFakeTime( false );
+
+		parent::tearDown();
+	}
 
 	/**
 	 * @param string $title
@@ -470,6 +477,11 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getPreparedEdit()
 	 */
 	public function testGetPreparedEditAfterPrepareUpdate() {
+		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
+		MWTimestamp::setFakeTime( function () use ( &$clock ) {
+			return $clock++;
+		} );
+
 		$page = $this->getPage( __METHOD__ );
 
 		$mainContent = new WikitextContent( 'first [[main]] ~~~' );

@@ -38,13 +38,13 @@ class CacheTime {
 	public $mVersion = Parser::VERSION;
 
 	/**
-	 * @var string|int TS_MW timestamp when this object was generated, or -1 for uncacheable. Used
+	 * @var string|int TS_MW timestamp when this object was generated, or -1 for not cacheable. Used
 	 * in ParserCache.
 	 */
 	public $mCacheTime = '';
 
 	/**
-	 * @var int|null Seconds after which the object should expire, use 0 for uncacheable. Used in
+	 * @var int|null Seconds after which the object should expire, use 0 for not cacheable. Used in
 	 * ParserCache.
 	 */
 	public $mCacheExpiry = null;
@@ -58,7 +58,11 @@ class CacheTime {
 	 * @return string TS_MW timestamp
 	 */
 	public function getCacheTime() {
-		return wfTimestamp( TS_MW, $this->mCacheTime );
+		// NOTE: keep support for undocumented used of -1 to mean "not cacheable".
+		if ( $this->mCacheTime === '' ) {
+			$this->mCacheTime = MWTimestamp::now();
+		}
+		return $this->mCacheTime;
 	}
 
 	/**
@@ -68,6 +72,11 @@ class CacheTime {
 	 * @return string
 	 */
 	public function setCacheTime( $t ) {
+		// NOTE: keep support for undocumented used of -1 to mean "not cacheable".
+		if ( is_string( $t ) && $t !== '-1' ) {
+			$t = MWTimestamp::convert( TS_MW, $t );
+		}
+
 		return wfSetVar( $this->mCacheTime, $t );
 	}
 
@@ -120,9 +129,10 @@ class CacheTime {
 	public function getCacheExpiry() {
 		global $wgParserCacheExpireTime;
 
+		// NOTE: keep support for undocumented used of -1 to mean "not cacheable".
 		if ( $this->mCacheTime < 0 ) {
 			return 0;
-		} // old-style marker for "not cacheable"
+		}
 
 		$expire = $this->mCacheExpiry;
 
@@ -157,11 +167,12 @@ class CacheTime {
 	public function expired( $touched ) {
 		global $wgCacheEpoch;
 
-		return !$this->isCacheable() // parser says it's uncacheable
+		$expiry = MWTimestamp::convert( TS_MW, MWTimestamp::time() - $this->getCacheExpiry() );
+
+		return !$this->isCacheable() // parser says it's not cacheable
 			|| $this->getCacheTime() < $touched
 			|| $this->getCacheTime() <= $wgCacheEpoch
-			|| $this->getCacheTime() <
-				wfTimestamp( TS_MW, time() - $this->getCacheExpiry() ) // expiry period has passed
+			|| $this->getCacheTime() < $expiry // expiry period has passed
 			|| !isset( $this->mVersion )
 			|| version_compare( $this->mVersion, Parser::VERSION, "lt" );
 	}
