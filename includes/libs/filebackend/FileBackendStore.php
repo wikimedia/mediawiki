@@ -663,9 +663,13 @@ abstract class FileBackendStore extends FileBackend {
 			$this->cheapCache->setField( $path, 'stat', $latest ? 'NOT_EXIST_LATEST' : 'NOT_EXIST' );
 			$this->cheapCache->setField( $path, 'xattr', [ 'map' => false, 'latest' => $latest ] );
 			$this->cheapCache->setField( $path, 'sha1', [ 'hash' => false, 'latest' => $latest ] );
-			$this->logger->debug( __METHOD__ . ": File $path does not exist.\n" );
+			$this->logger->debug( __METHOD__ . ': File {path} does not exist', [
+				'path' => $path,
+			] );
 		} else { // an error occurred
-			$this->logger->warning( __METHOD__ . ": Could not stat file $path.\n" );
+			$this->logger->warning( __METHOD__ . ': Could not stat file {path}', [
+				'path' => $path,
+			] );
 		}
 
 		return $stat;
@@ -1341,10 +1345,14 @@ abstract class FileBackendStore extends FileBackend {
 					[ 'map' => false, 'latest' => $latest ] );
 				$this->cheapCache->setField( $path, 'sha1',
 					[ 'hash' => false, 'latest' => $latest ] );
-				$this->logger->debug( __METHOD__ . ": File $path does not exist.\n" );
+				$this->logger->debug( __METHOD__ . ': File {path} does not exist', [
+					'path' => $path,
+				] );
 			} else { // an error occurred
 				$success = false;
-				$this->logger->warning( __METHOD__ . ": Could not stat file $path.\n" );
+				$this->logger->warning( __METHOD__ . ': Could not stat file {path}', [
+					'path' => $path,
+				] );
 			}
 		}
 
