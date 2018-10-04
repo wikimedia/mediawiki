@@ -113,6 +113,13 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	private $cliArgs = [];
 
 	/**
+	 * Holds a list of services that were overridden with setService().  Used for printing an error
+	 * if overrideMwServices() overrides a service that was previously set.
+	 * @var string[]
+	 */
+	private $overriddenServices = [];
+
+	/**
 	 * Table name prefixes. Oracle likes it shorter.
 	 */
 	const DB_PREFIX = 'unittest_';
@@ -408,6 +415,9 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 		parent::run( $result );
 
+		// We don't mind if we override already-overridden services during cleanup
+		$this->overriddenServices = [];
+
 		if ( $needsResetDB ) {
 			$this->resetDB( $this->db, $this->tablesUsed );
 		}
@@ -485,6 +495,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		$this->called['setUp'] = true;
 
 		$this->phpErrorLevel = intval( ini_get( 'error_reporting' ) );
+
+		$this->overriddenServices = [];
 
 		// Cleaning up temporary files
 		foreach ( $this->tmpFiles as $fileName ) {
@@ -629,6 +641,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			throw new Exception( __METHOD__ . ' will not work because the global MediaWikiServices '
 				. 'instance has been replaced by test code.' );
 		}
+
+		$this->overriddenServices[] = $name;
 
 		$this->localServices->disableService( $name );
 		$this->localServices->redefineService(
@@ -891,6 +905,12 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	protected function overrideMwServices(
 		Config $configOverrides = null, array $services = []
 	) {
+		if ( $this->overriddenServices ) {
+			throw new MWException(
+				'The following services were set and are now being unset by overrideMwServices: ' .
+					implode( ', ', $this->overriddenServices )
+			);
+		}
 		$newInstance = self::installMockMwServices( $configOverrides );
 
 		if ( $this->localServices ) {
@@ -1013,14 +1033,17 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	public function setContentLang( $lang ) {
 		if ( $lang instanceof Language ) {
-			$langCode = $lang->getCode();
-			$langObj = $lang;
+			$this->setMwGlobals( 'wgLanguageCode', $lang->getCode() );
+			// Set to the exact object requested
+			$this->setService( 'ContentLanguage', $lang );
 		} else {
-			$langCode = $lang;
-			$langObj = Language::factory( $langCode );
+			$this->setMwGlobals( 'wgLanguageCode', $lang );
+			// Let the service handler make up the object.  Avoid calling setService(), because if
+			// we do, overrideMwServices() will complain if it's called later on.
+			$services = MediaWikiServices::getInstance();
+			$services->resetServiceForTesting( 'ContentLanguage' );
+			$this->doSetMwGlobals( [ 'wgContLang' => $services->getContentLanguage() ] );
 		}
-		$this->setMwGlobals( 'wgLanguageCode', $langCode );
-		$this->setService( 'ContentLanguage', $langObj );
 	}
 
 	/**
