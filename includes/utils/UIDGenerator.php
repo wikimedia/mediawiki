@@ -122,8 +122,8 @@ class UIDGenerator {
 	}
 
 	/**
-	 * @param array $info The result of UIDGenerator::getTimeAndDelay() or
-	 *  a plain (UIDGenerator::millitime(), counter, clock sequence) array.
+	 * @param array $info result of UIDGenerator::getTimeAndDelay(), or
+	 *  for sub classes, a seqencial array like (time, offsetCounter).
 	 * @return string 88 bits
 	 * @throws RuntimeException
 	 */
@@ -176,8 +176,8 @@ class UIDGenerator {
 	}
 
 	/**
-	 * @param array $info The result of UIDGenerator::getTimeAndDelay() or
-	 *  a plain (UIDGenerator::millitime(), counter, clock sequence) array.
+	 * @param array $info The result of UIDGenerator::getTimeAndDelay(),
+	 *  for sub classes, a seqencial array like (time, offsetCounter, clkSeq).
 	 * @return string 128 bits
 	 * @throws RuntimeException
 	 */
@@ -358,7 +358,8 @@ class UIDGenerator {
 	protected function getSequentialPerNodeIDs( $bucket, $bits, $count, $flags ) {
 		if ( $count <= 0 ) {
 			return []; // nothing to do
-		} elseif ( $bits < 16 || $bits > 48 ) {
+		}
+		if ( $bits < 16 || $bits > 48 ) {
 			throw new RuntimeException( "Requested bit size ($bits) is out of range." );
 		}
 
@@ -390,7 +391,8 @@ class UIDGenerator {
 			// Acquire the UID lock file
 			if ( $handle === false ) {
 				throw new RuntimeException( "Could not open '{$path}'." );
-			} elseif ( !flock( $handle, LOCK_EX ) ) {
+			}
+			if ( !flock( $handle, LOCK_EX ) ) {
 				fclose( $handle );
 				throw new RuntimeException( "Could not acquire '{$path}'." );
 			}
@@ -425,7 +427,12 @@ class UIDGenerator {
 	 * @param int $clockSeqSize The number of possible clock sequence values
 	 * @param int $counterSize The number of possible counter values
 	 * @param int $offsetSize The number of possible offset values
-	 * @return array (result of UIDGenerator::millitime(), counter, clock sequence)
+	 * @return array Array with the following keys:
+	 *  - array 'time': array of seconds int and milliseconds int.
+	 *  - int 'counter'.
+	 *  - int 'clkSeq'.
+	 *  - int 'offset': .
+	 *  - int 'offsetCounter'.
 	 * @throws RuntimeException
 	 */
 	protected function getTimeAndDelay( $lockFile, $clockSeqSize, $counterSize, $offsetSize ) {
@@ -439,38 +446,64 @@ class UIDGenerator {
 		// Acquire the UID lock file
 		if ( $handle === false ) {
 			throw new RuntimeException( "Could not open '{$this->$lockFile}'." );
-		} elseif ( !flock( $handle, LOCK_EX ) ) {
+		}
+		if ( !flock( $handle, LOCK_EX ) ) {
 			fclose( $handle );
 			throw new RuntimeException( "Could not acquire '{$this->$lockFile}'." );
 		}
-		// Get the current timestamp, clock sequence number, last time, and counter
+
+		// The formatters that use this method expect a timestamp with millisecond
+		// precision and a counter upto a certain size. When more IDs than the counter
+		// size are generated during the same timestamp, an exception is thrown as we
+		// cannot increment further, because the formatted ID would not have enough
+		// bits to fit the counter.
+		//
+		// To orchestrate this between independant PHP processes on the same hosts,
+		// we must have a common sense of time so that we only have to maintain
+		// a single counter in a single lock file.
+
 		rewind( $handle );
-		$data = explode( ' ', fgets( $handle ) ); // "<clk seq> <sec> <msec> <counter> <offset>"
-		$clockChanged = false; // clock set back significantly?
-		if ( count( $data ) == 5 ) { // last UID info already initialized
+		// Format of lock file contents:
+		// "<clk seq> <sec> <msec> <counter> <rand offset>"
+		$data = explode( ' ', fgets( $handle ) );
+
+		// Did the clock get moved back significantly?
+		$clockChanged = false;
+
+		if ( count( $data ) === 5 ) {
+			// The UID lock file was already initialized
 			$clkSeq = (int)$data[0] % $clockSeqSize;
 			$prevTime = [ (int)$data[1], (int)$data[2] ];
-			$offset = (int)$data[4] % $counterSize; // random counter offset
-			$counter = 0; // counter for UIDs with the same timestamp
-			// Delay until the clock reaches the time of the last ID.
-			// This detects any microtime() drift among processes.
+			// Counter for UIDs with the same timestamp,
+			$counter = 0;
+			$randOffset = (int)$data[4] % $counterSize;
+
+			// If the system clock moved backwards by an NTP sync,
+			// or if the last writer process had its clock drift ahead,
+			// Try to catch up if the gap is small, so that we can keep a single
+			// monotonic logic file.
 			$time = $this->timeWaitUntil( $prevTime );
-			if ( !$time ) { // too long to delay?
-				$clockChanged = true; // bump clock sequence number
-				$time = self::millitime();
-			} elseif ( $time == $prevTime ) {
-				// Bump the counter if there are timestamp collisions
+			if ( $time === false ) {
+				// Timed out. Treat it as a new clock
+				$clockChanged = true;
+				$time = $this->millitime();
+			} elseif ( $time === $prevTime ) {
+				// Sanity check, only keep remainder if a previous writer wrote
+				// something here that we don't accept.
 				$counter = (int)$data[3] % $counterSize;
-				if ( ++$counter >= $counterSize ) { // sanity (starts at 0)
-					flock( $handle, LOCK_UN ); // abort
+				// Bump the counter if the time has not changed yet
+				if ( ++$counter >= $counterSize ) {
+					// More IDs generated with the same time than counterSize can accomodate
+					flock( $handle, LOCK_UN );
 					throw new RuntimeException( "Counter overflow for timestamp value." );
 				}
 			}
-		} else { // last UID info not initialized
+		} else {
+			// Initialize UID lock file information
 			$clkSeq = mt_rand( 0, $clockSeqSize - 1 );
+			$time = $this->millitime();
 			$counter = 0;
-			$offset = mt_rand( 0, $offsetSize - 1 );
-			$time = self::millitime();
+			$randOffset = mt_rand( 0, $offsetSize - 1 );
 		}
 		// microtime() and gettimeofday() can drift from time() at least on Windows.
 		// The drift is immediate for processes running while the system clock changes.
@@ -484,26 +517,26 @@ class UIDGenerator {
 		}
 		// If microtime() is synced and a clock change was detected, then the clock went back
 		if ( $clockChanged ) {
-			// Bump the clock sequence number and also randomize the counter offset,
+			// Bump the clock sequence number and also randomize the extra offset,
 			// which is useful for UIDs that do not include the clock sequence number.
 			$clkSeq = ( $clkSeq + 1 ) % $clockSeqSize;
-			$offset = mt_rand( 0, $offsetSize - 1 );
+			$randOffset = mt_rand( 0, $offsetSize - 1 );
 			trigger_error( "Clock was set back; sequence number incremented." );
 		}
-		// Update the (clock sequence number, timestamp, counter)
+
+		// Update and release the UID lock file
 		ftruncate( $handle, 0 );
 		rewind( $handle );
-		fwrite( $handle, "{$clkSeq} {$time[0]} {$time[1]} {$counter} {$offset}" );
+		fwrite( $handle, "{$clkSeq} {$time[0]} {$time[1]} {$counter} {$randOffset}" );
 		fflush( $handle );
-		// Release the UID lock file
 		flock( $handle, LOCK_UN );
 
 		return [
 			'time'          => $time,
 			'counter'       => $counter,
 			'clkSeq'        => $clkSeq,
-			'offset'        => $offset,
-			'offsetCounter' => $counter + $offset
+			'offset'        => $randOffset,
+			'offsetCounter' => $counter + $randOffset,
 		];
 	}
 
@@ -516,7 +549,7 @@ class UIDGenerator {
 	 */
 	protected function timeWaitUntil( array $time ) {
 		do {
-			$ct = self::millitime();
+			$ct = $this->millitime();
 			if ( $ct >= $time ) { // https://secure.php.net/manual/en/language.operators.comparison.php
 				return $ct; // current timestamp is higher than $time
 			}
@@ -574,7 +607,7 @@ class UIDGenerator {
 	/**
 	 * @return array (current time in seconds, milliseconds since then)
 	 */
-	protected static function millitime() {
+	protected function millitime() {
 		list( $msec, $sec ) = explode( ' ', microtime() );
 
 		return [ (int)$sec, (int)( $msec * 1000 ) ];
@@ -590,8 +623,9 @@ class UIDGenerator {
 	 *
 	 * @see unitTestTearDown
 	 * @since 1.23
+	 * @codeCoverageIgnore
 	 */
-	protected function deleteCacheFiles() {
+	private function deleteCacheFiles() {
 		// T46850
 		foreach ( $this->fileHandles as $path => $handle ) {
 			if ( $handle !== null ) {
@@ -615,8 +649,10 @@ class UIDGenerator {
 	 * environment it should be used with caution as it may destroy state saved
 	 * in the files.
 	 *
+	 * @internal For use by unit tests
 	 * @see deleteCacheFiles
 	 * @since 1.23
+	 * @codeCoverageIgnore
 	 */
 	public static function unitTestTearDown() {
 		// T46850
