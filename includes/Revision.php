@@ -1179,7 +1179,7 @@ class Revision implements IDBAccessObject {
 
 		$rec = self::getRevisionStore()->newNullRevision( $dbw, $title, $comment, $minor, $user );
 
-		return new Revision( $rec );
+		return $rec ? new Revision( $rec ) : null;
 	}
 
 	/**
