@@ -592,7 +592,7 @@ class UIDGenerator {
 	 * @since 1.23
 	 */
 	protected function deleteCacheFiles() {
-		// Bug: 44850
+		// T46850
 		foreach ( $this->fileHandles as $path => $handle ) {
 			if ( $handle !== null ) {
 				fclose( $handle );
@@ -619,7 +619,7 @@ class UIDGenerator {
 	 * @since 1.23
 	 */
 	public static function unitTestTearDown() {
-		// Bug: 44850
+		// T46850
 		$gen = self::singleton();
 		$gen->deleteCacheFiles();
 	}

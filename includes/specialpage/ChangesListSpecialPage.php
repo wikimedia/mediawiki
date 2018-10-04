@@ -1395,7 +1395,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Convert parameters values from true/false to 1/0
 	 * so they are not omitted by wfArrayToCgi()
-	 * Bug 36524
+	 * T38524
 	 *
 	 * @param array $params
 	 * @return array

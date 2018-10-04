@@ -1038,7 +1038,7 @@ EOT
 		}
 
 		// The user offset might still be incorrect, specially if
-		// $wgImageLimits got changed (see bug #8858).
+		// $wgImageLimits got changed (see T10858).
 		if ( !isset( $wgImageLimits[$option] ) ) {
 			// Default to the first offset in $wgImageLimits
 			$option = 0;

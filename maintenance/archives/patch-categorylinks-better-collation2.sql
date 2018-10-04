@@ -1,7 +1,7 @@
 --
 -- patch-categorylinks-better-collation2.sql
 --
--- Bugs 164, 1211, 23682.  This patch exists for trunk users who already
+-- Bugs T2164, T3211, T25682.  This patch exists for trunk users who already
 -- applied the first patch in its original version.  The first patch was
 -- updated to incorporate the changes as well, so as not to do two alters on a
 -- large table unnecessarily for people upgrading from 1.16, so this will be

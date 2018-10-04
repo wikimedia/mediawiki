@@ -571,7 +571,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	private function getRevisionButton( $name, $msg ) {
 		$this->preventClickjacking();
-		# Note bug #20966, <button> is non-standard in IE<8
+		# Note T22966, <button> is non-standard in IE<8
 		$element = Html::element(
 			'button',
 			[

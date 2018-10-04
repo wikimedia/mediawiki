@@ -406,7 +406,7 @@ class DatabaseSqlite extends Database {
 	function numFields( $res ) {
 		$r = $res instanceof ResultWrapper ? $res->result : $res;
 		if ( is_array( $r ) && count( $r ) > 0 ) {
-			// The size of the result array is twice the number of fields. (Bug: 65578)
+			// The size of the result array is twice the number of fields. (T67578)
 			return count( $r[0] ) / 2;
 		} else {
 			// If the result is empty return 0

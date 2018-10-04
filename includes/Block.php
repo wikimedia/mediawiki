@@ -1420,7 +1420,7 @@ class Block {
 		}
 
 		# Consider the possibility that this is not a username at all
-		# but actually an old subpage (bug #29797)
+		# but actually an old subpage (T31797)
 		if ( strpos( $target, '/' ) !== false ) {
 			# An old subpage, drill down to the user behind it
 			$target = explode( '/', $target )[0];

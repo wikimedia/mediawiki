@@ -2,7 +2,7 @@
 
 /*
  * Fixes sister projects box moving down the extract
- * of the first result (bug #16886).
+ * of the first result (T18886).
  * It only happens when the window is small and
  * This changes slightly the layout for big screens
  * where there was space for the extracts and the
