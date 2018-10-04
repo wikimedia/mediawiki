@@ -306,12 +306,12 @@
 	/**
 	 * @inheritdoc
 	 */
-	mw.rcfilters.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
+	mw.rcfilters.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 		var nextItem,
 			currentItem = this.findHighlightedItem() || this.findSelectedItem();
 
 		// Call parent
-		mw.rcfilters.ui.MenuSelectWidget.parent.prototype.onKeyDown.call( this, e );
+		mw.rcfilters.ui.MenuSelectWidget.parent.prototype.onDocumentKeyDown.call( this, e );
 
 		// We want to select the item on arrow movement
 		// rather than just highlight it, like the menu

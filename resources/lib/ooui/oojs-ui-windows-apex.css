@@ -1,16 +1,17 @@
 /*!
- * OOUI v0.28.2
+ * OOUI v0.29.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-09-11T23:05:21Z
+ * Date: 2018-10-04T00:42:47Z
  */
 .oo-ui-actionWidget.oo-ui-pendingElement-pending {
   background-image: /* @embed */ url(themes/wikimediaui/images/textures/pending.gif);
 }
+
 .oo-ui-window {
   background-color: transparent;
   background-image: none;
@@ -50,6 +51,7 @@
   /* @noflip */
   left: 0;
 }
+
 .oo-ui-dialog-content > .oo-ui-window-head,
 .oo-ui-dialog-content > .oo-ui-window-body,
 .oo-ui-dialog-content > .oo-ui-window-foot {
@@ -78,6 +80,7 @@
 .oo-ui-dialog-content > .oo-ui-window-body {
   box-shadow: 0 0 0.66em rgba(0, 0, 0, 0.25);
 }
+
 .oo-ui-messageDialog-actions .oo-ui-actionWidget {
   position: relative;
   text-align: center;
@@ -190,6 +193,7 @@
 .oo-ui-messageDialog-actions-vertical .oo-ui-actionWidget:last-child > .oo-ui-buttonElement-button {
   border-radius: 0 0 3px 3px;
 }
+
 .oo-ui-processDialog-location {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -342,6 +346,7 @@
   background-color: #fff7f7;
   border-radius: 3px;
 }
+
 .oo-ui-windowManager-modal > .oo-ui-dialog {
   position: fixed;
   width: 0;

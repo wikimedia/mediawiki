@@ -1,4 +1,46 @@
 # OOUI Release History
+## v0.29.1 / 2018-10-03
+### Styles
+* TabOptionWidget: Increase contrast between normal & selected states (Volker E.)
+
+### Code
+* MultilineTextInputWidget: Fix fatal (Bartosz Dziewoński)
+* build: Fail in CI if there are uncommited build artefacts (James D. Forrester)
+* tests: Commit JS/PHP comparison test suite (Bartosz Dziewoński)
+* tests: Ensure consistent order in JSPHP-suite.json (Bartosz Dziewoński)
+* tests: Ensure we write LF newlines to JSPHP-suite.json, even on Windows (Bartosz Dziewoński)
+* tests: Fix generation of JS/PHP comparison test suite (Bartosz Dziewoński)
+* tests: Increase Karma tests timeout so that they actually finish (Bartosz Dziewoński)
+
+
+## v0.29.0 / 2018-10-02
+### Breaking changes
+* [BREAKING CHANGE] Consistently name document listeners (Ed Sanders)
+* [BREAKING CHANGE] Drop CapsuleMultiselectWidget, deprecated since v0.27.5 (James D. Forrester)
+* [BREAKING CHANGE] Formally require PHP 7 (5.6.99+) (James D. Forrester)
+* [BREAKING CHANGE] TextInputWidget: Drop support for `multiline: true` (James D. Forrester)
+* [BREAKING CHANGE] Upgrade jQuery from 3.2.1 to 3.3.1 (James D. Forrester)
+* [BREAKING CHANGE] Use PHP 5.6 variadic function syntax (Bartosz Dziewoński)
+* [BREAKING CHANGE] Use PHP 7 "\u{NNNN}" Unicode codepoint escapes (Bartosz Dziewoński)
+* [BREAKING CHANGE] Use PHP 7 '??' operator instead of '?:' with 'isset()' (Bartosz Dziewoński)
+
+### Features
+* Use jQuery 3.3.x class feature (Ed Sanders)
+
+### Styles
+* icons: Refine 'userAvatar' slightly (Volker E.)
+
+### Code
+* Avoid including the `/**` comment from WikimediaUI Base in our output (Bartosz Dziewoński)
+* Centralize the definition of which classes belong in which module (Bartosz Dziewoński)
+* Remove unnecessary empty-theme.less (Bartosz Dziewoński)
+* WikimediaUI theme: Correct several code comments (Volker E.)
+* WikimediaUI theme: Remove vars covered by WikimediaUI Base vars (Volker E.)
+* build: Bump eslint-config and grunt-karma devDependencies to latest (James D. Forrester)
+* build: Updating mediawiki/mediawiki-codesniffer to 22.0.0 (James D. Forrester)
+* demos: Unbreak from reliance on removed CapsuleMultiselectWidget (James D. Forrester)
+
+
 ## v0.28.2 / 2018-09-11
 ### Deprecations
 * [DEPRECATING CHANGE]: icons: Rename 'advanced' to 'settings' (Volker E.)

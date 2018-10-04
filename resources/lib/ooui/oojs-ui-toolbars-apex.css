@@ -1,20 +1,22 @@
 /*!
- * OOUI v0.28.2
+ * OOUI v0.29.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-09-11T23:05:21Z
+ * Date: 2018-10-04T00:42:47Z
  */
 .oo-ui-tool > .oo-ui-tool-link > .oo-ui-tool-checkIcon {
   display: none;
 }
+
 .oo-ui-popupTool-popup .oo-ui-popupWidget-popup,
 .oo-ui-popupTool-popup .oo-ui-popupWidget-anchor {
   z-index: 4;
 }
+
 .oo-ui-toolGroupTool > .oo-ui-popupToolGroup {
   border: 0;
   border-radius: 0;
@@ -39,6 +41,7 @@
 .oo-ui-toolGroupTool > .oo-ui-popupToolGroup.oo-ui-labelElement > .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
   line-height: 2.1em;
 }
+
 .oo-ui-toolGroup {
   display: inline-block;
   vertical-align: middle;
@@ -70,6 +73,7 @@
 .oo-ui-toolGroup-tools.oo-ui-toolGroup-enabled-tools .oo-ui-tool-link .oo-ui-tool-title {
   color: #000;
 }
+
 .oo-ui-barToolGroup-tools > .oo-ui-tool {
   display: inline-block;
   position: relative;
@@ -153,6 +157,7 @@
 .oo-ui-barToolGroup-tools.oo-ui-toolGroup-disabled-tools > .oo-ui-tool > .oo-ui-tool-link .oo-ui-iconElement-icon {
   opacity: 0.2;
 }
+
 .oo-ui-popupToolGroup {
   position: relative;
   height: 2.5em;
@@ -316,6 +321,7 @@
 .oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-accel:not( :empty ) {
   padding-left: 3em;
 }
+
 .oo-ui-listToolGroup-tools .oo-ui-tool {
   display: block;
   -webkit-box-sizing: border-box;
@@ -370,6 +376,7 @@
 .oo-ui-listToolGroup.oo-ui-widget-disabled .oo-ui-iconElement-icon {
   opacity: 0.2;
 }
+
 .oo-ui-menuToolGroup {
   border-color: rgba(0, 0, 0, 0.1);
 }
@@ -417,6 +424,7 @@
 .oo-ui-menuToolGroup.oo-ui-widget-disabled .oo-ui-iconElement-icon {
   opacity: 0.2;
 }
+
 .oo-ui-toolbar {
   clear: both;
 }

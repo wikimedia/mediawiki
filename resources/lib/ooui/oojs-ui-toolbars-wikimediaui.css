@@ -1,16 +1,12 @@
 /*!
- * OOUI v0.28.2
+ * OOUI v0.29.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-09-11T23:05:21Z
- */
-/**
- * WikimediaUI Base v0.12.0
- * Wikimedia Foundation user interface base variables
+ * Date: 2018-10-04T00:42:47Z
  */
 .oo-ui-tool {
   -webkit-box-sizing: border-box;
@@ -76,13 +72,16 @@
 .oo-ui-tool.oo-ui-widget-disabled .oo-ui-iconElement-icon {
   opacity: 0.34;
 }
+
 .oo-ui-popupTool-popup .oo-ui-popupWidget-popup,
 .oo-ui-popupTool-popup .oo-ui-popupWidget-anchor {
   z-index: 4;
 }
+
 .oo-ui-toolGroupTool > .oo-ui-toolGroup {
   border-right: 0;
 }
+
 .oo-ui-toolGroup {
   display: inline-block;
   vertical-align: middle;
@@ -114,6 +113,7 @@
 .oo-ui-toolGroup.oo-ui-widget-disabled .oo-ui-iconElement-icon {
   opacity: 0.34 !important;
 }
+
 .oo-ui-barToolGroup-tools > .oo-ui-tool {
   display: inline-block;
   position: relative;
@@ -156,6 +156,7 @@
 .oo-ui-barToolGroup-tools.oo-ui-toolGroup-disabled-tools .oo-ui-tool > .oo-ui-tool-link .oo-ui-tool-title {
   color: #72777d;
 }
+
 .oo-ui-popupToolGroup {
   position: relative;
   min-width: 3em;
@@ -364,6 +365,7 @@
   outline: 0;
   box-shadow: inset 0 0 0 2px #36c;
 }
+
 .oo-ui-listToolGroup-tools .oo-ui-tool {
   display: block;
   -webkit-box-sizing: border-box;
@@ -387,6 +389,7 @@
 .oo-ui-listToolGroup-tools .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-title {
   color: #72777d;
 }
+
 .oo-ui-menuToolGroup-tools .oo-ui-tool {
   display: block;
 }
@@ -412,6 +415,7 @@
 .oo-ui-menuToolGroup-tools .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-title {
   color: #72777d;
 }
+
 .oo-ui-toolbar {
   clear: both;
 }

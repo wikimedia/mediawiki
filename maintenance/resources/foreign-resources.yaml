@@ -102,8 +102,8 @@ oojs:
 
 ooui:
   type: tar
-  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.28.2.tgz
-  integrity: sha384-wZSNhrZFu8mDYVRIBTObP1X+o1WuFgmxeaCHnRJ2O8MP+FizOomibPHJSNOPwrjv
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.29.1.tgz
+  integrity: sha384-YqKIMkbjQ3gtpf+B38K12EGMEyoGQjgLcxjDJT2AoSMxQOWERZQ7uG3SNqePM2+K
   dest:
     # Main stuff
     package/dist/oojs-ui-core.js{,.map.json}:
