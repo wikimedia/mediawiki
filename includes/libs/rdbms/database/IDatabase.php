@@ -1575,7 +1575,7 @@ interface IDatabase {
 	public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ );
 
 	/**
-	 * Run a callback each time any transaction commits or rolls back
+	 * Run a callback after each time any transaction commits or rolls back
 	 *
 	 * The callback takes two arguments:
 	 *   - IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_ROLLBACK
