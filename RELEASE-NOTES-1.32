@@ -27,6 +27,15 @@ production.
   by default.
 * $wgGrantPermissions – A new grant group, 'editsiteconfig', is added for
   granting the above rights.
+* $wgDBDefaultGroup – A default database group for use by maintenance scripts.
+* $wgResourceLoaderEnableJSProfiler – This new configuration setting lets you
+  enable client-side profiling of JavaScript modules; it is off by default.
+* (T193868) $wgChangeTagsSchemaMigrationStage — This temporary configuration
+  setting allows sysadmins to gradually migrate the database table schema for
+  how change tags are stored.
+* (T199334) $wgTagStatisticsNewTable — This temporary configuration setting
+  allows sysadmins to enable the caching of Special:Tags via the new
+  change_tag_def table.
 
 ==== Changed configuration ====
 * $wgUseAjax – This setting, deprecated in 1.31, is now ignored.
@@ -44,6 +53,13 @@ production.
   MIGRATION_WRITE_NEW. It instead uses SCHEMA_COMPAT_WRITE_BOTH |
   SCHEMA_COMPAT_READ_OLD and SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
   for intermediate stages of migration.
+* $wgDBTableOptions – The default table options now use the binary charset. The
+  default was already overridden in the installer-generated LocalSettings.php,
+  and so is always set to binary after the installer UI option was removed. The
+  default value is only used when the installer installs an extension.
+* $wgPopularPasswordFile — The location of the default popular passwords file
+  has been moved to be in line with other non-PHP files used by libraries and
+  classes.
 
 ==== Removed configuration ====
 * $wgEnableAPI and $wgEnableWriteAPI – These settings, deprecated in 1.31,
@@ -57,6 +73,19 @@ production.
   message `emailsender`.
 * $wgTidyConfig – The experimental Html5Internal and Html5Depurate tidy drivers
   were removed. RemexHtml, which is the default, should be used instead.
+* (T181318) The $wgStyleVersion setting and its appendage to various script and
+  style URLs in OutputPage, deprecated in 1.31, was removed.
+* (T140807) The wgResourceLoaderLESSImportPaths configuration option was removed
+  from ResourceLoader. Instead, use `@import` statements in LESS to import
+  files directly from nearby directories within the same project.
+* (T140804) The wgResourceLoaderLESSVars configuration option, deprecated
+  since 1.30, was removed. Instead, to expose variables from PHP to LESS, use
+  the ResourceLoaderModule::getLessVars() method.
+* $wgResourceLoaderValidateStaticJS – This setting, unused since MediaWiki 1.18,
+  was removed.
+* Two temporary variables for deploying the feature of filters on change lists,
+  $wgStructuredChangeFiltersShowPreference introduced in MediaWiki 1.30 and
+  $wgStructuredChangeFiltersOnWatchlist in 1.31, were removed.
 
 === New features in 1.32 ===
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
@@ -269,8 +298,6 @@ because of Phabricator reports.
   removed. Use mediawiki.widgets.visibleLengthLimit instead.
 * The jquery.farbtastic module, unused since 1.18, was removed.
 * The 'jquery.expandableField' module, unused since 1.22, was removed.
-* (T181318) The $wgStyleVersion setting and its appendage to various script and
-  style URLs in OutputPage, deprecated in 1.31, was removed.
 * The hooks 'PreferencesFormPreSave' and 'PreferencesGetLegend' may provide
   any HTMLForm object rather than PreferencesForm.
 * The non namespaced TimestampException class, deprecated in 1.29, was removed.
@@ -280,12 +307,6 @@ because of Phabricator reports.
   The UtfNormal\Utils class from the utfnormal library should be used instead.
 * The deprecated UTF8_ and UNICODE_ constants were removed. The class constants
   from the UtfNormal\Constants class from the utfnormal library should be used
-* (T140807) The wgResourceLoaderLESSImportPaths configuration option was removed
-  from ResourceLoader. Instead, use `@import` statements in LESS to import
-  files directly from nearby directories within the same project.
-* (T140804) The wgResourceLoaderLESSVars configuration option, deprecated
-  since 1.30, was removed. Instead, to expose variables from PHP to LESS, use
-  the ResourceLoaderModule::getLessVars() method.
 * The protected methods PHPSessionHandler::returnSuccess() and returnFailure(),
   only needed for PHP5 compatibility, have been removed. It now uses the boolean
   values `true` and `false` respectively.
@@ -329,8 +350,8 @@ because of Phabricator reports.
   a no-op function since 1.30.
 * SpecialPageFactory::resetList() is a no-op.  Call overrideMwServices()
   instead.
-* MediaWiki no longer supports a StartProfiler.php file.
-  Define $wgProfiler via LocalSettings.php instead.
+* MediaWiki no longer supports a StartProfiler.php file. Instead, you can set
+  $wgProfiler and $wgEnableProfileInfo.
 * The mw.loader.addSource() is now considered a private method, and no longer
   supports the `id, url` signature. Use the `Object` parameter instead.
 * The backwards-compatibility code in HTMLForm to add a drop-down control to an
