@@ -21,9 +21,8 @@
  */
 
 // This endpoint is supposed to be independent of request cookies and other
-// details of the session. Log warnings for violations of the no-session
-// constraint.
-define( 'MW_NO_SESSION', 'warn' );
+// details of the session. Enforce this constraint with respect to session use.
+define( 'MW_NO_SESSION', 1 );
 
 require_once __DIR__ . '/includes/WebStart.php';
 
