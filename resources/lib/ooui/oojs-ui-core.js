@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.28.2
+ * OOUI v0.29.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-09-11T23:05:15Z
+ * Date: 2018-10-04T00:42:40Z
  */
 ( function ( OO ) {
 
@@ -630,7 +630,7 @@ OO.ui.Element = function OoUiElement( config ) {
 
 	// Initialization
 	if ( Array.isArray( config.classes ) ) {
-		this.$element.addClass( config.classes.join( ' ' ) );
+		this.$element.addClass( config.classes );
 	}
 	if ( config.id ) {
 		this.setElementId( config.id );
@@ -1818,8 +1818,8 @@ OO.ui.Theme.prototype.updateElementClasses = function ( element ) {
 	}
 
 	$elements
-		.removeClass( classes.off.join( ' ' ) )
-		.addClass( classes.on.join( ' ' ) );
+		.removeClass( classes.off )
+		.addClass( classes.on );
 };
 
 /**
@@ -2107,10 +2107,10 @@ OO.ui.mixin.ButtonElement = function OoUiMixinButtonElement( config ) {
 	this.$button = null;
 	this.framed = null;
 	this.active = config.active !== undefined && config.active;
-	this.onMouseUpHandler = this.onMouseUp.bind( this );
+	this.onDocumentMouseUpHandler = this.onDocumentMouseUp.bind( this );
 	this.onMouseDownHandler = this.onMouseDown.bind( this );
+	this.onDocumentKeyUpHandler = this.onDocumentKeyUp.bind( this );
 	this.onKeyDownHandler = this.onKeyDown.bind( this );
-	this.onKeyUpHandler = this.onKeyUp.bind( this );
 	this.onClickHandler = this.onClick.bind( this );
 	this.onKeyPressHandler = this.onKeyPress.bind( this );
 
@@ -2201,7 +2201,7 @@ OO.ui.mixin.ButtonElement.prototype.onMouseDown = function ( e ) {
 	this.$element.addClass( 'oo-ui-buttonElement-pressed' );
 	// Run the mouseup handler no matter where the mouse is when the button is let go, so we can
 	// reliably remove the pressed class
-	this.getElementDocument().addEventListener( 'mouseup', this.onMouseUpHandler, true );
+	this.getElementDocument().addEventListener( 'mouseup', this.onDocumentMouseUpHandler, true );
 	// Prevent change of focus unless specifically configured otherwise
 	if ( this.constructor.static.cancelButtonMouseDownEvents ) {
 		return false;
@@ -2209,18 +2209,24 @@ OO.ui.mixin.ButtonElement.prototype.onMouseDown = function ( e ) {
 };
 
 /**
- * Handles mouse up events.
+ * Handles document mouse up events.
  *
  * @protected
  * @param {MouseEvent} e Mouse up event
  */
-OO.ui.mixin.ButtonElement.prototype.onMouseUp = function ( e ) {
+OO.ui.mixin.ButtonElement.prototype.onDocumentMouseUp = function ( e ) {
 	if ( this.isDisabled() || e.which !== OO.ui.MouseButtons.LEFT ) {
 		return;
 	}
 	this.$element.removeClass( 'oo-ui-buttonElement-pressed' );
 	// Stop listening for mouseup, since we only needed this once
-	this.getElementDocument().removeEventListener( 'mouseup', this.onMouseUpHandler, true );
+	this.getElementDocument().removeEventListener( 'mouseup', this.onDocumentMouseUpHandler, true );
+};
+
+// Deprecated alias since 0.28.3
+OO.ui.mixin.ButtonElement.prototype.onMouseUp = function () {
+	OO.ui.warnDeprecation( 'onMouseUp is deprecated, use onDocumentMouseUp instead' );
+	this.onDocumentMouseUp.apply( this, arguments );
 };
 
 /**
@@ -2251,22 +2257,28 @@ OO.ui.mixin.ButtonElement.prototype.onKeyDown = function ( e ) {
 	this.$element.addClass( 'oo-ui-buttonElement-pressed' );
 	// Run the keyup handler no matter where the key is when the button is let go, so we can
 	// reliably remove the pressed class
-	this.getElementDocument().addEventListener( 'keyup', this.onKeyUpHandler, true );
+	this.getElementDocument().addEventListener( 'keyup', this.onDocumentKeyUpHandler, true );
 };
 
 /**
- * Handles key up events.
+ * Handles document key up events.
  *
  * @protected
  * @param {KeyboardEvent} e Key up event
  */
-OO.ui.mixin.ButtonElement.prototype.onKeyUp = function ( e ) {
+OO.ui.mixin.ButtonElement.prototype.onDocumentKeyUp = function ( e ) {
 	if ( this.isDisabled() || ( e.which !== OO.ui.Keys.SPACE && e.which !== OO.ui.Keys.ENTER ) ) {
 		return;
 	}
 	this.$element.removeClass( 'oo-ui-buttonElement-pressed' );
 	// Stop listening for keyup, since we only needed this once
-	this.getElementDocument().removeEventListener( 'keyup', this.onKeyUpHandler, true );
+	this.getElementDocument().removeEventListener( 'keyup', this.onDocumentKeyUpHandler, true );
+};
+
+// Deprecated alias since 0.28.3
+OO.ui.mixin.ButtonElement.prototype.onKeyUp = function () {
+	OO.ui.warnDeprecation( 'onKeyUp is deprecated, use onDocumentKeyUp instead' );
+	this.onDocumentKeyUp.apply( this, arguments );
 };
 
 /**
@@ -3206,7 +3218,7 @@ OO.ui.mixin.FlaggedElement = function OoUiMixinFlaggedElement( config ) {
 OO.ui.mixin.FlaggedElement.prototype.setFlaggedElement = function ( $flagged ) {
 	var classNames = Object.keys( this.flags ).map( function ( flag ) {
 		return 'oo-ui-flaggedElement-' + flag;
-	} ).join( ' ' );
+	} );
 
 	if ( this.$flagged ) {
 		this.$flagged.removeClass( classNames );
@@ -3256,7 +3268,7 @@ OO.ui.mixin.FlaggedElement.prototype.clearFlags = function () {
 	}
 
 	if ( this.$flagged ) {
-		this.$flagged.removeClass( remove.join( ' ' ) );
+		this.$flagged.removeClass( remove );
 	}
 
 	this.updateThemeClasses();
@@ -3322,8 +3334,8 @@ OO.ui.mixin.FlaggedElement.prototype.setFlags = function ( flags ) {
 
 	if ( this.$flagged ) {
 		this.$flagged
-			.addClass( add.join( ' ' ) )
-			.removeClass( remove.join( ' ' ) );
+			.addClass( add )
+			.removeClass( remove );
 	}
 
 	this.updateThemeClasses();
@@ -5150,7 +5162,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.autoClose = !!config.autoClose;
 	this.transitionTimeout = null;
 	this.anchored = false;
-	this.onMouseDownHandler = this.onMouseDown.bind( this );
+	this.onDocumentMouseDownHandler = this.onDocumentMouseDown.bind( this );
 	this.onDocumentKeyDownHandler = this.onDocumentKeyDown.bind( this );
 
 	// Initialization
@@ -5219,12 +5231,12 @@ OO.mixinClass( OO.ui.PopupWidget, OO.ui.mixin.FloatableElement );
 /* Methods */
 
 /**
- * Handles mouse down events.
+ * Handles document mouse down events.
  *
  * @private
  * @param {MouseEvent} e Mouse down event
  */
-OO.ui.PopupWidget.prototype.onMouseDown = function ( e ) {
+OO.ui.PopupWidget.prototype.onDocumentMouseDown = function ( e ) {
 	if (
 		this.isVisible() &&
 		!OO.ui.contains( this.$element.add( this.$autoCloseIgnore ).get(), e.target, true )
@@ -5233,21 +5245,33 @@ OO.ui.PopupWidget.prototype.onMouseDown = function ( e ) {
 	}
 };
 
+// Deprecated alias since 0.28.3
+OO.ui.PopupWidget.prototype.onMouseDown = function () {
+	OO.ui.warnDeprecation( 'onMouseDown is deprecated, use onDocumentMouseDown instead' );
+	this.onDocumentMouseDown.apply( this, arguments );
+};
+
 /**
- * Bind mouse down listener.
+ * Bind document mouse down listener.
  *
  * @private
  */
-OO.ui.PopupWidget.prototype.bindMouseDownListener = function () {
+OO.ui.PopupWidget.prototype.bindDocumentMouseDownListener = function () {
 	// Capture clicks outside popup
-	this.getElementWindow().addEventListener( 'mousedown', this.onMouseDownHandler, true );
+	this.getElementDocument().addEventListener( 'mousedown', this.onDocumentMouseDownHandler, true );
 	// We add 'click' event because iOS safari needs to respond to this event.
 	// We can't use 'touchstart' (as is usually the equivalent to 'mousedown') because
 	// then it will trigger when scrolling. While iOS Safari has some reported behavior
 	// of occasionally not emitting 'click' properly, that event seems to be the standard
 	// that it should be emitting, so we add it to this and will operate the event handler
 	// on whichever of these events was triggered first
-	this.getElementDocument().addEventListener( 'click', this.onMouseDownHandler, true );
+	this.getElementDocument().addEventListener( 'click', this.onDocumentMouseDownHandler, true );
+};
+
+// Deprecated alias since 0.28.3
+OO.ui.PopupWidget.prototype.bindMouseDownListener = function () {
+	OO.ui.warnDeprecation( 'bindMouseDownListener is deprecated, use bindDocumentMouseDownListener instead' );
+	this.bindDocumentMouseDownListener.apply( this, arguments );
 };
 
 /**
@@ -5262,17 +5286,23 @@ OO.ui.PopupWidget.prototype.onCloseButtonClick = function () {
 };
 
 /**
- * Unbind mouse down listener.
+ * Unbind document mouse down listener.
  *
  * @private
  */
+OO.ui.PopupWidget.prototype.unbindDocumentMouseDownListener = function () {
+	this.getElementDocument().removeEventListener( 'mousedown', this.onDocumentMouseDownHandler, true );
+	this.getElementDocument().removeEventListener( 'click', this.onDocumentMouseDownHandler, true );
+};
+
+// Deprecated alias since 0.28.3
 OO.ui.PopupWidget.prototype.unbindMouseDownListener = function () {
-	this.getElementWindow().removeEventListener( 'mousedown', this.onMouseDownHandler, true );
-	this.getElementDocument().removeEventListener( 'click', this.onMouseDownHandler, true );
+	OO.ui.warnDeprecation( 'unbindMouseDownListener is deprecated, use unbindDocumentMouseDownListener instead' );
+	this.unbindDocumentMouseDownListener.apply( this, arguments );
 };
 
 /**
- * Handles key down events.
+ * Handles document key down events.
  *
  * @private
  * @param {KeyboardEvent} e Key down event
@@ -5289,21 +5319,33 @@ OO.ui.PopupWidget.prototype.onDocumentKeyDown = function ( e ) {
 };
 
 /**
- * Bind key down listener.
+ * Bind document key down listener.
  *
  * @private
  */
+OO.ui.PopupWidget.prototype.bindDocumentKeyDownListener = function () {
+	this.getElementDocument().addEventListener( 'keydown', this.onDocumentKeyDownHandler, true );
+};
+
+// Deprecated alias since 0.28.3
 OO.ui.PopupWidget.prototype.bindKeyDownListener = function () {
-	this.getElementWindow().addEventListener( 'keydown', this.onDocumentKeyDownHandler, true );
+	OO.ui.warnDeprecation( 'bindKeyDownListener is deprecated, use bindDocumentKeyDownListener instead' );
+	this.bindDocumentKeyDownListener.apply( this, arguments );
 };
 
 /**
- * Unbind key down listener.
+ * Unbind document key down listener.
  *
  * @private
  */
+OO.ui.PopupWidget.prototype.unbindDocumentKeyDownListener = function () {
+	this.getElementDocument().removeEventListener( 'keydown', this.onDocumentKeyDownHandler, true );
+};
+
+// Deprecated alias since 0.28.3
 OO.ui.PopupWidget.prototype.unbindKeyDownListener = function () {
-	this.getElementWindow().removeEventListener( 'keydown', this.onDocumentKeyDownHandler, true );
+	OO.ui.warnDeprecation( 'unbindKeyDownListener is deprecated, use unbindDocumentKeyDownListener instead' );
+	this.unbindDocumentKeyDownListener.apply( this, arguments );
 };
 
 /**
@@ -5394,8 +5436,8 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 
 		if ( show ) {
 			if ( this.autoClose ) {
-				this.bindMouseDownListener();
-				this.bindKeyDownListener();
+				this.bindDocumentMouseDownListener();
+				this.bindDocumentKeyDownListener();
 			}
 			this.updateDimensions();
 			this.toggleClipping( true );
@@ -5451,8 +5493,8 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 		} else {
 			this.toggleClipping( false );
 			if ( this.autoClose ) {
-				this.unbindMouseDownListener();
-				this.unbindKeyDownListener();
+				this.unbindDocumentMouseDownListener();
+				this.unbindDocumentKeyDownListener();
 			}
 		}
 	}
@@ -6252,10 +6294,10 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	// Properties
 	this.pressed = false;
 	this.selecting = null;
-	this.onMouseUpHandler = this.onMouseUp.bind( this );
-	this.onMouseMoveHandler = this.onMouseMove.bind( this );
-	this.onKeyDownHandler = this.onKeyDown.bind( this );
-	this.onKeyPressHandler = this.onKeyPress.bind( this );
+	this.onDocumentMouseUpHandler = this.onDocumentMouseUp.bind( this );
+	this.onDocumentMouseMoveHandler = this.onDocumentMouseMove.bind( this );
+	this.onDocumentKeyDownHandler = this.onDocumentKeyDown.bind( this );
+	this.onDocumentKeyPressHandler = this.onDocumentKeyPress.bind( this );
 	this.keyPressBuffer = '';
 	this.keyPressBufferTimer = null;
 	this.blockMouseOverEvents = 0;
@@ -6394,20 +6436,20 @@ OO.ui.SelectWidget.prototype.onMouseDown = function ( e ) {
 		if ( item && item.isSelectable() ) {
 			this.pressItem( item );
 			this.selecting = item;
-			this.getElementDocument().addEventListener( 'mouseup', this.onMouseUpHandler, true );
-			this.getElementDocument().addEventListener( 'mousemove', this.onMouseMoveHandler, true );
+			this.getElementDocument().addEventListener( 'mouseup', this.onDocumentMouseUpHandler, true );
+			this.getElementDocument().addEventListener( 'mousemove', this.onDocumentMouseMoveHandler, true );
 		}
 	}
 	return false;
 };
 
 /**
- * Handle mouse up events.
+ * Handle document mouse up events.
  *
  * @private
  * @param {MouseEvent} e Mouse up event
  */
-OO.ui.SelectWidget.prototype.onMouseUp = function ( e ) {
+OO.ui.SelectWidget.prototype.onDocumentMouseUp = function ( e ) {
 	var item;
 
 	this.togglePressed( false );
@@ -6423,19 +6465,25 @@ OO.ui.SelectWidget.prototype.onMouseUp = function ( e ) {
 		this.selecting = null;
 	}
 
-	this.getElementDocument().removeEventListener( 'mouseup', this.onMouseUpHandler, true );
-	this.getElementDocument().removeEventListener( 'mousemove', this.onMouseMoveHandler, true );
+	this.getElementDocument().removeEventListener( 'mouseup', this.onDocumentMouseUpHandler, true );
+	this.getElementDocument().removeEventListener( 'mousemove', this.onDocumentMouseMoveHandler, true );
 
 	return false;
 };
 
+// Deprecated alias since 0.28.3
+OO.ui.SelectWidget.prototype.onMouseUp = function () {
+	OO.ui.warnDeprecation( 'onMouseUp is deprecated, use onDocumentMouseUp instead' );
+	this.onDocumentMouseUp.apply( this, arguments );
+};
+
 /**
- * Handle mouse move events.
+ * Handle document mouse move events.
  *
  * @private
  * @param {MouseEvent} e Mouse move event
  */
-OO.ui.SelectWidget.prototype.onMouseMove = function ( e ) {
+OO.ui.SelectWidget.prototype.onDocumentMouseMove = function ( e ) {
 	var item;
 
 	if ( !this.isDisabled() && this.pressed ) {
@@ -6445,6 +6493,12 @@ OO.ui.SelectWidget.prototype.onMouseMove = function ( e ) {
 			this.selecting = item;
 		}
 	}
+};
+
+// Deprecated alias since 0.28.3
+OO.ui.SelectWidget.prototype.onMouseMove = function () {
+	OO.ui.warnDeprecation( 'onMouseMove is deprecated, use onDocumentMouseMove instead' );
+	this.onDocumentMouseMove.apply( this, arguments );
 };
 
 /**
@@ -6479,12 +6533,12 @@ OO.ui.SelectWidget.prototype.onMouseLeave = function () {
 };
 
 /**
- * Handle key down events.
+ * Handle document key down events.
  *
  * @protected
  * @param {KeyboardEvent} e Key down event
  */
-OO.ui.SelectWidget.prototype.onKeyDown = function ( e ) {
+OO.ui.SelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 	var nextItem,
 		handled = false,
 		currentItem = this.findHighlightedItem() || this.findSelectedItem();
@@ -6515,8 +6569,8 @@ OO.ui.SelectWidget.prototype.onKeyDown = function ( e ) {
 				if ( currentItem && currentItem.constructor.static.highlightable ) {
 					currentItem.setHighlighted( false );
 				}
-				this.unbindKeyDownListener();
-				this.unbindKeyPressListener();
+				this.unbindDocumentKeyDownListener();
+				this.unbindDocumentKeyPressListener();
 				// Don't prevent tabbing away / defocusing
 				handled = false;
 				break;
@@ -6538,22 +6592,40 @@ OO.ui.SelectWidget.prototype.onKeyDown = function ( e ) {
 	}
 };
 
-/**
- * Bind key down listener.
- *
- * @protected
- */
-OO.ui.SelectWidget.prototype.bindKeyDownListener = function () {
-	this.getElementWindow().addEventListener( 'keydown', this.onKeyDownHandler, true );
+// Deprecated alias since 0.28.3
+OO.ui.SelectWidget.prototype.onKeyDown = function () {
+	OO.ui.warnDeprecation( 'onKeyDown is deprecated, use onDocumentKeyDown instead' );
+	this.onDocumentKeyDown.apply( this, arguments );
 };
 
 /**
- * Unbind key down listener.
+ * Bind document key down listener.
  *
  * @protected
  */
+OO.ui.SelectWidget.prototype.bindDocumentKeyDownListener = function () {
+	this.getElementDocument().addEventListener( 'keydown', this.onDocumentKeyDownHandler, true );
+};
+
+// Deprecated alias since 0.28.3
+OO.ui.SelectWidget.prototype.bindKeyDownListener = function () {
+	OO.ui.warnDeprecation( 'bindKeyDownListener is deprecated, use bindDocumentKeyDownListener instead' );
+	this.bindDocumentKeyDownListener.apply( this, arguments );
+};
+
+/**
+ * Unbind document key down listener.
+ *
+ * @protected
+ */
+OO.ui.SelectWidget.prototype.unbindDocumentKeyDownListener = function () {
+	this.getElementDocument().removeEventListener( 'keydown', this.onDocumentKeyDownHandler, true );
+};
+
+// Deprecated alias since 0.28.3
 OO.ui.SelectWidget.prototype.unbindKeyDownListener = function () {
-	this.getElementWindow().removeEventListener( 'keydown', this.onKeyDownHandler, true );
+	OO.ui.warnDeprecation( 'unbindKeyDownListener is deprecated, use unbindDocumentKeyDownListener instead' );
+	this.unbindDocumentKeyDownListener.apply( this, arguments );
 };
 
 /**
@@ -6592,7 +6664,7 @@ OO.ui.SelectWidget.prototype.clearKeyPressBuffer = function () {
  * @protected
  * @param {KeyboardEvent} e Key press event
  */
-OO.ui.SelectWidget.prototype.onKeyPress = function ( e ) {
+OO.ui.SelectWidget.prototype.onDocumentKeyPress = function ( e ) {
 	var c, filter, item;
 
 	if ( !e.charCode ) {
@@ -6642,6 +6714,12 @@ OO.ui.SelectWidget.prototype.onKeyPress = function ( e ) {
 	e.stopPropagation();
 };
 
+// Deprecated alias since 0.28.3
+OO.ui.SelectWidget.prototype.onKeyPress = function () {
+	OO.ui.warnDeprecation( 'onKeyPress is deprecated, use onDocumentKeyPress instead' );
+	this.onDocumentKeyPress.apply( this, arguments );
+};
+
 /**
  * Get a matcher for the specific string
  *
@@ -6672,25 +6750,37 @@ OO.ui.SelectWidget.prototype.getItemMatcher = function ( s, exact ) {
 };
 
 /**
- * Bind key press listener.
+ * Bind document key press listener.
  *
  * @protected
  */
+OO.ui.SelectWidget.prototype.bindDocumentKeyPressListener = function () {
+	this.getElementDocument().addEventListener( 'keypress', this.onDocumentKeyPressHandler, true );
+};
+
+// Deprecated alias since 0.28.3
 OO.ui.SelectWidget.prototype.bindKeyPressListener = function () {
-	this.getElementWindow().addEventListener( 'keypress', this.onKeyPressHandler, true );
+	OO.ui.warnDeprecation( 'bindKeyPressListener is deprecated, use bindDocumentKeyPressListener instead' );
+	this.bindDocumentKeyPressListener.apply( this, arguments );
 };
 
 /**
- * Unbind key down listener.
+ * Unbind document key down listener.
  *
  * If you override this, be sure to call this.clearKeyPressBuffer() from your
  * implementation.
  *
  * @protected
  */
-OO.ui.SelectWidget.prototype.unbindKeyPressListener = function () {
-	this.getElementWindow().removeEventListener( 'keypress', this.onKeyPressHandler, true );
+OO.ui.SelectWidget.prototype.unbindDocumentKeyPressListener = function () {
+	this.getElementDocument().removeEventListener( 'keypress', this.onDocumentKeyPressHandler, true );
 	this.clearKeyPressBuffer();
+};
+
+// Deprecated alias since 0.28.3
+OO.ui.SelectWidget.prototype.unbindKeyPressListener = function () {
+	OO.ui.warnDeprecation( 'unbindDocumentKeyPressListener is deprecated, use unbindDocumentKeyPressListener instead' );
+	this.unbindDocumentKeyPressListener.apply( this, arguments );
 };
 
 /**
@@ -7286,7 +7376,7 @@ OO.ui.MenuSectionOptionWidget.static.highlightable = false;
  *  the text the user types. This config is used by {@link OO.ui.ComboBoxInputWidget ComboBoxInputWidget}
  *  and {@link OO.ui.mixin.LookupElement LookupElement}
  * @cfg {jQuery} [$input] Text input used to implement option highlighting for menu items that match
- *  the text the user types. This config is used by {@link OO.ui.CapsuleMultiselectWidget CapsuleMultiselectWidget}
+ *  the text the user types. This config is used by {@link OO.ui.TagMultiselectWidget TagMultiselectWidget}
  * @cfg {OO.ui.Widget} [widget] Widget associated with the menu's active state. If the user clicks the mouse
  *  anywhere on the page outside of this widget, the menu is hidden. For example, if there is a button
  *  that toggles the menu's visibility on click, the menu will be hidden then re-shown when the user clicks
@@ -7392,7 +7482,7 @@ OO.ui.MenuSelectWidget.prototype.onDocumentMouseDown = function ( e ) {
 /**
  * @inheritdoc
  */
-OO.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
+OO.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 	var currentItem = this.findHighlightedItem() || this.findSelectedItem();
 
 	if ( !this.isDisabled() && this.isVisible() ) {
@@ -7491,50 +7581,50 @@ OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 /**
  * @inheritdoc
  */
-OO.ui.MenuSelectWidget.prototype.bindKeyDownListener = function () {
+OO.ui.MenuSelectWidget.prototype.bindDocumentKeyDownListener = function () {
 	if ( this.$input ) {
 		this.$input.on( 'keydown', this.onKeyDownHandler );
 	} else {
-		OO.ui.MenuSelectWidget.parent.prototype.bindKeyDownListener.call( this );
+		OO.ui.MenuSelectWidget.parent.prototype.bindDocumentKeyDownListener.call( this );
 	}
 };
 
 /**
  * @inheritdoc
  */
-OO.ui.MenuSelectWidget.prototype.unbindKeyDownListener = function () {
+OO.ui.MenuSelectWidget.prototype.unbindDocumentKeyDownListener = function () {
 	if ( this.$input ) {
 		this.$input.off( 'keydown', this.onKeyDownHandler );
 	} else {
-		OO.ui.MenuSelectWidget.parent.prototype.unbindKeyDownListener.call( this );
+		OO.ui.MenuSelectWidget.parent.prototype.unbindDocumentKeyDownListener.call( this );
 	}
 };
 
 /**
  * @inheritdoc
  */
-OO.ui.MenuSelectWidget.prototype.bindKeyPressListener = function () {
+OO.ui.MenuSelectWidget.prototype.bindDocumentKeyPressListener = function () {
 	if ( this.$input ) {
 		if ( this.filterFromInput ) {
 			this.$input.on( 'keydown mouseup cut paste change input select', this.onInputEditHandler );
 			this.updateItemVisibility();
 		}
 	} else {
-		OO.ui.MenuSelectWidget.parent.prototype.bindKeyPressListener.call( this );
+		OO.ui.MenuSelectWidget.parent.prototype.bindDocumentKeyPressListener.call( this );
 	}
 };
 
 /**
  * @inheritdoc
  */
-OO.ui.MenuSelectWidget.prototype.unbindKeyPressListener = function () {
+OO.ui.MenuSelectWidget.prototype.unbindDocumentKeyPressListener = function () {
 	if ( this.$input ) {
 		if ( this.filterFromInput ) {
 			this.$input.off( 'keydown mouseup cut paste change input select', this.onInputEditHandler );
 			this.updateItemVisibility();
 		}
 	} else {
-		OO.ui.MenuSelectWidget.parent.prototype.unbindKeyPressListener.call( this );
+		OO.ui.MenuSelectWidget.parent.prototype.unbindDocumentKeyPressListener.call( this );
 	}
 };
 
@@ -7645,8 +7735,8 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			this.togglePositioning( !!this.$floatableContainer );
 			this.toggleClipping( true );
 
-			this.bindKeyDownListener();
-			this.bindKeyPressListener();
+			this.bindDocumentKeyDownListener();
+			this.bindDocumentKeyPressListener();
 
 			if (
 				( this.isClippedVertically() || this.isFloatableOutOfView() ) &&
@@ -7684,8 +7774,8 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			this.emit( 'ready' );
 		} else {
 			this.$focusOwner.removeAttr( 'aria-activedescendant' );
-			this.unbindKeyDownListener();
-			this.unbindKeyPressListener();
+			this.unbindDocumentKeyDownListener();
+			this.unbindDocumentKeyPressListener();
 			this.$focusOwner.attr( 'aria-expanded', 'false' );
 			this.getElementDocument().removeEventListener( 'mousedown', this.onDocumentMouseDownHandler, true );
 			this.togglePositioning( false );
@@ -8046,8 +8136,8 @@ OO.ui.RadioSelectWidget = function OoUiRadioSelectWidget( config ) {
 
 	// Events
 	this.$element.on( {
-		focus: this.bindKeyDownListener.bind( this ),
-		blur: this.unbindKeyDownListener.bind( this )
+		focus: this.bindDocumentKeyDownListener.bind( this ),
+		blur: this.unbindDocumentKeyDownListener.bind( this )
 	} );
 
 	// Initialization
@@ -8172,7 +8262,7 @@ OO.ui.MultiselectWidget = function OoUiMultiselectWidget( config ) {
 
 	// Events
 	this.aggregate( { change: 'select' } );
-	// This is mostly for compatibility with CapsuleMultiselectWidget... normally, 'change' is emitted
+	// This is mostly for compatibility with TagMultiselectWidget... normally, 'change' is emitted
 	// by GroupElement only when items are added/removed
 	this.connect( this, { select: [ 'emit', 'change' ] } );
 
@@ -10093,11 +10183,6 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 		labelPosition: 'after'
 	}, config );
 
-	if ( config.multiline ) {
-		OO.ui.warnDeprecation( 'TextInputWidget: config.multiline is deprecated. Use the MultilineTextInputWidget instead. See T130434.' );
-		return new OO.ui.MultilineTextInputWidget( config );
-	}
-
 	// Parent constructor
 	OO.ui.TextInputWidget.parent.call( this, config );
 
@@ -10841,12 +10926,10 @@ OO.ui.MultilineTextInputWidget = function OoUiMultilineTextInputWidget( config )
 	config = $.extend( {
 		type: 'text'
 	}, config );
-	config.multiline = false;
 	// Parent constructor
 	OO.ui.MultilineTextInputWidget.parent.call( this, config );
 
 	// Properties
-	this.multiline = true;
 	this.autosize = !!config.autosize;
 	this.minRows = config.rows !== undefined ? config.rows : '';
 	this.maxRows = config.maxRows || Math.max( 2 * ( this.minRows || 0 ), 10 );
@@ -10868,7 +10951,7 @@ OO.ui.MultilineTextInputWidget = function OoUiMultilineTextInputWidget( config )
 	} );
 
 	// Initialization
-	if ( this.multiline && config.rows ) {
+	if ( config.rows ) {
 		this.$input.attr( 'rows', config.rows );
 	}
 	if ( this.autosize ) {
@@ -11016,15 +11099,6 @@ OO.ui.MultilineTextInputWidget.prototype.adjustSize = function () {
  */
 OO.ui.MultilineTextInputWidget.prototype.getInputElement = function () {
 	return $( '<textarea>' );
-};
-
-/**
- * Check if the input supports multiple lines.
- *
- * @return {boolean}
- */
-OO.ui.MultilineTextInputWidget.prototype.isMultiline = function () {
-	return !!this.multiline;
 };
 
 /**
