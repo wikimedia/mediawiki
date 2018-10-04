@@ -72,6 +72,13 @@
 							"type": "string",
 							"description": "Version constraint string against PHP."
 						}
+					},
+					"patternProprties": {
+						"^ext-": {
+							"type": "string",
+							"description": "Required PHP extension.",
+							"const": "*"
+						}
 					}
 				},
 				"extensions": {

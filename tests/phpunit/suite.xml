@@ -20,8 +20,6 @@
 	<testsuites>
 		<testsuite name="includes">
 			<directory>includes</directory>
-			<!-- Parser tests must be invoked via their suite -->
-			<exclude>includes/parser/ParserIntegrationTest.php</exclude>
 		</testsuite>
 		<testsuite name="languages">
 			<directory>languages</directory>

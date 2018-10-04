@@ -41,6 +41,11 @@ class VersionChecker {
 	private $phpVersion = false;
 
 	/**
+	 * @var string[] List of installed PHP extensions
+	 */
+	private $phpExtensions = [];
+
+	/**
 	 * @var array Loaded extensions
 	 */
 	private $loaded = [];
@@ -52,11 +57,14 @@ class VersionChecker {
 
 	/**
 	 * @param string $coreVersion Current version of core
+	 * @param string $phpVersion Current PHP version
+	 * @param string[] $phpExtensions List of installed PHP extensions
 	 */
-	public function __construct( $coreVersion, $phpVersion ) {
+	public function __construct( $coreVersion, $phpVersion, array $phpExtensions ) {
 		$this->versionParser = new VersionParser();
 		$this->setCoreVersion( $coreVersion );
 		$this->setPhpVersion( $phpVersion );
+		$this->phpExtensions = $phpExtensions;
 	}
 
 	/**
@@ -112,7 +120,8 @@ class VersionChecker {
 	 *       'FooBar' => {
 	 *         'MediaWiki' => '>= 1.25.0',
 	 *         'platform': {
-	 *           'php': '>= 7.0.0'
+	 *           'php': '>= 7.0.0',
+	 *           'ext-foo': '*'
 	 *         },
 	 *         'extensions' => {
 	 *           'FooBaz' => '>= 1.25.0'
@@ -151,6 +160,7 @@ class VersionChecker {
 					case 'platform':
 						foreach ( $values as $dependency => $constraint ) {
 							if ( $dependency === 'php' ) {
+								// PHP version
 								$phpError = $this->handleDependency(
 									$this->phpVersion,
 									$constraint,
@@ -164,6 +174,23 @@ class VersionChecker {
 											. "it requires: $constraint."
 										,
 										'type' => 'incompatible-php',
+									];
+								}
+							} elseif ( substr( $dependency, 0, 4 ) === 'ext-' ) {
+								// PHP extensions
+								$phpExtension = substr( $dependency, 4 );
+								if ( $constraint !== '*' ) {
+									throw new UnexpectedValueException( 'Version constraints for '
+										. 'PHP extensions are not supported in ' . $extension );
+								}
+								if ( !in_array( $phpExtension, $this->phpExtensions, true ) ) {
+									$errors[] = [
+										'msg' =>
+											"{$extension} requires {$phpExtension} PHP extension "
+											. "to be installed."
+										,
+										'type' => 'missing-phpExtension',
+										'missing' => $phpExtension,
 									];
 								}
 							} else {
