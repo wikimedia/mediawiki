@@ -53,8 +53,8 @@ class WikiExporter {
 	const LOGS = 8;
 	const RANGE = 16;
 
-	const TEXT = 0;
-	const STUB = 1;
+	const TEXT = XmlDumpWriter::WRITE_CONTENT;
+	const STUB = XmlDumpWriter::WRITE_STUB;
 
 	const BATCH_SIZE = 50000;
 
