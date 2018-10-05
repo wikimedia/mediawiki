@@ -49,7 +49,7 @@ class DidYouMeanWidget {
 			'search' => $resultSet->getQueryAfterRewrite(),
 			// Don't magic this link into a 'go' link, it should always
 			// show search results.
-			'fultext' => 1,
+			'fulltext' => 1,
 		];
 		$stParams = array_merge( $params, $this->specialSearch->powerSearchOptions() );
 
@@ -67,7 +67,7 @@ class DidYouMeanWidget {
 		$original = $linkRenderer->makeKnownLink(
 			$this->specialSearch->getPageTitle(),
 			$term,
-			[ 'id' => 'mwsearch-DYM-original' ],
+			[ 'id' => 'mw-search-DYM-original' ],
 			$stParams
 		);
 
