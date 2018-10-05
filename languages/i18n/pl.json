@@ -864,7 +864,7 @@
 	"undo-main-slot-only": "Zmiany nie można cofnąć, ponieważ dotyczy treści znajdujących się poza głównym wątkiem.",
 	"undo-norev": "Edycja nie może być cofnięta, ponieważ nie istnieje lub została usunięta.",
 	"undo-nochange": "Wygląda na to, że edycja została już anulowana.",
-	"undo-summary": "Anulowanie wersji $1 autora [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]])",
+	"undo-summary": "Anulowanie wersji $1 autorstwa [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]])",
 	"undo-summary-username-hidden": "Anulowanie wersji $1 autorstwa ukrytego użytkownika",
 	"cantcreateaccount-text": "Tworzenie konta z tego adresu IP ('''$1''') zostało zablokowane przez [[User:$3|$3]].\n\nPodany przez $3 powód to ''$2''",
 	"cantcreateaccount-range-text": "Tworzenie konta z adresów IP w zakresie <strong>$1</strong>, zawierającego twój adres IP (<strong>$4</strong>), zostało zablokowane przez [[User:$3|$3]].\n\nPodany przez $3 powód to <em>$2</em>",

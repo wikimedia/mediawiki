@@ -429,7 +429,7 @@
 	"login-security": "Potvrdite svoj identitet",
 	"nav-login-createaccount": "Prijavi se",
 	"logout": "Odjavi se",
-	"userlogout": "Odjavi se",
+	"userlogout": "Odjava",
 	"notloggedin": "Niste prijavljeni",
 	"userlogin-noaccount": "Nemate suradnički račun?",
 	"userlogin-joinproject": "Pridružite se projektu {{SITENAME}}",
