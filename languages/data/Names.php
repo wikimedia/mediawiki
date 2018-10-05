@@ -193,7 +193,7 @@ class Names {
 		'he' => 'עברית', # Hebrew
 		'hi' => 'हिन्दी', # Hindi
 		'hif' => 'Fiji Hindi', # Fijian Hindi (multiple scripts - defaults to Latin)
-		'hif-latn' => 'Fiji Hindi', # Fiji Hindi (latin)
+		'hif-latn' => 'Fiji Hindi', # Fiji Hindi (Latin script)
 		'hil' => 'Ilonggo', # Hiligaynon
 		'ho' => 'Hiri Motu', # Hiri Motu
 		'hr' => 'hrvatski', # Croatian

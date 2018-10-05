@@ -137,7 +137,7 @@ class SearchSqlite extends SearchDatabase {
 		} else {
 			// For Chinese, words may legitimately abut other words in the text literal.
 			// Don't add \b boundary checks... note this could cause false positives
-			// for latin chars.
+			// for Latin chars.
 		}
 		return $regex;
 	}

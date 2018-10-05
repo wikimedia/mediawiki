@@ -90,7 +90,7 @@ class LanguageUzTest extends LanguageClassesTestCase {
 
 	/**
 	 * Verifiy the given Cyrillic text is not converted when using
-	 * using the cyrillic variant and converted to Latin when using
+	 * using the Cyrillic variant and converted to Latin when using
 	 * the Latin variant.
 	 * @param string $text Text to convert
 	 * @param string $msg Optional message
