@@ -73,7 +73,7 @@ class DeletedContributionsPage extends SpecialPage {
 
 		$this->mOpts = $opts;
 
-		$target = $opts->getValue( 'target' );
+		$target = trim( $opts->getValue( 'target' ) );
 		if ( !strlen( $target ) ) {
 			$this->getForm();
 
