@@ -369,6 +369,11 @@ class MediaWiki {
 			}
 			throw new HttpError( 500, $message );
 		}
+		// Protect against redirects to NS_MEDIA namespace
+		// when the user probably wants NS_FILE
+		if ( $title->inNamespace( NS_MEDIA ) ) {
+			$title->mNamespace = NS_FILE;
+		}
 		$output->setCdnMaxage( 1200 );
 		$output->redirect( $targetUrl, '301' );
 		return true;

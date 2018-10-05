@@ -134,6 +134,13 @@ class MediaWikiTest extends MediaWikiTestCase {
 				'title' => 'Double_slash',
 				'redirect' => false,
 			],
+			[
+				// View: Media namespace redirect (T203942)
+				'url' => 'http://example.org/w/index.php?title=Media:Foo_Bar',
+				'query' => [ 'title' => 'Foo_Bar' ],
+				'title' => 'File:Foo_Bar',
+				'redirect' => 'http://example.org/wiki/File:Foo_Bar',
+			],
 		];
 	}
 
