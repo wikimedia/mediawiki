@@ -34,10 +34,10 @@ class LanguageOs extends Language {
 	 * Invoked with {{grammar:case|word}}
 	 *
 	 * Depending on word there are four different ways of converting to other cases.
-	 * 1) Word consist of not cyrillic letters or is an abbreviation.
+	 * 1) Word consist of not Cyrillic letters or is an abbreviation.
 	 * 		Then result word is: word + hyphen + case ending.
 	 *
-	 * 2) Word consist of cyrillic letters.
+	 * 2) Word consist of Cyrillic letters.
 	 * 2.1) Word is in plural.
 	 * 		Then result word is: word - last letter + case ending. Ending of allative case here is 'æм'.
 	 *
@@ -77,7 +77,7 @@ class LanguageOs extends Language {
 			$jot = 'й';
 		} elseif ( preg_match( "/у$/u", $word ) ) {
 			# Checking if $word ends on 'у'. 'У'
-			# can be either consonant 'W' or vowel 'U' in cyrillic Ossetic.
+			# can be either consonant 'W' or vowel 'U' in Cyrillic Ossetic.
 			# Examples: {{grammar:genitive|аунеу}} = аунеуы, {{grammar:genitive|лæппу}} = лæппуйы.
 			if ( !preg_match( "/[аæеёиоыэюя]$/u", mb_substr( $word, -2, 1 ) ) ) {
 				$jot = 'й';

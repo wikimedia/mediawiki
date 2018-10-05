@@ -107,7 +107,7 @@ will probably want to update the search index.
 
 In the "maintenance" directory, run the updateDoubleWidthSearch.php
 script.  This will update the searchindex table for those pages that
-contain double-byte latin characters.
+contain double-byte Latin characters.
 
 == Upgrading from 1.10 or earlier ==
 

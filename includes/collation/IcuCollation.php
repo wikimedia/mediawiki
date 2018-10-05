@@ -75,8 +75,8 @@ class IcuCollation extends Collation {
 	 * letters (denoted by keys starting with '-').
 	 *
 	 * These are additions to (or subtractions from) the data stored in the
-	 * first-letters-root.php data file (which among others includes full basic latin,
-	 * cyrillic and greek alphabets).
+	 * first-letters-root.php data file (which among others includes full basic Latin,
+	 * Cyrillic and Greek alphabets).
 	 *
 	 * "Separate letter" is a letter that would have a separate heading/section
 	 * for it in a dictionary or a phone book in this language. This data isn't
