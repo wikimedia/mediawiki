@@ -466,38 +466,73 @@ class UIDGenerator {
 		// To orchestrate this between independant PHP processes on the same hosts,
 		// we must have a common sense of time so that we only have to maintain
 		// a single counter in a single lock file.
+		//
+		// Given that:
+		// * The system clock can be observed via time(), without milliseconds.
+		// * Some other clock can be observed via microtime(), which also offers
+		//   millisecond precision.
+		// * microtime() drifts in-process further and further away from the system
+		//   clock the longer the longer the process runs for.
+		//   For example, on 2018-10-03 an HHVM 3.18 JobQueue process at WMF,
+		//   that ran for 9 min 55 sec, drifted 7 seconds.
+		//   The drift is immediate for processes running while the system clock changes.
+		//   time() does not have this problem. See https://bugs.php.net/bug.php?id=42659.
+		//
+		// We have two choices:
+		//
+		// 1. Use microtime() with the following caveats:
+		//    - The last stored time may be in the future, or our current time
+		//    may be in the past, in which case we'll frequently enter the slow
+		//    timeWaitUntil() method to try and "sync" the current process with
+		//    the previous process. We mustn't block for long though, max 10ms?
+		//    - For any drift above 10ms, we pretend that the clock went backwards,
+		//    and treat it the same way as after an NTP sync, by incrementing clock
+		//    sequence instead. Given this rolls over automatically and silently
+		//    and is meant to be rare, this is essentially sacrifices a reasonable
+		//    guarantee of uniqueness.
+		//    - For long running processes (e.g. longer than a few seconds) the drift
+		//    can easily be more than 2 seconds. Because we only have a single lock
+		//    file and don't want to keep too many counters and deal with clearing
+		//    those, we fatal the user and refuse to make an ID. (T94522)
+		// 2. Use time() and expand the counter by 1000x and use the first digits
+		//    as if they are the millisecond fraction of the timestamp.
+		//    Known caveats or perf impact: None.
+		//
+		// We choose the latter.
+		$msecCounterSize = $counterSize * 1000;
 
 		rewind( $handle );
 		// Format of lock file contents:
-		// "<clk seq> <sec> <msec> <counter> <rand offset>"
+		// "<clk seq> <sec> <msec counter> <rand offset>"
 		$data = explode( ' ', fgets( $handle ) );
 
-		// Did the clock get moved back significantly?
-		$clockChanged = false;
-
-		if ( count( $data ) === 5 ) {
+		if ( count( $data ) === 4 ) {
 			// The UID lock file was already initialized
 			$clkSeq = (int)$data[0] % $clockSeqSize;
-			$prevTime = [ (int)$data[1], (int)$data[2] ];
+			$prevSec = (int)$data[1];
 			// Counter for UIDs with the same timestamp,
-			$counter = 0;
-			$randOffset = (int)$data[4] % $counterSize;
+			$msecCounter = 0;
+			$randOffset = (int)$data[3] % $counterSize;
 
 			// If the system clock moved backwards by an NTP sync,
 			// or if the last writer process had its clock drift ahead,
 			// Try to catch up if the gap is small, so that we can keep a single
 			// monotonic logic file.
-			$time = $this->timeWaitUntil( $prevTime );
-			if ( $time === false ) {
-				// Timed out. Treat it as a new clock
-				$clockChanged = true;
-				$time = $this->millitime();
-			} elseif ( $time === $prevTime ) {
+			$sec = $this->timeWaitUntil( $prevSec );
+			if ( $sec === false ) {
+				// Gap is too big. Looks like the clock got moved back significantly.
+				// Start a new clock sequence, and re-randomize the extra offset,
+				// which is useful for UIDs that do not include the clock sequence number.
+				$clkSeq = ( $clkSeq + 1 ) % $clockSeqSize;
+				$sec = time();
+				$randOffset = mt_rand( 0, $offsetSize - 1 );
+				trigger_error( "Clock was set back; sequence number incremented." );
+			} elseif ( $sec === $prevSec ) {
 				// Sanity check, only keep remainder if a previous writer wrote
 				// something here that we don't accept.
-				$counter = (int)$data[3] % $counterSize;
+				$msecCounter = (int)$data[2] % $msecCounterSize;
 				// Bump the counter if the time has not changed yet
-				if ( ++$counter >= $counterSize ) {
+				if ( ++$msecCounter >= $msecCounterSize ) {
 					// More IDs generated with the same time than counterSize can accomodate
 					flock( $handle, LOCK_UN );
 					throw new RuntimeException( "Counter overflow for timestamp value." );
@@ -506,38 +541,24 @@ class UIDGenerator {
 		} else {
 			// Initialize UID lock file information
 			$clkSeq = mt_rand( 0, $clockSeqSize - 1 );
-			$time = $this->millitime();
-			$counter = 0;
+			$sec = time();
+			$msecCounter = 0;
 			$randOffset = mt_rand( 0, $offsetSize - 1 );
-		}
-		// microtime() and gettimeofday() can drift from time() at least on Windows.
-		// The drift is immediate for processes running while the system clock changes.
-		// time() does not have this problem. See https://bugs.php.net/bug.php?id=42659.
-		$drift = time() - $time[0];
-		if ( abs( $drift ) >= 2 ) {
-			// We don't want processes using too high or low timestamps to avoid duplicate
-			// UIDs and clock sequence number churn. This process should just be restarted.
-			flock( $handle, LOCK_UN ); // abort
-			throw new RuntimeException( "Process clock is outdated or drifted ({$drift}s)." );
-		}
-		// If microtime() is synced and a clock change was detected, then the clock went back
-		if ( $clockChanged ) {
-			// Bump the clock sequence number and also randomize the extra offset,
-			// which is useful for UIDs that do not include the clock sequence number.
-			$clkSeq = ( $clkSeq + 1 ) % $clockSeqSize;
-			$randOffset = mt_rand( 0, $offsetSize - 1 );
-			trigger_error( "Clock was set back; sequence number incremented." );
 		}
 
 		// Update and release the UID lock file
 		ftruncate( $handle, 0 );
 		rewind( $handle );
-		fwrite( $handle, "{$clkSeq} {$time[0]} {$time[1]} {$counter} {$randOffset}" );
+		fwrite( $handle, "{$clkSeq} {$sec} {$msecCounter} {$randOffset}" );
 		fflush( $handle );
 		flock( $handle, LOCK_UN );
 
+		// Split msecCounter back into msec and counter
+		$msec = (int)( $msecCounter / 1000 );
+		$counter = $msecCounter % 1000;
+
 		return [
-			'time'          => $time,
+			'time'          => [ $sec, $msec ],
 			'counter'       => $counter,
 			'clkSeq'        => $clkSeq,
 			'offset'        => $randOffset,
@@ -549,22 +570,25 @@ class UIDGenerator {
 	 * Wait till the current timestamp reaches $time and return the current
 	 * timestamp. This returns false if it would have to wait more than 10ms.
 	 *
-	 * @param array $time Result of UIDGenerator::millitime()
-	 * @return array|bool UIDGenerator::millitime() result or false
+	 * @param int $time Result of time()
+	 * @return int|bool Timestamp or false
 	 */
-	protected function timeWaitUntil( array $time ) {
+	protected function timeWaitUntil( $time ) {
+		$start = microtime( true );
 		do {
-			$ct = $this->millitime();
-			if ( $ct >= $time ) { // https://secure.php.net/manual/en/language.operators.comparison.php
-				return $ct; // current timestamp is higher than $time
+			$ct = time();
+			// https://secure.php.net/manual/en/language.operators.comparison.php
+			if ( $ct >= $time ) {
+				// current time is higher than or equal to than $time
+				return $ct;
 			}
-		} while ( ( ( $time[0] - $ct[0] ) * 1000 + ( $time[1] - $ct[1] ) ) <= 10 );
+		} while ( ( microtime( true ) - $start ) <= 0.010 ); // upto 10ms
 
 		return false;
 	}
 
 	/**
-	 * @param array $time Result of UIDGenerator::millitime()
+	 * @param array $time Array of second and millisecond integers
 	 * @return string 46 LSBs of "milliseconds since epoch" in binary (rolls over in 4201)
 	 * @throws RuntimeException
 	 */
@@ -580,7 +604,7 @@ class UIDGenerator {
 	}
 
 	/**
-	 * @param array $time Result of UIDGenerator::millitime()
+	 * @param array $time Array of second and millisecond integers
 	 * @param int $delta Number of intervals to add on to the timestamp
 	 * @return string 60 bits of "100ns intervals since 15 October 1582" (rolls over in 3400)
 	 * @throws RuntimeException
@@ -607,15 +631,6 @@ class UIDGenerator {
 			throw new RuntimeException( 'bcmath or gmp extension required for 32 bit machines.' );
 		}
 		return $id_bin;
-	}
-
-	/**
-	 * @return array (current time in seconds, milliseconds since then)
-	 */
-	protected function millitime() {
-		list( $msec, $sec ) = explode( ' ', microtime() );
-
-		return [ (int)$sec, (int)( $msec * 1000 ) ];
 	}
 
 	/**
