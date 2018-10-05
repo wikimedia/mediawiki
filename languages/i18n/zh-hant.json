@@ -3855,7 +3855,7 @@
 	"feedback-thanks": "感謝！您的意見回饋已發佈到頁面 \"[$2 $1]\"。",
 	"feedback-thanks-title": "感謝您！",
 	"feedback-useragent": "使用者代理：",
-	"searchsuggest-search": "搜尋 {{SITENAME}}",
+	"searchsuggest-search": "搜尋{{SITENAME}}",
 	"searchsuggest-containing": "包含...",
 	"api-error-badtoken": "內部錯誤：密鑰錯誤。",
 	"api-error-emptypage": "不允許建立空白的頁面。",

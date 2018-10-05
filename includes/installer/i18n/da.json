@@ -64,7 +64,7 @@
 	"config-mssql-windowsauth": "Windows-godkendelse",
 	"config-site-name": "Navn på wiki:",
 	"config-site-name-blank": "Indtast et hjemmesidenavn.",
-	"config-project-namespace": "Prosjektnavnerum:",
+	"config-project-namespace": "Projektnavnerum:",
 	"config-ns-generic": "Projekt",
 	"config-ns-site-name": "Samme som wikinavnet: $1",
 	"config-admin-box": "Administratorkonto",
