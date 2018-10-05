@@ -8,6 +8,13 @@
 #
 language: php
 
+git:
+  depth: 3
+  quiet: true
+
+cache:
+  directories:
+  - vendor
 
 # Use fast containers instead of the slower sudo-enabled VMs:
 sudo: false
