@@ -1,6 +1,6 @@
 <?php
 /**
- * Normalize double-byte latin UTF-8 characters
+ * Normalize double-byte Latin UTF-8 characters
  *
  * Usage: php updateDoubleWidthSearch.php
  *
@@ -26,7 +26,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script to normalize double-byte latin UTF-8 characters.
+ * Maintenance script to normalize double-byte Latin UTF-8 characters.
  *
  * @ingroup Maintenance
  */
@@ -34,7 +34,7 @@ class UpdateDoubleWidthSearch extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription( 'Script to normalize double-byte latin UTF-8 characters' );
+		$this->addDescription( 'Script to normalize double-byte Latin UTF-8 characters' );
 		$this->addOption( 'q', 'quiet', false, true );
 		$this->addOption(
 			'l',

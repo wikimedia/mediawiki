@@ -35,7 +35,7 @@
 			var i, match, pos, spannode, middlebit, middleclone;
 			if ( node.nodeType === Node.TEXT_NODE ) {
 				// TODO - need to be smarter about the character matching here.
-				// non latin characters can make regex think a new word has begun: do not use \b
+				// non Latin characters can make regex think a new word has begun: do not use \b
 				// http://stackoverflow.com/questions/3787072/regex-wordwrap-with-utf8-characters-in-js
 				// look for an occurrence of our pattern and store the starting position
 				match = node.data.match( pat );

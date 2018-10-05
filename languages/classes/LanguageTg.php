@@ -22,7 +22,7 @@
  */
 
 /**
- * Converts Tajiki to latin orthography
+ * Converts Tajiki to Latin orthography
  *
  * @ingroup Language
  */

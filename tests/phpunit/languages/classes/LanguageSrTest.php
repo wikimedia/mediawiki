@@ -41,11 +41,11 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	public function testMixedConversions() {
 		$this->assertCyrillic(
 			'шђчћжШЂЧЋЖ - šđčćž',
-			'Mostly cyrillic characters'
+			'Mostly Cyrillic characters'
 		);
 		$this->assertLatin(
 			'šđčćžŠĐČĆŽ - шђчћж',
-			'Mostly latin characters'
+			'Mostly Latin characters'
 		);
 	}
 
@@ -54,11 +54,11 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 */
 	public function testSameAmountOfLatinAndCyrillicGetConverted() {
 		$this->assertConverted(
-			'4 latin: šđčć | 4 cyrillic: шђчћ',
+			'4 Latin: šđčć | 4 Cyrillic: шђчћ',
 			'sr-ec'
 		);
 		$this->assertConverted(
-			'4 latin: šđčć | 4 cyrillic: шђчћ',
+			'4 Latin: šđčć | 4 Cyrillic: шђчћ',
 			'sr-el'
 		);
 	}
@@ -211,7 +211,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 
 	/**
 	 * Verifiy the given Cyrillic text is not converted when using
-	 * using the cyrillic variant and converted to Latin when using
+	 * using the Cyrillic variant and converted to Latin when using
 	 * the Latin variant.
 	 * @param string $text Text to convert
 	 * @param string $msg Optional message
