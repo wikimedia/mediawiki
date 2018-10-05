@@ -760,14 +760,10 @@ class LanguageKk_cyrl extends Language {
 				if ( strcmp( $xvalue, $yvalue ) == 0 ) {
 					$lastLetter[1] = $xvalue;
 					break;
-				} else {
-					continue;
 				}
 			}
 			if ( $lastLetter[1] !== null ) {
 				break;
-			} else {
-				continue;
 			}
 		}
 
