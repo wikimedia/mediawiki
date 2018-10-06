@@ -2937,6 +2937,7 @@
 	"pageinfo-category-files": "عدد الملفات",
 	"pageinfo-user-id": "مُعرِّف المستخدم",
 	"pageinfo-file-hash": "قيمة الهاش",
+	"pageinfo-view-protect-log": "عرض سجل الحماية لهذه الصفحة.",
 	"markaspatrolleddiff": "علم بعلامة المراجعة",
 	"markaspatrolledtext": "علم هذه الصفحة بعلامة المراجعة",
 	"markaspatrolledtext-file": "علم نسخة الملف هذه بعلامة المراجعة",

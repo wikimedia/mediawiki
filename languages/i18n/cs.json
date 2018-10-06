@@ -2927,7 +2927,7 @@
 	"previousdiff": "← Porovnání se starší verzí",
 	"nextdiff": "Porovnání s novější verzí →",
 	"mediawarning": "'''Upozornění''': Tento typ souboru může obsahovat škodlivý kód.\nOtevřením souboru můžete ohrozit svůj počítač.",
-	"imagemaxsize": "Maximální velikost obrázku:<br />\n''(na stránce s popisem souboru)''",
+	"imagemaxsize": "Maximální velikost obrázku na stránkách s popisem souboru:",
 	"thumbsize": "Velikost náhledu:",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|stránka|stránky|stránek}}",
 	"file-info": "velikost souboru: $1, MIME typ: $2",
