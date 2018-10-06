@@ -3047,6 +3047,7 @@
 	"pageinfo-category-files": "Nombre de fichiers",
 	"pageinfo-user-id": "ID de l’utilisateur",
 	"pageinfo-file-hash": "Valeur de hachage",
+	"pageinfo-view-protect-log": "Voir le journal des protections pour cette page.",
 	"markaspatrolleddiff": "Marquer comme relue",
 	"markaspatrolledtext": "Marquer cette page comme relue",
 	"markaspatrolledtext-file": "Marquer cette version de fichier comme relue",

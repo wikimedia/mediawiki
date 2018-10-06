@@ -353,6 +353,7 @@
 	"recentchanges-label-plusminus": "လိက်မေံၜၠါ်ယိုဝ် အ်ုဖံင့်လာ ဘိုက်အ်ုလူးအ်ုၯင့် အင်းလဲါထဆေဝ်ႋလှ်",
 	"recentchanges-legend-heading": "<strong>ပ်ုယုံ့:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|လက်မေံသံင့်သယ် က်ုတုဂ်]]ၮ်ှ မ်ုယောဝ်ႋ)",
+	"rcfilters-legend-heading": "<strong>ဖုႋဖုႋတုဂ်တုဂ် စ်ုရင့်:</strong>",
 	"rcnotefrom": "ဖံင့်လာႋသယ်ၮှ် <strong>$3၊ $4</strong> ခဝ့် ၯံင် {{PLURAL:$5|ဆ်ုအင်းလဲါ|ဆ်ုအင်းလဲါလ်ုဖး}} မွာဲဆေဝ်ႋ  (<strong>$1</strong> ခဝ့်ဍာ် ၮဲဖှ်ေထ)။",
 	"rclistfrom": "$3 $2 ခဝ့်ၯံင် ဆ်ုအင်းလယ်သင့်သယ်ၮှ် မ်ုၮဲဖှ်ေ",
 	"rcshowhideminor": "အ်ုဍံင်လ်ုဍောဟ် ဆ်ုအင်းတင်ႋ $1 ၯင်း",

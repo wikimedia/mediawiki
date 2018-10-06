@@ -2933,6 +2933,7 @@
 	"pageinfo-category-files": "파일 수",
 	"pageinfo-user-id": "사용자 ID",
 	"pageinfo-file-hash": "해시값",
+	"pageinfo-view-protect-log": "이 문서의 보호 기록을 봅니다.",
 	"markaspatrolleddiff": "점검한 문서로 표시",
 	"markaspatrolledtext": "이 문서를 점검한 것으로 표시",
 	"markaspatrolledtext-file": "이 파일 버전을 점검한 것으로 표시",

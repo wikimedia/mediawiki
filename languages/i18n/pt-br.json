@@ -115,7 +115,8 @@
 			"RadiX",
 			"Fitoschido",
 			"Ed g2s",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"Didifelisberto"
 		]
 	},
 	"tog-underline": "Ligação sublinhada:",
@@ -3006,6 +3007,7 @@
 	"pageinfo-category-files": "Número de arquivos",
 	"pageinfo-user-id": "ID de usuário",
 	"pageinfo-file-hash": "Resumo criptográfico (hash)",
+	"pageinfo-view-protect-log": "Exiba o registro de proteção desta página.",
 	"markaspatrolleddiff": "Marcar como patrulhada",
 	"markaspatrolledtext": "Marcar esta página como patrulhada",
 	"markaspatrolledtext-file": "Marcar esta versão de artigo como patrulhada",

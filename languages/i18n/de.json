@@ -2962,6 +2962,7 @@
 	"pageinfo-category-files": "Anzahl der Dateien",
 	"pageinfo-user-id": "Benutzerkennung",
 	"pageinfo-file-hash": "Prüfsummenwert",
+	"pageinfo-view-protect-log": "Das Seitenschutz-Logbuch für diese Seite ansehen.",
 	"markaspatrolleddiff": "Als kontrolliert markieren",
 	"markaspatrolledtext": "Diese Seite als kontrolliert markieren",
 	"markaspatrolledtext-file": "Diese Dateiversion als kontrolliert markieren",
