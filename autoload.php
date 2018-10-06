@@ -943,6 +943,7 @@ $wgAutoloadLocalClasses = [
 	'Message' => __DIR__ . '/includes/Message.php',
 	'MessageBlobStore' => __DIR__ . '/includes/cache/MessageBlobStore.php',
 	'MessageCache' => __DIR__ . '/includes/cache/MessageCache.php',
+	'MessageCacheUpdate' => __DIR__ . '/includes/deferred/MessageCacheUpdate.php',
 	'MessageContent' => __DIR__ . '/includes/content/MessageContent.php',
 	'MessageLocalizer' => __DIR__ . '/languages/MessageLocalizer.php',
 	'MessageSpecifier' => __DIR__ . '/includes/libs/MessageSpecifier.php',
