@@ -300,6 +300,7 @@ class ParserTestRunner {
 		$setup['wgHtml5'] = true;
 		$setup['wgDisableLangConversion'] = false;
 		$setup['wgDisableTitleConversion'] = false;
+		$setup['wgMediaInTargetLanguage'] = false;
 
 		// "extra language links"
 		// see https://gerrit.wikimedia.org/r/111390
@@ -1113,6 +1114,7 @@ class ParserTestRunner {
 				+ [ 'ISBN' => true, 'PMID' => true, 'RFC' => true ],
 			// Test with legacy encoding by default until HTML5 is very stable and default
 			'wgFragmentMode' => [ 'legacy' ],
+			'wgMediaInTargetLanguage' => self::getOptionValue( 'wgMediaInTargetLanguage', $opts, false ),
 		];
 
 		$nonIncludable = self::getOptionValue( 'wgNonincludableNamespaces', $opts, false );
@@ -1393,7 +1395,17 @@ class ParserTestRunner {
 				'bits'        => 0,
 				'media_type'  => MEDIATYPE_DRAWING,
 				'mime'        => 'image/svg+xml',
-				'metadata'    => serialize( [] ),
+				'metadata'    => serialize( [
+					'version'        => SvgHandler::SVG_METADATA_VERSION,
+					'width'          => 240,
+					'height'         => 180,
+					'originalWidth'  => '100%',
+					'originalHeight' => '100%',
+					'translations'   => [
+						'en' => SVGReader::LANG_FULL_MATCH,
+						'ru' => SVGReader::LANG_FULL_MATCH,
+					],
+				] ),
 				'sha1'        => Wikimedia\base_convert( '', 16, 36, 31 ),
 				'fileExists'  => true
 		], $this->db->timestamp( '20010115123500' ), $user );
