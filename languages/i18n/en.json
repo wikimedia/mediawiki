@@ -3107,6 +3107,7 @@
 	"pageinfo-category-files": "Number of files",
 	"pageinfo-user-id": "User ID",
 	"pageinfo-file-hash": "Hash value",
+	"pageinfo-view-protect-log": "View the protection log for this page.",
 	"markaspatrolleddiff": "Mark as patrolled",
 	"markaspatrolledlink": "[$1]",
 	"markaspatrolledtext": "Mark this page as patrolled",
