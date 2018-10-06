@@ -583,63 +583,81 @@ class MessageCache {
 			// Ignore $wgMaxMsgCacheEntrySize so the process cache is up to date
 			$this->cache->setField( $code, $title, ' ' . $text );
 		}
-		$fname = __METHOD__;
 
 		// (b) Update the shared caches in a deferred update with a fresh DB snapshot
-		DeferredUpdates::addCallableUpdate(
-			function () use ( $title, $msg, $code, $fname ) {
-				global $wgMaxMsgCacheEntrySize;
-				// Allow one caller at a time to avoid race conditions
-				$scopedLock = $this->getReentrantScopedLock(
-					$this->clusterCache->makeKey( 'messages', $code )
-				);
-				if ( !$scopedLock ) {
-					LoggerFactory::getInstance( 'MessageCache' )->error(
-						$fname . ': could not acquire lock to update {title} ({code})',
-						[ 'title' => $title, 'code' => $code ] );
-					return;
-				}
-				// Reload messages from the database and pre-populate dc-local caches
-				// as optimisation. Use the master DB to avoid race conditions.
-				$cache = $this->loadFromDB( $code, self::FOR_UPDATE );
-				// Check if an individual cache key should exist and update cache accordingly
-				$page = WikiPage::factory( Title::makeTitle( NS_MEDIAWIKI, $title ) );
-				$page->loadPageData( $page::READ_LATEST );
-				$text = $this->getMessageTextFromContent( $page->getContent() );
-				if ( is_string( $text ) && strlen( $text ) > $wgMaxMsgCacheEntrySize ) {
-					// Match logic of loadCachedMessagePageEntry()
-					$this->wanCache->set(
-						$this->bigMessageCacheKey( $cache['HASH'], $title ),
-						' ' . $text,
-						$this->mExpiry
-					);
-				}
-				// Mark this cache as definitely being "latest" (non-volatile) so
-				// load() calls do not try to refresh the cache with replica DB data
-				$cache['LATEST'] = time();
-				// Update the process cache
-				$this->cache->set( $code, $cache );
-				// Pre-emptively update the local datacenter cache so things like edit filter and
-				// blacklist changes are reflected immediately; these often use MediaWiki: pages.
-				// The datacenter handling replace() calls should be the same one handling edits
-				// as they require HTTP POST.
-				$this->saveToCaches( $cache, 'all', $code );
-				// Release the lock now that the cache is saved
-				ScopedCallback::consume( $scopedLock );
-
-				// Relay the purge. Touching this check key expires cache contents
-				// and local cache (APC) validation hash across all datacenters.
-				$this->wanCache->touchCheckKey( $this->getCheckKey( $code ) );
-
-				// Purge the message in the message blob store
-				$resourceloader = RequestContext::getMain()->getOutput()->getResourceLoader();
-				$blobStore = $resourceloader->getMessageBlobStore();
-				$blobStore->updateMessage( $this->contLang->lcfirst( $msg ) );
-
-				Hooks::run( 'MessageCacheReplace', [ $title, $text ] );
-			},
+		DeferredUpdates::addUpdate(
+			new MessageCacheUpdate( $code, $title, $msg ),
 			DeferredUpdates::PRESEND
 		);
+	}
+
+	/**
+	 * @param string $code
+	 * @param array[] $replacements List of (title, message key) pairs
+	 * @throws MWException
+	 */
+	public function refreshAndReplaceInternal( $code, array $replacements ) {
+		global $wgMaxMsgCacheEntrySize;
+
+		// Allow one caller at a time to avoid race conditions
+		$scopedLock = $this->getReentrantScopedLock(
+			$this->clusterCache->makeKey( 'messages', $code )
+		);
+		if ( !$scopedLock ) {
+			foreach ( $replacements as list( $title ) ) {
+				LoggerFactory::getInstance( 'MessageCache' )->error(
+					__METHOD__ . ': could not acquire lock to update {title} ({code})',
+					[ 'title' => $title, 'code' => $code ] );
+			}
+
+			return;
+		}
+
+		// Reload messages from the database and pre-populate dc-local caches
+		// as optimisation. Use the master DB to avoid race conditions.
+		$cache = $this->loadFromDB( $code, self::FOR_UPDATE );
+		// Check if individual cache keys should exist and update cache accordingly
+		$newTextByTitle = []; // map of (title => content)
+		foreach ( $replacements as list( $title ) ) {
+			$page = WikiPage::factory( Title::makeTitle( NS_MEDIAWIKI, $title ) );
+			$page->loadPageData( $page::READ_LATEST );
+			$text = $this->getMessageTextFromContent( $page->getContent() );
+			// Remember the text for the blob store update later on
+			$newTextByTitle[$title] = $text;
+			// Note that if $text is false, then $cache should have a !NONEXISTANT entry
+			if ( is_string( $text ) && strlen( $text ) > $wgMaxMsgCacheEntrySize ) {
+				// Match logic of loadCachedMessagePageEntry()
+				$this->wanCache->set(
+					$this->bigMessageCacheKey( $cache['HASH'], $title ),
+					' ' . $text,
+					$this->mExpiry
+				);
+			}
+		}
+		// Mark this cache as definitely being "latest" (non-volatile) so
+		// load() calls do not try to refresh the cache with replica DB data
+		$cache['LATEST'] = time();
+		// Update the process cache
+		$this->cache->set( $code, $cache );
+		// Pre-emptively update the local datacenter cache so things like edit filter and
+		// blacklist changes are reflected immediately; these often use MediaWiki: pages.
+		// The datacenter handling replace() calls should be the same one handling edits
+		// as they require HTTP POST.
+		$this->saveToCaches( $cache, 'all', $code );
+		// Release the lock now that the cache is saved
+		ScopedCallback::consume( $scopedLock );
+
+		// Relay the purge. Touching this check key expires cache contents
+		// and local cache (APC) validation hash across all datacenters.
+		$this->wanCache->touchCheckKey( $this->getCheckKey( $code ) );
+
+		// Purge the messages in the message blob store and fire any hook handlers
+		$resourceloader = RequestContext::getMain()->getOutput()->getResourceLoader();
+		$blobStore = $resourceloader->getMessageBlobStore();
+		foreach ( $replacements as list( $title, $msg ) ) {
+			$blobStore->updateMessage( $this->contLang->lcfirst( $msg ) );
+			Hooks::run( 'MessageCacheReplace', [ $title, $newTextByTitle[$title] ] );
+		}
 	}
 
 	/**
