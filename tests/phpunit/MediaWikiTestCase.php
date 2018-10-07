@@ -711,7 +711,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * touch.
 	 */
 	private function doSetMwGlobals( $pairs, $value = null ) {
-		$this->stashMwGlobals( array_keys( $pairs ) );
+		$this->doStashMwGlobals( array_keys( $pairs ) );
 
 		foreach ( $pairs as $key => $value ) {
 			$GLOBALS[$key] = $value;
@@ -785,8 +785,14 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 *       call overrideMwServices().
 	 *
 	 * @since 1.23
+	 * @deprecated since 1.32, use setMwGlobals() and don't alter globals directly
 	 */
 	protected function stashMwGlobals( $globalKeys ) {
+		wfDeprecated( __METHOD__, '1.32' );
+		$this->doStashMwGlobals( $globalKeys );
+	}
+
+	private function doStashMwGlobals( $globalKeys ) {
 		if ( is_string( $globalKeys ) ) {
 			$globalKeys = [ $globalKeys ];
 		}
@@ -1063,17 +1069,18 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	public function setGroupPermissions( $newPerms, $newKey = null, $newValue = null ) {
 		global $wgGroupPermissions;
 
-		$this->stashMwGlobals( 'wgGroupPermissions' );
-
 		if ( is_string( $newPerms ) ) {
 			$newPerms = [ $newPerms => [ $newKey => $newValue ] ];
 		}
 
+		$newPermissions = $wgGroupPermissions;
 		foreach ( $newPerms as $group => $permissions ) {
 			foreach ( $permissions as $key => $value ) {
-				$wgGroupPermissions[$group][$key] = $value;
+				$newPermissions[$group][$key] = $value;
 			}
 		}
+
+		$this->setMwGlobals( 'wgGroupPermissions', $newPermissions );
 	}
 
 	/**

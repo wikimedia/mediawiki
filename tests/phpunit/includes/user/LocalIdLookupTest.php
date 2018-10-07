@@ -8,12 +8,9 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 	private $localUsers = [];
 
 	protected function setUp() {
-		global $wgGroupPermissions;
-
 		parent::setUp();
 
-		$this->stashMwGlobals( [ 'wgGroupPermissions' ] );
-		$wgGroupPermissions['local-id-lookup-test']['hideuser'] = true;
+		$this->setGroupPermissions( 'local-id-lookup-test', 'hideuser', true );
 	}
 
 	public function addDBData() {

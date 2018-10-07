@@ -25,11 +25,13 @@ class TemporaryPasswordAuthenticationRequestTest extends AuthenticationRequestTe
 	public function testNewRandom() {
 		global $wgPasswordPolicy;
 
-		$this->stashMwGlobals( 'wgPasswordPolicy' );
-		$wgPasswordPolicy['policies']['default'] += [
+		$policy = $wgPasswordPolicy;
+		$policy['policies']['default'] += [
 			'MinimalPasswordLength' => 1,
 			'MinimalPasswordLengthToLogin' => 1,
 		];
+
+		$this->setMwGlobals( 'wgPasswordPolicy', $policy );
 
 		$ret1 = TemporaryPasswordAuthenticationRequest::newRandom();
 		$ret2 = TemporaryPasswordAuthenticationRequest::newRandom();

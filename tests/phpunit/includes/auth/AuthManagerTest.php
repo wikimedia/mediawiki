@@ -1408,13 +1408,9 @@ class AuthManagerTest extends \MediaWikiTestCase {
 	}
 
 	public function testCheckAccountCreatePermissions() {
-		global $wgGroupPermissions;
-
-		$this->stashMwGlobals( [ 'wgGroupPermissions' ] );
-
 		$this->initializeManager( true );
 
-		$wgGroupPermissions['*']['createaccount'] = true;
+		$this->setGroupPermissions( '*', 'createaccount', true );
 		$this->assertEquals(
 			\Status::newGood(),
 			$this->manager->checkAccountCreatePermissions( new \User )
@@ -1428,11 +1424,11 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		);
 		$readOnlyMode->setReason( false );
 
-		$wgGroupPermissions['*']['createaccount'] = false;
+		$this->setGroupPermissions( '*', 'createaccount', false );
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
 		$this->assertFalse( $status->isOK() );
 		$this->assertTrue( $status->hasMessage( 'badaccess-groups' ) );
-		$wgGroupPermissions['*']['createaccount'] = true;
+		$this->setGroupPermissions( '*', 'createaccount', true );
 
 		$user = \User::newFromName( 'UTBlockee' );
 		if ( $user->getID() == 0 ) {
@@ -2356,7 +2352,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 	}
 
 	public function testAutoAccountCreation() {
-		global $wgGroupPermissions, $wgHooks;
+		global $wgHooks;
 
 		// PHPUnit seems to have a bug where it will call the ->with()
 		// callbacks for our hooks again after the test is run (WTF?), which
@@ -2367,9 +2363,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$username = self::usernameForCreation();
 		$this->initializeManager();
 
-		$this->stashMwGlobals( [ 'wgGroupPermissions' ] );
-		$wgGroupPermissions['*']['createaccount'] = true;
-		$wgGroupPermissions['*']['autocreateaccount'] = false;
+		$this->setGroupPermissions( '*', 'createaccount', true );
+		$this->setGroupPermissions( '*', 'autocreateaccount', false );
 
 		$this->mergeMwGlobalArrayValue( 'wgObjectCaches',
 			[ __METHOD__ => [ 'class' => 'HashBagOStuff' ] ] );
@@ -2550,8 +2545,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->assertSame( 'noname', $session->get( 'AuthManager::AutoCreateBlacklist' ) );
 
 		// IP unable to create accounts
-		$wgGroupPermissions['*']['createaccount'] = false;
-		$wgGroupPermissions['*']['autocreateaccount'] = false;
+		$this->setGroupPermissions( '*', 'createaccount', false );
+		$this->setGroupPermissions( '*', 'autocreateaccount', false );
 		$session->clear();
 		$user = \User::newFromName( $username );
 		$this->hook( 'LocalUserCreated', $this->never() );
@@ -2571,8 +2566,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 
 		// Test that both permutations of permissions are allowed
 		// (this hits the two "ok" entries in $mocks['pre'])
-		$wgGroupPermissions['*']['createaccount'] = false;
-		$wgGroupPermissions['*']['autocreateaccount'] = true;
+		$this->setGroupPermissions( '*', 'createaccount', false );
+		$this->setGroupPermissions( '*', 'autocreateaccount', true );
 		$session->clear();
 		$user = \User::newFromName( $username );
 		$this->hook( 'LocalUserCreated', $this->never() );
@@ -2580,8 +2575,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->unhook( 'LocalUserCreated' );
 		$this->assertEquals( \Status::newFatal( 'ok' ), $ret );
 
-		$wgGroupPermissions['*']['createaccount'] = true;
-		$wgGroupPermissions['*']['autocreateaccount'] = false;
+		$this->setGroupPermissions( '*', 'createaccount', true );
+		$this->setGroupPermissions( '*', 'autocreateaccount', false );
 		$session->clear();
 		$user = \User::newFromName( $username );
 		$this->hook( 'LocalUserCreated', $this->never() );

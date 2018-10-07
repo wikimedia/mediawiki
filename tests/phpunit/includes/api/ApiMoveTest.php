@@ -133,8 +133,6 @@ class ApiMoveTest extends ApiTestCase {
 	// @todo File moving
 
 	public function testPingLimiter() {
-		global $wgRateLimits;
-
 		$this->setExpectedException( ApiUsageException::class,
 			"You've exceeded your rate limit. Please wait some time and try again." );
 
@@ -142,8 +140,8 @@ class ApiMoveTest extends ApiTestCase {
 
 		$this->setMwGlobals( 'wgMainCacheType', 'hash' );
 
-		$this->stashMwGlobals( 'wgRateLimits' );
-		$wgRateLimits['move'] = [ '&can-bypass' => false, 'user' => [ 1, 60 ] ];
+		$this->mergeMwGlobalArrayValue( 'wgRateLimits',
+			[ 'move' => [ '&can-bypass' => false, 'user' => [ 1, 60 ] ] ] );
 
 		$id = $this->createPage( $name );
 
@@ -257,12 +255,9 @@ class ApiMoveTest extends ApiTestCase {
 	}
 
 	public function testMoveSubpages() {
-		global $wgNamespacesWithSubpages;
-
 		$name = ucfirst( __FUNCTION__ );
 
-		$this->stashMwGlobals( 'wgNamespacesWithSubpages' );
-		$wgNamespacesWithSubpages[NS_MAIN] = true;
+		$this->mergeMwGlobalArrayValue( 'wgNamespacesWithSubpages', [ NS_MAIN => true ] );
 
 		$pages = [ $name, "$name/1", "$name/2", "Talk:$name", "Talk:$name/1", "Talk:$name/3" ];
 		$ids = [];
