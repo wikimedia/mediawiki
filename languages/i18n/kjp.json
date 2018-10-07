@@ -328,6 +328,7 @@
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> ၏ <strong>$1</strong> အ်ုတင်ၮေဝ်ႋ|<strong>$3</strong> ၏ <strong>$1 - $2</strong> အ်ုတင်ၮေဝ်ႋလ်ုဖး}}",
 	"search-nonefound": "အင်းၰူ့ဆ်ုပ်ုယောဝ်ႋလ်ုၜးဍံင်သယ်လ်ုဖး အ်ုတင်ၮေဝ်လ်ုအှ်ၜးႋ။",
 	"mypreferences": "မ်ုလုဲႋၯင်းလ်ုဖး",
+	"editusergroup": "မ်ုၮဲဖှ်ေ ဆ်ုသုံႋဆာႋကုံရွာဲ",
 	"group-user": "ဆ်ုသုံႋဆာႋလ်ုဖး",
 	"group-autoconfirmed": "အ်ုဆ်ုမာအ်ုလ်ုအ်ု ဆ်ုထီ့ဆာႋထ ဆ်ုသုံႋဆာႋလ်ုဖး",
 	"group-bot": "ဘေါႋလ်ုဖး",

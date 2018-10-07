@@ -2877,6 +2877,7 @@
 	"pageinfo-category-files": "Број датотека",
 	"pageinfo-user-id": "ID корисника",
 	"pageinfo-file-hash": "Hash вредност",
+	"pageinfo-view-protect-log": "Прикажи дневник заштите за ову страницу.",
 	"markaspatrolleddiff": "Означи као патролирано",
 	"markaspatrolledtext": "Означи страницу као патролирану",
 	"markaspatrolledtext-file": "Означи ову верзију датотеке као патролирану",
