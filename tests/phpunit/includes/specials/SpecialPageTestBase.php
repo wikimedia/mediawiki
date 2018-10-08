@@ -28,13 +28,15 @@ abstract class SpecialPageTestBase extends MediaWikiTestCase {
 			ob_end_clean();
 		}
 
-		if ( $obLevel !== $this->obLevel ) {
-			$this->fail(
-				"Test changed output buffer level: was {$this->obLevel} before test, but $obLevel after test."
-			);
+		try {
+			if ( $obLevel !== $this->obLevel ) {
+				$this->fail(
+					"Test changed output buffer level: was {$this->obLevel} before test, but $obLevel after test."
+				);
+			}
+		} finally {
+			parent::tearDown();
 		}
-
-		parent::tearDown();
 	}
 
 	/**
