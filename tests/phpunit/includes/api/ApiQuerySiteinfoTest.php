@@ -325,9 +325,8 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	public function testFileExtensions() {
 		global $wgFileExtensions;
 
-		$this->stashMwGlobals( 'wgFileExtensions' );
 		// Add duplicate
-		$wgFileExtensions[] = 'png';
+		$this->setMwGlobals( 'wgFileExtensions', array_merge( $wgFileExtensions, [ 'png' ] ) );
 
 		$expected = array_map(
 			function ( $val ) {
