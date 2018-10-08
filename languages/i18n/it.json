@@ -2946,6 +2946,7 @@
 	"pageinfo-category-files": "Numero di file",
 	"pageinfo-user-id": "ID utente",
 	"pageinfo-file-hash": "Valore hash",
+	"pageinfo-view-protect-log": "Visualizza il registro di protezione per questa pagina.",
 	"markaspatrolleddiff": "Segna come verificata",
 	"markaspatrolledtext": "Segna questa pagina come verificata",
 	"markaspatrolledtext-file": "Segna questo file come verificato",

@@ -2954,6 +2954,7 @@
 	"pageinfo-category-files": "Número de ficheiros",
 	"pageinfo-user-id": "Identificador do utilizador",
 	"pageinfo-file-hash": "Resumo criptográfico (hash)",
+	"pageinfo-view-protect-log": "Ver o registo de proteções para esta página.",
 	"markaspatrolleddiff": "Marcar como patrulhada",
 	"markaspatrolledtext": "Marcar esta página como patrulhada",
 	"markaspatrolledtext-file": "Marcar esta versão do ficheiro como patrulhada",

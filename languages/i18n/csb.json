@@ -12,7 +12,8 @@
 			"Kirsan",
 			"Ankry",
 			"Matma Rex",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Pòdsztrëchiwùjë lënczi:",
@@ -1248,7 +1249,7 @@
 	"tags-title": "Znakòwniczi",
 	"tags-active-yes": "Jo",
 	"tags-active-no": "Ni",
-	"tags-hitcount": "{{PLURAL:$1|zjinaka|zjinaczi|zjinaków}}",
+	"tags-hitcount": "$1 {{PLURAL:$1|zjinaka|zjinaczi|zjinaków}}",
 	"tags-create-reason": "Przëczëna:",
 	"tags-delete-reason": "Przëczëna:",
 	"tags-activate-reason": "Przëczëna:",
