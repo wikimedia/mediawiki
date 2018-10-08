@@ -1,14 +1,16 @@
 # bluespice/config-mw/overrides (Installer for BlueSpice 3 on top of MediaWiki 1.31)
 
 This repo contains all the implementation _and_ resources/assets that are required for the installer UI
+
+Installation steps for Linux:
 ```
- # get fork of mediawiki
- git clone https://github.com/hallowelt/mediawiki bluespice3
+ # get fork of mediawiki in REL1_31 with depth = 1
+ git clone https://github.com/hallowelt/mediawiki bluespice3 --depth 1 --branch REL1_31
  cd bluespice3
- # switch to 1.31
- git checkout REL1_31
- # init submodules
- git submodule update --init --recursive
+ # init submodules - this populates .git/modules
+ git submodule update --init
+ # submodules might be in detached state
+ git submodule foreach -q --recursive 'git checkout REL1_31'
  # run composer
  composer update
  # copy directories
