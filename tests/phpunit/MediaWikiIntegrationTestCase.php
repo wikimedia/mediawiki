@@ -584,6 +584,17 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$this->tmpFiles = array_merge( $this->tmpFiles, (array)$files );
 	}
 
+	private static function formatErrorLevel( $errorLevel ) {
+		switch ( gettype( $errorLevel ) ) {
+		case 'integer':
+			return '0x' . strtoupper( dechex( $errorLevel ) );
+		case 'NULL':
+			return 'null';
+		default:
+			throw new MWException( 'Unexpected error level type ' . gettype( $errorLevel ) );
+		}
+	}
+
 	protected function tearDown() {
 		global $wgRequest, $wgSQLMode;
 
@@ -649,10 +660,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( $phpErrorLevel !== $this->phpErrorLevel ) {
 			ini_set( 'error_reporting', $this->phpErrorLevel );
 
-			$oldHex = strtoupper( dechex( $this->phpErrorLevel ) );
-			$newHex = strtoupper( dechex( $phpErrorLevel ) );
+			$oldVal = self::formatErrorLevel( $this->phpErrorLevel );
+			$newVal = self::formatErrorLevel( $phpErrorLevel );
 			$message = "PHP error_reporting setting was left dirty: "
-				. "was 0x$oldHex before test, 0x$newHex after test!";
+				. "was $oldVal before test, $newVal after test!";
 
 			$this->fail( $message );
 		}
