@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.1
+ * OOUI v0.29.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-10-04T00:42:40Z
+ * Date: 2018-10-08T22:42:55Z
  */
 ( function ( OO ) {
 
@@ -1538,34 +1538,37 @@ OO.ui.StackLayout.prototype.updateHiddenState = function ( items, selectedItem )
  * and its size is customized with the #menuSize config. The content area will fill all remaining space.
  *
  *     @example
- *     var menuLayout = new OO.ui.MenuLayout( {
- *         position: 'top'
- *     } ),
+ *     var menuLayout,
  *         menuPanel = new OO.ui.PanelLayout( { padded: true, expanded: true, scrollable: true } ),
  *         contentPanel = new OO.ui.PanelLayout( { padded: true, expanded: true, scrollable: true } ),
  *         select = new OO.ui.SelectWidget( {
  *             items: [
  *                 new OO.ui.OptionWidget( {
  *                     data: 'before',
- *                     label: 'Before',
+ *                     label: 'Before'
  *                 } ),
  *                 new OO.ui.OptionWidget( {
  *                     data: 'after',
- *                     label: 'After',
+ *                     label: 'After'
  *                 } ),
  *                 new OO.ui.OptionWidget( {
  *                     data: 'top',
- *                     label: 'Top',
+ *                     label: 'Top'
  *                 } ),
  *                 new OO.ui.OptionWidget( {
  *                     data: 'bottom',
- *                     label: 'Bottom',
+ *                     label: 'Bottom'
  *                 } )
  *              ]
  *         } ).on( 'select', function ( item ) {
  *            menuLayout.setMenuPosition( item.getData() );
  *         } );
  *
+ *     menuLayout = new OO.ui.MenuLayout( {
+ *         position: 'top',
+ *         menuPanel: menuPanel,
+ *         contentPanel: contentPanel
+ *     } )
  *     menuLayout.$menu.append(
  *         menuPanel.$element.append( '<b>Menu panel</b>', select.$element )
  *     );
@@ -1580,9 +1583,10 @@ OO.ui.StackLayout.prototype.updateHiddenState = function ( items, selectedItem )
  * may be omitted.
  *
  *     .oo-ui-menuLayout-menu {
- *         height: 200px;
  *         width: 200px;
+ *         height: 200px;
  *     }
+ *
  *     .oo-ui-menuLayout-content {
  *         top: 200px;
  *         left: 200px;
@@ -1595,6 +1599,8 @@ OO.ui.StackLayout.prototype.updateHiddenState = function ( items, selectedItem )
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @cfg {OO.ui.PanelLayout} [menuPanel] Menu panel
+ * @cfg {OO.ui.PanelLayout} [contentPanel] Content panel
  * @cfg {boolean} [expanded=true] Expand the layout to fill the entire parent element.
  * @cfg {boolean} [showMenu=true] Show menu
  * @cfg {string} [menuPosition='before'] Position of menu: `top`, `after`, `bottom` or `before`
@@ -1610,6 +1616,8 @@ OO.ui.MenuLayout = function OoUiMenuLayout( config ) {
 	// Parent constructor
 	OO.ui.MenuLayout.parent.call( this, config );
 
+	this.menuPanel = null;
+	this.contentPanel = null;
 	this.expanded = !!config.expanded;
 	/**
 	 * Menu DOM node
@@ -1634,6 +1642,12 @@ OO.ui.MenuLayout = function OoUiMenuLayout( config ) {
 		this.$element.addClass( 'oo-ui-menuLayout-expanded' );
 	} else {
 		this.$element.addClass( 'oo-ui-menuLayout-static' );
+	}
+	if ( config.menuPanel ) {
+		this.setMenuPanel( config.menuPanel );
+	}
+	if ( config.contentPanel ) {
+		this.setContentPanel( config.contentPanel );
 	}
 	this.setMenuPosition( config.menuPosition );
 	this.toggleMenu( config.showMenu );
@@ -1704,6 +1718,42 @@ OO.ui.MenuLayout.prototype.getMenuPosition = function () {
 };
 
 /**
+ * Set the menu panel.
+ *
+ * @param {OO.ui.PanelLayout} menuPanel Menu panel
+ */
+OO.ui.MenuLayout.prototype.setMenuPanel = function ( menuPanel ) {
+	this.menuPanel = menuPanel;
+	this.$menu.append( this.menuPanel.$element );
+};
+
+/**
+ * Set the content panel.
+ *
+ * @param {OO.ui.PanelLayout} menuPanel Content panel
+ */
+OO.ui.MenuLayout.prototype.setContentPanel = function ( contentPanel ) {
+	this.contentPanel = contentPanel;
+	this.$content.append( this.contentPanel.$element );
+};
+
+/**
+ * Clear the menu panel.
+ */
+OO.ui.MenuLayout.prototype.clearMenuPanel = function () {
+	this.menuPanel = null;
+	this.$menu.empty();
+};
+
+/**
+ * Clear the content panel.
+ */
+OO.ui.MenuLayout.prototype.clearContentPanel = function () {
+	this.contentPanel = null;
+	this.$content.empty();
+};
+
+/**
  * BookletLayouts contain {@link OO.ui.PageLayout page layouts} as well as
  * an {@link OO.ui.OutlineSelectWidget outline} that allows users to easily navigate
  * through the pages and select which one to display. By default, only one page is
@@ -1768,7 +1818,7 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 		continuous: !!config.continuous,
 		expanded: this.expanded
 	} );
-	this.$content.append( this.stackLayout.$element );
+	this.setContentPanel( this.stackLayout );
 	this.autoFocus = config.autoFocus === undefined || !!config.autoFocus;
 	this.outlineVisible = false;
 	this.outlined = !!config.outlined;
@@ -1780,7 +1830,7 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 			expanded: this.expanded,
 			scrollable: true
 		} );
-		this.$menu.append( this.outlinePanel.$element );
+		this.setMenuPanel( this.outlinePanel );
 		this.outlineVisible = true;
 		if ( this.editable ) {
 			this.outlineControlsWidget = new OO.ui.OutlineControlsWidget(
@@ -2309,7 +2359,7 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
  *
  *     var index = new OO.ui.IndexLayout();
  *
- *     index.addTabPanels ( [ tabPanel1, tabPanel2 ] );
+ *     index.addTabPanels( [ tabPanel1, tabPanel2 ] );
  *     $( 'body' ).append( index.$element );
  *
  * @class
@@ -2336,14 +2386,14 @@ OO.ui.IndexLayout = function OoUiIndexLayout( config ) {
 		continuous: !!config.continuous,
 		expanded: this.expanded
 	} );
-	this.$content.append( this.stackLayout.$element );
+	this.setContentPanel( this.stackLayout );
 	this.autoFocus = config.autoFocus === undefined || !!config.autoFocus;
 
 	this.tabSelectWidget = new OO.ui.TabSelectWidget();
 	this.tabPanel = new OO.ui.PanelLayout( {
 		expanded: this.expanded
 	} );
-	this.$menu.append( this.tabPanel.$element );
+	this.setMenuPanel( this.tabPanel );
 
 	this.toggleMenu( true );
 

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.1
+ * OOUI v0.29.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-10-04T00:42:40Z
+ * Date: 2018-10-08T22:42:55Z
  */
 ( function ( OO ) {
 
@@ -7491,7 +7491,7 @@ OO.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 			case OO.ui.Keys.RIGHT:
 				// Do nothing if a text field is associated, arrow keys will be handled natively
 				if ( !this.$input ) {
-					OO.ui.MenuSelectWidget.parent.prototype.onKeyDown.call( this, e );
+					OO.ui.MenuSelectWidget.parent.prototype.onDocumentKeyDown.call( this, e );
 				}
 				break;
 			case OO.ui.Keys.ESCAPE:
@@ -7507,7 +7507,7 @@ OO.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 				}
 				break;
 			default:
-				OO.ui.MenuSelectWidget.parent.prototype.onKeyDown.call( this, e );
+				OO.ui.MenuSelectWidget.parent.prototype.onDocumentKeyDown.call( this, e );
 				return;
 		}
 	}
@@ -7583,7 +7583,7 @@ OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
  */
 OO.ui.MenuSelectWidget.prototype.bindDocumentKeyDownListener = function () {
 	if ( this.$input ) {
-		this.$input.on( 'keydown', this.onKeyDownHandler );
+		this.$input.on( 'keydown', this.onDocumentKeyDownHandler );
 	} else {
 		OO.ui.MenuSelectWidget.parent.prototype.bindDocumentKeyDownListener.call( this );
 	}
@@ -7594,7 +7594,7 @@ OO.ui.MenuSelectWidget.prototype.bindDocumentKeyDownListener = function () {
  */
 OO.ui.MenuSelectWidget.prototype.unbindDocumentKeyDownListener = function () {
 	if ( this.$input ) {
-		this.$input.off( 'keydown', this.onKeyDownHandler );
+		this.$input.off( 'keydown', this.onDocumentKeyDownHandler );
 	} else {
 		OO.ui.MenuSelectWidget.parent.prototype.unbindDocumentKeyDownListener.call( this );
 	}
