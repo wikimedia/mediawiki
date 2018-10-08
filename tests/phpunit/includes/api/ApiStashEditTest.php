@@ -254,10 +254,8 @@ class ApiStashEditTest extends ApiTestCase {
 	}
 
 	public function testPingLimiter() {
-		global $wgRateLimits;
-
-		$this->stashMwGlobals( 'wgRateLimits' );
-		$wgRateLimits['stashedit'] = [ '&can-bypass' => false, 'user' => [ 1, 60 ] ];
+		$this->mergeMwGlobalArrayValue( 'wgRateLimits',
+			[ 'stashedit' => [ '&can-bypass' => false, 'user' => [ 1, 60 ] ] ] );
 
 		$this->doStash( [ 'text' => 'A' ] );
 

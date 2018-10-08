@@ -26,17 +26,13 @@ class ApiUserrightsTest extends ApiTestCase {
 	 * @param array|bool $remove Groups bureaucrats should be allowed to remove, true for all
 	 */
 	protected function setPermissions( $add = [], $remove = [] ) {
-		global $wgAddGroups, $wgRemoveGroups;
-
 		$this->setGroupPermissions( 'bureaucrat', 'userrights', false );
 
 		if ( $add ) {
-			$this->stashMwGlobals( 'wgAddGroups' );
-			$wgAddGroups['bureaucrat'] = $add;
+			$this->mergeMwGlobalArrayValue( 'wgAddGroups', [ 'bureaucrat' => $add ] );
 		}
 		if ( $remove ) {
-			$this->stashMwGlobals( 'wgRemoveGroups' );
-			$wgRemoveGroups['bureaucrat'] = $remove;
+			$this->mergeMwGlobalArrayValue( 'wgRemoveGroups', [ 'bureaucrat' => $remove ] );
 		}
 	}
 
@@ -241,12 +237,9 @@ class ApiUserrightsTest extends ApiTestCase {
 	}
 
 	public function testWithoutTagPermission() {
-		global $wgGroupPermissions;
-
 		ChangeTags::defineTag( 'custom tag' );
 
-		$this->stashMwGlobals( 'wgGroupPermissions' );
-		$wgGroupPermissions['user']['applychangetags'] = false;
+		$this->setGroupPermissions( 'user', 'applychangetags', false );
 
 		$this->doFailedRightsChange(
 			'You do not have permission to apply change tags along with your changes.',

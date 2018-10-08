@@ -9,14 +9,20 @@ class ApiFormatJsonTest extends ApiFormatTestBase {
 	protected $printerName = 'json';
 
 	private static function addFormatVersion( $format, $arr ) {
-		foreach ( $arr as &$p ) {
-			if ( !isset( $p[2] ) ) {
-				$p[2] = [ 'formatversion' => $format ];
-			} else {
-				$p[2]['formatversion'] = $format;
+		$ret = [];
+		foreach ( $arr as $val ) {
+			if ( !isset( $val[2] ) ) {
+				$val[2] = [];
+			}
+			$val[2]['formatversion'] = $format;
+			$ret[] = $val;
+			if ( $format === 2 ) {
+				// Add a test for 'latest' as well
+				$val[2]['formatversion'] = 'latest';
+				$ret[] = $val;
 			}
 		}
-		return $arr;
+		return $ret;
 	}
 
 	public static function provideGeneralEncoding() {
@@ -123,6 +129,7 @@ class ApiFormatJsonTest extends ApiFormatTestBase {
 				// Cross-domain mangling
 				[ [ '< Cross-Domain-Policy >' ], '["\u003C Cross-Domain-Policy >"]' ],
 			] )
+			// @todo Test rawfm
 		);
 	}
 

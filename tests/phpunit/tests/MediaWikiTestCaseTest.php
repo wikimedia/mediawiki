@@ -72,6 +72,7 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 	 * @covers MediaWikiTestCase::tearDown
 	 */
 	public function testStashedGlobalsAreRestoredOnTearDown( $globalKey, $newValue ) {
+		$this->hideDeprecated( 'MediaWikiTestCase::stashMwGlobals' );
 		$this->stashMwGlobals( $globalKey );
 		$GLOBALS[$globalKey] = $newValue;
 		$this->assertEquals(
