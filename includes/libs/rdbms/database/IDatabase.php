@@ -394,7 +394,8 @@ interface IDatabase {
 	public function fetchRow( $res );
 
 	/**
-	 * Get the number of rows in a result object
+	 * Get the number of rows in a query result. If the query did not return
+	 * any rows (for example, if it was a write query), this returns zero.
 	 *
 	 * @param mixed $res A SQL result
 	 * @return int
