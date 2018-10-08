@@ -17,7 +17,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 
 		// Ignore "headers already sent" warnings during this test
 		set_error_handler( function ( $errno, $errstr ) use ( &$warnings ) {
-			if ( preg_match( '/headers already sent/', $errstr ) ) {
+			if ( preg_match( '/[hH]eaders already sent/', $errstr ) ) {
 				return true;
 			}
 			return false;
