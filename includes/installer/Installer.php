@@ -336,14 +336,16 @@ abstract class Installer {
 	 * The messages will be in wikitext format, which will be converted to an
 	 * output format such as HTML or text before being sent to the user.
 	 * @param string $msg
+	 * @param mixed ...$params
 	 */
-	abstract public function showMessage( $msg /*, ... */ );
+	abstract public function showMessage( $msg, ...$params );
 
 	/**
 	 * Same as showMessage(), but for displaying errors
 	 * @param string $msg
+	 * @param mixed ...$params
 	 */
-	abstract public function showError( $msg /*, ... */ );
+	abstract public function showError( $msg, ...$params );
 
 	/**
 	 * Show a message to the installing user by using a Status object

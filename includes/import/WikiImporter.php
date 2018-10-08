@@ -120,10 +120,7 @@ class WikiImporter {
 		wfDebug( "IMPORT: $data\n" );
 	}
 
-	public function notice( $msg /*, $param, ...*/ ) {
-		$params = func_get_args();
-		array_shift( $params );
-
+	public function notice( $msg, ...$params ) {
 		if ( is_callable( $this->mNoticeCallback ) ) {
 			call_user_func( $this->mNoticeCallback, $msg, $params );
 		} else { # No ImportReporter -> CLI
@@ -430,8 +427,7 @@ class WikiImporter {
 			}
 		}
 
-		$args = func_get_args();
-		return Hooks::run( 'AfterImportPage', $args );
+		return Hooks::run( 'AfterImportPage', func_get_args() );
 	}
 
 	/**
@@ -486,8 +482,7 @@ class WikiImporter {
 	private function pageOutCallback( $title, $foreignTitle, $revCount,
 			$sucCount, $pageInfo ) {
 		if ( isset( $this->mPageOutCallback ) ) {
-			$args = func_get_args();
-			call_user_func_array( $this->mPageOutCallback, $args );
+			call_user_func_array( $this->mPageOutCallback, func_get_args() );
 		}
 	}
 

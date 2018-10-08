@@ -89,8 +89,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->getMock();
 		$mock->expects( $this->any() )
 			->method( 'makeKey' )
-			->will( $this->returnCallback( function () {
-				return implode( ':', func_get_args() );
+			->will( $this->returnCallback( function ( ...$args ) {
+				return implode( ':', $args );
 			} ) );
 		return $mock;
 	}

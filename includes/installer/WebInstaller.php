@@ -374,13 +374,14 @@ class WebInstaller extends Installer {
 	 * Show an error message in a box. Parameters are like wfMessage(), or
 	 * alternatively, pass a Message object in.
 	 * @param string|Message $msg
+	 * @param mixed ...$params
 	 */
-	public function showError( $msg /*...*/ ) {
+	public function showError( $msg, ...$params ) {
 		if ( !( $msg instanceof Message ) ) {
-			$args = func_get_args();
-			array_shift( $args );
-			$args = array_map( 'htmlspecialchars', $args );
-			$msg = wfMessage( $msg, $args );
+			$msg = wfMessage(
+				$msg,
+				array_map( 'htmlspecialchars', $params )
+			);
 		}
 		$text = $msg->useDatabase( false )->plain();
 		$this->output->addHTML( $this->getErrorBox( $text ) );
@@ -675,9 +676,7 @@ class WebInstaller extends Installer {
 	 * @param string $msg
 	 * @return string
 	 */
-	public function getHelpBox( $msg /*, ... */ ) {
-		$args = func_get_args();
-		array_shift( $args );
+	public function getHelpBox( $msg, ...$args ) {
 		$args = array_map( 'htmlspecialchars', $args );
 		$text = wfMessage( $msg, $args )->useDatabase( false )->plain();
 		$html = $this->parse( $text, true );
@@ -693,10 +692,10 @@ class WebInstaller extends Installer {
 	/**
 	 * Output a help box.
 	 * @param string $msg Key for wfMessage()
+	 * @param mixed ...$params
 	 */
-	public function showHelpBox( $msg /*, ... */ ) {
-		$args = func_get_args();
-		$html = $this->getHelpBox( ...$args );
+	public function showHelpBox( $msg, ...$params ) {
+		$html = $this->getHelpBox( $msg, ...$params );
 		$this->output->addHTML( $html );
 	}
 
@@ -705,12 +704,11 @@ class WebInstaller extends Installer {
 	 * Output looks like a list.
 	 *
 	 * @param string $msg
+	 * @param mixed ...$params
 	 */
-	public function showMessage( $msg /*, ... */ ) {
-		$args = func_get_args();
-		array_shift( $args );
+	public function showMessage( $msg, ...$params ) {
 		$html = '<div class="config-message">' .
-			$this->parse( wfMessage( $msg, $args )->useDatabase( false )->plain() ) .
+			$this->parse( wfMessage( $msg, $params )->useDatabase( false )->plain() ) .
 			"</div>\n";
 		$this->output->addHTML( $html );
 	}
