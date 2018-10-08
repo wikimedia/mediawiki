@@ -21,6 +21,7 @@
  * @ingroup JobQueue
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 
 /**
  * Job to update link tables for pages
@@ -134,6 +135,8 @@ class RefreshLinksJob extends Job {
 		$services = MediaWikiServices::getInstance();
 		$stats = $services->getStatsdDataFactory();
 		$lbFactory = $services->getDBLoadBalancerFactory();
+		$revisionStore = $services->getRevisionStore();
+		$renderer = $services->getRevisionRenderer();
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
 		$page = WikiPage::factory( $title );
@@ -156,20 +159,20 @@ class RefreshLinksJob extends Job {
 		if ( !empty( $this->params['triggeringRevisionId'] ) ) {
 			// Fetch the specified revision; lockAndGetLatest() below detects if the page
 			// was edited since and aborts in order to avoid corrupting the link tables
-			$revision = Revision::newFromId(
-				$this->params['triggeringRevisionId'],
+			$revision = $revisionStore->getRevisionById(
+				(int)$this->params['triggeringRevisionId'],
 				Revision::READ_LATEST
 			);
 		} else {
 			// Fetch current revision; READ_LATEST reduces lockAndGetLatest() check failures
-			$revision = Revision::newFromTitle( $title, false, Revision::READ_LATEST );
+			$revision = $revisionStore->getRevisionByTitle( $title, 0, Revision::READ_LATEST );
 		}
 
 		if ( !$revision ) {
 			$stats->increment( 'refreshlinks.rev_not_found' );
 			$this->setLastError( "Revision not found for {$title->getPrefixedDBkey()}" );
 			return false; // just deleted?
-		} elseif ( $revision->getId() != $latest || $revision->getPage() !== $page->getId() ) {
+		} elseif ( $revision->getId() != $latest || $revision->getPageId() !== $page->getId() ) {
 			// Do not clobber over newer updates with older ones. If all jobs where FIFO and
 			// serialized, it would be OK to update links based on older revisions since it
 			// would eventually get to the latest. Since that is not the case (by design),
@@ -177,12 +180,6 @@ class RefreshLinksJob extends Job {
 			$stats->increment( 'refreshlinks.rev_not_current' );
 			$this->setLastError( "Revision {$revision->getId()} is not current" );
 			return false;
-		}
-
-		$content = $revision->getContent( Revision::RAW );
-		if ( !$content ) {
-			// If there is no content, pretend the content is empty
-			$content = $revision->getContentHandler()->makeEmptyContent();
 		}
 
 		$parserOutput = false;
@@ -228,17 +225,34 @@ class RefreshLinksJob extends Job {
 			$stats->increment( 'refreshlinks.parser_cached' );
 		} else {
 			$start = microtime( true );
+
+			$checkCache = $page->shouldCheckParserCache( $parserOptions, $revision->getId() );
+
 			// Revision ID must be passed to the parser output to get revision variables correct
-			$parserOutput = $content->getParserOutput(
-				$title, $revision->getId(), $parserOptions, false );
-			$elapsed = microtime( true ) - $start;
+			$renderedRevision = $renderer->getRenderedRevision(
+				$revision,
+				$parserOptions,
+				null,
+				[
+					// use master, for consistency with the getRevisionByTitle call above.
+					'use-master' => true,
+					// bypass audience checks, since we know that this is the current revision.
+					'audience' => RevisionRecord::RAW
+				]
+			);
+			$parserOutput = $renderedRevision->getRevisionParserOutput(
+				// HTML is only needed if the output is to be placed in the parser cache
+				[ 'generate-html' => $checkCache ]
+			);
+
 			// If it took a long time to render, then save this back to the cache to avoid
 			// wasted CPU by other apaches or job runners. We don't want to always save to
 			// cache as this can cause high cache I/O and LRU churn when a template changes.
-			if ( $elapsed >= self::PARSE_THRESHOLD_SEC
-				&& $page->shouldCheckParserCache( $parserOptions, $revision->getId() )
-				&& $parserOutput->isCacheable()
-			) {
+			$elapsed = microtime( true ) - $start;
+
+			$parseThreshold = $this->params['parseThreshold'] ?? self::PARSE_THRESHOLD_SEC;
+
+			if ( $checkCache && $elapsed >= $parseThreshold && $parserOutput->isCacheable() ) {
 				$ctime = wfTimestamp( TS_MW, (int)$start ); // cache time
 				$services->getParserCache()->save(
 					$parserOutput, $page, $parserOptions, $ctime, $revision->getId()
