@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Bjankuloski06",
-			"Macofe"
+			"Macofe",
+			"Vlad5250"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документација]]\n*  [[mw:API:FAQ|ЧПП]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Поштенски список]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Соопштенија за Извршникот]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Грешки и барања]\n</div>\n<strong>Статус:</strong> Сите ставки на страницава би требало да работат, но Извршникот сепак е во активна разработка, што значи дека може да се смени во секое време. Објавите за измени можете да ги дознавате ако се пријавите на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ поштенскиот список „the mediawiki-api-announce“].\n\n<strong>Погрешни барања:</strong> Кога Извршникот ќе добие погрешни барања, ќе се испрати HTTP-заглавие со клучот „MediaWiki-API-Error“ и потоа на вредностите на заглавието и шифрата на грешката што ќе се појават ќе им биде зададена истата вредност. ПОвеќе информации ќе најдете на  [[mw:API:Errors_and_warnings|Извршник: Грешки и предупредувања]].",
@@ -422,8 +423,8 @@
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(нема опис)</span>",
 	"api-help-examples": "{{PLURAL:$1|Пример|Примери}}:",
 	"api-help-permissions": "{{PLURAL:$1|Дозвола|Дозволи}}:",
-	"api-help-permissions-granted-to": "{{PLURAL:$1|Доделена на}: $2",
-	"api-help-right-apihighlimits": "Уоптреба на повисоки ограничувања за приложни барања (бавни барања: $1; брзи барања: $2). Ограничувањата за бавни барања важат и за повеќевредносни параметри.",
+	"api-help-permissions-granted-to": "{{PLURAL:$1|Доделена на}}: $2",
+	"api-help-right-apihighlimits": "Употреба на повисоки ограничувања за приложни барања (бавни барања: $1; брзи барања: $2). Ограничувањата за бавни барања важат и за повеќевредносни параметри.",
 	"apierror-offline": "Не можев да продолжам поради проблем при поврзувањето со мрежата. Проверете дали сте поврзани со семрежјето и обидете се повторно.",
 	"apierror-timeout": "Опслужувачот не одговори во очекуваното време.",
 	"api-credits-header": "Признанија",
