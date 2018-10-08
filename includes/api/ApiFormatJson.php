@@ -81,7 +81,9 @@ class ApiFormatJson extends ApiFormatBase {
 
 				default:
 					// Should have been caught during parameter validation
+					// @codeCoverageIgnoreStart
 					$this->dieDebug( __METHOD__, 'Unknown value for \'formatversion\'' );
+					// @codeCoverageIgnoreEnd
 			}
 		}
 		$data = $this->getResult()->getResultData( null, $transform );
