@@ -1,4 +1,11 @@
 # OOUI Release History
+## v0.29.2 / 2018-10-08
+### Code
+* Follow-up Ib00d6720: Fix KeyDown listener name in MenuSelectWidget (Ed Sanders)
+* Pass panels to MenuLayout (Ed Sanders)
+* demos: Fix selected values in MenuTagMultiselectWidget demo (Bartosz Dziewoński)
+
+
 ## v0.29.1 / 2018-10-03
 ### Styles
 * TabOptionWidget: Increase contrast between normal & selected states (Volker E.)
