@@ -69,10 +69,15 @@ TEXT
 			file_get_contents( __DIR__ . '/foreign-resources.yaml' )
 		);
 		$module = $this->getArg( 1, 'all' );
-		foreach ( $registry as $moduleName => $info ) {
-			if ( $module !== 'all' && $moduleName !== $module ) {
-				continue;
-			}
+		if ( $module === 'all' ) {
+			$modules = $registry;
+		} elseif ( isset( $registry[ $module ] ) ) {
+			$modules = [ $module => $registry[ $module ] ];
+		} else {
+			$this->fatalError( 'Unknown module name.' );
+		}
+
+		foreach ( $modules as $moduleName => $info ) {
 			$this->verbose( "\n### {$moduleName}\n\n" );
 			$destDir = "{$IP}/resources/lib/$moduleName";
 

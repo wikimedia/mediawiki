@@ -165,6 +165,13 @@ interface IDatabase {
 	public function explicitTrxActive();
 
 	/**
+	 * Assert that all explicit transactions or atomic sections have been closed.
+	 * @throws DBTransactionError
+	 * @since 1.32
+	 */
+	public function assertNoOpenTransactions();
+
+	/**
 	 * Get/set the table prefix.
 	 * @param string|null $prefix The table prefix to set, or omitted to leave it unchanged.
 	 * @return string The previous table prefix.
