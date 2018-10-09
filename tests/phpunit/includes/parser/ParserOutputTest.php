@@ -143,37 +143,6 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$this->assertNotContains( 'class="foo bar"', $text );
 	}
 
-	public function testT203716() {
-		// simulate extra wrapping from old parser cache
-		$out = new ParserOutput( '<div class="mw-parser-output">Foo</div>' );
-		$out = unserialize( serialize( $out ) );
-
-		$plainText = $out->getText( [ 'unwrap' => true ] );
-		$wrappedText = $out->getText( [ 'unwrap' => false ] );
-		$wrappedText2 = $out->getText( [ 'wrapperDivClass' => 'mw-parser-output' ] );
-
-		$this->assertNotContains( '<div', $plainText );
-		$this->assertContains( '<div', $wrappedText );
-		$this->assertStringNotMatchesFormat( '<div%s<div%s', $wrappedText );
-		$this->assertContains( '<div', $wrappedText2 );
-		$this->assertStringNotMatchesFormat( '<div%s<div%s', $wrappedText2 );
-
-		// simulate ParserOuput creation by new parser code
-		$out = new ParserOutput( 'Foo' );
-		$out->addWrapperDivClass( 'mw-parser-outout' );
-		$out = unserialize( serialize( $out ) );
-
-		$plainText = $out->getText( [ 'unwrap' => true ] );
-		$wrappedText = $out->getText( [ 'unwrap' => false ] );
-		$wrappedText2 = $out->getText( [ 'wrapperDivClass' => 'mw-parser-output' ] );
-
-		$this->assertNotContains( '<div', $plainText );
-		$this->assertContains( '<div', $wrappedText );
-		$this->assertStringNotMatchesFormat( '<div%s<div%s', $wrappedText );
-		$this->assertContains( '<div', $wrappedText2 );
-		$this->assertStringNotMatchesFormat( '<div%s<div%s', $wrappedText2 );
-	}
-
 	/**
 	 * @covers ParserOutput::getText
 	 * @dataProvider provideGetText
