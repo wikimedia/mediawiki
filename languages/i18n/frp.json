@@ -9,7 +9,8 @@
 			"Soul Train",
 			"Macofe",
 			"Matma Rex",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Solegnér los lims :",
@@ -1100,8 +1101,10 @@
 	"right-editcontentmodel": "Changiér lo modèlo de contegnu d’una pâge",
 	"right-editinterface": "Changiér l’entredoux utilisator",
 	"right-editusercss": "Changiér los fichiérs CSS d’ôtros utilisators",
+	"right-edituserjson": "Changiér los fichiérs JSON d’ôtros utilisators",
 	"right-edituserjs": "Changiér los fichiérs JavaScript d’ôtros utilisators",
 	"right-editmyusercss": "Changiér los voutros fichiérs CSS utilisator",
+	"right-editmyuserjson": "Changiér los voutros fichiérs JSON utilisator",
 	"right-editmyuserjs": "Changiér los voutros fichiérs JavaScript utilisator",
 	"right-viewmywatchlist": "Vêre la voutra lista de gouârda",
 	"right-editmywatchlist": "Changiér la voutra lista de gouârda. Notâd que quârques accions apondront adés de pâges sen cél drêt.",

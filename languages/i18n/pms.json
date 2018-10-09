@@ -20,7 +20,8 @@
 			"Matma Rex",
 			"Fitoschido",
 			"Paolo Castellina",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Anliure con la sotliniadura",
@@ -1057,8 +1058,10 @@
 	"right-editcontentmodel": "Modifiché ël model ëd contnù ëd na pàgina",
 	"right-editinterface": "Modifiché l'antërfacia utent",
 	"right-editusercss": "Modifiché j'archivi CSS d'àutri utent",
+	"right-edituserjson": "Modifiché j'archivi JSON d'àutri utent",
 	"right-edituserjs": "Modifiché j'archivi JavaScript d'àutri utent",
 	"right-editmyusercss": "Modifiché ij sò archivi CSS utent",
+	"right-editmyuserjson": "Modifiché ij sò archivi JSON utent",
 	"right-editmyuserjs": "Modifiché ij sò archivi JavaScript utent",
 	"right-viewmywatchlist": "Vëdde la lista ëd lòn ch'as ten sot-euj",
 	"right-editmywatchlist": "Modifiché la lista ëd lòn ch'as ten sot-euj. Ch'a nòta che chèiche assion a giontran ancora dle pàgine sensa 's drit.",
