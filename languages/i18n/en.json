@@ -1300,7 +1300,7 @@
 	"grant-delete": "Delete pages, revisions, and log entries",
 	"grant-editinterface": "Edit the MediaWiki namespace and sitewide/user JSON",
 	"grant-editmycssjs": "Edit your user CSS/JSON/JavaScript",
-	"grant-editmyoptions": "Edit your user preferences",
+	"grant-editmyoptions": "Edit your user preferences and JSON configuration",
 	"grant-editmywatchlist": "Edit your watchlist",
 	"grant-editsiteconfig": "Edit sitewide and user CSS/JS",
 	"grant-editpage": "Edit existing pages",
