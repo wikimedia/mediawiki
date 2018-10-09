@@ -1524,13 +1524,21 @@ MESSAGE;
 	 *
 	 * @param array $configuration List of configuration values keyed by variable name
 	 * @return string JavaScript code
+	 * @throws Exception
 	 */
 	public static function makeConfigSetScript( array $configuration ) {
-		return Xml::encodeJsCall(
+		$js = Xml::encodeJsCall(
 			'mw.config.set',
 			[ $configuration ],
 			self::inDebugMode()
 		);
+		if ( $js === false ) {
+			throw new Exception(
+				'JSON serialization of config data failed. ' .
+				'This usually means the config data is not valid UTF-8.'
+			);
+		}
+		return $js;
 	}
 
 	/**
