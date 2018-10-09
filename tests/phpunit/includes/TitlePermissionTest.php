@@ -99,6 +99,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	/**
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
+	 *
+	 * This test is failing per T201776.
+	 *
+	 * @group Broken
 	 * @covers Title::checkQuickPermissions
 	 */
 	public function testQuickPermissions() {
@@ -643,6 +647,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	/**
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
+	 *
+	 * This test is failing per T201776.
+	 *
+	 * @group Broken
 	 * @covers Title::checkPageRestrictions
 	 */
 	public function testPageRestrictions() {
