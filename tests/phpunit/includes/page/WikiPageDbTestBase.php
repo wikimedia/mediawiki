@@ -808,6 +808,14 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 				"#REDIRECT [[hello world]]",
 				"Hello world"
 			],
+			// The below added to protect against Media namespace
+			// redirects which throw a fatal: (T203942)
+			[
+				'WikiPageTest_testGetRedirectTarget_3',
+				CONTENT_MODEL_WIKITEXT,
+				"#REDIRECT [[Media:hello_world]]",
+				"File:Hello world"
+			],
 		];
 	}
 
