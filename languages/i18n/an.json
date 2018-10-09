@@ -16,7 +16,8 @@
 			"MarcoAurelio",
 			"Matma Rex",
 			"Fitoschido",
-			"ديفيد"
+			"ديفيد",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Subrayar os vinclos:",
@@ -872,6 +873,7 @@
 	"right-editprotected": "Editar pachinas protechitas (sin de protección en cascada)",
 	"right-editinterface": "Editar a interficie d'usuario",
 	"right-editusercss": "Editar os fichers CSS d'atros usuarios",
+	"right-edituserjson": "Editar os fichers JSON d'atros usuarios",
 	"right-edituserjs": "Editar os fichers JS d'atros usuarios",
 	"right-rollback": "Desfer a escape as edicions d'o zaguer usuario que cambió una pachina",
 	"right-markbotedits": "Sinyalar as edicions esfeitas como edicions de bot",

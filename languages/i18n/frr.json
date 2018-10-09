@@ -13,7 +13,8 @@
 			"Matma Rex",
 			"Nemo bis",
 			"Fitoschido",
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Ferwisangen onerstrik:",
@@ -1149,8 +1150,10 @@
 	"right-editcontentmodel": "Det model faan det sidj bewerke",
 	"right-editinterface": "Brüker-skak bewerke",
 	"right-editusercss": "CSS-datein faan ööder brükern bewerke",
+	"right-edituserjson": "JSON-datein faan ööder brükern bewerke",
 	"right-edituserjs": "JavaScript-datein faan ööder brükern bewerke",
 	"right-editmyusercss": "Aanj CSS-datein bewerke",
+	"right-editmyuserjson": "Aanj JSON-datein bewerke",
 	"right-editmyuserjs": "Aanj JavaScript-datein bewerke",
 	"right-viewmywatchlist": "Sidjen uunluke, diar ik uun't uug behual wal",
 	"right-editmywatchlist": "Sidjen bewerke, diar dü uun't uug behual wel. Enkelt aktjuunen kön diar wat saner din dun feranre.",

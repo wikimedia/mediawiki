@@ -14,7 +14,8 @@
 			"Kolega2357",
 			"Servien",
 			"Macofe",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Verwies ünnerstrieken",
@@ -826,6 +827,7 @@
 	"right-editprotected": "Schuulte Sieden ännern (ahn Kaskadensperr)",
 	"right-editinterface": "Systemnarichten ännern",
 	"right-editusercss": "Anner Lüüd ehr CSS-Datein ännern",
+	"right-edituserjson": "Anner Lüüd ehr JSON-Datein ännern",
 	"right-edituserjs": "Anner Lüüd ehr JS-Datein ännern",
 	"right-rollback": "Sieden gau trüchdreihn",
 	"right-markbotedits": "Trüchdreihte Ännern as Bot-Ännern marken",
