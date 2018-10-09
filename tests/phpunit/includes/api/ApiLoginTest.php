@@ -59,6 +59,49 @@ class ApiLoginTest extends ApiTestCase {
 	}
 
 	/**
+	 * @dataProvider provideEnableBotPasswords
+	 */
+	public function testDeprecatedUserLogin( $enableBotPasswords ) {
+		$this->setMwGlobals( 'wgEnableBotPasswords', $enableBotPasswords );
+
+		$user = $this->getTestUser();
+
+		$ret = $this->doApiRequest( [
+			'action' => 'login',
+			'lgname' => $user->getUser()->getName(),
+		] );
+
+		$this->assertSame(
+			[ 'warnings' => ApiErrorFormatter::stripMarkup( wfMessage(
+				'apiwarn-deprecation-login-token' )->text() ) ],
+			$ret[0]['warnings']['login']
+		);
+		$this->assertSame( 'NeedToken', $ret[0]['login']['result'] );
+
+		$ret = $this->doApiRequest( [
+			'action' => 'login',
+			'lgtoken' => $ret[0]['login']['token'],
+			'lgname' => $user->getUser()->getName(),
+			'lgpassword' => $user->getPassword(),
+		], $ret[2] );
+
+		$this->assertSame(
+			[ 'warnings' => ApiErrorFormatter::stripMarkup( wfMessage(
+				'apiwarn-deprecation-login-' . ( $enableBotPasswords ? '' : 'no' ) . 'botpw' )
+				->text() ) ],
+			$ret[0]['warnings']['login']
+		);
+		$this->assertSame(
+			[
+				'result' => 'Success',
+				'lguserid' => $user->getUser()->getId(),
+				'lgusername' => $user->getUser()->getName(),
+			],
+			$ret[0]['login']
+		);
+	}
+
+	/**
 	 * Attempts to log in with the given name and password, retrieves the returned token, and makes
 	 * a second API request to actually log in with the token.
 	 *
@@ -69,16 +112,17 @@ class ApiLoginTest extends ApiTestCase {
 	 */
 	private function doUserLogin( $name, $password, array $params = [] ) {
 		$ret = $this->doApiRequest( [
-			'action' => 'login',
-			'lgname' => $name,
+			'action' => 'query',
+			'meta' => 'tokens',
+			'type' => 'login',
 		] );
 
-		$this->assertSame( 'NeedToken', $ret[0]['login']['result'] );
+		$this->assertArrayNotHasKey( 'warnings', $ret );
 
 		return $this->doApiRequest( array_merge(
 			[
 				'action' => 'login',
-				'lgtoken' => $ret[0]['login']['token'],
+				'lgtoken' => $ret[0]['query']['tokens']['logintoken'],
 				'lgname' => $name,
 				'lgpassword' => $password,
 			], $params
