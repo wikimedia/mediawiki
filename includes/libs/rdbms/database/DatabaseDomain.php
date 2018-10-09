@@ -77,7 +77,7 @@ class DatabaseDomain {
 		} elseif ( count( $parts ) == 3 ) {
 			list( $database, $schema, $prefix ) = $parts;
 		} else {
-			throw new InvalidArgumentException( "Domain has too few or too many parts." );
+			throw new InvalidArgumentException( "Domain '$domain' has too few or too many parts." );
 		}
 
 		if ( $database === '' ) {
