@@ -29,6 +29,8 @@
 				height: 1.5em;
 				// By eye, this is centered horizontally for the color circle
 				margin-left: -0.1em;
+				// Override OOUI rule on frameless icons
+				opacity: 1;
 			}
 
 			&-none {
@@ -38,8 +40,8 @@
 				}
 
 				.mw-rcfilters-mixin-circle( @highlight-none, 2em, 0.5em, true );
-				// Override border to dashed
-				border: 1px dashed @colorGray5;
+				// Override `border-style` to `dashed`
+				border-style: dashed;
 
 				&.oo-ui-buttonOptionWidget.oo-ui-buttonElement-active,
 				&.oo-ui-buttonOptionWidget.oo-ui-optionWidget-pressed,
