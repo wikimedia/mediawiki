@@ -12,14 +12,21 @@
 		height: 2.5em;
 	}
 
-	&.oo-ui-widget-enabled .oo-ui-tagMultiselectWidget-handle {
-		border: 1px solid @colorGray10;
-		border-bottom: 0;
-		background-color: @colorGray15;
-		border-radius: 2px 2px 0 0;
-		padding: 0 0.6em 0.6em 0.6em;
-		margin-top: 1em;
-		line-height: normal;
+	&.oo-ui-widget-enabled {
+		.oo-ui-tagMultiselectWidget-handle {
+			border: 1px solid @colorGray10;
+			border-bottom: 0;
+			background-color: @colorGray15;
+			border-radius: 2px 2px 0 0;
+			padding: 0 0.6em 0.6em 0.6em;
+			margin-top: 1em;
+			line-height: normal;
+		}
+
+		// Hamburger menu for dropdown.
+		.oo-ui-tagMultiselectWidget-input > .oo-ui-icon-menu {
+			cursor: pointer;
+		}
 	}
 
 	.mw-rcfilters-collapsed & {
