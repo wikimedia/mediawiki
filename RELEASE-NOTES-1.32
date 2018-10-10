@@ -482,6 +482,13 @@ because of Phabricator reports.
   deprecated. Use CommentStore::insert() instead.
 * Language::setCode is deprecated as public function. Use Language::factory
   to create a new Language object with a different language code.
+* Several classes have been moved from the MediaWiki\Storage\ namespace to the
+  MediaWiki\Revision\ namespace. The old class names are aliased for
+  compatibility, but are deprecated. Classes are IncompleteRevisionException,
+  MutableRevisionRecord, MutableRevisionSlots, RevisionAccessException,
+  RevisionArchiveRecord, RevisionFactory, RevisionLookup, RevisionRecord,
+  RevisionSlots, RevisionStore, RevisionStoreRecord, SlotRecord, and
+  SuppressedDataException.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into

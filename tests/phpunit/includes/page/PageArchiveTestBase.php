@@ -1,6 +1,6 @@
 <?php
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Base class for tests of PageArchive against different database schemas.

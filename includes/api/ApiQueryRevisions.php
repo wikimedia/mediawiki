@@ -21,8 +21,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\NameTableAccessException;
-use MediaWiki\Storage\RevisionRecord;
 
 /**
  * A query action to enumerate revisions of a given page, or show top revisions

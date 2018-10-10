@@ -1,6 +1,6 @@
 <?php
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Tests\Storage\McrSchemaOverride;
+use MediaWiki\Tests\Revision\McrSchemaOverride;
 
 /**
  * Test class for page archiving, using the new MCR schema.

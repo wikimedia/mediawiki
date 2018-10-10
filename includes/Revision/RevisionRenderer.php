@@ -24,8 +24,6 @@ namespace MediaWiki\Revision;
 
 use Html;
 use InvalidArgumentException;
-use MediaWiki\Storage\RevisionRecord;
-use MediaWiki\Storage\SlotRecord;
 use ParserOptions;
 use ParserOutput;
 use Psr\Log\LoggerInterface;

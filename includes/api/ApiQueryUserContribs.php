@@ -21,8 +21,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\NameTableAccessException;
-use MediaWiki\Storage\RevisionRecord;
 
 /**
  * This query action adds a list of a specified user's contributions to the output.

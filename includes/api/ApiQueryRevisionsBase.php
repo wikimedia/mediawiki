@@ -20,9 +20,9 @@
  * @file
  */
 
-use MediaWiki\Storage\RevisionAccessException;
-use MediaWiki\Storage\RevisionRecord;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\RevisionAccessException;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\MediaWikiServices;
 
 /**

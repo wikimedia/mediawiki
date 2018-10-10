@@ -1,8 +1,8 @@
 <?php
 
-use MediaWiki\Storage\MutableRevisionRecord;
-use MediaWiki\Storage\SlotRecord;
-use MediaWiki\Tests\Storage\McrReadNewSchemaOverride;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\Revision\McrReadNewSchemaOverride;
 
 /**
  * Tests Revision against the intermediate MCR DB schema for use during schema migration.

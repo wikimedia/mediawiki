@@ -1,5 +1,5 @@
 <?php
-use MediaWiki\Tests\Storage\McrReadNewSchemaOverride;
+use MediaWiki\Tests\Revision\McrReadNewSchemaOverride;
 
 /**
  * Tests WikiPage against the intermediate MCR DB schema for use during schema migration.

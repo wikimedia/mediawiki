@@ -21,8 +21,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\NameTableAccessException;
-use MediaWiki\Storage\RevisionRecord;
 
 /**
  * A query action to enumerate the recent changes that were done to the wiki.

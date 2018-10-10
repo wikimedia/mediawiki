@@ -6,9 +6,9 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\MutableRevisionRecord;
-use MediaWiki\Storage\RevisionRecord;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * Temporary action for MCR undos

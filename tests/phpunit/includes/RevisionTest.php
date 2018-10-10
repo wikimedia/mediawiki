@@ -1,12 +1,12 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionAccessException;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\BlobStoreFactory;
-use MediaWiki\Storage\MutableRevisionRecord;
-use MediaWiki\Storage\RevisionAccessException;
-use MediaWiki\Storage\RevisionRecord;
-use MediaWiki\Storage\RevisionStore;
-use MediaWiki\Storage\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -71,7 +71,7 @@ class RevisionTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideConstructFromArray
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromArray( $rowArray ) {
 		$rev = new Revision( $rowArray, 0, $this->getMockTitle() );
@@ -82,7 +82,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromEmptyArray() {
 		$rev = new Revision( [], 0, $this->getMockTitle() );
@@ -91,7 +91,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromArrayWithBadPageId() {
 		Wikimedia\suppressWarnings();
@@ -131,7 +131,7 @@ class RevisionTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideConstructFromArray_userSetAsExpected
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 *
 	 * @param array $rowArray
 	 * @param mixed $expectedUserId null to expect the current wgUser ID
@@ -184,7 +184,7 @@ class RevisionTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideConstructFromArrayThrowsExceptions
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromArrayThrowsExceptions( $rowArray, Exception $expectedException ) {
 		$this->setExpectedException(
@@ -197,7 +197,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromNothing() {
 		$this->setExpectedException(
@@ -268,7 +268,7 @@ class RevisionTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideConstructFromRow
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromRow( array $arrayData, callable $assertions ) {
 		$row = (object)$arrayData;
@@ -278,7 +278,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromRowWithBadPageId() {
 		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );

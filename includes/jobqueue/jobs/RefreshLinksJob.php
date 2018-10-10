@@ -21,7 +21,7 @@
  * @ingroup JobQueue
  */
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Job to update link tables for pages

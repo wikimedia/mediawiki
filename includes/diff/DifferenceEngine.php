@@ -21,8 +21,8 @@
  * @ingroup DifferenceEngine
  */
 
-use MediaWiki\Storage\RevisionRecord;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * DifferenceEngine is responsible for rendering the difference between two revisions as HTML.

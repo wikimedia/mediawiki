@@ -1,10 +1,10 @@
 <?php
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\MutableRevisionRecord;
-use MediaWiki\Storage\RevisionStore;
-use MediaWiki\Storage\IncompleteRevisionException;
-use MediaWiki\Storage\RevisionRecord;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\IncompleteRevisionException;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * RevisionDbTestBase contains test cases for the Revision class that have Database interactions.

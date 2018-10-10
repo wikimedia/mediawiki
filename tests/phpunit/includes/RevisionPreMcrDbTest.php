@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\Tests\Storage\PreMcrSchemaOverride;
+use MediaWiki\Tests\Revision\PreMcrSchemaOverride;
 
 /**
  * Tests Revision against the pre-MCR DB schema.
