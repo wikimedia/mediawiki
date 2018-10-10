@@ -612,8 +612,6 @@ class Parser {
 		// Since we're not really outputting HTML, decode the entities and
 		// then re-encode the things that need hiding inside HTML comments.
 		$limitReport = htmlspecialchars_decode( $limitReport );
-		// Run deprecated hook
-		Hooks::run( 'ParserLimitReport', [ $this, &$limitReport ], '1.22' );
 
 		// Sanitize for comment. Note '‐' in the replacement is U+2010,
 		// which looks much like the problematic '-'.
