@@ -1748,13 +1748,71 @@ class OutputPage extends ContextSource {
 	 * @param bool $linestart Is this the start of a line?
 	 * @param bool $interface Is this text in the user interface language?
 	 * @throws MWException
+	 * @deprecated since 1.32 due to untidy output; use
+	 *    addWikiTextAsInterface() if $interface is default value or true,
+	 *    or else addWikiTextAsContent() if $interface is false.
 	 */
 	public function addWikiText( $text, $linestart = true, $interface = true ) {
-		$title = $this->getTitle(); // Work around E_STRICT
+		$title = $this->getTitle();
 		if ( !$title ) {
 			throw new MWException( 'Title is null' );
 		}
 		$this->addWikiTextTitle( $text, $title, $linestart, /*tidy*/false, $interface );
+	}
+
+	/**
+	 * Convert wikitext *in the user interface language* to HTML and
+	 * add it to the buffer. The result will not be
+	 * language-converted, as user interface messages are already
+	 * localized into a specific variant.  Assumes that the current
+	 * page title will be used if optional $title is not
+	 * provided. Output will be tidy.
+	 *
+	 * @param string $text Wikitext in the user interface language
+	 * @param bool $linestart Is this the start of a line? (Defaults to true)
+	 * @param Title|null $title Optional title to use; default of `null`
+	 *   means use current page title.
+	 * @throws MWException if $title is not provided and OutputPage::getTitle()
+	 *   is null
+	 * @since 1.32
+	 */
+	public function addWikiTextAsInterface(
+		$text, $linestart = true, Title $title = null
+	) {
+		if ( $title === null ) {
+			$title = $this->getTitle();
+		}
+		if ( !$title ) {
+			throw new MWException( 'Title is null' );
+		}
+		$this->addWikiTextTitle( $text, $title, $linestart, /*tidy*/true, /*interface*/true );
+	}
+
+	/**
+	 * Convert wikitext *in the page content language* to HTML and add
+	 * it to the buffer.  The result with be language-converted to the
+	 * user's preferred variant.  Assumes that the current page title
+	 * will be used if optional $title is not provided. Output will be
+	 * tidy.
+	 *
+	 * @param string $text Wikitext in the page content language
+	 * @param bool $linestart Is this the start of a line? (Defaults to true)
+	 * @param Title|null $title Optional title to use; default of `null`
+	 *   means use current page title.
+	 * @throws MWException if $title is not provided and OutputPage::getTitle()
+	 *   is null
+	 * @since 1.32
+	 */
+	public function addWikiTextAsContent(
+		$text, $linestart = true, Title $title = null
+	) {
+		if ( $title === null ) {
+			$title = $this->getTitle();
+		}
+		if ( !$title ) {
+			throw new MWException( 'Title is null' );
+		}
+		$this->addWikiTextTitle( $text, $title, $linestart, /*tidy*/true, /*interface*/false );
 	}
 
 	/**
@@ -1763,30 +1821,40 @@ class OutputPage extends ContextSource {
 	 * @param string $text Wikitext
 	 * @param Title $title
 	 * @param bool $linestart Is this the start of a line?
+	 * @deprecated since 1.32 due to untidy output; use
+	 *   addWikiTextAsInterface()
 	 */
 	public function addWikiTextWithTitle( $text, Title $title, $linestart = true ) {
 		$this->addWikiTextTitle( $text, $title, $linestart );
 	}
 
 	/**
-	 * Add wikitext with a custom Title object and tidy enabled.
+	 * Add wikitext *in content language* with a custom Title object.
+	 * Output will be tidy.
 	 *
-	 * @param string $text Wikitext
+	 * @param string $text Wikitext in content language
 	 * @param Title $title
 	 * @param bool $linestart Is this the start of a line?
+	 * @deprecated since 1.32 to rename methods consistently; use
+	 *   addWikiTextAsContent()
 	 */
 	function addWikiTextTitleTidy( $text, Title $title, $linestart = true ) {
 		$this->addWikiTextTitle( $text, $title, $linestart, true );
 	}
 
 	/**
-	 * Add wikitext with tidy enabled
+	 * Add wikitext *in content language*. Output will be tidy.
 	 *
-	 * @param string $text Wikitext
+	 * @param string $text Wikitext in content language
 	 * @param bool $linestart Is this the start of a line?
+	 * @deprecated since 1.32 to rename methods consistently; use
+	 *   addWikiTextAsContent()
 	 */
 	public function addWikiTextTidy( $text, $linestart = true ) {
 		$title = $this->getTitle();
+		if ( !$title ) {
+			throw new MWException( 'Title is null' );
+		}
 		$this->addWikiTextTitleTidy( $text, $title, $linestart );
 	}
 
@@ -1797,9 +1865,17 @@ class OutputPage extends ContextSource {
 	 * @param string $text Wikitext
 	 * @param Title $title
 	 * @param bool $linestart Is this the start of a line?
-	 * @param bool $tidy Whether to use tidy
+	 * @param bool $tidy Whether to use tidy.
+	 *             Setting this to false (or omitting it) is deprecated
+	 *             since 1.32; all wikitext should be tidied.
+	 *             For backwards-compatibility with prior MW releases,
+	 *             you may wish to invoke this method but set $tidy=true;
+	 *             this will result in equivalent output to the non-deprecated
+	 *             addWikiTextAsContent()/addWikiTextAsInterface() methods.
 	 * @param bool $interface Whether it is an interface message
 	 *   (for example disables conversion)
+	 * @deprecated since 1.32, use addWikiTextAsContent() or
+	 *   addWikiTextAsInterface() (depending on $interface)
 	 */
 	public function addWikiTextTitle( $text, Title $title, $linestart,
 		$tidy = false, $interface = false
