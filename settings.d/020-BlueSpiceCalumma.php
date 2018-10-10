@@ -6,7 +6,7 @@ $GLOBALS['egChameleonLayoutFile'] = "$IP/skins/BlueSpiceCalumma/layouts/calumma-
 
 global $wgLogo, $wgResourceBasePath, $wgScriptPath;
 if( $wgLogo == "$wgResourceBasePath/resources/assets/wiki.png" ){
-     $wgLogo = "$wgResourceBasePath/skins/BlueSpiceCalumma/resources/images/common/logo/bs3_logo.png";
+    $wgLogo = "$wgResourceBasePath/skins/BlueSpiceCalumma/resources/images/common/logo/bs3_logo.png";
 }
 
 /*
@@ -38,3 +38,4 @@ $GLOBALS['wgFooterIcons']['poweredby'] += [
 		"width" => "150"
 	]
 ];
+
