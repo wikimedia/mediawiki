@@ -117,6 +117,7 @@ production.
 * Updated jquery from v3.2.1 to v3.3.1.
 
 ==== Removed external libraries ====
+* pear/mail_mime-decode was removed.
 * …
 
 === Bug fixes in 1.32 ===
