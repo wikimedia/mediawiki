@@ -18,9 +18,15 @@ class NameTableStoreFactoryTest extends MediaWikiTestCase {
 	/**
 	 * @return \PHPUnit_Framework_MockObject_MockObject|ILoadBalancer
 	 */
-	private function getMockLoadBalancer() {
-		return $this->getMockBuilder( ILoadBalancer::class )
+	private function getMockLoadBalancer( $localDomain ) {
+		$mock = $this->getMockBuilder( ILoadBalancer::class )
 			->disableOriginalConstructor()->getMock();
+
+		$mock->expects( $this->any() )
+			->method( 'getLocalDomainID' )
+			->willReturn( $localDomain );
+
+		return $mock;
 	}
 
 	/**
@@ -30,11 +36,16 @@ class NameTableStoreFactoryTest extends MediaWikiTestCase {
 		$mock = $this->getMockBuilder( ILBFactory::class )
 			->disableOriginalConstructor()->getMock();
 
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$localDomain = $lbFactory->getLocalDomainID();
+
+		$mock->expects( $this->any() )->method( 'getLocalDomainID' )->willReturn( $localDomain );
+
 		$mock->expects( $this->once() )
 			->method( 'getMainLB' )
 			->with( $this->equalTo( $expectedWiki ) )
-			->willReturnCallback( function ( $domain ) use ( $expectedWiki ) {
-				return $this->getMockLoadBalancer();
+			->willReturnCallback( function ( $domain ) use ( $localDomain ) {
+				return $this->getMockLoadBalancer( $localDomain );
 			} );
 
 		return $mock;
@@ -68,12 +79,9 @@ class NameTableStoreFactoryTest extends MediaWikiTestCase {
 	/** @dataProvider provideTestGet */
 	public function testGet( $tableName, $wiki, $expectedWiki ) {
 		$services = MediaWikiServices::getInstance();
-		$db = wfGetDB( DB_MASTER );
-		if ( $wiki === false ) {
-			$wiki2 = $db->getWikiID();
-		} else {
-			$wiki2 = $wiki;
-		}
+		$wiki2 = ( $wiki === false )
+			? $services->getDBLoadBalancerFactory()->getLocalDomainID()
+			: $wiki;
 		$names = new NameTableStoreFactory(
 			$this->getMockLoadBalancerFactory( $expectedWiki ),
 			$services->getMainWANObjectCache(),

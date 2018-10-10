@@ -174,14 +174,15 @@ interface IDatabase {
 	/**
 	 * Get/set the table prefix.
 	 * @param string|null $prefix The table prefix to set, or omitted to leave it unchanged.
-	 * @return string The previous table prefix.
+	 * @return string The previous table prefix
+	 * @throws DBUnexpectedError
 	 */
 	public function tablePrefix( $prefix = null );
 
 	/**
 	 * Get/set the db schema.
 	 * @param string|null $schema The database schema to set, or omitted to leave it unchanged.
-	 * @return string The previous db schema.
+	 * @return string The previous db schema
 	 */
 	public function dbSchema( $schema = null );
 
@@ -358,6 +359,10 @@ interface IDatabase {
 	public function getFlag( $flag );
 
 	/**
+	 * Return the currently selected domain ID
+	 *
+	 * Null components (database/schema) might change once a connection is established
+	 *
 	 * @return string
 	 */
 	public function getDomainID();
@@ -1115,14 +1120,27 @@ interface IDatabase {
 	 * Change the current database
 	 *
 	 * @param string $db
-	 * @return bool Success or failure
+	 * @return bool True unless an exception was thrown
 	 * @throws DBConnectionError If databasesAreIndependent() is true and an error occurs
+	 * @throws DBError
+	 * @deprecated Since 1.32
 	 */
 	public function selectDB( $db );
 
 	/**
+	 * Set the current domain (database, schema, and table prefix)
+	 *
+	 * This will throw an error for some database types if the database unspecified
+	 *
+	 * @param string|DatabaseDomain $domain
+	 * @since 1.32
+	 * @throws DBConnectionError
+	 */
+	public function selectDomain( $domain );
+
+	/**
 	 * Get the current DB name
-	 * @return string
+	 * @return string|null
 	 */
 	public function getDBname();
 

@@ -71,6 +71,10 @@ class DatabaseSqlite extends Database {
 		if ( isset( $p['dbFilePath'] ) ) {
 			$this->dbPath = $p['dbFilePath'];
 			$lockDomain = md5( $this->dbPath );
+			// Use "X" for things like X.sqlite and ":memory:" for RAM-only DBs
+			if ( !isset( $p['dbname'] ) || !strlen( $p['dbname'] ) ) {
+				$p['dbname'] = preg_replace( '/\.sqlite\d?$/', '', basename( $this->dbPath ) );
+			}
 		} elseif ( isset( $p['dbDirectory'] ) ) {
 			$this->dbDir = $p['dbDirectory'];
 			$lockDomain = $p['dbname'];
@@ -109,7 +113,7 @@ class DatabaseSqlite extends Database {
 	 */
 	public static function newStandaloneInstance( $filename, array $p = [] ) {
 		$p['dbFilePath'] = $filename;
-		$p['schema'] = false;
+		$p['schema'] = null;
 		$p['tablePrefix'] = '';
 		/** @var DatabaseSqlite $db */
 		$db = Database::factory( 'sqlite', $p );
@@ -120,7 +124,11 @@ class DatabaseSqlite extends Database {
 	protected function doInitConnection() {
 		if ( $this->dbPath !== null ) {
 			// Standalone .sqlite file mode.
-			$this->openFile( $this->dbPath, $this->connectionParams['dbname'] );
+			$this->openFile(
+				$this->dbPath,
+				$this->connectionParams['dbname'],
+				$this->connectionParams['tablePrefix']
+			);
 		} elseif ( $this->dbDir !== null ) {
 			// Stock wiki mode using standard file names per DB
 			if ( strlen( $this->connectionParams['dbname'] ) ) {
@@ -128,7 +136,9 @@ class DatabaseSqlite extends Database {
 					$this->connectionParams['host'],
 					$this->connectionParams['user'],
 					$this->connectionParams['password'],
-					$this->connectionParams['dbname']
+					$this->connectionParams['dbname'],
+					$this->connectionParams['schema'],
+					$this->connectionParams['tablePrefix']
 				);
 			} else {
 				// Caller will manually call open() later?
@@ -155,7 +165,7 @@ class DatabaseSqlite extends Database {
 		return false;
 	}
 
-	protected function open( $server, $user, $pass, $dbName ) {
+	protected function open( $server, $user, $pass, $dbName, $schema, $tablePrefix ) {
 		$this->close();
 		$fileName = self::generateFileName( $this->dbDir, $dbName );
 		if ( !is_readable( $fileName ) ) {
@@ -163,7 +173,7 @@ class DatabaseSqlite extends Database {
 			throw new DBConnectionError( $this, "SQLite database not accessible" );
 		}
 		// Only $dbName is used, the other parameters are irrelevant for SQLite databases
-		$this->openFile( $fileName, $dbName );
+		$this->openFile( $fileName, $dbName, $tablePrefix );
 
 		return (bool)$this->conn;
 	}
@@ -173,10 +183,11 @@ class DatabaseSqlite extends Database {
 	 *
 	 * @param string $fileName
 	 * @param string $dbName
+	 * @param string $tablePrefix
 	 * @throws DBConnectionError
 	 * @return PDO|bool SQL connection or false if failed
 	 */
-	protected function openFile( $fileName, $dbName ) {
+	protected function openFile( $fileName, $dbName, $tablePrefix ) {
 		$err = false;
 
 		$this->dbPath = $fileName;
@@ -198,7 +209,7 @@ class DatabaseSqlite extends Database {
 
 		$this->opened = is_object( $this->conn );
 		if ( $this->opened ) {
-			$this->dbName = $dbName;
+			$this->currentDomain = new DatabaseDomain( $dbName, null, $tablePrefix );
 			# Set error codes only, don't raise exceptions
 			$this->conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
 			# Enforce LIKE to be case sensitive, just like MySQL

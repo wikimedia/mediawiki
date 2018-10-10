@@ -25,6 +25,7 @@ use TestUserRegistry;
 use Title;
 use WANObjectCache;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -132,9 +133,13 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @return LoadBalancer|PHPUnit_Framework_MockObject_MockObject
 	 */
 	private function getLoadBalancerMock( array $server ) {
+		$domain = new DatabaseDomain( $server['dbname'], null, $server['tablePrefix'] );
+
 		$lb = $this->getMockBuilder( LoadBalancer::class )
 			->setMethods( [ 'reallyOpenConnection' ] )
-			->setConstructorArgs( [ [ 'servers' => [ $server ] ] ] )
+			->setConstructorArgs( [
+				[ 'servers' => [ $server ], 'localDomain' => $domain ]
+			] )
 			->getMock();
 
 		$lb->method( 'reallyOpenConnection' )->willReturnCallback(

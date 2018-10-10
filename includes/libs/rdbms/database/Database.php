@@ -81,8 +81,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $user;
 	/** @var string Password used to establish the current connection */
 	protected $password;
-	/** @var string Database that this instance is currently connected to */
-	protected $dbName;
 	/** @var array[] Map of (table => (dbname, schema, prefix) map) */
 	protected $tableAliases = [];
 	/** @var string[] Map of (index alias => index) */
@@ -120,10 +118,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var bool Whether to suppress triggering of transaction end callbacks */
 	protected $trxEndCallbacksSuppressed = false;
 
-	/** @var string */
-	protected $tablePrefix = '';
-	/** @var string */
-	protected $schema = '';
 	/** @var int */
 	protected $flags;
 	/** @var array */
@@ -291,12 +285,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param array $params Parameters passed from Database::factory()
 	 */
 	protected function __construct( array $params ) {
-		foreach ( [ 'host', 'user', 'password', 'dbname' ] as $name ) {
+		foreach ( [ 'host', 'user', 'password', 'dbname', 'schema', 'tablePrefix' ] as $name ) {
 			$this->connectionParams[$name] = $params[$name];
 		}
-
-		$this->schema = $params['schema'];
-		$this->tablePrefix = $params['tablePrefix'];
 
 		$this->cliMode = $params['cliMode'];
 		// Agent name is added to SQL queries in a comment, so make sure it can't break out
@@ -329,7 +320,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		// Set initial dummy domain until open() sets the final DB/prefix
-		$this->currentDomain = DatabaseDomain::newUnspecified();
+		$this->currentDomain = new DatabaseDomain(
+			$params['dbname'] != '' ? $params['dbname'] : null,
+			$params['schema'] != '' ? $params['schema'] : null,
+			$params['tablePrefix']
+		);
 	}
 
 	/**
@@ -346,11 +341,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 		// Establish the connection
 		$this->doInitConnection();
-		// Set the domain object after open() sets the relevant fields
-		if ( $this->dbName != '' ) {
-			// Domains with server scope but a table prefix are not used by IDatabase classes
-			$this->currentDomain = new DatabaseDomain( $this->dbName, null, $this->tablePrefix );
-		}
 	}
 
 	/**
@@ -366,7 +356,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->connectionParams['host'],
 				$this->connectionParams['user'],
 				$this->connectionParams['password'],
-				$this->connectionParams['dbname']
+				$this->connectionParams['dbname'],
+				$this->connectionParams['schema'],
+				$this->connectionParams['tablePrefix']
 			);
 		} else {
 			throw new InvalidArgumentException( "No database user provided." );
@@ -380,10 +372,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $user Database user name
 	 * @param string $password Database user password
 	 * @param string $dbName Database name
+	 * @param string|null $schema Database schema name
+	 * @param string $tablePrefix Table prefix
 	 * @return bool
 	 * @throws DBConnectionError
 	 */
-	abstract protected function open( $server, $user, $password, $dbName );
+	abstract protected function open( $server, $user, $password, $dbName, $schema, $tablePrefix );
 
 	/**
 	 * Construct a Database subclass instance given a database type and parameters
@@ -441,7 +435,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$p['flags'] = $p['flags'] ?? 0;
 			$p['variables'] = $p['variables'] ?? [];
 			$p['tablePrefix'] = $p['tablePrefix'] ?? '';
-			$p['schema'] = $p['schema'] ?? '';
+			$p['schema'] = $p['schema'] ?? null;
 			$p['cliMode'] = $p['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 			$p['agent'] = $p['agent'] ?? '';
 			if ( !isset( $p['connLogger'] ) ) {
@@ -599,24 +593,37 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function tablePrefix( $prefix = null ) {
-		$old = $this->tablePrefix;
+		$old = $this->currentDomain->getTablePrefix();
 		if ( $prefix !== null ) {
-			$this->tablePrefix = $prefix;
-			$this->currentDomain = ( $this->dbName != '' )
-				? new DatabaseDomain( $this->dbName, null, $this->tablePrefix )
-				: DatabaseDomain::newUnspecified();
+			$this->currentDomain = new DatabaseDomain(
+				$this->currentDomain->getDatabase(),
+				$this->currentDomain->getSchema(),
+				$prefix
+			);
 		}
 
 		return $old;
 	}
 
 	public function dbSchema( $schema = null ) {
-		$old = $this->schema;
+		$old = $this->currentDomain->getSchema();
 		if ( $schema !== null ) {
-			$this->schema = $schema;
+			$this->currentDomain = new DatabaseDomain(
+				$this->currentDomain->getDatabase(),
+				// DatabaseDomain uses null for unspecified schemas
+				strlen( $schema ) ? $schema : null,
+				$this->currentDomain->getTablePrefix()
+			);
 		}
 
-		return $old;
+		return (string)$old;
+	}
+
+	/**
+	 * @return string Schema to use to qualify relations in queries
+	 */
+	protected function relationSchemaQualifier() {
+		return $this->dbSchema();
 	}
 
 	public function getLBInfo( $name = null ) {
@@ -900,7 +907,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return array_merge(
 			[
 				'db_server' => $this->server,
-				'db_name' => $this->dbName,
+				'db_name' => $this->getDBname(),
 				'db_user' => $this->user,
 			],
 			$extras
@@ -2287,17 +2294,26 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return false;
 	}
 
-	public function selectDB( $db ) {
-		# Stub. Shouldn't cause serious problems if it's not overridden, but
-		# if your database engine supports a concept similar to MySQL's
-		# databases you may as well.
-		$this->dbName = $db;
+	final public function selectDB( $db ) {
+		$this->selectDomain( new DatabaseDomain(
+			$db,
+			$this->currentDomain->getSchema(),
+			$this->currentDomain->getTablePrefix()
+		) );
 
 		return true;
 	}
 
+	final public function selectDomain( $domain ) {
+		$this->doSelectDomain( DatabaseDomain::newFromId( $domain ) );
+	}
+
+	protected function doSelectDomain( DatabaseDomain $domain ) {
+		$this->currentDomain = $domain;
+	}
+
 	public function getDBname() {
-		return $this->dbName;
+		return $this->currentDomain->getDatabase();
 	}
 
 	public function getServer() {
@@ -2382,14 +2398,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$database = $this->tableAliases[$table]['dbname'];
 				$schema = is_string( $this->tableAliases[$table]['schema'] )
 					? $this->tableAliases[$table]['schema']
-					: $this->schema;
+					: $this->relationSchemaQualifier();
 				$prefix = is_string( $this->tableAliases[$table]['prefix'] )
 					? $this->tableAliases[$table]['prefix']
-					: $this->tablePrefix;
+					: $this->tablePrefix();
 			} else {
 				$database = '';
-				$schema = $this->schema; # Default schema
-				$prefix = $this->tablePrefix; # Default prefix
+				$schema = $this->relationSchemaQualifier(); # Default schema
+				$prefix = $this->tablePrefix(); # Default prefix
 			}
 		}
 
@@ -4109,7 +4125,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->opened = false;
 		$this->conn = false;
 		try {
-			$this->open( $this->server, $this->user, $this->password, $this->dbName );
+			$this->open(
+				$this->server,
+				$this->user,
+				$this->password,
+				$this->getDBname(),
+				$this->dbSchema(),
+				$this->tablePrefix()
+			);
 			$this->lastPing = microtime( true );
 			$ok = true;
 
@@ -4643,7 +4666,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->conn = false;
 			$this->trxEndCallbacks = []; // don't copy
 			$this->handleSessionLoss(); // no trx or locks anymore
-			$this->open( $this->server, $this->user, $this->password, $this->dbName );
+			$this->open(
+				$this->server,
+				$this->user,
+				$this->password,
+				$this->getDBname(),
+				$this->dbSchema(),
+				$this->tablePrefix()
+			);
 			$this->lastPing = microtime( true );
 		}
 	}

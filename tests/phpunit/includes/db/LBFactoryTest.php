@@ -608,7 +608,15 @@ class LBFactoryTest extends MediaWikiTestCase {
 			$this->assertFalse( $db->isOpen() );
 		} else {
 			\Wikimedia\suppressWarnings();
-			$this->assertFalse( $db->selectDB( 'garbage-db' ) );
+			try {
+				$this->assertFalse( $db->selectDB( 'garbage-db' ) );
+				$this->fail( "No error thrown." );
+			} catch ( \Wikimedia\Rdbms\DBExpectedError $e ) {
+				$this->assertEquals(
+					"Could not select database 'garbage-db'.",
+					$e->getMessage()
+				);
+			}
 			\Wikimedia\restoreWarnings();
 		}
 	}
