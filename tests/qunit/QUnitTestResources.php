@@ -9,14 +9,7 @@ return [
 	'test.sinonjs' => [
 		'scripts' => [
 			'tests/qunit/suites/resources/test.sinonjs/index.js',
-			'resources/lib/sinonjs/sinon-1.17.3.js',
-			// We want tests to work in IE, but can't include this as it
-			// will break the placeholders in Sinon because the hack it uses
-			// to hijack IE globals relies on running in the global scope
-			// and in ResourceLoader this won't be running in the global scope.
-			// Including it results (among other things) in sandboxed timers
-			// being broken due to Date inheritance being undefined.
-			// 'resources/lib/sinonjs/sinon-ie-1.15.4.js',
+			'resources/lib/sinonjs/sinon.js',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],

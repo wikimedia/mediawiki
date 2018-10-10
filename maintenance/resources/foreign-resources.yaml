@@ -144,6 +144,6 @@ qunitjs:
 
 sinonjs:
   type: file
-  src: https://sinonjs.org/releases/sinon-1.17.3.js
-  integrity: sha384-8+RlaM2FW7qMqjxpM5NTVM0y6sTY+vTi/AHnk7Fd7NHjBye9sVxxsMjyxVJnPBtU
-  dest: sinon-1.17.3.js
+  src: https://sinonjs.org/releases/sinon-1.17.7.js
+  integrity: sha384-wR63Jwy75KqwBfzCmXd6gYws6uj3qV/XMAybzXrkEYGYG3AQ58ZWwr1fVpkHa5e8
+  dest: sinon.js
