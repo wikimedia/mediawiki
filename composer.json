@@ -29,7 +29,6 @@
 		"oyejorge/less.php": "1.7.0.14",
 		"pear/mail": "1.4.1",
 		"pear/mail_mime": "1.10.2",
-		"pear/mail_mime-decode": "1.5.5.2",
 		"pear/net_smtp": "1.8.0",
 		"php": ">=5.6.99",
 		"psr/log": "1.0.2",
