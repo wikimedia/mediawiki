@@ -39,7 +39,8 @@
 			"Nersip",
 			"Manvydasz",
 			"Fitoschido",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Nuorodos pabraukimas:",
@@ -1177,8 +1178,10 @@
 	"right-editcontentmodel": "Redaguoti puslapio turinio modelį",
 	"right-editinterface": "Keisti naudotojo aplinką",
 	"right-editusercss": "Redaguoti kitų naudotojų CSS failus",
+	"right-edituserjson": "Redaguoti kitų naudotojų JSON failus",
 	"right-edituserjs": "Redaguoti kitų naudotojų JS failus",
 	"right-editmyusercss": "Redaguoti savo vartotojo CSS failus",
+	"right-editmyuserjson": "Redaguoti savo vartotojo JSON failus",
 	"right-editmyuserjs": "Redaguokite savo naudotojo vartotojo JavaScript failus",
 	"right-viewmywatchlist": "Peržiūrėti savo stebimųjų sąrašą",
 	"right-editmywatchlist": "Keiskite savo stebimųjų sąrašą. Atminkite, kad kai kurie veiksmai vis vien pridės puslapius netgi be tokios teisės.",

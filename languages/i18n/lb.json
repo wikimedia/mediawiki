@@ -330,6 +330,7 @@
 	"badarticleerror": "Dës Aktioun kann net op dëser Säit duerchgefouert ginn.",
 	"cannotdelete": "D'Bild oder d'Säit \"$1\" konnt net geläscht ginn.\nEt ka sinn datt et scho vun engem Anere geläscht gouf.",
 	"cannotdelete-title": "D'Säit \"$1\" kann net geläscht ginn",
+	"delete-scheduled": "D'Läsche vun der Säit \"$1\" ass programméiert.\nHutt w.e.g. e bësse Gedold.",
 	"delete-hook-aborted": "D'Läsche gouf vun enger Schnëttstell (hook) ofgebrach.\nEng Erklärung gouf net ginn.",
 	"no-null-revision": "Déi nei Nullversioun fir d'Säit \"$1\" konnt net ugeluecht ginn",
 	"badtitle": "Schlechten Titel",

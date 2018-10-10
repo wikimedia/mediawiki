@@ -389,6 +389,7 @@
 	"badarticleerror": "Denne funktion kan ikke udføres på denne side.",
 	"cannotdelete": "Kunne ikke slette siden eller filen \"$1\".\nDen kan være blevet slettet af en anden.",
 	"cannotdelete-title": "Kan ikke slette siden \"$1\"",
+	"delete-scheduled": "Siden \"$1\" er sat til at blive slettet.\nHav tålmodighed.",
 	"delete-hook-aborted": "Sletningen blev afbrudt af en programfunktion.\nDer blev ikke givet nogen forklaring.",
 	"no-null-revision": "Kunne ikke oprette nye tom revision for side \"$1\"",
 	"badtitle": "Ugyldig titel",
