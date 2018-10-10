@@ -41,10 +41,13 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	protected function tearDown() {
+		Language::factory( 'en' )->resetNamespaces();
+
 		if ( $this->restoreWarnings ) {
 			$this->restoreWarnings = false;
 			Wikimedia\restoreWarnings();
 		}
+
 		parent::tearDown();
 	}
 
