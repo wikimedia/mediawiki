@@ -2877,7 +2877,9 @@ $context: ResourceLoaderContext|null
 ResourceLoaderStartUpModule::getConfigSettings(). Use this to export static
 configuration variables to JavaScript. Things that depend on the current page
 or request state must be added through MakeGlobalVariablesScript instead.
+Skin is made available for skin specific config.
 &$vars: [ variable name => value ]
+$skin: Skin
 
 'ResourceLoaderJqueryMsgModuleMagicWords': Called in
 ResourceLoaderJqueryMsgModule to allow adding magic words for jQueryMsg.
