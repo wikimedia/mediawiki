@@ -1,31 +1,30 @@
 @import 'mw.rcfilters.mixins';
+@import 'mw.rcfilters.variables';
 
 .mw-rcfilters-ui-filterItemHighlightButton {
 	.oo-ui-buttonWidget.oo-ui-popupButtonWidget .oo-ui-buttonElement-button > &-circle {
 		background-image: none;
 		display: inline-block;
 		vertical-align: middle;
-		margin-right: 0.2em;
 		// Override OOUI rule on frameless icons
 		opacity: 1;
+		.mw-rcfilters-circle( @min-size-circle, @size-circle, @margin-circle 0 );
 
 		&-color {
 			&-c1 {
-				// These values duplicate the sizing of the icon
-				// width/height 1.875em
-				.mw-rcfilters-mixin-circle( @highlight-c1, 1.875em, 0.2em 0 );
+				.mw-rcfilters-circle-color( @highlight-c1 );
 			}
 			&-c2 {
-				.mw-rcfilters-mixin-circle( @highlight-c2, 1.875em, 0.2em 0 );
+				.mw-rcfilters-circle-color( @highlight-c2 );
 			}
 			&-c3 {
-				.mw-rcfilters-mixin-circle( @highlight-c3, 1.875em, 0.2em 0 );
+				.mw-rcfilters-circle-color( @highlight-c3 );
 			}
 			&-c4 {
-				.mw-rcfilters-mixin-circle( @highlight-c4, 1.875em, 0.2em 0 );
+				.mw-rcfilters-circle-color( @highlight-c4 );
 			}
 			&-c5 {
-				.mw-rcfilters-mixin-circle( @highlight-c5, 1.875em, 0.2em 0 );
+				.mw-rcfilters-circle-color( @highlight-c5 );
 			}
 		}
 	}
