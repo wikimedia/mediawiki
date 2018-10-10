@@ -622,10 +622,11 @@ class RevisionTest extends MediaWikiTestCase {
 			'rev_content_model' => 'GOATMODEL',
 		];
 
+		$domain = MediaWikiServices::getInstance()->getDBLoadBalancer()->getLocalDomainID();
 		$db = $this->getMock( IDatabase::class );
 		$db->expects( $this->any() )
 			->method( 'getDomainId' )
-			->will( $this->returnValue( wfWikiID() ) );
+			->will( $this->returnValue( $domain ) );
 		$db->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(

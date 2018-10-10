@@ -120,18 +120,17 @@ abstract class DatabaseMysqlBase extends Database {
 		return 'mysql';
 	}
 
-	protected function open( $server, $user, $password, $dbName ) {
+	protected function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
 		# Close/unset connection handle
 		$this->close();
 
 		$this->server = $server;
 		$this->user = $user;
 		$this->password = $password;
-		$this->dbName = $dbName;
 
 		$this->installErrorHandler();
 		try {
-			$this->conn = $this->mysqlConnect( $this->server );
+			$this->conn = $this->mysqlConnect( $this->server, $dbName );
 		} catch ( Exception $ex ) {
 			$this->restoreErrorHandler();
 			throw $ex;
@@ -156,20 +155,9 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		if ( strlen( $dbName ) ) {
-			Wikimedia\suppressWarnings();
-			$success = $this->selectDB( $dbName );
-			Wikimedia\restoreWarnings();
-			if ( !$success ) {
-				$error = $this->lastError();
-				$this->queryLogger->error(
-					"Error selecting database {db_name} on server {db_server}: {error}",
-					$this->getLogContext( [
-						'method' => __METHOD__,
-						'error' => $error,
-					] )
-				);
-				throw new DBConnectionError( $this, "Error selecting database $dbName: $error" );
-			}
+			$this->selectDomain( new DatabaseDomain( $dbName, null, $tablePrefix ) );
+		} else {
+			$this->currentDomain = new DatabaseDomain( null, null, $tablePrefix );
 		}
 
 		// Tell the server what we're communicating with
@@ -240,10 +228,11 @@ abstract class DatabaseMysqlBase extends Database {
 	 * Open a connection to a MySQL server
 	 *
 	 * @param string $realServer
+	 * @param string|null $dbName
 	 * @return mixed Raw connection
 	 * @throws DBConnectionError
 	 */
-	abstract protected function mysqlConnect( $realServer );
+	abstract protected function mysqlConnect( $realServer, $dbName );
 
 	/**
 	 * Set the character set of the MySQL link
@@ -1513,7 +1502,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	public function listViews( $prefix = null, $fname = __METHOD__ ) {
 		// The name of the column containing the name of the VIEW
-		$propertyName = 'Tables_in_' . $this->dbName;
+		$propertyName = 'Tables_in_' . $this->getDBname();
 
 		// Query for the VIEWS
 		$res = $this->query( 'SHOW FULL TABLES WHERE TABLE_TYPE = "VIEW"' );

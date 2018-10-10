@@ -53,10 +53,11 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 
 	/**
 	 * @param string $realServer
+	 * @param string|null $dbName
 	 * @return bool|mysqli
 	 * @throws DBConnectionError
 	 */
-	protected function mysqlConnect( $realServer ) {
+	protected function mysqlConnect( $realServer, $dbName ) {
 		# Avoid suppressed fatal error, which is very hard to track down
 		if ( !function_exists( 'mysqli_init' ) ) {
 			throw new DBConnectionError( $this, "MySQLi functions missing,"
@@ -111,9 +112,15 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		}
 		$mysqli->options( MYSQLI_OPT_CONNECT_TIMEOUT, 3 );
 
-		if ( $mysqli->real_connect( $realServer, $this->user,
-			$this->password, $this->dbName, $port, $socket, $connFlags )
-		) {
+		if ( $mysqli->real_connect(
+			$realServer,
+			$this->user,
+			$this->password,
+			$dbName,
+			$port,
+			$socket,
+			$connFlags
+		) ) {
 			return $mysqli;
 		}
 
@@ -177,16 +184,22 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return $conn->affected_rows;
 	}
 
-	/**
-	 * @param string $db
-	 * @return bool
-	 */
-	function selectDB( $db ) {
+	function doSelectDomain( DatabaseDomain $domain ) {
 		$conn = $this->getBindingHandle();
 
-		$this->dbName = $db;
+		if ( $domain->getSchema() !== null ) {
+			throw new DBExpectedError( $this, __CLASS__ . ": domain schemas are not supported." );
+		}
 
-		return $conn->select_db( $db );
+		$database = $domain->getDatabase();
+		if ( !$conn->select_db( $database ) ) {
+			throw new DBExpectedError( $this, "Could not select database '$database'." );
+		}
+
+		// Update that domain fields on success (no exception thrown)
+		$this->currentDomain = $domain;
+
+		return true;
 	}
 
 	/**
