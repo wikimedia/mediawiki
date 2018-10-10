@@ -3658,6 +3658,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$sectionId = new AtomicSectionIdentifier;
 		$this->trxAtomicLevels[] = [ $fname, $sectionId, $savepointId ];
+		$this->queryLogger->debug( 'startAtomic: entering level ' .
+			( count( $this->trxAtomicLevels ) - 1 ) . " ($fname)" );
 
 		return $sectionId;
 	}
@@ -3670,6 +3672,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Check if the current section matches $fname
 		$pos = count( $this->trxAtomicLevels ) - 1;
 		list( $savedFname, $sectionId, $savepointId ) = $this->trxAtomicLevels[$pos];
+		$this->queryLogger->debug( "endAtomic: leaving level $pos ($fname)" );
 
 		if ( $savedFname !== $fname ) {
 			throw new DBUnexpectedError(
@@ -3702,6 +3705,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError( $this, "No atomic section is open (got $fname)." );
 		}
 
+		$excisedFnames = [];
 		if ( $sectionId !== null ) {
 			// Find the (last) section with the given $sectionId
 			$pos = -1;
@@ -3717,6 +3721,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$excisedIds = [];
 			$len = count( $this->trxAtomicLevels );
 			for ( $i = $pos + 1; $i < $len; ++$i ) {
+				$excisedFnames[] = $this->trxAtomicLevels[$i][0];
 				$excisedIds[] = $this->trxAtomicLevels[$i][1];
 			}
 			$this->trxAtomicLevels = array_slice( $this->trxAtomicLevels, 0, $pos + 1 );
@@ -3726,6 +3731,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Check if the current section matches $fname
 		$pos = count( $this->trxAtomicLevels ) - 1;
 		list( $savedFname, $savedSectionId, $savepointId ) = $this->trxAtomicLevels[$pos];
+
+		if ( $excisedFnames ) {
+			$this->queryLogger->debug( "cancelAtomic: canceling level $pos ($savedFname) " .
+				"and descendants " . implode( ', ', $excisedFnames ) );
+		} else {
+			$this->queryLogger->debug( "cancelAtomic: canceling level $pos ($savedFname)" );
+		}
 
 		if ( $savedFname !== $fname ) {
 			throw new DBUnexpectedError(
