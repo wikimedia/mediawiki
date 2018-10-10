@@ -590,14 +590,14 @@ abstract class File implements IDBAccessObject {
 	 */
 	public function getMatchedLanguage( $userPreferredLanguage ) {
 		$handler = $this->getHandler();
-		if ( $handler && method_exists( $handler, 'getMatchedLanguage' ) ) {
+		if ( $handler ) {
 			return $handler->getMatchedLanguage(
 				$userPreferredLanguage,
 				$handler->getAvailableLanguages( $this )
 			);
-		} else {
-			return null;
 		}
+
+		return null;
 	}
 
 	/**
