@@ -340,6 +340,8 @@ because of Phabricator reports.
   removed. Use the 'ChangesListSpecialPageStructuredFilters' hook instead.
 * DeferredUpdates::setImmediateMode(), deprecated since 1.29, has been removed.
 * File / MediaHandler::getStreamHeaders(), deprecated since 1.30, was removed.
+* The hook 'DoEditSectionLink', deprecated since 1.25, has been removed. Use
+  the hook 'SkinEditSectionLinks' instead.
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit
