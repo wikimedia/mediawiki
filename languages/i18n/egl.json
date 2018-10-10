@@ -7,7 +7,8 @@
 			"아라",
 			"Shirayuki",
 			"Gloria sah",
-			"Macofe"
+			"Macofe",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Tîra 'na rîga sòta i colegamèint.",
@@ -1022,8 +1023,10 @@
 	"right-editcontentmodel": "Mudéfica al mudèl ed còl ché dèinter int 'na pàgina.",
 	"right-editinterface": "Mudéfica al colegamèint tra sistēma e utèint",
 	"right-editusercss": "Mudéfica i file CSS 'd êter utèint",
+	"right-edituserjson": "Mudéfica i file JSON 'd êter utèint",
 	"right-edituserjs": "Mudéfica i file JS 'd êter utèint",
 	"right-editmyusercss": "Mudéfica i file CSS dal só utèint",
+	"right-editmyuserjson": "Mudéfica i file JSON dal só utèint",
 	"right-editmyuserjs": "Mudéfica i file JavaScript dal só utèint",
 	"right-viewmywatchlist": "Guêrda la lésta di tō tgnû 'd ôc specêl",
 	"right-editmywatchlist": "Mudéfica i tō tgnu 'd ôc. Da nutêr che soquânti asiòun a prân incòra zuntêr dal pàgini ânca sèinsa avèiren al dirét.",

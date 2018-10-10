@@ -26,7 +26,8 @@
 			"Matma Rex",
 			"Biggs ZA",
 			"Slashme",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Onderstreep skakels:",
@@ -1054,8 +1055,10 @@
 	"right-editsemiprotected": "Wysig bladsye wat as \"{{int:protect-level-autoconfirmed}}\" beskerm is",
 	"right-editinterface": "Wysig die gebruikerskoppelvlak",
 	"right-editusercss": "Wysig ander gebruikers se CSS-lêers",
+	"right-edituserjson": "Wysig ander gebruikers se JSON-lêers",
 	"right-edituserjs": "Wysig ander gebruikers se JS-lêers",
 	"right-editmyusercss": "Wysig u persoonlike CSS-bladsy",
+	"right-editmyuserjson": "Wysig u persoonlike JSON-bladsy",
 	"right-editmyuserjs": "Wysig u persoonlike JavaScript-bladsy",
 	"right-viewmywatchlist": "Wys u persoonlike dophoulys",
 	"right-editmywatchlist": "Wysig u persoonlike dophoulys. Sommige aksies sal steeds bladsye byvoeg, selfs sonder die bevoegdheid.",

@@ -2657,6 +2657,7 @@
 	"movepage-moved": "'''\"$1\" is hernoemd naar \"$2\"'''",
 	"movepage-moved-redirect": "Er is een doorverwijzing aangemaakt.",
 	"movepage-moved-noredirect": "Er is geen doorverwijzing aangemaakt.",
+	"movepage-delete-first": "De doelpagina heeft te veel versies om deze als deel van een paginahernoeming te verwijderen. Verwijder de pagina handmatig en probeer het daarna opnieuw.",
 	"articleexists": "De pagina bestaat al of de paginanaam is ongeldig.\nKies een andere paginanaam.",
 	"cantmove-titleprotected": "U kunt geen pagina naar deze naam hernoemen, omdat deze naam beveiligd is tegen het aanmaken ervan.",
 	"movetalk": "Bijbehorende overlegpagina hernoemen",
