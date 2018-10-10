@@ -547,6 +547,15 @@ class MovePageForm extends UnlistedSpecialPage {
 				return;
 			}
 
+			$page = WikiPage::factory( $nt );
+
+			// Small safety margin to guard against concurrent edits
+			if ( $page->isBatchedDelete( 5 ) ) {
+				$this->showForm( [ [ 'movepage-delete-first' ] ] );
+
+				return;
+			}
+
 			$reason = $this->msg( 'delete_and_move_reason', $ot )->inContentLanguage()->text();
 
 			// Delete an associated image if there is
@@ -559,7 +568,6 @@ class MovePageForm extends UnlistedSpecialPage {
 			}
 
 			$error = ''; // passed by ref
-			$page = WikiPage::factory( $nt );
 			$deleteStatus = $page->doDeleteArticleReal( $reason, false, 0, true, $error, $user );
 			if ( !$deleteStatus->isGood() ) {
 				$this->showForm( $deleteStatus->getErrorsArray() );

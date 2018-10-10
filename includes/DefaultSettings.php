@@ -5535,6 +5535,12 @@ $wgAvailableRights = [];
 $wgDeleteRevisionsLimit = 0;
 
 /**
+ * Page deletions with > this number of revisions will use the job queue.
+ * Revisions will be archived in batches of (at most) this size, one batch per job.
+ */
+$wgDeleteRevisionsBatchSize = 1000;
+
+/**
  * The maximum number of edits a user can have and
  * can still be hidden by users with the hideuser permission.
  * This is limited for performance reason.
@@ -7518,6 +7524,7 @@ $wgServiceWiringFiles = [
  * or (since 1.30) a callback to use for creating the job object.
  */
 $wgJobClasses = [
+	'deletePage' => DeletePageJob::class,
 	'refreshLinks' => RefreshLinksJob::class,
 	'deleteLinks' => DeleteLinksJob::class,
 	'htmlCacheUpdate' => HTMLCacheUpdateJob::class,
