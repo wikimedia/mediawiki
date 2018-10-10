@@ -100,7 +100,8 @@ production.
 === External library changes in 1.32 ===
 
 ==== New external libraries ====
-* Added wikimedia/xmp-reader 0.6.0
+* Added wikimedia/xmp-reader 0.6.0.
+* Added Add pear/Net_SMTP 1.8.0.
 * …
 
 ==== Changed external libraries ====
