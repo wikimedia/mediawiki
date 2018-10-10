@@ -20,14 +20,14 @@
  * @file
  */
 
-use MediaWiki\Storage\MutableRevisionRecord;
-use MediaWiki\Storage\RevisionAccessException;
-use MediaWiki\Storage\RevisionFactory;
-use MediaWiki\Storage\RevisionLookup;
-use MediaWiki\Storage\RevisionRecord;
-use MediaWiki\Storage\RevisionStore;
-use MediaWiki\Storage\RevisionStoreRecord;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionAccessException;
+use MediaWiki\Revision\RevisionFactory;
+use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\RevisionStoreRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;

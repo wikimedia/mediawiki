@@ -157,15 +157,15 @@ $wgAutoloadClasses += [
 	'SpecialPageTestBase' => "$testDir/phpunit/includes/specials/SpecialPageTestBase.php",
 	'SpecialPageExecutor' => "$testDir/phpunit/includes/specials/SpecialPageExecutor.php",
 
-	# tests/phpunit/includes/Storage
-	'MediaWiki\Tests\Storage\McrSchemaDetection' => "$testDir/phpunit/includes/Storage/McrSchemaDetection.php",
-	'MediaWiki\Tests\Storage\McrSchemaOverride' => "$testDir/phpunit/includes/Storage/McrSchemaOverride.php",
-	'MediaWiki\Tests\Storage\McrWriteBothSchemaOverride' => "$testDir/phpunit/includes/Storage/McrWriteBothSchemaOverride.php",
-	'MediaWiki\Tests\Storage\McrReadNewSchemaOverride' => "$testDir/phpunit/includes/Storage/McrReadNewSchemaOverride.php",
-	'MediaWiki\Tests\Storage\RevisionSlotsTest' => "$testDir/phpunit/includes/Storage/RevisionSlotsTest.php",
-	'MediaWiki\Tests\Storage\RevisionRecordTests' => "$testDir/phpunit/includes/Storage/RevisionRecordTests.php",
-	'MediaWiki\Tests\Storage\RevisionStoreDbTestBase' => "$testDir/phpunit/includes/Storage/RevisionStoreDbTestBase.php",
-	'MediaWiki\Tests\Storage\PreMcrSchemaOverride' => "$testDir/phpunit/includes/Storage/PreMcrSchemaOverride.php",
+	# tests/phpunit/includes/Revision
+	'MediaWiki\Tests\Revision\McrSchemaDetection' => "$testDir/phpunit/includes/Revision/McrSchemaDetection.php",
+	'MediaWiki\Tests\Revision\McrSchemaOverride' => "$testDir/phpunit/includes/Revision/McrSchemaOverride.php",
+	'MediaWiki\Tests\Revision\McrWriteBothSchemaOverride' => "$testDir/phpunit/includes/Revision/McrWriteBothSchemaOverride.php",
+	'MediaWiki\Tests\Revision\McrReadNewSchemaOverride' => "$testDir/phpunit/includes/Revision/McrReadNewSchemaOverride.php",
+	'MediaWiki\Tests\Revision\RevisionSlotsTest' => "$testDir/phpunit/includes/Revision/RevisionSlotsTest.php",
+	'MediaWiki\Tests\Revision\RevisionRecordTests' => "$testDir/phpunit/includes/Revision/RevisionRecordTests.php",
+	'MediaWiki\Tests\Revision\RevisionStoreDbTestBase' => "$testDir/phpunit/includes/Revision/RevisionStoreDbTestBase.php",
+	'MediaWiki\Tests\Revision\PreMcrSchemaOverride' => "$testDir/phpunit/includes/Revision/PreMcrSchemaOverride.php",
 
 	# tests/phpunit/languages
 	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",

@@ -1,7 +1,7 @@
 <?php
-use MediaWiki\Storage\MutableRevisionRecord;
-use MediaWiki\Storage\RevisionStore;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentityValue;
 
 /**

@@ -48,16 +48,16 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
+use MediaWiki\Revision\RevisionFactory;
+use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionRenderer;
+use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Special\SpecialPageFactory;
 use MediaWiki\Storage\BlobStore;
-use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
-use MediaWiki\Storage\RevisionFactory;
-use MediaWiki\Storage\RevisionLookup;
-use MediaWiki\Storage\RevisionStore;
-use MediaWiki\Storage\RevisionStoreFactory;
 use MediaWiki\Storage\SqlBlobStore;
 
 return [

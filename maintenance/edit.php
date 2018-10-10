@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\SlotRecord;
 
 require_once __DIR__ . '/Maintenance.php';
 

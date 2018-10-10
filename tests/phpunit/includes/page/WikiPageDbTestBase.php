@@ -2,8 +2,8 @@
 
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
-use MediaWiki\Storage\SlotRecord;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
