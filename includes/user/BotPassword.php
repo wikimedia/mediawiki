@@ -410,9 +410,7 @@ class BotPassword implements IDBAccessObject {
 	/**
 	 * There are two ways to login with a bot password: "username@appId", "password" and
 	 * "username", "appId@password". Transform it so it is always in the first form.
-	 * Returns [bot username, bot password, could be normal password?] where the last one is a flag
-	 * meaning this could either be a bot password or a normal password, it cannot be decided for
-	 * certain (although in such cases it almost always will be a bot password).
+	 * Returns [bot username, bot password].
 	 * If this cannot be a bot password login just return false.
 	 * @param string $username
 	 * @param string $password
@@ -424,14 +422,14 @@ class BotPassword implements IDBAccessObject {
 		if ( strlen( $password ) >= 32 && strpos( $username, $sep ) !== false ) {
 			// the separator is not valid in new usernames but might appear in legacy ones
 			if ( preg_match( '/^[0-9a-w]{32,}$/', $password ) ) {
-				return [ $username, $password, true ];
+				return [ $username, $password ];
 			}
 		} elseif ( strlen( $password ) > 32 && strpos( $password, $sep ) !== false ) {
 			$segments = explode( $sep, $password );
 			$password = array_pop( $segments );
 			$appId = implode( $sep, $segments );
 			if ( preg_match( '/^[0-9a-w]{32,}$/', $password ) ) {
-				return [ $username . $sep . $appId, $password, true ];
+				return [ $username . $sep . $appId, $password ];
 			}
 		}
 		return false;
