@@ -218,7 +218,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$message = $this->msg( 'newimagestext' )->inContentLanguage();
 		if ( !$message->isDisabled() ) {
 			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-			$this->getOutput()->addWikiTextTidy(
+			$this->getOutput()->addWikiTextAsContent(
 				Html::rawElement( 'div',
 					[
 

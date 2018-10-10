@@ -1757,7 +1757,7 @@ class OutputPage extends ContextSource {
 		if ( !$title ) {
 			throw new MWException( 'Title is null' );
 		}
-		$this->addWikiTextTitle( $text, $title, $linestart, /*tidy*/false, $interface );
+		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*tidy*/false, $interface );
 	}
 
 	/**
@@ -1785,7 +1785,7 @@ class OutputPage extends ContextSource {
 		if ( !$title ) {
 			throw new MWException( 'Title is null' );
 		}
-		$this->addWikiTextTitle( $text, $title, $linestart, /*tidy*/true, /*interface*/true );
+		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*tidy*/true, /*interface*/true );
 	}
 
 	/**
@@ -1812,7 +1812,7 @@ class OutputPage extends ContextSource {
 		if ( !$title ) {
 			throw new MWException( 'Title is null' );
 		}
-		$this->addWikiTextTitle( $text, $title, $linestart, /*tidy*/true, /*interface*/false );
+		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*tidy*/true, /*interface*/false );
 	}
 
 	/**
@@ -1825,7 +1825,8 @@ class OutputPage extends ContextSource {
 	 *   addWikiTextAsInterface()
 	 */
 	public function addWikiTextWithTitle( $text, Title $title, $linestart = true ) {
-		$this->addWikiTextTitle( $text, $title, $linestart );
+		wfDeprecated( __METHOD__, '1.32' );
+		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*tidy*/false, /*interface*/false );
 	}
 
 	/**
@@ -1839,7 +1840,7 @@ class OutputPage extends ContextSource {
 	 *   addWikiTextAsContent()
 	 */
 	function addWikiTextTitleTidy( $text, Title $title, $linestart = true ) {
-		$this->addWikiTextTitle( $text, $title, $linestart, true );
+		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*tidy*/true, /*interface*/false );
 	}
 
 	/**
@@ -1855,7 +1856,7 @@ class OutputPage extends ContextSource {
 		if ( !$title ) {
 			throw new MWException( 'Title is null' );
 		}
-		$this->addWikiTextTitleTidy( $text, $title, $linestart );
+		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*tidy*/true, /*interface*/false );
 	}
 
 	/**
@@ -1879,6 +1880,27 @@ class OutputPage extends ContextSource {
 	 */
 	public function addWikiTextTitle( $text, Title $title, $linestart,
 		$tidy = false, $interface = false
+	) {
+		wfDeprecated( __METHOD__, '1.32' );
+		return $this->addWikiTextTitleInternal( $text, $title, $linestart, $tidy, $interface );
+	}
+
+	/**
+	 * Add wikitext with a custom Title object.
+	 * Output is unwrapped.
+	 *
+	 * @param string $text Wikitext
+	 * @param Title $title
+	 * @param bool $linestart Is this the start of a line?
+	 * @param bool $tidy Whether to use tidy.
+	 *             Setting this to false (or omitting it) is deprecated
+	 *             since 1.32; all wikitext should be tidied.
+	 * @param bool $interface Whether it is an interface message
+	 *   (for example disables conversion)
+	 * @private
+	 */
+	private function addWikiTextTitleInternal(
+		$text, Title $title, $linestart, $tidy, $interface
 	) {
 		global $wgParser;
 
