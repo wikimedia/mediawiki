@@ -263,32 +263,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'item' );
 	}
 
-	/**
-	 * @deprecated since 1.25 Use LogFormatter::formatParametersForApi instead
-	 * @param ApiResult $result
-	 * @param array &$vals
-	 * @param string $params
-	 * @param string $type
-	 * @param string $action
-	 * @param string $ts
-	 * @param bool $legacy
-	 * @return array
-	 */
-	public static function addLogParams( $result, &$vals, $params, $type,
-		$action, $ts, $legacy = false
-	) {
-		wfDeprecated( __METHOD__, '1.25' );
-
-		$entry = new ManualLogEntry( $type, $action );
-		$entry->setParameters( $params );
-		$entry->setTimestamp( $ts );
-		$entry->setLegacy( $legacy );
-		$formatter = LogFormatter::newFromEntry( $entry );
-		$vals['params'] = $formatter->formatParametersForApi();
-
-		return $vals;
-	}
-
 	private function extractRowInfo( $row ) {
 		$logEntry = DatabaseLogEntry::newFromRow( $row );
 		$vals = [

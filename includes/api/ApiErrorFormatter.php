@@ -164,16 +164,6 @@ class ApiErrorFormatter {
 			$msg = Message::newFromSpecifier( $exception );
 			$params = [];
 		} else {
-			// Extract code and data from the exception, if applicable
-			if ( $exception instanceof UsageException ) {
-				$data = $exception->getMessageArray();
-				if ( !$options['code'] ) {
-					$options['code'] = $data['code'];
-				}
-				unset( $data['code'], $data['info'] );
-				$options['data'] = array_merge( $data, $options['data'] );
-			}
-
 			if ( isset( $options['wrap'] ) ) {
 				$msg = $options['wrap'];
 			} else {

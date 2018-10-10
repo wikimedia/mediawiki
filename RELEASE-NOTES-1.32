@@ -191,6 +191,23 @@ production.
   * ApiFeedContributions::feedItemAuthor()
   * ApiFeedContributions::feedItemDesc()
   * ApiQueryRevisionsBase::extractRevisionInfo()
+* The following deprecated methods have been removed:
+  * ApiBase::profileIn() (deprecated in 1.25)
+  * ApiBase::profileOut() (deprecated in 1.25)
+  * ApiBase::safeProfileOut() (deprecated in 1.25)
+  * ApiBase::profileDBIn() (deprecated in 1.25)
+  * ApiBase::profileDBOut() (deprecated in 1.25)
+  * ApiBase::dieUsage() (deprecated in 1.29)
+  * ApiBase::dieUsageMsg() (deprecated in 1.29)
+  * ApiBase::dieUsageMsgOrDebug() (deprecated in 1.29)
+  * ApiBase::getErrorFromStatus() (deprecated in 1.29)
+  * ApiBase::parseMsg() (deprecated in 1.29)
+  * ApiBase::setWarning() (deprecated in 1.29)
+  * ApiPageSet::getInvalidTitles() (deprecated in 1.26)
+  * ApiQueryLogEvents::addLogParams() (deprecated in 1.25)
+  * ApiUsageException::getCodeString() (deprecated in 1.29)
+  * ApiUsageException::getMessageArray() (deprecated in 1.29)
+* Class UsageException, deprecated in 1.29, has been removed.
 
 === Languages updated in 1.32 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -358,6 +375,23 @@ because of Phabricator reports.
 * The hook 'UnknownAction', deprecated since 1.19, has now been removed.
 * The hook 'ParserLimitReport', deprecated since 1.22, has been removed. Use
   the hooks 'ParserLimitReportPrepare' and 'ParserLimitReportFormat' instead.
+* The following deprecated API methods have been removed:
+  * ApiBase::profileIn() (deprecated in 1.25)
+  * ApiBase::profileOut() (deprecated in 1.25)
+  * ApiBase::safeProfileOut() (deprecated in 1.25)
+  * ApiBase::profileDBIn() (deprecated in 1.25)
+  * ApiBase::profileDBOut() (deprecated in 1.25)
+  * ApiBase::dieUsage() (deprecated in 1.29)
+  * ApiBase::dieUsageMsg() (deprecated in 1.29)
+  * ApiBase::dieUsageMsgOrDebug() (deprecated in 1.29)
+  * ApiBase::getErrorFromStatus() (deprecated in 1.29)
+  * ApiBase::parseMsg() (deprecated in 1.29)
+  * ApiBase::setWarning() (deprecated in 1.29)
+  * ApiPageSet::getInvalidTitles() (deprecated in 1.26)
+  * ApiQueryLogEvents::addLogParams() (deprecated in 1.25)
+  * ApiUsageException::getCodeString() (deprecated in 1.29)
+  * ApiUsageException::getMessageArray() (deprecated in 1.29)
+* Class UsageException, deprecated in 1.29, has been removed.
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit
