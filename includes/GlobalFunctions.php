@@ -2456,33 +2456,6 @@ function wfDiff( $before, $after, $params = '-u' ) {
 }
 
 /**
- * This function works like "use VERSION" in Perl, the program will die with a
- * backtrace if the current version of PHP is less than the version provided
- *
- * This is useful for extensions which due to their nature are not kept in sync
- * with releases, and might depend on other versions of PHP than the main code
- *
- * Note: PHP might die due to parsing errors in some cases before it ever
- *       manages to call this function, such is life
- *
- * @see perldoc -f use
- *
- * @param string|int|float $req_ver The version to check, can be a string, an integer, or a float
- *
- * @deprecated since 1.30
- *
- * @throws MWException
- */
-function wfUsePHP( $req_ver ) {
-	wfDeprecated( __FUNCTION__, '1.30' );
-	$php_ver = PHP_VERSION;
-
-	if ( version_compare( $php_ver, (string)$req_ver, '<' ) ) {
-		throw new MWException( "PHP $req_ver required--this is only $php_ver" );
-	}
-}
-
-/**
  * Return the final portion of a pathname.
  * Reimplemented because PHP5's "basename()" is buggy with multibyte text.
  * https://bugs.php.net/bug.php?id=33898
