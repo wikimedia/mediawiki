@@ -415,20 +415,9 @@ $format: API format code for $text.
 &$params: Array of parameters
 $flags: int zero or OR-ed flags like ApiBase::GET_VALUES_FOR_HELP
 
-'APIGetDescription': DEPRECATED since 1.25! Use APIGetDescriptionMessages
-instead. Use this hook to modify a module's description.
-&$module: ApiBase Module object
-&$desc: String description, or array of description strings
-
 'APIGetDescriptionMessages': Use this hook to modify a module's help message.
 $module: ApiBase Module object
 &$msg: Array of Message objects
-
-'APIGetParamDescription': DEPRECATED since 1.25! Use
-APIGetParamDescriptionMessages instead.
-Use this hook to modify a module's parameter descriptions.
-&$module: ApiBase Module object
-&$desc: Array of parameter descriptions
 
 'APIGetParamDescriptionMessages': Use this hook to modify a module's parameter
 descriptions.
