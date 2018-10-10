@@ -824,12 +824,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		// Both Hooks::run are explicit here to make findHooks.php happy
 		if ( $this->isSignup() ) {
-			Hooks::run( 'UserCreateForm', [ &$template ] );
+			Hooks::run( 'UserCreateForm', [ &$template ], '1.27' );
 			if ( $oldTemplate !== $template ) {
 				wfDeprecated( "reference in UserCreateForm hook", '1.27' );
 			}
 		} else {
-			Hooks::run( 'UserLoginForm', [ &$template ] );
+			Hooks::run( 'UserLoginForm', [ &$template ], '1.27' );
 			if ( $oldTemplate !== $template ) {
 				wfDeprecated( "reference in UserLoginForm hook", '1.27' );
 			}
