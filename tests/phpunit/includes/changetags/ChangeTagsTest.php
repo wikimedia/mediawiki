@@ -15,6 +15,14 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		$this->tablesUsed[] = 'change_tag_def';
 		$this->tablesUsed[] = 'tag_summary';
 		$this->tablesUsed[] = 'valid_tag';
+
+		// Truncate these to avoid the supposed-to-be-unused IDs in tests here turning
+		// out to be used, leading ChangeTags::updateTags() to pick up bogus rc_id,
+		// log_id, or rev_id values and run into unique constraint violations.
+		$this->tablesUsed[] = 'recentchanges';
+		$this->tablesUsed[] = 'logging';
+		$this->tablesUsed[] = 'revision';
+		$this->tablesUsed[] = 'archive';
 	}
 
 	// TODO only modifyDisplayQuery and getSoftwareTags are tested, nothing else is
