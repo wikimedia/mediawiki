@@ -44,6 +44,8 @@ class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
 			$hook => [ $mock ],
 		] );
+		$mockClass = get_class( $mock );
+		$this->hideDeprecated( "$hook hook (used in $mockClass::on$hook)" );
 		return $mock->expects( $expect )->method( "on$hook" );
 	}
 
