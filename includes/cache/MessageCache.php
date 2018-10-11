@@ -464,13 +464,7 @@ class MessageCache {
 
 		$cache = [];
 
-		# Common conditions
-		$conds = [
-			'page_is_redirect' => 0,
-			'page_namespace' => NS_MEDIAWIKI,
-		];
-
-		$mostused = [];
+		$mostused = []; // list of "<cased message key>/<code>"
 		if ( $wgAdaptiveMessageCache && $code !== $wgLanguageCode ) {
 			if ( !$this->cache->has( $wgLanguageCode ) ) {
 				$this->load( $wgLanguageCode );
@@ -481,6 +475,14 @@ class MessageCache {
 			}
 		}
 
+		// Get the list of software-defined messages in core/extensions
+		$overridable = array_flip( Language::getMessageKeysFor( $wgLanguageCode ) );
+
+		// Common conditions
+		$conds = [
+			'page_is_redirect' => 0,
+			'page_namespace' => NS_MEDIAWIKI,
+		];
 		if ( count( $mostused ) ) {
 			$conds['page_title'] = $mostused;
 		} elseif ( $code !== $wgLanguageCode ) {
@@ -492,31 +494,28 @@ class MessageCache {
 				$dbr->buildLike( $dbr->anyString(), '/', $dbr->anyString() );
 		}
 
-		# Conditions to fetch oversized pages to ignore them
-		$bigConds = $conds;
-		$bigConds[] = 'page_len > ' . intval( $wgMaxMsgCacheEntrySize );
-
-		# Load titles for all oversized pages in the MediaWiki namespace
+		// Set the stubs for oversized software-defined messages in the main cache map
 		$res = $dbr->select(
 			'page',
 			[ 'page_title', 'page_latest' ],
-			$bigConds,
+			array_merge( $conds, [ 'page_len > ' . intval( $wgMaxMsgCacheEntrySize ) ] ),
 			__METHOD__ . "($code)-big"
 		);
 		foreach ( $res as $row ) {
-			$cache[$row->page_title] = '!TOO BIG';
+			$name = $this->contLang->lcfirst( $row->page_title );
+			// Include entries/stubs for all keys in $mostused in adaptive mode
+			if ( $wgAdaptiveMessageCache || isset( $overridable[$name] ) ) {
+				$cache[$row->page_title] = '!TOO BIG';
+			}
 			// At least include revision ID so page changes are reflected in the hash
 			$cache['EXCESSIVE'][$row->page_title] = $row->page_latest;
 		}
 
-		# Conditions to load the remaining pages with their contents
-		$smallConds = $conds;
-		$smallConds[] = 'page_len <= ' . intval( $wgMaxMsgCacheEntrySize );
-
+		// Set the text for small software-defined messages in the main cache map
 		$res = $dbr->select(
 			[ 'page', 'revision', 'text' ],
-			[ 'page_title', 'old_id', 'old_text', 'old_flags' ],
-			$smallConds,
+			[ 'page_title', 'page_latest', 'old_id', 'old_text', 'old_flags' ],
+			array_merge( $conds, [ 'page_len <= ' . intval( $wgMaxMsgCacheEntrySize ) ] ),
 			__METHOD__ . "($code)-small",
 			[],
 			[
@@ -524,23 +523,30 @@ class MessageCache {
 				'text' => [ 'JOIN', 'rev_text_id=old_id' ],
 			]
 		);
-
 		foreach ( $res as $row ) {
-			$text = Revision::getRevisionText( $row );
-			if ( $text === false ) {
-				// Failed to fetch data; possible ES errors?
-				// Store a marker to fetch on-demand as a workaround...
-				// TODO Use a differnt marker
-				$entry = '!TOO BIG';
-				wfDebugLog(
-					'MessageCache',
-					__METHOD__
-					. ": failed to load message page text for {$row->page_title} ($code)"
-				);
+			$name = $this->contLang->lcfirst( $row->page_title );
+			// Include entries/stubs for all keys in $mostused in adaptive mode
+			if ( $wgAdaptiveMessageCache || isset( $overridable[$name] ) ) {
+				$text = Revision::getRevisionText( $row );
+				if ( $text === false ) {
+					// Failed to fetch data; possible ES errors?
+					// Store a marker to fetch on-demand as a workaround...
+					// TODO Use a differnt marker
+					$entry = '!TOO BIG';
+					wfDebugLog(
+						'MessageCache',
+						__METHOD__
+						. ": failed to load message page text for {$row->page_title} ($code)"
+					);
+				} else {
+					$entry = ' ' . $text;
+				}
+				$cache[$row->page_title] = $entry;
 			} else {
-				$entry = ' ' . $text;
+				// T193271: cache object gets too big and slow to generate.
+				// At least include revision ID so page changes are reflected in the hash.
+				$cache['EXCESSIVE'][$row->page_title] = $row->page_latest;
 			}
-			$cache[$row->page_title] = $entry;
 		}
 
 		$cache['VERSION'] = MSG_CACHE_VERSION;
@@ -818,9 +824,8 @@ class MessageCache {
 		Hooks::run( 'MessageCache::get', [ &$lckey ] );
 
 		// Loop through each language in the fallback list until we find something useful
-		$lang = wfGetLangObj( $langcode );
 		$message = $this->getMessageFromFallbackChain(
-			$lang,
+			wfGetLangObj( $langcode ),
 			$lckey,
 			!$this->mDisable && $useDB
 		);
@@ -912,7 +917,6 @@ class MessageCache {
 					$this->getMessagePageName( $langcode, $uckey ),
 					$langcode
 				);
-
 				if ( $message !== false ) {
 					return $message;
 				}
@@ -987,44 +991,54 @@ class MessageCache {
 		$this->load( $code );
 
 		$entry = $this->cache->getField( $code, $title );
+
 		if ( $entry !== null ) {
+			// Message page exists as an override of a software messages
 			if ( substr( $entry, 0, 1 ) === ' ' ) {
 				// The message exists and is not '!TOO BIG'
 				return (string)substr( $entry, 1 );
 			} elseif ( $entry === '!NONEXISTENT' ) {
+				// The text might be '-' or missing due to some data loss
 				return false;
 			}
-			// Fall through and try invididual message cache below
-		} else {
-			// Message does not have a MediaWiki page definition
-			$message = false;
-			Hooks::run( 'MessagesPreLoad', [ $title, &$message, $code ] );
-			if ( $message !== false ) {
-				$this->cache->setField( $code, $title, ' ' . $message );
-			} else {
-				$this->cache->setField( $code, $title, '!NONEXISTENT' );
-			}
-
-			return $message;
-		}
-
-		if ( $this->cacheVolatile[$code] ) {
-			$entry = false;
-			// Make sure that individual keys respect the WAN cache holdoff period too
-			LoggerFactory::getInstance( 'MessageCache' )->debug(
-				__METHOD__ . ': loading volatile key \'{titleKey}\'',
-				[ 'titleKey' => $title, 'code' => $code ] );
-		} else {
-			// Try the individual message cache
+			// Load the message page, utilizing the individual message cache.
+			// If the page does not exist, there will be no hook handler fallbacks.
 			$entry = $this->loadCachedMessagePageEntry(
 				$title,
 				$code,
 				$this->cache->getField( $code, 'HASH' )
 			);
+		} else {
+			// Message page does not exist or does not override a software message.
+			// Load the message page, utilizing the individual message cache.
+			$entry = $this->loadCachedMessagePageEntry(
+				$title,
+				$code,
+				$this->cache->getField( $code, 'HASH' )
+			);
+			if ( substr( $entry, 0, 1 ) !== ' ' ) {
+				// Message does not have a MediaWiki page definition; try hook handlers
+				$message = false;
+				Hooks::run( 'MessagesPreLoad', [ $title, &$message, $code ] );
+				if ( $message !== false ) {
+					$this->cache->setField( $code, $title, ' ' . $message );
+				} else {
+					$this->cache->setField( $code, $title, '!NONEXISTENT' );
+				}
+
+				return $message;
+			}
 		}
 
 		if ( $entry !== false && substr( $entry, 0, 1 ) === ' ' ) {
-			$this->cache->setField( $code, $title, $entry );
+			if ( $this->cacheVolatile[$code] ) {
+				// Make sure that individual keys respect the WAN cache holdoff period too
+				LoggerFactory::getInstance( 'MessageCache' )->debug(
+					__METHOD__ . ': loading volatile key \'{titleKey}\'',
+					[ 'titleKey' => $title, 'code' => $code ] );
+			} else {
+				$this->cache->setField( $code, $title, $entry );
+			}
 			// The message exists, so make sure a string is returned
 			return (string)substr( $entry, 1 );
 		}
