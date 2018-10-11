@@ -129,6 +129,51 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $oldText, $messageCache->get( $message ), 'Content restored' );
 	}
 
+	public function testReplaceCache() {
+		global $wgWANObjectCaches;
+
+		// We need a WAN cache for this.
+		$this->setMwGlobals( [
+			'wgMainWANCache' => 'hash',
+			'wgWANObjectCaches' => $wgWANObjectCaches + [
+				'hash' => [
+					'class'    => WANObjectCache::class,
+					'cacheId'  => 'hash',
+					'channels' => []
+				]
+			]
+		] );
+		$this->overrideMwServices();
+
+		MessageCache::destroyInstance();
+		$messageCache = MessageCache::singleton();
+		$messageCache->enable();
+
+		// Populate one key
+		$this->makePage( 'Key1', 'de', 'Value1' );
+		$this->assertEquals( 0,
+			DeferredUpdates::pendingUpdatesCount(),
+			'Post-commit deferred update triggers a run of all updates' );
+		$this->assertEquals( 'Value1', $messageCache->get( 'Key1' ), 'Key1 was successfully edited' );
+
+		// Screw up the database so MessageCache::loadFromDB() will
+		// produce the wrong result for reloading Key1
+		$this->db->delete(
+			'page', [ 'page_namespace' => NS_MEDIAWIKI, 'page_title' => 'Key1' ], __METHOD__
+		);
+
+		// Populate the second key
+		$this->makePage( 'Key2', 'de', 'Value2' );
+		$this->assertEquals( 0,
+			DeferredUpdates::pendingUpdatesCount(),
+			'Post-commit deferred update triggers a run of all updates' );
+		$this->assertEquals( 'Value2', $messageCache->get( 'Key2' ), 'Key2 was successfully edited' );
+
+		// Now test that the second edit didn't reload Key1
+		$this->assertEquals( 'Value1', $messageCache->get( 'Key1' ),
+			'Key1 wasn\'t reloaded by edit of Key2' );
+	}
+
 	/**
 	 * @dataProvider provideNormalizeKey
 	 */

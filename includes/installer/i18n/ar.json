@@ -319,6 +319,8 @@
 	"config-skins-screenshots": "$1 (لقطات شاشة: $2)",
 	"config-extensions-requires": "$1 (يتطلب $2)",
 	"config-screenshot": "لقطة شاشة",
+	"config-extension-not-found": "لم يمكن العثور على ملف التسجيل للامتداد \"$1\"",
+	"config-extension-dependency": "خطأ اعتماد حدث أثناء تنصيب الامتداد \"$1\": $2",
 	"mainpagetext": "<strong>تم تثبيت ميدياويكي بنجاح.</strong>",
 	"mainpagedocfooter": "استشر [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.\n\n== البداية ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings قائمة إعدادات الضبط]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ أسئلة متكررة حول ميدياويكي]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam تعلم كيفية مكافحة السخام في الويكي الخاص بك]"
 }

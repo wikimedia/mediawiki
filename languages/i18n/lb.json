@@ -3464,6 +3464,8 @@
 	"revdelete-unrestricted": "Limitatioune fir Administrateuren opgehuewen",
 	"logentry-block-block": "$1 {{GENDER:$2|huet}} {{GENDER:$4|$3}} fir eng Zäit vu(n) $5 $6 gespaart",
 	"logentry-block-unblock": "$1 {{GENDER:$2|huet}} d'Spär vum {{GENDER:$4|$3}} opgehuewen",
+	"logentry-block-reblock": "$1 {{GENDER:$2|huet}} d'Spärastellunge fir {{GENDER:$4|$3}} mat enger Spärdauer vu(n) $5 $6 geännert",
+	"logentry-suppress-reblock": "$1 {{GENDER:$2|huet}} d'Spärastellunge fir {{GENDER:$4|$3}} mat enger Spärdauer vu(n) $5 $6 geännert",
 	"logentry-import-upload": "$1 {{GENDER:$2|huet}} $3 duerch Eropluede vun engem Fichier importéiert",
 	"logentry-import-interwiki": "$1 huet $3 vun enger anerer Wiki {{GENDER:$2|importéiert}}",
 	"logentry-import-interwiki-details": "$1 {{GENDER:$2|huet}} $3 vu(n) $5 importéiert ({{PLURAL:$4|Eng Versioun|$4 Versiounen}})",

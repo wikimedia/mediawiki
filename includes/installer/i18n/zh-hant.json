@@ -326,6 +326,8 @@
 	"config-skins-screenshots": "$1 (螢幕截圖: $2)",
 	"config-extensions-requires": "$1（需要 $2）",
 	"config-screenshot": "螢幕截圖",
+	"config-extension-not-found": "查無用於擴充功能「$1」的註冊檔案",
+	"config-extension-dependency": "當安裝擴充功能「$1」時發生相依性錯誤：$2",
 	"mainpagetext": "<strong>已安裝 MediaWiki。</strong>",
 	"mainpagedocfooter": "有關使用wiki的訊息，請參閱[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 使用者指南]。\n\n== 新手入門 ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings 系統設定]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki常見問題]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki郵寄清單]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources 將MediaWiki翻譯至您的語言]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 了解如何在您的wiki上防禦破壞]"
 }

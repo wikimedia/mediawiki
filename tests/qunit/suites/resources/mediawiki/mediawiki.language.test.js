@@ -692,19 +692,57 @@
 		// # Tags that use extensions
 		[ 'en-us-u-islamcal', 'en-US-u-islamcal' ],
 		[ 'zh-cn-a-myext-x-private', 'zh-CN-a-myext-x-private' ],
-		[ 'en-a-myext-b-another', 'en-a-myext-b-another' ]
+		[ 'en-a-myext-b-another', 'en-a-myext-b-another' ],
 
 		// # Invalid:
 		// de-419-DE
 		// a-DE
 		// ar-a-aaa-b-bbb-a-ccc
+
+		// Non-standard and deprecated language codes used by MediaWiki
+		[ 'als', 'gsw' ],
+		[ 'bat-smg', 'sgs' ],
+		[ 'be-x-old', 'be-tarask' ],
+		[ 'fiu-vro', 'vro' ],
+		[ 'roa-rup', 'rup' ],
+		[ 'zh-classical', 'lzh' ],
+		[ 'zh-min-nan', 'nan' ],
+		[ 'zh-yue', 'yue' ],
+		[ 'cbk-zam', 'cbk' ],
+		[ 'de-formal', 'de-x-formal' ],
+		[ 'eml', 'egl' ],
+		[ 'en-rtl', 'en-x-rtl' ],
+		[ 'es-formal', 'es-x-formal' ],
+		[ 'hu-formal', 'hu-x-formal' ],
+		[ 'kk-Arab', 'kk-Arab' ],
+		[ 'kk-Cyrl', 'kk-Cyrl' ],
+		[ 'kk-Latn', 'kk-Latn' ],
+		[ 'map-bms', 'jv-x-bms' ],
+		[ 'mo', 'ro-Cyrl-MD' ],
+		[ 'nrm', 'nrf' ],
+		[ 'nl-informal', 'nl-x-informal' ],
+		[ 'roa-tara', 'nap-x-tara' ],
+		[ 'simple', 'en-simple' ],
+		[ 'sr-ec', 'sr-Cyrl' ],
+		[ 'sr-el', 'sr-Latn' ],
+		[ 'zh-cn', 'zh-Hans-CN' ],
+		[ 'zh-sg', 'zh-Hans-SG' ],
+		[ 'zh-my', 'zh-Hans-MY' ],
+		[ 'zh-tw', 'zh-Hant-TW' ],
+		[ 'zh-hk', 'zh-Hant-HK' ],
+		[ 'zh-mo', 'zh-Hant-MO' ],
+		[ 'zh-hans', 'zh-Hans' ],
+		[ 'zh-hant', 'zh-Hant' ]
 	];
 
 	QUnit.test( 'mw.language.bcp47', function ( assert ) {
+		mw.language.data = this.liveLangData;
 		bcp47Tests.forEach( function ( data ) {
 			var input = data[ 0 ],
 				expected = data[ 1 ];
 			assert.strictEqual( mw.language.bcp47( input ), expected );
+			assert.strictEqual( mw.language.bcp47( input.toLowerCase() ), expected );
+			assert.strictEqual( mw.language.bcp47( input.toUpperCase() ), expected );
 		} );
 	} );
 }() );

@@ -489,6 +489,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			function ( $code, $name ) {
 				return [
 					'code' => $code,
+					'bcp47' => LanguageCode::bcp47( $code ),
 					'name' => $name
 				];
 			},

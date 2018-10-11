@@ -314,6 +314,9 @@ because of Phabricator reports.
   * 'uppercase-se' (NorthernSamiUppercaseCollation) - use 'uca-se' instead
   * 'xx-uca-et' (CollationEt) - use 'uca-et' instead
   * 'xx-uca-fa' (CollationFa) - use 'uca-fa' instead
+* LanguageCode::bcp47() now always returns a valid BCP 47 code.  This means
+  that some MediaWiki-specific language codes, such as `simple`, are mapped
+  into valid BCP 47 codes (eg `en-simple`).
 * The hooks 'SpecialRecentChangesFilters' & 'SpecialWatchlistFilters' deprecated
   in 1.23 were removed. Instead, use 'ChangesListSpecialPageStructuredFilters'.
   The ChangesListSpecialPage code for these legacy hooks, and their use in
