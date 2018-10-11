@@ -346,6 +346,7 @@ because of Phabricator reports.
 * File / MediaHandler::getStreamHeaders(), deprecated since 1.30, was removed.
 * The hook 'DoEditSectionLink', deprecated since 1.25, has been removed. Use
   the hook 'SkinEditSectionLinks' instead.
+* The hook 'UserGetImplicitGroups', deprecated since 1.25, has been removed.
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit

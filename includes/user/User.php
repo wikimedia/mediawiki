@@ -5123,16 +5123,13 @@ class User implements IDBAccessObject, UserIdentity {
 
 	/**
 	 * Get a list of implicit groups
+	 * TODO: Should we deprecate this? It's trivial, but we don't want to encourage use of globals.
+	 *
 	 * @return array Array of Strings Array of internal group names
 	 */
 	public static function getImplicitGroups() {
 		global $wgImplicitGroups;
-
-		$groups = $wgImplicitGroups;
-		# Deprecated, use $wgImplicitGroups instead
-		Hooks::run( 'UserGetImplicitGroups', [ &$groups ], '1.25' );
-
-		return $groups;
+		return $wgImplicitGroups;
 	}
 
 	/**
