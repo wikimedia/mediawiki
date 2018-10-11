@@ -101,6 +101,14 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	private $mwGlobalsToUnset = [];
 
 	/**
+	 * Holds original values of ini settings to be restored
+	 * in tearDown().
+	 * @see setIniSettings()
+	 * @var array
+	 */
+	private $iniSettings = [];
+
+	/**
 	 * Holds original loggers which have been replaced by setLogger()
 	 * @var LoggerInterface[]
 	 */
@@ -573,6 +581,9 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		foreach ( $this->mwGlobalsToUnset as $value ) {
 			unset( $GLOBALS[$value] );
 		}
+		foreach ( $this->iniSettings as $name => $value ) {
+			ini_set( $name, $value );
+		}
 		if (
 			array_key_exists( 'wgExtraNamespaces', $this->mwGlobals ) ||
 			in_array( 'wgExtraNamespaces', $this->mwGlobalsToUnset )
@@ -720,6 +731,18 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		if ( array_key_exists( 'wgExtraNamespaces', $pairs ) ) {
 			$this->resetNamespaces();
 		}
+	}
+
+	/**
+	 * Set an ini setting for the duration of the test
+	 * @param string $name Name of the setting
+	 * @param string $value Value to set
+	 * @since 1.32
+	 */
+	protected function setIniSetting( $name, $value ) {
+		$original = ini_get( $name );
+		$this->iniSettings[$name] = $original;
+		ini_set( $name, $value );
 	}
 
 	/**

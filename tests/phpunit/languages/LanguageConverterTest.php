@@ -169,9 +169,8 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 			$testString .= 'xxx xxx xxx';
 		}
 		$testString .= "\n<big id='в'></big>";
-		$old = ini_set( 'pcre.backtrack_limit', 200 );
+		$this->setIniSetting( 'pcre.backtrack_limit', 200 );
 		$result = $this->lc->autoConvert( $testString, 'tg-latn' );
-		ini_set( 'pcre.backtrack_limit', $old );
 		// The в in the id attribute should not get converted to a v
 		$this->assertFalse(
 			strpos( $result, 'v' ),
