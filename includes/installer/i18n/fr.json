@@ -338,6 +338,8 @@
 	"config-skins-screenshots": "$1 (captures d’écran : $2)",
 	"config-extensions-requires": "$1 (nécessite $2)",
 	"config-screenshot": "Captures d’écrans",
+	"config-extension-not-found": "Impossible de trouver le fichier d’inscription pour l’extension « $1 »",
+	"config-extension-dependency": "Une erreur de dépendance s’est produite en installant l’extension « $1 » : $2",
 	"mainpagetext": "<strong>MediaWiki a été installé.</strong>",
 	"mainpagedocfooter": "Consultez le [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel de wiki.\n\n== Pour démarrer ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste des paramètres de configuration]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/fr Questions courantes sur MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion sur les distributions de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Adaptez MediaWiki dans votre langue]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Apprendre comment lutter contre le pourriel dans votre wiki]"
 }
