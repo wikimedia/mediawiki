@@ -1264,15 +1264,33 @@ abstract class Installer {
 	}
 
 	/**
-	 * Finds extensions that follow the format /$directory/Name/Name.php,
-	 * and returns an array containing the value for 'Name' for each found extension.
+	 * Find extensions or skins in a subdirectory of $IP.
+	 * Returns an array containing the value for 'Name' for each found extension.
 	 *
-	 * Reasonable values for $directory include 'extensions' (the default) and 'skins'.
-	 *
-	 * @param string $directory Directory to search in
+	 * @param string $directory Directory to search in, relative to $IP, must be either "extensions"
+	 *     or "skins"
 	 * @return array [ $extName => [ 'screenshots' => [ '...' ] ]
 	 */
 	public function findExtensions( $directory = 'extensions' ) {
+		switch ( $directory ) {
+			case 'extensions':
+				return $this->findExtensionsByType( 'extension', 'extensions' );
+			case 'skins':
+				return $this->findExtensionsByType( 'skin', 'skins' );
+			default:
+				throw new InvalidArgumentException( "Invalid extension type" );
+		}
+	}
+
+	/**
+	 * Find extensions or skins, and return an array containing the value for 'Name' for each found
+	 * extension.
+	 *
+	 * @param string $type Either "extension" or "skin"
+	 * @param string $directory Directory to search in, relative to $IP
+	 * @return array [ $extName => [ 'screenshots' => [ '...' ] ]
+	 */
+	protected function findExtensionsByType( $type = 'extension', $directory = 'extensions' ) {
 		if ( $this->getVar( 'IP' ) === null ) {
 			return [];
 		}
@@ -1282,40 +1300,15 @@ abstract class Installer {
 			return [];
 		}
 
-		// extensions -> extension.json, skins -> skin.json
-		$jsonFile = substr( $directory, 0, strlen( $directory ) - 1 ) . '.json';
-
 		$dh = opendir( $extDir );
 		$exts = [];
 		while ( ( $file = readdir( $dh ) ) !== false ) {
 			if ( !is_dir( "$extDir/$file" ) ) {
 				continue;
 			}
-			$fullJsonFile = "$extDir/$file/$jsonFile";
-			$isJson = file_exists( $fullJsonFile );
-			$isPhp = false;
-			if ( !$isJson ) {
-				// Only fallback to PHP file if JSON doesn't exist
-				$fullPhpFile = "$extDir/$file/$file.php";
-				$isPhp = file_exists( $fullPhpFile );
-			}
-			if ( $isJson || $isPhp ) {
-				// Extension exists. Now see if there are screenshots
-				$exts[$file] = [];
-				if ( is_dir( "$extDir/$file/screenshots" ) ) {
-					$paths = glob( "$extDir/$file/screenshots/*.png" );
-					foreach ( $paths as $path ) {
-						$exts[$file]['screenshots'][] = str_replace( $extDir, "../$directory", $path );
-					}
-
-				}
-			}
-			if ( $isJson ) {
-				$info = $this->readExtension( $fullJsonFile );
-				if ( $info === false ) {
-					continue;
-				}
-				$exts[$file] += $info;
+			$status = $this->getExtensionInfo( $type, $directory, $file );
+			if ( $status->isOK() ) {
+				$exts[$file] = $status->value;
 			}
 		}
 		closedir( $dh );
@@ -1325,11 +1318,64 @@ abstract class Installer {
 	}
 
 	/**
+	 * @param string $type Either "extension" or "skin"
+	 * @param string $parentRelPath The parent directory relative to $IP
+	 * @param string $name The extension or skin name
+	 * @return Status An object containing an error list. If there were no errors, an associative
+	 *     array of information about the extension can be found in $status->value.
+	 */
+	protected function getExtensionInfo( $type, $parentRelPath, $name ) {
+		if ( $this->getVar( 'IP' ) === null ) {
+			throw new Exception( 'Cannot find extensions since the IP variable is not yet set' );
+		}
+		if ( $type !== 'extension' && $type !== 'skin' ) {
+			throw new InvalidArgumentException( "Invalid extension type" );
+		}
+		$absDir = $this->getVar( 'IP' ) . "/$parentRelPath/$name";
+		$relDir = "../$parentRelPath/$name";
+		if ( !is_dir( $absDir ) ) {
+			return Status::newFatal( 'config-extension-not-found', $name );
+		}
+		$jsonFile = $type . '.json';
+		$fullJsonFile = "$absDir/$jsonFile";
+		$isJson = file_exists( $fullJsonFile );
+		$isPhp = false;
+		if ( !$isJson ) {
+			// Only fallback to PHP file if JSON doesn't exist
+			$fullPhpFile = "$absDir/$name.php";
+			$isPhp = file_exists( $fullPhpFile );
+		}
+		if ( !$isJson && !$isPhp ) {
+			return Status::newFatal( 'config-extension-not-found', $name );
+		}
+
+		// Extension exists. Now see if there are screenshots
+		$info = [];
+		if ( is_dir( "$absDir/screenshots" ) ) {
+			$paths = glob( "$absDir/screenshots/*.png" );
+			foreach ( $paths as $path ) {
+				$info['screenshots'][] = str_replace( $absDir, $relDir, $path );
+			}
+		}
+
+		if ( $isJson ) {
+			$jsonStatus = $this->readExtension( $fullJsonFile );
+			if ( !$jsonStatus->isOK() ) {
+				return $jsonStatus;
+			}
+			$info += $jsonStatus->value;
+		}
+
+		return Status::newGood( $info );
+	}
+
+	/**
 	 * @param string $fullJsonFile
 	 * @param array $extDeps
 	 * @param array $skinDeps
 	 *
-	 * @return array|bool False if this extension can't be loaded
+	 * @return Status On success, an array of extension information is in $status->value. On
+	 *    failure, the Status object will have an error list.
 	 */
 	private function readExtension( $fullJsonFile, $extDeps = [], $skinDeps = [] ) {
 		$load = [
@@ -1340,7 +1386,7 @@ abstract class Installer {
 			foreach ( $extDeps as $dep ) {
 				$fname = "$extDir/$dep/extension.json";
 				if ( !file_exists( $fname ) ) {
-					return false;
+					return Status::newFatal( 'config-extension-not-found', $dep );
 				}
 				$load[$fname] = 1;
 			}
@@ -1350,7 +1396,7 @@ abstract class Installer {
 			foreach ( $skinDeps as $dep ) {
 				$fname = "$skinDir/$dep/skin.json";
 				if ( !file_exists( $fname ) ) {
-					return false;
+					return Status::newFatal( 'config-extension-not-found', $dep );
 				}
 				$load[$fname] = 1;
 			}
@@ -1364,7 +1410,8 @@ abstract class Installer {
 			) {
 				// If something is incompatible with a dependency, we have no real
 				// option besides skipping it
-				return false;
+				return Status::newFatal( 'config-extension-dependency',
+					basename( dirname( $fullJsonFile ) ), $e->getMessage() );
 			} elseif ( $e->missingExtensions || $e->missingSkins ) {
 				// There's an extension missing in the dependency tree,
 				// so add those to the dependency list and try again
@@ -1375,7 +1422,8 @@ abstract class Installer {
 				);
 			}
 			// Some other kind of dependency error?
-			return false;
+			return Status::newFatal( 'config-extension-dependency',
+				basename( dirname( $fullJsonFile ) ), $e->getMessage() );
 		}
 		$ret = [];
 		// The order of credits will be the order of $load,
@@ -1397,7 +1445,7 @@ abstract class Installer {
 		}
 		$ret['type'] = $credits['type'];
 
-		return $ret;
+		return Status::newGood( $ret );
 	}
 
 	/**
