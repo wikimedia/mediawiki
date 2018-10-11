@@ -2991,7 +2991,7 @@ ERROR;
 					$this->contentFormat,
 					$ex->getMessage()
 				);
-				$out->addWikiText( '<div class="error">' . $msg->text() . '</div>' );
+				$out->addWikiText( '<div class="error">' . $msg->plain() . '</div>' );
 			}
 		}
 
@@ -3466,7 +3466,7 @@ ERROR;
 					$this->contentFormat,
 					$ex->getMessage()
 				);
-				$out->addWikiText( '<div class="error">' . $msg->text() . '</div>' );
+				$out->addWikiText( '<div class="error">' . $msg->plain() . '</div>' );
 			}
 		}
 	}
