@@ -2,11 +2,10 @@
 wfLoadSkin( 'BlueSpiceCalumma' );
 $GLOBALS['wgSkipSkins'] = [ 'chameleon' ];
 $GLOBALS['wgDefaultSkin'] = "bluespicecalumma";
-$GLOBALS['egChameleonLayoutFile'] = "$IP/skins/BlueSpiceCalumma/layouts/calumma-master.xml";
 
 global $wgLogo, $wgResourceBasePath, $wgScriptPath;
 if( $wgLogo == "$wgResourceBasePath/resources/assets/wiki.png" ){
-    $wgLogo = "$wgResourceBasePath/skins/BlueSpiceCalumma/resources/images/common/logo/bs3_logo.png";
+     $wgLogo = "$wgResourceBasePath/skins/BlueSpiceCalumma/resources/images/common/logo/bs3_logo.png";
 }
 
 /*
@@ -15,7 +14,7 @@ if( $wgLogo == "$wgResourceBasePath/resources/assets/wiki.png" ){
 $GLOBALS['wgFooterIcons']['poweredby']['mediawiki']['src'] = $wgScriptPath . "/skins/BlueSpiceCalumma/resources/images/common/footer/MediaWiki.png";
 $GLOBALS['wgFooterIcons']['poweredby']['mediawiki'] += [
 	"height" => "32",
-	"width" => "150"
+	"width" => "88"
 ];
 
 /*
