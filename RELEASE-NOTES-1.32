@@ -501,6 +501,11 @@ because of Phabricator reports.
   RevisionArchiveRecord, RevisionFactory, RevisionLookup, RevisionRecord,
   RevisionSlots, RevisionStore, RevisionStoreRecord, SlotRecord, and
   SuppressedDataException.
+* When using OOUI HTMLForm containing an 'info' field which uses the 'rawrow'
+  option, it is now deprecated to give its contents (the 'default' option)
+  as a string. They should be given as a OOUI\FieldLayout object instead.
+  Notably, this affects fields defined in the 'GetPreferences' hook, because
+  Special:Preferences uses an OOUI form now. (If possible, don't use 'rawrow'.)
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
