@@ -325,6 +325,8 @@
 	"config-skins-screenshot": "$1 ($2)",
 	"config-extensions-requires": "$1 (erfordert $2)",
 	"config-screenshot": "Bildschirmfoto",
+	"config-extension-not-found": "Die Registrierungsdatei für die Erweiterung „$1“ konnte nicht gefunden werden",
+	"config-extension-dependency": "Bei der Installation der Erweiterung „$1“ ist ein Abhängigkeitsfehler aufgetreten: $2",
 	"mainpagetext": "<strong>MediaWiki wurde installiert.</strong>",
 	"mainpagedocfooter": "Hilfe zur Benutzung und Konfiguration der Wiki-Software findest du im [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Benutzerhandbuch].\n\n== Starthilfen ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste der Konfigurationsvariablen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Übersetze MediaWiki für deine Sprache]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Erfahre, wie du Spam auf deinem Wiki bekämpfen kannst]"
 }
