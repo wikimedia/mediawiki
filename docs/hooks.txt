@@ -1385,19 +1385,6 @@ an article
 &$article: article (object) being viewed
 &$oldid: oldid (int) being viewed
 
-'DoEditSectionLink': DEPRECATED since 1.25! Use SkinEditSectionLinks instead.
-Override the HTML generated for section edit links
-$skin: Skin object rendering the UI
-$title: Title object for the title being linked to (may not be the same as
-  the page title, if the section is included from a template)
-$section: The designation of the section being pointed to, to be included in
-  the link, like "&section=$section"
-$tooltip: The default tooltip.  Escape before using.
-  By default, this is wrapped in the 'editsectionhint' message.
-&$result: The HTML to return, prefilled with the default plus whatever other
-  changes earlier hooks have made
-$lang: The language code to use for the link in the wfMessage function
-
 'EditFilter': Perform checks on an edit
 $editor: EditPage instance (object). The edit form (see includes/EditPage.php)
 $text: Contents of the edit box
