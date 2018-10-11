@@ -2647,13 +2647,6 @@ cache or return false to not use it.
 &$parser: Parser object
 &$varCache: variable cache (array)
 
-'ParserLimitReport': DEPRECATED since 1.22! Use ParserLimitReportPrepare and
-ParserLimitReportFormat instead.
-Called at the end of Parser:parse() when the parser will
-include comments about size of the text parsed.
-$parser: Parser object
-&$limitReport: text that will be included (without comment tags)
-
 'ParserLimitReportFormat': Called for each row in the parser limit report that
 needs formatting. If nothing handles this hook, the default is to use "$key" to
 get the label, and "$key-value" or "$key-value-text"/"$key-value-html" to
