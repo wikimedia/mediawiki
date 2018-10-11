@@ -75,7 +75,6 @@
 		"nmred/kafka-php": "Send debug log events to kafka",
 		"pear/mail": "Mail sending support",
 		"pear/mail_mime": "Mail sending support",
-		"pear/mail_mime-decode": "Mail sending support",
 		"wikimedia/avro": "Binary serialization format used with kafka"
 	},
 	"autoload": {
