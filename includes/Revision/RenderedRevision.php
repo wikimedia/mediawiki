@@ -31,6 +31,7 @@ use Psr\Log\NullLogger;
 use Revision;
 use Title;
 use User;
+use Content;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -207,12 +208,7 @@ class RenderedRevision implements SlotRenderingProvider {
 					'Access to the content has been suppressed for this audience'
 				);
 			} else {
-				$output = $content->getParserOutput(
-					$this->title,
-					$this->revision->getId(),
-					$this->options,
-					$withHtml
-				);
+				$output = $this->getSlotParserOutputUncached( $content, $withHtml );
 
 				if ( $withHtml && !$output->hasText() ) {
 					throw new LogicException(
@@ -230,6 +226,21 @@ class RenderedRevision implements SlotRenderingProvider {
 		}
 
 		return $this->slotsOutput[$role];
+	}
+
+	/**
+	 * @note This method exist to make duplicate parses easier to see during profiling
+	 * @param Content $content
+	 * @param bool $withHtml
+	 * @return ParserOutput
+	 */
+	private function getSlotParserOutputUncached( Content $content, $withHtml ) {
+		return $content->getParserOutput(
+			$this->title,
+			$this->revision->getId(),
+			$this->options,
+			$withHtml
+		);
 	}
 
 	/**
