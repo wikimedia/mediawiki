@@ -175,11 +175,13 @@ class LanguageConverter {
 			$req = $this->validateVariant( $wgDefaultLanguageVariant );
 		}
 
+		$req = $this->validateVariant( $req );
+
 		// This function, unlike the other get*Variant functions, is
 		// not memoized (i.e. there return value is not cached) since
 		// new information might appear during processing after this
 		// is first called.
-		if ( $this->validateVariant( $req ) ) {
+		if ( $req ) {
 			return $req;
 		}
 		return $this->mMainLanguageCode;
@@ -215,8 +217,24 @@ class LanguageConverter {
 	 * @return mixed Returns the variant if it is valid, null otherwise
 	 */
 	public function validateVariant( $variant = null ) {
-		if ( $variant !== null && in_array( $variant, $this->mVariants ) ) {
+		if ( $variant === null ) {
+			return null;
+		}
+		// Our internal variants are always lower-case; the variant we
+		// are validating may have mixed case.
+		$variant = LanguageCode::replaceDeprecatedCodes( strtolower( $variant ) );
+		if ( in_array( $variant, $this->mVariants ) ) {
 			return $variant;
+		}
+		// Browsers are supposed to use BCP 47 standard in the
+		// Accept-Language header, but not all of our internal
+		// mediawiki variant codes are BCP 47.  Map BCP 47 code
+		// to our internal code.
+		foreach ( $this->mVariants as $v ) {
+			// Case-insensitive match (BCP 47 is mixed case)
+			if ( strtolower( LanguageCode::bcp47( $v ) ) === $variant ) {
+				return $v;
+			}
 		}
 		return null;
 	}
@@ -296,7 +314,7 @@ class LanguageConverter {
 			return $this->mHeaderVariant;
 		}
 
-		// see if some supported language variant is set in the
+		// See if some supported language variant is set in the
 		// HTTP header.
 		$languages = array_keys( $wgRequest->getAcceptLang() );
 		if ( empty( $languages ) ) {
@@ -548,17 +566,18 @@ class LanguageConverter {
 		$convTable = $convRule->getConvTable();
 		$action = $convRule->getRulesAction();
 		foreach ( $convTable as $variant => $pair ) {
-			if ( !$this->validateVariant( $variant ) ) {
+			$v = $this->validateVariant( $variant );
+			if ( !$v ) {
 				continue;
 			}
 
 			if ( $action == 'add' ) {
 				// More efficient than array_merge(), about 2.5 times.
 				foreach ( $pair as $from => $to ) {
-					$this->mTables[$variant]->setPair( $from, $to );
+					$this->mTables[$v]->setPair( $from, $to );
 				}
 			} elseif ( $action == 'remove' ) {
-				$this->mTables[$variant]->removeArray( $pair );
+				$this->mTables[$v]->removeArray( $pair );
 			}
 		}
 	}

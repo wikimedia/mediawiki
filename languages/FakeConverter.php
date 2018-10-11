@@ -116,6 +116,10 @@ class FakeConverter {
 	}
 
 	function validateVariant( $variant = null ) {
+		if ( $variant === null ) {
+			return null;
+		}
+		$variant = strtolower( $variant );
 		return $variant === $this->mLang->getCode() ? $variant : null;
 	}
 
