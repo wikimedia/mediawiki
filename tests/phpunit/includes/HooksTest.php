@@ -56,23 +56,6 @@ class HooksTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideHooks
-	 * @covers ::wfRunHooks
-	 */
-	public function testOldStyleHooks( $msg, array $hook, $expectedFoo, $expectedBar ) {
-		global $wgHooks;
-
-		$this->hideDeprecated( 'wfRunHooks' );
-		$foo = $bar = 'original';
-
-		$wgHooks['MediaWikiHooksTest001'][] = $hook;
-		wfRunHooks( 'MediaWikiHooksTest001', [ &$foo, &$bar ] );
-
-		$this->assertSame( $expectedFoo, $foo, $msg );
-		$this->assertSame( $expectedBar, $bar, $msg );
-	}
-
-	/**
-	 * @dataProvider provideHooks
 	 * @covers Hooks::register
 	 * @covers Hooks::run
 	 * @covers Hooks::callHook

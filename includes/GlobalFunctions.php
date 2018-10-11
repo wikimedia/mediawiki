@@ -3038,21 +3038,6 @@ function wfGetMessageCacheStorage() {
 }
 
 /**
- * Call hook functions defined in $wgHooks
- *
- * @param string $event Event name
- * @param array $args Parameters passed to hook functions
- * @param string|null $deprecatedVersion Optionally mark hook as deprecated with version number
- *
- * @return bool True if no handler aborted the hook
- * @deprecated since 1.25 - use Hooks::run
- */
-function wfRunHooks( $event, array $args = [], $deprecatedVersion = null ) {
-	wfDeprecated( __METHOD__, '1.25' );
-	return Hooks::run( $event, $args, $deprecatedVersion );
-}
-
-/**
  * Wrapper around php's unpack.
  *
  * @param string $format The format string (See php's docs)
