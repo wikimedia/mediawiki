@@ -349,6 +349,7 @@ because of Phabricator reports.
 * The hook 'UserGetImplicitGroups', deprecated since 1.25, has been removed.
 * The global function wfRunHooks, deprecated since 1.25, has now been removed.
   Use Hooks::run().
+* The hook 'UnknownAction', deprecated since 1.19, has now been removed.
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit

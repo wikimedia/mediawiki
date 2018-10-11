@@ -30,7 +30,7 @@ use MediaWiki\MediaWikiServices;
  * are distinct from Special Pages because an action must apply to exactly one page.
  *
  * To add an action in an extension, create a subclass of Action, and add the key to
- * $wgActions.  There is also the deprecated UnknownAction hook
+ * $wgActions.
  *
  * Actions generally fall into two groups: the show-a-form-then-do-something-with-the-input
  * format (protect, delete, move, etc), and the just-do-something format (watch, rollback,
