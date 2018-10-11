@@ -5,6 +5,7 @@ THIS IS NOT A RELEASE YET
 === Changes since MediaWiki 1.30.1 ===
 * (T204729) WatchedItemStore::countVisitingWatchersMultiple() shouldn't query all
   titles when asked for none
+* (T109121) Remove deprecated pear/mail_mime-decode from composer suggested libraries.
 
 == MediaWiki 1.30.1 ==
 
