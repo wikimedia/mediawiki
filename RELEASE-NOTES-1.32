@@ -340,6 +340,10 @@ because of Phabricator reports.
   ChangesListSpecialPageQuery.
 * The global function wfUsePHP, deprecated since 1.30, has now been removed. To
   assert a newer version of PHP than MediaWiki does, use extension registration.
+* The hook 'ChangesListSpecialPageFilters', deprecated in 1.29, has now been
+  removed. Use the 'ChangesListSpecialPageStructuredFilters' hook instead.
+* DeferredUpdates::setImmediateMode(), deprecated since 1.29, has been removed.
+* File / MediaHandler::getStreamHeaders(), deprecated since 1.30, was removed.
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit

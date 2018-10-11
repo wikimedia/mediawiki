@@ -136,15 +136,6 @@ class DeferredUpdates {
 	}
 
 	/**
-	 * @param bool $value Whether to just immediately run updates in addUpdate()
-	 * @since 1.28
-	 * @deprecated 1.29 Causes issues in Web-executed jobs - see T165714 and T100085.
-	 */
-	public static function setImmediateMode( $value ) {
-		wfDeprecated( __METHOD__, '1.29' );
-	}
-
-	/**
 	 * @param DeferrableUpdate[] $queue
 	 * @param DeferrableUpdate $update
 	 */

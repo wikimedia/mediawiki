@@ -2169,14 +2169,6 @@ abstract class File implements IDBAccessObject {
 	}
 
 	/**
-	 * @deprecated since 1.30, use File::getContentHeaders instead
-	 */
-	function getStreamHeaders() {
-		wfDeprecated( __METHOD__, '1.30' );
-		return $this->getContentHeaders();
-	}
-
-	/**
 	 * @return string[] HTTP header name/value map to use for HEAD/GET request responses
 	 * @since 1.30
 	 */

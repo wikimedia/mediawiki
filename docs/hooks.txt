@@ -1015,16 +1015,6 @@ $rows: The data that will be rendered. May be a ResultWrapper instance or
 $unpatrolled: Whether or not we are showing unpatrolled changes.
 $watched: Whether or not the change is watched by the user.
 
-'ChangesListSpecialPageFilters': DEPRECATED since 1.29! Use
-'ChangesListSpecialPageStructuredFilters' instead.
-Called after building form options on pages
-inheriting from ChangesListSpecialPage (in core: RecentChanges,
-RecentChangesLinked and Watchlist).
-$special: ChangesListSpecialPage instance
-&$filters: associative array of filter definitions. The keys are the HTML
-  name/URL parameters. Each key maps to an associative array with a 'msg'
-  (message key) and a 'default' value.
-
 'ChangesListSpecialPageQuery': Called when building SQL query on pages
 inheriting from ChangesListSpecialPage (in core: RecentChanges,
 RecentChangesLinked and Watchlist).
