@@ -134,4 +134,16 @@ class ThumbnailRenderJob extends Job {
 		}
 		return false;
 	}
+
+	/**
+	 * Whether to retry the job.
+	 * @return bool
+	 */
+	public function allowRetries() {
+		// ThumbnailRenderJob is a warmup for the thumbnails cache,
+		// so loosing it is not a problem. Most times the job fails
+		// for non-renderable or missing images which will not be fixed
+		// by a retry, but will create additional load on the renderer.
+		return false;
+	}
 }
