@@ -32,12 +32,6 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiTestCase 
 			'patrol' => true,
 		];
 
-		// Deprecated
-		$this->setTemporaryHook(
-			'ChangesListSpecialPageFilters',
-			null
-		);
-
 		# setup the ChangesListSpecialPage (or subclass) object
 		$this->changesListSpecialPage = $this->getPage();
 		$context = $this->changesListSpecialPage->getContext();
