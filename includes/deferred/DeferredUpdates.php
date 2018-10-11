@@ -79,7 +79,11 @@ class DeferredUpdates {
 	public static function addUpdate( DeferrableUpdate $update, $stage = self::POSTSEND ) {
 		global $wgCommandLineMode;
 
-		if ( self::$executeContext && self::$executeContext['stage'] >= $stage ) {
+		if (
+			self::$executeContext &&
+			self::$executeContext['stage'] >= $stage &&
+			!( $update instanceof MergeableUpdate )
+		) {
 			// This is a sub-DeferredUpdate; run it right after its parent update.
 			// Also, while post-send updates are running, push any "pre-send" jobs to the
 			// active post-send queue to make sure they get run this round (or at all).
@@ -125,14 +129,17 @@ class DeferredUpdates {
 	 */
 	public static function doUpdates( $mode = 'run', $stage = self::ALL ) {
 		$stageEffective = ( $stage === self::ALL ) ? self::POSTSEND : $stage;
+		// For ALL mode, make sure that any PRESEND updates added along the way get run.
+		// Normally, these use the subqueue, but that isn't true for MergeableUpdate items.
+		do {
+			if ( $stage === self::ALL || $stage === self::PRESEND ) {
+				self::execute( self::$preSendUpdates, $mode, $stageEffective );
+			}
 
-		if ( $stage === self::ALL || $stage === self::PRESEND ) {
-			self::execute( self::$preSendUpdates, $mode, $stageEffective );
-		}
-
-		if ( $stage === self::ALL || $stage == self::POSTSEND ) {
-			self::execute( self::$postSendUpdates, $mode, $stageEffective );
-		}
+			if ( $stage === self::ALL || $stage == self::POSTSEND ) {
+				self::execute( self::$postSendUpdates, $mode, $stageEffective );
+			}
+		} while ( $stage === self::ALL && self::$preSendUpdates );
 	}
 
 	/**
