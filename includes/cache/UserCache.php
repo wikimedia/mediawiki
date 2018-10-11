@@ -105,11 +105,13 @@ class UserCache {
 			$fields = [ 'user_name', 'user_real_name', 'user_registration', 'user_id' ];
 			$joinConds = [];
 
-			if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+			// Technically we shouldn't allow this without SCHEMA_COMPAT_READ_NEW,
+			// but it does little harm and might be needed for write callers loading a User.
+			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_NEW ) {
 				$tables[] = 'actor';
 				$fields[] = 'actor_id';
 				$joinConds['actor'] = [
-					$wgActorTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+					( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) ? 'JOIN' : 'LEFT JOIN',
 					[ 'actor_user = user_id' ]
 				];
 			}
@@ -125,7 +127,7 @@ class UserCache {
 				$this->cache[$userId]['name'] = $row->user_name;
 				$this->cache[$userId]['real_name'] = $row->user_real_name;
 				$this->cache[$userId]['registration'] = $row->user_registration;
-				if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+				if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_NEW ) {
 					$this->cache[$userId]['actor'] = $row->actor_id;
 				}
 				$usersToCheck[$userId] = $row->user_name;

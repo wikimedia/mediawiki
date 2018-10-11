@@ -645,7 +645,7 @@ class ManualLogEntry extends LogEntryBase {
 		$relations = $this->relations;
 
 		// Ensure actor relations are set
-		if ( $wgActorTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH &&
+		if ( ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) &&
 			empty( $relations['target_author_actor'] )
 		) {
 			$actorIds = [];
@@ -664,7 +664,7 @@ class ManualLogEntry extends LogEntryBase {
 				$params['authorActors'] = $actorIds;
 			}
 		}
-		if ( $wgActorTableSchemaMigrationStage >= MIGRATION_WRITE_NEW ) {
+		if ( !( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
 			unset( $relations['target_author_id'], $relations['target_author_ip'] );
 			unset( $params['authorIds'], $params['authorIPs'] );
 		}

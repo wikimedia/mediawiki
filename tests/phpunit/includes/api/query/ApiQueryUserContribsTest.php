@@ -15,7 +15,7 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 			$wgActorTableSchemaMigrationStage = $v;
 			$this->overrideMwServices();
 		}, [ $wgActorTableSchemaMigrationStage ] );
-		$wgActorTableSchemaMigrationStage = MIGRATION_WRITE_BOTH;
+		$wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD;
 		$this->overrideMwServices();
 
 		$users = [
@@ -44,19 +44,12 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 
 	/**
 	 * @dataProvider provideSorting
-	 * @param int $stage One of the MIGRATION_* constants for $wgActorTableSchemaMigrationStage
+	 * @param int $stage SCHEMA_COMPAT contants for $wgActorTableSchemaMigrationStage
 	 * @param array $params Extra parameters for the query
 	 * @param bool $reverse Reverse order?
 	 * @param int $revs Number of revisions to expect
 	 */
 	public function testSorting( $stage, $params, $reverse, $revs ) {
-		if ( isset( $params['ucuserprefix'] ) &&
-			( $stage === MIGRATION_WRITE_BOTH || $stage === MIGRATION_WRITE_NEW ) &&
-			$this->db->getType() === 'mysql' && $this->usesTemporaryTables()
-		) {
-			// https://bugs.mysql.com/bug.php?id=10327
-			$this->markTestSkipped( 'MySQL bug 10327 - can\'t reopen temporary tables' );
-		}
 		// FIXME: fails under sqlite
 		$this->markTestSkippedIfDbType( 'sqlite' );
 
@@ -127,10 +120,10 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 
 		foreach (
 			[
-				'old' => MIGRATION_OLD,
-				'write both' => MIGRATION_WRITE_BOTH,
-				'write new' => MIGRATION_WRITE_NEW,
-				'new' => MIGRATION_NEW,
+				'old' => SCHEMA_COMPAT_OLD,
+				'read old' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
+				'read new' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW,
+				'new' => SCHEMA_COMPAT_NEW,
 			] as $stageName => $stage
 		) {
 			foreach ( [ false, true ] as $reverse ) {
@@ -152,7 +145,7 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 
 	/**
 	 * @dataProvider provideInterwikiUser
-	 * @param int $stage One of the MIGRATION_* constants for $wgActorTableSchemaMigrationStage
+	 * @param int $stage SCHEMA_COMPAT constants for $wgActorTableSchemaMigrationStage
 	 */
 	public function testInterwikiUser( $stage ) {
 		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', $stage );
@@ -186,10 +179,10 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 
 	public static function provideInterwikiUser() {
 		return [
-			'old' => [ MIGRATION_OLD ],
-			'write both' => [ MIGRATION_WRITE_BOTH ],
-			'write new' => [ MIGRATION_WRITE_NEW ],
-			'new' => [ MIGRATION_NEW ],
+			'old' => [ SCHEMA_COMPAT_OLD ],
+			'read old' => [ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD ],
+			'read new' => [ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW ],
+			'new' => [ SCHEMA_COMPAT_NEW ],
 		];
 	}
 

@@ -594,7 +594,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testLoadFromTitle() {
 		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_OLD );
 		$this->overrideMwServices();
 		$title = $this->getMockTitle();
 

@@ -67,7 +67,7 @@ class RevisionDeleteUser {
 		$userTitle = Title::makeTitleSafe( NS_USER, $name );
 		$userDbKey = $userTitle->getDBkey();
 
-		if ( $wgActorTableSchemaMigrationStage < MIGRATION_NEW ) {
+		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 			# Hide name from live edits
 			$dbw->update(
 				'revision',
@@ -116,7 +116,7 @@ class RevisionDeleteUser {
 			);
 		}
 
-		if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 			$actorId = $dbw->selectField( 'actor', 'actor_id', [ 'actor_name' => $name ], __METHOD__ );
 			if ( $actorId ) {
 				# Hide name from live edits

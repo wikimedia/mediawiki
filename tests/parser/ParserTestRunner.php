@@ -1233,7 +1233,7 @@ class ParserTestRunner {
 			$tables[] = 'image_comment_temp';
 		}
 
-		if ( $wgActorTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
+		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 			// The new tables for actors are in use
 			$tables[] = 'actor';
 			$tables[] = 'revision_actor_temp';

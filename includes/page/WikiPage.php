@@ -987,8 +987,16 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// rd_fragment and rd_interwiki were added later, populate them if empty
 		if ( $row && !is_null( $row->rd_fragment ) && !is_null( $row->rd_interwiki ) ) {
+			// (T203942) We can't redirect to Media namespace because it's virtual.
+			// We don't want to modify Title objects farther down the
+			// line. So, let's fix this here by changing to File namespace.
+			if ( $row->rd_namespace == NS_MEDIA ) {
+				$namespace = NS_FILE;
+			} else {
+				$namespace = $row->rd_namespace;
+			}
 			$this->mRedirectTarget = Title::makeTitle(
-				$row->rd_namespace, $row->rd_title,
+				$namespace, $row->rd_title,
 				$row->rd_fragment, $row->rd_interwiki
 			);
 			return $this->mRedirectTarget;
@@ -2914,7 +2922,7 @@ class WikiPage implements Page, IDBAccessObject {
 			if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
 				$dbw->delete( 'revision_comment_temp', [ 'revcomment_rev' => $revids ], __METHOD__ );
 			}
-			if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 				$dbw->delete( 'revision_actor_temp', [ 'revactor_rev' => $revids ], __METHOD__ );
 			}
 

@@ -80,12 +80,13 @@ class ApiQueryContributors extends ApiQueryBase {
 		$result = $this->getResult();
 		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
 
-		// For MIGRATION_NEW, target indexes on the revision_actor_temp table.
-		// Otherwise, revision is fine because it'll have to check all revision rows anyway.
-		$pageField = $wgActorTableSchemaMigrationStage === MIGRATION_NEW ? 'revactor_page' : 'rev_page';
-		$idField = $wgActorTableSchemaMigrationStage === MIGRATION_NEW
+		// For SCHEMA_COMPAT_READ_NEW, target indexes on the
+		// revision_actor_temp table, otherwise on the revision table.
+		$pageField = ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW )
+			? 'revactor_page' : 'rev_page';
+		$idField = ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW )
 			? 'revactor_actor' : $revQuery['fields']['rev_user'];
-		$countField = $wgActorTableSchemaMigrationStage === MIGRATION_NEW
+		$countField = ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW )
 			? 'revactor_actor' : $revQuery['fields']['rev_user_text'];
 
 		// First, count anons

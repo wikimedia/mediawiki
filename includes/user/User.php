@@ -627,9 +627,12 @@ class User implements IDBAccessObject, UserIdentity {
 	public static function newFromActorId( $id ) {
 		global $wgActorTableSchemaMigrationStage;
 
-		if ( $wgActorTableSchemaMigrationStage <= MIGRATION_OLD ) {
+		// Technically we shouldn't allow this without SCHEMA_COMPAT_READ_NEW,
+		// but it does little harm and might be needed for write callers loading a User.
+		if ( !( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_NEW ) ) {
 			throw new BadMethodCallException(
-				'Cannot use ' . __METHOD__ . ' when $wgActorTableSchemaMigrationStage is MIGRATION_OLD'
+				'Cannot use ' . __METHOD__
+					. ' when $wgActorTableSchemaMigrationStage lacks SCHEMA_COMPAT_NEW'
 			);
 		}
 
@@ -679,7 +682,9 @@ class User implements IDBAccessObject, UserIdentity {
 		$user = new User;
 		$user->mFrom = 'defaults';
 
-		if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD && $actorId !== null ) {
+		// Technically we shouldn't allow this without SCHEMA_COMPAT_READ_NEW,
+		// but it does little harm and might be needed for write callers loading a User.
+		if ( ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_NEW ) && $actorId !== null ) {
 			$user->mActorId = (int)$actorId;
 			if ( $user->mActorId !== 0 ) {
 				$user->mFrom = 'actor';
@@ -1488,7 +1493,9 @@ class User implements IDBAccessObject, UserIdentity {
 
 		$this->mGroupMemberships = null; // deferred
 
-		if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+		// Technically we shouldn't allow this without SCHEMA_COMPAT_READ_NEW,
+		// but it does little harm and might be needed for write callers loading a User.
+		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_NEW ) {
 			if ( isset( $row->actor_id ) ) {
 				$this->mActorId = (int)$row->actor_id;
 				if ( $this->mActorId !== 0 ) {
@@ -2491,7 +2498,9 @@ class User implements IDBAccessObject, UserIdentity {
 	public function getActorId( IDatabase $dbw = null ) {
 		global $wgActorTableSchemaMigrationStage;
 
-		if ( $wgActorTableSchemaMigrationStage <= MIGRATION_OLD ) {
+		// Technically we should always return 0 without SCHEMA_COMPAT_READ_NEW,
+		// but it does little harm and might be needed for write callers loading a User.
+		if ( !( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) ) {
 			return 0;
 		}
 
@@ -2501,7 +2510,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 		// Currently $this->mActorId might be null if $this was loaded from a
 		// cache entry that was written when $wgActorTableSchemaMigrationStage
-		// was MIGRATION_OLD. Once that is no longer a possibility (i.e. when
+		// was SCHEMA_COMPAT_OLD. Once that is no longer a possibility (i.e. when
 		// User::VERSION is incremented after $wgActorTableSchemaMigrationStage
 		// has been removed), that condition may be removed.
 		if ( $this->mActorId === null || !$this->mActorId && $dbw ) {
@@ -4222,7 +4231,7 @@ class User implements IDBAccessObject, UserIdentity {
 				);
 			}
 
-			if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 				$dbw->update(
 					'actor',
 					[ 'actor_name' => $this->mName ],
@@ -4320,9 +4329,10 @@ class User implements IDBAccessObject, UserIdentity {
 			$dbw->insert( 'user', $fields, $fname, [ 'IGNORE' ] );
 			if ( $dbw->affectedRows() ) {
 				$newUser = self::newFromId( $dbw->insertId() );
+				$newUser->mName = $fields['user_name'];
+				$newUser->updateActorId( $dbw );
 				// Load the user from master to avoid replica lag
 				$newUser->load( self::READ_LATEST );
-				$newUser->updateActorId( $dbw );
 			} else {
 				$newUser = null;
 			}
@@ -4431,7 +4441,7 @@ class User implements IDBAccessObject, UserIdentity {
 	private function updateActorId( IDatabase $dbw ) {
 		global $wgActorTableSchemaMigrationStage;
 
-		if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 			$dbw->insert(
 				'actor',
 				[ 'actor_user' => $this->mId, 'actor_name' => $this->mName ],
@@ -5656,14 +5666,18 @@ class User implements IDBAccessObject, UserIdentity {
 			],
 			'joins' => [],
 		];
-		if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+
+		// Technically we shouldn't allow this without SCHEMA_COMPAT_READ_NEW,
+		// but it does little harm and might be needed for write callers loading a User.
+		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_NEW ) {
 			$ret['tables']['user_actor'] = 'actor';
 			$ret['fields'][] = 'user_actor.actor_id';
 			$ret['joins']['user_actor'] = [
-				$wgActorTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+				( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) ? 'JOIN' : 'LEFT JOIN',
 				[ 'user_actor.actor_user = user_id' ]
 			];
 		}
+
 		return $ret;
 	}
 

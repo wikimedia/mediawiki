@@ -40,8 +40,6 @@ in the load balancer, usually indicating a replication environment.' );
 	}
 
 	public function execute() {
-		global $wgActorTableSchemaMigrationStage;
-
 		$dbw = $this->getDB( DB_MASTER );
 
 		// Autodetect mode...
@@ -56,15 +54,6 @@ in the load balancer, usually indicating a replication environment.' );
 
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'rev_user' );
 
-		$needSpecialQuery = ( $wgActorTableSchemaMigrationStage !== MIGRATION_OLD &&
-			$wgActorTableSchemaMigrationStage !== MIGRATION_NEW );
-		if ( $needSpecialQuery ) {
-			foreach ( $actorQuery['joins'] as &$j ) {
-				$j[0] = 'JOIN'; // replace LEFT JOIN
-			}
-			unset( $j );
-		}
-
 		if ( $backgroundMode ) {
 			$this->output( "Using replication-friendly background mode...\n" );
 
@@ -77,54 +66,15 @@ in the load balancer, usually indicating a replication environment.' );
 			for ( $min = 0; $min <= $lastUser; $min += $chunkSize ) {
 				$max = $min + $chunkSize;
 
-				if ( $needSpecialQuery ) {
-					// Use separate subqueries to collect counts with the old
-					// and new schemas, to avoid having to do whole-table scans.
-					$result = $dbr->select(
-						[
-							'user',
-							'rev1' => '('
-								. $dbr->selectSQLText(
-									[ 'revision', 'revision_actor_temp' ],
-									[ 'rev_user', 'ct' => 'COUNT(*)' ],
-									[
-										"rev_user > $min AND rev_user <= $max",
-										'revactor_rev' => null,
-									],
-									__METHOD__,
-									[ 'GROUP BY' => 'rev_user' ],
-									[ 'revision_actor_temp' => [ 'LEFT JOIN', 'revactor_rev = rev_id' ] ]
-								) . ')',
-							'rev2' => '('
-								. $dbr->selectSQLText(
-									[ 'revision' ] + $actorQuery['tables'],
-									[ 'actor_user', 'ct' => 'COUNT(*)' ],
-									"actor_user > $min AND actor_user <= $max",
-									__METHOD__,
-									[ 'GROUP BY' => 'actor_user' ],
-									$actorQuery['joins']
-								) . ')',
-						],
-						[ 'user_id', 'user_editcount' => 'COALESCE(rev1.ct,0) + COALESCE(rev2.ct,0)' ],
-						"user_id > $min AND user_id <= $max",
-						__METHOD__,
-						[],
-						[
-							'rev1' => [ 'LEFT JOIN', 'user_id = rev_user' ],
-							'rev2' => [ 'LEFT JOIN', 'user_id = actor_user' ],
-						]
-					);
-				} else {
-					$revUser = $actorQuery['fields']['rev_user'];
-					$result = $dbr->select(
-						[ 'user', 'rev' => [ 'revision' ] + $actorQuery['tables'] ],
-						[ 'user_id', 'user_editcount' => "COUNT($revUser)" ],
-						"user_id > $min AND user_id <= $max",
-						__METHOD__,
-						[ 'GROUP BY' => 'user_id' ],
-						[ 'rev' => [ 'LEFT JOIN', "user_id = $revUser" ] ] + $actorQuery['joins']
-					);
-				}
+				$revUser = $actorQuery['fields']['rev_user'];
+				$result = $dbr->select(
+					[ 'user', 'rev' => [ 'revision' ] + $actorQuery['tables'] ],
+					[ 'user_id', 'user_editcount' => "COUNT($revUser)" ],
+					"user_id > $min AND user_id <= $max",
+					__METHOD__,
+					[ 'GROUP BY' => 'user_id' ],
+					[ 'rev' => [ 'LEFT JOIN', "user_id = $revUser" ] ] + $actorQuery['joins']
+				);
 
 				foreach ( $result as $row ) {
 					$dbw->update( 'user',
@@ -149,41 +99,15 @@ in the load balancer, usually indicating a replication environment.' );
 			$this->output( "Using single-query mode...\n" );
 
 			$user = $dbw->tableName( 'user' );
-			if ( $needSpecialQuery ) {
-				$subquery1 = $dbw->selectSQLText(
-					[ 'revision', 'revision_actor_temp' ],
-					[ 'COUNT(*)' ],
-					[
-						'user_id = rev_user',
-						'revactor_rev' => null,
-					],
-					__METHOD__,
-					[],
-					[ 'revision_actor_temp' => [ 'LEFT JOIN', 'revactor_rev = rev_id' ] ]
-				);
-				$subquery2 = $dbw->selectSQLText(
-					[ 'revision' ] + $actorQuery['tables'],
-					[ 'COUNT(*)' ],
-					'user_id = actor_user',
-					__METHOD__,
-					[],
-					$actorQuery['joins']
-				);
-				$dbw->query(
-					"UPDATE $user SET user_editcount=($subquery1) + ($subquery2)",
-					__METHOD__
-				);
-			} else {
-				$subquery = $dbw->selectSQLText(
-					[ 'revision' ] + $actorQuery['tables'],
-					[ 'COUNT(*)' ],
-					[ 'user_id = ' . $actorQuery['fields']['rev_user'] ],
-					__METHOD__,
-					[],
-					$actorQuery['joins']
-				);
-				$dbw->query( "UPDATE $user SET user_editcount=($subquery)", __METHOD__ );
-			}
+			$subquery = $dbw->selectSQLText(
+				[ 'revision' ] + $actorQuery['tables'],
+				[ 'COUNT(*)' ],
+				[ 'user_id = ' . $actorQuery['fields']['rev_user'] ],
+				__METHOD__,
+				[],
+				$actorQuery['joins']
+			);
+			$dbw->query( "UPDATE $user SET user_editcount=($subquery)", __METHOD__ );
 		}
 
 		$this->output( "Done!\n" );

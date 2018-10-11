@@ -136,20 +136,19 @@ class ReassignEdits extends Maintenance {
 			if ( $total ) {
 				# Reassign edits
 				$this->output( "\nReassigning current edits..." );
-				if ( $wgActorTableSchemaMigrationStage < MIGRATION_NEW ) {
+				if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 					$dbw->update(
 						'revision',
 						[
 							'rev_user' => $to->getId(),
-							'rev_user_text' =>
-								$wgActorTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ? $to->getName() : ''
+							'rev_user_text' => $to->getName(),
 						],
 						$from->isLoggedIn()
 							? [ 'rev_user' => $from->getId() ] : [ 'rev_user_text' => $from->getName() ],
 						__METHOD__
 					);
 				}
-				if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+				if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 					$dbw->update(
 						'revision_actor_temp',
 						[ 'revactor_actor' => $to->getActorId( $dbw ) ],
@@ -179,7 +178,7 @@ class ReassignEdits extends Maintenance {
 	}
 
 	/**
-	 * Return user specifications
+	 * Return user specifications for an UPDATE
 	 * i.e. user => id, user_text => text
 	 *
 	 * @param IDatabase $dbw Database handle
@@ -193,13 +192,13 @@ class ReassignEdits extends Maintenance {
 		global $wgActorTableSchemaMigrationStage;
 
 		$ret = [];
-		if ( $wgActorTableSchemaMigrationStage < MIGRATION_NEW ) {
+		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 			$ret += [
 				$idfield => $user->getId(),
-				$utfield => $wgActorTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ? $user->getName() : '',
+				$utfield => $user->getName(),
 			];
 		}
-		if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 			$ret += [ $acfield => $user->getActorId( $dbw ) ];
 		}
 		return $ret;

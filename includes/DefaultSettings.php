@@ -8984,10 +8984,21 @@ $wgMultiContentRevisionSchemaMigrationStage = SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_
 
 /**
  * Actor table schema migration stage.
+ *
+ * Use the SCHEMA_COMPAT_XXX flags. Supported values:
+ * - SCHEMA_COMPAT_OLD
+ * - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+ * - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
+ * - SCHEMA_COMPAT_NEW
+ *
+ * Note that reading the old and new schema at the same time is not supported
+ * in 1.32, but was (with significant query performance issues) in 1.31.
+ *
  * @since 1.31
- * @var int One of the MIGRATION_* constants
+ * @since 1.32 changed allowed flags
+ * @var int An appropriate combination of SCHEMA_COMPAT_XXX flags.
  */
-$wgActorTableSchemaMigrationStage = MIGRATION_OLD;
+$wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_OLD;
 
 /**
  * Temporary option to disable the date picker from the Expiry Widget.

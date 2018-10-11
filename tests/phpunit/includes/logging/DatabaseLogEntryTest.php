@@ -29,17 +29,19 @@ class DatabaseLogEntryTest extends MediaWikiTestCase {
 	 * @param array $selectFields
 	 * @param string[]|null $row
 	 * @param string[]|null $expectedFields
-	 * @param string $migration
+	 * @param int $commentMigration
+	 * @param int $actorMigration
 	 */
 	public function testNewFromId( $id,
 		array $selectFields,
 		array $row = null,
 		array $expectedFields = null,
-		$migration
+		$commentMigration,
+		$actorMigration
 	) {
 		$this->setMwGlobals( [
-			'wgCommentTableSchemaMigrationStage' => $migration,
-			'wgActorTableSchemaMigrationStage' => $migration,
+			'wgCommentTableSchemaMigrationStage' => $commentMigration,
+			'wgActorTableSchemaMigrationStage' => $actorMigration,
 		] );
 
 		$row = $row ? (object)$row : null;
@@ -132,6 +134,7 @@ class DatabaseLogEntryTest extends MediaWikiTestCase {
 				null,
 				null,
 				MIGRATION_OLD,
+				SCHEMA_COMPAT_OLD,
 			],
 			[
 				123,
@@ -144,6 +147,7 @@ class DatabaseLogEntryTest extends MediaWikiTestCase {
 				],
 				[ 'type' => 'foobarize', 'comment' => 'test!' ],
 				MIGRATION_OLD,
+				SCHEMA_COMPAT_OLD,
 			],
 			[
 				567,
@@ -156,6 +160,7 @@ class DatabaseLogEntryTest extends MediaWikiTestCase {
 				],
 				[ 'type' => 'foobarize', 'comment' => 'test!' ],
 				MIGRATION_NEW,
+				SCHEMA_COMPAT_NEW,
 			],
 		];
 	}
