@@ -5,7 +5,7 @@ $GLOBALS['wgDefaultSkin'] = "bluespicecalumma";
 
 global $wgLogo, $wgResourceBasePath, $wgScriptPath;
 if( $wgLogo == "$wgResourceBasePath/resources/assets/wiki.png" ){
-     $wgLogo = "$wgResourceBasePath/skins/BlueSpiceCalumma/resources/images/common/logo/bs3_logo.png";
+    $wgLogo = "$wgResourceBasePath/skins/BlueSpiceCalumma/resources/images/common/logo/bs3_logo.png";
 }
 
 /*
