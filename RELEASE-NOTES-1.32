@@ -342,6 +342,7 @@ because of Phabricator reports.
   assert a newer version of PHP than MediaWiki does, use extension registration.
 * The hook 'ChangesListSpecialPageFilters', deprecated in 1.29, has now been
   removed. Use the 'ChangesListSpecialPageStructuredFilters' hook instead.
+* DeferredUpdates::setImmediateMode(), deprecated since 1.29, has been removed.
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit
