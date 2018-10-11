@@ -350,6 +350,8 @@ because of Phabricator reports.
 * The global function wfRunHooks, deprecated since 1.25, has now been removed.
   Use Hooks::run().
 * The hook 'UnknownAction', deprecated since 1.19, has now been removed.
+* The hook 'ParserLimitReport', deprecated since 1.22, has been removed. Use
+  the hooks 'ParserLimitReportPrepare' and 'ParserLimitReportFormat' instead.
 
 === Deprecations in 1.32 ===
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit
