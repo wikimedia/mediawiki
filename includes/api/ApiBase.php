@@ -2247,7 +2247,7 @@ abstract class ApiBase extends ContextSource {
 
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$apiModule = $this;
-		Hooks::run( 'APIGetDescription', [ &$apiModule, &$desc ] );
+		Hooks::run( 'APIGetDescription', [ &$apiModule, &$desc ], '1.25' );
 		$desc = self::escapeWikiText( $desc );
 		if ( is_array( $desc ) ) {
 			$desc = implode( "\n", $desc );
@@ -2337,7 +2337,7 @@ abstract class ApiBase extends ContextSource {
 
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$apiModule = $this;
-		Hooks::run( 'APIGetParamDescription', [ &$apiModule, &$desc ] );
+		Hooks::run( 'APIGetParamDescription', [ &$apiModule, &$desc ], '1.25' );
 
 		if ( !$desc ) {
 			$desc = [];
