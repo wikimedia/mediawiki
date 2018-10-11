@@ -987,8 +987,16 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// rd_fragment and rd_interwiki were added later, populate them if empty
 		if ( $row && !is_null( $row->rd_fragment ) && !is_null( $row->rd_interwiki ) ) {
+			// (T203942) We can't redirect to Media namespace because it's virtual.
+			// We don't want to modify Title objects farther down the
+			// line. So, let's fix this here by changing to File namespace.
+			if ( $row->rd_namespace == NS_MEDIA ) {
+				$namespace = NS_FILE;
+			} else {
+				$namespace = $row->rd_namespace;
+			}
 			$this->mRedirectTarget = Title::makeTitle(
-				$row->rd_namespace, $row->rd_title,
+				$namespace, $row->rd_title,
 				$row->rd_fragment, $row->rd_interwiki
 			);
 			return $this->mRedirectTarget;
