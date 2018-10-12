@@ -146,6 +146,10 @@ class DeferredUpdates {
 				/** @var MergeableUpdate $existingUpdate */
 				$existingUpdate = $queue[$class];
 				$existingUpdate->merge( $update );
+				// Move the update to the end to handle things like mergeable purge
+				// updates that might depend on the prior updates in the queue running
+				unset( $queue[$class] );
+				$queue[$class] = $existingUpdate;
 			} else {
 				$queue[$class] = $update;
 			}
