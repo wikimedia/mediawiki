@@ -2023,7 +2023,7 @@ abstract class File implements IDBAccessObject {
 	 * @note Use getWidth()/getHeight() instead of this method unless you have a
 	 *  a good reason. This method skips all caches.
 	 *
-	 * @param string $filePath The path to the file (e.g. From getLocalPathRef() )
+	 * @param string $filePath The path to the file (e.g. From getLocalRefPath() )
 	 * @return array|false The width, followed by height, with optionally more things after
 	 */
 	function getImageSize( $filePath ) {
