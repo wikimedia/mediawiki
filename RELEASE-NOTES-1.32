@@ -531,6 +531,9 @@ because of Phabricator reports.
 * In Skin::doEditSectionLink omitting the parameters $tooltip and $lang is
   deprecated. For the $lang parameter, types other than Language are
   deprecated.
+* The $wgUseKeyHeader configuration option and the
+  OutputPage::getKeyHeader() method have been deprecated; the relevant
+  draft IETF spec expired without becoming a standard.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into

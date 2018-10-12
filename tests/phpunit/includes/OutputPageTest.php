@@ -2083,6 +2083,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			->will( $this->returnValue( $cookies ) );
 		TestingAccessWrapper::newFromObject( $op )->mVaryHeader = [];
 
+		$this->hideDeprecated( '$wgUseKeyHeader' );
 		foreach ( $calls as $call ) {
 			$op->addVaryHeader( ...$call );
 		}
@@ -2235,6 +2236,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideAddAcceptLanguage
 	 * @covers OutputPage::addAcceptLanguage
+	 * @covers OutputPage::getKeyHeader
 	 */
 	public function testAddAcceptLanguage(
 		$code, array $variants, array $expected, array $options = []
@@ -2262,6 +2264,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		// This will run addAcceptLanguage()
 		$op->sendCacheControl();
 
+		$this->hideDeprecated( '$wgUseKeyHeader' );
 		$keyHeader = $op->getKeyHeader();
 
 		if ( !$expected ) {
