@@ -825,12 +825,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			$fname = __METHOD__;
 			DeferredUpdates::addCallableUpdate(
 				function () use ( $timestamp, $watchers, $target, $fname ) {
-					global $wgUpdateRowsPerQuery;
-
 					$dbw = $this->getConnectionRef( DB_MASTER );
 					$ticket = $this->lbFactory->getEmptyTransactionTicket( $fname );
 
-					$watchersChunks = array_chunk( $watchers, $wgUpdateRowsPerQuery );
+					$watchersChunks = array_chunk( $watchers, $this->updateRowsPerQuery );
 					foreach ( $watchersChunks as $watchersChunk ) {
 						$dbw->update( 'watchlist',
 							[ /* SET */
