@@ -35,6 +35,14 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit( 1 );
 }
 
+// Check to see if we are at the file scope
+$wgScopeTest = 'MediaWiki Setup.php scope test';
+if ( !isset( $GLOBALS['wgScopeTest'] ) || $GLOBALS['wgScopeTest'] !== $wgScopeTest ) {
+	echo "Error, Setup.php must be included from the file scope.\n";
+	die( 1 );
+}
+unset( $wgScopeTest );
+
 /**
  * Pre-config setup: Before loading LocalSettings.php
  */
@@ -117,12 +125,6 @@ $ps_setup = Profiler::instance()->scopedProfileIn( $fname );
 ExtensionRegistry::getInstance()->loadFromQueue();
 // Don't let any other extensions load
 ExtensionRegistry::getInstance()->finish();
-
-// Check to see if we are at the file scope
-if ( !isset( $wgVersion ) ) {
-	echo "Error, Setup.php must be included from the file scope, after DefaultSettings.php\n";
-	die( 1 );
-}
 
 mb_internal_encoding( 'UTF-8' );
 
