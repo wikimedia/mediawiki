@@ -4,7 +4,7 @@
 		"url": "https://packages.bluespice.com/"
 	}],
 	"require": {
-		"bluespice/visualeditorconnector": "dev-master",
+		"bluespice/visualeditorconnector": "dev-REL1_31",
 		"hallowelt/filter-special-pages": "dev-REL1_31",
 		"mediawiki/arrays": "dev-REL1_31",
 		"mediawiki/cookie-warning": "dev-REL1_31",
@@ -16,10 +16,10 @@
 		"mediawiki/image-map-edit": "dev-REL1_31",
 		"mediawiki/lingo": "~3.0",
 		"mediawiki/nuke": "dev-REL1_31",
-		"mediawiki/pluggable-auth": "dev-master",
+		"mediawiki/pluggable-auth": "dev-REL1_31",
 		"mediawiki/quiz": "dev-REL1_31",
 		"mediawiki/rss": "dev-REL1_31",
-		"mediawiki/simple-s-a-m-lphp": "dev-master",
+		"mediawiki/simple-s-a-m-lphp": "dev-REL1_31",
 		"mediawiki/template-styles": "dev-REL1_31",
 		"mediawiki/title-key": "dev-REL1_31",
 		"mediawiki/two-col-conflict": "dev-REL1_31",
