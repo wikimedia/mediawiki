@@ -10,12 +10,12 @@ class HtmlTest extends MediaWikiTestCase {
 			'wgUseMediaWikiUIEverywhere' => false,
 		] );
 
-		$langObj = Language::factory( 'en' );
+		$contLangObj = Language::factory( 'en' );
 
 		// Hardcode namespaces during test runs,
 		// so that html output based on existing namespaces
 		// can be properly evaluated.
-		$langObj->setNamespaces( [
+		$contLangObj->setNamespaces( [
 			-2 => 'Media',
 			-1 => 'Special',
 			0 => '',
@@ -35,8 +35,33 @@ class HtmlTest extends MediaWikiTestCase {
 			100 => 'Custom',
 			101 => 'Custom_talk',
 		] );
-		$this->setUserLang( $langObj );
-		$this->setContentLang( $langObj );
+		$this->setContentLang( $contLangObj );
+
+		$userLangObj = Language::factory( 'es' );
+		$userLangObj->setNamespaces( [
+			-2 => "Medio",
+			-1 => "Especial",
+			0 => "",
+			1 => "Discusión",
+			2 => "Usuario",
+			3 => "Usuario discusión",
+			4 => "Wiki",
+			5 => "Wiki discusión",
+			6 => "Archivo",
+			7 => "Archivo discusión",
+			8 => "MediaWiki",
+			9 => "MediaWiki discusión",
+			10 => "Plantilla",
+			11 => "Plantilla discusión",
+			12 => "Ayuda",
+			13 => "Ayuda discusión",
+			14 => "Categoría",
+			15 => "Categoría discusión",
+			100 => "Personalizado",
+			101 => "Personalizado discusión",
+		] );
+		$this->setUserLang( $userLangObj );
+
 		$this->restoreWarnings = false;
 	}
 
@@ -322,7 +347,7 @@ class HtmlTest extends MediaWikiTestCase {
 	public function testNamespaceSelector() {
 		$this->assertEquals(
 			'<select id="namespace" name="namespace">' . "\n" .
-				'<option value="0">(Main)</option>' . "\n" .
+				'<option value="0">(Principal)</option>' . "\n" .
 				'<option value="1">Talk</option>' . "\n" .
 				'<option value="2">User</option>' . "\n" .
 				'<option value="3">User talk</option>' . "\n" .
@@ -346,8 +371,8 @@ class HtmlTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			'<label for="mw-test-namespace">Select a namespace:</label>' . "\u{00A0}" .
 				'<select id="mw-test-namespace" name="wpNamespace">' . "\n" .
-				'<option value="all">all</option>' . "\n" .
-				'<option value="0">(Main)</option>' . "\n" .
+				'<option value="all">todos</option>' . "\n" .
+				'<option value="0">(Principal)</option>' . "\n" .
 				'<option value="1">Talk</option>' . "\n" .
 				'<option value="2" selected="">User</option>' . "\n" .
 				'<option value="3">User talk</option>' . "\n" .
@@ -374,7 +399,7 @@ class HtmlTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			'<label for="namespace">Select a namespace:</label>' . "\u{00A0}" .
 				'<select id="namespace" name="namespace">' . "\n" .
-				'<option value="0">(Main)</option>' . "\n" .
+				'<option value="0">(Principal)</option>' . "\n" .
 				'<option value="1">Talk</option>' . "\n" .
 				'<option value="2">User</option>' . "\n" .
 				'<option value="3">User talk</option>' . "\n" .
@@ -429,7 +454,7 @@ class HtmlTest extends MediaWikiTestCase {
 	public function testCanDisableANamespaces() {
 		$this->assertEquals(
 			'<select id="namespace" name="namespace">' . "\n" .
-				'<option disabled="" value="0">(Main)</option>' . "\n" .
+				'<option disabled="" value="0">(Principal)</option>' . "\n" .
 				'<option disabled="" value="1">Talk</option>' . "\n" .
 				'<option disabled="" value="2">User</option>' . "\n" .
 				'<option disabled="" value="3">User talk</option>' . "\n" .
