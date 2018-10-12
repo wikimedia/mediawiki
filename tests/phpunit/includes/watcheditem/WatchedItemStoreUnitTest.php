@@ -1,6 +1,7 @@
 <?php
 use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -38,6 +39,23 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				->method( 'getConnectionRef' )
 				->will( $this->returnValue( $mockDb ) );
 		}
+		return $mock;
+	}
+
+	/**
+	 * @return PHPUnit_Framework_MockObject_MockObject|LBFactory
+	 */
+	private function getMockLBFactory(
+		$mockDb,
+		$expectedConnectionType = null
+	) {
+		$loadBalancer = $this->getMockLoadBalancer( $mockDb, $expectedConnectionType );
+		$mock = $this->getMockBuilder( LBFactory::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$mock->expects( $this->any() )
+			->method( 'getMainLB' )
+			->will( $this->returnValue( $loadBalancer ) );
 		return $mock;
 	}
 
@@ -100,11 +118,11 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		return $fakeRow;
 	}
 
-	private function newWatchedItemStore( LoadBalancer $loadBalancer, HashBagOStuff $cache,
+	private function newWatchedItemStore( LBFactory $lbFactory, HashBagOStuff $cache,
 		ReadOnlyMode $readOnlyMode
 	) {
 		return new WatchedItemStore(
-			$loadBalancer,
+			$lbFactory,
 			$cache,
 			$readOnlyMode,
 			1000
@@ -142,7 +160,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->with( 'RM-KEY' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -174,7 +192,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -204,7 +222,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -235,7 +253,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -287,7 +305,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -354,7 +372,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -403,7 +421,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -485,7 +503,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -590,7 +608,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -644,7 +662,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -682,7 +700,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -717,7 +735,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -755,7 +773,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -786,7 +804,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->will( $this->returnValue( new FakeResultWrapper( [] ) ) );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$this->getMockCache(),
 			$this->getMockReadOnlyMode()
 		);
@@ -845,7 +863,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -892,7 +910,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -986,7 +1004,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1019,7 +1037,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->with( '0:Some_Page:1' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1040,7 +1058,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1053,7 +1071,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 	public function testAddWatchBatchForUser_readOnlyDBReturnsFalse() {
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $this->getMockDb() ),
+			$this->getMockLBFactory( $this->getMockDb() ),
 			$this->getMockCache(),
 			$this->getMockReadOnlyMode( true )
 		);
@@ -1099,7 +1117,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->with( '1:Some_Page:1' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1124,7 +1142,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1148,7 +1166,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1183,7 +1201,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			);
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1218,7 +1236,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1241,7 +1259,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1277,7 +1295,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->with( '0:SomeDbKey:1' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1313,7 +1331,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->with( '0:SomeDbKey:1' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1337,7 +1355,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1382,7 +1400,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			);
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1417,7 +1435,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->will( $this->returnValue( $cachedItem ) );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1455,7 +1473,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->will( $this->returnValue( false ) );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1479,7 +1497,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1520,7 +1538,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'set' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1556,7 +1574,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testGetWatchedItemsForUser_optionsAndEmptyResult( $forWrite, $dbType ) {
 		$mockDb = $this->getMockDb();
 		$mockCache = $this->getMockCache();
-		$mockLoadBalancer = $this->getMockLoadBalancer( $mockDb, $dbType );
+		$mockLoadBalancer = $this->getMockLBFactory( $mockDb, $dbType );
 		$user = $this->getMockNonAnonUserWithId( 1 );
 
 		$mockDb->expects( $this->once() )
@@ -1585,7 +1603,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 	public function testGetWatchedItemsForUser_badSortOptionThrowsException() {
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $this->getMockDb() ),
+			$this->getMockLBFactory( $this->getMockDb() ),
 			$this->getMockCache(),
 			$this->getMockReadOnlyMode()
 		);
@@ -1627,7 +1645,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			);
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1664,7 +1682,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->will( $this->returnValue( false ) );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1688,7 +1706,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1756,7 +1774,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1807,7 +1825,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1869,7 +1887,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1910,7 +1928,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1937,7 +1955,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( $this->anything() );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1962,7 +1980,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -1996,7 +2014,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -2042,7 +2060,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->with( '0:SomeDbKey:1' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -2082,7 +2100,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->with( '0:SomeDbKey:1' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -2175,7 +2193,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->with( '0:SomeTitle:1' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -2243,7 +2261,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->with( '0:SomeDbKey:1' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -2318,7 +2336,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->with( '0:SomeDbKey:1' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -2386,7 +2404,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->with( '0:SomeDbKey:1' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -2465,7 +2483,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->with( '0:SomeDbKey:1' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -2511,7 +2529,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 	public function testSetNotificationTimestampsForUser_anonUser() {
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $this->getMockDb() ),
+			$this->getMockLBFactory( $this->getMockDb() ),
 			$this->getMockCache(),
 			$this->getMockReadOnlyMode()
 		);
@@ -2538,7 +2556,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			} ) );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$this->getMockCache(),
 			$this->getMockReadOnlyMode()
 		);
@@ -2568,7 +2586,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			} ) );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$this->getMockCache(),
 			$this->getMockReadOnlyMode()
 		);
@@ -2607,7 +2625,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->will( $this->returnValue( 'makeWhereFrom2d return value' ) );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$this->getMockCache(),
 			$this->getMockReadOnlyMode()
 		);
@@ -2650,7 +2668,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -2691,7 +2709,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);
@@ -2735,7 +2753,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->with( '0:SomeDbKey:1' );
 
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockLBFactory( $mockDb ),
 			$mockCache,
 			$this->getMockReadOnlyMode()
 		);

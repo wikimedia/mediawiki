@@ -571,7 +571,7 @@ return [
 
 	'WatchedItemStore' => function ( MediaWikiServices $services ) : WatchedItemStore {
 		$store = new WatchedItemStore(
-			$services->getDBLoadBalancer(),
+			$services->getDBLoadBalancerFactory(),
 			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
 			$services->getReadOnlyMode(),
 			$services->getMainConfig()->get( 'UpdateRowsPerQuery' )
