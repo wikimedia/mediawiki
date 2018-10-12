@@ -8,6 +8,7 @@ THIS IS NOT A RELEASE YET
 * (T205967) Fix syntax error typo in postgres database upgrade file.
 * (T200254) Add pear/Net_SMTP 1.7.3 to composer dependencies.
 * (T206765) Load installer i18n when running update.php.
+* (T109121) Remove deprecated pear/mail_mime-decode from composer suggested libraries.
 
 == MediaWiki 1.31.1 ==
 
