@@ -1083,7 +1083,7 @@ class Linker {
 	 * @param string|null $wikiId Id (as used by WikiMap) of the wiki to generate links to.
 	 *  For use with external changes.
 	 *
-	 * @return mixed|string
+	 * @return string HTML
 	 */
 	public static function formatComment(
 		$comment, $title = null, $local = false, $wikiId = null
