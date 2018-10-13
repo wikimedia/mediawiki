@@ -776,7 +776,7 @@ LUA;
 	 * @return string JSON
 	 */
 	private function encodeQueueName() {
-		return json_encode( [ $this->type, $this->wiki ] );
+		return json_encode( [ $this->type, $this->domain ] );
 	}
 
 	/**
@@ -809,8 +809,9 @@ LUA;
 	 */
 	private function getQueueKey( $prop, $type = null ) {
 		$type = is_string( $type ) ? $type : $this->type;
-		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
-		$keyspace = $prefix ? "$db-$prefix" : $db;
+
+		// Use wiki ID for b/c
+		$keyspace = WikiMap::getWikiIdFromDomain( $this->domain );
 
 		$parts = [ $keyspace, 'jobqueue', $type, $prop ];
 

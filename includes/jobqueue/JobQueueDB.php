@@ -542,7 +542,8 @@ class JobQueueDB extends JobQueue {
 	 */
 	protected function doWaitForBackups() {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lbFactory->waitForReplication( [ 'wiki' => $this->wiki, 'cluster' => $this->cluster ] );
+		$lbFactory->waitForReplication(
+			[ 'domain' => $this->domain, 'cluster' => $this->cluster ] );
 	}
 
 	/**
@@ -598,8 +599,8 @@ class JobQueueDB extends JobQueue {
 
 	public function getCoalesceLocationInternal() {
 		return $this->cluster
-			? "DBCluster:{$this->cluster}:{$this->wiki}"
-			: "LBFactory:{$this->wiki}";
+			? "DBCluster:{$this->cluster}:{$this->domain}"
+			: "LBFactory:{$this->domain}";
 	}
 
 	protected function doGetSiblingQueuesWithJobs( array $types ) {
@@ -681,7 +682,7 @@ class JobQueueDB extends JobQueue {
 					$affected = $dbw->affectedRows();
 					$count += $affected;
 					JobQueue::incrStats( 'recycles', $this->type, $affected );
-					$this->aggr->notifyQueueNonEmpty( $this->wiki, $this->type );
+					$this->aggr->notifyQueueNonEmpty( $this->domain, $this->type );
 				}
 			}
 
@@ -772,14 +773,14 @@ class JobQueueDB extends JobQueue {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lb = ( $this->cluster !== false )
 			? $lbFactory->getExternalLB( $this->cluster )
-			: $lbFactory->getMainLB( $this->wiki );
+			: $lbFactory->getMainLB( $this->domain );
 
 		return ( $lb->getServerType( $lb->getWriterIndex() ) !== 'sqlite' )
 			// Keep a separate connection to avoid contention and deadlocks;
 			// However, SQLite has the opposite behavior due to DB-level locking.
-			? $lb->getConnectionRef( $index, [], $this->wiki, $lb::CONN_TRX_AUTOCOMMIT )
+			? $lb->getConnectionRef( $index, [], $this->domain, $lb::CONN_TRX_AUTOCOMMIT )
 			// Jobs insertion will be defered until the PRESEND stage to reduce contention.
-			: $lb->getConnectionRef( $index, [], $this->wiki );
+			: $lb->getConnectionRef( $index, [], $this->domain );
 	}
 
 	/**
@@ -790,7 +791,12 @@ class JobQueueDB extends JobQueue {
 		$cluster = is_string( $this->cluster ) ? $this->cluster : 'main';
 
 		return $this->cache->makeGlobalKey(
-			'jobqueue', $this->wiki, $cluster, $this->type, $property );
+			'jobqueue',
+			$this->domain,
+			$cluster,
+			$this->type,
+			$property
+		);
 	}
 
 	/**

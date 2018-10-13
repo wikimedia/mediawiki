@@ -1867,7 +1867,7 @@ $wgDBserver = 'localhost';
 $wgDBport = 5432;
 
 /**
- * Name of the database
+ * Name of the database; this should be alphanumeric and not contain spaces nor hyphens
  */
 $wgDBname = 'my_wiki';
 
@@ -1934,7 +1934,7 @@ $wgSearchType = null;
 $wgSearchTypeAlternatives = null;
 
 /**
- * Table name prefix
+ * Table name prefix; this should be alphanumeric and not contain spaces nor hyphens
  */
 $wgDBprefix = '';
 
@@ -1952,7 +1952,7 @@ $wgDBTableOptions = 'ENGINE=InnoDB, DEFAULT CHARSET=binary';
 $wgSQLMode = '';
 
 /**
- * Mediawiki schema
+ * Mediawiki schema; this should be alphanumeric and not contain spaces nor hyphens
  */
 $wgDBmwschema = null;
 
@@ -2164,7 +2164,15 @@ $wgDBOracleDRCP = false;
 /**
  * Other wikis on this site, can be administered from a single developer account.
  *
- * Array numeric key => database name
+ * @var string[] List of wiki DB domain IDs; the format of each ID consist of 1-3 hyphen
+ *   delimited alphanumeric components (each with no hyphens nor spaces) of any of the forms:
+ *   - "<DB NAME>-<DB SCHEMA>-<TABLE PREFIX>"
+ *   - "<DB NAME>-<TABLE PREFIX>"
+ *   - "<DB NAME>"
+ * If hyphens appear in any of the components, then the domain ID parsing may not work
+ * in all cases and site functionality might be affected. If the schema ($wgDBmwschema)
+ * is left to the default "mediawiki" for all wikis, then the schema should be omitted
+ * from these IDs.
  */
 $wgLocalDatabases = [];
 
