@@ -20,6 +20,9 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 
 		// Add our own listener
 		$this->arguments['listeners'][] = new MediaWikiPHPUnitTestListener;
+
+		// Output only to stderr to avoid "Headers already sent" problems
+		$this->arguments['stderr'] = true;
 	}
 
 	protected function createRunner() {
