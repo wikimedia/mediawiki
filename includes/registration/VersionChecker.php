@@ -46,6 +46,16 @@ class VersionChecker {
 	private $phpExtensions = [];
 
 	/**
+	 * @var bool[] List of provided abilities
+	 */
+	private $abilities = [];
+
+	/**
+	 * @var string[] List of provided ability errors
+	 */
+	private $abilityErrors = [];
+
+	/**
 	 * @var array Loaded extensions
 	 */
 	private $loaded = [];
@@ -59,12 +69,19 @@ class VersionChecker {
 	 * @param string $coreVersion Current version of core
 	 * @param string $phpVersion Current PHP version
 	 * @param string[] $phpExtensions List of installed PHP extensions
+	 * @param bool[] $abilities List of provided abilities
+	 * @param string[] $abilityErrors Error messages for the abilities
 	 */
-	public function __construct( $coreVersion, $phpVersion, array $phpExtensions ) {
+	public function __construct(
+		$coreVersion, $phpVersion, array $phpExtensions,
+		array $abilities = [], array $abilityErrors = []
+	) {
 		$this->versionParser = new VersionParser();
 		$this->setCoreVersion( $coreVersion );
 		$this->setPhpVersion( $phpVersion );
 		$this->phpExtensions = $phpExtensions;
+		$this->abilities = $abilities;
+		$this->abilityErrors = $abilityErrors;
 	}
 
 	/**
@@ -121,7 +138,8 @@ class VersionChecker {
 	 *         'MediaWiki' => '>= 1.25.0',
 	 *         'platform': {
 	 *           'php': '>= 7.0.0',
-	 *           'ext-foo': '*'
+	 *           'ext-foo': '*',
+	 *           'ability-bar': true
 	 *         },
 	 *         'extensions' => {
 	 *           'FooBaz' => '>= 1.25.0'
@@ -191,6 +209,37 @@ class VersionChecker {
 										,
 										'type' => 'missing-phpExtension',
 										'missing' => $phpExtension,
+									];
+								}
+							} elseif ( substr( $dependency, 0, 8 ) === 'ability-' ) {
+								// Other abilities the environment might provide.
+								$ability = substr( $dependency, 8 );
+								if ( !isset( $this->abilities[$ability] ) ) {
+									throw new UnexpectedValueException( 'Dependency type '
+									. $dependency . ' unknown in ' . $extension );
+								}
+								if ( !is_bool( $constraint ) ) {
+									throw new UnexpectedValueException( 'Only booleans are '
+										. 'allowed to to indicate the presence of abilities '
+										. 'in ' . $extension );
+								}
+
+								if ( $constraint === true &&
+									$this->abilities[$ability] !== true
+								) {
+									// add custom error message for missing ability if specified
+									$customMessage = '';
+									if ( isset( $this->abilityErrors[$ability] ) ) {
+										$customMessage = ': ' . $this->abilityErrors[$ability];
+									}
+
+									$errors[] = [
+										'msg' =>
+											"{$extension} requires \"{$ability}\" ability"
+											. $customMessage
+										,
+										'type' => 'missing-ability',
+										'missing' => $ability,
 									];
 								}
 							} else {
