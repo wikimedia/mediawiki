@@ -130,4 +130,87 @@ class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( null, $domain->getSchema() );
 		$this->assertSame( '', $domain->getTablePrefix() );
 	}
+
+	public static function provideIsCompatible() {
+		return [
+			'Basic' =>
+				[ 'foo', 'foo', null, '', true ],
+			'db+prefix' =>
+				[ 'foo-bar', 'foo', null, 'bar', true ],
+			'db+schema+prefix' =>
+				[ 'foo-bar-baz', 'foo', 'bar', 'baz', true ],
+			'db+dontcare_schema+prefix' =>
+				[ 'foo-bar-baz', 'foo', null, 'baz', false ],
+			'?h -> -' =>
+				[ 'foo?hbar-baz-baa', 'foo-bar', 'baz', 'baa', true ],
+			'?? -> ?' =>
+				[ 'foo??bar-baz-baa', 'foo?bar', 'baz', 'baa', true ],
+			'Nothing' =>
+				[ '', null, null, '', true ],
+			'dontcaredb+dontcaredbschema+prefix' =>
+				[ 'mywiki-mediawiki-prefix', null, null, 'prefix', false ],
+			'dontcaredb+schema+prefix' =>
+				[ 'mywiki-schema-prefix', null, 'schema', 'prefix', false ],
+			'db+dontcareschema+prefix' =>
+				[ 'mywiki-schema-prefix', 'mywiki', null, 'prefix', false ],
+			'postgres-db-jobqueue' =>
+				[ 'postgres-mediawiki-', 'postgres', null, '', false ]
+		];
+	}
+
+	/**
+	 * @dataProvider provideIsCompatible
+	 * @covers Wikimedia\Rdbms\DatabaseDomain::isCompatible
+	 */
+	public function testIsCompatible( $id, $db, $schema, $prefix, $transitive ) {
+		$compareIdObj = DatabaseDomain::newFromId( $id );
+		$this->assertInstanceOf( DatabaseDomain::class, $compareIdObj );
+
+		$fromId = new DatabaseDomain( $db, $schema, $prefix );
+
+		$this->assertTrue( $fromId->isCompatible( $id ), 'constructed equals string' );
+		$this->assertTrue( $fromId->isCompatible( $compareIdObj ), 'fromId equals string' );
+
+		$this->assertEquals( $transitive, $compareIdObj->isCompatible( $fromId ),
+			'test transitivity of nulls components' );
+	}
+
+	public static function provideIsCompatible2() {
+		return [
+			'db+schema+prefix' =>
+				[ 'mywiki-schema-prefix', 'thatwiki', 'schema', 'prefix' ],
+			'dontcaredb+dontcaredbschema+prefix' =>
+				[ 'thatwiki-mediawiki-otherprefix', null, null, 'prefix' ],
+			'dontcaredb+schema+prefix' =>
+				[ 'mywiki-otherschema-prefix', null, 'schema', 'prefix' ],
+			'db+dontcareschema+prefix' =>
+				[ 'notmywiki-schema-prefix', 'mywiki', null, 'prefix' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideIsCompatible2
+	 * @covers Wikimedia\Rdbms\DatabaseDomain::isCompatible
+	 */
+	public function testIsCompatible2( $id, $db, $schema, $prefix ) {
+		$compareIdObj = DatabaseDomain::newFromId( $id );
+		$this->assertInstanceOf( DatabaseDomain::class, $compareIdObj );
+
+		$fromId = new DatabaseDomain( $db, $schema, $prefix );
+
+		$this->assertFalse( $fromId->isCompatible( $id ), 'constructed equals string' );
+		$this->assertFalse( $fromId->isCompatible( $compareIdObj ), 'fromId equals string' );
+	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\DatabaseDomain::isUnspecified
+	 */
+	public function testIsUnspecified() {
+		$domain = new DatabaseDomain( null, null, '' );
+		$this->assertTrue( $domain->isUnspecified() );
+		$domain = new DatabaseDomain( 'mywiki', null, '' );
+		$this->assertFalse( $domain->isUnspecified() );
+		$domain = new DatabaseDomain( 'mywiki', null, '' );
+		$this->assertFalse( $domain->isUnspecified() );
+	}
 }
