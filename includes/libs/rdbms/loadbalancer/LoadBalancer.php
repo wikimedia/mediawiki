@@ -28,7 +28,6 @@ use BagOStuff;
 use EmptyBagOStuff;
 use WANObjectCache;
 use ArrayUtils;
-use UnexpectedValueException;
 use InvalidArgumentException;
 use RuntimeException;
 use Exception;
@@ -953,17 +952,6 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		}
 
-		// Final sanity check to make sure the right domain is selected
-		if (
-			$conn instanceof IDatabase &&
-			$this->localDomain->getDatabase() !== null &&
-			$conn->getDomainID() !== $this->localDomain->getId()
-		) {
-			throw new UnexpectedValueException(
-				"Got connection to '{$conn->getDomainID()}', " .
-				"but expected local domain ('{$this->localDomain}')." );
-		}
-
 		return $conn;
 	}
 
@@ -1050,13 +1038,8 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		}
 
+		// Increment reference count
 		if ( $conn instanceof IDatabase ) {
-			// Final sanity check to make sure the right domain is selected
-			if ( $domainInstance->getDatabase() !== null && $conn->getDomainID() !== $domain ) {
-				throw new UnexpectedValueException(
-					"Got connection to '{$conn->getDomainID()}', but expected '$domain'." );
-			}
-			// Increment reference count
 			$refCount = $conn->getLBInfo( 'foreignPoolRefCount' );
 			$conn->setLBInfo( 'foreignPoolRefCount', $refCount + 1 );
 		}
