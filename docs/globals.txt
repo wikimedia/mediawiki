@@ -40,8 +40,6 @@ documentation for the remaining 114 globals, however some of the most important
 ones are listed below. They are typically initialised either in index.php or in
 Setup.php.
 
-For a description of the classes, see design.txt.
-
 $wgTitle
 	Title object created from the request URL.
 
