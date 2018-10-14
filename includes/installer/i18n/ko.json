@@ -318,6 +318,8 @@
 	"config-skins-screenshots": "$1 (스크린샷: $2)",
 	"config-extensions-requires": "$1 ($2 필요)",
 	"config-screenshot": "스크린샷",
+	"config-extension-not-found": "확장 기능 \"$1\"에 대한 등록 파일을 찾을 수 없습니다",
+	"config-extension-dependency": "확장 기능 \"$1\"을 설치하는 도중 의존성 오류가 발생했습니다: $2",
 	"mainpagetext": "<strong>미디어위키가 설치되었습니다.</strong>",
 	"mainpagedocfooter": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 이곳]에서 위키 소프트웨어에 대한 정보를 얻을 수 있습니다.\n\n== 시작하기 ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings 설정하기 목록]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ 미디어위키 FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 미디어위키 릴리스 메일링 리스트]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources 내 언어로 미디어위키 지역화]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 당신의 위키에서 스팸에 대처하는 법을 배우세요]"
 }
