@@ -787,10 +787,10 @@ class JobQueueDB extends JobQueue {
 	 * @return string
 	 */
 	private function getCacheKey( $property ) {
-		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
 		$cluster = is_string( $this->cluster ) ? $this->cluster : 'main';
 
-		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $cluster, $this->type, $property );
+		return $this->cache->makeGlobalKey(
+			'jobqueue', $this->wiki, $cluster, $this->type, $property );
 	}
 
 	/**

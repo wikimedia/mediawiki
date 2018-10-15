@@ -2281,8 +2281,12 @@ class OutputPage extends ContextSource {
 	 * Get a complete Key header
 	 *
 	 * @return string
+	 * @deprecated in 1.32; the IETF spec for this header expired w/o becoming
+	 *   a standard.
 	 */
 	public function getKeyHeader() {
+		wfDeprecated( '$wgUseKeyHeader', '1.32' );
+
 		$cvCookies = $this->getCacheVaryCookies();
 
 		$cookiesOption = [];
@@ -2329,6 +2333,16 @@ class OutputPage extends ContextSource {
 				if ( $variant === $lang->getCode() ) {
 					continue;
 				}
+
+				// XXX Note that this code is not strictly correct: we
+				// do a case-insensitive match in
+				// LanguageConverter::getHeaderVariant() while the
+				// (abandoned, draft) spec for the `Key` header only
+				// allows case-sensitive matches.  To match the logic
+				// in LanguageConverter::getHeaderVariant() we should
+				// also be looking at fallback variants and deprecated
+				// mediawiki-internal codes, as well as BCP 47
+				// normalized forms.
 
 				$aloption[] = "substr=$variant";
 

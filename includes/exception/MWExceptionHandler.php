@@ -225,8 +225,12 @@ class MWExceptionHandler {
 				$levelName = 'Notice';
 				$severity = LogLevel::ERROR;
 				break;
-			case E_USER_WARNING:
 			case E_USER_NOTICE:
+				// Used by wfWarn(), MWDebug::warning()
+				$levelName = 'Notice';
+				$severity = LogLevel::WARNING;
+				break;
+			case E_USER_WARNING:
 				// Used by wfWarn(), MWDebug::warning()
 				$levelName = 'Warning';
 				$severity = LogLevel::WARNING;

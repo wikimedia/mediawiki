@@ -38,7 +38,6 @@ matrix:
     - env: dbtype=mysql dbuser=root
       php: hhvm-3.18
   allow_failures:
-    - php: 7.2
     - php: hhvm-3.18
     - php: hhvm-3.21
     - php: hhvm-3.24

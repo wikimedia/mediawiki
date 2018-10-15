@@ -2741,8 +2741,9 @@ $wgUseESI = false;
 
 /**
  * Send the Key HTTP header for better caching.
- * See https://datatracker.ietf.org/doc/draft-fielding-http-key/ for details.
+ * See https://datatracker.ietf.org/doc/draft-ietf-httpbis-key/ for details.
  * @since 1.27
+ * @deprecated in 1.32, the IETF spec expired without becoming a standard.
  */
 $wgUseKeyHeader = false;
 
