@@ -157,12 +157,8 @@ class ApiFeedWatchlist extends ApiBase {
 					$feedItems[] = new FeedItem( $errorTitle, $errorText, '', '', '' );
 				}
 			} else {
-				if ( $e instanceof UsageException ) {
-					$errorCode = $e->getCodeString();
-				} else {
-					// Something is seriously wrong
-					$errorCode = 'internal_api_error';
-				}
+				// Something is seriously wrong
+				$errorCode = 'internal_api_error';
 				$errorTitle = $this->msg( 'api-feed-error-title', $errorCode );
 				$errorText = $e->getMessage();
 				$feedItems[] = new FeedItem( $errorTitle, $errorText, '', '', '' );

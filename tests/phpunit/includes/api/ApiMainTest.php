@@ -1010,10 +1010,6 @@ class ApiMainTest extends ApiTestCase {
 			MWExceptionHandler::getRedactedTraceAsString( $dbex )
 		)->inLanguage( 'en' )->useDatabase( false )->text();
 
-		Wikimedia\suppressWarnings();
-		$usageEx = new UsageException( 'Usage exception!', 'ue', 0, [ 'foo' => 'bar' ] );
-		Wikimedia\restoreWarnings();
-
 		$apiEx1 = new ApiUsageException( null,
 			StatusValue::newFatal( new ApiRawMessage( 'An error', 'sv-error1' ) ) );
 		TestingAccessWrapper::newFromObject( $apiEx1 )->modulePath = 'foo+bar';
@@ -1056,23 +1052,6 @@ class ApiMainTest extends ApiTestCase {
 						]
 					],
 					'trace' => $dbtrace,
-					'servedby' => wfHostname(),
-				]
-			],
-			[
-				$usageEx,
-				[ 'existing-error', 'ue' ],
-				[
-					'warnings' => [
-						[ 'code' => 'existing-warning', 'text' => 'existing warning', 'module' => 'main' ],
-					],
-					'errors' => [
-						[ 'code' => 'existing-error', 'text' => 'existing error', 'module' => 'main' ],
-						[ 'code' => 'ue', 'text' => "Usage exception!", 'data' => [ 'foo' => 'bar' ] ]
-					],
-					'docref' => "See $doclink for API usage. Subscribe to the mediawiki-api-announce mailing " .
-						"list at &lt;https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce&gt; " .
-						"for notice of API deprecations and breaking changes.",
 					'servedby' => wfHostname(),
 				]
 			],
