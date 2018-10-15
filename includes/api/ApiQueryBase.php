@@ -436,9 +436,14 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return void
 	 */
 	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
+		$db = $this->getDB();
+
 		$this->addTables( 'ipblocks' );
 		$this->addJoinConds( [
-			'ipblocks' => [ 'LEFT JOIN', 'ipb_user=user_id' ],
+			'ipblocks' => [ 'LEFT JOIN', [
+				'ipb_user=user_id',
+				'ipb_expiry > ' . $db->addQuotes( $db->timestamp() ),
+			] ],
 		] );
 
 		$this->addFields( 'ipb_deleted' );
