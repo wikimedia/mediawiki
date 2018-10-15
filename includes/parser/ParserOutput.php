@@ -325,7 +325,6 @@ class ParserOutput extends CacheTime {
 			$text = preg_replace_callback(
 				self::EDITSECTION_REGEX,
 				function ( $m ) {
-					global $wgOut, $wgLang;
 					$editsectionPage = Title::newFromText( htmlspecialchars_decode( $m[1] ) );
 					$editsectionSection = htmlspecialchars_decode( $m[2] );
 					$editsectionContent = isset( $m[4] ) ? Sanitizer::decodeCharReferences( $m[3] ) : null;
@@ -334,11 +333,12 @@ class ParserOutput extends CacheTime {
 						throw new MWException( "Bad parser output text." );
 					}
 
-					$skin = $wgOut->getSkin();
-					return $skin->doEditSectionLink( $editsectionPage,
+					$context = RequestContext::getMain();
+					return $context->getSkin()->doEditSectionLink(
+						$editsectionPage,
 						$editsectionSection,
 						$editsectionContent,
-						$wgLang
+						$context->getLanguage()
 					);
 				},
 				$text
