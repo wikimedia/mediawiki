@@ -196,4 +196,21 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 			[ 'ćaB', 'ćaB' ],
 		];
 	}
+
+	public function testNoDBAccess() {
+		global $wgContLanguageCode;
+
+		$dbr = wfGetDB( DB_REPLICA );
+
+		MessageCache::singleton()->getMsgFromNamespace( 'allpages', $wgContLanguageCode );
+
+		$this->assertEquals( 0, $dbr->trxLevel() );
+		$dbr->setFlag( DBO_TRX, $dbr::REMEMBER_PRIOR ); // make queries trigger TRX
+
+		MessageCache::singleton()->getMsgFromNamespace( 'go', $wgContLanguageCode );
+
+		$dbr->restoreFlags();
+
+		$this->assertEquals( 0, $dbr->trxLevel(), "No DB read queries" );
+	}
 }

@@ -53,6 +53,13 @@ class MessageCache {
 	protected $cache;
 
 	/**
+	 * Map of (lowercase message key => index) for all software defined messages
+	 *
+	 * @var array
+	 */
+	protected $overridable;
+
+	/**
 	 * @var bool[] Map of (language code => boolean)
 	 */
 	protected $cacheVolatile = [];
@@ -257,6 +264,8 @@ class MessageCache {
 		if ( $this->cache->has( $code ) && $mode != self::FOR_UPDATE ) {
 			return true;
 		}
+
+		$this->overridable = array_flip( Language::getMessageKeysFor( $code ) );
 
 		# 8 lines of code just to say (once) that message cache is disabled
 		if ( $this->mDisable ) {
@@ -1029,14 +1038,18 @@ class MessageCache {
 				$this->cache->getField( $code, 'HASH' )
 			);
 		} else {
-			// Message page does not exist or does not override a software message.
-			// Load the message page, utilizing the individual message cache.
-			$entry = $this->loadCachedMessagePageEntry(
-				$title,
-				$code,
-				$this->cache->getField( $code, 'HASH' )
-			);
-			if ( substr( $entry, 0, 1 ) !== ' ' ) {
+			// Message page either does not exist or does not override a software message
+			if ( !isset( $this->overridable[$this->contLang->lcfirst( $title )] ) ) {
+				// Message page does not override any software-defined message. A custom
+				// message might be defined to have content or settings specific to the wiki.
+				// Load the message page, utilizing the individual message cache as needed.
+				$entry = $this->loadCachedMessagePageEntry(
+					$title,
+					$code,
+					$this->cache->getField( $code, 'HASH' )
+				);
+			}
+			if ( $entry === null || substr( $entry, 0, 1 ) !== ' ' ) {
 				// Message does not have a MediaWiki page definition; try hook handlers
 				$message = false;
 				Hooks::run( 'MessagesPreLoad', [ $title, &$message, $code ] );
