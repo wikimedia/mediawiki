@@ -1,5 +1,5 @@
 {{int:version-credits-summary}} <!--
-MediaWiki 1.31 is a collaborative project released under the
+MediaWiki 1.32 is a collaborative project released under the
 GNU General Public License v2. We would like to recognize the
 following names for their contribution to the product.
 
@@ -26,6 +26,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Adrian Lang
 * Ævar Arnfjörð Bjarmason
 * Aftab
+* Agabi10
 * Agbad
 * Ahmad Sherif
 * Ajayrahul P
@@ -34,6 +35,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Alejandro Mery
 * Aleksey Bekh-Ivanov
 * AlephNull
+* Alex Ezell
 * Alex Ivanov
 * Alex Shih-Han Lin
 * Alex Z.
@@ -85,6 +87,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Bagariavivek
 * Bahodir Mansurov
 * balloonguy
+* Bartek Łukawski
 * Bartosz Dziewoński
 * Base
 * Beau
@@ -175,6 +178,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * David Sn
 * Dayllan Maza
 * dcausse
+* dcot
 * dennisroczek
 * Denny Vrandecic
 * Dereckson
@@ -294,6 +298,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Jakub Vrana
 * James D. Forrester
 * James Earl Douglas
+* James Montalvo
 * Jan Berkel
 * Jan Drewniak
 * Jan Gerber
@@ -476,6 +481,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Moritz Oberhauser
 * Mormegil
 * Mr. E23
+* MR70
 * MrBlueSky
 * MrPete
 * Mukunda Modell
@@ -539,7 +545,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Pavel Selitskas
 * Pcoombe
 * Perside Rosalie
-* petarpetkovic
+* Petar Petković
 * Peter Coombe
 * Peter Gehres
 * Peter Hedenskog
@@ -568,6 +574,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * ptarjan
 * pubudu538
 * Purodha Blissenbach
+* Pwirth
 * quiddity
 * quietust
 * Quim Gil
@@ -671,6 +678,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Suriyaa Kudo
 * svip
 * Szymon Świerkosz
+* T. Bayer
 * T.D. Corell
 * tacsipacsi
 * Tarquin
@@ -687,6 +695,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Thomas Dalton
 * Thomas Gries
 * ThomasV
+* Tim Eulitz
 * Tim Hollmann
 * Tim Landscheidt
 * Tim Laqua
