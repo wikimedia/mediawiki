@@ -294,7 +294,7 @@ class FormatJson {
 					$lookAhead = ( $idx + 1 < $maxLen ) ? $str[$idx + 1] : '';
 					$lookBehind = ( $idx - 1 >= 0 ) ? $str[$idx - 1] : '';
 					if ( $inString ) {
-						continue;
+						break;
 
 					} elseif ( !$inComment &&
 						( $lookAhead === '/' || $lookAhead === '*' )
