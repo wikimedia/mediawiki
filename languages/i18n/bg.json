@@ -3725,6 +3725,8 @@
 	"cannotauth-not-allowed": "Не ви е позволено да използвате тази страница",
 	"changecredentials": "Промяна на парола",
 	"changecredentials-submit": "Промяна на парола",
+	"removecredentials": "Премахване на потребителските данни",
+	"removecredentials-submit": "Премахване на потребителските данни",
 	"credentialsform-provider": "Тип на автентикацията:",
 	"credentialsform-account": "Име на сметка:",
 	"linkaccounts": "Свързване на сметки",

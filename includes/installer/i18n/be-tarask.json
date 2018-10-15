@@ -316,6 +316,7 @@
 	"config-extensions-requires": "$1 (патрабуе $2)",
 	"config-screenshot": "здымак экрану",
 	"config-extension-not-found": "Не атрымалася знайсьці файл рэгістрацыі для пашырэньня «$1»",
+	"config-extension-dependency": "Памылка залежнасьці ўзьнікла падчас усталяваньня пашырэньня «$1»: $2",
 	"mainpagetext": "<strong>MediaWiki была ўсталяваная.</strong>",
 	"mainpagedocfooter": "Глядзіце [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents дапаможнік карыстальніка] для атрыманьня інфармацыі па карыстаньні вікі-праграмамі.\n\n== З чаго пачаць ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Сьпіс парамэтраў канфігурацыі]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Частыя пытаньні MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка паведамленьняў пра зьяўленьне новых вэрсіяў MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Пераклад MediaWiki на вашую мову]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Даведайцеся, як змагацца з спамам у вашай вікі]"
 }

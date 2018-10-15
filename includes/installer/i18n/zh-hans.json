@@ -22,7 +22,8 @@
 			"Mywood",
 			"Impersonator 1",
 			"Fengchao",
-			"Duolaimi"
+			"Duolaimi",
+			"A Chinese Wikipedian"
 		]
 	},
 	"config-desc": "MediaWiki安装程序",
@@ -327,6 +328,8 @@
 	"config-skins-screenshots": "$1（截图：$2）",
 	"config-extensions-requires": "$1（需要$2）",
 	"config-screenshot": "截图",
+	"config-extension-not-found": "找不到扩展名“$1”的注册文件",
+	"config-extension-dependency": "安装扩展名“$1”时遇到了一个依赖错误：$2",
 	"mainpagetext": "<strong>已安装MediaWiki。</strong>",
 	"mainpagedocfooter": "请查阅[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 用户指导]以获取使用本wiki软件的信息！\n\n== 入门 ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings MediaWiki配置设置列表]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/zh-hans MediaWiki常见问题]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki发布邮件列表]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources 本地化MediaWiki到您的语言]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 了解如何在您的wiki上打击破坏]"
 }

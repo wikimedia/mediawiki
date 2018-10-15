@@ -105,7 +105,8 @@
 			"夢蝶葬花",
 			"Dcljr",
 			"Phenolla",
-			"Hello903hello"
+			"Hello903hello",
+			"A Chinese Wikipedian"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -423,6 +424,7 @@
 	"badarticleerror": "无法在此页进行该操作。",
 	"cannotdelete": "无法删除页面或文件“$1”。它可能已被其他人删除了。",
 	"cannotdelete-title": "无法删除页面“$1”",
+	"delete-scheduled": "页面“$1”计划删除。\n请耐心等待。",
 	"delete-hook-aborted": "删除被扩展钩子取消。钩子并没有给出解释。",
 	"no-null-revision": "无法创建对“$1”页面新的空白版本",
 	"badtitle": "错误标题",
@@ -1069,7 +1071,7 @@
 	"searchdisabled": "{{SITENAME}}的搜索已被禁用。您可以暂时使用搜索引擎进行搜索，须注意其索引的{{SITENAME}}内容可能不是最新的。",
 	"search-error": "搜索时发生错误：$1",
 	"search-warning": "搜索时发生警告：$1",
-	"preferences": "设置",
+	"preferences": "参数设置",
 	"mypreferences": "参数设置",
 	"prefs-edits": "编辑数：",
 	"prefsnologintext2": "请登录以更改您的用户设置。",
@@ -2676,6 +2678,7 @@
 	"movepage-moved": "'''“$1”已移动到“$2”'''",
 	"movepage-moved-redirect": "重定向已创建。",
 	"movepage-moved-noredirect": "重定向的创建已被禁用。",
+	"movepage-delete-first": "作为页面移动的一部分，目标页面有太多的修改要删除。请先手动删除网页，然后再试一次。",
 	"articleexists": "该名称的页面已存在，或者您使用的名称无效。请另选一名。",
 	"cantmove-titleprotected": "您无法将页面移动到该位置，因为新标题已被保护以防止创建。",
 	"movetalk": "移动关联的讨论页",
@@ -2971,6 +2974,7 @@
 	"pageinfo-category-files": "文件数",
 	"pageinfo-user-id": "用户ID",
 	"pageinfo-file-hash": "哈希值",
+	"pageinfo-view-protect-log": "视此页之保护日志。",
 	"markaspatrolleddiff": "标记为已巡查",
 	"markaspatrolledtext": "标记此页面为已巡查",
 	"markaspatrolledtext-file": "将此文件版本标记为已巡查",

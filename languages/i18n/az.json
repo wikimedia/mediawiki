@@ -828,6 +828,8 @@
 	"timezoneregion-indian": "Hind Okeanı",
 	"timezoneregion-pacific": "Sakit Okean",
 	"allowemail": "Digər istifadəçilərin mənə e-məktub göndərməsinə icazə ver",
+	"email-allow-new-users-label": "Tamamilə yeni istifadəçilərdən e-məktub gəlməsinə icazə ver",
+	"email-blacklist-label": "Bu istifadəçilərin mənə e-məktub göndərməsinə qadağa qoy:",
 	"prefs-searchoptions": "Axtar",
 	"prefs-namespaces": "Adlar fəzası",
 	"default": "boş",
@@ -859,7 +861,7 @@
 	"prefs-help-email-others": "Həmçinin, istifadəçi və ya müzakirə səhifənizdəki link vasitəsilə başqa istifadəçilərin sizinlə əlaqə yaratmasını seçə bilərsiniz. Bu halda sizin e-poçt ünvanınız heç kimə görünməyəcək.",
 	"prefs-help-email-required": "Elektron ünvan tələb olunur.",
 	"prefs-info": "Əsas məlumatlar",
-	"prefs-i18n": "Beynəlxalqlaşdırma",
+	"prefs-i18n": "Beynəlmiləlləşdirmə",
 	"prefs-signature": "İmza",
 	"prefs-dateformat": "Tarix formatı",
 	"prefs-timeoffset": "Saat qurşağının fərqi",
@@ -2520,6 +2522,7 @@
 	"htmlform-selectorother-other": "Digər",
 	"htmlform-no": "Xeyr",
 	"htmlform-yes": "Bəli",
+	"htmlform-cloner-create": "Əlavə et",
 	"logentry-delete-delete": "$1 $3 səhifəsini {{GENDER:$2|sildi}}",
 	"logentry-suppress-delete": "$1 $3 səhifəsini {{GENDER:$2|gizlətdi}}",
 	"revdelete-content-hid": "gizli mətn",
@@ -2587,5 +2590,6 @@
 	"special-characters-group-gujarati": "Qucarat",
 	"special-characters-group-thai": "Tay",
 	"special-characters-group-lao": "Lao",
-	"special-characters-group-khmer": "Khmer"
+	"special-characters-group-khmer": "Khmer",
+	"mw-widgets-usersmultiselect-placeholder": "Əlavə et..."
 }
