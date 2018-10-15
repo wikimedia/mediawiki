@@ -67,7 +67,8 @@
 			"Fitoschido",
 			"Alireza Ivaz",
 			"Iriman",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"Amirsara"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -2943,7 +2944,7 @@
 	"previousdiff": "→ تفاوت قدیمی‌تر",
 	"nextdiff": "تفاوت جدیدتر ←",
 	"mediawarning": "'''هشدار''': این پرونده ممکن است حاوی کدهای مخرب باشد.\nبا اجرای آن رایانهٔ شما ممکن است آسیب ببیند.",
-	"imagemaxsize": "محدودیت ابعاد تصویر:<br />''(برای صفحه‌های توصیف پرونده)''",
+	"imagemaxsize": "محدودیت ابعاد تصویر برای صفحه‌های توصیف پرونده",
 	"thumbsize": "اندازهٔ بنداگشتی:",
 	"widthheight": "$1 در $2",
 	"widthheightpage": "$1×$2، $3 {{PLURAL:$3|صفحه|صفحه}}",
@@ -3395,6 +3396,9 @@
 	"confirm-unwatch-top": "این صفحه از فهرست پی‌گیری‌های شما حذف شود؟",
 	"confirm-rollback-button": "باشد",
 	"confirm-rollback-top": "خنثی‌سازی ویرایش‌های این صفحه؟",
+	"confirm-mcrrestore-title": "بازیابی نسخه",
+	"confirm-mcrundo-title": "خنثی کردن تغییرات",
+	"mcrundofailed": "واگردانی ناموفق بود",
 	"semicolon-separator": "؛&#32;",
 	"comma-separator": "،&#32;",
 	"percent": "$1٪",

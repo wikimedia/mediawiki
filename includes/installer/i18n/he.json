@@ -306,7 +306,7 @@
 	"config-install-mainpage-failed": "לא הצליחה הכנסת דף ראשי: $1.",
 	"config-install-done": "<strong>מזל טוב!</strong>\nהתקנת את תוכנת מדיה־ויקי.\n\nתוכנת ההתקנה יצרה את הקובץ <code>LocalSettings.php</code>.\nהוא מכיל את כל ההגדרות שלך.\n\nיש להוריד אותו ולהכניס אותו לתיקיית הבסיס שבה הותקן הוויקי שלך (אותה התיקייה שבה נמצא הקובץ index.php). ההורדה אמורה להתחיל באופן אוטומטי.\n\nאם ההורדה לא התחילה, או אם ביטלת אותה, אפשר להתחיל אותה מחדש באמצעות לחיצה על הקישור הבא:\n\n$3\n\n<strong>לתשומת לבך:</strong> אם ההורדה לא תבוצע כעת, קובץ ההגדרות <strong>לא</strong> יהיה זמין מאוחר יותר אם תוכנת ההתקנה תיסגר לפני שהקובץ יורד.\n\nלאחר שביצעת את הפעולות שלהלן, באפשרותך <strong>[$2 להיכנס לאתר הוויקי שלך]</strong>.",
 	"config-install-done-path": "<strong>מזל טוב!</strong>\nהתקנת את תוכנת מדיה־ויקי.\n\nתוכנת ההתקנה יצרה את הקובץ <code>LocalSettings.php</code>.\nהוא מכיל את כל ההגדרות שלך.\n\nיש להוריד אותו ולהכניס אותו לתיקייה <code>$4</code>. ההורדה אמורה להתחיל באופן אוטומטי.\n\nאם ההורדה לא התחילה, או אם ביטלת אותה, אפשר להתחיל אותה מחדש באמצעות לחיצה על הקישור הבא:\n\n$3\n\n<strong>לתשומת לבך:</strong> אם ההורדה לא תבוצע כעת, קובץ ההגדרות <strong>לא</strong> יהיה זמין מאוחר יותר אם תוכנת ההתקנה תיסגר לפני שהקובץ יורד.\n\nלאחר שביצעת את הפעולות שלהלן, באפשרותך <strong>[$2 להיכנס לאתר הוויקי שלך]</strong>.",
-	"config-install-success": "מדיה־ויקי הותקנה בהצלחה. עכשיו אפשר\nלבקר בכתובת <$1$2> כדי לצפות בוויקי שלך.\nאם יש לך שאלות, ר' את רשימת השאלות הנפוצות שלנו:\n<https://www.mediawiki.org/wiki/Manual:FAQ> ואפשר גם להשתמש\nבאתרי התמיכה שקישורים אליהם מופיעים באותו הדף.",
+	"config-install-success": "מדיה־ויקי הותקנה בהצלחה. עכשיו אפשר\nלבקר בכתובת <$1$2> כדי לצפות בוויקי שלך.\nאם יש לך שאלות, ר' את רשימת השאלות הנפוצות שלנו:\n<https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ> ואפשר גם להשתמש\nבאתרי התמיכה שקישורים אליהם מופיעים באותו הדף.",
 	"config-download-localsettings": "הורדת <code>LocalSettings.php</code>",
 	"config-help": "עזרה",
 	"config-help-tooltip": "להרחיב",
@@ -315,6 +315,8 @@
 	"config-skins-screenshots": "$1 (צילומי מסך: $2)",
 	"config-extensions-requires": "$1 (נדרשת ההרחבה $2)",
 	"config-screenshot": "צילום מסך",
+	"config-extension-not-found": "לא היה אפשר למצוא את קובץ הרישום של ההרחבה \"$1\"",
+	"config-extension-dependency": "שגיאת תלות נמצאה בזמן התקנת ההרחבה \"$1\"‏: $2",
 	"mainpagetext": "<strong>תוכנת מדיה־ויקי הותקנה בהצלחה.</strong>",
 	"mainpagedocfooter": "היעזרו ב[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.\n\n== קישורים שימושיים ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings רשימת ההגדרות]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ שאלות ותשובות על מדיה־ויקי]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources תרגום מדיה־ויקי לשפה שלך]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam איך להיאבק נגד ספאם באתר הוויקי שלך]"
 }
