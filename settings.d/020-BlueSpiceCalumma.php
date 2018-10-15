@@ -36,3 +36,4 @@ $GLOBALS['wgFooterIcons']['poweredby'] += [
 		'width' => '149'
 	]
 ];
+
