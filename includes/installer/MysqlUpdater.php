@@ -931,7 +931,9 @@ class MysqlUpdater extends DatabaseUpdater {
 				if ( $count == 0 ) {
 					$lbFactory = $services->getDBLoadBalancerFactory();
 					$lbFactory->waitForReplication( [
-						'wiki' => wfWikiID(), 'timeout' => self::REPLICATION_WAIT_TIMEOUT ] );
+						'domain' => $lbFactory->getLocalDomainID(),
+						'timeout' => self::REPLICATION_WAIT_TIMEOUT
+					] );
 				}
 				$this->db->insert( 'templatelinks',
 					[

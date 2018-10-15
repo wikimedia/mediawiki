@@ -91,7 +91,7 @@ class RefreshLinksJob extends Job {
 			if ( !isset( $this->params['range'] ) ) {
 				$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 				if ( !$lbFactory->waitForReplication( [
-						'wiki'    => wfWikiID(),
+						'domain'  => $lbFactory->getLocalDomainID(),
 						'timeout' => self::LAG_WAIT_TIMEOUT
 				] ) ) { // only try so hard
 					$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();

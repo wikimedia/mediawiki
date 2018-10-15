@@ -1015,6 +1015,7 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	public function testActorId() {
+		$domain = MediaWikiServices::getInstance()->getDBLoadBalancer()->getLocalDomainID();
 		$this->hideDeprecated( 'User::selectFields' );
 
 		// Newly-created user has an actor ID
@@ -1042,7 +1043,7 @@ class UserTest extends MediaWikiTestCase {
 			'Actor ID can be retrieved for user loaded with User::selectFields()' );
 
 		$this->db->delete( 'actor', [ 'actor_user' => $id ], __METHOD__ );
-		User::purge( wfWikiId(), $id );
+		User::purge( $domain, $id );
 		// Because WANObjectCache->delete() stupidly doesn't delete from the process cache.
 		ObjectCache::getMainWANInstance()->clearProcessCache();
 
