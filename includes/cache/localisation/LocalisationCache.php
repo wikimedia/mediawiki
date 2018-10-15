@@ -525,15 +525,20 @@ class LocalisationCache {
 		ini_set( 'apc.cache_by_default', $_apcEnabled );
 		Wikimedia\restoreWarnings();
 
+		$data = [];
 		if ( $_fileType == 'core' || $_fileType == 'extension' ) {
-
-			// Lnguage files aren't required to contain all the possible variables, so suppress warnings
-			// when variables don't exist in tests
-			Wikimedia\suppressWarnings();
-			$data = compact( self::$allKeys );
-			Wikimedia\restoreWarnings();
+			foreach ( self::$allKeys as $key ) {
+				// Not all keys are set in language files, so
+				// check they exist first
+				if ( isset( $$key ) ) {
+					$data[$key] = $$key;
+				}
+			}
 		} elseif ( $_fileType == 'aliases' ) {
-			$data = compact( 'aliases' );
+			if ( isset( $aliases ) ) {
+				/** @suppress PhanUndeclaredVariable */
+				$data['aliases'] = $aliases;
+			}
 		} else {
 			throw new MWException( __METHOD__ . ": Invalid file type: $_fileType" );
 		}
