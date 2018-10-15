@@ -1,3 +1,5 @@
 <?php
 return; // Disabled. Needs Tomcat
-wfLoadExtension("BlueSpiceExtendedSearch");
+
+wfLoadExtension( 'BlueSpiceExtendedSearch' );
+$GLOBALS['wgSearchType'] = 'BS\\ExtendedSearch\\MediaWiki\\Backend\\BlueSpiceSearch';
