@@ -46,8 +46,8 @@
 		"bluespice/usermanager": "dev-master",
 		"bluespice/usermergeconnector": "dev-master",
 		"bluespice/usersidebar": "dev-master",
-		"bluespice/whoisonline": "dev-master",
 		"bluespice/watchlist": "dev-master",
+		"bluespice/whoisonline": "dev-master",
 		"mediawiki/extjs-base": "dev-master",
 
 		"mediawiki/chameleon-skin": "~1.0",
