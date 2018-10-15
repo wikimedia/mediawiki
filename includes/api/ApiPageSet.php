@@ -421,19 +421,6 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Titles that were deemed invalid by Title::newFromText()
 	 * The array's index will be unique and negative for each item
-	 * @deprecated since 1.26, use self::getInvalidTitlesAndReasons()
-	 * @return string[] Array of strings (not Title objects)
-	 */
-	public function getInvalidTitles() {
-		wfDeprecated( __METHOD__, '1.26' );
-		return array_map( function ( $t ) {
-			return $t['title'];
-		}, $this->mInvalidTitles );
-	}
-
-	/**
-	 * Titles that were deemed invalid by Title::newFromText()
-	 * The array's index will be unique and negative for each item
 	 * @return array[] Array of arrays with 'title' and 'invalidreason' properties
 	 */
 	public function getInvalidTitlesAndReasons() {

@@ -566,8 +566,8 @@ class ApiMain extends ApiBase {
 	 */
 	protected function handleException( $e ) {
 		// T65145: Rollback any open database transactions
-		if ( !( $e instanceof ApiUsageException || $e instanceof UsageException ) ) {
-			// UsageExceptions are intentional, so don't rollback if that's the case
+		if ( !$e instanceof ApiUsageException ) {
+			// ApiUsageExceptions are intentional, so don't rollback if that's the case
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 		}
 
@@ -612,13 +612,6 @@ class ApiMain extends ApiBase {
 					$this->addWarning( $error );
 				}
 			}
-		} catch ( UsageException $ex ) {
-			// The error printer itself is failing. Try suppressing its request
-			// parameters and redo.
-			$failed = true;
-			$this->addWarning(
-				[ 'apiwarn-errorprinterfailed-ex', $ex->getMessage() ], 'errorprinterfailed'
-			);
 		}
 		if ( $failed ) {
 			$this->mPrinter = null;
@@ -1012,9 +1005,6 @@ class ApiMain extends ApiBase {
 	 * If an ApiUsageException, errors/warnings will be extracted from the
 	 * embedded StatusValue.
 	 *
-	 * If a base UsageException, the getMessageArray() method will be used to
-	 * extract the code and English message for a single error (no warnings).
-	 *
 	 * Any other exception will be returned with a generic code and wrapper
 	 * text around the exception's (presumably English) message as a single
 	 * error (no warnings).
@@ -1032,13 +1022,6 @@ class ApiMain extends ApiBase {
 			}
 		} elseif ( $type !== 'error' ) {
 			// None of the rest have any messages for non-error types
-		} elseif ( $e instanceof UsageException ) {
-			// User entered incorrect parameters - generate error response
-			$data = Wikimedia\quietCall( [ $e, 'getMessageArray' ] );
-			$code = $data['code'];
-			$info = $data['info'];
-			unset( $data['code'], $data['info'] );
-			$messages[] = new ApiRawMessage( [ '$1', $info ], $code, $data );
 		} else {
 			// Something is seriously wrong
 			$config = $this->getConfig();
@@ -1108,7 +1091,7 @@ class ApiMain extends ApiBase {
 		} else {
 			$path = null;
 		}
-		if ( $e instanceof ApiUsageException || $e instanceof UsageException ) {
+		if ( $e instanceof ApiUsageException ) {
 			$link = wfExpandUrl( wfScript( 'api' ) );
 			$result->addContentValue(
 				$path,
