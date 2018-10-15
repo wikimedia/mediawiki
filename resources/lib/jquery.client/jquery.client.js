@@ -1,5 +1,5 @@
 /*!
- * jQuery Client v2.0.0
+ * jQuery Client v2.0.1
  * https://www.mediawiki.org/wiki/JQuery_Client
  *
  * Copyright 2010-2015 jquery-client maintainers and other contributors.
@@ -42,8 +42,6 @@
 		 *     }
 		 */
 		profile: function ( nav ) {
-			/*jshint boss:true */
-
 			if ( nav === undefined ) {
 				nav = window.navigator;
 			}
@@ -64,21 +62,21 @@
 				// Generic version digit
 				x = 'x',
 				// Strings found in user agent strings that need to be conformed
-				wildUserAgents = ['Opera', 'Navigator', 'Minefield', 'KHTML', 'Chrome', 'PLAYSTATION 3', 'Iceweasel'],
+				wildUserAgents = [ 'Opera', 'Navigator', 'Minefield', 'KHTML', 'Chrome', 'PLAYSTATION 3', 'Iceweasel' ],
 				// Translations for conforming user agent strings
 				userAgentTranslations = [
 					// Tons of browsers lie about being something they are not
-					[/(Firefox|MSIE|KHTML,?\slike\sGecko|Konqueror)/, ''],
+					[ /(Firefox|MSIE|KHTML,?\slike\sGecko|Konqueror)/, '' ],
 					// Chrome lives in the shadow of Safari still
-					['Chrome Safari', 'Chrome'],
+					[ 'Chrome Safari', 'Chrome' ],
 					// KHTML is the layout engine not the browser - LIES!
-					['KHTML', 'Konqueror'],
+					[ 'KHTML', 'Konqueror' ],
 					// Firefox nightly builds
-					['Minefield', 'Firefox'],
+					[ 'Minefield', 'Firefox' ],
 					// This helps keep different versions consistent
-					['Navigator', 'Netscape'],
+					[ 'Navigator', 'Netscape' ],
 					// This prevents version extraction issues, otherwise translation would happen later
-					['PLAYSTATION 3', 'PS3']
+					[ 'PLAYSTATION 3', 'PS3' ]
 				],
 				// Strings which precede a version number in a user agent string - combined and used as
 				// match 1 in version detection
@@ -93,18 +91,18 @@
 					'camino', 'chrome', 'firefox', 'iceweasel', 'netscape', 'konqueror', 'lynx', 'msie', 'opera',
 					'safari', 'ipod', 'iphone', 'blackberry', 'ps3', 'rekonq', 'android'
 				],
-				// Translations for conforming browser names
+				// Tanslations for conforming browser names
 				nameTranslations = [],
 				// Names of known layout engines
-				layouts = ['gecko', 'konqueror', 'msie', 'trident', 'edge', 'opera', 'webkit'],
+				layouts = [ 'gecko', 'konqueror', 'msie', 'trident', 'edge', 'opera', 'webkit' ],
 				// Translations for conforming layout names
-				layoutTranslations = [ ['konqueror', 'khtml'], ['msie', 'trident'], ['opera', 'presto'] ],
+				layoutTranslations = [ [ 'konqueror', 'khtml' ], [ 'msie', 'trident' ], [ 'opera', 'presto' ] ],
 				// Names of supported layout engines for version number
-				layoutVersions = ['applewebkit', 'gecko', 'trident', 'edge'],
+				layoutVersions = [ 'applewebkit', 'gecko', 'trident', 'edge' ],
 				// Names of known operating systems
-				platforms = ['win', 'wow64', 'mac', 'linux', 'sunos', 'solaris', 'iphone'],
+				platforms = [ 'win', 'wow64', 'mac', 'linux', 'sunos', 'solaris', 'iphone' ],
 				// Translations for conforming operating system names
-				platformTranslations = [ ['sunos', 'solaris'], ['wow64', 'win'] ],
+				platformTranslations = [ [ 'sunos', 'solaris' ], [ 'wow64', 'win' ] ],
 
 				/**
 				 * Performs multiple replacements on a string
@@ -113,7 +111,7 @@
 				translate = function ( source, translations ) {
 					var i;
 					for ( i = 0; i < translations.length; i++ ) {
-						source = source.replace( translations[i][0], translations[i][1] );
+						source = source.replace( translations[ i ][ 0 ], translations[ i ][ 1 ] );
 					}
 					return source;
 				},
@@ -138,19 +136,19 @@
 			// Extraction
 
 			if ( match = new RegExp( '(' + names.join( '|' ) + ')' ).exec( ua ) ) {
-				name = translate( match[1], nameTranslations );
+				name = translate( match[ 1 ], nameTranslations );
 			}
 			if ( match = new RegExp( '(' + layouts.join( '|' ) + ')' ).exec( ua ) ) {
-				layout = translate( match[1], layoutTranslations );
+				layout = translate( match[ 1 ], layoutTranslations );
 			}
-			if ( match = new RegExp( '(' + layoutVersions.join( '|' ) + ')\\\/(\\d+)').exec( ua ) ) {
-				layoutversion = parseInt( match[2], 10 );
+			if ( match = new RegExp( '(' + layoutVersions.join( '|' ) + ')\\/(\\d+)' ).exec( ua ) ) {
+				layoutversion = parseInt( match[ 2 ], 10 );
 			}
 			if ( match = new RegExp( '(' + platforms.join( '|' ) + ')' ).exec( nav.platform.toLowerCase() ) ) {
-				platform = translate( match[1], platformTranslations );
+				platform = translate( match[ 1 ], platformTranslations );
 			}
 			if ( match = new RegExp( '(' + versionPrefixes.join( '|' ) + ')' + versionSuffix ).exec( ua ) ) {
-				version = match[3];
+				version = match[ 3 ];
 			}
 
 			// Edge Cases -- did I mention about how user agent string lie?
@@ -161,42 +159,42 @@
 			}
 			// Expose Opera 10's lies about being Opera 9.8
 			if ( name === 'opera' && version >= 9.8 ) {
-				match = ua.match( /\bversion\/([0-9\.]*)/ );
-				if ( match && match[1] ) {
-					version = match[1];
+				match = ua.match( /\bversion\/([0-9.]*)/ );
+				if ( match && match[ 1 ] ) {
+					version = match[ 1 ];
 				} else {
 					version = '10';
 				}
 			}
 			// And Opera 15's lies about being Chrome
-			if ( name === 'chrome' && ( match = ua.match( /\bopr\/([0-9\.]*)/ ) ) ) {
-				if ( match[1] ) {
+			if ( name === 'chrome' && ( match = ua.match( /\bopr\/([0-9.]*)/ ) ) ) {
+				if ( match[ 1 ] ) {
 					name = 'opera';
-					version = match[1];
+					version = match[ 1 ];
 				}
 			}
 			// And IE 11's lies about being not being IE
-			if ( layout === 'trident' && layoutversion >= 7 && ( match = ua.match( /\brv[ :\/]([0-9\.]*)/ ) ) ) {
-				if ( match[1] ) {
+			if ( layout === 'trident' && layoutversion >= 7 && ( match = ua.match( /\brv[ :/]([0-9.]*)/ ) ) ) {
+				if ( match[ 1 ] ) {
 					name = 'msie';
-					version = match[1];
+					version = match[ 1 ];
 				}
 			}
 			// And MS Edge's lies about being Chrome
 			//
 			// It's different enough from classic IE Trident engine that they do this
 			// to avoid getting caught by MSIE-specific browser sniffing.
-			if ( name === 'chrome' && ( match = ua.match( /\bedge\/([0-9\.]*)/ ) ) ) {
+			if ( name === 'chrome' && ( match = ua.match( /\bedge\/([0-9.]*)/ ) ) ) {
 				name = 'edge';
-				version = match[1];
+				version = match[ 1 ];
 				layout = 'edge';
-				layoutversion = parseInt( match[1], 10 );
+				layoutversion = parseInt( match[ 1 ], 10 );
 			}
 			// And Amazon Silk's lies about being Android on mobile or Safari on desktop
 			if ( match = ua.match( /\bsilk\/([0-9.\-_]*)/ ) ) {
-				if ( match[1] ) {
+				if ( match[ 1 ] ) {
 					name = 'silk';
-					version = match[1];
+					version = match[ 1 ];
 				}
 			}
 
@@ -204,7 +202,7 @@
 
 			// Caching
 
-			return profileCache[ key  ] = {
+			return profileCache[ key ] = {
 				name: name,
 				layout: layout,
 				layoutVersion: layoutversion,
@@ -255,20 +253,20 @@
 		 * @return {boolean} The current browser is in the support map
 		 */
 		test: function ( map, profile, exactMatchOnly ) {
-			/*jshint evil:true */
+			/* eslint-disable no-eval */
 
 			var conditions, dir, i, op, val, j, pieceVersion, pieceVal, compare;
 			profile = $.isPlainObject( profile ) ? profile : $.client.profile();
 			if ( map.ltr && map.rtl ) {
 				dir = $( 'body' ).is( '.rtl' ) ? 'rtl' : 'ltr';
-				map = map[dir];
+				map = map[ dir ];
 			}
 			// Check over each browser condition to determine if we are running in a compatible client
-			if ( typeof map !== 'object' || map[profile.name] === undefined ) {
+			if ( typeof map !== 'object' || map[ profile.name ] === undefined ) {
 				// Not found, return true if exactMatchOnly not set, false otherwise
 				return !exactMatchOnly;
 			}
-			conditions = map[profile.name];
+			conditions = map[ profile.name ];
 			if ( conditions === false ) {
 				// Match no versions
 				return false;
@@ -278,8 +276,8 @@
 				return true;
 			}
 			for ( i = 0; i < conditions.length; i++ ) {
-				op = conditions[i][0];
-				val = conditions[i][1];
+				op = conditions[ i ][ 0 ];
+				val = conditions[ i ][ 1 ];
 				if ( typeof val === 'string' ) {
 					// Perform a component-wise comparison of versions, similar to PHP's version_compare
 					// but simpler. '1.11' is larger than '1.2'.
@@ -295,10 +293,10 @@
 					// Compare components
 					compare = 0;
 					for ( j = 0; j < pieceVersion.length; j++ ) {
-						if ( Number( pieceVersion[j] ) < Number( pieceVal[j] ) ) {
+						if ( Number( pieceVersion[ j ] ) < Number( pieceVal[ j ] ) ) {
 							compare = -1;
 							break;
-						} else if ( Number( pieceVersion[j] ) > Number( pieceVal[j] ) ) {
+						} else if ( Number( pieceVersion[ j ] ) > Number( pieceVal[ j ] ) ) {
 							compare = 1;
 							break;
 						}
