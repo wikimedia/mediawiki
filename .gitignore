@@ -51,7 +51,6 @@ node_modules/
 /tests/selenium/log
 
 # Composer
-/vendor
 /composer.lock
 /composer.local.json
 /composer.phar
