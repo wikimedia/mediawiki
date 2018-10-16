@@ -836,7 +836,10 @@ class ChangeTags {
 						break;
 					};
 				}
-				$conds['ct_tag_id'] = $filterTagIds;
+
+				if ( $filterTagIds !== [] ) {
+					$conds['ct_tag_id'] = $filterTagIds;
+				}
 			} else {
 				$conds['ct_tag'] = $filter_tag;
 			}
