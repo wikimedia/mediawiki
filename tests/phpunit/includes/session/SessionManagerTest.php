@@ -82,6 +82,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$context->setRequest( $request );
 		$id = $request->getSession()->getId();
 
+		session_write_close();
 		session_id( '' );
 		$session = SessionManager::getGlobalSession();
 		$this->assertSame( $id, $session->getId() );
