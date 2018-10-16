@@ -180,6 +180,10 @@ production.
 * (T198214) The 'disabletidy' parameter to action=parse has been
   deprecated; untidy output will not be supported by future wikitext
   parsers.
+* Added intestactionsdetail to action=query&prop=info to allow retrieving the
+  reasons an action is not allowed.
+* Deprecated action=query&prop=info inprop=readable in favor of
+  intestactions=read.
 
 === Action API internal changes in 1.32 ===
 * Added 'ApiParseMakeOutputPage' hook.
@@ -208,6 +212,9 @@ production.
   * ApiUsageException::getCodeString() (deprecated in 1.29)
   * ApiUsageException::getMessageArray() (deprecated in 1.29)
 * Class UsageException, deprecated in 1.29, has been removed.
+* ApiErrorFormatter: Added getFormat() and newWithFormat(). In particular, you
+  can now easily test $formatter->getFormat() === 'bc', and then call
+  $formatter->newWithFormat( 'plaintext' ) to get a non-BC formatter.
 
 === Languages updated in 1.32 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -568,6 +575,8 @@ because of Phabricator reports.
 * The $wgUseKeyHeader configuration option and the
   OutputPage::getKeyHeader() method have been deprecated; the relevant
   draft IETF spec expired without becoming a standard.
+* Deprecated API action=query&prop=info inprop=readable in favor of
+  intestactions=read.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into

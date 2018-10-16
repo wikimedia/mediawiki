@@ -2847,15 +2847,19 @@ function wfGetNull() {
 function wfWaitForSlaves(
 	$ifWritesSince = null, $wiki = false, $cluster = false, $timeout = null
 ) {
+	$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
 	if ( $cluster === '*' ) {
 		$cluster = false;
-		$wiki = false;
+		$domain = false;
 	} elseif ( $wiki === false ) {
-		$wiki = wfWikiID();
+		$domain = $lbFactory->getLocalDomainID();
+	} else {
+		$domain = $wiki;
 	}
 
 	$opts = [
-		'wiki' => $wiki,
+		'domain' => $domain,
 		'cluster' => $cluster,
 		// B/C: first argument used to be "max seconds of lag"; ignore such values
 		'ifWritesSince' => ( $ifWritesSince > 1e9 ) ? $ifWritesSince : null
@@ -2864,7 +2868,6 @@ function wfWaitForSlaves(
 		$opts['timeout'] = $timeout;
 	}
 
-	$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 	return $lbFactory->waitForReplication( $opts );
 }
 

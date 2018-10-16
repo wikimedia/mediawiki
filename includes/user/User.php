@@ -492,7 +492,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param int $userId
 	 */
 	public static function purge( $wikiId, $userId ) {
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$key = $cache->makeGlobalKey( 'user', 'id', $wikiId, $userId );
 		$cache->delete( $key );
 	}
@@ -503,7 +503,10 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return string
 	 */
 	protected function getCacheKey( WANObjectCache $cache ) {
-		return $cache->makeGlobalKey( 'user', 'id', wfWikiID(), $this->mId );
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
+		return $cache->makeGlobalKey( 'user', 'id', $lbFactory->getLocalDomainID(), $this->mId );
 	}
 
 	/**
