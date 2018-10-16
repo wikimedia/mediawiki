@@ -20,8 +20,26 @@ If using MediaWiki-Vagrant:
 
     npm run selenium
 
-By default, Chrome will run in headless mode. If you want to see Chrome, set DISPLAY
-environment variable to any value:
+There are three supported modes of running the tests:
+
+- Headless. It's the default. You will not see the browser while tests are
+  running because it's running in a headless mode. This mode should run fine
+  on all supported platforms.
+- Headless recording. Set DISPLAY environment variable to a value that starts
+  with colon (`:`) and video of each test will be recorded. Browser will run
+  headless. Recording videos works only on Linux.
+- Visible. If you want to see the browser, set DISPLAY environment variable to
+  any value that does not start with colon. This mode will not work in a
+  headless environment like MediaWiki-Vagrant.
+
+Example recording session:
+
+    sudo apt-get install chromedriver ffmpeg xvfb
+    export DISPLAY=:94
+    Xvfb "$DISPLAY" -screen 0 1280x1024x24 &
+    npm run selenium
+
+Example visible session:
 
     DISPLAY=1 npm run selenium
 
