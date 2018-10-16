@@ -1580,9 +1580,8 @@ class Linker {
 	 * @return string Full html of the TOC
 	 */
 	public static function tocList( $toc, $lang = null ) {
-		global $wgLang;
-		$lang = $lang ?? $wgLang;
-		if ( !is_object( $lang ) ) {
+		$lang = $lang ?? RequestContext::getMain()->getLanguage();
+		if ( !$lang instanceof Language ) {
 			wfDeprecated( __METHOD__ . ' with type other than Language for $lang', '1.33' );
 			$lang = wfGetLangObj( $lang );
 		}
