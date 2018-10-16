@@ -158,6 +158,7 @@ production.
 ** ScopedCallback objects can no longer be serialized.
 * Updated wikimedia/timestamp from v1.0.0 to v2.2.0.
 * Updated wikimedia/wrappedstring from v2.3.0 to v3.0.1.
+* oyejorge/less.php replaced with our fork wikimedia/less.php
 
 * Updated composer/spdx-licenses from v1.3.0 to v1.4.0 (dev-only).
 * Updated mediawiki/mediawiki-codesniffer from v18.0.0 to v22.0.0 (dev-only).
