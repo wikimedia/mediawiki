@@ -6,13 +6,13 @@ class DatabaseUpdaterTest extends MediaWikiTestCase {
 		$db = new FakeDatabase();
 		$dbu = new FakeDatabaseUpdater( $db );
 		$dbu->setAppliedUpdates( "test", [] );
-		$expected = "updatelist-test-" . time() . "0";
 		$actual = $db->lastInsertData['ul_key'];
-		$this->assertEquals( $expected, $actual, var_export( $db->lastInsertData, true ) );
+		$this->assertStringMatchesFormat( 'updatelist-test-%d.%d0',
+			$actual, var_export( $db->lastInsertData, true ) );
 		$dbu->setAppliedUpdates( "test", [] );
-		$expected = "updatelist-test-" . time() . "1";
 		$actual = $db->lastInsertData['ul_key'];
-		$this->assertEquals( $expected, $actual, var_export( $db->lastInsertData, true ) );
+		$this->assertStringMatchesFormat( 'updatelist-test-%d.%d1',
+			$actual, var_export( $db->lastInsertData, true ) );
 	}
 }
 

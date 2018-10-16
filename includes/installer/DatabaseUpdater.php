@@ -474,7 +474,7 @@ abstract class DatabaseUpdater {
 		if ( !$this->canUseNewUpdatelog() ) {
 			return;
 		}
-		$key = "updatelist-$version-" . time() . self::$updateCounter;
+		$key = "updatelist-$version-" . microtime( true ) . self::$updateCounter;
 		self::$updateCounter++;
 		$this->db->insert( 'updatelog',
 			[ 'ul_key' => $key, 'ul_value' => serialize( $updates ) ],
