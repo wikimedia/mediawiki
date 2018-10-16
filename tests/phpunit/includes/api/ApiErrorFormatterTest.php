@@ -14,6 +14,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		$result = new ApiResult( 8388608 );
 		$formatter = new ApiErrorFormatter( $result, Language::factory( 'de' ), 'wikitext', false );
 		$this->assertSame( 'de', $formatter->getLanguage()->getCode() );
+		$this->assertSame( 'wikitext', $formatter->getFormat() );
 
 		$formatter->addMessagesFromStatus( null, Status::newGood() );
 		$this->assertSame(
@@ -29,6 +30,25 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 			$wrappedFormatter->stripMarkup( 'Blah <kbd>kbd</kbd> <b>&lt;X&gt;</b> &#x1f60a;' ),
 			'stripMarkup'
 		);
+	}
+
+	/**
+	 * @covers ApiErrorFormatter
+	 * @covers ApiErrorFormatter_BackCompat
+	 */
+	public function testNewWithFormat() {
+		$result = new ApiResult( 8388608 );
+		$formatter = new ApiErrorFormatter( $result, Language::factory( 'de' ), 'wikitext', false );
+		$formatter2 = $formatter->newWithFormat( 'html' );
+
+		$this->assertSame( $formatter->getLanguage(), $formatter2->getLanguage() );
+		$this->assertSame( 'html', $formatter2->getFormat() );
+
+		$formatter3 = new ApiErrorFormatter_BackCompat( $result );
+		$formatter4 = $formatter3->newWithFormat( 'html' );
+		$this->assertNotInstanceOf( ApiErrorFormatter_BackCompat::class, $formatter4 );
+		$this->assertSame( $formatter3->getLanguage(), $formatter4->getLanguage() );
+		$this->assertSame( 'html', $formatter4->getFormat() );
 	}
 
 	/**
@@ -351,6 +371,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		$formatter = new ApiErrorFormatter_BackCompat( $result );
 
 		$this->assertSame( 'en', $formatter->getLanguage()->getCode() );
+		$this->assertSame( 'bc', $formatter->getFormat() );
 
 		$this->assertSame( [], $formatter->arrayFromStatus( Status::newGood() ) );
 

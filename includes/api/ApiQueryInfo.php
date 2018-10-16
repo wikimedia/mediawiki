@@ -527,11 +527,27 @@ class ApiQueryInfo extends ApiQueryBase {
 				return null; // force a continuation
 			}
 
+			$detailLevel = $this->params['testactionsdetail'];
+			$rigor = $detailLevel === 'quick' ? 'quick' : 'secure';
+			$errorFormatter = $this->getErrorFormatter();
+			if ( $errorFormatter->getFormat() === 'bc' ) {
+				// Eew, no. Use a more modern format here.
+				$errorFormatter = $errorFormatter->newWithFormat( 'plaintext' );
+			}
+
 			$user = $this->getUser();
 			$pageInfo['actions'] = [];
 			foreach ( $this->params['testactions'] as $action ) {
 				$this->countTestedActions++;
-				$pageInfo['actions'][$action] = $title->userCan( $action, $user );
+
+				if ( $detailLevel === 'boolean' ) {
+					$pageInfo['actions'][$action] = $title->userCan( $action, $user );
+				} else {
+					$pageInfo['actions'][$action] = $errorFormatter->arrayFromStatus( $this->errorArrayToStatus(
+						$title->getUserPermissionsErrors( $action, $user, $rigor ),
+						$user
+					) );
+				}
 			}
 		}
 
@@ -955,10 +971,18 @@ class ApiQueryInfo extends ApiQueryBase {
 					// need to be added to getCacheMode()
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+				ApiBase::PARAM_DEPRECATED_VALUES => [
+					'readable' => true, // Since 1.32
+				],
 			],
 			'testactions' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_ISMULTI => true,
+			],
+			'testactionsdetail' => [
+				ApiBase::PARAM_TYPE => [ 'boolean', 'full', 'quick' ],
+				ApiBase::PARAM_DFLT => 'boolean',
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'token' => [
 				ApiBase::PARAM_DEPRECATED => true,
