@@ -365,7 +365,9 @@ $magicWords = [
 ];
 
 $bookstoreList = [
-	'Aladin.co.kr' => 'http://www.aladin.co.kr/catalog/book.asp?ISBN=$1',
+	'Aladin.co.kr' => 'https://www.aladin.co.kr/catalog/book.asp?ISBN=$1',
+	'National Library of Korea' => 'http://www.nl.go.kr/search/web_search/search/list.php?search_field1=all&tmode=1&value1=$1',
+	'Naver' => 'https://book.naver.com/search/search.nhn?query=$1',
 	'inherit' => true,
 ];
 
