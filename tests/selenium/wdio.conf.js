@@ -1,8 +1,20 @@
 const fs = require( 'fs' ),
 	path = require( 'path' ),
-	saveScreenshot = require( 'wdio-mediawiki' ).saveScreenshot,
-	logPath = process.env.LOG_DIR || __dirname + '/log';
+	logPath = process.env.LOG_DIR || path.join( __dirname, '/log' );
 
+let ffmpeg;
+
+// get current test title and clean it, to use it as file name
+function fileName( title ) {
+	return encodeURIComponent( title.replace( /\s+/g, '-' ) );
+}
+
+// build file path
+function filePath( test, screenshotPath, extension ) {
+	return path.join( screenshotPath, `${fileName( test.parent )}-${fileName( test.title )}.${extension}` );
+}
+
+// relative path
 function relPath( foo ) {
 	return path.resolve( __dirname, '../..', foo );
 }
@@ -136,15 +148,56 @@ exports.config = {
 	// See also: http://webdriver.io/guide/testrunner/configurationfile.html
 
 	/**
+	* Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
+	* @param {Object} test test details
+	*/
+	beforeTest: function ( test ) {
+		if ( process.env.DISPLAY && process.env.DISPLAY.startsWith( ':' ) ) {
+			let videoPath = filePath( test, this.screenshotPath, 'mp4' );
+			const { spawn } = require( 'child_process' );
+			ffmpeg = spawn( 'ffmpeg', [
+				'-f', 'x11grab', //  grab the X11 display
+				'-video_size', '1280x1024', // video size
+				'-i', process.env.DISPLAY, // input file url
+				'-loglevel', 'error', // log only errors
+				'-y', // overwrite output files without asking
+				'-pix_fmt', 'yuv420p', // QuickTime Player support, "Use -pix_fmt yuv420p for compatibility with outdated media players"
+				videoPath // output file
+			] );
+
+			ffmpeg.stdout.on( 'data', ( data ) => {
+				console.log( `ffmpeg stdout: ${data}` );
+			} );
+
+			ffmpeg.stderr.on( 'data', ( data ) => {
+				console.log( `ffmpeg stderr: ${data}` );
+			} );
+
+			ffmpeg.on( 'close', ( code ) => {
+				console.log( '\n\tVideo location:', videoPath, '\n' );
+				console.log( `ffmpeg exited with code ${code}` );
+			} );
+		}
+	},
+
+	/**
 	 * Save a screenshot when test fails.
 	 *
 	 * @param {Object} test Mocha Test object
 	 */
 	afterTest: function ( test ) {
-		var filePath;
-		if ( !test.passed ) {
-			filePath = saveScreenshot( test.title );
-			console.log( '\n\tScreenshot: ' + filePath + '\n' );
+		if ( ffmpeg ) {
+			// stop video recording
+			ffmpeg.kill( 'SIGINT' );
 		}
+
+		// if test passed, ignore, else take and save screenshot
+		if ( test.passed ) {
+			return;
+		}
+		// save screenshot
+		let screenshotPath = filePath( test, this.screenshotPath, 'png' );
+		browser.saveScreenshot( screenshotPath );
+		console.log( '\n\tScreenshot location:', screenshotPath, '\n' );
 	}
 };
