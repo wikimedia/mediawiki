@@ -1769,7 +1769,6 @@
 	"apiwarn-deprecation-withreplacement": "<kbd>$1</kbd> foi descontinuado. Em substituição, use <kbd>$2</kbd>, por favor.",
 	"apiwarn-difftohidden": "Não foi possível criar uma lista das diferenças em relação à r$1: o conteúdo está ocultado.",
 	"apiwarn-errorprinterfailed": "A impressora de erros falhou. Será feita nova tentativa sem parâmetros.",
-	"apiwarn-errorprinterfailed-ex": "A impressora de erros falhou (será feita nova tentativa sem parâmetros): $1",
 	"apiwarn-ignoring-invalid-templated-value": "A ignorar o valor <kbd>$2</kbd> em <var>$1</var> ao processar parâmetros modelados.",
 	"apiwarn-invalidcategory": "\"$1\" não é uma categoria.",
 	"apiwarn-invalidtitle": "\"$1\" não é um título válido.",

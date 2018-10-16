@@ -1483,7 +1483,7 @@
 	"filehist-comment": "Komentārs",
 	"imagelinks": "Faila lietojums",
 	"linkstoimage": "Šo failu izmanto {{PLURAL:$1|šajās $1 lapās|šajā $1 lapā|šajās $1 lapās}}:",
-	"linkstoimage-more": "Uz šo failu ir saites vairāk nekā $1 {{PLURAL:$1|lapās|lapā|lapās}}.\nŠajā sarakstā ir tikai {{PLURAL:$1|pirmās $1 saistītās lapas|pirmā $1 saistītā lapa|pirmās $1 saistītās lapas}} uz šo failu.\nPieejams arī [[Special:WhatLinksHere/$2|pilns saraksts]].",
+	"linkstoimage-more": "Šo failu izmanto vairāk nekā $1 {{PLURAL:$1|lapās|lapā|lapās}}.\nŠajā sarakstā ir tikai {{PLURAL:$1|pirmās $1 lapas|pirmā lapa|pirmās $1 lapas}}, kas izmanto šo failu.\nPieejams arī [[Special:WhatLinksHere/$2|pilns saraksts]].",
 	"nolinkstoimage": "Šo failu neizmanto nevienā lapā.",
 	"morelinkstoimage": "Skatīt [[Special:WhatLinksHere/$1|vairāk saites]] uz šo failu.",
 	"linkstoimage-redirect": "$1 (faila pāradresācija) $2",
