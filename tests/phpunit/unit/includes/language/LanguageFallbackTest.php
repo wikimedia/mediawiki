@@ -16,7 +16,7 @@ class LanguageFallbackTest extends MediaWikiUnitTestCase {
 		'sco' => [ 'en' ],
 		'yi' => [ 'he' ],
 		'ruq' => [ 'ruq-latn', 'ro' ],
-		'sh' => [ 'bs', 'sr-el', 'hr' ],
+		'sh' => [ 'bs', 'sr-el', 'sr-latn', 'hr' ],
 	];
 
 	private function getLanguageNameUtils() {

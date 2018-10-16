@@ -9,7 +9,7 @@
  * @author Keresturec
  */
 
-$fallback = 'sr-ec';
+$fallback = 'sr-ec, sr-cyrl';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Медий',

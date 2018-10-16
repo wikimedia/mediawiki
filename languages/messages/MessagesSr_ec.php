@@ -32,6 +32,8 @@
  * @author לערי ריינהארט
  */
 
+$fallback = 'sr-cyrl';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Медиј',
 	NS_SPECIAL          => 'Посебно',
