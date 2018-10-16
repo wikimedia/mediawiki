@@ -154,7 +154,7 @@ class ObjectCache {
 			return $keyspace;
 		}
 
-		return wfWikiID();
+		return WikiMap::getCurrentWikiDomain()->getId();
 	}
 
 	/**
