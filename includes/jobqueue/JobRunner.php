@@ -131,7 +131,7 @@ class JobRunner implements LoggerAwareInterface {
 		}
 		// Bail out if there is too much DB lag.
 		// This check should not block as we want to try other wiki queues.
-		list( , $maxLag ) = $lbFactory->getMainLB( wfWikiID() )->getMaxLag();
+		list( , $maxLag ) = $lbFactory->getMainLB()->getMaxLag();
 		if ( $maxLag >= self::MAX_ALLOWED_LAG ) {
 			$response['reached'] = 'replica-lag-limit';
 			return $response;
@@ -536,7 +536,7 @@ class JobRunner implements LoggerAwareInterface {
 		$syncThreshold = $this->config->get( 'JobSerialCommitThreshold' );
 
 		$time = false;
-		$lb = $lbFactory->getMainLB( wfWikiID() );
+		$lb = $lbFactory->getMainLB();
 		if ( $syncThreshold !== false && $lb->getServerCount() > 1 ) {
 			// Generally, there is one master connection to the local DB
 			$dbwSerial = $lb->getAnyOpenConnection( $lb->getWriterIndex() );

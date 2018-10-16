@@ -4846,8 +4846,9 @@ class Title implements LinkTarget {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->onTransactionPreCommitOrIdle(
-			function () {
-				ResourceLoaderWikiModule::invalidateModuleCache( $this, null, null, wfWikiID() );
+			function () use ( $dbw ) {
+				ResourceLoaderWikiModule::invalidateModuleCache(
+					$this, null, null, $dbw->getDomainId() );
 			},
 			__METHOD__
 		);
