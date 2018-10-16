@@ -59,6 +59,13 @@ class UpdateExtensionJsonSchema extends Maintenance {
 						$json['config'][$name]['merge_strategy'] = $value[ExtensionRegistry::MERGE_STRATEGY];
 						unset( $value[ExtensionRegistry::MERGE_STRATEGY] );
 					}
+					if ( isset( $config["@$name"] ) ) {
+						// Put 'description' first for better human-legibility.
+						$json['config'][$name] = array_merge(
+							[ 'description' => $config["@$name"] ],
+							$json['config'][$name]
+						);
+					}
 				}
 			}
 		}
