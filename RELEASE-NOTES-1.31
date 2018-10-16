@@ -11,6 +11,9 @@ THIS IS NOT A RELEASE YET
 * (T109121) Remove deprecated pear/mail_mime-decode from composer suggested libraries.
 * (T200595) Fix PHP 7.3 warnings of using "continue" in some scenarios instead
   of "break".
+* (T206979) Fix PHP 7.3 warnings of using "compact()" when some variables may
+  not be set.
+* Fix PHP 7.3 warnings "preg_replace(): [...] invalid range in character class"
 
 == MediaWiki 1.31.1 ==
 
