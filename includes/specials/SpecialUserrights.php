@@ -497,18 +497,18 @@ class UserrightsPage extends SpecialPage {
 		$parts = explode( $this->getConfig()->get( 'UserrightsInterwikiDelimiter' ), $username );
 		if ( count( $parts ) < 2 ) {
 			$name = trim( $username );
-			$database = '';
+			$wikiId = '';
 		} else {
-			list( $name, $database ) = array_map( 'trim', $parts );
+			list( $name, $wikiId ) = array_map( 'trim', $parts );
 
-			if ( $database == wfWikiID() ) {
-				$database = '';
+			if ( WikiMap::isCurrentWikiId( $wikiId ) ) {
+				$wikiId = '';
 			} else {
 				if ( $writing && !$this->getUser()->isAllowed( 'userrights-interwiki' ) ) {
 					return Status::newFatal( 'userrights-no-interwiki' );
 				}
-				if ( !UserRightsProxy::validDatabase( $database ) ) {
-					return Status::newFatal( 'userrights-nodatabase', $database );
+				if ( !UserRightsProxy::validDatabase( $wikiId ) ) {
+					return Status::newFatal( 'userrights-nodatabase', $wikiId );
 				}
 			}
 		}
@@ -522,10 +522,10 @@ class UserrightsPage extends SpecialPage {
 			// We'll do a lookup for the name internally.
 			$id = intval( substr( $name, 1 ) );
 
-			if ( $database == '' ) {
+			if ( $wikiId == '' ) {
 				$name = User::whoIs( $id );
 			} else {
-				$name = UserRightsProxy::whoIs( $database, $id );
+				$name = UserRightsProxy::whoIs( $wikiId, $id );
 			}
 
 			if ( !$name ) {
@@ -539,10 +539,10 @@ class UserrightsPage extends SpecialPage {
 			}
 		}
 
-		if ( $database == '' ) {
+		if ( $wikiId == '' ) {
 			$user = User::newFromName( $name );
 		} else {
-			$user = UserRightsProxy::newFromName( $database, $name );
+			$user = UserRightsProxy::newFromName( $wikiId, $name );
 		}
 
 		if ( !$user || $user->isAnon() ) {

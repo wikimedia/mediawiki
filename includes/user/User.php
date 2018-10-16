@@ -2638,7 +2638,7 @@ class User implements IDBAccessObject, UserIdentity {
 			// and it is always for the same wiki, but we double-check here in
 			// case that changes some time in the future.
 			if ( count( $newMessageLinks ) === 1
-				&& $newMessageLinks[0]['wiki'] === wfWikiID()
+				&& WikiMap::isCurrentWikiId( $newMessageLinks[0]['wiki'] )
 				&& $newMessageLinks[0]['rev']
 			) {
 				/** @var Revision $newMessageRevision */

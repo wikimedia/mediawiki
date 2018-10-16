@@ -196,7 +196,8 @@ class WikiMap {
 				$infoMap = [];
 				// Make sure at least the current wiki is set, for simple configurations.
 				// This also makes it the first in the map, which is useful for common cases.
-				$infoMap[wfWikiID()] = [
+				$wikiId = self::getWikiIdFromDomain( self::getCurrentWikiDomain() );
+				$infoMap[$wikiId] = [
 					'url' => $wgCanonicalServer,
 					'parts' => wfParseUrl( $wgCanonicalServer )
 				];
@@ -250,12 +251,45 @@ class WikiMap {
 	 * @return string
 	 */
 	public static function getWikiIdFromDomain( $domain ) {
-		if ( !( $domain instanceof DatabaseDomain ) ) {
-			$domain = DatabaseDomain::newFromId( $domain );
-		}
+		$domain = DatabaseDomain::newFromId( $domain );
 
 		return strlen( $domain->getTablePrefix() )
 			? "{$domain->getDatabase()}-{$domain->getTablePrefix()}"
 			: $domain->getDatabase();
+	}
+
+	/**
+	 * @return DatabaseDomain Database domain of the current wiki
+	 * @since 1.33
+	 */
+	public static function getCurrentWikiDomain() {
+		global $wgDBname, $wgDBmwschema, $wgDBprefix;
+		// Avoid invoking LBFactory to avoid any chance of recursion
+		return new DatabaseDomain( $wgDBname, $wgDBmwschema, (string)$wgDBprefix );
+	}
+
+	/**
+	 * @param DatabaseDomain|string $domain
+	 * @return bool Whether $domain has the same DB/prefix as the current wiki
+	 * @since 1.33
+	 */
+	public static function isCurrentWikiDomain( $domain ) {
+		$domain = DatabaseDomain::newFromId( $domain );
+		$curDomain = self::getCurrentWikiDomain();
+
+		return (
+			$curDomain->getDatabase() === $domain->getDatabase() &&
+			// @TODO: check schema instead of assuming it's ""/"mediawiki" and never collides
+			$curDomain->getTablePrefix() === $domain->getTablePrefix()
+		);
+	}
+
+	/**
+	 * @param string $wikiId
+	 * @return bool Whether $wikiId has the same DB/prefix as the current wiki
+	 * @since 1.33
+	 */
+	public static function isCurrentWikiId( $wikiId ) {
+		return ( self::getWikiIdFromDomain( self::getCurrentWikiDomain() ) === $wikiId );
 	}
 }

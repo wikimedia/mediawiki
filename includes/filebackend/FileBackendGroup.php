@@ -179,6 +179,7 @@ class FileBackendGroup {
 		$config = $this->backends[$name]['config'];
 		$config['class'] = $class;
 		$config += [ // set defaults
+			// @FIXME: this does not include the domain for b/c but it ideally should
 			'wikiId' => wfWikiID(), // e.g. "my_wiki-en_"
 			'mimeCallback' => [ $this, 'guessMimeInternal' ],
 			'obResetFunc' => 'wfResetOutputBuffers',

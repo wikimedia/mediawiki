@@ -684,9 +684,10 @@ class MediaWiki {
 	 */
 	private static function getUrlDomainDistance( $url ) {
 		$clusterWiki = WikiMap::getWikiFromUrl( $url );
-		if ( $clusterWiki === wfWikiID() ) {
+		if ( WikiMap::isCurrentWikiId( $clusterWiki ) ) {
 			return 'local'; // the current wiki
-		} elseif ( $clusterWiki !== false ) {
+		}
+		if ( $clusterWiki !== false ) {
 			return 'remote'; // another wiki in this cluster/farm
 		}
 
