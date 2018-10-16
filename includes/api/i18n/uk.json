@@ -1745,7 +1745,6 @@
 	"apiwarn-deprecation-withreplacement": "<kbd>$1</kbd> є застарілим. Будь ласка, використовуйте натомість <kbd>$2</kbd>.",
 	"apiwarn-difftohidden": "Не вдалося відкрити версію r$1: вміст приховано.",
 	"apiwarn-errorprinterfailed": "Невдача через помилку принтера. Буде здійснено повторну спробу без параметрів.",
-	"apiwarn-errorprinterfailed-ex": "Невдача через помилку принтера (буде здійснено повторну спробу без параметрів): $1",
 	"apiwarn-invalidcategory": "«$1» не є категорією.",
 	"apiwarn-invalidtitle": "«$1» не є коректною назвою.",
 	"apiwarn-invalidxmlstylesheetext": "Таблиця стилів повинна мати розширення <code>.xsl</code>.",

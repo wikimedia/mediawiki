@@ -1759,7 +1759,6 @@
 	"apiwarn-deprecation-withreplacement": "<kbd>$1</kbd> מיושן. יש להשתמש ב־<kbd>$2</kbd> במקום זה.",
 	"apiwarn-difftohidden": "לא היה אפשר לעשות השוואה עם גרסה $1: התוכן מוסתר.",
 	"apiwarn-errorprinterfailed": "מדפיס השגיאות לא עבד. ינסה שוב ללא פרמטרים.",
-	"apiwarn-errorprinterfailed-ex": "מדפיס השגיאות לא עבד (ינסה שוב ללא פרמטרים): $1",
 	"apiwarn-ignoring-invalid-templated-value": "לא ייעשה שימוש בערך <kbd>$2</kbd> שבפרמטר <var>$1</var> בעת עיבוד הפרמטרים בתבנית.",
 	"apiwarn-invalidcategory": "\"$1\" אינה קטגוריה.",
 	"apiwarn-invalidtitle": "\"$1\" אינה כותרת תקינה.",

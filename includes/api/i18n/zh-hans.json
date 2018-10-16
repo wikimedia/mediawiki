@@ -1768,7 +1768,6 @@
 	"apiwarn-deprecation-withreplacement": "<kbd>$1</kbd>已弃用。请改用<kbd>$2</kbd>。",
 	"apiwarn-difftohidden": "不能与r$1做差异比较：内容被隐藏。",
 	"apiwarn-errorprinterfailed": "错误打印失败。将在没有参数的前提下重试。",
-	"apiwarn-errorprinterfailed-ex": "错误打印失败（将在没有参数的前提下重试）：$1",
 	"apiwarn-ignoring-invalid-templated-value": "当处理模板参数时，忽略<var>$1</var>中的值<kbd>$2</kbd>。",
 	"apiwarn-invalidcategory": "“$1”不是一个分类。",
 	"apiwarn-invalidtitle": "“$1”不是一个有效的标题。",
