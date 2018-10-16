@@ -941,6 +941,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		\Wikimedia\quietCall( 'session_start' );
 		$backend->unpersist();
 		$this->assertSame( self::SESSIONID . 'x', session_id() );
+		session_write_close();
 
 		session_id( self::SESSIONID );
 		$wrap->persist = true;
