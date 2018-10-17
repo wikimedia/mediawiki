@@ -1794,6 +1794,29 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Convert wikitext *in the user interface language* to HTML and
+	 * add it to the buffer with a `<div class="$wrapperClass">`
+	 * wrapper.  The result will not be language-converted, as user
+	 * interface messages as already localized into a specific
+	 * variant.  The $text will be parsed in start-of-line context.
+	 * Output will be tidy.
+	 *
+	 * @param string $wrapperClass The class attribute value for the <div>
+	 *   wrapper in the output HTML
+	 * @param string $text Wikitext in the user interface language
+	 * @since 1.32
+	 */
+	public function wrapWikiTextAsInterface(
+		$wrapperClass, $text
+	) {
+		$this->addWikiTextTitleInternal(
+			$text, $this->getTitle(),
+			/*linestart*/true, /*tidy*/true, /*interface*/true,
+			$wrapperClass
+		);
+	}
+
+	/**
 	 * Convert wikitext *in the page content language* to HTML and add
 	 * it to the buffer.  The result with be language-converted to the
 	 * user's preferred variant.  Assumes that the current page title
@@ -1904,10 +1927,12 @@ class OutputPage extends ContextSource {
 	 *             since 1.32; all wikitext should be tidied.
 	 * @param bool $interface Whether it is an interface message
 	 *   (for example disables conversion)
+	 * @param string $wrapperClass if not empty, wraps the output in
+	 *   a `<div class="$wrapperClass">`
 	 * @private
 	 */
 	private function addWikiTextTitleInternal(
-		$text, Title $title, $linestart, $tidy, $interface
+		$text, Title $title, $linestart, $tidy, $interface, $wrapperClass = null
 	) {
 		global $wgParser;
 
@@ -1924,7 +1949,7 @@ class OutputPage extends ContextSource {
 
 		$this->addParserOutput( $parserOutput, [
 			'enableSectionEditLinks' => false,
-			'wrapperDivClass' => '',
+			'wrapperDivClass' => $wrapperClass ?? '',
 		] );
 	}
 

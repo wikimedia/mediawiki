@@ -1430,6 +1430,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @dataProvider provideAddWikiText
 	 * @covers OutputPage::addWikiText
 	 * @covers OutputPage::addWikiTextAsInterface
+	 * @covers OutputPage::wrapWikiTextAsInterface
 	 * @covers OutputPage::addWikiTextAsContent
 	 * @covers OutputPage::addWikiTextWithTitle
 	 * @covers OutputPage::addWikiTextTitle
@@ -1543,6 +1544,21 @@ class OutputPageTest extends MediaWikiTestCase {
 				], 'EditPage' => [
 					[ "<div class='mw-editintro'>{{PAGENAME}}", true, Title::newFromText( 'Talk:Some page' ) ],
 					'<div class="mw-editintro">' . "Some page\n</div>"
+				],
+			],
+			'wrapWikiTextAsInterface' => [
+				'Simple' => [
+					[ 'wrapperClass', 'text' ],
+					"<div class=\"wrapperClass\"><p>text\n</p></div>"
+				], 'Spurious </div>' => [
+					[ 'wrapperClass', 'text</div><div>more' ],
+					"<div class=\"wrapperClass\"><p>text</p><div>more\n</div></div>"
+				], 'Extra newlines would break <p> wrappers' => [
+					[ 'two classes', "1\n\n2\n\n3" ],
+					"<div class=\"two classes\"><p>1\n</p><p>2\n</p><p>3\n</p></div>"
+				], 'Other unclosed tags' => [
+					[ 'error', 'a<b>c<i>d' ],
+					"<div class=\"error\"><p>a<b>c<i>d\n</i></b></p></div>"
 				],
 			],
 		];
