@@ -1177,7 +1177,9 @@ class SpecialUndelete extends SpecialPage {
 		// Show revision undeletion warnings and errors
 		$status = $archive->getRevisionStatus();
 		if ( $status && !$status->isGood() ) {
-			$out->addWikiTextAsInterface( '<div class="error" id="mw-error-cannotundelete">' .
+			$out->wrapWikiTextAsInterface(
+				'error',
+				'<div id="mw-error-cannotundelete">' .
 				$status->getWikiText(
 					'cannotundelete',
 					'cannotundelete'
@@ -1188,11 +1190,12 @@ class SpecialUndelete extends SpecialPage {
 		// Show file undeletion warnings and errors
 		$status = $archive->getFileStatus();
 		if ( $status && !$status->isGood() ) {
-			$out->addWikiTextAsInterface( '<div class="error">' .
+			$out->wrapWikiTextAsInterface(
+				'error',
 				$status->getWikiText(
 					'undelete-error-short',
 					'undelete-error-long'
-				) . '</div>'
+				)
 			);
 		}
 	}

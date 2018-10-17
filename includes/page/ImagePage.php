@@ -542,16 +542,15 @@ class ImagePage extends Article {
 				// to the filename, because it can get copied with it.
 				// See T27277.
 				// phpcs:disable Generic.Files.LineLength
-				$out->addWikiTextAsInterface( <<<EOT
-<div class="fullMedia"><span class="dangerousLink">{$medialink}</span> $dirmark<span class="fileInfo">$longDesc</span></div>
-<div class="mediaWarning">$warning</div>
+				$out->wrapWikiTextAsInterface( 'fullMedia', <<<EOT
+<span class="dangerousLink">{$medialink}</span> $dirmark<span class="fileInfo">$longDesc</span>
 EOT
 				);
 				// phpcs:enable
+				$out->wrapWikiTextAsInterface( 'mediaWarning', $warning );
 			} else {
-				$out->addWikiTextAsInterface( <<<EOT
-<div class="fullMedia">{$medialink} {$dirmark}<span class="fileInfo">$longDesc</span>
-</div>
+				$out->wrapWikiTextAsInterface( 'fullMedia', <<<EOT
+{$medialink} {$dirmark}<span class="fileInfo">$longDesc</span>
 EOT
 				);
 			}
@@ -574,10 +573,7 @@ EOT
 					'file-no-thumb-animation'
 				)->plain();
 
-				$out->addWikiTextAsInterface( <<<EOT
-<div class="mw-noanimatethumb">{$noAnimMesg}</div>
-EOT
-				);
+				$out->wrapWikiTextAsInterface( 'mw-noanimatethumb', $noAnimMesg );
 			}
 
 			if ( !$this->displayImg->isLocal() ) {
