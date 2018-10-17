@@ -1368,8 +1368,19 @@
 	// Replace the default message parser with jqueryMsg
 	oldParser = mw.Message.prototype.parser;
 	mw.Message.prototype.parser = function () {
-		if ( this.format === 'plain' || !/\{\{|[<>[&]/.test( this.map.get( this.key ) ) ) {
-			// Fall back to mw.msg's simple parser
+		// Fall back to mw.msg's simple parser where possible
+		if (
+			// Plain text output always uses the simple parser
+			this.format === 'plain' ||
+			(
+				// jqueryMsg parser is needed for messages containing wikitext
+				!/\{\{|[<>[&]/.test( this.map.get( this.key ) ) &&
+				// jqueryMsg parser is needed when jQuery objects or DOM nodes are passed in as parameters
+				!this.parameters.some( function ( param ) {
+					return param instanceof $ || param.nodeType !== undefined;
+				} )
+			)
+		) {
 			return oldParser.apply( this );
 		}
 
