@@ -71,7 +71,7 @@ $wgConfigRegistry = [
  * MediaWiki version number
  * @since 1.2
  */
-$wgVersion = '1.32.0-alpha';
+$wgVersion = '1.33.0-alpha';
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
@@ -9000,15 +9000,6 @@ $wgMultiContentRevisionSchemaMigrationStage = SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_
  * @var int An appropriate combination of SCHEMA_COMPAT_XXX flags.
  */
 $wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_OLD;
-
-/**
- * Temporary option to disable the date picker from the Expiry Widget.
- *
- * @since 1.32
- * @deprecated 1.32
- * @var bool
- */
-$wgExpiryWidgetNoDatePicker = false;
 
 /**
  * change_tag table schema migration stage.

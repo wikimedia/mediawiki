@@ -1,0 +1,108 @@
+== MediaWiki 1.33 ==
+
+THIS IS NOT A RELEASE YET
+
+MediaWiki 1.33 is an alpha-quality branch and is not recommended for use in
+production.
+
+=== Configuration changes in 1.33 ===
+
+==== New configuration ====
+* …
+
+==== Changed configuration ====
+* …
+
+==== Removed configuration ====
+* …
+
+=== New features in 1.33 ===
+* …
+
+=== External library changes in 1.33 ===
+
+==== New external libraries ====
+* …
+
+==== Changed external libraries ====
+* …
+
+==== Removed external libraries ====
+* …
+
+=== Bug fixes in 1.33 ===
+* …
+
+=== Action API changes in 1.33 ===
+* …
+
+=== Action API internal changes in 1.33 ===
+* …
+
+=== Languages updated in 1.33 ===
+MediaWiki supports over 350 languages. Many localisations are updated regularly.
+Below only new and removed languages are listed, as well as changes to languages
+because of Phabricator reports.
+
+* …
+
+=== Breaking changes in 1.33 ===
+* …
+
+=== Deprecations in 1.33 ===
+* …
+
+=== Other changes in 1.33 ===
+* …
+
+== Compatibility ==
+MediaWiki 1.33 requires PHP 7.0.0 or later. Although HHVM 3.18.5 or later is
+supported, it is generally advised to use PHP 7.0.0 or later for long term
+support.
+
+MySQL/MariaDB is the recommended DBMS. PostgreSQL or SQLite can also be used,
+but support for them is somewhat less mature. There is experimental support for
+Oracle and Microsoft SQL Server.
+
+The supported versions are:
+
+* MySQL 5.5.8 or later
+* PostgreSQL 9.2 or later
+* SQLite 3.3.7 or later
+* Oracle 9.0.1 or later
+* Microsoft SQL Server 2005 (9.00.1399)
+
+== Upgrading ==
+1.33 has several database changes since 1.32, and will not work without schema
+updates. Note that due to changes to some very large tables like the revision
+table, the schema update may take quite long (minutes on a medium sized site,
+many hours on a large site).
+
+Don't forget to always back up your database before upgrading!
+
+See the file UPGRADE for more detailed upgrade instructions, including
+important information when upgrading from versions prior to 1.11.
+
+For notes on 1.32.x and older releases, see HISTORY.
+
+== Online documentation ==
+Documentation for both end-users and site administrators is available on
+MediaWiki.org, and is covered under the GNU Free Documentation License (except
+for pages that explicitly state that their contents are in the public domain):
+
+       https://www.mediawiki.org/wiki/Special:MyLanguage/Documentation
+
+== Mailing list ==
+A mailing list is available for MediaWiki user support and discussion:
+
+       https://lists.wikimedia.org/mailman/listinfo/mediawiki-l
+
+A low-traffic announcements-only list is also available:
+
+       https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce
+
+It's highly recommended that you sign up for one of these lists if you're
+going to run a public MediaWiki, so you can be notified of security fixes.
+
+== IRC help ==
+There's usually someone online in #mediawiki on irc.freenode.net.
