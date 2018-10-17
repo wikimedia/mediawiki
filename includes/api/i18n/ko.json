@@ -466,6 +466,7 @@
 	"apihelp-query+info-paramvalue-prop-protection": "각 문서의 보호 수준을 나열합니다.",
 	"apihelp-query+info-paramvalue-prop-readable": "사용자가 이 문서를 읽을 수 있는지의 여부.",
 	"apihelp-query+info-paramvalue-prop-varianttitles": "모든 종류의 사이트 내용 언어의 표시 제목을 지정합니다.",
+	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "각 동작의 불리언 값을 반환합니다.",
 	"apihelp-query+iwbacklinks-summary": "제시된 인터위키 링크에 연결된 모든 문서를 찾습니다.",
 	"apihelp-query+iwbacklinks-param-prefix": "인터위키의 접두사.",
 	"apihelp-query+iwbacklinks-param-title": "검색할 인터위키 링크. <var>$1blprefix</var>와 함께 사용해야 합니다.",
