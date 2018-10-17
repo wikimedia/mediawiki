@@ -42,4 +42,18 @@ class RevisionMcrReadNewDbTest extends RevisionDbTestBase {
 		yield [ $rec, 789 ];
 	}
 
+	public function provideGetRevisionText() {
+		yield 'no text table' => [
+			[]
+		];
+		yield 'force text table' => [
+			[],
+			[
+				'tables' => [ 'text' ],
+				'fields' => [ 'old_id', 'old_text', 'old_flags', 'rev_text_id' ],
+				'joins' => [ 'text' => [ 'INNER JOIN', 'old_id=rev_text_id' ] ]
+			]
+		];
+	}
+
 }
