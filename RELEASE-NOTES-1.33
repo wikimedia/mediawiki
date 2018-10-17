@@ -52,6 +52,7 @@ because of Phabricator reports.
 * Skin::doEditSectionLink requires type Language for the parameter $lang.
   The parameters $tooltip and $lang are mandatory. Omitting the parameters is
   deprecated since 1.32.
+* Language::truncate(), deprecated in 1.31, has been removed.
 * …
 
 === Deprecations in 1.33 ===
