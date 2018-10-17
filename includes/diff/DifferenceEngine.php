@@ -1665,11 +1665,8 @@ class DifferenceEngine extends ContextSource {
 	 * @param Language $lang
 	 * @since 1.19
 	 */
-	public function setTextLanguage( $lang ) {
-		if ( !$lang instanceof Language ) {
-			wfDeprecated( __METHOD__ . ' with other type than Language for $lang', '1.32' );
-		}
-		$this->mDiffLang = wfGetLangObj( $lang );
+	public function setTextLanguage( Language $lang ) {
+		$this->mDiffLang = $lang;
 	}
 
 	/**
