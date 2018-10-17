@@ -609,4 +609,5 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->db->dbSchema( $old );
 		$this->assertNotEquals( 'xxx', $this->db->dbSchema() );
 	}
+
 }
