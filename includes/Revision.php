@@ -61,8 +61,13 @@ class Revision implements IDBAccessObject {
 	/**
 	 * @return RevisionStore
 	 */
-	protected static function getRevisionStore() {
-		return MediaWikiServices::getInstance()->getRevisionStore();
+	protected static function getRevisionStore( $wiki = false ) {
+		if ( $wiki ) {
+			return MediaWikiServices::getInstance()->getRevisionStoreFactory()
+				->getRevisionStore( $wiki );
+		} else {
+			return MediaWikiServices::getInstance()->getRevisionStore();
+		}
 	}
 
 	/**
@@ -1036,10 +1041,17 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get revision text associated with an old or archive row
 	 *
-	 * Both the flags and the text field must be included. Including the old_id
+	 * If the text field is not included, this uses RevisionStore to load the appropriate slot
+	 * and return its serialized content. This is the default backwards-compatibility behavior
+	 * when reading from the MCR aware database schema is enabled. For this to work, either
+	 * the revision ID or the page ID must be included in the row.
+	 *
+	 * When using the old text field, the flags field must also be set. Including the old_id
 	 * field will activate cache usage as long as the $wiki parameter is not set.
 	 *
-	 * @param stdClass $row The text data
+	 * @deprecated since 1.32, use RevisionStore::newRevisionFromRow instead.
+	 *
+	 * @param stdClass $row The text data. If a falsy value is passed instead, false is returned.
 	 * @param string $prefix Table prefix (default 'old_')
 	 * @param string|bool $wiki The name of the wiki to load the revision text from
 	 *   (same as the wiki $row was loaded from) or false to indicate the local
@@ -1048,19 +1060,51 @@ class Revision implements IDBAccessObject {
 	 * @return string|false Text the text requested or false on failure
 	 */
 	public static function getRevisionText( $row, $prefix = 'old_', $wiki = false ) {
+		global $wgMultiContentRevisionSchemaMigrationStage;
+
+		if ( !$row ) {
+			return false;
+		}
+
 		$textField = $prefix . 'text';
 		$flagsField = $prefix . 'flags';
+
+		if ( isset( $row->$textField ) ) {
+			if ( !( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
+				// The text field was read, but it's no longer being populated!
+				// We could gloss over this by using the text when it's there and loading
+				// if when it's not, but it seems preferable to complain loudly about a
+				// query that is no longer guaranteed to work reliably.
+				throw new LogicException(
+					'Cannot use ' . __METHOD__ . ' with the ' . $textField . ' field when'
+					. ' $wgMultiContentRevisionSchemaMigrationStage does not include'
+					. ' SCHEMA_COMPAT_WRITE_OLD. The field may not be populated for all revisions!'
+				);
+			}
+
+			$text = $row->$textField;
+		} else {
+			// Missing text field, we are probably looking at the MCR-enabled DB schema.
+
+			if ( !( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
+				// This method should no longer be used with the new schema. Ideally, we
+				// would already trigger a deprecation warning when SCHEMA_COMPAT_READ_NEW is set.
+				wfDeprecated( __METHOD__ . ' (MCR without SCHEMA_COMPAT_WRITE_OLD)', '1.32' );
+			}
+
+			$store = self::getRevisionStore( $wiki );
+			$rev = $prefix === 'ar_'
+				? $store->newRevisionFromArchiveRow( $row )
+				: $store->newRevisionFromRow( $row );
+
+			$content = $rev->getContent( SlotRecord::MAIN );
+			return $content ? $content->serialize() : false;
+		}
 
 		if ( isset( $row->$flagsField ) ) {
 			$flags = explode( ',', $row->$flagsField );
 		} else {
 			$flags = [];
-		}
-
-		if ( isset( $row->$textField ) ) {
-			$text = $row->$textField;
-		} else {
-			return false;
 		}
 
 		$cacheKey = isset( $row->old_id )

@@ -289,16 +289,6 @@ class RevisionTest extends MediaWikiTestCase {
 		Wikimedia\restoreWarnings();
 	}
 
-	public function provideGetRevisionText() {
-		yield 'Generic test' => [
-			'This is a goat of revision text.',
-			[
-				'old_flags' => '',
-				'old_text' => 'This is a goat of revision text.',
-			],
-		];
-	}
-
 	public function provideGetId() {
 		yield [
 			[],
@@ -365,6 +355,20 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertSame( $expected, $rev->getParentId() );
 	}
 
+	public function provideGetRevisionText() {
+		yield 'Generic test' => [
+			'This is a goat of revision text.',
+			(object)[
+				'old_flags' => '',
+				'old_text' => 'This is a goat of revision text.',
+			],
+		];
+		yield 'garbage in, garbage out' => [
+			false,
+			false,
+		];
+	}
+
 	/**
 	 * @covers Revision::getRevisionText
 	 * @dataProvider provideGetRevisionText
@@ -372,13 +376,13 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testGetRevisionText( $expected, $rowData, $prefix = 'old_', $wiki = false ) {
 		$this->assertEquals(
 			$expected,
-			Revision::getRevisionText( (object)$rowData, $prefix, $wiki ) );
+			Revision::getRevisionText( $rowData, $prefix, $wiki ) );
 	}
 
 	public function provideGetRevisionTextWithZlibExtension() {
 		yield 'Generic gzip test' => [
 			'This is a small goat of revision text.',
-			[
+			(object)[
 				'old_flags' => 'gzip',
 				'old_text' => gzdeflate( 'This is a small goat of revision text.' ),
 			],
@@ -397,7 +401,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function provideGetRevisionTextWithZlibExtension_badData() {
 		yield 'Generic gzip test' => [
 			'This is a small goat of revision text.',
-			[
+			(object)[
 				'old_flags' => 'gzip',
 				'old_text' => 'DEAD BEEF',
 			],
@@ -481,7 +485,7 @@ class RevisionTest extends MediaWikiTestCase {
 			"Wiki est l'\xc3\xa9cole superieur !",
 			'fr',
 			'iso-8859-1',
-			[
+			(object)[
 				'old_flags' => 'utf-8',
 				'old_text' => "Wiki est l'\xc3\xa9cole superieur !",
 			]
@@ -490,7 +494,7 @@ class RevisionTest extends MediaWikiTestCase {
 			"Wiki est l'\xc3\xa9cole superieur !",
 			'fr',
 			'iso-8859-1',
-			[
+			(object)[
 				'old_flags' => '',
 				'old_text' => "Wiki est l'\xe9cole superieur !",
 			]
@@ -519,7 +523,7 @@ class RevisionTest extends MediaWikiTestCase {
 			"Wiki est l'\xc3\xa9cole superieur !",
 			'fr',
 			'iso-8859-1',
-			[
+			(object)[
 				'old_flags' => 'gzip,utf-8',
 				'old_text' => gzdeflate( "Wiki est l'\xc3\xa9cole superieur !" ),
 			]
@@ -528,7 +532,7 @@ class RevisionTest extends MediaWikiTestCase {
 			"Wiki est l'\xc3\xa9cole superieur !",
 			'fr',
 			'iso-8859-1',
-			[
+			(object)[
 				'old_flags' => 'gzip',
 				'old_text' => gzdeflate( "Wiki est l'\xe9cole superieur !" ),
 			]
@@ -727,13 +731,6 @@ class RevisionTest extends MediaWikiTestCase {
 			$expected,
 			Revision::decompressRevisionText( $text, $flags )
 		);
-	}
-
-	/**
-	 * @covers Revision::getRevisionText
-	 */
-	public function testGetRevisionText_returnsFalseWhenNoTextField() {
-		$this->assertFalse( Revision::getRevisionText( new stdClass() ) );
 	}
 
 	public function provideTestGetRevisionText_returnsDecompressedTextFieldWhenNotExternal() {
