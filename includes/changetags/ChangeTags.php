@@ -1585,10 +1585,8 @@ class ChangeTags {
 	 * @return array Array of string => int
 	 */
 	public static function tagUsageStatistics() {
-		global $wgChangeTagsSchemaMigrationStage, $wgTagStatisticsNewTable;
-		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ||
-			( $wgTagStatisticsNewTable && $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD )
-		) {
+		global $wgChangeTagsSchemaMigrationStage;
+		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
 			return self::newTagUsageStatistics();
 		}
 

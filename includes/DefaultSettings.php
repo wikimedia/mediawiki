@@ -9013,19 +9013,7 @@ $wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_OLD;
  * @since 1.32
  * @var int One of the MIGRATION_* constants
  */
-$wgChangeTagsSchemaMigrationStage = MIGRATION_WRITE_BOTH;
-
-/**
- * Temporarily flag to use change_tag_def table as backend of change tag statistics.
- * For example in case of Special:Tags. If set to false, it will use change_tag table.
- * Before setting it to true set $wgChangeTagsSchemaMigrationStage to MIGRATION_WRITE_BOTH and run
- * PopulateChangeTagDef maintaince script.
- * It's redundant when $wgChangeTagsSchemaMigrationStage is set to MIGRATION_NEW
- *
- * @since 1.32
- * @var bool
- */
-$wgTagStatisticsNewTable = false;
+$wgChangeTagsSchemaMigrationStage = MIGRATION_NEW;
 
 /**
  * For really cool vim folding this needs to be at the end:
