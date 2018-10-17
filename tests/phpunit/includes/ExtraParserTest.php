@@ -47,6 +47,25 @@ class ExtraParserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Parser::braceSubstitution
+	 * @covers SpecialPageFactory::capturePath
+	 */
+	public function testSpecialPageTransclusionRestoresGlobalState() {
+		$text = "{{Special:ApiHelp/help}}";
+		$title = Title::newFromText( 'testSpecialPageTransclusionRestoresGlobalState' );
+		$options = ParserOptions::newFromUser( new User() );
+
+		RequestContext::getMain()->setTitle( $title );
+		RequestContext::getMain()->getWikiPage()->CustomTestProp = true;
+
+		$parsed = $this->parser->parse( $text, $title, $options )->getText();
+		$this->assertContains( 'apihelp-header', $parsed );
+
+		// Verify that this property wasn't wiped out by the parse
+		$this->assertTrue( RequestContext::getMain()->getWikiPage()->CustomTestProp );
+	}
+
+	/**
 	 * Test the parser entry points
 	 * @covers Parser::parse
 	 */
