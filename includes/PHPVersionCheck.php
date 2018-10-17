@@ -28,7 +28,7 @@
  */
 class PHPVersionCheck {
 	/* @var string The number of the MediaWiki version used */
-	var $mwVersion = '1.32';
+	var $mwVersion = '1.33';
 	var $functionsExtensionsMapping = array(
 		'mb_substr'   => 'mbstring',
 		'xml_parser_create' => 'xml',
