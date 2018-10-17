@@ -26,6 +26,11 @@ production.
 * (T199334) $wgTagStatisticsNewTable — This temporary setting, added in
   MediaWiki 1.32, has now been removed. When loading Special:Tags, MediaWiki
   will now always use the `change_tag_def` instead of the `change_tag` table.
+* MediaWiki now always tidies user output, and most related
+  configuration has been removed. Thus $wgUseTidy, $wgTidyBin,
+  $wgTidyConf, $wgTidyOpts, $wgTidyInternal, and $wgDebugTidy, all
+  deprecated since 1.26, have now all been removed. The $wgTidyConfig
+  setting remains only for Remex experimental features or debugging.
 * …
 
 === New features in 1.33 ===
@@ -92,6 +97,9 @@ because of Phabricator reports.
 * ParserOptions defaults 'tidy' to true now, since the untidy modes of the
   parser are being deprecated and ParserOptions::getCanonicalOverrides()
   has always been true at any rate.
+* Support for disabling tidy and external tidy implementations has been removed.
+  This was deprecated in 1.32. The pure PHP Remex tidy implementation is now
+  used and no configuration is necessary.
 * A number of deprecated methods for API documentation, intended for overriding
   by extensions, are no longer called by MediaWiki, and will emit deprecation
   notices if your extension attempts to use them:
