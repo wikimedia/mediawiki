@@ -439,6 +439,7 @@
 	"apihelp-query+info-summary": "Ottieni informazioni base sulla pagina.",
 	"apihelp-query+info-param-prop": "Quali proprietà aggiuntive ottenere:",
 	"apihelp-query+info-paramvalue-prop-visitingwatchers": "Il numero di osservatori di ogni pagina che hanno visitato le ultime modifiche alla pagina, se consentito.",
+	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "Restituisce un valore booleano per ogni azione.",
 	"apihelp-query+iwbacklinks-param-prefix": "Prefisso per l'interwiki.",
 	"apihelp-query+iwbacklinks-param-limit": "Quante pagine totali restituire.",
 	"apihelp-query+iwbacklinks-param-prop": "Quali proprietà ottenere:",
