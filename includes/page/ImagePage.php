@@ -187,7 +187,10 @@ class ImagePage extends Article {
 				'h2',
 				[ 'id' => 'metadata' ],
 					$this->getContext()->msg( 'metadata' )->text() ) . "\n" );
-			$out->addWikiTextAsInterface( $this->makeMetadataTable( $formattedMetadata ) );
+			$out->wrapWikiTextAsInterface(
+				'mw-imagepage-section-metadata',
+				$this->makeMetadataTable( $formattedMetadata )
+			);
 			$out->addModules( [ 'mediawiki.action.view.metadata' ] );
 		}
 
@@ -246,8 +249,7 @@ class ImagePage extends Article {
 	 * @return string The metadata table. This is treated as Wikitext (!)
 	 */
 	protected function makeMetadataTable( $metadata ) {
-		$r = "<div class=\"mw-imagepage-section-metadata\">";
-		$r .= $this->getContext()->msg( 'metadata-help' )->plain();
+		$r = $this->getContext()->msg( 'metadata-help' )->plain();
 		// Intial state is collapsed
 		// see filepage.css and mediawiki.action.view.metadata module.
 		$r .= "<table id=\"mw_metadata\" class=\"mw_metadata collapsed\">\n";
@@ -264,7 +266,7 @@ class ImagePage extends Article {
 				);
 			}
 		}
-		$r .= "</table>\n</div>\n";
+		$r .= "</table>\n";
 		return $r;
 	}
 
