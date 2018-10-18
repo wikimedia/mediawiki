@@ -329,12 +329,9 @@ final class SessionManager implements SessionManagerInterface {
 			$headers = [];
 			foreach ( $this->getProviders() as $provider ) {
 				foreach ( $provider->getVaryHeaders() as $header => $options ) {
-					if ( !isset( $headers[$header] ) ) {
-						$headers[$header] = [];
-					}
-					if ( is_array( $options ) ) {
-						$headers[$header] = array_unique( array_merge( $headers[$header], $options ) );
-					}
+					# Note that the $options value returned has been deprecated
+					# and is ignored.
+					$headers[$header] = null;
 				}
 			}
 			$this->varyHeaders = $headers;

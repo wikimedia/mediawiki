@@ -711,10 +711,10 @@ class SessionManagerTest extends MediaWikiTestCase {
 		] );
 
 		$expect = [
-			'Foo' => [],
-			'Bar' => [ 'X', 'Bar1', 3 => 'Bar2' ],
-			'Quux' => [ 'Quux' ],
-			'Baz' => [],
+			'Foo' => null,
+			'Bar' => null,
+			'Quux' => null,
+			'Baz' => null,
 		];
 
 		$this->assertEquals( $expect, $manager->getVaryHeaders() );
