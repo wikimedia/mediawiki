@@ -482,7 +482,6 @@ $specialPageAliases = [
 	'Recentchanges'             => [ 'RecentChanges' ],
 	'Recentchangeslinked'       => [ 'RecentChangesLinked', 'RelatedChanges' ],
 	'Redirect'                  => [ 'Redirect' ],
-	'RedirectExternal'          => [ 'RedirectExternal' ],
 	'RemoveCredentials'         => [ 'RemoveCredentials' ],
 	'ResetTokens'               => [ 'ResetTokens' ],
 	'Revisiondelete'            => [ 'RevisionDelete' ],
