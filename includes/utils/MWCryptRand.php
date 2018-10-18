@@ -32,6 +32,7 @@ class MWCryptRand {
 	 * @return CryptRand
 	 */
 	protected static function singleton() {
+		wfDeprecated( __METHOD__, '1.32' );
 		return MediaWikiServices::getInstance()->getCryptRand();
 	}
 
@@ -45,6 +46,7 @@ class MWCryptRand {
 	 * @return bool Always true
 	 */
 	public static function wasStrong() {
+		wfDeprecated( __METHOD__, '1.32' );
 		return true;
 	}
 
@@ -58,6 +60,7 @@ class MWCryptRand {
 	 * @return string Raw binary random data
 	 */
 	public static function generate( $bytes ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		return random_bytes( floor( $bytes ) );
 	}
 
