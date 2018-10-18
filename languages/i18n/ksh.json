@@ -11,7 +11,8 @@
 			"TTO",
 			"Macofe",
 			"Nemo bis",
-			"Fitoschido"
+			"Fitoschido",
+			"MusikAnimal"
 		]
 	},
 	"tog-underline": "Dun de Lengks ongerschtriische:",
@@ -1767,7 +1768,7 @@
 	"booksources-search": "Söhke",
 	"booksources-text": "Hee noh küdd_en Leßß met Websigge,\nwo mir {{GRAMMAR:Dative fun|{{SITENAME}}}} nix wigger med ze donn hänn,\nwo mer jät övver Böösher erfaare\nun zom Dëijl och Böösher koufe kann.\nDoför moßß De Desh mannshmool allodengs eetß ennß aanmällde,\nwat Koßte un Jefaare met sesh brenge künndt.\nWo_t jëijdt,\njonn di Lengkß hee tirrägg_op dat Booch,\nwadd_Er am Sööke sidt.",
 	"booksources-invalid-isbn": "De ISBNummer schingk verkeeht ze sin. Loohr ens donoh, woh se häe kütt.",
-	"specialloguserlabel": "Dä Metmaacher, dä et jedonn hät:",
+	"specialloguserlabel": "Metmaacher:",
 	"speciallogtitlelabel": "Betroffe wohr: (dä Tittel vun ener Sigg udder enem Metmaacher singe Nahme)",
 	"log": "Logböcher ehr Opzeichnunge (all)",
 	"logeventslist-submit": "Lohß jonn!",

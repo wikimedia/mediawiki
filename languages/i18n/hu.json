@@ -369,6 +369,7 @@
 	"badarticleerror": "Ez a tevékenység nem végezhető el ezen a lapon.",
 	"cannotdelete": "A(z) $1 lapot vagy fájlt nem lehet törölni.\nTalán már valaki más törölte.",
 	"cannotdelete-title": "Nem lehet törölni a(z) „$1” lapot",
+	"delete-scheduled": "„$1” oldal törlése folyamatban van. Kérlek légy türelmes.",
 	"delete-hook-aborted": "A törlést egy hook (szűrő) megszakította.\nNincs csatolt magyarázat hozzá.",
 	"no-null-revision": "Nem sikerült új null-revíziót létrehozni a(z) „$1” lap számára.",
 	"badtitle": "Hibás cím",
