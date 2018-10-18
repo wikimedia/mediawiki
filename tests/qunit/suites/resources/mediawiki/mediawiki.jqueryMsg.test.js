@@ -1252,6 +1252,12 @@
 		);
 
 		assert.strictEqual(
+			mw.message( 'param-test', undefined ).parse(),
+			'Hello $1',
+			'Passing undefined as a parameter to a message does not throw an exception'
+		);
+
+		assert.strictEqual(
 			mw.message(
 				'param-test-with-link',
 				$( '<span>' ).text( 'cruel' ),
