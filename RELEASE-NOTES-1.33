@@ -34,6 +34,7 @@ production.
 * …
 
 === Action API changes in 1.33 ===
+* (T198913) Added 'ApiOptions' hook.
 * …
 
 === Action API internal changes in 1.33 ===
