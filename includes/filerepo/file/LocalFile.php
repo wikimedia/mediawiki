@@ -1543,8 +1543,8 @@ class LocalFile extends File {
 			}
 			if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
 				$tables[] = 'image_comment_temp';
-				$fields['oi_description_id'] =
-					'CASE WHEN img_description_id = 0 THEN imgcomment_description_id ELSE img_description_id END';
+				$fields['oi_description_id'] = 'CASE WHEN img_description_id = 0 '
+					. 'THEN COALESCE(imgcomment_description_id, 0) ELSE img_description_id END';
 				$joins['image_comment_temp'] = [
 					$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
 					[ 'imgcomment_name = img_name' ]
@@ -2539,8 +2539,8 @@ class LocalFileDeleteBatch {
 			}
 			if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
 				$tables[] = 'image_comment_temp';
-				$fields['fa_description_id'] =
-					'CASE WHEN img_description_id = 0 THEN imgcomment_description_id ELSE img_description_id END';
+				$fields['fa_description_id'] = 'CASE WHEN img_description_id = 0 '
+					. 'THEN COALESCE(imgcomment_description_id, 0) ELSE img_description_id END';
 				$joins['image_comment_temp'] = [
 					$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
 					[ 'imgcomment_name = img_name' ]
