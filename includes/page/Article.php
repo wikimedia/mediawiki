@@ -120,7 +120,7 @@ class Article implements Page {
 	 * here, there doesn't seem to be any other way to stop calling
 	 * OutputPage::enableSectionEditLinks() and still have it work as it did before.
 	 */
-	private $disableSectionEditForRender = false;
+	protected $viewIsRenderAction = false;
 
 	/**
 	 * Constructor and clear the article
@@ -633,7 +633,7 @@ class Article implements Page {
 		if ( $outputPage->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
 			$poOptions['enableSectionEditLinks'] = false;
-		} elseif ( $this->disableSectionEditForRender
+		} elseif ( $this->viewIsRenderAction
 			|| !$this->isCurrent() || !$this->getTitle()->quickUserCan( 'edit', $user )
 		) {
 			$poOptions['enableSectionEditLinks'] = false;
@@ -1735,7 +1735,8 @@ class Article implements Page {
 	public function render() {
 		$this->getContext()->getRequest()->response()->header( 'X-Robots-Tag: noindex' );
 		$this->getContext()->getOutput()->setArticleBodyOnly( true );
-		$this->disableSectionEditForRender = true;
+		// We later set 'enableSectionEditLinks=false' based on this; also used by ImagePage
+		$this->viewIsRenderAction = true;
 		$this->view();
 	}
 

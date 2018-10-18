@@ -86,17 +86,14 @@ class ImagePage extends Article {
 		$this->repo = $img->getRepo();
 	}
 
-	/**
-	 * Handler for action=render
-	 * Include body text only; none of the image extras
-	 */
-	public function render() {
-		$this->getContext()->getOutput()->setArticleBodyOnly( true );
-		parent::view();
-	}
-
 	public function view() {
 		global $wgShowEXIF;
+
+		// For action=render, include body text only; none of the image extras
+		if ( $this->viewIsRenderAction ) {
+			parent::view();
+			return;
+		}
 
 		$out = $this->getContext()->getOutput();
 		$request = $this->getContext()->getRequest();
