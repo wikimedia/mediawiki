@@ -2046,7 +2046,7 @@
 	"prefixindex": "Todas as páginas com prefixo",
 	"prefixindex-namespace": "Todas as páginas com prefixo (espaço nominal $1)",
 	"prefixindex-submit": "Exibir",
-	"prefixindex-strip": "Remover prefixo",
+	"prefixindex-strip": "Ocultar o prefixo nos resultados",
 	"shortpages": "Páginas curtas",
 	"longpages": "Páginas longas",
 	"deadendpages": "Páginas sem saída",

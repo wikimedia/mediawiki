@@ -177,7 +177,8 @@
 			"AVIADOR71",
 			"AHmed Khaled",
 			"Caleidoscopic",
-			"ديفيد"
+			"ديفيد",
+			"LittlePuppers"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -3517,6 +3518,7 @@
 	"confirm-unwatch-top": "¿Quitar esta página de tu lista de seguimiento?",
 	"confirm-rollback-button": "Aceptar",
 	"confirm-rollback-top": "¿Revertir las ediciones a esta página?",
+	"confirm-mcrrestore-title": "Restaurar la revisión",
 	"confirm-mcrundo-title": "Deshacer un cambio",
 	"mcrundofailed": "Error al deshacer",
 	"mcrundo-missingparam": "Faltan parámetros requeridos en la solicitud.",
