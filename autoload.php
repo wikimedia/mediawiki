@@ -1396,7 +1396,6 @@ $wgAutoloadLocalClasses = [
 	'SpecialRecentChanges' => __DIR__ . '/includes/specials/SpecialRecentchanges.php',
 	'SpecialRecentChangesLinked' => __DIR__ . '/includes/specials/SpecialRecentchangeslinked.php',
 	'SpecialRedirect' => __DIR__ . '/includes/specials/SpecialRedirect.php',
-	'SpecialRedirectExternal' => __DIR__ . '/includes/specials/SpecialRedirectExternal.php',
 	'SpecialRedirectToSpecial' => __DIR__ . '/includes/specialpage/RedirectSpecialPage.php',
 	'SpecialRemoveCredentials' => __DIR__ . '/includes/specials/SpecialRemoveCredentials.php',
 	'SpecialResetTokens' => __DIR__ . '/includes/specials/SpecialResetTokens.php',

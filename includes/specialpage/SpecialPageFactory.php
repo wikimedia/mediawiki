@@ -202,7 +202,6 @@ class SpecialPageFactory {
 		'AllMyUploads' => \SpecialAllMyUploads::class,
 		'PermanentLink' => \SpecialPermanentLink::class,
 		'Redirect' => \SpecialRedirect::class,
-		'RedirectExternal' => \SpecialRedirectExternal::class,
 		'Revisiondelete' => \SpecialRevisionDelete::class,
 		'RunJobs' => \SpecialRunJobs::class,
 		'Specialpages' => \SpecialSpecialpages::class,
