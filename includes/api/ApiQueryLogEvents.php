@@ -388,6 +388,12 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	public function getAllowedParams( $flags = 0 ) {
 		$config = $this->getConfig();
+		if ( $flags & ApiBase::GET_VALUES_FOR_HELP ) {
+			$logActions = $this->getAllowedLogActions();
+			sort( $logActions );
+		} else {
+			$logActions = null;
+		}
 		$ret = [
 			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
@@ -411,9 +417,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			],
 			'action' => [
 				// validation on request is done in execute()
-				ApiBase::PARAM_TYPE => ( $flags & ApiBase::GET_VALUES_FOR_HELP )
-					? $this->getAllowedLogActions()
-					: null
+				ApiBase::PARAM_TYPE => $logActions
 			],
 			'start' => [
 				ApiBase::PARAM_TYPE => 'timestamp'
