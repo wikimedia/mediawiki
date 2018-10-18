@@ -1377,7 +1377,7 @@
 				!/\{\{|[<>[&]/.test( this.map.get( this.key ) ) &&
 				// jqueryMsg parser is needed when jQuery objects or DOM nodes are passed in as parameters
 				!this.parameters.some( function ( param ) {
-					return param instanceof $ || param.nodeType !== undefined;
+					return param instanceof $ || ( param && param.nodeType !== undefined );
 				} )
 			)
 		) {
