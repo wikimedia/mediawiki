@@ -1950,7 +1950,7 @@
 	"prefixindex": "Seznam stránek dle začátku názvu",
 	"prefixindex-namespace": "Seznam stránek dle začátku názvu (jmenný prostor $1)",
 	"prefixindex-submit": "Zobrazit",
-	"prefixindex-strip": "Začátek názvu v seznamu odříznout",
+	"prefixindex-strip": "Skrýt začátek názvu v seznamu",
 	"shortpages": "Nejkratší stránky",
 	"longpages": "Nejdelší stránky",
 	"deadendpages": "Slepé stránky",
