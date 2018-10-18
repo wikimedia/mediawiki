@@ -2030,7 +2030,7 @@
 	"prefixindex-namespace": "All pages with prefix ($1 namespace)",
 	"prefixindex-summary": "",
 	"prefixindex-submit": "Show",
-	"prefixindex-strip": "Strip prefix in list",
+	"prefixindex-strip": "Hide the prefix in results",
 	"shortpages": "Short pages",
 	"shortpages-summary": "",
 	"longpages": "Long pages",
