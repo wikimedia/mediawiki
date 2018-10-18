@@ -104,7 +104,31 @@ because of Phabricator reports.
 * The hooks LanguageGetSpecialPageAliases and LanguageGetMagic, deprecated since
   1.16, have now been removed. Instead, use $specialPageAliases or $magicWords
   respectively in a $wgExtensionMessagesFiles file.
-* …
+* The following methods of the Preferences class, deprecated in 1.31, have been
+  removed:
+  * getSaveBlacklist()
+  * loadPreferenceValues()
+  * getOptionFromUser()
+  * profilePreferences()
+  * skinPreferences()
+  * filesPreferences()
+  * datetimePreferences()
+  * renderingPreferences()
+  * editingPreferences()
+  * rcPreferences()
+  * watchlistPreferences()
+  * searchPreferences()
+  * miscPreferences()
+  * generateSkinOptions()
+  * getDateOptions()
+  * getImageSizes()
+  * getThumbSizes()
+  * validateSignature()
+  * cleanSignature()
+  * getTimezoneOptions()
+  * filterIntval()
+  * filterTimezoneInput()
+  * getTimeZoneList()
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
