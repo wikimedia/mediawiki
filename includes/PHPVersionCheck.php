@@ -27,8 +27,10 @@
  * @class
  */
 class PHPVersionCheck {
-	/* @var string The number of the MediaWiki version used */
+	/* @var string The number of the MediaWiki version used. */
 	var $mwVersion = '1.33';
+
+	/* @var array A mapping of PHP functions to PHP extensions. */
 	var $functionsExtensionsMapping = array(
 		'mb_substr'   => 'mbstring',
 		'xml_parser_create' => 'xml',
@@ -61,14 +63,14 @@ class PHPVersionCheck {
 	}
 
 	/**
-	 * Returns the version of the installed php implementation.
+	 * Returns the version of the installed PHP implementation.
 	 *
 	 * @param string $impl By default, the function returns the info of the currently installed PHP
 	 *  implementation. Using this parameter the caller can decide, what version info will be
 	 *  returned. Valid values: HHVM, PHP
-	 * @return array An array of information about the php implementation, containing:
-	 *  - 'version': The version of the php implementation (specific to the implementation, not
-	 *  the version of the implemented php version)
+	 * @return array An array of information about the PHP implementation, containing:
+	 *  - 'version': The version of the PHP implementation (specific to the implementation, not
+	 *  the version of the implemented PHP version)
 	 *  - 'implementation': The name of the implementation used
 	 *  - 'vendor': The development group, vendor or developer of the implementation.
 	 *  - 'upstreamSupported': The minimum version of the implementation supported by the named vendor.
@@ -101,7 +103,7 @@ class PHPVersionCheck {
 	}
 
 	/**
-	 * Displays an error, if the installed php version does not meet the minimum requirement.
+	 * Displays an error, if the installed PHP version does not meet the minimum requirement.
 	 */
 	function checkRequiredPHPVersion() {
 		$phpInfo = $this->getPHPInfo();
@@ -121,7 +123,7 @@ class PHPVersionCheck {
 				. "MediaWiki $this->mwVersion needs {$phpInfo['implementation']}"
 				. " $minimumVersion or higher or {$otherInfo['implementation']} version "
 				. "{$otherInfo['minSupported']}.\n\nCheck if you have a"
-				. " newer php executable with a different name.\n\n";
+				. " newer PHP executable with a different name.\n\n";
 
 			// phpcs:disable Generic.Files.LineLength
 			$longHtml = <<<HTML
@@ -331,11 +333,11 @@ HTML;
 }
 
 /**
- * Check php version and that external dependencies are installed, and
+ * Check PHP version and that external dependencies are installed, and
  * display an informative error if either condition is not satisfied.
  *
  * @note Since we can't rely on anything, the minimum PHP versions and MW current
- * version are hardcoded here
+ * version are hardcoded here.
  */
 function wfEntryPointCheck( $entryPoint ) {
 	$phpVersionCheck = new PHPVersionCheck();
