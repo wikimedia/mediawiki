@@ -1570,7 +1570,13 @@ class LocalFile extends File {
 					[ 'image_comment_temp' => [ 'LEFT JOIN', [ 'imgcomment_name = img_name' ] ] ]
 				);
 				foreach ( $res as $row ) {
-					$commentStore->insert( $dbw, 'img_description', $row->img_description );
+					$imgFields = $commentStore->insert( $dbw, 'img_description', $row->img_description );
+					$dbw->update(
+						'image',
+						$imgFields,
+						[ 'img_name' => $row->img_name ],
+						__METHOD__
+					);
 				}
 			}
 
@@ -2566,7 +2572,13 @@ class LocalFileDeleteBatch {
 					[ 'image_comment_temp' => [ 'LEFT JOIN', [ 'imgcomment_name = img_name' ] ] ]
 				);
 				foreach ( $res as $row ) {
-					$commentStore->insert( $dbw, 'img_description', $row->img_description );
+					$imgFields = $commentStore->insert( $dbw, 'img_description', $row->img_description );
+					$dbw->update(
+						'image',
+						$imgFields,
+						[ 'img_name' => $row->img_name ],
+						__METHOD__
+					);
 				}
 			}
 
