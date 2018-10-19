@@ -459,8 +459,58 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Add a list of targets to a user's watchlist
 	 *
 	 * @param string[]|LinkTarget[] $targets
+	 * @return bool
+	 * @throws FatalError
+	 * @throws MWException
 	 */
-	private function watchTitles( $targets ) {
+	private function watchTitles( array $targets ) {
+		return MediaWikiServices::getInstance()->getWatchedItemStore()
+			->addWatchBatchForUser( $this->getUser(), $this->getExpandedTargets( $targets ) )
+			&& $this->runWatchUnwatchCompleteHook( 'Watch', $targets );
+	}
+
+	/**
+	 * Remove a list of titles from a user's watchlist
+	 *
+	 * $titles can be an array of strings or Title objects; the former
+	 * is preferred, since Titles are very memory-heavy
+	 *
+	 * @param string[]|LinkTarget[] $targets
+	 *
+	 * @return bool
+	 * @throws FatalError
+	 * @throws MWException
+	 */
+	private function unwatchTitles( array $targets ) {
+		return MediaWikiServices::getInstance()->getWatchedItemStore()
+			->removeWatchBatchForUser( $this->getUser(), $this->getExpandedTargets( $targets ) )
+			&& $this->runWatchUnwatchCompleteHook( 'Unwatch', $targets );
+	}
+
+	/**
+	 * @param string $action
+	 *   Can be "Watch" or "Unwatch"
+	 * @param string[]|LinkTarget[] $targets
+	 * @return bool
+	 * @throws FatalError
+	 * @throws MWException
+	 */
+	private function runWatchUnwatchCompleteHook( $action, $targets ) {
+		foreach ( $targets as $target ) {
+			$title = $target instanceof TitleValue ?
+				Title::newFromTitleValue( $target ) :
+				Title::newFromText( $target );
+			$page = WikiPage::factory( $title );
+			Hooks::run( $action . 'ArticleComplete', [ $this->getUser(), &$page ] );
+		}
+		return true;
+	}
+
+	/**
+	 * @param string[]|LinkTarget[] $targets
+	 * @return TitleValue[]
+	 */
+	private function getExpandedTargets( array $targets ) {
 		$expandedTargets = [];
 		foreach ( $targets as $target ) {
 			if ( !$target instanceof LinkTarget ) {
@@ -477,37 +527,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$expandedTargets[] = new TitleValue( MWNamespace::getSubject( $ns ), $dbKey );
 			$expandedTargets[] = new TitleValue( MWNamespace::getTalk( $ns ), $dbKey );
 		}
-
-		MediaWikiServices::getInstance()->getWatchedItemStore()->addWatchBatchForUser(
-			$this->getUser(),
-			$expandedTargets
-		);
-	}
-
-	/**
-	 * Remove a list of titles from a user's watchlist
-	 *
-	 * $titles can be an array of strings or Title objects; the former
-	 * is preferred, since Titles are very memory-heavy
-	 *
-	 * @param array $titles Array of strings, or Title objects
-	 */
-	private function unwatchTitles( $titles ) {
-		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
-
-		foreach ( $titles as $title ) {
-			if ( !$title instanceof Title ) {
-				$title = Title::newFromText( $title );
-			}
-
-			if ( $title instanceof Title ) {
-				$store->removeWatch( $this->getUser(), $title->getSubjectPage() );
-				$store->removeWatch( $this->getUser(), $title->getTalkPage() );
-
-				$page = WikiPage::factory( $title );
-				Hooks::run( 'UnwatchArticleComplete', [ $this->getUser(), &$page ] );
-			}
-		}
+		return $expandedTargets;
 	}
 
 	public function submitNormal( $data ) {

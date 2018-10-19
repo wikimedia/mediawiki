@@ -1,7 +1,7 @@
 <?php
 use MediaWiki\Linker\LinkTarget;
-use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -1106,6 +1106,10 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				]
 			);
 
+		$mockDb->expects( $this->once() )
+			->method( 'affectedRows' )
+			->willReturn( 2 );
+
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->exactly( 2 ) )
 			->method( 'delete' );
@@ -1276,23 +1280,36 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
 			->method( 'delete' )
-			->with(
-				'watchlist',
+			->withConsecutive(
 				[
-					'wl_user' => 1,
-					'wl_namespace' => 0,
-					'wl_title' => 'SomeDbKey',
+					'watchlist',
+					[
+						'wl_user' => 1,
+						'wl_namespace' => 0,
+						'wl_title' => [ 'SomeDbKey' ],
+					],
+				],
+				[
+					'watchlist',
+					[
+						'wl_user' => 1,
+						'wl_namespace' => 1,
+						'wl_title' => [ 'SomeDbKey' ],
+					]
 				]
 			);
-		$mockDb->expects( $this->once() )
+		$mockDb->expects( $this->exactly( 1 ) )
 			->method( 'affectedRows' )
-			->will( $this->returnValue( 1 ) );
+			->willReturn( 2 );
 
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->never() )->method( 'get' );
 		$mockCache->expects( $this->once() )
 			->method( 'delete' )
-			->with( '0:SomeDbKey:1' );
+			->withConsecutive(
+				[ '0:SomeDbKey:1' ],
+				[ '1:SomeDbKey:1' ]
+			);
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLBFactory( $mockDb ),
@@ -1300,10 +1317,11 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			$this->getMockReadOnlyMode()
 		);
 
+		$titleValue = new TitleValue( 0, 'SomeDbKey' );
 		$this->assertTrue(
 			$store->removeWatch(
 				$this->getMockNonAnonUserWithId( 1 ),
-				new TitleValue( 0, 'SomeDbKey' )
+				Title::newFromTitleValue( $titleValue )
 			)
 		);
 	}
@@ -1312,23 +1330,37 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
 			->method( 'delete' )
-			->with(
-				'watchlist',
+			->withConsecutive(
 				[
-					'wl_user' => 1,
-					'wl_namespace' => 0,
-					'wl_title' => 'SomeDbKey',
+					'watchlist',
+					[
+						'wl_user' => 1,
+						'wl_namespace' => 0,
+						'wl_title' => [ 'SomeDbKey' ],
+					]
+				],
+				[
+					'watchlist',
+					[
+						'wl_user' => 1,
+						'wl_namespace' => 1,
+						'wl_title' => [ 'SomeDbKey' ],
+					]
 				]
 			);
+
 		$mockDb->expects( $this->once() )
 			->method( 'affectedRows' )
-			->will( $this->returnValue( 0 ) );
+			->willReturn( 0 );
 
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->never() )->method( 'get' );
 		$mockCache->expects( $this->once() )
 			->method( 'delete' )
-			->with( '0:SomeDbKey:1' );
+			->withConsecutive(
+				[ '0:SomeDbKey:1' ],
+				[ '1:SomeDbKey:1' ]
+			);
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLBFactory( $mockDb ),
@@ -1336,10 +1368,11 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			$this->getMockReadOnlyMode()
 		);
 
+		$titleValue = new TitleValue( 0, 'SomeDbKey' );
 		$this->assertFalse(
 			$store->removeWatch(
 				$this->getMockNonAnonUserWithId( 1 ),
-				new TitleValue( 0, 'SomeDbKey' )
+				Title::newFromTitleValue( $titleValue )
 			)
 		);
 	}

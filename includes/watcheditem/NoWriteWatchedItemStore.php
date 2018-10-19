@@ -142,4 +142,9 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	public function clearUserWatchedItemsUsingJobQueue( User $user ) {
 		throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
 	}
+
+	public function removeWatchBatchForUser( User $user, array $titles ) {
+		throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
+	}
+
 }
