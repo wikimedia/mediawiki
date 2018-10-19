@@ -34,6 +34,7 @@ class LanguageArTest extends LanguageClassesTestCase {
 		$this->assertSame( $expected, $this->getLang()->normalize( $input ), 'ar-normalised form' );
 
 		$this->setMwGlobals( 'wgFixArabicUnicode', false );
+		$this->hideDeprecated( '$wgFixArabicUnicode = false' );
 		$this->assertSame( $input, $this->getLang()->normalize( $input ), 'regular normalised form' );
 	}
 

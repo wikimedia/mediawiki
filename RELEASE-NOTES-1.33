@@ -60,6 +60,11 @@ because of Phabricator reports.
   to be removed in a future release.
 * The configuration option $wgSquidPurgeUseHostHeader has been deprecated,
   and is expected to be removed in a future release.
+* The configuration options $wgFixArabicUnicode and $wgFixMalayalamUnicode,
+  introduced in MW 1.17, have been deprecated.  These fixes will always be
+  applied for Arabic and Malayalam in the future.  Please enable these on
+  your local wiki (if you have them explicitly set to false) and run
+  maintenance/cleanupTitles.php to fix any existing page titles.
 * …
 
 === Other changes in 1.33 ===

@@ -52,6 +52,7 @@ class LanguageMlTest extends LanguageClassesTestCase {
 		$this->assertSame( $expected, $this->getLang()->normalize( $input ), 'ml-normalised form' );
 
 		$this->setMwGlobals( 'wgFixMalayalamUnicode', false );
+		$this->hideDeprecated( '$wgFixMalayalamUnicode = false' );
 		$this->assertSame( $input, $this->getLang()->normalize( $input ), 'regular normalised form' );
 	}
 
