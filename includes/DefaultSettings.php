@@ -3002,8 +3002,11 @@ $wgExtraLanguageNames = [];
  * @since 1.29
  */
 $wgExtraLanguageCodes = [
+	// Language codes of macro languages, which get mapped to the main language
 	'bh' => 'bho', // Bihari language family
 	'no' => 'nb', // Norwegian language family
+
+	// Language variants which get mapped to the main language
 	'simple' => 'en', // Simple English
 ];
 
