@@ -48,29 +48,28 @@ div.mw-rcfilters-ui-highlights {
 
 		}
 
-	}
+		// Watchlist unseen highlighted fixes
+		// Seen (empty circle)
+		// There's no need to correct 'unseen' because that would be
+		// a filled colorful circle, which is the regular rendering
+		.mw-changeslist-watchedseen &-c1 {
+			.mw-rcfilters-circle-color( @highlight-c1, true, @highlight-c1, true );
+		}
 
-	// Watchlist unseen highlighted fixes
-	// Seen (empty circle)
-	// There's no need to correct 'unseen' because that would be
-	// a filled colorful circle, which is the regular rendering
-	.mw-changeslist-watchedseen &-c1 {
-		.mw-rcfilters-circle-color( @highlight-c1, true, @highlight-c1, true );
-	}
+		.mw-changeslist-watchedseen &-c2 {
+			.mw-rcfilters-circle-color( @highlight-c2, true, @highlight-c2, true );
+		}
 
-	.mw-changeslist-watchedseen &-c2 {
-		.mw-rcfilters-circle-color( @highlight-c2, true, @highlight-c2, true );
-	}
+		.mw-changeslist-watchedseen &-c3 {
+			.mw-rcfilters-circle-color( @highlight-c3, true, @highlight-c3, true );
+		}
 
-	.mw-changeslist-watchedseen &-c3 {
-		.mw-rcfilters-circle-color( @highlight-c3, true, @highlight-c3, true );
-	}
+		.mw-changeslist-watchedseen &-c4 {
+			.mw-rcfilters-circle-color( @highlight-c4, true, @highlight-c4, true );
+		}
 
-	.mw-changeslist-watchedseen &-c4 {
-		.mw-rcfilters-circle-color( @highlight-c4, true, @highlight-c4, true );
-	}
-
-	.mw-changeslist-watchedseen &-c5 {
-		.mw-rcfilters-circle-color( @highlight-c5, true, @highlight-c5, true );
+		.mw-changeslist-watchedseen &-c5 {
+			.mw-rcfilters-circle-color( @highlight-c5, true, @highlight-c5, true );
+		}
 	}
 }
