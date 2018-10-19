@@ -2460,6 +2460,7 @@ class OutputPage extends ContextSource {
 				!$this->haveCacheVaryCookies()
 			) {
 				if ( $config->get( 'UseESI' ) ) {
+					wfDeprecated( '$wgUseESI = true', '1.33' );
 					# We'll purge the proxy cache explicitly, but require end user agents
 					# to revalidate against the proxy on each visit.
 					# Surrogate-Control controls our CDN, Cache-Control downstream caches
