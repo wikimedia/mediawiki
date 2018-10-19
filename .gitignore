@@ -1,3 +1,6 @@
+# Miraheze specific
+*.dblist
+
 # Repository management
 .svn
 
