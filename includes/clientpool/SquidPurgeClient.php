@@ -211,6 +211,7 @@ class SquidPurgeClient {
 			$request[] = "PURGE $path HTTP/1.1";
 			$request[] = "Host: $host";
 		} else {
+			wfDeprecated( '$wgSquidPurgeUseHostHeader = false', '1.33' );
 			$request[] = "PURGE $url HTTP/1.0";
 		}
 		$request[] = "Connection: Keep-Alive";
