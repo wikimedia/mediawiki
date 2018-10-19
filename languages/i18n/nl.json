@@ -92,7 +92,8 @@
 			"Optilete",
 			"Goefie",
 			"AHmed Khaled",
-			"Jeroen N"
+			"Jeroen N",
+			"Bdijkstra"
 		]
 	},
 	"tog-underline": "Verwijzingen onderstrepen:",
@@ -3434,6 +3435,7 @@
 	"confirm-mcrundo-title": "Een wijziging ongedaan maken",
 	"mcrundofailed": "Ongedaan maken mislukt",
 	"mcrundo-missingparam": "Er ontbreken nodige parameters in het verzoek.",
+	"mcrundo-changed": "De pagina is gewijzigd sinds u de veranderingen hebt bekeken. Beoordeel alstublieft de nieuwe wijziging.",
 	"mcrundo-parse-failed": "Kon de nieuwe versie niet verwerken: $1",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "← vorige pagina",

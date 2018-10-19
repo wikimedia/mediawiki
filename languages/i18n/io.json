@@ -946,6 +946,7 @@
 	"group-autoconfirmed": "Uzeri automatale konfirmita",
 	"group-bot": "Roboti",
 	"group-sysop": "Administreri",
+	"group-interface-admin": "Administreri dil interkonekto (interface)",
 	"group-bureaucrat": "Burokrati",
 	"group-suppress": "Efaceri",
 	"group-all": "(omna)",

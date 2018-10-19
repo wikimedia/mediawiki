@@ -2093,7 +2093,7 @@
 	"prefixindex": "Toutes les pages commençant par…",
 	"prefixindex-namespace": "Toutes les pages avec préfixe (espace de noms $1)",
 	"prefixindex-submit": "Lister",
-	"prefixindex-strip": "Enlever le préfixe dans la liste",
+	"prefixindex-strip": "Masquer le préfixe dans les résultats",
 	"shortpages": "Pages courtes",
 	"longpages": "Pages longues",
 	"deadendpages": "Pages en impasse",
