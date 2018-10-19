@@ -2010,7 +2010,7 @@
 	"prefixindex": "按詞頭查詢頁面",
 	"prefixindex-namespace": "按詞頭查詢頁面 ($1 命名空間)",
 	"prefixindex-submit": "顯示",
-	"prefixindex-strip": "於清單中省略詞頭",
+	"prefixindex-strip": "在結果隱藏字首",
 	"shortpages": "過短的頁面",
 	"longpages": "過長的頁面",
 	"deadendpages": "無連結頁面",

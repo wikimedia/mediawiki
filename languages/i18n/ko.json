@@ -1980,7 +1980,7 @@
 	"prefixindex": "접두어에 따른 문서 목록",
 	"prefixindex-namespace": "접두어가 있는 모든 문서 ($1 이름공간)",
 	"prefixindex-submit": "보이기",
-	"prefixindex-strip": "목록에서 접두어 생략",
+	"prefixindex-strip": "결과에서 접두어 숨기기",
 	"shortpages": "내용이 적은 문서 목록",
 	"longpages": "내용이 많은 문서 목록",
 	"deadendpages": "막다른 문서 목록",

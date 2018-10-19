@@ -2892,7 +2892,7 @@
 	"tooltip-pt-login-private": "Es necesario acceder a una cuenta para utilizar este wiki",
 	"tooltip-pt-logout": "Salir de la sesión",
 	"tooltip-pt-createaccount": "Te recomendamos crear una cuenta e iniciar sesión; sin embargo, no es obligatorio",
-	"tooltip-ca-talk": "Discusión acerca de la página de contenido",
+	"tooltip-ca-talk": "Discusión acerca de la página",
 	"tooltip-ca-edit": "Editar esta página",
 	"tooltip-ca-addsection": "Iniciar una sección nueva",
 	"tooltip-ca-viewsource": "Esta página está protegida.\nPuedes ver su código fuente",
