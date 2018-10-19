@@ -2850,6 +2850,7 @@ $wgSquidServersNoPurge = [];
  * reverse).
  *
  * @since 1.21
+ * @deprecated since 1.33, will always be true in a future release.
  */
 $wgSquidPurgeUseHostHeader = true;
 
