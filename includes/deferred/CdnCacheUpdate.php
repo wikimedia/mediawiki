@@ -148,11 +148,13 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 			foreach ( $wgSquidServers as $server ) {
 				foreach ( $chunks as $chunk ) {
 					$client = new SquidPurgeClient( $server );
+					//begin changes by southparkfan
 					// Miraheze patch: send PURGEs with X-Device
 					// desktop and phone-tablet respectively.
 					// Needed due to Varnish' vcl_hash
 					foreach ( array( 'desktop', 'phone-tablet' ) as $device ) {
 						$client->queuePurge( $url, $device );
+					//end changes by southparkfan
 					}
 					$pool->addClient( $client );
 				}
