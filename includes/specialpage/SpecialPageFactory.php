@@ -606,6 +606,9 @@ class SpecialPageFactory {
 			'user' => $main->getUser(),
 			'language' => $main->getLanguage(),
 		];
+		if ( $main->canUseWikiPage() ) {
+			$ctx['wikipage'] = $main->getWikiPage();
+		}
 
 		// Override
 		$wgTitle = $title;
@@ -633,6 +636,9 @@ class SpecialPageFactory {
 		$main->setRequest( $ctx['request'] );
 		$main->setUser( $ctx['user'] );
 		$main->setLanguage( $ctx['language'] );
+		if ( isset( $ctx['wikipage'] ) ) {
+			$main->setWikiPage( $ctx['wikipage'] );
+		}
 
 		return $ret;
 	}
