@@ -4,6 +4,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -368,6 +369,47 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
+	 * @param User $user
+	 * @param TitleValue[] $titles
+	 * @return bool
+	 * @throws MWException
+	 */
+	public function removeWatchBatchForUser( User $user, array $titles ) {
+		if ( $this->readOnlyMode->isReadOnly() ) {
+			return false;
+		}
+		if ( $user->isAnon() ) {
+			return false;
+		}
+		if ( !$titles ) {
+			return true;
+		}
+
+		$rows = $this->getTitleDbKeysGroupedByNamespace( $titles );
+		$this->uncacheTitlesForUser( $user, $titles );
+
+		$dbw = $this->getConnectionRef( DB_MASTER );
+		$ticket = $this->lbFactory->getEmptyTransactionTicket( __METHOD__ );
+		$affectedRows = 0;
+
+		// Batch delete items per namespace.
+		foreach ( $rows as $namespace => $namespaceTitles ) {
+			$rowBatches = array_chunk( $namespaceTitles, $this->updateRowsPerQuery );
+			foreach ( $rowBatches as $toDelete ) {
+				$dbw->delete( 'watchlist', [
+					'wl_user' => $user->getId(),
+					'wl_namespace' => $namespace,
+					'wl_title' => $toDelete
+				], __METHOD__ );
+				$affectedRows += $dbw->affectedRows();
+				$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+			}
+		}
+
+		return (bool)$affectedRows;
+	}
+
+	/**
 	 * @since 1.27
 	 * @param LinkTarget[] $targets
 	 * @param array $options
@@ -655,6 +697,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @since 1.27
 	 * @param User $user
 	 * @param LinkTarget $target
+	 * @throws MWException
 	 */
 	public function addWatch( User $user, LinkTarget $target ) {
 		$this->addWatchBatchForUser( $user, [ $target ] );
@@ -665,6 +708,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param User $user
 	 * @param LinkTarget[] $targets
 	 * @return bool
+	 * @throws MWException
 	 */
 	public function addWatchBatchForUser( User $user, array $targets ) {
 		if ( $this->readOnlyMode->isReadOnly() ) {
@@ -697,10 +741,15 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		$dbw = $this->getConnectionRef( DB_MASTER );
-		foreach ( array_chunk( $rows, 100 ) as $toInsert ) {
+		$ticket = $this->lbFactory->getEmptyTransactionTicket( __METHOD__ );
+		$affectedRows = 0;
+		$rowBatches = array_chunk( $rows, $this->updateRowsPerQuery );
+		foreach ( $rowBatches as $toInsert ) {
 			// Use INSERT IGNORE to avoid overwriting the notification timestamp
 			// if there's already an entry for this page
 			$dbw->insert( 'watchlist', $toInsert, __METHOD__, 'IGNORE' );
+			$affectedRows += $dbw->affectedRows();
+			$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 		}
 		// Update process cache to ensure skin doesn't claim that the current
 		// page is unwatched in the response of action=watch itself (T28292).
@@ -709,7 +758,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			$this->cache( $item );
 		}
 
-		return true;
+		return (bool)$affectedRows;
 	}
 
 	/**
@@ -717,26 +766,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param User $user
 	 * @param LinkTarget $target
 	 * @return bool
+	 * @throws MWException
 	 */
 	public function removeWatch( User $user, LinkTarget $target ) {
-		// Only logged in user can have a watchlist
-		if ( $this->readOnlyMode->isReadOnly() || $user->isAnon() ) {
-			return false;
-		}
-
-		$this->uncache( $user, $target );
-
-		$dbw = $this->getConnectionRef( DB_MASTER );
-		$dbw->delete( 'watchlist',
-			[
-				'wl_user' => $user->getId(),
-				'wl_namespace' => $target->getNamespace(),
-				'wl_title' => $target->getDBkey(),
-			], __METHOD__
-		);
-		$success = (bool)$dbw->affectedRows();
-
-		return $success;
+		return $this->removeWatchBatchForUser( $user, [ $target ] );
 	}
 
 	/**
@@ -1041,6 +1074,29 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				$values,
 				__METHOD__
 			);
+		}
+	}
+
+	/**
+	 * @param TitleValue[] $titles
+	 * @return array
+	 */
+	private function getTitleDbKeysGroupedByNamespace( array $titles ) {
+		$rows = [];
+		foreach ( $titles as $title ) {
+			// Group titles by namespace.
+			$rows[ $title->getNamespace() ][] = $title->getDBkey();
+		}
+		return $rows;
+	}
+
+	/**
+	 * @param User $user
+	 * @param Title[] $titles
+	 */
+	private function uncacheTitlesForUser( User $user, array $titles ) {
+		foreach ( $titles as $title ) {
+			$this->uncache( $user, $title );
 		}
 	}
 
