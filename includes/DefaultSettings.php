@@ -2896,11 +2896,6 @@ $wgSquidPurgeUseHostHeader = true;
  * @endcode
  *
  * @since 1.22
- *
- * $wgHTCPRouting replaces $wgHTCPMulticastRouting that was introduced in 1.20.
- * For back compatibility purposes, whenever its array is empty
- * $wgHTCPMutlicastRouting will be used as a fallback if it not null.
- *
  * @see $wgHTCPMulticastTTL
  */
 $wgHTCPRouting = [];
