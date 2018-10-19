@@ -2736,6 +2736,7 @@ $wgUseSquid = false;
 
 /**
  * If you run Squid3 with ESI support, enable this (default:false):
+ * @deprecated in 1.33. This was a now-defunct experimental feature.
  */
 $wgUseESI = false;
 
@@ -2849,6 +2850,7 @@ $wgSquidServersNoPurge = [];
  * reverse).
  *
  * @since 1.21
+ * @deprecated since 1.33, will always be true in a future release.
  */
 $wgSquidPurgeUseHostHeader = true;
 

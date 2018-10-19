@@ -56,6 +56,10 @@ because of Phabricator reports.
 * …
 
 === Deprecations in 1.33 ===
+* The configuration option $wgUseESI has been deprecated, and is expected
+  to be removed in a future release.
+* The configuration option $wgSquidPurgeUseHostHeader has been deprecated,
+  and is expected to be removed in a future release.
 * …
 
 === Other changes in 1.33 ===
