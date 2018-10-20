@@ -15,6 +15,7 @@ THIS IS NOT A RELEASE YET
   not be set.
 * Fix PHP 7.3 warnings "preg_replace(): [...] invalid range in character class"
 * (T207540) Include IP address in "Login for $1 succeeded" log entry.
+* (T207541) Pass email address to mail().
 
 == MediaWiki 1.31.1 ==
 

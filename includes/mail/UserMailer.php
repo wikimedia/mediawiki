@@ -431,7 +431,7 @@ class UserMailer {
 			try {
 				foreach ( $to as $recip ) {
 					$sent = mail(
-						$recip,
+						$recip->toString(),
 						self::quotedPrintable( $subject ),
 						$body,
 						$headers,
