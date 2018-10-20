@@ -193,7 +193,7 @@ interface WatchedItemStoreInterface {
 	public function addWatchBatchForUser( User $user, array $targets );
 
 	/**
-	 * Removes the an entry for the User watching the LinkTarget
+	 * Removes an entry for the User watching the LinkTarget
 	 * Must be called separately for Subject & Talk namespaces
 	 *
 	 * @since 1.31
