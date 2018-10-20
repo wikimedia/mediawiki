@@ -681,8 +681,9 @@ class AuthManager implements LoggerAwareInterface {
 			// Step 4: Authentication complete! Set the user in the session and
 			// clean up.
 
-			$this->logger->info( 'Login for {user} succeeded', [
+			$this->logger->info( 'Login for {user} succeeded from {clientip}', [
 				'user' => $user->getName(),
+				'clientip' => $this->request->getIP(),
 			] );
 			/** @var RememberMeAuthenticationRequest $req */
 			$req = AuthenticationRequest::getRequestByClass(
