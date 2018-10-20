@@ -14,6 +14,7 @@ THIS IS NOT A RELEASE YET
 * (T206979) Fix PHP 7.3 warnings of using "compact()" when some variables may
   not be set.
 * Fix PHP 7.3 warnings "preg_replace(): [...] invalid range in character class"
+* (T207540) Include IP address in "Login for $1 succeeded" log entry.
 
 == MediaWiki 1.31.1 ==
 
