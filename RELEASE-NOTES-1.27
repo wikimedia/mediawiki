@@ -12,6 +12,7 @@ THIS IS NOT A RELEASE YET
   there is no account associated with the username.
 * (T113042) Do not allow loading pages raw with a text/javascript MIME type if
   non-admins can edit the page.
+* (T207541) Pass email address to mail().
 
 == MediaWiki 1.27.5 ==
 
