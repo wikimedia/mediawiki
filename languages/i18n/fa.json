@@ -2901,7 +2901,7 @@
 	"pageinfo-recent-authors": "تعداد نویسندگان یکتای اخیر",
 	"pageinfo-magic-words": "{{PLURAL:$1|حرف|حروف}} جادویی ($1)",
 	"pageinfo-hidden-categories": "{{PLURAL:$1| ردهٔ|ردهٔ}} پنهان ( $1 )",
-	"pageinfo-templates": "{{PLURAL:$1|الگو|الگو}} استفاده‌شده ($1)",
+	"pageinfo-templates": "{{PLURAL:$1|الگوهای|الگوهای}} استفاده‌شده ($1)",
 	"pageinfo-transclusions": "{{PLURAL:$1|صفحهٔ|صفحه‌های}} تراگنجانش‌شده در ($1)",
 	"pageinfo-toolboxlink": "اطلاعات صفحه",
 	"pageinfo-redirectsto": "تغییرمسیر به",

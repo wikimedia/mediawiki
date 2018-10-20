@@ -627,6 +627,8 @@
 	"passwordreset-emailelement": "Brugernavn: \n$1\n\nMidlertidig adgangskode: \n$2",
 	"passwordreset-emailsentemail": "Hvis denne e-mailadresse er knyttet til din konto, så vil en e-mail om nulstilling af adgangskoden blive sendt.",
 	"passwordreset-emailsentusername": "Hvis der er en e-mailadresse forbundet med dette brugernavn, så vil en e-mail om nulstilling af adgangskoden blive sendt.",
+	"passwordreset-nocaller": "En kalder skal angives",
+	"passwordreset-nosuchcaller": "Kalderen findes ikke: $1",
 	"passwordreset-invalidemail": "Ugyldig e-mailadresse",
 	"passwordreset-nodata": "Hverken et brugernavn eller en e-mailadresse blev angivet",
 	"changeemail": "Ændr eller fjern e-mailadresse",
