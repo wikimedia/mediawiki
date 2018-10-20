@@ -537,11 +537,7 @@ abstract class Installer {
 	 * @return mixed
 	 */
 	public function getVar( $name, $default = null ) {
-		if ( !isset( $this->settings[$name] ) ) {
-			return $default;
-		} else {
-			return $this->settings[$name];
-		}
+		return $this->settings[$name] ?? $default;
 	}
 
 	/**
@@ -1505,9 +1501,8 @@ abstract class Installer {
 		$data = $registry->readFromQueue( $queue );
 		$wgAutoloadClasses += $data['autoload'];
 
-		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?
-			/** @suppress PhanUndeclaredVariable $wgHooks is set by DefaultSettings */
-			$wgHooks['LoadExtensionSchemaUpdates'] : [];
+		/** @suppress PhanUndeclaredVariable $wgHooks is set by DefaultSettings */
+		$hooksWeWant = $wgHooks['LoadExtensionSchemaUpdates'] ?? [];
 
 		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
 			$hooksWeWant = array_merge_recursive(

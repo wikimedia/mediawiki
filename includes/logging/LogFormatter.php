@@ -51,13 +51,7 @@ class LogFormatter {
 		global $wgLogActionsHandlers;
 		$fulltype = $entry->getFullType();
 		$wildcard = $entry->getType() . '/*';
-		$handler = '';
-
-		if ( isset( $wgLogActionsHandlers[$fulltype] ) ) {
-			$handler = $wgLogActionsHandlers[$fulltype];
-		} elseif ( isset( $wgLogActionsHandlers[$wildcard] ) ) {
-			$handler = $wgLogActionsHandlers[$wildcard];
-		}
+		$handler = $wgLogActionsHandlers[$fulltype] ?? $wgLogActionsHandlers[$wildcard] ?? '';
 
 		if ( $handler !== '' && is_string( $handler ) && class_exists( $handler ) ) {
 			return new $handler( $entry );

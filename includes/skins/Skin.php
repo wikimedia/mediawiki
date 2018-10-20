@@ -342,10 +342,7 @@ abstract class Skin extends ContextSource {
 	 * @return Title
 	 */
 	public function getRelevantTitle() {
-		if ( isset( $this->mRelevantTitle ) ) {
-			return $this->mRelevantTitle;
-		}
-		return $this->getTitle();
+		return $this->mRelevantTitle ?? $this->getTitle();
 	}
 
 	/**

@@ -174,11 +174,7 @@ abstract class ChangesListFilterGroup {
 		}
 
 		$this->type = $groupDefinition['type'];
-		if ( isset( $groupDefinition['priority'] ) ) {
-			$this->priority = $groupDefinition['priority'];
-		} else {
-			$this->priority = self::DEFAULT_PRIORITY;
-		}
+		$this->priority = $groupDefinition['priority'] ?? self::DEFAULT_PRIORITY;
 
 		$this->isFullCoverage = $groupDefinition['isFullCoverage'];
 

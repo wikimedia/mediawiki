@@ -97,11 +97,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		$this->url = wfExpandUrl( $url, PROTO_HTTP );
 		$this->parsedUrl = wfParseUrl( $this->url );
 
-		if ( isset( $options['logger'] ) ) {
-			$this->logger = $options['logger'];
-		} else {
-			$this->logger = new NullLogger();
-		}
+		$this->logger = $options['logger'] ?? new NullLogger();
 
 		if ( !$this->parsedUrl || !Http::isValidURI( $this->url ) ) {
 			$this->status = StatusValue::newFatal( 'http-invalid-url', $url );

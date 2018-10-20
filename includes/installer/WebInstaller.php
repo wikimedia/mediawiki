@@ -178,17 +178,9 @@ class WebInstaller extends Installer {
 			return $this->session;
 		}
 
-		if ( isset( $session['happyPages'] ) ) {
-			$this->happyPages = $session['happyPages'];
-		} else {
-			$this->happyPages = [];
-		}
+		$this->happyPages = $session['happyPages'] ?? [];
 
-		if ( isset( $session['skippedPages'] ) ) {
-			$this->skippedPages = $session['skippedPages'];
-		} else {
-			$this->skippedPages = [];
-		}
+		$this->skippedPages = $session['skippedPages'] ?? [];
 
 		$lowestUnhappy = $this->getLowestUnhappy();
 
@@ -468,11 +460,7 @@ class WebInstaller extends Installer {
 	 * @return array
 	 */
 	public function getSession( $name, $default = null ) {
-		if ( !isset( $this->session[$name] ) ) {
-			return $default;
-		} else {
-			return $this->session[$name];
-		}
+		return $this->session[$name] ?? $default;
 	}
 
 	/**
@@ -932,11 +920,7 @@ class WebInstaller extends Installer {
 		if ( !isset( $params['labelAttribs'] ) ) {
 			$params['labelAttribs'] = [];
 		}
-		if ( isset( $params['rawtext'] ) ) {
-			$labelText = $params['rawtext'];
-		} else {
-			$labelText = $this->parse( wfMessage( $params['label'] )->text() );
-		}
+		$labelText = $params['rawtext'] ?? $this->parse( wfMessage( $params['label'] )->text() );
 
 		return "<div class=\"config-input-check\">\n" .
 			$params['help'] .
@@ -978,11 +962,7 @@ class WebInstaller extends Installer {
 	public function getRadioSet( $params ) {
 		$items = $this->getRadioElements( $params );
 
-		if ( !isset( $params['label'] ) ) {
-			$label = '';
-		} else {
-			$label = $params['label'];
-		}
+		$label = $params['label'] ?? '';
 
 		if ( !isset( $params['controlName'] ) ) {
 			$params['controlName'] = 'config_' . $params['var'];

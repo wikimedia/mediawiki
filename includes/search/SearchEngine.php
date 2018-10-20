@@ -219,10 +219,7 @@ abstract class SearchEngine {
 	 * @return mixed the feature value or null if unset
 	 */
 	public function getFeatureData( $feature ) {
-		if ( isset( $this->features[$feature] ) ) {
-			return $this->features[$feature];
-		}
-		return null;
+		return $this->features[$feature] ?? null;
 	}
 
 	/**

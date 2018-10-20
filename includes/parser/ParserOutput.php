@@ -1127,11 +1127,7 @@ class ParserOutput extends CacheTime {
 	 *         or null if no value was set for this key.
 	 */
 	public function getExtensionData( $key ) {
-		if ( isset( $this->mExtensionData[$key] ) ) {
-			return $this->mExtensionData[$key];
-		}
-
-		return null;
+		return $this->mExtensionData[$key] ?? null;
 	}
 
 	private static function getTimes( $clock = null ) {

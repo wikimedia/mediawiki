@@ -371,11 +371,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @return string
 	 */
 	function makeLink( $key, $item, $options = [] ) {
-		if ( isset( $item['text'] ) ) {
-			$text = $item['text'];
-		} else {
-			$text = wfMessage( $item['msg'] ?? $key )->text();
-		}
+		$text = $item['text'] ?? wfMessage( $item['msg'] ?? $key )->text();
 
 		$html = htmlspecialchars( $text );
 

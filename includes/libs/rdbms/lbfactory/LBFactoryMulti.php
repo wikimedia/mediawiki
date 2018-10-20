@@ -203,11 +203,7 @@ class LBFactoryMulti extends LBFactory {
 			return $this->lastSection;
 		}
 		list( $dbName, ) = $this->getDBNameAndPrefix( $domain );
-		if ( isset( $this->sectionsByDB[$dbName] ) ) {
-			$section = $this->sectionsByDB[$dbName];
-		} else {
-			$section = 'DEFAULT';
-		}
+		$section = $this->sectionsByDB[$dbName] ?? 'DEFAULT';
 		$this->lastSection = $section;
 		$this->lastDomain = $domain;
 
@@ -221,11 +217,7 @@ class LBFactoryMulti extends LBFactory {
 	public function newMainLB( $domain = false ) {
 		list( $dbName, ) = $this->getDBNameAndPrefix( $domain );
 		$section = $this->getSectionForDomain( $domain );
-		if ( isset( $this->groupLoadsByDB[$dbName] ) ) {
-			$groupLoads = $this->groupLoadsByDB[$dbName];
-		} else {
-			$groupLoads = [];
-		}
+		$groupLoads = $this->groupLoadsByDB[$dbName] ?? [];
 
 		if ( isset( $this->groupLoadsBySection[$section] ) ) {
 			$groupLoads = array_merge_recursive(
@@ -370,11 +362,7 @@ class LBFactoryMulti extends LBFactory {
 			if ( isset( $groupLoadsByServer[$serverName] ) ) {
 				$serverInfo['groupLoads'] = $groupLoadsByServer[$serverName];
 			}
-			if ( isset( $this->hostsByName[$serverName] ) ) {
-				$serverInfo['host'] = $this->hostsByName[$serverName];
-			} else {
-				$serverInfo['host'] = $serverName;
-			}
+			$serverInfo['host'] = $this->hostsByName[$serverName] ?? $serverName;
 			$serverInfo['hostName'] = $serverName;
 			$serverInfo['load'] = $load;
 			$serverInfo += [ 'flags' => IDatabase::DBO_DEFAULT ];
