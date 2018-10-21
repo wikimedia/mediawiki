@@ -4721,5 +4721,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Password policy that enforces that passwords are not on a list of blacklisted passwords (often previously used during MediaWiki automated testing)",
 	"passwordpolicies-policy-maximalpasswordlength": "Password policy that enforces a maximum number of characters a password must be. $1 - maximum number of characters that a password can be",
 	"passwordpolicies-policy-passwordcannotbepopular": "Password policy that enforces that a password is not in a list of $1 number of \"popular\" passwords. $1 - number of popular passwords the password will be checked against",
-	"easydeflate-invaliddeflate": "Error message if the content passed to easydeflate was not deflated (compressed) properly"
+	"easydeflate-invaliddeflate": "Error message if the content passed to easydeflate was not deflated (compressed) properly",
+	"unprotected-js": "Error message shown when trying to load javascript via action=raw that is not protected"
 }

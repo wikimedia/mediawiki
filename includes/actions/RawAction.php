@@ -129,6 +129,30 @@ class RawAction extends FormlessAction {
 			}
 		}
 
+		// Don't allow loading non-protected pages as javascript.
+		// In future we may further restrict this to only CONTENT_MODEL_JAVASCRIPT
+		// in NS_MEDIAWIKI or NS_USER, as well as including other config types,
+		// but for now be more permissive. Allowing protected pages outside of
+		// NS_USER and NS_MEDIAWIKI in particular should be considered a temporary
+		// allowance.
+		if (
+			$contentType === 'text/javascript' &&
+			!$title->isUserJsConfigPage() &&
+			!$title->inNamespace( NS_MEDIAWIKI ) &&
+			!in_array( 'sysop', $title->getRestrictions( 'edit' ) ) &&
+			!in_array( 'editprotected', $title->getRestrictions( 'edit' ) )
+		) {
+
+			$log = LoggerFactory::getInstance( "security" );
+			$log->info( "Blocked loading unprotected JS {title} for {user}",
+				[
+					'user' => $this->getUser()->getName(),
+					'title' => $title->getPrefixedDBKey(),
+				]
+			);
+			throw new HttpError( 403, wfMessage( 'unprotected-js' ) );
+		}
+
 		$response->header( 'Content-type: ' . $contentType . '; charset=UTF-8' );
 
 		$text = $this->getRawText();
