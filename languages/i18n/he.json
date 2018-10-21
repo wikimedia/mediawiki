@@ -4172,5 +4172,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "הסיסמה לא יכולה להתאים לסיסמאות מסוימות שנמצאות ברשימה השחורה",
 	"passwordpolicies-policy-maximalpasswordlength": "הסיסמה חייבת להיות קצרה יותר {{PLURAL:$1|מתו אחד|מ־$1 תווים}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "הסיסמה לא יכולה להיות זהה {{PLURAL:$1|לסיסמה נפוצה|לאחת הסיסמאות שנמצאות ברשימה של $1 הסיסמאות הנפוצות}}",
-	"easydeflate-invaliddeflate": "התוכן שהועבר אינו דחוס כנדרש"
+	"easydeflate-invaliddeflate": "התוכן שהועבר אינו דחוס כנדרש",
+	"unprotected-js": "מסיבות אבטחה, לא ניתן לטעון JavaScript מדפים שאינם מוגנים. ניתן ליצור סקריפטי JavaScript רק במרחב השם \"מדיה ויקי:\" או בדפי משנה של דף המשתמש."
 }

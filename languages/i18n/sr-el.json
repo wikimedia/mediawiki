@@ -330,6 +330,7 @@
 	"databaseerror-query": "Upit: $1",
 	"databaseerror-function": "Funkcija: $1",
 	"databaseerror-error": "Greška: $1",
+	"transaction-duration-limit-exceeded": "Zbog izbegavanja velikih kopirajućih zaostajanja, ova transakcija je prekinuta zbog toga što je trajanje zapisivanja ($1) premašilo ($2) sekundi ograničenja. \nUkoliko menjate puno artikala odjednom, pokušajte sa više manjih operacija.",
 	"laggedslavemode": "<strong>Upozorenje:</strong> stranica možda ne sadrži nedavna ažuriranja.",
 	"readonly": "Baza podataka je zaključana",
 	"enterlockreason": "Unesite razlog za zaključavanje, uključujući i vreme otključavanja",
@@ -4200,4 +4201,3 @@
 	"passwordpolicies-policy-maximalpasswordlength": "Lozinka mora da bude kraća od $1 {{PLURAL:$1|znaka|znakova}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "Lozinka ne može da bude {{PLURAL:$1|popularna lozinka|na spisku $1 popularnih lozinki}}"
 }
-
