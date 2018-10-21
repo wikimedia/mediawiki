@@ -43,7 +43,7 @@ class MediaWiki {
 	private $config;
 
 	/**
-	 * @var String Cache what action this request is
+	 * @var string Cache what action this request is
 	 */
 	private $action;
 

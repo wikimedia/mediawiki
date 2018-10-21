@@ -874,8 +874,8 @@ abstract class MediaHandler {
 	/**
 	 * Converts a dimensions array about a potentially multipage document from an
 	 * exhaustive list of ordered page numbers to a list of page ranges
-	 * @param Array $pagesByDimensions
-	 * @return String
+	 * @param array $pagesByDimensions
+	 * @return string
 	 * @since 1.30
 	 */
 	public static function getPageRangesByDimensions( $pagesByDimensions ) {

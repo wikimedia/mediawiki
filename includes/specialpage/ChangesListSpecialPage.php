@@ -836,7 +836,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Fetch the change tags list for the front end
 	 *
-	 * @return Array Tag data
+	 * @return array Tag data
 	 */
 	protected function getChangeTagList() {
 		$cache = ObjectCache::getMainWANInstance();

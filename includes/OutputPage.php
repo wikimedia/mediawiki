@@ -4110,8 +4110,8 @@ class OutputPage extends ContextSource {
 	 * Helper function to setup the PHP implementation of OOUI to use in this request.
 	 *
 	 * @since 1.26
-	 * @param String $skinName The Skin name to determine the correct OOUI theme
-	 * @param String $dir Language direction
+	 * @param string $skinName The Skin name to determine the correct OOUI theme
+	 * @param string $dir Language direction
 	 */
 	public static function setupOOUI( $skinName = 'default', $dir = 'ltr' ) {
 		$themes = ResourceLoaderOOUIModule::getSkinThemeMap();

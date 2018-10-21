@@ -66,8 +66,8 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 
 	/**
 	 * Combines the passed element with a button.
-	 * @param String $element Element to combine the button with.
-	 * @return String
+	 * @param string $element Element to combine the button with.
+	 * @return string
 	 */
 	public function getElement( $element ) {
 		return $element . "\u{00A0}" . $this->getInputHTML( '' );

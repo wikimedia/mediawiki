@@ -92,7 +92,7 @@ class JavaScriptMinifier {
 	 * Returns minified JavaScript code.
 	 *
 	 * @param string $s JavaScript code to minify
-	 * @return String Minified code
+	 * @return string Minified code
 	 */
 	public static function minify( $s ) {
 		// First we declare a few tables that contain our parsing rules

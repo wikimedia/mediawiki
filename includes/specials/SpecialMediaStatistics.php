@@ -102,7 +102,7 @@ class MediaStatisticsPage extends QueryPage {
 	 *
 	 * It's important that img_media_type come first, otherwise the
 	 * tables will be fragmented.
-	 * @return Array Fields to sort by
+	 * @return array Fields to sort by
 	 */
 	function getOrderFields() {
 		return [ 'img_media_type', 'count(*)', 'img_major_mime', 'img_minor_mime' ];
@@ -214,7 +214,7 @@ class MediaStatisticsPage extends QueryPage {
 
 	/**
 	 * @param float $decimal A decimal percentage (ie for 12.3%, this would be 0.123)
-	 * @return String The percentage formatted so that 3 significant digits are shown.
+	 * @return string The percentage formatted so that 3 significant digits are shown.
 	 */
 	protected function makePercentPretty( $decimal ) {
 		$decimal *= 100;
@@ -275,7 +275,7 @@ class MediaStatisticsPage extends QueryPage {
 	/**
 	 * Get (not output) the header row for the table
 	 *
-	 * @return String the header row of the able
+	 * @return string The header row of the table
 	 */
 	protected function getTableHeaderRow() {
 		$headers = [ 'mimetype', 'extensions', 'count', 'totalbytes' ];
