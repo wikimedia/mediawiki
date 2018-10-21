@@ -1503,14 +1503,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$options = [ $options ];
 		}
 
-		$res = $this->select( $table, $var, $cond, $fname, $options, $join_conds );
+		$res = $this->select( $table, [ 'value' => $var ], $cond, $fname, $options, $join_conds );
 		if ( $res === false ) {
 			return false;
 		}
 
 		$values = [];
 		foreach ( $res as $row ) {
-			$values[] = $row->$var;
+			$values[] = $row->value;
 		}
 
 		return $values;

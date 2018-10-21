@@ -2047,4 +2047,21 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertLastSql( 'BEGIN; SELECT 1; COMMIT' );
 		$this->assertEquals( 0, $this->database->trxLevel() );
 	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\Database::selectFieldValues()
+	 */
+	public function testSelectFieldValues() {
+		$this->database->forceNextResult( [
+			(object)[ 'value' => 'row1' ],
+			(object)[ 'value' => 'row2' ],
+			(object)[ 'value' => 'row3' ],
+		] );
+
+		$this->assertSame(
+			[ 'row1', 'row2', 'row3' ],
+			$this->database->selectFieldValues( 'table', 'table.field', 'conds', __METHOD__ )
+		);
+		$this->assertLastSql( 'SELECT table.field AS value FROM table WHERE conds' );
+	}
 }
