@@ -23,7 +23,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -201,7 +201,7 @@ class LocalRepo extends FileRepo {
 		}
 
 		$method = __METHOD__;
-		$redirDbKey = MediaWikiServices::getInstance()->getMainWANObjectCache()->getWithSetCallback(
+		$redirDbKey = $this->wanCache->getWithSetCallback(
 			$memcKey,
 			$expiry,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $method, $title ) {
@@ -275,7 +275,7 @@ class LocalRepo extends FileRepo {
 			);
 		};
 
-		$applyMatchingFiles = function ( ResultWrapper $res, &$searchSet, &$finalFiles )
+		$applyMatchingFiles = function ( IResultWrapper $res, &$searchSet, &$finalFiles )
 			use ( $fileMatchesSearch, $flags )
 		{
 			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
@@ -500,14 +500,14 @@ class LocalRepo extends FileRepo {
 	/**
 	 * Get a key on the primary cache for this repository.
 	 * Returns false if the repository's cache is not accessible at this site.
-	 * The parameters are the parts of the key, as for wfMemcKey().
+	 * The parameters are the parts of the key.
 	 *
 	 * @return string
 	 */
 	function getSharedCacheKey( /*...*/ ) {
 		$args = func_get_args();
 
-		return wfMemcKey( ...$args );
+		return $this->wanCache->makeKey( ...$args );
 	}
 
 	/**
@@ -521,7 +521,7 @@ class LocalRepo extends FileRepo {
 		if ( $key ) {
 			$this->getMasterDB()->onTransactionPreCommitOrIdle(
 				function () use ( $key ) {
-					MediaWikiServices::getInstance()->getMainWANObjectCache()->delete( $key );
+					$this->wanCache->delete( $key );
 				},
 				__METHOD__
 			);

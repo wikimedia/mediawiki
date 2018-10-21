@@ -21,6 +21,8 @@
  * @ingroup FileRepo
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Prioritized list of file repositories
  *
@@ -61,6 +63,7 @@ class RepoGroup {
 			return self::$instance;
 		}
 		global $wgLocalFileRepo, $wgForeignFileRepos;
+		/** @var array $wgLocalFileRepo */
 		self::$instance = new RepoGroup( $wgLocalFileRepo, $wgForeignFileRepos );
 
 		return self::$instance;
@@ -164,7 +167,7 @@ class RepoGroup {
 			}
 		}
 
-		$image = $image ?: false; // type sanity
+		$image = $image instanceof File ? $image : false; // type sanity
 		# Cache file existence or non-existence
 		if ( $useCache && ( !$image || $image->isCacheable() ) ) {
 			$this->cache->setField( $dbkey, $timeKey, $image );
@@ -317,7 +320,7 @@ class RepoGroup {
 	/**
 	 * Get the repo instance with a given key.
 	 * @param string|int $index
-	 * @return bool|LocalRepo
+	 * @return bool|FileRepo
 	 */
 	function getRepo( $index ) {
 		if ( !$this->reposInitialised ) {
@@ -354,7 +357,10 @@ class RepoGroup {
 	 * @return LocalRepo
 	 */
 	function getLocalRepo() {
-		return $this->getRepo( 'local' );
+		/** @var LocalRepo $repo */
+		$repo = $this->getRepo( 'local' );
+
+		return $repo;
 	}
 
 	/**
@@ -412,6 +418,9 @@ class RepoGroup {
 	 */
 	protected function newRepo( $info ) {
 		$class = $info['class'];
+
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$info['wanCache'] = $cache;
 
 		return new $class( $info );
 	}
