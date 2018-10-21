@@ -20,6 +20,8 @@ project.index
 ## Sublime
 sublime-*
 sftp-config.json
+## Visual Studio Code
+*.vscode
 
 # MediaWiki install & usage
 /cache
