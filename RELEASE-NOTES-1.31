@@ -16,6 +16,10 @@ THIS IS NOT A RELEASE YET
 * Fix PHP 7.3 warnings "preg_replace(): [...] invalid range in character class"
 * (T207540) Include IP address in "Login for $1 succeeded" log entry.
 * (T207541) Pass email address to mail().
+* (T207603) User JS may no longer be loaded with mime type text/javascript if
+  there is no account associated with the username.
+* (T113042) Do not allow loading pages raw with a text/javascript MIME type if
+  non-admins can edit the page.
 
 == MediaWiki 1.31.1 ==
 
