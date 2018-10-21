@@ -2622,7 +2622,13 @@ class User implements IDBAccessObject, UserIdentity {
 			$this->isAnon() ? [ 'user_ip' => $this->getName() ] : [ 'user_id' => $this->getId() ],
 			__METHOD__ );
 		$rev = $timestamp ? Revision::loadFromTimestamp( $dbr, $utp, $timestamp ) : null;
-		return [ [ 'wiki' => wfWikiID(), 'link' => $utp->getLocalURL(), 'rev' => $rev ] ];
+		return [
+			[
+				'wiki' => WikiMap::getWikiIdFromDomain( WikiMap::getCurrentWikiDomain() ),
+				'link' => $utp->getLocalURL(),
+				'rev' => $rev
+			]
+		];
 	}
 
 	/**

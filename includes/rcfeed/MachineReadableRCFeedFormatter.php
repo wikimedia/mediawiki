@@ -125,7 +125,7 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 		$packet['server_name'] = $wgServerName;
 
 		$packet['server_script_path'] = $wgScriptPath ?: '/';
-		$packet['wiki'] = wfWikiID();
+		$packet['wiki'] = WikiMap::getWikiIdFromDomain( WikiMap::getCurrentWikiDomain() );
 
 		return $this->formatArray( $packet );
 	}

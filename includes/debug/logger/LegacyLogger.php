@@ -22,6 +22,7 @@ namespace MediaWiki\Logger;
 
 use DateTimeZone;
 use Exception;
+use WikiMap;
 use MWDebug;
 use MWExceptionHandler;
 use Psr\Log\AbstractLogger;
@@ -306,7 +307,7 @@ class LegacyLogger extends AbstractLogger {
 		$date = $d->format( 'D M j G:i:s T Y' );
 
 		$host = wfHostname();
-		$wiki = wfWikiID();
+		$wiki = WikiMap::getWikiIdFromDomain( WikiMap::getCurrentWikiDomain() );
 
 		$text = "{$date}\t{$host}\t{$wiki}\t{$message}\n";
 		return $text;
@@ -322,7 +323,7 @@ class LegacyLogger extends AbstractLogger {
 	 */
 	protected static function formatAsWfDebugLog( $channel, $message, $context ) {
 		$time = wfTimestamp( TS_DB );
-		$wiki = wfWikiID();
+		$wiki = WikiMap::getWikiIdFromDomain( WikiMap::getCurrentWikiDomain() );
 		$host = wfHostname();
 		$text = "{$time} {$host} {$wiki}: {$message}\n";
 		return $text;
