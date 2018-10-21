@@ -85,7 +85,8 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 			return $this->newNotOkStatus();
 		}
 
-		$user = $importableRevision->getUserObj() ?: User::newFromName( $importableRevision->getUser() );
+		$user = $importableRevision->getUserObj()
+			?: User::newFromName( $importableRevision->getUser(), false );
 
 		# Do the actual upload
 		if ( $archiveName ) {
