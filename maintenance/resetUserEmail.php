@@ -65,6 +65,7 @@ class ResetUserEmail extends Maintenance {
 			// Kick whomever is currently controlling the account off
 			$user->setPassword( PasswordFactory::generateRandomPasswordString( 128 ) );
 		}
+		$this->output( "Done!\n" );
 	}
 }
 
