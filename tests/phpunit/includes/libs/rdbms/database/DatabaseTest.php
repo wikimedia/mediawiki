@@ -681,4 +681,5 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $oldPrefix, $this->db->tablePrefix() );
 		$this->assertSame( $oldDomain, $this->db->getDomainId() );
 	}
+
 }
