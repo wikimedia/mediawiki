@@ -309,7 +309,7 @@
 	"config-help": "help",
 	"config-help-tooltip": "click to expand",
 	"config-nofile": "File \"$1\" could not be found. Has it been deleted?",
-	"config-extension-link": "Did you know that your wiki supports [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensions]?\n\nYou can browse [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions by category] or the [//www.mediawiki.org/wiki/Extension_Matrix Extension Matrix] to see the full list of extensions.",
+	"config-extension-link": "Did you know that your wiki supports [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensions]?\n\nYou can browse [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions by category].",
 	"mainpagetext": "<strong>MediaWiki has been installed.</strong>",
 	"mainpagedocfooter": "Consult the [//meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.\n\n== Getting started ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki for your language]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Learn how to combat spam on your wiki]"
 }
