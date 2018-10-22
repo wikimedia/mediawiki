@@ -66,6 +66,9 @@ because of Phabricator reports.
   applied for Arabic and Malayalam in the future.  Please enable these on
   your local wiki (if you have them explicitly set to false) and run
   maintenance/cleanupTitles.php to fix any existing page titles.
+* The LegacyHookPreAuthenticationProvider class, deprecated since its creation
+  in 1.27 as part of the AuthManager re-write, now emits deprecation warnings.
+  This will help identify the issue if you added it to $wgAuthManagerConfig.
 * …
 
 === Other changes in 1.33 ===
