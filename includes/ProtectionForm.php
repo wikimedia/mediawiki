@@ -216,7 +216,9 @@ class ProtectionForm {
 				'protect-norestrictiontypes-title',
 				$this->mTitle->getPrefixedText()
 			) );
-			$out->addWikiText( $this->mContext->msg( 'protect-norestrictiontypes-text' )->plain() );
+			$out->addWikiTextAsInterface(
+				$this->mContext->msg( 'protect-norestrictiontypes-text' )->plain()
+			);
 
 			// Show the log in case protection was possible once
 			$this->showLogExtract( $out );
@@ -246,7 +248,9 @@ class ProtectionForm {
 				$this->mContext->msg( 'protect-title-notallowed',
 					$this->mTitle->getPrefixedText() )
 			);
-			$out->addWikiText( $out->formatPermissionsErrorMessage( $this->mPermErrors, 'protect' ) );
+			$out->addWikiTextAsInterface( $out->formatPermissionsErrorMessage(
+				$this->mPermErrors, 'protect'
+			) );
 		} else {
 			$out->setPageTitle( $this->mContext->msg( 'protect-title', $this->mTitle->getPrefixedText() ) );
 			$out->addWikiMsg( 'protect-text',

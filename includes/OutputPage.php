@@ -2774,7 +2774,7 @@ class OutputPage extends ContextSource {
 			}
 		} else {
 			$this->prepareErrorPage( $this->msg( 'permissionserrors' ) );
-			$this->addWikiText( $this->formatPermissionsErrorMessage( $errors, $action ) );
+			$this->addWikiTextAsInterface( $this->formatPermissionsErrorMessage( $errors, $action ) );
 		}
 	}
 
@@ -4045,7 +4045,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * Is equivalent to:
 	 *
-	 *    $wgOut->addWikiText( "<div class='error'>\n"
+	 *    $wgOut->addWikiTextAsInterface( "<div class='error'>\n"
 	 *        . wfMessage( 'some-error' )->plain() . "\n</div>" );
 	 *
 	 * The newline after the opening div is needed in some wikitext. See T21226.
@@ -4074,7 +4074,7 @@ class OutputPage extends ContextSource {
 			}
 			$s = str_replace( '$' . ( $n + 1 ), $this->msg( $name, $args )->plain(), $s );
 		}
-		$this->addWikiText( $s );
+		$this->addWikiTextAsInterface( $s );
 	}
 
 	/**

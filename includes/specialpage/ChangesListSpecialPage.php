@@ -1591,7 +1591,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Send the text to be displayed before the options. Should use $this->getOutput()->addWikiText()
+	 * Send the text to be displayed before the options.
+	 * Should use $this->getOutput()->addWikiTextAsInterface()
 	 * or similar methods to print the text.
 	 *
 	 * @param FormOptions $opts
@@ -1601,7 +1602,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Send the text to be displayed after the options. Should use $this->getOutput()->addWikiText()
+	 * Send the text to be displayed after the options.
+	 * Should use $this->getOutput()->addWikiTextAsInterface()
 	 * or similar methods to print the text.
 	 *
 	 * @param FormOptions $opts

@@ -158,7 +158,7 @@ class ImagePage extends Article {
 		if ( $this->mExtraDescription ) {
 			$fol = $this->getContext()->msg( 'shareddescriptionfollows' );
 			if ( !$fol->isDisabled() ) {
-				$out->addWikiText( $fol->plain() );
+				$out->addWikiTextAsInterface( $fol->plain() );
 			}
 			$out->addHTML( '<div id="shared-image-desc">' . $this->mExtraDescription . "</div>\n" );
 		}
@@ -187,7 +187,7 @@ class ImagePage extends Article {
 				'h2',
 				[ 'id' => 'metadata' ],
 					$this->getContext()->msg( 'metadata' )->text() ) . "\n" );
-			$out->addWikiText( $this->makeMetadataTable( $formattedMetadata ) );
+			$out->addWikiTextAsInterface( $this->makeMetadataTable( $formattedMetadata ) );
 			$out->addModules( [ 'mediawiki.action.view.metadata' ] );
 		}
 
@@ -539,14 +539,14 @@ class ImagePage extends Article {
 				// to the filename, because it can get copied with it.
 				// See T27277.
 				// phpcs:disable Generic.Files.LineLength
-				$out->addWikiText( <<<EOT
+				$out->addWikiTextAsInterface( <<<EOT
 <div class="fullMedia"><span class="dangerousLink">{$medialink}</span> $dirmark<span class="fileInfo">$longDesc</span></div>
 <div class="mediaWarning">$warning</div>
 EOT
 				);
 				// phpcs:enable
 			} else {
-				$out->addWikiText( <<<EOT
+				$out->addWikiTextAsInterface( <<<EOT
 <div class="fullMedia">{$medialink} {$dirmark}<span class="fileInfo">$longDesc</span>
 </div>
 EOT
@@ -571,7 +571,7 @@ EOT
 					'file-no-thumb-animation'
 				)->plain();
 
-				$out->addWikiText( <<<EOT
+				$out->addWikiTextAsInterface( <<<EOT
 <div class="mw-noanimatethumb">{$noAnimMesg}</div>
 EOT
 				);
@@ -1002,7 +1002,7 @@ EOT
 		$out->setRobotPolicy( 'noindex,nofollow' );
 		$out->setArticleRelated( false );
 		$out->enableClientCache( false );
-		$out->addWikiText( $description );
+		$out->addWikiTextAsInterface( $description );
 	}
 
 	/**
