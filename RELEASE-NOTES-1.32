@@ -148,6 +148,7 @@ production.
 * Updated wikimedia/timestamp from 1.0.0 to 2.2.0.
 * Updated wikimedia/remex-html from 1.0.3 to 2.0.0.
 * Updated jquery from v3.2.1 to v3.3.1.
+* Updated wikimedia/base-convert from 1.0.1 to 2.0.0
 
 ==== Removed external libraries ====
 * pear/mail_mime-decode was removed.
