@@ -120,7 +120,7 @@ class FileDeleteForm {
 
 			if ( !$status->isGood() ) {
 				$wgOut->addHTML( '<h2>' . $this->prepareMessage( 'filedeleteerror-short' ) . "</h2>\n" );
-				$wgOut->addWikiText( '<div class="error">' .
+				$wgOut->addWikiTextAsInterface( '<div class="error">' .
 					$status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' )
 					. '</div>' );
 			}

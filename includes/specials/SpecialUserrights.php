@@ -160,7 +160,7 @@ class UserrightsPage extends SpecialPage {
 
 			// save settings
 			if ( !$fetchedStatus->isOK() ) {
-				$this->getOutput()->addWikiText( $fetchedStatus->getWikiText() );
+				$this->getOutput()->addWikiTextAsInterface( $fetchedStatus->getWikiText() );
 
 				return;
 			}
@@ -189,7 +189,7 @@ class UserrightsPage extends SpecialPage {
 					return;
 				} else {
 					// Print an error message and redisplay the form
-					$out->addWikiText( '<div class="error">' . $status->getWikiText() . '</div>' );
+					$out->addWikiTextAsInterface( '<div class="error">' . $status->getWikiText() . '</div>' );
 				}
 			}
 		}
@@ -468,7 +468,7 @@ class UserrightsPage extends SpecialPage {
 	function editUserGroupsForm( $username ) {
 		$status = $this->fetchUser( $username, true );
 		if ( !$status->isOK() ) {
-			$this->getOutput()->addWikiText( $status->getWikiText() );
+			$this->getOutput()->addWikiTextAsInterface( $status->getWikiText() );
 
 			return;
 		} else {

@@ -179,7 +179,7 @@ class SpecialImport extends SpecialPage {
 
 		$out = $this->getOutput();
 		if ( !$source->isGood() ) {
-			$out->addWikiText( "<div class=\"error\">\n" .
+			$out->addWikiTextAsInterface( "<div class=\"error\">\n" .
 				$this->msg( 'importfailed', $source->getWikiText() )->parse() . "\n</div>" );
 		} else {
 			$importer = new WikiImporter( $source->value, $this->getConfig() );
