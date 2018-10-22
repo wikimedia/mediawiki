@@ -33,7 +33,7 @@
 		"psr/log": "1.0.2",
 		"wikimedia/assert": "0.2.2",
 		"wikimedia/at-ease": "1.2.0",
-		"wikimedia/base-convert": "1.0.1",
+		"wikimedia/base-convert": "2.0.0",
 		"wikimedia/cdb": "1.4.1",
 		"wikimedia/cldr-plural-rule-parser": "1.0.0",
 		"wikimedia/composer-merge-plugin": "1.4.1",
