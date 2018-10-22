@@ -1552,7 +1552,6 @@ $wgAutoloadLocalClasses = [
 	'UserRightsProxy' => __DIR__ . '/includes/user/UserRightsProxy.php',
 	'UserrightsPage' => __DIR__ . '/includes/specials/SpecialUserrights.php',
 	'UsersPager' => __DIR__ . '/includes/specials/pagers/UsersPager.php',
-	'UtfNormal' => __DIR__ . '/includes/compat/normal/UtfNormal.php',
 	'UzConverter' => __DIR__ . '/languages/classes/LanguageUz.php',
 	'VFormHTMLForm' => __DIR__ . '/includes/htmlform/VFormHTMLForm.php',
 	'ValidateRegistrationFile' => __DIR__ . '/maintenance/validateRegistrationFile.php',
