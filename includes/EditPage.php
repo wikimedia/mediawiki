@@ -1640,11 +1640,7 @@ class EditPage {
 			case self::AS_CANNOT_USE_CUSTOM_MODEL:
 			case self::AS_PARSE_ERROR:
 			case self::AS_UNICODE_NOT_SUPPORTED:
-				$out->addWikiTextAsInterface(
-					'<div class="error">' . "\n" .
-					$status->getWikiText() .
-					'</div>'
-				);
+				$out->wrapWikiTextAsInterface( 'error', $status->getWikiText() );
 				return true;
 
 			case self::AS_SUCCESS_NEW_ARTICLE:
@@ -2995,7 +2991,7 @@ ERROR;
 					$this->contentFormat,
 					$ex->getMessage()
 				);
-				$out->addWikiTextAsInterface( '<div class="error">' . $msg->plain() . '</div>' );
+				$out->wrapWikiTextAsInterface( 'error', $msg->plain() );
 			}
 		}
 
@@ -3470,7 +3466,7 @@ ERROR;
 					$this->contentFormat,
 					$ex->getMessage()
 				);
-				$out->addWikiTextAsInterface( '<div class="error">' . $msg->plain() . '</div>' );
+				$out->wrapWikiTextAsInterface( 'error', $msg->plain() );
 			}
 		}
 	}

@@ -189,7 +189,7 @@ class UserrightsPage extends SpecialPage {
 					return;
 				} else {
 					// Print an error message and redisplay the form
-					$out->addWikiTextAsInterface( '<div class="error">' . $status->getWikiText() . '</div>' );
+					$out->wrapWikiTextAsInterface( 'error', $status->getWikiText() );
 				}
 			}
 		}
