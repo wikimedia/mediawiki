@@ -28,6 +28,7 @@ class RemexCompatMunger implements TreeHandler {
 		"button" => true,
 		"cite" => true,
 		"code" => true,
+		"del" => true,
 		"dfn" => true,
 		"em" => true,
 		"font" => true,
@@ -35,6 +36,7 @@ class RemexCompatMunger implements TreeHandler {
 		"iframe" => true,
 		"img" => true,
 		"input" => true,
+		"ins" => true,
 		"kbd" => true,
 		"label" => true,
 		"legend" => true,
@@ -260,7 +262,6 @@ class RemexCompatMunger implements TreeHandler {
 			$pElement = $parentData->childPElement;
 			$parentData->childPElement = null;
 			$newRef = $refElement->userData;
-			$this->endTag( $pElement, $sourceStart, 0 );
 		} elseif ( $under && $parentData->isSplittable
 			&& (bool)$parentData->ancestorPNode !== $inline
 		) {

@@ -2289,6 +2289,11 @@ Foo <del>bar</del> <ins>baz</ins> quux
 </p>
 </blockquote>
 
+!! html+tidy
+<blockquote>
+<p>Foo <del>bar</del> <ins>baz</ins> quux
+</p>
+</blockquote>
 !! end
 
 !! test
@@ -2301,7 +2306,7 @@ T17491: <ins>/<del> in blockquote (2)
 </blockquote>
 
 !! html+tidy
-<blockquote><p>Foo </p><del>bar</del> <ins>baz</ins><p> quux
+<blockquote><p>Foo <del>bar</del> <ins>baz</ins> quux
 </p></blockquote>
 !! end
 
