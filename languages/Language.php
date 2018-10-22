@@ -3539,28 +3539,6 @@ class Language {
 	}
 
 	/**
-	 * This method is deprecated since 1.31 and kept as alias for truncateForDatabase, which
-	 * has replaced it. This method provides truncation suitable for DB.
-	 *
-	 * The database offers limited byte lengths for some columns in the database;
-	 * multi-byte character sets mean we need to ensure that only whole characters
-	 * are included, otherwise broken characters can be passed to the user.
-	 *
-	 * @deprecated since 1.31, use truncateForDatabase or truncateForVisual as appropriate.
-	 *
-	 * @param string $string String to truncate
-	 * @param int $length Maximum length (including ellipsis)
-	 * @param string $ellipsis String to append to the truncated text
-	 * @param bool $adjustLength Subtract length of ellipsis from $length.
-	 * 	$adjustLength was introduced in 1.18, before that behaved as if false.
-	 * @return string
-	 */
-	function truncate( $string, $length, $ellipsis = '...', $adjustLength = true ) {
-		wfDeprecated( __METHOD__, '1.31' );
-		return $this->truncateForDatabase( $string, $length, $ellipsis, $adjustLength );
-	}
-
-	/**
 	 * Truncate a string to a specified length in bytes, appending an optional
 	 * string (e.g. for ellipsis)
 	 *
