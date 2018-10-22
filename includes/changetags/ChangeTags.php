@@ -807,15 +807,15 @@ class ChangeTags {
 		$tagTables[] = 'change_tag';
 		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
 			$tagTables[] = 'change_tag_def';
-			$join_cond_ts_tags = [ $join_cond, 'ct_tag_id=ctd_id' ];
+			$join_cond_ts_tags = [ 'change_tag_def' => [ 'INNER JOIN', 'ct_tag_id=ctd_id' ] ];
 			$field = 'ctd_name';
 		} else {
 			$field = 'ct_tag';
-			$join_cond_ts_tags = $join_cond;
+			$join_cond_ts_tags = [];
 		}
 
 		$fields['ts_tags'] = wfGetDB( DB_REPLICA )->buildGroupConcatField(
-			',', $tagTables, $field, $join_cond_ts_tags
+			',', $tagTables, $field, $join_cond, $join_cond_ts_tags
 		);
 
 		if ( $wgUseTagFilter && $filter_tag ) {
