@@ -212,9 +212,13 @@ class LanguageConverter {
 	}
 
 	/**
-	 * Validate the variant
+	 * Validate the variant and return an appropriate strict internal
+	 * variant code if one exists.  Compare to Language::hasVariant()
+	 * which does a strict test.
+	 *
 	 * @param string|null $variant The variant to validate
-	 * @return mixed Returns the variant if it is valid, null otherwise
+	 * @return mixed Returns an equivalent valid variant code if possible,
+	 *   null otherwise
 	 */
 	public function validateVariant( $variant = null ) {
 		if ( $variant === null ) {
