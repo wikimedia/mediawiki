@@ -2999,8 +2999,11 @@ $wgExtraLanguageNames = [];
  * @since 1.29
  */
 $wgExtraLanguageCodes = [
+	// Language codes of macro languages, which get mapped to the main language
 	'bh' => 'bho', // Bihari language family
 	'no' => 'nb', // Norwegian language family
+
+	// Language variants which get mapped to the main language
 	'simple' => 'en', // Simple English
 ];
 
@@ -3019,6 +3022,8 @@ $wgDummyLanguageCodes = [];
  *
  * Note that pages with titles containing presentation forms will become
  * inaccessible, run maintenance/cleanupTitles.php to fix this.
+ *
+ * @deprecated since 1.33: in the future will always be true.
  */
 $wgFixArabicUnicode = true;
 
@@ -3030,6 +3035,8 @@ $wgFixArabicUnicode = true;
  *
  * If you enable this on an existing wiki, run maintenance/cleanupTitles.php to
  * fix any ZWJ sequences in existing page titles.
+ *
+ * @deprecated since 1.33: in the future will always be true.
  */
 $wgFixMalayalamUnicode = true;
 
