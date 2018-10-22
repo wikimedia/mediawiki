@@ -542,11 +542,6 @@
 	url = https://github.com/miraheze/YouTube.git
 	branch = master
 	ignore = dirty
-[submodule "extensions/MsCalendar"]
-	path = extensions/MsCalendar
-	url = https://github.com/wikimedia/mediawiki-extensions-MsCalendar
-	branch = REL1_32
-	ignore = dirty
 [submodule "extensions/LabeledSectionTransclusion"]
 	path = extensions/LabeledSectionTransclusion
 	url = https://github.com/wikimedia/mediawiki-extensions-LabeledSectionTransclusion
