@@ -1879,6 +1879,19 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
+	 * @covers Language::hasVariant
+	 */
+	public function testHasVariant() {
+		// See LanguageSrTest::testHasVariant() for additional tests
+		$en = Language::factory( 'en' );
+		$this->assertTrue( $en->hasVariant( 'en' ), 'base is always a variant' );
+		$this->assertFalse( $en->hasVariant( 'en-bogus' ), 'bogus en variant' );
+
+		$bogus = Language::factory( 'bogus' );
+		$this->assertTrue( $bogus->hasVariant( 'bogus' ), 'base is always a variant' );
+	}
+
+	/**
 	 * @covers Language::equals
 	 */
 	public function testEquals() {
