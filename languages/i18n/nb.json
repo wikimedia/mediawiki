@@ -369,6 +369,7 @@
 	"badarticleerror": "Handlingen kan ikke utføres på denne siden.",
 	"cannotdelete": "Siden eller fila «$1» kunne ikke slettes.\nDen kan ha blitt slettet av noen andre.",
 	"cannotdelete-title": "Kan ikke slette siden «$1»",
+	"delete-scheduled": "Siden «$1» står i kø for å bli slettet.\nHa tålmodighet.",
 	"delete-hook-aborted": "Sletting avbrutt av en funksjon.\nDen ga ingen forklaring.",
 	"no-null-revision": "Det ble ikke laget en null-endring av side \"$1\"",
 	"badtitle": "Ugyldig tittel",
@@ -1963,7 +1964,7 @@
 	"prefixindex": "Alle sider med prefiks",
 	"prefixindex-namespace": "All sider med prefiks ($1 navnerom)",
 	"prefixindex-submit": "Vis",
-	"prefixindex-strip": "Fjern prefiks fra listen",
+	"prefixindex-strip": "Skjul prefikset i resultatene",
 	"shortpages": "Korte sider",
 	"longpages": "Lange sider",
 	"deadendpages": "Blindveisider",
@@ -2620,6 +2621,7 @@
 	"movepage-moved": "'''«$1» ble flyttet til «$2»'''",
 	"movepage-moved-redirect": "En omdirigering har blitt opprettet.",
 	"movepage-moved-noredirect": "Det ble ikke opprettet en omdirigering.",
+	"movepage-delete-first": "Målsiden har for mange revisjoner til å slettes som del av en sideflytting. Slett siden manuelt først og prøv så igjen.",
 	"articleexists": "En side med det navnet finnes allerede eller det valgte navn er ugyldig.\nVelg et annet navn.",
 	"cantmove-titleprotected": "Du kan ikke flytte en side til dette navnet, fordi den nye tittelen er beskyttet fra opprettelse.",
 	"movetalk": "Flytt tilhørende diskusjonsside.",
@@ -2914,6 +2916,7 @@
 	"pageinfo-category-files": "Antall filer",
 	"pageinfo-user-id": "Bruker-ID",
 	"pageinfo-file-hash": "Hash-verdi",
+	"pageinfo-view-protect-log": "Vis beskyttelsesloggen for denne siden.",
 	"markaspatrolleddiff": "Merk som patruljert",
 	"markaspatrolledtext": "Merk denne siden som patruljert",
 	"markaspatrolledtext-file": "Merk denne filversjonen som patruljert",
@@ -4130,5 +4133,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Passordet kan ikke matche spesifikt svartelistede passord",
 	"passwordpolicies-policy-maximalpasswordlength": "Passordet kan maksimalt være på $1 {{PLURAL:$1|tegn}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "Passordet kan ikke være {{PLURAL:$1|det populære passordet|i lista over $1 populære passord}}",
-	"easydeflate-invaliddeflate": "Det gitte innholdet er ikke riktig komprimert"
+	"easydeflate-invaliddeflate": "Det gitte innholdet er ikke riktig komprimert",
+	"unprotected-js": "Av sikkerhetsårsaker kan ikke JavaScript lastes fra ubeskyttede sider. Bare skap JavaScript i MediaWiki-navnerommet eller som en brukerunderside"
 }

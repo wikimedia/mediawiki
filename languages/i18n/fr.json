@@ -4322,5 +4322,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Les mots de passe ne peuvent pas être identiques à ceux qui sont dans la liste noire.",
 	"passwordpolicies-policy-maximalpasswordlength": "Les mots de passe doivent avoir moins de $1 caractère{{PLURAL:$1||s}} de long",
 	"passwordpolicies-policy-passwordcannotbepopular": "Le mot de passe ne peut pas être {{PLURAL:$1|le mot de passe populaire|dans la liste des $1 mots de passe populaires}}",
-	"easydeflate-invaliddeflate": "Le contenu fourni n'est pas correctement développé"
+	"easydeflate-invaliddeflate": "Le contenu fourni n'est pas correctement développé",
+	"unprotected-js": "Pour des raisons de sécurité, JavaScript ne peut pas être chargé depuis des pages non protégées. Veuillez ne créer du javascript que dans l’espace de noms MediaWiki: ou comme sous-page utilisateur"
 }

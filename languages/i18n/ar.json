@@ -4227,5 +4227,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "لا يمكن أن تتطابق كلمة المرور مع كلمات المرور المدرجة على القائمة السوداء تحديدا",
 	"passwordpolicies-policy-maximalpasswordlength": "يجب أن يكون طول كلمة المرور أقل من $1 {{PLURAL:$1|حرف|أحرف}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "لا يمكن أن تكون كلمة المرور {{PLURAL:$1|كلمة المرور الشائعة|في قائمة كلمات المرور الشائعة الـ$1}}",
-	"easydeflate-invaliddeflate": "المحتوى المقدم لا يتم تفريغه بشكل صحيح"
+	"easydeflate-invaliddeflate": "المحتوى المقدم لا يتم تفريغه بشكل صحيح",
+	"unprotected-js": "لأسباب تتعلق بالأمان; لا يمكن تحميل جافا سكريبت من الصفحات غير المحمية; الرجاء إنشاء جافا سكريبت فقط في نطاق ميدياويكي: أو كصفحة فرعية للمستخدم"
 }

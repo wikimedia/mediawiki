@@ -334,7 +334,7 @@
 	"config-help": "aide",
 	"config-help-tooltip": "cliquer pour agrandir",
 	"config-nofile": "Le fichier « $1 » est introuvable. A-t-il été supprimé ?",
-	"config-extension-link": "Saviez-vous que votre wiki prend en charge [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions des extensions] ?\n\nVous pouvez consulter les [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions par catégorie] ou la [https://www.mediawiki.org/wiki/Extension_Matrix matrice des extensions] pour voir la liste complète des extensions.",
+	"config-extension-link": "Saviez-vous que votre wiki prend en charge [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions des extensions] ?\n\nVous pouvez consulter les [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions par catégorie].",
 	"config-skins-screenshots": "$1 (captures d’écran : $2)",
 	"config-extensions-requires": "$1 (nécessite $2)",
 	"config-screenshot": "Captures d’écrans",

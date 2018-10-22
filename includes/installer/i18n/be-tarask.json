@@ -311,7 +311,7 @@
 	"config-help": "дапамога",
 	"config-help-tooltip": "націсьніце, каб разгарнуць",
 	"config-nofile": "Файл «$1» ня знойдзены. Ці быў ён выдалены?",
-	"config-extension-link": "Ці ведаеце вы, што вашая вікі падтрымлівае [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions пашырэньні]?\n\nВы можаце праглядзець [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category пашырэньні паводле катэгорыяў] або [https://www.mediawiki.org/wiki/Extension_Matrix матрыцу пашырэньняў], каб пабачыць поўны сьпіс.",
+	"config-extension-link": "Ці ведаеце вы, што вашая вікі падтрымлівае [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions пашырэньні]?\n\nВы можаце праглядзець [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category пашырэньні паводле катэгорыяў].",
 	"config-skins-screenshots": "$1 (здымкі экрану: $2)",
 	"config-extensions-requires": "$1 (патрабуе $2)",
 	"config-screenshot": "здымак экрану",

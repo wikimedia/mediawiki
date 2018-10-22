@@ -33,7 +33,8 @@
 			"MarcoAurelio",
 			"Iñaki LL",
 			"Amaia",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"CiaPan"
 		]
 	},
 	"tog-underline": "Azpimarratu loturak:",
@@ -678,7 +679,7 @@
 	"userpage-userdoesnotexist": "\"<nowiki>$1</nowiki>\" lankidea ez dago erregistatuta. Mesedez, konprobatu orri hau editatu/sortu nahi duzun.",
 	"userpage-userdoesnotexist-view": "\"$1\" erabiltzaile-kontua ez dago erregistraturik.",
 	"blocked-notice-logextract": "Erabiltzaile hau blokeatuta dago une honetan.\nAzken blokeoaren erregistroa ageri da behean, erreferentzia gisa:",
-	"clearyourcache": "<strong>Oharra:</strong> Gorde ondoren, zure nabigatzailearen katxea ekidin beharko duzu aldaketak ikusteko.\n* <strong>Firefox / Safari:</strong> <em>Shift</em> tekla sakatu birkargatzeko momentuan, edo <em>Ctrl-Shift-R</em> edo <em>Crtl-F5</em>  sakatu (<em>⌘-R</em> Mac batean)\n* <strong>Google Chrome:</strong> <em>Ctrl-Shift-R </em>  sakatu (<em>⌘-Shift-R</em> Mac batean)\n* <strong>Internet Explorer:</strong> <em>Ctrl</em> tekla sakatu birkargatzeko momentuan, edo <em>Ctrl-F5</em> sakatu\n* <strong>Opera</strong> erabiltzaileek <em>Tresnak → Hobespenak</em> atalera joan eta katxea garbitzeko aukera hautatu",
+	"clearyourcache": "<strong>Oharra:</strong> Gorde ondoren, zure nabigatzailearen katxea ekidin beharko duzu aldaketak ikusteko.\n* <strong>Firefox / Safari:</strong> <em>Shift</em> tekla sakatu birkargatzeko momentuan, edo <em>Ctrl-Shift-R</em> edo <em>Ctrl-F5</em>  sakatu (<em>⌘-R</em> Mac batean)\n* <strong>Google Chrome:</strong> <em>Ctrl-Shift-R </em>  sakatu (<em>⌘-Shift-R</em> Mac batean)\n* <strong>Internet Explorer:</strong> <em>Ctrl</em> tekla sakatu birkargatzeko momentuan, edo <em>Ctrl-F5</em> sakatu\n* <strong>Opera</strong> erabiltzaileek <em>Tresnak → Hobespenak</em> atalera joan eta katxea garbitzeko aukera hautatu",
 	"usercssyoucanpreview": "'''Laguntza:''' Zure CSS berria gorde aurretik probatzeko \"{{int:showpreview}}\" botoia erabili.",
 	"userjsonyoucanpreview": "<strong>Aholkua:</strong> Gorde aurretik, erabili \"{{int:showpreview}}\" botoia zure JSON berria probatzeko.",
 	"userjsyoucanpreview": "'''Laguntza:''' Zure JS berria gorde aurretik probatzeko \"{{int:showpreview}}\" botoia erabili.",

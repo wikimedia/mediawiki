@@ -394,6 +394,7 @@
 	"badarticleerror": "Den åtgärden kan inte utföras på den här sidan.",
 	"cannotdelete": "Sidan eller filen \"$1\" kunde inte raderas.\nDen kanske redan har raderats av någon annan.",
 	"cannotdelete-title": "Sidan \"$1\" kan inte raderas",
+	"delete-scheduled": "Sidan \"$1\" är schemalagd för radering.\nHa tålamod.",
 	"delete-hook-aborted": "Borttagning avbruten av hook.\nDen gav ingen förklaring.",
 	"no-null-revision": "Kunde inte skapa ny tom version för sidan \"$1\"",
 	"badtitle": "Felaktig titel",
@@ -1989,7 +1990,7 @@
 	"prefixindex": "Alla sidor med prefix",
 	"prefixindex-namespace": "Alla sidor med prefix ($1 namnrymder)",
 	"prefixindex-submit": "Visa",
-	"prefixindex-strip": "Avlägsna prefix i lista",
+	"prefixindex-strip": "Dölj prefixet i resultaten",
 	"shortpages": "Korta sidor",
 	"longpages": "Långa sidor",
 	"deadendpages": "Sidor utan länkar",
@@ -2646,6 +2647,7 @@
 	"movepage-moved": "'''\"$1\" har flyttats till \"$2\"'''",
 	"movepage-moved-redirect": "En omdirigering har skapats.",
 	"movepage-moved-noredirect": "Skapandet av en omdirigering avbröts.",
+	"movepage-delete-first": "Målsidan har för många revisioner att radera som del av sidflyttningen. Radera först sidan manuellt och försök sedan igen.",
 	"articleexists": "Antingen existerar redan en sida med det namnet, eller så har du valt ett namn som inte är tillåtet.\nVälj något annat namn istället.",
 	"cantmove-titleprotected": "Du kan inte flytta sidan till den titeln, eftersom den nya titeln har skyddats från att skapas.",
 	"movetalk": "Flytta tillhörande diskussionssida",
@@ -4126,5 +4128,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Lösenordet kan inte matcha specifikt svartlistade lösenord",
 	"passwordpolicies-policy-maximalpasswordlength": "Lösenordet måste vara högst $1 {{PLURAL:$1|tecken}} långt",
 	"passwordpolicies-policy-passwordcannotbepopular": "Lösenordet kan inte vara {{PLURAL:$1|det populäraste lösenordet|i listan över de $1 populäraste lösenorden}}",
-	"easydeflate-invaliddeflate": "Innehåll som tillhandahålls är inte helt komprimerat"
+	"easydeflate-invaliddeflate": "Innehåll som tillhandahålls är inte helt komprimerat",
+	"unprotected-js": "Av säkerhetsskäl kan inte JavaScript läsas in från oskyddade sidor. Skapa endast JavaScript i namnrymden MediaWiki: eller som en användarundersida."
 }

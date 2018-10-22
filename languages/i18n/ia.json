@@ -4042,5 +4042,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Le contrasigno non pote corresponder a contrasignos in le lista nigre",
 	"passwordpolicies-policy-maximalpasswordlength": "Le contrasigno debe continer minus de $1 {{PLURAL:$1|character|characteres}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "Le contrasigno non pote esser {{PLURAL:$1|le contrasigno le plus popular|in le lista de $1 contrasignos popular}}",
-	"easydeflate-invaliddeflate": "Le contento fornite non es correctemente comprimite"
+	"easydeflate-invaliddeflate": "Le contento fornite non es correctemente comprimite",
+	"unprotected-js": "Pro motivos de securitate, non es possibile cargar codice JavaScript de paginas non protegite. Crea JavaScript solmente in le spatio de nomines \"MediaWiki:\" o como un subpagina de usator."
 }

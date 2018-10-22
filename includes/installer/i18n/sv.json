@@ -305,7 +305,7 @@
 	"config-install-mainpage-failed": "Kunde inte infoga huvudsidan: $1",
 	"config-install-done": "<strong>Grattis!</strong>\nDu har installerat MediaWiki.\n\nInstallationsprogrammet har genererat filen <code>LocalSettings.php</code>.\nDet innehåller alla dina konfigurationer.\n\nDu kommer att behöva ladda ner den och placera den i roten för din wiki-installation (samma katalog som index.php). Nedladdningen borde ha startats automatiskt.\n\nOm ingen nedladdning erbjöds, eller om du har avbrutit det kan du starta om nedladdningen genom att klicka på länken nedan:\n\n$3\n\n<strong>OBS</strong>: Om du inte gör detta nu, kommer denna genererade konfigurationsfil inte vara tillgänglig för dig senare om du avslutar installationen utan att ladda ned den.\n\nNär det är klart, kan du <strong>[$2 gå in på din wiki]</strong>",
 	"config-install-done-path": "<strong>Grattis!</strong>\nDu har installerat MediaWiki.\n\nInstallationsprogrammet har genererat filen <code>LocalSettings.php</code>.\nDet innehåller alla dina konfigurationer.\n\nDu kommer att behöva ladda ner den och placera den i <code>$4</code>. Nedladdningen borde ha startats automatiskt.\n\nOm ingen nedladdning erbjöds, eller om du har avbrutit det kan du starta om nedladdningen genom att klicka på länken nedan:\n\n$3\n\n<strong>OBS</strong>: Om du inte gör detta nu, kommer denna genererade konfigurationsfil inte vara tillgänglig för dig senare om du avslutar installationen utan att ladda ned den.\n\nNär det är klart, kan du <strong>[$2 gå in på din wiki]</strong>",
-	"config-install-success": "MediaWiki har installerats. Du kan nu besöka <$1$2> för att se din wiki.\nOm du undrar någonting, kolla in vår lista över vanliga ställda frågor:\n<https://www.mediawiki.org/wiki/Manual:FAQ> eller använda något supportforum som länkas på sidan.",
+	"config-install-success": "MediaWiki har installerats. Du kan nu besöka <$1$2> för att se din wiki.\nOm du undrar någonting, kolla in vår lista över vanliga ställda frågor:\n<https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ> eller använda något supportforum som länkas på sidan.",
 	"config-download-localsettings": "Ladda ner <code>LocalSettings.php</code>",
 	"config-help": "hjälp",
 	"config-help-tooltip": "klicka för att expandera",
@@ -314,6 +314,8 @@
 	"config-skins-screenshots": "$1 (skärmbilder: $2)",
 	"config-extensions-requires": "$1 (kräver $2)",
 	"config-screenshot": "skärmbild",
+	"config-extension-not-found": "Kunde inte hitta registreringsfilen för tillägget \"$1\"",
+	"config-extension-dependency": "En beroendefel inträffade när tillägget \"$1\" installerades: $2",
 	"mainpagetext": "<strong>MediaWiki har installerats utan problem.</strong>",
 	"mainpagedocfooter": "Information om hur wiki-programvaran används finns i [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents användarguiden].\n\n== Att komma igång ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista över konfigurationsinställningar]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postlista för nya versioner av MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokalisera MediaWiki för ditt språk]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Läs om hur du bekämpar spam på din wiki]"
 }
