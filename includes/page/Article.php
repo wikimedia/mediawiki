@@ -822,7 +822,7 @@ class Article implements Page {
 		$pOutput = ( $outputDone instanceof ParserOutput )
 			// phpcs:ignore MediaWiki.Usage.NestedInlineTernary.UnparenthesizedTernary -- FIXME T203805
 			? $outputDone // object fetched by hook
-			: $this->mParserOutput ?: null; // ParserOutput or null, avoid false
+			: ( $this->mParserOutput ?: null ); // ParserOutput or null, avoid false
 
 		# Adjust title for main page & pages with displaytitle
 		if ( $pOutput ) {
