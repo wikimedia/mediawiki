@@ -3701,7 +3701,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 			if ( $count === null ) {
 				// it has not been initialized. do so.
-				$count = $this->initEditCount();
+				$count = $this->initEditCountInternal();
 			}
 			$this->mEditCount = $count;
 		}
@@ -5316,73 +5316,37 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Deferred version of incEditCountImmediate()
-	 *
-	 * This function, rather than incEditCountImmediate(), should be used for
-	 * most cases as it avoids potential deadlocks caused by concurrent editing.
+	 * Schedule a deferred update to update the user's edit count
 	 */
 	public function incEditCount() {
-		wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle(
-			function () {
-				$this->incEditCountImmediate();
-			},
-			__METHOD__
+		if ( $this->isAnon() ) {
+			return; // sanity
+		}
+
+		DeferredUpdates::addUpdate(
+			new UserEditCountUpdate( $this, 1 ),
+			DeferredUpdates::POSTSEND
 		);
 	}
 
 	/**
-	 * Increment the user's edit-count field.
-	 * Will have no effect for anonymous users.
-	 * @since 1.26
+	 * This method should not be called outside User/UserEditCountUpdate
+	 *
+	 * @param int $count
 	 */
-	public function incEditCountImmediate() {
-		if ( $this->isAnon() ) {
-			return;
-		}
-
-		$dbw = wfGetDB( DB_MASTER );
-		// No rows will be "affected" if user_editcount is NULL
-		$dbw->update(
-			'user',
-			[ 'user_editcount=user_editcount+1' ],
-			[ 'user_id' => $this->getId(), 'user_editcount IS NOT NULL' ],
-			__METHOD__
-		);
-		// Lazy initialization check...
-		if ( $dbw->affectedRows() == 0 ) {
-			// Now here's a goddamn hack...
-			$dbr = wfGetDB( DB_REPLICA );
-			if ( $dbr !== $dbw ) {
-				// If we actually have a replica DB server, the count is
-				// at least one behind because the current transaction
-				// has not been committed and replicated.
-				$this->mEditCount = $this->initEditCount( 1 );
-			} else {
-				// But if DB_REPLICA is selecting the master, then the
-				// count we just read includes the revision that was
-				// just added in the working transaction.
-				$this->mEditCount = $this->initEditCount();
-			}
-		} else {
-			if ( $this->mEditCount === null ) {
-				$this->getEditCount();
-				$dbr = wfGetDB( DB_REPLICA );
-				$this->mEditCount += ( $dbr !== $dbw ) ? 1 : 0;
-			} else {
-				$this->mEditCount++;
-			}
-		}
-		// Edit count in user cache too
-		$this->invalidateCache();
+	public function setEditCountInternal( $count ) {
+		$this->mEditCount = $count;
 	}
 
 	/**
 	 * Initialize user_editcount from data out of the revision table
 	 *
+	 * This method should not be called outside User/UserEditCountUpdate
+	 *
 	 * @param int $add Edits to add to the count from the revision table
 	 * @return int Number of edits
 	 */
-	protected function initEditCount( $add = 0 ) {
+	public function initEditCountInternal( $add = 0 ) {
 		// Pull from a replica DB to be less cruel to servers
 		// Accuracy isn't the point anyway here
 		$dbr = wfGetDB( DB_REPLICA );

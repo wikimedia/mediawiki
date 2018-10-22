@@ -263,6 +263,7 @@ class UserTest extends MediaWikiTestCase {
 
 		// increase the edit count
 		$user->incEditCount();
+		$user->clearInstanceCache();
 
 		$this->assertEquals(
 			4,
