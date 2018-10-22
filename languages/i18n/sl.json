@@ -4051,5 +4051,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Geslo se ne sme ujemati s posebej prepovedanimi gesli",
 	"passwordpolicies-policy-maximalpasswordlength": "Geslo ne sme biti daljše od $1 {{PLURAL:$1|znak|znaka|znake|znakov}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "Geslo ne sme biti {{PLURAL:$1|1=popularno geslo|na seznamu $1 popularnih gesel}}",
-	"easydeflate-invaliddeflate": "Dana vsebina ni pravilno stisnjena"
+	"easydeflate-invaliddeflate": "Dana vsebina ni pravilno stisnjena",
+	"unprotected-js": "Iz varnostnih razlogov JavaScripta ni možno naložiti z nezaščitenih strani. Prosimo, da JavaScript ustvarite samo v imenskem prostoru MediaWiki ali kot uporabniško podstran."
 }

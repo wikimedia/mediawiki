@@ -4217,5 +4217,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Лозинката не смее да биде од оние на црниот список",
 	"passwordpolicies-policy-maximalpasswordlength": "Лозинката не треба да има повеќе од $1 {{PLURAL:$1|знак|знаци}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "Лозинката не треба да биде {{PLURAL:$1|најзастапената|од списокот на $1 најзастапени лозинки}}",
-	"easydeflate-invaliddeflate": "Содржината не е соодветно прочистена"
+	"easydeflate-invaliddeflate": "Содржината не е соодветно прочистена",
+	"unprotected-js": "JavaScript не може да се вчита од незаштитени страници од безбедносни причини. Создавајте JavaScript само во именскиот простор МедијаВики: или како корисничка потстраница"
 }

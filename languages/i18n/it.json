@@ -4126,5 +4126,6 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "La password non può essere uguale al nome utente",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "La password non può corrispondere a password specificate nell'elenco delle password proibite",
 	"passwordpolicies-policy-maximalpasswordlength": "La password deve essere lunga meno di $1 {{PLURAL:$1|carattere|caratteri}}",
-	"passwordpolicies-policy-passwordcannotbepopular": "La password non può essere {{PLURAL:$1|la password più popolare|nell'elenco delle $1 password più popolari}}"
+	"passwordpolicies-policy-passwordcannotbepopular": "La password non può essere {{PLURAL:$1|la password più popolare|nell'elenco delle $1 password più popolari}}",
+	"unprotected-js": "Per motivi di sicurezza, non è possibile caricare JavaScript da pagine non protette. Crea javascript solo nel namespace MediaWiki o come sottopagina Utente"
 }

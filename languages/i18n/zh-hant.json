@@ -4152,5 +4152,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "密碼不可以同於被列入黑名單的特定密碼",
 	"passwordpolicies-policy-maximalpasswordlength": "密碼必須小於 $1 個{{PLURAL:$1|字元|字元}}長度",
 	"passwordpolicies-policy-passwordcannotbepopular": "密碼不可以是{{PLURAL:$1|常用密碼內容|在清單中的編號 $1 常用密碼}}",
-	"easydeflate-invaliddeflate": "提供的內容未被正常的壓縮"
+	"easydeflate-invaliddeflate": "提供的內容未被正常的壓縮",
+	"unprotected-js": "基於安全因素，JavaScript 不能從未保護的頁面來載入。建立 JavaScript 請僅在 MediaWiki 的：命名空間或使用者子頁面"
 }

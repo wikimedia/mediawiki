@@ -4231,5 +4231,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "A senha não pode corresponder senhas especificamente na lista negra",
 	"passwordpolicies-policy-maximalpasswordlength": "A senha deve ser menor que $1 {{PLURAL:$1|caráter|caracteres}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "A senha não pode {{PLURAL:$1|ser a mais popular|estar na lista das $1 palavras-passe mais populares}}",
-	"easydeflate-invaliddeflate": "O conteúdo fornecido não está devidamente comprimido"
+	"easydeflate-invaliddeflate": "O conteúdo fornecido não está devidamente comprimido",
+	"unprotected-js": "Por razões de segurança o JavaScript não pode ser carregado de páginas desprotegidas. Por favor, crie apenas javascript no MediaWiki: namespace ou como uma subpágina do usuário"
 }

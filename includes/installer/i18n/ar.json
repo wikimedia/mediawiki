@@ -315,7 +315,7 @@
 	"config-help": "مساعدة",
 	"config-help-tooltip": "اضغط للتوسيع",
 	"config-nofile": "لا يمكن العثور على الملف \"$1\". هل حُذف؟",
-	"config-extension-link": "هل كنت تعلم أن الويكي الخاصة بك تدعم [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions الامتدادات]؟\n\nيمكنك تصفح [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category الامتدادات حسب التصنيف] أو [https://www.mediawiki.org/wiki/Extension_Matrix مصفوفة الامتدادت] لترى القائمة الكاملة للامتدادات.",
+	"config-extension-link": "هل كنت تعلم أن الويكي الخاص بك تدعم [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions الامتدادات]؟\n\nيمكنك تصفح [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category الامتدادات حسب التصنيف].",
 	"config-skins-screenshots": "$1 (لقطات شاشة: $2)",
 	"config-extensions-requires": "$1 (يتطلب $2)",
 	"config-screenshot": "لقطة شاشة",
