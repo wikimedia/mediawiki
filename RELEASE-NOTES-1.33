@@ -54,6 +54,8 @@ because of Phabricator reports.
   The parameters $tooltip and $lang are mandatory. Omitting the parameters is
   deprecated since 1.32.
 * Language::truncate(), deprecated in 1.31, has been removed.
+* UtfNormal, deprecated in 1.25, was removed. Use UtfNormal\Validator directly
+  instead.
 * …
 
 === Deprecations in 1.33 ===
@@ -66,6 +68,9 @@ because of Phabricator reports.
   applied for Arabic and Malayalam in the future.  Please enable these on
   your local wiki (if you have them explicitly set to false) and run
   maintenance/cleanupTitles.php to fix any existing page titles.
+* The LegacyHookPreAuthenticationProvider class, deprecated since its creation
+  in 1.27 as part of the AuthManager re-write, now emits deprecation warnings.
+  This will help identify the issue if you added it to $wgAuthManagerConfig.
 * …
 
 === Other changes in 1.33 ===

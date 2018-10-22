@@ -4571,10 +4571,6 @@ $wgAuthManagerConfig = null;
  */
 $wgAuthManagerAutoConfig = [
 	'preauth' => [
-		MediaWiki\Auth\LegacyHookPreAuthenticationProvider::class => [
-			'class' => MediaWiki\Auth\LegacyHookPreAuthenticationProvider::class,
-			'sort' => 0,
-		],
 		MediaWiki\Auth\ThrottlePreAuthenticationProvider::class => [
 			'class' => MediaWiki\Auth\ThrottlePreAuthenticationProvider::class,
 			'sort' => 0,
