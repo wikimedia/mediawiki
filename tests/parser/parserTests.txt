@@ -668,7 +668,6 @@ Simple list
 !! html
 <ul><li>Item 1</li>
 <li>Item 2</li></ul>
-
 !! end
 
 !! test
@@ -705,7 +704,6 @@ Italics and bold
 <li>plain<b>bold<i>bold-italic</i></b>plain</li>
 <li>plain l'<i>italic</i>plain</li>
 <li>plain l'<b>bold</b> plain</li></ul>
-
 !! end
 
 # this example taken from the [[simple:Moon]] article (T49326)
@@ -1575,7 +1573,6 @@ nowiki 3
 <li>There is nowiki.</li></ol>
 <ul><li>There is not nowiki.</li>
 <li>There is nowiki.</li></ul>
-
 !! html/parsoid
 <dl><dd data-parsoid='{}'>There is not nowiki.</dd>
 <dd data-parsoid='{}'>There is <span typeof="mw:Nowiki">nowiki</span>.</dd></dl>
@@ -1980,7 +1977,6 @@ parsoid=wt2html,wt2wt
 !! html/php
 <ul><li>a</li>
 <li>b</li></ul>
-
 !! html/parsoid
 <!--c1--><ul>
 <li>a
@@ -3014,7 +3010,6 @@ Templates: Strip leading and trailing whitespace from named-param values
 </p><p>c
 </p>
 <ul><li>d</li></ul>
-
 !! end
 
 !! test
@@ -4045,7 +4040,6 @@ Simple definition
 !! html
 <dl><dt>name</dt>
 <dd>Definition</dd></dl>
-
 !! end
 
 !! test
@@ -4054,7 +4048,6 @@ Definition list for indentation only
 :Indented text
 !! html
 <dl><dd>Indented text</dd></dl>
-
 !! end
 
 !! test
@@ -4064,7 +4057,6 @@ Definition list with no space
 !! html
 <dl><dt>name</dt>
 <dd>Definition</dd></dl>
-
 !!end
 
 !! test
@@ -4074,7 +4066,6 @@ Definition list with URL link
 !! html
 <dl><dt><a rel="nofollow" class="external free" href="http://example.com/">http://example.com/</a></dt>
 <dd>definition</dd></dl>
-
 !! end
 
 !! test
@@ -4084,7 +4075,6 @@ Definition list with bracketed URL link
 !! html
 <dl><dt><a rel="nofollow" class="external text" href="http://www.example.com/">Example</a></dt>
 <dd>Something about it</dd></dl>
-
 !! end
 
 !! test
@@ -4094,7 +4084,6 @@ Definition list with wikilink containing colon
 !! html
 <dl><dt><a href="/index.php?title=Help:FAQ&amp;action=edit&amp;redlink=1" class="new" title="Help:FAQ (page does not exist)">Help:FAQ</a></dt>
 <dd>The least-read page on Wikipedia</dd></dl>
-
 !! end
 
 # At Brion's and JeLuF's insistence... :)
@@ -4105,7 +4094,6 @@ Definition list with news link containing colon
 !! html/php
 <dl><dt><a rel="nofollow" class="external free" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a></dt>
 <dd>This isn't even a real newsgroup!</dd></dl>
-
 !! html/parsoid
 <dl><dt><a rel="mw:ExtLink" class="external free" href="news:alt.wikipedia.rox" data-parsoid='{"stx":"url"}'>news:alt.wikipedia.rox</a></dt><dd data-parsoid='{"stx":"row"}'>This isn't even a real newsgroup!</dd></dl>
 !! end
@@ -4116,7 +4104,6 @@ Malformed definition list with colon
 ;news:alt.wikipedia.rox -- don't crash or enter an infinite loop
 !! html
 <dl><dt><a rel="nofollow" class="external free" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a> -- don't crash or enter an infinite loop</dt></dl>
-
 !! end
 
 !! test
@@ -4126,7 +4113,6 @@ Definition lists: colon in external link text
 !! html
 <dl><dt><a rel="nofollow" class="external text" href="http://www.wikipedia2.org/">Wikipedia :The Next Generation</a></dt>
 <dd>OK, I made that up</dd></dl>
-
 !! end
 
 !! test
@@ -4135,7 +4121,6 @@ Definition lists: colon in HTML attribute
 ;<b style="display: inline">bold</b>
 !! html
 <dl><dt><b style="display: inline">bold</b></dt></dl>
-
 !! end
 
 !! test
@@ -4145,7 +4130,6 @@ Definition lists: self-closed tag
 !! html
 <dl><dt>one<br />two</dt>
 <dd>two-line fun</dd></dl>
-
 !! end
 
 !! test
@@ -4155,7 +4139,6 @@ Definition lists: ignore colons inside tags
 !! html
 <dl><dt>one <b>two&#160;: tag <i>fun:</i>:</b></dt>
 <dd>def</dd></dl>
-
 !! end
 
 !! test
@@ -4243,7 +4226,6 @@ Definition Lists: No nesting: Multiple dd's
 <dl><dt>x</dt>
 <dd>a</dd>
 <dd>b</dd></dl>
-
 !! end
 
 !! test
@@ -4256,7 +4238,6 @@ Definition Lists: Indentation: Regular
 <dl><dd>i1
 <dl><dd>i2
 <dl><dd>i3</dd></dl></dd></dl></dd></dl>
-
 !! end
 
 !! test
@@ -4267,7 +4248,6 @@ Definition Lists: Indentation: Missing 1st level
 !! html
 <dl><dd><dl><dd>i2
 <dl><dd>i3</dd></dl></dd></dl></dd></dl>
-
 !! end
 
 !! test
@@ -4276,7 +4256,6 @@ Definition Lists: Indentation: Multi-level indent
 :::i3
 !! html
 <dl><dd><dl><dd><dl><dd>i3</dd></dl></dd></dl></dd></dl>
-
 !! end
 
 !! test
@@ -4466,7 +4445,6 @@ Table / list interaction: lists nested in tables nested in indented lists
 </td></tr></table></dd></dl>
 <ul><li>e</li>
 <li>f</li></ul>
-
 !!end
 
 !! test
@@ -4529,7 +4507,6 @@ Definition Lists: Nesting: Test 4
 !! html
 <dl><dd><dl><dd><dl><dt>t3</dt>
 <dd>d3</dd></dl></dd></dl></dd></dl>
-
 !! end
 
 
@@ -4549,7 +4526,6 @@ Definition Lists: Mixed Lists: Test 1
 <dl><dd><dl><dt><ul><li>foo</li>
 <li>bar</li></ul></dt></dl>
 <dl><dt>baz</dt></dl></dd></dl>
-
 !! html/php+tidy
 <dl><dd><dl><dt><ul><li>foo</li>
 <li>bar</li></ul></dt></dl>
@@ -4578,7 +4554,6 @@ Definition Lists: Mixed Lists: Test 2
 !! html
 <ul><li><dl><dd>d1</dd>
 <dd>d2</dd></dl></li></ul>
-
 !! end
 
 
@@ -4590,7 +4565,6 @@ Definition Lists: Mixed Lists: Test 3
 !! html
 <ul><li><dl><dd><dl><dd><dl><dd>d1</dd>
 <dd>d2</dd></dl></dd></dl></dd></dl></li></ul>
-
 !! end
 
 
@@ -4604,7 +4578,6 @@ Definition Lists: Mixed Lists: Test 4
 <dd>d2</dd>
 <dt>d3</dt>
 <dd>d4</dd></dl></li></ul>
-
 !! end
 
 
@@ -4616,7 +4589,6 @@ Definition Lists: Mixed Lists: Test 5
 !! html
 <ul><li><dl><dd>d1
 <dl><dd>d2</dd></dl></dd></dl></li></ul>
-
 !! end
 
 
@@ -4628,7 +4600,6 @@ Definition Lists: Mixed Lists: Test 6
 !! html
 <ol><li><ul><li><dl><dd>d1
 <dl><dd><dl><dd>d3</dd></dl></dd></dl></dd></dl></li></ul></li></ol>
-
 !! end
 
 
@@ -4640,7 +4611,6 @@ Definition Lists: Mixed Lists: Test 7
 !! html
 <dl><dd><ul><li>d1</li>
 <li>d2</li></ul></dd></dl>
-
 !! end
 
 
@@ -4652,7 +4622,6 @@ Definition Lists: Mixed Lists: Test 8
 !! html
 <dl><dd><ul><li>d1</li></ul>
 <dl><dd><ul><li>d2</li></ul></dd></dl></dd></dl>
-
 !! end
 
 
@@ -4663,7 +4632,6 @@ Definition Lists: Mixed Lists: Test 9
 !! html
 <ul><li><dl><dt>foo</dt>
 <dd>bar</dd></dl></li></ul>
-
 !! end
 
 
@@ -4674,7 +4642,6 @@ Definition Lists: Mixed Lists: Test 10
 !! html
 <ul><li><ol><li><dl><dt>foo</dt>
 <dd>bar</dd></dl></li></ol></li></ul>
-
 !! end
 
 # The Parsoid team disagrees with the PHP parser's seemingly-random
@@ -4692,7 +4659,6 @@ Definition Lists: Mixed Lists: Test 11
 <dl><dt>a</dt>
 <dd>
 <ul><li>b</li></ul></dd></dl>
-
 !! html/parsoid
 <dl><dt>a
 <dd><ul><li>b</li></ul></dd></dl>
@@ -4709,7 +4675,6 @@ Definition Lists: Mixed Lists: Test 12
 <dd><ul><li><dl><dt><dl><dt>bar</dt></dl></dd></dl></li></ul></dd></dl>
 <dl><dt>boo</dt>
 <dd>baz</dd></dl></li></ol></li></ul></li></ol></li></ul>
-
 !! html/php+tidy
 <ul><li><ol><li><ul><li><ol><li><dl><dt>foo</dt>
 <dd><ul><li><dl><dt><dl><dt>bar</dt></dl></dt></dl></li></ul></dd></dl></li></ol></li></ul>
@@ -5961,7 +5926,6 @@ Examples from RFC 2732, section 2:
 <li><a rel="nofollow" class="external free" href="http://[::192.9.5.5]/ipng">http://[::192.9.5.5]/ipng</a></li>
 <li><a rel="nofollow" class="external free" href="http://[::FFFF:129.144.52.38]:80/index.html">http://[::FFFF:129.144.52.38]:80/index.html</a></li>
 <li><a rel="nofollow" class="external free" href="http://[2010:836B:4179::836B:4179]">http://[2010:836B:4179::836B:4179]</a></li></ul>
-
 !! html/parsoid
 <p><a rel="mw:ExtLink" class="external free" href="http://[2404:130:0:1000::187:2]/index.php">http://[2404:130:0:1000::187:2]/index.php</a></p>
 
@@ -6025,7 +5989,6 @@ Examples from RFC 2732, section 2:
 <li><a rel="nofollow" class="external text" href="http://[::192.9.5.5]/ipng">5</a></li>
 <li><a rel="nofollow" class="external text" href="http://[::FFFF:129.144.52.38]:80/index.html">6</a></li>
 <li><a rel="nofollow" class="external text" href="http://[2010:836B:4179::836B:4179]">7</a></li></ul>
-
 !! html/parsoid
 <p><a rel="mw:ExtLink" class="external text" href="http://[2404:130:0:1000::187:2]/index.php">test</a></p>
 
@@ -8866,7 +8829,6 @@ parsoid=wt2html,wt2wt
 !! html/php
 <ul><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a></li>
 <li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a></li></ul>
-
 !! html/php+tidy
 <ul><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a></li>
 <li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a></li></ul>
@@ -9873,7 +9835,6 @@ Common list
 <ul><li>Common list</li>
 <li>item 2</li>
 <li>item 3</li></ul>
-
 !! end
 
 !! test
@@ -9886,7 +9847,6 @@ Numbered list
 <ol><li>Numbered list</li>
 <li>item 2</li>
 <li>item 3</li></ol>
-
 !! end
 
 # the switch from level 3 to ordered should not introduce a newline between
@@ -9924,7 +9884,6 @@ Mixed list
 <li>Level 1
 <ul><li><ul><li>Level 3</li></ul></li></ul></li></ul>
 <ol><li><ul><li><ul><li>Level 3, but ordered</li></ul></li></ul></li></ol>
-
 !! end
 
 !! test
@@ -9939,7 +9898,6 @@ Mixed list
 <li><ul><li>ho</li></ul></li>
 <li>hi
 <ul><li>ho</li></ul></li></ul>
-
 !! html/parsoid
 <ul><li>hi</li>
 <li><ul data-parsoid='{"stx":"html"}'><li data-parsoid='{"stx":"html"}'>ho</li></ul></li>
@@ -9955,7 +9913,6 @@ Mixed list
 !! html/php
 <dl><dt>hi</dt>
 <dd><li>ho</li></dd></dl>
-
 !! html/parsoid
 <dl><dt>hi</dt>
 <dd><li about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;li>ho&lt;/li>"}},"i":0}}]}'>ho</li></dd></dl>
@@ -9969,7 +9926,6 @@ Nested lists 1
 !! html
 <ul><li>foo
 <ul><li>bar</li></ul></li></ul>
-
 !! end
 
 !! test
@@ -9980,7 +9936,6 @@ Nested lists 2
 !! html
 <ul><li><ul><li>foo</li></ul></li>
 <li>bar</li></ul>
-
 !! end
 
 !! test
@@ -9991,7 +9946,6 @@ Nested lists 3 (first element empty)
 !! html
 <ul><li>
 <ul><li>bar</li></ul></li></ul>
-
 !! end
 
 !! test
@@ -10002,7 +9956,6 @@ Nested lists 4 (first element empty)
 !! html
 <ul><li><ul><li></li></ul></li>
 <li>bar</li></ul>
-
 !! end
 
 !! test
@@ -10013,7 +9966,6 @@ Nested lists 5 (both elements empty)
 !! html
 <ul><li><ul><li></li></ul></li>
 <li></li></ul>
-
 !! end
 
 !! test
@@ -10024,7 +9976,6 @@ Nested lists 6 (both elements empty)
 !! html
 <ul><li>
 <ul><li></li></ul></li></ul>
-
 !! end
 
 !! test
@@ -10033,7 +9984,6 @@ Nested lists 7 (skip initial nesting levels)
 ***foo
 !! html
 <ul><li><ul><li><ul><li>foo</li></ul></li></ul></li></ul>
-
 !! end
 
 !! test
@@ -10048,7 +9998,6 @@ Nested lists 8 (multiple nesting transitions)
 <ul><li><ul><li>bar</li></ul></li>
 <li>baz</li></ul></li>
 <li>boo</li></ul>
-
 !! end
 
 # XXX this test should be moved to citeParserTests, since it depends
@@ -10073,7 +10022,6 @@ Nested lists 9 (extension interaction)
 <ul><li>foo</li>
 <li>bar</li>
 <li>baz</li></ul>
-
 !! end
 
 !! test
@@ -10094,7 +10042,6 @@ Nested lists 10 (list and span siblings: wt2wt regression)
 !! html
 <ul><li>foo bar</li>
 <li>baz</li></ul>
-
 !! end
 
 !! test
@@ -10107,7 +10054,6 @@ List items are not parsed correctly following a <pre> block (T2785)
 <ul><li><pre>foo</pre></li>
 <li><pre>bar</pre></li>
 <li>zar</li></ul>
-
 !! html/parsoid
 <ul><li><pre typeof="mw:Extension/pre" about="#mwt2" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"foo"}}'>foo</pre></li>
 <li><pre typeof="mw:Extension/pre" about="#mwt4" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"bar"}}'>bar</pre></li>
@@ -10139,7 +10085,6 @@ List items from template
 <li>notSOL</li>
 <li>item 1</li>
 <li>item 2</li></ul>
-
 !! end
 
 !! test
@@ -10155,7 +10100,6 @@ List interrupted by empty line or heading
 <ul><li><ul><li>bar</li></ul></li></ul>
 <h2><span class="mw-headline" id="A_heading">A heading</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: A heading">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <ul><li>Another list item</li></ul>
-
 !!end
 
 !! test
@@ -10235,7 +10179,6 @@ Single-comment whitespace lines dont break lists, and neither do multi-comment w
 <li>b</li>
 <li>c</li>
 <li>d</li></ul>
-
 !!end
 
 !!test
@@ -10254,7 +10197,6 @@ Replacing whitespace with tabs still doesn't break the list (gerrit 78327)
 <li>b</li>
 <li>c</li>
 <li>d</li></ul>
-
 !!end
 
 # FIXME: Parsoid has a dedicated DOM pass to mimic this Tidy-specific li-hack
@@ -10620,7 +10562,6 @@ Magic Words LOCAL (UTC)
 <li>1</li>
 <li>4</li>
 <li>19700101000203</li></ul>
-
 !! end
 
 !! test
@@ -11694,7 +11635,6 @@ Templates with templated name
 <p>foo
 </p>
 <ul><li>item 1</li></ul>
-
 !! html/parsoid
 <p about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"{{echo|echo}}","href":"./Template:Echo"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</p>
 <ul about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"{{echo|inner list}} ","href":"./Template:Inner_list"},"params":{},"i":0}}]}'><li>item 1</li></ul>
@@ -12558,7 +12498,6 @@ Preprocessor precedence 5: tplarg takes precedence over template
 {{Precedence5|Bullet}}
 !! html/php
 <ul><li>Bar</li></ul>
-
 !! html/parsoid
 <ul typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Precedence5","href":"./Template:Precedence5"},"params":{"1":{"wt":"Bullet"}},"i":0}}]}'><li>Bar</li></ul>
 !! end
@@ -12658,7 +12597,6 @@ Preprocessor precedence 9: groups of braces
 <dd>Four</dd>
 <dt>7</dt>
 <dd>{Bullet}</dd></dl>
-
 !! html/parsoid
 <dl about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Preprocessor precedence 9","href":"./Template:Preprocessor_precedence_9"},"params":{"1":{"wt":"Four"},"2":{"wt":"Bullet"},"3":{"wt":"1"},"4":{"wt":"2"}},"i":0}}]}'>
 <dt>4</dt>
@@ -12710,7 +12648,6 @@ language=zh
 <dd>-Three-</dd>
 <dt>7</dt>
 <dd>raw2</dd></dl>
-
 !! html/parsoid
 <dl about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Preprocessor precedence 10","href":"./Template:Preprocessor_precedence_10"},"params":{"1":{"wt":"Three"},"2":{"wt":"raw2"},"3":{"wt":"Bullet"},"4":{"wt":"1"},"5":{"wt":"2"}},"i":0}}]}'>
 <dt>1</dt>
@@ -13763,7 +13700,6 @@ unused}}}}
 !! html
 <ul><li>a <a href="/index.php?title=Template:Nonexistent&amp;action=edit&amp;redlink=1" class="new" title="Template:Nonexistent (page does not exist)">Template:Nonexistent</a></li>
 <li>b <a href="/index.php?title=Template:Nonexistent&amp;action=edit&amp;redlink=1" class="new" title="Template:Nonexistent (page does not exist)">Template:Nonexistent</a></li></ul>
-
 !!end
 
 !!test
@@ -21201,7 +21137,6 @@ Handling of &#x0A; in URLs
 *irc://&#x0A;a
 !! html/php
 <ul><li><a rel="nofollow" class="external free" href="irc://%0Aa">irc://%0Aa</a></li></ul>
-
 !! html/parsoid
 <ul><li><a rel="mw:ExtLink" class="external free" href="irc://%0Aa" data-parsoid='{"stx":"url","a":{"href":"irc://%0Aa"},"sa":{"href":"irc://&amp;#x0A;a"}}'>irc://%0Aa</a></li></ul>
 !! end
@@ -21212,7 +21147,6 @@ Handling of %0A in URLs
 *irc://%0Aa
 !! html/php
 <ul><li><a rel="nofollow" class="external free" href="irc://%0Aa">irc://%0Aa</a></li></ul>
-
 !! html/parsoid
 <ul><li><a rel="mw:ExtLink" class="external free" href="irc://%0Aa">irc://%0Aa</a></li></ul>
 !! end
@@ -21329,7 +21263,6 @@ title=[[Parser test]]
 <li></li>
 <li></li>
 <li><a href="/index.php?title=Template:Dynamic&amp;action=edit&amp;redlink=1" class="new" title="Template:Dynamic (page does not exist)">Template:Dynamic</a></li></ul>
-
 !! end
 ### Note: Above tests excludes the "{{NUMBEROFADMINS}}" magic word because it generates a MySQL error when included.
 
@@ -22320,7 +22253,6 @@ dt/dd/dl test
 :;;;::
 !! html/php
 <dl><dd><dl><dt><dl><dt><dl><dt><dl><dd><dl><dd></dt></dl></dd></dl></dd></dl></dd></dl></dd></dl></dd></dl>
-
 !! html/parsoid
 <dl><dd><dl><dt><dl><dt><dl><dt><dl><dd><dl><dd></dd></dl></dd></dl></dt></dl></dt></dl></dt></dl></dd></dl>
 
@@ -22479,7 +22411,6 @@ Definition list code coverage
 <dd>def</dd>
 <dt>title</dt>
 <dd>def</dd></dl>
-
 !! html/parsoid
 <dl><dt>title   </dt><dd>def</dd>
 <dt>title </dt><dd>def</dd>
@@ -23885,7 +23816,6 @@ language=zh variant=zh-cn
 !! html/php
 <dl><dt>AAA</dt>
 <dt>foo:bar</dt></dl>
-
 !! html/parsoid
 <dl><dt data-parsoid='{"dsr":[0,24,1,0]}'><span typeof="mw:LanguageVariant" data-parsoid='{"tSp":[6]}' data-mw-variant='{"twoway":[{"l":"zh-cn","t":"AAA"},{"l":"zh-tw","t":"BBB"}]}'></span></dt>
 <dt data-parsoid='{"dsr":[25,39,1,0]}'><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"foo:bar"}}'></span></dt>
@@ -23903,8 +23833,7 @@ language=zh variant=zh-cn
 ;-{zh-cn:AAA
 !! html/php+tidy
 <dl><dt><b>foo:bar</b></dt><b>
-<dt>-{zh-cn:AAA</dt></b></dl><p><b>
-</b></p>
+<dt>-{zh-cn:AAA</dt></b></dl>
 !! html/parsoid
 <dl><dt data-parsoid='{}'><b data-parsoid='{"stx":"html","autoInsertedEnd":true}'>foo:bar</b></dt><b data-parsoid='{"stx":"html","autoInsertedEnd":true,"autoInsertedStart":true}'>
 <dt data-parsoid='{}'>-{zh-cn</dt><dd data-parsoid='{"stx":"row"}'>AAA</dd></b></dl>
@@ -23919,7 +23848,6 @@ language=zh variant=zh-cn
 !! html/php
 <dl><dt>AAA foo:bar bat:baz</dt>
 <dd>def</dd></dl>
-
 !! html/parsoid
 <dl><dt data-parsoid='{"dsr":[0,49,1,0]}'><span typeof="mw:LanguageVariant" data-mw-variant='{"twoway":[{"l":"zh-cn","t":"AAA &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"filter\":{\"l\":[\"zh-hans\"],\"t\":\"foo:bar\"}}&#39; data-parsoid=&#39;{\"fl\":[\"zh-hans\"],\"dsr\":[14,33,null,2]}&#39;>&lt;/span> &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"disabled\":{\"t\":\"bat:baz\"}}&#39; data-parsoid=&#39;{\"fl\":[\"R\"],\"dsr\":[34,47,null,2]}&#39;>&lt;/span>"}]}'></span></dt>
 <dd data-parsoid='{"stx":"row","dsr":[49,53,1,0]}'>def</dd>
@@ -24076,7 +24004,6 @@ T2529: Uncovered bullet
 !! html
 <ul><li>Foo</li>
 <li>Bar</li></ul>
-
 !! end
 
 !! test
@@ -24086,7 +24013,6 @@ T2529: Uncovered bullet in a deeply nested list
 !! html
 <ul><li><ul><li><ul><li><ul><li><ul><li><ul><li><ul><li>Foo</li></ul></li></ul></li></ul></li></ul></li></ul></li></ul></li>
 <li>Bar</li></ul>
-
 !! end
 
 !! test
@@ -24119,7 +24045,6 @@ T2529: Uncovered bullet in parser function result
 !! html
 <ul><li>Foo</li>
 <li>bar</li></ul>
-
 !! end
 
 !! test
@@ -24949,7 +24874,6 @@ paragraphs</indicator>
 04=<a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" decoding="async" width="25" height="3" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" /></a>
 05=<ul><li>foo</li>
 <li>bar</li></ul>
-
 06=foo
 07=<pre>Preformatted
 </pre>

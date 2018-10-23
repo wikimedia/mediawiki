@@ -403,7 +403,9 @@ class BlockLevelPass {
 		while ( $prefixLength ) {
 			$output .= $this->closeList( $prefix2[$prefixLength - 1] );
 			--$prefixLength;
-			if ( !$prefixLength ) {
+			// Note that `lastSection` is only ever set when `prefixLength`
+			// is zero, but we'll choose to be overly cautious.
+			if ( !$prefixLength && $this->lastSection !== '' ) {
 				$output .= "\n";
 			}
 		}

@@ -1534,7 +1534,7 @@ class OutputPageTest extends MediaWikiTestCase {
 					'<p lang="en" dir="ltr">' . "\nMy message\n</p>"
 				], 'List at start' => [
 					[ '* List' ],
-					"<ul><li>List</li></ul>\n",
+					"<ul><li>List</li></ul>",
 				], 'List not at start' => [
 					[ '* <b>Not a list', false ],
 					'<p>* <b>Not a list</b></p>',
@@ -1829,12 +1829,12 @@ class OutputPageTest extends MediaWikiTestCase {
 		return [
 			'List at start of line (content)' => [
 				[ '* List', true, false ],
-				"<div class=\"mw-parser-output\"><ul><li>List</li></ul>\n</div>",
-				"<ul><li>List</li></ul>\n",
+				"<div class=\"mw-parser-output\"><ul><li>List</li></ul></div>",
+				"<ul><li>List</li></ul>",
 			],
 			'List at start of line (interface)' => [
 				[ '* List', true, true ],
-				"<ul><li>List</li></ul>\n",
+				"<ul><li>List</li></ul>",
 			],
 			'List not at start (content)' => [
 				[ "* ''Not'' list", false, false ],
@@ -1925,7 +1925,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		return [
 			'List at start of line' => [
 				[ '* List', true ],
-				"<ul><li>List</li></ul>\n",
+				"<ul><li>List</li></ul>",
 			],
 			'List not at start' => [
 				[ "* ''Not'' list", false ],
