@@ -133,28 +133,36 @@ production.
 === External library changes in 1.32 ===
 
 ==== New external libraries ====
-* Added wikimedia/xmp-reader 0.6.0.
-* Added Add pear/Net_SMTP 1.8.0.
+* Added pear/Net_SMTP v1.8.0.
+* Added wikimedia/xmp-reader v0.6.0.
+
+* Added cache/integration-tests v0.16.0 (dev-only).
+* Added giorgiosironi/eris v0.10.0 (dev-only).
+* Added seld/jsonlint v1.7.1 (dev-only).
+
 * Added EasyDeflate (unversioned).
 
 ==== Changed external libraries ====
-* Updated qunitjs from 2.4.0 to 2.6.2.
-* Updated wikimedia/scoped-callback from 1.0.0 to 2.0.0.
+* Updated OOUI from v0.26.3 to v0.29.2.
+* Updated wikimedia/base-convert from v1.0.1 to v2.0.0.
+* Updated wikimedia/remex-html from v1.0.3 to v2.0.1.
+* Updated wikimedia/scoped-callback from v1.0.0 to v2.0.0.
 ** ScopedCallback objects can no longer be serialized.
-* Updated wikimedia/wrappedstring from 2.3.0 to 3.0.1.
-* Updated mediawiki/mediawiki-codesniffer from v20.0.0 to v21.0.0.
-* Updated composer/spdx-licenses from 1.3.0 to 1.4.0.
-* Updated jquery.i18n from 1.0.4 to 1.0.5.
-* Updated wikimedia/timestamp from 1.0.0 to 2.2.0.
-* Updated wikimedia/remex-html from 1.0.3 to 2.0.1.
-* Updated jquery from 3.2.1 to 3.3.1.
-* Updated wikimedia/base-convert from 1.0.1 to 2.0.0
-* Updated OOjs from 2.2.0 to 2.2.2
-* Updated mustache.js from 0.8.2-d9aa703 to 1.0.0
-* Updated sinonjs from 1.17.3 to 1.17.7
-* Updated OOUI from 0.26.3 to 0.29.2
-* Updated CLDRPluralRuleParser from 0.1.0 to 1.3.2-pre
-* Updated jquery.client from 2.0.0 to 2.0.1.
+* Updated wikimedia/timestamp from v1.0.0 to v2.2.0.
+* Updated wikimedia/wrappedstring from v2.3.0 to v3.0.1.
+
+* Updated composer/spdx-licenses from v1.3.0 to v1.4.0 (dev-only).
+* Updated mediawiki/mediawiki-codesniffer from v18.0.0 to v22.0.0 (dev-only).
+* Updated psy/psysh from v0.8.11 to v0.9.6 (dev-only).
+
+* Updated CLDRPluralRuleParser from v0.1.0 to v1.3.2-pre.
+* Updated jquery from v3.2.1 to v3.3.1.
+* Updated jquery.client from v2.0.0 to v2.0.1.
+* Updated jquery.i18n from v1.0.4 to v1.0.5.
+* Updated mustache.js from v0.8.2-d9aa703 to v1.0.0.
+* Updated OOjs from v2.2.0 to v2.2.2.
+* Updated qunitjs from v2.4.0 to v2.6.2.
+* Updated sinonjs from v1.17.3 to v1.17.7.
 
 ==== Removed external libraries ====
 * pear/mail_mime-decode was removed.
