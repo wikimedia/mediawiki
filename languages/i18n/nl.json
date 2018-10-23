@@ -409,6 +409,7 @@
 	"badarticleerror": "Deze handeling kan niet op deze pagina worden uitgevoerd.",
 	"cannotdelete": "De pagina of het bestand \"$1\" kon niet verwijderd worden.\nMogelijk is deze al door iemand anders verwijderd.",
 	"cannotdelete-title": "Pagina \"$1\" kan niet verwijderd worden",
+	"delete-scheduled": "De pagina \"$1\" staat voor verwijdering ingepland.\nEen ogenblik geduld alstublieft.",
 	"delete-hook-aborted": "Het verwijderen is afgebroken door een hook.\nEr is geen toelichting beschikbaar.",
 	"no-null-revision": "Het was niet mogelijk een lege nieuwe versie te maken voor de pagina \"$1\"",
 	"badtitle": "Ongeldige paginanaam",
@@ -4147,5 +4148,6 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "Wachtwoord mag niet hetzelfde zijn als de gebruikersnaam",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Wachtwoord mag niet overeenkomen met wachtwoorden op de zwarte lijst",
 	"passwordpolicies-policy-maximalpasswordlength": "Wachtwoord moet minder dan $1 {{PLURAL:$1|teken|tekens}} bevatten",
-	"passwordpolicies-policy-passwordcannotbepopular": "Watchwoord mag niet {{PLURAL:$1|overeenkomen met het bekende wachtwoord|voorkomen in de lijst met $1 bekende wachtwoorden}}"
+	"passwordpolicies-policy-passwordcannotbepopular": "Watchwoord mag niet {{PLURAL:$1|overeenkomen met het bekende wachtwoord|voorkomen in de lijst met $1 bekende wachtwoorden}}",
+	"unprotected-js": "Vanwege veiligheidsredenen kan er geen JavaScript geladen worden vanaf onbeveiligde pagina's. Gelieve alleen JavaScript pagina's aan te maken in de MediaWiki: naamruimte of als een subpagina van een gebruikerspagina."
 }

@@ -867,6 +867,7 @@
 	"apihelp-query+info-paramvalue-prop-displaytitle": "Fornece o modo como o título da página é exibido.",
 	"apihelp-query+info-paramvalue-prop-varianttitles": "Fornece o título de apresentação em todas as variantes da língua de conteúdo da wiki.",
 	"apihelp-query+info-param-testactions": "Testa se o usuário atual pode executar determinadas ações na página.",
+	"apihelp-query+info-param-testactionsdetail": "Nível de detalhe de <var>$1testactions</var>. Use os parâmetros <var>errorformat</var> e <var>errorlang</var> do [[Special:ApiHelp/main|módulo principal]] para controlar o formato das mensagens devolvidas.",
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "Retorna um valor booleano para cada ação.",
 	"apihelp-query+info-paramvalue-testactionsdetail-full": "Retornar mensagens descrevendo por que a ação não é permitida ou uma matriz vazia, se for permitida.",
 	"apihelp-query+info-paramvalue-testactionsdetail-quick": "Como <kbd>completo</kbd>, mas pulando verificação de caros.",

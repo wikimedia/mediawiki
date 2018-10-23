@@ -3879,7 +3879,7 @@
 	"duration-seconds": "$1 {{PLURAL:$1|Sekunde|Sekunden}}",
 	"duration-minutes": "$1 {{PLURAL:$1|Minute|Minuten}}",
 	"duration-hours": "$1 {{PLURAL:$1|Stunde|Stunden}}",
-	"duration-days": "$1 {{PLURAL:$1|Tag|Tage}}",
+	"duration-days": "$1 {{PLURAL:$1|Tag|Tagen}}",
 	"duration-weeks": "$1 {{PLURAL:$1|Woche|Wochen}}",
 	"duration-years": "$1 {{PLURAL:$1|Jahr|Jahre}}",
 	"duration-decades": "$1 {{PLURAL:$1|Jahrzehnt|Jahrzehnte}}",
