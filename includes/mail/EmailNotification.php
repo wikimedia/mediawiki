@@ -23,8 +23,8 @@
  * @author Tim Starling
  * @author Luke Welling lwelling@wikimedia.org
  */
-use MediaWiki\Linker\LinkTarget;
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 
 /**
