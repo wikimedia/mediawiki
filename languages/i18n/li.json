@@ -2573,7 +2573,7 @@
 	"imagetypemismatch": "De nuje bestandjsextensie is neet gliek aan 't bestandjstype.",
 	"imageinvalidfilename": "De nuje bestandsnaam is ongeldig",
 	"fix-double-redirects": "Alle doorverwiezinge biewerke die verwieze nao de originele paginanaam",
-	"move-leave-redirect": "'n Doorverwiezing achterlaote",
+	"move-leave-redirect": "Laot 'ne redirek staon",
 	"protectedpagemovewarning": "'''Waorsjoewing: Dees pazjena is besjermp zoedat ze allein doer gebroekers mit administratorrechte kint weure verplaats.'''\nDe lèste logbookregel steit hierónger:",
 	"semiprotectedpagemovewarning": "<strong>Let op:</strong> Dees pazjena is beveilig en kin allein door geregistreerde gebroekers verplaats waere.\nDe lèste logbookregel steit hiejónger:",
 	"move-over-sharedrepo": "[[:$1]] besteit al in 'ne gedeildje mediadatabank.\nE bestandj hiehaer verplaatse euversjrief 't gedeildj bestandj.",

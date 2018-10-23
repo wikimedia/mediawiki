@@ -228,7 +228,7 @@
 	"and": "&#32;e",
 	"faq": "Perguntas frequentes",
 	"actions": "Ações",
-	"namespaces": "Domínios",
+	"namespaces": "Espaços nominais",
 	"variants": "Variantes",
 	"navigation-heading": "Menu de navegação",
 	"errorpagetitle": "Erro",
@@ -1116,7 +1116,7 @@
 	"email-allow-new-users-label": "Permitir mensagens de correio de utilizadores novos",
 	"email-blacklist-label": "Proibir estes utilizadores de me enviarem correio eletrónico:",
 	"prefs-searchoptions": "Pesquisa",
-	"prefs-namespaces": "Domínios",
+	"prefs-namespaces": "Espaços nominais",
 	"default": "padrão",
 	"prefs-files": "Ficheiros",
 	"prefs-custom-css": "CSS personalizado",
@@ -2003,7 +2003,7 @@
 	"prefixindex": "Todas as páginas iniciadas por",
 	"prefixindex-namespace": "Todas as páginas com prefixo (espaço nominal $1)",
 	"prefixindex-submit": "Mostrar",
-	"prefixindex-strip": "Remover prefixo",
+	"prefixindex-strip": "Esconder o prefixo nos resultados",
 	"shortpages": "Páginas curtas",
 	"longpages": "Páginas longas",
 	"deadendpages": "Páginas sem saída",
@@ -3589,7 +3589,7 @@
 	"specialpages-group-pagetools": "Ferramentas de página",
 	"specialpages-group-wiki": "Dados e ferramentas",
 	"specialpages-group-redirects": "Páginas especiais de redirecionamento",
-	"specialpages-group-spam": "Ferramentas anti-spam",
+	"specialpages-group-spam": "Ferramentas antispam",
 	"specialpages-group-developer": "Ferramentas de desenvolvimento",
 	"blankpage": "Página em branco",
 	"intentionallyblankpage": "Esta página foi intencionalmente deixada em branco",
@@ -4147,5 +4147,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "A palavra-passe não pode corresponder às especificamente bloqueadas pela lista negra",
 	"passwordpolicies-policy-maximalpasswordlength": "A palavra-passe tem de ter menos de $1 {{PLURAL:$1|carácter|caracteres}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "A palavra-passe não pode {{PLURAL:$1|ser a mais popular|estar na lista das $1 palavras-passe mais populares}}",
-	"easydeflate-invaliddeflate": "O conteúdo fornecido não está devidamente comprimido"
+	"easydeflate-invaliddeflate": "O conteúdo fornecido não está devidamente comprimido",
+	"unprotected-js": "Por motivos de segurança o JavaScript de páginas desprotegidas não pode ser carregado. Crie javascript só no espaço nominal/domínio MediaWiki: ou numa subpágina do utilizador"
 }
