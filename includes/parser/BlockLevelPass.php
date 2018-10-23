@@ -62,14 +62,25 @@ class BlockLevelPass {
 	}
 
 	/**
+	 * @return bool
+	 */
+	private function hasOpenParagraph() {
+		return $this->lastSection !== '';
+	}
+
+	/**
 	 * If a pre or p is open, return the corresponding close tag and update
 	 * the state. If no tag is open, return an empty string.
+	 * @param bool $atTheEnd Omit trailing newline if we've reached the end.
 	 * @return string
 	 */
-	private function closeParagraph() {
+	private function closeParagraph( $atTheEnd = false ) {
 		$result = '';
-		if ( $this->lastSection !== '' ) {
-			$result = '</' . $this->lastSection . ">\n";
+		if ( $this->hasOpenParagraph() ) {
+			$result = '</' . $this->lastSection . '>';
+			if ( !$atTheEnd ) {
+				$result .= "\n";
+			}
 		}
 		$this->inPre = false;
 		$this->lastSection = '';
@@ -188,7 +199,8 @@ class BlockLevelPass {
 		$pendingPTag = false;
 		$inBlockquote = false;
 
-		foreach ( $textLines as $inputLine ) {
+		$lineCount = count( $textLines );
+		foreach ( $textLines as $i => $inputLine ) {
 			# Fix up $lineStart
 			if ( !$this->lineStart ) {
 				$output .= $inputLine;
@@ -393,7 +405,11 @@ class BlockLevelPass {
 			if ( $pendingPTag === false ) {
 				if ( $prefixLength === 0 ) {
 					$output .= $t;
-					$output .= "\n";
+					// Add a newline if there's an open paragraph
+					// or we've yet to reach the last line.
+					if ( $i < $lineCount - 1 || $this->hasOpenParagraph() ) {
+						$output .= "\n";
+					}
 				} else {
 					// Trim whitespace in list items
 					$output .= trim( $t );
@@ -403,17 +419,13 @@ class BlockLevelPass {
 		while ( $prefixLength ) {
 			$output .= $this->closeList( $prefix2[$prefixLength - 1] );
 			--$prefixLength;
-			// Note that `lastSection` is only ever set when `prefixLength`
+			// Note that a paragraph is only ever opened when `prefixLength`
 			// is zero, but we'll choose to be overly cautious.
-			if ( !$prefixLength && $this->lastSection !== '' ) {
+			if ( !$prefixLength && $this->hasOpenParagraph() ) {
 				$output .= "\n";
 			}
 		}
-		if ( $this->lastSection !== '' ) {
-			$output .= '</' . $this->lastSection . '>';
-			$this->lastSection = '';
-		}
-
+		$output .= $this->closeParagraph( true );
 		return $output;
 	}
 
