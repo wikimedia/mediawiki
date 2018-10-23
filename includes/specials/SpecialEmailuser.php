@@ -156,7 +156,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		// if the user opens Special:EmailUser/Florian (e.g.). So check, if the user did that
 		// and show the "Send email to user" form directly, if so. Show the "enter username"
 		// form, otherwise.
-		$this->mTargetObj = self::getTarget( $this->mTarget );
+		$this->mTargetObj = self::getTarget( $this->mTarget, $this->getUser() );
 		if ( !$this->mTargetObj instanceof User ) {
 			$this->userForm( $this->mTarget );
 		} else {
@@ -318,7 +318,6 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			->setMethod( 'post' )
 			->setSubmitCallback( [ $this, 'sendEmailForm' ] )
 			->setFormIdentifier( 'userForm' )
-			->setSubmitProgressive()
 			->setId( 'askusername' )
 			->setWrapperLegendMsg( 'emailtarget' )
 			->setSubmitTextMsg( 'emailusernamesubmit' )
