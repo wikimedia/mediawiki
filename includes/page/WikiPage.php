@@ -2727,8 +2727,13 @@ class WikiPage implements Page, IDBAccessObject {
 			// in the job queue to avoid simultaneous deletion operations would add overhead.
 			// Number of archived revisions cannot be known beforehand, because edits can be made
 			// while deletion operations are being processed, changing the number of archivals.
-			$archivedRevisionCount = $dbw->selectRowCount(
-				'archive', '1', [ 'ar_page_id' => $id ], __METHOD__
+			$archivedRevisionCount = $dbw->selectField(
+				'archive', 'COUNT(*)',
+				[
+					'ar_namespace' => $this->getTitle()->getNamespace(),
+					'ar_title' => $this->getTitle()->getDBkey(),
+					'ar_page_id' => $id
+				], __METHOD__
 			);
 
 			// Clone the title and wikiPage, so we have the information we need when
