@@ -1001,6 +1001,8 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		/** @var Database $conn */
+		$conn = null;
+
 		if ( isset( $this->conns[$connInUseKey][$i][$domain] ) ) {
 			// Reuse an in-use connection for the same domain
 			$conn = $this->conns[$connInUseKey][$i][$domain];
@@ -1012,22 +1014,36 @@ class LoadBalancer implements ILoadBalancer {
 			$this->conns[$connInUseKey][$i][$domain] = $conn;
 			$this->connLogger->debug( __METHOD__ . ": reusing free connection $i/$domain" );
 		} elseif ( !empty( $this->conns[$connFreeKey][$i] ) ) {
-			// Reuse a free connection from another domain
-			$conn = reset( $this->conns[$connFreeKey][$i] );
-			$oldDomain = key( $this->conns[$connFreeKey][$i] );
-			if ( $domainInstance->getDatabase() !== null ) {
-				$conn->selectDomain( $domainInstance );
-			} else {
-				// Stay on the current database, but update the schema/prefix
-				$conn->dbSchema( $domainInstance->getSchema() );
-				$conn->tablePrefix( $domainInstance->getTablePrefix() );
+			// Reuse a free connection from another domain if possible
+			foreach ( $this->conns[$connFreeKey][$i] as $oldDomain => $conn ) {
+				if ( $domainInstance->getDatabase() !== null ) {
+					// Check if changing the database will require a new connection.
+					// In that case, leave the connection handle alone and keep looking.
+					// This prevents connections from being closed mid-transaction and can
+					// also avoid overhead if the same database will later be requested.
+					if (
+						$conn->databasesAreIndependent() &&
+						$conn->getDBname() !== $domainInstance->getDatabase()
+					) {
+						continue;
+					}
+					// Select the new database, schema, and prefix
+					$conn->selectDomain( $domainInstance );
+				} else {
+					// Stay on the current database, but update the schema/prefix
+					$conn->dbSchema( $domainInstance->getSchema() );
+					$conn->tablePrefix( $domainInstance->getTablePrefix() );
+				}
+				unset( $this->conns[$connFreeKey][$i][$oldDomain] );
+				// Note that if $domain is an empty string, getDomainID() might not match it
+				$this->conns[$connInUseKey][$i][$conn->getDomainId()] = $conn;
+				$this->connLogger->debug( __METHOD__ .
+					": reusing free connection from $oldDomain for $domain" );
+				break;
 			}
-			unset( $this->conns[$connFreeKey][$i][$oldDomain] );
-			// Note that if $domain is an empty string, getDomainID() might not match it
-			$this->conns[$connInUseKey][$i][$conn->getDomainId()] = $conn;
-			$this->connLogger->debug( __METHOD__ .
-				": reusing free connection from $oldDomain for $domain" );
-		} else {
+		}
+
+		if ( !$conn ) {
 			if ( !isset( $this->servers[$i] ) || !is_array( $this->servers[$i] ) ) {
 				throw new InvalidArgumentException( "No server with index '$i'." );
 			}
