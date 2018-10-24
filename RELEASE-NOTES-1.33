@@ -8,6 +8,9 @@ production.
 === Configuration changes in 1.33 ===
 
 ==== New configuration ====
+* $wgEnablePartialBlocks – This enables the Partial Blocks feature, which gives
+  accounts with block permissions the ability to block users, IPs, and IP ranges
+  from editing specific pages, while allowing them to edit the rest of the wiki.
 * …
 
 ==== Changed configuration ====
