@@ -910,6 +910,13 @@ class SpecialBlock extends FormSpecialPage {
 		$logParams = [];
 		$logParams['5::duration'] = $data['Expiry'];
 		$logParams['6::flags'] = self::blockLogFlags( $data, $type );
+		$logParams['sitewide'] = $block->isSitewide();
+
+		if ( $enablePartialBlocks && !empty( $data['PageRestrictions'] ) ) {
+			$logParams['7::restrictions'] = [
+				'pages' => explode( "\n", $data['PageRestrictions'] ),
+			];
+		}
 
 		# Make log entry, if the name is hidden, put it in the suppression log
 		$log_type = $data['HideUser'] ? 'suppress' : 'block';
@@ -1049,7 +1056,10 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return string
 	 */
 	protected static function blockLogFlags( array $data, $type ) {
-		global $wgBlockAllowsUTEdit;
+		$config = RequestContext::getMain()->getConfig();
+
+		$blockAllowsUTEdit = $config->get( 'BlockAllowsUTEdit' );
+
 		$flags = [];
 
 		# when blocking a user the option 'anononly' is not available/has no effect
@@ -1075,7 +1085,7 @@ class SpecialBlock extends FormSpecialPage {
 			$flags[] = 'noemail';
 		}
 
-		if ( $wgBlockAllowsUTEdit && $data['DisableUTEdit'] ) {
+		if ( $blockAllowsUTEdit && $data['DisableUTEdit'] ) {
 			// For grepping: message block-log-flags-nousertalk
 			$flags[] = 'nousertalk';
 		}
