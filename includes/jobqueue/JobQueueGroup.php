@@ -43,9 +43,6 @@ class JobQueueGroup {
 	/** @var array Map of (bucket => (queue => JobQueue, types => list of types) */
 	protected $coalescedQueues;
 
-	/** @var Job[] */
-	protected $bufferedJobs = [];
-
 	const TYPE_DEFAULT = 1; // integer; jobs popped by default
 	const TYPE_ANY = 2; // integer; any job
 
@@ -203,7 +200,7 @@ class JobQueueGroup {
 		// Throw errors now instead of on push(), when other jobs may be buffered
 		$this->assertValidJobs( $jobs );
 
-		$this->bufferedJobs = array_merge( $this->bufferedJobs, $jobs );
+		DeferredUpdates::addUpdate( new JobQueueEnqueueUpdate( $this->wiki, $jobs ) );
 	}
 
 	/**
@@ -211,17 +208,10 @@ class JobQueueGroup {
 	 *
 	 * @return void
 	 * @since 1.26
+	 * @deprecated Since 1.33 Not needed anymore
 	 */
 	public static function pushLazyJobs() {
-		foreach ( self::$instances as $group ) {
-			try {
-				$group->push( $group->bufferedJobs );
-				$group->bufferedJobs = [];
-			} catch ( Exception $e ) {
-				// Get in as many jobs as possible and let other post-send updates happen
-				MWExceptionHandler::logException( $e );
-			}
-		}
+		wfDeprecated( __METHOD__, '1.33' );
 	}
 
 	/**
@@ -462,14 +452,6 @@ class JobQueueGroup {
 			if ( !( $job instanceof IJobSpecification ) ) {
 				throw new InvalidArgumentException( "Expected IJobSpecification objects" );
 			}
-		}
-	}
-
-	function __destruct() {
-		$n = count( $this->bufferedJobs );
-		if ( $n > 0 ) {
-			$type = implode( ', ', array_unique( array_map( 'get_class', $this->bufferedJobs ) ) );
-			trigger_error( __METHOD__ . ": $n buffered job(s) of type(s) $type never inserted." );
 		}
 	}
 }
