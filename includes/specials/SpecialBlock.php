@@ -21,6 +21,9 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Block\BlockRestriction;
+use MediaWiki\Block\Restriction\PageRestriction;
+
 /**
  * A special page that allows users with 'block' right to block users from
  * editing pages and other actions
@@ -137,41 +140,63 @@ class SpecialBlock extends FormSpecialPage {
 
 		$conf = $this->getConfig();
 		$oldCommentSchema = $conf->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
+		$enablePartialBlocks = $conf->get( 'EnablePartialBlocks' );
 
-		$a = [
-			'Target' => [
-				'type' => 'user',
-				'ipallowed' => true,
-				'iprange' => true,
-				'label-message' => 'ipaddressorusername',
-				'id' => 'mw-bi-target',
-				'size' => '45',
-				'autofocus' => true,
-				'required' => true,
-				'validation-callback' => [ __CLASS__, 'validateTargetField' ],
-			],
-			'Expiry' => [
-				'type' => 'expiry',
-				'label-message' => 'ipbexpiry',
-				'required' => true,
-				'options' => $suggestedDurations,
-				'default' => $this->msg( 'ipb-default-expiry' )->inContentLanguage()->text(),
-			],
-			'Reason' => [
-				'type' => 'selectandother',
-				// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
-				// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
-				// Unicode codepoints (or 255 UTF-8 bytes for old schema).
-				'maxlength' => $oldCommentSchema ? 255 : CommentStore::COMMENT_CHARACTER_LIMIT,
-				'maxlength-unit' => 'codepoints',
-				'label-message' => 'ipbreason',
-				'options-message' => 'ipbreason-dropdown',
-			],
-			'CreateAccount' => [
-				'type' => 'check',
-				'label-message' => 'ipbcreateaccount',
-				'default' => true,
-			],
+		$a = [];
+
+		$a['Target'] = [
+			'type' => 'user',
+			'ipallowed' => true,
+			'iprange' => true,
+			'label-message' => 'ipaddressorusername',
+			'id' => 'mw-bi-target',
+			'size' => '45',
+			'autofocus' => true,
+			'required' => true,
+			'validation-callback' => [ __CLASS__, 'validateTargetField' ],
+		];
+
+		if ( $enablePartialBlocks ) {
+			$a['EditingRestriction'] = [
+				'type' => 'radio',
+				'label' => $this->msg( 'ipb-type-label' )->text(),
+				'options' => [
+					$this->msg( 'ipb-sitewide' )->text() => 'sitewide',
+					$this->msg( 'ipb-partial' )->text() => 'partial',
+				],
+			];
+			$a['PageRestrictions'] = [
+				'type' => 'titlesmultiselect',
+				'label' => $this->msg( 'ipb-pages-label' )->text(),
+				'exists' => true,
+				'max' => 10,
+				'cssclass' => 'mw-block-page-restrictions',
+			];
+		}
+
+		$a['Expiry'] = [
+			'type' => 'expiry',
+			'label-message' => 'ipbexpiry',
+			'required' => true,
+			'options' => $suggestedDurations,
+			'default' => $this->msg( 'ipb-default-expiry' )->inContentLanguage()->text(),
+		];
+
+		$a['Reason'] = [
+			'type' => 'selectandother',
+			// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
+			// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
+			// Unicode codepoints (or 255 UTF-8 bytes for old schema).
+			'maxlength' => $oldCommentSchema ? 255 : CommentStore::COMMENT_CHARACTER_LIMIT,
+			'maxlength-unit' => 'codepoints',
+			'label-message' => 'ipbreason',
+			'options-message' => 'ipbreason-dropdown',
+		];
+
+		$a['CreateAccount'] = [
+			'type' => 'check',
+			'label-message' => 'ipbcreateaccount',
+			'default' => true,
 		];
 
 		if ( self::canBlockEmail( $user ) ) {
@@ -326,6 +351,29 @@ class SpecialBlock extends FormSpecialPage {
 			$fields['Confirm']['type'] = 'check';
 			unset( $fields['Confirm']['default'] );
 			$this->preErrors[] = [ 'ipb-blockingself', 'ipb-confirmaction' ];
+		}
+
+		if ( $this->getConfig()->get( 'EnablePartialBlocks' ) ) {
+			if ( $block instanceof Block && !$block->isSitewide() ) {
+				$fields['EditingRestriction']['default'] = 'partial';
+			} else {
+				$fields['EditingRestriction']['default'] = 'sitewide';
+			}
+
+			if ( $block instanceof Block ) {
+				$pageRestrictions = [];
+				foreach ( $block->getRestrictions() as $restriction ) {
+					if ( $restriction->getType() !== 'page' ) {
+						continue;
+					}
+
+					$pageRestrictions[] = $restriction->getTitle()->getPrefixedText();
+				}
+
+				// Sort the restrictions so they are in alphabetical order.
+				sort( $pageRestrictions );
+				$fields['PageRestrictions']['default'] = implode( "\n", $pageRestrictions );
+			}
 		}
 	}
 
@@ -632,6 +680,7 @@ class SpecialBlock extends FormSpecialPage {
 		global $wgBlockAllowsUTEdit, $wgHideUserContribLimit;
 
 		$performer = $context->getUser();
+		$enablePartialBlocks = $context->getConfig()->get( 'EnablePartialBlocks' );
 
 		// Handled by field validator callback
 		// self::validateTargetField( $data['Target'] );
@@ -740,9 +789,33 @@ class SpecialBlock extends FormSpecialPage {
 		$block->isAutoblocking( $data['AutoBlock'] );
 		$block->mHideName = $data['HideUser'];
 
+		if (
+			$enablePartialBlocks &&
+			isset( $data['EditingRestriction'] ) &&
+			$data['EditingRestriction'] === 'partial'
+		 ) {
+			 $block->isSitewide( false );
+		}
+
 		$reason = [ 'hookaborted' ];
 		if ( !Hooks::run( 'BlockIp', [ &$block, &$performer, &$reason ] ) ) {
 			return $reason;
+		}
+
+		$restrictions = [];
+		if ( $enablePartialBlocks ) {
+			if ( !empty( $data['PageRestrictions'] ) ) {
+				$restrictions = array_map( function ( $text ) {
+					$title = Title::newFromText( $text );
+					// Use the link cache since the title has already been loaded when
+					// the field was validated.
+					$restriction = new PageRestriction( 0, $title->getArticleId() );
+					$restriction->setTitle( $title );
+					return $restriction;
+				}, explode( "\n", $data['PageRestrictions'] ) );
+			}
+
+			$block->setRestrictions( $restrictions );
 		}
 
 		$priorBlock = null;
@@ -783,7 +856,17 @@ class SpecialBlock extends FormSpecialPage {
 				$currentBlock->prevents( 'sendemail', $block->prevents( 'sendemail' ) );
 				$currentBlock->prevents( 'editownusertalk', $block->prevents( 'editownusertalk' ) );
 				$currentBlock->mReason = $block->mReason;
-				$currentBlock->isSitewide( $block->isSitewide() );
+
+				if ( $enablePartialBlocks ) {
+					// Maintain the sitewide status. If partial blocks is not enabled,
+					// saving the block will result in a sitewide block.
+					$currentBlock->isSitewide( $block->isSitewide() );
+
+					// Set the block id of the restrictions.
+					$currentBlock->setRestrictions(
+						BlockRestriction::setBlockId( $currentBlock->getId(), $restrictions )
+					);
+				}
 
 				$status = $currentBlock->update();
 
@@ -827,6 +910,13 @@ class SpecialBlock extends FormSpecialPage {
 		$logParams = [];
 		$logParams['5::duration'] = $data['Expiry'];
 		$logParams['6::flags'] = self::blockLogFlags( $data, $type );
+		$logParams['sitewide'] = $block->isSitewide();
+
+		if ( $enablePartialBlocks && !empty( $data['PageRestrictions'] ) ) {
+			$logParams['7::restrictions'] = [
+				'pages' => explode( "\n", $data['PageRestrictions'] ),
+			];
+		}
 
 		# Make log entry, if the name is hidden, put it in the suppression log
 		$log_type = $data['HideUser'] ? 'suppress' : 'block';
@@ -966,7 +1056,10 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return string
 	 */
 	protected static function blockLogFlags( array $data, $type ) {
-		global $wgBlockAllowsUTEdit;
+		$config = RequestContext::getMain()->getConfig();
+
+		$blockAllowsUTEdit = $config->get( 'BlockAllowsUTEdit' );
+
 		$flags = [];
 
 		# when blocking a user the option 'anononly' is not available/has no effect
@@ -992,7 +1085,7 @@ class SpecialBlock extends FormSpecialPage {
 			$flags[] = 'noemail';
 		}
 
-		if ( $wgBlockAllowsUTEdit && $data['DisableUTEdit'] ) {
+		if ( $blockAllowsUTEdit && $data['DisableUTEdit'] ) {
 			// For grepping: message block-log-flags-nousertalk
 			$flags[] = 'nousertalk';
 		}

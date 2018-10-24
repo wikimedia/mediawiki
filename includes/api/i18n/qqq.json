@@ -48,6 +48,8 @@
 	"apihelp-block-param-reblock": "{{doc-apihelp-param|block|reblock}}",
 	"apihelp-block-param-watchuser": "{{doc-apihelp-param|block|watchuser}}",
 	"apihelp-block-param-tags": "{{doc-apihelp-param|block|tags}}",
+	"apihelp-block-param-partial": "{{doc-apihelp-param|block|partial}}",
+	"apihelp-block-param-pagerestrictions": "{{doc-apihelp-param|block|pagerestrictions}}",
 	"apihelp-block-example-ip-simple": "{{doc-apihelp-example|block}}",
 	"apihelp-block-example-user-complex": "{{doc-apihelp-example|block}}",
 	"apihelp-changeauthenticationdata-summary": "{{doc-apihelp-summary|changeauthenticationdata}}",

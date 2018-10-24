@@ -376,4 +376,77 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	public function testSuppressReblockLogDatabaseRows( $row, $extra ) {
 		$this->doTestLogFormatter( $row, $extra );
 	}
+
+	public function providePartialBlockLogDatabaseRows() {
+		return [
+			[
+				[
+					'type' => 'block',
+					'action' => 'block',
+					'comment' => 'Block comment',
+					'user' => 0,
+					'user_text' => 'Sysop',
+					'namespace' => NS_USER,
+					'title' => 'Logtestuser',
+					'params' => [
+						'5::duration' => 'infinite',
+						'6::flags' => 'anononly',
+						'7::restrictions' => [ 'pages' => [ 'User:Test1', 'Main Page' ] ],
+						'sitewide' => false,
+					],
+				],
+				[
+					'text' => 'Sysop blocked Logtestuser from editing the pages User:Test1 and Main Page'
+						. ' with an expiration time of indefinite (anonymous users only)',
+					'api' => [
+						'duration' => 'infinite',
+						'flags' => [ 'anononly' ],
+						'restrictions' => [ 'pages' => [
+								[
+									'page_ns' => 2,
+									'page_title' => 'User:Test1',
+								], [
+									'page_ns' => 0,
+									'page_title' => 'Main Page',
+								],
+							],
+						],
+						'sitewide' => false,
+					],
+				],
+			],
+			[
+				[
+					'type' => 'block',
+					'action' => 'block',
+					'comment' => 'Block comment',
+					'user' => 0,
+					'user_text' => 'Sysop',
+					'namespace' => NS_USER,
+					'title' => 'Logtestuser',
+					'params' => [
+						'5::duration' => 'infinite',
+						'6::flags' => 'anononly',
+						'sitewide' => false,
+					],
+				],
+				[
+					'text' => 'Sysop blocked Logtestuser from non-editing actions'
+						. ' with an expiration time of indefinite (anonymous users only)',
+					'api' => [
+						'duration' => 'infinite',
+						'flags' => [ 'anononly' ],
+						'sitewide' => false,
+					],
+				],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider providePartialBlockLogDatabaseRows
+	 */
+	public function testPartialBlockLogDatabaseRows( $row, $extra ) {
+		$this->doTestLogFormatter( $row, $extra );
+	}
 }
