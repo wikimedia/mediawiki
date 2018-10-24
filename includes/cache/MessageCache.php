@@ -198,6 +198,7 @@ class MessageCache {
 				// either.
 				$po = ParserOptions::newFromAnon();
 				$po->setAllowUnsafeRawHtml( false );
+				$po->setTidy( true );
 				return $po;
 			}
 
@@ -206,6 +207,8 @@ class MessageCache {
 			// from malicious sources. As a precaution, disable
 			// the <html> parser tag when parsing messages.
 			$this->mParserOptions->setAllowUnsafeRawHtml( false );
+			// For the same reason, tidy the output!
+			$this->mParserOptions->setTidy( true );
 		}
 
 		return $this->mParserOptions;
