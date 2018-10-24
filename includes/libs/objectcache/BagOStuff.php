@@ -112,11 +112,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @param array $params
 	 */
 	public function __construct( array $params = [] ) {
-		if ( isset( $params['logger'] ) ) {
-			$this->setLogger( $params['logger'] );
-		} else {
-			$this->setLogger( new NullLogger() );
-		}
+		$this->setLogger( $params['logger'] ?? new NullLogger() );
 
 		if ( isset( $params['keyspace'] ) ) {
 			$this->keyspace = $params['keyspace'];

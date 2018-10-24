@@ -1876,10 +1876,7 @@ class PPCustomFrame_DOM extends PPFrame_DOM {
 	 * @return string|bool
 	 */
 	public function getArgument( $index ) {
-		if ( !isset( $this->args[$index] ) ) {
-			return false;
-		}
-		return $this->args[$index];
+		return $this->args[$index] ?? false;
 	}
 
 	public function getArguments() {

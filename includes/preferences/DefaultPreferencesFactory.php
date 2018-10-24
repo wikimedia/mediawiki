@@ -267,11 +267,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				continue;
 			}
 
-			if ( isset( $userGroupMemberships[$ueg] ) ) {
-				$groupStringOrObject = $userGroupMemberships[$ueg];
-			} else {
-				$groupStringOrObject = $ueg;
-			}
+			$groupStringOrObject = $userGroupMemberships[$ueg] ?? $ueg;
 
 			$userG = UserGroupMembership::getLink( $groupStringOrObject, $context, 'html' );
 			$userM = UserGroupMembership::getLink( $groupStringOrObject, $context, 'html',

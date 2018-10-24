@@ -484,11 +484,7 @@ class ExtensionProcessor implements Processor {
 	 * @param string $dir
 	 */
 	protected function extractConfig2( array $info, $dir ) {
-		if ( isset( $info['config_prefix'] ) ) {
-			$prefix = $info['config_prefix'];
-		} else {
-			$prefix = 'wg';
-		}
+		$prefix = $info['config_prefix'] ?? 'wg';
 		if ( isset( $info['config'] ) ) {
 			foreach ( $info['config'] as $key => $data ) {
 				$value = $data['value'];

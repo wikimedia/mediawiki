@@ -914,11 +914,7 @@ class WikiImporter {
 
 			$revision->setText( $text );
 		}
-		if ( isset( $revisionInfo['timestamp'] ) ) {
-			$revision->setTimestamp( $revisionInfo['timestamp'] );
-		} else {
-			$revision->setTimestamp( wfTimestampNow() );
-		}
+		$revision->setTimestamp( $revisionInfo['timestamp'] ?? wfTimestampNow() );
 
 		if ( isset( $revisionInfo['comment'] ) ) {
 			$revision->setComment( $revisionInfo['comment'] );

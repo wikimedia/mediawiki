@@ -98,11 +98,7 @@ abstract class UploadBase {
 			self::WINDOWS_NONASCII_FILENAME => 'windows-nonascii-filename',
 			self::FILENAME_TOO_LONG => 'filename-toolong',
 		];
-		if ( isset( $code_to_status[$error] ) ) {
-			return $code_to_status[$error];
-		}
-
-		return 'unknown-error';
+		return $code_to_status[$error] ?? 'unknown-error';
 	}
 
 	/**

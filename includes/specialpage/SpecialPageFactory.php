@@ -352,17 +352,11 @@ class SpecialPageFactory {
 		$caseFoldedAlias = $this->contLang->caseFold( $bits[0] );
 		$caseFoldedAlias = str_replace( ' ', '_', $caseFoldedAlias );
 		$aliases = $this->getAliasList();
-		if ( isset( $aliases[$caseFoldedAlias] ) ) {
-			$name = $aliases[$caseFoldedAlias];
-		} else {
+		if ( !isset( $aliases[$caseFoldedAlias] ) ) {
 			return [ null, null ];
 		}
-
-		if ( !isset( $bits[1] ) ) { // T4087
-			$par = null;
-		} else {
-			$par = $bits[1];
-		}
+		$name = $aliases[$caseFoldedAlias];
+		$par = $bits[1] ?? null; // T4087
 
 		return [ $name, $par ];
 	}
@@ -504,11 +498,7 @@ class SpecialPageFactory {
 		// @todo FIXME: Redirects broken due to this call
 		$bits = explode( '/', $title->getDBkey(), 2 );
 		$name = $bits[0];
-		if ( !isset( $bits[1] ) ) { // T4087
-			$par = null;
-		} else {
-			$par = $bits[1];
-		}
+		$par = $bits[1] ?? null; // T4087
 
 		$page = $this->getPage( $name );
 		if ( !$page ) {

@@ -69,10 +69,7 @@ class ApiRollback extends ApiBase {
 			$this->dieStatus( $this->errorArrayToStatus( $retval, $user ) );
 		}
 
-		$watch = 'preferences';
-		if ( isset( $params['watchlist'] ) ) {
-			$watch = $params['watchlist'];
-		}
+		$watch = $params['watchlist'] ?? 'preferences';
 
 		// Watch pages
 		$this->setWatch( $watch, $titleObj, 'watchrollback' );

@@ -1817,11 +1817,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public static function getDefaultOption( $opt ) {
 		$defOpts = self::getDefaultOptions();
-		if ( isset( $defOpts[$opt] ) ) {
-			return $defOpts[$opt];
-		} else {
-			return null;
-		}
+		return $defOpts[$opt] ?? null;
 	}
 
 	/**

@@ -169,11 +169,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					$this->limit = 1;
 				}
 			}
-			if ( isset( $params['section'] ) ) {
-				$this->section = $params['section'];
-			} else {
-				$this->section = false;
-			}
+			$this->section = $params['section'] ?? false;
 		}
 
 		$userMax = $this->parseContent ? 1 : ( $smallLimit ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1 );

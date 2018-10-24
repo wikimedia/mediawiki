@@ -490,11 +490,8 @@ class WebInstallerOptions extends WebInstallerPage {
 			// config-license-cc-0, config-license-pd, config-license-gfdl, config-license-none,
 			// config-license-cc-choose
 			$entry = $this->parent->licenses[$code];
-			if ( isset( $entry['text'] ) ) {
-				$this->setVar( 'wgRightsText', $entry['text'] );
-			} else {
-				$this->setVar( 'wgRightsText', wfMessage( 'config-license-' . $code )->text() );
-			}
+			$this->setVar( 'wgRightsText',
+				$entry['text'] ?? wfMessage( 'config-license-' . $code )->text() );
 			$this->setVar( 'wgRightsUrl', $entry['url'] );
 			$this->setVar( 'wgRightsIcon', $entry['icon'] );
 		} else {

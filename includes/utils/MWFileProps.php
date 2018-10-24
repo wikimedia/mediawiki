@@ -104,11 +104,7 @@ class MWFileProps {
 		# NOTE: $gis[2] contains a code for the image type. This is no longer used.
 		$info['width'] = $gis[0];
 		$info['height'] = $gis[1];
-		if ( isset( $gis['bits'] ) ) {
-			$info['bits'] = $gis['bits'];
-		} else {
-			$info['bits'] = 0;
-		}
+		$info['bits'] = $gis['bits'] ?? 0;
 
 		return $info;
 	}
