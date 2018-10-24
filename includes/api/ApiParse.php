@@ -625,7 +625,7 @@ class ApiParse extends ApiBase {
 	 * This mimicks the behavior of EditPage in formatting a summary
 	 *
 	 * @param Title $title of the page being parsed
-	 * @param Array $params the API parameters of the request
+	 * @param array $params The API parameters of the request
 	 * @return Content|bool
 	 */
 	private function formatSummary( $title, $params ) {

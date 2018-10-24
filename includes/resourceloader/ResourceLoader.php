@@ -1364,7 +1364,7 @@ MESSAGE;
 	 * - new XmlJsCode( '{}' )
 	 * - new stdClass() // (object) []
 	 *
-	 * @param Array $array
+	 * @param array $array
 	 */
 	private static function trimArray( array &$array ) {
 		$i = count( $array );
