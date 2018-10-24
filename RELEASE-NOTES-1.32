@@ -60,6 +60,10 @@ production.
 * $wgPopularPasswordFile — The location of the default popular passwords file
   has been moved to be in line with other non-PHP files used by libraries and
   classes.
+* $wgEnableImageWhitelist is now disabled by default, as it opens up a hole for
+  potential privacy leaks by administrators. You can check
+  "MediaWiki:External image whitelist" on your wiki to see whether the feature
+  was ever used, and whether it needs to be re-enabled.
 
 ==== Removed configuration ====
 * $wgEnableAPI and $wgEnableWriteAPI – These settings, deprecated in 1.31,
