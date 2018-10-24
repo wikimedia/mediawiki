@@ -11,6 +11,7 @@ use MediaWiki\Services\ServiceDisabledException;
  * @group MediaWiki
  */
 class MediaWikiServicesTest extends MediaWikiTestCase {
+	private $deprecatedServices = [ 'CryptRand' ];
 
 	/**
 	 * @return Config
@@ -276,6 +277,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			$getterCases[$name] = [
 				'get' . $service,
 				$class,
+				in_array( $service, $this->deprecatedServices )
 			];
 		}
 
@@ -285,7 +287,11 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideGetters
 	 */
-	public function testGetters( $getter, $type ) {
+	public function testGetters( $getter, $type, $isDeprecated = false ) {
+		if ( $isDeprecated ) {
+			$this->hideDeprecated( MediaWikiServices::class . "::$getter" );
+		}
+
 		// Test against the default instance, since the dummy will not know the default services.
 		$services = MediaWikiServices::getInstance();
 		$service = $services->$getter();

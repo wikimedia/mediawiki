@@ -518,6 +518,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return CryptRand
 	 */
 	public function getCryptRand() {
+		wfDeprecated( __METHOD__, '1.32' );
 		return $this->getService( 'CryptRand' );
 	}
 
