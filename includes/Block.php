@@ -1146,7 +1146,10 @@ class Block {
 	 * @return bool|null Null for unrecognized rights.
 	 */
 	public function prevents( $action, $x = null ) {
-		global $wgBlockDisablesLogin;
+		$config = RequestContext::getMain()->getConfig();
+		$blockDisablesLogin = $config->get( 'BlockDisablesLogin' );
+		$blockAllowsUTEdit = $config->get( 'BlockAllowsUTEdit' );
+
 		$res = null;
 		switch ( $action ) {
 			case 'edit':
@@ -1159,14 +1162,22 @@ class Block {
 			case 'sendemail':
 				$res = wfSetVar( $this->mBlockEmail, $x );
 				break;
+			case 'upload':
+				// Until T6995 is completed
+				$res = $this->isSitewide();
+				break;
 			case 'editownusertalk':
 				$res = wfSetVar( $this->mDisableUsertalk, $x );
+				// edit own user talk can be disabled by config
+				if ( !$blockAllowsUTEdit ) {
+					$res = true;
+				}
 				break;
 			case 'read':
 				$res = false;
 				break;
 		}
-		if ( !$res && $wgBlockDisablesLogin ) {
+		if ( !$res && $blockDisablesLogin ) {
 			// If a block would disable login, then it should
 			// prevent any action that all users cannot do
 			$anon = new User;
@@ -1692,6 +1703,29 @@ class Block {
 	 * @return array
 	 */
 	public function getPermissionsError( IContextSource $context ) {
+		$params = $this->getBlockErrorParams( $context );
+
+		$msg = 'blockedtext';
+		if ( $this->getSystemBlockType() !== null ) {
+			$msg = 'systemblockedtext';
+		} elseif ( $this->mAuto ) {
+			$msg = 'autoblockedtext';
+		} elseif ( !$this->isSitewide() ) {
+			$msg = 'blockedtext-partial';
+		}
+
+		array_unshift( $params, $msg );
+
+		return $params;
+	}
+
+	/**
+	 * Get block information used in different block error messages
+	 *
+	 * @param IContextSource $context
+	 * @return array
+	 */
+	public function getBlockErrorParams( IContextSource $context ) {
 		$blocker = $this->getBlocker();
 		if ( $blocker instanceof User ) { // local user
 			$blockerUserpage = $blocker->getUserPage();
@@ -1708,14 +1742,10 @@ class Block {
 		/* $ip returns who *is* being blocked, $intended contains who was meant to be blocked.
 		 * This could be a username, an IP range, or a single IP. */
 		$intended = $this->getTarget();
-
 		$systemBlockType = $this->getSystemBlockType();
-
 		$lang = $context->getLanguage();
+
 		return [
-			$systemBlockType !== null
-				? 'systemblockedtext'
-				: ( $this->mAuto ? 'autoblockedtext' : 'blockedtext' ),
 			$link,
 			$reason,
 			$context->getRequest()->getIP(),
@@ -1761,5 +1791,35 @@ class Block {
 		} );
 
 		return $this;
+	}
+
+	/**
+	 * Checks if a block prevents an edit on a given article
+	 *
+	 * @param \Title $title
+	 * @return bool
+	 */
+	public function preventsEdit( \Title $title ) {
+		$blocked = $this->isSitewide();
+
+		// user talk page has it's own rules
+		// This check happens before partial blocks because the flag
+		// to allow user to edit their user talk page could be
+		// overwritten by a partial block restriction (E.g. user talk namespace)
+		$user = $this->getTarget();
+		if ( $title->equals( $user->getTalkPage() ) ) {
+			$blocked = $this->prevents( 'editownusertalk' );
+		}
+
+		if ( !$this->isSitewide() ) {
+			$restrictions = $this->getRestrictions();
+			foreach ( $restrictions as $restriction ) {
+				if ( $restriction->matches( $title ) ) {
+					$blocked = true;
+				}
+			}
+		}
+
+		return $blocked;
 	}
 }

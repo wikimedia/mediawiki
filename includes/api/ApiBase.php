@@ -1853,6 +1853,12 @@ abstract class ApiBase extends ContextSource {
 					'blocked',
 					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
 				) );
+			} elseif ( is_array( $error ) && $error[0] === 'blockedtext-partial' && $user->getBlock() ) {
+				$status->fatal( ApiMessage::create(
+					'apierror-blocked-partial',
+					'blocked',
+					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
+				) );
 			} elseif ( is_array( $error ) && $error[0] === 'autoblockedtext' && $user->getBlock() ) {
 				$status->fatal( ApiMessage::create(
 					'apierror-autoblocked',
@@ -2025,6 +2031,12 @@ abstract class ApiBase extends ContextSource {
 			$this->dieWithError(
 				'apierror-autoblocked',
 				'autoblocked',
+				[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) ]
+			);
+		} elseif ( !$block->isSitewide() ) {
+			$this->dieWithError(
+				'apierror-blocked-partial',
+				'blocked',
 				[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) ]
 			);
 		} else {
