@@ -60,6 +60,9 @@ because of Phabricator reports.
   and 'notice-message', which were deprecated in 1.32, were removed. Instead,
   use 'help', 'help-message', and 'help-messages'.
 * (T197179) HTMLFormField::getNotices(), deprecated in 1.32, was removed.
+* The "Parsoid v1" compatibility mappings in ParsoidVirtualRESTService and
+  RestbaseVirtualRESTService, deprecated since 1.26, have been removed.
+  Use the RESTBase v1 or Parsoid v3 API instead.
 * …
 
 === Deprecations in 1.33 ===
