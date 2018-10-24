@@ -56,6 +56,10 @@ because of Phabricator reports.
 * Language::truncate(), deprecated in 1.31, has been removed.
 * UtfNormal, deprecated in 1.25, was removed. Use UtfNormal\Validator directly
   instead.
+* (T197179) In OOUI HTMLForm fields, the parameters 'notice', 'notice-messages',
+  and 'notice-message', which were deprecated in 1.32, were removed. Instead,
+  use 'help', 'help-message', and 'help-messages'.
+* (T197179) HTMLFormField::getNotices(), deprecated in 1.32, was removed.
 * …
 
 === Deprecations in 1.33 ===
