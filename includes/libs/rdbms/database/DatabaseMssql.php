@@ -987,10 +987,7 @@ class DatabaseMssql extends Database {
 	 */
 	public function getServerVersion() {
 		$server_info = sqlsrv_server_info( $this->conn );
-		$version = 'Error';
-		if ( isset( $server_info['SQLServerVersion'] ) ) {
-			$version = $server_info['SQLServerVersion'];
-		}
+		$version = $server_info['SQLServerVersion'] ?? 'Error';
 
 		return $version;
 	}

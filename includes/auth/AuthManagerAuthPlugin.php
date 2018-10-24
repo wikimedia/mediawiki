@@ -79,11 +79,7 @@ class AuthManagerAuthPlugin extends \AuthPlugin {
 	}
 
 	public function getDomain() {
-		if ( isset( $this->domain ) ) {
-			return $this->domain;
-		} else {
-			return 'invaliddomain';
-		}
+		return $this->domain ?? 'invaliddomain';
 	}
 
 	public function validDomain( $domain ) {

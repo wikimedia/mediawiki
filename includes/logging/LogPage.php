@@ -437,11 +437,7 @@ class LogPage {
 		global $wgLogNames;
 
 		// BC
-		if ( isset( $wgLogNames[$this->type] ) ) {
-			$key = $wgLogNames[$this->type];
-		} else {
-			$key = 'log-name-' . $this->type;
-		}
+		$key = $wgLogNames[$this->type] ?? 'log-name-' . $this->type;
 
 		return wfMessage( $key );
 	}
@@ -454,11 +450,7 @@ class LogPage {
 	public function getDescription() {
 		global $wgLogHeaders;
 		// BC
-		if ( isset( $wgLogHeaders[$this->type] ) ) {
-			$key = $wgLogHeaders[$this->type];
-		} else {
-			$key = 'log-description-' . $this->type;
-		}
+		$key = $wgLogHeaders[$this->type] ?? 'log-description-' . $this->type;
 
 		return wfMessage( $key );
 	}
@@ -470,14 +462,8 @@ class LogPage {
 	 */
 	public function getRestriction() {
 		global $wgLogRestrictions;
-		if ( isset( $wgLogRestrictions[$this->type] ) ) {
-			$restriction = $wgLogRestrictions[$this->type];
-		} else {
-			// '' always returns true with $user->isAllowed()
-			$restriction = '';
-		}
-
-		return $restriction;
+		// '' always returns true with $user->isAllowed()
+		return $wgLogRestrictions[$this->type] ?? '';
 	}
 
 	/**

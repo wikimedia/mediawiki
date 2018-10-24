@@ -254,11 +254,7 @@ class KafkaHandler extends AbstractProcessingHandler {
 	 * @param array $records List of records to append
 	 */
 	protected function addMessages( $channel, array $records ) {
-		if ( isset( $this->options['alias'][$channel] ) ) {
-			$topic = $this->options['alias'][$channel];
-		} else {
-			$topic = "monolog_$channel";
-		}
+		$topic = $this->options['alias'][$channel] ?? "monolog_$channel";
 		$partition = $this->getRandomPartition( $topic );
 		if ( $partition !== null ) {
 			$this->produce->setMessages( $topic, $partition, $records );

@@ -58,11 +58,7 @@ class Cookie {
 			$this->expires = strtotime( $attr['expires'] );
 		}
 
-		if ( isset( $attr['path'] ) ) {
-			$this->path = $attr['path'];
-		} else {
-			$this->path = '/';
-		}
+		$this->path = $attr['path'] ?? '/';
 
 		if ( isset( $attr['domain'] ) ) {
 			if ( self::validateCookieDomain( $attr['domain'] ) ) {

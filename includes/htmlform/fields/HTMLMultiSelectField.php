@@ -228,11 +228,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	}
 
 	public function getDefault() {
-		if ( isset( $this->mDefault ) ) {
-			return $this->mDefault;
-		} else {
-			return [];
-		}
+		return $this->mDefault ?? [];
 	}
 
 	public function filterDataForSubmit( $data ) {

@@ -105,11 +105,7 @@ class JobQueueGroup {
 		global $wgJobTypeConf;
 
 		$conf = [ 'wiki' => $this->wiki, 'type' => $type ];
-		if ( isset( $wgJobTypeConf[$type] ) ) {
-			$conf = $conf + $wgJobTypeConf[$type];
-		} else {
-			$conf = $conf + $wgJobTypeConf['default'];
-		}
+		$conf += $wgJobTypeConf[$type] ?? $wgJobTypeConf['default'];
 		$conf['aggregator'] = JobQueueAggregator::singleton();
 		if ( !isset( $conf['readOnlyReason'] ) ) {
 			$conf['readOnlyReason'] = $this->readOnlyReason;

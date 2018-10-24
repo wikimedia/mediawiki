@@ -550,11 +550,7 @@ class ResourceLoader implements LoggerAwareInterface {
 				$object->setConfig( $this->getConfig() );
 				$object->setLogger( $this->logger );
 			} else {
-				if ( !isset( $info['class'] ) ) {
-					$class = ResourceLoaderFileModule::class;
-				} else {
-					$class = $info['class'];
-				}
+				$class = $info['class'] ?? ResourceLoaderFileModule::class;
 				/** @var ResourceLoaderModule $object */
 				$object = new $class( $info );
 				$object->setConfig( $this->getConfig() );

@@ -753,11 +753,7 @@ EOT;
 		$xml = new XmlTypeCheck( $file );
 		if ( $xml->wellFormed ) {
 			$xmlTypes = $this->xmlTypes;
-			if ( isset( $xmlTypes[$xml->getRootElement()] ) ) {
-				return $xmlTypes[$xml->getRootElement()];
-			} else {
-				return 'application/xml';
-			}
+			return $xmlTypes[$xml->getRootElement()] ?? 'application/xml';
 		}
 
 		/**

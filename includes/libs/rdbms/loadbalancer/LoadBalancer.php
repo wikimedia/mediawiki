@@ -204,11 +204,7 @@ class LoadBalancer implements ILoadBalancer {
 			$this->maxLag = $params['maxLag'];
 		}
 
-		if ( isset( $params['loadMonitor'] ) ) {
-			$this->loadMonitorConfig = $params['loadMonitor'];
-		} else {
-			$this->loadMonitorConfig = [ 'class' => 'LoadMonitorNull' ];
-		}
+		$this->loadMonitorConfig = $params['loadMonitor'] ?? [ 'class' => 'LoadMonitorNull' ];
 		$this->loadMonitorConfig += [ 'lagWarnThreshold' => $this->maxLag ];
 
 		foreach ( $params['servers'] as $i => $server ) {
@@ -223,22 +219,10 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		}
 
-		if ( isset( $params['srvCache'] ) ) {
-			$this->srvCache = $params['srvCache'];
-		} else {
-			$this->srvCache = new EmptyBagOStuff();
-		}
-		if ( isset( $params['wanCache'] ) ) {
-			$this->wanCache = $params['wanCache'];
-		} else {
-			$this->wanCache = WANObjectCache::newEmpty();
-		}
+		$this->srvCache = $params['srvCache'] ?? new EmptyBagOStuff();
+		$this->wanCache = $params['wanCache'] ?? WANObjectCache::newEmpty();
 		$this->profiler = $params['profiler'] ?? null;
-		if ( isset( $params['trxProfiler'] ) ) {
-			$this->trxProfiler = $params['trxProfiler'];
-		} else {
-			$this->trxProfiler = new TransactionProfiler();
-		}
+		$this->trxProfiler = $params['trxProfiler'] ?? new TransactionProfiler();
 
 		$this->errorLogger = $params['errorLogger'] ?? function ( Exception $e ) {
 			trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
@@ -1223,23 +1207,13 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getServerName( $i ) {
-		if ( isset( $this->servers[$i]['hostName'] ) ) {
-			$name = $this->servers[$i]['hostName'];
-		} elseif ( isset( $this->servers[$i]['host'] ) ) {
-			$name = $this->servers[$i]['host'];
-		} else {
-			$name = '';
-		}
+		$name = $this->servers[$i]['hostName'] ?? $this->servers[$i]['host'] ?? '';
 
 		return ( $name != '' ) ? $name : 'localhost';
 	}
 
 	public function getServerInfo( $i ) {
-		if ( isset( $this->servers[$i] ) ) {
-			return $this->servers[$i];
-		} else {
-			return false;
-		}
+		return $this->servers[$i] ?? false;
 	}
 
 	public function getServerType( $i ) {

@@ -169,11 +169,7 @@ class ObjectCache {
 	 * @throws InvalidArgumentException
 	 */
 	public static function newFromParams( $params ) {
-		if ( isset( $params['loggroup'] ) ) {
-			$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] );
-		} else {
-			$params['logger'] = LoggerFactory::getInstance( 'objectcache' );
-		}
+		$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
 		if ( !isset( $params['keyspace'] ) ) {
 			$params['keyspace'] = self::getDefaultKeyspace();
 		}
@@ -340,11 +336,7 @@ class ObjectCache {
 			}
 		}
 		$params['cache'] = self::newFromParams( $params['store'] );
-		if ( isset( $params['loggroup'] ) ) {
-			$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] );
-		} else {
-			$params['logger'] = LoggerFactory::getInstance( 'objectcache' );
-		}
+		$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
 		if ( !$wgCommandLineMode ) {
 			// Send the statsd data post-send on HTTP requests; avoid in CLI mode (T181385)
 			$params['stats'] = $services->getStatsdDataFactory();
