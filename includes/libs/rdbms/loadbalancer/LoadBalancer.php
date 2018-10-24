@@ -47,7 +47,7 @@ class LoadBalancer implements ILoadBalancer {
 	private $srvCache;
 	/** @var WANObjectCache */
 	private $wanCache;
-	/** @var object|string Class name or object With profileIn/profileOut methods */
+	/** @var mixed Class name or object With profileIn/profileOut methods */
 	private $profiler;
 	/** @var TransactionProfiler */
 	private $trxProfiler;
