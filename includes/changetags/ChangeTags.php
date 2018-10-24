@@ -351,13 +351,15 @@ class ChangeTags {
 				foreach ( $tagsToAdd as $tag ) {
 					$changeTagMapping[$tag] = $changeTagDefStore->acquireId( $tag );
 				}
-
-				$dbw->update(
-					'change_tag_def',
-					[ 'ctd_count = ctd_count + 1' ],
-					[ 'ctd_name' => $tagsToAdd ],
-					__METHOD__
-				);
+				// T207881: update the counts at the end of the transaction
+				$dbw->onTransactionPreCommitOrIdle( function () use ( $dbw, $tagsToAdd ) {
+					$dbw->update(
+						'change_tag_def',
+						[ 'ctd_count = ctd_count + 1' ],
+						[ 'ctd_name' => $tagsToAdd ],
+						__METHOD__
+					);
+				} );
 			}
 
 			$tagsRows = [];
@@ -408,18 +410,21 @@ class ChangeTags {
 				);
 				$dbw->delete( 'change_tag', $conds, __METHOD__ );
 				if ( $dbw->affectedRows() && $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
-					$dbw->update(
-						'change_tag_def',
-						[ 'ctd_count = ctd_count - 1' ],
-						[ 'ctd_name' => $tag ],
-						__METHOD__
-					);
+					// T207881: update the counts at the end of the transaction
+					$dbw->onTransactionPreCommitOrIdle( function () use ( $dbw, $tag ) {
+						$dbw->update(
+							'change_tag_def',
+							[ 'ctd_count = ctd_count - 1' ],
+							[ 'ctd_name' => $tag ],
+							__METHOD__
+						);
 
-					$dbw->delete(
-						'change_tag_def',
-						[ 'ctd_name' => $tag, 'ctd_count' => 0, 'ctd_user_defined' => 0 ],
-						__METHOD__
-					);
+						$dbw->delete(
+							'change_tag_def',
+							[ 'ctd_name' => $tag, 'ctd_count' => 0, 'ctd_user_defined' => 0 ],
+							__METHOD__
+						);
+					} );
 				}
 			}
 		}
