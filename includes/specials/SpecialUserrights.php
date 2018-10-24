@@ -767,7 +767,7 @@ class UserrightsPage extends SpecialPage {
 	 * @param UserGroupMembership[] $usergroups Associative array of (group name as string =>
 	 *   UserGroupMembership object) for groups the user belongs to
 	 * @param User $user
-	 * @return Array with 2 elements: the XHTML table element with checkxboes, and
+	 * @return array Array with 2 elements: the XHTML table element with checkxboes, and
 	 * whether any groups are changeable
 	 */
 	private function groupCheckboxes( $usergroups, $user ) {
