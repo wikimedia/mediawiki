@@ -783,6 +783,7 @@ class SpecialBlock extends FormSpecialPage {
 				$currentBlock->prevents( 'sendemail', $block->prevents( 'sendemail' ) );
 				$currentBlock->prevents( 'editownusertalk', $block->prevents( 'editownusertalk' ) );
 				$currentBlock->mReason = $block->mReason;
+				$currentBlock->isSitewide( $block->isSitewide() );
 
 				$status = $currentBlock->update();
 
