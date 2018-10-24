@@ -22,6 +22,8 @@
 /**
  * @ingroup Pager
  */
+use MediaWiki\Block\BlockRestriction;
+use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -29,6 +31,13 @@ class BlockListPager extends TablePager {
 
 	protected $conds;
 	protected $page;
+
+	/**
+	 * Array of restrictions.
+	 *
+	 * @var Restriction[]
+	 */
+	protected $restrictions = [];
 
 	/**
 	 * @param SpecialPage $page
@@ -72,6 +81,8 @@ class BlockListPager extends TablePager {
 				'blocklist-nousertalk',
 				'unblocklink',
 				'change-blocklink',
+				'blocklist-editing',
+				'blocklist-editing-sitewide',
 			];
 
 			foreach ( $keys as $key ) {
@@ -179,6 +190,18 @@ class BlockListPager extends TablePager {
 
 			case 'ipb_params':
 				$properties = [];
+
+				if ( $this->getConfig()->get( 'EnablePartialBlocks' ) ) {
+					if ( $row->ipb_sitewide ) {
+						$properties[] = htmlspecialchars( $msg['blocklist-editing-sitewide'] );
+					}
+				}
+
+				if ( !$row->ipb_sitewide && $this->restrictions ) {
+					$list = $this->getRestrictionListHTML( $this->restrictions, $row );
+					$properties[] = htmlspecialchars( $msg['blocklist-editing'] ) . $list;
+				}
+
 				if ( $row->ipb_anon_only ) {
 					$properties[] = htmlspecialchars( $msg['anononlyblock'] );
 				}
@@ -197,7 +220,17 @@ class BlockListPager extends TablePager {
 					$properties[] = htmlspecialchars( $msg['blocklist-nousertalk'] );
 				}
 
-				$formatted = $language->commaList( $properties );
+				$formatted = Html::rawElement(
+						'ul',
+						[],
+						implode( '', array_map( function ( $prop ) {
+							return HTML::rawElement(
+								'li',
+								[],
+								$prop
+							);
+						}, $properties ) )
+					);
 				break;
 
 			default:
@@ -206,6 +239,47 @@ class BlockListPager extends TablePager {
 		}
 
 		return $formatted;
+	}
+
+	/**
+	 * Get Restriction List HTML
+	 *
+	 * @param Restriction[] $restrictions
+	 * @param stdClass $row
+	 *
+	 * @return string
+	 */
+	private static function getRestrictionListHTML(
+		array $restrictions,
+		stdClass $row
+	) {
+		$items = [];
+
+		foreach ( $restrictions as $restriction ) {
+			if ( $restriction->getBlockId() !== (int)$row->ipb_id ) {
+				continue;
+			}
+
+			if ( $restriction->getType() !== 'page' ) {
+				continue;
+			}
+
+			$items[] = HTML::rawElement(
+				'li',
+				[],
+				Linker::link( $restriction->getTitle() )
+			);
+		}
+
+		if ( empty( $items ) ) {
+			return '';
+		}
+
+		return Html::rawElement(
+			'ul',
+			[],
+			implode( '', $items )
+		);
 	}
 
 	function getQueryInfo() {
@@ -232,6 +306,7 @@ class BlockListPager extends TablePager {
 				'ipb_deleted',
 				'ipb_block_email',
 				'ipb_allow_usertalk',
+				'ipb_sitewide',
 			] + $commentQuery['fields'] + $actorQuery['fields'],
 			'conds' => $this->conds,
 			'join_conds' => [
@@ -296,6 +371,7 @@ class BlockListPager extends TablePager {
 		$lb = new LinkBatch;
 		$lb->setCaller( __METHOD__ );
 
+		$partialBlocks = [];
 		foreach ( $result as $row ) {
 			$lb->add( NS_USER, $row->ipb_address );
 			$lb->add( NS_USER_TALK, $row->ipb_address );
@@ -304,6 +380,16 @@ class BlockListPager extends TablePager {
 				$lb->add( NS_USER, $row->by_user_name );
 				$lb->add( NS_USER_TALK, $row->by_user_name );
 			}
+
+			if ( !$row->ipb_sitewide ) {
+				$partialBlocks[] = $row->ipb_id;
+			}
+		}
+
+		if ( $partialBlocks ) {
+			// Mutations to the $row object are not persisted. The restrictions will
+			// need be stored in a separate store.
+			$this->restrictions = BlockRestriction::loadByBlockId( $partialBlocks );
 		}
 
 		$lb->execute();
