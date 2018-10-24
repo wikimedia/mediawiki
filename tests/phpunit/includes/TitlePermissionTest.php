@@ -969,5 +969,22 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 				'Useruser', 'test', '23:00, 31 December 1969', '127.0.8.1',
 				$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ],
 			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
+
+		// partial block message test
+		$this->user->mBlockedby = $this->user->getName();
+		$this->user->mBlock = new Block( [
+			'address' => '127.0.8.1',
+			'by' => $this->user->getId(),
+			'reason' => 'no reason given',
+			'timestamp' => $now,
+			'sitewide' => false,
+			'expiry' => 10,
+		] );
+
+		$this->assertEquals( [ [ 'blockedtext-partial',
+				'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
+				'Useruser', null, '23:00, 31 December 1969', '127.0.8.1',
+				$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ],
+			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
 	}
 }
