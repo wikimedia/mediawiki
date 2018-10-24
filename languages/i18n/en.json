@@ -4353,6 +4353,7 @@
 	"mw-widgets-titleinput-description-redirect": "redirect to $1",
 	"mw-widgets-categoryselector-add-category-placeholder": "Add a category...",
 	"mw-widgets-usersmultiselect-placeholder": "Add more...",
+	"mw-widgets-titlesmultiselect-placeholder": "Add more...",
 	"date-range-from": "From date:",
 	"date-range-to": "To date:",
 	"sessionmanager-tie": "Cannot combine multiple request authentication types: $1.",

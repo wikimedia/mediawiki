@@ -28,6 +28,7 @@
 	 * @cfg {boolean} [excludeCurrentPage] Exclude the current page from suggestions
 	 * @cfg {boolean} [validateTitle=true] Whether the input must be a valid title
 	 * @cfg {boolean} [required=false] Whether the input must not be empty
+	 * @cfg {boolean} [highlightSearchQuery=true] Highlight the partial query the user used for this title
 	 * @cfg {Object} [cache] Result cache which implements a 'set' method, taking keyed values as an argument
 	 * @cfg {mw.Api} [api] API object to use, creates a default mw.Api instance if not specified
 	 */
@@ -51,6 +52,7 @@
 		this.addQueryInput = config.addQueryInput !== false;
 		this.excludeCurrentPage = !!config.excludeCurrentPage;
 		this.validateTitle = config.validateTitle !== undefined ? config.validateTitle : true;
+		this.highlightSearchQuery = config.highlightSearchQuery === undefined ? true : !!config.highlightSearchQuery;
 		this.cache = config.cache;
 		this.api = config.api || new mw.Api();
 		// Supports: IE10, FF28, Chrome23
@@ -344,7 +346,7 @@
 			missing: data.missing,
 			redirect: data.redirect,
 			disambiguation: data.disambiguation,
-			query: this.getQueryValue(),
+			query: this.highlightSearchQuery ? this.getQueryValue() : null,
 			compare: this.compare
 		};
 	};

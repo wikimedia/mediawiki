@@ -2706,6 +2706,18 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.widgets.TitlesMultiselectWidget' => [
+		'scripts' => [
+			'resources/src/mediawiki.widgets/mw.widgets.TitlesMultiselectWidget.js',
+		],
+		'dependencies' => [
+			'mediawiki.api',
+			'oojs-ui-widgets',
+			// FIXME: Needs TitleInputWidget only
+			'mediawiki.widgets',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.widgets.SearchInputWidget' => [
 		'scripts' => [
 			'resources/src/mediawiki.widgets/mw.widgets.SearchInputWidget.js',
