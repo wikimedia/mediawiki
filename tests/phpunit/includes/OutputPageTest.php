@@ -1442,10 +1442,13 @@ class OutputPageTest extends MediaWikiTestCase {
 		$op = $this->newInstance();
 		$this->assertSame( '', $op->getHTML() );
 
+		$this->hideDeprecated( 'OutputPage::addWikiText' );
 		$this->hideDeprecated( 'OutputPage::addWikiTextTitle' );
 		$this->hideDeprecated( 'OutputPage::addWikiTextWithTitle' );
 		$this->hideDeprecated( 'OutputPage::addWikiTextTidy' );
 		$this->hideDeprecated( 'OutputPage::addWikiTextTitleTidy' );
+		$this->hideDeprecated( 'disabling tidy' );
+
 		if ( in_array(
 			$method,
 			[ 'addWikiTextWithTitle', 'addWikiTextTitleTidy', 'addWikiTextTitle' ]
@@ -1614,6 +1617,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::addWikiText
 	 */
 	public function testAddWikiTextNoTitle() {
+		$this->hideDeprecated( 'OutputPage::addWikiText' );
 		$this->setExpectedException( MWException::class, 'Title is null' );
 
 		$op = $this->newInstance( [], null, 'notitle' );
