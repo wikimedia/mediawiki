@@ -352,4 +352,9 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		$this->assertNotSame( $title1, $title2, 'title cache should be empty' );
 		$this->assertEquals( 0, $linkCache->getGoodLinkID( 'Foo' ), 'link cache should be empty' );
 	}
+
+	function tearDown() {
+		Title::clearCaches();
+		parent::tearDown();
+	}
 }
