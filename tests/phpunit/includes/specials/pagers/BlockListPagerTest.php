@@ -111,6 +111,8 @@ class BlockListPagerTest extends MediaWikiTestCase {
 	 * @covers ::formatValue
 	 */
 	public function testFormatValueRestrictions() {
+		$this->setMwGlobals( 'wgArticlePath', '/wiki/$1' );
+
 		$pager = new BlockListPager( new SpecialPage(),  [] );
 
 		$row = (object)[
@@ -140,10 +142,11 @@ class BlockListPagerTest extends MediaWikiTestCase {
 
 		$formatted = $pager->formatValue( 'ipb_params', '' );
 		$this->assertEquals( '<ul><li>'
+			// FIXME: Expectation value should not be dynamic
+			// and must not depend on a localisation message.
+			// TODO: Mock the message or consider using qqx.
 			. wfMessage( 'blocklist-editing' )->text()
-			. '<ul><li><a href="/index.php/'
-			. $title->getDBKey()
-			. '" title="'
+			. '<ul><li><a href="/wiki/Victor_Frankenstein" title="'
 			. $pageName
 			. '">'
 			. $pageName
