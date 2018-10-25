@@ -370,6 +370,21 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		}
 	}
 
+	public static function provideGuessSectionNameFromWikiText() {
+		return [
+			[ '1/2', 'html5', '#1/2' ],
+			[ '1/2', 'legacy', '#1.2F2' ],
+		];
+	}
+
+	/** @dataProvider provideGuessSectionNameFromWikiText */
+	public function testGuessSectionNameFromWikiText( $input, $mode, $expected ) {
+		$this->setMwGlobals( [ 'wgFragmentMode' => [ $mode ] ] );
+		global $wgParser;
+		$result = $wgParser->guessSectionNameFromWikiText( $input );
+		$this->assertEquals( $result, $expected );
+	}
+
 	// @todo Add tests for cleanSig() / cleanSigInSig(), getSection(),
 	// replaceSection(), getPreloadText()
 }

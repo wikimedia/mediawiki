@@ -5925,7 +5925,7 @@ class Parser {
 	}
 
 	private function makeLegacyAnchor( $sectionName ) {
-		$fragmentMode = $this->config->get( 'FragmentMode' );
+		$fragmentMode = $this->siteConfig->get( 'FragmentMode' );
 		if ( isset( $fragmentMode[1] ) && $fragmentMode[1] === 'legacy' ) {
 			// ForAttribute() and ForLink() are the same for legacy encoding
 			$id = Sanitizer::escapeIdForAttribute( $sectionName, Sanitizer::ID_FALLBACK );
