@@ -816,6 +816,15 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 				"#REDIRECT [[Media:hello_world]]",
 				"File:Hello world"
 			],
+			// Test fragments longer than 255 bytes (T207876)
+			[
+				'WikiPageTest_testGetRedirectTarget_4',
+				CONTENT_MODEL_WIKITEXT,
+				// phpcs:ignore Generic.Files.LineLength
+				'#REDIRECT [[Foobar#🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿]]',
+				// phpcs:ignore Generic.Files.LineLength
+				'Foobar#🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬󠁦󠁲󠁿🏴󠁮󠁬...'
+			]
 		];
 	}
 
@@ -836,7 +845,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 
 		# now, test the actual redirect
 		$t = $page->getRedirectTarget();
-		$this->assertEquals( $target, is_null( $t ) ? null : $t->getPrefixedText() );
+		$this->assertEquals( $target, is_null( $t ) ? null : $t->getFullText() );
 	}
 
 	/**
