@@ -55,6 +55,11 @@ class ApiRollback extends ApiBase {
 			}
 		}
 
+		// @TODO: remove this hack once rollback uses POST (T88044)
+		$trxLimits = $this->getConfig()->get( 'TrxProfilerLimits' );
+		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$trxProfiler->setExpectations( $trxLimits['POST'], __METHOD__ );
+
 		$retval = $pageObj->doRollback(
 			$this->getRbUser( $params ),
 			$summary,
