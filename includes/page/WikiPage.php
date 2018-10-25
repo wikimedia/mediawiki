@@ -1045,20 +1045,22 @@ class WikiPage implements Page, IDBAccessObject {
 		$dbw->startAtomic( __METHOD__ );
 
 		if ( !$oldLatest || $oldLatest == $this->lockAndGetLatest() ) {
+			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+			$truncatedFragment = $contLang->truncateForDatabase( $rt->getFragment(), 255 );
 			$dbw->upsert(
 				'redirect',
 				[
 					'rd_from' => $this->getId(),
 					'rd_namespace' => $rt->getNamespace(),
 					'rd_title' => $rt->getDBkey(),
-					'rd_fragment' => $rt->getFragment(),
+					'rd_fragment' => $truncatedFragment,
 					'rd_interwiki' => $rt->getInterwiki(),
 				],
 				[ 'rd_from' ],
 				[
 					'rd_namespace' => $rt->getNamespace(),
 					'rd_title' => $rt->getDBkey(),
-					'rd_fragment' => $rt->getFragment(),
+					'rd_fragment' => $truncatedFragment,
 					'rd_interwiki' => $rt->getInterwiki(),
 				],
 				__METHOD__
