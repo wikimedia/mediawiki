@@ -6,17 +6,19 @@
 	padding: 0 0.5em;
 	.box-sizing( border-box );
 
-	&:not( :last-child ) {
+	&:not( :last-child ):not( .mw-rcfilters-ui-itemMenuOptionWidget-identifier-talk ) {
 		border-bottom: 1px solid @colorGray14;
 	}
 
 	&-view-namespaces {
 		border-top: 4px solid @colorGray12;
+	}
 
-		&:first-child,
-		&.mw-rcfilters-ui-itemMenuOptionWidget-identifier-subject + &.mw-rcfilters-ui-itemMenuOptionWidget-identifier-talk {
-			border-top: 0;
-		}
+	// Don't show border for first namespace
+	&-view-default + &-view-namespaces,
+	// Hide for every 'talk' option
+	&-view-namespaces&.mw-rcfilters-ui-itemMenuOptionWidget-identifier-subject + &-view-namespaces.mw-rcfilters-ui-itemMenuOptionWidget-identifier-talk {
+		border-top: 0;
 	}
 
 	&:hover {
