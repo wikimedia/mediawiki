@@ -191,4 +191,8 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	function tearDown() {
+		Title::clearCaches();
+		parent::tearDown();
+	}
 }
