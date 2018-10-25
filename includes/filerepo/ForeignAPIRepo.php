@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 
 /**
  * A foreign repository with a remote MediaWiki with an API thingy
@@ -333,7 +332,6 @@ class ForeignAPIRepo extends FileRepo {
 	 * @return bool|string
 	 */
 	function getThumbUrlFromCache( $name, $width, $height, $params = "" ) {
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		// We can't check the local cache using FileRepo functions because
 		// we override fileExistsBatch(). We have to use the FileBackend directly.
 		$backend = $this->getBackend(); // convenience
@@ -346,7 +344,7 @@ class ForeignAPIRepo extends FileRepo {
 		$sizekey = "$width:$height:$params";
 
 		/* Get the array of urls that we already know */
-		$knownThumbUrls = $cache->get( $key );
+		$knownThumbUrls = $this->wanCache->get( $key );
 		if ( !$knownThumbUrls ) {
 			/* No knownThumbUrls for this file */
 			$knownThumbUrls = [];
@@ -392,7 +390,7 @@ class ForeignAPIRepo extends FileRepo {
 			if ( $remoteModified < $modified && $diff < $this->fileCacheExpiry ) {
 				/* Use our current and already downloaded thumbnail */
 				$knownThumbUrls[$sizekey] = $localUrl;
-				$cache->set( $key, $knownThumbUrls, $this->apiThumbCacheExpiry );
+				$this->wanCache->set( $key, $knownThumbUrls, $this->apiThumbCacheExpiry );
 
 				return $localUrl;
 			}
@@ -417,9 +415,9 @@ class ForeignAPIRepo extends FileRepo {
 		$knownThumbUrls[$sizekey] = $localUrl;
 
 		$ttl = $mtime
-			? $cache->adaptiveTTL( $mtime, $this->apiThumbCacheExpiry )
+			? $this->wanCache->adaptiveTTL( $mtime, $this->apiThumbCacheExpiry )
 			: $this->apiThumbCacheExpiry;
-		$cache->set( $key, $knownThumbUrls, $ttl );
+		$this->wanCache->set( $key, $knownThumbUrls, $ttl );
 		wfDebug( __METHOD__ . " got local thumb $localUrl, saving to cache \n" );
 
 		return $localUrl;
@@ -570,22 +568,21 @@ class ForeignAPIRepo extends FileRepo {
 			$url = $this->makeUrl( $query, 'api' );
 		}
 
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		return $cache->getWithSetCallback(
+		return $this->wanCache->getWithSetCallback(
 			$this->getLocalCacheKey( static::class, $target, md5( $url ) ),
 			$cacheTTL,
-			function ( $curValue, &$ttl ) use ( $url, $cache ) {
+			function ( $curValue, &$ttl ) use ( $url ) {
 				$html = self::httpGet( $url, 'default', [], $mtime );
 				if ( $html !== false ) {
-					$ttl = $mtime ? $cache->adaptiveTTL( $mtime, $ttl ) : $ttl;
+					$ttl = $mtime ? $this->wanCache->adaptiveTTL( $mtime, $ttl ) : $ttl;
 				} else {
-					$ttl = $cache->adaptiveTTL( $mtime, $ttl );
+					$ttl = $this->wanCache->adaptiveTTL( $mtime, $ttl );
 					$html = null; // caches negatives
 				}
 
 				return $html;
 			},
-			[ 'pcTTL' => $cache::TTL_PROC_LONG ]
+			[ 'pcTTL' => WANObjectCache::TTL_PROC_LONG ]
 		);
 	}
 
