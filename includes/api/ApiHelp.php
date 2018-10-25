@@ -44,6 +44,7 @@ class ApiHelp extends ApiBase {
 		$context->setLanguage( $this->getMain()->getLanguage() );
 		$context->setTitle( SpecialPage::getTitleFor( 'ApiHelp' ) );
 		$out = new OutputPage( $context );
+		$out->setRobotPolicy( 'noindex,nofollow' );
 		$out->setCopyrightUrl( 'https://www.mediawiki.org/wiki/Special:MyLanguage/Copyright' );
 		$context->setOutput( $out );
 
