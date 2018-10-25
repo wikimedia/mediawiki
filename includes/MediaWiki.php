@@ -704,11 +704,12 @@ class MediaWiki {
 	 * @since 1.26
 	 */
 	public function doPostOutputShutdown( $mode = 'normal' ) {
+		// Record backend request timing
+		$timing = $this->context->getTiming();
+		$timing->mark( 'requestShutdown' );
+
 		// Perform the last synchronous operations...
 		try {
-			// Record backend request timing
-			$timing = $this->context->getTiming();
-			$timing->mark( 'requestShutdown' );
 			// Show visible profiling data if enabled (which cannot be post-send)
 			Profiler::instance()->logDataPageOutputOnly();
 		} catch ( Exception $e ) {
