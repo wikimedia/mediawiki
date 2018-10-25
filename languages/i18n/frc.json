@@ -21,7 +21,6 @@
 	"tog-extendwatchlist": "Agrandir la liste des pages guettées pour montrer tous les changements",
 	"tog-usenewrc": "User les derniers changements improuvés (JavaScript)",
 	"tog-numberheadings": "Mettre les numéros sus les en-têtes",
-	"tog-showtoolbar": "Montrer la barre d'outils des changements (nécessite JavaScript)",
 	"tog-editondblclick": "Faire un clic-double pour changer la page (nécessite JavaScript)",
 	"tog-editsectiononrightclick": "Changer une section en faisant un clic droit sus son nom (JavaScript)",
 	"tog-watchcreations": "Additionner les pages que je crée à ma liste des pages guettées",

@@ -16,7 +16,6 @@
 	"tog-extendwatchlist": "Palapadon ang lista sang mga ginabantayan para makita ang tanan nga nagla-in, indi lang man ang pinakabag-o",
 	"tog-usenewrc": "Gamiton ang ginpatahum nga mga bag-ong ilis {kinanglan ang Javascript}",
 	"tog-numberheadings": "Insigida nga pag-isip sang numero sa mga titulo",
-	"tog-showtoolbar": "Ipakita ang toolbar sang pag-ilis (kinahanglan ang JavaScript)",
 	"tog-editondblclick": "Liwaton ang mga pahina sa duwa ka pindot {kinahanglan ang Javascript}",
 	"tog-editsectiononrightclick": "Pasugtan ang pag-ilis sang mga bahin pama-agi sa tu-o nga pagpindot sa mga titulo sang pahina {kinanglan ang JavaScript}",
 	"tog-watchcreations": "Idugang sa akon balantayan ang mga pahina nga gin-ubra ko.",

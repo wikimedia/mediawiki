@@ -51,7 +51,6 @@
 	"tog-extendwatchlist": "Proširi popis praćenih stranica tako da prikaže sve promjene, ne samo najnovije",
 	"tog-usenewrc": "Grupne promjene po stranici u popisu nedavnih izmjena i popisu praćenih stranica (zahtijeva JavaScript)",
 	"tog-numberheadings": "Automatski označi naslove brojevima",
-	"tog-showtoolbar": "Prikaži traku s alatima za uređivanje (zahtijeva JavaScript)",
 	"tog-editondblclick": "Dvoklik otvara uređivanje stranice (JavaScript)",
 	"tog-editsectiononrightclick": "Pritiskom na desnu tipku miša otvori uređivanje pojedinih odlomaka (JavaScript)",
 	"tog-watchcreations": "Dodaj stranice koje sam stvorio na moj popis praćenja",

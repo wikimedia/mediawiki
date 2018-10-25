@@ -43,7 +43,6 @@
 	"tog-extendwatchlist": "Proširi spisak nadgledanja za prikaz svih promena, ne samo nedavnih",
 	"tog-usenewrc": "Grupiši promene po stranici u skorašnjim izmenama i spisku nadgledanja",
 	"tog-numberheadings": "Automatski numeriši naslove",
-	"tog-showtoolbar": "Prikaži traku sa alatkama za uređivanje",
 	"tog-editondblclick": "Omogući uređivanje stranica dvostrukim klikom",
 	"tog-editsectiononrightclick": "Omogući uređivanje odeljaka desnim klikom na njihove naslove",
 	"tog-watchcreations": "Dodaj stranice koje napravim i datoteke koje otpremim na moj spisak nadgledanja",

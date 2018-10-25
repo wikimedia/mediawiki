@@ -46,7 +46,6 @@
 	"tog-extendwatchlist": "Extinde lista de articole urmărite pentru a arăta toate schimbările efectuate, nu doar pe cele mai recente",
 	"tog-usenewrc": "Grupează modificările după pagină în cadrul schimbărilor recente și listei paginilor urmărite",
 	"tog-numberheadings": "Numerotează automat secțiunile",
-	"tog-showtoolbar": "Afișează bara de unelte pentru modificare",
 	"tog-editondblclick": "Modifică paginile prin dublu clic",
 	"tog-editsectiononrightclick": "Activează modificarea secțiunilor prin clic dreapta pe titlul secțiunii",
 	"tog-watchcreations": "Adaugă paginile pe care le creez și fișierele pe care le încarc la lista mea de pagini urmărite",

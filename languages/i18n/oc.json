@@ -32,7 +32,6 @@
 	"tog-extendwatchlist": "Espandir la lista de seguiment per afichar totas las modificacions e non pas solament las mai recentas",
 	"tog-usenewrc": "Agropar los cambiaments per pagina dins los darrièrs cambiaments e la lista de seguiment",
 	"tog-numberheadings": "Numerotar automaticament los títols",
-	"tog-showtoolbar": "Far veire la barra d'aisinas de modificacion (necessita JavaScript)",
 	"tog-editondblclick": "Modificar de paginas amb un clic doble (necessita JavaScript)",
 	"tog-editsectiononrightclick": "Activar la modificacion de seccions en fasent un clic dreit suls títols (necessita JavaScript)",
 	"tog-watchcreations": "Apondre las paginas que creï e los fichièrs qu'impòrti a ma lista de seguiment",

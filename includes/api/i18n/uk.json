@@ -13,7 +13,8 @@
 			"Максим Підліснюк",
 			"AS",
 			"Umherirrender",
-			"Choomaq"
+			"Choomaq",
+			"Zoranzoki21"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документація]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаПи]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Список розсилки]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Оголошення API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Баґи і запити]\n</div>\n<strong>Статус:</strong> Усі функції, вказані на цій сторінці, мають працювати, але API далі перебуває в активній розробці і може змінитися у будь-який момент. Підпишіться на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ список розсилки mediawiki-api-announce], щоб помічати оновлення.\n\n<strong>Хибні запити:</strong> Коли до API надсилаються хибні запити, буде відіслано HTTP-шапку з ключем «MediaWiki-API-Error», а тоді і значення шапки, і код помилки, надіслані назад, будуть встановлені з тим же значенням. Більше інформації див. на сторінці [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Помилки й попередження]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестування:</strong> Для зручності тестування запитів API, див. [[Special:ApiSandbox]].</p>",
@@ -311,7 +312,7 @@
 	"apihelp-opensearch-param-limit": "Максимальна кількість результатів для виведення.",
 	"apihelp-opensearch-param-namespace": "Простори назв, у яких шукати. Ігнорується, якщо <var>$1search</var> починається з валідного префікса простору назв.",
 	"apihelp-opensearch-param-suggest": "Нічого не робити, якщо <var>[[mw:Special:MyLanguage/Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var> хибний.",
-	"apihelp-opensearch-param-redirects": "Як обробляти перенаправлення:\n;return:Видати саме перенаправлення.\n;resolve:Видати цільову сторінку. Може видати менше, ніж $1limit результат{{PLURAL:$1limit||и|ів}}.\nЗ історичних причин, за замовчуванням стоїть «return» для $1format=json і «resolve» — для інших форматів.",
+	"apihelp-opensearch-param-redirects": "Як обробляти перенаправлення:\n;return:Видати саме перенаправлення.\n;resolve:Видати цільову сторінку. Може видати менше, ніж $1limit результат{{PLURAL:$1|limit||и|ів}}.\nЗ історичних причин, за замовчуванням стоїть «return» для $1format=json і «resolve» — для інших форматів.",
 	"apihelp-opensearch-param-format": "Формат виводу.",
 	"apihelp-opensearch-param-warningsaserror": "Якщо при <kbd>format=json</kbd> з'являються попередження, видати помилку API замість того, щоб їх ігнорувати.",
 	"apihelp-opensearch-example-te": "Знайти сторінки, що починаються з <kbd>Te</kbd>.",

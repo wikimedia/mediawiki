@@ -62,7 +62,6 @@
 	"tog-extendwatchlist": "A figyelőlistán az összes változtatás látszódjon, ne csak az utolsó",
 	"tog-usenewrc": "Szerkesztések csoportosítása oldal szerint a friss változtatásokban és a figyelőlistán",
 	"tog-numberheadings": "Fejezetcímek automatikus számozása",
-	"tog-showtoolbar": "Szerkesztőeszközsor megjelenítése",
 	"tog-editondblclick": "A lapok szerkesztése dupla kattintásra",
 	"tog-editsectiononrightclick": "Szakaszok szerkesztése a szakaszcímre való jobb kattintással",
 	"tog-watchcreations": "Az általam létrehozott lapok és feltöltött fájlok felvétele a figyelőlistámra",
