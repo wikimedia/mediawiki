@@ -6,7 +6,6 @@
 			"Sawmw"
 		]
 	},
-	"tog-showtoolbar": "ၮဲဖှ်ေ ဆ်ုအင်းတါင်ခြီခြာ့တိုင်",
 	"underline-always": "ကိုဲၜၠင်",
 	"underline-never": "ၮင်းဖိုင့်အေႋ",
 	"editfont-serif": "ခေါဟ်ထိင်ႋပါ့ဖောင့်",
@@ -551,6 +550,9 @@
 	"whatlinkshere-hideimages": "ဖိုင်ႋဆ်ုထိုဝ်ၜုဂ်လ်ုဖး $1 ၮါင်း",
 	"whatlinkshere-filters": "ဆၟိုဝ်သယ်လ်ုဖး",
 	"ipboptions": "၂ နာႋဍီ:2 hours,၁ မူႋသင့်:1 day,၃ မူႋသင့်:3 days,၁ နိုဲ့:1 week,၂ နိုဲ့:2 weeks,လာ ၁ ၜိင်း:1 month,လာ ၃ ၜိင်း:3 months,လာ ၆ ၜိင်း:6 months,၁ ၮိင်း:1 year,လ်ုထုက်ၜးတ:infinite",
+	"ipb-partial": "ပါဍီယာႋ",
+	"ipb-type-label": "အ်ုမိင်အ်ုကုဂ်",
+	"ipb-pages-label": "လိက်မေံၜၠာ်လ်ုဖး",
 	"infiniteblock": "အ်ုထုက်လ်ုအ်ှ",
 	"blocklink": "ဍုဂ်အ်ှပွါ်",
 	"contribslink": "မာၜိုဝ်မာဆိုင်",
@@ -720,5 +722,6 @@
 	"logentry-upload-overwrite": "$3 ၮှ်ခဝ့် ဗားရှင်းအ်ုသင့်အိုဝ် $1 {{GENDER:$2|upload ပ္တုံထုင်းထဆေဝ်ႋ}}",
 	"searchsuggest-search": "{{SITENAME}}ဝဲါ မ်ုအင်းၰူ့",
 	"duration-days": "$1 {{PLURAL:$1|မူႋသင့်|မူႋသင့်လ်ုဖး}}",
+	"mw-widgets-titlesmultiselect-placeholder": "ဆူ့ဍုဂ် ဆ်ုအှ်ထါင်...",
 	"randomrootpage": "လ်ုၜးမိင် အ်ုခံင့် လိက်မေံၜၠါ်"
 }

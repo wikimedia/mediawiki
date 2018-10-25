@@ -70,7 +70,6 @@
 	"tog-extendwatchlist": "Laajenna tarkkailulista näyttämään kaikki tehdyt muutokset, eikä vain viimeisimmät",
 	"tog-usenewrc": "Ryhmittele muutokset sivun mukaan tuoreiden muutosten listalla ja tarkkailulistalla",
 	"tog-numberheadings": "Numeroi otsikot automaattisesti",
-	"tog-showtoolbar": "Näytä työkalupalkki",
 	"tog-editondblclick": "Muokkaa sivuja kaksoisnapsautuksella",
 	"tog-editsectiononrightclick": "Muokkaa osioita napsauttamalla osion otsikkoa hiiren oikealla painikkeella",
 	"tog-watchcreations": "Lisää luomani sivut ja tallentamani tiedostot tarkkailulistalleni",

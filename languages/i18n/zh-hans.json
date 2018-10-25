@@ -117,7 +117,6 @@
 	"tog-extendwatchlist": "扩展监视列表以显示所有更改，而不仅是最近的更改",
 	"tog-usenewrc": "按页面合并最近更改和监视列表中的更改",
 	"tog-numberheadings": "自动将标题编号",
-	"tog-showtoolbar": "显示编辑工具栏",
 	"tog-editondblclick": "双击编辑页面",
 	"tog-editsectiononrightclick": "启用右击段落标题编辑段落",
 	"tog-watchcreations": "添加我创建的页面和我上传的文件至我的监视列表",

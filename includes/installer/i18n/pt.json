@@ -324,7 +324,7 @@
 	"config-help": "ajuda",
 	"config-help-tooltip": "clique para expandir",
 	"config-nofile": "Não foi possível encontrar o ficheiro \"$1\". Terá sido apagado?",
-	"config-extension-link": "Sabia que a sua wiki suporta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensões]?\n\nPode consultar as [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensões por categoria] ou a [https://www.mediawiki.org/wiki/Extension_Matrix Matriz de Extensões] para ver a lista completa de extensões.",
+	"config-extension-link": "Sabia que a sua wiki suporta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensões]?\n\nPode consultar as [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensões por categoria].",
 	"config-skins-screenshots": "$1 (capturas de ecrã: $2)",
 	"config-extensions-requires": "$1 (requer $2)",
 	"config-screenshot": "captura de ecrã",

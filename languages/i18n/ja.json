@@ -105,7 +105,6 @@
 	"tog-extendwatchlist": "ウォッチリストを拡張して最新の変更以外もすべて表示",
 	"tog-usenewrc": "最近の更新とウォッチリストで、複数の変更をページごとにまとめる",
 	"tog-numberheadings": "見出しに番号を自動的に振る",
-	"tog-showtoolbar": "編集用のツールバーを表示",
 	"tog-editondblclick": "ダブルクリックでページを編集",
 	"tog-editsectiononrightclick": "節見出しの右クリックで節を編集できるようにする",
 	"tog-watchcreations": "自分が作成したページやアップロードしたファイルをウォッチリストに追加",

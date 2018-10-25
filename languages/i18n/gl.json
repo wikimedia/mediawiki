@@ -39,7 +39,6 @@
 	"tog-extendwatchlist": "Expandir a lista de vixilancia para amosar todos os cambios e non só os máis recentes",
 	"tog-usenewrc": "Agrupar as modificacións por páxina nos cambios recentes e na lista de vixilancia",
 	"tog-numberheadings": "Numerar automaticamente as cabeceiras",
-	"tog-showtoolbar": "Amosar a barra de ferramentas de edición",
 	"tog-editondblclick": "Facer dobre clic para editar as páxinas",
 	"tog-editsectiononrightclick": "Permitir a edición de seccións premendo co botón dereito nos títulos das seccións",
 	"tog-watchcreations": "Engadir as páxinas que cree e os ficheiros que cargue á miña lista de vixilancia",

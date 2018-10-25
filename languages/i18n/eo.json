@@ -51,7 +51,8 @@
 			"Gamliel Fishkin",
 			"Kastanoto",
 			"Rafaneta",
-			"NMaia"
+			"NMaia",
+			"Joao Xavier"
 		]
 	},
 	"tog-underline": "Substrekado de ligiloj:",
@@ -62,7 +63,6 @@
 	"tog-extendwatchlist": "Etendi la atentaron por montri ĉiujn ŝanĝojn, ne nur la plej lastajn",
 	"tog-usenewrc": "Grupigi ŝanĝojn laŭ paĝo en \"Lastaj ŝanĝoj\" kaj \"Atentaro\" (bezonas Ĝavaskripton)",
 	"tog-numberheadings": "Aŭtomate numeri sekciojn",
-	"tog-showtoolbar": "Montri redakto-breton",
 	"tog-editondblclick": "Redakti paĝojn per duobla alklako",
 	"tog-editsectiononrightclick": "Ŝalti sekcian redaktadon per dekstra musklako de sekciaj titoloj (per Ĝavaskripto)",
 	"tog-watchcreations": "Aldoni miajn kreatajn paĝojn kaj miajn alŝutaĵojn al mia atentaro",

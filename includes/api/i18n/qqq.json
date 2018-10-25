@@ -644,7 +644,7 @@
 	"apihelp-query+blocks-paramvalue-prop-reason": "{{doc-apihelp-paramvalue|query+blocks|prop|reason}}",
 	"apihelp-query+blocks-paramvalue-prop-range": "{{doc-apihelp-paramvalue|query+blocks|prop|range}}",
 	"apihelp-query+blocks-paramvalue-prop-flags": "{{doc-apihelp-paramvalue|query+blocks|prop|flags}}",
-	"apihelp-query+blocks-paramvalue-prop-restrictions": "{{doc-apihelp-paramvalue|query+blocks|prop|flags}}",
+	"apihelp-query+blocks-paramvalue-prop-restrictions": "{{doc-apihelp-paramvalue|query+blocks|prop|restrictions}}",
 	"apihelp-query+blocks-param-show": "{{doc-apihelp-param|query+blocks|show}}",
 	"apihelp-query+blocks-example-simple": "{{doc-apihelp-example|query+blocks}}",
 	"apihelp-query+blocks-example-users": "{{doc-apihelp-example|query+blocks}}",
