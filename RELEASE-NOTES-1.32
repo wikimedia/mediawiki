@@ -1,5 +1,8 @@
 == MediaWiki 1.32 ==
 
+=== Changes since MediaWiki 1.32.0 ===
+* (T213577) rdbms: avoid transaction status errors from ping() in rollback().
+
 === Changes since MediaWiki 1.32.0-rc.2 ===
 * (T188327) Fix slow queries in migrateActors.php.
 * (T102320) Fix $magicWords for the Sanskrit language.
