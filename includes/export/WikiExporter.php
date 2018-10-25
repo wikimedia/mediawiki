@@ -55,7 +55,7 @@ class WikiExporter {
 	const TEXT = 0;
 	const STUB = 1;
 
-	const BATCH_SIZE = 1000;
+	const BATCH_SIZE = 50000;
 
 	/** @var int */
 	public $text;
@@ -367,8 +367,9 @@ class WikiExporter {
 		} elseif ( $this->history & self::FULL ) {
 			# Full history dumps...
 			# query optimization for history stub dumps
-			if ( $this->text == self::STUB && $orderRevs ) {
+			if ( $this->text == self::STUB ) {
 				$tables = $revQuery['tables'];
+				$opts[] = 'STRAIGHT_JOIN';
 				$opts['USE INDEX']['revision'] = 'rev_page_id';
 				unset( $join['revision'] );
 				$join['page'] = [ 'INNER JOIN', 'rev_page=page_id' ];

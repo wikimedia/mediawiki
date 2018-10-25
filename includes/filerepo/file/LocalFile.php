@@ -1543,8 +1543,8 @@ class LocalFile extends File {
 			}
 			if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
 				$tables[] = 'image_comment_temp';
-				$fields['oi_description_id'] =
-					'CASE WHEN img_description_id = 0 THEN imgcomment_description_id ELSE img_description_id END';
+				$fields['oi_description_id'] = 'CASE WHEN img_description_id = 0 '
+					. 'THEN COALESCE(imgcomment_description_id, 0) ELSE img_description_id END';
 				$joins['image_comment_temp'] = [
 					$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
 					[ 'imgcomment_name = img_name' ]
@@ -1570,7 +1570,13 @@ class LocalFile extends File {
 					[ 'image_comment_temp' => [ 'LEFT JOIN', [ 'imgcomment_name = img_name' ] ] ]
 				);
 				foreach ( $res as $row ) {
-					$commentStore->insert( $dbw, 'img_description', $row->img_description );
+					$imgFields = $commentStore->insert( $dbw, 'img_description', $row->img_description );
+					$dbw->update(
+						'image',
+						$imgFields,
+						[ 'img_name' => $row->img_name ],
+						__METHOD__
+					);
 				}
 			}
 
@@ -2539,8 +2545,8 @@ class LocalFileDeleteBatch {
 			}
 			if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
 				$tables[] = 'image_comment_temp';
-				$fields['fa_description_id'] =
-					'CASE WHEN img_description_id = 0 THEN imgcomment_description_id ELSE img_description_id END';
+				$fields['fa_description_id'] = 'CASE WHEN img_description_id = 0 '
+					. 'THEN COALESCE(imgcomment_description_id, 0) ELSE img_description_id END';
 				$joins['image_comment_temp'] = [
 					$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
 					[ 'imgcomment_name = img_name' ]
@@ -2566,7 +2572,13 @@ class LocalFileDeleteBatch {
 					[ 'image_comment_temp' => [ 'LEFT JOIN', [ 'imgcomment_name = img_name' ] ] ]
 				);
 				foreach ( $res as $row ) {
-					$commentStore->insert( $dbw, 'img_description', $row->img_description );
+					$imgFields = $commentStore->insert( $dbw, 'img_description', $row->img_description );
+					$dbw->update(
+						'image',
+						$imgFields,
+						[ 'img_name' => $row->img_name ],
+						__METHOD__
+					);
 				}
 			}
 

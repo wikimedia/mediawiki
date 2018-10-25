@@ -4285,14 +4285,17 @@ class Language {
 	}
 
 	/**
-	 * Check if the language has the specific variant
+	 * Strict check if the language has the specific variant.
+	 *
+	 * Compare to LanguageConverter::validateVariant() which does a more
+	 * lenient check and attempts to coerce the given code to a valid one.
 	 *
 	 * @since 1.19
 	 * @param string $variant
 	 * @return bool
 	 */
 	public function hasVariant( $variant ) {
-		return (bool)$this->mConverter->validateVariant( $variant );
+		return $variant && ( $variant === $this->mConverter->validateVariant( $variant ) );
 	}
 
 	/**

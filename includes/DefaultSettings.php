@@ -3002,8 +3002,11 @@ $wgExtraLanguageNames = [];
  * @since 1.29
  */
 $wgExtraLanguageCodes = [
+	// Language codes of macro languages, which get mapped to the main language
 	'bh' => 'bho', // Bihari language family
 	'no' => 'nb', // Norwegian language family
+
+	// Language variants which get mapped to the main language
 	'simple' => 'en', // Simple English
 ];
 
@@ -4241,8 +4244,10 @@ $wgAllowExternalImagesFrom = '';
  *
  * Set this to true to enable the on-wiki whitelist (MediaWiki:External image whitelist)
  * Or false to disable it
+ *
+ * @since 1.14
  */
-$wgEnableImageWhitelist = true;
+$wgEnableImageWhitelist = false;
 
 /**
  * A different approach to the above: simply allow the "<img>" tag to be used.
