@@ -23,7 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * A foreign repository with a MediaWiki database accessible via the configured LBFactory
@@ -33,12 +33,6 @@ use Wikimedia\Rdbms\LoadBalancer;
 class ForeignDBViaLBRepo extends LocalRepo {
 	/** @var string */
 	protected $wiki;
-
-	/** @var string */
-	protected $dbName;
-
-	/** @var string */
-	protected $tablePrefix;
 
 	/** @var array */
 	protected $fileFactory = [ ForeignDBFile::class, 'newFromTitle' ];
@@ -55,7 +49,6 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	function __construct( $info ) {
 		parent::__construct( $info );
 		$this->wiki = $info['wiki'];
-		list( $this->dbName, $this->tablePrefix ) = wfSplitWikiID( $this->wiki );
 		$this->hasSharedCache = $info['hasSharedCache'];
 	}
 
@@ -83,10 +76,11 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	}
 
 	/**
-	 * @return LoadBalancer
+	 * @return ILoadBalancer
 	 */
 	protected function getDBLoadBalancer() {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
 		return $lbFactory->getMainLB( $this->wiki );
 	}
 
