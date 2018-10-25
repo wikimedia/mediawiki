@@ -22,6 +22,63 @@
  */
 class LanguageSrTest extends LanguageClassesTestCase {
 	/**
+	 * @covers Language::hasVariants
+	 */
+	public function testHasVariants() {
+		$this->assertTrue( $this->getLang()->hasVariants(), 'sr has variants' );
+	}
+
+	/**
+	 * @covers Language::hasVariant
+	 */
+	public function testHasVariant() {
+		$langs = [
+			'sr' => $this->getLang(),
+			'sr-ec' => Language::factory( 'sr-ec' ),
+			'sr-cyrl' => Language::factory( 'sr-cyrl' ),
+		];
+		foreach ( $langs as $code => $l ) {
+			$p = $l->getParentLanguage();
+			$this->assertTrue( $p !== null, 'parent language exists' );
+			$this->assertEquals( 'sr', $p->getCode(), 'sr is parent language' );
+			$this->assertTrue( $p instanceof LanguageSr, 'parent is LanguageSr' );
+			// This is a valid variant of the base
+			$this->assertTrue( $p->hasVariant( $l->getCode() ) );
+			// This test should be tweaked if/when sr-ec is renamed (T117845)
+			// to swap the roles of sr-ec and sr-Cyrl
+			$this->assertTrue( $l->hasVariant( 'sr-ec' ), 'sr-ec exists' );
+			// note that sr-cyrl is an alias, not a (strict) variant name
+			foreach ( [ 'sr-EC', 'sr-Cyrl', 'sr-cyrl', 'sr-bogus' ] as $v ) {
+				$this->assertFalse( $l->hasVariant( $v ), "$v is not a variant of $code" );
+			}
+		}
+	}
+
+	/**
+	 * @covers Language::hasVariant
+	 */
+	public function testHasVariantBogus() {
+		$langs = [
+			// Note that case matters when calling Language::factory();
+			// these are all bogus language codes
+			'sr-EC' => Language::factory( 'sr-EC' ),
+			'sr-Cyrl' => Language::factory( 'sr-Cyrl' ),
+			'sr-bogus' => Language::factory( 'sr-bogus' ),
+		];
+		foreach ( $langs as $code => $l ) {
+			$p = $l->getParentLanguage();
+			$this->assertTrue( $p === null, 'no parent for bogus language' );
+			$this->assertFalse( $l instanceof LanguageSr, "$code is not sr" );
+			$this->assertFalse( $this->getLang()->hasVariant( $code ), "$code is not a sr variant" );
+			foreach ( [ 'sr', 'sr-ec', 'sr-EC', 'sr-Cyrl', 'sr-cyrl', 'sr-bogus' ] as $v ) {
+				if ( $v !== $code ) {
+					$this->assertFalse( $l->hasVariant( $v ), "no variant $v" );
+				}
+			}
+		}
+	}
+
+	/**
 	 * @covers LanguageConverter::convertTo
 	 */
 	public function testEasyConversions() {
