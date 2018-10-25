@@ -595,15 +595,7 @@ interface IDatabase {
 	 * Execute a SELECT query constructed using the various parameters provided.
 	 * See below for full details of the parameters.
 	 *
-	 * @param string|array $table Table name
-	 * @param string|array $vars Field names
-	 * @param string|array $conds Conditions
-	 * @param string $fname Caller function name
-	 * @param array $options Query options
-	 * @param array $join_conds Join conditions
-	 *
-	 *
-	 * @param string|array $table
+	 * @param string|array $table Table name(s)
 	 *
 	 * May be either an array of table names, or a single string holding a table
 	 * name. If an array is given, table aliases can be specified, for example:
@@ -638,7 +630,7 @@ interface IDatabase {
 	 * Do not use untrusted user input as a table name. Alias names should
 	 * not have characters outside of the Basic multilingual plane.
 	 *
-	 * @param string|array $vars
+	 * @param string|array $vars Field name(s)
 	 *
 	 * May be either a field name or an array of field names. The field names
 	 * can be complete fragments of SQL, for direct inclusion into the SELECT
@@ -685,7 +677,9 @@ interface IDatabase {
 	 *
 	 * Use an empty array, string, or '*' to update all rows.
 	 *
-	 * @param string|array $options
+	 * @param string $fname Caller function name
+	 *
+	 * @param string|array $options Query options
 	 *
 	 * Optional: Array of query options. Boolean options are specified by
 	 * including them in the array as a string value with a numeric key, for
@@ -741,7 +735,7 @@ interface IDatabase {
 	 *    - SQL_NO_CACHE
 	 *
 	 *
-	 * @param string|array $join_conds
+	 * @param string|array $join_conds Join conditions
 	 *
 	 * Optional associative array of table-specific join conditions. In the
 	 * most common case, this is unnecessary, since the join condition can be
