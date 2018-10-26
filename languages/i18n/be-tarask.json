@@ -3701,6 +3701,7 @@
 	"logentry-block-block": "$1 {{GENDER:$2|заблякаваў|заблякавала}} {{GENDER:$4|$3}} на тэрмін $5 $6",
 	"logentry-block-unblock": "$1 {{GENDER:$2|разблякаваў|разблякавала}} {{GENDER:$4|$3}}",
 	"logentry-block-reblock": "$1 {{GENDER:$2|зьмяніў|зьмяніла}} тэрмін блякаваньня {{GENDER:$4|$3}} на пэрыяд $5 $6",
+	"logentry-partialblock-block": "$1 {{GENDER:$2|заблякаваў|заблякавала}} {{GENDER:$4|$3}} ад рэдагаваньня {{PLURAL:$8||старонак}} $7 з часам сканчэньня $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|заблякаваў|заблякавала}} {{GENDER:$4|$3}} на тэрмін $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|зьмяніў|зьмяніла}} тэрмін блякаваньня {{GENDER:$4|$3}} на пэрыяд $5 $6",
 	"logentry-import-upload": "$1 {{GENDER:$2|імпартаваў|імпартавала}} $3 праз загрузку файлу",

@@ -2476,7 +2476,7 @@
 	"sp-contributions-logs": "журнали",
 	"sp-contributions-talk": "обговорення",
 	"sp-contributions-userrights": "управління правами {{GENDER:$1|користувача|користувачки}}",
-	"sp-contributions-blocked-notice": "Цей користувач наразі заблокований. Останній запис у журналі блокувань такий:",
+	"sp-contributions-blocked-notice": "Цей користувач наразі заблокований. Нижче наведено останній запис у журналі блокувань:",
 	"sp-contributions-blocked-notice-anon": "Доступ з цієї IP-адреси зараз заблокований.\nДалі наведено останній запис з журналу блокувань:",
 	"sp-contributions-search": "Пошук внеску",
 	"sp-contributions-username": "IP-адреса або ім'я користувача:",
