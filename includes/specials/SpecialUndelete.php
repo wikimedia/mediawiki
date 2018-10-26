@@ -443,8 +443,12 @@ class SpecialUndelete extends SpecialPage {
 			}
 		}
 
-		$out->addHTML( $this->msg( 'undelete-revision' )->rawParams( $link )->params(
-			$time )->rawParams( $userLink )->params( $d, $t )->parse() . '</div>' );
+		$out->addWikiMsg(
+			'undelete-revision',
+			Message::rawParam( $link ), $time,
+			Message::rawParam( $userLink ), $d, $t
+		);
+		$out->addHtml( '</div>' );
 
 		if ( !Hooks::run( 'UndeleteShowRevision', [ $this->mTargetObj, $rev ] ) ) {
 			return;
@@ -1169,7 +1173,7 @@ class SpecialUndelete extends SpecialPage {
 			}
 
 			$link = $this->getLinkRenderer()->makeKnownLink( $this->mTargetObj );
-			$out->addHTML( $this->msg( 'undeletedpage' )->rawParams( $link )->parse() );
+			$out->addWikiMsg( 'undeletedpage', Message::rawParam( $link ) );
 		} else {
 			$out->setPageTitle( $this->msg( 'undelete-error' ) );
 		}
