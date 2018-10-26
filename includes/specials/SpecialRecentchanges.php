@@ -800,7 +800,11 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$note = '';
 		$msg = $this->msg( 'rclegend' );
 		if ( !$msg->isDisabled() ) {
-			$note .= '<div class="mw-rclegend">' . $msg->parse() . "</div>\n";
+			$note .= Html::rawElement(
+				'div',
+				[ 'class' => 'mw-rclegend' ],
+				$msg->parse()
+			);
 		}
 
 		$lang = $this->getLanguage();
@@ -898,14 +902,21 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$datenow = $lang->userDate( $timestamp, $user );
 		$pipedLinks = '<span class="rcshowhide">' . $lang->pipeList( $links ) . '</span>';
 
-		$rclinks = '<span class="rclinks">' . $this->msg( 'rclinks' )->rawParams( $cl, $dl, '' )
-			->parse() . '</span>';
+		$rclinks = Html::rawElement(
+			'span',
+			[ 'class' => 'rclinks' ],
+			$this->msg( 'rclinks' )->rawParams( $cl, $dl, '' )->parse()
+		);
 
-		$rclistfrom = '<span class="rclistfrom">' . $this->makeOptionsLink(
-			$this->msg( 'rclistfrom' )->rawParams( $now, $timenow, $datenow )->parse(),
-			[ 'from' => $timestamp ],
-			$nondefaults
-		) . '</span>';
+		$rclistfrom = Html::rawElement(
+			'span',
+			[ 'class' => 'rclistfrom' ],
+			$this->makeOptionsLink(
+				$this->msg( 'rclistfrom' )->rawParams( $now, $timenow, $datenow )->parse(),
+				[ 'from' => $timestamp ],
+				$nondefaults
+			)
+		);
 
 		return "{$note}$rclinks<br />$pipedLinks<br />$rclistfrom";
 	}

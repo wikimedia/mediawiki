@@ -744,7 +744,9 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$explain = $this->msg( 'sp-contributions-explain' );
 		if ( !$explain->isBlank() ) {
-			$form .= "<p id='mw-sp-contributions-explain'>{$explain->parse()}</p>";
+			$form .= Html::rawElement(
+				'p', [ 'id' => 'mw-sp-contributions-explain' ], $explain->parse()
+			);
 		}
 
 		$form .= Xml::closeElement( 'form' );

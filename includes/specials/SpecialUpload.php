@@ -324,7 +324,13 @@ class SpecialUpload extends SpecialPage {
 				);
 				$link = $this->msg( $user->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted' )
 					->rawParams( $restorelink )->parseAsBlock();
-				$this->getOutput()->addHTML( "<div id=\"contentSub2\">{$link}</div>" );
+				$this->getOutput()->addHTML(
+					Html::rawElement(
+						'div',
+						[ 'id' => 'contentSub2' ],
+						$link
+					)
+				);
 			}
 		}
 	}

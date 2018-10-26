@@ -297,15 +297,19 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$targetTitle = $this->getTargetTitle();
 		if ( $targetTitle === false ) {
 			$this->getOutput()->addHTML(
-				'<div class="mw-changeslist-empty mw-changeslist-notargetpage">' .
-				$this->msg( 'recentchanges-notargetpage' )->parse() .
-				'</div>'
+				Html::rawElement(
+					'div',
+					[ 'class' => 'mw-changeslist-empty mw-changeslist-notargetpage' ],
+					$this->msg( 'recentchanges-notargetpage' )->parse()
+				)
 			);
 		} elseif ( !$targetTitle || $targetTitle->isExternal() ) {
 			$this->getOutput()->addHTML(
-				'<div class="mw-changeslist-empty mw-changeslist-invalidtargetpage">' .
-				$this->msg( 'allpagesbadtitle' )->parse() .
-				'</div>'
+				Html::rawElement(
+					'div',
+					[ 'class' => 'mw-changeslist-empty mw-changeslist-invalidtargetpage' ],
+					$this->msg( 'allpagesbadtitle' )->parse()
+				)
 			);
 		} else {
 			parent::outputNoResults();
