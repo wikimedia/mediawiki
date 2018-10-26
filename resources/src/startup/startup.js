@@ -118,9 +118,10 @@ if ( !isCompatible() ) {
 		mw.config.set( $VARS.configuration );
 
 		// Process callbacks for Grade A
-		// Must be after registrations and mw.config.set, which mw.loader depends on.
 		var queue = window.RLQ;
-		// Redefine push(), but keep type as array for storing callbacks that require modules.
+		// Replace RLQ placeholder from ResourceLoaderClientHtml with an implementation
+		// that executes simple callbacks, but continues to store callbacks that require
+		// modules.
 		window.RLQ = [];
 		/* global RLQ */
 		RLQ.push = function ( fn ) {
@@ -132,7 +133,7 @@ if ( !isCompatible() ) {
 			}
 		};
 		while ( queue && queue[ 0 ] ) {
-			// Re-use our push()
+			// Re-use our new push() method
 			RLQ.push( queue.shift() );
 		}
 
