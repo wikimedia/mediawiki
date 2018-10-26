@@ -483,7 +483,7 @@ class SpecialUpload extends SpecialPage {
 		// Fetch the file if required
 		$status = $this->mUpload->fetchFile();
 		if ( !$status->isOK() ) {
-			$this->showUploadError( $this->getOutput()->parse( $status->getWikiText() ) );
+			$this->showUploadError( $this->getOutput()->parseAsInterface( $status->getWikiText() ) );
 
 			return;
 		}
@@ -553,7 +553,9 @@ class SpecialUpload extends SpecialPage {
 			$changeTagsStatus = ChangeTags::canAddTagsAccompanyingChange(
 				$changeTags, $this->getUser() );
 			if ( !$changeTagsStatus->isOK() ) {
-				$this->showUploadError( $this->getOutput()->parse( $changeTagsStatus->getWikiText() ) );
+				$this->showUploadError( $this->getOutput()->parseAsInterface(
+					$changeTagsStatus->getWikiText()
+				) );
 
 				return;
 			}
@@ -568,7 +570,9 @@ class SpecialUpload extends SpecialPage {
 		);
 
 		if ( !$status->isGood() ) {
-			$this->showRecoverableUploadError( $this->getOutput()->parse( $status->getWikiText() ) );
+			$this->showRecoverableUploadError(
+				$this->getOutput()->parseAsInterface( $status->getWikiText() )
+			);
 
 			return;
 		}

@@ -283,9 +283,15 @@ class McrUndoAction extends FormAction {
 			$previewHTML = '';
 		}
 
-		$previewhead = "<div class='previewnote'>\n" .
-			'<h2 id="mw-previewheader">' . $this->context->msg( 'preview' )->escaped() . "</h2>" .
-			$out->parse( $note, true, /* interface */true ) . "<hr /></div>\n";
+		$previewhead = Html::rawElement(
+			'div', [ 'class' => 'previewnote' ],
+			Html::element(
+				'h2', [ 'id' => 'mw-previewheader' ],
+				$this->context->msg( 'preview' )->text()
+			) .
+			$out->parseAsInterface( $note ) .
+			"<hr />"
+		);
 
 		$pageViewLang = $this->getTitle()->getPageViewLanguage();
 		$attribs = [ 'lang' => $pageViewLang->getHtmlCode(), 'dir' => $pageViewLang->getDir(),
