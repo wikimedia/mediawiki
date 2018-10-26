@@ -29,7 +29,8 @@
 			"Ilmira",
 			"Irus",
 			"Khanmarat",
-			"Fitoschido"
+			"Fitoschido",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Һылтанмалар аҫтына һыҙыу:",
@@ -150,7 +151,7 @@
 	"category_header": "«$1» категорияһындағы биттәр",
 	"subcategories": "Эске категориялар",
 	"category-media-header": "«$1» категорияһындағы файлдар",
-	"category-empty": "\"Был категория әлегә буш.\"",
+	"category-empty": "<em>Был категория әлегә буш.</em>",
 	"hidden-categories": "{{PLURAL:$1|Йәшерен категория|Йәшерен категориялар}}",
 	"hidden-category-category": "Йәшерен категориялар",
 	"category-subcat-count": "{{PLURAL:$2|Был категорияла тик киләһе эске категория ғына бар.|Барлығы $2 категориянан, был категорияла киләһе {{PLURAL:$1|эске категория|$1 эске категория}} күрһәтелә.}}",

@@ -2578,6 +2578,8 @@
 	"createaccountblock": "aanmaken accounts uitgeschakeld",
 	"emailblock": "e-mail uitgeschakeld",
 	"blocklist-nousertalk": "kan eigen overlegpagina niet bewerken",
+	"blocklist-editing": "bewerken",
+	"blocklist-editing-sitewide": "bewerken (gehele wiki)",
 	"ipblocklist-empty": "De blokkeerlijst is leeg.",
 	"ipblocklist-no-results": "Dit IP-adres of deze gebruikersnaam is niet geblokkeerd.",
 	"blocklink": "blokkeren",

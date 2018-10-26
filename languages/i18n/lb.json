@@ -2300,6 +2300,8 @@
 	"ipb-disableusertalk": "Dëse Benotzer dorun hënnere fir seng eegen Diskussiounssäit z'ännere sou laang wéi e gespaart ass",
 	"ipb-change-block": "De Benotzer mat dese Parameteren nees spären",
 	"ipb-confirm": "Spär confirméieren",
+	"ipb-type-label": "Typ",
+	"ipb-pages-label": "Säiten",
 	"badipaddress": "D'IP-Adress huet dat falscht Format.",
 	"blockipsuccesssub": "Gouf gespaart",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] gouf gespaart. <br />\n\nKuckt d'[[Special:BlockList|Spär-Lëscht]] fir all Spären nozekucken.",
