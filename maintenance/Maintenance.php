@@ -1699,13 +1699,9 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 			return false;
 		}
 
-		if ( $db->insert( 'updatelog', [ 'ul_key' => $key ], __METHOD__, 'IGNORE' ) ) {
-			return true;
-		} else {
-			$this->output( $this->updatelogFailedMessage() . "\n" );
+		$db->insert( 'updatelog', [ 'ul_key' => $key ], __METHOD__, 'IGNORE' );
 
-			return false;
-		}
+		return true;
 	}
 
 	/**
@@ -1716,16 +1712,6 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 		$key = $this->getUpdateKey();
 
 		return "Update '{$key}' already logged as completed.";
-	}
-
-	/**
-	 * Message to show that the update log was unable to log the completion of this update
-	 * @return string
-	 */
-	protected function updatelogFailedMessage() {
-		$key = $this->getUpdateKey();
-
-		return "Unable to log update '{$key}' as completed.";
 	}
 
 	/**
