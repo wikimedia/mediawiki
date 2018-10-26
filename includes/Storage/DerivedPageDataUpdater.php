@@ -1239,7 +1239,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		$preparedEdit = new PreparedEdit();
 
 		$preparedEdit->popts = $this->getCanonicalParserOptions();
-		$preparedEdit->output = $this->getCanonicalParserOutput();
+		$preparedEdit->parserOutputCallback = [ $this, 'getCanonicalParserOutput' ];
 		$preparedEdit->pstContent = $this->revision->getContent( SlotRecord::MAIN );
 		$preparedEdit->newContent =
 			$slotsUpdate->isModifiedSlot( SlotRecord::MAIN )
@@ -1401,13 +1401,31 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		$legacyUser = User::newFromIdentity( $this->user );
 		$legacyRevision = new Revision( $this->revision );
 
-		$this->doParserCacheUpdate();
+		$userParserOptions = ParserOptions::newFromUser( $legacyUser );
+		// Decide whether to save the final canonical parser ouput based on the fact that
+		// users are typically redirected to viewing pages right after they edit those pages.
+		// Due to vary-revision-id, getting/saving that output here might require a reparse.
+		if ( $userParserOptions->matchesForCacheKey( $this->getCanonicalParserOptions() ) ) {
+			// Whether getting the final output requires a reparse or not, the user will
+			// need canonical output anyway, since that is what their parser options use.
+			// A reparse now at least has the benefit of various warm process caches.
+			$this->doParserCacheUpdate();
+		} else {
+			// If the user does not have canonical parse options, then don't risk another parse
+			// to make output they cannot use on the page refresh that typically occurs after
+			// editing. Doing the parser output save post-send will still benefit *other* users.
+			DeferredUpdates::addCallableUpdate( function () {
+				$this->doParserCacheUpdate();
+			} );
+		}
 
-		$this->doSecondaryDataUpdates( [
-			// T52785 do not update any other pages on a null edit
-			'recursive' => $this->options['changed'],
-			'defer' => DeferredUpdates::POSTSEND,
-		] );
+		// Defer the getCannonicalParserOutput() call triggered by getSecondaryDataUpdates()
+		DeferredUpdates::addCallableUpdate( function () {
+			$this->doSecondaryDataUpdates( [
+				// T52785 do not update any other pages on a null edit
+				'recursive' => $this->options['changed']
+			] );
+		} );
 
 		// TODO: MCR: check if *any* changed slot supports categories!
 		if ( $this->rcWatchCategoryMembership
@@ -1427,8 +1445,11 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		}
 
 		// TODO: replace legacy hook! Use a listener on PageEventEmitter instead!
+		// @note: Extensions should *avoid* calling getCannonicalParserOutput() when using
+		// this hook whenever possible in order to avoid unnecessary additional parses.
 		$editInfo = $this->getPreparedEdit();
-		Hooks::run( 'ArticleEditUpdates', [ &$wikiPage, &$editInfo, $this->options['changed'] ] );
+		Hooks::run( 'ArticleEditUpdates',
+			[ &$wikiPage, &$editInfo, $this->options['changed'] ] );
 
 		// TODO: replace legacy hook! Use a listener on PageEventEmitter instead!
 		if ( Hooks::run( 'ArticleEditUpdatesDeleteFromRecentchanges', [ &$wikiPage ] ) ) {
