@@ -2098,6 +2098,7 @@ class OutputPage extends ContextSource {
 	 *  parseAsInterface() if $interface is true.
 	 */
 	public function parse( $text, $linestart = true, $interface = false, $language = null ) {
+		wfDeprecated( __METHOD__, '1.33' );
 		return $this->parseInternal(
 			$text, $this->getTitle(), $linestart, /*tidy*/false, $interface, $language
 		)->getText( [
@@ -2180,6 +2181,7 @@ class OutputPage extends ContextSource {
 	 *   Parser::stripOuterParagraph($outputPage->parseAsContent(...)).
 	 */
 	public function parseInline( $text, $linestart = true, $interface = false ) {
+		wfDeprecated( __METHOD__, '1.33' );
 		$parsed = $this->parseInternal(
 			$text, $this->getTitle(), $linestart, /*tidy*/false, $interface, /*language*/null
 		)->getText( [
