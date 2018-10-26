@@ -1877,21 +1877,119 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers OutputPage::parse
+	 * @dataProvider provideParseAs
+	 * @covers OutputPage::parseAsContent
+	 * @param array $args To pass to parse()
+	 * @param string $expectedHTML Expected return value for parseAsContent()
+	 * @param string $expectedHTML Expected return value for parseInlineAsInterface(), if different
 	 */
-	public function testParseNullTitle() {
-		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parse' );
-		$op = $this->newInstance( [], null, 'notitle' );
-		$op->parse( '' );
+	public function testParseAsContent(
+		array $args, $expectedHTML, $expectedHTMLInline = null
+	) {
+		$op = $this->newInstance();
+		$this->assertSame( $expectedHTML, $op->parseAsContent( ...$args ) );
+	}
+
+	/**
+	 * @dataProvider provideParseAs
+	 * @covers OutputPage::parseAsInterface
+	 * @param array $args To pass to parse()
+	 * @param string $expectedHTML Expected return value for parseAsInterface()
+	 * @param string $expectedHTML Expected return value for parseInlineAsInterface(), if different
+	 */
+	public function testParseAsInterface(
+		array $args, $expectedHTML, $expectedHTMLInline = null
+	) {
+		$op = $this->newInstance();
+		$this->assertSame( $expectedHTML, $op->parseAsInterface( ...$args ) );
+	}
+
+	/**
+	 * @dataProvider provideParseAs
+	 * @covers OutputPage::parseInlineAsInterface
+	 */
+	public function testParseInlineAsInterface(
+		array $args, $expectedHTML, $expectedHTMLInline = null
+	) {
+		$op = $this->newInstance();
+		$this->assertSame(
+			$expectedHTMLInline ?? $expectedHTML,
+			$op->parseInlineAsInterface( ...$args )
+		);
+	}
+
+	public function provideParseAs() {
+		return [
+			'List at start of line' => [
+				[ '* List', true ],
+				"<ul><li>List</li></ul>\n",
+			],
+			'List not at start' => [
+				[ "* ''Not'' list", false ],
+				'<p>* <i>Not</i> list</p>',
+				'* <i>Not</i> list',
+			],
+			'Italics' => [
+				[ "''Italic''", true ],
+				"<p><i>Italic</i>\n</p>",
+				'<i>Italic</i>',
+			],
+			'formatnum' => [
+				[ '{{formatnum:123456.789}}', true ],
+				"<p>123,456.789\n</p>",
+				"123,456.789",
+			],
+			'No section edit links' => [
+				[ '== Header ==' ],
+				'<h2><span class="mw-headline" id="Header">Header</span></h2>' .
+					"\n",
+			]
+		];
 	}
 
 	/**
 	 * @covers OutputPage::parse
 	 */
+	public function testParseNullTitle() {
+		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
+		$op = $this->newInstance( [], null, 'notitle' );
+		$op->parse( '' );
+	}
+
+	/**
+	 * @covers OutputPage::parseInline
+	 */
 	public function testParseInlineNullTitle() {
-		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parse' );
+		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->parseInline( '' );
+	}
+
+	/**
+	 * @covers OutputPage::parseAsContent
+	 */
+	public function testParseAsContentNullTitle() {
+		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
+		$op = $this->newInstance( [], null, 'notitle' );
+		$op->parseAsContent( '' );
+	}
+
+	/**
+	 * @covers OutputPage::parseAsInterface
+	 */
+	public function testParseAsInterfaceNullTitle() {
+		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
+		$op = $this->newInstance( [], null, 'notitle' );
+		$op->parseAsInterface( '' );
+	}
+
+	/**
+	 * @covers OutputPage::parseInlineAsInterface
+	 */
+	public function testParseInlineAsInterfaceNullTitle() {
+		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
+		$op = $this->newInstance( [], null, 'notitle' );
+		$op->parseInlineAsInterface( '' );
 	}
 
 	/**
