@@ -670,9 +670,8 @@ __INDEXATTR__;
 	 * @param array $insertOptions
 	 * @param array $selectOptions
 	 * @param array $selectJoinConds
-	 * @return bool
 	 */
-	public function nativeInsertSelect(
+	protected function nativeInsertSelect(
 		$destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
 		$insertOptions = [], $selectOptions = [], $selectJoinConds = []
 	) {
@@ -697,18 +696,18 @@ __INDEXATTR__;
 				$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ') ' .
 					$selectSql . ' ON CONFLICT DO NOTHING';
 
-				return $this->query( $sql, $fname );
+				$this->query( $sql, $fname );
 			} else {
 				// IGNORE and we don't have ON CONFLICT DO NOTHING, so just use the non-native version
-				return $this->nonNativeInsertSelect(
+				$this->nonNativeInsertSelect(
 					$destTable, $srcTable, $varMap, $conds, $fname,
 					$insertOptions, $selectOptions, $selectJoinConds
 				);
 			}
+		} else {
+			parent::nativeInsertSelect( $destTable, $srcTable, $varMap, $conds, $fname,
+				$insertOptions, $selectOptions, $selectJoinConds );
 		}
-
-		return parent::nativeInsertSelect( $destTable, $srcTable, $varMap, $conds, $fname,
-			$insertOptions, $selectOptions, $selectJoinConds );
 	}
 
 	public function tableName( $name, $format = 'quoted' ) {

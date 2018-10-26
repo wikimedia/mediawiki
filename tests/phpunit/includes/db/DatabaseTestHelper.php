@@ -148,7 +148,7 @@ class DatabaseTestHelper extends Database {
 
 	// Redeclare parent method to make it public
 	public function nativeReplace( $table, $rows, $fname ) {
-		return parent::nativeReplace( $table, $rows, $fname );
+		parent::nativeReplace( $table, $rows, $fname );
 	}
 
 	function getType() {

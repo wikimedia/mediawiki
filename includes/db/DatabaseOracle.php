@@ -390,13 +390,12 @@ class DatabaseOracle extends Database {
 		foreach ( $a as &$row ) {
 			$this->insertOneRow( $table, $row, $fname );
 		}
-		$retVal = true;
 
 		if ( in_array( 'IGNORE', $options ) ) {
 			$this->ignoreDupValOnIndex = false;
 		}
 
-		return $retVal;
+		return true;
 	}
 
 	private function fieldBindStatement( $table, $col, &$val, $includeCol = false ) {
@@ -580,13 +579,11 @@ class DatabaseOracle extends Database {
 			$this->ignoreDupValOnIndex = true;
 		}
 
-		$retval = $this->query( $sql, $fname );
+		$this->query( $sql, $fname );
 
 		if ( in_array( 'IGNORE', $insertOptions ) ) {
 			$this->ignoreDupValOnIndex = false;
 		}
-
-		return $retval;
 	}
 
 	public function upsert( $table, array $rows, array $uniqueIndexes, array $set,

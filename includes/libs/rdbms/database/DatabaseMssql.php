@@ -513,6 +513,8 @@ class DatabaseMssql extends Database {
 			throw $e;
 		}
 		$this->scrollableCursor = true;
+
+		return true;
 	}
 
 	/**
@@ -741,7 +743,7 @@ class DatabaseMssql extends Database {
 
 		$this->ignoreDupKeyErrors = false;
 
-		return $ret;
+		return true;
 	}
 
 	/**
@@ -757,15 +759,14 @@ class DatabaseMssql extends Database {
 	 * @param array $insertOptions
 	 * @param array $selectOptions
 	 * @param array $selectJoinConds
-	 * @return bool
 	 * @throws Exception
 	 */
-	public function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
+	protected function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
 		$insertOptions = [], $selectOptions = [], $selectJoinConds = []
 	) {
 		$this->scrollableCursor = false;
 		try {
-			$ret = parent::nativeInsertSelect(
+			parent::nativeInsertSelect(
 				$destTable,
 				$srcTable,
 				$varMap,
@@ -780,8 +781,6 @@ class DatabaseMssql extends Database {
 			throw $e;
 		}
 		$this->scrollableCursor = true;
-
-		return $ret;
 	}
 
 	/**

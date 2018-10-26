@@ -493,10 +493,9 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param array $uniqueIndexes
 	 * @param array $rows
 	 * @param string $fname
-	 * @return ResultWrapper
 	 */
 	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
-		return $this->nativeReplace( $table, $rows, $fname );
+		$this->nativeReplace( $table, $rows, $fname );
 	}
 
 	protected function isInsertSelectSafe( array $insertOptions, array $selectOptions ) {
@@ -1303,7 +1302,6 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param array|string $conds
 	 * @param bool|string $fname
 	 * @throws DBUnexpectedError
-	 * @return bool|ResultWrapper
 	 */
 	public function deleteJoin(
 		$delTable, $joinTable, $delVar, $joinVar, $conds, $fname = __METHOD__
@@ -1320,7 +1318,7 @@ abstract class DatabaseMysqlBase extends Database {
 			$sql .= ' AND ' . $this->makeList( $conds, self::LIST_AND );
 		}
 
-		return $this->query( $sql, $fname );
+		$this->query( $sql, $fname );
 	}
 
 	/**
@@ -1353,7 +1351,9 @@ abstract class DatabaseMysqlBase extends Database {
 		$sql .= implode( ',', $rowTuples );
 		$sql .= " ON DUPLICATE KEY UPDATE " . $this->makeList( $set, self::LIST_SET );
 
-		return (bool)$this->query( $sql, $fname );
+		$this->query( $sql, $fname );
+
+		return true;
 	}
 
 	/**
