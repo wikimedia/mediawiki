@@ -317,7 +317,7 @@ class ProtectionForm {
 		);
 
 		if ( !$status->isOK() ) {
-			$this->show( $out->parseInline( $status->getWikiText() ) );
+			$this->show( $out->parseInlineAsInterface( $status->getWikiText() ) );
 			return false;
 		}
 

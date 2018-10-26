@@ -463,7 +463,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$user,
 			ParserOptions::newFromContext( $context )
 		);
-		$oldsigHTML = $context->getOutput()->parseInline( $oldsigWikiText, true, true );
+		$oldsigHTML = Parser::stripOuterParagraph(
+			$context->getOutput()->parseAsContent( $oldsigWikiText )
+		);
 		$defaultPreferences['oldsig'] = [
 			'type' => 'info',
 			'raw' => true,

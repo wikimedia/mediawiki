@@ -716,7 +716,7 @@ class SpecialVersion extends SpecialPage {
 		$vcsDate = null;
 
 		if ( isset( $extension['version'] ) ) {
-			$canonicalVersion = $out->parseInline( $extension['version'] );
+			$canonicalVersion = $out->parseInlineAsInterface( $extension['version'] );
 		}
 
 		if ( isset( $extension['path'] ) ) {
@@ -792,7 +792,7 @@ class SpecialVersion extends SpecialPage {
 		if ( isset( $extension['name'] ) ) {
 			$licenseName = null;
 			if ( isset( $extension['license-name'] ) ) {
-				$licenseName = new HtmlArmor( $out->parseInline( $extension['license-name'] ) );
+				$licenseName = new HtmlArmor( $out->parseInlineAsInterface( $extension['license-name'] ) );
 			} elseif ( $this->getExtLicenseFileName( $extensionPath ) ) {
 				$licenseName = $this->msg( 'version-ext-license' )->text();
 			}
@@ -829,7 +829,7 @@ class SpecialVersion extends SpecialPage {
 		} else {
 			$description = '';
 		}
-		$description = $out->parseInline( $description );
+		$description = $out->parseInlineAsInterface( $description );
 
 		// ... now get the authors for this extension
 		$authors = $extension['author'] ?? [];
@@ -981,11 +981,11 @@ class SpecialVersion extends SpecialPage {
 				$list[] = $text;
 			} elseif ( substr( $item, -5 ) == ' ...]' ) {
 				$hasOthers = true;
-				$list[] = $this->getOutput()->parseInline(
+				$list[] = $this->getOutput()->parseInlineAsInterface(
 					substr( $item, 0, -4 ) . $this->msg( 'version-poweredby-others' )->text() . "]"
 				);
 			} else {
-				$list[] = $this->getOutput()->parseInline( $item );
+				$list[] = $this->getOutput()->parseInlineAsInterface( $item );
 			}
 		}
 
