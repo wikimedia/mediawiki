@@ -1472,6 +1472,10 @@ interface IDatabase {
 	/**
 	 * Wait for the replica DB to catch up to a given master position
 	 *
+	 * Note that this does not start any new transactions. If any existing transaction
+	 * is flushed, and this is called, then queries will reflect the point the DB was synced
+	 * up to (on success) without interference from REPEATABLE-READ snapshots.
+	 *
 	 * @param DBMasterPos $pos
 	 * @param int $timeout The maximum number of seconds to wait for synchronisation
 	 * @return int|null Zero if the replica DB was past that position already,
