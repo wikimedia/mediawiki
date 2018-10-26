@@ -364,6 +364,7 @@ class ApiStashEditTest extends ApiTestCase {
 		// Now let's also increment our editcount
 		$this->editPage( ucfirst( __FUNCTION__ ), '' );
 
+		$user->clearInstanceCache();
 		$this->assertFalse( $this->doCheckCache( $user ),
 			"Cache should be invalidated when it's old and the user has an intervening edit" );
 	}
