@@ -1935,22 +1935,13 @@ class OutputPage extends ContextSource {
 	private function addWikiTextTitleInternal(
 		$text, Title $title, $linestart, $tidy, $interface, $wrapperClass = null
 	) {
-		global $wgParser;
-
 		if ( !$tidy ) {
 			wfDeprecated( 'disabling tidy', '1.32' );
 		}
 
-		$popts = $this->parserOptions();
-		$oldTidy = $popts->setTidy( $tidy );
-		$popts->setInterfaceMessage( (bool)$interface );
-
-		$parserOutput = $wgParser->getFreshParser()->parse(
-			$text, $title, $popts,
-			$linestart, true, $this->mRevisionId
+		$parserOutput = $this->parseInternal(
+			$text, $title, $linestart, $tidy, $interface, /*language*/null
 		);
-
-		$popts->setTidy( $oldTidy );
 
 		$this->addParserOutput( $parserOutput, [
 			'enableSectionEditLinks' => false,
@@ -2102,13 +2093,77 @@ class OutputPage extends ContextSource {
 	 * @param Language|null $language Target language object, will override $interface
 	 * @throws MWException
 	 * @return string HTML
+	 * @deprecated since 1.33, due to untidy output and inconsistent wrapper;
+	 *  use parseAsContent() if $interface is default value or false, or else
+	 *  parseAsInterface() if $interface is true.
 	 */
 	public function parse( $text, $linestart = true, $interface = false, $language = null ) {
 		return $this->parseInternal(
-			$text, $linestart, $interface, $language
+			$text, $this->getTitle(), $linestart, /*tidy*/false, $interface, $language
 		)->getText( [
 			'enableSectionEditLinks' => false,
 		] );
+	}
+
+	/**
+	 * Parse wikitext *in the page content language* and return the HTML.
+	 * The result will be language-converted to the user's preferred variant.
+	 * Output will be tidy.
+	 *
+	 * @param string $text Wikitext in the page content language
+	 * @param bool $linestart Is this the start of a line? (Defaults to true)
+	 * @throws MWException
+	 * @return string HTML
+	 * @since 1.33
+	 */
+	public function parseAsContent( $text, $linestart = true ) {
+		return $this->parseInternal(
+			$text, $this->getTitle(), $linestart, /*tidy*/true, /*interface*/false, /*language*/null
+		)->getText( [
+			'enableSectionEditLinks' => false,
+			'wrapperDivClass' => ''
+		] );
+	}
+
+	/**
+	 * Parse wikitext *in the user interface language* and return the HTML.
+	 * The result will not be language-converted, as user interface messages
+	 * are already localized into a specific variant.
+	 * Output will be tidy.
+	 *
+	 * @param string $text Wikitext in the user interface language
+	 * @param bool $linestart Is this the start of a line? (Defaults to true)
+	 * @throws MWException
+	 * @return string HTML
+	 * @since 1.33
+	 */
+	public function parseAsInterface( $text, $linestart = true ) {
+		return $this->parseInternal(
+			$text, $this->getTitle(), $linestart, /*tidy*/true, /*interface*/true, /*language*/null
+		)->getText( [
+			'enableSectionEditLinks' => false,
+			'wrapperDivClass' => ''
+		] );
+	}
+
+	/**
+	 * Parse wikitext *in the user interface language*, strip
+	 * paragraph wrapper, and return the HTML.
+	 * The result will not be language-converted, as user interface messages
+	 * are already localized into a specific variant.
+	 * Output will be tidy.  Outer paragraph wrapper will only be stripped
+	 * if the result is a single paragraph.
+	 *
+	 * @param string $text Wikitext in the user interface language
+	 * @param bool $linestart Is this the start of a line? (Defaults to true)
+	 * @throws MWException
+	 * @return string HTML
+	 * @since 1.33
+	 */
+	public function parseInlineAsInterface( $text, $linestart = true ) {
+		return Parser::stripOuterParagraph(
+			$this->parseAsInterface( $text, $linestart )
+		);
 	}
 
 	/**
@@ -2119,10 +2174,14 @@ class OutputPage extends ContextSource {
 	 * @param bool $interface Use interface language (instead of content language) while parsing
 	 *   language sensitive magic words like GRAMMAR and PLURAL
 	 * @return string HTML
+	 * @deprecated since 1.33, due to untidy output and confusing default
+	 *   for $interface.  Use parseInlineAsInterface() if $interface is
+	 *   the default value or false, or else use
+	 *   Parser::stripOuterParagraph($outputPage->parseAsContent(...)).
 	 */
 	public function parseInline( $text, $linestart = true, $interface = false ) {
 		$parsed = $this->parseInternal(
-			$text, $linestart, $interface, /*language*/null
+			$text, $this->getTitle(), $linestart, /*tidy*/false, $interface, /*language*/null
 		)->getText( [
 			'enableSectionEditLinks' => false,
 			'wrapperDivClass' => '', /* no wrapper div */
@@ -2134,7 +2193,9 @@ class OutputPage extends ContextSource {
 	 * Parse wikitext and return the HTML (internal implementation helper)
 	 *
 	 * @param string $text
+	 * @param Title The title to use
 	 * @param bool $linestart Is this the start of a line?
+	 * @param bool $tidy Whether the output should be tidied
 	 * @param bool $interface Use interface language (instead of content language) while parsing
 	 *   language sensitive magic words like GRAMMAR and PLURAL.  This also disables
 	 *   LanguageConverter.
@@ -2142,29 +2203,29 @@ class OutputPage extends ContextSource {
 	 * @throws MWException
 	 * @return ParserOutput
 	 */
-	private function parseInternal( $text, $linestart, $interface, $language ) {
+	private function parseInternal( $text, $title, $linestart, $tidy, $interface, $language ) {
 		global $wgParser;
 
-		if ( is_null( $this->getTitle() ) ) {
+		if ( is_null( $title ) ) {
 			throw new MWException( 'Empty $mTitle in ' . __METHOD__ );
 		}
 
 		$popts = $this->parserOptions();
-		if ( $interface ) {
-			$popts->setInterfaceMessage( true );
-		}
+		$oldTidy = $popts->setTidy( $tidy );
+		$oldInterface = $popts->setInterfaceMessage( (bool)$interface );
+
 		if ( $language !== null ) {
 			$oldLang = $popts->setTargetLanguage( $language );
 		}
 
 		$parserOutput = $wgParser->getFreshParser()->parse(
-			$text, $this->getTitle(), $popts,
+			$text, $title, $popts,
 			$linestart, true, $this->mRevisionId
 		);
 
-		if ( $interface ) {
-			$popts->setInterfaceMessage( false );
-		}
+		$popts->setTidy( $oldTidy );
+		$popts->setInterfaceMessage( $oldInterface );
+
 		if ( $language !== null ) {
 			$popts->setTargetLanguage( $oldLang );
 		}
