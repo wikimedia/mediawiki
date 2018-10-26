@@ -598,6 +598,7 @@ because of Phabricator reports.
   $wgTidyConfig instead.
 * All Tidy configurations other than Remex have been hard deprecated;
   future parsers will not emit compatible output for these configurations.
+  In particular, running MediaWiki with tidy disabled has been deprecated.
 * (T198214) OutputPage::addWikiText(), OutputPage::addWikiTextWithTitle(),
   and OutputPage::addWikiTextTitle() have been deprecated, since they
   can result in untidy output.  In addition OutputPage::addWikiTextTidy()
