@@ -2086,6 +2086,9 @@ class OutputPage extends ContextSource {
 	/**
 	 * Parse wikitext and return the HTML.
 	 *
+	 * @todo The output is wrapped in a <div> iff $interface is false; it's
+	 * probably best to always strip the wrapper.
+	 *
 	 * @param string $text
 	 * @param bool $linestart Is this the start of a line?
 	 * @param bool $interface Use interface language (instead of content language) while parsing
@@ -2096,6 +2099,45 @@ class OutputPage extends ContextSource {
 	 * @return string HTML
 	 */
 	public function parse( $text, $linestart = true, $interface = false, $language = null ) {
+		return $this->parseInternal(
+			$text, $linestart, $interface, $language
+		)->getText( [
+			'enableSectionEditLinks' => false,
+		] );
+	}
+
+	/**
+	 * Parse wikitext, strip paragraph wrapper, and return the HTML.
+	 *
+	 * @param string $text
+	 * @param bool $linestart Is this the start of a line?
+	 * @param bool $interface Use interface language (instead of content language) while parsing
+	 *   language sensitive magic words like GRAMMAR and PLURAL
+	 * @return string HTML
+	 */
+	public function parseInline( $text, $linestart = true, $interface = false ) {
+		$parsed = $this->parseInternal(
+			$text, $linestart, $interface, /*language*/null
+		)->getText( [
+			'enableSectionEditLinks' => false,
+			'wrapperDivClass' => '', /* no wrapper div */
+		] );
+		return Parser::stripOuterParagraph( $parsed );
+	}
+
+	/**
+	 * Parse wikitext and return the HTML (internal implementation helper)
+	 *
+	 * @param string $text
+	 * @param bool $linestart Is this the start of a line?
+	 * @param bool $interface Use interface language (instead of content language) while parsing
+	 *   language sensitive magic words like GRAMMAR and PLURAL.  This also disables
+	 *   LanguageConverter.
+	 * @param Language|null $language Target language object, will override $interface
+	 * @throws MWException
+	 * @return ParserOutput
+	 */
+	private function parseInternal( $text, $linestart, $interface, $language ) {
 		global $wgParser;
 
 		if ( is_null( $this->getTitle() ) ) {
@@ -2122,26 +2164,7 @@ class OutputPage extends ContextSource {
 			$popts->setTargetLanguage( $oldLang );
 		}
 
-		return $parserOutput->getText( [
-			'enableSectionEditLinks' => false,
-		] );
-	}
-
-	/**
-	 * Parse wikitext, strip paragraphs, and return the HTML.
-	 *
-	 * @todo This doesn't work as expected at all.  If $interface is false, there's always a
-	 * wrapping <div>, so stripOuterParagraph() does nothing.
-	 *
-	 * @param string $text
-	 * @param bool $linestart Is this the start of a line?
-	 * @param bool $interface Use interface language (instead of content language) while parsing
-	 *   language sensitive magic words like GRAMMAR and PLURAL
-	 * @return string HTML
-	 */
-	public function parseInline( $text, $linestart = true, $interface = false ) {
-		$parsed = $this->parse( $text, $linestart, $interface );
-		return Parser::stripOuterParagraph( $parsed );
+		return $parserOutput;
 	}
 
 	/**
