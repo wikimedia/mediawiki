@@ -920,7 +920,7 @@ class WebInstaller extends Installer {
 		if ( !isset( $params['labelAttribs'] ) ) {
 			$params['labelAttribs'] = [];
 		}
-		$labelText = $params['rawtext'] ?? $this->parse( wfMessage( $params['label'] )->text() );
+		$labelText = $params['rawtext'] ?? $this->parse( wfMessage( $params['label'] )->plain() );
 
 		return "<div class=\"config-input-check\">\n" .
 			$params['help'] .
