@@ -66,48 +66,48 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * Purges the list of URLs passed to the constructor.
 	 */
 	public function doUpdate() {
-		foreach ( $this->infoByUser as $userId => $info ) {
-			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-			$dbw = $lb->getConnection( DB_MASTER );
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$dbw = $lb->getConnection( DB_MASTER );
 
-			$dbw->startAtomic( __METHOD__ ); // define minimum row lock duration
-			$dbw->update(
-				'user',
-				[ 'user_editcount=user_editcount+' . (int)$info['increment'] ],
-				[ 'user_id' => $userId, 'user_editcount IS NOT NULL' ],
-				__METHOD__
-			);
-			/** @var User[] $affectedInstances */
-			$affectedInstances = $info['instances'];
-			// Lazy initialization check...
-			if ( $dbw->affectedRows() == 0 ) {
-				// No rows will be "affected" if user_editcount is NULL.
-				// Get the generic "replica" connection to see if it actually uses the master.
-				$dbr = $lb->getConnection( DB_REPLICA );
-				if ( $dbr !== $dbw ) {
-					// This method runs after the new revisions were committed.
-					// Wait for the replica to catch up so they will all be counted.
-					$dbr->flushSnapshot( __METHOD__ );
-					$lb->safeWaitForMasterPos( $dbr );
+		( new AutoCommitUpdate( $dbw, __METHOD__, function () use ( $lb, $dbw ) {
+			foreach ( $this->infoByUser as $userId => $info ) {
+				$dbw->update(
+					'user',
+					[ 'user_editcount=user_editcount+' . (int)$info['increment'] ],
+					[ 'user_id' => $userId, 'user_editcount IS NOT NULL' ],
+					__METHOD__
+				);
+				/** @var User[] $affectedInstances */
+				$affectedInstances = $info['instances'];
+				// Lazy initialization check...
+				if ( $dbw->affectedRows() == 0 ) {
+					// No rows will be "affected" if user_editcount is NULL.
+					// Check if the generic "replica" connection is not the master.
+					$dbr = $lb->getConnection( DB_REPLICA );
+					if ( $dbr !== $dbw ) {
+						// This method runs after the new revisions were committed.
+						// Wait for the replica to catch up so they will all be counted.
+						$dbr->flushSnapshot( __METHOD__ );
+						$lb->safeWaitForMasterPos( $dbr );
+					}
+					$affectedInstances[0]->initEditCountInternal();
 				}
-				$affectedInstances[0]->initEditCountInternal();
-			}
-			$newCount = (int)$dbw->selectField(
-				'user',
-				[ 'user_editcount' ],
-				[ 'user_id' => $userId ],
-				__METHOD__
-			);
-			$dbw->endAtomic( __METHOD__ );
+				$newCount = (int)$dbw->selectField(
+					'user',
+					[ 'user_editcount' ],
+					[ 'user_id' => $userId ],
+					__METHOD__
+				);
 
-			// Update the edit count in the instance caches. This is mostly useful
-			// for maintenance scripts, where deferred updates might run immediately
-			// and user instances might be reused for a long time.
-			foreach ( $affectedInstances as $affectedInstance ) {
-				$affectedInstance->setEditCountInternal( $newCount );
+				// Update the edit count in the instance caches. This is mostly useful
+				// for maintenance scripts, where deferred updates might run immediately
+				// and user instances might be reused for a long time.
+				foreach ( $affectedInstances as $affectedInstance ) {
+					$affectedInstance->setEditCountInternal( $newCount );
+				}
+				// Clear the edit count in user cache too
+				$affectedInstances[0]->invalidateCache();
 			}
-			// Clear the edit count in user cache too
-			$affectedInstances[0]->invalidateCache();
-		}
+		} ) )->doUpdate();
 	}
 }
