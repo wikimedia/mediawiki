@@ -641,12 +641,18 @@
 	mw.log.deprecate( window, '$j', $, 'Use $ or jQuery instead.' );
 
 	// Process callbacks for Grade A that require modules.
-	// Plain ones were already processed by startup.js.
 	queue = window.RLQ;
-	// Redefine publicly to capture any late arrivals
+	// Replace temporary RLQ implementation from startup.js with the
+	// final implementation that also processes callbacks that can
+	// require modules. It must also support late arrivals of
+	// plain callbacks. (T208093)
 	window.RLQ = {
 		push: function ( entry ) {
-			mw.loader.using( entry[ 0 ], entry[ 1 ] );
+			if ( typeof entry === 'function' ) {
+				entry();
+			} else {
+				mw.loader.using( entry[ 0 ], entry[ 1 ] );
+			}
 		}
 	};
 	while ( queue[ 0 ] ) {
