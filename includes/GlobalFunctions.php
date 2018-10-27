@@ -2656,6 +2656,7 @@ function wfWikiID() {
  * @param string $wiki
  *
  * @return array
+ * @deprecated 1.32
  */
 function wfSplitWikiID( $wiki ) {
 	$bits = explode( '-', $wiki, 2 );
