@@ -789,12 +789,6 @@ class MovePageForm extends UnlistedSpecialPage {
 		# Deal with watches (we don't watch subpages)
 		WatchAction::doWatchOrUnwatch( $this->watch, $ot, $user );
 		WatchAction::doWatchOrUnwatch( $this->watch, $nt, $user );
-
-		/**
-		 * T163966
-		 * Increment user_editcount during page moves
-		 */
-		$user->incEditCount();
 	}
 
 	function showLogFragment( $title ) {
