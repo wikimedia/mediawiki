@@ -29,11 +29,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 	$cs = new CheckStorage;
 	$fix = isset( $options['fix'] );
-	if ( isset( $args[0] ) ) {
-		$xml = $args[0];
-	} else {
-		$xml = false;
-	}
+	$xml = $args[0] ?? false;
 	$cs->check( $fix, $xml );
 }
 

@@ -3227,12 +3227,8 @@ class Language {
 			$this->doMagicHook();
 		}
 
-		if ( isset( $this->mMagicExtensions[$mw->mId] ) ) {
-			$rawEntry = $this->mMagicExtensions[$mw->mId];
-		} else {
-			$rawEntry = self::$dataCache->getSubitem(
-				$this->mCode, 'magicWords', $mw->mId );
-		}
+		$rawEntry = $this->mMagicExtensions[$mw->mId] ??
+			self::$dataCache->getSubitem( $this->mCode, 'magicWords', $mw->mId );
 
 		if ( !is_array( $rawEntry ) ) {
 			wfWarn( "\"$rawEntry\" is not a valid magic word for \"$mw->mId\"" );
@@ -5063,10 +5059,6 @@ class Language {
 	public function getPluralRuleType( $number ) {
 		$index = $this->getPluralRuleIndexNumber( $number );
 		$pluralRuleTypes = $this->getPluralRuleTypes();
-		if ( isset( $pluralRuleTypes[$index] ) ) {
-			return $pluralRuleTypes[$index];
-		} else {
-			return 'other';
-		}
+		return $pluralRuleTypes[$index] ?? 'other';
 	}
 }

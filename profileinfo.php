@@ -338,11 +338,7 @@ $res = $dbr->select(
 	[ 'ORDER BY' => 'pf_name ASC' ]
 );
 
-if ( isset( $_REQUEST['filter'] ) ) {
-	$filter = $_REQUEST['filter'];
-} else {
-	$filter = '';
-}
+$filter = $_REQUEST['filter'] ?? '';
 
 ?>
 <form method="get" action="profileinfo.php">
