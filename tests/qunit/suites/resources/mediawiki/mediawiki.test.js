@@ -333,6 +333,9 @@
 			'Script escaped when using parse format'
 		);
 
+		mw.config.set( 'wgUserLanguage', 'qqx' );
+		assert.strictEqual( mw.message( 'foo' ).plain(), '(foo)', 'qqx message' );
+		assert.strictEqual( mw.message( 'foo', 'bar', 'baz' ).plain(), '(foo: bar, baz)', 'qqx message with parameters' );
 	} );
 
 	QUnit.test( 'mw.msg', function ( assert ) {

@@ -1220,7 +1220,7 @@
 	} );
 
 	QUnit.test( 'Integration', function ( assert ) {
-		var expected, msg;
+		var expected, msg, $bar;
 
 		expected = '<b><a title="Bold" href="/wiki/Bold">Bold</a>!</b>';
 		mw.messages.set( 'integration-test', '<b>[[Bold]]!</b>' );
@@ -1279,6 +1279,10 @@
 			'<a href="http://example.com/">Link</a>',
 			'Calling .parse() multiple times does not duplicate link contents'
 		);
+
+		mw.config.set( 'wgUserLanguage', 'qqx' );
+		$bar = $( '<b>' ).text( 'bar' );
+		assert.strictEqual( mw.message( 'foo', $bar, 'baz' ).parse(), '(foo: <b>bar</b>, baz)', 'qqx message with parameters' );
 	} );
 
 	QUnit.test( 'setParserDefaults', function ( assert ) {
