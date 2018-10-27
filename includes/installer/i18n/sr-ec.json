@@ -182,7 +182,7 @@
 	"config-help": "помоћ",
 	"config-help-tooltip": "кликните да бисте проширили",
 	"config-nofile": "Није могуће пронаћи датотеку „$1”. Да није избрисана?",
-	"config-extension-link": "Јесте ли знали да ваш вики подржава [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions додатке]?\n\nМожете их прегледати [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category по категорији] или помоћу [https://www.mediawiki.org/wiki/Extension_Matrix Extension Matrix-а] да бисте видели потпуни списак.",
+	"config-extension-link": "Јесте ли знали да ваш вики подржава [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions додатке]?\n\nМожете их прегледати [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category по категорији].",
 	"config-skins-screenshots": "„$1” (снимци екрана: $2)",
 	"config-skins-screenshot": "$1 ($2)",
 	"config-extensions-requires": "$1 (захтева $2)",

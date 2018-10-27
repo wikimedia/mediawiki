@@ -924,9 +924,13 @@
 	"whatlinkshere-filters": "چھاݨے",
 	"whatlinkshere-submit": "ڄلو",
 	"ipbreason": "سبب:",
+	"ipb-partial": "جزوی",
+	"ipb-type-label": "قسم",
+	"ipb-pages-label": "ورقے",
 	"autoblocklist-submit": "ڳولو",
 	"blocklist-reason": "سبب:",
 	"infiniteblock": "بے انت",
+	"blocklist-editing": "زیر ترمیم",
 	"blocklink": "پابندی لاؤ",
 	"contribslink": "حصے داری",
 	"blocklogpage": "پابندی دی لاگ",
@@ -1094,5 +1098,6 @@
 	"logentry-upload-overwrite": "$1 نے $3 دا نواں نسخہ {{GENDER:$2|اپلوڈ کیتا}}",
 	"searchsuggest-search": "ڳولو",
 	"duration-days": "$1 {{PLURAL:$1|ݙینہ}}",
+	"mw-widgets-titlesmultiselect-placeholder": "ٻیا شامل کرو۔۔۔",
 	"randomrootpage": "بے ترتيب بنیادی ورقہ"
 }

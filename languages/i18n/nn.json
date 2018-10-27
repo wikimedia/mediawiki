@@ -865,6 +865,7 @@
 	"search-redirect": "(omdirigering frå $1)",
 	"search-section": "(bolken $1)",
 	"search-category": "(kategorien $1)",
+	"search-file-match": "(passar med filinnhald)",
 	"search-suggest": "Meinte du: «$1»",
 	"search-rewritten": "Viser resultat for $1. Søk i staden etter $2.",
 	"search-interwiki-caption": "Resultat frå systerprosjekt",
