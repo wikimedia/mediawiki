@@ -81,6 +81,8 @@ because of Phabricator reports.
 * The LegacyHookPreAuthenticationProvider class, deprecated since its creation
   in 1.27 as part of the AuthManager re-write, now emits deprecation warnings.
   This will help identify the issue if you added it to $wgAuthManagerConfig.
+* wfSplitWikiId() is now deprecated. Cache key generation should have the wiki
+  domain ID as a key component and use makeGlobalKey().
 * …
 
 === Other changes in 1.33 ===
