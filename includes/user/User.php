@@ -5350,10 +5350,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * This method should not be called outside User/UserEditCountUpdate
 	 *
-	 * @param int $add Edits to add to the count from the revision table
 	 * @return int Number of edits
 	 */
-	public function initEditCountInternal( $add = 0 ) {
+	public function initEditCountInternal() {
 		// Pull from a replica DB to be less cruel to servers
 		// Accuracy isn't the point anyway here
 		$dbr = wfGetDB( DB_REPLICA );
@@ -5366,13 +5365,15 @@ class User implements IDBAccessObject, UserIdentity {
 			[],
 			$actorWhere['joins']
 		);
-		$count = $count + $add;
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update(
 			'user',
 			[ 'user_editcount' => $count ],
-			[ 'user_id' => $this->getId() ],
+			[
+				'user_id' => $this->getId(),
+				'user_editcount IS NULL OR user_editcount < ' . (int)$count
+			],
 			__METHOD__
 		);
 
