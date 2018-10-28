@@ -23,7 +23,7 @@
 // Bail on old versions of PHP, or if composer has not been run yet to install
 // dependencies.
 require_once __DIR__ . '/../includes/PHPVersionCheck.php';
-wfEntryPointCheck( 'cli' );
+wfEntryPointCheck( 'text' );
 
 use MediaWiki\Shell\Shell;
 

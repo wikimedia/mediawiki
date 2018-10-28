@@ -24,6 +24,13 @@
  * Check PHP Version, as well as for composer dependencies in entry points,
  * and display something vaguely comprehensible in the event of a totally
  * unrecoverable error.
+ *
+ * @note Since we can't rely on anything external, the minimum PHP versions
+ * and MW current version are hardcoded in this class.
+ *
+ * @note This class uses setter methods instead of a constructor so that
+ * it can be compatible with PHP 4, PHP 5 and PHP 7 (without warnings).
+ *
  * @class
  */
 class PHPVersionCheck {
@@ -41,29 +48,35 @@ class PHPVersionCheck {
 	);
 
 	/**
-	 * @var string Which entry point we are protecting. One of:
-	 *   - index.php
-	 *   - load.php
-	 *   - api.php
-	 *   - mw-config/index.php
-	 *   - cli
+	 * @var string $format The format used for errors. One of "text" or "html"
 	 */
-	var $entryPoint = null;
+	var $format = 'text';
 
 	/**
-	 * @param string $entryPoint Which entry point we are protecting. One of:
-	 *   - index.php
-	 *   - load.php
-	 *   - api.php
-	 *   - mw-config/index.php
-	 *   - cli
+	 * @var string $scriptPath
 	 */
-	function setEntryPoint( $entryPoint ) {
-		$this->entryPoint = $entryPoint;
+	var $scriptPath = '/';
+
+	/**
+	 * Set the format used for errors.
+	 *
+	 * @param string $format One of "text" or "html"
+	 */
+	function setFormat( $format ) {
+		$this->format = $format;
 	}
 
 	/**
-	 * Returns the version of the installed PHP implementation.
+	 * Set the script path used for images in HTML-formatted errors.
+	 *
+	 * @param string $scriptPath
+	 */
+	function setScriptPath( $scriptPath ) {
+		$this->scriptPath = $scriptPath;
+	}
+
+	/**
+	 * Return the version of the installed PHP implementation.
 	 *
 	 * @param string $impl By default, the function returns the info of the currently installed PHP
 	 *  implementation. Using this parameter the caller can decide, what version info will be
@@ -236,14 +249,8 @@ HTML;
 	 * @return string
 	 */
 	function getIndexErrorOutput( $title, $longHtml, $shortText ) {
-		$pathinfo = pathinfo( $_SERVER['SCRIPT_NAME'] );
-		if ( $this->entryPoint == 'mw-config/index.php' ) {
-			$dirname = dirname( $pathinfo['dirname'] );
-		} else {
-			$dirname = $pathinfo['dirname'];
-		}
 		$encLogo =
-			htmlspecialchars( str_replace( '//', '/', $dirname . '/' ) .
+			htmlspecialchars( str_replace( '//', '/', $this->scriptPath . '/' ) .
 				'resources/assets/mediawiki.png' );
 		$shortHtml = htmlspecialchars( $shortText );
 
@@ -308,23 +315,13 @@ HTML;
 	 * @param string $longHtml
 	 */
 	function triggerError( $title, $shortText, $longText, $longHtml ) {
-		switch ( $this->entryPoint ) {
-			case 'cli':
-				$finalOutput = $longText;
-				break;
-			case 'index.php':
-			case 'mw-config/index.php':
-				$this->outputHTMLHeader();
-				$finalOutput = $this->getIndexErrorOutput( $title, $longHtml, $shortText );
-				break;
-			case 'load.php':
-				$this->outputHTMLHeader();
-				$finalOutput = "/* $shortText */";
-				break;
-			default:
-				$this->outputHTMLHeader();
-				// Handle everything that's not index.php
-				$finalOutput = $shortText;
+		if ( $this->format === 'html' ) {
+			// Used by index.php and mw-config/index.php
+			$this->outputHTMLHeader();
+			$finalOutput = $this->getIndexErrorOutput( $title, $longHtml, $shortText );
+		} else {
+			// Used by Maintenance.php (CLI)
+			$finalOutput = $longText;
 		}
 
 		echo "$finalOutput\n";
@@ -336,12 +333,13 @@ HTML;
  * Check PHP version and that external dependencies are installed, and
  * display an informative error if either condition is not satisfied.
  *
- * @note Since we can't rely on anything, the minimum PHP versions and MW current
- * version are hardcoded here.
+ * @param string $format One of "text" or "html"
+ * @param string $scriptPath Used when an error is formatted as HTML.
  */
-function wfEntryPointCheck( $entryPoint ) {
+function wfEntryPointCheck( $format = 'text', $scriptPath = '/' ) {
 	$phpVersionCheck = new PHPVersionCheck();
-	$phpVersionCheck->setEntryPoint( $entryPoint );
+	$phpVersionCheck->setFormat( $format );
+	$phpVersionCheck->setScriptPath( $scriptPath );
 	$phpVersionCheck->checkRequiredPHPVersion();
 	$phpVersionCheck->checkVendorExistence();
 	$phpVersionCheck->checkExtensionExistence();
