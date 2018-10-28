@@ -235,6 +235,7 @@ class Names {
 		'ki' => 'Gĩkũyũ', # Gikuyu
 		'kiu' => 'Kırmancki', # Kirmanjki
 		'kj' => 'Kwanyama', # Kwanyama
+		'kjp' => 'ဖၠုံလိက်', # Eastern Pwo (multiple scripts - defaults to Burmese script)
 		'kk' => 'қазақша', # Kazakh (multiple scripts - defaults to Cyrillic)
 		'kk-arab' => "قازاقشا (تٴوتە)\u{200F}", # Kazakh Arabic
 		'kk-cyrl' => "қазақша (кирил)\u{200E}", # Kazakh Cyrillic
