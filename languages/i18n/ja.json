@@ -2022,7 +2022,7 @@
 	"prefixindex": "先頭が同じ全ページ",
 	"prefixindex-namespace": "先頭が同じ全ページ ($1名前空間)",
 	"prefixindex-submit": "表示",
-	"prefixindex-strip": "一覧で接頭辞を省略",
+	"prefixindex-strip": "結果一覧から接頭辞を省略",
 	"shortpages": "短いページ",
 	"longpages": "長いページ",
 	"deadendpages": "行き止まりページ",

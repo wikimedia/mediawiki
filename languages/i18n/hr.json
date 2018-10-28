@@ -3282,7 +3282,7 @@
 	"version-license-not-found": "Za ovaj dodatak nema detaljnih informacija o licenciji.",
 	"version-credits-title": "Zasluge za $1",
 	"version-credits-not-found": "Za ovo proširenje nisu pronađene informacije o zaslugama.",
-	"version-poweredby-credits": "Ovaj wiki pogoni '''[https://www.mediawiki.org/ MediaWiki]''', autorska prava © 2001-$1 $2.",
+	"version-poweredby-credits": "Ovaj wiki pokreće '''[https://www.mediawiki.org/ MediaWiki]''', autorska prava © 2001-$1 $2.",
 	"version-poweredby-others": "ostali",
 	"version-poweredby-translators": "prevoditelji s projekta translatewiki.net",
 	"version-credits-summary": "Željeli bismo zahvaliti sljedećim suradnicima na njihovom doprinosu [[Special:Version|MediaWikiju]].",
