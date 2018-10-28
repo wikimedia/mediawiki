@@ -3859,7 +3859,7 @@
 	"duration-centuries": "$1 {{PLURAL:$1|secolo|secoli}}",
 	"duration-millennia": "$1 {{PLURAL:$1|millennio|millenni}}",
 	"rotate-comment": "Immagine ruotata di $1 {{PLURAL:$1|grado|gradi}} in senso orario",
-	"limitreport-title": "Dati profilo del parser:",
+	"limitreport-title": "Dati di profilazione del parser:",
 	"limitreport-cputime": "Tempo di utilizzo CPU",
 	"limitreport-cputime-value": "$1 {{PLURAL:$1|secondo|secondi}}",
 	"limitreport-walltime": "Tempo di utilizzo reale",

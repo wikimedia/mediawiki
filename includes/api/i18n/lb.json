@@ -210,6 +210,7 @@
 	"apierror-articleexists": "Den Artikel deen dir probéiert hutt unzeleeë gouf schonn ugeluecht.",
 	"apierror-autoblocked": "Är IP-Adress gouf automatesch gespaart well se vun engem gespaarte Benotzer benotzt gouf.",
 	"apierror-badip": "IP-Parameter ass net valabel.",
+	"apierror-blocked-partial": "Dir gouft gespaart fir dës säit z'änneren.",
 	"apierror-cantblock": "Dir hutt net d'Recht fir Benotzer ze spären.",
 	"apierror-cantimport": "Dir hutt net déi néideg Rechter fir Säiten z'importéieren.",
 	"apierror-copyuploadbadurl": "D'Eroplueden ass vun dëser URL net erlaabt.",

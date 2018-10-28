@@ -328,7 +328,7 @@
 	"config-help": "ヘルプ",
 	"config-help-tooltip": "クリックで展開",
 	"config-nofile": "ファイル「$1」が見つかりませんでした。削除された可能性があります。",
-	"config-extension-link": "あなたのウィキは[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions 拡張機能]をサポートしていることをご存知ですか?\n\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category カテゴリ別で拡張機能を見る]か[https://www.mediawiki.org/wiki/Extension_Matrix 拡張機能のマトリックス]で拡張機能すべてのリストをご覧になれます。",
+	"config-extension-link": "ご利用のウィキは[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions 拡張機能]をサポートしていることをご存知でしたか?\n\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category 「カテゴリ別で拡張機能を見る」]か[https://www.mediawiki.org/wiki/Extension_Matrix 「拡張機能のマトリックス」]のページで拡張機能すべてのリストをご覧になれます。",
 	"config-skins-screenshots": "$1 (スクリーンショット: $2)",
 	"config-extensions-requires": "$1（$2が必要）",
 	"config-screenshot": "スクリーンショット",
