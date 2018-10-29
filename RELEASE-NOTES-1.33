@@ -66,6 +66,9 @@ because of Phabricator reports.
 * The "Parsoid v1" compatibility mappings in ParsoidVirtualRESTService and
   RestbaseVirtualRESTService, deprecated since 1.26, have been removed.
   Use the RESTBase v1 or Parsoid v3 API instead.
+* ParserOptions defaults 'tidy' to true now, since the untidy modes of the
+  parser are being deprecated and ParserOptions::getCanonicalOverrides()
+  has always been true at any rate.
 * …
 
 === Deprecations in 1.33 ===
