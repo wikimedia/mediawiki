@@ -133,20 +133,14 @@ TEXT
 			usleep( $throttle * 1000 );
 		}
 
-		if ( $dbw->insert(
+		$dbw->insert(
 			'updatelog',
 			[ 'ul_key' => 'populate category' ],
 			__METHOD__,
 			'IGNORE'
-		) ) {
-			$this->output( "Category population complete.\n" );
+		);
 
-			return true;
-		} else {
-			$this->output( "Could not insert category population row.\n" );
-
-			return false;
-		}
+		return true;
 	}
 }
 
