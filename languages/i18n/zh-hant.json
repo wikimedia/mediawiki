@@ -2123,7 +2123,7 @@
 	"logeventslist-patrol-log": "巡查日誌",
 	"logeventslist-tag-log": "標籤日誌",
 	"all-logs-page": "所有公開日誌",
-	"alllogstext": "合併顯示所有 {{SITENAME}} 中所有類型的日誌。\n您可以點選下拉式選單選擇日誌的類型，指定使用者名稱 (區分大小寫) 或影響的頁面 (區分大小寫)。",
+	"alllogstext": "合併顯示所有 {{SITENAME}} 中所有類型的日誌。您可以點選下拉式選單選擇日誌的類型，指定使用者名稱（區分大小寫）或影響的頁面（區分大小寫）。",
 	"logempty": "無符合條件的日誌。",
 	"log-title-wildcard": "搜尋以此欄位文字為字首的標題",
 	"showhideselectedlogentries": "顯示/隱藏已選擇的日誌項目",

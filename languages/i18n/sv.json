@@ -2566,6 +2566,8 @@
 	"createaccountblock": "kontoregistrering blockerad",
 	"emailblock": "e-post blockerad",
 	"blocklist-nousertalk": "kan inte redigera sin egen diskussionssida",
+	"blocklist-editing": "redigerar",
+	"blocklist-editing-sitewide": "redigerar (hela webbplatsen)",
 	"ipblocklist-empty": "Listan över blockeringar är tom.",
 	"ipblocklist-no-results": "Den angivna IP-adressen eller användaren är inte blockerad.",
 	"blocklink": "blockera",
