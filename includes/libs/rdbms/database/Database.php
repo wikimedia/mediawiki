@@ -2038,10 +2038,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$options = [ $options ];
 		}
 
-		$fh = null;
-		if ( isset( $options['fileHandle'] ) ) {
-			$fh = $options['fileHandle'];
-		}
+		$fh = $options['fileHandle'] ?? null;
 		$options = $this->makeInsertOptions( $options );
 
 		if ( isset( $a[0] ) && is_array( $a[0] ) ) {

@@ -230,11 +230,7 @@ spl_autoload_register( function ( $class ) {
 		'PHPUnit_Framework_Error' => 'PHPUnit\Framework\Error\Error',
 	];
 
-	if ( isset( $map[$class] ) ) {
-		$newForm = $map[$class];
-	} else {
-		$newForm = str_replace( '_', '\\', $class );
-	}
+	$newForm = $map[$class] ?? str_replace( '_', '\\', $class );
 
 	if ( class_exists( $newForm ) || interface_exists( $newForm ) ) {
 		// If the new class name exists, alias

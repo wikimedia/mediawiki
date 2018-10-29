@@ -399,11 +399,7 @@ class ConverterRule {
 				case 'N':
 					// process N flag: output current variant name
 					$ruleVar = trim( $rules );
-					if ( isset( $this->mConverter->mVariantNames[$ruleVar] ) ) {
-						$this->mRuleDisplay = $this->mConverter->mVariantNames[$ruleVar];
-					} else {
-						$this->mRuleDisplay = '';
-					}
+					$this->mRuleDisplay = $this->mConverter->mVariantNames[$ruleVar] ?? '';
 					break;
 				case 'D':
 					// process D flag: output rules description

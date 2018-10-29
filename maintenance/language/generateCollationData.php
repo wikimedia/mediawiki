@@ -247,11 +247,7 @@ class GenerateCollationData extends Maintenance {
 			if ( $weight !== $prevWeight ) {
 				$this->groups[$prevWeight] = $group;
 				$prevWeight = $weight;
-				if ( isset( $this->groups[$weight] ) ) {
-					$group = $this->groups[$weight];
-				} else {
-					$group = [];
-				}
+				$group = $this->groups[$weight] ?? [];
 			}
 			$group[] = $cp;
 		}
