@@ -1395,7 +1395,7 @@ class LoadBalancer implements ILoadBalancer {
 		$failures = [];
 
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$scope = $this->getScopedPHPBehaviorForCommit(); // try to ignore client aborts
+		$scope = ScopedCallback::newScopedIgnoreUserAbort(); // try to ignore client aborts
 
 		$restore = ( $this->trxRoundId !== false );
 		$this->trxRoundId = false;
@@ -1958,23 +1958,6 @@ class LoadBalancer implements ILoadBalancer {
 		} else {
 			$this->localDomainIdAlias = $this->localDomain->getDatabase();
 		}
-	}
-
-	/**
-	 * Make PHP ignore user aborts/disconnects until the returned
-	 * value leaves scope. This returns null and does nothing in CLI mode.
-	 *
-	 * @return ScopedCallback|null
-	 */
-	final protected function getScopedPHPBehaviorForCommit() {
-		if ( PHP_SAPI != 'cli' ) { // https://bugs.php.net/bug.php?id=47540
-			$old = ignore_user_abort( true ); // avoid half-finished operations
-			return new ScopedCallback( function () use ( $old ) {
-				ignore_user_abort( $old );
-			} );
-		}
-
-		return null;
 	}
 
 	function __destruct() {
