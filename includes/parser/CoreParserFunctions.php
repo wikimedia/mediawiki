@@ -455,11 +455,10 @@ class CoreParserFunctions {
 				return '';
 			}
 		} else {
-			$converter = $parser->getTargetLanguage()->getConverter();
 			$parser->getOutput()->addWarning(
 				wfMessage( 'restricted-displaytitle',
 					// Message should be parsed, but this param should only be escaped.
-					$converter->markNoConversion( wfEscapeWikiText( $text ) )
+					wfEscapeWikiText( $text )
 				)->text()
 			);
 			$parser->addTrackingCategory( 'restricted-displaytitle-ignored' );
