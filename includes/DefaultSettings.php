@@ -8923,6 +8923,9 @@ $wgCSPFalsePositiveUrls = [
 	'https://rtb.metrigo.com' => true,
 	'https://d5p.de17a.com' => true,
 	'https://ad.lkqd.net/vpaid/vpaid.js' => true,
+	'https://ad.lkqd.net/vpaid/vpaid.js?fusion=1.0' => true,
+	'https://t.lkqd.net/t' => true,
+	'chrome-extension' => true,
 ];
 
 /**
