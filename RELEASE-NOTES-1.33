@@ -66,6 +66,9 @@ because of Phabricator reports.
 * The "Parsoid v1" compatibility mappings in ParsoidVirtualRESTService and
   RestbaseVirtualRESTService, deprecated since 1.26, have been removed.
   Use the RESTBase v1 or Parsoid v3 API instead.
+* ParserOptions defaults 'tidy' to true now, since the untidy modes of the
+  parser are being deprecated and ParserOptions::getCanonicalOverrides()
+  has always been true at any rate.
 * …
 
 === Deprecations in 1.33 ===
@@ -78,6 +81,11 @@ because of Phabricator reports.
   applied for Arabic and Malayalam in the future.  Please enable these on
   your local wiki (if you have them explicitly set to false) and run
   maintenance/cleanupTitles.php to fix any existing page titles.
+* OutputPage::parse() and OutputPage::parseInline() have been deprecated
+  due to untidy output and inconsistent handling of wrapper divs and
+  interface/content language defaults.  Use OutputPage::parseAsContent(),
+  OutputPage::parseAsInterface(), or OutputPage::parseInlineAsInterface()
+  as appropriate.
 * The LegacyHookPreAuthenticationProvider class, deprecated since its creation
   in 1.27 as part of the AuthManager re-write, now emits deprecation warnings.
   This will help identify the issue if you added it to $wgAuthManagerConfig.
