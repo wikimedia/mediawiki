@@ -41,7 +41,7 @@ class LocalIdLookup extends CentralIdLookup {
 		}
 
 		// Easy case, we're checking locally
-		if ( $wikiId === null || $wikiId === wfWikiID() ) {
+		if ( $wikiId === null || WikiMap::isCurrentWikiId( $wikiId ) ) {
 			return true;
 		}
 

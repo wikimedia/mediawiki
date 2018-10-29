@@ -527,7 +527,7 @@ class SiteConfiguration {
 
 		$multi = is_array( $settings );
 		$settings = (array)$settings;
-		if ( $wiki === wfWikiID() ) { // $wiki is this wiki
+		if ( WikiMap::isCurrentWikiId( $wiki ) ) { // $wiki is this wiki
 			$res = [];
 			foreach ( $settings as $name ) {
 				if ( !preg_match( '/^wg[A-Z]/', $name ) ) {

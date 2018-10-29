@@ -3488,7 +3488,11 @@ class WikiPage implements Page, IDBAccessObject {
 				// Do not include the namespace since there can be multiple aliases to it
 				// due to different namespace text definitions on different wikis. This only
 				// means that some cache invalidations happen that are not strictly needed.
-				$cache->makeGlobalKey( 'interwiki-page', wfWikiID(), $title->getDBkey() )
+				$cache->makeGlobalKey(
+					'interwiki-page',
+					WikiMap::getCurrentWikiDomain()->getId(),
+					$title->getDBkey()
+				)
 			);
 		} );
 	}

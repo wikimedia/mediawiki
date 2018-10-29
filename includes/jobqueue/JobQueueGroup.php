@@ -75,7 +75,7 @@ class JobQueueGroup {
 			self::$instances[$wiki] = new self( $wiki, wfConfiguredReadOnlyReason() );
 			// Make sure jobs are not getting pushed to bogus wikis. This can confuse
 			// the job runner system into spawning endless RPC requests that fail (T171371).
-			if ( $wiki !== wfWikiID() && !in_array( $wiki, $wgLocalDatabases ) ) {
+			if ( !WikiMap::isCurrentWikiId( $wiki ) && !in_array( $wiki, $wgLocalDatabases ) ) {
 				self::$instances[$wiki]->invalidWiki = true;
 			}
 		}
@@ -419,7 +419,7 @@ class JobQueueGroup {
 	 */
 	private function getCachedConfigVar( $name ) {
 		// @TODO: cleanup this whole method with a proper config system
-		if ( $this->wiki === wfWikiID() ) {
+		if ( WikiMap::isCurrentWikiId( $this->wiki ) ) {
 			return $GLOBALS[$name]; // common case
 		} else {
 			$wiki = $this->wiki;

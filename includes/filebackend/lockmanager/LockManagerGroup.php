@@ -50,7 +50,10 @@ class LockManagerGroup {
 	 * @return LockManagerGroup
 	 */
 	public static function singleton( $domain = false ) {
-		$domain = ( $domain === false ) ? wfWikiID() : $domain;
+		if ( $domain === false ) {
+			$domain = WikiMap::getCurrentWikiDomain()->getId();
+		}
+
 		if ( !isset( self::$instances[$domain] ) ) {
 			self::$instances[$domain] = new self( $domain );
 			self::$instances[$domain]->initFromGlobals();
