@@ -235,6 +235,14 @@ class WikiMapTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $wiki, WikiMap::getWikiFromUrl( $url ) );
 	}
 
+	public function provideGetWikiIdFromDomain() {
+		return [
+			[ 'db-prefix', 'db-prefix' ],
+			[ wfWikiID(), wfWikiID() ],
+			[ new DatabaseDomain( 'db-dash', null, 'prefix' ), 'db-dash-prefix' ]
+		];
+	}
+
 	/**
 	 * @dataProvider provideGetWikiIdFromDomain
 	 * @covers WikiMap::getWikiIdFromDomain()
@@ -243,11 +251,48 @@ class WikiMapTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $wikiId, WikiMap::getWikiIdFromDomain( $domain ) );
 	}
 
-	public function provideGetWikiIdFromDomain() {
+	/**
+	 * @covers WikiMap::isCurrentWikiDomain()
+	 * @covers WikiMap::getCurrentWikiDomain()
+	 */
+	public function testIsCurrentWikiDomain() {
+		$this->assertTrue( WikiMap::isCurrentWikiDomain( wfWikiID() ) );
+
+		$localDomain = DatabaseDomain::newFromId( wfWikiID() );
+		$domain1 = new DatabaseDomain(
+			$localDomain->getDatabase(), 'someschema', $localDomain->getTablePrefix() );
+		$domain2 = new DatabaseDomain(
+			$localDomain->getDatabase(), null, $localDomain->getTablePrefix() );
+
+		$this->assertTrue( WikiMap::isCurrentWikiDomain( $domain1 ), 'Schema ignored' );
+		$this->assertTrue( WikiMap::isCurrentWikiDomain( $domain2 ), 'Schema ignored' );
+
+		$this->assertTrue( WikiMap::isCurrentWikiDomain( WikiMap::getCurrentWikiDomain() ) );
+	}
+
+	public function provideIsCurrentWikiId() {
 		return [
-			[ 'db-prefix', 'db-prefix' ],
-			[ wfWikiID(), wfWikiID() ],
-			[ new DatabaseDomain( 'db-dash', null, 'prefix' ), 'db-dash-prefix' ]
+			[ 'db', 'db', null, '' ],
+			[ 'db','db', 'schema', '' ],
+			[ 'db-prefix', 'db', null, 'prefix' ],
+			[ 'db-prefix', 'db', 'schema', 'prefix' ],
+			// Bad hyphen cases (best effort support)
+			[ 'db-stuff', 'db-stuff', null, '' ],
+			[ 'db-stuff-prefix', 'db-stuff', null, 'prefix' ]
 		];
+	}
+
+	/**
+	 * @dataProvider provideIsCurrentWikiId
+	 * @covers WikiMap::isCurrentWikiId()
+	 * @covers WikiMap::getCurrentWikiDomain()
+	 * @covers WikiMap::getWikiIdFromDomain()
+	 */
+	public function testIsCurrentWikiId( $wikiId, $db, $schema, $prefix ) {
+		$this->setMwGlobals(
+			[ 'wgDBname' => $db, 'wgDBmwschema' => $schema, 'wgDBprefix' => $prefix ] );
+
+		$this->assertTrue( WikiMap::isCurrentWikiId( $wikiId ), "ID matches" );
+		$this->assertNotTrue( WikiMap::isCurrentWikiId( $wikiId . '-more' ), "Bogus ID" );
 	}
 }

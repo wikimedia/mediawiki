@@ -1444,7 +1444,7 @@ abstract class Skin extends ContextSource {
 			return $newMessagesAlert;
 		}
 
-		if ( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
+		if ( count( $newtalks ) == 1 && WikiMap::isCurrentWikiId( $newtalks[0]['wiki'] ) ) {
 			$uTalkTitle = $user->getTalkPage();
 			$lastSeenRev = $newtalks[0]['rev'] ?? null;
 			$nofAuthors = 0;
