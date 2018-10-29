@@ -1048,6 +1048,7 @@
 	"apihelp-rollback-param-pageid": "要回退的頁面 ID。不可與 <var>$1title</var> 同時使用。",
 	"apihelp-rollback-param-tags": "套用到回退的標籤。",
 	"apihelp-rollback-param-summary": "自定義編輯摘要。若為空，則使用預設摘要。",
+	"apihelp-rollback-param-markbot": "將回退的編輯以及回退操作標記為機器人所做編輯。",
 	"apihelp-rollback-param-watchlist": "無條件使用設置將頁面加入或移除目前使用者的監視清單或者是不更改監視清單。",
 	"apihelp-rollback-example-simple": "回退由使用者 <kbd>Example</kbd> 對頁面 <kbd>Main Page</kbd> 所做的最新編輯。",
 	"apihelp-rsd-summary": "匯出一個簡易探索（Really Simple Discovery、RSD）架構。",
