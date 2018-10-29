@@ -78,10 +78,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$oldCommentSchema = $conf->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
 
 		// Build list of variables
+		$skin = $context->getSkin();
 		$vars = [
 			'wgLoadScript' => wfScript( 'load' ),
 			'debug' => $context->getDebug(),
-			'skin' => $context->getSkin(),
+			'skin' => $skin,
 			'stylepath' => $conf->get( 'StylePath' ),
 			'wgUrlProtocols' => wfUrlProtocols(),
 			'wgArticlePath' => $conf->get( 'ArticlePath' ),
@@ -126,7 +127,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgCommentCodePointLimit' => $oldCommentSchema ? null : CommentStore::COMMENT_CHARACTER_LIMIT,
 		];
 
-		Hooks::run( 'ResourceLoaderGetConfigVars', [ &$vars ] );
+		Hooks::run( 'ResourceLoaderGetConfigVars', [ &$vars, $skin ] );
 
 		return $vars;
 	}
