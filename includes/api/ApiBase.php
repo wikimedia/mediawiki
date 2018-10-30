@@ -348,45 +348,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return array
 	 */
 	protected function getExamplesMessages() {
-		// Fall back to old non-localised method
-		$ret = [];
-
-		$examples = $this->getExamples();
-		if ( $examples ) {
-			if ( !is_array( $examples ) ) {
-				$examples = [ $examples ];
-			} elseif ( $examples && ( count( $examples ) & 1 ) == 0 &&
-				array_keys( $examples ) === range( 0, count( $examples ) - 1 ) &&
-				!preg_match( '/^\s*api\.php\?/', $examples[0] )
-			) {
-				// Fix up the ugly "even numbered elements are description, odd
-				// numbered elemts are the link" format (see doc for self::getExamples)
-				$tmp = [];
-				$examplesCount = count( $examples );
-				for ( $i = 0; $i < $examplesCount; $i += 2 ) {
-					$tmp[$examples[$i + 1]] = $examples[$i];
-				}
-				$examples = $tmp;
-			}
-
-			foreach ( $examples as $k => $v ) {
-				if ( is_numeric( $k ) ) {
-					$qs = $v;
-					$msg = '';
-				} else {
-					$qs = $k;
-					$msg = self::escapeWikiText( $v );
-					if ( is_array( $msg ) ) {
-						$msg = implode( ' ', $msg );
-					}
-				}
-
-				$qs = preg_replace( '/^\s*api\.php\?/', '', $qs );
-				$ret[$qs] = $this->msg( 'api-help-fallback-example', [ $msg ] );
-			}
-		}
-
-		return $ret;
+		return [];
 	}
 
 	/**
@@ -1785,25 +1747,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * A subset of wfEscapeWikiText for BC texts
-	 *
-	 * @since 1.25
-	 * @param string|array $v
-	 * @return string|array
-	 */
-	private static function escapeWikiText( $v ) {
-		if ( is_array( $v ) ) {
-			return array_map( 'self::escapeWikiText', $v );
-		} else {
-			return strtr( $v, [
-				'__' => '_&#95;', '{' => '&#123;', '}' => '&#125;',
-				'[[Category:' => '[[:Category:',
-				'[[File:' => '[[:File:', '[[Image:' => '[[:Image:',
-			] );
-		}
-	}
-
-	/**
 	 * Create a Message from a string or array
 	 *
 	 * A string is used as a message key. An array has the message key as the
@@ -2230,10 +2173,6 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Get final module summary
 	 *
-	 * Ideally this will just be the getSummaryMessage(). However, for
-	 * backwards compatibility, if that message does not exist then the first
-	 * line of wikitext from the description message will be used instead.
-	 *
 	 * @since 1.30
 	 * @return Message
 	 */
@@ -2243,17 +2182,6 @@ abstract class ApiBase extends ContextSource {
 			$this->getModuleName(),
 			$this->getModulePath(),
 		] );
-		if ( !$msg->exists() ) {
-			wfDeprecated( 'API help "description" messages', '1.30' );
-			$msg = self::makeMessage( $this->getDescriptionMessage(), $this->getContext(), [
-				$this->getModulePrefix(),
-				$this->getModuleName(),
-				$this->getModulePath(),
-			] );
-			$msg = self::makeMessage( 'rawmessage', $this->getContext(), [
-				preg_replace( '/\n.*/s', '', $msg->text() )
-			] );
-		}
 		return $msg;
 	}
 
@@ -2265,18 +2193,6 @@ abstract class ApiBase extends ContextSource {
 	 * @return Message[]
 	 */
 	public function getFinalDescription() {
-		$desc = $this->getDescription();
-
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$apiModule = $this;
-		Hooks::run( 'APIGetDescription', [ &$apiModule, &$desc ], '1.25' );
-		$desc = self::escapeWikiText( $desc );
-		if ( is_array( $desc ) ) {
-			$desc = implode( "\n", $desc );
-		} else {
-			$desc = (string)$desc;
-		}
-
 		$summary = self::makeMessage( $this->getSummaryMessage(), $this->getContext(), [
 			$this->getModulePrefix(),
 			$this->getModuleName(),
@@ -2290,20 +2206,7 @@ abstract class ApiBase extends ContextSource {
 			]
 		);
 
-		if ( $summary->exists() ) {
-			$msgs = [ $summary, $extendedDescription ];
-		} else {
-			wfDeprecated( 'API help "description" messages', '1.30' );
-			$description = self::makeMessage( $this->getDescriptionMessage(), $this->getContext(), [
-				$this->getModulePrefix(),
-				$this->getModuleName(),
-				$this->getModulePath(),
-			] );
-			if ( !$description->exists() ) {
-				$description = $this->msg( 'api-help-fallback-description', $desc );
-			}
-			$msgs = [ $description ];
-		}
+		$msgs = [ $summary, $extendedDescription ];
 
 		Hooks::run( 'APIGetDescriptionMessages', [ $this, &$msgs ] );
 
@@ -2355,17 +2258,6 @@ abstract class ApiBase extends ContextSource {
 		$name = $this->getModuleName();
 		$path = $this->getModulePath();
 
-		$desc = $this->getParamDescription();
-
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$apiModule = $this;
-		Hooks::run( 'APIGetParamDescription', [ &$apiModule, &$desc ], '1.25' );
-
-		if ( !$desc ) {
-			$desc = [];
-		}
-		$desc = self::escapeWikiText( $desc );
-
 		$params = $this->getFinalParams( self::GET_VALUES_FOR_HELP );
 		$msgs = [];
 		foreach ( $params as $param => $settings ) {
@@ -2373,25 +2265,10 @@ abstract class ApiBase extends ContextSource {
 				$settings = [];
 			}
 
-			$d = $desc[$param] ?? '';
-			if ( is_array( $d ) ) {
-				// Special handling for prop parameters
-				$d = array_map( function ( $line ) {
-					if ( preg_match( '/^\s+(\S+)\s+-\s+(.+)$/', $line, $m ) ) {
-						$line = "\n;{$m[1]}:{$m[2]}";
-					}
-					return $line;
-				}, $d );
-				$d = implode( ' ', $d );
-			}
-
 			if ( isset( $settings[self::PARAM_HELP_MSG] ) ) {
 				$msg = $settings[self::PARAM_HELP_MSG];
 			} else {
 				$msg = $this->msg( "apihelp-{$path}-param-{$param}" );
-				if ( !$msg->exists() ) {
-					$msg = $this->msg( 'api-help-fallback-parameter', $d );
-				}
 			}
 			$msg = self::makeMessage( $msg, $this->getContext(),
 				[ $prefix, $param, $name, $path ] );
@@ -2654,6 +2531,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return Message|string|array|false
 	 */
 	protected function getDescription() {
+		wfDeprecated( __METHOD__, '1.25' );
 		return false;
 	}
 
@@ -2670,6 +2548,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return array|bool False on no parameter descriptions
 	 */
 	protected function getParamDescription() {
+		wfDeprecated( __METHOD__, '1.25' );
 		return [];
 	}
 
@@ -2690,6 +2569,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return bool|string|array
 	 */
 	protected function getExamples() {
+		wfDeprecated( __METHOD__, '1.25' );
 		return false;
 	}
 
@@ -2702,6 +2582,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return string|array|Message
 	 */
 	protected function getDescriptionMessage() {
+		wfDeprecated( __METHOD__, '1.30' );
 		return [ [
 			"apihelp-{$this->getModulePath()}-description",
 			"apihelp-{$this->getModulePath()}-summary",
