@@ -117,6 +117,7 @@ class MWTidy {
 				$instance = new MediaWiki\Tidy\RemexDriver( $config );
 				break;
 			case 'disabled':
+				wfDeprecated( '"disabled" tidy driver', '1.32' );
 				return false;
 			default:
 				throw new MWException( "Invalid tidy driver: \"{$config['driver']}\"" );
