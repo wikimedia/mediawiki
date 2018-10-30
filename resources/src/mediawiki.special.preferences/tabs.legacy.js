@@ -22,7 +22,6 @@
 			.attr( 'aria-hidden', 'true' );
 
 		// T115692: The following is kept for backwards compatibility with older skins
-		$preferences.addClass( 'jsprefs' );
 		$fieldsets.addClass( 'prefsection' );
 		$fieldsets.children( 'legend' ).addClass( 'mainLegend' );
 
