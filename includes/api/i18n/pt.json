@@ -1251,7 +1251,7 @@
 	"apihelp-query+users-paramvalue-prop-editcount": "Adiciona a contagem de edições do utilizador.",
 	"apihelp-query+users-paramvalue-prop-registration": "Adiciona a data e hora de registo do utilizador.",
 	"apihelp-query+users-paramvalue-prop-emailable": "Etiqueta que indica se o utilizador pode e quer receber correio eletrónico através de [[Special:Emailuser]].",
-	"apihelp-query+users-paramvalue-prop-gender": "Etiqueta que indica o género do utilizador. Devolve \"male\" (masculino), \"female\" (feminino) ou \"unknown\" (desconhecido).",
+	"apihelp-query+users-paramvalue-prop-gender": "Etiqueta que indica o sexo do utilizador. Devolve \"male\" (masculino), \"female\" (feminino) ou \"unknown\" (desconhecido).",
 	"apihelp-query+users-paramvalue-prop-centralids": "Adiciona os identificadores centrais e o estado de ligação central (''attachment'') do utilizador.",
 	"apihelp-query+users-paramvalue-prop-cancreate": "Indica se pode ser criada uma conta para os nomes de utilizador não registados, mas válidos.",
 	"apihelp-query+users-param-attachedwiki": "Com <kbd>$1prop=centralids</kbd>, indicar se o utilizador tem ligação com a wiki designada por este identificador.",
