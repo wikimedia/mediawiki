@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Block;
 
 use MediaWiki\Block\BlockRestriction;
+use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
 
@@ -30,13 +31,14 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 		$pageBar = $this->getExistingTestPage( 'Bar' );
 
 		BlockRestriction::insert( [
-				new PageRestriction( $block->getId(), $pageFoo->getId() ),
-				new PageRestriction( $block->getId(), $pageBar->getId() ),
+			new PageRestriction( $block->getId(), $pageFoo->getId() ),
+			new PageRestriction( $block->getId(), $pageBar->getId() ),
+			new NamespaceRestriction( $block->getId(), NS_USER ),
 		] );
 
 		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
 
-		$this->assertCount( 2, $restrictions );
+		$this->assertCount( 3, $restrictions );
 	}
 
 	/**
@@ -74,12 +76,14 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 
 		// valid type
 		$this->insertRestriction( $block->getId(), PageRestriction::TYPE_ID, $pageFoo->getId() );
+		$this->insertRestriction( $block->getId(), NamespaceRestriction::TYPE_ID, NS_USER );
 
 		// invalid type
 		$this->insertRestriction( $block->getId(), 9, $pageBar->getId() );
+		$this->insertRestriction( $block->getId(), 10, NS_FILE );
 
 		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
-		$this->assertCount( 1, $restrictions );
+		$this->assertCount( 2, $restrictions );
 	}
 
 	/**
@@ -87,13 +91,14 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 	 * @covers ::resultToRestrictions
 	 * @covers ::rowToRestriction
 	 */
-	public function testMappingRestrictionObject() {
+	public function testMappingPageRestrictionObject() {
 		$block = $this->insertBlock();
 		$title = 'Lady Macbeth';
 		$page = $this->getExistingTestPage( $title );
 
+		// Test Page Restrictions.
 		BlockRestriction::insert( [
-				new PageRestriction( $block->getId(), $page->getId() ),
+			new PageRestriction( $block->getId(), $page->getId() ),
 		] );
 
 		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
@@ -104,6 +109,27 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 		$this->assertEquals( $page->getId(), $pageRestriction->getValue() );
 		$this->assertEquals( $pageRestriction->getType(), PageRestriction::TYPE );
 		$this->assertEquals( $pageRestriction->getTitle()->getText(), $title );
+	}
+
+	/**
+	 * @covers ::loadByBlockId
+	 * @covers ::resultToRestrictions
+	 * @covers ::rowToRestriction
+	 */
+	public function testMappingNamespaceRestrictionObject() {
+		$block = $this->insertBlock();
+
+		BlockRestriction::insert( [
+			new NamespaceRestriction( $block->getId(), NS_USER ),
+		] );
+
+		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+
+		list( $namespaceRestriction ) = $restrictions;
+		$this->assertInstanceOf( NamespaceRestriction::class, $namespaceRestriction );
+		$this->assertEquals( $block->getId(), $namespaceRestriction->getBlockId() );
+		$this->assertSame( NS_USER, $namespaceRestriction->getValue() );
+		$this->assertEquals( $namespaceRestriction->getType(), NamespaceRestriction::TYPE );
 	}
 
 	/**
@@ -119,6 +145,7 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 			new \stdClass(),
 			new PageRestriction( $block->getId(), $pageFoo->getId() ),
 			new PageRestriction( $block->getId(), $pageBar->getId() ),
+			new NamespaceRestriction( $block->getId(), NS_USER )
 		];
 
 		$result = BlockRestriction::insert( $restrictions );
@@ -144,14 +171,6 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 		$pageFoo = $this->getExistingTestPage( 'Foo' );
 		$pageBar = $this->getExistingTestPage( 'Bar' );
 
-		$namespace = $this->createMock( Restriction::class );
-		$namespace->method( 'toRow' )
-			->willReturn( [
-				'ir_ipb_id' => $block->getId(),
-				'ir_type' => 2,
-				'ir_value' => 0,
-			] );
-
 		$invalid = $this->createMock( Restriction::class );
 		$invalid->method( 'toRow' )
 			->willReturn( [
@@ -164,7 +183,7 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 			new \stdClass(),
 			new PageRestriction( $block->getId(), $pageFoo->getId() ),
 			new PageRestriction( $block->getId(), $pageBar->getId() ),
-			$namespace,
+			new NamespaceRestriction( $block->getId(), NS_USER ),
 			$invalid,
 		];
 
@@ -172,7 +191,7 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 		$this->assertTrue( $result );
 
 		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
-		$this->assertCount( 2, $restrictions );
+		$this->assertCount( 3, $restrictions );
 	}
 
 	/**
@@ -191,6 +210,7 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 		BlockRestriction::update( [
 			new \stdClass(),
 			new PageRestriction( $block->getId(), $pageBar->getId() ),
+			new NamespaceRestriction( $block->getId(), NS_USER ),
 		] );
 
 		$db = wfGetDb( DB_REPLICA );
@@ -200,7 +220,7 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 			[ 'ir_ipb_id' => $block->getId() ]
 		);
 
-		$this->assertEquals( 1, $result->numRows() );
+		$this->assertEquals( 2, $result->numRows() );
 		$row = $result->fetchObject();
 		$this->assertEquals( $block->getId(), $row->ir_ipb_id );
 		$this->assertEquals( $pageBar->getId(), $row->ir_value );
@@ -261,7 +281,7 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 		$block = $this->insertBlock();
 		$page = $this->getExistingTestPage( 'Foo' );
 		BlockRestriction::insert( [
-				new PageRestriction( $block->getId(), $page->getId() ),
+			new PageRestriction( $block->getId(), $page->getId() ),
 		] );
 
 		BlockRestriction::update( [
@@ -502,6 +522,24 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 				],
 				true
 			],
+			[
+				[
+					new NamespaceRestriction( 1, NS_USER ),
+				],
+				[
+					new NamespaceRestriction( 1, NS_USER ),
+				],
+				true
+			],
+			[
+				[
+					new NamespaceRestriction( 1, NS_USER ),
+				],
+				[
+					new NamespaceRestriction( 1, NS_TALK ),
+				],
+				false
+			],
 		];
 	}
 
@@ -513,14 +551,18 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 			new \stdClass(),
 			new PageRestriction( 1, 1 ),
 			new PageRestriction( 1, 2 ),
+			new NamespaceRestriction( 1, NS_USER ),
 		];
-
-		$result = BlockRestriction::setBlockId( 2, $restrictions );
 
 		$this->assertSame( 1, $restrictions[1]->getBlockId() );
 		$this->assertSame( 1, $restrictions[2]->getBlockId() );
-		$this->assertSame( 2, $result[0]->getBlockId() );
-		$this->assertSame( 2, $result[1]->getBlockId() );
+		$this->assertSame( 1, $restrictions[3]->getBlockId() );
+
+		$result = BlockRestriction::setBlockId( 2, $restrictions );
+
+		foreach ( $result as $restriction ) {
+			$this->assertSame( 2, $restriction->getBlockId() );
+		}
 	}
 
 	protected function insertBlock() {

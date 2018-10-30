@@ -25,6 +25,16 @@ namespace MediaWiki\Block\Restriction;
 abstract class AbstractRestriction implements Restriction {
 
 	/**
+	 * @var string
+	 */
+	const TYPE = '';
+
+	/**
+	 * @var int
+	 */
+	const TYPE_ID = 0;
+
+	/**
 	 * @var int
 	 */
 	protected $blockId;
@@ -44,6 +54,20 @@ abstract class AbstractRestriction implements Restriction {
 	public function __construct( $blockId, $value ) {
 		$this->blockId = (int)$blockId;
 		$this->value = (int)$value;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public static function getType() {
+		return static::TYPE;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public static function getTypeId() {
+		return static::TYPE_ID;
 	}
 
 	/**

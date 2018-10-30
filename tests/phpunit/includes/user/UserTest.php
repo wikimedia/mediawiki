@@ -4,6 +4,7 @@ define( 'NS_UNITTEST', 5600 );
 define( 'NS_UNITTEST_TALK', 5601 );
 
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
@@ -1245,6 +1246,9 @@ class UserTest extends MediaWikiTestCase {
 			);
 			$restrictions[] = new PageRestriction( 0, $page->getId() );
 		}
+		foreach ( $options['namespaceRestrictions'] ?? [] as $ns ) {
+			$restrictions[] = new NamespaceRestriction( 0, $ns );
+		}
 
 		$block = new Block( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
@@ -1319,6 +1323,14 @@ class UserTest extends MediaWikiTestCase {
 					'blockAllowsUTEdit' => false,
 				]
 			],
+			'Partial namespace block, not allowing user talk' => [ self::USER_TALK_PAGE, true, [
+				'allowUsertalk' => false,
+				'namespaceRestrictions' => [ NS_USER_TALK ],
+			] ],
+			'Partial namespace block, not allowing user talk' => [ self::USER_TALK_PAGE, false, [
+				'allowUsertalk' => true,
+				'namespaceRestrictions' => [ NS_USER_TALK ],
+			] ],
 		];
 	}
 

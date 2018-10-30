@@ -24,7 +24,14 @@ namespace MediaWiki\Block\Restriction;
 
 class PageRestriction extends AbstractRestriction {
 
+	/**
+	 * {@inheritdoc}
+	 */
 	const TYPE = 'page';
+
+	/**
+	 * {@inheritdoc}
+	 */
 	const TYPE_ID = 1;
 
 	/**
@@ -37,20 +44,6 @@ class PageRestriction extends AbstractRestriction {
 	 */
 	public function matches( \Title $title ) {
 		return $title->equals( $this->getTitle() );
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getType() {
-		return self::TYPE;
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getTypeId() {
-		return self::TYPE_ID;
 	}
 
 	/**

@@ -2305,14 +2305,25 @@ class User implements IDBAccessObject, UserIdentity {
 				// Special handling for a user's own talk page. The block is not aware
 				// of the user, so this must be done here.
 				if ( $title->equals( $this->getTalkPage() ) ) {
-					// If the block is sitewide, then whatever is set is what is honored.
 					if ( $block->isSitewide() ) {
+						// If the block is sitewide, whatever is set is what is honored.
+						// This must be checked here, because Block::appliesToPage will
+						// return true for a sitewide block.
 						$blocked = $block->prevents( 'editownusertalk' );
 					} else {
-						// If the block is partial, ignore 'editownusertalk' unless
-						// there is a restriction on the user talk namespace.
-						// TODO: To be implemented with Namespace restrictions
-						$blocked = $block->appliesToTitle( $title );
+						// The page restrictions always take precedence over the namespace
+						// restrictions. If the user is explicity blocked from their own
+						// talk page, nothing can change that.
+						$blocked = $block->appliesToPage( $title->getArticleID() );
+
+						// If the block applies to the user talk namespace, then whatever is
+						// set is what is honored.
+						if ( !$blocked && $block->appliesToNamespace( NS_USER_TALK ) ) {
+							$blocked = $block->prevents( 'editownusertalk' );
+						}
+
+						// If another type of restriction is added, it should be checked
+						// here.
 					}
 				} else {
 					$blocked = $block->appliesToTitle( $title );
