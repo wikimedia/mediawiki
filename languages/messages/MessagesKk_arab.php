@@ -162,8 +162,6 @@ $dateFormats = [
  *   Please include the English words as synonyms.  This allows people
  *   from other wikis to contribute more easily.
  *   Please don't remove deprecated values, them should be keeped for backward compatibility.
- *
- * This array can be modified at runtime with the LanguageGetMagic hook
  */
 $magicWords = [
 	'redirect'                  => [ '0', '#ايداۋ', '#АЙДАУ', '#REDIRECT' ],
