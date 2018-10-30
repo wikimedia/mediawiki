@@ -95,6 +95,8 @@ because of Phabricator reports.
   the FakeAuthTemplate and LoginForm classes are removed, that FakeAuthTemplate
   is no longer passed into LoginSignupSpecialPage->getFieldDefinitions(), and
   that LoginSignupSpecialPage->getBCFieldDefinitions() is removed.
+* The 'jquery.localize' module, deprecated in 1.32, has been removed. Instead,
+  use 'jquery.i18n'.
 * …
 
 === Deprecations in 1.33 ===
