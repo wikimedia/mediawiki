@@ -21,6 +21,7 @@ use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\Token;
 use MediaWiki\Status\Status;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWCryptRand;
 use StatusValue;
 use UnexpectedValueException;
@@ -280,6 +281,23 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	}
 
 	/**
+	 * Get the list of AuthenticationRequests from the AuthManager.
+	 *
+	 * In this class this is just a wrapper around AuthManager::getAuthenticationRequests().
+	 * Subclasses can override this to add more logic or pass additional options.
+	 *
+	 * @since 1.47
+	 * @stable to override
+	 * @param string $action
+	 * @param ?UserIdentity $user
+	 * @return AuthenticationRequest[]
+	 */
+	protected function getAuthenticationRequests( $action, ?UserIdentity $user = null ) {
+		return $this->getAuthManager()->getAuthenticationRequests( $action,
+			$user );
+	}
+
+	/**
 	 * Load or initialize $authAction, $authRequests and $subPage.
 	 * Subclasses should call this from execute() or otherwise ensure the variables are initialized.
 	 * @stable to override
@@ -313,8 +331,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			}
 		}
 
-		$allReqs = $this->getAuthManager()->getAuthenticationRequests(
-			$this->authAction, $this->getUser() );
+		$allReqs = $this->getAuthenticationRequests( $this->authAction, $this->getUser() );
 		$this->authRequests = array_filter( $allReqs, function ( $req ) {
 			return !in_array( get_class( $req ), $this->getRequestBlacklist(), true );
 		} );
@@ -367,7 +384,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 
 		// calling getAuthenticationRequests can be expensive, avoid if possible
 		$requests = ( $action === $this->authAction ) ? $this->authRequests
-			: $authManager->getAuthenticationRequests( $action );
+			: $this->getAuthenticationRequests( $action );
 		if ( !$requests ) {
 			// no provider supports this action in the current state
 			return false;

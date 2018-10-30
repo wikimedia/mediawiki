@@ -59,6 +59,14 @@ class ApiClientLogin extends ApiBase {
 				);
 			}
 		}
+		$requestOptions = [];
+		if ( $params['reauthenticate'] !== null ) {
+			$this->requireMaxOneParameter( $params, 'reauthenticate', 'continue' );
+			if ( $this->getUser()->isAnon() ) {
+				$this->dieWithError( 'apierror-mustbeloggedin-reauthenticate' );
+			}
+			$requestOptions['securityLevel'] = $params['reauthenticate'];
+		}
 
 		$helper = new ApiAuthManagerHelper( $this, $this->authManager );
 
@@ -76,7 +84,7 @@ class ApiClientLogin extends ApiBase {
 			$reqs = $helper->loadAuthenticationRequests( AuthManager::ACTION_LOGIN_CONTINUE );
 			$res = $this->authManager->continueAuthentication( $reqs );
 		} else {
-			$reqs = $helper->loadAuthenticationRequests( AuthManager::ACTION_LOGIN );
+			$reqs = $helper->loadAuthenticationRequests( AuthManager::ACTION_LOGIN, $requestOptions );
 			if ( $params['preservestate'] ) {
 				$req = $helper->getPreservedRequest();
 				if ( $req ) {
@@ -118,7 +126,11 @@ class ApiClientLogin extends ApiBase {
 	public function getAllowedParams() {
 		return ApiAuthManagerHelper::getStandardParams( AuthManager::ACTION_LOGIN,
 			'requests', 'messageformat', 'mergerequestfields', 'preservestate', 'returnurl', 'continue'
-		);
+		) + [
+			'reauthenticate' => [
+				ApiBase::PARAM_TYPE => 'string',
+			],
+		];
 	}
 
 	/** @inheritDoc */

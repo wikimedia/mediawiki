@@ -81,6 +81,7 @@
 	"apihelp-clearhasmsg-example-1": "Clear the <code>hasmsg</code> flag for the current user.",
 
 	"apihelp-clientlogin-summary": "Log in to the wiki using the interactive flow.",
+	"apihelp-clientlogin-param-reauthenticate": "Instead of logging in, reauthenticate for getting temporary access to a security-sensitive operation. This must be done when already logged in, using the fields suplied by <kbd>action=query&meta=authmanagerinfo</kbd> when called with the <var>amireauthenticate</var> parameter. The value of the parameter should be the same as that of <var>amireauthenticate</var>.",
 	"apihelp-clientlogin-example-login": "Start the process of logging in to the wiki as user <kbd>Example</kbd> with password <kbd>ExamplePassword</kbd>.",
 	"apihelp-clientlogin-example-login2": "Continue logging in after a <samp>UI</samp> response for two-factor auth, supplying an <var>OATHToken</var> of <kbd>987654</kbd>.",
 
@@ -699,6 +700,7 @@
 	"apihelp-query+authmanagerinfo-summary": "Retrieve information about the current authentication status.",
 	"apihelp-query+authmanagerinfo-param-securitysensitiveoperation": "Test whether the user's current authentication status is sufficient for the specified security-sensitive operation.",
 	"apihelp-query+authmanagerinfo-param-requestsfor": "Fetch information about the authentication requests needed for the specified authentication action.",
+	"apihelp-query+authmanagerinfo-param-reauthenticate": "Add requests needed to reauthenticate for a security-sensitive operation. Must be used with <kbd>$1requestsfor=login</kbd> and while in a logged-in session. The value of the parameter is the operation name, which can be found in the <samp>reauthenticate</samp> error returned when trying the operation that needs reauthentication.",
 	"apihelp-query+authmanagerinfo-example-login": "Fetch the requests that may be used when beginning a login.",
 	"apihelp-query+authmanagerinfo-example-login-merged": "Fetch the requests that may be used when beginning a login, with form fields merged.",
 	"apihelp-query+authmanagerinfo-example-securitysensitiveoperation": "Test whether authentication is sufficient for action <kbd>foo</kbd>.",
@@ -1962,6 +1964,7 @@
 	"apierror-multival-only-one-of": "{{PLURAL:$3|Only|Only one of}} $2 is allowed for parameter <var>$1</var>.",
 	"apierror-multpages": "<var>$1</var> may only be used with a single page.",
 	"apierror-mustbeloggedin-changeauth": "You must be logged in to change authentication data.",
+	"apierror-mustbeloggedin-reauthenticate": "You must be logged in to reauthenticate at a higher security level.",
 	"apierror-mustbeloggedin-generic": "You must be logged in.",
 	"apierror-mustbeloggedin-linkaccounts": "You must be logged in to link accounts.",
 	"apierror-mustbeloggedin-removeauth": "You must be logged in to remove authentication data.",
@@ -2007,7 +2010,7 @@
 	"apierror-ratelimited": "You've exceeded your rate limit. Please wait some time and try again.",
 	"apierror-readapidenied": "You need read permission to use this module.",
 	"apierror-readonly": "The wiki is currently in read-only mode.",
-	"apierror-reauthenticate": "You have not authenticated recently in this session, please reauthenticate.",
+	"apierror-reauthenticate": "To perform this action you need a session with elevated security. Please reauthenticate for the operation <kbd>$1</kbd>.",
 	"apierror-redirect-appendonly": "You have attempted to edit using the redirect-following mode, which must be used in conjunction with <kbd>section=new</kbd>, <var>prependtext</var>, or <var>appendtext</var>.",
 	"apierror-revdel-mutuallyexclusive": "The same field cannot be used in both <var>hide</var> and <var>show</var>.",
 	"apierror-revdel-needtarget": "A target title is required for this RevDel type.",

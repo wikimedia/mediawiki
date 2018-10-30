@@ -1032,6 +1032,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Auth\\CreateFromLoginAuthenticationRequest' => __DIR__ . '/includes/Auth/CreateFromLoginAuthenticationRequest.php',
 	'MediaWiki\\Auth\\CreatedAccountAuthenticationRequest' => __DIR__ . '/includes/Auth/CreatedAccountAuthenticationRequest.php',
 	'MediaWiki\\Auth\\CreationReasonAuthenticationRequest' => __DIR__ . '/includes/Auth/CreationReasonAuthenticationRequest.php',
+	'MediaWiki\\Auth\\ElevatedSecurityAuthenticationRequest' => __DIR__ . '/includes/Auth/ElevatedSecurityAuthenticationRequest.php',
 	'MediaWiki\\Auth\\EmailNotificationSecondaryAuthenticationProvider' => __DIR__ . '/includes/Auth/EmailNotificationSecondaryAuthenticationProvider.php',
 	'MediaWiki\\Auth\\Hook\\AuthManagerFilterProvidersHook' => __DIR__ . '/includes/Auth/Hook/AuthManagerFilterProvidersHook.php',
 	'MediaWiki\\Auth\\Hook\\AuthManagerLoginAuthenticateAuditHook' => __DIR__ . '/includes/Auth/Hook/AuthManagerLoginAuthenticateAuditHook.php',

@@ -19,6 +19,7 @@ use MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider;
 use MediaWiki\Auth\CreatedAccountAuthenticationRequest;
 use MediaWiki\Auth\CreateFromLoginAuthenticationRequest;
 use MediaWiki\Auth\CreationReasonAuthenticationRequest;
+use MediaWiki\Auth\ElevatedSecurityAuthenticationRequest;
 use MediaWiki\Auth\Hook\AuthManagerLoginAuthenticateAuditHook;
 use MediaWiki\Auth\Hook\AuthManagerVerifyAuthenticationHook;
 use MediaWiki\Auth\Hook\LocalUserCreatedHook;
@@ -64,6 +65,7 @@ use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWikiIntegrationTestCase;
+use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\MockObject\Builder\InvocationMocker;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
@@ -442,7 +444,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 		// Anonymous user => reauth
 		$session->set( 'AuthManager:lastAuthId', 0 );
-		$session->set( 'AuthManager:lastAuthTimestamp', time() - 5 );
+		$session->set( 'AuthManager:lastAuthTimestamps', [ 'foo' => time() - 5 ] );
 		$this->assertSame( $reauth, $this->manager->securitySensitiveOperationStatus( 'foo' ) );
 
 		$provideUser = $user;
@@ -451,7 +453,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 		// Error for no default (only gets thrown for non-anonymous user)
 		$session->set( 'AuthManager:lastAuthId', $user->getId() + 1 );
-		$session->set( 'AuthManager:lastAuthTimestamp', time() - 5 );
+		$session->set( 'AuthManager:lastAuthTimestamps', [ 'foo' => time() - 5 ] );
 		try {
 			$this->manager->securitySensitiveOperationStatus( 'foo' );
 			$this->fail( 'Expected exception not thrown' );
@@ -473,7 +475,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 			// Mismatched user ID
 			$session->set( 'AuthManager:lastAuthId', $user->getId() + 1 );
-			$session->set( 'AuthManager:lastAuthTimestamp', time() - 5 );
+			$session->set( 'AuthManager:lastAuthTimestamps',
+				[ 'foo' => time() - 5, 'test' => time() - 5, 'test2' => time() - 5 ] );
 			$this->assertSame(
 				AuthManager::SEC_REAUTH, $this->manager->securitySensitiveOperationStatus( 'foo' )
 			);
@@ -486,7 +489,18 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 			// Missing time
 			$session->set( 'AuthManager:lastAuthId', $user->getId() );
-			$session->set( 'AuthManager:lastAuthTimestamp', null );
+			$session->set( 'AuthManager:lastAuthTimestamps', null );
+			$this->assertSame(
+				AuthManager::SEC_REAUTH, $this->manager->securitySensitiveOperationStatus( 'foo' )
+			);
+			$this->assertSame(
+				AuthManager::SEC_REAUTH, $this->manager->securitySensitiveOperationStatus( 'test' )
+			);
+			$this->assertSame(
+				AuthManager::SEC_OK, $this->manager->securitySensitiveOperationStatus( 'test2' )
+			);
+			$session->set( 'AuthManager:lastAuthId', $user->getId() );
+			$session->set( 'AuthManager:lastAuthTimestamps', [] );
 			$this->assertSame(
 				AuthManager::SEC_REAUTH, $this->manager->securitySensitiveOperationStatus( 'foo' )
 			);
@@ -498,19 +512,32 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			);
 
 			// Recent enough to pass
-			$session->set( 'AuthManager:lastAuthTimestamp', time() - 5 );
+			$session->set( 'AuthManager:lastAuthTimestamps', [ 'foo' => time() - 5 ] );
 			$this->assertSame(
 				AuthManager::SEC_OK, $this->manager->securitySensitiveOperationStatus( 'foo' )
 			);
 
 			// Not recent enough to pass
-			$session->set( 'AuthManager:lastAuthTimestamp', time() - 20 );
+			$session->set( 'AuthManager:lastAuthTimestamps',
+				[ 'foo' => time() - 20, 'test' => time() - 20 ] );
 			$this->assertSame(
 				AuthManager::SEC_REAUTH, $this->manager->securitySensitiveOperationStatus( 'foo' )
 			);
 			// But recent enough for the 'test' operation
 			$this->assertSame(
 				AuthManager::SEC_OK, $this->manager->securitySensitiveOperationStatus( 'test' )
+			);
+
+			// Sanity checks to make sure we are not reading the wrong field
+			$session->set( 'AuthManager:lastAuthTimestamps',
+				[ 'foo' => time() - 20, 'test' => time() - 20000 ] );
+			$this->assertSame(
+				AuthManager::SEC_REAUTH, $this->manager->securitySensitiveOperationStatus( 'test' )
+			);
+			$session->set( 'AuthManager:lastAuthTimestamps',
+				[ 'foo' => time() - 20 ] );
+			$this->assertSame(
+				AuthManager::SEC_REAUTH, $this->manager->securitySensitiveOperationStatus( 'test' )
 			);
 		} else {
 			$this->config->set( MainConfigNames::AllowSecuritySensitiveOperationIfCannotReauthenticate, [
@@ -533,30 +560,36 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			AuthManager::SEC_REAUTH => $reauth,
 			AuthManager::SEC_FAIL => AuthManager::SEC_FAIL,
 		] as $hook => $expect ) {
-			$this->hook( 'SecuritySensitiveOperationStatus',
-				SecuritySensitiveOperationStatusHook::class,
-				$this->exactly( 2 )
-			)
-				->with(
+			$withArguments = [];
+			foreach ( [ 500, 10, PHP_INT_MAX ] as $invocationCount => $expectedTimeSinceAuth ) {
+				$withArguments[$invocationCount] = [
 					/* $status */ $this->anything(),
 					/* $operation */ $this->anything(),
-					/* $session */ $this->callback( static function ( $s ) use ( $session ) {
-						return $s->getId() === $session->getId();
-					} ),
+					/* $session */ $this->callback( static fn ( $s ) => $s->getId() === $session->getId() ),
 					/* $timeSinceAuth*/ $mutableSession
-						? $this->equalToWithDelta( 500, 2 )
+						? $this->equalToWithDelta( $expectedTimeSinceAuth, 2 )
 						: -1
-				)
+				];
+			}
+			$this->hook( 'SecuritySensitiveOperationStatus',
+				SecuritySensitiveOperationStatusHook::class,
+				$this->exactly( 3 )
+			)
+				->withConsecutive( ...$withArguments )
 				->willReturnCallback( static function ( &$v ) use ( $hook ) {
 					$v = $hook;
 					return true;
 				} );
-			$session->set( 'AuthManager:lastAuthTimestamp', time() - 500 );
+			$session->set( 'AuthManager:lastAuthTimestamps',
+				[ 'test' => time() - 500, 'test2' => time() - 10 ] );
 			$this->assertEquals(
 				$expect, $this->manager->securitySensitiveOperationStatus( 'test' ), "hook $hook"
 			);
 			$this->assertEquals(
 				$expect, $this->manager->securitySensitiveOperationStatus( 'test2' ), "hook $hook"
+			);
+			$this->assertEquals(
+				$expect, $this->manager->securitySensitiveOperationStatus( 'test3' ), "hook $hook"
 			);
 			$this->unhook( 'SecuritySensitiveOperationStatus' );
 		}
@@ -885,9 +918,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->request->getSession()->setSecret( AuthManager::AUTHN_STATE, 'test' );
 		$this->managerPriv->createdAccountAuthenticationRequests = [ $reqs[0] ];
 		$this->hook( 'UserLoggedIn', UserLoggedInHook::class, $this->once() )
-			->with( $this->callback( static function ( $u ) use ( $user ) {
-				return $user->getId() === $u->getId() && $user->getName() === $u->getName();
-			} ) );
+			->with( $this->userEqualTo( $user ) );
 		$this->hook( 'AuthManagerLoginAuthenticateAudit',
 			AuthManagerLoginAuthenticateAuditHook::class, $this->once() );
 		$this->logger->clearBuffer();
@@ -899,13 +930,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( AuthenticationResponse::PASS, $ret->status );
 		$this->assertSame( $user->getName(), $ret->username );
 		$this->assertSame( $user->getId(), $this->request->getSessionData( 'AuthManager:lastAuthId' ) );
-		// FIXME: Avoid relying on implicit amounts of time elapsing.
-		$this->assertEqualsWithDelta(
-			time(),
-			$this->request->getSessionData( 'AuthManager:lastAuthTimestamp' ),
-			1,
-			'timestamp ±1'
-		);
+		$this->assertSame( [], $this->request->getSessionData( 'AuthManager:lastAuthTimestamps' ) );
 		$this->assertNull( $this->request->getSession()->getSecret( AuthManager::AUTHN_STATE ) );
 		$this->assertSame( $user->getId(), $this->request->getSession()->getUser()->getId() );
 		$this->assertSame( [
@@ -1556,6 +1581,288 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $this->manager->getRequest()->getSession()->getUser()->isAnon() );
 		$this->assertNull( $this->manager->getRequest()->getSession()->get( AuthManager::AUTHN_STATE ) );
 		$this->unhook( 'AuthManagerVerifyAuthentication' );
+	}
+
+	public function testElevatedSecurityReauthentication() {
+		$user1 = $this->getTestUser()->getUser();
+		$user2 = $this->getTestUser( 'sysop' )->getUser();
+		$session = RequestContext::getMain()->getRequest()->getSession();
+		// prevent initializeManager() from detaching from the global request
+		$this->request = $session->getRequest();
+		$authResult = null;
+		$loginWasInteractive = null;
+		$mockPrimary = $this->getMockBuilder( PrimaryAuthenticationProvider::class )
+			->onlyMethods( [ 'getUniqueId', 'getAuthenticationRequests', 'beginPrimaryAuthentication' ] )
+			->addMethods( [ 'init' ] )
+			->getMockForAbstractClass();
+		$mockPrimary->expects( $this->any() )
+			->method( 'getUniqueId' )
+			->willReturn( 'primary' );
+		$mockPrimary->expects( $this->any() )
+			->method( 'getAuthenticationRequests' )
+			->willReturn( [] );
+		$mockPrimary->expects( $this->any() )
+			->method( 'beginPrimaryAuthentication' )
+			->willReturnCallback( function () use ( &$authResult, &$loginWasInteractive ) {
+				if ( $loginWasInteractive === null ) {
+					$this->manager->removeAuthenticationSessionData( AuthManager::LOGIN_WAS_INTERACTIVE );
+				} else {
+					$this->manager->setAuthenticationSessionData( AuthManager::LOGIN_WAS_INTERACTIVE, $loginWasInteractive );
+				}
+				return $authResult;
+			} );
+		$this->primaryauthMocks = [ $mockPrimary ];
+		$this->logger = new TestLogger( false, static fn ( $message, $level ) =>
+			in_array( $level, [ LogLevel::DEBUG, LogLevel::INFO ], true ) ? null : $message
+		);
+		$this->initializeManager();
+		$this->config->set( 'ReauthenticateTime', [ 'default' => 100 ] );
+
+		// normal authentication
+		$session->setUser( new User() );
+		$authResult = AuthenticationResponse::newPass( $user1->getName() );
+		$this->hook( 'UserLoggedIn', UserLoggedInHook::class, $this->once() )
+			->with( $this->userEqualTo( $user1 ) );
+		$this->hook(
+			'AuthManagerLoginAuthenticateAudit',
+			AuthManagerLoginAuthenticateAuditHook::class,
+			$this->once()
+		)
+			->with( $this->anything(), $this->anything(), $this->anything(),
+				$this->logicalNot( $this->arrayHasKey( 'securityLevel' ) ) );
+		$reqs = $this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN );
+		$secReq = AuthenticationRequest::getRequestByClass( $reqs,
+			ElevatedSecurityAuthenticationRequest::class );
+		$this->assertNull( $secReq );
+		$res = $this->manager->beginAuthentication( $reqs, 'null:' );
+		$this->assertEquals( AuthenticationResponse::PASS, $res->status );
+		$this->assertTrue( $user1->equals( $session->getUser() ) );
+		$this->assertEquals( AuthManager::SEC_REAUTH,
+			$this->manager->securitySensitiveOperationStatus( 'op1' ) );
+
+		// normal reauthentication
+		$session->setUser( $user1 );
+		$authResult = AuthenticationResponse::newPass( $user1->getName() );
+		$this->unhook( 'UserLoggedIn' );
+		$this->hook( 'UserLoggedIn', UserLoggedInHook::class, $this->once() )
+			->with( $this->userEqualTo( $user1 ) );
+		$this->unhook( 'AuthManagerLoginAuthenticateAudit' );
+		$this->hook(
+			'AuthManagerLoginAuthenticateAudit',
+			AuthManagerLoginAuthenticateAuditHook::class,
+			$this->once()
+		)
+			->with( $this->anything(), $this->anything(), $this->anything(),
+				$this->logicalNot( $this->arrayHasKey( 'securityLevel' ) ) );
+		$reqs = $this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN );
+
+		$secReq = AuthenticationRequest::getRequestByClass( $reqs,
+			ElevatedSecurityAuthenticationRequest::class );
+		$this->assertNull( $secReq );
+		$res = $this->manager->beginAuthentication( $reqs, 'null:' );
+		$this->assertEquals( AuthenticationResponse::PASS, $res->status );
+		$this->assertTrue( $user1->equals( $session->getUser() ) );
+		$this->assertEquals( AuthManager::SEC_REAUTH,
+			$this->manager->securitySensitiveOperationStatus( 'op1' ) );
+
+		// reauthentication as a different user
+		$session->setUser( $user2 );
+		$session->set( 'AuthManager:lastAuthId', $user2->getId() );
+		$session->set( 'AuthManager:lastAuthTimestamps', [ 'op1' => time() ] );
+		$this->assertEquals( AuthManager::SEC_OK,
+			$this->manager->securitySensitiveOperationStatus( 'op1' ) );
+		$authResult = AuthenticationResponse::newPass( $user1->getName() );
+		$this->unhook( 'UserLoggedIn' );
+		$this->hook( 'UserLoggedIn', UserLoggedInHook::class, $this->once() )
+			->with( $this->userEqualTo( $user1 ) );
+		$this->unhook( 'AuthManagerLoginAuthenticateAudit' );
+		$this->hook(
+			'AuthManagerLoginAuthenticateAudit',
+			AuthManagerLoginAuthenticateAuditHook::class,
+			$this->once()
+		)
+			->with( $this->anything(), $this->anything(), $this->anything(),
+				$this->logicalNot( $this->arrayHasKey( 'securityLevel' ) ) );
+		$reqs = $this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN );
+		$secReq = AuthenticationRequest::getRequestByClass( $reqs,
+			ElevatedSecurityAuthenticationRequest::class );
+		$this->assertNull( $secReq );
+		$res = $this->manager->beginAuthentication( $reqs, 'null:' );
+		$this->assertEquals( AuthenticationResponse::PASS, $res->status );
+		$this->assertTrue( $user1->equals( $session->getUser() ) );
+		$this->assertEquals( AuthManager::SEC_REAUTH,
+			$this->manager->securitySensitiveOperationStatus( 'op1' ) );
+
+		// elevated security, success
+		$session->setUser( $user1 );
+		$authResult = AuthenticationResponse::newPass( $user1->getName() );
+		$this->unhook( 'UserLoggedIn' );
+		$this->hook( 'UserLoggedIn', UserLoggedInHook::class, $this->once() )
+			->with( $this->userEqualTo( $user1 ) );
+		$this->unhook( 'AuthManagerLoginAuthenticateAudit' );
+		$this->hook(
+			'AuthManagerLoginAuthenticateAudit',
+			AuthManagerLoginAuthenticateAuditHook::class,
+			$this->once()
+		)
+			->with( $this->anything(), $this->anything(), $this->anything(),
+				$this->callback( static fn ( $options ) => ( $options['securityLevel'] ?? null ) === 'op1' )
+			);
+		$reqs = $this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN, null,
+			[ 'securityLevel' => 'op1' ] );
+		$secReq = AuthenticationRequest::getRequestByClass( $reqs,
+			ElevatedSecurityAuthenticationRequest::class );
+		$this->assertNotNull( $secReq );
+		TestingAccessWrapper::newFromObject( $secReq )->validationStatus = StatusValue::newGood();
+		$this->assertEquals( $user1->getId(), $secReq->userId );
+		$this->assertEquals( 'op1', $secReq->securityLevel );
+		$res = $this->manager->beginAuthentication( $reqs, 'null:' );
+		$this->assertEquals( AuthenticationResponse::PASS, $res->status );
+		$this->assertTrue( $user1->equals( $session->getUser() ) );
+		$this->assertEquals( AuthManager::SEC_OK,
+			$this->manager->securitySensitiveOperationStatus( 'op1' ) );
+
+		// multiple security levels can coexist
+		$reqs = $this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN, null,
+			[ 'securityLevel' => 'op2' ] );
+		$secReq = AuthenticationRequest::getRequestByClass( $reqs,
+			ElevatedSecurityAuthenticationRequest::class );
+		$this->assertNotNull( $secReq );
+		TestingAccessWrapper::newFromObject( $secReq )->validationStatus = StatusValue::newGood();
+		$this->unhook( 'UserLoggedIn' );
+		$this->hook( 'UserLoggedIn', UserLoggedInHook::class, $this->once() )
+			->with( $this->userEqualTo( $user1 ) );
+		$this->unhook( 'AuthManagerLoginAuthenticateAudit' );
+		$this->hook(
+			'AuthManagerLoginAuthenticateAudit',
+			AuthManagerLoginAuthenticateAuditHook::class,
+			$this->once()
+		)
+			->with( $this->anything(), $this->anything(), $this->anything(),
+				$this->callback( static fn ( $options ) => ( $options['securityLevel'] ?? null ) === 'op2' )
+			);
+		$res = $this->manager->beginAuthentication( $reqs, 'null:' );
+		$this->assertEquals( AuthenticationResponse::PASS, $res->status );
+		$this->assertEquals( AuthManager::SEC_OK,
+			$this->manager->securitySensitiveOperationStatus( 'op1' ) );
+		$this->assertEquals( AuthManager::SEC_OK,
+			$this->manager->securitySensitiveOperationStatus( 'op2' ) );
+
+		// non-interactive logins don't count for reauthentication
+		$loginWasInteractive = false;
+		$reqs = $this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN, null,
+			[ 'securityLevel' => 'op3' ] );
+		$secReq = AuthenticationRequest::getRequestByClass( $reqs,
+			ElevatedSecurityAuthenticationRequest::class );
+		$this->assertNotNull( $secReq );
+		TestingAccessWrapper::newFromObject( $secReq )->validationStatus = StatusValue::newGood();
+		$this->unhook( 'UserLoggedIn' );
+		$this->hook( 'UserLoggedIn', UserLoggedInHook::class, $this->once() )
+			->with( $this->userEqualTo( $user1 ) );
+		$this->unhook( 'AuthManagerLoginAuthenticateAudit' );
+		$this->hook(
+			'AuthManagerLoginAuthenticateAudit',
+			AuthManagerLoginAuthenticateAuditHook::class,
+			$this->once()
+		)
+			->with( $this->anything(), $this->anything(), $this->anything(),
+				$this->logicalNot( $this->arrayHasKey( 'securityLevel' ) )
+			);
+		$res = $this->manager->beginAuthentication( $reqs, 'null:' );
+		$this->assertEquals( AuthenticationResponse::PASS, $res->status );
+		$this->assertEquals( AuthManager::SEC_OK,
+			$this->manager->securitySensitiveOperationStatus( 'op1' ) );
+		$this->assertEquals( AuthManager::SEC_OK,
+			$this->manager->securitySensitiveOperationStatus( 'op2' ) );
+		$this->assertEquals( AuthManager::SEC_REAUTH,
+			$this->manager->securitySensitiveOperationStatus( 'op3' ) );
+		$loginWasInteractive = null;
+
+		// error cases from here on
+		$this->unhook( 'UserLoggedIn' );
+		$this->hook( 'UserLoggedIn', UserLoggedInHook::class, $this->never() );
+		$this->unhook( 'AuthManagerLoginAuthenticateAudit' );
+
+		// elevated security, no user
+		$session->setUser( new User );
+		$authResult = AuthenticationResponse::newPass( $user1->getName() );
+		try {
+			$reqs = $this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN, null,
+				[ 'securityLevel' => 'op3' ] );
+			$this->fail( 'getAuthenticationRequests did not throw on securityLevel + logged-out' );
+		} catch ( InvalidArgumentException ) {
+		}
+
+		// elevated security, wrong action
+		$session->setUser( $user1 );
+		$authResult = AuthenticationResponse::newPass( $user1->getName() );
+		try {
+			$reqs = $this->manager->getAuthenticationRequests( AuthManager::ACTION_CREATE, null,
+				[ 'securityLevel' => 'op3' ] );
+			$this->fail( 'getAuthenticationRequests did not throw on securityLevel + wrong action' );
+		} catch ( InvalidArgumentException ) {
+		}
+
+		// elevated security, no local user
+		$session->setUser( $user1 );
+		$authResult = AuthenticationResponse::newPass();
+		$reqs = $this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN, null,
+			[ 'securityLevel' => 'op4' ] );
+		$secReq = AuthenticationRequest::getRequestByClass( $reqs,
+			ElevatedSecurityAuthenticationRequest::class );
+		$this->assertNotNull( $secReq );
+		TestingAccessWrapper::newFromObject( $secReq )->validationStatus = StatusValue::newGood();
+		$res = $this->manager->beginAuthentication( $reqs, 'null:' );
+		$this->assertEquals( AuthenticationResponse::FAIL, $res->status );
+		$this->assertEquals( 'authmanager-authn-reauth-switch', $res->message->getKey() );
+		$this->assertEquals( AuthManager::SEC_REAUTH,
+			$this->manager->securitySensitiveOperationStatus( 'op4' ) );
+
+		// elevated security, no local account
+		$session->setUser( $user1 );
+		$authResult = AuthenticationResponse::newPass( 'NoSuchLocalUser' );
+		$reqs = $this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN, null,
+			[ 'securityLevel' => 'op5' ] );
+		$secReq = AuthenticationRequest::getRequestByClass( $reqs,
+			ElevatedSecurityAuthenticationRequest::class );
+		$this->assertNotNull( $secReq );
+		TestingAccessWrapper::newFromObject( $secReq )->validationStatus = StatusValue::newGood();
+		$res = $this->manager->beginAuthentication( $reqs, 'null:' );
+		$this->assertEquals( AuthenticationResponse::FAIL, $res->status );
+		$this->assertEquals( 'authmanager-authn-reauth-switch', $res->message->getKey() );
+		$this->assertEquals( AuthManager::SEC_REAUTH,
+			$this->manager->securitySensitiveOperationStatus( 'op5' ) );
+
+		// elevated security, wrong user
+		$session->setUser( $user1 );
+		$authResult = AuthenticationResponse::newPass( $user2->getName() );
+		$reqs = $this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN, null,
+			[ 'securityLevel' => 'op6' ] );
+		$secReq = AuthenticationRequest::getRequestByClass( $reqs,
+			ElevatedSecurityAuthenticationRequest::class );
+		$this->assertNotNull( $secReq );
+		TestingAccessWrapper::newFromObject( $secReq )->validationStatus = StatusValue::newGood();
+		$res = $this->manager->beginAuthentication( $reqs, 'null:' );
+		$this->assertEquals( AuthenticationResponse::FAIL, $res->status );
+		$this->assertEquals( 'authmanager-authn-reauth-switch', $res->message->getKey() );
+		$this->assertEquals( AuthManager::SEC_REAUTH,
+			$this->manager->securitySensitiveOperationStatus( 'op6' ) );
+
+		// reauth request validation error
+		$session->setUser( $user1 );
+		$authResult = AuthenticationResponse::newPass( $user1->getName() );
+		$reqs = $this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN, null,
+			[ 'securityLevel' => 'op6' ] );
+		$secReq = AuthenticationRequest::getRequestByClass( $reqs,
+			ElevatedSecurityAuthenticationRequest::class );
+		$this->assertNotNull( $secReq );
+		TestingAccessWrapper::newFromObject( $secReq )->validationStatus
+			= StatusValue::newFatal( 'reauth-validation-error' );
+		$res = $this->manager->beginAuthentication( $reqs, 'null:' );
+		$this->assertEquals( AuthenticationResponse::FAIL, $res->status );
+		$this->assertEquals( 'reauth-validation-error', $res->message->getKey() );
+		$this->assertEquals( AuthManager::SEC_REAUTH,
+			$this->manager->securitySensitiveOperationStatus( 'op6' ) );
 	}
 
 	/**
@@ -4768,4 +5075,15 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $username, $session->getUser()->getName() );
 		$this->assertNull( $session->get( 'TempUser:name' ) );
 	}
+
+	/**
+	 * Matcher for user objects
+	 * @param User $user
+	 */
+	private function userEqualTo( User $user ): Constraint {
+		return $this->callback( static fn ( User $otherUser ) =>
+			$user->getId() === $otherUser->getId() && $user->getName() === $otherUser->getName()
+		);
+	}
+
 }

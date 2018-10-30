@@ -68,6 +68,11 @@ For notes on 1.46.x and older releases, see HISTORY.
 * (T318376) The SkinTemplateNavigation::Universal hook now supports
   'footer-info' and 'footer-places' keys for modifying footer menus, as
   an alternative to the SkinAddFooterLinks hook.
+* Authentication providers can now check whether an authentication process
+  is a login or a reauthentication, and what the security level is, by looking
+  at the ElevatedSecurityAuthenticationRequest (or lack thereof).
+  Reauthentication can be triggered via a new 'securityLevel' option to
+  AuthManager::getAuthenticationRequests().
 * …
 
 === External library changes in 1.47 ===
@@ -104,7 +109,11 @@ For notes on 1.46.x and older releases, see HISTORY.
 * …
 
 === Action API changes in 1.47 ===
-
+* When encountering a 'reauthenticate' error, clients must start a new
+  authentication process by passing the "operation" value included in the
+  error into meta=authmanagerinfo&amirequestsfor=login as 'amireauthenticate',
+  and then passing the received requests to action=clientlogin and following
+  the normal login process.
 * …
 
 === Action API internal changes in 1.47 ===

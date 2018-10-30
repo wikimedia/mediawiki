@@ -188,6 +188,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$this->mLoaded = true;
 		$request = $this->getRequest();
 
+		// set securityLevel early, loadAuth might rely on it
 		$securityLevel = $this->getRequest()->getText( 'force' );
 		if (
 			$securityLevel &&
@@ -493,6 +494,21 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
+	protected function getAuthenticationRequests( $action, ?UserIdentity $user = null ) {
+		$options = [];
+		if ( $action === AuthManager::ACTION_LOGIN && $this->securityLevel !== null ) {
+			if ( $this->getUser()->isRegistered() ) {
+				$options['securityLevel'] = $this->securityLevel;
+			} else {
+				// TODO might be nice to show an error. For now just do nothing,
+				// the user will be redirected after login to the reauth form anyway.
+			}
+		}
+		return $this->getAuthManager()->getAuthenticationRequests( $action,
+			$user, $options );
+	}
+
 	/**
 	 * Determine if the login form can be bypassed. This will be the case when no more than one
 	 * button is present and no other user input fields that are not marked as 'skippable' are
@@ -586,8 +602,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		if ( !$requests ) {
 			$this->authAction = $this->getDefaultAction( $this->subPage );
 			$this->authForm = null;
-			$requests = MediaWikiServices::getInstance()->getAuthManager()
-				->getAuthenticationRequests( $this->authAction, $user );
+			$requests = $this->getAuthenticationRequests( $this->authAction, $user );
 		}
 
 		// Generic styles and scripts for both login and signup form

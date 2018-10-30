@@ -332,10 +332,7 @@ class AuthManager implements LoggerAwareInterface {
 				[ $this->userFactory->newFromName( (string)$guessUserName ) ?: null, $res ]
 			);
 			$session->remove( self::AUTHN_STATE );
-			$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
-				$res, null, $guessUserName, [
-					'performer' => $session->getUser()
-				] );
+			$this->callLoginAuditHook( $reqs, $res, $guessUserName );
 			return $res;
 		}
 
@@ -368,14 +365,10 @@ class AuthManager implements LoggerAwareInterface {
 				'user' => $user->getName(),
 			] );
 			$ret = AuthenticationResponse::newPass( $user->getName() );
-			$performer = $session->getUser();
 			$this->setSessionDataForUser( $user );
 			$this->callMethodOnProviders( self::CALL_ALL, 'postAuthentication', [ $user, $ret ] );
 			$session->remove( self::AUTHN_STATE );
-			$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
-				$ret, $user, $user->getName(), [
-					'performer' => $performer
-				] );
+			$this->callLoginAuditHook( $reqs, $ret, $user );
 			return $ret;
 		}
 
@@ -393,9 +386,7 @@ class AuthManager implements LoggerAwareInterface {
 				$this->callMethodOnProviders( self::CALL_ALL, 'postAuthentication',
 					[ $this->userFactory->newFromName( (string)$guessUserName ), $ret ]
 				);
-				$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit( $ret, null, $guessUserName, [
-					'performer' => $session->getUser()
-				] );
+				$this->callLoginAuditHook( $reqs, $ret, $guessUserName );
 				return $ret;
 			}
 		}
@@ -489,6 +480,10 @@ class AuthManager implements LoggerAwareInterface {
 
 			$guessUserName = $state['guessUserName'];
 
+			$elevatedSecurityReq = AuthenticationRequest::getRequestByClass(
+				$state['reqs'], ElevatedSecurityAuthenticationRequest::class
+			);
+
 			$status = Status::newGood();
 			foreach ( $reqs as $req ) {
 				$req->returnToUrl = $state['returnToUrl'];
@@ -504,10 +499,7 @@ class AuthManager implements LoggerAwareInterface {
 					[ $this->userFactory->newFromName( (string)$guessUserName ), $res ]
 				);
 				$session->remove( self::AUTHN_STATE );
-				$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
-					$res, null, $guessUserName, [
-						'performer' => $session->getUser()
-					] );
+				$this->callLoginAuditHook( $state['reqs'], $res, $guessUserName );
 				return $res;
 			}
 
@@ -559,10 +551,7 @@ class AuthManager implements LoggerAwareInterface {
 								]
 							);
 							$session->remove( self::AUTHN_STATE );
-							$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
-								$res, null, $guessUserName, [
-									'performer' => $session->getUser()
-								] );
+							$this->callLoginAuditHook( $state['reqs'], $res, $guessUserName );
 							return $res;
 						case AuthenticationResponse::ABSTAIN:
 							// Continue loop
@@ -635,10 +624,7 @@ class AuthManager implements LoggerAwareInterface {
 							[ $this->userFactory->newFromName( (string)$guessUserName ), $res ]
 						);
 						$session->remove( self::AUTHN_STATE );
-						$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
-							$res, null, $guessUserName, [
-								'performer' => $session->getUser()
-							] );
+						$this->callLoginAuditHook( $state['reqs'], $res, $guessUserName );
 						return $res;
 					case AuthenticationResponse::REDIRECT:
 					case AuthenticationResponse::UI:
@@ -675,8 +661,22 @@ class AuthManager implements LoggerAwareInterface {
 						[ $this->userFactory->newFromName( (string)$guessUserName ), $response ]
 					);
 					$session->remove( self::AUTHN_STATE );
+					$this->callLoginAuditHook( $state['reqs'], $res, $guessUserName );
 					return $response;
 					// @codeCoverageIgnoreEnd
+				}
+
+				if ( $elevatedSecurityReq ) {
+					// The user was asked to reauthenticate for elevated security but authenticated
+					// as a different user. Does not make sense, maybe some kind of phishing attempt?
+					$this->logger->info( 'Reauthentication failed because of user mismatch', [
+						'oldUserId' => $elevatedSecurityReq->userId,
+						'newUserName' => '<no user>',
+					] );
+					$ret = AuthenticationResponse::newFail( wfMessage( 'authmanager-authn-reauth-switch' ) );
+					$this->callMethodOnProviders( self::CALL_ALL, 'postAuthentication', [ null, $ret ] );
+					$session->remove( self::AUTHN_STATE );
+					return $ret;
 				}
 
 				if ( $provider->accountCreationType() === PrimaryAuthenticationProvider::TYPE_LINK &&
@@ -721,9 +721,7 @@ class AuthManager implements LoggerAwareInterface {
 				if ( !$this->runVerifyHook( self::ACTION_LOGIN, null, $response, $state['primary'] ) ) {
 					$this->callMethodOnProviders( self::CALL_ALL, 'postAuthentication', [ null, $response ] );
 					$session->remove( self::AUTHN_STATE );
-					$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
-						$response, null, null, [ 'performer' => $session->getUser() ]
-					);
+					$this->callLoginAuditHook( $state['reqs'], $response, null );
 					return $response;
 				}
 
@@ -743,6 +741,21 @@ class AuthManager implements LoggerAwareInterface {
 					get_class( $provider ) . " returned an invalid username: {$res->username}"
 				);
 			}
+
+			if ( $elevatedSecurityReq && $elevatedSecurityReq->userId !== $user->getId() ) {
+				// The user was asked to reauthenticate for elevated security but authenticated
+				// as a different user. Does not make sense, maybe some kind of phishing attempt?
+				$this->logger->info( 'Reauthentication failed because of user mismatch', [
+					'oldUserId' => $elevatedSecurityReq->userId,
+					'newUserName' => $res->username,
+				] );
+				$ret = AuthenticationResponse::newFail( wfMessage( 'authmanager-authn-reauth-switch' ) );
+				$this->callMethodOnProviders( self::CALL_ALL, 'postAuthentication', [ null, $ret ] );
+				$session->remove( self::AUTHN_STATE );
+				$this->callLoginAuditHook( $state['reqs'], $ret, null );
+				return $ret;
+			}
+
 			if ( !$user->isRegistered() ) {
 				// User doesn't exist locally. Create it.
 				$this->logger->info( 'Auto-creating {user} on login', [
@@ -765,10 +778,7 @@ class AuthManager implements LoggerAwareInterface {
 					$userForHook = $this->userFactory->newFromName(
 						(string)$res->username, UserRigorOptions::RIGOR_USABLE
 					);
-					$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
-						$response, $userForHook, $userForHook->getName(), [
-							'performer' => $session->getUser()
-						] );
+					$this->callLoginAuditHook( $state['reqs'], $response, $userForHook );
 					return $response;
 				}
 			}
@@ -805,10 +815,7 @@ class AuthManager implements LoggerAwareInterface {
 						] );
 						$this->callMethodOnProviders( self::CALL_ALL, 'postAuthentication', [ $user, $res ] );
 						$session->remove( self::AUTHN_STATE );
-						$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
-							$res, $user, $user->getName(), [
-								'performer' => $session->getUser()
-							] );
+						$this->callLoginAuditHook( $state['reqs'], $res, $user );
 						return $res;
 					case AuthenticationResponse::REDIRECT:
 					case AuthenticationResponse::UI:
@@ -838,10 +845,7 @@ class AuthManager implements LoggerAwareInterface {
 			if ( !$this->runVerifyHook( self::ACTION_LOGIN, $user, $response, $state['primary'] ) ) {
 				$this->callMethodOnProviders( self::CALL_ALL, 'postAuthentication', [ $user, $response ] );
 				$session->remove( self::AUTHN_STATE );
-				$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
-					$response, $user, $user->getName(), [
-						'performer' => $session->getUser(),
-					] );
+				$this->callLoginAuditHook( $state['reqs'], $response, $user );
 				return $response;
 			}
 			$this->logger->info( 'Login for {user} succeeded from {clientIp}',
@@ -868,6 +872,9 @@ class AuthManager implements LoggerAwareInterface {
 					$this->getAuthenticationSessionData( self::REMEMBER_ME );
 			}
 			$loginWasInteractive = $this->getAuthenticationSessionData( self::LOGIN_WAS_INTERACTIVE, true );
+			// If the login was not interactive, don't set the securityLevel in the session
+			// This ensures that only interactive reauthentications count
+			$securityLevel = $loginWasInteractive ? $elevatedSecurityReq?->securityLevel : null;
 			$performer = $session->getUser();
 			// If the session is associated with a temporary account user, invalidate its
 			// session and remove the TempUser:name property from the session
@@ -878,14 +885,14 @@ class AuthManager implements LoggerAwareInterface {
 				$session->remove( 'TempUser:name' );
 				$performer = new User();
 			}
-			$this->setSessionDataForUser( $user, $rememberMe, $loginWasInteractive );
+			$this->setSessionDataForUser( $user, $rememberMe, $securityLevel );
 			$this->callMethodOnProviders( self::CALL_ALL, 'postAuthentication', [ $user, $response ] );
 			$session->remove( self::AUTHN_STATE );
 			$this->removeAuthenticationSessionData( null );
-			$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
-				$response, $user, $user->getName(), [
-					'performer' => $performer
-				] );
+			$this->callLoginAuditHook( $state['reqs'], $response, $user, [
+				'performer' => $performer,
+				'securityLevel' => $securityLevel
+			] );
 			return $response;
 		} catch ( Exception $ex ) {
 			$session->remove( self::AUTHN_STATE );
@@ -903,6 +910,10 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param string $operation Operation being checked. This should be a
 	 *  message-key-like string such as 'change-password' or 'change-email'.
 	 * @return string One of the SEC_* constants.
+	 * @see $wgReauthenticateTime
+	 * @see $wgAllowSecuritySensitiveOperationIfCannotReauthenticate
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/SecuritySensitiveOperationStatus
+	 * @see ElevatedSecurityAuthenticationRequest
 	 */
 	public function securitySensitiveOperationStatus( $operation ) {
 		$status = self::SEC_OK;
@@ -925,11 +936,12 @@ class AuthManager implements LoggerAwareInterface {
 
 		if ( $session->canSetUser() ) {
 			$id = $session->get( 'AuthManager:lastAuthId' );
-			$last = $session->get( 'AuthManager:lastAuthTimestamp' );
+			$lastAuthTimestamps = $session->get( 'AuthManager:lastAuthTimestamps', [] );
+			$last = $lastAuthTimestamps[$operation] ?? null;
 			if ( $id !== $aId || $last === null ) {
-				$timeSinceLogin = PHP_INT_MAX; // Forever ago
+				$timeSinceAuth = PHP_INT_MAX; // Forever ago
 			} else {
-				$timeSinceLogin = max( 0, time() - $last );
+				$timeSinceAuth = max( 0, time() - $last );
 			}
 
 			$thresholds = $this->config->get( MainConfigNames::ReauthenticateTime );
@@ -941,11 +953,11 @@ class AuthManager implements LoggerAwareInterface {
 				throw new UnexpectedValueException( '$wgReauthenticateTime lacks a default' );
 			}
 
-			if ( $threshold >= 0 && $timeSinceLogin > $threshold ) {
+			if ( $threshold >= 0 && $timeSinceAuth > $threshold ) {
 				$status = self::SEC_REAUTH;
 			}
 		} else {
-			$timeSinceLogin = -1;
+			$timeSinceAuth = -1;
 
 			$pass = $this->config->get(
 				MainConfigNames::AllowSecuritySensitiveOperationIfCannotReauthenticate
@@ -964,7 +976,7 @@ class AuthManager implements LoggerAwareInterface {
 		$oldStatus = $status;
 
 		$this->getHookRunner()->onSecuritySensitiveOperationStatus(
-			$status, $operation, $session, $timeSinceLogin );
+			$status, $operation, $session, $timeSinceAuth );
 
 		if ( $status !== $oldStatus ) {
 			$this->logger->info(
@@ -2042,7 +2054,7 @@ class AuthManager implements LoggerAwareInterface {
 			$user->loadFromId( IDBAccessObject::READ_LATEST );
 			if ( $login ) {
 				$remember = $source === self::AUTOCREATE_SOURCE_TEMP;
-				$this->setSessionDataForUser( $user, $remember, false );
+				$this->setSessionDataForUser( $user, $remember, null );
 			}
 			return Status::newGood()->warning( 'userexists' );
 		}
@@ -2213,7 +2225,7 @@ class AuthManager implements LoggerAwareInterface {
 					] );
 					if ( $login ) {
 						$remember = $source === self::AUTOCREATE_SOURCE_TEMP;
-						$this->setSessionDataForUser( $user, $remember, false );
+						$this->setSessionDataForUser( $user, $remember, null );
 					}
 					$status = Status::newGood()->warning( 'userexists' );
 				} else {
@@ -2276,7 +2288,7 @@ class AuthManager implements LoggerAwareInterface {
 
 		if ( $login ) {
 			$remember = $source === self::AUTOCREATE_SOURCE_TEMP;
-			$this->setSessionDataForUser( $user, $remember, false );
+			$this->setSessionDataForUser( $user, $remember, null );
 		}
 		$retStatus = Status::newGood();
 		$this->logAutocreationAttempt( $retStatus, $user, $source, $login );
@@ -2613,11 +2625,25 @@ class AuthManager implements LoggerAwareInterface {
 	 *
 	 * @param string $action One of the AuthManager::ACTION_* constants
 	 * @param UserIdentity|null $user User being acted on, instead of the current user.
+	 * @param array $options
+	 *  - 'securityLevel': (string, optional, since 1.47) the security level the user is being
+	 *    reauthenticated for. Can only be used with ACTION_LOGIN and a logged-in session.
+	 *    See securitySensitiveOperationStatus() for details.
 	 * @return AuthenticationRequest[]
 	 */
-	public function getAuthenticationRequests( $action, ?UserIdentity $user = null ) {
-		$options = [];
+	public function getAuthenticationRequests( $action, ?UserIdentity $user = null, array $options = [] ) {
+		$options = [ 'securityLevel' => $options['securityLevel'] ?? null ];
 		$providerAction = $action;
+
+		if ( $options['securityLevel'] !== null && $action !== self::ACTION_LOGIN ) {
+			throw new InvalidArgumentException( "The 'securityLevel' option can only be used for the "
+				. "'login' action, not '$action'" );
+		} elseif ( $options['securityLevel'] !== null
+			&& $this->getRequest()->getSession()->getUser()->isAnon()
+		) {
+			throw new InvalidArgumentException( "The 'securityLevel' option can only be used when the "
+				. 'current user is logged in' );
+		}
 
 		// Figure out which providers to query
 		switch ( $action ) {
@@ -2690,6 +2716,7 @@ class AuthManager implements LoggerAwareInterface {
 	) {
 		$user = $user ?: RequestContext::getMain()->getUser();
 		$options['username'] = $user->isRegistered() ? $user->getName() : null;
+		$options += [ 'securityLevel' => null ];
 
 		// Query them and merge results
 		$reqs = [];
@@ -2719,6 +2746,10 @@ class AuthManager implements LoggerAwareInterface {
 				$reqs[] = new RememberMeAuthenticationRequest(
 					$this->config->get( MainConfigNames::RememberMe ) );
 				$options['username'] = null; // Don't fill in the username below
+				if ( $options['securityLevel'] !== null ) {
+					$reqs[] = ElevatedSecurityAuthenticationRequest::create(
+						$this->getRequest()->getSession(), $options['securityLevel'] );
+				}
 				break;
 
 			case self::ACTION_CREATE:
@@ -2996,12 +3027,18 @@ class AuthManager implements LoggerAwareInterface {
 	 * Log the user in
 	 * @param User $user
 	 * @param bool|null $remember The "remember me" flag.
-	 * @param bool $isReauthentication Whether creating this session should count as a recent
-	 *   authentication for $wgReauthenticateTime checks.
+	 * @param string|null $securityLevel The security level for this reauthentication, or null for
+	 *   non-reauth login.
 	 */
-	private function setSessionDataForUser( $user, $remember = null, $isReauthentication = true ) {
+	private function setSessionDataForUser( $user, $remember = null, $securityLevel = null ) {
 		$session = $this->request->getSession();
 		$delay = $session->delaySave();
+
+		// If the user just logged into this account, they should not have elevated security.
+		if ( !$user->equals( $session->getUser() ) ) {
+			$session->set( 'AuthManager:lastAuthTimestamps', [] );
+			$securityLevel = null;
+		}
 
 		$session->resetId();
 		$session->resetAllTokens();
@@ -3011,12 +3048,15 @@ class AuthManager implements LoggerAwareInterface {
 		if ( $remember !== null ) {
 			$session->setRememberUser( $remember );
 		}
-		if ( $isReauthentication ) {
-			$session->set( 'AuthManager:lastAuthId', $user->getId() );
-			$session->set( 'AuthManager:lastAuthTimestamp', time() );
-		}
-		$session->persist();
 
+		$session->set( 'AuthManager:lastAuthId', $user->getId() );
+		if ( $securityLevel !== null ) {
+			$lastAuthTimestamps = $session->get( 'AuthManager:lastAuthTimestamps', [] );
+			$lastAuthTimestamps[$securityLevel] = time();
+			$session->set( 'AuthManager:lastAuthTimestamps', $lastAuthTimestamps );
+		}
+
+		$session->persist();
 		\Wikimedia\ScopedCallback::consume( $delay );
 
 		$this->getHookRunner()->onUserLoggedIn( $user );
@@ -3103,6 +3143,50 @@ class AuthManager implements LoggerAwareInterface {
 		foreach ( $providers as $provider ) {
 			$provider->$method( ...$args );
 		}
+	}
+
+	/**
+	 * Handles passing extra data to AuthManagerLoginAuthenticateAudit.
+	 *
+	 * This automatically derives the 'performer' and 'securityLevel' options, unless overridden
+	 * in $options.
+	 *
+	 * @param AuthenticationRequest[] $reqs The initial set of requests passed to beginAuthentication
+	 * @param AuthenticationResponse $res
+	 * @param User|string|null $user User object or guessed username
+	 * @param array $options Additional options to pass to the hook, or overrides for the
+	 *   automatically derived ones.
+	 */
+	private function callLoginAuditHook(
+		array $reqs,
+		AuthenticationResponse $res,
+		$user,
+		array $options = []
+	) {
+		if ( $user instanceof User ) {
+			$guessUserName = $user->getName();
+		} else {
+			$guessUserName = $user;
+			$user = null;
+		}
+
+		$derivedOptions = [
+			'performer' => $this->request->getSession()->getUser()
+		];
+		$elevatedSecurityReq = AuthenticationRequest::getRequestByClass(
+			$reqs, ElevatedSecurityAuthenticationRequest::class
+		);
+		// Check that the ElevatedSecurityAuthenticationRequest is valid before trusting it
+		if ( $elevatedSecurityReq && $elevatedSecurityReq->validate()->isOK() ) {
+			$derivedOptions['securityLevel'] = $elevatedSecurityReq->securityLevel;
+		}
+
+		$hookOptions = $options + $derivedOptions;
+		if ( array_key_exists( 'securityLevel', $options ) && $options['securityLevel'] === null ) {
+			// Special case: if the caller explicitly sets 'securityLevel' to null, don't pass it to the hook
+			unset( $hookOptions[ 'securityLevel' ] );
+		}
+		$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit( $res, $user, $guessUserName, $hookOptions );
 	}
 
 	/**

@@ -13,7 +13,8 @@ use MediaWiki\User\User;
  */
 interface UserLoggedInHook {
 	/**
-	 * This hook is called after a user is logged in.
+	 * This hook is called after a user is logged in or reauthenticated for elevated security.
+	 * When reauthenticating, the user's identity is guaranteed not to change.
 	 *
 	 * @since 1.35
 	 *

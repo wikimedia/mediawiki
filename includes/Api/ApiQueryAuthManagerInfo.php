@@ -61,7 +61,17 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 				];
 			}
 
-			$reqs = $this->authManager->getAuthenticationRequests( $action, $this->getUser() );
+			$options = [];
+			if ( $params['reauthenticate'] !== null ) {
+				if ( !$this->getUser()->isRegistered() ) {
+					$this->dieWithError( 'apierror-mustbeloggedin-reauthenticate' );
+				} elseif ( $action !== AuthManager::ACTION_LOGIN ) {
+					$this->dieWithError( $this->msg( 'apierror-invalidparammix-mustusewith',
+						'reauthenticate', 'requestsfor=login' ) );
+				}
+				$options['securityLevel'] = $params['reauthenticate'];
+			}
+			$reqs = $this->authManager->getAuthenticationRequests( $action, $this->getUser(), $options );
 
 			// Filter out blacklisted requests, depending on the action
 			switch ( $action ) {
@@ -104,6 +114,9 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 					AuthManager::ACTION_REMOVE,
 					AuthManager::ACTION_UNLINK,
 				],
+			],
+			'reauthenticate' => [
+				ApiBase::PARAM_TYPE => 'string',
 			],
 		] + ApiAuthManagerHelper::getStandardParams( '', 'mergerequestfields', 'messageformat' );
 	}

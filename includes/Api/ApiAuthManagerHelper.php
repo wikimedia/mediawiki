@@ -108,7 +108,8 @@ class ApiAuthManagerHelper {
 				return;
 
 			case AuthManager::SEC_REAUTH:
-				$this->module->dieWithError( 'apierror-reauthenticate' );
+				$this->module->dieWithError( [ 'apierror-reauthenticate', $operation ],
+					null, [ 'operation' => $operation ] );
 				// dieWithError prevents continuation
 
 			case AuthManager::SEC_FAIL:
@@ -139,12 +140,13 @@ class ApiAuthManagerHelper {
 	/**
 	 * Fetch and load the AuthenticationRequests for an action
 	 * @param string $action One of the AuthManager::ACTION_* constants
+	 * @param array $options Options to pass to AuthManager::getAuthenticationRequests()
 	 * @return AuthenticationRequest[]
 	 */
-	public function loadAuthenticationRequests( $action ) {
+	public function loadAuthenticationRequests( $action, $options = [] ) {
 		$params = $this->module->extractRequestParams();
 
-		$reqs = $this->authManager->getAuthenticationRequests( $action, $this->module->getUser() );
+		$reqs = $this->authManager->getAuthenticationRequests( $action, $this->module->getUser(), $options );
 
 		// Filter requests, if requested to do so
 		$wantedRequests = null;
