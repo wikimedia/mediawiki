@@ -35,6 +35,10 @@ class JavaScriptContentHandlerTest extends MediaWikiLangTestCase {
 				'Gadget:FooBaz.js',
 				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=Gadget:FooBaz.js\u0026action=raw\u0026ctype=text/javascript");'
 			],
+			[
+				'User:😂/unicode.js',
+				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=User:%F0%9F%98%82/unicode.js\u0026action=raw\u0026ctype=text/javascript");'
+			],
 		];
 		// phpcs:enable
 	}

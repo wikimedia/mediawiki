@@ -104,7 +104,7 @@ class CssContent extends TextContent {
 			// Extract the title from the url
 			preg_match( '/title=(.*?)&action=raw/', $text, $matches );
 			if ( isset( $matches[1] ) ) {
-				$title = Title::newFromText( $matches[1] );
+				$title = Title::newFromText( urldecode( $matches[1] ) );
 				if ( $title ) {
 					// Have a title, check that the current content equals what
 					// the redirect content should be
