@@ -1962,22 +1962,10 @@ $user: User the password is being validated for
 $code: The language code or the language we're looking for a messages file for
 &$file: The messages file path, you can override this to change the location.
 
-'LanguageGetMagic': DEPRECATED since 1.16! Use $magicWords in a file listed in
-$wgExtensionMessagesFiles instead.
-Use this to define synonyms of magic words depending of the language
-&$magicExtensions: associative array of magic words synonyms
-$lang: language code (string)
-
 'LanguageGetNamespaces': Provide custom ordering for namespaces or
 remove namespaces. Do not use this hook to add namespaces. Use
 CanonicalNamespaces for that.
 &$namespaces: Array of namespaces indexed by their numbers
-
-'LanguageGetSpecialPageAliases': DEPRECATED! Use $specialPageAliases in a file
-listed in $wgExtensionMessagesFiles instead.
-Use to define aliases of special pages names depending of the language
-&$specialPageAliases: associative array of magic words synonyms
-$lang: language code (string)
 
 'LanguageGetTranslatedLanguageNames': Provide translated language names.
 &$names: array of language code => language name
