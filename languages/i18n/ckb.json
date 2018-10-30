@@ -2908,6 +2908,7 @@
 	"revdelete-restricted": "ئەو سنووری بەرگریانەی خستراوەتە سەر بەڕێوبەران",
 	"revdelete-unrestricted": "ئەو سنووری بەرگریانەی لابردراوە لە سەر بەڕێوبەران",
 	"logentry-block-block": "$1 {{GENDER:$4|$3}}ی بۆ ماوەی $5 {{GENDER:$2|بەربەست کرد}} $6",
+	"logentry-block-reblock": "$1 ھەڵبژاردەکانی بەربەستنی $3ی گۆڕی بە ڕێکەوتی بەسەرچوونی $5 $6",
 	"logentry-import-upload": "$1 {{GENDER:$2|بارکرد}} $3 بە بەکارھێنانی [[special:Import|بارکەر]]",
 	"logentry-move-move": "$1 پەڕەی $3ی {{GENDER:$2|گواستەوە}} بۆ $4",
 	"logentry-move-move-noredirect": "$1 پەڕەی $3ی بە بێ بەجێھشتنی ڕەوانەکەرێک {{GENDER:$2|گواستەوە}} بۆ $4",

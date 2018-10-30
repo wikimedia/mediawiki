@@ -2377,7 +2377,7 @@
 	"ipb-change-block": "Iš naujo užblokuoti naudotoją, naudojant šiuos nustatymus",
 	"ipb-confirm": "Patvirtinkite blokavimą",
 	"badipaddress": "Neleistinas IP adresas",
-	"blockipsuccesssub": "Užblokavimas pavyko",
+	"blockipsuccesssub": "Užblokavimas atliktas",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] buvo užblokuotas.<br />\nAplankykite [[Special:BlockList|IP blokavimų istoriją]] norėdami jį peržiūrėti.",
 	"ipb-blockingself": "Jūs ruošiatės užblokuoti save! Ar tikrai norite tai padaryti?",
 	"ipb-confirmhideuser": "Jūs ruošiatės užblokuoti naudotoją, pasirinkę „slėpti naudotoją“ nustatymą. Tai paslėps naudotojo vardą visuose sąrašuose ir žurnalo įrašuose. Ar tikrai norite tai padaryti?",
