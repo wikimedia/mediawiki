@@ -1226,6 +1226,16 @@ $wgSVGMetadataCutoff = 262144;
 $wgAllowTitlesInSVG = false;
 
 /**
+ * Whether thumbnails should be generated in target language (usually, same as
+ * page language), if available.
+ * Currently, applies only to SVG images that use the systemLanguage attribute
+ * to specify text language.
+ *
+ * @since 1.33
+ */
+$wgMediaInTargetLanguage = false;
+
+/**
  * The maximum number of pixels a source image can have if it is to be scaled
  * down by a scaler that requires the full source image to be decompressed
  * and stored in decompressed form, before the thumbnail is generated.

@@ -83,7 +83,7 @@ abstract class ImageHandler extends MediaHandler {
 	 * @param array &$params
 	 * @return bool
 	 */
-	function normaliseParams( $image, &$params ) {
+	public function normaliseParams( $image, &$params ) {
 		$mimeType = $image->getMimeType();
 
 		if ( !isset( $params['width'] ) ) {

@@ -11,7 +11,8 @@ production.
 * $wgEnablePartialBlocks – This enables the Partial Blocks feature, which gives
   accounts with block permissions the ability to block users, IPs, and IP ranges
   from editing specific pages, while allowing them to edit the rest of the wiki.
-* …
+* $wgMediaInTargetLanguage – whether multilingual images should be dispalyed in
+  the current parse language where available.
 
 ==== Changed configuration ====
 * …

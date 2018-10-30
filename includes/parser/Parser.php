@@ -5258,6 +5258,8 @@ class Parser {
 		#  * bottom
 		#  * text-bottom
 
+		global $wgMediaInTargetLanguage;
+
 		# Protect LanguageConverter markup when splitting into parts
 		$parts = StringUtils::delimiterExplode(
 			'-{', '}-', '|', $options, true /* allow nesting */
@@ -5414,6 +5416,9 @@ class Parser {
 			}
 			# Use the "caption" for the tooltip text
 			$params['frame']['title'] = $this->stripAltText( $caption, $holders );
+		}
+		if ( $wgMediaInTargetLanguage ) {
+			$params['handler']['targetlang'] = $this->getTargetLanguage()->getCode();
 		}
 
 		Hooks::run( 'ParserMakeImageParams', [ $title, $file, &$params, $this ] );

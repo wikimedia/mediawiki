@@ -37,7 +37,7 @@
 # You can also set the following parser properties via test options:
 #  wgEnableUploads, wgAllowExternalImages, wgMaxTocLevel,
 #  wgLinkHolderBatchSize, wgRawHtml, wgInterwikiMagic,
-#  wgEnableMagicLinks
+#  wgEnableMagicLinks, wgMediaInTargetLanguage
 #
 # For testing purposes, temporary articles can created:
 # !!article / NAMESPACE:TITLE / !!text / ARTICLE TEXT / !!endarticle
@@ -15368,6 +15368,30 @@ parsoid=wt2html,wt2wt,html2html
 
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/thumb/f/ff/Foobar.svg/220px-Foobar.svg.png" data-file-width="240" data-file-height="180" data-file-type="drawing" height="165" width="220"/></a><figcaption>lang=invalid:language:code</figcaption></figure>
+!! end
+
+!! test
+SVG thumbnails in page language
+!! options
+language=ru
+wgMediaInTargetLanguage = true
+!! wikitext
+[[File:Foobar.svg]] [[File:Foobar.svg|lang=en]]
+!! html/php
+<p><a href="/wiki/%D0%A4%D0%B0%D0%B9%D0%BB:Foobar.svg" class="image"><img alt="Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/langru-240px-Foobar.svg.png" width="240" height="180" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langru-360px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langru-480px-Foobar.svg.png 2x" /></a> <a href="/index.php?title=%D0%A4%D0%B0%D0%B9%D0%BB:Foobar.svg&amp;lang=en" class="image"><img alt="Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/240px-Foobar.svg.png" width="240" height="180" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/480px-Foobar.svg.png 2x" /></a>
+</p>
+!! end
+
+!! test
+SVG thumbnails in page language not present in the file
+!! options
+language=de
+wgMediaInTargetLanguage = true
+!! wikitext
+[[File:Foobar.svg]] [[File:Foobar.svg|lang=ru]]
+!! html/php
+<p><a href="/wiki/Datei:Foobar.svg" class="image"><img alt="Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/240px-Foobar.svg.png" width="240" height="180" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/480px-Foobar.svg.png 2x" /></a> <a href="/index.php?title=Datei:Foobar.svg&amp;lang=ru" class="image"><img alt="Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/langru-240px-Foobar.svg.png" width="240" height="180" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langru-360px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langru-480px-Foobar.svg.png 2x" /></a>
+</p>
 !! end
 
 !! test
