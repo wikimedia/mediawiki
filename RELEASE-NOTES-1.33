@@ -89,6 +89,12 @@ because of Phabricator reports.
   Additionally, the  'APIGetDescription' and 'APIGetParamDescription' hooks have
   been removed, as their only use was to let extensions override values returned
   by getDescription() and getParamDescription(), respectively.
+* The authentication hooks 'AbortAutoAccount' 'AbortNewAccount', 'AbortLogin',
+  'LoginUserMigrated', 'UserCreateForm', and 'UserLoginForm', all deprecated by
+  the creation of AuthManager in 1.27, have been removed. This also means that
+  the FakeAuthTemplate and LoginForm classes are removed, that FakeAuthTemplate
+  is no longer passed into LoginSignupSpecialPage->getFieldDefinitions(), and
+  that LoginSignupSpecialPage->getBCFieldDefinitions() is removed.
 * …
 
 === Deprecations in 1.33 ===
