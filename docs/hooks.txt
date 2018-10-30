@@ -240,13 +240,6 @@ MediaWiki 1.4rc1.
 This is a list of known events and parameters; please add to it if you're going
 to add events to the MediaWiki code.
 
-'AbortAutoAccount': DEPRECATED since 1.27! Create a PreAuthenticationProvider
-instead. Return false to cancel automated local account creation, where normally
-authentication against an external auth plugin would be creating a local
-account.
-$user: the User object about to be created (read-only, incomplete)
-&$abortMsg: out parameter: name of error message to be displayed to user
-
 'AbortAutoblock': Return false to cancel an autoblock.
 $autoblockip: The IP going to be autoblocked.
 &$block: The block from which the autoblock is coming.
@@ -258,25 +251,6 @@ $autoblockip: The IP going to be autoblocked.
 $editor: The User who made the change.
 $title: The Title of the page that was edited.
 $rc: The current RecentChange object.
-
-'AbortLogin': DEPRECATED since 1.27! Create a PreAuthenticationProvider instead.
-Return false to cancel account login.
-$user: the User object being authenticated against
-$password: the password being submitted, not yet checked for validity
-&$retval: a LoginForm class constant to return from authenticateUserData();
-  default is LoginForm::ABORTED. Note that the client may be using a machine
-  API rather than the HTML user interface.
-&$msg: the message identifier for abort reason (new in 1.18, not available
-  before 1.18)
-
-'AbortNewAccount': DEPRECATED since 1.27! Create a PreAuthenticationProvider
-instead. Return false to cancel explicit account creation.
-$user: the User object about to be created (read-only, incomplete)
-&$msg: out parameter: HTML to display on abort
-&$status: out parameter: Status object to return, replaces the older $msg param
-  (added in 1.23)
-  Create the object with Status::newFatal() to ensure proper API error
-  messages are returned when creating account through API clients.
 
 'AbortTalkPageEmailNotification': Return false to cancel talk page email
 notification
@@ -415,20 +389,9 @@ $format: API format code for $text.
 &$params: Array of parameters
 $flags: int zero or OR-ed flags like ApiBase::GET_VALUES_FOR_HELP
 
-'APIGetDescription': DEPRECATED since 1.25! Use APIGetDescriptionMessages
-instead. Use this hook to modify a module's description.
-&$module: ApiBase Module object
-&$desc: String description, or array of description strings
-
 'APIGetDescriptionMessages': Use this hook to modify a module's help message.
 $module: ApiBase Module object
 &$msg: Array of Message objects
-
-'APIGetParamDescription': DEPRECATED since 1.25! Use
-APIGetParamDescriptionMessages instead.
-Use this hook to modify a module's parameter descriptions.
-&$module: ApiBase Module object
-&$desc: Array of parameter descriptions
 
 'APIGetParamDescriptionMessages': Use this hook to modify a module's parameter
 descriptions.
@@ -2235,15 +2198,6 @@ in LoginForm::$validErrorMessages).
 &$messages: Already added messages (inclusive messages from
   LoginForm::$validErrorMessages)
 
-'LoginUserMigrated': DEPRECATED since 1.27! Create a PreAuthenticationProvider
-instead. Called during login to allow extensions the opportunity to inform a
-user that their username doesn't exist for a specific reason, instead of letting
-the login form give the generic error message that the account does not exist.
-For example, when the account has been renamed or deleted.
-$user: the User object being authenticated against.
-&$msg: the message identifier for abort reason, or an array to pass a message
-  key and parameters.
-
 'LogLine': Processes a single log entry on Special:Log.
 $log_type: string for the type of log entry (e.g. 'move'). Corresponds to
   logging.log_type database field.
@@ -3693,10 +3647,6 @@ messages!" message, return false to not delete it.
 &$user: User (object) that will clear the message
 $oldid: ID of the talk page revision being viewed (0 means the most recent one)
 
-'UserCreateForm': DEPRECATED since 1.27! Create an AuthenticationProvider
-instead. Manipulate the login form.
-&$template: SimpleTemplate instance for the form
-
 'UserEffectiveGroups': Called in User::getEffectiveGroups().
 &$user: User to get groups for
 &$groups: Current effective groups
@@ -3814,10 +3764,6 @@ UserLoggedIn.
 $direct: (bool) The hook is called directly after a successful login. This will
   only happen once per login. A UserLoginComplete call with direct=false can
   happen when the user visits the login page while already logged in.
-
-'UserLoginForm': DEPRECATED since 1.27! Create an AuthenticationProvider
-instead. Manipulate the login form.
-&$template: QuickTemplate instance for the form
 
 'UserLogout': Before a user logs out.
 &$user: the user object that is about to be logged out

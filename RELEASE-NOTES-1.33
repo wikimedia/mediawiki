@@ -41,6 +41,16 @@ production.
 * …
 
 === Action API internal changes in 1.33 ===
+* A number of deprecated methods for API documentation, intended for overriding
+  by extensions, are no longer called by MediaWiki, and will emit deprecation
+  notices if your extension attempts to use them:
+  * ApiBase::getDescription() (deprecated in 1.25)
+  * ApiBase::getParamDescription() (deprecated in 1.25)
+  * ApiBase::getExamples() (deprecated in 1.25)
+  * ApiBase::getDescriptionMessage() (deprecated in 1.30)
+  Additionally, the  'APIGetDescription' and 'APIGetParamDescription' hooks have
+  been removed, as their only use was to let extensions override values returned
+  by getDescription() and getParamDescription(), respectively.
 * …
 
 === Languages updated in 1.33 ===
@@ -69,6 +79,22 @@ because of Phabricator reports.
 * ParserOptions defaults 'tidy' to true now, since the untidy modes of the
   parser are being deprecated and ParserOptions::getCanonicalOverrides()
   has always been true at any rate.
+* A number of deprecated methods for API documentation, intended for overriding
+  by extensions, are no longer called by MediaWiki, and will emit deprecation
+  notices if your extension attempts to use them:
+  * ApiBase::getDescription() (deprecated in 1.25)
+  * ApiBase::getParamDescription() (deprecated in 1.25)
+  * ApiBase::getExamples() (deprecated in 1.25)
+  * ApiBase::getDescriptionMessage() (deprecated in 1.30)
+  Additionally, the  'APIGetDescription' and 'APIGetParamDescription' hooks have
+  been removed, as their only use was to let extensions override values returned
+  by getDescription() and getParamDescription(), respectively.
+* The authentication hooks 'AbortAutoAccount' 'AbortNewAccount', 'AbortLogin',
+  'LoginUserMigrated', 'UserCreateForm', and 'UserLoginForm', all deprecated by
+  the creation of AuthManager in 1.27, have been removed. This also means that
+  the FakeAuthTemplate and LoginForm classes are removed, that FakeAuthTemplate
+  is no longer passed into LoginSignupSpecialPage->getFieldDefinitions(), and
+  that LoginSignupSpecialPage->getBCFieldDefinitions() is removed.
 * …
 
 === Deprecations in 1.33 ===
