@@ -924,8 +924,7 @@ interface IDatabase {
 	 * @param array $a Array of rows to insert
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @param array $options Array of options
-	 *
-	 * @return bool
+	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError
 	 */
 	public function insert( $table, $a, $fname = __METHOD__, $options = [] );
@@ -948,7 +947,7 @@ interface IDatabase {
 	 * @param array $options An array of UPDATE options, can be:
 	 *   - IGNORE: Ignore unique key conflicts
 	 *   - LOW_PRIORITY: MySQL-specific, see MySQL manual.
-	 * @return bool
+	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError
 	 */
 	public function update( $table, $values, $conds, $fname = __METHOD__, $options = [] );
@@ -1262,7 +1261,7 @@ interface IDatabase {
 	 *   things like "field = field + 1" or similar computed values.
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @throws DBError
-	 * @return bool
+	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 */
 	public function upsert(
 		$table, array $rows, array $uniqueIndexes, array $set, $fname = __METHOD__
@@ -1300,7 +1299,7 @@ interface IDatabase {
 	 *   for the format. Use $conds == "*" to delete all rows
 	 * @param string $fname Name of the calling function
 	 * @throws DBUnexpectedError
-	 * @return bool|IResultWrapper
+	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError
 	 */
 	public function delete( $table, $conds, $fname = __METHOD__ );
@@ -1338,7 +1337,7 @@ interface IDatabase {
 	 * @param array $selectJoinConds Join conditions for the SELECT part of the query, see
 	 *    IDatabase::select() for details.
 	 *
-	 * @return bool
+	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError
 	 */
 	public function insertSelect( $destTable, $srcTable, $varMap, $conds,

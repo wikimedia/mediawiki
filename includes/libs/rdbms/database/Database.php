@@ -2038,7 +2038,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$options = [ $options ];
 		}
 
-		$fh = $options['fileHandle'] ?? null;
 		$options = $this->makeInsertOptions( $options );
 
 		if ( isset( $a[0] ) && is_array( $a[0] ) ) {
@@ -2066,13 +2065,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$sql .= '(' . $this->makeList( $a ) . ')';
 		}
 
-		if ( $fh !== null && false === fwrite( $fh, $sql ) ) {
-			return false;
-		} elseif ( $fh !== null ) {
-			return true;
-		}
+		$this->query( $sql, $fname );
 
-		return (bool)$this->query( $sql, $fname );
+		return true;
 	}
 
 	/**
@@ -2116,7 +2111,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$sql .= " WHERE " . $this->makeList( $conds, self::LIST_AND );
 		}
 
-		return (bool)$this->query( $sql, $fname );
+		$this->query( $sql, $fname );
+
+		return true;
 	}
 
 	public function makeList( $a, $mode = self::LIST_COMMA ) {
@@ -2830,8 +2827,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $table Table name
 	 * @param array|string $rows Row(s) to insert
 	 * @param string $fname Caller function name
-	 *
-	 * @return ResultWrapper
 	 */
 	protected function nativeReplace( $table, $rows, $fname ) {
 		$table = $this->tableName( $table );
@@ -2854,7 +2849,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$sql .= '(' . $this->makeList( $row ) . ')';
 		}
 
-		return $this->query( $sql, $fname );
+		$this->query( $sql, $fname );
 	}
 
 	public function upsert( $table, array $rows, array $uniqueIndexes, array $set,
@@ -2890,13 +2885,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 			# Update any existing conflicting row(s)
 			if ( $where !== false ) {
-				$ok = $this->update( $table, $set, $where, $fname );
+				$this->update( $table, $set, $where, $fname );
 				$affectedRowCount += $this->affectedRows();
-			} else {
-				$ok = true;
 			}
 			# Now insert any non-conflicting row(s)
-			$ok = $this->insert( $table, $rows, $fname, [ 'IGNORE' ] ) && $ok;
+			$this->insert( $table, $rows, $fname, [ 'IGNORE' ] );
 			$affectedRowCount += $this->affectedRows();
 			$this->endAtomic( $fname );
 			$this->affectedRowCount = $affectedRowCount;
@@ -2905,7 +2898,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw $e;
 		}
 
-		return $ok;
+		return true;
 	}
 
 	public function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds,
@@ -2958,7 +2951,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$sql .= ' WHERE ' . $conds;
 		}
 
-		return $this->query( $sql, $fname );
+		$this->query( $sql, $fname );
+
+		return true;
 	}
 
 	final public function insertSelect(
@@ -2973,7 +2968,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->cliMode && $this->isInsertSelectSafe( $insertOptions, $selectOptions ) ) {
 			// For massive migrations with downtime, we don't want to select everything
 			// into memory and OOM, so do all this native on the server side if possible.
-			return $this->nativeInsertSelect(
+			$this->nativeInsertSelect(
+				$destTable,
+				$srcTable,
+				$varMap,
+				$conds,
+				$fname,
+				array_diff( $insertOptions, $hints ),
+				$selectOptions,
+				$selectJoinConds
+			);
+		} else {
+			$this->nonNativeInsertSelect(
 				$destTable,
 				$srcTable,
 				$varMap,
@@ -2985,16 +2991,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			);
 		}
 
-		return $this->nonNativeInsertSelect(
-			$destTable,
-			$srcTable,
-			$varMap,
-			$conds,
-			$fname,
-			array_diff( $insertOptions, $hints ),
-			$selectOptions,
-			$selectJoinConds
-		);
+		return true;
 	}
 
 	/**
@@ -3020,7 +3017,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param array $insertOptions
 	 * @param array $selectOptions
 	 * @param array $selectJoinConds
-	 * @return bool
 	 */
 	protected function nonNativeInsertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,
@@ -3038,7 +3034,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$srcTable, implode( ',', $fields ), $conds, $fname, $selectOptions, $selectJoinConds
 		);
 		if ( !$res ) {
-			return false;
+			return;
 		}
 
 		try {
@@ -3071,7 +3067,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			} else {
 				$this->cancelAtomic( $fname );
 			}
-			return $ok;
 		} catch ( Exception $e ) {
 			$this->cancelAtomic( $fname );
 			throw $e;
@@ -3091,7 +3086,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param array $insertOptions
 	 * @param array $selectOptions
 	 * @param array $selectJoinConds
-	 * @return bool
 	 */
 	protected function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,
@@ -3118,7 +3112,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			" INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ') ' .
 			$selectSql;
 
-		return $this->query( $sql, $fname );
+		$this->query( $sql, $fname );
 	}
 
 	/**
