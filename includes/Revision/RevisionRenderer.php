@@ -65,6 +65,13 @@ class RevisionRenderer {
 	}
 
 	/**
+	 * @param LoggerInterface $saveParseLogger
+	 */
+	public function setLogger( LoggerInterface $saveParseLogger ) {
+		$this->saveParseLogger = $saveParseLogger;
+	}
+
+	/**
 	 * @param RevisionRecord $rev
 	 * @param ParserOptions|null $options
 	 * @param User|null $forUser User for privileged access. Default is unprivileged (public)
