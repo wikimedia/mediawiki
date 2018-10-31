@@ -4438,7 +4438,7 @@ class Title implements LinkTarget {
 	 * Get the oldest revision timestamp of this page
 	 *
 	 * @param int $flags Title::GAID_FOR_UPDATE
-	 * @return string MW timestamp
+	 * @return string|null MW timestamp
 	 */
 	public function getEarliestRevTime( $flags = 0 ) {
 		$rev = $this->getFirstRevision( $flags );
