@@ -322,7 +322,7 @@
 	"config-help": "說明",
 	"config-help-tooltip": "點選以展開",
 	"config-nofile": "查無檔案 \"$1\"，是否已被刪除？",
-	"config-extension-link": "您是否了解您的 Wiki 支援 [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions 擴充套件]？\n\n\n您可以瀏覽 [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category 擴充套件分類] 或 [https://www.mediawiki.org/wiki/Extension_Matrix 擴充套件資料表] 以取得相關的資訊。",
+	"config-extension-link": "您是否了解您的 Wiki 支援[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions 擴充套件]？\n\n您可以瀏覽[https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category 擴充套件分類]。",
 	"config-skins-screenshots": "$1 (螢幕截圖: $2)",
 	"config-extensions-requires": "$1（需要 $2）",
 	"config-screenshot": "螢幕截圖",
