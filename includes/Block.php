@@ -767,6 +767,7 @@ class Block {
 		}
 
 		$target = $block->getTarget();
+		// FIXME: Push this into getTargetActor() or whatever to reuse
 		if ( is_string( $target ) ) {
 			$target = User::newFromName( $target, false );
 		}
@@ -1594,6 +1595,7 @@ class Block {
 	 * @param User|string $user Local User object or username string
 	 */
 	public function setBlocker( $user ) {
+		// FIXME: Push this into getTargetActor() or whatever to reuse
 		if ( is_string( $user ) ) {
 			$user = User::newFromName( $user, false );
 		}
@@ -1802,11 +1804,18 @@ class Block {
 	public function preventsEdit( \Title $title ) {
 		$blocked = $this->isSitewide();
 
-		// user talk page has it's own rules
+		// user talk page has its own rules
 		// This check happens before partial blocks because the flag
 		// to allow user to edit their user talk page could be
 		// overwritten by a partial block restriction (E.g. user talk namespace)
 		$user = $this->getTarget();
+
+		// Not all blocked `$user`s are self::TYPE_USER
+		// FIXME: Push this into getTargetActor() or whatever to reuse
+		if ( is_string( $user ) ) {
+			$user = User::newFromName( $user, false );
+		}
+
 		if ( $title->equals( $user->getTalkPage() ) ) {
 			$blocked = $this->prevents( 'editownusertalk' );
 		}
