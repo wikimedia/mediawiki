@@ -909,6 +909,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return int|null The corresponding user's ID, or null if user is nonexistent
 	 */
 	public static function idFromName( $name, $flags = self::READ_NORMAL ) {
+		// Don't explode on self::$idCacheByName[$name] if $name is not a string but e.g. a User object
+		$name = (string)$name;
 		$nt = Title::makeTitleSafe( NS_USER, $name );
 		if ( is_null( $nt ) ) {
 			// Illegal name
