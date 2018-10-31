@@ -403,6 +403,28 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$this->assertTrue( $db->close(), "closing database" );
 	}
 
+	/**
+	 * @covers DatabaseSqlite::insert
+	 */
+	public function testInsertAffectedRows() {
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
+		$db->query( 'CREATE TABLE testInsertAffectedRows ( foo )', __METHOD__ );
+
+		$insertion = $db->insert(
+			'testInsertAffectedRows',
+			[
+				[ 'foo' => 10 ],
+				[ 'foo' => 12 ],
+				[ 'foo' => 1555 ],
+			],
+			__METHOD__
+		);
+		$this->assertTrue( $insertion, "Insertion worked" );
+
+		$this->assertSame( 3, $db->affectedRows() );
+		$this->assertTrue( $db->close(), "closing database" );
+	}
+
 	private function prepareTestDB( $version ) {
 		static $maint = null;
 		if ( $maint === null ) {

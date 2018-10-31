@@ -654,6 +654,7 @@ class DatabaseSqlite extends Database {
 				$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 				foreach ( $a as $v ) {
 					parent::insert( $table, $v, "$fname/multi-row", $options );
+					$affectedRowCount += $this->affectedRows();
 				}
 				$this->endAtomic( $fname );
 			} catch ( Exception $e ) {
