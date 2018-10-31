@@ -1224,7 +1224,7 @@ class AuthManager implements LoggerAwareInterface {
 					return $ret;
 				}
 			} else {
-				if ( $user->getId() == 0 ) {
+				if ( $user->getId() === 0 ) {
 					$this->logger->debug( __METHOD__ . ': User does not exist locally when it should', [
 						'user' => $user->getName(),
 						'creator' => $creator->getName(),
