@@ -13,7 +13,8 @@
 			"Baloch Afghanistan",
 			"Mjbmr",
 			"Macofe",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"Rachitrali"
 		]
 	},
 	"tog-underline": ":لینکانآ خط کش",
@@ -40,7 +41,7 @@
 	"tog-shownumberswatching": "پیش دار تعداد کاربرانی که چارگتن",
 	"tog-oldsig": "انیگین ایمزا کنوک",
 	"tog-fancysig": "امضاءَ په داب ویکی متنی بزان(بی اتوماتیکی لینک)",
-	"tog-uselivepreview": "لایو پیشچارگء کارمرز بکن(تجربی)",
+	"tog-uselivepreview": "پیش‌نمایش بدون نیاز به بروزرسانی صفحه",
 	"tog-forceeditsummary": "من آ هال دی وهدی وارد کتن یک هالیکین خلاصه ی اصلاح",
 	"tog-watchlisthideown": "منی اصلاحات آ چه لیست چارگ پناه کن",
 	"tog-watchlisthidebots": "اصلاحات بوت چه لیست چارگ پناه کن",
@@ -123,6 +124,8 @@
 	"october-date": "اکتۆبر، سارتان $1",
 	"november-date": "نوامبر، گۆپشان $1",
 	"december-date": "دسمبر، تۆمشان $1",
+	"period-am": "صبح",
+	"period-pm": "عصر",
 	"pagecategories": "{{PLURAL:$1|دسته|دسته جات}}",
 	"category_header": "صفحات ته دسته \"$1\"",
 	"subcategories": "زیردسته جات",
@@ -166,6 +169,7 @@
 	"searcharticle": "برا",
 	"history": "دیمی تاریخ",
 	"history_short": "دپتر",
+	"history_small": "تاریخچگ",
 	"updatedmarker": "په روچ بیتگین چه منی اهری  اهری  چارگ",
 	"printableversion": "نسخه چهاپی",
 	"permalink": "دایمی لینک",
@@ -455,6 +459,7 @@
 	"resetpass_submit": "تنظیم کلمه رمز و ورود",
 	"changepassword-success": "شمئی پسورد پر درستیء ٹگل بیت!",
 	"changepassword-throttled": "شما انیگ پر لاگین کتنء چنت بار جهد کتگ ات. دزبندی انت پیسر چه پدایین جهدء $1 موه بداریت.",
+	"botpasswords-label-create": "جوڑ کورتین",
 	"resetpass_forbidden": "کلمات رمز نه توننت عوض بنت.",
 	"resetpass-no-info": "په مستقیمین دسترسی په ای صفحه شما بایدن وارد سایت بیت",
 	"resetpass-submit-loggedin": "عوض کتن کلمه رمز",

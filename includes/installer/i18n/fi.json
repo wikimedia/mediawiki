@@ -22,7 +22,8 @@
 			"Olimar",
 			"01miki10",
 			"Pyscowicz",
-			"Surjection"
+			"Surjection",
+			"Uusijani"
 		]
 	},
 	"config-desc": "Asennin MediaWikiä varten",
@@ -79,8 +80,8 @@
 	"config-apcu": "[https://secure.php.net/apcu APCu] on asennettu",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] on asennettu",
 	"config-diff3-bad": "GNU diff3:a ei löytynyt.",
-	"config-git": "Löydetty Git versionhallintaohjelmisto: <code>$1</code>",
-	"config-git-bad": "Git versionhallintaohjelmistoa ei löydy.",
+	"config-git": "Löydetty Git-versionhallintaohjelmisto: <code>$1</code>",
+	"config-git-bad": "Git-versionhallintaohjelmistoa ei löydy.",
 	"config-imagemagick": "Löydettiin ImageMagick: <code>$1</code>.\nKuvien esikatselukuvat otetaan samalla käyttöön jos otetaan tiedostojen tallennus.",
 	"config-gd": "Löydettiin sisäänrakennettu GD-grafiikkakirjasto.\nKuvista luodaan esikatseluversiot automaattisesti, jos otat käyttöön tiedostojen lähettämisen.",
 	"config-no-scaling": "GD-kirjastoa tai ImageMagick-ohjelmaa ei löydy. \nKuvista ei luoda esikatseluversioita.",
