@@ -2483,10 +2483,10 @@ return [
 			'resources/src/mediawiki.widgets/mw.widgets.AbandonEditDialog.js',
 		],
 		'messages' => [
-			'visualeditor-viewpage-savewarning',
-			'visualeditor-viewpage-savewarning-discard',
-			'visualeditor-viewpage-savewarning-keep',
-			'visualeditor-viewpage-savewarning-title',
+			'mw-widgets-abandonedit',
+			'mw-widgets-abandonedit-discard',
+			'mw-widgets-abandonedit-keep',
+			'mw-widgets-abandonedit-title',
 		],
 		'dependencies' => [
 			'oojs-ui-windows',

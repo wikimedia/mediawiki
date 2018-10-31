@@ -28,12 +28,12 @@ OO.inheritClass( mw.widgets.AbandonEditDialog, OO.ui.MessageDialog );
 mw.widgets.AbandonEditDialog.static.name = 'abandonedit';
 
 mw.widgets.AbandonEditDialog.static.title =
-	OO.ui.deferMsg( 'visualeditor-viewpage-savewarning-title' );
+	OO.ui.deferMsg( 'mw-widgets-abandonedit-title' );
 
 mw.widgets.AbandonEditDialog.static.message =
-	OO.ui.deferMsg( 'visualeditor-viewpage-savewarning' );
+	OO.ui.deferMsg( 'mw-widgets-abandonedit' );
 
 mw.widgets.AbandonEditDialog.static.actions = [
-	{ action: 'discard', label: OO.ui.deferMsg( 'visualeditor-viewpage-savewarning-discard' ), flags: [ 'primary', 'destructive' ] },
-	{ action: 'keep', label: OO.ui.deferMsg( 'visualeditor-viewpage-savewarning-keep' ), flags: 'safe' }
+	{ action: 'discard', label: OO.ui.deferMsg( 'mw-widgets-abandonedit-discard' ), flags: [ 'primary', 'destructive' ] },
+	{ action: 'keep', label: OO.ui.deferMsg( 'mw-widgets-abandonedit-keep' ), flags: 'safe' }
 ];
