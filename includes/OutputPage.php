@@ -2924,7 +2924,7 @@ class OutputPage extends ContextSource {
 	 * then the warning is a bit more obvious. If the lag is
 	 * lower than $wgSlaveLagWarning, then no warning is shown.
 	 *
-	 * @param int $lag Slave lag
+	 * @param int $lag Replica lag
 	 */
 	public function showLagWarning( $lag ) {
 		$config = $this->getConfig();

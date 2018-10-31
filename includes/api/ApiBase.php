@@ -271,7 +271,7 @@ abstract class ApiBase extends ContextSource {
 	private $mMainModule;
 	/** @var string */
 	private $mModuleName, $mModulePrefix;
-	private $mSlaveDB = null;
+	private $mReplicaDB = null;
 	private $mParamCache = [];
 	/** @var array|null|bool */
 	private $mModuleSource = false;
@@ -647,11 +647,11 @@ abstract class ApiBase extends ContextSource {
 	 * @return IDatabase
 	 */
 	protected function getDB() {
-		if ( !isset( $this->mSlaveDB ) ) {
-			$this->mSlaveDB = wfGetDB( DB_REPLICA, 'api' );
+		if ( !isset( $this->mReplicaDB ) ) {
+			$this->mReplicaDB = wfGetDB( DB_REPLICA, 'api' );
 		}
 
-		return $this->mSlaveDB;
+		return $this->mReplicaDB;
 	}
 
 	/**
