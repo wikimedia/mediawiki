@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.2
+ * OOUI v0.29.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-10-08T22:42:55Z
+ * Date: 2018-11-01T02:03:33Z
  */
 ( function ( OO ) {
 
@@ -85,7 +85,7 @@ OO.ui.ActionWidget.prototype.getAction = function () {
  * Get the symbolic name of the mode or modes for which the action is configured to be available.
  *
  * The current mode is set with the action set's {@link OO.ui.ActionSet#setMode setMode} method.
- * Only actions that are configured to be avaiable in the current mode will be visible. All other actions
+ * Only actions that are configured to be available in the current mode will be visible. All other actions
  * are hidden.
  *
  * @return {string[]}
@@ -507,7 +507,7 @@ OO.ui.ActionSet.prototype.remove = function ( actions ) {
 };
 
 /**
- * Remove all action widets from the set.
+ * Remove all action widgets from the set.
  *
  * To remove only specified actions, use the {@link #method-remove remove} method instead.
  *
@@ -703,7 +703,7 @@ OO.ui.Error.prototype.getMessageText = function () {
  * @class
  *
  * @constructor
- * @param {number|jQuery.Promise|Function} step Number of miliseconds to wait before proceeding, promise
+ * @param {number|jQuery.Promise|Function} step Number of milliseconds to wait before proceeding, promise
  *  that must be resolved before proceeding, or a function to execute. See #createStep for more information. see #createStep for more information
  * @param {Object} [context=null] Execution context of the function. The context is ignored if the step is
  *  a number or promise.
@@ -866,7 +866,7 @@ OO.ui.Process.prototype.next = function ( step, context ) {
  *
  * @constructor
  */
-OO.ui.WindowInstance = function OOuiWindowInstance() {
+OO.ui.WindowInstance = function OoUiWindowInstance() {
 	var deferreds = {
 		opening: $.Deferred(),
 		opened: $.Deferred(),
@@ -980,7 +980,7 @@ OO.ui.WindowInstance.prototype.isClosed = function () {
  *
  * - the `opened` promise is resolved with `closing` promise and a `closing` event is emitted
  * - the #getHoldDelay method is called and the returned value is used to time a pause in execution before
- *   the window's {@link OO.ui.Window#getHoldProcess getHoldProces} method is called on the
+ *   the window's {@link OO.ui.Window#getHoldProcess getHoldProcess} method is called on the
  *   window and its result executed
  * - a `hold` progress notification is emitted from the `closing` promise
  * - the #getTeardownDelay() method is called and the returned value is used to time a pause in execution before
@@ -2013,7 +2013,7 @@ OO.ui.Window.prototype.withoutSizeTransitions = function ( callback ) {
 /**
  * Get the height of the full window contents (i.e., the window head, body and foot together).
  *
- * What consistitutes the head, body, and foot varies depending on the window type.
+ * What constitutes the head, body, and foot varies depending on the window type.
  * A {@link OO.ui.MessageDialog message dialog} displays a title and message in its body,
  * and any actions in the foot. A {@link OO.ui.ProcessDialog process dialog} displays a title
  * and special actions in the head, and dialog content in the body.

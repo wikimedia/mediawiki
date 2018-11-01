@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.2
+ * OOUI v0.29.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-10-08T22:42:55Z
+ * Date: 2018-11-01T02:03:33Z
  */
 ( function ( OO ) {
 
@@ -1263,7 +1263,7 @@ OO.ui.PageLayout.prototype.setActive = function ( active ) {
  * by setting the #continuous option to 'true'.
  *
  *     @example
- *     // A stack layout with two panels, configured to be displayed continously
+ *     // A stack layout with two panels, configured to be displayed continuously
  *     var myStack = new OO.ui.StackLayout( {
  *         items: [
  *             new OO.ui.PanelLayout( {
@@ -1502,6 +1502,30 @@ OO.ui.StackLayout.prototype.setItem = function ( item ) {
 			this.unsetCurrentItem();
 		}
 	}
+
+	return this;
+};
+
+/**
+ * Reset the scroll offset of all panels, or the container if continuous
+ *
+ * @inheritdoc
+ */
+OO.ui.StackLayout.prototype.resetScroll = function () {
+	if ( this.continuous ) {
+		// Parent method
+		return OO.ui.StackLayout.parent.prototype.resetScroll.call( this );
+	}
+	// Reset each panel
+	this.getItems().forEach( function ( panel ) {
+		var hidden = panel.$element.hasClass( 'oo-ui-element-hidden' );
+		// Scroll can only be reset when panel is visible
+		panel.$element.removeClass( 'oo-ui-element-hidden' );
+		panel.resetScroll();
+		if ( hidden ) {
+			panel.$element.addClass( 'oo-ui-element-hidden' );
+		}
+	} );
 
 	return this;
 };
@@ -1754,6 +1778,22 @@ OO.ui.MenuLayout.prototype.clearContentPanel = function () {
 };
 
 /**
+ * Reset the scroll offset of all panels and the tab select widget
+ *
+ * @inheritdoc
+ */
+OO.ui.MenuLayout.prototype.resetScroll = function () {
+	if ( this.menuPanel ) {
+		this.menuPanel.resetScroll();
+	}
+	if ( this.contentPanel ) {
+		this.contentPanel.resetScroll();
+	}
+
+	return this;
+};
+
+/**
  * BookletLayouts contain {@link OO.ui.PageLayout page layouts} as well as
  * an {@link OO.ui.OutlineSelectWidget outline} that allows users to easily navigate
  * through the pages and select which one to display. By default, only one page is
@@ -1790,7 +1830,7 @@ OO.ui.MenuLayout.prototype.clearContentPanel = function () {
  *         outlined: true
  *     } );
  *
- *     booklet.addPages ( [ page1, page2 ] );
+ *     booklet.addPages( [ page1, page2 ] );
  *     $( 'body' ).append( booklet.$element );
  *
  * @class
@@ -2319,6 +2359,23 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 };
 
 /**
+ * For outlined-continuous booklets, also reset the outlineSelectWidget to the first item.
+ *
+ * @inheritdoc
+ */
+OO.ui.BookletLayout.prototype.resetScroll = function () {
+	// Parent method
+	OO.ui.BookletLayout.parent.prototype.resetScroll.call( this );
+
+	if ( this.outlined && this.stackLayout.continuous && this.outlineSelectWidget.findFirstSelectableItem() ) {
+		this.scrolling = true;
+		this.outlineSelectWidget.selectItem( this.outlineSelectWidget.findFirstSelectableItem() );
+		this.scrolling = false;
+	}
+	return this;
+};
+
+/**
  * Select the first selectable page.
  *
  * @chainable
@@ -2720,10 +2777,11 @@ OO.ui.IndexLayout.prototype.clearTabPanels = function () {
 OO.ui.IndexLayout.prototype.setTabPanel = function ( name ) {
 	var selectedItem,
 		$focused,
-		tabPanel = this.tabPanels[ name ],
-		previousTabPanel = this.currentTabPanelName && this.tabPanels[ this.currentTabPanelName ];
+		previousTabPanel,
+		tabPanel = this.tabPanels[ name ];
 
 	if ( name !== this.currentTabPanelName ) {
+		previousTabPanel = this.getCurrentTabPanel();
 		selectedItem = this.tabSelectWidget.findSelectedItem();
 		if ( selectedItem && selectedItem.getData() !== name ) {
 			this.tabSelectWidget.selectItemByData( name );
@@ -4059,7 +4117,7 @@ OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 		if ( this.inputPosition === 'outline' ) {
 			// Override max-height for the input widget
 			// in the case the widget is outline so it can
-			// stretch all the way if the widet is wide
+			// stretch all the way if the widget is wide
 			this.input.$element.css( 'max-width', 'inherit' );
 			this.$element
 				.addClass( 'oo-ui-tagMultiselectWidget-outlined' )
@@ -4694,10 +4752,10 @@ OO.ui.TagMultiselectWidget.prototype.updateInputSize = function () {
 
 		// Some safety margin for sanity, because I *really* don't feel like finding out where the few
 		// pixels this is off by are coming from.
-		bestWidth -= 10;
+		bestWidth -= 13;
 		if ( contentWidth > bestWidth ) {
 			// This will result in the input getting shifted to the next line
-			bestWidth = this.$content.innerWidth() - 10;
+			bestWidth = this.$content.innerWidth() - 13;
 		}
 		this.input.$input.width( Math.floor( bestWidth ) );
 		this.updateIfHeightChanged();
