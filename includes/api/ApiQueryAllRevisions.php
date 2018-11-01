@@ -40,6 +40,8 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 	 * @return void
 	 */
 	protected function run( ApiPageSet $resultPageSet = null ) {
+		global $wgActorTableSchemaMigrationStage;
+
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
@@ -47,6 +49,19 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		$result = $this->getResult();
 
 		$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
+
+		$tsField = 'rev_timestamp';
+		$idField = 'rev_id';
+		$pageField = 'rev_page';
+		if ( $params['user'] !== null &&
+			( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW )
+		) {
+			// The query is probably best done using the actor_timestamp index on
+			// revision_actor_temp. Use the denormalized fields from that table.
+			$tsField = 'revactor_timestamp';
+			$idField = 'revactor_rev';
+			$pageField = 'revactor_page';
+		}
 
 		// Namespace check is likely to be desired, but can't be done
 		// efficiently in SQL.
@@ -70,34 +85,59 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			$revQuery = $revisionStore->getQueryInfo(
 				$this->fetchContent ? [ 'page', 'text' ] : [ 'page' ]
 			);
-			$this->addTables( $revQuery['tables'] );
-			$this->addFields( $revQuery['fields'] );
-			$this->addJoinConds( $revQuery['joins'] );
-
-			// Review this depeneding on the outcome of T113901
-			$this->addOption( 'STRAIGHT_JOIN' );
 		} else {
 			$this->limit = $this->getParameter( 'limit' ) ?: 10;
-			$this->addTables( 'revision' );
-			$this->addFields( [ 'rev_timestamp', 'rev_id' ] );
+			$revQuery = [
+				'tables' => [ 'revision' ],
+				'fields' => [ 'rev_timestamp', 'rev_id' ],
+				'joins' => [],
+			];
+
 			if ( $params['generatetitles'] ) {
-				$this->addFields( [ 'rev_page' ] );
+				$revQuery['fields'][] = 'rev_page';
+			}
+
+			if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
+				$actorQuery = ActorMigration::newMigration()->getJoin( 'rev_user' );
+				$revQuery['tables'] += $actorQuery['tables'];
+				$revQuery['joins'] += $actorQuery['joins'];
 			}
 
 			if ( $needPageTable ) {
-				$this->addTables( 'page' );
-				$this->addJoinConds(
-					[ 'page' => [ 'INNER JOIN', [ 'rev_page = page_id' ] ] ]
-				);
-				$this->addFieldsIf( [ 'page_namespace' ], (bool)$miser_ns );
-
-				// Review this depeneding on the outcome of T113901
-				$this->addOption( 'STRAIGHT_JOIN' );
+				$revQuery['tables'][] = 'page';
+				$revQuery['joins']['page'] = [ 'INNER JOIN', [ "$pageField = page_id" ] ];
+				if ( (bool)$miser_ns ) {
+					$revQuery['fields'][] = 'page_namespace';
+				}
 			}
 		}
 
+		// If we're going to be using actor_timestamp, we need to swap the order of `revision`
+		// and `revision_actor_temp` in the query (for the straight join) and adjust some field aliases.
+		if ( $idField !== 'rev_id' && isset( $revQuery['tables']['temp_rev_user'] ) ) {
+			$aliasFields = [ 'rev_id' => $idField, 'rev_timestamp' => $tsField, 'rev_page' => $pageField ];
+			$revQuery['fields'] = array_merge(
+				$aliasFields,
+				array_diff( $revQuery['fields'], array_keys( $aliasFields ) )
+			);
+			unset( $revQuery['tables']['temp_rev_user'] );
+			$revQuery['tables'] = array_merge(
+				[ 'temp_rev_user' => 'revision_actor_temp' ],
+				$revQuery['tables']
+			);
+			$revQuery['joins']['revision'] = $revQuery['joins']['temp_rev_user'];
+			unset( $revQuery['joins']['temp_rev_user'] );
+		}
+
+		$this->addTables( $revQuery['tables'] );
+		$this->addFields( $revQuery['fields'] );
+		$this->addJoinConds( $revQuery['joins'] );
+
+		// Seems to be needed to avoid a planner bug (T113901)
+		$this->addOption( 'STRAIGHT_JOIN' );
+
 		$dir = $params['dir'];
-		$this->addTimestampWhereRange( 'rev_timestamp', $dir, $params['start'], $params['end'] );
+		$this->addTimestampWhereRange( $tsField, $dir, $params['start'], $params['end'] );
 
 		if ( $this->fld_tags ) {
 			$this->addTables( 'tag_summary' );
@@ -110,14 +150,10 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		if ( $params['user'] !== null ) {
 			$actorQuery = ActorMigration::newMigration()
 				->getWhere( $db, 'rev_user', User::newFromName( $params['user'], false ) );
-			$this->addTables( $actorQuery['tables'] );
-			$this->addJoinConds( $actorQuery['joins'] );
 			$this->addWhere( $actorQuery['conds'] );
 		} elseif ( $params['excludeuser'] !== null ) {
 			$actorQuery = ActorMigration::newMigration()
 				->getWhere( $db, 'rev_user', User::newFromName( $params['excludeuser'], false ) );
-			$this->addTables( $actorQuery['tables'] );
-			$this->addJoinConds( $actorQuery['joins'] );
 			$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
 		}
 
@@ -142,17 +178,17 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			$ts = $db->addQuotes( $db->timestamp( $cont[0] ) );
 			$rev_id = (int)$cont[1];
 			$this->dieContinueUsageIf( strval( $rev_id ) !== $cont[1] );
-			$this->addWhere( "rev_timestamp $op $ts OR " .
-				"(rev_timestamp = $ts AND " .
-				"rev_id $op= $rev_id)" );
+			$this->addWhere( "$tsField $op $ts OR " .
+				"($tsField = $ts AND " .
+				"$idField $op= $rev_id)" );
 		}
 
 		$this->addOption( 'LIMIT', $this->limit + 1 );
 
 		$sort = ( $dir == 'newer' ? '' : ' DESC' );
 		$orderby = [];
-		// Targeting index rev_timestamp, user_timestamp, or usertext_timestamp
-		// But 'user' is always constant for the latter two, so it doesn't matter here.
+		// Targeting index rev_timestamp, user_timestamp, usertext_timestamp, or actor_timestamp.
+		// But 'user' is always constant for the latter three, so it doesn't matter here.
 		$orderby[] = "rev_timestamp $sort";
 		$orderby[] = "rev_id $sort";
 		$this->addOption( 'ORDER BY', $orderby );
