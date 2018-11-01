@@ -4,7 +4,7 @@ namespace MediaWiki\Auth;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\UserDataAuthenticationRequest
+ * @covers \MediaWiki\Auth\UserDataAuthenticationRequest
  */
 class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 

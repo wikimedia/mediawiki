@@ -4,7 +4,7 @@ namespace MediaWiki\Auth;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\AuthenticationResponse
+ * @covers \MediaWiki\Auth\AuthenticationResponse
  */
 class AuthenticationResponseTest extends \MediaWikiTestCase {
 	/**
