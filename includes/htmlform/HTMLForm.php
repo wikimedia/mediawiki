@@ -1285,7 +1285,7 @@ class HTMLForm extends ContextSource {
 			if ( $status->isGood() ) {
 				$elementstr = '';
 			} else {
-				$elementstr = $this->getOutput()->parse(
+				$elementstr = $this->getOutput()->parseAsInterface(
 					$status->getWikiText()
 				);
 			}
