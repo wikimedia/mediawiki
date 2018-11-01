@@ -1177,9 +1177,9 @@ class SpecialVersion extends SpecialPage {
 		foreach ( $entryPoints as $message => $value ) {
 			$url = wfExpandUrl( $value, PROTO_RELATIVE );
 			$out .= Html::openElement( 'tr' ) .
-				// ->text() looks like it should be ->parse(), but this function
+				// ->plain() looks like it should be ->parse(), but this function
 				// returns wikitext, not HTML, boo
-				Html::rawElement( 'td', [], $this->msg( $message )->text() ) .
+				Html::rawElement( 'td', [], $this->msg( $message )->plain() ) .
 				Html::rawElement( 'td', [], Html::rawElement( 'code', [], "[$url $value]" ) ) .
 				Html::closeElement( 'tr' );
 		}

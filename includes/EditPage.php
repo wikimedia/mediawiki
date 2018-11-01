@@ -3950,7 +3950,7 @@ ERROR;
 				#   sitecsspreview, sitejsonpreview, sitejspreview
 				if ( $level && $format ) {
 					$note = "<div id='mw-{$level}{$format}preview'>" .
-						$this->context->msg( "{$level}{$format}preview" )->text() .
+						$this->context->msg( "{$level}{$format}preview" )->plain() .
 						' ' . $continueEditing . "</div>";
 				}
 			}
@@ -3984,7 +3984,7 @@ ERROR;
 				$this->contentFormat,
 				$ex->getMessage()
 			);
-			$note .= "\n\n" . $m->parse();
+			$note .= "\n\n" . $m->plain(); # gets parsed down below
 			$previewHTML = '';
 		}
 
