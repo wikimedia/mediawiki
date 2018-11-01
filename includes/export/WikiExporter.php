@@ -418,7 +418,7 @@ class WikiExporter {
 			$queryConds[] = 'rev_page>' . intval( $revPage ) . ' OR (rev_page=' .
 				intval( $revPage ) . ' AND rev_id' . $op . intval( $revId ) . ')';
 
-			# Do the query!
+			# Do the query and process any results, remembering max ids for the next iteration.
 			$result = $this->db->select(
 				$tables,
 				$fields,
@@ -427,15 +427,18 @@ class WikiExporter {
 				$opts,
 				$join
 			);
-			# Output dump results, get new max ids.
-			$lastRow = $this->outputPageStream( $result, $lastRow );
-
-			if ( !$result->numRows() || !$lastRow ) {
-				$done = true;
-			} else {
+			if ( $result->numRows() > 0 ) {
+				$lastRow = $this->outputPageStreamBatch( $result, $lastRow );
 				$rowCount += $result->numRows();
 				$revPage = $lastRow->rev_page;
 				$revId = $lastRow->rev_id;
+			} else {
+				$done = true;
+			}
+
+			// If we are finished, close off final page element (if any).
+			if ( $done && $lastRow ) {
+				$this->finishPageStreamOutput( $lastRow );
 			}
 		}
 	}
@@ -445,44 +448,47 @@ class WikiExporter {
 	 * The result set should be sorted/grouped by page to avoid duplicate
 	 * page records in the output.
 	 *
-	 * @param ResultWrapper $resultset
+	 * @param ResultWrapper $results
 	 * @param object $lastRow the last row output from the previous call (or null if none)
 	 * @return object the last row processed
 	 */
-	protected function outputPageStream( $resultset, $lastRow ) {
-		if ( $resultset->numRows() ) {
-			foreach ( $resultset as $row ) {
-				if ( $lastRow === null ||
-					$lastRow->page_namespace != $row->page_namespace ||
-					$lastRow->page_title != $row->page_title ) {
-					if ( $lastRow !== null ) {
-						$output = '';
-						if ( $this->dumpUploads ) {
-							$output .= $this->writer->writeUploads( $lastRow, $this->dumpUploadFileContents );
-						}
-						$output .= $this->writer->closePage();
-						$this->sink->writeClosePage( $output );
+	protected function outputPageStreamBatch( $results, $lastRow ) {
+		foreach ( $results as $row ) {
+			if ( $lastRow === null ||
+				$lastRow->page_namespace != $row->page_namespace ||
+				$lastRow->page_title != $row->page_title ) {
+				if ( $lastRow !== null ) {
+					$output = '';
+					if ( $this->dumpUploads ) {
+						$output .= $this->writer->writeUploads( $lastRow, $this->dumpUploadFileContents );
 					}
-					$output = $this->writer->openPage( $row );
-					$this->sink->writeOpenPage( $row, $output );
+					$output .= $this->writer->closePage();
+					$this->sink->writeClosePage( $output );
 				}
-				$output = $this->writer->writeRevision( $row );
-				$this->sink->writeRevision( $row, $output );
-				$lastRow = $row;
+				$output = $this->writer->openPage( $row );
+				$this->sink->writeOpenPage( $row, $output );
 			}
-		} elseif ( $lastRow !== null ) {
-			// Empty resultset means done with all batches  Close off final page element (if any).
-			$output = '';
-			if ( $this->dumpUploads ) {
-				$output .= $this->writer->writeUploads( $lastRow, $this->dumpUploadFileContents );
-			}
-			$output .= $this->author_list;
-			$output .= $this->writer->closePage();
-			$this->sink->writeClosePage( $output );
-			$lastRow = null;
+			$output = $this->writer->writeRevision( $row );
+			$this->sink->writeRevision( $row, $output );
+			$lastRow = $row;
 		}
 
 		return $lastRow;
+	}
+
+	/**
+	 * Final page stream output, after all batches are complete
+	 *
+	 * @param object $lastRow the last row output from the last batch (or null if none)
+	 */
+	protected function finishPageStreamOutput( $lastRow ) {
+		$output = '';
+		if ( $this->dumpUploads ) {
+			$output .= $this->writer->writeUploads( $lastRow, $this->dumpUploadFileContents );
+		}
+		$output .= $this->author_list;
+		$output .= $this->writer->closePage();
+		$this->sink->writeClosePage( $output );
 	}
 
 	/**
