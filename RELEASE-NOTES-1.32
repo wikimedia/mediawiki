@@ -607,6 +607,11 @@ because of Phabricator reports.
   OutputPage::addWikiTextAsContent() instead, which ensures the output is
   tidy and clarifies whether content-language specific postprocessing should
   be done on the text.
+* OutputPage::parse() and OutputPage::parseInline() have been deprecated
+  due to untidy output and inconsistent handling of wrapper divs and
+  interface/content language defaults.  Use OutputPage::parseAsContent(),
+  OutputPage::parseAsInterface(), or OutputPage::parseInlineAsInterface()
+  as appropriate.
 * QuickTemplate::msgHtml() and BaseTemplate::msgHtml() have been deprecated
   as they promote bad practises. I18n messages should always be properly
   escaped.
