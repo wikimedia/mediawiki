@@ -146,8 +146,8 @@ abstract class QuickTemplate {
 	function msgWiki( $msgKey ) {
 		global $wgOut;
 
-		$text = wfMessage( $msgKey )->text();
-		echo $wgOut->parse( $text );
+		$text = wfMessage( $msgKey )->plain();
+		echo $wgOut->parseAsInterface( $text );
 	}
 
 	/**
