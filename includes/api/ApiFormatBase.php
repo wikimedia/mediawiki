@@ -252,6 +252,7 @@ abstract class ApiFormatBase extends ApiBase {
 			$out = new OutputPage( $context );
 			$context->setOutput( $out );
 
+			$out->setRobotPolicy( 'noindex,nofollow' );
 			$out->addModuleStyles( 'mediawiki.apipretty' );
 			$out->setPageTitle( $context->msg( 'api-format-title' ) );
 
