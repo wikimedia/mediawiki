@@ -21,6 +21,7 @@ production.
 * …
 
 === New features in 1.33 ===
+* The 'GetPreferences' hook now receives an additional $context parameter.
 * …
 
 === External library changes in 1.33 ===
