@@ -112,7 +112,7 @@ class BlockRestriction {
 		$blockIds = array_keys( $restrictionList );
 		if ( !empty( $blockIds ) ) {
 			$result = $dbw->select(
-				[ 'ipblocks_restrictions', 'page' ],
+				[ 'ipblocks_restrictions' ],
 				[ 'ir_ipb_id', 'ir_type', 'ir_value' ],
 				[ 'ir_ipb_id' => $blockIds ],
 				__METHOD__,
