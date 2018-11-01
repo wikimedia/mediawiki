@@ -347,7 +347,13 @@ class SpecialUndelete extends SpecialPage {
 				);
 			}
 			$revs = $this->msg( 'undeleterevisions' )->numParams( $row->count )->parse();
-			$out->addHTML( "<li class='undeleteResult'>{$item} ({$revs})</li>\n" );
+			$out->addHTML(
+				Html::rawElement(
+					'li',
+					[ 'class' => 'undeleteResult' ],
+					"{$item} ({$revs})"
+				)
+			);
 		}
 		$result->free();
 		$out->addHTML( "</ul>\n" );

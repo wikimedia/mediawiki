@@ -1554,7 +1554,7 @@ abstract class Skin extends ContextSource {
 			// TTL in seconds
 			600,
 			function () use ( $notice ) {
-				return $this->getOutput()->parse( $notice );
+				return $this->getOutput()->parseAsInterface( $notice );
 			}
 		);
 

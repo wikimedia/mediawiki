@@ -1302,8 +1302,12 @@ class EditPage {
 					// Messages: undo-success, undo-failure, undo-main-slot-only, undo-norev,
 					// undo-nochange.
 					$class = ( $undoMsg == 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
-					$this->editFormPageTop .= $out->parse( "<div class=\"{$class}\">" .
-						$this->context->msg( 'undo-' . $undoMsg )->plain() . '</div>', true, /* interface */true );
+					$this->editFormPageTop .= Html::rawElement(
+						'div', [ 'class' => $class ],
+						$out->parseAsInterface(
+							$this->context->msg( 'undo-' . $undoMsg )->plain()
+						)
+					);
 				}
 
 				if ( $content === false ) {
@@ -3868,9 +3872,10 @@ ERROR;
 				// Do not put big scary notice, if previewing the empty
 				// string, which happens when you initially edit
 				// a category page, due to automatic preview-on-open.
-				$parsedNote = $out->parse( "<div class='previewnote'>" .
-					$this->context->msg( 'session_fail_preview_html' )->text() . "</div>",
-					true, /* interface */true );
+				$parsedNote = Html::rawElement( 'div', [ 'class' => 'previewnote' ],
+					$out->parseAsInterface(
+						$this->context->msg( 'session_fail_preview_html' )->plain()
+					) );
 			}
 			$this->incrementEditFailureStats( 'session_loss' );
 			return $parsedNote;
@@ -3945,7 +3950,7 @@ ERROR;
 				#   sitecsspreview, sitejsonpreview, sitejspreview
 				if ( $level && $format ) {
 					$note = "<div id='mw-{$level}{$format}preview'>" .
-						$this->context->msg( "{$level}{$format}preview" )->text() .
+						$this->context->msg( "{$level}{$format}preview" )->plain() .
 						' ' . $continueEditing . "</div>";
 				}
 			}
@@ -3979,20 +3984,27 @@ ERROR;
 				$this->contentFormat,
 				$ex->getMessage()
 			);
-			$note .= "\n\n" . $m->parse();
+			$note .= "\n\n" . $m->plain(); # gets parsed down below
 			$previewHTML = '';
 		}
 
 		if ( $this->isConflict ) {
-			$conflict = '<h2 id="mw-previewconflict">'
-				. $this->context->msg( 'previewconflict' )->escaped() . "</h2>\n";
+			$conflict = Html::rawElement(
+				'h2', [ 'id' => 'mw-previewconflict' ],
+				$this->context->msg( 'previewconflict' )->escaped()
+			);
 		} else {
 			$conflict = '<hr />';
 		}
 
-		$previewhead = "<div class='previewnote'>\n" .
-			'<h2 id="mw-previewheader">' . $this->context->msg( 'preview' )->escaped() . "</h2>" .
-			$out->parse( $note, true, /* interface */true ) . $conflict . "</div>\n";
+		$previewhead = Html::rawElement(
+			'div', [ 'class' => 'previewnote' ],
+			Html::rawElement(
+				'h2', [ 'id' => 'mw-previewheader' ],
+				$this->context->msg( 'preview' )->escaped()
+			) .
+			$out->parseAsInterface( $note ) . $conflict
+		);
 
 		$pageViewLang = $this->mTitle->getPageViewLanguage();
 		$attribs = [ 'lang' => $pageViewLang->getHtmlCode(), 'dir' => $pageViewLang->getDir(),

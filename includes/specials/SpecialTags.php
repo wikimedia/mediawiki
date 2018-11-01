@@ -307,7 +307,7 @@ class SpecialTags extends SpecialPage {
 
 			$headerText = $this->msg( 'tags-create-warnings-above', $tag,
 				count( $status->getWarningsArray() ) )->parseAsBlock() .
-				$out->parse( $status->getWikiText() ) .
+				$out->parseAsInterface( $status->getWikiText() ) .
 				$this->msg( 'tags-create-warnings-below' )->parseAsBlock();
 
 			$subform = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
