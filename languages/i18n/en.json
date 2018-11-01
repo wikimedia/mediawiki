@@ -3695,6 +3695,8 @@
 	"ellipsis": "...",
 	"percent": "$1%",
 	"parentheses": "($1)",
+	"parentheses-start": "(",
+	"parentheses-end": ")",
 	"brackets": "[$1]",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "← previous page",
