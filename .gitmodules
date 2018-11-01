@@ -1090,3 +1090,9 @@
 	url = https://github.com/miraheze/RottenLinks
 	branch = master
 	ignore = dirty
+[submodule "extensions/LinkTitles"]
+        path = extensions/LinkTitles
+        url = https://github.com/bovender/LinkTitles.git
+        branch = master
+        ignore = dirty
+
