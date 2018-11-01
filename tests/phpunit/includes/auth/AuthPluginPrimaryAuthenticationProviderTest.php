@@ -4,7 +4,7 @@ namespace MediaWiki\Auth;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\AuthPluginPrimaryAuthenticationProvider
+ * @covers \MediaWiki\Auth\AuthPluginPrimaryAuthenticationProvider
  */
 class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	public function testConstruction() {

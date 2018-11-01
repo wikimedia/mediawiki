@@ -4,7 +4,7 @@ namespace MediaWiki\Auth;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\TemporaryPasswordAuthenticationRequest
+ * @covers \MediaWiki\Auth\TemporaryPasswordAuthenticationRequest
  */
 class TemporaryPasswordAuthenticationRequestTest extends AuthenticationRequestTestCase {
 

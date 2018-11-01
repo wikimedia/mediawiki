@@ -6,7 +6,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\RememberMeAuthenticationRequest
+ * @covers \MediaWiki\Auth\RememberMeAuthenticationRequest
  */
 class RememberMeAuthenticationRequestTest extends AuthenticationRequestTestCase {
 

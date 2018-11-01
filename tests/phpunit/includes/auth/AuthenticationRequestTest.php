@@ -4,7 +4,7 @@ namespace MediaWiki\Auth;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\AuthenticationRequest
+ * @covers \MediaWiki\Auth\AuthenticationRequest
  */
 class AuthenticationRequestTest extends \MediaWikiTestCase {
 	public function testBasics() {

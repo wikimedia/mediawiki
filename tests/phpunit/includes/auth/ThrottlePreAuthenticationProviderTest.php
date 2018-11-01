@@ -3,11 +3,12 @@
 namespace MediaWiki\Auth;
 
 use Wikimedia\TestingAccessWrapper;
+use stdClass;
 
 /**
  * @group AuthManager
  * @group Database
- * @covers MediaWiki\Auth\ThrottlePreAuthenticationProvider
+ * @covers \MediaWiki\Auth\ThrottlePreAuthenticationProvider
  */
 class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 	public function testConstructor() {

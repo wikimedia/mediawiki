@@ -6,7 +6,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\AbstractAuthenticationProvider
+ * @covers \MediaWiki\Auth\AbstractAuthenticationProvider
  */
 class AbstractAuthenticationProviderTest extends \MediaWikiTestCase {
 	public function testAbstractAuthenticationProvider() {

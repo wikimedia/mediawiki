@@ -8,7 +8,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group AuthManager
  * @group Database
- * @covers MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider
+ * @covers \MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider
  */
 class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 
