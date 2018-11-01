@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.2
+ * OOUI v0.29.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-10-08T22:43:02Z
+ * Date: 2018-11-01T02:03:40Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -266,6 +266,27 @@
 
 
 
+.oo-ui-labelElement .oo-ui-labelElement-label,
+.oo-ui-labelElement.oo-ui-labelElement-label {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.oo-ui-labelElement-invisible {
+  display: block;
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.oo-ui-labelElement .oo-ui-labelElement-label-highlight {
+  font-weight: bold;
+}
+
 .oo-ui-iconElement-icon {
   background-size: contain;
   background-position: center center;
@@ -310,16 +331,6 @@
   top: auto;
   height: 0.9375em;
   opacity: 0.8;
-}
-
-.oo-ui-labelElement .oo-ui-labelElement-label,
-.oo-ui-labelElement.oo-ui-labelElement-label {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.oo-ui-labelElement .oo-ui-labelElement-label-highlight {
-  font-weight: bold;
 }
 
 .oo-ui-pendingElement-pending {
@@ -375,18 +386,6 @@
 }
 .oo-ui-fieldLayout .oo-ui-fieldLayout-help {
   float: right;
-}
-.oo-ui-fieldLayout .oo-ui-fieldLayout-help > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
-  display: block;
-  position: absolute !important;
-  /* stylelint-disable-line declaration-no-important */
-  clip: rect(1px, 1px, 1px, 1px);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  overflow: hidden;
 }
 .oo-ui-fieldLayout .oo-ui-fieldLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
   z-index: 1;
@@ -529,18 +528,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help {
   float: right;
-}
-.oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
-  display: block;
-  position: absolute !important;
-  /* stylelint-disable-line declaration-no-important */
-  clip: rect(1px, 1px, 1px, 1px);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  overflow: hidden;
 }
 .oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
   z-index: 1;
@@ -723,6 +710,14 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 
 .oo-ui-iconWidget {
   vertical-align: middle;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  clip: auto;
+  margin: 0;
+  text-indent: -9999px;
   line-height: 2.5em;
   display: inline-block;
   position: static;
@@ -736,6 +731,14 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 
 .oo-ui-indicatorWidget {
   vertical-align: middle;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  clip: auto;
+  margin: 0;
+  text-indent: -9999px;
   line-height: 2.5em;
   margin: 0.46875em;
   display: inline-block;
@@ -756,11 +759,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 
 .oo-ui-buttonGroupWidget {
   display: inline-block;
-  white-space: nowrap;
   border-radius: 3px;
   margin-right: 0.5em;
   z-index: 0;
   position: relative;
+  padding-bottom: 1px;
 }
 .oo-ui-buttonGroupWidget .oo-ui-buttonWidget.oo-ui-buttonElement-active .oo-ui-buttonElement-button {
   cursor: default;
@@ -776,14 +779,15 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-buttonGroupWidget .oo-ui-buttonElement-framed .oo-ui-buttonElement-button {
   border-radius: 0;
-  margin-left: -1px;
+  margin-right: -1px;
+  margin-bottom: -1px;
 }
 .oo-ui-buttonGroupWidget .oo-ui-buttonElement-framed:first-child .oo-ui-buttonElement-button {
   border-bottom-left-radius: 3px;
   border-top-left-radius: 3px;
-  margin-left: 0;
 }
 .oo-ui-buttonGroupWidget .oo-ui-buttonElement-framed:last-child .oo-ui-buttonElement-button {
+  margin-right: 0;
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
 }
@@ -1309,6 +1313,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted.oo-ui-optionWidget-selected {
   background-color: #e1f3ff;
 }
+.oo-ui-menuOptionWidget.oo-ui-widget-enabled.oo-ui-optionWidget {
+  color: #333;
+}
 
 .oo-ui-menuSectionOptionWidget {
   padding: 0.33em 0.75em;
@@ -1321,6 +1328,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-dropdownWidget {
   display: inline-block;
   position: relative;
+  vertical-align: middle;
   width: 100%;
   max-width: 50em;
   background-color: #fff;

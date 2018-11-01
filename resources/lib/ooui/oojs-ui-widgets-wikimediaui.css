@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.2
+ * OOUI v0.29.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-10-08T22:43:02Z
+ * Date: 2018-11-01T02:03:40Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -75,21 +75,21 @@
 .oo-ui-indexLayout.oo-ui-menuLayout > .oo-ui-menuLayout-menu {
   height: auto;
 }
-.oo-ui-indexLayout.oo-ui-menuLayout-expanded.oo-ui-menuLayout > .oo-ui-menuLayout-menu {
+.oo-ui-indexLayout.oo-ui-menuLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-menu {
   height: 3em;
   white-space: nowrap;
 }
-.oo-ui-indexLayout.oo-ui-menuLayout-expanded.oo-ui-menuLayout > .oo-ui-menuLayout-content {
+.oo-ui-indexLayout.oo-ui-menuLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-content {
   top: 3em;
 }
 .oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout {
   padding: 1.42857143em;
 }
-.oo-ui-indexLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-menu {
-  height: 2.75em;
+.oo-ui-indexLayout.oo-ui-menuLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-menu {
+  height: 2.64285714em;
 }
-.oo-ui-indexLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-content {
-  top: 2.75em;
+.oo-ui-indexLayout.oo-ui-menuLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-content {
+  top: 2.64285714em;
 }
 
 .oo-ui-menuLayout {
@@ -199,11 +199,11 @@
 
 .oo-ui-buttonSelectWidget {
   display: inline-block;
-  white-space: nowrap;
   border-radius: 2px;
   margin-right: 0.5em;
   z-index: 0;
   position: relative;
+  padding-bottom: 1px;
 }
 .oo-ui-buttonSelectWidget:last-child {
   margin-right: 0;
@@ -212,15 +212,16 @@
   outline: 0;
 }
 .oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget .oo-ui-buttonElement-button {
-  margin-left: -1px;
+  margin-right: -1px;
+  margin-bottom: -1px;
   border-radius: 0;
 }
 .oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget:first-child .oo-ui-buttonElement-button {
-  margin-left: 0;
   border-bottom-left-radius: 2px;
   border-top-left-radius: 2px;
 }
 .oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget:last-child .oo-ui-buttonElement-button {
+  margin-right: 0;
   border-bottom-right-radius: 2px;
   border-top-right-radius: 2px;
 }
@@ -887,7 +888,7 @@
   background-color: transparent;
   color: #000;
   border: 0;
-  padding: 0.57142857em 0 0.5em 0.35714286em;
+  padding: 0.57142857em 0 0.5em 0.57142857em;
   font-family: inherit;
   font-size: inherit;
   line-height: 1.07142857em;
@@ -994,7 +995,7 @@
   margin: 0 0.28571429em 0.28571429em 0;
   border: 1px solid #a2a9b1;
   border-radius: 1.57142857em;
-  padding: 0 0.42857143em;
+  padding: 0 0.57142857em;
   line-height: 1.57142857em;
   vertical-align: middle;
 }
@@ -1006,6 +1007,10 @@
 }
 .oo-ui-tagItemWidget.oo-ui-labelElement:not( .oo-ui-tagItemWidget-fixed ) .oo-ui-labelElement-label {
   cursor: text;
+}
+.oo-ui-tagItemWidget.oo-ui-labelElement .oo-ui-labelElement-label {
+  font-size: 0.92857143em;
+  line-height: 1.61538462em;
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled {
   color: #222;

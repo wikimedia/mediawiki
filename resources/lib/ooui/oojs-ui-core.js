@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.2
+ * OOUI v0.29.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-10-08T22:42:55Z
+ * Date: 2018-11-01T02:03:33Z
  */
 ( function ( OO ) {
 
@@ -384,7 +384,9 @@ OO.ui.infuse = function ( idOrNode, config ) {
 		// Label for the file selection widget when no file is currently selected
 		'ooui-selectfile-placeholder': 'No file is selected',
 		// Label for the file selection widget's drop target
-		'ooui-selectfile-dragdrop-placeholder': 'Drop file here'
+		'ooui-selectfile-dragdrop-placeholder': 'Drop file here',
+		// Label for the help icon attached to a form field
+		'ooui-field-help': 'Help'
 	};
 
 	/**
@@ -1636,6 +1638,20 @@ OO.ui.Layout = function OoUiLayout( config ) {
 OO.inheritClass( OO.ui.Layout, OO.ui.Element );
 OO.mixinClass( OO.ui.Layout, OO.EventEmitter );
 
+/* Methods */
+
+/**
+ * Reset scroll offsets
+ *
+ * @chainable
+ */
+OO.ui.Layout.prototype.resetScroll = function () {
+	this.$element[ 0 ].scrollTop = 0;
+	// TODO: Reset scrollLeft in an RTL-aware manner, see OO.ui.Element.static.getScrollLeft.
+
+	return this;
+};
+
 /**
  * Widgets are compositions of one or more OOUI elements that users can both view
  * and interact with. All widgets can be configured and modified via a standard API,
@@ -2182,7 +2198,7 @@ OO.ui.mixin.ButtonElement.prototype.setButtonElement = function ( $button ) {
 		} );
 
 	// Add `role="button"` on `<a>` elements, where it's needed
-	// `toUppercase()` is added for XHTML documents
+	// `toUpperCase()` is added for XHTML documents
 	if ( this.$button.prop( 'tagName' ).toUpperCase() === 'A' ) {
 		this.$button.attr( 'role', 'button' );
 	}
@@ -2578,6 +2594,222 @@ OO.ui.mixin.GroupElement.prototype.clearItems = function () {
 };
 
 /**
+ * LabelElement is often mixed into other classes to generate a label, which
+ * helps identify the function of an interface element.
+ * See the [OOUI documentation on MediaWiki] [1] for more information.
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Labels
+ *
+ * @abstract
+ * @class
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {jQuery} [$label] The label element created by the class. If this
+ *  configuration is omitted, the label element will use a generated `<span>`.
+ * @cfg {jQuery|string|Function|OO.ui.HtmlSnippet} [label] The label text. The label can be specified
+ *  as a plaintext string, a jQuery selection of elements, or a function that will produce a string
+ *  in the future. See the [OOUI documentation on MediaWiki] [2] for examples.
+ *  [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Labels
+ * @cfg {boolean} [invisibleLabel] Whether the label should be visually hidden (but still accessible
+ *  to screen-readers).
+ */
+OO.ui.mixin.LabelElement = function OoUiMixinLabelElement( config ) {
+	// Configuration initialization
+	config = config || {};
+
+	// Properties
+	this.$label = null;
+	this.label = null;
+	this.invisibleLabel = null;
+
+	// Initialization
+	this.setLabel( config.label || this.constructor.static.label );
+	this.setLabelElement( config.$label || $( '<span>' ) );
+	this.setInvisibleLabel( config.invisibleLabel );
+};
+
+/* Setup */
+
+OO.initClass( OO.ui.mixin.LabelElement );
+
+/* Events */
+
+/**
+ * @event labelChange
+ * @param {string} value
+ */
+
+/* Static Properties */
+
+/**
+ * The label text. The label can be specified as a plaintext string, a function that will
+ * produce a string in the future, or `null` for no label. The static value will
+ * be overridden if a label is specified with the #label config option.
+ *
+ * @static
+ * @inheritable
+ * @property {string|Function|null}
+ */
+OO.ui.mixin.LabelElement.static.label = null;
+
+/* Static methods */
+
+/**
+ * Highlight the first occurrence of the query in the given text
+ *
+ * @param {string} text Text
+ * @param {string} query Query to find
+ * @param {Function} [compare] Optional string comparator, e.g. Intl.Collator().compare
+ * @return {jQuery} Text with the first match of the query
+ *  sub-string wrapped in highlighted span
+ */
+OO.ui.mixin.LabelElement.static.highlightQuery = function ( text, query, compare ) {
+	var i, tLen, qLen,
+		offset = -1,
+		$result = $( '<span>' );
+
+	if ( compare ) {
+		tLen = text.length;
+		qLen = query.length;
+		for ( i = 0; offset === -1 && i <= tLen - qLen; i++ ) {
+			if ( compare( query, text.slice( i, i + qLen ) ) === 0 ) {
+				offset = i;
+			}
+		}
+	} else {
+		offset = text.toLowerCase().indexOf( query.toLowerCase() );
+	}
+
+	if ( !query.length || offset === -1 ) {
+		$result.text( text );
+	} else {
+		$result.append(
+			document.createTextNode( text.slice( 0, offset ) ),
+			$( '<span>' )
+				.addClass( 'oo-ui-labelElement-label-highlight' )
+				.text( text.slice( offset, offset + query.length ) ),
+			document.createTextNode( text.slice( offset + query.length ) )
+		);
+	}
+	return $result.contents();
+};
+
+/* Methods */
+
+/**
+ * Set the label element.
+ *
+ * If an element is already set, it will be cleaned up before setting up the new element.
+ *
+ * @param {jQuery} $label Element to use as label
+ */
+OO.ui.mixin.LabelElement.prototype.setLabelElement = function ( $label ) {
+	if ( this.$label ) {
+		this.$label.removeClass( 'oo-ui-labelElement-label' ).empty();
+	}
+
+	this.$label = $label.addClass( 'oo-ui-labelElement-label' );
+	this.setLabelContent( this.label );
+};
+
+/**
+ * Set the label.
+ *
+ * An empty string will result in the label being hidden. A string containing only whitespace will
+ * be converted to a single `&nbsp;`.
+ *
+ * @param {jQuery|string|OO.ui.HtmlSnippet|Function|null} label Label nodes; text; a function that returns nodes or
+ *  text; or null for no label
+ * @chainable
+ */
+OO.ui.mixin.LabelElement.prototype.setLabel = function ( label ) {
+	label = typeof label === 'function' ? OO.ui.resolveMsg( label ) : label;
+	label = ( ( typeof label === 'string' || label instanceof jQuery ) && label.length ) || ( label instanceof OO.ui.HtmlSnippet && label.toString().length ) ? label : null;
+
+	if ( this.label !== label ) {
+		if ( this.$label ) {
+			this.setLabelContent( label );
+		}
+		this.label = label;
+		this.emit( 'labelChange' );
+	}
+
+	this.$element.toggleClass( 'oo-ui-labelElement', !!this.label && !this.invisibleLabel );
+
+	return this;
+};
+
+/**
+ * Set whether the label should be visually hidden (but still accessible to screen-readers).
+ *
+ * @param {boolean} invisibleLabel
+ * @chainable
+ */
+OO.ui.mixin.LabelElement.prototype.setInvisibleLabel = function ( invisibleLabel ) {
+	invisibleLabel = !!invisibleLabel;
+
+	if ( this.invisibleLabel !== invisibleLabel ) {
+		this.invisibleLabel = invisibleLabel;
+		this.emit( 'labelChange' );
+	}
+
+	this.$label.toggleClass( 'oo-ui-labelElement-invisible', this.invisibleLabel );
+	// Pretend that there is no label, a lot of CSS has been written with this assumption
+	this.$element.toggleClass( 'oo-ui-labelElement', !!this.label && !this.invisibleLabel );
+
+	return this;
+};
+
+/**
+ * Set the label as plain text with a highlighted query
+ *
+ * @param {string} text Text label to set
+ * @param {string} query Substring of text to highlight
+ * @param {Function} [compare] Optional string comparator, e.g. Intl.Collator().compare
+ * @chainable
+ */
+OO.ui.mixin.LabelElement.prototype.setHighlightedQuery = function ( text, query, compare ) {
+	return this.setLabel( this.constructor.static.highlightQuery( text, query, compare ) );
+};
+
+/**
+ * Get the label.
+ *
+ * @return {jQuery|string|Function|null} Label nodes; text; a function that returns nodes or
+ *  text; or null for no label
+ */
+OO.ui.mixin.LabelElement.prototype.getLabel = function () {
+	return this.label;
+};
+
+/**
+ * Set the content of the label.
+ *
+ * Do not call this method until after the label element has been set by #setLabelElement.
+ *
+ * @private
+ * @param {jQuery|string|Function|null} label Label nodes; text; a function that returns nodes or
+ *  text; or null for no label
+ */
+OO.ui.mixin.LabelElement.prototype.setLabelContent = function ( label ) {
+	if ( typeof label === 'string' ) {
+		if ( label.match( /^\s*$/ ) ) {
+			// Convert whitespace only string to a single non-breaking space
+			this.$label.html( '&nbsp;' );
+		} else {
+			this.$label.text( label );
+		}
+	} else if ( label instanceof OO.ui.HtmlSnippet ) {
+		this.$label.html( label.toString() );
+	} else if ( label instanceof jQuery ) {
+		this.$label.empty().append( label );
+	} else {
+		this.$label.empty();
+	}
+};
+
+/**
  * IconElement is often mixed into other classes to generate an icon.
  * Icons are graphics, about the size of normal text. They are used to aid the user
  * in locating a control or to convey information in a space-efficient way. See the
@@ -2947,197 +3179,6 @@ OO.ui.mixin.IndicatorElement.prototype.getIndicatorTitle = function () {
 };
 
 /**
- * LabelElement is often mixed into other classes to generate a label, which
- * helps identify the function of an interface element.
- * See the [OOUI documentation on MediaWiki] [1] for more information.
- *
- * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Labels
- *
- * @abstract
- * @class
- *
- * @constructor
- * @param {Object} [config] Configuration options
- * @cfg {jQuery} [$label] The label element created by the class. If this
- *  configuration is omitted, the label element will use a generated `<span>`.
- * @cfg {jQuery|string|Function|OO.ui.HtmlSnippet} [label] The label text. The label can be specified
- *  as a plaintext string, a jQuery selection of elements, or a function that will produce a string
- *  in the future. See the [OOUI documentation on MediaWiki] [2] for examples.
- *  [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Labels
- */
-OO.ui.mixin.LabelElement = function OoUiMixinLabelElement( config ) {
-	// Configuration initialization
-	config = config || {};
-
-	// Properties
-	this.$label = null;
-	this.label = null;
-
-	// Initialization
-	this.setLabel( config.label || this.constructor.static.label );
-	this.setLabelElement( config.$label || $( '<span>' ) );
-};
-
-/* Setup */
-
-OO.initClass( OO.ui.mixin.LabelElement );
-
-/* Events */
-
-/**
- * @event labelChange
- * @param {string} value
- */
-
-/* Static Properties */
-
-/**
- * The label text. The label can be specified as a plaintext string, a function that will
- * produce a string in the future, or `null` for no label. The static value will
- * be overridden if a label is specified with the #label config option.
- *
- * @static
- * @inheritable
- * @property {string|Function|null}
- */
-OO.ui.mixin.LabelElement.static.label = null;
-
-/* Static methods */
-
-/**
- * Highlight the first occurrence of the query in the given text
- *
- * @param {string} text Text
- * @param {string} query Query to find
- * @param {Function} [compare] Optional string comparator, e.g. Intl.Collator().compare
- * @return {jQuery} Text with the first match of the query
- *  sub-string wrapped in highlighted span
- */
-OO.ui.mixin.LabelElement.static.highlightQuery = function ( text, query, compare ) {
-	var i, tLen, qLen,
-		offset = -1,
-		$result = $( '<span>' );
-
-	if ( compare ) {
-		tLen = text.length;
-		qLen = query.length;
-		for ( i = 0; offset === -1 && i <= tLen - qLen; i++ ) {
-			if ( compare( query, text.slice( i, i + qLen ) ) === 0 ) {
-				offset = i;
-			}
-		}
-	} else {
-		offset = text.toLowerCase().indexOf( query.toLowerCase() );
-	}
-
-	if ( !query.length || offset === -1 ) {
-		$result.text( text );
-	} else {
-		$result.append(
-			document.createTextNode( text.slice( 0, offset ) ),
-			$( '<span>' )
-				.addClass( 'oo-ui-labelElement-label-highlight' )
-				.text( text.slice( offset, offset + query.length ) ),
-			document.createTextNode( text.slice( offset + query.length ) )
-		);
-	}
-	return $result.contents();
-};
-
-/* Methods */
-
-/**
- * Set the label element.
- *
- * If an element is already set, it will be cleaned up before setting up the new element.
- *
- * @param {jQuery} $label Element to use as label
- */
-OO.ui.mixin.LabelElement.prototype.setLabelElement = function ( $label ) {
-	if ( this.$label ) {
-		this.$label.removeClass( 'oo-ui-labelElement-label' ).empty();
-	}
-
-	this.$label = $label.addClass( 'oo-ui-labelElement-label' );
-	this.setLabelContent( this.label );
-};
-
-/**
- * Set the label.
- *
- * An empty string will result in the label being hidden. A string containing only whitespace will
- * be converted to a single `&nbsp;`.
- *
- * @param {jQuery|string|OO.ui.HtmlSnippet|Function|null} label Label nodes; text; a function that returns nodes or
- *  text; or null for no label
- * @chainable
- */
-OO.ui.mixin.LabelElement.prototype.setLabel = function ( label ) {
-	label = typeof label === 'function' ? OO.ui.resolveMsg( label ) : label;
-	label = ( ( typeof label === 'string' || label instanceof jQuery ) && label.length ) || ( label instanceof OO.ui.HtmlSnippet && label.toString().length ) ? label : null;
-
-	if ( this.label !== label ) {
-		if ( this.$label ) {
-			this.setLabelContent( label );
-		}
-		this.label = label;
-		this.emit( 'labelChange' );
-	}
-
-	this.$element.toggleClass( 'oo-ui-labelElement', !!this.label );
-
-	return this;
-};
-
-/**
- * Set the label as plain text with a highlighted query
- *
- * @param {string} text Text label to set
- * @param {string} query Substring of text to highlight
- * @param {Function} [compare] Optional string comparator, e.g. Intl.Collator().compare
- * @chainable
- */
-OO.ui.mixin.LabelElement.prototype.setHighlightedQuery = function ( text, query, compare ) {
-	return this.setLabel( this.constructor.static.highlightQuery( text, query, compare ) );
-};
-
-/**
- * Get the label.
- *
- * @return {jQuery|string|Function|null} Label nodes; text; a function that returns nodes or
- *  text; or null for no label
- */
-OO.ui.mixin.LabelElement.prototype.getLabel = function () {
-	return this.label;
-};
-
-/**
- * Set the content of the label.
- *
- * Do not call this method until after the label element has been set by #setLabelElement.
- *
- * @private
- * @param {jQuery|string|Function|null} label Label nodes; text; a function that returns nodes or
- *  text; or null for no label
- */
-OO.ui.mixin.LabelElement.prototype.setLabelContent = function ( label ) {
-	if ( typeof label === 'string' ) {
-		if ( label.match( /^\s*$/ ) ) {
-			// Convert whitespace only string to a single non-breaking space
-			this.$label.html( '&nbsp;' );
-		} else {
-			this.$label.text( label );
-		}
-	} else if ( label instanceof OO.ui.HtmlSnippet ) {
-		this.$label.html( label.toString() );
-	} else if ( label instanceof jQuery ) {
-		this.$label.empty().append( label );
-	} else {
-		this.$label.empty();
-	}
-};
-
-/**
  * The FlaggedElement class is an attribute mixin, meaning that it is used to add
  * additional functionality to an element created by another class. The class provides
  * a ‘flags’ property assigned the name (or an array of names) of styling flags,
@@ -3403,7 +3444,7 @@ OO.ui.mixin.TitledElement.static.title = null;
 /**
  * Set the titled element.
  *
- * This method is used to retarget a titledElement mixin so that its functionality applies to the specified element.
+ * This method is used to retarget a TitledElement mixin so that its functionality applies to the specified element.
  * If an element is already set, the mixin’s effect on that element is removed before the new element is set up.
  *
  * @param {jQuery} $titled Element that should use the 'titled' functionality
@@ -3536,7 +3577,7 @@ OO.ui.mixin.AccessKeyedElement.static.accessKey = null;
  * This method is used to retarget a AccessKeyedElement mixin so that its functionality applies to the specified element.
  * If an element is already set, the mixin's effect on that element is removed before the new element is set up.
  *
- * @param {jQuery} $accessKeyed Element that should use the 'accesskeyes' functionality
+ * @param {jQuery} $accessKeyed Element that should use the 'accesskeyed' functionality
  */
 OO.ui.mixin.AccessKeyedElement.prototype.setAccessKeyedElement = function ( $accessKeyed ) {
 	if ( this.$accessKeyed ) {
@@ -3944,6 +3985,7 @@ OO.ui.ButtonGroupWidget.prototype.simulateLabelClick = function () {
  * @extends OO.ui.Widget
  * @mixins OO.ui.mixin.IconElement
  * @mixins OO.ui.mixin.TitledElement
+ * @mixins OO.ui.mixin.LabelElement
  * @mixins OO.ui.mixin.FlaggedElement
  *
  * @constructor
@@ -3959,10 +4001,14 @@ OO.ui.IconWidget = function OoUiIconWidget( config ) {
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, $.extend( {}, config, { $icon: this.$element } ) );
 	OO.ui.mixin.TitledElement.call( this, $.extend( {}, config, { $titled: this.$element } ) );
+	OO.ui.mixin.LabelElement.call( this, $.extend( {}, config, { $label: this.$element, invisibleLabel: true } ) );
 	OO.ui.mixin.FlaggedElement.call( this, $.extend( {}, config, { $flagged: this.$element } ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-iconWidget' );
+	// Remove class added by LabelElement initialization. It causes unexpected CSS to apply when
+	// nested in other widgets, because this widget used to not mix in LabelElement.
+	this.$element.removeClass( 'oo-ui-labelElement-label' );
 };
 
 /* Setup */
@@ -3970,6 +4016,7 @@ OO.ui.IconWidget = function OoUiIconWidget( config ) {
 OO.inheritClass( OO.ui.IconWidget, OO.ui.Widget );
 OO.mixinClass( OO.ui.IconWidget, OO.ui.mixin.IconElement );
 OO.mixinClass( OO.ui.IconWidget, OO.ui.mixin.TitledElement );
+OO.mixinClass( OO.ui.IconWidget, OO.ui.mixin.LabelElement );
 OO.mixinClass( OO.ui.IconWidget, OO.ui.mixin.FlaggedElement );
 
 /* Static Properties */
@@ -4004,6 +4051,7 @@ OO.ui.IconWidget.static.tagName = 'span';
  * @extends OO.ui.Widget
  * @mixins OO.ui.mixin.IndicatorElement
  * @mixins OO.ui.mixin.TitledElement
+ * @mixins OO.ui.mixin.LabelElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -4018,9 +4066,13 @@ OO.ui.IndicatorWidget = function OoUiIndicatorWidget( config ) {
 	// Mixin constructors
 	OO.ui.mixin.IndicatorElement.call( this, $.extend( {}, config, { $indicator: this.$element } ) );
 	OO.ui.mixin.TitledElement.call( this, $.extend( {}, config, { $titled: this.$element } ) );
+	OO.ui.mixin.LabelElement.call( this, $.extend( {}, config, { $label: this.$element, invisibleLabel: true } ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-indicatorWidget' );
+	// Remove class added by LabelElement initialization. It causes unexpected CSS to apply when
+	// nested in other widgets, because this widget used to not mix in LabelElement.
+	this.$element.removeClass( 'oo-ui-labelElement-label' );
 };
 
 /* Setup */
@@ -4028,6 +4080,7 @@ OO.ui.IndicatorWidget = function OoUiIndicatorWidget( config ) {
 OO.inheritClass( OO.ui.IndicatorWidget, OO.ui.Widget );
 OO.mixinClass( OO.ui.IndicatorWidget, OO.ui.mixin.IndicatorElement );
 OO.mixinClass( OO.ui.IndicatorWidget, OO.ui.mixin.TitledElement );
+OO.mixinClass( OO.ui.IndicatorWidget, OO.ui.mixin.LabelElement );
 
 /* Static Properties */
 
@@ -4277,7 +4330,7 @@ OO.ui.mixin.PendingElement.prototype.popPending = function () {
  *  'center': Vertically align the center with $floatableContainer's center
  * @cfg {string} [horizontalPosition='start'] Where to position $floatable horizontally:
  *  'before': Directly before $floatableContainer, aligning f's end edge with fC's start edge
- *  'after': Directly after $floatableContainer, algining f's start edge with fC's end edge
+ *  'after': Directly after $floatableContainer, aligning f's start edge with fC's end edge
  *  'start': Align the start (left in LTR, right in RTL) edge with $floatableContainer's start edge
  *  'end': Align the end (right in LTR, left in RTL) edge with $floatableContainer's end edge
  *  'center': Horizontally align the center with $floatableContainer's center
@@ -4398,7 +4451,7 @@ OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positionin
 		this.positioning = positioning;
 
 		this.needsCustomPosition =
-			this.verticalPostion !== 'below' ||
+			this.verticalPosition !== 'below' ||
 			this.horizontalPosition !== 'start' ||
 			!OO.ui.contains( this.$floatableContainer[ 0 ], this.$floatable[ 0 ] );
 
@@ -6779,7 +6832,7 @@ OO.ui.SelectWidget.prototype.unbindDocumentKeyPressListener = function () {
 
 // Deprecated alias since 0.28.3
 OO.ui.SelectWidget.prototype.unbindKeyPressListener = function () {
-	OO.ui.warnDeprecation( 'unbindDocumentKeyPressListener is deprecated, use unbindDocumentKeyPressListener instead' );
+	OO.ui.warnDeprecation( 'unbindKeyPressListener is deprecated, use unbindDocumentKeyPressListener instead' );
 	this.unbindDocumentKeyPressListener.apply( this, arguments );
 };
 
@@ -7871,7 +7924,7 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 		click: this.onClick.bind( this ),
 		keydown: this.onKeyDown.bind( this ),
 		// Hack? Handle type-to-search when menu is not expanded and not handling its own events
-		keypress: this.menu.onKeyPressHandler,
+		keypress: this.menu.onDocumentKeyPressHandler,
 		blur: this.menu.clearKeyPressBuffer.bind( this.menu )
 	} );
 	this.menu.connect( this, {
@@ -11409,7 +11462,7 @@ OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
  * - accessed via a help icon that appears in the upper right corner of the rendered field layout, or
  * - shown as a subtle explanation below the label.
  *
- * If the help text is brief, or is essential to always espose it, set `helpInline` to `true`. If it
+ * If the help text is brief, or is essential to always expose it, set `helpInline` to `true`. If it
  * is long or not essential, leave `helpInline` to its default, `false`.
  *
  * Please see the [OOUI documentation on MediaWiki] [1] for examples and more information.
@@ -11734,7 +11787,8 @@ OO.ui.FieldLayout.prototype.createHelpElement = function ( help, $overlay ) {
 			classes: [ 'oo-ui-fieldLayout-help' ],
 			framed: false,
 			icon: 'info',
-			label: OO.ui.msg( 'ooui-field-help' )
+			label: OO.ui.msg( 'ooui-field-help' ),
+			invisibleLabel: true
 		} );
 		if ( help instanceof OO.ui.HtmlSnippet ) {
 			helpWidget.getPopup().$body.html( help.toString() );
@@ -11905,7 +11959,8 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 			classes: [ 'oo-ui-fieldsetLayout-help' ],
 			framed: false,
 			icon: 'info',
-			label: OO.ui.msg( 'ooui-field-help' )
+			label: OO.ui.msg( 'ooui-field-help' ),
+			invisibleLabel: true
 		} );
 		if ( config.help instanceof OO.ui.HtmlSnippet ) {
 			this.popupButtonWidget.getPopup().$body.html( config.help.toString() );
