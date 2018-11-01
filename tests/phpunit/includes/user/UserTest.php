@@ -3,6 +3,7 @@
 define( 'NS_UNITTEST', 5600 );
 define( 'NS_UNITTEST_TALK', 5601 );
 
+use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
@@ -11,6 +12,10 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  */
 class UserTest extends MediaWikiTestCase {
+
+	/** Constant for self::testIsBlockedFrom */
+	const USER_TALK_PAGE = '<user talk page>';
+
 	/**
 	 * @var User
 	 */
@@ -1207,6 +1212,82 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertSame( '', $user->blockedFor() );
 		$this->assertFalse( (bool)$user->isHidden() );
 		$this->assertFalse( $user->isBlockedFrom( $ut ) );
+	}
+
+	/**
+	 * @covers User::isBlockedFrom
+	 * @dataProvider provideIsBlockedFrom
+	 * @param string|null $title Title to test.
+	 * @param bool $expect Expected result from User::isBlockedFrom()
+	 * @param array $options Additional test options:
+	 *  - 'blockAllowsUTEdit': (bool, default true) Value for $wgBlockAllowsUTEdit
+	 *  - 'allowUsertalk': (bool, default false) Passed to Block::__construct()
+	 *  - 'pageRestrictions': (array|null) If non-empty, page restriction titles for the block.
+	 */
+	public function testIsBlockedFrom( $title, $expect, array $options = [] ) {
+		$this->setMwGlobals( [
+			'wgBlockAllowsUTEdit' => $options['blockAllowsUTEdit'] ?? true,
+		] );
+
+		$user = $this->getTestUser()->getUser();
+
+		if ( $title === self::USER_TALK_PAGE ) {
+			$title = $user->getTalkPage();
+		} else {
+			$title = Title::newFromText( $title );
+		}
+
+		$restrictions = [];
+		foreach ( $options['pageRestrictions'] ?? [] as $pagestr ) {
+			$page = $this->getExistingTestPage(
+				$pagestr === self::USER_TALK_PAGE ? $user->getTalkPage() : $pagestr
+			);
+			$restrictions[] = new PageRestriction( 0, $page->getId() );
+		}
+
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+			'allowUsertalk' => $options['allowUsertalk'] ?? false,
+			'sitewide' => !$restrictions,
+		] );
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		if ( $restrictions ) {
+			$block->setRestrictions( $restrictions );
+		}
+		$block->insert();
+
+		try {
+			$this->assertSame( $expect, $user->isBlockedFrom( $title ) );
+		} finally {
+			$block->delete();
+		}
+	}
+
+	public static function provideIsBlockedFrom() {
+		return [
+			'Basic operation' => [ 'Test page', true ],
+			'User talk page, not allowed' => [ self::USER_TALK_PAGE, true, [
+				'allowUsertalk' => false,
+			] ],
+			'User talk page, allowed' => [ self::USER_TALK_PAGE, false, [
+				'allowUsertalk' => true,
+			] ],
+			'User talk page, allowed but $wgBlockAllowsUTEdit is false' => [ self::USER_TALK_PAGE, true, [
+				'allowUsertalk' => true,
+				'blockAllowsUTEdit' => false,
+			] ],
+
+			'Partial block, blocking the page' => [ 'Test page', true, [
+				'pageRestrictions' => [ 'Test page' ],
+			] ],
+			'Partial block, not blocking the page' => [ 'Test page 2', false, [
+				'pageRestrictions' => [ 'Test page' ],
+			] ],
+			'Partial block, overriding allowUsertalk' => [ self::USER_TALK_PAGE, true, [
+				'pageRestrictions' => [ self::USER_TALK_PAGE ],
+			] ],
+		];
 	}
 
 	/**

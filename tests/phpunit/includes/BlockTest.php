@@ -612,9 +612,9 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::preventsEdit
+	 * @covers Block::appliesToTitle
 	 */
-	public function testPreventsEditReturnsTrueOnSitewideBlock() {
+	public function testAppliesToTitleReturnsTrueOnSitewideBlock() {
 		$user = $this->getTestUser()->getUser();
 		$block = new Block( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
@@ -628,15 +628,19 @@ class BlockTest extends MediaWikiLangTestCase {
 
 		$title = $this->getExistingTestPage( 'Foo' )->getTitle();
 
-		$this->assertTrue( $block->preventsEdit( $title ) );
+		$this->assertTrue( $block->appliesToTitle( $title ) );
+
+		// appliesToTitle() ignores allowUsertalk
+		$title = $user->getTalkPage();
+		$this->assertTrue( $block->appliesToTitle( $title ) );
 
 		$block->delete();
 	}
 
 	/**
-	 * @covers Block::preventsEdit
+	 * @covers Block::appliesToTitle
 	 */
-	public function testPreventsEditOnPartialBlock() {
+	public function testAppliesToTitleOnPartialBlock() {
 		$user = $this->getTestUser()->getUser();
 		$block = new Block( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
@@ -654,72 +658,10 @@ class BlockTest extends MediaWikiLangTestCase {
 		$pageRestriction = new PageRestriction( $block->getId(), $pageFoo->getId() );
 		BlockRestriction::insert( [ $pageRestriction ] );
 
-		$this->assertTrue( $block->preventsEdit( $pageFoo->getTitle() ) );
-		$this->assertFalse( $block->preventsEdit( $pageBar->getTitle() ) );
+		$this->assertTrue( $block->appliesToTitle( $pageFoo->getTitle() ) );
+		$this->assertFalse( $block->appliesToTitle( $pageBar->getTitle() ) );
 
 		$block->delete();
 	}
 
-	/**
-	 * @covers Block::preventsEdit
-	 * @dataProvider preventsEditOnUserTalkProvider
-	 */
-	public function testPreventsEditOnUserTalkPage(
-		$allowUsertalk, $sitewide, $result, $blockAllowsUTEdit = true
-	) {
-		$this->setMwGlobals( [
-			'wgBlockAllowsUTEdit' => $blockAllowsUTEdit,
-		] );
-
-		$user = $this->getTestUser()->getUser();
-		$block = new Block( [
-			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
-			'allowUsertalk' => $allowUsertalk,
-			'sitewide' => $sitewide
-		] );
-
-		$block->setTarget( $user );
-		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$block->insert();
-
-		$this->assertEquals( $result, $block->preventsEdit( $user->getTalkPage() ) );
-		$block->delete();
-	}
-
-	public function preventsEditOnUserTalkProvider() {
-		return [
-			[
-				'allowUsertalk' => false,
-				'sitewide' => true,
-				'result' => true,
-			],
-			[
-				'allowUsertalk' => true,
-				'sitewide' => true,
-				'result' => false,
-			],
-			[
-				'allowUsertalk' => true,
-				'sitewide' => false,
-				'result' => false,
-			],
-			[
-				'allowUsertalk' => false,
-				'sitewide' => false,
-				'result' => true,
-			],
-			[
-				'allowUsertalk' => true,
-				'sitewide' => true,
-				'result' => true,
-				'blockAllowsUTEdit' => false
-			],
-			[
-				'allowUsertalk' => true,
-				'sitewide' => false,
-				'result' => true,
-				'blockAllowsUTEdit' => false
-			],
-		];
-	}
 }
