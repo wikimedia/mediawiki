@@ -1,4 +1,29 @@
 # OOUI Release History
+## v0.29.3 / 2018-10-31
+### Features
+* LabelElement: Allow invisible accessibility labels (Bartosz Dziewoński)
+* PanelLayouts: Add #resetScroll method, and implement in complex layouts (Ed Sanders)
+
+### Styles
+* Allow ButtonGroupWidget/SelectWidget buttons to spill on to new lines (Bartosz Dziewoński)
+* icons: Visually center 'next' and 'previous' horizontally (Volker E.)
+* themes: Use base color for DecoratedOption-/MenuOptionWidget (Volker E.)
+* WikimediaUI theme: Make TagItemWidgets slightly less obstrusive (Volker E.)
+
+### Code
+* Add missing default for a localisation message (Bartosz Dziewoński)
+* Allow setting the label to "0" in PHP (Bartosz Dziewoński)
+* DropdownWidget: Fix keypress handling when menu is closed (Bartosz Dziewoński)
+* DropdownWidget: Fix vertical alignment with other widgets in some layouts (Volker E.)
+* FloatableElement: Fix typo in a condition causing it to always be true (Bartosz Dziewoński)
+* WikimediaUI theme: Fix specificity of IndexLayout override (Ed Sanders)
+* demos: Add ActionLayout with DropdownWidget demo (Volker E.)
+* demos: Restore lost PHP demos (Bartosz Dziewoński)
+* demos: Use 'previous' icon for one of the ToggleButtonWidgets (Volker E.)
+* tutorials: Fix navigation items position (Volker E.)
+* tutorials: Follow Wikimedia color in body default choice (Volker E.)
+
+
 ## v0.29.2 / 2018-10-08
 ### Code
 * Follow-up Ib00d6720: Fix KeyDown listener name in MenuSelectWidget (Ed Sanders)
