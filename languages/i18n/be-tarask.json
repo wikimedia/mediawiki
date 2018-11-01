@@ -3909,6 +3909,7 @@
 	"mw-widgets-titleinput-description-redirect": "перанакіраваньне на $1",
 	"mw-widgets-categoryselector-add-category-placeholder": "Дадаць катэгорыю…",
 	"mw-widgets-usersmultiselect-placeholder": "Дадаць яшчэ…",
+	"mw-widgets-titlesmultiselect-placeholder": "Дадаць яшчэ…",
 	"date-range-from": "З даты:",
 	"date-range-to": "Да даты:",
 	"sessionmanager-tie": "Немагчыма выкарыстаць адначасова некалькі тыпаў аўтэнтыфікацыі: $1.",

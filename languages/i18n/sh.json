@@ -18,7 +18,8 @@
 			"Acamicamacaraca",
 			"Fitoschido",
 			"BadDog",
-			"ديفيد"
+			"ديفيد",
+			"Zoranzoki21"
 		]
 	},
 	"tog-underline": "Podvuci linkove:",
@@ -1880,7 +1881,7 @@
 	"undeletepagetext": "{{PLURAL:$1|Slijedeća $1 stranica je obrisana|Slijedeće $1 stranice su obrisane|Slijedećih $1 je obrisano}} ali su još uvijek u arhivi i mogu biti vraćene.\nArhiva moše biti periodično čišćena.",
 	"undelete-fieldset-title": "Vraćanje revizija",
 	"undeleteextrahelp": "Da vratite cijelu historiju članka, ostavite sve kutijice neoznačene i kliknite '''''{{int:undeletebtn}}'''''.\nDa bi izvršili selektivno vraćanje, odaberite kutijice koje odgovaraju revizijama koje želite vratiti, i kliknite '''''{{int:undeletebtn}}'''''.",
-	"undeleterevisions": "{{PLURAL:$2|izmjena|$2 izmjena}} {{PLURAL|izbrisana|izbrisane|izbrisano}}",
+	"undeleterevisions": "{{PLURAL:$1|izmjena}} {{PLURAL|izbrisana|izbrisane|izbrisano}}",
 	"undeletehistory": "Ako vratite stranicu, sve revizije će biti vraćene njenoj historiji.\nAko je nova stranica istog imena napravljena od brisanja, vraćene revizije će se pojaviti u njenoj ranijoj historiji.",
 	"undeleterevdel": "Vraćanje obrisanog se neće izvršiti ako bi rezultiralo da zaglavlje stranice ili revizija datoteke bude djelimično obrisano.\nU takvim slučajevima, morate ukloniti označene ili otkriti sakrivene najskorije obrisane revizije.",
 	"undeletehistorynoadmin": "Ova stranica je izbrisana.  \nRazlog za brisanje se nalazi ispod u sažetku, zajedno sa detaljima korisnika koji su uređivali ovu stranicu prije brisanja.  \nTekst izbrisane stranice je vidljiv samo administratorima.",
