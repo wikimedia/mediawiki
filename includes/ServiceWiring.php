@@ -466,6 +466,7 @@ return [
 		$config = $services->getMainConfig();
 		return new PermissionManager(
 			$services->getSpecialPageFactory(),
+			$services->getRevisionLookup(),
 			$config->get( 'WhitelistRead' ),
 			$config->get( 'WhitelistReadRegexp' ),
 			$config->get( 'EmailConfirmToEdit' ),

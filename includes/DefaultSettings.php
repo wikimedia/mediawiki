@@ -5173,6 +5173,7 @@ $wgGroupPermissions['user']['minoredit'] = true;
 $wgGroupPermissions['user']['editmyusercss'] = true;
 $wgGroupPermissions['user']['editmyuserjson'] = true;
 $wgGroupPermissions['user']['editmyuserjs'] = true;
+$wgGroupPermissions['user']['editmyuserjsredirect'] = true;
 $wgGroupPermissions['user']['purge'] = true;
 $wgGroupPermissions['user']['sendemail'] = true;
 $wgGroupPermissions['user']['applychangetags'] = true;

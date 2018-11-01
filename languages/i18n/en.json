@@ -1273,6 +1273,7 @@
 	"right-editmyusercss": "Edit your own user CSS files",
 	"right-editmyuserjson": "Edit your own user JSON files",
 	"right-editmyuserjs": "Edit your own user JavaScript files",
+	"right-editmyuserjsredirect": "Edit your own user JavaScript files that are redirects",
 	"right-viewmywatchlist": "View your own watchlist",
 	"right-editmywatchlist": "Edit your own watchlist. Note some actions will still add pages even without this right.",
 	"right-viewmyprivateinfo": "View your own private data (e.g. email address, real name)",
@@ -1403,6 +1404,7 @@
 	"action-editmyusercss": "edit your own user CSS files",
 	"action-editmyuserjson": "edit your own user JSON files",
 	"action-editmyuserjs": "edit your own user JavaScript files",
+	"action-editmyuserjsredirect": "edit your own user JavaScript files that are redirects",
 	"action-viewsuppressed": "view revisions hidden from any user",
 	"action-hideuser": "block a username, hiding it from the public",
 	"action-ipblock-exempt": "bypass IP blocks, auto-blocks and range blocks",
@@ -4236,6 +4238,7 @@
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Password cannot be in the list of 100,000 most commonly used passwords.",
 	"passwordpolicies-policyflag-forcechange": "must change on login",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suggest change on login",
+	"mycustomjsredirectprotected": "You do not have permission to edit this JavaScript page because it is a redirect and it does not point inside your userspace.",
 	"easydeflate-invaliddeflate": "Content provided is not properly deflated",
 	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage",
 	"userlogout-continue": "Do you want to log out?"

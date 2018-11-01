@@ -3,7 +3,18 @@
 namespace MediaWiki\Tests\Permissions;
 
 use Action;
+use ContentHandler;
 use FauxRequest;
+use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\Restriction\NamespaceRestriction;
+use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\SystemBlock;
+use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionLookup;
+use Wikimedia\ScopedCallback;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
 use MediaWikiLangTestCase;
@@ -11,13 +22,6 @@ use RequestContext;
 use stdClass;
 use Title;
 use User;
-use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\Block\Restriction\NamespaceRestriction;
-use MediaWiki\Block\Restriction\PageRestriction;
-use MediaWiki\Block\SystemBlock;
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
-use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -696,6 +700,64 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
 			[ [ 'badaccess-groups' ] ]
 		);
+	}
+
+	public function testJsConfigRedirectEditPermissions() {
+		$revision = null;
+		$user = $this->getTestUser()->getUser();
+		$otherUser = $this->getTestUser( 'sysop' )->getUser();
+		$localJsTitle = Title::newFromText( 'User:' . $user->getName() . '/foo.js' );
+		$otherLocalJsTitle = Title::newFromText( 'User:' . $user->getName() . '/foo2.js' );
+		$nonlocalJsTitle = Title::newFromText( 'User:' . $otherUser->getName() . '/foo.js' );
+
+		$services = MediaWikiServices::getInstance();
+		$revisionLookup = $this->getMockBuilder( RevisionLookup::class )
+			->setMethods( [ 'getRevisionByTitle' ] )
+			->getMockForAbstractClass();
+		$revisionLookup->method( 'getRevisionByTitle' )
+			->willReturnCallback( function ( LinkTarget $page ) use (
+				$services, &$revision, $localJsTitle
+			) {
+				if ( $localJsTitle->equals( Title::newFromLinkTarget( $page ) ) ) {
+					return $revision;
+				} else {
+					return $services->getRevisionLookup()->getRevisionByTitle( $page );
+				}
+			} );
+		$permissionManager = new PermissionManager(
+			$services->getSpecialPageFactory(),
+			$revisionLookup,
+			[],
+			[],
+			false,
+			false,
+			[],
+			[],
+			[],
+			MediaWikiServices::getInstance()->getNamespaceInfo()
+		);
+		$this->setService( 'PermissionManager', $permissionManager );
+
+		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit', 'editmyuserjs' ] );
+
+		$revision = $this->getJavascriptRevision( $localJsTitle, $user, '/* script */' );
+		$errors = $permissionManager->getPermissionErrors( 'edit', $user, $localJsTitle );
+		$this->assertSame( [], $errors );
+
+		$revision = $this->getJavascriptRedirectRevision( $localJsTitle, $otherLocalJsTitle, $user );
+		$errors = $permissionManager->getPermissionErrors( 'edit', $user, $localJsTitle );
+		$this->assertSame( [], $errors );
+
+		$revision = $this->getJavascriptRedirectRevision( $localJsTitle, $nonlocalJsTitle, $user );
+		$errors = $permissionManager->getPermissionErrors( 'edit', $user, $localJsTitle );
+		$this->assertSame( [ [ 'mycustomjsredirectprotected', 'edit' ] ], $errors );
+
+		$permissionManager->overrideUserRightsForTesting( $user,
+			[ 'edit', 'editmyuserjs', 'editmyuserjsredirect' ] );
+
+		$revision = $this->getJavascriptRedirectRevision( $localJsTitle, $nonlocalJsTitle, $user );
+		$errors = $permissionManager->getPermissionErrors( 'edit', $user, $localJsTitle );
+		$this->assertSame( [], $errors );
 	}
 
 	/**
@@ -1682,6 +1744,37 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			$this->assertTrue( $permissionManager->userHasRight( $this->user, 'move' ) );
 		} )();
 		$this->assertFalse( $permissionManager->userHasRight( $this->user, 'move' ) );
+	}
+
+	/**
+	 * Create a RevisionRecord with a single Javascript main slot.
+	 * @param Title $title
+	 * @param User $user
+	 * @param string $text
+	 * @return MutableRevisionRecord
+	 */
+	private function getJavascriptRevision( Title $title, User $user, $text ) {
+		$content = ContentHandler::makeContent( $text, $title, CONTENT_MODEL_JAVASCRIPT );
+		$revision = new MutableRevisionRecord( $title );
+		$revision->setContent( 'main', $content );
+		return $revision;
+	}
+
+	/**
+	 * Create a RevisionRecord with a single Javascript redirect main slot.
+	 * @param Title $title
+	 * @param Title $redirectTargetTitle
+	 * @param User $user
+	 * @return MutableRevisionRecord
+	 */
+	private function getJavascriptRedirectRevision(
+		Title $title, Title $redirectTargetTitle, User $user
+	) {
+		$content = ContentHandler::getForModelID( CONTENT_MODEL_JAVASCRIPT )
+			->makeRedirectContent( $redirectTargetTitle );
+		$revision = new MutableRevisionRecord( $title );
+		$revision->setContent( 'main', $content );
+		return $revision;
 	}
 
 }

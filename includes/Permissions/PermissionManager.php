@@ -23,6 +23,8 @@ use Action;
 use Exception;
 use Hooks;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Special\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
@@ -54,6 +56,9 @@ class PermissionManager {
 
 	/** @var SpecialPageFactory */
 	private $specialPageFactory;
+
+	/** @var RevisionLookup */
+	private $revisionLookup;
 
 	/** @var string[] List of pages names anonymous user may see */
 	private $whitelistRead;
@@ -130,6 +135,7 @@ class PermissionManager {
 		'editmyusercss',
 		'editmyuserjson',
 		'editmyuserjs',
+		'editmyuserjsredirect',
 		'editmywatchlist',
 		'editsemiprotected',
 		'editsitecss',
@@ -184,6 +190,7 @@ class PermissionManager {
 
 	/**
 	 * @param SpecialPageFactory $specialPageFactory
+	 * @param RevisionLookup $revisionLookup
 	 * @param string[] $whitelistRead
 	 * @param string[] $whitelistReadRegexp
 	 * @param bool $emailConfirmToEdit
@@ -195,6 +202,7 @@ class PermissionManager {
 	 */
 	public function __construct(
 		SpecialPageFactory $specialPageFactory,
+		RevisionLookup $revisionLookup,
 		$whitelistRead,
 		$whitelistReadRegexp,
 		$emailConfirmToEdit,
@@ -205,6 +213,7 @@ class PermissionManager {
 		NamespaceInfo $nsInfo
 	) {
 		$this->specialPageFactory = $specialPageFactory;
+		$this->revisionLookup = $revisionLookup;
 		$this->whitelistRead = $whitelistRead;
 		$this->whitelistReadRegexp = $whitelistReadRegexp;
 		$this->emailConfirmToEdit = $emailConfirmToEdit;
@@ -1134,6 +1143,20 @@ class PermissionManager {
 				&& !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' )
 			) {
 				$errors[] = [ 'mycustomjsprotected', $action ];
+			} elseif (
+				$page->isUserJsConfigPage()
+				&& !$user->isAllowedAny( 'edituserjs', 'editmyuserjsredirect' )
+			) {
+				// T207750 - do not allow users to edit a redirect if they couldn't edit the target
+				$rev = $this->revisionLookup->getRevisionByTitle( $page );
+				$content = $rev ? $rev->getContent( 'main', RevisionRecord::RAW ) : null;
+				$target = $content ? $content->getUltimateRedirectTarget() : null;
+				if ( $target && (
+						!$target->inNamespace( NS_USER )
+						|| !preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $target->getText() )
+				) ) {
+					$errors[] = [ 'mycustomjsredirectprotected', $action ];
+				}
 			}
 		} else {
 			// Users need editmyuser* to edit their own CSS/JSON/JS subpages, except for

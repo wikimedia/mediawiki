@@ -36,6 +36,9 @@ For notes on 1.33.x and older releases, see HISTORY.
 * $wgEnableSpecialMute (T218265) - This configuration controls whether
   Special:Mute is available and whether to include a link to it on emails
   originating from Special:Email.
+* editmyuserjsredirect user right – users without this right now cannot edit JS
+  redirects in their userspace unless the target of the redirect is also in
+  their userspace. By default, this right is given to everyone.
 
 ==== Changed configuration ====
 * $wgUseCdn, $wgCdnServers, $wgCdnServersNoPurge, and $wgCdnMaxAge – These four
