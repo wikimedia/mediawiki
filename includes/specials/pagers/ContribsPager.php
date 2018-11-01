@@ -224,6 +224,12 @@ class ContribsPager extends RangeChronologicalPager {
 				if ( isset( $conds['orconds']['actor'] ) ) {
 					// @todo: This will need changing when revision_comment_temp goes away
 					$queryInfo['options']['USE INDEX']['temp_rev_user'] = 'actor_timestamp';
+					// Alias 'rev_timestamp' => 'revactor_timestamp' so "ORDER BY rev_timestamp" is interpreted to
+					// use revactor_timestamp instead.
+					$queryInfo['fields'] = array_merge(
+						array_diff( $queryInfo['fields'], [ 'rev_timestamp' ] ),
+						[ 'rev_timestamp' => 'revactor_timestamp' ]
+					);
 				} else {
 					$queryInfo['options']['USE INDEX']['revision'] =
 						isset( $conds['orconds']['userid'] ) ? 'user_timestamp' : 'usertext_timestamp';

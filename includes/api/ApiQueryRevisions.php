@@ -84,7 +84,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	}
 
 	protected function run( ApiPageSet $resultPageSet = null ) {
-		global $wgChangeTagsSchemaMigrationStage;
+		global $wgActorTableSchemaMigrationStage, $wgChangeTagsSchemaMigrationStage;
 
 		$params = $this->extractRequestParams( false );
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
@@ -133,6 +133,19 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 		$db = $this->getDB();
 
+		$idField = 'rev_id';
+		$tsField = 'rev_timestamp';
+		$pageField = 'rev_page';
+		if ( $params['user'] !== null &&
+			( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW )
+		) {
+			// We're going to want to use the page_actor_timestamp index (on revision_actor_temp)
+			// so use that table's denormalized fields.
+			$idField = 'revactor_rev';
+			$tsField = 'revactor_timestamp';
+			$pageField = 'revactor_page';
+		}
+
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
 			$this->token = $params['token'];
@@ -147,6 +160,15 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 				$opts[] = 'user';
 			}
 			$revQuery = $revisionStore->getQueryInfo( $opts );
+
+			if ( $idField !== 'rev_id' ) {
+				$aliasFields = [ 'rev_id' => $idField, 'rev_timestamp' => $tsField, 'rev_page' => $pageField ];
+				$revQuery['fields'] = array_merge(
+					$aliasFields,
+					array_diff( $revQuery['fields'], array_keys( $aliasFields ) )
+				);
+			}
+
 			$this->addTables( $revQuery['tables'] );
 			$this->addFields( $revQuery['fields'] );
 			$this->addJoinConds( $revQuery['joins'] );
@@ -157,7 +179,9 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$this->addJoinConds(
 				[ 'page' => [ 'INNER JOIN', [ 'page_id = rev_page' ] ] ]
 			);
-			$this->addFields( [ 'rev_id', 'rev_timestamp', 'rev_page' ] );
+			$this->addFields( [
+				'rev_id' => $idField, 'rev_timestamp' => $tsField, 'rev_page' => $pageField
+			] );
 		}
 
 		if ( $this->fld_tags ) {
@@ -207,6 +231,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		if ( $enumRevMode ) {
 			// Indexes targeted:
 			//  page_timestamp if we don't have rvuser
+			//  page_actor_timestamp (on revision_actor_temp) if we have rvuser in READ_NEW mode
 			//  page_user_timestamp if we have a logged-in rvuser
 			//  page_timestamp or usertext_timestamp if we have an IP rvuser
 
@@ -222,9 +247,9 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 				$continueTimestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
 				$continueId = (int)$cont[1];
 				$this->dieContinueUsageIf( $continueId != $cont[1] );
-				$this->addWhere( "rev_timestamp $op $continueTimestamp OR " .
-					"(rev_timestamp = $continueTimestamp AND " .
-					"rev_id $op= $continueId)"
+				$this->addWhere( "$tsField $op $continueTimestamp OR " .
+					"($tsField = $continueTimestamp AND " .
+					"$idField $op= $continueId)"
 				);
 			}
 
@@ -274,24 +299,24 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 					$op = ( $params['dir'] === 'newer' ? '>' : '<' );
 					$ts = $db->addQuotes( $db->timestampOrNull( $params['start'] ) );
 					if ( $params['startid'] !== null ) {
-						$this->addWhere( "rev_timestamp $op $ts OR "
-							. "rev_timestamp = $ts AND rev_id $op= " . intval( $params['startid'] ) );
+						$this->addWhere( "$tsField $op $ts OR "
+							. "$tsField = $ts AND $idField $op= " . intval( $params['startid'] ) );
 					} else {
-						$this->addWhere( "rev_timestamp $op= $ts" );
+						$this->addWhere( "$tsField $op= $ts" );
 					}
 				}
 				if ( $params['end'] !== null ) {
 					$op = ( $params['dir'] === 'newer' ? '<' : '>' ); // Yes, opposite of the above
 					$ts = $db->addQuotes( $db->timestampOrNull( $params['end'] ) );
 					if ( $params['endid'] !== null ) {
-						$this->addWhere( "rev_timestamp $op $ts OR "
-							. "rev_timestamp = $ts AND rev_id $op= " . intval( $params['endid'] ) );
+						$this->addWhere( "$tsField $op $ts OR "
+							. "$tsField = $ts AND $idField $op= " . intval( $params['endid'] ) );
 					} else {
-						$this->addWhere( "rev_timestamp $op= $ts" );
+						$this->addWhere( "$tsField $op= $ts" );
 					}
 				}
 			} else {
-				$this->addTimestampWhereRange( 'rev_timestamp', $params['dir'],
+				$this->addTimestampWhereRange( $tsField, $params['dir'],
 					$params['start'], $params['end'] );
 			}
 
@@ -300,7 +325,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 			// There is only one ID, use it
 			$ids = array_keys( $pageSet->getGoodTitles() );
-			$this->addWhereFld( 'rev_page', reset( $ids ) );
+			$this->addWhereFld( $pageField, reset( $ids ) );
 
 			if ( $params['user'] !== null ) {
 				$actorQuery = ActorMigration::newMigration()

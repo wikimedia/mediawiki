@@ -4950,12 +4950,14 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 		$dbr = wfGetDB( DB_REPLICA );
 		$actorWhere = ActorMigration::newMigration()->getWhere( $dbr, 'rev_user', $this );
+		$tsField = isset( $actorWhere['tables']['temp_rev_user'] )
+			? 'revactor_timestamp' : 'rev_timestamp';
 		$time = $dbr->selectField(
 			[ 'revision' ] + $actorWhere['tables'],
-			'rev_timestamp',
+			$tsField,
 			[ $actorWhere['conds'] ],
 			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp ASC' ],
+			[ 'ORDER BY' => "$tsField ASC" ],
 			$actorWhere['joins']
 		);
 		if ( !$time ) {
