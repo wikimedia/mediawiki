@@ -3897,6 +3897,8 @@
 	"ellipsis": "{{optional}}",
 	"percent": "{{optional}}",
 	"parentheses": "{{optional}}",
+	"parentheses-start": "{{optional}}",
+	"parentheses-end": "{{optional}}",
 	"brackets": "{{Optional}}\n{{Format|plain}}",
 	"quotation-marks": "Quotation marks, for quoting, sometimes titles etc., depending on the language.\n\nSee: [[w:Non-English usage of quotation marks|Non-English usage of quotation marks on Wikipedia]].\n\nParameters:\n* $1 - text to be wrapped in quotation marks",
 	"imgmultipageprev": "{{Identical|Previous page}}",

@@ -562,9 +562,11 @@ class ContribsPager extends RangeChronologicalPager {
 				$del .= ' ';
 			}
 
-			$diffHistLinks = $this->msg( 'parentheses' )
-				->rawParams( $difftext . $this->messages['pipe-separator'] . $histlink )
-				->escaped();
+			$diffHistLinks = Html::rawElement( 'ul',
+				[ 'class' => 'mw-changeslist-link-list' ],
+				Html::rawElement( 'li', [], $difftext ) .
+				Html::rawElement( 'li', [], $histlink )
+			);
 
 			# Tags, if any.
 			list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow(
