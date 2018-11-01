@@ -3502,6 +3502,7 @@
 	"redirect-file": "Nom del fitxer",
 	"redirect-logid": "ID de registre",
 	"redirect-not-exists": "No s'ha trobat el valor",
+	"redirect-not-numeric": "Valor no numèric",
 	"fileduplicatesearch": "Cerca fitxers duplicats",
 	"fileduplicatesearch-summary": "Cerca fitxers duplicats d'acord amb el seu valor de resum.",
 	"fileduplicatesearch-filename": "Nom del fitxer:",

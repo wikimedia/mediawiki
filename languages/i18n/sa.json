@@ -1933,6 +1933,7 @@
 	"ipb-disableusertalk": "एतं योजकम् अवरोधकाले स्वस्य सम्भाषणपुटस्य सम्पानात् निवारयतु ।",
 	"ipb-change-block": "एतैः विन्यासैः सदस्यं पुनः अवरुणद्धु ।",
 	"ipb-confirm": "अवरोधं दृढयतु ।",
+	"ipb-partial": "भागशः ।",
 	"badipaddress": "अमान्यः ऐपिसङ्केतः ।",
 	"blockipsuccesssub": "अवरोधः सफलः",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]]इत्येतत् अवरुद्धम् । <br />\nअवरोधानां समीक्षां करोतु । [[Special:BlockList|IP अवरोधसूचिका]]",
@@ -1974,6 +1975,7 @@
 	"createaccountblock": "योजकस्थाननिर्माणं निष्क्रियम् ।",
 	"emailblock": "वि-पत्रं निष्क्रियम्",
 	"blocklist-nousertalk": "स्वस्य सम्भाषणपुटं सम्पादयितुं न शक्यते ।",
+	"blocklist-editing": "सम्पादनम्",
 	"ipblocklist-empty": "अवरोधावली रिक्ता अस्ति ।",
 	"ipblocklist-no-results": "अभ्यर्थितः ऐपिसङ्केतः अथवा अभ्यर्थितः सदस्यनाम अवरुद्धं न ।",
 	"blocklink": "अवरुद्ध्यताम्",
@@ -3213,5 +3215,6 @@
 	"special-characters-title-endash": "en dash",
 	"special-characters-title-emdash": "em dash",
 	"special-characters-title-minus": "minus sign",
-	"mw-widgets-titleinput-description-new-page": "पृष्ठं न विद्यते"
+	"mw-widgets-titleinput-description-new-page": "पृष्ठं न विद्यते",
+	"mw-widgets-titlesmultiselect-placeholder": "इतोऽपि समावेशयतु"
 }
