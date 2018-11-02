@@ -2093,7 +2093,7 @@ class OutputPage extends ContextSource {
 	 * @param Language|null $language Target language object, will override $interface
 	 * @throws MWException
 	 * @return string HTML
-	 * @deprecated since 1.33, due to untidy output and inconsistent wrapper;
+	 * @deprecated since 1.32, due to untidy output and inconsistent wrapper;
 	 *  use parseAsContent() if $interface is default value or false, or else
 	 *  parseAsInterface() if $interface is true.
 	 */
@@ -2114,7 +2114,7 @@ class OutputPage extends ContextSource {
 	 * @param bool $linestart Is this the start of a line? (Defaults to true)
 	 * @throws MWException
 	 * @return string HTML
-	 * @since 1.33
+	 * @since 1.32
 	 */
 	public function parseAsContent( $text, $linestart = true ) {
 		return $this->parseInternal(
@@ -2135,7 +2135,7 @@ class OutputPage extends ContextSource {
 	 * @param bool $linestart Is this the start of a line? (Defaults to true)
 	 * @throws MWException
 	 * @return string HTML
-	 * @since 1.33
+	 * @since 1.32
 	 */
 	public function parseAsInterface( $text, $linestart = true ) {
 		return $this->parseInternal(
@@ -2158,7 +2158,7 @@ class OutputPage extends ContextSource {
 	 * @param bool $linestart Is this the start of a line? (Defaults to true)
 	 * @throws MWException
 	 * @return string HTML
-	 * @since 1.33
+	 * @since 1.32
 	 */
 	public function parseInlineAsInterface( $text, $linestart = true ) {
 		return Parser::stripOuterParagraph(
@@ -2174,7 +2174,7 @@ class OutputPage extends ContextSource {
 	 * @param bool $interface Use interface language (instead of content language) while parsing
 	 *   language sensitive magic words like GRAMMAR and PLURAL
 	 * @return string HTML
-	 * @deprecated since 1.33, due to untidy output and confusing default
+	 * @deprecated since 1.32, due to untidy output and confusing default
 	 *   for $interface.  Use parseInlineAsInterface() if $interface is
 	 *   the default value or false, or else use
 	 *   Parser::stripOuterParagraph($outputPage->parseAsContent(...)).
