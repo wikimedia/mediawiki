@@ -58,6 +58,7 @@
 	.mw-changeslist-legend {
 		background-color: @background-color-base;
 		position: relative; // We want to keep the legend accessible when results are overlaid
+		z-index: 1; // Keep opacity-animated highlights from appearing on top of the legend
 		border: 1px solid @colorGray12;
 	}
 
