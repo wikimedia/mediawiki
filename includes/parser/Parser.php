@@ -5133,7 +5133,7 @@ class Parser {
 								$alt = $this->stripAltText( $match, false );
 								break;
 							case 'gallery-internal-link':
-								$linkValue = strip_tags( $this->replaceLinkHoldersText( $match ) );
+								$linkValue = $this->stripAltText( $match, false );
 								if ( preg_match( '/^-{R|(.*)}-$/', $linkValue ) ) {
 									// Result of LanguageConverter::markNoConversion
 									// invoked on an external link.
@@ -5329,7 +5329,10 @@ class Parser {
 								$value = $this->stripAltText( $value, $holders );
 								break;
 							case 'link':
-								list( $paramName, $value ) = $this->parseLinkParameter( $value );
+								list( $paramName, $value ) =
+									$this->parseLinkParameter(
+										$this->stripAltText( $value, $holders )
+									);
 								if ( $paramName ) {
 									$validated = true;
 									if ( $paramName === 'no-link' ) {
