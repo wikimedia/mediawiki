@@ -22098,6 +22098,8 @@ wgRawHtml=1
 !! html/php
 <p><script>alert(1);</script>
 </p>
+!! html/parsoid
+<p><script typeof="mw:Extension/html" about="#mwt3" data-mw='{"name":"html","attrs":{},"body":{"extsrc":"&lt;script>alert(1);&lt;/script>"}}'>alert(1);</script></p>
 !! end
 
 !! test
@@ -25236,8 +25238,29 @@ __TOC__
 <h2><span class="mw-headline" id="Style"><style>.foo {}</style>Style<style>.bar {}</style></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Style">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
 !! html/parsoid
+<meta property="mw:PageProp/toc" data-parsoid="{}"/>
+<h2 id="Style" data-parsoid="{}"><style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo {}"}}'>.foo {}</style>Style<style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".bar {}"}}'>.bar {}</style></h2>
+!! end
+
+!! test
+T198618: script element in ToC
+!! options
+wgRawHtml=1
+!! wikitext
+__TOC__
+==<html><script>alert(1);</script></html>Script<html><script>alert(1);</script></html>==
+!! html/php
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Script"><span class="tocnumber">1</span> <span class="toctext">Script</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Script"><script>alert(1);</script>Script<script>alert(1);</script></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Script">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+
+!! html/parsoid
 <meta property="mw:PageProp/toc" data-parsoid='{}'/>
-<h2 id="Style" data-parsoid='{}'><style>.foo {}</style>Style<style>.bar {}</style></h2>
+<h2 id="Script" data-parsoid='{}'><script typeof="mw:Extension/html" about="#mwt4" data-mw='{"name":"html","attrs":{},"body":{"extsrc":"&lt;script>alert(1);&lt;/script>"}}'>alert(1);</script>Script<script typeof="mw:Extension/html" about="#mwt6" data-mw='{"name":"html","attrs":{},"body":{"extsrc":"&lt;script>alert(1);&lt;/script>"}}'>alert(1);</script></h2>
 !! end
 
 !! test
@@ -30374,15 +30397,14 @@ parsoid={
   "modes": ["selser"],
   "scrubWikitext": true,
   "changes": [
-    [ "#x", "after", "<h1><i></i></h1>\n<p> x<b></b></p>"]
+    [ "#x", "after", "<h1><i></i></h1>\n<p> bar<b></b></p>"]
   ]
 }
 !! wikitext
-<span id="x">foo</span>
+<div id="x">foo</div>
 !! wikitext/edited
-<span id="x">foo</span>
-
-x
+<div id="x">foo</div>
+bar
 !! end
 
 !! test
@@ -31034,8 +31056,18 @@ styletag=1
 <style>.foo::before { content: "<foo>"; }</style>
 <style data-mw-foobar="baz">.foo::after { content: "<bar>"; }</style>
 </div>
+!! html/parsoid
+<div class="foo">
+<style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo::before { content: \"&lt;foo>\"; }"}}'>.foo::before { content: "<foo>"; }</style>
+<style data-x-data-mw-foobar="baz" typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{"data-x-data-mw-foobar":"baz"},"body":{"extsrc":".foo::after { content: \"&lt;bar>\"; }"}}'>.foo::after { content: "<bar>"; }</style>
+</div>
 !! end
 
+## Right now, Parsoid doesn't de-duplicate style tags.
+## So, we shouldn't see link tags that need to bypass the sanitizer.
+## In a followup patch, when we de-duplicate style tags and
+## introduce link tags, we'll add a hook for link tags in
+## the parser test runner script.
 !! test
 Validating that <style> isn't wrapped in a paragraph (T186965)
 !! options
@@ -31074,6 +31106,26 @@ bar
 <style>.foo::before { content: "<foo>"; }</style>
 bar
 </p>
+!! html/parsoid
+<p>A style tag, by itself or with other style/link tags, shouldn't be wrapped in a paragraph</p>
+
+<style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo::before { content: \"&lt;foo>\"; }"}}'>.foo::before { content: "<foo>"; }</style>
+
+<p><style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo::before { content: \"&lt;foo>\"; }"}}'>.foo::before { content: "<foo>"; }</style> &lt;link rel="foo" href="bar"/><style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo::before { content: \"&lt;foo>\"; }"}}'>.foo::before { content: "<foo>"; }</style></p>
+
+<p>But if it's on a line with other content, let it be wrapped.</p>
+
+<p><style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo::before { content: \"&lt;foo>\"; }"}}'>.foo::before { content: "<foo>"; }</style> bar</p>
+
+<p>foo <style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo::before { content: \"&lt;foo>\"; }"}}'>.foo::before { content: "<foo>"; }</style></p>
+
+<p>foo <style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo::before { content: \"&lt;foo>\"; }"}}'>.foo::before { content: "<foo>"; }</style> bar</p>
+
+<p>And the same if we have non-paragraph-breaking whitespace</p>
+
+<p>foo
+<style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo::before { content: \"&lt;foo>\"; }"}}'>.foo::before { content: "<foo>"; }</style>
+bar</p>
 !! end
 
 !! test
@@ -31114,6 +31166,24 @@ bar
 <link rel="foo" href="bar"/>
 bar
 </p>
+!! end
+
+!! test
+Extension returning multiple nodes starting with a style tag roundtrips
+!! options
+wgRawHtml=1
+!! wikitext
+<table>
+{{echo|<html><style>.hi { color: red; }</style>
+</html>}}
+<tr><td class="hi">ho</td></tr>
+</table>
+!! html/parsoid
+<p about="#mwt5" typeof="mw:Transclusion" data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"firstWikitextNode":"TABLE_html","pi":[[{"k":"1"}]]}' data-mw='{"parts":["&lt;table>\n",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;html>&lt;style>.hi { color: red; }&lt;/style>\n&lt;/html>"}},"i":0}},"\n&lt;tr>&lt;td class=\"hi\">ho&lt;/td>&lt;/tr>\n&lt;/table>"]}'><style typeof="mw:Extension/html" about="#mwt4" data-mw='{"name":"html","attrs":{},"body":{"extsrc":"&lt;style>.hi { color: red; }&lt;/style>\n"}}'>.hi { color: red; }</style><span about="#mwt4">
+</span></p><table about="#mwt5" data-parsoid='{"stx":"html"}'>
+
+<tbody><tr><td class="hi">ho</td></tr>
+</tbody></table>
 !! end
 
 !! test
