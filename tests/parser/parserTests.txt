@@ -6273,8 +6273,6 @@ parsoid=wt2html
 
 !! end
 
-# Note that the PHP parser output appears to be broken when the table
-# end tag is not separated by a space from the style attribute
 !! test
 A table with stray table end tags on start tag line (wt2html)
 !! options
@@ -6294,13 +6292,13 @@ parsoid=wt2html
 |foo
 |}
 !! html/php+tidy
-<table style="&quot;color:">
+<table style="color: red;">
 
 </table><table style="color: red;">
 <tbody><tr>
 <td>foo
 </td></tr></tbody></table>
-<table style="&quot;color:" id="foo">
+<table style="color: red;" id="foo">
 <tbody><tr>
 <td>foo
 </td></tr></tbody></table>
@@ -9648,17 +9646,14 @@ Handling html with a div self-closing tag
 <div title=bar />
 <div title=bar/>
 <div title=bar/ >
-!! html/php
-<p>&lt;div title /&gt;
-&lt;div title/&gt;
-</p>
-<div>
-<p>&lt;div title=bar /&gt;
-&lt;div title=bar/&gt;
-</p>
-<div title="bar/"></div>
-</div>
-
+!! html/php+tidy
+<div title=""></div>
+<div title=""></div>
+<div title="">
+<div title="bar"></div>
+<div title="bar"></div>
+<div title="bar/">
+</div></div>
 !! html/parsoid
 <div title="" data-parsoid='{"stx":"html","selfClose":true}'></div>
 <div title="" data-parsoid='{"stx":"html","selfClose":true}'></div>
@@ -9699,10 +9694,10 @@ Handling html with a br self-closing tag
 <br title=bar />
 <br title=bar/>
 <br title=bar/ >
-!! html/php
+!! html/php+tidy
 <p><br title="" />
 <br title="" />
-<br />
+<br title="" />
 <br title="bar" />
 <br title="bar" />
 <br title="bar/" />
@@ -9715,6 +9710,18 @@ Handling html with a br self-closing tag
 <br title="bar" />
 <br title="bar/" />
 </p>
+!! end
+
+!! test
+Quoted attributes without spaces
+!! options
+parsoid=wt2html
+!! wikitext
+<div class="foo"style="color:red">red</div>
+!! html/php+tidy
+<div class="foo" style="color:red">red</div>
+!! html/parsoid
+<div class="foo" style="color:red">red</div>
 !! end
 
 !! test
@@ -18177,8 +18184,7 @@ HTML tag with leading space is parsed as text
 </p>
 !! end
 
-## Don't expect Parsoid and PHP to match, since PHP isn't exactly following
-## the HTML5 parsing spec.
+## FIXME: The untrimmed attribute in Parsoid is T205737
 !! test
 Element with broken attribute syntax
 !! options
@@ -18187,7 +18193,7 @@ parsoid=wt2html
 <div style=" style="123">hi</div>
 <div =>ho</div>
 !! html/php
-<div style="123">hi</div>
+<div style="style=">hi</div>
 <div>ho</div>
 
 !! html/parsoid
