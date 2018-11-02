@@ -34,7 +34,7 @@
 // dependencies. Using dirname( __FILE__ ) here because __DIR__ is PHP5.3+.
 // phpcs:ignore MediaWiki.Usage.DirUsage.FunctionFound
 require_once dirname( __FILE__ ) . '/includes/PHPVersionCheck.php';
-wfEntryPointCheck( 'index.php' );
+wfEntryPointCheck( 'html', dirname( $_SERVER['SCRIPT_NAME'] ) );
 
 require __DIR__ . '/includes/WebStart.php';
 
