@@ -25,7 +25,7 @@
 // dependencies. Using dirname( __FILE__ ) here because __DIR__ is PHP5.3+.
 // phpcs:ignore MediaWiki.Usage.DirUsage.FunctionFound
 require_once dirname( __FILE__ ) . '/../includes/PHPVersionCheck.php';
-wfEntryPointCheck( 'mw-config/index.php' );
+wfEntryPointCheck( 'html', dirname( dirname( $_SERVER['SCRIPT_NAME'] ) ) );
 
 define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
 define( 'MEDIAWIKI_INSTALL', true );
