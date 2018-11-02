@@ -313,6 +313,11 @@ class JavaScriptContentTest extends TextContentTest {
 				'Gadget:FooBaz.js',
 				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=Gadget:FooBaz.js\u0026action=raw\u0026ctype=text/javascript");'
 			],
+			// Unicode
+			[
+				'User:😂/unicode.js',
+				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=User:%F0%9F%98%82/unicode.js\u0026action=raw\u0026ctype=text/javascript");'
+			],
 			// No #REDIRECT comment
 			[
 				null,

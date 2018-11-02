@@ -1934,18 +1934,9 @@ class OutputPage extends ContextSource {
 	private function addWikiTextTitleInternal(
 		$text, Title $title, $linestart, $tidy, $interface, $wrapperClass = null
 	) {
-		global $wgParser;
-
-		$popts = $this->parserOptions();
-		$oldTidy = $popts->setTidy( $tidy );
-		$popts->setInterfaceMessage( (bool)$interface );
-
-		$parserOutput = $wgParser->getFreshParser()->parse(
-			$text, $title, $popts,
-			$linestart, true, $this->mRevisionId
+		$parserOutput = $this->parseInternal(
+			$text, $title, $linestart, $tidy, $interface, /*language*/null
 		);
-
-		$popts->setTidy( $oldTidy );
 
 		$this->addParserOutput( $parserOutput, [
 			'enableSectionEditLinks' => false,
@@ -2086,6 +2077,9 @@ class OutputPage extends ContextSource {
 	/**
 	 * Parse wikitext and return the HTML.
 	 *
+	 * @todo The output is wrapped in a <div> iff $interface is false; it's
+	 * probably best to always strip the wrapper.
+	 *
 	 * @param string $text
 	 * @param bool $linestart Is this the start of a line?
 	 * @param bool $interface Use interface language (instead of content language) while parsing
@@ -2094,54 +2088,144 @@ class OutputPage extends ContextSource {
 	 * @param Language|null $language Target language object, will override $interface
 	 * @throws MWException
 	 * @return string HTML
+	 * @deprecated since 1.32, due to untidy output and inconsistent wrapper;
+	 *  use parseAsContent() if $interface is default value or false, or else
+	 *  parseAsInterface() if $interface is true.
 	 */
 	public function parse( $text, $linestart = true, $interface = false, $language = null ) {
-		global $wgParser;
-
-		if ( is_null( $this->getTitle() ) ) {
-			throw new MWException( 'Empty $mTitle in ' . __METHOD__ );
-		}
-
-		$popts = $this->parserOptions();
-		if ( $interface ) {
-			$popts->setInterfaceMessage( true );
-		}
-		if ( $language !== null ) {
-			$oldLang = $popts->setTargetLanguage( $language );
-		}
-
-		$parserOutput = $wgParser->getFreshParser()->parse(
-			$text, $this->getTitle(), $popts,
-			$linestart, true, $this->mRevisionId
-		);
-
-		if ( $interface ) {
-			$popts->setInterfaceMessage( false );
-		}
-		if ( $language !== null ) {
-			$popts->setTargetLanguage( $oldLang );
-		}
-
-		return $parserOutput->getText( [
+		return $this->parseInternal(
+			$text, $this->getTitle(), $linestart, /*tidy*/false, $interface, $language
+		)->getText( [
 			'enableSectionEditLinks' => false,
 		] );
 	}
 
 	/**
-	 * Parse wikitext, strip paragraphs, and return the HTML.
+	 * Parse wikitext *in the page content language* and return the HTML.
+	 * The result will be language-converted to the user's preferred variant.
+	 * Output will be tidy.
 	 *
-	 * @todo This doesn't work as expected at all.  If $interface is false, there's always a
-	 * wrapping <div>, so stripOuterParagraph() does nothing.
+	 * @param string $text Wikitext in the page content language
+	 * @param bool $linestart Is this the start of a line? (Defaults to true)
+	 * @throws MWException
+	 * @return string HTML
+	 * @since 1.32
+	 */
+	public function parseAsContent( $text, $linestart = true ) {
+		return $this->parseInternal(
+			$text, $this->getTitle(), $linestart, /*tidy*/true, /*interface*/false, /*language*/null
+		)->getText( [
+			'enableSectionEditLinks' => false,
+			'wrapperDivClass' => ''
+		] );
+	}
+
+	/**
+	 * Parse wikitext *in the user interface language* and return the HTML.
+	 * The result will not be language-converted, as user interface messages
+	 * are already localized into a specific variant.
+	 * Output will be tidy.
+	 *
+	 * @param string $text Wikitext in the user interface language
+	 * @param bool $linestart Is this the start of a line? (Defaults to true)
+	 * @throws MWException
+	 * @return string HTML
+	 * @since 1.32
+	 */
+	public function parseAsInterface( $text, $linestart = true ) {
+		return $this->parseInternal(
+			$text, $this->getTitle(), $linestart, /*tidy*/true, /*interface*/true, /*language*/null
+		)->getText( [
+			'enableSectionEditLinks' => false,
+			'wrapperDivClass' => ''
+		] );
+	}
+
+	/**
+	 * Parse wikitext *in the user interface language*, strip
+	 * paragraph wrapper, and return the HTML.
+	 * The result will not be language-converted, as user interface messages
+	 * are already localized into a specific variant.
+	 * Output will be tidy.  Outer paragraph wrapper will only be stripped
+	 * if the result is a single paragraph.
+	 *
+	 * @param string $text Wikitext in the user interface language
+	 * @param bool $linestart Is this the start of a line? (Defaults to true)
+	 * @throws MWException
+	 * @return string HTML
+	 * @since 1.32
+	 */
+	public function parseInlineAsInterface( $text, $linestart = true ) {
+		return Parser::stripOuterParagraph(
+			$this->parseAsInterface( $text, $linestart )
+		);
+	}
+
+	/**
+	 * Parse wikitext, strip paragraph wrapper, and return the HTML.
 	 *
 	 * @param string $text
 	 * @param bool $linestart Is this the start of a line?
 	 * @param bool $interface Use interface language (instead of content language) while parsing
 	 *   language sensitive magic words like GRAMMAR and PLURAL
 	 * @return string HTML
+	 * @deprecated since 1.32, due to untidy output and confusing default
+	 *   for $interface.  Use parseInlineAsInterface() if $interface is
+	 *   the default value or false, or else use
+	 *   Parser::stripOuterParagraph($outputPage->parseAsContent(...)).
 	 */
 	public function parseInline( $text, $linestart = true, $interface = false ) {
-		$parsed = $this->parse( $text, $linestart, $interface );
+		$parsed = $this->parseInternal(
+			$text, $this->getTitle(), $linestart, /*tidy*/false, $interface, /*language*/null
+		)->getText( [
+			'enableSectionEditLinks' => false,
+			'wrapperDivClass' => '', /* no wrapper div */
+		] );
 		return Parser::stripOuterParagraph( $parsed );
+	}
+
+	/**
+	 * Parse wikitext and return the HTML (internal implementation helper)
+	 *
+	 * @param string $text
+	 * @param Title The title to use
+	 * @param bool $linestart Is this the start of a line?
+	 * @param bool $tidy Whether the output should be tidied
+	 * @param bool $interface Use interface language (instead of content language) while parsing
+	 *   language sensitive magic words like GRAMMAR and PLURAL.  This also disables
+	 *   LanguageConverter.
+	 * @param Language|null $language Target language object, will override $interface
+	 * @throws MWException
+	 * @return ParserOutput
+	 */
+	private function parseInternal( $text, $title, $linestart, $tidy, $interface, $language ) {
+		global $wgParser;
+
+		if ( is_null( $title ) ) {
+			throw new MWException( 'Empty $mTitle in ' . __METHOD__ );
+		}
+
+		$popts = $this->parserOptions();
+		$oldTidy = $popts->setTidy( $tidy );
+		$oldInterface = $popts->setInterfaceMessage( (bool)$interface );
+
+		if ( $language !== null ) {
+			$oldLang = $popts->setTargetLanguage( $language );
+		}
+
+		$parserOutput = $wgParser->getFreshParser()->parse(
+			$text, $title, $popts,
+			$linestart, true, $this->mRevisionId
+		);
+
+		$popts->setTidy( $oldTidy );
+		$popts->setInterfaceMessage( $oldInterface );
+
+		if ( $language !== null ) {
+			$popts->setTargetLanguage( $oldLang );
+		}
+
+		return $parserOutput;
 	}
 
 	/**

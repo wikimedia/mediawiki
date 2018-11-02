@@ -35,6 +35,10 @@ class CssContentHandlerTest extends MediaWikiLangTestCase {
 				'Gadget:FooBaz.css',
 				"/* #REDIRECT */@import url(//example.org/w/index.php?title=Gadget:FooBaz.css&action=raw&ctype=text/css);"
 			],
+			[
+				'User:😂/unicode.css',
+				'/* #REDIRECT */@import url(//example.org/w/index.php?title=User:%F0%9F%98%82/unicode.css&action=raw&ctype=text/css);'
+			],
 		];
 		// phpcs:enable
 	}

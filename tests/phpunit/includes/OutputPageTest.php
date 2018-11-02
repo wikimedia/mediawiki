@@ -1824,28 +1824,44 @@ class OutputPageTest extends MediaWikiTestCase {
 
 	public function provideParse() {
 		return [
-			'List at start of line' => [
-				[ '* List' ],
+			'List at start of line (content)' => [
+				[ '* List', true, false ],
 				"<div class=\"mw-parser-output\"><ul><li>List</li></ul>\n</div>",
+				"<ul><li>List</li></ul>\n",
 			],
-			'List not at start' => [
-				[ "* ''Not'' list", false ],
+			'List at start of line (interface)' => [
+				[ '* List', true, true ],
+				"<ul><li>List</li></ul>\n",
+			],
+			'List not at start (content)' => [
+				[ "* ''Not'' list", false, false ],
 				'<div class="mw-parser-output">* <i>Not</i> list</div>',
+				'* <i>Not</i> list',
 			],
-			'Interface' => [
+			'List not at start (interface)' => [
+				[ "* ''Not'' list", false, true ],
+				'* <i>Not</i> list',
+			],
+			'Interface message' => [
 				[ "''Italic''", true, true ],
 				"<p><i>Italic</i>\n</p>",
 				'<i>Italic</i>',
 			],
-			'formatnum' => [
-				[ '{{formatnum:123456.789}}' ],
+			'formatnum (content)' => [
+				[ '{{formatnum:123456.789}}', true, false ],
 				"<div class=\"mw-parser-output\"><p>123,456.789\n</p></div>",
+				"123,456.789",
 			],
-			'Language' => [
+			'formatnum (interface)' => [
+				[ '{{formatnum:123456.789}}', true, true ],
+				"<p>123,456.789\n</p>",
+				"123,456.789",
+			],
+			'Language (content)' => [
 				[ '{{formatnum:123456.789}}', true, false, Language::factory( 'is' ) ],
 				"<div class=\"mw-parser-output\"><p>123.456,789\n</p></div>",
 			],
-			'Language with interface' => [
+			'Language (interface)' => [
 				[ '{{formatnum:123456.789}}', true, true, Language::factory( 'is' ) ],
 				"<p>123.456,789\n</p>",
 				'123.456,789',
@@ -1854,6 +1870,79 @@ class OutputPageTest extends MediaWikiTestCase {
 				[ '== Header ==' ],
 				'<div class="mw-parser-output"><h2><span class="mw-headline" id="Header">' .
 					"Header</span></h2>\n</div>",
+				'<h2><span class="mw-headline" id="Header">Header</span></h2>' .
+					"\n",
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideParseAs
+	 * @covers OutputPage::parseAsContent
+	 * @param array $args To pass to parse()
+	 * @param string $expectedHTML Expected return value for parseAsContent()
+	 * @param string $expectedHTML Expected return value for parseInlineAsInterface(), if different
+	 */
+	public function testParseAsContent(
+		array $args, $expectedHTML, $expectedHTMLInline = null
+	) {
+		$op = $this->newInstance();
+		$this->assertSame( $expectedHTML, $op->parseAsContent( ...$args ) );
+	}
+
+	/**
+	 * @dataProvider provideParseAs
+	 * @covers OutputPage::parseAsInterface
+	 * @param array $args To pass to parse()
+	 * @param string $expectedHTML Expected return value for parseAsInterface()
+	 * @param string $expectedHTML Expected return value for parseInlineAsInterface(), if different
+	 */
+	public function testParseAsInterface(
+		array $args, $expectedHTML, $expectedHTMLInline = null
+	) {
+		$op = $this->newInstance();
+		$this->assertSame( $expectedHTML, $op->parseAsInterface( ...$args ) );
+	}
+
+	/**
+	 * @dataProvider provideParseAs
+	 * @covers OutputPage::parseInlineAsInterface
+	 */
+	public function testParseInlineAsInterface(
+		array $args, $expectedHTML, $expectedHTMLInline = null
+	) {
+		$op = $this->newInstance();
+		$this->assertSame(
+			$expectedHTMLInline ?? $expectedHTML,
+			$op->parseInlineAsInterface( ...$args )
+		);
+	}
+
+	public function provideParseAs() {
+		return [
+			'List at start of line' => [
+				[ '* List', true ],
+				"<ul><li>List</li></ul>\n",
+			],
+			'List not at start' => [
+				[ "* ''Not'' list", false ],
+				'<p>* <i>Not</i> list</p>',
+				'* <i>Not</i> list',
+			],
+			'Italics' => [
+				[ "''Italic''", true ],
+				"<p><i>Italic</i>\n</p>",
+				'<i>Italic</i>',
+			],
+			'formatnum' => [
+				[ '{{formatnum:123456.789}}', true ],
+				"<p>123,456.789\n</p>",
+				"123,456.789",
+			],
+			'No section edit links' => [
+				[ '== Header ==' ],
+				'<h2><span class="mw-headline" id="Header">Header</span></h2>' .
+					"\n",
 			]
 		];
 	}
@@ -1862,18 +1951,45 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::parse
 	 */
 	public function testParseNullTitle() {
-		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parse' );
+		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->parse( '' );
 	}
 
 	/**
-	 * @covers OutputPage::parse
+	 * @covers OutputPage::parseInline
 	 */
 	public function testParseInlineNullTitle() {
-		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parse' );
+		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->parseInline( '' );
+	}
+
+	/**
+	 * @covers OutputPage::parseAsContent
+	 */
+	public function testParseAsContentNullTitle() {
+		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
+		$op = $this->newInstance( [], null, 'notitle' );
+		$op->parseAsContent( '' );
+	}
+
+	/**
+	 * @covers OutputPage::parseAsInterface
+	 */
+	public function testParseAsInterfaceNullTitle() {
+		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
+		$op = $this->newInstance( [], null, 'notitle' );
+		$op->parseAsInterface( '' );
+	}
+
+	/**
+	 * @covers OutputPage::parseInlineAsInterface
+	 */
+	public function testParseInlineAsInterfaceNullTitle() {
+		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
+		$op = $this->newInstance( [], null, 'notitle' );
+		$op->parseInlineAsInterface( '' );
 	}
 
 	/**
