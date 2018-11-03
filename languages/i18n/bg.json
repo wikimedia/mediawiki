@@ -2725,6 +2725,7 @@
 	"pageinfo-category-files": "Брой файлове",
 	"pageinfo-user-id": "Потребителски номер",
 	"pageinfo-file-hash": "Хеш-стойност",
+	"pageinfo-view-protect-log": "Преглед на дневника на защитата за тази страница.",
 	"markaspatrolleddiff": "Отбелязване на редакцията като патрулирана",
 	"markaspatrolledtext": "Отбелязване на редакцията като проверена",
 	"markaspatrolledtext-file": "Отбелязване на версията на файла като проверена",
