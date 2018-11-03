@@ -176,7 +176,7 @@
 	"config-help": "pomoć",
 	"config-help-tooltip": "kliknite da biste proširili",
 	"config-nofile": "Nije moguće pronaći datoteku „$1”. Da nije izbrisana?",
-	"config-extension-link": "Jeste li znali da vaš viki podržava [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions dodatke]?\n\nMožete ih pregledati [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category po kategoriji] ili pomoću [https://www.mediawiki.org/wiki/Extension_Matrix Extension Matrix-a] da biste videli potpuni spisak.",
+	"config-extension-link": "Jeste li znali da vaš viki podržava [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions dodatke]?\n\nMožete ih pregledati [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category po kategoriji].",
 	"config-skins-screenshots": "„$1” (snimci ekrana: $2)",
 	"config-skins-screenshot": "$1 ($2)",
 	"config-extensions-requires": "$1 (zahteva $2)",
