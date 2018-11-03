@@ -123,12 +123,6 @@ class ParserTestRunner {
 	private $runDisabled;
 
 	/**
-	 * Run tests intended only for parsoid
-	 * @var bool
-	 */
-	private $runParsoid;
-
-	/**
 	 * Disable parse on article insertion
 	 * @var bool
 	 */
@@ -170,7 +164,6 @@ class ParserTestRunner {
 		$this->fileBackendName = $options['file-backend'] ?? false;
 
 		$this->runDisabled = !empty( $options['run-disabled'] );
-		$this->runParsoid = !empty( $options['run-parsoid'] );
 
 		$this->disableSaveParse = !empty( $options['disable-save-parse'] );
 
@@ -704,7 +697,6 @@ class ParserTestRunner {
 			foreach ( $filenames as $filename ) {
 				$testFileInfo = TestFileReader::read( $filename, [
 					'runDisabled' => $this->runDisabled,
-					'runParsoid' => $this->runParsoid,
 					'regex' => $this->regex ] );
 
 				// Don't start the suite if there are no enabled tests in the file
