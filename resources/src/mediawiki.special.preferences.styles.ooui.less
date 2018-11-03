@@ -28,10 +28,11 @@
 }
 
 /*
- * Hide, but keep accessible for screen-readers.
+ * Hide, when not keyboard focussed.
  */
 .client-js .mw-navigation-hint:not( :focus ) {
-	.mixin-screen-reader-text;
+	height: 0;
+	overflow: hidden;
 }
 
 /* Most outer Panellayout:
