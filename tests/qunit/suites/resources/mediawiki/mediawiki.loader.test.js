@@ -558,6 +558,48 @@
 		} );
 	} );
 
+	QUnit.test( '.implement( package files )', function ( assert ) {
+		var done = assert.async(),
+			initJsRan = false;
+		mw.loader.implement(
+			'test.implement.packageFiles',
+			{
+				main: 'resources/src/foo/init.js',
+				files: {
+					'resources/src/foo/data/hello.json': { hello: 'world' },
+					'resources/src/foo/foo.js': function ( require, module ) {
+						window.mwTestFooJsCounter = window.mwTestFooJsCounter || 41;
+						window.mwTestFooJsCounter++;
+						module.exports = { answer: window.mwTestFooJsCounter };
+					},
+					'resources/src/bar/bar.js': function ( require, module ) {
+						var core = require( './core.js' );
+						module.exports = { data: core.sayHello( 'Alice' ) };
+					},
+					'resources/src/bar/core.js': function ( require, module ) {
+						module.exports = { sayHello: function ( name ) {
+							return 'Hello ' + name;
+						} };
+					},
+					'resources/src/foo/init.js': function ( require ) {
+						initJsRan = true;
+						assert.deepEqual( require( './data/hello.json' ), { hello: 'world' }, 'require() with .json file' );
+						assert.deepEqual( require( './foo.js' ), { answer: 42 }, 'require() with .js file in same directory' );
+						assert.deepEqual( require( '../bar/bar.js' ), { data: 'Hello Alice' }, 'require() with ../ of a file that uses same-directory require()' );
+						assert.deepEqual( require( './foo.js' ), { answer: 42 }, 'require()ing the same script twice only runs it once' );
+					}
+				}
+			},
+			{},
+			{},
+			{}
+		);
+		mw.loader.using( 'test.implement.packageFiles' ).done( function () {
+			assert.ok( initJsRan, 'main JS file is executed' );
+			done();
+		} );
+	} );
+
 	QUnit.test( '.addSource()', function ( assert ) {
 		mw.loader.addSource( { testsource1: 'https://1.test/src' } );
 

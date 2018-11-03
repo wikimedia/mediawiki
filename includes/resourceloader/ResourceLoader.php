@@ -1081,7 +1081,7 @@ MESSAGE;
 							// Load scripts raw...
 							$strContent = $scripts;
 						} elseif ( is_array( $scripts ) ) {
-							// ...except when $scripts is an array of URLs
+							// ...except when $scripts is an array of URLs or an associative array
 							$strContent = self::makeLoaderImplementScript( $implementKey, $scripts, [], [], [] );
 						}
 						break;
@@ -1202,7 +1202,8 @@ MESSAGE;
 	 *
 	 * @param string $name Module name or implement key (format "`[name]@[version]`")
 	 * @param XmlJsCode|array|string $scripts Code as XmlJsCode (to be wrapped in a closure),
-	 *  list of URLs to JavaScript files, or a string of JavaScript for `$.globalEval`.
+	 *  list of URLs to JavaScript files, string of JavaScript for `$.globalEval`, or array with
+	 *  'files' and 'main' properties (see ResourceLoaderModule::getScript())
 	 * @param mixed $styles Array of CSS strings keyed by media type, or an array of lists of URLs
 	 *   to CSS files keyed by media type
 	 * @param mixed $messages List of messages associated with this module. May either be an
@@ -1222,9 +1223,30 @@ MESSAGE;
 			} else {
 				$scripts = new XmlJsCode( 'function($,jQuery,require,module){' . $scripts->value . '}' );
 			}
+		} elseif ( is_array( $scripts ) && isset( $scripts['files'] ) ) {
+			$files = $scripts['files'];
+			foreach ( $files as $path => &$file ) {
+				// $file is changed (by reference) from a descriptor array to the content of the file
+				// All of these essentially do $file = $file['content'];, some just have wrapping around it
+				if ( $file['type'] === 'script' ) {
+					// Multi-file modules only get two parameters ($ and jQuery are being phased out)
+					if ( self::inDebugMode() ) {
+						$file = new XmlJsCode( "function ( require, module ) {\n{$file['content']}\n}" );
+					} else {
+						$file = new XmlJsCode( 'function(require,module){' . $file['content'] . '}' );
+					}
+				} else {
+					$file = $file['content'];
+				}
+			}
+			$scripts = XmlJsCode::encodeObject( [
+				'main' => $scripts['main'],
+				'files' => XmlJsCode::encodeObject( $files, self::inDebugMode() )
+			], self::inDebugMode() );
 		} elseif ( !is_string( $scripts ) && !is_array( $scripts ) ) {
 			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
 		}
+
 		// mw.loader.implement requires 'styles', 'messages' and 'templates' to be objects (not
 		// arrays). json_encode considers empty arrays to be numerical and outputs "[]" instead
 		// of "{}". Force them to objects.
@@ -1233,7 +1255,7 @@ MESSAGE;
 			$scripts,
 			(object)$styles,
 			(object)$messages,
-			(object)$templates,
+			(object)$templates
 		];
 		self::trimArray( $module );
 
