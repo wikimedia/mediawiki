@@ -654,6 +654,7 @@
 	"apierror-badtoken": "Nieprawidłowy token CSRF.",
 	"apierror-blockedfrommail": "Została Ci zablokowana możliwość wysyłania e-maili.",
 	"apierror-blocked": "Została Ci zablokowana możliwość edycji.",
+	"apierror-blocked-partial": "Została Ci zablokowana możliwość edycji tej strony.",
 	"apierror-botsnotsupported": "Interfejs nie jest obsługiwany dla botów.",
 	"apierror-cannotviewtitle": "Nie masz uprawnień do oglądania $1.",
 	"apierror-cantblock": "Nie masz uprawnień do blokowania użytkowników.",

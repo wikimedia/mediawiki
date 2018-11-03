@@ -3842,7 +3842,7 @@
 	"feedback-termsofuse": "Accetto di fornire feedback conformemente alle Condizioni d'Uso.",
 	"feedback-thanks": "Grazie! Il tuo feedback è stato pubblicato alla pagina \"[$2 $1]\".",
 	"feedback-thanks-title": "Grazie!",
-	"feedback-useragent": "Agente utente:",
+	"feedback-useragent": "User agent:",
 	"searchsuggest-search": "Cerca all'interno di {{SITENAME}}",
 	"searchsuggest-containing": "contenente...",
 	"api-error-badtoken": "Errore interno: token errato.",
