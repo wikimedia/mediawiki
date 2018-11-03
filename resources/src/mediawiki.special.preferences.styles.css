@@ -24,12 +24,11 @@
 /* The CSS below is also for JS enabled version, because we want to prevent FOUC */
 
 /*
- * Hide, but keep accessible for screen-readers.
+ * Hide, when not keyboard focussed.
  */
-.client-js .mw-navigation-hint {
-	overflow: hidden;
+.client-js .mw-navigation-hint:not( :focus ) {
 	height: 0;
-	zoom: 1;
+	overflow: hidden;
 }
 
 .client-nojs #preftoc {
