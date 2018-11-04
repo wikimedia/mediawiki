@@ -954,6 +954,7 @@ class Title implements LinkTarget {
 
 	/**
 	 * Get the DB key with the initial letter case as specified by the user
+	 * @deprecated since 1.33; please use Title::getDBKey() instead
 	 *
 	 * @return string DB key
 	 */
