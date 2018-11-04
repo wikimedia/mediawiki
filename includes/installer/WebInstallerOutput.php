@@ -197,7 +197,7 @@ class WebInstallerOutput {
 	 * @return string
 	 */
 	private function getCssUrl() {
-		return Html::linkedStyle( $_SERVER['PHP_SELF'] . '?css=1' );
+		return Html::linkedStyle( $this->parent->getUrl( [ 'css' => 1 ] ) );
 	}
 
 	public function useShortHeader( $use = true ) {
