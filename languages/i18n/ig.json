@@ -3,7 +3,8 @@
 		"authors": [
 			"Reedy",
 			"Ukabia",
-			"아라"
+			"아라",
+			"Uzoma Ozurumba"
 		]
 	},
 	"tog-underline": "Ahịrịàlà òjikọ:",
@@ -609,6 +610,7 @@
 	"recentchanges-legend": "Nràlụ màkà Ihe gbanwere ubwá",
 	"recentchanges-feed-description": "Chóputà ihe ógẹ ǹsò na wiki ímé órírí nke á.",
 	"recentchanges-label-minor": "Ihe bu orü ntakírí",
+	"recentchanges-label-bot": "Bot deziri ihe a",
 	"recentchanges-legend-newpage": "$1 - ihü ohúrù",
 	"rcfilters-savedqueries-cancel-label": "Hapụ̀",
 	"rclistfrom": "Zìrí ihe gbanwere ọhúrù shí $3 $2",

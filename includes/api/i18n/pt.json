@@ -191,7 +191,7 @@
 	"apihelp-feedcontributions-param-month": "Desde o mês.",
 	"apihelp-feedcontributions-param-tagfilter": "Filtrar as contribuições para produzir as que têm estas etiquetas.",
 	"apihelp-feedcontributions-param-deletedonly": "Mostrar apenas as contribuições eliminadas.",
-	"apihelp-feedcontributions-param-toponly": "Mostrar apenas as edições mais recentes.",
+	"apihelp-feedcontributions-param-toponly": "Mostrar só edições que sejam a revisão mais recente.",
 	"apihelp-feedcontributions-param-newonly": "Mostrar apenas as edições que são criações de páginas.",
 	"apihelp-feedcontributions-param-hideminor": "Ocultar edições menores.",
 	"apihelp-feedcontributions-param-showsizediff": "Mostrar diferença de tamanho entre edições.",

@@ -227,7 +227,7 @@
 	"category-subcat-count-limited": "Ta kategoria ma {{PLURAL:$1|1 podkategorię|$1 podkategorie|$1 podkategorii}}.",
 	"category-article-count": "{{PLURAL:$2|W tej kategorii jest tylko jedna strona.|Poniżej wyświetlono $1 spośród wszystkich $2 stron tej kategorii.}}",
 	"category-article-count-limited": "W tej kategorii {{PLURAL:$1|jest 1 strona|są $1 strony|jest $1 stron}}.",
-	"category-file-count": "{{PLURAL:$2|W tej kategorii znajduje się tylko jeden plik.|W tej kategorii {{PLURAL:$1|jest 1 plik|są $1 pliki|jest $1 plików}} z ogólnej liczby $2 plików.}}",
+	"category-file-count": "{{PLURAL:$2|W tej kategorii znajduje się tylko jeden plik.|Poniżej wyświetlono $1 spośród wszystkich $2 plików w tej kategorii.}}",
 	"category-file-count-limited": "W tej kategorii {{PLURAL:$1|jest 1 plik|są $1 pliki|jest $1 plików}}.",
 	"listingcontinuesabbrev": "cd.",
 	"index-category": "Strony indeksowane",

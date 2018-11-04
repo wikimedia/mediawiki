@@ -330,7 +330,7 @@
 	"config-help": "справка",
 	"config-help-tooltip": "нажмите, чтобы развернуть",
 	"config-nofile": "Файл \"$1\" не удается найти. Он был удален?",
-	"config-extension-link": "Знаете ли вы, что ваш вики-проект поддерживает [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions расширения]?\n\nВы можете просмотреть [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category расширения по категориям] или [https://www.mediawiki.org/wiki/Extension_Matrix матрицу расширений], чтобы увидеть их полный список.",
+	"config-extension-link": "Знаете ли вы, что ваш вики-проект поддерживает [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions расширения]?\n\nВы можете просмотреть [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category расширения по категориям]",
 	"config-skins-screenshots": "$1 (скриншоты: $2)",
 	"config-extensions-requires": "$1 (требуется $2)",
 	"config-screenshot": "скриншот",

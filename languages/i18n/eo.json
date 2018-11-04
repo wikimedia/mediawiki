@@ -1688,7 +1688,7 @@
 	"filehist-comment": "Komento",
 	"imagelinks": "Dosiera uzado",
 	"linkstoimage": "La {{PLURAL:$1|jena paĝo|jenaj paĝoj}} ligas al ĉi tiu dosiero:",
-	"linkstoimage-more": "Pli ol $1 {{PLURAL:$1|paĝo|paĝoj}} ligas ĉi tiun dosieron.\nLa jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al nur ĉi tiu dosiero.\n[[Special:WhatLinksHere/$2|Plena listo]] estas atingebla.",
+	"linkstoimage-more": "Pli ol $1 {{PLURAL:$1|paĝo|paĝoj}} ligas al tiu ĉi dosiero.\nLa jena listo montras {{PLURAL:$1|unuan paĝon|unuajn $1 paĝon}} kun nur tiu ĉi dosiero.\n[[Special:WhatLinksHere/$2|La plena listo]] estas atingebla.",
 	"nolinkstoimage": "Neniu paĝo ligas al ĉi tiu dosiero.",
 	"morelinkstoimage": "Vidi [[Special:WhatLinksHere/$1|pliajn ligilojn]] al ĉi tiu dosiero.",
 	"linkstoimage-redirect": "$1 (alidirektilo al dosiero) $2",

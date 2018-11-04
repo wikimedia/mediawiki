@@ -23,7 +23,8 @@
 			"Xð",
 			"Srdjan m",
 			"Acamicamacaraca",
-			"Vlad5250"
+			"Vlad5250",
+			"BadDog"
 		]
 	},
 	"tog-underline": "Потцртување на врски:",
@@ -619,7 +620,7 @@
 	"headline_sample": "Наслов",
 	"headline_tip": "Поднаслов",
 	"nowiki_sample": "Овде внесете неформатиран текст",
-	"nowiki_tip": "Занемари викиформатирање",
+	"nowiki_tip": "Занемари вики форматирање",
 	"image_sample": "Пример.jpg",
 	"image_tip": "Вметната слика",
 	"media_sample": "Пример.ogg",
