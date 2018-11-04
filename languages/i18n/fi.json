@@ -588,6 +588,7 @@
 	"botpasswords-invalid-name": "Annetussa käyttäjätunnuksessa ei ole bottisalasanan erotinta (\"$1\").",
 	"botpasswords-not-exist": "Käyttäjällä \"$1\" ei ole bottisalasanaa nimellä \"$2\".",
 	"botpasswords-needs-reset": "Bottisalasana {{GENDER:$1|käyttäjän}} \"$1\" bottinimelle \"$2\" täytyy nollata.",
+	"botpasswords-locked": "Et voi kirjautua sisään bottisalasanalla, koska tunnuksesi on lukittu.",
 	"resetpass_forbidden": "Salasanoja ei voi vaihtaa.",
 	"resetpass_forbidden-reason": "Salasanoja ei voi muuttaa: $1",
 	"resetpass-no-info": "Et voi nähdä tätä sivua kirjautumatta sisään.",
@@ -683,6 +684,8 @@
 	"subject-preview": "Aiheotsikon esikatselu:",
 	"previewerrortext": "Muokkaustesi esikatselun toteuttamisessa on tapahtunut virhe.",
 	"blockedtitle": "Käyttäjä on estetty",
+	"blocked-email-user": "<strong>Käyttäjänimeäsi on estetty lähettämästä sähköpostia. Voit silti muokata muita sivuja tässä wikissä.</strong> Voit katsoa eston täydelliset tiedot [[Special:MyContributions|käyttäjän muokkauksista]].\n\nEston antoi $1.\n\nAnnettu syy on <em>$2</em>.\n\n* Eston alkamisaika: $8\n* Eston päättymisaika: $6\n* Kohde: $7\n* Eston tunnus #$5",
+	"blockedtext-partial": "<strong>Käyttäjänimesi tai IP-osoitteesi on estetty muokkaamasta tätä sivua.</strong> Voit katsoa eston täydelliset tiedot [[Special:MyContributions|käyttäjän muokkauksista]].\n\nEston antoi $1.\n\nAnnettu syy on <em>$2</em>.\n\n* Eston alkamisaika: $8\n* Eston päättymisaika: $6\n* Kohde: $7\n* Eston tunnus #$5",
 	"blockedtext": "<strong>Käyttäjätunnuksesi tai IP-osoitteesi on estetty.</strong>\n\nEston on asettanut $1.\nAnnettu syy on <em>$2</em>.\n\n* Eston alkamisaika: $8\n* Eston päättymisaika: $6\n* Kohde: $7\n\nVoit keskustella ylläpitäjän $1 tai toisen [[{{MediaWiki:Grouppage-sysop}}|ylläpitäjän]] kanssa estosta.\nHuomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassa olevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]] tai jos esto on asetettu koskemaan myös sähköpostin lähettämistä.\nIP-osoitteesi on $3 ja estotunnus on #$5.\nLiitä kaikki yllä olevat tiedot mahdollisiin kyselyihisi.",
 	"autoblockedtext": "IP-osoitteesi on estetty automaattisesti, koska sitä on käyttänyt toinen käyttäjä, jonka on estänyt ylläpitäjä $1.\nAnnettu syy on:\n\n:<em>$2</em>\n\n* Eston alkamisaika: $8\n* Eston päättymisaika: $6\n* Kohde: $7\n\nVoit keskustella ylläpitäjän $1 tai toisen [[{{MediaWiki:Grouppage-sysop}}|ylläpitäjän]] kanssa estosta.\n\nHuomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassa olevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]] tai jos esto on asetettu koskemaan myös sähköpostin lähettämistä.\n\nIP-osoitteesi on $3 ja estotunnus on #$5.\nLiitä kaikki yllä olevat tiedot mahdollisiin kyselyihisi.",
 	"systemblockedtext": "Käyttäjätunnuksesi tai IP-osoitteesi on automaattisesti estetty MediaWikin toimesta.\nAnnettu syy on:\n\n:<em>$2</em>\n\n* Start of block: $8\n* Expiration of block: $6\n* Intended blockee: $7\n\nTämänhetkinen IP-osoitteesi on $3.\nOle hyvä ja liitä kaikki yllä olevat tiedot mahdollisiin kyselyihisi.",
@@ -2632,6 +2635,7 @@
 	"movepage-moved": "'''$1 on siirretty nimelle $2'''",
 	"movepage-moved-redirect": "Ohjaus luotiin.",
 	"movepage-moved-noredirect": "Ohjausta ei luotu.",
+	"movepage-delete-first": "Kohdesivulla on liikaa muutoksia siirron yhteydessä poistettavaksi. Poista sivu ensin käsin ja yritä sitten uudelleen.",
 	"articleexists": "Kohdesivu on jo olemassa, tai valittu nimi ei ole sopiva. Ole hyvä ja valitse uusi nimi.",
 	"cantmove-titleprotected": "Sivua ei voi siirtää tälle nimelle, koska tämän nimisen sivun luonti on estetty.",
 	"movetalk": "Siirrä myös keskustelusivu",
@@ -3411,6 +3415,7 @@
 	"mcrundofailed": "Kumoaminen epäonnistui",
 	"mcrundo-missingparam": "Tarvittavat parametrit puuttuvat pyynnöstä.",
 	"mcrundo-changed": "Sivu on muuttunut siitä lähtien, kun katsoit tätä muokkausta. Arvioi uusi muokkaus.",
+	"mcrundo-parse-failed": "Uuden version jäsentäminen epäonnistui: $1",
 	"percent": "$1&#160;%",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "← edellinen sivu",
@@ -4131,5 +4136,6 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "Salasana ei saa olla sama kuin käyttäjänimi",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Salasana ei saa olla mustalla listalla",
 	"passwordpolicies-policy-maximalpasswordlength": "Salasanan tulee olla lyhyempi kuin $1 {{PLURAL:$1|merkki|merkkiä}}",
-	"passwordpolicies-policy-passwordcannotbepopular": "Salasana ei saa olla {{PLURAL:$1|suosittu salasana|$1 suosituimman salasanan listalla}}"
+	"passwordpolicies-policy-passwordcannotbepopular": "Salasana ei saa olla {{PLURAL:$1|suosittu salasana|$1 suosituimman salasanan listalla}}",
+	"unprotected-js": "Turvallisuussyistä JavaScriptiä ei voi ladata suojaamattomilta sivuilta. Luo JavaScript-sivuja vain MediaWiki-nimiavaruuteen tai käyttäjän alasivulle."
 }
