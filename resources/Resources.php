@@ -2478,6 +2478,21 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.widgets.AbandonEditDialog' => [
+		'scripts' => [
+			'resources/src/mediawiki.widgets/mw.widgets.AbandonEditDialog.js',
+		],
+		'messages' => [
+			'visualeditor-viewpage-savewarning',
+			'visualeditor-viewpage-savewarning-discard',
+			'visualeditor-viewpage-savewarning-keep',
+			'visualeditor-viewpage-savewarning-title',
+		],
+		'dependencies' => [
+			'oojs-ui-windows',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.widgets.DateInputWidget' => [
 		'scripts' => [
 			'resources/src/mediawiki.widgets/mw.widgets.CalendarWidget.js',
