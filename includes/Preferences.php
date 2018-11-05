@@ -47,19 +47,13 @@ class Preferences {
 	}
 
 	/**
-	 * @return array
-	 */
-	public static function getSaveBlacklist() {
-		throw new Exception( __METHOD__ . '() is deprecated and does nothing' );
-	}
-
-	/**
 	 * @throws MWException
 	 * @param User $user
 	 * @param IContextSource $context
 	 * @return array|null
 	 */
 	public static function getPreferences( $user, IContextSource $context ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$preferencesFactory = self::getDefaultPreferencesFactory();
 		return $preferencesFactory->getFormDescriptor( $user, $context );
 	}
@@ -272,45 +266,8 @@ class Preferences {
 		$formClass = PreferencesFormLegacy::class,
 		array $remove = []
 	) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$preferencesFactory = self::getDefaultPreferencesFactory();
 		return $preferencesFactory->getForm( $user, $context, $formClass, $remove );
-	}
-
-	/**
-	 * @param IContextSource $context
-	 * @return array
-	 */
-	public static function getTimezoneOptions( IContextSource $context ) {
-		throw new Exception( __METHOD__ . '() is deprecated and does nothing' );
-	}
-
-	/**
-	 * @param string $value
-	 * @param array $alldata
-	 * @return int
-	 */
-	public static function filterIntval( $value, $alldata ) {
-		throw new Exception( __METHOD__ . '() is deprecated and does nothing' );
-	}
-
-	/**
-	 * @param string $tz
-	 * @param array $alldata
-	 * @return string
-	 */
-	public static function filterTimezoneInput( $tz, $alldata ) {
-		throw new Exception( __METHOD__ . '() is deprecated and does nothing' );
-	}
-
-	/**
-	 * Get a list of all time zones
-	 * @param Language $language Language used for the localized names
-	 * @return array A list of all time zones. The system name of the time zone is used as key and
-	 *  the value is an array which contains localized name, the timecorrection value used for
-	 *  preferences and the region
-	 * @since 1.26
-	 */
-	public static function getTimeZoneList( Language $language ) {
-		throw new Exception( __METHOD__ . '() is deprecated and does nothing' );
 	}
 }
