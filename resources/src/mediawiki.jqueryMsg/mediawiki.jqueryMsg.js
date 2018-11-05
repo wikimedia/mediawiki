@@ -14,13 +14,14 @@
 	var oldParser,
 		slice = Array.prototype.slice,
 		parserDefaults = {
+			// Magic words and their expansions. Server-side data is added to this below.
 			magic: {
 				PAGENAME: mw.config.get( 'wgPageName' ),
 				PAGENAMEE: mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) )
 			},
 			// Whitelist for allowed HTML elements in wikitext.
 			// Self-closing tags are not currently supported.
-			// Can be populated via setParserDefaults().
+			// Filled in with server-side data below
 			allowedHtmlElements: [],
 			// Key tag name, value allowed attributes for that tag.
 			// See Sanitizer::setupAttributeWhitelist
@@ -55,6 +56,9 @@
 			// is 'text', including when it uses jqueryMsg.
 			format: 'parse'
 		};
+
+	// Add in server-side data (allowedHtmlElements and magic words)
+	$.extend( true, parserDefaults, require( './parserDefaults.json' ) );
 
 	/**
 	 * Wrapper around jQuery append that converts all non-objects to TextNode so append will not

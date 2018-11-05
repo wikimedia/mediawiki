@@ -24,6 +24,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
 
+global $wgResourceBasePath;
+
 return [
 
 	/**
@@ -1177,14 +1179,15 @@ return [
 			'upload-foreign-cant-upload',
 		]
 	],
-	'mediawiki.ForeignStructuredUpload.config' => [
-		'class' => ResourceLoaderUploadDialogModule::class,
-	],
 	'mediawiki.ForeignStructuredUpload' => [
-		'scripts' => 'resources/src/mediawiki.ForeignStructuredUpload.js',
+		'localBasePath' => "$IP/resources/src",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src",
+		'packageFiles' => [
+			'mediawiki.ForeignStructuredUpload.js',
+			'config.json' => [ 'config' => [ 'UploadDialog' ] ],
+		],
 		'dependencies' => [
 			'mediawiki.ForeignUpload',
-			'mediawiki.ForeignStructuredUpload.config',
 		],
 		'messages' => [
 			'upload-foreign-cant-load-config',
@@ -1327,8 +1330,12 @@ return [
 		]
 	],
 	'mediawiki.util' => [
-		'class' => ResourceLoaderMediaWikiUtilModule::class,
-		'scripts' => 'resources/src/mediawiki.util.js',
+		'localBasePath' => "$IP/resources/src",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src",
+		'packageFiles' => [
+			'mediawiki.util.js',
+			'config.json' => [ 'config' => [ 'FragmentMode' ] ],
+		],
 		'dependencies' => [
 			'jquery.accessKeyLabel',
 			'mediawiki.RegExp',
@@ -1570,9 +1577,31 @@ return [
 	],
 
 	'mediawiki.jqueryMsg' => [
-		// Add data for mediawiki.jqueryMsg, such as allowed tags
-		'class' => ResourceLoaderJqueryMsgModule::class,
-		'scripts' => 'resources/src/mediawiki.jqueryMsg/mediawiki.jqueryMsg.js',
+		'localBasePath' => "$IP/resources/src/mediawiki.jqueryMsg",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.jqueryMsg",
+		'packageFiles' => [
+			'mediawiki.jqueryMsg.js',
+			'parserDefaults.json' => [ 'callback' => function ( ResourceLoaderContext $context ) {
+				$tagData = Sanitizer::getRecognizedTagData();
+				$allowedHtmlElements = array_merge(
+					array_keys( $tagData['htmlpairs'] ),
+					array_diff(
+						array_keys( $tagData['htmlsingle'] ),
+						array_keys( $tagData['htmlsingleonly'] )
+					)
+				);
+
+				$magicWords = [
+					'SITENAME' => $context->getConfig()->get( 'Sitename' ),
+				];
+				Hooks::run( 'ResourceLoaderJqueryMsgModuleMagicWords', [ $context, &$magicWords ] );
+
+				return [
+					'allowedHtmlElements' => $allowedHtmlElements,
+					'magic' => $magicWords,
+				];
+			} ],
+		],
 		'dependencies' => [
 			'mediawiki.util',
 			'mediawiki.language',
@@ -1592,10 +1621,54 @@ return [
 		)
 	],
 
-	'mediawiki.language.names' => [ 'class' => ResourceLoaderLanguageNamesModule::class ],
+	'mediawiki.language.names' => [
+		'localBasePath' => "$IP/resources/src/mediawiki.language",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.language",
+		'packageFiles' => [
+			'mediawiki.language.names.js',
+			'names.json' => [ 'callback' => function ( ResourceLoaderContext $context ) {
+				return Language::fetchLanguageNames( $context->getLanguage(), 'all' );
+			} ],
+		],
+		'dependencies' => 'mediawiki.language',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 
 	'mediawiki.language.specialCharacters' => [
-		'class' => ResourceLoaderSpecialCharacterDataModule::class
+		'localBasePath' => "$IP/resources/src/mediawiki.language",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.language",
+		'packageFiles' => [
+			'mediawiki.language.specialCharacters.js',
+			'specialcharacters.json'
+		],
+		'dependencies' => 'mediawiki.language',
+		'targets' => [ 'desktop', 'mobile' ],
+		'messages' => [
+			'special-characters-group-latin',
+			'special-characters-group-latinextended',
+			'special-characters-group-ipa',
+			'special-characters-group-symbols',
+			'special-characters-group-greek',
+			'special-characters-group-greekextended',
+			'special-characters-group-cyrillic',
+			'special-characters-group-arabic',
+			'special-characters-group-arabicextended',
+			'special-characters-group-persian',
+			'special-characters-group-hebrew',
+			'special-characters-group-bangla',
+			'special-characters-group-tamil',
+			'special-characters-group-telugu',
+			'special-characters-group-sinhala',
+			'special-characters-group-devanagari',
+			'special-characters-group-gujarati',
+			'special-characters-group-thai',
+			'special-characters-group-lao',
+			'special-characters-group-khmer',
+			'special-characters-group-canadianaboriginal',
+			'special-characters-title-endash',
+			'special-characters-title-emdash',
+			'special-characters-title-minus'
+		]
 	],
 
 	/* MediaWiki Libs */
