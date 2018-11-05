@@ -15142,6 +15142,10 @@ Alt image option should handle most kinds of wikitext without barfing
 
 !! test
 Ampersand in alt attribute (T206940)
+!! options
+parsoid = {
+  "nativeGallery": true
+}
 !! wikitext
 [[File:Foobar.jpg|alt=&amp;amp;]]
 
@@ -15239,6 +15243,10 @@ File:Foobar.jpg|alt=<nowiki>''</nowiki>x<nowiki>''</nowiki>|caption
 
 !! test
 Nowiki markup in alt attribute (edited html, no data-parsoid) (T206940)
+!! options
+parsoid = {
+  "nativeGallery": true
+}
 !! wikitext
 [[File:Foobar.jpg|alt=<nowiki>''x''</nowiki>|caption]]
 
@@ -15303,6 +15311,10 @@ File:Foobar.jpg|link=Foo &amp; bar
 
 !! test
 Ampersand in link attribute (edited html, no data-parsoid) (T206940)
+!! options
+parsoid = {
+  "nativeGallery": true
+}
 !! wikitext
 [[File:Foobar.jpg|link=Foo_&_bar]]
 
@@ -15424,6 +15436,10 @@ File:Foobar.jpg|link=Foo<nowiki>''</nowiki>s_bar<nowiki>''</nowiki>s|caption
 
 !! test
 Nowiki markup in link attribute (edited html, no data-parsoid) (T206940)
+!! options
+parsoid = {
+  "nativeGallery": true
+}
 !! wikitext
 [[File:Foobar.jpg|link=Foo<nowiki>''s_bar''</nowiki>s|caption]]
 
