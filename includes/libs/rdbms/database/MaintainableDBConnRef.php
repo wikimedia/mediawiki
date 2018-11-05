@@ -94,4 +94,7 @@ class MaintainableDBConnRef extends DBConnRef implements IMaintainableDatabase {
 	}
 }
 
+/**
+ * @deprecated since 1.33
+ */
 class_alias( MaintainableDBConnRef::class, 'MaintainableDBConnRef' );
