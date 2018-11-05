@@ -1299,5 +1299,8 @@
 	"expand_templates_ok": "Va ben",
 	"expand_templates_remove_comments": "Gjave i coments",
 	"expand_templates_preview": "Anteprime",
-	"special-characters-group-symbols": "Simbols"
+	"special-characters-group-symbols": "Simbols",
+	"visualeditor-viewpage-savewarning-discard": "Abandone i cambiaments",
+	"visualeditor-viewpage-savewarning-keep": "Continue a fâ i cambiaments",
+	"visualeditor-viewpage-savewarning-title": "Sêstu sigûr?"
 }

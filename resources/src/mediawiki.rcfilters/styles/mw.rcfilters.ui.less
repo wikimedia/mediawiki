@@ -17,3 +17,52 @@
 		vertical-align: top;
 	}
 }
+
+// Support: Edge 12+, Firefox 28+, Chrome 28+, Saf 9+, Op 17+, iOS 9+, Android 4.4+
+// Use Flexbox in browsers supporting it only
+@supports ( display: flex ) {
+	// Equal cells which wrap, with 1em of space in between
+	.mw-rcfilters-ui {
+		&-row {
+			display: flex;
+			flex-wrap: wrap;
+			margin: 0 -0.5em;
+			justify-content: space-between;
+		}
+
+		&-cell {
+			flex: 1 1;
+			padding: 0 0.5em;
+		}
+
+		&-watchlistTopSectionWidget-watchlistDetails {
+			min-width: 20em;
+		}
+
+		&-filterTagMultiselectWidget-cell-save,
+		&-filterTagMultiselectWidget-cell-reset,
+		&-filterTagMultiselectWidget-views-select,
+		&-watchlistTopSectionWidget-editWatchlistButton,
+		&-watchlistTopSectionWidget-savedLinks,
+		&-itemMenuOptionWidget-highlightButton,
+		&-itemMenuOptionWidget-excludeLabel,
+		&-rcTopSectionWidget-savedLinks{
+			flex: 0 1;
+			align-self: flex-end;
+		}
+
+		&-filterTagMultiselectWidget-views-select {
+			// FIXME: Possible bug in the current styling?
+			width: auto !important; // stylelint-disable-line declaration-no-important
+			padding-left: 0;
+		}
+
+		&-filterTagMultiselectWidget-views-input {
+			padding-right: 0;
+		}
+
+		&-watchlistTopSectionWidget-editWatchlistButton .oo-ui-buttonWidget {
+			margin-left: 0;
+		}
+	}
+}

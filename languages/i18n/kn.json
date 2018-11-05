@@ -33,7 +33,8 @@
 			"Lokesha kunchadka",
 			"Anoop rao",
 			"Rakshika",
-			"Gopala Krishna A"
+			"Gopala Krishna A",
+			"Vikassy"
 		]
 	},
 	"tog-underline": "ಕೊಂಡಿಗಳ ಕೆಳಗೆ ಗೆರೆ ತೋರಿಸಿ",
@@ -1951,5 +1952,8 @@
 	"special-characters-group-devanagari": "ದೇವನಾಗರಿ",
 	"special-characters-group-thai": "ಥಾಯ್",
 	"special-characters-group-lao": "ಲಾವೋ",
-	"special-characters-group-khmer": "ಖ್ಮೇರ್"
+	"special-characters-group-khmer": "ಖ್ಮೇರ್",
+	"visualeditor-viewpage-savewarning-discard": "ಸಂಪಾದನೆಗಳನ್ನು ತ್ಯಜಿಸು",
+	"visualeditor-viewpage-savewarning-keep": "ಸಂಪಾದನೆ ಮುಂದುವರಿಸಿ",
+	"visualeditor-viewpage-savewarning-title": "ನೀವು ಖ‍ಚಿತವಾಗಿದ್ದೀರಾ?"
 }

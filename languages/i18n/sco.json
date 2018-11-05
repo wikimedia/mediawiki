@@ -27,7 +27,8 @@
 			"Anomie",
 			"Pierpao",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"Foxj"
 		]
 	},
 	"tog-underline": "Unnerline airtins:",
@@ -3373,6 +3374,10 @@
 	"json-error-inf-or-nan": "Yin or mair NAN or INF values in the value tae be encoded",
 	"json-error-unsupported-type": "Ae value o ae type that canna be encoded wis gien",
 	"special-characters-group-ipa": "IPA",
+	"visualeditor-viewpage-savewarning": "Ar ye sair that ye want tae gang back til see mode wioot hainin first?",
+	"visualeditor-viewpage-savewarning-discard": "Get rid o chynges",
+	"visualeditor-viewpage-savewarning-keep": "Conteena eeditin",
+	"visualeditor-viewpage-savewarning-title": "Ye shuir?",
 	"randomrootpage": "Random ruit page",
 	"log-action-filter-all": "Aw",
 	"log-action-filter-delete-event": "Log deletion",

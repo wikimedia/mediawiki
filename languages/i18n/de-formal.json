@@ -26,7 +26,8 @@
 			"Tiin",
 			"Rhirsch",
 			"Metalhead64",
-			"Vogone"
+			"Vogone",
+			"Hwboehm"
 		]
 	},
 	"tog-hideminor": "Kleine Änderungen in den „Letzten Änderungen“ ausblenden",
@@ -369,6 +370,8 @@
 	"feedback-bugornote": "Sofern Sie detailliert ein technisches Problem beschreiben möchten, melden Sie bitte [$1 einen Fehler].\nAnderenfalls können Sie auch das untenstehende einfache Formular nutzen. Ihr Kommentar wird, zusammen mit Ihrem Benutzernamen und der Version des von Ihnen verwendeten Webbrowsers sowie Betriebssystems, auf der Seite „[$3 $2]“ hinzugefügt.",
 	"feedback-cancel": "Abbrechen",
 	"feedback-thanks": "Vielen Dank. Ihre Rückmeldung wurde auf der Seite „[$2 $1]“ gespeichert.",
+	"visualeditor-viewpage-savewarning": "Sind Sie sicher, dass Sie zum Ansichtsmodus wechseln möchten, ohne vorher zu speichern?",
+	"visualeditor-viewpage-savewarning-title": "Sind Sie sicher?",
 	"authmanager-provider-password": "Passwortbasierte Authentifizierung",
 	"changecredentials": "Anmeldeinformationen ändern",
 	"changecredentials-submit": "Anmeldeinformationen ändern",

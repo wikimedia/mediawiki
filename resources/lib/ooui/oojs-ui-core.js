@@ -4450,11 +4450,6 @@ OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positionin
 	if ( this.positioning !== positioning ) {
 		this.positioning = positioning;
 
-		this.needsCustomPosition =
-			this.verticalPosition !== 'below' ||
-			this.horizontalPosition !== 'start' ||
-			!OO.ui.contains( this.$floatableContainer[ 0 ], this.$floatable[ 0 ] );
-
 		closestScrollableOfContainer = OO.ui.Element.static.getClosestScrollableContainer( this.$floatableContainer[ 0 ] );
 		// If the scrollable is the root, we have to listen to scroll events
 		// on the window because of browser inconsistencies.
@@ -4591,10 +4586,6 @@ OO.ui.mixin.FloatableElement.prototype.position = function () {
 		return this;
 	} else {
 		this.$floatable.removeClass( 'oo-ui-element-hidden' );
-	}
-
-	if ( !this.needsCustomPosition ) {
-		return this;
 	}
 
 	this.$floatable.css( this.computePosition() );

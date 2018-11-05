@@ -2631,5 +2631,6 @@
 	"expand_templates_output": "Үр дүн",
 	"expand_templates_remove_comments": "Товч агуулгыг авч хаях",
 	"pagelanguage": "Хуудасны хэлийг өөрчлөх",
-	"log-name-pagelang": "Хэлний өөрчлөлтийн лог"
+	"log-name-pagelang": "Хэлний өөрчлөлтийн лог",
+	"visualeditor-viewpage-savewarning": "Чи хийсэн ажлаа хадгалалгүй засварлах хэсгийг орхих гэж байгаадаа итгэлтэй байна уу?"
 }

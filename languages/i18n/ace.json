@@ -1351,5 +1351,6 @@
 	"duration-decades": "{{PLURAL:$1|dekade}}",
 	"duration-centuries": "{{PLURAL:$1|abad}}",
 	"duration-millennia": "{{PLURAL:$1|milenium}}",
-	"pagelang-reason": "Alasan"
+	"pagelang-reason": "Alasan",
+	"visualeditor-viewpage-savewarning-keep": "Lanjut peusaneut"
 }

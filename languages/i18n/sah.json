@@ -17,7 +17,8 @@
 			"Мария Олесова",
 			"Ай-Куо",
 			"Туллук",
-			"Fitoschido"
+			"Fitoschido",
+			"София"
 		]
 	},
 	"tog-underline": "Сигэлэри аннынан тардыы:",
@@ -3791,6 +3792,10 @@
 	"special-characters-title-endash": "орто тире",
 	"special-characters-title-emdash": "уһун тире",
 	"special-characters-title-minus": "минус бэлиэтэ",
+	"visualeditor-viewpage-savewarning": "Уларытыыгын бигэргэппэккэ эрэ көрүү эрэсиимигэр төннөҕүн дуо?",
+	"visualeditor-viewpage-savewarning-discard": "Уларытыылары суох гын",
+	"visualeditor-viewpage-savewarning-keep": "Салгыы уларыт",
+	"visualeditor-viewpage-savewarning-title": "Кырдьык дуо?",
 	"mw-widgets-dateinput-no-date": "Күнэ-дьыла ыйыллыбатах",
 	"mw-widgets-mediasearch-input-placeholder": "Миэдьийэ билэлэри көрдөөһүн",
 	"mw-widgets-mediasearch-noresults": "Туох да көстүбэтэ.",
