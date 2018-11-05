@@ -6182,7 +6182,6 @@ $wgTrxProfilerLimits = [
 		'maxAffected' => 1000
 	],
 	'POST-nonwrite' => [
-		'masterConns' => 0,
 		'writes' => 0,
 		'readQueryTime' => 5,
 		'readQueryRows' => 10000
