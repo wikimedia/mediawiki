@@ -1038,5 +1038,7 @@
 	"feedback-error2": "غلطة: تبديلتك ما صلحتش",
 	"searchsuggest-search": "فتّش في {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|يوم|يامات}}",
-	"mediastatistics-header-bitmap": "تصويرة Bitmap"
+	"mediastatistics-header-bitmap": "تصويرة Bitmap",
+	"visualeditor-viewpage-savewarning-keep": "واصل التعديل",
+	"visualeditor-viewpage-savewarning-title": "متأكد؟"
 }

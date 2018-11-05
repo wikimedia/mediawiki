@@ -118,7 +118,8 @@
 			"S4b1nuz E.656",
 			"Daimona Eaytoy",
 			"Sarah Bernabei",
-			"Wedhro"
+			"Wedhro",
+			"Malore"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -3966,6 +3967,10 @@
 	"special-characters-title-endash": "lineetta enne",
 	"special-characters-title-emdash": "lineetta emme",
 	"special-characters-title-minus": "segno meno",
+	"visualeditor-viewpage-savewarning": "Sei sicuro di voler lasciare la modalità di modifica senza prima salvare?",
+	"visualeditor-viewpage-savewarning-discard": "Ignora modifiche",
+	"visualeditor-viewpage-savewarning-keep": "Continuare a modificare",
+	"visualeditor-viewpage-savewarning-title": "Sei sicuro?",
 	"mw-widgets-dateinput-no-date": "Nessuna data selezionata",
 	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-GG",
 	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",

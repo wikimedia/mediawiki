@@ -980,5 +980,6 @@
 	"duration-weeks": "$1 {{PLURAL:$1|чеди-хонук|чеди-хонук}}",
 	"duration-years": "$1 {{PLURAL:$1|чыл|чыл}}",
 	"duration-decades": "$1 {{PLURAL:$1|1=он хонук|он хонук}}",
-	"duration-centuries": "$1 {{PLURAL:$1|1=чүс чыл|чүс чыл}}"
+	"duration-centuries": "$1 {{PLURAL:$1|1=чүс чыл|чүс чыл}}",
+	"visualeditor-viewpage-savewarning-title": "Бүзүрелдиг-дир бе?"
 }

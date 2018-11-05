@@ -3048,5 +3048,9 @@
 	"special-characters-group-khmer": "খেমাৰ",
 	"special-characters-title-endash": "en দেছ্‌",
 	"special-characters-title-emdash": "em দেছ‌",
-	"special-characters-title-minus": "বিয়োগ চিন"
+	"special-characters-title-minus": "বিয়োগ চিন",
+	"visualeditor-viewpage-savewarning": "সাঁচি নৰখাকৈ সম্পাদনা এৰি যাব বুলি আপুনি নিশ্চিতনে?",
+	"visualeditor-viewpage-savewarning-discard": "সম্পাদনাসমূহ বাতিল কৰক",
+	"visualeditor-viewpage-savewarning-keep": "সম্পাদনা অব্যাহত ৰাখক",
+	"visualeditor-viewpage-savewarning-title": "আপুনি নিশ্চিতনে?"
 }

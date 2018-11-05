@@ -71,7 +71,8 @@
 			"CYAN",
 			"Nuevo Paso",
 			"Doyoon1995",
-			"Jay94ks"
+			"Jay94ks",
+			"Ryuch"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -3962,6 +3963,10 @@
 	"special-characters-title-endash": "en 대시",
 	"special-characters-title-emdash": "em 대시",
 	"special-characters-title-minus": "빼기 기호",
+	"visualeditor-viewpage-savewarning": "먼저 저장하지 않고 편집을 그만 두겠습니까?",
+	"visualeditor-viewpage-savewarning-discard": "편집 버리기",
+	"visualeditor-viewpage-savewarning-keep": "편집 계속",
+	"visualeditor-viewpage-savewarning-title": "확실합니까?",
 	"mw-widgets-dateinput-no-date": "선택된 날짜 없음",
 	"mw-widgets-mediasearch-input-placeholder": "미디어 검색",
 	"mw-widgets-mediasearch-noresults": "결과가 없습니다.",

@@ -5,7 +5,8 @@
 			"Futhark1988",
 			"Máté",
 			"R-Joe",
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"Misibacsi"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -234,5 +235,8 @@
 	"newpages": "Új lapok",
 	"changecontentmodel-submit": "Módosít",
 	"specialpages": "Speciális lapok",
+	"visualeditor-viewpage-savewarning-discard": "Változtatások elvetése",
+	"visualeditor-viewpage-savewarning-keep": "Szerkesztés folytatása",
+	"visualeditor-viewpage-savewarning-title": "Biztos benne?",
 	"sessionprovider-nocookies": "A sütik le lehetnek tiltva. Engedélyezze a sütiket, és próbálja meg újra!"
 }

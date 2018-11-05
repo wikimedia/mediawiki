@@ -3005,5 +3005,9 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "liggend streepjen",
 	"special-characters-title-emdash": "gedachtenstreepjen",
-	"special-characters-title-minus": "minteken"
+	"special-characters-title-minus": "minteken",
+	"visualeditor-viewpage-savewarning": "Bi'j der wisse van da'j de naokiekmodus verlaoten willen zonder eerst op te slaon?",
+	"visualeditor-viewpage-savewarning-discard": "Wiezigingen vortsmieten",
+	"visualeditor-viewpage-savewarning-keep": "Verdan gaon mit bewarken",
+	"visualeditor-viewpage-savewarning-title": "Wee'j t zeker?"
 }
