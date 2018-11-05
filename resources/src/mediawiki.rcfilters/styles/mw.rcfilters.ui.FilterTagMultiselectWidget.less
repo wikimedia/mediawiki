@@ -130,18 +130,18 @@
 			width: 1em;
 
 			&-widget.oo-ui-widget {
+				display: block;
+				.box-sizing( border-box );
+				height: 2.5em;
 				border: 1px solid @colorGray10;
 				border-left-width: 0;
 				border-radius: 0 0 @borderRadius 0;
-				// Using the 'left' value from
+				// For `padding-right` using the 'left' value from
 				// .oo-ui-buttonElement-frameless.oo-ui-iconElement >
 				// .oo-ui-buttonElement-button > .oo-ui-iconElement-icon
 				padding-right: 0.35714286em;
-
-				display: block;
 				text-align: right;
-				height: 2.5em;
-				.box-sizing( border-box );
+				white-space: nowrap;
 
 				.oo-ui-buttonOptionWidget:first-child {
 					margin-left: 0;
