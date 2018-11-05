@@ -2786,6 +2786,10 @@
 	"special-characters-title-endash": "орта тире",
 	"special-characters-title-emdash": "узун тире",
 	"special-characters-title-minus": "минус белги",
+	"visualeditor-viewpage-savewarning": "Тюрлендириулени сакълатмагъанлай къарау режимге къайтыргъа ажымсыз излеймисе?",
+	"visualeditor-viewpage-savewarning-discard": "Тюрлениулени ызына ал",
+	"visualeditor-viewpage-savewarning-keep": "Редакторлукъ этиуню бардыр",
+	"visualeditor-viewpage-savewarning-title": "Ишексизмисе?",
 	"mw-widgets-titleinput-description-new-page": "Быллай бет алкъын джокъду",
 	"mw-widgets-titleinput-description-redirect": "$1 бетге редирект"
 }

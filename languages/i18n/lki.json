@@ -3391,6 +3391,10 @@
 	"special-characters-title-endash": "خط فاصله/کِڕ نام تاق",
 	"special-characters-title-emdash": "خط فاصله کشیده",
 	"special-characters-title-minus": "علامت منفی",
+	"visualeditor-viewpage-savewarning": "مطمئنید که می‌خواهید بدون ذخیره‌سازی به حالت نمایش بازگردید؟",
+	"visualeditor-viewpage-savewarning-discard": "درنظر نگرفتن ویرایش‌ها",
+	"visualeditor-viewpage-savewarning-keep": "ادامه دادن به ویرایش",
+	"visualeditor-viewpage-savewarning-title": "آیا مطمئن هستید؟",
 	"mw-widgets-dateinput-no-date": "هیچ داده‌ای انتخاب نشده",
 	"mw-widgets-titleinput-description-new-page": "اێ وەڵگە هەنی(هالی)وجود نِئرێ",
 	"mw-widgets-titleinput-description-redirect": "گؤەڕانن/تغییر مسیر به $1"

@@ -3900,6 +3900,8 @@
 	"special-characters-title-endash": "кароткі працяжнік",
 	"special-characters-title-emdash": "доўгі працяжнік",
 	"special-characters-title-minus": "мінус",
+	"visualeditor-viewpage-savewarning": "Вы ўпэўненыя, што жадаеце выйсьці з рэжыму рэдагаваньня без папярэдняга захаваньня?",
+	"visualeditor-viewpage-savewarning-title": "Вы ўпэўненыя?",
 	"mw-widgets-dateinput-no-date": "Дата не абраная",
 	"mw-widgets-dateinput-placeholder-day": "ГГГГ-ММ-ДД",
 	"mw-widgets-dateinput-placeholder-month": "ГГГГ-ММ",

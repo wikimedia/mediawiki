@@ -2980,6 +2980,10 @@
 	"special-characters-group-thai": "થાઈ",
 	"special-characters-group-lao": "લાઓ",
 	"special-characters-group-khmer": "ખ્મેર",
+	"visualeditor-viewpage-savewarning": "તમે પહેલાં સાચવ્યા વગર સંપાદક સ્થિતિ છોડવા માંગો છો?",
+	"visualeditor-viewpage-savewarning-discard": "ફેરફારો છોડી દો",
+	"visualeditor-viewpage-savewarning-keep": "ફેરફારો કરવાનું ચાલુ રાખો",
+	"visualeditor-viewpage-savewarning-title": "શું તમે ચોક્કસ છો?",
 	"mw-widgets-titleinput-description-new-page": "પાનું અસ્તિત્વ ધરાવતું નથી.",
 	"randomrootpage": "યાદચ્છિક મૂળ પાનું"
 }

@@ -16,7 +16,8 @@
 			"Robin van der Vliet",
 			"Algentem",
 			"Joao Xavier",
-			"Fitoschido"
+			"Fitoschido",
+			"Idojc"
 		]
 	},
 	"tog-underline": "Sub-strekizez ligili:",
@@ -2066,6 +2067,10 @@
 	"special-characters-group-cyrillic": "Kirila",
 	"special-characters-group-arabic": "Arabiana",
 	"special-characters-group-persian": "Persiana",
+	"visualeditor-viewpage-savewarning": "Ka vu esas certa ke vu volas livar la redaktilo sen registragar vua chanji?",
+	"visualeditor-viewpage-savewarning-discard": "Abandonar redakti",
+	"visualeditor-viewpage-savewarning-keep": "Pluse redaktar",
+	"visualeditor-viewpage-savewarning-title": "Ka vu esas certa?",
 	"mw-widgets-dateinput-no-date": "Nula dato selektita",
 	"mw-widgets-dateinput-placeholder-day": "YYYY-MM-DD",
 	"mw-widgets-titleinput-description-redirect": "Ridirektar ad $1",

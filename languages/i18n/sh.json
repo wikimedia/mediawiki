@@ -3024,5 +3024,9 @@
 	"duration-millennia": "$1 {{PLURAL:$1|milenijum|milenijuma}}",
 	"rotate-comment": "Slika rotirana za $1 {{PLURAL:$1|stepeni}} u smjeru kazaljke na satu",
 	"expand_templates_input": "Unos - Унос",
-	"expand_templates_preview": "Pregled"
+	"expand_templates_preview": "Pregled",
+	"visualeditor-viewpage-savewarning": "Da li ste sigurni da želite napustiti mod uređivanja prije nego što snimite?",
+	"visualeditor-viewpage-savewarning-discard": "Odbaci izmjene",
+	"visualeditor-viewpage-savewarning-keep": "Nastavi s uređivanjem",
+	"visualeditor-viewpage-savewarning-title": "Da li ste sigurni?"
 }
