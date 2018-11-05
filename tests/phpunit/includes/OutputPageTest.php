@@ -1806,6 +1806,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @param string $expectedHTML Expected return value for parseInline(), if different
 	 */
 	public function testParse( array $args, $expectedHTML ) {
+		$this->hideDeprecated( 'OutputPage::parse' );
 		$op = $this->newInstance();
 		$this->assertSame( $expectedHTML, $op->parse( ...$args ) );
 	}
@@ -1820,6 +1821,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			$this->assertTrue( true );
 			return;
 		}
+		$this->hideDeprecated( 'OutputPage::parseInline' );
 		$op = $this->newInstance();
 		$this->assertSame( $expectedHTMLInline ?? $expectedHTML, $op->parseInline( ...$args ) );
 	}
@@ -1953,6 +1955,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::parse
 	 */
 	public function testParseNullTitle() {
+		$this->hideDeprecated( 'OutputPage::parse' );
 		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->parse( '' );
@@ -1962,6 +1965,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::parseInline
 	 */
 	public function testParseInlineNullTitle() {
+		$this->hideDeprecated( 'OutputPage::parseInline' );
 		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->parseInline( '' );
