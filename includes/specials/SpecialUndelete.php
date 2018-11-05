@@ -555,15 +555,9 @@ class SpecialUndelete extends SpecialPage {
 		$diffContext->setWikiPage( WikiPage::factory( $currentRev->getTitle() ) );
 
 		$diffEngine = $currentRev->getContentHandler()->createDifferenceEngine( $diffContext );
+		$diffEngine->setRevisions( $previousRev->getRevisionRecord(), $currentRev->getRevisionRecord() );
 		$diffEngine->showDiffStyle();
-
-		$formattedDiff = $diffEngine->generateContentDiffBody(
-			$previousRev->getContent( Revision::FOR_THIS_USER, $this->getUser() ),
-			$currentRev->getContent( Revision::FOR_THIS_USER, $this->getUser() )
-		);
-
-		$formattedDiff = $diffEngine->addHeader(
-			$formattedDiff,
+		$formattedDiff = $diffEngine->getDiff(
 			$this->diffHeader( $previousRev, 'o' ),
 			$this->diffHeader( $currentRev, 'n' )
 		);
