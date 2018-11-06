@@ -13,14 +13,24 @@
 .mw-email-authenticated .oo-ui-labelWidget { }
 */
 
+/*
+ * Use `position: sticky` on supported browsers, degrades gracefully in
+ * all others, therefore no `@supports` feature query to reduce code complexity.
+ */
+.mw-prefs-buttons {
+	background-color: #fff;
+	position: -webkit-sticky;
+	position: sticky;
+	bottom: 0;
+	margin-top: -1px;
+	border-top: 1px solid #c8ccd1;
+	padding: 1em 0;
+}
+
 /* This is needed because add extra buttons in a weird way */
 .mw-prefs-buttons .mw-htmlform-submit-buttons {
 	display: inline;
 	margin: 0;
-}
-
-.mw-prefs-buttons {
-	margin-top: 1em;
 }
 
 #prefcontrol {
