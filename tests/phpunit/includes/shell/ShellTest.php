@@ -45,11 +45,12 @@ class ShellTest extends MediaWikiTestCase {
 	 * @param string[] $options
 	 * @param callable|null $hook
 	 */
-	public function testMakeScriptCommand( $expected,
-										   $script,
-										   $parameters,
-										   $options = [],
-										   $hook = null
+	public function testMakeScriptCommand(
+		$expected,
+		$script,
+		$parameters,
+		$options = [],
+		$hook = null
 	) {
 		// Running tests under Vagrant involves MWMultiVersion that uses the below hook
 		$this->setMwGlobals( 'wgHooks', [] );
