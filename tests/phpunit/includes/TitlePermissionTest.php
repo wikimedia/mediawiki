@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -892,7 +893,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			'wgEmailAuthentication' => true,
 		] );
 
-		$this->setUserPerm( [ "createpage", "move" ] );
+		$this->setUserPerm( [ 'createpage', 'edit', 'move', 'rollback', 'patrol', 'upload', 'purge' ] );
 		$this->setTitle( NS_HELP, "test page" );
 
 		# $wgEmailConfirmToEdit only applies to 'edit' action
@@ -964,11 +965,24 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			'expiry' => 10,
 			'systemBlock' => 'test',
 		] );
-		$this->assertEquals( [ [ 'systemblockedtext',
+
+		$errors = [ [ 'systemblockedtext',
 				'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
 				'Useruser', 'test', '23:00, 31 December 1969', '127.0.8.1',
-				$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ],
+				$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ];
+
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'edit', $this->user ) );
+		$this->assertEquals( $errors,
 			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'rollback', $this->user ) );
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'patrol', $this->user ) );
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'upload', $this->user ) );
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'purge', $this->user ) );
 
 		// partial block message test
 		$this->user->mBlockedby = $this->user->getName();
@@ -981,10 +995,39 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			'expiry' => 10,
 		] );
 
-		$this->assertEquals( [ [ 'blockedtext-partial',
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'edit', $this->user ) );
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'rollback', $this->user ) );
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'patrol', $this->user ) );
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'upload', $this->user ) );
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'purge', $this->user ) );
+
+		$this->user->mBlock->setRestrictions( [
+				( new PageRestriction( 0, $this->title->getArticleID() ) )->setTitle( $this->title ),
+		] );
+
+		$errors = [ [ 'blockedtext-partial',
 				'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
 				'Useruser', null, '23:00, 31 December 1969', '127.0.8.1',
-				$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ],
+				$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ];
+
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'edit', $this->user ) );
+		$this->assertEquals( $errors,
 			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'rollback', $this->user ) );
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'patrol', $this->user ) );
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'upload', $this->user ) );
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'purge', $this->user ) );
 	}
 }
