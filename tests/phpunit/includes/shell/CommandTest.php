@@ -21,12 +21,10 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideExecute
 	 */
-	public function testExecute( $commandInput, $expectedExitCode, $expectedOutput ) {
-		$this->requirePosix();
-
-		$command = new Command();
+	public function testExecute( $command, $args, $expectedExitCode, $expectedOutput ) {
+		$command = $this->getPhpCommand( $command );
 		$result = $command
-			->params( $commandInput )
+			->params( $args )
 			->execute();
 
 		$this->assertSame( $expectedExitCode, $result->getExitCode() );
@@ -35,37 +33,34 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 
 	public function provideExecute() {
 		return [
-			'success status' => [ 'true', 0, '' ],
-			'failure status' => [ 'false', 1, '' ],
-			'output' => [ [ 'echo', '-n', 'x', '>', 'y' ], 0, 'x > y' ],
+			'success status' => [ 'success_status.php', [], 0, '' ],
+			'failure status' => [ 'failure_status.php', [], 1, '' ],
+			'output' => [ 'echo_args.php', [ 'x', '>', 'y' ], 0, 'x > y' ],
 		];
 	}
 
 	public function testEnvironment() {
-		$this->requirePosix();
-
-		$command = new Command();
+		$command = $this->getPhpCommand( 'echo_env.php' );
 		$result = $command
-			->params( [ 'printenv', 'FOO' ] )
+			->params( [ 'FOO' ] )
 			->environment( [ 'FOO' => 'bar' ] )
 			->execute();
-		$this->assertSame( "bar\n", $result->getStdout() );
+		$this->assertSame( "bar", $result->getStdout() );
 	}
 
 	public function testStdout() {
-		$this->requirePosix();
-
-		$command = new Command();
+		$command = $this->getPhpCommand( 'echo_args.php' );
 
 		$result = $command
-			->params( 'bash', '-c', 'echo ThisIsStderr 1>&2' )
+			->unsafeParams( 'ThisIsStderr', '1>&2' )
 			->execute();
 
 		$this->assertNotContains( 'ThisIsStderr', $result->getStdout() );
-		$this->assertEquals( "ThisIsStderr\n", $result->getStderr() );
+		$this->assertEquals( "ThisIsStderr", $result->getStderr() );
 	}
 
 	public function testStdoutRedirection() {
+		// The double redirection doesn't work on Windows
 		$this->requirePosix();
 
 		$command = new Command();
@@ -80,33 +75,33 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testOutput() {
-		global $IP;
-
-		$this->requirePosix();
-		chdir( $IP );
-
-		$command = new Command();
-		$result = $command
-			->params( [ 'ls', 'index.php' ] )
-			->execute();
-		$this->assertRegExp( '/^index.php$/m', $result->getStdout() );
+		$command = $this->getPhpCommand(
+			'stdout_stderr.php',
+			[ 'correct stdout' ]
+		);
+		$result = $command->execute();
+		$this->assertSame( 'correct stdout', $result->getStdout() );
 		$this->assertSame( null, $result->getStderr() );
 
-		$command = new Command();
+		$command = $this->getPhpCommand(
+			'stdout_stderr.php',
+			[ 'correct stdout ', 'correct stderr ' ]
+		);
 		$result = $command
-			->params( [ 'ls', 'index.php', 'no-such-file' ] )
 			->includeStderr()
 			->execute();
-		$this->assertRegExp( '/^index.php$/m', $result->getStdout() );
-		$this->assertRegExp( '/^.+no-such-file.*$/m', $result->getStdout() );
+		$this->assertRegExp( '/correct stdout/m', $result->getStdout() );
+		$this->assertRegExp( '/correct stderr/m', $result->getStdout() );
 		$this->assertSame( null, $result->getStderr() );
 
-		$command = new Command();
+		$command = $this->getPhpCommand(
+			'stdout_stderr.php',
+			[ 'correct stdout', 'correct stderr' ]
+		);
 		$result = $command
-			->params( [ 'ls', 'index.php', 'no-such-file' ] )
 			->execute();
-		$this->assertRegExp( '/^index.php$/m', $result->getStdout() );
-		$this->assertRegExp( '/^.+no-such-file.*$/m', $result->getStderr() );
+		$this->assertSame( 'correct stdout', $result->getStdout() );
+		$this->assertSame( 'correct stderr', $result->getStderr() );
 	}
 
 	/**
@@ -116,22 +111,25 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 		$command = TestingAccessWrapper::newFromObject( new Command );
 		$command->params( 'echo', 'a', null, 'b' );
 		$command->unsafeParams( 'c', null, 'd' );
-		$this->assertEquals( "'echo' 'a' 'b' c d", $command->command );
+
+		if ( wfIsWindows() ) {
+			$this->assertEquals( '"echo" "a" "b" c d', $command->command );
+		} else {
+			$this->assertEquals( "'echo' 'a' 'b' c d", $command->command );
+		}
 	}
 
 	public function testT69870() {
-		if ( wfIsWindows() ) {
-			// T209159: Anonymous pipe under Windows does not support asynchronous read and write,
-			// and the default buffer is too small (~4K), it is easy to be blocked.
-			$this->markTestSkipped(
-				'T209159: Anonymous pipe under Windows cannot withstand such a large amount of data'
-			);
-		}
+		// Testing for Bug T69870
+		//     wfShellExec() cuts off stdout at multiples of 8192 bytes.
+
+		// hangs on Windows, see Bug T199989, non-blocking pipes
+		$this->requirePosix();
 
 		// Test several times because it involves a race condition that may randomly succeed or fail
 		for ( $i = 0; $i < 10; $i++ ) {
-			$command = new Command();
-			$output = $command->unsafeParams( 'printf "%-333333s" "*"' )
+			$command = $this->getPhpCommand( 'echo_333333_stars.php' );
+			$output = $command
 				->execute()
 				->getStdout();
 			$this->assertEquals( 333333, strlen( $output ) );
@@ -139,45 +137,41 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testLogStderr() {
-		$this->requirePosix();
-
 		$logger = new TestLogger( true, function ( $message, $level, $context ) {
 			return $level === Psr\Log\LogLevel::ERROR ? '1' : null;
 		}, true );
-		$command = new Command();
+		$command = $this->getPhpCommand( 'echo_args.php' );
 		$command->setLogger( $logger );
-		$command->params( 'bash', '-c', 'echo ThisIsStderr 1>&2' );
+		$command->unsafeParams( 'ThisIsStderr', '1>&2' );
 		$command->execute();
 		$this->assertEmpty( $logger->getBuffer() );
 
-		$command = new Command();
+		$command = $this->getPhpCommand( 'echo_args.php' );
 		$command->setLogger( $logger );
 		$command->logStderr();
-		$command->params( 'bash', '-c', 'echo ThisIsStderr 1>&2' );
+		$command->unsafeParams( 'ThisIsStderr', '1>&2' );
 		$command->execute();
 		$this->assertSame( 1, count( $logger->getBuffer() ) );
 		$this->assertSame( trim( $logger->getBuffer()[0][2]['error'] ), 'ThisIsStderr' );
 	}
 
 	public function testInput() {
+		// hangs on Windows, see Bug T199989, non-blocking pipes
 		$this->requirePosix();
 
-		$command = new Command();
-		$command->params( 'cat' );
+		$command = $this->getPhpCommand( 'echo_stdin.php' );
 		$command->input( 'abc' );
 		$result = $command->execute();
 		$this->assertSame( 'abc', $result->getStdout() );
 
 		// now try it with something that does not fit into a single block
-		$command = new Command();
-		$command->params( 'cat' );
+		$command = $this->getPhpCommand( 'echo_stdin.php' );
 		$command->input( str_repeat( '!', 1000000 ) );
 		$result = $command->execute();
 		$this->assertSame( 1000000, strlen( $result->getStdout() ) );
 
 		// And try it with empty input
-		$command = new Command();
-		$command->params( 'cat' );
+		$command = $this->getPhpCommand( 'echo_stdin.php' );
 		$command->input( '' );
 		$result = $command->execute();
 		$this->assertSame( '', $result->getStdout() );
@@ -194,5 +188,34 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 		// Disable restrictions
 		$command->restrict( Shell::RESTRICT_NONE );
 		$this->assertSame( 0, $command->restrictions );
+	}
+
+	/**
+	 * Creates a command that will execute one of the PHP test scripts by its
+	 * file name, using the current PHP_BIN binary.
+	 *
+	 * NOTE: the PHP test scripts are located in the sub directory
+	 * "bin".
+	 *
+	 * @param string $fileName  a file name in the "bin" sub-directory
+	 * @param array $args       an array of arguments to pass to the PHP script
+	 *
+	 * @return Command  a command instance pointing to the right script
+	 */
+	private function getPhpCommand( $fileName, array $args = [] ) {
+		$command = new Command;
+		$params = [
+			PHP_BINARY,
+			__DIR__
+				 . DIRECTORY_SEPARATOR
+				 . 'bin'
+				 . DIRECTORY_SEPARATOR
+				 . $fileName
+		];
+		$params = array_merge( $params, $args );
+
+		$command->params( $params );
+		$command->limits( [ 'memory' => 0 ] );
+		return $command;
 	}
 }
