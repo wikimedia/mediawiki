@@ -1471,11 +1471,10 @@ textarea in the edit form.
 &$buttons: Array of edit buttons "Save", "Preview", "Live", and "Diff"
 &$tabindex: HTML tabindex of the last edit check/button
 
-'EditPageBeforeEditToolbar': Allows modifying the edit toolbar above the
-textarea in the edit form.
-Hook subscribers can return false to avoid the default toolbar code being
-loaded.
-&$toolbar: The toolbar HTML
+'EditPageBeforeEditToolbar': Allow adding an edit toolbar above the textarea in
+the edit form.
+&$toolbar: The toolbar HTML, initially an empty `<div id="toolbar"></div>`
+Hook subscribers can return false to have no toolbar HTML be loaded.
 
 'EditPageCopyrightWarning': Allow for site and per-namespace customization of
 contribution/copyright notice.

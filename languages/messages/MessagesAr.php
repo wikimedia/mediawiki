@@ -439,11 +439,3 @@ $specialPageAliases = [
  * Arabic trails too.
  */
 $linkTrail = '/^([a-zء-ي]+)(.*)$/sDu';
-
-$imageFiles = [
-	'button-bold'     => 'ar/button_bold.png',
-	'button-italic'   => 'ar/button_italic.png',
-	'button-link'     => 'ar/button_link.png',
-	'button-headline' => 'ar/button_headline.png',
-	'button-nowiki'   => 'ar/button_nowiki.png',
-];

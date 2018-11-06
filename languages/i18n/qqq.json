@@ -213,7 +213,6 @@
 	"tog-extendwatchlist": "[[Special:Preferences]], tab 'Watchlist'. Offers user to show all applicable changes in watchlist (by default only the last change to a page on the watchlist is shown). {{Gender}}",
 	"tog-usenewrc": "{{Gender}}\nUsed as label for the checkbox in [[Special:Preferences]], tab \"Recent changes\".\n\nOffers user to use alternative representation of [[Special:RecentChanges]] and watchlist.",
 	"tog-numberheadings": "[[Special:Preferences]], tab 'Misc'. Offers numbered headings on content pages to user. {{Gender}}",
-	"tog-showtoolbar": "{{Gender}}\n[[Special:Preferences]], tab 'Edit'. Offers user to show edit toolbar in page edit screen.\n\nThis is the toolbar: [[Image:Toolbar.png]]",
 	"tog-editondblclick": "{{Gender}}\n[[Special:Preferences]], tab 'Edit'. Offers user to open edit page on double click.",
 	"tog-editsectiononrightclick": "{{Gender}}\n[[Special:Preferences]], tab 'Edit'. Offers user to edit a section by clicking on a section title.",
 	"tog-watchcreations": "[[Special:Preferences]], tab 'Watchlist'. Offers user to add created pages to watchlist. {{Gender}}",
