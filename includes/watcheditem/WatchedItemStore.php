@@ -389,7 +389,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->uncacheTitlesForUser( $user, $titles );
 
 		$dbw = $this->getConnectionRef( DB_MASTER );
-		$ticket = $this->lbFactory->getEmptyTransactionTicket( __METHOD__ );
+		$ticket = count( $titles ) > $this->updateRowsPerQuery ?
+			$this->lbFactory->getEmptyTransactionTicket( __METHOD__ ) : null;
 		$affectedRows = 0;
 
 		// Batch delete items per namespace.
@@ -402,7 +403,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 					'wl_title' => $toDelete
 				], __METHOD__ );
 				$affectedRows += $dbw->affectedRows();
-				$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+				if ( $ticket ) {
+					$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+				}
 			}
 		}
 
@@ -714,7 +717,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
-		// Only loggedin user can have a watchlist
+		// Only logged-in user can have a watchlist
 		if ( $user->isAnon() ) {
 			return false;
 		}
@@ -741,7 +744,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		$dbw = $this->getConnectionRef( DB_MASTER );
-		$ticket = $this->lbFactory->getEmptyTransactionTicket( __METHOD__ );
+		$ticket = count( $targets ) > $this->updateRowsPerQuery ?
+			$this->lbFactory->getEmptyTransactionTicket( __METHOD__ ) : null;
 		$affectedRows = 0;
 		$rowBatches = array_chunk( $rows, $this->updateRowsPerQuery );
 		foreach ( $rowBatches as $toInsert ) {
@@ -749,7 +753,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			// if there's already an entry for this page
 			$dbw->insert( 'watchlist', $toInsert, __METHOD__, 'IGNORE' );
 			$affectedRows += $dbw->affectedRows();
-			$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+			if ( $ticket ) {
+				$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+			}
 		}
 		// Update process cache to ensure skin doesn't claim that the current
 		// page is unwatched in the response of action=watch itself (T28292).
