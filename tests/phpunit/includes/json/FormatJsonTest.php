@@ -172,7 +172,7 @@ class FormatJsonTest extends MediaWikiTestCase {
 	/**
 	 * Test data for testParseTryFixing.
 	 *
-	 * Some PHP interpreters use json-c rather than the JSON.org cannonical
+	 * Some PHP interpreters use json-c rather than the JSON.org canonical
 	 * parser to avoid being encumbered by the "shall be used for Good, not
 	 * Evil" clause of the JSON.org parser's license. By default, json-c
 	 * parses in a non-strict mode which allows trailing commas for array and
@@ -371,5 +371,57 @@ class FormatJsonTest extends MediaWikiTestCase {
 		}
 
 		return $cases;
+	}
+
+	public function provideEmptyJsonKeyStrings() {
+		return [
+			[
+				'{"":"foo"}',
+				'{"":"foo"}',
+				''
+			],
+			[
+				'{"_empty_":"foo"}',
+				'{"_empty_":"foo"}',
+				'_empty_' ],
+			[
+				'{"\u005F\u0065\u006D\u0070\u0074\u0079\u005F":"foo"}',
+				'{"_empty_":"foo"}',
+				'_empty_'
+			],
+			[
+				'{"_empty_":"bar","":"foo"}',
+				'{"_empty_":"bar","":"foo"}',
+				''
+			],
+			[
+				'{"":"bar","_empty_":"foo"}',
+				'{"":"bar","_empty_":"foo"}',
+				'_empty_'
+			]
+		];
+	}
+
+	/**
+	 * @covers FormatJson::encode
+	 * @covers FormatJson::decode
+	 * @dataProvider provideEmptyJsonKeyStrings
+	 * @param string $json
+	 *
+	 * Decoding behavior with empty keys can be surprising.
+	 * See https://phabricator.wikimedia.org/T206411
+	 */
+	public function testEmptyJsonKeyArray( $json, $expect, $php71Name ) {
+		// Decoding to array is consistent across supported PHP versions
+		$this->assertSame( $expect, FormatJson::encode(
+			FormatJson::decode( $json, true ) ) );
+
+		// Decoding to object differs between supported PHP versions
+		$obj = FormatJson::decode( $json );
+		if ( version_compare( PHP_VERSION, '7.1', '<' ) ) {
+			$this->assertEquals( 'foo', $obj->_empty_ );
+		} else {
+			$this->assertEquals( 'foo', $obj->{$php71Name} );
+		}
 	}
 }
