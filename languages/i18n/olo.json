@@ -934,9 +934,9 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|päivitetty}} $3",
 	"rightsnone": "(nimidä)",
 	"searchsuggest-search": "Eči",
-	"visualeditor-viewpage-savewarning": "Tovengo tahtot mennä järilleh kačondutilah tallendamattah ezmäi?",
-	"visualeditor-viewpage-savewarning-discard": "Hylgiä kohendukset",
-	"visualeditor-viewpage-savewarning-keep": "Jatka edituičendua",
-	"visualeditor-viewpage-savewarning-title": "Oletgo varmu?",
+	"mw-widgets-abandonedit": "Tovengo tahtot mennä järilleh kačondutilah tallendamattah ezmäi?",
+	"mw-widgets-abandonedit-discard": "Hylgiä kohendukset",
+	"mw-widgets-abandonedit-keep": "Jatka edituičendua",
+	"mw-widgets-abandonedit-title": "Oletgo varmu?",
 	"mw-widgets-titleinput-description-new-page": "sivuu ei vie ole"
 }

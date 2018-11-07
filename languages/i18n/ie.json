@@ -1098,5 +1098,5 @@
 	"logentry-upload-upload": "$1 ha {{GENDER:$2|cargat}} $3",
 	"rightsnone": "(null)",
 	"searchsuggest-search": "Serchar {{SITENAME}}",
-	"visualeditor-viewpage-savewarning": "Esque tu es cert, que tu vole commutar al vis-modo sin conservation?"
+	"mw-widgets-abandonedit": "Esque tu es cert, que tu vole commutar al vis-modo sin conservation?"
 }

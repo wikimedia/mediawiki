@@ -325,7 +325,7 @@
 	"config-help": "pomoc",
 	"config-help-tooltip": "kliknij, aby rozwinąć",
 	"config-nofile": "Nie udało się odnaleźć pliku \"$1\". Czy nie został usunięty?",
-	"config-extension-link": "Czy wiesz, że twoja wiki obsługuje [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions rozszerzenia]?\n\nMożesz przejrzeć [https://www.mediawiki.org/wiki/Category:Extensions_by_category rozszerzenia według kategorii] lub [https://www.mediawiki.org/wiki/Extension_Matrix Extension Matrix], aby zobaczyć pełną listę rozszerzeń.",
+	"config-extension-link": "Czy wiesz, że twoja wiki obsługuje [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions rozszerzenia]?\n\nMożesz przejrzeć [https://www.mediawiki.org/wiki/Category:Extensions_by_category rozszerzenia według kategorii].",
 	"config-skins-screenshots": "$1 (zrzut ekranu: $2)",
 	"config-extensions-requires": "$1 (wymaga $2)",
 	"config-screenshot": "zrzut ekranu",

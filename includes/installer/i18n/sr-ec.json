@@ -71,7 +71,7 @@
 	"config-db-password": "Лозинка базе података:",
 	"config-db-prefix": "Префикс табеле у бази података:",
 	"config-db-port": "Порт базе података:",
-	"config-db-schema": "Шема за Медијавики:",
+	"config-db-schema": "Шема за Медијавики  (без цртица)",
 	"config-type-mysql": "MariaDB, MySQL или компатибилан",
 	"config-type-postgres": "PostgreSQL",
 	"config-type-sqlite": "SQLite",

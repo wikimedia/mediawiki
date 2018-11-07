@@ -1230,8 +1230,8 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|siông-diòng kó̤}} $3 gì sĭng bēng-buōng",
 	"searchsuggest-search": "Tō̤ {{SITENAME}}",
 	"duration-days": "$1 gĕ̤ng",
-	"visualeditor-viewpage-savewarning-discard": "放棄編輯",
-	"visualeditor-viewpage-savewarning-keep": "繼續編輯",
-	"visualeditor-viewpage-savewarning-title": "汝會確定𣍐？",
+	"mw-widgets-abandonedit-discard": "放棄編輯",
+	"mw-widgets-abandonedit-keep": "繼續編輯",
+	"mw-widgets-abandonedit-title": "汝會確定𣍐？",
 	"randomrootpage": "Sùi-gĭ gṳ̆ng-hiĕk-miêng"
 }
