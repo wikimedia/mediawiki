@@ -632,4 +632,23 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	/**
+	 * @dataProvider provideIsValidApiCode
+	 * @covers ApiErrorFormatter::isValidApiCode
+	 * @param string $code
+	 * @param bool $expect
+	 */
+	public function testIsValidApiCode( $code, $expect ) {
+		$this->assertSame( $expect, ApiErrorFormatter::isValidApiCode( $code ) );
+	}
+
+	public static function provideIsValidApiCode() {
+		return [
+			[ 'foo-bar_Baz123', true ],
+			[ 'foo bar', false ],
+			[ 'foo\\bar', false ],
+			[ 'internal_api_error_foo\\bar baz', true ],
+		];
+	}
+
 }

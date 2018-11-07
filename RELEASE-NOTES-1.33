@@ -68,6 +68,10 @@ production.
   Additionally, the  'APIGetDescription' and 'APIGetParamDescription' hooks have
   been removed, as their only use was to let extensions override values returned
   by getDescription() and getParamDescription(), respectively.
+* API error codes may only contain ASCII letters, numbers, underscore, and
+  hyphen. Methods such as ApiBase::dieWithError() and
+  ApiMessageTrait::setApiCode() will throw an InvalidArgumentException if
+  passed a bad code.
 * …
 
 === Languages updated in 1.33 ===
