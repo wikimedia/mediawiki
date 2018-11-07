@@ -432,6 +432,8 @@ because of Phabricator reports.
   to page updates: LinksUpdateConstructed, LinksUpdate, LinksUpdateComplete.
   LinksUpdateAfterInsert is not triggered since deletions do not cause
   insertions into links tables.
+* Category::newFromID( $id )->getID() will now return $id without any
+  validation, to avoid a mostly unnecessary DB query.
 
 == Compatibility ==
 MediaWiki 1.33 requires PHP 7.0.13 or later. Although HHVM 3.18.5 or later is
