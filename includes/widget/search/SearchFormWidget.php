@@ -238,7 +238,7 @@ class SearchFormWidget {
 	protected function powerSearchBox( $term, array $opts ) {
 		$rows = [];
 		$activeNamespaces = $this->specialSearch->getNamespaces();
-		$langConverter = MediaWikiServices::getInstance()->getContentLanguage()->getConverter();
+		$langConverter = $this->specialSearch->getLanguage();
 		foreach ( $this->searchConfig->searchableNamespaces() as $namespace => $name ) {
 			$subject = MWNamespace::getSubject( $namespace );
 			if ( !isset( $rows[$subject] ) ) {

@@ -840,9 +840,14 @@ class Html {
 			// Value is provided by user, the name shown is localized for the user.
 			$options[$params['all']] = wfMessage( 'namespacesall' )->text();
 		}
-		// Add all namespaces as options (in the content language)
-		$options +=
-			MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces();
+		if ( $params['in-user-lang'] ?? false ) {
+			global $wgLang;
+			$lang = $wgLang;
+		} else {
+			$lang = MediaWikiServices::getInstance()->getContentLanguage();
+		}
+		// Add all namespaces as options
+		$options += $lang->getFormattedNamespaces();
 
 		$optionsOut = [];
 		// Filter out namespaces below 0 and massage labels
@@ -855,8 +860,7 @@ class Html {
 				// main we don't use "" but the user message describing it (e.g. "(Main)" or "(Article)")
 				$nsName = wfMessage( 'blanknamespace' )->text();
 			} elseif ( is_int( $nsId ) ) {
-				$nsName = MediaWikiServices::getInstance()->getContentLanguage()->
-					convertNamespace( $nsId );
+				$nsName = $lang->convertNamespace( $nsId );
 			}
 			$optionsOut[$nsId] = $nsName;
 		}
