@@ -148,9 +148,9 @@ abstract class JobQueueAggregator {
 		global $wgLocalDatabases;
 
 		$pendingDBs = []; // (job type => (db list))
-		foreach ( $wgLocalDatabases as $db ) {
-			foreach ( JobQueueGroup::singleton( $db )->getQueuesWithJobs() as $type ) {
-				$pendingDBs[$type][] = $db;
+		foreach ( $wgLocalDatabases as $wikiId ) {
+			foreach ( JobQueueGroup::singleton( $wikiId )->getQueuesWithJobs() as $type ) {
+				$pendingDBs[$type][] = $wikiId;
 			}
 		}
 

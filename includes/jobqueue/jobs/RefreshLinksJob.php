@@ -83,6 +83,7 @@ class RefreshLinksJob extends Job {
 	function run() {
 		global $wgUpdateRowsPerJob;
 
+		$ok = true;
 		// Job to update all (or a range of) backlink pages for a page
 		if ( !empty( $this->params['recursive'] ) ) {
 			// When the base job branches, wait for the replica DBs to catch up to the master.
@@ -115,16 +116,21 @@ class RefreshLinksJob extends Job {
 			JobQueueGroup::singleton()->push( $jobs );
 		// Job to update link tables for a set of titles
 		} elseif ( isset( $this->params['pages'] ) ) {
-			foreach ( $this->params['pages'] as $nsAndKey ) {
-				list( $ns, $dbKey ) = $nsAndKey;
-				$this->runForTitle( Title::makeTitleSafe( $ns, $dbKey ) );
+			foreach ( $this->params['pages'] as list( $ns, $dbKey ) ) {
+				$title = Title::makeTitleSafe( $ns, $dbKey );
+				if ( $title ) {
+					$this->runForTitle( $title );
+				} else {
+					$ok = false;
+					$this->setLastError( "Invalid title ($ns,$dbKey)." );
+				}
 			}
 		// Job to update link tables for a given title
 		} else {
 			$this->runForTitle( $this->title );
 		}
 
-		return true;
+		return $ok;
 	}
 
 	/**

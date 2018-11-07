@@ -155,8 +155,8 @@ class JobQueueMemory extends JobQueue {
 	 * @see JobQueue::doDelete
 	 */
 	protected function doDelete() {
-		if ( isset( self::$data[$this->type][$this->wiki] ) ) {
-			unset( self::$data[$this->type][$this->wiki] );
+		if ( isset( self::$data[$this->type][$this->domain] ) ) {
+			unset( self::$data[$this->type][$this->domain] );
 			if ( !self::$data[$this->type] ) {
 				unset( self::$data[$this->type] );
 			}
@@ -217,14 +217,14 @@ class JobQueueMemory extends JobQueue {
 	 * @return mixed
 	 */
 	private function &getQueueData( $field, $init = null ) {
-		if ( !isset( self::$data[$this->type][$this->wiki][$field] ) ) {
+		if ( !isset( self::$data[$this->type][$this->domain][$field] ) ) {
 			if ( $init !== null ) {
-				self::$data[$this->type][$this->wiki][$field] = $init;
+				self::$data[$this->type][$this->domain][$field] = $init;
 			} else {
 				return $init;
 			}
 		}
 
-		return self::$data[$this->type][$this->wiki][$field];
+		return self::$data[$this->type][$this->domain][$field];
 	}
 }

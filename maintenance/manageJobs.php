@@ -60,7 +60,7 @@ class ManageJobs extends Maintenance {
 
 	private function repushAbandoned( JobQueue $queue ) {
 		$cache = ObjectCache::getInstance( CACHE_DB );
-		$key = $cache->makeGlobalKey( 'last-job-repush', $queue->getWiki(), $queue->getType() );
+		$key = $cache->makeGlobalKey( 'last-job-repush', $queue->getDomain(), $queue->getType() );
 
 		$now = wfTimestampNow();
 		$lastRepushTime = $cache->get( $key );

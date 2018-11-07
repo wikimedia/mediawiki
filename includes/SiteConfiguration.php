@@ -483,13 +483,13 @@ class SiteConfiguration {
 
 	/**
 	 * Work out the site and language name from a database name
-	 * @param string $db
+	 * @param string $wiki Wiki ID
 	 *
 	 * @return array
 	 */
-	public function siteFromDB( $db ) {
+	public function siteFromDB( $wiki ) {
 		// Allow override
-		$def = $this->getWikiParams( $db );
+		$def = $this->getWikiParams( $wiki );
 		if ( !is_null( $def['suffix'] ) && !is_null( $def['lang'] ) ) {
 			return [ $def['suffix'], $def['lang'] ];
 		}
@@ -499,15 +499,16 @@ class SiteConfiguration {
 		foreach ( $this->suffixes as $altSite => $suffix ) {
 			if ( $suffix === '' ) {
 				$site = '';
-				$lang = $db;
+				$lang = $wiki;
 				break;
-			} elseif ( substr( $db, -strlen( $suffix ) ) == $suffix ) {
+			} elseif ( substr( $wiki, -strlen( $suffix ) ) == $suffix ) {
 				$site = is_numeric( $altSite ) ? $suffix : $altSite;
-				$lang = substr( $db, 0, strlen( $db ) - strlen( $suffix ) );
+				$lang = substr( $wiki, 0, strlen( $wiki ) - strlen( $suffix ) );
 				break;
 			}
 		}
 		$lang = str_replace( '_', '-', $lang );
+
 		return [ $site, $lang ];
 	}
 

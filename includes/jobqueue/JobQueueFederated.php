@@ -73,7 +73,7 @@ class JobQueueFederated extends JobQueue {
 	 */
 	protected function __construct( array $params ) {
 		parent::__construct( $params );
-		$section = $params['sectionsByWiki'][$this->wiki] ?? 'default';
+		$section = $params['sectionsByWiki'][$this->domain] ?? 'default';
 		if ( !isset( $params['partitionsBySection'][$section] ) ) {
 			throw new MWException( "No configuration for section '$section'." );
 		}
@@ -419,7 +419,7 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	public function getCoalesceLocationInternal() {
-		return "JobQueueFederated:wiki:{$this->wiki}" .
+		return "JobQueueFederated:wiki:{$this->domain}" .
 			sha1( serialize( array_keys( $this->partitionQueues ) ) );
 	}
 

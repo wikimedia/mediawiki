@@ -246,6 +246,7 @@ class WikiMap {
 	 * Get the wiki ID of a database domain
 	 *
 	 * This is like DatabaseDomain::getId() without encoding (for legacy reasons)
+	 * and without the schema if it merely set to the generic value "mediawiki"
 	 *
 	 * @param string|DatabaseDomain $domain
 	 * @return string
@@ -253,9 +254,19 @@ class WikiMap {
 	public static function getWikiIdFromDomain( $domain ) {
 		$domain = DatabaseDomain::newFromId( $domain );
 
+		if ( !in_array( $domain->getSchema(), [ null, 'mediawiki' ], true ) ) {
+			// Include the schema if it is set and is not the default placeholder.
+			// This means a site admin may have specifically taylored the schemas.
+			// Domain IDs might use the form <DB>-<project>-<language>, meaning that
+			// the schema portion must be accounted for to disambiguate wikis.
+			return "{$domain->getDatabase()}-{$domain->getSchema()}-{$domain->getTablePrefix()}";
+		}
+
+		// Note that if this wiki ID is passed a a domain ID to LoadBalancer, then it can
+		// handle the schema by assuming the generic "mediawiki" schema if needed.
 		return strlen( $domain->getTablePrefix() )
 			? "{$domain->getDatabase()}-{$domain->getTablePrefix()}"
-			: $domain->getDatabase();
+			: (string)$domain->getDatabase();
 	}
 
 	/**
@@ -277,9 +288,16 @@ class WikiMap {
 		$domain = DatabaseDomain::newFromId( $domain );
 		$curDomain = self::getCurrentWikiDomain();
 
+		if ( !in_array( $curDomain->getSchema(), [ null, 'mediawiki' ], true ) ) {
+			// Include the schema if it is set and is not the default placeholder.
+			// This means a site admin may have specifically taylored the schemas.
+			// Domain IDs might use the form <DB>-<project>-<language>, meaning that
+			// the schema portion must be accounted for to disambiguate wikis.
+			return $curDomain->equals( $domain );
+		}
+
 		return (
 			$curDomain->getDatabase() === $domain->getDatabase() &&
-			// @TODO: check schema instead of assuming it's ""/"mediawiki" and never collides
 			$curDomain->getTablePrefix() === $domain->getTablePrefix()
 		);
 	}
