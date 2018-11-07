@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.3
+ * OOUI v0.29.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-11-01T02:03:40Z
+ * Date: 2018-11-07T00:58:38Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -792,7 +792,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 
 .oo-ui-decoratedOptionWidget {
-  padding: 0.64285714em 0.85714286em 0.57142857em;
+  padding: 0.57142857em 0.85714286em 0.57142857em;
   line-height: 1;
 }
 .oo-ui-decoratedOptionWidget.oo-ui-iconElement {
@@ -802,7 +802,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   left: 0.78571429em;
 }
 .oo-ui-decoratedOptionWidget .oo-ui-labelElement-label {
-  line-height: 1.07142857em;
+  line-height: 1.14285714em;
 }
 .oo-ui-decoratedOptionWidget.oo-ui-indicatorElement {
   padding-right: 2.28571429em;
@@ -1695,7 +1695,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 
 .oo-ui-menuSectionOptionWidget {
   color: #72777d;
-  padding: 0.64285714em 0.85714286em 0.28571429em;
+  padding: 0.57142857em 0.85714286em 0.28571429em;
   font-weight: bold;
 }
 .oo-ui-menuSectionOptionWidget.oo-ui-widget-enabled {
