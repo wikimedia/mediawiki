@@ -31,10 +31,6 @@
 	overflow: hidden;
 }
 
-.client-nojs #preftoc {
-	display: none;
-}
-
 .client-js #preferences > fieldset {
 	display: none;
 }
