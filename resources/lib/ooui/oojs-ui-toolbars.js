@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.3
+ * OOUI v0.29.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-11-01T02:03:33Z
+ * Date: 2018-11-07T00:58:30Z
  */
 ( function ( OO ) {
 
@@ -400,6 +400,7 @@ OO.ui.Toolbar.prototype.getToolGroupFactory = function () {
  *
  * @private
  * @param {jQuery.Event} e Mouse down event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.Toolbar.prototype.onPointerDown = function ( e ) {
 	var $closestWidgetToEvent = $( e.target ).closest( '.oo-ui-widget' ),
@@ -857,6 +858,7 @@ OO.ui.Tool.prototype.setActive = function ( state ) {
  *
  * @param {string|Function} title Title text or a function that returns text
  * @chainable
+ * @return {OO.ui.Tool} The tool, for chaining
  */
 OO.ui.Tool.prototype.setTitle = function ( title ) {
 	this.title = OO.ui.resolveMsg( title );
@@ -1107,6 +1109,7 @@ OO.ui.ToolGroup.prototype.onDisable = function ( isDisabled ) {
  *
  * @protected
  * @param {jQuery.Event} e Mouse down or key down event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.ToolGroup.prototype.onMouseKeyDown = function ( e ) {
 	if (
@@ -1553,6 +1556,7 @@ OO.ui.PopupTool = function OoUiPopupTool( toolGroup, config ) {
 	this.popup.connect( this, { toggle: 'onPopupToggle' } );
 
 	// Initialization
+	this.popup.setAutoFlip( false );
 	this.popup.setPosition( toolGroup.getToolbar().position === 'bottom' ? 'above' : 'below' );
 	this.$element.addClass( 'oo-ui-popupTool' );
 	this.popup.$element.addClass( 'oo-ui-popupTool-popup' );
@@ -2049,6 +2053,7 @@ OO.ui.PopupToolGroup.prototype.onMouseKeyDown = function ( e ) {
  *
  * @protected
  * @param {jQuery.Event} e Mouse up or key up event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.PopupToolGroup.prototype.onHandleMouseKeyUp = function ( e ) {
 	if (
@@ -2064,6 +2069,7 @@ OO.ui.PopupToolGroup.prototype.onHandleMouseKeyUp = function ( e ) {
  *
  * @protected
  * @param {jQuery.Event} e Mouse down or key down event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.PopupToolGroup.prototype.onHandleMouseKeyDown = function ( e ) {
 	var $focusable;

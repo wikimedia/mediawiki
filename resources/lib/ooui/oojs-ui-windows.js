@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.3
+ * OOUI v0.29.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-11-01T02:03:33Z
+ * Date: 2018-11-07T00:58:30Z
  */
 ( function ( OO ) {
 
@@ -381,6 +381,7 @@ OO.ui.ActionSet.prototype.getOthers = function () {
  * @param {string} mode The mode. Only actions configured to be available in the specified
  *  mode will be made visible.
  * @chainable
+ * @return {OO.ui.ActionSet} The widget, for chaining
  * @fires toggle
  * @fires change
  */
@@ -410,6 +411,7 @@ OO.ui.ActionSet.prototype.setMode = function ( mode ) {
  * @param {Object.<string,boolean>} actions A list keyed by action name with boolean
  *  values that indicate whether or not the action should be enabled.
  * @chainable
+ * @return {OO.ui.ActionSet} The widget, for chaining
  */
 OO.ui.ActionSet.prototype.setAbilities = function ( actions ) {
 	var i, len, action, item;
@@ -435,6 +437,7 @@ OO.ui.ActionSet.prototype.setAbilities = function ( actions ) {
  * @param {Function} callback Callback to run for each action; callback is invoked with three
  *   arguments: the action, the action's index, the list of actions being iterated over
  * @chainable
+ * @return {OO.ui.ActionSet} The widget, for chaining
  */
 OO.ui.ActionSet.prototype.forEach = function ( filter, callback ) {
 	this.changed = false;
@@ -453,6 +456,7 @@ OO.ui.ActionSet.prototype.forEach = function ( filter, callback ) {
  *
  * @param {OO.ui.ActionWidget[]} actions Action widgets to add
  * @chainable
+ * @return {OO.ui.ActionSet} The widget, for chaining
  * @fires add
  * @fires change
  */
@@ -483,6 +487,7 @@ OO.ui.ActionSet.prototype.add = function ( actions ) {
  *
  * @param {OO.ui.ActionWidget[]} actions Action widgets to remove
  * @chainable
+ * @return {OO.ui.ActionSet} The widget, for chaining
  * @fires remove
  * @fires change
  */
@@ -512,6 +517,7 @@ OO.ui.ActionSet.prototype.remove = function ( actions ) {
  * To remove only specified actions, use the {@link #method-remove remove} method instead.
  *
  * @chainable
+ * @return {OO.ui.ActionSet} The widget, for chaining
  * @fires remove
  * @fires change
  */
@@ -543,6 +549,7 @@ OO.ui.ActionSet.prototype.clear = function () {
  *
  * @private
  * @chainable
+ * @return {OO.ui.ActionSet} The widget, for chaining
  */
 OO.ui.ActionSet.prototype.organize = function () {
 	var i, iLen, j, jLen, flag, action, category, list, item, special,
@@ -1294,6 +1301,7 @@ OO.ui.WindowManager.prototype.getCurrentWindow = function () {
 	return this.currentWindow;
 };
 
+/* eslint-disable valid-jsdoc */
 /**
  * Open a window.
  *
@@ -1308,6 +1316,7 @@ OO.ui.WindowManager.prototype.getCurrentWindow = function () {
  * @fires opening
  */
 OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, compatOpening ) {
+	/* eslint-enable valid-jsdoc */
 	var error,
 		manager = this;
 	data = data || {};
@@ -1624,6 +1633,7 @@ OO.ui.WindowManager.prototype.clearWindows = function () {
  *
  * @param {OO.ui.Window} win Window to update, should be the current window
  * @chainable
+ * @return {OO.ui.WindowManager} The manager, for chaining
  */
 OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
 	var isFullscreen;
@@ -1650,6 +1660,7 @@ OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
  * @private
  * @param {boolean} [on] Bind global events
  * @chainable
+ * @return {OO.ui.WindowManager} The manager, for chaining
  */
 OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on ) {
 	var scrollWidth, bodyMargin,
@@ -1671,6 +1682,7 @@ OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on ) {
 				bodyMargin = parseFloat( $body.css( 'margin-right' ) ) || 0;
 				$body.css( {
 					overflow: 'hidden',
+					position: 'relative',
 					'margin-right': bodyMargin + scrollWidth
 				} );
 			}
@@ -1686,6 +1698,7 @@ OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on ) {
 		if ( stackDepth === 0 ) {
 			$body.css( {
 				overflow: '',
+				position: '',
 				'margin-right': ''
 			} );
 		}
@@ -1702,6 +1715,7 @@ OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on ) {
  * @private
  * @param {boolean} [isolate] Make only the window manager visible to screen readers
  * @chainable
+ * @return {OO.ui.WindowManager} The manager, for chaining
  */
 OO.ui.WindowManager.prototype.toggleAriaIsolation = function ( isolate ) {
 	var $topLevelElement;
@@ -1881,6 +1895,7 @@ OO.ui.Window.static.size = 'medium';
  *
  * @private
  * @param {jQuery.Event} e Mouse down event
+ * @return {OO.ui.Window} The window, for chaining
  */
 OO.ui.Window.prototype.onMouseDown = function ( e ) {
 	// Prevent clicking on the click-block from stealing focus
@@ -2160,6 +2175,7 @@ OO.ui.Window.prototype.getTeardownProcess = function () {
  * @param {OO.ui.WindowManager} manager Manager for this window
  * @throws {Error} An error is thrown if the method is called more than once
  * @chainable
+ * @return {OO.ui.Window} The window, for chaining
  */
 OO.ui.Window.prototype.setManager = function ( manager ) {
 	if ( this.manager ) {
@@ -2178,6 +2194,7 @@ OO.ui.Window.prototype.setManager = function ( manager ) {
  * @param {string} size Symbolic name of size: `small`, `medium`, `large`, `larger` or
  *  `full`
  * @chainable
+ * @return {OO.ui.Window} The window, for chaining
  */
 OO.ui.Window.prototype.setSize = function ( size ) {
 	this.size = size;
@@ -2190,6 +2207,7 @@ OO.ui.Window.prototype.setSize = function ( size ) {
  *
  * @throws {Error} An error is thrown if the window is not attached to a window manager
  * @chainable
+ * @return {OO.ui.Window} The window, for chaining
  */
 OO.ui.Window.prototype.updateSize = function () {
 	if ( !this.manager ) {
@@ -2215,6 +2233,7 @@ OO.ui.Window.prototype.updateSize = function () {
  * @param {string|number} [dim.minHeight] Minimum height
  * @param {string|number} [dim.maxHeight] Maximum height
  * @chainable
+ * @return {OO.ui.Window} The window, for chaining
  */
 OO.ui.Window.prototype.setDimensions = function ( dim ) {
 	var height,
@@ -2255,6 +2274,7 @@ OO.ui.Window.prototype.setDimensions = function ( dim ) {
  *
  * @throws {Error} An error is thrown if the window is not attached to a window manager
  * @chainable
+ * @return {OO.ui.Window} The window, for chaining
  */
 OO.ui.Window.prototype.initialize = function () {
 	if ( !this.manager ) {
@@ -2756,6 +2776,7 @@ OO.ui.Dialog.prototype.attachActions = function () {
  *
  * @protected
  * @chainable
+ * @return {OO.ui.Dialog} The dialog, for chaining
  */
 OO.ui.Dialog.prototype.detachActions = function () {
 	var i, len;
@@ -2765,6 +2786,8 @@ OO.ui.Dialog.prototype.detachActions = function () {
 		this.attachedActions[ i ].$element.detach();
 	}
 	this.attachedActions = [];
+
+	return this;
 };
 
 /**
@@ -2892,6 +2915,7 @@ OO.ui.MessageDialog.static.actions = [
  * @private
  * @param {boolean} [value] Layout actions vertically, omit to toggle
  * @chainable
+ * @return {OO.ui.MessageDialog} The dialog, for chaining
  */
 OO.ui.MessageDialog.prototype.toggleVerticalActionLayout = function ( value ) {
 	value = value === undefined ? !this.verticalActionLayout : !!value;
@@ -3347,6 +3371,7 @@ OO.ui.ProcessDialog.prototype.setDimensions = function () {
  *
  * @private
  * @chainable
+ * @return {OO.ui.MessageDialog} The dialog, for chaining
  */
 OO.ui.ProcessDialog.prototype.fitLabel = function () {
 	var safeWidth, primaryWidth, biggerWidth, labelWidth, navigationWidth, leftWidth, rightWidth,

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.3
+ * OOUI v0.29.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-11-01T02:03:33Z
+ * Date: 2018-11-07T00:58:30Z
  */
 ( function ( OO ) {
 
@@ -1379,6 +1379,7 @@ OO.ui.Element.static.reconsiderScrollbars = function ( el ) {
  * @param {boolean} [show] Make element visible, omit to toggle visibility
  * @fires visible
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.Element.prototype.toggle = function ( show ) {
 	show = show === undefined ? !this.visible : !!show;
@@ -1415,6 +1416,7 @@ OO.ui.Element.prototype.getData = function () {
  *
  * @param {Mixed} data Element data
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.Element.prototype.setData = function ( data ) {
 	this.data = data;
@@ -1426,6 +1428,7 @@ OO.ui.Element.prototype.setData = function ( data ) {
  *
  * @param {string} id
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.Element.prototype.setElementId = function ( id ) {
 	this.elementId = id;
@@ -1539,6 +1542,7 @@ OO.ui.Element.prototype.getElementGroup = function () {
  *
  * @param {OO.ui.mixin.GroupElement|null} group Group element, null if none
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.Element.prototype.setElementGroup = function ( group ) {
 	this.elementGroup = group;
@@ -1644,6 +1648,7 @@ OO.mixinClass( OO.ui.Layout, OO.EventEmitter );
  * Reset scroll offsets
  *
  * @chainable
+ * @return {OO.ui.Layout} The layout, for chaining
  */
 OO.ui.Layout.prototype.resetScroll = function () {
 	this.$element[ 0 ].scrollTop = 0;
@@ -1728,6 +1733,7 @@ OO.ui.Widget.prototype.isDisabled = function () {
  *
  * @param {boolean} disabled Disable widget
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.Widget.prototype.setDisabled = function ( disabled ) {
 	var isDisabled;
@@ -1750,6 +1756,7 @@ OO.ui.Widget.prototype.setDisabled = function ( disabled ) {
  * Update the disabled state, in case of changes in parent widget.
  *
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.Widget.prototype.updateDisabled = function () {
 	this.setDisabled( this.disabled );
@@ -1949,6 +1956,7 @@ OO.initClass( OO.ui.mixin.TabIndexedElement );
  *
  * @param {jQuery} $tabIndexed Element that should use the tabindex functionality
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.TabIndexedElement.prototype.setTabIndexedElement = function ( $tabIndexed ) {
 	var tabIndex = this.tabIndex;
@@ -1965,6 +1973,7 @@ OO.ui.mixin.TabIndexedElement.prototype.setTabIndexedElement = function ( $tabIn
  *
  * @param {string|number|null} tabIndex Tabindex value, or `null` for no tabindex
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.TabIndexedElement.prototype.setTabIndex = function ( tabIndex ) {
 	tabIndex = /^-?\d+$/.test( tabIndex ) ? Number( tabIndex ) : null;
@@ -1983,6 +1992,7 @@ OO.ui.mixin.TabIndexedElement.prototype.setTabIndex = function ( tabIndex ) {
  *
  * @private
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.TabIndexedElement.prototype.updateTabIndex = function () {
 	if ( this.$tabIndexed ) {
@@ -2074,6 +2084,7 @@ OO.ui.mixin.TabIndexedElement.prototype.isLabelableNode = function ( $node ) {
  * Focus this element.
  *
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.TabIndexedElement.prototype.focus = function () {
 	if ( !this.isDisabled() ) {
@@ -2086,6 +2097,7 @@ OO.ui.mixin.TabIndexedElement.prototype.focus = function () {
  * Blur this element.
  *
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.TabIndexedElement.prototype.blur = function () {
 	this.$tabIndexed.blur();
@@ -2209,6 +2221,7 @@ OO.ui.mixin.ButtonElement.prototype.setButtonElement = function ( $button ) {
  *
  * @protected
  * @param {jQuery.Event} e Mouse down event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.mixin.ButtonElement.prototype.onMouseDown = function ( e ) {
 	if ( this.isDisabled() || e.which !== OO.ui.MouseButtons.LEFT ) {
@@ -2251,6 +2264,7 @@ OO.ui.mixin.ButtonElement.prototype.onMouseUp = function () {
  * @protected
  * @param {jQuery.Event} e Mouse click event
  * @fires click
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.mixin.ButtonElement.prototype.onClick = function ( e ) {
 	if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT ) {
@@ -2303,6 +2317,7 @@ OO.ui.mixin.ButtonElement.prototype.onKeyUp = function () {
  * @protected
  * @param {jQuery.Event} e Key press event
  * @fires click
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.mixin.ButtonElement.prototype.onKeyPress = function ( e ) {
 	if ( !this.isDisabled() && ( e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER ) ) {
@@ -2326,6 +2341,7 @@ OO.ui.mixin.ButtonElement.prototype.isFramed = function () {
  *
  * @param {boolean} [framed] Make button framed, omit to toggle
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.ButtonElement.prototype.toggleFramed = function ( framed ) {
 	framed = framed === undefined ? !this.framed : !!framed;
@@ -2352,6 +2368,7 @@ OO.ui.mixin.ButtonElement.prototype.toggleFramed = function ( framed ) {
  * @protected
  * @param {boolean} value Make button active
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.ButtonElement.prototype.setActive = function ( value ) {
 	this.active = !!value;
@@ -2488,6 +2505,7 @@ OO.ui.mixin.GroupElement.prototype.findItemsFromData = function ( data ) {
  * @param {OO.ui.Element[]} items An array of items to add to the group
  * @param {number} [index] Index of the insertion point
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.GroupElement.prototype.addItems = function ( items, index ) {
 	// Mixin method
@@ -2548,6 +2566,7 @@ OO.ui.mixin.GroupElement.prototype.insertItemElements = function ( itemWidget, i
  *
  * @param {OO.ui.Element[]} items An array of items to remove
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.GroupElement.prototype.removeItems = function ( items ) {
 	var i, len, item, index;
@@ -2576,6 +2595,7 @@ OO.ui.mixin.GroupElement.prototype.removeItems = function ( items ) {
  * To remove only a subset of items from a group, use the #removeItems method.
  *
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.GroupElement.prototype.clearItems = function () {
 	var i, len;
@@ -2722,6 +2742,7 @@ OO.ui.mixin.LabelElement.prototype.setLabelElement = function ( $label ) {
  * @param {jQuery|string|OO.ui.HtmlSnippet|Function|null} label Label nodes; text; a function that returns nodes or
  *  text; or null for no label
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.LabelElement.prototype.setLabel = function ( label ) {
 	label = typeof label === 'function' ? OO.ui.resolveMsg( label ) : label;
@@ -2745,6 +2766,7 @@ OO.ui.mixin.LabelElement.prototype.setLabel = function ( label ) {
  *
  * @param {boolean} invisibleLabel
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.LabelElement.prototype.setInvisibleLabel = function ( invisibleLabel ) {
 	invisibleLabel = !!invisibleLabel;
@@ -2768,6 +2790,7 @@ OO.ui.mixin.LabelElement.prototype.setInvisibleLabel = function ( invisibleLabel
  * @param {string} query Substring of text to highlight
  * @param {Function} [compare] Optional string comparator, e.g. Intl.Collator().compare
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.LabelElement.prototype.setHighlightedQuery = function ( text, query, compare ) {
 	return this.setLabel( this.constructor.static.highlightQuery( text, query, compare ) );
@@ -2933,6 +2956,7 @@ OO.ui.mixin.IconElement.prototype.setIconElement = function ( $icon ) {
  * @param {Object|string|null} icon A symbolic icon name, a {@link #icon map of icon names} keyed
  *  by language code, or `null` to remove the icon.
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.IconElement.prototype.setIcon = function ( icon ) {
 	icon = OO.isPlainObject( icon ) ? OO.ui.getLocalValue( icon, null, 'default' ) : icon;
@@ -2965,6 +2989,7 @@ OO.ui.mixin.IconElement.prototype.setIcon = function ( icon ) {
  * @param {string|Function|null} iconTitle A text string used as the icon title,
  *  a function that returns title text, or `null` for no title.
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.IconElement.prototype.setIconTitle = function ( iconTitle ) {
 	iconTitle =
@@ -3105,6 +3130,7 @@ OO.ui.mixin.IndicatorElement.prototype.setIndicatorElement = function ( $indicat
  *
  * @param {string|null} indicator Symbolic name of indicator, or `null` for no indicator
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.IndicatorElement.prototype.setIndicator = function ( indicator ) {
 	indicator = typeof indicator === 'string' && indicator.length ? indicator.trim() : null;
@@ -3138,6 +3164,7 @@ OO.ui.mixin.IndicatorElement.prototype.setIndicator = function ( indicator ) {
  * @param {string|Function|null} indicatorTitle Indicator title text, a function that returns text, or
  *   `null` for no indicator title
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.IndicatorElement.prototype.setIndicatorTitle = function ( indicatorTitle ) {
 	indicatorTitle =
@@ -3293,6 +3320,7 @@ OO.ui.mixin.FlaggedElement.prototype.getFlags = function () {
  * Clear all flags.
  *
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  * @fires flag
  */
 OO.ui.mixin.FlaggedElement.prototype.clearFlags = function () {
@@ -3325,6 +3353,7 @@ OO.ui.mixin.FlaggedElement.prototype.clearFlags = function () {
  *  or an object keyed by flag name with a boolean value that indicates whether the flag should
  *  be added (`true`) or removed (`false`).
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  * @fires flag
  */
 OO.ui.mixin.FlaggedElement.prototype.setFlags = function ( flags ) {
@@ -3465,6 +3494,7 @@ OO.ui.mixin.TitledElement.prototype.setTitledElement = function ( $titled ) {
  *
  * @param {string|Function|null} title Title text, a function that returns text, or `null` for no title
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.TitledElement.prototype.setTitle = function ( title ) {
 	title = typeof title === 'function' ? OO.ui.resolveMsg( title ) : title;
@@ -3483,6 +3513,7 @@ OO.ui.mixin.TitledElement.prototype.setTitle = function ( title ) {
  *
  * @protected
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.TitledElement.prototype.updateTitle = function () {
 	var title = this.getTitle();
@@ -3595,6 +3626,7 @@ OO.ui.mixin.AccessKeyedElement.prototype.setAccessKeyedElement = function ( $acc
  *
  * @param {string|Function|null} accessKey Key, a function that returns a key, or `null` for no accesskey
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.AccessKeyedElement.prototype.setAccessKey = function ( accessKey ) {
 	accessKey = typeof accessKey === 'string' ? OO.ui.resolveMsg( accessKey ) : null;
@@ -3785,6 +3817,8 @@ OO.ui.ButtonWidget.prototype.getNoFollow = function () {
  * Set hyperlink location.
  *
  * @param {string|null} href Hyperlink location, null to remove
+ * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.ButtonWidget.prototype.setHref = function ( href ) {
 	href = typeof href === 'string' ? href : null;
@@ -3806,6 +3840,7 @@ OO.ui.ButtonWidget.prototype.setHref = function ( href ) {
  *
  * @private
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.ButtonWidget.prototype.updateHref = function () {
 	if ( this.href !== null && !this.isDisabled() ) {
@@ -3831,6 +3866,7 @@ OO.ui.ButtonWidget.prototype.onDisable = function () {
  * Set hyperlink target.
  *
  * @param {string|null} target Hyperlink target, null to remove
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.ButtonWidget.prototype.setTarget = function ( target ) {
 	target = typeof target === 'string' ? target : null;
@@ -3851,6 +3887,7 @@ OO.ui.ButtonWidget.prototype.setTarget = function ( target ) {
  * Set search engine traversal hint.
  *
  * @param {boolean} noFollow True if search engines should avoid traversing this hyperlink
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.ButtonWidget.prototype.setNoFollow = function ( noFollow ) {
 	noFollow = typeof noFollow === 'boolean' ? noFollow : true;
@@ -3945,6 +3982,7 @@ OO.ui.ButtonGroupWidget.static.tagName = 'span';
  * Focus the widget
  *
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.ButtonGroupWidget.prototype.focus = function () {
 	if ( !this.isDisabled() ) {
@@ -4276,6 +4314,7 @@ OO.ui.mixin.PendingElement.prototype.isPending = function () {
  * (i.e., the number of calls to #pushPending and #popPending is the same).
  *
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.PendingElement.prototype.pushPending = function () {
 	if ( this.pending === 0 ) {
@@ -4292,6 +4331,7 @@ OO.ui.mixin.PendingElement.prototype.pushPending = function () {
  * (i.e., the number of calls to #pushPending and #popPending is the same).
  *
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.PendingElement.prototype.popPending = function () {
 	if ( this.pending === 1 ) {
@@ -4432,6 +4472,7 @@ OO.ui.mixin.FloatableElement.prototype.setHorizontalPosition = function ( positi
  *
  * @param {boolean} [positioning] Enable positioning, omit to toggle
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positioning ) {
 	var closestScrollableOfContainer;
@@ -4560,6 +4601,7 @@ OO.ui.mixin.FloatableElement.prototype.isFloatableOutOfView = function () {
  * This should only be done when both of them are attached to the DOM and visible.
  *
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.FloatableElement.prototype.position = function () {
 	if ( !this.positioning ) {
@@ -4808,6 +4850,7 @@ OO.ui.mixin.ClippableElement.prototype.setClippableContainer = function ( $clipp
  *
  * @param {boolean} [clipping] Enable clipping, omit to toggle
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.ClippableElement.prototype.toggleClipping = function ( clipping ) {
 	clipping = clipping === undefined ? !this.clipping : !!clipping;
@@ -4962,6 +5005,7 @@ OO.ui.mixin.ClippableElement.prototype.getVerticalAnchorEdge = function () {
  * beyond the edge, something reasonable will happen before clip() is called.
  *
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.ClippableElement.prototype.clip = function () {
 	var extraHeight, extraWidth, viewportSpacing,
@@ -5989,6 +6033,7 @@ OO.mixinClass( OO.ui.mixin.GroupWidget, OO.ui.mixin.GroupElement );
  *
  * @param {boolean} disabled Disable widget
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.mixin.GroupWidget.prototype.setDisabled = function ( disabled ) {
 	var i, len;
@@ -6044,6 +6089,7 @@ OO.ui.mixin.ItemWidget.prototype.isDisabled = function () {
  *
  * @param {OO.ui.mixin.GroupElement|null} group Group element, null if none
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.mixin.ItemWidget.prototype.setElementGroup = function ( group ) {
 	// Parent method
@@ -6218,6 +6264,7 @@ OO.ui.OptionWidget.prototype.isPressed = function () {
  *
  * @param {boolean} [state=false] Select option
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.OptionWidget.prototype.setSelected = function ( state ) {
 	if ( this.constructor.static.selectable ) {
@@ -6241,6 +6288,7 @@ OO.ui.OptionWidget.prototype.setSelected = function ( state ) {
  *
  * @param {boolean} [state=false] Highlight option
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.OptionWidget.prototype.setHighlighted = function ( state ) {
 	if ( this.constructor.static.highlightable ) {
@@ -6259,6 +6307,7 @@ OO.ui.OptionWidget.prototype.setHighlighted = function ( state ) {
  *
  * @param {boolean} [state=false] Press option
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.OptionWidget.prototype.setPressed = function ( state ) {
 	if ( this.constructor.static.pressable ) {
@@ -6470,6 +6519,7 @@ OO.ui.SelectWidget.prototype.onFocus = function ( event ) {
  *
  * @private
  * @param {jQuery.Event} e Mouse down event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.SelectWidget.prototype.onMouseDown = function ( e ) {
 	var item;
@@ -6492,6 +6542,7 @@ OO.ui.SelectWidget.prototype.onMouseDown = function ( e ) {
  *
  * @private
  * @param {MouseEvent} e Mouse up event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.SelectWidget.prototype.onDocumentMouseUp = function ( e ) {
 	var item;
@@ -6550,6 +6601,7 @@ OO.ui.SelectWidget.prototype.onMouseMove = function () {
  *
  * @private
  * @param {jQuery.Event} e Mouse over event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.SelectWidget.prototype.onMouseOver = function ( e ) {
 	var item;
@@ -6568,6 +6620,7 @@ OO.ui.SelectWidget.prototype.onMouseOver = function ( e ) {
  *
  * @private
  * @param {jQuery.Event} e Mouse over event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.SelectWidget.prototype.onMouseLeave = function () {
 	if ( !this.isDisabled() ) {
@@ -6707,6 +6760,7 @@ OO.ui.SelectWidget.prototype.clearKeyPressBuffer = function () {
  *
  * @protected
  * @param {KeyboardEvent} e Key press event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.SelectWidget.prototype.onDocumentKeyPress = function ( e ) {
 	var c, filter, item;
@@ -6914,6 +6968,7 @@ OO.ui.SelectWidget.prototype.togglePressed = function ( pressed ) {
  * @param {OO.ui.OptionWidget} [item] Item to highlight, omit for no highlight
  * @fires highlight
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectWidget.prototype.highlightItem = function ( item ) {
 	var i, len, highlighted,
@@ -6985,6 +7040,7 @@ OO.ui.SelectWidget.prototype.getItemFromLabel = function ( label, prefix ) {
  * @param {boolean} [prefix=false] Allow a prefix match, if only a single item matches
  * @fires select
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectWidget.prototype.selectItemByLabel = function ( label, prefix ) {
 	var itemFromLabel = this.getItemFromLabel( label, !!prefix );
@@ -7001,6 +7057,7 @@ OO.ui.SelectWidget.prototype.selectItemByLabel = function ( label, prefix ) {
  * @param {Object|string} [data] Value of the item to select, omit to deselect all
  * @fires select
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectWidget.prototype.selectItemByData = function ( data ) {
 	var itemFromData = this.findItemFromData( data );
@@ -7017,7 +7074,8 @@ OO.ui.SelectWidget.prototype.selectItemByData = function ( data ) {
  * @param {OO.ui.OptionWidget} [item] Item to select, omit to deselect all
  * @fires select
  * @chainable
- */
+ * @return {OO.ui.Widget} The widget, for chaining
+*/
 OO.ui.SelectWidget.prototype.selectItem = function ( item ) {
 	var i, len, selected,
 		changed = false;
@@ -7053,6 +7111,7 @@ OO.ui.SelectWidget.prototype.selectItem = function ( item ) {
  * @param {OO.ui.OptionWidget} [item] Item to press, omit to depress all
  * @fires press
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectWidget.prototype.pressItem = function ( item ) {
 	var i, len, pressed,
@@ -7085,6 +7144,7 @@ OO.ui.SelectWidget.prototype.pressItem = function ( item ) {
  * @param {OO.ui.OptionWidget} item Item to choose
  * @fires choose
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectWidget.prototype.chooseItem = function ( item ) {
 	if ( item ) {
@@ -7152,6 +7212,7 @@ OO.ui.SelectWidget.prototype.findFirstSelectableItem = function () {
  * @param {number} [index] Index to insert items after
  * @fires add
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectWidget.prototype.addItems = function ( items, index ) {
 	// Mixin method
@@ -7171,6 +7232,7 @@ OO.ui.SelectWidget.prototype.addItems = function ( items, index ) {
  * @param {OO.ui.OptionWidget[]} items Items to remove
  * @fires remove
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectWidget.prototype.removeItems = function ( items ) {
 	var i, len, item;
@@ -7198,6 +7260,7 @@ OO.ui.SelectWidget.prototype.removeItems = function ( items ) {
  *
  * @fires remove
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectWidget.prototype.clearItems = function () {
 	var items = this.items.slice();
@@ -7682,6 +7745,7 @@ OO.ui.MenuSelectWidget.prototype.unbindDocumentKeyPressListener = function () {
  *
  * @param {OO.ui.OptionWidget} item Item to choose
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.MenuSelectWidget.prototype.chooseItem = function ( item ) {
 	OO.ui.MenuSelectWidget.parent.prototype.chooseItem.call( this, item );
@@ -8001,6 +8065,7 @@ OO.ui.DropdownWidget.prototype.onMenuToggle = function ( isVisible ) {
  *
  * @private
  * @param {jQuery.Event} e Mouse click event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.DropdownWidget.prototype.onClick = function ( e ) {
 	if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT ) {
@@ -8014,6 +8079,7 @@ OO.ui.DropdownWidget.prototype.onClick = function ( e ) {
  *
  * @private
  * @param {jQuery.Event} e Key down event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.DropdownWidget.prototype.onKeyDown = function ( e ) {
 	if (
@@ -8267,6 +8333,7 @@ OO.ui.MultioptionWidget.prototype.isSelected = function () {
  *
  * @param {boolean} [state=false] Select option
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.MultioptionWidget.prototype.setSelected = function ( state ) {
 	state = !!state;
@@ -8367,6 +8434,7 @@ OO.ui.MultiselectWidget.prototype.findSelectedItemsData = function () {
  *
  * @param {OO.ui.MultioptionWidget[]} items Items to select
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.MultiselectWidget.prototype.selectItems = function ( items ) {
 	this.items.forEach( function ( item ) {
@@ -8381,6 +8449,7 @@ OO.ui.MultiselectWidget.prototype.selectItems = function ( items ) {
  *
  * @param {Object[]|string[]} datas Values of items to select
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.MultiselectWidget.prototype.selectItemsByData = function ( datas ) {
 	var items,
@@ -8638,6 +8707,7 @@ OO.ui.CheckboxMultiselectWidget.prototype.onClick = function ( e ) {
  * Focus the widget
  *
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.CheckboxMultiselectWidget.prototype.focus = function () {
 	var item;
@@ -8917,6 +8987,7 @@ OO.ui.InputWidget.prototype.getValue = function () {
  *
  * @param {string} dir Text directionality: 'ltr', 'rtl' or 'auto'
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.InputWidget.prototype.setDir = function ( dir ) {
 	this.$input.prop( 'dir', dir );
@@ -8929,6 +9000,7 @@ OO.ui.InputWidget.prototype.setDir = function ( dir ) {
  * @param {string} value New value
  * @fires change
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.InputWidget.prototype.setValue = function ( value ) {
 	value = this.cleanUpValue( value );
@@ -8986,6 +9058,7 @@ OO.ui.InputWidget.prototype.setDisabled = function ( state ) {
  *
  * @param {string} id
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.InputWidget.prototype.setInputId = function ( id ) {
 	this.$input.attr( 'id', id );
@@ -9144,6 +9217,7 @@ OO.ui.ButtonInputWidget.prototype.getInputElement = function ( config ) {
  * @param {jQuery|string|Function|null} label Label nodes, text, a function that returns nodes or
  *  text, or `null` for no label
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.ButtonInputWidget.prototype.setLabel = function ( label ) {
 	if ( typeof label === 'function' ) {
@@ -9170,6 +9244,7 @@ OO.ui.ButtonInputWidget.prototype.setLabel = function ( label ) {
  *
  * @param {string} value New value
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.ButtonInputWidget.prototype.setValue = function ( value ) {
 	if ( !this.useInputTag ) {
@@ -9300,6 +9375,7 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
  *
  * @param {boolean} state `true` for selected
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.CheckboxInputWidget.prototype.setSelected = function ( state ) {
 	state = !!state;
@@ -9476,6 +9552,7 @@ OO.ui.DropdownInputWidget.prototype.setDisabled = function ( state ) {
  *
  * @param {Object[]} options Array of menu options in the format `{ data: …, label: … }`
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.DropdownInputWidget.prototype.setOptions = function ( options ) {
 	var value = this.getValue();
@@ -9707,6 +9784,7 @@ OO.ui.RadioInputWidget.prototype.onEdit = function () {
  *
  * @param {boolean} state `true` for selected
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.RadioInputWidget.prototype.setSelected = function ( state ) {
 	// RadioInputWidget doesn't track its state.
@@ -9877,6 +9955,7 @@ OO.ui.RadioSelectInputWidget.prototype.setDisabled = function ( state ) {
  *
  * @param {Object[]} options Array of menu options in the format `{ data: …, label: … }`
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
 	var value = this.getValue();
@@ -10093,6 +10172,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setDisabled = function ( state ) 
  *
  * @param {Object[]} options Array of menu options in the format `{ data: …, label: …, disabled: … }`
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.CheckboxMultiselectInputWidget.prototype.setOptions = function ( options ) {
 	var value = this.getValue();
@@ -10327,6 +10407,7 @@ OO.ui.TextInputWidget.static.validationPatterns = {
  *
  * @private
  * @param {jQuery.Event} e Mouse down event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.TextInputWidget.prototype.onIconMouseDown = function ( e ) {
 	if ( e.which === OO.ui.MouseButtons.LEFT ) {
@@ -10340,6 +10421,7 @@ OO.ui.TextInputWidget.prototype.onIconMouseDown = function ( e ) {
  *
  * @private
  * @param {jQuery.Event} e Mouse down event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.TextInputWidget.prototype.onIndicatorMouseDown = function ( e ) {
 	if ( e.which === OO.ui.MouseButtons.LEFT ) {
@@ -10423,6 +10505,7 @@ OO.ui.TextInputWidget.prototype.isReadOnly = function () {
  *
  * @param {boolean} state Make input read-only
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.TextInputWidget.prototype.setReadOnly = function ( state ) {
 	this.readOnly = !!state;
@@ -10444,6 +10527,7 @@ OO.ui.TextInputWidget.prototype.isRequired = function () {
  *
  * @param {boolean} state Make input required
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.TextInputWidget.prototype.setRequired = function ( state ) {
 	this.required = !!state;
@@ -10572,6 +10656,7 @@ OO.ui.TextInputWidget.prototype.getSaneType = function ( config ) {
  * @param {number} from Select from offset
  * @param {number} [to] Select to offset, defaults to from
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.TextInputWidget.prototype.selectRange = function ( from, to ) {
 	var isBackwards, start, end,
@@ -10631,6 +10716,7 @@ OO.ui.TextInputWidget.prototype.getInputLength = function () {
  * Focus the input and select the entire text.
  *
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.TextInputWidget.prototype.select = function () {
 	return this.selectRange( 0, this.getInputLength() );
@@ -10640,6 +10726,7 @@ OO.ui.TextInputWidget.prototype.select = function () {
  * Focus the input and move the cursor to the start.
  *
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.TextInputWidget.prototype.moveCursorToStart = function () {
 	return this.selectRange( 0 );
@@ -10649,6 +10736,7 @@ OO.ui.TextInputWidget.prototype.moveCursorToStart = function () {
  * Focus the input and move the cursor to the end.
  *
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.TextInputWidget.prototype.moveCursorToEnd = function () {
 	return this.selectRange( this.getInputLength() );
@@ -10659,6 +10747,7 @@ OO.ui.TextInputWidget.prototype.moveCursorToEnd = function () {
  *
  * @param {string} content Content to be inserted
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.TextInputWidget.prototype.insertContent = function ( content ) {
 	var start, end,
@@ -10679,6 +10768,7 @@ OO.ui.TextInputWidget.prototype.insertContent = function ( content ) {
  * @param {string} pre Content to be inserted before the selection
  * @param {string} post Content to be inserted after the selection
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.TextInputWidget.prototype.encapsulateContent = function ( pre, post ) {
 	var start, end,
@@ -10787,6 +10877,7 @@ OO.ui.TextInputWidget.prototype.getValidity = function () {
  *
  * @param {string} labelPosition Label position, 'before' or 'after'
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.TextInputWidget.prototype.setLabelPosition = function ( labelPosition ) {
 	this.labelPosition = labelPosition;
@@ -10805,6 +10896,7 @@ OO.ui.TextInputWidget.prototype.setLabelPosition = function ( labelPosition ) {
  * something causes the label to be mispositioned.
  *
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.TextInputWidget.prototype.updatePosition = function () {
 	var after = this.labelPosition === 'after';
@@ -10825,6 +10917,7 @@ OO.ui.TextInputWidget.prototype.updatePosition = function () {
  *
  * @private
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.TextInputWidget.prototype.positionLabel = function () {
 	var after, rtl, property, newCss;
@@ -11068,6 +11161,7 @@ OO.ui.MultilineTextInputWidget.prototype.onKeyPress = function ( e ) {
  * This only affects multiline inputs that are {@link #autosize autosized}.
  *
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  * @fires resize
  */
 OO.ui.MultilineTextInputWidget.prototype.adjustSize = function () {
@@ -11418,6 +11512,7 @@ OO.ui.ComboBoxInputWidget.prototype.setDisabled = function ( disabled ) {
  *
  * @param {Object[]} options Array of menu options in the format `{ data: …, label: … }`
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
 	this.getMenu()
@@ -11634,6 +11729,7 @@ OO.ui.FieldLayout.prototype.makeMessage = function ( kind, text ) {
  * @private
  * @param {string} value Alignment mode, either 'left', 'right', 'top' or 'inline'
  * @chainable
+ * @return {OO.ui.BookletLayout} The layout, for chaining
  */
 OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
 	if ( value !== this.align ) {
@@ -11691,6 +11787,7 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
  * @param {Array} errors Error messages about the widget, which will be displayed below the widget.
  *  The array may contain strings or OO.ui.HtmlSnippet instances.
  * @chainable
+ * @return {OO.ui.BookletLayout} The layout, for chaining
  */
 OO.ui.FieldLayout.prototype.setErrors = function ( errors ) {
 	this.errors = errors.slice();
@@ -11704,6 +11801,7 @@ OO.ui.FieldLayout.prototype.setErrors = function ( errors ) {
  * @param {Array} notices Notices about the widget, which will be displayed below the widget.
  *  The array may contain strings or OO.ui.HtmlSnippet instances.
  * @chainable
+ * @return {OO.ui.BookletLayout} The layout, for chaining
  */
 OO.ui.FieldLayout.prototype.setNotices = function ( notices ) {
 	this.notices = notices.slice();
@@ -12116,6 +12214,7 @@ OO.ui.FormLayout.static.tagName = 'form';
  * @private
  * @param {jQuery.Event} e Submit event
  * @fires submit
+ * @return {OO.ui.FormLayout} The layout, for chaining
  */
 OO.ui.FormLayout.prototype.onFormSubmit = function () {
 	if ( this.emit( 'submit' ) ) {
@@ -12530,6 +12629,7 @@ OO.ui.NumberInputWidget.prototype.onButtonClick = function ( dir ) {
  *
  * @private
  * @param {jQuery.Event} event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.NumberInputWidget.prototype.onWheel = function ( event ) {
 	var delta = 0;
@@ -12572,6 +12672,7 @@ OO.ui.NumberInputWidget.prototype.onWheel = function ( event ) {
  *
  * @private
  * @param {jQuery.Event} e Key down event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.NumberInputWidget.prototype.onKeyDown = function ( e ) {
 	if ( !this.isDisabled() ) {

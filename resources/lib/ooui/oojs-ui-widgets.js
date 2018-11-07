@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.3
+ * OOUI v0.29.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-11-01T02:03:33Z
+ * Date: 2018-11-07T00:58:30Z
  */
 ( function ( OO ) {
 
@@ -383,6 +383,7 @@ OO.ui.mixin.DraggableGroupElement.prototype.updateIndexes = function () {
  *
  * @private
  * @param {OO.ui.mixin.DraggableElement} item Dropped item
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.DraggableGroupElement.prototype.onItemDropOrDragEnd = function () {
 	var targetIndex, originalIndex,
@@ -789,6 +790,7 @@ OO.ui.mixin.LookupElement.prototype.setLookupsDisabled = function ( disabled ) {
  *
  * @private
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.LookupElement.prototype.openLookupMenu = function () {
 	if ( !this.lookupMenu.isEmpty() ) {
@@ -802,6 +804,7 @@ OO.ui.mixin.LookupElement.prototype.openLookupMenu = function () {
  *
  * @private
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.LookupElement.prototype.closeLookupMenu = function () {
 	this.lookupMenu.toggle( false );
@@ -818,6 +821,7 @@ OO.ui.mixin.LookupElement.prototype.closeLookupMenu = function () {
  *
  * @private
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.LookupElement.prototype.populateLookupMenu = function () {
 	var widget = this,
@@ -931,6 +935,7 @@ OO.ui.mixin.LookupElement.prototype.getLookupMenuOptionsFromData = null;
  *
  * @param {boolean} readOnly Make input read-only
  * @chainable
+ * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.LookupElement.prototype.setReadOnly = function ( readOnly ) {
 	// Parent method
@@ -1068,6 +1073,7 @@ OO.ui.TabPanelLayout.prototype.getTabItem = function () {
  *
  * @param {OO.ui.TabOptionWidget|null} tabItem Tab option widget, null to clear
  * @chainable
+ * @return {OO.ui.TabPanelLayout} The layout, for chaining
  */
 OO.ui.TabPanelLayout.prototype.setTabItem = function ( tabItem ) {
 	this.tabItem = tabItem || null;
@@ -1086,6 +1092,7 @@ OO.ui.TabPanelLayout.prototype.setTabItem = function ( tabItem ) {
  *
  * @param {OO.ui.TabOptionWidget} tabItem Tab option widget to set up
  * @chainable
+ * @return {OO.ui.TabPanelLayout} The layout, for chaining
  */
 OO.ui.TabPanelLayout.prototype.setupTabItem = function () {
 	this.$element.attr( 'aria-labelledby', this.tabItem.getElementId() );
@@ -1214,6 +1221,7 @@ OO.ui.PageLayout.prototype.getOutlineItem = function () {
  *
  * @param {OO.ui.OutlineOptionWidget|null} outlineItem Outline option widget, null to clear
  * @chainable
+ * @return {OO.ui.PageLayout} The layout, for chaining
  */
 OO.ui.PageLayout.prototype.setOutlineItem = function ( outlineItem ) {
 	this.outlineItem = outlineItem || null;
@@ -1232,6 +1240,7 @@ OO.ui.PageLayout.prototype.setOutlineItem = function ( outlineItem ) {
  *
  * @param {OO.ui.OutlineOptionWidget} outlineItem Outline option widget to set up
  * @chainable
+ * @return {OO.ui.PageLayout} The layout, for chaining
  */
 OO.ui.PageLayout.prototype.setupOutlineItem = function () {
 	return this;
@@ -1426,6 +1435,7 @@ OO.ui.StackLayout.prototype.unsetCurrentItem = function () {
  * @param {OO.ui.Layout[]} items Panels to add
  * @param {number} [index] Index of the insertion point
  * @chainable
+ * @return {OO.ui.StackLayout} The layout, for chaining
  */
 OO.ui.StackLayout.prototype.addItems = function ( items, index ) {
 	// Update the visibility
@@ -1449,6 +1459,7 @@ OO.ui.StackLayout.prototype.addItems = function ( items, index ) {
  *
  * @param {OO.ui.Layout[]} items Panels to remove
  * @chainable
+ * @return {OO.ui.StackLayout} The layout, for chaining
  * @fires set
  */
 OO.ui.StackLayout.prototype.removeItems = function ( items ) {
@@ -1473,6 +1484,7 @@ OO.ui.StackLayout.prototype.removeItems = function ( items ) {
  * a subset of panels, use the #removeItems method.
  *
  * @chainable
+ * @return {OO.ui.StackLayout} The layout, for chaining
  * @fires set
  */
 OO.ui.StackLayout.prototype.clearItems = function () {
@@ -1489,6 +1501,7 @@ OO.ui.StackLayout.prototype.clearItems = function () {
  *
  * @param {OO.ui.Layout} item Panel to show
  * @chainable
+ * @return {OO.ui.StackLayout} The layout, for chaining
  * @fires set
  */
 OO.ui.StackLayout.prototype.setItem = function ( item ) {
@@ -1688,6 +1701,7 @@ OO.inheritClass( OO.ui.MenuLayout, OO.ui.Layout );
  *
  * @param {boolean} showMenu Show menu, omit to toggle
  * @chainable
+ * @return {OO.ui.MenuLayout} The layout, for chaining
  */
 OO.ui.MenuLayout.prototype.toggleMenu = function ( showMenu ) {
 	showMenu = showMenu === undefined ? !this.showMenu : !!showMenu;
@@ -1718,6 +1732,7 @@ OO.ui.MenuLayout.prototype.isMenuVisible = function () {
  * @param {string} position Position of menu, either `top`, `after`, `bottom` or `before`
  * @throws {Error} If position value is not supported
  * @chainable
+ * @return {OO.ui.MenuLayout} The layout, for chaining
  */
 OO.ui.MenuLayout.prototype.setMenuPosition = function ( position ) {
 	this.$element.removeClass( 'oo-ui-menuLayout-' + this.menuPosition );
@@ -1754,7 +1769,7 @@ OO.ui.MenuLayout.prototype.setMenuPanel = function ( menuPanel ) {
 /**
  * Set the content panel.
  *
- * @param {OO.ui.PanelLayout} menuPanel Content panel
+ * @param {OO.ui.PanelLayout} contentPanel Content panel
  */
 OO.ui.MenuLayout.prototype.setContentPanel = function ( contentPanel ) {
 	this.contentPanel = contentPanel;
@@ -2083,6 +2098,7 @@ OO.ui.BookletLayout.prototype.isOutlineVisible = function () {
  *
  * @param {boolean} [show] Show outline, omit to invert current state
  * @chainable
+ * @return {OO.ui.BookletLayout} The layout, for chaining
  */
 OO.ui.BookletLayout.prototype.toggleOutline = function ( show ) {
 	var booklet = this;
@@ -2198,6 +2214,7 @@ OO.ui.BookletLayout.prototype.getCurrentPageName = function () {
  * @param {number} index Index of the insertion point
  * @fires add
  * @chainable
+ * @return {OO.ui.BookletLayout} The layout, for chaining
  */
 OO.ui.BookletLayout.prototype.addPages = function ( pages, index ) {
 	var i, len, name, page, item, currentIndex,
@@ -2253,6 +2270,7 @@ OO.ui.BookletLayout.prototype.addPages = function ( pages, index ) {
  * @param {OO.ui.PageLayout[]} pages An array of pages to remove
  * @fires remove
  * @chainable
+ * @return {OO.ui.BookletLayout} The layout, for chaining
  */
 OO.ui.BookletLayout.prototype.removePages = function ( pages ) {
 	var i, len, name, page,
@@ -2284,6 +2302,7 @@ OO.ui.BookletLayout.prototype.removePages = function ( pages ) {
  *
  * @fires remove
  * @chainable
+ * @return {OO.ui.BookletLayout} The layout, for chaining
  */
 OO.ui.BookletLayout.prototype.clearPages = function () {
 	var i, len,
@@ -2379,6 +2398,7 @@ OO.ui.BookletLayout.prototype.resetScroll = function () {
  * Select the first selectable page.
  *
  * @chainable
+ * @return {OO.ui.BookletLayout} The layout, for chaining
  */
 OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
 	if ( !this.outlineSelectWidget.findSelectedItem() ) {
@@ -2668,6 +2688,7 @@ OO.ui.IndexLayout.prototype.getCurrentTabPanelName = function () {
  * @param {number} index Index of the insertion point
  * @fires add
  * @chainable
+ * @return {OO.ui.BookletLayout} The layout, for chaining
  */
 OO.ui.IndexLayout.prototype.addTabPanels = function ( tabPanels, index ) {
 	var i, len, name, tabPanel, item, currentIndex,
@@ -2721,6 +2742,7 @@ OO.ui.IndexLayout.prototype.addTabPanels = function ( tabPanels, index ) {
  * @param {OO.ui.TabPanelLayout[]} tabPanels An array of tab panels to remove
  * @fires remove
  * @chainable
+ * @return {OO.ui.BookletLayout} The layout, for chaining
  */
 OO.ui.IndexLayout.prototype.removeTabPanels = function ( tabPanels ) {
 	var i, len, name, tabPanel,
@@ -2750,6 +2772,7 @@ OO.ui.IndexLayout.prototype.removeTabPanels = function ( tabPanels ) {
  *
  * @fires remove
  * @chainable
+ * @return {OO.ui.BookletLayout} The layout, for chaining
  */
 OO.ui.IndexLayout.prototype.clearTabPanels = function () {
 	var i, len,
@@ -2825,6 +2848,7 @@ OO.ui.IndexLayout.prototype.setTabPanel = function ( name ) {
  * Select the first selectable tab panel.
  *
  * @chainable
+ * @return {OO.ui.BookletLayout} The layout, for chaining
  */
 OO.ui.IndexLayout.prototype.selectFirstSelectableTabPanel = function () {
 	if ( !this.tabSelectWidget.findSelectedItem() ) {
@@ -2893,6 +2917,7 @@ OO.ui.ToggleWidget.prototype.getValue = function () {
  * @param {boolean} value The state of the toggle
  * @fires change
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.ToggleWidget.prototype.setValue = function ( value ) {
 	value = !!value;
@@ -3100,6 +3125,7 @@ OO.mixinClass( OO.ui.ToggleSwitchWidget, OO.ui.mixin.TabIndexedElement );
  *
  * @private
  * @param {jQuery.Event} e Mouse click event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.ToggleSwitchWidget.prototype.onClick = function ( e ) {
 	if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT ) {
@@ -3113,6 +3139,7 @@ OO.ui.ToggleSwitchWidget.prototype.onClick = function ( e ) {
  *
  * @private
  * @param {jQuery.Event} e Key press event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.ToggleSwitchWidget.prototype.onKeyPress = function ( e ) {
 	if ( !this.isDisabled() && ( e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER ) ) {
@@ -3396,6 +3423,7 @@ OO.ui.OutlineOptionWidget.prototype.setPressed = function ( state ) {
  *
  * @param {boolean} movable Item is movable
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.OutlineOptionWidget.prototype.setMovable = function ( movable ) {
 	this.movable = !!movable;
@@ -3410,6 +3438,7 @@ OO.ui.OutlineOptionWidget.prototype.setMovable = function ( movable ) {
  *
  * @param {boolean} removable Item is removable
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.OutlineOptionWidget.prototype.setRemovable = function ( removable ) {
 	this.removable = !!removable;
@@ -3430,6 +3459,7 @@ OO.ui.OutlineOptionWidget.prototype.setSelected = function ( state ) {
  *
  * @param {number} [level=0] Indentation level, in the range of [0,#maxLevel]
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.OutlineOptionWidget.prototype.setLevel = function ( level ) {
 	var levels = this.constructor.static.levels,
@@ -3812,6 +3842,7 @@ OO.mixinClass( OO.ui.TagItemWidget, OO.ui.mixin.DraggableElement );
  *
  * @param {string} [state] Item is fixed
  * @fires fixed
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.TagItemWidget.prototype.setFixed = function ( state ) {
 	state = state === undefined ? !this.fixed : !!state;
@@ -3836,6 +3867,7 @@ OO.ui.TagItemWidget.prototype.setFixed = function ( state ) {
 
 /**
  * Check whether the item is fixed
+ * @return {boolean}
  */
 OO.ui.TagItemWidget.prototype.isFixed = function () {
 	return this.fixed;
@@ -4013,6 +4045,10 @@ OO.ui.TagItemWidget.prototype.isValid = function () {
  *  invalid tags. These tags will display with an invalid state, and
  *  the widget as a whole will have an invalid state if any invalid tags
  *  are present.
+ * @cfg {number} [limit] An optional limit on the number of selected options.
+ *  If the limit exists and is reached, the input is disabled, not allowing
+ *  for any additions. If the limit is unset or is 0, an unlimited number
+ *  of items can be added.
  * @cfg {boolean} [allowReordering=true] Allow reordering of the items
  * @cfg {Object[]|String[]} [selected] A set of selected tags. If given,
  *  these will appear in the tag list on initialization, as long as they
@@ -4052,6 +4088,7 @@ OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 	this.allowedValues = config.allowedValues || [];
 	this.allowDisplayInvalidTags = config.allowDisplayInvalidTags;
 	this.hasInput = this.inputPosition !== 'none';
+	this.limit = config.limit;
 	this.height = null;
 	this.valid = true;
 
@@ -4113,6 +4150,7 @@ OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 		};
 
 		this.input.$input.on( inputEvents );
+		this.inputPlaceholder = this.input.$input.attr( 'placeholder' );
 
 		if ( this.inputPosition === 'outline' ) {
 			// Override max-height for the input widget
@@ -4284,6 +4322,8 @@ OO.ui.TagMultiselectWidget.prototype.onInputKeyDown = function ( e ) {
  */
 OO.ui.TagMultiselectWidget.prototype.onInputFocus = function () {
 	this.$element.addClass( 'oo-ui-tagMultiselectWidget-focus' );
+	// Reset validity
+	this.toggleValid( true );
 };
 
 /**
@@ -4291,6 +4331,10 @@ OO.ui.TagMultiselectWidget.prototype.onInputFocus = function () {
  */
 OO.ui.TagMultiselectWidget.prototype.onInputBlur = function () {
 	this.$element.removeClass( 'oo-ui-tagMultiselectWidget-focus' );
+
+	// Set the widget as invalid if there's text in the input
+	this.addTagFromInput();
+	this.toggleValid( this.checkValidity() && ( !this.hasInput || !this.input.getValue() ) );
 };
 
 /**
@@ -4409,9 +4453,29 @@ OO.ui.TagMultiselectWidget.prototype.onTagFixed = function ( item ) {
  * Respond to change event, where items were added, removed, or cleared.
  */
 OO.ui.TagMultiselectWidget.prototype.onChangeTags = function () {
-	this.toggleValid( this.checkValidity() );
+	var isUnderLimit = this.isUnderLimit();
+
+	// Reset validity
+	this.toggleValid(
+		this.checkValidity() &&
+		( !this.hasInput || !this.input.getValue() )
+	);
+
 	if ( this.hasInput ) {
 		this.updateInputSize();
+		if ( !isUnderLimit ) {
+			// Clear the input
+			this.input.setValue( '' );
+		}
+		if ( this.inputPosition === 'outline' ) {
+			// Show/clear the placeholder and enable/disable the input
+			// based on whether we are/aren't under the specified limit
+			this.input.$input.attr( 'placeholder', isUnderLimit ? this.inputPlaceholder : '' );
+			this.input.setDisabled( !isUnderLimit );
+		} else {
+			// Show/hide the input
+			this.input.$input.toggleClass( 'oo-ui-element-hidden', !isUnderLimit );
+		}
 	}
 	this.updateIfHeightChanged();
 };
@@ -4424,7 +4488,7 @@ OO.ui.TagMultiselectWidget.prototype.setDisabled = function ( isDisabled ) {
 	OO.ui.TagMultiselectWidget.parent.prototype.setDisabled.call( this, isDisabled );
 
 	if ( this.hasInput && this.input ) {
-		this.input.setDisabled( !!isDisabled );
+		this.input.setDisabled( !!isDisabled && !this.isUnderLimit() );
 	}
 
 	if ( this.items ) {
@@ -4472,9 +4536,8 @@ OO.ui.TagMultiselectWidget.prototype.addTagFromInput = function () {
 	}
 
 	if ( isValid || this.allowDisplayInvalidTags ) {
-		this.addTag( val );
 		this.clearInput();
-		this.focus();
+		this.addTag( val );
 	}
 };
 
@@ -4572,8 +4635,8 @@ OO.ui.TagMultiselectWidget.prototype.getValue = function () {
  *  { data: 'foo', label: 'Foo item' }
  *  For multiple items, use an array of objects. For example:
  *   [
- *      { data: 'foo', label: 'Foo item' },
- *      { data: 'bar', label: 'Bar item' }
+ *   	{ data: 'foo', label: 'Foo item' },
+ *    	{ data: 'bar', label: 'Bar item' }
  * 	 ]
  *  Value can also be added with plaintext array, for example:
  *  [ 'foo', 'bar', 'bla' ] or a single string, like 'foo'
@@ -4603,13 +4666,26 @@ OO.ui.TagMultiselectWidget.prototype.addTag = function ( data, label ) {
 	var newItemWidget,
 		isValid = this.isAllowedData( data );
 
-	if ( isValid || this.allowDisplayInvalidTags ) {
+	if ( this.isUnderLimit() && ( isValid || this.allowDisplayInvalidTags ) ) {
 		newItemWidget = this.createTagItemWidget( data, label );
 		newItemWidget.toggleValid( isValid );
 		this.addItems( [ newItemWidget ] );
 		return true;
 	}
+
 	return false;
+};
+
+/**
+ * Check whether the current tags are under the limit. Returns true
+ * if there is no limit set.
+ *
+ * @return {boolean} True if current tag count is under the limit
+ *  or if there is no limit set
+ */
+OO.ui.TagMultiselectWidget.prototype.isUnderLimit = function () {
+	return !this.limit ||
+		this.getItemCount() < this.limit;
 };
 
 /**
@@ -5073,6 +5149,16 @@ OO.ui.MenuTagMultiselectWidget.prototype.onInputFocus = function () {
 };
 
 /**
+ * @inheritdoc
+ */
+OO.ui.MenuTagMultiselectWidget.prototype.onInputBlur = function () {
+	// Parent method
+	OO.ui.MenuTagMultiselectWidget.parent.prototype.onInputBlur.call( this );
+
+	this.menu.toggle( false );
+};
+
+/**
  * Respond to input change event
  */
 OO.ui.MenuTagMultiselectWidget.prototype.onInputChange = function () {
@@ -5188,7 +5274,6 @@ OO.ui.MenuTagMultiselectWidget.prototype.addTagFromInput = function () {
 
 	if ( validated ) {
 		this.clearInput();
-		this.focus();
 	}
 };
 
@@ -5468,6 +5553,7 @@ OO.ui.SelectFileWidget.prototype.setValue = function ( file ) {
  * Focusses the select file button.
  *
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectFileWidget.prototype.focus = function () {
 	this.selectButton.focus();
@@ -5478,6 +5564,7 @@ OO.ui.SelectFileWidget.prototype.focus = function () {
  * Blur the widget.
  *
  * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectFileWidget.prototype.blur = function () {
 	this.selectButton.blur();
@@ -5665,6 +5752,7 @@ OO.ui.SelectFileWidget.prototype.onFileSelected = function ( e ) {
  * Handle clear button click events.
  *
  * @private
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.SelectFileWidget.prototype.onClearClick = function () {
 	this.setValue( null );
@@ -5676,6 +5764,7 @@ OO.ui.SelectFileWidget.prototype.onClearClick = function () {
  *
  * @private
  * @param {jQuery.Event} e Key press event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.SelectFileWidget.prototype.onKeyPress = function ( e ) {
 	if ( this.isSupported && !this.isDisabled() && this.$input &&
@@ -5691,6 +5780,7 @@ OO.ui.SelectFileWidget.prototype.onKeyPress = function ( e ) {
  *
  * @private
  * @param {jQuery.Event} e Key press event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.SelectFileWidget.prototype.onDropTargetClick = function () {
 	if ( this.isSupported && !this.isDisabled() && this.$input ) {
@@ -5704,6 +5794,7 @@ OO.ui.SelectFileWidget.prototype.onDropTargetClick = function () {
  *
  * @private
  * @param {jQuery.Event} e Drag event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.SelectFileWidget.prototype.onDragEnterOrOver = function ( e ) {
 	var itemOrFile,
@@ -5757,6 +5848,7 @@ OO.ui.SelectFileWidget.prototype.onDragLeave = function () {
  *
  * @private
  * @param {jQuery.Event} e Drop event
+ * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.SelectFileWidget.prototype.onDrop = function ( e ) {
 	var file = null,
