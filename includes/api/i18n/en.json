@@ -1730,6 +1730,7 @@
 	"apierror-compare-nofromrevision": "No 'from' revision. Specify <var>fromrev</var>, <var>fromtitle</var>, or <var>fromid</var>.",
 	"apierror-compare-notext": "Parameter <var>$1</var> cannot be used without <var>$2</var>.",
 	"apierror-compare-notorevision": "No 'to' revision. Specify <var>torev</var>, <var>totitle</var>, or <var>toid</var>.",
+	"apierror-compare-relative-to-deleted": "Cannot use <kbd>torelative=$1</kbd> relative to a deleted revision.",
 	"apierror-compare-relative-to-nothing": "No 'from' revision for <var>torelative</var> to be relative to.",
 	"apierror-contentserializationexception": "Content serialization failed: $1",
 	"apierror-contenttoobig": "The content you supplied exceeds the article size limit of $1 {{PLURAL:$1|kilobyte|kilobytes}}.",
