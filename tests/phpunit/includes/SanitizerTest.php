@@ -316,6 +316,7 @@ class SanitizerTest extends MediaWikiTestCase {
 			],
 			[ '/* insecure input */', 'foo: attr( title, url );' ],
 			[ '/* insecure input */', 'foo: attr( title url );' ],
+			[ '/* insecure input */', 'foo: var(--evil-attribute)' ],
 		];
 	}
 
