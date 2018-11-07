@@ -1529,10 +1529,12 @@ MESSAGE;
 			self::inDebugMode()
 		);
 		if ( $js === false ) {
-			throw new Exception(
+			$e = new Exception(
 				'JSON serialization of config data failed. ' .
 				'This usually means the config data is not valid UTF-8.'
 			);
+			MWExceptionHandler::logException( $e );
+			$js = Xml::encodeJsCall( 'mw.log.error', [ $e->__toString() ] );
 		}
 		return $js;
 	}
