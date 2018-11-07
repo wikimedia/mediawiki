@@ -75,6 +75,7 @@ class JobQueueTest extends MediaWikiTestCase {
 			$this->markTestSkipped( $desc );
 		}
 		$this->assertEquals( wfWikiID(), $queue->getWiki(), "Proper wiki ID ($desc)" );
+		$this->assertEquals( wfWikiID(), $queue->getDomain(), "Proper wiki ID ($desc)" );
 	}
 
 	/**
@@ -388,6 +389,6 @@ class JobQueueDBSingle extends JobQueueDB {
 	protected function getDB( $index ) {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		// Override to not use CONN_TRX_AUTOCOMMIT so that we see the same temporary `job` table
-		return $lb->getConnection( $index, [], $this->wiki );
+		return $lb->getConnection( $index, [], $this->domain );
 	}
 }

@@ -239,7 +239,11 @@ class WikiMapTest extends MediaWikiLangTestCase {
 		return [
 			[ 'db-prefix', 'db-prefix' ],
 			[ wfWikiID(), wfWikiID() ],
-			[ new DatabaseDomain( 'db-dash', null, 'prefix' ), 'db-dash-prefix' ]
+			[ new DatabaseDomain( 'db-dash', null, 'prefix' ), 'db-dash-prefix' ],
+			[ wfWikiID(), wfWikiID() ],
+			[ new DatabaseDomain( 'db-dash', null, 'prefix' ), 'db-dash-prefix' ],
+			[ new DatabaseDomain( 'db', 'mediawiki', 'prefix' ), 'db-prefix' ], // schema ignored
+			[ new DatabaseDomain( 'db', 'custom', 'prefix' ), 'db-custom-prefix' ],
 		];
 	}
 
@@ -273,12 +277,17 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	public function provideIsCurrentWikiId() {
 		return [
 			[ 'db', 'db', null, '' ],
-			[ 'db','db', 'schema', '' ],
+			[ 'db-schema-','db', 'schema', '' ],
+			[ 'db','db', 'mediawiki', '' ], // common b/c case
 			[ 'db-prefix', 'db', null, 'prefix' ],
-			[ 'db-prefix', 'db', 'schema', 'prefix' ],
+			[ 'db-schema-prefix', 'db', 'schema', 'prefix' ],
+			[ 'db-prefix', 'db', 'mediawiki', 'prefix' ], // common b/c case
 			// Bad hyphen cases (best effort support)
 			[ 'db-stuff', 'db-stuff', null, '' ],
-			[ 'db-stuff-prefix', 'db-stuff', null, 'prefix' ]
+			[ 'db-stuff-prefix', 'db-stuff', null, 'prefix' ],
+			[ 'db-stuff-schema-', 'db-stuff', 'schema', '' ],
+			[ 'db-stuff-schema-prefix', 'db-stuff', 'schema', 'prefix' ],
+			[ 'db-stuff-prefix', 'db-stuff', 'mediawiki', 'prefix' ] // common b/c case
 		];
 	}
 

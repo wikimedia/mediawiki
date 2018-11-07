@@ -30,7 +30,7 @@ use MediaWiki\MediaWikiServices;
  */
 abstract class JobQueue {
 	/** @var string Wiki ID */
-	protected $wiki;
+	protected $domain;
 	/** @var string Job type */
 	protected $type;
 	/** @var string Job priority for pop() */
@@ -56,7 +56,7 @@ abstract class JobQueue {
 	 * @throws MWException
 	 */
 	protected function __construct( array $params ) {
-		$this->wiki = $params['wiki'];
+		$this->domain = $params['domain'] ?? $params['wiki']; // b/c
 		$this->type = $params['type'];
 		$this->claimTTL = $params['claimTTL'] ?? 0;
 		$this->maxTries = $params['maxTries'] ?? 3;
@@ -117,8 +117,16 @@ abstract class JobQueue {
 	/**
 	 * @return string Wiki ID
 	 */
+	final public function getDomain() {
+		return $this->domain;
+	}
+
+	/**
+	 * @return string Wiki ID
+	 * @deprecated 1.33
+	 */
 	final public function getWiki() {
-		return $this->wiki;
+		return $this->domain;
 	}
 
 	/**
@@ -330,7 +338,7 @@ abstract class JobQueue {
 		}
 
 		$this->doBatchPush( $jobs, $flags );
-		$this->aggr->notifyQueueNonEmpty( $this->wiki, $this->type );
+		$this->aggr->notifyQueueNonEmpty( $this->domain, $this->type );
 
 		foreach ( $jobs as $job ) {
 			if ( $job->isRootJob() ) {
@@ -358,8 +366,9 @@ abstract class JobQueue {
 		global $wgJobClasses;
 
 		$this->assertNotReadOnly();
-		if ( !WikiMap::isCurrentWikiId( $this->wiki ) ) {
-			throw new MWException( "Cannot pop '{$this->type}' job off foreign wiki queue." );
+		if ( !WikiMap::isCurrentWikiDomain( $this->domain ) ) {
+			throw new MWException(
+				"Cannot pop '{$this->type}' job off foreign '{$this->domain}' wiki queue." );
 		} elseif ( !isset( $wgJobClasses[$this->type] ) ) {
 			// Do not pop jobs if there is no class for the queue type
 			throw new MWException( "Unrecognized job type '{$this->type}'." );
@@ -368,7 +377,7 @@ abstract class JobQueue {
 		$job = $this->doPop();
 
 		if ( !$job ) {
-			$this->aggr->notifyQueueEmpty( $this->wiki, $this->type );
+			$this->aggr->notifyQueueEmpty( $this->domain, $this->type );
 		}
 
 		// Flag this job as an old duplicate based on its "root" job...
@@ -522,9 +531,13 @@ abstract class JobQueue {
 	 * @return string
 	 */
 	protected function getRootJobCacheKey( $signature ) {
-		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
-
-		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, 'rootjob', $signature );
+		$this->dupCache->makeGlobalKey(
+			'jobqueue',
+			$this->domain,
+			$this->type,
+			'rootjob',
+			$signature
+		);
 	}
 
 	/**
