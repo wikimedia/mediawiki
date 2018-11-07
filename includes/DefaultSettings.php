@@ -8989,7 +8989,7 @@ $wgInterwikiPrefixDisplayTypes = [];
  * @since 1.30
  * @var int One of the MIGRATION_* constants
  */
-$wgCommentTableSchemaMigrationStage = MIGRATION_OLD;
+$wgCommentTableSchemaMigrationStage = MIGRATION_NEW;
 
 /**
  * RevisionStore table schema migration stage (content, slots, content_models & slot_roles tables).
