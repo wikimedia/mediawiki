@@ -1,4 +1,28 @@
 # OOUI Release History
+## v0.29.4 / 2018-11-06
+### Features
+* TagMultiSelectWidget: Add a `limit` configuration option (Moriel Schottlender)
+* TagMultiselectWidget: Make widget invalid if there's text in input (Moriel Schottlender)
+
+### Styles
+* PopupTool: Prevent flipping the popup opposite to the toolbar position (Bartosz Dziewoński)
+* WindowManager: Better avoid content shifting when disabling page scrollbars (Bartosz Dziewoński)
+* WikimediaUI theme: Tame cut-off letter issue (Volker E.)
+
+### Code
+* Dialog.detachActions: Make this method chainable, as documented (James D. Forrester)
+* FloatableElement: Remove check for `needsCustomPosition` (Bartosz Dziewoński)
+* build: Enable `valid-jsdoc` (James D. Forrester)
+* demos: Use consistent options descriptions (Volker E.)
+* Fix errors flagged by ESLint's `valid-jsdoc` option (Volker E.)
+* doc: Add documentation for event handlers (James D. Forrester)
+* doc: ButtonWidget.setHref: Add chainable documentation (James D. Forrester)
+* doc: Duplicate `@chainable` with manual `@return` comment (James D. Forrester)
+* doc: Ensure consistent PHP-DOC annotation (Volker E.)
+* doc: TagItemWidget.isFixed: Add return documentation (James D. Forrester)
+* doc: WindowManager.openWindow: Explcitly disable `valid-jsdoc` for private parameters (Volker E.)
+
+
 ## v0.29.3 / 2018-10-31
 ### Features
 * LabelElement: Allow invisible accessibility labels (Bartosz Dziewoński)
