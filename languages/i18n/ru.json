@@ -134,7 +134,8 @@
 			"Atsirlin",
 			"Michgrig",
 			"Force majeure",
-			"Infovarius"
+			"Infovarius",
+			"Cronolio"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -3776,7 +3777,7 @@
 	"version-license-not-found": "Для этого расширения нет подробных сведений о лицензии.",
 	"version-credits-title": "Список авторов для $1",
 	"version-credits-not-found": "Для этого расширения нет подробных сведений об авторах.",
-	"version-poweredby-credits": "Эта вики работает на движке '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+	"version-poweredby-credits": "Эта вики работает на движке <strong>[https://www.mediawiki.org/ MediaWiki]<strong>, copyright © 2001-$1 $2.",
 	"version-poweredby-others": "другие",
 	"version-poweredby-translators": "переводчики translatewiki.net",
 	"version-credits-summary": "Хотим поблагодарить следующих участников за их вклад в развитие [[Special:Version|MediaWiki]].",
@@ -4227,10 +4228,10 @@
 	"special-characters-title-endash": "среднее тире",
 	"special-characters-title-emdash": "длинное тире",
 	"special-characters-title-minus": "знак минус",
-	"visualeditor-viewpage-savewarning": "Вы уверены, что хотите выйти из режима редактирования, не сохранив изменения?",
-	"visualeditor-viewpage-savewarning-discard": "Отменить правки",
-	"visualeditor-viewpage-savewarning-keep": "Продолжить редактирование",
-	"visualeditor-viewpage-savewarning-title": "Вы уверены?",
+	"mw-widgets-abandonedit": "Вы уверены, что хотите выйти из режима редактирования, не сохранив изменения?",
+	"mw-widgets-abandonedit-discard": "Отменить правки",
+	"mw-widgets-abandonedit-keep": "Продолжить редактирование",
+	"mw-widgets-abandonedit-title": "Вы уверены?",
 	"mw-widgets-dateinput-no-date": "Дата не выбрана",
 	"mw-widgets-dateinput-placeholder-day": "ГГГГ-ММ-ДД",
 	"mw-widgets-dateinput-placeholder-month": "ГГГГ-ММ",

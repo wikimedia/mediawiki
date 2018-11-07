@@ -1057,6 +1057,6 @@
 	"duration-decades": "$1 {{PLURAL:$1|Jaazehnd|Jaazehnde}}",
 	"duration-centuries": "$1 {{PLURAL:$1|Jaahunnad|Jaahunnade}}",
 	"duration-millennia": "$1 {{PLURAL:$1|Jaadausnd|Jaadausnde}}",
-	"visualeditor-viewpage-savewarning": "Bischda sischa, dassde uffde Onsischdmodus geje megschd, ohne dvoa zu schbaischare?",
-	"visualeditor-viewpage-savewarning-keep": "Waida schaffe"
+	"mw-widgets-abandonedit": "Bischda sischa, dassde uffde Onsischdmodus geje megschd, ohne dvoa zu schbaischare?",
+	"mw-widgets-abandonedit-keep": "Waida schaffe"
 }

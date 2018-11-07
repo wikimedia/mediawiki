@@ -2878,7 +2878,7 @@
 	"expand_templates_remove_nowiki": "Pugulan an mga taktak na <nowiki> sa resulta",
 	"expand_templates_generate_xml": "Ipahiling an panlunhay na kahoy nin XML",
 	"expand_templates_preview": "Patânaw",
-	"visualeditor-viewpage-savewarning": "Nakakaseguro ka na gusto mong bumalik sa kamugtakan nin pagtanaw na dae nagtatagamang enot?",
+	"mw-widgets-abandonedit": "Nakakaseguro ka na gusto mong bumalik sa kamugtakan nin pagtanaw na dae nagtatagamang enot?",
 	"mw-widgets-dateinput-placeholder-day": "TTTT-BB-AA",
 	"mw-widgets-dateinput-placeholder-month": "TTTT-BB",
 	"randomrootpage": "Purakan na ugat nin pahina"

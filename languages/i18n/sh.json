@@ -3025,8 +3025,8 @@
 	"rotate-comment": "Slika rotirana za $1 {{PLURAL:$1|stepeni}} u smjeru kazaljke na satu",
 	"expand_templates_input": "Unos - Унос",
 	"expand_templates_preview": "Pregled",
-	"visualeditor-viewpage-savewarning": "Da li ste sigurni da želite napustiti mod uređivanja prije nego što snimite?",
-	"visualeditor-viewpage-savewarning-discard": "Odbaci izmjene",
-	"visualeditor-viewpage-savewarning-keep": "Nastavi s uređivanjem",
-	"visualeditor-viewpage-savewarning-title": "Da li ste sigurni?"
+	"mw-widgets-abandonedit": "Da li ste sigurni da želite napustiti mod uređivanja prije nego što snimite?",
+	"mw-widgets-abandonedit-discard": "Odbaci izmjene",
+	"mw-widgets-abandonedit-keep": "Nastavi s uređivanjem",
+	"mw-widgets-abandonedit-title": "Da li ste sigurni?"
 }

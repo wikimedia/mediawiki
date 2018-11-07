@@ -1039,6 +1039,6 @@
 	"searchsuggest-search": "فتّش في {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|يوم|يامات}}",
 	"mediastatistics-header-bitmap": "تصويرة Bitmap",
-	"visualeditor-viewpage-savewarning-keep": "واصل التعديل",
-	"visualeditor-viewpage-savewarning-title": "متأكد؟"
+	"mw-widgets-abandonedit-keep": "واصل التعديل",
+	"mw-widgets-abandonedit-title": "متأكد؟"
 }

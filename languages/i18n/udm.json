@@ -782,6 +782,6 @@
 	"searchsuggest-search": "Утчано {{SITENAME}}",
 	"searchsuggest-containing": "кудъёсаз вань...",
 	"expand_templates_preview": "Эскерон",
-	"visualeditor-viewpage-savewarning-keep": "Тупатъянэз азьланьтоно",
+	"mw-widgets-abandonedit-keep": "Тупатъянэз азьланьтоно",
 	"log-action-filter-all": "Ваньзэ"
 }

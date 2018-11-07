@@ -1054,6 +1054,7 @@
 	"apierror-permissiondenied": "$1に必要な権限がありません。",
 	"apierror-permissiondenied-generic": "アクセスが拒否されました。",
 	"apierror-readonly": "ウィキは現在読み取り専用モードです。",
+	"apierror-revwrongpage": "版 $1 は $2 の版ではありません。",
 	"apierror-timeout": "サーバーが決められた時間内に応答しませんでした。",
 	"apierror-unknownerror-editpage": "不明な編集ページのエラー:$1",
 	"apierror-unknownerror-nocode": "不明なエラーです。",

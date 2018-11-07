@@ -94,7 +94,8 @@
 			"KPFC",
 			"ToBeFree",
 			"PerfektesChaos",
-			"Kurt Jansson"
+			"Kurt Jansson",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -3807,7 +3808,7 @@
 	"logentry-block-block": "$1 {{GENDER:$2|sperrte}} {{GENDER:$4|$3}} für eine Dauer von $5 $6",
 	"logentry-block-unblock": "$1 {{GENDER:$2|hob}} die Sperre von {{GENDER:$4|$3}} auf",
 	"logentry-block-reblock": "$1 {{GENDER:$2|änderte}} die Sperreinstellungen für {{GENDER:$4|$3}} mit einer Sperrdauer von $5 $6",
-	"logentry-partialblock-block": "$1 {{GENDER:$2|sperrte}} {{GENDER:$4|$3}} für das Bearbeiten {{PLURAL:$8||der Seiten}} $7 mit einer Ablaufzeit von $5 $6",
+	"logentry-partialblock-block": "$1 {{GENDER:$2|sperrte}} {{GENDER:$4|$3}} für das Bearbeiten {{PLURAL:$8|von|der Seiten}} $7 mit einer Ablaufzeit von $5 $6",
 	"logentry-partialblock-reblock": "$1 {{GENDER:$2|änderte}} die Sperreinstellungen für {{GENDER:$4|$3}} zum Verhindern von Bearbeitungen auf {{PLURAL:$8||den Seiten}} $7 mit einer Ablaufzeit von $5 $6",
 	"logentry-non-editing-block-block": "$1 {{GENDER:$2|sperrte}} {{GENDER:$4|$3}} für Nicht-Bearbeitungsaktionen mit einer Ablaufzeit von $5 $6",
 	"logentry-non-editing-block-reblock": "$1 {{GENDER:$2|änderte}} die Sperreinstellungen für {{GENDER:$4|$3}} für Nicht-Bearbeitungsaktionen mit einer Ablaufzeit von $5 $6",
@@ -4010,10 +4011,10 @@
 	"special-characters-title-endash": "Halbgeviertstrich",
 	"special-characters-title-emdash": "Geviertstrich",
 	"special-characters-title-minus": "Minus",
-	"visualeditor-viewpage-savewarning": "Bist du sicher, dass du den Bearbeitungsmodus verlassen möchtest, ohne vorher zu speichern?",
-	"visualeditor-viewpage-savewarning-discard": "Bearbeitungen verwerfen",
-	"visualeditor-viewpage-savewarning-keep": "Weiter bearbeiten",
-	"visualeditor-viewpage-savewarning-title": "Bist du sicher?",
+	"mw-widgets-abandonedit": "Bist du sicher, dass du den Bearbeitungsmodus verlassen möchtest, ohne vorher zu speichern?",
+	"mw-widgets-abandonedit-discard": "Bearbeitungen verwerfen",
+	"mw-widgets-abandonedit-keep": "Weiter bearbeiten",
+	"mw-widgets-abandonedit-title": "Bist du sicher?",
 	"mw-widgets-dateinput-no-date": "Kein Datum ausgewählt",
 	"mw-widgets-dateinput-placeholder-day": "JJJJ-MM-TT",
 	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM",
