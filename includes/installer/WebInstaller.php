@@ -125,6 +125,13 @@ class WebInstaller extends Installer {
 	protected $tabIndex = 1;
 
 	/**
+	 * Numeric index of the help box
+	 *
+	 * @var int
+	 */
+	protected $helpBoxId = 1;
+
+	/**
 	 * Name of the page we're on
 	 *
 	 * @var string
@@ -680,11 +687,13 @@ class WebInstaller extends Installer {
 		$args = array_map( 'htmlspecialchars', $args );
 		$text = wfMessage( $msg, $args )->useDatabase( false )->plain();
 		$html = $this->parse( $text, true );
+		$id = 'helpBox-' . $this->helpBoxId++;
 
 		return "<div class=\"config-help-field-container\">\n" .
-			"<span class=\"config-help-field-hint\" title=\"" .
+			"<input type=\"checkbox\" class=\"config-help-field-checkbox\" id=\"$id\" />" .
+			"<label class=\"config-help-field-hint\" for=\"$id\" title=\"" .
 			wfMessage( 'config-help-tooltip' )->escaped() . "\">" .
-			wfMessage( 'config-help' )->escaped() . "</span>\n" .
+			wfMessage( 'config-help' )->escaped() . "</label>\n" .
 			"<div class=\"config-help-field-data\">" . $html . "</div>\n" .
 			"</div>\n";
 	}
