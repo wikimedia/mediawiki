@@ -619,14 +619,23 @@ class EditPage {
 		if ( $permErrors ) {
 			wfDebug( __METHOD__ . ": User can't edit\n" );
 
-			// track block with a cookie if it doesn't exists already
-			$this->context->getUser()->trackBlockWithCookie();
+			if ( $this->context->getUser()->getBlock() ) {
+				// track block with a cookie if it doesn't exists already
+				$this->context->getUser()->trackBlockWithCookie();
 
-			// Auto-block user's IP if the account was "hard" blocked
-			if ( !wfReadOnly() ) {
-				DeferredUpdates::addCallableUpdate( function () {
-					$this->context->getUser()->spreadAnyEditBlock();
-				} );
+				// Auto-block user's IP if the account was "hard" blocked
+				if ( !wfReadOnly() ) {
+					DeferredUpdates::addCallableUpdate( function () {
+						$this->context->getUser()->spreadAnyEditBlock();
+					} );
+				}
+
+				$config = $this->context->getConfig();
+				if ( $config->get( 'EnableBlockNoticeStats' ) ) {
+					$wiki = $config->get( 'DBname' );
+					$statsd = MediaWikiServices::getInstance()->getStatsdDataFactory();
+					$statsd->increment( 'BlockNotices.' . $wiki . '.WikitextEditor.shown' );
+				}
 			}
 			$this->displayPermissionsError( $permErrors );
 
