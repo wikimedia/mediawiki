@@ -47,7 +47,7 @@
 	"config-env-php": "PHP $1 er installeret.",
 	"config-db-type": "Databasetype:",
 	"config-db-host": "Databasevært:",
-	"config-db-name": "Databasenavn:",
+	"config-db-name": "Databasenavn (ingen bindestreg):",
 	"config-db-install-account": "Brugerkonto for installation",
 	"config-db-username": "Databasens brugernavn:",
 	"config-db-password": "Databasens adgangskode:",

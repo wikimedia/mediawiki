@@ -111,7 +111,7 @@
 	"config-db-account-lock": "Derselbe Benutzername und das Passwort müssen während des Normalbetriebs des Wikis verwendet werden.",
 	"config-db-wiki-account": "Benutzerkonto für den normalen Betrieb",
 	"config-db-wiki-help": "Bitte Benutzernamen und Passwort angeben, die der Webserver während des Normalbetriebes dazu verwenden soll, eine Verbindung zum Datenbankserver herzustellen.\nSofern ein entsprechendes Benutzerkonto nicht vorhanden ist und das Benutzerkonto für den Installationsvorgang über ausreichende Berechtigungen verfügt, wird dieses Benutzerkonto automatisch mit den Mindestberechtigungen zum Normalbetrieb des Wikis angelegt.",
-	"config-db-prefix": "Datenbanktabellenpräfix:",
+	"config-db-prefix": "Präfix der Datenbanktabelle (ohne Bindestriche):",
 	"config-db-prefix-help": "Sofern eine Datenbank für mehrere Wikiinstallationen oder eine Wikiinstallation und eine andere Programminstallation genutzt werden soll, muss ein Datenbanktabellenpräfix angegeben werden, um Datenbankprobleme zu vermeiden.\nEs können keine Leerzeichen verwendet werden.\n\nGewöhnlich bleibt dieses Feld leer.",
 	"config-mysql-old": "MySQL $1 oder höher wird benötigt. MySQL $2 ist momentan vorhanden.",
 	"config-db-port": "Datenbankport:",
