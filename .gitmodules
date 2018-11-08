@@ -1092,7 +1092,7 @@
 	ignore = dirty
 [submodule "extensions/LinkTitles"]
         path = extensions/LinkTitles
-        url = https://github.com/bovender/LinkTitles.git
+        url = https://github.com/miraheze/LinkTitles.git
         branch = master
         ignore = dirty
 
