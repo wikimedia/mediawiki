@@ -3418,6 +3418,9 @@ $title: Title object that is being checked
 $old: old title
 $nt: new title
 $user: user who does the move
+$reason: string of the reason provided by the user
+&$status: Status object. To abort the move, add a fatal error to this object
+	(i.e. call $status->fatal()).
 
 'TitleMoveStarting': Before moving an article (title), but just after the atomic
 DB section starts.
