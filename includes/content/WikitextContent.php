@@ -61,7 +61,7 @@ class WikitextContent extends TextContent {
 	public function getSection( $sectionId ) {
 		global $wgParser;
 
-		$text = $this->getNativeData();
+		$text = $this->getText();
 		$sect = $wgParser->getSection( $text, $sectionId, false );
 
 		if ( $sect === false ) {
@@ -91,8 +91,8 @@ class WikitextContent extends TextContent {
 				"section uses $sectionModelId." );
 		}
 
-		$oldtext = $this->getNativeData();
-		$text = $with->getNativeData();
+		$oldtext = $this->getText();
+		$text = $with->getText();
 
 		if ( strval( $sectionId ) === '' ) {
 			return $with; # XXX: copy first?
@@ -131,7 +131,7 @@ class WikitextContent extends TextContent {
 		$text = wfMessage( 'newsectionheaderdefaultlevel' )
 			->rawParams( $header )->inContentLanguage()->text();
 		$text .= "\n\n";
-		$text .= $this->getNativeData();
+		$text .= $this->getText();
 
 		return new static( $text );
 	}
@@ -149,7 +149,7 @@ class WikitextContent extends TextContent {
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
 		global $wgParser;
 
-		$text = $this->getNativeData();
+		$text = $this->getText();
 		$pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
 
 		if ( $text === $pst ) {
@@ -178,7 +178,7 @@ class WikitextContent extends TextContent {
 	public function preloadTransform( Title $title, ParserOptions $popts, $params = [] ) {
 		global $wgParser;
 
-		$text = $this->getNativeData();
+		$text = $this->getText();
 		$plt = $wgParser->getPreloadText( $text, $title, $popts, $params );
 
 		return new static( $plt );
@@ -202,12 +202,12 @@ class WikitextContent extends TextContent {
 
 		if ( $wgMaxRedirects < 1 ) {
 			// redirects are disabled, so quit early
-			$this->redirectTargetAndText = [ null, $this->getNativeData() ];
+			$this->redirectTargetAndText = [ null, $this->getText() ];
 			return $this->redirectTargetAndText;
 		}
 
 		$redir = MediaWikiServices::getInstance()->getMagicWordFactory()->get( 'redirect' );
-		$text = ltrim( $this->getNativeData() );
+		$text = ltrim( $this->getText() );
 		if ( $redir->matchStartAndRemove( $text ) ) {
 			// Extract the first link and see if it's usable
 			// Ensure that it really does come directly after #REDIRECT
@@ -223,7 +223,7 @@ class WikitextContent extends TextContent {
 				$title = Title::newFromText( $m[1] );
 				// If the title is a redirect to bad special pages or is invalid, return null
 				if ( !$title instanceof Title || !$title->isValidRedirectTarget() ) {
-					$this->redirectTargetAndText = [ null, $this->getNativeData() ];
+					$this->redirectTargetAndText = [ null, $this->getText() ];
 					return $this->redirectTargetAndText;
 				}
 
@@ -232,7 +232,7 @@ class WikitextContent extends TextContent {
 			}
 		}
 
-		$this->redirectTargetAndText = [ null, $this->getNativeData() ];
+		$this->redirectTargetAndText = [ null, $this->getText() ];
 		return $this->redirectTargetAndText;
 	}
 
@@ -271,7 +271,7 @@ class WikitextContent extends TextContent {
 		# so the regex has to be fairly general
 		$newText = preg_replace( '/ \[ \[  [^\]]*  \] \] /x',
 			'[[' . $target->getFullText() . ']]',
-			$this->getNativeData(), 1 );
+			$this->getText(), 1 );
 
 		return new static( $newText );
 	}
@@ -408,7 +408,7 @@ class WikitextContent extends TextContent {
 	 * @see Content::matchMagicWord()
 	 */
 	public function matchMagicWord( MagicWord $word ) {
-		return $word->match( $this->getNativeData() );
+		return $word->match( $this->getText() );
 	}
 
 }

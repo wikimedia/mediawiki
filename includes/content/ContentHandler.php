@@ -88,7 +88,7 @@ abstract class ContentHandler {
 		}
 
 		if ( $content instanceof TextContent ) {
-			return $content->getNativeData();
+			return $content->getText();
 		}
 
 		wfDebugLog( 'ContentHandler', 'Accessing ' . $content->getModel() . ' content as text!' );
