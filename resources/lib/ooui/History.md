@@ -1,4 +1,10 @@
 # OOUI Release History
+## v0.29.5 / 2018-11-08
+### Code
+* MenuTagMultiselectWidget: Clear input if adding valid tag (Thalia Chan)
+* TagMultiselectWidget: Rename `limit` config to `tagLimit` (Thalia Chan)
+
+
 ## v0.29.4 / 2018-11-06
 ### Features
 * TagMultiSelectWidget: Add a `limit` configuration option (Moriel Schottlender)
