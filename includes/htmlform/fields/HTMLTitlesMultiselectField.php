@@ -96,7 +96,7 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 		}
 
 		if ( isset( $this->mParams['max'] ) ) {
-			$params['limit'] = $this->mParams['max'];
+			$params['tagLimit'] = $this->mParams['max'];
 		}
 
 		if ( isset( $this->mParams['showMissing'] ) ) {
