@@ -431,7 +431,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					],
 				],
 				[
-					'text' => 'Sysop blocked Logtestuser from non-editing actions'
+					'text' => 'Sysop blocked Logtestuser from specified non-editing actions'
 						. ' with an expiration time of indefinite (anonymous users only)',
 					'api' => [
 						'duration' => 'infinite',
