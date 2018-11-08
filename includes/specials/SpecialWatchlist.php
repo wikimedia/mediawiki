@@ -155,7 +155,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					'activeValue' => false,
 					'default' => $this->getUser()->getBoolOption( 'extendwatchlist' ),
 					'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables,
-												  &$fields, &$conds, &$query_options, &$join_conds ) {
+							&$fields, &$conds, &$query_options, &$join_conds ) {
 						$nonRevisionTypes = [ RC_LOG ];
 						Hooks::run( 'SpecialWatchlistGetNonRevisionTypes', [ &$nonRevisionTypes ] );
 						if ( $nonRevisionTypes ) {
@@ -211,7 +211,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			],
 			'default' => ChangesListStringOptionsFilterGroup::NONE,
 			'queryCallable' => function ( $specialPageClassName, $context, $dbr,
-										  &$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues ) {
+					&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues ) {
 				if ( $selectedValues === [ 'seen' ] ) {
 					$conds[] = $dbr->makeList( [
 						'wl_notificationtimestamp IS NULL',

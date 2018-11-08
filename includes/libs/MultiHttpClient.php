@@ -438,7 +438,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		if ( !$this->multiHandle ) {
 			if ( !function_exists( 'curl_multi_init' ) ) {
 				throw new Exception( "PHP cURL function curl_multi_init missing. " .
-									 "Check https://www.mediawiki.org/wiki/Manual:CURL" );
+					"Check https://www.mediawiki.org/wiki/Manual:CURL" );
 			}
 			$cmh = curl_multi_init();
 			curl_multi_setopt( $cmh, CURLMOPT_PIPELINING, (int)$this->usePipelining );
