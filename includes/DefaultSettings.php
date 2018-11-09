@@ -4892,7 +4892,6 @@ $wgDefaultUserOptions = [
 	'rows' => 25, // @deprecated since 1.29 No longer used in core
 	'showhiddencats' => 0,
 	'shownumberswatching' => 1,
-	'showtoolbar' => 1,
 	'skin' => false,
 	'stubthreshold' => 0,
 	'thumbsize' => 5,

@@ -1394,12 +1394,6 @@ return [
 		'dependencies' => 'jquery.cookie',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.toolbar' => [
-		'class' => ResourceLoaderEditToolbarModule::class,
-		'scripts' => 'resources/src/mediawiki.toolbar/toolbar.js',
-		'styles' => 'resources/src/mediawiki.toolbar/toolbar.less',
-		'dependencies' => 'jquery.textSelection',
-	],
 	'mediawiki.experiments' => [
 		'scripts' => 'resources/src/mediawiki.experiments.js',
 		'targets' => [ 'desktop', 'mobile' ],

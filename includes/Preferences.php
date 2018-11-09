@@ -202,6 +202,7 @@ class Preferences {
 	 * @param array &$defaultPreferences
 	 */
 	public static function miscPreferences( $user, IContextSource $context, &$defaultPreferences ) {
+		wfDeprecated( __METHOD__, '1.31' );
 	}
 
 	/**
