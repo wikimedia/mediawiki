@@ -3485,6 +3485,8 @@
 	"word-separator": "",
 	"ellipsis": "…",
 	"parentheses": "（$1）",
+	"parentheses-start": "（",
+	"parentheses-end": "）",
 	"quotation-marks": "“$1”",
 	"imgmultipageprev": "← 上一页",
 	"imgmultipagenext": "下一页 →",

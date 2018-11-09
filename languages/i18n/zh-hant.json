@@ -3461,6 +3461,8 @@
 	"word-separator": "",
 	"ellipsis": "…",
 	"parentheses": "（$1）",
+	"parentheses-start": "（",
+	"parentheses-end": "）",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "← 上一頁",
 	"imgmultipagenext": "下一頁 →",

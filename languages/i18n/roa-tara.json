@@ -541,6 +541,8 @@
 	"botpasswords-no-provider": "BotPasswordsSessionProvider non g'è disponibbile.",
 	"botpasswords-restriction-failed": "Le restrizziuyne de passuord bot non ge fanne trasè.",
 	"botpasswords-invalid-name": "'U nome de l'utende mise non ge tène 'u separatore pe passuord bot (\"$1\").",
+	"botpasswords-not-exist": "Utende \"$1\" non ge tène 'na password bot chiamate \"$2\".",
+	"botpasswords-needs-reset": "'A passuord pu bot de nome \"$2\" de l'{{GENDER:$2|utende}} \"$1\" ha state azzerate.",
 	"resetpass_forbidden": "Le Password non ge ponne cangià",
 	"resetpass_forbidden-reason": "Le passuord non ge ponne essere cangiate: $1",
 	"resetpass-no-info": "Tu a essere colleghete pe accedere a sta pàgene direttamende.",
