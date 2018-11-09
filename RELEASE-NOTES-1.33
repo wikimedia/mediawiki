@@ -151,6 +151,8 @@ because of Phabricator reports.
 * …
 
 === Other changes in 1.33 ===
+* (T208871) The hard-coded Google search form on the database error page was
+  removed.
 * …
 
 == Compatibility ==
