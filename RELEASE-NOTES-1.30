@@ -17,6 +17,8 @@ THIS IS NOT A RELEASE YET
 * (T204531) rdbms: reduce LoadBalancer replication log spam.
 * (T213489) Avoid session double-start in Setup.php.
 * (T195525) Fix db error outage page.
+* (T208871) The hard-coded Google search form on the database error page was
+  removed.
 
 == MediaWiki 1.30.1 ==
 
