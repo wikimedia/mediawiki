@@ -850,31 +850,40 @@ class AuthManager implements LoggerAwareInterface {
 			}
 			$this->logger->info( 'Login for {user} succeeded from {clientIp}',
 				$this->request->getSecurityLogContext( $user ) );
-			$rememberMeConfig = $this->config->get( MainConfigNames::RememberMe );
-			if ( $rememberMeConfig === RememberMeAuthenticationRequest::ALWAYS_REMEMBER ) {
-				$rememberMe = true;
-			} elseif ( $rememberMeConfig === RememberMeAuthenticationRequest::NEVER_REMEMBER ) {
-				$rememberMe = false;
-			} else {
-				/** @var RememberMeAuthenticationRequest $req */
-				$req = AuthenticationRequest::getRequestByClass(
-					$beginReqs, RememberMeAuthenticationRequest::class
-				);
 
-				// T369668: Before we conclude, let's make sure the user hasn't specified
-				// that they want their login remembered elsewhere like in the central domain.
-				// If the user clicked "remember me" in the central domain, then we should
-				// prioritise that when we call continuePrimaryAuthentication() in the provider
-				// that makes calls continuePrimaryAuthentication(). NOTE: It is the responsibility
-				// of the provider to refresh the "remember me" state that will be applied to
-				// the local wiki.
-				$rememberMe = ( $req && $req->rememberMe ) ||
-					$this->getAuthenticationSessionData( self::REMEMBER_ME );
+			// Determine whether to remember the user's login
+			// For reauths, the "remember me" checkbox isn't shown, so don't modify the rememberMe state
+			if ( $elevatedSecurityReq ) {
+				$rememberMe = null;
+			} else {
+				$rememberMeConfig = $this->config->get( MainConfigNames::RememberMe );
+				if ( $rememberMeConfig === RememberMeAuthenticationRequest::ALWAYS_REMEMBER ) {
+					$rememberMe = true;
+				} elseif ( $rememberMeConfig === RememberMeAuthenticationRequest::NEVER_REMEMBER ) {
+					$rememberMe = false;
+				} else {
+					/** @var RememberMeAuthenticationRequest $req */
+					$req = AuthenticationRequest::getRequestByClass(
+						$beginReqs, RememberMeAuthenticationRequest::class
+					);
+
+					// T369668: Before we conclude, let's make sure the user hasn't specified
+					// that they want their login remembered elsewhere like in the central domain.
+					// If the user clicked "remember me" in the central domain, then we should
+					// prioritise that when we call continuePrimaryAuthentication() in the provider
+					// that makes calls continuePrimaryAuthentication(). NOTE: It is the responsibility
+					// of the provider to refresh the "remember me" state that will be applied to
+					// the local wiki.
+					$rememberMe = ( $req && $req->rememberMe ) ||
+						$this->getAuthenticationSessionData( self::REMEMBER_ME );
+				}
 			}
+
 			$loginWasInteractive = $this->getAuthenticationSessionData( self::LOGIN_WAS_INTERACTIVE, true );
 			// If the login was not interactive, don't set the securityLevel in the session
 			// This ensures that only interactive reauthentications count
 			$securityLevel = $loginWasInteractive ? $elevatedSecurityReq?->securityLevel : null;
+
 			$performer = $session->getUser();
 			// If the session is associated with a temporary account user, invalidate its
 			// session and remove the TempUser:name property from the session
@@ -885,6 +894,7 @@ class AuthManager implements LoggerAwareInterface {
 				$session->remove( 'TempUser:name' );
 				$performer = new User();
 			}
+
 			$this->setSessionDataForUser( $user, $rememberMe, $securityLevel );
 			$this->callMethodOnProviders( self::CALL_ALL, 'postAuthentication', [ $user, $response ] );
 			$session->remove( self::AUTHN_STATE );
@@ -2743,12 +2753,14 @@ class AuthManager implements LoggerAwareInterface {
 		// AuthManager has its own req for some actions
 		switch ( $providerAction ) {
 			case self::ACTION_LOGIN:
-				$reqs[] = new RememberMeAuthenticationRequest(
-					$this->config->get( MainConfigNames::RememberMe ) );
 				$options['username'] = null; // Don't fill in the username below
 				if ( $options['securityLevel'] !== null ) {
 					$reqs[] = ElevatedSecurityAuthenticationRequest::create(
 						$this->getRequest()->getSession(), $options['securityLevel'] );
+				} else {
+					$reqs[] = new RememberMeAuthenticationRequest(
+						$this->config->get( MainConfigNames::RememberMe )
+					);
 				}
 				break;
 

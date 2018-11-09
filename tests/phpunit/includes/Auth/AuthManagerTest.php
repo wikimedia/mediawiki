@@ -1634,6 +1634,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$secReq = AuthenticationRequest::getRequestByClass( $reqs,
 			ElevatedSecurityAuthenticationRequest::class );
 		$this->assertNull( $secReq );
+		$this->assertNotNull( AuthenticationRequest::getRequestByClass( $reqs,
+			RememberMeAuthenticationRequest::class ) );
 		$res = $this->manager->beginAuthentication( $reqs, 'null:' );
 		$this->assertEquals( AuthenticationResponse::PASS, $res->status );
 		$this->assertTrue( $user1->equals( $session->getUser() ) );
@@ -1659,6 +1661,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$secReq = AuthenticationRequest::getRequestByClass( $reqs,
 			ElevatedSecurityAuthenticationRequest::class );
 		$this->assertNull( $secReq );
+		$this->assertNotNull( AuthenticationRequest::getRequestByClass( $reqs,
+			RememberMeAuthenticationRequest::class ) );
 		$res = $this->manager->beginAuthentication( $reqs, 'null:' );
 		$this->assertEquals( AuthenticationResponse::PASS, $res->status );
 		$this->assertTrue( $user1->equals( $session->getUser() ) );
@@ -1687,6 +1691,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$secReq = AuthenticationRequest::getRequestByClass( $reqs,
 			ElevatedSecurityAuthenticationRequest::class );
 		$this->assertNull( $secReq );
+		$this->assertNotNull( AuthenticationRequest::getRequestByClass( $reqs,
+			RememberMeAuthenticationRequest::class ) );
 		$res = $this->manager->beginAuthentication( $reqs, 'null:' );
 		$this->assertEquals( AuthenticationResponse::PASS, $res->status );
 		$this->assertTrue( $user1->equals( $session->getUser() ) );
@@ -1695,6 +1701,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 		// elevated security, success
 		$session->setUser( $user1 );
+		$session->setRememberUser( false );
 		$authResult = AuthenticationResponse::newPass( $user1->getName() );
 		$this->unhook( 'UserLoggedIn' );
 		$this->hook( 'UserLoggedIn', UserLoggedInHook::class, $this->once() )
@@ -1713,16 +1720,21 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$secReq = AuthenticationRequest::getRequestByClass( $reqs,
 			ElevatedSecurityAuthenticationRequest::class );
 		$this->assertNotNull( $secReq );
+		$this->assertNull( AuthenticationRequest::getRequestByClass( $reqs,
+			RememberMeAuthenticationRequest::class ) );
 		TestingAccessWrapper::newFromObject( $secReq )->validationStatus = StatusValue::newGood();
 		$this->assertEquals( $user1->getId(), $secReq->userId );
 		$this->assertEquals( 'op1', $secReq->securityLevel );
 		$res = $this->manager->beginAuthentication( $reqs, 'null:' );
 		$this->assertEquals( AuthenticationResponse::PASS, $res->status );
 		$this->assertTrue( $user1->equals( $session->getUser() ) );
+		$this->assertFalse( $session->shouldRememberUser() );
 		$this->assertEquals( AuthManager::SEC_OK,
 			$this->manager->securitySensitiveOperationStatus( 'op1' ) );
 
 		// multiple security levels can coexist
+		// also make sure reauth does not trample on the remember flag
+		$session->setRememberUser( true );
 		$reqs = $this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN, null,
 			[ 'securityLevel' => 'op2' ] );
 		$secReq = AuthenticationRequest::getRequestByClass( $reqs,
@@ -1742,6 +1754,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				$this->callback( static fn ( $options ) => ( $options['securityLevel'] ?? null ) === 'op2' )
 			);
 		$res = $this->manager->beginAuthentication( $reqs, 'null:' );
+		$this->assertTrue( $session->shouldRememberUser() );
 		$this->assertEquals( AuthenticationResponse::PASS, $res->status );
 		$this->assertEquals( AuthManager::SEC_OK,
 			$this->manager->securitySensitiveOperationStatus( 'op1' ) );
