@@ -14,6 +14,8 @@ THIS IS NOT A RELEASE YET
   non-admins can edit the page.
 * (T207541) Pass email address to mail().
 * (T213359) Update mediawiki/mediawiki-codesniffer to 0.8.1.
+* (T208871) The hard-coded Google search form on the database error page was
+  removed.
 
 == MediaWiki 1.27.5 ==
 

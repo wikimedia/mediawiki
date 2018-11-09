@@ -191,7 +191,6 @@ class DBConnectionError extends DBExpectedError {
 		}
 
 		$html .= '<hr />';
-		$html .= $this->searchForm();
 
 		return $html;
 	}
@@ -240,49 +239,6 @@ class DBConnectionError extends DBExpectedError {
 
 		// We can't, cough and die in the usual fashion
 		parent::reportHTML();
-	}
-
-	/**
-	 * @return string
-	 */
-	function searchForm() {
-		global $wgSitename, $wgCanonicalServer, $wgRequest;
-
-		$usegoogle = htmlspecialchars( $this->msg(
-			'dberr-usegoogle',
-			'You can try searching via Google in the meantime.'
-		) );
-		$outofdate = htmlspecialchars( $this->msg(
-			'dberr-outofdate',
-			'Note that their indexes of our content may be out of date.'
-		) );
-		$googlesearch = htmlspecialchars( $this->msg( 'searchbutton', 'Search' ) );
-
-		$search = htmlspecialchars( $wgRequest->getVal( 'search' ) );
-
-		$server = htmlspecialchars( $wgCanonicalServer );
-		$sitename = htmlspecialchars( $wgSitename );
-
-		$trygoogle = <<<EOT
-<div style="margin: 1.5em">$usegoogle<br />
-<small>$outofdate</small>
-</div>
-<form method="get" action="//www.google.com/search" id="googlesearch">
-	<input type="hidden" name="domains" value="$server" />
-	<input type="hidden" name="num" value="50" />
-	<input type="hidden" name="ie" value="UTF-8" />
-	<input type="hidden" name="oe" value="UTF-8" />
-
-	<input type="text" name="q" size="31" maxlength="255" value="$search" />
-	<input type="submit" name="btnG" value="$googlesearch" />
-	<p>
-		<label><input type="radio" name="sitesearch" value="$server" checked="checked" />$sitename</label>
-		<label><input type="radio" name="sitesearch" value="" />WWW</label>
-	</p>
-</form>
-EOT;
-
-		return $trygoogle;
 	}
 
 	/**
