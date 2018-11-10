@@ -369,7 +369,7 @@
 	"showpreview": "Zholok dakhoi",
 	"showdiff": "Bodol dakhoi",
 	"anoneditwarning": "<strong>Chotrai:</strong> Tuven sotrorombh korunk nai. Tu bodol korit zalear tuzo IP pot'to soglleank polleunk zatelem. Tu <strong>[$1 sotrorombh korit]</strong> vo <strong>[$2 kont rochit]</strong> zalear, tuje bodol tuzo vagddiachem nanvak zoddteleo ani anik-ui faide asat.",
-	"missingcommenttext": "Upkar korun tumcheo xiro boroi.",
+	"missingcommenttext": "Upkar korun tuzo xero boroi.",
 	"blockedtitle": "Vapurpeak addaila",
 	"blockedtext": "<strong>Tujem vaporpeachem nanv vo IP pot'to addavpant aila.</strong>\n\nAddavop $1 hannem kelam.\nKaronn dilam tem <em>$2</em>.\n\n* Addavpachi survat: $8\n* Addavpachea somp’pacho vell: $6\n* Addavpak ievjila: $7\n\nTujean $1-ak vo dusrea [[{{MediaWiki:Grouppage-sysop}}|karbhariak]] addavnne bodol bhasabhas korunk sompork korunk zata. Tujean \"{{int:emailuser}}\" sobhavgunn vaprunk zaina kheriz ek void email pot'to tujea [[Special:Preferences|khatem posontint]] nischit kelea xivai ani tuka tem vaporpak addavnk na zalear. Tuzo chalont IP pot'to asa $3, ani addavnnecheo ank #$5 asa. Soglleo voileo bariksanno tum kortai tea vicharant somavex kor.",
 	"blockednoreason": "Kainch karonn diunk na",

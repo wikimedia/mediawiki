@@ -2586,6 +2586,8 @@
 	"createaccountblock": "blokada tworzenia kont",
 	"emailblock": "zablokowany e‐mail",
 	"blocklist-nousertalk": "nie mogą edytować własnych stron dyskusji",
+	"blocklist-editing": "edytowanie",
+	"blocklist-editing-sitewide": "edytowanie całej strony",
 	"ipblocklist-empty": "Lista blokad jest pusta.",
 	"ipblocklist-no-results": "Podany adres IP lub użytkownik nie jest zablokowany.",
 	"blocklink": "zablokuj",

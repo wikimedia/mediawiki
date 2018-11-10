@@ -1145,6 +1145,7 @@
 	"rcfilters-other-review-tools": "Ander hulpmiddels",
 	"rcfilters-group-results-by-page": "Groepeer resultate per bladsy",
 	"rcfilters-activefilters": "Aktiewe filters",
+	"rcfilters-activefilters-hide": "Versteek",
 	"rcfilters-advancedfilters": "Gevorderde filters",
 	"rcfilters-limit-title": "Wysigings om te wys",
 	"rcfilters-limit-and-date-label": "{{PLURAL:$1|wysiging|$1 wysigings}}, $2",
