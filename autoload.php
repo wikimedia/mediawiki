@@ -1207,6 +1207,7 @@ $wgAutoloadLocalClasses = [
 	'RepoGroup' => __DIR__ . '/includes/filerepo/RepoGroup.php',
 	'RequestContext' => __DIR__ . '/includes/context/RequestContext.php',
 	'ResetAuthenticationThrottle' => __DIR__ . '/maintenance/resetAuthenticationThrottle.php',
+	'ResetPageRandom' => __DIR__ . '/maintenance/resetPageRandom.php',
 	'ResetUserEmail' => __DIR__ . '/maintenance/resetUserEmail.php',
 	'ResetUserTokens' => __DIR__ . '/maintenance/resetUserTokens.php',
 	'ResourceFileCache' => __DIR__ . '/includes/cache/ResourceFileCache.php',
