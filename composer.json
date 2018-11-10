@@ -115,7 +115,8 @@
 	"extra": {
 		"merge-plugin": {
 			"include": [
-				"composer.local.json"
+				"composer.local.json",
+				"extensions/Wikibase/composer.json"
 			],
 			"merge-dev": false
 		}
