@@ -579,6 +579,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['target'],
 			'text',
 			[
+				'id' => 'mw-target-user-or-ip',
 				'size' => '40',
 				'class' => [
 					'mw-input',
