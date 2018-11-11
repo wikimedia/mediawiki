@@ -1578,7 +1578,7 @@
 	"recentchanges-page-removed-from-category": "أزيلت [[:$1]] من التصنيف",
 	"recentchanges-page-removed-from-category-bundled": "أزيلت [[:$1]] من التصنيف، [[Special:WhatLinksHere/$1|هذه الصفحة مضمنة في صفحات أخرى]]",
 	"autochange-username": "تغيير آلي لميدياويكي",
-	"upload": "ارفع ملفا",
+	"upload": "رفع ملف",
 	"uploadbtn": "ارفع الملف",
 	"reuploaddesc": "إلغاء الرفع والرجوع إلى استمارة الرفع",
 	"upload-tryagain": "أرسل وصف ملف معدل",

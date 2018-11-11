@@ -165,7 +165,8 @@
 			"KATRINE1992",
 			"Friday83260",
 			"Niridya",
-			"Pamputt"
+			"Pamputt",
+			"Ash Crow"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -3014,7 +3015,7 @@
 	"pageinfo-display-title": "Titre affiché",
 	"pageinfo-default-sort": "Clé de tri par défaut",
 	"pageinfo-length": "Taille de la page (en octets)",
-	"pageinfo-article-id": "Numéro de la page",
+	"pageinfo-article-id": "ID de la page",
 	"pageinfo-language": "Langue du contenu de la page",
 	"pageinfo-language-change": "modifier",
 	"pageinfo-content-model": "Modèle de contenu de la page",
