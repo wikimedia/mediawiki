@@ -174,7 +174,7 @@ class LogEventsList extends ContextSource {
 
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( SpecialPage::getTitleFor( 'Log' ) ); // Remove subpage
-		$htmlForm = new HTMLForm( $formDescriptor, $context );
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $context );
 		$htmlForm
 			->setSubmitText( $this->msg( 'logeventslist-submit' )->text() )
 			->setMethod( 'get' )
