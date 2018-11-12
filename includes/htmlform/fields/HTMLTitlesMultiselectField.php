@@ -103,6 +103,10 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 			$params['showMissing'] = $this->mParams['showMissing'];
 		}
 
+		if ( isset( $this->mParams['input'] ) ) {
+			$params['input'] = $this->mParams['input'];
+		}
+
 		if ( !is_null( $value ) ) {
 			// $value is a string, but the widget expects an array
 			$params['default'] = $value === '' ? [] : explode( "\n", $value );
