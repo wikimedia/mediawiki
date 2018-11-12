@@ -201,7 +201,8 @@
 			"ديفيد",
 			"Daimona Eaytoy",
 			"A2093064",
-			"BadDog"
+			"BadDog",
+			"The Discoverer"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -4315,7 +4316,7 @@
 	"htmlform-user-not-exists": "Error message shown if a user with the name provided by the user does not exist. $1 is the username.",
 	"htmlform-user-not-valid": "Error message shown if the name provided by the user isn't a valid username. $1 is the username.",
 	"rawmessage": "{{notranslate}} Used to pass arbitrary text as a message specifier array",
-	"logentry-delete-delete": "{{Logentry|[[Special:Log/delete]]}}",
+	"logentry-delete-delete": "$1, hannem {{GENDER:$2|kadun udoile}} pan $3",
 	"logentry-delete-delete_redir": "{{Logentry|[[Special:Log/delete]]}}",
 	"logentry-delete-restore": "{{Logentry|[[Special:Log/delete]]}}\n* $4 - {{msg-mw|restore-count-revisions}} or {{msg-mw|restore-count-files}}, or a combination with both (e.g. \"3 revision and 1 file\")\n\n'''A note for RTL languages''': if $3 is a name of a page or a file written in a different language, the number in the beginning of $4 may be displayed incorrectly. Consider inserting a word or an RLM between $3 and $4.",
 	"logentry-delete-restore-nocount": "{{Logentry|[[Special:Log/delete]]}}",

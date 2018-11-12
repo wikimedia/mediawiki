@@ -1145,6 +1145,7 @@
 	"tag-mw-new-redirect": "Sin choán-ia̍h",
 	"tag-mw-removed-redirect": "Choán-ia̍h the̍h-tiāu",
 	"tag-mw-changed-redirect-target": "Choán-ia̍h bo̍k-phiau kái-piàn",
+	"logentry-delete-delete": "$1 kā ia̍h-bīn $3 {{GENDER:$2|thâi tiāu}}",
 	"logentry-delete-delete_redir": "$1 ēng têng-siá lâi kā choán-ia̍h $3 {{GENDER:$2|thâi-tiāu}}",
 	"logentry-move-move": "$1 {{GENDER:$2|sóa}} $3 chit ia̍h khì $4",
 	"logentry-move-move_redir": "$1 iōng choán-ia̍h {{GENDER:$2|sóa}} ia̍h-bīn $3 kòe $4",

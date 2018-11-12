@@ -178,7 +178,8 @@
 			"AHmed Khaled",
 			"Caleidoscopic",
 			"ديفيد",
-			"LittlePuppers"
+			"LittlePuppers",
+			"Theklan"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -2606,6 +2607,7 @@
 	"ipb-disableusertalk": "Impedir que este usuario edite su propia página de discusión mientras esté bloqueado",
 	"ipb-change-block": "Rebloquear al usuario con estos datos",
 	"ipb-confirm": "Confirmar bloqueo",
+	"ipb-pages-label": "Páginas",
 	"badipaddress": "La dirección IP no tiene el formato correcto.",
 	"blockipsuccesssub": "Bloqueo realizado con éxito",
 	"blockipsuccesstext": "\"[[Special:Contributions/$1|$1]]\" ha sido bloqueado.<br />\nVéase la [[Special:BlockList|lista de bloqueos]] para revisarlo.",
@@ -2655,6 +2657,7 @@
 	"createaccountblock": "creación de cuenta bloqueada",
 	"emailblock": "correo electrónico bloqueado",
 	"blocklist-nousertalk": "no puede editar su propia página de discusión",
+	"blocklist-editing": "editando",
 	"ipblocklist-empty": "La lista de bloqueos está vacía.",
 	"ipblocklist-no-results": "El nombre de usuario o IP indicado no está bloqueado.",
 	"blocklink": "bloquear",

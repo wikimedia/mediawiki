@@ -881,7 +881,7 @@
 	"logentry-delete-restore": "$1 hannem {{GENDER:$2|porot haddlam}} pan $3 ($4)‎",
 	"logentry-delete-revision": "$1 hannem {{PLURAL:$5|uzolliechem}} disnem  $3, hea panar {{GENDER:$2|bodol’la}}: $4‎",
 	"revdelete-content-hid": "mozkur lipoila",
-	"logentry-move-move": "$1-an $3 panak $4 {{GENDER:$2|haloilea}}",
+	"logentry-move-move": "$1, hannem $3 panak $4 {{GENDER:$2|haloilea}}",
 	"logentry-move-move-noredirect": "$1, hannem pan $3 savn $4 {{GENDER:$2|haloilam}} punornirdexon dorinastanam‎",
 	"logentry-move-move_redir": "$1 hannem pan $3 savn $4 {{GENDER:$2|haloilolo}} punornirdexonavoir",
 	"logentry-patrol-patrol-auto": "$1-an $3, hea panachem $4, hea uzollniecho paro kelam mhonn apoap {{GENDER:$2|khunnailam}}.",
