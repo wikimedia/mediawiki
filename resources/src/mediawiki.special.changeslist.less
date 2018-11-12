@@ -67,12 +67,8 @@
 	content: '. .';
 }
 
-.mw-changeslist-link-list {
+.mw-changeslist-links {
 	display: inline-block;
-	/* In @media print, list elements have margins and/or paddings defined.
-	We don't want to see margins/paddings on these elements under any circumstances. */
-	margin: 0;
-	padding: 0;
 
 	&:before {
 		content: '@{msg-parentheses-start}';
@@ -81,11 +77,7 @@
 		content: '@{msg-parentheses-end}';
 	}
 
-	> li {
-		display: inline;
-
-		&:not( :first-child ):before {
-			content: '@{msg-pipe-separator}';
-		}
+	> span:not( :first-child ):before {
+		content: '@{msg-pipe-separator}';
 	}
 }
