@@ -3008,7 +3008,7 @@
 	"allmessages-filter-modified": "Used in [[Special:AllMessages]].\n{{Identical|Modified}}",
 	"allmessages-prefix": "Used in [[Special:AllMessages]].",
 	"allmessages-language": "Used on [[Special:Allmessages]].\n\n{{Identical|Language}}",
-	"allmessages-filter-submit": "Used on [[Special:Allmessages]].\n\n{{Identical|Go}}",
+	"allmessages-filter-submit": "Used as label for the filter form submit button on [[Special:Allmessages]].\n\n",
 	"allmessages-filter-translate": "Used on [[Special:Allmessages]]. Label for a link to translatewiki.net for a message to translate.\n{{Identical|Translate}}",
 	"thumbnail-more": "[[Image:Yes.png|thumb|This:]]\nTooltip shown when hovering over a little sign of a thumb image, to go to the image page (where it is bigger). For example, see the image at the right:",
 	"filemissing": "Used in the ImageGallery feature.",
