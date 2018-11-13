@@ -45,6 +45,7 @@ production.
 
 === Action API changes in 1.33 ===
 * (T198913) Added 'ApiOptions' hook.
+* The JSON formatversion=2 is no longer experimental.
 * …
 
 === Action API internal changes in 1.33 ===
