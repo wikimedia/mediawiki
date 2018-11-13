@@ -15,7 +15,7 @@ class TitlesMultiselectWidget extends \OOUI\Widget {
 	protected $titlesArray = [];
 	protected $inputName = null;
 	protected $inputPlaceholder = null;
-	protected $limit = null;
+	protected $tagLimit = null;
 	protected $showMissing = null;
 
 	/**
@@ -23,7 +23,7 @@ class TitlesMultiselectWidget extends \OOUI\Widget {
 	 *   - array $config['titles'] Array of titles to use as preset data
 	 *   - array $config['placeholder'] Placeholder message for input
 	 *   - array $config['name'] Name attribute (used in forms)
-	 *   - number $config['limit'] Maximum number of selected titles
+	 *   - number $config['tagLimit'] Maximum number of selected titles
 	 *   - bool $config['showMissing'] Show missing pages
 	 */
 	public function __construct( array $config = [] ) {
@@ -39,8 +39,8 @@ class TitlesMultiselectWidget extends \OOUI\Widget {
 		if ( isset( $config['placeholder'] ) ) {
 			$this->inputPlaceholder = $config['placeholder'];
 		}
-		if ( isset( $config['limit'] ) ) {
-			$this->limit = $config['limit'];
+		if ( isset( $config['tagLimit'] ) ) {
+			$this->tagLimit = $config['tagLimit'];
 		}
 		if ( isset( $config['showMissing'] ) ) {
 			$this->showMissing = $config['showMissing'];
@@ -69,8 +69,8 @@ class TitlesMultiselectWidget extends \OOUI\Widget {
 		if ( $this->inputPlaceholder !== null ) {
 			$config['placeholder'] = $this->inputPlaceholder;
 		}
-		if ( $this->limit !== null ) {
-			$config['limit'] = $this->limit;
+		if ( $this->tagLimit !== null ) {
+			$config['tagLimit'] = $this->tagLimit;
 		}
 		if ( $this->showMissing !== null ) {
 			$config['showMissing'] = $this->showMissing;
