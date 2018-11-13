@@ -2734,6 +2734,7 @@
 	"move-watch": "Watch source page and target page",
 	"movepagebtn": "Move page",
 	"pagemovedsub": "Move succeeded",
+	"cannotmove": "The page could not be moved, for the following {{PLURAL:$1|reason|reasons}}:",
 	"movepage-moved": "<strong>\"$1\" has been moved to \"$2\"</strong>",
 	"movepage-moved-redirect": "A redirect has been created.",
 	"movepage-moved-noredirect": "The creation of a redirect has been suppressed.",

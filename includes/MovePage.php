@@ -240,7 +240,12 @@ class MovePage {
 	public function move( User $user, $reason, $createRedirect, array $changeTags = [] ) {
 		global $wgCategoryCollation;
 
-		Hooks::run( 'TitleMove', [ $this->oldTitle, $this->newTitle, $user ] );
+		$status = Status::newGood();
+		Hooks::run( 'TitleMove', [ $this->oldTitle, $this->newTitle, $user, $reason, &$status ] );
+		if ( !$status->isOK() ) {
+			// Move was aborted by the hook
+			return $status;
+		}
 
 		// If it is a file, move it first.
 		// It is done before all other moving stuff is done because it's hard to revert.
