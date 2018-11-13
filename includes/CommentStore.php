@@ -349,14 +349,13 @@ class CommentStore {
 
 		$msg = null;
 		if ( $data !== null ) {
-			$data = FormatJson::decode( $data );
-			if ( !is_object( $data ) ) {
+			$data = FormatJson::decode( $data, true );
+			if ( !is_array( $data ) ) {
 				// @codeCoverageIgnoreStart
 				wfLogWarning( "Invalid JSON object in comment: $data" );
 				$data = null;
 				// @codeCoverageIgnoreEnd
 			} else {
-				$data = (array)$data;
 				if ( isset( $data['_message'] ) ) {
 					$msg = self::decodeMessage( $data['_message'] )
 						->setInterfaceMessageFlag( true );
