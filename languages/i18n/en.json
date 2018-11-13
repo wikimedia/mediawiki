@@ -2807,7 +2807,7 @@
 	"allmessages-filter-modified": "Modified",
 	"allmessages-prefix": "Filter by prefix:",
 	"allmessages-language": "Language:",
-	"allmessages-filter-submit": "Go",
+	"allmessages-filter-submit": "Filter",
 	"allmessages-filter-translate": "Translate",
 	"thumbnail-more": "Enlarge",
 	"filemissing": "File missing",
