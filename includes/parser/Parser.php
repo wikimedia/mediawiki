@@ -1452,6 +1452,8 @@ class Parser {
 		} else {
 			# attempt to sanitize at least some nesting problems
 			# (T4702 and quite a few others)
+			# This code path is buggy and deprecated!
+			wfDeprecated( 'disabling tidy', '1.33' );
 			$tidyregs = [
 				# ''Something [http://www.cool.com cool''] -->
 				# <i>Something</i><a href="http://www.cool.com"..><i>cool></i></a>

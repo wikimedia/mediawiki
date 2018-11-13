@@ -495,6 +495,7 @@ class Sanitizer {
 		$bits = explode( '<', $text );
 		$text = str_replace( '>', '&gt;', array_shift( $bits ) );
 		if ( !MWTidy::isEnabled() ) {
+			wfDeprecated( 'disabling tidy', '1.33' );
 			$tagstack = $tablestack = [];
 			foreach ( $bits as $x ) {
 				$regs = [];
