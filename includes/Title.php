@@ -2687,9 +2687,9 @@ class Title implements LinkTarget {
 			$errors[] = [ 'confirmedittext' ];
 		}
 
-		$useSlave = ( $rigor !== 'secure' );
+		$useReplica = ( $rigor !== 'secure' );
 		if ( ( $action == 'edit' || $action == 'create' )
-			&& !$user->isBlockedFrom( $this, $useSlave )
+			&& !$user->isBlockedFrom( $this, $useReplica )
 		) {
 			// Don't block the user from editing their own talk page unless they've been
 			// explicitly blocked from that too.

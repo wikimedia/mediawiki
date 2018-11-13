@@ -29,7 +29,7 @@ class ReplicatedBagOStuffTest extends MediaWikiTestCase {
 
 		// Write to master.
 		$this->assertEquals( $this->writeCache->get( $key ), $value );
-		// Don't write to slave. Replication is deferred to backend.
+		// Don't write to replica. Replication is deferred to backend.
 		$this->assertEquals( $this->readCache->get( $key ), false );
 	}
 
@@ -44,7 +44,7 @@ class ReplicatedBagOStuffTest extends MediaWikiTestCase {
 		$read = wfRandomString();
 		$this->readCache->set( $key, $read );
 
-		// Read from slave.
+		// Read from replica.
 		$this->assertEquals( $this->cache->get( $key ), $read );
 	}
 

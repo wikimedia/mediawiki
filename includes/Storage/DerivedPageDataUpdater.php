@@ -279,7 +279,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->messageCache = $messageCache;
 		$this->contLang = $contLang;
-		// XXX only needed for waiting for slaves to catch up; there should be a narrower
+		// XXX only needed for waiting for replicas to catch up; there should be a narrower
 		// interface for that.
 		$this->loadbalancerFactory = $loadbalancerFactory;
 	}
