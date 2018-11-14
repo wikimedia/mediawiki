@@ -3123,7 +3123,10 @@ ERROR;
 
 					if ( !$revision->isCurrent() ) {
 						$this->mArticle->setOldSubtitle( $revision->getId() );
-						$out->addWikiMsg( 'editingold' );
+						$out->wrapWikiMsg(
+							Html::warningBox( "\n$1\n" ),
+							'editingold'
+						);
 						$this->isOldRev = true;
 					}
 				} elseif ( $this->mTitle->exists() ) {
