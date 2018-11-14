@@ -9031,20 +9031,6 @@ $wgMultiContentRevisionSchemaMigrationStage = SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_
 $wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_OLD;
 
 /**
- * change_tag table schema migration stage.
- *
- * - MIGRATION_OLD: Do not use change_tag_def table or ct_tag_id.
- * - MIGRATION_WRITE_BOTH: Write to the change_tag_def table and ct_tag_id, but read from
- *   the old schema. This is different from the formal definition of the constants
- * - MIGRATION_WRITE_NEW: Behaves the same as MIGRATION_WRITE_BOTH
- * - MIGRATION_NEW: Use the change_tag_def table and ct_tag_id, do not read/write ct_tag
- *
- * @since 1.32
- * @var int One of the MIGRATION_* constants
- */
-$wgChangeTagsSchemaMigrationStage = MIGRATION_NEW;
-
-/**
  * Flag to enable Partial Blocks. This allows an admin to prevent a user from editing specific pages
  * or namespaces.
  *

@@ -84,7 +84,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	}
 
 	protected function run( ApiPageSet $resultPageSet = null ) {
-		global $wgActorTableSchemaMigrationStage, $wgChangeTagsSchemaMigrationStage;
+		global $wgActorTableSchemaMigrationStage;
 
 		$params = $this->extractRequestParams( false );
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
@@ -197,16 +197,12 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$this->addJoinConds(
 				[ 'change_tag' => [ 'INNER JOIN', [ 'rev_id=ct_rev_id' ] ] ]
 			);
-			if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
-				$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
-				try {
-					$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $params['tag'] ) );
-				} catch ( NameTableAccessException $exception ) {
-					// Return nothing.
-					$this->addWhere( '1=0' );
-				}
-			} else {
-				$this->addWhereFld( 'ct_tag', $params['tag'] );
+			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
+			try {
+				$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $params['tag'] ) );
+			} catch ( NameTableAccessException $exception ) {
+				// Return nothing.
+				$this->addWhere( '1=0' );
 			}
 		}
 
