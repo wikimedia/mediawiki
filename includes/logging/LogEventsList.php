@@ -148,7 +148,7 @@ class LogEventsList extends ContextSource {
 		$formDescriptor['date'] = [
 			'type' => 'date',
 			'label-message' => 'date',
-			'default' => sprintf( "%04d-%02d-%02d", $year, $month, $day ),
+			'default' => $year && $month && $day ? sprintf( "%04d-%02d-%02d", $year, $month, $day ) : '',
 		];
 
 		// Tag filter
