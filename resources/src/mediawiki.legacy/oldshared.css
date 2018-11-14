@@ -337,23 +337,6 @@ table.mw_metadata td.spacer {
 	clear: both;
 }
 
-/* Allmessages table */
-#allmessagestable th {
-	background-color: #b2b2ff;
-}
-
-#allmessagestable tr.orig {
-	background-color: #ffe2e2;
-}
-
-#allmessagestable tr.new {
-	background-color: #e2ffe2;
-}
-
-#allmessagestable tr.def {
-	background-color: #f0f0ff;
-}
-
 #jump-to-nav {
 	display: none;
 }
