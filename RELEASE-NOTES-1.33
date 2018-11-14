@@ -18,9 +18,14 @@ production.
 * Some external link searches will not work correctly until update.php (or
   refreshExternallinksIndex.php) is run. These include searches for links using
   IP addresses, internationalized domain names, and possibly mailto links.
+* (T193868) $wgChangeTagsSchemaMigrationStage — This temporary setting, added in
+  MediaWiki 1.32, now defaults to MIGRATION_NEW instead of MIGRATION_WRITE_BOTH.
 * …
 
 ==== Removed configuration ====
+* (T199334) $wgTagStatisticsNewTable — This temporary setting, added in
+  MediaWiki 1.32, has now been removed. When loading Special:Tags, MediaWiki
+  will now always use the `change_tag_def` instead of the `change_tag` table.
 * …
 
 === New features in 1.33 ===
