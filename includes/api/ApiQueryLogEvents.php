@@ -109,9 +109,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 
 		if ( $this->fld_tags ) {
-			$this->addTables( 'tag_summary' );
-			$this->addJoinConds( [ 'tag_summary' => [ 'LEFT JOIN', 'log_id=ts_log_id' ] ] );
-			$this->addFields( 'ts_tags' );
+			$this->addFields( [ 'ts_tags' => ChangeTags::makeTagSummarySubquery( 'logging' ) ] );
 		}
 
 		if ( !is_null( $params['tag'] ) ) {
