@@ -961,7 +961,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$defaultPreferences['hideminor'] = [
 			'type' => 'toggle',
 			'label-message' => 'tog-hideminor',
-			'section' => 'rc/advancedrc',
+			'section' => 'rc/changesrc',
 		];
 		$defaultPreferences['rcfilters-rc-collapsed'] = [
 			'type' => 'api',
@@ -990,14 +990,14 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$defaultPreferences['hidecategorization'] = [
 				'type' => 'toggle',
 				'label-message' => 'tog-hidecategorization',
-				'section' => 'rc/advancedrc',
+				'section' => 'rc/changesrc',
 			];
 		}
 
 		if ( $user->useRCPatrol() ) {
 			$defaultPreferences['hidepatrolled'] = [
 				'type' => 'toggle',
-				'section' => 'rc/advancedrc',
+				'section' => 'rc/changesrc',
 				'label-message' => 'tog-hidepatrolled',
 			];
 		}
@@ -1005,7 +1005,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		if ( $user->useNPPatrol() ) {
 			$defaultPreferences['newpageshidepatrolled'] = [
 				'type' => 'toggle',
-				'section' => 'rc/advancedrc',
+				'section' => 'rc/changesrc',
 				'label-message' => 'tog-newpageshidepatrolled',
 			];
 		}
@@ -1091,27 +1091,27 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		];
 		$defaultPreferences['watchlisthideminor'] = [
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'watchlist/changeswatchlist',
 			'label-message' => 'tog-watchlisthideminor',
 		];
 		$defaultPreferences['watchlisthidebots'] = [
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'watchlist/changeswatchlist',
 			'label-message' => 'tog-watchlisthidebots',
 		];
 		$defaultPreferences['watchlisthideown'] = [
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'watchlist/changeswatchlist',
 			'label-message' => 'tog-watchlisthideown',
 		];
 		$defaultPreferences['watchlisthideanons'] = [
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'watchlist/changeswatchlist',
 			'label-message' => 'tog-watchlisthideanons',
 		];
 		$defaultPreferences['watchlisthideliu'] = [
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'watchlist/changeswatchlist',
 			'label-message' => 'tog-watchlisthideliu',
 		];
 
@@ -1135,7 +1135,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		if ( $this->config->get( 'RCWatchCategoryMembership' ) ) {
 			$defaultPreferences['watchlisthidecategorization'] = [
 				'type' => 'toggle',
-				'section' => 'watchlist/advancedwatchlist',
+				'section' => 'watchlist/changeswatchlist',
 				'label-message' => 'tog-watchlisthidecategorization',
 			];
 		}
@@ -1143,7 +1143,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		if ( $user->useRCPatrol() ) {
 			$defaultPreferences['watchlisthidepatrolled'] = [
 				'type' => 'toggle',
-				'section' => 'watchlist/advancedwatchlist',
+				'section' => 'watchlist/changeswatchlist',
 				'label-message' => 'tog-watchlisthidepatrolled',
 			];
 		}
@@ -1174,7 +1174,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				// tog-watchrollback
 				$defaultPreferences[$pref] = [
 					'type' => 'toggle',
-					'section' => 'watchlist/advancedwatchlist',
+					'section' => 'watchlist/pageswatchlist',
 					'label-message' => "tog-$pref",
 				];
 			}
