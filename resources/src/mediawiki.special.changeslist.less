@@ -67,15 +67,18 @@
 	content: '. .';
 }
 
-.mw-changeslist-links {
-	display: inline-block;
-
+.mw-changeslist-links,
+.mw-diff-bytes {
 	&:before {
 		content: '@{msg-parentheses-start}';
 	}
 	&:after {
 		content: '@{msg-parentheses-end}';
 	}
+}
+
+.mw-changeslist-links {
+	display: inline-block;
 
 	> span:not( :first-child ):before {
 		content: '@{msg-pipe-separator}';
