@@ -240,6 +240,34 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getText() );
 	}
 
+	public function testGetRenderedRevision_known() {
+		$renderer = $this->newRevisionRenderer( 100, true ); // use master
+		$title = $this->getMockTitle( 7, 21 );
+
+		$rev = new MutableRevisionRecord( $title );
+		$rev->setId( 21 ); // current!
+		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
+		$rev->setTimestamp( '20180101000003' );
+		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
+
+		$text = "uncached text";
+		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
+
+		$output = new ParserOutput( 'cached text' );
+
+		$options = ParserOptions::newCanonical( 'canonical' );
+		$rr = $renderer->getRenderedRevision(
+			$rev,
+			$options,
+			null,
+			[ 'known-revision-output' => $output ]
+		);
+
+		$this->assertSame( $output, $rr->getRevisionParserOutput() );
+		$this->assertSame( 'cached text', $rr->getRevisionParserOutput()->getText() );
+		$this->assertSame( 'cached text', $rr->getSlotParserOutput( SlotRecord::MAIN )->getText() );
+	}
+
 	public function testGetRenderedRevision_old() {
 		$renderer = $this->newRevisionRenderer( 100 );
 		$title = $this->getMockTitle( 7, 21 );
