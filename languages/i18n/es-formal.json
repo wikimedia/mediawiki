@@ -355,7 +355,6 @@
 	"version-license-info": "MediaWiki es software libre; puede redistribuirlo o modificarlo según los términos de la Licencia General Pública de GNU tal como la publica la Free Software Foundation; ya sea la versión 2 de la licencia o (a su elección) cualquier versión posterior.\n\nMediaWiki se distribuye con la esperanza de que sea útil, pero <em>SIN NINGUNA GARANTÍA</em>; sin siquiera con la garantía implícita de <em>COMERCIABILIDAD</em> o de <em>IDONEIDAD PARA UN PROPÓSITO PARTICULAR</em>. Consulte la Licencia Pública General de GNU para más detalles.\n\nHa recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública General de GNU] junto a este programa; si no es así, escríba a la Free Software Foundation, Inc., Calle Franklin 51, quinto piso, Boston, MA 02110-1301, EE. UU. o [//www.gnu.org/licenses/old-licenses/gpl-2.0.html léala en línea].",
 	"fileduplicatesearch-summary": "Búsqueda de archivos duplicados en base a su valor hash.",
 	"specialpages": "Páginas especiales",
-	"dberr-usegoogle": "Mientras tanto puede usted probar buscando a través de Google.",
 	"htmlform-invalid-input": "Existen problemas con alguno de los datos que usted ha introducido",
 	"htmlform-select-badoption": "El valo que usted ha especificado no es una opción válida.",
 	"htmlform-int-invalid": "El valor que usted ha especificado no es un entero.",

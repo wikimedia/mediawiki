@@ -11,7 +11,8 @@
 			"రహ్మానుద్దీన్",
 			"BHARATHESHA ALASANDEMAJALU",
 			"Lokesha kunchadka",
-			"Kiranpoojary"
+			"Kiranpoojary",
+			"Ravi Mundkur"
 		]
 	},
 	"tog-underline": "ಕೊಂಡಿಲೆಗ್ ಅಡಿಗೀಟ್ ಪಾಡುನು:",
@@ -719,6 +720,9 @@
 	"prefs-advancedwatchlist": "ಪರಿಣತ ಇಚ್ಛೆಲು",
 	"prefs-displayrc": "ಪ್ರದರ್ಸನೊ ಆಯ್ಕೆಲು",
 	"prefs-displaywatchlist": "ಪ್ರದರ್ಸನೊ ಆಯ್ಕೆಲು",
+	"prefs-changesrc": "ತೋಜಾಯಿನ ಬದಲಾವಣೆಲು",
+	"prefs-changeswatchlist": "ತೋಜಾಯಿನ ಬದಲಾವಣೆಲು",
+	"prefs-pageswatchlist": "ವೀಕ್ಷಿತ (ತೂಯಿನ) ಪುಟೊಲು",
 	"prefs-tokenwatchlist": "ಟೊಕನ್",
 	"userrights": "ಸದಸ್ಯೆರೆ ಹಕ್ಕುಲು",
 	"userrights-lookup-user": "ಬಳಕೆದಾರೆರೆ ಗುಂಪುಲೆನ್ ನಿರ್ವಹಿಸಲ",
@@ -1127,6 +1131,7 @@
 	"unblocklogentry": "$1 ಖಾತೆನ್ ಅನ್-ಬ್ಲಾಕ್ ಮಲ್ತ್’ನ್ಡ್",
 	"block-log-flags-nocreate": "ಖಾತೆ ಉಂಡುಮಲ್ಪುನೇನ್ ತಡೆಪತ್ತ್'ದ್ಂಡ್",
 	"proxyblocker": "ಪ್ರಾಕ್ಸಿ ತಡೆಪತ್ತುನಾರ್",
+	"cannotmove": "ಈ ದುಂಬುದ ಕಾರಣೊಗಾದ್ ಪುಟೊನು ಕೊಣರೆ ಆಪುಜಿ\n{{PLURAL:$1|reason|reasons}}:",
 	"movelogpage": "ಸ್ತಲಾಂತರೊದ ದಾಕಲೆ",
 	"movereason": "ಕಾರಣೊ:",
 	"revertmove": "ದುಂಬುದ ಲೆಕೆ ಮಲ್ಪುಲೆ",
