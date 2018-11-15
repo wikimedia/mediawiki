@@ -1214,23 +1214,6 @@ CREATE INDEX /*i*/img_sha1 ON /*_*/image (img_sha1(10));
 -- Used to get media of one type
 CREATE INDEX /*i*/img_media_mime ON /*_*/image (img_media_type,img_major_mime,img_minor_mime);
 
---
--- Temporary table to avoid blocking on an alter of image.
---
--- On large wikis like Wikimedia Commons, altering the image table is a
--- months-long process. This table is being created to avoid such an alter, and
--- will be merged back into image in the future.
---
-CREATE TABLE /*_*/image_comment_temp (
-  -- Key to img_name (ugh)
-  imgcomment_name varchar(255) binary NOT NULL,
-  -- Key to comment_id
-  imgcomment_description_id bigint unsigned NOT NULL,
-  PRIMARY KEY (imgcomment_name, imgcomment_description_id)
-) /*$wgDBTableOptions*/;
--- Ensure uniqueness
-CREATE UNIQUE INDEX /*i*/imgcomment_name ON /*_*/image_comment_temp (imgcomment_name);
-
 
 --
 -- Previous revisions of uploaded files.

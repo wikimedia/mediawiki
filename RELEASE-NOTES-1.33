@@ -159,6 +159,9 @@ because of Phabricator reports.
 === Other changes in 1.33 ===
 * (T208871) The hard-coded Google search form on the database error page was
   removed.
+* The image_comment_temp database table, deprecated in 1.32, has been removed.
+  Since access should be mediated by the CommentStore class, this change
+  shouldn't affect external code.
 * …
 
 == Compatibility ==
