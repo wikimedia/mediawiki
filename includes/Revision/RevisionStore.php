@@ -1508,9 +1508,11 @@ class RevisionStore
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionByTitle( LinkTarget $linkTarget, $revId = 0, $flags = 0 ) {
+		// TODO should not require Title in future (T206498)
+		$title = Title::newFromLinkTarget( $linkTarget );
 		$conds = [
-			'page_namespace' => $linkTarget->getNamespace(),
-			'page_title' => $linkTarget->getDBkey()
+			'page_namespace' => $title->getNamespace(),
+			'page_title' => $title->getDBkey()
 		];
 		if ( $revId ) {
 			// Use the specified revision ID.
@@ -1519,7 +1521,7 @@ class RevisionStore
 			// Since the caller supplied a revision ID, we are pretty sure the revision is
 			// supposed to exist, so we should try hard to find it.
 			$conds['rev_id'] = $revId;
-			return $this->newRevisionFromConds( $conds, $flags );
+			return $this->newRevisionFromConds( $conds, $flags, $title );
 		} else {
 			// Use a join to get the latest revision.
 			// Note that we don't use newRevisionFromConds here because we don't want to retry
@@ -1529,7 +1531,7 @@ class RevisionStore
 			$db = $this->getDBConnectionRefForQueryFlags( $flags );
 
 			$conds[] = 'rev_id=page_latest';
-			$rev = $this->loadRevisionFromConds( $db, $conds, $flags );
+			$rev = $this->loadRevisionFromConds( $db, $conds, $flags, $title );
 
 			return $rev;
 		}

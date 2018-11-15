@@ -17,6 +17,7 @@ class ApiMoveTest extends ApiTestCase {
 	protected function assertMoved( $from, $to, $id, $opts = null ) {
 		$opts = (array)$opts;
 
+		Title::clearCaches();
 		$fromTitle = Title::newFromText( $from );
 		$toTitle = Title::newFromText( $to );
 
