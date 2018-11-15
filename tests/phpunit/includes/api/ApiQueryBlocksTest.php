@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\Restriction\NamespaceRestriction;
 
 /**
  * @group API
@@ -113,8 +114,13 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		] );
 		$this->db->insert( 'ipblocks_restrictions', [
 			'ir_ipb_id' => $block->getId(),
-			'ir_type' => 2,
-			'ir_value' => 3,
+			'ir_type' => NamespaceRestriction::TYPE_ID,
+			'ir_value' => NS_USER_TALK,
+		] );
+		$this->db->insert( 'ipblocks_restrictions', [
+			'ir_ipb_id' => $block->getId(),
+			'ir_type' => 3,
+			'ir_value' => 4,
 		] );
 
 		// Test without requesting restrictions.
@@ -148,6 +154,9 @@ class ApiQueryBlocksTest extends ApiTestCase {
 						'ns' => 0,
 						'title' => $title,
 					],
+				],
+				'namespaces' => [
+					NS_USER_TALK,
 				],
 			],
 		] );
