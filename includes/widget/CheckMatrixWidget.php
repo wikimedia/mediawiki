@@ -58,7 +58,11 @@ class CheckMatrixWidget extends \OOUI\Widget {
 
 		// Build the table
 		$table = new \OOUI\Tag( 'table' );
+		$table->addClasses( [ 'mw-htmlform-matrix mw-widget-checkMatrixWidget-matrix' ] );
+		$thead = new \OOUI\Tag( 'thead' );
+		$table->appendContent( $thead );
 		$tr = new \OOUI\Tag( 'tr' );
+
 		// Build the header
 		$tr->appendContent( $this->getCellTag( "\u{00A0}" ) );
 		foreach ( $this->columns as $columnLabel => $columnTag ) {
@@ -66,11 +70,13 @@ class CheckMatrixWidget extends \OOUI\Widget {
 				$this->getCellTag( new \OOUI\HtmlSnippet( $columnLabel ) )
 			);
 		}
-		$table->appendContent( $tr );
+		$thead->appendContent( $tr );
 
 		// Build the options matrix
+		$tbody = new \OOUI\Tag( 'tbody' );
+		$table->appendContent( $tbody );
 		foreach ( $this->rows as $rowLabel => $rowTag ) {
-			$table->appendContent(
+			$tbody->appendContent(
 				$this->getTableRow( $rowLabel, $rowTag )
 			);
 		}
