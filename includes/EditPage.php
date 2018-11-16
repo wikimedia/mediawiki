@@ -3145,16 +3145,22 @@ ERROR;
 			);
 		} elseif ( $user->isAnon() ) {
 			if ( $this->formtype != 'preview' ) {
+				$returntoquery = array_diff_key(
+					$this->context->getRequest()->getValues(),
+					[ 'title' => true, 'returnto' => true, 'returntoquery' => true ]
+				);
 				$out->wrapWikiMsg(
 					"<div id='mw-anon-edit-warning' class='warningbox'>\n$1\n</div>",
 					[ 'anoneditwarning',
 						// Log-in link
 						SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
-							'returnto' => $this->getTitle()->getPrefixedDBkey()
+							'returnto' => $this->getTitle()->getPrefixedDBkey(),
+							'returntoquery' => wfArrayToCgi( $returntoquery ),
 						] ),
 						// Sign-up link
 						SpecialPage::getTitleFor( 'CreateAccount' )->getFullURL( [
-							'returnto' => $this->getTitle()->getPrefixedDBkey()
+							'returnto' => $this->getTitle()->getPrefixedDBkey(),
+							'returntoquery' => wfArrayToCgi( $returntoquery ),
 						] )
 					]
 				);
