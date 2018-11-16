@@ -91,9 +91,10 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		// Build the column headers
 		$headerContents = Html::rawElement( 'td', [], "\u{00A0}" );
 		foreach ( $columns as $columnLabel => $columnTag ) {
-			$headerContents .= Html::rawElement( 'td', [], $columnLabel );
+			$headerContents .= Html::rawElement( 'th', [], $columnLabel );
 		}
-		$tableContents .= Html::rawElement( 'tr', [], "\n$headerContents\n" );
+		$thead = Html::rawElement( 'tr', [], "\n$headerContents\n" );
+		$tableContents .= Html::rawElement( 'thead', [], "\n$thead\n" );
 
 		$tooltipClass = 'mw-icon-question';
 		if ( isset( $this->mParams['tooltip-class'] ) ) {
