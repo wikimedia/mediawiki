@@ -25,8 +25,6 @@
  * Category objects are immutable, strictly speaking. If you call methods that change the database,
  * like to refresh link counts, the objects will be appropriately reinitialized.
  * Member variables are lazy-initialized.
- *
- * @todo Move some stuff from CategoryPage.php to here, and use that.
  */
 class Category {
 	/** Name of the category, normalized to DB-key form */
