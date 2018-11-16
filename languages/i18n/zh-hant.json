@@ -1220,7 +1220,7 @@
 	"group-interface-admin": "介面管理員",
 	"group-bureaucrat": "行政員",
 	"group-suppress": "監督員",
-	"group-all": "(全部)",
+	"group-all": "（全部）",
 	"group-user-member": "{{GENDER:$1|使用者}}",
 	"group-autoconfirmed-member": "自動確認使用者",
 	"group-bot-member": "機器人",

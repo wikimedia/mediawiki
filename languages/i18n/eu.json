@@ -3687,7 +3687,7 @@
 	"logentry-delete-revision-legacy": "$1k {{GENDER:$2|}} $3 orriko berrikusketen ikuspena aldatu egin du",
 	"logentry-suppress-delete": "$1 erabiltzaileak $3 orria {{GENDER:$2|ezabatu}} du",
 	"logentry-suppress-event": "$1 wikilariak {{GENDER:$2|}} ezkutuan ikusgaitasuna aldatu {{PLURAL:$5|dio erregistroko sarrera bati|die erregistroko $5 sarrerei}} $3n: $4",
-	"logentry-suppress-revision": "$1 wikilariak ikusgaitasuna aldatu {{PLURAL:$5|dio berrikusketari|$5 berrikusketei}} $3 orrian: $4",
+	"logentry-suppress-revision": "$1 wikilariak ikusgaitasuna aldatu {{PLURAL:$5|dio berrikusketari|die $5 berrikusketari}} «$3» orrian: $4",
 	"logentry-suppress-event-legacy": "$1k {{GENDER:$2|}} sekretuan $3 sarrera gertaeren ikuspena aldatu egin du",
 	"logentry-suppress-revision-legacy": "$1 wikilariak izkutuan $3 orriko berrikusketen ikuspena {{GENDER:$2|aldatu}} egin du",
 	"revdelete-content-hid": "edukia ezkutatu da",

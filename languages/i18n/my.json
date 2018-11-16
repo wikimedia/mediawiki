@@ -1548,6 +1548,8 @@
 	"allinnamespace": "စာမျက်နှာအားလုံး (အမည်ညွှန်း $1)",
 	"allpagessubmit": "သွားပါ",
 	"allpages-hide-redirects": "ပြန်ညွှန်းများအား ဝှက်ရန်",
+	"cachedspecial-viewing-cached-ttl": "သင်သည် $1 အချိန်ကြာသွားနိုင်သော ဤစာမျက်နှာ၏ cached ဗားရှင်းကို ကြည့်ရှုနေခြင်း ဖြစ်ပါသည်။",
+	"cachedspecial-viewing-cached-ts": "သင်သည် ဤစာမျက်နှာ၏ အမှန်တကယ်မဟုတ်နိုင်သော cached ဗားရှင်းကို ကြည့်ရှုနေခြင်းဖြစ်သည်။",
 	"categories": "ကဏ္ဍများ",
 	"categories-submit": "ပြသရန်",
 	"categoriesfrom": "ဤမှစသော အမျိုးအစားများကို ပြရန် -",

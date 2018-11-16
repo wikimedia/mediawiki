@@ -1162,6 +1162,8 @@
 	"prefs-advancedwatchlist": "Розширені налаштування",
 	"prefs-displayrc": "Налаштування показу",
 	"prefs-displaywatchlist": "Налаштування показу",
+	"prefs-changesrc": "Показані зміни",
+	"prefs-changeswatchlist": "Показані зміни",
 	"prefs-tokenwatchlist": "Токен",
 	"prefs-diffs": "Різниці версій",
 	"prefs-help-prefershttps": "Цей параметр набуде чинності при вашому наступному вході у систему.",
