@@ -408,6 +408,7 @@ $wgAutoloadLocalClasses = [
 	'DifferenceEngine' => __DIR__ . '/includes/diff/DifferenceEngine.php',
 	'DifferenceEngineSlotDiffRenderer' => __DIR__ . '/includes/diff/DifferenceEngineSlotDiffRenderer.php',
 	'Digit2Html' => __DIR__ . '/maintenance/language/digit2html.php',
+	'DisabledSpecialPage' => __DIR__ . '/includes/specialpage/DisabledSpecialPage.php',
 	'DjVuHandler' => __DIR__ . '/includes/media/DjVuHandler.php',
 	'DjVuImage' => __DIR__ . '/includes/media/DjVuImage.php',
 	'DnsSrvDiscoverer' => __DIR__ . '/includes/libs/DnsSrvDiscoverer.php',
