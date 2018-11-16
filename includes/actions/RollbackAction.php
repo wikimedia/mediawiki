@@ -70,11 +70,12 @@ class RollbackAction extends FormlessAction {
 		}
 
 		// @TODO: remove this hack once rollback uses POST (T88044)
+		$fname = __METHOD__;
 		$trxLimits = $this->context->getConfig()->get( 'TrxProfilerLimits' );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
-		$trxProfiler->setExpectations( $trxLimits['POST'], __METHOD__ );
-		DeferredUpdates::addCallableUpdate( function () use ( $trxProfiler, $trxLimits ) {
-			$trxProfiler->setExpectations( $trxLimits['PostSend-POST'], __METHOD__ );
+		$trxProfiler->setExpectations( $trxLimits['POST'], $fname );
+		DeferredUpdates::addCallableUpdate( function () use ( $trxProfiler, $trxLimits, $fname ) {
+			$trxProfiler->setExpectations( $trxLimits['PostSend-POST'], $fname );
 		} );
 
 		$data = null;
