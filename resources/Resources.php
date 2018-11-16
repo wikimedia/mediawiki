@@ -175,6 +175,7 @@ return [
 	],
 	'jquery.async' => [
 		'scripts' => 'resources/lib/jquery.async.js',
+		'deprecated' => true,
 	],
 	'jquery.byteLength' => [
 		'scripts' => 'resources/src/jquery/jquery.byteLength.js',
