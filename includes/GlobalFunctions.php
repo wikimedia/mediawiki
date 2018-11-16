@@ -266,7 +266,7 @@ function wfObjectToArray( $objOrArray, $recursive = true ) {
 }
 
 /**
- * Get a random decimal value between 0 and 1, in a way
+ * Get a random decimal value in the domain of [0, 1), in a way
  * not likely to give duplicate values for any realistic
  * number of articles.
  *
