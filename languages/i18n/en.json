@@ -2526,7 +2526,7 @@
 	"contribsub2": "For {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "User account \"$1\" is not registered.",
 	"nocontribs": "No changes were found matching these criteria.",
-	"uctop": "(current)",
+	"uctop": "current",
 	"month": "From month (and earlier):",
 	"year": "From year (and earlier):",
 	"date": "From date (and earlier):",
