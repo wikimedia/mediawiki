@@ -19,6 +19,9 @@ table.mw-htmlform-nolabel td.mw-label {
 }
 
 /* HTMLCheckMatrix */
+.mw-htmlform-matrix th {
+	font-weight: normal;
+}
 
 .mw-htmlform-matrix td {
 	padding-left: 0.5em;

@@ -67,7 +67,7 @@ class CheckMatrixWidget extends \OOUI\Widget {
 		$tr->appendContent( $this->getCellTag( "\u{00A0}" ) );
 		foreach ( $this->columns as $columnLabel => $columnTag ) {
 			$tr->appendContent(
-				$this->getCellTag( new \OOUI\HtmlSnippet( $columnLabel ) )
+				$this->getCellTag( new \OOUI\HtmlSnippet( $columnLabel ), 'th' )
 			);
 		}
 		$thead->appendContent( $tr );
@@ -132,8 +132,8 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	 * @param  mixed $content Content for the <td> cell
 	 * @return \OOUI\Tag Resulting cell
 	 */
-	private function getCellTag( $content ) {
-		$cell = new \OOUI\Tag( 'td' );
+	private function getCellTag( $content, $tagElement = 'td' ) {
+		$cell = new \OOUI\Tag( $tagElement );
 		$cell->appendContent( $content );
 		return $cell;
 	}

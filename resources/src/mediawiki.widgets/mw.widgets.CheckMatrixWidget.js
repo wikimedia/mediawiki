@@ -44,7 +44,7 @@
 		// Iterate over the columns object (ignore the value)
 		// eslint-disable-next-line no-restricted-properties
 		$.each( this.columns, function ( columnLabel ) {
-			$headRow.append( $( '<td>' ).html( columnLabel ) );
+			$headRow.append( $( '<th>' ).html( columnLabel ) );
 		} );
 		$thead.append( $headRow );
 
