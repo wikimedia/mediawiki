@@ -2491,7 +2491,7 @@
 	"contribsub2": "利用者: {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "利用者アカウント「$1」は登録されていません。",
 	"nocontribs": "これらの条件に一致する変更は見つかりませんでした。",
-	"uctop": "(最新)",
+	"uctop": "最新",
 	"month": "この月以前:",
 	"year": "この年以前:",
 	"date": "この日以前:",

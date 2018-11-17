@@ -2416,7 +2416,7 @@
 	"contribsub2": "{{GENDER:$3|uživatele|uživatelky}} $1 ($2)",
 	"contributions-userdoesnotexist": "Uživatelský účet „$1“ není zaregistrován.",
 	"nocontribs": "Nenalezeny žádné změny vyhovující kritériím.",
-	"uctop": "(aktuální)",
+	"uctop": "aktuální",
 	"month": "Do měsíce:",
 	"year": "Do roku:",
 	"date": "Od data (a dříve):",

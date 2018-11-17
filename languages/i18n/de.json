@@ -2475,7 +2475,7 @@
 	"contribsub2": "Von {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Das Benutzerkonto „$1“ ist nicht vorhanden.",
 	"nocontribs": "Es wurden keine Benutzerbeiträge mit diesen Kriterien gefunden.",
-	"uctop": "(aktuell)",
+	"uctop": "aktuell",
 	"month": "und Monat:",
 	"year": "bis Jahr:",
 	"date": "Von Datum (und früher):",

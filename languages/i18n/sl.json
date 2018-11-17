@@ -2392,7 +2392,7 @@
 	"contribsub2": "Za {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Uporabniški račun »$1« ni registriran.",
 	"nocontribs": "Ne najdem nobene merilom ustrezajoče spremembe.",
-	"uctop": "(trenutno)",
+	"uctop": "trenutno",
 	"month": "Od meseca (in prej):",
 	"year": "Od leta (in prej):",
 	"date": "Od datuma (in prej):",

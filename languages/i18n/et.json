@@ -2402,7 +2402,7 @@
 	"contribsub2": "Kasutaja {{GENDER:$3|$1}} ($2) kaastöö",
 	"contributions-userdoesnotexist": "Kasutajakonto \"$1\" pole registreeritud.",
 	"nocontribs": "Antud kriteeriumitele vastavaid muudatusi ei leitud.",
-	"uctop": "(praegune)",
+	"uctop": "praegune",
 	"month": "Alates kuust (ja varasemad):",
 	"year": "Alates aastast (ja varasemad):",
 	"date": "Alates kuupäevast (ja varasemad):",

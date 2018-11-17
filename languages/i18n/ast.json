@@ -2383,7 +2383,7 @@
 	"contribsub2": "Pa {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "La cuenta d'usuariu «$1» nun ta rexistrada.",
 	"nocontribs": "Nun s'atoparon cambeos que coincidan con esi criteriu.",
-	"uctop": "(actual)",
+	"uctop": "actual",
 	"month": "Dende'l mes (y anteriores):",
 	"year": "Dende l'añu (y anteriores):",
 	"date": "Dende la fecha (y anteriores):",

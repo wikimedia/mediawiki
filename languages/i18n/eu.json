@@ -2398,7 +2398,7 @@
 	"contribsub2": "{{GENDER:$3|$1(r)entzat}} ($2)",
 	"contributions-userdoesnotexist": "\"$1\" erabiltzaile-kontua ez dago erregistraturik.",
 	"nocontribs": "Ez da ezaugarri horiekin bat datorren aldaketarik aurkitu.",
-	"uctop": "(azken aldaketa)",
+	"uctop": "azken aldaketa",
 	"month": "Hilabetea (eta lehenagokoak):",
 	"year": "Urtea (eta lehenagokoak):",
 	"date": "Data honetatik (eta lehenagokoak):",

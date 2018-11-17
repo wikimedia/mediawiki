@@ -2238,7 +2238,7 @@
 	"contribsub2": "Per {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Lo compte d'utilizaire « $1 » es pas enregistrat.",
 	"nocontribs": "Cap de modificacion correspondenta a aquestes critèris es pas estada trobada.",
-	"uctop": "(actual)",
+	"uctop": "actual",
 	"month": "A partir del mes (e precedents) :",
 	"year": "A partir de l’annada (e precedentas) :",
 	"sp-contributions-newbies": "Far veire sonque las contribucions dels utilizaires novèls",

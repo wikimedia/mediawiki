@@ -1991,7 +1991,7 @@
 	"contribsub2": "Vir {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Die gebruiker \"$1\" is nie geregistreer nie.",
 	"nocontribs": "Geen veranderinge wat by hierdie kriteria pas, is gevind nie.",
-	"uctop": "(laaste wysiging)",
+	"uctop": "laaste wysiging",
 	"month": "Vanaf maand (en vroeër):",
 	"year": "Vanaf jaar (en vroeër):",
 	"sp-contributions-newbies": "Wys slegs bydraes van nuwe gebruikers",

@@ -1555,7 +1555,7 @@
 	"mycontris": "Contribucions",
 	"contribsub2": "Ta {{GENDER:$3|$1}} ($2)",
 	"nocontribs": "No s'han trobato cambeos que concordasen con ixos criterios",
-	"uctop": "(zaguer cambeo)",
+	"uctop": "zaguer cambeo",
 	"month": "Dende o mes (y anteriors):",
 	"year": "Dende l'anyo (y anteriors):",
 	"sp-contributions-newbies": "Amostrar nomás as contrebucions d'os usuarios nuevos",

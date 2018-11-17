@@ -2243,7 +2243,7 @@
 	"contribsub2": "Príspevky {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Používateľské konto „$1“ nie je zaregistrované.",
 	"nocontribs": "Neboli nájdené úpravy, ktoré by zodpovedali týmto kritériám.",
-	"uctop": "(aktuálne)",
+	"uctop": "aktuálne",
 	"month": "Mesiac:",
 	"year": "Rok:",
 	"sp-contributions-newbies": "Zobraziť len príspevky nových účtov",

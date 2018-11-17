@@ -2451,7 +2451,7 @@
 	"contribsub2": "För {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Användarkontot \"$1\" är inte registrerat.",
 	"nocontribs": "Inga ändringar som motsvarar dessa kriterier hittades.",
-	"uctop": "(senaste)",
+	"uctop": "senaste",
 	"month": "Från månad (och tidigare):",
 	"year": "Från år (och tidigare):",
 	"date": "Från datum (och tidigare):",

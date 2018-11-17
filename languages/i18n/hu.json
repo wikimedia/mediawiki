@@ -2412,7 +2412,7 @@
 	"contribsub2": "$1 ($2)",
 	"contributions-userdoesnotexist": "Nincs regisztrálva „$1” szerkesztői azonosító.",
 	"nocontribs": "Nem található a feltételeknek megfelelő változtatás.",
-	"uctop": "(aktuális)",
+	"uctop": "aktuális",
 	"month": "E hónap végéig:",
 	"year": "Eddig az évig:",
 	"date": "Eddig a dátumig:",

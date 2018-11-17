@@ -2329,7 +2329,7 @@
 	"contribsub2": "For {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Brugerkontoen \"$1\" er ikke registreret.",
 	"nocontribs": "Ingen ændringer er fundet som opfylder disse kriterier.",
-	"uctop": "(seneste)",
+	"uctop": "nuværende",
 	"month": "Fra måned (og tidligere):",
 	"year": "Fra år (og tidligere):",
 	"date": "Fra dato (og tidligere):",

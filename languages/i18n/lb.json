@@ -2239,7 +2239,7 @@
 	"contribsub2": "Fir {{GENDER:$3|den $1|d'$1|de Benotzer $1}} ($2)",
 	"contributions-userdoesnotexist": "De Benotzerkont \"$1\" ass net registréiert.",
 	"nocontribs": "Et goufe keng Ännerunge fonnt, déi dëse Critèren entspriechen.",
-	"uctop": "(aktuell)",
+	"uctop": "aktuell",
 	"month": "Vum Mount (a virdrun):",
 	"year": "Vum Joer (a virdrun):",
 	"date": "Vum Datum (a virdrun):",

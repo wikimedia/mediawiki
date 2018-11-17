@@ -2474,7 +2474,7 @@
 	"contribsub2": "Dla {{GENDER:$3|użytkownika|użytkowniczki}} $1 ($2)",
 	"contributions-userdoesnotexist": "Konto użytkownika „$1” nie jest zarejestrowane.",
 	"nocontribs": "Brak zmian odpowiadających tym kryteriom.",
-	"uctop": "(ostatnia)",
+	"uctop": "ostatnia",
 	"month": "Do miesiąca (włącznie):",
 	"year": "Do roku (włącznie):",
 	"date": "Od daty (i wcześniej):",

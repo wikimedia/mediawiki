@@ -2378,7 +2378,7 @@
 	"contribsub2": "{{GENDER:$3|$1}} ($2) tarafından",
 	"contributions-userdoesnotexist": "\"$1\" kullanıcı hesabı kayıtlı değil.",
 	"nocontribs": "Bu kriterlere uyan değişiklik bulunamadı",
-	"uctop": "(son)",
+	"uctop": "son",
 	"month": "Bu aya kadar (ve önceki aylar):",
 	"year": "Bu yıla kadar (ve önceki yıllar):",
 	"date": "Şu tarihe kadar:",

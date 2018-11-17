@@ -2213,7 +2213,7 @@
 	"contribsub2": "Eftir {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Notandaaðgangurinn \"$1\" er ekki skráður.",
 	"nocontribs": "Engar breytingar fundnar sem passa við þessa viðmiðun.",
-	"uctop": "(núverandi)",
+	"uctop": "núverandi",
 	"month": "Frá mánuðinum (og fyrr):",
 	"year": "Frá árinu (og fyrr):",
 	"sp-contributions-newbies": "Sýna aðeins breytingar frá nýjum notendum",

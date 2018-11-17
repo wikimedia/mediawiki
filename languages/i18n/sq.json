@@ -2167,7 +2167,7 @@
 	"contribsub2": "Për {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Llogaria e përdoruesit \"$1\" nuk është e regjistruar.",
 	"nocontribs": "Nuk ka asnjë ndryshim që përputhet me këto kritere.",
-	"uctop": "(aktual)",
+	"uctop": "aktual",
 	"month": "Nga muaji (dhe më herët):",
 	"year": "Nga viti (dhe më herët):",
 	"sp-contributions-newbies": "Trego vetëm redaktimet e llogarive të reja",

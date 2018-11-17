@@ -2144,7 +2144,7 @@
 	"contribsub2": "Fer {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Uiser accoont \"$1\" is no registerit.",
 	"nocontribs": "Nae chynges wis funnd matchin thir criteria.",
-	"uctop": "(current)",
+	"uctop": "current",
 	"month": "Fae month (n afore):",
 	"year": "Fae year (n afore):",
 	"sp-contributions-newbies": "Shaw contreebutions o freish accoonts ainlie",

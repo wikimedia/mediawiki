@@ -2467,7 +2467,7 @@
 	"contribsub2": "Voor {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Gebruikersaccount \"$1\" bestaat niet.",
 	"nocontribs": "Geen wijzigingen gevonden die aan de gestelde criteria voldoen.",
-	"uctop": "(laatste wijziging)",
+	"uctop": "laatste wijziging",
 	"month": "Van maand (en eerder):",
 	"year": "Van jaar (en eerder):",
 	"date": "Vanaf (en eerder):",

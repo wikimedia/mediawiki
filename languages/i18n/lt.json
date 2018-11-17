@@ -2315,7 +2315,7 @@
 	"contribsub2": "Naudotojas: {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Naudotojo paskyra „$1“ neužregistruota.",
 	"nocontribs": "Jokie keitimai neatitiko šių kriterijų.",
-	"uctop": "(dabartinis)",
+	"uctop": "dabartinis",
 	"month": "Nuo mėnesio (ir anksčiau):",
 	"year": "Nuo metų (ir anksčiau):",
 	"date": "Nuo datos (ir anksčiau):",

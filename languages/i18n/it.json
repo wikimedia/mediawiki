@@ -2461,7 +2461,7 @@
 	"contribsub2": "Per {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "L'utenza \"$1\" non è registrata.",
 	"nocontribs": "Non sono state trovate modifiche che soddisfino i criteri di ricerca.",
-	"uctop": "(attuale)",
+	"uctop": "attuale",
 	"month": "Dal mese (e precedenti):",
 	"year": "Dall'anno (e precedenti):",
 	"date": "Dal giorno (e precedenti):",

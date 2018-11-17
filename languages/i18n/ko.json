@@ -2444,7 +2444,7 @@
 	"contribsub2": "{{GENDER:$3|$1}}($2)의 기여",
 	"contributions-userdoesnotexist": "\"$1\" 사용자 계정은 등록되어 있지 않습니다.",
 	"nocontribs": "지정한 조건과 일치하는 바뀜을 찾을 수 없습니다.",
-	"uctop": "(최신)",
+	"uctop": "최신",
 	"month": "월:",
 	"year": "연도:",
 	"date": "날짜부터 (혹은 이전):",

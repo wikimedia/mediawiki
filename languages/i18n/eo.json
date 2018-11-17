@@ -2283,7 +2283,7 @@
 	"contribsub2": "De {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Uzanto-konto \"$1\" ne estas registrita.",
 	"nocontribs": "Trovis neniajn redaktojn laŭ tiu kriterio.",
-	"uctop": " (aktuala)",
+	"uctop": " aktuala",
 	"month": "Ekde monato (kaj pli frue):",
 	"year": "Ekde jaro (kaj pli frue):",
 	"sp-contributions-newbies": "Montri nur kontribuojn de novaj kontoj",
