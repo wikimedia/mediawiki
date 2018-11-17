@@ -1512,7 +1512,13 @@ class ApiMain extends ApiBase {
 	 * @param array $params An array with the request parameters
 	 */
 	protected function setupExternalResponse( $module, $params ) {
+		$validMethods = [ 'GET', 'HEAD', 'POST', 'OPTIONS' ];
 		$request = $this->getRequest();
+
+		if ( !in_array( $request->getMethod(), $validMethods ) ) {
+			$this->dieWithError( 'apierror-invalidmethod', null, null, 405 );
+		}
+
 		if ( !$request->wasPosted() && $module->mustBePosted() ) {
 			// Module requires POST. GET request might still be allowed
 			// if $wgDebugApi is true, otherwise fail.
