@@ -76,7 +76,7 @@
 	"config-db-host": "Servidor de la base de dades:",
 	"config-db-host-oracle": "TNS de la base de dades:",
 	"config-db-wiki-settings": "Identifica aquest wiki",
-	"config-db-name": "Nom de la base de dades:",
+	"config-db-name": "Nom de la base de dades (sense guionets):",
 	"config-db-name-help": "Trieu un nom que identifiqui el wiki.\nNo ha de contenir espais.\n\nSi esteu fent servir un hostatge web compartit, el vostre proveïdor us proporcionarà un nom específic per a la base de dades o us permetrà crear base de dades des d'un tauler de control.",
 	"config-db-name-oracle": "Esquema de la base de dades:",
 	"config-db-install-account": "Compte d'usuari per a la instal·lació",
@@ -92,7 +92,7 @@
 	"config-db-prefix-help": "Si heu de compartir una base de dades entre diversos wikis, o entre el MediaWiki i una altra aplicació web, podeu afegir un prefix al tots els noms de taula per a evitar conflictes.\nNo utilitzeu espais.\n\nAquest camp acostuma a quedar en blanc.",
 	"config-mysql-old": "Cal el MySQL $1 o posterior. Teniu el $2.",
 	"config-db-port": "Port de la base de dades:",
-	"config-db-schema": "Esquema per a MediaWiki:",
+	"config-db-schema": "Esquema per a MediaWiki (sense guionets):",
 	"config-db-schema-help": "Aquest esquema normalment ja serveix.\nNomés canvieu-lo si sabeu què us feu.",
 	"config-pg-test-error": "No es pot connectar a la base de dades '''$1''': $2",
 	"config-sqlite-dir": "Directori de dades de l'SQLite",
@@ -258,6 +258,7 @@
 	"config-extensions-requires": "$1 (necessita $2)",
 	"config-screenshot": "captura de pantalla",
 	"config-extension-not-found": "No s'ha pogut trobar el fitxer de registre de l'extensió «$1»",
+	"config-extension-dependency": "S'ha produït un error de dependències mentre s'instal·lava l'extensió «$1»: $2",
 	"mainpagetext": "<strong>MediaWiki s'ha instal·lat.</strong>",
 	"mainpagedocfooter": "Consulteu la [https://meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar aquest programari wiki.\n\n== Primers passos ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Llista de paràmetres configurables]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ PMF del MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu per a anuncis del MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traducció de MediaWiki en la vostra llengua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Aprengueu com combatre la brossa que pot atacar el vostre wiki]"
 }

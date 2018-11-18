@@ -1116,6 +1116,7 @@
 	"group-autoconfirmed": "Automatiškai patvirtinti naudotojai",
 	"group-bot": "Robotai",
 	"group-sysop": "Administratoriai",
+	"group-interface-admin": "Sąsajos administratoriai",
 	"group-bureaucrat": "Biurokratai",
 	"group-suppress": "Slopintojai",
 	"group-all": "(visi)",

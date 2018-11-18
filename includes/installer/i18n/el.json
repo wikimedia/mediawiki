@@ -11,7 +11,8 @@
 			"Badseed",
 			"Macofe",
 			"KATRINE1992",
-			"Nikosgranturismogt"
+			"Nikosgranturismogt",
+			"KATRINE1993"
 		]
 	},
 	"config-desc": "Το πρόγραμμα εγκατάστασης για το MediaWiki",
@@ -133,6 +134,7 @@
 	"config-mssql-old": "Απαιτείται Microsoft SQL Server $1 ή νεότερο. Εσείς έχετε $2.",
 	"config-sqlite-readonly": "Το αρχείο <code>$1</code> δεν είναι εγγράψιμο.",
 	"config-sqlite-cant-create-db": "Δεν ήταν δυνατή η δημιουργία του αρχείου βάσης δεδομένων <code>$1</code>.",
+	"config-upgrade-error": "Υπήρξε σφάλμα κατά την αναβάθμιση της λίστας  MediaWiki στην βάση δεδομένων σας.\n\nΓια περισσότερες πληροφορίες δέστε την σύνδεση σας πιο πάνω και ξανακάνετε κλικ στο <strong>Continue</strong>.",
 	"config-upgrade-done-no-regenerate": "Η αναβάθμιση ολοκληρώθηκε.\n\nΜπορείτε τώρα να [$1 ξεκινήσετε να χρησιμοποιείτε το wiki σας].",
 	"config-regenerate": "Αναδημιουργία LocalSettings.php →",
 	"config-db-web-account": "Λογαριασμός βάσης δεδομένων για πρόσβαση Ιστού",

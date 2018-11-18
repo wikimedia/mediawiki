@@ -22,7 +22,8 @@
 			"Rcdeboer",
 			"Festina90",
 			"MarcoSwart",
-			"Kippenvlees1"
+			"Kippenvlees1",
+			"Elroy"
 		]
 	},
 	"config-desc": "Het installatieprogramma voor MediaWiki",
@@ -167,6 +168,7 @@
 	"config-sqlite-cant-create-db": "Het was niet mogelijk het databasebestand <code>$1</code> aan te maken.",
 	"config-sqlite-fts3-downgrade": "PHP heeft geen ondersteuning voor FTS3.\nDe tabellen worden gedowngrade.",
 	"config-can-upgrade": "Er staan al tabellen voor MediaWiki in deze database.\nKlik op '''Doorgaan''' om ze bij te werken naar MediaWiki $1.",
+	"config-upgrade-error": "De MediaWiki-tabellen in je gegevensbank verbeteren is door een fout mislukt.\n\nVoor meer informatie zie bovenstaand logboek. Om het opnieuw te proberen klik je op <strong>Doorgaan</strong>.",
 	"config-upgrade-done": "Het bijwerken is afgerond.\n\nUw kunt [$1 uw wiki nu gebruiken].\n\nAls u uw <code>LocalSettings.php</code> opnieuw wilt aanmaken, klik dan op de knop hieronder.\nDit is '''niet aan te raden''' tenzij u problemen hebt met uw wiki.",
 	"config-upgrade-done-no-regenerate": "Het bijwerken is afgerond.\n\nU kunt nu [$1 uw wiki gebruiken].",
 	"config-regenerate": "LocalSettings.php opnieuw aanmaken →",

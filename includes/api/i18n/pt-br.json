@@ -1642,6 +1642,7 @@
 	"apierror-invalidexpiry": "Tempo de expiração \"$1\" não válido.",
 	"apierror-invalid-file-key": "Não é uma chave de arquivo válida.",
 	"apierror-invalidlang": "Código de idioma inválido para o parâmetro <var>$1</var>.",
+	"apierror-invalidmethod": "Método HTTP inválido. Considere o uso de GET ou POST.",
 	"apierror-invalidoldimage": "O parâmetro <var>oldimage</var> possui um formato inválido.",
 	"apierror-invalidparammix-cannotusewith": "O parâmetro <kbd>$1</kbd> não pode ser usado com <kbd>$2</kbd>.",
 	"apierror-invalidparammix-mustusewith": "O parâmetro <kbd>$1</kbd> só pode ser usado com <kbd>$2</kbd>.",

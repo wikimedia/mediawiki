@@ -1139,6 +1139,8 @@
 	"prefs-advancedwatchlist": "Opcions avançades",
 	"prefs-displayrc": "Opcions d'aparença",
 	"prefs-displaywatchlist": "Opcions de visualització",
+	"prefs-changesrc": "Canvis mostrats",
+	"prefs-changeswatchlist": "Canvis mostrats",
 	"prefs-tokenwatchlist": "Testimoni",
 	"prefs-diffs": "Difs",
 	"prefs-help-prefershttps": "Aquesta preferència tindrà efecte quan inicieu una nova sessió.",

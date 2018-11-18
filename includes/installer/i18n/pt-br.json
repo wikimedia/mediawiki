@@ -167,6 +167,7 @@
 	"config-sqlite-cant-create-db": "Não foi possível criar o arquivo do banco de dados <code>$1</code>.",
 	"config-sqlite-fts3-downgrade": "O PHP não tem suporte FTS3; revertendo tabelas.",
 	"config-can-upgrade": "Este banco de dados contém tabelas do MediaWiki.\nPara atualizá-las para o MediaWiki $1, clique em <strong>Continuar</strong>.",
+	"config-upgrade-error": "Houve um erro ao atualizar as tabelas do MediaWiki em seu banco de dados.\n\nPara mais informações, consulte o log acima, para tentar novamente clique <strong>Continuar</strong>.",
 	"config-upgrade-done": "Atualização completa.\n\nAgora você pode [$1 começar a usar sua wiki].\n\nSe você quiser regenerar seu arquivo <code>LocalSettings.php</code>, clique no botão abaixo.\n<strong>Não recomendado </strong> a menos que você esteja tendo problemas com sua wiki.",
 	"config-upgrade-done-no-regenerate": "Atualização completa.\n\nAgora pode [$1 começar a usar a sua wiki].",
 	"config-regenerate": "Regenerar arquivo LocalSettings.php →",

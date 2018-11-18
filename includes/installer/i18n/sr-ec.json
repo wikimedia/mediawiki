@@ -97,6 +97,7 @@
 	"config-invalid-db-type": "Неважећи тип базе података.",
 	"config-mssql-old": "Неопходан је Microsoft SQL Server $1 или новији. Ви имате $2.",
 	"config-sqlite-readonly": "Датотека <code>$1</code> није записива.",
+	"config-upgrade-error": "Дошло је до грешке при надоградњи табела Медијавикија у бази података.\n\nЗа више информација, погледајте евиденцију изнад, да бисте покушали поново, кликните на <strong>Настави</strong>.",
 	"config-regenerate": "Регенериши LocalSettings.php →",
 	"config-db-web-account": "Налог базе података за веб-приступ",
 	"config-db-web-account-same": "Користи исти налог као и за инсталацију",

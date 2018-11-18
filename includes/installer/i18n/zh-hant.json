@@ -163,6 +163,7 @@
 	"config-sqlite-cant-create-db": "無法建立資料庫檔案 <code>$1</code>。",
 	"config-sqlite-fts3-downgrade": "PHP 不支援 FTS3，正在降級資料表。",
 	"config-can-upgrade": "在資料庫中找到 MediaWiki 的資料表。\n要升級至 MediaWiki $1，請點選 <strong>繼續</strong>。",
+	"config-upgrade-error": "在更新您資料庫裡的 MediaWiki 表格時發生錯誤。\n\n有關更多資訊請查看上方日誌，若要重試請點擊<strong>繼續</strong>。",
 	"config-upgrade-done": "升級完成。\n\n現在您可以 [$1 開始使用您的 Wiki] 了。\n\n如果您需要重新產生 <code>LocalSettings.php</code> 檔案，請點選下方按鈕。\n除非您的 Wiki 出現了問題，否則我們 <strong>不建議</strong> 您執行此操作。",
 	"config-upgrade-done-no-regenerate": "升級完成。\n\n現在您可以 [$1 開始使用您的 Wiki] 了。",
 	"config-regenerate": "重新產生 LocalSettings.php →",

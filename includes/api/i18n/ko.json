@@ -863,6 +863,7 @@
 	"apierror-invalidcategory": "입력한 분류 이름이 올바르지 않습니다.",
 	"apierror-invalidexpiry": "잘못된 만료 기한 \"$1\".",
 	"apierror-invalid-file-key": "유효한 파일 키가 아닙니다.",
+	"apierror-invalidmethod": "유효하지 않은 HTTP 메서드입니다. GET 또는 POST의 사용을 고려하십시오.",
 	"apierror-invalidoldimage": "<var>oldimage</var> 변수에 유효하지 않은 형식이 있습니다.",
 	"apierror-invalidparammix-cannotusewith": "<kbd>$1</kbd> 변수는 <kbd>$2</kbd>와(과) 함께 사용할 수 없습니다.",
 	"apierror-invalidsection": "<var>section</var> 변수는 유효한 섹션 ID 또는 <kbd>new</kbd>이어야 합니다.",

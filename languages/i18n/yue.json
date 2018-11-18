@@ -1891,7 +1891,7 @@
 	"booksources-text": "以下嘅連結清單列出其它一啲賣新書同二手書嘅網站，可能可以提供到有關你想搵嘅書嘅更多資料：",
 	"booksources-invalid-isbn": "個ISBN無效；請檢查原來源複製落來嘅錯。",
 	"specialloguserlabel": "執行人：",
-	"speciallogtitlelabel": "目標（題目或者用戶 {{ns:user}}:用戶名 ）：",
+	"speciallogtitlelabel": "目標（入標題或者用戶「{{ns:user}}:用戶名」 ）：",
 	"log": "日誌",
 	"logeventslist-submit": "顯示",
 	"logeventslist-patrol-log": "巡查日誌",
