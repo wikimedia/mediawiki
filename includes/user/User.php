@@ -2304,7 +2304,18 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( !$blocked ) {
 			$block = $this->getBlock( $fromReplica );
 			if ( $block ) {
-				$blocked = $block->preventsEdit( $title );
+				// A sitewide block covers everything except maybe the user's
+				// talk page. A partial block covering the user's talk page
+				// overrides the editownusertalk flag, however.
+				// TODO: Do we really want a partial block on the user talk
+				//  namespace to ignore editownusertalk?
+				$blocked = $block->isSitewide();
+				if ( $blocked && $title->equals( $this->getTalkPage() ) ) {
+					$blocked = $block->prevents( 'editownusertalk' );
+				}
+				if ( !$block->isSitewide() ) {
+					$blocked = $block->appliesToTitle( $title );
+				}
 			}
 		}
 
