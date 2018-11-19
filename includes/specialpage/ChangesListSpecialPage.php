@@ -1279,7 +1279,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$this->getOutput()->redirect( $this->getPageTitle()->getCanonicalURL( $query ) );
 		}
 
-		$opts->validateIntBounds( 'limit', 0, 5000 );
+		$opts->validateIntBounds( 'limit', 0, 1000 );
 		$opts->validateBounds( 'days', 0, $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
 	}
 
