@@ -48,6 +48,15 @@
 			&:first-child {
 				text-align: left;
 			}
+
+			&.first {
+				margin-right: 5%;
+				width: 39%;
+			}
+		}
+
+		thead tr td {
+			padding-bottom: 0;
 		}
 
 		tbody tr:nth-child( even ) td {
@@ -58,14 +67,13 @@
 			background-color: #eaecf0;
 		}
 
-		tbody tr:first-child td {
-			background-color: #fff;
-			padding-bottom: 0;
+		// Specificity needed because of necessary high OOUI specificity due to modularity
+		.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top .oo-ui-fieldLayout-help {
+			margin-top: 0;
 		}
 
-		td.first {
-			margin-right: 5%;
-			width: 39%;
+		.oo-ui-fieldLayout.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
+			padding-bottom: 0;
 		}
 	}
 }
