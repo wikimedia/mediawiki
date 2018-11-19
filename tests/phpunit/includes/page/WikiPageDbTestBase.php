@@ -135,6 +135,9 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		}
 
 		$updater->saveRevision( CommentStoreComment::newUnsavedComment( "testing" ) );
+		if ( !$updater->wasSuccessful() ) {
+			$this->fail( $updater->getStatus()->getWikiText() );
+		}
 
 		return $page;
 	}

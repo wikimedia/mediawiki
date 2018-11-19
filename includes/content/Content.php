@@ -241,6 +241,8 @@ interface Content {
 	 * that it's also in a countable location (e.g. a current revision in the
 	 * main namespace).
 	 *
+	 * @see SlotRoleHandler::supportsArticleCount
+	 *
 	 * @since 1.21
 	 *
 	 * @param bool|null $hasLinks If it is known whether this content contains
@@ -351,6 +353,8 @@ interface Content {
 	/**
 	 * Returns whether this Content represents a redirect.
 	 * Shorthand for getRedirectTarget() !== null.
+	 *
+	 * @see SlotRoleHandler::supportsRedirects
 	 *
 	 * @since 1.21
 	 *

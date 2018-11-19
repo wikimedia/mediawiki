@@ -50,15 +50,24 @@ class RevisionRenderer {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
+	/** @var SlotRoleRegistry */
+	private $roleRegistery;
+
 	/** @var string|bool */
 	private $wikiId;
 
 	/**
 	 * @param ILoadBalancer $loadBalancer
+	 * @param SlotRoleRegistry $roleRegistry
 	 * @param bool|string $wikiId
 	 */
-	public function __construct( ILoadBalancer $loadBalancer, $wikiId = false ) {
+	public function __construct(
+		ILoadBalancer $loadBalancer,
+		SlotRoleRegistry $roleRegistry,
+		$wikiId = false
+	) {
 		$this->loadBalancer = $loadBalancer;
+		$this->roleRegistery = $roleRegistry;
 		$this->wikiId = $wikiId;
 
 		$this->saveParseLogger = new NullLogger();
@@ -175,8 +184,6 @@ class RevisionRenderer {
 			return $rrev->getSlotParserOutput( SlotRecord::MAIN );
 		}
 
-		// TODO: put fancy layout logic here, see T200915.
-
 		// move main slot to front
 		if ( isset( $slots[SlotRecord::MAIN] ) ) {
 			$slots = [ SlotRecord::MAIN => $slots[SlotRecord::MAIN] ] + $slots;
@@ -192,6 +199,7 @@ class RevisionRenderer {
 			$out = $rrev->getSlotParserOutput( $role, $hints );
 			$slotOutput[$role] = $out;
 
+			// XXX: should the SlotRoleHandler be able to intervene here?
 			$combinedOutput->mergeInternalMetaDataFrom( $out, $role );
 			$combinedOutput->mergeTrackingMetaDataFrom( $out );
 		}
@@ -201,6 +209,16 @@ class RevisionRenderer {
 			$first = true;
 			/** @var ParserOutput $out */
 			foreach ( $slotOutput as $role => $out ) {
+				$roleHandler = $this->roleRegistery->getRoleHandler( $role );
+
+				// TODO: put more fancy layout logic here, see T200915.
+				$layout = $roleHandler->getOutputLayoutHints();
+				$display = $layout['display'] ?? 'section';
+
+				if ( $display === 'none' ) {
+					continue;
+				}
+
 				if ( $first ) {
 					// skip header for the first slot
 					$first = false;
@@ -210,6 +228,8 @@ class RevisionRenderer {
 					$html .= Html::rawElement( 'h1', [ 'class' => 'mw-slot-header' ], $headText );
 				}
 
+				// XXX: do we want to put a wrapper div around the output?
+				// Do we want to let $roleHandler do that?
 				$html .= $out->getRawText();
 				$combinedOutput->mergeHtmlMetaDataFrom( $out );
 			}

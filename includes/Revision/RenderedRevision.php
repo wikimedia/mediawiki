@@ -208,6 +208,7 @@ class RenderedRevision implements SlotRenderingProvider {
 					'Access to the content has been suppressed for this audience'
 				);
 			} else {
+				// XXX: allow SlotRoleHandler to control the ParserOutput?
 				$output = $this->getSlotParserOutputUncached( $content, $withHtml );
 
 				if ( $withHtml && !$output->hasText() ) {

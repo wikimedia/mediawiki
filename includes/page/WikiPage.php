@@ -26,6 +26,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\PageUpdater;
@@ -230,6 +231,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	private function getRevisionRenderer() {
 		return MediaWikiServices::getInstance()->getRevisionRenderer();
+	}
+
+	/**
+	 * @return SlotRoleRegistry
+	 */
+	private function getSlotRoleRegistry() {
+		return MediaWikiServices::getInstance()->getSlotRoleRegistry();
 	}
 
 	/**
@@ -952,12 +960,17 @@ class WikiPage implements Page, IDBAccessObject {
 				// links.
 				$hasLinks = (bool)count( $editInfo->output->getLinks() );
 			} else {
-				// NOTE: keep in sync with revisionRenderer::getLinkCount
+				// NOTE: keep in sync with RevisionRenderer::getLinkCount
+				// NOTE: keep in sync with DerivedPageDataUpdater::isCountable
 				$hasLinks = (bool)wfGetDB( DB_REPLICA )->selectField( 'pagelinks', 1,
 					[ 'pl_from' => $this->getId() ], __METHOD__ );
 			}
 		}
 
+		// TODO: MCR: determine $hasLinks for each slot, and use that info
+		// with that slot's Content's isCountable method. That requires per-
+		// slot ParserOutput in the ParserCache, or per-slot info in the
+		// pagelinks table.
 		return $content->isCountable( $hasLinks );
 	}
 
@@ -1665,6 +1678,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$this, // NOTE: eventually, PageUpdater should not know about WikiPage
 			$this->getRevisionStore(),
 			$this->getRevisionRenderer(),
+			$this->getSlotRoleRegistry(),
 			$this->getParserCache(),
 			JobQueueGroup::singleton(),
 			MessageCache::singleton(),
@@ -1769,7 +1783,8 @@ class WikiPage implements Page, IDBAccessObject {
 			$this, // NOTE: eventually, PageUpdater should not know about WikiPage
 			$this->getDerivedDataUpdater( $user, null, $forUpdate, true ),
 			$this->getDBLoadBalancer(),
-			$this->getRevisionStore()
+			$this->getRevisionStore(),
+			$this->getSlotRoleRegistry()
 		);
 
 		$pageUpdater->setUsePageCreationLog( $wgPageCreationLog );

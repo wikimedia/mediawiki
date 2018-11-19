@@ -72,10 +72,14 @@ class RevisionStoreFactory {
 	/** @var NameTableStoreFactory */
 	private $nameTables;
 
+	/** @var SlotRoleRegistry */
+	private $slotRoleRegistry;
+
 	/**
 	 * @param ILBFactory $dbLoadBalancerFactory
 	 * @param BlobStoreFactory $blobStoreFactory
 	 * @param NameTableStoreFactory $nameTables
+	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param WANObjectCache $cache
 	 * @param CommentStore $commentStore
 	 * @param ActorMigration $actorMigration
@@ -88,6 +92,7 @@ class RevisionStoreFactory {
 		ILBFactory $dbLoadBalancerFactory,
 		BlobStoreFactory $blobStoreFactory,
 		NameTableStoreFactory $nameTables,
+		SlotRoleRegistry $slotRoleRegistry,
 		WANObjectCache $cache,
 		CommentStore $commentStore,
 		ActorMigration $actorMigration,
@@ -98,6 +103,7 @@ class RevisionStoreFactory {
 		Assert::parameterType( 'integer', $migrationStage, '$migrationStage' );
 		$this->dbLoadBalancerFactory = $dbLoadBalancerFactory;
 		$this->blobStoreFactory = $blobStoreFactory;
+		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->nameTables = $nameTables;
 		$this->cache = $cache;
 		$this->commentStore = $commentStore;
@@ -124,6 +130,7 @@ class RevisionStoreFactory {
 			$this->commentStore,
 			$this->nameTables->getContentModels( $wikiId ),
 			$this->nameTables->getSlotRoles( $wikiId ),
+			$this->slotRoleRegistry,
 			$this->mcrMigrationStage,
 			$this->actorMigration,
 			$wikiId

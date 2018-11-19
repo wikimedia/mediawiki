@@ -174,62 +174,17 @@ abstract class ContentHandler {
 	 * Note: this is used by, and may thus not use, Title::getContentModel()
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.33, use SlotRoleHandler::getDefaultModel() together with
+	 * SlotRoleRegistry::getRoleHandler().
 	 *
 	 * @param Title $title
 	 *
 	 * @return string Default model name for the page given by $title
 	 */
 	public static function getDefaultModelFor( Title $title ) {
-		// NOTE: this method must not rely on $title->getContentModel() directly or indirectly,
-		//       because it is used to initialize the mContentModel member.
-
-		$ns = $title->getNamespace();
-
-		$ext = false;
-		$m = null;
-		$model = MWNamespace::getNamespaceContentModel( $ns );
-
-		// Hook can determine default model
-		if ( !Hooks::run( 'ContentHandlerDefaultModelFor', [ $title, &$model ] ) ) {
-			if ( !is_null( $model ) ) {
-				return $model;
-			}
-		}
-
-		// Could this page contain code based on the title?
-		$isCodePage = NS_MEDIAWIKI == $ns && preg_match( '!\.(css|js|json)$!u', $title->getText(), $m );
-		if ( $isCodePage ) {
-			$ext = $m[1];
-		}
-
-		// Is this a user subpage containing code?
-		$isCodeSubpage = NS_USER == $ns
-			&& !$isCodePage
-			&& preg_match( "/\\/.*\\.(js|css|json)$/", $title->getText(), $m );
-		if ( $isCodeSubpage ) {
-			$ext = $m[1];
-		}
-
-		// Is this wikitext, according to $wgNamespaceContentModels or the DefaultModelFor hook?
-		$isWikitext = is_null( $model ) || $model == CONTENT_MODEL_WIKITEXT;
-		$isWikitext = $isWikitext && !$isCodePage && !$isCodeSubpage;
-
-		if ( !$isWikitext ) {
-			switch ( $ext ) {
-				case 'js':
-					return CONTENT_MODEL_JAVASCRIPT;
-				case 'css':
-					return CONTENT_MODEL_CSS;
-				case 'json':
-					return CONTENT_MODEL_JSON;
-				default:
-					return is_null( $model ) ? CONTENT_MODEL_TEXT : $model;
-			}
-		}
-
-		// We established that it must be wikitext
-
-		return CONTENT_MODEL_WIKITEXT;
+		$slotRoleregistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
+		$mainSlotHandler = $slotRoleregistry->getRoleHandler( 'main' );
+		return $mainSlotHandler->getDefaultModel( $title );
 	}
 
 	/**
@@ -777,7 +732,7 @@ abstract class ContentHandler {
 
 	/**
 	 * Determines whether the content type handled by this ContentHandler
-	 * can be used on the given page.
+	 * can be used for the main slot of the given page.
 	 *
 	 * This default implementation always returns true.
 	 * Subclasses may override this to restrict the use of this content model to specific locations,
@@ -786,6 +741,8 @@ abstract class ContentHandler {
 	 *
 	 * @note this calls the ContentHandlerCanBeUsedOn hook which may be used to override which
 	 * content model can be used where.
+	 *
+	 * @see SlotRoleHandler::isAllowedModel
 	 *
 	 * @param Title $title The page's title.
 	 *

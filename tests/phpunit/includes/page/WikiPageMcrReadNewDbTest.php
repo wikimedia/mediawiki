@@ -1,4 +1,6 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Revision\McrReadNewSchemaOverride;
 
 /**
@@ -23,6 +25,11 @@ class WikiPageMcrReadNewDbTest extends WikiPageDbTestBase {
 	public function testGetDeletionUpdates() {
 		$m1 = $this->defineMockContentModelForUpdateTesting( 'M1' );
 		$a1 = $this->defineMockContentModelForUpdateTesting( 'A1' );
+
+		MediaWikiServices::getInstance()->getSlotRoleRegistry()->defineRoleWithModel(
+			'aux',
+			$a1->getModelID()
+		);
 
 		$mainContent1 = $this->createMockContent( $m1, 'main 1' );
 		$auxContent1 = $this->createMockContent( $a1, 'aux 1' );

@@ -44,6 +44,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentity;
 use MessageCache;
@@ -209,6 +210,9 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 */
 	private $revisionRenderer;
 
+	/** @var SlotRoleRegistry */
+	private $slotRoleRegistry;
+
 	/**
 	 * A stage identifier for managing the life cycle of this instance.
 	 * Possible stages are 'new', 'knows-current', 'has-content', 'has-revision', and 'done'.
@@ -255,6 +259,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 * @param WikiPage $wikiPage ,
 	 * @param RevisionStore $revisionStore
 	 * @param RevisionRenderer $revisionRenderer
+	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param ParserCache $parserCache
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param MessageCache $messageCache
@@ -265,6 +270,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		WikiPage $wikiPage,
 		RevisionStore $revisionStore,
 		RevisionRenderer $revisionRenderer,
+		SlotRoleRegistry $slotRoleRegistry,
 		ParserCache $parserCache,
 		JobQueueGroup $jobQueueGroup,
 		MessageCache $messageCache,
@@ -276,6 +282,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		$this->parserCache = $parserCache;
 		$this->revisionStore = $revisionStore;
 		$this->revisionRenderer = $revisionRenderer;
+		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->messageCache = $messageCache;
 		$this->contLang = $contLang;
@@ -660,12 +667,26 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		$hasLinks = null;
 
 		if ( $this->articleCountMethod === 'link' ) {
+			// NOTE: it would be more appropriate to determine for each slot separately
+			// whether it has links, and use that information with that slot's
+			// isCountable() method. However, that would break parity with
+			// WikiPage::isCountable, which uses the pagelinks table to determine
+			// whether the current revision has links.
 			$hasLinks = (bool)count( $this->getCanonicalParserOutput()->getLinks() );
 		}
 
-		// TODO: MCR: ask all slots if they have links [SlotHandler/PageTypeHandler]
-		$mainContent = $this->getRawContent( SlotRecord::MAIN );
-		return $mainContent->isCountable( $hasLinks );
+		foreach ( $this->getModifiedSlotRoles() as $role ) {
+			$roleHandler = $this->slotRoleRegistry->getRoleHandler( $role );
+			if ( $roleHandler->supportsArticleCount() ) {
+				$content = $this->getRawContent( $role );
+
+				if ( $content->isCountable( $hasLinks ) ) {
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -673,6 +694,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 */
 	public function isRedirect() {
 		// NOTE: main slot determines redirect status
+		// TODO: MCR: this should be controlled by a PageTypeHandler
 		$mainContent = $this->getRawContent( SlotRecord::MAIN );
 
 		return $mainContent->isRedirect();

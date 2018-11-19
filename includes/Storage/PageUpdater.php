@@ -31,7 +31,6 @@ use Content;
 use ContentHandler;
 use DeferredUpdates;
 use Hooks;
-use InvalidArgumentException;
 use LogicException;
 use ManualLogEntry;
 use MediaWiki\Linker\LinkTarget;
@@ -39,6 +38,7 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Revision\SlotRecord;
 use MWException;
 use RecentChange;
@@ -97,6 +97,11 @@ class PageUpdater {
 	private $revisionStore;
 
 	/**
+	 * @var SlotRoleRegistry
+	 */
+	private $slotRoleRegistry;
+
+	/**
 	 * @var boolean see $wgUseAutomaticEditSummaries
 	 * @see $wgUseAutomaticEditSummaries
 	 */
@@ -148,13 +153,15 @@ class PageUpdater {
 	 * @param DerivedPageDataUpdater $derivedDataUpdater
 	 * @param LoadBalancer $loadBalancer
 	 * @param RevisionStore $revisionStore
+	 * @param SlotRoleRegistry $slotRoleRegistry
 	 */
 	public function __construct(
 		User $user,
 		WikiPage $wikiPage,
 		DerivedPageDataUpdater $derivedDataUpdater,
 		LoadBalancer $loadBalancer,
-		RevisionStore $revisionStore
+		RevisionStore $revisionStore,
+		SlotRoleRegistry $slotRoleRegistry
 	) {
 		$this->user = $user;
 		$this->wikiPage = $wikiPage;
@@ -162,6 +169,7 @@ class PageUpdater {
 
 		$this->loadBalancer = $loadBalancer;
 		$this->revisionStore = $revisionStore;
+		$this->slotRoleRegistry = $slotRoleRegistry;
 
 		$this->slotsUpdate = new RevisionSlotsUpdate();
 	}
@@ -318,14 +326,6 @@ class PageUpdater {
 	}
 
 	/**
-	 * @return string
-	 */
-	private function getTimestampNow() {
-		// TODO: allow an override to be injected for testing
-		return wfTimestampNow();
-	}
-
-	/**
 	 * Check flags and add EDIT_NEW or EDIT_UPDATE to them as needed.
 	 *
 	 * @param int $flags
@@ -346,8 +346,7 @@ class PageUpdater {
 	 * @param Content $content
 	 */
 	public function setContent( $role, Content $content ) {
-		// TODO: MCR: check the role and the content's model against the list of supported
-		// roles, see T194046.
+		$this->ensureRoleAllowed( $role );
 
 		$this->slotsUpdate->modifyContent( $role, $content );
 	}
@@ -358,6 +357,8 @@ class PageUpdater {
 	 * @param SlotRecord $slot
 	 */
 	public function setSlot( SlotRecord $slot ) {
+		$this->ensureRoleAllowed( $slot->getRole() );
+
 		$this->slotsUpdate->modifySlot( $slot );
 	}
 
@@ -376,6 +377,7 @@ class PageUpdater {
 	 *        by the new revision.
 	 */
 	public function inheritSlot( SlotRecord $originalSlot ) {
+		// NOTE: slots can be inherited even if the role is not "allowed" on the title.
 		// NOTE: this slot is inherited from some other revision, but it's
 		// a "modified" slot for the RevisionSlotsUpdate and DerivedPageDataUpdater,
 		// since it's not implicitly inherited from the parent revision.
@@ -393,9 +395,7 @@ class PageUpdater {
 	 * @param string $role A slot role name (but not "main")
 	 */
 	public function removeSlot( $role ) {
-		if ( $role === SlotRecord::MAIN ) {
-			throw new InvalidArgumentException( 'Cannot remove the main slot!' );
-		}
+		$this->ensureRoleNotRequired( $role );
 
 		$this->slotsUpdate->removeSlot( $role );
 	}
@@ -635,18 +635,36 @@ class PageUpdater {
 			throw new RuntimeException( 'Something is trying to edit an article with an empty title' );
 		}
 
-		// TODO: MCR: check the role and the content's model against the list of supported
-		// and required roles, see T194046.
+		// NOTE: slots can be inherited even if the role is not "allowed" on the title.
+		$status = Status::newGood();
+		$this->checkAllRolesAllowed(
+			$this->slotsUpdate->getModifiedRoles(),
+			$status
+		);
+		$this->checkNoRolesRequired(
+			$this->slotsUpdate->getRemovedRoles(),
+			$status
+		);
 
-		// Make sure the given content type is allowed for this page
-		// TODO: decide: Extend check to other slots? Consider the role in check? [PageType]
-		$mainContentHandler = $this->getContentHandler( SlotRecord::MAIN );
-		if ( !$mainContentHandler->canBeUsedOn( $this->getTitle() ) ) {
-			$this->status = Status::newFatal( 'content-not-allowed-here',
-				ContentHandler::getLocalizedName( $mainContentHandler->getModelID() ),
-				$this->getTitle()->getPrefixedText()
-			);
+		if ( !$status->isOK() ) {
 			return null;
+		}
+
+		// Make sure the given content is allowed in the respective slots of this page
+		foreach ( $this->slotsUpdate->getModifiedRoles() as $role ) {
+			$slot = $this->slotsUpdate->getModifiedSlot( $role );
+			$roleHandler = $this->slotRoleRegistry->getRoleHandler( $role );
+
+			if ( !$roleHandler->isAllowedModel( $slot->getModel(), $this->getTitle() ) ) {
+				$contentHandler = ContentHandler::getForModelID( $slot->getModel() );
+				$this->status = Status::newFatal( 'content-not-allowed-here',
+					ContentHandler::getLocalizedName( $contentHandler->getModelID() ),
+					$this->getTitle()->getPrefixedText(),
+					wfMessage( $roleHandler->getNameMessageKey() )
+					// TODO: defer message lookup to caller
+				);
+				return null;
+			}
 		}
 
 		// Load the data from the master database if needed. Needed to check flags.
@@ -882,12 +900,18 @@ class PageUpdater {
 			$content = $slot->getContent();
 
 			// XXX: We may push this up to the "edit controller" level, see T192777.
-			// TODO: change the signature of PrepareSave to not take a WikiPage!
+			// XXX: prepareSave() and isValid() could live in SlotRoleHandler
+			// XXX: PrepareSave should not take a WikiPage!
 			$prepStatus = $content->prepareSave( $wikiPage, $flags, $oldid, $user );
 
 			// TODO: MCR: record which problem arose in which slot.
 			$status->merge( $prepStatus );
 		}
+
+		$this->checkAllRequiredRoles(
+			$rev->getSlotRoles(),
+			$status
+		);
 
 		return $rev;
 	}
@@ -1214,6 +1238,73 @@ class PageUpdater {
 				Hooks::run( 'PageContentSaveComplete', $params );
 			}
 		);
+	}
+
+	/**
+	 * @return string[] Slots required for this page update, as a list of role names.
+	 */
+	private function getRequiredSlotRoles() {
+		return $this->slotRoleRegistry->getRequiredRoles( $this->getTitle() );
+	}
+
+	/**
+	 * @return string[] Slots allowed for this page update, as a list of role names.
+	 */
+	private function getAllowedSlotRoles() {
+		return $this->slotRoleRegistry->getAllowedRoles( $this->getTitle() );
+	}
+
+	private function ensureRoleAllowed( $role ) {
+		$allowedRoles = $this->getAllowedSlotRoles();
+		if ( !in_array( $role, $allowedRoles ) ) {
+			throw new PageUpdateException( "Slot role `$role` is not allowed." );
+		}
+	}
+
+	private function ensureRoleNotRequired( $role ) {
+		$requiredRoles = $this->getRequiredSlotRoles();
+		if ( in_array( $role, $requiredRoles ) ) {
+			throw new PageUpdateException( "Slot role `$role` is required." );
+		}
+	}
+
+	private function checkAllRolesAllowed( array $roles, Status $status ) {
+		$allowedRoles = $this->getAllowedSlotRoles();
+
+		$forbidden = array_diff( $roles, $allowedRoles );
+		if ( !empty( $forbidden ) ) {
+			$status->error(
+				'edit-slots-cannot-add',
+				count( $forbidden ),
+				implode( ', ', $forbidden )
+			);
+		}
+	}
+
+	private function checkNoRolesRequired( array $roles, Status $status ) {
+		$requiredRoles = $this->getRequiredSlotRoles();
+
+		$needed = array_diff( $roles, $requiredRoles );
+		if ( !empty( $needed ) ) {
+			$status->error(
+				'edit-slots-cannot-remove',
+				count( $needed ),
+				implode( ', ', $needed )
+			);
+		}
+	}
+
+	private function checkAllRequiredRoles( array $roles, Status $status ) {
+		$requiredRoles = $this->getRequiredSlotRoles();
+
+		$missing = array_diff( $requiredRoles, $roles );
+		if ( !empty( $missing ) ) {
+			$status->error(
+				'edit-slots-missing',
+				count( $missing ),
+				implode( ', ', $missing )
+			);
+		}
 	}
 
 }

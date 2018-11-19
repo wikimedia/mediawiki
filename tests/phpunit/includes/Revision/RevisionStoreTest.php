@@ -9,6 +9,7 @@ use Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiTestCase;
@@ -51,6 +52,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			MediaWikiServices::getInstance()->getCommentStore(),
 			MediaWikiServices::getInstance()->getContentModelStore(),
 			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			MediaWikiServices::getInstance()->getSlotRoleRegistry(),
 			$wgMultiContentRevisionSchemaMigrationStage,
 			MediaWikiServices::getInstance()->getActorMigration()
 		);
@@ -85,6 +87,14 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 */
 	private function getMockCommentStore() {
 		return $this->getMockBuilder( CommentStore::class )
+			->disableOriginalConstructor()->getMock();
+	}
+
+	/**
+	 * @return \PHPUnit_Framework_MockObject_MockObject|SlotRoleRegistry
+	 */
+	private function getMockSlotRoleRegistry() {
+		return $this->getMockBuilder( SlotRoleRegistry::class )
 			->disableOriginalConstructor()->getMock();
 	}
 
@@ -127,6 +137,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			$this->getMockCommentStore(),
 			$nameTables->getContentModels(),
 			$nameTables->getSlotRoles(),
+			$this->getMockSlotRoleRegistry(),
 			$migrationMode,
 			MediaWikiServices::getInstance()->getActorMigration()
 		);
@@ -541,6 +552,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$nameTables = $services->getNameTableStoreFactory();
 		$contentModelStore = $nameTables->getContentModels();
 		$slotRoleStore = $nameTables->getSlotRoles();
+		$slotRoleRegistry = $services->getSlotRoleRegistry();
 		$store = new RevisionStore(
 			$loadBalancer,
 			$blobStore,
@@ -548,6 +560,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			$commentStore,
 			$nameTables->getContentModels(),
 			$nameTables->getSlotRoles(),
+			$slotRoleRegistry,
 			$migration,
 			$services->getActorMigration()
 		);
