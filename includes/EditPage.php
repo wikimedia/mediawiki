@@ -476,7 +476,15 @@ class EditPage {
 		$this->mArticle = $article;
 		$this->page = $article->getPage(); // model object
 		$this->mTitle = $article->getTitle();
-		$this->context = $article->getContext();
+
+		// Make sure the local context is in sync with other member variables.
+		// Particularly make sure everything is using the same WikiPage instance.
+		// This should probably be the case in Article as well, but it's
+		// particularly important for EditPage, to make use of the in-place caching
+		// facility in WikiPage::prepareContentForEdit.
+		$this->context = new DerivativeContext( $article->getContext() );
+		$this->context->setWikiPage( $this->page );
+		$this->context->setTitle( $this->mTitle );
 
 		$this->contentModel = $this->mTitle->getContentModel();
 
