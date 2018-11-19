@@ -84,6 +84,14 @@ interface ILBFactory {
 	public function resolveDomainID( $domain );
 
 	/**
+	 * Close all connection and redefine the local domain for testing or schema creation
+	 *
+	 * @param DatabaseDomain|string $domain
+	 * @since 1.33
+	 */
+	public function redefineLocalDomain( $domain );
+
+	/**
 	 * Create a new load balancer object. The resulting object will be untracked,
 	 * not chronology-protected, and the caller is responsible for cleaning it up.
 	 *

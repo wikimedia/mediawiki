@@ -621,6 +621,50 @@ class LBFactoryTest extends MediaWikiTestCase {
 		}
 	}
 
+	public function testRedefineLocalDomain() {
+		global $wgDBname;
+
+		if ( wfGetDB( DB_MASTER )->databasesAreIndependent() ) {
+			self::markTestSkipped( "Skipping tests about selecting DBs: not applicable" );
+			return;
+		}
+
+		$factory = $this->newLBFactoryMulti(
+			[],
+			[]
+		);
+		$lb = $factory->getMainLB();
+
+		$conn1 = $lb->getConnectionRef( DB_MASTER );
+		$this->assertEquals(
+			wfWikiID(),
+			$conn1->getDomainID()
+		);
+		unset( $conn1 );
+
+		$factory->redefineLocalDomain( 'somedb-prefix' );
+		$this->assertEquals( 'somedb-prefix', $factory->getLocalDomainID() );
+
+		$domain = new DatabaseDomain( $wgDBname, null, 'pref' );
+		$factory->redefineLocalDomain( $domain );
+
+		$n = 0;
+		$lb->forEachOpenConnection( function () use ( &$n ) {
+			++$n;
+		} );
+		$this->assertEquals( 0, $n, "Connections closed" );
+
+		$conn2 = $lb->getConnectionRef( DB_MASTER );
+		$this->assertEquals(
+			$domain->getId(),
+			$conn2->getDomainID()
+		);
+		unset( $conn2 );
+
+		$factory->closeAll();
+		$factory->destroy();
+	}
+
 	private function quoteTable( Database $db, $table ) {
 		if ( $db->getType() === 'sqlite' ) {
 			return $table;

@@ -11,6 +11,8 @@ THIS IS NOT A RELEASE YET
 * (T213717) Correct namespace 'Template' for gom-deva
 * (T198054) Fix login page crash caused by unknown language via ?uselang
 * (T215324) (T210937) list=users mistakenly reports user as missing.
+* (T209483) Add ILBFactory::redefineLocalDomain method. This is intended for
+  use with scripts like addWiki.php to avoid mismatched domain errors.
 
 === Changes since MediaWiki 1.32.0-rc.2 ===
 * (T188327) Fix slow queries in migrateActors.php.
