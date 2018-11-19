@@ -1639,6 +1639,7 @@
 	"apierror-invalidexpiry": "وقت انتهاء الصلاحية غير صالح \"$1\".",
 	"apierror-invalid-file-key": "ليس مفتاح ملف صالح.",
 	"apierror-invalidlang": "رمز لغة غير صالح للوسيط <var>$1</var>.",
+	"apierror-invalidmethod": "طريقة HTTP غير صالحة; فكر في استخدام GET أو POST.",
 	"apierror-invalidoldimage": "يحتوي الوسيط <var>oldimage</var> على تنسيق غير صالح.",
 	"apierror-invalidparammix-cannotusewith": "لا يمكن استخدام الوسيط <kbd>$1</kbd> مع <kbd>$2</kbd>.",
 	"apierror-invalidparammix-mustusewith": "يمكن استخدام الوسيط <kbd>$1</kbd> مع <kbd>$2</kbd> فقط.",

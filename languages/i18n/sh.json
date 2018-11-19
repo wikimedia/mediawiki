@@ -339,7 +339,7 @@
 	"perfcached": "Sledeći podaci su keširani i mogu biti zastareli. Keš sadrži najviše {{PLURAL:$1|jedan rezultat|$1 rezultata|$1 rezultata}}.",
 	"perfcachedts": "Sledeći podaci su keširani, a poslednji put su ažurirani $2 u $3. Keš sadrži najviše {{PLURAL:$4|jedan rezultat|$4 rezultata|$4 rezultata}}.",
 	"querypage-no-updates": "Ažuriranje ove stranice je isključeno.\nPodaci koji se ovdje nalaze neće biti biti ažurirani.",
-	"viewsource": "Pogledaj kod",
+	"viewsource": "Izvor/Извор",
 	"viewsource-title": "Prikaz izvora stranice $1",
 	"actionthrottled": "Akcija je usporena",
 	"actionthrottledtext": "U cilju borbe protiv zloupotrebe, ograničeno vam je da u kratkom vremenskom periodu previše puta vršite ovu radnju, a upravo ste prešli to ograničenje.\nPokušajte ponovo za nekoliko minuta.",

@@ -877,7 +877,7 @@
 	"tags-active-no": "Na",
 	"tags-hitcount": "$1 {{PLURAL:$1|bodol}}",
 	"htmlform-title-not-exists": "$1 ostitvant na.",
-	"logentry-delete-delete": "$1-an {{GENDER:$2|kadun udoile}} pan $3",
+	"logentry-delete-delete": "$1, hannem {{GENDER:$2|kadun udoile}} pan $3",
 	"logentry-delete-restore": "$1 hannem {{GENDER:$2|porot haddlam}} pan $3 ($4)‎",
 	"logentry-delete-revision": "$1 hannem {{PLURAL:$5|uzolliechem}} disnem  $3, hea panar {{GENDER:$2|bodol’la}}: $4‎",
 	"revdelete-content-hid": "mozkur lipoila",

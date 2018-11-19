@@ -1124,6 +1124,7 @@
 	"group-autoconfirmed-member": "{{GENDER:$1|automatiškai patvirtintas naudotojas|automatiškai patvirtinta naudotoja}}",
 	"group-bot-member": "{{GENDER:$1|robotas}}",
 	"group-sysop-member": "{{GENDER:$1|administratorius|administratorė}}",
+	"group-interface-admin-member": "{{GENDER:$1|sąsajos administratorius}}",
 	"group-bureaucrat-member": "{{GENDER:$1|biurokratas|biurokratė}}",
 	"group-suppress-member": "{{GENDER:$1|slopintojas|slopintoja}}",
 	"grouppage-user": "{{ns:project}}:Naudotojai",

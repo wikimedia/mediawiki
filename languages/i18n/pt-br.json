@@ -3060,7 +3060,7 @@
 	"svg-long-error": "Arquivo SVG inválido: $1",
 	"show-big-image": "Arquivo original",
 	"show-big-image-preview": "Tamanho desta previsualização: $1.",
-	"show-big-image-preview-differ": "Tamanho desta visualização de $3 deste arquivo de $2: $1.",
+	"show-big-image-preview-differ": "Tamanho desta visualização em $3 deste arquivo em $2: $1.",
 	"show-big-image-other": "{{PLURAL:$2|Outra resolução|Outras resoluções}}: $1.",
 	"show-big-image-size": "$1 × $2 pixels",
 	"file-info-gif-looped": "cíclico",

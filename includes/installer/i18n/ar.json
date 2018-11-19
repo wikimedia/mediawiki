@@ -156,6 +156,7 @@
 	"config-sqlite-cant-create-db": "لا يمكن إنشاء ملف قاعدة البيانات <code>$1</code>.",
 	"config-sqlite-fts3-downgrade": "PHP يفتقد دعم FTS3، تخفيض الجداول.",
 	"config-can-upgrade": "هناك جداول ميدياويكي في قاعدة البيانات هذه. للارتقاء بها إلى ميدياويكي $1; انقر على <strong>متابعة</strong>.",
+	"config-upgrade-error": "حدث خطأ أثناء ترقية جداول ميدياويكي في قاعدة بياناتك.\n\nلمزيد من المعلومات; انظر إلى السجل أعلاه، لإعادة المحاولة انقر على <strong>متابعة</strong>.",
 	"config-upgrade-done": "اكتملت الترقية; \n\nيمكنك الآن [$1 بدء استخدام الويكي الخاص بك]. \n\nإذا كنت ترغب في إعادة إنشاء ملف <code>LocalSettings.php</code>، فانقر فوق الزر أدناه،\n<strong>غير مستحسن</strong> في ما لم تكن تواجه مشاكل مع الويكي الخاص بك.",
 	"config-upgrade-done-no-regenerate": "اكتملت الترقية;\n\nيمكنك الآن [$1 بدء استخدام الويكي الخاص بك].",
 	"config-regenerate": "إعادة تكوين LocalSettings.php ←",
