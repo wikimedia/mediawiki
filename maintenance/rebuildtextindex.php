@@ -101,9 +101,13 @@ class RebuildTextIndex extends Maintenance {
 			}
 			$end = $n + self::RTI_CHUNK_SIZE - 1;
 
-			$res = $this->db->select( $revQuery['tables'], $revQuery['fields'],
+			$res = $this->db->select(
+				$revQuery['tables'],
+				$revQuery['fields'],
 				[ "page_id BETWEEN $n AND $end", 'page_latest = rev_id', 'rev_text_id = old_id' ],
-				__METHOD__
+				__METHOD__,
+				[],
+				$revQuery['joins']
 			);
 
 			foreach ( $res as $s ) {
