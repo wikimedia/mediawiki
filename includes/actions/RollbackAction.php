@@ -73,6 +73,9 @@ class RollbackAction extends FormlessAction {
 		$trxLimits = $this->context->getConfig()->get( 'TrxProfilerLimits' );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setExpectations( $trxLimits['POST'], __METHOD__ );
+		DeferredUpdates::addCallableUpdate( function () use ( $trxProfiler, $trxLimits ) {
+			$trxProfiler->setExpectations( $trxLimits['PostSend-POST'], __METHOD__ );
+		} );
 
 		$data = null;
 		$errors = $this->page->doRollback(
