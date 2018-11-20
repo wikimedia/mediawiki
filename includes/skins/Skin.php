@@ -438,6 +438,7 @@ abstract class Skin extends ContextSource {
 	 */
 	function getPageClasses( $title ) {
 		$numeric = 'ns-' . $title->getNamespace();
+		$user = $this->getUser();
 
 		if ( $title->isSpecialPage() ) {
 			$type = 'ns-special';
@@ -449,10 +450,16 @@ abstract class Skin extends ContextSource {
 			} else {
 				$type .= ' mw-invalidspecialpage';
 			}
-		} elseif ( $title->isTalkPage() ) {
-			$type = 'ns-talk';
 		} else {
-			$type = 'ns-subject';
+			if ( $title->isTalkPage() ) {
+				$type = 'ns-talk';
+			} else {
+				$type = 'ns-subject';
+			}
+			// T208315: add HTML class when the user can edit the page
+			if ( $title->quickUserCan( 'edit', $user ) ) {
+				$type .= ' mw-editable';
+			}
 		}
 
 		$name = Sanitizer::escapeClass( 'page-' . $title->getPrefixedText() );
