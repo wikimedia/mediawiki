@@ -1918,7 +1918,15 @@ class LoadBalancer implements ILoadBalancer {
 		$this->indexAliases = $aliases;
 	}
 
+	/**
+	 * @param string $prefix
+	 * @deprecated Since 1.33
+	 */
 	public function setDomainPrefix( $prefix ) {
+		$this->setLocalDomainPrefix( $prefix );
+	}
+
+	public function setLocalDomainPrefix( $prefix ) {
 		// Find connections to explicit foreign domains still marked as in-use...
 		$domainsInUse = [];
 		$this->forEachOpenConnection( function ( IDatabase $conn ) use ( &$domainsInUse ) {

@@ -137,7 +137,7 @@ class CloneDatabase {
 		global $wgDBprefix;
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lbFactory->setDomainPrefix( $prefix );
+		$lbFactory->setLocalDomainPrefix( $prefix );
 		$wgDBprefix = $prefix;
 	}
 }
