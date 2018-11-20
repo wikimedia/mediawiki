@@ -54,6 +54,8 @@ THIS IS NOT A RELEASE YET
 * (T195525) Fix db error outage page.
 * (T208871) The hard-coded Google search form on the database error page was
   removed.
+* (T209885) Prevent populateSearchIndex.php from breaking once actor migration
+  has been started.
 
 == MediaWiki 1.31.1 ==
 
