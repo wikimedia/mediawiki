@@ -117,9 +117,10 @@
 				// Reset
 				widget.menu.clearItems();
 				widget.menu.addItems( widget.getOptionsFromData( data ) );
+			} ).always( function () {
+				// Parent method
+				mw.widgets.TitlesMultiselectWidget.parent.prototype.onInputChange.call( widget );
 			} );
-
-		mw.widgets.TitlesMultiselectWidget.parent.prototype.onInputChange.call( this );
 	};
 
 	/**
