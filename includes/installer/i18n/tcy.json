@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"VASANTH S.N.",
-			"Vishwanatha Badikana"
+			"Vishwanatha Badikana",
+			"Ravi Mundkur"
 		]
 	},
 	"config-desc": "ಮೀಡಿಯ ವಿಕಿದ ಪ್ರತಿಸ್ಟಾಪನೆ",
@@ -32,9 +33,11 @@
 	"config-db-type": "ದತ್ತಾಂಶಸಂಚಯ ಮಾದರಿ:",
 	"config-db-host-oracle": "ದತ್ತಾಂಶಸಂಚಯ TNS:",
 	"config-db-wiki-settings": "ಈ ವಿಕಿಯನ್ನು ಗುರುತಿಸಾಲೆ",
-	"config-db-name": "ದತ್ತಾಂಶಸಂಚಯ ಪುದರ್:",
+	"config-db-name": "ಮಾಹಿತಿಕೋಶದ ಪುದರ್(ಕೂಡುಗೆರೆ ದಾಂತೆ):",
 	"config-db-username": "ದತ್ತಾಂಶಸಂಚಯ ಪುದರ್:",
 	"config-db-password": "ದತ್ತಾಂಶಸಂಚಯ ಪ್ರವೇಶಪದ:",
+	"config-db-prefix": "ಮಾಹಿತಿಕೋಶ ಪಟ್ಟಿದ ಸುರುಪದ (ಕೂಡುಗೆರೆ ದಾಂತೆ)",
+	"config-db-schema": "ಮೀಡಿಯಾವಿಕಿತ ರೂಪರೇಷೆ (ಕೂಡುಗೆರೆ ದಾಂತೆ)",
 	"config-ns-generic": "ಯೋಜನೆ",
 	"config-admin-password": "ಪ್ರವೇಶ ಪದೊ",
 	"config-admin-password-confirm": "ಪುನಃ ಪ್ರವೇಶ ಪದೊ:",

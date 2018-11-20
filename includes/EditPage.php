@@ -476,7 +476,15 @@ class EditPage {
 		$this->mArticle = $article;
 		$this->page = $article->getPage(); // model object
 		$this->mTitle = $article->getTitle();
-		$this->context = $article->getContext();
+
+		// Make sure the local context is in sync with other member variables.
+		// Particularly make sure everything is using the same WikiPage instance.
+		// This should probably be the case in Article as well, but it's
+		// particularly important for EditPage, to make use of the in-place caching
+		// facility in WikiPage::prepareContentForEdit.
+		$this->context = new DerivativeContext( $article->getContext() );
+		$this->context->setWikiPage( $this->page );
+		$this->context->setTitle( $this->mTitle );
 
 		$this->contentModel = $this->mTitle->getContentModel();
 
@@ -3123,7 +3131,10 @@ ERROR;
 
 					if ( !$revision->isCurrent() ) {
 						$this->mArticle->setOldSubtitle( $revision->getId() );
-						$out->addWikiMsg( 'editingold' );
+						$out->wrapWikiMsg(
+							Html::warningBox( "\n$1\n" ),
+							'editingold'
+						);
 						$this->isOldRev = true;
 					}
 				} elseif ( $this->mTitle->exists() ) {
@@ -3142,16 +3153,22 @@ ERROR;
 			);
 		} elseif ( $user->isAnon() ) {
 			if ( $this->formtype != 'preview' ) {
+				$returntoquery = array_diff_key(
+					$this->context->getRequest()->getValues(),
+					[ 'title' => true, 'returnto' => true, 'returntoquery' => true ]
+				);
 				$out->wrapWikiMsg(
 					"<div id='mw-anon-edit-warning' class='warningbox'>\n$1\n</div>",
 					[ 'anoneditwarning',
 						// Log-in link
 						SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
-							'returnto' => $this->getTitle()->getPrefixedDBkey()
+							'returnto' => $this->getTitle()->getPrefixedDBkey(),
+							'returntoquery' => wfArrayToCgi( $returntoquery ),
 						] ),
 						// Sign-up link
 						SpecialPage::getTitleFor( 'CreateAccount' )->getFullURL( [
-							'returnto' => $this->getTitle()->getPrefixedDBkey()
+							'returnto' => $this->getTitle()->getPrefixedDBkey(),
+							'returntoquery' => wfArrayToCgi( $returntoquery ),
 						] )
 					]
 				);

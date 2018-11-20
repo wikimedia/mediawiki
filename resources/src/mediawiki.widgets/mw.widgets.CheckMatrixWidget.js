@@ -21,6 +21,8 @@
 	mw.widgets.CheckMatrixWidget = function MWWCheckMatrixWidget( config ) {
 		var $headRow = $( '<tr>' ),
 			$table = $( '<table>' ),
+			$thead = $( '<thead>' ),
+			$tbody = $( '<tbody>' ),
 			widget = this;
 		config = config || {};
 
@@ -42,9 +44,9 @@
 		// Iterate over the columns object (ignore the value)
 		// eslint-disable-next-line no-restricted-properties
 		$.each( this.columns, function ( columnLabel ) {
-			$headRow.append( $( '<td>' ).html( columnLabel ) );
+			$headRow.append( $( '<th>' ).html( columnLabel ) );
 		} );
-		$table.append( $headRow );
+		$thead.append( $headRow );
 
 		// Build table
 		// eslint-disable-next-line no-restricted-properties
@@ -78,8 +80,11 @@
 				$row.append( $( '<td>' ).append( checkbox.$element ) );
 			} );
 
-			$table.append( $row );
+			$tbody.append( $row );
 		} );
+		$table
+			.addClass( 'mw-htmlform-matrix mw-widget-checkMatrixWidget-matrix' )
+			.append( $thead, $tbody );
 
 		this.$element
 			.addClass( 'mw-widget-checkMatrixWidget' )

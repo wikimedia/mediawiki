@@ -930,6 +930,9 @@ CREATE TABLE /*_*/externallinks (
   -- which allows for fast searching for all pages under example.com with the
   -- clause:
   --      WHERE el_index LIKE 'http://com.example.%'
+  --
+  -- Note if you enable or disable PHP's intl extension, you'll need to run
+  -- maintenance/refreshExternallinksIndex.php to refresh this field.
   el_index blob NOT NULL,
 
   -- This is el_index truncated to 60 bytes to allow for sortable queries that
@@ -1210,23 +1213,6 @@ CREATE INDEX /*i*/img_timestamp ON /*_*/image (img_timestamp);
 CREATE INDEX /*i*/img_sha1 ON /*_*/image (img_sha1(10));
 -- Used to get media of one type
 CREATE INDEX /*i*/img_media_mime ON /*_*/image (img_media_type,img_major_mime,img_minor_mime);
-
---
--- Temporary table to avoid blocking on an alter of image.
---
--- On large wikis like Wikimedia Commons, altering the image table is a
--- months-long process. This table is being created to avoid such an alter, and
--- will be merged back into image in the future.
---
-CREATE TABLE /*_*/image_comment_temp (
-  -- Key to img_name (ugh)
-  imgcomment_name varchar(255) binary NOT NULL,
-  -- Key to comment_id
-  imgcomment_description_id bigint unsigned NOT NULL,
-  PRIMARY KEY (imgcomment_name, imgcomment_description_id)
-) /*$wgDBTableOptions*/;
--- Ensure uniqueness
-CREATE UNIQUE INDEX /*i*/imgcomment_name ON /*_*/image_comment_temp (imgcomment_name);
 
 
 --

@@ -15,12 +15,17 @@ class TitlesMultiselectWidget extends \OOUI\Widget {
 	protected $titlesArray = [];
 	protected $inputName = null;
 	protected $inputPlaceholder = null;
+	protected $tagLimit = null;
+	protected $showMissing = null;
 
 	/**
 	 * @param array $config Configuration options
 	 *   - array $config['titles'] Array of titles to use as preset data
 	 *   - array $config['placeholder'] Placeholder message for input
 	 *   - array $config['name'] Name attribute (used in forms)
+	 *   - number $config['tagLimit'] Maximum number of selected titles
+	 *   - bool $config['showMissing'] Show missing pages
+	 *   - array $config['input'] Config options for the input widget
 	 */
 	public function __construct( array $config = [] ) {
 		parent::__construct( $config );
@@ -35,12 +40,22 @@ class TitlesMultiselectWidget extends \OOUI\Widget {
 		if ( isset( $config['placeholder'] ) ) {
 			$this->inputPlaceholder = $config['placeholder'];
 		}
+		if ( isset( $config['tagLimit'] ) ) {
+			$this->tagLimit = $config['tagLimit'];
+		}
+		if ( isset( $config['showMissing'] ) ) {
+			$this->showMissing = $config['showMissing'];
+		}
+		if ( isset( $config['input'] ) ) {
+			$this->input = $config['input'];
+		}
 
-		$textarea = new MultilineTextInputWidget( [
+		$textarea = new MultilineTextInputWidget( array_merge( [
 			'name' => $this->inputName,
 			'value' => implode( "\n", $this->titlesArray ),
 			'rows' => 10,
-		] );
+		], $this->input ) );
+
 		$this->appendContent( $textarea );
 		$this->addClasses( [ 'mw-widgets-titlesMultiselectWidget' ] );
 	}
@@ -58,6 +73,15 @@ class TitlesMultiselectWidget extends \OOUI\Widget {
 		}
 		if ( $this->inputPlaceholder !== null ) {
 			$config['placeholder'] = $this->inputPlaceholder;
+		}
+		if ( $this->tagLimit !== null ) {
+			$config['tagLimit'] = $this->tagLimit;
+		}
+		if ( $this->showMissing !== null ) {
+			$config['showMissing'] = $this->showMissing;
+		}
+		if ( $this->input !== null ) {
+			$config['input'] = $this->input;
 		}
 
 		$config['$overlay'] = true;

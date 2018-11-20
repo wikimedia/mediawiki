@@ -58,19 +58,25 @@ class CheckMatrixWidget extends \OOUI\Widget {
 
 		// Build the table
 		$table = new \OOUI\Tag( 'table' );
+		$table->addClasses( [ 'mw-htmlform-matrix mw-widget-checkMatrixWidget-matrix' ] );
+		$thead = new \OOUI\Tag( 'thead' );
+		$table->appendContent( $thead );
 		$tr = new \OOUI\Tag( 'tr' );
+
 		// Build the header
 		$tr->appendContent( $this->getCellTag( "\u{00A0}" ) );
 		foreach ( $this->columns as $columnLabel => $columnTag ) {
 			$tr->appendContent(
-				$this->getCellTag( new \OOUI\HtmlSnippet( $columnLabel ) )
+				$this->getCellTag( new \OOUI\HtmlSnippet( $columnLabel ), 'th' )
 			);
 		}
-		$table->appendContent( $tr );
+		$thead->appendContent( $tr );
 
 		// Build the options matrix
+		$tbody = new \OOUI\Tag( 'tbody' );
+		$table->appendContent( $tbody );
 		foreach ( $this->rows as $rowLabel => $rowTag ) {
-			$table->appendContent(
+			$tbody->appendContent(
 				$this->getTableRow( $rowLabel, $rowTag )
 			);
 		}
@@ -126,8 +132,8 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	 * @param  mixed $content Content for the <td> cell
 	 * @return \OOUI\Tag Resulting cell
 	 */
-	private function getCellTag( $content ) {
-		$cell = new \OOUI\Tag( 'td' );
+	private function getCellTag( $content, $tagElement = 'td' ) {
+		$cell = new \OOUI\Tag( $tagElement );
 		$cell->appendContent( $content );
 		return $cell;
 	}

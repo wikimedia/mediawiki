@@ -314,9 +314,14 @@ abstract class Action implements MessageLocalizer {
 			}
 		}
 
-		if ( $this->requiresUnblock() && $user->isBlocked() ) {
+		// If the action requires an unblock, explicitly check the user's block.
+		if ( $this->requiresUnblock() && $user->isBlockedFrom( $this->getTitle() ) ) {
 			$block = $user->getBlock();
-			throw new UserBlockedError( $block );
+			if ( $block ) {
+				throw new UserBlockedError( $block );
+			}
+
+			throw new PermissionsError( $this->getName(), [ 'badaccess-group0' ] );
 		}
 
 		// This should be checked at the end so that the user won't think the

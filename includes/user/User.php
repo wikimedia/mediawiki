@@ -1824,11 +1824,11 @@ class User implements IDBAccessObject, UserIdentity {
 
 	/**
 	 * Get blocking information
-	 * @param bool $bFromSlave Whether to check the replica DB first.
+	 * @param bool $bFromReplica Whether to check the replica DB first.
 	 *   To improve performance, non-critical checks are done against replica DBs.
 	 *   Check when actually saving should be done against master.
 	 */
-	private function getBlockedStatus( $bFromSlave = true ) {
+	private function getBlockedStatus( $bFromReplica = true ) {
 		global $wgProxyWhitelist, $wgUser, $wgApplyIpBlocksToXff, $wgSoftBlockRanges;
 
 		if ( -1 != $this->mBlockedby ) {
@@ -1860,7 +1860,7 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		// User/IP blocking
-		$block = Block::newFromTarget( $this, $ip, !$bFromSlave );
+		$block = Block::newFromTarget( $this, $ip, !$bFromReplica );
 
 		// Cookie blocking
 		if ( !$block instanceof Block ) {
@@ -1896,7 +1896,7 @@ class User implements IDBAccessObject, UserIdentity {
 			$xff = $this->getRequest()->getHeader( 'X-Forwarded-For' );
 			$xff = array_map( 'trim', explode( ',', $xff ) );
 			$xff = array_diff( $xff, [ $ip ] );
-			$xffblocks = Block::getBlocksForIPList( $xff, $this->isAnon(), !$bFromSlave );
+			$xffblocks = Block::getBlocksForIPList( $xff, $this->isAnon(), !$bFromReplica );
 			$block = Block::chooseBlock( $xffblocks, $xff );
 			if ( $block instanceof Block ) {
 				# Mangle the reason to alert the user that the block
@@ -2272,22 +2272,22 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Check if user is blocked
 	 *
-	 * @param bool $bFromSlave Whether to check the replica DB instead of
+	 * @param bool $bFromReplica Whether to check the replica DB instead of
 	 *   the master. Hacked from false due to horrible probs on site.
 	 * @return bool True if blocked, false otherwise
 	 */
-	public function isBlocked( $bFromSlave = true ) {
-		return $this->getBlock( $bFromSlave ) instanceof Block && $this->getBlock()->prevents( 'edit' );
+	public function isBlocked( $bFromReplica = true ) {
+		return $this->getBlock( $bFromReplica ) instanceof Block && $this->getBlock()->prevents( 'edit' );
 	}
 
 	/**
 	 * Get the block affecting the user, or null if the user is not blocked
 	 *
-	 * @param bool $bFromSlave Whether to check the replica DB instead of the master
+	 * @param bool $bFromReplica Whether to check the replica DB instead of the master
 	 * @return Block|null
 	 */
-	public function getBlock( $bFromSlave = true ) {
-		$this->getBlockedStatus( $bFromSlave );
+	public function getBlock( $bFromReplica = true ) {
+		$this->getBlockedStatus( $bFromReplica );
 		return $this->mBlock instanceof Block ? $this->mBlock : null;
 	}
 
@@ -2295,16 +2295,27 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Check if user is blocked from editing a particular article
 	 *
 	 * @param Title $title Title to check
-	 * @param bool $fromSlave Whether to check the replica DB instead of the master
+	 * @param bool $fromReplica Whether to check the replica DB instead of the master
 	 * @return bool
 	 */
-	public function isBlockedFrom( $title, $fromSlave = false ) {
+	public function isBlockedFrom( $title, $fromReplica = false ) {
 		$blocked = $this->isHidden();
 
 		if ( !$blocked ) {
-			$block = $this->getBlock( $fromSlave );
+			$block = $this->getBlock( $fromReplica );
 			if ( $block ) {
-				$blocked = $block->preventsEdit( $title );
+				// A sitewide block covers everything except maybe the user's
+				// talk page. A partial block covering the user's talk page
+				// overrides the editownusertalk flag, however.
+				// TODO: Do we really want a partial block on the user talk
+				//  namespace to ignore editownusertalk?
+				$blocked = $block->isSitewide();
+				if ( $blocked && $title->equals( $this->getTalkPage() ) ) {
+					$blocked = $block->prevents( 'editownusertalk' );
+				}
+				if ( !$block->isSitewide() ) {
+					$blocked = $block->appliesToTitle( $title );
+				}
 			}
 		}
 

@@ -67,25 +67,21 @@
 	content: '. .';
 }
 
-.mw-changeslist-link-list {
-	display: inline-block;
-	/* In @media print, list elements have margins and/or paddings defined.
-	We don't want to see margins/paddings on these elements under any circumstances. */
-	margin: 0;
-	padding: 0;
-
+.mw-changeslist-links,
+.mw-diff-bytes,
+.mw-uctop {
 	&:before {
 		content: '@{msg-parentheses-start}';
 	}
 	&:after {
 		content: '@{msg-parentheses-end}';
 	}
+}
 
-	> li {
-		display: inline;
+.mw-changeslist-links {
+	display: inline-block;
 
-		&:not( :first-child ):before {
-			content: '@{msg-pipe-separator}';
-		}
+	> span:not( :first-child ):before {
+		content: '@{msg-pipe-separator}';
 	}
 }

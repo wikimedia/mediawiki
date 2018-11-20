@@ -15,13 +15,23 @@ production.
   the current parse language where available.
 
 ==== Changed configuration ====
+* Some external link searches will not work correctly until update.php (or
+  refreshExternallinksIndex.php) is run. These include searches for links using
+  IP addresses, internationalized domain names, and possibly mailto links.
+* (T193868) $wgChangeTagsSchemaMigrationStage — This temporary setting, added in
+  MediaWiki 1.32, now defaults to MIGRATION_NEW instead of MIGRATION_WRITE_BOTH.
 * …
 
 ==== Removed configuration ====
+* (T199334) $wgTagStatisticsNewTable — This temporary setting, added in
+  MediaWiki 1.32, has now been removed. When loading Special:Tags, MediaWiki
+  will now always use the `change_tag_def` instead of the `change_tag` table.
 * …
 
 === New features in 1.33 ===
 * The 'GetPreferences' hook now receives an additional $context parameter.
+* (T96041) __EXPECT_UNUSED_CATEGORY__ on a category page causes the category
+  to be hidden on Special:UnusedCategories.
 * …
 
 === External library changes in 1.33 ===
@@ -42,6 +52,7 @@ production.
 
 === Action API changes in 1.33 ===
 * (T198913) Added 'ApiOptions' hook.
+* The JSON formatversion=2 is no longer experimental.
 * …
 
 === Action API internal changes in 1.33 ===
@@ -148,6 +159,11 @@ because of Phabricator reports.
 * …
 
 === Other changes in 1.33 ===
+* (T208871) The hard-coded Google search form on the database error page was
+  removed.
+* The image_comment_temp database table, deprecated in 1.32, has been removed.
+  Since access should be mediated by the CommentStore class, this change
+  shouldn't affect external code.
 * …
 
 == Compatibility ==

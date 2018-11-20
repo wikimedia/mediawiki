@@ -14,7 +14,8 @@
 			"AS",
 			"Umherirrender",
 			"Choomaq",
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"Vlad5250"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документація]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаПи]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Список розсилки]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Оголошення API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Баґи і запити]\n</div>\n<strong>Статус:</strong> Усі функції, вказані на цій сторінці, мають працювати, але API далі перебуває в активній розробці і може змінитися у будь-який момент. Підпишіться на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ список розсилки mediawiki-api-announce], щоб помічати оновлення.\n\n<strong>Хибні запити:</strong> Коли до API надсилаються хибні запити, буде відіслано HTTP-шапку з ключем «MediaWiki-API-Error», а тоді і значення шапки, і код помилки, надіслані назад, будуть встановлені з тим же значенням. Більше інформації див. на сторінці [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Помилки й попередження]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестування:</strong> Для зручності тестування запитів API, див. [[Special:ApiSandbox]].</p>",
@@ -1457,11 +1458,11 @@
 	"apihelp-json-param-callback": "Якщо вказано, огортає вивід викликом даної функції. З міркувань безпеки, усі специфічні до користувача дані буде утримано.",
 	"apihelp-json-param-utf8": "Якщо вказано, кодує більшість (але не всі) не-ASCII символів як UTF-8, замість заміни їх шістнадцятковими екрануючими послідовностями. За замовчуванням коли <var>formatversion</var> не є <kbd>1</kbd>.",
 	"apihelp-json-param-ascii": "Якщо вказано, кодує всі не-ASCII використовуючи шістнадцяткові екрануючі послідовності. За замовчуванням коли <var>formatversion</var> є <kbd>1</kbd>.",
-	"apihelp-json-param-formatversion": "Форматування виводу:\n;1:Формат зворотної сумісності (булеви XML-стилю, <samp>*</samp> ключі для вузлів вмісту тощо).\n;2:Експериментальний сучасний формат. Деталі можуть змінюватись.\n;latest:Використовувати найостанніший формат (наразі <kbd>2</kbd>). Може змінюватись без попередження.",
+	"apihelp-json-param-formatversion": "Форматування виводу:\n;1:Формат зворотної сумісності (булеви XML-стилю, <samp>*</samp> ключі для вузлів вмісту тощо).\n;2:Сучасний формат.\n;latest:Використовувати найостанніший формат (наразі <kbd>2</kbd>). Може змінюватись без попередження.",
 	"apihelp-jsonfm-summary": "Вивести дані у форматі JSON (вивід відформатованого коду за допомогою HTML).",
 	"apihelp-none-summary": "Нічого не виводити.",
 	"apihelp-php-summary": "Виводити дані у форматі серіалізованого PHP.",
-	"apihelp-php-param-formatversion": "Форматування виводу:\n;1:Формат зворотної сумісності (булеви XML-стилю, <samp>*</samp> ключі для вузлів вмісту тощо).\n;2:Експериментальний сучасний формат. Деталі можуть змінюватись.\n;latest:Використовувати найостанніший формат (наразі <kbd>2</kbd>). Може змінюватись без попередження.",
+	"apihelp-php-param-formatversion": "Форматування виводу:\n;1:Формат зворотної сумісності (булеви XML-стилю, <samp>*</samp> ключі для вузлів вмісту тощо).\n;2:Сучасний формат.\n;latest:Використовувати найостанніший формат (наразі <kbd>2</kbd>). Може змінюватись без попередження.",
 	"apihelp-phpfm-summary": "Виводити дані у форматі серіалізованого PHP (вивід відформатованого коду за допомогою HTML).",
 	"apihelp-rawfm-summary": "Виводити дані, включно з елементами налагодження, у форматі JSON (вивід відформатованого коду за допомогою HTML).",
 	"apihelp-xml-summary": "Виводити дані у форматі XML.",

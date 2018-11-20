@@ -54,13 +54,13 @@ class CleanupSpam extends Maintenance {
 
 		$spec = $this->getArg();
 
-		$likes = [];
+		$protConds = [];
 		foreach ( [ 'http://', 'https://' ] as $prot ) {
-			$like = LinkFilter::makeLikeArray( $spec, $prot );
-			if ( !$like ) {
+			$conds = LinkFilter::getQueryConditions( $spec, [ 'protocol' => $prot ] );
+			if ( !$conds ) {
 				$this->fatalError( "Not a valid hostname specification: $spec" );
 			}
-			$likes[$prot] = $like;
+			$protConds[$prot] = $conds;
 		}
 
 		if ( $this->hasOption( 'all' ) ) {
@@ -71,11 +71,11 @@ class CleanupSpam extends Maintenance {
 				/** @var $dbr Database */
 				$dbr = $this->getDB( DB_REPLICA, [], $wikiID );
 
-				foreach ( $likes as $like ) {
+				foreach ( $protConds as $conds ) {
 					$count = $dbr->selectField(
 						'externallinks',
 						'COUNT(*)',
-						[ 'el_index' . $dbr->buildLike( $like ) ],
+						$conds,
 						__METHOD__
 					);
 					if ( $count ) {
@@ -99,11 +99,11 @@ class CleanupSpam extends Maintenance {
 			$count = 0;
 			/** @var $dbr Database */
 			$dbr = $this->getDB( DB_REPLICA );
-			foreach ( $likes as $prot => $like ) {
+			foreach ( $protConds as $prot => $conds ) {
 				$res = $dbr->select(
 					'externallinks',
 					[ 'DISTINCT el_from' ],
-					[ 'el_index' . $dbr->buildLike( $like ) ],
+					$conds,
 					__METHOD__
 				);
 				$count = $dbr->numRows( $res );

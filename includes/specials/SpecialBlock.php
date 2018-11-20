@@ -171,6 +171,10 @@ class SpecialBlock extends FormSpecialPage {
 				'exists' => true,
 				'max' => 10,
 				'cssclass' => 'mw-block-page-restrictions',
+				'showMissing' => false,
+				'input' => [
+					'autocomplete' => false
+				],
 			];
 		}
 

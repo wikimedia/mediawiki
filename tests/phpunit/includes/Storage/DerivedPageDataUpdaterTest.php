@@ -803,16 +803,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 			'$forParent' => 0,
 			'$isReusable' => false,
 		];
-		yield 'mismatch prepareUpdate revision user' => [
-			'$prepUser' => null,
-			'$prepRevision' => $rev2,
-			'$prepUpdate' => null,
-			'$forUser' => null,
-			'$forRevision' => $rev2x,
-			'$forUpdate' => null,
-			'$forParent' => 0,
-			'$isReusable' => false,
-		];
 		yield 'mismatch prepareUpdate revision id' => [
 			'$prepUser' => null,
 			'$prepRevision' => $rev2,

@@ -1646,6 +1646,7 @@
 	"apierror-invalidexpiry": "{{doc-apierror}}\n\nParameters:\n* $1 - Value provided.",
 	"apierror-invalid-file-key": "{{doc-apierror}}",
 	"apierror-invalidlang": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.",
+	"apierror-invalidmethod": "{{doc-apierror}}\n\nShown when a user tries to access the API using an HTTP method that is not supported",
 	"apierror-invalidoldimage": "{{doc-apierror}}",
 	"apierror-invalidparammix-cannotusewith": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name or \"parameter=value\" text.\n* $2 - Parameter name or \"parameter=value\" text.",
 	"apierror-invalidparammix-mustusewith": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name or \"parameter=value\" text.\n* $2 - Parameter name or \"parameter=value\" text.",

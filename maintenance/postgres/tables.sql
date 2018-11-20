@@ -463,13 +463,6 @@ CREATE INDEX img_size_idx      ON image (img_size);
 CREATE INDEX img_timestamp_idx ON image (img_timestamp);
 CREATE INDEX img_sha1          ON image (img_sha1);
 
-CREATE TABLE image_comment_temp (
-	imgcomment_name       TEXT NOT NULL,
-	imgcomment_description_id INTEGER NOT NULL,
-	PRIMARY KEY (imgcomment_name, imgcomment_description_id)
-);
-CREATE UNIQUE INDEX imgcomment_name ON image_comment_temp (imgcomment_name);
-
 CREATE TABLE oldimage (
   oi_name          TEXT         NOT NULL,
   oi_archive_name  TEXT         NOT NULL,

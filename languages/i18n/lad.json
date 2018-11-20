@@ -825,7 +825,7 @@
 	"contributions-title": "Ajustamientos {{GENDER:$1|del usuario|de la usuaria}} $1",
 	"mycontris": "Kontribüsyones",
 	"contribsub2": "Para {{GENDER:$3|$1}}($2)",
-	"uctop": "(korriente)",
+	"uctop": "korriente",
 	"month": "Desde el mes (i antes):",
 	"year": "Desde el anyo (i antes):",
 	"sp-contributions-newbies": "Mostrar solo las ajustamientos de los usuarios nuevos",

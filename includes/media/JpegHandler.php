@@ -232,7 +232,7 @@ class JpegHandler extends ExifBitmapHandler {
 	 * @return bool
 	 */
 	public function swapICCProfile( $filepath, array $colorSpaces,
-									array $oldProfileStrings, $profileFilepath
+		array $oldProfileStrings, $profileFilepath
 	) {
 		global $wgExiftool;
 

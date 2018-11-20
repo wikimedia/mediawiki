@@ -568,10 +568,17 @@ class ContribsPager extends RangeChronologicalPager {
 				$del .= ' ';
 			}
 
-			$diffHistLinks = Html::rawElement( 'ul',
-				[ 'class' => 'mw-changeslist-link-list' ],
-				Html::rawElement( 'li', [], $difftext ) .
-				Html::rawElement( 'li', [], $histlink )
+			// While it might be tempting to use a list here
+			// this would result in clutter and slows down navigating the content
+			// in assistive technology.
+			// See https://phabricator.wikimedia.org/T205581#4734812
+			$diffHistLinks = Html::rawElement( 'span',
+				[ 'class' => 'mw-changeslist-links' ],
+				// The spans are needed to ensure the dividing '|' elements are not
+				// themselves styled as links.
+				Html::rawElement( 'span', [], $difftext ) .
+				' ' . // Space needed for separating two words.
+				Html::rawElement( 'span', [], $histlink )
 			);
 
 			# Tags, if any.

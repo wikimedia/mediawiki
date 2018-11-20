@@ -1452,6 +1452,8 @@ class Parser {
 		} else {
 			# attempt to sanitize at least some nesting problems
 			# (T4702 and quite a few others)
+			# This code path is buggy and deprecated!
+			wfDeprecated( 'disabling tidy', '1.33' );
 			$tidyregs = [
 				# ''Something [http://www.cool.com cool''] -->
 				# <i>Something</i><a href="http://www.cool.com"..><i>cool></i></a>
@@ -2026,7 +2028,19 @@ class Parser {
 	 * @return string
 	 */
 	public static function normalizeLinkUrl( $url ) {
-		# First, make sure unsafe characters are encoded
+		# Test for RFC 3986 IPv6 syntax
+		$scheme = '[a-z][a-z0-9+.-]*:';
+		$userinfo = '(?:[a-z0-9\-._~!$&\'()*+,;=:]|%[0-9a-f]{2})*';
+		$ipv6Host = '\\[((?:[0-9a-f:]|%3[0-A]|%[46][1-6])+)\\]';
+		if ( preg_match( "<^(?:{$scheme})?//(?:{$userinfo}@)?{$ipv6Host}(?:[:/?#].*|)$>i", $url, $m ) &&
+			IP::isValid( rawurldecode( $m[1] ) )
+		) {
+			$isIPv6 = rawurldecode( $m[1] );
+		} else {
+			$isIPv6 = false;
+		}
+
+		# Make sure unsafe characters are encoded
 		$url = preg_replace_callback( '/[\x00-\x20"<>\[\\\\\]^`{|}\x7F-\xFF]/',
 			function ( $m ) {
 				return rawurlencode( $m[0] );
@@ -2057,6 +2071,16 @@ class Parser {
 		# (we assume no userinfo or encoded colons in the host)
 		$ret = self::normalizeUrlComponent(
 			substr( $url, 0, $end ), '"#%<>[\]^`{|}/?' ) . $ret;
+
+		# Fix IPv6 syntax
+		if ( $isIPv6 !== false ) {
+			$ipv6Host = "%5B({$isIPv6})%5D";
+			$ret = preg_replace(
+				"<^((?:{$scheme})?//(?:{$userinfo}@)?){$ipv6Host}(?=[:/?#]|$)>i",
+				"$1[$2]",
+				$ret
+			);
+		}
 
 		return $ret;
 	}

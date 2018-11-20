@@ -16,7 +16,8 @@
 			"Lemondoge",
 			"Hex",
 			"Mainframe98",
-			"Southparkfan"
+			"Southparkfan",
+			"Elroy"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentatie]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-maillijst]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-aankondigingen]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & verzoeken]\n</div>\n<strong>Status:</strong> De MediaWiki API is een stabiele interface die actief ondersteund en verbeterd wordt. Hoewel we het proberen te voorkomen, is het mogelijk dat er soms wijzigingen worden aangebracht die bepaalde API-verzoek kunnen verhinderen; abonneer u op de [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ e-maillijst mediawiki-api-announce] voor meldingen over wijzigingen.\n\n<strong>Foutieve verzoeken:</strong> als de API foutieve verzoeken ontvangt, wordt er geantwoord met een HTTP-header met de sleutel \"MediaWiki-API-Error\" en daarna worden de waarde van de header en de foutcode op dezelfde waarde ingesteld. Zie [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Foutmeldingen en waarschuwingen]] voor meer informatie.\n\n<p class=\"mw-apisandbox-link\"><strong>Testen:</strong> u kunt [[Special:ApiSandbox|eenvoudig API-verzoeken testen]].</p>",
@@ -460,6 +461,7 @@
 	"apierror-import-unknownerror": "Onbekende fout trad op tijdens het importeren: $1.",
 	"apierror-integeroutofrange-belowminimum": "<var>$1</var> mag niet minder zijn dan $2 (ingesteld op $3).",
 	"apierror-invalidcategory": "De opgegeven categorienaam is niet geldig.",
+	"apierror-invalidmethod": "Ongeldige http-methode. Overweeg de methodes GET of POST.",
 	"apierror-invalidtitle": "Ongeldige titel \"$1\".",
 	"apierror-invaliduser": "Ongeldige gebruikersnaam \"$1\".",
 	"apierror-invaliduserid": "Gebruikers-ID <var>$1</var> is ongeldig.",

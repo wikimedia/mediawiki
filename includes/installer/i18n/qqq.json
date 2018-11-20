@@ -166,6 +166,7 @@
 	"config-sqlite-cant-create-db": "Used as SQLite error message. Parameters:\n* $1 - filename",
 	"config-sqlite-fts3-downgrade": "Status message in the MediaWiki installer when SQLite is used without the FTS3 module. The FTS3 feature allows users to create special tables with a built-in full-text index.",
 	"config-can-upgrade": "Parameters:\n* $1 - Version or Revision indicator.",
+	"config-upgrade-error": "Used as error message.",
 	"config-upgrade-done": "Used as success message. Parameters:\n* $1 - full URL of index.php\nSee also:\n* {{msg-mw|config-upgrade-done-no-regenerate}}",
 	"config-upgrade-done-no-regenerate": "Used as success message. Parameters:\n* $1 - full URL of index.php\nSee also:\n* {{msg-mw|config-upgrade-done}}",
 	"config-regenerate": "This message appears in a button after LocalSettings.php is generated and downloaded at the end of the MediaWiki installation process.",

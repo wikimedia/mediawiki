@@ -68,7 +68,8 @@
 			"Alireza Ivaz",
 			"Iriman",
 			"Matěj Suchánek",
-			"Amirsara"
+			"Amirsara",
+			"Physicsch"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -1977,7 +1978,7 @@
 	"prefixindex": "تمام صفحات با پیشوند",
 	"prefixindex-namespace": "همهٔ صفحه‌های دارای پیشوند (فضای‌نام $1)",
 	"prefixindex-submit": "نمایش",
-	"prefixindex-strip": "حذف پیشوند در فهرست",
+	"prefixindex-strip": "حذف پیشوند در نتایج",
 	"shortpages": "صفحه‌های کوتاه",
 	"longpages": "صفحه‌های بلند",
 	"deadendpages": "صفحه‌های بن‌بست",
@@ -2438,7 +2439,7 @@
 	"contribsub2": "برای {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "حساب کاربری «$1» ثبت نشده‌است.",
 	"nocontribs": "هیچ تغییری با این مشخصات یافت نشد.",
-	"uctop": "(نسخهٔ کنونی)",
+	"uctop": "نسخهٔ کنونی",
 	"month": "در این ماه (و پیش از آن):",
 	"year": "در این سال (و پیش از آن):",
 	"date": "از تاریخ (و زودتر):",
@@ -3731,9 +3732,6 @@
 	"dberr-again": "چند دقیقه صبر کنید و دوباره صفحه را بارگیری کنید.",
 	"dberr-info": "(امکان برقراری ارتباط با پایگاه داده وجود ندارد: $1)",
 	"dberr-info-hidden": "(امکان تماس با پایگاه‌داده نیست)",
-	"dberr-usegoogle": "شما در این مدت می‌توانید با استفاده از گوگل جستجو کنید.",
-	"dberr-outofdate": "توجه کنید که نمایه‌های آن‌ها از محتوای ما ممکن است به روز نباشد.",
-	"dberr-cachederror": "آن‌چه در ادامه می‌آید یک کپی از صفحهٔ درخواست شده است که در کاشه قرار دارد، و ممکن است به روز نباشد.",
 	"htmlform-invalid-input": "بخشی از ورودی شما مشکل دارد",
 	"htmlform-select-badoption": "مقدار وارد شده یک گزینهٔ قابل قبول نیست.",
 	"htmlform-int-invalid": "مقداری که وارد کردید یک عدد صحیح نیست.",
@@ -3987,7 +3985,7 @@
 	"special-characters-title-emdash": "خط فاسله کشیده",
 	"special-characters-title-minus": "علامت منفی",
 	"mw-widgets-abandonedit": "مطمئنید که می‌خواهید بدون ذخیره‌سازی حالت ویرایش را ترک کنید؟",
-	"mw-widgets-abandonedit-discard": "درنظر نگرفتن ویرایش‌ها",
+	"mw-widgets-abandonedit-discard": "چشم‌پوشی از ویرایش‌ها",
 	"mw-widgets-abandonedit-keep": "ادامه دادن به ویرایش",
 	"mw-widgets-abandonedit-title": "آیا مطمئن هستید؟",
 	"mw-widgets-dateinput-no-date": "هیچ داده‌ای انتخاب نشده",
@@ -4159,5 +4157,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "گذرواژه نمی‌تواند مشابه گذرواژه‌های فهرست شده در فهرست سیاه باشد",
 	"passwordpolicies-policy-maximalpasswordlength": "گذرواژه باید کمتر از $1 {{PLURAL:$1|نویسه|نویسه}} طول داشته باشد",
 	"passwordpolicies-policy-passwordcannotbepopular": "گذرواژه نمی‌تواند {{PLURAL:$1|گذرواژه پراستفاده باشد|در فهرست $1 گذرواژه‌های پراستفاده باشد}}",
-	"easydeflate-invaliddeflate": "محتوی تهیه‌شده به صورت درست خالی نشده‌است"
+	"easydeflate-invaliddeflate": "محتوی تهیه‌شده به صورت درست خالی نشده‌است",
+	"unprotected-js": "به دلایل امنیتی، جاوااسکریپت نمی‌تواند از صفحات محافظت‌نشده بارگیری شود. لطفا جاوااسکریپت را تنها در فضای نام مدیاویکی: و یا در زیرصفحهٔ کاربری خودتان ایجاد کنید."
 }

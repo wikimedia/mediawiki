@@ -75,6 +75,12 @@ class WebInstallerUpgrade extends WebInstallerPage {
 				$this->showDoneMessage();
 
 				return 'output';
+			} else {
+				$this->startForm();
+				$this->parent->showError( 'config-upgrade-error' );
+				$this->endForm();
+
+				return 'output';
 			}
 		}
 

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.4
+ * OOUI v0.29.5
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-11-07T00:58:30Z
+ * Date: 2018-11-08T22:38:07Z
  */
 ( function ( OO ) {
 
@@ -4045,10 +4045,10 @@ OO.ui.TagItemWidget.prototype.isValid = function () {
  *  invalid tags. These tags will display with an invalid state, and
  *  the widget as a whole will have an invalid state if any invalid tags
  *  are present.
- * @cfg {number} [limit] An optional limit on the number of selected options.
- *  If the limit exists and is reached, the input is disabled, not allowing
- *  for any additions. If the limit is unset or is 0, an unlimited number
- *  of items can be added.
+ * @cfg {number} [tagLimit] An optional limit on the number of selected options.
+ *  If 'tagLimit' is set and is reached, the input is disabled, not allowing any
+ *  additions. If 'tagLimit' is unset or is 0, an unlimited number of items can be
+ *  added.
  * @cfg {boolean} [allowReordering=true] Allow reordering of the items
  * @cfg {Object[]|String[]} [selected] A set of selected tags. If given,
  *  these will appear in the tag list on initialization, as long as they
@@ -4088,7 +4088,7 @@ OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 	this.allowedValues = config.allowedValues || [];
 	this.allowDisplayInvalidTags = config.allowDisplayInvalidTags;
 	this.hasInput = this.inputPosition !== 'none';
-	this.limit = config.limit;
+	this.tagLimit = config.tagLimit;
 	this.height = null;
 	this.valid = true;
 
@@ -4458,7 +4458,7 @@ OO.ui.TagMultiselectWidget.prototype.onChangeTags = function () {
 	// Reset validity
 	this.toggleValid(
 		this.checkValidity() &&
-		( !this.hasInput || !this.input.getValue() )
+		!( this.hasInput && this.input.getValue() )
 	);
 
 	if ( this.hasInput ) {
@@ -4677,15 +4677,14 @@ OO.ui.TagMultiselectWidget.prototype.addTag = function ( data, label ) {
 };
 
 /**
- * Check whether the current tags are under the limit. Returns true
- * if there is no limit set.
+ * Check whether the number of current tags is within the limit.
  *
- * @return {boolean} True if current tag count is under the limit
- *  or if there is no limit set
+ * @return {boolean} True if current tag count is within the limit or
+ *  if 'tagLimit' is not set
  */
 OO.ui.TagMultiselectWidget.prototype.isUnderLimit = function () {
-	return !this.limit ||
-		this.getItemCount() < this.limit;
+	return !this.tagLimit ||
+		this.getItemCount() < this.tagLimit;
 };
 
 /**
@@ -5248,32 +5247,27 @@ OO.ui.MenuTagMultiselectWidget.prototype.initializeMenuSelection = function () {
  * @inheritdoc
  */
 OO.ui.MenuTagMultiselectWidget.prototype.addTagFromInput = function () {
-	var inputValue = this.input.getValue(),
-		validated = false,
-		highlightedItem = this.menu.findHighlightedItem(),
-		item = this.menu.findItemFromData( inputValue );
-
-	if ( !inputValue ) {
-		return;
-	}
+	var val = this.input.getValue(),
+		// Look for a highlighted item first
+		// Then look for the element that fits the data
+		item = this.menu.findHighlightedItem() || this.menu.findItemFromData( val ),
+		data = item ? item.getData() : val,
+		isValid = this.isAllowedData( data );
 
 	// Override the parent method so we add from the menu
 	// rather than directly from the input
 
-	// Look for a highlighted item first
-	if ( highlightedItem ) {
-		validated = this.addTag( highlightedItem.getData(), highlightedItem.getLabel() );
-	} else if ( item ) {
-		// Look for the element that fits the data
-		validated = this.addTag( item.getData(), item.getLabel() );
-	} else {
-		// Otherwise, add the tag - the method will only add if the
-		// tag is valid or if invalid tags are allowed
-		validated = this.addTag( inputValue );
+	if ( !val ) {
+		return;
 	}
 
-	if ( validated ) {
+	if ( isValid || this.allowDisplayInvalidTags ) {
 		this.clearInput();
+		if ( item ) {
+			this.addTag( data, item.getLabel() );
+		} else {
+			this.addTag( val );
+		}
 	}
 };
 

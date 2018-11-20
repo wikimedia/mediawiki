@@ -1136,6 +1136,12 @@ class ParserTestRunner {
 		} else {
 			$tidy = false;
 		}
+
+		# Suppress warnings about running tests without tidy
+		Wikimedia\suppressWarnings();
+		wfDeprecated( 'disabling tidy' );
+		Wikimedia\restoreWarnings();
+
 		MWTidy::setInstance( $tidy );
 		$teardown[] = function () {
 			MWTidy::destroySingleton();
@@ -1224,7 +1230,6 @@ class ParserTestRunner {
 			// The new tables for comments are in use
 			$tables[] = 'comment';
 			$tables[] = 'revision_comment_temp';
-			$tables[] = 'image_comment_temp';
 		}
 
 		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {

@@ -279,7 +279,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->messageCache = $messageCache;
 		$this->contLang = $contLang;
-		// XXX only needed for waiting for slaves to catch up; there should be a narrower
+		// XXX only needed for waiting for replicas to catch up; there should be a narrower
 		// interface for that.
 		$this->loadbalancerFactory = $loadbalancerFactory;
 	}
@@ -351,13 +351,9 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			throw new InvalidArgumentException( '$parentId should match the parent of $revision' );
 		}
 
-		if ( $revision
-			&& $user
-			&& $revision->getUser( RevisionRecord::RAW )->getName() !== $user->getName()
-		) {
-			throw new InvalidArgumentException( '$user should match the author of $revision' );
-		}
-
+		// NOTE: For null revisions, $user may be different from $this->revision->getUser
+		// and also from $revision->getUser.
+		// But $user should always match $this->user.
 		if ( $user && $this->user && $user->getName() !== $this->user->getName() ) {
 			return false;
 		}
@@ -366,10 +362,6 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			&& $this->revision->getId() !== $revision->getId()
 		) {
 			return false;
-		}
-
-		if ( $revision && !$user ) {
-			$user = $revision->getUser( RevisionRecord::RAW );
 		}
 
 		if ( $this->pageState
@@ -383,22 +375,6 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		if ( $this->pageState
 			&& $parentId !== null
 			&& $this->pageState['oldId'] !== $parentId
-		) {
-			return false;
-		}
-
-		if ( $this->revision
-			&& $user
-			&& $this->revision->getUser( RevisionRecord::RAW )
-			&& $this->revision->getUser( RevisionRecord::RAW )->getName() !== $user->getName()
-		) {
-			return false;
-		}
-
-		if ( $revision
-			&& $this->user
-			&& $this->revision->getUser( RevisionRecord::RAW )
-			&& $revision->getUser( RevisionRecord::RAW )->getName() !== $this->user->getName()
 		) {
 			return false;
 		}

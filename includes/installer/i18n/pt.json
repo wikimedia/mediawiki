@@ -115,7 +115,7 @@
 	"config-db-account-lock": "Usar o mesmo nome de utilizador e palavra-passe durante a operação normal",
 	"config-db-wiki-account": "Conta de utilizador para a operação normal",
 	"config-db-wiki-help": "Introduza o nome de utilizador e a palavra-passe que serão usados para aceder à base de dados durante a operação normal da wiki.\nSe o utilizador não existir na base de dados, mas a conta de instalação tiver privilégios suficientes, o utilizador que introduzir será criado na base de dados com os privilégios mínimos necessários para a operação normal da wiki.",
-	"config-db-prefix": "Prefixo para as tabelas da base de dados:",
+	"config-db-prefix": "Prefixo para as tabelas da base de dados (sem hífenes):",
 	"config-db-prefix-help": "Se necessitar de partilhar uma só base de dados entre várias wikis, ou entre o MediaWiki e outra aplicação, pode escolher adicionar um prefixo ao nome de todas as tabelas desta instalação, para evitar conflitos.\nNão use espaços.\n\nNormalmente, este campo deve ficar vazio.",
 	"config-mysql-old": "É necessário o MySQL $1 ou posterior; tem a versão $2.",
 	"config-db-port": "Porta da base de dados:",

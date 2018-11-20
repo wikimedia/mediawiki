@@ -95,6 +95,18 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 			$params['placeholder'] = $this->msg( 'mw-widgets-titlesmultiselect-placeholder' )->plain();
 		}
 
+		if ( isset( $this->mParams['max'] ) ) {
+			$params['tagLimit'] = $this->mParams['max'];
+		}
+
+		if ( isset( $this->mParams['showMissing'] ) ) {
+			$params['showMissing'] = $this->mParams['showMissing'];
+		}
+
+		if ( isset( $this->mParams['input'] ) ) {
+			$params['input'] = $this->mParams['input'];
+		}
+
 		if ( !is_null( $value ) ) {
 			// $value is a string, but the widget expects an array
 			$params['default'] = $value === '' ? [] : explode( "\n", $value );

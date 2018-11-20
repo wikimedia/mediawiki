@@ -126,7 +126,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 				'load'        => 0,
 				'flags'       => DBO_TRX // REPEATABLE-READ for consistency
 			],
-			[ // emulated slave
+			[ // emulated replica
 				'host'        => $wgDBserver,
 				'dbname'      => $wgDBname,
 				'user'        => $wgDBuser,
@@ -152,7 +152,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			'cluster master set' );
 
 		$dbr = $lb->getConnection( DB_REPLICA );
-		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'slave shows as slave' );
+		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'replica shows as replica' );
 		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
 			$dbr->getLBInfo( 'clusterMasterHost' ),
@@ -169,7 +169,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
 
 		$dbr = $factory->getMainLB()->getConnection( DB_REPLICA );
-		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'slave shows as slave' );
+		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'replica shows as replica' );
 
 		// Destructor should trigger without round stage errors
 		unset( $factory );

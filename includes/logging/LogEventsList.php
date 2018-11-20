@@ -148,7 +148,7 @@ class LogEventsList extends ContextSource {
 		$formDescriptor['date'] = [
 			'type' => 'date',
 			'label-message' => 'date',
-			'default' => sprintf( "%04d-%02d-%02d", $year, $month, $day ),
+			'default' => $year && $month && $day ? sprintf( "%04d-%02d-%02d", $year, $month, $day ) : '',
 		];
 
 		// Tag filter
@@ -174,7 +174,7 @@ class LogEventsList extends ContextSource {
 
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( SpecialPage::getTitleFor( 'Log' ) ); // Remove subpage
-		$htmlForm = new HTMLForm( $formDescriptor, $context );
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $context );
 		$htmlForm
 			->setSubmitText( $this->msg( 'logeventslist-submit' )->text() )
 			->setMethod( 'get' )

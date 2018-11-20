@@ -71,6 +71,7 @@ Thumbs.db
 .buildpath
 .classpath
 .idea
+*.iml
 .metadata*
 .settings
 /favicon.ico

@@ -338,8 +338,6 @@
 				setTimeout( function () { this.getMenu().scrollToTop(); }.bind( this ), 0 );
 			}
 		} else {
-			this.blur();
-
 			// Clear selection
 			this.selectTag( null );
 
@@ -348,6 +346,8 @@
 
 			// Log filter grouping
 			this.controller.trackFilterGroupings( 'filtermenu' );
+
+			this.blur();
 		}
 
 		this.input.setIcon( isVisible ? 'search' : 'menu' );

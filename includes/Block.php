@@ -766,11 +766,11 @@ class Block {
 			return;
 		}
 
-		$target = $block->getTarget();
-		// FIXME: Push this into getTargetActor() or whatever to reuse
-		if ( is_string( $target ) ) {
-			$target = User::newFromName( $target, false );
+		// Autoblocks only apply to TYPE_USER
+		if ( $block->getType() !== self::TYPE_USER ) {
+			return;
 		}
+		$target = $block->getTarget(); // TYPE_USER => always a User object
 
 		$dbr = wfGetDB( DB_REPLICA );
 		$rcQuery = ActorMigration::newMigration()->getWhere( $dbr, 'rc_user', $target, false );
@@ -1595,7 +1595,6 @@ class Block {
 	 * @param User|string $user Local User object or username string
 	 */
 	public function setBlocker( $user ) {
-		// FIXME: Push this into getTargetActor() or whatever to reuse
 		if ( is_string( $user ) ) {
 			$user = User::newFromName( $user, false );
 		}
@@ -1796,39 +1795,28 @@ class Block {
 	}
 
 	/**
-	 * Checks if a block prevents an edit on a given article
+	 * Checks if a block applies to a particular title
 	 *
-	 * @param \Title $title
+	 * This check does not consider whether `$this->prevents( 'editownusertalk' )`
+	 * returns false, as the identity of the user making the hypothetical edit
+	 * isn't known here (particularly in the case of IP hardblocks, range
+	 * blocks, and auto-blocks).
+	 *
+	 * @param Title $title
 	 * @return bool
 	 */
-	public function preventsEdit( \Title $title ) {
-		$blocked = $this->isSitewide();
-
-		// user talk page has its own rules
-		// This check happens before partial blocks because the flag
-		// to allow user to edit their user talk page could be
-		// overwritten by a partial block restriction (E.g. user talk namespace)
-		$user = $this->getTarget();
-
-		// Not all blocked `$user`s are self::TYPE_USER
-		// FIXME: Push this into getTargetActor() or whatever to reuse
-		if ( is_string( $user ) ) {
-			$user = User::newFromName( $user, false );
+	public function appliesToTitle( Title $title ) {
+		if ( $this->isSitewide() ) {
+			return true;
 		}
 
-		if ( $title->equals( $user->getTalkPage() ) ) {
-			$blocked = $this->prevents( 'editownusertalk' );
-		}
-
-		if ( !$this->isSitewide() ) {
-			$restrictions = $this->getRestrictions();
-			foreach ( $restrictions as $restriction ) {
-				if ( $restriction->matches( $title ) ) {
-					$blocked = true;
-				}
+		$restrictions = $this->getRestrictions();
+		foreach ( $restrictions as $restriction ) {
+			if ( $restriction->matches( $title ) ) {
+				return true;
 			}
 		}
 
-		return $blocked;
+		return false;
 	}
 }

@@ -531,7 +531,7 @@ abstract class JobQueue {
 	 * @return string
 	 */
 	protected function getRootJobCacheKey( $signature ) {
-		$this->dupCache->makeGlobalKey(
+		return $this->dupCache->makeGlobalKey(
 			'jobqueue',
 			$this->domain,
 			$this->type,

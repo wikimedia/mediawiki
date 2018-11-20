@@ -351,12 +351,13 @@ class ChangesList extends ContextSource {
 		} else {
 			$formattedSizeClass = 'mw-plusminus-neg';
 		}
+		$formattedSizeClass .= ' mw-diff-bytes';
 
 		$formattedTotalSize = $context->msg( 'rc-change-size-new' )->numParams( $new )->text();
 
 		return Html::element( $tag,
 			[ 'dir' => 'ltr', 'class' => $formattedSizeClass, 'title' => $formattedTotalSize ],
-			$context->msg( 'parentheses', $formattedSize )->plain() ) . $lang->getDirMark();
+			$formattedSize ) . $lang->getDirMark();
 	}
 
 	/**

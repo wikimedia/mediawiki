@@ -270,6 +270,17 @@ class MessageCache {
 
 		$this->overridable = array_flip( Language::getMessageKeysFor( $code ) );
 
+		// T208897 array_flip can fail and return null
+		if ( is_null( $this->overridable ) ) {
+			LoggerFactory::getInstance( 'MessageCache' )->error(
+				__METHOD__ . ': $this->overridable is null',
+				[
+					'message_keys' => Language::getMessageKeysFor( $code ),
+					'code' => $code
+				]
+			);
+		}
+
 		# 8 lines of code just to say (once) that message cache is disabled
 		if ( $this->mDisable ) {
 			static $shownDisabled = false;
