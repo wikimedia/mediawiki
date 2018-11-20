@@ -3951,7 +3951,7 @@
 	"tags-summary": "",
 	"tag-filter": "[[Special:Tags|Tag]] filter:",
 	"tag-filter-submit": "Filter",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tag-mw-contentmodelchange": "content model change",
 	"tag-mw-contentmodelchange-description": "Edits that [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel change the content model] of a page",
 	"tag-mw-new-redirect": "New redirect",
