@@ -5719,6 +5719,10 @@ $wgRateLimits = [
 		'newbie' => [ 5, 86400 ],
 		'user' => [ 20, 86400 ],
 	],
+	'changeemail' => [
+		'ip-all' => [ 10, 3600 ],
+		'user' => [ 4, 86400 ]
+	],
 	// Purging pages
 	'purge' => [
 		'ip' => [ 30, 60 ],
