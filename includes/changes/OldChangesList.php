@@ -121,7 +121,7 @@ class OldChangesList extends ChangesList {
 		if ( $this->getConfig()->get( 'RCShowChangedSize' ) ) {
 			$cd = $this->formatCharacterDifference( $rc );
 			if ( $cd !== '' ) {
-				$html .= $cd . '  <span class="mw-changeslist-separator">. .</span> ';
+				$html .= $cd . '  <span class="mw-changeslist-separator"></span> ';
 			}
 		}
 
