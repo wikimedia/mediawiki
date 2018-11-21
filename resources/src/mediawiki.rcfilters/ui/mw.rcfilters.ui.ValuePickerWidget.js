@@ -24,7 +24,9 @@
 		OO.ui.mixin.LabelElement.call( this, config );
 
 		this.model = model;
-		this.itemFilter = config.itemFilter || function () { return true; };
+		this.itemFilter = config.itemFilter || function () {
+			return true;
+		};
 
 		// Build the selection from the item models
 		this.selectWidget = new OO.ui.ButtonSelectWidget();

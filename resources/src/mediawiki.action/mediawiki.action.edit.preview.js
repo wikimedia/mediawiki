@@ -149,7 +149,7 @@
 				}
 
 				newList = [];
-				// eslint-disable-next-line no-restricted-properties
+				// eslint-disable-next-line jquery/no-each-util
 				$.each( response.parse.indicators, function ( name, indicator ) {
 					newList.push(
 						$( '<div>' )

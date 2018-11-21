@@ -40,13 +40,14 @@
 		 * @param {HTMLElement} el Element that's being tested
 		 * @param {Object} [rectangle] Viewport to test against; structured as such:
 		 *
-		 *	var rectangle = {
-		 *		top: topEdge,
-		 *		left: leftEdge,
-		 *		right: rightEdge,
-		 *		bottom: bottomEdge
-		 *	}
-		 *	Defaults to viewport made from `window`.
+		 * var rectangle = {
+		 *     top: topEdge,
+		 *     left: leftEdge,
+		 *     right: rightEdge,
+		 *     bottom: bottomEdge
+		 * }
+		 *
+		 * Defaults to viewport made from `window`.
 		 *
 		 * @return {boolean}
 		 */

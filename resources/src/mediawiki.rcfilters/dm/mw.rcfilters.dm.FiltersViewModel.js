@@ -110,6 +110,7 @@
 				filterItemGroup = filterItem.getGroupModel();
 
 			// For each item, see if that item is still conflicting
+			// eslint-disable-next-line jquery/no-each-util
 			$.each( model.groups, function ( groupName, groupModel ) {
 				if ( filterItem.getGroupName() === groupName ) {
 					// Check inside the group
@@ -242,6 +243,7 @@
 			expandConflictDefinitions = function ( obj ) {
 				var result = {};
 
+				// eslint-disable-next-line jquery/no-each-util
 				$.each( obj, function ( key, conflicts ) {
 					var filterName,
 						adjustedConflicts = {};
@@ -326,6 +328,7 @@
 		}, views );
 
 		// Go over all views
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( allViews, function ( viewName, viewData ) {
 			// Define the view
 			model.views[ viewName ] = {
@@ -372,11 +375,13 @@
 		filterConflictResult = expandConflictDefinitions( filterConflictMap );
 
 		// Set conflicts for groups
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( groupConflictResult, function ( group, conflicts ) {
 			model.groups[ group ].setConflicts( conflicts );
 		} );
 
 		// Set conflicts for items
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( filterConflictResult, function ( filterName, conflicts ) {
 			var filterItem = model.getItemByName( filterName );
 			// set conflicts for items in the group
@@ -384,6 +389,7 @@
 		} );
 
 		// Create a map between known parameters and their models
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( this.groups, function ( group, groupModel ) {
 			if (
 				groupModel.getType() === 'send_unselected_if_any' ||
@@ -420,6 +426,7 @@
 		var filtersValue;
 		// For arbitrary numeric single_option values make sure the values
 		// are normalized to fit within the limits
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( this.getFilterGroups(), function ( groupName, groupModel ) {
 			params[ groupName ] = groupModel.normalizeArbitraryValue( params[ groupName ] );
 		} );
@@ -475,6 +482,7 @@
 		parameters = parameters ? $.extend( true, {}, parameters ) : this.getCurrentParameterState();
 
 		// Params
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( this.getEmptyParameterState(), function ( param, value ) {
 			if ( parameters[ param ] !== undefined && parameters[ param ] !== value ) {
 				result[ param ] = parameters[ param ];
@@ -569,6 +577,7 @@
 
 		view = view || this.getCurrentView();
 
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( this.groups, function ( groupName, groupModel ) {
 			if ( groupModel.getView() === view ) {
 				result[ groupName ] = groupModel;
@@ -592,6 +601,7 @@
 
 		groups = this.getFilterGroupsByView( view );
 
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( groups, function ( groupName, groupModel ) {
 			result = result.concat( groupModel.getItems() );
 		} );
@@ -669,6 +679,7 @@
 		var result = {};
 
 		// Get default filter state
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( this.groups, function ( name, model ) {
 			if ( !model.isSticky() ) {
 				$.extend( true, result, model.getDefaultParams() );
@@ -686,6 +697,7 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.getStickyParams = function () {
 		var result = [];
 
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( this.groups, function ( name, model ) {
 			if ( model.isSticky() ) {
 				if ( model.isPerGroupRequestParameter() ) {
@@ -710,6 +722,7 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.getStickyParamsValues = function () {
 		var result = {};
 
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( this.groups, function ( name, model ) {
 			if ( model.isSticky() ) {
 				$.extend( true, result, model.getParamRepresentation() );
@@ -746,6 +759,7 @@
 			} );
 		}
 
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( groupItems, function ( group, model ) {
 			$.extend(
 				result,
@@ -782,6 +796,7 @@
 		//    },
 		//    group2: "param4|param5"
 		// }
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( params, function ( paramName, paramValue ) {
 			var groupName,
 				itemOrGroup = model.parameterMap[ paramName ];
@@ -797,6 +812,7 @@
 
 		// Go over all groups, so we make sure we get the complete output
 		// even if the parameters don't include a certain group
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( this.groups, function ( groupName, groupModel ) {
 			result = $.extend( true, {}, result, groupModel.getFilterRepresentation( groupMap[ groupName ] ) );
 		} );
@@ -1090,6 +1106,7 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.findSelectedItems = function () {
 		var allSelected = [];
 
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( this.getFilterGroups(), function ( groupName, groupModel ) {
 			allSelected = allSelected.concat( groupModel.findSelectedItems() );
 		} );
@@ -1127,6 +1144,7 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.getViewByTrigger = function ( trigger ) {
 		var result = 'default';
 
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( this.views, function ( name, data ) {
 			if ( data.trigger === trigger ) {
 				result = name;
@@ -1180,6 +1198,7 @@
 			visibleGroupNames = Object.keys( visibleGroups );
 
 			// Update visibility of items and groups
+			// eslint-disable-next-line jquery/no-each-util
 			$.each( this.getFilterGroups(), function ( groupName, groupModel ) {
 				// Check if the group is visible at all
 				groupModel.toggleVisible( visibleGroupNames.indexOf( groupName ) !== -1 );

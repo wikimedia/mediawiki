@@ -957,7 +957,7 @@
 	mw.jqueryMsg.HtmlEmitter = function ( language, magic ) {
 		var jmsg = this;
 		this.language = language;
-		// eslint-disable-next-line no-restricted-properties
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( magic, function ( key, val ) {
 			jmsg[ key.toLowerCase() ] = function () {
 				return val;
@@ -983,6 +983,7 @@
 				// typeof returns object for arrays
 				case 'object':
 					// node is an array of nodes
+					// eslint-disable-next-line jquery/no-map-util
 					subnodes = $.map( node.slice( 1 ), function ( n ) {
 						return jmsg.emit( n, replacements );
 					} );
@@ -1023,7 +1024,7 @@
 		 */
 		concat: function ( nodes ) {
 			var $span = $( '<span>' ).addClass( 'mediaWiki_htmlEmitter' );
-			// eslint-disable-next-line no-restricted-properties
+			// eslint-disable-next-line jquery/no-each-util
 			$.each( nodes, function ( i, node ) {
 				// Let jQuery append nodes, arrays of nodes and jQuery objects
 				// other things (strings, numbers, ..) are appended as text nodes (not as HTML strings)
@@ -1207,6 +1208,7 @@
 			}
 
 			// Remove explicit plural forms from the forms. They were set undefined in the above loop.
+			// eslint-disable-next-line jquery/no-map-util
 			forms = $.map( forms, function ( form ) {
 				return form;
 			} );

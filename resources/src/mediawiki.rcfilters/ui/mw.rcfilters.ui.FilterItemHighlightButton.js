@@ -28,7 +28,9 @@
 		// This lives inside a MenuOptionWidget, which intercepts mousedown
 		// to select the item. We want to prevent that when we click the highlight
 		// button
-		this.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
+		this.$element.on( 'mousedown', function ( e ) {
+			e.stopPropagation();
+		} );
 
 		this.updateUiBasedOnModel();
 

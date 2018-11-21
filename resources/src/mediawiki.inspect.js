@@ -40,9 +40,13 @@
 		var i,
 			units = [ '', ' KiB', ' MiB', ' GiB', ' TiB', ' PiB' ];
 
-		if ( !$.isNumeric( bytes ) || bytes === 0 ) { return bytes; }
+		if ( !$.isNumeric( bytes ) || bytes === 0 ) {
+			return bytes;
+		}
 
-		for ( i = 0; bytes >= 1024; bytes /= 1024 ) { i++; }
+		for ( i = 0; bytes >= 1024; bytes /= 1024 ) {
+			i++;
+		}
 		// Maintain one decimal for kB and above, but don't
 		// add ".0" for bytes.
 		return bytes.toFixed( i > 0 ? 1 : 0 ) + units[ i ];
@@ -153,7 +157,7 @@
 
 		style.textContent = css;
 		document.body.appendChild( style );
-		// eslint-disable-next-line no-restricted-properties
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( style.sheet.cssRules, function ( index, rule ) {
 			selectors.total++;
 			// document.querySelector() on prefixed pseudo-elements can throw exceptions
