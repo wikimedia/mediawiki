@@ -152,43 +152,43 @@ class LinkerTest extends MediaWikiLangTestCase {
 			],
 			// Linker::formatAutocomments
 			[
-				'<a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment</span></span>',
+				'<a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→autocomment</a>‎',
 				"/* autocomment */",
 			],
 			[
-				'<a href="/wiki/Special:BlankPage#linkie.3F" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment"><a href="/wiki/index.php?title=Linkie%3F&amp;action=edit&amp;redlink=1" class="new" title="Linkie? (page does not exist)">linkie?</a></span></span>',
+				'<a href="/wiki/Special:BlankPage#linkie.3F" title="Special:BlankPage">→<a href="/wiki/index.php?title=Linkie%3F&amp;action=edit&amp;redlink=1" class="new" title="Linkie? (page does not exist)">linkie?</a></a>‎',
 				"/* [[linkie?]] */",
 			],
 			[
-				'<a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment: </span> post</span>',
+				'<a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→autocomment</a>‎<span dir="auto"><span class="autocomment">: </span> post</span>',
 				"/* autocomment */ post",
 			],
 			[
-				'pre <a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment</span></span>',
+				'pre <a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→autocomment</a>‎',
 				"pre /* autocomment */",
 			],
 			[
-				'pre <a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment: </span> post</span>',
+				'pre <a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→autocomment</a>‎<span dir="auto"><span class="autocomment">: </span> post</span>',
 				"pre /* autocomment */ post",
 			],
 			[
-				'<a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment: </span> multiple? <a href="/wiki/Special:BlankPage#autocomment2" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment2: </span> </span></span>',
-				"/* autocomment */ multiple? /* autocomment2 */ ",
+				'<a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→autocomment</a>‎<span dir="auto"><span class="autocomment">: </span> multiple? <a href="/wiki/Special:BlankPage#autocomment2" title="Special:BlankPage">→autocomment2</a>‎</span>',
+				"/* autocomment */ multiple? /* autocomment2 */",
 			],
 			[
-				'<a href="/wiki/Special:BlankPage#autocomment_containing_.2F.2A" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment containing /*: </span> T70361</span>',
+				'<a href="/wiki/Special:BlankPage#autocomment_containing_.2F.2A" title="Special:BlankPage">→autocomment containing /*</a>‎<span dir="auto"><span class="autocomment">: </span> T70361</span>',
 				"/* autocomment containing /* */ T70361"
 			],
 			[
-				'<a href="/wiki/Special:BlankPage#autocomment_containing_.22quotes.22" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment containing &quot;quotes&quot;</span></span>',
+				'<a href="/wiki/Special:BlankPage#autocomment_containing_.22quotes.22" title="Special:BlankPage">→autocomment containing &quot;quotes&quot;</a>‎',
 				"/* autocomment containing \"quotes\" */"
 			],
 			[
-				'<a href="/wiki/Special:BlankPage#autocomment_containing_.3Cscript.3Etags.3C.2Fscript.3E" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment containing &lt;script&gt;tags&lt;/script&gt;</span></span>',
+				'<a href="/wiki/Special:BlankPage#autocomment_containing_.3Cscript.3Etags.3C.2Fscript.3E" title="Special:BlankPage">→autocomment containing &lt;script&gt;tags&lt;/script&gt;</a>‎',
 				"/* autocomment containing <script>tags</script> */"
 			],
 			[
-				'<a href="#autocomment">→</a>‎<span dir="auto"><span class="autocomment">autocomment</span></span>',
+				'<a href="#autocomment">→autocomment</a>‎',
 				"/* autocomment */",
 				false, true
 			],
@@ -198,12 +198,12 @@ class LinkerTest extends MediaWikiLangTestCase {
 				null
 			],
 			[
-				'<a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment</span></span>',
+				'<a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→autocomment</a>‎',
 				"/* autocomment */",
 				false, false
 			],
 			[
-				'<a class="external" rel="nofollow" href="//en.example.org/w/Special:BlankPage#autocomment">→</a>‎<span dir="auto"><span class="autocomment">autocomment</span></span>',
+				'<a class="external" rel="nofollow" href="//en.example.org/w/Special:BlankPage#autocomment">→autocomment</a>‎',
 				"/* autocomment */",
 				false, false, $wikiId
 			],

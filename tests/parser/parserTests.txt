@@ -24422,7 +24422,7 @@ comment title=[[Main Page]]
 !! wikitext
 /* External links */ removed bogus entries
 !! html/php
-<a href="/wiki/Main_Page#External_links" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
+<a href="/wiki/Main_Page#External_links" title="Main Page">→External links</a>‎<span dir="auto"><span class="autocomment">: </span> removed bogus entries</span>
 !!end
 
 !! test
@@ -24432,7 +24432,7 @@ comment title=[[Main Page]]
 !! wikitext
 pre-comment text /* External links */ removed bogus entries
 !! html/php
-pre-comment text <a href="/wiki/Main_Page#External_links" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
+pre-comment text <a href="/wiki/Main_Page#External_links" title="Main Page">→External links</a>‎<span dir="auto"><span class="autocomment">: </span> removed bogus entries</span>
 !!end
 
 !! test
@@ -24442,7 +24442,7 @@ comment local title=[[Main Page]]
 !! wikitext
 /* External links */ removed bogus entries
 !! html/php
-<a href="#External_links">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
+<a href="#External_links">→External links</a>‎<span dir="auto"><span class="autocomment">: </span> removed bogus entries</span>
 !!end
 
 !! test
@@ -24553,7 +24553,7 @@ title=[[Main Page]]
 !! wikitext
 /* __hello__world__ */
 !! html/php
-<a href="/wiki/Main_Page#hello_world" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">__hello__world__</span></span>
+<a href="/wiki/Main_Page#hello_world" title="Main Page">→__hello__world__</a>‎
 !! end
 
 !! test
