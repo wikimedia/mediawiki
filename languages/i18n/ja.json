@@ -3784,7 +3784,7 @@
 	"tags": "有効な変更タグ",
 	"tag-filter": "[[Special:Tags|タグ]]絞り込み:",
 	"tag-filter-submit": "絞り込み",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|タグ}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|タグ}}]]: $2",
 	"tag-mw-contentmodelchange": "コンテンツ・モデルの変更",
 	"tag-mw-contentmodelchange-description": "ページの[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel コンテンツモデルを変更]する",
 	"tag-mw-new-redirect": "新規リダイレクト",

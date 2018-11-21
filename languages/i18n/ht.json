@@ -973,7 +973,7 @@
 	"version": "Vèsyon",
 	"specialpages": "Paj espesyal yo",
 	"tag-filter": "Filtre [[Special:Tags|Tag]]:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"htmlform-reset": "Revoke chanjman yo",
 	"revdelete-restricted": "aplike restriksyon sa yo pou administratè yo",
 	"logentry-newusers-create": "Kont itilizatè $1 a kreye",

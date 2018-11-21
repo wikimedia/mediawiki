@@ -1387,7 +1387,7 @@
 	"version-specialpages": "Maxsus sahifalar",
 	"specialpages": "Maxsus sahifalar",
 	"tag-filter": "[[Special:Tags|Nishonlar]] filtri:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Teg|Teglar}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Teg|Teglar}}]]: $2",
 	"compare-submit": "Solishtirish",
 	"htmlform-reset": "Oʻzgarishlarni bekor qilish",
 	"htmlform-selectorother-other": "Boshqa",

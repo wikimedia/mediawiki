@@ -1562,7 +1562,7 @@
 	"tags": "Kya rngu’ na sinbah sa qnlah lalu’",
 	"tag-filter": "[[Special:Tags|qinlah lalu’]]hhkangi’:",
 	"tag-filter-submit": "Hhkangi’",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|qinlah lalu’}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|qinlah lalu’}}]]: $2",
 	"tag-mw-contentmodelchange": "sbah quw pinsulung sa inrkyasan bniru’ niya’ sa qsahuy",
 	"tags-title": "Qinlah lalu’",
 	"tags-tag": "Lalu’ na qinlah biru’",

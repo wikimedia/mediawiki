@@ -1243,7 +1243,7 @@
 	"intentionallyblankpage": "Esta páigina fui antencionalmente deixada an branco",
 	"tags": "Eitiquetas de modeficaçon bálidas",
 	"tag-filter": "Filtrar las [[Special:Tags|etiquetas]]:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Eitiqueta|Eitiquetas}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Eitiqueta|Eitiquetas}}]]: $2",
 	"tags-title": "Eitiquetas",
 	"tags-source-header": "Ourige",
 	"tags-active-yes": "Si",

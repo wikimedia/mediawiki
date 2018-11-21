@@ -622,7 +622,7 @@
 	"redirect-file": "File kwel-le",
 	"specialpages": "birdarra bibol",
 	"tag-filter": "[[Special:Tags|Tag]] Uart nidj kia nidj:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tags-active-yes": "Kaya",
 	"tags-active-no": "Uart",
 	"tags-hitcount": "$1 {{PLURAL:$1|wallak}}",

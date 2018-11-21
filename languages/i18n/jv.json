@@ -3199,7 +3199,7 @@
 	"tags": "Tag pangowahan kang absah",
 	"tag-filter": "Panyaringan [[Special:Tags|tenger]]:",
 	"tag-filter-submit": "Penyaring",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tenger|Tenger}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tenger|Tenger}}]]: $2",
 	"tag-mw-contentmodelchange": "owahan modhèl isi",
 	"tag-mw-new-redirect": "Alihan anyar",
 	"tag-mw-blank": "Ngosongaké",

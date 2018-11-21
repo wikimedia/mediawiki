@@ -2107,7 +2107,7 @@
 	"intentionallyblankpage": "Ta zajta nauůmyślńy uostoua śe pusto",
 	"external_image_whitelist": "#Leave this line exactly as it is<pre>\n#Wstow půńiżyj tajle wyrażyń regularnych (jyno to, co znojduje śe mjyndzy //)\n#Wyrażyńa te uostanům przipasowane ku URL-ům zewnyntrznym (bezpostrzredńo linkowanych) grafik\n#Dopasowane URL-e zostanům wyśwjetlůne kej grafiki, w przećiwnym raźe bydźe pokozany yno link ku grafice\n#Lińje kere s anfanga majům # sům traktowane kej kůmyntorze\n\n#Put all regex fragments above this line. Leave this line exactly as it is</pre>",
 	"tag-filter": "Filter [[Special:Tags|tagůw]]",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Uoznaczyńe|Uoznaczyńo}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Uoznaczyńe|Uoznaczyńo}}]]: $2",
 	"diff-form": "'''formulař'''",
 	"logentry-delete-delete": "$1 {{GENDER:$2|wyćepoł|wyćepała}} zajta $3",
 	"revdelete-restricted": "naštaluj uograničyńo do administratorůw",

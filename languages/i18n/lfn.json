@@ -3424,7 +3424,7 @@
 	"tags": "Eticetas valida de cambia",
 	"tag-filter": "Filtro par [[Special:Tags|eticeta]]:",
 	"tag-filter-submit": "Filtri",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Eticeta|Eticetas}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Eticeta|Eticetas}}]]: $2",
 	"tag-mw-contentmodelchange": "cambia de model de contenida",
 	"tag-mw-contentmodelchange-description": "Editas cual [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel cambia la model de contenida] de un paje",
 	"tag-mw-new-redirect": "Redirije nova",

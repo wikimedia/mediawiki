@@ -3083,7 +3083,7 @@
 	"tags": "मान्य परिवर्तन चेन्ह सभ",
 	"tag-filter": "[[Special:Tags|ट्याग]] छन्ना:",
 	"tag-filter-submit": "चलनी",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ट्याग|ट्यागसभ}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ट्याग|ट्यागसभ}}]]: $2",
 	"tag-mw-contentmodelchange": "सामग्री परिवर्तन लग",
 	"tags-title": "चेन्ह सभ",
 	"tags-intro": "ई पन्ना चेन्ह सभकेँ सूचित करैए जे तंत्रांश सम्पादनसँ चिन्हित करए, आ ओकर अर्थ सेहो।",

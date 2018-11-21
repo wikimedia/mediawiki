@@ -1904,7 +1904,7 @@
 	"external_image_whitelist": " #Palikėt ta eilotė, tuokė kāp īr <pre>\n#Īrašīkat standartėniu ėšraišku fragmentus (tėktās dali terp //)\n#Anūs bus miegėnama sotapatintė so ėšuorėniu abruozdieliu adresās\n#Tė, katrėi sotaps, bus ruodomė kāp abruozdielē, a kėtė bus ruodomė tėktās kāp nūoruodas\n#Raidiu dėdoms nier svarbos\n#Eilotės, katuos prasided # īr kuomentarā \n\n#Īterpkat vėsus standartiėniu ėšraišku fragmentus prīš šėta eilote. Palikat šėta eilote, tuokė kāp ana īr </pre>",
 	"tag-filter": "[[Special:Tags|Žīmiū]] kuošeklis:",
 	"tag-filter-submit": "Kuošeklis",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Žīms|Žīmā|Žīmū}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Žīms|Žīmā|Žīmū}}]]: $2",
 	"tags-active-yes": "Tēp",
 	"tags-active-no": "Ne",
 	"tags-edit": "taisītė",

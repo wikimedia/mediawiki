@@ -3314,7 +3314,7 @@
 	"tags": "Valabel Ännerungsmarkéierungen",
 	"tag-filter": "[[Special:Tags|Markéierungs]]-Filter:",
 	"tag-filter-submit": "Filter",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tag-mw-contentmodelchange": "Ännerung vum Modell vum Inhalt",
 	"tag-mw-contentmodelchange-description": "Ännerungen, déi [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel de Modell vum Inhalt] vun enger Säit änneren",
 	"tag-mw-new-redirect": "Nei Viruleedung",

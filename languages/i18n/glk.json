@@ -701,7 +701,7 @@
 	"redirect-file": "فايلˇ نؤم",
 	"specialpages": "خاصˇ ولگؤن",
 	"specialpages-group-login": "ديرين/ثبتˇ نؤم",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|تگ|تگؤن}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|تگ|تگؤن}}]]: $2",
 	"logentry-move-move": "$1 $3ˇ ولگه به $4 {{GENDER:$2|مۊنتقل بؤده}}",
 	"logentry-newusers-create": "کارگيري حساب $1 {{GENDER:$2|چاگۊده-بۊبؤ}}",
 	"logentry-upload-upload": "$1 $3 {{GENDER:$2|جؤرأکشئه}}",

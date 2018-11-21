@@ -2263,7 +2263,7 @@
 	"specialpages": "ၼႃႈလိၵ်ႈ ၶိုၵ်ႉတွၼ်း",
 	"tag-filter": "ၶတ်းလိူၵ်ႈဢဝ်[[Special:Tags|Tag]]:",
 	"tag-filter-submit": "တူဝ်ထွင်",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tags-active-yes": "ၸႂ်ႈယဝ်ႉ",
 	"tags-active-no": "ဢမ်ႇ",
 	"tags-hitcount": "$1 {{PLURAL:$1|လႅၵ်ႈလၢႆႈ|ၸိူဝ်းလႅၵ်ႈလၢႆႈ}}",

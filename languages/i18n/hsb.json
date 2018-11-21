@@ -2998,7 +2998,7 @@
 	"tags": "Płaćiwe taflički změnow",
 	"tag-filter": "Filter [[Special:Tags|tafličkow]]:",
 	"tag-filter-submit": "Filter",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Značka|Značce|Znački}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Značka|Značce|Znački}}]]: $2",
 	"tags-title": "Taflički",
 	"tags-intro": "Tuta strona nalistuje taflički, z kotrymiž softwara móže změnu markěrować a jich woznam.",
 	"tags-tag": "Mjeno taflički",

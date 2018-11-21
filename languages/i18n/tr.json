@@ -3474,7 +3474,7 @@
 	"tags": "Geçerli değişiklik etiketleri",
 	"tag-filter": "[[Special:Tags|Etiket]] süzgeci:",
 	"tag-filter-submit": "Süzgeç",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etiket|Etiketler}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etiket|Etiketler}}]]: $2",
 	"tag-mw-new-redirect": "Yeni yönlendirme",
 	"tag-mw-removed-redirect": "Yönlendirme kaldırıldı",
 	"tag-mw-changed-redirect-target": "Yönlendirme hedefi değiştirildi",

@@ -333,6 +333,7 @@
 	"config-extensions-requires": "$1 (vereist $2)",
 	"config-screenshot": "schermafbeelding",
 	"config-extension-not-found": "Kan het registratiebestand voor de uitbreiding \"$1\" niet vinden",
+	"config-extension-dependency": "Afhankelijkheidsfout opgetreden tijdens de installatie van de uitbreiding $1: $2",
 	"mainpagetext": "<strong>De installatie van MediaWiki is geslaagd.</strong>",
 	"mainpagedocfooter": "Raadpleeg de [https://meta.wikimedia.org/wiki/Special:MyLanguage/Help:Contents handleiding] voor informatie over het gebruik van de wikisoftware.\n\n== Meer hulp over MediaWiki ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lijst met instellingen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Veelgestelde vragen (FAQ)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Maak MediaWiki beschikbaar in uw taal]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Leer hoe u spam kunt voorkomen op uw wiki]"
 }

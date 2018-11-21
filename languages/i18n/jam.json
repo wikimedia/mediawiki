@@ -811,7 +811,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|taak]])‎",
 	"specialpages": "Peshal piej",
 	"tag-filter": "[[Special:Tags|Tag]] filta:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"logentry-delete-delete": "$1 {{GENDER:$2|diliitid}} piej $3‎",
 	"logentry-move-move": "$1 {{GENDER:$2|muuv}} piej $3 tu $4‎",
 	"logentry-newusers-create": "Yuuza akount $1 eh {{GENDER:$2|krietid}}‎",

@@ -2772,7 +2772,7 @@
 	"tags": "Tag de le modifiche valide",
 	"tag-filter": "[[Special:Tags|Tag]] filtro:",
 	"tag-filter-submit": "Filtro",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Eticheta|Etichete}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Eticheta|Etichete}}]]: $2",
 	"tags-title": "Tag",
 	"tags-intro": "Sta pàxena la elenca i tag che el software el podarìa marcar come na modifica e el so significato.",
 	"tags-tag": "Nome del tag",

@@ -3176,7 +3176,7 @@
 	"tags": "Valit chynge tags",
 	"tag-filter": "[[Special:Tags|Tag]] filter:",
 	"tag-filter-submit": "Filter",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tags-title": "Tags",
 	"tags-intro": "This page leets the tags that the saffware can maurk aen eedit wi, n thair meanin.",
 	"tags-tag": "Tag name",

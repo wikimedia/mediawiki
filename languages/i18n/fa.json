@@ -3608,7 +3608,7 @@
 	"tags": "برچسب‌های تغییر مجاز",
 	"tag-filter": "پالایش [[Special:Tags|برچسب‌ها]]:",
 	"tag-filter-submit": "پالایه",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|برچسب|برچسب‌ها}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|برچسب|برچسب‌ها}}]]: $2",
 	"tag-mw-contentmodelchange": "تغییر مدل محتوا",
 	"tag-mw-contentmodelchange-description": "ویرایش‌هایی که [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel مدل محتوای صفحه را تغییر می‌دهند]",
 	"tag-mw-new-redirect": "تغییر مسیر جدید",

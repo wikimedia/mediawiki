@@ -2841,7 +2841,7 @@
 	"tags": "Geldige wiezigingsetiketten",
 	"tag-filter": "[[Special:Tags|Etiketfilter]]:",
 	"tag-filter-submit": "Filtreren",
-	"tag-list-wrapper": "([[Special:Tags|Etiket{{PLURAL:$1||ten}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|Etiket{{PLURAL:$1||ten}}]]: $2",
 	"tag-mw-new-redirect": "Nye döärverwysing",
 	"tag-mw-removed-redirect": "Döärverwysing vordedån",
 	"tag-mw-changed-redirect-target": "Döärverwysingsdool ewysigd",

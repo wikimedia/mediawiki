@@ -3527,7 +3527,7 @@
 	"tags": "Etichete valabile pentru marcarea modificărilor",
 	"tag-filter": "Filtru pentru [[Special:Tags|etichete]]:",
 	"tag-filter-submit": "Filtru",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etichetă|Etichete}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etichetă|Etichete}}]]: $2",
 	"tag-mw-contentmodelchange": "schimbare a modelului de conținut",
 	"tag-mw-contentmodelchange-description": "Editări ce  [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel schimbă modelul de conținut] al unei pagini",
 	"tag-mw-new-redirect": "Redirecționare nouă",

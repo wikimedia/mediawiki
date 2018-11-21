@@ -3585,7 +3585,7 @@
 	"tags": "Voimassa olevat muutosten merkkaukset",
 	"tag-filter": "[[Special:Tags|Merkkausten]] suodatin:",
 	"tag-filter-submit": "Suodata",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Merkkaus|Merkkaukset}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Merkkaus|Merkkaukset}}]]: $2",
 	"tag-mw-contentmodelchange": "sisältömallin muutos",
 	"tag-mw-contentmodelchange-description": "Muokkaukset, jotka [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel muuttavat sivun sisältömallia]",
 	"tag-mw-new-redirect": "Uusi ohjaus",

@@ -3409,7 +3409,7 @@
 	"tags": "Tags til sideversioner",
 	"tag-filter": "[[Special:Tags|Tag]]filter:",
 	"tag-filter-submit": "Filtrér",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tag-mw-new-redirect": "Ny omdirigering",
 	"tag-mw-removed-redirect": "Fjernede omdirigering",
 	"tag-mw-changed-redirect-target": "Omdigeringsmål ændret",

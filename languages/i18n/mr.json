@@ -3321,7 +3321,7 @@
 	"tags": "मान्य बदल खुणा",
 	"tag-filter": "[[Special:Tags|खूणपताका]] गाळक:",
 	"tag-filter-submit": "गाळक",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|खूणपताका}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|खूणपताका}}]]: $2",
 	"tag-mw-contentmodelchange": "आशय नमून्यात बदल",
 	"tag-mw-new-redirect": "नवीन पुनर्निर्देशन",
 	"tag-mw-new-redirect-description": "नवीन पुनर्निर्देशन तयार करणारी अथवा पानास पुनर्निर्देशनात बदलविणारी संपादने",

@@ -1373,7 +1373,7 @@
 	"blankpage": "ಖಾಲಿ ಪುಟ",
 	"tag-filter": "[[Special:Tags|ಟ್ಯಾಗ್]]ಅರಿಪೆ:",
 	"tag-filter-submit": "ಅರಿಪೆ",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ಟ್ಯಾಗ್|ಟ್ಯಾಗುಲು}}]]:$2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ಟ್ಯಾಗ್|ಟ್ಯಾಗುಲು}}]]:$2",
 	"tags-title": "ತೂಗು ಪಟ್ಟಿಲು",
 	"tags-source-header": "ಮೂಲೊ",
 	"tags-active-header": "ಸಕ್ರಿಯ?",

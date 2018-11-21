@@ -2820,7 +2820,7 @@
 	"tags": "वैध बदलाव चिप्पि",
 	"tag-filter": "[[Special:Tags|चिप्पी]] छननी:",
 	"tag-filter-submit": "फिल्टर",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|टैग}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|टैग}}]]: $2",
 	"tags-title": "चिप्पि",
 	"tags-intro": "यह पृष्ठ अर्थ सहित वह चिप्पियाँ दर्शाता है जिनका कोई तंत्रांश किसी संपादन पर निशान लगाने के लिए इस्तेमाल कर सकता है।",
 	"tags-tag": "चिप्पी कय नाँव",

@@ -3331,7 +3331,7 @@
 	"tags": "Валидни етикети за промени",
 	"tag-filter": "Филтър на [[Special:Tags|етикета]]:",
 	"tag-filter-submit": "Филтриране",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Етикет|Етикети}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Етикет|Етикети}}]]: $2",
 	"tag-mw-contentmodelchange": "промяна на модела на съдържание",
 	"tag-mw-new-redirect": "Ново пренасочване",
 	"tag-mw-removed-redirect": "Премахнато пренасочване",

@@ -3545,7 +3545,7 @@
 	"tags": "Käibivad muudatusmärgised",
 	"tag-filter": "[[Special:Tags|Märgisefilter]]:",
 	"tag-filter-submit": "Filtri",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Märgis|Märgised}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Märgis|Märgised}}]]: $2",
 	"tag-mw-contentmodelchange": "Sisumudeli muudatus",
 	"tag-mw-contentmodelchange-description": "Lehekülje [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel sisumudelit muutvad] redaktsioonid",
 	"tag-mw-new-redirect": "Uus ümbersuunamine",

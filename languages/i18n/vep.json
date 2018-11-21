@@ -2207,7 +2207,7 @@
 	"tags": "Aktualižed toižetusiden vestatesed",
 	"tag-filter": "[[Special:Tags|Vestatesiden]] fil'tr:",
 	"tag-filter-submit": "Fil'tr",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Virg|Virgad}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Virg|Virgad}}]]: $2",
 	"tags-title": "Virgad",
 	"tags-intro": "Necil lehtpolel om virgoiden nimikirj i neniden virgoiden znamoičendad. Programmad znamoitas virgoil toižetusid.",
 	"tags-tag": "Tegan (virgan) nimi",

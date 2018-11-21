@@ -19,7 +19,8 @@
 			"Fitoschido",
 			"BadDog",
 			"ديفيد",
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Podvuci linkove:",
@@ -1059,7 +1060,8 @@
 	"right-editcontentmodel": "Uređivanje modela sadržaja stranice",
 	"right-editinterface": "Uređivanje korisničkog interfejsa",
 	"right-editusercss": "Uređivanje CSS datoteka drugih korisnika",
-	"right-edituserjs": "Uređivanje Javascript datoteka drugih korisnika",
+	"right-edituserjson": "Uređivanje JSON datoteka drugih korisnika",
+	"right-edituserjs": "Uređivanje JavaScript datoteka drugih korisnika",
 	"right-editmyusercss": "Uredite svoje vlastite CSS datoteke",
 	"right-editmyuserjs": "Uredite vlastite korisničke JavaScript datoteke",
 	"right-viewmywatchlist": "Pregled vlastitog popisa praćenih stranica",
@@ -2920,7 +2922,7 @@
 	"tags": "Oznake valjane izmjene",
 	"tag-filter": "Filter [[Special:Tags|oznaka]]:",
 	"tag-filter-submit": "Filter",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|tag|tagova}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|tag|tagova}}]]: $2",
 	"tags-title": "Oznake",
 	"tags-intro": "Ova stranica prikazuje spisak oznaka (tagova) koje softver može staviti na svaku izmjenu i njihovo značenje.",
 	"tags-tag": "Naziv oznake",

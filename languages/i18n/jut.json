@@ -909,7 +909,7 @@
 	"specialpages-group-maintenance": "Weliholjelsside",
 	"specialpages-group-pages": "Sideliste",
 	"tag-filter": "[[Special:Tags|Tag]]filtjer:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tags-active-yes": "Ja",
 	"tags-active-no": "Nej",
 	"logentry-delete-delete": "$1 {{GENDER:$2|slettetj}} siden $3",

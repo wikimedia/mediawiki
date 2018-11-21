@@ -2517,7 +2517,7 @@
 	"tags": "منے ہوۓ تبدیلی دے ٹیگ",
 	"tag-filter": "[[Special:Tags|Tag]] نتارا:",
 	"tag-filter-submit": "فلٹر",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ٹیگ|ٹیگز}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ٹیگ|ٹیگز}}]]: $2",
 	"tag-mw-new-redirect": "نواں مڑجوڑ",
 	"tags-title": "ٹیگز",
 	"tags-intro": "ایس صفے تے ٹیگ دی لسٹ اے جینوں سوفٹوئیر تبدیلی دا نشان لا سکدا اے۔",

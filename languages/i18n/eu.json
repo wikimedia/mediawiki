@@ -3518,7 +3518,7 @@
 	"tags": "Etiketa aldaketa zuzena",
 	"tag-filter": "[[Special:Tags|Etiketa]] iragazkia:",
 	"tag-filter-submit": "Iragazkia",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etiketa|Etiketak}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etiketa|Etiketak}}]]: $2",
 	"tag-mw-contentmodelchange": "Eduki eredu aldaketa",
 	"tag-mw-contentmodelchange-description": "Orri baten [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel change the content model] aldaketak",
 	"tag-mw-new-redirect": "Birbideratze berria",

@@ -1827,7 +1827,7 @@
 	"tags": "Affixa mutationum validarum",
 	"tag-filter": "[[Special:Tags|Tag]] Colum:",
 	"tag-filter-submit": "Filtrum",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tags-title": "Affixa",
 	"tags-active-yes": "Sic",
 	"tags-edit": "recensere",

@@ -3082,7 +3082,7 @@
 	"tags": "Gyldige endringsmerke",
 	"tag-filter": "[[Special:Tags|Merke]]filter:",
 	"tag-filter-submit": "Filtrer",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Merke}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Merke}}]]: $2",
 	"tag-mw-contentmodelchange": "endring av innhaldsmodell",
 	"tag-mw-contentmodelchange-description": "Endringar som [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel byter innhaldsmodellen] til ei side",
 	"tag-mw-new-redirect": "Ny omdirigering",

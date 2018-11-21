@@ -3040,7 +3040,7 @@
 	"tags": "Тектерді өзгерту жарамсыз",
 	"tag-filter": "[[Special:Tags|Тег]] сүзгісі:",
 	"tag-filter-submit": "Сүзгі",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Тег|Тег}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Тег|Тег}}]]: $2",
 	"tags-title": "Тегтер",
 	"tags-intro": "Бұл бет бағдарламалық жасақтама өңдемені белгілейтін тегтерді және олардың мағыналарын тізімдейді.",
 	"tags-tag": "Тег атауы",

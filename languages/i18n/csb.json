@@ -1241,7 +1241,7 @@
 	"redirect-file": "Miono lopka",
 	"specialpages": "Specjalné starnë",
 	"tag-filter": "Filtr [[Special:Tags|znakòwników]]:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Znakòwnik|Znakòwniczi}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Znakòwnik|Znakòwniczi}}]]: $2",
 	"tag-mw-changed-redirect-target": "Pòzmiana célu przeczerowaniô",
 	"tag-mw-blank": "Rëmniãcé całi zamkłoscë starnë",
 	"tag-mw-rollback": "Copniãcé zjinaków",

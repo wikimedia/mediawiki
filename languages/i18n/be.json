@@ -3418,7 +3418,7 @@
 	"tags": "Дапушчальныя біркі",
 	"tag-filter": "Фільтр [[Special:Tags|бірак]]:",
 	"tag-filter-submit": "Фільтр",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Тэг|Тэгі}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Тэг|Тэгі}}]]: $2",
 	"tag-mw-contentmodelchange": "змена мадэлі змесціва",
 	"tag-mw-contentmodelchange-description": "Праўкі, якія [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel мяняюць мадэль змесціва] старонкі",
 	"tag-mw-new-redirect": "Новая перасылка",

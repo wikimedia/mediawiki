@@ -3004,7 +3004,7 @@
 	"tags": "Ticṛaḍ n ibeddilen sɣeblent",
 	"tag-filter": "Astay n [[Special:Tags|ticraḍ]] :",
 	"tag-filter-submit": "Sti",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Ticṛeṭ|Ticraḍ}}]] : $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Ticṛeṭ|Ticraḍ}}]] : $2",
 	"tags-title": "Ticraḍ",
 	"tags-intro": "Asebtar agi yettaked umuɣ n ticraḍ ay aseɣẓan yezmer ad yeseqdec iwakken ad yecreḍ abeddel d anamek i yal abeddel.",
 	"tags-tag": "Isem n ticṛeṭ",

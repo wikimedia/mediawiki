@@ -2795,7 +2795,7 @@
 	"tags": "د کره بدلون نښلنونه",
 	"tag-filter": "[[Special:Tags|نښلن]] چاڼگر:",
 	"tag-filter-submit": "چاڼگر",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|نښلن|نښلنونه}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|نښلن|نښلنونه}}]]: $2",
 	"tag-mw-blank": "بسته بندي",
 	"tag-mw-replace": "ځايناستول",
 	"tag-mw-rollback": "په شابېول",

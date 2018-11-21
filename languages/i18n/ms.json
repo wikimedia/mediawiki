@@ -3121,7 +3121,7 @@
 	"tags": "Teg-teg perubahan yang sah",
 	"tag-filter": "Tapis [[Special:Tags|teg]]:",
 	"tag-filter-submit": "Tapis",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Teg|Teg-teg}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Teg|Teg-teg}}]]: $2",
 	"tags-title": "Teg",
 	"tags-intro": "Yang berikut ialah senarai teg yang digunakan untuk menanda suntingan, berserta maknanya.",
 	"tags-tag": "Nama teg",

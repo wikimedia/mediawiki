@@ -3584,7 +3584,7 @@
 	"tags": "올바른 편집 태그",
 	"tag-filter": "[[Special:Tags|태그]] 필터:",
 	"tag-filter-submit": "필터",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|태그}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|태그}}]]: $2",
 	"tag-mw-contentmodelchange": "콘텐츠 모델 변경",
 	"tag-mw-contentmodelchange-description": "페이지의 [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel 콘텐츠 모델을 변경하는] 편집",
 	"tag-mw-new-redirect": "새 넘겨주기",

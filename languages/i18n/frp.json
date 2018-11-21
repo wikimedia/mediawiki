@@ -3192,7 +3192,7 @@
 	"tags": "Balises des changements justos",
 	"tag-filter": "Filtrar les [[Special:Tags|balises]] :",
 	"tag-filter-submit": "Filtrar",
-	"tag-list-wrapper": "([[Special:Tags|Balis{{PLURAL:$1|a|es}}]] : $2)",
+	"tag-list-wrapper": "[[Special:Tags|Balis{{PLURAL:$1|a|es}}]] : $2",
 	"tags-title": "Balises",
 	"tags-intro": "Cela pâge liste les balises que la programeria pôt empleyér por marcar un changement et lor significacion.",
 	"tags-tag": "Nom de la balisa",

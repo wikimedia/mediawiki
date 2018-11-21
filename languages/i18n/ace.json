@@ -1323,7 +1323,7 @@
 	"tags": "Tag neuubah nyang sah",
 	"tag-filter": "Saréng [[Special:Tags|tag]]:",
 	"tag-filter-submit": "Saréng",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag}}]]: $2",
 	"tags-active-yes": "Nyo",
 	"tags-active-no": "H`an",
 	"tags-hitcount": "$1 {{PLURAL:$1|neuubah}}",

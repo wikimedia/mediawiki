@@ -3343,7 +3343,7 @@
 	"tags": "Valid change tags",
 	"tag-filter": "[[Special:Tags|Tag]] filter karo:",
 	"tag-filter-submit": "Filter",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tag-mw-contentmodelchange": "Content model ke badlao",
 	"tag-mw-contentmodelchange-description": "Badlao, jon ki [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel change the content model] of a page",
 	"tags-title": "Tags",

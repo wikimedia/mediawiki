@@ -3590,7 +3590,7 @@
 	"tags": "Giltiga ändringsmärken",
 	"tag-filter": "Filter för [[Special:Tags|märken]]:",
 	"tag-filter-submit": "Filter",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Märke|Märken}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Märke|Märken}}]]: $2",
 	"tag-mw-contentmodelchange": "ändring av innehållsmodell",
 	"tag-mw-contentmodelchange-description": "Redigeringar som [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel ändrar innehållsmodellen] för en sida",
 	"tag-mw-new-redirect": "Ny omdirigering",

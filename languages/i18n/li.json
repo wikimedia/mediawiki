@@ -3435,7 +3435,7 @@
 	"tags": "Geldige wiezigingslabels",
 	"tag-filter": "[[Special:Tags|Labelfilter]]:",
 	"tag-filter-submit": "Filtere",
-	"tag-list-wrapper": "([[Special:Tags|Label{{PLURAL:$1||s}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|Label{{PLURAL:$1||s}}]]: $2",
 	"tag-mw-contentmodelchange": "inhawdsmodelverangering",
 	"tag-mw-contentmodelchange-description": "Bewirkinge die [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel 't  inhawdsmodel van 'n pagina verangere]",
 	"tag-mw-new-redirect": "Nuje redirek",

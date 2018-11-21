@@ -3593,7 +3593,7 @@
 	"tags": "Etichette di modifiche valide",
 	"tag-filter": "Filtra per [[Special:Tags|etichetta]]:",
 	"tag-filter-submit": "Filtra",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etichetta|Etichette}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etichetta|Etichette}}]]: $2",
 	"tag-mw-contentmodelchange": "modifica modello contenuti",
 	"tag-mw-contentmodelchange-description": "Modifiche che [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel cambiano il modello di contenuti] di una pagina",
 	"tag-mw-new-redirect": "Nuovo reindirizzamento",

@@ -1732,7 +1732,7 @@
 	"intentionallyblankpage": "Cisse pådje ci est vude en esprès.",
 	"tag-filter": "Passete po ls [[Special:Tags|etiketes]]:",
 	"tag-filter-submit": "Passete",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etikete|Etiketes}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etikete|Etiketes}}]]: $2",
 	"tag-mw-removed-redirect": "Redjiblaedje disfacé",
 	"tags-active-yes": "Oyi",
 	"tags-active-no": "Neni",

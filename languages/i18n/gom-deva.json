@@ -738,7 +738,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|उलयात]])",
 	"specialpages": "विशेश पानां",
 	"tag-filter": "[[Special:Tags|कुर्वेचीट]] गाळणो:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|कुरवेचीट|कुरवेचीटी}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|कुरवेचीट|कुरवेचीटी}}]]: $2",
 	"htmlform-title-not-exists": "$1 अस्तित्वांत ना.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|काडून उडयल्ले पान}} $3",
 	"logentry-move-move": "$1 हाणें $3 पानाक $4 {{GENDER:$2|हालयला}}",

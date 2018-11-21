@@ -3612,7 +3612,7 @@
 	"tags": "Geldige wijzigingslabels",
 	"tag-filter": "[[Special:Tags|Labelfilter]]:",
 	"tag-filter-submit": "Filteren",
-	"tag-list-wrapper": "([[Special:Tags|Label{{PLURAL:$1||s}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|Label{{PLURAL:$1||s}}]]: $2",
 	"tag-mw-contentmodelchange": "inhoudsmodel wijzigen",
 	"tag-mw-contentmodelchange-description": "Bewerkingen die [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel het  inhoudsmodel van een pagina wijzigen]",
 	"tag-mw-new-redirect": "Nieuwe doorverwijzing",

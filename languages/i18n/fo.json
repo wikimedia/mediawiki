@@ -2319,7 +2319,7 @@
 	"external_image_whitelist": "↓  #Lat hesa linjuna vera júst sum hon er<pre>\n#Skriva partar av vanligum orðingum (bert partin sum er ímillum //) niðanfyri\n#Hesar verða samanbornar við URL'ar á eksternum (hotlinkaðum) myndum\n#Tey sum passa saman verða víst sum myndir, í øðrum lagi verður bert ein slóð til myndina víst\n#Linjur sum byrja við # verða viðfarin sum viðmerkingar\n#Hetta er ikki følsamt fyri stórir og lítlir bókstavir\n\n#Skriva allar vanligar málberingar omanfyri hesa linju. Lat hesa linjuna verða júst sum hon er</pre>",
 	"tag-filter": "[[Special:Tags|Tag]] filtur:",
 	"tag-filter-submit": "Filtur",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Merki|Merkir}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Merki|Merkir}}]]: $2",
 	"tags-title": "Lyklaorð",
 	"tags-edit": "rætta",
 	"tags-hitcount": "$1 {{PLURAL:$1|broyting|broytingar}}",

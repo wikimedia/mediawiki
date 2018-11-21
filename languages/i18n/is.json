@@ -3469,7 +3469,7 @@
 	"tags": "Breyta virkum merkjum",
 	"tag-filter": "[[Special:Tags|Merkja]]sía:",
 	"tag-filter-submit": "Sía",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Merki}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Merki}}]]: $2",
 	"tag-mw-new-redirect": "Ný endurbeining",
 	"tag-mw-removed-redirect": "Fjarlægði endurbeiningu",
 	"tag-mw-replace": "Skipt út",

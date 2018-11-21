@@ -551,7 +551,7 @@
 	"fileduplicatesearch-submit": "Ečindy",
 	"specialpages": "Erikoiset šivut",
 	"tag-filter": "[[Special:Tags|Tag]] filtri:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Merkki|Merkit}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Merkki|Merkit}}]]: $2",
 	"logentry-delete-delete": "$1 {{GENDER:$2|iäreotettu}} šivu $3",
 	"logentry-move-move": "$1 {{GENDER:$2|šiirretty}} šivu $3 kohtah $4",
 	"logentry-newusers-create": "Käyttäjätunnuš $1 {{GENDER:$2|oli luotu}}",

@@ -3153,7 +3153,7 @@
 	"tags": "செல்லத்தக்க மாற்று குறிச்சொற்கள்",
 	"tag-filter": "[[Special:Tags|குறிச்சொல்]] வடிப்பான்:",
 	"tag-filter-submit": "வடிகட்டி",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|அடையாளம்|அடையாளங்கள்}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|அடையாளம்|அடையாளங்கள்}}]]: $2",
 	"tag-mw-contentmodelchange": "உள்ளடக்க மாதிரி மாற்றம்",
 	"tag-mw-contentmodelchange-description": "திருத்து\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel change the content model]",
 	"tags-title": "குறிச்சொற்கள்",

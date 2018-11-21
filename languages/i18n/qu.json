@@ -2792,7 +2792,7 @@
 	"tags": "Waliq unancha hukchay",
 	"tag-filter": "[[Special:Tags|Unancha]] ch'illchina:",
 	"tag-filter-submit": "Ch'illchina",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Unanchacha|Unanchachakuna}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Unanchacha|Unanchachakuna}}]]: $2",
 	"tags-title": "Unanchakuna",
 	"tags-intro": "Kay p'anqapiqa hukchaykunata llamp'u kaqpa sananchananpaq unanchakunatam rikunki, sut'inkunatapas.",
 	"tags-tag": "Unanchachap sutin",

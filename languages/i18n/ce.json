@@ -2855,7 +2855,7 @@
 	"tags": "Болш болу хийцаман къастам",
 	"tag-filter": "[[Special:Tags|Билгалонаш]] луьттург:",
 	"tag-filter-submit": "Литта",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|1=Билгало|Билгалонаш}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|1=Билгало|Билгалонаш}}]]: $2",
 	"tag-mw-contentmodelchange": "модулан чулацаман хийцам",
 	"tag-mw-new-redirect": "Керла дӀасахьажорг",
 	"tag-mw-removed-redirect": "дӀаяьккхина дӀасхьажорг",

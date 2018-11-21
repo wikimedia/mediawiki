@@ -3368,7 +3368,7 @@
 	"tags": "Ҡулланылған үҙгәртеү билдәләре",
 	"tag-filter": "[[Special:Tags|Билдәләрҙе]] һайлау:",
 	"tag-filter-submit": "Һайлау",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Тамғалар}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Тамғалар}}]]: $2",
 	"tag-mw-contentmodelchange": "Йөкмәтке моделен үҙгәртеү",
 	"tag-mw-contentmodelchange-description": "Биттең [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel йөкмәткеһе моделен үҙгәрткән] төҙәтеүҙәр",
 	"tags-title": "Билдәләр",

@@ -1902,7 +1902,7 @@
 	"blankpage": "ಖಾಲಿ ಪುಟ",
 	"tag-filter": "[[Special:Tags|Tag]] ಶೋಧಕ:",
 	"tag-filter-submit": "ಶೋಧಕ",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ಟ್ಯಾಗ್|ಟ್ಯಾಗ್‌ಗಳು}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ಟ್ಯಾಗ್|ಟ್ಯಾಗ್‌ಗಳು}}]]: $2",
 	"tags-title": "ಅಂಕಿತಗಳು",
 	"tags-tag": "ಅಂಕಿತ ನಾಮ",
 	"tags-active-header": "ಸಕ್ರಿಯ?",

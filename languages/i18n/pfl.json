@@ -1034,7 +1034,7 @@
 	"specialpages-group-wiki": "Daade un Wergzaisch",
 	"external_image_whitelist": " #Loss die Zail wiese isch.<pre>\n#Geb unne Deel vunde regulere Ausdrigg (de Deel zwischede //) oi.\n#Die werren midde URLs vun aissare Bilda vaglische.\n#Die wu passen werren gzaischd un schunschd sieschdn n'Ling'g.\n#Zaile, wu midd # ofongen sinnen Kommenda.\n#Glä- odda Großschraiwung isch do egal.\n\n#Deel vun regulere Ausdrigg nochde Zeil oidrache. Loss die Zail do uuvaännad.</pre>",
 	"tag-filter": "[[Special:Tags|Bschildarungs]]-Filda:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag}}]]: $2",
 	"tags-active-yes": "Ja",
 	"tags-active-no": "Nä",
 	"tags-edit": "bearwaide",

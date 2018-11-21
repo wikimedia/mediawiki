@@ -3583,7 +3583,7 @@
 	"tags": "वैध बदलाव चिप्पियाँ",
 	"tag-filter": "[[Special:Tags|चिप्पी]] छननी:",
 	"tag-filter-submit": "छननी",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|टैग}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|टैग}}]]: $2",
 	"tag-mw-contentmodelchange": "सामग्री मॉडल परिवर्तन",
 	"tag-mw-contentmodelchange-description": "पृष्ठ [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel सामग्री मॉडल को परिवर्तित करें] के संपादन।",
 	"tag-mw-new-redirect": "नया अनुप्रेषण",

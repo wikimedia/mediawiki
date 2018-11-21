@@ -2653,7 +2653,7 @@
 	"tags": "Джараулу тюрлендириу белгиле",
 	"tag-filter": "[[Special:Tags|Тег]] фильтр:",
 	"tag-filter-submit": "Фильтрлендир",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Эн|Энле}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Эн|Энле}}]]: $2",
 	"tags-title": "Тегле",
 	"tags-intro": "Бу бет, джазылыуну тюрлениуюню кёргюзюрге боллукъ теглени эм аланы ангыламларыны тизмесиди.",
 	"tags-tag": "Тегни аты",

@@ -2915,7 +2915,7 @@
 	"tags": "Tanggap na mga tatak ng pagbabago",
 	"tag-filter": "Pansala ng [[Special:Tags|etiketa]]:",
 	"tag-filter-submit": "Pansala",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tatak|Mga tatak}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tatak|Mga tatak}}]]: $2",
 	"tags-title": "Mga tatak",
 	"tags-intro": "Itinatala ng pahinang ito ang mga tatak na maaaring ipantatak ng sopwer sa isang pagbabago, at ang kanilang kahulugan.",
 	"tags-tag": "Tatakan ang pangalan",

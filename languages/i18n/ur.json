@@ -3429,7 +3429,7 @@
 	"tags": "درست تبدیلی کے ٹیگ",
 	"tag-filter": "مقطار [[Special:Tags|ٹیگ]]:",
 	"tag-filter-submit": "مقطار",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ٹیگ}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ٹیگ}}]]: $2",
 	"tag-mw-contentmodelchange": "مواد کے ماڈل میں تبدیلی",
 	"tag-mw-contentmodelchange-description": "ترامیم جو صفحہ کے [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel مواد کے ماڈل کو تبدیل کرتی ہیں]",
 	"tag-mw-new-redirect": "نیا رجوع مکرر",

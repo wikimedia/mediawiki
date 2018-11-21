@@ -3419,7 +3419,7 @@
 	"tags": "Билигин туттуллар уларытыы бэлиэлэрэ",
 	"tag-filter": "[[Special:Tags|Бэлиэлэр]] фильтрдара:",
 	"tag-filter-submit": "Фильтр",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Тиэк|Тиэктэр}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Тиэк|Тиэктэр}}]]: $2",
 	"tag-mw-contentmodelchange": "Иһинээҕи киэбин уларытыы сурунаала",
 	"tag-mw-contentmodelchange-description": "Сирэй [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel ис тутулун уларытар] көннөрүүлэр",
 	"tag-mw-new-redirect": "Саҥа утаарыы",

@@ -1280,7 +1280,7 @@
 	"external_image_whitelist": " #Lasse cheste rie cemût che a je<pre>\n#Inserìs lis espressions regolârs (dome il toc che al va tal mieç di //) ca sot\n#Chestis e saran controladis cun lis URLs des figuris esternis\n#A vignaran mostradis dome chês che a corispuindin, di chês altris si viodarà dome un leam\n#Lis riis che a scomencin cun # a son consideradis come coments\n#Si considerin diviersis lis letaris maiusculis e minusculis\n\n#Met ducj i framents regex parsore di cheste rie. Lasse cheste rie cemût che e je</pre>",
 	"tag-filter": "Filtre par [[Special:Tags|etichetis]]:",
 	"tag-filter-submit": "Filtre",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etichete|Etichetis}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etichete|Etichetis}}]]: $2",
 	"tags-edit": "cambie",
 	"tags-hitcount": "$1 {{PLURAL:$1|cambiament|cambiaments}}",
 	"dberr-problems": "Nus displâs, chest sît web al è daûr a vê dificoltâts tecnichis.",

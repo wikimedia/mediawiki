@@ -1400,7 +1400,7 @@
 	"specialpages-group-changes": "अल्लैका परिवर्तन लगहरू",
 	"tags": "मान्य परिवर्तन ट्यागहरू",
 	"tag-filter": "[[Special:Tags|पुछड]] छानिन्या",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ट्याग|ट्यागहरू}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ट्याग|ट्यागहरू}}]]: $2",
 	"tags-active-no": "नाइँ",
 	"tags-hitcount": "$1 {{PLURAL:$1|परिवर्तन|परिवर्तनहरू}}",
 	"tags-create-no-name": "तमीले ट्याग नाम निर्दिष्ट गद्दु पड्ड्या हुन्छ ।",

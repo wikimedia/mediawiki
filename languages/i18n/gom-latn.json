@@ -872,7 +872,7 @@
 	"specialpages": "Vixex panam",
 	"external_image_whitelist": " #Hi voll asa toxich dovor<pre>\n#Khala sodpache sache (''regular expressions'') ghal (fokot // modem voita poi tem bhag)\n#Hanche borobor bhaile zodlele murt comparar kel'le zatele\n#Mell khatat tim murt koxeo distele, na zalear fokot mortek ek zodd distele\n#Jeo voll #-an suru zatele tem xere mhunn manlele zatele\n#Hanga vhodle and dhakte okxora modem forok podona\n\n#Soglle sodpache sache hea volla voir ghal. Hi voll asa toxich dovor</pre>",
 	"tag-filter": "[[Special:Tags|Kurvechit]] challni:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Kurvechit|Kurvechiti}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Kurvechit|Kurvechiti}}]]: $2",
 	"tags-active-yes": "Hoi",
 	"tags-active-no": "Na",
 	"tags-hitcount": "$1 {{PLURAL:$1|bodol}}",

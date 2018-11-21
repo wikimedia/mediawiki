@@ -1834,7 +1834,7 @@
 	"blankpage": "Rûpela vala",
 	"tag-filter": "Parzûna [[Special:Tags|nîşankirinê]]:",
 	"tag-filter-submit": "Parzûn",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etîket}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etîket}}]]: $2",
 	"tag-mw-undo": "Betal bike",
 	"tags-title": "Nîşankirin",
 	"tags-tag": "Navê etîketê",

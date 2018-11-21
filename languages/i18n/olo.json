@@ -922,7 +922,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|pagize]])",
 	"specialpages": "Erikozet sivut",
 	"tag-filter": "[[Special:Tags|Tag]] filtru:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Merki|Merkii}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Merki|Merkii}}]]: $2",
 	"tags-edit-existing-tags-none": "\"Nimidä\"",
 	"compare-page1": "Sivu 1",
 	"compare-page2": "Sivu 2",

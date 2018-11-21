@@ -1205,7 +1205,7 @@
 	"specialpages": "ЯӀамышӀыкӀ нэкӀубгъохэр",
 	"specialpages-group-login": "Къыхахь / аккаунт къэубл",
 	"tag-filter": "[[Special:Tags|Tag]] филтрэр:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Гъэнэфалъ|Гъэнэфалъэхэр}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Гъэнэфалъ|Гъэнэфалъэхэр}}]]: $2",
 	"logentry-delete-delete": "$3 нэкӀубгъор $1 {{GENDER:$2|Ӏыгъ}}",
 	"logentry-move-move": "$1 {{GENDER:$2|ыгъэкощыгъэ}} нэкIубгъоу $3-р $4-м",
 	"logentry-newusers-create": "ХэлэжьэкIо аккаунтэу $1 {{GENDER:$2|ублагъэ}}",

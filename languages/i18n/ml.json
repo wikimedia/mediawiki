@@ -3352,7 +3352,7 @@
 	"tags": "സാധുവായ മാറ്റങ്ങളുടെ അനുബന്ധങ്ങൾ",
 	"tag-filter": "[[Special:Tags|അനുബന്ധങ്ങളുടെ]] അരിപ്പ:",
 	"tag-filter-submit": "അരിപ്പ",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|റ്റാഗ്|റ്റാഗുകൾ}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|റ്റാഗ്|റ്റാഗുകൾ}}]]: $2",
 	"tag-mw-new-redirect": "പുതിയ തിരിച്ചുവിടൽ",
 	"tag-mw-new-redirect-description": "പുതിയ തിരിച്ചുവിടൽ സൃഷ്ടിക്കാനുള്ളതോ, ഒരു താളിനെ തിരിച്ചുവിടലാക്കുന്നതിനോ ഉള്ള തിരുത്ത്",
 	"tag-mw-removed-redirect": "തിരിച്ചുവിടൽ ഒഴിവാക്കി",
