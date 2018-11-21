@@ -84,3 +84,26 @@ https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce (low traffic)
 https://lists.wikimedia.org/mailman/listinfo/mediawiki-l (site admin support)
 
 https://lists.wikimedia.org/mailman/listinfo/wikitech-l (development)
+
+----
+Troubleshooting
+----
+
+-- Mediawiki outputs internal error asking for external dependancies. 
+To resolve this issue navigate on https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries. COmposer (https://getcomposer.org/) is likely required.
+
+-- Composer cannot create cache directory
+`Cannot create cache directory /home/...https---repo.packagist.org, or directory is not writable. Proceeding without cache`
+`Cannot create cache directory /home/.../composer/files/, or directory is not writable. Proceeding without cache`
+
+Invoking: `sudo chown -R <USER> /home/<USER>/.cache/composer/repo/https---repo.packagist.org/ && sudo chown -R <USER> /home/<USER>/.cache/composer/files/` where "<USER>" is the name of the user and file location should fix the issue.
+
+-- Composer - squizlabs/php_codesniffer.. requires ext-xmlwriter
+```
+Problem 1
+    - squizlabs/php_codesniffer 3.3.1 requires ext-xmlwriter * -> the requested PHP extension xmlwriter is missing from your system.
+    - mediawiki/mediawiki-codesniffer v22.0.0 requires squizlabs/php_codesniffer 3.3.1 -> satisfiable by squizlabs/php_codesniffer[3.3.1].
+    - Installation request for mediawiki/mediawiki-codesniffer 22.0.0 -> satisfiable by mediawiki/mediawiki-codesniffer[v22.0.0].
+```
+
+Installing `php7-xmlwriter` in the php pipeline container should resolve the issue. Source: https://github.com/docksal/ci-agent/issues/6 
