@@ -36,7 +36,9 @@
 	padding: 0.546875em 1em;
 	line-height: 1.286;
 	margin: 0;
+	border-style: solid;
 	border-radius: @borderRadius;
+	border-width: @border-width-base;
 	.box-sizing( border-box );
 
 	// Disable weird iOS styling
@@ -191,18 +193,20 @@
 	//
 	// Styleguide 2.1.3.
 	&.mw-ui-quiet {
-		background: transparent;
-		border: 0;
+		background-color: transparent;
 		.button-colors-quiet( @colorButtonText, @colorButtonTextHighlight, @colorButtonTextActive );
+		border-color: transparent;
 
 		&:hover,
 		&:focus {
+			border-color: transparent;
 			box-shadow: none;
 		}
 
 		&:active,
 		&:disabled {
-			background: transparent;
+			background-color: transparent;
+			border-color: transparent;
 		}
 	}
 }
