@@ -31,7 +31,12 @@
 			if ( !$tocToggleCheckbox.length && $tocTitle.length && $tocList.length && !$tocToggleLink.length ) {
 				hideToc = mw.cookie.get( 'hidetoc' ) === '1';
 
-				$tocToggleLink = $( '<a role="button" tabindex="0" class="togglelink"></a>' )
+				$tocToggleLink = $( '<a>' )
+					.attr( {
+						role: 'button',
+						tabindex: 0
+					} )
+					.addClass( 'togglelink' )
 					.text( mw.msg( hideToc ? 'showtoc' : 'hidetoc' ) )
 					.on( 'click keypress', function ( e ) {
 						if (
