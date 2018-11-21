@@ -910,10 +910,12 @@ class Linker {
 	 * @param int $flags Customisation flags (e.g. Linker::TOOL_LINKS_NOBLOCK
 	 *   and Linker::TOOL_LINKS_EMAIL).
 	 * @param int|null $edits User edit count (optional, for performance)
+	 * @param bool $useParentheses (optional) Wrap comments in parentheses where needed
 	 * @return string HTML fragment
 	 */
 	public static function userToolLinks(
-		$userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits = null
+		$userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits = null,
+		$useParentheses = true
 	) {
 		global $wgUser, $wgDisableAnonTalk, $wgLang;
 		$talkable = !( $wgDisableAnonTalk && $userId == 0 );
@@ -957,10 +959,19 @@ class Linker {
 		Hooks::run( 'UserToolLinksEdit', [ $userId, $userText, &$items ] );
 
 		if ( $items ) {
-			return wfMessage( 'word-separator' )->escaped()
-				. '<span class="mw-usertoollinks">'
-				. wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped()
-				. '</span>';
+			if ( $useParentheses ) {
+				return wfMessage( 'word-separator' )->escaped()
+					. '<span class="mw-usertoollinks">'
+					. wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped()
+					. '</span>';
+			} else {
+				$tools = [];
+				foreach ( $items as $tool ) {
+					$tools[] = Html::rawElement( 'span', [], $tool );
+				}
+				return ' <span class="mw-usertoollinks mw-changeslist-links">' .
+					implode( ' ', $tools ) . '</span>';
+			}
 		} else {
 			return '';
 		}
