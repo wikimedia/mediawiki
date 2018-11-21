@@ -2997,7 +2997,7 @@
 	"tags": "නීතික ලෙසින් වෙනස් කල හැකි ටැගයන්",
 	"tag-filter": "[[Special:Tags|ටැග]] පෙරහන:",
 	"tag-filter-submit": "පෙරහන",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ටැගය|ටැග}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ටැගය|ටැග}}]]: $2",
 	"tags-title": "ටැගයන්",
 	"tags-intro": "මෘදුකාංගය විසින් සංස්කරණයක් සිදුකල හැකි ටැගයන් මෙම පිටුවෙහි ලැයිස්තුගත කොට ඒවායේ තේරුම් දක්වා ඇත.",
 	"tags-tag": " ටැග් නම",

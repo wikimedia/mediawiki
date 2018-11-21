@@ -657,7 +657,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|گأپ]])",
 	"specialpages": "بألگە یل ڤیجە",
 	"tag-filter": "[[Special:Tags|بأرچأسب]] فیلتر:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|بأرچسب|بأرچسبل}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|بأرچسب|بأرچسبل}}]]: $2",
 	"logentry-delete-delete": "$1 {{GENDER:$2|حأذف ڤابیدھ}} بألگە $3",
 	"logentry-move-move": "$1 {{GENDER:$2|انتقال دادھ بیه}} بلگه $3 ۉھ $4",
 	"logentry-newusers-create": "حسآۉ کارڤأر $1 ڤابیە {{GENDER:$2|راس ڤیدھ }}",

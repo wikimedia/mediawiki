@@ -1804,7 +1804,7 @@
 	"specialpages-group-redirects": "Ümbrenäütämistallitusleheq",
 	"external_image_whitelist": "  #Jätäq seo rida muutmalda kujo pääle<pre>\n#Panõq regulaaravaldusõ osaq (õnnõ //-märke vaihõl ollõv jago) allapoolõ\n#Naaq pandasõq vastama vikivälitside pilte internetiaadrõssidõga\n#Nuuq, miä vastasõq, näüdätäseq ku pildiq, muido näüdätäs õnnõ pildi link\n#Märgiga # päälenakkajaq riaq ommaq kommõntaariq\n#Seo tii-i vaiht suuril ja väikeisil tähil\n\n#Panõq kõik regulaaravaldusq osaq seo joonõ kotsilõ. Jätäq seo rida muutmalda</pre>",
 	"tag-filter": "[[Special:Tags|Märkmisfiltri]]:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Märgüs|Märgüseq}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Märgüs|Märgüseq}}]]: $2",
 	"tags-active-yes": "Jah",
 	"tags-active-no": "Ei",
 	"tags-hitcount": "$1 {{PLURAL:$1|muutminõ|muutmiisi}}",

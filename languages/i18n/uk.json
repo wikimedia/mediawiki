@@ -3728,7 +3728,7 @@
 	"tags": "Чинні мітки змін",
 	"tag-filter": "Фільтр&nbsp;[[Special:Tags|міток]]:",
 	"tag-filter-submit": "Відфільтрувати",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Мітка|Мітки}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Мітка|Мітки}}]]: $2",
 	"tag-mw-contentmodelchange": "зміна моделі вмісту",
 	"tag-mw-contentmodelchange-description": "Редагування, які змінюють [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel модель вмісту] сторінки",
 	"tag-mw-new-redirect": "Нове перенаправлення",

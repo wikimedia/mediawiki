@@ -1629,7 +1629,7 @@
 	"redirect-file": "文件名",
 	"specialpages": "特别页面",
 	"tag-filter": "[[Special:Tags|标签]]过滤器：",
-	"tag-list-wrapper": "（[[Special:Tags|$1个标签]]：$2）",
+	"tag-list-wrapper": "[[Special:Tags|$1个标签]]：$2",
 	"tags-active-yes": "好",
 	"tags-active-no": "弗",
 	"tags-hitcount": "$1趟改动",

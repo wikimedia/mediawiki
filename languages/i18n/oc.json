@@ -3285,7 +3285,7 @@
 	"tags": "Balisas de las modificacions validas",
 	"tag-filter": "Filtrar las [[Special:Tags|balisas]] :",
 	"tag-filter-submit": "Filtrar",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Balisa|Balisas}}]] : $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Balisa|Balisas}}]] : $2",
 	"tags-title": "Balisas",
 	"tags-intro": "Aquesta pagina lista las balisas que lo logicial pòt utilizar per marcar una modificacion, e lor significacion.",
 	"tags-tag": "Nom de la balisa",

@@ -3497,7 +3497,7 @@
 	"tags": "Etiquetes de cambiu válides",
 	"tag-filter": "Filtru d'[[Special:Tags|etiquetes]]:",
 	"tag-filter-submit": "Peñera",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etiqueta|Etiquetes}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etiqueta|Etiquetes}}]]: $2",
 	"tag-mw-contentmodelchange": "cambiu nel modelu de conteníu",
 	"tag-mw-contentmodelchange-description": "Ediciones que [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel camuden el modelu de conteníu] d'una páxina",
 	"tag-mw-new-redirect": "Redireición nueva",

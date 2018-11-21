@@ -3011,7 +3011,7 @@
 	"tags": "Geldige wysigings-etikette",
 	"tag-filter": "[[Special:Tags|Etiketfilter]]:",
 	"tag-filter-submit": "Filter",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etiket|Etikette}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etiket|Etikette}}]]: $2",
 	"tags-title": "Etikette",
 	"tags-intro": "Hierdie bladsy bevat die etikette waarmee die sagteware wysigings mee kan merk, en hul betekenis.",
 	"tags-tag": "Etiketnaam",

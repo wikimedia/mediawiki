@@ -755,7 +755,7 @@
 	"specialpages-group-other": "инꙑ нарочьнꙑ страницѧ",
 	"specialpages-group-login": "въниждєниѥ и сътворѥниѥ мѣстъ",
 	"tag-filter": "[[Special:Tags|мѣтъць]] сито :",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|мѣтъка|мѣтъцѣ|мѣтъци}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|мѣтъка|мѣтъцѣ|мѣтъци}}]]: $2",
 	"tags-active-yes": "да",
 	"tags-active-no": "нѣтъ",
 	"tags-edit": "исправлѥниѥ",

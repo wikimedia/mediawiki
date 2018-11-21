@@ -2781,7 +2781,7 @@
 	"tags": "Gültiche Ännrungsmarkierunge",
 	"tag-filter": "[[Special:Tags|Markierungs]]-Filter:",
 	"tag-filter-submit": "Filter",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Markierung|Markierunge}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Markierung|Markierunge}}]]: $2",
 	"tags-title": "Markierunge",
 	"tags-intro": "Die Seit zeicht alle Markierunge, die für Beoorbeitunge verwendt worre, sowie ehre Bedeitung. \n\nBei entsprechender Einstellung könne die Missbrauchfilter beliebiche Markierung in die Versionsgeschicht setze. Man kann die Versionsgeschicht dann noh den Markierunge filtriere.",
 	"tags-tag": "Markierungsnoome",

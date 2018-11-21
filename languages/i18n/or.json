@@ -2927,7 +2927,7 @@
 	"tags": "ବୈଧ ସମ୍ପାଦନା ଚିହ୍ନ",
 	"tag-filter": "[[Special:Tags|ଟାଗ]] ଛଣା:",
 	"tag-filter-submit": "ଛାଣିବା",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ଟ୍ୟାଗ|ଟ୍ୟାଗସବୁ}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ଟ୍ୟାଗ|ଟ୍ୟାଗସବୁ}}]]: $2",
 	"tags-title": "ସୂଚକ",
 	"tags-intro": "ଏହି ପୃଷ୍ଠା ସଫ୍ଟୱାର ଏକ ବଦଳ ଭାବେ ଚିହ୍ନିତ କରୁଥିବା ଚିହ୍ନସବୁର ମାନେ ସହ ତାଲିକା ତିଆରି କରିଥାଏ ।",
 	"tags-tag": "ଚିହ୍ନ ନାମ",

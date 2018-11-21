@@ -772,7 +772,7 @@
 	"redirect-file": "Նիշքի անունը",
 	"specialpages": "Յատուկ էջեր",
 	"tag-filter": "[[Special:Tags|Պիտակներու]] զտիչ՝",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Պիտակ}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Պիտակ}}]]: $2",
 	"tags-active-yes": "Այո",
 	"tags-active-no": "Ոչ",
 	"tags-hitcount": "{{PLURAL:$1|փոփոխութիւն}}",

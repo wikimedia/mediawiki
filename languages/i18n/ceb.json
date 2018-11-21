@@ -884,7 +884,7 @@
 	"watchlisttools-raw": "Usba ang hilaw nga talaan sa gibantayan",
 	"specialpages": "Espesyal nga mga panid",
 	"tag-filter": "[[Special:Tags|Tag]] nga pilter:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Mga tag}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Mga tag}}]]: $2",
 	"logentry-delete-delete": "Si $1 {{GENDER:$2|mipapas}} sa panid nga $3",
 	"revdelete-restricted": "mga na-aplay nga restriksyon sa mga tagdumala",
 	"revdelete-unrestricted": "gitangtang ang mga restriksyon alang sa mga tagdumala",

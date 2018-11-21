@@ -1437,7 +1437,7 @@
 	"fileduplicatesearch-submit": "Iruzzi",
 	"specialpages": "Asebter uslig",
 	"tag-filter": "Astay n [[Special:Tags|ticraḍ]]:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Ticṛeṭ|Ticraḍ}}]] : $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Ticṛeṭ|Ticraḍ}}]] : $2",
 	"tags-source-header": "Aɣbalu",
 	"tags-active-yes": "Ih",
 	"tags-active-no": "Uhu",

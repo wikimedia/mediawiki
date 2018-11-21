@@ -3393,7 +3393,7 @@
 	"tags": "Dagiti etiketa ti umiso a panagbaliw",
 	"tag-filter": "Sagat ti [[Special:Tags|etiketa]]:",
 	"tag-filter-submit": "Sagat",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etiketa|Et-etiketa}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etiketa|Et-etiketa}}]]: $2",
 	"tag-mw-contentmodelchange": "panagbaliw ti modelo ti linaon",
 	"tag-mw-contentmodelchange-description": "Dagiti panagurnos a [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel mangbaliw ti modelo ti linaon] ti panid",
 	"tag-mw-new-redirect": "Baro a baw-ing",

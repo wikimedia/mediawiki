@@ -3238,7 +3238,7 @@
 	"tags": "De jöltijje Makkehronge för Änderonge",
 	"tag-filter": "[[Special:Tags|Makkehronge]] ußsöhke:",
 	"tag-filter-submit": "Beschränke!",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1||$1|Keij}} Kännzeijsche]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1||$1|Keij}} Kännzeijsche]]: $2",
 	"tags-title": "Makeeronge",
 	"tags-intro": "Heh sin alle de Makeerunge opjeliß, di et Wikki för Änderunge verjävve kann, un wat se bedügge.",
 	"tags-tag": "Dä Makkehrong iere Nahme",

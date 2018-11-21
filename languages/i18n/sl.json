@@ -3513,7 +3513,7 @@
 	"tags": "Veljavne etikete sprememb",
 	"tag-filter": "Filter [[Special:Tags|oznak]]:",
 	"tag-filter-submit": "Filtriraj",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Oznaka|Oznaki|Oznake}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Oznaka|Oznaki|Oznake}}]]: $2",
 	"tag-mw-contentmodelchange": "sprememba modela vsebine",
 	"tag-mw-contentmodelchange-description": "Urejanja, ki [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel spremenijo model vsebine] strani",
 	"tag-mw-new-redirect": "Nova preusmeritev",

@@ -1579,7 +1579,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|waxtaan]])",
 	"specialpages": "Xëti jagleel",
 	"tag-filter": "Seggee ak [[Special:Tags|Tafaan]]:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tafaan}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tafaan}}]]: $2",
 	"logentry-delete-delete": "$1 {{GENDER:$2|moo far}} xët wi $3",
 	"revdelete-restricted": "doxalub digal ngir yorkat yi",
 	"revdelete-unrestricted": "digal ngir yorkat yi deñ na",

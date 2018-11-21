@@ -1462,7 +1462,7 @@
 	"specialpages": "Thi̍t-sû ya̍p",
 	"external_image_whitelist": " #留下撈邇行一樣嘅文字<pre>\n#在下背（//中間部份）輸入正則表達式\n#邇兜將會撈外部（已超鏈接嘅）圖片配合\n#遐兜配合上嘅會顯示成圖片，否則就單淨會顯示成鏈接\n#有#開頭嘅行會當成意見\n#大小寫並無區分\n\n#在邇行上片輸入全部正則表達式。留下撈邇行一樣嘅文字</pre>",
 	"tag-filter": "[[Special:Tags|Phiêu-chhiam]] ko-lì-hi:",
-	"tag-list-wrapper": "([[Special:Tags|$1 ke phiêu-chhiam]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|$1 ke phiêu-chhiam]]: $2",
 	"logentry-delete-delete": "$1 san-chhù ya̍p-mien $3",
 	"revdelete-restricted": "yí-kîn yin-yung han-tsṳ tsṳ tshâu-tsok-yèn",
 	"revdelete-unrestricted": "yí-kîn yì-tshù yû-kûan tshâu-tsok-yè ke han-tsṳ",

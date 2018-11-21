@@ -2582,7 +2582,7 @@
 	"tags": "Signalisaziuns per midadas",
 	"tag-filter": "Filtrar las [[Special:Tags|Signalisaziuns]]:",
 	"tag-filter-submit": "Filtrar",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|signalisaziun|signalisaziuns}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|signalisaziun|signalisaziuns}}]]: $2",
 	"tags-title": "Signalisaziuns",
 	"tags-intro": "Questa pagina mussa tut las singalisaziuns che la software po duvrar per marcar modificaziuns e declera tge ch'ellas muntan.",
 	"tags-tag": "Num da la signalisaziun",

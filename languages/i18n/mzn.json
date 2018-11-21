@@ -799,7 +799,7 @@
 	"specialpages": "شا صفحه‌ئون",
 	"specialpages-group-maintenance": "چله‌بندی صفحه‌ئون",
 	"tag-filter": "[[Special:Tags|برچسبون]] ِفیلتر:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|برچسب|برچسبون}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|برچسب|برچسبون}}]]: $2",
 	"logentry-delete-delete": "$1 صفحهٔ $3 ره {{GENDER:$2|حذف هاکرده}}",
 	"logentry-move-move": "کارور $1، $3 ِصفحه ره {{GENDER:$2|دَکشی‌یه}} $4 دله",
 	"logentry-move-move_redir-noredirect": "$1 ، $3 ره بدون اینکه مسیر تغییری درس بوه به $4 که مسیر تغییر بیه منتقل هاکرده",

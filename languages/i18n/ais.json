@@ -3175,7 +3175,7 @@
 	"tags": "kapah misumad tu tazihan a paya",
 	"tag-filter": "[[Special:Tags|aazihen paya]] kilim:",
 	"tag-filter-submit": "kilim",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|aazihen paya’}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|aazihen paya’}}]]: $2",
 	"tag-mw-contentmodelchange": "lacul tatudungen misanga’  misumad",
 	"tag-mw-contentmodelchange-description": "mikawaway-kalumyiti  [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel misumad kasabelih a lacul tatudungen misanga’].",
 	"tags-title": "aazihen a paya",

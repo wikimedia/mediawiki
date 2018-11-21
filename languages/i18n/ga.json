@@ -1666,7 +1666,7 @@
 	"specialpages-group-wiki": "Sonraí agus uirlisí",
 	"specialpages-group-spam": "Uirlisí turscar",
 	"blankpage": "Leathanach bán",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|chlib amháin|clib}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|chlib amháin|clib}}]]: $2",
 	"diff-form-submit": "Taispeáin difríochtaí",
 	"htmlform-selectorother-other": "Eile",
 	"logentry-move-move": "{{GENDER:$2|Bhog}} $1 an leathanach $3 go $4",

@@ -2073,7 +2073,7 @@
 	"intentionallyblankpage": "Այս էջը միտումնավոր դատարկ է թողված։",
 	"tag-filter": "[[Special:Tags|Պիտակների]] զտիչ՝",
 	"tag-filter-submit": "Ֆիլտրել",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Պիտակ}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Պիտակ}}]]: $2",
 	"tags-title": "Պիտակներ",
 	"tags-source-header": "Աղբյուր",
 	"tags-actions-header": "Գործողություններ",

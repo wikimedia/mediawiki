@@ -1964,7 +1964,7 @@
 	"intentionallyblankpage": "هيءُ صفحو ڄاڻي خالي ڇڏيو ويو آهي.",
 	"tag-filter": "[[Special:Tags|ٽيگ]] ڇاڻي:",
 	"tag-filter-submit": "ڇاڻي",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ٽيگ|ٽيگز}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ٽيگ|ٽيگز}}]]: $2",
 	"tag-mw-new-redirect": "نئون چوريل",
 	"tag-mw-blank": "خالي",
 	"tag-mw-rollback-description": "واپس-ورايو ڳنڍڻي کي استعمال ڪندي پوين ترميمن کي واپس ورائيندڙ ترميمون",

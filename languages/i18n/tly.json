@@ -630,7 +630,7 @@
 	"specialpages": "Хысусијә сәһифон",
 	"external_image_whitelist": " #Ым сәтри огәтәнән чокнәј әв һесте<pre>\n#Рә рә истифадә быә фрагментон ијо быдәнән (ә һиссә, че // мијонәдә бедә )\n#Әвон ды харичи шикили URL и дуз бәбен.\n#Дуз омә гылә бәнә шикили нишо бәбе, амандәни бәнә шикили линк нишо бәбе.\n#Сәтрон де # комментариј һисоб бедән.\n#Сәтрон бә регистри һәссос нин.\n\n#Рә рә око доә быә фрагментон че сәтри пентоно ијо быдәнән. Ым сәтри огәтәнән чокнәј һесте.</pre>",
 	"tag-filter": "[[Special:Tags|нышонон]] филтр:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Nişon|Nişonon}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Nişon|Nişonon}}]]: $2",
 	"tags-title": "Нышонон",
 	"logentry-newusers-create": "$1 istifadəmon hesob okarde be",
 	"searchsuggest-search": "Nəve"

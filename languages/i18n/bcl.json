@@ -2745,7 +2745,7 @@
 	"tags": "Balidong mga marka nin kaliwatan",
 	"tag-filter": "[[Special:Tags|Tag]] saraon:",
 	"tag-filter-submit": "Saraan",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tatak|Mga Tatak}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tatak|Mga Tatak}}]]: $2",
 	"tags-title": "Mga marka",
 	"tags-intro": "Ining pahina minalista kan mga marka na an kasungatan mapuwedeng maimarka an pagliwat kaini, asin an saindang mga kahulugan.",
 	"tags-tag": "Ngarang panmarka",

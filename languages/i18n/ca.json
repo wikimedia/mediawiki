@@ -3542,7 +3542,7 @@
 	"tags": "Etiquetes de canvi vàlides",
 	"tag-filter": "Filtre d'[[Special:Tags|etiquetes]]:",
 	"tag-filter-submit": "Filtra",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etiqueta|Etiquetes}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etiqueta|Etiquetes}}]]: $2",
 	"tag-mw-contentmodelchange": "canvi de model de contingut",
 	"tag-mw-new-redirect": "Redirecció nova",
 	"tag-mw-removed-redirect": "Redirecció suprimida",

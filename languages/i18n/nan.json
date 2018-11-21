@@ -1141,7 +1141,7 @@
 	"version": "Pán-pún",
 	"specialpages": "Te̍k-sû-ia̍h",
 	"tag-filter": "[[Special:Tags|Piau-chhiam]] chhoē mi̍h:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|piau-chhiam}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|piau-chhiam}}]]: $2",
 	"tag-mw-new-redirect": "Sin choán-ia̍h",
 	"tag-mw-removed-redirect": "Choán-ia̍h the̍h-tiāu",
 	"tag-mw-changed-redirect-target": "Choán-ia̍h bo̍k-phiau kái-piàn",

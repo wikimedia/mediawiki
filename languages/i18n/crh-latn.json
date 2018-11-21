@@ -1480,7 +1480,7 @@
 	"intentionallyblankpage": "Bu saife aselet boş qaldırılğan",
 	"tag-filter": "[[Special:Tags|Belgi]] süzgüçi:",
 	"tag-filter-submit": "Süz",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Belgi|Belgiler}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Belgi|Belgiler}}]]: $2",
 	"tags-title": "Belgiler",
 	"comparepages": "Saifelerni teñeştirüv",
 	"compare-submit": "Teñeştir",

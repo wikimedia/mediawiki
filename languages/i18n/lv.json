@@ -2866,7 +2866,7 @@
 	"tags": "Derīgas izmaiņu iezīmes",
 	"tag-filter": "[[Special:Tags|Iezīmju]] filtrs:",
 	"tag-filter-submit": "Filtrs",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Iezīmes|Iezīme|Iezīmes}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Iezīmes|Iezīme|Iezīmes}}]]: $2",
 	"tag-mw-contentmodelchange": "satura modeļa izmaiņa",
 	"tag-mw-contentmodelchange-description": "Labojumi, kas [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel maina lapas satura modeli]",
 	"tag-mw-new-redirect": "Jauna pāradresācija",

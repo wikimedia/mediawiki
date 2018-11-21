@@ -2945,7 +2945,7 @@
 	"tags": "Tichëtte ëd le modìfiche vàlide",
 	"tag-filter": "Filtror ëd le [[Special:Tags|tichëtte]]:",
 	"tag-filter-submit": "Filtror",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tichëtta|Tichëtte}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tichëtta|Tichëtte}}]]: $2",
 	"tags-title": "Tichëtte",
 	"tags-intro": "Costa pàgina a lista le tichëtte che ël programa a peul dovré për marché na modìfica, e sò significà.",
 	"tags-tag": "Nòm ëd la tichëtta",

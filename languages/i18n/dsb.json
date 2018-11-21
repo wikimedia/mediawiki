@@ -2805,7 +2805,7 @@
 	"tags": "Płaśiwe toflicki změnow",
 	"tag-filter": "Filter [[Special:Tags|toflickow]]:",
 	"tag-filter-submit": "Filter",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Wobznamjenje|Wobznamjeni|Wobznamjenja}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Wobznamjenje|Wobznamjeni|Wobznamjenja}}]]: $2",
 	"tags-title": "Toflicki",
 	"tags-intro": "Toś ten bok nalicyjo toflicki, z kótarymiž softwara móžo změnu markěrowaś a jich wóznam.",
 	"tags-tag": "Mě toflicki",

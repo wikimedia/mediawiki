@@ -3150,7 +3150,7 @@
 	"tags": "मान्य ट्याग परिवर्तनहरू",
 	"tag-filter": "[[Special:Tags|पुच्छर]] फिल्टर:",
 	"tag-filter-submit": "फिल्टर",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ट्याग|ट्यागहरू}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ट्याग|ट्यागहरू}}]]: $2",
 	"tag-mw-undo": "अन्डू गर्नुहोस्",
 	"tags-title": "ट्यागहरु",
 	"tags-intro": "यो पृष्ठले ट्यागहरू सूचीकृत गर्छ जससँग यो सफ्टवेयरले चिनो लगाउन र सम्पादन गर्न सक्छ र तिनका अर्थहरू ।",

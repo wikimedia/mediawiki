@@ -106,7 +106,8 @@
 			"Dcljr",
 			"Phenolla",
 			"Hello903hello",
-			"A Chinese Wikipedian"
+			"A Chinese Wikipedian",
+			"Angrydog001"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -732,7 +733,7 @@
 	"subject-preview": "主题的预览：",
 	"previewerrortext": "尝试预览您的更改时发生错误。",
 	"blockedtitle": "用户被封禁",
-	"blockedtext-partial": "<strong>您的用户名或IP地址已被禁止更改此页面，但您仍可在此 wiki 上编辑其它页面。</strong>您可以在[[Special:MyContributions|帐号贡献]]检视完整的封禁详情。\n\n封禁是由$1所执行。\n\n原因出自<em>$2</em>。\n\n*封禁开始时间：$8\n*封禁结束时间：$6\n*防止行为：$7\n*封禁 ID #$5",
+	"blockedtext-partial": "<strong>您的用户名或IP地址已被禁止更改此页面，但您仍可在此wiki上编辑其它页面。</strong>您可以在[[Special:MyContributions|帐号贡献]]查看完整的封禁详情。\n\n封禁是由$1所执行。\n\n原因出自<em>$2</em>。\n\n*封禁开始时间：$8\n*封禁结束时间：$6\n*防止行为：$7\n*封禁 ID #$5",
 	"blockedtext": "<strong>您的用户名或IP地址已被封禁。</strong>\n\n执行封禁的管理员是$1。封禁原因是<em>$2</em>。\n\n* 开始时间：$8\n* 到期时间：$6\n* 目标用户：$7\n\n您可以联络$1或其他[[{{MediaWiki:Grouppage-sysop}}|管理员]]讨论该封禁。只有当您在[[Special:Preferences|系统设置]]确认了电子邮件地址且未被禁止使用“{{int:emailuser}}”功能时，才可以使用它。您当前的IP地址是$3，该封禁ID是#$5。请在您做出的任何查询中包含所有上述详情。",
 	"autoblockedtext": "您的IP地址因曾被一位被$1封禁的用户使用而被自动封禁。封禁原因：\n\n:<em>$2</em>\n\n* 开始时间：$8\n* 到期时间：$6\n* 目标用户：$7\n\n您可以联系$1或其他[[{{MediaWiki:Grouppage-sysop}}|管理员]]申诉该封禁。\n\n请注意，只有当您已在[[Special:Preferences|系统设置]]确认了电子邮件地址且未被禁止使用“{{int:emailuser}}”功能时，才能发送电子邮件联系管理员。\n\n您当前的IP地址为$3，该封禁ID为#$5。请在您做出的任何查询中包含所有上述详情。",
 	"systemblockedtext": "您的用户名或IP地址已被MediaWiki自动封禁。封禁原因：\n\n:<em>$2</em>\n\n* 开始时间：$8\n* 到期时间：$6\n* 目标用户：$7\n\n您当前的IP地址是$3。请在您做出的任何查询中包含所有上述详情。",
@@ -3666,7 +3667,7 @@
 	"tags": "有效的更改标签",
 	"tag-filter": "[[Special:Tags|标签]]过滤器：",
 	"tag-filter-submit": "过滤器",
-	"tag-list-wrapper": "（[[Special:Tags|$1个标签]]：$2）",
+	"tag-list-wrapper": "[[Special:Tags|$1个标签]]：$2",
 	"tag-mw-contentmodelchange": "内容模型更改",
 	"tag-mw-contentmodelchange-description": "更改页面[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel 内容模型]的编辑",
 	"tag-mw-new-redirect": "新重定向",

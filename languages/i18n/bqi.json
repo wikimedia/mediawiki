@@ -800,7 +800,7 @@
 	"version": "ترجمه یا تفسیر",
 	"specialpages": "بلگاٛ آ ۋیجٱ",
 	"tag-filter": "[[Special:سردیسا|سرديس]] فيلتر:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|سرديس|سرديسا}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|سرديس|سرديسا}}]]: $2",
 	"logentry-delete-delete": "$1 بألگأ {{GENDER:$2|پاکسا ڤابيأ}} $3",
 	"logentry-move-move": "$1 {{GENDER:$2|جا ب جا کردإ}} بألگأ $3 نأ سي $4",
 	"logentry-newusers-create": "هساڤ کارياري $1 {{GENDER:$2|راسد ڤابي}}",

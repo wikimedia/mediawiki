@@ -707,7 +707,7 @@
 	"redirect-file": "ဖိုင်ႋမၠိင်",
 	"specialpages": "အ်ုထိုဝ်ခေါဟ်",
 	"tag-filter": "[[Special:Tags|Tag]] ထုက်ပၠာၰင် -",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|လိက်ထိက်ၜုဂ်|လိက်ထိက်ၜုဂ်လ်ုဖး}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|လိက်ထိက်ၜုဂ်|လိက်ထိက်ၜုဂ်လ်ုဖး}}]]: $2",
 	"tags-active-yes": "မွာဲ",
 	"tags-active-no": "လ်ုမွာဲၜး",
 	"tags-hitcount": "ဆ်ုအင်းလယ် $1 {{PLURAL:$1|ၮါင်း|ၮါင်းလ်ုဖး}}",

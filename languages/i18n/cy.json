@@ -3202,7 +3202,7 @@
 	"tags": "Tagiau newidiadau",
 	"tag-filter": "Hidl [[Special:Tags|tagiau]]:",
 	"tag-filter-submit": "Hidlo",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tagiau}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tagiau}}]]: $2",
 	"tags-title": "Tagiau",
 	"tags-intro": "Dyma restr o'r tagiau y mae'r meddalwedd yn defnyddio i farcio golygiad, ynghyd â'r rhesymau dros eu defnyddio.",
 	"tags-tag": "Enw'r tag",

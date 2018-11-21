@@ -2241,7 +2241,7 @@
 	"tags": "وسوم التغيير الصحيحة",
 	"tag-filter": "فلتر [[Special:Tags|الوسم]]:",
 	"tag-filter-submit": "فلتر",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1||وسم|وسمين|وسوم}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1||وسم|وسمين|وسوم}}]]: $2",
 	"tags-title": "وسوم",
 	"tags-intro": "الصفحه دى فيها ليستة الوسوم اللى ممكن البرنامج يعلم عى التعديل بيها، و معانيهم",
 	"tags-tag": "اسم الوسم",

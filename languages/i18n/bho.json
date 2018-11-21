@@ -1844,7 +1844,7 @@
 	"specialpages-group-pages": "पन्नन के सूचीसभ",
 	"specialpages-group-wiki": "डेटा अउर औजार",
 	"tag-filter": "[[Special:Tags|टैग]] छननी:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|टैग|टैग कुल}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|टैग|टैग कुल}}]]: $2",
 	"tag-mw-new-redirect": "नाया अनुप्रेषण",
 	"tags-active-yes": "हँऽ",
 	"tags-active-no": "ना",

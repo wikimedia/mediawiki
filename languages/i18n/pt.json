@@ -3605,7 +3605,7 @@
 	"tags": "Etiquetas de modificação válidas",
 	"tag-filter": "Filtro de [[Special:Tags|etiquetas]]:",
 	"tag-filter-submit": "Filtrar",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etiqueta|Etiquetas}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etiqueta|Etiquetas}}]]: $2",
 	"tag-mw-contentmodelchange": "alteração do modelo de conteúdo",
 	"tag-mw-contentmodelchange-description": "Edições que [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel alteram o modelo de conteúdo] de uma página",
 	"tag-mw-new-redirect": "Novo redirecionamento",

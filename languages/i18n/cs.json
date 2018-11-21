@@ -3592,7 +3592,7 @@
 	"tags": "Platné značky pro změny",
 	"tag-filter": "Filtr podle [[Special:Tags|značek]]:",
 	"tag-filter-submit": "Filtrovat",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Značka|Značky}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Značka|Značky}}]]: $2",
 	"tag-mw-contentmodelchange": "změna modelu obsahu",
 	"tag-mw-contentmodelchange-description": "Editace, které [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel mění obsah modelu] stránky",
 	"tag-mw-new-redirect": "Nové přesměrování",

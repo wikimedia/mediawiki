@@ -3186,7 +3186,7 @@
 	"tags": "Ravêrde vurnayışanê etiketa",
 	"tag-filter": "Parzûnê [[Special:Tags|etiketi]]:",
 	"tag-filter-submit": "Avrêc",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etiket|Etiketi}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etiket|Etiketi}}]]: $2",
 	"tags-title": "Etiketi",
 	"tags-intro": "Ena pele etiketê ke be vurnayışê nuşiyayışi ra nişan biyê û maneyê inan lista kena.",
 	"tags-tag": "Nameyê etiketi",

@@ -654,7 +654,7 @@
 	"specialpages": "Ka ici wectakaniwok",
 	"specialpages-group-login": "Posi / masinahotiso",
 	"tag-filter": "Nihipita nehi[[Special:Tags|balises]] :",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Kicawatcikanicic|Kicawatcikanica}}]] : $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Kicawatcikanicic|Kicawatcikanica}}]] : $2",
 	"tags-source-header": "Ite wetciparik",
 	"tags-active-yes": "Ehe",
 	"tags-active-no": "Nama",

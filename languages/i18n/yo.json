@@ -2612,7 +2612,7 @@
 	"tags": "Àwọn àlẹ̀mọ́ tuntun gidi",
 	"tag-filter": "Ajọ̀ [[Special:Tags|àlẹ́mọ́]]:",
 	"tag-filter-submit": "Ajọ̀",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Àlẹ̀mọ́|Àwọn àlẹ̀mọ́}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Àlẹ̀mọ́|Àwọn àlẹ̀mọ́}}]]: $2",
 	"tags-title": "Àwọn àlẹ̀mọ́",
 	"tags-intro": "Ojúewé yìí ṣe àtòjọ àwọn àlẹ̀mọ́ tí atọ́nà kọ̀mpútà le ṣe àmì àtúnṣe pẹ̀lú, àti ìtumọ̀ wọn.",
 	"tags-tag": "Orúkọ àlẹ́mọ́",

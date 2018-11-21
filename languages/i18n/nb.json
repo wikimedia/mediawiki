@@ -3594,7 +3594,7 @@
 	"tags": "Gyldige endringstagger",
 	"tag-filter": "Filter for [[Special:Tags|tagger]]:",
 	"tag-filter-submit": "Filtrer",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tagg|Tagger}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tagg|Tagger}}]]: $2",
 	"tag-mw-contentmodelchange": "innholdsmodellendring",
 	"tag-mw-contentmodelchange-description": "Redigeringer som [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel endrer innholdsmodellen] til en side",
 	"tag-mw-new-redirect": "Ny omdirigering",

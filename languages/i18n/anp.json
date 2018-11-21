@@ -898,7 +898,7 @@
 	"redirect-file": "फ़ाइल नाम",
 	"specialpages": "खास पन्ना",
 	"tag-filter": "[[Special:Tags|चिप्पी]] छननी:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|टैग}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|टैग}}]]: $2",
 	"tags-active-yes": "हाँ",
 	"tags-active-no": "नै",
 	"tags-hitcount": "$1 {{PLURAL:$1|बदलाव|बदलाव सिनी}}",

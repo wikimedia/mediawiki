@@ -2952,7 +2952,7 @@
 	"tags": "Etichetti dî canciamenti vàlidi",
 	"tag-filter": "Filtra pi [[Special:Tags|etichetta]]",
 	"tag-filter-submit": "Filtra",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etichetta|Etichetti}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etichetta|Etichetti}}]]: $2",
 	"tags-title": "Etichetti",
 	"tags-intro": "Sta pàggina elenca l'etichetti cu li quali lu software pò marcari nu canciamentu, e lu significatu ca hannu.",
 	"tags-tag": "Nomu di l'etichetta",

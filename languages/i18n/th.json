@@ -28,7 +28,8 @@
 			"B20180",
 			"Pon44695",
 			"Aefgh39622",
-			"Fitoschido"
+			"Fitoschido",
+			"TrisT7"
 		]
 	},
 	"tog-underline": "การขีดเส้นใต้ลิงก์:",
@@ -2732,7 +2733,7 @@
 	"pageinfo-magic-words": "{{PLURAL:$1|คำสั่งพิเศษ}} ($1)",
 	"pageinfo-hidden-categories": "หมวดหมู่ที่ซ่อนอยู่ ($1)",
 	"pageinfo-templates": "แม่แบบที่ใช้ ($1)",
-	"pageinfo-toolboxlink": "ข้อมูลหน้า",
+	"pageinfo-toolboxlink": "หน้าสารสนเทศ",
 	"pageinfo-redirectsto": "เปลี่ยนทางไป",
 	"pageinfo-redirectsto-info": "สนเทศ",
 	"pageinfo-contentpage": "นับเป็นหน้าเนื้อหา",
@@ -3289,7 +3290,7 @@
 	"tags": "ป้ายระบุการเปลี่ยนแปลงที่สมเหตุสมผล",
 	"tag-filter": "ตัวกรอง[[Special:Tags|ป้ายระบุ]]:",
 	"tag-filter-submit": "กรอง",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ป้ายระบุ}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|ป้ายระบุ}}]]: $2",
 	"tag-mw-new-redirect": "เปลี่ยนทางใหม่",
 	"tag-mw-new-redirect-description": "การแก้ไขที่สร้างหน้าเปลี่ยนทางใหม่หรือเปลี่ยนแปลงหน้าเป็นหน้าเปลี่ยนทาง",
 	"tag-mw-removed-redirect": "ลบหน้าเปล่ี่ยนทาง",

@@ -56,7 +56,8 @@
 			"Kostas20142",
 			"Nikosgranturismogt",
 			"KATRINE1992",
-			"Fitoschido"
+			"Fitoschido",
+			"KATRINE1993"
 		]
 	},
 	"tog-underline": "Υπογράμμιση συνδέσμων:",
@@ -3427,7 +3428,7 @@
 	"tags": "Έγκυρες ετικέτες αλλαγής",
 	"tag-filter": "Φίλτρο [[Special:Tags|ετικετών]]:",
 	"tag-filter-submit": "Φίλτρο",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Ετικέτα|Ετικέτες}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Ετικέτα|Ετικέτες}}]]: $2",
 	"tag-mw-contentmodelchange": "αλλαγή μοντέλου περιεχομένου",
 	"tag-mw-new-redirect": "Νέα ανακατεύθυνση",
 	"tag-mw-removed-redirect": "Αφαιρέθηκε ανακατεύθυνση",
@@ -3588,6 +3589,8 @@
 	"logentry-block-block": "{{GENDER:$2|Ο|Η}} $1 έθεσε φραγή {{GENDER:$4|στον $3|στην $3}} με χρόνο λήξης $5 $6",
 	"logentry-block-unblock": "{{GENDER:$2|Ο|Η}} $1 αφαίρεσε τη φραγή {{GENDER:$4|του|της}} $3",
 	"logentry-block-reblock": "{{GENDER:$2|Ο|Η}} $1 άλλαξε τις ρυθμίσεις φραγής {{GENDER:$4|για τον $3|για την $3}} με χρόνο λήξης $5 $6",
+	"logentry-non-editing-block-block": "$1 {{GENDER:$2|blocked}} {{GENDER:$4|$3}} από συγκεκριμένες ενέργειες μη έκδοσης με προθεσμία  $5 $6",
+	"logentry-non-editing-block-reblock": "$1 {{GENDER:$2|changed}} ρυθμίσεις μπλοκ for {{GENDER:$4|$3}} για συγκεκριμένες πράξεις μη έκδοσης με προθεσμία  $5 $6",
 	"logentry-suppress-block": "{{GENDER:$2|Ο|Η}} $1 έθεσε φραγή {{GENDER:$4|στον $3|στην $3}} με χρόνο λήξης $5 $6",
 	"logentry-suppress-reblock": "{{GENDER:$2|Ο|Η}} $1 άλλαξε τις ρυθμίσεις φραγής {{GENDER:$4|για τον $3|για την $3}} με χρόνο λήξης $5 $6",
 	"logentry-import-upload": "{{GENDER:$2|Ο|Η}} $1 εισήγαγε τη σελίδα $3 μέσω ανεβάσματος αρχείου",

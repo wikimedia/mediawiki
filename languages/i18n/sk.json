@@ -3331,7 +3331,7 @@
 	"tags": "Platné značky úprav",
 	"tag-filter": "Filter [[Special:Tags|značiek]]:",
 	"tag-filter-submit": "Filter",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Značka|Značky}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Značka|Značky}}]]: $2",
 	"tag-mw-contentmodelchange": "zmena modelu obsahu",
 	"tag-mw-contentmodelchange-description": "Úpravy, ktoré [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel menia model obsahu] stránky",
 	"tag-mw-new-redirect": "Nové presmerovanie",

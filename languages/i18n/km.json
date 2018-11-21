@@ -2767,7 +2767,7 @@
 	"tags": "ស្លាក​បំលាស់​ប្ដូរ​ដែល​មាន​សុពលភាព​",
 	"tag-filter": "[[Special:Tags|ស្លាក​]] តម្រង​:",
 	"tag-filter-submit": "តម្រង",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ស្លាក|ស្លាក}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ស្លាក|ស្លាក}}]]: $2",
 	"tag-mw-undo": "មិនធ្វើវិញ",
 	"tags-title": "ស្លាក​",
 	"tags-intro": "ទំព័រ​រាយ​នាម​ស្លាក​ទាំង​ឡាយ​ដែល​កម្មវិធី​ software អាចកត់​សម្គាល់កំណែ​ជាមួយ​ និង​អត្ថ​ន័យ​របស់​វា។​",

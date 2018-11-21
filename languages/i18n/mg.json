@@ -3056,7 +3056,7 @@
 	"tags": "Balizin'ny fanovana mety",
 	"tag-filter": "manasongadina [[Special:Tags|balizy]] :",
 	"tag-filter-submit": "Manasongadina",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Marika}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Marika}}]]: $2",
 	"tag-mw-new-redirect": "Fihodinana vaovao",
 	"tags-title": "Balizy",
 	"tags-intro": "Ity pejy ity dia manalisitra ny balizy azon'ny rindrankajy ampiasaina mba hanamarika fanovana iray sy ny dikany.",

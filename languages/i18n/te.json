@@ -3345,7 +3345,7 @@
 	"tags": "సరైన మార్పు ట్యాగులు",
 	"tag-filter": "[[Special:Tags|ట్యాగుల]] వడపోత:",
 	"tag-filter-submit": "వడపోయి",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ట్యాగు|ట్యాగులు}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ట్యాగు|ట్యాగులు}}]]: $2",
 	"tag-mw-contentmodelchange-description": "పేజీ [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel కంటెంటు మోడలును మార్చేసే] దిద్దుబాట్లు",
 	"tag-mw-new-redirect": "కొత్త దారిమార్పు",
 	"tag-mw-new-redirect-description": "కొత్త దారిమార్పును సృష్టించే లేదా ఓ పేజీని దారిమార్పుగా మార్చేసే దిద్దుబాట్లు",

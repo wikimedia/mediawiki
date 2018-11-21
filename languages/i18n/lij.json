@@ -3318,7 +3318,7 @@
 	"tags": "Etichette de modiffiche vallide",
 	"tag-filter": "Filtra pe [[Special:Tags|etichetta]]:",
 	"tag-filter-submit": "Filtro",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etichetta|Etichette}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etichetta|Etichette}}]]: $2",
 	"tag-mw-contentmodelchange": "cangio a-o modello di contegnui",
 	"tag-mw-contentmodelchange-description": "Modiffiche che [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel cangian o modello di contegnui] de 'na paggina",
 	"tags-title": "Etichette",

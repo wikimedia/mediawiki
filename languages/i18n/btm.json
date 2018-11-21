@@ -688,7 +688,7 @@
 	"redirect-file": "Gorarberkas:",
 	"specialpages": "Alaman husus",
 	"tag-filter": "[[Special:Tags|Tag]] saring:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]:$2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]:$2",
 	"tags-active-yes": "Olo",
 	"tags-active-no": "Inda",
 	"tags-hitcount": "$1 {{PLURAL:$1|change|parubaan}}",

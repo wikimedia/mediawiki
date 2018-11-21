@@ -859,7 +859,7 @@
 	"blankpage": "Хоосн халх",
 	"intentionallyblankpage": "Тер  халх хоосн күслтә бәәнә.",
 	"tag-filter": "[[Special:Tags|Царадын]] шүр:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Царан|Царад}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Царан|Царад}}]]: $2",
 	"htmlform-reset": "Сольлһиг уга кех",
 	"htmlform-selectorother-other": "Талдан",
 	"logentry-newusers-create": "$1 демнәчин бичгдлһн бүтәгдв",

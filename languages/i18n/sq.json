@@ -3221,7 +3221,7 @@
 	"tags": "Etiketat e ndryshimeve të pavlefshme",
 	"tag-filter": "[[Special:Tags|Etiketa]] filter:",
 	"tag-filter-submit": "Filtër",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etiketa|Etiketat}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etiketa|Etiketat}}]]: $2",
 	"tag-mw-contentmodelchange": "ndryshimi i modelit të përmbajtjes",
 	"tag-mw-new-redirect": "Ridrejtim i ri",
 	"tag-mw-new-redirect-description": "Ndryshimet që krijojnë një ridrejtim të ri ose ndryshojnë faqen në ridrejtim",

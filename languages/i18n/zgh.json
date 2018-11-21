@@ -1159,7 +1159,7 @@
 	"specialpages": "ⵜⴰⵙⵏⵉⵡⵉⵏ ⵥⵍⵉⵏⵉⵏ",
 	"specialpages-group-pagetools": "ⵉⵎⴰⵙⵙⵏ ⵏ ⵜⴰⵙⵏⴰ",
 	"tag-filter": "ⵙⵜⵉ [[Special:Tags|ⵉⵔⵛⵓⵎⵏ]]:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ⴰⵔⵛⵓⵎ|ⵉⵔⵛⵓⵎⵏ}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ⴰⵔⵛⵓⵎ|ⵉⵔⵛⵓⵎⵏ}}]]: $2",
 	"tags-active-yes": "ⵢⴰⵀ",
 	"tags-active-no": "ⵓⵀⵓ",
 	"tags-edit": "ⵙⵏⴼⵍ",

@@ -2616,7 +2616,7 @@
 	"tags": "مجازین تغیرانئ برچسپ",
 	"tag-filter": "[[Special:Tags|برچسپ هاني]] فیلتر:",
 	"tag-filter-submit": "فیلتر",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|برچسپ|برچسپ هان}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|برچسپ|برچسپ هان}}]]: $2",
 	"tags-title": "برچسپ هان",
 	"tags-tag": "برچسپئ نام",
 	"tags-display-header": "نشان داتین بئ تعیراتانی لیست ئي تا",

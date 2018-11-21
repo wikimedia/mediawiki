@@ -3082,7 +3082,7 @@
 	"tags": "Tagaichean atharrachaidh dligheach",
 	"tag-filter": "Criathrag [[Special:Tags|thagaichean]]:",
 	"tag-filter-submit": "Criathraich",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Taga|Tagaichean}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Taga|Tagaichean}}]]: $2",
 	"tags-title": "Tagaichean",
 	"tags-intro": "Seallaidh an duilleag seo na tagaichean a chleachdas am bathar-bog gus deasachadh a chomharrachadh 's an ciall a th' orra.",
 	"tags-tag": "Ainm an taga",

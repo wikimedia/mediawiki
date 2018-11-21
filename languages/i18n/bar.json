@@ -1196,7 +1196,7 @@
 	"tags": "Gütige Änderrungsmarkiarunen",
 	"tag-filter": "[[Special:Tags|Markiarungs]]-Fuita:",
 	"tag-filter-submit": "Füter",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Markierung|Markiarunga}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Markierung|Markiarunga}}]]: $2",
 	"tags-title": "Markiarungen",
 	"tags-intro": "Dé Seiten zoagt olle Markiarungen, dé fyr Beorweidungen vawendt wern, sówia dé Bedeitung voh dé.",
 	"tags-tag": "Markiarungsnåm",

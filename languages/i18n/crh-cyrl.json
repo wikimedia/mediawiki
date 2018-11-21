@@ -1483,7 +1483,7 @@
 	"intentionallyblankpage": "Бу саифе аселет бош къалдырылгъан",
 	"tag-filter": "[[Special:Tags|Бельги]] сюзгючи:",
 	"tag-filter-submit": "Сюз",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Бельги|Бельгилер}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Бельги|Бельгилер}}]]: $2",
 	"tags-title": "Бельгилер",
 	"htmlform-reset": "Денъишикликлерни кери ал",
 	"logentry-move-move": "$1 адлы къуланыджы $3 саифесининъ адыны $4 деп {{GENDER:$2|денъиштирильди}}.",

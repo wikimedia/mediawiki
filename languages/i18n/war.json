@@ -2220,7 +2220,7 @@
 	"external_image_whitelist": "#Pabay-i ini nga linea nga sugad gud la <pre>\n#Igbutang in mga regular nga expresyon nga mga fragment (iton bahin nga ada ha butnga han //) ha ubos\n#Ini igpapadis han mga URL han mga ha gawas (gin-hotlink) nga mga hulagway\n#An mga nasakto igpapakita nga mga hulagway, kon diri, sumpay la ngadto han hulagway an igpapakita\n#Mga linea nga natikang hin  # ginta-tratar nga mga komento\n# Case-insensitive ini\n\n#Igbutang an mga regex nga fragment ha igbaw hini nga linea. Pabay-i ini nga linea nga sugad gud la</pre>",
 	"tag-filter": "[[Special:Tags|Tag]] panara:",
 	"tag-filter-submit": "Panara",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ka tag|ka mga tag}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ka tag|ka mga tag}}]]: $2",
 	"tags-title": "Mga tag",
 	"tags-tag": "Ngaran han tag",
 	"tags-source-header": "Tinikangan",

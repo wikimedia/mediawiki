@@ -3514,7 +3514,7 @@
 	"tags": "ცვლილებათა მოქმედი მონიშვნები",
 	"tag-filter": "[[Special:Tags|მონიშვნათა]] ფილტრი",
 	"tag-filter-submit": "გაფილტვრა",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|იარლიყი|იარლიყები}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|იარლიყი|იარლიყები}}]]: $2",
 	"tag-mw-contentmodelchange": "შინაარსის მოდელის ცვლილება",
 	"tag-mw-contentmodelchange-description": "რედაქტირებები, რომლებიც [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel ცვლიან გვერდის შინაარსის მოდელს]",
 	"tag-mw-blank": "დაცარიელება",

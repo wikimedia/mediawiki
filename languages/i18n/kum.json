@@ -815,7 +815,7 @@
 	"redirect-file": "Сапламны аты",
 	"specialpages": "Хас сагьифалар",
 	"tag-filter": "[[Special:Tags|Гьарзилени]] сюзгючю",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Гьарзи|Гьарзилер}}]]: $2)‎",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Гьарзи|Гьарзилер}}]]: $2‎",
 	"tags-active-yes": "Дюр",
 	"tags-active-no": "Ёкъ",
 	"tags-hitcount": "$1 {{PLURAL:$1|алышыныв|алышынывлар}}",

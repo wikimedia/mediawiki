@@ -3193,7 +3193,7 @@
 	"tags": "Tag parobahan valid",
 	"tag-filter": "Saringan [[Special:Tags|tag]]:",
 	"tag-filter-submit": "Saring",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag}}]]: $2",
 	"tag-mw-contentmodelchange": "parobahan modél kontén",
 	"tags-title": "Tag",
 	"tags-intro": "Ieu kaca ngandung daptar tag nu bisa ditandaan ku pakakas lemes kana hiji éditan di handap hartina.",

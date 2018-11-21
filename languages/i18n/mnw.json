@@ -1602,7 +1602,7 @@
 	"blankpage": "မုက်လိက် ပလး",
 	"tag-filter": "[[Special:Tags|Tag]] ဝှာင်ဂမၠိုင်:",
 	"tag-filter-submit": "ဖဍိုဟ်",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|အစင်အတောဲ|စင်အတောဲဂမၠိုင်}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|အစင်အတောဲ|စင်အတောဲဂမၠိုင်}}]]: $2",
 	"tag-mw-replace": "ကလေၚ်ဖျေံဒၞာဲ",
 	"tag-mw-undo": "ဟွံပ",
 	"tags-source-header": "တမ်ရိုဟ်",

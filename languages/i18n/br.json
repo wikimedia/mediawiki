@@ -3388,7 +3388,7 @@
 	"tags": "Tikedennoù ar c'hemmoù reizh",
 	"tag-filter": "Silañ an [[Special:Tags|tikedennoù]] :",
 	"tag-filter-submit": "Silañ",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Dikedenn|Tikedenn}}]] : $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Dikedenn|Tikedenn}}]] : $2",
 	"tag-mw-contentmodelchange": "cheñch ar patrom danvez",
 	"tag-mw-contentmodelchange-description": "KEmmoù a [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel cheñch patrom danvez] ur bajenn",
 	"tag-mw-new-redirect": "Adkas nevez",

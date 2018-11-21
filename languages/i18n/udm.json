@@ -765,7 +765,7 @@
 	"specialpages-group-login": "Системае пырон / регистрация",
 	"specialpages-group-users": "Викиавторъёс но правооссы",
 	"tag-filter": "[[Special:Tags|Тэгъёсыз]] фильтр:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|1=Метка|Меткаос}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|1=Метка|Меткаос}}]]: $2",
 	"tags-title": "Меткаос",
 	"tags-active-yes": "Бен",
 	"tags-active-no": "Ӧвӧл",

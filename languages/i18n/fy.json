@@ -1927,7 +1927,7 @@
 	"specialpages-group-spam": "Spamhelpmiddels",
 	"blankpage": "Side is leech",
 	"intentionallyblankpage": "Dizze side is bewust leech lizzen en wurdt brûkt foar benchmarks, ensfh.",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Label|Labels}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Label|Labels}}]]: $2",
 	"tags-source-header": "Boarne",
 	"tags-active-header": "Aktyf?",
 	"tags-actions-header": "Aksjes",

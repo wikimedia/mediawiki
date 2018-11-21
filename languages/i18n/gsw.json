@@ -3006,7 +3006,7 @@
 	"tags": "Änderigs-Tag priefe",
 	"tag-filter": "[[Special:Tags|Markierigs]]filter:",
 	"tag-filter-submit": "Filter",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Markierig|Markierige}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Markierig|Markierige}}]]: $2",
 	"tags-title": "Tag",
 	"tags-intro": "Die Syte zeigt alli Tag, wu Bearbeitige mit markiert wäre un derzue d Bedytig vun ene.",
 	"tags-tag": "Markierigsname",

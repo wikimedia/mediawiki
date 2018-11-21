@@ -1527,7 +1527,7 @@
 	"intentionallyblankpage": "Bu bit maxsus buş qaldırılğan",
 	"tag-filter": "[[Special:Tags|Teglar]] filtrı:",
 	"tag-filter-submit": "Filtrlaw",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Teg|Teglar}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Teg|Teglar}}]]: $2",
 	"tags-title": "Teglar",
 	"tags-tag": "Teg iseme",
 	"tags-source-header": "Çığanağı",

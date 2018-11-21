@@ -2814,7 +2814,7 @@
 	"tags": "Tikketti ta' modifika validi",
 	"tag-filter": "Iffilitra skont it-[[Special:Tags|tikketta]]:",
 	"tag-filter-submit": "Filtru",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tags-title": "Tikketti",
 	"tags-intro": "Din il-paġna telenka t-tikketti li s-softwer jista' jassoċja ma' modifika u t-tifsira tagħhom.",
 	"tags-tag": "Isem tat-tikketta",

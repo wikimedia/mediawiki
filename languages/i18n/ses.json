@@ -3021,7 +3021,7 @@
 	"tags": "Barmay kanji henney",
 	"tag-filter": "[[Special:Tags|Kanji]] gaŋa:",
 	"tag-filter-submit": "Gaŋa",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Kanji|Kanjey}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Kanji|Kanjey}}]]: $2",
 	"tags-title": "Kanjey",
 	"tags-intro": "Moɲoo woo ka kanjey cebe kaŋ goyjinaa k'i ka barmay šilbay, nda ngi maanaa. \\",
 	"tags-tag": "Kanji maa",

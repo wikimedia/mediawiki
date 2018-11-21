@@ -2892,7 +2892,7 @@
 	"tags": "تاگەکانی گۆڕانکاریی گونجاو",
 	"tag-filter": "پاڵێوی [[Special:Tags|تاگ]]:",
 	"tag-filter-submit": "پاڵاوتن",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|تاگ|تاگەکان}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|تاگ|تاگەکان}}]]: $2",
 	"tag-mw-new-redirect": "ڕەوانەکەری نوێ",
 	"tag-mw-removed-redirect": "لابردنی ڕەوانەکەر",
 	"tag-mw-blank": "واڵاکردنەوە",

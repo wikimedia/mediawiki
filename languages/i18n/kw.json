@@ -1051,7 +1051,7 @@
 	"specialpages-group-login": "Omgelmi / gwruthyl akont",
 	"blankpage": "Folen wag",
 	"tag-filter": "Sidhel [[Special:Tags|tagyow]]:",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tagg|Taggys}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tagg|Taggys}}]]: $2",
 	"tags-title": "Taggys",
 	"tags-active-no": "Nag yw",
 	"tags-edit": "chanjya",

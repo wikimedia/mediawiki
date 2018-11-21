@@ -3388,7 +3388,7 @@
 	"tags": "Leistinos keitimų žymės",
 	"tag-filter": "[[Special:Tags|Žymų]] filtras:",
 	"tag-filter-submit": "Filtras",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Žyma|Žymos}}]]: $2)",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Žyma|Žymos}}]]: $2",
 	"tag-mw-contentmodelchange": "turinio modulio keitimas",
 	"tag-mw-contentmodelchange-description": "Pakeitimai, kurie [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel keičia puslapio turinio modelį]",
 	"tag-mw-new-redirect": "Naujas nukreipimas",
