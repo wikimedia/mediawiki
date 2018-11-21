@@ -1020,7 +1020,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$defaultPreferences['rcenhancedfilters-disable'] = [
 			'type' => 'toggle',
-			'section' => 'rc/optoutrc',
+			'section' => 'rc/advancedrc',
 			'label-message' => 'rcfilters-preference-label',
 			'help-message' => 'rcfilters-preference-help',
 		];
@@ -1201,7 +1201,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$defaultPreferences['wlenhancedfilters-disable'] = [
 			'type' => 'toggle',
-			'section' => 'watchlist/optoutwatchlist',
+			'section' => 'watchlist/advancedwatchlist',
 			'label-message' => 'rcfilters-watchlist-preference-label',
 			'help-message' => 'rcfilters-watchlist-preference-help',
 		];
