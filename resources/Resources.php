@@ -2733,6 +2733,9 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.widgets.TitlesMultiselectWidget.styles' => [
+		'styles' => 'resources/src/mediawiki.widgets/mw.widgets.TitlesMultiselectWidget.base.css',
+	],
 	'mediawiki.widgets.SearchInputWidget' => [
 		'scripts' => [
 			'resources/src/mediawiki.widgets/mw.widgets.SearchInputWidget.js',
