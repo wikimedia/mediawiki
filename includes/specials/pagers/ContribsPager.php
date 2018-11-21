@@ -525,7 +525,7 @@ class ContribsPager extends RangeChronologicalPager {
 			}
 
 			$lang = $this->getLanguage();
-			$comment = $lang->getDirMark() . Linker::revComment( $rev, false, true );
+			$comment = $lang->getDirMark() . Linker::revComment( $rev, false, true, false );
 			$date = $lang->userTimeAndDate( $row->rev_timestamp, $user );
 			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
 				$d = $linkRenderer->makeKnownLink(
