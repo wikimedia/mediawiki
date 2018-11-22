@@ -1451,8 +1451,11 @@ class Linker {
 			$formatted = self::formatComment( $comment, $title, $local, $wikiId );
 			if ( $useParentheses ) {
 				$formatted = wfMessage( 'parentheses' )->rawParams( $formatted )->escaped();
+				$classNames = 'comment';
+			} else {
+				$classNames = 'comment comment--without-parentheses';
 			}
-			return " <span class=\"comment\">$formatted</span>";
+			return " <span class=\"$classNames\">$formatted</span>";
 		}
 	}
 
