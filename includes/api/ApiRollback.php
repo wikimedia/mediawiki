@@ -59,6 +59,9 @@ class ApiRollback extends ApiBase {
 		$trxLimits = $this->getConfig()->get( 'TrxProfilerLimits' );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setExpectations( $trxLimits['POST'], __METHOD__ );
+		DeferredUpdates::addCallableUpdate( function () use ( $trxProfiler, $trxLimits ) {
+			$trxProfiler->setExpectations( $trxLimits['PostSend-POST'], __METHOD__ );
+		} );
 
 		$retval = $pageObj->doRollback(
 			$this->getRbUser( $params ),
