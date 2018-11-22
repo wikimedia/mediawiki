@@ -1281,6 +1281,11 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function closeConnection( IDatabase $conn ) {
+		if ( $conn instanceof DBConnRef ) {
+			// Avoid calling close() but still leaving the handle in the pool
+			throw new RuntimeException( __METHOD__ . ': got DBConnRef instance.' );
+		}
+
 		$serverIndex = $conn->getLBInfo( 'serverIndex' );
 		foreach ( $this->conns as $type => $connsByServer ) {
 			if ( !isset( $connsByServer[$serverIndex] ) ) {
