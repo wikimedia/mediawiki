@@ -68,6 +68,7 @@
 		// Prepare views
 		if ( namespaceStructure ) {
 			items = [];
+			// eslint-disable-next-line jquery/no-each-util
 			$.each( namespaceStructure, function ( namespaceID, label ) {
 				// Build and clean up the individual namespace items definition
 				items.push( {
@@ -203,6 +204,7 @@
 		// Before we do anything, we need to see if we require additional items in the
 		// groups that have 'AllowArbitrary'. For the moment, those are only single_option
 		// groups; if we ever expand it, this might need further generalization:
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( views, function ( viewName, viewData ) {
 			viewData.groups.forEach( function ( groupData ) {
 				var extraValues = [];
@@ -673,7 +675,7 @@
 	 * Check if new changes, newer than those currently shown, are available
 	 *
 	 * @return {jQuery.Promise} Promise object that resolves with a bool
-	 * 	specifying if there are new changes or not
+	 *   specifying if there are new changes or not
 	 *
 	 * @private
 	 */

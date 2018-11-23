@@ -208,7 +208,7 @@
 		 */
 		getParamValue: function ( param, url ) {
 			// Get last match, stop at hash
-			var	re = new RegExp( '^[^#]*[&?]' + mw.RegExp.escape( param ) + '=([^&#]*)' ),
+			var re = new RegExp( '^[^#]*[&?]' + mw.RegExp.escape( param ) + '=([^&#]*)' ),
 				m = re.exec( url !== undefined ? url : location.href );
 
 			if ( m ) {

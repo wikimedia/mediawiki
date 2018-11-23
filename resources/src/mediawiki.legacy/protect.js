@@ -163,6 +163,7 @@
 		 * @return {boolean}
 		 */
 		matchAttribute: function ( objects, attrName ) {
+			// eslint-disable-next-line jquery/no-map-util
 			return $.map( objects, function ( object ) {
 				return object[ attrName ];
 			} ).filter( function ( item, index, a ) {
@@ -248,7 +249,9 @@
 		 * @param {boolean} val Enable?
 		 */
 		toggleUnchainedInputs: function ( val ) {
-			var setDisabled = function () { this.disabled = !val; };
+			var setDisabled = function () {
+				this.disabled = !val;
+			};
 			this.getLevelSelectors().slice( 1 ).each( setDisabled );
 			this.getExpiryInputs().slice( 1 ).each( setDisabled );
 			this.getExpirySelectors().slice( 1 ).each( setDisabled );

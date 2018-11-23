@@ -21,7 +21,7 @@
 				render: function ( data, partialTemplates ) {
 					var partials = {};
 					if ( partialTemplates ) {
-						/* eslint-disable-next-line no-restricted-properties */
+						// eslint-disable-next-line jquery/no-each-util
 						$.each( partialTemplates, function ( name, template ) {
 							partials[ name ] = template.getSource();
 						} );

@@ -373,7 +373,7 @@
 				} else {
 					maxlength = spec.size;
 					if ( spec.intercalarySize ) {
-						// eslint-disable-next-line no-restricted-properties
+						// eslint-disable-next-line jquery/no-each-util
 						$.each( spec.intercalarySize, reduceFunc );
 					}
 					$field = $( '<input>' ).attr( 'type', 'text' )

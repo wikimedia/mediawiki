@@ -104,6 +104,7 @@
 			//     }
 			//   }
 			// }
+			// eslint-disable-next-line jquery/no-each-util
 			$.each( savedQueries.queries || {}, function ( id, obj ) {
 				if ( obj.data && obj.data.filters ) {
 					obj.data = model.convertToParameters( obj.data );
@@ -115,6 +116,7 @@
 		}
 
 		// Initialize the query items
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( savedQueries.queries || {}, function ( id, obj ) {
 			var normalizedData = obj.data,
 				isDefault = String( savedQueries.default ) === String( id );
@@ -195,6 +197,7 @@
 
 		// Highlights: appending _color to keys
 		newData.highlights = {};
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( data.highlights, function ( highlightedFilterName, value ) {
 			if ( value ) {
 				newData.highlights[ highlightedFilterName + '_color' ] = data.highlights[ highlightedFilterName ];
@@ -224,6 +227,7 @@
 			data = this.filtersModel.getMinimizedParamRepresentation( fulldata );
 
 		// Split highlight/params
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( data, function ( param, value ) {
 			if ( param !== 'highlight' && highlightParamNames.indexOf( param ) > -1 ) {
 				normalizedData.highlights[ param ] = value;
