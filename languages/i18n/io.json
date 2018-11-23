@@ -1670,6 +1670,7 @@
 	"reblock-logentry": "modifikis la tempo di blokuso [[$1]] por durado di $2 $3",
 	"unblocklogentry": "desblokusis \"$1\"",
 	"block-log-flags-nocreate": "ne povas krear konto",
+	"block-log-flags-noautoblock": "automatala blokuso nekapabligata",
 	"block-log-flags-noemail": "e-posto blokusita",
 	"block-log-flags-nousertalk": "ne povas redaktar lua propra diskuto-pagino",
 	"ipb_expiry_invalid": "Nevalida expiro-tempo.",

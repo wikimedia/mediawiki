@@ -1471,6 +1471,7 @@
 	"rcfilters-watchlist-showupdated": "Σελίδες που έχουν υποστεί αλλαγές από την τελευταία φορά που τις επισκεφθήκατε εμφανίζονται με '''έντονους χαρακτήρες'''.",
 	"rcfilters-preference-label": "Απόκρυψη της βελτιωμένης έκδοσης των Πρόσφατων Αλλαγών",
 	"rcfilters-preference-help": "Αναστέλλει τον επανασχεδιασμό διεπαφής 2017 και όλα τα εργαλεία που προστέθηκαν στη συνέχεια και από τότε.",
+	"rcfilters-watchlist-preference-label": "Χρήση πίνακα διεπαφής όχι-JavaScript",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Σελίδες που συνδέονται από</strong> τη επιλεγμένη σελίδα",
 	"rcfilters-filter-showlinkedto-label": "Εμφάνιση αλλαγών σε σελίδες που συνδέουν σε",
 	"rcfilters-target-page-placeholder": "Εισαγάγετε όνομα σελίδας (ή κατηγορίας)",
