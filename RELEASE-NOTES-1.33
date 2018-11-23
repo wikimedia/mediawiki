@@ -30,7 +30,7 @@ production.
 
 === New features in 1.33 ===
 * The 'GetPreferences' hook now receives an additional $context parameter.
-* (T96041) __EXPECT_UNUSED_CATEGORY__ on a category page causes the category
+* (T96041) __EXPECTUNUSEDCATEGORY__ on a category page causes the category
   to be hidden on Special:UnusedCategories.
 * …
 
