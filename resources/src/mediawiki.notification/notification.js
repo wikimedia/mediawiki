@@ -29,9 +29,12 @@
 	function Notification( message, options ) {
 		var $notification, $notificationContent;
 
-		$notification = $( '<div class="mw-notification"></div>' )
+		$notification = $( '<div>' )
 			.data( 'mw-notification', this )
-			.addClass( options.autoHide ? 'mw-notification-autohide' : 'mw-notification-noautohide' );
+			.addClass( [
+				'mw-notification',
+				options.autoHide ? 'mw-notification-autohide' : 'mw-notification-noautohide'
+			] );
 
 		if ( options.tag ) {
 			// Sanitize options.tag before it is used by any code. (Including Notification class methods)
@@ -50,12 +53,13 @@
 		}
 
 		if ( options.title ) {
-			$( '<div class="mw-notification-title"></div>' )
+			$( '<div>' )
+				.addClass( 'mw-notification-title' )
 				.text( options.title )
 				.appendTo( $notification );
 		}
 
-		$notificationContent = $( '<div class="mw-notification-content"></div>' );
+		$notificationContent = $( '<div>' ).addClass( 'mw-notification-content' );
 
 		if ( typeof message === 'object' ) {
 			// Handle mw.Message objects separately from DOM nodes and jQuery objects

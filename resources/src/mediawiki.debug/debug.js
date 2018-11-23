@@ -112,9 +112,15 @@
 		buildHtml: function () {
 			var $container, $bits, panes, id, gitInfo;
 
-			$container = $( '<div id="mw-debug-toolbar" class="mw-debug" lang="en" dir="ltr"></div>' );
+			$container = $( '<div>' )
+				.attr( {
+					id: 'mw-debug-toolbar',
+					lang: 'en',
+					dir: 'ltr'
+				} )
+				.addClass( 'mw-debug' );
 
-			$bits = $( '<div class="mw-debug-bits"></div>' );
+			$bits = $( '<div>' ).addClass( 'mw-debug-bits' );
 
 			/**
 			 * Returns a jQuery element for a debug-bit div
@@ -189,7 +195,7 @@
 			}
 
 			bitDiv( 'mwversion' )
-				.append( $( '<a href="//www.mediawiki.org/">MediaWiki</a>' ) )
+				.append( $( '<a>' ).attr( 'href', '//www.mediawiki.org/' ).text( 'MediaWiki' ) )
 				.append( document.createTextNode( ': ' + this.data.mwVersion + ' ' ) )
 				.append( gitInfo );
 
@@ -198,10 +204,10 @@
 			}
 
 			bitDiv( 'phpversion' )
-				.append( $( this.data.phpEngine === 'HHVM' ?
-					'<a href="https://hhvm.com/">HHVM</a>' :
-					'<a href="https://php.net/">PHP</a>'
-				) )
+				.append( this.data.phpEngine === 'HHVM' ?
+					$( '<a>' ).attr( 'href', 'https://hhvm.com/' ).text( 'HHVM' ) :
+					$( '<a>' ).attr( 'href', 'https://php.net/' ).text( 'PHP' )
+				)
 				.append( ': ' + this.data.phpVersion );
 
 			bitDiv( 'time' )
@@ -241,7 +247,7 @@
 		buildConsoleTable: function () {
 			var $table, entryTypeText, i, length, entry;
 
-			$table = $( '<table id="mw-debug-console">' );
+			$table = $( '<table>' ).attr( 'id', 'mw-debug-console' );
 
 			$( '<colgroup>' ).css( 'width', /* padding = */ 20 + ( 10 * /* fontSize = */ 11 ) ).appendTo( $table );
 			$( '<colgroup>' ).appendTo( $table );
@@ -285,13 +291,13 @@
 		buildQueryTable: function () {
 			var $table, i, length, query;
 
-			$table = $( '<table id="mw-debug-querylist"></table>' );
+			$table = $( '<table>' ).attr( 'id', 'mw-debug-querylist' );
 
 			$( '<tr>' )
-				.append( $( '<th>#</th>' ).css( 'width', '4em' ) )
-				.append( $( '<th>SQL</th>' ) )
-				.append( $( '<th>Time</th>' ).css( 'width', '8em' ) )
-				.append( $( '<th>Call</th>' ).css( 'width', '18em' ) )
+				.append( $( '<th>' ).text( '#' ).css( 'width', '4em' ) )
+				.append( $( '<th>' ).text( 'SQL' ) )
+				.append( $( '<th>' ).text( 'Time' ).css( 'width', '8em' ) )
+				.append( $( '<th>' ).text( 'Call' ).css( 'width', '18em' ) )
 				.appendTo( $table );
 
 			for ( i = 0, length = this.data.queries.length; i < length; i += 1 ) {
@@ -300,7 +306,7 @@
 				$( '<tr>' )
 					.append( $( '<td>' ).text( i + 1 ) )
 					.append( $( '<td>' ).text( query.sql ) )
-					.append( $( '<td class="stats">' ).text( ( query.time * 1000 ).toFixed( 4 ) + 'ms' ) )
+					.append( $( '<td>' ).text( ( query.time * 1000 ).toFixed( 4 ) + 'ms' ).addClass( 'stats' ) )
 					.append( $( '<td>' ).text( query[ 'function' ] ) )
 					.appendTo( $table );
 			}
@@ -375,7 +381,7 @@
 				file = this.data.includes[ i ];
 				$( '<tr>' )
 					.append( $( '<td>' ).text( file.name ) )
-					.append( $( '<td class="nr">' ).text( file.size ) )
+					.append( $( '<td>' ).text( file.size ).addClass( 'nr' ) )
 					.appendTo( $table );
 			}
 

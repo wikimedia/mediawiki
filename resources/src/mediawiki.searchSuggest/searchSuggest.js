@@ -297,7 +297,14 @@
 						} );
 					} else {
 						$input.closest( 'form' )
-							.append( $( '<input type="hidden" name="fulltext" value="1"/>' ) );
+							.append(
+								$( '<input>' )
+									.prop( {
+										type: 'hidden',
+										value: 1
+									} )
+									.attr( 'name', 'fulltext' )
+							);
 					}
 					return true; // allow the form to be submitted
 				}
