@@ -58,11 +58,16 @@
 
 	> label {
 		display: block;
+		color: @colorText;
 		.box-sizing( border-box );
-		.agora-label-styling();
 		width: auto;
 		margin: 0 0 0.2em;
 		padding: 0;
+		font-size: 0.9em;
+
+		* {
+			font-weight: normal;
+		}
 	}
 
 	// Override input styling just for checkboxes and radio inputs.
@@ -159,5 +164,10 @@
 // You generally don't need to use this class if <label> is within an Agora
 // form container such as mw-ui-vform
 .mw-ui-label {
-	.agora-label-styling();
+	color: @colorText;
+	font-size: 0.9em;
+
+	* {
+		font-weight: normal;
+	}
 }
