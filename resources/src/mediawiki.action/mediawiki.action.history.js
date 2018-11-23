@@ -2,7 +2,7 @@
  * JavaScript for History action
  */
 $( function () {
-	var	$historyCompareForm = $( '#mw-history-compare' ),
+	var $historyCompareForm = $( '#mw-history-compare' ),
 		$historySubmitter,
 		$lis = $( '#pagehistory > li' );
 
@@ -72,7 +72,7 @@ $( function () {
 	// the page look broken for a second in slow browsers and might show the form broken
 	// again when coming back from a "next" page.
 	$historyCompareForm.submit( function ( e ) {
-		var	$copyForm, $copyRadios, $copyAction;
+		var $copyForm, $copyRadios, $copyAction;
 
 		if ( $historySubmitter ) {
 			$copyForm = $historyCompareForm.clone();

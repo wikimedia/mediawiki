@@ -108,7 +108,9 @@
 				}
 			);
 
-			this.saveQueryButton.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
+			this.saveQueryButton.$element.on( 'mousedown', function ( e ) {
+				e.stopPropagation();
+			} );
 
 			this.saveQueryButton.connect( this, {
 				click: 'onSaveQueryButtonClick',
@@ -132,8 +134,12 @@
 		this.hideShowButton.connect( this, { click: 'onHideShowButtonClick' } );
 		// Stop propagation for mousedown, so that the widget doesn't
 		// trigger the focus on the input and scrolls up when we click the reset button
-		this.resetButton.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
-		this.hideShowButton.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
+		this.resetButton.$element.on( 'mousedown', function ( e ) {
+			e.stopPropagation();
+		} );
+		this.hideShowButton.$element.on( 'mousedown', function ( e ) {
+			e.stopPropagation();
+		} );
 		this.model.connect( this, {
 			initialize: 'onModelInitialize',
 			update: 'onModelUpdate',
@@ -335,7 +341,11 @@
 				// If there are no selected items, scroll menu to top
 				// This has to be in a setTimeout so the menu has time
 				// to be positioned and fixed
-				setTimeout( function () { this.getMenu().scrollToTop(); }.bind( this ), 0 );
+				setTimeout(
+					function () {
+						this.getMenu().scrollToTop();
+					}.bind( this )
+				);
 			}
 		} else {
 			// Clear selection

@@ -216,7 +216,9 @@
 		if ( dates instanceof Date ) {
 			dates = [ dates ];
 		} else if ( Array.isArray( dates ) ) {
-			dates = dates.filter( function ( dt ) { return dt instanceof Date; } );
+			dates = dates.filter( function ( dt ) {
+				return dt instanceof Date;
+			} );
 			dates.sort();
 		} else {
 			dates = [];

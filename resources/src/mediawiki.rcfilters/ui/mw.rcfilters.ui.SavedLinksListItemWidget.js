@@ -96,7 +96,9 @@
 		this.$icon.on( { click: this.onDefaultIconClick.bind( this ) } );
 		// Prevent propagation on mousedown for the save button
 		// so the menu doesn't close
-		this.saveButton.$element.on( { mousedown: function () { return false; } } );
+		this.saveButton.$element.on( { mousedown: function () {
+			return false;
+		} } );
 
 		// Initialize
 		this.toggleDefault( !!this.model.isDefault() );

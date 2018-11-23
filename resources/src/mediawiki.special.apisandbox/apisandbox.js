@@ -38,7 +38,7 @@
 
 		// Forward most methods for convenience
 		for ( k in this.widget ) {
-			if ( $.isFunction( this.widget[ k ] ) && !this[ k ] ) {
+			if ( typeof this.widget[ k ] === 'function' && !this[ k ] ) {
 				this[ k ] = this.widget[ k ].bind( this.widget );
 			}
 		}
@@ -71,7 +71,7 @@
 	};
 	OptionalWidget.prototype.onOverlayClick = function () {
 		this.setDisabled( false );
-		if ( $.isFunction( this.widget.focus ) ) {
+		if ( typeof this.widget.focus === 'function' ) {
 			this.widget.focus();
 		}
 	};
@@ -525,6 +525,7 @@
 					break;
 
 				case 'namespace':
+					// eslint-disable-next-line jquery/no-map-util
 					items = $.map( mw.config.get( 'wgFormattedNamespaces' ), function ( name, ns ) {
 						if ( ns === '0' ) {
 							name = mw.message( 'blanknamespace' ).text();
@@ -662,7 +663,9 @@
 				$.extend( finalWidget, WidgetMethods.optionalWidget );
 				if ( widget.getSubmodules ) {
 					finalWidget.getSubmodules = widget.getSubmodules.bind( widget );
-					finalWidget.on( 'disable', function () { setTimeout( ApiSandbox.updateUI ); } );
+					finalWidget.on( 'disable', function () {
+						setTimeout( ApiSandbox.updateUI );
+					} );
 				}
 				if ( widget.getApiValueForTemplates ) {
 					finalWidget.getApiValueForTemplates = widget.getApiValueForTemplates.bind( widget );
@@ -1368,10 +1371,10 @@
 
 	function widgetLabelOnClick() {
 		var f = this.getField();
-		if ( $.isFunction( f.setDisabled ) ) {
+		if ( typeof f.setDisabled === 'function' ) {
 			f.setDisabled( false );
 		}
-		if ( $.isFunction( f.focus ) ) {
+		if ( typeof f.focus === 'function' ) {
 			f.focus();
 		}
 	}
@@ -1597,7 +1600,7 @@
 		}
 
 		toRemove = {};
-		// eslint-disable-next-line no-restricted-properties
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( this.templatedItemsCache, function ( k, el ) {
 			if ( el.widget.isElementAttached() ) {
 				toRemove[ k ] = el;
@@ -1646,6 +1649,8 @@
 			done = $.isEmptyObject( p.vars );
 			if ( done ) {
 				container = Util.apiBool( p.info.deprecated ) ? that.deprecatedItemsFieldset : that.itemsFieldset;
+				// FIXME: ES6-ism
+				// eslint-disable-next-line jquery/no-each-util
 				index = container.getItems().findIndex( function ( el ) {
 					return el.apiParamIndex !== undefined && el.apiParamIndex > p.info.index;
 				} );
@@ -1684,6 +1689,7 @@
 					}
 				} else {
 					newVars = {};
+					// eslint-disable-next-line jquery/no-each-util
 					$.each( p.vars, function ( k, v ) {
 						newVars[ k ] = v.replace( placeholder, value );
 					} );
@@ -1699,9 +1705,11 @@
 		};
 		while ( toProcess.length ) {
 			p = toProcess.shift();
+			// eslint-disable-next-line jquery/no-each-util
 			$.each( p.vars, doProcess );
 		}
 
+		// eslint-disable-next-line jquery/no-map-util
 		toRemove = $.map( toRemove, function ( el, name ) {
 			delete that.widgets[ name ];
 			return [ el.widgetField, el.helpField ];
@@ -1993,6 +2001,7 @@
 		if ( this.paramInfo === null ) {
 			return [];
 		} else {
+			// eslint-disable-next-line jquery/no-map-util
 			promises = $.map( this.widgets, function ( widget ) {
 				return widget.apiCheckValid();
 			} );
@@ -2018,6 +2027,7 @@
 		if ( this.paramInfo === null ) {
 			this.loadFromQueryParams = params;
 		} else {
+			// eslint-disable-next-line jquery/no-each-util
 			$.each( this.widgets, function ( name, widget ) {
 				var v = Object.prototype.hasOwnProperty.call( params, name ) ? params[ name ] : undefined;
 				widget.setApiValue( v );
@@ -2033,11 +2043,12 @@
 	 * @param {Object} displayParams Write query parameters for display into this object
 	 */
 	ApiSandbox.PageLayout.prototype.getQueryParams = function ( params, displayParams ) {
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( this.widgets, function ( name, widget ) {
 			var value = widget.getApiValue();
 			if ( value !== undefined ) {
 				params[ name ] = value;
-				if ( $.isFunction( widget.getApiValueForDisplay ) ) {
+				if ( typeof widget.getApiValueForDisplay === 'function' ) {
 					value = widget.getApiValueForDisplay();
 				}
 				displayParams[ name ] = value;
@@ -2052,9 +2063,10 @@
 	 */
 	ApiSandbox.PageLayout.prototype.getSubpages = function () {
 		var ret = [];
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( this.widgets, function ( name, widget ) {
 			var submodules, i;
-			if ( $.isFunction( widget.getSubmodules ) ) {
+			if ( typeof widget.getSubmodules === 'function' ) {
 				submodules = widget.getSubmodules();
 				for ( i = 0; i < submodules.length; i++ ) {
 					ret.push( {

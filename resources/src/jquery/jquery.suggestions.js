@@ -3,12 +3,12 @@
  *
  * Set options:
  *
- *		$( '#textbox' ).suggestions( { option1: value1, option2: value2 } );
- *		$( '#textbox' ).suggestions( option, value );
+ *  $( '#textbox' ).suggestions( { option1: value1, option2: value2 } );
+ *  $( '#textbox' ).suggestions( option, value );
  *
  * Initialize:
  *
- *		$( '#textbox' ).suggestions();
+ *  $( '#textbox' ).suggestions();
  *
  * Uses jQuery.suggestions singleton internally.
  *

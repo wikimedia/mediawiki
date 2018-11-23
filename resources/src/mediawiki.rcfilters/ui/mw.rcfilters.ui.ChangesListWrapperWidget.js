@@ -197,7 +197,7 @@
 	 * Map a reason for having no results to its message key
 	 *
 	 * @param {string} reason One of the NO_RESULTS_* "constant" that represent
-	 * 	a reason for having no results
+	 *   a reason for having no results
 	 * @return {string} Key for the message that explains why there is no results in this case
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.getMsgKeyForNoResults = function ( reason ) {
