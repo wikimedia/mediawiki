@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-properties */
 ( function () {
 	'use strict';
 	var ApiSandbox, Util, WidgetMethods, Validators,
@@ -1618,7 +1617,7 @@
 			};
 		} );
 		doProcess = function ( placeholder, target ) {
-			var values, container, index, usedVars, done;
+			var values, container, index, usedVars, done, items, i;
 
 			target = prefix + target;
 
@@ -1649,13 +1648,13 @@
 			done = $.isEmptyObject( p.vars );
 			if ( done ) {
 				container = Util.apiBool( p.info.deprecated ) ? that.deprecatedItemsFieldset : that.itemsFieldset;
-				// FIXME: ES6-ism
-				// eslint-disable-next-line jquery/no-each-util
-				index = container.getItems().findIndex( function ( el ) {
-					return el.apiParamIndex !== undefined && el.apiParamIndex > p.info.index;
-				} );
-				if ( index < 0 ) {
-					index = undefined;
+				items = container.getItems();
+				index = undefined;
+				for ( i = 0; i < items.length; i++ ) {
+					if ( items[ i ].apiParamIndex !== undefined && items[ i ].apiParamIndex > p.info.index ) {
+						index = i;
+						break;
+					}
 				}
 			}
 			values.forEach( function ( value ) {

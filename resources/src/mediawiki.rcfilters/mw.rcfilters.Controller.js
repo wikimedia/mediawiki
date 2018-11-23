@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-properties */
 ( function () {
 
 	var byteLength = require( 'mediawiki.String' ).byteLength;
