@@ -2517,9 +2517,13 @@ class RevisionStore
 	}
 
 	/**
-	 * Get previous revision for this title
+	 * Get the revision before $rev in the page's history, if any.
+	 * Will return null for the first revision but also for deleted or unsaved revisions.
 	 *
 	 * MCR migration note: this replaces Revision::getPrevious
+	 *
+	 * @see Title::getPreviousRevisionID
+	 * @see PageArchive::getPreviousRevision
 	 *
 	 * @param RevisionRecord $rev
 	 * @param Title|null $title if known (optional)
@@ -2527,20 +2531,36 @@ class RevisionStore
 	 * @return RevisionRecord|null
 	 */
 	public function getPreviousRevision( RevisionRecord $rev, Title $title = null ) {
+		if ( !$rev->getId() || !$rev->getPageId() ) {
+			// revision is unsaved or otherwise incomplete
+			return null;
+		}
+
+		if ( $rev instanceof RevisionArchiveRecord ) {
+			// revision is deleted, so it's not part of the page history
+			return null;
+		}
+
 		if ( $title === null ) {
+			// this would fail for deleted revisions
 			$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
 		}
+
 		$prev = $title->getPreviousRevisionID( $rev->getId() );
-		if ( $prev ) {
-			return $this->getRevisionByTitle( $title, $prev );
+		if ( !$prev ) {
+			return null;
 		}
-		return null;
+
+		return $this->getRevisionByTitle( $title, $prev );
 	}
 
 	/**
-	 * Get next revision for this title
+	 * Get the revision after $rev in the page's history, if any.
+	 * Will return null for the latest revision but also for deleted or unsaved revisions.
 	 *
 	 * MCR migration note: this replaces Revision::getNext
+	 *
+	 * @see Title::getNextRevisionID
 	 *
 	 * @param RevisionRecord $rev
 	 * @param Title|null $title if known (optional)
@@ -2548,14 +2568,27 @@ class RevisionStore
 	 * @return RevisionRecord|null
 	 */
 	public function getNextRevision( RevisionRecord $rev, Title $title = null ) {
+		if ( !$rev->getId() || !$rev->getPageId() ) {
+			// revision is unsaved or otherwise incomplete
+			return null;
+		}
+
+		if ( $rev instanceof RevisionArchiveRecord ) {
+			// revision is deleted, so it's not part of the page history
+			return null;
+		}
+
 		if ( $title === null ) {
+			// this would fail for deleted revisions
 			$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
 		}
+
 		$next = $title->getNextRevisionID( $rev->getId() );
-		if ( $next ) {
-			return $this->getRevisionByTitle( $title, $next );
+		if ( !$next ) {
+			return null;
 		}
-		return null;
+
+		return $this->getRevisionByTitle( $title, $next );
 	}
 
 	/**
