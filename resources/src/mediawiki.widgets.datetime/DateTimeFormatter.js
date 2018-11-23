@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-properties */
 ( function () {
 
 	/**
@@ -411,9 +410,9 @@
 			}
 		}
 
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-restricted-properties
 		if ( v.normalize ) {
-			// eslint-disable-next-line jquery/no-each-util
+			// eslint-disable-next-line no-restricted-properties
 			v = v.normalize();
 		}
 		re = new RegExp( '^\\s*' + v.replace( /([\\{}()|.?*+\-^$\[\]])/g, '\\$1' ), 'i' ); // eslint-disable-line no-useless-escape

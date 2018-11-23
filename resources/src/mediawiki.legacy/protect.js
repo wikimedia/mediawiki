@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-properties */
 ( function () {
 	var ProtectionForm,
 		reasonCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),

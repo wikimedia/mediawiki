@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-properties */
 /*!
  * MediaWiki Widgets - NamespaceInputWidget class.
  *

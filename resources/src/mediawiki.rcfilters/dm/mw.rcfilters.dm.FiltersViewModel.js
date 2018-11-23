@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-properties */
 ( function () {
 	/**
 	 * View model for the filters selection and display
