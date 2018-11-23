@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-properties */
 ( function () {
 	'use strict';
 	var ApiSandbox, Util, WidgetMethods, Validators,
@@ -1650,7 +1649,7 @@
 			if ( done ) {
 				container = Util.apiBool( p.info.deprecated ) ? that.deprecatedItemsFieldset : that.itemsFieldset;
 				// FIXME: ES6-ism
-				// eslint-disable-next-line jquery/no-each-util
+				// eslint-disable-next-line no-restricted-properties
 				index = container.getItems().findIndex( function ( el ) {
 					return el.apiParamIndex !== undefined && el.apiParamIndex > p.info.index;
 				} );
