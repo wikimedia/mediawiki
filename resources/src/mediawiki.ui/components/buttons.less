@@ -1,10 +1,51 @@
 @import 'mediawiki.mixins';
 @import 'mediawiki.ui/variables';
-@import 'mediawiki.ui/mixins';
 
 // Buttons
-//
-// All buttons start with mw-ui-button class, modified by other classes.
+// Helper mixins
+// Primary buttons mixin
+.button-colors-primary( @bgColor, @highlightColor, @activeColor ) {
+	background-color: @bgColor;
+	color: #fff;
+	// border of the same color as background so that light background and
+	// dark background buttons are the same height and width
+	border: 1px solid @bgColor;
+
+	&:hover {
+		background-color: @highlightColor;
+		border-color: @highlightColor;
+	}
+
+	&:focus {
+		box-shadow: inset 0 0 0 1px @bgColor, inset 0 0 0 2px #fff;
+	}
+
+	&:active,
+	&.is-on,
+	&.mw-ui-checked {
+		background-color: @activeColor;
+		border-color: @activeColor;
+		box-shadow: none;
+	}
+
+	&:disabled {
+		background-color: @colorGray12;
+		color: #fff;
+		border-color: @colorGray12;
+
+		// Make sure disabled buttons don't have hover and active states
+		&:hover,
+		&:active,
+		&.mw-ui-checked {
+			background-color: @colorGray12;
+			color: #fff;
+			border-color: @colorGray12;
+			box-shadow: none;
+		}
+	}
+}
+
+// All buttons start with `.mw-ui-button` class, modified by other classes.
 // It can be any element.  Due to a lack of a CSS reset, the exact styling of
 // the button depends on what type of element is used.
 // There are two kinds of buttons, the default is a "Call to Action" with an obvious border
