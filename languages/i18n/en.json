@@ -3076,6 +3076,7 @@
 	"pageinfo-display-title": "Display title",
 	"pageinfo-default-sort": "Default sort key",
 	"pageinfo-length": "Page length (in bytes)",
+	"pageinfo-namespace": "Namespace",
 	"pageinfo-article-id": "Page ID",
 	"pageinfo-language": "Page content language",
 	"pageinfo-language-change": "change",

@@ -264,6 +264,12 @@ class InfoAction extends FormlessAction {
 			$this->msg( 'pageinfo-length' ), $lang->formatNum( $title->getLength() )
 		];
 
+		// Page namespace
+		$pageNamespace = $title->getNsText();
+		if ( $pageNamespace ) {
+			$pageInfo['header-basic'][] = [ $this->msg( 'pageinfo-namespace' ), $pageNamespace ];
+		}
+
 		// Page ID (number not localised, as it's a database ID)
 		$pageInfo['header-basic'][] = [ $this->msg( 'pageinfo-article-id' ), $id ];
 
