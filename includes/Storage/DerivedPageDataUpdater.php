@@ -150,6 +150,9 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 */
 	private $options = [
 		'changed' => true,
+		// newrev is true if prepareUpdate is handling the creation of a new revision,
+		// as opposed to a null edit or a forced update.
+		'newrev' => false,
 		'created' => false,
 		'moved' => false,
 		'restored' => false,
@@ -1113,12 +1116,14 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		// Override fields defined in $this->options with values from $options.
 		$this->options = array_intersect_key( $options, $this->options ) + $this->options;
 
-		if ( isset( $this->pageState['oldId'] ) ) {
-			$oldId = $this->pageState['oldId'];
+		if ( $this->revision ) {
+			$oldId = $this->pageState['oldId'] ?? 0;
+			$this->options['newrev'] = ( $revision->getId() !== $oldId );
 		} elseif ( isset( $this->options['oldrevision'] ) ) {
 			/** @var Revision|RevisionRecord $oldRev */
 			$oldRev = $this->options['oldrevision'];
 			$oldId = $oldRev->getId();
+			$this->options['newrev'] = ( $revision->getId() !== $oldId );
 		} else {
 			$oldId = $revision->getParentId();
 		}
@@ -1604,8 +1609,8 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		// Save it to the parser cache. Use the revision timestamp in the case of a
 		// freshly saved edit, as that matches page_touched and a mismatch would trigger an
 		// unnecessary reparse.
-		$timestamp = $this->options['changed'] ? $this->revision->getTimestamp()
-			: $output->getTimestamp();
+		$timestamp = $this->options['newrev'] ? $this->revision->getTimestamp()
+			: $output->getCacheTime();
 		$this->parserCache->save(
 			$output, $wikiPage, $this->getCanonicalParserOptions(),
 			$timestamp, $this->revision->getId()
