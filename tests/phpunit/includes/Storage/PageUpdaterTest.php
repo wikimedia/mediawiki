@@ -29,6 +29,9 @@ class PageUpdaterTest extends MediaWikiTestCase {
 			'aux',
 			CONTENT_MODEL_WIKITEXT
 		);
+
+		$this->tablesUsed[] = 'logging';
+		$this->tablesUsed[] = 'recentchanges';
 	}
 
 	private function getDummyTitle( $method ) {
