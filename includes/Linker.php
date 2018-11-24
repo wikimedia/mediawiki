@@ -1168,7 +1168,10 @@ class Linker {
 								$title->getDBkey(), $section );
 						}
 						if ( $sectionTitle ) {
-							$link = Linker::makeCommentLink( $sectionTitle, $wgLang->getArrow(), $wikiId, 'noclasses' );
+							$link = Linker::makeCommentLink(
+								$sectionTitle, $wgLang->getArrow() . $auto, $wikiId, 'noclasses'
+							);
+							$auto = '';
 						} else {
 							$link = '';
 						}
@@ -1181,10 +1184,11 @@ class Linker {
 						# autocomment $postsep written summary (/* section */ summary)
 						$auto .= wfMessage( 'colon-separator' )->inContentLanguage()->escaped();
 					}
-					$auto = '<span class="autocomment">' . $auto . '</span>';
-					$comment = $pre . $link . $wgLang->getDirMark()
-						. '<span dir="auto">' . $auto;
-					$append .= '</span>';
+					if ( $auto ) {
+						$auto = '<span dir="auto"><span class="autocomment">' . $auto . '</span>';
+						$append .= '</span>';
+					}
+					$comment = $pre . $link . $wgLang->getDirMark() . $auto;
 				}
 				return $comment;
 			},
