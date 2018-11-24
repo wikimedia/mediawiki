@@ -187,7 +187,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 
 		$restrictions = [];
 		if ( $fld_restrictions ) {
-			$restrictions = $this->getRestrictionData( $res, $params['limit'] );
+			$restrictions = self::getRestrictionData( $res, $params['limit'] );
 		}
 
 		$count = 0;
