@@ -1897,6 +1897,7 @@
 	"deadendpages": "Старонкі без спасылак",
 	"deadendpagestext": "Спіс старонак без спасылак на тутэйшыя артыкулы.",
 	"protectedpages": "Старонкі пад аховай",
+	"protectedpages-filters": "Фільтры:",
 	"protectedpages-indef": "Толькі бестэрміновыя аховы",
 	"protectedpages-summary": "На гэтай старонцы пералічаны наяўныя старонкі, якія зараз знаходзяцца пад аховай. Спіс назваў, абароненых ад стварэння, гл. [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].",
 	"protectedpages-cascade": "Толькі каскадныя засцераганні",

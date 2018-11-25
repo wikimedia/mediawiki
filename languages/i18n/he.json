@@ -487,6 +487,7 @@
 	"passwordtooshort": "סיסמאות חייבות להיות באורך {{PLURAL:$1|תו אחד|$1 תווים}} לפחות.",
 	"passwordtoolong": "סיסמאות אינן יכולות להיות ארוכות {{PLURAL:$1|מתו אחד|מ־$1 תווים}}.",
 	"passwordtoopopular": "לא ניתן להשתמש בסיסמאות נפוצות. יש לבחור סיסמה קשה יותר לניחוש.",
+	"passwordinlargeblacklist": "הסיסמה שנבחרה נמצאת ברשימה של סיסמאות נפוצות מאוד. יש לבחור סיסמה ייחודית יותר.",
 	"password-name-match": "סיסמתך חייבת להיות שונה משם המשתמש שלך.",
 	"password-login-forbidden": "השימוש בשם המשתמש והסיסמה האלה נאסר.",
 	"mailmypassword": "איפוס סיסמה",
@@ -4189,6 +4190,7 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "הסיסמה לא יכולה להתאים לסיסמאות מסוימות שנמצאות ברשימה השחורה",
 	"passwordpolicies-policy-maximalpasswordlength": "הסיסמה חייבת להיות קצרה יותר {{PLURAL:$1|מתו אחד|מ־$1 תווים}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "הסיסמה לא יכולה להיות זהה {{PLURAL:$1|לסיסמה נפוצה|לאחת הסיסמאות שנמצאות ברשימה של $1 הסיסמאות הנפוצות}}",
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "הסיסמה לא יכולה להיות ברשימת 100,000 הסיסמאות הנפוצות ביותר.",
 	"easydeflate-invaliddeflate": "התוכן שהועבר אינו דחוס כנדרש",
 	"unprotected-js": "מסיבות אבטחה, לא ניתן לטעון JavaScript מדפים שאינם מוגנים. ניתן ליצור סקריפטי JavaScript רק במרחב השם \"מדיה ויקי:\" או בדפי משנה של דף המשתמש."
 }

@@ -549,6 +549,7 @@
 	"passwordtooshort": "Hasło musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}.",
 	"passwordtoolong": "Hasło nie może być dłuższe niż  {{PLURAL:$1|1 znak|$1 znaków}}.",
 	"passwordtoopopular": "Często wybierane hasła nie mogą być stosowane. Proszę wybrać hasło bardziej unikalne.",
+	"passwordinlargeblacklist": "Wprowadzone hasło jest na liście najczęściej używanych haseł. Prosimy wybrać mniej popularne hasło.",
 	"password-name-match": "Hasło musi być inne niż nazwa użytkownika.",
 	"password-login-forbidden": "Wykorzystanie tej nazwy użytkownika lub hasła zostało zabronione.",
 	"mailmypassword": "Zresetuj hasło",
@@ -3609,6 +3610,7 @@
 	"redirect-file": "Nazwa pliku",
 	"redirect-logid": "ID rejestru",
 	"redirect-not-exists": "Nie znaleziono wartości",
+	"redirect-not-numeric": "Wartość nie jest liczbą",
 	"fileduplicatesearch": "Wyszukiwanie duplikatów pliku",
 	"fileduplicatesearch-summary": "Wyszukiwanie duplikatów pliku na podstawie wartości funkcji skrótu.",
 	"fileduplicatesearch-filename": "Nazwa pliku:",
@@ -4093,6 +4095,7 @@
 	"authmanager-authn-not-in-progress": "Tworzenie konta nie jest wykonywane lub dane sesji zostały utracone. Zacznij od początku.",
 	"authmanager-authn-no-primary": "Podane dane nie mogą być użyte do kontroli poświadczeń.",
 	"authmanager-authn-no-local-user": "Żaden użytkownik nie korzysta z tych danych.",
+	"authmanager-authn-no-local-user-link": "Podane poświadczenia są prawidłowe, ale nie odpowiadają żadnemu użytkownikowi na tej wiki. Zaloguj się w inny sposób lub utwórz nowe konto, aby móc połączyć poprzednie poświadczenie z tym kontem.",
 	"authmanager-authn-autocreate-failed": "Automatyczne tworzenie lokalnego konta nie powiodło się: $1",
 	"authmanager-create-disabled": "Utworzenie konta jest wyłączone.",
 	"authmanager-create-from-login": "Aby utworzyć konto, wypełnij odpowiednie pola.",
@@ -4187,7 +4190,9 @@
 	"passwordpolicies-policy-minimalpasswordlength": "Hasło musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Aby się zalogować, hasło musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Hasło nie może być takie samo jak nazwa użytkownika",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "Hasło nie może być zgodne z konkretnymi hasłami na czarnej liście",
 	"passwordpolicies-policy-maximalpasswordlength": "Hasło musi mieć mniej niż $1 {{PLURAL:$1|znak|znaki|znaków}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "Hasło nie może być {{PLURAL:$1|popularne|na liście $1 popularnych haseł}}",
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "Hasło nie może znajdować się na liście 100 000 najczęściej używanych haseł.",
 	"unprotected-js": "Ze względów bezpieczeństwa kod JavaScript nie może zostać załadowany z niezabezpieczonych stron. Prosimy dodawać JavaScript w przestrzeni MediaWiki lub jako podstronę strony użytkownika."
 }

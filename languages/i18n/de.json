@@ -544,6 +544,7 @@
 	"passwordtooshort": "Passwörter müssen mindestens {{PLURAL:$1|1 Zeichen|$1 Zeichen}} lang sein.",
 	"passwordtoolong": "Passwörter können nicht länger als {{PLURAL:$1|ein|$1}} Zeichen sein.",
 	"passwordtoopopular": "Häufig ausgewählte Passwörter können nicht verwendet werden. Bitte wähle ein Passwort aus, das schwieriger zu erraten ist.",
+	"passwordinlargeblacklist": "Das eingegebene Passwort befindet sich in einer Liste sehr häufig verwendeter Passwörter. Bitte suche dir ein individuelleres Passwort aus.",
 	"password-name-match": "Dein Passwort muss sich von deinem Benutzernamen unterscheiden.",
 	"password-login-forbidden": "Die Verwendung dieses Benutzernamens und Passwortes ist nicht erlaubt.",
 	"mailmypassword": "Passwort zurücksetzen",
@@ -4187,6 +4188,7 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Ein Passwort kann nicht mit speziellen schwarzgelisteten Passwörtern übereinstimmen",
 	"passwordpolicies-policy-maximalpasswordlength": "Ein Passwort muss weniger als {{PLURAL:$1|ein|$1}} Zeichen lang sein",
 	"passwordpolicies-policy-passwordcannotbepopular": "Ein Passwort kann nicht {{PLURAL:$1|das beliebteste Passwort|in der Liste der $1 beliebtesten Passwörter}} sein",
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "Das Passwort kann nicht in der Liste der 100.000 am häufigsten verwendeten Passwörter sein.",
 	"easydeflate-invaliddeflate": "Der angegebene Inhalt ist nicht ordnungsgemäß komprimiert",
 	"unprotected-js": "Aus Sicherheitsgründen kann JavaScript-Code nicht mehr von ungeschützten Seiten geladen werden. Erstelle die JavaScript-Seite bitte ausschließlich im Namensraum „MediaWiki“ oder als Benutzerunterseite."
 }
