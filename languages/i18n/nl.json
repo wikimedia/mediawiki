@@ -541,6 +541,7 @@
 	"passwordtooshort": "Wachtwoorden moeten uit minstens {{PLURAL:$1|$1 teken|$1 tekens}} bestaan.",
 	"passwordtoolong": "Wachtwoorden kunnen niet langer zijn dan {{PLURAL:$1|één teken|$1 tekens}}.",
 	"passwordtoopopular": "Veel gekozen wachtwoorden kunnen niet worden gebruikt. Kies een wachtwoord dat lastiger kan worden geraden.",
+	"passwordinlargeblacklist": "Het ingevoerde wachtwoord bevind zich in een lijst met veelvoorkomende wachtwoorden. Kies een wachtwoord dat unieker is.",
 	"password-name-match": "Uw wachtwoord en uw gebruikersnaam mogen niet overeenkomen.",
 	"password-login-forbidden": "Het gebruik van deze gebruikersnaam met dit wachtwoord is niet toegestaan.",
 	"mailmypassword": "Nieuw wachtwoord e-mailen",
@@ -4167,5 +4168,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Wachtwoord mag niet overeenkomen met wachtwoorden op de zwarte lijst",
 	"passwordpolicies-policy-maximalpasswordlength": "Wachtwoord moet minder dan $1 {{PLURAL:$1|teken|tekens}} bevatten",
 	"passwordpolicies-policy-passwordcannotbepopular": "Watchwoord mag niet {{PLURAL:$1|overeenkomen met het bekende wachtwoord|voorkomen in de lijst met $1 bekende wachtwoorden}}",
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "Wachtwoorden mogen niet voorkomen in de lijst met 100.000 veelvoorkomende wachtwoorden.",
 	"unprotected-js": "Vanwege veiligheidsredenen kan er geen JavaScript geladen worden vanaf onbeveiligde pagina's. Gelieve alleen JavaScript pagina's aan te maken in de MediaWiki: naamruimte of als een subpagina van een gebruikerspagina."
 }

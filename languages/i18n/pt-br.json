@@ -572,6 +572,7 @@
 	"passwordtooshort": "As senhas devem ter no mínimo {{PLURAL:$1|1 caractere|$1 caracteres}}.",
 	"passwordtoolong": "Senhas não podem ser maiores do que {{PLURAL:$1|1 caractere|$1 caracteres}}.",
 	"passwordtoopopular": "Não podem ser usadas senha vulgares. Escolha uma palavra-passe mais difícil de adivinhar, por favor.",
+	"passwordinlargeblacklist": "A senha digitada está na lista de senhas comumente usadas. Por favor, escolha uma senha mais exclusiva.",
 	"password-name-match": "A sua senha deve ser diferente do seu nome de usuário.",
 	"password-login-forbidden": "O uso deste nome de usuário e senha foi desautorizado.",
 	"mailmypassword": "Redefinir senha",
@@ -4283,6 +4284,7 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "A senha não pode corresponder senhas especificamente na lista negra",
 	"passwordpolicies-policy-maximalpasswordlength": "A senha deve ser menor que $1 {{PLURAL:$1|caráter|caracteres}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "A senha não pode {{PLURAL:$1|ser a mais popular|estar na lista das $1 palavras-passe mais populares}}",
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "A senha não pode estar na lista de 100.000 senhas mais usadas.",
 	"easydeflate-invaliddeflate": "O conteúdo fornecido não está devidamente comprimido",
 	"unprotected-js": "Por razões de segurança o JavaScript não pode ser carregado de páginas desprotegidas. Por favor, crie apenas javascript no MediaWiki: namespace ou como uma subpágina do usuário"
 }

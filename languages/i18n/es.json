@@ -179,7 +179,8 @@
 			"Caleidoscopic",
 			"ديفيد",
 			"LittlePuppers",
-			"Theklan"
+			"Theklan",
+			"Laura Ospina"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -627,6 +628,7 @@
 	"passwordtooshort": "Las contraseñas deben tener al menos {{PLURAL:$1|1 carácter|$1 caracteres}}.",
 	"passwordtoolong": "Las contraseñas no deben tener más de {{PLURAL:$1|1 carácter|$1 caracteres}}.",
 	"passwordtoopopular": "No es posible utilizar las contraseñas más comunes. Elige una que sea más difícil de descifrar.",
+	"passwordinlargeblacklist": "La contraseña utilizada está en una lista de contraseñas usadas comúnmente. Por favor seleccione una contraseña más única.",
 	"password-name-match": "Tu contraseña debe ser diferente de tu nombre de usuario.",
 	"password-login-forbidden": "El uso de este nombre de usuario y contraseña han sido prohibidos.",
 	"mailmypassword": "Restablecer la contraseña",
@@ -4229,5 +4231,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "La contraseña no puede coincidir con la lista de contraseñas específicamente prohibidas",
 	"passwordpolicies-policy-maximalpasswordlength": "La contraseña no puede tener más de $1 {{PLURAL:$1|caracter|caracteres}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "La contraseña no puede {{PLURAL:$1|ser la contraseña más popular|encontrarse en la lista de $1 contraseñas populares}}",
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "La contraseña no puede estar en la lista de las 100.000 contraseñas utilizadas más comúnmente.",
 	"easydeflate-invaliddeflate": "El contenido proporcionado no esta comprimido correctamente"
 }

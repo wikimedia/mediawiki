@@ -622,6 +622,7 @@
 	"passwordtooshort": "Votre mot de passe doit contenir au moins $1 caractère{{PLURAL:$1||s}}.",
 	"passwordtoolong": "Les mots de passe ne peuvent pas dépasser $1 caractère{{PLURAL:$1||s}}.",
 	"passwordtoopopular": "Les mots de passe trop courants ne peuvent pas être utilisés. Veuillez choisir un mot de passe plus difficile à deviner.",
+	"passwordinlargeblacklist": "Le mot de passe entré appartient à une liste très courante de mots de passe utilisés. Veuillez choisir un mot de passe plus unique.",
 	"password-name-match": "Votre mot de passe doit être différent de votre nom d’utilisateur.",
 	"password-login-forbidden": "L’utilisation de ce nom d’utilisateur ou de ce mot de passe a été interdite.",
 	"mailmypassword": "Réinitialiser le mot de passe",
@@ -4340,6 +4341,7 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Les mots de passe ne peuvent pas être identiques à ceux qui sont dans la liste noire.",
 	"passwordpolicies-policy-maximalpasswordlength": "Les mots de passe doivent avoir moins de $1 caractère{{PLURAL:$1||s}} de long",
 	"passwordpolicies-policy-passwordcannotbepopular": "Le mot de passe ne peut pas être {{PLURAL:$1|le mot de passe populaire|dans la liste des $1 mots de passe populaires}}",
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "Le mot de passe ne peut pas faire partie de la liste des 100 000 mots de passe les plus communément utilisés.",
 	"easydeflate-invaliddeflate": "Le contenu fourni n'est pas correctement développé",
 	"unprotected-js": "Pour des raisons de sécurité, JavaScript ne peut pas être chargé depuis des pages non protégées. Veuillez ne créer du javascript que dans l’espace de noms MediaWiki: ou comme sous-page utilisateur"
 }

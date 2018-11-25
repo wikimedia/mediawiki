@@ -466,6 +466,7 @@
 	"passwordtooshort": "Geslo mora imeti najmanj $1 {{PLURAL:$1|znak|znaka|znake|znakov|znakov}}.",
 	"passwordtoolong": "Gesla ne morejo biti daljša od {{PLURAL:$1|1 znaka|$1 znakov}}.",
 	"passwordtoopopular": "Pogosto izbranih gesel ne morete uporabiti. Prosimo, izberite geslo, ki ga je težje uganiti.",
+	"passwordinlargeblacklist": "Vneseno geslo je na seznamu pogosto uporabljenih gesel. Prosimo, izberite izvirnejše geslo.",
 	"password-name-match": "Vaše geslo se mora razlikovati od vašega uporabniškega imena.",
 	"password-login-forbidden": "Uporaba tega uporabniškega imena in gesla je prepovedana.",
 	"mailmypassword": "Ponastavitev gesla",
@@ -4068,6 +4069,7 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Geslo se ne sme ujemati s posebej prepovedanimi gesli",
 	"passwordpolicies-policy-maximalpasswordlength": "Geslo ne sme biti daljše od $1 {{PLURAL:$1|znak|znaka|znake|znakov}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "Geslo ne sme biti {{PLURAL:$1|1=popularno geslo|na seznamu $1 popularnih gesel}}",
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "Geslo ne more biti na seznamu 100.000 najpogosteje uporabljenih gesel.",
 	"easydeflate-invaliddeflate": "Dana vsebina ni pravilno stisnjena",
 	"unprotected-js": "Iz varnostnih razlogov JavaScripta ni možno naložiti z nezaščitenih strani. Prosimo, da JavaScript ustvarite samo v imenskem prostoru MediaWiki ali kot uporabniško podstran."
 }
