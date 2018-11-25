@@ -157,6 +157,26 @@ class PasswordPolicyChecksTest extends MediaWikiTestCase {
 		$this->assertSame( $expected, $status->isGood() );
 	}
 
+	public static function provideLargeBlacklist() {
+		return [
+			[ false, 'testpass' ],
+			[ false, 'password' ],
+			[ false, '12345' ],
+			[ true, 'DKn17egcA4' ],
+			[ true, 'testwikijenkinspass' ],
+		];
+	}
+
+	/**
+	 * @covers PasswordPolicyChecks::checkPasswordNotInLargeBlacklist
+	 * @dataProvider provideLargeBlacklist
+	 */
+	public function testCheckNotInLargeBlacklist( $expected, $password ) {
+		$user = User::newFromName( 'username' );
+		$status = PasswordPolicyChecks::checkPasswordNotInLargeBlacklist( true, $user, $password );
+		$this->assertSame( $expected, $status->isGood() );
+	}
+
 	/**
 	 * Verify that all password policy description messages actually exist.
 	 * Messages used on Special:PasswordPolicies
