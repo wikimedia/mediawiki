@@ -1032,6 +1032,7 @@ class ApiMain extends ApiBase {
 			// TODO: Avoid embedding arbitrary class names in the error code.
 			$class = preg_replace( '#^Wikimedia\\\Rdbms\\\#', '', get_class( $e ) );
 			$code = 'internal_api_error_' . $class;
+			$data = [ 'errorclass' => get_class( $e ) ];
 			if ( $config->get( 'ShowExceptionDetails' ) ) {
 				if ( $e instanceof ILocalizedException ) {
 					$msg = $e->getMessageObject();
@@ -1045,7 +1046,7 @@ class ApiMain extends ApiBase {
 				$params = [ 'apierror-exceptioncaughttype', WebRequest::getRequestId(), get_class( $e ) ];
 			}
 
-			$messages[] = ApiMessage::create( $params, $code );
+			$messages[] = ApiMessage::create( $params, $code, $data );
 		}
 		return $messages;
 	}
