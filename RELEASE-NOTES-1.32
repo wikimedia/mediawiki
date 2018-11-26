@@ -5,6 +5,10 @@ THIS IS NOT A RELEASE YET
 MediaWiki 1.32 is an alpha-quality branch and is not recommended for use in
 production.
 
+=== Changes since MediaWiki 1.32.0-rc.0 ===
+* (T209885) Prevent populateSearchIndex.php from breaking once actor migration
+  has been started.
+
 === Configuration changes in 1.32 ===
 
 ==== New configuration ====
@@ -657,9 +661,9 @@ because of Phabricator reports.
   yet for creating or managing content in slots beides the main slot. See
   <https://www.mediawiki.org/wiki/Multi-Content_Revisions> for more
   information.
-* The image_comment_temp database table is merged into the image table and
-  deprecated. Since access should be mediated by the CommentStore class, this
-  change shouldn't affect external code.
+* The image_comment_temp database table has been removed. Since all access
+  should be mediated by the CommentStore class, this change shouldn't affect
+  external code.
 * (T206147) Database::close() will no longer commit any open transactions.
 
 == Compatibility ==
