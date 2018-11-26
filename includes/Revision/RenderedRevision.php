@@ -160,6 +160,28 @@ class RenderedRevision implements SlotRenderingProvider {
 	}
 
 	/**
+	 * Sets a ParserOutput to be returned by getRevisionParserOutput().
+	 *
+	 * @note For internal use by RevisionRenderer only! This method may be modified
+	 * or removed without notice per the deprecation policy.
+	 *
+	 * @internal
+	 *
+	 * @param ParserOutput $output
+	 */
+	public function setRevisionParserOutput( ParserOutput $output ) {
+		$this->revisionOutput = $output;
+
+		// If there is only one slot, we assume that the combined output is identical
+		// with the main slot's output. This is intended to prevent a redundant re-parse of
+		// the content in case getSlotParserOutput( SlotRecord::MAIN ) is called, for instance
+		// from ContentHandler::getSecondaryDataUpdates.
+		if ( $this->revision->getSlotRoles() === [ SlotRecord::MAIN ] ) {
+			$this->slotsOutput[ SlotRecord::MAIN ] = $output;
+		}
+	}
+
+	/**
 	 * @param array $hints Hints given as an associative array. Known keys:
 	 *      - 'generate-html' => bool: Whether the caller is interested in output HTML (as opposed
 	 *        to just meta-data). Default is to generate HTML.
