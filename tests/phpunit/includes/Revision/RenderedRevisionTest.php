@@ -483,6 +483,23 @@ class RenderedRevisionTest extends MediaWikiTestCase {
 		$this->assertContains( 'time:20180101000003!', $html );
 	}
 
+	public function testSetRevisionParserOutput() {
+		$title = $this->getMockTitle( 3, 21 );
+		$rev = $this->getMockRevision( RevisionStoreRecord::class, $title );
+
+		$options = ParserOptions::newCanonical( 'canonical' );
+		$rr = new RenderedRevision( $title, $rev, $options, $this->combinerCallback );
+
+		$output = new ParserOutput( 'Kittens' );
+		$rr->setRevisionParserOutput( $output );
+
+		$this->assertSame( $output, $rr->getRevisionParserOutput() );
+		$this->assertSame( 'Kittens', $rr->getRevisionParserOutput()->getText() );
+
+		$this->assertSame( $output, $rr->getSlotParserOutput( SlotRecord::MAIN ) );
+		$this->assertSame( 'Kittens', $rr->getSlotParserOutput( SlotRecord::MAIN )->getText() );
+	}
+
 	public function testNoHtml() {
 		/** @var MockObject|Content $mockContent */
 		$mockContent = $this->getMockBuilder( WikitextContent::class )

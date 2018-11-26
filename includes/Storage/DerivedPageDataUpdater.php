@@ -738,17 +738,6 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			$stashedEdit = ApiStashEdit::checkCache( $title, $mainContent, $legacyUser );
 		}
 
-		if ( $stashedEdit ) {
-			/** @var ParserOutput $output */
-			$output = $stashedEdit->output;
-
-			// TODO: this should happen when stashing the ParserOutput, not now!
-			$output->setCacheTime( $stashedEdit->timestamp );
-
-			// TODO: MCR: allow output for all slots to be stashed.
-			$this->canonicalParserOutput = $output;
-		}
-
 		$userPopts = ParserOptions::newFromUserAndLang( $user, $this->contLang );
 		Hooks::run( 'ArticlePrepareTextForEdit', [ $wikiPage, $userPopts ] );
 
@@ -829,6 +818,27 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		} else {
 			$this->parentRevision = $parentRevision;
 		}
+
+		$renderHints = [ 'use-master' => $this->useMaster(), 'audience' => RevisionRecord::RAW ];
+
+		if ( $stashedEdit ) {
+			/** @var ParserOutput $output */
+			$output = $stashedEdit->output;
+
+			// TODO: this should happen when stashing the ParserOutput, not now!
+			$output->setCacheTime( $stashedEdit->timestamp );
+
+			$renderHints['known-revision-output'] = $output;
+		}
+
+		// NOTE: we want a canonical rendering, so don't pass $this->user or ParserOptions
+		// NOTE: the revision is either new or current, so we can bypass audience checks.
+		$this->renderedRevision = $this->revisionRenderer->getRenderedRevision(
+			$this->revision,
+			null,
+			null,
+			$renderHints
+		);
 	}
 
 	/**
@@ -855,18 +865,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 * @return RenderedRevision
 	 */
 	public function getRenderedRevision() {
-		if ( !$this->renderedRevision ) {
-			$this->assertPrepared( __METHOD__ );
-
-			// NOTE: we want a canonical rendering, so don't pass $this->user or ParserOptions
-			// NOTE: the revision is either new or current, so we can bypass audience checks.
-			$this->renderedRevision = $this->revisionRenderer->getRenderedRevision(
-				$this->revision,
-				null,
-				null,
-				[ 'use-master' => $this->useMaster(), 'audience' => RevisionRecord::RAW ]
-			);
-		}
+		$this->assertPrepared( __METHOD__ );
 
 		return $this->renderedRevision;
 	}
@@ -1186,6 +1185,19 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		// Prune any output that depends on the revision ID.
 		if ( $this->renderedRevision ) {
 			$this->renderedRevision->updateRevision( $revision );
+		} else {
+
+			// NOTE: we want a canonical rendering, so don't pass $this->user or ParserOptions
+			// NOTE: the revision is either new or current, so we can bypass audience checks.
+			$this->renderedRevision = $this->revisionRenderer->getRenderedRevision(
+				$this->revision,
+				null,
+				null,
+				[ 'use-master' => $this->useMaster(), 'audience' => RevisionRecord::RAW ]
+			);
+
+			// XXX: Since we presumably are dealing with the current revision,
+			// we could try to get the ParserOutput from the parser cache.
 		}
 
 		// TODO: optionally get ParserOutput from the ParserCache here.
