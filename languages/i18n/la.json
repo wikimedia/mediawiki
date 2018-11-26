@@ -1193,7 +1193,7 @@
 	"deletereason-dropdown": "*Causae deletionum communes\n** Spam\n** Vandalismus\n** Violatio verborum privatorum\n** Desiderium auctoris\n** Redirectio fracta",
 	"delete-edit-reasonlist": "Causas deletionum recensere",
 	"rollback": "Reverti mutationes",
-	"rollbacklink": "reverti",
+	"rollbacklink": "Plura statim revertere",
 	"rollbacklinkcount": "reverti {{PLURAL:$1|unam recensionem|$1 recensiones}}",
 	"rollbacklinkcount-morethan": "reverti plus quam {{PLURAL:$1|unam recensionem|$1 recensiones}}",
 	"rollbackfailed": "Reversum defecit",

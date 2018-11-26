@@ -1139,6 +1139,7 @@
 	"watchlistedit-normal-done": "Í-keng uì lí ê kám-sī-toaⁿ soá {{PLURAL:$1|ia̍h}} cháu:",
 	"watchlisttools-edit": "Khoàⁿ koh kái kàm-sī-toaⁿ",
 	"watchlisttools-raw": "Kái chhiⁿ ê kàm-sī-toaⁿ",
+	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|thó-lūn]])",
 	"duplicate-defaultsort": "'''Thê-chhíⁿ lí:'''Siat-piān ê pâi-lia̍t hong-sek \"$2\" thè-oāⁿ chìn-chêng ê siat-piān ê pâi-lia̍t hong-sek \"$1\".",
 	"version": "Pán-pún",
 	"specialpages": "Te̍k-sû-ia̍h",
