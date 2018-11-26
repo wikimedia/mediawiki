@@ -405,6 +405,7 @@
 	"resetpass_submit": "اظبط الباسورد و ادخل",
 	"changepassword-success": "الباسورد بتاعتك اتغيرت بنجاح!",
 	"changepassword-throttled": "انت عملت  محاولات لوجين كتيره  ع الحساب ده.\nمن فضلك استنى $1 قبل المحاولة مرة تانيه.",
+	"botpasswords-label-update": "تحديث",
 	"resetpass_forbidden": "مش ممكن تغيير الباسورد",
 	"resetpass-no-info": "لازم تسجل دخولك علشان تقدر توصل للصفحة دى على طول.",
 	"resetpass-submit-loggedin": "غير الباسورد",

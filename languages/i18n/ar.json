@@ -526,6 +526,7 @@
 	"passwordtooshort": "يجب أن تتكون كلمة السر على الأقل من {{PLURAL:$1|حرف واحد|حرفين|$1 حروف|$1 حرفا|$1 حرف}}.",
 	"passwordtoolong": "كلمات السر لا يجب أن تكون أطول من  {{PLURAL:$1|1 حرف|$1 حروف}}.",
 	"passwordtoopopular": "لا يمكن استخدام كلمات المرور المختارة بشكل عام; يُرجَى اختيار كلمة مرور يصعب تخمينها.",
+	"passwordinlargeblacklist": "كلمة المرور التي تم إدخالها موجودة في قائمة كلمات المرور شائعة الاستخدام; الرجاء اختيار كلمة مرور فريدة.",
 	"password-name-match": "يجب أن تكون كلمة المرور مختلفة عن اسم المستخدم.",
 	"password-login-forbidden": "تم منع استخدام اسم المستخدم هذا وكلمة السر.",
 	"mailmypassword": "أعد تعيين كلمة السر",
@@ -584,7 +585,7 @@
 	"botpasswords-label-needsreset": "(تحتاج كلمة المرور إلى إعادة الضبط)",
 	"botpasswords-label-appid": "اسم البوت:",
 	"botpasswords-label-create": "أنشأ",
-	"botpasswords-label-update": "حدث",
+	"botpasswords-label-update": "تحديث",
 	"botpasswords-label-cancel": "ألغ",
 	"botpasswords-label-delete": "احذف",
 	"botpasswords-label-resetpassword": "أعد ضبط كلمة السر",
@@ -4244,6 +4245,7 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "لا يمكن أن تتطابق كلمة المرور مع كلمات المرور المدرجة على القائمة السوداء تحديدا",
 	"passwordpolicies-policy-maximalpasswordlength": "يجب أن يكون طول كلمة المرور أقل من $1 {{PLURAL:$1|حرف|أحرف}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "لا يمكن أن تكون كلمة المرور {{PLURAL:$1|كلمة المرور الشائعة|في قائمة كلمات المرور الشائعة الـ$1}}",
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "لا يمكن أن تكون كلمة المرور في قائمة كلمات المرور الـ100.000 الأكثر استخداما.",
 	"easydeflate-invaliddeflate": "المحتوى المقدم لا يتم تفريغه بشكل صحيح",
 	"unprotected-js": "لأسباب تتعلق بالأمان; لا يمكن تحميل جافا سكريبت من الصفحات غير المحمية; الرجاء إنشاء جافا سكريبت فقط في نطاق ميدياويكي: أو كصفحة فرعية للمستخدم"
 }

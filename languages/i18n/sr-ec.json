@@ -493,6 +493,7 @@
 	"passwordtooshort": "Лозинка мора имати најмање {{PLURAL:$1|један знак|$1 знака|$1 знакова}}.",
 	"passwordtoolong": "Лозинке не могу бити дуже од {{PLURAL:$1|$1 знака|$1 знакова}}.",
 	"passwordtoopopular": "Није могуће користити често одабране лозинке. Одаберите лозинку коју је теже погодити.",
+	"passwordinlargeblacklist": "Унесена лозинка је на листи веома често коришћених лозинки. Одаберите јединственију лозинку.",
 	"password-name-match": "Лозинка се мора разликовати од корисничког имена.",
 	"password-login-forbidden": "Коришћење овог корисничког имена и лозинке је забрањено.",
 	"mailmypassword": "Ресетуј лозинку",
@@ -4222,5 +4223,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Лозинка се не може подударати са лозинкама на црном списку",
 	"passwordpolicies-policy-maximalpasswordlength": "Лозинка мора да буде краћа од $1 {{PLURAL:$1|знака|знакова}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "Лозинка не може да буде {{PLURAL:$1|популарна лозинка|на списку $1 популарних лозинки}}",
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "Лозинка не може да буде на листи 100.000 најчешће коришћених лозинки.",
 	"unprotected-js": "Из безбедносних разлога, JavaScript не може да се учита са незаштићене странице. Само направите JavaScript у именском простору „Медијавики:” или као корисничку подстраницу"
 }

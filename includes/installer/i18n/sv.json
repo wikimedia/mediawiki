@@ -151,6 +151,7 @@
 	"config-sqlite-cant-create-db": "Kunde inte skapa databasfilen <code>$1</code>.",
 	"config-sqlite-fts3-downgrade": "PHP saknar stöd för FTS3, nedgraderar tabeller",
 	"config-can-upgrade": "Det finns MediaWiki-tabeller i den här databasen.\nFör att uppgradera dem till MediaWiki $1, klicka på '''Fortsätt'''.",
+	"config-upgrade-error": "Ett fel uppstod när MediaWiki-tabellerna i din databas uppdaterades.\n\nFör mer information, se loggen ovan. Klicka på <strong>Fortsätt</strong> för att försöka igen.",
 	"config-upgrade-done": "Uppgraderingen slutfördes.\n\nDu kan nu [$1 börja använda din wiki].\n\nOm du vill förnya din <code>LocalSettings.php</code>-fil, klicka på knappen nedan.\nDetta '''rekommenderas inte''' om du har problem med din wiki.",
 	"config-upgrade-done-no-regenerate": "Uppgraderingen slutfördes.\n\nDu kan nu [$1 börja använda din wiki].",
 	"config-regenerate": "Återskapa LocalSettings.php →",

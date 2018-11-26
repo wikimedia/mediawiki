@@ -2529,7 +2529,7 @@
 	"tooltip-whatlinkshere-invert": "Установите этот флажок, чтобы Скрыть ссылки от страниц в выбранном пространстве имен.",
 	"namespace_association": "Связанное пространство",
 	"tooltip-namespace_association": "Установите эту отметку, чтобы также включить пространство имён обсуждения (или предметное), связанное с выбранным пространством имён",
-	"blanknamespace": "(основное)",
+	"blanknamespace": "(Основное)",
 	"contributions": "Вклад {{GENDER:$1|участника|участницы}}",
 	"contributions-title": "Вклад {{GENDER:$1|участника|участницы}} $1",
 	"mycontris": "Вклад",
@@ -4400,6 +4400,7 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Пароль не может совпадать ни с одним паролем, внесённым в чёрный список",
 	"passwordpolicies-policy-maximalpasswordlength": "Пароль должен быть короче $1 {{PLURAL:$1|символа|символов}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "Пароль не может соответствовать {{PLURAL:$1|самому часто используемому паролю|какому-либо из $1 самых часто используемых паролей}}",
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "Пароль не может соответствовать какому-либо из 100 000 самых часто используемых паролей.",
 	"easydeflate-invaliddeflate": "Предоставленное содержимое не спущено надлежащим образом",
 	"unprotected-js": "По соображениям безопасности JavaScript нельзя загружать с незащищенных страниц. Пожалуйста, создавайте скрипты только в пространстве имён MediaWiki: или как подстраницы участника."
 }
