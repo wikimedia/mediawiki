@@ -25,6 +25,7 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -40,6 +41,11 @@ class WikitextContent extends TextContent {
 	 *   would make it expire faster in ApiStashEdit.
 	 */
 	private $hadSignature = false;
+
+	/**
+	 * @var array|null Stack trace of the previous parse
+	 */
+	private $previousParseStackTrace = null;
 
 	public function __construct( $text ) {
 		parent::__construct( $text, CONTENT_MODEL_WIKITEXT );
@@ -336,6 +342,28 @@ class WikitextContent extends TextContent {
 			ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
 		global $wgParser;
+
+		$stackTrace = ( new RuntimeException() )->getTraceAsString();
+		if ( $this->previousParseStackTrace ) {
+			// NOTE: there may be legitimate changes to re-parse the same WikiText content,
+			// e.g. if predicted revision ID for the REVISIONID magic word mismatched.
+			// But that should be rare.
+			$logger = LoggerFactory::getInstance( 'DuplicateParse' );
+			$logger->debug(
+				__METHOD__ . ': Possibly redundant parse!',
+				[
+					'title' => $title->getPrefixedDBkey(),
+					'rev' => $revId,
+					'options-hash' => $options->optionsHash(
+						ParserOptions::allCacheVaryingOptions(),
+						$title
+					),
+					'trace' => $stackTrace,
+					'previous-trace' => $this->previousParseStackTrace,
+				]
+			);
+		}
+		$this->previousParseStackTrace = $stackTrace;
 
 		list( $redir, $text ) = $this->getRedirectTargetAndText();
 		$output = $wgParser->parse( $text, $title, $options, true, true, $revId );
