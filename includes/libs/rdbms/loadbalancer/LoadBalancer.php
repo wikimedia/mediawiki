@@ -1950,6 +1950,12 @@ class LoadBalancer implements ILoadBalancer {
 		} );
 	}
 
+	public function redefineLocalDomain( $domain ) {
+		$this->closeAll();
+
+		$this->setLocalDomain( DatabaseDomain::newFromId( $domain ) );
+	}
+
 	/**
 	 * @param DatabaseDomain $domain
 	 */

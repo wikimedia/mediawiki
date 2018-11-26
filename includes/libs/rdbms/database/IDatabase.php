@@ -1112,11 +1112,13 @@ interface IDatabase {
 	/**
 	 * Change the current database
 	 *
+	 * This should not be called outside LoadBalancer for connections managed by a LoadBalancer
+	 *
 	 * @param string $db
 	 * @return bool True unless an exception was thrown
 	 * @throws DBConnectionError If databasesAreIndependent() is true and an error occurs
 	 * @throws DBError
-	 * @deprecated Since 1.32
+	 * @deprecated Since 1.32 Use selectDomain() instead
 	 */
 	public function selectDB( $db );
 
@@ -1124,6 +1126,8 @@ interface IDatabase {
 	 * Set the current domain (database, schema, and table prefix)
 	 *
 	 * This will throw an error for some database types if the database unspecified
+	 *
+	 * This should not be called outside LoadBalancer for connections managed by a LoadBalancer
 	 *
 	 * @param string|DatabaseDomain $domain
 	 * @since 1.32
