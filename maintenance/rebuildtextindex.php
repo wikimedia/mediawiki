@@ -71,12 +71,10 @@ class RebuildTextIndex extends Maintenance {
 		}
 
 		if ( $this->db->getType() == 'mysql' ) {
-			//line removed by southparkfan
+			$this->dropMysqlTextIndex();
 			$this->clearSearchIndex();
 			$this->populateSearchIndex();
-			//begin changes by southparkfan
-			// $this->createMysqlTextIndex();
-			//end changes by southparkfan
+			$this->createMysqlTextIndex();
 		} else {
 			$this->clearSearchIndex();
 			$this->populateSearchIndex();
