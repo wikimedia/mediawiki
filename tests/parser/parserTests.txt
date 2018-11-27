@@ -28976,6 +28976,27 @@ Image: Invalid title as link
 !! end
 
 !! test
+Various link types in alt and link options
+!! wikitext
+[[File:Foobar.jpg|link=[[Main Page]]|alt=[[Main Page]]|caption]]
+
+[[File:Foobar.jpg|link=[[Media:Thumb.png]]|alt=[[Media:Thumb.png]]|caption]]
+
+[[File:Foobar.jpg|link=[[wikipedia:Foo]]|alt=[[wikipedia:Foo]]|caption]]
+!! html/php+tidy
+<p><a href="/wiki/Main_Page" title="caption"><img alt="Main Page" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+</p><p><a href="/wiki/Media:Thumb.png" title="caption"><img alt="Media:Thumb.png" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+</p><p><a href="http://en.wikipedia.org/wiki/Foo" title="caption"><img alt="wikipedia:Foo" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+</p>
+!! html/parsoid
+<p><figure-inline class="mw-default-size" typeof="mw:Image" data-mw='{"caption":"caption"}'><a href="./Main_Page" data-parsoid='{"a":{"href":"./Main_Page"},"sa":{"href":"link=[[Main Page]]"}}'><img alt="Main Page" resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"alt":"Main Page","resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"alt":"alt=[[Main Page]]","resource":"File:Foobar.jpg"}}'/></a></figure-inline></p>
+
+<p><figure-inline class="mw-default-size" typeof="mw:Image" data-mw='{"caption":"caption"}'><a href="./Media:Thumb.png" data-parsoid='{"a":{"href":"./Media:Thumb.png"},"sa":{"href":"link=[[Media:Thumb.png]]"}}'><img alt="Media:Thumb.png" resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"alt":"Media:Thumb.png","resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"alt":"alt=[[Media:Thumb.png]]","resource":"File:Foobar.jpg"}}'/></a></figure-inline></p>
+
+<p><figure-inline class="mw-default-size" typeof="mw:Image" data-mw='{"caption":"caption"}'><a href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":"link=[[wikipedia:Foo]]"}}'><img alt="wikipedia:Foo" resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"alt":"wikipedia:Foo","resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"alt":"alt=[[wikipedia:Foo]]","resource":"File:Foobar.jpg"}}'/></a></figure-inline></p>
+!! end
+
+!! test
 Lists: Serialize correctly even when list content is wrapped in p-tags (like VE does)
 !! options
 parsoid=html2wt
@@ -30989,6 +31010,170 @@ parsoid={
 <font>foo</font>
 !! wikitext
 <font>foo</font>
+!! end
+
+!! test
+Ignore empty <p></p> when scrubWikitext is false
+!! options
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": false
+}
+!! html/parsoid
+<div>1</div>
+<p>a</p><p></p><p>b</p>
+<div>2</div>
+<p>a</p>
+<p></p>
+<p>b</p>
+<div>3</div>
+<p>a</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p>b</p>
+!! wikitext
+<div>1</div>
+a
+
+b
+<div>2</div>
+a
+
+b
+<div>3</div>
+a
+
+b
+!! html/php+tidy
+<div>1</div>
+<p>a
+</p><p>b
+</p>
+<div>2</div>
+<p>a
+</p><p>b
+</p>
+<div>3</div>
+<p>a
+</p><p>b
+</p>
+!! end
+
+!! test
+Normalize empty paragraphs to HTML form that html2wt expects
+!! options
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": true
+}
+!! html/parsoid
+<div>1</div>
+<p>a</p><p></p><p>b</p>
+<div>2</div>
+<p>a</p>
+<p></p>
+<p>b</p>
+<div>3</div>
+<p>a</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p>b</p>
+<div>4</div>
+<p>a</p>
+<p></p>
+<div>foo</div>
+!! wikitext
+<div>1</div>
+a
+
+
+b
+<div>2</div>
+a
+
+
+b
+<div>3</div>
+a
+
+
+
+
+
+b
+<div>4</div>
+a
+
+<br />
+<div>foo</div>
+!! html/php+tidy
+<div>1</div>
+<p>a
+</p><p><br />
+b
+</p>
+<div>2</div>
+<p>a
+</p><p><br />
+b
+</p>
+<div>3</div>
+<p>a
+</p><p><br />
+</p><p><br />
+</p><p>b
+</p>
+<div>4</div>
+<p>a
+</p><p><br />
+</p>
+<div>foo</div>
+!! end
+
+!! test
+Empty paragraphs (marked with mw-empty-elt) found in source should not be normalized away
+!! options
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": true
+}
+!! html/parsoid
+<table>
+<tbody>
+<tr>
+<td><div>foo
+</div>
+<p class="mw-empty-elt"></p>
+</td>
+</tr>
+</tbody>
+<caption></caption>
+</table>
+!! wikitext
+{|
+|<div>foo
+</div>
+|+
+|}
+!! end
+
+!! test
+Templated content should be skipped over by normalization
+!! options
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": true
+}
+!! html/parsoid
+<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"SomeTemplate1","href":"./Template:SomeTemplate1"},"params":{"1":{"wt":"boo"}},"i":0}}]}'>foobar</p><p about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"SomeTemplate2","href":"./Template:SomeTemplate2"},"params":{"1":{"wt":"booboo"}},"i":0}}]}'>foobar</p><span about="#mwt2">
+</span><p about="#mwt2"></p><span about="#mwt2">
+</span>
+!! wikitext
+{{SomeTemplate1|boo}}{{SomeTemplate2|booboo}}
 !! end
 
 !! test
