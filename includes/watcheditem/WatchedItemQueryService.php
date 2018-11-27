@@ -340,9 +340,6 @@ class WatchedItemQueryService {
 		if ( in_array( self::INCLUDE_COMMENT, $options['includeFields'] ) ) {
 			$tables += $this->commentStore->getJoin( 'rc_comment' )['tables'];
 		}
-		if ( in_array( self::INCLUDE_TAGS, $options['includeFields'] ) ) {
-			$tables[] = 'tag_summary';
-		}
 		if ( in_array( self::INCLUDE_USER, $options['includeFields'] ) ||
 			in_array( self::INCLUDE_USER_ID, $options['includeFields'] ) ||
 			in_array( self::FILTER_ANON, $options['filters'] ) ||
@@ -402,7 +399,7 @@ class WatchedItemQueryService {
 		}
 		if ( in_array( self::INCLUDE_TAGS, $options['includeFields'] ) ) {
 			// prefixed with rc_ to include the field in getRecentChangeFieldsFromRow
-			$fields['rc_tags'] = 'ts_tags';
+			$fields['rc_tags'] = ChangeTags::makeTagSummarySubquery( 'recentchanges' );
 		}
 
 		return $fields;
@@ -709,9 +706,6 @@ class WatchedItemQueryService {
 		}
 		if ( in_array( self::INCLUDE_COMMENT, $options['includeFields'] ) ) {
 			$joinConds += $this->commentStore->getJoin( 'rc_comment' )['joins'];
-		}
-		if ( in_array( self::INCLUDE_TAGS, $options['includeFields'] ) ) {
-			$joinConds['tag_summary'] = [ 'LEFT JOIN', [ 'rc_id=ts_rc_id' ] ];
 		}
 		if ( in_array( self::INCLUDE_USER, $options['includeFields'] ) ||
 			in_array( self::INCLUDE_USER_ID, $options['includeFields'] ) ||
