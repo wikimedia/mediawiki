@@ -1282,6 +1282,7 @@
 	"localtime": "Used as label in [[Special:Preferences#mw-prefsection-datetime|preferences]].",
 	"timezoneuseserverdefault": "[[Special:Preferences]] > Date and time > Time zone\n\nThis option lets your time zone setting use the one that is used on the wiki (often UTC).\n\nParameters:\n* $1 - timezone name, or timezone offset (in \"%+03d:%02d\" format)",
 	"timezoneuseoffset": "Used in \"Time zone\" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], \"date and time\" tab.",
+	"timezone-useoffset-placeholder": "Used in \"Time zone\" text input field as placeholder in [[Special:Preferences#mw-prefsection-datetime|preferences]]",
 	"servertime": "Used as label in [[Special:Preferences#mw-prefsection-datetime|preferences]].",
 	"guesstimezone": "Option to fill in the timezone from the browser setting",
 	"timezoneregion-africa": "Used in \"Time zone\" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], \"date and time\" tab.\n{{Related|Timezoneregion}}",

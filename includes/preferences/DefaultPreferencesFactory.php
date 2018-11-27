@@ -796,6 +796,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'section' => 'rendering/timeoffset',
 			'id' => 'wpTimeCorrection',
 			'filter' => TimezoneFilter::class,
+			'placeholder-message' => 'timezone-useoffset-placeholder',
 		];
 	}
 
