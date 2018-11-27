@@ -493,7 +493,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$lb->reuseConnection( $db ); // don't care
 
 		$db = $lb->getConnection( DB_MASTER ); // local domain connection
-		$factory->setDomainPrefix( 'my_' );
+		$factory->setLocalDomainPrefix( 'my_' );
 
 		$this->assertEquals( $wgDBname, $db->getDBname() );
 		$this->assertEquals(
@@ -556,7 +556,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 
 		$lb->reuseConnection( $db ); // don't care
 
-		$factory->setDomainPrefix( 'my_' );
+		$factory->setLocalDomainPrefix( 'my_' );
 		$db = $lb->getConnection( DB_MASTER, [], "$wgDBname-my_" );
 
 		$this->assertEquals(

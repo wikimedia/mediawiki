@@ -652,8 +652,9 @@ interface ILoadBalancer {
 	 * Set a new table prefix for the existing local domain ID for testing
 	 *
 	 * @param string $prefix
+	 * @since 1.33
 	 */
-	public function setDomainPrefix( $prefix );
+	public function setLocalDomainPrefix( $prefix );
 
 	/**
 	 * Make certain table names use their own database, schema, and table prefix
