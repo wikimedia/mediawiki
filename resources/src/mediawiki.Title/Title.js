@@ -664,11 +664,27 @@
 
 	/**
 	 * Check if a given namespace is a talk namespace
+	 *
+	 * See MWNamespace::isTalk in PHP
+	 *
 	 * @param {number} namespaceId Namespace ID
 	 * @return {boolean} Namespace is a talk namespace
 	 */
 	Title.isTalkNamespace = function ( namespaceId ) {
 		return !!( namespaceId > NS_MAIN && namespaceId % 2 );
+	};
+
+	/**
+	 * Check if signature buttons should be shown in a given namespace
+	 *
+	 * See MWNamespace::wantSignatures in PHP
+	 *
+	 * @param {number} namespaceId Namespace ID
+	 * @return {boolean} Namespace is a signature namespace
+	 */
+	Title.wantSignaturesNamespace = function ( namespaceId ) {
+		return this.isTalkNamespace( namespaceId ) ||
+			mw.config.get( 'wgExtraSignatureNamespaces' ).indexOf( namespaceId ) !== -1;
 	};
 
 	/**
