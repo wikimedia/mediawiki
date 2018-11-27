@@ -788,13 +788,15 @@ class ChangeTags {
 	public static function modifyDisplayQuery( &$tables, &$fields, &$conds,
 		&$join_conds, &$options, $filter_tag = ''
 	) {
-		global $wgUseTagFilter, $wgChangeTagsSchemaMigrationStage;
+		global $wgChangeTagsSchemaMigrationStage, $wgUseTagFilter;
 
 		// Normalize to arrays
 		$tables = (array)$tables;
 		$fields = (array)$fields;
 		$conds = (array)$conds;
 		$options = (array)$options;
+
+		$fields['ts_tags'] = self::makeTagSummarySubquery( $tables );
 
 		// Figure out which ID field to use
 		if ( in_array( 'recentchanges', $tables ) ) {
@@ -808,20 +810,6 @@ class ChangeTags {
 		} else {
 			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
-
-		$tagTables[] = 'change_tag';
-		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
-			$tagTables[] = 'change_tag_def';
-			$join_cond_ts_tags = [ 'change_tag_def' => [ 'INNER JOIN', 'ct_tag_id=ctd_id' ] ];
-			$field = 'ctd_name';
-		} else {
-			$field = 'ct_tag';
-			$join_cond_ts_tags = [];
-		}
-
-		$fields['ts_tags'] = wfGetDB( DB_REPLICA )->buildGroupConcatField(
-			',', $tagTables, $field, $join_cond, $join_cond_ts_tags
-		);
 
 		if ( $wgUseTagFilter && $filter_tag ) {
 			// Somebody wants to filter on a tag.
@@ -856,6 +844,48 @@ class ChangeTags {
 				$options[] = 'DISTINCT';
 			}
 		}
+	}
+
+	/**
+	 * Make the tag summary subquery based on the given tables and return it.
+	 *
+	 * @param string|array $tables Table names, see Database::select
+	 *
+	 * @return string tag summary subqeury
+	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
+	 */
+	public static function makeTagSummarySubquery( $tables ) {
+		global $wgChangeTagsSchemaMigrationStage;
+
+		// Normalize to arrays
+		$tables = (array)$tables;
+
+		// Figure out which ID field to use
+		if ( in_array( 'recentchanges', $tables ) ) {
+			$join_cond = 'ct_rc_id=rc_id';
+		} elseif ( in_array( 'logging', $tables ) ) {
+			$join_cond = 'ct_log_id=log_id';
+		} elseif ( in_array( 'revision', $tables ) ) {
+			$join_cond = 'ct_rev_id=rev_id';
+		} elseif ( in_array( 'archive', $tables ) ) {
+			$join_cond = 'ct_rev_id=ar_rev_id';
+		} else {
+			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
+		}
+
+		$tagTables[] = 'change_tag';
+		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+			$tagTables[] = 'change_tag_def';
+			$join_cond_ts_tags = [ 'change_tag_def' => [ 'INNER JOIN', 'ct_tag_id=ctd_id' ] ];
+			$field = 'ctd_name';
+		} else {
+			$field = 'ct_tag';
+			$join_cond_ts_tags = [];
+		}
+
+		return wfGetDB( DB_REPLICA )->buildGroupConcatField(
+			',', $tagTables, $field, $join_cond, $join_cond_ts_tags
+		);
 	}
 
 	/**
