@@ -549,6 +549,7 @@
 	"passwordtooshort": "您的密碼至少需要 $1 個字元。",
 	"passwordtoolong": "密碼不能超過 {{PLURAL:$1|1 個字元|$1 個字元}}。",
 	"passwordtoopopular": "不能使用普遍選擇的密碼。請選擇更難猜出的密碼",
+	"passwordinlargeblacklist": "所輸入密碼被列在常用密碼的清單裡，請改用較獨特的密碼。",
 	"password-name-match": "您的密碼不可以跟使用者名稱相同。",
 	"password-login-forbidden": "此使用者名稱和密碼已被禁止使用。",
 	"mailmypassword": "重設密碼",
@@ -1171,7 +1172,6 @@
 	"prefs-editor": "編輯器",
 	"prefs-preview": "預覽",
 	"prefs-advancedrc": "進階選項",
-	"prefs-opt-out": "關閉改進功能",
 	"prefs-advancedrendering": "進階選項",
 	"prefs-advancedsearchoptions": "進階選項",
 	"prefs-advancedwatchlist": "進階選項",
@@ -4171,6 +4171,7 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "密碼不可以同於被列入黑名單的特定密碼",
 	"passwordpolicies-policy-maximalpasswordlength": "密碼必須小於 $1 個{{PLURAL:$1|字元|字元}}長度",
 	"passwordpolicies-policy-passwordcannotbepopular": "密碼不可以是{{PLURAL:$1|常用密碼內容|在清單中的編號 $1 常用密碼}}",
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "不能採用列在 100000 個最常用到密碼清單當中的密碼。",
 	"easydeflate-invaliddeflate": "提供的內容未被正常的壓縮",
 	"unprotected-js": "基於安全因素，JavaScript 不能從未保護的頁面來載入。建立 JavaScript 請僅在 MediaWiki 的：命名空間或使用者子頁面"
 }
