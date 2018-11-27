@@ -228,7 +228,7 @@ body {
 /* tooltip styles */
 .config-help-field-hint {
 	/* @embed */
-	background-image: url( images/help-question.gif );
+	background-image: url( images/help-question.svg );
 	background-position: left center;
 	background-repeat: no-repeat;
 	margin-left: 2px;
@@ -241,7 +241,7 @@ body {
 
 .config-help-field-hint:hover {
 	/* @embed */
-	background-image: url( images/help-question-hover.gif );
+	background-image: url( images/help-question-hover.svg );
 }
 
 .config-help-field-data {
