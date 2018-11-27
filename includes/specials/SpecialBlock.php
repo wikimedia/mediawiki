@@ -66,12 +66,20 @@ class SpecialBlock extends FormSpecialPage {
 	 */
 	protected function checkExecutePermissions( User $user ) {
 		parent::checkExecutePermissions( $user );
-
 		# T17810: blocked admins should have limited access here
 		$status = self::checkUnblockSelf( $this->target, $user );
 		if ( $status !== true ) {
 			throw new ErrorPageError( 'badaccess', $status );
 		}
+	}
+
+	/**
+	 * We allow certain special cases where user is blocked
+	 *
+	 * @return bool
+	 */
+	public function requiresUnblock() {
+		return false;
 	}
 
 	/**
@@ -1021,7 +1029,11 @@ class SpecialBlock extends FormSpecialPage {
 	 * T17810: blocked admins should not be able to block/unblock
 	 * others, and probably shouldn't be able to unblock themselves
 	 * either.
-	 * @param User|int|string $user
+	 *
+	 * Exception: Users can block the user who blocked them, to reduce
+	 * advantage of a malicious account blocking all admins (T150826)
+	 *
+	 * @param User|int|string $user Target to block or unblock
 	 * @param User $performer User doing the request
 	 * @return bool|string True or error message key
 	 */
@@ -1031,7 +1043,6 @@ class SpecialBlock extends FormSpecialPage {
 		} elseif ( is_string( $user ) ) {
 			$user = User::newFromName( $user );
 		}
-
 		if ( $performer->isBlocked() ) {
 			if ( $user instanceof User && $user->getId() == $performer->getId() ) {
 				# User is trying to unblock themselves
@@ -1043,6 +1054,19 @@ class SpecialBlock extends FormSpecialPage {
 				} else {
 					return 'ipbnounblockself';
 				}
+			} elseif (
+				$user instanceof User &&
+				$performer->getBlock() instanceof Block &&
+				$performer->getBlock()->getBy() &&
+				$performer->getBlock()->getBy() === $user->getId()
+			) {
+				// Allow users to block the user that blocked them.
+				// This is to prevent a situation where a malicious user
+				// blocks all other users. This way, the non-malicious
+				// user can block the malicious user back, resulting
+				// in a stalemate.
+				return true;
+
 			} else {
 				# User is trying to block/unblock someone else
 				return 'ipbblocked';
