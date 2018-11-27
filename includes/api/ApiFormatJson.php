@@ -88,6 +88,13 @@ class ApiFormatJson extends ApiFormatBase {
 		}
 		$data = $this->getResult()->getResultData( null, $transform );
 		$json = FormatJson::encode( $data, $this->getIsHtml(), $opt );
+		if ( $json === false ) {
+			// This should never happen, but it's a bug which could crop up
+			// if you use ApiResult::NO_VALIDATE for instance.
+			// @codeCoverageIgnoreStart
+			$this->dieDebug( __METHOD__, 'Unable to encode API result as JSON' );
+			// @codeCoverageIgnoreEnd
+		}
 
 		// T68776: OutputHandler::mangleFlashPolicy() avoids a nasty bug in
 		// Flash, but what it does isn't friendly for the API, so we need to
