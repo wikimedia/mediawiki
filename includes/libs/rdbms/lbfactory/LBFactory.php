@@ -618,7 +618,15 @@ abstract class LBFactory implements ILBFactory {
 		$this->indexAliases = $aliases;
 	}
 
+	/**
+	 * @param string $prefix
+	 * @deprecated Since 1.33
+	 */
 	public function setDomainPrefix( $prefix ) {
+		$this->setLocalDomainPrefix( $prefix );
+	}
+
+	public function setLocalDomainPrefix( $prefix ) {
 		$this->localDomain = new DatabaseDomain(
 			$this->localDomain->getDatabase(),
 			null,
@@ -626,7 +634,7 @@ abstract class LBFactory implements ILBFactory {
 		);
 
 		$this->forEachLB( function ( ILoadBalancer $lb ) use ( $prefix ) {
-			$lb->setDomainPrefix( $prefix );
+			$lb->setLocalDomainPrefix( $prefix );
 		} );
 	}
 

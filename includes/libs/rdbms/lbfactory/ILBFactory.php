@@ -330,8 +330,9 @@ interface ILBFactory {
 	 * Set a new table prefix for the existing local domain ID for testing
 	 *
 	 * @param string $prefix
+	 * @since 1.33
 	 */
-	public function setDomainPrefix( $prefix );
+	public function setLocalDomainPrefix( $prefix );
 
 	/**
 	 * Close all open database connections on all open load balancers.
