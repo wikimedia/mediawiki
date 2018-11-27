@@ -5524,6 +5524,40 @@ class Parser {
 		# that are later expanded to html- so expand them now and
 		# remove the tags
 		$tooltip = $this->mStripState->unstripBoth( $tooltip );
+		# Compatibility hack!  In HTML certain entity references not terminated
+		# by a semicolon are decoded (but not if we're in an attribute; that's
+		# how link URLs get away without properly escaping & in queries).
+		# But wikitext has always required semicolon-termination of entities,
+		# so encode & where needed to avoid decode of semicolon-less entities.
+		# See T209236 and
+		# https://www.w3.org/TR/html5/syntax.html#named-character-references
+		# T210437 discusses moving this workaround to Sanitizer::stripAllTags.
+		$tooltip = preg_replace( "/
+			&			# 1. entity prefix
+			(?=			# 2. followed by:
+			(?:			#  a. one of the legacy semicolon-less named entities
+				A(?:Elig|MP|acute|circ|grave|ring|tilde|uml)|
+				C(?:OPY|cedil)|E(?:TH|acute|circ|grave|uml)|
+				GT|I(?:acute|circ|grave|uml)|LT|Ntilde|
+				O(?:acute|circ|grave|slash|tilde|uml)|QUOT|REG|THORN|
+				U(?:acute|circ|grave|uml)|Yacute|
+				a(?:acute|c(?:irc|ute)|elig|grave|mp|ring|tilde|uml)|brvbar|
+				c(?:cedil|edil|urren)|cent(?!erdot;)|copy(?!sr;)|deg|
+				divide(?!ontimes;)|e(?:acute|circ|grave|th|uml)|
+				frac(?:1(?:2|4)|34)|
+				gt(?!c(?:c|ir)|dot|lPar|quest|r(?:a(?:pprox|rr)|dot|eq(?:less|qless)|less|sim);)|
+				i(?:acute|circ|excl|grave|quest|uml)|laquo|
+				lt(?!c(?:c|ir)|dot|hree|imes|larr|quest|r(?:Par|i(?:e|f|));)|
+				m(?:acr|i(?:cro|ddot))|n(?:bsp|tilde)|
+				not(?!in(?:E|dot|v(?:a|b|c)|)|ni(?:v(?:a|b|c)|);)|
+				o(?:acute|circ|grave|rd(?:f|m)|slash|tilde|uml)|
+				p(?:lusmn|ound)|para(?!llel;)|quot|r(?:aquo|eg)|
+				s(?:ect|hy|up(?:1|2|3)|zlig)|thorn|times(?!b(?:ar|)|d;)|
+				u(?:acute|circ|grave|ml|uml)|y(?:acute|en|uml)
+			)
+			(?:[^;]|$))	#  b. and not followed by a semicolon
+			# S = study, for efficiency
+			/Sx", '&amp;', $tooltip );
 		$tooltip = Sanitizer::stripAllTags( $tooltip );
 
 		return $tooltip;
