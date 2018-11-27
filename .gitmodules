@@ -1095,4 +1095,8 @@
         url = https://github.com/miraheze/LinkTitles.git
         branch = master
         ignore = dirty
-
+[submodule "extensions/TemplateWizard"]
+        path = extensions/TemplateWizard
+        url = https://github.com/wikimedia/mediawiki-extensions-TemplateWizard.git
+        branch = REL1_32
+        ignore = dirty
