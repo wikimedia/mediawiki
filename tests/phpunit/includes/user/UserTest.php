@@ -1285,7 +1285,16 @@ class UserTest extends MediaWikiTestCase {
 				'pageRestrictions' => [ 'Test page' ],
 			] ],
 			'Partial block, overriding allowUsertalk' => [ self::USER_TALK_PAGE, true, [
+				'allowUsertalk' => false,
 				'pageRestrictions' => [ self::USER_TALK_PAGE ],
+			] ],
+			'Partial block, allowing user talk' => [ self::USER_TALK_PAGE, false, [
+				'allowUsertalk' => true,
+				'pageRestrictions' => [ 'Test page' ],
+			] ],
+			'Partial block, not allowing user talk' => [ self::USER_TALK_PAGE, true, [
+				'allowUsertalk' => false,
+				'pageRestrictions' => [ 'Test page' ],
 			] ],
 		];
 	}
