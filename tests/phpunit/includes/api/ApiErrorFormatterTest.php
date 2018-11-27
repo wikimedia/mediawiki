@@ -599,7 +599,9 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 				[
 					'text' => '&#60;b&#62;Something broke!&#60;/b&#62;',
 					'code' => 'internal_api_error_RuntimeException',
-					'data' => [],
+					'data' => [
+						'errorclass' => 'RuntimeException',
+					],
 				]
 			],
 			'Normal exception, wrapped' => [

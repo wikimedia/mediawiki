@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -1046,6 +1047,9 @@ class ApiMainTest extends ApiTestCase {
 						[
 							'code' => 'internal_api_error_InvalidArgumentException',
 							'text' => "[$reqId] Exception caught: Random exception",
+							'data' => [
+								'errorclass' => InvalidArgumentException::class,
+							],
 						]
 					],
 					'trace' => $trace,
@@ -1065,6 +1069,9 @@ class ApiMainTest extends ApiTestCase {
 							'code' => 'internal_api_error_DBQueryError',
 							'text' => "[$reqId] Exception caught: A database query error has occurred. " .
 								"This may indicate a bug in the software.",
+							'data' => [
+								'errorclass' => DBQueryError::class,
+							],
 						]
 					],
 					'trace' => $dbtrace,
@@ -1083,6 +1090,9 @@ class ApiMainTest extends ApiTestCase {
 						[
 							'code' => 'internal_api_error_MediaWiki\ShellDisabledError',
 							'text' => "[$reqId] Exception caught: " . $nsex->getMessage(),
+							'data' => [
+								'errorclass' => MediaWiki\ShellDisabledError::class,
+							],
 						]
 					],
 					'trace' => $nstrace,

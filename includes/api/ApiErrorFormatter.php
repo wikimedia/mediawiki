@@ -211,6 +211,7 @@ class ApiErrorFormatter {
 				if ( !isset( $options['code'] ) ) {
 					$class = preg_replace( '#^Wikimedia\\\Rdbms\\\#', '', get_class( $exception ) );
 					$options['code'] = 'internal_api_error_' . $class;
+					$options['data']['errorclass'] = get_class( $exception );
 				}
 			}
 			$params = [ wfEscapeWikiText( $exception->getMessage() ) ];

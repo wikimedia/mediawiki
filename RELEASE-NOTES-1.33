@@ -55,6 +55,12 @@ production.
 === Action API changes in 1.33 ===
 * (T198913) Added 'ApiOptions' hook.
 * The JSON formatversion=2 is no longer experimental.
+* Internal API errors (those with code beginning "internal_api_error") will
+  include the exception class name in a data field named "errorclass".
+  * Class names are not guaranteed to remain stable, and in particular database
+    exceptions will now include the "Wikimedia\Rdbms\" prefix in the class name.
+  * The code including an exception class name is deprecated. In the future,
+    all internal errors will use code "internal_api_error".
 * …
 
 === Action API internal changes in 1.33 ===
