@@ -5066,9 +5066,10 @@ class Parser {
 			$ig->setShowFilename( false );
 		}
 		if ( isset( $params['caption'] ) ) {
-			$caption = $params['caption'];
-			$caption = htmlspecialchars( $caption );
-			$caption = $this->replaceInternalLinks( $caption );
+			// NOTE: We aren't passing a frame here or below.  Frame info
+			// is currently opaque to Parsoid, which acts on OT_PREPROCESS.
+			// See T107332#4030581
+			$caption = $this->recursiveTagParse( $params['caption'] );
 			$ig->setCaptionHtml( $caption );
 		}
 		if ( isset( $params['perrow'] ) ) {
