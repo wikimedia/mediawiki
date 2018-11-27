@@ -70,7 +70,7 @@
 		}, config );
 
 		// Parent constructor
-		mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'super' ].call( this, config );
+		mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.super.call( this, config );
 
 		// Properties
 		this.weekStartsOn = config.weekStartsOn % 7;
@@ -379,7 +379,7 @@
 				break;
 
 			default:
-				return mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'super' ].prototype.getFieldForTag.call( this, tag, params );
+				return mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.super.prototype.getFieldForTag.call( this, tag, params );
 		}
 
 		if ( spec ) {

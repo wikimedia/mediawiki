@@ -40,7 +40,7 @@
 		}, config );
 
 		// Parent constructor
-		mw.widgets.datetime.CalendarWidget[ 'super' ].call( this, config );
+		mw.widgets.datetime.CalendarWidget.super.call( this, config );
 
 		// Mixin constructors
 		OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$element } ) );
@@ -574,7 +574,7 @@
 		change = visible !== this.isVisible();
 
 		// Parent method
-		mw.widgets.datetime.CalendarWidget[ 'super' ].prototype.toggle.call( this, visible );
+		mw.widgets.datetime.CalendarWidget.super.prototype.toggle.call( this, visible );
 
 		if ( change ) {
 			if ( visible ) {

@@ -1050,8 +1050,8 @@
 			assert.strictEqual( siteFromUser, 1, 'site ran before user' );
 		} ).always( function () {
 			// Reset
-			mw.loader.moduleRegistry[ 'site' ].state = 'registered';
-			mw.loader.moduleRegistry[ 'user' ].state = 'registered';
+			mw.loader.moduleRegistry.site.state = 'registered';
+			mw.loader.moduleRegistry.user.state = 'registered';
 		} );
 	} );
 

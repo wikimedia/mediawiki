@@ -64,7 +64,7 @@
 		this.type = config.type;
 
 		// Parent constructor
-		mw.widgets.datetime.DateTimeInputWidget[ 'super' ].call( this, config );
+		mw.widgets.datetime.DateTimeInputWidget.super.call( this, config );
 
 		// Mixin constructors
 		OO.ui.mixin.IconElement.call( this, config );
@@ -795,7 +795,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.setDisabled = function ( disabled ) {
-		mw.widgets.datetime.DateTimeInputWidget[ 'super' ].prototype.setDisabled.call( this, disabled );
+		mw.widgets.datetime.DateTimeInputWidget.super.prototype.setDisabled.call( this, disabled );
 
 		// Flag all our fields as disabled
 		if ( this.$fields ) {
