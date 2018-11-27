@@ -1,8 +1,12 @@
+// TODO: Redefined here to avoid importing variables.less;
+@width-breakpoint-desktop: 1000px;
+
 @wm-expirywidget-text-width: 43.3em;
 
 .mw-widget-ExpiryWidget.mw-widget-ExpiryWidget-hasDatePicker {
 	.oo-ui-buttonSelectWidget {
-		float: left;
+		display: inline-block;
+		vertical-align: top;
 	}
 
 	.oo-ui-textInputWidget.mw-widget-ExpiryWidget-relative {
@@ -10,7 +14,16 @@
 		max-width: @wm-expirywidget-text-width;
 	}
 
+	.mw-widget-selectWithInputWidget {
+		display: inline;
+	}
+
+	.mw-widget-selectWithInputWidget.mw-widget-ExpiryWidget-relative .oo-ui-dropdownInputWidget {
+		display: inline-block;
+	}
+
 	.mw-widget-selectWithInputWidget.mw-widget-ExpiryWidget-relative .oo-ui-textInputWidget {
+		display: inline-block;
 		max-width: 22.8em;
 	}
 
@@ -21,6 +34,20 @@
 
 		.mw-widgets-datetime-dateTimeInputWidget-handle {
 			max-height: 2.286em;
+		}
+	}
+
+	@media ( max-width: ( @width-breakpoint-desktop - 1px ) ) {
+		.mw-widget-selectWithInputWidget {
+			display: block;
+		}
+
+		.mw-widget-selectWithInputWidget.mw-widget-ExpiryWidget-relative .oo-ui-dropdownInputWidget,
+		.mw-widget-selectWithInputWidget.mw-widget-ExpiryWidget-relative .oo-ui-textInputWidget,
+		.mw-widgets-datetime-dateTimeInputWidget {
+			display: block;
+			max-width: 50em;
+			margin-top: 0.5em;
 		}
 	}
 }
