@@ -20,7 +20,7 @@
 		config = $.extend( {}, config );
 
 		// Parent constructor
-		mw.widgets.datetime.DiscordianDateTimeFormatter[ 'super' ].call( this, config );
+		mw.widgets.datetime.DiscordianDateTimeFormatter.super.call( this, config );
 	};
 
 	/* Setup */
@@ -170,7 +170,7 @@
 				break;
 
 			default:
-				return mw.widgets.datetime.DiscordianDateTimeFormatter[ 'super' ].prototype.getFieldForTag.call( this, tag, params );
+				return mw.widgets.datetime.DiscordianDateTimeFormatter.super.prototype.getFieldForTag.call( this, tag, params );
 		}
 
 		if ( spec ) {

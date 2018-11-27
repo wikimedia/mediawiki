@@ -33,7 +33,7 @@
 		this.checkbox = new OO.ui.CheckboxInputWidget( config.checkbox )
 			.on( 'change', this.onCheckboxChange, [], this );
 
-		OptionalWidget[ 'super' ].call( this, config );
+		OptionalWidget.super.call( this, config );
 
 		// Forward most methods for convenience
 		for ( k in this.widget ) {
@@ -75,7 +75,7 @@
 		}
 	};
 	OptionalWidget.prototype.setDisabled = function ( disabled ) {
-		OptionalWidget[ 'super' ].prototype.setDisabled.call( this, disabled );
+		OptionalWidget.super.prototype.setDisabled.call( this, disabled );
 		this.widget.setDisabled( this.isDisabled() );
 		this.checkbox.setSelected( !this.isDisabled() );
 		this.$cover.toggle( this.isDisabled() );
@@ -90,7 +90,7 @@
 			},
 			setApiValue: function ( v ) {
 				if ( v === undefined ) {
-					v = this.paramInfo[ 'default' ];
+					v = this.paramInfo.default;
 				}
 				this.setValue( v );
 			},
@@ -174,7 +174,7 @@
 				var menu = this.getMenu();
 
 				if ( v === undefined ) {
-					v = this.paramInfo[ 'default' ];
+					v = this.paramInfo.default;
 				}
 				if ( v === undefined ) {
 					menu.selectItem();
@@ -204,7 +204,7 @@
 				}
 			},
 			getApiValueForTemplates: function () {
-				return this.isDisabled() ? this.parseApiValue( this.paramInfo[ 'default' ] ) : this.getValue();
+				return this.isDisabled() ? this.parseApiValue( this.paramInfo.default ) : this.getValue();
 			},
 			getApiValue: function () {
 				var items = this.getValue();
@@ -216,7 +216,7 @@
 			},
 			setApiValue: function ( v ) {
 				if ( v === undefined ) {
-					v = this.paramInfo[ 'default' ];
+					v = this.paramInfo.default;
 				}
 				this.setValue( this.parseApiValue( v ) );
 			},
@@ -266,12 +266,12 @@
 
 		submoduleWidget: {
 			single: function () {
-				var v = this.isDisabled() ? this.paramInfo[ 'default' ] : this.getApiValue();
+				var v = this.isDisabled() ? this.paramInfo.default : this.getApiValue();
 				return v === undefined ? [] : [ { value: v, path: this.paramInfo.submodules[ v ] } ];
 			},
 			multi: function () {
 				var map = this.paramInfo.submodules,
-					v = this.isDisabled() ? this.paramInfo[ 'default' ] : this.getApiValue();
+					v = this.isDisabled() ? this.paramInfo.default : this.getApiValue();
 				return v === undefined || v === '' ? [] : String( v ).split( '|' ).map( function ( v ) {
 					return { value: v, path: map[ v ] };
 				} );
@@ -672,7 +672,7 @@
 				finalWidget.setDisabled( true );
 			}
 
-			widget.setApiValue( pi[ 'default' ] );
+			widget.setApiValue( pi.default );
 
 			return finalWidget;
 		},
@@ -1207,14 +1207,14 @@
 								.text( data )
 								.appendTo( $result );
 						}
-						if ( paramsAreForced || data[ 'continue' ] ) {
+						if ( paramsAreForced || data.continue ) {
 							$result.append(
 								$( '<div>' ).append(
 									new OO.ui.ButtonWidget( {
 										label: mw.message( 'apisandbox-continue' ).text()
 									} ).on( 'click', function () {
-										ApiSandbox.sendRequest( $.extend( {}, baseRequestParams, data[ 'continue' ] ) );
-									} ).setDisabled( !data[ 'continue' ] ).$element,
+										ApiSandbox.sendRequest( $.extend( {}, baseRequestParams, data.continue ) );
+									} ).setDisabled( !data.continue ).$element,
 									( clear = new OO.ui.ButtonWidget( {
 										label: mw.message( 'apisandbox-continue-clear' ).text()
 									} ).on( 'click', function () {
@@ -1355,7 +1355,7 @@
 		this.templatedItemsCache = {};
 		this.tokenWidget = null;
 		this.indentLevel = config.indentLevel ? config.indentLevel : 0;
-		ApiSandbox.PageLayout[ 'super' ].call( this, config.key, config );
+		ApiSandbox.PageLayout.super.call( this, config.key, config );
 		this.loadParamInfo();
 	};
 	OO.inheritClass( ApiSandbox.PageLayout, OO.ui.PageLayout );
@@ -1805,7 +1805,7 @@
 					for ( i = 0; i < pi.parameters.length; i++ ) {
 						if ( pi.parameters[ i ].name === 'action' ) {
 							pi.parameters[ i ].required = true;
-							delete pi.parameters[ i ][ 'default' ];
+							delete pi.parameters[ i ].default;
 						}
 						if ( pi.parameters[ i ].name === 'format' ) {
 							tmp = pi.parameters[ i ].type;
@@ -1813,7 +1813,7 @@
 								availableFormats[ tmp[ j ] ] = true;
 							}
 							pi.parameters[ i ].type = tmp.filter( filterFmModules );
-							pi.parameters[ i ][ 'default' ] = 'json';
+							pi.parameters[ i ].default = 'json';
 							pi.parameters[ i ].required = true;
 						}
 					}
