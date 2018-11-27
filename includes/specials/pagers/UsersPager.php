@@ -142,7 +142,8 @@ class UsersPager extends AlphabeticPager {
 				'user_id' => $this->creationSort ? 'user_id' : 'MAX(user_id)',
 				'edits' => 'MAX(user_editcount)',
 				'creation' => 'MIN(user_registration)',
-				'ipb_deleted' => 'MAX(ipb_deleted)' // block/hide status
+				'ipb_deleted' => 'MAX(ipb_deleted)', // block/hide status
+				'ipb_sitewide' => 'MAX(ipb_sitewide)'
 			],
 			'options' => $options,
 			'join_conds' => [
@@ -214,7 +215,8 @@ class UsersPager extends AlphabeticPager {
 			$created = $this->msg( 'usercreated', $d, $t, $row->user_name )->escaped();
 			$created = ' ' . $this->msg( 'parentheses' )->rawParams( $created )->escaped();
 		}
-		$blocked = !is_null( $row->ipb_deleted ) ?
+
+		$blocked = !is_null( $row->ipb_deleted ) && $row->ipb_sitewide === '1' ?
 			' ' . $this->msg( 'listusers-blocked', $userName )->escaped() :
 			'';
 
