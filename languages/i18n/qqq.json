@@ -1342,7 +1342,6 @@
 	"prefs-editor": "Used in [[Special:Preferences]], tab \"Editing\" ({{int:prefs-editing}}).\n\n{{Identical|Editor}}",
 	"prefs-preview": "Used in [[Special:Preferences]], tab \"Editing\".\n{{Identical|Preview}}",
 	"prefs-advancedrc": "Used in [[Special:Preferences]], tab \"Recent changes\".\n{{Identical|Advanced options}}",
-	"prefs-opt-out": "Used in [[Special:Preferences]], tabs \"Recent changes\" and \"Watchlist\".",
 	"prefs-advancedrendering": "Used in [[Special:Preferences]], tab \"Appearence\".\n{{Identical|Advanced options}}",
 	"prefs-advancedsearchoptions": "Used in [[Special:Preferences]], tab \"Search options\".\n{{Identical|Advanced options}}",
 	"prefs-advancedwatchlist": "Used in [[Special:Preferences]], tab \"Watchlist\".\n{{Identical|Advanced options}}",
