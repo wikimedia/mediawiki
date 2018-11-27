@@ -59,6 +59,26 @@ class ApiErrorFormatter {
 	}
 
 	/**
+	 * Test whether a code is a valid API error code
+	 *
+	 * A valid code contains only ASCII letters, numbers, underscore, and
+	 * hyphen and is not the empty string.
+	 *
+	 * For backwards compatibility, any code beginning 'internal_api_error_' is
+	 * also allowed.
+	 *
+	 * @param string $code
+	 * @return bool
+	 */
+	public static function isValidApiCode( $code ) {
+		return is_string( $code ) && (
+			preg_match( '/^[a-zA-Z0-9_-]+$/', $code ) ||
+			// TODO: Deprecate this
+			preg_match( '/^internal_api_error_[^\0\r\n]+$/', $code )
+		);
+	}
+
+	/**
 	 * Return a formatter like this one but with a different format
 	 *
 	 * @since 1.32
