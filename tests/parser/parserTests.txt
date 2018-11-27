@@ -22999,6 +22999,19 @@ language=zh variant=zh-tw
 !! end
 
 !! test
+Explicit definition of language variant alternatives (BCP 47 codes)
+!! options
+language=zh variant=zh-tw
+!! wikitext
+-{zh:China;zh-Hant-TW:Taiwan}-, not China
+!! html/php
+<p>Taiwan, not China
+</p>
+!! html/parsoid
+<p><span typeof="mw:LanguageVariant" data-parsoid='{"tSp":[6]}' data-mw-variant='{"twoway":[{"l":"zh","t":"China"},{"l":"zh-Hant-TW","t":"Taiwan"}]}'></span>, not China</p>
+!! end
+
+!! test
 Filter syntax for language variants
 !! options
 language=zh variant=zh-tw
