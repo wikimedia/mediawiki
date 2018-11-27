@@ -21557,7 +21557,6 @@ image:foobar.jpg|link=Main Page#section|caption
 </ul>
 !! end
 
-## Whoops, Parsoid shouldn't be parsing templates in the attribute caption!
 !! test
 Gallery with template inside caption
 !! options
@@ -21570,7 +21569,7 @@ File:Foobar.jpg|{{echo|ho}}
 </gallery>
 !! html/php
 <ul class="gallery mw-gallery-traditional">
-	<li class='gallerycaption'>{{echo|hi}}</li>
+	<li class='gallerycaption'>hi</li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
 			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></div></div>
 			<div class="gallerytext">
@@ -21585,6 +21584,30 @@ File:Foobar.jpg|{{echo|ho}}
 <li class="gallerycaption"><span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"hi"}},"i":0}}]}'>hi</span></li>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><figure-inline typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></figure-inline></div><div class="gallerytext"><span about="#mwt5" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"ho"}},"i":0}}]}'>ho</span></div></li>
 </ul>
+!! end
+
+!! test
+Gallery with wikitext inside gallery caption
+!! wikitext
+<gallery caption="# List item
+
+Text '''bold''' [[link]] {{ns:-1}}
+
+[[File:Foobar.jpg|thumb|File in gallery caption]]">
+File:Foobar.jpg|Image caption
+</gallery>
+!! html/php
+<ul class="gallery mw-gallery-traditional">
+	<li class='gallerycaption'># List item Text <b>bold</b> <a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">link</a> Special <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>File in gallery caption</div></div></div></li>
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></div></div>
+			<div class="gallerytext">
+<p>Image caption
+</p>
+			</div>
+		</div></li>
+</ul>
+
 !! end
 
 !! test
