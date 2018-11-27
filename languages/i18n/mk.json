@@ -477,6 +477,7 @@
 	"passwordtooshort": "Лозинката мора да има најмалку {{PLURAL:$1|1 знак|$1 знаци}}.",
 	"passwordtoolong": "Лозинката не треба да има повеќе од {{PLURAL:$1|1 знак|$1 знаци}}.",
 	"passwordtoopopular": "Не се допуштаат пречесто застапени лозинки. Изберете потешка лозинка за погодување.",
+	"passwordinlargeblacklist": "Внесената лозинка е меѓу најчесто користените. Изберете поинаква.",
 	"password-name-match": "Лозинката мора да се разликува од корисничкото име.",
 	"password-login-forbidden": "Употребата на ова корисничко име и лозинка е забранета.",
 	"mailmypassword": "Нова лозинка",
@@ -1100,7 +1101,6 @@
 	"prefs-editor": "Уредник",
 	"prefs-preview": "Преглед",
 	"prefs-advancedrc": "Напредни нагодувања",
-	"prefs-opt-out": "Отпиши ме од подобрувањата",
 	"prefs-advancedrendering": "Напредни нагодувања",
 	"prefs-advancedsearchoptions": "Напредни нагодувања",
 	"prefs-advancedwatchlist": "Напредни нагодувања",
@@ -4235,6 +4235,7 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Лозинката не смее да биде од оние на црниот список",
 	"passwordpolicies-policy-maximalpasswordlength": "Лозинката не треба да има повеќе од $1 {{PLURAL:$1|знак|знаци}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "Лозинката не треба да биде {{PLURAL:$1|најзастапената|од списокот на $1 најзастапени лозинки}}",
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "Лозинката не може да биде меѓу 100.000-те најчести лозинки.",
 	"easydeflate-invaliddeflate": "Содржината не е соодветно прочистена",
 	"unprotected-js": "JavaScript не може да се вчита од незаштитени страници од безбедносни причини. Создавајте JavaScript само во именскиот простор МедијаВики: или како корисничка потстраница"
 }
