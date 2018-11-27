@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -1010,12 +1011,28 @@ class ApiMainTest extends ApiTestCase {
 			MWExceptionHandler::getRedactedTraceAsString( $dbex )
 		)->inLanguage( 'en' )->useDatabase( false )->text();
 
+		// The specific exception doesn't matter, as long as it's namespaced.
+		$nsex = new MediaWiki\ShellDisabledError();
+		$nstrace = wfMessage( 'api-exception-trace',
+			get_class( $nsex ),
+			$nsex->getFile(),
+			$nsex->getLine(),
+			MWExceptionHandler::getRedactedTraceAsString( $nsex )
+		)->inLanguage( 'en' )->useDatabase( false )->text();
+
 		$apiEx1 = new ApiUsageException( null,
 			StatusValue::newFatal( new ApiRawMessage( 'An error', 'sv-error1' ) ) );
 		TestingAccessWrapper::newFromObject( $apiEx1 )->modulePath = 'foo+bar';
 		$apiEx1->getStatusValue()->warning( new ApiRawMessage( 'A warning', 'sv-warn1' ) );
 		$apiEx1->getStatusValue()->warning( new ApiRawMessage( 'Another warning', 'sv-warn2' ) );
 		$apiEx1->getStatusValue()->fatal( new ApiRawMessage( 'Another error', 'sv-error2' ) );
+
+		$badMsg = $this->getMockBuilder( ApiRawMessage::class )
+			 ->setConstructorArgs( [ 'An error', 'ignored' ] )
+			 ->setMethods( [ 'getApiCode' ] )
+			 ->getMock();
+		$badMsg->method( 'getApiCode' )->willReturn( "bad\nvalue" );
+		$apiEx2 = new ApiUsageException( null, StatusValue::newFatal( $badMsg ) );
 
 		return [
 			[
@@ -1030,6 +1047,9 @@ class ApiMainTest extends ApiTestCase {
 						[
 							'code' => 'internal_api_error_InvalidArgumentException',
 							'text' => "[$reqId] Exception caught: Random exception",
+							'data' => [
+								'errorclass' => InvalidArgumentException::class,
+							],
 						]
 					],
 					'trace' => $trace,
@@ -1049,9 +1069,33 @@ class ApiMainTest extends ApiTestCase {
 							'code' => 'internal_api_error_DBQueryError',
 							'text' => "[$reqId] Exception caught: A database query error has occurred. " .
 								"This may indicate a bug in the software.",
+							'data' => [
+								'errorclass' => DBQueryError::class,
+							],
 						]
 					],
 					'trace' => $dbtrace,
+					'servedby' => wfHostname(),
+				]
+			],
+			[
+				$nsex,
+				[ 'existing-error', 'internal_api_error_MediaWiki\ShellDisabledError' ],
+				[
+					'warnings' => [
+						[ 'code' => 'existing-warning', 'text' => 'existing warning', 'module' => 'main' ],
+					],
+					'errors' => [
+						[ 'code' => 'existing-error', 'text' => 'existing error', 'module' => 'main' ],
+						[
+							'code' => 'internal_api_error_MediaWiki\ShellDisabledError',
+							'text' => "[$reqId] Exception caught: " . $nsex->getMessage(),
+							'data' => [
+								'errorclass' => MediaWiki\ShellDisabledError::class,
+							],
+						]
+					],
+					'trace' => $nstrace,
 					'servedby' => wfHostname(),
 				]
 			],
@@ -1075,6 +1119,23 @@ class ApiMainTest extends ApiTestCase {
 					'servedby' => wfHostname(),
 				]
 			],
+			[
+				$apiEx2,
+				[ 'existing-error', '<invalid-code>' ],
+				[
+					'warnings' => [
+						[ 'code' => 'existing-warning', 'text' => 'existing warning', 'module' => 'main' ],
+					],
+					'errors' => [
+						[ 'code' => 'existing-error', 'text' => 'existing error', 'module' => 'main' ],
+						[ 'code' => "bad\nvalue", 'text' => 'An error' ],
+					],
+					'docref' => "See $doclink for API usage. Subscribe to the mediawiki-api-announce mailing " .
+						"list at &lt;https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce&gt; " .
+						"for notice of API deprecations and breaking changes.",
+					'servedby' => wfHostname(),
+				]
+			]
 		];
 	}
 

@@ -834,7 +834,11 @@ class ApiMain extends ApiBase {
 		foreach ( $requestedHeaders as $rHeader ) {
 			$rHeader = strtolower( trim( $rHeader ) );
 			if ( !isset( $allowedAuthorHeaders[$rHeader] ) ) {
-				wfDebugLog( 'api', 'CORS preflight failed on requested header: ' . $rHeader );
+				LoggerFactory::getInstance( 'api-warning' )->warning(
+					'CORS preflight failed on requested header: {header}', [
+						'header' => $rHeader
+					]
+				);
 				return false;
 			}
 		}
@@ -1025,8 +1029,10 @@ class ApiMain extends ApiBase {
 		} else {
 			// Something is seriously wrong
 			$config = $this->getConfig();
+			// TODO: Avoid embedding arbitrary class names in the error code.
 			$class = preg_replace( '#^Wikimedia\\\Rdbms\\\#', '', get_class( $e ) );
 			$code = 'internal_api_error_' . $class;
+			$data = [ 'errorclass' => get_class( $e ) ];
 			if ( $config->get( 'ShowExceptionDetails' ) ) {
 				if ( $e instanceof ILocalizedException ) {
 					$msg = $e->getMessageObject();
@@ -1040,7 +1046,7 @@ class ApiMain extends ApiBase {
 				$params = [ 'apierror-exceptioncaughttype', WebRequest::getRequestId(), get_class( $e ) ];
 			}
 
-			$messages[] = ApiMessage::create( $params, $code );
+			$messages[] = ApiMessage::create( $params, $code, $data );
 		}
 		return $messages;
 	}
@@ -1077,7 +1083,15 @@ class ApiMain extends ApiBase {
 		// Add errors from the exception
 		$modulePath = $e instanceof ApiUsageException ? $e->getModulePath() : null;
 		foreach ( $this->errorMessagesFromException( $e, 'error' ) as $msg ) {
-			$errorCodes[$msg->getApiCode()] = true;
+			if ( ApiErrorFormatter::isValidApiCode( $msg->getApiCode() ) ) {
+				$errorCodes[$msg->getApiCode()] = true;
+			} else {
+				LoggerFactory::getInstance( 'api-warning' )->error( 'Invalid API error code "{code}"', [
+					'code' => $msg->getApiCode(),
+					'exception' => $e,
+				] );
+				$errorCodes['<invalid-code>'] = true;
+			}
 			$formatter->addError( $modulePath, $msg );
 		}
 		foreach ( $this->errorMessagesFromException( $e, 'warning' ) as $msg ) {
@@ -1464,8 +1478,13 @@ class ApiMain extends ApiBase {
 		if ( $numLagged >= ceil( $replicaCount / 2 ) ) {
 			$laggedServers = implode( ', ', $laggedServers );
 			wfDebugLog(
-				'api-readonly',
+				'api-readonly', // Deprecate this channel in favor of api-warning?
 				"Api request failed as read only because the following DBs are lagged: $laggedServers"
+			);
+			LoggerFactory::getInstance( 'api-warning' )->warning(
+				"Api request failed as read only because the following DBs are lagged: {laggeddbs}", [
+					'laggeddbs' => $laggedServers,
+				]
 			);
 
 			$this->dieWithError(
