@@ -281,10 +281,14 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromRowWithBadPageId() {
-		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_NEW );
 		$this->overrideMwServices();
 		Wikimedia\suppressWarnings();
-		$rev = new Revision( (object)[ 'rev_page' => 77777777 ] );
+		$rev = new Revision( (object)[
+			'rev_page' => 77777777,
+			'rev_comment_text' => '',
+			'rev_comment_data' => null,
+		] );
 		$this->assertSame( 77777777, $rev->getPage() );
 		Wikimedia\restoreWarnings();
 	}
@@ -597,7 +601,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::loadFromTitle
 	 */
 	public function testLoadFromTitle() {
-		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_NEW );
 		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_OLD );
 		$this->overrideMwServices();
 		$title = $this->getMockTitle();
@@ -634,7 +638,10 @@ class RevisionTest extends MediaWikiTestCase {
 		$db->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
-				$this->equalTo( [ 'revision', 'page', 'user' ] ),
+				$this->equalTo( [
+					'revision', 'page', 'user',
+					'temp_rev_comment' => 'revision_comment_temp', 'comment_rev_comment' => 'comment',
+				] ),
 				// We don't really care about the fields are they come from the selectField methods
 				$this->isType( 'array' ),
 				$this->equalTo( $conditions ),
