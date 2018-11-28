@@ -300,6 +300,10 @@ class Message implements MessageSpecifier, Serializable {
 	 */
 	public function unserialize( $serialized ) {
 		$data = unserialize( $serialized );
+		if ( !is_array( $data ) ) {
+			throw new InvalidArgumentException( __METHOD__ . ': Invalid serialized data' );
+		}
+
 		$this->interface = $data['interface'];
 		$this->key = $data['key'];
 		$this->keysToTry = $data['keysToTry'];
