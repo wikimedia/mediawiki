@@ -120,14 +120,17 @@ class RevisionDeleteUser {
 			$actorId = $dbw->selectField( 'actor', 'actor_id', [ 'actor_name' => $name ], __METHOD__ );
 			if ( $actorId ) {
 				# Hide name from live edits
-				$subquery = $dbw->selectSQLText(
+				$ids = $dbw->selectFieldValues(
 					'revision_actor_temp', 'revactor_rev', [ 'revactor_actor' => $actorId ], __METHOD__
 				);
-				$dbw->update(
-					'revision',
-					[ self::buildSetBitDeletedField( 'rev_deleted', $op, $delUser, $dbw ) ],
-					[ "rev_id IN ($subquery)" ],
-					__METHOD__ );
+				if ( $ids ) {
+					$dbw->update(
+						'revision',
+						[ self::buildSetBitDeletedField( 'rev_deleted', $op, $delUser, $dbw ) ],
+						[ 'rev_id' => $ids ],
+						__METHOD__
+					);
+				}
 
 				# Hide name from deleted edits
 				$dbw->update(
