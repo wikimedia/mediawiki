@@ -328,7 +328,7 @@
 
 		mw.config.values.wgExtraSignatureNamespaces = [];
 		assert.strictEqual( mw.Title.wantSignaturesNamespace( 0 ), false, 'Main namespace has no signatures' );
-		assert.strictEqual( mw.Title.wantSignaturesNamespace( 1 ), true, 'Talk namespace no signatures' );
+		assert.strictEqual( mw.Title.wantSignaturesNamespace( 1 ), true, 'Talk namespace has signatures' );
 		assert.strictEqual( mw.Title.wantSignaturesNamespace( 2 ), false, 'NS2 has no signatures' );
 		assert.strictEqual( mw.Title.wantSignaturesNamespace( 3 ), true, 'NS3 has signatures' );
 
