@@ -463,12 +463,13 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		);
 		$logId = $status->getValue();
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
+		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
-			[ 'logging' ] + $actorQuery['tables'], /* table */
+			[ 'logging' ] + $actorQuery['tables'] + $commentQuery['tables'], /* table */
 			[
 				'log_type',
 				'log_action',
-				'log_comment',
+				'log_comment' => $commentQuery['fields']['log_comment_text'],
 				'log_user' => $actorQuery['fields']['log_user'],
 				'log_user_text' => $actorQuery['fields']['log_user_text'],
 				'log_namespace',
@@ -485,7 +486,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 				$page->getTitle()->getDBkey(),
 			] ],
 			[],
-			$actorQuery['joins']
+			$actorQuery['joins'] + $commentQuery['joins']
 		);
 	}
 
@@ -512,12 +513,13 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		);
 		$logId = $status->getValue();
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
+		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
-			[ 'logging' ] + $actorQuery['tables'], /* table */
+			[ 'logging' ] + $actorQuery['tables'] + $commentQuery['tables'], /* table */
 			[
 				'log_type',
 				'log_action',
-				'log_comment',
+				'log_comment' => $commentQuery['fields']['log_comment_text'],
 				'log_user' => $actorQuery['fields']['log_user'],
 				'log_user_text' => $actorQuery['fields']['log_user_text'],
 				'log_namespace',
@@ -534,7 +536,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 				$page->getTitle()->getDBkey(),
 			] ],
 			[],
-			$actorQuery['joins']
+			$actorQuery['joins'] + $commentQuery['joins']
 		);
 	}
 
@@ -563,12 +565,13 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		);
 		$logId = $status->getValue();
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
+		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
-			[ 'logging' ] + $actorQuery['tables'], /* table */
+			[ 'logging' ] + $actorQuery['tables'] + $commentQuery['tables'], /* table */
 			[
 				'log_type',
 				'log_action',
-				'log_comment',
+				'log_comment' => $commentQuery['fields']['log_comment_text'],
 				'log_user' => $actorQuery['fields']['log_user'],
 				'log_user_text' => $actorQuery['fields']['log_user_text'],
 				'log_namespace',
@@ -585,7 +588,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 				$page->getTitle()->getDBkey(),
 			] ],
 			[],
-			$actorQuery['joins']
+			$actorQuery['joins'] + $commentQuery['joins']
 		);
 
 		$this->assertNull(
@@ -2266,10 +2269,11 @@ more stuff
 		// Make sure the log entry looks good
 		// log_params is not checked here
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
+		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
-			[ 'logging' ] + $actorQuery['tables'],
+			[ 'logging' ] + $actorQuery['tables'] + $commentQuery['tables'],
 			[
-				'log_comment',
+				'log_comment' => $commentQuery['fields']['log_comment_text'],
 				'log_user' => $actorQuery['fields']['log_user'],
 				'log_user_text' => $actorQuery['fields']['log_user_text'],
 				'log_namespace',
@@ -2284,7 +2288,7 @@ more stuff
 				$page->getTitle()->getDBkey(),
 			] ],
 			[],
-			$actorQuery['joins']
+			$actorQuery['joins'] + $commentQuery['joins']
 		);
 	}
 
