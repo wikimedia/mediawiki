@@ -21,11 +21,12 @@
 	margin-bottom: 1em;
 }
 
-/* Overwriting OOUI is no fun */
+/* Overwriting OOUI */
 .mw-feedbackDialog-feedback-form .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
 	min-width: 4.2em;
 	width: 20%;
 }
+
 .mw-feedbackDialog-feedback-form .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
 	width: 80%;
 }

@@ -53,10 +53,12 @@ a.mw-selflink {
 	font-weight: bold;
 	text-decoration: inherit;
 }
+
 a.mw-selflink:hover {
 	cursor: inherit;
 	text-decoration: inherit;
 }
+
 a.mw-selflink:active,
 a.mw-selflink:visited {
 	color: inherit;

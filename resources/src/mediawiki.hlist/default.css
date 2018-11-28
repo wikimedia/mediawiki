@@ -6,22 +6,26 @@
 .hlist dt:after {
 	content: ':';
 }
+
 .hlist dd:after,
 .hlist li:after {
 	content: ' ·';
 	font-weight: bold;
 }
+
 .hlist dd:last-child:after,
 .hlist dt:last-child:after,
 .hlist li:last-child:after {
 	content: none;
 }
+
 /* For IE8 */
 .hlist dd.hlist-last-child:after,
 .hlist dt.hlist-last-child:after,
 .hlist li.hlist-last-child:after {
 	content: none;
 }
+
 /* Add parentheses around nested lists */
 .hlist dd dd:first-child:before,
 .hlist dd dt:first-child:before,
@@ -35,6 +39,7 @@
 	content: '(';
 	font-weight: normal;
 }
+
 .hlist dd dd:last-child:after,
 .hlist dd dt:last-child:after,
 .hlist dd li:last-child:after,
@@ -47,6 +52,7 @@
 	content: ')';
 	font-weight: normal;
 }
+
 /* For IE8 */
 .hlist dd dd.hlist-last-child:after,
 .hlist dd dt.hlist-last-child:after,
@@ -60,16 +66,20 @@
 	content: ')';
 	font-weight: normal;
 }
+
 /* Put ordinals in front of ordered list items */
 .hlist ol {
 	counter-reset: list-item;
 }
+
 .hlist ol > li {
 	counter-increment: list-item;
 }
+
 .hlist ol > li:before {
 	content: counter( list-item ) ' ';
 }
+
 .hlist dd ol > li:first-child:before,
 .hlist dt ol > li:first-child:before,
 .hlist li ol > li:first-child:before {

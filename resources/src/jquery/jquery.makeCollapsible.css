@@ -12,9 +12,11 @@
 	-ms-user-select: none;
 	user-select: none;
 }
+
 .mw-collapsible-toggle-default:before {
 	content: '[';
 }
+
 .mw-collapsible-toggle-default:after {
 	content: ']';
 }
@@ -24,7 +26,7 @@
 	cursor: pointer;
 }
 
-/* collapse links in captions should be inline */
+/* Collapse links in captions should be inline */
 caption .mw-collapsible-toggle,
 .mw-content-ltr caption .mw-collapsible-toggle,
 .mw-content-rtl caption .mw-collapsible-toggle,
