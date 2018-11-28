@@ -1332,25 +1332,6 @@ class ApiEditPageTest extends ApiTestCase {
 	}
 
 	public function testEditWithTag() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
-		$name = 'Help:' . ucfirst( __FUNCTION__ );
-
-		ChangeTags::defineTag( 'custom tag' );
-
-		$revId = $this->doApiRequestWithToken( [
-			'action' => 'edit',
-			'title' => $name,
-			'text' => 'Some text',
-			'tags' => 'custom tag',
-		] )[0]['edit']['newrevid'];
-
-		$dbw = wfGetDB( DB_MASTER );
-		$this->assertSame( 'custom tag', $dbw->selectField(
-			'change_tag', 'ct_tag', [ 'ct_rev_id' => $revId ], __METHOD__ ) );
-	}
-
-	public function testEditWithTagNewBackend() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_NEW );
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
 		ChangeTags::defineTag( 'custom tag' );

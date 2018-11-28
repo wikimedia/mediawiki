@@ -188,31 +188,6 @@ class ApiUserrightsTest extends ApiTestCase {
 	}
 
 	public function testWithTag() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
-		ChangeTags::defineTag( 'custom tag' );
-
-		$user = $this->getMutableTestUser()->getUser();
-
-		$this->doSuccessfulRightsChange( 'sysop', [ 'tags' => 'custom tag' ], $user );
-
-		$dbr = wfGetDB( DB_REPLICA );
-		$this->assertSame(
-			'custom tag',
-			$dbr->selectField(
-				[ 'change_tag', 'logging' ],
-				'ct_tag',
-				[
-					'ct_log_id = log_id',
-					'log_namespace' => NS_USER,
-					'log_title' => strtr( $user->getName(), ' ', '_' )
-				],
-				__METHOD__
-			)
-		);
-	}
-
-	public function testWithTagNewBackend() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_NEW );
 		ChangeTags::defineTag( 'custom tag' );
 
 		$user = $this->getMutableTestUser()->getUser();

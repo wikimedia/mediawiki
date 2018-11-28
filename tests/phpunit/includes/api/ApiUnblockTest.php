@@ -114,26 +114,7 @@ class ApiUnblockTest extends ApiTestCase {
 		$this->doUnblock( [ 'user' => $this->blocker->getName() ] );
 	}
 
-	// XXX These three tests copy-pasted from ApiBlockTest.php
-	public function testUnblockWithTag() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
-		ChangeTags::defineTag( 'custom tag' );
-
-		$this->doUnblock( [ 'tags' => 'custom tag' ] );
-
-		$dbw = wfGetDB( DB_MASTER );
-		$this->assertSame( 1, (int)$dbw->selectField(
-			[ 'change_tag', 'logging' ],
-			'COUNT(*)',
-			[ 'log_type' => 'block', 'ct_tag' => 'custom tag' ],
-			__METHOD__,
-			[],
-			[ 'change_tag' => [ 'INNER JOIN', 'ct_log_id = log_id' ] ]
-		) );
-	}
-
 	public function testUnblockWithTagNewBackend() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_NEW );
 		ChangeTags::defineTag( 'custom tag' );
 
 		$this->doUnblock( [ 'tags' => 'custom tag' ] );
