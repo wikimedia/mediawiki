@@ -290,6 +290,7 @@ class Message implements MessageSpecifier, Serializable {
 			'format' => $this->format,
 			'useDatabase' => $this->useDatabase,
 			'title' => $this->title,
+			'titlestr' => $this->title ? $this->title->getFullText() : null,
 		] );
 	}
 
@@ -307,7 +308,15 @@ class Message implements MessageSpecifier, Serializable {
 		$this->format = $data['format'];
 		$this->useDatabase = $data['useDatabase'];
 		$this->language = $data['language'] ? Language::factory( $data['language'] ) : false;
-		$this->title = $data['title'];
+
+		if ( isset( $data['titlestr'] ) ) {
+			$this->title = Title::newFromText( $data['titlestr'] );
+		} elseif ( isset( $data['title'] ) && $data['title'] instanceof Title ) {
+			// Old serializations from before December 2018
+			$this->title = $data['title'];
+		} else {
+			$this->title = null; // Explicit for sanity
+		}
 	}
 
 	/**
