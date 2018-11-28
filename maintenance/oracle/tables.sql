@@ -935,21 +935,15 @@ CREATE TABLE &mw_prefix.change_tag (
   ct_rc_id NUMBER NULL,
   ct_log_id NUMBER NULL,
   ct_rev_id NUMBER NULL,
-  ct_tag VARCHAR2(255) DEFAULT '///invalid///' NOT NULL,
   ct_params BLOB NULL,
-  ct_tag_id NUMBER NULL
+  ct_tag_id NUMBER NOT NULL
 );
 ALTER TABLE &mw_prefix.change_tag ADD CONSTRAINT &mw_prefix.change_tag_pk PRIMARY KEY (ct_id);
-
-CREATE INDEX &mw_prefix.change_tag_i03 ON &mw_prefix.change_tag (ct_rc_id,ct_tag);
-CREATE INDEX &mw_prefix.change_tag_i04 ON &mw_prefix.change_tag (ct_log_id,ct_tag);
-CREATE INDEX &mw_prefix.change_tag_i05 ON &mw_prefix.change_tag (ct_rev_id,ct_tag);
 
 CREATE UNIQUE INDEX &mw_prefix.change_tag_u04 ON &mw_prefix.change_tag (ct_rc_id,ct_tag_id);
 CREATE UNIQUE INDEX &mw_prefix.change_tag_u05 ON &mw_prefix.change_tag (ct_log_id,ct_tag_id);
 CREATE UNIQUE INDEX &mw_prefix.change_tag_u06 ON &mw_prefix.change_tag (ct_rev_id,ct_tag_id);
 
-CREATE INDEX &mw_prefix.change_tag_i01 ON &mw_prefix.change_tag (ct_tag,ct_rc_id,ct_rev_id,ct_log_id);
 CREATE INDEX &mw_prefix.change_tag_i02 ON &mw_prefix.change_tag (ct_tag_id,ct_rc_id,ct_rev_id,ct_log_id);
 
 CREATE TABLE &mw_prefix.tag_summary (
