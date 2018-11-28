@@ -9055,6 +9055,16 @@ $wgChangeTagsSchemaMigrationStage = MIGRATION_NEW;
 $wgEnablePartialBlocks = false;
 
 /**
+ * Enable stats monitoring when Block Notices are displayed in different places around core
+ * and extensions.
+ *
+ * @since 1.34
+ * @deprecated 1.34
+ * @var bool
+ */
+$wgEnableBlockNoticeStats = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
