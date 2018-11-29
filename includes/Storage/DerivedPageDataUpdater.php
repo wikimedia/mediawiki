@@ -1395,12 +1395,9 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			// the recent change entry (also done via deferred updates) and carry over any
 			// bot/deletion/IP flags, ect.
 			$this->jobQueueGroup->lazyPush(
-				new CategoryMembershipChangeJob(
+				CategoryMembershipChangeJob::newSpec(
 					$this->getTitle(),
-					[
-						'pageId' => $this->getPageId(),
-						'revTimestamp' => $this->revision->getTimestamp(),
-					]
+					$this->revision->getTimestamp()
 				)
 			);
 		}
