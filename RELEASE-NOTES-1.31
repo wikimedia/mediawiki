@@ -48,6 +48,7 @@ THIS IS NOT A RELEASE YET
   if --lang is used with the command-line installer (install.php).
 * Fix addition of ug_expiry column to user_groups table on MSSQL.
 * (T204767) Add join conditions to ActiveUsersPager
+* (T210621) User: Bypass repeatable-read when creating an actor_id.
 
 == MediaWiki 1.31.1 ==
 
