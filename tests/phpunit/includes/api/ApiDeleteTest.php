@@ -74,37 +74,6 @@ class ApiDeleteTest extends ApiTestCase {
 	}
 
 	public function testDeleteWithTag() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
-		$name = 'Help:' . ucfirst( __FUNCTION__ );
-
-		ChangeTags::defineTag( 'custom tag' );
-
-		$this->editPage( $name, 'Some text' );
-
-		$this->doApiRequestWithToken( [
-			'action' => 'delete',
-			'title' => $name,
-			'tags' => 'custom tag',
-		] );
-
-		$this->assertFalse( Title::newFromText( $name )->exists() );
-
-		$dbw = wfGetDB( DB_MASTER );
-		$this->assertSame( 'custom tag', $dbw->selectField(
-			[ 'change_tag', 'logging' ],
-			'ct_tag',
-			[
-				'log_namespace' => NS_HELP,
-				'log_title' => ucfirst( __FUNCTION__ ),
-			],
-			__METHOD__,
-			[],
-			[ 'change_tag' => [ 'INNER JOIN', 'ct_log_id = log_id' ] ]
-		) );
-	}
-
-	public function testDeleteWithTagNewBackend() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_NEW );
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
 		ChangeTags::defineTag( 'custom tag' );

@@ -321,7 +321,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 	 * @param int $limit
 	 */
 	private function prepareQuery( array $users, $limit ) {
-		global $wgActorTableSchemaMigrationStage, $wgChangeTagsSchemaMigrationStage;
+		global $wgActorTableSchemaMigrationStage;
 
 		$this->resetQueryParams();
 		$db = $this->getDB();
@@ -490,16 +490,12 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$this->addJoinConds(
 				[ 'change_tag' => [ 'INNER JOIN', [ $idField . ' = ct_rev_id' ] ] ]
 			);
-			if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
-				$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
-				try {
-					$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $this->params['tag'] ) );
-				} catch ( NameTableAccessException $exception ) {
-					// Return nothing.
-					$this->addWhere( '1=0' );
-				}
-			} else {
-				$this->addWhereFld( 'ct_tag', $this->params['tag'] );
+			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
+			try {
+				$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $this->params['tag'] ) );
+			} catch ( NameTableAccessException $exception ) {
+				// Return nothing.
+				$this->addWhere( '1=0' );
 			}
 		}
 	}

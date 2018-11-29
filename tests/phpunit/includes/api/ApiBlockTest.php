@@ -116,24 +116,6 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithTag() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
-		ChangeTags::defineTag( 'custom tag' );
-
-		$this->doBlock( [ 'tags' => 'custom tag' ] );
-
-		$dbw = wfGetDB( DB_MASTER );
-		$this->assertSame( 1, (int)$dbw->selectField(
-			[ 'change_tag', 'logging' ],
-			'COUNT(*)',
-			[ 'log_type' => 'block', 'ct_tag' => 'custom tag' ],
-			__METHOD__,
-			[],
-			[ 'change_tag' => [ 'INNER JOIN', 'ct_log_id = log_id' ] ]
-		) );
-	}
-
-	public function testBlockWithTagNewBackend() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_NEW );
 		ChangeTags::defineTag( 'custom tag' );
 
 		$this->doBlock( [ 'tags' => 'custom tag' ] );
