@@ -68,6 +68,7 @@
 .mw-uctop {
 	font-weight: bold;
 }
+
 .mw-contributions-form select {
 	vertical-align: middle;
 }
@@ -92,6 +93,7 @@
 .mw-listgrouprights-table tr {
 	vertical-align: top;
 }
+
 .listgrouprights-revoked {
 	text-decoration: line-through;
 }
@@ -130,6 +132,7 @@
 	white-space: nowrap;
 	font-size: 90%;
 }
+
 .mw-protectedpages-unknown {
 	color: #72777d;
 	font-size: 90%;

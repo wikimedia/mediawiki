@@ -97,9 +97,11 @@ div.apihelp-linktrail {
 .api-main-links {
 	text-align: center;
 }
+
 .api-main-links ul:before {
 	content: '[';
 }
+
 .api-main-links ul:after {
 	content: ']';
 }
