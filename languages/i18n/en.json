@@ -2,7 +2,7 @@
 	"@metadata": {
 		"authors": []
 	},
-	"sidebar": "\n* navigation\n** mainpage|mainpage-description\n** recentchanges-url|recentchanges\n** randompage-url|randompage\n** helppage|help\n* SEARCH\n* TOOLBOX\n* LANGUAGES",
+	"sidebar": "\n* navigation\n** mainpage|mainpage-description\n** recentchanges-url|recentchanges\n** randompage-url|randompage\n** helppage|help-mediawiki\n* SEARCH\n* TOOLBOX\n* LANGUAGES",
 	"tog-underline": "Link underlining:",
 	"tog-hideminor": "Hide minor edits from recent changes",
 	"tog-hidepatrolled": "Hide patrolled edits from recent changes",
@@ -161,6 +161,7 @@
 	"returnto": "Return to $1.",
 	"tagline": "From {{SITENAME}}",
 	"help": "Help",
+	"help-mediawiki": "Help about MediaWiki",
 	"search": "Search",
 	"search-ignored-headings": " #<!-- leave this line exactly as it is --> <pre>\n# Headings that will be ignored by search.\n# Changes to this take effect as soon as the page with the heading is indexed.\n# You can force page reindexing by doing a null edit.\n# The syntax is as follows:\n#   * Everything from a \"#\" character to the end of the line is a comment.\n#   * Every non-blank line is the exact title to ignore, case and everything.\nReferences\nExternal links\nSee also\n #</pre> <!-- leave this line exactly as it is -->",
 	"searchbutton": "Search",
