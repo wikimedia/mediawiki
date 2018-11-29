@@ -25,7 +25,6 @@
 @exclude: ~'.mw-made-collapsible';
 
 .client-js {
-
 	ol.mw-collapsible:before,
 	ul.mw-collapsible:before,
 	.mw-collapsible-toggle-li {
@@ -76,8 +75,7 @@
 		// Avoid FOUC/reflows on collapsed elements by making sure they are opened by default (T42812)
 		> p,
 		> table,
-		// Manual:Collapsible_elements/Demo/Simple#Collapsed_by_default
-		> thead + tbody,
+		> thead + tbody, // 'https://www.mediawiki.org/wiki/Manual:Collapsible_elements/Demo/Simple#Collapsed_by_default'
 		tr:not( :first-child ),
 		.mw-collapsible-content {
 			display: none;

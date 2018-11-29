@@ -17,7 +17,6 @@
 	background-color: #fff;
 	/* Click handler in mediawiki.notification.js */
 	cursor: pointer;
-
 	opacity: 0;
 	-webkit-transform: translateX( 35px );
 	transform: translateX( 35px );

@@ -14,9 +14,8 @@
 		border-top: 4px solid @colorGray12;
 	}
 
-	// Don't show border for first namespace
+	// Don't show border for first namespace & hide for every 'talk' option in second selector
 	&-view-default + &-view-namespaces,
-	// Hide for every 'talk' option
 	&-view-namespaces&.mw-rcfilters-ui-itemMenuOptionWidget-identifier-subject + &-view-namespaces.mw-rcfilters-ui-itemMenuOptionWidget-identifier-talk {
 		border-top: 0;
 	}
@@ -40,6 +39,7 @@
 			font-size: 1.15em;
 			color: @colorGray2;
 		}
+
 		&-desc {
 			color: @colorGray5;
 			white-space: normal;
