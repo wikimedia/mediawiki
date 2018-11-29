@@ -99,7 +99,8 @@
 			"Acamicamacaraca",
 			"DeRudySoulStorm",
 			"Railfail536",
-			"Vlad5250"
+			"Vlad5250",
+			"CiaPan"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -2860,7 +2861,7 @@
 	"tooltip-t-emailuser": "Wyślij e‐mail do {{GENDER:$1|tego użytkownika|tej użytkowniczki}}",
 	"tooltip-t-info": "Więcej informacji na temat tej strony",
 	"tooltip-t-upload": "Prześlij pliki",
-	"tooltip-t-specialpages": "Lista wszystkich specjalnych stron",
+	"tooltip-t-specialpages": "Lista wszystkich stron specjalnych",
 	"tooltip-t-print": "Wersja do wydruku",
 	"tooltip-t-permalink": "Stały link do tej wersji strony",
 	"tooltip-ca-nstab-main": "Zobacz stronę treści",
@@ -3012,7 +3013,7 @@
 	"show-big-image-preview": "Rozmiar podglądu – $1.",
 	"show-big-image-preview-differ": "Wielkość pliku podglądu $3 dla pliku $2: $1",
 	"show-big-image-other": "{{PLURAL:$2|Inna rozdzielczość|Inne rozdzielczości}}: $1.",
-	"show-big-image-size": "$1 x $2 pikseli",
+	"show-big-image-size": "$1 × $2 pikseli",
 	"file-info-gif-looped": "zapętlony",
 	"file-info-gif-frames": "$1 {{PLURAL:$1|klatka|klatki|klatek}}",
 	"file-info-png-looped": "zapętlony",
