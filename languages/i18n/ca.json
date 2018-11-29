@@ -3997,7 +3997,7 @@
 	"specialpage-securitylevel-not-allowed-title": "No permès",
 	"specialpage-securitylevel-not-allowed": "Ho sentim, no podeu utilitzar la pàgina perquè no es pot verificar la vostra identitat.",
 	"authpage-cannot-login": "No s'ha pogut iniciar la sessió.",
-	"authpage-cannot-login-continue": "No es pot continuar amb l'inicio de sessió. Probablement la vostra sessió ha expirat.",
+	"authpage-cannot-login-continue": "No es pot continuar amb l'inici de sessió. Probablement la vostra sessió ha expirat.",
 	"authpage-cannot-create": "No s'ha pogut iniciar la creació del compte.",
 	"authpage-cannot-create-continue": "No es pot prosseguir la creació del compte. Probablement la vostra sessió ha expirat.",
 	"authpage-cannot-link": "No s'ha pogut iniciar l'enllaç del compte.",

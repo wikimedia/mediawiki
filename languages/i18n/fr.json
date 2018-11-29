@@ -3172,7 +3172,7 @@
 	"exif-compression": "Type de compression",
 	"exif-photometricinterpretation": "Modèle colorimétrique",
 	"exif-orientation": "Orientation",
-	"exif-samplesperpixel": "Composantes par pixel",
+	"exif-samplesperpixel": "Nombre de composants",
 	"exif-planarconfiguration": "Arrangement des données",
 	"exif-ycbcrsubsampling": "Taux de sous-échantillonnage de Y à C",
 	"exif-ycbcrpositioning": "Positionnement YCbCr",
