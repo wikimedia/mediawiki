@@ -9,19 +9,38 @@ THIS IS NOT A RELEASE YET
 * (T200254) Add pear/Net_SMTP 1.7.3 to composer dependencies.
 * (T206765) Load installer i18n when running update.php.
 * (T109121) Remove deprecated pear/mail_mime-decode from composer suggested libraries.
-* (T200595) Fix PHP 7.3 warnings of using "continue" in some scenarios instead
-  of "break".
-* (T206979) Fix PHP 7.3 warnings of using "compact()" when some variables may
-  not be set.
-* Fix PHP 7.3 warnings "preg_replace(): [...] invalid range in character class"
+  [Also in the bundled composer /vendor directory.]
+* Various PHP 7.2 and 7.3 compatibility fixes:
+  * (T200595, T206974) Fix PHP 7.3 warnings of using "continue" in some scenarios instead
+    of "break".
+    * (T206976, T206977) Also in the bundled LocalisationUpdate and ParserFunctions extensions.
+  * (T206979) Fix PHP 7.3 warnings of using "compact()" when some variables may
+    not be set.
+  * Fix PHP 7.3 warnings "preg_replace(): [...] invalid range in character class"
+  * Avoid PHP 7.2 warnings in DBConRefTest about count() on non-Countable
+  * Suppress "Headers already sent" in PHP 7.2 too
+  * (T206476) Output only to stderr in unit tests
+  * (T207112) Add session_write_close() calls to SessionManager tests
 * (T207540) Include IP address in "Login for $1 succeeded" log entry.
-* (T207541) Pass email address to mail().
+* (T201781) Database: Allow selectFieldValues() to accept SQL fragments
+* (T205765) installer: Don't link to the obsolete "Extension Matrix" page
+* (T206013) Update ImportableUploadRevisionImporter for interwiki usernames
+* (T207541) Pass an email address, not a MailAddress, to mail().
 * (T207603) User JS may no longer be loaded with mime type text/javascript if
   there is no account associated with the username.
-* (T113042) Do not allow loading pages raw with a text/javascript MIME type if
-  non-admins can edit the page.
+* (T112937, T113042) Do not allow loading pages raw with a text/javascript MIME
+  type if non-admins can edit the page.
+* (T17491) <ins>/<del> elements can be phrasing or flow
+* (T200827) RemexCompatMunger: Don't call endTag() in case B/b
+* (T207088) Upgrade wikimedia/remex-html to 2.0.1
+  [Also in the bundled composer /vendor directory.]
 * (T194052) Updated wikimedia/base-convert from 1.0.1 to 2.0.0.
+  [Also in the bundled composer /vendor directory.]
 * (T199494) Fix notices in maintenance/removeUnusuedAccounts.php
+* Require ext-fileinfo in composer.json, per PHPVersionCheck
+* (T176390) Bundled LocalisationUpdate extension: Handle exceptions from GitHubFetcher
+* (T208255) Completion search should not change the search query
+
 * (T209870) Fix SQL syntax error in MS-SQL initialisation file for new wikis
 * (T185049) LogFormatter: Fail softer when trying to link an invalid titles
 
