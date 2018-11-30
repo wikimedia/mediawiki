@@ -636,13 +636,18 @@ class LogFormatter {
 	 * @param Title $title The page
 	 * @param array $parameters Query parameters
 	 * @param string|null $html Linktext of the link as raw html
-	 * @throws MWException
 	 * @return string
 	 */
 	protected function makePageLink( Title $title = null, $parameters = [], $html = null ) {
 		if ( !$title instanceof Title ) {
-			throw new MWException( 'Expected title, got null' );
+			$msg = $this->msg( 'invalidtitle' )->text();
+			if ( !$this->plaintext ) {
+				return Html::element( 'span', [ 'class' => 'mw-invalidtitle' ], $msg );
+			} else {
+				return $msg;
+			}
 		}
+
 		if ( !$this->plaintext ) {
 			$html = $html !== null ? new HtmlArmor( $html ) : $html;
 			$link = $this->getLinkRenderer()->makeLink( $title, $html, [], $parameters );

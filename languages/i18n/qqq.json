@@ -570,6 +570,7 @@
 	"ns-specialprotected": "Error message displayed when trying to edit a page in the Special namespace",
 	"titleprotected": "Used as error message. Parameters:\n* $1 - username; GENDER supported\n* $2 - reason for protection",
 	"filereadonlyerror": "Parameters:\n* $1 - file name\n* $2 - file repository name\n* $3 - reason",
+	"invalidtitle": "Displayed when an invalid title was encountered (generally in a list) and there are no details about it to be shown.",
 	"invalidtitle-knownnamespace": "Displayed when an invalid title was encountered (generally in a list), but the namespace number is known to exist.\n\nParameters:\n* $1 - (Unused) the namespace number\n* $2 - the namespace name in content language or {{msg-mw|blanknamespace}} for the main namespace\n* $3 - the part of the title after the namespace (e.g. SomeName for the page User:SomeName)",
 	"invalidtitle-unknownnamespace": "Displayed when an invalid title was encountered (generally in a list) and the namespace number is unknown.\n\nParameters:\n* $1 - the namespace number\n* $2 - the part of the title after the namespace (e.g. SomeName for the page User:SomeName)",
 	"exception-nologin": "Generic page title used on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.\n{{Identical|Not logged in}}",
