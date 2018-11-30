@@ -478,11 +478,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
 
 		if ( $this->fld_tags ) {
-			$this->addTables( 'tag_summary' );
-			$this->addJoinConds(
-				[ 'tag_summary' => [ 'LEFT JOIN', [ $idField . ' = ts_rev_id' ] ] ]
-			);
-			$this->addFields( 'ts_tags' );
+			$this->addFields( [ 'ts_tags' => ChangeTags::makeTagSummarySubquery( 'revision' ) ] );
 		}
 
 		if ( isset( $this->params['tag'] ) ) {

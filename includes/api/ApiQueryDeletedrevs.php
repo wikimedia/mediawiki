@@ -131,11 +131,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		}
 
 		if ( $fld_tags ) {
-			$this->addTables( 'tag_summary' );
-			$this->addJoinConds(
-				[ 'tag_summary' => [ 'LEFT JOIN', [ 'ar_rev_id=ts_rev_id' ] ] ]
-			);
-			$this->addFields( 'ts_tags' );
+			$this->addFields( [ 'ts_tags' => ChangeTags::makeTagSummarySubquery( 'archive' ) ] );
 		}
 
 		if ( !is_null( $params['tag'] ) ) {

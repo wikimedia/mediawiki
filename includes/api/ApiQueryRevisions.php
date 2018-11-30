@@ -185,11 +185,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		}
 
 		if ( $this->fld_tags ) {
-			$this->addTables( 'tag_summary' );
-			$this->addJoinConds(
-				[ 'tag_summary' => [ 'LEFT JOIN', [ 'rev_id=ts_rev_id' ] ] ]
-			);
-			$this->addFields( 'ts_tags' );
+			$this->addFields( [ 'ts_tags' => ChangeTags::makeTagSummarySubquery( 'revision' ) ] );
 		}
 
 		if ( $params['tag'] !== null ) {
