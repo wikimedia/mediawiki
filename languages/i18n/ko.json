@@ -1145,6 +1145,8 @@
 	"prefs-advancedwatchlist": "고급 옵션",
 	"prefs-displayrc": "표시 설정",
 	"prefs-displaywatchlist": "표시 설정",
+	"prefs-changesrc": "표시되는 변경사항",
+	"prefs-changeswatchlist": "표시되는 변경사항",
 	"prefs-pageswatchlist": "주시 중인 문서",
 	"prefs-tokenwatchlist": "토큰",
 	"prefs-diffs": "차이",

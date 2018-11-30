@@ -38,7 +38,7 @@
 	"config-env-hhvm": "HHVM $1 on installitud.",
 	"config-diff3-bad": "GNU diff3 ei leitud.",
 	"config-db-type": "Andmebaasi tüüp:",
-	"config-db-name": "Andmebaasi nimi:",
+	"config-db-name": "Andmebaasi nimi (sidekriipsudeta):",
 	"config-db-name-oracle": "Andmebaasi skeem:",
 	"config-db-username": "Andmebaasi kasutajanimi:",
 	"config-db-password": "Andmebaasi parool:",

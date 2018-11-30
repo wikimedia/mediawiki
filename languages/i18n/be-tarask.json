@@ -1806,7 +1806,7 @@
 	"shared-repo-name-wikimediacommons": "Вікісховішча",
 	"upload-disallowed-here": "Вы ня можаце перазапісаць гэты файл.",
 	"filerevert": "Вярнуць $1",
-	"filerevert-legend": "Вярнуць папярэднюю вэрсію файла",
+	"filerevert-legend": "Вярнуць папярэднюю вэрсію файлу",
 	"filerevert-intro": "Вы вяртаеце '''[[Media:$1|$1]]''' да [вэрсіі $4 ад $3, $2].",
 	"filerevert-comment": "Прычына:",
 	"filerevert-defaultcomment": "Вернутая вэрсія ад $2 $1 ($3)",
