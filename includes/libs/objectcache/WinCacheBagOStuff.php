@@ -61,4 +61,40 @@ class WinCacheBagOStuff extends BagOStuff {
 
 		return $ok;
 	}
+
+	/**
+	 * Construct a cache key.
+	 *
+	 * @since 1.27
+	 * @param string $keyspace
+	 * @param array $args
+	 * @return string
+	 */
+	public function makeKeyInternal( $keyspace, $args ) {
+		// WinCache keys have a maximum length of 150 characters. From that,
+		// subtract the number of characters we need for the keyspace and for
+		// the separator character needed for each argument. To handle some
+		// custom prefixes used by thing like WANObjectCache, limit to 125.
+		// NOTE: Same as in memcached, except the max key length there is 255.
+		$charsLeft = 125 - strlen( $keyspace ) - count( $args );
+
+		$args = array_map(
+			function ( $arg ) use ( &$charsLeft ) {
+				// 33 = 32 characters for the MD5 + 1 for the '#' prefix.
+				if ( $charsLeft > 33 && strlen( $arg ) > $charsLeft ) {
+					$arg = '#' . md5( $arg );
+				}
+
+				$charsLeft -= strlen( $arg );
+				return $arg;
+			},
+			$args
+		);
+
+		if ( $charsLeft < 0 ) {
+			return $keyspace . ':BagOStuff-long-key:##' . md5( implode( ':', $args ) );
+		}
+
+		return $keyspace . ':' . implode( ':', $args );
+	}
 }
