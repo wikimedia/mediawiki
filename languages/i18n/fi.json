@@ -3642,7 +3642,7 @@
 	"tags-delete-explanation-initial": "Olet parhaillaan poistamassa (eli tuhoamassa pysyvästi) merkkauksen ”$1” tietokannasta.",
 	"tags-delete-explanation-in-use": "Se poistuu {{PLURAL:$2|$2 sivun versiosta tai lokimerkinnästä|kaikista $2 sivuversiosta tai lokimerkinnöistä}}, joissa se tällä hetkellä on käytössä.",
 	"tags-delete-explanation-warning": "Tämä toimenpide on <strong>peruuttamaton</strong> ja <strong>poistettua merkkausta ei voi palauttaa takaisin</strong>. Siihen ei pysty edes tietokannan ylläpitohenkilöstö. Sinun pitää olla täysin varma, että haluat poistettavaksi juuri tämän merkkauksen.",
-	"tags-delete-explanation-active": "<stron>Merkkaus ”$1” on edelleen käytössä ja sitä käytetään myös jatkossa.</strong>. Jos haluat merkkauksen pois käytöstä, mene sinne missä merkkaus on asetettu ja ota se pois siellä.",
+	"tags-delete-explanation-active": "<strong>Merkkaus ”$1” on edelleen käytössä ja sitä käytetään myös jatkossa.</strong>. Jos haluat merkkauksen pois käytöstä, mene sinne missä merkkaus on asetettu ja ota se pois siellä.",
 	"tags-delete-reason": "Syy:",
 	"tags-delete-submit": "Tuhoa tämä merkkaus peruuttamattomasti ja pysyvästi",
 	"tags-delete-not-allowed": "Sellaisia merkkauksia, jotka tulevat erityisestä ohjelmistolaajennuksesta, ei voi poistaa ennen kuin tämä laajennus erityisesti sallii sen.",

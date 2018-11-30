@@ -2979,6 +2979,7 @@
 	"tag-filter-submit": "سۆزگَج",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|اِتیکِت|اِتیکِتلر}}]]: $2",
 	"tag-mw-new-redirect": "یئنی یوْللاندیرما",
+	"tag-mw-removed-redirect": "یوْللاندیرما سیلیندی",
 	"tag-mw-blank": "بوْشالتما",
 	"tags-title": "اِتیکتلر",
 	"tags-intro": "بو صفحه، نرم افزار دَییشدیرمه‌لری علامتله‌ین اِتیکِتلری و اونلارین معنالارینی گؤستریر.",
