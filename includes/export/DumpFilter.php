@@ -67,7 +67,7 @@ class DumpFilter {
 	 * @param string $string
 	 */
 	function writeOpenPage( $page, $string ) {
-		$this->sendingThisPage = $this->pass( $page, $string );
+		$this->sendingThisPage = $this->pass( $page );
 		if ( $this->sendingThisPage ) {
 			$this->sink->writeOpenPage( $page, $string );
 		}
