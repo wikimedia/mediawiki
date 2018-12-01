@@ -1624,7 +1624,7 @@ class RevisionStore
 			$row->role_name = $this->slotRoleStore->getName( (int)$row->slot_role_id );
 			$row->model_name = $this->contentModelStore->getName( (int)$row->content_model );
 
-			$contentCallback = function ( SlotRecord $slot ) use ( $queryFlags, $row ) {
+			$contentCallback = function ( SlotRecord $slot ) use ( $queryFlags ) {
 				return $this->loadSlotContent( $slot, null, null, null, $queryFlags );
 			};
 
