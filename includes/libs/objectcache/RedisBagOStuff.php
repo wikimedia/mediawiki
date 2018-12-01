@@ -230,7 +230,7 @@ class RedisBagOStuff extends BagOStuff {
 					}
 				}
 			} catch ( RedisException $e ) {
-				$this->handleException( $server, $conn, $e );
+				$this->handleException( $conn, $e );
 				$result = false;
 			}
 		}
