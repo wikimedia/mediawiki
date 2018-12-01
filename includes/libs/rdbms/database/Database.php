@@ -3742,7 +3742,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				}
 			}
 			if ( $pos < 0 ) {
-				throw new DBUnexpectedError( "Atomic section not found (for $fname)" );
+				throw new DBUnexpectedError( $this, "Atomic section not found (for $fname)" );
 			}
 			// Remove all descendant sections and re-index the array
 			$excisedIds = [];
