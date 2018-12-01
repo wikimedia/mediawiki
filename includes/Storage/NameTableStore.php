@@ -205,7 +205,7 @@ class NameTableStore {
 	 *
 	 * @param int $connFlags ILoadBalancer::CONN_XXX flags. Optional.
 	 *
-	 * @return \string[] The freshly reloaded name map
+	 * @return string[] The freshly reloaded name map
 	 */
 	public function reloadMap( $connFlags = 0 ) {
 		$this->tableCache = $this->loadTable(
