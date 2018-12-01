@@ -15,7 +15,8 @@
 			"Ximik1991",
 			"Bmansurov",
 			"Fitoschido",
-			"ديفيد"
+			"ديفيد",
+			"Malikxan"
 		]
 	},
 	"tog-underline": "Havolaning tagiga chizish:",
@@ -174,6 +175,7 @@
 	"view": "Koʻrish",
 	"view-foreign": "$1da koʻrish",
 	"edit": "Tahrirlash",
+	"edit-local": "Mahalliy izohni tahrirlash",
 	"create": "Yaratish",
 	"create-local": "Mahalliy tavsifini qoʻshish",
 	"delete": "O‘chirish",
@@ -219,6 +221,7 @@
 	"disclaimers": "Masʼuliyatdan voz kechish",
 	"disclaimerpage": "Project:Masʼuliyatdan voz kechish",
 	"edithelp": "Tahrirlash yordami",
+	"helppage-top-gethelp": "Yordam",
 	"mainpage": "Bosh sahifa",
 	"mainpage-description": "Bosh sahifa",
 	"policy-url": "Project:Qoida",
@@ -316,6 +319,7 @@
 	"myprivateinfoprotected": "Sizda shaxsiy maʻlumotlaringizni tahrirlashga ruxsat mavjud emas.",
 	"mypreferencesprotected": "Sizda afzalliklarni tahrirlashga ruxsat mavjud emas.",
 	"ns-specialprotected": "\"{{ns:special}}\" nomfazosi sahifalari tahrirlanishi mumkin emas.",
+	"invalidtitle": "Yaroqsiz sarlavha",
 	"exception-nologin": "Siz tizimda o'zingizni tanishtirmadingiz",
 	"exception-nologin-text": "Bu sahifani koʻrish yoki soʻralgan amalni bajarish uchun tizimga kirishingiz lozim.",
 	"virus-badscanner": "Moslamada xato. Noma'lum virus aniqlovchi: ''$1''",
