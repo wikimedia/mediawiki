@@ -224,7 +224,7 @@ class BlockListPager extends TablePager {
 						'ul',
 						[],
 						implode( '', array_map( function ( $prop ) {
-							return HTML::rawElement(
+							return Html::rawElement(
 								'li',
 								[],
 								$prop
@@ -264,7 +264,7 @@ class BlockListPager extends TablePager {
 				continue;
 			}
 
-			$items[] = HTML::rawElement(
+			$items[] = Html::rawElement(
 				'li',
 				[],
 				Linker::link( $restriction->getTitle() )
