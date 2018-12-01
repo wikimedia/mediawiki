@@ -87,7 +87,7 @@ class PasswordPolicyChecks {
 		$username = $user->getName();
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		if (
-			$policyVal && $contLang->lc( $password ) === $contLang->lc( $username )
+			$policyVal && hash_equals( $contLang->lc( $username ), $contLang->lc( $password ) )
 		) {
 			$status->error( 'password-name-match' );
 		}
@@ -110,12 +110,15 @@ class PasswordPolicyChecks {
 		$status = Status::newGood();
 		$username = $user->getName();
 		if ( $policyVal ) {
-			if ( isset( $blockedLogins[$username] ) && $password == $blockedLogins[$username] ) {
+			if (
+				isset( $blockedLogins[$username] ) &&
+				hash_equals( $blockedLogins[$username], $password )
+			) {
 				$status->error( 'password-login-forbidden' );
 			}
 
 			// Example from ApiChangeAuthenticationRequest
-			if ( $password === 'ExamplePassword' ) {
+			if ( hash_equals( 'ExamplePassword', $password ) ) {
 				$status->error( 'password-login-forbidden' );
 			}
 		}
