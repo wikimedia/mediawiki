@@ -156,7 +156,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 				"/* autocomment */",
 			],
 			[
-				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#linkie.3F" title="Special:BlankPage">→‎<a href="/wiki/index.php?title=Linkie%3F&amp;action=edit&amp;redlink=1" class="new" title="Linkie? (page does not exist)">linkie?</a></a></span></span>',
+				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#linkie.3F" title="Special:BlankPage">→‎&#91;[linkie?]]</a></span></span>',
 				"/* [[linkie?]] */",
 			],
 			[
