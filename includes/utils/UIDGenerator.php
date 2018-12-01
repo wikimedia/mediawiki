@@ -74,7 +74,7 @@ class UIDGenerator {
 			}
 			Wikimedia\restoreWarnings();
 			if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
-				$nodeId = MWCryptRand::generateHex( 12, true );
+				$nodeId = MWCryptRand::generateHex( 12 );
 				$nodeId[1] = dechex( hexdec( $nodeId[1] ) | 0x1 ); // set multicast bit
 			}
 			file_put_contents( $this->nodeIdFile, $nodeId ); // cache
