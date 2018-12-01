@@ -1166,7 +1166,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * @param string $key
 	 * @param int $ttl
-	 * @param callback $callback
+	 * @param callable $callback
 	 * @param array $opts Options map for getWithSetCallback()
 	 * @param float|null &$asOf Cache generation timestamp of returned value [returned]
 	 * @return mixed

@@ -80,7 +80,7 @@ class SearchSuggestionSet {
 
 	/**
 	 * Call array_map on the suggestions array
-	 * @param callback $callback
+	 * @param callable $callback
 	 * @return array
 	 */
 	public function map( $callback ) {
@@ -89,7 +89,7 @@ class SearchSuggestionSet {
 
 	/**
 	 * Filter the suggestions array
-	 * @param callback $callback Callable accepting single SearchSuggestion
+	 * @param callable $callback Callable accepting single SearchSuggestion
 	 *  instance returning bool false to remove the item.
 	 * @return int The number of suggestions removed
 	 */
