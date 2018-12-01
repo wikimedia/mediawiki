@@ -979,7 +979,7 @@
 	"search-showingresults": "{{PLURAL:$4|Вынік <strong>$1</strong> з <strong>$3</strong>|Вынікі <strong>$1 — $2</strong> з <strong>$3</strong>}}",
 	"search-nonefound": "Нічога не было знойдзена.",
 	"search-nonefound-thiswiki": "Няма вынікаў, якія б адпавядалі такому запыту на гэтым сайце.",
-	"powersearch-legend": "Падрабязны пошук",
+	"powersearch-legend": "Пашыраны пошук",
 	"powersearch-ns": "Шукаць у прасторах назваў:",
 	"powersearch-togglelabel": "Пазначыць:",
 	"powersearch-toggleall": "Усе",

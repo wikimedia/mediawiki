@@ -1082,6 +1082,7 @@
 	"localtime": "현지 시각:",
 	"timezoneuseserverdefault": "위키 기본값 사용 ($1)",
 	"timezoneuseoffset": "기타 (시차를 입력해주세요)",
+	"timezone-useoffset-placeholder": "예시 값: \"-07:00\" 또는 \"01:00\"",
 	"servertime": "서버 시각:",
 	"guesstimezone": "웹 브라우저 설정에서 가져오기",
 	"timezoneregion-africa": "아프리카",

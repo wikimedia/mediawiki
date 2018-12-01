@@ -1115,6 +1115,7 @@
 	"localtime": "Czas lokalny:",
 	"timezoneuseserverdefault": "Użyj domyślnej dla tej wiki ($1)",
 	"timezoneuseoffset": "Inna (określ różnicę czasu)",
+	"timezone-useoffset-placeholder": "Przykładowe wartości: \"-07:00\" lub \"01:00\"",
 	"servertime": "Czas serwera:",
 	"guesstimezone": "Pobierz z przeglądarki",
 	"timezoneregion-africa": "Afryka",

@@ -69,7 +69,8 @@
 			"Iriman",
 			"Matěj Suchánek",
 			"Amirsara",
-			"Physicsch"
+			"Physicsch",
+			"Nbi"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -387,6 +388,7 @@
 	"badarticleerror": "نمی‌توان این عمل را بر این صفحه انجام داد.",
 	"cannotdelete": "امکان حذف صفحه یا تصویر «$1» وجود ندارد.\nممکن است قبلاً فرد دیگری آن را حذف کرده باشد.",
 	"cannotdelete-title": "نمی‌توان صفحهٔ «$1» را حذف کرد",
+	"delete-scheduled": "صفحه $1 برای حذف برنامه‌ریزی شده‌است. لطفاً صبور باشید.",
 	"delete-hook-aborted": "حذف توسط قلاب لغو شد.\nتوضیحی در این مورد داده نشد.",
 	"no-null-revision": "امکان ایجاد نسخهٔ پوچ تازه برای صفحهٔ «$1» وجود نداشت",
 	"badtitle": "عنوان بد",
@@ -519,6 +521,7 @@
 	"passwordtooshort": "گذرواژه باید دست‌کم {{PLURAL:$1|۱ حرف|$1 حرف}} داشته باشد.",
 	"passwordtoolong": "گذرواژه نمی تواند حروفش بیشتر از {{PLURAL:$1|۱ حرف|$1 حرف}}  باشد.",
 	"passwordtoopopular": "گذرواژه‌های متداول را نمی‌توانید استفاده کنید. لطفاً گذرواژه‌ای انتخاب کنید که حدس‌زدن آن سخت باشد.",
+	"passwordinlargeblacklist": "گذرواژه انتخابی در فهرست گذرواژه‌های معمول قرار دارد. لطفاً یک گذرواژه یکتاتر انتخاب کنید.",
 	"password-name-match": "گذرواژهٔ شما باید با نام کاربری شما تفاوت داشته باشد.",
 	"password-login-forbidden": "استفاده از این نام کاربری و گذرواژه ممنوع است.",
 	"mailmypassword": "بازنشانی گذرواژه",
@@ -1080,6 +1083,7 @@
 	"localtime": "زمان محلی:",
 	"timezoneuseserverdefault": "استفاده از پیش‌فرض ویکی ($1)",
 	"timezoneuseoffset": "دیگر (اختلاف را مشخص کنید)",
+	"timezone-useoffset-placeholder": "مثال مقادیر: \"-07:00\" یا \"01:00\"",
 	"servertime": "زمان سرور:",
 	"guesstimezone": "از مرورگر گرفته شود",
 	"timezoneregion-africa": "آفریقا",
@@ -3577,6 +3581,7 @@
 	"redirect-file": "نام پرونده",
 	"redirect-logid": "سیاهه شناسه",
 	"redirect-not-exists": "مقدار پیدا نشد",
+	"redirect-not-numeric": "مقادیر غیر عددی",
 	"fileduplicatesearch": "جستجو برای پرونده‌های تکراری",
 	"fileduplicatesearch-summary": "جستجو برای پرونده‌های تکراری بر اساس مقدار درهم‌شدهٔ آن‌ها صورت می‌گیرد.",
 	"fileduplicatesearch-filename": "نام پرونده:",
