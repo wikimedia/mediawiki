@@ -290,7 +290,7 @@ class Exif {
 			$this->byteOrder = 'BE'; // BE seems about twice as popular as LE in jpg's.
 		}
 
-		$this->debugFile( $this->basename, __FUNCTION__, true );
+		$this->debugFile( __FUNCTION__, true );
 		if ( function_exists( 'exif_read_data' ) ) {
 			Wikimedia\suppressWarnings();
 			$data = exif_read_data( $this->file, 0, true );
