@@ -418,7 +418,7 @@ class XmlTypeCheck {
 	 * We whitelist an extremely restricted subset of DTD features.
 	 *
 	 * Safe is defined as:
-	 *  * Only contains entity defintions (e.g. No <!ATLIST )
+	 *  * Only contains entity definitions (e.g. No <!ATLIST )
 	 *  * Entity definitions are not "system" entities
 	 *  * Entity definitions are not "parameter" (i.e. %) entities
 	 *  * Entity definitions do not reference other entites except &amp;
