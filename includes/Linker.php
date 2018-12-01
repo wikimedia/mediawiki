@@ -1151,7 +1151,6 @@ class Linker {
 				);
 
 				if ( $comment === null ) {
-					$link = '';
 					if ( $title ) {
 						$section = $auto;
 						# Remove links that a user may have manually put in the autosummary
@@ -1168,12 +1167,10 @@ class Linker {
 								$title->getDBkey(), $section );
 						}
 						if ( $sectionTitle ) {
-							$link = Linker::makeCommentLink(
-								$sectionTitle, $wgLang->getArrow() . $auto, $wikiId, 'noclasses'
+							$auto = Linker::makeCommentLink(
+								$sectionTitle, $wgLang->getArrow() . $wgLang->getDirMark() . $auto,
+								$wikiId, 'noclasses'
 							);
-							$auto = '';
-						} else {
-							$link = '';
 						}
 					}
 					if ( $pre ) {
@@ -1188,7 +1185,7 @@ class Linker {
 						$auto = '<span dir="auto"><span class="autocomment">' . $auto . '</span>';
 						$append .= '</span>';
 					}
-					$comment = $pre . $link . $wgLang->getDirMark() . $auto;
+					$comment = $pre . $auto;
 				}
 				return $comment;
 			},
