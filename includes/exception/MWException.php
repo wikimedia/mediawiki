@@ -121,7 +121,7 @@ class MWException extends Exception {
 					"Fatal exception of type $1",
 					$type,
 					$logId,
-					MWExceptionHandler::getURL( $this )
+					MWExceptionHandler::getURL()
 				)
 			) ) .
 			"<!-- Set \$wgShowExceptionDetails = true; " .
