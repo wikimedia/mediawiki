@@ -397,7 +397,7 @@ class WebInstallerOptions extends WebInstallerPage {
 		$wrapperStyle = ( $this->getVar( '_LicenseCode' ) == 'cc-choose' ) ? '' : 'display: none';
 
 		return "<div class=\"config-cc-wrapper\" id=\"config-cc-wrapper\" style=\"$wrapperStyle\">\n" .
-			Html::element( 'iframe', $iframeAttribs, '', false /* not short */ ) .
+			Html::element( 'iframe', $iframeAttribs ) .
 			"</div>\n";
 	}
 
