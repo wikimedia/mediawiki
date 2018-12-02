@@ -77,9 +77,7 @@ class ForeignAPIFile extends File {
 			if ( $lastRedirect >= 0 ) {
 				$newtitle = Title::newFromText( $data['query']['redirects'][$lastRedirect]['to'] );
 				$img = new self( $newtitle, $repo, $info, true );
-				if ( $img ) {
-					$img->redirectedFrom( $title->getDBkey() );
-				}
+				$img->redirectedFrom( $title->getDBkey() );
 			} else {
 				$img = new self( $title, $repo, $info, true );
 			}
