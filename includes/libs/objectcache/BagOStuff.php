@@ -462,7 +462,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		$fname = __METHOD__;
 		$expiry = min( $expiry ?: INF, self::TTL_DAY );
 		$loop = new WaitConditionLoop(
-			function () use ( $key, $timeout, $expiry, $fname ) {
+			function () use ( $key, $expiry, $fname ) {
 				$this->clearLastError();
 				if ( $this->add( "{$key}:lock", 1, $expiry ) ) {
 					return true; // locked!
