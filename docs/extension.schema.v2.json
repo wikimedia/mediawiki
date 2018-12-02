@@ -715,6 +715,14 @@
 				"type": "string"
 			}
 		},
+		"ReauthenticateTime": {
+			"type": "object",
+			"patternProperties": {
+				".*": {
+					"type": "integer"
+				}
+			}
+		},
 		"callback": {
 			"type": [
 				"array",
