@@ -46,6 +46,7 @@ class ExtensionProcessor implements Processor {
 		'PasswordPolicy',
 		'RateLimits',
 		'RawHtmlMessages',
+		'ReauthenticateTime',
 		'RecentChangesFlags',
 		'RemoveCredentialsBlacklist',
 		'RemoveGroups',
