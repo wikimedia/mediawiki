@@ -113,7 +113,6 @@ $specialPageAliases = [
 	'Myuploads'                 => [ 'Moje_soubory', 'Mé_soubory' ],
 	'Newimages'                 => [ 'Nové_obrázky', 'Galerie_nových_obrázků', 'Nove_obrazky' ],
 	'Newpages'                  => [ 'Nové_stránky', 'Nove_stranky', 'Nejnovější_stránky', 'Nejnovejsi_stranky' ],
-	'PasswordReset'             => [ 'Reset_hesla', 'Resetovat_heslo' ],
 	'PagesWithProp'             => [ 'Stránky_s_vlastností', 'Stránky_s_vlastnostmi' ],
 	'PasswordReset'             => [ 'Reset_hesla', 'Resetovat_heslo', 'Obnova_hesla', 'Obnovit_heslo' ],
 	'PermanentLink'             => [ 'Trvalý_odkaz' ],

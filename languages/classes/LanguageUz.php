@@ -50,7 +50,6 @@ class UzConverter extends LanguageConverter {
 		'т' => 't', 'Т' => 'T',
 		'у' => 'u', 'У' => 'U',
 		'ф' => 'f', 'Ф' => 'F',
-		'ц' => 'c', 'Ц' => 'C',
 		'ў' => 'oʻ', 'Ў' => 'Oʻ',
 		// note: at the beginning of a word and right after a consonant, only "s" is used
 		'ц' => 'ts', 'Ц' => 'Ts',
