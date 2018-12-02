@@ -1029,6 +1029,7 @@
 	"localtime": "Мясцовы час:",
 	"timezoneuseserverdefault": "Выкарыстоўваць стандартныя налады {{GRAMMAR:родны|{{SITENAME}}}} ($1)",
 	"timezoneuseoffset": "Іншы (пазначце ніжэй розьніцу ў часе)",
+	"timezone-useoffset-placeholder": "Напрыклад: «-07:00» ці «01:00»",
 	"servertime": "Час на сэрвэры:",
 	"guesstimezone": "Запоўніць з браўзэра",
 	"timezoneregion-africa": "Афрыка",
