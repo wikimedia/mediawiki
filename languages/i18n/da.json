@@ -106,7 +106,7 @@
 	"tog-watchlisthideminor": "Skjul mindre ændringer i overvågningslisten",
 	"tog-watchlisthideliu": "Skjul indloggede brugeres redigeringer i overvågningslisten",
 	"tog-watchlistreloadautomatically": "Opdater overvågningslisten automatisk, når et filter ændres (kræver JavaScript)",
-	"tog-watchlistunwatchlinks": "Tilføj direkte henvisninger for at overvåge/fjerne overvågning til overvågningsposter (JavaScript krævet for at skifte funktionalitet)",
+	"tog-watchlistunwatchlinks": "Føj mærker ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) til at slå overvågning til og fra for overvågede sider med ændringer (JavaScript kræves for at kunne slå til og fra)",
 	"tog-watchlisthideanons": "Skjul anonyme brugeres redigeringer i overvågningslisten",
 	"tog-watchlisthidepatrolled": "Skjul patruljerede ændringer i overvågningslisten",
 	"tog-watchlisthidecategorization": "Skjul kategorisering af sider",

@@ -1120,7 +1120,7 @@
 	"timezonelegend": "时区：",
 	"localtime": "当地时间：",
 	"timezoneuseserverdefault": "使用wiki默认值（$1）",
-	"timezoneuseoffset": "其它（指定时差）",
+	"timezoneuseoffset": "其他（指定时差）",
 	"servertime": "服务器时间：",
 	"guesstimezone": "使用浏览器设置",
 	"timezoneregion-africa": "非洲",

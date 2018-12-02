@@ -1058,6 +1058,7 @@
 	"localtime": "Τοπική ώρα:",
 	"timezoneuseserverdefault": "Χρήση της προεπιλογής του wiki ($1)",
 	"timezoneuseoffset": "Ἀλλη (καθορισμός της διαφοράς)",
+	"timezone-useoffset-placeholder": "Τιμές ως παράδειγμα: \"-07:00\" or \"01:00\"",
 	"servertime": "Η ώρα του διακομιστή:",
 	"guesstimezone": "Συμπλήρωση μέσω του browser",
 	"timezoneregion-africa": "Αφρική",
