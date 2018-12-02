@@ -292,7 +292,7 @@ class ResourceLoaderImage {
 	 * @return string New SVG file data
 	 */
 	protected function variantize( $variantConf, ResourceLoaderContext $context ) {
-		$dom = new DomDocument;
+		$dom = new DOMDocument;
 		$dom->loadXML( file_get_contents( $this->getPath( $context ) ) );
 		$root = $dom->documentElement;
 		$wrapper = $dom->createElement( 'g' );
@@ -315,7 +315,7 @@ class ResourceLoaderImage {
 	 * @return string Massaged SVG image data
 	 */
 	protected function massageSvgPathdata( $svg ) {
-		$dom = new DomDocument;
+		$dom = new DOMDocument;
 		$dom->loadXML( $svg );
 		foreach ( $dom->getElementsByTagName( 'path' ) as $node ) {
 			$pathData = $node->getAttribute( 'd' );
