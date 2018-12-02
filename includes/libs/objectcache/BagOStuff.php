@@ -64,7 +64,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	protected $keyspace = 'local';
 	/** @var LoggerInterface */
 	protected $logger;
-	/** @var callback|null */
+	/** @var callable|null */
 	protected $asyncHandler;
 	/** @var int Seconds */
 	protected $syncTimeout;
