@@ -57,7 +57,7 @@ class ParserOptions {
 
 	/**
 	 * Lazy-loaded options
-	 * @var callback[]
+	 * @var callable[]
 	 */
 	private static $lazyOptions = [
 		'dateformat' => [ __CLASS__, 'initDateFormat' ],

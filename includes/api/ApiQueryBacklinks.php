@@ -418,7 +418,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if ( is_null( $resultPageSet ) ) {
 			// Try to add the result data in one go and pray that it fits
 			$code = $this->bl_code;
-			$data = array_map( function ( $arr ) use ( $result, $code ) {
+			$data = array_map( function ( $arr ) use ( $code ) {
 				if ( isset( $arr['redirlinks'] ) ) {
 					$arr['redirlinks'] = array_values( $arr['redirlinks'] );
 					ApiResult::setIndexedTagName( $arr['redirlinks'], $code );

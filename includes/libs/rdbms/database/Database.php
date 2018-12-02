@@ -97,9 +97,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $connLogger;
 	/** @var LoggerInterface */
 	protected $queryLogger;
-	/** @var callback Error logging callback */
+	/** @var callable Error logging callback */
 	protected $errorLogger;
-	/** @var callback Deprecation logging callback */
+	/** @var callable Deprecation logging callback */
 	protected $deprecationLogger;
 
 	/** @var resource|null Database connection */
@@ -3742,7 +3742,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				}
 			}
 			if ( $pos < 0 ) {
-				throw new DBUnexpectedError( "Atomic section not found (for $fname)" );
+				throw new DBUnexpectedError( $this, "Atomic section not found (for $fname)" );
 			}
 			// Remove all descendant sections and re-index the array
 			$excisedIds = [];

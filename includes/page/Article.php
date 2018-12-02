@@ -295,7 +295,7 @@ class Article implements Page {
 			$content = ContentHandler::makeContent( $text, $this->getTitle() );
 		} else {
 			$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
-			$content = new MessageContent( $message, null, 'parsemag' );
+			$content = new MessageContent( $message, null );
 		}
 
 		return $content;
