@@ -205,7 +205,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 		# Either submit or create our form
 		if ( $this->mIsAllowed && $this->submitClicked ) {
-			$this->submit( $request );
+			$this->submit();
 		} else {
 			$this->showForm();
 		}
