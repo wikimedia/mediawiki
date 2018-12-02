@@ -254,7 +254,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 
 		$allReqs = AuthManager::singleton()->getAuthenticationRequests(
 			$this->authAction, $this->getUser() );
-		$this->authRequests = array_filter( $allReqs, function ( $req ) use ( $subPage ) {
+		$this->authRequests = array_filter( $allReqs, function ( $req ) {
 			return !in_array( get_class( $req ), $this->getRequestBlacklist(), true );
 		} );
 	}
