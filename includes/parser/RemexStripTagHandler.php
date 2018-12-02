@@ -66,7 +66,6 @@ class RemexStripTagHandler implements TokenHandler {
 		'fieldset' => true,
 		'figcaption' => true,
 		'figure' => true,
-		'figcaption' => true,
 		'footer' => true,
 		'form' => true,
 		'h1' => true,

@@ -657,12 +657,8 @@ class CrhExceptions {
 				self::WB . ')/u' => '$1ö$2ь$3',
 			'/' . self::WB . '([bcgkpşBCGKPŞ])Ö([' . Crh::L_N_CONS . '])([' . Crh::L_CONS . ']|' .
 				self::WB . ')/u' => '$1Ö$2Ь$3',
-			'/' . self::WB . '([bcgkpşBCGKPŞ])Ö([' . Crh::L_N_CONS . '])([' . Crh::L_CONS . ']|' .
-				self::WB . ')/u' => '$1Ö$2Ь$3',
 			'/' . self::WB . '([bcgkpşBCGKPŞ])ü([' . Crh::L_N_CONS . '])([' . Crh::L_CONS . ']|' .
 				self::WB . ')/u' => '$1ü$2ь$3',
-			'/' . self::WB . '([bcgkpşBCGKPŞ])Ü([' . Crh::L_N_CONS . '])([' . Crh::L_CONS . ']|' .
-				self::WB . ')/u' => '$1Ü$2Ь$3',
 			'/' . self::WB . '([bcgkpşBCGKPŞ])Ü([' . Crh::L_N_CONS . '])([' . Crh::L_CONS . ']|' .
 				self::WB . ')/u' => '$1Ü$2Ь$3',
 
