@@ -298,7 +298,7 @@ class JobQueueDB extends JobQueue {
 				// Get the job object from the row...
 				$title = Title::makeTitle( $row->job_namespace, $row->job_title );
 				$job = Job::factory( $row->job_cmd, $title,
-					self::extractBlob( $row->job_params ), $row->job_id );
+					self::extractBlob( $row->job_params ) );
 				$job->metadata['id'] = $row->job_id;
 				$job->metadata['timestamp'] = $row->job_timestamp;
 				break; // done
