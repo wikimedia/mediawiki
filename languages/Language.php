@@ -1833,22 +1833,19 @@ class Language {
 		while ( $hebrewMonth <= 12 ) {
 			# Calculate days in this month
 			if ( $isLeap && $hebrewMonth == 6 ) {
-				# Adar in a leap year
-				if ( $isLeap ) {
-					# Leap year - has Adar I, with 30 days, and Adar II, with 29 days
-					$days = 30;
+				# Leap year - has Adar I, with 30 days, and Adar II, with 29 days
+				$days = 30;
+				if ( $hebrewDay <= $days ) {
+					# Day in Adar I
+					$hebrewMonth = 13;
+				} else {
+					# Subtract the days of Adar I
+					$hebrewDay -= $days;
+					# Try Adar II
+					$days = 29;
 					if ( $hebrewDay <= $days ) {
-						# Day in Adar I
-						$hebrewMonth = 13;
-					} else {
-						# Subtract the days of Adar I
-						$hebrewDay -= $days;
-						# Try Adar II
-						$days = 29;
-						if ( $hebrewDay <= $days ) {
-							# Day in Adar II
-							$hebrewMonth = 14;
-						}
+						# Day in Adar II
+						$hebrewMonth = 14;
 					}
 				}
 			} elseif ( $hebrewMonth == 2 && $yearPattern == 2 ) {
