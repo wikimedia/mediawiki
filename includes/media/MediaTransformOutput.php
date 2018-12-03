@@ -217,7 +217,7 @@ abstract class MediaTransformOutput {
 	 * @return bool Success
 	 */
 	public function streamFile( $headers = [] ) {
-		$this->streamFileWithStatus( $headers )->isOK();
+		return $this->streamFileWithStatus( $headers )->isOK();
 	}
 
 	/**
