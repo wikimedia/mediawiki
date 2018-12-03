@@ -2688,30 +2688,14 @@ class Title implements LinkTarget {
 		}
 
 		$useReplica = ( $rigor !== 'secure' );
-		$block = $user->getBlock( $useReplica );
-
-		// The block may explicitly allow an action (like "read" or "upload").
-		if ( $block && $block->prevents( $action ) === false ) {
-			return $errors;
-		}
-
-		// Determine if the user is blocked from this action on this page.
-		try {
+		if ( ( $action == 'edit' || $action == 'create' )
+			&& !$user->isBlockedFrom( $this, $useReplica )
+		) {
+			// Don't block the user from editing their own talk page unless they've been
+			// explicitly blocked from that too.
+		} elseif ( $user->isBlocked() && $user->getBlock()->prevents( $action ) !== false ) {
 			// @todo FIXME: Pass the relevant context into this function.
-			$action = Action::factory( $action, WikiPage::factory( $this ), RequestContext::getMain() );
-		} catch ( Exception $e ) {
-			$action = null;
-		}
-
-		// If no action object is returned, assume that the action requires unblock
-		// which is the default.
-		if ( !$action || $action->requiresUnblock() ) {
-			if ( $user->isBlockedFrom( $this, $useReplica ) ) {
-				// @todo FIXME: Pass the relevant context into this function.
-				$errors[] = $block
-					? $block->getPermissionsError( RequestContext::getMain() )
-					: [ 'badaccess-group0' ];
-			}
+			$errors[] = $user->getBlock()->getPermissionsError( RequestContext::getMain() );
 		}
 
 		return $errors;
