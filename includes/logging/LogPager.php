@@ -70,7 +70,7 @@ class LogPager extends ReverseChronologicalPager {
 	 */
 	public function __construct( $list, $types = [], $performer = '', $title = '',
 		$pattern = false, $conds = [], $year = false, $month = false, $day = false,
-		$tagFilter = '', $action = '', $logId = false
+		$tagFilter = '', $action = '', $logId = 0
 	) {
 		parent::__construct( $list->getContext() );
 		$this->mConds = $conds;
