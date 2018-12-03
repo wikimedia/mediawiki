@@ -54,11 +54,7 @@ class UploadFromChunks extends UploadFromFile {
 		if ( $stash ) {
 			$this->stash = $stash;
 		} else {
-			if ( $user ) {
-				wfDebug( __METHOD__ . " creating new UploadFromChunks instance for " . $user->getId() . "\n" );
-			} else {
-				wfDebug( __METHOD__ . " creating new UploadFromChunks instance with no user\n" );
-			}
+			wfDebug( __METHOD__ . " creating new UploadFromChunks instance for " . $user->getId() . "\n" );
 			$this->stash = new UploadStash( $this->repo, $this->user );
 		}
 	}
