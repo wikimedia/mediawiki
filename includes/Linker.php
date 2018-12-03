@@ -1159,6 +1159,10 @@ class Linker {
 						$section = str_replace( '[[', '', $section );
 						$section = str_replace( ']]', '', $section );
 
+						// We don't want any links in the auto text to be linked, but we still
+						// want to show any [[ ]]
+						$sectionText = str_replace( '[[', '&#91;[', $auto );
+
 						$section = substr( Parser::guessSectionNameFromStrippedText( $section ), 1 );
 						if ( $local ) {
 							$sectionTitle = Title::makeTitleSafe( NS_MAIN, '', $section );
@@ -1168,7 +1172,7 @@ class Linker {
 						}
 						if ( $sectionTitle ) {
 							$auto = Linker::makeCommentLink(
-								$sectionTitle, $wgLang->getArrow() . $wgLang->getDirMark() . $auto,
+								$sectionTitle, $wgLang->getArrow() . $wgLang->getDirMark() . $sectionText,
 								$wikiId, 'noclasses'
 							);
 						}

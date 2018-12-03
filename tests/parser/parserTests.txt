@@ -24526,6 +24526,26 @@ comment local title=[[Main Page]]
 !!end
 
 !! test
+Edit comment with section link that has a link in it
+!! options
+comment local title=[[Main Page]]
+!! wikitext
+/* [[A link]] */
+!! html/php
+<span dir="auto"><span class="autocomment"><a href="#A_link">→‎&#91;[A link]]</a></span></span>
+!! end
+
+!! test
+Edit comment with section link that has a template in it
+!! options
+comment local title=[[Main Page]]
+!! wikitext
+/* {{foobar|param}} */
+!! html/php
+<span dir="auto"><span class="autocomment"><a href="#.7B.7Bfoobar.7Cparam.7D.7D">→‎{{foobar|param}}</a></span></span>
+!! end
+
+!! test
 Edit comment with subpage link (T16080)
 !! options
 comment
