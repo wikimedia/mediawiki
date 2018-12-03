@@ -72,6 +72,7 @@ class CliInstaller extends Installer {
 			$wgContLang = Language::factory( $option['lang'] );
 			$wgLang = Language::factory( $option['lang'] );
 			$wgLanguageCode = $option['lang'];
+			$this->setVar( 'wgLanguageCode', $wgLanguageCode );
 			RequestContext::getMain()->setLanguage( $wgLang );
 		}
 
