@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * Handles the backend logic of moving a page from one title
@@ -137,7 +138,8 @@ class MovePage {
 			$status->fatal(
 				'content-not-allowed-here',
 				ContentHandler::getLocalizedName( $this->oldTitle->getContentModel() ),
-				$this->newTitle->getPrefixedText()
+				$this->newTitle->getPrefixedText(),
+				SlotRecord::MAIN
 			);
 		}
 

@@ -478,6 +478,7 @@ class RevisionTest extends MediaWikiTestCase {
 			MediaWikiServices::getInstance()->getCommentStore(),
 			MediaWikiServices::getInstance()->getContentModelStore(),
 			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			MediaWikiServices::getInstance()->getSlotRoleRegistry(),
 			MIGRATION_OLD,
 			MediaWikiServices::getInstance()->getActorMigration()
 		);

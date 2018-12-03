@@ -1055,7 +1055,7 @@ class DifferenceEngine extends ContextSource {
 			$slotDiff = $slotDiffRenderer->getDiff( $slotContents[$role]['old'],
 				$slotContents[$role]['new'] );
 			if ( $slotDiff && $role !== SlotRecord::MAIN ) {
-				// TODO use human-readable role name at least
+				// FIXME: ask SlotRoleHandler::getSlotNameMessage
 				$slotTitle = $role;
 				$difftext .= $this->getSlotHeader( $slotTitle );
 			}

@@ -48,8 +48,10 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
+use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreFactory;
@@ -420,9 +422,12 @@ return [
 	},
 
 	'RevisionRenderer' => function ( MediaWikiServices $services ) : RevisionRenderer {
-		$renderer = new RevisionRenderer( $services->getDBLoadBalancer() );
-		$renderer->setLogger( LoggerFactory::getInstance( 'SaveParse' ) );
+		$renderer = new RevisionRenderer(
+			$services->getDBLoadBalancer(),
+			$services->getSlotRoleRegistry()
+		);
 
+		$renderer->setLogger( LoggerFactory::getInstance( 'SaveParse' ) );
 		return $renderer;
 	},
 
@@ -436,6 +441,7 @@ return [
 			$services->getDBLoadBalancerFactory(),
 			$services->getBlobStoreFactory(),
 			$services->getNameTableStoreFactory(),
+			$services->getSlotRoleRegistry(),
 			$services->getMainWANObjectCache(),
 			$services->getCommentStore(),
 			$services->getActorMigration(),
@@ -517,6 +523,22 @@ return [
 		} );
 
 		return $factory;
+	},
+
+	'SlotRoleRegistry' => function ( MediaWikiServices $services ) : SlotRoleRegistry {
+		$config = $services->getMainConfig();
+
+		$registry = new SlotRoleRegistry(
+			$services->getNameTableStoreFactory()->getSlotRoles()
+		);
+
+		$registry->defineRole( 'main', function () use ( $config ) {
+			return new MainSlotRoleHandler(
+				$config->get( 'NamespaceContentModels' )
+			);
+		} );
+
+		return $registry;
 	},
 
 	'SpecialPageFactory' => function ( MediaWikiServices $services ) : SpecialPageFactory {

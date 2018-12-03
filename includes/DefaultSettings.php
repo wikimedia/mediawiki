@@ -8618,6 +8618,9 @@ $wgUploadMaintenance = false;
  * defined for a given namespace, pages in that namespace will use the CONTENT_MODEL_WIKITEXT
  * (except for the special case of JS and CS pages).
  *
+ * @note To determine the default model for a new page's main slot, or any slot in general,
+ * use SlotRoleHandler::getDefaultModel() together with SlotRoleRegistry::getRoleHandler().
+ *
  * @since 1.21
  */
 $wgNamespaceContentModels = [];

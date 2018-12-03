@@ -19,6 +19,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * This is a utility class with only static functions
@@ -462,13 +463,17 @@ class MWNamespace {
 	 * Get the default content model for a namespace
 	 * This does not mean that all pages in that namespace have the model
 	 *
+	 * @note To determine the default model for a new page's main slot, or any slot in general,
+	 * use SlotRoleHandler::getDefaultModel() together with SlotRoleRegistry::getRoleHandler().
+	 *
 	 * @since 1.21
 	 * @param int $index Index to check
 	 * @return null|string Default model name for the given namespace, if set
 	 */
 	public static function getNamespaceContentModel( $index ) {
-		global $wgNamespaceContentModels;
-		return $wgNamespaceContentModels[$index] ?? null;
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$models = $config->get( 'NamespaceContentModels' );
+		return $models[$index] ?? null;
 	}
 
 	/**

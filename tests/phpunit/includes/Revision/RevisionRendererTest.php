@@ -7,9 +7,12 @@ use Content;
 use Language;
 use LogicException;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\Storage\NameTableStore;
 use MediaWikiTestCase;
 use MediaWiki\User\UserIdentityValue;
 use ParserOptions;
@@ -126,7 +129,20 @@ class RevisionRendererTest extends MediaWikiTestCase {
 			->with( $dbIndex )
 			->willReturn( $db );
 
-		return new RevisionRenderer( $lb );
+		/** @var NameTableStore|MockObject $slotRoles */
+		$slotRoles = $this->getMockBuilder( NameTableStore::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$slotRoles->method( 'getMap' )
+			->willReturn( [] );
+
+		$roleReg = new SlotRoleRegistry( $slotRoles );
+		$roleReg->defineRole( 'main', function () {
+			return new MainSlotRoleHandler( [] );
+		} );
+		$roleReg->defineRoleWithModel( 'aux', CONTENT_MODEL_WIKITEXT );
+
+		return new RevisionRenderer( $lb, $roleReg );
 	}
 
 	private function selectFieldCallback( $table, $fields, $cond, $maxRev ) {

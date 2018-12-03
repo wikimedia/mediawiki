@@ -132,6 +132,9 @@ class RevisionStore
 	/** @var int An appropriate combination of SCHEMA_COMPAT_XXX flags. */
 	private $mcrMigrationStage;
 
+	/** @var SlotRoleRegistry */
+	private $slotRoleRegistry;
+
 	/**
 	 * @todo $blobStore should be allowed to be any BlobStore!
 	 *
@@ -146,11 +149,11 @@ class RevisionStore
 	 * @param CommentStore $commentStore
 	 * @param NameTableStore $contentModelStore
 	 * @param NameTableStore $slotRoleStore
+	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param int $mcrMigrationStage An appropriate combination of SCHEMA_COMPAT_XXX flags
 	 * @param ActorMigration $actorMigration
 	 * @param bool|string $wikiId
 	 *
-	 * @throws MWException if $mcrMigrationStage or $wikiId is invalid.
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
@@ -159,6 +162,7 @@ class RevisionStore
 		CommentStore $commentStore,
 		NameTableStore $contentModelStore,
 		NameTableStore $slotRoleStore,
+		SlotRoleRegistry $slotRoleRegistry,
 		$mcrMigrationStage,
 		ActorMigration $actorMigration,
 		$wikiId = false
@@ -199,6 +203,7 @@ class RevisionStore
 		$this->commentStore = $commentStore;
 		$this->contentModelStore = $contentModelStore;
 		$this->slotRoleStore = $slotRoleStore;
+		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->mcrMigrationStage = $mcrMigrationStage;
 		$this->actorMigration = $actorMigration;
 		$this->wikiId = $wikiId;
@@ -923,7 +928,7 @@ class RevisionStore
 		$format = $content->getDefaultFormat();
 		$model = $content->getModel();
 
-		$this->checkContent( $content, $title );
+		$this->checkContent( $content, $title, $slot->getRole() );
 
 		return $this->blobStore->storeBlob(
 			$content->serialize( $format ),
@@ -982,11 +987,12 @@ class RevisionStore
 	 *
 	 * @param Content $content
 	 * @param Title $title
+	 * @param string $role
 	 *
 	 * @throws MWException
 	 * @throws MWUnknownContentModelException
 	 */
-	private function checkContent( Content $content, Title $title ) {
+	private function checkContent( Content $content, Title $title, $role ) {
 		// Note: may return null for revisions that have not yet been inserted
 
 		$model = $content->getModel();
@@ -1005,7 +1011,8 @@ class RevisionStore
 
 			$this->assertCrossWikiContentLoadingIsSafe();
 
-			$defaultModel = ContentHandler::getDefaultModelFor( $title );
+			$roleHandler = $this->slotRoleRegistry->getRoleHandler( $role );
+			$defaultModel = $roleHandler->getDefaultModel( $title );
 			$defaultHandler = ContentHandler::getForModelID( $defaultModel );
 			$defaultFormat = $defaultHandler->getDefaultFormat();
 
@@ -1350,9 +1357,8 @@ class RevisionStore
 			$mainSlotRow->model_name = function ( SlotRecord $slot ) use ( $title ) {
 				$this->assertCrossWikiContentLoadingIsSafe();
 
-				// TODO: MCR: consider slot role in getDefaultModelFor()! Use LinkTarget!
-				// TODO: MCR: deprecate $title->getModel().
-				return ContentHandler::getDefaultModelFor( $title );
+				return $this->slotRoleRegistry->getRoleHandler( $slot->getRole() )
+					->getDefaultModel( $title );
 			};
 		}
 

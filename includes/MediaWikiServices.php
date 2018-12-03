@@ -17,6 +17,7 @@ use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Revision\RevisionRenderer;
+use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Special\SpecialPageFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
@@ -838,6 +839,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getSkinFactory() {
 		return $this->getService( 'SkinFactory' );
+	}
+
+	/**
+	 * @since 1.33
+	 * @return SlotRoleRegistry
+	 */
+	public function getSlotRoleRegistry() {
+		return $this->getService( 'SlotRoleRegistry' );
 	}
 
 	/**
