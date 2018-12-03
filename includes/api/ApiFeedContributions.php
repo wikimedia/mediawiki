@@ -172,33 +172,29 @@ class ApiFeedContributions extends ApiBase {
 	 * @return string
 	 */
 	protected function feedItemDesc( RevisionRecord $revision ) {
-		if ( $revision ) {
-			$msg = wfMessage( 'colon-separator' )->inContentLanguage()->text();
-			try {
-				$content = $revision->getContent( SlotRecord::MAIN );
-			} catch ( RevisionAccessException $e ) {
-				$content = null;
-			}
-
-			if ( $content instanceof TextContent ) {
-				// only textual content has a "source view".
-				$html = nl2br( htmlspecialchars( $content->getNativeData() ) );
-			} else {
-				// XXX: we could get an HTML representation of the content via getParserOutput, but that may
-				//     contain JS magic and generally may not be suitable for inclusion in a feed.
-				//     Perhaps Content should have a getDescriptiveHtml method and/or a getSourceText method.
-				// Compare also FeedUtils::formatDiffRow.
-				$html = '';
-			}
-
-			$comment = $revision->getComment();
-
-			return '<p>' . htmlspecialchars( $this->feedItemAuthor( $revision ) ) . $msg .
-				htmlspecialchars( FeedItem::stripComment( $comment ? $comment->text : '' ) ) .
-				"</p>\n<hr />\n<div>" . $html . '</div>';
+		$msg = wfMessage( 'colon-separator' )->inContentLanguage()->text();
+		try {
+			$content = $revision->getContent( SlotRecord::MAIN );
+		} catch ( RevisionAccessException $e ) {
+			$content = null;
 		}
 
-		return '';
+		if ( $content instanceof TextContent ) {
+			// only textual content has a "source view".
+			$html = nl2br( htmlspecialchars( $content->getNativeData() ) );
+		} else {
+			// XXX: we could get an HTML representation of the content via getParserOutput, but that may
+			//     contain JS magic and generally may not be suitable for inclusion in a feed.
+			//     Perhaps Content should have a getDescriptiveHtml method and/or a getSourceText method.
+			// Compare also FeedUtils::formatDiffRow.
+			$html = '';
+		}
+
+		$comment = $revision->getComment();
+
+		return '<p>' . htmlspecialchars( $this->feedItemAuthor( $revision ) ) . $msg .
+			htmlspecialchars( FeedItem::stripComment( $comment ? $comment->text : '' ) ) .
+			"</p>\n<hr />\n<div>" . $html . '</div>';
 	}
 
 	public function getAllowedParams() {

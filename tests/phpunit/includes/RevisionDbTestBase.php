@@ -458,6 +458,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			$services->getCommentStore(),
 			$services->getContentModelStore(),
 			$services->getSlotRoleStore(),
+			$services->getSlotRoleRegistry(),
 			$this->getMcrMigrationStage(),
 			$services->getActorMigration()
 		);

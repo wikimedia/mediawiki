@@ -978,6 +978,8 @@ class Title implements LinkTarget {
 	/**
 	 * Get the page's content model id, see the CONTENT_MODEL_XXX constants.
 	 *
+	 * @todo Deprecate this in favor of SlotRecord::getModel()
+	 *
 	 * @param int $flags A bit field; may be Title::GAID_FOR_UPDATE to select for update
 	 * @return string Content model id
 	 */

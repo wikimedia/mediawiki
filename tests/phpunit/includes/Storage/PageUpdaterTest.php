@@ -22,6 +22,15 @@ use WikiPage;
  */
 class PageUpdaterTest extends MediaWikiTestCase {
 
+	public function setUp() {
+		parent::setUp();
+
+		MediaWikiServices::getInstance()->getSlotRoleRegistry()->defineRoleWithModel(
+			'aux',
+			CONTENT_MODEL_WIKITEXT
+		);
+	}
+
 	private function getDummyTitle( $method ) {
 		return Title::newFromText( $method, $this->getDefaultWikitextNS() );
 	}
@@ -335,6 +344,34 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		$this->assertNull( $updater->getNewRevision(), 'getNewRevision()' );
 		$this->assertFalse( $status->isOK(), 'getStatus()->isOK()' );
 		$this->assertTrue( $status->hasMessage( 'edit-already-exists' ), 'edit-already-exists' );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
+	 */
+	public function testFailureOnBadContentModel() {
+		$user = $this->getTestUser()->getUser();
+		$title = $this->getDummyTitle( __METHOD__ );
+
+		// start editing non-existing page
+		$page = WikiPage::factory( $title );
+		$updater = $page->newPageUpdater( $user );
+
+		// plain text content should fail in aux slot (the main slot doesn't care)
+		$updater->setContent( 'main', new TextContent( 'Main Content' ) );
+		$updater->setContent( 'aux', new TextContent( 'Aux Content' ) );
+
+		$summary = CommentStoreComment::newUnsavedComment( 'udpate?!' );
+		$updater->saveRevision( $summary, EDIT_UPDATE );
+		$status = $updater->getStatus();
+
+		$this->assertFalse( $updater->wasSuccessful(), 'wasSuccessful()' );
+		$this->assertNull( $updater->getNewRevision(), 'getNewRevision()' );
+		$this->assertFalse( $status->isOK(), 'getStatus()->isOK()' );
+		$this->assertTrue(
+			$status->hasMessage( 'content-not-allowed-here' ),
+			'content-not-allowed-here'
+		);
 	}
 
 	public function provideSetRcPatrolStatus( $patrolled ) {

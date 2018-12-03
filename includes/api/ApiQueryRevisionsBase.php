@@ -616,10 +616,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		$slotRoles = MediaWikiServices::getInstance()->getSlotRoleStore()->getMap();
-		if ( !in_array( SlotRecord::MAIN, $slotRoles, true ) ) {
-			$slotRoles[] = SlotRecord::MAIN;
-		}
+		$slotRoles = MediaWikiServices::getInstance()->getSlotRoleRegistry()->getKnownRoles();
 		sort( $slotRoles, SORT_STRING );
 
 		return [
