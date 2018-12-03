@@ -935,7 +935,7 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $s === false ) {
 			$result = null;
 		} else {
-			$result = $s->user_id;
+			$result = (int)$s->user_id;
 		}
 
 		self::$idCacheByName[$name] = $result;
