@@ -63,6 +63,7 @@ interface Restriction {
 	/**
 	 * Creates a new Restriction from a database row.
 	 *
+	 * @param \stdClass $row
 	 * @return self
 	 */
 	public static function newFromRow( \stdClass $row );
