@@ -378,7 +378,6 @@ class SpecialExport extends SpecialPage {
 		}
 
 		/* Ok, let's get to it... */
-		$lb = false;
 		$db = wfGetDB( DB_REPLICA );
 
 		$exporter = new WikiExporter( $db, $history );
@@ -406,10 +405,6 @@ class SpecialExport extends SpecialPage {
 		}
 
 		$exporter->closeStream();
-
-		if ( $lb ) {
-			$lb->closeAll();
-		}
 	}
 
 	/**
