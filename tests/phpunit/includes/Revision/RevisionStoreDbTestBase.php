@@ -12,7 +12,9 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\IncompleteRevisionException;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\BlobStoreFactory;
@@ -1353,6 +1355,44 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertNull(
 			$store->getNextRevision( $store->getRevisionById( $revTwo->getId() ) )
 		);
+	}
+
+	public function provideNonHistoryRevision() {
+		$title = Title::newFromText( __METHOD__ );
+		$rev = new MutableRevisionRecord( $title );
+		yield [ $rev ];
+
+		$user = new UserIdentityValue( 7, 'Frank', 0 );
+		$comment = CommentStoreComment::newUnsavedComment( 'Test' );
+		$row = (object)[
+			'ar_id' => 3,
+			'ar_rev_id' => 34567,
+			'ar_page_id' => 5,
+			'ar_deleted' => 0,
+			'ar_minor_edit' => 0,
+			'ar_timestamp' => '20180101020202',
+		];
+		$slots = new RevisionSlots( [] );
+		$rev = new RevisionArchiveRecord( $title, $user, $comment, $row, $slots );
+		yield [ $rev ];
+	}
+
+	/**
+	 * @dataProvider provideNonHistoryRevision
+	 * @covers \MediaWiki\Revision\RevisionStore::getPreviousRevision
+	 */
+	public function testGetPreviousRevision_bad( RevisionRecord $rev ) {
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$this->assertNull( $store->getPreviousRevision( $rev ) );
+	}
+
+	/**
+	 * @dataProvider provideNonHistoryRevision
+	 * @covers \MediaWiki\Revision\RevisionStore::getNextRevision
+	 */
+	public function testGetNextRevision_bad( RevisionRecord $rev ) {
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$this->assertNull( $store->getNextRevision( $rev ) );
 	}
 
 	/**
