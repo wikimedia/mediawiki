@@ -162,7 +162,7 @@
 	"config-regenerate": "إعادة تكوين LocalSettings.php ←",
 	"config-show-table-status": "<code> إظهار جدول الحالة </code> فشل الاستعلام!",
 	"config-unknown-collation": "<strong>تحذير:</strong> قاعدة بيانات يستخدم ترتيبا غير معروف.",
-	"config-db-web-account": "حساب قاعدة البيانات للوصول عبر الوب",
+	"config-db-web-account": "حساب قاعدة البيانات للوصول عبر الويب",
 	"config-db-web-help": "حدد اسم المستخدم وكلمة المرور التي سيستخدمهما خادم الويب للاتصال بخادم قاعدة البيانات، أثناء عملية الويكي العادية.",
 	"config-db-web-account-same": "استعمل نفس الحساب للتنصيب",
 	"config-db-web-create": "إنشئ حساب إذا لم يكن موجودا بالفعل",

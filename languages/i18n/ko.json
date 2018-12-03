@@ -2258,7 +2258,7 @@
 	"enotif_impersonal_salutation": "{{SITENAME}} 사용자",
 	"enotif_subject_deleted": "{{SITENAME}} $1 문서를 $2님이 {{GENDER:$2|삭제했습니다}}",
 	"enotif_subject_created": "{{SITENAME}} $1 문서를 $2님이 {{GENDER:$2|만들었습니다}}",
-	"enotif_subject_moved": "{{SITENAME}} $1 문서를 $2님이 {{GENDER:$2|이동팼습니다}}",
+	"enotif_subject_moved": "{{SITENAME}} $1 문서를 $2님이 {{GENDER:$2|이동했습니다}}",
 	"enotif_subject_restored": "{{SITENAME}} $1 문서를 $2님이 {{GENDER:$2|복구했습니다}}",
 	"enotif_subject_changed": "{{SITENAME}} $1 문서를 $2님이 {{GENDER:$2|바꾸었습니다}}",
 	"enotif_body_intro_deleted": "{{SITENAME}} $1 문서를 $PAGEEDITDATE에 $2님이 {{GENDER:$2|삭제했으며}} $3 에서 볼 수 있습니다.",

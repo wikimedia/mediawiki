@@ -11,7 +11,8 @@
 			"Kaganer",
 			"Исмаил Садуев",
 			"Macofe",
-			"Nemo bis"
+			"Nemo bis",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "КӀел сиз хьакха хьажорган:",
@@ -1061,6 +1062,7 @@
 	"right-editsemiprotected": "«{{int:protect-level-autoconfirmed}}» бахьанца ларйина агӀонаш нисъяр",
 	"right-editinterface": "лелош йолу интерфейсан хийцам бар",
 	"right-editusercss": "кхечу декъашхойн CSS-файлаш нсяр",
+	"right-edituserjson": "кхечу декъашхойн JSON-файлаш нисяр",
 	"right-edituserjs": "кхечу декъашхойн JavaScript-файлаш нисяр",
 	"right-editmyusercss": "Декъашхочун CSS файлаш таяр",
 	"right-editmyuserjs": "Лелош йолу шен JavaScript-файлаш таяр",
