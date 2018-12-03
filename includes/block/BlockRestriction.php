@@ -34,7 +34,6 @@ class BlockRestriction {
 	 *
 	 * @param int|array $blockId
 	 * @param IDatabase|null $db
-	 * @param array $options Options to pass to the select query.
 	 * @return Restriction[]
 	 */
 	public static function loadByBlockId( $blockId, IDatabase $db = null ) {
