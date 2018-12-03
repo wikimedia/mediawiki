@@ -15,6 +15,7 @@ class HTMLExpiryField extends HTMLFormField {
 
 	/**
 	 * Relative Date Time Field.
+	 * @param array $params
 	 */
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
