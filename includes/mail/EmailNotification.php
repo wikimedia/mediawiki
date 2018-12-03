@@ -444,11 +444,12 @@ class EmailNotification {
 	/**
 	 * Does the per-user customizations to a notification e-mail (name,
 	 * timestamp in proper timezone, etc) and sends it out.
-	 * Returns true if the mail was sent successfully.
+	 * Returns Status if email was sent successfully or not (Status::newGood()
+	 * or Status::newFatal() respectively).
 	 *
 	 * @param User $watchingUser
 	 * @param string $source
-	 * @return bool
+	 * @return Status
 	 * @private
 	 */
 	function sendPersonalised( $watchingUser, $source ) {
