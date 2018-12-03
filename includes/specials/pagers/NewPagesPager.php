@@ -59,8 +59,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 			}
 		}
 
-		$rcIndexes = [];
-
 		if ( $namespace !== false ) {
 			if ( $this->opts->getValue( 'invert' ) ) {
 				$conds[] = 'rc_namespace != ' . $this->mDb->addQuotes( $namespace );
@@ -105,17 +103,11 @@ class NewPagesPager extends ReverseChronologicalPager {
 		Hooks::run( 'SpecialNewpagesConditions',
 			[ &$pager, $this->opts, &$conds, &$tables, &$fields, &$join_conds ] );
 
-		$options = [];
-
-		if ( $rcIndexes ) {
-			$options = [ 'USE INDEX' => [ 'recentchanges' => $rcIndexes ] ];
-		}
-
 		$info = [
 			'tables' => $tables,
 			'fields' => $fields,
 			'conds' => $conds,
-			'options' => $options,
+			'options' => [],
 			'join_conds' => $join_conds
 		];
 
