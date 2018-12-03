@@ -5470,6 +5470,7 @@ class Parser {
 	 * Adds an entry to appropriate link tables.
 	 *
 	 * @since 1.32
+	 * @param string $value
 	 * @return array of `[ type, target ]`, where:
 	 *   - `type` is one of:
 	 *     - `null`: Given value is not a valid link target, use default

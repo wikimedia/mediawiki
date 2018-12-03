@@ -53,7 +53,8 @@ class BlockLevelPass {
 	}
 
 	/**
-	 * Private constructor
+	 * @param string $text
+	 * @param bool $lineStart
 	 */
 	private function __construct( $text, $lineStart ) {
 		$this->text = $text;
