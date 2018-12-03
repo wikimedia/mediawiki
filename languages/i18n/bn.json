@@ -4147,5 +4147,6 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "পাসওয়ার্ড ব্যবহারকারী নামের মত একই হতে পারে না",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "পাসওয়ার্ড বিশেষত কালো তালিকাভুক্ত পাসওয়ার্ডের সাথে মিলতে পারবে না",
 	"passwordpolicies-policy-maximalpasswordlength": "পাসওয়ার্ড $1 {{PLURAL:$1|অক্ষরের}} চেয়ে কম দীর্ঘ হতে হবে",
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "পাসওয়ার্ড ১,০০,০০০ সর্বাধিক ব্যবহৃত পাসওয়ার্ডের তালিকায় থাকতে পারবে না।",
 	"unprotected-js": "নিরাপত্তার কারণে জাভাস্ক্রিপ্ট অনিরাপদ পৃষ্ঠা থেকে লোড করা যাবে না। শুধুমাত্র মিডিয়াউইকি: নামস্থান বা ব্যবহারকারী উপপাতায় জাভাস্ক্রিপ্ট তৈরি করুন"
 }

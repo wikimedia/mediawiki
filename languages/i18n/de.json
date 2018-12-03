@@ -816,7 +816,7 @@
 	"defaultmessagetext": "Standardtext",
 	"content-failed-to-parse": "Parsen des Inhalts $2 für Modell $1 fehlgeschlagen: $3",
 	"invalid-content-data": "Ungültige Inhaltsdaten",
-	"content-not-allowed-here": "Der Inhalt „$1“ ist auf der Seite [[$2]] nicht erlaubt",
+	"content-not-allowed-here": "Der Inhalt „$1“ ist auf der Seite [[$2]] im Schlitz „$3“ nicht erlaubt",
 	"editwarning-warning": "Das Verlassen dieser Seite kann dazu führen, dass deine Änderungen verloren gehen.\nWenn du angemeldet bist, kannst du das Anzeigen dieser Warnung im Bereich „{{int:prefs-editing}}“ deiner Einstellungen abschalten.",
 	"editpage-invalidcontentmodel-title": "Das Inhaltsmodell wird nicht unterstützt.",
 	"editpage-invalidcontentmodel-text": "Das Inhaltsmodell „$1“ wird nicht unterstützt.",

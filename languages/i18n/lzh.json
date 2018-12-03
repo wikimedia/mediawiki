@@ -2129,7 +2129,7 @@
 	"intentionallyblankpage": "此頁為白也，試速之用",
 	"external_image_whitelist": " #同留<pre>\n#下（中之//）乃正表式\n#乃外（連）圖配之\n#配乃成像，非配則成連\n#有 # 之為注\n#無為大小之異也\n\n#入正表式。同留</pre>",
 	"tag-filter": "[[Special:Tags|標]] 之濾：",
-	"tag-list-wrapper": "[[Special:Tags|$1簽]]: $2",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|簽}}]]: $2",
 	"tags-title": "標",
 	"tags-tag": "標名",
 	"tags-source-header": "源",
