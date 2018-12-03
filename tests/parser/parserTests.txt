@@ -2359,6 +2359,17 @@ parsoid=wt2html,html2html
 </tbody></table><p> ho</p>
 !! end
 
+!! test
+P-wrapping non-breaking spaces
+!! wikitext
+ 
+!! html/php+tidy
+<p>&#160;
+</p>
+!! html/parsoid
+<p> </p>
+!! end
+
 ###
 ### Preformatted text
 ###
