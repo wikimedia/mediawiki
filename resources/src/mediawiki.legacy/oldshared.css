@@ -153,7 +153,9 @@ img.thumbborder {
 
 /* Page history styling */
 /* the auto-generated edit comments */
-.autocomment {
+.autocomment,
+.autocomment a,
+.autocomment a:visited {
 	color: #4b4b4b;
 }
 

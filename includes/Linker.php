@@ -1151,7 +1151,6 @@ class Linker {
 				);
 
 				if ( $comment === null ) {
-					$link = '';
 					if ( $title ) {
 						$section = $auto;
 						# Remove links that a user may have manually put in the autosummary
@@ -1159,6 +1158,10 @@ class Linker {
 						$section = str_replace( '[[:', '', $section );
 						$section = str_replace( '[[', '', $section );
 						$section = str_replace( ']]', '', $section );
+
+						// We don't want any links in the auto text to be linked, but we still
+						// want to show any [[ ]]
+						$sectionText = str_replace( '[[', '&#91;[', $auto );
 
 						$section = substr( Parser::guessSectionNameFromStrippedText( $section ), 1 );
 						if ( $local ) {
@@ -1168,12 +1171,10 @@ class Linker {
 								$title->getDBkey(), $section );
 						}
 						if ( $sectionTitle ) {
-							$link = Linker::makeCommentLink(
-								$sectionTitle, $wgLang->getArrow() . $auto, $wikiId, 'noclasses'
+							$auto = Linker::makeCommentLink(
+								$sectionTitle, $wgLang->getArrow() . $wgLang->getDirMark() . $sectionText,
+								$wikiId, 'noclasses'
 							);
-							$auto = '';
-						} else {
-							$link = '';
 						}
 					}
 					if ( $pre ) {
@@ -1188,7 +1189,7 @@ class Linker {
 						$auto = '<span dir="auto"><span class="autocomment">' . $auto . '</span>';
 						$append .= '</span>';
 					}
-					$comment = $pre . $link . $wgLang->getDirMark() . $auto;
+					$comment = $pre . $auto;
 				}
 				return $comment;
 			},

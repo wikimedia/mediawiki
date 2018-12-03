@@ -256,7 +256,9 @@ p.mw-delete-editreasons {
 }
 
 /* The auto-generated edit comments */
-.autocomment {
+.autocomment,
+.autocomment a,
+.autocomment a:visited {
 	color: #72777d;
 }
 

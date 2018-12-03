@@ -12,7 +12,8 @@
 			"Peserey",
 			"SamGamgee",
 			"SmartNart12",
-			"TheRossatron"
+			"TheRossatron",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Зэпыщэхэм якIэгъэтхъын:",
@@ -704,8 +705,10 @@
 	"right-editcontentmodel": "НэкIубгъом и кIоцIырытым и модел зэблэхъун",
 	"right-editinterface": "Нэбгырэ-интерфейсым еIэзэн",
 	"right-editusercss": "НэмыкI нэбгырэмэ я CSS файлэмэ яIэзэн",
+	"right-edituserjson": "НэмыкI нэбгырэмэ я JSON файлэмэ яIэзэн",
 	"right-edituserjs": "НэмыкI нэбгырэмэ я JavaScript файлэмэ яIэзэн",
 	"right-editmyusercss": "Уи CSS файлэмэ яIэзэн",
+	"right-editmyuserjson": "Уи JSON файлэмэ яIэзэн",
 	"right-editmyuserjs": "Уи JavaScript файлэмэ яIэзэн",
 	"right-viewmywatchlist": "Уи лъыплъэ купым еплъ",
 	"right-editmyoptions": "УигъэпсыкIэмэ яIаз",
