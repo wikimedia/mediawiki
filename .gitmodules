@@ -1100,3 +1100,9 @@
         url = https://github.com/wikimedia/mediawiki-extensions-TemplateWizard.git
         branch = REL1_32
         ignore = dirty
+[submodule "extensions/WikiSEO"]
+        path = extensions/WikiSEO
+        url = https://github.com/tinymighty/wiki-seo.git
+        branch = master
+        ignore = dirty
+
