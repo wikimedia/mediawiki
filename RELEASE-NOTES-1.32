@@ -8,6 +8,8 @@ production.
 === Changes since MediaWiki 1.32.0-rc.0 ===
 * (T209885) Prevent populateSearchIndex.php from breaking once actor migration
   has been started.
+* (T210998) Properly set $wgLanguageCode in the generated LocalSettings.php
+  if --lang is used with the command-line installer (install.php).
 
 === Configuration changes in 1.32 ===
 
