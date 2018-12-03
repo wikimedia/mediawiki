@@ -1168,7 +1168,12 @@ class Block {
 				$res = $this->isSitewide();
 				break;
 			case 'editownusertalk':
+				// NOTE: this check is not reliable on partial blocks
+				// since partially blocked users are always allowed to edit
+				// their own talk page unless a restriction exists on the
+				// page or User_talk: namespace
 				$res = wfSetVar( $this->mDisableUsertalk, $x );
+
 				// edit own user talk can be disabled by config
 				if ( !$blockAllowsUTEdit ) {
 					$res = true;

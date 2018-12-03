@@ -4975,6 +4975,10 @@ $wgAutoblockExpiry = 86400;
 
 /**
  * Set this to true to allow blocked users to edit their own user talk page.
+ *
+ * This only applies to sitewide blocks. Partial blocks always allow users to
+ * edit their own user talk page unless otherwise specified in the block
+ * restrictions.
  */
 $wgBlockAllowsUTEdit = true;
 
