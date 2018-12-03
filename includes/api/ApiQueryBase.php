@@ -464,31 +464,30 @@ abstract class ApiQueryBase extends ApiBase {
 	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
 		$db = $this->getDB();
 
-		$this->addTables( 'ipblocks' );
-		$this->addJoinConds( [
-			'ipblocks' => [ 'LEFT JOIN', [
+		$tables = [ 'ipblocks' ];
+		$fields = [ 'ipb_deleted' ];
+		$joinConds = [
+			'blk' => [ 'LEFT JOIN', [
 				'ipb_user=user_id',
 				'ipb_expiry > ' . $db->addQuotes( $db->timestamp() ),
 			] ],
-		] );
-
-		$this->addFields( 'ipb_deleted' );
+		];
 
 		if ( $showBlockInfo ) {
-			$this->addFields( [
+			$actorQuery = ActorMigration::newMigration()->getJoin( 'ipb_by' );
+			$commentQuery = CommentStore::getStore()->getJoin( 'ipb_reason' );
+			$tables += $actorQuery['tables'] + $commentQuery['tables'];
+			$joinConds += $actorQuery['joins'] + $commentQuery['joins'];
+			$fields = array_merge( $fields, [
 				'ipb_id',
 				'ipb_expiry',
 				'ipb_timestamp'
-			] );
-			$actorQuery = ActorMigration::newMigration()->getJoin( 'ipb_by' );
-			$this->addTables( $actorQuery['tables'] );
-			$this->addFields( $actorQuery['fields'] );
-			$this->addJoinConds( $actorQuery['joins'] );
-			$commentQuery = CommentStore::getStore()->getJoin( 'ipb_reason' );
-			$this->addTables( $commentQuery['tables'] );
-			$this->addFields( $commentQuery['fields'] );
-			$this->addJoinConds( $commentQuery['joins'] );
+			], $actorQuery['fields'], $commentQuery['fields'] );
 		}
+
+		$this->addTables( [ 'blk' => $tables ] );
+		$this->addFields( $fields );
+		$this->addJoinConds( $joinConds );
 
 		// Don't show hidden names
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
