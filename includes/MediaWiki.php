@@ -893,8 +893,7 @@ class MediaWiki {
 
 		// Loosen DB query expectations since the HTTP client is unblocked
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
-		$trxProfiler->resetExpectations();
-		$trxProfiler->setExpectations(
+		$trxProfiler->redefineExpectations(
 			$this->context->getRequest()->hasSafeMethod()
 				? $this->config->get( 'TrxProfilerLimits' )['PostSend-GET']
 				: $this->config->get( 'TrxProfilerLimits' )['PostSend-POST'],
