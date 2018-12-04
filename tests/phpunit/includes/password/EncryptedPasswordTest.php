@@ -78,6 +78,7 @@ class EncryptedPasswordTest extends PasswordTestCase {
 		$this->assertRegExp( '/^:both:aes-256-cbc:1:/', $serialized );
 		$fromNewHash = $this->passwordFactory->newFromCiphertext( $serialized );
 		$fromPlaintext = $this->passwordFactory->newFromPlaintext( 'password', $fromNewHash );
-		$this->assertTrue( $fromHash->equals( $fromPlaintext ) );
+		$this->assertTrue( $fromPlaintext->verify( 'password' ) );
+		$this->assertTrue( $fromHash->verify( 'password' ) );
 	}
 }

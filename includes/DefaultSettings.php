@@ -4785,6 +4785,24 @@ $wgPasswordConfig = [
 		'cost' => '30000',
 		'length' => '64',
 	],
+	'argon2' => [
+		'class' => Argon2Password::class,
+
+		// Algorithm used:
+		// * 'argon2i' is optimized against side-channel attacks (PHP 7.2+)
+		// * 'argon2id' is optimized against both side-channel and GPU cracking (PHP 7.3+)
+		// * 'auto' to use best available algorithm. If you're using more than one server, be
+		//   careful when you're mixing PHP versions because newer PHP might generate hashes that
+		//   older versions might would not understand.
+		'algo' => 'auto',
+
+		// The parameters below are the same as options accepted by password_hash().
+		// Set them to override that function's defaults.
+		//
+		// 'memory_cost' => PASSWORD_ARGON2_DEFAULT_MEMORY_COST,
+		// 'time_cost' => PASSWORD_ARGON2_DEFAULT_TIME_COST,
+		// 'threads' => PASSWORD_ARGON2_DEFAULT_THREADS,
+	],
 ];
 
 /**
