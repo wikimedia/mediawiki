@@ -911,8 +911,7 @@ class ChangeTags {
 	}
 
 	/**
-	 * Defines a tag in the valid_tag table and/or update ctd_user_defined field in change_tag_def,
-	 * without checking that the tag name is valid.
+	 * Set ctd_user_defined = 1 in change_tag_def without checking that the tag name is valid.
 	 * Extensions should NOT use this function; they can use the ListDefinedTags
 	 * hook instead.
 	 *
@@ -939,7 +938,7 @@ class ChangeTags {
 	}
 
 	/**
-	 * Removes a tag from the valid_tag table and/or update ctd_user_defined field in change_tag_def.
+	 * Set ctd_user_defined = 0  in change_tag_def.
 	 * The tag may remain in use by extensions, and may still show up as 'defined'
 	 * if an extension is setting it from the ListDefinedTags hook.
 	 *
@@ -1210,8 +1209,7 @@ class ChangeTags {
 	}
 
 	/**
-	 * Creates a tag by adding a row to the `valid_tag` table.
-	 * and/or add it to `change_tag_def` table.
+	 * Creates a tag by adding it to `change_tag_def` table.
 	 *
 	 * Extensions should NOT use this function; they can use the ListDefinedTags
 	 * hook instead.
@@ -1265,7 +1263,7 @@ class ChangeTags {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
 
-		// delete from valid_tag and/or set ctd_user_defined = 0
+		// set ctd_user_defined = 0
 		self::undefineTag( $tag );
 
 		$tagId = MediaWikiServices::getInstance()->getChangeTagDefStore()->getId( $tag );
@@ -1436,9 +1434,7 @@ class ChangeTags {
 	}
 
 	/**
-	 * Lists tags explicitly defined in the `valid_tag` table of the database.
-	 * Tags in table 'change_tag' which are not in table 'valid_tag' are not
-	 * included. In case of new backend loads the data from `change_tag_def` table.
+	 * Lists tags explicitly defined in the `change_tag_def` table of the database.
 	 *
 	 * Tries memcached first.
 	 *
