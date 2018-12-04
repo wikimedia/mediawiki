@@ -40,9 +40,10 @@ THIS IS NOT A RELEASE YET
 * Require ext-fileinfo in composer.json, per PHPVersionCheck
 * (T176390) Bundled LocalisationUpdate extension: Handle exceptions from GitHubFetcher
 * (T208255) Completion search should not change the search query
-
 * (T209870) Fix SQL syntax error in MS-SQL initialisation file for new wikis
 * (T185049) LogFormatter: Fail softer when trying to link an invalid titles
+* (T210998) Properly set $wgLanguageCode in the generated LocalSettings.php
+  if --lang is used with the command-line installer (install.php).
 
 == MediaWiki 1.31.1 ==
 
