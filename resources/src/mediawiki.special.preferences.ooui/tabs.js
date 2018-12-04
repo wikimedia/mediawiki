@@ -16,7 +16,7 @@
 				tabIndex: 0,
 				'aria-hidden': 'true'
 			} )
-			.prependTo( '#mw-content-text' );
+			.insertBefore( '.mw-htmlform-ooui-wrapper' );
 
 		tabs = new OO.ui.IndexLayout( {
 			expanded: false,
