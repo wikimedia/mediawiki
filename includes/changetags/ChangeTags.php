@@ -348,13 +348,14 @@ class ChangeTags {
 			foreach ( $tagsToAdd as $tag ) {
 				$changeTagMapping[$tag] = $changeTagDefStore->acquireId( $tag );
 			}
+			$fname = __METHOD__;
 			// T207881: update the counts at the end of the transaction
-			$dbw->onTransactionPreCommitOrIdle( function () use ( $dbw, $tagsToAdd ) {
+			$dbw->onTransactionPreCommitOrIdle( function () use ( $dbw, $tagsToAdd, $fname ) {
 				$dbw->update(
 					'change_tag_def',
 					[ 'ctd_count = ctd_count + 1' ],
 					[ 'ctd_name' => $tagsToAdd ],
-					__METHOD__
+					$fname
 				);
 			} );
 
@@ -381,6 +382,7 @@ class ChangeTags {
 
 		// delete from change_tag
 		if ( count( $tagsToRemove ) ) {
+			$fname = __METHOD__;
 			foreach ( $tagsToRemove as $tag ) {
 				$conds = array_filter(
 					[
@@ -393,18 +395,18 @@ class ChangeTags {
 				$dbw->delete( 'change_tag', $conds, __METHOD__ );
 				if ( $dbw->affectedRows() ) {
 					// T207881: update the counts at the end of the transaction
-					$dbw->onTransactionPreCommitOrIdle( function () use ( $dbw, $tag ) {
+					$dbw->onTransactionPreCommitOrIdle( function () use ( $dbw, $tag, $fname ) {
 						$dbw->update(
 							'change_tag_def',
 							[ 'ctd_count = ctd_count - 1' ],
 							[ 'ctd_name' => $tag ],
-							__METHOD__
+							$fname
 						);
 
 						$dbw->delete(
 							'change_tag_def',
 							[ 'ctd_name' => $tag, 'ctd_count' => 0, 'ctd_user_defined' => 0 ],
-							__METHOD__
+							$fname
 						);
 					} );
 				}
@@ -1459,7 +1461,7 @@ class ChangeTags {
 					'change_tag_def',
 					'ctd_name',
 					[ 'ctd_user_defined' => 1 ],
-					__METHOD__
+					$fname
 				);
 
 				return array_filter( array_unique( $tags ) );
