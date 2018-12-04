@@ -68,14 +68,15 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 	public function doUpdate() {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		$dbw = $lb->getConnection( DB_MASTER );
+		$fname = __METHOD__;
 
-		( new AutoCommitUpdate( $dbw, __METHOD__, function () use ( $lb, $dbw ) {
+		( new AutoCommitUpdate( $dbw, __METHOD__, function () use ( $lb, $dbw, $fname ) {
 			foreach ( $this->infoByUser as $userId => $info ) {
 				$dbw->update(
 					'user',
 					[ 'user_editcount=user_editcount+' . (int)$info['increment'] ],
 					[ 'user_id' => $userId, 'user_editcount IS NOT NULL' ],
-					__METHOD__
+					$fname
 				);
 				/** @var User[] $affectedInstances */
 				$affectedInstances = $info['instances'];
@@ -87,7 +88,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 					if ( $dbr !== $dbw ) {
 						// This method runs after the new revisions were committed.
 						// Wait for the replica to catch up so they will all be counted.
-						$dbr->flushSnapshot( __METHOD__ );
+						$dbr->flushSnapshot( $fname );
 						$lb->safeWaitForMasterPos( $dbr );
 					}
 					$affectedInstances[0]->initEditCountInternal();
@@ -96,7 +97,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 					'user',
 					[ 'user_editcount' ],
 					[ 'user_id' => $userId ],
-					__METHOD__
+					$fname
 				);
 
 				// Update the edit count in the instance caches. This is mostly useful

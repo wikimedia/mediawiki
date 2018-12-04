@@ -165,7 +165,7 @@ class SVGReader {
 			} elseif ( $isSVG && $tag == 'desc' ) {
 				$this->readField( $tag, 'description' );
 			} elseif ( $isSVG && $tag == 'metadata' && $type == XMLReader::ELEMENT ) {
-				$this->readXml( $tag, 'metadata' );
+				$this->readXml( 'metadata' );
 			} elseif ( $isSVG && $tag == 'script' ) {
 				// We normally do not allow scripted svgs.
 				// However its possible to configure MW to let them
