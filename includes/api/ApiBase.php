@@ -268,6 +268,9 @@ abstract class ApiBase extends ContextSource {
 	/** @var array Maps extension paths to info arrays */
 	private static $extensionInfo = null;
 
+	/** @var int[][][] Cache for self::filterIDs() */
+	private static $filterIDsCache = [];
+
 	/** @var ApiMain */
 	private $mMainModule;
 	/** @var string */
@@ -1830,6 +1833,41 @@ abstract class ApiBase extends ContextSource {
 		if ( $this->getRequest()->wasPosted() ) {
 			wfTransactionalTimeLimit();
 		}
+	}
+
+	/**
+	 * Filter out-of-range values from a list of positive integer IDs
+	 * @since 1.33
+	 * @param array $fields Array of pairs of table and field to check
+	 * @param (string|int)[] $ids IDs to filter. Strings in the array are
+	 *  expected to be stringified ints.
+	 * @return (string|int)[] Filtered IDs.
+	 */
+	protected function filterIDs( $fields, array $ids ) {
+		$min = INF;
+		$max = 0;
+		foreach ( $fields as list( $table, $field ) ) {
+			if ( isset( self::$filterIDsCache[$table][$field] ) ) {
+				$row = self::$filterIDsCache[$table][$field];
+			} else {
+				$row = $this->getDB()->selectRow(
+					$table,
+					[
+						'min_id' => "MIN($field)",
+						'max_id' => "MAX($field)",
+					],
+					null,
+					__METHOD__
+				);
+				self::$filterIDsCache[$table][$field] = $row;
+			}
+			$min = min( $min, $row->min_id );
+			$max = max( $max, $row->max_id );
+		}
+		return array_filter( $ids, function ( $id ) use ( $min, $max ) {
+			return ( is_int( $id ) && $id >= 0 || ctype_digit( $id ) )
+				&& $id >= $min && $id <= $max;
+		} );
 	}
 
 	/**@}*/

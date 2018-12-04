@@ -103,7 +103,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		}
 
 		if ( isset( $params['ids'] ) ) {
-			$this->addWhereFld( 'ipb_id', $params['ids'] );
+			$this->addWhereIDsFld( 'ipblocks', 'ipb_id', $params['ids'] );
 		}
 		if ( isset( $params['users'] ) ) {
 			$usernames = [];
