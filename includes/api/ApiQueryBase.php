@@ -264,6 +264,30 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
+	 * Like addWhereFld for an integer list of IDs
+	 * @since 1.33
+	 * @param string $table Table name
+	 * @param string $field Field name
+	 * @param int[] $ids IDs
+	 * @return int Count of IDs actually included
+	 */
+	protected function addWhereIDsFld( $table, $field, $ids ) {
+		// Use count() to its full documented capabilities to simultaneously
+		// test for null, empty array or empty countable object
+		if ( count( $ids ) ) {
+			$ids = $this->filterIDs( [ [ $table, $field ] ], $ids );
+
+			if ( !count( $ids ) ) {
+				// Return nothing, no IDs are valid
+				$this->where[] = '0 = 1';
+			} else {
+				$this->where[$field] = $ids;
+			}
+		}
+		return count( $ids );
+	}
+
+	/**
 	 * Add a WHERE clause corresponding to a range, and an ORDER BY
 	 * clause to sort in the right direction
 	 * @param string $field Field name
