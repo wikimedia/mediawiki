@@ -1812,7 +1812,7 @@
 	"filerevert-comment": "Прычына:",
 	"filerevert-defaultcomment": "Вернутая вэрсія ад $2 $1 ($3)",
 	"filerevert-submit": "Вярнуць",
-	"filerevert-success": "'''[[Media:$1|$1]]''' быў вернуты да [вэрсіі $4 ад $3, $2].",
+	"filerevert-success": "<strong>[[Media:$1|$1]]</strong> быў вернуты да [$4 вэрсіі ад $3, $2].",
 	"filerevert-badversion": "Не існуе папярэдняй лякальнай вэрсіі гэтага файла з пазначанай датай.",
 	"filerevert-identical": "Цяперашняя вэрсія файлу ўжо ідэнтычная абранай.",
 	"filedelete": "Выдаліць $1",
