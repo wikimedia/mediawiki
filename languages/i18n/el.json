@@ -762,6 +762,8 @@
 	"edit-gone-missing": "Δεν ήταν εφικτό να ενημερωθεί η σελίδα.\nΦαίνεται πως έχει διαγραφεί.",
 	"edit-conflict": "Σύγκρουση επεξεργασιών.",
 	"edit-no-change": "Η επεξεργασία σας αγνοήθηκε, επειδή δεν έγινε καμία αλλαγή στο κείμενο.",
+	"edit-slots-cannot-add": "Τα ακόλουθα σημεία στίξεως εφαρμόζονται εδώ {{PLURAL:$1|slot is|slots are}} : $2.",
+	"edit-slots-missing": "Το επόμενο {{PLURAL:$1|κενό|slots are}} λείπει: $2.{{PLURAL:$1|}}",
 	"postedit-confirmation-created": "Η σελίδα δημιουργήθηκε.",
 	"postedit-confirmation-restored": "Η σελίδα έχει αποκατασταθεί.",
 	"postedit-confirmation-saved": "H επεξεργασία σας αποθηκεύτηκε.",

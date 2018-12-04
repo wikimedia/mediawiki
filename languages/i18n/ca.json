@@ -2033,6 +2033,7 @@
 	"apisandbox-request-selectformat-label": "Mostra les dades de sol·licitud com:",
 	"apisandbox-request-format-url-label": "Cadena de consulta de l'URL",
 	"apisandbox-request-url-label": "Sol·licita URL:",
+	"apisandbox-request-format-json-label": "JSON",
 	"apisandbox-request-json-label": "JSON de sol·licitud:",
 	"apisandbox-request-time": "Temps de sol·licitud: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Corregeix el testimoni i torna-ho a enviar",
