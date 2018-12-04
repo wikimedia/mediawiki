@@ -4238,12 +4238,11 @@ class Language {
 	/**
 	 * Perform output conversion on a string, and encode for safe HTML output.
 	 * @param string $text Text to be converted
-	 * @param bool $isTitle Whether this conversion is for the article title
 	 * @return string
 	 * @todo this should get integrated somewhere sane
 	 */
-	public function convertHtml( $text, $isTitle = false ) {
-		return htmlspecialchars( $this->convert( $text, $isTitle ) );
+	public function convertHtml( $text ) {
+		return htmlspecialchars( $this->convert( $text ) );
 	}
 
 	/**
