@@ -101,6 +101,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	 */
 	public function testRemovehtmltagsOnHtml5Tags( $tag, $escaped ) {
 		$this->hideDeprecated( 'disabling tidy' );
+		$this->hideDeprecated( 'MWTidy::setInstance' );
 		MWTidy::setInstance( false );
 
 		if ( $escaped ) {
@@ -164,6 +165,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	 */
 	public function testRemoveHTMLtags( $input, $output, $msg = null ) {
 		$this->hideDeprecated( 'disabling tidy' );
+		$this->hideDeprecated( 'MWTidy::setInstance' );
 		MWTidy::setInstance( false );
 		$this->assertEquals( $output, Sanitizer::removeHTMLtags( $input ), $msg );
 	}

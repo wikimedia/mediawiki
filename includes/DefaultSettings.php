@@ -4282,73 +4282,23 @@ $wgAllowImageTag = false;
 /**
  * Configuration for HTML postprocessing tool. Set this to a configuration
  * array to enable an external tool. By default, we now use the RemexHtml
- * library; historically, Dave Raggett's "HTML Tidy" was typically used.
- * See https://www.w3.org/People/Raggett/tidy/
+ * library; historically, other postprocessors were used.
  *
- * Setting this to null is deprecated.
+ * Setting this to null will use default settings.
  *
- * If this is null and $wgUseTidy is true, the deprecated configuration
- * parameters will be used instead.
+ * Keys include:
+ *  - driver: formerly used to select a postprocessor; now ignored.
+ *  - treeMutationTrace: a boolean to turn on Remex tracing
+ *  - serializerTrace: a boolean to turn on Remex tracing
+ *  - mungerTrace: a boolean to turn on Remex tracing
+ *  - pwrap: whether <p> wrapping should be done (default true)
  *
- * If this is null and $wgUseTidy is false, a pure PHP fallback will be used.
- * (Equivalent to setting `$wgTidyConfig['driver'] = 'disabled'`.)
+ * See includes/tidy/RemexDriver.php for detail on configuration.
  *
- * Keys are:
- *  - driver: May be:
- *    - RemexHtml: Use the RemexHtml library in PHP
- *    - RaggettInternalHHVM: Use the limited-functionality HHVM extension
- *      Deprecated since 1.32.
- *    - RaggettInternalPHP: Use the PECL extension
- *      Deprecated since 1.32.
- *    - RaggettExternal: Shell out to an external binary (tidyBin)
- *      Deprecated since 1.32.
- *    - disabled: Disable tidy pass and use a hacky pure PHP workaround
- *      (this is what setting $wgUseTidy to false used to do)
- *      Deprecated since 1.32.
- *
- *  - tidyConfigFile: Path to configuration file for any of the Raggett drivers
- *  - debugComment: True to add a comment to the output with warning messages
- *  - tidyBin: For RaggettExternal, the path to the tidy binary.
- *  - tidyCommandLine: For RaggettExternal, additional command line options.
+ * Overriding the default configuration is strongly discouraged in
+ * production.
  */
 $wgTidyConfig = [ 'driver' => 'RemexHtml' ];
-
-/**
- * Set this to true to use the deprecated tidy configuration parameters.
- * @deprecated since 1.26, use $wgTidyConfig['driver'] = 'disabled'
- */
-$wgUseTidy = false;
-
-/**
- * The path to the tidy binary.
- * @deprecated since 1.26, use $wgTidyConfig['tidyBin']
- */
-$wgTidyBin = 'tidy';
-
-/**
- * The path to the tidy config file
- * @deprecated since 1.26, use $wgTidyConfig['tidyConfigFile']
- */
-$wgTidyConf = $IP . '/includes/tidy/tidy.conf';
-
-/**
- * The command line options to the tidy binary
- * @deprecated since 1.26, use $wgTidyConfig['tidyCommandLine']
- */
-$wgTidyOpts = '';
-
-/**
- * Set this to true to use the tidy extension
- * @deprecated since 1.26, use $wgTidyConfig['driver']
- */
-$wgTidyInternal = extension_loaded( 'tidy' );
-
-/**
- * Put tidy warnings in HTML comments
- * Only works for internal tidy.
- * @deprecated since 1.26, use $wgTidyConfig['debugComment']
- */
-$wgDebugTidy = false;
 
 /**
  * Allow raw, unchecked HTML in "<html>...</html>" sections.
