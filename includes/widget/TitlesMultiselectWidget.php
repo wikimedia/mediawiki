@@ -54,9 +54,14 @@ class TitlesMultiselectWidget extends \OOUI\Widget {
 			'name' => $this->inputName,
 			'value' => implode( "\n", $this->titlesArray ),
 			'rows' => 10,
+			'classes' => [
+				'mw-widgets-titlesMultiselectWidget-multilineTextInputWidget'
+			],
 		], $this->input ) );
 
-		$this->appendContent( $textarea );
+		$pending = new PendingTextInputWidget();
+
+		$this->appendContent( $textarea, $pending );
 		$this->addClasses( [ 'mw-widgets-titlesMultiselectWidget' ] );
 	}
 
