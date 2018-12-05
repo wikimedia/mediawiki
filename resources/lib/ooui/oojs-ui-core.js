@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.5
+ * OOUI v0.29.6
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-11-08T22:38:07Z
+ * Date: 2018-12-05T00:15:55Z
  */
 ( function ( OO ) {
 
@@ -481,7 +481,7 @@ OO.ui.deferMsg = function () {
  * @return {string} Resolved message
  */
 OO.ui.resolveMsg = function ( msg ) {
-	if ( $.isFunction( msg ) ) {
+	if ( typeof msg === 'function' ) {
 		return msg();
 	}
 	return msg;
@@ -953,7 +953,7 @@ OO.ui.Element.static.getWindow = function ( obj ) {
 OO.ui.Element.static.getDir = function ( obj ) {
 	var isDoc, isWin;
 
-	if ( obj instanceof jQuery ) {
+	if ( obj instanceof $ ) {
 		obj = obj[ 0 ];
 	}
 	isDoc = obj.nodeType === Node.DOCUMENT_NODE;
@@ -1361,6 +1361,7 @@ OO.ui.Element.static.reconsiderScrollbars = function ( el ) {
 		el.removeChild( el.firstChild );
 	}
 	// Force reflow
+	// eslint-disable-next-line no-void
 	void el.offsetHeight;
 	// Reattach all children
 	for ( i = 0, len = nodes.length; i < len; i++ ) {
@@ -1461,7 +1462,7 @@ OO.ui.Element.prototype.supports = function ( methods ) {
 
 	methods = Array.isArray( methods ) ? methods : [ methods ];
 	for ( i = 0, len = methods.length; i < len; i++ ) {
-		if ( $.isFunction( this[ methods[ i ] ] ) ) {
+		if ( typeof this[ methods[ i ] ] === 'function' ) {
 			support++;
 		}
 	}
@@ -2746,7 +2747,7 @@ OO.ui.mixin.LabelElement.prototype.setLabelElement = function ( $label ) {
  */
 OO.ui.mixin.LabelElement.prototype.setLabel = function ( label ) {
 	label = typeof label === 'function' ? OO.ui.resolveMsg( label ) : label;
-	label = ( ( typeof label === 'string' || label instanceof jQuery ) && label.length ) || ( label instanceof OO.ui.HtmlSnippet && label.toString().length ) ? label : null;
+	label = ( ( typeof label === 'string' || label instanceof $ ) && label.length ) || ( label instanceof OO.ui.HtmlSnippet && label.toString().length ) ? label : null;
 
 	if ( this.label !== label ) {
 		if ( this.$label ) {
@@ -2825,7 +2826,7 @@ OO.ui.mixin.LabelElement.prototype.setLabelContent = function ( label ) {
 		}
 	} else if ( label instanceof OO.ui.HtmlSnippet ) {
 		this.$label.html( label.toString() );
-	} else if ( label instanceof jQuery ) {
+	} else if ( label instanceof $ ) {
 		this.$label.empty().append( label );
 	} else {
 		this.$label.empty();
@@ -5113,6 +5114,7 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars. See T157672.
 		// Forcing a reflow is a smaller workaround than calling reconsiderScrollbars() for this case.
 		this.$clippable.css( 'overflowX', 'scroll' );
+		// eslint-disable-next-line no-void
 		void this.$clippable[ 0 ].offsetHeight; // Force reflow
 		this.$clippable.css( {
 			width: Math.max( 0, allotedWidth ),
@@ -5129,6 +5131,7 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars. See T157672.
 		// Forcing a reflow is a smaller workaround than calling reconsiderScrollbars() for this case.
 		this.$clippable.css( 'overflowY', 'scroll' );
+		// eslint-disable-next-line no-void
 		void this.$clippable[ 0 ].offsetHeight; // Force reflow
 		this.$clippable.css( {
 			height: Math.max( 0, allotedHeight ),
@@ -5270,7 +5273,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 		.append( this.$popup, this.$anchor );
 	// Move content, which was added to #$element by OO.ui.Widget, to the body
 	// FIXME This is gross, we should use '$body' or something for the config
-	if ( config.$content instanceof jQuery ) {
+	if ( config.$content instanceof $ ) {
 		this.$body.append( config.$content );
 	}
 
@@ -6772,7 +6775,9 @@ OO.ui.SelectWidget.prototype.onDocumentKeyPress = function ( e ) {
 		}
 		return;
 	}
+	// eslint-disable-next-line no-restricted-properties
 	if ( String.fromCodePoint ) {
+		// eslint-disable-next-line no-restricted-properties
 		c = String.fromCodePoint( e.charCode );
 	} else {
 		c = String.fromCharCode( e.charCode );
@@ -6829,7 +6834,9 @@ OO.ui.SelectWidget.prototype.onKeyPress = function () {
 OO.ui.SelectWidget.prototype.getItemMatcher = function ( s, exact ) {
 	var re;
 
+	// eslint-disable-next-line no-restricted-properties
 	if ( s.normalize ) {
+		// eslint-disable-next-line no-restricted-properties
 		s = s.normalize();
 	}
 	s = exact ? s.trim() : s.replace( /^\s+/, '' );
@@ -6840,7 +6847,9 @@ OO.ui.SelectWidget.prototype.getItemMatcher = function ( s, exact ) {
 	re = new RegExp( re, 'i' );
 	return function ( item ) {
 		var matchText = item.getMatchText();
+		// eslint-disable-next-line no-restricted-properties
 		if ( matchText.normalize ) {
+			// eslint-disable-next-line no-restricted-properties
 			matchText = matchText.normalize();
 		}
 		return re.test( matchText );
@@ -7664,6 +7673,10 @@ OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 			this.scrollItemIntoView( this.items[ 0 ] );
 		}
 
+		if ( !anyVisible ) {
+			this.highlightItem( null );
+		}
+
 		this.$element.toggleClass( 'oo-ui-menuSelectWidget-invisible', !anyVisible );
 
 		if ( this.highlightOnFilter ) {
@@ -8039,7 +8052,7 @@ OO.ui.DropdownWidget.prototype.onMenuSelect = function ( item ) {
 	selectedLabel = item.getLabel();
 
 	// If the label is a DOM element, clone it, because setLabel will append() it
-	if ( selectedLabel instanceof jQuery ) {
+	if ( selectedLabel instanceof $ ) {
 		selectedLabel = selectedLabel.clone();
 	}
 
@@ -10860,7 +10873,7 @@ OO.ui.TextInputWidget.prototype.getValidity = function () {
 	// Run our checks if the browser thinks the field is valid
 	if ( this.validate instanceof Function ) {
 		result = this.validate( this.getValue() );
-		if ( result && $.isFunction( result.promise ) ) {
+		if ( result && typeof result.promise === 'function' ) {
 			return result.promise().then( function ( valid ) {
 				return rejectOrResolve( valid );
 			} );

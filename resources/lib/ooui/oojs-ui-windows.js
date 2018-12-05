@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.5
+ * OOUI v0.29.6
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-11-08T22:38:07Z
+ * Date: 2018-12-05T00:15:55Z
  */
 ( function ( OO ) {
 
@@ -639,7 +639,7 @@ OO.ui.Error = function OoUiError( message, config ) {
 	config = config || {};
 
 	// Properties
-	this.message = message instanceof jQuery ? message : String( message );
+	this.message = message instanceof $ ? message : String( message );
 	this.recoverable = config.recoverable === undefined || !!config.recoverable;
 	this.warning = !!config.warning;
 };
@@ -678,7 +678,7 @@ OO.ui.Error.prototype.isWarning = function () {
  * @return {jQuery} Error message in DOM nodes
  */
 OO.ui.Error.prototype.getMessage = function () {
-	return this.message instanceof jQuery ?
+	return this.message instanceof $ ?
 		this.message.clone() :
 		$( '<div>' ).text( this.message ).contents();
 };
@@ -689,7 +689,7 @@ OO.ui.Error.prototype.getMessage = function () {
  * @return {string} Error message
  */
 OO.ui.Error.prototype.getMessageText = function () {
-	return this.message instanceof jQuery ? this.message.text() : this.message;
+	return this.message instanceof $ ? this.message.text() : this.message;
 };
 
 /**
@@ -776,7 +776,7 @@ OO.ui.Process.prototype.execute = function () {
 				return $.Deferred().reject( result ).promise();
 			}
 			// Duck-type the object to see if it can produce a promise
-			if ( result && $.isFunction( result.promise ) ) {
+			if ( result && typeof result.promise === 'function' ) {
 				// Use a promise generated from the result
 				return result.promise();
 			}
@@ -817,7 +817,7 @@ OO.ui.Process.prototype.execute = function () {
  * @return {Object} Step object, with `callback` and `context` properties
  */
 OO.ui.Process.prototype.createStep = function ( step, context ) {
-	if ( typeof step === 'number' || $.isFunction( step.promise ) ) {
+	if ( typeof step === 'number' || typeof step.promise === 'function' ) {
 		return {
 			callback: function () {
 				return step;
@@ -825,7 +825,7 @@ OO.ui.Process.prototype.createStep = function ( step, context ) {
 			context: null
 		};
 	}
-	if ( $.isFunction( step ) ) {
+	if ( typeof step === 'function' ) {
 		return {
 			callback: step,
 			context: context
@@ -3261,6 +3261,7 @@ OO.ui.ProcessDialog.prototype.initialize = function () {
 	// Events
 	this.dismissButton.connect( this, { click: 'onDismissErrorButtonClick' } );
 	this.retryButton.connect( this, { click: 'onRetryButtonClick' } );
+	this.title.connect( this, { labelChange: 'fitLabel' } );
 
 	// Initialization
 	this.title.$element.addClass( 'oo-ui-processDialog-title' );

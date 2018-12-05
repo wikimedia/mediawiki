@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.5
+ * OOUI v0.29.6
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-11-08T22:38:07Z
+ * Date: 2018-12-05T00:15:55Z
  */
 ( function ( OO ) {
 
@@ -2112,7 +2112,7 @@ OO.ui.BookletLayout.prototype.toggleOutline = function ( show ) {
 			// outline controls are present, delay matches transition on `.oo-ui-menuLayout-menu`.
 			setTimeout( function () {
 				OO.ui.Element.static.reconsiderScrollbars( booklet.outlinePanel.$element[ 0 ] );
-			}, 200 );
+			}, OO.ui.theme.getDialogTransitionDuration() );
 		}
 	}
 
@@ -3929,7 +3929,7 @@ OO.ui.TagItemWidget.prototype.remove = function () {
 OO.ui.TagItemWidget.prototype.onKeyDown = function ( e ) {
 	var movement;
 
-	if ( !this.isDisabled() && !this.isFixed() && e.keyCode === OO.ui.Keys.BACKSPACE || e.keyCode === OO.ui.Keys.DELETE ) {
+	if ( !this.isDisabled() && !this.isFixed() && ( e.keyCode === OO.ui.Keys.BACKSPACE || e.keyCode === OO.ui.Keys.DELETE ) ) {
 		this.remove();
 		return false;
 	} else if ( e.keyCode === OO.ui.Keys.ENTER ) {
@@ -4031,10 +4031,10 @@ OO.ui.TagItemWidget.prototype.isValid = function () {
  *  replace the input widget used in the TagMultiselectWidget. If not given,
  *  TagMultiselectWidget creates its own.
  * @cfg {boolean} [inputPosition='inline'] Position of the input. Options are:
- * 	- inline: The input is invisible, but exists inside the tag list, so
- * 		the user types into the tag groups to add tags.
- * 	- outline: The input is underneath the tag area.
- * 	- none: No input supplied
+ *  - inline: The input is invisible, but exists inside the tag list, so
+ *    the user types into the tag groups to add tags.
+ *  - outline: The input is underneath the tag area.
+ *  - none: No input supplied
  * @cfg {boolean} [allowEditTags=true] Allow editing of the tags by clicking them
  * @cfg {boolean} [allowArbitrary=false] Allow data items to be added even if
  *  not present in the menu.
@@ -4634,10 +4634,10 @@ OO.ui.TagMultiselectWidget.prototype.getValue = function () {
  *  This object must contain at least a data key. Example:
  *  { data: 'foo', label: 'Foo item' }
  *  For multiple items, use an array of objects. For example:
- *   [
- *   	{ data: 'foo', label: 'Foo item' },
- *    	{ data: 'bar', label: 'Bar item' }
- * 	 ]
+ *  [
+ *     { data: 'foo', label: 'Foo item' },
+ *     { data: 'bar', label: 'Bar item' }
+ *  ]
  *  Value can also be added with plaintext array, for example:
  *  [ 'foo', 'bar', 'bla' ] or a single string, like 'foo'
  */
@@ -5239,7 +5239,11 @@ OO.ui.MenuTagMultiselectWidget.prototype.setDisabled = function ( isDisabled ) {
  */
 OO.ui.MenuTagMultiselectWidget.prototype.initializeMenuSelection = function () {
 	if ( !this.menu.findSelectedItem() ) {
-		this.menu.highlightItem( this.menu.findFirstSelectableItem() );
+		this.menu.highlightItem(
+			this.allowArbitrary ?
+				null :
+				this.menu.findFirstSelectableItem()
+		);
 	}
 };
 
