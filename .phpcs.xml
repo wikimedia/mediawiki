@@ -323,7 +323,6 @@
 		<exclude-pattern>includes/export/DumpPipeOutput\.php</exclude-pattern>
 		<exclude-pattern>includes/resourceloader/ResourceLoaderImage\.php</exclude-pattern>
 		<exclude-pattern>includes/shell/Command\.php</exclude-pattern>
-		<exclude-pattern>includes/tidy/RaggettExternal\.php</exclude-pattern>
 		<exclude-pattern>maintenance/dumpTextPass\.php</exclude-pattern>
 		<exclude-pattern>maintenance/mysql\.php</exclude-pattern>
 		<exclude-pattern>maintenance/storage/recompressTracked\.php</exclude-pattern>

@@ -76,11 +76,6 @@ class ParserTestRunner {
 	private $dbClone;
 
 	/**
-	 * @var TidySupport
-	 */
-	private $tidySupport;
-
-	/**
 	 * @var TidyDriverBase
 	 */
 	private $tidyDriver = null;
@@ -166,12 +161,6 @@ class ParserTestRunner {
 		$this->runDisabled = !empty( $options['run-disabled'] );
 
 		$this->disableSaveParse = !empty( $options['disable-save-parse'] );
-
-		$this->tidySupport = new TidySupport( !empty( $options['use-tidy-config'] ) );
-		if ( !$this->tidySupport->isEnabled() ) {
-			$this->recorder->warning(
-				"Warning: tidy is not installed, skipping some tests\n" );
-		}
 
 		if ( isset( $options['upload-dir'] ) ) {
 			$this->uploadDir = $options['upload-dir'];
@@ -833,12 +822,7 @@ class ParserTestRunner {
 		$options->setTimestamp( $this->getFakeTimestamp() );
 
 		if ( isset( $opts['tidy'] ) ) {
-			if ( !$this->tidySupport->isEnabled() ) {
-				$this->recorder->skipped( $test, 'tidy extension is not installed' );
-				return false;
-			} else {
-				$options->setTidy( true );
-			}
+			$options->setTidy( true );
 		}
 
 		if ( isset( $opts['title'] ) ) {
@@ -1130,7 +1114,7 @@ class ParserTestRunner {
 		if ( isset( $opts['tidy'] ) ) {
 			// Cache a driver instance
 			if ( $this->tidyDriver === null ) {
-				$this->tidyDriver = MWTidy::factory( $this->tidySupport->getConfig() );
+				$this->tidyDriver = MWTidy::factory();
 			}
 			$tidy = $this->tidyDriver;
 		} else {
@@ -1140,6 +1124,7 @@ class ParserTestRunner {
 		# Suppress warnings about running tests without tidy
 		Wikimedia\suppressWarnings();
 		wfDeprecated( 'disabling tidy' );
+		wfDeprecated( 'MWTidy::setInstance' );
 		Wikimedia\restoreWarnings();
 
 		MWTidy::setInstance( $tidy );

@@ -48,7 +48,6 @@ $wgAutoloadClasses += [
 	'TestFileEditor' => "$testDir/parser/TestFileEditor.php",
 	'TestFileReader' => "$testDir/parser/TestFileReader.php",
 	'TestRecorder' => "$testDir/parser/TestRecorder.php",
-	'TidySupport' => "$testDir/parser/TidySupport.php",
 
 	# tests/phpunit
 	'EmptyResourceLoader' => "$testDir/phpunit/ResourceLoaderTestCase.php",
