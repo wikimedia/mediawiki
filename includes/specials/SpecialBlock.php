@@ -386,6 +386,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return string
 	 */
 	protected function preText() {
+		$this->getOutput()->addModuleStyles( 'mediawiki.widgets.TitlesMultiselectWidget.styles' );
 		$this->getOutput()->addModules( [ 'mediawiki.special.block' ] );
 
 		$blockCIDRLimit = $this->getConfig()->get( 'BlockCIDRLimit' );

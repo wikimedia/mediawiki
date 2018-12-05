@@ -1,0 +1,11 @@
+/*!
+ * MediaWiki Widgets - base TitlesMultiselectWidget styles.
+ *
+ * @copyright 2011-2018 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license The MIT License (MIT); see LICENSE.txt
+ */
+
+.client-nojs .mw-widgets-titlesMultiselectWidget .mw-widgets-pendingTextInputWidget,
+.client-js .mw-widgets-titlesMultiselectWidget .mw-widgets-titlesMultiselectWidget-multilineTextInputWidget {
+	display: none;
+}
