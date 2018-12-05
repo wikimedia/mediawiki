@@ -886,6 +886,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Logger\\MonologSpi' => __DIR__ . '/includes/debug/logger/MonologSpi.php',
 	'MediaWiki\\Logger\\Monolog\\AvroFormatter' => __DIR__ . '/includes/debug/logger/monolog/AvroFormatter.php',
 	'MediaWiki\\Logger\\Monolog\\BufferHandler' => __DIR__ . '/includes/debug/logger/monolog/BufferHandler.php',
+	'MediaWiki\\Logger\\Monolog\\CeeFormatter' => __DIR__ . '/includes/debug/logger/monolog/CeeFormatter.php',
 	'MediaWiki\\Logger\\Monolog\\KafkaHandler' => __DIR__ . '/includes/debug/logger/monolog/KafkaHandler.php',
 	'MediaWiki\\Logger\\Monolog\\LegacyFormatter' => __DIR__ . '/includes/debug/logger/monolog/LegacyFormatter.php',
 	'MediaWiki\\Logger\\Monolog\\LegacyHandler' => __DIR__ . '/includes/debug/logger/monolog/LegacyHandler.php',
