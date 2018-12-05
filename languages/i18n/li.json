@@ -723,7 +723,7 @@
 	"defaultmessagetext": "Obligaten teks",
 	"content-failed-to-parse": "'t Waas neet meugelik d'n inhawd van 't MIME-typ $2 veur 't model $1 te verwirke: $3.",
 	"invalid-content-data": "Óngeljige inhawdsgegaeves",
-	"content-not-allowed-here": "Inhawd \"$1\" is neet tougestange op pagina [[$2]].",
+	"content-not-allowed-here": "Inhawd \"$1\" is neet tougestange op pagina [[:$2]].",
 	"editwarning-warning": "Es se dees pagina verleets verluus se meugelik verangeringe die se haes gemaak.\nEs se bös aangemeld, kins se dees waorsjoewing oetzètten in 't tabblaad \"{{int:prefs-editing}}\" in dien veurkäöre.",
 	"editpage-invalidcontentmodel-title": "Inhaadsmodel wuuertj neet óngersteund",
 	"editpage-invalidcontentmodel-text": "'t Inhawdsmodel \"$1\" weurt neet óngersteund",

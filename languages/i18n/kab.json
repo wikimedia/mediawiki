@@ -679,7 +679,7 @@
 	"defaultmessagetext": "Izen s lexṣas",
 	"content-failed-to-parse": "Tasleṭ n ugbur n $2 i talɣa $1 texseṛ : $3",
 	"invalid-content-data": "Isefka n ugbur ur ɣbelen ara",
-	"content-not-allowed-here": "Agbur \"$1\" ur yesɛa ara turagt ɣef usebter [[$2]]",
+	"content-not-allowed-here": "Agbur \"$1\" ur yesɛa ara turagt ɣef usebter [[:$2]]",
 	"editwarning-warning": "Ma ad teffeɣeḍ seg usebter-agi ad tesṛuḥeḍ akk ibeddilen i tegiḍ.\nMa teqqeneḍ, tzemreḍ ad tsenseḍ alɣu-agi deg tigezmi \"{{int:prefs-editing}}\"  n ismenyifen-ik(im).",
 	"editpage-invalidcontentmodel-title": "Taneɣruft n ugbur ur tettwasefrak ara",
 	"editpage-invalidcontentmodel-text": "Taneɣruft n ugbur \"$1\" ur tettwasefrak ara.",

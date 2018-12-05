@@ -686,7 +686,7 @@
 	"defaultmessagetext": "Standardtext",
 	"content-failed-to-parse": "Parse vum Inhalt $2 fir Modell $1 fählgschlaa: $3",
 	"invalid-content-data": "Uugiltigi Inhaltsdate",
-	"content-not-allowed-here": "Dr Inhalt „$1“ isch uf dr Syte [[$2]] nit erlaubt",
+	"content-not-allowed-here": "Dr Inhalt „$1“ isch uf dr Syte [[:$2]] nit erlaubt",
 	"editwarning-warning": "Wänn Du die Syte verlosch, cha s syy, ass Du alli Bearbeitige verliersch, wu Du do dra gmacht hesch.\nWänn Du aagmäldet bisch, chasch s Anzeige vu däre Warnig im „{{int:prefs-editing}}“-Beryych vu Dyyne Yystelligen abstelle.",
 	"editpage-notsupportedcontentformat-title": "S Inhaltsformat wird nit unterstitzt",
 	"editpage-notsupportedcontentformat-text": "S Inhaltsformat $1 wird vum Inhaltsmodäll $2 nit unterstitzt.",

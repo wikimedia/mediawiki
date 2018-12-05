@@ -825,7 +825,7 @@
 	"defaultmessagetext": "Varsayılan mesaj metni",
 	"content-failed-to-parse": "$1 modeli için $2 içerik türü çözümlenemedi: $3",
 	"invalid-content-data": "Geçersiz içerik verisi",
-	"content-not-allowed-here": "\"$1\" içeriğine, [[$2]] sayfasında izin verilmemekte.",
+	"content-not-allowed-here": "\"$1\" içeriğine, [[:$2]] sayfasında izin verilmemekte.",
 	"editwarning-warning": "Bu sayfadan ayrılmak yaptığınız herhangi bir değişikliği kaybetmenize sebep olabilir.\nEğer giriş yaptıysanız, bu uyarıyı, tercihlerinizin \"{{int:prefs-editing}}\" bölümünde devre dışı bırakabilirsiniz.",
 	"editpage-invalidcontentmodel-title": "İçerik modeli desteklenmiyor",
 	"editpage-invalidcontentmodel-text": "\"$1\" içerik modeli desteklenmemektedir.",

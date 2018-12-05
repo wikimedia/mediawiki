@@ -622,7 +622,7 @@
 	"defaultmessagetext": "डिफल्ट सन्देश पाठ",
 	"content-failed-to-parse": "$1 को लागि $2 सामग्रीलाई पार्स गर्न विफल, गल्ती: $3",
 	"invalid-content-data": "अमान्य सामग्री डेटा",
-	"content-not-allowed-here": "सामग्री \"$1\"  [[$2]] पानामी राख्न अनुमती छैन ।",
+	"content-not-allowed-here": "सामग्री \"$1\"  [[:$2]] पानामी राख्न अनुमती छैन ।",
 	"editwarning-warning": "यै पानाबठे बाहिर जाँदा तमले गर्याको कुनै पनि परिवर्तन हराउन्याछ ।\nयदि तमले लग इन गर्याको छ भण्या तमी यै सूचनालाई धेकाउन आफ्नो रोजाईहरूको \"{{int:prefs-editing}}\" भागमी गइबर बन्द गद्द सक्द्याहौ।",
 	"editpage-notsupportedcontentformat-title": "सामग्री प्रकार समर्थित नाइँथिन",
 	"content-model-wikitext": "विकिपाठ",

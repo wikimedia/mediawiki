@@ -722,7 +722,7 @@
 	"defaultmessagetext": "Sjálfgefinn texti skilaboða",
 	"content-failed-to-parse": "Gat ekki þáttað $2 efni samkvæmt $1 líkani: $3",
 	"invalid-content-data": "Ógild efnisgögn.",
-	"content-not-allowed-here": "„$1“ efni er ekki leyfilegt á síðunni [[$2]] í hólfi \"$3\"",
+	"content-not-allowed-here": "„$1“ efni er ekki leyfilegt á síðunni [[:$2]] í hólfi \"$3\"",
 	"editwarning-warning": "Ef farið er af þessari síðu gætu þær breytingar sem þú hefur gert tapast.\nEf þú ert skráður inn, þá getur þú gert þessi skilaboð óvirk í „{{int:prefs-editing}}\"-hluta kjörstillinganna þinna.",
 	"content-model-wikitext": "wiki-texti",
 	"content-model-text": "hreinn texti",

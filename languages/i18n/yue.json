@@ -740,7 +740,7 @@
 	"defaultmessagetext": "預設訊息文字",
 	"content-failed-to-parse": "從$1模型解析到$2目錄時肥佬咗。原因：$3。",
 	"invalid-content-data": "無效嘅內容資料",
-	"content-not-allowed-here": "「$1」唔可以輸入[[$2]]。",
+	"content-not-allowed-here": "「$1」唔可以輸入[[:$2]]。",
 	"editwarning-warning": "離開爾一版會令到閣下嘅修改唔見咗。\n閣下可以喺喜好設定嘅\"{{int:prefs-editing}}\"小節度停用爾個警告。",
 	"editpage-invalidcontentmodel-title": "唔支援爾種內容模型。",
 	"editpage-invalidcontentmodel-text": "內容模型 \"$1\" 唔支援。",

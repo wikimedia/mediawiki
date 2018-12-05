@@ -680,7 +680,7 @@
 	"defaultmessagetext": "pataayaw tu kawaw palatuh  a sulit",
 	"content-failed-to-parse": "tingalaw $2 kese a $1 kamu-sakilul a lacul mungangaw: $3",
 	"invalid-content-data": "lacul kalunasulitan la’cus",
-	"content-not-allowed-here": "kasabelih [[$2]] caay mahasa pisaungay \"$1\" lacul nu kamu-sakilul",
+	"content-not-allowed-here": "kasabelih [[:$2]] caay mahasa pisaungay \"$1\" lacul nu kamu-sakilul",
 	"editwarning-warning": "miliyas tina kasabelih hakay amahedaw kisu nu iayaw namisanga’ay sacahamin a sumad.\namahica kisu patalabu tuway, kapah kisu i setin tu kanamuhan a \"{{int:prefs-editing}}\" kasacacay edeben tina patalaw.",
 	"editpage-invalidcontentmodel-title": "caay pidama tu lacul nu tatudungen misanga’",
 	"editpage-invalidcontentmodel-text": "caay kamidama lacul tatudungen-misanga’ \"$1\".",

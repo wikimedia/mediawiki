@@ -705,7 +705,7 @@
 	"defaultmessagetext": "Dä standaadmäßije Tex",
 	"content-failed-to-parse": "Et wohr nit müjjelesch, dä Enhalld met dä <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Multi-Purpose Internet Mail Extensions\">MIME</i>-Zoot <code lang=\"en\" xml:lang=\"en\" dir=\"ltr\" >$2</code> för en Dattei met $1 dren ze verwooschte: $3.",
 	"invalid-content-data": "Di Daate en dä Sigg sen onjöltesch.",
-	"content-not-allowed-here": "Ene Enhalld vun dä Zoot „$1“ es op dä Sigg „[[$2]]“ nit zohjelohße.",
+	"content-not-allowed-here": "Ene Enhalld vun dä Zoot „$1“ es op dä Sigg „[[:$2]]“ nit zohjelohße.",
 	"editwarning-warning": "Wann de vun heh dä Sigg fott jeihß, doh künnte all Ding Änderonge aan dä Sigg verschött jonn.\nDo kanns heh di Warnong affschallde, wann de aanjemälldt un enjelogg bes, dann kriß de se nih mih wider. Jangk doför en dä Afschnett „{{int:prefs-editing}}“ en Dinge Enschtellonge.",
 	"editpage-notsupportedcontentformat-title": "Dat Fommat vun enem Enhalld künne mer nit.",
 	"editpage-notsupportedcontentformat-text": "Dat Fommat $1 vun enem Enhalld künne mer nit mem Modäll $2.",

@@ -702,7 +702,7 @@
 	"defaultmessagetext": "Y testun rhagosodedig",
 	"content-failed-to-parse": "Ni lwyddwyd i ddosrannu'r cynnwys sydd ar ffurf $2 yn ôl y model $1: $3",
 	"invalid-content-data": "Data annilys i'r cynnwys",
-	"content-not-allowed-here": "Nid yw cynnwys ar ffurf \"$1\" yn cael ei ganiatau ar y dudalen [[$2]]",
+	"content-not-allowed-here": "Nid yw cynnwys ar ffurf \"$1\" yn cael ei ganiatau ar y dudalen [[:$2]]",
 	"editwarning-warning": "Os y gadewch y dudalen hon mae'n bosib y collwch eich newidiadau iddi.\nOs ydych wedi mewngofnodi gallwch ddiddymu'r rhybudd hwn yn yr adran \"{{int:prefs-editing}}\" yn eich dewisiadau.",
 	"editpage-invalidcontentmodel-title": "Nid yw'r model yma ar gael.",
 	"editpage-invalidcontentmodel-text": "Nid yw'r model \"$1\" ar gael.",

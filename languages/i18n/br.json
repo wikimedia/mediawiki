@@ -724,7 +724,7 @@
 	"defaultmessagetext": "Testenn dre ziouer",
 	"content-failed-to-parse": "C'hwitet eo dielfennadur endalc'had $2 evit ar patrom $1: $3",
 	"invalid-content-data": "n'eo ket mat roadennoù an endalc'had",
-	"content-not-allowed-here": "N'eo ket aotreet an endalc'had \"$1\" er bajenn [[$2]]",
+	"content-not-allowed-here": "N'eo ket aotreet an endalc'had \"$1\" er bajenn [[:$2]]",
 	"editwarning-warning": "Mar kuitait ar bajenn-mañ e c'hallit koll ar c'hemmoù degaset ganeoc'h.\nMa'z oc'h kevreet e c'hallit diweredekaat ar c'hemenn-diwall-mañ e rann \"{{int:prefs-editing}}\" en ho penndibaboù.",
 	"editpage-invalidcontentmodel-title": "N'eo ket skoret ar patrom danvez",
 	"editpage-invalidcontentmodel-text": "N'eo ket skoret ar patrom danvez \"$1\".",

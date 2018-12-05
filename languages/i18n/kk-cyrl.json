@@ -672,7 +672,7 @@
 	"defaultmessagetext": "Әдепкі хабарлама мәтіні",
 	"content-failed-to-parse": "$1 модель үшін $2 мазмұнды талдау қатесі: $3",
 	"invalid-content-data": "Жарамсыз дерек мазмұны",
-	"content-not-allowed-here": "«$1» мазмұны [[$2]] бетінде рұқсат етілмейді.",
+	"content-not-allowed-here": "«$1» мазмұны [[:$2]] бетінде рұқсат етілмейді.",
 	"editwarning-warning": "Бұл бетті қалдырып кетсеңіз қандай да бір жасаған өзгерістеріңізді жоғалтуыңыз мүмкін. \nЕгер сiз кіріп отырсаңыз баптауларыңыздағы «{{int:prefs-editing}}» бөлімінен бұл ескертуді өшіре аласыз.",
 	"editpage-notsupportedcontentformat-title": "Контент форматы қолдамайды",
 	"editpage-notsupportedcontentformat-text": "$1 мазмұн форматы $2 мазмұн үлгісін қолдамайды.",

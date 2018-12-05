@@ -646,7 +646,7 @@
 	"edit-already-exists": "Diri nakakahimo hin bag-o nga pakli.\nAada na ito.",
 	"defaultmessagetext": "Aada-nga-daan nga teksto han mensahe",
 	"invalid-content-data": "Sayop nga sulod nga datos",
-	"content-not-allowed-here": "An sulod nga \"$1\" in diri gintutugotan ha pakli nga [[$2]]",
+	"content-not-allowed-here": "An sulod nga \"$1\" in diri gintutugotan ha pakli nga [[:$2]]",
 	"content-model-wikitext": "wikiteksto",
 	"content-model-text": "yano nga teksto",
 	"content-model-javascript": "JavaScript",

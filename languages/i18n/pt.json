@@ -810,7 +810,7 @@
 	"defaultmessagetext": "Texto da mensagem padrão",
 	"content-failed-to-parse": "Falha ao analisar conteúdo $2 para modelo $1:$3",
 	"invalid-content-data": "Dados de conteúdo inválidos",
-	"content-not-allowed-here": "Conteúdo do tipo \"$1\" não é permitido na página [[$2]] no segmento \"$3\"",
+	"content-not-allowed-here": "Conteúdo do tipo \"$1\" não é permitido na página [[:$2]] no segmento \"$3\"",
 	"editwarning-warning": "Sair desta página fará com que perca quaisquer alterações feitas por si.\nSe iniciou sessão, pode desativar este aviso na secção \"{{int:prefs-editing}}\" das suas preferências.",
 	"editpage-invalidcontentmodel-title": "Modelo de conteúdo não suportado",
 	"editpage-invalidcontentmodel-text": "O modelo de conteúdo \"$1\" não é suportado.",

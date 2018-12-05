@@ -704,7 +704,7 @@
 	"defaultmessagetext": "Téks ti dituna",
 	"content-failed-to-parse": "Gagal ngarecah kontén $2 pikeun modél $1:$3",
 	"invalid-content-data": "Data eusi henteu valid",
-	"content-not-allowed-here": "Eusi \"$1\" teu diijinan di kaca [[$2]]",
+	"content-not-allowed-here": "Eusi \"$1\" teu diijinan di kaca [[:$2]]",
 	"editwarning-warning": "Ninggalkeun ieu kaca bakal ngaleungitkeun parobahan anu tas dijieun.\nUpama anjeun geus asup log, anjeun bisa numpurkeun ieu talatah dina bagian \"{{int:prefs-editing}}\" préferénsi anjeun.",
 	"editpage-invalidcontentmodel-title": "Modél kontén teu dirojong",
 	"editpage-invalidcontentmodel-text": "Modél kontén \"$1\" teu dirojong.",

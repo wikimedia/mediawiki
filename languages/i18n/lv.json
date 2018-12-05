@@ -666,7 +666,7 @@
 	"edit-already-exists": "Nevar izveidot jaunu lapu.\nTā jau eksistē.",
 	"defaultmessagetext": "Noklusētais ziņojuma teksts",
 	"invalid-content-data": "Nederīgi satura dati",
-	"content-not-allowed-here": "\"$1\" saturs nav atļauts lapā [[$2]]",
+	"content-not-allowed-here": "\"$1\" saturs nav atļauts lapā [[:$2]]",
 	"editwarning-warning": "Atstājot šo lapu tu zaudēsi izdarītās izmaiņas. \nJa esi pieteicies, jūs vari atspējot šo brīdinājumu savās izvēlēs sadaļā \"rediģēšana\"",
 	"editpage-invalidcontentmodel-title": "Satura modelis nav atbalstīts",
 	"editpage-invalidcontentmodel-text": "Satura modelis \"$1\" nav atbalstīts.",

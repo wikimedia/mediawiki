@@ -632,7 +632,7 @@
 	"edit-already-exists": "စာမျက်နှာအသစ်တစ်ခု မဖန်တီးနိုင်ပါ။\nယင်းစာမျက်နှာ တည်ရှိပြီး ဖြစ်သည်။",
 	"defaultmessagetext": "ပုံမှန် အသိပေးချက် စာသား",
 	"invalid-content-data": "မဆီလျော်သော မာတိကာဒေတာ",
-	"content-not-allowed-here": "\"$1\" မာတိကာကို [[$2]] စာမျက်နှာပေါ်တွင် ခွင့်မပြုပါ။",
+	"content-not-allowed-here": "\"$1\" မာတိကာကို [[:$2]] စာမျက်နှာပေါ်တွင် ခွင့်မပြုပါ။",
 	"editpage-invalidcontentmodel-title": "မာတိကာမော်ဒယ်သည် မထောက်ပံ့ထားပါ",
 	"editpage-invalidcontentmodel-text": "မာတိကာမော်ဒယ် \"$1\" သည် မထောက်ပံ့ထားပါ။",
 	"editpage-notsupportedcontentformat-title": "မာတိကာပုံစံသည် မထောက်ပံ့ထားပါ",

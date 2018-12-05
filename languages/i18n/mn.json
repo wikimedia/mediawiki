@@ -629,7 +629,7 @@
 	"defaultmessagetext": "Үндсэн мессеж текст",
 	"content-failed-to-parse": "$2 гэсэн агуулгыг $1 модел дээр авч чадсангүй: $3",
 	"invalid-content-data": "Агуулгад алдаатай мэдээлэл байна",
-	"content-not-allowed-here": "[[$2]] хуудсанд \"$1\" гэсэн агуулга хориотоай",
+	"content-not-allowed-here": "[[:$2]] хуудсанд \"$1\" гэсэн агуулга хориотоай",
 	"editpage-notsupportedcontentformat-title": "Агуулга дэмждэггүй форматтай байна",
 	"editpage-notsupportedcontentformat-text": "$1 гэсэн агуулын формат $2 моделд дэмжигддэггүй.",
 	"content-model-wikitext": "вики бичвэр",

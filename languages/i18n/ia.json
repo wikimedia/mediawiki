@@ -736,7 +736,7 @@
 	"defaultmessagetext": "Texto predefinite del message",
 	"content-failed-to-parse": "Impossibile processar le contento $2 pro le modello $1: $3",
 	"invalid-content-data": "Datos de contento invalide",
-	"content-not-allowed-here": "Le contento \"$1\" non es permittite in le pagina [[$2]]",
+	"content-not-allowed-here": "Le contento \"$1\" non es permittite in le pagina [[:$2]]",
 	"editwarning-warning": "Quitar iste pagina pote causar le perdita de omne modificationes que tu ha facite.\nSi tu ha aperite un session, tu pote disactivar iste aviso in le section \"{{int:prefs-editing}}\" de tu preferentias.",
 	"editpage-invalidcontentmodel-title": "Modello de contento non supportate",
 	"editpage-invalidcontentmodel-text": "Le modello de contento \"$1\" non es supportate.",

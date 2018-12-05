@@ -562,7 +562,7 @@
 	"edit-already-exists": "No est possìbile creare una pàgina noa.\nEsistit giai.",
 	"defaultmessagetext": "Testu de su messàgiu predeterminadu",
 	"invalid-content-data": "Datos de cuntenutu invàlidos",
-	"content-not-allowed-here": "Cuntenutu a manera \"$1\" no adduidu in sa pàgina [[$2]]",
+	"content-not-allowed-here": "Cuntenutu a manera \"$1\" no adduidu in sa pàgina [[:$2]]",
 	"editwarning-warning": "S'essida dae custa pàgina diat pòdere cajonare sa pèrdida de totus sos càmbios chi as fatu.\nSi ses autentificadu, podes disabilitare custu avisu in sa setzione \"{{int:prefs-editing}}\" de sas preferèntzias tuas.",
 	"editpage-notsupportedcontentformat-title": "Formadu de càbidu non suportadu",
 	"content-model-wikitext": "wikitestu",

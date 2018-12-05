@@ -557,6 +557,7 @@
 	"passwordtooshort": "您的密码至少需要$1个字符。",
 	"passwordtoolong": "密码不能超过{{PLURAL:$1|$1个字符}}。",
 	"passwordtoopopular": "不能使用普遍选择的密码。请选择更难猜出的密码。",
+	"passwordinlargeblacklist": "输入的密码在非常常用的密码列表中。请选择一个更独特的密码。",
 	"password-name-match": "您的密码必须和您的用户名不相同。",
 	"password-login-forbidden": "这个用户名称及密码的使用是被禁止的。",
 	"mailmypassword": "重置密码",
@@ -828,7 +829,7 @@
 	"defaultmessagetext": "默认消息文本",
 	"content-failed-to-parse": "未能将 $2 内容转换为 $1：$3",
 	"invalid-content-data": "无效的内容数据",
-	"content-not-allowed-here": "[[$2]]页面上不允许“$1”内容",
+	"content-not-allowed-here": "[[:$2]]页面上不允许“$1”内容",
 	"editwarning-warning": "离开本页面可能导致您失去任何您已经作出的更改。如果您处于登录状态，您可以在您的设置的“{{int:prefs-editing}}”部分停用该警告。",
 	"editpage-invalidcontentmodel-title": "内容模型不支持",
 	"editpage-invalidcontentmodel-text": "内容模型“$1”不被支持。",
@@ -4223,5 +4224,6 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "密码不能匹配特定列入黑名单的密码",
 	"passwordpolicies-policy-maximalpasswordlength": "密码长度必须少于$1个{{PLURAL:$1|字符}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "密码不能{{PLURAL:$1|是最常见的密码|在$1个最常见密码的列表中}}",
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "密码不能在100000个最常用的密码列表中。",
 	"easydeflate-invaliddeflate": "提供的内容未被适当缩小"
 }

@@ -582,7 +582,7 @@
 	"postedit-confirmation-saved": "توهان جي ترميم سانڍجي چڪي آهي.",
 	"edit-already-exists": "نئون صفحو سرجي نہ سگھيو. اهو اڳ ۾ ئي وجود رکي ٿو.",
 	"invalid-content-data": "ناقابل ڪار موادي اعداد",
-	"content-not-allowed-here": "\"$1\" مواد هن صفحي [[$2]] تي رکي نہ ٿو سگھجي.",
+	"content-not-allowed-here": "\"$1\" مواد هن صفحي [[:$2]] تي رکي نہ ٿو سگھجي.",
 	"content-model-wikitext": "وڪي‌ٽيڪسٽ",
 	"content-model-text": "سادو ٽيڪسٽ",
 	"content-model-javascript": "جاوا اسڪرپٽ",

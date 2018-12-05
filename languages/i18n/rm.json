@@ -558,7 +558,7 @@
 	"defaultmessagetext": "Text da standard",
 	"content-failed-to-parse": "Impussibel dad elavurar il cuntegn $2 per il model $1: $3",
 	"invalid-content-data": "Data da cuntegn nunvalida",
-	"content-not-allowed-here": "Il cuntegn \"$1\" n'è betg lubì sin la pagina [[$2]]",
+	"content-not-allowed-here": "Il cuntegn \"$1\" n'è betg lubì sin la pagina [[:$2]]",
 	"content-model-wikitext": "wikitext",
 	"content-model-text": "text senza formataziun",
 	"content-model-javascript": "JavaScript",

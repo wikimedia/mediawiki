@@ -731,7 +731,7 @@
 	"defaultmessagetext": "Mmasciata 'e testo predefinita",
 	"content-failed-to-parse": "Nun se può analizzare $2 p' 'o mudello $1: $3",
 	"invalid-content-data": "Date cuntenute nun buone",
-	"content-not-allowed-here": "'O cuntenuto \"$1\" nun è permesso dint'a paggena [[$2]]",
+	"content-not-allowed-here": "'O cuntenuto \"$1\" nun è permesso dint'a paggena [[:$2]]",
 	"editwarning-warning": "Ascenno 'e sta paggena putisse ffà sperdere 'e cagnamiente fatte.\nSi sì trasuto, allora può stutà st'avviso dint'a sezziona \"{{int:prefs-editing}}\" d' 'e preferenze.",
 	"editpage-invalidcontentmodel-title": "Mudell' 'e cuntenute nun suppurtato",
 	"editpage-invalidcontentmodel-text": "'O mudell' 'e cuntenute \"$1\" nun è suppurtato.",

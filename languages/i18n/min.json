@@ -568,7 +568,7 @@
 	"defaultmessagetext": "Teks baku.",
 	"content-failed-to-parse": "Gagal manjabarkan konten $2 untuak model $1: $3",
 	"invalid-content-data": "Data kanduangan indak valid.",
-	"content-not-allowed-here": "Konten \"$1\" indak diizinan di laman [[$2]]",
+	"content-not-allowed-here": "Konten \"$1\" indak diizinan di laman [[:$2]]",
 	"editwarning-warning": "Maninggakan laman ko dapek maakibaikan parubahan nan dibuek hilang. Jikok Sanak lah masuak log, dapek mamatian pasan ko malalui bagian \"Panyuntiangan\" pado laman pangaturan.",
 	"content-model-wikitext": "Teks wiki",
 	"content-model-text": "Teks kosong",

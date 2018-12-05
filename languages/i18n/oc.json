@@ -728,7 +728,7 @@
 	"defaultmessagetext": "Messatge per defaut",
 	"content-failed-to-parse": "Fracàs de l'analisi del contengut de $2 pel modèl $1: $3",
 	"invalid-content-data": "Donadas del contengut invalidas",
-	"content-not-allowed-here": "Lo contengut \"$1\" es pas autorizat sus la pagina [[$2]]",
+	"content-not-allowed-here": "Lo contengut \"$1\" es pas autorizat sus la pagina [[:$2]]",
 	"editwarning-warning": "Quitar aquesta pagina vos farà pèrdre totas las modificacions qu'avètz faitas.\nSe sètz connectat, podètz desactivar aqueste avertiment dins la seccion « {{int:prefs-editing}} » de vòstras preferéncias.",
 	"editpage-invalidcontentmodel-title": "Modèl de contengut pas permés",
 	"editpage-invalidcontentmodel-text": "Lo modèl de contengut «$1» es pas permés.",

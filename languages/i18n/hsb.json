@@ -660,7 +660,7 @@
 	"defaultmessagetext": "Standardny tekst zdźělenki",
 	"content-failed-to-parse": "Parsowanje wobsaha $2 za model $1 je so njeporadźiło: $3",
 	"invalid-content-data": "Njepłaćiwe wobsahowe daty",
-	"content-not-allowed-here": "Wobsah \"$1\" njeje na stronje [[$2]] dowoleny",
+	"content-not-allowed-here": "Wobsah \"$1\" njeje na stronje [[:$2]] dowoleny",
 	"editwarning-warning": "Hdyž so strona wopušća, móža so změny zhubić, kotrež sy přewjedł. Jeli sy přizjewjeny, móžeš tute warnowanje we wotrězku \"{{int:prefs-editing}}\" swojich nastajenjow znjemóžnić.",
 	"editpage-notsupportedcontentformat-title": "Wobsahowy format so njepodpěruje",
 	"editpage-notsupportedcontentformat-text": "Wobsahowy format $1 so přez wobsahowy model $2 njepodpěruje.",

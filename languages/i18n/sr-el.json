@@ -754,7 +754,7 @@
 	"defaultmessagetext": "Podrazumevani tekst poruke",
 	"content-failed-to-parse": "Raščlanjivanje sadržaja tipa $2 za model $1 nije uspelo: $3",
 	"invalid-content-data": "Nevažeći podaci sadržaja",
-	"content-not-allowed-here": "Sadržaj modela „$1“ nije dozvoljen na stranici [[$2]]",
+	"content-not-allowed-here": "Sadržaj modela „$1“ nije dozvoljen na stranici [[:$2]]",
 	"editwarning-warning": "Ako napustite ovu stranicu, izgubićete sve izmene koje ste napravili. Ako ste prijavljeni, možete onemogućiti ovo upozorenje u svojim podešavanjima, u odeljku „{{int:prefs-editing}}“.",
 	"editpage-invalidcontentmodel-title": "Model sadržaja nije podržan",
 	"editpage-invalidcontentmodel-text": "Model sadržaja „$1“ nije podržan.",

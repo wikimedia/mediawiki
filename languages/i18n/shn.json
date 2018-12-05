@@ -630,7 +630,7 @@
 	"edit-already-exists": "ဢမ်ႇၸၢင်ႈ ၵေႃႇသၢင်ႈ ၼႃႈလိၵ်ႈဢၼ်မႂ်ႇ။\nမၼ်းမီးဝႆႉထႃႈယဝ်ႈ။",
 	"defaultmessagetext": "လိၵ်ႈၶေႃႈၶၢဝ်ႇ ပိူင်ႇၵႅဝ်ႈ",
 	"invalid-content-data": "ၶေႃႈမုၼ်းၶဝ်ႈပႃး ၽိတ်းပိူင်ႈဝႆႉ",
-	"content-not-allowed-here": "\"$1\" ၶေႃႈၶဝ်ႈပႃးၼႆႉ ဢမ်ႇၶႂၢင်းပၼ်ဝႆႉ တီႈၼႃႈ လိၵ်ႈ [[$2]]",
+	"content-not-allowed-here": "\"$1\" ၶေႃႈၶဝ်ႈပႃးၼႆႉ ဢမ်ႇၶႂၢင်းပၼ်ဝႆႉ တီႈၼႃႈ လိၵ်ႈ [[:$2]]",
 	"editpage-invalidcontentmodel-title": "ပိူင်ႈၵေႃႇသၢင်ႈ လမ်းၼႂ်း ဢမ်ႇၵမ်ႉထႅမ်ဝႆႉ",
 	"editpage-invalidcontentmodel-text": "ပိူင်ၵေႃႇသၢင်ႈ လမ်းၼႂ်း \"$1\" ဢမ်ႇလႆႈၵမ်ႉထႅမ်ဝႆႉ",
 	"editpage-notsupportedcontentformat-title": "ပိူင်ၶေႃႈၶဝ်ႈပႃး ၼႆႉ ဢမ်ႇၵမ်ႉထႅမ်ဝႆႉပၼ်။",

@@ -772,7 +772,7 @@
 	"defaultmessagetext": "Alapértelmezett szöveg",
 	"content-failed-to-parse": "Hiba történt a $2 tartalom $1 modellre történő konvertálása során: $3",
 	"invalid-content-data": "Érvénytelen tartalom adat",
-	"content-not-allowed-here": "\"$1\" tartalom nem engedélyezett a [[$2]] oldalon",
+	"content-not-allowed-here": "\"$1\" tartalom nem engedélyezett a [[:$2]] oldalon",
 	"editwarning-warning": "A lap elhagyásával az összes itt végzett változtatás elveszhet. Ha be vagy jelentkezve, letilthatod ezt a figyelmeztetést a beállításaid „{{int:prefs-editing}}” szakaszában.",
 	"editpage-invalidcontentmodel-title": "A tartalommodell nem támogatott",
 	"editpage-invalidcontentmodel-text": "A(z) „$1” tartalommodell nem támogatott.",

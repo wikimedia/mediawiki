@@ -616,7 +616,7 @@
 	"defaultmessagetext": "Standardny tekst powěźeńki",
 	"content-failed-to-parse": "Parsowanje wopśimjeśa $2 za model $1 njejo se raźiło: $3",
 	"invalid-content-data": "Njepłaśiwe wopśimjeśowe daty",
-	"content-not-allowed-here": "Wopśimjeśe \"$1\" njejo na boku [[$2]] dowólone",
+	"content-not-allowed-here": "Wopśimjeśe \"$1\" njejo na boku [[:$2]] dowólone",
 	"editwarning-warning": "Gaž toś ten bok se spušća, mógu se změny zgubiś, kótarež sy pśewjadł.\nJolic sy pśizjawjeny, móžoš toś to warnowanje we wótrězku „{{int:prefs-editing}}“ swójich nastajenjow znjemóžniś.",
 	"editpage-notsupportedcontentformat-title": "Wopśimjeśowy format se njepódpěra.",
 	"editpage-notsupportedcontentformat-text": "Wopśimjeśowy format $1 njepódpěra se pśez wopśimjeśowy model $2.",

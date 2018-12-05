@@ -755,7 +755,7 @@
 	"defaultmessagetext": "Textul implicit",
 	"content-failed-to-parse": "Nu s-a putut analiza conținutul de tip $2 pentru modelul $1: $3",
 	"invalid-content-data": "Date de conținut invalide",
-	"content-not-allowed-here": "Conținutul de tip „$1” nu este permis pe pagina [[$2]]",
+	"content-not-allowed-here": "Conținutul de tip „$1” nu este permis pe pagina [[:$2]]",
 	"editwarning-warning": "Părăsind această pagină, există riscul pierderii modificărilor efectuate.\nDacă sunteți autentificat, puteți dezactiva această avertizare în secțiunea „{{int:prefs-editing}}” a preferințelor dumneavoastră.",
 	"editpage-invalidcontentmodel-title": "Modelul de conținut nu este suportat",
 	"editpage-invalidcontentmodel-text": "Modelul de conținut \"$1\" nu este acceptat.",

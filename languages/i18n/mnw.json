@@ -549,7 +549,7 @@
 	"edit-already-exists": "ကၠောန်ခၞံကေတ်မုက်လိက်တၟိဂွံဟွံသေၚ်.\nနွံမံၚ်တုဲတုဲယျ.",
 	"defaultmessagetext": "လိက်ဂလာန်ပိုဒ်မဒတန်",
 	"invalid-content-data": "တၚ်နၚ်ဆက်စပ်မဟွံစှေ်ကဵုဗဗွဲဓဝ်",
-	"content-not-allowed-here": "\"$1\" မာတိကာဂှ် ဟွံကဵုအခေါၚ်လ္တူမုက်လိက် [[$2]]",
+	"content-not-allowed-here": "\"$1\" မာတိကာဂှ် ဟွံကဵုအခေါၚ်လ္တူမုက်လိက် [[:$2]]",
 	"editpage-invalidcontentmodel-title": "ဗီုပြၚ်မာတိကာဂှ်ဟွံထက်ပံၚ်လဝ်ရ",
 	"editpage-invalidcontentmodel-text": "ဗီုပြၚ်မာတိကာ\"$1\"ဏအ်ဟွံထံက်ပၚ်ရ။",
 	"content-model-wikitext": "ဖျုန်လိက်ဝဳကဳ",

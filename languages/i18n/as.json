@@ -674,7 +674,7 @@
 	"defaultmessagetext": "সাধাৰণ বাৰ্তা পাঠ্য",
 	"content-failed-to-parse": "$1 মডেলৰ বাবে $2ৰ তথ্য নিকা কৰিব পৰা নগ’ল: $3",
 	"invalid-content-data": "অবৈধ সমল তথ্য",
-	"content-not-allowed-here": "[[$2]] পৃষ্ঠাত \"$1\" সমল অনুমোদিত নহয়",
+	"content-not-allowed-here": "[[:$2]] পৃষ্ঠাত \"$1\" সমল অনুমোদিত নহয়",
 	"editwarning-warning": "এই পৃষ্ঠাটো এৰিলে আপুনি কৰা পৰিৱতনসমূহ হেৰাই যাব পাৰে।\nযদি আপুনি লগ্‌ ইন কৰি আছে, আপুনি এই সতৰ্কবাণীক আপোনাৰ পছন্দসমূহৰ \"{{int:prefs-editing}}\" অংশত নিষ্ক্ৰিয় কৰিব পাৰিব।",
 	"editpage-notsupportedcontentformat-title": "সমলৰ ফৰ্মেট সমৰ্থিত নহয়।",
 	"editpage-notsupportedcontentformat-text": "সমল মডেল $2ৱে সমল ফৰ্মেট $1 সমৰ্থন নকৰে।",

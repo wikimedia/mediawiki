@@ -616,7 +616,7 @@
 	"defaultmessagetext": "सनेशा कय डिफ़ॉल्ट पाठ",
 	"content-failed-to-parse": "$1 कय लिए $2 सामग्री कय पार्स करय में विफल, त्रुटि: $3",
 	"invalid-content-data": "अवैध डाटा सामग्री",
-	"content-not-allowed-here": "[[$2]] पन्ना पे \"$1\" सामग्री मिनाही है।",
+	"content-not-allowed-here": "[[:$2]] पन्ना पे \"$1\" सामग्री मिनाही है।",
 	"editwarning-warning": "इ पन्ना से हटे कय बाद आप कय करल बदलाव गायब होइ जाइ।\nयदि आप लॉग इन करा गा है तव आप इ सूचना कय देखाब आपन पसंद कय \"{{int:prefs-editing}}\" भाग में बंद कई सका जात है।",
 	"editpage-notsupportedcontentformat-title": "सामग्री स्वरूप समर्थित नाई है",
 	"editpage-notsupportedcontentformat-text": "$1 सामग्री स्वरूप $2 सामग्री मॉडल द्वारा समर्थित नाई है।",

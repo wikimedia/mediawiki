@@ -607,7 +607,7 @@
 	"defaultmessagetext": "پیامی پیش فرضین متن",
 	"content-failed-to-parse": "$2 مهتوایی تجزیه کار نه کورت په $1 مدل ئا: $3",
 	"invalid-content-data": "ناموتبرین دیتایی کانتکت",
-	"content-not-allowed-here": "«$1» ئی محتوا بئ [[$2]] ئی دیمی تا جایز نه اینت",
+	"content-not-allowed-here": "«$1» ئی محتوا بئ [[:$2]] ئی دیمی تا جایز نه اینت",
 	"editwarning-warning": "شه ای دیما دَر بوتین ممکن اینت که هر آنچه که شما بوجود آورته ئیت آوانا شه دست ب دهیت.\nاگر شما سایٹ ئی داخل بوته ئیت، توانیت که ای هشدار ئا بئ تنزیماتانی «{{int:prefs-editing}}» ئی بخشی تا بند کنیت .",
 	"editpage-notsupportedcontentformat-title": "پشتیوانی نه بوته ئین دیتا کانتکت ئی فورمت کورتین",
 	"editpage-notsupportedcontentformat-text": "$1 ئی مهتوائین پورمت گۆ $2 ئی مهتوائین مدل ئا پُشتیوانی نه بوته انت.",

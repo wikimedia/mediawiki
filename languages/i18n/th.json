@@ -747,7 +747,7 @@
 	"defaultmessagetext": "เนื้อหาข้อความปริยาย",
 	"content-failed-to-parse": "แจงส่วนเนื้อหา $2 ของตัวแบบ $1 ล้มเหลว: $3",
 	"invalid-content-data": "ข้อมูลเนื้อหาไม่ถูกต้อง",
-	"content-not-allowed-here": "ไม่อนุญาตเนื้อหา \"$1\" ในหน้า [[$2]]",
+	"content-not-allowed-here": "ไม่อนุญาตเนื้อหา \"$1\" ในหน้า [[:$2]]",
 	"editwarning-warning": "การออกจากหน้านี้อาจทำให้การเปลี่ยนแปลงทั้งหมดที่คุณได้ทำสูญหาย\nถ้าคุณเข้าสู่ระบบแล้ว คุณสามารถปิดคำเตือนนี้ได้ที่ส่วน \"{{int:prefs-editing}}\" ในการตั้งค่าของคุณ",
 	"editpage-invalidcontentmodel-title": "ไม่รองรับรูปแบบเนื้อหานี้",
 	"editpage-invalidcontentmodel-text": "ไม่รองรับโมเดลเนื้อหา \"$1\"",

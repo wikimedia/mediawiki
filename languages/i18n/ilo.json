@@ -710,7 +710,7 @@
 	"defaultmessagetext": "Kasisigud a teksto ti mensahe",
 	"content-failed-to-parse": "Napaay a mawaswas ti $2 a linaon para iti $1 a modelo: $3",
 	"invalid-content-data": "Imbalido a datos ti linaon",
-	"content-not-allowed-here": "Ti \"$1\" a linaon ket saan a maipalubos iti panid ti [[$2]]",
+	"content-not-allowed-here": "Ti \"$1\" a linaon ket saan a maipalubos iti panid ti [[:$2]]",
 	"editwarning-warning": "Ti ipapanaw iti daytoy a panid ket makapataud ti pannakapukaw kadagiti ania man a binalbaliwam.\nNo nakastrekka, mabalinmo nga ibaldado daytoy a ballaag iti \"{{int:prefs-editing}}\" a seksion kadagiti kakaykayatam.",
 	"editpage-invalidcontentmodel-title": "Saan a masuportaran ti modelo ti linaon",
 	"editpage-invalidcontentmodel-text": "Saan a nasuportaran ti modelo ti linaon ti \"$1\".",

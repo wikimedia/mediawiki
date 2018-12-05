@@ -367,7 +367,10 @@
 	"cascadeprotected": "Denne sida er verna mot endring fordi ho er inkludert i fylgjande {{PLURAL:$1|side|sider}} som har djupvern slått på:\n$2",
 	"namespaceprotected": "Du har ikkje tilgang til å endre sidene i '''$1'''-namnerommet.",
 	"customcssprotected": "↓Du har ikkje tilgang til å endre denne sida, fordi ho inneheld ein annan brukar sine personlege innstillingar.",
+	"customjsonprotected": "Du har ikkje løyve til å endra denne JSON-sida av di ho inneheld dei personlege innstillingane til ein annan brukar.",
 	"customjsprotected": "↓Du har ikkje løyve til å endra denne JavaScript-sida fordi ho inneheld dei personlege innstillingane til ein annan brukar.",
+	"sitecssprotected": "Du har ikkje løyve til å endra denne CSS-sida av di ho kan påverka alle som vitjar nettstaden.",
+	"sitejsprotected": "Du har ikkje løyve til å endra denne JavaScript-sida av di ho kan påverka alle som vitjar nettstaden.",
 	"mycustomcssprotected": "Du har ikkje løyve til å endra denne CSS-sida.",
 	"mycustomjsprotected": "Du har ikkje løyve til å endra denne JavaScript-sida.",
 	"myprivateinfoprotected": "Du har ikkje løyve til endra den private informasjonen din.",
@@ -681,7 +684,7 @@
 	"defaultmessagetext": "Standard meldingstekst",
 	"content-failed-to-parse": "Klarte ikkje å tolke innhaldet «$2» for innhaldsmodellen «$1»: $3",
 	"invalid-content-data": "Ugyldig innhald",
-	"content-not-allowed-here": "Innhaldsmodellen «$1» er ikkje tillaten på sida [[$2]]",
+	"content-not-allowed-here": "Innhaldsmodellen «$1» er ikkje tillaten på sida [[:$2]]",
 	"editwarning-warning": "Ved å forlata denne sida kan du mista alle endringane du måtte ha gjort.\nEr du innlogga kan denne åtvaringa slåast av under bolken «Endring» i innstillingane dine.",
 	"content-model-wikitext": "WikiTekst",
 	"content-model-text": "Rein tekst",
@@ -3343,5 +3346,6 @@
 	"authmanager-provider-temporarypassword": "Mellombels passord",
 	"userjsispublic": "Merk: JavaScript-undersider bør ikkje innehalda konfidensielle data sidan dei er synlege for andre brukarar.",
 	"usercssispublic": "Merk: CSS-undersider bør ikkje innehalda konfidensielle data sidan dei er synlege for andre brukarar.",
-	"revid": "versjon $1"
+	"revid": "versjon $1",
+	"interfaceadmin-info": "$1\n\nLøyva for endring av CSS/JS/JSON-filer som gjeld heile nettstaden vart nyleg skilde ut frå <code>editinterface</code>-retten. Om du ikkje skjøner kvifor du får denne feilmeldinga, sjå [[mw:MediaWiki_1.32/interface-admin]]."
 }

@@ -649,7 +649,7 @@
 	"defaultmessagetext": "Uobičajeni tekst poruke",
 	"content-failed-to-parse": "Ne mogu da raščlanim sadržaj tipa $2 za model $1: $3",
 	"invalid-content-data": "Neispravni podaci sadržaja",
-	"content-not-allowed-here": "Sadržaj modela „$1“ nije dozvoljen na stranici [[$2]]",
+	"content-not-allowed-here": "Sadržaj modela „$1“ nije dozvoljen na stranici [[:$2]]",
 	"editwarning-warning": "Ako napustite ovu stranicu, izgubićete sve izmene koje ste napravili.\nAko ste prijavljeni, možete onemogućiti ovo upozorenje u svojim podešavanjima, u odeljku \"{{int:prefs-editing}}\".",
 	"editpage-notsupportedcontentformat-title": "Format sadržaja nije podržan",
 	"editpage-notsupportedcontentformat-text": "Format sadržaja $1 nije podržan modelom sadržaja $2.",

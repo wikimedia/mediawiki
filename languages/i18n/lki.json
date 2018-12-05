@@ -707,7 +707,7 @@
 	"defaultmessagetext": "متن پیش‌فرض پیغام",
 	"content-failed-to-parse": "عدم موفقیت در تجزیه محتوای $2 برای مدل $1: $3",
 	"invalid-content-data": "داده محتوای نامعتبر",
-	"content-not-allowed-here": "محتوای «$1» در صفحهٔ [[$2]] مجاز نیست",
+	"content-not-allowed-here": "محتوای «$1» در صفحهٔ [[:$2]] مجاز نیست",
 	"editwarning-warning": "خروج از این برگه ممکن است باعث شود که شما هر شانسی که به وجود آورده‌اید را از دست بدهید.\nاگر شما وارد سامانه شده‌اید، می‌توانید این هشدار را در بخش «{{int:prefs-editing}}» ترجیحاتتان غیرفعال کنید.",
 	"editpage-invalidcontentmodel-title": "مودل محتوا دستک نبینه",
 	"editpage-invalidcontentmodel-text": "مودل محتوا \"$1\" دستک نبینه",

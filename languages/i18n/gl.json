@@ -757,7 +757,7 @@
 	"defaultmessagetext": "Texto predeterminado",
 	"content-failed-to-parse": "Erro ao analizar o contido de \"$2\" para o modelo de $1: $3",
 	"invalid-content-data": "Datos de contido inválidos",
-	"content-not-allowed-here": "O contido \"$1\" non está permitido na páxina \"[[$2]]\"",
+	"content-not-allowed-here": "O contido \"$1\" non está permitido na páxina \"[[:$2]]\"",
 	"editwarning-warning": "Deixar esta páxina pode causar a perda de calquera cambio feito.\nSe accedeu ao sistema, pode desactivar esta mensaxe de advertencia na sección \"{{int:prefs-editing}}\" das súas preferencias.",
 	"editpage-invalidcontentmodel-title": "O modelo de contido non está soportado",
 	"editpage-invalidcontentmodel-text": "O modelo de contido \"$1\" non está soportado.",

@@ -722,7 +722,7 @@
 	"defaultmessagetext": "అప్రమేయ సందేశపు పాఠ్యం",
 	"content-failed-to-parse": "$1 మోడల్ కొరకు $2 పాఠ్యాన్ని పార్స్ చెయ్యలేకపోయాం: $3",
 	"invalid-content-data": "చెల్లని కంటెంటు డేటా",
-	"content-not-allowed-here": "[[$2]] పేజీలో పాఠ్యం \"$1\" కి అనుమతి లేదు",
+	"content-not-allowed-here": "[[:$2]] పేజీలో పాఠ్యం \"$1\" కి అనుమతి లేదు",
 	"editwarning-warning": "ఈ పేజీని వదిలివెళ్ళడం వల్ల మీరు చేసిన మార్పులను కోల్పోయే అవకాశం ఉంది.\nమీరు లాగిన్ అయివుంటే, ఈ హెచ్చరికని మీ అభిరుచులలోని \"{{int:prefs-editing}}\"  విభాగంలో అచేతనం చేసుకోవచ్చు.",
 	"editpage-notsupportedcontentformat-title": "పాఠ్యపు ఆకృతికి మద్దతు లేదు",
 	"editpage-notsupportedcontentformat-text": "$2 పాఠ్యపు మోడల్, పాఠ్యపు ఆకృతి $1 కి మద్దతు ఇవ్వదు",

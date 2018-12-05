@@ -708,7 +708,7 @@
 	"defaultmessagetext": "تلواليزه پيغام متن",
 	"content-failed-to-parse": "په منځپانګې کې د ناسم کولو ناکامي $2 د موډل لپاره $1: $3",
 	"invalid-content-data": "د ناباوره منځپانګې ډاټا",
-	"content-not-allowed-here": "\"$1\" په پاڼه کې منځپانګې ته اجازه نشته [[$2]]",
+	"content-not-allowed-here": "\"$1\" په پاڼه کې منځپانګې ته اجازه نشته [[:$2]]",
 	"editpage-invalidcontentmodel-text": "د منځپانګې موډيول \"$1\" ملاتړ ندی شوی.",
 	"editpage-notsupportedcontentformat-title": "د منځپانګې بڼه نده ملاتړ شوې",
 	"content-model-wikitext": "ويکي متن",

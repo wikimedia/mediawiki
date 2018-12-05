@@ -600,7 +600,7 @@
 	"defaultmessagetext": "Standardtext",
 	"content-failed-to-parse": "Parsierung von den Inhalt $2 für Modell $1 fehlgeschlohn: $3",
 	"invalid-content-data": "Ungültiche Inhaltsdate",
-	"content-not-allowed-here": "Der Inhalt \"$1\" ist uff der Seit [[$2]] net erlaubt",
+	"content-not-allowed-here": "Der Inhalt \"$1\" ist uff der Seit [[:$2]] net erlaubt",
 	"editwarning-warning": "Das Verlosse von der Seit kann dozu führe, dass dein Ännrungen verloar gehn.\nWenn du oongemeldt bist, kannst du das Oonzeiche von der Warnung im Bereich „{{int:prefs-editing}}“ deiner Instellunge abschalte.",
 	"editpage-notsupportedcontentformat-title": "Das Inhaltsformat weard net unnerstützt",
 	"editpage-notsupportedcontentformat-text": "Das Inhaltsformat $1 weard vom Inhaltsmodell $2 net unnerstützt.",

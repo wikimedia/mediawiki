@@ -681,7 +681,7 @@
 	"defaultmessagetext": "Mèssâjo per dèfôt",
 	"content-failed-to-parse": "Falyita de l’analise du contegnu de $2 por lo modèlo $1 : $3",
 	"invalid-content-data": "Balyês du contegnu pas justes",
-	"content-not-allowed-here": "Lo contegnu « $1 » est pas ôtorisâ dessus la pâge [[$2]]",
+	"content-not-allowed-here": "Lo contegnu « $1 » est pas ôtorisâ dessus la pâge [[:$2]]",
 	"editwarning-warning": "Quitar cela pâge vos farat pèrdre tôs los changements que vos éd fêts.\nSe vos éte branchiê{{GENDER:||e}}, vos pouede dèsactivar cela semonce dedens la sèccion « {{int:prefs-editing}} » de voutres prèferences.",
 	"editpage-notsupportedcontentformat-title": "Format de contegnu pas recognu",
 	"editpage-notsupportedcontentformat-text": "Lo format de contegnu $1 est pas recognu per lo modèlo de contegnu $2.",

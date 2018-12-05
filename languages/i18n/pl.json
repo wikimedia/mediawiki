@@ -825,7 +825,7 @@
 	"defaultmessagetext": "Domyślny tekst komunikatu",
 	"content-failed-to-parse": "Format zawartości typu $2 (dla modelu: $1) nieprawidłowy: $3",
 	"invalid-content-data": "Zawartość strony zawiera nieprawidłowe dane",
-	"content-not-allowed-here": "Zawartość tego typu ($1) nie jest dozwolona na stronie [[$2]] w slocie „$3”",
+	"content-not-allowed-here": "Zawartość tego typu ($1) nie jest dozwolona na stronie [[:$2]] w slocie „$3”",
 	"editwarning-warning": "Opuszczenie tej strony może spowodować utratę wprowadzonych przez Ciebie zmian.\nJeśli jesteś zalogowany, możesz wyłączyć wyświetlanie tego ostrzeżenia w zakładce „{{int:prefs-editing}}” w swoich preferencjach.",
 	"editpage-invalidcontentmodel-title": "Model zawartości nie jest obsługiwany",
 	"editpage-invalidcontentmodel-text": "Model zawartości „$1” nie jest obsługiwany.",
