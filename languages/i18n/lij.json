@@ -712,7 +712,7 @@
 	"defaultmessagetext": "Scrito do messaggio predefinio",
 	"content-failed-to-parse": "Imposcibbile analizzâ $2 pe-o modello $1: $3",
 	"invalid-content-data": "Dæti contegnui non vallidi",
-	"content-not-allowed-here": "Contegnuo in \"$1\" non consentio inta paggina [[$2]]",
+	"content-not-allowed-here": "Contegnuo in \"$1\" non consentio inta paggina [[:$2]]",
 	"editwarning-warning": "Lasciâ sta paggina porriæ caosâ a perdia de tutte e modiffiche fæte.\nSe ti t'hê introu, ti peu disattivâ st'aviso inta seçion \"{{int:prefs-editing}}\" de teu preferençe.",
 	"editpage-invalidcontentmodel-title": "Modello de contegnuo non supportou",
 	"editpage-invalidcontentmodel-text": "O modello de contegnuo \"$1\" o no l'è supportou.",

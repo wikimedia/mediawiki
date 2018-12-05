@@ -784,7 +784,7 @@
 	"defaultmessagetext": "Teks baku",
 	"content-failed-to-parse": "Gagal menjabarkan konten $2 untuk model $1: $3",
 	"invalid-content-data": "Data konten tidak sah",
-	"content-not-allowed-here": "Konten \"$1\" tidak diizinkan di halaman [[$2]]",
+	"content-not-allowed-here": "Konten \"$1\" tidak diizinkan di halaman [[:$2]]",
 	"editwarning-warning": "Meninggalkan halaman ini dapat menyebabkan semua perubahan yang belum tersimpan hilang.\nJika Anda telah masuk log, Anda dapat mematikan peringatan ini lewat bagian \"Penyuntingan\" pada halaman preferensi Anda.",
 	"editpage-invalidcontentmodel-title": "Model konten tidak didukung",
 	"editpage-invalidcontentmodel-text": "Model konten \"$1\" tidak didukung.",

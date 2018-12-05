@@ -750,7 +750,7 @@
 	"defaultmessagetext": "अविचल संदेश मजकूर",
 	"content-failed-to-parse": "$2 चा आशय(कंटेंट) $1 साठी पार्स करण्यात असफलता - नमुना: $3",
 	"invalid-content-data": "अवैध माहिती",
-	"content-not-allowed-here": "\"$1\" हा आशय [[$2]] लेखावर टाकण्याची अनुमती नाही.",
+	"content-not-allowed-here": "\"$1\" हा आशय [[:$2]] लेखावर टाकण्याची अनुमती नाही.",
 	"editwarning-warning": "या पानावरुन दुसर्‍या पानावर गेल्यास, तुम्ही येथे केलेले बदल जतन होणार नाहीत.\nजर आपण सनोंद-प्रवेशित असाल तर, ही सूचना घालवण्यासाठी ''{{int:prefs-editing}}'' मधील संपादनपसंतीत बदल करा.",
 	"editpage-invalidcontentmodel-title": "आशय प्रारुप सहाय्यीकृत नाही",
 	"editpage-invalidcontentmodel-text": "आशय प्रारुप \"$1\" हे सहाय्यीकृत नाही.",

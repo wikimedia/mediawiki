@@ -663,7 +663,7 @@
 	"defaultmessagetext": "Verstekteks",
 	"content-failed-to-parse": "Dit was nie moontlik om die inhoud van die MIME-tipe $2 vir die model $1 te verwerk nie: $3.",
 	"invalid-content-data": "Ongeldige inhoud",
-	"content-not-allowed-here": "\"$1\" word nie op bladsy [[$2]] toegelaat nie.",
+	"content-not-allowed-here": "\"$1\" word nie op bladsy [[:$2]] toegelaat nie.",
 	"editwarning-warning": "As u hierdie bladsy verlaat, verloor u moontlik al die wysigings wat u aangebring het.\nIndien u aangemeld is, kan u hierdie waarskuwing in die \"Wysigings\"-afdeling van u voorkeure afskakel.",
 	"editpage-notsupportedcontentformat-title": "Inhoudsformaat word nie ondersteun nie",
 	"content-model-wikitext": "Wikiteks",

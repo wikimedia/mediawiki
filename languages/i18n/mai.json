@@ -708,7 +708,7 @@
 	"defaultmessagetext": "पूर्वनिर्धारित सन्देश पाठ",
 	"content-failed-to-parse": "$1 के लेल $2 सामग्री के बिच्छेदन करए में विफल, त्रुटि: $3",
 	"invalid-content-data": "अवैध डाटा सामग्री",
-	"content-not-allowed-here": "[[$2]] पृष्ठ पर \"$1\" सामग्री $3वर्जित अछि।",
+	"content-not-allowed-here": "[[:$2]] पृष्ठ पर \"$1\" सामग्री $3वर्जित अछि।",
 	"editwarning-warning": "इ पृष्ठ के छोड़ए सँ अहाके द्वारा कएल गेल कोनो भी परिवर्तन गायब भऽ जाएत।\nयदि अहाँ सम्प्रवेश केनए छी तहन ई सूचना के देखावए लेल अपन वरीयता सभ के \"{{int:prefs-editing}}\" भाग में बन्द कऽ सकएत छी।",
 	"editpage-notsupportedcontentformat-title": "सामग्री स्वरूप समर्थित नै अछि",
 	"editpage-notsupportedcontentformat-text": "$1 सामग्री स्वरूप $2 सामग्री मोडल द्वारा समर्थित नै अछि।",

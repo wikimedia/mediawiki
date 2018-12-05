@@ -711,7 +711,7 @@
 	"defaultmessagetext": "Standard tekst",
 	"content-failed-to-parse": "Parsing faan $2 för't model $1 ging skiaf: $3",
 	"invalid-content-data": "Diar stäänt wat uun, wat diar ei hen hiart",
-	"content-not-allowed-here": "„$1“ mut ei skrewen wurd üüb sidj [[$2]]",
+	"content-not-allowed-here": "„$1“ mut ei skrewen wurd üüb sidj [[:$2]]",
 	"editwarning-warning": "Wan dü detheer sidj slotst, kön feranrangen ferleesen gung.\nÜs uunmeldet brüker könst dü detheer wäärnang bi din iinstelangen oner „{{int:prefs-editing}}“ ufstel.",
 	"editpage-notsupportedcontentformat-title": "Detdiar formoot gongt ei.",
 	"editpage-notsupportedcontentformat-text": "Det formoot $1 gongt ei mä det model $2.",

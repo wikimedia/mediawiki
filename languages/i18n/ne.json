@@ -717,7 +717,7 @@
 	"defaultmessagetext": "डिफल्ट सन्देश पाठ",
 	"content-failed-to-parse": "$1 को लागि $2 सामग्रीलाई पार्स गर्न विफल, त्रुटि: $3",
 	"invalid-content-data": "अमान्य सामग्री डेटा",
-	"content-not-allowed-here": "सामग्री \"$1\"  [[$2]] पृष्ठमा राख्न अनुमती छैन ।",
+	"content-not-allowed-here": "सामग्री \"$1\"  [[:$2]] पृष्ठमा राख्न अनुमती छैन ।",
 	"editwarning-warning": "यो पृष्ठबाट बाहिर जाँदा तपाईं द्वारा गरिएको कुनै पनि परिवर्तन हराउनेछ।\nयदि तपाईंले लग इन गर्नुभएको छ भने तपाईं यस सूचनालाई देखाउन आफ्नो अभिरूचीहरूको \"{{int:prefs-editing}}\" भागमा गएर बन्द गर्न सक्नुहुन्छ।",
 	"editpage-notsupportedcontentformat-title": "सामग्री प्रकार समर्थित छैन",
 	"editpage-notsupportedcontentformat-text": "$1 सामग्री स्वरूप $2 सामग्री मोडलद्वारा समर्थित छैन।",

@@ -662,7 +662,7 @@
 	"edit-already-exists": "નવું પાનું બનાવી ન શકાયું\nતે પહેલેથી હાજર છે.",
 	"defaultmessagetext": "મૂળભૂત સંદેશ લખાણ",
 	"invalid-content-data": "અયોગ્ય વિગત માહિતી",
-	"content-not-allowed-here": "\"$1\" વિગત [[$2]] પાનાં પર માન્ય નથી",
+	"content-not-allowed-here": "\"$1\" વિગત [[:$2]] પાનાં પર માન્ય નથી",
 	"editwarning-warning": "આ પાનું છોડી દેશો તો તમારા ફેરફારો તમે ગુમાવી શકો છો.\nજો તમે પ્રવેશ કરેલો હોય તો, તમે આ ચેતવણીને તમારી પસંદગીના \"{{int:prefs-editing}}\" વિભાગના વિકલ્પો બદલીને બંધ કરી શકો છો.",
 	"content-model-wikitext": "વિકિલખાણ",
 	"content-model-text": "સાદું લખાણ",

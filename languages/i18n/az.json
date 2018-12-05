@@ -613,7 +613,7 @@
 	"postedit-confirmation-created": "Səhifə yaradıldı.",
 	"postedit-confirmation-saved": "Redaktəniz qeyd edildi.",
 	"edit-already-exists": "Yeni səhifəni yaratmaq mümkün deyil.\nBelə ki, bu adda səhifə artıq mövcuddur.",
-	"content-not-allowed-here": "\"$1\" tərkibi [[$2]] səhifəsi üçün icazə verilmir.",
+	"content-not-allowed-here": "\"$1\" tərkibi [[:$2]] səhifəsi üçün icazə verilmir.",
 	"content-model-wikitext": "vikimətn",
 	"content-model-text": "adi mətn",
 	"content-model-javascript": "JavaScript",

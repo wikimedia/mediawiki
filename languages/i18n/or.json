@@ -680,7 +680,7 @@
 	"defaultmessagetext": "ଡିଫଲ୍ଟ ମେସେଜ ଲେଖାଗୁଡିକ",
 	"content-failed-to-parse": "$1 ପ୍ରକାର ପାଇଁ $2 ଲେଖାକୁ ବର୍ଣ୍ଣନା କରିପାରିଲା ନାହିଁ: $3",
 	"invalid-content-data": "ଅବୈଧ ଆଧାର ତଥ୍ୟ",
-	"content-not-allowed-here": "\"$1\" ବିଷୟଗୁଡିକ [[$2]]ପୃଷ୍ଠାରେ ରହିପାରିବ ନାହିଁ",
+	"content-not-allowed-here": "\"$1\" ବିଷୟଗୁଡିକ [[:$2]]ପୃଷ୍ଠାରେ ରହିପାରିବ ନାହିଁ",
 	"editwarning-warning": "ଏହି ପୃଷ୍ଠାଟି ଛାଡ଼ି ଚାଲିଗଲେ ଆପଣ ଆଗରୁ କରିଥିବା ସମ୍ପାଦନା ହରାଇବେ । ଯଦି ଆପଣ ଲଗ ଇନ କରିଥାନ୍ତି ନିଜ ପସନ୍ଦ ପୃଷ୍ଠାର \"{{int:prefs-editing}}\" ବିଭାଗରେ ଏହି ଚେତାବନୀଟି ନିଷ୍କ୍ରିୟ କରିପାରିବେ ।",
 	"editpage-notsupportedcontentformat-title": "କଣ୍ଟେଣ୍ଟର ସଂରଚନା ସମର୍ଥିତ ନୁହେଁ",
 	"editpage-notsupportedcontentformat-text": "$1ର ବିଷୟବସ୍ତୁର ସଜାଣି $2ର ବିଷୟବସ୍ତୁ ମଡ଼େଲ ସହିତ ମେଳ ଖାଉନାହିଁ ।",

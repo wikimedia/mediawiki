@@ -708,7 +708,7 @@
 	"defaultmessagetext": "Teacsa bunaiteach na teachdaireachd",
 	"content-failed-to-parse": "Dh'fhàillig parsadh susbaint $2 airson modail $1: $3",
 	"invalid-content-data": "Dàta susbaint a tha mì-dhligheach",
-	"content-not-allowed-here": "Chan eil susbaint \"$1\" ceadaichte air an duilleag [[$2]]",
+	"content-not-allowed-here": "Chan eil susbaint \"$1\" ceadaichte air an duilleag [[:$2]]",
 	"editwarning-warning": "Ma dh'fhàgas tu an duilleag seo, faodaidh gun caill thu mùthadh sam bith a rinn thu.\nMa tha thu air logadh a-steach, 's urrainn dhut an rabhadh seo a chur dheth san earrann \"{{int:prefs-editing}}\" anns na roghainnean agad.",
 	"editpage-notsupportedcontentformat-title": "Chan eil taic ri fòrmat na susbaint",
 	"editpage-notsupportedcontentformat-text": "Chan eil modail na susbaint \"$2\" a' cur taic ri fòrmat na susbaint \"$1\".",

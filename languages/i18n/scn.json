@@ -644,7 +644,7 @@
 	"defaultmessagetext": "Testu dû missaggiu pridifinutu",
 	"content-failed-to-parse": "Anàlisi sintàttica dû cuntinutu $2 pû mudellu $1 nun arrinisciuta: $3",
 	"invalid-content-data": "Dati nun vàlidi ntô cuntinutu",
-	"content-not-allowed-here": "Lu cuntinutu \"$1\" nun è cunzintutu ntâ pàggina [[$2]]",
+	"content-not-allowed-here": "Lu cuntinutu \"$1\" nun è cunzintutu ntâ pàggina [[:$2]]",
 	"editwarning-warning": "Lassannu sta pàggina poi pèrdiri li canciamenti ca facisti.\nSi trasisti, poi disattivari st'avvisu ntâ sizzioni \"{{int:prefs-editing}}\" dî tò prifirenzi.",
 	"editpage-notsupportedcontentformat-title": "Furmatu di cuntinutu nun suppurtatu",
 	"editpage-notsupportedcontentformat-text": "Lu furmatu di cuntinutu $1 nun è suppurtatu dû mudellu di cuntinutu $2.",

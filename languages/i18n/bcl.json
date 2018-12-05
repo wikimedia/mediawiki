@@ -608,7 +608,7 @@
 	"defaultmessagetext": "Tugmadong mensahe sa teksto",
 	"content-failed-to-parse": "Nagpalya sa paglunhay an $2 na laman para sa $1 na modelo: $3",
 	"invalid-content-data": "Imbalidong datos nin laman",
-	"content-not-allowed-here": "\"$1\" na laman dae pinagtutugutan sa pahina [[$2]]",
+	"content-not-allowed-here": "\"$1\" na laman dae pinagtutugutan sa pahina [[:$2]]",
 	"editwarning-warning": "Sa pagbaya kaining pahina magkakausa saimo na mawara an anuman na mga kaliwatan na saimong pinaghimo. Kun ika nakapaglaog na, ika puwedeng makapagpauntok kaining patanid sa \"{{int:prefs-editing}}\" na seksyon kan saimong mga kamuyahan.",
 	"editpage-notsupportedcontentformat-title": "Kalamnan nin pormat bakong suportado",
 	"editpage-notsupportedcontentformat-text": "An pormat nin kalamnan na $1 bakong suportado kan modelong kalamnan na $2.",

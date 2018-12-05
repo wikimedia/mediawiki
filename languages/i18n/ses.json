@@ -616,7 +616,7 @@
 	"defaultmessagetext": "Tilasu alhabar hantum",
 	"content-failed-to-parse": "Mana hin ka $2 gundekuna fesu-fesu $1 takari se: $3",
 	"invalid-content-data": "Gundekuna bayhaya laala",
-	"content-not-allowed-here": "\"$1\" gundekuna ši koy moɲoo woo ga [[$2]]",
+	"content-not-allowed-here": "\"$1\" gundekuna ši koy moɲoo woo ga [[:$2]]",
 	"editwarning-warning": "Nda war na moɲoo naŋ, a ga hin ka tee barmawey kaŋ war n'i tee kul ga dere.\nNda war huru ka ben, war ga hin ka yaamaroo wii war ibaayey \"{{int:prefs-editing}}\" dunboo ra.",
 	"editpage-notsupportedcontentformat-title": "Gundekuna takari ši koy ne \\",
 	"editpage-notsupportedcontentformat-text": "Gundekuna takari $1 ši koy ne gundekuna takari $2 bande.",

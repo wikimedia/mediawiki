@@ -773,7 +773,7 @@
 	"defaultmessagetext": "Standard meldingstekst",
 	"content-failed-to-parse": "Klarte ikke å tolke innholdet $2 for innholdsmodellen $1: $3",
 	"invalid-content-data": "Ugyldig innhold",
-	"content-not-allowed-here": "Innholdsmodellen «$1» er ikke tillatt på siden [[$2]]",
+	"content-not-allowed-here": "Innholdsmodellen «$1» er ikke tillatt på siden [[:$2]]",
 	"editwarning-warning": "Ved å forlate siden kan du miste alle endringer du har gjort.\nHvis du er innlogget, kan du slå av denne advarselen under \"{{int:prefs-editing}}\"-avsnittet i dine innstillinger.",
 	"editpage-invalidcontentmodel-title": "Innholdsmodellen støttes ikke",
 	"editpage-invalidcontentmodel-text": "Innholdsmodellen «$1» støttes ikke.",

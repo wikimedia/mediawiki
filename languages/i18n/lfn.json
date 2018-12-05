@@ -712,7 +712,7 @@
 	"defaultmessagetext": "Testo inisial de mesaje",
 	"content-failed-to-parse": "La contenida $2 per model $1 no ia pote es analiseda: $3",
 	"invalid-content-data": "Datos nonvalida de contenida",
-	"content-not-allowed-here": "Contenida \"$1\" no es permeteda en paje [[$2]]",
+	"content-not-allowed-here": "Contenida \"$1\" no es permeteda en paje [[:$2]]",
 	"editwarning-warning": "Si tu vade a via de esta paje, tu va perde cisa cualce cambias cual tu ia fa.\nSi tu es autenticida, tu pote descomuta esta avisa en la parte \"{{int:prefs-editing}}\" de tua preferes.",
 	"editpage-invalidcontentmodel-title": "Model de contenida no es suportada",
 	"editpage-invalidcontentmodel-text": "La model de contenida \"$1\" no es suportada.",

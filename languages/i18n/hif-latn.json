@@ -714,7 +714,7 @@
 	"defaultmessagetext": "Default message text",
 	"content-failed-to-parse": "$1 model ke khatir $2 ke parse nai kare sakaa hae: $3",
 	"invalid-content-data": "Panna me likha gais chij right nai hae",
-	"content-not-allowed-here": "Panna [[$2]] me \"$1\" likhe ke ijaajat nai hae",
+	"content-not-allowed-here": "Panna [[:$2]] me \"$1\" likhe ke ijaajat nai hae",
 	"editwarning-warning": "Ii panna ke chhore se jetna changes aap  karaa hae nai save hoi.\nAgar aap logged in hae, tab aap ii chetauni ke \"{{int:prefs-editing}}\"  vibhag me disable kare saktaa hae.",
 	"editpage-invalidcontentmodel-title": "Content model not supported",
 	"editpage-invalidcontentmodel-text": "Content model \"$1\" ke support nai karaa jaawe hai.",

@@ -259,7 +259,7 @@
 	"config-cache-memcached": "Použít Memcached (vyžaduje další nastavení a konfiguraci)",
 	"config-memcached-servers": "Servery Memcached:",
 	"config-memcached-help": "Seznam IP adres, které se mají používat pro Memcached.\nUveďte jednu na řádek spolu s portem. Například:\n 127.0.0.1:11211\n 192.168.1.25:1234",
-	"config-memcache-needservers": "Jako typ mezipaměti jste zvolili Memcached, ale neuvedli jste žádné servery.",
+	"config-memcache-needservers": "Jako typ cache jste zvolili Memcached, ale neuvedli jste žádné servery.",
 	"config-memcache-badip": "Zadali jste neplatnou IP adresu pro Memcached: $1.",
 	"config-memcache-noport": "Nezadali jste port serveru Memcached: $1.\nPokud port neznáte, implicitní je 11211.",
 	"config-memcache-badport": "Čísla portů pro Memcached by měla být mezi $1 a $2.",

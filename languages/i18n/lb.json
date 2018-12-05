@@ -713,7 +713,7 @@
 	"defaultmessagetext": "Standardtext",
 	"content-failed-to-parse": "Den $2-Inhalt fir den $1-Modell konnt net geparst ginn: $3",
 	"invalid-content-data": "Donnéeë vum Inhalt sinn net valabel",
-	"content-not-allowed-here": "\"$1\"-Inhalt ass op der Säit [[$2]] net erlaabt",
+	"content-not-allowed-here": "\"$1\"-Inhalt ass op der Säit [[:$2]] net erlaabt",
 	"editwarning-warning": "Wann Dir dës Säit verloosst kann dat dozou féieren datt Dir all Ännerungen, déi Dir gemaach hutt, verléiert.\nWann Dir ageloggt sidd, kënnt Dir dës Warnung an der Sektioun \"{{int:prefs-editing}}\" vun Ären Astellungen ausschalten.",
 	"editpage-invalidcontentmodel-title": "Modell vum Inhalt gëtt net ënnerstëtzt",
 	"editpage-invalidcontentmodel-text": "Den Inhaltsmodell \"$1\" gëtt net ënnerstëtzt.",

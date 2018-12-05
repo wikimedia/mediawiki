@@ -803,7 +803,7 @@
 	"defaultmessagetext": "Стандартний текст повідомлення",
 	"content-failed-to-parse": "Не вдалось ідентифікувати $2 як тип $1 через: $3",
 	"invalid-content-data": "Неприпустимі дані",
-	"content-not-allowed-here": "Вміст «$1» недопустимий на сторінці [[$2]]",
+	"content-not-allowed-here": "Вміст «$1» недопустимий на сторінці [[:$2]]",
 	"editwarning-warning": "Перехід на іншу сторінку призведе до втрати ваших змін.\nЯкщо ви ввійшли до системи, то ви можете відключити це попередження в розділі \"{{int:prefs-editing}}\" ваших налаштувань.",
 	"editpage-invalidcontentmodel-title": "Контентна модель не підтримується",
 	"editpage-invalidcontentmodel-text": "Контентна модель «$1» не підтримується.",

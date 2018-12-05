@@ -526,7 +526,7 @@
 	"defaultmessagetext": "Teksto sang mensahe nga wala pa ma-ilisan",
 	"content-failed-to-parse": "Di matuman ang pag-parse $2 nga unod para sa $1 nga modelo: $3",
 	"invalid-content-data": "May ara sala sa data.",
-	"content-not-allowed-here": "\"$1\" nga sulod indi pwede sa panid [[$2]]",
+	"content-not-allowed-here": "\"$1\" nga sulod indi pwede sa panid [[:$2]]",
 	"content-model-wikitext": "tekstong wiki",
 	"content-model-text": "tekstong ordinaryo",
 	"content-model-javascript": "JavaScript",

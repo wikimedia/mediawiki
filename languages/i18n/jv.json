@@ -690,7 +690,7 @@
 	"defaultmessagetext": "Tèks layang gawan",
 	"content-failed-to-parse": "Gagal menjabarkan konten $2 untuk model $1: $3",
 	"invalid-content-data": "Data isi ora trap",
-	"content-not-allowed-here": "Konten \"$1\" ora oleh ing kaca [[$2]]",
+	"content-not-allowed-here": "Konten \"$1\" ora oleh ing kaca [[:$2]]",
 	"editwarning-warning": "Ninggalake kaca iki bisa njalari ilangé owah-owahané panjenengan.\nManawa panjenengan ing jero log, panjenengan bisa matèni pepéling iki ing pérangan \"{{int:prefs-editing}}\" ing pilalané panjenengan.",
 	"editpage-invalidcontentmodel-title": "Modhèl kontèn ora sinengkuyung",
 	"editpage-invalidcontentmodel-text": "Modhèl kontèn \"$1\" ora sinengkuyung.",

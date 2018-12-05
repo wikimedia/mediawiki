@@ -723,7 +723,7 @@
 	"defaultmessagetext": "Messàgge de teste de base",
 	"content-failed-to-parse": "L'analise d'u condenute $2 pu modelle $1 ha fallite: $3",
 	"invalid-content-data": "Condenute d'u date invalide",
-	"content-not-allowed-here": "\"$1\" condenute non g'è permesse sus 'a pàgene [[$2]] jndr'à 'u slot \"$3\"",
+	"content-not-allowed-here": "\"$1\" condenute non g'è permesse sus 'a pàgene [[:$2]] jndr'à 'u slot \"$3\"",
 	"editwarning-warning": "Assenne da sta pàgene tu puè perdè tutte le date ca è cangiate.\nCe tu è trasute, tu puè disabbilità st'avvertimende jndr'à sezione \"{{int:prefs-editing}}\" de le preferenze tune.",
 	"editpage-invalidcontentmodel-title": "'U Modelle d'u condenute non gè supportate",
 	"editpage-invalidcontentmodel-text": "'U modelle d'u condenute \"$1\" non g'è supportate.",

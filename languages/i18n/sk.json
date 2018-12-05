@@ -736,7 +736,7 @@
 	"defaultmessagetext": "Predvolený text správy",
 	"content-failed-to-parse": "Nepodarilo sa spracovať obsah $2 pre model $1: $3",
 	"invalid-content-data": "Neplatné dáta obsahu",
-	"content-not-allowed-here": "Obsah „$1“ nie je povolený na stránke [[$2]]",
+	"content-not-allowed-here": "Obsah „$1“ nie je povolený na stránke [[:$2]]",
 	"editwarning-warning": "Ak opustíte túto stránku, môžete tým stratiť všetky vykonané zmeny.\nAk ste prihlásený, toto upozornenie môžete vypnúť v sekcii „{{int:prefs-editing}}“ svojich nastavení.",
 	"editpage-notsupportedcontentformat-title": "Formát obsahu nie je podporovaný",
 	"content-model-wikitext": "wikitext",

@@ -608,7 +608,7 @@
 	"defaultmessagetext": "Ìkọ ìránṣẹ́ àtìbẹ̀rẹ̀",
 	"content-failed-to-parse": "Ìkùnà láti ṣàtúwò àkóónú $2 fún àfijúwe $1: $3",
 	"invalid-content-data": "Àkóónú dátà tí kò yẹ",
-	"content-not-allowed-here": "Àkóónú \"$1\" kò ní ìyọ̀nda lórí ojúewé [[$2]]",
+	"content-not-allowed-here": "Àkóónú \"$1\" kò ní ìyọ̀nda lórí ojúewé [[:$2]]",
 	"editwarning-warning": "Kíkúrò ní ojúewé yìí yíò jẹ́ kí ẹ pòfo àwọn àtúnṣe tí ẹ ti ṣe.\nTó bá jẹ́ pé ẹ ti forúkọ wọlé, ẹ lè dẹ́kun ìkìlọ̀ yìí nínù abala \"{{int:prefs-editing}}\" ti àwọn ìfẹ́ràn yín.",
 	"content-model-wikitext": "ìkọ̀rọ̀ wiki",
 	"content-model-text": "ìkọ̀rọ̀ kedere",

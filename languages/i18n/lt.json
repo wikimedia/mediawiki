@@ -740,7 +740,7 @@
 	"defaultmessagetext": "Numatytasis pranešimo tekstas",
 	"content-failed-to-parse": "Turinys $2 neatitinka tipui $1: $3",
 	"invalid-content-data": "Neleistinas turinys.",
-	"content-not-allowed-here": "Turinys \"$1\" puslapyje [[$2]] nėra leistinas.",
+	"content-not-allowed-here": "Turinys \"$1\" puslapyje [[:$2]] nėra leistinas.",
 	"editwarning-warning": "Palikdamas šį puslapį jūs galite prarasti visus padarytus pakeitimus.\nJei esate prisijungęs, galite išjungti šį perspėjimą jūsų nustatymų skyrelyje \"{{int:prefs-editing}}\".",
 	"editpage-invalidcontentmodel-title": "Turinio modelis nepalaikomas",
 	"editpage-invalidcontentmodel-text": "Turinio modulis „$1“ nėra palaikomas.",

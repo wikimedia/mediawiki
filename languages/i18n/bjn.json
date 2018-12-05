@@ -511,7 +511,7 @@
 	"defaultmessagetext": "Naskah baku pasan",
 	"content-failed-to-parse": "Gagal manjabarakan isi $2 gasan model $1: $3",
 	"invalid-content-data": "Data isi kada sah",
-	"content-not-allowed-here": "Isi \"$1\" kada diijinakan di tungkaran [[$2]]",
+	"content-not-allowed-here": "Isi \"$1\" kada diijinakan di tungkaran [[:$2]]",
 	"content-model-wikitext": "teks wiki",
 	"content-model-text": "teks polos",
 	"content-model-javascript": "JavaScript",

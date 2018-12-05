@@ -909,7 +909,7 @@
 	"defaultmessagetext": "Texto predeterminado",
 	"content-failed-to-parse": "No se ha podido procesar el contenido $2 del modelo de $1: $3",
 	"invalid-content-data": "Datos de contenido incorrectos",
-	"content-not-allowed-here": "El contenido «$1» no está permitido en la página [[$2]]",
+	"content-not-allowed-here": "El contenido «$1» no está permitido en la página [[:$2]]",
 	"editwarning-warning": "Se perderán los cambios si se cierra esta página.\nSi has iniciado sesión, puedes desactivar este aviso en la sección «{{int:prefs-editing}}» de las preferencias.",
 	"editpage-invalidcontentmodel-title": "Modelo de contenido no admitido",
 	"editpage-invalidcontentmodel-text": "El modelo de contenido «$1» no se admite.",

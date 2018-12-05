@@ -723,7 +723,7 @@
 	"defaultmessagetext": "Defaut message tex",
 	"content-failed-to-parse": "Failed tae parse $2 content fer $1 model: $3",
 	"invalid-content-data": "Onvalid content data",
-	"content-not-allowed-here": "\"$1\" content isna permited oan the page [[$2]]",
+	"content-not-allowed-here": "\"$1\" content isna permited oan the page [[:$2]]",
 	"editwarning-warning": "Leain this page micht cause ye tae lose oni chynges that ye'v makit.\nGif ye'r loggit in, ye can disable this warnishment in the \"{{int:prefs-editing}}\" section o yer preferences.",
 	"editpage-invalidcontentmodel-title": "Content model nae supportit",
 	"editpage-invalidcontentmodel-text": "The content model \"$1\" isna supportit.",

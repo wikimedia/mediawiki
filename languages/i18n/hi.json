@@ -93,7 +93,8 @@
 			"Innocentbunny",
 			"TryKid",
 			"Fitoschido",
-			"Tavleen"
+			"Tavleen",
+			"Jayantanth"
 		]
 	},
 	"tog-underline": "लिंक रेखांकित:",
@@ -816,7 +817,7 @@
 	"defaultmessagetext": "संदेश का डिफ़ॉल्ट पाठ",
 	"content-failed-to-parse": "$1 के लिए $2 सामग्री को पार्स करने में विफल, त्रुटि: $3",
 	"invalid-content-data": "अवैध डाटा सामग्री",
-	"content-not-allowed-here": "[[$2]] पृष्ठ पर \"$1\" सामग्री मना है।",
+	"content-not-allowed-here": "[[:$2]] पृष्ठ पर \"$1\" सामग्री मना है।",
 	"editwarning-warning": "इस पृष्ठ को छोड़ने पर आपके द्वारा किये गए कोई भी बदलाव गायब हो जाएँगे।\nयदि आपने लॉग इन किया हुआ है तो आप इस सूचना का दिखना अपनी वरीयताओं के \"{{int:prefs-editing}}\" भाग में बंद कर सकते हैं।",
 	"editpage-invalidcontentmodel-title": "सामग्री मॉडल समर्थित नहीं",
 	"editpage-invalidcontentmodel-text": "सामग्री मॉडल \"$1\" समर्थित नहीं है।",
@@ -1006,6 +1007,7 @@
 	"diff-paragraph-moved-toold": "पैराग्राफ को स्थानांतरित कर दिया गया था| पुराने स्थान पर जाने के लिए क्लिक करें|",
 	"difference-missing-revision": "इस अंतर {{PLURAL:$2|का एक अवतरण|के $2 अवतरण}} ($1) नहीं {{PLURAL:$2|पाया गया|पाए गए}}।\n\nयह आम तौर पर एक हटाए गए पृष्ठ के अवतरणों में अंतर ढूँढने पर होता है। अधिक जानकारी [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} हटाने के लॉग] में पायी जा सकती है।",
 	"searchresults": "खोज परिणाम",
+	"search-filter-title-prefix-reset": "सभी पृष्ठों को खोजें",
 	"searchresults-title": "\"$1\" के लिए खोज परिणाम",
 	"titlematches": "पृष्ठ शीर्षक मिलान",
 	"textmatches": "पृष्ठ पाठ मिलान",
@@ -1097,8 +1099,9 @@
 	"recentchangesdays": "हाल में हुए बदलावों में दर्शाने के दिन:",
 	"recentchangesdays-max": "अधिकतम $1 {{PLURAL:$1|दिन}}",
 	"recentchangescount": "मूल रूप से कितने संपादन दिखाएँ:",
-	"prefs-help-recentchangescount": "इसमें हाल के बदलाव, पृष्ठ इतिहास व लॉग शामिल हैं।",
+	"prefs-help-recentchangescount": "अधिकतम संख्या: एक हज़ार",
 	"prefs-help-watchlist-token2": "यह आपकी ध्यानसूची की वेब फ़ीड की गोपनीय चाबी है।\nयह जिसके भी पास होगी वह आपकी ध्यानसूची पढ़ सकेगा, इसिलए इसे किसी के साथ बांटियेगा नहीं।\nअगर आप की जरूरत है, [[Special:ResetTokens|आप इसे रीसेट कर सकते हैं]]।",
+	"prefs-help-tokenmanagement": "आप अपने खाते के लिए गुप्त कुंजी देख और रीसेट कर सकते हैं जो आपकी वॉचलिस्ट की वेब फ़ीड तक पहुंच सकता है। जो भी कुंजी जानता है वह आपकी वॉचलिस्ट को पढ़ने में सक्षम होगा, इसलिए इसे साझा न करें।",
 	"savedprefs": "आपकी वरीयताएँ संजोई गई हैं।",
 	"savedrights": "सदस्य {{GENDER:$1|$1}} का सदस्य अधिकार सहेजा गया।",
 	"timezonelegend": "समयमंडल:",

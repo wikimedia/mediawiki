@@ -78,7 +78,8 @@
 			"Martin Wiss",
 			"Mdjarv",
 			"Frisko",
-			"Bengtsson96"
+			"Bengtsson96",
+			"Nirmos (Wikimedia)"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -380,7 +381,7 @@
 	"nonwrite-api-promise-error": "HTTP-headern 'Promise-Non-Write-API-Action' skickades men förfrågan var till en API-skrivmodul.",
 	"internalerror": "Internt fel",
 	"internalerror_info": "Internt fel: $1",
-	"internalerror-fatal-exception": "Allvarligt undantag av typen \"$1\"",
+	"internalerror-fatal-exception": "Allvarligt fel av typen \"$1\"",
 	"filecopyerror": "Kunde inte kopiera filen \"$1\" till \"$2\".",
 	"filerenameerror": "Kunde inte byta namn på filen \"$1\" till \"$2\".",
 	"filedeleteerror": "Kunde inte radera filen \"$1\".",
@@ -798,7 +799,7 @@
 	"defaultmessagetext": "Standardtext för meddelande",
 	"content-failed-to-parse": "Det gick inte att parsa $2 innehåll för $1 modell: $3",
 	"invalid-content-data": "Ogiltig innehållsdata",
-	"content-not-allowed-here": "innehåll av \"$1\" är inte tillåtet på sidan [[$2]]",
+	"content-not-allowed-here": "innehåll av \"$1\" är inte tillåtet på sidan [[:$2]]",
 	"editwarning-warning": "Om du lämnar den här sidan kommer du att förlora alla ändringar du har gjort.\nOm du är inloggad kan du slå av den här varningen under \"{{int:prefs-editing}}\" i dina inställningar.",
 	"editpage-invalidcontentmodel-title": "Innehållsmodellen stöds inte",
 	"editpage-invalidcontentmodel-text": "Innehållsmodellen \"$1\" stöds inte.",

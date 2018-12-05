@@ -688,7 +688,7 @@
 	"defaultmessagetext": "دفالت دانیشیق متنی",
 	"content-failed-to-parse": "تجزیه محتوای $2  مدل اوچون $1: $3 موفقیت اله گلمه دی",
 	"invalid-content-data": "اعتبارسیز مضمون معلوماتی",
-	"content-not-allowed-here": "\"$1\" مقاله‌سینه، [[$2]] صحیفه‌سینده ایجازه وئریلممیش دیر.",
+	"content-not-allowed-here": "\"$1\" مقاله‌سینه، [[:$2]] صحیفه‌سینده ایجازه وئریلممیش دیر.",
 	"editwarning-warning": "بو صفحه‌دن چیخماق، دَییشدیرمه‌لرینیزی الدن وئرمگه سبب اولا بیلر. اگر گیریش ائتمیسینیز بو ایخطاری، ترجیحلرینیزین «دَییشدیرمک» بؤلوموندن، \"{{int:prefs-editing}}\"ایشدن سالا بیلرسینیز.",
 	"editpage-notsupportedcontentformat-title": "فایلین فرمتی دستکلنمیر.",
 	"editpage-notsupportedcontentformat-text": "$1 فایلین فرمتی  $2 فایل مدلی ایله دستکلنمیر.",

@@ -645,7 +645,7 @@
 	"defaultmessagetext": "Test che a-i sarìa se a-i fusso pa 'd modìfiche",
 	"content-failed-to-parse": "Faliment ëd l'anàlisi dël contnù ëd $2 për ël model $1: $3",
 	"invalid-content-data": "Dat dël contnù pa bon",
-	"content-not-allowed-here": "Ël contnù «$1» a l'é nen autorisà an sla pàgina [[$2]]",
+	"content-not-allowed-here": "Ël contnù «$1» a l'é nen autorisà an sla pàgina [[:$2]]",
 	"editwarning-warning": "Chité sta pàgina-sì a peul feje perde tute le modìfiche ch'a l'ha fàit.\nS'a l'é rintrà ant ël sistema, a peul disabilité st'avis ant la session «{{int:prefs-editing}}» dij sò gust.",
 	"editpage-notsupportedcontentformat-title": "Formà ëd contnù nen mantnù",
 	"editpage-notsupportedcontentformat-text": "Ël formà ëd contnù $1 a l'é nen mantnù dal model Ëd contnù $2.",

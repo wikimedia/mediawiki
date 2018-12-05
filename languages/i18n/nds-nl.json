@@ -619,7 +619,7 @@
 	"defaultmessagetext": "Standardtekste",
 	"content-failed-to-parse": "Kon de inhoud van t MIME-type $2 veur t model $1 niet verwarken: $3.",
 	"invalid-content-data": "Ongeldige inhoudsgegevens",
-	"content-not-allowed-here": "De inhoud \"$1\" is niet toe-estaan op de zied [[$2]].",
+	"content-not-allowed-here": "De inhoud \"$1\" is niet toe-estaan op de zied [[:$2]].",
 	"editwarning-warning": "A'j disse zied verlaoten dan bi'j de wieziging die'j emaakt hebben waorschienlik kwiet.\nA'j an-emeld bin, dan ku'j disse waorschuwing uutzetten in t tabblad \"{{int:prefs-editing}}\" in joew veurkeuren.",
 	"content-model-wikitext": "wikitekste",
 	"content-model-text": "tekste zonder opmaak",

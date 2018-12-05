@@ -752,7 +752,7 @@
 	"defaultmessagetext": "Sõnumi vaiketekst",
 	"content-failed-to-parse": "Ebaõnnestus $1i mudeli $2-tüüpi sisu liigendamine: $3",
 	"invalid-content-data": "Vigased sisuandmed",
-	"content-not-allowed-here": "Lehekülg [[$2]] ei tohi sisaldada $1i.",
+	"content-not-allowed-here": "Lehekülg [[:$2]] ei tohi sisaldada $1i.",
 	"editwarning-warning": "Sellelt leheküljelt lahkumise tõttu võivad tehtud muudatused kaotsi minna.\nKui oled sisse loginud, saad selle hoiatuse eelistuste alaosas \"{{int:prefs-editing}}\" keelata.",
 	"editpage-invalidcontentmodel-title": "Toetamata sisumudel",
 	"editpage-invalidcontentmodel-text": "Sisumudelit \"$1\" ei toetata.",

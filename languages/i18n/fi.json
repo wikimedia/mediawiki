@@ -781,7 +781,7 @@
 	"defaultmessagetext": "Viestin oletusteksti",
 	"content-failed-to-parse": "Sisältö tyypiltään $2 ei jäsenny tyypiksi $1: $3",
 	"invalid-content-data": "Virheellinen sisältö",
-	"content-not-allowed-here": "Sivun [[$2]] sisältö ei voi olla tyyppiä $1.",
+	"content-not-allowed-here": "Sivun [[:$2]] sisältö ei voi olla tyyppiä $1.",
 	"editwarning-warning": "Tältä sivulta poistuminen saattaa aiheuttaa kaikkien tekemiesi muutosten katoamisen.\nJos olet kirjautunut sisään, voit poistaa tämän varoituksen käytöstä omien asetuksien osiossa ”{{int:prefs-editing}}”.",
 	"editpage-invalidcontentmodel-title": "Sisältömalli ei ole tuettu",
 	"editpage-invalidcontentmodel-text": "Sisältömalli ”$1” ei ole tuettu.",

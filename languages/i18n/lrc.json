@@ -644,7 +644,7 @@
 	"defaultmessagetext": "نیسئسە پئیغوم پیش فأرض",
 	"content-failed-to-parse": "د یأک تیچئسئن چیا مین $2 د مودئل $1:$3",
 	"invalid-content-data": "دونئسمأنی مینوٙنە نادیار",
-	"content-not-allowed-here": " مینوٙنە \"$1\" سی بألگە [[$2]] صئلا دأ نأبیە",
+	"content-not-allowed-here": " مینوٙنە \"$1\" سی بألگە [[:$2]] صئلا دأ نأبیە",
 	"editwarning-warning": "أر ئی بألگە نئ ڤئل بأکیت ھأر آلئشتی کئ أنجوم دأئیتە پاک بوٙە.\nأر شوما ھائیت ڤامین، شوما می توٙنیت ب زئنار نە د \"{{int:prefs-editing}}\" کئ ھا د بأرجا چیا نازار شوما ناکونئشتگأر بأکیت.",
 	"editpage-notsupportedcontentformat-title": "شئکل مینوٙنە حامینداری نأبییە",
 	"editpage-notsupportedcontentformat-text": "حال و بال مینوٙنە $1 د مودئل مینوٙنە $2 حامینداری نأبوٙە.",

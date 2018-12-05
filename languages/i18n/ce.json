@@ -664,7 +664,7 @@
 	"defaultmessagetext": "Ӏадйитаран кепаца йоза",
 	"content-failed-to-parse": "Чулацам $2 богӀуш бац $1: $3.",
 	"invalid-content-data": "Хилийта йиш йоцу хаамаш",
-	"content-not-allowed-here": "Чулацам \"$1\" [[$2]] агӀонгахь хилийта йиш яц",
+	"content-not-allowed-here": "Чулацам \"$1\" [[:$2]] агӀонгахь хилийта йиш яц",
 	"editpage-notsupportedcontentformat-title": "Чулацаман тайпа ловш яц",
 	"content-model-wikitext": "вики-йоза",
 	"content-model-text": "цхьалхе йоза",

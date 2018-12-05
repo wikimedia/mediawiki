@@ -750,7 +750,7 @@
 	"defaultmessagetext": "Testu lehenetsia",
 	"content-failed-to-parse": "Ezin izan da $2(r)en edukia parseatu $1 modeloarentzat: $3",
 	"invalid-content-data": "Eduki datu baliogabea",
-	"content-not-allowed-here": "\"$1\" edukia ez dago baimendua [[$2]] orrialdean",
+	"content-not-allowed-here": "\"$1\" edukia ez dago baimendua [[:$2]] orrialdean",
 	"editwarning-warning": "Orri honetatik irteten bazara, egindako aldaketak galdu egingo dira, beharbada.\nSaioa hasi baduzu, mezu hau kendu dezakezu zure hobespenen orriko «{{int:prefs-editing}}» atalean.",
 	"editpage-invalidcontentmodel-title": "Eduki eredua ez da onartzen.",
 	"editpage-invalidcontentmodel-text": "$1 eduki eredua ezin da erabili.",

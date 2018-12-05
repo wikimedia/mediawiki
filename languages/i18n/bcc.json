@@ -619,7 +619,7 @@
 	"defaultmessagetext": "اصلیگین پیگامء سیاهگ",
 	"content-failed-to-parse": "تجزیگء $2 توکداریگ پر $1 مدل: $3 پکا نبوت",
 	"invalid-content-data": "توکداریگء دیتا مهتبر نه انت",
-	"content-not-allowed-here": "توکداریگ «$1» مان ائ پیج[[$2]] اجازت نه انت",
+	"content-not-allowed-here": "توکداریگ «$1» مان ائ پیج[[:$2]] اجازت نه انت",
 	"editwarning-warning": "گون در شتن چه ائ پیج ممکن انت شمئی پهکین شانس که تان انیگء کٹ کتگ ات بیران بیت.\nاگان شما لاگین کتگ ات، بیت که ائ هژاریء مان ای بهر «{{int:prefs-editing}}» وتی پریفرنسء نافعال بکن ات..",
 	"editpage-notsupportedcontentformat-title": "توکداریگء فرمت ساپورٹ نه بیت",
 	"editpage-notsupportedcontentformat-text": "ائ توکداریگء فرمت $1 مان ائ توکداریگء تهر $2 ساپورٹ نبیتگ انت.",

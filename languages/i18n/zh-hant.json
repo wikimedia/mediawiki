@@ -824,7 +824,7 @@
 	"defaultmessagetext": "預設訊息文字",
 	"content-failed-to-parse": "解析 $2 格式的 $1 語法內容失敗：$3",
 	"invalid-content-data": "內容資料無效",
-	"content-not-allowed-here": "頁面[[$2]]在\"$3\"部份不允許使用 \"$1\" 語法內容",
+	"content-not-allowed-here": "頁面[[:$2]]在\"$3\"部份不允許使用 \"$1\" 語法內容",
 	"editwarning-warning": "離開此頁面可能會令您遺失之前所作的所有更改。\n若您已經登入，您可在偏好設定的 \"{{int:prefs-editing}}\" 項目關閉此警告。",
 	"editpage-invalidcontentmodel-title": "不支援的內容模型",
 	"editpage-invalidcontentmodel-text": "不支援內容模型 \"$1\"。",

@@ -747,7 +747,7 @@
 	"defaultmessagetext": "طے شدہ پیغام کا متن",
 	"content-failed-to-parse": "ماڈل $1 کے $2 مواد کے تجزیہ میں ناکامی: $3",
 	"invalid-content-data": "نادرست ڈیٹا مندرجات",
-	"content-not-allowed-here": "صفحہ [[$2]] پر \"$1\" مواد کی اجازت نہیں",
+	"content-not-allowed-here": "صفحہ [[:$2]] پر \"$1\" مواد کی اجازت نہیں",
 	"editwarning-warning": "اس صفحہ کو چھوڑنے پر ممکن ہے جو تبدیلیاں آپ نے کی ہیں وہ سب ضائع ہو جائیں۔\nاگر آپ داخل ہیں تو اپنی ترجیحات کے خانہ «{{int:prefs-editing}}» سے اس انتباہ کو غیر فعال کر سکتے ہیں۔",
 	"editpage-invalidcontentmodel-title": "مواد کا ماڈل معاونت یافتہ نہیں",
 	"editpage-invalidcontentmodel-text": "مواد کا ماڈل \"$1\" معاونت یافتہ نہیں ہے۔",

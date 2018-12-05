@@ -760,7 +760,7 @@
 	"defaultmessagetext": "טקסט ההודעה המקורי",
 	"content-failed-to-parse": "פענוח $2 כתוכן מסוג $1 נכשל: $3",
 	"invalid-content-data": "מידע שגוי על התוכן",
-	"content-not-allowed-here": "תוכן מסוג \"$1\" אינו מותר בדף [[$2]] בחריץ \"$3\"",
+	"content-not-allowed-here": "תוכן מסוג \"$1\" אינו מותר בדף [[:$2]] בחריץ \"$3\"",
 	"editwarning-warning": "עזיבת הדף הזה עלולה לגרום לך לאבד את כל השינויים שביצעת.\nאם יש לך חשבון באתר, באפשרותך לבטל את האזהרה הזאת בחלק \"{{int:prefs-editing}}\" שבהעדפות שלך.",
 	"editpage-invalidcontentmodel-title": "מודל התוכן אינו נתמך",
 	"editpage-invalidcontentmodel-text": "מודל התוכן \"$1\" אינו נתמך.",

@@ -619,7 +619,7 @@
 	"defaultmessagetext": "Standard boðtekstur",
 	"content-failed-to-parse": "Kláraði ikki at tulka $2 innihaldi fyri $1 modell: $3",
 	"invalid-content-data": "Ógyldug innihalds dáta",
-	"content-not-allowed-here": "\"$1\" innihald er ikki loyvt á síðu [[$2]]",
+	"content-not-allowed-here": "\"$1\" innihald er ikki loyvt á síðu [[:$2]]",
 	"editwarning-warning": "Um tú fert frá hesi síðuni, so kanst tú missa tær broytingar ið tú hevur gjørt.\nUm tú hevur ritað inn, so kanst tú sláa hesa ávaring frá í \"{{int:prefs-editing}}\" partinum í tínum innstillingum.",
 	"content-model-wikitext": "wikitekst",
 	"content-model-text": "simpul tekstur",

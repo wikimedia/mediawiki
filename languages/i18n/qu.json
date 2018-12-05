@@ -11,7 +11,8 @@
 			"아라",
 			"Fitoschido",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "T'inkikunata uranpi sikwiy",
@@ -610,7 +611,7 @@
 	"defaultmessagetext": "Ñawpaq qillqa",
 	"content-failed-to-parse": "Manam atinichu $2 samiqta $1 kikinchapaq kuskiyta: $3",
 	"invalid-content-data": "Samiqmanta willaykunaqa manam allinchu",
-	"content-not-allowed-here": "\"$1\" nisqa samiqqa [[$2]] sutiyuq p'anqapi manam saqillasqachu",
+	"content-not-allowed-here": "\"$1\" nisqa samiqqa [[:$2]] sutiyuq p'anqapi manam saqillasqachu",
 	"editwarning-warning": "Kay p'anqata saqispaykiqa lliw rurarqusqayki hukchasqakunatachá chinkachiykiman.\nYaykusqa kaspaykiqa, kay yuyampayta hark'ayta atinki allinkachinaykikunapi \"Llamk'apusqa\" rakipi.",
 	"editpage-notsupportedcontentformat-title": "Samiqpa rikch'ayninqa manam q'imisqachu",
 	"content-model-wikitext": "wiki qillqa",
@@ -986,8 +987,10 @@
 	"right-editsemiprotected": "\"{{int:protect-level-autoconfirmed}}\" hina amachasqa p'anqakunata llamk'apuy",
 	"right-editinterface": "Ruraqpaq uyapurata llamk'apuy",
 	"right-editusercss": "Huk ruraqkunap CSS willañiqinkunata llamk'apuy",
+	"right-edituserjson": "Huk ruraqkunap JSON willañiqinkunata llamk'apuy",
 	"right-edituserjs": "Huk ruraqkunap JS willañiqinkunata llamk'apuy",
 	"right-editmyusercss": "Kikiykip ruraqpaq CSS willañiqiykikunata llamk'apuy",
+	"right-editmyuserjson": "Kikiykip ruraqpaq JSON willañiqiykikunata llamk'apuy",
 	"right-editmyuserjs": "Kikiykip ruraqpaq JavaScript willañiqiykikunata llamk'apuy",
 	"right-viewmywatchlist": "Kikiykip watiqasqayki sutisuyuykita qhaway",
 	"right-editmywatchlist": "Kikiykip watiqasqayki sutisuyuykita llamk'apuy. Paqtataq, huk ruranakunaqa p'anqakunata yapanqaraqmi kay hañi mana kaptinpas.",

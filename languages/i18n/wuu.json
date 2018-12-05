@@ -636,7 +636,7 @@
 	"edit-already-exists": "弗好创建新页面。已经有垃许。",
 	"defaultmessagetext": "默认消息文本",
 	"invalid-content-data": "无效内容数据",
-	"content-not-allowed-here": "[[$2]]页面上弗允许“$1”内容",
+	"content-not-allowed-here": "[[:$2]]页面上弗允许“$1”内容",
 	"editpage-notsupportedcontentformat-title": "内容格式弗支持",
 	"content-model-wikitext": "维基文本",
 	"content-model-javascript": "JavaScript",
