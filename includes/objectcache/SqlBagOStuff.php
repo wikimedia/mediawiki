@@ -92,7 +92,9 @@ class SqlBagOStuff extends BagOStuff {
 	 *                  shards-1. The number of digits will be the minimum number
 	 *                  required to hold the largest shard index. Data will be
 	 *                  distributed across all tables by key hash. This is for
-	 *                  MySQL bugs 61735 and 61736.
+	 *                  MySQL bugs 61735 <https://bugs.mysql.com/bug.php?id=61735>
+	 *                  and 61736 <https://bugs.mysql.com/bug.php?id=61736>.
+	 *
 	 *   - slaveOnly:   Whether to only use replica DBs and avoid triggering
 	 *                  garbage collection logic of expired items. This only
 	 *                  makes sense if the primary DB is used and only if get()
