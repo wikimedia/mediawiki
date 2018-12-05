@@ -1515,6 +1515,8 @@ class ChangeTags {
 		$cache->touchCheckKey( $cache->makeKey( 'valid-tags-db' ) );
 		$cache->touchCheckKey( $cache->makeKey( 'valid-tags-hook' ) );
 
+		MediaWikiServices::getInstance()->getChangeTagDefStore()->reloadMap();
+
 		self::purgeTagUsageCache();
 	}
 
