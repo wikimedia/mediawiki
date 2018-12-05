@@ -780,6 +780,7 @@
 	"editpage-invalidcontentmodel-text": "The content model \"$1\" is not supported.",
 	"editpage-notsupportedcontentformat-title": "Content format not supported",
 	"editpage-notsupportedcontentformat-text": "The content format $1 is not supported by the content model $2.",
+	"slot-name-main": "Main",
 	"content-model-wikitext": "wikitext",
 	"content-model-text": "plain text",
 	"content-model-javascript": "JavaScript",
