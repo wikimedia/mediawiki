@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.5
+ * OOUI v0.29.6
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-11-08T22:38:15Z
+ * Date: 2018-12-05T00:16:02Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -114,19 +114,19 @@
 }
 .oo-ui-menuLayout > .oo-ui-menuLayout-menu,
 .oo-ui-menuLayout > .oo-ui-menuLayout-content {
-  -webkit-transition: height 200ms ease, width 200ms ease, top 200ms ease, left 200ms ease, right 200ms ease, bottom 200ms ease;
-  -moz-transition: height 200ms ease, width 200ms ease, top 200ms ease, left 200ms ease, right 200ms ease, bottom 200ms ease;
-  transition: height 200ms ease, width 200ms ease, top 200ms ease, left 200ms ease, right 200ms ease, bottom 200ms ease;
+  -webkit-transition: height 250ms, width 250ms, top 250ms, left 250ms, right 250ms, bottom 250ms;
+  -moz-transition: height 250ms, width 250ms, top 250ms, left 250ms, right 250ms, bottom 250ms;
+  transition: height 250ms, width 250ms, top 250ms, left 250ms, right 250ms, bottom 250ms;
 }
 .oo-ui-menuLayout > .oo-ui-menuLayout-menu {
-  height: 18em;
-  width: 18em;
+  height: 15.625em;
+  width: 15.625em;
 }
 .oo-ui-menuLayout > .oo-ui-menuLayout-content {
-  top: 18em;
-  left: 18em;
-  right: 18em;
-  bottom: 18em;
+  top: 15.625em;
+  left: 15.625em;
+  right: 15.625em;
+  bottom: 15.625em;
 }
 .oo-ui-menuLayout.oo-ui-menuLayout-hideMenu > .oo-ui-menuLayout-menu {
   width: 0 !important;
@@ -711,6 +711,7 @@
 .oo-ui-outlineControlsWidget-movers > .oo-ui-buttonWidget {
   height: 2.5em;
   width: 2.5em;
+  /* There's a lot of weird specific margins with weird specific selectors */
   margin: 0 !important;
   /* stylelint-disable-line declaration-no-important */
 }

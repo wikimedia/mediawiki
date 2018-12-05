@@ -1,4 +1,32 @@
 # OOUI Release History
+## v0.29.6 / 2018-12-04
+### Styles
+* Match BookletLayout menu's width and animations to Dialog's (Bartosz Dziewoński)
+* WikimediaUI theme: Ensure `transition` of PopupToolGroup in actions toolbar (Volker E.)
+* icons: Union the paths in 'undo' and 'redo' (Ed Sanders)
+* icons: Use correct 'settings' title (Volker E.)
+
+### Code
+* BrokenDialog: Remove superfluous and broken second parent call (Roan Kattouw)
+* MenuTagMultiselectWidget: Allow adding arbitrary values (Moriel Schottlender)
+* ProcessDialog: Fit label (dialog title) when it changes (Bartosz Dziewoński)
+* Remove 'jQuery' alias (Ed Sanders)
+* TagItemWidget: Fix operator precendence (James D. Forrester)
+* eslint: Drop 'dot-notation' rule (James D. Forrester)
+* eslint: Enable jquery/no-(show/hide/toggle) rules (Ed Sanders)
+* eslint: Fix config extends, and move 'no-void' rule overrides inline (Ed Sanders)
+* build: Enable 'at-rule-empty-line-before' stylelint rule and make pass (Volker E.)
+* build: Reintroduce icons to dist images-theme CSS files (Volker E.)
+* build: Remove over-ride for max-len in build code (James D. Forrester)
+* build: Update 'eslint-config-wikimedia' to v0.9.0 and make pass (Volker E.)
+* build: Update mediawiki/mediawiki-codesniffer to 23.0.0 (libraryupgrader)
+* build: Update stylelint-config-wikimedia to 0.5.0 and make pass (James D. Forrester)
+* docs: JSDuck: Use same font-size as elsewhere (Volker E.)
+* demos: Add `rel="noopener"` to accessibility explanation links (Volker E.)
+* demos: CSS fixes for mobile dialogs demo (Bartosz Dziewoński)
+* demos: Use better icons (Volker E.)
+
+
 ## v0.29.5 / 2018-11-08
 ### Code
 * MenuTagMultiselectWidget: Clear input if adding valid tag (Thalia Chan)
