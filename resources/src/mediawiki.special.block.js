@@ -3,25 +3,24 @@
  */
 ( function () {
 	// Like OO.ui.infuse(), but if the element doesn't exist, return null instead of throwing an exception.
-	function infuseOrNull( elem ) {
-		try {
-			return OO.ui.infuse( elem );
-		} catch ( er ) {
+	function infuseIfExists( $el ) {
+		if ( !$el.length ) {
 			return null;
 		}
+		return OO.ui.infuse( $el );
 	}
 
 	$( function () {
 		// This code is also loaded on the "block succeeded" page where there is no form,
 		// so username and expiry fields might also be missing.
-		var blockTargetWidget = infuseOrNull( 'mw-bi-target' ),
-			anonOnlyField = infuseOrNull( $( '#mw-input-wpHardBlock' ).closest( '.oo-ui-fieldLayout' ) ),
-			enableAutoblockField = infuseOrNull( $( '#mw-input-wpAutoBlock' ).closest( '.oo-ui-fieldLayout' ) ),
-			hideUserField = infuseOrNull( $( '#mw-input-wpHideUser' ).closest( '.oo-ui-fieldLayout' ) ),
-			watchUserField = infuseOrNull( $( '#mw-input-wpWatch' ).closest( '.oo-ui-fieldLayout' ) ),
-			expiryWidget = infuseOrNull( 'mw-input-wpExpiry' ),
-			editingRestrictionWidget = infuseOrNull( 'mw-input-wpEditingRestriction' ),
-			pageRestrictionsWidget = infuseOrNull( 'mw-input-wpPageRestrictions' );
+		var blockTargetWidget = infuseIfExists( $( '#mw-bi-target' ) ),
+			anonOnlyField = infuseIfExists( $( '#mw-input-wpHardBlock' ).closest( '.oo-ui-fieldLayout' ) ),
+			enableAutoblockField = infuseIfExists( $( '#mw-input-wpAutoBlock' ).closest( '.oo-ui-fieldLayout' ) ),
+			hideUserField = infuseIfExists( $( '#mw-input-wpHideUser' ).closest( '.oo-ui-fieldLayout' ) ),
+			watchUserField = infuseIfExists( $( '#mw-input-wpWatch' ).closest( '.oo-ui-fieldLayout' ) ),
+			expiryWidget = infuseIfExists( $( '#mw-input-wpExpiry' ) ),
+			editingRestrictionWidget = infuseIfExists( $( '#mw-input-wpEditingRestriction' ) ),
+			pageRestrictionsWidget = infuseIfExists( $( '#mw-input-wpPageRestrictions' ) );
 
 		function updateBlockOptions() {
 			var blocktarget = blockTargetWidget.getValue().trim(),
