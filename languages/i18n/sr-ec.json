@@ -39,7 +39,8 @@
 			"BokicaK",
 			"BadDog",
 			"Fitoschido",
-			"Stalker"
+			"Stalker",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Подвлачење веза:",
@@ -1179,7 +1180,7 @@
 	"right-edit": "уређивање страница",
 	"right-createpage": "прављење страница (изузев страница за разговор)",
 	"right-createtalk": "прављење страница за разговор",
-	"right-createaccount": "отварање нових корисничких налога",
+	"right-createaccount": "прављење нових корисничких налога",
 	"right-autocreateaccount": "Пријавите се аутоматски са екстерним корисничким налогом",
 	"right-minoredit": "означавање измена мањим",
 	"right-move": "премештање страница",

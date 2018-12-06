@@ -166,7 +166,8 @@
 			"Friday83260",
 			"Niridya",
 			"Pamputt",
-			"Ash Crow"
+			"Ash Crow",
+			"Alacabe"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -322,6 +323,7 @@
 	"returnto": "Revenir à la page $1.",
 	"tagline": "De {{SITENAME}}",
 	"help": "Aide",
+	"help-mediawiki": "Aide concernant MediaWiki",
 	"search": "Rechercher",
 	"search-ignored-headings": " #<!-- ne pas modifier cette ligne --><pre>\n# Titres des sections qui seront ignorés par la recherche.\n# Les changements effectués ici prennent effet dès lors que la page avec le titre est indexée.\n# Vous pouvez forcer la réindexation de la page en effectuant une modification vide.\n# La syntaxe est la suivante :\n#   * Toute ce qui suit un « # » jusqu’à la fin de la ligne est un commentaire.\n#   * Toute ligne non-vide est le titre exact à ignorer, casse comprise.\nRéférences\nLiens externes\nVoir aussi\n #</pre><!-- ne pas modifier cette ligne -->",
 	"searchbutton": "Rechercher",
@@ -904,6 +906,7 @@
 	"editpage-invalidcontentmodel-text": "Le modèle de contenu \"$1\" n'est pas pris en charge.",
 	"editpage-notsupportedcontentformat-title": "Format de contenu non pris en charge",
 	"editpage-notsupportedcontentformat-text": "Le format de contenu $1 n'est pas pris en charge par le modèle de contenu $2 .",
+	"slot-name-main": "Principal",
 	"content-model-wikitext": "wikitexte",
 	"content-model-text": "texte brut",
 	"content-model-javascript": "JavaScript",
@@ -3023,6 +3026,7 @@
 	"pageinfo-display-title": "Titre affiché",
 	"pageinfo-default-sort": "Clé de tri par défaut",
 	"pageinfo-length": "Taille de la page (en octets)",
+	"pageinfo-namespace": "Espace de noms",
 	"pageinfo-article-id": "ID de la page",
 	"pageinfo-language": "Langue du contenu de la page",
 	"pageinfo-language-change": "modifier",

@@ -255,6 +255,7 @@
 	"returnto": "返回「$1」頁面",
 	"tagline": "出自 {{SITENAME}}",
 	"help": "說明",
+	"help-mediawiki": "有關 MediaWiki 的說明",
 	"search": "搜尋",
 	"search-ignored-headings": " #<!-- leave this line exactly as it is --> <pre>\n# 在搜尋中要忽略的標題。\n# 更該此檔案以快速對己列入索引的頁面標題生效。\n# 您可以編輯時不變更內容以強制頁面重新索引。\n# 語法如下：\n#   * 任何以 \"#\" 字元開頭的行至結尾會做為註解。\n#   * 任何非空白行代表要忽略的標題。\n參考文獻\n外部連結\n參見\n #</pre> <!-- leave this line exactly as it is -->",
 	"searchbutton": "搜尋",

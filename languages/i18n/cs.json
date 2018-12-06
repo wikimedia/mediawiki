@@ -767,6 +767,7 @@
 	"editpage-invalidcontentmodel-text": "Model obsahu „$1“ není podporován.",
 	"editpage-notsupportedcontentformat-title": "Nepodporovaný formát obsahu",
 	"editpage-notsupportedcontentformat-text": "Model obsahu $2 nepodporuje formát obsahu $1.",
+	"slot-name-main": "Hlavní",
 	"content-model-wikitext": "wikitext",
 	"content-model-text": "čistý text",
 	"content-model-javascript": "JavaScript",
