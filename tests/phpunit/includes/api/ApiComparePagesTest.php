@@ -801,6 +801,30 @@ class ApiComparePagesTest extends ApiTestCase {
 				[],
 				'nosuchrevid',
 			],
+			'Error, deleted revision ID and torelative=prev' => [
+				[
+					'fromrev' => '{{REPL:revC2}}',
+					'torelative' => 'prev',
+				],
+				[],
+				'compare-relative-to-deleted', true
+			],
+			'Error, deleted revision ID and torelative=next' => [
+				[
+					'fromrev' => '{{REPL:revC2}}',
+					'torelative' => 'next',
+				],
+				[],
+				'compare-relative-to-deleted', true
+			],
+			'Deleted revision ID and torelative=cur' => [
+				[
+					'fromrev' => '{{REPL:revC2}}',
+					'torelative' => 'cur',
+				],
+				[],
+				'nosuchrevid', true
+			],
 			'Error, revision-deleted content' => [
 				[
 					'fromrev' => '{{REPL:revA2}}',
