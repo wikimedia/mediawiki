@@ -3285,6 +3285,7 @@
 	"pageinfo-display-title": "The title that is displayed when the page is viewed.",
 	"pageinfo-default-sort": "The key by which the page is sorted in categories by default.",
 	"pageinfo-length": "The length of the page, in bytes.",
+	"pageinfo-namespace": "The name of the namespace of the page.",
 	"pageinfo-article-id": "The numeric identifier of the page.\n{{Identical|Page ID}}",
 	"pageinfo-language": "Language in which the page content is written.",
 	"pageinfo-language-change": "Link text for a link to Special:PageLanguage. The link will be wrapped in parenthesis.\n{{Identical|Change}}",
