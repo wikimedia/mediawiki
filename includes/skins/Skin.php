@@ -203,7 +203,9 @@ abstract class Skin extends ContextSource {
 				'mediawiki.page.ready',
 			],
 			// modules relating to search functionality
-			'search' => [],
+			'search' => [
+				'mediawiki.searchSuggest',
+			],
 			// modules relating to functionality relating to watching an article
 			'watch' => [],
 			// modules which relate to the current users preferences
@@ -241,8 +243,6 @@ abstract class Skin extends ContextSource {
 		) {
 			$modules['watch'][] = 'mediawiki.page.watch.ajax';
 		}
-
-		$modules['search'][] = 'mediawiki.searchSuggest';
 
 		if ( $user->getBoolOption( 'editsectiononrightclick' ) ) {
 			$modules['user'][] = 'mediawiki.action.view.rightClickEdit';
