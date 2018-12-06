@@ -198,6 +198,10 @@ because of Phabricator reports.
 * The PasswordPolicy 'PasswordCannotBePopular' has been deprecated. To
   follow best practices, it is reccommended to use 'PasswordNotInLargeBlacklist'
   instead which blacklists 100,000 commonly used passwords.
+* (T208862) Action::requiresUnblock() is now called from
+  Title::getUserPermissionsErrors() and Title::userCan(). Previously, the method
+  was only called in Action::checkCanExecute(). Actions should ensure that their
+  requiresUnblock() returns the proper result (the default is `true`).
 * …
 
 === Other changes in 1.33 ===
