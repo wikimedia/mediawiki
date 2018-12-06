@@ -1969,7 +1969,7 @@ ERROR;
 			return $status;
 		}
 
-		if ( $user->isBlockedFrom( $this->mTitle, false ) ) {
+		if ( $user->isBlockedFrom( $this->mTitle ) ) {
 			// Auto-block user's IP if the account was "hard" blocked
 			if ( !wfReadOnly() ) {
 				$user->spreadAnyEditBlock();
@@ -2611,8 +2611,13 @@ ERROR;
 			if ( !( $user && $user->isLoggedIn() ) && !$ip ) { # User does not exist
 				$out->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n$1\n</div>",
 					[ 'userpage-userdoesnotexist', wfEscapeWikiText( $username ) ] );
-			} elseif ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
-				# Show log extract if the user is currently blocked
+			} elseif (
+				!is_null( $block ) &&
+				$block->getType() != Block::TYPE_AUTO &&
+				( $block->isSitewide() || $user->isBlockedFrom( $this->mTitle ) )
+			) {
+				// Show log extract if the user is sitewide blocked or is partially
+				// blocked and not allowed to edit their user page or user talk page
 				LogEventsList::showLogExtract(
 					$out,
 					'block',
