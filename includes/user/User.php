@@ -56,13 +56,6 @@ class User implements IDBAccessObject, UserIdentity {
 	const INVALID_TOKEN = '*** INVALID ***';
 
 	/**
-	 * Global constant made accessible as class constants so that autoloader
-	 * magic can be used.
-	 * @deprecated since 1.27, use \MediaWiki\Session\Token::SUFFIX
-	 */
-	const EDIT_TOKEN_SUFFIX = Token::SUFFIX;
-
-	/**
 	 * @const int Serialized record version.
 	 */
 	const VERSION = 12;
