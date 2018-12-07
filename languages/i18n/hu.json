@@ -2876,6 +2876,7 @@
 	"pageinfo-display-title": "Megjelenített cím",
 	"pageinfo-default-sort": "Alapértelmezett rendezési kulcs",
 	"pageinfo-length": "A lap hossza (byte-ban)",
+	"pageinfo-namespace": "Névtér",
 	"pageinfo-article-id": "Lapazonosító",
 	"pageinfo-language": "Laptartalom nyelve",
 	"pageinfo-language-change": "módosítás",

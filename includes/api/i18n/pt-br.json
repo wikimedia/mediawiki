@@ -1614,6 +1614,7 @@
 	"apierror-compare-nofromrevision": "Não foi especificada uma revisão 'from'. Especificar <var>fromrev</var>, <var>fromtitle</var> ou <var>fromid</var>.",
 	"apierror-compare-notext": "O parâmetro <var>$1</var> não pode ser usado sem <var>$2</var>.",
 	"apierror-compare-notorevision": "Não foi especificada uma revisão 'to'. Especificar <var>torev</var>, <var>totitle</var> ou <var>toid</var>.",
+	"apierror-compare-relative-to-deleted": "Não pode usar <kbd>torelative=$1</kbd> com relação a uma revisão eliminada.",
 	"apierror-compare-relative-to-nothing": "Nenhuma revisão 'from' para <var>torelative</var> para ser relativa à.",
 	"apierror-contentserializationexception": "Falha na serialização de conteúdo: $1",
 	"apierror-contenttoobig": "O conteúdo fornecido excede o limite de tamanho do artigo de $1 {{PLURAL: $1|kilobyte|kilobytes}}.",
