@@ -1181,6 +1181,7 @@ return [
 			'jquery.suggestions',
 			'jquery.getAttrs',
 			'mediawiki.api',
+			'user.options',
 		],
 	],
 	'mediawiki.storage' => [
@@ -1786,6 +1787,7 @@ return [
 			'mediawiki.jqueryMsg',
 			'mediawiki.Uri',
 			'mediawiki.user',
+			'user.options',
 		],
 		'messages' => [
 			'quotation-marks',
