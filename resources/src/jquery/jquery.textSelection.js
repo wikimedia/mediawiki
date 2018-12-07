@@ -71,7 +71,10 @@
 			setContents: function ( content ) {
 				return this.each( function () {
 					var scrollTop = this.scrollTop;
-					$( this ).val( content );
+					this.select();
+					if ( !document.execCommand( 'insertText', false, content ) ) {
+						$( this ).val( content );
+					}
 					// Setting this.value may scroll the textarea, restore the scroll position
 					this.scrollTop = scrollTop;
 				} );
@@ -108,17 +111,19 @@
 				return this.each( function () {
 					var allText, currSelection, startPos, endPos;
 
-					allText = $( this ).textSelection( 'getContents' );
-					currSelection = $( this ).textSelection( 'getCaretPosition', { startAndEnd: true } );
-					startPos = currSelection[ 0 ];
-					endPos = currSelection[ 1 ];
+					if ( !document.execCommand( 'insertText', false, value ) ) {
+						allText = $( this ).textSelection( 'getContents' );
+						currSelection = $( this ).textSelection( 'getCaretPosition', { startAndEnd: true } );
+						startPos = currSelection[ 0 ];
+						endPos = currSelection[ 1 ];
 
-					$( this ).textSelection( 'setContents', allText.slice( 0, startPos ) + value +
-						allText.slice( endPos ) );
-					$( this ).textSelection( 'setSelection', {
-						start: startPos,
-						end: startPos + value.length
-					} );
+						$( this ).textSelection( 'setContents', allText.slice( 0, startPos ) + value +
+							allText.slice( endPos ) );
+						$( this ).textSelection( 'setSelection', {
+							start: startPos,
+							end: startPos + value.length
+						} );
+					}
 				} );
 			},
 
