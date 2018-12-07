@@ -2847,16 +2847,18 @@ class OutputPage extends ContextSource {
 					$query['returntoquery'] = wfArrayToCgi( $returntoquery );
 				}
 			}
+			$title = SpecialPage::getTitleFor( 'Userlogin' );
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			$loginUrl = $title->getLinkURL( $query, false, PROTO_RELATIVE );
 			$loginLink = $linkRenderer->makeKnownLink(
-				SpecialPage::getTitleFor( 'Userlogin' ),
+				$title,
 				$this->msg( 'loginreqlink' )->text(),
 				[],
 				$query
 			);
 
 			$this->prepareErrorPage( $this->msg( 'loginreqtitle' ) );
-			$this->addHTML( $this->msg( $msg )->rawParams( $loginLink )->parse() );
+			$this->addHTML( $this->msg( $msg )->rawParams( $loginLink )->params( $loginUrl )->parse() );
 
 			# Don't return to a page the user can't read otherwise
 			# we'll end up in a pointless loop
