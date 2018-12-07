@@ -47,7 +47,7 @@ class CategoryMembershipChangeJob extends Job {
 	private $parserCache;
 
 	/**
-	 * @param Title $title The title of the page for which to update category emmbership.
+	 * @param Title $title The title of the page for which to update category membership.
 	 * @param string $revisionTimestamp The timestamp of the new revision that triggered the job.
 	 * @return JobSpecification
 	 */
@@ -66,6 +66,9 @@ class CategoryMembershipChangeJob extends Job {
 	/**
 	 * Constructor for use by the Job Queue infrastructure.
 	 * @note Don't call this when queueing a new instance, use newSpec() instead.
+	 * @param ParserCache $parserCache Cache outputs of PHP parser.
+	 * @param Title $title Title of the categorized page.
+	 * @param array $params Such latest revision instance of the categorized page.
 	 */
 	public function __construct( ParserCache $parserCache, Title $title, array $params ) {
 		parent::__construct( 'categoryMembershipChange', $title, $params );
