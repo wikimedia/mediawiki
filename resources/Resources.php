@@ -1317,6 +1317,9 @@ return [
 		'dependencies' => [
 			'mediawiki.api',
 			'mediawiki.storage',
+			// The two user.* modules are not used by mediawiki.user itself,
+			// but kept as expliciit dependencies because they provide part
+			// of the mw.user API that consumers of this module expect.
 			'user.options',
 			'user.tokens',
 		],
