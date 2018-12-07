@@ -781,7 +781,7 @@
 	"defaultmessagetext": "Standardtekst",
 	"content-failed-to-parse": "Kunne ikke fortolke $2-indholdet af $1-modellen: $3",
 	"invalid-content-data": "Ugyldig indholdsdata",
-	"content-not-allowed-here": "\"$1\" indhold er ikke tilladt på siden [[:$2]]",
+	"content-not-allowed-here": "Indholdet \"$1\" er ikke tilladt på siden [[:$2]] i sprækken \"$3\"",
 	"editwarning-warning": "Hvis du forlader siden nu, risikerer du at miste alle ændringer, som du har lavet.\nDenne advarsel kan slås fra under \"{{int:prefs-editing}}\" i dine indstillinger.",
 	"editpage-invalidcontentmodel-title": "Indholdsmodellen er ikke understøttet",
 	"editpage-invalidcontentmodel-text": "Indholdsmodellen »$1« er ikke understøttet.",
