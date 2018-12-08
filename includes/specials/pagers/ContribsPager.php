@@ -415,9 +415,10 @@ class ContribsPager extends RangeChronologicalPager {
 	 * id then null is returned.
 	 *
 	 * @param object $row
+	 * @param Title|null $title
 	 * @return Revision|null
 	 */
-	public function tryToCreateValidRevision( $row ) {
+	public function tryToCreateValidRevision( $row, $title = null ) {
 		/*
 		 * There may be more than just revision rows. To make sure that we'll only be processing
 		 * revisions here, let's _try_ to build a revision out of our row (without displaying
@@ -427,7 +428,7 @@ class ContribsPager extends RangeChronologicalPager {
 		 */
 		Wikimedia\suppressWarnings();
 		try {
-			$rev = new Revision( $row );
+			$rev = new Revision( $row, 0, $title );
 			$validRevision = (bool)$rev->getId();
 		} catch ( Exception $e ) {
 			$validRevision = false;
@@ -455,11 +456,16 @@ class ContribsPager extends RangeChronologicalPager {
 
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
-		$rev = $this->tryToCreateValidRevision( $row );
+		$page = null;
+		// Create a title for the revision if possible
+		// Rows from the hook may not include title information
+		if ( isset( $row->page_namespace ) && isset( $row->page_title ) ) {
+			$page = Title::newFromRow( $row );
+		}
+		$rev = $this->tryToCreateValidRevision( $row, $page );
 		if ( $rev ) {
 			$attribs['data-mw-revid'] = $rev->getId();
 
-			$page = Title::newFromRow( $row );
 			$link = $linkRenderer->makeLink(
 				$page,
 				$page->getPrefixedText(),
