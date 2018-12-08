@@ -2289,6 +2289,7 @@
 	"move": "Name of Move tab. Should be in the imperative mood.\n\nSee also:\n* {{msg-mw|Move}}\n* {{msg-mw|Accesskey-ca-move}}\n* {{msg-mw|Tooltip-ca-move}}\n{{Identical|Move}}",
 	"movethispage": "{{Identical|Move this page}}",
 	"unusedimagestext": "Header message of [[Special:UnusedFiles]]",
+	"unusedimagestext-categorizedimgisused": "Header message of [[Special:UnusedFiles]] with <code>$wgCountCategorizedImagesAsUsed</code> activated (categorized images are considered as used). This message is sometimes used in place of {{msg-mw|unusedimagestext}}",
 	"unusedcategoriestext": "Used as page header in [[Special:UnusedCategories]].",
 	"notargettitle": "Used as title of error message.\n\nSee also:\n* {{msg-mw|Notargettitle|title}}\n* {{msg-mw|Notargettext|text}}",
 	"notargettext": "Used as error message in [[Special:MovePage]].\n\nSee also:\n* {{msg-mw|Notargettitle|title}}\n* {{msg-mw|Notargettext|text}}",

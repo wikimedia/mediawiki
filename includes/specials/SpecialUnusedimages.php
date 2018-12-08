@@ -76,6 +76,11 @@ class UnusedimagesPage extends ImageQueryPage {
 	}
 
 	function getPageHeader() {
+		if ( $this->getConfig()->get( 'CountCategorizedImagesAsUsed' ) ) {
+			return $this->msg(
+				'unusedimagestext-categorizedimgisused'
+			)->parseAsBlock();
+		}
 		return $this->msg( 'unusedimagestext' )->parseAsBlock();
 	}
 
