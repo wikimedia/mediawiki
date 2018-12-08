@@ -196,7 +196,6 @@ abstract class Skin extends ContextSource {
 			'core' => [
 				'site',
 				'mediawiki.page.startup',
-				'mediawiki.user',
 			],
 			// modules that enhance the content in some way
 			'content' => [
