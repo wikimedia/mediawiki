@@ -512,11 +512,6 @@
 	url = https://github.com/labster/HighlightLinksInCategory.git
 	branch = master
 	ignore = dirty
-[submodule "extensions/NativeSvgHandler"]
-	path = extensions/NativeSvgHandler
-	url = https://github.com/p12tic/NativeSvgHandler.git
-	branch = master
-	ignore = dirty
 [submodule "extensions/SimpleTooltip"]
 	path = extensions/SimpleTooltip
 	url = https://github.com/Fannon/SimpleTooltip.git
