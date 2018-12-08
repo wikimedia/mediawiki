@@ -650,8 +650,10 @@ class ParserOptions {
 
 	/**
 	 * Lazy initializer for dateFormat
+	 * @param ParserOptions $popt
+	 * @return string
 	 */
-	private static function initDateFormat( $popt ) {
+	private static function initDateFormat( ParserOptions $popt ) {
 		return $popt->mUser->getDatePreference();
 	}
 
