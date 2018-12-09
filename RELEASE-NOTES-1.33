@@ -34,7 +34,6 @@ production.
 * …
 
 === New features in 1.33 ===
-* The 'GetPreferences' hook now receives an additional $context parameter.
 * (T96041) __EXPECTUNUSEDCATEGORY__ on a category page causes the category
   to be hidden on Special:UnusedCategories.
 * Add PasswordPolicy to check the password isn't in the large blacklist.
