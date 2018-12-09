@@ -24,6 +24,20 @@ describe( 'Page', function () {
 		name = Util.getTestString( 'BeforeEach-name-' );
 	} );
 
+	it( 'should be previewable', function () {
+		EditPage.preview( name, content );
+
+		assert.strictEqual( EditPage.heading.getText(), 'Creating ' + name );
+		assert.strictEqual( EditPage.displayedContent.getText(), content );
+		assert( EditPage.content.isVisible(), 'editor is still present' );
+		assert( !EditPage.conflictingContent.isVisible(), 'no edit conflict happened' );
+		// provoke and dismiss reload warning due to unsaved content
+		browser.url( 'data:text/html,Done' );
+		try {
+			browser.alertAccept();
+		} catch ( e ) {}
+	} );
+
 	it( 'should be creatable', function () {
 		// create
 		EditPage.edit( name, content );
