@@ -1344,7 +1344,7 @@ abstract class UploadBase {
 		}
 
 		foreach ( $tags as $tag ) {
-			if ( false !== strpos( $chunk, $tag ) ) {
+			if ( strpos( $chunk, $tag ) !== false ) {
 				wfDebug( __METHOD__ . ": found something that may make it be mistaken for html: $tag\n" );
 
 				return true;

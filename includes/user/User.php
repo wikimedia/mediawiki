@@ -1824,7 +1824,7 @@ class User implements IDBAccessObject, UserIdentity {
 	private function getBlockedStatus( $bFromReplica = true ) {
 		global $wgProxyWhitelist, $wgUser, $wgApplyIpBlocksToXff, $wgSoftBlockRanges;
 
-		if ( -1 != $this->mBlockedby ) {
+		if ( $this->mBlockedby != -1 ) {
 			return;
 		}
 
@@ -4115,7 +4115,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function setCookies( $request = null, $secure = null, $rememberMe = false ) {
 		$this->load();
-		if ( 0 == $this->mId ) {
+		if ( $this->mId == 0 ) {
 			return;
 		}
 
@@ -4209,7 +4209,7 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		$this->load();
-		if ( 0 == $this->mId ) {
+		if ( $this->mId == 0 ) {
 			return; // anon
 		}
 

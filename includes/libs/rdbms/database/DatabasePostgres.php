@@ -916,22 +916,22 @@ __INDEXATTR__;
 	 * @return string[]
 	 */
 	private function pg_array_parse( $text, &$output, $limit = false, $offset = 1 ) {
-		if ( false === $limit ) {
+		if ( $limit === false ) {
 			$limit = strlen( $text ) - 1;
 			$output = [];
 		}
-		if ( '{}' == $text ) {
+		if ( $text == '{}' ) {
 			return $output;
 		}
 		do {
-			if ( '{' != $text[$offset] ) {
+			if ( $text[$offset] != '{' ) {
 				preg_match( "/(\\{?\"([^\"\\\\]|\\\\.)*\"|[^,{}]+)+([,}]+)/",
 					$text, $match, 0, $offset );
 				$offset += strlen( $match[0] );
-				$output[] = ( '"' != $match[1][0]
+				$output[] = ( $match[1][0] != '"'
 					? $match[1]
 					: stripcslashes( substr( $match[1], 1, -1 ) ) );
-				if ( '},' == $match[3] ) {
+				if ( $match[3] == '},' ) {
 					return $output;
 				}
 			} else {

@@ -3146,7 +3146,7 @@ class Parser {
 		# $args is a list of argument nodes, starting from index 0, not including $part1
 		# @todo FIXME: If piece['parts'] is null then the call to getLength()
 		# below won't work b/c this $args isn't an object
-		$args = ( null == $piece['parts'] ) ? [] : $piece['parts'];
+		$args = ( $piece['parts'] == null ) ? [] : $piece['parts'];
 
 		$profileSection = null; // profile templates
 

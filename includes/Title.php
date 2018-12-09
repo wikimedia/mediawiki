@@ -1661,7 +1661,7 @@ class Title implements LinkTarget {
 			$p = $this->mInterwiki . ':';
 		}
 
-		if ( 0 != $this->mNamespace ) {
+		if ( $this->mNamespace != 0 ) {
 			$nsText = $this->getNsText();
 
 			if ( $nsText === false ) {
@@ -3573,7 +3573,7 @@ class Title implements LinkTarget {
 			$this->mArticleID = $linkCache->addLinkObj( $this );
 			$linkCache->forUpdate( $oldUpdate );
 		} else {
-			if ( -1 == $this->mArticleID ) {
+			if ( $this->mArticleID == -1 ) {
 				$this->mArticleID = $linkCache->addLinkObj( $this );
 			}
 		}

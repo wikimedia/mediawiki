@@ -375,7 +375,7 @@ class LegacyLogger extends AbstractLogger {
 	 * @return string
 	 */
 	protected static function flatten( $item ) {
-		if ( null === $item ) {
+		if ( $item === null ) {
 			return '[Null]';
 		}
 

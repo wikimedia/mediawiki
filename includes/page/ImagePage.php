@@ -281,7 +281,7 @@ class ImagePage extends Article {
 	 */
 	public function getEmptyPageParserOutput( ParserOptions $options ) {
 		$this->loadFile();
-		if ( $this->mPage->getFile() && !$this->mPage->getFile()->isLocal() && 0 == $this->getId() ) {
+		if ( $this->mPage->getFile() && !$this->mPage->getFile()->isLocal() && $this->getId() == 0 ) {
 			return new ParserOutput();
 		}
 		return parent::getEmptyPageParserOutput( $options );

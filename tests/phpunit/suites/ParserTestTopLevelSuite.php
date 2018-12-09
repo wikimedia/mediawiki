@@ -86,7 +86,7 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 		# Filter out .txt files
 		$files = ParserTestRunner::getParserTestFiles();
 		foreach ( $files as $extName => $parserTestFile ) {
-			$isCore = ( 0 === strpos( $parserTestFile, $mwTestDir ) );
+			$isCore = ( strpos( $parserTestFile, $mwTestDir ) === 0 );
 
 			if ( $isCore && $wantsCore ) {
 				self::debug( "included core parser tests: $parserTestFile" );

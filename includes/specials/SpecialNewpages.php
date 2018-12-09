@@ -76,19 +76,19 @@ class SpecialNewpages extends IncludableSpecialPage {
 	protected function parseParams( $par ) {
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
 		foreach ( $bits as $bit ) {
-			if ( 'shownav' == $bit ) {
+			if ( $bit === 'shownav' ) {
 				$this->showNavigation = true;
 			}
-			if ( 'hideliu' === $bit ) {
+			if ( $bit === 'hideliu' ) {
 				$this->opts->setValue( 'hideliu', true );
 			}
-			if ( 'hidepatrolled' == $bit ) {
+			if ( $bit === 'hidepatrolled' ) {
 				$this->opts->setValue( 'hidepatrolled', true );
 			}
-			if ( 'hidebots' == $bit ) {
+			if ( $bit === 'hidebots' ) {
 				$this->opts->setValue( 'hidebots', true );
 			}
-			if ( 'showredirs' == $bit ) {
+			if ( $bit === 'showredirs' ) {
 				$this->opts->setValue( 'hideredirs', false );
 			}
 			if ( is_numeric( $bit ) ) {
