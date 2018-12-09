@@ -2958,6 +2958,7 @@
 	"autosumm-blank": "אויסגעליידיקט דעם בלאט",
 	"autosumm-replace": "פֿאַרבײַט דעם בלאַט מיט '$1'",
 	"autoredircomment": "ווייטערפירן צו [[$1]]",
+	"autosumm-changed-redirect-target": "געענדערט ווייטערפירונג ציל פון בלאט [[$1]] צו בלאט [[$2]]",
 	"autosumm-new": "געשאַפֿן בלאַט מיט '$1'",
 	"autosumm-newblank": "ליידיגן בלאט געשאפן",
 	"size-kilobytes": "{{PLURAL:$1|איין קילאבייט|$1 קילאבייטן}}",

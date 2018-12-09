@@ -2491,7 +2491,7 @@
 	"ipbcreateaccount": "Estä tunnusten luonti",
 	"ipbemailban": "Estä käyttäjää lähettämästä sähköpostia",
 	"ipbenableautoblock": "Estä automaattisesti viimeisin IP-osoite, josta käyttäjä on muokannut, sekä ne osoitteet, joista hän jatkossa yrittää muokata.",
-	"ipbsubmit": "Estä",
+	"ipbsubmit": "Estä tämä käyttäjä",
 	"ipbother": "Muu aikamääre:",
 	"ipboptions": "2 tuntia:2 hours,1 päivä:1 day,3 päivää:3 days,1 viikko:1 week,2 viikkoa:2 weeks,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year,ikuinen:infinite",
 	"ipbhidename": "Piilota tunnus muokkauksista ja listauksista",

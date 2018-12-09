@@ -1611,6 +1611,7 @@
 	"apierror-compare-nofromrevision": "ليس 'من' مراجعة، حدد <var>fromrev</var> أو <var>fromtitle</var> أو <var>fromid</var>.",
 	"apierror-compare-notext": "لا يمكن استخدام الوسيط <var>$1</var> بدون <var>$2</var>.",
 	"apierror-compare-notorevision": "ليس 'إلى' مراجعة، حدد <var>torev</var> أو <var>totitle</var> أو <var>toid</var>.",
+	"apierror-compare-relative-to-deleted": "لا يمكن استخدام <kbd>torelative=$1</kbd> بالنسبة لمراجعة محذوفة.",
 	"apierror-compare-relative-to-nothing": "لا توجد مراجعة 'من' لـ<var>torelative</var> لتكون نسبة.",
 	"apierror-contentserializationexception": "فشل تسلسل المحتوى: $1",
 	"apierror-contenttoobig": "يتجاوز المحتوى الذي أدخلته حد حجم المقالة البالغ $1 {{PLURAL:$1|كيلوبايت}}.",

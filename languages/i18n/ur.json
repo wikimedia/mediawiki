@@ -800,7 +800,7 @@
 	"revisionasof": "نسخہ بمطابق $1",
 	"revision-info": "نظرثانی بتاریخ $1 از {{GENDER:$6|$2}}$7",
 	"previousrevision": "→ پرانا نسخہ",
-	"nextrevision": "→اگلا اعادہ",
+	"nextrevision": "تازہ نسخہ ←",
 	"currentrevisionlink": "تازہ ترین نسخہ",
 	"cur": "موجودہ",
 	"next": "آگے",

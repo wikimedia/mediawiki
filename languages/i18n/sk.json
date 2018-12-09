@@ -679,7 +679,7 @@
 	"userjspreview": "'''Nezabudnite, že iba testujete/náhľad vášho používateľského JavaScriptu, ešte nebol uložený!'''",
 	"sitecsspreview": "'''Nezabudnite, že toto je iba náhľad tohto CSS.'''\n'''Zatiaľ nebolo uložené!'''",
 	"sitejspreview": "'''Nezabudnite, že toto je iba náhľad tohto JavaScriptu.'''\n'''Zatiaľ nebol uložený!'''",
-	"userinvalidconfigtitle": "'''Upozornenie:''' Neexistuje vzhľad „$1“. Pamätajte, že vlastné .css a .js stránky používajú názov s malými písmenami, napr. {{ns:user}}:Foo/vector.css a nie {{ns:user}}:Foo/Vector.css.",
+	"userinvalidconfigtitle": "<strong>Upozornenie:</strong> Neexistuje vzhľad „$1“. Pamätajte, že vlastné .css, .json a .js stránky používajú názov s malými písmenami, napr. {{ns:user}}:Foo/vector.css a nie {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Aktualizovaný)",
 	"note": "'''Poznámka: '''",
 	"previewnote": "'''Nezabudnite, toto je iba náhľad stránky, ktorú upravujete.\nZmeny ešte nie sú uložené!'''",
