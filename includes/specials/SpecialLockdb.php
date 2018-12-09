@@ -84,7 +84,7 @@ class SpecialLockdb extends FormSpecialPage {
 		$fp = fopen( $this->getConfig()->get( 'ReadOnlyFile' ), 'w' );
 		Wikimedia\restoreWarnings();
 
-		if ( false === $fp ) {
+		if ( $fp === false ) {
 			# This used to show a file not found error, but the likeliest reason for fopen()
 			# to fail at this point is insufficient permission to write to the file...good old
 			# is_writable() is plain wrong in some cases, it seems...

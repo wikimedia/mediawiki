@@ -155,7 +155,7 @@ class TestFileReader {
 	}
 
 	private function execute() {
-		while ( false !== ( $line = fgets( $this->fh ) ) ) {
+		while ( ( $line = fgets( $this->fh ) ) !== false ) {
 			$this->lineNum++;
 			$matches = [];
 

@@ -200,7 +200,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			&& ( $hidetrans || !$tlRes->numRows() )
 			&& ( $hideimages || !$ilRes->numRows() )
 		) {
-			if ( 0 == $level ) {
+			if ( $level == 0 ) {
 				if ( !$this->including() ) {
 					$out->addHTML( $this->whatlinkshereForm() );
 
@@ -461,11 +461,11 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$changed = $this->opts->getChangedValues();
 		unset( $changed['target'] ); // Already in the request title
 
-		if ( 0 != $prevId ) {
+		if ( $prevId != 0 ) {
 			$overrides = [ 'from' => $this->opts->getValue( 'back' ) ];
 			$prev = $this->makeSelfLink( $prev, array_merge( $changed, $overrides ) );
 		}
-		if ( 0 != $nextId ) {
+		if ( $nextId != 0 ) {
 			$overrides = [ 'from' => $nextId, 'back' => $prevId ];
 			$next = $this->makeSelfLink( $next, array_merge( $changed, $overrides ) );
 		}

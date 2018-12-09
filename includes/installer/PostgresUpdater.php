@@ -958,7 +958,7 @@ END;
 		}
 		if ( $fi->isNullable() ) {
 			# # It's NULL - does it need to be NOT NULL?
-			if ( 'NOT NULL' === $null ) {
+			if ( $null === 'NOT NULL' ) {
 				$this->output( "Changing '$table.$field' to not allow NULLs\n" );
 				if ( $update ) {
 					$this->db->query( "UPDATE $table SET $field = DEFAULT WHERE $field IS NULL" );
@@ -969,7 +969,7 @@ END;
 			}
 		} else {
 			# # It's NOT NULL - does it need to be NULL?
-			if ( 'NULL' === $null ) {
+			if ( $null === 'NULL' ) {
 				$this->output( "Changing '$table.$field' to allow NULLs\n" );
 				$this->db->query( "ALTER TABLE $table ALTER $field DROP NOT NULL" );
 			} else {

@@ -4276,7 +4276,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$fp = fopen( $filename, 'r' );
 		Wikimedia\restoreWarnings();
 
-		if ( false === $fp ) {
+		if ( $fp === false ) {
 			throw new RuntimeException( "Could not open \"{$filename}\".\n" );
 		}
 
@@ -4327,7 +4327,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				continue;
 			}
 
-			if ( '-' == $line[0] && '-' == $line[1] ) {
+			if ( $line[0] == '-' && $line[1] == '-' ) {
 				continue;
 			}
 
@@ -4357,7 +4357,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 						$resultCallback( $res, $this );
 					}
 
-					if ( false === $res ) {
+					if ( $res === false ) {
 						$err = $this->lastError();
 
 						return "Query \"{$cmd}\" failed with error code \"$err\".\n";
