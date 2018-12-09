@@ -535,7 +535,7 @@
 	"userjspreview": "'''Pamjyntej, aże to je no raźe ino podglůnd Twojego arkusza stylůw JavaScriptu.'''\n'''Ńic jeszcze ńy zostoło naszkryflane!'''",
 	"sitecsspreview": "'''Pamjyntej, aże to je na raźe ino podglůnd Twojego arkusza stylůw CSS.'''\n'''Ńic jeszcze ńy zostoło naszkryflane!'''",
 	"sitejspreview": "'''Pamjyntej, aże to je na raźe ino podglůnd Twojego JavaScriptu - nic jeszcze ńy zostoło naszkryflane!'''",
-	"userinvalidconfigtitle": "'''Pozůr:''' Ńy mo skůrki uo mjańe \"$1\". Pamjyntej, aże zajty użytkowńika zawjyrajůnce CSS i JavaScript powinny zaczynać śe małům buchsztabům, lb. {{ns:user}}:Foo/vector.css.",
+	"userinvalidconfigtitle": "<strong>Pozůr:</strong> Ńy mo skůrki uo mjańe \"$1\". Pamjyntej, aże zajty użytkowńika zawjyrajůnce CSS, JSON i JavaScript powinny zaczynać śe małům buchsztabům, lb. {{ns:user}}:Foo/vector.css.",
 	"updated": "(Pomjyńano)",
 	"note": "'''Pozůr:'''",
 	"previewnote": "'''To je ino podglůnd - artikel jeszcze ńy je spamjyntany!'''",

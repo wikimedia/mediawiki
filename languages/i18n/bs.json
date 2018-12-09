@@ -673,7 +673,7 @@
 	"userjspreview": "<strong>Zapamtite da je ovo samo pregled Vašeg JavaScripta.\nStranica još nije sačuvana!</strong>",
 	"sitecsspreview": "'''Zapamtite ovo je samo izgled ovog CSS-a.'''\n'''Još uvijek nije sačuvan!'''",
 	"sitejspreview": "'''Zapamtite ovo je samo izgled ovog koda JavaScripte.'''\n'''Još uvijek nije sačuvan!'''",
-	"userinvalidconfigtitle": "<strong>Upozorenje:</strong> Ne postoji tema \"$1\".\nNe zaboravite da imena stranica s .css i .js kodom počinju malim slovom, npr, {{ns:user}}:Foo/vector.css, a ne {{ns:user}}:Foo/Vector.css.",
+	"userinvalidconfigtitle": "<strong>Upozorenje:</strong> Ne postoji tema \"$1\".\nNe zaboravite da imena stranica s .css, .json i .js kodom počinju malim slovom, npr, {{ns:user}}:Foo/vector.css, a ne {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Osvježeno)",
 	"note": "'''Pažnja:'''",
 	"previewnote": "<strong>Ne zaboravite da je ovo samo pregled.</strong>\nVaše izmjene još nisu sačuvane!",

@@ -1977,6 +1977,7 @@
 	"move": "Preimenuj",
 	"movethispage": "Prestavi stran",
 	"unusedimagestext": "Spodnje datoteke obstajajo, vendar niso vključene v nobeno stran.\nProsimo, upoštevajte, da se lahko druge spletne strani povezujejo na datoteko z neposrednim URL in je zato morda še vedno navedena tukaj, čeprav se aktivno uporablja.",
+	"unusedimagestext-categorizedimgisused": "Naslednje datoteke obstajajo, ampak niso vključene na nobeno stran. Kategorizirane slike obravnavamo kot uporabljane, čeprav niso vključene na nobeno stran.\nPomnite, da se lahko druge strani povezujejo na datoteko z neposrednim URL-jem, zato je lahko še vedno navedena tukaj, čeprav se aktivno uporablja.",
 	"unusedcategoriestext": "Naslednje strani kategorij obstajajo, vendar jih ne uporablja noben članek ali druga kategorija.",
 	"notargettitle": "Ni cilja",
 	"notargettext": "Niste navedli ciljne strani ali uporabnika za izvedbo ukaza.",

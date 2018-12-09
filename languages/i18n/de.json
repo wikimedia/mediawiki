@@ -2059,6 +2059,7 @@
 	"move": "Verschieben",
 	"movethispage": "Seite verschieben",
 	"unusedimagestext": "Bitte beachte, dass andere Webseiten eine Datei mit einer direkten URL verlinken können. Sie könnte daher hier aufgelistet sein, obwohl sie in aktiver Verwendung ist.",
+	"unusedimagestext-categorizedimgisused": "Die folgenden Dateien sind vorhanden, jedoch auf keiner Seite eingebunden. Kategorisierte Bilder werden als verwendet betrachtet, trotzdem werden sie auf keiner Seite eingebunden.\nBitte beachte, dass andere Websites auf eine Datei mit einer direkten URL verlinken können und hier trotz aktiver Nutzung noch gelistet werden.",
 	"unusedcategoriestext": "Diese Spezialseite zeigt alle Kategorien, die leer sind, also selbst keine Kategorien oder Seiten enthalten.",
 	"notargettitle": "Keine Seite angegeben",
 	"notargettext": "Du hast nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.",

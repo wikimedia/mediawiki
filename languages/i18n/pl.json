@@ -2061,6 +2061,7 @@
 	"move": "Przenieś",
 	"movethispage": "Przenieś tę stronę",
 	"unusedimagestext": "W serwisie istnieją następujące pliki, lecz nie są wykorzystane na żadnej ze stron.\nInne witryny mogą odwoływać się do tych plików, używając bezpośrednich adresów URL. Oznacza to, że niektóre z plików mogą się znajdować na tej liście pomimo tego, że są wykorzystywane.",
+	"unusedimagestext-categorizedimgisused": "Pliki przedstawione poniżej istnieją, jednak nie są umieszczone na żadnej stronie. Skategoryzowane obrazy są oznaczone jako używane, mimo że nie umieszczono ich na żadnej stronie.\nZwróć uwagę że inne strony internetowe mogą linkować do plików przy użyciu bezpośrednich adresów URL, więc te mogą być tu wymienione, chociaż faktycznie znajdują się w użyciu.",
 	"unusedcategoriestext": "Poniższe kategorie istnieją, choć nie korzysta z nich żadna strona ani kategoria.",
 	"notargettitle": "Wskazywana strona nie istnieje",
 	"notargettext": "Nie podano strony albo użytkownika, dla których ta operacja ma być wykonana.",

@@ -533,7 +533,7 @@
 	"passwordreset-emaildisabled": "E-postfunksjonen er slegen av på wikien.",
 	"passwordreset-username": "Brukarnamn:",
 	"passwordreset-domain": "Domene:",
-	"passwordreset-email": "↓E-postadresse:",
+	"passwordreset-email": "E-postadresse:",
 	"passwordreset-emailtitle": "↓Kontodetaljar på {{SITENAME}}",
 	"passwordreset-emailtext-ip": "Nokon (sannsynlegvis deg, frå IP-adressa $1) bad om ei nullstilling av passordet ditt for {{SITENAME}} ($4). {{PLURAL:$3|Denne brukarkontoen|Desse brukarkontoane}} er knytte til denne e-postadressa:\n\n$2\n\n{{PLURAL:$3|Dette mellombels passordet|Desse mellombels passorda}} går ut om {{PLURAL:$5|éin dag|$5 dagar}}.\nDu bør logga inn og velja eit nytt passord no. Om nokon andre enn deg bad om denne nullstillinga eller du no hugsar det opphavlege passordet og ikkje lenger ynskjer å endra det, kan du sjå bort frå denne meldinga og halda fram med å nytta det gamle passordet ditt.",
 	"passwordreset-emailtext-user": "Brukaren $1 på {{SITENAME}} bad om ei påminning for kontodetaljane dine for {{SITENAME}} ($4). {{PLURAL:$3|Den fylgjande brukarkontoen|Dei fylgjande brukarkontoane}} er assosierte med denne e-postadressa:\n\n$2\n\n{{PLURAL:$3|Dette mellombels passordet|Desse mellombels passorda}} vil verta ugilde om {{PLURAL:$5|éin dag|$5 dagar}}.\nDu bør logga inn og velja eit nytt passord no. Om nokon andre enn deg bad om denne påminninga, eller du har kome i hug det opphavlege passordet og ikkje lenger ynskjer å endra det, kan du sjå bort frå denne meldinga og halda fram med å nytta det gamle passordet ditt.",

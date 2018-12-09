@@ -2144,6 +2144,7 @@
 	"move": "Renommer",
 	"movethispage": "Renommer cette page",
 	"unusedimagestext": "Les fichiers suivants existent, mais ne sont inclus dans aucune page.\nVeuillez noter que d’autres sites peuvent accéder à ces fichiers à l’aide de liens directs (URLs), et donc qu’un fichier peut être listé ici alors qu’il est utilisé par ces sites.",
+	"unusedimagestext-categorizedimgisused": "Les fichiers suivants existent mais ne sont inclus dans aucune page. Les images catégorisées sont considérées comme utilisées malgré qu'elles ne soient pas incluses dans aucune page.\nVeuillez noter que les autres sites web peuvent créer un lien vers un fichier à l'aide d'une URL directe, et donc peuvent encore être listés ici malgré qu'ils soient encore utilisés.",
 	"unusedcategoriestext": "Les pages de catégories suivantes existent, mais aucune page ou catégorie ne les utilise.",
 	"notargettitle": "Pas de cible",
 	"notargettext": "Vous n'avez pas indiqué une page ou un utilisateur sur lequel vous souhaitez effectuer cette action.",
