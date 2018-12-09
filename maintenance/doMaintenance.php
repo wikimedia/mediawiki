@@ -91,7 +91,17 @@ $maintenance->checkRequiredExtensions();
 $maintenance->setAgentAndTriggers();
 
 // Do the work
-$success = $maintenance->execute();
+try {
+	$success = $maintenance->execute();
+} catch ( Exception $ex ) {
+	$success = false;
+	while ( $ex ) {
+		$cls = get_class( $ex );
+		print "$cls from line {$ex->getLine()} of {$ex->getFile()}: {$ex->getMessage()}\n";
+		print $ex->getTraceAsString() . "\n";
+		$ex = $ex->getPrevious();
+	}
+}
 
 // Potentially debug globals
 $maintenance->globals();
