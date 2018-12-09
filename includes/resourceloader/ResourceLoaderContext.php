@@ -74,7 +74,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 		$this->user = $request->getRawVal( 'user' );
 		$this->debug = $request->getFuzzyBool(
 			'debug',
-			$resourceLoader->getConfig()->get( 'ResourceLoaderDebug' )
+			$this->getConfig()->get( 'ResourceLoaderDebug' )
 		);
 		$this->only = $request->getRawVal( 'only', null );
 		$this->version = $request->getRawVal( 'version', null );
@@ -89,7 +89,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 		$skinnames = Skin::getSkinNames();
 		// If no skin is specified, or we don't recognize the skin, use the default skin
 		if ( !$this->skin || !isset( $skinnames[$this->skin] ) ) {
-			$this->skin = $resourceLoader->getConfig()->get( 'DefaultSkin' );
+			$this->skin = $this->getConfig()->get( 'DefaultSkin' );
 		}
 	}
 
@@ -150,6 +150,13 @@ class ResourceLoaderContext implements MessageLocalizer {
 	}
 
 	/**
+	 * @return Config
+	 */
+	public function getConfig() {
+		return $this->getResourceLoader()->getConfig();
+	}
+
+	/**
 	 * @return WebRequest
 	 */
 	public function getRequest() {
@@ -181,7 +188,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 			$lang = $this->getRequest()->getRawVal( 'lang', '' );
 			// Stricter version of RequestContext::sanitizeLangCode()
 			if ( !Language::isValidBuiltInCode( $lang ) ) {
-				$lang = $this->getResourceLoader()->getConfig()->get( 'LanguageCode' );
+				$lang = $this->getConfig()->get( 'LanguageCode' );
 			}
 			$this->language = $lang;
 		}
