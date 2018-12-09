@@ -380,6 +380,63 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( 0, $count );
 	}
 
+	/**
+	 * @dataProvider provideCheckUnblockSelf
+	 * @covers ::checkUnblockSelf
+	 */
+	public function testCheckUnblockSelf(
+		$blockedUser,
+		$blockPerformer,
+		$adjustPerformer,
+		$adjustTarget,
+		$expectedResult,
+		$reason
+	) {
+		$this->setGroupPermissions( 'sysop', 'unblockself', true );
+		$this->setGroupPermissions( 'user', 'block', true );
+		// Getting errors about creating users in db in provider.
+		// Need to use mutable to ensure different named testusers.
+		$users = [
+			'u1' => TestUserRegistry::getMutableTestUser( __CLASS__, 'sysop' )->getUser(),
+			'u2' => TestUserRegistry::getMutableTestUser( __CLASS__, 'sysop' )->getUser(),
+			'u3' => TestUserRegistry::getMutableTestUser( __CLASS__, 'sysop' )->getUser(),
+			'u4' => TestUserRegistry::getMutableTestUser( __CLASS__, 'sysop' )->getUser(),
+			'nonsysop' => $this->getTestUser()->getUser()
+		];
+		foreach ( [ 'blockedUser', 'blockPerformer', 'adjustPerformer', 'adjustTarget' ] as $var ) {
+			$$var = $users[$$var];
+		}
+
+		$block = new \Block( [
+			'address' => $blockedUser->getName(),
+			'user' => $blockedUser->getId(),
+			'by' => $blockPerformer->getId(),
+			'expiry' => 'infinity',
+			'sitewide' => 1,
+			'enableAutoblock' => true,
+		] );
+
+		$block->insert();
+
+		$this->assertSame(
+			SpecialBlock::checkUnblockSelf( $adjustTarget, $adjustPerformer ),
+			$expectedResult,
+			$reason
+		);
+	}
+
+	public function provideCheckUnblockSelf() {
+		// 'blockedUser', 'blockPerformer', 'adjustPerformer', 'adjustTarget'
+		return [
+			[ 'u1', 'u2', 'u3', 'u4', true, 'Unrelated users' ],
+			[ 'u1', 'u2', 'u1', 'u4', 'ipbblocked', 'Block unrelated while blocked' ],
+			[ 'u1', 'u2', 'u1', 'u1', true, 'Has unblockself' ],
+			[ 'nonsysop', 'u2', 'nonsysop', 'nonsysop', 'ipbnounblockself', 'no unblockself' ],
+			[ 'nonsysop', 'nonsysop', 'nonsysop', 'nonsysop', true, 'no unblockself but can de-selfblock' ],
+			[ 'u1', 'u2', 'u1', 'u2', true, 'Can block user who blocked' ],
+		];
+	}
+
 	protected function insertBlock() {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
