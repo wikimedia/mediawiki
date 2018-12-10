@@ -7,7 +7,7 @@ use MediaWiki\Widget\TitlesMultiselectWidget;
  *
  * Besides the parameters recognized by HTMLTitleTextField, additional recognized
  * parameters are:
- *  default - (optional) Array of usernames to use as preset data
+ *  default - (optional) Array of titles to use as preset data
  *  placeholder - (optional) Custom placeholder message for input
  *
  * The result is the array of titles
