@@ -1,9 +1,9 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Services\DestructibleService;
-use MediaWiki\Services\SalvageableService;
-use MediaWiki\Services\ServiceDisabledException;
+use Wikimedia\Services\DestructibleService;
+use Wikimedia\Services\SalvageableService;
+use Wikimedia\Services\ServiceDisabledException;
 
 /**
  * @covers MediaWiki\MediaWikiServices
@@ -219,7 +219,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'Test',
 			function () use ( &$serviceCounter ) {
 				$serviceCounter++;
-				$service = $this->createMock( MediaWiki\Services\DestructibleService::class );
+				$service = $this->createMock( Wikimedia\Services\DestructibleService::class );
 				$service->expects( $this->once() )->method( 'destroy' );
 				return $service;
 			}
@@ -248,7 +248,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 		$services->defineService(
 			'Test',
 			function () {
-				$service = $this->createMock( MediaWiki\Services\DestructibleService::class );
+				$service = $this->createMock( Wikimedia\Services\DestructibleService::class );
 				$service->expects( $this->never() )->method( 'destroy' );
 				return $service;
 			}

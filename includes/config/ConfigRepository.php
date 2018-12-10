@@ -22,8 +22,8 @@
 
 namespace MediaWiki\Config;
 
-use MediaWiki\Services\SalvageableService;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Services\SalvageableService;
 
 /**
  * Object which holds currently registered configuration options.

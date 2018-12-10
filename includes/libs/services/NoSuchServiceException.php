@@ -1,11 +1,11 @@
 <?php
-namespace MediaWiki\Services;
+namespace Wikimedia\Services;
 
 use Exception;
 use RuntimeException;
 
 /**
- * Exception thrown when trying to replace an already active service.
+ * Exception thrown when the requested service is not known.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,16 +28,22 @@ use RuntimeException;
  */
 
 /**
- * Exception thrown when trying to replace an already active service.
+ * Exception thrown when the requested service is not known.
  */
-class CannotReplaceActiveServiceException extends RuntimeException {
+class NoSuchServiceException extends RuntimeException {
 
 	/**
 	 * @param string $serviceName
 	 * @param Exception|null $previous
 	 */
 	public function __construct( $serviceName, Exception $previous = null ) {
-		parent::__construct( "Cannot replace an active service: $serviceName", 0, $previous );
+		parent::__construct( "No such service: $serviceName", 0, $previous );
 	}
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.33
+ */
+class_alias( NoSuchServiceException::class, 'MediaWiki\Services\NoSuchServiceException' );
