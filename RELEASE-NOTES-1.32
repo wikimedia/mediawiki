@@ -6,6 +6,7 @@ THIS IS NOT A RELEASE YET
 * (T213577) rdbms: avoid transaction status errors from ping() in rollback().
 * rdbms: Pass required parameter.
 * rdbms: do not treat SAVEPOINT and RELEASE SAVEPOINT as write queries.
+* (T204531) rdbms: reduce LoadBalancer replication log spam.
 
 === Changes since MediaWiki 1.32.0-rc.2 ===
 * (T188327) Fix slow queries in migrateActors.php.
