@@ -197,6 +197,7 @@ class LinkCache {
 	 * @return int Page ID or zero
 	 */
 	public function addLink( $title ) {
+		wfDeprecated( __METHOD__, '1.27' );
 		$nt = Title::newFromDBkey( $title );
 		if ( !$nt ) {
 			return 0;
