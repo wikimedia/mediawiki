@@ -44,6 +44,7 @@ class SiteSQLStore {
 	 * @return SiteStore
 	 */
 	public static function newInstance( $sitesTable = null, BagOStuff $cache = null ) {
+		wfDeprecated( __METHOD__, '1.27' );
 		if ( $sitesTable !== null ) {
 			throw new InvalidArgumentException(
 				__METHOD__ . ': $sitesTable parameter is unused and must be null'
