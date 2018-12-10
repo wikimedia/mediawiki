@@ -287,6 +287,7 @@ abstract class SearchEngine {
 	 * @return SearchResultSet
 	 */
 	public static function getNearMatchResultSet( $searchterm ) {
+		wfDeprecated( __METHOD__, '1.27' );
 		return static::defaultNearMatcher()->getNearMatchResultSet( $searchterm );
 	}
 
