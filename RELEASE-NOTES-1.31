@@ -49,6 +49,7 @@ THIS IS NOT A RELEASE YET
 * Fix addition of ug_expiry column to user_groups table on MSSQL.
 * (T204767) Add join conditions to ActiveUsersPager
 * (T210621) User: Bypass repeatable-read when creating an actor_id.
+* (T204531) rdbms: reduce LoadBalancer replication log spam.
 
 == MediaWiki 1.31.1 ==
 
