@@ -1,5 +1,9 @@
 <?php
 
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
+
 /**
  * @group Http
  * @group small
@@ -503,6 +507,18 @@ class HttpTest extends MediaWikiTestCase {
 
 		$this->assertTrue( defined( $value ), $value . ' not defined' );
 	}
+
+	/**
+	 * No actual request is made herein
+	 */
+	public function testGuzzleHttpRequest() {
+		$handler = HandlerStack::create( new MockHandler( [ new Response( 200 ) ] ) );
+		$r = new GuzzleHttpRequest( 'http://www.example.text', [ 'handler' => $handler ] );
+		$r->execute();
+		$this->assertEquals( 200, $r->getStatus() );
+
+		// @TODO: add failure tests (404s and failure to connect)
+	}
 }
 
 /**
@@ -513,13 +529,15 @@ class MWHttpRequestTester extends MWHttpRequest {
 	// returns appropriate tester class here
 	public static function factory( $url, array $options = null, $caller = __METHOD__ ) {
 		if ( !Http::$httpEngine ) {
-			Http::$httpEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
+			Http::$httpEngine = 'guzzle';
 		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
 			throw new DomainException( __METHOD__ . ': curl (https://secure.php.net/curl) is not ' .
 				'installed, but Http::$httpEngine is set to "curl"' );
 		}
 
 		switch ( Http::$httpEngine ) {
+			case 'guzzle':
+				return new GuzzleHttpRequestTester( $url, $options, $caller );
 			case 'curl':
 				return new CurlHttpRequestTester( $url, $options, $caller );
 			case 'php':
@@ -532,6 +550,12 @@ class MWHttpRequestTester extends MWHttpRequest {
 				return new PhpHttpRequestTester( $url, $options, $caller );
 			default:
 		}
+	}
+}
+
+class GuzzleHttpRequestTester extends GuzzleHttpRequest {
+	function setRespHeaders( $name, $value ) {
+		$this->respHeaders[$name] = $value;
 	}
 }
 

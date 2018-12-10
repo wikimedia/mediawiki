@@ -571,6 +571,7 @@ $wgAutoloadLocalClasses = [
 	'GitInfo' => __DIR__ . '/includes/GitInfo.php',
 	'GlobalDependency' => __DIR__ . '/includes/cache/CacheDependency.php',
 	'GlobalVarConfig' => __DIR__ . '/includes/config/GlobalVarConfig.php',
+	'GuzzleHttpRequest' => __DIR__ . '/includes/http/GuzzleHttpRequest.php',
 	'HHVMMakeRepo' => __DIR__ . '/maintenance/hhvm/makeRepo.php',
 	'HTMLApiField' => __DIR__ . '/includes/htmlform/fields/HTMLApiField.php',
 	'HTMLAutoCompleteSelectField' => __DIR__ . '/includes/htmlform/fields/HTMLAutoCompleteSelectField.php',
