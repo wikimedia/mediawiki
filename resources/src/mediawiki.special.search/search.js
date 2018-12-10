@@ -33,7 +33,7 @@
 
 		// Change the header search links to what user entered
 		$headerLinks = $( '.search-types a' );
-		searchWidget = OO.ui.infuse( 'searchText' );
+		searchWidget = OO.ui.infuse( $( '#searchText' ) );
 		updateHeaderLinks = function ( value ) {
 			$headerLinks.each( function () {
 				var parts = $( this ).attr( 'href' ).split( 'search=' ),
