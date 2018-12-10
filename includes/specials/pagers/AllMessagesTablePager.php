@@ -372,12 +372,6 @@ class AllMessagesTablePager extends TablePager {
 			$arr['class'] = 'allmessages-customised';
 		}
 
-		if ( !$isSecond ) {
-			$arr['id'] = Sanitizer::escapeIdForAttribute(
-				'msg_' . $this->getLanguage()->lcfirst( $row->am_title )
-			);
-		}
-
 		return $arr;
 	}
 
