@@ -14,6 +14,7 @@ THIS IS NOT A RELEASE YET
   non-admins can edit the page.
 * (T207541) Pass email address to mail().
 * Fix addition of ug_expiry column to user_groups table on MSSQL.
+* (T204531) rdbms: reduce LoadBalancer replication log spam.
 
 == MediaWiki 1.30.1 ==
 

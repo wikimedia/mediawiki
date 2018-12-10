@@ -285,8 +285,9 @@ class LoadBalancer implements ILoadBalancer {
 						"Server {host} is not replicating?", [ 'host' => $host ] );
 					unset( $loads[$i] );
 				} elseif ( $lag > $maxServerLag ) {
-					$this->replLogger->warning(
-						"Server {host} has {lag} seconds of lag (>= {maxlag})",
+					$this->replLogger->debug(
+						__METHOD__ .
+						": server {host} has {lag} seconds of lag (>= {maxlag})",
 						[ 'host' => $host, 'lag' => $lag, 'maxlag' => $maxServerLag ]
 					);
 					unset( $loads[$i] );
