@@ -20,10 +20,10 @@
 		// date picker is open will cause the date picker to remain visible (but non-functional), but
 		// not replacing the interface while the user is working with it is probably a good idea anyway.
 		startReady = whenBlurred( $( '#mw-date-start .oo-ui-inputWidget-input' ) ).then( function () {
-			return mw.widgets.DateInputWidget.static.infuse( 'mw-date-start' );
+			return mw.widgets.DateInputWidget.static.infuse( $( '#mw-date-start' ) );
 		} );
 		endReady = whenBlurred( $( '#mw-date-end .oo-ui-inputWidget-input' ) ).then( function () {
-			return mw.widgets.DateInputWidget.static.infuse( 'mw-date-end' );
+			return mw.widgets.DateInputWidget.static.infuse( $( '#mw-date-end' ) );
 		} );
 
 		$.when( startReady, endReady ).then( function ( startInput, endInput ) {
