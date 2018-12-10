@@ -456,7 +456,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 				// Let's just submit the data to AuthManager directly instead.
 				LoggerFactory::getInstance( 'authentication' )
 					->warning( 'Validation error on return', [ 'data' => $form->mFieldData,
-						'status' => $status->getWikiText() ] );
+						'status' => $status->getWikiText( false, false, 'en' ) ] );
 				$status = $this->handleFormSubmit( $form->mFieldData );
 			}
 		}
