@@ -49,6 +49,12 @@
 			alternateFn,
 			retval;
 
+		function supportsExecCommand() {
+			return $( this ).data( 'jquery.textSelection' ) === undefined &&
+				typeof document.queryCommandSupported === 'function' &&
+				document.queryCommandSupported( 'insertText' );
+		}
+
 		fn = {
 			/**
 			 * Get the contents of the textarea.
@@ -71,7 +77,14 @@
 			setContents: function ( content ) {
 				return this.each( function () {
 					var scrollTop = this.scrollTop;
-					$( this ).val( content );
+					if ( supportsExecCommand() ) {
+						this.select();
+						if ( !document.execCommand( 'insertText', false, content ) ) {
+							$( this ).val( content );
+						}
+					} else {
+						$( this ).val( content );
+					}
 					// Setting this.value may scroll the textarea, restore the scroll position
 					this.scrollTop = scrollTop;
 				} );
@@ -108,17 +121,19 @@
 				return this.each( function () {
 					var allText, currSelection, startPos, endPos;
 
-					allText = $( this ).textSelection( 'getContents' );
-					currSelection = $( this ).textSelection( 'getCaretPosition', { startAndEnd: true } );
-					startPos = currSelection[ 0 ];
-					endPos = currSelection[ 1 ];
+					if ( !supportsExecCommand() || !document.execCommand( 'insertText', false, value ) ) {
+						allText = $( this ).textSelection( 'getContents' );
+						currSelection = $( this ).textSelection( 'getCaretPosition', { startAndEnd: true } );
+						startPos = currSelection[ 0 ];
+						endPos = currSelection[ 1 ];
 
-					$( this ).textSelection( 'setContents', allText.slice( 0, startPos ) + value +
-						allText.slice( endPos ) );
-					$( this ).textSelection( 'setSelection', {
-						start: startPos,
-						end: startPos + value.length
-					} );
+						$( this ).textSelection( 'setContents', allText.slice( 0, startPos ) + value +
+							allText.slice( endPos ) );
+						$( this ).textSelection( 'setSelection', {
+							start: startPos,
+							end: startPos + value.length
+						} );
+					}
 				} );
 			},
 
