@@ -20,7 +20,7 @@ class TitlesMultiselectWidget extends \OOUI\Widget {
 
 	/**
 	 * @param array $config Configuration options
-	 *   - array $config['titles'] Array of titles to use as preset data
+	 *   - array $config['default'] Array of titles to use as preset data
 	 *   - array $config['placeholder'] Placeholder message for input
 	 *   - array $config['name'] Name attribute (used in forms)
 	 *   - number $config['tagLimit'] Maximum number of selected titles
