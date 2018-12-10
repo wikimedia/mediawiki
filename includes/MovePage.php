@@ -433,7 +433,7 @@ class MovePage {
 	private function moveFile( $oldTitle, $newTitle ) {
 		$status = Status::newFatal(
 			'cannotdelete',
-			$oldTitle->getPrefixedText()->escaped()
+			$oldTitle->getPrefixedText()
 		);
 
 		$file = wfLocalFile( $oldTitle );
