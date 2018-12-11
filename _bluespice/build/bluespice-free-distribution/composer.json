@@ -19,7 +19,7 @@
 		"mediawiki/pluggable-auth": "5.4",
 		"mediawiki/quiz": "dev-REL1_31",
 		"mediawiki/rss": "dev-REL1_31",
-		"mediawiki/simple-s-a-m-lphp": "4.2",
+		"mediawiki/simple-s-a-m-lphp": "4.4",
 		"mediawiki/template-styles": "dev-REL1_31",
 		"mediawiki/title-key": "dev-REL1_31",
 		"mediawiki/two-col-conflict": "dev-REL1_31",
