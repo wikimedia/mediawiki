@@ -20,6 +20,7 @@
 			watchUserField = infuseIfExists( $( '#mw-input-wpWatch' ).closest( '.oo-ui-fieldLayout' ) ),
 			expiryWidget = infuseIfExists( $( '#mw-input-wpExpiry' ) ),
 			editingRestrictionWidget = infuseIfExists( $( '#mw-input-wpEditingRestriction' ) ),
+			preventTalkPageEdit = infuseIfExists( $( '#mw-input-wpDisableUTEdit' ) ),
 			pageRestrictionsWidget = infuseIfExists( $( '#mw-input-wpPageRestrictions' ) );
 
 		function updateBlockOptions() {
@@ -49,6 +50,17 @@
 			if ( pageRestrictionsWidget ) {
 				pageRestrictionsWidget.setDisabled( editingRestrictionValue === 'sitewide' );
 			}
+			if ( preventTalkPageEdit ) {
+				// TODO: (T210475) this option is disabled for partial blocks unless
+				// a namespace restriction for User_talk namespace is in place.
+				// This needs to be updated once Namespace restrictions is available
+				if ( editingRestrictionValue === 'partial' ) {
+					preventTalkPageEdit.setDisabled( true );
+				} else {
+					preventTalkPageEdit.setDisabled( false );
+				}
+			}
+
 		}
 
 		if ( blockTargetWidget ) {

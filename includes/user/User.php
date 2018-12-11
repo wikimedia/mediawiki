@@ -2304,9 +2304,10 @@ class User implements IDBAccessObject, UserIdentity {
 					if ( $block->isSitewide() ) {
 						$blocked = $block->prevents( 'editownusertalk' );
 					} else {
-						// If the block is partial, then only a true value is honored,
-						// otherwise fallback to the partial block settings.
-						$blocked = $block->prevents( 'editownusertalk' ) ?: $block->appliesToTitle( $title );
+						// If the block is partial, ignore 'editownusertalk' unless
+						// there is a restriction on the user talk namespace.
+						// TODO: To be implemented with Namespace restrictions
+						$blocked = $block->appliesToTitle( $title );
 					}
 				} else {
 					$blocked = $block->appliesToTitle( $title );
