@@ -2943,6 +2943,7 @@
 	"autosumm-blank": "Det sidj as leesag maaget wurden.",
 	"autosumm-replace": "Di tekst as ütjbütjet wurden mä \"$1\"",
 	"autoredircomment": "Sidj tu [[$1]] widjerfeerd",
+	"autosumm-removed-redirect": "Widjerfeerang tu [[$1]] wechnimen",
 	"autosumm-changed-redirect-target": "Widjerfeerang feranert faan [[$1]] tu [[$2]]",
 	"autosumm-new": "Det sidj as nei uunlaanj wurden: \"$1\"",
 	"autosumm-newblank": "En leesag sidj maaget",
