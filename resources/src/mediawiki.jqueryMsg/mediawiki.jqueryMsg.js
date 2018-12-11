@@ -297,7 +297,7 @@
 		 * @return {jQuery}
 		 */
 		parse: function ( key, replacements ) {
-			var ast = this.getAst( key );
+			var ast = this.getAst( key, replacements );
 			return this.emitter.emit( ast, replacements );
 		},
 
@@ -306,16 +306,22 @@
 		 * Note that we pass '⧼' + key + '⧽' back for a missing message here.
 		 *
 		 * @param {string} key
+		 * @param {Array} replacements Variable replacements for $1, $2... $n
 		 * @return {string|Array} string of '⧼key⧽' if message missing, simple string if possible, array of arrays if needs parsing
 		 */
-		getAst: function ( key ) {
+		getAst: function ( key, replacements ) {
 			var wikiText;
 
 			if ( !Object.prototype.hasOwnProperty.call( this.astCache, key ) ) {
-				wikiText = this.settings.messages.get( key );
-				if ( typeof wikiText !== 'string' ) {
-					wikiText = '⧼' + key + '⧽';
+				if ( mw.config.get( 'wgUserLanguage' ) === 'qqx' ) {
+					wikiText = '(' + key + '$*)';
+				} else {
+					wikiText = this.settings.messages.get( key );
+					if ( typeof wikiText !== 'string' ) {
+						wikiText = '⧼' + key + '⧽';
+					}
 				}
+				wikiText = mw.transformFormatForQqx( wikiText, replacements );
 				this.astCache[ key ] = this.wikiTextToAst( wikiText );
 			}
 			return this.astCache[ key ];

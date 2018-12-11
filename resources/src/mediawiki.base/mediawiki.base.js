@@ -103,7 +103,13 @@
 		 * @return {string} Parsed message
 		 */
 		parser: function () {
-			return mw.format.apply( null, [ this.map.get( this.key ) ].concat( this.parameters ) );
+			var text;
+			if ( mw.config.get( 'wgUserLanguage' ) === 'qqx' ) {
+				text = '(' + this.key + '$*)';
+			} else {
+				text = this.map.get( this.key );
+			}
+			return mw.format.apply( null, [ text ].concat( this.parameters ) );
 		},
 
 		/**
@@ -217,6 +223,9 @@
 		 * @return {boolean}
 		 */
 		exists: function () {
+			if ( mw.config.get( 'wgUserLanguage' ) === 'qqx' ) {
+				return true;
+			}
 			return this.map.exists( this.key );
 		}
 	};
@@ -239,6 +248,28 @@
 	};
 
 	/**
+	 * Replace $* with a list of parameters for &uselang=qqx.
+	 *
+	 * @since 1.33
+	 * @param {string} formatString Format string
+	 * @param {Array} parameters Values for $N replacements
+	 * @return {string} Transformed format string
+	 */
+	mw.transformFormatForQqx = function ( formatString, parameters ) {
+		var parametersString;
+		if ( formatString.indexOf( '$*' ) !== -1 ) {
+			parametersString = '';
+			if ( parameters.length ) {
+				parametersString = ': ' + parameters.map( function ( _, i ) {
+					return '$' + ( i + 1 );
+				} ).join( ', ' );
+			}
+			return formatString.replace( '$*', parametersString );
+		}
+		return formatString;
+	};
+
+	/**
 	 * Format a string. Replace $1, $2 ... $N with positional arguments.
 	 *
 	 * Used by Message#parser().
@@ -250,6 +281,7 @@
 	 */
 	mw.format = function ( formatString ) {
 		var parameters = slice.call( arguments, 1 );
+		formatString = mw.transformFormatForQqx( formatString, parameters );
 		return formatString.replace( /\$(\d+)/g, function ( str, match ) {
 			var index = parseInt( match, 10 ) - 1;
 			return parameters[ index ] !== undefined ? parameters[ index ] : '$' + match;
