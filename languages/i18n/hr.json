@@ -727,7 +727,7 @@
 	"defaultmessagetext": "Prvotni tekst poruke",
 	"content-failed-to-parse": "Obrada (''parsiranje'') formata $2 za model $1 nije uspjela: $3",
 	"invalid-content-data": "Nevaljani sadržaj",
-	"content-not-allowed-here": "Sadržaj napisan u obliku \"$1\"-a nije dozvoljen na stranici [[:$2]]",
+	"content-not-allowed-here": "Sadržaj »$1« nije dopušten na stranici [[:$2]] na lokaciji slota »$3«",
 	"editwarning-warning": "Napuštanje ove stranice može uzrokovati gubitak svake izmjene koju ste napravili.\nAko ste prijavljeni, možete onemogućiti ovo upozorenje u odjeljku \"{{int:prefs-editing}}\" Vaših postavki.",
 	"editpage-invalidcontentmodel-title": "Model sadržaja nije podržan",
 	"editpage-invalidcontentmodel-text": "Model sadržaja »$1« nije podržan.",
