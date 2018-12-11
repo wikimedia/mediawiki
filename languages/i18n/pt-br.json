@@ -2095,6 +2095,7 @@
 	"move": "Mover",
 	"movethispage": "Mover esta página",
 	"unusedimagestext": "Os seguintes arquivos existem mas não são embutidos em nenhuma página.\nPor favor note que outros websites podem apontar para um arquivo através de um URL direto e, por isso, podem estar a ser listadas aqui, mesmo estando em uso.",
+	"unusedimagestext-categorizedimgisused": "Os arquivos a seguir existem, mas não estão incorporados em nenhuma página. As imagens categorizadas são consideradas usadas apesar de não estarem incorporadas em nenhuma página.\nObserve que outros sites da Web podem vincular a um arquivo com um URL direto e, portanto, ainda podem estar listados aqui, apesar de estarem em uso ativo.",
 	"unusedcategoriestext": "As seguintes categorias existem, embora nenhuma página ou categoria faça uso delas.",
 	"notargettitle": "Sem alvo",
 	"notargettext": "Você não especificou uma página alvo ou um usuário para executar esta função.",
