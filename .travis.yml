@@ -17,6 +17,18 @@ sudo: false
 # - Required for non-buggy xml library for XmlTypeCheck/UploadBaseTest (T75176).
 dist: trusty
 
+git:
+  depth: 3
+  quiet: true
+
+# Cache NPM and Composer directories
+# <https://docs.travis-ci.com/user/caching/>
+cache:
+  npm: true
+  directories:
+  # Composer doesn't have a dedicated cache setting in Travis CI config, so set the directory path instead.
+  - vendor
+
 matrix:
   fast_finish: true
   include:
