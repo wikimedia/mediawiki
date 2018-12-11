@@ -626,16 +626,32 @@ abstract class FileBackendStore extends FileBackend {
 			return false; // invalid storage path
 		}
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
+
 		$latest = !empty( $params['latest'] ); // use latest data?
-		if ( !$latest && !$this->cheapCache->hasField( $path, 'stat', self::CACHE_TTL ) ) {
-			$this->primeFileCache( [ $path ] ); // check persistent cache
+		$requireSHA1 = !empty( $params['requireSHA1'] ); // require SHA-1 if file exists?
+
+		if ( !$latest ) {
+			$stat = $this->cheapCache->getField( $path, 'stat', self::CACHE_TTL );
+			// Note that some backends, like SwiftFileBackend, sometimes set file stat process
+			// cache entries from mass object listings that do not include the SHA-1. In that
+			// case, loading the persistent stat cache will likely yield the SHA-1.
+			if (
+				$stat === null ||
+				( $requireSHA1 && is_array( $stat ) && !isset( $stat['sha1'] ) )
+			) {
+				$this->primeFileCache( [ $path ] ); // check persistent cache
+			}
 		}
-		if ( $this->cheapCache->hasField( $path, 'stat', self::CACHE_TTL ) ) {
-			$stat = $this->cheapCache->getField( $path, 'stat' );
+
+		$stat = $this->cheapCache->getField( $path, 'stat', self::CACHE_TTL );
+		if ( $stat !== null ) {
 			// If we want the latest data, check that this cached
 			// value was in fact fetched with the latest available data.
 			if ( is_array( $stat ) ) {
-				if ( !$latest || $stat['latest'] ) {
+				if (
+					( !$latest || $stat['latest'] ) &&
+					( !$requireSHA1 || isset( $stat['sha1'] ) )
+				) {
 					return $stat;
 				}
 			} elseif ( in_array( $stat, [ 'NOT_EXIST', 'NOT_EXIST_LATEST' ] ) ) {
@@ -644,7 +660,9 @@ abstract class FileBackendStore extends FileBackend {
 				}
 			}
 		}
+
 		$stat = $this->doGetFileStat( $params );
+
 		if ( is_array( $stat ) ) { // file exists
 			// Strongly consistent backends can automatically set "latest"
 			$stat['latest'] = $stat['latest'] ?? $latest;
