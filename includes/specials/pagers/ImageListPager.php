@@ -139,7 +139,9 @@ class ImageListPager extends TablePager {
 			$actorWhere = ActorMigration::newMigration()->getWhere(
 				$dbr,
 				$prefix . '_user',
-				User::newFromName( $this->mUserName, false )
+				User::newFromName( $this->mUserName, false ),
+				// oldimage doesn't have an index on oi_user, while image does. Set $useId accordingly.
+				$prefix === 'img'
 			);
 			$conds[] = $actorWhere['conds'];
 		}
