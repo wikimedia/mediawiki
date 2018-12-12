@@ -508,7 +508,7 @@
 		var namespace, m, id, ext, parts;
 
 		// defaultNamespace is optional; check whether options moves up
-		if ( arguments.length < 3 && $.type( defaultNamespace ) === 'object' ) {
+		if ( arguments.length < 3 && typeof defaultNamespace === 'object' ) {
 			options = defaultNamespace;
 			defaultNamespace = undefined;
 		}

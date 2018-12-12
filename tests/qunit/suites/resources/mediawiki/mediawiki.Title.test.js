@@ -151,15 +151,15 @@
 		var i;
 		for ( i = 0; i < cases.valid.length; i++ ) {
 			assert.strictEqual(
-				$.type( mw.Title.newFromText( cases.valid[ i ] ) ),
+				typeof mw.Title.newFromText( cases.valid[ i ] ),
 				'object',
 				cases.valid[ i ]
 			);
 		}
 		for ( i = 0; i < cases.invalid.length; i++ ) {
 			assert.strictEqual(
-				$.type( mw.Title.newFromText( cases.invalid[ i ] ) ),
-				'null',
+				mw.Title.newFromText( cases.invalid[ i ] ),
+				null,
 				cases.invalid[ i ]
 			);
 		}

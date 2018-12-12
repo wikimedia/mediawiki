@@ -26,7 +26,7 @@
 		 * @param {string} key
 		 * @param {string|null} value Value of cookie. If `value` is `null` then this method will
 		 *   instead remove a cookie by name of `key`.
-		 * @param {Object|Date} [options] Options object, or expiry date
+		 * @param {Object|Date|number} [options] Options object, or expiry date
 		 * @param {Date|number|null} [options.expires] The expiry date of the cookie, or lifetime in seconds.
 		 *
 		 *   If `options.expires` is null, then a session cookie is set.
@@ -61,8 +61,8 @@
 			};
 
 			// Options argument can also be a shortcut for the expiry
-			// Expiry can be a Date or null
-			if ( $.type( options ) !== 'object' ) {
+			// Expiry can be a Date, number or null
+			if ( !options || options instanceof Date || typeof options === 'number' ) {
 				// Also takes care of options = undefined, in which case we also don't need $.extend()
 				defaultOptions.expires = options;
 				options = defaultOptions;
