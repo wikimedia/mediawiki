@@ -669,6 +669,10 @@
 
 				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
 				assert.strictEqual( title.toText(), thisCase.expected, prefix + 'Title as expected' );
+				if ( thisCase.defaultNamespace === undefined ) {
+					title = mw.Title.newFromUserInput( thisCase.title, thisCase.options );
+					assert.strictEqual( title.toText(), thisCase.expected, prefix + 'Skipping namespace argument' );
+				}
 			} else {
 				assert.strictEqual( title, null, thisCase.description + ', should not produce an mw.Title object' );
 			}

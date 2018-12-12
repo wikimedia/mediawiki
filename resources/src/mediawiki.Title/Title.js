@@ -495,8 +495,10 @@
 	 *
 	 * @static
 	 * @param {string} title
-	 * @param {number} [defaultNamespace=NS_MAIN]
+	 * @param {number|Object} [defaultNamespaceOrOptions=NS_MAIN]
 	 *  If given, will used as default namespace for the given title.
+	 *  This method can also be called with two arguments, in which case
+	 *  this becomes options (see below).
 	 * @param {Object} [options] additional options
 	 * @param {boolean} [options.forUploading=true]
 	 *  Makes sure that a file is uploadable under the title returned.
@@ -504,13 +506,15 @@
 	 *  Automatically assumed if the title is created in the Media namespace.
 	 * @return {mw.Title|null} A valid Title object or null if the input cannot be turned into a valid title
 	 */
-	Title.newFromUserInput = function ( title, defaultNamespace, options ) {
-		var namespace, m, id, ext, parts;
+	Title.newFromUserInput = function ( title, defaultNamespaceOrOptions, options ) {
+		var namespace, m, id, ext, parts,
+			defaultNamespace;
 
 		// defaultNamespace is optional; check whether options moves up
 		if ( arguments.length < 3 && typeof defaultNamespace === 'object' ) {
-			options = defaultNamespace;
-			defaultNamespace = undefined;
+			options = defaultNamespaceOrOptions;
+		} else {
+			defaultNamespace = defaultNamespaceOrOptions;
 		}
 
 		// merge options into defaults
