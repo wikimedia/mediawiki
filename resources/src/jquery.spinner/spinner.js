@@ -61,7 +61,7 @@
 		createSpinner: function ( opts ) {
 			var $spinner;
 
-			if ( opts !== undefined && $.type( opts ) !== 'object' ) {
+			if ( typeof opts === 'string' ) {
 				opts = {
 					id: opts
 				};
