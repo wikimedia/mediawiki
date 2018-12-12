@@ -644,20 +644,18 @@ abstract class FileBackendStore extends FileBackend {
 		}
 
 		$stat = $this->cheapCache->getField( $path, 'stat', self::CACHE_TTL );
-		if ( $stat !== null ) {
-			// If we want the latest data, check that this cached
-			// value was in fact fetched with the latest available data.
-			if ( is_array( $stat ) ) {
-				if (
-					( !$latest || $stat['latest'] ) &&
-					( !$requireSHA1 || isset( $stat['sha1'] ) )
-				) {
-					return $stat;
-				}
-			} elseif ( in_array( $stat, [ 'NOT_EXIST', 'NOT_EXIST_LATEST' ] ) ) {
-				if ( !$latest || $stat === 'NOT_EXIST_LATEST' ) {
-					return false;
-				}
+		// If we want the latest data, check that this cached
+		// value was in fact fetched with the latest available data.
+		if ( is_array( $stat ) ) {
+			if (
+				( !$latest || $stat['latest'] ) &&
+				( !$requireSHA1 || isset( $stat['sha1'] ) )
+			) {
+				return $stat;
+			}
+		} elseif ( in_array( $stat, [ 'NOT_EXIST', 'NOT_EXIST_LATEST' ], true ) ) {
+			if ( !$latest || $stat === 'NOT_EXIST_LATEST' ) {
+				return false;
 			}
 		}
 
