@@ -85,7 +85,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addTable', 'updatelog', 'patch-updatelog.sql' ],
 			[ 'addTable', 'change_tag', 'patch-change_tag.sql' ],
 			[ 'addTable', 'tag_summary', 'patch-tag_summary.sql' ],
-			[ 'addTable', 'valid_tag', 'patch-valid_tag.sql' ],
 			[ 'addTable', 'user_properties', 'patch-user_properties.sql' ],
 			[ 'addTable', 'log_search', 'patch-log_search.sql' ],
 			[ 'addTable', 'l10n_cache', 'patch-l10n_cache.sql' ],
@@ -604,6 +603,8 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.33
 			[ 'dropField', 'change_tag', 'ct_tag', 'patch-drop-ct_tag.sql' ],
+			[ 'dropTable', 'valid_tag' ],
+			[ 'dropTable', 'tag_summary' ],
 		];
 	}
 

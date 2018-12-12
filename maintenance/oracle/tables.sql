@@ -946,23 +946,6 @@ CREATE UNIQUE INDEX &mw_prefix.change_tag_u06 ON &mw_prefix.change_tag (ct_rev_i
 
 CREATE INDEX &mw_prefix.change_tag_i02 ON &mw_prefix.change_tag (ct_tag_id,ct_rc_id,ct_rev_id,ct_log_id);
 
-CREATE TABLE &mw_prefix.tag_summary (
-  ts_id NUMBER NOT NULL,
-  ts_rc_id NUMBER NULL,
-  ts_log_id NUMBER NULL,
-  ts_rev_id NUMBER NULL,
-  ts_tags BLOB NOT NULL
-);
-ALTER TABLE &mw_prefix.tag_summary ADD CONSTRAINT &mw_prefix.tag_summary_pk PRIMARY KEY (ts_id);
-CREATE UNIQUE INDEX &mw_prefix.tag_summary_u01 ON &mw_prefix.tag_summary (ts_rc_id);
-CREATE UNIQUE INDEX &mw_prefix.tag_summary_u02 ON &mw_prefix.tag_summary (ts_log_id);
-CREATE UNIQUE INDEX &mw_prefix.tag_summary_u03 ON &mw_prefix.tag_summary (ts_rev_id);
-
-CREATE TABLE &mw_prefix.valid_tag (
-  vt_tag VARCHAR2(255) NOT NULL
-);
-ALTER TABLE &mw_prefix.valid_tag ADD CONSTRAINT &mw_prefix.valid_tag_pk PRIMARY KEY (vt_tag);
-
 -- This table is not used unless profiling is turned on
 --CREATE TABLE &mw_prefix.profiling (
 --  pf_count   NUMBER          DEFAULT 0 NOT NULL,

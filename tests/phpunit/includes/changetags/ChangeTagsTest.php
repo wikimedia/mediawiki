@@ -13,8 +13,6 @@ class ChangeTagsTest extends MediaWikiTestCase {
 
 		$this->tablesUsed[] = 'change_tag';
 		$this->tablesUsed[] = 'change_tag_def';
-		$this->tablesUsed[] = 'tag_summary';
-		$this->tablesUsed[] = 'valid_tag';
 
 		// Truncate these to avoid the supposed-to-be-unused IDs in tests here turning
 		// out to be used, leading ChangeTags::updateTags() to pick up bogus rc_id,
@@ -569,7 +567,6 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'change_tag', '*' );
 		$dbw->delete( 'change_tag_def', '*' );
-		$dbw->delete( 'valid_tag', '*' );
 
 		$rcId = 123;
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
@@ -590,7 +587,5 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		];
 		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_user_defined' ], '' );
 		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
-
-		$this->assertEquals( [], $dbr->selectFieldValues( 'valid_tag', 'vt_tag', '' ) );
 	}
 }
