@@ -1034,18 +1034,20 @@ class SpecialBlock extends FormSpecialPage {
 	 * Exception: Users can block the user who blocked them, to reduce
 	 * advantage of a malicious account blocking all admins (T150826)
 	 *
-	 * @param User|int|string $user Target to block or unblock
+	 * @param User|int|string|null $target Target to block or unblock; could be a User object,
+	 *   or a user ID or username, or null when the target is not known yet (e.g. when
+	 *   displaying Special:Block)
 	 * @param User $performer User doing the request
 	 * @return bool|string True or error message key
 	 */
-	public static function checkUnblockSelf( $user, User $performer ) {
-		if ( is_int( $user ) ) {
-			$user = User::newFromId( $user );
-		} elseif ( is_string( $user ) ) {
-			$user = User::newFromName( $user );
+	public static function checkUnblockSelf( $target, User $performer ) {
+		if ( is_int( $target ) ) {
+			$target = User::newFromId( $target );
+		} elseif ( is_string( $target ) ) {
+			$target = User::newFromName( $target );
 		}
 		if ( $performer->isBlocked() ) {
-			if ( $user instanceof User && $user->getId() == $performer->getId() ) {
+			if ( $target instanceof User && $target->getId() == $performer->getId() ) {
 				# User is trying to unblock themselves
 				if ( $performer->isAllowed( 'unblockself' ) ) {
 					return true;
@@ -1056,10 +1058,10 @@ class SpecialBlock extends FormSpecialPage {
 					return 'ipbnounblockself';
 				}
 			} elseif (
-				$user instanceof User &&
+				$target instanceof User &&
 				$performer->getBlock() instanceof Block &&
 				$performer->getBlock()->getBy() &&
-				$performer->getBlock()->getBy() === $user->getId()
+				$performer->getBlock()->getBy() === $target->getId()
 			) {
 				// Allow users to block the user that blocked them.
 				// This is to prevent a situation where a malicious user
