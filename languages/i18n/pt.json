@@ -2052,6 +2052,7 @@
 	"move": "Mover",
 	"movethispage": "Mover esta página",
 	"unusedimagestext": "Os seguintes ficheiros existem mas não são usados em nenhuma página.\nNote que outros sítios na Internet podem ter hiperligações para um ficheiro através de um URL direto e, por isso, podem estar listados ficheiros que estão a ser ativamente usados por entidades externas.",
+	"unusedimagestext-categorizedimgisused": "Os seguintes ficheiros existem mas não foram incorporados em nenhuma página. Considera-se que as imagens categorizadas estão a ser usadas, mesmo que não tenham sido incorporadas em nenhuma página.\nNote que é possível que outros sítios da Internet tenham hiperligações para um ficheiro com um URL direto; esse ficheiro poderá aparecer nesta lista, apesar de estar em uso ativo.",
 	"unusedcategoriestext": "As seguintes categorias existem, embora nenhuma página ou categoria faça uso delas.",
 	"notargettitle": "Sem alvo",
 	"notargettext": "Especifique sobre que página alvo ou utilizador pretende executar esta função.",
