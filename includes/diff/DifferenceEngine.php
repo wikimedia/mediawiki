@@ -21,8 +21,10 @@
  * @ingroup DifferenceEngine
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\NameTableAccessException;
 
 /**
  * DifferenceEngine is responsible for rendering the difference between two revisions as HTML.
@@ -1797,22 +1799,42 @@ class DifferenceEngine extends ContextSource {
 
 		// Load tags information for both revisions
 		$dbr = wfGetDB( DB_REPLICA );
+		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 		if ( $this->mOldid !== false ) {
-			$this->mOldTags = $dbr->selectField(
-				'tag_summary',
-				'ts_tags',
-				[ 'ts_rev_id' => $this->mOldid ],
+			$tagIds = $dbr->selectFieldValues(
+				'change_tag',
+				'ct_tag_id',
+				[ 'ct_rev_id' => $this->mOldid ],
 				__METHOD__
 			);
+			$tags = [];
+			foreach ( $tagIds as $tagId ) {
+				try {
+					$tags[] = $changeTagDefStore->getName( (int)$tagId );
+				} catch ( NameTableAccessException $exception ) {
+					continue;
+				}
+			}
+			$this->mOldTags = implode( ',', $tags );
 		} else {
 			$this->mOldTags = false;
 		}
-		$this->mNewTags = $dbr->selectField(
-			'tag_summary',
-			'ts_tags',
-			[ 'ts_rev_id' => $this->mNewid ],
+
+		$tagIds = $dbr->selectFieldValues(
+			'change_tag',
+			'ct_tag_id',
+			[ 'ct_rev_id' => $this->mNewid ],
 			__METHOD__
 		);
+		$tags = [];
+		foreach ( $tagIds as $tagId ) {
+			try {
+				$tags[] = $changeTagDefStore->getName( (int)$tagId );
+			} catch ( NameTableAccessException $exception ) {
+				continue;
+			}
+		}
+		$this->mNewTags = implode( ',', $tags );
 
 		return true;
 	}
