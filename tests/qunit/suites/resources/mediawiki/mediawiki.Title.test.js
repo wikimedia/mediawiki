@@ -151,15 +151,15 @@
 		var i;
 		for ( i = 0; i < cases.valid.length; i++ ) {
 			assert.strictEqual(
-				$.type( mw.Title.newFromText( cases.valid[ i ] ) ),
+				typeof mw.Title.newFromText( cases.valid[ i ] ),
 				'object',
 				cases.valid[ i ]
 			);
 		}
 		for ( i = 0; i < cases.invalid.length; i++ ) {
 			assert.strictEqual(
-				$.type( mw.Title.newFromText( cases.invalid[ i ] ) ),
-				'null',
+				mw.Title.newFromText( cases.invalid[ i ] ),
+				null,
 				cases.invalid[ i ]
 			);
 		}
@@ -669,6 +669,10 @@
 
 				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
 				assert.strictEqual( title.toText(), thisCase.expected, prefix + 'Title as expected' );
+				if ( thisCase.defaultNamespace === undefined ) {
+					title = mw.Title.newFromUserInput( thisCase.title, thisCase.options );
+					assert.strictEqual( title.toText(), thisCase.expected, prefix + 'Skipping namespace argument' );
+				}
 			} else {
 				assert.strictEqual( title, null, thisCase.description + ', should not produce an mw.Title object' );
 			}
