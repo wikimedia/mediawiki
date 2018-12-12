@@ -1856,7 +1856,7 @@ abstract class ApiBase extends ContextSource {
 						'min_id' => "MIN($field)",
 						'max_id' => "MAX($field)",
 					],
-					null,
+					'',
 					__METHOD__
 				);
 				self::$filterIDsCache[$table][$field] = $row;
