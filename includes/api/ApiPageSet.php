@@ -821,7 +821,7 @@ class ApiPageSet extends ApiBase {
 	 * @param array $pageids Array of page IDs
 	 * @param bool $filterIds Whether the IDs need filtering
 	 */
-	private function initFromPageIds( $pageids, $filterIds = false ) {
+	private function initFromPageIds( $pageids, $filterIds = true ) {
 		if ( !$pageids ) {
 			return;
 		}
