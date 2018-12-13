@@ -91,7 +91,11 @@ class GuzzleHttpRequest extends MWHttpRequest {
 
 		if ( $this->method == 'POST' ) {
 			$postData = $this->postData;
-			$this->guzzleOptions['body'] = $postData;
+			if ( is_array( $postData ) ) {
+				$this->guzzleOptions['form_params'] = $postData;
+			} else {
+				$this->guzzleOptions['body'] = $postData;
+			}
 
 			// Suppress 'Expect: 100-continue' header, as some servers
 			// will reject it with a 417 and Curl won't auto retry
