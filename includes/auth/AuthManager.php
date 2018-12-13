@@ -336,7 +336,7 @@ class AuthManager implements LoggerAwareInterface {
 			$this->setSessionDataForUser( $user );
 			$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
 			$session->remove( 'AuthManager::authnState' );
-			\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, $user, $user->getName() ] );
+			\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, $user, $user->getName(), [] ] );
 			return $ret;
 		}
 
@@ -352,7 +352,7 @@ class AuthManager implements LoggerAwareInterface {
 				$this->callMethodOnProviders( 7, 'postAuthentication',
 					[ User::newFromName( $guessUserName ) ?: null, $ret ]
 				);
-				\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, null, $guessUserName ] );
+				\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, null, $guessUserName, [] ] );
 				return $ret;
 			}
 		}
@@ -468,7 +468,7 @@ class AuthManager implements LoggerAwareInterface {
 								[ User::newFromName( $guessUserName ) ?: null, $res ]
 							);
 							$session->remove( 'AuthManager::authnState' );
-							\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $res, null, $guessUserName ] );
+							\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $res, null, $guessUserName, [] ] );
 							return $res;
 						case AuthenticationResponse::ABSTAIN;
 							// Continue loop
@@ -534,7 +534,7 @@ class AuthManager implements LoggerAwareInterface {
 							[ User::newFromName( $guessUserName ) ?: null, $res ]
 						);
 						$session->remove( 'AuthManager::authnState' );
-						\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $res, null, $guessUserName ] );
+						\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $res, null, $guessUserName, [] ] );
 						return $res;
 					case AuthenticationResponse::REDIRECT;
 					case AuthenticationResponse::UI;
@@ -625,7 +625,7 @@ class AuthManager implements LoggerAwareInterface {
 					);
 					$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
 					$session->remove( 'AuthManager::authnState' );
-					\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, $user, $user->getName() ] );
+					\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, $user, $user->getName(), [] ] );
 					return $ret;
 				}
 			}
@@ -658,7 +658,7 @@ class AuthManager implements LoggerAwareInterface {
 						$this->logger->debug( "Login failed in secondary authentication by $id" );
 						$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $res ] );
 						$session->remove( 'AuthManager::authnState' );
-						\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $res, $user, $user->getName() ] );
+						\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $res, $user, $user->getName(), [] ] );
 						return $res;
 					case AuthenticationResponse::REDIRECT;
 					case AuthenticationResponse::UI;
@@ -694,7 +694,7 @@ class AuthManager implements LoggerAwareInterface {
 			$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
 			$session->remove( 'AuthManager::authnState' );
 			$this->removeAuthenticationSessionData( null );
-			\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, $user, $user->getName() ] );
+			\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, $user, $user->getName(), [] ] );
 			return $ret;
 		} catch ( \Exception $ex ) {
 			$session->remove( 'AuthManager::authnState' );

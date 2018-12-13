@@ -786,7 +786,11 @@ $response: The MediaWiki\Auth\AuthenticationResponse in either a PASS or FAIL
 $user: The User object being authenticated against, or null if authentication
   failed before getting that far.
 $username: A guess at the user name being authenticated, or null if we can't
-  even determine that.
+  even determine that. When $user is not null, it can be in the form of
+  <username>@<more info> (e.g. for bot passwords).
+$extraData: An array (string => string) with extra information, intended to be
+  added to log contexts. Fields it might include:
+  - appId: the application ID, only if the login was with a bot password
 
 'AuthPluginAutoCreate': DEPRECATED since 1.27! Use the 'LocalUserCreated' hook
 instead. Called when creating a local account for an user logged in from an
