@@ -182,6 +182,8 @@ because of Phabricator reports.
   This will help identify the issue if you added it to $wgAuthManagerConfig.
 * wfSplitWikiId() is now deprecated. Cache key generation should have the wiki
   domain ID as a key component and use makeGlobalKey().
+* (T202094) Title::getUserCaseDBKey() is deprecated; instead, please use
+  Title::getDBKey(), which doesn't vary case.
 * …
 
 === Other changes in 1.33 ===
