@@ -99,7 +99,6 @@
 	 * @param {string} [data.module] Name of module which caused the error
 	 */
 	function logError( topic, data ) {
-		/* eslint-disable no-console */
 		var msg,
 			e = data.exception,
 			source = data.source,
@@ -120,7 +119,6 @@
 				console.warn( e );
 			}
 		}
-		/* eslint-enable no-console */
 	}
 
 	/**

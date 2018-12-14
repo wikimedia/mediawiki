@@ -116,7 +116,7 @@
 
 				subsetNames = [];
 
-				filter.subset.forEach( function ( subsetFilterName ) { // eslint-disable-line no-loop-func
+				filter.subset.forEach( function ( subsetFilterName ) {
 					// Subsets (unlike conflicts) are always inside the same group
 					// We can re-map the names of the filters we are getting from
 					// the subsets with the group prefix
