@@ -3276,9 +3276,13 @@ class Title implements LinkTarget {
 	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
 	 * Edit and move sections are separated by a colon
 	 * Example: "edit=autoconfirmed,sysop:move=sysop"
+	 * @param bool $readLatest When true, skip replicas and read from the master DB.
 	 */
-	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
-		$dbr = wfGetDB( DB_REPLICA );
+	public function loadRestrictionsFromRows(
+		$rows, $oldFashionedRestrictions = null, $readLatest = false
+	) {
+		$whichDb = $readLatest ? DB_MASTER : DB_REPLICA;
+		$dbr = wfGetDB( $whichDb );
 
 		$restrictionTypes = $this->getRestrictionTypes();
 
@@ -3348,9 +3352,10 @@ class Title implements LinkTarget {
 	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
 	 * Edit and move sections are separated by a colon
 	 * Example: "edit=autoconfirmed,sysop:move=sysop"
+	 * @param bool $readLatest When true, skip replicas and read from the master DB.
 	 */
-	public function loadRestrictions( $oldFashionedRestrictions = null ) {
-		if ( $this->mRestrictionsLoaded ) {
+	public function loadRestrictions( $oldFashionedRestrictions = null, $readLatest = false ) {
+		if ( $this->mRestrictionsLoaded && !$readLatest ) {
 			return;
 		}
 
@@ -3360,10 +3365,11 @@ class Title implements LinkTarget {
 			$fname = __METHOD__;
 			$rows = $cache->getWithSetCallback(
 				// Page protections always leave a new null revision
-				$cache->makeKey( 'page-restrictions', $id, $this->getLatestRevID() ),
+				$cache->makeKey( 'page-restrictions', $id, $this->getLatestRevID(), $readLatest ),
 				$cache::TTL_DAY,
-				function ( $curValue, &$ttl, array &$setOpts ) use ( $fname ) {
-					$dbr = wfGetDB( DB_REPLICA );
+				function ( $curValue, &$ttl, array &$setOpts ) use ( $fname, $readLatest ) {
+					$whichDb = $readLatest ? DB_MASTER : DB_REPLICA;
+					$dbr = wfGetDB( $whichDb );
 
 					$setOpts += Database::getCacheSetOptions( $dbr );
 
@@ -3378,7 +3384,7 @@ class Title implements LinkTarget {
 				}
 			);
 
-			$this->loadRestrictionsFromRows( $rows, $oldFashionedRestrictions );
+			$this->loadRestrictionsFromRows( $rows, $oldFashionedRestrictions, $readLatest );
 		} else {
 			$title_protection = $this->getTitleProtectionInternal();
 
