@@ -885,7 +885,7 @@
 [submodule "extensions/Cargo"]
 	path = extensions/Cargo
 	url = https://github.com/wikimedia/mediawiki-extensions-Cargo
-	branch = REL1_32
+	branch = master
 	ignore = dirty
 [submodule "extensions/HAWelcome"]
 	path = extensions/HAWelcome
