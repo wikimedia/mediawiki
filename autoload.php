@@ -940,6 +940,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Widget\\Search\\SimpleSearchResultWidget' => __DIR__ . '/includes/widget/search/SimpleSearchResultWidget.php',
 	'MediaWiki\\Widget\\SelectWithInputWidget' => __DIR__ . '/includes/widget/SelectWithInputWidget.php',
 	'MediaWiki\\Widget\\SizeFilterWidget' => __DIR__ . '/includes/widget/SizeFilterWidget.php',
+	'MediaWiki\\Widget\\TagMultiselectWidget' => __DIR__ . '/includes/widget/TagMultiselectWidget.php',
 	'MediaWiki\\Widget\\TitleInputWidget' => __DIR__ . '/includes/widget/TitleInputWidget.php',
 	'MediaWiki\\Widget\\TitlesMultiselectWidget' => __DIR__ . '/includes/widget/TitlesMultiselectWidget.php',
 	'MediaWiki\\Widget\\UserInputWidget' => __DIR__ . '/includes/widget/UserInputWidget.php',
