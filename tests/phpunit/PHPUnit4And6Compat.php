@@ -130,4 +130,18 @@ trait PHPUnit4And6Compat {
 			// ->disallowMockingUnknownTypes()
 			->getMock();
 	}
+
+	/**
+	 * Marks the current test as risky. This
+	 * is a forward port of the markAsRisky function that
+	 * was introduced in PHPUnit 5.7.6.
+	 */
+	public function markAsRisky() {
+		if ( is_callable( 'parent::markAsRisky' ) ) {
+			return parent::markAsRisky();
+		}
+
+		// "risky" tests are not supported in phpunit 4, so just ignore
+	}
+
 }
