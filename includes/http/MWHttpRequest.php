@@ -387,7 +387,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 
 		// Failure without (valid) headers gets a response status of zero
 		if ( !$this->status->isOK() ) {
-			$this->respStatus = '0';
+			$this->respStatus = '0 Error';
 		}
 
 		foreach ( $this->headerList as $header ) {
