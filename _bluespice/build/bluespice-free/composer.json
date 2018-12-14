@@ -34,6 +34,7 @@
 		"bluespice/pagetemplates": "dev-master",
 		"bluespice/pagesvisited": "dev-master",
 		"bluespice/permissionmanager": "dev-master",
+		"bluespice/privacy": "dev-master",
 		"bluespice/readers": "dev-master",
 		"bluespice/rssfeeder": "dev-master",
 		"bluespice/saferedit": "dev-master",
