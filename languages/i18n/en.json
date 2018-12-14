@@ -2606,6 +2606,7 @@
 	"ipb-sitewide": "Sitewide",
 	"ipb-partial": "Partial",
 	"ipb-pages-label": "Pages",
+	"ipb-namespaces-label": "Namespaces",
 	"badipaddress": "Invalid IP address",
 	"blockipsuccesssub": "Block succeeded",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] has been blocked.<br />\nSee the [[Special:BlockList|block list]] to review blocks.",

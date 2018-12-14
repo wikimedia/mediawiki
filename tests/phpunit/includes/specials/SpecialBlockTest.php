@@ -2,6 +2,7 @@
 
 use MediaWiki\Block\BlockRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\Restriction\NamespaceRestriction;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -45,6 +46,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 		$this->assertArrayNotHasKey( 'EditingRestriction', $fields );
 		$this->assertArrayNotHasKey( 'PageRestrictions', $fields );
+		$this->assertArrayNotHasKey( 'NamespaceRestrictions', $fields );
 	}
 
 	/**
@@ -60,6 +62,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 		$this->assertArrayHasKey( 'EditingRestriction', $fields );
 		$this->assertArrayHasKey( 'PageRestrictions', $fields );
+		$this->assertArrayHasKey( 'NamespaceRestrictions', $fields );
 	}
 
 	/**
@@ -115,6 +118,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$block->setRestrictions( [
 			new PageRestriction( 0, $pageSaturn->getId() ),
 			new PageRestriction( 0, $pageMars->getId() ),
+			new NamespaceRestriction( 0, NS_TALK ),
 		] );
 
 		$block->insert();
@@ -228,7 +232,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	/**
 	 * @covers ::processForm()
 	 */
-	public function testProcessFormRestictions() {
+	public function testProcessFormRestrictions() {
 		$this->setMwGlobals( [
 			'wgEnablePartialBlocks' => true,
 		] );
@@ -262,6 +266,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			'Watch' => '0',
 			'EditingRestriction' => 'partial',
 			'PageRestrictions' => implode( "\n", $titles ),
+			'NamespaceRestrictions' => '',
 		];
 		$result = $page->processForm( $data, $context );
 
@@ -315,6 +320,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			'Watch' => '0',
 			'EditingRestriction' => 'partial',
 			'PageRestrictions' => implode( "\n", $titles ),
+			'NamespaceRestrictions' => '',
 		];
 		$result = $page->processForm( $data, $context );
 
