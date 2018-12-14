@@ -8978,6 +8978,12 @@ $wgInterwikiPrefixDisplayTypes = [];
 $wgMultiContentRevisionSchemaMigrationStage = SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW;
 
 /**
+ * The schema to use per default when generating XML dumps. This allows sites to control
+ * explicitly when to make breaking changes to their export and dump format.
+ */
+$wgXmlDumpSchemaVersion = XML_DUMP_SCHEMA_VERSION_10;
+
+/**
  * Actor table schema migration stage.
  *
  * Use the SCHEMA_COMPAT_XXX flags. Supported values:

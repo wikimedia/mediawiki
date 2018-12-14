@@ -51,6 +51,7 @@ abstract class BackupDumper extends Maintenance {
 	protected $reportingInterval = 100;
 	protected $pageCount = 0;
 	protected $revCount = 0;
+	protected $schemaVersion = null; // use default
 	protected $server = null; // use default
 	protected $sink = null; // Output filters
 	protected $lastTime = 0;
@@ -101,6 +102,8 @@ abstract class BackupDumper extends Maintenance {
 			'<type>[:<options>]. <types>s: latest, notalk, namespace', false, true, false, true );
 		$this->addOption( 'report', 'Report position and speed after every n pages processed. ' .
 			'Default: 100.', false, true );
+		$this->addOption( 'schema-version', 'Schema version to use for output. ' .
+			'Default: ' . WikiExporter::schemaVersion(), false, true );
 		$this->addOption( 'server', 'Force reading from MySQL server', false, true );
 		$this->addOption( '7ziplevel', '7zip compression level for all 7zip outputs. Used for ' .
 			'-mx option to 7za command.', false, true );
@@ -154,6 +157,8 @@ abstract class BackupDumper extends Maintenance {
 	function processOptions() {
 		$sink = null;
 		$sinks = [];
+
+		$this->schemaVersion = WikiExporter::schemaVersion();
 
 		$options = $this->orderedOptions;
 		foreach ( $options as $arg ) {
@@ -216,6 +221,15 @@ abstract class BackupDumper extends Maintenance {
 					$sink = $filter;
 
 					break;
+				case 'schema-version':
+					if ( !in_array( $param, XmlDumpWriter::$supportedSchemas ) ) {
+						$this->fatalError(
+							"Unsupported schema version $param. Supported versions: " .
+							implode( ', ', XmlDumpWriter::$supportedSchemas )
+						);
+					}
+					$this->schemaVersion = $param;
+					break;
 			}
 		}
 
@@ -250,6 +264,7 @@ abstract class BackupDumper extends Maintenance {
 
 		$db = $this->backupDb();
 		$exporter = new WikiExporter( $db, $history, $text );
+		$exporter->setSchemaVersion( $this->schemaVersion );
 		$exporter->dumpUploads = $this->dumpUploads;
 		$exporter->dumpUploadFileContents = $this->dumpUploadFileContents;
 

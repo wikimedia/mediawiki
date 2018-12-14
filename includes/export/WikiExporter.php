@@ -63,12 +63,16 @@ class WikiExporter {
 	/** @var DumpOutput */
 	public $sink;
 
+	/** @var XmlDumpWriter */
+	private $writer;
+
 	/**
-	 * Returns the export schema version.
+	 * Returns the default export schema version, as defined by $wgXmlDumpSchemaVersion.
 	 * @return string
 	 */
 	public static function schemaVersion() {
-		return "0.10";
+		global $wgXmlDumpSchemaVersion;
+		return $wgXmlDumpSchemaVersion;
 	}
 
 	/**
@@ -83,9 +87,18 @@ class WikiExporter {
 	function __construct( $db, $history = self::CURRENT, $text = self::TEXT ) {
 		$this->db = $db;
 		$this->history = $history;
-		$this->writer = new XmlDumpWriter();
+		$this->writer = new XmlDumpWriter( $text, self::schemaVersion() );
 		$this->sink = new DumpOutput();
 		$this->text = $text;
+	}
+
+	/**
+	 * @param string $schemaVersion which schema version the generated XML should comply to.
+	 * One of the values from self::$supportedSchemas, using the XML_DUMP_SCHEMA_VERSION_XX
+	 * constants.
+	 */
+	public function setSchemaVersion( $schemaVersion ) {
+		$this->writer = new XmlDumpWriter( $this->text, $schemaVersion );
 	}
 
 	/**

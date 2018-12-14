@@ -162,9 +162,9 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @return string
 	 */
 	protected function getXmlSchemaPath( $schemaVersion = null ) {
-		global $IP;
+		global $IP, $wgXmlDumpSchemaVersion;
 
-		$schemaVersion = $schemaVersion ?: '0.10';
+		$schemaVersion = $schemaVersion ?: $wgXmlDumpSchemaVersion;
 
 		return "$IP/docs/export-$schemaVersion.xsd";
 	}
