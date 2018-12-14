@@ -167,7 +167,8 @@
 			"Niridya",
 			"Pamputt",
 			"Ash Crow",
-			"Alacabe"
+			"Alacabe",
+			"Eihel"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -818,7 +819,7 @@
 	"accmailtext": "Un mot de passe généré aléatoirement pour [[User talk:$1|$1]] a été envoyé à $2.\nIl peut être modifié sur la page ''[[Special:ChangePassword|Changement de mot de passe]]'' après connexion.",
 	"newarticle": "(Nouveau)",
 	"newarticletext": "Vous avez suivi un lien vers une page qui n’existe pas encore. \nAfin de créer cette page, entrez votre texte dans la boîte ci-après (vous pouvez consulter [$1 la page d’aide] pour plus d’informations). \nSi vous êtes arrivé{{GENDER:||e}} ici par erreur, cliquez sur le bouton <strong>Retour</strong> de votre navigateur.",
-	"anontalkpagetext": "----\n<em>Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas</em>.\nPour cette raison, nous devons utiliser son adresse IP pour l’identifier.\nUne adresse IP peut être partagée par plusieurs utilisateurs.\nSi vous êtes un{{GENDER:||e|}} utilisat{{GENDER:|eur|rice|eur}} anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:CreateAccount|créer un compte]] ou [[Special:UserLogin|vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.",
+	"anontalkpagetext": "----\n<em>Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas</em>.\nPour cette raison, nous devons utiliser son adresse IP pour les identifier.\nUne adresse IP peut être partagée par plusieurs utilisateurs.\nSi vous êtes un{{GENDER:||e|}} utilisat{{GENDER:|eur|rice|eur}} anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:CreateAccount|créer un compte]] ou [[Special:UserLogin|vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.",
 	"noarticletext": "Il n’y a pour l’instant aucun texte sur cette page.\nVous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche sur ce titre]] dans les autres pages,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechercher dans les opérations liées]\nou [{{fullurl:{{FULLPAGENAME}}|action=edit}} créer cette page]</span>.",
 	"noarticletext-nopermission": "Il n'y a pour l'instant aucun texte sur cette page.\nVous pouvez [[Special:Search/{{PAGENAME}}|faire une recherche sur ce titre]] dans les autres pages,\nou <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechercher dans les journaux associés]</span>, mais vous n'avez pas la permission de créer cette page.",
 	"missing-revision": "La révision nº $1 de la page intitulée « {{FULLPAGENAME}} » n’existe pas.\n\nCela survient en général en suivant un lien historique désuet vers une page qui a été supprimée.\nVous pouvez trouver plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
@@ -1638,7 +1639,7 @@
 	"rcfilters-preference-label": "Utiliser l'interface non-JavaScript",
 	"rcfilters-preference-help": "Charge les modifications récentes sans les fonctions de filtrage ni de mise en valeur.",
 	"rcfilters-watchlist-preference-label": "Utiliser l'interface non-JavaScript",
-	"rcfilters-watchlist-preference-help": "Charge la liste de suivi sans les fonctions de filtrage ni de mise en valeur.",
+	"rcfilters-watchlist-preference-help": "Charge la liste de suivi sans les fonctions de filtrage ou de mise en valeur.",
 	"rcfilters-filter-showlinkedfrom-label": "Montrer les modifications des pages liées depuis",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Pages liées depuis</strong> la page sélectionnée",
 	"rcfilters-filter-showlinkedto-label": "Montrer les modifications des pages pointant vers",
