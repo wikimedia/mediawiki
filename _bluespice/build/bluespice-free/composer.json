@@ -34,6 +34,7 @@
 		"bluespice/pagetemplates": "dev-REL1_31",
 		"bluespice/pagesvisited": "dev-REL1_31",
 		"bluespice/permissionmanager": "dev-REL1_31",
+		"bluespice/privacy": "dev-REL1_31",
 		"bluespice/readers": "dev-REL1_31",
 		"bluespice/rssfeeder": "dev-REL1_31",
 		"bluespice/saferedit": "dev-REL1_31",
