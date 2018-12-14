@@ -397,7 +397,6 @@ CREATE TABLE site_stats (
   ss_total_pages    INTEGER            DEFAULT NULL,
   ss_users          INTEGER            DEFAULT NULL,
   ss_active_users   INTEGER            DEFAULT NULL,
-  ss_admins         INTEGER            DEFAULT NULL,
   ss_images         INTEGER            DEFAULT NULL
 );
 
@@ -556,7 +555,6 @@ CREATE SEQUENCE recentchanges_rc_id_seq;
 CREATE TABLE recentchanges (
   rc_id              INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('recentchanges_rc_id_seq'),
   rc_timestamp       TIMESTAMPTZ  NOT NULL,
-  rc_cur_time        TIMESTAMPTZ      NULL,
   rc_user            INTEGER      NOT NULL  DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   rc_user_text       TEXT         NOT NULL  DEFAULT '',
   rc_actor           INTEGER      NOT NULL  DEFAULT 0,
@@ -791,8 +789,7 @@ CREATE TABLE category (
   cat_title    TEXT     NOT NULL,
   cat_pages    INTEGER  NOT NULL  DEFAULT 0,
   cat_subcats  INTEGER  NOT NULL  DEFAULT 0,
-  cat_files    INTEGER  NOT NULL  DEFAULT 0,
-  cat_hidden   SMALLINT NOT NULL  DEFAULT 0
+  cat_files    INTEGER  NOT NULL  DEFAULT 0
 );
 ALTER SEQUENCE category_cat_id_seq OWNED BY category.cat_id;
 CREATE UNIQUE INDEX category_title ON category(cat_title);
