@@ -2403,7 +2403,7 @@
 	"protect-otherreason": "Інша/додаткова причина:",
 	"protect-otherreason-op": "Інша причина",
 	"protect-dropdown": "* Типові причини захисту\n** частий вандалізм\n** надмірний спам\n** непродуктивна війна редагувань\n** популярна сторінка",
-	"protect-edit-reasonlist": "Причини захисту від редагувань",
+	"protect-edit-reasonlist": "Редагувати причини захисту",
 	"protect-expiry-options": "1 година:1 hour,1 день:1 day,1 тиждень:1 week,2 тижні:2 weeks,1 місяць:1 month,3 місяці:3 months,6 місяців:6 months,1 рік:1 year,назавжди:infinite",
 	"restriction-type": "Права:",
 	"restriction-level": "Рівень доступу:",
