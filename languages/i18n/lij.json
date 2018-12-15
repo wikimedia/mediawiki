@@ -16,7 +16,8 @@
 			"S4b1nuz E.656",
 			"Luensu1959",
 			"Feipìn",
-			"Fitoschido"
+			"Fitoschido",
+			"Ruthven"
 		]
 	},
 	"tog-underline": "Sotolìnnia i colegaménti",
@@ -920,7 +921,7 @@
 	"searchprofile-everything-tooltip": "Çerca in ògni dove (anche inte pàgine de discusción)",
 	"searchprofile-advanced-tooltip": "Çerca inti namespace personalizæ",
 	"search-result-size": "$1 ({{PLURAL:$2|1 paròlla|$2 paròlle}})",
-	"search-result-category-size": "{{PLURAL:$1|1 utente|$1 utenti}} ({{PLURAL:$2|1 sottocategoria|$2 sottocategorie}}, {{PLURAL:$3|1 file|$3 file}})",
+	"search-result-category-size": "{{PLURAL:$1|1 elemento|$1 elementi}} ({{PLURAL:$2|1 sottocategoria|$2 sottocategorie}}, {{PLURAL:$3|1 file|$3 file}})",
 	"search-redirect": "(Rendriçço da $1)",
 	"search-section": "(seçión $1)",
 	"search-category": "(categoria $1)",

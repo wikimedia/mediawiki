@@ -119,7 +119,8 @@
 			"Daimona Eaytoy",
 			"Sarah Bernabei",
 			"Wedhro",
-			"Malore"
+			"Malore",
+			"Ruthven"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -1045,7 +1046,7 @@
 	"searchprofile-everything-tooltip": "Cerca ovunque (incluse le pagine di discussione)",
 	"searchprofile-advanced-tooltip": "Cerca nei namespace personalizzati",
 	"search-result-size": "$1 ({{PLURAL:$2|una parola|$2 parole}})",
-	"search-result-category-size": "{{PLURAL:$1|1 utente|$1 utenti}} ({{PLURAL:$2|1 sottocategoria|$2 sottocategorie}}, {{PLURAL:$3|1 file|$3 files}})",
+	"search-result-category-size": "{{PLURAL:$1|1 elemento|$1 elementi}} ({{PLURAL:$2|1 sottocategoria|$2 sottocategorie}}, {{PLURAL:$3|1 file|$3 file}})",
 	"search-redirect": "(reindirizzamento da $1)",
 	"search-section": "(sezione $1)",
 	"search-category": "(categoria $1)",

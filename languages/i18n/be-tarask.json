@@ -1829,7 +1829,7 @@
 	"filedelete-success": "<strong>$1</strong> выдалены.",
 	"filedelete-success-old": "Вэрсія '''[[Media:$1|$1]]''' ад $3, $2 была выдаленая.",
 	"filedelete-nofile": "Файл <strong>$1</strong> не існуе.",
-	"filedelete-nofile-old": "Не існуе архіўнай вэрсіі '''$1''' з пазначанымі атрыбутамі.",
+	"filedelete-nofile-old": "Не існуе архіўнай вэрсіі <strong>$1</strong> з пазначанымі атрыбутамі.",
 	"filedelete-otherreason": "Іншая/дадатковая прычына:",
 	"filedelete-reason-otherlist": "Іншая прычына",
 	"filedelete-reason-dropdown": "* Звычайныя прычыны выдаленьня\n** парушэньне аўтарскіх правоў\n** файл-дублікат",
