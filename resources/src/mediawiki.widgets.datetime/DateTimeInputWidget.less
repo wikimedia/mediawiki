@@ -59,10 +59,6 @@
 		}
 	}
 
-	&-empty &-handle {
-		color: @color-base--subtle;
-	}
-
 	&.oo-ui-iconElement .mw-widgets-datetime-dateTimeInputWidget-handle {
 		padding-left: @padding-start-input-text-icon-label;
 	}
@@ -77,8 +73,7 @@
 		.oo-ui-box-sizing( border-box );
 		border: 0;
 		border-radius: @border-radius-base;
-		// Provide more top padding due to border not being part of the calculation
-		padding-top: 10 / @ooui-font-size-browser / @ooui-font-size-base;
+		padding-top: @padding-top-base;
 		padding-bottom: @padding-bottom-base;
 		box-shadow: none;
 		font-size: inherit;
@@ -86,6 +81,17 @@
 		line-height: @line-height-widget-singleline;
 		text-align: center;
 		vertical-align: top;
+
+		// Day field, f.e. “Sat”
+		&:first-child {
+			cursor: pointer;
+		}
+
+		// Day field & time zome field, f.e. “Sat” & “Z”
+		&[ tabindex='-1' ] {
+			// Support: Firefox, Chrome
+			outline: 0;
+		}
 	}
 
 	&-editField {
@@ -101,10 +107,28 @@
 	}
 
 	&-clearButton {
+		// Override `&-field` from above
 		padding-top: 0;
+		padding-bottom: 0;
+		padding-left: @padding-start-button-clear;
+
+		// `&.oo-ui-iconElement` needed for specificity
+		&.oo-ui-iconElement > .oo-ui-buttonElement-button {
+			padding-top: @padding-top-button-clear;
+		}
 
 		.oo-ui-iconElement-icon {
 			background-size: @size-indicator @size-indicator;
+		}
+	}
+
+	&-empty {
+		.mw-widgets-datetime-dateTimeInputWidget-handle {
+			color: @color-base--subtle;
+		}
+
+		.mw-widgets-datetime-dateTimeInputWidget-clearButton {
+			display: none;
 		}
 	}
 
