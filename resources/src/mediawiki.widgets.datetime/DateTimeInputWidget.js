@@ -423,7 +423,7 @@
 			this.clearButton = new OO.ui.ButtonWidget( {
 				classes: [ 'mw-widgets-datetime-dateTimeInputWidget-field', 'mw-widgets-datetime-dateTimeInputWidget-clearButton' ],
 				framed: false,
-				icon: 'trash',
+				icon: 'clear',
 				disabled: disabled
 			} ).connect( this, {
 				click: 'onClearClick'
