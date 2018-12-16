@@ -21,7 +21,6 @@
  * @ingroup Profiler
  */
 
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBError;
 
 /**
@@ -56,7 +55,7 @@ class ProfilerOutputDb extends ProfilerOutput {
 		}
 
 		$fname = __METHOD__;
-		$dbw->onTransactionCommitOrIdle( function ( Database $dbw ) use ( $stats, $fname ) {
+		$dbw->onTransactionCommitOrIdle( function () use ( $stats, $fname, $dbw ) {
 			$pfhost = $this->perHost ? wfHostname() : '';
 			// Sqlite: avoid excess b-tree rebuilds (mostly for non-WAL mode)
 			// non-Sqlite: lower contention with small transactions

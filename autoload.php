@@ -1131,6 +1131,7 @@ $wgAutoloadLocalClasses = [
 	'ProcessCacheLRU' => __DIR__ . '/includes/libs/ProcessCacheLRU.php',
 	'Processor' => __DIR__ . '/includes/registration/Processor.php',
 	'Profiler' => __DIR__ . '/includes/profiler/Profiler.php',
+	'ProfilerExcimer' => __DIR__ . '/includes/profiler/ProfilerExcimer.php',
 	'ProfilerOutput' => __DIR__ . '/includes/profiler/output/ProfilerOutput.php',
 	'ProfilerOutputDb' => __DIR__ . '/includes/profiler/output/ProfilerOutputDb.php',
 	'ProfilerOutputDump' => __DIR__ . '/includes/profiler/output/ProfilerOutputDump.php',

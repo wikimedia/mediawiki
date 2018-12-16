@@ -42,6 +42,7 @@ return [
 		// Load the interface for the version of PHPUnit that isn't installed.
 		// Phan only supports PHP 7.0+ (and not HHVM), so we only need to stub PHPUnit 4.
 		class_exists( PHPUnit_TextUI_Command::class ) ? [] : [ 'tests/phan/stubs/phpunit4.php' ],
+		class_exists( ProfilerExcimer::class ) ? [] : [ 'tests/phan/stubs/excimer.php' ],
 		[
 			'maintenance/7zip.inc',
 			'maintenance/cleanupTable.inc',
