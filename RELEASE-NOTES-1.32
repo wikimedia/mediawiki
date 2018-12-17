@@ -13,6 +13,7 @@ production.
 * Fix addition of ug_expiry column to user_groups table on MSSQL.
 * (T210307) Fix the cache timestamp for forced updates.
 * (T210621) User: Bypass repeatable-read when creating an actor_id.
+* (T188327) Fix slow queries in migrateActors.php.
 
 === Configuration changes in 1.32 ===
 
