@@ -156,6 +156,7 @@
 	"config-sqlite-cant-create-db": "Nepodařilo se vytvořit databázový soubor <code>$1</code>.",
 	"config-sqlite-fts3-downgrade": "PHP neobsahuje podporu FTS3, downgradují se tabulky",
 	"config-can-upgrade": "V této databázi jsou tabulky MediaWiki.\nPokud je chcete aktualizovat na MediaWiki $1, klikněte na '''Pokračovat'''.",
+	"config-upgrade-error": "Při aktualizaci tabulek MediaWiki ve vaší databázi došlo k chybě.\n\nVíce informací najdete v protokolu výše, znovu to můžete zkusit kliknutím na <strong>Pokračovat</strong>.",
 	"config-upgrade-done": "Aktualizace byla dokončena.\n\nSvou wiki teď můžete [$1 začít používat].\n\nPokud chcete přegenerovat soubor <code>LocalSettings.php</code>, klikněte na tlačítko níže.\nTo se ale '''nedoporučuje''', pokud s wiki nemáte problémy.",
 	"config-upgrade-done-no-regenerate": "Aktualizace byla dokončena.\n\nSvou wiki teď můžete [$1 začít používat].",
 	"config-regenerate": "Přegenerovat LocalSettings.php →",

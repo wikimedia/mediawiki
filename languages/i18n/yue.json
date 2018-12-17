@@ -3280,7 +3280,7 @@
 	"tags": "有效更改過嘅標籤",
 	"tag-filter": "[[Special:Tags|標籤]]過濾器:",
 	"tag-filter-submit": "過濾器",
-	"tag-list-wrapper": "[[Special:Tags|$1個標籤]]：$2",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|標籤|標籤}}]]：$2",
 	"tag-mw-new-redirect": "新跳轉",
 	"tag-mw-removed-redirect": "剷走跳轉",
 	"tag-mw-blank": "清空",
