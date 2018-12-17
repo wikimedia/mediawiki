@@ -1,9 +1,9 @@
 /* Special:AllMessages */
-#mw-allmessagestable .allmessages-customised .am_default {
+#mw-allmessagestable .am_default {
 	background-color: #fcffc4;
 }
 
-#mw-allmessagestable .allmessages-customised:hover .am_default {
+#mw-allmessagestable tr:hover .am_default {
 	background-color: #faff90;
 }
 
@@ -11,7 +11,7 @@
 	background-color: #e2ffe2;
 }
 
-#mw-allmessagestable .allmessages-customised:hover + .allmessages-customised .am_actual {
+#mw-allmessagestable tr:hover + tr .am_actual {
 	background-color: #b1ffb1;
 }
 

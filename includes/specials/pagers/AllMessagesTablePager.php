@@ -345,6 +345,7 @@ class AllMessagesTablePager extends TablePager {
 		return '';
 	}
 
+	/** @return string HTML */
 	function formatRow( $row ) {
 		// Do all the normal stuff
 		$s = parent::formatRow( $row );
@@ -365,28 +366,28 @@ class AllMessagesTablePager extends TablePager {
 		return $s;
 	}
 
-	function getRowAttrs( $row, $isSecond = false ) {
-		$arr = [];
-
-		if ( $row->am_customised ) {
-			$arr['class'] = 'allmessages-customised';
-		}
-
-		return $arr;
+	function getRowAttrs( $row ) {
+		return [];
 	}
 
+	/** @return array HTML attributes */
 	function getCellAttrs( $field, $value ) {
-		if ( $this->mCurrentRow->am_customised && $field === 'am_title' ) {
-			return [ 'rowspan' => '2', 'class' => $field ];
-		} elseif ( $field === 'am_title' ) {
-			return [ 'class' => $field ];
+		$attr = [];
+		if ( $field === 'am_title' ) {
+			if ( $this->mCurrentRow->am_customised ) {
+				$attr += [ 'rowspan' => '2' ];
+			}
 		} else {
-			return [
+			$attr += [
 				'lang' => $this->lang->getHtmlCode(),
 				'dir' => $this->lang->getDir(),
-				'class' => $field
 			];
+			if ( $this->mCurrentRow->am_customised ) {
+				// CSS class: am_default, am_actual
+				$attr += [ 'class' => $field ];
+			}
 		}
+		return $attr;
 	}
 
 	// This is not actually used, as getStartBody is overridden above
