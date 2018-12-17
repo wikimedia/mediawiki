@@ -2008,6 +2008,7 @@
 	"move": "Átnevezés",
 	"movethispage": "Nevezd át ezt a lapot",
 	"unusedimagestext": "Az alábbi fájlokat nem használjuk egyetlen oldalon sem.\nVedd figyelembe, hogy más weboldalak közvetlenül hivatkozhatnak egy fájl URL-jére, ezért szerepelhet itt annak ellenére, hogy aktívan használják.",
+	"unusedimagestext-categorizedimgisused": "Az alábbi fájlok léteznek, de egyetlen lapon sincsenek beillesztve. A kategorizált fájlok használtként jelennek meg, még ha nincsenek is beillesztve.\n\nVedd figyelembe, hogy más weboldalak közvetlenül hivatkozhatnak egy fájl URL-jére, ezért szerepelhet itt annak ellenére, hogy aktívan használják.",
 	"unusedcategoriestext": "A következő kategóriákban egyetlen szócikk, illetve alkategória sem szerepel.",
 	"notargettitle": "Nincs cél",
 	"notargettext": "Nem adtad meg annak a lapnak vagy szerkesztőnek a nevét, amin a műveletet végre akartad hajtani.",

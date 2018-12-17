@@ -2384,7 +2384,7 @@
 	"istemplate": "inkludo",
 	"isimage": "ligilo al dosiero",
 	"whatlinkshere-prev": "{{PLURAL:$1|antaŭan|antaŭajn $1}}",
-	"whatlinkshere-next": "{{PLURAL:$1|postan|postajn $1}}",
+	"whatlinkshere-next": "{{PLURAL:$1|sekvan|sekvajn $1}}",
 	"whatlinkshere-links": "← ligiloj",
 	"whatlinkshere-hideredirs": "$1 alidirektilojn",
 	"whatlinkshere-hidetrans": "$1 inkludojn",

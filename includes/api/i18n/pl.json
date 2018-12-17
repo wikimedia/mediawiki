@@ -449,7 +449,7 @@
 	"apihelp-query+iwbacklinks-param-limit": "Łączna liczba stron do zwrócenia.",
 	"apihelp-query+iwbacklinks-paramvalue-prop-iwprefix": "Dodaje prefiks interwiki.",
 	"apihelp-query+iwbacklinks-paramvalue-prop-iwtitle": "Dodaje tytuł interwiki.",
-	"apihelp-query+iwlinks-summary": "Wyświetla wszystkie liki interwiki z danych stron.",
+	"apihelp-query+iwlinks-summary": "Wyświetla wszystkie linki interwiki z danych stron.",
 	"apihelp-query+iwlinks-paramvalue-prop-url": "Dodaje pełny adres URL.",
 	"apihelp-query+iwlinks-param-limit": "Łączna liczba linków interwiki do zwrócenia.",
 	"apihelp-query+langbacklinks-param-limit": "Łączna liczba stron do zwrócenia.",
