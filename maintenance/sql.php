@@ -177,19 +177,26 @@ class MwSql extends Maintenance {
 		if ( !$res ) {
 			// Do nothing
 			return;
-		} elseif ( is_object( $res ) && $res->numRows() ) {
+		} elseif ( is_object( $res ) ) {
 			$out = '';
+			$rows = [];
 			foreach ( $res as $row ) {
 				$out .= print_r( $row, true );
 				$rows[] = $row;
 			}
 			if ( $this->hasOption( 'json' ) ) {
 				$out = json_encode( $rows, JSON_PRETTY_PRINT );
+			} elseif ( !$rows ) {
+				$out = 'Query OK, 0 row(s) affected';
 			}
 			$this->output( $out . "\n" );
 		} else {
 			$affected = $db->affectedRows();
-			$this->output( "Query OK, $affected row(s) affected\n" );
+			if ( $this->hasOption( 'json' ) ) {
+				$this->output( json_encode( [ 'affected' => $affected ], JSON_PRETTY_PRINT ) . "\n" );
+			} else {
+				$this->output( "Query OK, $affected row(s) affected\n" );
+			}
 		}
 	}
 
