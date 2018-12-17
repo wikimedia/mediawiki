@@ -21,6 +21,7 @@ THIS IS NOT A RELEASE YET
 * (T233342) rdbms: Log debug message traces as 'exception.trace' instead of
   'trace'.
 * (T226751) media: Log and fail gracefully on invalid EXIF coordinates.
+* (T212067) SECURITY: Work around PHP bug in parse_url.
 
 == MediaWiki 1.33.1 ==
 
