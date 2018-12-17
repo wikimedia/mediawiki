@@ -137,8 +137,7 @@ abstract class HTMLFormField {
 		for ( $i = count( $thisKeys ) - 1; $i >= 0; $i-- ) {
 			$keys = array_merge( array_slice( $thisKeys, 0, $i ), $nameKeys );
 			$data = $alldata;
-			while ( $keys ) {
-				$key = array_shift( $keys );
+			foreach ( $keys as $key ) {
 				if ( !is_array( $data ) || !array_key_exists( $key, $data ) ) {
 					continue 2;
 				}

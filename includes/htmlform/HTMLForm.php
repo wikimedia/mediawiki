@@ -344,11 +344,7 @@ class HTMLForm extends ContextSource {
 
 			$setSection =& $loadedDescriptor;
 			if ( $section ) {
-				$sectionParts = explode( '/', $section );
-
-				while ( count( $sectionParts ) ) {
-					$newName = array_shift( $sectionParts );
-
+				foreach ( explode( '/', $section ) as $newName ) {
 					if ( !isset( $setSection[$newName] ) ) {
 						$setSection[$newName] = [];
 					}

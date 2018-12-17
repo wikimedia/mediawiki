@@ -2858,10 +2858,12 @@ class Title implements LinkTarget {
 		}
 
 		$errors = [];
-		while ( count( $checks ) > 0 &&
-				!( $short && count( $errors ) > 0 ) ) {
-			$method = array_shift( $checks );
+		foreach ( $checks as $method ) {
 			$errors = $this->$method( $action, $user, $errors, $rigor, $short );
+
+			if ( $short && $errors !== [] ) {
+				break;
+			}
 		}
 
 		return $errors;
@@ -5218,10 +5220,9 @@ class Title implements LinkTarget {
 
 		if ( MWNamespace::hasSubpages( $this->mNamespace ) ) {
 			// Optional notice for page itself and any parent page
-			$parts = explode( '/', $this->mDbkeyform );
 			$editnotice_base = $editnotice_ns;
-			while ( count( $parts ) > 0 ) {
-				$editnotice_base .= '-' . array_shift( $parts );
+			foreach ( explode( '/', $this->mDbkeyform ) as $part ) {
+				$editnotice_base .= '-' . $part;
 				$msg = wfMessage( $editnotice_base );
 				if ( $msg->exists() ) {
 					$html = $msg->parseAsBlock();
