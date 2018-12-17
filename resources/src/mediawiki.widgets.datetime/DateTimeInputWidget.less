@@ -56,11 +56,6 @@
 
 		> .oo-ui-indicatorElement-indicator {
 			right: @padding-horizontal-base;
-			min-width: @min-size-indicator;
-			width: @size-indicator;
-			min-height: @min-size-indicator;
-			height: @size-indicator;
-			max-height: @size-base;
 		}
 	}
 
@@ -107,6 +102,10 @@
 
 	&-clearButton {
 		padding-top: 0;
+
+		.oo-ui-iconElement-icon {
+			background-size: @size-indicator @size-indicator;
+		}
 	}
 
 	&.oo-ui-widget-enabled {
