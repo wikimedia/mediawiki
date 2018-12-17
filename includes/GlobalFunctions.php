@@ -824,6 +824,18 @@ function wfParseUrl( $url ) {
 	Wikimedia\suppressWarnings();
 	$bits = parse_url( $url );
 	Wikimedia\restoreWarnings();
+
+	// T212067: PHP < 5.6.28, 7.0.0–7.0.12, and HHVM (all relevant versions) screw up parsing
+	// the query part of pathless URLs
+	if ( isset( $bits['host'] ) && strpos( $bits['host'], '?' ) !== false ) {
+		list( $host, $query ) = explode( '?', $bits['host'], 2 );
+		$bits['host'] = $host;
+		$bits['query'] = $query
+			. ( $bits['path'] ?? '' )
+			. ( isset( $bits['query'] ) ? '?' . $bits['query'] : '' );
+		unset( $bits['path'] );
+	}
+
 	// parse_url() returns an array without scheme for some invalid URLs, e.g.
 	// parse_url("%0Ahttp://example.com") == [ 'host' => '%0Ahttp', 'path' => 'example.com' ]
 	if ( !$bits || !isset( $bits['scheme'] ) ) {
