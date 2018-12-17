@@ -274,7 +274,8 @@ class ApiBlockTest extends ApiTestCase {
 
 	/**
 	 * @expectedException ApiUsageException
-	 * @expectedExceptionMessage "pagerestrictions" may not be over 10 (set to 11) for bots or sysops.
+	 * @expectedExceptionMessage Too many values supplied for parameter "pagerestrictions". The
+	 * limit is 10.
 	 */
 	public function testBlockingToManyRestrictions() {
 		$this->setMwGlobals( [

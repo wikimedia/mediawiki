@@ -57,20 +57,6 @@ class ApiBlock extends ApiBase {
 		$editingRestriction = 'sitewide';
 		$pageRestrictions = '';
 		if ( $this->getConfig()->get( 'EnablePartialBlocks' ) ) {
-			if ( $params['pagerestrictions'] ) {
-				$count = count( $params['pagerestrictions'] );
-				if ( $count > 10 ) {
-					$this->dieWithError(
-						$this->msg(
-							'apierror-integeroutofrange-abovebotmax',
-							'pagerestrictions',
-							10,
-							$count
-						)
-					);
-				}
-			}
-
 			if ( $params['partial'] ) {
 				$editingRestriction = 'partial';
 			}
@@ -207,6 +193,8 @@ class ApiBlock extends ApiBase {
 			$params['partial'] = false;
 			$params['pagerestrictions'] = [
 				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_ISMULTI_LIMIT1 => 10,
+				ApiBase::PARAM_ISMULTI_LIMIT2 => 10,
 			];
 		}
 
