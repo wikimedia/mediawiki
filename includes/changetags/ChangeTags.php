@@ -332,12 +332,19 @@ class ChangeTags {
 			);
 		}
 
-		// update the tag_summary row
-		$prevTags = [];
-		if ( !self::updateTagSummaryRow( $tagsToAdd, $tagsToRemove, $rc_id, $rev_id,
-			$log_id, $prevTags )
-		) {
-			// nothing to do
+		$prevTags = self::getPrevTags( $rc_id, $log_id, $rev_id );
+
+		// add tags
+		$tagsToAdd = array_values( array_diff( $tagsToAdd, $prevTags ) );
+		$newTags = array_unique( array_merge( $prevTags, $tagsToAdd ) );
+
+		// remove tags
+		$tagsToRemove = array_values( array_intersect( $tagsToRemove, $newTags ) );
+		$newTags = array_values( array_diff( $newTags, $tagsToRemove ) );
+
+		sort( $prevTags );
+		sort( $newTags );
+		if ( $prevTags == $newTags ) {
 			return [ [], [], $prevTags ];
 		}
 
@@ -421,75 +428,24 @@ class ChangeTags {
 		return [ $tagsToAdd, $tagsToRemove, $prevTags ];
 	}
 
-	/**
-	 * Adds or removes a given set of tags to/from the relevant row of the
-	 * tag_summary table. Modifies the tagsToAdd and tagsToRemove arrays to
-	 * reflect the tags that were actually added and/or removed.
-	 *
-	 * @param array &$tagsToAdd
-	 * @param array &$tagsToRemove If a tag is present in both $tagsToAdd and
-	 * $tagsToRemove, it will be removed
-	 * @param int|null $rc_id Null if not known or not applicable
-	 * @param int|null $rev_id Null if not known or not applicable
-	 * @param int|null $log_id Null if not known or not applicable
-	 * @param array &$prevTags Optionally outputs a list of the tags that were
-	 * in the tag_summary row to begin with
-	 * @return bool True if any modifications were made, otherwise false
-	 * @since 1.25
-	 */
-	protected static function updateTagSummaryRow( &$tagsToAdd, &$tagsToRemove,
-		$rc_id, $rev_id, $log_id, &$prevTags = []
-	) {
+	private static function getPrevTags( $rc_id = null, $rev_id = null, $log_id = null ) {
+		$conds = array_filter(
+			[
+				'ct_rc_id' => $rc_id,
+				'ct_log_id' => $log_id,
+				'ct_rev_id' => $rev_id,
+			]
+		);
+
 		$dbw = wfGetDB( DB_MASTER );
+		$tagIds = $dbw->selectFieldValues( 'change_tag', 'ct_tag_id', $conds, __METHOD__ );
 
-		$tsConds = array_filter( [
-			'ts_rc_id' => $rc_id,
-			'ts_rev_id' => $rev_id,
-			'ts_log_id' => $log_id
-		] );
-
-		// Can't both add and remove a tag at the same time...
-		$tagsToAdd = array_diff( $tagsToAdd, $tagsToRemove );
-
-		// Update the summary row.
-		// $prevTags can be out of date on replica DBs, especially when addTags is called consecutively,
-		// causing loss of tags added recently in tag_summary table.
-		$prevTags = $dbw->selectField( 'tag_summary', 'ts_tags', $tsConds, __METHOD__ );
-		$prevTags = $prevTags ?: '';
-		$prevTags = array_filter( explode( ',', $prevTags ) );
-
-		// add tags
-		$tagsToAdd = array_values( array_diff( $tagsToAdd, $prevTags ) );
-		$newTags = array_unique( array_merge( $prevTags, $tagsToAdd ) );
-
-		// remove tags
-		$tagsToRemove = array_values( array_intersect( $tagsToRemove, $newTags ) );
-		$newTags = array_values( array_diff( $newTags, $tagsToRemove ) );
-
-		sort( $prevTags );
-		sort( $newTags );
-		if ( $prevTags == $newTags ) {
-			return false;
+		$tags = [];
+		foreach ( $tagIds as $tagId ) {
+			$tags[] = MediaWikiServices::getInstance()->getChangeTagDefStore()->getName( (int)$tagId );
 		}
 
-		if ( !$newTags ) {
-			// No tags left, so delete the row altogether
-			$dbw->delete( 'tag_summary', $tsConds, __METHOD__ );
-		} else {
-			// Specify the non-DEFAULT value columns in the INSERT/REPLACE clause
-			$row = array_filter( [ 'ts_tags' => implode( ',', $newTags ) ] + $tsConds );
-			// Check the unique keys for conflicts, ignoring any NULL *_id values
-			$uniqueKeys = [];
-			foreach ( [ 'ts_rev_id', 'ts_rc_id', 'ts_log_id' ] as $uniqueColumn ) {
-				if ( isset( $row[$uniqueColumn] ) ) {
-					$uniqueKeys[] = [ $uniqueColumn ];
-				}
-			}
-
-			$dbw->replace( 'tag_summary', $uniqueKeys, $row, __METHOD__ );
-		}
-
-		return true;
+		return $tags;
 	}
 
 	/**
@@ -938,7 +894,7 @@ class ChangeTags {
 	}
 
 	/**
-	 * Set ctd_user_defined = 0  in change_tag_def.
+	 * Update ctd_user_defined = 0 field in change_tag_def.
 	 * The tag may remain in use by extensions, and may still show up as 'defined'
 	 * if an extension is setting it from the ListDefinedTags hook.
 	 *
@@ -1152,7 +1108,7 @@ class ChangeTags {
 			return Status::newFatal( 'tags-create-no-name' );
 		}
 
-		// tags cannot contain commas (used as a delimiter in tag_summary table),
+		// tags cannot contain commas (used to be used as a delimiter in tag_summary table),
 		// pipe (used as a delimiter between multiple tags in
 		// SpecialRecentchanges and friends), or slashes (would break tag description messages in
 		// MediaWiki namespace)
@@ -1265,22 +1221,6 @@ class ChangeTags {
 
 		// set ctd_user_defined = 0
 		self::undefineTag( $tag );
-
-		$tagId = MediaWikiServices::getInstance()->getChangeTagDefStore()->getId( $tag );
-		$conditions = [ 'ct_tag_id' => $tagId ];
-
-		// find out which revisions use this tag, so we can delete from tag_summary
-		$result = $dbw->select( 'change_tag',
-			[ 'ct_rc_id', 'ct_log_id', 'ct_rev_id' ],
-			$conditions,
-			__METHOD__ );
-		foreach ( $result as $row ) {
-			// remove the tag from the relevant row of tag_summary
-			$tagsToAdd = [];
-			$tagsToRemove = [ $tag ];
-			self::updateTagSummaryRow( $tagsToAdd, $tagsToRemove, $row->ct_rc_id,
-				$row->ct_rev_id, $row->ct_log_id );
-		}
 
 		// delete from change_tag
 		$tagId = MediaWikiServices::getInstance()->getChangeTagDefStore()->getId( $tag );

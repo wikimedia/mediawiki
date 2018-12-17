@@ -421,6 +421,102 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
 	}
 
+	public function testUpdateTagsSkipDuplicates() {
+		// FIXME: fails under postgres
+		$this->markTestSkippedIfDbType( 'postgres' );
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'change_tag', '*' );
+		$dbw->delete( 'change_tag_def', '*' );
+
+		$rcId = 123;
+		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
+		ChangeTags::updateTags( [ 'tag2', 'tag3' ], [], $rcId );
+
+		$dbr = wfGetDB( DB_REPLICA );
+
+		$expected = [
+			(object)[
+				'ctd_name' => 'tag1',
+				'ctd_id' => 1,
+				'ctd_count' => 1
+			],
+			(object)[
+				'ctd_name' => 'tag2',
+				'ctd_id' => 2,
+				'ctd_count' => 1
+			],
+			(object)[
+				'ctd_name' => 'tag3',
+				'ctd_id' => 3,
+				'ctd_count' => 1
+			],
+		];
+		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_id', 'ctd_count' ], '' );
+		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
+
+		$expected2 = [
+			(object)[
+				'ct_tag_id' => 1,
+				'ct_rc_id' => 123
+			],
+			(object)[
+				'ct_tag_id' => 2,
+				'ct_rc_id' => 123
+			],
+			(object)[
+				'ct_tag_id' => 3,
+				'ct_rc_id' => 123
+			],
+		];
+		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id' ], '' );
+		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
+	}
+
+	public function testUpdateTagsDoNothingOnRepeatedCall() {
+		// FIXME: fails under postgres
+		$this->markTestSkippedIfDbType( 'postgres' );
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'change_tag', '*' );
+		$dbw->delete( 'change_tag_def', '*' );
+
+		$rcId = 123;
+		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
+		$res = ChangeTags::updateTags( [ 'tag2', 'tag1' ], [], $rcId );
+		$this->assertEquals( [ [], [], [ 'tag1', 'tag2' ] ], $res );
+
+		$dbr = wfGetDB( DB_REPLICA );
+
+		$expected = [
+			(object)[
+				'ctd_name' => 'tag1',
+				'ctd_id' => 1,
+				'ctd_count' => 1
+			],
+			(object)[
+				'ctd_name' => 'tag2',
+				'ctd_id' => 2,
+				'ctd_count' => 1
+			],
+		];
+		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_id', 'ctd_count' ], '' );
+		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
+
+		$expected2 = [
+			(object)[
+				'ct_tag_id' => 1,
+				'ct_rc_id' => 123
+			],
+			(object)[
+				'ct_tag_id' => 2,
+				'ct_rc_id' => 123
+			],
+		];
+		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id' ], '' );
+		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
+	}
+
 	public function testDeleteTags() {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'change_tag', '*' );
