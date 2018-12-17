@@ -34,7 +34,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 		$this->setBatchSize( 1000 );
 		$this->addOption(
 			'sleep',
-			'Sleep time (in seconds) between every batch',
+			'Sleep time (in seconds) between every batch, defaults to zero',
 			false,
 			true
 		);
@@ -197,7 +197,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 	private function backpopulateChangeTagPerTag( $tagName, $tagId ) {
 		$dbr = $this->lbFactory->getMainLB()->getConnection( DB_REPLICA );
 		$dbw = $this->lbFactory->getMainLB()->getConnection( DB_MASTER );
-		$sleep = (int)$this->getOption( 'sleep', 10 );
+		$sleep = (int)$this->getOption( 'sleep', 0 );
 		$lastId = 0;
 		$this->output( "Starting to add ct_tag_id = {$tagId} for ct_tag = {$tagName}\n" );
 		while ( true ) {
