@@ -321,7 +321,7 @@
 						wikiText = '⧼' + key + '⧽';
 					}
 				}
-				wikiText = mw.transformFormatForQqx( wikiText, replacements );
+				wikiText = mw.internalDoTransformFormatForQqx( wikiText, replacements );
 				this.astCache[ key ] = this.wikiTextToAst( wikiText );
 			}
 			return this.astCache[ key ];

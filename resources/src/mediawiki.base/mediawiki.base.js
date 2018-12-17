@@ -250,12 +250,13 @@
 	/**
 	 * Replace $* with a list of parameters for &uselang=qqx.
 	 *
+	 * @private
 	 * @since 1.33
 	 * @param {string} formatString Format string
 	 * @param {Array} parameters Values for $N replacements
 	 * @return {string} Transformed format string
 	 */
-	mw.transformFormatForQqx = function ( formatString, parameters ) {
+	mw.internalDoTransformFormatForQqx = function ( formatString, parameters ) {
 		var parametersString;
 		if ( formatString.indexOf( '$*' ) !== -1 ) {
 			parametersString = '';
@@ -281,7 +282,7 @@
 	 */
 	mw.format = function ( formatString ) {
 		var parameters = slice.call( arguments, 1 );
-		formatString = mw.transformFormatForQqx( formatString, parameters );
+		formatString = mw.internalDoTransformFormatForQqx( formatString, parameters );
 		return formatString.replace( /\$(\d+)/g, function ( str, match ) {
 			var index = parseInt( match, 10 ) - 1;
 			return parameters[ index ] !== undefined ? parameters[ index ] : '$' + match;
