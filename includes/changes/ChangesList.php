@@ -454,11 +454,9 @@ class ChangesList extends ContextSource {
 			);
 		}
 		if ( $rc->mAttribs['rc_type'] == RC_CATEGORIZE ) {
-			$diffhist = $diffLink . $this->message['pipe-separator'] . $this->message['hist'];
+			$histLink = $this->message['hist'];
 		} else {
-			$diffhist = $diffLink . $this->message['pipe-separator'];
-			# History link
-			$diffhist .= $this->linkRenderer->makeKnownLink(
+			$histLink = $this->linkRenderer->makeKnownLink(
 				$rc->getTitle(),
 				new HtmlArmor( $this->message['hist'] ),
 				[ 'class' => 'mw-changeslist-history' ],
@@ -469,9 +467,11 @@ class ChangesList extends ContextSource {
 			);
 		}
 
-		// @todo FIXME: Hard coded ". .". Is there a message for this? Should there be?
-		$s .= $this->msg( 'parentheses' )->rawParams( $diffhist )->escaped() .
-			' <span class="mw-changeslist-separator">. .</span> ';
+		$s .= Html::rawElement( 'div', [ 'class' => 'mw-changeslist-links' ],
+				Html::rawElement( 'span', [], $diffLink ) .
+				Html::rawElement( 'span', [], $histLink )
+			) .
+			' <span class="mw-changeslist-separator"></span> ';
 	}
 
 	/**
@@ -535,7 +535,7 @@ class ChangesList extends ContextSource {
 			htmlspecialchars( $this->getLanguage()->userTime(
 				$rc->mAttribs['rc_timestamp'],
 				$this->getUser()
-			) ) . '</span> <span class="mw-changeslist-separator">. .</span> ';
+			) ) . '</span> <span class="mw-changeslist-separator"></span> ';
 	}
 
 	/**
