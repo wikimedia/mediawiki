@@ -295,7 +295,11 @@ class AllMessagesTablePager extends TablePager {
 				<th>" .
 		$this->msg( 'allmessagescurrent' )->escaped() .
 		"</th>
-			</tr></thead><tbody>\n";
+			</tr></thead>\n";
+	}
+
+	function getEndBody() {
+		return Html::closeElement( 'table' );
 	}
 
 	function formatValue( $field, $value ) {
@@ -352,18 +356,18 @@ class AllMessagesTablePager extends TablePager {
 
 		// But if there's a customised message, add that too.
 		if ( $row->am_customised ) {
-			$s .= Xml::openElement( 'tr', $this->getRowAttrs( $row, true ) );
+			$s .= Html::openElement( 'tr', $this->getRowAttrs( $row, true ) );
 			$formatted = strval( $this->formatValue( 'am_actual', $row->am_actual ) );
 
 			if ( $formatted === '' ) {
 				$formatted = "\u{00A0}";
 			}
 
-			$s .= Xml::tags( 'td', $this->getCellAttrs( 'am_actual', $row->am_actual ), $formatted )
-				. "</tr>\n";
+			$s .= Html::element( 'td', $this->getCellAttrs( 'am_actual', $row->am_actual ), $formatted )
+				. Html::closeElement( 'tr' );
 		}
 
-		return $s;
+		return Html::rawElement( 'tbody', [], $s );
 	}
 
 	function getRowAttrs( $row ) {

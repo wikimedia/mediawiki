@@ -1,9 +1,16 @@
 /* Special:AllMessages */
+#mw-allmessagestable tbody:hover td {
+	/* Duplicate of `.mw-datatable tr:hover td` from shared.css,
+	 * so that it also applies when hovering a lower cell
+	 * within the same rowspan */
+	background-color: #eaf3ff;
+}
+
 #mw-allmessagestable .am_default {
 	background-color: #fcffc4;
 }
 
-#mw-allmessagestable tr:hover .am_default {
+#mw-allmessagestable tbody:hover .am_default {
 	background-color: #faff90;
 }
 
@@ -11,7 +18,7 @@
 	background-color: #e2ffe2;
 }
 
-#mw-allmessagestable tr:hover + tr .am_actual {
+#mw-allmessagestable tbody:hover .am_actual {
 	background-color: #b1ffb1;
 }
 
