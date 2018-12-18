@@ -553,6 +553,62 @@ class ApiComparePagesTest extends ApiTestCase {
 					]
 				],
 			],
+			'Relative diff, no prev' => [
+				[
+					'fromrev' => '{{REPL:revA1}}',
+					'torelative' => 'prev',
+					'prop' => 'ids|rel|diff|title|user|comment',
+				],
+				[
+					'warnings' => [
+						[
+							'code' => 'compare-no-prev',
+							'module' => 'compare',
+						],
+					],
+					'compare' => [
+						'toid' => '{{REPL:pageA}}',
+						'torevid' => '{{REPL:revA1}}',
+						'tons' => 0,
+						'totitle' => 'ApiComparePagesTest A',
+						'touser' => '{{REPL:creator}}',
+						'touserid' => '{{REPL:creatorid}}',
+						'tocomment' => 'Test for ApiComparePagesTest: A 1',
+						'toparsedcomment' => 'Test for ApiComparePagesTest: A 1',
+						'next' => '{{REPL:revA2}}',
+						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1" >Line 1:</td>' . "\n"
+							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div> </div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div><ins class="diffchange diffchange-inline">A 1</ins></div></td></tr>' . "\n",
+					],
+				],
+			],
+			'Relative diff, no next' => [
+				[
+					'fromrev' => '{{REPL:revA4}}',
+					'torelative' => 'next',
+					'prop' => 'ids|rel|diff|title|user|comment',
+				],
+				[
+					'warnings' => [
+						[
+							'code' => 'compare-no-next',
+							'module' => 'compare',
+						],
+					],
+					'compare' => [
+						'fromid' => '{{REPL:pageA}}',
+						'fromrevid' => '{{REPL:revA4}}',
+						'fromns' => 0,
+						'fromtitle' => 'ApiComparePagesTest A',
+						'fromuser' => '{{REPL:creator}}',
+						'fromuserid' => '{{REPL:creatorid}}',
+						'fromcomment' => 'Test for ApiComparePagesTest: A 4',
+						'fromparsedcomment' => 'Test for ApiComparePagesTest: A 4',
+						'prev' => '{{REPL:revA3}}',
+						'body' => '',
+					],
+				],
+			],
 			'Diff for specific slots' => [
 				// @todo Use a page with multiple slots here
 				[
@@ -897,24 +953,6 @@ class ApiComparePagesTest extends ApiTestCase {
 				],
 				[],
 				'missingcontent'
-			],
-			'Error, Relative diff, no prev' => [
-				[
-					'fromrev' => '{{REPL:revA1}}',
-					'torelative' => 'prev',
-					'prop' => 'ids',
-				],
-				[],
-				'baddiff'
-			],
-			'Error, Relative diff, no next' => [
-				[
-					'fromrev' => '{{REPL:revA4}}',
-					'torelative' => 'next',
-					'prop' => 'ids',
-				],
-				[],
-				'baddiff'
 			],
 			'Error, section diff with no revision' => [
 				[

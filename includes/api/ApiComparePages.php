@@ -74,16 +74,48 @@ class ApiComparePages extends ApiBase {
 			switch ( $params['torelative'] ) {
 				case 'prev':
 					// Swap 'from' and 'to'
-					list( $toRev, $toRelRev2, $toValsRev ) = [ $fromRev, $fromRelRev, $fromValsRev ];
-					$fromRev = $this->revisionStore->getPreviousRevision( $fromRelRev );
+					list( $toRev, $toRelRev, $toValsRev ) = [ $fromRev, $fromRelRev, $fromValsRev ];
+					$fromRev = $this->revisionStore->getPreviousRevision( $toRelRev );
 					$fromRelRev = $fromRev;
 					$fromValsRev = $fromRev;
+					if ( !$fromRev ) {
+						$title = Title::newFromLinkTarget( $toRelRev->getPageAsLinkTarget() );
+						$this->addWarning( [
+							'apiwarn-compare-no-prev',
+							wfEscapeWikiText( $title->getPrefixedText() ),
+							$toRelRev->getId()
+						] );
+
+						// (T203433) Create an empty dummy revision as the "previous".
+						// The main slot has to exist, the rest will be handled by DifferenceEngine.
+						$fromRev = $this->revisionStore->newMutableRevisionFromArray( [
+							'title' => $title ?: Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __METHOD__ )
+						] );
+						$fromRev->setContent(
+							SlotRecord::MAIN,
+							$toRelRev->getContent( SlotRecord::MAIN, RevisionRecord::RAW )
+								->getContentHandler()
+								->makeEmptyContent()
+						);
+					}
 					break;
 
 				case 'next':
 					$toRev = $this->revisionStore->getNextRevision( $fromRelRev );
 					$toRelRev = $toRev;
 					$toValsRev = $toRev;
+					if ( !$toRev ) {
+						$title = Title::newFromLinkTarget( $fromRelRev->getPageAsLinkTarget() );
+						$this->addWarning( [
+							'apiwarn-compare-no-next',
+							wfEscapeWikiText( $title->getPrefixedText() ),
+							$fromRelRev->getId()
+						] );
+
+						// (T203433) The web UI treats "next" as "cur" in this case.
+						// Avoid repeating metadata by making a MutableRevisionRecord with no changes.
+						$toRev = MutableRevisionRecord::newFromParentRevision( $fromRelRev );
+					}
 					break;
 
 				case 'cur':
@@ -103,10 +135,12 @@ class ApiComparePages extends ApiBase {
 			list( $toRev, $toRelRev, $toValsRev ) = $this->getDiffRevision( 'to', $params );
 		}
 
-		// Handle missing from or to revisions
+		// Handle missing from or to revisions (should never happen)
+		// @codeCoverageIgnoreStart
 		if ( !$fromRev || !$toRev ) {
 			$this->dieWithError( 'apierror-baddiff' );
 		}
+		// @codeCoverageIgnoreEnd
 
 		// Handle revdel
 		if ( !$fromRev->audienceCan(

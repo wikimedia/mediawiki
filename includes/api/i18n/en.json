@@ -1890,6 +1890,8 @@
 	"apiwarn-badurlparam": "Could not parse <var>$1urlparam</var> for $2. Using only width and height.",
 	"apiwarn-badutf8": "The value passed for <var>$1</var> contains invalid or non-normalized data. Textual data should be valid, NFC-normalized Unicode without C0 control characters other than HT (\\t), LF (\\n), and CR (\\r).",
 	"apiwarn-checktoken-percentencoding": "Check that symbols such as \"+\" in the token are properly percent-encoded in the URL.",
+	"apiwarn-compare-no-next": "Revision $2 is the latest revision of $1, there is no revision for <kbd>torelative=next</kbd> to compare to.",
+	"apiwarn-compare-no-prev": "Revision $2 is the earliest revision of $1, there is no revision for <kbd>torelative=prev</kbd> to compare to.",
 	"apiwarn-compare-nocontentmodel": "No content model could be determined, assuming $1.",
 	"apiwarn-deprecation-deletedrevs": "<kbd>list=deletedrevs</kbd> has been deprecated. Please use <kbd>prop=deletedrevisions</kbd> or <kbd>list=alldeletedrevisions</kbd> instead.",
 	"apiwarn-deprecation-httpsexpected": "HTTP used when HTTPS was expected.",
