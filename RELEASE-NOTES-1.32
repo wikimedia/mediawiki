@@ -10,6 +10,7 @@ production.
   has been started.
 * (T210998) Properly set $wgLanguageCode in the generated LocalSettings.php
   if --lang is used with the command-line installer (install.php).
+* Fix addition of ug_expiry column to user_groups table on MSSQL.
 
 === Configuration changes in 1.32 ===
 
