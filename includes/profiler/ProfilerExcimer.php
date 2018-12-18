@@ -5,24 +5,40 @@ class ProfilerExcimer extends Profiler {
 	private $realProf;
 	private $period;
 
+	/**
+	 * @param array $params Associative array of parameters:
+	 *    - period: The sampling period
+	 *    - maxDepth: The maximum stack depth collected
+	 *    - cpuProfiler: A pre-started ExcimerProfiler instance for CPU
+	 *      profiling of the entire request including configuration.
+	 *    - realProfiler: A pre-started ExcimerProfiler instance for wall
+	 *      clock profiling of the entire request.
+	 */
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
 
 		$this->period = $params['period'] ?? 0.01;
 		$maxDepth = $params['maxDepth'] ?? 100;
 
-		$this->cpuProf = new ExcimerProfiler;
-		$this->cpuProf->setEventType( EXCIMER_CPU );
-		$this->cpuProf->setPeriod( $this->period );
-		$this->cpuProf->setMaxDepth( $maxDepth );
+		if ( isset( $params['cpuProfiler'] ) ) {
+			$this->cpuProf = $params['cpuProfiler'];
+		} else {
+			$this->cpuProf = new ExcimerProfiler;
+			$this->cpuProf->setEventType( EXCIMER_CPU );
+			$this->cpuProf->setPeriod( $this->period );
+			$this->cpuProf->setMaxDepth( $maxDepth );
+			$this->cpuProf->start();
+		}
 
-		$this->realProf = new ExcimerProfiler;
-		$this->realProf->setEventType( EXCIMER_REAL );
-		$this->realProf->setPeriod( $this->period );
-		$this->realProf->setMaxDepth( $maxDepth );
-
-		$this->cpuProf->start();
-		$this->realProf->start();
+		if ( isset( $params['realProfiler'] ) ) {
+			$this->realProf = $params['realProfiler'];
+		} else {
+			$this->realProf = new ExcimerProfiler;
+			$this->realProf->setEventType( EXCIMER_REAL );
+			$this->realProf->setPeriod( $this->period );
+			$this->realProf->setMaxDepth( $maxDepth );
+			$this->realProf->start();
+		}
 	}
 
 	public function scopedProfileIn( $section ) {
