@@ -158,7 +158,6 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1.15
 			[ 'addTable', 'change_tag', 'patch-change_tag.sql' ],
-			[ 'addTable', 'tag_summary', 'patch-tag_summary.sql' ],
 
 			// 1.16
 			[ 'addTable', 'user_properties', 'patch-user_properties.sql' ],
