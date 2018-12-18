@@ -242,7 +242,7 @@
 	"hidden-category-category": "Categorias ocultas",
 	"category-subcat-count": "{{PLURAL:$2|Esta categoria possui apenas a seguinte subcategoria.|Esta categoria possui {{PLURAL:$1|a seguinte subcategoria|as seguintes $1 subcategorias}}, de um total de $2.}}",
 	"category-subcat-count-limited": "Esta categoria possui {{PLURAL:$1|a seguinte subcategoria|as $1 subcategorias a seguir}}.",
-	"category-article-count": "{{PLURAL:$2|Esta categoria contém apenas a seguinte página.|{{PLURA:$1|A seguinte página pertence|As seguintes $1 páginas pertencem}} a esta categoria, de um total de $2.}}",
+	"category-article-count": "{{PLURAL:$2|Esta categoria contém apenas a seguinte página.|{{PLURAL:$1|A seguinte página pertence|As seguintes $1 páginas pertencem}} a esta categoria, de um total de $2.}}",
 	"category-article-count-limited": "Esta categoria possui {{PLURAL:$1|a seguinte página|as $1 páginas a seguir}}.",
 	"category-file-count": "{{PLURAL:$2|Esta categoria possui apenas o seguinte arquivo.|Esta categoria possui {{PLURAL:$1|o seguinte arquivo|os $1 arquivos a seguir}}, de um total de $2.}}",
 	"category-file-count-limited": "Esta categoria possui {{PLURAL:$1|um arquivo|$1 arquivos}}.",

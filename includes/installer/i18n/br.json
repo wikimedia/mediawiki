@@ -251,7 +251,7 @@
 	"config-skins-help": "Kavet eo bet ar gwiskadurioù renablet a-us en ho kavlec'h <code>./skins</code>. Ret eo deoc'h gweredekaat unan da nebeutañ, ha dibab an hini dre ziouer.",
 	"config-skins-use-as-default": "Implijout ar gwiskadur-mañ dre ziouer",
 	"config-skins-missing": "N'eus bet kavet gwiskadur ebet : ober a raio MediaWiki gant unan dre ziouer betek ma vo staliet reoù a zegouezh.",
-	"config-skins-must-enable-some": "Ret eo deoc'h dibab da nebautañ ur gwiskadur da weredekaat.",
+	"config-skins-must-enable-some": "Ret eo deoc'h dibab ur gwiskadur da weredekaat da nebeutañ.",
 	"config-skins-must-enable-default": "Ar gwiskadur dre ziouer dibabet a rank bezañ gweredekaet.",
 	"config-install-alreadydone": "'''Diwallit''': Staliet hoc'h eus MediaWiki dija war a seblant hag emaoc'h o klask e staliañ c'hoazh.\nKit d'ar bajenn war-lerc'h, mar plij.",
 	"config-install-begin": "Pa vo bet pouezet ganeoc'h war \"{{int:config-continue}}\"  e krogo staliadur MediaWiki.\nPouezit war \"{{int:config-back}}\" mar fell deoc'h cheñch tra pe dra.",

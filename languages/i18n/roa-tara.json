@@ -518,6 +518,7 @@
 	"changepassword-success": "'A password toje ha state cangiate!",
 	"changepassword-throttled": "Tu è pruvate 'nu sacche de vote a trasè.\nPe piacere aspitte $1 apprime de pruvà arrete.",
 	"botpasswords": "Password d'u bot",
+	"botpasswords-summary": "<em>Passuord bot</em> permette l'ause a 'nu cunde ausanne le API, senze ausà le credenziale de accesse prengepàle. Le deritte de l'utende disponibbele quanne se ave trasute cu 'na passuord bot ponne essere limitate.\n\nCe non ge canusce 'u mutive purcé puè fa sta cose, allore probbabbilmende non ge l'ha fà. Nisciune t'addà cercà de generà 'na passuord bot pe pò darle a otre crestiane.",
 	"botpasswords-disabled": "Le passuord bot so disabbilitate.",
 	"botpasswords-no-central-id": "Pe ausà 'na passuor bot, a trasè a 'nu utende cendralizzate.",
 	"botpasswords-existing": "Passuord de le bot esistende",

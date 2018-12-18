@@ -1789,6 +1789,8 @@
 	"apiwarn-badurlparam": "Impossible d'analyser <var>$1urlparam</var> pour $2. En utilisant seulement la largeur et la hauteur.",
 	"apiwarn-badutf8": "La valeur passée pour <var>$1</var> contient des données non valides ou non normalisées. Les données textuelles doivent être de l’Unicode valide normalisé en NFC sans caractères de contrôle c0 autres que HT (\\t), LF (\\n) et CR (\\r).",
 	"apiwarn-checktoken-percentencoding": "Vérifier que les symboles tels que \"+\" dans le jeton sont correctement  codés avec des pourcents dans l'URL.",
+	"apiwarn-compare-no-next": "La version $2 est la dernière version de $1, il n'existe pas de version <kbd>torelative=next</kbd> à comparer.",
+	"apiwarn-compare-no-prev": "La version $2 est la plus ancienne de $1, il n'existe pas de version <kbd>torelative=prev</kbd> à comparer.",
 	"apiwarn-compare-nocontentmodel": "Aucun modèle de contenu n’a pu être déterminé, $1 est supposé.",
 	"apiwarn-deprecation-deletedrevs": "<kbd>list=deletedrevs</kbd> est devenu désuet. Veuillez utiliser <kbd>prop=deletedrevisions</kbd> ou <kbd>list=alldeletedrevisions</kbd> à la place.",
 	"apiwarn-deprecation-httpsexpected": "HTTP est utilisé alors que HTTPS est attendu.",

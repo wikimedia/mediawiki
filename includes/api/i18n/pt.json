@@ -1767,6 +1767,8 @@
 	"apiwarn-badurlparam": "Não foi possível analisar <var>$1urlparam</var> para $2. Serão utilizadas somente a largura e a altura.",
 	"apiwarn-badutf8": "O valor passado para <var>$1</var> contém dados inválidos ou não normalizados. Os dados textuais devem estar em formato Unicode válido, normalizado em NFC, sem caracteres de controlo C0 exceto HT (\\t), LF (\\n) e CR (\\r).",
 	"apiwarn-checktoken-percentencoding": "Verifique que símbolos como \"+\" na chave estão devidamente codificados com percentagem no URL.",
+	"apiwarn-compare-no-next": "A revisão $2 é a revisão mais recente de $1, não há nenhuma revisão seguinte para comparar com <kbd>torelative=next</kbd>.",
+	"apiwarn-compare-no-prev": "A revisão $2 é a revisão mais antiga de $1, não há nenhuma revisão anterior para comparar com <kbd>torelative=prev</kbd>.",
 	"apiwarn-compare-nocontentmodel": "Não foi possível determinar nenhum modelo de conteúdo; será assumido $1.",
 	"apiwarn-deprecation-deletedrevs": "<kbd>list=deletedrevs</kbd> foi descontinuado. Em substituição, use <kbd>prop=deletedrevisions</kbd> ou <kbd>list=alldeletedrevisions</kbd>, por favor.",
 	"apiwarn-deprecation-httpsexpected": "Foi usado HTTP quando era esperado HTTPS.",
