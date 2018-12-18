@@ -46,6 +46,7 @@ THIS IS NOT A RELEASE YET
 * (T185049) LogFormatter: Fail softer when trying to link an invalid titles
 * (T210998) Properly set $wgLanguageCode in the generated LocalSettings.php
   if --lang is used with the command-line installer (install.php).
+* Fix addition of ug_expiry column to user_groups table on MSSQL.
 
 == MediaWiki 1.31.1 ==
 
