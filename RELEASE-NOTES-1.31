@@ -21,6 +21,7 @@ THIS IS NOT A RELEASE YET
   * Suppress "Headers already sent" in PHP 7.2 too
   * (T206476) Output only to stderr in unit tests
   * (T207112) Add session_write_close() calls to SessionManager tests
+  * oyejorge/less.php replaced with our fork wikimedia/less.php
 * (T207540) Include IP address in "Login for $1 succeeded" log entry.
 * (T201781) Database: Allow selectFieldValues() to accept SQL fragments
 * (T205765) installer: Don't link to the obsolete "Extension Matrix" page
