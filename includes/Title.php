@@ -36,7 +36,7 @@ use MediaWiki\MediaWikiServices;
  * @note Consider using a TitleValue object instead. TitleValue is more lightweight
  *       and does not rely on global state or the database.
  */
-class Title implements LinkTarget {
+class Title implements LinkTarget, IDBAccessObject {
 	/** @var MapCacheLRU */
 	static private $titleCache = null;
 
@@ -3278,13 +3278,12 @@ class Title implements LinkTarget {
 	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
 	 * Edit and move sections are separated by a colon
 	 * Example: "edit=autoconfirmed,sysop:move=sysop"
-	 * @param bool $readLatest When true, skip replicas and read from the master DB.
 	 */
-	public function loadRestrictionsFromRows(
-		$rows, $oldFashionedRestrictions = null, $readLatest = false
-	) {
-		$whichDb = $readLatest ? DB_MASTER : DB_REPLICA;
-		$dbr = wfGetDB( $whichDb );
+	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
+		// This function will only read rows from a table that we migrated away
+		// from before adding READ_LATEST support to loadRestrictions, so we
+		// don't need to support reading from DB_MASTER here.
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$restrictionTypes = $this->getRestrictionTypes();
 
@@ -3354,39 +3353,52 @@ class Title implements LinkTarget {
 	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
 	 * Edit and move sections are separated by a colon
 	 * Example: "edit=autoconfirmed,sysop:move=sysop"
-	 * @param bool $readLatest When true, skip replicas and read from the master DB.
+	 * @param int $flags A bit field. If self::READ_LATEST is set, skip replicas and read
+	 *  from the master DB.
 	 */
-	public function loadRestrictions( $oldFashionedRestrictions = null, $readLatest = false ) {
+	public function loadRestrictions( $oldFashionedRestrictions = null, $flags = 0 ) {
+		$readLatest = DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST );
 		if ( $this->mRestrictionsLoaded && !$readLatest ) {
 			return;
 		}
 
+		// TODO: should probably pass $flags into getArticleID, but it seems hacky
+		// to mix READ_LATEST and GAID_FOR_UPDATE, even if they have the same value.
+		// Maybe deprecate GAID_FOR_UPDATE now that we implement IDBAccessObject?
 		$id = $this->getArticleID();
 		if ( $id ) {
-			$cache = ObjectCache::getMainWANInstance();
 			$fname = __METHOD__;
-			$rows = $cache->getWithSetCallback(
-				// Page protections always leave a new null revision
-				$cache->makeKey( 'page-restrictions', $id, $this->getLatestRevID(), $readLatest ),
-				$cache::TTL_DAY,
-				function ( $curValue, &$ttl, array &$setOpts ) use ( $fname, $readLatest ) {
-					$whichDb = $readLatest ? DB_MASTER : DB_REPLICA;
-					$dbr = wfGetDB( $whichDb );
+			$loadRestrictionsFromDb = function ( Database $dbr ) use ( $fname, $id ) {
+				return iterator_to_array(
+					$dbr->select(
+						'page_restrictions',
+						[ 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ],
+						[ 'pr_page' => $id ],
+						$fname
+					)
+				);
+			};
 
-					$setOpts += Database::getCacheSetOptions( $dbr );
+			if ( $readLatest ) {
+				$dbr = wfGetDB( DB_MASTER );
+				$rows = $loadRestrictionsFromDb( $dbr );
+			} else {
+				$cache = ObjectCache::getMainWANInstance();
+				$rows = $cache->getWithSetCallback(
+					// Page protections always leave a new null revision
+					$cache->makeKey( 'page-restrictions', $id, $this->getLatestRevID() ),
+					$cache::TTL_DAY,
+					function ( $curValue, &$ttl, array &$setOpts ) use ( $loadRestrictionsFromDb ) {
+						$dbr = wfGetDB( DB_REPLICA );
 
-					return iterator_to_array(
-						$dbr->select(
-							'page_restrictions',
-							[ 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ],
-							[ 'pr_page' => $this->getArticleID() ],
-							$fname
-						)
-					);
-				}
-			);
+						$setOpts += Database::getCacheSetOptions( $dbr );
 
-			$this->loadRestrictionsFromRows( $rows, $oldFashionedRestrictions, $readLatest );
+						return $loadRestrictionsFromDb( $dbr );
+					}
+				);
+			}
+
+			$this->loadRestrictionsFromRows( $rows, $oldFashionedRestrictions );
 		} else {
 			$title_protection = $this->getTitleProtectionInternal();
 
