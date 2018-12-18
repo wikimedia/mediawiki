@@ -1777,6 +1777,8 @@
 	"apiwarn-badurlparam": "{{doc-apierror}}\n\nParameters:\n* $1 - Module parameter prefix, e.g. \"bl\".\n* $2 - Image title.",
 	"apiwarn-badutf8": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.\n{{doc-important|Do not translate \"\\t\", \"\\n\", and \"\\r\"}}",
 	"apiwarn-checktoken-percentencoding": "{{doc-apierror}}",
+	"apiwarn-compare-no-next": "{{doc-apierror}}\n\nParameters:\n* $1 - Title of the page.\n* $2 - Revision ID.",
+	"apiwarn-compare-no-prev": "{{doc-apierror}}\n\nParameters:\n* $1 - Title of the page.\n* $2 - Revision ID.",
 	"apiwarn-compare-nocontentmodel": "{{doc-apierror}}\n\nParameters:\n* $1 - Content model being assumed.",
 	"apiwarn-deprecation-deletedrevs": "{{doc-apierror}}",
 	"apiwarn-deprecation-httpsexpected": "{{doc-apierror}}",
