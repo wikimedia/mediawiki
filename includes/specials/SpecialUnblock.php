@@ -248,6 +248,7 @@ class SpecialUnblock extends SpecialPage {
 		if ( isset( $data['Tags'] ) ) {
 			$logEntry->setTags( $data['Tags'] );
 		}
+		$logEntry->setRelations( [ 'ipb_id' => $block->getId() ] );
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
