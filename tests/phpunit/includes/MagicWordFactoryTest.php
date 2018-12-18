@@ -6,13 +6,9 @@
  * @author Derick N. Alangi
  */
 class MagicWordFactoryTest extends MediaWikiTestCase {
-	/**
-	 * Make magic word factory
-	 */
-	private function makeMagicWordFactory( $contLang ) {
+	private function makeMagicWordFactory( Language $contLang = null ) {
 		if ( $contLang === null ) {
-			$mwf = new MagicWordFactory( Language::factory( 'en' ) );
-			return $mwf;
+			return new MagicWordFactory( Language::factory( 'en' ) );
 		}
 		return new MagicWordFactory( $contLang );
 	}
@@ -21,14 +17,14 @@ class MagicWordFactoryTest extends MediaWikiTestCase {
 		$contLang = Language::factory( 'en' );
 
 		$magicWordFactory = $this->makeMagicWordFactory( $contLang );
-		$mwfActual = $magicWordFactory->getContentLanguage();
+		$magicWordContLang = $magicWordFactory->getContentLanguage();
 
-		$this->assertSame( $contLang, $mwfActual );
+		$this->assertSame( $contLang, $magicWordContLang );
 	}
 
 	public function testGetMagicWord() {
 		$magicWordIdValid = 'pageid';
-		$magicWordFactory = $this->makeMagicWordFactory( null );
+		$magicWordFactory = $this->makeMagicWordFactory();
 		$mwActual = $magicWordFactory->get( $magicWordIdValid );
 		$contLang = $magicWordFactory->getContentLanguage();
 		$expected = new MagicWord( $magicWordIdValid, [ 'PAGEID' ], false, $contLang );
@@ -37,7 +33,7 @@ class MagicWordFactoryTest extends MediaWikiTestCase {
 	}
 
 	public function testGetInvalidMagicWord() {
-		$magicWordFactory = $this->makeMagicWordFactory( null );
+		$magicWordFactory = $this->makeMagicWordFactory();
 
 		$this->setExpectedException( MWException::class );
 		\Wikimedia\suppressWarnings();
@@ -49,28 +45,28 @@ class MagicWordFactoryTest extends MediaWikiTestCase {
 	}
 
 	public function testGetVariableIDs() {
-		$magicWordFactory = $this->makeMagicWordFactory( null );
+		$magicWordFactory = $this->makeMagicWordFactory();
 		$varIds = $magicWordFactory->getVariableIDs();
 
-		$this->assertContainsOnly( 'string', $varIds );
-		$this->assertNotEmpty( $varIds );
 		$this->assertInternalType( 'array', $varIds );
+		$this->assertNotEmpty( $varIds );
+		$this->assertContainsOnly( 'string', $varIds );
 	}
 
 	public function testGetSubstIDs() {
-		$magicWordFactory = $this->makeMagicWordFactory( null );
+		$magicWordFactory = $this->makeMagicWordFactory();
 		$substIds = $magicWordFactory->getSubstIDs();
 
-		$this->assertContainsOnly( 'string', $substIds );
-		$this->assertNotEmpty( $substIds );
 		$this->assertInternalType( 'array', $substIds );
+		$this->assertNotEmpty( $substIds );
+		$this->assertContainsOnly( 'string', $substIds );
 	}
 
 	/**
 	 * Test both valid and invalid caching hints paths
 	 */
 	public function testGetCacheTTL() {
-		$magicWordFactory = $this->makeMagicWordFactory( null );
+		$magicWordFactory = $this->makeMagicWordFactory();
 		$actual = $magicWordFactory->getCacheTTL( 'localday' );
 
 		$this->assertSame( 3600, $actual );
@@ -83,7 +79,7 @@ class MagicWordFactoryTest extends MediaWikiTestCase {
 	}
 
 	public function testGetDoubleUnderscoreArray() {
-		$magicWordFactory = $this->makeMagicWordFactory( null );
+		$magicWordFactory = $this->makeMagicWordFactory();
 		$actual = $magicWordFactory->getDoubleUnderscoreArray();
 
 		$this->assertInstanceOf( MagicWordArray::class, $actual );
