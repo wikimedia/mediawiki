@@ -812,23 +812,6 @@ CREATE UNIQUE INDEX change_tag_rev_tag_id ON change_tag(ct_rev_id,ct_tag_id);
 
 CREATE INDEX change_tag_tag_id_id ON change_tag(ct_tag_id,ct_rc_id,ct_rev_id,ct_log_id);
 
-CREATE SEQUENCE tag_summary_ts_id_seq;
-CREATE TABLE tag_summary (
-  ts_id      INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('tag_summary_ts_id_seq'),
-  ts_rc_id   INTEGER      NULL,
-  ts_log_id  INTEGER      NULL,
-  ts_rev_id  INTEGER      NULL,
-  ts_tags    TEXT     NOT NULL
-);
-ALTER SEQUENCE tag_summary_ts_id_seq OWNED BY tag_summary.ts_id;
-CREATE UNIQUE INDEX tag_summary_rc_id ON tag_summary(ts_rc_id);
-CREATE UNIQUE INDEX tag_summary_log_id ON tag_summary(ts_log_id);
-CREATE UNIQUE INDEX tag_summary_rev_id ON tag_summary(ts_rev_id);
-
-CREATE TABLE valid_tag (
-  vt_tag TEXT NOT NULL PRIMARY KEY
-);
-
 CREATE TABLE user_properties (
   up_user     INTEGER      NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   up_property TEXT     NOT NULL,

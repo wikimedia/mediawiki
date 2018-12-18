@@ -159,7 +159,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.15
 			[ 'addTable', 'change_tag', 'patch-change_tag.sql' ],
 			[ 'addTable', 'tag_summary', 'patch-tag_summary.sql' ],
-			[ 'addTable', 'valid_tag', 'patch-valid_tag.sql' ],
 
 			// 1.16
 			[ 'addTable', 'user_properties', 'patch-user_properties.sql' ],
@@ -169,7 +168,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'doLogUsertextPopulation' ],
 			[ 'doLogSearchPopulation' ],
 			[ 'addTable', 'l10n_cache', 'patch-l10n_cache.sql' ],
-			[ 'addIndex', 'tag_summary', 'tag_summary_rc_id', 'patch-change_tag-indexes.sql' ],
+			[ 'dropIndex', 'change_tag', 'ct_rc_id', 'patch-change_tag-indexes.sql' ],
 			[ 'addField', 'redirect', 'rd_interwiki', 'patch-rd_interwiki.sql' ],
 			[ 'doUpdateMimeMinorField' ],
 
@@ -288,7 +287,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'doRevisionPageRevIndexNonUnique' ],
 			[ 'doNonUniquePlTlIl' ],
 			[ 'addField', 'change_tag', 'ct_id', 'patch-change_tag-ct_id.sql' ],
-			[ 'addField', 'tag_summary', 'ts_id', 'patch-tag_summary-ts_id.sql' ],
 			[ 'modifyField', 'recentchanges', 'rc_ip', 'patch-rc_ip_modify.sql' ],
 			[ 'addIndex', 'archive', 'usertext_timestamp', 'patch-rename-ar_usertext_timestamp.sql' ],
 
@@ -375,6 +373,8 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1,33
 			[ 'dropField', 'change_tag', 'ct_tag', 'patch-drop-ct_tag.sql' ],
+			[ 'dropTable', 'valid_tag' ],
+			[ 'dropTable', 'tag_summary' ],
 		];
 	}
 
@@ -1179,8 +1179,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'table' => 'change_tag', 'field' => 'ct_log_id' ],
 			[ 'table' => 'change_tag', 'field' => 'ct_rev_id' ],
 			[ 'table' => 'page_restrictions', 'field' => 'pr_user' ],
-			[ 'table' => 'tag_summary', 'field' => 'ts_log_id' ],
-			[ 'table' => 'tag_summary', 'field' => 'ts_rev_id' ],
 			[ 'table' => 'user_newtalk', 'field' => 'user_id' ],
 			[ 'table' => 'user_properties', 'field' => 'up_user' ],
 		];
