@@ -1158,6 +1158,8 @@
 	"apierror-unknownerror-nocode": "Unbekannter Fehler.",
 	"apierror-unknownerror": "Unbekannter Fehler: „$1“.",
 	"apierror-unknownformat": "Nicht erkanntes Format „$1“.",
+	"apiwarn-compare-no-next": "Die Version $2 ist die aktuelle Version von $1. Es gibt keine zu vergleichende Version für <kbd>torelative=next</kbd>.",
+	"apiwarn-compare-no-prev": "Die Version $2 ist die aktuelle Version von $1. Es gibt keine zu vergleichende Version für <kbd>torelative=prev</kbd>.",
 	"apiwarn-deprecation-missingparam": "Da <var>$1</var> nicht angegeben wurde, wurde ein veraltetes Format für die Ausgabe verwendet. Dieses Format ist veraltet und in Zukunft wird immer das neue Format benutzt.",
 	"apiwarn-ignoring-invalid-templated-value": "Ignorieren des Wertes <kbd>$2</kbd> in <var>$1</var> bei der Verarbeitung von Vorlagenparametern.",
 	"apiwarn-invalidcategory": "„$1“ ist keine Kategorie.",

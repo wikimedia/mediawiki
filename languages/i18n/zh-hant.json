@@ -2613,7 +2613,7 @@
 	"blocklog-showsuppresslog": "此使用者先前被封鎖並且隱藏過。\n以下為禁止顯示紀錄以供參考：",
 	"blocklogentry": "已封鎖 [[$1]] 的期限至 $2 $3",
 	"reblock-logentry": "變更 [[$1]] 的封鎖設定，到期時間為 $2 $3",
-	"blocklogtext": "此為使用者的封鎖及取消封鎖動作的記錄。未列出自動封鎖的IP位址。請參考[[Special:BlockList|封鎖清單]]中的目前正在作業的阻止與封鎖。",
+	"blocklogtext": "此為使用者的封鎖及取消封鎖動作的記錄。未列出自動封鎖的IP位址。請參考[[Special:BlockList|封鎖清單]]中的目前正在運作的阻止與封鎖。",
 	"unblocklogentry": "已解除封鎖 $1",
 	"block-log-flags-anononly": "僅限匿名使用者",
 	"block-log-flags-nocreate": "停用帳號建立",

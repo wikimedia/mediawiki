@@ -1769,6 +1769,8 @@
 	"apiwarn-badurlparam": "تعذر تحليل <var>$1urlparam</var> لـ$2، باستخدام العرض والطول فقط.",
 	"apiwarn-badutf8": "تحتوي القيمة التي تم تمريرها لـ<var>$1</var> على بيانات غير صالحة أو غير طبيعية، يجب أن تكون البيانات النصية صالحة، NFC-normalized Unicode بدون أحرف تحكم C0 غير HT (\\t) وLF (\\n) وCR (\\r).",
 	"apiwarn-checktoken-percentencoding": "تحقق من أن الرموز مثل \"+\" في الرمز المميز يتم ترميزها بشكل صحيح في المسار.",
+	"apiwarn-compare-no-next": "المراجعة $2 هي أحدث مراجعة من $1، ولا توجد مراجعة لـ<kbd>torelative=next</kbd>  للمقارنة بها.",
+	"apiwarn-compare-no-prev": "المراجعة $2 هي أقدم مراجعة من $1، ولا توجد مراجعة لـ<kbd>torelative=next</kbd>  للمقارنة بها.",
 	"apiwarn-compare-nocontentmodel": "لا يمكن تحديد نموذج محتوى، على افتراض $1.",
 	"apiwarn-deprecation-deletedrevs": "تم إيقاف <kbd>list=deletedrevs</kbd>; الرجاء استخدام <kbd>prop=deletedrevisions</kbd> or <kbd>list=alldeletedrevisions</kbd> بدلا من ذلك.",
 	"apiwarn-deprecation-httpsexpected": "HTTP المستخدمة عند توقع HTTPS.",
