@@ -289,7 +289,6 @@ class Message implements MessageSpecifier, Serializable {
 			'parameters' => $this->parameters,
 			'format' => $this->format,
 			'useDatabase' => $this->useDatabase,
-			'title' => $this->title,
 			'titlestr' => $this->title ? $this->title->getFullText() : null,
 		] );
 	}
