@@ -433,8 +433,9 @@ class Command {
 			// TODO replace with clear_last_error when requirements are bumped to PHP7
 			set_error_handler( function () {
 			}, 0 );
-			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			@trigger_error( '' );
+			\MediaWiki\suppressWarnings();
+			trigger_error( '' );
+			\MediaWiki\restoreWarnings();
 			restore_error_handler();
 
 			$readPipes = array_filter( $pipes, function ( $fd ) use ( $desc ) {
