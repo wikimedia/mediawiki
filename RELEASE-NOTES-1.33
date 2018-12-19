@@ -37,6 +37,8 @@ production.
 * (T96041) __EXPECTUNUSEDCATEGORY__ on a category page causes the category
   to be hidden on Special:UnusedCategories.
 * Add PasswordPolicy to check the password isn't in the large blacklist.
+* The AuthManagerLoginAuthenticateAudit hook has a new parameter for
+  additional information about the authentication event.
 * …
 
 === External library changes in 1.33 ===
