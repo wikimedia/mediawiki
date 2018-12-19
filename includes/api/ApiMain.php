@@ -829,6 +829,7 @@ class ApiMain extends ApiBase {
 			'dnt',
 			'origin',
 			/* MediaWiki whitelist */
+			'user-agent',
 			'api-user-agent',
 		] );
 		foreach ( $requestedHeaders as $rHeader ) {
