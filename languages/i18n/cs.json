@@ -3401,6 +3401,7 @@
 	"mcrundofailed": "Vrácení editace zpět se nezdařilo",
 	"mcrundo-missingparam": "V požadavku chybí povinné parametry.",
 	"mcrundo-changed": "Od chvíle, kdy jste si prohlédli rozdíl, se stránka změnila. Zkontrolujte prosím novou změnu.",
+	"mcrundo-parse-failed": "Nepodařilo se analyzovat novou revizi: $1",
 	"ellipsis": "…",
 	"percent": "$1&#160;%",
 	"quotation-marks": "„$1“",
