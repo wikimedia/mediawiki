@@ -43,7 +43,6 @@ class SqliteUpdater extends DatabaseUpdater {
 
 			// 1.15
 			[ 'addTable', 'change_tag', 'patch-change_tag.sql' ],
-			[ 'addTable', 'tag_summary', 'patch-tag_summary.sql' ],
 
 			// 1.16
 			[ 'addTable', 'user_properties', 'patch-user_properties.sql' ],
@@ -53,7 +52,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'doLogUsertextPopulation' ],
 			[ 'doLogSearchPopulation' ],
 			[ 'addTable', 'l10n_cache', 'patch-l10n_cache.sql' ],
-			[ 'addIndex', 'tag_summary', 'tag_summary_rc_id', 'patch-change_tag-indexes.sql' ],
+			[ 'dropIndex', 'change_tag', 'ct_rc_id', 'patch-change_tag-indexes.sql' ],
 			[ 'addField', 'redirect', 'rd_interwiki', 'patch-rd_interwiki.sql' ],
 			[ 'sqliteSetupSearchindex' ],
 
