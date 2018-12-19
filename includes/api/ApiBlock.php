@@ -61,7 +61,7 @@ class ApiBlock extends ApiBase {
 				$editingRestriction = 'partial';
 			}
 
-			$pageRestrictions = implode( "\n", $params['pagerestrictions'] );
+			$pageRestrictions = implode( "\n", (array)$params['pagerestrictions'] );
 		}
 
 		if ( $params['userid'] !== null ) {
