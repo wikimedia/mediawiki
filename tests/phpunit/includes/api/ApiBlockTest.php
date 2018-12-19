@@ -215,6 +215,19 @@ class ApiBlockTest extends ApiTestCase {
 		$this->doBlock( [ 'expiry' => '' ] );
 	}
 
+	public function testBlockWithoutRestrictions() {
+		$this->setMwGlobals( [
+			'wgEnablePartialBlocks' => true,
+		] );
+
+		$this->doBlock();
+
+		$block = Block::newFromTarget( $this->mUser->getName() );
+
+		$this->assertTrue( $block->isSitewide() );
+		$this->assertCount( 0, $block->getRestrictions() );
+	}
+
 	public function testBlockWithRestrictions() {
 		$this->setMwGlobals( [
 			'wgEnablePartialBlocks' => true,
