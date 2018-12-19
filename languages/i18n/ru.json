@@ -1102,7 +1102,7 @@
 	"showingresultsinrange": "Ниже показано до {{PLURAL:$1|<strong>1</strong> результата|<strong>$1</strong> результата|<strong>$1</strong> результатов}} в диапазоне от <strong>$2</strong> до <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|1=Результат <strong>$1</strong> из <strong>$3</strong>|Результаты <strong>$1—$2</strong> из <strong>$3</strong>}}",
 	"search-nonefound": "Соответствий запросу не найдено.",
-	"search-nonefound-thiswiki": "Нет результатов, соответствующих запросу на этом сайте.",
+	"search-nonefound-thiswiki": "Нет результатов, соответствующих запросу, на этом сайте.",
 	"powersearch-legend": "Расширенный поиск",
 	"powersearch-ns": "Поиск в пространствах имён:",
 	"powersearch-togglelabel": "Отметить:",

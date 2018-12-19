@@ -1604,6 +1604,7 @@
 	"sp-contributions-logs": "registrari",
 	"sp-contributions-talk": "diskutez",
 	"sp-contributions-userrights": "yuri dil {{GENDER:$1|uzero}} pri administrado",
+	"sp-contributions-blocked-notice": "Ca uzero nun esas blokusata.\nVu povas vidar la lasta etiketo pri blokuso adinfre:",
 	"sp-contributions-blocked-notice-anon": "Ica IP-adreso esas nune blokusita.\nLa maxim recenta etiketo pri blokuso esas videbla adinfre, por refero:",
 	"sp-contributions-search": "Serchar kontributadi",
 	"sp-contributions-username": "IP-adreso od uzantonomo:",
