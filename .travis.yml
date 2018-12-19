@@ -35,6 +35,8 @@ matrix:
     # On Trusty, mysql user 'travis' doesn't have create database rights
     # Postgres has no user called 'root'.
     - env: dbtype=mysql dbuser=root
+      php: 7.3
+    - env: dbtype=mysql dbuser=root
       php: 7.2
     - env: dbtype=mysql dbuser=root
       php: 7.1
@@ -50,6 +52,7 @@ matrix:
     - env: dbtype=mysql dbuser=root
       php: hhvm-3.18
   allow_failures:
+    - php: 7.3
     - php: hhvm-3.18
     - php: hhvm-3.21
     - php: hhvm-3.24
