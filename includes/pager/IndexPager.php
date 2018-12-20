@@ -694,7 +694,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * Needless to say, it's really not a good idea to use a non-unique index
 	 * for this!  That won't page right.
 	 *
-	 * @return string|array
+	 * @return string|string[]
 	 */
 	abstract function getIndexField();
 
@@ -712,7 +712,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * page_len,page_id avoids temp tables (given a page_len index). This would
 	 * also work if page_id was non-unique but we had a page_len,page_id index.
 	 *
-	 * @return array
+	 * @return string[]|array[]
 	 */
 	protected function getExtraSortFields() {
 		return [];
