@@ -656,7 +656,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		RevisionSlotsUpdate $update,
 		User $user,
 		$comment,
-		$id,
+		$id = 0,
 		$parentId = 0
 	) {
 		$rev = new MutableRevisionRecord( $title );
@@ -664,9 +664,12 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$rev->applyUpdate( $update );
 		$rev->setUser( $user );
 		$rev->setComment( CommentStoreComment::newUnsavedComment( $comment ) );
-		$rev->setId( $id );
 		$rev->setPageId( $title->getArticleID() );
 		$rev->setParentId( $parentId );
+
+		if ( $id ) {
+			$rev->setId( $id );
+		}
 
 		return $rev;
 	}
@@ -942,6 +945,79 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		// TODO: test category membership update (with setRcWatchCategoryMembership())
 	}
 
+	/**
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
+	 */
+	public function testDoParserCacheUpdate() {
+		if ( $this->hasMultiSlotSupport() ) {
+			MediaWikiServices::getInstance()->getSlotRoleRegistry()->defineRoleWithModel(
+				'aux',
+				CONTENT_MODEL_WIKITEXT
+			);
+		}
+
+		$page = $this->getPage( __METHOD__ );
+		$this->createRevision( $page, 'Dummy' );
+
+		$user = $this->getTestUser()->getUser();
+
+		$update = new RevisionSlotsUpdate();
+		$update->modifyContent( 'main', new WikitextContent( 'first [[Main]]' ) );
+
+		if ( $this->hasMultiSlotSupport() ) {
+			$update->modifyContent( 'aux', new WikitextContent( 'Aux [[Nix]]' ) );
+		}
+
+		// Emulate update after edit ----------
+		$pcache = MediaWikiServices::getInstance()->getParserCache();
+		$pcache->deleteOptionsKey( $page );
+
+		$rev = $this->makeRevision( $page->getTitle(), $update, $user, 'rev', null );
+		$rev->setTimestamp( '20100101000000' );
+		$rev->setParentId( $page->getLatest() );
+
+		$updater = $this->getDerivedPageDataUpdater( $page );
+		$updater->prepareContent( $user, $update, false );
+
+		$rev->setId( 11 );
+		$updater->prepareUpdate( $rev );
+
+		// Force the page timestamp, so we notice whether ParserOutput::getTimestamp
+		// or ParserOutput::getCacheTime are used.
+		$page->setTimestamp( $rev->getTimestamp() );
+		$updater->doParserCacheUpdate();
+
+		// The cached ParserOutput should not use the revision timestamp
+		$cached = $pcache->get( $page, $updater->getCanonicalParserOptions(), true );
+		$this->assertInternalType( 'object', $cached );
+		$this->assertSame( $updater->getCanonicalParserOutput(), $cached );
+
+		$this->assertSame( $rev->getTimestamp(), $cached->getCacheTime() );
+		$this->assertSame( $rev->getId(), $cached->getCacheRevisionId() );
+
+		// Emulate forced update of an old revision ----------
+		$pcache->deleteOptionsKey( $page );
+
+		$updater = $this->getDerivedPageDataUpdater( $page );
+		$updater->prepareUpdate( $rev );
+
+		// Force the page timestamp, so we notice whether ParserOutput::getTimestamp
+		// or ParserOutput::getCacheTime are used.
+		$page->setTimestamp( $rev->getTimestamp() );
+		$updater->doParserCacheUpdate();
+
+		// The cached ParserOutput should not use the revision timestamp
+		$cached = $pcache->get( $page, $updater->getCanonicalParserOptions(), true );
+		$this->assertInternalType( 'object', $cached );
+		$this->assertSame( $updater->getCanonicalParserOutput(), $cached );
+
+		$this->assertGreaterThan( $rev->getTimestamp(), $cached->getCacheTime() );
+		$this->assertSame( $rev->getId(), $cached->getCacheRevisionId() );
+	}
+
+	/**
+	 * @return bool
+	 */
 	private function hasMultiSlotSupport() {
 		global $wgMultiContentRevisionSchemaMigrationStage;
 
