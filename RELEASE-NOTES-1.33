@@ -75,7 +75,9 @@ production.
     exceptions will now include the "Wikimedia\Rdbms\" prefix in the class name.
   * The code including an exception class name is deprecated. In the future,
     all internal errors will use code "internal_api_error".
-* …
+* (T212356) When using action=delete on pages with many revisions, the module
+  may return a boolean-true 'scheduled' and no 'logid'. This signifies that the
+  deletion will be processed via the job queue.
 
 === Action API internal changes in 1.33 ===
 * A number of deprecated methods for API documentation, intended for overriding

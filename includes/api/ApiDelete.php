@@ -75,9 +75,10 @@ class ApiDelete extends ApiBase {
 			$status = self::delete( $pageObj, $user, $reason, $params['tags'] );
 		}
 
-		if ( !$status->isGood() ) {
+		if ( !$status->isOk() ) {
 			$this->dieStatus( $status );
 		}
+		$this->addMessagesFromStatus( $status, [ 'warning' ], [ 'delete-scheduled' ] );
 
 		// Deprecated parameters
 		if ( $params['watch'] ) {
@@ -92,8 +93,14 @@ class ApiDelete extends ApiBase {
 		$r = [
 			'title' => $titleObj->getPrefixedText(),
 			'reason' => $reason,
-			'logid' => $status->value
 		];
+		if ( $status->hasMessage( 'delete-scheduled' ) ) {
+			$r['scheduled'] = true;
+		}
+		if ( $status->value !== null ) {
+			// Scheduled deletions don't currently have a log entry available at this point
+			$r['logid'] = $status->value;
+		}
 		$this->getResult()->addValue( null, $this->getModuleName(), $r );
 	}
 

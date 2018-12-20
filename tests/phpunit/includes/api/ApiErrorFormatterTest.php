@@ -634,6 +634,40 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	public function testAddMessagesFromStatus_filter() {
+		$result = new ApiResult( 8388608 );
+		$formatter = new ApiErrorFormatter( $result, Language::factory( 'qqx' ), 'plaintext', false );
+
+		$status = Status::newGood();
+		$status->warning( 'mainpage' );
+		$status->warning( 'parentheses', 'foobar' );
+		$status->warning( wfMessage( 'mainpage' ) );
+		$status->error( 'mainpage' );
+		$status->error( 'parentheses', 'foobaz' );
+		$formatter->addMessagesFromStatus( 'status', $status, [ 'warning', 'error' ], [ 'mainpage' ] );
+		$this->assertSame( [
+			'errors' => [
+				[
+					'code' => 'parentheses',
+					'text' => '(parentheses: foobaz)',
+					'module' => 'status',
+					ApiResult::META_CONTENT => 'text',
+				],
+				ApiResult::META_INDEXED_TAG_NAME => 'error',
+			],
+			'warnings' => [
+				[
+					'code' => 'parentheses',
+					'text' => '(parentheses: foobar)',
+					'module' => 'status',
+					ApiResult::META_CONTENT => 'text',
+				],
+				ApiResult::META_INDEXED_TAG_NAME => 'warning',
+			],
+			ApiResult::META_TYPE => 'assoc',
+		], $result->getResultData() );
+	}
+
 	/**
 	 * @dataProvider provideIsValidApiCode
 	 * @covers ApiErrorFormatter::isValidApiCode
