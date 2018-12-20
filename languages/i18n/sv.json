@@ -1314,7 +1314,7 @@
 	"grant-delete": "Radera sidor, revideringar och loggposter",
 	"grant-editinterface": "Redigera JSON för MediaWiki-namnrymden och hela webbplatsen/användare",
 	"grant-editmycssjs": "Redigera din egen CSS/JSON/JavaScript",
-	"grant-editmyoptions": "Redigera dina användarinställningar",
+	"grant-editmyoptions": "Redigera dina användarinställningar och JSON-konfiguration",
 	"grant-editmywatchlist": "Redigera din bevakningslista",
 	"grant-editsiteconfig": "Redigera CSS/JS för hela webbplatsen och användare",
 	"grant-editpage": "Redigera befintliga sidor",

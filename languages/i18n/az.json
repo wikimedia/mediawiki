@@ -31,7 +31,8 @@
 			"Macofe",
 			"Archaeodontosaurus",
 			"Neriman2003",
-			"Fitoschido"
+			"Fitoschido",
+			"Toghrul Rahimli"
 		]
 	},
 	"tog-underline": "Keçidlərin altını xətlə:",
@@ -581,6 +582,7 @@
 	"editingsection": "Redaktə $1 (bölmə)",
 	"editingcomment": "Redaktə et $1 (yeni bölmə)",
 	"editconflict": "Eyni vaxtda redaktə: $1",
+	"explainconflict": "Siz məqaləni redaktə etməyə başlamazdan əvvəl başqa bir istifadəçi onu redaktə etmişdir. Yuxarıdakı mətn bölməsində hazırda mövcud olan səhifə mətni göstərilmişdir. Sizin düzəlişləriniz aşağıdakı mətn bölməsində göstərilmişdir. Siz dəyişiklikləri mövcud mətn ilə birləşdirməli olacaqsınız. \"$1\" düyməsini sıxdıqda <strong>yalnız</strong> yuxarıdakı mətn yayımlanacaq.",
 	"yourtext": "Mətniniz",
 	"storedversion": "Qeyd edilmiş versiya",
 	"editingold": "'''DİQQƏT! Siz bu səhifənin köhnə versiyasını redaktə edirsiniz. Məqaləni yaddaşda saxlayacağınız halda bu versiyadan sonra edilmiş hər bir dəyişiklik itiriləcək.'''",
@@ -787,11 +789,17 @@
 	"prefs-personal": "İstifadəçi profili",
 	"prefs-rc": "Son dəyişikliklər",
 	"prefs-watchlist": "İzləmə siyahısı",
+	"prefs-editwatchlist": "İzləmə siyahısını redaktə et",
+	"prefs-editwatchlist-label": "İzləmə siyahısındakıları redaktə et",
+	"prefs-editwatchlist-edit": "İzləmə siyahısındakı başlıqlara bax və ləğv et",
+	"prefs-editwatchlist-raw": "Mətn kimi redaktə et",
+	"prefs-editwatchlist-clear": "İzləmə siyahısını təmizlə",
 	"prefs-watchlist-days": "İzləmə siyahısında göstərilən maksimal günlərin sayı:",
 	"prefs-watchlist-days-max": "Maksimum $1 {{PLURAL:$1|gün|gün}}",
 	"prefs-watchlist-edits": "İzləmə siyahısında göstərilən maksimal redaktələrin sayı:",
 	"prefs-watchlist-edits-max": "Maksimum say: 1000",
 	"prefs-watchlist-token": "İzləmə siyahısı nişanı:",
+	"prefs-watchlist-managetokens": "Tokenləri idarə et",
 	"prefs-misc": "Digər seçimlər",
 	"prefs-resetpass": "Parolu dəyiş",
 	"prefs-changeemail": "E-poçtu dəyiş və ya sil",
@@ -873,6 +881,8 @@
 	"prefs-advancedwatchlist": "Ətraflı variantlar",
 	"prefs-displayrc": "Görüntü variantları",
 	"prefs-displaywatchlist": "Görüntü variantları",
+	"prefs-changesrc": "Dəyişikliklərin göstərişi",
+	"prefs-pageswatchlist": "İzlənilmiş səhifələr",
 	"prefs-diffs": "Fərqlər",
 	"userrights": "İstifadəçi haqları",
 	"userrights-lookup-user": "İstifadəçi seçimi",
@@ -1669,6 +1679,7 @@
 	"sp-contributions-username": "IP-ünvanı və ya istifadəçi adı:",
 	"sp-contributions-toponly": "Son redaktə olan dəyişiklikləri göstər",
 	"sp-contributions-newonly": "Yalnız yeni səhifə yaradılan dəyişiklikləri göstər",
+	"sp-contributions-hideminor": "Kiçik redaktələri gizlət",
 	"sp-contributions-submit": "Axtar",
 	"whatlinkshere": "Bu səhifəyə bağlantılar",
 	"whatlinkshere-title": "\"$1\" məqaləsinə keçid verən səhifələr",
@@ -2592,5 +2603,8 @@
 	"special-characters-group-thai": "Tay",
 	"special-characters-group-lao": "Lao",
 	"special-characters-group-khmer": "Khmer",
-	"mw-widgets-usersmultiselect-placeholder": "Əlavə et..."
+	"mw-widgets-dateinput-no-date": "Tarix seçilməyib",
+	"mw-widgets-usersmultiselect-placeholder": "Əlavə et...",
+	"date-range-from": "Tarixindən:",
+	"date-range-to": "Tarixədək:"
 }

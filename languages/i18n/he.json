@@ -1271,7 +1271,7 @@
 	"grant-delete": "מחיקת דפים, גרסאות ורשומות יומן",
 	"grant-editinterface": "עריכת מרחב השם מדיה ויקי וקובצי JSON של האתר כולו ושל משתמשים",
 	"grant-editmycssjs": "עריכת CSS/JSON/JavaScript שלך",
-	"grant-editmyoptions": "עריכת העדפות המשתמש שלך",
+	"grant-editmyoptions": "עריכת העדפות המשתמש ותצורת ה־JSON שלך",
 	"grant-editmywatchlist": "עריכת רשימת המעקב שלך",
 	"grant-editsiteconfig": "עריכת קובצי CSS/JS של האתר כולו ושל משתמשים",
 	"grant-editpage": "עריכת דפים קיימים",

@@ -1417,7 +1417,7 @@
 	"grant-delete": "Supprimer les pages, les révisions et les entrées du journal",
 	"grant-editinterface": "Modifier l’espace de noms MediaWiki et le JSON du site/utilisateur",
 	"grant-editmycssjs": "Modifier votre CSS/JSON/JavaScript utilisateur",
-	"grant-editmyoptions": "Modifier vos préférences utilisateur",
+	"grant-editmyoptions": "Modifier vos préférences utilisateur et votre configuration JSON",
 	"grant-editmywatchlist": "Modifier votre liste de suivi",
 	"grant-editsiteconfig": "Modifier les CSS/JS du site et ceux de l'utilisateur",
 	"grant-editpage": "Modifier des pages existantes",

@@ -1834,7 +1834,7 @@
 	"filedelete-reason-otherlist": "Іншая прычына",
 	"filedelete-reason-dropdown": "* Звычайныя прычыны выдаленьня\n** парушэньне аўтарскіх правоў\n** файл-дублікат",
 	"filedelete-edit-reasonlist": "Рэдагаваць прычыны выдаленьня",
-	"filedelete-maintenance": "Выдаленьне і аднаўленьне файлаў часова забароненае па прычыне падтрымкі.",
+	"filedelete-maintenance": "Выдаленьне і аднаўленьне файлаў часова забароненае праз тэхнічныя працы.",
 	"filedelete-maintenance-title": "Немагчыма выдаліць файл",
 	"mimesearch": "Пошук па MIME",
 	"mimesearch-summary": "Гэта старонка дазваляе адбор файлаў па іх MIME-тыпе.\nФармат уводу: тып_зьместу/падтып або тып_зьместу/*, напрыклад, <code>image/jpeg</code>.",

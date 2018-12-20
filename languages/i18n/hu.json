@@ -465,7 +465,7 @@
 	"userlogin-createanother": "Másik felhasználói fiók létrehozása",
 	"createacct-emailrequired": "E-mail-cím",
 	"createacct-emailoptional": "E-mail-cím (opcionális)",
-	"createacct-email-ph": "Add meg e-mail címed",
+	"createacct-email-ph": "Add meg e-mail-címed",
 	"createacct-another-email-ph": "Add meg az e-mail-címet",
 	"createaccountmail": "Átmeneti, véletlenszerű jelszó beállítása és kiküldése a megadott e-mail-címre",
 	"createaccountmail-help": "A jelszó megismerése nélkül készíthető valaki másnak fiók.",
