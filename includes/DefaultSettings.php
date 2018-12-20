@@ -4500,28 +4500,21 @@ $wgPasswordPolicy = [
 		'bureaucrat' => [
 			'MinimalPasswordLength' => 10,
 			'MinimumPasswordLengthToLogin' => 1,
-			'PasswordCannotMatchUsername' => true,
-			'PasswordCannotBePopular' => 25,
 			'PasswordNotInLargeBlacklist' => true,
 		],
 		'sysop' => [
 			'MinimalPasswordLength' => 10,
 			'MinimumPasswordLengthToLogin' => 1,
-			'PasswordCannotMatchUsername' => true,
-			'PasswordCannotBePopular' => 25,
 			'PasswordNotInLargeBlacklist' => true,
 		],
 		'interface-admin' => [
 			'MinimalPasswordLength' => 10,
 			'MinimumPasswordLengthToLogin' => 1,
-			'PasswordCannotMatchUsername' => true,
-			'PasswordCannotBePopular' => 25,
 			'PasswordNotInLargeBlacklist' => true,
 		],
 		'bot' => [
 			'MinimalPasswordLength' => 10,
 			'MinimumPasswordLengthToLogin' => 1,
-			'PasswordCannotMatchUsername' => true,
 			'PasswordNotInLargeBlacklist' => true,
 		],
 		'default' => [
@@ -4529,7 +4522,6 @@ $wgPasswordPolicy = [
 			'PasswordCannotMatchUsername' => true,
 			'PasswordCannotMatchBlacklist' => true,
 			'MaximalPasswordLength' => 4096,
-			'PasswordNotInLargeBlacklist' => false,
 		],
 	],
 	'checks' => [
