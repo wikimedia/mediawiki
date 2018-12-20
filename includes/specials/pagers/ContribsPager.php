@@ -87,10 +87,6 @@ class ContribsPager extends RangeChronologicalPager {
 		}
 		$this->getDateRangeCond( $startTimestamp, $endTimestamp );
 
-		// This property on IndexPager is set by $this->getIndexField() in parent::__construct().
-		// We need to reassign it here so that it is used when the actual query is ran.
-		$this->mIndexField = $this->getIndexField();
-
 		// Most of this code will use the 'contributions' group DB, which can map to replica DBs
 		// with extra user based indexes or partioning by user. The additional metadata
 		// queries should use a regular replica DB since the lookup pattern is not all by user.
@@ -212,6 +208,22 @@ class ContribsPager extends RangeChronologicalPager {
 			$ipRangeConds = $user->isAnon() ? $this->getIpRangeConds( $this->mDb, $this->target ) : null;
 			if ( $ipRangeConds ) {
 				$queryInfo['tables'][] = 'ip_changes';
+				/**
+				 * These aliases make `ORDER BY rev_timestamp, rev_id` from {@see getIndexField} and
+				 * {@see getExtraSortFields} use the replicated `ipc_rev_timestamp` and `ipc_rev_id`
+				 * columns from the `ip_changes` table, for more efficient queries.
+				 * @see https://phabricator.wikimedia.org/T200259#4832318
+				 */
+				$queryInfo['fields'] = array_merge(
+					[
+						'rev_timestamp' => 'ipc_rev_timestamp',
+						'rev_id' => 'ipc_rev_id',
+					],
+					array_diff( $queryInfo['fields'], [
+						'rev_timestamp',
+						'rev_id',
+					] )
+				);
 				$queryInfo['join_conds']['ip_changes'] = [
 					'LEFT JOIN', [ 'ipc_rev_id = rev_id' ]
 				];
@@ -350,17 +362,19 @@ class ContribsPager extends RangeChronologicalPager {
 	}
 
 	/**
-	 * Override of getIndexField() in IndexPager.
-	 * For IP ranges, it's faster to use the replicated ipc_rev_timestamp
-	 * on the `ip_changes` table than the rev_timestamp on the `revision` table.
-	 * @return string Name of field
+	 * @return string
 	 */
 	public function getIndexField() {
-		if ( $this->isQueryableRange( $this->target ) ) {
-			return 'ipc_rev_timestamp';
-		} else {
-			return 'rev_timestamp';
-		}
+		// Note this is run via parent::__construct() *before* $this->target is set!
+		return 'rev_timestamp';
+	}
+
+	/**
+	 * @return string[]
+	 */
+	protected function getExtraSortFields() {
+		// Note this is run via parent::__construct() *before* $this->target is set!
+		return [ 'rev_id' ];
 	}
 
 	function doBatchLookups() {
