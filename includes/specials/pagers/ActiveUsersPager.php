@@ -136,7 +136,7 @@ class ActiveUsersPager extends UsersPager {
 		];
 	}
 
-	function doBatchLookups() {
+	protected function doBatchLookups() {
 		parent::doBatchLookups();
 
 		$uids = [];

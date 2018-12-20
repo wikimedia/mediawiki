@@ -48,7 +48,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		parent::__construct( $form->getContext() );
 	}
 
-	function getStartBody() {
+	protected function getStartBody() {
 		# Do a link batch query
 		$this->mResult->seek( 0 );
 		$batch = new LinkBatch();

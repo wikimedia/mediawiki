@@ -365,7 +365,7 @@ class LogPager extends ReverseChronologicalPager {
 		return 'log_timestamp';
 	}
 
-	public function getStartBody() {
+	protected function getStartBody() {
 		# Do a link batch query
 		if ( $this->getNumRows() > 0 ) {
 			$lb = new LinkBatch;

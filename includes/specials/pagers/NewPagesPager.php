@@ -140,7 +140,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		return $this->mForm->formatRow( $row );
 	}
 
-	function getStartBody() {
+	protected function getStartBody() {
 		# Do a batch existence check on pages
 		$linkBatch = new LinkBatch();
 		foreach ( $this->mResult as $row ) {
@@ -153,7 +153,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		return '<ul>';
 	}
 
-	function getEndBody() {
+	protected function getEndBody() {
 		return '</ul>';
 	}
 }

@@ -492,7 +492,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		return $s;
 	}
 
-	function doBatchLookups() {
+	protected function doBatchLookups() {
 		if ( !Hooks::run( 'PageHistoryPager::doBatchLookups', [ $this, $this->mResult ] ) ) {
 			return;
 		}
@@ -523,7 +523,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 *
 	 * @return string HTML output
 	 */
-	function getStartBody() {
+	protected function getStartBody() {
 		$this->lastRow = false;
 		$this->counter = 1;
 		$this->oldIdChecked = 0;
@@ -585,7 +585,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		return $element;
 	}
 
-	function getEndBody() {
+	protected function getEndBody() {
 		if ( $this->lastRow ) {
 			$latest = $this->counter == 1 && $this->mIsFirst;
 			$firstInList = $this->counter == 1;

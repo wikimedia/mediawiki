@@ -363,7 +363,7 @@ class ContribsPager extends RangeChronologicalPager {
 		}
 	}
 
-	function doBatchLookups() {
+	protected function doBatchLookups() {
 		# Do a link batch query
 		$this->mResult->seek( 0 );
 		$parentRevIds = [];
@@ -399,14 +399,14 @@ class ContribsPager extends RangeChronologicalPager {
 	/**
 	 * @return string
 	 */
-	function getStartBody() {
+	protected function getStartBody() {
 		return "<ul class=\"mw-contributions-list\">\n";
 	}
 
 	/**
 	 * @return string
 	 */
-	function getEndBody() {
+	protected function getEndBody() {
 		return "</ul>\n";
 	}
 
