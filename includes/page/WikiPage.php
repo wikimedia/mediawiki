@@ -2147,6 +2147,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$this->loadPageData( 'fromdbmaster' );
+		$this->mTitle->loadRestrictions( null, Title::READ_LATEST );
 		$restrictionTypes = $this->mTitle->getRestrictionTypes();
 		$id = $this->getId();
 
