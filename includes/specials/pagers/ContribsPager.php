@@ -30,8 +30,6 @@ use Wikimedia\Rdbms\IDatabase;
 
 class ContribsPager extends RangeChronologicalPager {
 
-	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
-
 	/**
 	 * @var string[] Local cache for escaped messages
 	 */
@@ -89,7 +87,6 @@ class ContribsPager extends RangeChronologicalPager {
 	 */
 	private $hideMinor;
 
-	public $mDb;
 	public $preventClickjacking = false;
 
 	/** @var IDatabase */
