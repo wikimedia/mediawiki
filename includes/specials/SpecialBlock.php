@@ -882,6 +882,7 @@ class SpecialBlock extends FormSpecialPage {
 				}
 
 				$status = $currentBlock->update();
+				// TODO handle failure
 
 				$logaction = 'reblock';
 
@@ -894,6 +895,8 @@ class SpecialBlock extends FormSpecialPage {
 				if ( (bool)$currentBlock->mHideName ) {
 					$data['HideUser'] = true;
 				}
+
+				$block = $currentBlock;
 			}
 		} else {
 			$logaction = 'block';
@@ -938,9 +941,8 @@ class SpecialBlock extends FormSpecialPage {
 		$logEntry->setComment( $data['Reason'][0] );
 		$logEntry->setPerformer( $performer );
 		$logEntry->setParameters( $logParams );
-		# Relate log ID to block IDs (T27763)
-		$blockIds = array_merge( [ $status['id'] ], $status['autoIds'] );
-		$logEntry->setRelations( [ 'ipb_id' => $blockIds ] );
+		# Relate log ID to block ID (T27763)
+		$logEntry->setRelations( [ 'ipb_id' => $block->getId() ] );
 		$logId = $logEntry->insert();
 
 		if ( !empty( $data['Tags'] ) ) {
