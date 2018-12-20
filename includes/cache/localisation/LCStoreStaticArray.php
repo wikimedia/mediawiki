@@ -68,21 +68,21 @@ class LCStoreStaticArray implements LCStore {
 	 * Encodes a value into an array format
 	 *
 	 * @param mixed $value
-	 * @return array
+	 * @return array|mixed
 	 * @throws RuntimeException
 	 */
 	public static function encode( $value ) {
-		if ( is_scalar( $value ) || $value === null ) {
-			// [V]alue
-			return [ 'v', $value ];
+		if ( is_array( $value ) ) {
+			// [a]rray
+			return [ 'a', array_map( 'LCStoreStaticArray::encode', $value ) ];
 		}
 		if ( is_object( $value ) ) {
-			// [S]erialized
+			// [s]erialized
 			return [ 's', serialize( $value ) ];
 		}
-		if ( is_array( $value ) ) {
-			// [A]rray
-			return [ 'a', array_map( 'LCStoreStaticArray::encode', $value ) ];
+		if ( is_scalar( $value ) || $value === null ) {
+			// Scalar value, written directly without array
+			return $value;
 		}
 
 		throw new RuntimeException( 'Cannot encode ' . var_export( $value, true ) );
@@ -91,21 +91,28 @@ class LCStoreStaticArray implements LCStore {
 	/**
 	 * Decode something that was encoded with encode
 	 *
-	 * @param array $encoded
+	 * @param mixed $encoded
 	 * @return array|mixed
 	 * @throws RuntimeException
 	 */
-	public static function decode( array $encoded ) {
+	public static function decode( $encoded ) {
+		if ( !is_array( $encoded ) ) {
+			// Scalar values are written directly without array
+			return $encoded;
+		}
+
 		$type = $encoded[0];
 		$data = $encoded[1];
 
 		switch ( $type ) {
-			case 'v':
-				return $data;
-			case 's':
-				return unserialize( $data );
 			case 'a':
 				return array_map( 'LCStoreStaticArray::decode', $data );
+			case 's':
+				return unserialize( $data );
+			case 'v':
+				// Support: MediaWiki 1.32 and earlier
+				// Backward compatibility with older file format
+				return $data;
 			default:
 				throw new RuntimeException(
 					'Unable to decode ' . var_export( $encoded, true ) );
