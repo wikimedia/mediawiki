@@ -1333,7 +1333,7 @@
 	"grant-delete": "Seiten, Versionen und Logbucheinträge löschen",
 	"grant-editinterface": "Den MediaWiki-Namensraum und wikiweites/Benutzer-JSON bearbeiten",
 	"grant-editmycssjs": "Dein Benutzer-CSS/JSON/JavaScript bearbeiten",
-	"grant-editmyoptions": "Deine Benutzereinstellungen bearbeiten",
+	"grant-editmyoptions": "Deine Benutzereinstellungen und JSON-Konfiguration bearbeiten",
 	"grant-editmywatchlist": "Deine Beobachtungsliste bearbeiten",
 	"grant-editsiteconfig": "Wikiweites und Benutzer-CSS/JS bearbeiten",
 	"grant-editpage": "Vorhandene Seiten bearbeiten",

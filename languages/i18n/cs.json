@@ -1276,7 +1276,7 @@
 	"grant-delete": "Mazat stránky, revize a protokolovací záznamy",
 	"grant-editinterface": "Editovat jmenný prostor MediaWiki a celoprojektový/uživatelský JSON",
 	"grant-editmycssjs": "Editovat váš uživatelský CSS/JSON/JavaScript",
-	"grant-editmyoptions": "Změna vašich uživatelských nastavení",
+	"grant-editmyoptions": "Změna vašich uživatelských nastavení a konfigurace JSON",
 	"grant-editmywatchlist": "Upravovat váš seznam sledovaných stránek",
 	"grant-editsiteconfig": "Editovat celoprojektové a uživatelské CSS/JS",
 	"grant-editpage": "Editovat existující stránky",
