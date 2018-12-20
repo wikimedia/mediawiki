@@ -133,9 +133,10 @@ class ApiErrorFormatter {
 	 * @param string|null $modulePath
 	 * @param StatusValue $status
 	 * @param string[]|string $types 'warning' and/or 'error'
+	 * @param string[] $filter Messages to filter out (since 1.32)
 	 */
 	public function addMessagesFromStatus(
-		$modulePath, StatusValue $status, $types = [ 'warning', 'error' ]
+		$modulePath, StatusValue $status, $types = [ 'warning', 'error' ], array $filter = []
 	) {
 		if ( $status->isGood() || !$status->getErrors() ) {
 			return;
@@ -158,7 +159,9 @@ class ApiErrorFormatter {
 				->inLanguage( $this->lang )
 				->title( $this->getDummyTitle() )
 				->useDatabase( $this->useDB );
-			$this->addWarningOrError( $tag, $modulePath, $msg );
+			if ( !in_array( $msg->getKey(), $filter, true ) ) {
+				$this->addWarningOrError( $tag, $modulePath, $msg );
+			}
 		}
 	}
 
