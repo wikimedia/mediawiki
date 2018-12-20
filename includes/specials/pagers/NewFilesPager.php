@@ -40,7 +40,7 @@ class NewFilesPager extends RangeChronologicalPager {
 	 * @param IContextSource $context
 	 * @param FormOptions $opts
 	 */
-	function __construct( IContextSource $context, FormOptions $opts ) {
+	public function __construct( IContextSource $context, FormOptions $opts ) {
 		parent::__construct( $context );
 
 		$this->opts = $opts;

@@ -30,7 +30,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	/** @var array */
 	public $mConds;
 
-	function __construct( SpecialMergeHistory $form, $conds, Title $source, Title $dest ) {
+	public function __construct( SpecialMergeHistory $form, $conds, Title $source, Title $dest ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->title = $source;

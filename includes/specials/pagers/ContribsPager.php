@@ -50,7 +50,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 */
 	protected $templateParser;
 
-	function __construct( IContextSource $context, array $options ) {
+	public function __construct( IContextSource $context, array $options ) {
 		parent::__construct( $context );
 
 		$msgs = [
