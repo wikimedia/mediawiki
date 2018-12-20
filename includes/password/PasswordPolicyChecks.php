@@ -25,13 +25,20 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\PasswordBlacklist;
 
 /**
- * Functions to check passwords against a policy requirement
+ * Functions to check passwords against a policy requirement.
+ *
+ * $policyVal is the value configured in $wgPasswordPolicy. If the return status is fatal,
+ * the user won't be allowed to login. If the status is not good but not fatal, the user
+ * will not be allowed to set the given password (on registration or password change),
+ * but can still log in after bypassing a warning.
+ *
  * @since 1.26
+ * @see $wgPasswordPolicy
  */
 class PasswordPolicyChecks {
 
 	/**
-	 * Check password is longer than minimum, not fatal
+	 * Check password is longer than minimum, not fatal.
 	 * @param int $policyVal minimal length
 	 * @param User $user
 	 * @param string $password
@@ -46,7 +53,7 @@ class PasswordPolicyChecks {
 	}
 
 	/**
-	 * Check password is longer than minimum, fatal
+	 * Check password is longer than minimum, fatal.
 	 * @param int $policyVal minimal length
 	 * @param User $user
 	 * @param string $password
@@ -61,7 +68,8 @@ class PasswordPolicyChecks {
 	}
 
 	/**
-	 * Check password is shorter than maximum, fatal
+	 * Check password is shorter than maximum, fatal.
+	 * Intended for preventing DoS attacks when using a more expensive password hash like PBKDF2.
 	 * @param int $policyVal maximum length
 	 * @param User $user
 	 * @param string $password
@@ -76,7 +84,7 @@ class PasswordPolicyChecks {
 	}
 
 	/**
-	 * Check if username and password match
+	 * Check if username and password are a (case-insensitive) match.
 	 * @param bool $policyVal true to force compliance.
 	 * @param User $user
 	 * @param string $password
@@ -95,7 +103,7 @@ class PasswordPolicyChecks {
 	}
 
 	/**
-	 * Check if username and password are on a blacklist
+	 * Check if username and password are on a blacklist of past MediaWiki default passwords.
 	 * @param bool $policyVal true to force compliance.
 	 * @param User $user
 	 * @param string $password
@@ -126,7 +134,8 @@ class PasswordPolicyChecks {
 	}
 
 	/**
-	 * Ensure that password isn't in top X most popular passwords
+	 * Ensure that password isn't in top X most popular passwords, as defined by
+	 * $wgPopularPasswordFile.
 	 *
 	 * @param int $policyVal Cut off to use. Will automatically shrink to the max
 	 *   supported for error messages if set to more than max number of passwords on file,
@@ -135,6 +144,7 @@ class PasswordPolicyChecks {
 	 * @param string $password
 	 * @since 1.27
 	 * @return Status
+	 * @see $wgPopularPasswordFile
 	 */
 	public static function checkPopularPasswordBlacklist( $policyVal, User $user, $password ) {
 		global $wgPopularPasswordFile, $wgSitename;
@@ -173,7 +183,9 @@ class PasswordPolicyChecks {
 
 	/**
 	 * Ensure the password isn't in the list of passwords blacklisted by the
-	 * wikimedia/password-blacklist library
+	 * wikimedia/password-blacklist library, which contains (as of 0.1.4) the
+	 * 100.000 top passwords from SecLists (as a Bloom filter, with an
+	 * 0.000001 false positive ratio).
 	 *
 	 * @param bool $policyVal Whether to apply this policy
 	 * @param User $user

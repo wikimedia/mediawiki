@@ -392,6 +392,7 @@ class UserTest extends MediaWikiTestCase {
 				],
 			],
 		] );
+		$this->hideDeprecated( 'User::getPasswordValidity' );
 
 		$user = static::getTestUser()->getUser();
 
