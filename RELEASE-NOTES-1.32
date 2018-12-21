@@ -133,6 +133,8 @@ production.
 * Added a new hook, 'UserGetRightsRemove', which can be used to remove rights
   from user. Unlike the 'UserGetRights' it will ensure that removed rights
   will not be reinserted.
+* (T197535) Extensions can now specify PHP versions and PHP extensions they
+  depend on.
 
 === External library changes in 1.32 ===
 
