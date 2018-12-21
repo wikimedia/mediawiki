@@ -367,6 +367,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		$attribs = [
 			'alt' => $alt,
 			'src' => $this->url,
+			'decoding' => 'async',
 		];
 
 		if ( !empty( $options['custom-url-link'] ) ) {
