@@ -27,6 +27,7 @@ use DateTimeZone;
 use Wikimedia;
 use InvalidArgumentException;
 use Exception;
+use RuntimeException;
 use stdClass;
 
 /**
@@ -757,7 +758,11 @@ abstract class DatabaseMysqlBase extends Database {
 				// given that the isolation level will typically be REPEATABLE-READ
 				$this->queryLogger->warning(
 					"Using cached lag value for {db_server} due to active transaction",
-					$this->getLogContext( [ 'method' => __METHOD__, 'age' => $staleness ] )
+					$this->getLogContext( [
+						'method' => __METHOD__,
+						'age' => $staleness,
+						'trace' => ( new RuntimeException() )->getTraceAsString()
+					] )
 				);
 			}
 
