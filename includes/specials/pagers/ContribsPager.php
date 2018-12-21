@@ -30,11 +30,63 @@ use Wikimedia\Rdbms\IDatabase;
 
 class ContribsPager extends RangeChronologicalPager {
 
-	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
+	/**
+	 * @var string[] Local cache for escaped messages
+	 */
 	public $messages;
+
+	/**
+	 * @var string User name, or a string describing an IP address range
+	 */
 	public $target;
+
+	/**
+	 * @var string Set to "newbie" to list contributions from the most recent 1% registered users.
+	 *  $this->target is ignored then. Defaults to "users".
+	 */
+	private $contribs;
+
+	/**
+	 * @var string|int A single namespace number, or an empty string for all namespaces
+	 */
 	public $namespace = '';
-	public $mDb;
+
+	/**
+	 * @var string|false Name of tag to filter, or false to ignore tags
+	 */
+	private $tagFilter;
+
+	/**
+	 * @var bool Set to true to invert the namespace selection
+	 */
+	private $nsInvert;
+
+	/**
+	 * @var bool Set to true to show both the subject and talk namespace, no matter which got
+	 *  selected
+	 */
+	private $associated;
+
+	/**
+	 * @var bool Set to true to show only deleted revisions
+	 */
+	private $deletedOnly;
+
+	/**
+	 * @var bool Set to true to show only latest (a.k.a. current) revisions
+	 */
+	private $topOnly;
+
+	/**
+	 * @var bool Set to true to show only new pages
+	 */
+	private $newOnly;
+
+	/**
+	 * @var bool Set to true to hide edits marked as minor by the user
+	 */
+	private $hideMinor;
+
 	public $preventClickjacking = false;
 
 	/** @var IDatabase */
