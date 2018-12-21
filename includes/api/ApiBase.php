@@ -1961,9 +1961,14 @@ abstract class ApiBase extends ContextSource {
 	 * @since 1.29
 	 * @param StatusValue $status
 	 * @param string[] $types 'warning' and/or 'error'
+	 * @param string[] $filter Message keys to filter out (since 1.32)
 	 */
-	public function addMessagesFromStatus( StatusValue $status, $types = [ 'warning', 'error' ] ) {
-		$this->getErrorFormatter()->addMessagesFromStatus( $this->getModulePath(), $status, $types );
+	public function addMessagesFromStatus(
+		StatusValue $status, $types = [ 'warning', 'error' ], array $filter = []
+	) {
+		$this->getErrorFormatter()->addMessagesFromStatus(
+			$this->getModulePath(), $status, $types, $filter
+		);
 	}
 
 	/**

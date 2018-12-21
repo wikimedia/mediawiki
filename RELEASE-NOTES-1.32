@@ -10,6 +10,7 @@ production.
   has been started.
 * (T210998) Properly set $wgLanguageCode in the generated LocalSettings.php
   if --lang is used with the command-line installer (install.php).
+* Fix addition of ug_expiry column to user_groups table on MSSQL.
 
 === Configuration changes in 1.32 ===
 
@@ -239,6 +240,9 @@ production.
   reasons an action is not allowed.
 * Deprecated action=query&prop=info inprop=readable in favor of
   intestactions=read.
+* (T212356) When using action=delete on pages with many revisions, the module
+  may return a boolean-true 'scheduled' and no 'logid'. This signifies that the
+  deletion will be processed via the job queue.
 
 === Action API internal changes in 1.32 ===
 * Added 'ApiParseMakeOutputPage' hook.

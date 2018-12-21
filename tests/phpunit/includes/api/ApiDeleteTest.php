@@ -41,6 +41,35 @@ class ApiDeleteTest extends ApiTestCase {
 		$this->assertFalse( Title::newFromText( $name )->exists() );
 	}
 
+	public function testBatchedDelete() {
+		$this->setMwGlobals( 'wgDeleteRevisionsBatchSize', 1 );
+
+		$name = 'Help:' . ucfirst( __FUNCTION__ );
+		for ( $i = 1; $i <= 3; $i++ ) {
+			$this->editPage( $name, "Revision $i" );
+		}
+
+		$apiResult = $this->doApiRequestWithToken( [
+			'action' => 'delete',
+			'title' => $name,
+		] )[0];
+
+		$this->assertArrayHasKey( 'delete', $apiResult );
+		$this->assertArrayHasKey( 'title', $apiResult['delete'] );
+		$this->assertSame( $name, $apiResult['delete']['title'] );
+		$this->assertArrayHasKey( 'scheduled', $apiResult['delete'] );
+		$this->assertTrue( $apiResult['delete']['scheduled'] );
+		$this->assertArrayNotHasKey( 'logid', $apiResult['delete'] );
+
+		// Run the jobs
+		JobQueueGroup::destroySingletons();
+		$jobs = new RunJobs;
+		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
+		$jobs->execute();
+
+		$this->assertFalse( Title::newFromText( $name )->exists( Title::GAID_FOR_UPDATE ) );
+	}
+
 	public function testDeleteNonexistent() {
 		$this->setExpectedException( ApiUsageException::class,
 			"The page you specified doesn't exist." );
