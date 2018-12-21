@@ -1575,11 +1575,18 @@ class Linker {
 	 *
 	 * @since 1.16.3
 	 * @param string $toc Html of the Table Of Contents
-	 * @param string|Language|bool $lang Language for the toc title, defaults to user language
+	 * @param string|Language|bool|null $lang Language for the toc title, defaults to user language.
+	 *  The types string and bool are deprecated.
 	 * @return string Full html of the TOC
 	 */
-	public static function tocList( $toc, $lang = false ) {
-		$lang = wfGetLangObj( $lang );
+	public static function tocList( $toc, $lang = null ) {
+		global $wgLang;
+		$lang = $lang ?? $wgLang;
+		if ( !is_object( $lang ) ) {
+			wfDeprecated( __METHOD__ . ' with type other than Language for $lang', '1.33' );
+			$lang = wfGetLangObj( $lang );
+		}
+
 		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
 
 		return '<div id="toc" class="toc">'
@@ -1611,10 +1618,11 @@ class Linker {
 	 *
 	 * @since 1.16.3. $lang added in 1.17
 	 * @param array $tree Return value of ParserOutput::getSections()
-	 * @param string|Language|bool $lang Language for the toc title, defaults to user language
+	 * @param string|Language|bool|null $lang Language for the toc title, defaults to user language.
+	 *  The types string and bool are deprecated.
 	 * @return string HTML fragment
 	 */
-	public static function generateTOC( $tree, $lang = false ) {
+	public static function generateTOC( $tree, $lang = null ) {
 		$toc = '';
 		$lastLevel = 0;
 		foreach ( $tree as $section ) {
