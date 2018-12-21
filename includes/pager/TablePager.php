@@ -110,7 +110,7 @@ abstract class TablePager extends IndexPager {
 	 * @protected
 	 * @return string
 	 */
-	function getStartBody() {
+	protected function getStartBody() {
 		$sortClass = $this->getSortHeaderClass();
 
 		$s = '';
@@ -162,7 +162,7 @@ abstract class TablePager extends IndexPager {
 	 * @protected
 	 * @return string
 	 */
-	function getEndBody() {
+	protected function getEndBody() {
 		return "</tbody></table>\n";
 	}
 

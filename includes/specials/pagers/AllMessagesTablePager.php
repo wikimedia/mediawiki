@@ -276,7 +276,7 @@ class AllMessagesTablePager extends TablePager {
 		return $result;
 	}
 
-	function getStartBody() {
+	protected function getStartBody() {
 		$tableClass = $this->getTableClass();
 		return Xml::openElement( 'table', [
 			'class' => "mw-datatable $tableClass",
