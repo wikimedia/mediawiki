@@ -1,0 +1,14 @@
+{
+	"repositories": [{
+			"type": "composer",
+			"url": "https://packages.bluespice.com/"
+		}],
+	"require": {
+		"mediawiki/auth-remoteuser": "2.*",
+		"mediawiki/ldap-authentication-2": "dev-master",
+		"mediawiki/ldap-authorization": "dev-master",
+		"mediawiki/ldap-groups": "dev-master",
+		"mediawiki/ldap-provider": "dev-master",
+		"mediawiki/ldap-user-info": "dev-master"
+	}
+}
