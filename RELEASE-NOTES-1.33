@@ -191,6 +191,8 @@ because of Phabricator reports.
   domain ID as a key component and use makeGlobalKey().
 * (T202094) Title::getUserCaseDBKey() is deprecated; instead, please use
   Title::getDBKey(), which doesn't vary case.
+* User::getPasswordValidity() is now deprecated. User::checkPasswordValidity()
+  returns the same information in a more useful format.
 * …
 
 === Other changes in 1.33 ===

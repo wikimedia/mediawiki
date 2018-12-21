@@ -1144,8 +1144,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool
 	 */
 	public function isValidPassword( $password ) {
-		// simple boolean wrapper for getPasswordValidity
-		return $this->getPasswordValidity( $password ) === true;
+		// simple boolean wrapper for checkPasswordValidity
+		return $this->checkPasswordValidity( $password )->isGood();
 	}
 
 	/**
@@ -1153,8 +1153,11 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @param string $password Desired password
 	 * @return bool|string|array True on success, string or array of error message on failure
+	 * @deprecated since 1.33, use checkPasswordValidity
 	 */
 	public function getPasswordValidity( $password ) {
+		wfDeprecated( __METHOD__, '1.33' );
+
 		$result = $this->checkPasswordValidity( $password );
 		if ( $result->isGood() ) {
 			return true;
