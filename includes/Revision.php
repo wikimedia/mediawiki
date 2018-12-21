@@ -29,6 +29,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
@@ -589,6 +590,8 @@ class Revision implements IDBAccessObject {
 				'$row must be a row object, an associative array, or a RevisionRecord'
 			);
 		}
+
+		Assert::postcondition( $this->mRecord !== null, 'Failed to construct a RevisionRecord' );
 	}
 
 	/**
@@ -1180,9 +1183,7 @@ class Revision implements IDBAccessObject {
 		$rec = self::getRevisionStore()->insertRevisionOn( $this->mRecord, $dbw );
 
 		$this->mRecord = $rec;
-
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$revision = $this;
+		Assert::postcondition( $this->mRecord !== null, 'Failed to acquire a RevisionRecord' );
 
 		return $rec->getId();
 	}
