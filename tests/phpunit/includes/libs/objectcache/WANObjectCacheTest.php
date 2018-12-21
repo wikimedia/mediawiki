@@ -197,8 +197,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$priorAsOf = null;
 		$wasSet = 0;
 		$func = function ( $old, &$ttl, &$opts, $asOf )
-		use ( &$wasSet, &$priorValue, &$priorAsOf, $value )
-		{
+		use ( &$wasSet, &$priorValue, &$priorAsOf, $value ) {
 			++$wasSet;
 			$priorValue = $old;
 			$priorAsOf = $asOf;
@@ -351,7 +350,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( 'xxx1', $v, "Value still returned after expired (in grace)" );
 		$this->assertEquals( 1, $wasSet, "Value still returned after expired (in grace)" );
 
-		// Change of refresh increase to unity as staleness approaches graceTTL
+		// Chance of refresh increase to unity as staleness approaches graceTTL
 		$mockWallClock += $cache::TTL_WEEK; // 8 days of being stale
 		$v = $cache->getWithSetCallback(
 			$key,
@@ -363,6 +362,65 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( 2, $wasSet, "Value was recomputed (past grace)" );
 		$this->assertEquals( 'xxx1', $oldValReceived, "Callback got post-grace stale value" );
 		$this->assertNotEquals( null, $oldAsOfReceived, "Callback got post-grace stale value" );
+	}
+
+	/**
+	 * @dataProvider getWithSetCallback_provider
+	 * @covers WANObjectCache::getWithSetCallback()
+	 * @covers WANObjectCache::doGetWithSetCallback()
+	 * @param array $extOpts
+	 * @param bool $versioned
+	 */
+	function testGetWithSetcallback_touched( array $extOpts, $versioned ) {
+		$cache = $this->cache;
+
+		$mockWallClock = microtime( true );
+		$cache->setMockTime( $mockWallClock );
+
+		$checkFunc = function ( $oldVal, &$ttl, array $setOpts, $oldAsOf )
+		use ( &$wasSet ) {
+			++$wasSet;
+
+			return 'xxx' . $wasSet;
+		};
+
+		$key = wfRandomString();
+		$wasSet = 0;
+		$touched = null;
+		$touchedCallback = function () use ( &$touched ) {
+			return $touched;
+		};
+		$v = $cache->getWithSetCallback(
+			$key,
+			$cache::TTL_INDEFINITE,
+			$checkFunc,
+			[ 'touchedCallback' => $touchedCallback ] + $extOpts
+		);
+		$mockWallClock += 60;
+		$v = $cache->getWithSetCallback(
+			$key,
+			$cache::TTL_INDEFINITE,
+			$checkFunc,
+			[ 'touchedCallback' => $touchedCallback ] + $extOpts
+		);
+		$this->assertEquals( 'xxx1', $v, "Value was computed once" );
+		$this->assertEquals( 1, $wasSet, "Value was computed once" );
+
+		$touched = $mockWallClock - 10;
+		$v = $cache->getWithSetCallback(
+			$key,
+			$cache::TTL_INDEFINITE,
+			$checkFunc,
+			[ 'touchedCallback' => $touchedCallback ] + $extOpts
+		);
+		$v = $cache->getWithSetCallback(
+			$key,
+			$cache::TTL_INDEFINITE,
+			$checkFunc,
+			[ 'touchedCallback' => $touchedCallback ] + $extOpts
+		);
+		$this->assertEquals( 'xxx2', $v, "Value was recomputed once" );
+		$this->assertEquals( 2, $wasSet, "Value was recomputed once" );
 	}
 
 	public static function getWithSetCallback_provider() {

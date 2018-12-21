@@ -1082,9 +1082,19 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      expired for this specified time. This is useful if adaptiveTTL() is used on the old
 	 *      value's as-of time when it is verified as still being correct.
 	 *      Default: WANObjectCache::STALE_TTL_NONE
+	 *   - touchedCallback: A callback that takes the current value and returns a timestamp that
+	 *      indicates the last time a dynamic dependency changed. Null can be returned if there
+	 *      are no relevant dependency changes to check. This can be used to check against things
+	 *      like last-modified times of files or DB timestamp fields. This should generally not be
+	 *      used for small and easily queried values in a DB if the callback itself ends up doing
+	 *      a similarly expensive DB query to check a timestamp. Usages of this option makes the
+	 *      most sense for values that are moderately to highly expensive to regenerate and easy
+	 *      to query for dependency timestamps. The use of "pcTTL" reduces timestamp queries.
+	 *      Default: null.
 	 * @return mixed Value found or written to the key
 	 * @note Options added in 1.28: version, busyValue, hotTTR, ageNew, pcGroup, minAsOf
 	 * @note Options added in 1.31: staleTTL, graceTTL
+	 * @note Options added in 1.33: touchedCallback
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
 	final public function getWithSetCallback( $key, $ttl, $callback, array $opts = [] ) {
@@ -1183,6 +1193,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$ageNew = $opts['ageNew'] ?? self::AGE_NEW;
 		$minTime = $opts['minAsOf'] ?? self::MIN_TIMESTAMP_NONE;
 		$versioned = isset( $opts['version'] );
+		$touchedCallback = $opts['touchedCallback'] ?? null;
 
 		// Get a collection name to describe this class of key
 		$kClass = $this->determineKeyClass( $key );
@@ -1191,6 +1202,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$curTTL = null;
 		$cValue = $this->get( $key, $curTTL, $checkKeys, $asOf ); // current value
 		$value = $cValue; // return value
+
+		// Apply additional dynamic expiration logic if supplied
+		$curTTL = $this->applyTouchedCallback( $value, $asOf, $curTTL, $touchedCallback );
 
 		$preCallbackTime = $this->getCurrentTime();
 		// Determine if a cached value regeneration is needed or desired
@@ -1308,6 +1322,32 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$this->stats->increment( "wanobjectcache.$kClass.$miss.compute" );
 
 		return $value;
+	}
+
+	/**
+	 * @param mixed $value
+	 * @param float $asOf
+	 * @param float $curTTL
+	 * @param callable|null $callback
+	 * @return float
+	 */
+	protected function applyTouchedCallback( $value, $asOf, $curTTL, $callback ) {
+		if ( $callback === null ) {
+			return $curTTL;
+		}
+
+		if ( !is_callable( $callback ) ) {
+			throw new InvalidArgumentException( "Invalid expiration callback provided." );
+		}
+
+		if ( $value !== false ) {
+			$touched = $callback( $value );
+			if ( $touched !== null && $touched >= $asOf ) {
+				$curTTL = min( $curTTL, self::TINY_NEGATIVE, $asOf - $touched );
+			}
+		}
+
+		return $curTTL;
 	}
 
 	/**
