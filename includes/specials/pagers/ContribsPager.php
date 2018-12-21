@@ -33,12 +33,12 @@ class ContribsPager extends RangeChronologicalPager {
 	/**
 	 * @var string[] Local cache for escaped messages
 	 */
-	public $messages;
+	private $messages;
 
 	/**
 	 * @var string User name, or a string describing an IP address range
 	 */
-	public $target;
+	private $target;
 
 	/**
 	 * @var string Set to "newbie" to list contributions from the most recent 1% registered users.
@@ -49,7 +49,7 @@ class ContribsPager extends RangeChronologicalPager {
 	/**
 	 * @var string|int A single namespace number, or an empty string for all namespaces
 	 */
-	public $namespace = '';
+	private $namespace = '';
 
 	/**
 	 * @var string|false Name of tag to filter, or false to ignore tags
@@ -87,22 +87,22 @@ class ContribsPager extends RangeChronologicalPager {
 	 */
 	private $hideMinor;
 
-	public $preventClickjacking = false;
+	private $preventClickjacking = false;
 
 	/** @var IDatabase */
-	public $mDbSecondary;
+	private $mDbSecondary;
 
 	/**
 	 * @var array
 	 */
-	protected $mParentLens;
+	private $mParentLens;
 
 	/**
 	 * @var TemplateParser
 	 */
-	protected $templateParser;
+	private $templateParser;
 
-	function __construct( IContextSource $context, array $options ) {
+	public function __construct( IContextSource $context, array $options ) {
 		parent::__construct( $context );
 
 		$msgs = [
