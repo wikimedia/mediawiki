@@ -104,11 +104,11 @@ class ApiCSPReport extends ApiBase {
 			) ||
 			(
 				isset( $report['blocked-uri'] ) &&
-				isset( $falsePositives[$report['blocked-uri']] )
+				$this->matchUrlPattern( $report['blocked-uri'], $falsePositives )
 			) ||
 			(
 				isset( $report['source-file'] ) &&
-				isset( $falsePositives[$report['source-file']] )
+				$this->matchUrlPattern( $report['source-file'], $falsePositives )
 			)
 		) {
 			// False positive due to:
@@ -117,6 +117,39 @@ class ApiCSPReport extends ApiBase {
 			$flags[] = 'false-positive';
 		}
 		return $flags;
+	}
+
+	/**
+	 * @param string $url
+	 * @param string[] $patterns
+	 * @return bool
+	 */
+	private function matchUrlPattern( $url, array $patterns ) {
+		if ( isset( $patterns[ $url ] ) ) {
+			return true;
+		}
+
+		$bits = wfParseUrl( $url );
+		unset( $bits['user'], $bits['pass'], $bits['query'], $bits['fragment'] );
+		$bits['path'] = '';
+		$serverUrl = wfAssembleUrl( $bits );
+		if ( isset( $patterns[$serverUrl] ) ) {
+			// The origin of the url matches a pattern,
+			// e.g. "https://example.org" matches "https://example.org/foo/b?a#r"
+			return true;
+		}
+		foreach ( $patterns as $pattern => $val ) {
+			// We only use this pattern if it ends in a slash, this prevents
+			// "/foos" from matching "/foo", and "https://good.combo.bad" matching
+			// "https://good.com".
+			if ( substr( $pattern, -1 ) === '/' && strpos( $url, $pattern ) === 0 ) {
+				// The pattern starts with the same as the url
+				// e.g. "https://example.org/foo/" matches "https://example.org/foo/b?a#r"
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
