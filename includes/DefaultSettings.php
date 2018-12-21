@@ -4451,29 +4451,49 @@ $wgCentralIdLookupProviders = [
 $wgCentralIdLookupProvider = 'local';
 
 /**
- * Password policy for local wiki users. A user's effective policy
- * is the superset of all policy statements from the policies for the
- * groups where the user is a member. If more than one group policy
- * include the same policy statement, the value is the max() of the
- * values. Note true > false. The 'default' policy group is required,
- * and serves as the minimum policy for all users. New statements can
- * be added by appending to $wgPasswordPolicy['checks'].
- * Statements:
- *	- MinimalPasswordLength - minimum length a user can set
- *	- MinimumPasswordLengthToLogin - passwords shorter than this will
+ * Password policy for the wiki.
+ * Structured as
+ * [
+ *     'policies' => [ <group> => [ <policy> => <value>, ... ], ... ],
+ *     'checks' => [ <policy> => <callback>, ... ],
+ * ]
+ * where <group> is a user group, <policy> is a password policy name
+ * (arbitrary string) defined in the 'checks' part, <callback> is the
+ * PHP callable implementing the policy check, <value> is a number,
+ * boolean or null that gets passed to the callback.
+ *
+ * A user's effective policy is the superset of all policy statements
+ * from the policies for the groups where the user is a member. If more
+ * than one group policy include the same policy statement, the value is
+ * the max() of the values. Note true > false. The 'default' policy group
+ * is required, and serves as the minimum policy for all users.
+ *
+ * Callbacks receive three arguments: the policy value, the User object
+ * and the password; and must return a StatusValue. A non-good status
+ * means the password will not be accepted for new accounts, and existing
+ * accounts will be prompted for password change or barred from logging in
+ * (depending on whether the status is a fatal or merely error/warning).
+ *
+ * The checks supported by core are:
+ *	- MinimalPasswordLength - Minimum length a user can set.
+ *	- MinimumPasswordLengthToLogin - Passwords shorter than this will
  *		not be allowed to login, regardless if it is correct.
  *	- MaximalPasswordLength - maximum length password a user is allowed
  *		to attempt. Prevents DoS attacks with pbkdf2.
- *	- PasswordCannotMatchUsername - Password cannot match username to
+ *	- PasswordCannotMatchUsername - Password cannot match the username.
  *	- PasswordCannotMatchBlacklist - Username/password combination cannot
- *		match a specific, hardcoded blacklist.
+ *		match a blacklist of default passwords used by MediaWiki in the past.
  *	- PasswordCannotBePopular - Blacklist passwords which are known to be
  *		commonly chosen. Set to integer n to ban the top n passwords.
  *		If you want to ban all common passwords on file, use the
  *		PHP_INT_MAX constant.
  *	- PasswordNotInLargeBlacklist - Password not in best practices list of
- *		100,000 commonly used passwords.
+ *		100,000 commonly used passwords. Due to the size of the list this
+ *      is a probabilistic test.
+ *
  * @since 1.26
+ * @see PasswordPolicyChecks
+ * @see User::checkPasswordValidity()
  */
 $wgPasswordPolicy = [
 	'policies' => [
