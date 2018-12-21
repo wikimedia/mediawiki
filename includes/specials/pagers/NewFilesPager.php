@@ -168,7 +168,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		return 'img_timestamp';
 	}
 
-	function getStartBody() {
+	protected function getStartBody() {
 		if ( !$this->gallery ) {
 			// Note that null for mode is taken to mean use default.
 			$mode = $this->getRequest()->getVal( 'gallerymode', null );
@@ -183,7 +183,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		return '';
 	}
 
-	function getEndBody() {
+	protected function getEndBody() {
 		return $this->gallery->toHTML();
 	}
 

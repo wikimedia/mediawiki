@@ -422,7 +422,7 @@ class ImageListPager extends TablePager {
 		}
 	}
 
-	function doBatchLookups() {
+	protected function doBatchLookups() {
 		$userIds = [];
 		$this->mResult->seek( 0 );
 		foreach ( $this->mResult as $row ) {

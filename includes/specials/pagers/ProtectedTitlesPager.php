@@ -37,7 +37,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		parent::__construct( $form->getContext() );
 	}
 
-	function getStartBody() {
+	protected function getStartBody() {
 		# Do a link batch query
 		$this->mResult->seek( 0 );
 		$lb = new LinkBatch;

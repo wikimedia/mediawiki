@@ -139,11 +139,11 @@ class DeletedContribsPager extends IndexPager {
 		return 'ar_timestamp';
 	}
 
-	function getStartBody() {
+	protected function getStartBody() {
 		return "<ul>\n";
 	}
 
-	function getEndBody() {
+	protected function getEndBody() {
 		return "</ul>\n";
 	}
 

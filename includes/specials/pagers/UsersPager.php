@@ -225,7 +225,7 @@ class UsersPager extends AlphabeticPager {
 		return Html::rawElement( 'li', [], "{$item}{$edits}{$created}{$blocked}" );
 	}
 
-	function doBatchLookups() {
+	protected function doBatchLookups() {
 		$batch = new LinkBatch();
 		$userIds = [];
 		# Give some pointers to make user links
