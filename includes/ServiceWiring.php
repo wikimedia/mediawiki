@@ -419,7 +419,10 @@ return [
 	},
 
 	'RevisionRenderer' => function ( MediaWikiServices $services ) : RevisionRenderer {
-		return new RevisionRenderer( $services->getDBLoadBalancer() );
+		$renderer = new RevisionRenderer( $services->getDBLoadBalancer() );
+		$renderer->setLogger( LoggerFactory::getInstance( 'SaveParse' ) );
+
+		return $renderer;
 	},
 
 	'RevisionStore' => function ( MediaWikiServices $services ) : RevisionStore {
