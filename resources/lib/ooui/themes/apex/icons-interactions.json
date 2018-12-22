@@ -5,10 +5,6 @@
 		"add": {
 			"file": "../wikimediaui/images/icons/add.svg"
 		},
-		"advanced": {
-			"file": "../wikimediaui/images/icons/settings.svg",
-			"deprecated": "Renamed since v0.28.1, use 'settings' instead."
-		},
 		"browser": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/browser-ltr.svg",

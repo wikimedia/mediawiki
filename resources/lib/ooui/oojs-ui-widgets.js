@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.6
+ * OOUI v0.30.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-12-05T00:15:55Z
+ * Date: 2018-12-20T06:10:28Z
  */
 ( function ( OO ) {
 
@@ -674,6 +674,7 @@ OO.ui.mixin.LookupElement = function OoUiMixinLookupElement( config ) {
 	// Initialization
 	this.$input.attr( {
 		role: 'combobox',
+		'aria-expanded': 'false',
 		'aria-owns': this.lookupMenu.getElementId(),
 		'aria-autocomplete': 'list'
 	} );
@@ -1301,7 +1302,9 @@ OO.ui.PageLayout.prototype.setActive = function ( active ) {
  */
 OO.ui.StackLayout = function OoUiStackLayout( config ) {
 	// Configuration initialization
-	config = $.extend( { scrollable: true }, config );
+	// Make the layout scrollable in continuous mode, otherwise each
+	// panel is responsible for its own scrolling.
+	config = $.extend( { scrollable: !!( config && config.continuous ) }, config );
 
 	// Parent constructor
 	OO.ui.StackLayout.parent.call( this, config );
@@ -4488,6 +4491,9 @@ OO.ui.TagMultiselectWidget.prototype.setDisabled = function ( isDisabled ) {
 	OO.ui.TagMultiselectWidget.parent.prototype.setDisabled.call( this, isDisabled );
 
 	if ( this.hasInput && this.input ) {
+		if ( !isDisabled ) {
+			this.updateInputSize();
+		}
 		this.input.setDisabled( !!isDisabled && !this.isUnderLimit() );
 	}
 
@@ -4924,6 +4930,7 @@ OO.ui.TagMultiselectWidget.prototype.isValid = function () {
  * @cfg {OO.ui.InputWidget} [popupInput] An input widget inside the popup that will be
  *  focused when the popup is opened and will be used as replacement for the
  *  general input in the widget.
+ * @deprecated
  */
 OO.ui.PopupTagMultiselectWidget = function OoUiPopupTagMultiselectWidget( config ) {
 	var defaultInput,
@@ -4983,6 +4990,9 @@ OO.ui.PopupTagMultiselectWidget = function OoUiPopupTagMultiselectWidget( config
 	this.$element
 		.append( this.popup.$element )
 		.addClass( 'oo-ui-popupTagMultiselectWidget' );
+
+	// Deprecation warning
+	OO.ui.warnDeprecation( 'PopupTagMultiselectWidget: Deprecated widget. Use MenuTagMultiselectWidget instead. See T208821.' );
 };
 
 /* Initialization */
@@ -5171,11 +5181,11 @@ OO.ui.MenuTagMultiselectWidget.prototype.onInputChange = function () {
  * @param {OO.ui.OptionWidget} menuItem Chosen menu item
  */
 OO.ui.MenuTagMultiselectWidget.prototype.onMenuChoose = function ( menuItem ) {
-	// Add tag
-	this.addTag( menuItem.getData(), menuItem.getLabel() );
 	if ( this.hasInput && this.clearInputOnChoose ) {
 		this.input.setValue( '' );
 	}
+	// Add tag
+	this.addTag( menuItem.getData(), menuItem.getLabel() );
 };
 
 /**

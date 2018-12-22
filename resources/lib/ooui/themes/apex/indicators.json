@@ -15,7 +15,8 @@
 			"file": "../wikimediaui/images/indicators/required.svg"
 		},
 		"search": {
-			"file": "../wikimediaui/images/indicators/search.svg"
+			"file": "../wikimediaui/images/indicators/search.svg",
+			"deprecated": "This will be removed in v0.31.0."
 		}
 	}
 }

@@ -29,7 +29,7 @@
 		"guzzlehttp/promises": "1.3.1",
 		"guzzlehttp/psr7": "1.5.0",
 		"liuggio/statsd-php-client": "1.0.18",
-		"oojs/oojs-ui": "0.29.6",
+		"oojs/oojs-ui": "0.30.0",
 		"pear/mail": "1.4.1",
 		"pear/mail_mime": "1.10.2",
 		"pear/net_smtp": "1.8.0",
