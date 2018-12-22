@@ -11,6 +11,7 @@ production.
 * (T210998) Properly set $wgLanguageCode in the generated LocalSettings.php
   if --lang is used with the command-line installer (install.php).
 * Fix addition of ug_expiry column to user_groups table on MSSQL.
+* (T210307) Fix the cache timestamp for forced updates.
 
 === Configuration changes in 1.32 ===
 
