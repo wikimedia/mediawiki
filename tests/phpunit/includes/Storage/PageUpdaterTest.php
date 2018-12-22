@@ -22,6 +22,13 @@ use WikiPage;
  */
 class PageUpdaterTest extends MediaWikiTestCase {
 
+	public function setUp() {
+		parent::setUp();
+
+		$this->tablesUsed[] = 'logging';
+		$this->tablesUsed[] = 'recentchanges';
+	}
+
 	private function getDummyTitle( $method ) {
 		return Title::newFromText( $method, $this->getDefaultWikitextNS() );
 	}
