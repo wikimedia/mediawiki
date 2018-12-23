@@ -5892,6 +5892,8 @@ $wgGrantPermissions['delete']['deletelogentry'] = true;
 $wgGrantPermissions['delete']['deleterevision'] = true;
 $wgGrantPermissions['delete']['undelete'] = true;
 
+$wgGrantPermissions['oversight']['suppressrevision'] = true;
+
 $wgGrantPermissions['protect'] = $wgGrantPermissions['editprotected'];
 $wgGrantPermissions['protect']['protect'] = true;
 
@@ -5937,6 +5939,7 @@ $wgGrantPermissionGroups = [
 	'viewdeleted'         => 'administration',
 	'viewrestrictedlogs'  => 'administration',
 	'protect'             => 'administration',
+	'oversight'           => 'administration',
 	'createaccount'       => 'administration',
 
 	'highvolume'          => 'high-volume',
