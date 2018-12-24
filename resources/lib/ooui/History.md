@@ -1,4 +1,60 @@
 # OOUI Release History
+## v0.30.0 / 2018-12-19
+### Breaking changes
+* [BREAKING CHANGE] Make non-continuous StackLayouts non-scrollable (Ed Sanders)
+* [BREAKING CHANGE] icons: Drop 'advanced' icon, deprecated in v0.28.1 (Volker E.)
+
+### Features
+* DropdownInputWidget: Add `title` config option to handle (Volker E.)
+
+### Deprecations
+* [DEPRECATING CHANGE] Deprecate passing string IDs to infuse (Ed Sanders)
+* [DEPRECATING CHANGE] PopupTagMultiselectWidget: Deprecate widget (Volker E.)
+* [DEPRECATING CHANGE] indicators: Flag unused 'search' indicator as to be removed (Volker E.)
+
+### Styles
+* WikimediaUI theme: Make up for inner 'down' indicator distance (Volker E.)
+* Apex theme: Align functionality of ComboBoxInputWidget with WikimediaUI theme (Volker E.)
+* Apex theme: DropdownWidget align CSS code to WikimediaUI theme (Volker E.)
+* Apex theme: Unify distance on icon and label TextInputWidget (Volker E.)
+* Apex theme: Use variable for `text-shadow` and unify (Volker E.)
+* icons: Add 'robot' icon to 'content' pack (Volker E.)
+* icons: Add localized 'bold' and 'italic' for Urdu (Tulsi Bhagat)
+* build: Update 'wikimedia-ui-base' to latest (Volker E.)
+
+### Code
+* Avoid HTML parsing (Ed Sanders)
+* Avoid deprecated OO.ui.infuse( id ) (Ed Sanders)
+* Use `-webkit-overflow-scrolling: touch` for scrollable things (Bartosz Dziewoński)
+* ComboBoxInputWidget: Add 'label' and `aria-controls` attribute to button (Volker E.)
+* ComboBoxInputWidget: `aria-expanded` needs to be set from intialization (Volker E.)
+* DropDownWidget: Turn handle into `button` and add ARIA attribute (Volker E.)
+* LookupElement: `aria-expanded` needs to be set from intialization (Volker E.)
+* MenuTagMultiselectWidget: Clear input before adding tag (Thalia Chan)
+* TagMultiselectWidget: Resize input when enabling (Thalia Chan)
+* WindowManager: Move inline CSS to a class (Bartosz Dziewoński)
+* Hygiene: Don't put a space after mixin names when defining them (Bartosz Dziewoński)
+* i18n: Fix 'tooltip' in qqq descriptions (Volker E.)
+* build: Bump various devDependencies to latest (James D. Forrester)
+* build: Fix case of 'LESS' in comments (Volker E.)
+* tests: Unbreak unit tests (Bartosz Dziewoński)
+* demos: Add ARIA `role="main"` to PHP demo (Volker E.)
+* demos: Add labels to remaining DropdownWidgets (Volker E.)
+* demos: Don't showcase 'indicator' only buttons explicitly (Volker E.)
+* demos: Ensure color contrast on special, non-production summary example (Volker E.)
+* demos: Avoid implicit globals in infusion demo (Ed Sanders)
+* demos: Let buttons in PHP demo carry screen reader labels (Volker E.)
+* demos: Make the interface usable on mobile (Bartosz Dziewoński)
+* demos: Reorder icons and indicators (Volker E.)
+* demos: Use appropriate 'helpNotice' icon for location (Volker E.)
+* demos: Use system monospace font stack following Style Guide (Volker E.)
+* tutorials: Center box shadows (Ed Sanders)
+* tutorials: Replace $(document).ready with $(fn) (Ed Sanders)
+* tutorials: Select current page in dropdown (Ed Sanders)
+* tutorials: Use CSS transitions for scroller (Ed Sanders)
+* tutorials: Use system monospace font stack following Style Guide (Volker E.)
+
+
 ## v0.29.6 / 2018-12-04
 ### Styles
 * Match BookletLayout menu's width and animations to Dialog's (Bartosz Dziewoński)

@@ -22,10 +22,6 @@
 		"add": {
 			"file": "images/icons/add.svg"
 		},
-		"advanced": {
-			"file": "images/icons/settings.svg",
-			"deprecated": "Renamed since v0.28.1, use 'settings' instead."
-		},
 		"browser": {
 			"file": {
 				"ltr": "images/icons/browser-ltr.svg",
