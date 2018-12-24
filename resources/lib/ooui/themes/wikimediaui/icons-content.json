@@ -66,6 +66,9 @@
 				}
 			}
 		},
+		"robot": {
+			"file": "images/icons/robot.svg"
+		},
 		"tag": {
 			"file": {
 				"ltr": "images/icons/tag-ltr.svg",

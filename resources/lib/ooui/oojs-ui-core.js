@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.6
+ * OOUI v0.30.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-12-05T00:15:55Z
+ * Date: 2018-12-20T06:10:28Z
  */
 ( function ( OO ) {
 
@@ -377,6 +377,8 @@ OO.ui.infuse = function ( idOrNode, config ) {
 		'ooui-dialog-process-retry': 'Try again',
 		// Label for process dialog retry action button, visible when describing only warnings
 		'ooui-dialog-process-continue': 'Continue',
+		// Label for button in combobox input that triggers its dropdown
+		'ooui-combobox-button-label': 'Dropdown for combobox',
 		// Label for the file selection widget's select file button
 		'ooui-selectfile-button-select': 'Select a file',
 		// Label for the file selection widget if file selection is not supported
@@ -697,6 +699,13 @@ OO.ui.Element.static.tagName = 'div';
  */
 OO.ui.Element.static.infuse = function ( idOrNode, config ) {
 	var obj = OO.ui.Element.static.unsafeInfuse( idOrNode, config, false );
+
+	if ( typeof idOrNode === 'string' ) {
+		// IDs deprecated since 0.29.7
+		OO.ui.warnDeprecation(
+			'Passing a string ID to infuse is deprecated. Use an HTMLElement or jQuery collection instead.'
+		);
+	}
 	// Verify that the type matches up.
 	// FIXME: uncomment after T89721 is fixed, see T90929.
 	/*
@@ -1139,7 +1148,10 @@ OO.ui.Element.static.getScrollLeft = ( function () {
 	var rtlScrollType = null;
 
 	function test() {
-		var $definer = $( '<div dir="rtl" style="font-size: 14px; width: 1px; height: 1px; position: absolute; top: -1000px; overflow: scroll">A</div>' ),
+		var $definer = $( '<div>' ).attr( {
+				dir: 'rtl',
+				style: 'font-size: 14px; width: 1px; height: 1px; position: absolute; top: -1000px; overflow: scroll;'
+			} ).text( 'A' ),
 			definer = $definer[ 0 ];
 
 		$definer.appendTo( 'body' );
@@ -4148,7 +4160,7 @@ OO.ui.IndicatorWidget.static.tagName = 'span';
  *         label: 'plaintext label'
  *     } );
  *     var label2 = new OO.ui.LabelWidget( {
- *         label: $( '<a href="default.html">jQuery label</a>' )
+ *         label: $( '<a>' ).attr( 'href', 'default.html' ).text( 'jQuery label' )
  *     } );
  *     // Create a fieldset layout with fields for each example
  *     var fieldset = new OO.ui.FieldsetLayout();
@@ -7971,7 +7983,7 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	OO.ui.DropdownWidget.parent.call( this, config );
 
 	// Properties (must be set before TabIndexedElement constructor call)
-	this.$handle = $( '<span>' );
+	this.$handle = $( '<button>' );
 	this.$overlay = ( config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
 
 	// Mixin constructors
@@ -8004,9 +8016,8 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	this.$handle
 		.addClass( 'oo-ui-dropdownWidget-handle' )
 		.attr( {
-			role: 'combobox',
 			'aria-owns': this.menu.getElementId(),
-			'aria-autocomplete': 'list'
+			'aria-haspopup': 'listbox'
 		} )
 		.append( this.$icon, this.$label, this.$indicator );
 	this.$element
@@ -9469,6 +9480,7 @@ OO.ui.CheckboxInputWidget.prototype.restorePreInfuseState = function ( state ) {
  *
  * @class
  * @extends OO.ui.InputWidget
+ * @mixins OO.ui.mixin.TitledElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -9494,6 +9506,9 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 	// Use this instead of setOptions() because this.$input is not set up yet.
 	this.setOptionsData( config.options || [] );
 
+	// Mixin constructors
+	OO.ui.mixin.TitledElement.call( this, $.extend( {}, config, { $titled: this.dropdownWidget.$handle } ) );
+
 	// Parent constructor
 	OO.ui.DropdownInputWidget.parent.call( this, config );
 
@@ -9510,6 +9525,7 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.DropdownInputWidget, OO.ui.InputWidget );
+OO.mixinClass( OO.ui.DropdownInputWidget, OO.ui.mixin.TitledElement );
 
 /* Methods */
 
@@ -11357,7 +11373,9 @@ OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 	this.$overlay = ( config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
 	this.dropdownButton = new OO.ui.ButtonWidget( {
 		classes: [ 'oo-ui-comboBoxInputWidget-dropdownButton' ],
+		label: OO.ui.msg( 'ooui-combobox-button-label' ),
 		indicator: 'down',
+		invisibleLabel: true,
 		disabled: this.disabled
 	} );
 	this.menu = new OO.ui.MenuSelectWidget( $.extend(
@@ -11388,8 +11406,12 @@ OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 	// Initialization
 	this.$input.attr( {
 		role: 'combobox',
+		'aria-expanded': 'false',
 		'aria-owns': this.menu.getElementId(),
 		'aria-autocomplete': 'list'
+	} );
+	this.dropdownButton.$button.attr( {
+		'aria-controls': this.menu.getElementId()
 	} );
 	// Do not override options set via config.menu.items
 	if ( config.options !== undefined ) {

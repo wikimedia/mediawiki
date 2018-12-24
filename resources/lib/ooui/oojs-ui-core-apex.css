@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.29.6
+ * OOUI v0.30.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-12-05T00:16:02Z
+ * Date: 2018-12-20T06:10:36Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -258,6 +258,7 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   min-height: 3.125em;
+  -webkit-overflow-scrolling: touch;
 }
 
 .oo-ui-floatableElement {
@@ -573,6 +574,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-panelLayout-scrollable {
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .oo-ui-panelLayout-expanded {
   position: absolute;
@@ -1227,9 +1229,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget.oo-ui-widget-disabled input,
 .oo-ui-textInputWidget.oo-ui-widget-disabled textarea {
   color: #ccc;
-  text-shadow: 0 1px 1px #fff;
   border-color: #ddd;
   background-color: #f3f3f3;
+  text-shadow: 0 1px 1px #fff;
 }
 .oo-ui-textInputWidget.oo-ui-widget-disabled > .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget.oo-ui-widget-disabled > .oo-ui-indicatorElement-indicator {
@@ -1252,7 +1254,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-textInputWidget.oo-ui-iconElement > .oo-ui-iconElement-icon {
   max-height: 2.5em;
-  margin-left: 0.45625em;
+  margin-left: 0.5em;
 }
 .oo-ui-textInputWidget.oo-ui-indicatorElement input,
 .oo-ui-textInputWidget.oo-ui-indicatorElement textarea {
@@ -1331,25 +1333,32 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   vertical-align: middle;
   width: 100%;
   max-width: 50em;
-  background-color: #fff;
   margin-right: 0.5em;
 }
 .oo-ui-dropdownWidget-handle {
   position: relative;
   width: 100%;
   display: block;
-  white-space: nowrap;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
   overflow: hidden;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: left;
   text-overflow: ellipsis;
+  white-space: nowrap;
   cursor: default;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+}
+.oo-ui-dropdownWidget-handle::-moz-focus-inner {
+  border-color: transparent;
+  padding: 0;
 }
 .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
   cursor: pointer;
@@ -1361,9 +1370,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   height: 2.5em;
   border: 1px solid #ccc;
   border-radius: 3px;
-}
-.oo-ui-dropdownWidget-handle:hover {
-  border-color: #aaa;
 }
 .oo-ui-dropdownWidget-handle:focus {
   outline: 0;
@@ -1386,15 +1392,21 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   right: 0;
   margin: 0 0.775em;
 }
+.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
+  background-color: #fff;
+}
+.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle:hover {
+  border-color: #aaa;
+}
 .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle:focus {
   border-color: #ace;
   box-shadow: 0 0 2px 2px #ace;
 }
 .oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle {
-  color: #ccc;
-  text-shadow: 0 1px 1px #fff;
-  border-color: #ddd;
   background-color: #f3f3f3;
+  color: #ccc;
+  border-color: #ddd;
+  text-shadow: 0 1px 1px #fff;
 }
 .oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle .oo-ui-indicatorElement-indicator {
   opacity: 0.2;
@@ -1457,14 +1469,14 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   position: absolute;
   top: 0;
   right: 0;
-  visibility: hidden;
 }
-.oo-ui-comboBoxInputWidget-dropdownButton .oo-ui-buttonElement-button {
-  padding: 0;
-}
-.oo-ui-comboBoxInputWidget-dropdownButton .oo-ui-buttonElement-button .oo-ui-indicatorElement-indicator.oo-ui-indicator-down {
-  visibility: visible;
-  margin: 0.775em;
+.oo-ui-comboBoxInputWidget-dropdownButton .oo-ui-buttonElement-button,
+.oo-ui-comboBoxInputWidget-dropdownButton .oo-ui-buttonElement-button:hover:not( :focus ),
+.oo-ui-buttonElement-pressed.oo-ui-comboBoxInputWidget-dropdownButton .oo-ui-buttonElement-button,
+.oo-ui-buttonElement-pressed.oo-ui-comboBoxInputWidget-dropdownButton .oo-ui-buttonElement-button:focus:active {
+  border-color: transparent;
+  background: none;
+  box-shadow: none;
 }
 .oo-ui-comboBoxInputWidget-php .oo-ui-indicatorWidget {
   right: 0;
