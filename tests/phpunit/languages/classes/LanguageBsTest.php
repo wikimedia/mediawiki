@@ -6,7 +6,7 @@
  */
 
 /**
- * Tests for Croatian (hrvatski)
+ * Tests for Bosnian (bosanski)
  *
  * @covers LanguageBs
  */
