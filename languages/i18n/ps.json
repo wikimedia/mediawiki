@@ -1199,6 +1199,7 @@
 	"rcfilters-activefilters": "فعال فيلټرونه",
 	"rcfilters-activefilters-hide": "پټول",
 	"rcfilters-activefilters-show": "ښکاره کول",
+	"rcfilters-activefilters-hide-tooltip": "د فعال فلټر ساحه پټه کړئ",
 	"rcfilters-advancedfilters": "پرمختللي فلټرونه",
 	"rcfilters-limit-title": "د ښودلو لپاره بدلونونه",
 	"rcfilters-limit-and-date-label": "{{PLURAL:$1|بدلونونه|$1 بدلونونه}}، $2",

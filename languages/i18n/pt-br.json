@@ -1366,7 +1366,7 @@
 	"grant-delete": "Excluir páginas, revisões e entradas de registro",
 	"grant-editinterface": "Editar o espaço nominal/domínio MediaWiki e o JSON dos usuários ou global do ''site''",
 	"grant-editmycssjs": "Editar o seu CSS/JSON/JavaScript personalizado",
-	"grant-editmyoptions": "Editar suas preferências de usuário",
+	"grant-editmyoptions": "Editar as suas preferências de usuário e a sua configuração JSON",
 	"grant-editmywatchlist": "Editar sua lista de páginas vigiadas",
 	"grant-editsiteconfig": "Editar o CSS e JS dos usuários ou global do ''site''",
 	"grant-editpage": "Editar páginas existentes",
