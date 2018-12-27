@@ -93,7 +93,8 @@
 			"Goefie",
 			"AHmed Khaled",
 			"Jeroen N",
-			"Bdijkstra"
+			"Bdijkstra",
+			"KlaasZ4usV"
 		]
 	},
 	"tog-underline": "Verwijzingen onderstrepen:",
@@ -542,7 +543,7 @@
 	"passwordtooshort": "Wachtwoorden moeten uit minstens {{PLURAL:$1|$1 teken|$1 tekens}} bestaan.",
 	"passwordtoolong": "Wachtwoorden kunnen niet langer zijn dan {{PLURAL:$1|één teken|$1 tekens}}.",
 	"passwordtoopopular": "Veel gekozen wachtwoorden kunnen niet worden gebruikt. Kies een wachtwoord dat lastiger kan worden geraden.",
-	"passwordinlargeblacklist": "Het ingevoerde wachtwoord bevind zich in een lijst met veelvoorkomende wachtwoorden. Kies een wachtwoord dat unieker is.",
+	"passwordinlargeblacklist": "Het ingevoerde wachtwoord bevindt zich in een lijst met gangbare wachtwoorden. Kies een origineler en derhalve veiliger wachtwoord.",
 	"password-name-match": "Uw wachtwoord en uw gebruikersnaam mogen niet overeenkomen.",
 	"password-login-forbidden": "Het gebruik van deze gebruikersnaam met dit wachtwoord is niet toegestaan.",
 	"mailmypassword": "Nieuw wachtwoord e-mailen",
@@ -1323,7 +1324,7 @@
 	"grant-delete": "Pagina's, wijzigingen en logboekregels verwijderen",
 	"grant-editinterface": "De MediaWiki-naamruimte en JSON van de wiki en gebruikers bewerken",
 	"grant-editmycssjs": "Eigen CSS, JSON en JavaScript bewerken",
-	"grant-editmyoptions": "Eigen voorkeuren instellen",
+	"grant-editmyoptions": "Eigen gebruikersvoorkeuren en JSON-configuratie bewerken",
 	"grant-editmywatchlist": "Eigen volglijst bewerken",
 	"grant-editsiteconfig": "CSS/JS van de wiki en gebruikers bewerken",
 	"grant-editpage": "Bestaande pagina's bewerken",

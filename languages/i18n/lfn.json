@@ -13,7 +13,8 @@
 			"Fitoschido",
 			"Robin van der Vliet",
 			"Mafcadio",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Sulini de lias:",
@@ -1155,8 +1156,10 @@
 	"right-editcontentmodel": "Edita la model de contenida de un paje",
 	"right-editinterface": "Edita la interfas de usor",
 	"right-editusercss": "Edita la fixes CSS de otra usores",
+	"right-edituserjson": "Edita la fixes JSON de otra usores",
 	"right-edituserjs": "Edita la fixes JavaScript de otra usores",
 	"right-editmyusercss": "Edita tua propre fixes de CSS personal",
+	"right-editmyuserjson": "Edita tua propre fixes de JSON personal",
 	"right-editmyuserjs": "Edita tua propre fixes de JavaScript personal",
 	"right-viewmywatchlist": "Regarda tua propre lista monitorida",
 	"right-editmywatchlist": "Edita tua propre lista monitorida. Nota ce alga atas va ajunta pajes an sin esta direto.",

@@ -1336,7 +1336,7 @@
 	"grant-delete": "Cancella pagine, versioni, e voci di registro",
 	"grant-editinterface": "Modifica il namespace MediaWiki e i JSON del sito/utenti",
 	"grant-editmycssjs": "Modifica i CSS/JSON/JavaScript della tua utenza",
-	"grant-editmyoptions": "Modifica le preferenze della tua utenza",
+	"grant-editmyoptions": "Modifica le preferenze della tua utenza e la configurazione JSON",
 	"grant-editmywatchlist": "Modifica i tuoi osservati speciali",
 	"grant-editsiteconfig": "Modifica i CSS/JS di utenti e sito",
 	"grant-editpage": "Modifica pagine esistenti",

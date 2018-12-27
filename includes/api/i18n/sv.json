@@ -557,5 +557,7 @@
 	"apierror-systemblocked": "Du har blockerats automatiskt av MediaWiki.",
 	"apierror-timeout": "Servern svarade inte inom förväntad tid.",
 	"apierror-unknownformat": "Okänt format \"$1\".",
+	"apiwarn-compare-no-next": "Sidversion $2 är den senaste sidversionen av $1, det finns ingen sidversion för <kbd>torelative=next</kbd> att jämföra med.",
+	"apiwarn-compare-no-prev": "Sidversionen $2 är den tidigaste sidversion för $1, det finns ingen sidversion för <kbd>torelative=prev</kbd> att jämföra med.",
 	"api-feed-error-title": "Fel ($1)"
 }

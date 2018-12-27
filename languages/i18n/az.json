@@ -2003,7 +2003,7 @@
 	"pageinfo-robot-noindex": "İcazə verilmədi",
 	"pageinfo-watchers": "Səhifəni izləmə siyahısında saxlayanların sayı",
 	"pageinfo-visiting-watchers": "Səhifəni izləmədə saxlayanlardan son dəyişiklikləri görənlərin sayı",
-	"pageinfo-few-watchers": "$1 {{PLURAL:$1|izləyicidən|izləyicilərdən}} az",
+	"pageinfo-few-watchers": "$1 {{PLURAL:$1|izləyicidən}} az",
 	"pageinfo-redirects-name": "Bu səhifəyə yönləndirmələrin sayı",
 	"pageinfo-subpages-name": "Bu səhifənin alt-səhifələrinin sayı",
 	"pageinfo-firstuser": "Səhifəni yaradan",

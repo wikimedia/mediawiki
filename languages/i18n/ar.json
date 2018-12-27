@@ -1310,7 +1310,7 @@
 	"grant-delete": "حذف الصفحات والمراجعات ومدخلات السجلات",
 	"grant-editinterface": "تعديل نطاق ميدياويكي وجسون على مستوى الموقع/المستخدم",
 	"grant-editmycssjs": "تعديل CSS/جافا سكريت/جسون الخاصة بحسابك",
-	"grant-editmyoptions": "تعديل تفضيلاتك",
+	"grant-editmyoptions": "تعديل تفضيلاتك وإعدادات الJSON الخاصة بك",
 	"grant-editmywatchlist": "تعديل قائمة مراقبتك",
 	"grant-editsiteconfig": "عدل CSS/JS على مستوى الموقع والمستخدم",
 	"grant-editpage": "تعديل صفحات موجودة",

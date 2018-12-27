@@ -18,7 +18,8 @@
 			"Robin0van0der0vliet",
 			"Macofe",
 			"Matma Rex",
-			"Robin van der Vliet"
+			"Robin van der Vliet",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Links óngersjtriepe",
@@ -1166,7 +1167,7 @@
 	"right-ipblock-exempt": "IP-blokkades omzeile",
 	"right-unblockself": "Óntblok eige gebroeker",
 	"right-protect": "Beveiligingsniveaus aanpasse",
-	"right-editprotected": "Beveiligde pazjena's bewirke",
+	"right-editprotected": "Bewirk pagina's die zint beveilig es \"{{int:protect-level-sysop}}\"",
 	"right-editsemiprotected": "Bewirk pagina's die zint beveilig es \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "Bewirk 't pagina-inhawdmodel",
 	"right-editinterface": "De gebroekersinterface bewerke",

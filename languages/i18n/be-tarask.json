@@ -1250,7 +1250,7 @@
 	"grant-delete": "Выдаленьне старонак, вэрсіяў і запісаў журналаў",
 	"grant-editinterface": "Рэдагаваньне прасторы назваў MediaWiki і JSON сайту/удзельнікаў",
 	"grant-editmycssjs": "Рэдагаваньне вашага CSS/JSON/JavaScript",
-	"grant-editmyoptions": "Рэдагаваньне вашых наладаў удзельніка",
+	"grant-editmyoptions": "Рэдагаваньне вашых наладаў удзельніка і JSON-канфігурацыі",
 	"grant-editmywatchlist": "Рэдагаваньне вашага сьпісу назіраньня",
 	"grant-editsiteconfig": "Рэдагаваньне агульнасайтавага і карыстальніцкага CSS/JS",
 	"grant-editpage": "Рэдагаваньне існых старонак",

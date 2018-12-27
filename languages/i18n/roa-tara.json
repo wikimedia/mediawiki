@@ -1225,7 +1225,7 @@
 	"grant-delete": "Scangille pàggene, revisiune e vôsce de l'archivije",
 	"grant-editinterface": "Cange 'u namespace MediaUicchi e le JSON d'u site/utinde",
 	"grant-editmycssjs": "Cange le CSS/JSON/JavaScript tune",
-	"grant-editmyoptions": "Cange le preferenze tune",
+	"grant-editmyoptions": "Cange le preferenze tune e 'a configurazione d'u JSON",
 	"grant-editmywatchlist": "Cange le pàggene condrollate tune",
 	"grant-editpage": "Cange le pàggene esistende",
 	"grant-editprotected": "Cange le pàggene prutette",

@@ -2063,6 +2063,7 @@
 	"limitreport-ppvisitednodes": "Quanto di nodi vizitita dal preprocesoro",
 	"limitreport-ppgeneratednodes": "Quanto di nodi kreita dal preprocesoro",
 	"limitreport-postexpandincludesize": "Grandeso dil inkluzo pos expanso",
+	"limitreport-templateargumentsize": "Grandeso dil argumento dil shablono",
 	"limitreport-templateargumentsize-value": "$1/$2 {{PLURAL:$2|bicoko*|bicoki*}}",
 	"limitreport-expansiondepth": "Maxima profundeso di expanso",
 	"limitreport-expensivefunctioncount": "Kontado di funcioni kustoza di analizo sintaxala",

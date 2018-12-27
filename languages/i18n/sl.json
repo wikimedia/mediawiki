@@ -1253,7 +1253,7 @@
 	"grant-delete": "Brisanje strani, redakcij in dnevniških vnosov",
 	"grant-editinterface": "Urejanje imenskega prostora MediaWiki in JSON spletišča/uporabnika",
 	"grant-editmycssjs": "Urejanje svojega uporabniškega CSS/JSON/JavaScripta",
-	"grant-editmyoptions": "Urejanje svojih uporabniških nastavitev",
+	"grant-editmyoptions": "Urejanje svojih uporabniških nastavitev in konfiguracije JSON",
 	"grant-editmywatchlist": "Urejanje svojega spiska nadzorov",
 	"grant-editsiteconfig": "Urejanje CSS/JS spletišča in uporabnika",
 	"grant-editpage": "Urejanje obstoječih strani",
