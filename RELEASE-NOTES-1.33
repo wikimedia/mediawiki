@@ -195,6 +195,9 @@ because of Phabricator reports.
   returns the same information in a more useful format.
 * For Linker::generateTOC() and Linker::tocList(), passing strings or booleans
   as the $lang parameter was deprecated. The same applies to DummyLinker.
+* The PasswordPolicy 'PasswordCannotBePopular' has been deprecated. To
+  follow best practices, it is reccommended to use 'PasswordNotInLargeBlacklist'
+  instead which blacklists 100,000 commonly used passwords.
 * …
 
 === Other changes in 1.33 ===
