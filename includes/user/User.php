@@ -2465,8 +2465,14 @@ class User implements IDBAccessObject, UserIdentity {
 					$this->mActorId = (int)$dbw->insertId();
 				} else {
 					// Outdated cache?
-					list( , $options ) = DBAccessObjectUtils::getDBOptions( $this->queryFlagsUsed );
-					$this->mActorId = (int)$dbw->selectField( 'actor', 'actor_id', $q, __METHOD__, $options );
+					// Use LOCK IN SHARE MODE to bypass any MySQL REPEATABLE-READ snapshot.
+					$this->mActorId = (int)$dbw->selectField(
+						'actor',
+						'actor_id',
+						$q,
+						__METHOD__,
+						[ 'LOCK IN SHARE MODE' ]
+					);
 					if ( !$this->mActorId ) {
 						throw new CannotCreateActorException(
 							"Cannot create actor ID for user_id={$this->getId()} user_name={$this->getName()}"
