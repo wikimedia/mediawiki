@@ -10,26 +10,14 @@
 			$( 'input[autofocus]' ).eq( 0 ).focus();
 		}
 
-		// Create check all/none button
+		// Attach handler for check all/none buttons
 		$checkboxes = $( '#powersearch input[id^=mw-search-ns]' );
-		$( '#mw-search-togglebox' ).append(
-			$( '<label>' )
-				.text( mw.msg( 'powersearch-togglelabel' ) )
-		).append(
-			$( '<input>' ).attr( 'type', 'button' )
-				.attr( 'id', 'mw-search-toggleall' )
-				.prop( 'value', mw.msg( 'powersearch-toggleall' ) )
-				.click( function () {
-					$checkboxes.prop( 'checked', true );
-				} )
-		).append(
-			$( '<input>' ).attr( 'type', 'button' )
-				.attr( 'id', 'mw-search-togglenone' )
-				.prop( 'value', mw.msg( 'powersearch-togglenone' ) )
-				.click( function () {
-					$checkboxes.prop( 'checked', false );
-				} )
-		);
+		$( '#mw-search-toggleall' ).click( function () {
+			$checkboxes.prop( 'checked', true );
+		} );
+		$( '#mw-search-togglenone' ).click( function () {
+			$checkboxes.prop( 'checked', false );
+		} );
 
 		// Change the header search links to what user entered
 		$headerLinks = $( '.search-types a' );

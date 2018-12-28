@@ -2187,13 +2187,7 @@ return [
 	],
 	'mediawiki.special.search' => [
 		'scripts' => 'resources/src/mediawiki.special.search/search.js',
-		'styles' => 'resources/src/mediawiki.special.search/search.css',
 		'dependencies' => 'mediawiki.widgets.SearchInputWidget',
-		'messages' => [
-			'powersearch-togglelabel',
-			'powersearch-toggleall',
-			'powersearch-togglenone',
-		],
 	],
 	'mediawiki.special.search.commonsInterwikiWidget' => [
 		'scripts' => 'resources/src/mediawiki.special.search.commonsInterwikiWidget.js',

@@ -305,8 +305,14 @@ class SearchFormWidget {
 		return "<fieldset id='mw-searchoptions'>" .
 			"<legend>" . $this->specialSearch->msg( 'powersearch-legend' )->escaped() . '</legend>' .
 			"<h4>" . $this->specialSearch->msg( 'powersearch-ns' )->parse() . '</h4>' .
-			// populated by js if available
-			"<div id='mw-search-togglebox'></div>" .
+			// Handled by JavaScript if available
+			'<div id="mw-search-togglebox">' .
+			'<label>' . $this->specialSearch->msg( 'powersearch-togglelabel' )->escaped() . '</label>' .
+			'<input type="button" id="mw-search-toggleall" value="' .
+			$this->specialSearch->msg( 'powersearch-toggleall' )->escaped() . '"/>' .
+			'<input type="button" id="mw-search-togglenone" value="' .
+			$this->specialSearch->msg( 'powersearch-togglenone' )->escaped() . '"/>' .
+			'</div>' .
 			$divider .
 			implode(
 				$divider,
