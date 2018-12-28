@@ -4487,6 +4487,7 @@ $wgCentralIdLookupProvider = 'local';
  *		commonly chosen. Set to integer n to ban the top n passwords.
  *		If you want to ban all common passwords on file, use the
  *		PHP_INT_MAX constant.
+ *		Deprecated since 1.33. Use PasswordNotInLargeBlacklist instead.
  *	- PasswordNotInLargeBlacklist - Password not in best practices list of
  *		100,000 commonly used passwords. Due to the size of the list this
  *      is a probabilistic test.
@@ -8777,6 +8778,7 @@ $wgSearchRunSuggestedQuery = true;
  *
  * @see maintenance/createCommonPasswordCdb.php
  * @since 1.27
+ * @deprecated since 1.33
  * @var string path to file
  */
 $wgPopularPasswordFile = __DIR__ . '/password/commonpasswords.cdb';
