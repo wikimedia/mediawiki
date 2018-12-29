@@ -15,7 +15,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group AuthManager
  * @group Database
- * @covers MediaWiki\Auth\AuthManager
+ * @covers \MediaWiki\Auth\AuthManager
  */
 class AuthManagerTest extends \MediaWikiTestCase {
 	/** @var WebRequest */
@@ -1831,7 +1831,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( \UnexpectedValueException $ex ) {
 			$this->assertEquals(
-				"User \"{$name}\" exists, but ID $id != " . ( $id + 1 ) . '!', $ex->getMessage()
+				"User \"{$name}\" exists, but ID $id !== " . ( $id + 1 ) . '!', $ex->getMessage()
 			);
 		}
 		$this->unhook( 'LocalUserCreated' );
@@ -3384,7 +3384,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( \UnexpectedValueException $ex ) {
 			$this->assertEquals(
-				"User \"{$user->getName()}\" is valid, but ID $id != " . ( $id + 1 ) . '!',
+				"User \"{$user->getName()}\" is valid, but ID $id !== " . ( $id + 1 ) . '!',
 				$ex->getMessage()
 			);
 		}
