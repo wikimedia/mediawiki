@@ -1213,7 +1213,7 @@ class AuthManager implements LoggerAwareInterface {
 			$user->load( User::READ_LOCKING );
 
 			if ( $state['userid'] === 0 ) {
-				if ( $user->getId() != 0 ) {
+				if ( $user->getId() !== 0 ) {
 					$this->logger->debug( __METHOD__ . ': User exists locally', [
 						'user' => $user->getName(),
 						'creator' => $creator->getName(),
@@ -1234,7 +1234,7 @@ class AuthManager implements LoggerAwareInterface {
 						"User \"{$state['username']}\" should exist now, but doesn't!"
 					);
 				}
-				if ( $user->getId() != $state['userid'] ) {
+				if ( $user->getId() !== $state['userid'] ) {
 					$this->logger->debug( __METHOD__ . ': User ID/name mismatch', [
 						'user' => $user->getName(),
 						'creator' => $creator->getName(),
@@ -1243,7 +1243,7 @@ class AuthManager implements LoggerAwareInterface {
 					] );
 					throw new \UnexpectedValueException(
 						"User \"{$state['username']}\" exists, but " .
-							"ID {$user->getId()} != {$state['userid']}!"
+							"ID {$user->getId()} !== {$state['userid']}!"
 					);
 				}
 			}
@@ -1565,7 +1565,7 @@ class AuthManager implements LoggerAwareInterface {
 		// @codeCoverageIgnoreStart
 		if (
 			!$localId &&
-			MediaWikiServices::getInstance()->getDBLoadBalancer()->getReaderIndex() != 0
+			MediaWikiServices::getInstance()->getDBLoadBalancer()->getReaderIndex() !== 0
 		) {
 			$localId = User::idFromName( $username, User::READ_LATEST );
 			$flags = User::READ_LATEST;
@@ -1930,10 +1930,10 @@ class AuthManager implements LoggerAwareInterface {
 				$session->remove( 'AuthManager::accountLinkState' );
 				return AuthenticationResponse::newFail( wfMessage( 'noname' ) );
 			}
-			if ( $user->getId() != $state['userid'] ) {
+			if ( $user->getId() !== $state['userid'] ) {
 				throw new \UnexpectedValueException(
 					"User \"{$state['username']}\" is valid, but " .
-						"ID {$user->getId()} != {$state['userid']}!"
+						"ID {$user->getId()} !== {$state['userid']}!"
 				);
 			}
 
