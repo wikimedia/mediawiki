@@ -325,12 +325,16 @@ return [
 	'jquery.tablesorter' => [
 		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/src/jquery.tablesorter/jquery.tablesorter.js',
-		'styles' => 'resources/src/jquery.tablesorter/jquery.tablesorter.less',
 		'messages' => [ 'sort-descending', 'sort-ascending' ],
 		'dependencies' => [
+			'jquery.tablesorter.styles',
 			'mediawiki.RegExp',
 			'mediawiki.language.months',
 		],
+	],
+	'jquery.tablesorter.styles' => [
+		'targets' => [ 'desktop', 'mobile' ],
+		'styles' => 'resources/src/jquery.tablesorter.styles/jquery.tablesorter.styles.less',
 	],
 	'jquery.textSelection' => [
 		'scripts' => 'resources/src/jquery/jquery.textSelection.js',
