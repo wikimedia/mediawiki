@@ -1100,4 +1100,8 @@
         url = https://github.com/tinymighty/wiki-seo.git
         branch = master
         ignore = dirty
-
+[submodule "extensions/DummyFandoomMainpageTags"]
+        path = extensions/DummyFandoomMainpageTags
+        url = https://github.com/ciencia/mediawiki-extensions-DummyFandoomMainpageTags
+        branch = master
+        ignore = dirty
