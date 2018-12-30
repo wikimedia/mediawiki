@@ -1105,3 +1105,8 @@
         url = https://github.com/ciencia/mediawiki-extensions-DummyFandoomMainpageTags
         branch = master
         ignore = dirty
+[submodule "extensions/PortableInfobox"]
+        path = extensions/PortableInfobox
+        url = https://github.com/lkucharczyk/mediawiki-PortableInfobox.git
+        branch = master
+        ignore = dirty
