@@ -1110,3 +1110,8 @@
         url = https://github.com/lkucharczyk/mediawiki-PortableInfobox.git
         branch = master
         ignore = dirty
+[submodule "extensions/UserMerge"]
+        path = extensions/UserMerge
+        url = https://github.com/wikimedia/mediawiki-extensions-UserMerge.git
+        branch = master
+        ignore = dirty
