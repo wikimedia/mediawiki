@@ -1923,7 +1923,7 @@
 	"listusers-creationsort": "У парадку датаў стварэння",
 	"listusers-desc": "Парадкаваць да памяншэння",
 	"usereditcount": "$1 {{PLURAL:$1|праўка|праўкі|правак}}",
-	"usercreated": "\t{{GENDER:$3|Зарэгістраваўся|Зарэгістравалася}} $1 у $2",
+	"usercreated": "{{GENDER:$3|Зарэгістраваўся|Зарэгістравалася}} $1 у $2",
 	"newpages": "Новыя старонкі",
 	"newpages-submit": "Паказаць",
 	"newpages-username": "Імя ўдзельніка:",

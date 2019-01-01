@@ -29,7 +29,8 @@
 			"Sopopruidze",
 			"Dixtosa",
 			"OpusDEI",
-			"Fitoschido"
+			"Fitoschido",
+			"Mehman97"
 		]
 	},
 	"tog-underline": "ბმულების ხაზგასმა:",
@@ -633,6 +634,9 @@
 	"savechanges": "ცვლილებების შენახვა",
 	"publishpage": "გვერდის გამოქვეყნება",
 	"publishchanges": "ცვლილებების შენახვა",
+	"savearticle-start": "გვერდის შენახვა...",
+	"savechanges-start": "ცვლილებების შენახვა...",
+	"publishpage-start": "გვერდის გამოქვეყნება...",
 	"publishchanges-start": "ცვლილებების შენახვა…",
 	"preview": "წინასწარი გადახედვა",
 	"showpreview": "წინასწარი გადახედვის ჩვენება",
@@ -925,6 +929,7 @@
 	"diff-multi-manyusers": "({{PLURAL:$2|ერთი მომხმარებლის|$2 მომხმარებლების}} {{PLURAL:$1|ერთი შუალედური ვერსია|$1 შუალედური ვერსიები}}, რომლებიც არ არის ნაჩვენები.)",
 	"difference-missing-revision": "{{PLURAL:$2|$2 ვერსია}} ამ შედარებისათვის ($1) {{PLURAL:$2|ვერ მოიძებნა}}.\n\nეს ჩვეულებრივ ხდება მაშინ, თუ ვერსიების შედარების მოძველებული ბმულით გადადიხართ გვერდზე, რომელიც წაიშალა.\nდეტალური ინფორმაცია შესაძლებელია იყოს [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} წაშლების ჟურნალში].",
 	"searchresults": "ძიების შედეგები",
+	"search-filter-title-prefix-reset": "ყველა გვერდის ძიება",
 	"searchresults-title": "ძიების შედეგები „$1“",
 	"titlematches": "სტატიის სათაური შეესაბამება",
 	"textmatches": "გვერდის ტექსტი შესაბამისია",
@@ -1126,6 +1131,7 @@
 	"group-autoconfirmed": "ავტომატურად დადასტურებული მომხმარებლები",
 	"group-bot": "ბოტები",
 	"group-sysop": "ადმინისტრატორები",
+	"group-interface-admin": "ინტერფეისის ადმინისტრატორები",
 	"group-bureaucrat": "ბიუროკრატები",
 	"group-suppress": "რევიზორები",
 	"group-all": "(ყველა)",
@@ -1140,6 +1146,7 @@
 	"grouppage-autoconfirmed": "{{ns:project}}:ავტომატურად დადასტურებული მომხმარებლები",
 	"grouppage-bot": "{{ns:project}}:ბოტები",
 	"grouppage-sysop": "{{ns:project}}:ადმინისტრატორები",
+	"grouppage-interface-admin": "{{ns:project}}:ინტერფეისის ადმინისტრატორები",
 	"grouppage-bureaucrat": "{{ns:project}}:ბიუროკრატები",
 	"grouppage-suppress": "{{ns:project}}:რევიზორები",
 	"right-read": "გვერდების წაკითხვა",

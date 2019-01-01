@@ -589,6 +589,7 @@
 	"notextmatches": "Bunday matn topilmadi",
 	"prevn": "oldingi {{PLURAL:$1|$1}}",
 	"nextn": "keyingi {{PLURAL:$1|$1}}",
+	"prev-page": "avvalgi sahifa",
 	"next-page": "keyingi sahifa",
 	"prevn-title": "Avvalgi $1 {{PLURAL:$1|natija|natijalar}}",
 	"nextn-title": "Keyingi $1 {{PLURAL:$1|natija|natijalar}}",

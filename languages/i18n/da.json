@@ -71,7 +71,8 @@
 			"Fitoschido",
 			"Jorn Ari",
 			"Fnielsen",
-			"Weblars"
+			"Weblars",
+			"Kranix"
 		]
 	},
 	"tog-underline": "Understreg henvisninger:",
@@ -1482,6 +1483,7 @@
 	"rcfilters-exclude-button-on": "Ekskluderer valgte",
 	"rcfilters-view-tags": "Mærkede redigeringer",
 	"rcfilters-view-namespaces-tooltip": "Filtrer resultater efter navnerum",
+	"rcfilters-view-tags-help-icon-tooltip": "Lær mere om Taggede redigeringer",
 	"rcfilters-liveupdates-button": "Live-opdateringer",
 	"rcfilters-liveupdates-button-title-on": "Sluk for live opdateringer",
 	"rcfilters-liveupdates-button-title-off": "Vis nye ændringer når de sker",

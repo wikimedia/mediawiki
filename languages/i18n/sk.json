@@ -2581,7 +2581,7 @@
 	"tooltip-pt-logout": "Odhlásiť",
 	"tooltip-pt-createaccount": "Odporúčame vytvoriť si vlastný účet a prihlásiť sa, nie je to však povinné.",
 	"tooltip-ca-talk": "Diskusia o obsahu stránky",
-	"tooltip-ca-edit": "Môžete upravovať túto stránku. Prosím, pred uložením použite tlačidlo Zobraziť náhľad.",
+	"tooltip-ca-edit": "Upravovať túto stránku",
 	"tooltip-ca-addsection": "Začať novú sekciu",
 	"tooltip-ca-viewsource": "Táto stránka je zamknutá. Môžete však zobraziť jej zdrojový text.",
 	"tooltip-ca-history": "Minulé verzie tejto stránky.",

@@ -12,7 +12,8 @@
 			"Process cq",
 			"Alirezaaa",
 			"Fitoschido",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"Physicsch"
 		]
 	},
 	"tog-underline": "خط کیشائن ژێر پیوندەل:",
@@ -724,7 +725,7 @@
 	"expensive-parserfunction-warning": ".هشدار:''' این صفحه حاوی تعدادی زیادی فراخوانی دستورهای تجزیه‌گر است'''\n\nتعداد آن‌ها باید کمتر از $2 {{PLURAL:$2|،فراخوانی|فراخوانی}} باشد. \nواینک  ،{{PLURAL:$1|فراخوانی|فراخوانی$1}} است",
 	"expensive-parserfunction-category": "صفحه‌هایی که حاوی تعداد زیادی فراخوانی سنگین دستورهای تجزیه‌گر هستند",
 	"post-expand-template-inclusion-warning": "هشدار: الگو بیش از اندازه بزرگ است.\nبرخی الگوها ممکن است شامل نشوند.",
-	"post-expand-template-inclusion-category": "صفحه‌هایی که تعداد الگوهای به‌کاررفته در آن‌ها بیش از اندازه است",
+	"post-expand-template-inclusion-category": "صفحه‌هایی که اندازه گنجایشی الگوهایشان بیش از حد مجاز است",
 	"post-expand-template-argument-warning": "'''هشدار:''' این صفحه شامل دست کم یک پارامتر الگو است که بیش از اندازه بزرگ است.\nاین پارامترها نادیده گرفته شدند.",
 	"post-expand-template-argument-category": "صفحه‌های حاوی الگوهایی با پارامترهای نادیده‌گرفته‌شده",
 	"parser-template-loop-warning": "حلقه در الگو پیدا شد: [[$1]]",
