@@ -32,7 +32,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 */
 	protected $mForm;
 
-	function __construct( $form, FormOptions $opts ) {
+	public function __construct( $form, FormOptions $opts ) {
 		parent::__construct( $form->getContext() );
 		$this->mForm = $form;
 		$this->opts = $opts;

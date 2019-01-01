@@ -415,7 +415,13 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @param string $tagFilter
 	 * @param array $conds
 	 */
-	function __construct( $historyPage, $year = '', $month = '', $tagFilter = '', $conds = [] ) {
+	public function __construct(
+		HistoryAction $historyPage,
+		$year = '',
+		$month = '',
+		$tagFilter = '',
+		array $conds = []
+	) {
 		parent::__construct( $historyPage->getContext() );
 		$this->historyPage = $historyPage;
 		$this->tagFilter = $tagFilter;

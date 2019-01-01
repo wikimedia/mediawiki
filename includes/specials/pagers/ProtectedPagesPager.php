@@ -44,7 +44,7 @@ class ProtectedPagesPager extends TablePager {
 	 * @param bool $noredirect
 	 * @param LinkRenderer $linkRenderer
 	 */
-	function __construct( $form, $conds, $type, $level, $namespace,
+	public function __construct( $form, $conds, $type, $level, $namespace,
 		$sizetype, $size, $indefonly, $cascadeonly, $noredirect,
 		LinkRenderer $linkRenderer
 	) {
