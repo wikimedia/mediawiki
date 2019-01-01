@@ -1063,15 +1063,14 @@ function wfLogDBError( $text, array $context = [] ) {
 /**
  * Throws a warning that $function is deprecated
  *
- * @param string $function
+ * @param string $function Function that is deprecated.
  * @param string|bool $version Version of MediaWiki that the function
  *    was deprecated in (Added in 1.19).
- * @param string|bool $component Added in 1.19.
+ * @param string|bool $component Component to which the function belongs.
+ *    If false, it is assumed the function is in MediaWiki core (Added in 1.19).
  * @param int $callerOffset How far up the call stack is the original
  *    caller. 2 = function that called the function that called
- *    wfDeprecated (Added in 1.20)
- *
- * @return null
+ *    wfDeprecated (Added in 1.20).
  */
 function wfDeprecated( $function, $version = false, $component = false, $callerOffset = 2 ) {
 	MWDebug::deprecated( $function, $version, $component, $callerOffset + 1 );
