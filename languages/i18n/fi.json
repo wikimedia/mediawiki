@@ -757,7 +757,7 @@
 	"template-semiprotected": "(osittain suojattu)",
 	"hiddencategories": "Tämä sivu kuuluu {{PLURAL:$1|seuraavaan piilotettuun luokkaan|seuraaviin piilotettuihin luokkiin}}:",
 	"edittools": "<!-- Tässä oleva teksti näytetään muokkauskentän alla. -->",
-	"nocreatetext": "Et voi luoda uusia sivuja. Voit muokata olemassa olevia sivuja tai [[Special:UserLogin|luoda käyttäjätunnuksen]].",
+	"nocreatetext": "Et voi luoda uusia sivuja. Voit muokata olemassa olevia sivuja tai [[Special:UserLogin|kirjautua sisään tai luoda käyttäjätunnuksen]].",
 	"nocreate-loggedin": "Sinulla ei ole oikeutta luoda uusia sivuja.",
 	"sectioneditnotsupported-title": "Osioiden muokkaamista ei tueta.",
 	"sectioneditnotsupported-text": "Osioiden muokkaamista ei tueta tällä sivulla.",

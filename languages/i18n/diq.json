@@ -3382,7 +3382,10 @@
 	"mw-widgets-dateinput-placeholder-month": "SSSS-AA",
 	"mw-widgets-titleinput-description-redirect": "berd be $1",
 	"randomrootpage": "Pela raştmameya rıçıkıne",
+	"log-action-filter-block": "Tipê kılitkerdışi:",
 	"log-action-filter-newusers": "Babetê hesabvıraştışi:",
+	"log-action-filter-all": "Pêro",
+	"log-action-filter-block-block": "Kılitkerdış",
 	"changecredentials": "Malumatanê karberi bıvurnê",
 	"removecredentials": "Kamiye wedarne",
 	"removecredentials-submit": "Kamiyer wedarne"

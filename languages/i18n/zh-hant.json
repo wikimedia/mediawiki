@@ -1335,7 +1335,7 @@
 	"grant-delete": "刪除頁面、修訂與日誌記錄",
 	"grant-editinterface": "編輯 MediaWiki 命名空間與站台範圍/使用者 JSON",
 	"grant-editmycssjs": "編輯您的使用者 CSS/JSON/JavaScript",
-	"grant-editmyoptions": "編輯您的使用者偏好設定",
+	"grant-editmyoptions": "編輯您的使用者偏好設定以及 JSON 設置",
 	"grant-editmywatchlist": "編輯您的監視清單",
 	"grant-editsiteconfig": "編輯站台範圍與使用者 CSS/JS",
 	"grant-editpage": "編輯現有的頁面",
