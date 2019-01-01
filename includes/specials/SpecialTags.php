@@ -136,7 +136,7 @@ class SpecialTags extends SpecialPage {
 		}
 
 		// Write the headers
-		$html = Xml::tags( 'tr', null, Xml::tags( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
+		$thead = Xml::tags( 'tr', null, Xml::tags( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-display-header' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-source-header' )->parse() ) .
@@ -148,26 +148,28 @@ class SpecialTags extends SpecialPage {
 				'' )
 		);
 
+		$tbody = '';
 		// Used in #doTagRow()
 		$this->softwareActivatedTags = array_fill_keys(
 			ChangeTags::listSoftwareActivatedTags(), true );
 
 		// Insert tags that have been applied at least once
 		foreach ( $tagStats as $tag => $hitcount ) {
-			$html .= $this->doTagRow( $tag, $hitcount, $userCanManage,
+			$tbody .= $this->doTagRow( $tag, $hitcount, $userCanManage,
 				$userCanDelete, $userCanEditInterface );
 		}
 		// Insert tags defined somewhere but never applied
 		foreach ( $definedTags as $tag ) {
 			if ( !isset( $tagStats[$tag] ) ) {
-				$html .= $this->doTagRow( $tag, 0, $userCanManage, $userCanDelete, $userCanEditInterface );
+				$tbody .= $this->doTagRow( $tag, 0, $userCanManage, $userCanDelete, $userCanEditInterface );
 			}
 		}
 
 		$out->addHTML( Xml::tags(
 			'table',
 			[ 'class' => 'mw-datatable sortable mw-tags-table' ],
-			$html
+			Xml::tags( 'thead', null, $thead ) .
+			Xml::tags( 'tbody', null, $tbody )
 		) );
 	}
 
