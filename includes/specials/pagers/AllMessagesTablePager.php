@@ -44,7 +44,7 @@ class AllMessagesTablePager extends TablePager {
 	 */
 	public $custom;
 
-	function __construct( $page, $conds, Language $langObj = null ) {
+	public function __construct( $page, $conds, Language $langObj = null ) {
 		parent::__construct( $page->getContext() );
 		$this->mIndexField = 'am_title';
 		$this->mPage = $page;

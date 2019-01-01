@@ -43,7 +43,7 @@ class BlockListPager extends TablePager {
 	 * @param SpecialPage $page
 	 * @param array $conds
 	 */
-	function __construct( $page, $conds ) {
+	public function __construct( $page, $conds ) {
 		$this->page = $page;
 		$this->conds = $conds;
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
