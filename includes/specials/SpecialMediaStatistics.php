@@ -156,7 +156,10 @@ class MediaStatisticsPage extends QueryPage {
 	 * Output closing </table>
 	 */
 	protected function outputTableEnd() {
-		$this->getOutput()->addHTML( Html::closeElement( 'table' ) );
+		$this->getOutput()->addHTML(
+			Html::closeElement( 'tbody' ) .
+			Html::closeElement( 'table' )
+		);
 		$this->getOutput()->addWikiTextAsInterface(
 				$this->msg( 'mediastatistics-bytespertype' )
 					->numParams( $this->totalPerType )
@@ -267,9 +270,10 @@ class MediaStatisticsPage extends QueryPage {
 					'sortable',
 					'wikitable'
 				] ]
-			)
+			) .
+			Html::rawElement( 'thead', [], $this->getTableHeaderRow() ) .
+			Html::openElement( 'tbody' )
 		);
-		$this->getOutput()->addHTML( $this->getTableHeaderRow() );
 	}
 
 	/**
