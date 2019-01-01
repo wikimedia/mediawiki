@@ -755,14 +755,14 @@ class DifferenceEngine extends ContextSource {
 	 *  or false if no link is needed
 	 */
 	protected function getMarkPatrolledLinkInfo() {
-		global $wgUseRCPatrol;
-
 		$user = $this->getUser();
+		$config = $this->getConfig();
 
 		// Prepare a change patrol link, if applicable
 		if (
 			// Is patrolling enabled and the user allowed to?
-			$wgUseRCPatrol && $this->mNewPage && $this->mNewPage->quickUserCan( 'patrol', $user ) &&
+			$config->get( 'UseRCPatrol' ) &&
+			$this->mNewPage && $this->mNewPage->quickUserCan( 'patrol', $user ) &&
 			// Only do this if the revision isn't more than 6 hours older
 			// than the Max RC age (6h because the RC might not be cleaned out regularly)
 			RecentChange::isInRCLifespan( $this->mNewRev->getTimestamp(), 21600 )
@@ -1336,12 +1336,11 @@ class DifferenceEngine extends ContextSource {
 	 * @return string
 	 */
 	protected function debug( $generator = "internal" ) {
-		global $wgShowHostnames;
 		if ( !$this->enableDebugComment ) {
 			return '';
 		}
 		$data = [ $generator ];
-		if ( $wgShowHostnames ) {
+		if ( $this->getConfig()->get( 'ShowHostnames' ) ) {
 			$data[] = wfHostname();
 		}
 		$data[] = wfTimestamp( TS_DB );
