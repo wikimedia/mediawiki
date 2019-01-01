@@ -460,7 +460,7 @@
 	function setHeadersCss( table, $headers, list, css, msg, columnToHeader ) {
 		var i, len;
 		// Remove all header information and reset titles to default message
-		$headers.removeClass( css[ 0 ] ).removeClass( css[ 1 ] ).attr( 'title', msg[ 1 ] );
+		$headers.removeClass( css ).attr( 'title', msg[ 1 ] );
 
 		for ( i = 0, len = list.length; i < len; i++ ) {
 			$headers
