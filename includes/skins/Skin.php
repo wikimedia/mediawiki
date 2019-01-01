@@ -496,8 +496,7 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	function getLogo() {
-		global $wgLogo;
-		return $wgLogo;
+		return $this->getConfig()->get( 'Logo' );
 	}
 
 	/**
@@ -517,8 +516,6 @@ abstract class Skin extends ContextSource {
 	 * @return string HTML
 	 */
 	function getCategoryLinks() {
-		global $wgUseCategoryBrowser;
-
 		$out = $this->getOutput();
 		$allCats = $out->getCategoryLinks();
 
@@ -561,7 +558,7 @@ abstract class Skin extends ContextSource {
 
 		# optional 'dmoz-like' category browser. Will be shown under the list
 		# of categories an article belong to
-		if ( $wgUseCategoryBrowser ) {
+		if ( $this->getConfig()->get( 'UseCategoryBrowser' ) ) {
 			$s .= '<br /><hr />';
 
 			# get a big array of the parents tree
@@ -819,8 +816,6 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	function getCopyright( $type = 'detect' ) {
-		global $wgRightsPage, $wgRightsUrl, $wgRightsText;
-
 		if ( $type == 'detect' ) {
 			if ( !$this->isRevisionCurrent()
 				&& !$this->msg( 'history_copyright' )->inContentLanguage()->isDisabled()
@@ -837,13 +832,15 @@ abstract class Skin extends ContextSource {
 			$msg = 'copyright';
 		}
 
-		if ( $wgRightsPage ) {
-			$title = Title::newFromText( $wgRightsPage );
-			$link = Linker::linkKnown( $title, $wgRightsText );
-		} elseif ( $wgRightsUrl ) {
-			$link = Linker::makeExternalLink( $wgRightsUrl, $wgRightsText );
-		} elseif ( $wgRightsText ) {
-			$link = $wgRightsText;
+		$config = $this->getConfig();
+
+		if ( $config->get( 'RightsPage' ) ) {
+			$title = Title::newFromText( $config->get( 'RightsPage' ) );
+			$link = Linker::linkKnown( $title, $config->get( 'RightsText' ) );
+		} elseif ( $config->get( 'RightsUrl' ) ) {
+			$link = Linker::makeExternalLink( $config->get( 'RightsUrl' ), $config->get( 'RightsText' ) );
+		} elseif ( $config->get( 'RightsText' ) ) {
+			$link = $config->get( 'RightsText' );
 		} else {
 			# Give up now
 			return '';
@@ -865,24 +862,24 @@ abstract class Skin extends ContextSource {
 	 * @return null|string
 	 */
 	function getCopyrightIcon() {
-		global $wgRightsUrl, $wgRightsText, $wgRightsIcon, $wgFooterIcons;
-
 		$out = '';
+		$config = $this->getConfig();
 
-		if ( $wgFooterIcons['copyright']['copyright'] ) {
-			$out = $wgFooterIcons['copyright']['copyright'];
-		} elseif ( $wgRightsIcon ) {
-			$icon = htmlspecialchars( $wgRightsIcon );
+		$footerIcons = $config->get( 'FooterIcons' );
+		if ( $footerIcons['copyright']['copyright'] ) {
+			$out = $footerIcons['copyright']['copyright'];
+		} elseif ( $config->get( 'RightsIcon' ) ) {
+			$icon = htmlspecialchars( $config->get( 'RightsIcon' ) );
+			$url = $config->get( 'RightsUrl' );
 
-			if ( $wgRightsUrl ) {
-				$url = htmlspecialchars( $wgRightsUrl );
-				$out .= '<a href="' . $url . '">';
+			if ( $url ) {
+				$out .= '<a href="' . htmlspecialchars( $url ) . '">';
 			}
 
-			$text = htmlspecialchars( $wgRightsText );
+			$text = htmlspecialchars( $config->get( 'RightsText' ) );
 			$out .= "<img src=\"$icon\" alt=\"$text\" width=\"88\" height=\"31\" />";
 
-			if ( $wgRightsUrl ) {
+			if ( $url ) {
 				$out .= '</a>';
 			}
 		}
@@ -895,16 +892,15 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	function getPoweredBy() {
-		global $wgResourceBasePath;
-
+		$resourceBasePath = $this->getConfig()->get( 'ResourceBasePath' );
 		$url1 = htmlspecialchars(
-			"$wgResourceBasePath/resources/assets/poweredby_mediawiki_88x31.png"
+			"$resourceBasePath/resources/assets/poweredby_mediawiki_88x31.png"
 		);
 		$url1_5 = htmlspecialchars(
-			"$wgResourceBasePath/resources/assets/poweredby_mediawiki_132x47.png"
+			"$resourceBasePath/resources/assets/poweredby_mediawiki_132x47.png"
 		);
 		$url2 = htmlspecialchars(
-			"$wgResourceBasePath/resources/assets/poweredby_mediawiki_176x62.png"
+			"$resourceBasePath/resources/assets/poweredby_mediawiki_176x62.png"
 		);
 		$text = '<a href="//www.mediawiki.org/"><img src="' . $url1
 			. '" srcset="' . $url1_5 . ' 1.5x, ' . $url2 . ' 2x" '
@@ -983,9 +979,8 @@ abstract class Skin extends ContextSource {
 				$html = htmlspecialchars( $icon["alt"] );
 			}
 			if ( $url ) {
-				global $wgExternalLinkTarget;
 				$html = Html::rawElement( 'a',
-					[ "href" => $url, "target" => $wgExternalLinkTarget ],
+					[ "href" => $url, "target" => $this->getConfig()->get( 'ExternalLinkTarget' ) ],
 					$html );
 			}
 		}
@@ -1112,14 +1107,12 @@ abstract class Skin extends ContextSource {
 	 * @throws MWException
 	 */
 	function getSkinStylePath( $name ) {
-		global $wgStylePath;
-
 		if ( $this->stylename === null ) {
 			$class = static::class;
 			throw new MWException( "$class::\$stylename must be set to use getSkinStylePath()" );
 		}
 
-		return "$wgStylePath/{$this->stylename}/$name";
+		return $this->getConfig()->get( 'StylePath' ) . "/{$this->stylename}/$name";
 	}
 
 	/* these are used extensively in SkinTemplate, but also some other places */
@@ -1286,8 +1279,6 @@ abstract class Skin extends ContextSource {
 	 * @return array
 	 */
 	public function buildSidebar() {
-		global $wgEnableSidebarCache, $wgSidebarCacheExpiry;
-
 		$callback = function ( $old = null, &$ttl = null ) {
 			$bar = [];
 			$this->addToSidebar( $bar, 'sidebar' );
@@ -1301,11 +1292,12 @@ abstract class Skin extends ContextSource {
 
 		$msgCache = MessageCache::singleton();
 		$wanCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$config = $this->getConfig();
 
-		$sidebar = $wgEnableSidebarCache
+		$sidebar = $config->get( 'EnableSidebarCache' )
 			? $wanCache->getWithSetCallback(
 				$wanCache->makeKey( 'sidebar', $this->getLanguage()->getCode() ),
-				$wgSidebarCacheExpiry,
+				$config->get( 'SidebarCacheExpiry' ),
 				$callback,
 				[
 					'checkKeys' => [
@@ -1348,7 +1340,8 @@ abstract class Skin extends ContextSource {
 		$lines = explode( "\n", $text );
 
 		$heading = '';
-		$messageTitle = $this->getConfig()->get( 'EnableSidebarCache' )
+		$config = $this->getConfig();
+		$messageTitle = $config->get( 'EnableSidebarCache' )
 			? Title::newMainPage() : $this->getTitle();
 
 		foreach ( $lines as $line ) {
@@ -1396,14 +1389,14 @@ abstract class Skin extends ContextSource {
 						$href = $link;
 
 						// Parser::getExternalLinkAttribs won't work here because of the Namespace things
-						global $wgNoFollowLinks, $wgNoFollowDomainExceptions;
-						if ( $wgNoFollowLinks && !wfMatchesDomainList( $href, $wgNoFollowDomainExceptions ) ) {
+						if ( $config->get( 'NoFollowLinks' ) &&
+							!wfMatchesDomainList( $href, $config->get( 'NoFollowDomainExceptions' ) )
+						) {
 							$extraAttribs['rel'] = 'nofollow';
 						}
 
-						global $wgExternalLinkTarget;
-						if ( $wgExternalLinkTarget ) {
-							$extraAttribs['target'] = $wgExternalLinkTarget;
+						if ( $config->get( 'ExternalLinkTarget' ) ) {
+							$extraAttribs['target'] = $config->get( 'ExternalLinkTarget' );
 						}
 					} else {
 						$title = Title::newFromText( $link );
@@ -1530,14 +1523,12 @@ abstract class Skin extends ContextSource {
 	 *   should fall back to the next notice in its sequence
 	 */
 	private function getCachedNotice( $name ) {
-		global $wgRenderHashAppend;
-
 		$needParse = false;
+		$config = $this->getConfig();
 
 		if ( $name === 'default' ) {
 			// special case
-			global $wgSiteNotice;
-			$notice = $wgSiteNotice;
+			$notice = $config->get( 'SiteNotice' );
 			if ( empty( $notice ) ) {
 				return false;
 			}
@@ -1556,7 +1547,7 @@ abstract class Skin extends ContextSource {
 		$parsed = $cache->getWithSetCallback(
 			// Use the extra hash appender to let eg SSL variants separately cache
 			// Key is verified with md5 hash of unparsed wikitext
-			$cache->makeKey( $name, $wgRenderHashAppend, md5( $notice ) ),
+			$cache->makeKey( $name, $config->get( 'RenderHashAppend' ), md5( $notice ) ),
 			// TTL in seconds
 			600,
 			function () use ( $notice ) {
