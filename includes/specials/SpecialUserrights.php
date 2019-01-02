@@ -170,9 +170,10 @@ class UserrightsPage extends SpecialPage {
 				$targetUser->clearInstanceCache(); // T40989
 			}
 
-			if ( $request->getVal( 'conflictcheck-originalgroups' )
-				!== implode( ',', $targetUser->getGroups() )
-			) {
+			$checkValue = explode( ',', $request->getVal( 'conflictcheck-originalgroups' ) );
+			$userGroups = $targetUser->getGroups();
+
+			if ( $userGroups !== $checkValue ) {
 				$out->addWikiMsg( 'userrights-conflict' );
 			} else {
 				$status = $this->saveUserGroups(
