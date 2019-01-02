@@ -58,8 +58,6 @@ class ChangesList extends ContextSource {
 	protected $filterGroups;
 
 	/**
-	 * Changeslist constructor
-	 *
 	 * @param Skin|IContextSource $obj
 	 * @param array $filterGroups Array of ChangesListFilterGroup objects (currently optional)
 	 */
