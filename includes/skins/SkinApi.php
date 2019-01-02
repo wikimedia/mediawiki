@@ -35,6 +35,8 @@ class SkinApi extends SkinTemplate {
 	public function getDefaultModules() {
 		$modules = parent::getDefaultModules();
 		$modules['styles']['skin'][] = 'mediawiki.skinning.interface';
+		// There is no search box, disable 'mediawiki.searchSuggest'
+		$modules['search'] = [];
 		return $modules;
 	}
 
