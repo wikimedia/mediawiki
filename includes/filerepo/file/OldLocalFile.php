@@ -325,14 +325,14 @@ class OldLocalFile extends LocalFile {
 	 * @return string
 	 */
 	function getRel() {
-		return 'archive/' . $this->getHashPath() . $this->getArchiveName();
+		return $this->getArchiveRel( $this->getArchiveName() );
 	}
 
 	/**
 	 * @return string
 	 */
 	function getUrlRel() {
-		return 'archive/' . $this->getHashPath() . rawurlencode( $this->getArchiveName() );
+		return $this->getArchiveRel( rawurlencode( $this->getArchiveName() ) );
 	}
 
 	function upgradeRow() {
@@ -416,7 +416,7 @@ class OldLocalFile extends LocalFile {
 	function uploadOld( $srcPath, $archiveName, $timestamp, $comment, $user ) {
 		$this->lock();
 
-		$dstRel = 'archive/' . $this->getHashPath() . $archiveName;
+		$dstRel = $this->getArchiveRel( $archiveName );
 		$status = $this->publishTo( $srcPath, $dstRel );
 
 		if ( $status->isGood() ) {
