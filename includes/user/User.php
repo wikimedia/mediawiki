@@ -58,7 +58,7 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * @const int Serialized record version.
 	 */
-	const VERSION = 12;
+	const VERSION = 13;
 
 	/**
 	 * Exclude user options that are set to their default value.
@@ -3601,7 +3601,8 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Get the list of explicit group memberships this user has.
 	 * The implicit * and user groups are not included.
-	 * @return array Array of String internal group names
+	 *
+	 * @return string[] Array of internal group names (sorted since 1.33)
 	 */
 	public function getGroups() {
 		$this->load();
