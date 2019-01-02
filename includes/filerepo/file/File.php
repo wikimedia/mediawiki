@@ -1586,7 +1586,7 @@ abstract class File implements IDBAccessObject {
 	 * @return string
 	 */
 	function getArchiveThumbRel( $archiveName, $suffix = false ) {
-		$path = 'archive/' . $this->getHashPath() . $archiveName . "/";
+		$path = $this->getArchiveRel( $archiveName ) . "/";
 		if ( $suffix === false ) {
 			$path = substr( $path, 0, -1 );
 		} else {

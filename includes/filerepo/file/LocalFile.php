@@ -1861,7 +1861,7 @@ class LocalFile extends File {
 		$this->lock(); // begin
 
 		$archiveName = wfTimestamp( TS_MW ) . '!' . $this->getName();
-		$archiveRel = 'archive/' . $this->getHashPath() . $archiveName;
+		$archiveRel = $this->getArchiveRel( $archiveName );
 
 		if ( $repo->hasSha1Storage() ) {
 			$sha1 = $repo->isVirtualUrl( $srcPath )
