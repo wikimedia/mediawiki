@@ -804,6 +804,7 @@ class LocalisationCache {
 		$messagesDirs = $config->get( 'MessagesDirs' );
 		return [
 			'core' => "$IP/languages/i18n",
+			'exif' => "$IP/languages/i18n/exif",
 			'api' => "$IP/includes/api/i18n",
 			'oojs-ui' => "$IP/resources/lib/ooui/i18n",
 		] + $messagesDirs;
