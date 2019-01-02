@@ -35,13 +35,14 @@ class RevisionDeleteUser {
 
 	/**
 	 * Update *_deleted bitfields in various tables to hide or unhide usernames
+	 *
 	 * @param string $name Username
 	 * @param int $userId User id
 	 * @param string $op Operator '|' or '&'
 	 * @param null|IDatabase $dbw If you happen to have one lying around
-	 * @return bool
+	 * @return bool True on success, false on failure (e.g. invalid user ID)
 	 */
-	private static function setUsernameBitfields( $name, $userId, $op, $dbw ) {
+	private static function setUsernameBitfields( $name, $userId, $op, IDatabase $dbw = null ) {
 		global $wgActorTableSchemaMigrationStage;
 
 		if ( !$userId || ( $op !== '|' && $op !== '&' ) ) {
@@ -58,7 +59,7 @@ class RevisionDeleteUser {
 		# The same goes for the sysop-restricted *_deleted bit.
 		$delUser = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
 		$delAction = LogPage::DELETED_ACTION | Revision::DELETED_RESTRICTED;
-		if ( $op == '&' ) {
+		if ( $op === '&' ) {
 			$delUser = $dbw->bitNot( $delUser );
 			$delAction = $dbw->bitNot( $delAction );
 		}
@@ -194,17 +195,29 @@ class RevisionDeleteUser {
 		return true;
 	}
 
-	private static function buildSetBitDeletedField( $field, $op, $value, $dbw ) {
+	private static function buildSetBitDeletedField( $field, $op, $value, IDatabase $dbw ) {
 		return $field . ' = ' . ( $op === '&'
 			? $dbw->bitAnd( $field, $value )
 			: $dbw->bitOr( $field, $value ) );
 	}
 
-	public static function suppressUserName( $name, $userId, $dbw = null ) {
+	/**
+	 * @param string $name User name
+	 * @param int $userId Both user name and ID must be provided
+	 * @param IDatabase|null $dbw If you happen to have one lying around
+	 * @return bool True on success, false on failure (e.g. invalid user ID)
+	 */
+	public static function suppressUserName( $name, $userId, IDatabase $dbw = null ) {
 		return self::setUsernameBitfields( $name, $userId, '|', $dbw );
 	}
 
-	public static function unsuppressUserName( $name, $userId, $dbw = null ) {
+	/**
+	 * @param string $name User name
+	 * @param int $userId Both user name and ID must be provided
+	 * @param IDatabase|null $dbw If you happen to have one lying around
+	 * @return bool True on success, false on failure (e.g. invalid user ID)
+	 */
+	public static function unsuppressUserName( $name, $userId, IDatabase $dbw = null ) {
 		return self::setUsernameBitfields( $name, $userId, '&', $dbw );
 	}
 }
