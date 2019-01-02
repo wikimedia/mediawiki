@@ -1586,11 +1586,9 @@ abstract class File implements IDBAccessObject {
 	 * @return string
 	 */
 	function getArchiveThumbRel( $archiveName, $suffix = false ) {
-		$path = $this->getArchiveRel( $archiveName ) . "/";
-		if ( $suffix === false ) {
-			$path = substr( $path, 0, -1 );
-		} else {
-			$path .= $suffix;
+		$path = $this->getArchiveRel( $archiveName );
+		if ( $suffix !== false ) {
+			$path .= '/' . $suffix;
 		}
 
 		return $path;
@@ -1676,11 +1674,9 @@ abstract class File implements IDBAccessObject {
 		$this->assertRepoDefined();
 		$ext = $this->getExtension();
 		$path = $this->repo->getZoneUrl( 'thumb', $ext ) . '/archive/' .
-			$this->getHashPath() . rawurlencode( $archiveName ) . "/";
-		if ( $suffix === false ) {
-			$path = substr( $path, 0, -1 );
-		} else {
-			$path .= rawurlencode( $suffix );
+			$this->getHashPath() . rawurlencode( $archiveName );
+		if ( $suffix !== false ) {
+			$path .= '/' . rawurlencode( $suffix );
 		}
 
 		return $path;
