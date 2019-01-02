@@ -959,11 +959,17 @@ return [
 		],
 	],
 	'mediawiki.diff.styles' => [
+		'class' => ResourceLoaderLessVarFileModule::class,
 		'styles' => [
+			'resources/src/mediawiki.diff.styles/header.less',
 			'resources/src/mediawiki.diff.styles/diff.css',
 			'resources/src/mediawiki.diff.styles/print.css' => [
 				'media' => 'print'
 			],
+		],
+		'lessMessages' => [
+			'parentheses-start',
+			'parentheses-end',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
