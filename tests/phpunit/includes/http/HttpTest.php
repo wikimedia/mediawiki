@@ -1,9 +1,5 @@
 <?php
 
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
-
 /**
  * @group Http
  * @group small
@@ -506,18 +502,6 @@ class HttpTest extends MediaWikiTestCase {
 		$this->checkPHPExtension( 'curl' );
 
 		$this->assertTrue( defined( $value ), $value . ' not defined' );
-	}
-
-	/**
-	 * No actual request is made herein
-	 */
-	public function testGuzzleHttpRequest() {
-		$handler = HandlerStack::create( new MockHandler( [ new Response( 200 ) ] ) );
-		$r = new GuzzleHttpRequest( 'http://www.example.text', [ 'handler' => $handler ] );
-		$r->execute();
-		$this->assertEquals( 200, $r->getStatus() );
-
-		// @TODO: add failure tests (404s and failure to connect)
 	}
 }
 

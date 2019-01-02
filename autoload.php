@@ -819,6 +819,7 @@ $wgAutoloadLocalClasses = [
 	'MIMEsearchPage' => __DIR__ . '/includes/specials/SpecialMIMEsearch.php',
 	'MSCompoundFileReader' => __DIR__ . '/includes/libs/mime/MSCompoundFileReader.php',
 	'MWCallableUpdate' => __DIR__ . '/includes/deferred/MWCallableUpdate.php',
+	'MWCallbackStream' => __DIR__ . '/includes/http/MWCallbackStream.php',
 	'MWContentSerializationException' => __DIR__ . '/includes/exception/MWContentSerializationException.php',
 	'MWCryptHKDF' => __DIR__ . '/includes/utils/MWCryptHKDF.php',
 	'MWCryptHash' => __DIR__ . '/includes/libs/MWCryptHash.php',

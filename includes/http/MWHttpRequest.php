@@ -91,7 +91,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @throws Exception
 	 */
 	public function __construct(
-		$url, array $options = [], $caller = __METHOD__, $profiler = null
+		$url, array $options = [], $caller = __METHOD__, Profiler $profiler = null
 	) {
 		global $wgHTTPTimeout, $wgHTTPConnectTimeout;
 
@@ -202,7 +202,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @param array $args
 	 * @todo overload the args param
 	 */
-	public function setData( $args ) {
+	public function setData( array $args ) {
 		$this->postData = $args;
 	}
 
@@ -326,6 +326,17 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @throws InvalidArgumentException
 	 */
 	public function setCallback( $callback ) {
+		return $this->doSetCallback( $callback );
+	}
+
+	/**
+	 * Worker function for setting callbacks.  Calls can originate both internally and externally
+	 * via setCallback).  Defaults to the internal read callback if $callback is null.
+	 *
+	 * @param $callback|null $callback
+	 * @throws InvalidArgumentException
+	 */
+	protected function doSetCallback( $callback ) {
 		if ( is_null( $callback ) ) {
 			$callback = [ $this, 'read' ];
 		} elseif ( !is_callable( $callback ) ) {
@@ -369,7 +380,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		$this->proxySetup(); // set up any proxy as needed
 
 		if ( !$this->callback ) {
-			$this->setCallback( null );
+			$this->doSetCallback( null );
 		}
 
 		if ( !isset( $this->reqHeaders['User-Agent'] ) ) {
@@ -504,7 +515,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 *
 	 * @param CookieJar $jar
 	 */
-	public function setCookieJar( $jar ) {
+	public function setCookieJar( CookieJar $jar ) {
 		$this->cookieJar = $jar;
 	}
 
@@ -530,7 +541,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @param string $value
 	 * @param array $attr
 	 */
-	public function setCookie( $name, $value, $attr = [] ) {
+	public function setCookie( $name, $value, array $attr = [] ) {
 		if ( !$this->cookieJar ) {
 			$this->cookieJar = new CookieJar;
 		}
