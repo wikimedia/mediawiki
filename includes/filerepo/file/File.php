@@ -1543,7 +1543,7 @@ abstract class File implements IDBAccessObject {
 	function getArchiveRel( $suffix = false ) {
 		$path = 'archive/' . $this->getHashPath();
 		if ( $suffix === false ) {
-			$path = substr( $path, 0, -1 );
+			$path = rtrim( $path, '/' );
 		} else {
 			$path .= $suffix;
 		}
@@ -1655,7 +1655,7 @@ abstract class File implements IDBAccessObject {
 		$ext = $this->getExtension();
 		$path = $this->repo->getZoneUrl( 'public', $ext ) . '/archive/' . $this->getHashPath();
 		if ( $suffix === false ) {
-			$path = substr( $path, 0, -1 );
+			$path = rtrim( $path, '/' );
 		} else {
 			$path .= rawurlencode( $suffix );
 		}
@@ -1746,7 +1746,7 @@ abstract class File implements IDBAccessObject {
 		$this->assertRepoDefined();
 		$path = $this->repo->getVirtualUrl() . '/public/archive/' . $this->getHashPath();
 		if ( $suffix === false ) {
-			$path = substr( $path, 0, -1 );
+			$path = rtrim( $path, '/' );
 		} else {
 			$path .= rawurlencode( $suffix );
 		}
