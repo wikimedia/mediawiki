@@ -1249,6 +1249,17 @@ parsoid=wt2html,wt2wt
 </td></tr></tbody></table>
 !! end
 
+!! test
+Bold conversion test
+!! wikitext
+a b'''c ''d e'''f'' g h'''i ''j
+!! options
+parsoid=wt2html
+!! html+tidy
+<p>a b'<i>c </i>d e<b>f<i> g h</i></b><i>i </i>j
+</p>
+!! end
+
 ###
 ### Non-html5 tags
 ###
@@ -3605,7 +3616,7 @@ parsoid=wt2html,html2html
  b </p><div> foo </div>
 !! end
 
-!!test
+!! test
 3c. Indent-Pre and block tags (pre-content on separate line)
 !! wikitext
 <p>
@@ -3638,7 +3649,7 @@ foo
   foo
 </li></ul>
 
-!! html
+!! html/php
 <p>
  foo
 </p>
@@ -3667,7 +3678,36 @@ foo
   foo
 </li></ul>
 
-!!end
+!! html/parsoid
+<p data-parsoid='{"stx":"html"}'>
+ foo
+</p>
+
+<div>
+<pre>foo</pre>
+</div>
+
+<center>
+<pre>foo</pre>
+</center>
+
+<blockquote>
+<p> foo</p>
+</blockquote>
+
+<blockquote>
+<pre typeof="mw:Extension/pre" about="#mwt3" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\nfoo\n"}}'>foo
+</pre>
+</blockquote>
+
+<table data-parsoid='{"stx":"html"}'><tbody><tr data-parsoid='{"stx":"html"}'><td data-parsoid='{"stx":"html"}'>
+<pre>foo</pre>
+</td></tr></tbody></table>
+
+<ul data-parsoid='{"stx":"html"}'><li data-parsoid='{"stx":"html"}'>
+  foo
+</li></ul>
+!! end
 
 !! test
 4. Indent-Pre and extension tags
@@ -6818,8 +6858,8 @@ Table cell attributes: Pipes protected by nowikis should be treated as a plain c
 !! html/parsoid
 <table>
 <tbody><tr><td title="foo">bar</td>
-<td title="foo|" data-parsoid='{"a":{"title":"foo|"},"sa":{"title":"foo&lt;nowiki>|&lt;/nowiki>"},"autoInsertedEnd":true}'>bar</td>
-<td> title="foo<span typeof="mw:Nowiki">|</span>" bar</td></tr>
+<td title="foo|" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"a":{"title":"foo|"},"sa":{"title":"foo&lt;nowiki>|&lt;/nowiki>"}}' data-mw='{"attribs":[[{"txt":"title"},{"html":"foo&lt;span typeof=\"mw:Nowiki\" data-parsoid=&apos;{\"dsr\":[32,50,8,9]}&apos;>|&lt;/span>"}]]}'>bar</td>
+<td>title="foo<span typeof="mw:Nowiki">|</span>" bar</td></tr>
 </tbody></table>
 !! end
 
@@ -8414,9 +8454,24 @@ title=[[0]]
 <nowiki> inside a link
 !! wikitext
 [[Main<nowiki> Page</nowiki>]] [[Main Page|the main page <nowiki>[it's not very good]</nowiki>]]
-!! html
+!! html/php+tidy
 <p>[[Main Page]] <a href="/wiki/Main_Page" title="Main Page">the main page [it's not very good]</a>
 </p>
+!! html/parsoid
+<p>[[Main<span typeof="mw:Nowiki"> Page</span>]] <a rel="mw:WikiLink" href="./Main_Page" title="Main Page">the main page <span typeof="mw:Nowiki">[it's not very good]</span></a></p>
+!! end
+
+## Parsoid doesn't get this right and even fails wt2html because, when doing the
+## normalization for comparison, the html serialization / re-parse doesn't
+## roundtrip.  This is T49963
+!! test
+<pre> inside a link
+!! wikitext
+[[Main<pre> Page</pre>]] [[Main Page|the main page <pre>[it's not very good]</pre>]]
+!! html/php+tidy
+<p>[[Main</p><pre> Page</pre><p>]] <a href="/wiki/Main_Page" title="Main Page">the main page </a></p><a href="/wiki/Main_Page" title="Main Page"><pre>[it's not very good]</pre></a>
+!! html/parsoid
+<p>[[Main</p><pre typeof="mw:Extension/pre" about="#mwt4" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":" Page"}}'> Page</pre><p>]] <a rel="mw:WikiLink" href="./Main_Page" title="Main Page">the main page <pre typeof="mw:Extension/pre" about="#mwt6" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"[it&apos;s not very good]"}}'>[it's not very good]</pre></a></p>
 !! end
 
 !! test
@@ -8831,6 +8886,8 @@ Interwiki link with fragment (T4130)
 </p>
 !! end
 
+## The interwiki case here continued to be legacy escaped because of the
+## default setting of $wgExternalInterwikiFragmentMode
 !! test
 Link scenarios with escaped fragments
 !! options
@@ -8849,7 +8906,7 @@ wgFragmentMode=[ 'html5', 'legacy' ]
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Main_Page#Is_this_great?" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page#Is_this_great?"},"sa":{"href":"#Is this great?"}}'>#Is this great?</a>
 <a rel="mw:WikiLink" href="./Foo#Is_this_great?" title="Foo" data-parsoid='{"stx":"simple","a":{"href":"./Foo#Is_this_great?"},"sa":{"href":"Foo#Is this great?"}}'>Foo#Is this great?</a>
-<a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great?" title="meatball:Foo" data-parsoid='{"stx":"simple","a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great?"},"sa":{"href":"meatball:Foo#Is this great?"},"isIW":true}'>meatball:Foo#Is this great?</a></p>
+<a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F" title="meatball:Foo" data-parsoid='{"stx":"simple","a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F"},"sa":{"href":"meatball:Foo#Is this great?"},"isIW":true}'>meatball:Foo#Is this great?</a></p>
 !! end
 
 !! test
@@ -12745,7 +12802,7 @@ array (
 <p>But if the broken language converter markup is inside an extension tag, nothing bad happens:</p>
 <ul>
 <li><span typeof="mw:Nowiki">foo-{bar}bat</span></li>
-<li><span typeof="mw:Transclusion mw:Nowiki" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;nowiki>foo-{bar}bat&lt;/nowiki>"}},"i":0}}]}'>foo-{bar}bat</span></li>
+<li><span typeof="mw:Nowiki mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;nowiki>foo-{bar}bat&lt;/nowiki>"}},"i":0}}]}'>foo-{bar}bat</span></li>
 <li><pre typeof="mw:Extension/pre" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"foo-{bar}bat"}}'>foo-{bar}bat</pre></li>
 <li><pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;pre>foo-{bar}bat&lt;/pre>"}},"i":0}}]}'>foo-{bar}bat</pre></li>
 </ul>
@@ -18066,17 +18123,17 @@ parsoid=wt2html,html2html
 !! end
 
 # FIXME Parsoid doesn't actually match PHP here.
-# Probably we should use the synthetic <foo /> or <indicator>
-# extensions for this test, which are enabled when running parser tests.
 !! test
 Extension tag in attribute value
+!! options
+wgRawHtml=1
 !! wikitext
-<span title="<translate>123</translate>">ok</span>
-!! html/php+disabled
-<p>&lt;span title="&lt;translate&gt;123&lt;/translate&gt;"&gt;ok&lt;/span&gt;
+<span title="<html><div>123</div></html>">ok</span>
+!! html/php+tidy
+<p><span title="&lt;div&gt;123&lt;/div&gt;">ok</span>
 </p>
 !! html/parsoid
-<p><span title="123" about="#mwt4" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"title":"123"},"sa":{"title":"&lt;translate>123&lt;/translate>"}}' data-mw='{"attribs":[[{"txt":"title"},{"html":"&lt;translate typeof=\"mw:Extension/translate\" about=\"#mwt3\" data-parsoid=&apos;{\"dsr\":[13,39,2,2]}&apos; data-mw=&apos;{\"name\":\"translate\",\"attrs\":{},\"body\":{\"extsrc\":\"123\"}}&apos;>123&lt;/translate>"}]]}'>ok</span></p>
+<p><span title="123" about="#mwt4" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"title":"123"},"sa":{"title":"&lt;html>&lt;div>123&lt;/div>&lt;/html>"}}' data-mw='{"attribs":[[{"txt":"title"},{"html":"&lt;div typeof=\"mw:Extension/html\" about=\"#mwt3\" data-parsoid=&apos;{\"dsr\":[13,40,2,2]}&apos; data-mw=&apos;{\"name\":\"html\",\"attrs\":{},\"body\":{\"extsrc\":\"&amp;lt;div>123&amp;lt;/div>\"}}&apos;>123&lt;/div>"}]]}'>ok</span></p>
 !! end
 
 !! test
@@ -18791,7 +18848,7 @@ T5244: HTML attribute safety (extension; safe)
 <div style="background:blue"></div>
 
 !! html/parsoid
-<div style="background:blue" data-parsoid='{"stx":"html","a":{"style":"background:blue"},"sa":{"style":"&lt;nowiki>background:blue&lt;/nowiki>"}}'></div>
+<div style="background:blue" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"style":"background:blue"},"sa":{"style":"&lt;nowiki>background:blue&lt;/nowiki>"}}' data-mw='{"attribs":[[{"txt":"style"},{"html":"&lt;span typeof=\"mw:Nowiki\" data-parsoid=&apos;{\"dsr\":[12,44,8,9]}&apos;>background:blue&lt;/span>"}]]}'></div>
 !! end
 
 !! test
@@ -18802,7 +18859,7 @@ T5244: HTML attribute safety (extension; unsafe)
 <div style="/* insecure input */"></div>
 
 !! html/parsoid
-<div style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"&lt;nowiki>border-left:expression(alert(document.cookie))&lt;/nowiki>"}}'></div>
+<div style="/* insecure input */" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"&lt;nowiki>border-left:expression(alert(document.cookie))&lt;/nowiki>"}}' data-mw='{"attribs":[[{"txt":"style"},{"html":"&lt;span typeof=\"mw:Nowiki\" data-parsoid=&apos;{\"dsr\":[12,75,8,9]}&apos;>border-left:expression(alert(document.cookie))&lt;/span>"}]]}'></div>
 !! end
 
 # More MSIE fun discovered by Tom Gilder
