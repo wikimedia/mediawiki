@@ -1179,15 +1179,17 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Check if this is a valid password for this user
 	 *
-	 * Create a Status object based on the password's validity.
-	 * The Status should be set to fatal if the user should not
-	 * be allowed to log in, and should have any errors that
-	 * would block changing the password.
-	 *
-	 * If the return value of this is not OK, the password
-	 * should not be checked. If the return value is not Good,
-	 * the password can be checked, but the user should not be
-	 * able to set their password to this.
+	 * Returns a Status object with a set of messages describing
+	 * problems with the password. If the return status is fatal,
+	 * the action should be refused and the password should not be
+	 * checked at all (this is mainly meant for DoS mitigation).
+	 * If the return value is OK but not good, the password can be checked,
+	 * but the user should not be able to set their password to this.
+	 * The value of the returned Status object will be an array which
+	 * can have the following fields:
+	 * - forceChange (bool): if set to true, the user should not be
+	 *   allowed to log with this password unless they change it during
+	 *   the login process (see ResetPasswordSecondaryAuthenticationProvider).
 	 *
 	 * @param string $password Desired password
 	 * @return Status
@@ -1201,7 +1203,7 @@ class User implements IDBAccessObject, UserIdentity {
 			$wgPasswordPolicy['checks']
 		);
 
-		$status = Status::newGood();
+		$status = Status::newGood( [] );
 		$result = false; // init $result to false for the internal checks
 
 		if ( !Hooks::run( 'isValidPassword', [ $password, &$result, $this ] ) ) {
@@ -1210,7 +1212,7 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		if ( $result === false ) {
-			$status->merge( $upp->checkUserPassword( $this, $password ) );
+			$status->merge( $upp->checkUserPassword( $this, $password ), true );
 			return $status;
 		} elseif ( $result === true ) {
 			return $status;

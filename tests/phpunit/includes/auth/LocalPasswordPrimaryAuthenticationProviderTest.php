@@ -174,6 +174,16 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		$this->assertNotNull( $ret );
 		$this->assertSame( 'resetpass-validity-soft', $ret->msg->getKey() );
 		$this->assertFalse( $ret->hard );
+
+		$this->manager->removeAuthenticationSessionData( null );
+		$row->user_password_expires = null;
+		$status = \Status::newGood( [ 'forceChange' => true ] );
+		$status->error( 'testing' );
+		$providerPriv->setPasswordResetFlag( $userName, $status, $row );
+		$ret = $this->manager->getAuthenticationSessionData( 'reset-pass' );
+		$this->assertNotNull( $ret );
+		$this->assertSame( 'resetpass-validity', $ret->msg->getKey() );
+		$this->assertTrue( $ret->hard );
 	}
 
 	public function testAuthentication() {

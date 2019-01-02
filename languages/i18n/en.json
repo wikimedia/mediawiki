@@ -581,6 +581,7 @@
 	"resetpass-abort-generic": "Password change has been aborted by an extension.",
 	"resetpass-expired": "Your password has expired. Please set a new password to log in.",
 	"resetpass-expired-soft": "Your password has expired and needs to be changed. Please choose a new password now, or click \"{{int:authprovider-resetpass-skip-label}}\" to change it later.",
+	"resetpass-validity": "Your password is not valid: $1\n\nPlease set a new password to log in.",
 	"resetpass-validity-soft": "Your password is not valid: $1\n\nPlease choose a new password now, or click \"{{int:authprovider-resetpass-skip-label}}\" to change it later.",
 	"passwordreset": "Reset password",
 	"passwordreset-text-one": "Complete this form to receive a temporary password via email.",

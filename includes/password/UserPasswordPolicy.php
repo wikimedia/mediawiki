@@ -43,7 +43,7 @@ class UserPasswordPolicy {
 	/**
 	 * @param array $policies
 	 * @param array $checks mapping statement to its checking function. Checking functions are
-	 * called with the policy value for this user, the user object, and the password to check.
+	 *   called with the policy value for this user, the user object, and the password to check.
 	 */
 	public function __construct( array $policies, array $checks ) {
 		if ( !isset( $policies['default'] ) ) {
@@ -68,7 +68,9 @@ class UserPasswordPolicy {
 	 * @param User $user who's policy we are checking
 	 * @param string $password the password to check
 	 * @return Status error to indicate the password didn't meet the policy, or fatal to
-	 * 	indicate the user shouldn't be allowed to login.
+	 *   indicate the user shouldn't be allowed to login. The status value will be an array,
+	 *   potentially with the following keys:
+	 *   - forceChange: do not allow the user to login without changing the password if invalid.
 	 */
 	public function checkUserPassword( User $user, $password ) {
 		$effectivePolicy = $this->getPoliciesForUser( $user );
@@ -88,7 +90,9 @@ class UserPasswordPolicy {
 	 * @param string $password the password to check
 	 * @param array $groups list of groups to which we assume the user belongs
 	 * @return Status error to indicate the password didn't meet the policy, or fatal to
-	 * 	indicate the user shouldn't be allowed to login.
+	 *   indicate the user shouldn't be allowed to login. The status value will be an array,
+	 *   potentially with the following keys:
+	 *   - forceChange: do not allow the user to login without changing the password if invalid.
 	 */
 	public function checkUserPasswordForGroups( User $user, $password, array $groups ) {
 		$effectivePolicy = self::getPoliciesForGroups(
@@ -112,19 +116,34 @@ class UserPasswordPolicy {
 	 * @return Status
 	 */
 	private function checkPolicies( User $user, $password, $policies, $policyCheckFunctions ) {
-		$status = Status::newGood();
-		foreach ( $policies as $policy => $value ) {
+		$status = Status::newGood( [] );
+		$forceChange = false;
+		foreach ( $policies as $policy => $settings ) {
 			if ( !isset( $policyCheckFunctions[$policy] ) ) {
 				throw new DomainException( "Invalid password policy config. No check defined for '$policy'." );
 			}
-			$status->merge(
-				call_user_func(
-					$policyCheckFunctions[$policy],
-					$value,
-					$user,
-					$password
-				)
+			if ( !is_array( $settings ) ) {
+				// legacy format
+				$settings = [ 'value' => $settings ];
+			}
+			if ( !array_key_exists( 'value', $settings ) ) {
+				throw new DomainException( "Invalid password policy config. No value defined for '$policy'." );
+			}
+			$value = $settings['value'];
+			/** @var StatusValue $policyStatus */
+			$policyStatus = call_user_func(
+				$policyCheckFunctions[$policy],
+				$value,
+				$user,
+				$password
 			);
+			if ( !$policyStatus->isGood() && !empty( $settings['forceChange'] ) ) {
+				$forceChange = true;
+			}
+			$status->merge( $policyStatus );
+		}
+		if ( $status->isOK() && $forceChange ) {
+			$status->value['forceChange'] = true;
 		}
 		return $status;
 	}
@@ -174,6 +193,7 @@ class UserPasswordPolicy {
 	/**
 	 * Utility function to get a policy that is the most restrictive of $p1 and $p2. For
 	 * simplicity, we setup the policy values so the maximum value is always more restrictive.
+	 * It is also used recursively to merge settings within the same policy.
 	 * @param array $p1
 	 * @param array $p2
 	 * @return array containing the more restrictive values of $p1 and $p2
@@ -186,8 +206,15 @@ class UserPasswordPolicy {
 				$ret[$key] = $p2[$key];
 			} elseif ( !isset( $p2[$key] ) ) {
 				$ret[$key] = $p1[$key];
-			} else {
+			} elseif ( !is_array( $p1[$key] ) && !is_array( $p2[$key] ) ) {
 				$ret[$key] = max( $p1[$key], $p2[$key] );
+			} else {
+				if ( !is_array( $p1[$key] ) ) {
+					$p1[$key] = [ 'value' => $p1[$key] ];
+				} elseif ( !is_array( $p2[$key] ) ) {
+					$p2[$key] = [ 'value' => $p2[$key] ];
+				}
+				$ret[$key] = self::maxOfPolicies( $p1[$key], $p2[$key] );
 			}
 		}
 		return $ret;

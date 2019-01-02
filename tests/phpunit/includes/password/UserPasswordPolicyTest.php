@@ -30,7 +30,7 @@ class UserPasswordPolicyTest extends MediaWikiTestCase {
 
 	protected $policies = [
 		'checkuser' => [
-			'MinimalPasswordLength' => 10,
+			'MinimalPasswordLength' => [ 'value' => 10, 'forceChange' => true ],
 			'MinimumPasswordLengthToLogin' => 6,
 			'PasswordCannotMatchUsername' => true,
 		],
@@ -44,6 +44,8 @@ class UserPasswordPolicyTest extends MediaWikiTestCase {
 			'MinimumPasswordLengthToLogin' => 1,
 			'PasswordCannotMatchBlacklist' => true,
 			'MaximalPasswordLength' => 4096,
+			// test null handling
+			'PasswordCannotMatchUsername' => null,
 		],
 	];
 
@@ -62,15 +64,24 @@ class UserPasswordPolicyTest extends MediaWikiTestCase {
 	public function testGetPoliciesForUser() {
 		$upp = $this->getUserPasswordPolicy();
 
-		$user = User::newFromName( 'TestUserPolicy' );
-		$user->addToDatabase();
-		$user->addGroup( 'sysop' );
-
+		$user = $this->getTestUser( [ 'sysop' ] )->getUser();
 		$this->assertArrayEquals(
 			[
 				'MinimalPasswordLength' => 8,
 				'MinimumPasswordLengthToLogin' => 1,
-				'PasswordCannotMatchUsername' => 1,
+				'PasswordCannotMatchUsername' => true,
+				'PasswordCannotMatchBlacklist' => true,
+				'MaximalPasswordLength' => 4096,
+			],
+			$upp->getPoliciesForUser( $user )
+		);
+
+		$user = $this->getTestUser( [ 'sysop', 'checkuser' ] )->getUser();
+		$this->assertArrayEquals(
+			[
+				'MinimalPasswordLength' => [ 'value' => 10, 'forceChange' => true ],
+				'MinimumPasswordLengthToLogin' => 6,
+				'PasswordCannotMatchUsername' => true,
 				'PasswordCannotMatchBlacklist' => true,
 				'MaximalPasswordLength' => 4096,
 			],
@@ -87,7 +98,7 @@ class UserPasswordPolicyTest extends MediaWikiTestCase {
 
 		$this->assertArrayEquals(
 			[
-				'MinimalPasswordLength' => 10,
+				'MinimalPasswordLength' => [ 'value' => 10, 'forceChange' => true ],
 				'MinimumPasswordLengthToLogin' => 6,
 				'PasswordCannotMatchUsername' => true,
 				'PasswordCannotMatchBlacklist' => true,
@@ -100,108 +111,96 @@ class UserPasswordPolicyTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideCheckUserPassword
 	 */
-	public function testCheckUserPassword( $username, $groups, $password, $valid, $ok, $msg ) {
+	public function testCheckUserPassword( $groups, $password, StatusValue $expectedStatus ) {
 		$upp = $this->getUserPasswordPolicy();
-
-		$user = User::newFromName( $username );
-		$user->addToDatabase();
-		foreach ( $groups as $group ) {
-			$user->addGroup( $group );
-		}
+		$user = $this->getTestUser( $groups )->getUser();
 
 		$status = $upp->checkUserPassword( $user, $password );
-		$this->assertSame( $valid, $status->isGood(), $msg . ' - password valid' );
-		$this->assertSame( $ok, $status->isOK(), $msg . ' - can login' );
+		$this->assertSame( $expectedStatus->isGood(), $status->isGood(), 'password valid' );
+		$this->assertSame( $expectedStatus->isOK(), $status->isOK(), 'can login' );
+		$this->assertSame( $expectedStatus->getValue(), $status->getValue(), 'flags' );
 	}
 
 	public function provideCheckUserPassword() {
+		$success = Status::newGood( [] );
+		$warning = Status::newGood( [] );
+		$forceChange = Status::newGood( [ 'forceChange' => true ] );
+		$fatal = Status::newGood( [] );
+		// the message does not matter, we only test for state and value
+		$warning->warning( 'invalid-password' );
+		$forceChange->warning( 'invalid-password' );
+		$warning->warning( 'invalid-password' );
+		$fatal->fatal( 'invalid-password' );
 		return [
-			[
-				'PassPolicyUser',
+			'No groups, default policy, password too short to login' => [
 				[],
 				'',
-				false,
-				false,
-				'No groups, default policy, password too short to login'
+				$fatal,
 			],
-			[
-				'PassPolicyUser',
+			'Default policy, short password' => [
 				[ 'user' ],
 				'aaa',
-				false,
-				true,
-				'Default policy, short password'
+				$warning,
 			],
-			[
-				'PassPolicyUser',
+			'Sysop with good password' => [
 				[ 'sysop' ],
 				'abcdabcdabcd',
-				true,
-				true,
-				'Sysop with good password'
+				$success,
 			],
-			[
-				'PassPolicyUser',
+			'Sysop with short password' => [
 				[ 'sysop' ],
 				'abcd',
-				false,
-				true,
-				'Sysop with short password'
+				$warning,
 			],
-			[
-				'PassPolicyUser',
+			'Checkuser with short password' => [
 				[ 'sysop', 'checkuser' ],
 				'abcdabcd',
-				false,
-				true,
-				'Checkuser with short password'
+				$forceChange,
 			],
-			[
-				'PassPolicyUser',
+			'Checkuser with too short password to login' => [
 				[ 'sysop', 'checkuser' ],
 				'abcd',
-				false,
-				false,
-				'Checkuser with too short password to login'
-			],
-			[
-				'Useruser',
-				[ 'user' ],
-				'Passpass',
-				false,
-				true,
-				'Username & password on blacklist'
+				$fatal,
 			],
 		];
+	}
+
+	public function testCheckUserPassword_blacklist() {
+		$upp = $this->getUserPasswordPolicy();
+		$user = User::newFromName( 'Useruser' );
+		$user->addToDatabase();
+
+		$status = $upp->checkUserPassword( $user, 'Passpass' );
+		$this->assertFalse( $status->isGood(), 'password invalid' );
+		$this->assertTrue( $status->isOK(), 'can login' );
 	}
 
 	/**
 	 * @dataProvider provideMaxOfPolicies
 	 */
-	public function testMaxOfPolicies( $p1, $p2, $max, $msg ) {
+	public function testMaxOfPolicies( $p1, $p2, $max ) {
 		$this->assertArrayEquals(
 			$max,
-			UserPasswordPolicy::maxOfPolicies( $p1, $p2 ),
-			$msg
+			UserPasswordPolicy::maxOfPolicies( $p1, $p2 )
 		);
 	}
 
 	public function provideMaxOfPolicies() {
 		return [
-			[
+			'Basic max in p1' => [
 				[ 'MinimalPasswordLength' => 8 ], // p1
 				[ 'MinimalPasswordLength' => 2 ], // p2
 				[ 'MinimalPasswordLength' => 8 ], // max
-				'Basic max in p1'
 			],
-			[
+			'Basic max in p2' => [
 				[ 'MinimalPasswordLength' => 2 ], // p1
 				[ 'MinimalPasswordLength' => 8 ], // p2
 				[ 'MinimalPasswordLength' => 8 ], // max
-				'Basic max in p2'
 			],
-			[
-				[ 'MinimalPasswordLength' => 8 ], // p1
+			'Missing items in p1' => [
+				[
+					'MinimalPasswordLength' => 8,
+				], // p1
 				[
 					'MinimalPasswordLength' => 2,
 					'PasswordCannotMatchUsername' => 1,
@@ -210,9 +209,8 @@ class UserPasswordPolicyTest extends MediaWikiTestCase {
 					'MinimalPasswordLength' => 8,
 					'PasswordCannotMatchUsername' => 1,
 				], // max
-				'Missing items in p1'
 			],
-			[
+			'Missing items in p2' => [
 				[
 					'MinimalPasswordLength' => 8,
 					'PasswordCannotMatchUsername' => 1,
@@ -224,7 +222,64 @@ class UserPasswordPolicyTest extends MediaWikiTestCase {
 					'MinimalPasswordLength' => 8,
 					'PasswordCannotMatchUsername' => 1,
 				], // max
-				'Missing items in p2'
+			],
+			'complex value in p1' => [
+				[
+					'MinimalPasswordLength' => [
+						'value' => 8,
+						'foo' => 1,
+					],
+				], // p1
+				[
+					'MinimalPasswordLength' => 2,
+				], // p2
+				[
+					'MinimalPasswordLength' => [
+						'value' => 8,
+						'foo' => 1,
+					],
+				], // max
+			],
+			'complex value in p2' => [
+				[
+					'MinimalPasswordLength' => 8,
+				], // p1
+				[
+					'MinimalPasswordLength' => [
+						'value' => 2,
+						'foo' => 1,
+					],
+				], // p2
+				[
+					'MinimalPasswordLength' => [
+						'value' => 8,
+						'foo' => 1,
+					],
+				], // max
+			],
+			'complex value in both p1 and p2' => [
+				[
+					'MinimalPasswordLength' => [
+						'value' => 8,
+						'foo' => 1,
+						'baz' => false,
+					],
+				], // p1
+				[
+					'MinimalPasswordLength' => [
+						'value' => 2,
+						'bar' => 2,
+						'baz' => true,
+					],
+				], // p2
+				[
+					'MinimalPasswordLength' => [
+						'value' => 8,
+						'foo' => 1,
+						'bar' => 2,
+						'baz' => true,
+					],
+				], // max
 			],
 		];
 	}

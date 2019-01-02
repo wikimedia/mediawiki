@@ -4454,13 +4454,20 @@ $wgCentralIdLookupProvider = 'local';
  * Password policy for the wiki.
  * Structured as
  * [
- *     'policies' => [ <group> => [ <policy> => <value>, ... ], ... ],
+ *     'policies' => [ <group> => [ <policy> => <settings>, ... ], ... ],
  *     'checks' => [ <policy> => <callback>, ... ],
  * ]
  * where <group> is a user group, <policy> is a password policy name
  * (arbitrary string) defined in the 'checks' part, <callback> is the
- * PHP callable implementing the policy check, <value> is a number,
- * boolean or null that gets passed to the callback.
+ * PHP callable implementing the policy check, <settings> is an array
+ * of options with the following keys:
+ * - value: (number, boolean or null) the value to pass to the callback
+ * - forceChange: (bool, default false) if the password is invalid, do
+ *   not let the user log in without changing the password
+ * As a shorthand for [ 'value' => <value> ], simply <value> can be written.
+ * When multiple password policies are defined for a user, the settings
+ * arrays are merged, and for fields which are set in both arrays, the
+ * larger value (as understood by PHP's 'max' method) is taken.
  *
  * A user's effective policy is the superset of all policy statements
  * from the policies for the groups where the user is a member. If more
