@@ -1,7 +1,0 @@
-{
-	"ignoreDirectories": [
-		"./extensions",
-		"./images",
-		"./skins"
-	]
-}
