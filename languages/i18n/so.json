@@ -1065,8 +1065,6 @@
 	"ago": "$1 kahor",
 	"metadata-help": "Faylkaan wuxuu leeyahay  faah faahin dheeraad ah,waxaa laga yaabaa in lagu  isticmaalay digital kaamiro ama skanner oo lagu sameeyo sawir ama lagu digitilays gareeyay.\nHadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in ee  faah faahinta faylkaan eesan dhameestirneen.",
 	"metadata-fields": "Sawirka qeybihiisa metadata oo ku tixan fariintaan waxaa lagu dari doonaa bogga sawirka meesha laga arko markii miiska metadata la qariyo.Kuwa kale waxaa loo qarinaa sida default.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
-	"exif-iimcategory": "Qeybta",
-	"exif-dc-rights": "Xuquuqaha",
 	"namespacesall": "dhamaan",
 	"monthsall": "Dhamaan",
 	"confirmemail_noemail": "Kuma haysatid cinwaan E-boosto sax [[Special:Preferences|isticmaala dooqiisa]].",

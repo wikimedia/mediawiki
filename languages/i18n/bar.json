@@ -1112,8 +1112,6 @@
 	"metadata-expand": "Erweitate Deteus eiblendn",
 	"metadata-collapse": "D' erweiterden Details eihblenden",
 	"metadata-fields": "De foigandn Fejda vo de EXIF-Metadaten, wo im MediaWiki-Systemtext ogebm san, wean auf Buidbschriebseitn mid eikloppta Metadatentabejn ozoagt.\nWeidane wean standardmassi ned ozoagt.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
-	"exif-gpsspeed": "Gschwindigkeid vom GPS-Empfänger",
-	"exif-componentsconfiguration-0": "Gibts néd",
 	"namespacesall": "olle",
 	"monthsall": "olle",
 	"confirmemail": "E-Post-Adressn bestäting (Authentifiziarung)",

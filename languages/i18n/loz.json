@@ -711,7 +711,6 @@
 	"metadata-expand": "Kamukile datani",
 	"metadata-collapse": "Cwankekile petulo tabu",
 	"metadata-fields": "EXIF metadata fields mukoloko kwa mulumiwa sa ike kwa imegipetulo ka metadata tablu sa tibekile. Xetewi sa cwankekile auto.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
-	"exif-imagedescription": "Sebu di imegi",
 	"namespacesall": "xeti",
 	"monthsall": "xeti",
 	"confirm_purge_button": "Afi",
