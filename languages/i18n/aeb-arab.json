@@ -769,7 +769,6 @@
 	"metadata": "بيانات ميتا",
 	"metadata-help": "هذا الملف يحتوي على معلومات إضافية، غالبا ما تكون أضيفت من قبل الكاميرا الرقمية أو الماسح الضوئي المستخدم في إنشاء الملف.\nإذا كان الملف قد عدل عن حالته الأصلية، فبعض التفاصيل قد لا تعبر عن الملف المعدل.",
 	"metadata-fields": "حقول معطيات الميتا الموجودة في هذه الرسالة سوف تعرض في صفحة الصورة عندما يكون جدول معطيات الميتا مضغوطا.\nالحقول الأخرى ستكون مخفية افتراضيا.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
-	"exif-datetime": "نهار و وقت تبديل الفيشياي",
 	"namespacesall": "الكل",
 	"monthsall": "الكل",
 	"watchlisttools-view": "اعرض التغييرات المرتبطة",

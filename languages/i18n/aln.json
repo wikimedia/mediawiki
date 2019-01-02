@@ -9,7 +9,8 @@
 			"Ammartivari",
 			"Olsi",
 			"Kosovastar",
-			"Macofe"
+			"Macofe",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Nënvizoji vegzat",
@@ -732,7 +733,9 @@
 	"right-editprotected": "Redakto faqet e mbrojtura (pa ndryshuar mbrojtjen)",
 	"right-editinterface": "Ndrysho parapamjen e përdoruesit",
 	"right-editusercss": "Redakto skedat CSS të përdoruesve tjerë",
+	"right-edituserjson": "Redakto skedat JSON të përdoruesve tjerë",
 	"right-edituserjs": "Redakto skedat JS të përdoruesve tjerë",
+	"right-editmyuserjson": "Redakto JSON - skedat e tua të përdoruesit",
 	"right-noratelimit": "Mos u prek nga kufizimet e vlerësimit",
 	"right-import": "Importo faqe nga wiki tjera",
 	"right-unwatchedpages": "Shiko listën e faqeve të pa vëzhguara",
