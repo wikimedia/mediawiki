@@ -38,7 +38,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertArrayHasKey( 'Reason', $fields );
 		$this->assertArrayHasKey( 'CreateAccount', $fields );
 		$this->assertArrayHasKey( 'DisableUTEdit', $fields );
-		$this->assertArrayHasKey( 'DisableUTEdit', $fields );
 		$this->assertArrayHasKey( 'AutoBlock', $fields );
 		$this->assertArrayHasKey( 'HardBlock', $fields );
 		$this->assertArrayHasKey( 'PreviousTarget', $fields );
