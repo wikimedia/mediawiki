@@ -958,23 +958,23 @@ class Linker {
 
 		Hooks::run( 'UserToolLinksEdit', [ $userId, $userText, &$items ] );
 
-		if ( $items ) {
-			if ( $useParentheses ) {
-				return wfMessage( 'word-separator' )->escaped()
-					. '<span class="mw-usertoollinks">'
-					. wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped()
-					. '</span>';
-			} else {
-				$tools = [];
-				foreach ( $items as $tool ) {
-					$tools[] = Html::rawElement( 'span', [], $tool );
-				}
-				return ' <span class="mw-usertoollinks mw-changeslist-links">' .
-					implode( ' ', $tools ) . '</span>';
-			}
-		} else {
+		if ( !$items ) {
 			return '';
 		}
+
+		if ( $useParentheses ) {
+			return wfMessage( 'word-separator' )->escaped()
+				. '<span class="mw-usertoollinks">'
+				. wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped()
+				. '</span>';
+		}
+
+		$tools = [];
+		foreach ( $items as $tool ) {
+			$tools[] = Html::rawElement( 'span', [], $tool );
+		}
+		return ' <span class="mw-usertoollinks mw-changeslist-links">' .
+			implode( ' ', $tools ) . '</span>';
 	}
 
 	/**
@@ -1463,16 +1463,15 @@ class Linker {
 		// compatibility, acc. to brion -ævar
 		if ( $comment == '' || $comment == '*' ) {
 			return '';
-		} else {
-			$formatted = self::formatComment( $comment, $title, $local, $wikiId );
-			if ( $useParentheses ) {
-				$formatted = wfMessage( 'parentheses' )->rawParams( $formatted )->escaped();
-				$classNames = 'comment';
-			} else {
-				$classNames = 'comment comment--without-parentheses';
-			}
-			return " <span class=\"$classNames\">$formatted</span>";
 		}
+		$formatted = self::formatComment( $comment, $title, $local, $wikiId );
+		if ( $useParentheses ) {
+			$formatted = wfMessage( 'parentheses' )->rawParams( $formatted )->escaped();
+			$classNames = 'comment';
+		} else {
+			$classNames = 'comment comment--without-parentheses';
+		}
+		return " <span class=\"$classNames\">$formatted</span>";
 	}
 
 	/**
@@ -2089,27 +2088,26 @@ class Linker {
 
 		if ( !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
 			return self::revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
-		} else {
-			if ( $rev->getId() ) {
-				// RevDelete links using revision ID are stable across
-				// page deletion and undeletion; use when possible.
-				$query = [
-					'type' => 'revision',
-					'target' => $title->getPrefixedDBkey(),
-					'ids' => $rev->getId()
-				];
-			} else {
-				// Older deleted entries didn't save a revision ID.
-				// We have to refer to these by timestamp, ick!
-				$query = [
-					'type' => 'archive',
-					'target' => $title->getPrefixedDBkey(),
-					'ids' => $rev->getTimestamp()
-				];
-			}
-			return self::revDeleteLink( $query,
-				$rev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
 		}
+		if ( $rev->getId() ) {
+			// RevDelete links using revision ID are stable across
+			// page deletion and undeletion; use when possible.
+			$query = [
+				'type' => 'revision',
+				'target' => $title->getPrefixedDBkey(),
+				'ids' => $rev->getId()
+			];
+		} else {
+			// Older deleted entries didn't save a revision ID.
+			// We have to refer to these by timestamp, ick!
+			$query = [
+				'type' => 'archive',
+				'target' => $title->getPrefixedDBkey(),
+				'ids' => $rev->getTimestamp()
+			];
+		}
+		return self::revDeleteLink( $query,
+			$rev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
 	}
 
 	/**
