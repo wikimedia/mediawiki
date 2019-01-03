@@ -4,7 +4,6 @@ use Wikimedia\Rdbms\IDatabase;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
-use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
