@@ -1181,6 +1181,8 @@
 	"prefs-advancedwatchlist": "詳細の設定",
 	"prefs-displayrc": "表示の設定",
 	"prefs-displaywatchlist": "表示の設定",
+	"prefs-changesrc": "表示する編集",
+	"prefs-changeswatchlist": "表示する編集",
 	"prefs-pageswatchlist": "ウォッチするページ",
 	"prefs-tokenwatchlist": "トークン",
 	"prefs-diffs": "差分",

@@ -3186,7 +3186,7 @@
 	"autosumm-removed-redirect": "Вилучено перенаправлення на [[$1]]",
 	"autosumm-changed-redirect-target": "Змінено ціль перенаправлення з [[$1]] на [[$2]]",
 	"autosumm-new": "Створена сторінка: $1",
-	"autosumm-newblank": "Створити порожню сторінку",
+	"autosumm-newblank": "Створено порожню сторінку",
 	"size-bytes": "$1 {{PLURAL:$1|байт|байти|байтів}}",
 	"size-kilobytes": "$1 КБ",
 	"size-megabytes": "$1 МБ",

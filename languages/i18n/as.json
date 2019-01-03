@@ -2660,6 +2660,7 @@
 	"feedback-subject": "বিষয়:",
 	"feedback-submit": "দাখিল কৰক",
 	"feedback-thanks": "ধন্যবাদ ! আপোনাৰ প্ৰতিক্ৰিয়া \"[$2 $1]\" পৃষ্ঠাত প্ৰকাশ কৰা হৈছে।",
+	"feedback-thanks-title": "ধন্যবাদ!",
 	"searchsuggest-search": "{{SITENAME}}ত সন্ধান কৰক",
 	"searchsuggest-containing": "যি আছে...",
 	"api-error-badtoken": "আভ্যন্তৰীণ ত্ৰুটি: ভুল টোকেন।",
