@@ -904,7 +904,7 @@
 	ignore = dirty
 [submodule "extensions/GlobalUserPage"]
 	path = extensions/GlobalUserPage
-	url = https://github.com/macfanforks/mediawiki-extensions-GlobalUserPage
+	url = https://github.com/wikimedia/mediawiki-extensions-GlobalUserPage
 	branch = REL1_32
 [submodule "extensions/GlobalPreferences"]
 	path = extensions/GlobalPreferences
