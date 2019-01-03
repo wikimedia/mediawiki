@@ -159,6 +159,7 @@ class HTMLForm extends ContextSource {
 		'checkmatrix' => HTMLCheckMatrix::class,
 		'cloner' => HTMLFormFieldCloner::class,
 		'autocompleteselect' => HTMLAutoCompleteSelectField::class,
+		'language' => HTMLSelectLanguageField::class,
 		'date' => HTMLDateTimeField::class,
 		'time' => HTMLDateTimeField::class,
 		'datetime' => HTMLDateTimeField::class,

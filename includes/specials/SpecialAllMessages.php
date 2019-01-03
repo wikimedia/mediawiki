@@ -20,6 +20,7 @@
  * @file
  * @ingroup SpecialPage
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Use this special page to get a list of the MediaWiki system messages.
@@ -28,10 +29,6 @@
  * @ingroup SpecialPage
  */
 class SpecialAllMessages extends SpecialPage {
-	/**
-	 * @var AllMessagesTablePager
-	 */
-	protected $table;
 
 	public function __construct() {
 		parent::__construct( 'Allmessages' );
@@ -43,7 +40,6 @@ class SpecialAllMessages extends SpecialPage {
 	 * @param string $par Parameter passed to the page or null
 	 */
 	public function execute( $par ) {
-		$request = $this->getRequest();
 		$out = $this->getOutput();
 
 		$this->setHeaders();
@@ -54,18 +50,77 @@ class SpecialAllMessages extends SpecialPage {
 			return;
 		}
 
-		$this->outputHeader( 'allmessagestext' );
 		$out->addModuleStyles( 'mediawiki.special' );
 		$this->addHelpLink( 'Help:System message' );
 
-		$this->table = new AllMessagesTablePager(
-			$this,
-			[],
-			wfGetLangObj( $request->getVal( 'lang', $par ) )
-		);
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage()->getCode();
+		$lang = $this->getLanguage();
 
-		$out->addHTML( $this->table->buildForm() );
-		$out->addParserOutputContent( $this->table->getFullOutput() );
+		$opts = new FormOptions();
+
+		$opts->add( 'prefix', '' );
+		$opts->add( 'filter', 'all' );
+		$opts->add( 'lang', $contLang );
+		$opts->add( 'limit', 50 );
+
+		$opts->fetchValuesFromRequest( $this->getRequest() );
+		$opts->validateIntBounds( 'limit', 0, 5000 );
+
+		$pager = new AllMessagesTablePager( $this->getContext(), $opts );
+
+		$formDescriptor = [
+			'prefix' => [
+				'type' => 'text',
+				'name' => 'prefix',
+				'label-message' => 'allmessages-prefix',
+			],
+
+			'filter' => [
+				'type' => 'radio',
+				'name' => 'filter',
+				'label-message' => 'allmessages-filter',
+				'options' => [
+					$this->msg( 'allmessages-filter-unmodified' )->text() => 'unmodified',
+					$this->msg( 'allmessages-filter-all' )->text() => 'all',
+					$this->msg( 'allmessages-filter-modified' )->text() => 'modified',
+				],
+				'default' => 'all',
+				'flatlist' => true,
+			],
+
+			'lang' => [
+				'type' => 'language',
+				'name' => 'lang',
+				'label-message' => 'allmessages-language',
+				'default' => $opts->getValue( 'lang' ),
+			],
+
+			'limit' => [
+				'type' => 'limitselect',
+				'name' => 'limit',
+				'label-message' => 'table_pager_limit_label',
+				'options' => [
+					$lang->formatNum( 20 ) => 20,
+					$lang->formatNum( 50 ) => 50,
+					$lang->formatNum( 100 ) => 100,
+					$lang->formatNum( 250 ) => 250,
+					$lang->formatNum( 500 ) => 500,
+					$lang->formatNum( 5000 ) => 5000,
+				],
+				'default' => $opts->getValue( 'limit' ),
+			],
+		];
+
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+		$htmlForm
+			->setMethod( 'get' )
+			->setIntro( $this->msg( 'allmessagestext' ) )
+			->setWrapperLegendMsg( 'allmessages' )
+			->setSubmitTextMsg( 'allmessages-filter-submit' )
+			->prepareForm()
+			->displayForm( false );
+
+		$out->addParserOutputContent( $pager->getFullOutput() );
 	}
 
 	protected function getGroupName() {
