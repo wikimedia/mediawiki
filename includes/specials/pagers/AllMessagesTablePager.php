@@ -30,9 +30,20 @@ use Wikimedia\Rdbms\FakeResultWrapper;
  */
 class AllMessagesTablePager extends TablePager {
 
-	protected $filter, $prefix, $langcode, $displayPrefix;
+	/**
+	 * @var string
+	 */
+	protected $langcode;
 
-	public $mLimitsShown;
+	/**
+	 * @var bool
+	 */
+	protected $foreign;
+
+	/**
+	 * @var string
+	 */
+	protected $prefix;
 
 	/**
 	 * @var Language
@@ -44,41 +55,40 @@ class AllMessagesTablePager extends TablePager {
 	 */
 	public $custom;
 
-	public function __construct( $page, $conds, Language $langObj = null ) {
-		parent::__construct( $page->getContext() );
+	/**
+	 * @param IContextSource|null $context
+	 * @param FormOptions $opts
+	 */
+	public function __construct( IContextSource $context = null, FormOptions $opts ) {
+		parent::__construct( $context );
+
 		$this->mIndexField = 'am_title';
-		$this->mPage = $page;
-		$this->mConds = $conds;
 		// FIXME: Why does this need to be set to DIR_DESCENDING to produce ascending ordering?
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
-		$this->mLimitsShown = [ 20, 50, 100, 250, 500, 5000 ];
 
-		$this->talk = $this->msg( 'talkpagelinktext' )->escaped();
-
+		$langObj = wfGetLangObj( $opts->getValue( 'lang' ) );
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$this->lang = $langObj ?? $contLang;
+
 		$this->langcode = $this->lang->getCode();
 		$this->foreign = !$this->lang->equals( $contLang );
 
-		$request = $this->getRequest();
-
-		$this->filter = $request->getVal( 'filter', 'all' );
-		if ( $this->filter === 'all' ) {
+		$filter = $opts->getValue( 'filter' );
+		if ( $filter === 'all' ) {
 			$this->custom = null; // So won't match in either case
 		} else {
-			$this->custom = ( $this->filter === 'unmodified' );
+			$this->custom = ( $filter === 'unmodified' );
 		}
 
-		$prefix = $this->getLanguage()->ucfirst( $request->getVal( 'prefix', '' ) );
+		$prefix = $this->getLanguage()->ucfirst( $opts->getValue( 'prefix' ) );
 		$prefix = $prefix !== '' ?
-			Title::makeTitleSafe( NS_MEDIAWIKI, $request->getVal( 'prefix', null ) ) :
+			Title::makeTitleSafe( NS_MEDIAWIKI, $opts->getValue( 'prefix' ) ) :
 			null;
 
 		if ( $prefix !== null ) {
-			$this->displayPrefix = $prefix->getDBkey();
-			$this->prefix = '/^' . preg_quote( $this->displayPrefix, '/' ) . '/i';
+			$displayPrefix = $prefix->getDBkey();
+			$this->prefix = '/^' . preg_quote( $displayPrefix, '/' ) . '/i';
 		} else {
-			$this->displayPrefix = false;
 			$this->prefix = false;
 		}
 
@@ -89,84 +99,6 @@ class AllMessagesTablePager extends TablePager {
 		} else {
 			$this->suffix = '';
 		}
-	}
-
-	function buildForm() {
-		$attrs = [ 'id' => 'mw-allmessages-form-lang', 'name' => 'lang' ];
-		$msg = wfMessage( 'allmessages-language' );
-		$langSelect = Xml::languageSelector( $this->langcode, false, null, $attrs, $msg );
-
-		$out = Xml::openElement( 'form', [
-				'method' => 'get',
-				'action' => $this->getConfig()->get( 'Script' ),
-				'id' => 'mw-allmessages-form'
-			] ) .
-			Xml::fieldset( $this->msg( 'allmessages-filter-legend' )->text() ) .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
-			Xml::openElement( 'table', [ 'class' => 'mw-allmessages-table' ] ) . "\n" .
-			'<tr>
-				<td class="mw-label">' .
-			Xml::label( $this->msg( 'allmessages-prefix' )->text(), 'mw-allmessages-form-prefix' ) .
-			"</td>\n
-			<td class=\"mw-input\">" .
-			Xml::input(
-				'prefix',
-				20,
-				str_replace( '_', ' ', $this->displayPrefix ),
-				[ 'id' => 'mw-allmessages-form-prefix' ]
-			) .
-			"</td>\n
-			</tr>
-			<tr>\n
-			<td class='mw-label'>" .
-			$this->msg( 'allmessages-filter' )->escaped() .
-			"</td>\n
-				<td class='mw-input'>" .
-			Xml::radioLabel( $this->msg( 'allmessages-filter-unmodified' )->text(),
-				'filter',
-				'unmodified',
-				'mw-allmessages-form-filter-unmodified',
-				( $this->filter === 'unmodified' )
-			) .
-			Xml::radioLabel( $this->msg( 'allmessages-filter-all' )->text(),
-				'filter',
-				'all',
-				'mw-allmessages-form-filter-all',
-				( $this->filter === 'all' )
-			) .
-			Xml::radioLabel( $this->msg( 'allmessages-filter-modified' )->text(),
-				'filter',
-				'modified',
-				'mw-allmessages-form-filter-modified',
-				( $this->filter === 'modified' )
-			) .
-			"</td>\n
-			</tr>
-			<tr>\n
-				<td class=\"mw-label\">" . $langSelect[0] . "</td>\n
-				<td class=\"mw-input\">" . $langSelect[1] . "</td>\n
-			</tr>" .
-
-			'<tr>
-				<td class="mw-label">' .
-			Xml::label( $this->msg( 'table_pager_limit_label' )->text(), 'mw-table_pager_limit_label' ) .
-			'</td>
-			<td class="mw-input">' .
-			$this->getLimitSelect( [ 'id' => 'mw-table_pager_limit_label' ] ) .
-			'</td>
-			<tr>
-				<td></td>
-				<td>' .
-			Xml::submitButton( $this->msg( 'allmessages-filter-submit' )->text() ) .
-			"</td>\n
-			</tr>" .
-
-			Xml::closeElement( 'table' ) .
-			$this->getHiddenFields( [ 'title', 'prefix', 'filter', 'lang', 'limit' ] ) .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' );
-
-		return $out;
 	}
 
 	function getAllMessages( $descending ) {
@@ -318,6 +250,7 @@ class AllMessagesTablePager extends TablePager {
 					] ),
 					$this->msg( 'allmessages-filter-translate' )->text()
 				);
+				$talkLink = $this->msg( 'talkpagelinktext' )->escaped();
 
 				if ( $this->mCurrentRow->am_customised ) {
 					$title = $linkRenderer->makeKnownLink( $title, $this->getLanguage()->lcfirst( $value ) );
@@ -328,11 +261,11 @@ class AllMessagesTablePager extends TablePager {
 					);
 				}
 				if ( $this->mCurrentRow->am_talk_exists ) {
-					$talk = $linkRenderer->makeKnownLink( $talk, $this->talk );
+					$talk = $linkRenderer->makeKnownLink( $talk, $talkLink );
 				} else {
 					$talk = $linkRenderer->makeBrokenLink(
 						$talk,
-						$this->talk
+						$talkLink
 					);
 				}
 
