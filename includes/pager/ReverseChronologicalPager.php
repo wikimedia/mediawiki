@@ -26,9 +26,13 @@ use Wikimedia\Timestamp\TimestampException;
  * @ingroup Pager
  */
 abstract class ReverseChronologicalPager extends IndexPager {
+	/** @var bool */
 	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
+	/** @var int */
 	public $mYear;
+	/** @var int */
 	public $mMonth;
+	/** @var int */
 	public $mDay;
 
 	public function getNavigationBar() {
