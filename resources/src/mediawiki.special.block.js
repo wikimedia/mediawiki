@@ -67,7 +67,9 @@
 			// Bind functions so they're checked whenever stuff changes
 			blockTargetWidget.on( 'change', updateBlockOptions );
 			expiryWidget.on( 'change', updateBlockOptions );
-			editingRestrictionWidget.on( 'change', updateBlockOptions );
+			if ( editingRestrictionWidget ) {
+				editingRestrictionWidget.on( 'change', updateBlockOptions );
+			}
 
 			// Call them now to set initial state (ie. Special:Block/Foobar?wpBlockExpiry=2+hours)
 			updateBlockOptions();
