@@ -1504,7 +1504,7 @@
 	"rcfilters-watchlist-showupdated": "Az újabb változtatások, amiket még nem néztél meg, <strong>vastagítva</strong> láthatók, kitöltött jelzőkkel.",
 	"rcfilters-preference-label": "JavaScript-nélküli felület használata",
 	"rcfilters-preference-help": "Friss változtatások betöltése szűrők közti keresés és kiemelések lehetősége nélkül.",
-	"rcfilters-watchlist-preference-label": "JavaScript-nélküli felület használata",
+	"rcfilters-watchlist-preference-label": "JavaScript nélküli felület használata",
 	"rcfilters-watchlist-preference-help": "Figyelőlista betöltése szűrők közti keresés és kiemelések lehetősége nélkül.",
 	"rcfilters-filter-showlinkedfrom-label": "A következő lapra hivatkozó lapok változtatásainak megjelenítése",
 	"rcfilters-filter-showlinkedfrom-option-label": "A kiválasztott <strong>lapról</strong> hivatkozott lapok",

@@ -1047,7 +1047,7 @@
 	"searchrelated": "सम्बंधित",
 	"searchall": "सभी",
 	"showingresults": "नीचे क्रमांक '''$2''' से प्रारंभ कर के अधिकतम '''$1''' परिणाम {{PLURAL:$1|दिखाया गया है|दिखाए गए हैं}}।",
-	"showingresultsinrange": "दिखा रहे हैं {{PLURAL:$1|<strong>1</strong> result|<strong>$1</strong> परिणाम}} तक पहुँच  #<strong>$2</strong> to #<strong>$3</strong> में।",
+	"showingresultsinrange": "क्रम संख्या #<strong>$2</strong> से #<strong>$3</strong> के बीच के अधिकतम {{PLURAL:$1|<strong>1</strong> परिणाम|<strong>$1</strong> परिणाम}} निम्नवत् हैं।",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> में से <strong>$1</strong> परिणाम|<strong>$3</strong> में से परिणाम <strong>$1 - $2</strong>}}",
 	"search-nonefound": "आपकी खोज से मेल खाते कोई परिणाम नहीं मिले।",
 	"search-nonefound-thiswiki": "आपके खोज से कोई भी परिणाम नहीं मिला।",
