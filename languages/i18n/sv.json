@@ -79,7 +79,8 @@
 			"Mdjarv",
 			"Frisko",
 			"Bengtsson96",
-			"Nirmos (Wikimedia)"
+			"Nirmos (Wikimedia)",
+			"Psl85"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -116,7 +117,7 @@
 	"tog-watchlisthideliu": "Visa inte redigeringar av inloggade användare i bevakningslistan",
 	"tog-watchlistreloadautomatically": "Uppdatera bevakningslistan automatiskt när ett filter ändras (JavaScript krävs)",
 	"tog-watchlistunwatchlinks": "Lägg till länkar för att bevaka och sluta bevaka ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) artiklar i bevakningslistan (JavaScript krävs)",
-	"tog-watchlisthideanons": "Dölj redigeringar av anonyma användare i bevakningslistan",
+	"tog-watchlisthideanons": "Dölj redigeringar av oregistrerade användare i bevakningslistan",
 	"tog-watchlisthidepatrolled": "Dölj patrullerade redigeringar i bevakningslistan",
 	"tog-watchlisthidecategorization": "Dölj kategorisering av sidor",
 	"tog-ccmeonemails": "Skicka kopior till mig av e-post jag skickar till andra användare",

@@ -511,7 +511,7 @@
 	"userlogin-reauth": "您必須再登入一次來驗証您為 {{GENDER:$1|$1}}。",
 	"userlogin-createanother": "建立另一個帳號",
 	"createacct-emailrequired": "電子郵件地址",
-	"createacct-emailoptional": "電子郵件地址 (選填)",
+	"createacct-emailoptional": "電子郵件地址（選填）",
 	"createacct-email-ph": "輸入您的電子郵件地址",
 	"createacct-another-email-ph": "輸入電子郵件地址",
 	"createaccountmail": "使用臨時的隨機密碼，並將它寄至指定的電子郵件地址",

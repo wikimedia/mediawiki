@@ -15,7 +15,8 @@
 			"Esh77",
 			"שמזן",
 			"Or",
-			"Umherirrender"
+			"Umherirrender",
+			"Strayblues"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|תיעוד]]\n* [[mw:Special:MyLanguage/API:FAQ|שאלות נפוצות]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api רשימת דיוור]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> ה־API של מדיה־ויקי הוא ממשק ותיק ויציב שנתמך ומשתפר באופן סדיר. למרות שאנחנו משתדלים להימנע מכך, לעתים עלינו לבצע שינויים שעלולים לשבש דברים בפונקציונליות הזו; באפשרותך לעשות מינוי ל[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ רשימת הדיוור mediawiki-api-announce] כדי לקבל הודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, תישלח כותרת HTTP עם המפתח \"MediaWiki-API-Error\", ואז גם הערך של הכותרת וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף, אפשר לעיין בדף [[mw:Special:MyLanguage/API:Errors_and_warnings|API: שגיאות ואזהרות]].\n\n<p class=\"mw-apisandbox-link\"><strong>בדיקה:</strong> לבדיקה קלה יותר של בקשות, אפשר להשתמש ב[[Special:ApiSandbox|ארגז החול של API]].</p>",
@@ -50,7 +51,7 @@
 	"apihelp-block-param-watchuser": "לעקוב אחרי דף המשתמש ודף השיחה של המשתמש או של כתובת ה־IP.",
 	"apihelp-block-param-tags": "תגי שינוי שיחולו על העיול ביומן החסימה.",
 	"apihelp-block-param-partial": "חסימת משתמש מעריכת דפים או מרחבי שם מסוימים ולא מכל האתר.",
-	"apihelp-block-param-pagerestrictions": "רשימת כותרות שהמשתמש ייחסם מלערוך. חל רק כאשר \"partial\" מוגדל ל־true.",
+	"apihelp-block-param-pagerestrictions": "רשימת כותרות שהמשתמש ייחסם מלערוך. חל רק כאשר \"partial\" מוגדר ל־true.",
 	"apihelp-block-example-ip-simple": "חסימת כתובת ה־IP‏ <kbd>192.0.2.5</kbd> לשלושה ימים עם הסיבה <kbd>First strike</kbd>.",
 	"apihelp-block-example-user-complex": "חסימת המשתמש <kbd>Vandal</kbd> ללא הגבלת זמן עם הסיבה <kbd>Vandalism</kbd>, ומניעת יצירת חשבונות חדשים ושליחת דוא\"ל.",
 	"apihelp-changeauthenticationdata-summary": "שינוי נתוני אימות עבור המשתמש הנוכחי.",
@@ -104,7 +105,7 @@
 	"apihelp-compare-paramvalue-prop-comment": "התקציר על גרסאות ה־\"from\" וה־\"to\".",
 	"apihelp-compare-paramvalue-prop-parsedcomment": "התקציר המפוענח על גרסאות ה־\"from\" וה־\"to\".",
 	"apihelp-compare-paramvalue-prop-size": "הגודל של גרסאות ה־\"from\" וה־\"to\".",
-	"apihelp-compare-param-slots": "החזרת השוואות פרטניו למשבצות האלה, ולא השוואה אחת משולבת לכל המשבצות.",
+	"apihelp-compare-param-slots": "החזרת השוואות פרטניות למשבצות האלה, ולא השוואה אחת משולבת לכל המשבצות.",
 	"apihelp-compare-example-1": "יצירת תיעוד שינוי בין גרסה 1 ל־2.",
 	"apihelp-createaccount-summary": "יצירת חשבון משתמש חדש.",
 	"apihelp-createaccount-param-preservestate": "אם <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> החזיר true עבור <samp>hasprimarypreservedstate</samp>, בקשות שמסומנות בתור <samp>primary-required</samp> אמורות להיות מושמטות. אם מוחזר ערך לא ריק ל־<samp>preservedusername</samp>, שם המשתמש הזה ישמש לפרמטר <var>username</var>.",
@@ -1664,7 +1665,7 @@
 	"apierror-mimesearchdisabled": "חיפוש MIME כבוי במצב קמצן.",
 	"apierror-missingcontent-pageid": "תוכן חסר עבור מזהה הדף $1.",
 	"apierror-missingcontent-revid": "תוכן חסר עבור מזהה הגרסה $1.",
-	"apierror-missingcontent-revid-role": "תוכן חסר כבור מזהה גרסה $1 לתפקיד $2.",
+	"apierror-missingcontent-revid-role": "תוכן חסר עבור מזהה גרסה $1 לתפקיד $2.",
 	"apierror-missingparam-at-least-one-of": "דרוש {{PLURAL:$2|הפרמטר|לפחות אחד מהפרמטרים}} $1.",
 	"apierror-missingparam-one-of": "דרוש {{PLURAL:$2|הפרמטר|אחד מהפרמטרים}} $1.",
 	"apierror-missingparam": "הפרמטר <var>$1</var> צריך להיות מוגדר.",
