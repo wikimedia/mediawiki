@@ -358,8 +358,6 @@ class McrUndoAction extends FormAction {
 
 	protected function getFormFields() {
 		$request = $this->getRequest();
-		$config = $this->context->getConfig();
-		$oldCommentSchema = $config->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
 		$ret = [
 			'diff' => [
 				'type' => 'info',
@@ -375,7 +373,7 @@ class McrUndoAction extends FormAction {
 				'name' => 'wpSummary',
 				'cssclass' => 'mw-summary',
 				'label-message' => 'summary',
-				'maxlength' => $oldCommentSchema ? 200 : CommentStore::COMMENT_CHARACTER_LIMIT,
+				'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 				'value' => $request->getVal( 'wpSummary', '' ),
 				'size' => 60,
 				'spellcheck' => 'true',

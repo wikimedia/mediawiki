@@ -600,6 +600,24 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropField', 'change_tag', 'ct_tag', 'patch-drop-ct_tag.sql' ],
 			[ 'dropTable', 'valid_tag' ],
 			[ 'dropTable', 'tag_summary' ],
+			[ 'dropPgField', 'archive', 'ar_comment' ],
+			[ 'dropDefault', 'archive', 'ar_comment_id' ],
+			[ 'dropPgField', 'ipblocks', 'ipb_reason' ],
+			[ 'dropDefault', 'ipblocks', 'ipb_reason_id' ],
+			[ 'dropPgField', 'image', 'img_description' ],
+			[ 'dropDefault', 'image', 'img_description_id' ],
+			[ 'dropPgField', 'oldimage', 'oi_description' ],
+			[ 'dropDefault', 'oldimage', 'oi_description_id' ],
+			[ 'dropPgField', 'filearchive', 'fa_deleted_reason' ],
+			[ 'dropDefault', 'filearchive', 'fa_deleted_reason_id' ],
+			[ 'dropPgField', 'filearchive', 'fa_description' ],
+			[ 'dropDefault', 'filearchive', 'fa_description_id' ],
+			[ 'dropPgField', 'recentchanges', 'rc_comment' ],
+			[ 'dropDefault', 'recentchanges', 'rc_comment_id' ],
+			[ 'dropPgField', 'logging', 'log_comment' ],
+			[ 'dropDefault', 'logging', 'log_comment_id' ],
+			[ 'dropPgField', 'protected_titles', 'pt_reason' ],
+			[ 'dropDefault', 'protected_titles', 'pt_reason_id' ],
 		];
 	}
 
@@ -928,7 +946,7 @@ END;
 
 	protected function setDefault( $table, $field, $default ) {
 		$info = $this->db->fieldInfo( $table, $field );
-		if ( $info->defaultValue() !== $default ) {
+		if ( $info && $info->defaultValue() !== $default ) {
 			$this->output( "Changing '$table.$field' default value\n" );
 			$this->db->query( "ALTER TABLE $table ALTER $field SET DEFAULT "
 				. $this->db->addQuotes( $default ) );

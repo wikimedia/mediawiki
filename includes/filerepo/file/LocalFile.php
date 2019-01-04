@@ -1431,7 +1431,7 @@ class LocalFile extends File {
 		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = [],
 		$createNullRevision = true
 	) {
-		global $wgCommentTableSchemaMigrationStage, $wgActorTableSchemaMigrationStage;
+		global $wgActorTableSchemaMigrationStage;
 
 		if ( is_null( $user ) ) {
 			global $wgUser;
@@ -1528,6 +1528,7 @@ class LocalFile extends File {
 				'oi_width' => 'img_width',
 				'oi_height' => 'img_height',
 				'oi_bits' => 'img_bits',
+				'oi_description_id' => 'img_description_id',
 				'oi_timestamp' => 'img_timestamp',
 				'oi_metadata' => 'img_metadata',
 				'oi_media_type' => 'img_media_type',
@@ -1536,39 +1537,6 @@ class LocalFile extends File {
 				'oi_sha1' => 'img_sha1',
 			];
 			$joins = [];
-
-			if ( $wgCommentTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ) {
-				$fields['oi_description'] = 'img_description';
-			}
-			if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
-				$fields['oi_description_id'] = 'img_description_id';
-			}
-
-			if ( $wgCommentTableSchemaMigrationStage !== MIGRATION_OLD &&
-				$wgCommentTableSchemaMigrationStage !== MIGRATION_NEW
-			) {
-				// Upgrade any rows that are still old-style. Otherwise an upgrade
-				// might be missed if a deletion happens while the migration script
-				// is running.
-				$res = $dbw->select(
-					[ 'image' ],
-					[ 'img_name', 'img_description' ],
-					[
-						'img_name' => $this->getName(),
-						'img_description_id' => 0,
-					],
-					__METHOD__
-				);
-				foreach ( $res as $row ) {
-					$imgFields = $commentStore->insert( $dbw, 'img_description', $row->img_description );
-					$dbw->update(
-						'image',
-						$imgFields,
-						[ 'img_name' => $row->img_name ],
-						__METHOD__
-					);
-				}
-			}
 
 			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 				$fields['oi_user'] = 'img_user';
@@ -2470,7 +2438,7 @@ class LocalFileDeleteBatch {
 	}
 
 	protected function doDBInserts() {
-		global $wgCommentTableSchemaMigrationStage, $wgActorTableSchemaMigrationStage;
+		global $wgActorTableSchemaMigrationStage;
 
 		$now = time();
 		$dbw = $this->file->repo->getMasterDB();
@@ -2515,6 +2483,7 @@ class LocalFileDeleteBatch {
 				'fa_media_type' => 'img_media_type',
 				'fa_major_mime' => 'img_major_mime',
 				'fa_minor_mime' => 'img_minor_mime',
+				'fa_description_id' => 'img_description_id',
 				'fa_timestamp' => 'img_timestamp',
 				'fa_sha1' => 'img_sha1'
 			];
@@ -2524,39 +2493,6 @@ class LocalFileDeleteBatch {
 				[ $dbw, 'addQuotes' ],
 				$commentStore->insert( $dbw, 'fa_deleted_reason', $this->reason )
 			);
-
-			if ( $wgCommentTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ) {
-				$fields['fa_description'] = 'img_description';
-			}
-			if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
-				$fields['fa_description_id'] = 'img_description_id';
-			}
-
-			if ( $wgCommentTableSchemaMigrationStage !== MIGRATION_OLD &&
-				$wgCommentTableSchemaMigrationStage !== MIGRATION_NEW
-			) {
-				// Upgrade any rows that are still old-style. Otherwise an upgrade
-				// might be missed if a deletion happens while the migration script
-				// is running.
-				$res = $dbw->select(
-					[ 'image' ],
-					[ 'img_name', 'img_description' ],
-					[
-						'img_name' => $this->file->getName(),
-						'img_description_id' => 0,
-					],
-					__METHOD__
-				);
-				foreach ( $res as $row ) {
-					$imgFields = $commentStore->insert( $dbw, 'img_description', $row->img_description );
-					$dbw->update(
-						'image',
-						$imgFields,
-						[ 'img_name' => $row->img_name ],
-						__METHOD__
-					);
-				}
-			}
 
 			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 				$fields['fa_user'] = 'img_user';

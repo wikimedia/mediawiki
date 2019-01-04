@@ -769,9 +769,6 @@ class SpecialUndelete extends SpecialPage {
 				'content' => new OOUI\HtmlSnippet( $this->msg( 'undeleteextrahelp' )->parseAsBlock() )
 			] );
 
-			$conf = $this->getConfig();
-			$oldCommentSchema = $conf->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
-
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\TextInputWidget( [
 					'name' => 'wpComment',
@@ -781,8 +778,8 @@ class SpecialUndelete extends SpecialPage {
 					'autofocus' => true,
 					// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 					// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
-					// Unicode codepoints (or 255 UTF-8 bytes for old schema).
-					'maxLength' => $oldCommentSchema ? 255 : CommentStore::COMMENT_CHARACTER_LIMIT,
+					// Unicode codepoints.
+					'maxLength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 				] ),
 				[
 					'label' => $this->msg( 'undeletecomment' )->text(),

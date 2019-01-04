@@ -82,7 +82,11 @@ class CommentStore {
 	 */
 	protected $key = null;
 
-	/** @var int One of the MIGRATION_* constants */
+	/**
+	 * @var int One of the MIGRATION_* constants
+	 * @todo Deprecate and remove once extensions seem unlikely to need to use
+	 *  it for migration anymore.
+	 */
 	protected $stage;
 
 	/** @var array[] Cache for `self::getJoin()` */
@@ -94,7 +98,8 @@ class CommentStore {
 	/**
 	 * @param Language $lang Language to use for comment truncation. Defaults
 	 *  to content language.
-	 * @param int $migrationStage One of the MIGRATION_* constants
+	 * @param int $migrationStage One of the MIGRATION_* constants. Always
+	 *  MIGRATION_NEW for MediaWiki core since 1.33.
 	 */
 	public function __construct( Language $lang, $migrationStage ) {
 		$this->stage = $migrationStage;
@@ -109,10 +114,10 @@ class CommentStore {
 	 * @return CommentStore
 	 */
 	public static function newKey( $key ) {
-		global $wgCommentTableSchemaMigrationStage;
 		wfDeprecated( __METHOD__, '1.31' );
-		$store = new CommentStore( MediaWikiServices::getInstance()->getContentLanguage(),
-			$wgCommentTableSchemaMigrationStage );
+		$store = new CommentStore(
+			MediaWikiServices::getInstance()->getContentLanguage(), MIGRATION_NEW
+		);
 		$store->key = $key;
 		return $store;
 	}

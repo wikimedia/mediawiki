@@ -8965,13 +8965,6 @@ $wgExperiencedUserMemberSince = 30; # days
 $wgInterwikiPrefixDisplayTypes = [];
 
 /**
- * Comment table schema migration stage.
- * @since 1.30
- * @var int One of the MIGRATION_* constants
- */
-$wgCommentTableSchemaMigrationStage = MIGRATION_NEW;
-
-/**
  * RevisionStore table schema migration stage (content, slots, content_models & slot_roles tables).
  * Use the SCHEMA_COMPAT_XXX flags. Supported values:
  *
