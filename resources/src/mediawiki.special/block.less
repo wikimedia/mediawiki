@@ -11,9 +11,6 @@
 	margin-left: @ooui-spacing-radio-label;
 
 	.oo-ui-widget {
-		// Support:; IE 8 and browsers which don't support `calc()`
-		max-width: 48em;
-		// Support: IE 9+ and all modern browsers;
-		max-width: calc( 50em - @ooui-spacing-radio-label );
+		max-width: 50em - @ooui-spacing-radio-label;
 	}
 }
