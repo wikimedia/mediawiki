@@ -1987,6 +1987,7 @@ return [
 			'resources/src/mediawiki.special/upload.css',
 			'resources/src/mediawiki.special/userrights.css',
 			'resources/src/mediawiki.special/watchlist.css',
+			'resources/src/mediawiki.special/block.less'
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -2065,7 +2066,6 @@ return [
 	],
 	'mediawiki.special.block' => [
 		'scripts' => 'resources/src/mediawiki.special.block.js',
-		'styles' => 'resources/src/mediawiki.special.block.less',
 		'dependencies' => [
 			'oojs-ui-core',
 			'oojs-ui.styles.icons-editing-core',
