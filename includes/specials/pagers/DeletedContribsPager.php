@@ -29,10 +29,29 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 
 class DeletedContribsPager extends IndexPager {
 
+	/**
+	 * @var bool Default direction for pager
+	 */
 	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
+
+	/**
+	 * @var string[] Local cache for escaped messages
+	 */
 	public $messages;
+
+	/**
+	 * @var string User name, or a string describing an IP address range
+	 */
 	public $target;
+
+	/**
+	 * @var string|int A single namespace number, or an empty string for all namespaces
+	 */
 	public $namespace = '';
+
+	/**
+	 * @var \Wikimedia\Rdbms\Database
+	 */
 	public $mDb;
 
 	/**
@@ -137,6 +156,20 @@ class DeletedContribsPager extends IndexPager {
 
 	function getIndexField() {
 		return 'ar_timestamp';
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getTarget() {
+		return $this->target;
+	}
+
+	/**
+	 * @return int|string
+	 */
+	public function getNamespace() {
+		return $this->namespace;
 	}
 
 	protected function getStartBody() {

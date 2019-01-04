@@ -432,6 +432,41 @@ class ContribsPager extends RangeChronologicalPager {
 	}
 
 	/**
+	 * @return false|string
+	 */
+	public function getTagFilter() {
+		return $this->tagFilter;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getContribs() {
+		return $this->contribs;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getTarget() {
+		return $this->target;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isNewOnly() {
+		return $this->newOnly;
+	}
+
+	/**
+	 * @return int|string
+	 */
+	public function getNamespace() {
+		return $this->namespace;
+	}
+
+	/**
 	 * @return string[]
 	 */
 	protected function getExtraSortFields() {
