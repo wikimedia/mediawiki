@@ -37,32 +37,24 @@ class ContribsPager extends RangeChronologicalPager {
 
 	/**
 	 * @var string User name, or a string describing an IP address range
-	 * @private
-	 * @fixme Make private again after Flow got fixed.
 	 */
-	public $target;
+	private $target;
 
 	/**
 	 * @var string Set to "newbie" to list contributions from the most recent 1% registered users.
 	 *  $this->target is ignored then. Defaults to "users".
-	 * @private
-	 * @fixme Make private again after Flow got fixed.
 	 */
-	public $contribs;
+	private $contribs;
 
 	/**
 	 * @var string|int A single namespace number, or an empty string for all namespaces
-	 * @private
-	 * @fixme Make private again after Flow got fixed.
 	 */
-	public $namespace = '';
+	private $namespace = '';
 
 	/**
 	 * @var string|false Name of tag to filter, or false to ignore tags
-	 * @private
-	 * @fixme Make private again after Flow got fixed.
 	 */
-	public $tagFilter;
+	private $tagFilter;
 
 	/**
 	 * @var bool Set to true to invert the namespace selection
@@ -87,10 +79,8 @@ class ContribsPager extends RangeChronologicalPager {
 
 	/**
 	 * @var bool Set to true to show only new pages
-	 * @private
-	 * @fixme Make private again after Flow got fixed.
 	 */
-	public $newOnly;
+	private $newOnly;
 
 	/**
 	 * @var bool Set to true to hide edits marked as minor by the user
