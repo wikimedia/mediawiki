@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Filzstift",
+			"MichaelFrey"
+		]
+	},
+	"exif-jpeginterchangeformatlength": "Grösse der JPEG-Daten in Bytes",
+	"exif-referenceblackwhite": "Schwarz/Weiss-Referenzpunkte",
+	"exif-maxaperturevalue": "Grösste Blende",
+	"exif-whitebalance": "Weissabgleich",
+	"exif-gpsdop": "Masspräzision",
+	"exif-lightsource-13": "Tagesweiss fluoreszierend (N 4600–5400 K)",
+	"exif-lightsource-14": "Kaltweiss fluoreszierend (W 3900–4500 K)",
+	"exif-lightsource-15": "Weiss fluoreszierend (WW 3200–3700 K)",
+	"exif-isospeedratings-overflow": "Grösser als 65535"
+}

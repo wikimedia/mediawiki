@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dantman",
+			"Techman224"
+		]
+	},
+	"exif-ycbcrcoefficients": "Colour space transformation matrix coefficients",
+	"exif-colorspace": "Colour space",
+	"exif-licenseurl": "URL for copyright licence",
+	"exif-subjectdistance-value": "$1 metres",
+	"exif-meteringmode-2": "Centre weighted average",
+	"exif-sensingmethod-2": "One-chip colour area sensor",
+	"exif-sensingmethod-3": "Two-chip colour area sensor",
+	"exif-sensingmethod-4": "Three-chip colour area sensor",
+	"exif-sensingmethod-5": "Colour sequential area sensor",
+	"exif-sensingmethod-8": "Colour sequential linear sensor",
+	"exif-gpsaltitude-above-sealevel": "$1 {{PLURAL:$1|metre|metres}} above sea level",
+	"exif-gpsaltitude-below-sealevel": "$1 {{PLURAL:$1|metre|metres}} below sea level",
+	"exif-gpsspeed-k": "Kilometres per hour",
+	"exif-gpsdestdistance-k": "Kilometres",
+	"exif-ycbcrpositioning-1": "Centred"
+}
