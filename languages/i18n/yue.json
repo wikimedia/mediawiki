@@ -2897,6 +2897,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|傾偈]])",
 	"timezone-local": "本地",
 	"duplicate-defaultsort": "警告: 預設嘅排序鍵 \"$2\" 覆蓋之前嘅預設排序鍵 \"$1\"。",
+	"restricted-displaytitle": "<strong>警告：</strong>顯示標題「$1」已經忽略自從同嗰版嘅實際標題唔相等。",
 	"version": "版本",
 	"version-extensions": "裝咗嘅擴展",
 	"version-skins": "裝咗嘅畫面",
