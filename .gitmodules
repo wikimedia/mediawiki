@@ -1115,3 +1115,8 @@
         url = https://github.com/wikimedia/mediawiki-extensions-UserMerge.git
         branch = master
         ignore = dirty
+[submodule "extensions/MobileDetect"]
+        path = extensions/MobileDetect
+        url = https://github.com/wikimedia/mediawiki-extensions-MobileDetect
+        branch = REL1_32
+        ignore = dirty
