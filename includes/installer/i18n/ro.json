@@ -6,7 +6,8 @@
 			"Stelistcristi",
 			"XXN",
 			"Tuxilina",
-			"Strainu"
+			"Strainu",
+			"Fitoschido"
 		]
 	},
 	"config-desc": "Programul de instalare pentru MediaWiki",
@@ -71,7 +72,7 @@
 	"config-sqlite-dir": "Director de date SQLite:",
 	"config-oracle-def-ts": "Spațiu de stocare („tablespace”) implicit:",
 	"config-oracle-temp-ts": "Spațiu de stocare („tablespace”) temporar:",
-	"config-type-mysql": "MySQL (sau compatibil)",
+	"config-type-mysql": "MariaDB, MySQL sau compatibil",
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-header-mysql": "Setările MySQL",
 	"config-header-postgres": "Setări PostgreSQL",
