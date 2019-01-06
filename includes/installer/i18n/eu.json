@@ -112,7 +112,7 @@
 	"config-sqlite-dir-help": "SQLite-k datu guztiak fitxategi bakarrean gordetzen ditu.\n\nHornitu duzun direktorioa web zerbitzariaren bidez idatzia izateko aukera eman beharko duu instalazioan zehar.\n\n<Strong>Ez</strong> da webgunearen bidez eskuragarri egon behar; horregatik zure PHP fitxategiak non dauden ez dugu erakutsi.\n\nInstalatzaileak <code>.htaccess</code> fitxategi bat idatziko du bertan, baina horrek huts egiten badu zure datu base gordinera norbait sar daiteke.\nErabiltzaileen datu gordinak (helbide elektronikoak, pasahitzak), ezabatutako berrikusketa eta gainontzeko datu mugatuak ere barnean hartuz.\n\nDatu-basea beste nonbait jartzearen inguruan hausnartu, adibidez, <code>/var/lib/mediawiki/yourwiki</code>-n.",
 	"config-oracle-def-ts": "Taula-toki lehenetsia:",
 	"config-oracle-temp-ts": "Aldi baterako taula:",
-	"config-type-mysql": "MySQL (edo bateragarria)",
+	"config-type-mysql": "MariaDB, MySQL edo bateragarria",
 	"config-type-postgres": "PostgreSQL",
 	"config-type-sqlite": "SQLite",
 	"config-type-oracle": "Oracle",

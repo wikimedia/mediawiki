@@ -4,7 +4,8 @@
 			"Cedric31",
 			"Jfblanc",
 			"Seb35",
-			"Nicolas Eynaud"
+			"Nicolas Eynaud",
+			"Fitoschido"
 		]
 	},
 	"config-desc": "Lo programa d’installacion de MediaWiki",
@@ -69,7 +70,7 @@
 	"config-sqlite-dir": "Dorsièr de las donadas SQLite :",
 	"config-oracle-def-ts": "Espaci d'emmagazinatge (''tablespace'') per defaut :",
 	"config-oracle-temp-ts": "Espaci d'emmagazinatge (''tablespace'') temporari :",
-	"config-type-mysql": "MySQL (o compatible)",
+	"config-type-mysql": "MariaDB, MySQL o compatible",
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-header-mysql": "Paramètres de MySQL",
 	"config-header-postgres": "Paramètres de PostgreSQL",
