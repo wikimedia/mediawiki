@@ -556,6 +556,7 @@ class HookRunner implements
 	\MediaWiki\User\Hook\UserLoadAfterLoadFromSessionHook,
 	\MediaWiki\User\Hook\UserLoadDefaultsHook,
 	\MediaWiki\User\Hook\UserLogoutHook,
+	\MediaWiki\User\Hook\UserPrivilegedGroupsHook,
 	\MediaWiki\User\Hook\UserRemoveGroupHook,
 	\MediaWiki\User\Hook\UserSaveSettingsHook,
 	\MediaWiki\User\Hook\UserSendConfirmationMailHook,
@@ -4229,6 +4230,13 @@ class HookRunner implements
 		return $this->container->run(
 			'UserGetLanguageObject',
 			[ $user, &$code, $context ]
+		);
+	}
+
+	public function onUserPrivilegedGroups( $userIdentity, &$groups ) {
+		return $this->container->run(
+			'UserPrivilegedGroups',
+			[ $userIdentity, &$groups ]
 		);
 	}
 

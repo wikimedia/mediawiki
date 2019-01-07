@@ -1263,6 +1263,12 @@ return [
 					'deletelogentry' => true,
 				],
 			],
+			'PrivilegedGroups' => [
+				0 => 'bureaucrat',
+				1 => 'interface-admin',
+				2 => 'suppress',
+				3 => 'sysop',
+			],
 			'RevokePermissions' => [
 			],
 			'GroupInheritsPermissions' => [
@@ -2720,6 +2726,7 @@ return [
 			'BlockCIDRLimit' => 'object',
 			'EnablePartialActionBlocks' => 'boolean',
 			'GroupPermissions' => 'object',
+			'PrivilegedGroups' => 'array',
 			'RevokePermissions' => 'object',
 			'GroupInheritsPermissions' => 'object',
 			'ImplicitGroups' => 'array',
