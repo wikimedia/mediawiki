@@ -9,7 +9,8 @@
 			"Ua2004",
 			"Ата",
 			"Максим Підліснюк",
-			"Тест"
+			"Тест",
+			"Piramidion"
 		]
 	},
 	"exif-imagewidth": "Ширина",
@@ -206,9 +207,16 @@
 	"exif-compression-34712": "JPEG2000",
 	"exif-copyrighted-true": "Охороняється законом про авторське право",
 	"exif-copyrighted-false": "Авторські права не встановлено",
+	"exif-photometricinterpretation-0": "Чорний і білий (Білий — це 0)",
 	"exif-photometricinterpretation-1": "Чорний і білий (білий — 0)",
 	"exif-photometricinterpretation-2": "RGB",
+	"exif-photometricinterpretation-3": "Палітра",
+	"exif-photometricinterpretation-4": "Маска прозорості",
+	"exif-photometricinterpretation-5": "Відокремлено (ймовірно CMYK)",
 	"exif-photometricinterpretation-6": "YCbCr",
+	"exif-photometricinterpretation-8": "CIE L*a*b*",
+	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC-кодування)",
+	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU-кодування)",
 	"exif-unknowndate": "Невідома дата",
 	"exif-orientation-1": "Нормальна",
 	"exif-orientation-2": "Відображено по горизонталі",

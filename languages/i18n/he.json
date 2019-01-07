@@ -582,6 +582,7 @@
 	"resetpass-abort-generic": "שינוי הסיסמה בוטל על־ידי הרחבה.",
 	"resetpass-expired": "סיסמתך פקעה. נא להגדיר סיסמה חדשה כדי להיכנס.",
 	"resetpass-expired-soft": "הסיסמה שלך פקעה, וצריך לשנות אותה. יש לבחור סיסמה חדשה כעת, או ללחוץ על \"{{int:authprovider-resetpass-skip-label}}\" כדי לשנות אותה מאוחר יותר.",
+	"resetpass-validity": "סיסמתך אינה חוקית: $1\n\nנא להגדיר סיסמה חדשה כדי להיכנס.",
 	"resetpass-validity-soft": "הסיסמה שלך אינה תקינה: $1\n\nיש לבחור סיסמה חדשה כעת או ללחוץ על \"{{int:authprovider-resetpass-skip-label}}\" כדי לשנות את הסיסמה מאוחר יותר.",
 	"passwordreset": "איפוס סיסמה",
 	"passwordreset-text-one": "יש למלא טופס זה כדי לקבל סיסמה זמנית בדוא\"ל.",

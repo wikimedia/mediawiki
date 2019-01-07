@@ -822,6 +822,8 @@
 	"edit-gone-missing": "不能更新页面。\n它可能刚刚被删除。",
 	"edit-conflict": "编辑冲突。",
 	"edit-no-change": "因为没有文字更改，您的编辑已被忽略。",
+	"edit-slots-cannot-add": "下列{{PLURAL:$1|栏位|栏位}}在此不受支持：$2。",
+	"edit-slots-cannot-remove": "下列{{PLURAL:$1|栏位|栏位}}是必需的且无法被移除：$2。",
 	"postedit-confirmation-created": "页面已创建。",
 	"postedit-confirmation-restored": "页面已恢复。",
 	"postedit-confirmation-saved": "您的编辑已保存。",
