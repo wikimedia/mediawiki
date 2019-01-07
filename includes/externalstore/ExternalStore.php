@@ -159,7 +159,7 @@ class ExternalStore {
 	 *
 	 * @param string $data
 	 * @param array $params Map of ExternalStoreMedium::__construct context parameters
-	 * @return string|bool The URL of the stored data item, or false on error
+	 * @return string The URL of the stored data item
 	 * @throws MWException
 	 */
 	public static function insertToDefault( $data, array $params = [] ) {
@@ -177,7 +177,7 @@ class ExternalStore {
 	 * @param array $tryStores Refer to $wgDefaultExternalStore
 	 * @param string $data
 	 * @param array $params Map of ExternalStoreMedium::__construct context parameters
-	 * @return string|bool The URL of the stored data item, or false on error
+	 * @return string The URL of the stored data item
 	 * @throws MWException
 	 */
 	public static function insertWithFallback( array $tryStores, $data, array $params = [] ) {
@@ -245,7 +245,7 @@ class ExternalStore {
 	/**
 	 * @param string $data
 	 * @param string $wiki
-	 * @return string|bool The URL of the stored data item, or false on error
+	 * @return string The URL of the stored data item
 	 * @throws MWException
 	 */
 	public static function insertToForeignDefault( $data, $wiki ) {

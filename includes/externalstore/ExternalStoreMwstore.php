@@ -73,29 +73,32 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 		return $blobs;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function store( $backend, $data ) {
 		$be = FileBackendGroup::singleton()->get( $backend );
-		if ( $be instanceof FileBackend ) {
-			// Get three random base 36 characters to act as shard directories
-			$rand = Wikimedia\base_convert( mt_rand( 0, 46655 ), 10, 36, 3 );
-			// Make sure ID is roughly lexicographically increasing for performance
-			$id = str_pad( UIDGenerator::newTimestampedUID128( 32 ), 26, '0', STR_PAD_LEFT );
-			// Segregate items by wiki ID for the sake of bookkeeping
-			// @FIXME: this does not include the domain for b/c but it ideally should
-			$wiki = $this->params['wiki'] ?? wfWikiID();
+		// Get three random base 36 characters to act as shard directories
+		$rand = Wikimedia\base_convert( mt_rand( 0, 46655 ), 10, 36, 3 );
+		// Make sure ID is roughly lexicographically increasing for performance
+		$id = str_pad( UIDGenerator::newTimestampedUID128( 32 ), 26, '0', STR_PAD_LEFT );
+		// Segregate items by wiki ID for the sake of bookkeeping
+		// @FIXME: this does not include the domain for b/c but it ideally should
+		$wiki = $this->params['wiki'] ?? wfWikiID();
 
-			$url = $be->getContainerStoragePath( 'data' ) . '/' . rawurlencode( $wiki );
-			$url .= ( $be instanceof FSFileBackend )
-				? "/{$rand[0]}/{$rand[1]}/{$rand[2]}/{$id}" // keep directories small
-				: "/{$rand[0]}/{$rand[1]}/{$id}"; // container sharding is only 2-levels
+		$url = $be->getContainerStoragePath( 'data' ) . '/' . rawurlencode( $wiki );
+		$url .= ( $be instanceof FSFileBackend )
+			? "/{$rand[0]}/{$rand[1]}/{$rand[2]}/{$id}" // keep directories small
+			: "/{$rand[0]}/{$rand[1]}/{$id}"; // container sharding is only 2-levels
 
-			$be->prepare( [ 'dir' => dirname( $url ), 'noAccess' => 1, 'noListing' => 1 ] );
-			if ( $be->create( [ 'dst' => $url, 'content' => $data ] )->isOK() ) {
-				return $url;
-			}
+		$be->prepare( [ 'dir' => dirname( $url ), 'noAccess' => 1, 'noListing' => 1 ] );
+		$status = $be->create( [ 'dst' => $url, 'content' => $data ] );
+
+		if ( $status->isOK() ) {
+			return $url;
+		} else {
+			throw new MWException( __METHOD__ . ": operation failed: $status" );
 		}
-
-		return false;
 	}
 
 	public function isReadOnly( $backend ) {

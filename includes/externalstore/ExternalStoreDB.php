@@ -92,6 +92,9 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		return $ret;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function store( $location, $data ) {
 		$dbw = $this->getMaster( $location );
 		$dbw->insert( $this->getTable( $dbw ),
@@ -105,6 +108,9 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		return "DB://$location/$id";
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function isReadOnly( $location ) {
 		$lb = $this->getLoadBalancer( $location );
 		$domainId = $this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) );
