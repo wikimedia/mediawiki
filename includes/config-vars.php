@@ -2693,6 +2693,12 @@ $wgHideIdentifiableRedirects = null;
 $wgGroupPermissions = null;
 
 /**
+ * Config variable stub for the PrivilegedGroups setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::PrivilegedGroups
+ */
+$wgPrivilegedGroups = null;
+
+/**
  * Config variable stub for the RevokePermissions setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::RevokePermissions
  */
