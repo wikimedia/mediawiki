@@ -406,16 +406,15 @@ class OldLocalFile extends LocalFile {
 	 * Upload a file directly into archive. Generally for Special:Import.
 	 *
 	 * @param string $srcPath File system path of the source file
-	 * @param string $archiveName Full archive name of the file, in the form
-	 *   $timestamp!$filename, where $filename must match $this->getName()
 	 * @param string $timestamp
 	 * @param string $comment
 	 * @param User $user
 	 * @return Status
 	 */
-	function uploadOld( $srcPath, $archiveName, $timestamp, $comment, $user ) {
+	public function uploadOld( $srcPath, $timestamp, $comment, $user ) {
 		$this->lock();
 
+		$archiveName = $this->getArchiveName();
 		$dstRel = $this->getArchiveRel( $archiveName );
 		$status = $this->publishTo( $srcPath, $dstRel );
 
