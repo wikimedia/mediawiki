@@ -19,6 +19,7 @@
 			hideUserField = infuseIfExists( $( '#mw-input-wpHideUser' ).closest( '.oo-ui-fieldLayout' ) ),
 			watchUserField = infuseIfExists( $( '#mw-input-wpWatch' ).closest( '.oo-ui-fieldLayout' ) ),
 			expiryWidget = infuseIfExists( $( '#mw-input-wpExpiry' ) ),
+			editingWidget = infuseIfExists( $( '#mw-input-wpEditing' ) ),
 			editingRestrictionWidget = infuseIfExists( $( '#mw-input-wpEditingRestriction' ) ),
 			preventTalkPageEdit = infuseIfExists( $( '#mw-input-wpDisableUTEdit' ) ),
 			pageRestrictionsWidget = infuseIfExists( $( '#mw-input-wpPageRestrictions' ) );
@@ -33,7 +34,8 @@
 				// infinityValues  are the values the SpecialBlock class accepts as infinity (sf. wfIsInfinity)
 				infinityValues = [ 'infinite', 'indefinite', 'infinity', 'never' ],
 				isIndefinite = infinityValues.indexOf( expiryValue ) !== -1,
-				editingRestrictionValue = editingRestrictionWidget ? editingRestrictionWidget.getValue() : undefined;
+				editingRestrictionValue = editingRestrictionWidget ? editingRestrictionWidget.getValue() : undefined,
+				editingIsSelected = editingWidget ? editingWidget.isSelected() : undefined;
 
 			if ( enableAutoblockField ) {
 				enableAutoblockField.toggle( !( isNonEmptyIp ) );
@@ -48,13 +50,14 @@
 				watchUserField.toggle( !( isIpRange && !isEmpty ) );
 			}
 			if ( pageRestrictionsWidget ) {
-				pageRestrictionsWidget.setDisabled( editingRestrictionValue === 'sitewide' );
+				editingRestrictionWidget.setDisabled( !editingIsSelected );
+				pageRestrictionsWidget.setDisabled( !editingIsSelected || editingRestrictionValue === 'sitewide' );
 			}
 			if ( preventTalkPageEdit ) {
 				// TODO: (T210475) this option is disabled for partial blocks unless
 				// a namespace restriction for User_talk namespace is in place.
 				// This needs to be updated once Namespace restrictions is available
-				if ( editingRestrictionValue === 'partial' ) {
+				if ( editingRestrictionValue === 'partial' && editingIsSelected ) {
 					preventTalkPageEdit.setDisabled( true );
 				} else {
 					preventTalkPageEdit.setDisabled( false );
@@ -69,6 +72,9 @@
 			expiryWidget.on( 'change', updateBlockOptions );
 			if ( editingRestrictionWidget ) {
 				editingRestrictionWidget.on( 'change', updateBlockOptions );
+			}
+			if ( editingWidget ) {
+				editingWidget.on( 'change', updateBlockOptions );
 			}
 
 			// Call them now to set initial state (ie. Special:Block/Foobar?wpBlockExpiry=2+hours)
