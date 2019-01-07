@@ -88,7 +88,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 
 	public function testCheckPasswordValidity() {
 		$uppCalled = 0;
-		$uppStatus = \Status::newGood();
+		$uppStatus = \Status::newGood( [] );
 		$this->setMwGlobals( [
 			'wgPasswordPolicy' => [
 				'policies' => [
