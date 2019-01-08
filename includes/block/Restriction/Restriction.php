@@ -27,6 +27,7 @@ interface Restriction {
 	/**
 	 * Gets the id of the block.
 	 *
+	 * @since 1.33
 	 * @return int
 	 */
 	public function getBlockId();
@@ -34,6 +35,7 @@ interface Restriction {
 	/**
 	 * Sets the id of the block.
 	 *
+	 * @since 1.33
 	 * @param int $blockId
 	 * @return self
 	 */
@@ -42,6 +44,7 @@ interface Restriction {
 	/**
 	 * Gets the value of the restriction.
 	 *
+	 * @since 1.33
 	 * @return int
 	 */
 	public function getValue();
@@ -49,6 +52,7 @@ interface Restriction {
 	/**
 	 * Gets the type of restriction
 	 *
+	 * @since 1.33
 	 * @return string
 	 */
 	public function getType();
@@ -56,6 +60,7 @@ interface Restriction {
 	/**
 	 * Gets the id of the type of restriction. This id is used in the database.
 	 *
+	 * @since 1.33
 	 * @return string
 	 */
 	public function getTypeId();
@@ -63,6 +68,7 @@ interface Restriction {
 	/**
 	 * Creates a new Restriction from a database row.
 	 *
+	 * @since 1.33
 	 * @param \stdClass $row
 	 * @return self
 	 */
@@ -71,6 +77,7 @@ interface Restriction {
 	/**
 	 * Convert a restriction object into a row array for insertion.
 	 *
+	 * @since 1.33
 	 * @return array
 	 */
 	public function toRow();
@@ -78,6 +85,7 @@ interface Restriction {
 	/**
 	 * Determine if a restriction matches a given title.
 	 *
+	 * @since 1.33
 	 * @param \Title $title
 	 * @return bool
 	 */
@@ -86,6 +94,7 @@ interface Restriction {
 	/**
 	 * Determine if a restriction equals another restriction.
 	 *
+	 * @since 1.33
 	 * @param Restriction $other
 	 * @return bool
 	 */
@@ -94,6 +103,7 @@ interface Restriction {
 	/**
 	 * Create a unique hash of the block restriction based on the type and value.
 	 *
+	 * @since 1.33
 	 * @return string
 	 */
 	public function getHash();

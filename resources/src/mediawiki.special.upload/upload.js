@@ -161,7 +161,7 @@
 		if ( ajaxUploadDestCheck ) {
 			// Insert an event handler that fetches upload warnings when wpDestFile
 			// has been changed
-			$( '#wpDestFile' ).change( function () {
+			$( '#wpDestFile' ).on( 'change', function () {
 				uploadWarning.checkNow( $( this ).val() );
 			} );
 			// Insert a row where the warnings will be displayed just below the
@@ -177,7 +177,7 @@
 
 		if ( mw.config.get( 'wgAjaxLicensePreview' ) && $license.length ) {
 			// License selector check
-			$license.change( function () {
+			$license.on( 'change', function () {
 				// We might show a preview
 				uploadTemplatePreview.getPreview( $license, $( '#mw-license-preview' ) );
 			} );
@@ -193,7 +193,7 @@
 
 		// fillDestFile setup
 		mw.config.get( 'wgUploadSourceIds' ).forEach( function ( sourceId ) {
-			$( '#' + sourceId ).change( function () {
+			$( '#' + sourceId ).on( 'change', function () {
 				var path, slash, backslash, fname;
 				if ( !mw.config.get( 'wgUploadAutoFill' ) ) {
 					return;
@@ -537,7 +537,7 @@
 		/* Initialization */
 		if ( hasFileAPI() ) {
 			// Update thumbnail when the file selection control is updated.
-			$( '#wpUploadFile' ).change( function () {
+			$( '#wpUploadFile' ).on( 'change', function () {
 				var file;
 				clearPreview();
 				if ( this.files && this.files.length ) {
@@ -608,7 +608,7 @@
 			namespace: 'uploadwarning'
 		} );
 
-		$uploadForm.submit( function () {
+		$uploadForm.on( 'submit', function () {
 			allowCloseWindow.release();
 		} );
 	} );
@@ -631,7 +631,7 @@
 
 			// Change tabindex only when main div has focus
 			if ( $( this ).is( ':focus' ) ) {
-				$( this ).find( 'a' ).first().focus();
+				$( this ).find( 'a' ).first().trigger( 'focus' );
 				setEditTabindex( '0' );
 			}
 		} );

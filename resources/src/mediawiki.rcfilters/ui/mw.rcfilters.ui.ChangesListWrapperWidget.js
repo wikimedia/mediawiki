@@ -247,6 +247,8 @@
 			$firstNew.after( $indicator );
 		}
 
+		// FIXME: Use CSS transition
+		// eslint-disable-next-line jquery/no-fade
 		$newChanges
 			.hide()
 			.fadeIn( 1000 );

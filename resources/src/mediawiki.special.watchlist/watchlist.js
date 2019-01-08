@@ -8,7 +8,7 @@
 		// If the user wants to reset their watchlist, use an API call to do so (no reload required)
 		// Adapted from a user script by User:NQ of English Wikipedia
 		// (User:NQ/WatchlistResetConfirm.js)
-		$resetForm.submit( function ( event ) {
+		$resetForm.on( 'submit', function ( event ) {
 			var $button = $resetForm.find( 'input[name=mw-watchlist-reset-submit]' );
 
 			event.preventDefault();
@@ -41,7 +41,7 @@
 			} ).fail( function () {
 				// On error, fall back to server-side reset
 				// First remove this submit listener and then re-submit the form
-				$resetForm.off( 'submit' ).submit();
+				$resetForm.off( 'submit' ).trigger( 'submit' );
 			} );
 		} );
 
@@ -50,7 +50,7 @@
 			// add a listener on all form elements in the header form
 			$( '#mw-watchlist-form input, #mw-watchlist-form select' ).on( 'change', function () {
 				// submit the form when one of the input fields is modified
-				$( '#mw-watchlist-form' ).submit();
+				$( '#mw-watchlist-form' ).trigger( 'submit' );
 			} );
 		}
 
@@ -147,7 +147,7 @@
 
 				event.preventDefault();
 				event.stopPropagation();
-				$unwatchLink.blur();
+				$unwatchLink.trigger( 'blur' );
 			} );
 		}
 	} );

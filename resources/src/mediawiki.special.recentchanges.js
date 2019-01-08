@@ -27,7 +27,7 @@
 
 			// Bind to change event, and trigger once to set the initial state of the checkboxes.
 			rc.updateCheckboxes();
-			$select.change( rc.updateCheckboxes );
+			$select.on( 'change', rc.updateCheckboxes );
 		}
 	};
 

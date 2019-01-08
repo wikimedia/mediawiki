@@ -449,8 +449,8 @@
 		 * @property {Object}
 		 */
 		autoHideSeconds: {
-			'short': 5,
-			'long': 30
+			short: 5,
+			long: 30
 		},
 
 		/**

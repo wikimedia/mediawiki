@@ -221,7 +221,7 @@
 					}
 				} );
 				tokenPromise.done( function () {
-					$form.submit();
+					$form.trigger( 'submit' );
 				} );
 			} );
 

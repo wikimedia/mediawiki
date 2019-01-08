@@ -320,7 +320,7 @@
 
 		// Collect views
 		allViews = $.extend( true, {
-			'default': {
+			default: {
 				title: mw.msg( 'rcfilters-filterlist-title' ),
 				groups: filterGroups
 			}

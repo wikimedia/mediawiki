@@ -7,15 +7,15 @@
 
 		// Emulate HTML5 autofocus behavior in non HTML5 compliant browsers
 		if ( !( 'autofocus' in document.createElement( 'input' ) ) ) {
-			$( 'input[autofocus]' ).eq( 0 ).focus();
+			$( 'input[autofocus]' ).eq( 0 ).trigger( 'focus' );
 		}
 
 		// Attach handler for check all/none buttons
 		$checkboxes = $( '#powersearch input[id^=mw-search-ns]' );
-		$( '#mw-search-toggleall' ).click( function () {
+		$( '#mw-search-toggleall' ).on( 'click', function () {
 			$checkboxes.prop( 'checked', true );
 		} );
-		$( '#mw-search-togglenone' ).click( function () {
+		$( '#mw-search-togglenone' ).on( 'click', function () {
 			$checkboxes.prop( 'checked', false );
 		} );
 
@@ -39,7 +39,7 @@
 		updateHeaderLinks( searchWidget.getValue() );
 
 		// When saving settings, use the proper request method (POST instead of GET).
-		$( '#mw-search-powersearch-remember' ).change( function () {
+		$( '#mw-search-powersearch-remember' ).on( 'change', function () {
 			this.form.method = this.checked ? 'post' : 'get';
 		} ).trigger( 'change' );
 

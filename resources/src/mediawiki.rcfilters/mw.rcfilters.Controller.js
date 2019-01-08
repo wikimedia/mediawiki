@@ -90,7 +90,7 @@
 					name: 'namespace', // parameter name is singular
 					type: 'string_options',
 					title: mw.msg( 'namespaces' ),
-					labelPrefixKey: { 'default': 'rcfilters-tag-prefix-namespace', inverted: 'rcfilters-tag-prefix-namespace-inverted' },
+					labelPrefixKey: { default: 'rcfilters-tag-prefix-namespace', inverted: 'rcfilters-tag-prefix-namespace-inverted' },
 					separator: ';',
 					fullCoverage: true,
 					filters: items
@@ -104,7 +104,7 @@
 						hidden: true,
 						filters: [ {
 							name: 'invert',
-							'default': '0'
+							default: '0'
 						} ]
 					} ]
 			};
@@ -141,7 +141,7 @@
 						max: 1000
 					},
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
-					'default': mw.user.options.get( this.limitPreferenceName, displayConfig.limitDefault ),
+					default: mw.user.options.get( this.limitPreferenceName, displayConfig.limitDefault ),
 					sticky: true,
 					filters: displayConfig.limitArray.map( function ( num ) {
 						return controller._createFilterDataFromNumber( num, num );
@@ -164,7 +164,7 @@
 							( Number( i ) * 24 ).toFixed( 2 ) :
 							Number( i );
 					},
-					'default': mw.user.options.get( this.daysPreferenceName, displayConfig.daysDefault ),
+					default: mw.user.options.get( this.daysPreferenceName, displayConfig.daysDefault ),
 					sticky: true,
 					filters: [
 						// Hours (1, 2, 6, 12)
@@ -193,7 +193,7 @@
 					filters: [
 						{
 							name: 'enhanced',
-							'default': String( mw.user.options.get( 'usenewrc', 0 ) )
+							default: String( mw.user.options.get( 'usenewrc', 0 ) )
 						}
 					]
 				}

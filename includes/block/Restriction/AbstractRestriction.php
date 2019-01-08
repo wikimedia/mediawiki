@@ -37,6 +37,7 @@ abstract class AbstractRestriction implements Restriction {
 	/**
 	 * Create Restriction.
 	 *
+	 * @since 1.33
 	 * @param int $blockId
 	 * @param int $value
 	 */

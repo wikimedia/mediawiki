@@ -32,6 +32,7 @@ class BlockRestriction {
 	/**
 	 * Retrieves the restrictions from the database by block id.
 	 *
+	 * @since 1.33
 	 * @param int|array $blockId
 	 * @param IDatabase|null $db
 	 * @return Restriction[]
@@ -58,6 +59,7 @@ class BlockRestriction {
 	/**
 	 * Inserts the restrictions into the database.
 	 *
+	 * @since 1.33
 	 * @param Restriction[] $restrictions
 	 * @return bool
 	 */
@@ -92,6 +94,7 @@ class BlockRestriction {
 	 * Updates the list of restrictions. This method does not allow removing all
 	 * of the restrictions. To do that, use ::deleteByBlockId().
 	 *
+	 * @since 1.33
 	 * @param Restriction[] $restrictions
 	 * @return bool
 	 */
@@ -156,6 +159,7 @@ class BlockRestriction {
 	/**
 	 * Updates the list of restrictions by parent id.
 	 *
+	 * @since 1.33
 	 * @param int $parentBlockId
 	 * @param Restriction[] $restrictions
 	 * @return bool
@@ -195,6 +199,7 @@ class BlockRestriction {
 	/**
 	 * Delete the restrictions.
 	 *
+	 * @since 1.33
 	 * @param Restriction[]|null $restrictions
 	 * @throws MWException
 	 * @return bool
@@ -224,6 +229,7 @@ class BlockRestriction {
 	/**
 	 * Delete the restrictions by Block ID.
 	 *
+	 * @since 1.33
 	 * @param int|array $blockId
 	 * @throws MWException
 	 * @return bool
@@ -240,6 +246,7 @@ class BlockRestriction {
 	/**
 	 * Delete the restrictions by Parent Block ID.
 	 *
+	 * @since 1.33
 	 * @param int|array $parentBlockId
 	 * @throws MWException
 	 * @return bool
@@ -261,6 +268,7 @@ class BlockRestriction {
 	 * equality check as the restrictions do not have to contain the same block
 	 * ids.
 	 *
+	 * @since 1.33
 	 * @param Restriction[] $a
 	 * @param Restriction[] $b
 	 * @return bool
@@ -305,6 +313,7 @@ class BlockRestriction {
 	/**
 	 * Set the blockId on a set of restrictions and return a new set.
 	 *
+	 * @since 1.33
 	 * @param int $blockId
 	 * @param Restriction[] $restrictions
 	 * @return Restriction[]

@@ -145,7 +145,7 @@
 						id,
 						obj.label,
 						normalizedData,
-						{ 'default': isDefault }
+						{ default: isDefault }
 					)
 				] );
 
@@ -246,7 +246,7 @@
 				randomID,
 				label,
 				normalizedData,
-				{ 'default': isDefault }
+				{ default: isDefault }
 			)
 		] );
 

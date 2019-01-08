@@ -628,7 +628,7 @@
 						);
 					}
 					if ( $field.is( ':input' ) ) {
-						$field.select();
+						$field.trigger( 'select' );
 					}
 					return false;
 			}
@@ -650,7 +650,7 @@
 				this.setValue( this.formatter.getDefaultDate() );
 			}
 			if ( $field.is( ':input' ) ) {
-				$field.select();
+				$field.trigger( 'select' );
 			}
 
 			if ( this.calendar ) {

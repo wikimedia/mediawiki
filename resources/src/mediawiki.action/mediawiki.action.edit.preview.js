@@ -73,6 +73,8 @@
 
 		// Can't use fadeTo because it calls show(), and we might want to keep some elements hidden
 		// (e.g. empty #catlinks)
+		// FIXME: Use CSS transition
+		// eslint-disable-next-line jquery/no-animate
 		$copyElements.animate( { opacity: 0.4 }, 'fast' );
 
 		api = new mw.Api();
@@ -189,7 +191,7 @@
 							.append( $( '<a>' )
 								.attr( {
 									href: mw.util.getUrl( template.title ),
-									'class': ( template.exists ? '' : 'new' )
+									class: ( template.exists ? '' : 'new' )
 								} )
 								.text( template.title )
 							);
@@ -258,6 +260,8 @@
 			mw.hook( 'wikipage.editform' ).fire( $editform );
 		} ).always( function () {
 			$spinner.hide();
+			// FIXME: Use CSS transition
+			// eslint-disable-next-line jquery/no-animate
 			$copyElements.animate( {
 				opacity: 1
 			}, 'fast' );
@@ -297,7 +301,7 @@
 		if ( !document.getElementById( 'p-lang' ) && document.getElementById( 'p-tb' ) && mw.config.get( 'skin' ) === 'vector' ) {
 			$( '.portal:last' ).after(
 				$( '<div>' ).attr( {
-					'class': 'portal',
+					class: 'portal',
 					id: 'p-lang',
 					role: 'navigation',
 					'aria-labelledby': 'p-lang-label'
