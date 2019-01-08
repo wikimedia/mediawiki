@@ -745,4 +745,12 @@ class BlockTest extends MediaWikiLangTestCase {
 		$block->delete();
 	}
 
+	/**
+	 * @covers Block::prevents
+	 */
+	public function testBlockAllowsPurge() {
+		$block = new Block();
+		$this->assertFalse( $block->prevents( 'purge' ) );
+	}
+
 }
