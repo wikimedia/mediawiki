@@ -63,8 +63,6 @@ class SlotRoleRegistry {
 	private $handlers;
 
 	/**
-	 * SlotRoleRegistry constructor.
-	 *
 	 * @param NameTableStore $roleNamesStore
 	 */
 	public function __construct( NameTableStore $roleNamesStore ) {

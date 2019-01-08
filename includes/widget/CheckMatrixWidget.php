@@ -19,8 +19,6 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	protected $forcedOff = [];
 
 	/**
-	 * CheckMatrixWidget constructor
-	 *
 	 * Operates similarly to MultiSelectWidget, but instead of using an array of
 	 * options, uses an array of rows and an array of columns to dynamically
 	 * construct a matrix of options. The tags used to identify a particular cell
