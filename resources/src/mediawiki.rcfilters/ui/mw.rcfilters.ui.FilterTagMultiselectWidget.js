@@ -119,7 +119,7 @@
 			this.queriesModel.connect( this, {
 				itemUpdate: 'onSavedQueriesItemUpdate',
 				initialize: 'onSavedQueriesInitialize',
-				'default': 'reevaluateResetRestoreState'
+				default: 'reevaluateResetRestoreState'
 			} );
 		}
 
@@ -761,6 +761,7 @@
 				)
 			)
 		) {
+			// eslint-disable-next-line jquery/no-animate
 			$( container ).animate( {
 				scrollTop: newScrollTop
 			} );

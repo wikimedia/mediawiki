@@ -1281,7 +1281,7 @@
 		 * @param {Array} nodes List of nodes
 		 * @return {string} Other message
 		 */
-		'int': function ( nodes ) {
+		int: function ( nodes ) {
 			var msg = textify( nodes[ 0 ] );
 			return mw.jqueryMsg.getMessageFunction()( msg.charAt( 0 ).toLowerCase() + msg.slice( 1 ) );
 		},

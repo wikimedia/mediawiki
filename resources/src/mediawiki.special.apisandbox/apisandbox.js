@@ -977,6 +977,7 @@
 			// OO.ui.ButtonWidget doesn't take focus itself (T128054)
 			$focus = $( '#mw-apisandbox-ui' ).find( document.activeElement );
 			if ( $focus.length ) {
+				// eslint-disable-next-line jquery/no-event-shorthand
 				$focus[ 0 ].blur();
 			}
 
@@ -1568,7 +1569,7 @@
 		// it makes it too hard to read and our "disabled"
 		// isn't really disabled.
 		widgetField.onFieldDisable( false );
-		widgetField.onFieldDisable = $.noop;
+		widgetField.onFieldDisable = function () {};
 
 		widgetField.apiParamIndex = ppi.index;
 
@@ -1756,7 +1757,7 @@
 				widget = Util.createWidgetForParameter( {
 					name: name,
 					type: 'string',
-					'default': ''
+					default: ''
 				}, {
 					nooptional: true
 				} );
@@ -1943,6 +1944,7 @@
 				}
 
 				that.deprecatedItemsFieldset = new OO.ui.FieldsetLayout().addItems( deprecatedItems ).toggle( false );
+				// eslint-disable-next-line jquery/no-animate-toggle
 				tmp = $( '<fieldset>' )
 					.toggle( !that.deprecatedItemsFieldset.isEmpty() )
 					.append(

@@ -12,6 +12,7 @@
 				$a = $( '#ca-edit a' );
 				// Not every page has an edit link (T59713)
 				if ( $a.length ) {
+					// eslint-disable-next-line jquery/no-event-shorthand
 					$a.get( 0 ).click();
 				}
 			}

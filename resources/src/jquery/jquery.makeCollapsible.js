@@ -82,6 +82,7 @@
 			}
 		}
 
+		// eslint-disable-next-line jquery/no-animate-toggle
 		$containers.toggle( action === 'expand' );
 		hookCallback();
 	}

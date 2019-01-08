@@ -19,16 +19,16 @@
 			}
 
 			if ( mw.config.get( 'wgCascadeableLevels' ) !== undefined ) {
-				$( 'form#mw-Protect-Form' ).submit( this.toggleUnchainedInputs.bind( ProtectionForm, true ) );
+				$( 'form#mw-Protect-Form' ).on( 'submit', this.toggleUnchainedInputs.bind( ProtectionForm, true ) );
 			}
 			this.getExpirySelectors().each( function () {
-				$( this ).change( ProtectionForm.updateExpiryList.bind( ProtectionForm, this ) );
+				$( this ).on( 'change', ProtectionForm.updateExpiryList.bind( ProtectionForm, this ) );
 			} );
 			this.getExpiryInputs().each( function () {
 				$( this ).on( 'keyup change', ProtectionForm.updateExpiry.bind( ProtectionForm, this ) );
 			} );
 			this.getLevelSelectors().each( function () {
-				$( this ).change( ProtectionForm.updateLevels.bind( ProtectionForm, this ) );
+				$( this ).on( 'change', ProtectionForm.updateLevels.bind( ProtectionForm, this ) );
 			} );
 
 			$( '#mwProtectSet > tbody > tr:first' ).after( $row );
@@ -38,7 +38,7 @@
 				$cell.append(
 					$( '<input>' )
 						.attr( { id: 'mwProtectUnchained', type: 'checkbox' } )
-						.click( this.onChainClick.bind( this ) )
+						.on( 'click', this.onChainClick.bind( this ) )
 						.prop( 'checked', !this.areAllTypesMatching() ),
 					document.createTextNode( ' ' ),
 					$( '<label>' )

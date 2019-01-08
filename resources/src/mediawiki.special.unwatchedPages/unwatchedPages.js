@@ -3,7 +3,7 @@
  */
 ( function () {
 	$( function () {
-		$( 'a.mw-watch-link' ).click( function ( e ) {
+		$( 'a.mw-watch-link' ).on( 'click', function ( e ) {
 			var promise,
 				api = new mw.Api(),
 				$link = $( this ),

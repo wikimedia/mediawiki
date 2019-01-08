@@ -200,7 +200,6 @@
 				if ( e.which === OO.ui.Keys.TAB ) {
 					if ( e.shiftKey ) {
 						// Tabbing backward from text input: normal browser behavior
-						$.noop();
 					} else {
 						// Tabbing forward from text input: just focus the calendar
 						this.calendar.$element.focus();

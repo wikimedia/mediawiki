@@ -21,6 +21,7 @@
 		if ( e.target.nodeName.toLowerCase() !== 'a' ) {
 			// Trigger native HTMLElement click instead of opening URL (T45052)
 			e.preventDefault();
+			// eslint-disable-next-line jquery/no-event-shorthand
 			$edit.get( 0 ).click();
 		}
 	} );

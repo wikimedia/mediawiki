@@ -51,7 +51,7 @@ $( function () {
 		return true;
 	}
 
-	$lis.find( 'input[name="diff"], input[name="oldid"]' ).click( updateDiffRadios );
+	$lis.find( 'input[name="diff"], input[name="oldid"]' ).on( 'click', updateDiffRadios );
 
 	// Set initial state
 	updateDiffRadios();
@@ -61,7 +61,7 @@ $( function () {
 
 	// Ideally we'd use e.target instead of $historySubmitter, but e.target points
 	// to the form element for submit actions, so.
-	$historyCompareForm.find( '.historysubmit' ).click( function () {
+	$historyCompareForm.find( '.historysubmit' ).on( 'click', function () {
 		$historySubmitter = $( this );
 	} );
 
@@ -71,7 +71,7 @@ $( function () {
 	// Without the cloning we'd be changing the real form, which is slower, could make
 	// the page look broken for a second in slow browsers and might show the form broken
 	// again when coming back from a "next" page.
-	$historyCompareForm.submit( function ( e ) {
+	$historyCompareForm.on( 'submit', function ( e ) {
 		var $copyForm, $copyRadios, $copyAction;
 
 		if ( $historySubmitter ) {
@@ -92,14 +92,14 @@ $( function () {
 				$copyForm.find( ':submit' ).remove();
 			}
 
-			// IE7 doesn't do submission from an off-DOM clone, so insert hidden into document first
+			// Firefox requires the form to be attached, so insert hidden into document first
 			// Also remove potentially conflicting id attributes that we don't need anyway
 			$copyForm
 				.css( 'display', 'none' )
 				.find( '[id]' ).removeAttr( 'id' )
 				.end()
 				.insertAfter( $historyCompareForm )
-				.submit();
+				.trigger( 'submit' );
 
 			e.preventDefault();
 			return false; // Because the submit is special, return false as well.

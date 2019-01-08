@@ -43,7 +43,7 @@
 		$options = $( '#namespace' ).find( 'option' );
 		$options.eq( 0 ).removeProp( 'selected' );
 		$options.eq( 1 ).prop( 'selected', true );
-		$( '#namespace' ).change();
+		$( '#namespace' ).trigger( 'change' );
 
 		// ... and checkboxes should be enabled again
 		assert.strictEqual( $( '#nsinvert' ).prop( 'disabled' ), false );
@@ -52,7 +52,7 @@
 		// select first option ( 'all' namespace)...
 		$options.eq( 1 ).removeProp( 'selected' );
 		$options.eq( 0 ).prop( 'selected', true );
-		$( '#namespace' ).change();
+		$( '#namespace' ).trigger( 'change' );
 
 		// ... and checkboxes should now be disabled
 		assert.strictEqual( $( '#nsinvert' ).prop( 'disabled' ), true );

@@ -52,7 +52,7 @@
 							filters: [
 								{
 									name: 'target',
-									'default': ''
+									default: ''
 								}
 							]
 						},
@@ -65,7 +65,7 @@
 							filters: [
 								{
 									name: 'showlinkedto',
-									'default': false
+									default: false
 								}
 							]
 						}

@@ -7,10 +7,11 @@
 		"sinon": false
 	},
 	"rules": {
-		"operator-linebreak": 0,
+		"operator-linebreak": "off",
 		"quote-props": [ "error", "as-needed" ],
-		"valid-jsdoc": 0,
-		"qunit/require-expect": 0,
-		"qunit/resolve-async": 0
+		"valid-jsdoc": "off",
+		"qunit/require-expect": "off",
+		"qunit/resolve-async": "off",
+		"jquery/no-parse-html-literal": "off"
 	}
 }

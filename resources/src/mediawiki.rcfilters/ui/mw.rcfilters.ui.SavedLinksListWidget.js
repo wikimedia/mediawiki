@@ -40,8 +40,8 @@
 		this.menu = new mw.rcfilters.ui.GroupWidget( {
 			events: {
 				click: 'menuItemClick',
-				'delete': 'menuItemDelete',
-				'default': 'menuItemDefault',
+				delete: 'menuItemDelete',
+				default: 'menuItemDefault',
 				edit: 'menuItemEdit'
 			},
 			classes: [ 'mw-rcfilters-ui-savedLinksListWidget-menu' ],

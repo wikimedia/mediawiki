@@ -11,13 +11,13 @@
 
 		for ( i = 0; i < results.length; i++ ) {
 			result = results[ i ];
-			imageCaption = mw.html.element( 'span', { 'class': 'iw-result__mini-gallery__caption' }, result.title );
+			imageCaption = mw.html.element( 'span', { class: 'iw-result__mini-gallery__caption' }, result.title );
 			imageThumbnailSrc = ( result.thumbnail ) ? result.thumbnail.source : '';
 			resultOutput += '<div class="iw-result__mini-gallery">' +
 						/* escaping response content */
 						mw.html.element( 'a', {
 							href: '/wiki/' + result.title,
-							'class': 'iw-result__mini-gallery__image',
+							class: 'iw-result__mini-gallery__image',
 							style: 'background-image: url(' + imageThumbnailSrc + ');'
 						}, new mw.html.Raw( imageCaption ) ) +
 					'</div>';

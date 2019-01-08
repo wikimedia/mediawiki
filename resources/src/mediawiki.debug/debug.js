@@ -55,7 +55,7 @@
 			hovzer.$.append( this.$container );
 			hovzer.update();
 
-			$( '.mw-debug-panelink' ).click( this.switchPane );
+			$( '.mw-debug-panelink' ).on( 'click', this.switchPane );
 		},
 
 		/**
@@ -90,6 +90,8 @@
 
 			// Hide the current pane
 			if ( requestedPaneId === currentPaneId ) {
+				// FIXME: Use CSS transition
+				// eslint-disable-next-line jquery/no-slide
 				$currentPane.slideUp( updateHov );
 				debug.$container.data( 'currentPane', null );
 				return;
@@ -98,6 +100,8 @@
 			debug.$container.data( 'currentPane', requestedPaneId );
 
 			if ( currentPaneId === undefined || currentPaneId === null ) {
+				// FIXME: Use CSS transition
+				// eslint-disable-next-line jquery/no-slide
 				$requestedPane.slideDown( updateHov );
 			} else {
 				$currentPane.hide();

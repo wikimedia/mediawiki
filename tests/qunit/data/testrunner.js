@@ -157,7 +157,7 @@
 			if ( warn === undefined ) {
 				warn = mw.log.warn;
 				error = mw.log.error;
-				mw.log.warn = mw.log.error = $.noop;
+				mw.log.warn = mw.log.error = function () {};
 			}
 		}
 
