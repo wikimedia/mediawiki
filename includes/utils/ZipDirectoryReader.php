@@ -127,7 +127,6 @@ class ZipDirectoryReader {
 	const GENERAL_CD_ENCRYPTED = 13;
 
 	/**
-	 * Private constructor
 	 * @param string $fileName
 	 * @param callable $callback
 	 * @param array $options
