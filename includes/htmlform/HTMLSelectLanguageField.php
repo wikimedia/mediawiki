@@ -23,6 +23,8 @@ class HTMLSelectLanguageField extends HTMLSelectField {
 			$languages[$languageCode] = $languageCode;
 		}
 
+		ksort( $languages );
+
 		foreach ( $languages as $code => $name ) {
 			$this->mParams['options'][$code . ' - ' . $name] = $code;
 		}
