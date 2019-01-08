@@ -156,22 +156,31 @@ class SpecialBlock extends FormSpecialPage {
 			'type' => 'user',
 			'ipallowed' => true,
 			'iprange' => true,
-			'label-message' => 'ipaddressorusername',
 			'id' => 'mw-bi-target',
 			'size' => '45',
 			'autofocus' => true,
 			'required' => true,
 			'validation-callback' => [ __CLASS__, 'validateTargetField' ],
+			'section' => 'target',
+		];
+
+		$a['Editing'] = [
+			'type' => 'check',
+			'label-message' => 'block-prevent-edit',
+			'default' => true,
+			'section' => 'actions',
+			'disabled' => $enablePartialBlocks ? false : true,
 		];
 
 		if ( $enablePartialBlocks ) {
 			$a['EditingRestriction'] = [
 				'type' => 'radio',
-				'label' => $this->msg( 'ipb-type-label' )->text(),
+				'cssclass' => 'mw-block-editing-restriction',
 				'options' => [
 					$this->msg( 'ipb-sitewide' )->text() => 'sitewide',
 					$this->msg( 'ipb-partial' )->text() => 'partial',
 				],
+				'section' => 'actions',
 			];
 			$a['PageRestrictions'] = [
 				'type' => 'titlesmultiselect',
@@ -183,15 +192,40 @@ class SpecialBlock extends FormSpecialPage {
 				'input' => [
 					'autocomplete' => false
 				],
+				'section' => 'actions',
+			];
+		}
+
+		$a['CreateAccount'] = [
+			'type' => 'check',
+			'label-message' => 'ipbcreateaccount',
+			'default' => true,
+			'section' => 'actions',
+		];
+
+		if ( self::canBlockEmail( $user ) ) {
+			$a['DisableEmail'] = [
+				'type' => 'check',
+				'label-message' => 'ipbemailban',
+				'section' => 'actions',
+			];
+		}
+
+		if ( $wgBlockAllowsUTEdit ) {
+			$a['DisableUTEdit'] = [
+				'type' => 'check',
+				'label-message' => 'ipb-disableusertalk',
+				'default' => false,
+				'section' => 'actions',
 			];
 		}
 
 		$a['Expiry'] = [
 			'type' => 'expiry',
-			'label-message' => 'ipbexpiry',
 			'required' => true,
 			'options' => $suggestedDurations,
 			'default' => $this->msg( 'ipb-default-expiry' )->inContentLanguage()->text(),
+			'section' => 'expiry',
 		];
 
 		$a['Reason'] = [
@@ -201,35 +235,15 @@ class SpecialBlock extends FormSpecialPage {
 			// Unicode codepoints (or 255 UTF-8 bytes for old schema).
 			'maxlength' => $oldCommentSchema ? 255 : CommentStore::COMMENT_CHARACTER_LIMIT,
 			'maxlength-unit' => 'codepoints',
-			'label-message' => 'ipbreason',
 			'options-message' => 'ipbreason-dropdown',
+			'section' => 'reason',
 		];
-
-		$a['CreateAccount'] = [
-			'type' => 'check',
-			'label-message' => 'ipbcreateaccount',
-			'default' => true,
-		];
-
-		if ( self::canBlockEmail( $user ) ) {
-			$a['DisableEmail'] = [
-				'type' => 'check',
-				'label-message' => 'ipbemailban',
-			];
-		}
-
-		if ( $wgBlockAllowsUTEdit ) {
-			$a['DisableUTEdit'] = [
-				'type' => 'check',
-				'label-message' => 'ipb-disableusertalk',
-				'default' => false,
-			];
-		}
 
 		$a['AutoBlock'] = [
 			'type' => 'check',
 			'label-message' => 'ipbenableautoblock',
 			'default' => true,
+			'section' => 'options',
 		];
 
 		# Allow some users to hide name from block log, blocklist and listusers
@@ -238,6 +252,7 @@ class SpecialBlock extends FormSpecialPage {
 				'type' => 'check',
 				'label-message' => 'ipbhidename',
 				'cssclass' => 'mw-block-hideuser',
+				'section' => 'options',
 			];
 		}
 
@@ -246,6 +261,7 @@ class SpecialBlock extends FormSpecialPage {
 			$a['Watch'] = [
 				'type' => 'check',
 				'label-message' => 'ipbwatchuser',
+				'section' => 'options',
 			];
 		}
 
@@ -253,6 +269,7 @@ class SpecialBlock extends FormSpecialPage {
 			'type' => 'check',
 			'label-message' => 'ipb-hardblock',
 			'default' => false,
+			'section' => 'options',
 		];
 
 		# This is basically a copy of the Target field, but the user can't change it, so we
