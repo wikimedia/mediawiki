@@ -54,6 +54,7 @@ production.
 * Updated wikimedia/ip-set from 1.2.0 to 2.0.0.
   * The deprecated IPSet\IPSet alias was removed, Wikimedia\IPSet must be
     used instead.
+* Updated qunitjs from 2.6.2 to 2.9.1.
 * …
 
 ==== Removed external libraries ====
