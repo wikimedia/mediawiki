@@ -9013,8 +9013,8 @@ $wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_OLD;
  * Flag to enable Partial Blocks. This allows an admin to prevent a user from editing specific pages
  * or namespaces.
  *
- * @since 1.32
- * @deprecated 1.32
+ * @since 1.33
+ * @deprecated 1.33
  * @var bool
  */
 $wgEnablePartialBlocks = false;
