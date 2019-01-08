@@ -4545,6 +4545,7 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Get whether the user is blocked from using Special:Upload
 	 *
+	 * @since 1.33
 	 * @return bool
 	 */
 	public function isBlockedFromUpload() {
