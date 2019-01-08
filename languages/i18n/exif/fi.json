@@ -203,6 +203,7 @@
 	"exif-photometricinterpretation-3": "Paletti",
 	"exif-photometricinterpretation-4": "Läpinäkyvyysmaski",
 	"exif-photometricinterpretation-5": "Erotettu (luultavasti CMYK)",
+	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC-koodaus)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU-koodaus)",
 	"exif-unknowndate": "Tuntematon päiväys",
