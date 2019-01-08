@@ -1132,6 +1132,7 @@ class Block {
 	 * prohibited from editing any page on the site (other than their own talk
 	 * page).
 	 *
+	 * @since 1.33
 	 * @param null|bool $x
 	 * @return bool
 	 */
@@ -1728,6 +1729,7 @@ class Block {
 	/**
 	 * Get block information used in different block error messages
 	 *
+	 * @since 1.33
 	 * @param IContextSource $context
 	 * @return array
 	 */
@@ -1769,6 +1771,7 @@ class Block {
 	 * Getting the restrictions will perform a database query if the restrictions
 	 * are not already loaded.
 	 *
+	 * @since 1.33
 	 * @return Restriction[]
 	 */
 	public function getRestrictions() {
@@ -1787,8 +1790,8 @@ class Block {
 	/**
 	 * Set Restrictions.
 	 *
+	 * @since 1.33
 	 * @param Restriction[] $restrictions
-	 *
 	 * @return self
 	 */
 	public function setRestrictions( array $restrictions ) {
