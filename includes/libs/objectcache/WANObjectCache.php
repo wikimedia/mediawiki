@@ -941,6 +941,36 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *     );
 	 * @endcode
 	 *
+	 * Example usage (key that is expensive with too many DB dependencies for "check keys"):
+	 * @code
+	 *     $catToys = $cache->getWithSetCallback(
+	 *         // Key to store the cached value under
+	 *         $cache->makeKey( 'cat-toys', $catId ),
+	 *         // Time-to-live (seconds)
+	 *         $cache::TTL_HOUR,
+	 *         // Function that derives the new key value
+	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
+	 *             // Determine new value from the DB
+	 *             $dbr = wfGetDB( DB_REPLICA );
+	 *             // Account for any snapshot/replica DB lag
+	 *             $setOpts += Database::getCacheSetOptions( $dbr );
+	 *
+	 *             return CatToys::newFromResults( $dbr->select( ... ) );
+	 *         },
+	 *         [
+	 *              // Get the highest timestamp of any of the cat's toys
+	 *             'touchedCallback' => function ( $value ) use ( $catId ) {
+	 *                 $dbr = wfGetDB( DB_REPLICA );
+	 *                 $ts = $dbr->selectField( 'cat_toys', 'MAX(ct_touched)', ... );
+	 *
+	 *                 return wfTimestampOrNull( TS_UNIX, $ts );
+	 *             },
+	 *             // Avoid DB queries for repeated access
+	 *             'pcTTL' => $cache::TTL_PROC_SHORT
+	 *         ]
+	 *     );
+	 * @endcode
+	 *
 	 * Example usage (hot key holding most recent 100 events):
 	 * @code
 	 *     $lastCatActions = $cache->getWithSetCallback(
@@ -1082,8 +1112,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      expired for this specified time. This is useful if adaptiveTTL() is used on the old
 	 *      value's as-of time when it is verified as still being correct.
 	 *      Default: WANObjectCache::STALE_TTL_NONE
-	 *   - touchedCallback: A callback that takes the current value and returns a timestamp that
-	 *      indicates the last time a dynamic dependency changed. Null can be returned if there
+	 *   - touchedCallback: A callback that takes the current value and returns a UNIX timestamp
+	 *      indicating the last time a dynamic dependency changed. Null can be returned if there
 	 *      are no relevant dependency changes to check. This can be used to check against things
 	 *      like last-modified times of files or DB timestamp fields. This should generally not be
 	 *      used for small and easily queried values in a DB if the callback itself ends up doing
