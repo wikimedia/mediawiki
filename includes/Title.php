@@ -2691,14 +2691,34 @@ class Title implements LinkTarget, IDBAccessObject {
 		}
 
 		$useReplica = ( $rigor !== 'secure' );
-		if ( ( $action == 'edit' || $action == 'create' )
-			&& !$user->isBlockedFrom( $this, $useReplica )
-		) {
-			// Don't block the user from editing their own talk page unless they've been
-			// explicitly blocked from that too.
-		} elseif ( $user->isBlocked() && $user->getBlock()->prevents( $action ) !== false ) {
+		$block = $user->getBlock( $useReplica );
+
+		// The block may explicitly allow an action (like "read" or "upload").
+		if ( $block && $block->prevents( $action ) === false ) {
+			return $errors;
+		}
+
+		// Determine if the user is blocked from this action on this page.
+		// What gets passed into this method is a user right, not an action nmae.
+		// There is no way to instantiate an action by restriction. However, this
+		// will get the action where the restriction is the same. This may result
+		// in actions being blocked that shouldn't be.
+		if ( Action::exists( $action ) ) {
 			// @todo FIXME: Pass the relevant context into this function.
-			$errors[] = $user->getBlock()->getPermissionsError( RequestContext::getMain() );
+			$action = Action::factory( $action, WikiPage::factory( $this ), RequestContext::getMain() );
+		} else {
+			$action = null;
+		}
+
+		// If no action object is returned, assume that the action requires unblock
+		// which is the default.
+		if ( !$action || $action->requiresUnblock() ) {
+			if ( $user->isBlockedFrom( $this, $useReplica ) ) {
+				// @todo FIXME: Pass the relevant context into this function.
+				$errors[] = $block
+					? $block->getPermissionsError( RequestContext::getMain() )
+					: [ 'actionblockedtext' ];
+			}
 		}
 
 		return $errors;
