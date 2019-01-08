@@ -1631,6 +1631,7 @@
 	"apierror-promised-nonwrite-api": "HTTP 標頭 <code>Promise-Non-Write-API-Action</code> 不能發送至寫入模式 API 模組。",
 	"apierror-protect-invalidaction": "無效的保護類型「$1」。",
 	"apierror-protect-invalidlevel": "無效的保護層級「$1」。",
+	"apierror-ratelimited": "您超過了您的比率限制，請稍後再試。",
 	"apierror-readapidenied": "您需要有閱讀權限來使用此模組。",
 	"apierror-readonly": "Wiki 目前為唯讀模式。",
 	"apierror-reauthenticate": "於本工作階段還未核對身分，請重新核對。",
