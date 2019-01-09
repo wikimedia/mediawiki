@@ -340,7 +340,8 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		$dbw->delete( 'change_tag_def', '*' );
 
 		$rcId = 123;
-		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
+		$revId = 341;
+		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId, $revId );
 
 		$dbr = wfGetDB( DB_REPLICA );
 
@@ -362,20 +363,22 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		$expected2 = [
 			(object)[
 				'ct_tag_id' => 1,
-				'ct_rc_id' => 123
+				'ct_rc_id' => 123,
+				'ct_rev_id' => 341
 			],
 			(object)[
 				'ct_tag_id' => 2,
-				'ct_rc_id' => 123
+				'ct_rc_id' => 123,
+				'ct_rev_id' => 341
 			],
 		];
-		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id' ], '' );
+		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id', 'ct_rev_id' ], '' );
 		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
 
 		$rcId = 124;
-		ChangeTags::updateTags( [ 'tag1' ], [], $rcId );
-
-		ChangeTags::updateTags( [ 'tag3' ], [], $rcId );
+		$revId = 342;
+		ChangeTags::updateTags( [ 'tag1' ], [], $rcId, $revId );
+		ChangeTags::updateTags( [ 'tag3' ], [], $rcId, $revId );
 
 		$dbr = wfGetDB( DB_REPLICA );
 
@@ -402,22 +405,26 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		$expected2 = [
 			(object)[
 				'ct_tag_id' => 1,
-				'ct_rc_id' => 123
-			],
-			(object)[
-				'ct_tag_id' => 2,
-				'ct_rc_id' => 123
+				'ct_rc_id' => 123,
+				'ct_rev_id' => 341
 			],
 			(object)[
 				'ct_tag_id' => 1,
-				'ct_rc_id' => 124
+				'ct_rc_id' => 124,
+				'ct_rev_id' => 342
+			],
+			(object)[
+				'ct_tag_id' => 2,
+				'ct_rc_id' => 123,
+				'ct_rev_id' => 341
 			],
 			(object)[
 				'ct_tag_id' => 3,
-				'ct_rc_id' => 124
+				'ct_rc_id' => 124,
+				'ct_rev_id' => 342
 			],
 		];
-		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id' ], '' );
+		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id', 'ct_rev_id' ], '' );
 		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
 	}
 
