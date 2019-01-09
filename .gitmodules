@@ -1120,3 +1120,8 @@
         url = https://github.com/wikimedia/mediawiki-extensions-MobileDetect
         branch = REL1_32
         ignore = dirty
+[submodule "extensions/Citoid"]
+        path = extensions/Citoid
+        url = https://github.com/wikimedia/mediawiki-extensions-Citoid.git
+        branch = REL1_32
+        ignore = dirty
