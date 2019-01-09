@@ -1900,7 +1900,7 @@
 	"statistics-pages": "Páxinas",
 	"statistics-pages-desc": "Todas as páxinas do wiki; isto inclúe as páxinas de conversa, redireccións etc.",
 	"statistics-files": "Ficheiros cargados",
-	"statistics-edits": "Edicións nas páxinas des que se creou {{SITENAME}}",
+	"statistics-edits": "Edicións nas páxinas desde que se creou {{SITENAME}}",
 	"statistics-edits-average": "Media de edicións por páxina",
 	"statistics-users": "Usuarios rexistrados",
 	"statistics-users-active": "Usuarios activos",
