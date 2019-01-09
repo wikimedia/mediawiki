@@ -1421,7 +1421,7 @@ class Language {
 				case 'g':
 					$usedHour = true;
 					$h = substr( $ts, 8, 2 );
-					$num = $h % 12 ? $h % 12 : 12;
+					$num = $h % 12 ?: 12;
 					break;
 				case 'G':
 					$usedHour = true;
@@ -1430,7 +1430,7 @@ class Language {
 				case 'h':
 					$usedHour = true;
 					$h = substr( $ts, 8, 2 );
-					$num = sprintf( '%02d', $h % 12 ? $h % 12 : 12 );
+					$num = sprintf( '%02d', $h % 12 ?: 12 );
 					break;
 				case 'H':
 					$usedHour = true;

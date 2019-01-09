@@ -358,9 +358,7 @@ abstract class BackupDumper extends Maintenance {
 	function backupServer() {
 		global $wgDBserver;
 
-		return $this->server
-			? $this->server
-			: $wgDBserver;
+		return $this->server ?: $wgDBserver;
 	}
 
 	function reportPage() {
