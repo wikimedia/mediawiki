@@ -644,18 +644,18 @@ class LogFormatter {
 	protected function makePageLink( Title $title = null, $parameters = [], $html = null ) {
 		if ( !$title instanceof Title ) {
 			$msg = $this->msg( 'invalidtitle' )->text();
-			if ( !$this->plaintext ) {
-				return Html::element( 'span', [ 'class' => 'mw-invalidtitle' ], $msg );
-			} else {
+			if ( $this->plaintext ) {
 				return $msg;
+			} else {
+				return Html::element( 'span', [ 'class' => 'mw-invalidtitle' ], $msg );
 			}
 		}
 
-		if ( !$this->plaintext ) {
+		if ( $this->plaintext ) {
+			$link = '[[' . $title->getPrefixedText() . ']]';
+		} else {
 			$html = $html !== null ? new HtmlArmor( $html ) : $html;
 			$link = $this->getLinkRenderer()->makeLink( $title, $html, [], $parameters );
-		} else {
-			$link = '[[' . $title->getPrefixedText() . ']]';
 		}
 
 		return $link;
