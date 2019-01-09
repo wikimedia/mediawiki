@@ -203,7 +203,7 @@ class JobQueueRedis extends JobQueue {
 			}
 		}
 
-		if ( !count( $items ) ) {
+		if ( $items === [] ) {
 			return; // nothing to do
 		}
 

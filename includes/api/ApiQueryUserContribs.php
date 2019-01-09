@@ -136,7 +136,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			// prepareQuery might try to sort by actor and confuse everything.
 			$batchSize = 1;
 		} elseif ( isset( $this->params['userids'] ) ) {
-			if ( !count( $this->params['userids'] ) ) {
+			if ( $this->params['userids'] === [] ) {
 				$encParamName = $this->encodeParamName( 'userids' );
 				$this->dieWithError( [ 'apierror-paramempty', $encParamName ], "paramempty_$encParamName" );
 			}

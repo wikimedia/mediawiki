@@ -445,8 +445,7 @@ class DiffHistoryBlob implements HistoryBlob {
 			// Already compressed
 			return;
 		}
-		if ( !count( $this->mItems ) ) {
-			// Empty
+		if ( $this->mItems === [] ) {
 			return;
 		}
 
@@ -492,7 +491,7 @@ class DiffHistoryBlob implements HistoryBlob {
 		$this->mDiffs = [];
 		$this->mDiffMap = [];
 		foreach ( $sequences as $seq ) {
-			if ( !count( $seq['diffs'] ) ) {
+			if ( $seq['diffs'] === [] ) {
 				continue;
 			}
 			if ( $tail === '' ) {
@@ -627,8 +626,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 */
 	function __sleep() {
 		$this->compress();
-		if ( !count( $this->mItems ) ) {
-			// Empty object
+		if ( $this->mItems === [] ) {
 			$info = false;
 		} else {
 			// Take forward differences to improve the compression ratio for sequences

@@ -405,7 +405,7 @@ class LocalRepo extends FileRepo {
 	 * @return array[] An Array of arrays or iterators of file objects and the hash as key
 	 */
 	function findBySha1s( array $hashes ) {
-		if ( !count( $hashes ) ) {
+		if ( $hashes === [] ) {
 			return []; // empty parameter
 		}
 

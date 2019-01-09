@@ -277,7 +277,7 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( count( $ids ) ) {
 			$ids = $this->filterIDs( [ [ $table, $field ] ], $ids );
 
-			if ( !count( $ids ) ) {
+			if ( $ids === [] ) {
 				// Return nothing, no IDs are valid
 				$this->where[] = '0 = 1';
 			} else {

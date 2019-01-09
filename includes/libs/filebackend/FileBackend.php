@@ -417,7 +417,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 		if ( empty( $opts['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return $this->newStatus( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
-		if ( !count( $ops ) ) {
+		if ( $ops === [] ) {
 			return $this->newStatus(); // nothing to do
 		}
 
@@ -655,7 +655,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 		if ( empty( $opts['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return $this->newStatus( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
-		if ( !count( $ops ) ) {
+		if ( $ops === [] ) {
 			return $this->newStatus(); // nothing to do
 		}
 

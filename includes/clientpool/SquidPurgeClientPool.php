@@ -61,9 +61,10 @@ class SquidPurgeClientPool {
 					$writeSockets["$clientIndex/$i"] = $socket;
 				}
 			}
-			if ( !count( $readSockets ) && !count( $writeSockets ) ) {
+			if ( $readSockets === [] && $writeSockets === [] ) {
 				break;
 			}
+
 			$exceptSockets = null;
 			$timeout = min( $startTime + $this->timeout - microtime( true ), 1 );
 			Wikimedia\suppressWarnings();

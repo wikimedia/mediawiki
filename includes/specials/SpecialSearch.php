@@ -212,13 +212,13 @@ class SpecialSearch extends SpecialPage {
 
 		# Extract manually requested namespaces
 		$nslist = $this->powerSearch( $request );
-		if ( !count( $nslist ) ) {
+		if ( $nslist === [] ) {
 			# Fallback to user preference
 			$nslist = $this->searchConfig->userNamespaces( $user );
 		}
 
 		$profile = null;
-		if ( !count( $nslist ) ) {
+		if ( $nslist === [] ) {
 			$profile = 'default';
 		}
 

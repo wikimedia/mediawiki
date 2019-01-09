@@ -721,7 +721,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$getTitles[] = $t->getTalkPage();
 			}
 		}
-		if ( !count( $getTitles ) ) {
+		if ( $getTitles === [] ) {
 			return;
 		}
 
@@ -751,7 +751,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$pageIds = array_keys( $this->titles );
 
-		if ( !count( $pageIds ) ) {
+		if ( $pageIds === [] ) {
 			return;
 		}
 
@@ -768,7 +768,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	private function getVariantTitles() {
-		if ( !count( $this->titles ) ) {
+		if ( $this->titles === [] ) {
 			return;
 		}
 		$this->variantTitles = [];
