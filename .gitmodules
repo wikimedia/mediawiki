@@ -1125,3 +1125,8 @@
         url = https://github.com/wikimedia/mediawiki-extensions-Citoid.git
         branch = REL1_32
         ignore = dirty
+[submodule "extensions/Genealogy"]
+	path = extensions/Genealogy
+	url = https://github.com/wikimedia/mediawiki-extensions-Genealogy
+	branch = REL1_32
+	ignore = dirty
