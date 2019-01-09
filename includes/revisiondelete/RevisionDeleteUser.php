@@ -191,7 +191,6 @@ class RevisionDeleteUser {
 			__METHOD__
 		);
 
-		# Done!
 		return true;
 	}
 

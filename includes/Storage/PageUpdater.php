@@ -1104,10 +1104,10 @@ class PageUpdater {
 		// TODO: move to storage service
 		$newid = $wikiPage->insertOn( $dbw );
 		if ( $newid === false ) {
-			$dbw->endAtomic( __METHOD__ ); // nothing inserted
+			$dbw->endAtomic( __METHOD__ );
 			$status->fatal( 'edit-already-exists' );
 
-			return $status; // nothing done
+			return $status;
 		}
 
 		// At this point we are now comitted to returning an OK

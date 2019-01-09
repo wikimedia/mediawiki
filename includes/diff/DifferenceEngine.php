@@ -1463,7 +1463,7 @@ class DifferenceEngine extends ContextSource {
 			return self::intermediateEditsMsg( $nEdits, $numUsers, $limit );
 		}
 
-		return ''; // nothing
+		return '';
 	}
 
 	/**

@@ -350,7 +350,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->assertEquals( false, $this->backend->fileExists( [ 'src' => $dest ] ),
 				"Destination file $dest does not exist ($backendName)." );
 
-			return; // done
+			return;
 		}
 
 		$status = $this->backend->doOperation(
@@ -470,7 +470,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->assertEquals( false, $this->backend->fileExists( [ 'src' => $dest ] ),
 				"Destination file $dest does not exist ($backendName)." );
 
-			return; // done
+			return;
 		}
 
 		$status = $this->backend->doOperation(
