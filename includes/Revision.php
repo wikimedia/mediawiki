@@ -117,7 +117,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function newFromId( $id, $flags = 0 ) {
 		$rec = self::getRevisionLookup()->getRevisionById( $id, $flags );
-		return $rec === null ? null : new Revision( $rec, $flags );
+		return $rec ? new Revision( $rec, $flags ) : null;
 	}
 
 	/**
@@ -136,7 +136,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function newFromTitle( LinkTarget $linkTarget, $id = 0, $flags = 0 ) {
 		$rec = self::getRevisionLookup()->getRevisionByTitle( $linkTarget, $id, $flags );
-		return $rec === null ? null : new Revision( $rec, $flags );
+		return $rec ? new Revision( $rec, $flags ) : null;
 	}
 
 	/**
@@ -155,7 +155,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function newFromPageId( $pageId, $revId = 0, $flags = 0 ) {
 		$rec = self::getRevisionLookup()->getRevisionByPageId( $pageId, $revId, $flags );
-		return $rec === null ? null : new Revision( $rec, $flags );
+		return $rec ? new Revision( $rec, $flags ) : null;
 	}
 
 	/**
@@ -242,7 +242,7 @@ class Revision implements IDBAccessObject {
 	public static function loadFromId( $db, $id ) {
 		wfDeprecated( __METHOD__, '1.31' ); // no known callers
 		$rec = self::getRevisionStore()->loadRevisionFromId( $db, $id );
-		return $rec === null ? null : new Revision( $rec );
+		return $rec ? new Revision( $rec ) : null;
 	}
 
 	/**
@@ -259,7 +259,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function loadFromPageId( $db, $pageid, $id = 0 ) {
 		$rec = self::getRevisionStore()->loadRevisionFromPageId( $db, $pageid, $id );
-		return $rec === null ? null : new Revision( $rec );
+		return $rec ? new Revision( $rec ) : null;
 	}
 
 	/**
@@ -276,7 +276,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function loadFromTitle( $db, $title, $id = 0 ) {
 		$rec = self::getRevisionStore()->loadRevisionFromTitle( $db, $title, $id );
-		return $rec === null ? null : new Revision( $rec );
+		return $rec ? new Revision( $rec ) : null;
 	}
 
 	/**
@@ -294,7 +294,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function loadFromTimestamp( $db, $title, $timestamp ) {
 		$rec = self::getRevisionStore()->loadRevisionFromTimestamp( $db, $title, $timestamp );
-		return $rec === null ? null : new Revision( $rec );
+		return $rec ? new Revision( $rec ) : null;
 	}
 
 	/**
@@ -1012,7 +1012,7 @@ class Revision implements IDBAccessObject {
 	public function getPrevious() {
 		$title = $this->getTitle();
 		$rec = self::getRevisionLookup()->getPreviousRevision( $this->mRecord, $title );
-		return $rec === null ? null : new Revision( $rec, self::READ_NORMAL, $title );
+		return $rec ? new Revision( $rec, self::READ_NORMAL, $title ) : null;
 	}
 
 	/**
@@ -1023,7 +1023,7 @@ class Revision implements IDBAccessObject {
 	public function getNext() {
 		$title = $this->getTitle();
 		$rec = self::getRevisionLookup()->getNextRevision( $this->mRecord, $title );
-		return $rec === null ? null : new Revision( $rec, self::READ_NORMAL, $title );
+		return $rec ? new Revision( $rec, self::READ_NORMAL, $title ) : null;
 	}
 
 	/**
