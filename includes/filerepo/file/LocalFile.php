@@ -706,7 +706,7 @@ class LocalFile extends File {
 	 * Fix assorted version-related problems with the image row by reloading it from the file
 	 */
 	function upgradeRow() {
-		$this->lock(); // begin
+		$this->lock();
 
 		$this->loadFromFile();
 
@@ -746,7 +746,7 @@ class LocalFile extends File {
 
 		$this->invalidateCache();
 
-		$this->unlock(); // done
+		$this->unlock();
 		$this->upgraded = true; // avoid rework/retries
 	}
 
@@ -1347,7 +1347,7 @@ class LocalFile extends File {
 		// Trim spaces on user supplied text
 		$comment = trim( $comment );
 
-		$this->lock(); // begin
+		$this->lock();
 		$status = $this->publish( $src, $flags, $options );
 
 		if ( $status->successCount >= 2 ) {
@@ -1378,8 +1378,7 @@ class LocalFile extends File {
 			}
 		}
 
-		$this->unlock(); // done
-
+		$this->unlock();
 		return $status;
 	}
 
@@ -1858,7 +1857,7 @@ class LocalFile extends File {
 			return $this->readOnlyFatalStatus();
 		}
 
-		$this->lock(); // begin
+		$this->lock();
 
 		$archiveName = wfTimestamp( TS_MW ) . '!' . $this->getName();
 		$archiveRel = $this->getArchiveRel( $archiveName );
@@ -1889,8 +1888,7 @@ class LocalFile extends File {
 			}
 		}
 
-		$this->unlock(); // done
-
+		$this->unlock();
 		return $status;
 	}
 
@@ -1919,11 +1917,11 @@ class LocalFile extends File {
 		wfDebugLog( 'imagemove', "Got request to move {$this->name} to " . $target->getText() );
 		$batch = new LocalFileMoveBatch( $this, $target );
 
-		$this->lock(); // begin
+		$this->lock();
 		$batch->addCurrent();
 		$archiveNames = $batch->addOlds();
 		$status = $batch->execute();
-		$this->unlock(); // done
+		$this->unlock();
 
 		wfDebugLog( 'imagemove', "Finished moving {$this->name}" );
 
@@ -1977,12 +1975,12 @@ class LocalFile extends File {
 
 		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress, $user );
 
-		$this->lock(); // begin
+		$this->lock();
 		$batch->addCurrent();
 		// Get old version relative paths
 		$archiveNames = $batch->addOlds();
 		$status = $batch->execute();
-		$this->unlock(); // done
+		$this->unlock();
 
 		if ( $status->isOK() ) {
 			DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [ 'images' => -1 ] ) );
@@ -2035,10 +2033,10 @@ class LocalFile extends File {
 
 		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress, $user );
 
-		$this->lock(); // begin
+		$this->lock();
 		$batch->addOld( $archiveName );
 		$status = $batch->execute();
-		$this->unlock(); // done
+		$this->unlock();
 
 		$this->purgeOldThumbnails( $archiveName );
 		if ( $status->isOK() ) {
@@ -2071,7 +2069,7 @@ class LocalFile extends File {
 
 		$batch = new LocalFileRestoreBatch( $this, $unsuppress );
 
-		$this->lock(); // begin
+		$this->lock();
 		if ( !$versions ) {
 			$batch->addAll();
 		} else {
@@ -2084,8 +2082,8 @@ class LocalFile extends File {
 			$cleanupStatus->failCount = 0;
 			$status->merge( $cleanupStatus );
 		}
-		$this->unlock(); // done
 
+		$this->unlock();
 		return $status;
 	}
 
@@ -2182,7 +2180,7 @@ class LocalFile extends File {
 		$this->load();
 		// Initialise now if necessary
 		if ( $this->sha1 == '' && $this->fileExists ) {
-			$this->lock(); // begin
+			$this->lock();
 
 			$this->sha1 = $this->repo->getFileSha1( $this->getPath() );
 			if ( !wfReadOnly() && strval( $this->sha1 ) != '' ) {
@@ -2194,7 +2192,7 @@ class LocalFile extends File {
 				$this->invalidateCache();
 			}
 
-			$this->unlock(); // done
+			$this->unlock();
 		}
 
 		return $this->sha1;
@@ -3262,7 +3260,7 @@ class LocalFileMoveBatch {
 		$status = $repo->newGood();
 		$destFile = wfLocalFile( $this->target );
 
-		$this->file->lock(); // begin
+		$this->file->lock();
 		$destFile->lock(); // quickly fail if destination is not available
 
 		$triplets = $this->getMoveTriplets();
@@ -3313,7 +3311,7 @@ class LocalFileMoveBatch {
 			"{$statusDb->successCount} successes, {$statusDb->failCount} failures" );
 
 		$destFile->unlock();
-		$this->file->unlock(); // done
+		$this->file->unlock();
 
 		// Everything went ok, remove the source files
 		$this->cleanupSource( $triplets );
