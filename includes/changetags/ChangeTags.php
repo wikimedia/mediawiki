@@ -428,7 +428,7 @@ class ChangeTags {
 		return [ $tagsToAdd, $tagsToRemove, $prevTags ];
 	}
 
-	private static function getPrevTags( $rc_id = null, $rev_id = null, $log_id = null ) {
+	private static function getPrevTags( $rc_id = null, $log_id = null, $rev_id = null ) {
 		$conds = array_filter(
 			[
 				'ct_rc_id' => $rc_id,
