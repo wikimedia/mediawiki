@@ -78,6 +78,7 @@ class EnhancedChangesList extends ChangesList {
 		$this->rclistOpen = false;
 		$this->getOutput()->addModuleStyles( [
 			'mediawiki.icon',
+			'mediawiki.interface.helpers.styles',
 			'mediawiki.special.changeslist',
 			'mediawiki.special.changeslist.enhanced',
 		] );

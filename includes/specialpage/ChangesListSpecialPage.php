@@ -1691,6 +1691,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$out = $this->getOutput();
 		// Styles and behavior for the legend box (see makeLegend())
 		$out->addModuleStyles( [
+			'mediawiki.interface.helpers.styles',
 			'mediawiki.special.changeslist.legend',
 			'mediawiki.special.changeslist',
 		] );

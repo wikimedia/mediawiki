@@ -956,7 +956,10 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public function showDiffStyle() {
 		if ( !$this->isSlotDiffRenderer ) {
-			$this->getOutput()->addModuleStyles( 'mediawiki.diff.styles' );
+			$this->getOutput()->addModuleStyles( [
+				'mediawiki.interface.helpers.styles',
+				'mediawiki.diff.styles'
+			] );
 			foreach ( $this->getSlotDiffRenderers() as $slotDiffRenderer ) {
 				$slotDiffRenderer->addModules( $this->getOutput() );
 			}
