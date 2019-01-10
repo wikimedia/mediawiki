@@ -5,12 +5,12 @@
  *
  * This script assumes that:
  * - hooks names in hooks.txt are at the beginning of a line and single quoted.
- * - hooks names in code are the first parameter of wfRunHooks.
+ * - hooks names in code are the first parameter of Hooks::run.
  *
  * if --online option is passed, the script will compare the hooks in the code
  * with the ones at https://www.mediawiki.org/wiki/Manual:Hooks
  *
- * Any instance of wfRunHooks that doesn't meet these parameters will be noted.
+ * Any instance of Hooks::run that doesn't meet these requirements will be noted.
  *
  * Copyright © Antoine Musso
  *
@@ -245,7 +245,7 @@ class FindHooks extends Maintenance {
 		$m = [];
 		preg_match_all(
 			// All functions which runs hooks
-			'/(?:wfRunHooks|Hooks\:\:run|Hooks\:\:runWithoutAbort)\s*\(\s*' .
+			'/(?:Hooks\:\:run|Hooks\:\:runWithoutAbort)\s*\(\s*' .
 				// First argument is the hook name as string
 				'([\'"])(.*?)\1' .
 				// Comma for second argument
@@ -287,13 +287,12 @@ class FindHooks extends Maintenance {
 	/**
 	 * Get bad hooks (where the hook name could not be determined) from a PHP file
 	 * @param string $filePath Full filename to the PHP file.
-	 * @return array Array of bad wfRunHooks() lines
+	 * @return array Array of source code lines
 	 */
 	private function getBadHooksFromFile( $filePath ) {
 		$content = file_get_contents( $filePath );
 		$m = [];
-		// We want to skip the "function wfRunHooks()" one.  :)
-		preg_match_all( '/(?<!function )wfRunHooks\(\s*[^\s\'"].*/', $content, $m );
+		preg_match_all( '/(?:Hooks\:\:run|Hooks\:\:runWithoutAbort)\(\s*[^\s\'"].*/', $content, $m );
 		$list = [];
 		foreach ( $m[0] as $match ) {
 			$list[] = $match . "(" . $filePath . ")";
