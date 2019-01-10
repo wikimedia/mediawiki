@@ -229,6 +229,8 @@ because of Phabricator reports.
 * (T126091) The 'ResourceLoaderTestModules' hook, which lets you declare QUnit
   testing code for your JavaScript modules, is deprecated. Instead, you can now
   use the new extension registration key 'QUnitTestModule'.
+* (T213426) The jquery.throttle-debounce module has been deprecated. JavaScript
+  code that needs this behaviour should use OO.ui.debounce/throttle.
 
 === Other changes in 1.33 ===
 * (T208871) The hard-coded Google search form on the database error page was
