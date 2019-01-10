@@ -2318,6 +2318,8 @@
 	"ipb-blocklist-contribs": "Kontributioune vum {{GENDER:$1|$1}}",
 	"ipb-blocklist-duration-left": "$1 iwwreg",
 	"block-expiry": "Gültegkeet:",
+	"block-options": "Zousätzlech Optiounen:",
+	"block-reason": "Grond:",
 	"unblockip": "Spär vum Benotzer ophiewen",
 	"unblockiptext": "Benotzt dëse Formulaire fir enger IP-Adress oder engem Benotzer seng Spär opzehiewen.",
 	"ipusubmit": "Des Spär ophiewen",
