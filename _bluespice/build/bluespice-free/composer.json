@@ -13,6 +13,7 @@
 		"bluespice/configmanager": "dev-master",
 		"bluespice/contextmenu": "dev-master",
 		"bluespice/countthings": "dev-master",
+		"bluespice/custommenu": "dev-master",
 		"bluespice/dashboards": "dev-master",
 		"bluespice/distributionconnector": "dev-master",
 		"bluespice/echoconnector": "dev-master",
