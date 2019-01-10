@@ -13,6 +13,7 @@
 		"bluespice/configmanager": "dev-REL1_31",
 		"bluespice/contextmenu": "dev-REL1_31",
 		"bluespice/countthings": "dev-REL1_31",
+		"bluespice/custommenu": "dev-REL1_31",
 		"bluespice/dashboards": "dev-REL1_31",
 		"bluespice/distributionconnector": "dev-REL1_31",
 		"bluespice/echoconnector": "dev-REL1_31",
