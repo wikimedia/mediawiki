@@ -226,14 +226,9 @@ Hooks::run() returns true if the calling function should continue processing
 error occurred, or one of the hooks handled the action already). Checking the
 return value matters more for "before" hooks than for "complete" hooks.
 
-Hooks::run() was added in MediaWiki 1.18, before that the global function
-wfRunHooks must be used, which was deprecated in MediaWiki 1.25.
-
 Note that hook parameters are passed in an array; this is a necessary
-inconvenience to make it possible to pass reference values (that can be changed)
-into the hook code. Also note that earlier versions of wfRunHooks took a
-variable number of arguments; the array calling protocol came about after
-MediaWiki 1.4rc1.
+inconvenience to make it possible to pass reference values (which can be changed)
+by the hook callback.
 
 ==Events and parameters==
 
