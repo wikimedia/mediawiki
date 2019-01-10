@@ -2867,7 +2867,8 @@ return [
 			'oojs-ui.styles.icons-interactions',
 		],
 		'messages' => [
-			'ooui-field-help'
+			'ooui-field-help',
+			'ooui-combobox-button-label',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
