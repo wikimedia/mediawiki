@@ -2048,7 +2048,7 @@ more stuff
 			wfTimestamp( TS_UNIX, $initialRevision->getTimestamp() ) - 1
 		);
 
-		$olderRevison = new Revision(
+		$olderRevision = new Revision(
 			[
 				'id' => 9989,
 				'page' => $page->getId(),
@@ -2065,7 +2065,7 @@ more stuff
 			]
 		);
 
-		$result = $page->updateIfNewerOn( $this->db, $olderRevison );
+		$result = $page->updateIfNewerOn( $this->db, $olderRevision );
 		$this->assertFalse( $result );
 	}
 
