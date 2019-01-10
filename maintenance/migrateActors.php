@@ -120,6 +120,29 @@ class MigrateActors extends LoggedUpdateMaintenance {
 	}
 
 	/**
+	 * Make the subqueries for `actor_id`
+	 * @param IDatabase $dbw
+	 * @param string $userField User ID field name
+	 * @param string $nameField User name field name
+	 * @return string SQL fragment
+	 */
+	private function makeActorIdSubquery( $dbw, $userField, $nameField ) {
+		$idSubquery = $dbw->buildSelectSubquery(
+			'actor',
+			'actor_id',
+			[ "$userField = actor_user" ],
+			__METHOD__
+		);
+		$nameSubquery = $dbw->buildSelectSubquery(
+			'actor',
+			'actor_id',
+			[ "$nameField = actor_name" ],
+			__METHOD__
+		);
+		return "CASE WHEN $userField = 0 OR $userField IS NULL THEN $nameSubquery ELSE $idSubquery END";
+	}
+
+	/**
 	 * Add actors for anons in a set of rows
 	 * @param IDatabase $dbw
 	 * @param string $nameField
@@ -214,6 +237,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		wfWaitForSlaves();
 
 		$dbw = $this->getDB( DB_MASTER );
+		$actorIdSubquery = $this->makeActorIdSubquery( $dbw, $userField, $nameField );
 		$next = '1=1';
 		$countUpdated = 0;
 		$countActors = 0;
@@ -221,8 +245,8 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		while ( true ) {
 			// Fetch the rows needing update
 			$res = $dbw->select(
-				[ $table, 'actor' ],
-				array_merge( $primaryKey, [ $userField, $nameField, 'actor_id' ] ),
+				$table,
+				array_merge( $primaryKey, [ $userField, $nameField, 'actor_id' => $actorIdSubquery ] ),
 				[
 					$actorField => 0,
 					$next,
@@ -231,13 +255,6 @@ class MigrateActors extends LoggedUpdateMaintenance {
 				[
 					'ORDER BY' => $primaryKey,
 					'LIMIT' => $this->mBatchSize,
-				],
-				[
-					'actor' => [
-						'LEFT JOIN',
-						"$userField != 0 AND actor_user = $userField OR "
-						. "($userField = 0 OR $userField IS NULL) AND actor_name = $nameField"
-					]
 				]
 			);
 			if ( !$res->numRows() ) {
@@ -315,6 +332,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		wfWaitForSlaves();
 
 		$dbw = $this->getDB( DB_MASTER );
+		$actorIdSubquery = $this->makeActorIdSubquery( $dbw, $userField, $nameField );
 		$next = [];
 		$countUpdated = 0;
 		$countActors = 0;
@@ -322,8 +340,8 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		while ( true ) {
 			// Fetch the rows needing update
 			$res = $dbw->select(
-				[ $table, $newTable, 'actor' ],
-				[ $primaryKey, $userField, $nameField, 'actor_id' ] + $extra,
+				[ $table, $newTable ],
+				[ $primaryKey, $userField, $nameField, 'actor_id' => $actorIdSubquery ] + $extra,
 				[ $newPrimaryKey => null ] + $next,
 				__METHOD__,
 				[
@@ -332,11 +350,6 @@ class MigrateActors extends LoggedUpdateMaintenance {
 				],
 				[
 					$newTable => [ 'LEFT JOIN', "{$primaryKey}={$newPrimaryKey}" ],
-					'actor' => [
-						'LEFT JOIN',
-						"$userField != 0 AND actor_user = $userField OR "
-						. "($userField = 0 OR $userField IS NULL) AND actor_name = $nameField"
-					]
 				]
 			);
 			if ( !$res->numRows() ) {
@@ -414,18 +427,31 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		while ( true ) {
 			// Fetch the rows needing update
 			$res = $dbw->select(
-				[ 'log_search', 'actor' ],
-				[ 'ls_field', 'ls_value', 'actor_id' ],
 				[
-					'ls_field' => 'target_author_id',
-					$next,
+					'ls' => $dbw->buildSelectSubquery(
+						'log_search',
+						'ls_value',
+						[
+							'ls_field' => 'target_author_id',
+							$next
+						],
+						__METHOD__,
+						[
+							'DISTINCT',
+							'ORDER BY' => [ 'ls_value' ],
+							'LIMIT' => $this->mBatchSize,
+						]
+					),
+					'actor'
 				],
+				[
+					'ls_field' => $dbw->addQuotes( 'target_author_id' ),
+					'ls_value',
+					'actor_id'
+				],
+				[],
 				__METHOD__,
-				[
-					'DISTINCT',
-					'ORDER BY' => [ 'ls_value' ],
-					'LIMIT' => $this->mBatchSize,
-				],
+				[],
 				[ 'actor' => [ 'LEFT JOIN', 'ls_value = ' . $dbw->buildStringCast( 'actor_user' ) ] ]
 			);
 			if ( !$res->numRows() ) {
@@ -474,18 +500,31 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		while ( true ) {
 			// Fetch the rows needing update
 			$res = $dbw->select(
-				[ 'log_search', 'actor' ],
-				[ 'ls_field', 'ls_value', 'actor_id' ],
 				[
-					'ls_field' => 'target_author_ip',
-					$next,
+					'ls' => $dbw->buildSelectSubquery(
+						'log_search',
+						'ls_value',
+						[
+							'ls_field' => 'target_author_ip',
+							$next
+						],
+						__METHOD__,
+						[
+							'DISTINCT',
+							'ORDER BY' => [ 'ls_value' ],
+							'LIMIT' => $this->mBatchSize,
+						]
+					),
+					'actor'
 				],
+				[
+					'ls_field' => $dbw->addQuotes( 'target_author_ip' ),
+					'ls_value',
+					'actor_id'
+				],
+				[],
 				__METHOD__,
-				[
-					'DISTINCT',
-					'ORDER BY' => [ 'ls_value' ],
-					'LIMIT' => $this->mBatchSize,
-				],
+				[],
 				[ 'actor' => [ 'LEFT JOIN', 'ls_value = actor_name' ] ]
 			);
 			if ( !$res->numRows() ) {
