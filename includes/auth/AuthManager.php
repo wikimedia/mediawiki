@@ -54,7 +54,8 @@ use Wikimedia\ObjectFactory;
  * Code that is related to some SessionProvider or PrimaryAuthenticationProvider can
  * create a (non-reserved) user by calling AuthManager::autoCreateUser(); it is then the provider's
  * responsibility to ensure that the user can authenticate somehow (see especially
- * PrimaryAuthenticationProvider::autoCreatedAccount()).
+ * PrimaryAuthenticationProvider::autoCreatedAccount()). The same functionality can also be used
+ * from Maintenance scripts such as createAndPromote.php.
  * If you are writing code that is not associated with such a provider and needs to create accounts
  * programmatically for real users, you should rethink your architecture. There is no good way to
  * do that as such code has no knowledge of what authentication methods are enabled on the wiki and
@@ -112,6 +113,9 @@ class AuthManager implements LoggerAwareInterface {
 
 	/** Auto-creation is due to SessionManager */
 	const AUTOCREATE_SOURCE_SESSION = \MediaWiki\Session\SessionManager::class;
+
+	/** Auto-creation is due to a Maintenance script */
+	const AUTOCREATE_SOURCE_MAINT = '::Maintenance::';
 
 	/** @var AuthManager|null */
 	private static $instance = null;
@@ -1542,13 +1546,16 @@ class AuthManager implements LoggerAwareInterface {
 	 * explicitly (e.g. from a maintenance script) is also fine.
 	 *
 	 * @param User $user User to auto-create
-	 * @param string $source What caused the auto-creation? This must be the ID
-	 *  of a PrimaryAuthenticationProvider or the constant self::AUTOCREATE_SOURCE_SESSION.
+	 * @param string $source What caused the auto-creation? This must be one of:
+	 *  - the ID of a PrimaryAuthenticationProvider,
+	 *  - the constant self::AUTOCREATE_SOURCE_SESSION, or
+	 *  - the constant AUTOCREATE_SOURCE_MAINT.
 	 * @param bool $login Whether to also log the user in
 	 * @return Status Good if user was created, Ok if user already existed, otherwise Fatal
 	 */
 	public function autoCreateUser( User $user, $source, $login = true ) {
 		if ( $source !== self::AUTOCREATE_SOURCE_SESSION &&
+			$source !== self::AUTOCREATE_SOURCE_MAINT &&
 			!$this->getAuthenticationProvider( $source ) instanceof PrimaryAuthenticationProvider
 		) {
 			throw new \InvalidArgumentException( "Unknown auto-creation source: $source" );
