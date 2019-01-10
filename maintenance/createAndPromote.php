@@ -112,9 +112,16 @@ class CreateAndPromote extends Maintenance {
 		}
 
 		if ( !$exists ) {
-			# Insert the account into the database
-			$user->addToDatabase();
-			$user->saveSettings();
+			// Create the user via AuthManager as there may be various side
+			// effects that are perfomed by the configured AuthManager chain.
+			$status = MediaWiki\Auth\AuthManager::singleton()->autoCreateUser(
+				$user,
+				MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_MAINT,
+				false
+			);
+			if ( !$status->isGood() ) {
+				$this->fatalError( $status->getWikiText( null, null, 'en' ) );
+			}
 		}
 
 		if ( $password ) {
