@@ -443,7 +443,9 @@ abstract class SearchEngine {
 		$ns = $this->namespaces;
 		if ( $title && !$title->isExternal() ) {
 			$ns = [ $title->getNamespace() ];
-			$search = $title->getText();
+			if ( $title->getNamespace() !== NS_MAIN ) {
+				$search = substr( $search, strpos( $search, ':' ) + 1 );
+			}
 			if ( $ns[0] == NS_MAIN ) {
 				$ns = $this->namespaces; // no explicit prefix, use default namespaces
 				Hooks::run( 'PrefixSearchExtractNamespace', [ &$ns, &$search ] );

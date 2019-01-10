@@ -83,13 +83,14 @@ class ActiveUsersPager extends UsersPager {
 
 		$activeUserSeconds = $this->getConfig()->get( 'ActiveUserDays' ) * 86400;
 		$timestamp = $dbr->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
-		$tables = [ 'querycachetwo', 'user', 'recentchanges' ] + $rcQuery['tables'];
-		$jconds = $rcQuery['joins'];
+		$tables = [ 'querycachetwo', 'user', 'rc' => [ 'recentchanges' ] + $rcQuery['tables'] ];
+		$jconds = [
+			'user' => [ 'JOIN', 'user_name = qcc_title' ],
+			'rc' => [ 'JOIN', $rcQuery['fields']['rc_user_text'] . ' = qcc_title' ],
+		] + $rcQuery['joins'];
 		$conds = [
 			'qcc_type' => 'activeusers',
 			'qcc_namespace' => NS_USER,
-			'user_name = qcc_title',
-			$rcQuery['fields']['rc_user_text'] . ' = qcc_title',
 			'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ), // Don't count wikidata.
 			'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE ), // Don't count categorization changes.
 			'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' ),
@@ -100,7 +101,7 @@ class ActiveUsersPager extends UsersPager {
 		}
 		if ( $this->groups !== [] ) {
 			$tables[] = 'user_groups';
-			$conds[] = 'ug_user = user_id';
+			$jconds['user_groups'] = [ 'JOIN', [ 'ug_user = user_id' ] ];
 			$conds['ug_group'] = $this->groups;
 			$conds[] = 'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() );
 		}

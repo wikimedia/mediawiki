@@ -356,7 +356,8 @@
 	"errorpagetitle": "Message shown in browser title bar when encountering error operation.\n\n{{Identical|Error}}",
 	"returnto": "{{Identical|Return to $1}}",
 	"tagline": "{{doc-important|Do not change <code><nowiki>{{SITENAME}}</nowiki></code>.}}\nUsed to identify the source of copied information.",
-	"help": "General text (noun) used in the sidebar (by default).\n\nSee also {{msg-mw|Helppage}} and {{msg-mw|Edithelp}}.\n\nSee also:\n* {{msg-mw|Help}}\n* {{msg-mw|Accesskey-n-help}}\n* {{msg-mw|Tooltip-n-help}}\n{{Identical|Help}}",
+	"help": "General text (noun).\n\nSee also {{msg-mw|Helppage}} and {{msg-mw|Edithelp}}.\n\nSee also:\n* {{msg-mw|Help}}\n* {{msg-mw|Accesskey-n-help}}\n* {{msg-mw|Tooltip-n-help}}\n{{Identical|Help}}",
+	"help-mediawiki": "Text ('Help' is a noun) used in the sidebar (by default) to link to the MediaWiki help on mediawiki.org.",
 	"search": "{{doc-special|Search}}\nNoun. Text of menu section shown on every page of the wiki above the search form.\n\nSee also:\n* {{msg-mw|Search}}\n* {{msg-mw|Accesskey-search}}\n* {{msg-mw|Tooltip-search}}\n{{Identical|Search}}",
 	"search-ignored-headings": "Headings that will be ignored by search. You can translate the text, including \"Leave this line exactly as it is\". Some lines of this messages have one (1) leading space.",
 	"searchbutton": "The button you can see in the sidebar, below the search input box. The \"Go\" button is {{msg-mw|Searcharticle}}.\n{{Identical|Search}}",
@@ -570,6 +571,7 @@
 	"ns-specialprotected": "Error message displayed when trying to edit a page in the Special namespace",
 	"titleprotected": "Used as error message. Parameters:\n* $1 - username; GENDER supported\n* $2 - reason for protection",
 	"filereadonlyerror": "Parameters:\n* $1 - file name\n* $2 - file repository name\n* $3 - reason",
+	"invalidtitle": "Displayed when an invalid title was encountered (generally in a list) and there are no details about it to be shown.",
 	"invalidtitle-knownnamespace": "Displayed when an invalid title was encountered (generally in a list), but the namespace number is known to exist.\n\nParameters:\n* $1 - (Unused) the namespace number\n* $2 - the namespace name in content language or {{msg-mw|blanknamespace}} for the main namespace\n* $3 - the part of the title after the namespace (e.g. SomeName for the page User:SomeName)",
 	"invalidtitle-unknownnamespace": "Displayed when an invalid title was encountered (generally in a list) and the namespace number is unknown.\n\nParameters:\n* $1 - the namespace number\n* $2 - the part of the title after the namespace (e.g. SomeName for the page User:SomeName)",
 	"exception-nologin": "Generic page title used on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.\n{{Identical|Not logged in}}",
@@ -759,6 +761,7 @@
 	"botpasswords-invalid-name": "Error message when a username lacking the separator character is passed to BotPassword. Parameters:\n* $1 - The separator character.",
 	"botpasswords-not-exist": "Error message when a username exists but does not a bot password for the given \"bot name\". Parameters:\n* $1 - username\n* $2 - bot name",
 	"botpasswords-needs-reset": "Error message when a bot password exists but needs to be reset. Parameters:\n* $1 - username\n* $2 - bot name",
+	"botpasswords-locked": "Shown in the event that the underlying account is locked",
 	"resetpass_forbidden": "Used as error message in changing password. Maybe the external auth plugin won't allow local password changes.",
 	"resetpass_forbidden-reason": "Like {{msg-mw|resetpass_forbidden}} but the auth provider gave a reason.\n\nParameters:\n* $1 - reason given by auth provider",
 	"resetpass-no-info": "Error message for [[Special:ChangePassword]].\n\nParameters:\n* $1 (unused) - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description",
@@ -4663,5 +4666,7 @@
 	"pagedata-title": "Title shown on the special page when a form or text is presented",
 	"pagedata-text": "Error shown when none of the formats acceptable to the client is supported (HTTP error 406). Parameters:\n* $1 - the list of supported MIME types",
 	"pagedata-not-acceptable": "No matching format found. Supported MIME types: $1",
-	"pagedata-bad-title": "Error shown when the requested title is invalid. Parameters:\n* $1: the malformed ID"
+	"pagedata-bad-title": "Error shown when the requested title is invalid. Parameters:\n* $1: the malformed ID",
+	"unregistered-user-config": "Shown when viewing a user JS, CSS or JSON subpage with ?action=raw&ctype=<mime type> where there is no such user. It is shown as a paragraph after a header saying 'Forbidden'.",
+	"unprotected-js": "Error message shown when trying to load javascript via action=raw that is not protected"
 }

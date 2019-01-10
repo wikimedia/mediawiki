@@ -1173,6 +1173,14 @@ class LoadBalancer implements ILoadBalancer {
 		return ( $name != '' ) ? $name : 'localhost';
 	}
 
+	public function getServerInfo( $i ) {
+		if ( isset( $this->servers[$i] ) ) {
+			return $this->servers[$i];
+		} else {
+			return false;
+		}
+	}
+
 	public function getServerType( $i ) {
 		return isset( $this->servers[$i]['type'] ) ? $this->servers[$i]['type'] : 'unknown';
 	}

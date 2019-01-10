@@ -1859,9 +1859,9 @@ class FormatMetadata extends ContextSource {
 		// drop all characters which are not valid in an XML tag name
 		// a bunch of non-ASCII letters would be valid but probably won't
 		// be used so we take the easy way
-		$key = preg_replace( '/[^a-zA-z0-9_:.-]/', '', $key );
+		$key = preg_replace( '/[^a-zA-z0-9_:.\-]/', '', $key );
 		// drop characters which are invalid at the first position
-		$key = preg_replace( '/^[\d-.]+/', '', $key );
+		$key = preg_replace( '/^[\d\-.]+/', '', $key );
 
 		if ( $key == '' ) {
 			$key = '_';

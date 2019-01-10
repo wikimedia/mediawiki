@@ -134,7 +134,14 @@ class ImageListPager extends TablePager {
 		$conds = [];
 
 		if ( !is_null( $this->mUserName ) ) {
-			$conds[$prefix . '_user_text'] = $this->mUserName;
+			// getQueryInfoReal() should have handled the tables and joins.
+			$dbr = wfGetDB( DB_REPLICA );
+			$actorWhere = ActorMigration::newMigration()->getWhere(
+				$dbr,
+				$prefix . '_user',
+				User::newFromName( $this->mUserName, false )
+			);
+			$conds[] = $actorWhere['conds'];
 		}
 
 		if ( $this->mSearch !== '' ) {

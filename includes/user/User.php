@@ -2108,10 +2108,6 @@ class User implements IDBAccessObject, UserIdentity {
 			if ( isset( $limits['user'] ) ) {
 				$userLimit = $limits['user'];
 			}
-			// limits for newbie logged-in users
-			if ( $isNewbie && isset( $limits['newbie'] ) ) {
-				$keys[$cache->makeKey( 'limiter', $action, 'user', $id )] = $limits['newbie'];
-			}
 		}
 
 		// limits for anons and for newbie logged-in users
@@ -2141,6 +2137,11 @@ class User implements IDBAccessObject, UserIdentity {
 					$userLimit = $limits[$group];
 				}
 			}
+		}
+
+		// limits for newbie logged-in users (override all the normal user limits)
+		if ( $id !== 0 && $isNewbie && isset( $limits['newbie'] ) ) {
+			$userLimit = $limits['newbie'];
 		}
 
 		// Set the user limit key
@@ -2464,8 +2465,14 @@ class User implements IDBAccessObject, UserIdentity {
 					$this->mActorId = (int)$dbw->insertId();
 				} else {
 					// Outdated cache?
-					list( , $options ) = DBAccessObjectUtils::getDBOptions( $this->queryFlagsUsed );
-					$this->mActorId = (int)$dbw->selectField( 'actor', 'actor_id', $q, __METHOD__, $options );
+					// Use LOCK IN SHARE MODE to bypass any MySQL REPEATABLE-READ snapshot.
+					$this->mActorId = (int)$dbw->selectField(
+						'actor',
+						'actor_id',
+						$q,
+						__METHOD__,
+						[ 'LOCK IN SHARE MODE' ]
+					);
 					if ( !$this->mActorId ) {
 						throw new CannotCreateActorException(
 							"Cannot create actor ID for user_id={$this->getId()} user_name={$this->getName()}"
