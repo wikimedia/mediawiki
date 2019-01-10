@@ -13,6 +13,7 @@ THIS IS NOT A RELEASE YET
 * (T113042) Do not allow loading pages raw with a text/javascript MIME type if
   non-admins can edit the page.
 * (T207541) Pass email address to mail().
+* (T213359) Update mediawiki/mediawiki-codesniffer to 0.8.1.
 
 == MediaWiki 1.27.5 ==
 

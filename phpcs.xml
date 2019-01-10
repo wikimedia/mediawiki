@@ -1,6 +1,35 @@
 <?xml version="1.0"?>
 <ruleset name="MediaWiki">
-	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki" />
+	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
+		<exclude name="Generic.Formatting.NoSpaceAfterCast.SpaceFound" />
+		<exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.ExtraParamComment" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.Missing.Protected" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.Missing.Public" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamComment" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamName" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamTag" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.ParamNameNoMatch" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingAfter" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingAfterParamName" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingAfterParamType" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.WrongStyle" />
+		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentEnd" />
+		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentStart" />
+		<exclude name="MediaWiki.ExtraCharacters.ParenthesesAroundKeyword.ParenthesesAroundKeywords" />
+		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
+		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
+		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage" />
+		<exclude name="MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals" />
+		<exclude name="MediaWiki.WhiteSpace.DisallowEmptyLineFunctions.NoEmptyLine" />
+		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeClassBrace.NoSpaceBeforeBrace" />
+		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeControlStructureBrace.BraceOnNewLine" />
+		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeControlStructureBrace.EmptyLines" />
+		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
+		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.SingleSpaceBeforeSingleLineComment" />
+		<exclude name="PSR2.Methods.FunctionClosingBrace.SpacingBeforeClose" />
+	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>
 			<property name="ignoreList" type="array" value="bfNormalizeTitleStrReplace,bfNormalizeTitleStrTr,cdbShowHelp,codepointToUtf8,compare_point,cssfilter,escapeSingleString,findAuxFile,findFiles,getEscapedProfileUrl,getFileCommentFromSourceWiki,getFileUserFromSourceWiki,hexSequenceToUtf8,mccGetHelp,mccShowUsage,mimeTypeMatch,moveToExternal,NothingFunction,NothingFunctionData,resolveStub,resolveStubs,showUsage,splitFilename,utf8ToCodepoint,utf8ToHexSequence" />
