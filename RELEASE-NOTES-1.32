@@ -1,10 +1,5 @@
 == MediaWiki 1.32 ==
 
-THIS IS NOT A RELEASE YET
-
-MediaWiki 1.32 is an alpha-quality branch and is not recommended for use in
-production.
-
 === Changes since MediaWiki 1.32.0-rc.0 ===
 * (T209885) Prevent populateSearchIndex.php from breaking once actor migration
   has been started.
