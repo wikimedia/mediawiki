@@ -21,6 +21,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Handles the backend logic of moving a page from one title
@@ -250,7 +251,7 @@ class MovePage {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->startAtomic( __METHOD__ );
+		$dbw->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 
 		Hooks::run( 'TitleMoveStarting', [ $this->oldTitle, $this->newTitle, $user ] );
 
