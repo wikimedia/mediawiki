@@ -1018,7 +1018,8 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		// Cacheable?
-		$key = false;
+		// Disabled caching to decrease redis' memory usage. -- Southparkfan 2019-01-11
+		/* $key = false;
 		$cache = ObjectCache::getMainWANInstance();
 		if ( $this->mOldid && $this->mNewid ) {
 			// Check if subclass is still using the old way
@@ -1039,7 +1040,7 @@ class DifferenceEngine extends ContextSource {
 					return $difftext;
 				}
 			} // don't try to load but save the result
-		}
+		} */
 		$this->mCacheHit = false;
 
 		// Loadtext is permission safe, this just clears out the diff
