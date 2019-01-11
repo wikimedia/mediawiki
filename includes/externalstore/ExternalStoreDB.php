@@ -21,10 +21,11 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\MaintainableDBConnRef;
+use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
  * DB accessible external objects.
@@ -112,7 +113,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * Get a LoadBalancer for the specified cluster
 	 *
 	 * @param string $cluster Cluster name
-	 * @return LoadBalancer
+	 * @return ILoadBalancer
 	 */
 	private function getLoadBalancer( $cluster ) {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
@@ -128,8 +129,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	public function getSlave( $cluster ) {
 		global $wgDefaultExternalStore;
 
-		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
 		$lb = $this->getLoadBalancer( $cluster );
+		$domainId = $this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) );
 
 		if ( !in_array( "DB://" . $cluster, (array)$wgDefaultExternalStore ) ) {
 			wfDebug( "read only external store\n" );
@@ -138,7 +139,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			wfDebug( "writable external store\n" );
 		}
 
-		$db = $lb->getConnectionRef( DB_REPLICA, [], $wiki );
+		$db = $lb->getConnectionRef( DB_REPLICA, [], $domainId );
 		$db->clearFlag( DBO_TRX ); // sanity
 
 		return $db;
@@ -151,13 +152,40 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @return MaintainableDBConnRef
 	 */
 	public function getMaster( $cluster ) {
-		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
 		$lb = $this->getLoadBalancer( $cluster );
+		$domainId = $this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) );
 
-		$db = $lb->getMaintenanceConnectionRef( DB_MASTER, [], $wiki );
+		$db = $lb->getMaintenanceConnectionRef( DB_MASTER, [], $domainId );
 		$db->clearFlag( DBO_TRX ); // sanity
 
 		return $db;
+	}
+
+	/**
+	 * @param array $server Master DB server configuration array for LoadBalancer
+	 * @return string|bool Database domain ID or false
+	 */
+	private function getDomainId( array $server ) {
+		if ( isset( $this->params['wiki'] ) ) {
+			return $this->params['wiki']; // explicit domain
+		}
+
+		if ( isset( $server['dbname'] ) ) {
+			// T200471: for b/c, treat any "dbname" field as forcing which database to use.
+			// MediaWiki/LoadBalancer previously did not enforce any concept of a local DB
+			// domain, but rather assumed that the LB server configuration matched $wgDBname.
+			// This check is useful when the external storage DB for this cluster does not use
+			// the same name as the corresponding "main" DB(s) for wikis.
+			$domain = new DatabaseDomain(
+				$server['dbname'],
+				$server['schema'] ?? null,
+				$server['tablePrefix'] ?? ''
+			);
+
+			return $domain->getId();
+		}
+
+		return false; // local LB domain
 	}
 
 	/**

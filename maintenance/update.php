@@ -85,7 +85,7 @@ class UpdateMediaWiki extends Maintenance {
 	}
 
 	function execute() {
-		global $wgVersion, $wgLang, $wgAllowSchemaUpdates;
+		global $wgVersion, $wgLang, $wgAllowSchemaUpdates, $wgMessagesDirs;
 
 		if ( !$wgAllowSchemaUpdates
 			&& !( $this->hasOption( 'force' )
@@ -110,6 +110,9 @@ class UpdateMediaWiki extends Maintenance {
 				$this->fatalError( "Problem opening the schema file for writing: $file\n\t{$err['message']}" );
 			}
 		}
+
+		// T206765: We need to load the installer i18n files as some of errors come installer/updater code
+		$wgMessagesDirs['MediawikiInstaller'] = dirname( __DIR__ ) . '/includes/installer/i18n';
 
 		$lang = Language::factory( 'en' );
 		// Set global language to ensure localised errors are in English (T22633)

@@ -1001,7 +1001,7 @@ CREATE TABLE /*_*/recentchanges (
   -- remove a warning flag on the RC list.
   -- A value of 1 indicates the page has been reviewed manually.
   -- A value of 2 indicates the page has been automatically reviewed.
-  rc_patrolled tinyint NOT NULL CONSTRAINT DF_rc_patrolled DEFAULT 0
+  rc_patrolled tinyint NOT NULL CONSTRAINT DF_rc_patrolled DEFAULT 0,
 
   -- Recorded IP address the edit was made from, if the
   -- $wgPutIPinRC option is enabled.

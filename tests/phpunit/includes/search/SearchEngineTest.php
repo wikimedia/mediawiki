@@ -32,7 +32,11 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 
 		$searchType = SearchEngineFactory::getSearchEngineClass( $this->db );
 		$this->setMwGlobals( [
-			'wgSearchType' => $searchType
+			'wgSearchType' => $searchType,
+			'wgCapitalLinks' => true,
+			'wgCapitalLinkOverrides' => [
+				NS_CATEGORY => false // for testCompletionSearchMustRespectCapitalLinkOverrides
+			]
 		] );
 
 		$this->search = new $searchType( $this->db );
@@ -52,7 +56,13 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 
 		// Reset the search type back to default - some extensions may have
 		// overridden it.
-		$this->setMwGlobals( [ 'wgSearchType' => null ] );
+		$this->setMwGlobals( [
+			'wgSearchType' => null,
+			'wgCapitalLinks' => true,
+			'wgCapitalLinkOverrides' => [
+				NS_CATEGORY => false // for testCompletionSearchMustRespectCapitalLinkOverrides
+			]
+		] );
 
 		$this->insertPage( 'Not_Main_Page', 'This is not a main page' );
 		$this->insertPage(
@@ -74,6 +84,9 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$this->insertPage( 'HalfNumbers', '1234567890' );
 		$this->insertPage( 'FullNumbers', '１２３４５６７８９０' );
 		$this->insertPage( 'DomainName', 'example.com' );
+		$this->insertPage( 'DomainName', 'example.com' );
+		$this->insertPage( 'Category:search is not Search', '' );
+		$this->insertPage( 'Category:Search is not search', '' );
 	}
 
 	protected function fetchIds( $results ) {
@@ -211,6 +224,48 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			],
 			$this->fetchIds( $this->search->searchTitle( 'smithee' ) ),
 			"Title power search" );
+	}
+
+	public function provideCompletionSearchMustRespectCapitalLinkOverrides() {
+		return [
+			'Searching for "smithee" finds Smithee on NS_MAIN' => [
+				'smithee',
+				'Smithee',
+				[ NS_MAIN ],
+			],
+			'Searching for "search is" will finds "search is not Search" on NS_CATEGORY' => [
+				'search is',
+				'Category:search is not Search',
+				[ NS_CATEGORY ],
+			],
+			'Searching for "Search is" will finds "search is not Search" on NS_CATEGORY' => [
+				'Search is',
+				'Category:Search is not search',
+				[ NS_CATEGORY ],
+			],
+		];
+	}
+
+	/**
+	 * Test that the search query is not munged using wrong CapitalLinks setup
+	 * (in other test that the default search backend can benefit from wgCapitalLinksOverride)
+	 * Guard against regressions like T208255
+	 * @dataProvider provideCompletionSearchMustRespectCapitalLinkOverrides
+	 * @covers SearchEngine::completionSearch
+	 * @covers PrefixSearch::defaultSearchBackend
+	 * @param string $search
+	 * @param string $expectedSuggestion
+	 * @param int[] $namespaces
+	 */
+	public function testCompletionSearchMustRespectCapitalLinkOverrides(
+		$search,
+		$expectedSuggestion,
+		array $namespaces
+	) {
+		$this->search->setNamespaces( $namespaces );
+		$results = $this->search->completionSearch( $search );
+		$this->assertEquals( 1, $results->getSize() );
+		$this->assertEquals( $expectedSuggestion, $results->getSuggestions()[0]->getText() );
 	}
 
 	/**

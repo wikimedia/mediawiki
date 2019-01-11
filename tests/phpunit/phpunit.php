@@ -124,9 +124,9 @@ class PHPUnitMaintClass extends Maintenance {
 			exit( 1 );
 		}
 
-		echo defined( 'HHVM_VERSION' ) ?
+		fwrite( STDERR, defined( 'HHVM_VERSION' ) ?
 			'Using HHVM ' . HHVM_VERSION . ' (' . PHP_VERSION . ")\n" :
-			'Using PHP ' . PHP_VERSION . "\n";
+			'Using PHP ' . PHP_VERSION . "\n" );
 
 		// Prepare global services for unit tests.
 		MediaWikiTestCase::prepareServices( new GlobalVarConfig() );

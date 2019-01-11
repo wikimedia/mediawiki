@@ -2,7 +2,7 @@
 	"@metadata": {
 		"authors": []
 	},
-	"sidebar": "\n* navigation\n** mainpage|mainpage-description\n** recentchanges-url|recentchanges\n** randompage-url|randompage\n** helppage|help\n* SEARCH\n* TOOLBOX\n* LANGUAGES",
+	"sidebar": "\n* navigation\n** mainpage|mainpage-description\n** recentchanges-url|recentchanges\n** randompage-url|randompage\n** helppage|help-mediawiki\n* SEARCH\n* TOOLBOX\n* LANGUAGES",
 	"tog-underline": "Link underlining:",
 	"tog-hideminor": "Hide minor edits from recent changes",
 	"tog-hidepatrolled": "Hide patrolled edits from recent changes",
@@ -160,6 +160,7 @@
 	"returnto": "Return to $1.",
 	"tagline": "From {{SITENAME}}",
 	"help": "Help",
+	"help-mediawiki": "Help about MediaWiki",
 	"search": "Search",
 	"search-ignored-headings": " #<!-- leave this line exactly as it is --> <pre>\n# Headings that will be ignored by search.\n# Changes to this take effect as soon as the page with the heading is indexed.\n# You can force page reindexing by doing a null edit.\n# The syntax is as follows:\n#   * Everything from a \"#\" character to the end of the line is a comment.\n#   * Every non-blank line is the exact title to ignore, case and everything.\nReferences\nExternal links\nSee also\n #</pre> <!-- leave this line exactly as it is -->",
 	"searchbutton": "Search",
@@ -373,6 +374,7 @@
 	"ns-specialprotected": "Special pages cannot be edited.",
 	"titleprotected": "This title has been protected from creation by [[User:$1|$1]].\nThe reason given is <em>$2</em>.",
 	"filereadonlyerror": "Unable to modify the file \"$1\" because the file repository \"$2\" is in read-only mode.\n\nThe system administrator who locked it offered this explanation: \"$3\".",
+	"invalidtitle": "Invalid title",
 	"invalidtitle-knownnamespace": "Invalid title with namespace \"$2\" and text \"$3\"",
 	"invalidtitle-unknownnamespace": "Invalid title with unknown namespace number $1 and text \"$2\"",
 	"exception-nologin": "Not logged in",
@@ -562,6 +564,7 @@
 	"botpasswords-invalid-name": "The username specified does not contain the bot password separator (\"$1\").",
 	"botpasswords-not-exist": "User \"$1\" does not have a bot password named \"$2\".",
 	"botpasswords-needs-reset": "The bot password for bot name \"$2\" of {{GENDER:$1|user}} \"$1\" must be reset.",
+	"botpasswords-locked": "You cannot login with a bot password as your account is locked.",
 	"resetpass_forbidden": "Passwords cannot be changed",
 	"resetpass_forbidden-reason": "Passwords cannot be changed: $1",
 	"resetpass-no-info": "You must be logged in to access this page directly.",
@@ -4466,5 +4469,7 @@
 	"pagedata-title": "Page data",
 	"pagedata-text": "This page provides a data interface to pages. Please provide the page title in the URL, using subpage syntax.\n* Content negotiation applies based on your client's Accept header. This means that the page data will be provided in the format preferred by your client.",
 	"pagedata-not-acceptable": "No matching format found. Supported MIME types: $1",
-	"pagedata-bad-title": "Invalid title: $1."
+	"pagedata-bad-title": "Invalid title: $1.",
+	"unregistered-user-config": "For security reasons JavaScript, CSS and JSON user subpages cannot be loaded for unregistered users.",
+	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage"
 }

@@ -321,7 +321,7 @@ class UsersPager extends AlphabeticPager {
 		Hooks::run( 'SpecialListusersHeaderForm', [ $this, &$beforeSubmitButtonHookOut ] );
 
 		if ( $beforeSubmitButtonHookOut !== '' ) {
-			$formDescriptior[ 'beforeSubmitButtonHookOut' ] = [
+			$formDescriptor[ 'beforeSubmitButtonHookOut' ] = [
 				'class' => HTMLInfoField::class,
 				'raw' => true,
 				'default' => $beforeSubmitButtonHookOut
@@ -337,7 +337,7 @@ class UsersPager extends AlphabeticPager {
 		Hooks::run( 'SpecialListusersHeader', [ $this, &$beforeClosingFieldsetHookOut ] );
 
 		if ( $beforeClosingFieldsetHookOut !== '' ) {
-			$formDescriptior[ 'beforeClosingFieldsetHookOut' ] = [
+			$formDescriptor[ 'beforeClosingFieldsetHookOut' ] = [
 				'class' => HTMLInfoField::class,
 				'raw' => true,
 				'default' => $beforeClosingFieldsetHookOut

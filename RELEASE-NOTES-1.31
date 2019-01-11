@@ -1,10 +1,65 @@
-== MediaWiki 1.31.1 ==
+== MediaWiki 1.31.2 ==
 
-THIS IS NOT A RELEASE YET!
+THIS IS NOT A RELEASE YET
+
+=== Changes since MediaWiki 1.31.1 ===
+* (T204729) WatchedItemStore::countVisitingWatchersMultiple() shouldn't query all
+  titles when asked for none
+* (T205967) Fix syntax error typo in postgres database upgrade file.
+* (T200254) Add pear/Net_SMTP 1.7.3 to composer dependencies.
+* (T206765) Load installer i18n when running update.php.
+* (T109121) Remove deprecated pear/mail_mime-decode from composer suggested libraries.
+  [Also in the bundled composer /vendor directory.]
+* Various PHP 7.2 and 7.3 compatibility fixes:
+  * (T200595, T206974) Fix PHP 7.3 warnings of using "continue" in some scenarios instead
+    of "break".
+    * (T206976, T206977) Also in the bundled LocalisationUpdate and ParserFunctions extensions.
+  * (T206979) Fix PHP 7.3 warnings of using "compact()" when some variables may
+    not be set.
+  * Fix PHP 7.3 warnings "preg_replace(): [...] invalid range in character class"
+  * Avoid PHP 7.2 warnings in DBConRefTest about count() on non-Countable
+  * Suppress "Headers already sent" in PHP 7.2 too
+  * (T206476) Output only to stderr in unit tests
+  * (T207112) Add session_write_close() calls to SessionManager tests
+  * oyejorge/less.php replaced with our fork wikimedia/less.php
+  * (T209756) Updated wikimedia/ip-set from 1.2.0 to 1.3.0.
+* (T207540) Include IP address in "Login for $1 succeeded" log entry.
+* (T201781) Database: Allow selectFieldValues() to accept SQL fragments
+* (T205765) installer: Don't link to the obsolete "Extension Matrix" page
+* (T206013) Update ImportableUploadRevisionImporter for interwiki usernames
+* (T207541) Pass an email address, not a MailAddress, to mail().
+* (T207603) User JS may no longer be loaded with mime type text/javascript if
+  there is no account associated with the username.
+* (T112937, T113042) Do not allow loading pages raw with a text/javascript MIME
+  type if non-admins can edit the page.
+* (T17491) <ins>/<del> elements can be phrasing or flow
+* (T200827) RemexCompatMunger: Don't call endTag() in case B/b
+* (T207088) Upgrade wikimedia/remex-html to 2.0.1
+  [Also in the bundled composer /vendor directory.]
+* (T194052) Updated wikimedia/base-convert from 1.0.1 to 2.0.0.
+  [Also in the bundled composer /vendor directory.]
+* (T199494) Fix notices in maintenance/removeUnusuedAccounts.php
+* Require ext-fileinfo in composer.json, per PHPVersionCheck
+* (T176390) Bundled LocalisationUpdate extension: Handle exceptions from GitHubFetcher
+* (T208255) Completion search should not change the search query
+* (T209870) Fix SQL syntax error in MS-SQL initialisation file for new wikis
+* (T185049) LogFormatter: Fail softer when trying to link an invalid titles
+* (T210998) Properly set $wgLanguageCode in the generated LocalSettings.php
+  if --lang is used with the command-line installer (install.php).
+* Fix addition of ug_expiry column to user_groups table on MSSQL.
+* (T204767) Add join conditions to ActiveUsersPager
+* (T210621) User: Bypass repeatable-read when creating an actor_id.
+
+== MediaWiki 1.31.1 ==
 
 This is a security and maintenance release of the MediaWiki 1.31 branch.
 
 === Changes since MediaWiki 1.31.0 ===
+* (T169545, CVE-2018-0503) SECURITY: $wgRateLimits entry for 'user' overrides
+  'newbie'.
+* (T194605, CVE-2018-0505) SECURITY: BotPasswords can bypass CentralAuth's
+  account lock.
+* (T199029, CVE-2018-13258) SECURITY: Tarball was missing .htaccess files.
 * (T197229) Bundle Nuke extension, it was accidentally omitted.
 * (T193995) Fix undefined patchPath() method call in parser tests.
 * (T198687) Fix various selectFields methods to use the string 'NULL', not null.
@@ -14,8 +69,12 @@ This is a security and maintenance release of the MediaWiki 1.31 branch.
 * (T198037) GitInfo: Don't try shelling out if it's disabled.
 * (T151415) Log email changes.
 * (T197206) Fix performance regression when multiple DB used without caching.
-
-== MediaWiki 1.31 ==
+* (T197030) PHPSessionHandler: Suppress headers warnings in initialize().
+* (T182377, T196793) Exif: Guard against uncountable tag values.
+* (T200861) Fix total breakage of SQLite web upgrade.
+* (T200864) Fix pingback over-reporting on non-MySQL databases
+* (T202550) Unbreak SpecialListusersHeaderForm and SpecialListusersHeader
+  hooks.
 
 === Changes since MediaWiki 1.31.0-rc.2 ===
 * (T195783) Initialize PSR-4 namespaces at same stage as normal autoloader.
@@ -48,6 +107,10 @@ This is a security and maintenance release of the MediaWiki 1.31 branch.
   to the ar_text and ar_flags columns of the archive table or make those
   columns nullable before upgrading to MediaWiki 1.31.
   maintenance/archives/patch-nullable-ar_text.sql shows how to do this for MySQL.
+* The CologneBlue and Modern skins are no longer bundled with the tarball. You
+  will need to remove the wfLoadSkin() calls from your LocalSettings.php or
+  download them separately
+  (<https://www.mediawiki.org/wiki/Special:SkinDistributor>).
 
 === Configuration changes in 1.31 ===
 * $wgEnableAPI and $wgEnableWriteAPI are now deprecated and will be removed in
@@ -449,7 +512,8 @@ changes to languages because of Phabricator reports.
 == Compatibility ==
 MediaWiki 1.31 requires PHP 7.0.0 or later. Although HHVM 3.18.5 or later is
 supported, it is generally advised to use PHP 7.0.0 or later for long term
-support.
+support. MediaWiki requires that the mbstring, xml, ctype, json, iconv and
+fileinfo PHP extensions are loaded to work.
 
 MySQL/MariaDB is the recommended DBMS. PostgreSQL or SQLite can also be used,
 but support for them is somewhat less mature. There is experimental support for
