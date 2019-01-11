@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.0
+ * OOUI v0.30.1
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2018 OOUI Team and other contributors.
+ * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-12-20T06:10:28Z
+ * Date: 2019-01-10T07:00:09Z
  */
 ( function ( OO ) {
 
@@ -146,7 +146,7 @@
  *         toolbar.$element,
  *         contentFrame.$element.append( $area )
  *     );
- *     $( 'body' ).append( frame.$element );
+ *     $( document.body ).append( frame.$element );
  *
  *     // Here is where the toolbar is actually built. This must be done after inserting it into the
  *     // document.
@@ -273,7 +273,7 @@
  *         toolbar.$element,
  *         contentFrame.$element.append( $area )
  *     );
- *     $( 'body' ).append( frame.$element );
+ *     $( document.body ).append( frame.$element );
  *
  *     // Here is where the toolbar is actually built. This must be done after inserting it into the
  *     // document.
@@ -1810,7 +1810,7 @@ OO.ui.ToolGroupTool.prototype.createGroup = function ( group ) {
  *         toolbar.$element,
  *         contentFrame.$element.append( $area )
  *     );
- *     $( 'body' ).append( frame.$element );
+ *     $( document.body ).append( frame.$element );
  *
  *     // Here is where the toolbar is actually built. This must be done after inserting it into the
  *     // document.
@@ -2078,7 +2078,7 @@ OO.ui.PopupToolGroup.prototype.onHandleMouseKeyDown = function ( e ) {
 		if ( e.which === OO.ui.Keys.TAB && !e.shiftKey ) {
 			$focusable = OO.ui.findFocusable( this.$group );
 			if ( $focusable.length ) {
-				$focusable.focus();
+				$focusable.trigger( 'focus' );
 				return false;
 			}
 		}
@@ -2225,7 +2225,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
  *     frame.$element.append(
  *         toolbar.$element
  *     );
- *     $( 'body' ).append( frame.$element );
+ *     $( document.body ).append( frame.$element );
  *     // Build the toolbar. This must be done after the toolbar has been appended to the document.
  *     toolbar.initialize();
  *
@@ -2469,7 +2469,7 @@ OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
  *         toolbar.$element,
  *         contentFrame.$element.append( $area )
  *     );
- *     $( 'body' ).append( frame.$element );
+ *     $( document.body ).append( frame.$element );
  *
  *     // Here is where the toolbar is actually built. This must be done after inserting it into the
  *     // document.

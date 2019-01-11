@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.0
+ * OOUI v0.30.1
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2018 OOUI Team and other contributors.
+ * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-12-20T06:10:28Z
+ * Date: 2019-01-10T07:00:09Z
  */
 ( function ( OO ) {
 
@@ -159,7 +159,7 @@ OO.ui.ActionWidget.prototype.getModes = function () {
  *         return this.panel1.$element.outerHeight( true );
  *     };
  *     var windowManager = new OO.ui.WindowManager();
- *     $( 'body' ).append( windowManager.$element );
+ *     $( document.body ).append( windowManager.$element );
  *     var dialog = new MyProcessDialog( {
  *         size: 'medium'
  *     } );
@@ -1536,7 +1536,7 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
  * Example:
  *
  *     var windowManager = new OO.ui.WindowManager();
- *     $( 'body' ).append( windowManager.$element );
+ *     $( document.body ).append( windowManager.$element );
  *
  *     // Add a window under the default name: see OO.ui.MessageDialog.static.name
  *     windowManager.addWindows( [ new OO.ui.MessageDialog() ] );
@@ -1726,7 +1726,7 @@ OO.ui.WindowManager.prototype.toggleAriaIsolation = function ( isolate ) {
 			this.$element.removeAttr( 'aria-hidden' );
 
 			// Hide everything other than the window manager from screen readers
-			this.$ariaHidden = $( 'body' )
+			this.$ariaHidden = $( document.body )
 				.children()
 				.not( 'script' )
 				.not( $topLevelElement )
@@ -2421,6 +2421,7 @@ OO.ui.Window.prototype.hold = function ( data ) {
 
 		// Blur the focused element
 		if ( $focus.length ) {
+			// eslint-disable-next-line jquery/no-event-shorthand
 			$focus[ 0 ].blur();
 		}
 
@@ -2479,7 +2480,7 @@ OO.ui.Window.prototype.teardown = function ( data ) {
  *     } );
  *     // Create and append a window manager, which opens and closes the window.
  *     var windowManager = new OO.ui.WindowManager();
- *     $( 'body' ).append( windowManager.$element );
+ *     $( document.body ).append( windowManager.$element );
  *     windowManager.addWindows( [ myDialog ] );
  *     // Open the window!
  *     windowManager.openWindow( myDialog );
@@ -2822,7 +2823,7 @@ OO.ui.Dialog.prototype.executeAction = function ( action ) {
  *
  *     // Create and append a window manager.
  *     var windowManager = new OO.ui.WindowManager();
- *     $( 'body' ).append( windowManager.$element );
+ *     $( document.body ).append( windowManager.$element );
  *     windowManager.addWindows( [ messageDialog ] );
  *     // Open the window.
  *     windowManager.openWindow( messageDialog, {
@@ -3177,7 +3178,7 @@ OO.ui.MessageDialog.prototype.fitActions = function () {
  *     };
  *
  *     var windowManager = new OO.ui.WindowManager();
- *     $( 'body' ).append( windowManager.$element );
+ *     $( document.body ).append( windowManager.$element );
  *
  *     var dialog = new MyProcessDialog();
  *     windowManager.addWindows( [ dialog ] );
@@ -3506,7 +3507,7 @@ OO.ui.ProcessDialog.prototype.getTeardownProcess = function ( data ) {
 OO.ui.getWindowManager = function () {
 	if ( !OO.ui.windowManager ) {
 		OO.ui.windowManager = new OO.ui.WindowManager();
-		$( 'body' ).append( OO.ui.windowManager.$element );
+		$( document.body ).append( OO.ui.windowManager.$element );
 		OO.ui.windowManager.addWindows( [ new OO.ui.MessageDialog() ] );
 	}
 	return OO.ui.windowManager;
