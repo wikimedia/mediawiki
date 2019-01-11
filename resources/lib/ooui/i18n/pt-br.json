@@ -29,6 +29,7 @@
 	"ooui-dialog-process-dismiss": "Dispensar",
 	"ooui-dialog-process-retry": "Tente novamente",
 	"ooui-dialog-process-continue": "Continuar",
+	"ooui-combobox-button-label": "Expansor da caixa de combinação",
 	"ooui-selectfile-button-select": "Selecionar um arquivo",
 	"ooui-selectfile-not-supported": "O selecionamento de arquivos não é suportado",
 	"ooui-selectfile-placeholder": "Nenhum arquivo selecionado",
