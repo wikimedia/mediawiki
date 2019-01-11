@@ -511,7 +511,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			if ( $row->rev_parent_id ) {
 				$revIds[] = $row->rev_parent_id;
 			}
-			if ( !is_null( $row->user_name ) ) {
+			if ( $row->user_name !== null ) {
 				$batch->add( NS_USER, $row->user_name );
 				$batch->add( NS_USER_TALK, $row->user_name );
 			} else { # for anons or usernames of imported revisions
