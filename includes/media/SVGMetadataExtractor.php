@@ -74,7 +74,7 @@ class SVGReader {
 
 		if ( $size > $wgSVGMetadataCutoff ) {
 			$this->debug( "SVG is $size bytes, which is bigger than $wgSVGMetadataCutoff. Truncating." );
-			$contents = file_get_contents( $source, false, null, -1, $wgSVGMetadataCutoff );
+			$contents = file_get_contents( $source, false, null, 0, $wgSVGMetadataCutoff );
 			if ( $contents === false ) {
 				throw new MWException( 'Error reading SVG file.' );
 			}
