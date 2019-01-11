@@ -203,7 +203,8 @@
 			"A2093064",
 			"BadDog",
 			"The Discoverer",
-			"Bencemac"
+			"Bencemac",
+			"Zoranzoki21"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1052,7 +1053,7 @@
 	"page_last": "This is part of the navigation message on the top and bottom of Special pages which are lists of things in alphabetical order, e.g. the '[[Special:Categories|Categories]]' special page. It is followed by the message {{msg-mw|Viewprevnext}}.\n\n{{Identical|Last}}",
 	"histlegend": "Text in history page.\n\nSee also:\n* {{msg-mw|Cur}}\n* {{msg-mw|Last}}\n* {{msg-mw|Minoreditletter}}",
 	"history-fieldset-title": "Fieldset label in the edit history pages.",
-	"history-show-deleted": "CheckBox to show only per [[mw:Manual:RevisionDelete|RevisonDelete]] deleted versions.\n\nUsed in History and [[Special:Contributions]].",
+	"history-show-deleted": "CheckBox to show only per [[mw:Manual:RevisionDelete|RevisionDelete]] deleted versions.\n\nUsed in History and [[Special:Contributions]].",
 	"history_copyright": "{{notranslate}}",
 	"histfirst": "This is part of the navigation message on the top and bottom of Page History pages which are lists of things in date order, e.g. [{{canonicalurl:Support|action=history}} Page History of Support].\n\nIt is followed by the message {{msg-mw|Viewprevnext}}.\n{{Identical|Oldest}}",
 	"histlast": "This is part of the navigation message on the top and bottom of Page History pages which are lists of things in date order, e.g. [{{canonicalurl:Support|action=history}} Page History of Support].\n\nIt is followed by the message {{msg-mw|Viewprevnext}}.\n{{Identical|Newest}}",
