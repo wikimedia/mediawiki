@@ -202,7 +202,9 @@
 			"Daimona Eaytoy",
 			"A2093064",
 			"BadDog",
-			"The Discoverer"
+			"The Discoverer",
+			"Bencemac",
+			"Zoranzoki21"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -876,7 +878,7 @@
 	"blockedtext": "Text displayed to blocked users.\n\n\"email this user\" should be consistent with {{msg-mw|Emailuser}}.\n\nParameters:\n* $1 - the blocking sysop (with a link to his/her userpage)\n* $2 - the reason for the block\n* $3 - the current IP address of the blocked user\n* $4 - (Unused) the blocking sysop's username (plain text, without the link)\n* $5 - the unique numeric identifier of the applied autoblock\n* $6 - the expiry of the block\n* $7 - the intended target of the block (what the blocking user specified in the blocking form)\n* $8 - the timestamp when the block started\nSee also:\n* {{msg-mw|Grouppage-sysop}}\n* {{msg-mw|Autoblockedtext|notext=1}}\n* {{msg-mw|Systemblockedtext|notext=1}}",
 	"autoblockedtext": "Text displayed to automatically blocked users.\n\n\"email this user\" should be consistent with {{msg-mw|Emailuser}}.\n\nParameters:\n* $1 - the blocking sysop (with a link to his/her userpage)\n* $2 - the reason for the block (in case of autoblocks: {{msg-mw|autoblocker}})\n* $3 - the current IP address of the blocked user\n* $4 - (Unused) the blocking sysop's username (plain text, without the link). Use it for GENDER.\n* $5 - the unique numeric identifier of the applied autoblock\n* $6 - the expiry of the block\n* $7 - the intended target of the block (what the blocking user specified in the blocking form)\n* $8 - the timestamp when the block started\nSee also:\n* {{msg-mw|Grouppage-sysop}}\n* {{msg-mw|Blockedtext|notext=1}}\n* {{msg-mw|Systemblockedtext|notext=1}}",
 	"systemblockedtext": "Text displayed to requests blocked by MediaWiki configuration.\n\n\"email this user\" should be consistent with {{msg-mw|Emailuser}}.\n\nParameters:\n* $1 - (Unused) A dummy user attributed as the blocker, possibly as a link to a user page.\n* $2 - the reason for the block\n* $3 - the current IP address of the blocked user\n* $4 - (Unused) the dummy blocking user's username (plain text, without the link).\n* $5 - A short string indicating the type of system block.\n* $6 - the expiry of the block\n* $7 - the intended target of the block\n* $8 - the timestamp when the block started\nSee also:\n* {{msg-mw|Grouppage-sysop}}\n* {{msg-mw|Blockedtext|notext=1}}\n* {{msg-mw|Autoblockedtext|notext=1}}",
-	"actionblockedtext": "Text displayed when a user is blocked from perofmring an action, but no matching block for the user exists. This can happen if an extension forces a user to be blocked.",
+	"actionblockedtext": "Text displayed when a user is blocked from performing an action, but no matching block for the user exists. This can happen if an extension forces a user to be blocked.",
 	"blockednoreason": "Substituted with <code>$2</code> in the following message if the reason is not given:\n* {{msg-mw|cantcreateaccount-text}}.\n{{Identical|No reason given}}",
 	"whitelistedittext": "Used as error message. Parameters:\n* $1 - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description\n* $2 - an URL to the same\n\nSee also:\n* {{msg-mw|Nocreatetext}}\n* {{msg-mw|Uploadnologintext}}\n* {{msg-mw|Loginreqpagetext}}",
 	"confirmedittext": "Used as error message.",
@@ -1051,7 +1053,7 @@
 	"page_last": "This is part of the navigation message on the top and bottom of Special pages which are lists of things in alphabetical order, e.g. the '[[Special:Categories|Categories]]' special page. It is followed by the message {{msg-mw|Viewprevnext}}.\n\n{{Identical|Last}}",
 	"histlegend": "Text in history page.\n\nSee also:\n* {{msg-mw|Cur}}\n* {{msg-mw|Last}}\n* {{msg-mw|Minoreditletter}}",
 	"history-fieldset-title": "Fieldset label in the edit history pages.",
-	"history-show-deleted": "CheckBox to show only per [[mw:Manual:RevisionDelete|RevisonDelete]] deleted versions.\n\nUsed in History and [[Special:Contributions]].",
+	"history-show-deleted": "CheckBox to show only per [[mw:Manual:RevisionDelete|RevisionDelete]] deleted versions.\n\nUsed in History and [[Special:Contributions]].",
 	"history_copyright": "{{notranslate}}",
 	"histfirst": "This is part of the navigation message on the top and bottom of Page History pages which are lists of things in date order, e.g. [{{canonicalurl:Support|action=history}} Page History of Support].\n\nIt is followed by the message {{msg-mw|Viewprevnext}}.\n{{Identical|Oldest}}",
 	"histlast": "This is part of the navigation message on the top and bottom of Page History pages which are lists of things in date order, e.g. [{{canonicalurl:Support|action=history}} Page History of Support].\n\nIt is followed by the message {{msg-mw|Viewprevnext}}.\n{{Identical|Newest}}",
@@ -2825,7 +2827,7 @@
 	"block-expiry": "Label for the input for specifying the expiry time of a block on [[Special:Block]]",
 	"block-options": "Label for the checkboxes for specifying additional options for a block on [[Special:Block]]",
 	"block-prevent-edit": "Label for the checkbox for specifying an editing block in [[Special:Block]].",
-	"block-reason": "Label for the input for specifying the reason for a block on [[Special:Block]]",
+	"block-reason": "Label for the input for specifying the reason for a block on [[Special:Block]]\n{{Identical|Reason}}",
 	"block-target": "Label for the input for specifying the target of a block on [[Special:Block]]",
 	"unblockip": "Used as title and legend for the form in [[Special:Unblock]].",
 	"unblockiptext": "Used in the {{msg-mw|Unblockip}} form on [[Special:Unblock]].",
