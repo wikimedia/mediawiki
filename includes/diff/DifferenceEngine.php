@@ -1018,8 +1018,7 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		// Cacheable?
-		// Disabled caching to decrease redis' memory usage. -- Southparkfan 2019-01-11
-		/* $key = false;
+		$key = false;
 		$cache = ObjectCache::getMainWANInstance();
 		if ( $this->mOldid && $this->mNewid ) {
 			// Check if subclass is still using the old way
@@ -1040,7 +1039,7 @@ class DifferenceEngine extends ContextSource {
 					return $difftext;
 				}
 			} // don't try to load but save the result
-		} */
+		}
 		$this->mCacheHit = false;
 
 		// Loadtext is permission safe, this just clears out the diff
@@ -1066,12 +1065,13 @@ class DifferenceEngine extends ContextSource {
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$diffEngine = $this;
 
+		// Disabled caching to decrease redis' memory usage. -- Southparkfan 2019-01-11
 		// Save to cache for 7 days
 		if ( !Hooks::run( 'AbortDiffCache', [ &$diffEngine ] ) ) {
 			wfIncrStats( 'diff_cache.uncacheable' );
 		} elseif ( $key !== false && $difftext !== false ) {
 			wfIncrStats( 'diff_cache.miss' );
-			$cache->set( $key, $difftext, 7 * 86400 );
+			// $cache->set( $key, $difftext, 7 * 86400 );
 		} else {
 			wfIncrStats( 'diff_cache.uncacheable' );
 		}
