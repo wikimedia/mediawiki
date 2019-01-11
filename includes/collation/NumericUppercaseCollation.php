@@ -35,7 +35,7 @@
 class NumericUppercaseCollation extends UppercaseCollation {
 
 	/**
-	 * @var $digitTransformLang Language How to convert digits (usually the content language)
+	 * @var Language $digitTransformLang How to convert digits (usually the content language)
 	 */
 	private $digitTransformLang;
 
