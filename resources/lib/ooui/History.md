@@ -1,4 +1,30 @@
 # OOUI Release History
+## v0.30.1 / 2019-01-09
+### Deprecations
+* [DEPRECATING CHANGE]: Deprecate `iconTitle` and `indicatorTitle` (Volker E.)
+
+### Styles
+* icons: Decrease 'close' size marginally (Volker E.)
+* themes: Fine tune library 'close' icon usages (Volker E.)
+
+### Code
+* Add TitledElement mixin to all main widgets where useful (Volker E.)
+* Clean up handling of `aria-expanded` attribute (Bartosz Dziewoński)
+* DropdownInputWidget: Fix mixing in TitledElement twice (Bartosz Dziewoński)
+* MultilineTextInputWidget: Move `styleHeight` property into widget from parent (Volker E.)
+* Replace double TitledElement mixins in several widgets (Volker E.)
+* build: Commit package-lock.json (James D. Forrester)
+* build: Bump various devDependencies to latest (Volker E.)
+* build: Update eslint-config-wikimedia to 0.10.0 (Volker E.)
+* build: Upgrade grunt-banana-checker from 0.6.0 to 0.7.0 (James D. Forrester)
+* demos: Replace most unicode LTR markers with CSS rule (Volker E.)
+* docs: Bump copyright year for 2019 (James D. Forrester)
+* docs: Unify code examples and describe MultilineText- & SearchInputWidget (Volker E.)
+* tests: Make JS/PHP comparison tests async (Bartosz Dziewoński)
+* tests: Reduce code duplication in JS/PHP comparison tests (Bartosz Dziewoński)
+* tests: Unbreak JS/PHP tests for DropdownInputWidget (Bartosz Dziewoński)
+
+
 ## v0.30.0 / 2018-12-19
 ### Breaking changes
 * [BREAKING CHANGE] Make non-continuous StackLayouts non-scrollable (Ed Sanders)

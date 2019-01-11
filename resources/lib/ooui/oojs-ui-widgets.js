@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.0
+ * OOUI v0.30.1
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2018 OOUI Team and other contributors.
+ * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-12-20T06:10:28Z
+ * Date: 2019-01-10T07:00:09Z
  */
 ( function ( OO ) {
 
@@ -674,7 +674,6 @@ OO.ui.mixin.LookupElement = function OoUiMixinLookupElement( config ) {
 	// Initialization
 	this.$input.attr( {
 		role: 'combobox',
-		'aria-expanded': 'false',
 		'aria-owns': this.lookupMenu.getElementId(),
 		'aria-autocomplete': 'list'
 	} );
@@ -1289,7 +1288,7 @@ OO.ui.PageLayout.prototype.setActive = function ( active ) {
  *         ],
  *         continuous: true
  *     } );
- *     $( 'body' ).append( myStack.$element );
+ *     $( document.body ).append( myStack.$element );
  *
  * @class
  * @extends OO.ui.PanelLayout
@@ -1615,7 +1614,7 @@ OO.ui.StackLayout.prototype.updateHiddenState = function ( items, selectedItem )
  *     menuLayout.$content.append(
  *         contentPanel.$element.append( '<b>Content panel</b>', '<p>Note that the menu is positioned relative to the content panel: top, bottom, after, before.</p>')
  *     );
- *     $( 'body' ).append( menuLayout.$element );
+ *     $( document.body ).append( menuLayout.$element );
  *
  * If menu size needs to be overridden, it can be accomplished using CSS similar to the snippet
  * below. MenuLayout's CSS will override the appropriate values with 'auto' or '0' to display the
@@ -1849,7 +1848,7 @@ OO.ui.MenuLayout.prototype.resetScroll = function () {
  *     } );
  *
  *     booklet.addPages( [ page1, page2 ] );
- *     $( 'body' ).append( booklet.$element );
+ *     $( document.body ).append( booklet.$element );
  *
  * @class
  * @extends OO.ui.MenuLayout
@@ -2360,6 +2359,7 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 				) {
 					$focused = previousPage.$element.find( ':focus' );
 					if ( $focused.length ) {
+						// eslint-disable-next-line jquery/no-event-shorthand
 						$focused[ 0 ].blur();
 					}
 				}
@@ -2372,6 +2372,7 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 				// blurred when it was hidden, but browsers are not very consistent about this.
 				$focused = previousPage.$element.find( ':focus' );
 				if ( $focused.length ) {
+					// eslint-disable-next-line jquery/no-event-shorthand
 					$focused[ 0 ].blur();
 				}
 			}
@@ -2440,7 +2441,7 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
  *     var index = new OO.ui.IndexLayout();
  *
  *     index.addTabPanels( [ tabPanel1, tabPanel2 ] );
- *     $( 'body' ).append( index.$element );
+ *     $( document.body ).append( index.$element );
  *
  * @class
  * @extends OO.ui.MenuLayout
@@ -2827,6 +2828,7 @@ OO.ui.IndexLayout.prototype.setTabPanel = function ( name ) {
 				) {
 					$focused = previousTabPanel.$element.find( ':focus' );
 					if ( $focused.length ) {
+						// eslint-disable-next-line jquery/no-event-shorthand
 						$focused[ 0 ].blur();
 					}
 				}
@@ -2839,6 +2841,7 @@ OO.ui.IndexLayout.prototype.setTabPanel = function ( name ) {
 				// blurred when it was hidden, but browsers are not very consistent about this.
 				$focused = previousTabPanel.$element.find( ':focus' );
 				if ( $focused.length ) {
+					// eslint-disable-next-line jquery/no-event-shorthand
 					$focused[ 0 ].blur();
 				}
 			}
@@ -2868,6 +2871,7 @@ OO.ui.IndexLayout.prototype.selectFirstSelectableTabPanel = function () {
  * @abstract
  * @class
  * @extends OO.ui.Widget
+ * @mixins OO.ui.mixin.TitledElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -2881,6 +2885,9 @@ OO.ui.ToggleWidget = function OoUiToggleWidget( config ) {
 	// Parent constructor
 	OO.ui.ToggleWidget.parent.call( this, config );
 
+	// Mixin constructor
+	OO.ui.mixin.TitledElement.call( this, config );
+
 	// Properties
 	this.value = null;
 
@@ -2892,6 +2899,7 @@ OO.ui.ToggleWidget = function OoUiToggleWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.ToggleWidget, OO.ui.Widget );
+OO.mixinClass( OO.ui.ToggleWidget, OO.ui.mixin.TitledElement );
 
 /* Events */
 
@@ -2944,14 +2952,14 @@ OO.ui.ToggleWidget.prototype.setValue = function ( value ) {
  *     @example
  *     // Toggle buttons in the 'off' and 'on' state.
  *     var toggleButton1 = new OO.ui.ToggleButtonWidget( {
- *         label: 'Toggle Button off'
- *     } );
- *     var toggleButton2 = new OO.ui.ToggleButtonWidget( {
- *         label: 'Toggle Button on',
- *         value: true
- *     } );
+ *             label: 'Toggle Button off'
+ *         } ),
+ *         toggleButton2 = new OO.ui.ToggleButtonWidget( {
+ *             label: 'Toggle Button on',
+ *             value: true
+ *         } );
  *     // Append the buttons to the DOM.
- *     $( 'body' ).append( toggleButton1.$element, toggleButton2.$element );
+ *     $( document.body ).append( toggleButton1.$element, toggleButton2.$element );
  *
  * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Buttons_and_Switches#Toggle_buttons
  *
@@ -2961,7 +2969,6 @@ OO.ui.ToggleWidget.prototype.setValue = function ( value ) {
  * @mixins OO.ui.mixin.IconElement
  * @mixins OO.ui.mixin.IndicatorElement
  * @mixins OO.ui.mixin.LabelElement
- * @mixins OO.ui.mixin.TitledElement
  * @mixins OO.ui.mixin.FlaggedElement
  * @mixins OO.ui.mixin.TabIndexedElement
  *
@@ -2982,7 +2989,6 @@ OO.ui.ToggleButtonWidget = function OoUiToggleButtonWidget( config ) {
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.IndicatorElement.call( this, config );
 	OO.ui.mixin.LabelElement.call( this, config );
-	OO.ui.mixin.TitledElement.call( this, $.extend( {}, config, { $titled: this.$button } ) );
 	OO.ui.mixin.FlaggedElement.call( this, config );
 	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$button } ) );
 
@@ -2994,6 +3000,7 @@ OO.ui.ToggleButtonWidget = function OoUiToggleButtonWidget( config ) {
 	this.$element
 		.addClass( 'oo-ui-toggleButtonWidget' )
 		.append( this.$button );
+	this.setTitledElement( this.$button );
 };
 
 /* Setup */
@@ -3003,7 +3010,6 @@ OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.mixin.ButtonElement );
 OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.mixin.IconElement );
 OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.mixin.IndicatorElement );
 OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.mixin.LabelElement );
-OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.mixin.TitledElement );
 OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.mixin.FlaggedElement );
 OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.mixin.TabIndexedElement );
 
@@ -3063,20 +3069,25 @@ OO.ui.ToggleButtonWidget.prototype.setButtonElement = function ( $button ) {
  *
  *     @example
  *     // Toggle switches in the 'off' and 'on' position.
- *     var toggleSwitch1 = new OO.ui.ToggleSwitchWidget();
- *     var toggleSwitch2 = new OO.ui.ToggleSwitchWidget( {
- *         value: true
- *     } );
- *
- *     // Create a FieldsetLayout to layout and label switches
- *     var fieldset = new OO.ui.FieldsetLayout( {
- *        label: 'Toggle switches'
- *     } );
+ *     var toggleSwitch1 = new OO.ui.ToggleSwitchWidget(),
+ *         toggleSwitch2 = new OO.ui.ToggleSwitchWidget( {
+ *             value: true
+ *         } );
+ *         // Create a FieldsetLayout to layout and label switches.
+ *         fieldset = new OO.ui.FieldsetLayout( {
+ *             label: 'Toggle switches'
+ *         } );
  *     fieldset.addItems( [
- *         new OO.ui.FieldLayout( toggleSwitch1, { label: 'Off', align: 'top' } ),
- *         new OO.ui.FieldLayout( toggleSwitch2, { label: 'On', align: 'top' } )
+ *         new OO.ui.FieldLayout( toggleSwitch1, {
+ *             label: 'Off',
+ *             align: 'top'
+ *         } ),
+ *         new OO.ui.FieldLayout( toggleSwitch2, {
+ *             label: 'On',
+ *             align: 'top'
+ *         } )
  *     ] );
- *     $( 'body' ).append( fieldset.$element );
+ *     $( document.body ).append( fieldset.$element );
  *
  * @class
  * @extends OO.ui.ToggleWidget
@@ -3530,7 +3541,6 @@ OO.mixinClass( OO.ui.OutlineSelectWidget, OO.ui.mixin.TabIndexedElement );
  * @mixins OO.ui.mixin.ButtonElement
  * @mixins OO.ui.mixin.IconElement
  * @mixins OO.ui.mixin.IndicatorElement
- * @mixins OO.ui.mixin.TitledElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -3546,12 +3556,12 @@ OO.ui.ButtonOptionWidget = function OoUiButtonOptionWidget( config ) {
 	OO.ui.mixin.ButtonElement.call( this, config );
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.IndicatorElement.call( this, config );
-	OO.ui.mixin.TitledElement.call( this, $.extend( {}, config, { $titled: this.$button } ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-buttonOptionWidget' );
 	this.$button.append( this.$icon, this.$label, this.$indicator );
 	this.$element.append( this.$button );
+	this.setTitledElement( this.$button );
 };
 
 /* Setup */
@@ -3560,7 +3570,6 @@ OO.inheritClass( OO.ui.ButtonOptionWidget, OO.ui.OptionWidget );
 OO.mixinClass( OO.ui.ButtonOptionWidget, OO.ui.mixin.ButtonElement );
 OO.mixinClass( OO.ui.ButtonOptionWidget, OO.ui.mixin.IconElement );
 OO.mixinClass( OO.ui.ButtonOptionWidget, OO.ui.mixin.IndicatorElement );
-OO.mixinClass( OO.ui.ButtonOptionWidget, OO.ui.mixin.TitledElement );
 
 /* Static Properties */
 
@@ -3601,29 +3610,26 @@ OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
  * the [OOUI documentation on MediaWiki] [1] for more information.
  *
  *     @example
- *     // Example: A ButtonSelectWidget that contains three ButtonOptionWidgets
+ *     // A ButtonSelectWidget that contains three ButtonOptionWidgets.
  *     var option1 = new OO.ui.ButtonOptionWidget( {
- *         data: 1,
- *         label: 'Option 1',
- *         title: 'Button option 1'
- *     } );
- *
- *     var option2 = new OO.ui.ButtonOptionWidget( {
- *         data: 2,
- *         label: 'Option 2',
- *         title: 'Button option 2'
- *     } );
- *
- *     var option3 = new OO.ui.ButtonOptionWidget( {
- *         data: 3,
- *         label: 'Option 3',
- *         title: 'Button option 3'
- *     } );
- *
- *     var buttonSelect=new OO.ui.ButtonSelectWidget( {
- *         items: [ option1, option2, option3 ]
- *     } );
- *     $( 'body' ).append( buttonSelect.$element );
+ *             data: 1,
+ *             label: 'Option 1',
+ *             title: 'Button option 1'
+ *         } ),
+ *         option2 = new OO.ui.ButtonOptionWidget( {
+ *             data: 2,
+ *             label: 'Option 2',
+ *             title: 'Button option 2'
+ *         } ),
+ *         option3 = new OO.ui.ButtonOptionWidget( {
+ *             data: 3,
+ *             label: 'Option 3',
+ *             title: 'Button option 3'
+ *         } ),
+ *         buttonSelect = new OO.ui.ButtonSelectWidget( {
+ *             items: [ option1, option2, option3 ]
+ *         } );
+ *     $( document.body ).append( buttonSelect.$element );
  *
  * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options
  *
@@ -4010,13 +4016,13 @@ OO.ui.TagItemWidget.prototype.isValid = function () {
  * a menu and a popup respectively.
  *
  *     @example
- *     // Example: A basic TagMultiselectWidget.
+ *     // A TagMultiselectWidget.
  *     var widget = new OO.ui.TagMultiselectWidget( {
  *         inputPosition: 'outline',
  *         allowedValues: [ 'Option 1', 'Option 2', 'Option 3' ],
  *         selected: [ 'Option 1' ]
  *     } );
- *     $( 'body' ).append( widget.$element );
+ *     $( document.body ).append( widget.$element );
  *
  * @class
  * @extends OO.ui.Widget
@@ -4026,6 +4032,7 @@ OO.ui.TagItemWidget.prototype.isValid = function () {
  * @mixins OO.ui.mixin.IconElement
  * @mixins OO.ui.mixin.TabIndexedElement
  * @mixins OO.ui.mixin.FlaggedElement
+ * @mixins OO.ui.mixin.TitledElement
  *
  * @constructor
  * @param {Object} config Configuration object
@@ -4076,6 +4083,7 @@ OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 	OO.ui.mixin.TabIndexedElement.call( this, config );
 	OO.ui.mixin.FlaggedElement.call( this, config );
 	OO.ui.mixin.DraggableGroupElement.call( this, config );
+	OO.ui.mixin.TitledElement.call( this, config );
 
 	this.toggleDraggable(
 		config.allowReordering === undefined ?
@@ -4208,6 +4216,7 @@ OO.mixinClass( OO.ui.TagMultiselectWidget, OO.ui.mixin.IndicatorElement );
 OO.mixinClass( OO.ui.TagMultiselectWidget, OO.ui.mixin.IconElement );
 OO.mixinClass( OO.ui.TagMultiselectWidget, OO.ui.mixin.TabIndexedElement );
 OO.mixinClass( OO.ui.TagMultiselectWidget, OO.ui.mixin.FlaggedElement );
+OO.mixinClass( OO.ui.TagMultiselectWidget, OO.ui.mixin.TitledElement );
 
 /* Static properties */
 
@@ -4905,9 +4914,9 @@ OO.ui.TagMultiselectWidget.prototype.isValid = function () {
  * to use a popup. The popup can be configured to have a default input to insert values into the widget.
  *
  *     @example
- *     // Example: A basic PopupTagMultiselectWidget.
+ *     // A PopupTagMultiselectWidget.
  *     var widget = new OO.ui.PopupTagMultiselectWidget();
- *     $( 'body' ).append( widget.$element );
+ *     $( document.body ).append( widget.$element );
  *
  *     // Example: A PopupTagMultiselectWidget with an external popup.
  *     var popupInput = new OO.ui.TextInputWidget(),
@@ -4917,7 +4926,7 @@ OO.ui.TagMultiselectWidget.prototype.isValid = function () {
  *               $content: popupInput.$element
  *            }
  *         } );
- *     $( 'body' ).append( widget.$element );
+ *     $( document.body ).append( widget.$element );
  *
  * @class
  * @extends OO.ui.TagMultiselectWidget
@@ -5066,7 +5075,7 @@ OO.ui.PopupTagMultiselectWidget.prototype.addTagByPopupValue = function ( data, 
  * to use a menu of selectable options.
  *
  *     @example
- *     // Example: A basic MenuTagMultiselectWidget.
+ *     // A basic MenuTagMultiselectWidget.
  *     var widget = new OO.ui.MenuTagMultiselectWidget( {
  *         inputPosition: 'outline',
  *         options: [
@@ -5076,7 +5085,7 @@ OO.ui.PopupTagMultiselectWidget.prototype.addTagByPopupValue = function ( data, 
  *         ],
  *         selected: [ 'option1', 'option2' ]
  *     } );
- *     $( 'body' ).append( widget.$element );
+ *     $( document.body ).append( widget.$element );
  *
  * @class
  * @extends OO.ui.TagMultiselectWidget
@@ -5126,6 +5135,9 @@ OO.ui.MenuTagMultiselectWidget = function OoUiMenuTagMultiselectWidget( config )
 		.append( this.menu.$element );
 	this.$element
 		.addClass( 'oo-ui-menuTagMultiselectWidget' );
+	// Remove MenuSelectWidget's generic focus owner ARIA attribute
+	// TODO: Should this widget have a `role` that is compatible with this attribute?
+	this.menu.$focusOwner.removeAttr( 'aria-expanded' );
 	// TagMultiselectWidget already does this, but it doesn't work right because this.menu is not yet
 	// set up while the parent constructor runs, and #getAllowedValues rejects everything.
 	if ( config.selected ) {
@@ -5200,6 +5212,11 @@ OO.ui.MenuTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
 	} else {
 		this.initializeMenuSelection();
 	}
+	setTimeout( function () {
+		// Remove MenuSelectWidget's generic focus owner ARIA attribute
+		// TODO: Should this widget have a `role` that is compatible with this attribute?
+		this.menu.$focusOwner.removeAttr( 'aria-expanded' );
+	}.bind( this ) );
 };
 
 /**
@@ -5366,14 +5383,14 @@ OO.ui.MenuTagMultiselectWidget.prototype.getAllowedValues = function () {
 
 /**
  * SelectFileWidgets allow for selecting files, using the HTML5 File API. These
- * widgets can be configured with {@link OO.ui.mixin.IconElement icons} and {@link
- * OO.ui.mixin.IndicatorElement indicators}.
+ * widgets can be configured with {@link OO.ui.mixin.IconElement icons}, {@link
+ * OO.ui.mixin.IndicatorElement indicators} and {@link OO.ui.mixin.TitledElement titles}.
  * Please see the [OOUI documentation on MediaWiki] [1] for more information and examples.
  *
  *     @example
- *     // Example of a file select widget
+ *     // A file select widget.
  *     var selectFile = new OO.ui.SelectFileWidget();
- *     $( 'body' ).append( selectFile.$element );
+ *     $( document.body ).append( selectFile.$element );
  *
  * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets
  *
@@ -5383,6 +5400,7 @@ OO.ui.MenuTagMultiselectWidget.prototype.getAllowedValues = function () {
  * @mixins OO.ui.mixin.IndicatorElement
  * @mixins OO.ui.mixin.PendingElement
  * @mixins OO.ui.mixin.LabelElement
+ * @mixins OO.ui.mixin.TitledElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -5415,6 +5433,7 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 	OO.ui.mixin.IndicatorElement.call( this, config );
 	OO.ui.mixin.PendingElement.call( this, $.extend( {}, config, { $pending: this.$info } ) );
 	OO.ui.mixin.LabelElement.call( this, config );
+	OO.ui.mixin.TitledElement.call( this, config );
 
 	// Properties
 	this.$info = $( '<span>' );
@@ -5501,6 +5520,7 @@ OO.mixinClass( OO.ui.SelectFileWidget, OO.ui.mixin.IconElement );
 OO.mixinClass( OO.ui.SelectFileWidget, OO.ui.mixin.IndicatorElement );
 OO.mixinClass( OO.ui.SelectFileWidget, OO.ui.mixin.PendingElement );
 OO.mixinClass( OO.ui.SelectFileWidget, OO.ui.mixin.LabelElement );
+OO.mixinClass( OO.ui.SelectFileWidget, OO.ui.mixin.TitledElement );
 
 /* Static Properties */
 

@@ -29,6 +29,7 @@
 	"ooui-dialog-process-dismiss": "Zavřít",
 	"ooui-dialog-process-retry": "Zkusit znovu",
 	"ooui-dialog-process-continue": "Pokračovat",
+	"ooui-combobox-button-label": "Rozbalení výběru",
 	"ooui-selectfile-button-select": "Vybrat soubor",
 	"ooui-selectfile-not-supported": "Výběr souboru není podporován",
 	"ooui-selectfile-placeholder": "Nebyl vybrán žádný soubor",
