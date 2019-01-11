@@ -38,7 +38,7 @@ class BlockRestriction {
 	 * @return Restriction[]
 	 */
 	public static function loadByBlockId( $blockId, IDatabase $db = null ) {
-		if ( is_null( $blockId ) || $blockId === [] ) {
+		if ( $blockId === null || $blockId === [] ) {
 			return [];
 		}
 
