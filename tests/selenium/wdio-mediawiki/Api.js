@@ -73,5 +73,61 @@ module.exports = {
 				retype: password
 			} );
 		} );
+	},
+
+	/**
+	 * Shortcut for `MWBot#request( { action: 'block', .. } )`.
+	 *
+	 * @since 0.3.0
+	 * @see <https://www.mediawiki.org/wiki/API:Block>
+	 * @param {string} [username] defaults to user making the request
+	 * @param {string} [expiry] default is not set. For format see API docs
+	 * @return {Object} Promise for API action=block response data.
+	 */
+	blockUser( username, expiry ) {
+		let bot = new MWBot();
+
+		// Log in as admin
+		return bot.loginGetEditToken( {
+			apiUrl: `${browser.options.baseUrl}/api.php`,
+			username: browser.options.username,
+			password: browser.options.password
+		} ).then( () => {
+			// block user. default = admin
+			return bot.request( {
+				action: 'block',
+				user: username || browser.options.username,
+				reason: 'browser test',
+				token: bot.editToken,
+				expiry
+			} );
+		} );
+	},
+
+	/**
+	 * Shortcut for `MWBot#request( { action: 'unblock', .. } )`.
+	 *
+	 * @since 0.3.0
+	 * @see <https://www.mediawiki.org/wiki/API:Block>
+	 * @param {string} [username] defaults to user making the request
+	 * @return {Object} Promise for API action=unblock response data.
+	 */
+	unblockUser( username ) {
+		let bot = new MWBot();
+
+		// Log in as admin
+		return bot.loginGetEditToken( {
+			apiUrl: `${browser.options.baseUrl}/api.php`,
+			username: browser.options.username,
+			password: browser.options.password
+		} ).then( () => {
+			// unblock user. default = admin
+			return bot.request( {
+				action: 'unblock',
+				user: username || browser.options.username,
+				reason: 'browser test done',
+				token: bot.editToken
+			} );
+		} );
 	}
 };
