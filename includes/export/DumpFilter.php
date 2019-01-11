@@ -128,7 +128,7 @@ class DumpFilter {
 	 * @param object $page
 	 * @return bool
 	 */
-	function pass( $page ) {
+	protected function pass( $page ) {
 		return true;
 	}
 }
