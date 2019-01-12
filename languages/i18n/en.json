@@ -3580,6 +3580,7 @@
 	"specialpages-group-developer": "Developer tools",
 	"blankpage": "Blank page",
 	"intentionallyblankpage": "This page is intentionally left blank.",
+	"disabledspecialpage-disabled": "This page has been disabled by a system administrator.",
 	"external_image_whitelist": " #Leave this line exactly as it is<pre>\n#Put regular expression fragments (just the part that goes between the //) below\n#These will be matched with the URLs of external (hotlinked) images\n#Those that match will be displayed as images, otherwise only a link to the image will be shown\n#Lines beginning with # are treated as comments\n#This is case-insensitive\n\n#Put all regex fragments above this line. Leave this line exactly as it is</pre>",
 	"tags": "Valid change tags",
 	"tags-summary": "",
