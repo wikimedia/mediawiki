@@ -2779,7 +2779,7 @@
 	"thumbnail_image-failure-limit": "最近顯示此縮圖已發生太多次失敗 ($1 次或更多)，請稍後再試。",
 	"import": "匯入頁面",
 	"importinterwiki": "從其他 wiki 匯入",
-	"import-interwiki-text": "請選擇一個 Wiki 與頁面標題以進行匯入。\n會同時記錄修訂日期和編輯者的名稱。\n所有的從跨 Wiki 匯入操作都會被記錄在 [[Special:Log/import|匯入日誌]]。",
+	"import-interwiki-text": "請選擇一個 Wiki 與頁面標題以進行匯入，會同時記錄修訂日期和編輯者的名稱，所有的從跨 Wiki 匯入操作都會被記錄在[[Special:Log/import|匯入日誌]]。",
 	"import-interwiki-sourcewiki": "原始 wiki：",
 	"import-interwiki-sourcepage": "來源頁面：",
 	"import-interwiki-history": "複製此頁面的所有歷史修訂",

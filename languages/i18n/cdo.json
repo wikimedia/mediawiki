@@ -961,6 +961,7 @@
 	"sp-contributions-username": "IP地址或者用戶名：",
 	"sp-contributions-toponly": "Nâ hiēng-sék muōi-huòi siŭ-gāi gì biĕng-cĭk",
 	"sp-contributions-newonly": "Nâ hiēng-sék cháung-gióng hiĕk-miêng gì biĕng-cĭk",
+	"sp-contributions-hideminor": "Káung-kī ché̤ṳ-iéu biĕng-cĭk",
 	"sp-contributions-submit": "尋討",
 	"whatlinkshere": "Diē-nē̤ lièng gáu cē̤-nē̤",
 	"whatlinkshere-title": "鏈接遘$1其頁面",
@@ -1220,5 +1221,8 @@
 	"mw-widgets-abandonedit-discard": "放棄編輯",
 	"mw-widgets-abandonedit-keep": "繼續編輯",
 	"mw-widgets-abandonedit-title": "汝會確定𣍐？",
+	"mw-widgets-dateinput-no-date": "Nĭk-gĭ gó muôi sōng",
+	"date-range-from": "Kăi-sṳ̄ nĭk-gĭ:",
+	"date-range-to": "Giék-sók nĭk-gĭ:",
 	"randomrootpage": "Sùi-gĭ gṳ̆ng-hiĕk-miêng"
 }
