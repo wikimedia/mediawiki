@@ -1,6 +1,7 @@
 <?php
 
 use Composer\Semver\Semver;
+use Wikimedia\ScopedCallback;
 
 /**
  * ExtensionRegistry class
@@ -75,6 +76,13 @@ class ExtensionRegistry {
 	 * @var array
 	 */
 	protected $attributes = [];
+
+	/**
+	 * Attributes for testing
+	 *
+	 * @var array
+	 */
+	protected $testAttributes = [];
 
 	/**
 	 * @var ExtensionRegistry
@@ -412,7 +420,29 @@ class ExtensionRegistry {
 	 * @return array
 	 */
 	public function getAttribute( $name ) {
-		return $this->attributes[$name] ?? [];
+		return $this->testAttributes[$name] ??
+			$this->attributes[$name] ?? [];
+	}
+
+	/**
+	 * Force override the value of an attribute during tests
+	 *
+	 * @param string $name Name of attribute to override
+	 * @param array $value Value to set
+	 * @return ScopedCallback to reset
+	 * @since 1.33
+	 */
+	public function setAttributeForTest( $name, array $value ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new RuntimeException( __METHOD__ . ' can only be used in tests' );
+		}
+		if ( isset( $this->testAttributes[$name] ) ) {
+			throw new Exception( "The attribute '$name' has already been overridden" );
+		}
+		$this->testAttributes[$name] = $value;
+		return new ScopedCallback( function () use ( $name ) {
+			unset( $this->testAttributes[$name] );
+		} );
 	}
 
 	/**
