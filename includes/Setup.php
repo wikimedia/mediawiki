@@ -869,11 +869,19 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 
 	$session->renew();
 	if ( MediaWiki\Session\PHPSessionHandler::isEnabled() &&
-		( $session->isPersistent() || $session->shouldRememberUser() )
+		( $session->isPersistent() || $session->shouldRememberUser() ) &&
+		session_id() !== $session->getId()
 	) {
 		// Start the PHP-session for backwards compatibility
+		if ( session_id() !== '' ) {
+			wfDebugLog( 'session', 'PHP session {old_id} was already started, changing to {new_id}', 'all', [
+				'old_id' => session_id(),
+				'new_id' => $session->getId(),
+			] );
+			session_write_close();
+		}
 		session_id( $session->getId() );
-		Wikimedia\quietCall( 'session_start' );
+		session_start();
 	}
 
 	unset( $session );
