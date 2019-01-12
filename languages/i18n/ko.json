@@ -2531,6 +2531,7 @@
 	"ipb-blocklist": "현재 차단 기록 보기",
 	"ipb-blocklist-contribs": "{{GENDER:$1|$1}}의 기여",
 	"ipb-blocklist-duration-left": "남은 기간: $1",
+	"block-actions": "차단할 행위:",
 	"block-expiry": "기한:",
 	"block-options": "추가 옵션:",
 	"block-prevent-edit": "편집",

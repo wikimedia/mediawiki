@@ -170,6 +170,7 @@
 	"config-sqlite-cant-create-db": "データベース ファイル <code>$1</code> を作成できませんでした。",
 	"config-sqlite-fts3-downgrade": "PHP が FTS3 に対応していないため、テーブルをダウングレードしています。",
 	"config-can-upgrade": "このデータベースには　MediaWiki テーブルがあります。\nこれらのテーブルを MediaWiki $1 にアップグレードするには、<strong>続行</strong>をクリックしてください。",
+	"config-upgrade-error": "データベースのMediaWikiテーブルをアップグレード中にエラーが発生しました。\n\n詳細については、上記のログを確認して、もう一度<strong>続行</strong>をクリックしてください。",
 	"config-upgrade-done": "更新は完了しました。\n\n[$1 ウィキを使い始める]ことができます。\n\n<code>LocalSettings.php</code> ファイルを再生成したい場合は、下のボタンを押してください。\nウィキに問題がある場合を除き、再生成は<strong>推奨されません</strong>。",
 	"config-upgrade-done-no-regenerate": "アップグレードが完了しました。\n\n[$1 ウィキの使用を開始]することができます。",
 	"config-regenerate": "LocalSettings.php を再生成→",
@@ -333,6 +334,7 @@
 	"config-skins-screenshots": "$1 (スクリーンショット: $2)",
 	"config-extensions-requires": "$1（$2が必要）",
 	"config-screenshot": "スクリーンショット",
+	"config-extension-dependency": "拡張機能「$1」のインストール中に依存関係エラーが発生しました: $2",
 	"mainpagetext": "<strong>MediaWiki はインストール済みです。</strong>",
 	"mainpagedocfooter": "ウィキソフトウェアの使い方に関する情報は[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 利用者案内]を参照してください。\n\n== はじめましょう ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/ja 設定の一覧]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ja MediaWiki よくある質問と回答]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation/ja MediaWiki のあなたの言語へのローカライズ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam あなたのウィキでスパムと戦う方法を学ぶ]"
 }

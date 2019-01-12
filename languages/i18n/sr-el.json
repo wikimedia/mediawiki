@@ -934,7 +934,7 @@
 	"showhideselectedversions": "Promeni vidljivost izabranih izmena",
 	"editundo": "poništi",
 	"diff-empty": "(nema razlike)",
-	"diff-multi-sameuser": "({{PLURAL:$1|Jedna međuizmena istog korisnika nije prikazana|$1 međuizmena istog korisnika nisu prikazane|$1 međuizmena istog korisnika nije prikazano}})",
+	"diff-multi-sameuser": "({{PLURAL:$1|1=Jedna međuizmena istog korisnika nije prikazana|$1 međuizmena istog korisnika nije prikazana|$1 međuizmene istog korisnika nisu prikazane|$1 međuizmena istog korisnika nije prikazano}})",
 	"diff-multi-otherusers": "({{PLURAL:$1|Jedna međuizmena|$1 međuizmene|$1 međuizmena}} od strane {{PLURAL:$2|još jednog korisnika nije prikazana|$2 korisnika nije prikazano}})",
 	"diff-multi-manyusers": "({{PLURAL:$1|Nije prikazana međuizmena|Nisu prikazane $1 međuizmene|Nije prikazano $1 međuizmena}} od više od $2 korisnika)",
 	"diff-paragraph-moved-tonew": "Pasus je premešten. Kliknite da pređete na novu lokaciju.",

@@ -875,7 +875,7 @@
 	"last": "попер.",
 	"page_first": "перша",
 	"page_last": "остання",
-	"histlegend": "Вибір версії: позначте у кружечках версії для порівняння і натисніть «Enter» або кнопку внизу.\n\nПояснення: <strong>({{int:cur}})</strong> = відмінності від поточної версії,\n<strong>({{int:last}})</strong> = відмінності від попередньої версії, <strong>{{int:minoreditletter}}</strong> = незначне редагування",
+	"histlegend": "Вибір версії: позначте у кружечках версії для порівняння і натисніть «Enter» або кнопку внизу.<br />\nПояснення: <strong>({{int:cur}})</strong> = відмінності від поточної версії, <strong>({{int:last}})</strong> = відмінності від попередньої версії, <strong>{{int:minoreditletter}}</strong> = незначне редагування.",
 	"history-fieldset-title": "Пошук версій",
 	"history-show-deleted": "Лише вилучені версії",
 	"histfirst": "найдавніші",

@@ -2271,7 +2271,7 @@
 	"watchlist-options": "Alternativ för bevakningslistan",
 	"watching": "Bevakar...",
 	"unwatching": "Avbevakar...",
-	"watcherrortext": "Ett fel inträffade när du ändrade dina bevakningsinställningarna för \"$1\".",
+	"watcherrortext": "Ett fel inträffade när du ändrade dina bevakningsinställningar för \"$1\".",
 	"enotif_reset": "Markera alla sidor som besökta",
 	"enotif_impersonal_salutation": "{{SITENAME}}användare",
 	"enotif_subject_deleted": "{{SITENAME}}sidan $1 har raderats av {{gender:$2|$2}}",

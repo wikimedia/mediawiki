@@ -2536,7 +2536,7 @@
 	"ipb-blocklist": "عرض حالات المنع الحالية",
 	"ipb-blocklist-contribs": "مساهمات $1",
 	"ipb-blocklist-duration-left": "يتبقى $1",
-	"block-actions": "أفعال لحظرها:",
+	"block-actions": "أفعال لمنعها:",
 	"block-expiry": "مدة المنع:",
 	"block-options": "خيارات إضافية:",
 	"block-prevent-edit": "التحرير",
