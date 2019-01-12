@@ -1,15 +1,34 @@
 == MediaWiki 1.32 ==
 
+THIS IS NOT A RELEASE YET
+
+=== Changes since MediaWiki 1.32.0 ===
+* (T213577) rdbms: avoid transaction status errors from ping() in rollback().
+* rdbms: Pass required parameter.
+* rdbms: do not treat SAVEPOINT and RELEASE SAVEPOINT as write queries.
+
+=== Changes since MediaWiki 1.32.0-rc.2 ===
+* (T188327) Fix slow queries in migrateActors.php.
+* (T102320) Fix $magicWords for the Sanskrit language.
+
+=== Changes since MediaWiki 1.32.0-rc.1 ===
+* Fix addition of ug_expiry column to user_groups table on MSSQL.
+* (T210307) Fix the cache timestamp for forced updates.
+* (T210621) User: Bypass repeatable-read when creating an actor_id.
+* (T197535) Extensions can now specify PHP versions and PHP extensions they
+  depend on.
+* Updated wikimedia/ip-set from v1.2.0 to v1.3.0.
+* (T212356) When using action=delete on pages with many revisions, the module
+  may return a boolean-true 'scheduled' and no 'logid'. This signifies that the
+  deletion will be processed via the job queue.
+* (T64103) Dropped columns category.cat_hidden, site_stats.ss_admins, and
+  recentchanges.rc_cur_time from the PostgreSQL schema.
+
 === Changes since MediaWiki 1.32.0-rc.0 ===
 * (T209885) Prevent populateSearchIndex.php from breaking once actor migration
   has been started.
 * (T210998) Properly set $wgLanguageCode in the generated LocalSettings.php
   if --lang is used with the command-line installer (install.php).
-* Fix addition of ug_expiry column to user_groups table on MSSQL.
-* (T210307) Fix the cache timestamp for forced updates.
-* (T210621) User: Bypass repeatable-read when creating an actor_id.
-* (T188327) Fix slow queries in migrateActors.php.
-* (T102320) Fix $magicWords for the Sanskrit language.
 
 === Configuration changes in 1.32 ===
 

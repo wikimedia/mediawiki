@@ -719,17 +719,25 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		switch ( $type ) {
 			case self::ESTIMATE_DB_APPLY:
-				$this->ping( $rtt );
-				$rttAdjTotal = $this->trxWriteAdjQueryCount * $rtt;
-				$applyTime = max( $this->trxWriteAdjDuration - $rttAdjTotal, 0 );
-				// For omitted queries, make them count as something at least
-				$omitted = $this->trxWriteQueryCount - $this->trxWriteAdjQueryCount;
-				$applyTime += self::TINY_WRITE_SEC * $omitted;
-
-				return $applyTime;
+				return $this->pingAndCalculateLastTrxApplyTime();
 			default: // everything
 				return $this->trxWriteDuration;
 		}
+	}
+
+	/**
+	 * @return float Time to apply writes to replicas based on trxWrite* fields
+	 */
+	private function pingAndCalculateLastTrxApplyTime() {
+		$this->ping( $rtt );
+
+		$rttAdjTotal = $this->trxWriteAdjQueryCount * $rtt;
+		$applyTime = max( $this->trxWriteAdjDuration - $rttAdjTotal, 0 );
+		// For omitted queries, make them count as something at least
+		$omitted = $this->trxWriteQueryCount - $this->trxWriteAdjQueryCount;
+		$applyTime += self::TINY_WRITE_SEC * $omitted;
+
+		return $applyTime;
 	}
 
 	public function pendingWriteCallers() {
@@ -1052,7 +1060,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		//   that transactions by themselves don't make changes, only actual writes
 		//   within the transaction matter, which we still detect.
 		return !preg_match(
-			'/^(?:SELECT|BEGIN|ROLLBACK|COMMIT|SET|SHOW|EXPLAIN|\(SELECT)\b/i', $sql );
+			'/^(?:SELECT|BEGIN|ROLLBACK|COMMIT|SAVEPOINT|RELEASE|SET|SHOW|EXPLAIN|\(SELECT)\b/i',
+			$sql
+		);
 	}
 
 	/**
@@ -3741,7 +3751,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				}
 			}
 			if ( $pos < 0 ) {
-				throw new DBUnexpectedError( "Atomic section not found (for $fname)" );
+				throw new DBUnexpectedError( $this, "Atomic section not found (for $fname)" );
 			}
 			// Remove all descendant sections and re-index the array
 			$excisedIds = [];
@@ -3970,10 +3980,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// Avoid fatals if close() was called
 			$this->assertOpen();
 
-			$writeTime = $this->pendingWriteQueryDuration( self::ESTIMATE_DB_APPLY );
 			$this->doRollback( $fname );
 			$this->trxStatus = self::STATUS_TRX_NONE;
 			$this->trxAtomicLevels = [];
+			// Estimate the RTT via a query now that trxStatus is OK
+			$writeTime = $this->pingAndCalculateLastTrxApplyTime();
 
 			if ( $this->trxDoneWrites ) {
 				$this->trxProfiler->transactionWritingOut(
