@@ -11,8 +11,8 @@ CREATE TABLE /*_*/imagelinks_tmp (
   PRIMARY KEY (il_from,il_to)
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/imagelinks_tmp
-	SELECT * FROM /*_*/imagelinks;
+INSERT INTO /*_*/imagelinks_tmp (il_from, il_from_namespace, il_to)
+	SELECT il_from, il_from_namespace, il_to FROM /*_*/imagelinks;
 
 DROP TABLE /*_*/imagelinks;
 
