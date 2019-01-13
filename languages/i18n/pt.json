@@ -3268,6 +3268,7 @@
 	"specialpages-group-developer": "Ferramentas de desenvolvimento",
 	"blankpage": "Página em branco",
 	"intentionallyblankpage": "Esta página foi intencionalmente deixada em branco",
+	"disabledspecialpage-disabled": "Esta página foi desativada por um administrador do sistema.",
 	"external_image_whitelist": " # Deixe esta linha exatamente como ela está<pre>\n# Coloque fragmentos de expressões regulares (apenas a parte entre //) abaixo\n# Estas serão comparadas com os URL das imagens externas (com ligação direta)\n# As que corresponderem serão apresentadas como imagens, caso contrário apenas será apresentada uma hiperligação para a imagem\n# As linhas que começam com um símbolo de cardinal (#) são tratadas como comentários\n# Esta lista não distingue maiúsculas de minúsculas\n\n# Coloque todos os fragmentos de expressões regulares (regex) acima desta linha. Deixe esta linha exatamente como ela está</pre>",
 	"tags": "Etiquetas de modificação válidas",
 	"tag-filter": "Filtro de [[Special:Tags|etiquetas]]:",

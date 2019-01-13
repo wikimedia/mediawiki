@@ -3182,6 +3182,7 @@
 	"specialpages-group-developer": "Razvijalska orodja",
 	"blankpage": "Prazna stran",
 	"intentionallyblankpage": "Ta stran je namenoma prazna.",
+	"disabledspecialpage-disabled": "Stran je onemogočil sistemski administrator.",
 	"external_image_whitelist": " #Pustite to vrstico takšno, kot je<pre>\n#Navedite odlomke običajnih izrazov (regular expressions) (samo del, ki gre med //) spodaj\n#Ti bodo primerjani z URL-ji zunanjih (hotlinkanih) slik\n#Tisti, ki se bodo ujemali, bodo prikazani kot slike; v nasprotnem primeru bo prikazana samo povezava do slike\n#Vrstice, ki se začnejo z #, so obravnavane kot komentarji\n#Zadeva je občutljiva na velikost črk\n\n#Navedite vse izraze regex pod to vrstico. Pustite to vrstico takšno, kot je</pre>",
 	"tags": "Veljavne etikete sprememb",
 	"tag-filter": "Filter [[Special:Tags|oznak]]:",
