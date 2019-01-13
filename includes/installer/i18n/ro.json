@@ -7,7 +7,8 @@
 			"XXN",
 			"Tuxilina",
 			"Strainu",
-			"Fitoschido"
+			"Fitoschido",
+			"WebSourceContentRO"
 		]
 	},
 	"config-desc": "Programul de instalare pentru MediaWiki",
@@ -50,7 +51,8 @@
 	"config-env-hhvm": "HHVM $1 este instalat.",
 	"config-apc": "[https://secure.php.net/apc APC] este instalat",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] este instalat",
-	"config-diff3-bad": "GNU diff3 nu a fost găsit.",
+	"config-diff3-bad": "Utilitarul de comparare a textului GNU diff3 nu a fost găsit. Puteți ignora acest lucru pentru moment, dar ar putea apărea mai frecvent conflicte de editare.",
+	"config-git-bad": "Software-ul de control al versiunii Git nu a fost găsit. Acum puteți ignora acest lucru. Rețineți că Special:Version nu va afișa hașurile commit.",
 	"config-no-uri": "<strong>Eroare:</strong> Nu pot determina URI-ul curent.\nInstalare întreruptă.",
 	"config-db-type": "Tipul bazei de date:",
 	"config-db-host": "Gazdă bază de date:",

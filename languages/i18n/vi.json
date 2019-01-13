@@ -44,7 +44,8 @@
 			"Fitoschido",
 			"Leducthn",
 			"Nhatminh01",
-			"Leduyquang753"
+			"Leduyquang753",
+			"Ioe2015"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -3291,6 +3292,7 @@
 	"specialpages-group-developer": "Công cụ dành cho lập trình viên",
 	"blankpage": "Trang trắng",
 	"intentionallyblankpage": "Trang này được chủ định để trắng",
+	"disabledspecialpage-disabled": "Chức năng này đã bị vô hiệu hoá bởi một quản trị viên hệ thống.",
 	"external_image_whitelist": " #Hãy để yên dòng này<pre>\n#Hãy đặt các mẩu biểu thức chính quy (chỉ gồm phần ở giữa //) vào phía dưới\n#Những mẩu này sẽ được so trùng với địa chỉ URL của hình ảnh được nhúng trực tiếp từ bên ngoài\n#Những địa chỉ nào trùng sẽ hiển thị thành hình ảnh, nếu không thì chỉ hiển thị liên kết đến hình\n#Những dòng bắt đầu bằng # được xem là chú thích\n#Không phân biệt chữ hoa chữ thường\n\n#Hãy đặt các mẩu biểu thức chính quy ở phía trên dòng này. Hãy để yên dòng này</pre>",
 	"tags": "Thẻ đánh dấu thay đổi hợp lệ",
 	"tag-filter": "Bộ lọc [[Special:Tags|thẻ]]:",

@@ -3288,6 +3288,7 @@
 	"specialpages-group-developer": "Entwicklerwerkzeuge",
 	"blankpage": "Leere Seite",
 	"intentionallyblankpage": "Diese Seite enthält absichtlich keinen Inhalt.",
+	"disabledspecialpage-disabled": "Diese Seite wurde durch einen Systemadministrator deaktiviert.",
 	"external_image_whitelist": " #Diese Zeile nicht verändern.<pre>\n#Untenstehend können Fragmente regulärer Ausdrücke (der Teil zwischen den //) eingegeben werden.\n#Diese werden mit den URLs von Bildern aus externen Quellen verglichen.\n#Ein positiver Vergleich führt zur Anzeige des Bildes, andernfalls wird das Bild nur als Link angezeigt.\n#Zeilen, die mit einem # beginnen, werden als Kommentar behandelt.\n#Es wird nicht zwischen Groß- und Kleinschreibung unterschieden.\n\n#Fragmente regulärer Ausdrücke nach dieser Zeile eintragen. Diese Zeile nicht verändern.</pre>",
 	"tags": "Änderungsmarkierungen",
 	"tag-filter": "[[Special:Tags|Markierungs]]-Filter:",
