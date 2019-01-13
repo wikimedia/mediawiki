@@ -1113,7 +1113,7 @@
 [submodule "extensions/UserMerge"]
         path = extensions/UserMerge
         url = https://github.com/wikimedia/mediawiki-extensions-UserMerge.git
-        branch = master
+        branch = REL1_32
         ignore = dirty
 [submodule "extensions/MobileDetect"]
         path = extensions/MobileDetect
