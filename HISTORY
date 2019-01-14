@@ -9294,6 +9294,141 @@ Other significant changes to MediaWiki's language support:
 
 == MediaWiki 1.16 ==
 
+== MediaWiki 1.16.5 ==
+=== Changes since 1.16.4 ===
+
+* (bug 28534) Fixed XSS vulnerability for IE 6 clients. This is the third
+  attempt at fixing bug 28235.
+* (bug 28639) Fixed potential privilege escalation when $wgBlockDisablesLogin
+  is enabled.
+
+== MediaWiki 1.16.4 ==
+=== Changes since 1.16.3 ===
+
+* (bug 28507) The change we made in 1.16.3 to fix bug 28235 (XSS for IE 6
+  clients) was not actually sufficient to fix that bug. This release contains
+  a second attempt, hopefully we have fixed it this time.
+
+== MediaWiki 1.16.3 ==
+=== Changes since 1.16.2 ===
+
+* (bug 28449) Fixed permissions checks in Special:Import which allowed users
+  without the 'import' permission to import pages from the configured import
+  sources.
+* (bug 28235) Fixed XSS affecting IE 6 and earlier clients only, due to those
+  browsers looking for a file extension in the query string of the URL, and
+  ignoring the Content-Type header if one is found.
+* (bug 28450) Fixed a CSS validation issue involving escaped comments, which
+  led to XSS for Internet Explorer clients and privacy loss for other clients.
+
+== MediaWiki 1.16.2 ==
+=== Changes since 1.16.1 ===
+
+* (bug 26642) Fixed incorrect translated namespace due to a regression in the
+  language converter.
+* The interface translations were updated.
+* (bug 27093, CVE-2011-0047): Fixed CSS injection vulnerability.
+* (bug 27094) Fixed server-side arbitrary script inclusion vulnerability.
+  Affects Windows servers only. A malicious file with extension ".php" must
+  exist on the server for the exploit to be effective.
+
+== MediaWiki 1.16.1 ==
+=== Changes since 1.16.0 ===
+
+* (bug 24981) Allow extensions to access SpecialUpload variables again
+* (bug 24724) list=allusers was out by 1 (shows total users - 1)
+* (bug 24166) Fixed API error when using rvprop=tags
+* For wikis using French as a content language, Special:Téléchargement works
+  again as an alias for Special:Upload.
+* (bug 25167) Correctly load JS fixes for IE6 (fixing a regression in 1.16.0)
+* (bug 25248) Fixed paraminfo errors in certain API modules.
+* The installer now has improved handling for situations where safe_mode is
+  active or exec() and similar functions are disabled.
+* (bug 19593) Specifying --server in now works for all maintenance scripts.
+* Fixed $wgLicenseTerms register globals.
+* (bug 26561) Fixed clickjacking vulnerabilities by introducing support for
+  X-Frame-Options. The header value can be configured using $wgBreakFrames and
+  $wgEditPageFrameOptions.
+
+== MediaWiki 1.16.0 ==
+=== Changes since 1.16 beta 3 ===
+
+* (bug 23769) Disabled HTML 5 client-side form validation. Was introduced in
+  1.16 beta 1, but is currently poorly supported by browsers.
+* (bug 23175) Re-added window.ta variable for backwards compatibility.
+* (bug 23264) Fixed breakage of various command line scripts due to extra line
+  endings being inserted by Maintenance::output().
+* Fixed HTTP client functionality with safe_mode=On.
+* Fixed parser tests broken in 1.16 beta 3.
+* For Oracle DB backend: fixed parser tests and table prefix feature.
+* (bug 23767) Fixed PHP warning when REQUEST_URI is blank (IIS issue).
+* Fixed plural function for Northern Sami (se)
+* (bug 23597) Fixed conflicts between ID attributes in the Vector skin and
+  parser-generated heading IDs. Renamed head, panel, head-base and page-base.
+* Disabled $wgHitcounterUpdateFreq>1 feature on SQLite, does not work yet.
+* (bug 23465) Don't ignore the predefined destination filename on
+  Special:Upload after following a red link to a file.
+* In SQLite full-text search feature: fixed "move page" feature, was non-
+  functional.
+* (bug 24565) Fixed Cache-Control headers sent from API modules, to protect
+  user privacy in the case where an attacker can access the wiki through the
+  same HTTP proxy as a logged-in user.
+* Fixed an XSS vulnerability in profileinfo.php for installations with
+  $wgEnableProfileInfo = true (false by default)
+* Fixed a case where an X-Vary-Options header was sent despite $wgUseXVO being
+  false. Fixed a minor header parsing issue when $wgUseXVO = true.
+* Fixed a register_globals arbitrary inclusion vulnerability in
+  MediaWikiParserTest.php, introduced in 1.16 beta 1.
+
+=== Changes since 1.16 beta 2 ===
+
+* Fixed bugs in the [[Special:Userlogin]] and [[Special:Emailuser]] handling of
+  invalid usernames.
+* Fixed sorting in [[Special:Allmessages]]
+* (bug 23113) Fixed title in the show/hide links on diff pages
+* (bug 23117) Fixed API rollback, was returning "badtoken" for valid requests
+* (bug 23127) Re-added missing $1 parameter to the uploadtext message
+* Fixed a bug in the Vector skin where personal tools display behind the logo
+* (bug 23139) Fixed a bug in edit conflict resolution, where both textboxes
+  showed the same text.
+* (bug 23115, bug 23124) Fixed various problems with <title> and <h1> elements
+  in page views and previews when the language converter is enabled.
+* (bug 23148) Fixed a local path disclosure vulnerability in ImageMagick image
+  scaling, which was introduced in 1.16 beta 1.
+* Improved error checking on installer.
+* (bug 22970) Fixed a JavaScript error in the upload destination conflict
+  check.
+* (bug 23167) Check the watch checkbox by default if the watchcreations
+  preference is set.
+* (bug 23171) Improve IE6 version check to avoid false positives.
+* (bug 23176) Fixed upload warning override feature "upload new version",
+  broken in 1.16 beta 1.
+* Fixed regression in unwatch links sent out in notification emails. When the
+  mailing job was deferred via the job queue, the title was incorrect.
+* (bug 23534) Fixed SQL query error in API list=allusers.
+* Fixed a bug in uploads for non-JavaScript clients. An empty string was used
+  as the default destination filename, instead of the source filename as
+  expected.
+* (bug 23371) Fixed CSRF vulnerability in "e-mail me my password", "create
+  account" and "create by e-mail" features of [[Special:Userlogin]]
+* (bug 23687) Fixed XSS vulnerability affecting IE clients only, due to a CSS
+  validation issue.
+* Fixed a DoS vulnerability in ImageMagick image scaling. ImageMagick
+  expanded wildcard characters "?" and "*" in image filenames, potentially
+  causing large numbers of images to be scaled in response to a single request.
+  The fix for this involves breaking the scaling of such image filenames until
+  ImageMagick 6.6.1-5 or later is deployed, see bug 23361 for more details.
+* (bug 23608) Fixed invalid HTML in diff pages.
+
+=== Changes since 1.16 beta 1 ===
+
+* Fixed errors in maintenance/patchSql.php
+* (bug 19627) Fix regression from r57867 where HTMLForm would output
+  <element classes="foo bar"> rather than <element class="foo bar">
+* Fixed broken "-r" option to maintenance/lag.php
+* (bug 23076) Fixed login CSRF vulnerability. Logins now require a token to
+  be submitted along with the user name and password.
+
 === Configuration changes in 1.16 ===
 
 * (bug 18222) $wgMinimalPasswordLength default is now 1
@@ -10168,6 +10303,77 @@ changes to languages because of Bugzilla reports.
 
 == MediaWiki 1.15 ==
 
+== MediaWiki 1.15.5 ==
+=== Changes since 1.15.4 ===
+
+* (bug 24565) Fixed Cache-Control headers sent from API modules, to protect
+  user privacy in the case where an attacker can access the wiki through the
+  same HTTP proxy as a logged-in user.
+* Fixed a minor cookie header parsing issue causing incorrect Cache-Control
+  headers to be sent.
+* Fixed an XSS vulnerability in profileinfo.php for installations with
+  $wgEnableProfileInfo = true (false by default)
+* For backwards compatibility with extensions from 1.14.x or before, restored
+  the original function ApiMain::requestWriteMode().
+* In API login "need token" responses, added the cookieprefix and sessionid
+  fields, as in MediaWiki 1.16.x. This is an improvement to the CSRF fix
+  introduced in 1.15.3.
+
+== MediaWiki 1.15.4 ==
+=== Changes since 1.15.3 ===
+
+* (bug 23534) Fixed SQL query error in API list=allusers.
+* (bug 23371) Fixed CSRF vulnerability in "e-mail me my password", "create
+  account" and "create by e-mail" features of [[Special:Userlogin]]
+* (bug 23687) Fixed XSS vulnerability affecting IE clients only, due to a CSS
+  validation issue.
+
+== MediaWiki 1.15.3 ==
+=== Changes since 1.15.2 ===
+
+* (bug 22828) Fixed deletion on SQLite.
+* (bug 23076) Fixed login CSRF vulnerability. Logins now require a token to
+  be submitted along with the user name and password.
+
+== MediaWiki 1.15.2 ==
+=== Changes since 1.15.1 ===
+
+* The installer now includes a check for a data corruption issue with certain
+  versions of libxml2 2.7 and PHP earlier than 5.2.9, and also for a PHP bug
+  present in the official release of PHP 5.3.1.
+* (bug 20239) MediaWiki:Imagemaxsize does not contain anymore a <br /> tag which
+  was displayed to the user
+* (bug 21150) SQLite no longer raise an error when deleting files
+* (bug 20880) Fixed updater failure on SQLite backend
+* upgrade1_5.php now requires to be run --update option to prevent confusion
+* Fixed a CSS validation issue which allowed external images to be included
+  into wikis where that is disallowed by configuration.
+* Fixed a data leakage vulnerability for private wikis using img_auth.php or
+  similar image access authentication schemes. Check user permissions before
+  streaming out scaled images from thumb.php.
+
+== MediaWiki 1.15.1 ==
+=== Changes since 1.15.0 ===
+* Fixed fatal errors for unusual file repository configurations, such as
+  ForeignAPIRepo.
+* Fixed the "change password" link on Special:Preferences to have the correct
+  returnto parameter.
+* (bug 19693) Fixed cross-site scripting vulnerability in Special:Block
+
+== MediaWiki 1.15.0 ==
+=== Changes since 1.15.0rc1 ===
+
+* Removed category redirect feature, implementation was incomplete.
+* (bug 18846) Remove update_password_format(), unnecessary, destroys all
+  passwords if a wiki with $wgPasswordSalt=false is upgraded with the web
+  installer.
+* (bug 19127) Documentation warning for PostgreSQL users who run update.php:
+  use the same user in AdminSettings.php as in LocalSettings.php.
+* Fixed possible web invocation of some maintenance scripts, due to the use of
+  include() instead of require(). A full exploit would require a very strange
+  web server configuration.
+* Localisation updates.
+
 === Configuration changes in 1.15 ===
 
 * Added $wgNewPasswordExpiry, to specify an expiry time (in seconds) to
@@ -10528,6 +10734,27 @@ changes to languages because of Bugzilla reports.
 * Traditional/Simplified Gan Chinese conversion support
 
 == MediaWiki 1.14 ==
+
+== MediaWiki 1.14.1 ==
+=== Changes since 1.14.0 ===
+
+* (bug 17737) Fixed russian URLs for Special:BookSources
+* (bug 17713) Using links with only an anchor no longer add an dummy entry in
+  the pagelinks table
+* (bug 17897) Fixed string offset error in <pre> tags
+* (bug 17832) Fixed action=delete returning 'unknownerror' instead of
+  'permissiondenied' when the user is blocked
+* Fixed performance regression when accessing deleted (archived) files
+* (bug 19693) Fixed cross-site scripting vulnerability in Special:Block
+
+== MediaWiki 1.14.0 ==
+=== Changes since 1.14.0rc1 ===
+
+* Fixed the performance of the backlinks API module
+* (bug 17420) Send the correct content type from action=raw when the HTML file
+  cache is enabled.
+* (bug 17437) Fixed incorrect link to web-based installer
+* (bug 17527) Fixed missing MySQL-specific options in installer
 
 === Configuration changes in 1.14 ===
 
