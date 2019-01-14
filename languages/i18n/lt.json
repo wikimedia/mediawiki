@@ -2522,7 +2522,7 @@
 	"delete_and_move_text": "Paskirties puslapis „[[:$1]]“ jau yra. Ar norite jį ištrinti, kad galėtumėte pervardinti?",
 	"delete_and_move_confirm": "Taip, trinti puslapį",
 	"delete_and_move_reason": "Ištrinta dėl perkėlimo iš \"[[$1]]\"",
-	"selfmove": " Pavadinimai yra tokie patys; negalima pervardyti puslapio į save.",
+	"selfmove": "Pavadinimai yra tokie patys; negalima pervardyti puslapio į save.",
 	"immobile-source-namespace": "Negalima perkelti puslapių vardų srityje „$1“",
 	"immobile-target-namespace": "Perkelti puslapius į „$1“ vardų sritį negalima",
 	"immobile-target-namespace-iw": "Tarprojektinė nuoroda yra neleistina paskirtis perkelti puslapį.",
