@@ -2621,7 +2621,7 @@
 	"delete_and_move_text": "Le pagina de destination \"[[:$1]]\" jam existe.\nVole tu deler lo pro permitter iste renomination?",
 	"delete_and_move_confirm": "Si, deler le pagina",
 	"delete_and_move_reason": "Delite pro permitter le renomination de \"[[$1]]\"",
-	"selfmove": " Le titulo es identic;\nnon pote renominar un pagina al mesme titulo.",
+	"selfmove": "Le titulo es identic;\nnon pote renominar un pagina al mesme titulo.",
 	"immobile-source-namespace": "Non pote renominar paginas in le spatio de nomines \"$1\"",
 	"immobile-target-namespace": "Non pote renominar paginas verso le spatio de nomines \"$1\"",
 	"immobile-target-namespace-iw": "Un ligamine interwiki non es un destination valide pro le renomination de un pagina.",
