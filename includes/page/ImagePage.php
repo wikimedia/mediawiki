@@ -1091,8 +1091,8 @@ EOT
 	}
 
 	/**
-	 * @param $lang string
-	 * @param $selected bool
+	 * @param string $lang
+	 * @param bool $selected
 	 * @return string
 	 */
 	private function createXmlOptionStringForLanguage( $lang, $selected ) {

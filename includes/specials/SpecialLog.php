@@ -179,7 +179,7 @@ class SpecialLog extends SpecialPage {
 	 * - Otherwise, assume the whole subpage is a username.
 	 *
 	 * @param FormOptions $opts
-	 * @param $par
+	 * @param string $par
 	 * @throws ConfigException
 	 */
 	private function parseParams( FormOptions $opts, $par ) {
