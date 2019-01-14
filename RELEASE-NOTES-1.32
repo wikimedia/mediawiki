@@ -309,6 +309,8 @@ because of Phabricator reports.
 * (T198132) Added language support for Manipuri (mni).
 * (T201276) Added language support for Western Armenian (hyw).
 * (T201583) Added language support for Mon (mnw).
+* (T213717) Fixed a translation error on Goan Konkani (gom-deva) translations
+  for NS_TEMPLATE.
 
 === Breaking changes in 1.32 ===
 * $wgRequestTime, deprecated in 1.25, was removed. Use
