@@ -499,6 +499,7 @@ mw.loader.register( [
 			] ]
 		];
 	}
+
 	/**
 	 * @covers ResourceLoaderStartUpModule::getModuleRegistrations
 	 * @dataProvider provideRegistrations

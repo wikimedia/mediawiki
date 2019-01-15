@@ -364,6 +364,7 @@ class XmlTypeCheck {
 			$this->filterMatchType = $callbackReturn;
 		}
 	}
+
 	/**
 	 * Handle coming across a <!DOCTYPE declaration.
 	 *

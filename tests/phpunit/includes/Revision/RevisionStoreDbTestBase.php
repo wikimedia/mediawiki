@@ -102,6 +102,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->testPageTitle = Title::newFromText( 'UTPage-' . __CLASS__ );
 		return $this->testPageTitle;
 	}
+
 	/**
 	 * @return WikiPage
 	 */

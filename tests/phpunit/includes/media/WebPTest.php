@@ -9,10 +9,12 @@ class WebPHandlerTest extends MediaWikiTestCase {
 		// Allocated file for testing
 		$this->tempFileName = tempnam( wfTempDir(), 'WEBP' );
 	}
+
 	public function tearDown() {
 		parent::tearDown();
 		unlink( $this->tempFileName );
 	}
+
 	/**
 	 * @dataProvider provideTestExtractMetaData
 	 */
@@ -22,6 +24,7 @@ class WebPHandlerTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $expectedResult, WebPHandler::extractMetadata( $this->tempFileName ) );
 	}
+
 	public function provideTestExtractMetaData() {
 		// phpcs:disable Generic.Files.LineLength
 		return [
@@ -80,6 +83,7 @@ class WebPHandlerTest extends MediaWikiTestCase {
 	public function testWithFileExtractMetaData( $filename, $expectedResult ) {
 		$this->assertEquals( $expectedResult, WebPHandler::extractMetadata( $filename ) );
 	}
+
 	public function provideTestWithFileExtractMetaData() {
 		return [
 			[ __DIR__ . '/../../data/media/2_webp_ll.webp',
@@ -108,6 +112,7 @@ class WebPHandlerTest extends MediaWikiTestCase {
 		$handler = new WebPHandler();
 		$this->assertEquals( $expectedResult, $handler->getImageSize( null, $path ) );
 	}
+
 	public function provideTestGetImageSize() {
 		return [
 			// Public domain files from https://developers.google.com/speed/webp/gallery2
@@ -130,6 +135,7 @@ class WebPHandlerTest extends MediaWikiTestCase {
 		$mime = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 		$this->assertEquals( 'image/webp', $mime->guessMimeType( $path, false ) );
 	}
+
 	public function provideTestGetMimeType() {
 		return [
 				// Public domain files from https://developers.google.com/speed/webp/gallery2

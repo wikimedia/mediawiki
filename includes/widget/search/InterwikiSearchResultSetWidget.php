@@ -45,6 +45,7 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 		$this->output = $specialSearch->getOutput();
 		$this->showMultimedia = $showMultimedia;
 	}
+
 	/**
 	 * @param string $term User provided search term
 	 * @param SearchResultSet|SearchResultSet[] $resultSets List of interwiki
