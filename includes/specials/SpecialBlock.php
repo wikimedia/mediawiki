@@ -399,6 +399,10 @@ class SpecialBlock extends FormSpecialPage {
 					$pageRestrictions[] = $restriction->getTitle()->getPrefixedText();
 				}
 
+				if ( !$block->isSitewide() && empty( $pageRestrictions ) ) {
+					$fields['Editing']['default'] = false;
+				}
+
 				// Sort the restrictions so they are in alphabetical order.
 				sort( $pageRestrictions );
 				$fields['PageRestrictions']['default'] = implode( "\n", $pageRestrictions );
@@ -1158,6 +1162,12 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return bool|array True for success, false for didn't-try, array of errors on failure
 	 */
 	public function onSubmit( array $data, HTMLForm $form = null ) {
+		// If "Editing" checkbox is unchecked, the block must be a partial block affecting
+		// actions other than editing, and there must be no restrictions.
+		if ( isset( $data['Editing'] ) && $data['Editing'] === false ) {
+			$data['EditingRestriction'] = 'partial';
+			$data['PageRestrictions'] = [];
+		}
 		return self::processForm( $data, $form->getContext() );
 	}
 
