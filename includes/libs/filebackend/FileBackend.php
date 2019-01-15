@@ -436,6 +436,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @see FileBackend::doOperations()
 	 * @param array $ops
 	 * @param array $opts
+	 * @return StatusValue
 	 */
 	abstract protected function doOperationsInternal( array $ops, array $opts );
 
@@ -673,6 +674,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	/**
 	 * @see FileBackend::doQuickOperations()
 	 * @param array $ops
+	 * @return StatusValue
 	 * @since 1.20
 	 */
 	abstract protected function doQuickOperationsInternal( array $ops );
@@ -819,6 +821,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	/**
 	 * @see FileBackend::prepare()
 	 * @param array $params
+	 * @return StatusValue
 	 */
 	abstract protected function doPrepare( array $params );
 
@@ -850,6 +853,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	/**
 	 * @see FileBackend::secure()
 	 * @param array $params
+	 * @return StatusValue
 	 */
 	abstract protected function doSecure( array $params );
 
@@ -883,6 +887,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	/**
 	 * @see FileBackend::publish()
 	 * @param array $params
+	 * @return StatusValue
 	 */
 	abstract protected function doPublish( array $params );
 
@@ -909,6 +914,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	/**
 	 * @see FileBackend::clean()
 	 * @param array $params
+	 * @return StatusValue
 	 */
 	abstract protected function doClean( array $params );
 
