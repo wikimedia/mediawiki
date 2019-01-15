@@ -837,6 +837,7 @@ mw.example();
 			$response
 		);
 	}
+
 	/**
 	 * Verify that when building the startup module response,
 	 * an exception from one module class will not break the entire

@@ -85,6 +85,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	public function setLanguage( Language $language ) {
 		$this->language = $language;
 	}
+
 	/**
 	 * @param int $cutoff
 	 * @see $wgWikiDiff2MovedParagraphDetectionCutoff

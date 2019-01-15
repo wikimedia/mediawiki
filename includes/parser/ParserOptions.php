@@ -733,6 +733,7 @@ class ParserOptions {
 	public function getMagicPMIDLinks() {
 		return $this->getOption( 'magicPMIDLinks' );
 	}
+
 	/**
 	 * Are magic RFC links enabled?
 	 * @since 1.28

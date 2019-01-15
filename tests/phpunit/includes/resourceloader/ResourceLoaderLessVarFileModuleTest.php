@@ -31,6 +31,7 @@ class ResourceLoaderLessVarFileModuleTest extends ResourceLoaderTestCase {
 			]
 		];
 	}
+
 	/**
 	 * @dataProvider providerWrapAndEscapeMessage
 	 * @covers ResourceLoaderLessVarFileModule::wrapAndEscapeMessage

@@ -846,6 +846,7 @@ class Revision implements IDBAccessObject {
 		$user = $this->mRecord->getUser( $audience, $user );
 		return $user ? $user->getName() : '';
 	}
+
 	/**
 	 * Fetch revision comment if it's available to the specified audience.
 	 * If the specified audience does not have access to the comment, an
