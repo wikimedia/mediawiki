@@ -296,7 +296,7 @@ class ResourceLoaderImage {
 		$dom->loadXML( file_get_contents( $this->getPath( $context ) ) );
 		$root = $dom->documentElement;
 		$titleNode = null;
-		$wrapper = $dom->createElement( 'g' );
+		$wrapper = $dom->createElementNS( 'http://www.w3.org/2000/svg', 'g' );
 		// Reattach all direct children of the `<svg>` root node to the `<g>` wrapper
 		while ( $root->firstChild ) {
 			$node = $root->firstChild;
