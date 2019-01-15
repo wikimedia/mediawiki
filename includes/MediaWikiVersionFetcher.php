@@ -17,10 +17,7 @@ class MediaWikiVersionFetcher {
 	public function fetchVersion() {
 		$code = file_get_contents( __DIR__ . '/Defines.php' );
 
-		$matches = [];
-		preg_match( "/define\( 'MW_VERSION', '([^']+)'/", $code, $matches );
-
-		if ( count( $matches ) !== 2 ) {
+		if ( !preg_match( "/define\( 'MW_VERSION', '([^']+)'/", $code, $matches ) ) {
 			throw new RuntimeException( 'Could not extract the MediaWiki version from Defines.php' );
 		}
 
