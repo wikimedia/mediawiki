@@ -295,9 +295,20 @@ class ResourceLoaderImage {
 		$dom = new DOMDocument;
 		$dom->loadXML( file_get_contents( $this->getPath( $context ) ) );
 		$root = $dom->documentElement;
+		$titleNode = null;
 		$wrapper = $dom->createElement( 'g' );
+		// Reattach all direct children of the `<svg>` root node to the `<g>` wrapper
 		while ( $root->firstChild ) {
-			$wrapper->appendChild( $root->firstChild );
+			$node = $root->firstChild;
+			if ( !$titleNode && $node->nodeType === XML_ELEMENT_NODE && $node->tagName === 'title' ) {
+				// Remember the first encountered `<title>` node
+				$titleNode = $node;
+			}
+			$wrapper->appendChild( $node );
+		}
+		if ( $titleNode ) {
+			// Reattach the `<title>` node to the `<svg>` root node rather than the `<g>` wrapper
+			$root->appendChild( $titleNode );
 		}
 		$root->appendChild( $wrapper );
 		$wrapper->setAttribute( 'fill', $variantConf['color'] );
