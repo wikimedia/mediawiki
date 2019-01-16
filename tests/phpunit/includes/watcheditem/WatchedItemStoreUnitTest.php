@@ -120,6 +120,9 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mock->expects( $this->any() )
 			->method( 'getId' )
 			->will( $this->returnValue( $id ) );
+		$mock->expects( $this->any() )
+			->method( 'getUserPage' )
+			->will( $this->returnValue( Title::makeTitle( NS_USER, 'MockUser' ) ) );
 		return $mock;
 	}
 
@@ -2628,58 +2631,45 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$user = $this->getMockNonAnonUserWithId( 1 );
 		$timestamp = '20100101010101';
 
-		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->once() )
-			->method( 'update' )
-			->with(
-				'watchlist',
-				[ 'wl_notificationtimestamp' => 'TS' . $timestamp . 'TS' ],
-				[ 'wl_user' => 1 ]
-			)
-			->will( $this->returnValue( true ) );
-		$mockDb->expects( $this->exactly( 1 ) )
-			->method( 'timestamp' )
-			->will( $this->returnCallback( function ( $value ) {
-				return 'TS' . $value . 'TS';
-			} ) );
-
 		$store = $this->newWatchedItemStore(
-			$this->getMockLBFactory( $mockDb ),
+			$this->getMockLBFactory( $this->getMockDb() ),
 			$this->getMockJobQueueGroup(),
 			$this->getMockCache(),
 			$this->getMockReadOnlyMode()
 		);
 
+		// Note: This does not actually assert the job is correct
+		$callableCallCounter = 0;
+		$mockCallback = function ( $callable ) use ( &$callableCallCounter ) {
+			$callableCallCounter++;
+			$this->assertInternalType( 'callable', $callable );
+		};
+		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );
+
 		$this->assertTrue(
 			$store->setNotificationTimestampsForUser( $user, $timestamp )
 		);
+		$this->assertEquals( 1, $callableCallCounter );
 	}
 
 	public function testSetNotificationTimestampsForUser_nullTimestamp() {
 		$user = $this->getMockNonAnonUserWithId( 1 );
 		$timestamp = null;
 
-		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->once() )
-			->method( 'update' )
-			->with(
-				'watchlist',
-				[ 'wl_notificationtimestamp' => null ],
-				[ 'wl_user' => 1 ]
-			)
-			->will( $this->returnValue( true ) );
-		$mockDb->expects( $this->exactly( 0 ) )
-			->method( 'timestamp' )
-			->will( $this->returnCallback( function ( $value ) {
-				return 'TS' . $value . 'TS';
-			} ) );
-
 		$store = $this->newWatchedItemStore(
-			$this->getMockLBFactory( $mockDb ),
+			$this->getMockLBFactory( $this->getMockDb() ),
 			$this->getMockJobQueueGroup(),
 			$this->getMockCache(),
 			$this->getMockReadOnlyMode()
 		);
+
+		// Note: This does not actually assert the job is correct
+		$callableCallCounter = 0;
+		$mockCallback = function ( $callable ) use ( &$callableCallCounter ) {
+			$callableCallCounter++;
+			$this->assertInternalType( 'callable', $callable );
+		};
+		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );
 
 		$this->assertTrue(
 			$store->setNotificationTimestampsForUser( $user, $timestamp )
@@ -2697,7 +2687,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->with(
 				'watchlist',
 				[ 'wl_notificationtimestamp' => 'TS' . $timestamp . 'TS' ],
-				[ 'wl_user' => 1, 0 => 'makeWhereFrom2d return value' ]
+				[ 'wl_user' => 1, 'wl_namespace' => 0, 'wl_title' => [ 'Foo', 'Bar' ] ]
 			)
 			->will( $this->returnValue( true ) );
 		$mockDb->expects( $this->exactly( 1 ) )
@@ -2706,13 +2696,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				return 'TS' . $value . 'TS';
 			} ) );
 		$mockDb->expects( $this->once() )
-			->method( 'makeWhereFrom2d' )
-			->with(
-				[ [ 'Foo' => 1, 'Bar' => 1 ] ],
-				$this->isType( 'string' ),
-				$this->isType( 'string' )
-			)
-			->will( $this->returnValue( 'makeWhereFrom2d return value' ) );
+			->method( 'affectedRows' )
+			->will( $this->returnValue( 2 ) );
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLBFactory( $mockDb ),

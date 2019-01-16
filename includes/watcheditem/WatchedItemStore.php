@@ -211,6 +211,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				}
 			}
 		}
+
+		$pageSeenKey = $this->getPageSeenTimestampsKey( $user );
+		$this->latestUpdateCache->delete( $pageSeenKey );
+		$this->stash->delete( $pageSeenKey );
 	}
 
 	/**
@@ -805,36 +809,64 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
+	 * Set the "last viewed" timestamps for certain titles on a user's watchlist.
+	 *
+	 * If the $targets parameter is omitted or set to [], this method simply wraps
+	 * resetAllNotificationTimestampsForUser(), and in that case you should instead call that method
+	 * directly; support for omitting $targets is for backwards compatibility.
+	 *
+	 * If $targets is omitted or set to [], timestamps will be updated for every title on the user's
+	 * watchlist, and this will be done through a DeferredUpdate. If $targets is a non-empty array,
+	 * only the specified titles will be updated, and this will be done immediately (not deferred).
+	 *
 	 * @since 1.27
 	 * @param User $user
-	 * @param string|int $timestamp
-	 * @param LinkTarget[] $targets
+	 * @param string|int $timestamp Value to set the "last viewed" timestamp to (null to clear)
+	 * @param LinkTarget[] $targets Titles to set the timestamp for; [] means the entire watchlist
 	 * @return bool
 	 */
 	public function setNotificationTimestampsForUser( User $user, $timestamp, array $targets = [] ) {
 		// Only loggedin user can have a watchlist
-		if ( $user->isAnon() ) {
+		if ( $user->isAnon() || $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
 
-		$dbw = $this->getConnectionRef( DB_MASTER );
-
-		$conds = [ 'wl_user' => $user->getId() ];
-		if ( $targets ) {
-			$batch = new LinkBatch( $targets );
-			$conds[] = $batch->constructSet( 'wl', $dbw );
+		if ( !$targets ) {
+			// Backwards compatibility
+			$this->resetAllNotificationTimestampsForUser( $user, $timestamp );
+			return true;
 		}
 
+		$rows = $this->getTitleDbKeysGroupedByNamespace( $targets );
+
+		$dbw = $this->getConnectionRef( DB_MASTER );
 		if ( $timestamp !== null ) {
 			$timestamp = $dbw->timestamp( $timestamp );
 		}
+		$ticket = $this->lbFactory->getEmptyTransactionTicket( __METHOD__ );
+		$affectedSinceWait = 0;
 
-		$dbw->update(
-			'watchlist',
-			[ 'wl_notificationtimestamp' => $timestamp ],
-			$conds,
-			__METHOD__
-		);
+		// Batch update items per namespace
+		foreach ( $rows as $namespace => $namespaceTitles ) {
+			$rowBatches = array_chunk( $namespaceTitles, $this->updateRowsPerQuery );
+			foreach ( $rowBatches as $toUpdate ) {
+				$dbw->update(
+					'watchlist',
+					[ 'wl_notificationtimestamp' => $timestamp ],
+					[
+						'wl_user' => $user->getId(),
+						'wl_namespace' => $namespace,
+						'wl_title' => $toUpdate
+					]
+				);
+				$affectedSinceWait += $dbw->affectedRows();
+				// Wait for replication every time we've touched updateRowsPerQuery rows
+				if ( $affectedSinceWait >= $this->updateRowsPerQuery ) {
+					$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+					$affectedSinceWait = 0;
+				}
+			}
+		}
 
 		$this->uncacheUser( $user );
 
@@ -859,7 +891,13 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		return $timestamp;
 	}
 
-	public function resetAllNotificationTimestampsForUser( User $user ) {
+	/**
+	 * Schedule a DeferredUpdate that sets all of the "last viewed" timestamps for a given user
+	 * to the same value.
+	 * @param User $user
+	 * @param string|int|null $timestamp Value to set all timestamps to, null to clear them
+	 */
+	public function resetAllNotificationTimestampsForUser( User $user, $timestamp = null ) {
 		// Only loggedin user can have a watchlist
 		if ( $user->isAnon() ) {
 			return;
@@ -868,7 +906,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		// If the page is watched by the user (or may be watched), update the timestamp
 		$job = new ClearWatchlistNotificationsJob(
 			$user->getUserPage(),
-			[ 'userId'  => $user->getId(), 'casTime' => time() ]
+			[ 'userId'  => $user->getId(), 'timestamp' => $timestamp, 'casTime' => time() ]
 		);
 
 		// Try to run this post-send
@@ -1191,7 +1229,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
-	 * @param TitleValue[] $titles
+	 * @param LinkTarget[] $titles
 	 * @return array
 	 */
 	private function getTitleDbKeysGroupedByNamespace( array $titles ) {

@@ -108,14 +108,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		$result = [];
 		if ( $params['entirewatchlist'] ) {
 			// Entire watchlist mode: Just update the thing and return a success indicator
-			if ( is_null( $timestamp ) ) {
-				$watchedItemStore->resetAllNotificationTimestampsForUser( $user );
-			} else {
-				$watchedItemStore->setNotificationTimestampsForUser(
-					$user,
-					$timestamp
-				);
-			}
+			$watchedItemStore->resetAllNotificationTimestampsForUser( $user, $timestamp );
 
 			$result['notificationtimestamp'] = is_null( $timestamp )
 				? ''
