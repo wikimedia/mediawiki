@@ -519,7 +519,7 @@ abstract class Skin extends ContextSource {
 		$out = $this->getOutput();
 		$allCats = $out->getCategoryLinks();
 
-		if ( !count( $allCats ) ) {
+		if ( $allCats === [] ) {
 			return '';
 		}
 

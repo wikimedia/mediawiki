@@ -408,7 +408,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @return array (reader index, lagged replica mode) or false on failure
 	 */
 	private function pickReaderIndex( array $loads, $domain = false ) {
-		if ( !count( $loads ) ) {
+		if ( $loads === [] ) {
 			throw new InvalidArgumentException( "Empty server array given to LoadBalancer" );
 		}
 
@@ -476,7 +476,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		// If all servers were down, quit now
-		if ( !count( $currentLoads ) ) {
+		if ( $currentLoads === [] ) {
 			$this->connLogger->error( __METHOD__ . ": all servers down" );
 		}
 

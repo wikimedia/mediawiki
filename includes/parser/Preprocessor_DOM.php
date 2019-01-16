@@ -878,7 +878,7 @@ class PPDStack {
 	}
 
 	public function pop() {
-		if ( !count( $this->stack ) ) {
+		if ( $this->stack === [] ) {
 			throw new MWException( __METHOD__ . ': no elements remaining' );
 		}
 		$temp = array_pop( $this->stack );
@@ -902,7 +902,7 @@ class PPDStack {
 	 * @return array
 	 */
 	public function getFlags() {
-		if ( !count( $this->stack ) ) {
+		if ( $this->stack === [] ) {
 			return [
 				'findEquals' => false,
 				'findPipe' => false,

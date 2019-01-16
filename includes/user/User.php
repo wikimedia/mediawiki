@@ -1579,7 +1579,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 		if ( is_array( $data ) ) {
 			if ( isset( $data['user_groups'] ) && is_array( $data['user_groups'] ) ) {
-				if ( !count( $data['user_groups'] ) ) {
+				if ( $data['user_groups'] === [] ) {
 					$this->mGroupMemberships = [];
 				} else {
 					$firstGroup = reset( $data['user_groups'] );
@@ -1645,7 +1645,7 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		$toPromote = Autopromote::getAutopromoteOnceGroups( $this, $event );
-		if ( !count( $toPromote ) ) {
+		if ( $toPromote === [] ) {
 			return [];
 		}
 

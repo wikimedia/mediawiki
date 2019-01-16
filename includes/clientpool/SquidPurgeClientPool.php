@@ -59,7 +59,7 @@ class SquidPurgeClientPool {
 					$writeSockets["$clientIndex/$i"] = $socket;
 				}
 			}
-			if ( !count( $readSockets ) && !count( $writeSockets ) ) {
+			if ( $readSockets === [] && $writeSockets === [] ) {
 				break;
 			}
 

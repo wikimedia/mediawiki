@@ -64,7 +64,7 @@ class ApiQueryContributors extends ApiQueryBase {
 				return $v >= $cont_page;
 			} );
 		}
-		if ( !count( $pages ) ) {
+		if ( $pages === [] ) {
 			// Nothing to do
 			return;
 		}

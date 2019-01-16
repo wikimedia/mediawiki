@@ -94,7 +94,7 @@ class SpecialTrackingCategories extends SpecialPage {
 			}
 
 			# Extra message, when no category was found
-			if ( !count( $allMsgs ) ) {
+			if ( $allMsgs === [] ) {
 				$allMsgs[] = $this->msg( 'trackingcategories-disabled' )->parse();
 			}
 

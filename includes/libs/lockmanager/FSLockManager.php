@@ -169,7 +169,7 @@ class FSLockManager extends LockManager {
 			if ( $this->locksHeld[$path][$type] <= 0 ) {
 				unset( $this->locksHeld[$path][$type] );
 			}
-			if ( !count( $this->locksHeld[$path] ) ) {
+			if ( $this->locksHeld[$path] === [] ) {
 				unset( $this->locksHeld[$path] ); // no locks on this path
 				if ( isset( $this->handles[$path] ) ) {
 					$handlesToClose[] = $this->handles[$path];

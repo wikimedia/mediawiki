@@ -709,7 +709,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$categories = array_map( 'trim', explode( '|', $opts['categories'] ) );
 
-		if ( !count( $categories ) ) {
+		if ( $categories === [] ) {
 			return;
 		}
 
@@ -744,7 +744,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 
 		# Shortcut?
-		if ( !count( $articles ) || !count( $cats ) ) {
+		if ( $articles === [] || $cats === [] ) {
 			return;
 		}
 

@@ -55,7 +55,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 		$pages = MediaWikiServices::getInstance()->getSpecialPageFactory()->
 			getUsablePages( $this->getUser() );
 
-		if ( !count( $pages ) ) {
+		if ( $pages === [] ) {
 			# Yeah, that was pointless. Thanks for coming.
 			return false;
 		}

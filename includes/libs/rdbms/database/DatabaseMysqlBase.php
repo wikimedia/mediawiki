@@ -1337,7 +1337,7 @@ abstract class DatabaseMysqlBase extends Database {
 	public function upsert( $table, array $rows, array $uniqueIndexes,
 		array $set, $fname = __METHOD__
 	) {
-		if ( !count( $rows ) ) {
+		if ( $rows === [] ) {
 			return true; // nothing to do
 		}
 

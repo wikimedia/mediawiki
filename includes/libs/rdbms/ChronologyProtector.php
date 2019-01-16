@@ -202,7 +202,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 			);
 		}
 
-		if ( !count( $this->shutdownPositions ) ) {
+		if ( $this->shutdownPositions === [] ) {
 			return []; // nothing to save
 		}
 

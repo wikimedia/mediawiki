@@ -323,7 +323,7 @@ abstract class JobQueue {
 	final public function batchPush( array $jobs, $flags = 0 ) {
 		$this->assertNotReadOnly();
 
-		if ( !count( $jobs ) ) {
+		if ( $jobs === [] ) {
 			return; // nothing to do
 		}
 

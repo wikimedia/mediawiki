@@ -143,7 +143,7 @@ class JobQueueGroup {
 		}
 
 		$jobs = is_array( $jobs ) ? $jobs : [ $jobs ];
-		if ( !count( $jobs ) ) {
+		if ( $jobs === [] ) {
 			return;
 		}
 

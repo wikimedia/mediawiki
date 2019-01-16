@@ -94,7 +94,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 
 			// no group with the given right(s) exists, no need for a query
-			if ( !count( $groups ) ) {
+			if ( $groups === [] ) {
 				$this->getResult()->addIndexedTagName( [ 'query', $this->getModuleName() ], '' );
 
 				return;
