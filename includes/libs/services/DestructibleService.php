@@ -1,5 +1,5 @@
 <?php
-namespace MediaWiki\Services;
+namespace Wikimedia\Services;
 
 /**
  * Interface for destructible services.
@@ -43,3 +43,9 @@ interface DestructibleService {
 	public function destroy();
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.33
+ */
+class_alias( DestructibleService::class, 'MediaWiki\Services\DestructibleService' );

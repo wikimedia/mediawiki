@@ -1,12 +1,11 @@
 <?php
-namespace MediaWiki\Services;
+namespace Wikimedia\Services;
 
 use Exception;
 use RuntimeException;
 
 /**
- * Exception thrown when a service was already defined, but the
- * caller expected it to not exist.
+ * Exception thrown when trying to access a service on a disabled container or factory.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,17 +28,21 @@ use RuntimeException;
  */
 
 /**
- * Exception thrown when a service was already defined, but the
- * caller expected it to not exist.
+ * Exception thrown when trying to access a service on a disabled container or factory.
  */
-class ServiceAlreadyDefinedException extends RuntimeException {
+class ContainerDisabledException extends RuntimeException {
 
 	/**
-	 * @param string $serviceName
 	 * @param Exception|null $previous
 	 */
-	public function __construct( $serviceName, Exception $previous = null ) {
-		parent::__construct( "Service already defined: $serviceName", 0, $previous );
+	public function __construct( Exception $previous = null ) {
+		parent::__construct( 'Container disabled!', 0, $previous );
 	}
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.33
+ */
+class_alias( ContainerDisabledException::class, 'MediaWiki\Services\ContainerDisabledException' );

@@ -1,11 +1,12 @@
 <?php
-namespace MediaWiki\Services;
+namespace Wikimedia\Services;
 
 use Exception;
 use RuntimeException;
 
 /**
- * Exception thrown when the requested service is not known.
+ * Exception thrown when a service was already defined, but the
+ * caller expected it to not exist.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,16 +29,24 @@ use RuntimeException;
  */
 
 /**
- * Exception thrown when the requested service is not known.
+ * Exception thrown when a service was already defined, but the
+ * caller expected it to not exist.
  */
-class NoSuchServiceException extends RuntimeException {
+class ServiceAlreadyDefinedException extends RuntimeException {
 
 	/**
 	 * @param string $serviceName
 	 * @param Exception|null $previous
 	 */
 	public function __construct( $serviceName, Exception $previous = null ) {
-		parent::__construct( "No such service: $serviceName", 0, $previous );
+		parent::__construct( "Service already defined: $serviceName", 0, $previous );
 	}
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.33
+ */
+class_alias( ServiceAlreadyDefinedException::class,
+	'MediaWiki\Services\ServiceAlreadyDefinedException' );

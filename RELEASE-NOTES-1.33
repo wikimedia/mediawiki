@@ -201,6 +201,8 @@ because of Phabricator reports.
   Title::getUserPermissionsErrors() and Title::userCan(). Previously, the method
   was only called in Action::checkCanExecute(). Actions should ensure that their
   requiresUnblock() returns the proper result (the default is `true`).
+* (T211608) The MediaWiki\Services namespace has been renamed to
+  Wikimedia\Services. The old name is still supported, but deprecated.
 * …
 
 === Other changes in 1.33 ===

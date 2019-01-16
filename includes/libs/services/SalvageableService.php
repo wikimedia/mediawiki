@@ -1,5 +1,5 @@
 <?php
-namespace MediaWiki\Services;
+namespace Wikimedia\Services;
 
 /**
  * Interface for salvageable services.
@@ -56,3 +56,9 @@ interface SalvageableService {
 	public function salvage( SalvageableService $other );
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.33
+ */
+class_alias( SalvageableService::class, 'MediaWiki\Services\SalvageableService' );

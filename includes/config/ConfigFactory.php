@@ -20,8 +20,8 @@
  *
  * @file
  */
-use MediaWiki\Services\SalvageableService;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Services\SalvageableService;
 
 /**
  * Factory class to create Config objects

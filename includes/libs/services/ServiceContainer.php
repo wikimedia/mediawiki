@@ -1,5 +1,5 @@
 <?php
-namespace MediaWiki\Services;
+namespace Wikimedia\Services;
 
 use InvalidArgumentException;
 use RuntimeException;
@@ -86,7 +86,7 @@ class ServiceContainer implements DestructibleService {
 
 	/**
 	 * Destroys all contained service instances that implement the DestructibleService
-	 * interface. This will render all services obtained from this MediaWikiServices
+	 * interface. This will render all services obtained from this ServiceContainer
 	 * instance unusable. In particular, this will disable access to the storage backend
 	 * via any of these services. Any future call to getService() will throw an exception.
 	 *
@@ -230,7 +230,7 @@ class ServiceContainer implements DestructibleService {
 	 *
 	 * @param string $name The name of the service to register, for use with getService().
 	 * @param callable $instantiator Callback that returns a service instance.
-	 *        Will be called with this MediaWikiServices instance as the only parameter.
+	 *        Will be called with this ServiceContainer instance as the only parameter.
 	 *        Any extra instantiation parameters provided to the constructor will be
 	 *        passed as subsequent parameters when invoking the instantiator.
 	 *
@@ -257,7 +257,7 @@ class ServiceContainer implements DestructibleService {
 	 *
 	 * @param string $name The name of the service to register.
 	 * @param callable $instantiator Callback function that returns a service instance.
-	 *        Will be called with this MediaWikiServices instance as the only parameter.
+	 *        Will be called with this ServiceContainer instance as the only parameter.
 	 *        The instantiator must return a service compatible with the originally defined service.
 	 *        Any extra instantiation parameters provided to the constructor will be
 	 *        passed as subsequent parameters when invoking the instantiator.
@@ -298,7 +298,7 @@ class ServiceContainer implements DestructibleService {
 	 *
 	 * @param string $name The name of the service to manipulate.
 	 * @param callable $manipulator Callback function that manipulates, wraps or replaces a
-	 * service instance. The callback receives the new service instance and this the
+	 * service instance. The callback receives the new service instance and this
 	 * ServiceContainer as parameters, as well as any extra instantiation parameters specified
 	 * when constructing this ServiceContainer. If the callback returns a value, that
 	 * value replaces the original service instance.
@@ -463,3 +463,9 @@ class ServiceContainer implements DestructibleService {
 		return isset( $this->disabled[$name] );
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.33
+ */
+class_alias( ServiceContainer::class, 'MediaWiki\Services\ServiceContainer' );
