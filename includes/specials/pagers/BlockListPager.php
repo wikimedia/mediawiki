@@ -199,7 +199,9 @@ class BlockListPager extends TablePager {
 
 				if ( !$row->ipb_sitewide && $this->restrictions ) {
 					$list = $this->getRestrictionListHTML( $this->restrictions, $row );
-					$properties[] = htmlspecialchars( $msg['blocklist-editing'] ) . $list;
+					if ( $list ) {
+						$properties[] = htmlspecialchars( $msg['blocklist-editing'] ) . $list;
+					}
 				}
 
 				if ( $row->ipb_anon_only ) {
