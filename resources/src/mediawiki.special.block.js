@@ -31,23 +31,23 @@
 				isIpRange = isIp && blocktarget.match( /\/\d+$/ ),
 				isNonEmptyIp = isIp && !isEmpty,
 				expiryValue = expiryWidget.getValue(),
-				// infinityValues  are the values the SpecialBlock class accepts as infinity (sf. wfIsInfinity)
+				// infinityValues are the values the SpecialBlock class accepts as infinity (sf. wfIsInfinity)
 				infinityValues = [ 'infinite', 'indefinite', 'infinity', 'never' ],
 				isIndefinite = infinityValues.indexOf( expiryValue ) !== -1,
 				editingRestrictionValue = editingRestrictionWidget ? editingRestrictionWidget.getValue() : undefined,
-				editingIsSelected = editingWidget ? editingWidget.isSelected() : undefined;
+				editingIsSelected = editingWidget ? editingWidget.isSelected() : false;
 
 			if ( enableAutoblockField ) {
-				enableAutoblockField.toggle( !( isNonEmptyIp ) );
+				enableAutoblockField.toggle( !isNonEmptyIp );
 			}
 			if ( hideUserField ) {
-				hideUserField.toggle( !( isNonEmptyIp || !isIndefinite ) );
+				hideUserField.toggle( !isNonEmptyIp && isIndefinite );
 			}
 			if ( anonOnlyField ) {
-				anonOnlyField.toggle( !( !isIp && !isEmpty ) );
+				anonOnlyField.toggle( isIp || isEmpty );
 			}
 			if ( watchUserField ) {
-				watchUserField.toggle( !( isIpRange && !isEmpty ) );
+				watchUserField.toggle( !isIpRange || isEmpty );
 			}
 			if ( pageRestrictionsWidget ) {
 				editingRestrictionWidget.setDisabled( !editingIsSelected );
@@ -57,11 +57,7 @@
 				// TODO: (T210475) this option is disabled for partial blocks unless
 				// a namespace restriction for User_talk namespace is in place.
 				// This needs to be updated once Namespace restrictions is available
-				if ( editingRestrictionValue === 'partial' && editingIsSelected ) {
-					preventTalkPageEdit.setDisabled( true );
-				} else {
-					preventTalkPageEdit.setDisabled( false );
-				}
+				preventTalkPageEdit.setDisabled( editingRestrictionValue === 'partial' && editingIsSelected );
 			}
 
 		}
