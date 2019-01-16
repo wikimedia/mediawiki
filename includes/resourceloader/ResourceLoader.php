@@ -781,7 +781,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 
 		// Save response to file cache unless there are errors
-		if ( isset( $fileCache ) && !$this->errors && !count( $missing ) ) {
+		if ( isset( $fileCache ) && !$this->errors && $missing === [] ) {
 			// Cache single modules and images...and other requests if there are enough hits
 			if ( ResourceFileCache::useFileCache( $context ) ) {
 				if ( $fileCache->isCacheWorthy() ) {
@@ -1036,7 +1036,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		$out = '';
 		$states = [];
 
-		if ( !count( $modules ) && !count( $missing ) ) {
+		if ( $modules === [] && $missing === [] ) {
 			return <<<MESSAGE
 /* This file is the Web entry point for MediaWiki's ResourceLoader:
    <https://www.mediawiki.org/wiki/ResourceLoader>. In this request,

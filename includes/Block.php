@@ -1307,7 +1307,7 @@ class Block {
 	 * @since 1.22
 	 */
 	public static function getBlocksForIPList( array $ipChain, $isAnon, $fromMaster = false ) {
-		if ( !count( $ipChain ) ) {
+		if ( $ipChain === [] ) {
 			return [];
 		}
 
@@ -1332,7 +1332,7 @@ class Block {
 			$conds[] = self::getRangeCond( IP::toHex( $ipaddr ) );
 		}
 
-		if ( !count( $conds ) ) {
+		if ( $conds === [] ) {
 			return [];
 		}
 
@@ -1388,7 +1388,7 @@ class Block {
 	 * @return Block|null The "best" block from the list
 	 */
 	public static function chooseBlock( array $blocks, array $ipChain ) {
-		if ( !count( $blocks ) ) {
+		if ( $blocks === [] ) {
 			return null;
 		} elseif ( count( $blocks ) == 1 ) {
 			return $blocks[0];

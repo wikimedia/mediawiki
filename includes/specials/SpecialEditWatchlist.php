@@ -431,7 +431,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Attempts to clean up broken items
 	 */
 	private function cleanupWatchlist() {
-		if ( !count( $this->badItems ) ) {
+		if ( $this->badItems === [] ) {
 			return; // nothing to do
 		}
 

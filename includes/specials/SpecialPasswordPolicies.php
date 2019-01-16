@@ -151,7 +151,7 @@ class SpecialPasswordPolicies extends SpecialPage {
 				'<span class="mw-passwordpolicies-policy-name">' . $gp . '</span>'
 			)->parse();
 		}
-		if ( !count( $ret ) ) {
+		if ( $ret === [] ) {
 			return '';
 		} else {
 			return '<ul><li>' . implode( "</li>\n<li>", $ret ) . '</li></ul>';

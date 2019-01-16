@@ -58,7 +58,7 @@ class TextboxBuilder {
 	 * @return mixed[]
 	 */
 	public function mergeClassesIntoAttributes( array $classes, array $attribs ) {
-		if ( !count( $classes ) ) {
+		if ( $classes === [] ) {
 			return $attribs;
 		}
 

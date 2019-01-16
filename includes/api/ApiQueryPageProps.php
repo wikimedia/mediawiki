@@ -50,7 +50,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 			$pages = $filteredPages;
 		}
 
-		if ( !count( $pages ) ) {
+		if ( $pages === [] ) {
 			# Nothing to do
 			return;
 		}

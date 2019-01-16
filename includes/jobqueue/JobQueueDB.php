@@ -214,7 +214,7 @@ class JobQueueDB extends JobQueue {
 	 * @return void
 	 */
 	public function doBatchPushInternal( IDatabase $dbw, array $jobs, $flags, $method ) {
-		if ( !count( $jobs ) ) {
+		if ( $jobs === [] ) {
 			return;
 		}
 
