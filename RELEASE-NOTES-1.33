@@ -101,6 +101,8 @@ Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
 * (T203908) Added language support for Eastern Pwo (kjp).
+* (T213717) Fixed a translation error on Goan Konkani (gom-deva) translations
+  for NS_TEMPLATE.
 
 === Breaking changes in 1.33 ===
 * The parameteter $lang in DifferenceEngine::setTextLanguage must be of type
