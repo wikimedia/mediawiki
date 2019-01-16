@@ -130,7 +130,7 @@ just a test"
 
 		$sectionContent = $content->getSection( $sectionId );
 		if ( is_object( $sectionContent ) ) {
-			$sectionText = $sectionContent->getNativeData();
+			$sectionText = $sectionContent->getText();
 		} else {
 			$sectionText = $sectionContent;
 		}
@@ -184,7 +184,7 @@ just a test"
 		$content = $this->newContent( $text );
 		$c = $content->replaceSection( $section, $this->newContent( $with ), $sectionTitle );
 
-		$this->assertEquals( $expected, is_null( $c ) ? null : $c->getNativeData() );
+		$this->assertEquals( $expected, is_null( $c ) ? null : $c->getText() );
 	}
 
 	/**
@@ -194,7 +194,7 @@ just a test"
 		$content = $this->newContent( 'hello world' );
 		$content = $content->addSectionHeader( 'test' );
 
-		$this->assertEquals( "== test ==\n\nhello world", $content->getNativeData() );
+		$this->assertEquals( "== test ==\n\nhello world", $content->getText() );
 	}
 
 	public static function dataPreSaveTransform() {

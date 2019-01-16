@@ -39,6 +39,8 @@ production.
 * Add PasswordPolicy to check the password isn't in the large blacklist.
 * The AuthManagerLoginAuthenticateAudit hook has a new parameter for
   additional information about the authentication event.
+* TextContent::getText() was introduced as a replacement for
+  Content::getNativeData() for text-based content models.
 * …
 
 === External library changes in 1.33 ===
@@ -205,6 +207,8 @@ because of Phabricator reports.
   requiresUnblock() returns the proper result (the default is `true`).
 * (T211608) The MediaWiki\Services namespace has been renamed to
   Wikimedia\Services. The old name is still supported, but deprecated.
+* (T155582) Content::getNativeData has been deprecated. Please use model-
+  specific getters, such as TextContent::getText().
 * …
 
 === Other changes in 1.33 ===

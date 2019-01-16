@@ -66,9 +66,8 @@ class AllMessagesTablePager extends TablePager {
 		// FIXME: Why does this need to be set to DIR_DESCENDING to produce ascending ordering?
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 
-		$langObj = wfGetLangObj( $opts->getValue( 'lang' ) );
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		$this->lang = $langObj ?? $contLang;
+		$this->lang = wfGetLangObj( $opts->getValue( 'lang' ) );
 
 		$this->langcode = $this->lang->getCode();
 		$this->foreign = !$this->lang->equals( $contLang );
@@ -188,8 +187,8 @@ class AllMessagesTablePager extends TablePager {
 				( $descending && ( $key < $offset || !$offset ) || !$descending && $key > $offset ) &&
 				( ( $this->prefix && preg_match( $this->prefix, $key ) ) || $this->prefix === false )
 			) {
-				$actual = wfMessage( $key )->inLanguage( $this->langcode )->plain();
-				$default = wfMessage( $key )->inLanguage( $this->langcode )->useDatabase( false )->plain();
+				$actual = wfMessage( $key )->inLanguage( $this->lang )->plain();
+				$default = wfMessage( $key )->inLanguage( $this->lang )->useDatabase( false )->plain();
 				$result->result[] = [
 					'am_title' => $key,
 					'am_actual' => $actual,

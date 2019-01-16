@@ -80,9 +80,22 @@ class MessageContent extends AbstractContent {
 	/**
 	 * Returns the message object, with any parameters already substituted.
 	 *
+	 * @deprecated since 1.33 use getMessage() instead.
+	 *
 	 * @return Message The message object.
 	 */
 	public function getNativeData() {
+		return $this->getMessage();
+	}
+
+	/**
+	 * Returns the message object, with any parameters already substituted.
+	 *
+	 * @since 1.33
+	 *
+	 * @return Message The message object.
+	 */
+	public function getMessage() {
 		// NOTE: Message objects are mutable. Cloning here makes MessageContent immutable.
 		return clone $this->mMessage;
 	}
@@ -131,7 +144,8 @@ class MessageContent extends AbstractContent {
 	 * @see Content::copy
 	 */
 	public function copy() {
-		// MessageContent is immutable (because getNativeData() returns a clone of the Message object)
+		// MessageContent is immutable (because getNativeData() and getMessage()
+		//   returns a clone of the Message object)
 		return $this;
 	}
 
