@@ -6,7 +6,8 @@
 			"StanProg",
 			"Vodnokon4e",
 			"Seb35",
-			"ShockD"
+			"ShockD",
+			"Vlad5250"
 		]
 	},
 	"config-desc": "Инсталатор на МедияУики",
@@ -67,7 +68,7 @@
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] е инсталиран",
 	"config-no-cache-apcu": "<strong>Внимание:</strong> [https://secure.php.net/apcu APCu] и [https://www.iis.net/downloads/microsoft/wincache-extension WinCache] не могат да бъдат открити.\nКеширането на обекти не е активирано.",
 	"config-mod-security": "<strong>Предупреждение:</strong> [https://modsecurity.org/ mod_security]/mod_security2 е включено на вашия уеб сървър. Много от обичайните му конфигурации пораждат проблеми с МедияУики и друг софтуер, който позволява публикуване на произволно съдържание.\nАко е възможно, моля изключете го. В противен случай се обърнете към [https://modsecurity.org/documentation/ документацията на mod_security] или се свържете с поддръжката на хостинга си, ако се сблъскате със случайни грешки.",
-	"config-diff3-bad": "GNU diff3 не беше намерен.",
+	"config-diff3-bad": "Не е намерен сравнителят за текст ГНУ разл3 (GNU diff3). Засега това можете да го игнорирате, но затова конфликтите на редакциите може да зачестат.",
 	"config-git": "Налична е системата за контрол на версиите Git: <code>$1</code>.",
 	"config-git-bad": "Не е намерен софтуер за контрол на версиите Git.",
 	"config-imagemagick": "Открит е ImageMagick: <code>$1</code>.\nПреоразмеряването на картинки ще бъде включено ако качването на файлове бъде разрешено.",

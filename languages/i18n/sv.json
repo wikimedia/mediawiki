@@ -3258,6 +3258,7 @@
 	"specialpages-group-developer": "Utvecklarverktyg",
 	"blankpage": "Tom sida",
 	"intentionallyblankpage": "Denna sida har avsiktligen lämnats tom.",
+	"disabledspecialpage-disabled": "Den här sidan har inaktiverats av en systemadministratör.",
 	"external_image_whitelist": "#Lämna den här raden precis som den är<pre>\n#Skriv fragment av reguljära uttryck (bara delen som ska vara mellan //) nedan\n#Dessa kommer att jämföras med URL:er för externa bilder\n#De som matchar kommer att visas som bilder, annars visas bara en länk till bilden\n#Rader som börjar med # behandlas som kommentarer\n#Detta är skiftläges-okänsligt\n\n#Skriv alla fragment av reguljära uttryck ovanför den här raden. Lämna den här raden precis som den är</pre>",
 	"tags": "Giltiga ändringsmärken",
 	"tag-filter": "Filter för [[Special:Tags|märken]]:",

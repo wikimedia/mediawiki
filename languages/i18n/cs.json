@@ -3265,6 +3265,7 @@
 	"specialpages-group-developer": "Vývojářské nástroje",
 	"blankpage": "Prázdná stránka",
 	"intentionallyblankpage": "Tato stránka je úmyslně prázdná. Používá se na měření výkonnosti atd.",
+	"disabledspecialpage-disabled": "Tato stránka byla vypnuta správcem systému.",
 	"external_image_whitelist": " #Tuto řádku ponechte beze změny.<pre>\n#Níže uveďte fragmenty regulárních výrazů (pouze část mezi //).\n#Tyto výrazy se aplikují na URL vkládaných externích obrázků.\n#Ty, které vyhoví, se zobrazí jako obrázek; ostatní pouze jako externí odkaz.\n#Řádky začínající znakem # se považují za komentáře.\n#Na velikosti písmen nezáleží.\n\n#Všechny regulární výrazy uveďte nad touto řádkou. Tuto řádku ponechte beze změny.</pre>",
 	"tags": "Platné značky pro změny",
 	"tag-filter": "Filtr podle [[Special:Tags|značek]]:",

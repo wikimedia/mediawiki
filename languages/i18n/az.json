@@ -1662,6 +1662,7 @@
 	"mycontris": "Fəaliyyətim",
 	"anoncontribs": "Fəaliyyətim",
 	"contribsub2": "{{GENDER:$3|$1}} ($2) adlı istifadəçinin fəaliyyəti",
+	"contributions-userdoesnotexist": "\"$1\" adlı istifadəçi qeydiyyatdan keçməyib.",
 	"nocontribs": "Bu kriteriyaya uyğun redaktələr tapılmadı",
 	"uctop": "hal-hazırkı",
 	"month": "Ay",
