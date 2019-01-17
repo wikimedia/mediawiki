@@ -25,8 +25,7 @@
 	}
 }
 
-.oo-ui-transition( @value1, @value2: X, ... ) {
-	@value: ~`'@{arguments}'.replace(/[\[\]]|\,\sX/g, '')`; // stylelint-disable-line function-comma-space-after, function-parentheses-space-inside, function-whitespace-after, value-keyword-case
+.oo-ui-transition( @value ) {
 	-webkit-transition: @value;
 	-moz-transition: @value;
 	transition: @value;
