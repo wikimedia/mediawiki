@@ -31,9 +31,9 @@ class WikiTextStructure {
 		'audio', 'video',
 		// CSS stylesheets aren't content
 		'style',
-		// The [1] for references
+		// The [1] for references from Cite
 		'sup.reference',
-		// The ↑ next to references in the references section
+		// The ↑ next to references in the references section from Cite
 		'.mw-cite-backlink',
 		// Headings are already indexed in their own field.
 		'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
