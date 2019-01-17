@@ -494,7 +494,7 @@ class MovePage {
 			);
 
 			if ( !$status->isGood() ) {
-				throw new MWException( 'Failed to delete page-move revision: ' . $status );
+				throw new MWException( 'Failed to delete page-move revision: ' . $status->getWikiText() );
 			}
 
 			$nt->resetArticleID( false );
