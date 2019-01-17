@@ -41,7 +41,9 @@ class WikiTextStructure {
 		'.autocollapse',
 		// Content explicitly decided to be not searchable by editors such
 		// as custom navigation templates.
-		'.navigation-not-searchable'
+		'.navigation-not-searchable',
+		// User-facing interface code prompting the user to act from WikibaseMediaInfo
+		'.wbmi-entityview-emptyCaption',
 	];
 
 	/**
