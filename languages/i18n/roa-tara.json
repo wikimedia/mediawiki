@@ -725,6 +725,8 @@
 	"edit-gone-missing": "Non ge puè cangià sta pàgene.\nPare proprie ca l'onne scangellete.",
 	"edit-conflict": "conflitte de cangiaminde.",
 	"edit-no-change": "'U cangiamende ca p fatte, avène scettate purcè 'u teste non g'à cangete manghe de 'na virgola.",
+	"edit-slots-cannot-add": "{{PLURAL:$1|'U slot seguende non g'è|Le slot seguende non ge sò}} supportate aqquà: $2.",
+	"edit-slots-cannot-remove": "{{PLURAL:$1|'U slot seguende jè obbligatorie e non ge se pò|Le slot seguende sò obbligatorie e non ge se ponne}} scangellà: $2.",
 	"edit-slots-missing": "{{PLURAL:$1|'U slot seguende jè|Le slot seguende sò}} mangande: $2.",
 	"postedit-confirmation-created": "Sta pàgene ha state ccrejate.",
 	"postedit-confirmation-restored": "Sta pàgene ha state repristinate.",

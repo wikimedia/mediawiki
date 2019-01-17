@@ -1480,7 +1480,7 @@
 	"recentchanges-page-added-to-category": "[[:$1]] 加咗落分類",
 	"recentchanges-page-added-to-category-bundled": "[[:$1]] 同另外 [[Special:WhatLinksHere/$1|一版比其他版包含咗]]",
 	"recentchanges-page-removed-from-category": "[[:$1]] 移出呢類",
-	"recentchanges-page-removed-from-category-bundled": "$1[[:$1]] 同另外 [[Special:WhatLinksHere/$1|伊一版比其他版包含咗]] 響分類到拎走左",
+	"recentchanges-page-removed-from-category-bundled": "[[:$1]]移出分類，[[Special:WhatLinksHere/$1|呢版有嵌入其他版]]",
 	"autochange-username": "MediaWiki 自動改動",
 	"upload": "上載檔案",
 	"uploadbtn": "上載檔案",

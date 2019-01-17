@@ -1036,6 +1036,7 @@
 	"rcfilters-filter-previousrevision-label": "Ոչ վերջին տարբերակ",
 	"rcfilters-view-tags": "Պիտակված խմբագրումներ",
 	"rcfilters-liveupdates-button": "Կենդանի թարմացումներ",
+	"rcfilters-watchlist-edit-watchlist-button": "Խմբագրել հսկացանկը",
 	"rcnotefrom": "Ստորև բերված են փոփոխությունները սկսած՝ '''$2''' (մինչև՝ '''$1''')։",
 	"rclistfrom": "Ցույց տալ նոր փոփոխությունները՝ սկսած $3 $2",
 	"rcshowhideminor": "$1 չնչին խմբագրումները",

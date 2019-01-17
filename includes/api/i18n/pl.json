@@ -42,7 +42,7 @@
 	"apihelp-block-param-allowusertalk": "Pozwala użytkownikowi edytować własną stronę dyskusji (zależy od <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-reblock": "Jeżeli ten użytkownik jest już zablokowany, nadpisz blokadę.",
 	"apihelp-block-param-watchuser": "Obserwuj stronę użytkownika lub IP oraz ich strony dyskusji.",
-	"apihelp-block-param-tags": "Zmieniaj tagi by potwierdzić wejście do bloku logów.",
+	"apihelp-block-param-tags": "Znaczniki do dodania przy wpisie w rejestrze.",
 	"apihelp-block-param-partial": "Zablokuj użytkownikowi dostęp do wybranych stron lub przestrzeni nazw zamiast do całej witryny.",
 	"apihelp-block-param-pagerestrictions": "Lista tytułów stron do zablokowania użytkownikowi możliwości edycji. Ma zastosowanie tylko gdy 'partial' (częściowa) jest ustawione na true (prawda).",
 	"apihelp-block-example-ip-simple": "Zablokuj IP <kbd>192.0.2.5</kbd> na 3 dni z powodem <kbd>First strike</kbd>.",

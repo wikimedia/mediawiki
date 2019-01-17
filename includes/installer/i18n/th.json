@@ -6,7 +6,8 @@
 			"Octahedron80",
 			"Aefgh39622",
 			"Ans",
-			"Geonuch"
+			"Geonuch",
+			"B20180"
 		]
 	},
 	"config-desc": "ตัวติดตั้งสำหรับมีเดียวิกิ",
@@ -66,9 +67,9 @@
 	"config-wincache": "มี [https://www.iis.net/downloads/microsoft/wincache-extension WinCache] ติดตั้งอยู่",
 	"config-no-cache-apcu": "<strong>คำเตือน:</strong> ไม่พบ [https://secure.php.net/apcu APCu] [http://xcache.lighttpd.net/ XCache] หรือ [https://www.iis.net/downloads/microsoft/wincache-extension WinCache]\nการแคชวัตถุไม่ได้ถูกเปิดใช้งาน",
 	"config-mod-security": "<strong>คำเตือน:</strong> เว็บเซิร์ฟเวอร์ของคุณมี [https://modsecurity.org/ mod_security]/mod_security2 เปิดใช้งานอยู่ การตั้งค่าทั่วไปหลายอย่างของสิ่งนี้จะก่อให้เกิดปัญหาสำหรับ MediaWiki และซอฟต์แวร์อื่นที่อนุญาตให้ผู้ใช้สามารถโพสต์เนื้อหาได้ตามที่ผู้ใช้\nหากเป็นไปได้ ควรปิดใช้งานคุณลักษณะนี้ หรือมิฉะนั้นก็ อ้างไปยัง[https://modsecurity.org/documentation/ เอกสารกำกับการใช้งาน mod_security] หรือติดต่อการสนับสนุนจากโฮสต์ของคุณ ถ้าคุณพบข้อผิดพลาดโดยสุ่ม",
-	"config-diff3-bad": "ไม่พบ GNU diff3",
+	"config-diff3-bad": "ไม่พบโปรแกรมเปรียบเทียบข้อความ GNU diff3 คุณสามารถละเว้นสิ่งนี้ได้ในตอนนี้ แต่อาจพบข้อขัดแย้งในการแก้ไขบ่อยครั้งกว่า",
 	"config-git": "พบซอฟต์แวร์ควบคุมรุ่น Git: <code>$1</code>",
-	"config-git-bad": "ไม่พบซอฟต์แวร์ควบคุมรุ่น Git",
+	"config-git-bad": "ไม่พบซอฟต์แวร์ควบคุมเวอร์ชันกิต คุณสามารถละเว้นสิ่งนี้ได้ในตอนนี้ หมายเหตุ หน้าพิเศษ:เวอร์ชัน จะไม่แสดงแฮชการกระทำ",
 	"config-imagemagick": "พบ ImageMagick: <code>$1</code>\nการย่อรูปภาพจะถูกเปิดใช้งาน ถ้าคุณเปิดใช้งานการอัปโหลด",
 	"config-gd": "พบไลบรารีกราฟิก GD ในตัว\nการย่อรูปภาพจะถูกเปิดใช้งาน ถ้าคุณเปิดใช้งานการอัปโหลด",
 	"config-no-scaling": "ไม่พบไลบรารี GD หรือ ImageMagick\nการย่อรูปภาพจะถูกปิดใช้งาน",

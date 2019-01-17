@@ -3449,6 +3449,7 @@
 	"specialpages-group-developer": "Outils du développeur",
 	"blankpage": "Page vide",
 	"intentionallyblankpage": "Cette page est laissée intentionnellement (presque) vide.",
+	"disabledspecialpage-disabled": "Cette page a été désactivée par un administrateur système.",
 	"external_image_whitelist": " #Laisser cette ligne exactement telle quelle.<pre>\n#Indiquer les fragments d'expressions rationnelles (juste la partie indiquée entre les //) ci-dessous.\n#Ils correspondront avec les URL des images externes.\n#Celles qui correspondent s'afficheront comme des images, sinon seul un lien vers l'image sera affiché.\n#Les lignes commençant par un # seront considérées comme des commentaires.\n#Cette liste n'est pas sensible à la casse.\n\n#Mettez tous les fragments d'expressions rationnelles au-dessus de cette ligne. Laissez cette dernière ligne telle quelle.</pre>",
 	"tags": "Balises des modifications valides",
 	"tag-filter": "Filtrer les [[Special:Tags|balises]] :",

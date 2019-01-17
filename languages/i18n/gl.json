@@ -448,7 +448,7 @@
 	"createacct-emailoptional": "Enderezo de correo electrónico (opcional)",
 	"createacct-email-ph": "Insira o seu enderezo de correo electrónico",
 	"createacct-another-email-ph": "Insira o enderezo de correo electrónico",
-	"createaccountmail": "Empregar un contrasinal ao chou temporal e envialo ao enderezo de correo electrónico especificado",
+	"createaccountmail": "Utilizar un contrasinal aleatorio temporal e envialo ao enderezo de correo electrónico especificado",
 	"createaccountmail-help": "Pode usarse para crear unha conta para outra persoa sen coñecer o contrasinal.",
 	"createacct-realname": "Nome real (opcional)",
 	"createacct-reason": "Motivo",
