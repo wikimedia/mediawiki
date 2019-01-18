@@ -1320,7 +1320,7 @@ class LocalFile extends File {
 
 		$srcPath = ( $src instanceof FSFile ) ? $src->getPath() : $src;
 		if ( !$props ) {
-			if ( $this->repo->isVirtualUrl( $srcPath )
+			if ( FileRepo::isVirtualUrl( $srcPath )
 				|| FileBackend::isStoragePath( $srcPath )
 			) {
 				$props = $this->repo->getFileProps( $srcPath );
@@ -1863,7 +1863,7 @@ class LocalFile extends File {
 		$archiveRel = $this->getArchiveRel( $archiveName );
 
 		if ( $repo->hasSha1Storage() ) {
-			$sha1 = $repo->isVirtualUrl( $srcPath )
+			$sha1 = FileRepo::isVirtualUrl( $srcPath )
 				? $repo->getFileSha1( $srcPath )
 				: FSFile::getSha1Base36FromPath( $srcPath );
 			/** @var FileBackendDBRepoWrapper $wrapperBackend */
