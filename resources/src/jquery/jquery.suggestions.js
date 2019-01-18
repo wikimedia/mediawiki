@@ -491,7 +491,7 @@
 					context.data.$textbox.val( result.data( 'text' ) );
 					// .val() doesn't call any event handlers, so
 					// let the world know what happened
-					context.data.$textbox.change();
+					context.data.$textbox.trigger( 'change' );
 				}
 				context.data.$textbox.trigger( 'change' );
 			}
@@ -682,7 +682,7 @@
 								}
 								// Always bring focus to the textbox, as that's probably where the user expects it
 								// if they were just typing.
-								context.data.$textbox.focus();
+								context.data.$textbox.trigger( 'focus' );
 							} )
 					)
 					.append(
@@ -715,7 +715,7 @@
 								}
 								// Always bring focus to the textbox, as that's probably where the user expects it
 								// if they were just typing.
-								context.data.$textbox.focus();
+								context.data.$textbox.trigger( 'focus' );
 							} )
 							.on( 'mousemove', function ( e ) {
 								context.data.selectedWithMouse = true;

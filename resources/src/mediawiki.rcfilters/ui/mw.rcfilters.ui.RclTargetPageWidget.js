@@ -57,7 +57,7 @@
 	 * Respond to the user choosing a title
 	 */
 	mw.rcfilters.ui.RclTargetPageWidget.prototype.onLookupMenuItemChoose = function () {
-		this.titleSearch.$input.blur();
+		this.titleSearch.$input.trigger( 'blur' );
 	};
 
 	/**
