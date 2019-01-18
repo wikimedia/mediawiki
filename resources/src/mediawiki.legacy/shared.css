@@ -447,18 +447,18 @@ table.wikitable > caption {
 /**
  * Data table style
  *
- * Transparent table with suddle borders
- * and blue row-highlighting.
+ * Table with suddle borders
+ * and row-highlighting.
  */
 .mw-datatable {
+	border: 1px solid #a2a9b1;
 	border-collapse: collapse;
 }
 
-.mw-datatable,
 .mw-datatable td,
 .mw-datatable th {
 	border: 1px solid #a2a9b1;
-	padding: 0 0.15em 0 0.15em;
+	padding: 0 0.15em;
 }
 
 .mw-datatable th {
