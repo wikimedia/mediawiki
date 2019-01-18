@@ -841,7 +841,7 @@ class SpecialBlock extends FormSpecialPage {
 
 		$restrictions = [];
 		if ( $enablePartialBlocks ) {
-			if ( !empty( $data['PageRestrictions'] ) ) {
+			if ( $data['PageRestrictions'] !== '' ) {
 				$restrictions = array_map( function ( $text ) {
 					$title = Title::newFromText( $text );
 					// Use the link cache since the title has already been loaded when
@@ -952,7 +952,7 @@ class SpecialBlock extends FormSpecialPage {
 		$logParams['6::flags'] = self::blockLogFlags( $data, $type );
 		$logParams['sitewide'] = $block->isSitewide();
 
-		if ( $enablePartialBlocks && !empty( $data['PageRestrictions'] ) ) {
+		if ( $enablePartialBlocks && $data['PageRestrictions'] !== '' ) {
 			$logParams['7::restrictions'] = [
 				'pages' => explode( "\n", $data['PageRestrictions'] ),
 			];
@@ -1166,7 +1166,7 @@ class SpecialBlock extends FormSpecialPage {
 		// actions other than editing, and there must be no restrictions.
 		if ( isset( $data['Editing'] ) && $data['Editing'] === false ) {
 			$data['EditingRestriction'] = 'partial';
-			$data['PageRestrictions'] = [];
+			$data['PageRestrictions'] = '';
 		}
 		return self::processForm( $data, $form->getContext() );
 	}
