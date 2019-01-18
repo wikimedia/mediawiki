@@ -107,7 +107,7 @@ class ExtensionProcessor implements Processor {
 	];
 
 	/**
-	 * Things that are not 'attributes', but are not in
+	 * Things that are not 'attributes', and are not in
 	 * $globalSettings or $creditsAttributes.
 	 *
 	 * @var array
@@ -119,6 +119,7 @@ class ExtensionProcessor implements Processor {
 		'ResourceFileModulePaths',
 		'ResourceModules',
 		'ResourceModuleSkinStyles',
+		'QUnitTestModule',
 		'ExtensionMessagesFiles',
 		'MessagesDirs',
 		'type',
@@ -393,6 +394,19 @@ class ExtensionProcessor implements Processor {
 					$this->globals["wg$setting"][$name] = $data;
 				}
 			}
+		}
+
+		if ( isset( $info['QUnitTestModule'] ) ) {
+			$data = $info['QUnitTestModule'];
+			if ( isset( $data['localBasePath'] ) ) {
+				if ( $data['localBasePath'] === '' ) {
+					// Avoid double slashes (e.g. /extensions/Example//path)
+					$data['localBasePath'] = $dir;
+				} else {
+					$data['localBasePath'] = "$dir/{$data['localBasePath']}";
+				}
+			}
+			$this->attributes['QUnitTestModules']["test.{$info['name']}"] = $data;
 		}
 	}
 
