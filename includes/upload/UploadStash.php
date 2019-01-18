@@ -599,7 +599,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 		$this->fileKey = $key;
 
 		// resolve mwrepo:// urls
-		if ( $repo->isVirtualUrl( $path ) ) {
+		if ( FileRepo::isVirtualUrl( $path ) ) {
 			$path = $repo->resolveVirtualUrl( $path );
 		} else {
 			// check if path appears to be sane, no parent traversals,
