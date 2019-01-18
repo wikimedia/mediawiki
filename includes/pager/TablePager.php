@@ -310,6 +310,9 @@ abstract class TablePager extends IndexPager {
 				// * table_pager_prev
 				// * table_pager_next
 				// * table_pager_last
+				'classes' => [ 'TablePager-button-' . $type ],
+				'flags' => [ 'progressive' ],
+				'framed' => false,
 				'label' => $this->msg( 'table_pager_' . $type )->text(),
 				'href' => $queries[ $type ] ?
 					$title->getLinkURL( $queries[ $type ] + $this->getDefaultQuery() ) :
