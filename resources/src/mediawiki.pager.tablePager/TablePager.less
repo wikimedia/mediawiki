@@ -21,8 +21,34 @@
 	.background-image-svg('images/arrow-sort-descending.svg', 'images/arrow-sort-descending.png');
 }
 
-.TablePager_nav.oo-ui-buttonGroupWidget {
-	display: block;
-	text-align: center;
-	margin: 1em;
+.TablePager_nav {
+	&.oo-ui-buttonGroupWidget {
+		display: block;
+		margin: 1em;
+		text-align: center;
+	}
+
+	// Overrule default OOUI frameless special treatment for left-aligned widgets
+	& .oo-ui-buttonElement-frameless {
+		&.oo-ui-labelElement > .oo-ui-buttonElement-button {
+			padding-right: 0.5em;
+		}
+
+		&.oo-ui-labelElement.oo-ui-iconElement:first-child {
+			margin-left: 0;
+		}
+	}
+
+	.TablePager-button-next,
+	.TablePager-button-last {
+		&.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button {
+			padding-left: 0.5em;
+			padding-right: 2.14285714em;
+
+			> .oo-ui-iconElement-icon {
+				left: auto;
+				right: 0.35714286em;
+			}
+		}
+	}
 }
