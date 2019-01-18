@@ -5,7 +5,8 @@
 			"Derbeth",
 			"Matma Rex",
 			"Sp5uhe",
-			"Stlmch"
+			"Stlmch",
+			"Railfail536"
 		]
 	},
 	"exif-imagewidth": "Szerokość",
@@ -192,7 +193,10 @@
 	"exif-compression-4": "CCITT Grupa 4 kodowanie faksowe",
 	"exif-copyrighted-true": "Chronione prawem autorskim",
 	"exif-copyrighted-false": "Status praw autorskich nieznany",
+	"exif-photometricinterpretation-0": "Czarny i biały (biały to 0)",
 	"exif-photometricinterpretation-1": "Czarny i biały (czarny to 0)",
+	"exif-photometricinterpretation-3": "Paleta",
+	"exif-photometricinterpretation-4": "Maska przezroczystości",
 	"exif-unknowndate": "nieznana data",
 	"exif-orientation-1": "normalna",
 	"exif-orientation-2": "odbicie lustrzane w poziomie",

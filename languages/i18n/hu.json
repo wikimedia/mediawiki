@@ -2488,7 +2488,7 @@
 	"ipboptions": "2 óra:2 hours,1 nap:1 day,3 nap:3 days,1 hét:1 week,2 hét:2 weeks,1 hónap:1 month,3 hónap:3 months,6 hónap:6 months,1 év:1 year,végtelen:infinite",
 	"ipbhidename": "A felhasználónév ne jelenjen meg a szerkesztéseknél és a listákban",
 	"ipbwatchuser": "A felhasználó lapjának és vitalapjának figyelése",
-	"ipb-disableusertalk": "Vitalapjuk szerkesztése",
+	"ipb-disableusertalk": "Saját vitalapjának szerkesztése",
 	"ipb-change-block": "Blokk beállításainak megváltoztatása",
 	"ipb-confirm": "Blokk megerősítése",
 	"ipb-sitewide": "Teljes körű",

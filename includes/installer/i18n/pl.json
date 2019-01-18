@@ -85,7 +85,7 @@
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] jest zainstalowany",
 	"config-no-cache-apcu": "<strong>Ostrzeżenie:</strong> Nie można było znaleźć [https://secure.php.net/apcu APCu] ani [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nPamięć podręczna obiektów nie została włączona.",
 	"config-mod-security": "''' Ostrzeżenie ''': Serwer sieci web ma włączone [https://modsecurity.org/ mod_security]. Jeśli jest niepoprawnie skonfigurowane, może być przyczyną problemów MediaWiki lub innego oprogramowania, które pozwala użytkownikom na wysyłanie dowolnej zawartości.\nSprawdź w [https://modsecurity.org/documentation/ dokumentacji mod_security] lub skontaktuj się z obsługa hosta, jeśli wystąpią losowe błędy.",
-	"config-diff3-bad": "Nie znaleziono GNU diff3.",
+	"config-diff3-bad": "Nie znaleziono funkcjonalności porównywania tekstu GNU diff3. Możesz zignorować ten komunikat, jednak konflikty edycji będą wówczas częstsze.",
 	"config-git": "Znaleziono oprogramowanie kontroli wersji Git: <code>$1</code>.",
 	"config-git-bad": "Oprogramowanie systemu kontroli wersji Git nie zostało znalezione.",
 	"config-imagemagick": "Mamy zainstalowany ImageMagick <code>$1</code>, dzięki czemu będzie można pomniejszać załadowane grafiki.",

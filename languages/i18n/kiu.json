@@ -183,7 +183,7 @@
 	"view-pool-error": "Qaytê qusıri mekerê, serverê ma nıka jêde bar gureto ho ser.\nHedê ho ra jêde karberi kenê ke şêrê na pele bıkerê.\nSıma rê zamet, tenê vınderê, hata ke reyna kenê ke na pele kuyê.\n\n$1",
 	"pool-timeout": "Kilıtbiyaene sero waxtê vınetişi",
 	"pool-queuefull": "Rêza hewze pırra",
-	"pool-errorunknown": "Xeta nêzanıtiye",
+	"pool-errorunknown": "Xetaya nêzanıtiye",
 	"aboutsite": "Heqa {{SITENAME}} de",
 	"aboutpage": "Project:Heqa",
 	"copyright": "Zerrek bınê $1 dero.",
@@ -1083,5 +1083,6 @@
 	"compare-page1": "Pele 1",
 	"compare-page2": "Pele 2",
 	"rightsnone": "(qet jü)",
-	"feedback-cancel": "Bıtexelne"
+	"feedback-cancel": "Bıtexelne",
+	"api-error-unknownerror": "Xetaya nêzanıtiye: \"$1\"."
 }
