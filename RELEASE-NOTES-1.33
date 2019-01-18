@@ -179,6 +179,11 @@ because of Phabricator reports.
   * getTimeZoneList()
 * mw.util.jsMessage(), deprecated in 1.20, was removed. Use mw.notify instead.
 * (T61113) User::EDIT_TOKEN_SUFFIX was removed. It was deprecated since 1.27.
+* The 'mediawiki.api' module aliases, deprecated in 1.32, have been removed.
+  Specifically: mediawiki.api.category, mediawiki.api.edit,
+  mediawiki.api.login, mediawiki.api.options, mediawiki.api.parse,
+  mediawiki.api.upload, mediawiki.api.user, mediawiki.api.watch,
+  mediawiki.api.messages, and mediawiki.api.rollback.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
