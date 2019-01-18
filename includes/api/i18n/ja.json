@@ -1049,6 +1049,7 @@
 	"api-help-permissions-granted-to": "{{PLURAL:$1|権限を持つグループ}}: $2",
 	"api-help-open-in-apisandbox": "<small>[サンドボックスで開く]</small>",
 	"apierror-botsnotsupported": "この API インターフェースはボットをサポートしていません。",
+	"apierror-emptypage": "内容がないページの新規作成は許可されていません。",
 	"apierror-filedoesnotexist": "ファイルが存在しません。",
 	"apierror-invaliduser": "無効なユーザー名「$1」。",
 	"apierror-missingparam": "パラメーター <var>$1</var> を設定してください。",
