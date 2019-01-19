@@ -60,12 +60,13 @@
 			"Kyykaarme",
 			"Surjection",
 			"OneMember",
-			"Valtlait"
+			"Valtlait",
+			"Laurianttila"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
-	"tog-hideminor": "Piilota pienet muutokset tuoreet muutokset -listasta",
-	"tog-hidepatrolled": "Piilota tarkastetut muutokset tuoreet muutokset -listasta",
+	"tog-hideminor": "Piilota pienet muutokset \"tuoreet muutokset\" -listasta",
+	"tog-hidepatrolled": "Piilota tarkastetut muutokset \"tuoreet muutokset\" -listasta",
 	"tog-newpageshidepatrolled": "Piilota tarkastetut sivut uusien sivujen listalta",
 	"tog-hidecategorization": "Piilota sivujen luokittelu",
 	"tog-extendwatchlist": "Laajenna tarkkailulista näyttämään kaikki tehdyt muutokset, eikä vain viimeisimmät",
