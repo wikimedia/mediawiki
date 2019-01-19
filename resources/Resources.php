@@ -183,11 +183,6 @@ return [
 		'dependencies' => 'mediawiki.String',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'jquery.byteLimit' => [
-		'dependencies' => 'jquery.lengthLimit',
-		'deprecated' => 'Use "jquery.lengthLimit" instead.',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'jquery.checkboxShiftClick' => [
 		'scripts' => 'resources/src/jquery/jquery.checkboxShiftClick.js',
 		'targets' => [ 'desktop', 'mobile' ],
