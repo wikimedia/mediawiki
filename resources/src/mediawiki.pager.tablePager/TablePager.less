@@ -7,6 +7,12 @@
 
 .TablePager {
 	min-width: 80%;
+
+	// Remove as soon as `.mw-datatable` receives this `padding`, see T214208
+	td,
+	th {
+		padding: 0.2em 0.4em;
+	}
 }
 
 .TablePager .TablePager_sort-ascending a {
