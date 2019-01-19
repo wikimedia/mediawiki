@@ -433,9 +433,11 @@ class ExtensionRegistry {
 	 * @since 1.33
 	 */
 	public function setAttributeForTest( $name, array $value ) {
+		// @codeCoverageIgnoreStart
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			throw new RuntimeException( __METHOD__ . ' can only be used in tests' );
 		}
+		// @codeCoverageIgnoreEnd
 		if ( isset( $this->testAttributes[$name] ) ) {
 			throw new Exception( "The attribute '$name' has already been overridden" );
 		}
