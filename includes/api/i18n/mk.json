@@ -139,7 +139,7 @@
 	"apihelp-feedrecentchanges-param-limit": "Највеќе ставки во исходот за прикажување.",
 	"apihelp-feedrecentchanges-param-from": "Прикажи ги промените оттогаш.",
 	"apihelp-feedrecentchanges-param-hideminor": "Скриј ги ситните промени.",
-	"apihelp-feedrecentchanges-param-hidebots": "Скриј ги промените напарвени од ботови.",
+	"apihelp-feedrecentchanges-param-hidebots": "Скриј ги промените направени од ботови.",
 	"apihelp-feedrecentchanges-param-hideanons": "Скриј ги промените направени од анонимни корисници.",
 	"apihelp-feedrecentchanges-param-hideliu": "Скриј ги промените направени од регистрирани корисници.",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "Скриј ги испатролираните промени.",

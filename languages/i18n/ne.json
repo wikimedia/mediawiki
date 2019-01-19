@@ -32,7 +32,8 @@
 			"Tulsi Bhagat",
 			"ديفيد",
 			"Haribanshi",
-			"Parbat subedi"
+			"Parbat subedi",
+			"पर्वत सुबेदी"
 		]
 	},
 	"tog-underline": "रेखाङ्कित लिङ्क:",
@@ -2125,6 +2126,8 @@
 	"ipb-blocklist": "हाल रहेका निषेधहरू हेर्नुहोस्",
 	"ipb-blocklist-contribs": "{{GENDER:$1|$1}}को लागि योगदान",
 	"block-expiry": "सकिने:",
+	"block-reason": "कारण:",
+	"block-target": "प्रयोगकर्ता नाम वा आइपी ठेगाना",
 	"unblockip": "प्रयोगकर्ताको निषेध खारेज गर्नुहोस्",
 	"unblockiptext": "IP ठेगाना अथवा प्रयोगकर्तामाथि पहिले लगाइएको रोक फुकुवा गर्न तलको प्रपत्र प्रयोग गर्नुहोस्।",
 	"ipusubmit": "यो रोक हटाउने",
