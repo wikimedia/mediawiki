@@ -25,6 +25,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
 use Password;
 use PasswordFactory;
+use SpecialPage;
+use Wikimedia\Assert\Assert;
 
 /**
  * Basic framework for a primary authentication provider that uses passwords
@@ -107,6 +109,25 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 	 */
 	protected function checkPasswordValidity( $username, $password ) {
 		return \User::newFromName( $username )->checkPasswordValidity( $password );
+	}
+
+	/**
+	 * Adds user-friendly description to a fatal password validity check error.
+	 * These errors prevent login even when the password is correct, so just displaying the
+	 * description of the error would be somewhat confusing.
+	 * @param string $username
+	 * @param Status $status The status returned by checkPasswordValidity(); must be a fatal.
+	 * @return AuthenticationResponse A FAIL response with an improved description.
+	 */
+	protected function getFatalPasswordErrorResponse(
+		string $username,
+		Status $status
+	): AuthenticationResponse {
+		Assert::precondition( !$status->isOK(), __METHOD__ . ' expects a fatal Status' );
+		$resetLinkUrl = SpecialPage::getTitleFor( 'PasswordReset' )
+			->getFullURL( [ 'wpUsername' => $username ] );
+		return AuthenticationResponse::newFail( wfMessage( 'fatalpassworderror',
+			$status->getMessage(), $resetLinkUrl ) );
 	}
 
 	/**

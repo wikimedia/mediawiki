@@ -289,8 +289,10 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			AuthenticationResponse::FAIL,
 			$ret->status
 		);
+		// AbstractPasswordPrimaryAuthenticationProvider::getFatalPasswordErrorResponse() will
+		// wrap the original message in 'fatalpassworderror'
 		$this->assertEquals(
-			'arbitrary-failure',
+			'fatalpassworderror',
 			$ret->message->getKey()
 		);
 
