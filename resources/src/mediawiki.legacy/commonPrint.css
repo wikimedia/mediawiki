@@ -283,8 +283,8 @@ img.thumbborder {
 /**
  * Table rendering
  */
-/* Compare `table.wikitable` in shared.css */
-table.wikitable,
+/* Compare `.wikitable` in shared.css */
+.wikitable,
 .mw_metadata {
 	background: #fff;
 	margin: 1em 0;
@@ -293,16 +293,16 @@ table.wikitable,
 	font-size: 10pt;
 }
 
-table.wikitable > caption,
+.wikitable > caption,
 .mw_metadata caption {
 	padding: 5px;
 	font-size: 10pt;
 }
 
-table.wikitable > tr > th,
-table.wikitable > tr > td,
-table.wikitable > * > tr > th,
-table.wikitable > * > tr > td,
+.wikitable > tr > th,
+.wikitable > tr > td,
+.wikitable > * > tr > th,
+.wikitable > * > tr > td,
 .mw_metadata th,
 .mw_metadata td {
 	/* Important is required to override any inline styles provided by editors */
@@ -313,8 +313,8 @@ table.wikitable > * > tr > td,
 	padding: 0.4em 0.6em;
 }
 
-table.wikitable > tr > th,
-table.wikitable > * > tr > th,
+.wikitable > tr > th,
+.wikitable > * > tr > th,
 .mw_metadata th {
 	text-align: center;
 }
