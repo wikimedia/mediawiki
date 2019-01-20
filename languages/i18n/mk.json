@@ -336,7 +336,7 @@
 	"filerenameerror": "Не можев да ја преименувам податотеката „$1“ во „$2“.",
 	"filedeleteerror": "Не може да се избрише податотеката „$1“.",
 	"directorycreateerror": "Не можеше да се создаде именикот „$1“.",
-	"directoryreadonlyerror": "Папката „$1“ не е запислива.",
+	"directoryreadonlyerror": "Папката „$1“ е само за читање.",
 	"directorynotreadableerror": "Папката „$1“ не е читлива.",
 	"filenotfound": "Не може да се најде податотеката „$1“.",
 	"unexpected": "Неочекувана вредност: „$1“=„$2“.",

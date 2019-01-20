@@ -2607,7 +2607,7 @@
 	"isredirect": "página redirigida",
 	"istemplate": "transclusión",
 	"isimage": "enlace de archivo",
-	"whatlinkshere-prev": "{{PLURAL:$1|previa|previas $1}}",
+	"whatlinkshere-prev": "{{PLURAL:$1|anterior|$1 anteriores}}",
 	"whatlinkshere-next": "{{PLURAL:$1|siguiente|siguientes $1}}",
 	"whatlinkshere-links": "← enlaces",
 	"whatlinkshere-hideredirs": "$1 redirecciones",
