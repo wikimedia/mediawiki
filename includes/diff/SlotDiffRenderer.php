@@ -46,6 +46,7 @@ abstract class SlotDiffRenderer {
 	 * @param Content|null $oldContent
 	 * @param Content|null $newContent
 	 * @return string HTML. One or more <tr> tags, or an empty string if the inputs are identical.
+	 * @throws IncompatibleDiffTypesException
 	 */
 	abstract public function getDiff( Content $oldContent = null, Content $newContent = null );
 
@@ -84,6 +85,7 @@ abstract class SlotDiffRenderer {
 	 * @param Content|null &$oldContent
 	 * @param Content|null &$newContent
 	 * @param string|array|null $allowedClasses
+	 * @throws IncompatibleDiffTypesException
 	 */
 	protected function normalizeContents(
 		Content &$oldContent = null, Content &$newContent = null, $allowedClasses = null
@@ -93,12 +95,33 @@ abstract class SlotDiffRenderer {
 		}
 
 		if ( $allowedClasses ) {
-			if ( !is_array( $allowedClasses ) ) {
+			if ( is_string( $allowedClasses ) ) {
 				$allowedClasses = explode( '|', $allowedClasses );
 			}
-			$allowedClasses[] = 'null';
-			Assert::parameterType( $allowedClasses, $oldContent, '$oldContent' );
-			Assert::parameterType( $allowedClasses, $newContent, '$newContent' );
+			$allowedClassesOrNull = array_merge( $allowedClasses, [ 'null' ] );
+
+			// The new content (or the old one if the new one is null) must always match the renderer
+			// since the ContentHandler of that model should be used to create it
+			Assert::parameterType( $allowedClassesOrNull, $newContent, '$newContent' );
+			if ( !$newContent ) {
+				Assert::parameterType( $allowedClassesOrNull, $oldContent, '$oldContent' );
+			}
+
+			// If there are two content objects, the old one can be arbitrary as it is possible
+			// to generate a diff between any two revisions; so an incompatible model should be
+			// handled as a user error, not a logic error.
+			if ( $oldContent && $newContent ) {
+				$allowed = false;
+				foreach ( $allowedClasses as $class ) {
+					if ( $oldContent instanceof $class ) {
+						$allowed = true;
+						break;
+					}
+				}
+				if ( !$allowed ) {
+					throw new IncompatibleDiffTypesException( $oldContent->getModel(), $newContent->getModel() );
+				}
+			}
 		}
 
 		if ( !$oldContent ) {

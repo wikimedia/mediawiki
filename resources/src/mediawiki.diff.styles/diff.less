@@ -2,6 +2,8 @@
  * Diff rendering
  */
 
+@import 'mediawiki.skin.variables.less';
+
 @diffInserted: #a3d3ff;
 @diffDeleted: #ffe49c;
 
@@ -206,6 +208,11 @@
 
 .mw-diff-slot-header {
 	text-align: center;
+}
+
+.mw-diff-slot-error {
+	text-align: center;
+	color: @color-error;
 }
 
 /*!

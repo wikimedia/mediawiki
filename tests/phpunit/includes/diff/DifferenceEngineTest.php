@@ -280,8 +280,9 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		$main2 = [ SlotRecord::MAIN => 'yyy' ];
 		$slot1 = [ 'slot' => 'aaa' ];
 		$slot2 = [ 'slot' => 'bbb' ];
-		$slot3 = [ 'derivedslot' => 'aaa' ];
-		$slot4 = [ 'derivedslot' => 'bbb' ];
+		$slot3 = [ 'derivedslot' => [ 'text' => 'aaa', 'derived' => true ] ];
+		$slot4 = [ 'derivedslot' => [ 'text' => 'bbb', 'derived' => true ] ];
+		$slot5 = [ 'slot' => [ 'model' => 'testing' ] ];
 
 		return [
 			'revision vs. null' => [
@@ -313,6 +314,11 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 				$main1 + $slot3,
 				$main1 + $slot4,
 				'',
+			],
+			'incompatible slot' => [
+				$main1 + $slot5,
+				$main2 + $slot1,
+				"Line 1:\nLine 1:\n-xxx+yyy\nslotCannot compare content models \"testing\" and \"plain text\"",
 			],
 		];
 	}
@@ -417,8 +423,12 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param string[]|null $slots Array mapping slot role to text content.
-	 *   If the role is "derivedslot", the slot will be marked as derived.
+	 * @param string[]|array[]|null $slots Array mapping slot role to content.
+	 *   If the content is a string, a normal text slot will be created. If the
+	 *   content is an associative array, it can have the following keys:
+	 *    - derived: If present and true, the slot is a derived slot
+	 *    - text: The serialized content
+	 *    - model: The content model ID
 	 * @return MutableRevisionRecord|null
 	 */
 	private function getRevisionRecord( $slots ) {
@@ -426,11 +436,24 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 			return null;
 		}
 
+		$contentHandlerFactory = $this->getServiceContainer()->getContentHandlerFactory();
 		$title = $this->makeMockTitle( __CLASS__ );
 		$revision = new MutableRevisionRecord( $title );
-		foreach ( $slots as $role => $text ) {
-			$content = ContentHandler::makeContent( $text, null, CONTENT_MODEL_TEXT );
-			if ( $role === 'derivedslot' ) {
+		foreach ( $slots as $role => $info ) {
+			if ( is_string( $info ) ) {
+				$info = [
+					'text' => $info,
+				];
+			}
+			$info += [ 'text' => '', 'model' => CONTENT_MODEL_TEXT ];
+
+			if ( !$contentHandlerFactory->isDefinedModel( $info['model'] ) ) {
+				$contentHandlerFactory->defineContentHandler(
+					$info['model'], DummyContentHandlerForTesting::class );
+			}
+
+			$content = ContentHandler::makeContent( $info['text'], null, $info['model'] );
+			if ( $info['derived'] ?? false ) {
 				$slotRecord = SlotRecord::newDerived( $role, $content );
 			} else {
 				$slotRecord = SlotRecord::newUnsaved( $role, $content );
