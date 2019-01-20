@@ -1154,7 +1154,7 @@
 	"right-deletedtext": "Pregled izbrisanog teksta i izmjena između izbrisanih izmjena",
 	"right-browsearchive": "Traženje obrisanih stranica",
 	"right-undelete": "Vraćanje stranica",
-	"right-suppressrevision": "Pregledavanje, skrivanje i vraćanje izmjena na suradničkim stranicama bilo kojega suradnika",
+	"right-suppressrevision": "Pregledavanje, skrivanje i vraćanje određenih izmjena stranica od bilo kojega suradnika",
 	"right-viewsuppressed": "Prikaži izmjene skrivene od svih suradnika",
 	"right-suppressionlog": "Gledanje privatnih evidencija",
 	"right-block": "Blokiranje suradnika u uređivanju",

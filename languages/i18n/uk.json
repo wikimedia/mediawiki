@@ -390,7 +390,7 @@
 	"filerenameerror": "Не вдалося перейменувати файл «$1» на «$2».",
 	"filedeleteerror": "Не вдалося вилучити файл «$1».",
 	"directorycreateerror": "Не вдалося створити каталог \"$1\".",
-	"directoryreadonlyerror": "Каталог \"$1\" доступний лише для читання.",
+	"directoryreadonlyerror": "Каталог «$1» доступний лише для читання.",
 	"directorynotreadableerror": "Каталог \"$1\" нечитабельний.",
 	"filenotfound": "Не вдалося знайти файл «$1».",
 	"unexpected": "Неочікуване значення: «$1»=«$2».",

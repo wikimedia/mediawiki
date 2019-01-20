@@ -2126,6 +2126,8 @@
 	"ipb-blocklist": "हाल रहेका निषेधहरू हेर्नुहोस्",
 	"ipb-blocklist-contribs": "{{GENDER:$1|$1}}को लागि योगदान",
 	"block-expiry": "सकिने:",
+	"block-options": "अतिरिक्त विकल्पहरू",
+	"block-prevent-edit": "सम्पादन हुँदैछ",
 	"block-reason": "कारण:",
 	"block-target": "प्रयोगकर्ता नाम वा आइपी ठेगाना",
 	"unblockip": "प्रयोगकर्ताको निषेध खारेज गर्नुहोस्",

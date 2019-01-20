@@ -822,7 +822,7 @@
 	"content-json-empty-object": "Tomt objekt",
 	"content-json-empty-array": "Tomt matrix",
 	"deprecated-self-close-category": "Sider, der bruger ugyldige, selvlukkende HTML-tags",
-	"deprecated-self-close-category-desc": "Siden bruger ugyldige selvlukkende HTML tags, som <code>&lt;b/></code> eller <code>&lt;span/></code>. De vil snart blive ændret i overensstemmelse med HTML5 specifikationen, så de ikke kan bruges i wikitext.",
+	"deprecated-self-close-category-desc": "Siden bruger ugyldige selvlukkende HTML tags, som <code>&lt;b/></code> eller <code>&lt;span/></code>. De vil snart blive ændret i overensstemmelse med HTML5-specifikationen, så de ikke kan bruges i wikitext.",
 	"duplicate-args-category": "Sider der bruger samme argument mere end en gang i en skabelon",
 	"duplicate-args-category-desc": "Siden indeholder en skabelon hvor et argument er brugt mere end en gang, som <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> eller <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "Advarsel: Der er for mange beregningstunge oversætter-funktionskald på denne side.\n\nDer bør være færre end {{PLURAL:$2|$2 kald}}, lige nu er der {{PLURAL:$1|$1 kald}}.",

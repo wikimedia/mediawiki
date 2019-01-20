@@ -2107,7 +2107,7 @@
 	"cachedspecial-refresh-now": "A legfrissebb változat megjelenítése.",
 	"categories": "Kategóriák",
 	"categories-submit": "Mutat",
-	"categoriespagetext": "A következő {{PLURAL:$1|kategória tartalmaz|kategóriák tartalmaznak}} lapokat vagy fájlokat.\nA [[Special:UnusedCategories|nem használt kategóriák]] nem jelennek meg.\nLásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.",
+	"categoriespagetext": "A következő {{PLURAL:$1|kategória tartalmaz|kategóriák tartalmaznak}} lapokat vagy fájlokat.\nA nem használt kategóriák nem jelennek meg.\nLásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.",
 	"categoriesfrom": "Kategóriák listázása a következő névtől kezdve:",
 	"deletedcontributions": "Törölt szerkesztések",
 	"deletedcontributions-title": "Törölt szerkesztések",
