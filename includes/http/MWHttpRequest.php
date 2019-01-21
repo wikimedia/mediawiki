@@ -466,6 +466,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * request has been executed.  Because some headers
 	 * (e.g. Set-Cookie) can appear more than once the, each value of
 	 * the associative array is an array of the values given.
+	 * Header names are always in lowercase.
 	 *
 	 * @return array
 	 */
@@ -480,7 +481,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	/**
 	 * Returns the value of the given response header.
 	 *
-	 * @param string $header
+	 * @param string $header case-insensitive
 	 * @return string|null
 	 */
 	public function getResponseHeader( $header ) {
