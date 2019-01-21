@@ -31,6 +31,7 @@
  *
  * @ingroup Deployment
  * @since 1.17
+ * @private
  */
 class WebInstallerOutput {
 
@@ -166,7 +167,7 @@ class WebInstallerOutput {
 
 		$rlContext = new ResourceLoaderContext( $resourceLoader, new FauxRequest( [
 				'debug' => 'true',
-				'lang' => $this->getLanguageCode(),
+				'lang' => $this->getLanguage()->getCode(),
 				'only' => 'styles',
 		] ) );
 
@@ -220,21 +221,13 @@ class WebInstallerOutput {
 	}
 
 	/**
-	 * @return string
+	 * @since 1.33
+	 * @return Language
 	 */
-	public function getDir() {
+	private function getLanguage() {
 		global $wgLang;
 
-		return is_object( $wgLang ) ? $wgLang->getDir() : 'ltr';
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getLanguageCode() {
-		global $wgLang;
-
-		return is_object( $wgLang ) ? $wgLang->getCode() : 'en';
+		return is_object( $wgLang ) ? $wgLang : Language::factory( 'en' );
 	}
 
 	/**
@@ -242,8 +235,8 @@ class WebInstallerOutput {
 	 */
 	public function getHeadAttribs() {
 		return [
-			'dir' => $this->getDir(),
-			'lang' => LanguageCode::bcp47( $this->getLanguageCode() ),
+			'dir' => $this->getLanguage()->getDir(),
+			'lang' => $this->getLanguage()->getHtmlCode(),
 		];
 	}
 
@@ -287,7 +280,7 @@ class WebInstallerOutput {
 	<?php echo Html::linkedScript( 'config.js' ) . "\n"; ?>
 </head>
 
-<?php echo Html::openElement( 'body', [ 'class' => $this->getDir() ] ) . "\n"; ?>
+<?php echo Html::openElement( 'body', [ 'class' => $this->getLanguage()->getDir() ] ) . "\n"; ?>
 <div id="mw-page-base"></div>
 <div id="mw-head-base"></div>
 <div id="content" class="mw-body">
