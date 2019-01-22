@@ -176,6 +176,8 @@ because of Phabricator reports.
   mediawiki.api.login, mediawiki.api.options, mediawiki.api.parse,
   mediawiki.api.upload, mediawiki.api.user, mediawiki.api.watch,
   mediawiki.api.messages, and mediawiki.api.rollback.
+* The 'jquery.byteLimit' module alias for 'jquery.lengthLimit',
+  deprecated in 1.31, was removed.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
