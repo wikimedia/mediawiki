@@ -20,7 +20,6 @@ production.
   IP addresses, internationalized domain names, and possibly mailto links.
 * (T193868) $wgChangeTagsSchemaMigrationStage — This temporary setting, added in
   MediaWiki 1.32, now defaults to MIGRATION_NEW instead of MIGRATION_WRITE_BOTH.
-* …
 
 ==== Removed configuration ====
 * (T199334) $wgTagStatisticsNewTable — This temporary setting, added in
@@ -31,7 +30,6 @@ production.
   $wgTidyConf, $wgTidyOpts, $wgTidyInternal, and $wgDebugTidy, all
   deprecated since 1.26, have now all been removed. The $wgTidyConfig
   setting remains only for Remex experimental features or debugging.
-* …
 
 === New features in 1.33 ===
 * (T96041) __EXPECTUNUSEDCATEGORY__ on a category page causes the category
@@ -41,14 +39,12 @@ production.
   additional information about the authentication event.
 * TextContent::getText() was introduced as a replacement for
   Content::getNativeData() for text-based content models.
-* …
 
 === External library changes in 1.33 ===
 
 ==== New external libraries ====
 * Added wikimedia/password-blacklist 0.1.4.
 * Added guzzlehttp/guzzle 6.3.3.
-* …
 
 ==== Changed external libraries ====
 * Updated wikimedia/xmp-reader from 0.6.0 to 0.6.1.
@@ -57,15 +53,12 @@ production.
   * The deprecated IPSet\IPSet alias was removed, Wikimedia\IPSet must be
     used instead.
 * Updated qunitjs from 2.6.2 to 2.9.1.
-* …
 
 ==== Removed external libraries ====
-* …
 
 === Bug fixes in 1.33 ===
 * (T164211) Special:UserRights could sometimes fail with a
   "conflict detected" error when there weren't any conflicts.
-* …
 
 === Action API changes in 1.33 ===
 * (T198913) Added 'ApiOptions' hook.
@@ -97,7 +90,6 @@ production.
   hyphen. Methods such as ApiBase::dieWithError() and
   ApiMessageTrait::setApiCode() will throw an InvalidArgumentException if
   passed a bad code.
-* …
 
 === Languages updated in 1.33 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -215,14 +207,12 @@ because of Phabricator reports.
 * The class WebInstallerOutput is now marked as @private.
 * (T209699) The jquery.async module has been deprecated. JavaScript code that
   needs asynchronous behaviour should use Promises.
-* …
 
 === Other changes in 1.33 ===
 * (T208871) The hard-coded Google search form on the database error page was
   removed.
 * (T201747) Html::openElement() warns if given an element name wiht a space
   in it.
-* …
 
 == Compatibility ==
 MediaWiki 1.33 requires PHP 7.0.0 or later. Although HHVM 3.18.5 or later is
