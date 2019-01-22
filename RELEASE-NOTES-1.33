@@ -213,6 +213,8 @@ because of Phabricator reports.
 * (T155582) Content::getNativeData has been deprecated. Please use model-
   specific getters, such as TextContent::getText().
 * The class WebInstallerOutput is now marked as @private.
+* (T209699) The jquery.async module has been deprecated. JavaScript code that
+  needs asynchronous behaviour should use Promises.
 * …
 
 === Other changes in 1.33 ===
