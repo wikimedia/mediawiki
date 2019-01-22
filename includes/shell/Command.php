@@ -553,4 +553,15 @@ class Command {
 
 		return new Result( $retval, $buffers[1], $buffers[2] );
 	}
+
+	/**
+	 * Returns the final command line before environment/limiting, etc are applied.
+	 * Use string conversion only for debugging, don't try to pass this to
+	 * some other execution medium.
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return "#Command: {$this->command}";
+	}
 }
