@@ -103,7 +103,7 @@
 				} ).done( function ( ok ) {
 					ok = ok || suppressErrors;
 					that.setIcon( ok ? null : 'alert' );
-					that.setIconTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
+					that.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 				} );
 			}
 		},
@@ -185,7 +185,7 @@
 			apiCheckValid: function () {
 				var ok = this.getApiValue() !== undefined || suppressErrors;
 				this.setIcon( ok ? null : 'alert' );
-				this.setIconTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
+				this.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 				return $.Deferred().resolve( ok ).promise();
 			}
 		},
@@ -233,7 +233,7 @@
 				}
 
 				this.setIcon( ok ? null : 'alert' );
-				this.setIconTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
+				this.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 				return $.Deferred().resolve( ok ).promise();
 			},
 			createTagItemWidget: function ( data, label ) {
@@ -291,7 +291,7 @@
 			apiCheckValid: function () {
 				var ok = this.getValue() !== null || suppressErrors;
 				this.setIcon( ok ? null : 'alert' );
-				this.setIconTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
+				this.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 				return $.Deferred().resolve( ok ).promise();
 			}
 		}
@@ -468,7 +468,7 @@
 						isInteger: true
 					} );
 					widget.setIcon = widget.input.setIcon.bind( widget.input );
-					widget.setIconTitle = widget.input.setIconTitle.bind( widget.input );
+					widget.setTitle = widget.input.setTitle.bind( widget.input );
 					widget.getValidity = widget.input.getValidity.bind( widget.input );
 					widget.paramInfo = pi;
 					$.extend( widget, WidgetMethods.textInputWidget );
@@ -1364,7 +1364,7 @@
 		this.outlineItem.setLevel( this.indentLevel );
 		this.outlineItem.setLabel( this.displayText );
 		this.outlineItem.setIcon( this.apiIsValid || suppressErrors ? null : 'alert' );
-		this.outlineItem.setIconTitle(
+		this.outlineItem.setTitle(
 			this.apiIsValid || suppressErrors ? '' : mw.message( 'apisandbox-alert-page' ).plain()
 		);
 	};
@@ -2010,7 +2010,7 @@
 				that.apiIsValid = Array.prototype.indexOf.call( arguments, false ) === -1;
 				if ( that.getOutlineItem() ) {
 					that.getOutlineItem().setIcon( that.apiIsValid || suppressErrors ? null : 'alert' );
-					that.getOutlineItem().setIconTitle(
+					that.getOutlineItem().setTitle(
 						that.apiIsValid || suppressErrors ? '' : mw.message( 'apisandbox-alert-page' ).plain()
 					);
 				}
