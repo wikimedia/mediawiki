@@ -294,7 +294,7 @@
 			this.saveButton.toggle( isEdit );
 
 			if ( isEdit ) {
-				this.editInput.$input.focus();
+				this.editInput.$input.trigger( 'focus' );
 			}
 			this.editing = isEdit;
 		}

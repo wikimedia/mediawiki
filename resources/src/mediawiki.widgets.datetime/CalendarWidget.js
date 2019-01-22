@@ -452,7 +452,7 @@
 	mw.widgets.datetime.CalendarWidget.prototype.onPrevClick = function () {
 		this.setFocusedDate( this.adjustDate( this.getFocusedDate(), 'month', -1 ) );
 		if ( !this.$widget || OO.ui.contains( this.$element[ 0 ], document.activeElement, true ) ) {
-			this.$element.focus();
+			this.$element.trigger( 'focus' );
 		}
 	};
 
@@ -464,7 +464,7 @@
 	mw.widgets.datetime.CalendarWidget.prototype.onNextClick = function () {
 		this.setFocusedDate( this.adjustDate( this.getFocusedDate(), 'month', 1 ) );
 		if ( !this.$widget || OO.ui.contains( this.$element[ 0 ], document.activeElement, true ) ) {
-			this.$element.focus();
+			this.$element.trigger( 'focus' );
 		}
 	};
 
@@ -478,7 +478,7 @@
 		this.setFocusedDate( $button.getData() );
 		this.setSelected( [ $button.getData() ] );
 		if ( !this.$widget || OO.ui.contains( this.$element[ 0 ], document.activeElement, true ) ) {
-			this.$element.focus();
+			this.$element.trigger( 'focus' );
 		}
 	};
 

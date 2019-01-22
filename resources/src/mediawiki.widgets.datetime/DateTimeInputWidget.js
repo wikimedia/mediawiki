@@ -815,7 +815,7 @@
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.focus = function () {
 		if ( !this.getFocusedField().length ) {
-			this.$fields.find( '.mw-widgets-datetime-dateTimeInputWidget-editField' ).first().focus();
+			this.$fields.find( '.mw-widgets-datetime-dateTimeInputWidget-editField' ).first().trigger( 'focus' );
 		}
 		return this;
 	};

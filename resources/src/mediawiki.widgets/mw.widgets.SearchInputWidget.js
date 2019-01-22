@@ -233,7 +233,7 @@
 		mw.widgets.SearchInputWidget.parent.prototype.onLookupMenuItemChoose.apply( this, arguments );
 
 		if ( this.performSearchOnClick ) {
-			this.$element.closest( 'form' ).submit();
+			this.$element.closest( 'form' ).trigger( 'submit' );
 		}
 	};
 
