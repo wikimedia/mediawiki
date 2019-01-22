@@ -553,6 +553,7 @@
 	"content-model-text": "純文本",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"undo-failure": "Ĭng-ôi gūi bĭh biĕng-cĭk cĭ-găng ô chṳ̆ng-dók, cī bĭh biĕng-cĭk mâ̤-sāi huàng-nguòng.",
 	"undo-summary": "Chṳ̄-siĕu [[Special:Contributions/$2|$2]]（[[User talk:$2|Páng-gōng]]）sū có̤ gì siŭ-gāi $1",
 	"viewpagelogs": "看茲頁其歷史",
 	"nohistory": "茲頁無修改歷史。",
