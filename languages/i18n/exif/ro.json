@@ -8,7 +8,8 @@
 			"Mihai",
 			"Minisarm",
 			"Silviubogan",
-			"Stelistcristi"
+			"Stelistcristi",
+			"Strainu"
 		]
 	},
 	"exif-imagewidth": "Lățime",
@@ -194,7 +195,11 @@
 	"exif-compression-6": "JPEG (vechi)",
 	"exif-copyrighted-true": "Sub incidența drepturilor de autor",
 	"exif-copyrighted-false": "Statutul drepturilor de autor nu este definit",
+	"exif-photometricinterpretation-0": "Negru și alb (0 pentru alb)",
 	"exif-photometricinterpretation-1": "Negru și alb (0 pentru negru)",
+	"exif-photometricinterpretation-3": "Paletă",
+	"exif-photometricinterpretation-4": "Mască de transparență",
+	"exif-photometricinterpretation-5": "Separat (Probabil CMYK)",
 	"exif-unknowndate": "Dată necunoscută",
 	"exif-orientation-1": "Normală",
 	"exif-orientation-2": "Oglindită orizontal",

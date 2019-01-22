@@ -3542,7 +3542,7 @@
 	"limitreport-expansiondepth": "Suurin laajennussyvyys",
 	"limitreport-expensivefunctioncount": "Vaativien jäsenninfunktioiden lukumäärä",
 	"limitreport-unstrip-depth": "Unstrip-rekursion syvyys",
-	"limitreport-unstrip-size": "Unstrip laajennuksen jälkeinen koko",
+	"limitreport-unstrip-size": "Unstrip-laajennuksen jälkeinen koko",
 	"limitreport-unstrip-size-value": "$1/$2 {{PLURAL:$2|tavu|tavua}}",
 	"expandtemplates": "Laajenna mallineet",
 	"expand_templates_intro": "Tämä toimintosivu ottaa syötteeksi wikitekstiä ja laajentaa kaikki siinä olevat mallineet rekursiivisesti.\nSe myös laajentaa tuetut parserifunktiot kuten\n<code><nowiki>{{</nowiki>#language:...}}</code> ja -muuttujat kuten\n<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.\nKäytännössä se laajentaa melkein kaiken, joka on kaksoisaaltosulkeiden sisällä.",

@@ -3258,6 +3258,7 @@
 	"specialpages-group-developer": "Utviklerverktøy",
 	"blankpage": "Tom side",
 	"intentionallyblankpage": "Denne siden er tom med vilje",
+	"disabledspecialpage-disabled": "Denne siden har blitt slått av av en systemadministrator.",
 	"external_image_whitelist": "#La denne linja være som den er<pre>\n#Skriv fragmenter av regulære uttrykk (delen som går mellom //) nedenfor\n#Disse vil sjekkes mot adresser til bilder fra eksterne sider\n#De som blir godkjent vil vises, ellers vil det gis en lenke til bildet\n#Linjer som begynner med # anses som kommentarer\n#Det skilles ikke mellom store og små bokstaver\n\n#Skriv alle fragmenter av regulære uttrykk over denne lina. La denne linja være som den er</pre>",
 	"tags": "Gyldige endringstagger",
 	"tag-filter": "Filter for [[Special:Tags|tagger]]:",

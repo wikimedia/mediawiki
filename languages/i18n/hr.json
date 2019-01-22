@@ -1858,7 +1858,7 @@
 	"pager-older-n": "{{PLURAL:$1|starija $1|starije $1|starijih $1}}",
 	"suppress": "Izvrši nadgled",
 	"querypage-disabled": "Ova posebna stranica onemogućena je jer bi usporila funkcioniranje projekta.",
-	"apihelp": "Pomoć za API",
+	"apihelp": "Pomoć za prilog",
 	"apihelp-no-such-module": "Modul »$1« nije pronađen.",
 	"apisandbox": "Stranica za vježbanje API-ja",
 	"apisandbox-submit": "Napraviti zahtjev",
