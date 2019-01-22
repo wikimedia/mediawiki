@@ -183,11 +183,6 @@ return [
 		'dependencies' => 'mediawiki.String',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'jquery.byteLimit' => [
-		'dependencies' => 'jquery.lengthLimit',
-		'deprecated' => 'Use "jquery.lengthLimit" instead.',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'jquery.checkboxShiftClick' => [
 		'scripts' => 'resources/src/jquery/jquery.checkboxShiftClick.js',
 		'targets' => [ 'desktop', 'mobile' ],
@@ -887,54 +882,6 @@ return [
 			'user.tokens',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
-	],
-	'mediawiki.api.category' => [
-		'deprecated' => 'Use "mediawiki.api" instead.',
-		'dependencies' => 'mediawiki.api',
-	],
-	'mediawiki.api.edit' => [
-		'deprecated' => 'Use "mediawiki.api" instead.',
-		'dependencies' => [
-			'mediawiki.api',
-		],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-	'mediawiki.api.login' => [
-		'deprecated' => 'Use "mediawiki.api" instead.',
-		'dependencies' => 'mediawiki.api',
-	],
-	'mediawiki.api.options' => [
-		'deprecated' => 'Use "mediawiki.api" instead.',
-		'dependencies' => 'mediawiki.api',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-	'mediawiki.api.parse' => [
-		'deprecated' => 'Use "mediawiki.api" instead.',
-		'dependencies' => 'mediawiki.api',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-	'mediawiki.api.upload' => [
-		'deprecated' => 'Use "mediawiki.api" instead.',
-		'dependencies' => 'mediawiki.api',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-	'mediawiki.api.user' => [
-		'deprecated' => 'Use "mediawiki.api" instead.',
-		'dependencies' => 'mediawiki.api',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-	'mediawiki.api.watch' => [
-		'deprecated' => 'Use "mediawiki.api" instead.',
-		'dependencies' => 'mediawiki.api',
-	],
-	'mediawiki.api.messages' => [
-		'deprecated' => 'Use "mediawiki.api" instead.',
-		'dependencies' => 'mediawiki.api',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-	'mediawiki.api.rollback' => [
-		'deprecated' => 'Use "mediawiki.api" instead.',
-		'dependencies' => 'mediawiki.api',
 	],
 	'mediawiki.content.json' => [
 		'styles' => 'resources/src/mediawiki.content.json.less',
