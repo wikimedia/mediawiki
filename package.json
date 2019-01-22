@@ -10,7 +10,6 @@
     "selenium-test": "wdio ./tests/selenium/wdio.conf.js"
   },
   "devDependencies": {
-    "deepmerge": "1.3.2",
     "eslint-config-wikimedia": "0.10.0",
     "grunt": "1.0.3",
     "grunt-banana-checker": "0.6.0",
