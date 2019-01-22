@@ -148,6 +148,7 @@ function wfArrayDiff2_cmp( $a, $b ) {
  * @return array
  */
 function wfArrayFilter( array $arr, callable $callback ) {
+	wfDeprecated( __FUNCTION__, '1.32' );
 	return array_filter( $arr, $callback, ARRAY_FILTER_USE_BOTH );
 }
 
@@ -160,6 +161,7 @@ function wfArrayFilter( array $arr, callable $callback ) {
  * @return array
  */
 function wfArrayFilterByKey( array $arr, callable $callback ) {
+	wfDeprecated( __FUNCTION__, '1.32' );
 	return array_filter( $arr, $callback, ARRAY_FILTER_USE_KEY );
 }
 
