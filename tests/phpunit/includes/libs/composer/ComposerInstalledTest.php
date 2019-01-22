@@ -1,13 +1,12 @@
 <?php
 
-class ComposerInstalledTest extends MediaWikiTestCase {
+class ComposerInstalledTest extends PHPUnit\Framework\TestCase {
 
 	private $installed;
 
 	public function setUp() {
 		parent::setUp();
-		global $IP;
-		$this->installed = "$IP/tests/phpunit/data/composer/installed.json";
+		$this->installed = __DIR__ . "/../../../data/composer/installed.json";
 	}
 
 	/**
@@ -16,7 +15,7 @@ class ComposerInstalledTest extends MediaWikiTestCase {
 	 */
 	public function testGetInstalledDependencies() {
 		$installed = new ComposerInstalled( $this->installed );
-		$this->assertArrayEquals( [
+		$this->assertEquals( [
 		'leafo/lessphp' => [
 			'version' => '0.5.0',
 			'type' => 'library',
@@ -494,6 +493,6 @@ class ComposerInstalledTest extends MediaWikiTestCase {
 			],
 			'description' => 'The PHP Unit Testing framework.',
 		],
-		], $installed->getInstalledDependencies(), false, true );
+		], $installed->getInstalledDependencies() );
 	}
 }
