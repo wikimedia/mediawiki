@@ -1838,7 +1838,7 @@
 	"apierror-readapidenied": "You need read permission to use this module.",
 	"apierror-readonly": "The wiki is currently in read-only mode.",
 	"apierror-reauthenticate": "You have not authenticated recently in this session, please reauthenticate.",
-	"apierror-redirect-appendonly": "You have attempted to edit using the redirect-following mode, which must be used in conjuction with <kbd>section=new</kbd>, <var>prependtext</var>, or <var>appendtext</var>.",
+	"apierror-redirect-appendonly": "You have attempted to edit using the redirect-following mode, which must be used in conjunction with <kbd>section=new</kbd>, <var>prependtext</var>, or <var>appendtext</var>.",
 	"apierror-revdel-mutuallyexclusive": "The same field cannot be used in both <var>hide</var> and <var>show</var>.",
 	"apierror-revdel-needtarget": "A target title is required for this RevDel type.",
 	"apierror-revdel-paramneeded": "At least one value is required for <var>hide</var> and/or <var>show</var>.",
