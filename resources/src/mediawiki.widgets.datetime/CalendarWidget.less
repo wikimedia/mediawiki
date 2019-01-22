@@ -65,11 +65,7 @@
 			.oo-ui-buttonElement-button {
 				width: 100%;
 				border: 1px solid rgba( 255, 255, 255, 0 );
-				.oo-ui-transition(
-					background-color @transition-base,
-					color @transition-base,
-					border-color @transition-base
-				);
+				.oo-ui-transition( ~'background-color @{transition-base}, color @{transition-base}, border-color @{transition-base}' );
 			}
 
 			&.mw-widgets-datetime-calendarWidget-extra .oo-ui-buttonElement-button {
