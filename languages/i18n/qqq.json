@@ -1352,7 +1352,7 @@
 	"prefs-editor": "Used in [[Special:Preferences]], tab \"Editing\" ({{int:prefs-editing}}).\n\n{{Identical|Editor}}",
 	"prefs-preview": "Used in [[Special:Preferences]], tab \"Editing\".\n{{Identical|Preview}}",
 	"prefs-advancedrc": "Used in [[Special:Preferences]], tab \"Recent changes\".\n{{Identical|Advanced options}}",
-	"prefs-advancedrendering": "Used in [[Special:Preferences]], tab \"Appearence\".\n{{Identical|Advanced options}}",
+	"prefs-advancedrendering": "Used in [[Special:Preferences]], tab \"Appearance\".\n{{Identical|Advanced options}}",
 	"prefs-advancedsearchoptions": "Used in [[Special:Preferences]], tab \"Search options\".\n{{Identical|Advanced options}}",
 	"prefs-advancedwatchlist": "Used in [[Special:Preferences]], tab \"Watchlist\".\n{{Identical|Advanced options}}",
 	"prefs-displayrc": "\"Display\" is a noun that specifies the kind of \"options\". So translate as \"options about display\", not as \"display the options\".\n\nUsed in [[Special:Preferences]], tab \"Recent changes\". The display options refer to:\n* {{msg-mw|Recentchangesdays}}\n* {{msg-mw|Recentchangescount}}",

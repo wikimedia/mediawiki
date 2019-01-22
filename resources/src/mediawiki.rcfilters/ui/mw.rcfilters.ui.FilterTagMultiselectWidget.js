@@ -385,7 +385,7 @@
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.prototype.doInputEscape.call( this );
 
 		// Blur the input
-		this.input.$input.blur();
+		this.input.$input.trigger( 'blur' );
 	};
 
 	/**
