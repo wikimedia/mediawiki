@@ -2,6 +2,7 @@
 
 use MediaWiki\Block\BlockRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\Restriction\NamespaceRestriction;
 
 /**
  * @group Database
@@ -654,12 +655,92 @@ class BlockTest extends MediaWikiLangTestCase {
 
 		$pageFoo = $this->getExistingTestPage( 'Foo' );
 		$pageBar = $this->getExistingTestPage( 'Bar' );
+		$pageJohn = $this->getExistingTestPage( 'User:John' );
 
 		$pageRestriction = new PageRestriction( $block->getId(), $pageFoo->getId() );
-		BlockRestriction::insert( [ $pageRestriction ] );
+		$namespaceRestriction = new NamespaceRestriction( $block->getId(), NS_USER );
+		BlockRestriction::insert( [ $pageRestriction, $namespaceRestriction ] );
 
 		$this->assertTrue( $block->appliesToTitle( $pageFoo->getTitle() ) );
 		$this->assertFalse( $block->appliesToTitle( $pageBar->getTitle() ) );
+		$this->assertTrue( $block->appliesToTitle( $pageJohn->getTitle() ) );
+
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::appliesToNamespace
+	 * @covers Block::appliesToPage
+	 */
+	public function testAppliesToReturnsTrueOnSitewideBlock() {
+		$user = $this->getTestUser()->getUser();
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+			'allowUsertalk' => true,
+			'sitewide' => true
+		] );
+
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		$title = $this->getExistingTestPage()->getTitle();
+
+		$this->assertTrue( $block->appliesToPage( $title->getArticleID() ) );
+		$this->assertTrue( $block->appliesToNamespace( NS_MAIN ) );
+		$this->assertTrue( $block->appliesToNamespace( NS_USER_TALK ) );
+
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::appliesToPage
+	 */
+	public function testAppliesToPageOnPartialPageBlock() {
+		$user = $this->getTestUser()->getUser();
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+			'allowUsertalk' => true,
+			'sitewide' => false
+		] );
+
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		$title = $this->getExistingTestPage()->getTitle();
+
+		$pageRestriction = new PageRestriction(
+			$block->getId(),
+			$title->getArticleID()
+		);
+		BlockRestriction::insert( [ $pageRestriction ] );
+
+		$this->assertTrue( $block->appliesToPage( $title->getArticleID() ) );
+
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::appliesToNamespace
+	 */
+	public function testAppliesToNamespaceOnPartialNamespaceBlock() {
+		$user = $this->getTestUser()->getUser();
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+			'allowUsertalk' => true,
+			'sitewide' => false
+		] );
+
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		$namespaceRestriction = new NamespaceRestriction( $block->getId(), NS_MAIN );
+		BlockRestriction::insert( [ $namespaceRestriction ] );
+
+		$this->assertTrue( $block->appliesToNamespace( NS_MAIN ) );
+		$this->assertFalse( $block->appliesToNamespace( NS_USER ) );
 
 		$block->delete();
 	}

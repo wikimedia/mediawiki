@@ -55,7 +55,7 @@ interface Restriction {
 	 * @since 1.33
 	 * @return string
 	 */
-	public function getType();
+	public static function getType();
 
 	/**
 	 * Gets the id of the type of restriction. This id is used in the database.
@@ -63,7 +63,7 @@ interface Restriction {
 	 * @since 1.33
 	 * @return string
 	 */
-	public function getTypeId();
+	public static function getTypeId();
 
 	/**
 	 * Creates a new Restriction from a database row.
