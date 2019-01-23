@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -351,5 +352,117 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		$title2 = Title::newFromText( 'Foo' );
 		$this->assertNotSame( $title1, $title2, 'title cache should be empty' );
 		$this->assertEquals( 0, $linkCache->getGoodLinkID( 'Foo' ), 'link cache should be empty' );
+	}
+
+	public function provideGetLinkURL() {
+		yield 'Simple' => [
+			'/wiki/Goats',
+			NS_MAIN,
+			'Goats'
+		];
+
+		yield 'Fragment' => [
+			'/wiki/Goats#Goatificatiön',
+			NS_MAIN,
+			'Goats',
+			'Goatificatiön'
+		];
+
+		yield 'Unknown interwiki with fragment' => [
+			'https://xx.wiki.test/wiki/xyzzy:Goats#Goatificatiön',
+			NS_MAIN,
+			'Goats',
+			'Goatificatiön',
+			'xyzzy'
+		];
+
+		yield 'Interwiki with fragment' => [
+			'https://acme.test/Goats#Goatificati.C3.B6n',
+			NS_MAIN,
+			'Goats',
+			'Goatificatiön',
+			'acme'
+		];
+
+		yield 'Interwiki with query' => [
+			'https://acme.test/Goats?a=1&b=blank+blank#Goatificati.C3.B6n',
+			NS_MAIN,
+			'Goats',
+			'Goatificatiön',
+			'acme',
+			[
+				'a' => 1,
+				'b' => 'blank blank'
+			]
+		];
+
+		yield 'Local interwiki with fragment' => [
+			'https://yy.wiki.test/wiki/Goats#Goatificatiön',
+			NS_MAIN,
+			'Goats',
+			'Goatificatiön',
+			'yy'
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetLinkURL
+	 *
+	 * @covers Title::getLinkURL
+	 * @covers Title::getFullURL
+	 * @covers Title::getLocalURL
+	 * @covers Title::getFragmentForURL
+	 */
+	public function testGetLinkURL(
+		$expected,
+		$ns,
+		$title,
+		$fragment = '',
+		$interwiki = '',
+		$query = '',
+		$query2 = false,
+		$proto = false
+	) {
+		$this->setMwGlobals( [
+			'wgServer' => 'https://xx.wiki.test',
+			'wgArticlePath' => '/wiki/$1',
+			'wgExternalInterwikiFragmentMode' => 'legacy',
+			'wgFragmentMode' => [ 'html5', 'legacy' ]
+		] );
+
+		$interwikiLookup = $this->getMock( InterwikiLookup::class );
+
+		$interwikiLookup->method( 'fetch' )
+			->willReturnCallback( function ( $interwiki ) {
+				switch ( $interwiki ) {
+					case '':
+						return null;
+					case 'acme':
+						return new Interwiki(
+							'acme',
+							'https://acme.test/$1'
+						);
+					case 'yy':
+						return new Interwiki(
+							'yy',
+							'https://yy.wiki.test/wiki/$1',
+							'/w/api.php',
+							'yywiki',
+							true
+						);
+					default:
+						return false;
+				}
+			} );
+
+		$this->setService( 'InterwikiLookup', $interwikiLookup );
+
+		$title = Title::makeTitle( $ns, $title, $fragment, $interwiki );
+		$this->assertSame( $expected, $title->getLinkURL( $query, $query2, $proto ) );
+	}
+
+	function tearDown() {
+		Title::clearCaches();
+		parent::tearDown();
 	}
 }

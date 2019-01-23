@@ -1606,11 +1606,15 @@ class Title implements LinkTarget {
 	public function getFragmentForURL() {
 		if ( !$this->hasFragment() ) {
 			return '';
-		} elseif ( $this->isExternal()
-			&& !self::getInterwikiLookup()->fetch( $this->mInterwiki )->isLocal()
-		) {
-			return '#' . Sanitizer::escapeIdForExternalInterwiki( $this->mFragment );
+		} elseif ( $this->isExternal() ) {
+			// Note: If the interwiki is unknown, it's treated as a namespace on the local wiki,
+			// so we treat it like a local interwiki.
+			$interwiki = self::getInterwikiLookup()->fetch( $this->mInterwiki );
+			if ( $interwiki && !$interwiki->isLocal() ) {
+				return '#' . Sanitizer::escapeIdForExternalInterwiki( $this->mFragment );
+			}
 		}
+
 		return '#' . Sanitizer::escapeIdForLink( $this->mFragment );
 	}
 

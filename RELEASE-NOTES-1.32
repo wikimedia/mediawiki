@@ -15,6 +15,7 @@ THIS IS NOT A RELEASE YET
   use with scripts like addWiki.php to avoid mismatched domain errors.
 * (T208871) The hard-coded Google search form on the database error page was
   removed.
+* (T204800) Fix Title::getFragmentForURL for bad interwiki prefix
 
 === Changes since MediaWiki 1.32.0-rc.2 ===
 * (T188327) Fix slow queries in migrateActors.php.
