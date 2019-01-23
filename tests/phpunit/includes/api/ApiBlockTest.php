@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\Restriction\NamespaceRestriction;
+
 /**
  * @group API
  * @group Database
@@ -235,17 +238,22 @@ class ApiBlockTest extends ApiTestCase {
 
 		$title = 'Foo';
 		$page = $this->getExistingTestPage( $title );
+		$namespace = NS_TALK;
 
 		$this->doBlock( [
 			'partial' => true,
 			'pagerestrictions' => $title,
+			'namespacerestrictions' => $namespace,
 		] );
 
 		$block = Block::newFromTarget( $this->mUser->getName() );
 
 		$this->assertFalse( $block->isSitewide() );
-		$this->assertCount( 1, $block->getRestrictions() );
+		$this->assertCount( 2, $block->getRestrictions() );
+		$this->assertInstanceOf( PageRestriction::class, $block->getRestrictions()[0] );
 		$this->assertEquals( $title, $block->getRestrictions()[0]->getTitle()->getText() );
+		$this->assertInstanceOf( NamespaceRestriction::class, $block->getRestrictions()[1] );
+		$this->assertEquals( $namespace, $block->getRestrictions()[1]->getValue() );
 	}
 
 	/**
@@ -290,7 +298,7 @@ class ApiBlockTest extends ApiTestCase {
 	 * @expectedExceptionMessage Too many values supplied for parameter "pagerestrictions". The
 	 * limit is 10.
 	 */
-	public function testBlockingToManyRestrictions() {
+	public function testBlockingToManyPageRestrictions() {
 		$this->setMwGlobals( [
 			'wgEnablePartialBlocks' => true,
 		] );
