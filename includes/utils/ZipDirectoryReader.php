@@ -228,7 +228,9 @@ class ZipDirectoryReader {
 		$this->eocdr['EOCDR size'] = $structSize + $this->eocdr['file comment length'];
 
 		if ( $structSize + $this->eocdr['file comment length'] != strlen( $block ) - $sigPos ) {
-			$this->error( 'zip-bad', 'trailing bytes after the end of the file comment' );
+			// T40432: MS binary documents frequently embed ZIP files
+			$this->error( 'zip-wrong-format', 'there is a ZIP signature but it is not at ' .
+				'the end of the file. It could be an OLE file with a ZIP file embedded.' );
 		}
 		if ( $this->eocdr['disk'] !== 0
 			|| $this->eocdr['CD start disk'] !== 0
