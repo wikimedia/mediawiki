@@ -458,7 +458,7 @@ a.new {
 .mw-datatable td,
 .mw-datatable th {
 	border: 1px solid #a2a9b1;
-	padding: 0 0.15em;
+	padding: 0.2em 0.4em;
 }
 
 .mw-datatable th {
