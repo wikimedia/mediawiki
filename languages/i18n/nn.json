@@ -2853,7 +2853,7 @@
 	"revdelete-unrestricted": "fjerna avgrensingar for administratorar",
 	"logentry-block-block": "$1 {{GENDER:$2|blokkerte}} {{GENDER:$4|$3}} for $5 $6",
 	"logentry-block-unblock": "$1 {{GENDER:$2|oppheva}} blokkeringa av {{GENDER:$4|$3}}",
-	"logentry-block-reblock": "$1 {{GENDER:$2|endra}} innstillingar for blokkeringa av {{GENDER:$4|$3}} som endar $5 $6",
+	"logentry-block-reblock": "$1 {{GENDER:$2|endra}} innstillingar for blokkeringa av {{GENDER:$4|$3}} som endar om $5 $6",
 	"logentry-partialblock-reblock": "$1 {{GENDER:$2|endra}} innstillingar for blokkeringa av {{GENDER:$4|$3}} som hindrar endring av {{PLURAL:$8|sida|sidene}} $7 og som endar $5 $6",
 	"logentry-non-editing-block-reblock": "$1 {{GENDER:$2|endra}} innstillingar for blokkeringa av {{GENDER:$4|$3}} for visse handlingar som ikkje er endringar og som endar $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|endra}} blokkeringsinnstillingar for {{GENDER:$4|$3}} med opphøyrstid $5 $6",

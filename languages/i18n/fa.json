@@ -797,6 +797,7 @@
 	"editpage-invalidcontentmodel-text": "مدل محتوای «$1» پشتیبای نمی‌شود.",
 	"editpage-notsupportedcontentformat-title": "فرمت محتوا پشتیبانی نشده",
 	"editpage-notsupportedcontentformat-text": "فرمت محتوای $1 توسط مدل محتوای $2 پشتیبانی نشده‌است.",
+	"slot-name-main": "اصلی",
 	"content-model-wikitext": "ویکی‌متن",
 	"content-model-text": "متنی ساده",
 	"content-model-javascript": "جاوااسکریپت",
