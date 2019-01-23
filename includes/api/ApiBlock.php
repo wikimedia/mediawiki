@@ -56,12 +56,14 @@ class ApiBlock extends ApiBase {
 
 		$editingRestriction = 'sitewide';
 		$pageRestrictions = '';
+		$namespaceRestrictions = '';
 		if ( $this->getConfig()->get( 'EnablePartialBlocks' ) ) {
 			if ( $params['partial'] ) {
 				$editingRestriction = 'partial';
 			}
 
 			$pageRestrictions = implode( "\n", (array)$params['pagerestrictions'] );
+			$namespaceRestrictions = implode( "\n", (array)$params['namespacerestrictions'] );
 		}
 
 		if ( $params['userid'] !== null ) {
@@ -119,6 +121,7 @@ class ApiBlock extends ApiBase {
 			'Tags' => $params['tags'],
 			'EditingRestriction' => $editingRestriction,
 			'PageRestrictions' => $pageRestrictions,
+			'NamespaceRestrictions' => $namespaceRestrictions,
 		];
 
 		$retval = SpecialBlock::processForm( $data, $this->getContext() );
@@ -152,6 +155,7 @@ class ApiBlock extends ApiBase {
 		if ( $this->getConfig()->get( 'EnablePartialBlocks' ) ) {
 			$res['partial'] = $params['partial'];
 			$res['pagerestrictions'] = $params['pagerestrictions'];
+			$res['namespacerestrictions'] = $params['namespacerestrictions'];
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
@@ -195,6 +199,10 @@ class ApiBlock extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_ISMULTI_LIMIT1 => 10,
 				ApiBase::PARAM_ISMULTI_LIMIT2 => 10,
+			];
+			$params['namespacerestrictions'] = [
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => 'namespace',
 			];
 		}
 

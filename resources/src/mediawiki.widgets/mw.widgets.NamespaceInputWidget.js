@@ -19,7 +19,7 @@
 	 */
 	mw.widgets.NamespaceInputWidget = function MwWidgetsNamespaceInputWidget( config ) {
 		// Configuration initialization
-		config = $.extend( {}, config, { options: this.getNamespaceDropdownOptions( config ) } );
+		config = $.extend( {}, config, { options: this.constructor.static.getNamespaceDropdownOptions( config ) } );
 
 		// Parent constructor
 		mw.widgets.NamespaceInputWidget.parent.call( this, config );
@@ -32,14 +32,15 @@
 
 	OO.inheritClass( mw.widgets.NamespaceInputWidget, OO.ui.DropdownInputWidget );
 
-	/* Methods */
+	/* Static methods */
 
 	/**
-	 * @private
+	 * Get a list of namespace options, sorted by ID.
+	 *
 	 * @param {Object} [config] Configuration options
 	 * @return {Object[]} Dropdown options
 	 */
-	mw.widgets.NamespaceInputWidget.prototype.getNamespaceDropdownOptions = function ( config ) {
+	mw.widgets.NamespaceInputWidget.static.getNamespaceDropdownOptions = function ( config ) {
 		var options,
 			exclude = config.exclude || [],
 			mainNamespace = mw.config.get( 'wgNamespaceIds' )[ '' ];

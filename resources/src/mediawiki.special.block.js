@@ -22,7 +22,8 @@
 			editingWidget = infuseIfExists( $( '#mw-input-wpEditing' ) ),
 			editingRestrictionWidget = infuseIfExists( $( '#mw-input-wpEditingRestriction' ) ),
 			preventTalkPageEdit = infuseIfExists( $( '#mw-input-wpDisableUTEdit' ) ),
-			pageRestrictionsWidget = infuseIfExists( $( '#mw-input-wpPageRestrictions' ) );
+			pageRestrictionsWidget = infuseIfExists( $( '#mw-input-wpPageRestrictions' ) ),
+			namespaceRestrictionsWidget = infuseIfExists( $( '#mw-input-wpNamespaceRestrictions' ) );
 
 		function updateBlockOptions() {
 			var blocktarget = blockTargetWidget.getValue().trim(),
@@ -49,15 +50,25 @@
 			if ( watchUserField ) {
 				watchUserField.toggle( !isIpRange || isEmpty );
 			}
-			if ( pageRestrictionsWidget ) {
+			if ( editingRestrictionWidget ) {
 				editingRestrictionWidget.setDisabled( !editingIsSelected );
+			}
+			if ( pageRestrictionsWidget ) {
 				pageRestrictionsWidget.setDisabled( !editingIsSelected || editingRestrictionValue === 'sitewide' );
 			}
-			if ( preventTalkPageEdit ) {
-				// TODO: (T210475) this option is disabled for partial blocks unless
-				// a namespace restriction for User_talk namespace is in place.
-				// This needs to be updated once Namespace restrictions is available
-				preventTalkPageEdit.setDisabled( editingRestrictionValue === 'partial' && editingIsSelected );
+			if ( namespaceRestrictionsWidget ) {
+				namespaceRestrictionsWidget.setDisabled( !editingIsSelected || editingRestrictionValue === 'sitewide' );
+			}
+			if ( preventTalkPageEdit && namespaceRestrictionsWidget ) {
+				// This option is disabled for partial blocks unless a namespace restriction
+				// for the User_talk namespace is in place.
+				preventTalkPageEdit.setDisabled(
+					editingIsSelected &&
+					editingRestrictionValue === 'partial' &&
+					namespaceRestrictionsWidget.getValue().indexOf(
+						String( mw.config.get( 'wgNamespaceIds' ).user_talk )
+					) === -1
+				);
 			}
 
 		}
@@ -66,11 +77,14 @@
 			// Bind functions so they're checked whenever stuff changes
 			blockTargetWidget.on( 'change', updateBlockOptions );
 			expiryWidget.on( 'change', updateBlockOptions );
+			if ( editingWidget ) {
+				editingWidget.on( 'change', updateBlockOptions );
+			}
 			if ( editingRestrictionWidget ) {
 				editingRestrictionWidget.on( 'change', updateBlockOptions );
 			}
-			if ( editingWidget ) {
-				editingWidget.on( 'change', updateBlockOptions );
+			if ( namespaceRestrictionsWidget ) {
+				namespaceRestrictionsWidget.on( 'change', updateBlockOptions );
 			}
 
 			// Call them now to set initial state (ie. Special:Block/Foobar?wpBlockExpiry=2+hours)

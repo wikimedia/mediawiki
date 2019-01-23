@@ -23,6 +23,7 @@
 
 use MediaWiki\Block\BlockRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\Restriction\NamespaceRestriction;
 
 /**
  * A special page that allows users with 'block' right to block users from
@@ -187,8 +188,18 @@ class SpecialBlock extends FormSpecialPage {
 				'label' => $this->msg( 'ipb-pages-label' )->text(),
 				'exists' => true,
 				'max' => 10,
-				'cssclass' => 'mw-block-page-restrictions',
+				'cssclass' => 'mw-block-restriction',
 				'showMissing' => false,
+				'input' => [
+					'autocomplete' => false
+				],
+				'section' => 'actions',
+			];
+			$a['NamespaceRestrictions'] = [
+				'type' => 'namespacesmultiselect',
+				'label' => $this->msg( 'ipb-namespaces-label' )->text(),
+				'exists' => true,
+				'cssclass' => 'mw-block-restriction',
 				'input' => [
 					'autocomplete' => false
 				],
@@ -391,21 +402,31 @@ class SpecialBlock extends FormSpecialPage {
 
 			if ( $block instanceof Block ) {
 				$pageRestrictions = [];
+				$namespaceRestrictions = [];
 				foreach ( $block->getRestrictions() as $restriction ) {
-					if ( $restriction->getType() !== 'page' ) {
-						continue;
+					switch ( $restriction->getType() ) {
+						case PageRestriction::TYPE:
+							$pageRestrictions[] = $restriction->getTitle()->getPrefixedText();
+							break;
+						case NamespaceRestriction::TYPE:
+							$namespaceRestrictions[] = $restriction->getValue();
+							break;
 					}
-
-					$pageRestrictions[] = $restriction->getTitle()->getPrefixedText();
 				}
 
-				if ( !$block->isSitewide() && empty( $pageRestrictions ) ) {
+				if (
+					!$block->isSitewide() &&
+					empty( $pageRestrictions ) &&
+					empty( $namespaceRestrictions )
+				) {
 					$fields['Editing']['default'] = false;
 				}
 
 				// Sort the restrictions so they are in alphabetical order.
 				sort( $pageRestrictions );
 				$fields['PageRestrictions']['default'] = implode( "\n", $pageRestrictions );
+				sort( $namespaceRestrictions );
+				$fields['NamespaceRestrictions']['default'] = implode( "\n", $namespaceRestrictions );
 			}
 		}
 	}
@@ -839,10 +860,11 @@ class SpecialBlock extends FormSpecialPage {
 			return $reason;
 		}
 
-		$restrictions = [];
+		$pageRestrictions = [];
+		$namespaceRestrictions = [];
 		if ( $enablePartialBlocks ) {
 			if ( $data['PageRestrictions'] !== '' ) {
-				$restrictions = array_map( function ( $text ) {
+				$pageRestrictions = array_map( function ( $text ) {
 					$title = Title::newFromText( $text );
 					// Use the link cache since the title has already been loaded when
 					// the field was validated.
@@ -851,7 +873,13 @@ class SpecialBlock extends FormSpecialPage {
 					return $restriction;
 				}, explode( "\n", $data['PageRestrictions'] ) );
 			}
+			if ( $data['NamespaceRestrictions'] !== '' ) {
+				$namespaceRestrictions = array_map( function ( $id ) {
+					return new NamespaceRestriction( 0, $id );
+				}, explode( "\n", $data['NamespaceRestrictions'] ) );
+			}
 
+			$restrictions = ( array_merge( $pageRestrictions, $namespaceRestrictions ) );
 			$block->setRestrictions( $restrictions );
 		}
 
@@ -1167,6 +1195,7 @@ class SpecialBlock extends FormSpecialPage {
 		if ( isset( $data['Editing'] ) && $data['Editing'] === false ) {
 			$data['EditingRestriction'] = 'partial';
 			$data['PageRestrictions'] = '';
+			$data['NamespaceRestrictions'] = '';
 		}
 		return self::processForm( $data, $form->getContext() );
 	}

@@ -2019,6 +2019,7 @@ return [
 			'oojs-ui.styles.icons-editing-advanced',
 			'mediawiki.widgets.DateInputWidget',
 			'mediawiki.widgets.SelectWithInputWidget',
+			'mediawiki.widgets.NamespacesMultiselectWidget',
 			'mediawiki.widgets.TitlesMultiselectWidget',
 			'mediawiki.widgets.UserInputWidget',
 			'mediawiki.util',
@@ -2666,6 +2667,15 @@ return [
 		],
 		'dependencies' => [
 			'mediawiki.api',
+			'oojs-ui-widgets',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'mediawiki.widgets.NamespacesMultiselectWidget' => [
+		'scripts' => [
+			'resources/src/mediawiki.widgets/mw.widgets.NamespacesMultiselectWidget.js',
+		],
+		'dependencies' => [
 			'oojs-ui-widgets',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
