@@ -1382,6 +1382,7 @@
 	"apihelp-upload-param-sessionkey": "如同 $1filekey，維持向下相容性。",
 	"apihelp-upload-param-stash": "若設定的話，伺服器將會把檔案臨時暫存；而不是添加至儲存庫裡。",
 	"apihelp-upload-param-filesize": "整體上傳的檔案大小。",
+	"apihelp-upload-param-offset": "以位元組為單位的多量偏移。",
 	"apihelp-upload-param-chunk": "大量內容。",
 	"apihelp-upload-param-async": "在可能的情況下讓潛在的大型檔案非同步處理。",
 	"apihelp-upload-param-checkstatus": "僅檢索指定檔案鍵的上傳狀態。",

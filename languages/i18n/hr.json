@@ -1143,7 +1143,7 @@
 	"right-purge": "Čišćenje priručne memorije stranice bez stranice za potvrdu",
 	"right-autoconfirmed": "Uređivanje stranica zaštićenih za neprijavljene suradnike",
 	"right-bot": "Izmjene su tretirane kao automatski proces (bot)",
-	"right-nominornewtalk": "Bez manjih izmjena na novim stranicama za razgovor",
+	"right-nominornewtalk": "Neposedovanje manjih izmjena na stranicama za razgovor otvara prozor za nove poruke",
 	"right-apihighlimits": "Korištenje viših granica za upite od izvršnika",
 	"right-writeapi": "Mogućnost zapišavanja u izvršniku",
 	"right-delete": "Brisanje stranica",
