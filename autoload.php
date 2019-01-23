@@ -816,6 +816,7 @@ $wgAutoloadLocalClasses = [
 	'LonelyPagesPage' => __DIR__ . '/includes/specials/SpecialLonelypages.php',
 	'LongPagesPage' => __DIR__ . '/includes/specials/SpecialLongpages.php',
 	'MIMEsearchPage' => __DIR__ . '/includes/specials/SpecialMIMEsearch.php',
+	'MSCompoundFileReader' => __DIR__ . '/includes/libs/mime/MSCompoundFileReader.php',
 	'MWCallableUpdate' => __DIR__ . '/includes/deferred/MWCallableUpdate.php',
 	'MWContentSerializationException' => __DIR__ . '/includes/exception/MWContentSerializationException.php',
 	'MWCryptHKDF' => __DIR__ . '/includes/utils/MWCryptHKDF.php',

@@ -128,4 +128,13 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		$actualType = $this->doGuessMimeType( [ $file, 'mp3' ] );
 		$this->assertEquals( 'audio/mpeg', $actualType );
 	}
+
+	/**
+	 * A ZIP file embedded in the middle of a .doc file is still a Word Document.
+	 */
+	function testZipInDoc() {
+		$file = __DIR__ . '/../../../data/media/zip-in-doc.doc';
+		$actualType = $this->doGuessMimeType( [ $file, 'doc' ] );
+		$this->assertEquals( 'application/msword', $actualType );
+	}
 }
