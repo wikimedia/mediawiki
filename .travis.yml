@@ -46,16 +46,10 @@ matrix:
       php: 7
     # https://docs.travis-ci.com/user/languages/php#HHVM-versions
     - env: dbtype=mysql dbuser=root
-      php: hhvm-3.24
-    - env: dbtype=mysql dbuser=root
-      php: hhvm-3.21
-    - env: dbtype=mysql dbuser=root
       php: hhvm-3.18
   allow_failures:
     - php: 7.3
     - php: hhvm-3.18
-    - php: hhvm-3.21
-    - php: hhvm-3.24
 
 services:
   - mysql
