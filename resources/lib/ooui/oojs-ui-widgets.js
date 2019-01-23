@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.1
+ * OOUI v0.30.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-01-10T07:00:09Z
+ * Date: 2019-01-23T01:14:20Z
  */
 ( function ( OO ) {
 
@@ -5460,7 +5460,7 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 	this.clearButton = new OO.ui.ButtonWidget( {
 		classes: [ 'oo-ui-selectFileWidget-clearButton' ],
 		framed: false,
-		icon: 'close',
+		icon: 'clear',
 		disabled: this.disabled
 	} );
 

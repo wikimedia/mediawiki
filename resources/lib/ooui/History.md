@@ -1,4 +1,34 @@
 # OOUI Release History
+## v0.30.2 / 2019-01-22
+### Features
+* Allow dropdown menu items to be disabled (Sam Wilson)
+
+### Styles
+* Align new icons to pixel grid (Bartosz Dziewoński)
+* Fix transparency of 'unFlag' icon in RTL (Bartosz Dziewoński)
+* themes: Use 'clear' icon for clearing SelectFileWidget's input (Volker E.)
+* icons: Add Wikidata logo to 'Wikimedia' pack (James D. Forrester)
+* icons: Add Wikimedia logo to 'Wikimedia' pack (James D. Forrester)
+* icons: Use complete glyph for 'musicalScore' icon (Ed Sanders)
+* icons: Update 'referenceExisting' and 'references' (Volker E.)
+
+### Code
+* DropdownWidget: `$handle` needs to carry `type="button"` (Volker E.)
+* GroupElement: Make add/remove operations no-ops if items is empty (Kosta Harlan)
+* WikimediaUI theme: Prevent z-index leaks for radios and checkboxes (Bartosz Dziewoński)
+* build: Fix colorize SVG regression on icon `title` elements (Volker E.)
+* build: Enable eslint-plugin-html to lint JS in HTML files (Ed Sanders)
+* build: Enable eslint reportUnusedDisableDirectives (Ed Sanders)
+* build: Enforce stylelint selector prefixes in code and demos (Ed Sanders)
+* build: Update package-lock.json (James D. Forrester)
+* icons: Add missing `<title>` to 'web' icon (Bartosz Dziewoński)
+* icons: Enable invert & progressive flag on 'editing-citation' pack (Volker E.)
+* icons: Remove `fill` from 'robot' to enable colorizing it (Volker E.)
+* icons: Remove invisible path from 'unBlock' icon (Bartosz Dziewoński)
+* icons: Remove unnecessary `fill-rule` attribute from icon code (Bartosz Dziewoński)
+* icons: Remove unused code from 'camera' icon (Bartosz Dziewoński)
+
+
 ## v0.30.1 / 2019-01-09
 ### Deprecations
 * [DEPRECATING CHANGE]: Deprecate `iconTitle` and `indicatorTitle` (Volker E.)
