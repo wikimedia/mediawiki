@@ -21,6 +21,12 @@
 		"logoCC": {
 			"file": "images/icons/logo-CC.svg"
 		},
+		"logoWikidata": {
+			"file": "images/icons/logo-Wikidata.svg"
+		},
+		"logoWikimedia": {
+			"file": "images/icons/logo-Wikimedia.svg"
+		},
 		"logoWikimediaCommons": {
 			"file": "images/icons/logo-Wikimedia-Commons.svg"
 		},

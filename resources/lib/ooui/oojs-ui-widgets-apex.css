@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.1
+ * OOUI v0.30.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-01-10T07:00:17Z
+ * Date: 2019-01-23T01:14:27Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -558,11 +558,18 @@
 .oo-ui-selectFileWidget-clearButton {
   top: 0;
   right: 0;
-  height: 1.5625em;
-  margin: 0.15625em;
+  height: 2.34375em;
+  margin: 0;
 }
-.oo-ui-selectFileWidget-clearButton .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
-  height: 2.3em;
+.oo-ui-selectFileWidget-clearButton.oo-ui-iconElement .oo-ui-buttonElement-button {
+  height: 2.34375em;
+  padding: 0;
+}
+.oo-ui-selectFileWidget-clearButton.oo-ui-iconElement .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
+  background-size: 12px 12px;
+  height: 2.34375em;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-label {
   color: #ccc;
