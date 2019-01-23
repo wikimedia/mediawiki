@@ -1842,12 +1842,6 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	/**
-	 * @param IDatabase $conn
-	 * @param DBMasterPos|bool $pos
-	 * @param int|null $timeout
-	 * @return bool
-	 */
 	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = null ) {
 		$timeout = max( 1, $timeout ?: $this->waitTimeout );
 
@@ -1862,6 +1856,12 @@ class LoadBalancer implements ILoadBalancer {
 				$pos = $masterConn->getMasterPos();
 			} else {
 				$masterConn = $this->openConnection( $this->getWriterIndex(), self::DOMAIN_ANY );
+				if ( !$masterConn ) {
+					throw new DBReplicationWaitError(
+						null,
+						"Could not obtain a master database connection to get the position"
+					);
+				}
 				$pos = $masterConn->getMasterPos();
 				$this->closeConnection( $masterConn );
 			}
