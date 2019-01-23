@@ -24,6 +24,8 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Block\BlockRestriction;
 use MediaWiki\Block\Restriction\Restriction;
+use MediaWiki\Block\Restriction\NamespaceRestriction;
+use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
 
 class Block {
@@ -1826,5 +1828,78 @@ class Block {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Checks if a block applies to a particular namespace
+	 *
+	 * @since 1.33
+	 *
+	 * @param int $ns
+	 * @return bool
+	 */
+	public function appliesToNamespace( $ns ) {
+		if ( $this->isSitewide() ) {
+			return true;
+		}
+
+		// Blocks do not apply to virtual namespaces.
+		if ( $ns < 0 ) {
+			return false;
+		}
+
+		$restriction = $this->findRestriction( NamespaceRestriction::TYPE, $ns );
+
+		return (bool)$restriction;
+	}
+
+	/**
+	 * Checks if a block applies to a particular page
+	 *
+	 * This check does not consider whether `$this->prevents( 'editownusertalk' )`
+	 * returns false, as the identity of the user making the hypothetical edit
+	 * isn't known here (particularly in the case of IP hardblocks, range
+	 * blocks, and auto-blocks).
+	 *
+	 * @since 1.33
+	 *
+	 * @param int $pageId
+	 * @return bool
+	 */
+	public function appliesToPage( $pageId ) {
+		if ( $this->isSitewide() ) {
+			return true;
+		}
+
+		// If the pageId is not over zero, the block cannot apply to it.
+		if ( $pageId <= 0 ) {
+			return false;
+		}
+
+		$restriction = $this->findRestriction( PageRestriction::TYPE, $pageId );
+
+		return (bool)$restriction;
+	}
+
+	/**
+	 * Find Restriction by type and value.
+	 *
+	 * @param string $type
+	 * @param int $value
+	 * @return Restriction|null
+	 */
+	private function findRestriction( $type, $value ) {
+		$restrictions = $this->getRestrictions();
+		foreach ( $restrictions as $restriction ) {
+			if ( $restriction->getType() !== $type ) {
+				continue;
+			}
+
+			if ( $restriction->getValue() === $value ) {
+				return $restriction;
+			}
+		}
+
+		return null;
 	}
 }

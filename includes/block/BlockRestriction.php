@@ -22,12 +22,21 @@
 
 namespace MediaWiki\Block;
 
+use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 class BlockRestriction {
+
+	/**
+	 * Map of all of the restriction types.
+	 */
+	private static $types = [
+		PageRestriction::TYPE_ID => PageRestriction::class,
+		NamespaceRestriction::TYPE_ID => NamespaceRestriction::class,
+	];
 
 	/**
 	 * Retrieves the restrictions from the database by block id.
@@ -415,11 +424,11 @@ class BlockRestriction {
 	 * @return Restriction|null
 	 */
 	private static function rowToRestriction( \stdClass $row ) {
-		switch ( $row->ir_type ) {
-			case PageRestriction::TYPE_ID:
-				return PageRestriction::newFromRow( $row );
-			default:
-				return null;
+		if ( array_key_exists( (int)$row->ir_type, self::$types ) ) {
+			$class = self::$types[ (int)$row->ir_type ];
+			return call_user_func( [ $class, 'newFromRow' ], $row );
 		}
+
+		return null;
 	}
 }
