@@ -25,8 +25,10 @@ use GuzzleHttp\Psr7\Request;
  * MWHttpRequest implemented using the Guzzle library
  *
  * Differences from the CurlHttpRequest implementation:
- *   1) the MWHttpRequest 'callback" option is unsupported.  Instead, use the 'sink' option to
- *      send a filename/stream (see http://docs.guzzlephp.org/en/stable/request-options.html#sink)
+ *   1) a new 'sink' option is available as an alternative to callbacks.  See:
+ *        http://docs.guzzlephp.org/en/stable/request-options.html#sink)
+ *      The 'callback' option remains available as well.  If both 'sink' and 'callback' are
+ *      specified, 'sink' is used.
  *   2) callers may set a custom handler via the 'handler' option.
  *      If this is not set, Guzzle will use curl (if available) or PHP streams (otherwise)
  *   3) setting either sslVerifyHost or sslVerifyCert will enable both.  Guzzle does not allow
@@ -49,7 +51,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 	 * @throws Exception
 	 */
 	public function __construct(
-		$url, array $options = [], $caller = __METHOD__, $profiler = null
+		$url, array $options = [], $caller = __METHOD__, Profiler $profiler = null
 	) {
 		parent::__construct( $url, $options, $caller, $profiler );
 
@@ -58,6 +60,48 @@ class GuzzleHttpRequest extends MWHttpRequest {
 		}
 		if ( isset( $options['sink'] ) ) {
 			$this->sink = $options['sink'];
+		}
+	}
+
+	/**
+	 * Set a read callback to accept data read from the HTTP request.
+	 * By default, data is appended to an internal buffer which can be
+	 * retrieved through $req->getContent().
+	 *
+	 * To handle data as it comes in -- especially for large files that
+	 * would not fit in memory -- you can instead set your own callback,
+	 * in the form function($resource, $buffer) where the first parameter
+	 * is the low-level resource being read (implementation specific),
+	 * and the second parameter is the data buffer.
+	 *
+	 * You MUST return the number of bytes handled in the buffer; if fewer
+	 * bytes are reported handled than were passed to you, the HTTP fetch
+	 * will be aborted.
+	 *
+	 * This function overrides any 'sink' or 'callback' constructor option.
+	 *
+	 * @param callable|null $callback
+	 * @throws InvalidArgumentException
+	 */
+	public function setCallback( $callback ) {
+		$this->sink = null;
+		$this->doSetCallback( $callback );
+	}
+
+	/**
+	 * Worker function for setting callbacks.  Calls can originate both internally and externally
+	 * via setCallback).  Defaults to the internal read callback if $callback is null.
+	 *
+	 * If a sink is already specified, this does nothing.  This causes the 'sink' constructor
+	 * option to override the 'callback' constructor option.
+	 *
+	 * @param $callback|null $callback
+	 * @throws InvalidArgumentException
+	 */
+	protected function doSetCallback( $callback ) {
+		if ( !$this->sink ) {
+			parent::doSetCallback( $callback );
+			$this->sink = new MWCallbackStream( $this->callback );
 		}
 	}
 
@@ -124,11 +168,9 @@ class GuzzleHttpRequest extends MWHttpRequest {
 			$request = new Request( $this->method, $this->url );
 			$response = $client->send( $request );
 			$this->headerList = $response->getHeaders();
-			$this->content = $response->getBody()->getContents();
 
 			$this->respVersion = $response->getProtocolVersion();
 			$this->respStatus = $response->getStatusCode() . ' ' . $response->getReasonPhrase();
-
 		} catch ( GuzzleHttp\Exception\ConnectException $e ) {
 			// ConnectException is thrown for several reasons besides generic "timeout":
 			//   Connection refused
@@ -179,6 +221,11 @@ class GuzzleHttpRequest extends MWHttpRequest {
 		return Status::wrap( $this->status ); // TODO B/C; move this to callers
 	}
 
+	protected function prepare() {
+		$this->doSetCallback( $this->callback );
+		parent::prepare();
+	}
+
 	/**
 	 * @return bool
 	 */
@@ -189,7 +236,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 
 	/**
 	 * Guzzle provides headers as an array.  Reprocess to match our expectations.  Guzzle will
-	 * have already parsed and removed the status line (in EasyHandle::createResponse)z.
+	 * have already parsed and removed the status line (in EasyHandle::createResponse).
 	 */
 	protected function parseHeader() {
 		// Failure without (valid) headers gets a response status of zero

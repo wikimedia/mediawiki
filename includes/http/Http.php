@@ -58,7 +58,7 @@ class Http {
 	 * @param string $caller The method making this request, for profiling
 	 * @return string|bool (bool)false on failure or a string on success
 	 */
-	public static function request( $method, $url, $options = [], $caller = __METHOD__ ) {
+	public static function request( $method, $url, array $options = [], $caller = __METHOD__ ) {
 		$logger = LoggerFactory::getInstance( 'http' );
 		$logger->debug( "$method: $url" );
 
@@ -95,7 +95,7 @@ class Http {
 	 * @param string $caller The method making this request, for profiling
 	 * @return string|bool false on error
 	 */
-	public static function get( $url, $options = [], $caller = __METHOD__ ) {
+	public static function get( $url, array $options = [], $caller = __METHOD__ ) {
 		$args = func_get_args();
 		if ( isset( $args[1] ) && ( is_string( $args[1] ) || is_numeric( $args[1] ) ) ) {
 			// Second was used to be the timeout
@@ -118,7 +118,7 @@ class Http {
 	 * @param string $caller The method making this request, for profiling
 	 * @return string|bool false on error
 	 */
-	public static function post( $url, $options = [], $caller = __METHOD__ ) {
+	public static function post( $url, array $options = [], $caller = __METHOD__ ) {
 		return self::request( 'POST', $url, $options, $caller );
 	}
 
@@ -170,7 +170,7 @@ class Http {
 	 * @param array $options
 	 * @return MultiHttpClient
 	 */
-	public static function createMultiClient( $options = [] ) {
+	public static function createMultiClient( array $options = [] ) {
 		global $wgHTTPConnectTimeout, $wgHTTPTimeout, $wgHTTPProxy;
 
 		return new MultiHttpClient( $options + [
