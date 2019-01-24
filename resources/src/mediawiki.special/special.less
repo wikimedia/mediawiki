@@ -1,4 +1,11 @@
 /* Special:AllMessages */
+@import 'mediawiki.mixins';
+
+/* Visually hide repeating text, but leave in for better form navigation on screen readers */
+.mw-special-Allmessages .mw-htmlform-ooui .oo-ui-fieldsetLayout:first-child .oo-ui-fieldsetLayout-header {
+	.mixin-screen-reader-text();
+}
+
 #mw-allmessagestable tbody:hover td {
 	/* Duplicate of `.mw-datatable tr:hover td` from shared.css,
 	 * so that it also applies when hovering a lower cell

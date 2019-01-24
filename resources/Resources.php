@@ -1924,7 +1924,7 @@ return [
 	],
 	'mediawiki.special' => [
 		'styles' => [
-			'resources/src/mediawiki.special/special.css',
+			'resources/src/mediawiki.special/special.less',
 			'resources/src/mediawiki.special/apisandbox.css',
 			'resources/src/mediawiki.special/comparepages.less',
 			'resources/src/mediawiki.special/edittags.css',
