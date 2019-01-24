@@ -80,11 +80,18 @@
 
 // Flatlist styling for PHP (`.oo-ui-fieldLayout-align-inline`) &
 // JS (`.oo-ui-radioOptionWidget, .oo-ui-checkboxMultioptionWidget`) widgets
-.mw-htmlform-flatlist .oo-ui-fieldLayout-align-inline,
-.mw-htmlform-flatlist .oo-ui-radioOptionWidget,
-.mw-htmlform-flatlist .oo-ui-checkboxMultioptionWidget {
-	display: inline-block;
-	margin-right: @ooui-spacing-medium;
+.mw-htmlform-flatlist {
+	.oo-ui-fieldLayout-align-inline,
+	.oo-ui-radioOptionWidget,
+	.oo-ui-checkboxMultioptionWidget {
+		display: inline-block;
+		margin-right: @ooui-spacing-medium;
+	}
+
+	// Reduce label distance in flatlist
+	&.oo-ui-fieldLayout.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
+		padding-bottom: 0;
+	}
 }
 
 // First selector is flatlist specific
