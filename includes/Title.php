@@ -2708,8 +2708,13 @@ class Title implements LinkTarget, IDBAccessObject {
 		// will get the action where the restriction is the same. This may result
 		// in actions being blocked that shouldn't be.
 		if ( Action::exists( $action ) ) {
+			// Clone the title to prevent mutations to this object which is done
+			// by Title::loadFromRow() in WikiPage::loadFromRow().
+			$page = WikiPage::factory( clone $this );
+			// Creating an action will perform several database queries to ensure that
+			// the action has not been overridden by the content type.
 			// @todo FIXME: Pass the relevant context into this function.
-			$action = Action::factory( $action, WikiPage::factory( $this ), RequestContext::getMain() );
+			$action = Action::factory( $action, $page, RequestContext::getMain() );
 		} else {
 			$action = null;
 		}
