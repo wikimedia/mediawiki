@@ -388,6 +388,7 @@ class Status extends StatusValue {
 	/**
 	 * Don't save the callback when serializing, because Closures can't be
 	 * serialized and we're going to clear it in __wakeup anyway.
+	 * @return array
 	 */
 	function __sleep() {
 		$keys = array_keys( get_object_vars( $this ) );
