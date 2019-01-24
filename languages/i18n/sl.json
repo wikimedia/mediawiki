@@ -2465,6 +2465,7 @@
 	"ipb-sitewide": "Po celotni strani",
 	"ipb-partial": "Delno",
 	"ipb-pages-label": "Strani",
+	"ipb-namespaces-label": "Imenski prostori",
 	"badipaddress": "Neveljaven IP-naslov ali uporabniško ime.",
 	"blockipsuccesssub": "Blokiranje je uspelo",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] je {{GENDER:$1|blokiran|blokirana|blokiran(-a)}}.<br />\nOglejte si [[Special:BlockList|seznam blokad]] za pregled blokad.",

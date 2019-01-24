@@ -855,6 +855,7 @@
 	"search-category": "(kategorija $1)",
 	"search-file-match": "(wotpowěduje datajowemu wobsahej)",
 	"search-suggest": "Měnješe ty $1?",
+	"search-rewritten": "Pokazaja so wuslědki za $1. Pytaj město toho za $2.",
 	"search-interwiki-caption": "Sotrowske projekty",
 	"search-interwiki-default": "Wuslědki z $1:",
 	"search-interwiki-more": "(dalše)",

@@ -2339,6 +2339,7 @@
 	"ipb-disableusertalk": "Редактиране на собствената дискусионна страница",
 	"ipb-change-block": "Повторно блокиране на потребителя с тези настройки",
 	"ipb-confirm": "Потвърждаване на блокирането",
+	"ipb-namespaces-label": "Именни пространства",
 	"badipaddress": "Невалиден IP-адрес",
 	"blockipsuccesssub": "Блокирането беше успешно",
 	"blockipsuccesstext": "Потребител [[Special:Contributions/$1|$1]] беше блокиран(а).<br />\nМожете да прегледате пълния [[Special:BlockList|списък на блокираните потребители]].",

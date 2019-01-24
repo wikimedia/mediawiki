@@ -2591,6 +2591,7 @@
 	"ipb-sitewide": "Em todo o site",
 	"ipb-partial": "Parcial",
 	"ipb-pages-label": "Páginas",
+	"ipb-namespaces-label": "Espaços nominais",
 	"badipaddress": "Endereço de IP inválido",
 	"blockipsuccesssub": "Bloqueio bem sucedido",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] foi {{GENDER:$1|bloqueado|bloqueada}}.<br />\nConsulte a [[Special:BlockList|lista de bloqueios]].",

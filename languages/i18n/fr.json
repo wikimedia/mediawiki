@@ -2637,6 +2637,7 @@
 	"ipb-sitewide": "À tout le site",
 	"ipb-partial": "Partiel",
 	"ipb-pages-label": "Pages",
+	"ipb-namespaces-label": "Espaces de nom",
 	"badipaddress": "Adresse IP incorrecte",
 	"blockipsuccesssub": "Blocage réussi",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] a été bloqué{{GENDER:$1||e}}.<br />\nConsultez la [[Special:BlockList|liste des blocages]] pour voir les utilisateurs bloqués.",

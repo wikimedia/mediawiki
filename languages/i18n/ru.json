@@ -2595,6 +2595,7 @@
 	"ipb-sitewide": "Во всём проекте",
 	"ipb-partial": "Частичная",
 	"ipb-pages-label": "Страницы",
+	"ipb-namespaces-label": "Пространства имён",
 	"badipaddress": "IP-адрес записан в неправильном формате, или участника с таким именем не существует.",
 	"blockipsuccesssub": "Блокировка произведена",
 	"blockipsuccesstext": "[[Special:Contributions/$1|«$1»]] {{GENDER:$1|заблокирован|заблокирована}}.<br />\nСм. [[Special:BlockList|список заблокированных IP-адресов]] для просмотра блокировок.",

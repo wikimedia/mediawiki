@@ -2549,6 +2549,7 @@
 	"ipb-sitewide": "站台範圍",
 	"ipb-partial": "部分",
 	"ipb-pages-label": "頁面",
+	"ipb-namespaces-label": "命名空間",
 	"badipaddress": "無效的 IP 位址",
 	"blockipsuccesssub": "封鎖成功",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] 已經被封鎖。<br />\n請參考 [[Special:BlockList|封鎖清單]] 以檢查目前的封鎖。",

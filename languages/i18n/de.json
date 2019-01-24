@@ -2548,6 +2548,7 @@
 	"ipb-sitewide": "Auf der gesamten Website",
 	"ipb-partial": "Teilweise",
 	"ipb-pages-label": "Seiten",
+	"ipb-namespaces-label": "Namensräume",
 	"badipaddress": "Die IP-Adresse hat ein falsches Format.",
 	"blockipsuccesssub": "Die Sperrung war erfolgreich.",
 	"blockipsuccesstext": "Der Benutzer / die IP-Adresse [[Special:Contributions/$1|$1]] wurde gesperrt.<br />\nZur Aufhebung der Sperre siehe die [[Special:BlockList|Liste aller aktiven Sperren]].",
