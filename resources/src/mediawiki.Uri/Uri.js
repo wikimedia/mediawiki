@@ -95,7 +95,7 @@
 	 *
 	 * @private
 	 * @static
-	 * @property {Array} properties
+	 * @property {string[]} properties
 	 */
 	properties = [
 		'protocol',
@@ -134,14 +134,14 @@
 	 */
 
 	/**
-	 * A factory method to create a Uri class with a default location to resolve relative URLs
+	 * A factory method to create an mw.Uri class with a default location to resolve relative URLs
 	 * against (including protocol-relative URLs).
 	 *
 	 * @method
 	 * @param {string|Function} documentLocation A full url, or function returning one.
 	 *  If passed a function, the return value may change over time and this will be honoured. (T74334)
 	 * @member mw
-	 * @return {Function} Uri class
+	 * @return {Function} An mw.Uri class constructor
 	 */
 	mw.UriRelative = function ( documentLocation ) {
 		var getDefaultUri = ( function () {
@@ -176,6 +176,7 @@
 		 * @param {boolean} [options.strictMode=false] Trigger strict mode parsing of the url.
 		 * @param {boolean} [options.overrideKeys=false] Whether to let duplicate query parameters
 		 *  override each other (`true`) or automagically convert them to an array (`false`).
+		 * @throws {Error} when the query string or fragment contains an unknown % sequence
 		 */
 		function Uri( uri, options ) {
 			var prop, hrefCur,
@@ -266,6 +267,7 @@
 		 * @static
 		 * @param {string} s String to decode
 		 * @return {string} Decoded string
+		 * @throws {Error} when the string contains an unknown % sequence
 		 */
 		Uri.decode = function ( s ) {
 			return decodeURIComponent( s.replace( /\+/g, '%20' ) );
@@ -279,6 +281,7 @@
 			 * @private
 			 * @param {string} str URI, see constructor.
 			 * @param {Object} options See constructor.
+			 * @throws {Error} when the query string or fragment contains an unknown % sequence
 			 */
 			parse: function ( str, options ) {
 				var q, matches,
