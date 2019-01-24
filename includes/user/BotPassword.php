@@ -506,7 +506,7 @@ class BotPassword implements IDBAccessObject {
 			return self::loginHook( $user, $bp,
 				Status::newFatal( 'botpasswords-needs-reset', $name, $appId ) );
 		}
-		if ( !$passwordObj->equals( $password ) ) {
+		if ( !$passwordObj->verify( $password ) ) {
 			return self::loginHook( $user, $bp, Status::newFatal( 'wrongpassword' ) );
 		}
 
