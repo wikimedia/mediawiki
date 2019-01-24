@@ -2482,6 +2482,7 @@
 	"ipb-sitewide": "Насекаде",
 	"ipb-partial": "Делумно",
 	"ipb-pages-label": "Страници",
+	"ipb-namespaces-label": "Именски простори",
 	"badipaddress": "Неважечка IP-адреса",
 	"blockipsuccesssub": "Успешно блокирање",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] е блокирана.<br />\nБлоковите можете да ги прегледате на [[Special:BlockList|списокот на блокови]].",

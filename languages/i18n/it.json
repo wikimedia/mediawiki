@@ -2530,6 +2530,7 @@
 	"ipb-sitewide": "Completo",
 	"ipb-partial": "Parziale",
 	"ipb-pages-label": "Pagine",
+	"ipb-namespaces-label": "Namespace",
 	"badipaddress": "Indirizzo IP non valido.",
 	"blockipsuccesssub": "Blocco eseguito",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] è stato bloccato.<br />\nConsultare la [[Special:BlockList|lista dei blocchi]] per vedere i blocchi attivi.",

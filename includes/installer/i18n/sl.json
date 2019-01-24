@@ -54,7 +54,7 @@
 	"config-memory-raised": "PHP-jev <code>memory_limit</code> je $1, dvignjen na $2.",
 	"config-apc": "[https://secure.php.net/apc APC] je nameščen",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] je nameščen",
-	"config-diff3-bad": "GNU diff3 ni bilo mogoče najti.",
+	"config-diff3-bad": "Pripomočka za primerjavo besedila GNU diff3 nismo našli. To lahko zaenkrat prezrete, ampak morda boste pogosteje naleteli na spore pri urejanju.",
 	"config-using-server": "Uporabljam ime strežnika \"<nowiki>$1</nowiki>\".",
 	"config-using-uri": "Uporabljam URL strežnika \"<nowiki>$1$2</nowiki>\".",
 	"config-db-type": "Vrsta zbirke podatkov:",

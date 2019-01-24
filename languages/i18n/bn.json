@@ -2476,6 +2476,7 @@
 	"ipb-sitewide": "সাইটব্যাপী",
 	"ipb-partial": "আংশিক",
 	"ipb-pages-label": "পাতা",
+	"ipb-namespaces-label": "নামস্থানসমূহ",
 	"badipaddress": "আইপি (IP) ঠিকানাটি অগ্রহনযোগ্য",
 	"blockipsuccesssub": "বাধা সফল",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] কে বাধা দেয়া হয়েছে।<br />\nবাধা দেয়া পুনর্বিবেচনা করতে হলে [[Special:BlockList|বাধা দেয়ার তালিকাটি]] দেখুন।",

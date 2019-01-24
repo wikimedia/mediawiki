@@ -2494,6 +2494,7 @@
 	"ipb-sitewide": "Teljes körű",
 	"ipb-partial": "Részleges",
 	"ipb-pages-label": "Lapok",
+	"ipb-namespaces-label": "Névterek",
 	"badipaddress": "Érvénytelen IP-cím",
 	"blockipsuccesssub": "Sikeres blokkolás",
 	"blockipsuccesstext": "„[[Special:Contributions/$1|$1]]” felhasználót blokkoltad.\n<br />Lásd a [[Special:BlockList|blokkolt IP-címek listáját]] az érvényben lévő blokkok áttekintéséhez.",

@@ -2542,6 +2542,7 @@
 	"ipb-sitewide": "Van de hele site",
 	"ipb-partial": "Gedeeltelijk",
 	"ipb-pages-label": "Pagina's",
+	"ipb-namespaces-label": "Naamruimten",
 	"badipaddress": "Geen geldig IP-adres",
 	"blockipsuccesssub": "De blokkering is ingesteld",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] is geblokkeerd.<br />\nZie de [[Special:BlockList|blokkadelijst]] voor recente blokkades.",

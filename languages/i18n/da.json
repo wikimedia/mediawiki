@@ -2429,6 +2429,7 @@
 	"ipb-confirm": "Bekræft blokering",
 	"ipb-partial": "Delvist",
 	"ipb-pages-label": "Sider",
+	"ipb-namespaces-label": "Navnerum",
 	"badipaddress": "IP-adressen/brugernavnet er udformet forkert eller eksistere ikke.",
 	"blockipsuccesssub": "Blokeringen er gennemført.",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] er blevet blokeret.<br />\nSe [[Special:BlockList|blokeringslisten]] for alle blokeringer.",

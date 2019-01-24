@@ -2489,6 +2489,7 @@
 	"ipb-sitewide": "Na celém projektu",
 	"ipb-partial": "Částečný",
 	"ipb-pages-label": "Stránky",
+	"ipb-namespaces-label": "Jmenné prostory",
 	"badipaddress": "Neplatná IP adresa",
 	"blockipsuccesssub": "Zablokování uspělo",
 	"blockipsuccesstext": "„[[Special:Contributions/$1|$1]]“ je {{GENDER:$1|zablokován|zablokována}}.<br />\nMůžete si prohlédnout [[Special:BlockList|seznam zablokovaných uživatelů]].",

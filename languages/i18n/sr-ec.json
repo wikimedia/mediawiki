@@ -2465,6 +2465,7 @@
 	"ipb-sitewide": "На целом сајту",
 	"ipb-partial": "Делимично",
 	"ipb-pages-label": "Странице",
+	"ipb-namespaces-label": "Именски простори",
 	"badipaddress": "Неважећа IP адреса",
 	"blockipsuccesssub": "Блокирање је успело",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] је {{GENDER:$1|блокиран|блокирана}}.<br />\nПогледајте [[Special:BlockList|списак]] за преглед блокада.",
