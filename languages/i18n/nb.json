@@ -2502,6 +2502,7 @@
 	"ipb-sitewide": "Hele nettstedet",
 	"ipb-partial": "Delvis",
 	"ipb-pages-label": "Sider",
+	"ipb-namespaces-label": "Navnerom",
 	"badipaddress": "Ugyldig IP-adresse.",
 	"blockipsuccesssub": "Blokkering utført",
 	"blockipsuccesstext": "­«[[Special:Contributions/$1|$1]]» har blitt blokkert.<br />\nSe [[Special:BlockList|blokkeringslisten]] for alle blokkeringer.",

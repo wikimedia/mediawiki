@@ -2490,6 +2490,7 @@
 	"ipb-sitewide": "כל האתר",
 	"ipb-partial": "חלקית",
 	"ipb-pages-label": "דפים",
+	"ipb-namespaces-label": "מרחבי שם",
 	"badipaddress": "כתובת IP שגויה",
 	"blockipsuccesssub": "החסימה הושלמה בהצלחה",
 	"blockipsuccesstext": "{{GENDER:$1|המשתמש|המשתמשת}} [[Special:Contributions/$1|$1]] {{GENDER:$1|נחסם|נחסמה}}.<br />\nניתן לעיין ב[[Special:BlockList|רשימת החסומים]] כדי לצפות בחסימות.",
