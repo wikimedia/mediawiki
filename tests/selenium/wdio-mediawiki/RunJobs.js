@@ -1,19 +1,17 @@
 const MWBot = require( 'mwbot' ),
 	Page = require( './Page' ),
-	FRONTPAGE_REQUESTS_MAX_RUNS = 10; // (arbitrary) safe-guard against endless execution
+	MAINPAGE_REQUESTS_MAX_RUNS = 10; // (arbitrary) safe-guard against endless execution
 
 function getJobCount() {
 	let bot = new MWBot( {
 		apiUrl: `${browser.options.baseUrl}/api.php`
 	} );
-	return new Promise( ( resolve ) => {
-		return bot.request( {
-			action: 'query',
-			meta: 'siteinfo',
-			siprop: 'statistics'
-		} ).then( ( response ) => {
-			resolve( response.query.statistics.jobs );
-		} );
+	return bot.request( {
+		action: 'query',
+		meta: 'siteinfo',
+		siprop: 'statistics'
+	} ).then( ( response ) => {
+		return response.query.statistics.jobs;
 	} );
 }
 
@@ -21,9 +19,9 @@ function log( message ) {
 	process.stdout.write( `RunJobs ${message}\n` );
 }
 
-function runThroughFrontPageRequests( runCount = 1 ) {
+function runThroughMainPageRequests( runCount = 1 ) {
 	let page = new Page();
-	log( `through requests to the front page (run ${runCount}).` );
+	log( `through requests to the main page (run ${runCount}).` );
 
 	page.openTitle( '' );
 
@@ -33,11 +31,11 @@ function runThroughFrontPageRequests( runCount = 1 ) {
 			return;
 		}
 		log( `detected ${jobCount} more queued job(s).` );
-		if ( runCount >= FRONTPAGE_REQUESTS_MAX_RUNS ) {
-			log( 'stopping requests to the front page due to reached limit.' );
+		if ( runCount >= MAINPAGE_REQUESTS_MAX_RUNS ) {
+			log( 'stopping requests to the main page due to reached limit.' );
 			return;
 		}
-		return runThroughFrontPageRequests( ++runCount );
+		return runThroughMainPageRequests( ++runCount );
 	} );
 }
 
@@ -65,7 +63,7 @@ class RunJobs {
 
 	static run() {
 		browser.call( () => {
-			return runThroughFrontPageRequests();
+			return runThroughMainPageRequests();
 		} );
 	}
 }
