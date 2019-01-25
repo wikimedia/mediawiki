@@ -2945,7 +2945,7 @@
 	"pageinfo-lasttime": "تاريخ آخر تعديل",
 	"pageinfo-edits": "عدد التعديلات",
 	"pageinfo-authors": "عدد المؤلفين المختلفين",
-	"pageinfo-recent-edits": "عدد التعديلات الأخيرة (خلال {{PLURAL:$1||يوم واحد|يومين|$1 أيام|$1 يوماً|$1 يوم}})",
+	"pageinfo-recent-edits": "عدد التعديلات الأخيرة (خلال آخر $1)",
 	"pageinfo-recent-authors": "عدد المؤلفين المختلفين الأخيرين",
 	"pageinfo-magic-words": "{{PLURAL:$1|لا كلمات سحرية|الكلمة|الكلمات}} السحرية ($1)",
 	"pageinfo-hidden-categories": "{{PLURAL:$1|لا تصنيفات مخفية|التصنيف المخفي|التصنيفان المخفيان|التصنيفات المخفية ($1)}}",

@@ -2752,7 +2752,7 @@
 	"tooltip-pt-preferences": "{{GENDER:|Ваша}} подешавања",
 	"tooltip-pt-watchlist": "Списак страница чије промене надгледате",
 	"tooltip-pt-mycontris": "Списак {{GENDER:|ваших}} доприноса",
-	"tooltip-pt-anoncontribs": "Листа измена направљених са ове IP адресе",
+	"tooltip-pt-anoncontribs": "Списак измена направљених са ове IP адресе",
 	"tooltip-pt-login": "Предлажемо вам да се пријавите, иако то није обавезно",
 	"tooltip-pt-login-private": "Морате да се пријавите да бисте користили овај Вики",
 	"tooltip-pt-logout": "Одјавите се",

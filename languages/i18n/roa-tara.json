@@ -2316,6 +2316,7 @@
 	"ipb-sitewide": "Tutte 'u site",
 	"ipb-partial": "Parziale",
 	"ipb-pages-label": "Pàggene",
+	"ipb-namespaces-label": "Namespace",
 	"badipaddress": "Indirizze IP invalide",
 	"blockipsuccesssub": "Blocche effettuate",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] ha state bloccate.<br />\nVide [[Special:BlockList|'a liste de le IP bloccate]] pe revedè le blocche.",
