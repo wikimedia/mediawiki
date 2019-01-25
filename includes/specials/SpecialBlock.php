@@ -980,10 +980,14 @@ class SpecialBlock extends FormSpecialPage {
 		$logParams['6::flags'] = self::blockLogFlags( $data, $type );
 		$logParams['sitewide'] = $block->isSitewide();
 
-		if ( $enablePartialBlocks && $data['PageRestrictions'] !== '' ) {
-			$logParams['7::restrictions'] = [
-				'pages' => explode( "\n", $data['PageRestrictions'] ),
-			];
+		if ( $enablePartialBlocks && !$block->isSitewide() ) {
+			if ( $data['PageRestrictions'] !== '' ) {
+				$logParams['7::restrictions']['pages'] = explode( "\n", $data['PageRestrictions'] );
+			}
+
+			if ( $data['NamespaceRestrictions'] !== '' ) {
+				$logParams['7::restrictions']['namespaces'] = explode( "\n", $data['NamespaceRestrictions'] );
+			}
 		}
 
 		# Make log entry, if the name is hidden, put it in the suppression log
