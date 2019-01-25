@@ -8,7 +8,7 @@ A plugin for [WebdriverIO](http://webdriver.io/) providing utilities to simplify
 
 The `Page` class is a base class for following the [Page Objects Pattern](http://webdriver.io/guide/testrunner/pageobjects.html).
 
-* `openTitle( title [, Object query ] )`
+* `openTitle( title [, Object query [, string fragment ] ] )`
 
 The convention is for implementations to extend this class and provide an `open()` method
 that calls `super.openTitle()`, as well as add various getters for elements on the page.
@@ -25,6 +25,13 @@ which typically come from `MEDIAWIKI_USER` and `MEDIAWIKI_PASSWORD` environment 
 * `edit(title, content)`
 * `delete(title, reason)`
 * `createAccount(username, password)`
+* `blockUser(username, expiry)`
+* `unblockUser(username)`
+
+### RunJobs
+
+Use the static `RunJobs.run()` method to ensure that any queued jobs are executed before
+making assertions that depend on its outcome.
 
 ## Versioning
 
