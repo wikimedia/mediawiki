@@ -2361,6 +2361,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$workaroundPHPUnitBug = false;
 
 		$username = self::usernameForCreation();
+		$expectedSource = AuthManager::AUTOCREATE_SOURCE_SESSION;
 		$this->initializeManager();
 
 		$this->setGroupPermissions( '*', 'createaccount', true );
@@ -2380,14 +2381,20 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		}
 
 		$good = StatusValue::newGood();
+		$ok = StatusValue::newFatal( 'ok' );
 		$callback = $this->callback( function ( $user ) use ( &$username, &$workaroundPHPUnitBug ) {
 			return $workaroundPHPUnitBug || $user->getName() === $username;
 		} );
+		$callback2 = $this->callback(
+			function ( $source ) use ( &$expectedSource, &$workaroundPHPUnitBug ) {
+				return $workaroundPHPUnitBug || $source === $expectedSource;
+			}
+		);
 
-		$mocks['pre']->expects( $this->exactly( 12 ) )->method( 'testUserForCreation' )
-			->with( $callback, $this->identicalTo( AuthManager::AUTOCREATE_SOURCE_SESSION ) )
+		$mocks['pre']->expects( $this->exactly( 13 ) )->method( 'testUserForCreation' )
+			->with( $callback, $callback2 )
 			->will( $this->onConsecutiveCalls(
-				StatusValue::newFatal( 'ok' ), StatusValue::newFatal( 'ok' ), // For testing permissions
+				$ok, $ok, $ok, // For testing permissions
 				StatusValue::newFatal( 'fail-in-pre' ), $good, $good,
 				$good, // backoff test
 				$good, // addToDatabase fails test
@@ -2401,7 +2408,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$mocks['primary']->expects( $this->any() )->method( 'testUserExists' )
 			->will( $this->returnValue( true ) );
 		$mocks['primary']->expects( $this->exactly( 9 ) )->method( 'testUserForCreation' )
-			->with( $callback, $this->identicalTo( AuthManager::AUTOCREATE_SOURCE_SESSION ) )
+			->with( $callback, $callback2 )
 			->will( $this->onConsecutiveCalls(
 				StatusValue::newFatal( 'fail-in-primary' ), $good,
 				$good, // backoff test
@@ -2411,10 +2418,10 @@ class AuthManagerTest extends \MediaWikiTestCase {
 				$good, $good, $good
 			) );
 		$mocks['primary']->expects( $this->exactly( 3 ) )->method( 'autoCreatedAccount' )
-			->with( $callback, $this->identicalTo( AuthManager::AUTOCREATE_SOURCE_SESSION ) );
+			->with( $callback, $callback2 );
 
 		$mocks['secondary']->expects( $this->exactly( 8 ) )->method( 'testUserForCreation' )
-			->with( $callback, $this->identicalTo( AuthManager::AUTOCREATE_SOURCE_SESSION ) )
+			->with( $callback, $callback2 )
 			->will( $this->onConsecutiveCalls(
 				StatusValue::newFatal( 'fail-in-secondary' ),
 				$good, // backoff test
@@ -2424,7 +2431,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 				$good, $good, $good
 			) );
 		$mocks['secondary']->expects( $this->exactly( 3 ) )->method( 'autoCreatedAccount' )
-			->with( $callback, $this->identicalTo( AuthManager::AUTOCREATE_SOURCE_SESSION ) );
+			->with( $callback, $callback2 );
 
 		$this->preauthMocks = [ $mocks['pre'] ];
 		$this->primaryauthMocks = [ $mocks['primary'] ];
@@ -2564,8 +2571,20 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			'authmanager-autocreate-noperm', $session->get( 'AuthManager::AutoCreateBlacklist' )
 		);
 
+		// maintenance scripts always work
+		$expectedSource = AuthManager::AUTOCREATE_SOURCE_MAINT;
+		$this->setGroupPermissions( '*', 'createaccount', false );
+		$this->setGroupPermissions( '*', 'autocreateaccount', false );
+		$session->clear();
+		$user = \User::newFromName( $username );
+		$this->hook( 'LocalUserCreated', $this->never() );
+		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_MAINT, true );
+		$this->unhook( 'LocalUserCreated' );
+		$this->assertEquals( \Status::newFatal( 'ok' ), $ret );
+
 		// Test that both permutations of permissions are allowed
 		// (this hits the two "ok" entries in $mocks['pre'])
+		$expectedSource = AuthManager::AUTOCREATE_SOURCE_SESSION;
 		$this->setGroupPermissions( '*', 'createaccount', false );
 		$this->setGroupPermissions( '*', 'autocreateaccount', true );
 		$session->clear();
