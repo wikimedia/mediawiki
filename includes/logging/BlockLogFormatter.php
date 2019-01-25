@@ -81,8 +81,30 @@ class BlockLogFormatter extends LogFormatter {
 					return $this->makePageLink( Title::newFromText( ( $page ) ) );
 				}, $pages );
 
-				$params[6] = Message::rawParam( $this->context->getLanguage()->listToText( $pages ) );
-				$params[7] = count( $pages );
+				$namespaces = $params[6]['namespaces'] ?? [];
+				$namespaces = array_map( function ( $ns ) {
+					$text = (int)$ns === NS_MAIN
+						? $this->msg( 'blanknamespace' )->text()
+						: $this->context->getLanguage()->getFormattedNsText( $ns );
+					$params = [ 'namespace' => $ns ];
+
+					return $this->makePageLink( SpecialPage::getTitleFor( 'Allpages' ), $params, $text );
+				}, $namespaces );
+
+				$restrictions = [];
+				if ( $pages ) {
+					$restrictions[] = $this->msg( 'logentry-partialblock-block-page' )
+						->numParams( count( $pages ) )
+						->rawParams( $this->context->getLanguage()->listToText( $pages ) )->text();
+				}
+
+				if ( $namespaces ) {
+					$restrictions[] = $this->msg( 'logentry-partialblock-block-ns' )
+						->numParams( count( $namespaces ) )
+						->rawParams( $this->context->getLanguage()->listToText( $namespaces ) )->text();
+				}
+
+				$params[6] = Message::rawParam( $this->context->getLanguage()->listToText( $restrictions ) );
 			}
 		}
 
@@ -251,6 +273,10 @@ class BlockLogFormatter extends LogFormatter {
 				return $this->formatParameterValueForApi( 'page', 'title-link', $title );
 			}, $ret['restrictions']['pages'] );
 			ApiResult::setIndexedTagName( $ret['restrictions']['pages'], 'p' );
+		}
+
+		if ( isset( $ret['restrictions']['namespaces'] ) ) {
+			ApiResult::setIndexedTagName( $ret['restrictions']['namespaces'], 'ns' );
 		}
 
 		return $ret;
