@@ -2306,6 +2306,7 @@
 	"ipb-confirm": "Spär confirméieren",
 	"ipb-partial": "Partiell",
 	"ipb-pages-label": "Säiten",
+	"ipb-namespaces-label": "Nummraim",
 	"badipaddress": "D'IP-Adress huet dat falscht Format.",
 	"blockipsuccesssub": "Gouf gespaart",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] gouf gespaart. <br />\n\nKuckt d'[[Special:BlockList|Spär-Lëscht]] fir all Spären nozekucken.",

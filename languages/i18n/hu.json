@@ -669,7 +669,7 @@
 	"preview": "Előnézet",
 	"showpreview": "Előnézet megtekintése",
 	"showdiff": "Változtatások megtekintése",
-	"blankarticle": "<strong>Figyelem:</strong> A létrehozandó szócikk üres.\nHa ismét a \"$1\" gombra kattintasz, a szócikket tartalom nélkül fogod létrehozni.",
+	"blankarticle": "<strong>Figyelem:</strong> A létrehozandó lap üres.\nHa ismét a „$1” gombra kattintasz, a lapot tartalom nélkül fogod létrehozni.",
 	"anoneditwarning": "<strong>Figyelem:</strong> Nem vagy bejelentkezve. Ha szerkesztesz, az IP-címed nyilvánosan látható lesz a laptörténetben. Ha <strong>[$1 bejelentkezel]</strong> vagy <strong>[$2 regisztrálsz]</strong>, a szerkesztéseid a felhasználónevedhez lesznek társítva, egyéb hasznos dolgok mellett.",
 	"anonpreviewwarning": "''Nem vagy bejelentkezve. A mentéskor az IP-címed rögzítve lesz a laptörténetben.''",
 	"missingsummary": "'''Emlékeztető:''' Nem adtál meg szerkesztési összefoglalót. Ha összefoglaló nélkül akarod elküldeni a szöveget, kattints újra a mentésre.",

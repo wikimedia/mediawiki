@@ -2115,6 +2115,7 @@ return [
 			'mediawiki.language',
 			'mediawiki.confirmCloseWindow',
 			'mediawiki.notification.convertmessagebox',
+			'mediawiki.storage',
 			'oojs-ui-widgets',
 			'mediawiki.widgets.SelectWithInputWidget',
 			'mediawiki.editfont.styles',
