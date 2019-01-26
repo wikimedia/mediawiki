@@ -2104,8 +2104,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * protocol-relative, the URL will be expanded to http://
 	 *
 	 * @see self::getLocalURL for the arguments.
-	 * @param string $query
-	 * @param string|bool $query2
+	 * @param string|string[] $query
+	 * @param string|bool $query2 Deprecated
 	 * @return string The URL
 	 */
 	public function getInternalURL( $query = '', $query2 = false ) {
@@ -2127,8 +2127,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * NOTE: Unlike getInternalURL(), the canonical URL includes the fragment
 	 *
 	 * @see self::getLocalURL for the arguments.
-	 * @param string $query
-	 * @param string|bool $query2
+	 * @param string|string[] $query
+	 * @param string|bool $query2 Deprecated
 	 * @return string The URL
 	 * @since 1.18
 	 */
