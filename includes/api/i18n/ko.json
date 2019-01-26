@@ -51,7 +51,7 @@
 	"apihelp-block-param-watchuser": "해당 사용자 또는 IP 주소의 사용자 문서 및 토론 문서를 주시합니다.",
 	"apihelp-block-param-tags": "차단 기록의 항목에 적용할 태그를 변경합니다.",
 	"apihelp-block-param-partial": "사이트 전체가 아닌 특정 문서나 이름공간에서 사용자를 차단합니다.",
-	"apihelp-block-param-pagerestrictions": "사용자의 편집을 차단할 제목 목록입니다. '부분'이 true로 설정되어 있을 때에만 적용됩니다.",
+	"apihelp-block-param-pagerestrictions": "사용자의 편집을 차단할 제목 목록입니다. <var>partial</var>이 true로 설정되어 있을 때에만 적용됩니다.",
 	"apihelp-block-example-ip-simple": "IP <kbd>192.0.2.5</kbd>에 대해 <kbd>First strike</kbd>라는 이유로 3일 간 차단하기",
 	"apihelp-block-example-user-complex": "사용자 <kbd>Vandal</kbd>을 <kbd>Vandalism</kbd>이라는 이유로 무기한 차단하며 계정 생성 및 이메일 발송을 막기",
 	"apihelp-changeauthenticationdata-summary": "현재 사용자의 인증 데이터를 변경합니다.",
