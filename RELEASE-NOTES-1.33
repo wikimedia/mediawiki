@@ -30,6 +30,9 @@ production.
   $wgTidyConf, $wgTidyOpts, $wgTidyInternal, and $wgDebugTidy, all
   deprecated since 1.26, have now all been removed. The $wgTidyConfig
   setting remains only for Remex experimental features or debugging.
+* $wgEnableParserCache, deprecated since 1.26, was removed.
+  If disabling the parser cache is still desirable,
+  set `$wgParserCacheType = CACHE_NONE;` instead.
 
 === New features in 1.33 ===
 * (T96041) __EXPECTUNUSEDCATEGORY__ on a category page causes the category

@@ -2661,12 +2661,6 @@ $wgUseFileCache = false;
 $wgFileCacheDepth = 2;
 
 /**
- * Kept for extension compatibility; see $wgParserCacheType
- * @deprecated since 1.26
- */
-$wgEnableParserCache = true;
-
-/**
  * Append a configured value to the parser cache and the sitenotice key so
  * that they can be kept separate for some class of activity.
  */
