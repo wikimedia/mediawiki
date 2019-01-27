@@ -85,7 +85,7 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var string Alternate ID string for the domain instead of DatabaseDomain::getId() */
 	private $localDomainIdAlias;
 	/** @var int */
-	private $maxLag = self::MAX_LAG_DEFAULT;
+	private $maxLag;
 
 	/** @var string Current server name */
 	private $hostname;
@@ -200,9 +200,7 @@ class LoadBalancer implements ILoadBalancer {
 			$this->readOnlyReason = $params['readOnlyReason'];
 		}
 
-		if ( isset( $params['maxLag'] ) ) {
-			$this->maxLag = $params['maxLag'];
-		}
+		$this->maxLag = $params['maxLag'] ?? self::MAX_LAG_DEFAULT;
 
 		$this->loadMonitorConfig = $params['loadMonitor'] ?? [ 'class' => 'LoadMonitorNull' ];
 		$this->loadMonitorConfig += [ 'lagWarnThreshold' => $this->maxLag ];

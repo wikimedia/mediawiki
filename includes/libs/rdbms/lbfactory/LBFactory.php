@@ -95,6 +95,9 @@ abstract class LBFactory implements ILBFactory {
 	/** @var string|null */
 	private $defaultGroup = null;
 
+	/** @var int|null */
+	protected $maxLag;
+
 	const ROUND_CURSORY = 'cursory';
 	const ROUND_BEGINNING = 'within-begin';
 	const ROUND_COMMITTING = 'within-commit';
@@ -110,6 +113,7 @@ abstract class LBFactory implements ILBFactory {
 			? DatabaseDomain::newFromId( $conf['localDomain'] )
 			: DatabaseDomain::newUnspecified();
 
+		$this->maxLag = $conf['maxLag'] ?? null;
 		if ( isset( $conf['readOnlyReason'] ) && is_string( $conf['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $conf['readOnlyReason'];
 		}
@@ -588,6 +592,7 @@ abstract class LBFactory implements ILBFactory {
 			'hostname' => $this->hostname,
 			'cliMode' => $this->cliMode,
 			'agent' => $this->agent,
+			'maxLag' => $this->maxLag,
 			'defaultGroup' => $this->defaultGroup,
 			'chronologyCallback' => function ( ILoadBalancer $lb ) {
 				// Defer ChronologyProtector construction in case setRequestInfo() ends up

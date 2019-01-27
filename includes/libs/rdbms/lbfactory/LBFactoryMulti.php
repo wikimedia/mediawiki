@@ -107,12 +107,6 @@ class LBFactoryMulti extends LBFactory {
 	/** @var string */
 	private $lastSection;
 
-	/** @var int */
-	private $maxLag = self::MAX_LAG_DEFAULT;
-
-	/** @var int Default 'maxLag' when unspecified */
-	const MAX_LAG_DEFAULT = 10;
-
 	/**
 	 * @see LBFactory::__construct()
 	 *
@@ -166,7 +160,6 @@ class LBFactoryMulti extends LBFactory {
 	 *                                 storage cluster.
 	 *   - masterTemplateOverrides     Server configuration map overrides for all master servers.
 	 *   - loadMonitorClass            Name of the LoadMonitor class to always use.
-	 *   - maxLag                      Avoid replica DBs with more lag than this many seconds.
 	 *   - readOnlyBySection           A map of section name to read-only message.
 	 *                                 Missing or false for read/write.
 	 */
@@ -178,7 +171,7 @@ class LBFactoryMulti extends LBFactory {
 		$optional = [ 'groupLoadsBySection', 'groupLoadsByDB', 'hostsByName',
 			'externalLoads', 'externalTemplateOverrides', 'templateOverridesByServer',
 			'templateOverridesByCluster', 'templateOverridesBySection', 'masterTemplateOverrides',
-			'readOnlyBySection', 'maxLag', 'loadMonitorClass' ];
+			'readOnlyBySection', 'loadMonitorClass' ];
 
 		foreach ( $required as $key ) {
 			if ( !isset( $conf[$key] ) ) {
@@ -318,7 +311,6 @@ class LBFactoryMulti extends LBFactory {
 			$this->baseLoadBalancerParams(),
 			[
 				'servers' => $this->makeServerArray( $template, $loads, $groupLoads ),
-				'maxLag' => $this->maxLag,
 				'loadMonitor' => [ 'class' => $this->loadMonitorClass ],
 				'readOnlyReason' => $readOnlyReason
 			]
