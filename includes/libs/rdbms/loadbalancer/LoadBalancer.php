@@ -134,7 +134,7 @@ class LoadBalancer implements ILoadBalancer {
 	const CONN_HELD_WARN_THRESHOLD = 10;
 
 	/** @var int Default 'maxLag' when unspecified */
-	const MAX_LAG_DEFAULT = 10;
+	const MAX_LAG_DEFAULT = 6;
 	/** @var int Default 'waitTimeout' when unspecified */
 	const MAX_WAIT_DEFAULT = 10;
 	/** @var int Seconds to cache master server read-only status */
