@@ -897,7 +897,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 		// Don't cache this call. remap() ensures data URIs embeds are up to date,
 		// and urls contain correct content hashes in their query string. (T128668)
-		return CSSMin::remap( $style, $localDir, $remoteDir, true );
+		return CSSMin::remap( $style, $localDir, $remoteDir, false );
 	}
 
 	/**
