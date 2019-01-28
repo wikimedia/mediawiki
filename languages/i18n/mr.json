@@ -1111,6 +1111,7 @@
 	"userrights-user-editname": "सदस्य नाव टाका:",
 	"editusergroup": "सदस्य गटांचे भारण करा",
 	"editinguser": "या {{GENDER:$1|सदस्या}}चे सदस्य-अधिकारात बदल केला जात आहे<strong>[[User:$1|$1]]</strong> $2",
+	"viewinguserrights": "{{GENDER:$1|सदस्य}} <strong>[[User:$1|$1]]</strong> $2चे सदस्य अधिकार बघत आहे.",
 	"userrights-editusergroup": "{{GENDER:$1|सदस्य}} गट संपादित करा",
 	"userrights-viewusergroup": "{{GENDER:$1|सदस्य}}गट बघा",
 	"saveusergroups": "{{GENDER:$1|सदस्य}} गट जतन करा",

@@ -3501,7 +3501,7 @@
 	"logentry-block-block": "$1 {{GENDER:$2|memblokir}} {{GENDER:$4|$3}} dengan waktu kedaluwarsa $5 $6",
 	"logentry-block-unblock": "$1 telah {{GENDER:$2|mencabut pemblokiran}} atas {{GENDER:$4|$3}}",
 	"logentry-block-reblock": "$1 {{GENDER:$2|mengubah}} pemblokiran {{GENDER:$4|$3}} dengan waktu kedaluwarsa $5 $6",
-	"logentry-partialblock-block": "$1{{GENDER:$2|memblokir}}{{GENDER:$4|$3}} dari penyuntingan {{PLURAL:$8|halaman}} $7 dengan waktu kedaluwarsa $5 $6",
+	"logentry-partialblock-block": "$1 {{GENDER:$2|memblokir}} {{GENDER:$4|$3}} dari penyuntingan $7 dengan waktu kedaluwarsa $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|memblokir}} {{GENDER:$4|$3}} dengan waktu kedaluwarsa $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|mengubah}} pemblokiran {{GENDER:$4|$3}} dengan waktu kedaluwarsa $5 $6",
 	"logentry-import-upload": "$1 {{GENDER:$2|mengimpor}} $3 melalui pemuatan berkas",

@@ -806,7 +806,7 @@
 	"sectioneditnotsupported-text": "此頁面不支援編輯章節。",
 	"permissionserrors": "權限錯誤",
 	"permissionserrorstext": "由於下列{{PLURAL:$1|原因}}，您沒有權限進行目前的動作：",
-	"permissionserrorstext-withaction": "由於下列{{PLURAL:$1|原因}}，您沒有權限進行 $2 的動作：",
+	"permissionserrorstext-withaction": "由於下列{{PLURAL:$1|原因}}，您沒有權限進行$2的動作：",
 	"contentmodelediterror": "您無法編輯此修訂，因為它的內容模型為<code>$1</code>，與目前使用的頁面內容模型<code>$2</code>不同。",
 	"recreate-moveddeleted-warn": "<strong>警告：您正重新建立先前已刪除的頁面。</strong>\n\n您應考慮是否繼續編輯此頁。\n在此提供刪除與移動日誌方便作為參考：",
 	"moveddeleted-notice": "此頁面已遭刪除。\n請參考下方關於此頁面的刪除、保護和移動日誌。",

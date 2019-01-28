@@ -2606,6 +2606,7 @@
 	"blocklist-nousertalk": "darf eigene Diskussionsseite nicht bearbeiten",
 	"blocklist-editing": "Bearbeiten",
 	"blocklist-editing-sitewide": "Bearbeiten (gesamte Website)",
+	"blocklist-editing-page": "Seiten",
 	"ipblocklist-empty": "Die Liste enthält keine Einträge.",
 	"ipblocklist-no-results": "Die gesuchte IP-Adresse/der Benutzername ist nicht gesperrt.",
 	"blocklink": "Sperren",
