@@ -47,7 +47,7 @@ class MainSlotRoleHandlerTest extends MediaWikiTestCase {
 	public function testFetDefaultModel() {
 		$handler = new MainSlotRoleHandler( [ 100 => CONTENT_MODEL_TEXT ] );
 
-		// For the main handler, the namespace determins the defualt model
+		// For the main handler, the namespace determins the default model
 		$titleMain = $this->makeTitleObject( NS_MAIN );
 		$this->assertSame( CONTENT_MODEL_WIKITEXT, $handler->getDefaultModel( $titleMain ) );
 
