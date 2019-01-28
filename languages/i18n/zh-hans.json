@@ -3523,6 +3523,7 @@
 	"logentry-block-block": "$1{{GENDER:$2|封禁了}}{{GENDER:$4|$3}}，到期时间为$5 $6",
 	"logentry-block-unblock": "$1{{GENDER:$2|解封了}}{{GENDER:$4|$3}}",
 	"logentry-block-reblock": "$1将{{GENDER:$4|$3}}的封禁设置{{GENDER:$2|更改为}}持续时间$5 $6",
+	"logentry-partialblock-block": "$1{{GENDER:$2|封禁了}}{{GENDER:$4|$3}}，持续时间$5 $6",
 	"logentry-suppress-block": "$1{{GENDER:$2|封禁了}}{{GENDER:$4|$3}}，持续时间$5 $6",
 	"logentry-suppress-reblock": "$1将{{GENDER:$4|$3}}的封禁设置{{GENDER:$2|更改为}}持续时间$5 $6",
 	"logentry-import-upload": "$1通过上传{{GENDER:$2|导入}}了$3",

@@ -2065,6 +2065,7 @@
 	"sessionprovider-nocookies": "''Bisquiti'' forsan esas desacendita. Certigez ke vu acendar ''bisquiti'' e riprobez.",
 	"randomrootpage": "Hazarda radikopagino",
 	"log-action-filter-delete": "Tipo di efacado:",
+	"log-action-filter-all": "Omno",
 	"log-action-filter-contentmodel-change": "Modifiko di la kontenajo di ula modelo",
 	"log-action-filter-suppress-reblock": "User suppression by reblock"
 }

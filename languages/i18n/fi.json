@@ -1438,7 +1438,7 @@
 	"rcfilters-state-message-subset": "Tällä suodattimella ei ole vaikutusta, koska sen tulokset sisältyvät {{PLURAL:$2|seuraavaan laajempaan suodattimeen|seuraaviin laajempiin suodattimiin}} (kokeile korostusta sen erottamiseksi): $1",
 	"rcfilters-state-message-fullcoverage": "Tässä ryhmässä kaikkien suodattimien valitseminen on sama, kuin ei valitse mitään, joten tällä suodattimella ei ole vaikutusta. Ryhmään sisältyy: $1",
 	"rcfilters-filtergroup-authorship": "Muutoksen tekijä",
-	"rcfilters-filter-editsbyself-label": "Sinun muutoksesi",
+	"rcfilters-filter-editsbyself-label": "Omat muutokset",
 	"rcfilters-filter-editsbyself-description": "Tekemäsi muutokset.",
 	"rcfilters-filter-editsbyother-label": "Muiden muutokset",
 	"rcfilters-filter-editsbyother-description": "Muiden käyttäjien tekemät muutokset.",

@@ -9,7 +9,8 @@
 			"Gırd",
 			"Marmase",
 			"Mirzali",
-			"Xoser"
+			"Xoser",
+			"Orbot707"
 		]
 	},
 	"exif-imagewidth": "Herayiye",
@@ -206,9 +207,16 @@
 	"exif-compression-34712": "JPEG2000",
 	"exif-copyrighted-true": "Heqê telifiye",
 	"exif-copyrighted-false": "Telifiya waziyeta eyara",
+	"exif-photometricinterpretation-0": "Siya u Sıpe (Sıpe 0 o)",
 	"exif-photometricinterpretation-1": "Siya u sıpê (Siya 0)",
 	"exif-photometricinterpretation-2": "RGB",
+	"exif-photometricinterpretation-3": "Palette",
+	"exif-photometricinterpretation-4": "Maskeyo vıryaye",
+	"exif-photometricinterpretation-5": "Abıryaye (degmesi CMYK)",
 	"exif-photometricinterpretation-6": "YCbCr",
+	"exif-photometricinterpretation-8": "CIE L*a*b*",
+	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC-qodnayış)",
+	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU qodnayış)",
 	"exif-unknowndate": "Tarix nizanyano",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "kıştki-ser çarnayiş",
