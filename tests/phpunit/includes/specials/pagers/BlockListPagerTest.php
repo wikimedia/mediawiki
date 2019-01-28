@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
@@ -109,9 +110,13 @@ class BlockListPagerTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers ::formatValue
+	 * @covers ::getRestrictionListHTML
 	 */
 	public function testFormatValueRestrictions() {
-		$this->setMwGlobals( 'wgArticlePath', '/wiki/$1' );
+		$this->setMwGlobals( [
+			'wgArticlePath' => '/wiki/$1',
+			'wgScript' => '/w/index.php',
+		] );
 
 		$pager = new BlockListPager( new SpecialPage(),  [] );
 
@@ -134,7 +139,8 @@ class BlockListPagerTest extends MediaWikiTestCase {
 		$pageId = $page['id'];
 
 		$restrictions = [
-			( new PageRestriction( 0, $pageId ) )->setTitle( $title )
+			( new PageRestriction( 0, $pageId ) )->setTitle( $title ),
+			new NamespaceRestriction( 0, NS_MAIN )
 		];
 
 		$wrappedPager = TestingAccessWrapper::newFromObject( $pager );
@@ -146,11 +152,21 @@ class BlockListPagerTest extends MediaWikiTestCase {
 			// and must not depend on a localisation message.
 			// TODO: Mock the message or consider using qqx.
 			. wfMessage( 'blocklist-editing' )->text()
-			. '<ul><li><a href="/wiki/Victor_Frankenstein" title="'
+			. '<ul><li>'
+			. wfMessage( 'blocklist-editing-page' )->text()
+			. '<ul><li>'
+			. '<a href="/wiki/Victor_Frankenstein" title="'
 			. $pageName
 			. '">'
 			. $pageName
-			. '</a></li></ul></li></ul>',
+			. '</a></li></ul></li><li>'
+			. wfMessage( 'blocklist-editing-ns' )->text()
+			. '<ul><li>'
+			. '<a href="/w/index.php?title=Special:AllPages&amp;namespace=0" title="'
+			. 'Special:AllPages'
+			. '">'
+			. wfMessage( 'blanknamespace' )->text()
+			. '</a></li></ul></li></ul></li></ul>',
 			$formatted
 		);
 	}

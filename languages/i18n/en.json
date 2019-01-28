@@ -2665,6 +2665,8 @@
 	"blocklist-nousertalk": "cannot edit own talk page",
 	"blocklist-editing": "editing",
 	"blocklist-editing-sitewide": "editing (sitewide)",
+	"blocklist-editing-page": "pages",
+	"blocklist-editing-ns": "namespaces",
 	"ipblocklist-empty": "The block list is empty.",
 	"ipblocklist-no-results": "The requested IP address or username is not blocked.",
 	"blocklink": "block",

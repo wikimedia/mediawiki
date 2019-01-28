@@ -24,6 +24,8 @@
  */
 use MediaWiki\Block\BlockRestriction;
 use MediaWiki\Block\Restriction\Restriction;
+use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -198,7 +200,7 @@ class BlockListPager extends TablePager {
 				}
 
 				if ( !$row->ipb_sitewide && $this->restrictions ) {
-					$list = $this->getRestrictionListHTML( $this->restrictions, $row );
+					$list = $this->getRestrictionListHTML( $row );
 					if ( $list ) {
 						$properties[] = htmlspecialchars( $msg['blocklist-editing'] ) . $list;
 					}
@@ -246,41 +248,69 @@ class BlockListPager extends TablePager {
 	/**
 	 * Get Restriction List HTML
 	 *
-	 * @param Restriction[] $restrictions
 	 * @param stdClass $row
 	 *
 	 * @return string
 	 */
-	private static function getRestrictionListHTML(
-		array $restrictions,
-		stdClass $row
-	) {
+	private function getRestrictionListHTML( stdClass $row ) {
 		$items = [];
 
-		foreach ( $restrictions as $restriction ) {
+		foreach ( $this->restrictions as $restriction ) {
 			if ( $restriction->getBlockId() !== (int)$row->ipb_id ) {
 				continue;
 			}
 
-			if ( $restriction->getType() !== 'page' ) {
-				continue;
+			switch ( $restriction->getType() ) {
+				case PageRestriction::TYPE:
+					$items[$restriction->getType()][] = HTML::rawElement(
+						'li',
+						[],
+						Linker::link( $restriction->getTitle() )
+					);
+					break;
+				case NamespaceRestriction::TYPE:
+					$text = $restriction->getValue() === NS_MAIN
+						? $this->msg( 'blanknamespace' )
+						: $this->getLanguage()->getFormattedNsText(
+							$restriction->getValue()
+						);
+					$items[$restriction->getType()][] = HTML::rawElement(
+						'li',
+						[],
+						Linker::link(
+							SpecialPage::getTitleValueFor( 'Allpages' ),
+							$text,
+							[],
+							[
+								'namespace' => $restriction->getValue()
+							]
+						)
+					);
+					break;
 			}
-
-			$items[] = Html::rawElement(
-				'li',
-				[],
-				Linker::link( $restriction->getTitle() )
-			);
 		}
 
 		if ( empty( $items ) ) {
 			return '';
 		}
 
+		$sets = [];
+		foreach ( $items as $key => $value ) {
+			$sets[] = Html::rawElement(
+				'li',
+				[],
+				$this->msg( 'blocklist-editing-' . $key ) . Html::rawElement(
+					'ul',
+					[],
+					implode( '', $value )
+				)
+			);
+		}
+
 		return Html::rawElement(
 			'ul',
 			[],
-			implode( '', $items )
+			implode( '', $sets )
 		);
 	}
 
