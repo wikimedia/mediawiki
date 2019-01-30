@@ -116,7 +116,6 @@ TEXT
 					]
 				);
 				if ( !$rows || $rows->numRows() <= 0 ) {
-					# Done, hopefully.
 					break;
 				}
 
@@ -170,7 +169,6 @@ TEXT
 					]
 				);
 				if ( !$rows || $rows->numRows() <= 0 ) {
-					# Done, hopefully.
 					break;
 				}
 				foreach ( $rows as $row ) {

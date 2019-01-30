@@ -335,7 +335,6 @@ class ImportImages extends Maintenance {
 					$props,
 					$timestamp
 				)->isOK() ) {
-					# We're done!
 					$this->output( "done.\n" );
 
 					$doProtect = false;

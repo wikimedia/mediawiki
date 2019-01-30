@@ -149,7 +149,6 @@ class BlockRestriction {
 				$restrictions
 			);
 
-			// Nothing to remove.
 			if ( empty( $restrictionsToRemove ) ) {
 				continue;
 			}

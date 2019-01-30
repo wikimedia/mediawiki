@@ -18,7 +18,8 @@
 			"Macofe",
 			"Kareyac",
 			"Artsiom91",
-			"Vlad5250"
+			"Vlad5250",
+			"Nerogaf"
 		]
 	},
 	"tog-underline": "Падкрэсьліваць спасылкі:",
@@ -2521,6 +2522,8 @@
 	"blocklist-nousertalk": "ня можа рэдагаваць уласную старонку гутарак",
 	"blocklist-editing": "рэдагаваньне",
 	"blocklist-editing-sitewide": "рэдагаваньне (ва ўсім праекце)",
+	"blocklist-editing-page": "старонкі",
+	"blocklist-editing-ns": "прасторы назваў",
 	"ipblocklist-empty": "Сьпіс блякаваньняў пусты.",
 	"ipblocklist-no-results": "Паданы IP-адрас альбо імя ўдзельніка не заблякаваныя.",
 	"blocklink": "заблякаваць",

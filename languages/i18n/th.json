@@ -2417,6 +2417,8 @@
 	"blocklist-nousertalk": "ไม่สามารถแก้ไขหน้าคุยกับผู้ใช้ของตนเอง",
 	"blocklist-editing": "การแก้ไข",
 	"blocklist-editing-sitewide": "การแก้ไข (ทั้งเว็บไซต์)",
+	"blocklist-editing-page": "หน้า",
+	"blocklist-editing-ns": "เนมสเปซ",
 	"ipblocklist-empty": "รายการบล็อกว่าง",
 	"ipblocklist-no-results": "เลขที่อยู่ไอพีหรือชื่อผู้ใช้ที่ขอไม่ถูกบล็อก",
 	"blocklink": "บล็อก",

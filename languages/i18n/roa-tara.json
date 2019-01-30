@@ -2369,6 +2369,8 @@
 	"blocklist-nousertalk": "Non ge puè cangià 'a pàgene de le 'ngazzaminde toje",
 	"blocklist-editing": "stoche a cange",
 	"blocklist-editing-sitewide": "stoche a cange (tutte 'u site)",
+	"blocklist-editing-page": "pàggene",
+	"blocklist-editing-ns": "namespace",
 	"ipblocklist-empty": "'A liste de le blocche jè vacande.",
 	"ipblocklist-no-results": "L'indirizze IP ca è cerchete o 'u nome utende non ge sonde blocchete.",
 	"blocklink": "blocche",

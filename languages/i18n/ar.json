@@ -2583,6 +2583,8 @@
 	"blocklist-nousertalk": "لا يمكنه تعديل صفحة نقاشه الخاصة",
 	"blocklist-editing": "التحرير",
 	"blocklist-editing-sitewide": "التحرير (على مستوى الموقع)",
+	"blocklist-editing-page": "الصفحات",
+	"blocklist-editing-ns": "النطاقات",
 	"ipblocklist-empty": "قائمة المنع فارغة.",
 	"ipblocklist-no-results": "عنوان الأيبي أو اسم المستخدم المطلوب غير ممنوع.",
 	"blocklink": "امنع",

@@ -23,7 +23,8 @@
 			"Impersonator 1",
 			"Fengchao",
 			"Duolaimi",
-			"A Chinese Wikipedian"
+			"A Chinese Wikipedian",
+			"水獭很懒"
 		]
 	},
 	"config-desc": "MediaWiki安装程序",
@@ -101,7 +102,7 @@
 	"config-using-32bit": "<strong>警告：</strong>您的系统似乎是32位系统。我们[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit 不建议您]使用32位系统。",
 	"config-db-type": "数据库类型：",
 	"config-db-host": "数据库主机：",
-	"config-db-host-help": "如果您的数据库在别的服务器上，请在这里输入它的域名或IP地址。\n\n如果您在使用共享网站套餐，您的网站商应该已在他们的控制面板中给您数据库信息了。\n\n如果您在Windows中安装并且使用MySQL，“localhost”可能无效。如果确实无效，请输入“127.0.0.1”作为IP地址。\n\n如果您在使用PostgreSQL，并且要用Unix socket来连接，请留空。",
+	"config-db-host-help": "如果您的数据库在别的服务器上，请在这里输入其域名或IP地址。\n\n如果您在使用共享网站套餐，您的网站商应该已在他们的控制面板中给您数据库信息了。\n\n如果您使用MySQL，“localhost”可能无效。如果确实无效，请输入“127.0.0.1”作为IP地址。\n\n如果您在使用PostgreSQL，并且要用Unix socket来连接，请留空。",
 	"config-db-host-oracle": "数据库透明网络底层（TNS）：",
 	"config-db-host-oracle-help": "请输入合法的[http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm 本地连接名]，并确保tnsnames.ora文件对本安装程序可见。<br />如果您使用的客户端库为10g或更新的版本，您还可以使用[http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm 简单连接名方法]（easy connect naming method）。",
 	"config-db-wiki-settings": "标识本wiki",
@@ -149,7 +150,7 @@
 	"config-invalid-db-server-oracle": "无效的数据库TNS“$1”。请使用“TNS 名称”或者一个“轻松连接”字符串（[http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle 命名方法]）",
 	"config-invalid-db-name": "无效的数据库名称“$1”。请只使用ASCII字母（a-z、A-Z）、数字（0-9）、下划线（_）和连字号（-）。",
 	"config-invalid-db-prefix": "无效的数据库前缀“$1”。请只使用ASCII字母（a-z、A-Z）、数字（0-9）、下划线（_）和连字号（-）。",
-	"config-connection-error": "$1。\n\n请检查下列的主机、用户名和密码设置后重试。",
+	"config-connection-error": "$1。\n\n请检查下列的主机、用户名和密码设置后重试。若使用\"localhost\"作为数据库主机，请尝试\"127.0.0.1\"（反之亦然）。",
 	"config-invalid-schema": "无效的MediaWiki数据库模式“$1”。请只使用ASCII字母（a-z、A-Z）、数字（0-9）和下划线（_）。",
 	"config-db-sys-create-oracle": "安装程序仅支持使用SYSDBA帐户创建新帐户。",
 	"config-db-sys-user-exists-oracle": "用户帐户“$1”已经存在。SYSDBA仅可用于创建新帐户！",

@@ -118,7 +118,6 @@ class CleanupPreferences extends Maintenance {
 			$numRows = $res->numRows();
 			$total += $numRows;
 			if ( $res->numRows() <= 0 ) {
-				// All done!
 				$this->output( "DONE! (handled $total entries)\n" );
 				break;
 			}

@@ -2607,6 +2607,8 @@
 	"blocklist-nousertalk": "nie mogą edytować własnych stron dyskusji",
 	"blocklist-editing": "edytowanie",
 	"blocklist-editing-sitewide": "edytowanie całej strony",
+	"blocklist-editing-page": "strony",
+	"blocklist-editing-ns": "przestrzenie nazw",
 	"ipblocklist-empty": "Lista blokad jest pusta.",
 	"ipblocklist-no-results": "Podany adres IP lub użytkownik nie jest zablokowany.",
 	"blocklink": "zablokuj",

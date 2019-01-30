@@ -2552,6 +2552,8 @@
 	"blocklist-nousertalk": "nem szerkesztheti a vitalapját",
 	"blocklist-editing": "szerkesztés",
 	"blocklist-editing-sitewide": "szerkesztés (teljes körű)",
+	"blocklist-editing-page": "lapok",
+	"blocklist-editing-ns": "névterek",
 	"ipblocklist-empty": "A blokkoltak listája üres.",
 	"ipblocklist-no-results": "A kért IP-cím vagy felhasználónév nem blokkolt.",
 	"blocklink": "blokkolás",

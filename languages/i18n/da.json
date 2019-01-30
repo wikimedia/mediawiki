@@ -2485,6 +2485,8 @@
 	"emailblock": "e-mail blokeret",
 	"blocklist-nousertalk": "kan ikke redigere egen diskussionsside",
 	"blocklist-editing": "redigering",
+	"blocklist-editing-page": "sider",
+	"blocklist-editing-ns": "navnerum",
 	"ipblocklist-empty": "Blokeringslisten er tom.",
 	"ipblocklist-no-results": "Den angivene IP-addresse eller brugernavn er ikke blokeret.",
 	"blocklink": "blokér",

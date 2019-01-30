@@ -1326,7 +1326,6 @@ abstract class Maintenance {
 			$this->output( "done.\n" );
 		}
 
-		# Done
 		$this->commitTransaction( $dbw, __METHOD__ );
 	}
 

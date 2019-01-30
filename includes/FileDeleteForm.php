@@ -229,7 +229,6 @@ class FileDeleteForm {
 					$lbFactory->rollbackMasterChanges( __METHOD__ );
 				}
 			} else {
-				// Done; nothing changed
 				$dbw->endAtomic( __METHOD__ );
 			}
 		}

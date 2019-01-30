@@ -2607,6 +2607,8 @@
 	"blocklist-nousertalk": "無法編輯自己的對話頁面",
 	"blocklist-editing": "編輯",
 	"blocklist-editing-sitewide": "編輯（站台範圍）",
+	"blocklist-editing-page": "頁面",
+	"blocklist-editing-ns": "命名空間",
 	"ipblocklist-empty": "封鎖清單為空。",
 	"ipblocklist-no-results": "請求的 IP 位址或使用者名稱尚未被封鎖。",
 	"blocklink": "封鎖",
