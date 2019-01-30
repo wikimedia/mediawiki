@@ -2599,6 +2599,8 @@
 	"blocklist-nousertalk": "не може редагувати свою сторінку обговорення",
 	"blocklist-editing": "редагування",
 	"blocklist-editing-sitewide": "редагування (у всій вікі)",
+	"blocklist-editing-page": "сторінки",
+	"blocklist-editing-ns": "простори назв",
 	"ipblocklist-empty": "Список блокувань порожній.",
 	"ipblocklist-no-results": "Запрохані IP-адреса або ім'я користувача не заблоковані.",
 	"blocklink": "заблокувати",

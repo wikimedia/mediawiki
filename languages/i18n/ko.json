@@ -2578,6 +2578,7 @@
 	"blocklist-nousertalk": "자신의 토론 문서 편집 불가",
 	"blocklist-editing": "편집 중",
 	"blocklist-editing-sitewide": "편집 중 (사이트 전체)",
+	"blocklist-editing-ns": "이름공간",
 	"ipblocklist-empty": "차단 목록이 비어 있습니다.",
 	"ipblocklist-no-results": "요청한 IP 주소나 사용자는 차단되지 않았습니다.",
 	"blocklink": "차단",

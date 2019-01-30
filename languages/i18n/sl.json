@@ -2523,6 +2523,8 @@
 	"blocklist-nousertalk": "preprečeno urejanje lastne pogovorne strani",
 	"blocklist-editing": "urejanje",
 	"blocklist-editing-sitewide": "urejanje (po celotni strani)",
+	"blocklist-editing-page": "strani",
+	"blocklist-editing-ns": "imenski prostori",
 	"ipblocklist-empty": "Seznam blokad je prazen.",
 	"ipblocklist-no-results": "Zahtevan IP-naslov ali uporabniško ime ni blokirano.",
 	"blocklink": "blokiraj",

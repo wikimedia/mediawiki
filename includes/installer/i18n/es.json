@@ -36,7 +36,8 @@
 			"Tinss",
 			"KATRINE1992",
 			"MarcoAurelio",
-			"Adjen"
+			"Adjen",
+			"Dschultz"
 		]
 	},
 	"config-desc": "El instalador de MediaWiki",
@@ -165,7 +166,7 @@
 	"config-invalid-db-server-oracle": "El TNS de la base de datos «$1» es inválido.\nDebes usar un \"TNS Name\" o una cadena \"Easy Connect\" ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Nomenclatura de Oracle]).",
 	"config-invalid-db-name": "El nombre de la base de datos \"$1\" no es válido.\nUsa sólo caracteres ASCII: letras (a-z, A-Z), números (0-9), guiones bajos (_) y guiones (-).",
 	"config-invalid-db-prefix": "El prefijo de la base de datos \"$1\" no es válido.\nUsa sólo caracteres ASCII: letras (a-z, A-Z), números (0-9), guiones bajos (_) y guiones (-).",
-	"config-connection-error": "$1.\n\nVerifica el servidor, el nombre de usuario y la contraseña, e intenta de nuevo.",
+	"config-connection-error": "$1.\n\nControl el anfitrión, username y contraseña y probar otra vez. Si utilizando \"localhost\" como el anfitrión de base de datos, prueba utilizar \"127.0.0.1\" en cambio (o viceversa).",
 	"config-invalid-schema": "El esquema de la base de datos \"$1\"  es inválido.\nUse sólo carateres ASCII: letras (a-z, A-Z), guarismos (0-9) y guiones bajos (_).",
 	"config-db-sys-create-oracle": "El instalador sólo admite el empleo de cuentas SYSDBA como método para crear una cuenta nueva.",
 	"config-db-sys-user-exists-oracle": "La cuenta de usuario «$1» ya existe. SYSDBA solo puede utilizarse para crear cuentas nuevas.",

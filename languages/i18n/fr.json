@@ -2695,6 +2695,8 @@
 	"blocklist-nousertalk": "ne peut pas modifier sa propre page de discussion",
 	"blocklist-editing": "modification",
 	"blocklist-editing-sitewide": "modification (tout le site)",
+	"blocklist-editing-page": "pages",
+	"blocklist-editing-ns": "espaces de noms",
 	"ipblocklist-empty": "La liste des adresses IP bloquées est actuellement vide.",
 	"ipblocklist-no-results": "L'adresse IP ou l'utilisateur demandé n'est pas bloqué.",
 	"blocklink": "bloquer",

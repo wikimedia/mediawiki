@@ -2653,6 +2653,8 @@
 	"blocklist-nousertalk": "не может править свою страницу обсуждения",
 	"blocklist-editing": "редактирование",
 	"blocklist-editing-sitewide": "редактирование (во всём проекте)",
+	"blocklist-editing-page": "страницы",
+	"blocklist-editing-ns": "пространства имён",
 	"ipblocklist-empty": "Список блокировок пуст.",
 	"ipblocklist-no-results": "Заданный IP-адрес или имя участника не заблокированы.",
 	"blocklink": "заблокировать",

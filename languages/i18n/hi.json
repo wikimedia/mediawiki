@@ -2605,6 +2605,8 @@
 	"blocklist-nousertalk": "अपना वार्ता पृष्ठ भी संपादित नहीं कर सकेंगे",
 	"blocklist-editing": "सम्पादन",
 	"blocklist-editing-sitewide": "सम्पादन (सम्पूर्ण साइट)",
+	"blocklist-editing-page": "पृष्ठ",
+	"blocklist-editing-ns": "नामस्थान",
 	"ipblocklist-empty": "अवरोध सूची खाली हैं।",
 	"ipblocklist-no-results": "पूछे गये आईपी एड्रेस / सदस्यनाम पर ब्लॉक नहीं हैं।",
 	"blocklink": "अवरोधित करें",
