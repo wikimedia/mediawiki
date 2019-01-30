@@ -305,7 +305,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 			switch ( $restriction->getType() ) {
 				case 'page':
 					$value = [ 'id' => $restriction->getValue() ];
-					self::addTitleInfo( $value, $restriction->getTitle() );
+					if ( $restriction->getTitle() ) {
+						self::addTitleInfo( $value, $restriction->getTitle() );
+					}
 					break;
 				default:
 					$value = $restriction->getValue();

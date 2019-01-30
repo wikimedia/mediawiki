@@ -112,6 +112,12 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'ir_type' => PageRestriction::TYPE_ID,
 			'ir_value' => $pageId,
 		] );
+		// Page that has been deleted.
+		$this->db->insert( 'ipblocks_restrictions', [
+			'ir_ipb_id' => $block->getId(),
+			'ir_type' => PageRestriction::TYPE_ID,
+			'ir_value' => 999999,
+		] );
 		$this->db->insert( 'ipblocks_restrictions', [
 			'ir_ipb_id' => $block->getId(),
 			'ir_type' => NamespaceRestriction::TYPE_ID,
