@@ -78,7 +78,6 @@
 			Whitelist existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
-		<exclude-pattern>*/includes/media/XCF\.php</exclude-pattern>
 		<exclude-pattern>*/includes/Feed\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/xmp/XMP\.php</exclude-pattern>
 		<exclude-pattern>*/includes/jobqueue/JobSpecification\.php</exclude-pattern>
