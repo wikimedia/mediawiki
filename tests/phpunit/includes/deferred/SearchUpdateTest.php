@@ -1,20 +1,5 @@
 <?php
 
-class MockSearch extends SearchEngine {
-	public static $id;
-	public static $title;
-	public static $text;
-
-	public function __construct( $db ) {
-	}
-
-	public function update( $id, $title, $text ) {
-		self::$id = $id;
-		self::$title = $title;
-		self::$text = $text;
-	}
-}
-
 /**
  * @group Search
  */
@@ -83,5 +68,20 @@ EOT
 			$processed != '',
 			'Link surrounded by unicode quotes should not fail UTF-8 validation'
 		);
+	}
+}
+
+class MockSearch extends SearchEngine {
+	public static $id;
+	public static $title;
+	public static $text;
+
+	public function __construct( $db ) {
+	}
+
+	public function update( $id, $title, $text ) {
+		self::$id = $id;
+		self::$title = $title;
+		self::$text = $text;
 	}
 }
