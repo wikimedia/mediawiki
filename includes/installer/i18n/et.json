@@ -36,7 +36,7 @@
 	"config-restart": "Jah, tee taaskäivitus",
 	"config-env-php": "PHP $1 on paigaldatud.",
 	"config-env-hhvm": "HHVM $1 on installitud.",
-	"config-diff3-bad": "GNU diff3 ei leitud.",
+	"config-diff3-bad": "Tekstivõrdluse vahendit GNU diff3 ei leitud. Saad seda eirata, aga võid sattuda edaspidi sagedamini redigeerimiskonfliktidesse.",
 	"config-db-type": "Andmebaasi tüüp:",
 	"config-db-name": "Andmebaasi nimi (sidekriipsudeta):",
 	"config-db-name-oracle": "Andmebaasi skeem:",

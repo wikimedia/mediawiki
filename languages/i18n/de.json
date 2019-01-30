@@ -2607,6 +2607,7 @@
 	"blocklist-editing": "Bearbeiten",
 	"blocklist-editing-sitewide": "Bearbeiten (gesamte Website)",
 	"blocklist-editing-page": "Seiten",
+	"blocklist-editing-ns": "Namensräume",
 	"ipblocklist-empty": "Die Liste enthält keine Einträge.",
 	"ipblocklist-no-results": "Die gesuchte IP-Adresse/der Benutzername ist nicht gesperrt.",
 	"blocklink": "Sperren",

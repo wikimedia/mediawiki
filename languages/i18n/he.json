@@ -2548,6 +2548,8 @@
 	"blocklist-nousertalk": "עריכת דף השיחה האישי נחסמה",
 	"blocklist-editing": "עריכה",
 	"blocklist-editing-sitewide": "עריכה (כל האתר)",
+	"blocklist-editing-page": "דפים",
+	"blocklist-editing-ns": "מרחבי שם",
 	"ipblocklist-empty": "רשימת המשתמשים החסומים ריקה.",
 	"ipblocklist-no-results": "שם המשתמש או כתובת ה־IP המבוקשים אינם חסומים.",
 	"blocklink": "חסימה",

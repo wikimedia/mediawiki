@@ -116,7 +116,8 @@
 			"Fitoschido",
 			"Ed g2s",
 			"Matěj Suchánek",
-			"Didifelisberto"
+			"Didifelisberto",
+			"Tks4Fish"
 		]
 	},
 	"tog-underline": "Ligação sublinhada:",
@@ -2649,6 +2650,8 @@
 	"blocklist-nousertalk": "impossibilitado de editar a própria página de discussão",
 	"blocklist-editing": "edição",
 	"blocklist-editing-sitewide": "edição (todo o site)",
+	"blocklist-editing-page": "páginas",
+	"blocklist-editing-ns": "domínios",
 	"ipblocklist-empty": "A lista de bloqueios encontra-se vazia.",
 	"ipblocklist-no-results": "O endereço de IP ou nome de usuário procurado não se encontra bloqueado.",
 	"blocklink": "bloquear",

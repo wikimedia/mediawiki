@@ -2359,6 +2359,8 @@
 	"emailblock": "E-Maile schécke gespaart",
 	"blocklist-nousertalk": "däerf seng eegen Diskussiounssäit net ännereen",
 	"blocklist-editing": "änneren",
+	"blocklist-editing-page": "Säiten",
+	"blocklist-editing-ns": "Nummraim",
 	"ipblocklist-empty": "D'Spärlëscht ass eidel.",
 	"ipblocklist-no-results": "Déi gesichten IP-Adress respektiv de gesichte Benotzer ass net gespaart.",
 	"blocklink": "spären",
