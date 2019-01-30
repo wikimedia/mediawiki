@@ -5,26 +5,6 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\ResultWrapper;
 
-class DatabaseSqliteMock extends DatabaseSqlite {
-	public static function newInstance( array $p = [] ) {
-		$p['dbFilePath'] = ':memory:';
-		$p['schema'] = false;
-
-		return Database::factory( 'SqliteMock', $p );
-	}
-
-	function query( $sql, $fname = '', $tempIgnore = false ) {
-		return true;
-	}
-
-	/**
-	 * Override parent visibility to public
-	 */
-	public function replaceVars( $s ) {
-		return parent::replaceVars( $s );
-	}
-}
-
 /**
  * @group sqlite
  * @group Database
@@ -537,5 +517,25 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	public function testsAttributes() {
 		$attributes = Database::attributesFromType( 'sqlite' );
 		$this->assertTrue( $attributes[Database::ATTR_DB_LEVEL_LOCKING] );
+	}
+}
+
+class DatabaseSqliteMock extends DatabaseSqlite {
+	public static function newInstance( array $p = [] ) {
+		$p['dbFilePath'] = ':memory:';
+		$p['schema'] = false;
+
+		return Database::factory( 'SqliteMock', $p );
+	}
+
+	function query( $sql, $fname = '', $tempIgnore = false ) {
+		return true;
+	}
+
+	/**
+	 * Override parent visibility to public
+	 */
+	public function replaceVars( $s ) {
+		return parent::replaceVars( $s );
 	}
 }

@@ -1,14 +1,5 @@
 <?php
 
-// We will use this class with getMockForAbstractClass to create a concrete mock class.
-// That call will die if the contructor is not public, unless we use disableOriginalConstructor(),
-// in which case we could not test the constructor.
-abstract class PoolCounterAbstractMock extends PoolCounter {
-	public function __construct() {
-		call_user_func_array( 'parent::__construct', func_get_args() );
-	}
-}
-
 /**
  * @covers PoolCounter
  */
@@ -80,5 +71,14 @@ class PoolCounterTest extends MediaWikiTestCase {
 			$hashKeyIntoSlots->invoke( $poolCounter, 'test', 'asdfgh', 1000 ),
 			$hashKeyIntoSlots->invoke( $poolCounter, 'test', 'asdfgh', 1000 )
 		);
+	}
+}
+
+// We will use this class with getMockForAbstractClass to create a concrete mock class.
+// That call will die if the contructor is not public, unless we use disableOriginalConstructor(),
+// in which case we could not test the constructor.
+abstract class PoolCounterAbstractMock extends PoolCounter {
+	public function __construct() {
+		call_user_func_array( 'parent::__construct', func_get_args() );
 	}
 }

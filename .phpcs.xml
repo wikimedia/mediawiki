@@ -175,8 +175,12 @@
 		<exclude-pattern>*/profileinfo\.php</exclude-pattern>
 		<!-- Language converters use the pattern of 2 classes in one file -->
 		<exclude-pattern>*/languages/*\.php</exclude-pattern>
-		<!-- We don't care that much about violations in tests -->
-		<exclude-pattern>*/tests/*\.php</exclude-pattern>
+		<!-- Skip violations in some tests for now -->
+		<exclude-pattern>*/tests/parser/*\.php</exclude-pattern>
+		<exclude-pattern>*/tests/phan/*\.php</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/maintenance/*\.php</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/bootstrap\.php</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/phpunit\.php</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.Files.ClassMatchesFilename.WrongCase">
 		<!--
@@ -207,8 +211,9 @@
 		<exclude-pattern>*/maintenance/storage/checkStorage\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/storage/recompressTracked\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/storage/trackBlobs\.php</exclude-pattern>
-		<!-- We don't care that much about violations in tests -->
-		<exclude-pattern>*/tests/*\.php</exclude-pattern>
+		<!-- Skip violations in some tests for now -->
+		<exclude-pattern>*/tests/phpunit/includes/GlobalFunctions/*\.php</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/maintenance/*\.php</exclude-pattern>
 	</rule>
 
 	<rule ref="Generic.Files.OneObjectStructurePerFile.MultipleFound">
