@@ -146,7 +146,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		}
 
 		$pwhash = $this->getPassword( $row->user_newpassword );
-		if ( !$pwhash->equals( $req->password ) ) {
+		if ( !$pwhash->verify( $req->password ) ) {
 			return $this->failResponse( $req );
 		}
 

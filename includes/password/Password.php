@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\Assert\Assert;
+
 /**
  * Represents a password hash for use in authentication
  *
@@ -147,19 +149,36 @@ abstract class Password {
 	 * Password::toString() for each object. This can be overridden to do
 	 * custom comparison, but it is not recommended unless necessary.
 	 *
+	 * @deprecated since 1.33, use verify()
+	 *
 	 * @param Password|string $other The other password
 	 * @return bool True if equal, false otherwise
 	 */
 	public function equals( $other ) {
-		if ( !$other instanceof self ) {
-			// No need to use the factory because we're definitely making
-			// an object of the same type.
-			$obj = clone $this;
-			$obj->crypt( $other );
-			$other = $obj;
+		if ( is_string( $other ) ) {
+			return $this->verify( $other );
 		}
 
 		return hash_equals( $this->toString(), $other->toString() );
+	}
+
+	/**
+	 * Checks whether the given password matches the hash stored in this object.
+	 *
+	 * @param string $password Password to check
+	 * @return bool
+	 */
+	public function verify( $password ) {
+		Assert::parameter( is_string( $password ),
+			'$password', 'must be string, actual: ' . gettype( $password )
+		);
+
+		// No need to use the factory because we're definitely making
+		// an object of the same type.
+		$obj = clone $this;
+		$obj->crypt( $password );
+
+		return hash_equals( $this->toString(), $obj->toString() );
 	}
 
 	/**

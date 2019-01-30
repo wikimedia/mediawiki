@@ -60,9 +60,9 @@ abstract class PasswordTestCase extends MediaWikiTestCase {
 	 * @dataProvider providePasswordTests
 	 */
 	public function testHashing( $shouldMatch, $hash, $password ) {
-		$hash = $this->passwordFactory->newFromCiphertext( $hash );
-		$password = $this->passwordFactory->newFromPlaintext( $password, $hash );
-		$this->assertSame( $shouldMatch, $hash->equals( $password ) );
+		$fromHash = $this->passwordFactory->newFromCiphertext( $hash );
+		$fromPassword = $this->passwordFactory->newFromPlaintext( $password, $fromHash );
+		$this->assertSame( $shouldMatch, $fromHash->equals( $fromPassword ) );
 	}
 
 	/**
@@ -72,7 +72,7 @@ abstract class PasswordTestCase extends MediaWikiTestCase {
 		$hashObj = $this->passwordFactory->newFromCiphertext( $hash );
 		$serialized = $hashObj->toString();
 		$unserialized = $this->passwordFactory->newFromCiphertext( $serialized );
-		$this->assertTrue( $hashObj->equals( $unserialized ) );
+		$this->assertEquals( $hashObj->toString(), $unserialized->toString() );
 	}
 
 	/**

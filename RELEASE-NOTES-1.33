@@ -215,6 +215,7 @@ because of Phabricator reports.
 * The class WebInstallerOutput is now marked as @private.
 * (T209699) The jquery.async module has been deprecated. JavaScript code that
   needs asynchronous behaviour should use Promises.
+* Password::equals() is deprecated, use verify().
 
 === Other changes in 1.33 ===
 * (T208871) The hard-coded Google search form on the database error page was
