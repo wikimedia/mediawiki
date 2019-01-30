@@ -67,7 +67,7 @@ abstract class Job implements IJobSpecification {
 	 * @param string $command Job command
 	 * @param Title $title Associated title
 	 * @param array $params Job parameters
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 * @return Job
 	 */
 	public static function factory( $command, Title $title, $params = [] ) {
