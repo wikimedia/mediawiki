@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Tests for CategoryChangesAsRdf recent changes exporter.
  *  @covers CategoryChangesAsRdf
@@ -188,7 +190,7 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Mock category links iterator.
-	 * @param $dbr
+	 * @param IDatabase $dbr
 	 * @param array $ids
 	 * @return array
 	 */

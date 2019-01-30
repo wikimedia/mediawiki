@@ -912,7 +912,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @param array $args Array of form [ category name => sort key ]
 	 * @param array $fakeResults Array of form [ category name => value to return from mocked
 	 *   LinkBatch ]
-	 * @param callback $variantLinkCallback Callback to replace findVariantLink() call
+	 * @param callable $variantLinkCallback Callback to replace findVariantLink() call
 	 * @param array $expectedNormal Expected return value of getCategoryLinks['normal']
 	 * @param array $expectedHidden Expected return value of getCategoryLinks['hidden']
 	 */

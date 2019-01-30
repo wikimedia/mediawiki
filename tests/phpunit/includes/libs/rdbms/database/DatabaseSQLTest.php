@@ -311,8 +311,8 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @covers Wikimedia\Rdbms\Subquery
 	 * @dataProvider provideSelectRowCount
-	 * @param $sql
-	 * @param $sqlText
+	 * @param array $sql
+	 * @param string $sqlText
 	 */
 	public function testSelectRowCount( $sql, $sqlText ) {
 		$this->database->selectRowCount(

@@ -95,7 +95,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 	 * If a sink is already specified, this does nothing.  This causes the 'sink' constructor
 	 * option to override the 'callback' constructor option.
 	 *
-	 * @param $callback|null $callback
+	 * @param callable|null $callback
 	 * @throws InvalidArgumentException
 	 */
 	protected function doSetCallback( $callback ) {

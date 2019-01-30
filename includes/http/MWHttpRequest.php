@@ -333,7 +333,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * Worker function for setting callbacks.  Calls can originate both internally and externally
 	 * via setCallback).  Defaults to the internal read callback if $callback is null.
 	 *
-	 * @param $callback|null $callback
+	 * @param callable|null $callback
 	 * @throws InvalidArgumentException
 	 */
 	protected function doSetCallback( $callback ) {
