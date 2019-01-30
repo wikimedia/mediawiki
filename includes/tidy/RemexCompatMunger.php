@@ -72,6 +72,21 @@ class RemexCompatMunger implements TreeHandler {
 		"mark" => true,
 	];
 
+	/**
+	 * For the purposes of this class, "metadata" elements are those that
+	 * should neither trigger p-wrapping nor stop an outer p-wrapping,
+	 * typically those that are themselves invisible in a browser's rendering.
+	 * This isn't a complete list, it's just the tags that we're likely to
+	 * encounter in practice.
+	 * @var array
+	 */
+	private static $metadataElements = [
+		'style' => true,
+		'script' => true,
+		'link' => true,
+		'meta' => true,
+	];
+
 	private static $formattingElements = [
 		'a' => true,
 		'b' => true,
@@ -261,7 +276,11 @@ class RemexCompatMunger implements TreeHandler {
 		$under = $preposition === TreeBuilder::UNDER;
 		$elementToEnd = null;
 
-		if ( $under && $parentData->isPWrapper && !$inline ) {
+		if ( isset( self::$metadataElements[$elementName] ) ) {
+			// The element is a metadata element, that we allow to appear in
+			// both inline and block contexts.
+			$this->trace( 'insert metadata' );
+		} elseif ( $under && $parentData->isPWrapper && !$inline ) {
 			// [B/b] The element is non-inline and the parent is a p-wrapper,
 			// close the parent and insert into its parent instead
 			$this->trace( 'insert B/b' );
