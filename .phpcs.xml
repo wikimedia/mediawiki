@@ -79,7 +79,6 @@
 			any new occurrences.
 		-->
 		<exclude-pattern>*/includes/Feed\.php</exclude-pattern>
-		<exclude-pattern>*/includes/libs/xmp/XMP\.php</exclude-pattern>
 		<exclude-pattern>*/includes/jobqueue/JobSpecification\.php</exclude-pattern>
 		<exclude-pattern>*/includes/RevisionList\.php</exclude-pattern>
 		<exclude-pattern>*/includes/installer/PhpBugTests\.php</exclude-pattern>
@@ -227,7 +226,6 @@
 		<exclude-pattern>*/includes/api/ApiMessage\.php</exclude-pattern>
 		<exclude-pattern>*/includes/api/ApiOpenSearch\.php</exclude-pattern>
 		<exclude-pattern>*/includes/api/ApiRsd\.php</exclude-pattern>
-		<exclude-pattern>*/includes/api/ApiUsageException\.php</exclude-pattern>
 		<exclude-pattern>*/includes/AuthPlugin\.php</exclude-pattern>
 		<exclude-pattern>*/includes/cache/CacheDependency\.php</exclude-pattern>
 		<exclude-pattern>*/includes/cache/CacheHelper\.php</exclude-pattern>
@@ -300,14 +298,6 @@
 		<exclude-pattern>*/includes/libs/filebackend/FSFileBackend\.php</exclude-pattern>
 		<exclude-pattern>*/includes/shell/Command\.php</exclude-pattern>
 		<exclude-pattern>*/includes/shell/Shell\.php</exclude-pattern>
-		<exclude-pattern>*/tests/phpunit/structure/StructureTest\.php</exclude-pattern>
-	</rule>
-	<rule ref="MediaWiki.Usage.ForbiddenFunctions.exec">
-		<!--
-			Whitelist existing violations, but enable the sniff to prevent
-			any new occurrences.
-		-->
-		<exclude-pattern>*/tests/phpunit/structure/StructureTest\.php</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.Usage.ForbiddenFunctions.popen">
 		<!--
