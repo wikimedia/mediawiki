@@ -366,6 +366,9 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'This is file content', $data['file_text'] );
 	}
 
+	/**
+	 * @covers ContentHandler::getSecondaryDataUpdates
+	 */
 	public function testGetSecondaryDataUpdates() {
 		$title = Title::newFromText( 'Somefile.jpg', NS_FILE );
 		$content = new WikitextContent( '' );
@@ -379,6 +382,9 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( [], $updates );
 	}
 
+	/**
+	 * @covers ContentHandler::getDeletionUpdates
+	 */
 	public function testGetDeletionUpdates() {
 		$title = Title::newFromText( 'Somefile.jpg', NS_FILE );
 		$content = new WikitextContent( '' );

@@ -181,6 +181,7 @@ class PasswordPolicyChecksTest extends MediaWikiTestCase {
 	/**
 	 * Verify that all password policy description messages actually exist.
 	 * Messages used on Special:PasswordPolicies
+	 * @coversNothing
 	 */
 	public function testPasswordPolicyDescriptionsExist() {
 		global $wgPasswordPolicy;

@@ -634,6 +634,11 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	/**
+	 * @covers ApiErrorFormatter::addMessagesFromStatus
+	 * @covers ApiErrorFormatter::addWarningOrError
+	 * @covers ApiErrorFormatter::formatMessageInternal
+	 */
 	public function testAddMessagesFromStatus_filter() {
 		$result = new ApiResult( 8388608 );
 		$formatter = new ApiErrorFormatter( $result, Language::factory( 'qqx' ), 'plaintext', false );
