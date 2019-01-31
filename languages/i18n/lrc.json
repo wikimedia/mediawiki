@@ -11,7 +11,8 @@
 			"Nemo bis",
 			"Amire80",
 			"Beyronvan",
-			"Fitoschido"
+			"Fitoschido",
+			"Lorestani"
 		]
 	},
 	"tog-underline": "هوم پئیڤأند زیرخأط دار:",
@@ -1613,7 +1614,7 @@
 	"prevpage": "بلگه دمایی($1)",
 	"allpagesfrom": "بلگه یای که د شرو بینه نشو بیه:",
 	"allpagesto": "بلگه یایی که د تموم بینه نشو بیه.",
-	"allarticles": "هٱماٛ بٱلگٱيا",
+	"allarticles": "هٱماٛ بٱلگٱیا",
 	"allinnamespace": "همه بلگه یا($1 نوم جا)",
 	"allpagessubmit": "رۏ",
 	"allpagesprefix": "بلگه یایی که پس نوم دارن نشو بیه:",
@@ -1667,7 +1668,7 @@
 	"listgrouprights-namespaceprotection-restrictedto": "دسرسیا مجاز کاریار سی ویرایشت",
 	"trackingcategories": "دئماگئری دأسە یا",
 	"trackingcategories-summary": "ای بلگه نومگه دسه یایی دماگری بیه ئه که وه شکل خودانجوم وه دس ویکی وارسگر پر بوئن . نومیا ونو نها آلشت کردن پیغومیا سامونه ای مرتوط د نومجا {{ns:8}} آلشت دئه با.",
-	"trackingcategories-msg": "ردگیری دٱسٱ",
+	"trackingcategories-msg": "رٱدگیری دٱسٱ",
 	"trackingcategories-name": "نوم پئیغوم",
 	"trackingcategories-desc": "جادیارکنیا گنجایشت دسه",
 	"noindex-category-desc": "ای بلگه وا رباتیا نومگه کاری نبیه و سی یه کلیمه یا جادویی <code><nowiki>__NOINDEX__</nowiki></code> د وه یا د جاگه ای که بیرق مجازه دش هئ.",
@@ -2112,7 +2113,7 @@
 	"delete_and_move_text": "== پاکساکاری میها ==\n\nگوتار ها د مقصد «[[:$1]]» . آیا میهایت ونه پاکسا بکیت  تا جا وه جاکاری دروس بوئه؟",
 	"delete_and_move_confirm": "هری بلگه نه پاکسا کو",
 	"delete_and_move_reason": "پاکساکاری سی ممکن بیین جا وه جایی «[[$1]]»",
-	"selfmove": "داسونا بلگه اول و بلگه مقصد یکی ین؛\nنبوئه بلگه نه د خوش جا وه جاکاری کرد.",
+	"selfmove": "داسونؽا بٱلگٱ ٱڤٱل ۉ بٱلگٱ مٱقسٱد یٱکؽ هؽسن؛\nنمۊئٱ بٱلگٱناْ ڤ خوش جا ڤ جا کاری کرد.",
 	"immobile-source-namespace": "نبوئه بلگه یا نه وه نومجا \"$1\" جا وه جا با",
 	"immobile-target-namespace": "نبوئه بلگه یا نه وه نومجا \"$1\" جا وه جا با",
 	"immobile-target-namespace-iw": "هوم پیوند مینجاویکی حاستنی مجازی سی جا وه جا کردن بلگه نئ.",
