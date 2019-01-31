@@ -25,6 +25,7 @@ sftp-config.json
 
 # MediaWiki install & usage
 /cache
+/docs/coverage
 /docs/js
 /images/[0-9a-f]
 /images/archive
