@@ -507,7 +507,7 @@ class Language {
 	 * Returns an array of localised namespaces indexed by their numbers. If the namespace is not
 	 * available in localised form, it will be included in English.
 	 *
-	 * @return array
+	 * @return string[] List of localized namespace names, indexed by numeric namespace ID.
 	 */
 	public function getNamespaces() {
 		if ( is_null( $this->namespaceNames ) ) {
@@ -4642,7 +4642,7 @@ class Language {
 
 	/**
 	 * @param string $talk
-	 * @return mixed
+	 * @return string
 	 */
 	function fixVariableInNamespace( $talk ) {
 		if ( strpos( $talk, '$1' ) === false ) {
