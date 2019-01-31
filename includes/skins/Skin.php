@@ -719,7 +719,7 @@ abstract class Skin extends ContextSource {
 		$title = $this->getTitle();
 
 		if ( ( !$title->exists() || $action == 'history' ) &&
-			$title->userCan( 'deletedhistory', $this->getUser() )
+			$title->quickUserCan( 'deletedhistory', $this->getUser() )
 		) {
 			$n = $title->isDeleted();
 
