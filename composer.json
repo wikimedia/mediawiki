@@ -76,6 +76,10 @@
 		"wikimedia/testing-access-wrapper": "~1.0",
 		"wmde/hamcrest-html-matchers": "^0.1.0"
 	},
+	"replace": {
+		"symfony/polyfill-ctype": "1.99",
+		"symfony/polyfill-mbstring": "1.99"
+	},
 	"suggest": {
 		"ext-apcu": "Local data cache for greatly improved performance",
 		"ext-curl": "Improved http communication abilities",
