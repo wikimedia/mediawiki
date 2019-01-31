@@ -39,7 +39,7 @@ tap:
 	${PU} --tap
 
 coverage:
-	${PU} --coverage-html ../../docs/code-coverage
+	${PU} --coverage-html ../../docs/coverage
 
 parser:
 	${PU} --group Parser
