@@ -89,7 +89,7 @@
 	"config-using-32bit": "<strong>Upozornění:</strong> Vypadá to, že váš systém běží s 32bitovými celými čísly. To [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit se nedoporučuje].",
 	"config-db-type": "Typ databáze:",
 	"config-db-host": "Databázový server:",
-	"config-db-host-help": "Pokud je váš databázový server na jiném počítači, zadejte zde jméno stroje nebo IP adresu.\n\nPokud používáte sdílený webový hosting, váš poskytovatel by vám měl v dokumentaci sdělit správné jméno stroje.\n\nPokud instalujete na server běžící na Windows a používáte MySQL, jméno „localhost“ nemusí fungovat. V takovém případě zkuste jako místní IP adresu zadat „127.0.0.1“.\n\nPokud používáte PostgreSQL, můžete se připojit Unixovými sockety tak, že toto pole necháte prázdné.",
+	"config-db-host-help": "Pokud je váš databázový server na jiném počítači, zadejte zde jméno stroje nebo IP adresu.\n\nPokud používáte sdílený webový hosting, váš poskytovatel by vám měl v dokumentaci sdělit správné jméno stroje.\n\nPokud používáte MySQL, jméno „localhost“ nemusí fungovat. V takovém případě zkuste jako místní IP adresu zadat „127.0.0.1“.\n\nPokud používáte PostgreSQL, můžete se připojit Unixovými sockety tak, že toto pole necháte prázdné.",
 	"config-db-host-oracle": "Databázové TNS:",
 	"config-db-host-oracle-help": "Zadejte platné [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Local Connect Name]; tato instalace musí vidět soubor tnsnames.ora.<br />Pokud používáte klientské knihovny verze 10g nebo novější, můžete také používat názvy [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].",
 	"config-db-wiki-settings": "Identifikace této wiki",

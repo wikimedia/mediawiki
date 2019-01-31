@@ -2547,6 +2547,8 @@
 	"blocklist-nousertalk": "nemůže editovat svou diskusní stránku",
 	"blocklist-editing": "editování",
 	"blocklist-editing-sitewide": "editování (na celém projektu)",
+	"blocklist-editing-page": "stránky",
+	"blocklist-editing-ns": "jmenné prostory",
 	"ipblocklist-empty": "Seznam probíhajících bloků je prázdný.",
 	"ipblocklist-no-results": "Požadovaná IP adresa nebo uživatelské jméno není blokováno.",
 	"blocklink": "zablokovat",

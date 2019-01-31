@@ -366,6 +366,7 @@
 	"exif-dc-type": "نوع  الوسيط",
 	"exif-rating-rejected": "مرفوض",
 	"exif-isospeedratings-overflow": "أكبر من 65535",
+	"exif-maxaperturevalue-value": "$1 أبكس (f/$2)",
 	"exif-iimcategory-ace": "فنون وثقافة وترفيه",
 	"exif-iimcategory-clj": "جريمة وقانون",
 	"exif-iimcategory-dis": "كوارث وحوادث",
