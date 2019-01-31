@@ -194,10 +194,6 @@ if ( $wgGitInfoCacheDirectory === false && $wgCacheDirectory !== false ) {
 	$wgGitInfoCacheDirectory = "{$wgCacheDirectory}/gitinfo";
 }
 
-if ( $wgEnableParserCache === false ) {
-	$wgParserCacheType = CACHE_NONE;
-}
-
 // Fix path to icon images after they were moved in 1.24
 if ( $wgRightsIcon ) {
 	$wgRightsIcon = str_replace(
