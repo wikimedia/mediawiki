@@ -77,8 +77,8 @@ class BlockLogFormatter extends LogFormatter {
 			// block restrictions
 			if ( isset( $params[6] ) ) {
 				$pages = $params[6]['pages'] ?? [];
-				$pages = array_map( function ( $page ){
-					return $this->makePageLink( Title::newFromText( ( $page ) ) );
+				$pages = array_map( function ( $page ) {
+					return $this->makePageLink( Title::newFromText( $page ) );
 				}, $pages );
 
 				$namespaces = $params[6]['namespaces'] ?? [];
