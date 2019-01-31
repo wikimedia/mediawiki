@@ -573,28 +573,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Revision::fetchRevision
-	 */
-	public function testFetchRevision() {
-		// Hidden process cache assertion below
-		$this->testPage->getRevision()->getId();
-
-		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
-		$id = $this->testPage->getRevision()->getId();
-
-		$this->hideDeprecated( 'Revision::fetchRevision' );
-		$res = Revision::fetchRevision( $this->testPage->getTitle() );
-
-		# note: order is unspecified
-		$rows = [];
-		while ( ( $row = $res->fetchObject() ) ) {
-			$rows[$row->rev_id] = $row;
-		}
-
-		$this->assertEmpty( $rows, 'expected empty set' );
-	}
-
-	/**
 	 * @covers Revision::getPage
 	 */
 	public function testGetPage() {

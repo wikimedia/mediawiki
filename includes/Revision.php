@@ -33,8 +33,6 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
-use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
  * @deprecated since 1.31, use RevisionRecord, RevisionStore, and BlobStore instead.
@@ -297,20 +295,6 @@ class Revision implements IDBAccessObject {
 	public static function loadFromTimestamp( $db, $title, $timestamp ) {
 		$rec = self::getRevisionStore()->loadRevisionFromTimestamp( $db, $title, $timestamp );
 		return $rec === null ? null : new Revision( $rec );
-	}
-
-	/**
-	 * Return a wrapper for a series of database rows to
-	 * fetch all of a given page's revisions in turn.
-	 * Each row can be fed to the constructor to get objects.
-	 *
-	 * @param LinkTarget $title
-	 * @return ResultWrapper
-	 * @deprecated Since 1.28, no callers in core nor in known extensions. No-op since 1.31.
-	 */
-	public static function fetchRevision( LinkTarget $title ) {
-		wfDeprecated( __METHOD__, '1.31' );
-		return new FakeResultWrapper( [] );
 	}
 
 	/**
