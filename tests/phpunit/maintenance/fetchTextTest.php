@@ -10,8 +10,6 @@ use Title;
 use PHPUnit_Framework_ExpectationFailedException;
 use WikiPage;
 
-require_once __DIR__ . "/../../../maintenance/fetchText.php";
-
 /**
  * Mock for the input/output of FetchText
  *

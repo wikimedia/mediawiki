@@ -11,8 +11,6 @@ use Title;
 use WikiExporter;
 use WikiPage;
 
-require_once __DIR__ . "/../../../maintenance/dumpTextPass.php";
-
 /**
  * Tests for TextPassDumper that rely on the database
  *
