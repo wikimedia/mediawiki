@@ -220,6 +220,8 @@ because of Phabricator reports.
 * (T209699) The jquery.async module has been deprecated. JavaScript code that
   needs asynchronous behaviour should use Promises.
 * Password::equals() is deprecated, use verify().
+* BaseTemplate::msgWiki() and QuickTemplate::msgWiki() will be removed. Use
+  other means to fetch a properly escaped message string or Message object.
 
 === Other changes in 1.33 ===
 * (T208871) The hard-coded Google search form on the database error page was

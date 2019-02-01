@@ -82,7 +82,6 @@
 		<exclude-pattern>*/includes/jobqueue/JobSpecification\.php</exclude-pattern>
 		<exclude-pattern>*/includes/RevisionList\.php</exclude-pattern>
 		<exclude-pattern>*/includes/installer/PhpBugTests\.php</exclude-pattern>
-		<exclude-pattern>*/includes/exception/LocalizedException\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialMostinterwikis\.php</exclude-pattern>
 		<exclude-pattern>*/includes/cache/CacheDependency\.php</exclude-pattern>
 		<exclude-pattern>*/includes/cache/CacheHelper\.php</exclude-pattern>
@@ -233,7 +232,6 @@
 		<exclude-pattern>*/includes/deferred/CdnCacheUpdate\.php</exclude-pattern>
 		<exclude-pattern>*/includes/diff/DairikiDiff\.php</exclude-pattern>
 		<exclude-pattern>*/includes/diff/DiffEngine\.php</exclude-pattern>
-		<exclude-pattern>*/includes/exception/LocalizedException\.php</exclude-pattern>
 		<exclude-pattern>*/includes/Feed\.php</exclude-pattern>
 		<exclude-pattern>*/includes/filerepo/file/LocalFile\.php</exclude-pattern>
 		<exclude-pattern>*/includes/gallery/PackedOverlayImageGallery\.php</exclude-pattern>
