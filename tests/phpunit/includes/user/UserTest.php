@@ -583,6 +583,7 @@ class UserTest extends MediaWikiTestCase {
 	 * When a user is autoblocked a cookie is set with which to track them
 	 * in case they log out and change IP addresses.
 	 * @link https://phabricator.wikimedia.org/T5233
+	 * @covers User::trackBlockWithCookie
 	 */
 	public function testAutoblockCookies() {
 		// Set up the bits of global configuration that we use.
@@ -665,6 +666,7 @@ class UserTest extends MediaWikiTestCase {
 	/**
 	 * Make sure that no cookie is set to track autoblocked users
 	 * when $wgCookieSetOnAutoblock is false.
+	 * @covers User::trackBlockWithCookie
 	 */
 	public function testAutoblockCookiesDisabled() {
 		// Set up the bits of global configuration that we use.
@@ -712,6 +714,7 @@ class UserTest extends MediaWikiTestCase {
 	 * When a user is autoblocked and a cookie is set to track them, the expiry time of the cookie
 	 * should match the block's expiry, to a maximum of 24 hours. If the expiry time is changed,
 	 * the cookie's should change with it.
+	 * @covers User::trackBlockWithCookie
 	 */
 	public function testAutoblockCookieInfiniteExpiry() {
 		$this->setMwGlobals( [
@@ -776,6 +779,9 @@ class UserTest extends MediaWikiTestCase {
 		$block->delete();
 	}
 
+	/**
+	 * @covers User::getBlockedStatus
+	 */
 	public function testSoftBlockRanges() {
 		global $wgUser;
 
@@ -807,6 +813,7 @@ class UserTest extends MediaWikiTestCase {
 
 	/**
 	 * Test that a modified BlockID cookie doesn't actually load the relevant block (T152951).
+	 * @covers User::trackBlockWithCookie
 	 */
 	public function testAutoblockCookieInauthentic() {
 		// Set up the bits of global configuration that we use.
@@ -853,6 +860,7 @@ class UserTest extends MediaWikiTestCase {
 	/**
 	 * The BlockID cookie is normally verified with a HMAC, but not if wgSecretKey is not set.
 	 * This checks that a non-authenticated cookie still works.
+	 * @covers User::trackBlockWithCookie
 	 */
 	public function testAutoblockCookieNoSecretKey() {
 		// Set up the bits of global configuration that we use.
@@ -1022,6 +1030,9 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( User::isLocallyBlockedProxy( $ip ) );
 	}
 
+	/**
+	 * @covers User::newFromActorId
+	 */
 	public function testActorId() {
 		$domain = MediaWikiServices::getInstance()->getDBLoadBalancer()->getLocalDomainID();
 		$this->hideDeprecated( 'User::selectFields' );
@@ -1085,6 +1096,9 @@ class UserTest extends MediaWikiTestCase {
 			'User::newFromActorId works for an anonymous user' );
 	}
 
+	/**
+	 * @covers User::newFromAnyId
+	 */
 	public function testNewFromAnyId() {
 		// Registered user
 		$user = $this->getTestUser()->getUser();
@@ -1337,6 +1351,7 @@ class UserTest extends MediaWikiTestCase {
 	/**
 	 * Block cookie should be set for IP Blocks if
 	 * wgCookieSetOnIpBlock is set to true
+	 * @covers User::trackBlockWithCookie
 	 */
 	public function testIpBlockCookieSet() {
 		$this->setMwGlobals( [
@@ -1372,6 +1387,7 @@ class UserTest extends MediaWikiTestCase {
 	/**
 	 * Block cookie should NOT be set when wgCookieSetOnIpBlock
 	 * is disabled
+	 * @covers User::trackBlockWithCookie
 	 */
 	public function testIpBlockCookieNotSet() {
 		$this->setMwGlobals( [
@@ -1407,6 +1423,7 @@ class UserTest extends MediaWikiTestCase {
 	/**
 	 * When an ip user is blocked and then they log in, cookie block
 	 * should be invalid and the cookie removed.
+	 * @covers User::trackBlockWithCookie
 	 */
 	public function testIpBlockCookieIgnoredWhenUserLoggedIn() {
 		$this->setMwGlobals( [
