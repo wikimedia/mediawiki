@@ -72,7 +72,7 @@
 		"nikic/php-parser": "3.1.5",
 		"seld/jsonlint": "1.7.1",
 		"nmred/kafka-php": "0.1.5",
-		"phpunit/phpunit": "^6.5",
+		"phpunit/phpunit": "^6.5.14",
 		"psy/psysh": "0.9.9",
 		"wikimedia/avro": "1.9.0",
 		"wikimedia/testing-access-wrapper": "~1.0",
