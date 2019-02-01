@@ -4,7 +4,7 @@
  * Tests for CategoryChangesAsRdf recent changes exporter.
  *  @covers CategoryChangesAsRdf
  */
-class CategoryChangesRdfTest extends MediaWikiLangTestCase {
+class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 
 	public function setUp() {
 		parent::setUp();
