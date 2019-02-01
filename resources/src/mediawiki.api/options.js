@@ -3,6 +3,8 @@
  */
 ( function () {
 
+	var saveOptionsRequests = {};
+
 	$.extend( mw.Api.prototype, {
 
 		/**
@@ -29,13 +31,38 @@
 		 * If necessary, the options will be saved using several sequential API requests. Only one promise
 		 * is always returned that will be resolved when all requests complete.
 		 *
+		 * If a request from a previous #saveOptions call is still pending, this will wait for it to be
+		 * completed, otherwise MediaWiki gets sad. No requests are sent for anonymous users, as they
+		 * would fail anyway. See T214963.
+		 *
 		 * @param {Object} options Options as a `{ name: value, … }` object
 		 * @return {jQuery.Promise}
 		 */
 		saveOptions: function ( options ) {
 			var name, value, bundleable,
 				grouped = [],
+				promise;
+
+			// Logged-out users can't have user options; we can't depend on mw.user, that'd be circular
+			if ( mw.config.get( 'wgUserName' ) === null ) {
+				return $.Deferred().reject( 'notloggedin' ).promise();
+			}
+
+			// If another options request to this API is pending, wait for it first
+			if (
+				saveOptionsRequests[ this.defaults.ajax.url ] &&
+				// Avoid long chains of promises, they may cause memory leaks
+				saveOptionsRequests[ this.defaults.ajax.url ].state() === 'pending'
+			) {
+				promise = saveOptionsRequests[ this.defaults.ajax.url ].then( function () {
+					// Don't expose the old promise's result, it would be confusing
+					return $.Deferred().resolve();
+				}, function () {
+					return $.Deferred().resolve();
+				} );
+			} else {
 				promise = $.Deferred().resolve();
+			}
 
 			for ( name in options ) {
 				value = options[ name ] === null ? null : String( options[ name ] );
@@ -88,6 +115,8 @@
 					} );
 				}.bind( this ) );
 			}
+
+			saveOptionsRequests[ this.defaults.ajax.url ] = promise;
 
 			return promise;
 		}
