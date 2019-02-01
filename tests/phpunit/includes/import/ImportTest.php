@@ -222,6 +222,9 @@ EOF
 
 	/**
 	 * @dataProvider provideUnknownUserHandling
+	 * @covers WikiImporter::setUsernamePrefix
+	 * @covers ExternalUserNames::addPrefix
+	 * @covers ExternalUserNames::applyPrefix
 	 * @param bool $assign
 	 * @param bool $create
 	 */

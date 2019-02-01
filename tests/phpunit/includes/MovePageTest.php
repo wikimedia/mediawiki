@@ -65,6 +65,7 @@ class MovePageTest extends MediaWikiTestCase {
 
 	/**
 	 * Test for the move operation being aborted via the TitleMove hook
+	 * @covers MovePage::move
 	 */
 	public function testMoveAbortedByTitleMoveHook() {
 		$error = 'Preventing move operation with TitleMove hook.';
