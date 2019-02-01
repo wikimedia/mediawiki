@@ -672,7 +672,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 'CAST( fieldName AS SIGNED )', $output );
 	}
 
-	/*
+	/**
 	 * @covers Wikimedia\Rdbms\Database::setIndexAliases
 	 */
 	public function testIndexAliases() {
