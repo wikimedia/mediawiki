@@ -146,6 +146,9 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$this->assertSame( $contentHandlerDb, $store->getContentHandlerUseDB() );
 	}
 
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getTitle
+	 */
 	public function testGetTitle_successFromPageId() {
 		$mockLoadBalancer = $this->getMockLoadBalancer();
 		// Title calls wfGetDB() so we have to set the main service
@@ -177,6 +180,9 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$this->assertSame( 'Food', $title->getDBkey() );
 	}
 
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getTitle
+	 */
 	public function testGetTitle_successFromPageIdOnFallback() {
 		$mockLoadBalancer = $this->getMockLoadBalancer();
 		// Title calls wfGetDB() so we have to set the main service
@@ -233,6 +239,9 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$this->assertSame( 'Foodey', $title->getDBkey() );
 	}
 
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getTitle
+	 */
 	public function testGetTitle_successFromRevId() {
 		$mockLoadBalancer = $this->getMockLoadBalancer();
 		// Title calls wfGetDB() so we have to set the main service
@@ -278,6 +287,9 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$this->assertSame( 'Food2', $title->getDBkey() );
 	}
 
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getTitle
+	 */
 	public function testGetTitle_successFromRevIdOnFallback() {
 		$mockLoadBalancer = $this->getMockLoadBalancer();
 		// Title calls wfGetDB() so we have to set the main service
