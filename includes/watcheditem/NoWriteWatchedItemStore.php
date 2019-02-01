@@ -33,6 +33,11 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	private $actualStore;
 
 	/**
+	 * @var string
+	 */
+	const DB_READONLY_ERROR = 'The watchlist is currently readonly.';
+
+	/**
 	 * Initialy set WatchedItemStore that will be used in cases where writing is not needed.
 	 * @param WatchedItemStoreInterface $actualStore
 	 */
@@ -91,23 +96,23 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	}
 
 	public function duplicateAllAssociatedEntries( LinkTarget $oldTarget, LinkTarget $newTarget ) {
-		throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
 	public function duplicateEntry( LinkTarget $oldTarget, LinkTarget $newTarget ) {
-		throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
 	public function addWatch( User $user, LinkTarget $target ) {
-		throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
 	public function addWatchBatchForUser( User $user, array $targets ) {
-		throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
 	public function removeWatch( User $user, LinkTarget $target ) {
-		throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
 	public function setNotificationTimestampsForUser(
@@ -115,15 +120,15 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		$timestamp,
 		array $targets = []
 	) {
-		throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
 	public function updateNotificationTimestamp( User $editor, LinkTarget $target, $timestamp ) {
-		throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
 	public function resetAllNotificationTimestampsForUser( User $user ) {
-		throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
 	public function resetNotificationTimestamp(
@@ -132,19 +137,19 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		$force = '',
 		$oldid = 0
 	) {
-		throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
 	public function clearUserWatchedItems( User $user ) {
-		throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
 	public function clearUserWatchedItemsUsingJobQueue( User $user ) {
-		throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
 	public function removeWatchBatchForUser( User $user, array $titles ) {
-		throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
 }
