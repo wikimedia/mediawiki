@@ -10,6 +10,7 @@ use Wikimedia\TestingAccessWrapper;
  * - do not have inconsistencies in the parameter definitions
  *
  * @group API
+ * @coversNothing
  */
 class ApiStructureTest extends MediaWikiTestCase {
 
