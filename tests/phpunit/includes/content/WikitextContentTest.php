@@ -360,6 +360,10 @@ just a test"
 		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $content->getContentHandler()->getModelID() );
 	}
 
+	/**
+	 * @covers ParserOptions::getRedirectTarget
+	 * @covers ParserOptions::setRedirectTarget
+	 */
 	public function testRedirectParserOption() {
 		$title = Title::newFromText( 'testRedirectParserOption' );
 
