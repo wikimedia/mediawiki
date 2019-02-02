@@ -30,6 +30,9 @@
  */
 class MediaWikiSiteTest extends SiteTest {
 
+	/**
+	 * @covers MediaWikiSite::normalizePageName
+	 */
 	public function testNormalizePageTitle() {
 		$this->setMwGlobals( [
 			'wgCapitalLinks' => true,
