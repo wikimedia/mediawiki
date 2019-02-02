@@ -36,12 +36,13 @@
 		} );
 	}
 
-	function humanSize( bytes ) {
+	function humanSize( bytesInput ) {
 		var i,
+			bytes = +bytesInput,
 			units = [ '', ' KiB', ' MiB', ' GiB', ' TiB', ' PiB' ];
 
-		if ( !$.isNumeric( bytes ) || bytes === 0 ) {
-			return bytes;
+		if ( bytes === 0 || isNaN( bytes ) ) {
+			return bytesInput;
 		}
 
 		for ( i = 0; bytes >= 1024; bytes /= 1024 ) {

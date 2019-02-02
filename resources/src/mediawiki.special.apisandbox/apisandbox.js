@@ -977,7 +977,6 @@
 			// OO.ui.ButtonWidget doesn't take focus itself (T128054)
 			$focus = $( '#mw-apisandbox-ui' ).find( document.activeElement );
 			if ( $focus.length ) {
-				// eslint-disable-next-line jquery/no-event-shorthand
 				$focus[ 0 ].blur();
 			}
 
@@ -1944,7 +1943,6 @@
 				}
 
 				that.deprecatedItemsFieldset = new OO.ui.FieldsetLayout().addItems( deprecatedItems ).toggle( false );
-				// eslint-disable-next-line jquery/no-animate-toggle
 				tmp = $( '<fieldset>' )
 					.toggle( !that.deprecatedItemsFieldset.isEmpty() )
 					.append(

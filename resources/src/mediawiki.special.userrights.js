@@ -12,7 +12,6 @@
 
 	// Dynamically show/hide the "other time" input under each dropdown
 	$( '.mw-userrights-nested select' ).on( 'change', function ( e ) {
-		// eslint-disable-next-line jquery/no-animate-toggle
 		$( e.target.parentNode ).find( 'input' ).toggle( $( e.target ).val() === 'other' );
 	} );
 
