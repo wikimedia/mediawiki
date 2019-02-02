@@ -23,6 +23,9 @@ use Wikimedia\TestingAccessWrapper;
 
 class RevisionStoreFactoryTest extends MediaWikiTestCase {
 
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStoreFactory::__construct
+	 */
 	public function testValidConstruction_doesntCauseErrors() {
 		new RevisionStoreFactory(
 			$this->getMockLoadBalancerFactory(),
@@ -49,6 +52,7 @@ class RevisionStoreFactoryTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideWikiIds
+	 * @covers \MediaWiki\Revision\RevisionStoreFactory::getRevisionStore
 	 */
 	public function testGetRevisionStore(
 		$wikiId,

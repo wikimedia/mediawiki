@@ -114,6 +114,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 	/**
 	 * Verify we do not expand search term in <title> on search result page
 	 * https://gerrit.wikimedia.org/r/4841
+	 * @covers SpecialSearch::setupPage
 	 */
 	public function testSearchTermIsNotExpanded() {
 		$this->setMwGlobals( [
@@ -175,6 +176,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideRewriteQueryWithSuggestion
+	 * @covers SpecialSearch::showResults
 	 */
 	public function testRewriteQueryWithSuggestion(
 		$message,
@@ -224,6 +226,9 @@ class SpecialSearchTest extends MediaWikiTestCase {
 		return $mock;
 	}
 
+	/**
+	 * @covers SpecialSearch::execute
+	 */
 	public function testSubPageRedirect() {
 		$this->setMwGlobals( [
 			'wgScript' => '/w/index.php',

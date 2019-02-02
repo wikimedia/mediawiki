@@ -4,8 +4,6 @@
  *
  * @group Media
  * @group medium
- *
- * @todo covers tags
  */
 class JpegPixelFormatTest extends MediaWikiMediaTestCase {
 
@@ -23,6 +21,7 @@ class JpegPixelFormatTest extends MediaWikiMediaTestCase {
 	/**
 	 *
 	 * @dataProvider providePixelFormats
+	 * @covers BitmapHandler::imageMagickSubsampling
 	 */
 	public function testPixelFormatRendering( $sourceFile, $pixelFormat, $samplingFactor ) {
 		global $wgUseImageMagick, $wgUseImageResize;
