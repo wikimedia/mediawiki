@@ -165,6 +165,8 @@ class SpecialTags extends SpecialPage {
 			}
 		}
 
+		$out->addModuleStyles( 'jquery.tablesorter.styles' );
+		$out->addModules( 'jquery.tablesorter' );
 		$out->addHTML( Xml::tags(
 			'table',
 			[ 'class' => 'mw-datatable sortable mw-tags-table' ],
