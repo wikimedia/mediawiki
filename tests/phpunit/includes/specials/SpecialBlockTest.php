@@ -29,6 +29,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	public function testGetFormFields() {
 		$this->setMwGlobals( [
 			'wgEnablePartialBlocks' => false,
+			'wgBlockAllowsUTEdit' => true,
 		] );
 		$page = $this->newSpecialPage();
 		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
@@ -71,6 +72,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	public function testMaybeAlterFormDefaults() {
 		$this->setMwGlobals( [
 			'wgEnablePartialBlocks' => false,
+			'wgBlockAllowsUTEdit' => true,
 		] );
 
 		$block = $this->insertBlock();
