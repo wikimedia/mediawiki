@@ -261,7 +261,10 @@ class MediaStatisticsPage extends QueryPage {
 	 * @param string $mediaType
 	 */
 	protected function outputTableStart( $mediaType ) {
-		$this->getOutput()->addHTML(
+		$out = $this->getOutput();
+		$out->addModuleStyles( 'jquery.tablesorter.styles' );
+		$out->addModules( 'jquery.tablesorter' );
+		$out->addHTML(
 			Html::openElement(
 				'table',
 				[ 'class' => [
