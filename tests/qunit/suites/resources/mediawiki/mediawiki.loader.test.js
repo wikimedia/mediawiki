@@ -24,6 +24,7 @@
 			// exposed for cross-file mocks.
 			delete mw.loader.testCallback;
 			delete mw.loader.testFail;
+			delete mw.getScriptExampleScriptLoaded;
 		}
 	} ) );
 
@@ -1095,6 +1096,26 @@
 			mw.loader.moduleRegistry.site.state = 'registered';
 			mw.loader.moduleRegistry.user.state = 'registered';
 		} );
+	} );
+
+	QUnit.test( '.getScript() - success', function ( assert ) {
+		var scriptUrl = QUnit.fixurl(
+			mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mediawiki.loader.getScript.example.js'
+		);
+
+		return mw.loader.getScript( scriptUrl ).then(
+			function () {
+				assert.strictEqual( mw.getScriptExampleScriptLoaded, true, 'Data attached to a global object is available' );
+			}
+		);
+	} );
+
+	QUnit.test( '.getScript() - failure', function ( assert ) {
+		assert.rejects(
+			mw.loader.getScript( 'https://example.test/not-found' ),
+			/Failed to load script/,
+			'Descriptive error message'
+		);
 	} );
 
 }() );
