@@ -740,6 +740,10 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		];
 	}
 
+	/**
+	 * @covers Wikimedia\Rdbms\Database::insertSelect
+	 * @covers Wikimedia\Rdbms\Database::nativeInsertSelect
+	 */
 	public function testInsertSelectBatching() {
 		$dbWeb = new DatabaseTestHelper( __CLASS__, [ 'cliMode' => false ] );
 		$rows = [];
@@ -1874,6 +1878,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @expectedException \Wikimedia\Rdbms\DBTransactionStateError
+	 * @covers \Wikimedia\Rdbms\Database::assertTransactionStatus
 	 */
 	public function testTransactionErrorState1() {
 		$wrapper = TestingAccessWrapper::newFromObject( $this->database );

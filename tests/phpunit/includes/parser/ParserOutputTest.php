@@ -849,6 +849,11 @@ EOF
 		$this->assertFieldValues( $a, $expected );
 	}
 
+	/**
+	 * @covers ParserOutput::mergeInternalMetaDataFrom
+	 * @covers ParserOutput::getTimes
+	 * @covers ParserOutput::resetParseStartTime
+	 */
 	public function testMergeInternalMetaDataFrom_parseStartTime() {
 		/** @var object $a */
 		$a = new ParserOutput();
