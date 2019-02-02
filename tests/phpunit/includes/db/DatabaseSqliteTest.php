@@ -474,6 +474,9 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		return $indexes;
 	}
 
+	/**
+	 * @coversNothing
+	 */
 	public function testCaseInsensitiveLike() {
 		// TODO: Test this for all databases
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
