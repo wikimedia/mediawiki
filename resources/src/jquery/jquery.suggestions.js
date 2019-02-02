@@ -163,7 +163,6 @@
 				// Only fetch if the value in the textbox changed and is not empty, or if the results were hidden
 				// if the textbox is empty then clear the result div, but leave other settings intouched
 				if ( val.length === 0 ) {
-					// eslint-disable-next-line jquery/no-animate-toggle
 					$.suggestions.hide( context );
 					context.data.prevText = '';
 				} else if (
@@ -267,7 +266,6 @@
 					if ( context.data !== undefined ) {
 						if ( context.data.$textbox.val().length === 0 ) {
 							// Hide the div when no suggestion exist
-							// eslint-disable-next-line jquery/no-animate-toggle
 							$.suggestions.hide( context );
 						} else {
 							// Rebuild the suggestions list
@@ -530,7 +528,6 @@
 					break;
 				// Escape
 				case 27:
-					// eslint-disable-next-line jquery/no-animate-toggle
 					$.suggestions.hide( context );
 					$.suggestions.restore( context );
 					$.suggestions.cancel( context );
@@ -541,7 +538,6 @@
 				case 13:
 					preventDefault = wasVisible;
 					selected = context.data.$container.find( '.suggestions-result-current' );
-					// eslint-disable-next-line jquery/no-animate-toggle
 					$.suggestions.hide( context );
 					if ( selected.length === 0 || context.data.selectedWithMouse ) {
 						// If nothing is selected or if something was selected with the mouse
@@ -676,7 +672,6 @@
 									// This will hide the link we're just clicking on, which causes problems
 									// when done synchronously in at least Firefox 3.6 (T64858).
 									setTimeout( function () {
-										// eslint-disable-next-line jquery/no-animate-toggle
 										$.suggestions.hide( context );
 									} );
 								}
@@ -709,7 +704,6 @@
 									// This will hide the link we're just clicking on, which causes problems
 									// when done synchronously in at least Firefox 3.6 (T64858).
 									setTimeout( function () {
-										// eslint-disable-next-line jquery/no-animate-toggle
 										$.suggestions.hide( context );
 									} );
 								}
@@ -736,7 +730,6 @@
 					} )
 					.on( 'keypress', function ( e ) {
 						context.data.keypressedCount++;
-						// eslint-disable-next-line jquery/no-event-shorthand
 						$.suggestions.keypress( e, context, context.data.keypressed );
 					} )
 					.on( 'keyup', function ( e ) {
@@ -757,7 +750,6 @@
 							e.which === context.data.keypressed &&
 							allowed.indexOf( e.which ) !== -1
 						) {
-							// eslint-disable-next-line jquery/no-event-shorthand
 							$.suggestions.keypress( e, context, context.data.keypressed );
 						}
 					} )
@@ -767,7 +759,6 @@
 						if ( context.data.mouseDownOn.length > 0 ) {
 							return;
 						}
-						// eslint-disable-next-line jquery/no-animate-toggle
 						$.suggestions.hide( context );
 						$.suggestions.cancel( context );
 					} );

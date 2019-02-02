@@ -135,6 +135,7 @@
 					title: '', // Because it's a hidden group, this title actually appears nowhere
 					hidden: true,
 					allowArbitrary: true,
+					// FIXME: $.isNumeric is deprecated
 					validate: $.isNumeric,
 					range: {
 						min: 0, // The server normalizes negative numbers to 0 results
@@ -153,6 +154,7 @@
 					title: '', // Because it's a hidden group, this title actually appears nowhere
 					hidden: true,
 					allowArbitrary: true,
+					// FIXME: $.isNumeric is deprecated
 					validate: $.isNumeric,
 					range: {
 						min: 0,
@@ -893,6 +895,8 @@
 	 * @param {number|string} newValue New value
 	 */
 	mw.rcfilters.Controller.prototype.updateNumericPreference = function ( prefName, newValue ) {
+		// FIXME: $.isNumeric is deprecated
+		// eslint-disable-next-line jquery/no-is-numeric
 		if ( !$.isNumeric( newValue ) ) {
 			return;
 		}

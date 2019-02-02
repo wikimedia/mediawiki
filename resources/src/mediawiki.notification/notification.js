@@ -247,6 +247,8 @@
 					$area.css( 'display', 'none' );
 					notif.$notification.remove();
 				} else {
+					// FIXME: Use CSS transition
+					// eslint-disable-next-line jquery/no-slide
 					notif.$notification.slideUp( 'fast', function () {
 						$( this ).remove();
 					} );
