@@ -961,7 +961,7 @@ EOT
 		$out->addHTML( "<ul class='mw-imagepage-duplicates'>\n" );
 
 		/**
-		 * @var $file File
+		 * @var File $file
 		 */
 		foreach ( $dupes as $file ) {
 			$fromSrc = '';

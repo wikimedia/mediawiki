@@ -1450,7 +1450,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		/**
-		 * @var $htmlForm HTMLForm
+		 * @var HTMLForm $htmlForm
 		 */
 		$htmlForm = new $formClass( $formDescriptor, $context, 'prefs' );
 

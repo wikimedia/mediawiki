@@ -72,7 +72,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	 * @return string
 	 */
 	public static function diff( $oldText, $newText ) {
-		/** @var $slotDiffRenderer TextSlotDiffRenderer */
+		/** @var TextSlotDiffRenderer $slotDiffRenderer */
 		$slotDiffRenderer = ContentHandler::getForModelID( CONTENT_MODEL_TEXT )
 			->getSlotDiffRenderer( RequestContext::getMain() );
 		return $slotDiffRenderer->getTextDiff( $oldText, $newText );

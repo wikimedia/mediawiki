@@ -16,17 +16,17 @@ use OOUI;
  * the results are from.
  */
 class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
-	/** @var SpecialSearch */
+	/** @var SpecialSearch $specialSearch */
 	protected $specialSearch;
-	/** @var SearchResultWidget */
+	/** @var SearchResultWidget $resultWidget */
 	protected $resultWidget;
-	/** @var string[]|null */
+	/** @var string[]|null $customCaptions */
 	protected $customCaptions;
-	/** @var LinkRenderer */
+	/** @var LinkRenderer $linkRenderer */
 	protected $linkRenderer;
-	/** @var InterwikiLookup */
+	/** @var InterwikiLookup $iwLookup */
 	protected $iwLookup;
-	/** @var $output */
+	/** @var \OutputPage $output */
 	protected $output;
 	/** @var bool $showMultimedia */
 	protected $showMultimedia;
