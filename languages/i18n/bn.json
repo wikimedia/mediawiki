@@ -2534,6 +2534,8 @@
 	"blocklist-nousertalk": "নিজস্ব আলাপ পাতা সম্পাদনা করতে পারবে না",
 	"blocklist-editing": "সম্পাদনা করছেন",
 	"blocklist-editing-sitewide": "সম্পাদনা করছেন (সাইটব্যাপী)",
+	"blocklist-editing-page": "পাতাসমূহ",
+	"blocklist-editing-ns": "নামস্থানসমূহ",
 	"ipblocklist-empty": "বাধাতালিকা খালি।",
 	"ipblocklist-no-results": "অনুরুদ্ধ আইপি ঠিকানা বা ব্যবহারকারী নামটির উপর কোন বাধা নেই।",
 	"blocklink": "বাধা দাও",

@@ -1094,7 +1094,7 @@
 	"userrights-expiry": "Тамамлана:",
 	"userrights-expiry-existing": "Әлеге ваҡыт сыға:$2, $3",
 	"userrights-expiry-othertime": "Башҡа ваҡыт:",
-	"userrights-expiry-options": "1 көн:1 day,1 аҙна:1 week,1 ай:1 mopnth, 3 ай:3 months,6 ай:6 months,1 йыл:1 year",
+	"userrights-expiry-options": "1 көн:1 day,1 аҙна:1 week,1 ай:1 month, 3 ай:3 months,6 ай:6 months,1 йыл:1 year",
 	"userrights-invalid-expiry": "«$1» төркөмө өсөн ваҡыт бөтөүе яңылыш бирелгән",
 	"userrights-expiry-in-past": "Время истечения для группы «$1» задано в прошлом.\n«$1» төркөмө өсөн ваҡыт бөтөүе үткән ваҡытта бирелгән.",
 	"userrights-cannot-shorten-expiry": "«$1» төркөмөндә ағза булыу осоро датаһын алғараҡ күсерә алмайһың. Был төркөмгә өҫтәү йәки алыуға хоҡуғы булған ҡатнашыусылар ғына уны алғараҡ күсерә ала.",

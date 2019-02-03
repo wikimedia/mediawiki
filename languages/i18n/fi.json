@@ -771,7 +771,7 @@
 	"contentmodelediterror": "Et voi muokata tätä versiota, koska sen sisältömalli on <code>$1</code> ja tämä poikkeaa sivun nykyisestä sisältömallista, joka on <code>$2</code>.",
 	"recreate-moveddeleted-warn": "'''Varoitus: Olet luomassa sellaista sivua, joka on aikaisemmin poistettu.'''\n\nHarkitse, kannattaako tätä sivua luoda uudelleen. \nAlla on tämän sivun poisto- ja siirtohistoria:",
 	"moveddeleted-notice": "Tämä sivu on poistettu. \nAlla on sivun poisto-, suojaus- ja siirtohistoria.",
-	"moveddeleted-notice-recent": "Valitettavasti tämä sivu on poistettu äskettäin (viimeisen 24 tunnin aikana).\nAlla on sivun poisto-, suojaus- ja siirtohistoria.",
+	"moveddeleted-notice-recent": "Tämä sivu on poistettu äskettäin (viimeisen 24 tunnin aikana).\nAlla on sivun poisto-, suojaus- ja siirtohistoria.",
 	"log-fulllog": "Näytä loki kokonaan",
 	"edit-hook-aborted": "Laajennuskoodi esti muokkauksen antamatta syytä.",
 	"edit-gone-missing": "Sivun päivitys ei onnistunut.\nSe on ilmeisesti poistettu.",

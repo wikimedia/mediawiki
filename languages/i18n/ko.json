@@ -73,7 +73,8 @@
 			"Doyoon1995",
 			"Jay94ks",
 			"Ryuch",
-			"Delim"
+			"Delim",
+			"Comjun04"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -3633,7 +3634,7 @@
 	"special-characters-title-endash": "en 대시",
 	"special-characters-title-emdash": "em 대시",
 	"special-characters-title-minus": "빼기 기호",
-	"mw-widgets-abandonedit": "먼저 저장하지 않고 편집을 그만 두겠습니까?",
+	"mw-widgets-abandonedit": "정말 저장하지 않고 편집을 그만 두겠습니까?",
 	"mw-widgets-abandonedit-discard": "편집 버리기",
 	"mw-widgets-abandonedit-keep": "편집 계속",
 	"mw-widgets-abandonedit-title": "확실합니까?",
