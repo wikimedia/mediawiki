@@ -30,8 +30,8 @@ use WikitextContent;
 class RevisionRendererTest extends MediaWikiTestCase {
 
 	/**
-	 * @param $articleId
-	 * @param $revisionId
+	 * @param int $articleId
+	 * @param int $revisionId
 	 * @return Title
 	 */
 	private function getMockTitle( $articleId, $revisionId ) {

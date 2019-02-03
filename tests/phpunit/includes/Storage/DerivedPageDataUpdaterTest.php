@@ -76,7 +76,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 	 * Creates a revision in the database.
 	 *
 	 * @param WikiPage $page
-	 * @param $summary
+	 * @param string|Message|CommentStoreComment $summary
 	 * @param null|string|Content $content
 	 *
 	 * @return RevisionRecord|null
