@@ -109,6 +109,15 @@ class FormatJsonTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function testEncodeFail() {
+		// Set up a recursive object that can't be encoded.
+		$a = new stdClass;
+		$b = new stdClass;
+		$a->b = $b;
+		$b->a = $a;
+		$this->assertFalse( FormatJson::encode( $a ) );
+	}
+
 	public function testDecodeReturnType() {
 		$this->assertInternalType(
 			'object',
