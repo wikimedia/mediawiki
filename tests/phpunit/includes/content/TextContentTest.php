@@ -487,6 +487,10 @@ class TextContentTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	/**
+	 * @covers TextContent::__construct
+	 * @covers TextContentHandler::serializeContent
+	 */
 	public function testSerialize() {
 		$cnt = $this->newContent( 'testing text' );
 

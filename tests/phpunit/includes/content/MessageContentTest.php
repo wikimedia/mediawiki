@@ -2,6 +2,7 @@
 
 /**
  * @group ContentHandler
+ * @covers MessageContent
  */
 class MessageContentTest extends MediaWikiLangTestCase {
 
