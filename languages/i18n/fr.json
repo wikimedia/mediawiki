@@ -169,7 +169,8 @@
 			"Ash Crow",
 			"Alacabe",
 			"Eihel",
-			"Tektasc"
+			"Tektasc",
+			"DSwissK"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -1248,7 +1249,7 @@
 	"prefs-help-gender": "La définition de cette préférence est facultative.\nLe logiciel utilise cette valeur pour s’adresser à vous ou pour faire mention de vous aux autres en utilisant le bon genre grammatical.\nCette information sera publique.",
 	"email": "Courriel",
 	"prefs-help-realname": "Le vrai nom est facultatif.\nS’il est fourni, il sera utilisé pour vous attribuer vos contributions.",
-	"prefs-help-email": "L'adresse de courriel est facultative, mais elle est nécessaire pour réinitialiser votre mot de passe, si vous veniez à l'oublier.",
+	"prefs-help-email": "L'adresse de courriel est facultative, mais elle est nécessaire pour réinitialiser votre mot de passe, en cas d'oubli.",
 	"prefs-help-email-others": "Vous pouvez aussi choisir de laisser les autres vous contacter par courriel via un lien sur votre page de discussion ou page utilisateur. \nVotre adresse courriel n'est pas révélée quand les autres utilisateurs vous contactent.",
 	"prefs-help-email-required": "Une adresse de courriel est requise.",
 	"prefs-info": "Informations de base",
@@ -3301,7 +3302,7 @@
 	"watchlistedit-clear-titles": "Titres :",
 	"watchlistedit-clear-submit": "Effacer la liste de suivi (ceci est permanent !)",
 	"watchlistedit-clear-done": "Votre liste de suivi a été effacée.",
-	"watchlistedit-clear-jobqueue": "Votre liste de suivi est en cours de supression. Ce qui peut prendre un certain temps.",
+	"watchlistedit-clear-jobqueue": "Votre liste de suivi est en cours de suppression. Ce qui peut prendre un certain temps.",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|Un titre a été|$1 titres ont été}} retirés :",
 	"watchlistedit-too-many": "Il y a trop de pages à afficher ici.",
 	"watchlisttools-clear": "Effacer la liste de suivi",

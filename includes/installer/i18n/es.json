@@ -37,7 +37,8 @@
 			"KATRINE1992",
 			"MarcoAurelio",
 			"Adjen",
-			"Dschultz"
+			"Dschultz",
+			"Carlosmg.dg"
 		]
 	},
 	"config-desc": "El instalador de MediaWiki",
@@ -119,7 +120,7 @@
 	"config-db-host-oracle": "TNS de la base de datos:",
 	"config-db-host-oracle-help": "Escribe un [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nombre de conexión local] válido; un archivo tnsnames.ora debe ser visible para esta instalación.<br />Si estás utilizando bibliotecas de cliente 10g o más recientes también puedes utilizar el método de asignación de nombres [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].",
 	"config-db-wiki-settings": "Identifica este wiki",
-	"config-db-name": "Nombre de la base de datos:",
+	"config-db-name": "Nombre de base de datos (ningún guion):",
 	"config-db-name-help": "Elige un nombre que identifique tu wiki.\nNo debe contener espacios.\n\nSi estás utilizando alojamiento web compartido, tu proveedor te dará un nombre específico de base de datos para que lo utilices, o bien te permitirá crear bases de datos a través de un panel de control.",
 	"config-db-name-oracle": "Esquema de la base de datos:",
 	"config-db-account-oracle-warn": "Hay tres escenarios compatibles para la instalación de Oracle como base de datos back-end:\n\nSi desea crear una cuenta de base de datos como parte del proceso de instalación, por favor suministre una cuenta con función SYSDBA como cuenta de base de datos para la instalación y especifique las credenciales deseadas de la cuenta de acceso al web, de lo contrario puede crear manualmente la cuenta de acceso al web y suministrar sólo esa cuenta (si tiene los permisos necesarios para crear los objetos de esquema) o suministrar dos cuentas diferentes, una con privilegios de creación y otra con acceso restringido a la web\n\nLa secuencia de comandos (script) para crear una cuenta con los privilegios necesarios puede encontrarse en el directorio \"maintenance/oracle/\" de esta instalación. Tenga en cuenta que utilizando una cuenta restringida desactivará todas las capacidades de mantenimiento con la cuenta predeterminada.",
@@ -132,11 +133,11 @@
 	"config-db-account-lock": "Usar el mismo nombre de usuario y contraseña durante operación normal",
 	"config-db-wiki-account": "Cuenta de usuario para operación normal",
 	"config-db-wiki-help": "Escribe el nombre de usuario y la contraseña que se utilizarán para acceder a la base de datos durante la operación normal del wiki.\nSi esta cuenta no existe y la cuenta de instalación tiene suficientes privilegios, se creará esta cuenta de usuario con los privilegios mínimos necesarios para la operación normal del wiki.",
-	"config-db-prefix": "Prefijo de tablas de la base de datos:",
+	"config-db-prefix": "Prefijo de tabla de la base de datos (ningún guion):",
 	"config-db-prefix-help": "Si necesitas compartir una base de datos entre múltiples wikis, o entre MediaWiki y otra aplicación web, puedes optar por agregar un prefijo a todos los nombres de tabla para evitar conflictos.\nNo utilices espacios.\n\nNormalmente se deja este campo vacío.",
 	"config-mysql-old": "Se necesita MySQL $1 o posterior. Tienes $2.",
 	"config-db-port": "Puerto de la base de datos:",
-	"config-db-schema": "Esquema para MediaWiki",
+	"config-db-schema": "Esquema para MediaWiki (ningún guion):",
 	"config-db-schema-help": "Este esquema usualmente estará bien.\nCámbialos solo si lo necesitas.",
 	"config-pg-test-error": "No se puede conectar con la base de datos <strong>$1</strong>: $2",
 	"config-sqlite-dir": "Directorio de datos SQLite:",

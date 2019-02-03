@@ -995,7 +995,7 @@
 	"userrights-expiry": "Бакъо дӀайолу:",
 	"userrights-expiry-existing": "$2, $3",
 	"userrights-expiry-othertime": "Кхин хан:",
-	"userrights-expiry-options": "1 де:1 day,1 кӀира:1 week,1 бутт:1 mopnth,3 months,6 бутт:6 months,1 шо:1 year",
+	"userrights-expiry-options": "1 де:1 day,1 кӀира:1 week,1 бутт:1 month,3 months,6 бутт:6 months,1 шо:1 year",
 	"userrights-invalid-expiry": "«$1» группин хан чеккхйолу хан нийса яц.",
 	"group": "Тоба:",
 	"group-user": "Декъашхой",
