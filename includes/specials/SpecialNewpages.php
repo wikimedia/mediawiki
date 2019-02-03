@@ -192,9 +192,12 @@ class SpecialNewpages extends IncludableSpecialPage {
 		// wfArrayToCgi(), called from LinkRenderer/Title, will not output null and false values
 		// to the URL, which would omit some options (T158504). Fix it by explicitly setting them
 		// to 0 or 1.
-		$changed = array_map( function ( $value ) {
-			return $value ? '1' : '0';
-		}, $changed );
+		// Also do this only for boolean options, not eg. namespace or tagfilter
+		foreach ( $changed as $key => $value ) {
+			if ( array_key_exists( $key, $filters ) ) {
+				$changed[$key] = $changed[$key] ? '1' : '0';
+			}
+		}
 
 		$self = $this->getPageTitle();
 		$linkRenderer = $this->getLinkRenderer();
