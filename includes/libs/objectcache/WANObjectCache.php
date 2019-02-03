@@ -1334,7 +1334,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			$this->setInterimValue( $key, $wrapped, $tempTTL );
 		}
 
-		if ( $valueIsCacheable ) {
+		// Save the value unless a mutex-winning thread is already expected to do that
+		if ( $valueIsCacheable && ( !$useMutex || $lockAcquired ) ) {
 			$setOpts['lockTSE'] = $lockTSE;
 			$setOpts['staleTTL'] = $staleTTL;
 			// Use best known "since" timestamp if not provided
