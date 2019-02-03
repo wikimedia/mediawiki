@@ -1835,7 +1835,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @endcode
 	 *
 	 * @param string $text The subpage name to add to the title
-	 * @return Title Subpage title
+	 * @return Title|null Subpage title, or null on an error
 	 * @since 1.20
 	 */
 	public function getSubpage( $text ) {
