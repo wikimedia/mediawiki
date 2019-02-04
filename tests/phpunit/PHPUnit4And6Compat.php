@@ -29,9 +29,9 @@ trait PHPUnit4And6Compat {
 	 * is a temporary backwards-compatibility layer while we transition.
 	 */
 	public function setExpectedException( $name, $message = '', $code = null ) {
-		if ( is_callable( [ $this, 'expectException' ] ) ) {
+		if ( is_callable( 'parent::expectException' ) ) {
 			if ( $name !== null ) {
-				$this->expectException( $name );
+				parent::expectException( $name );
 			}
 			if ( $message !== '' ) {
 				$this->expectExceptionMessage( $message );
@@ -42,6 +42,18 @@ trait PHPUnit4And6Compat {
 		} else {
 			parent::setExpectedException( $name, $message, $code );
 		}
+	}
+
+	/**
+	 * Future-compatible layer for PHPUnit 4's setExpectedException.
+	 */
+	public function expectException( $exception ) {
+		if ( is_callable( 'parent::expectException' ) ) {
+			parent::expectException( $exception );
+			return;
+		}
+
+		parent::setExpectedException( $exception );
 	}
 
 	/**
