@@ -727,6 +727,7 @@ class Block {
 			'ipb_create_account'   => $this->prevents( 'createaccount' ),
 			'ipb_deleted'          => (int)$this->mHideName, // typecast required for SQLite
 			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' ),
+			'ipb_sitewide'         => $this->isSitewide(),
 		] + CommentStore::getStore()->insert( $dbw, 'ipb_reason', $this->mReason )
 			+ ActorMigration::newMigration()->getInsertValues( $dbw, 'ipb_by', $this->getBlocker() );
 	}
