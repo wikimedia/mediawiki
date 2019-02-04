@@ -1610,7 +1610,7 @@
 	"pager-older-n": "{{PLURAL:$1|starija 1|starije $1}}",
 	"suppress": "Sakrij",
 	"querypage-disabled": "Ova posebna stranica je onemogućena jer smanjuje performanse.",
-	"apihelp": "API pomoć",
+	"apihelp": "Pomoć s prilogom",
 	"apihelp-no-such-module": "Modul \"$1\" nije pronađen.",
 	"booksources": "Književni izvori",
 	"booksources-search-legend": "Traži književne izvore",
