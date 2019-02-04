@@ -9021,6 +9021,15 @@ $wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_OLD;
 $wgEnablePartialBlocks = false;
 
 /**
+ * Enable confirmation prompt for rollback actions to prevent accidental rollbacks.
+ * May be disabled to reduce number of clicks needed to perform rollbacks.
+ *
+ * @since 1.33
+ * @var bool
+ */
+$wgEnableRollbackConfirmationPrompt = true;
+
+/**
  * Enable stats monitoring when Block Notices are displayed in different places around core
  * and extensions.
  *
