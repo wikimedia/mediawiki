@@ -1348,11 +1348,10 @@ abstract class Maintenance {
 	 * @return IMaintainableDatabase
 	 */
 	protected function getDB( $db, $groups = [], $wiki = false ) {
-		if ( is_null( $this->mDb ) ) {
+		if ( $this->mDb === null ) {
 			return wfGetDB( $db, $groups, $wiki );
-		} else {
-			return $this->mDb;
 		}
+		return $this->mDb;
 	}
 
 	/**
