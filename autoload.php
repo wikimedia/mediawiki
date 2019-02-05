@@ -1448,7 +1448,6 @@ $wgAutoloadLocalClasses = [
 	'SqliteUpdater' => __DIR__ . '/includes/installer/SqliteUpdater.php',
 	'SquidPurgeClient' => __DIR__ . '/includes/clientpool/SquidPurgeClient.php',
 	'SquidPurgeClientPool' => __DIR__ . '/includes/clientpool/SquidPurgeClientPool.php',
-	'SquidUpdate' => __DIR__ . '/includes/deferred/CdnCacheUpdate.php',
 	'SrConverter' => __DIR__ . '/languages/classes/LanguageSr.php',
 	'StatsOutput' => __DIR__ . '/maintenance/language/StatOutputs.php',
 	'StatsdAwareInterface' => __DIR__ . '/includes/libs/stats/StatsdAwareInterface.php',
