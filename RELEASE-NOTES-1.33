@@ -42,6 +42,8 @@ production.
   additional information about the authentication event.
 * TextContent::getText() was introduced as a replacement for
   Content::getNativeData() for text-based content models.
+* (T210814) SVGs are now by default displayed in wiki language on image
+  pages.
 
 === External library changes in 1.33 ===
 

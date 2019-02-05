@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ResultWrapper;
 
 /**
@@ -287,20 +288,27 @@ class ImagePage extends Article {
 		return parent::getEmptyPageParserOutput( $options );
 	}
 
+	/**
+	 * Returns language code to be used for dispaying the image, based on request context and
+	 * languages available in the file.
+	 *
+	 * @param WebRequest $request
+	 * @param File $file
+	 * @return string|null
+	 */
 	private function getLanguageForRendering( WebRequest $request, File $file ) {
-		$handler = $this->displayImg->getHandler();
+		$handler = $file->getHandler();
 		if ( !$handler ) {
 			return null;
 		}
 
-		$requestLanguage = $request->getVal( 'lang' );
-		if ( !is_null( $requestLanguage ) ) {
-			if ( $handler->validateParam( 'lang', $requestLanguage ) ) {
-				return $requestLanguage;
-			}
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$requestLanguage = $request->getVal( 'lang', $config->get( 'LanguageCode' ) );
+		if ( $handler->validateParam( 'lang', $requestLanguage ) ) {
+			return $file->getMatchedLanguage( $requestLanguage );
 		}
 
-		return $handler->getDefaultRenderLanguage( $this->displayImg );
+		return $handler->getDefaultRenderLanguage( $file );
 	}
 
 	protected function openShowImage() {
