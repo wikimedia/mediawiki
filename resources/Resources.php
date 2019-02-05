@@ -1776,6 +1776,17 @@ return [
 			'actioncomplete',
 		],
 	],
+	'mediawiki.page.rollback.confirmation' => [
+		'scripts' => 'resources/src/mediawiki.rollback.confirmation.js',
+		'dependencies' => [
+			'jquery.confirmable'
+		],
+		'messages' => [
+			'rollback-confirmation-confirm',
+			'rollback-confirmation-yes',
+			'rollback-confirmation-no',
+		],
+	],
 	'mediawiki.page.image.pagination' => [
 		'scripts' => 'resources/src/mediawiki.page.image.pagination.js',
 		'dependencies' => [
