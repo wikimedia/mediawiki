@@ -78,7 +78,7 @@
 	"config-using-32bit": "<strong>Warning:</strong> your system appears to be running with 32-bit integers. This is [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit not advised].",
 	"config-db-type": "Database type:",
 	"config-db-host": "Database host:",
-	"config-db-host-help": "If your database server is on different server, enter the host name or IP address here.\n\nIf you are using shared web hosting, your hosting provider should give you the correct host name in their documentation.\n\nIf you using MySQL, using \"localhost\" may not work for the server name. If it does not, try \"127.0.0.1\" for the local IP address.\n\nIf you are using PostgreSQL, leave this field blank to connect via a Unix socket.",
+	"config-db-host-help": "If your database server is on a different server, enter the host name or IP address here.\n\nIf you are using shared web hosting, your hosting provider should give you the correct host name in their documentation.\n\nIf you are using MySQL, using \"localhost\" may not work for the server name. If it does not, try \"127.0.0.1\" for the local IP address.\n\nIf you are using PostgreSQL, leave this field blank to connect via a Unix socket.",
 	"config-db-host-oracle": "Database TNS:",
 	"config-db-host-oracle-help": "Enter a valid [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Local Connect Name]; a tnsnames.ora file must be visible to this installation.<br />If you are using client libraries 10g or newer you can also use the [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect] naming method.",
 	"config-db-wiki-settings": "Identify this wiki",
