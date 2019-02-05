@@ -1064,7 +1064,7 @@
 	"timezoneregion-europe": "ทวีปยุโรป",
 	"timezoneregion-indian": "มหาสมุทรอินเดีย",
 	"timezoneregion-pacific": "มหาสมุทรแปซิฟิก",
-	"allowemail": "อนุญาตให้ผู้ใช้อื่นอีเมลหา",
+	"allowemail": "อนุญาตให้ผู้ใช้อื่นส่งอีเมลถึงฉันได้",
 	"email-allow-new-users-label": "อนุญาตอีเมลจากผู้ใช้ใหม่",
 	"email-blacklist-label": "ห้ามผู้ใช้เหล่านี้มิให้อีเมลหา:",
 	"prefs-searchoptions": "ค้นหา",
