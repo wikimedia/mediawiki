@@ -1,0 +1,17 @@
+warmup: true
+runs: 3
+scenarios:
+  # View the Main Page without redirect
+  - url: "{MW_SERVER}{MW_SCRIPT_PATH}/index.php?mainpage"
+    viewport:
+      width: 1100
+      height: 700
+    reports:
+      - navtiming
+      - paint
+      - transfer
+    probes:
+      - screenshot
+      - trace
+    # alerts:
+    #   navtiming/loadEventEnd: 10%
