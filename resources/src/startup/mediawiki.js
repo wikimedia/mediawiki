@@ -13,6 +13,7 @@
 	'use strict';
 
 	var mw, StringSet, log,
+		hasOwn = Object.prototype.hasOwnProperty,
 		trackQueue = [];
 
 	/**
@@ -1016,6 +1017,84 @@
 			}
 
 			/**
+			 * Resolve a relative file path.
+			 *
+			 * For example, resolveRelativePath( '../foo.js', 'resources/src/bar/bar.js' )
+			 * returns 'resources/src/foo.js'.
+			 *
+			 * @param {string} relativePath Relative file path, starting with ./ or ../
+			 * @param {string} basePath Path of the file (not directory) relativePath is relative to
+			 * @return {string|null} Resolved path, or null if relativePath does not start with ./ or ../
+			 */
+			function resolveRelativePath( relativePath, basePath ) {
+				var prefixes, prefix, baseDirParts,
+					relParts = relativePath.match( /^((?:\.\.?\/)+)(.*)$/ );
+
+				if ( !relParts ) {
+					return null;
+				}
+
+				baseDirParts = basePath.split( '/' );
+				// basePath looks like 'foo/bar/baz.js', so baseDirParts looks like [ 'foo', 'bar, 'baz.js' ]
+				// Remove the file component at the end, so that we are left with only the directory path
+				baseDirParts.pop();
+
+				prefixes = relParts[ 1 ].split( '/' );
+				// relParts[ 1 ] looks like '../../', so prefixes looks like [ '..', '..', '' ]
+				// Remove the empty element at the end
+				prefixes.pop();
+
+				// For every ../ in the path prefix, remove one directory level from baseDirParts
+				while ( ( prefix = prefixes.pop() ) !== undefined ) {
+					if ( prefix === '..' ) {
+						baseDirParts.pop();
+					}
+				}
+
+				// If there's anything left of the base path, prepend it to the file path
+				return ( baseDirParts.length ? baseDirParts.join( '/' ) + '/' : '' ) + relParts[ 2 ];
+			}
+
+			/**
+			 * Make a require() function scoped to a package file
+			 * @private
+			 * @param {Object} moduleObj Module object from the registry
+			 * @param {string} basePath Path of the file this is scoped to. Used for relative paths.
+			 * @return {Function}
+			 */
+			function makeRequireFunction( moduleObj, basePath ) {
+				return function require( moduleName ) {
+					var fileName, fileContent, result, moduleParam,
+						scriptFiles = moduleObj.script.files;
+					fileName = resolveRelativePath( moduleName, basePath );
+					if ( fileName === null ) {
+						// Not a relative path, so it's a module name
+						return mw.loader.require( moduleName );
+					}
+
+					if ( !hasOwn.call( scriptFiles, fileName ) ) {
+						throw new Error( 'Cannot require() undefined file ' + fileName );
+					}
+					if ( hasOwn.call( moduleObj.packageExports, fileName ) ) {
+						// File has already been executed, return the cached result
+						return moduleObj.packageExports[ fileName ];
+					}
+
+					fileContent = scriptFiles[ fileName ];
+					if ( typeof fileContent === 'function' ) {
+						moduleParam = { exports: {} };
+						fileContent( makeRequireFunction( moduleObj, fileName ), moduleParam );
+						result = moduleParam.exports;
+					} else {
+						// fileContent is raw data, just pass it through
+						result = fileContent;
+					}
+					moduleObj.packageExports[ fileName ] = result;
+					return result;
+				};
+			}
+
+			/**
 			 * Load and execute a script.
 			 *
 			 * @private
@@ -1194,7 +1273,7 @@
 				$CODE.profileExecuteStart();
 
 				runScript = function () {
-					var script, markModuleReady, nestedAddScript;
+					var script, markModuleReady, nestedAddScript, mainScript;
 
 					$CODE.profileScriptStart();
 					script = registry[ module ].script;
@@ -1219,23 +1298,40 @@
 					try {
 						if ( Array.isArray( script ) ) {
 							nestedAddScript( script, markModuleReady, 0 );
-						} else if ( typeof script === 'function' ) {
-							// Keep in sync with queueModuleScript() for debug mode
-							if ( module === 'jquery' ) {
-								// This is a special case for when 'jquery' itself is being loaded.
-								// - The standard jquery.js distribution does not set `window.jQuery`
-								//   in CommonJS-compatible environments (Node.js, AMD, RequireJS, etc.).
-								// - MediaWiki's 'jquery' module also bundles jquery.migrate.js, which
-								//   in a CommonJS-compatible environment, will use require('jquery'),
-								//   but that can't work when we're still inside that module.
-								script();
+						} else if (
+							typeof script === 'function' || (
+								typeof script === 'object' &&
+								script !== null
+							)
+						) {
+							if ( typeof script === 'function' ) {
+								// Keep in sync with queueModuleScript() for debug mode
+								if ( module === 'jquery' ) {
+									// This is a special case for when 'jquery' itself is being loaded.
+									// - The standard jquery.js distribution does not set `window.jQuery`
+									//   in CommonJS-compatible environments (Node.js, AMD, RequireJS, etc.).
+									// - MediaWiki's 'jquery' module also bundles jquery.migrate.js, which
+									//   in a CommonJS-compatible environment, will use require('jquery'),
+									//   but that can't work when we're still inside that module.
+									script();
+								} else {
+									// Pass jQuery twice so that the signature of the closure which wraps
+									// the script can bind both '$' and 'jQuery'.
+									script( window.$, window.$, mw.loader.require, registry[ module ].module );
+								}
 							} else {
-								// Pass jQuery twice so that the signature of the closure which wraps
-								// the script can bind both '$' and 'jQuery'.
-								script( window.$, window.$, mw.loader.require, registry[ module ].module );
+								mainScript = script.files[ script.main ];
+								if ( typeof mainScript !== 'function' ) {
+									throw new Error( 'Main script file ' + script.main + ' in module ' + module +
+										'must be of type function, is of type ' + typeof mainScript );
+								}
+								// jQuery parameters are not passed for multi-file modules
+								mainScript(
+									makeRequireFunction( registry[ module ], script.main ),
+									registry[ module ].module
+								);
 							}
 							markModuleReady();
-
 						} else if ( typeof script === 'string' ) {
 							// Site and user modules are legacy scripts that run in the global scope.
 							// This is transported as a string instead of a function to avoid needing
@@ -1667,6 +1763,8 @@
 					module: {
 						exports: {}
 					},
+					// module.export objects for each package file inside this module
+					packageExports: {},
 					version: String( version || '' ),
 					dependencies: dependencies || [],
 					group: typeof group === 'string' ? group : null,
@@ -1843,8 +1941,13 @@
 				 *  as '`[name]@[version]`". This version should match the requested version
 				 *  (from #batchRequest and #registry). This avoids race conditions (T117587).
 				 *  For back-compat with MediaWiki 1.27 and earlier, the version may be omitted.
-				 * @param {Function|Array|string} [script] Function with module code, list of URLs
-				 *  to load via `<script src>`, or string of module code for `$.globalEval()`.
+				 * @param {Function|Array|string|Object} [script] Module code. This can be a function,
+				 *  a list of URLs to load via `<script src>`, a string for `$.globalEval()`, or an
+				 *  object like {"files": {"foo.js":function, "bar.js": function, ...}, "main": "foo.js"}.
+				 *  If an object is provided, the main file will be executed immediately, and the other
+				 *  files will only be executed if loaded via require(). If a function or string is
+				 *  provided, it will be executed/evaluated immediately. If an array is provided, all
+				 *  URLs in the array will be loaded immediately, and executed as soon as they arrive.
 				 * @param {Object} [style] Should follow one of the following patterns:
 				 *
 				 *     { "css": [css, ..] }
@@ -2211,6 +2314,7 @@
 					 */
 					set: function ( module ) {
 						var key, args, src,
+							encodedScript,
 							descriptor = mw.loader.moduleRegistry[ module ];
 
 						key = getModuleKey( module );
@@ -2235,11 +2339,27 @@
 						}
 
 						try {
+							if ( typeof descriptor.script === 'function' ) {
+								encodedScript = String( descriptor.script );
+							} else if (
+								// Plain object: an object that is not null and is not an array
+								typeof descriptor.script === 'object' &&
+								descriptor.script &&
+								!Array.isArray( descriptor.script )
+							) {
+								encodedScript = '{' +
+									Object.keys( descriptor.script ).map( function ( key ) {
+										var value = descriptor.script[ key ];
+										return JSON.stringify( key ) + ':' +
+											( typeof value === 'function' ? value : JSON.stringify( value ) );
+									} ).join( ',' ) +
+									'}';
+							} else {
+								encodedScript = JSON.stringify( descriptor.script );
+							}
 							args = [
 								JSON.stringify( key ),
-								typeof descriptor.script === 'function' ?
-									String( descriptor.script ) :
-									JSON.stringify( descriptor.script ),
+								encodedScript,
 								JSON.stringify( descriptor.style ),
 								JSON.stringify( descriptor.messages ),
 								JSON.stringify( descriptor.templates )

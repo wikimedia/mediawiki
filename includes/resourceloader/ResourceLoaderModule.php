@@ -159,8 +159,20 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * Get all JS for this module for a given language and skin.
 	 * Includes all relevant JS except loader scripts.
 	 *
+	 * For "plain" script modules, this should return a string with JS code. For multi-file modules
+	 * where require() is used to load one file from another file, this should return an array
+	 * structured as follows:
+	 * [
+	 *     'files' => [
+	 *         'file1.js' => [ 'type' => 'script', 'content' => 'JS code' ],
+	 *         'file2.js' => [ 'type' => 'script', 'content' => 'JS code' ],
+	 *         'data.json' => [ 'type' => 'data', 'content' => array ]
+	 *     ],
+	 *     'main' => 'file1.js'
+	 * ]
+	 *
 	 * @param ResourceLoaderContext $context
-	 * @return string JavaScript code
+	 * @return string|array JavaScript code (string), or multi-file structure described above (array)
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		// Stub, override expected
@@ -691,7 +703,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 
 		// This MUST build both scripts and styles, regardless of whether $context->getOnly()
 		// is 'scripts' or 'styles' because the result is used by getVersionHash which
-		// must be consistent regardles of the 'only' filter on the current request.
+		// must be consistent regardless of the 'only' filter on the current request.
 		// Also, when introducing new module content resources (e.g. templates, headers),
 		// these should only be included in the array when they are non-empty so that
 		// existing modules not using them do not get their cache invalidated.
