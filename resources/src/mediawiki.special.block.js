@@ -16,6 +16,7 @@
 		var blockTargetWidget = infuseIfExists( $( '#mw-bi-target' ) ),
 			anonOnlyField = infuseIfExists( $( '#mw-input-wpHardBlock' ).closest( '.oo-ui-fieldLayout' ) ),
 			enableAutoblockField = infuseIfExists( $( '#mw-input-wpAutoBlock' ).closest( '.oo-ui-fieldLayout' ) ),
+			hideUserWidget = infuseIfExists( $( '#mw-input-wpHideUser' ) ),
 			hideUserField = infuseIfExists( $( '#mw-input-wpHideUser' ).closest( '.oo-ui-fieldLayout' ) ),
 			watchUserField = infuseIfExists( $( '#mw-input-wpWatch' ).closest( '.oo-ui-fieldLayout' ) ),
 			expiryWidget = infuseIfExists( $( '#mw-input-wpExpiry' ) ),
@@ -35,14 +36,19 @@
 				// infinityValues are the values the SpecialBlock class accepts as infinity (sf. wfIsInfinity)
 				infinityValues = [ 'infinite', 'indefinite', 'infinity', 'never' ],
 				isIndefinite = infinityValues.indexOf( expiryValue ) !== -1,
-				editingRestrictionValue = editingRestrictionWidget ? editingRestrictionWidget.getValue() : undefined,
-				editingIsSelected = editingWidget ? editingWidget.isSelected() : false;
+				// editingRestrictionWidget only exists if partial blocks is enabled; if not, block must be sitewide
+				editingRestrictionValue = editingRestrictionWidget ? editingRestrictionWidget.getValue() : 'sitewide',
+				editingIsSelected = editingWidget ? editingWidget.isSelected() : false,
+				isSitewide = editingIsSelected && editingRestrictionValue === 'sitewide';
 
 			if ( enableAutoblockField ) {
 				enableAutoblockField.toggle( !isNonEmptyIp );
 			}
 			if ( hideUserField ) {
-				hideUserField.toggle( !isNonEmptyIp && isIndefinite );
+				hideUserField.toggle( !isNonEmptyIp && isIndefinite && isSitewide );
+				if ( !hideUserField.isVisible() ) {
+					hideUserWidget.setSelected( false );
+				}
 			}
 			if ( anonOnlyField ) {
 				anonOnlyField.toggle( isIp || isEmpty );
@@ -54,10 +60,10 @@
 				editingRestrictionWidget.setDisabled( !editingIsSelected );
 			}
 			if ( pageRestrictionsWidget ) {
-				pageRestrictionsWidget.setDisabled( !editingIsSelected || editingRestrictionValue === 'sitewide' );
+				pageRestrictionsWidget.setDisabled( !editingIsSelected || isSitewide );
 			}
 			if ( namespaceRestrictionsWidget ) {
-				namespaceRestrictionsWidget.setDisabled( !editingIsSelected || editingRestrictionValue === 'sitewide' );
+				namespaceRestrictionsWidget.setDisabled( !editingIsSelected || isSitewide );
 			}
 			if ( preventTalkPageEdit && namespaceRestrictionsWidget ) {
 				// This option is disabled for partial blocks unless a namespace restriction

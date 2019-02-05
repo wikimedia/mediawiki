@@ -739,6 +739,9 @@ class SpecialBlock extends FormSpecialPage {
 
 		$performer = $context->getUser();
 		$enablePartialBlocks = $context->getConfig()->get( 'EnablePartialBlocks' );
+		$isPartialBlock = $enablePartialBlocks &&
+			isset( $data['EditingRestriction'] ) &&
+			$data['EditingRestriction'] === 'partial';
 
 		// Handled by field validator callback
 		// self::validateTargetField( $data['Target'] );
@@ -816,6 +819,10 @@ class SpecialBlock extends FormSpecialPage {
 				return [ 'badaccess-group0' ];
 			}
 
+			if ( $isPartialBlock ) {
+				return [ 'ipb_hide_partial' ];
+			}
+
 			# Recheck params here...
 			if ( $type != Block::TYPE_USER ) {
 				$data['HideUser'] = false; # IP users should not be hidden
@@ -847,12 +854,8 @@ class SpecialBlock extends FormSpecialPage {
 		$block->isAutoblocking( $data['AutoBlock'] );
 		$block->mHideName = $data['HideUser'];
 
-		if (
-			$enablePartialBlocks &&
-			isset( $data['EditingRestriction'] ) &&
-			$data['EditingRestriction'] === 'partial'
-		 ) {
-			 $block->isSitewide( false );
+		if ( $isPartialBlock ) {
+			$block->isSitewide( false );
 		}
 
 		$reason = [ 'hookaborted' ];

@@ -2899,6 +2899,7 @@
 	"ipb_expiry_old": "Used as error message in [[Special:Block]], if the expiry time is in the past.\n{{Identical|protect_expiry_old}}",
 	"ipb_expiry_temp": "Warning message displayed on [[Special:BlockIP]] if the option \"hide username\" is selected but the expiry time is not infinite.",
 	"ipb_hide_invalid": "Used as error message in [[Special:Block]].\n* $1 - Number of edits (Value of [[mw:Manual:$wgHideUserContribLimit]])",
+	"ipb_hide_partial": "Warning message displayed on [[Special:Block]] if the option \"hide username\" is selected but the block is a partial block.",
 	"ipb_already_blocked": "{{Identical|$1 is already blocked}}",
 	"ipb-needreblock": "Used in [[Special:Block]].\n* $1 - target username, can be used for GENDER support",
 	"ipb-otherblocks-header": "[[File:Special.Block with other blocks from GlobalBlocking and TorBlocks.png|thumb|Example]]\nUsed on [[Special:Block]] as header for other blocks, i.e. from GlobalBlocking or TorBlocks\n\nParameters:\n* $1 - number of blocks\nSee also:\n* {{msg-mw|Ipblocklist-otherblocks}}",
