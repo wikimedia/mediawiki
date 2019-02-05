@@ -2250,7 +2250,7 @@
 	"removedwatchtext-talk": "\"[[:$1]]\" e la sua pagina associata sono state rimosse dalla propria [[Special:Watchlist|lista degli osservati speciali]].",
 	"removedwatchtext-short": "La pagina \"$1\" è stata rimossa dalla propria lista degli osservati speciali.",
 	"watch": "Segui",
-	"watchthispage": "Guarda questa pagina",
+	"watchthispage": "Aggiungi agli osservati speciali",
 	"unwatch": "Non seguire",
 	"unwatchthispage": "Smetti di seguire",
 	"notanarticle": "Questa pagina non è una voce",
