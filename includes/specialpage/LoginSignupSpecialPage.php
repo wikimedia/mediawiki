@@ -491,10 +491,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$wgUser = $user;
 		$context->setUser( $user );
 
-		$code = $this->getRequest()->getVal( 'uselang', $user->getOption( 'language' ) );
-		$userLang = Language::factory( $code );
-		$wgLang = $userLang;
-		$context->setLanguage( $userLang );
+		$wgLang = $context->getLanguage();
 	}
 
 	/**
