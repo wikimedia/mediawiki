@@ -21,69 +21,6 @@
  */
 
 /**
- * Job queue task description interface
- *
- * @ingroup JobQueue
- * @since 1.23
- */
-interface IJobSpecification {
-	/**
-	 * @return string Job type
-	 */
-	public function getType();
-
-	/**
-	 * @return array
-	 */
-	public function getParams();
-
-	/**
-	 * @return int|null UNIX timestamp to delay running this job until, otherwise null
-	 */
-	public function getReleaseTimestamp();
-
-	/**
-	 * @return bool Whether only one of each identical set of jobs should be run
-	 */
-	public function ignoreDuplicates();
-
-	/**
-	 * Subclasses may need to override this to make duplication detection work.
-	 * The resulting map conveys everything that makes the job unique. This is
-	 * only checked if ignoreDuplicates() returns true, meaning that duplicate
-	 * jobs are supposed to be ignored.
-	 *
-	 * @return array Map of key/values
-	 */
-	public function getDeduplicationInfo();
-
-	/**
-	 * @see JobQueue::deduplicateRootJob()
-	 * @return array
-	 * @since 1.26
-	 */
-	public function getRootJobParams();
-
-	/**
-	 * @see JobQueue::deduplicateRootJob()
-	 * @return bool
-	 * @since 1.22
-	 */
-	public function hasRootJobParams();
-
-	/**
-	 * @see JobQueue::deduplicateRootJob()
-	 * @return bool Whether this is job is a root job
-	 */
-	public function isRootJob();
-
-	/**
-	 * @return Title Descriptive title (this can simply be informative)
-	 */
-	public function getTitle();
-}
-
-/**
  * Job queue task description base code
  *
  * Example usage:
