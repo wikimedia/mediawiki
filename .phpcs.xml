@@ -78,7 +78,6 @@
 			any new occurrences.
 		-->
 		<exclude-pattern>*/includes/Feed\.php</exclude-pattern>
-		<exclude-pattern>*/includes/jobqueue/JobSpecification\.php</exclude-pattern>
 		<exclude-pattern>*/includes/RevisionList\.php</exclude-pattern>
 		<exclude-pattern>*/includes/installer/PhpBugTests\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialMostinterwikis\.php</exclude-pattern>
@@ -238,7 +237,6 @@
 		<exclude-pattern>*/includes/htmlform/HTMLFormElement\.php</exclude-pattern>
 		<exclude-pattern>*/includes/jobqueue/aggregator/JobQueueAggregator\.php</exclude-pattern>
 		<exclude-pattern>*/includes/jobqueue/JobQueue\.php</exclude-pattern>
-		<exclude-pattern>*/includes/jobqueue/JobSpecification\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/FileBackendStore\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/FSFileBackend\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/SwiftFileBackend\.php</exclude-pattern>
