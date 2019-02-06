@@ -286,10 +286,3 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		return false;
 	}
 }
-
-/**
- * @deprecated since 1.27
- */
-class SquidUpdate extends CdnCacheUpdate {
-	// Keep class name for b/c
-}
