@@ -233,7 +233,6 @@
 		<exclude-pattern>*/includes/HistoryBlob\.php</exclude-pattern>
 		<exclude-pattern>*/includes/htmlform/HTMLFormElement\.php</exclude-pattern>
 		<exclude-pattern>*/includes/jobqueue/aggregator/JobQueueAggregator\.php</exclude-pattern>
-		<exclude-pattern>*/includes/jobqueue/JobQueue\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/FileBackendStore\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/FSFileBackend\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/SwiftFileBackend\.php</exclude-pattern>
