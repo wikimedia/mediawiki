@@ -97,4 +97,27 @@ class WinCacheBagOStuff extends BagOStuff {
 
 		return $keyspace . ':' . implode( ':', $args );
 	}
+
+	/**
+	 * Increase stored value of $key by $value while preserving its original TTL
+	 * @param string $key Key to increase
+	 * @param int $value Value to add to $key (Default 1)
+	 * @return int|bool New value or false on failure
+	 */
+	public function incr( $key, $value = 1 ) {
+		if ( !$this->lock( $key ) ) {
+			return false;
+		}
+		$n = $this->get( $key );
+		if ( $this->isInteger( $n ) ) { // key exists?
+			$n += intval( $value );
+			$oldTTL = wincache_ucache_info( false, $key )["ucache_entries"][1]["ttl_seconds"];
+			$this->set( $key, max( 0, $n ), $oldTTL );
+		} else {
+			$n = false;
+		}
+		$this->unlock( $key );
+
+		return $n;
+	}
 }
