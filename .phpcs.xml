@@ -22,17 +22,8 @@
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>
 			<!--
-			includes/compat/normal/UtfNormalUtil.php
-			* codepointToUtf8
-			* escapeSingleString
-			* hexSequenceToUtf8
-			* utf8ToCodepoint
-			* utf8ToHexSequence
 			includes/GlobalFunctions.php
 			* mimeTypeMatch
-			maintenance/benchmarks/bench_strtr_str_replace.php
-			* bfNormalizeTitleStrReplace
-			* bfNormalizeTitleStrTr
 			maintenance/cdb.php
 			* cdbShowHelp
 			maintenance/language/transstat.php
@@ -54,7 +45,7 @@
 			tests/qunit/data/styleTest.css.php
 			* cssfilter
 			-->
-			<property name="ignoreList" type="array" value="bfNormalizeTitleStrReplace,bfNormalizeTitleStrTr,cdbShowHelp,codepointToUtf8,compare_point,cssfilter,escapeSingleString,getEscapedProfileUrl,hexSequenceToUtf8,mccGetHelp,mccShowUsage,mimeTypeMatch,moveToExternal,NothingFunction,NothingFunctionData,resolveStub,resolveStubs,showUsage,utf8ToCodepoint,utf8ToHexSequence" />
+			<property name="ignoreList" type="array" value="cdbShowHelp,compare_point,cssfilter,getEscapedProfileUrl,mccGetHelp,mccShowUsage,mimeTypeMatch,moveToExternal,NothingFunction,NothingFunctionData,resolveStub,resolveStubs,showUsage" />
 		</properties>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName">
@@ -132,7 +123,6 @@
 		<exclude-pattern>*/maintenance/benchmarks/bench_Wikimedia_base_convert\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_delete_truncate\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_if_switch\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/benchmarks/bench_strtr_str_replace\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_utf8_title_check\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_wfIsWindows\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/cleanupTable.inc</exclude-pattern>
