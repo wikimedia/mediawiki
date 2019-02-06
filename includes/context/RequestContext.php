@@ -257,6 +257,8 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function setUser( User $user ) {
 		$this->user = $user;
+		// Invalidate cached user interface language
+		$this->lang = null;
 	}
 
 	/**

@@ -8,6 +8,7 @@ THIS IS NOT A RELEASE YET
 * rdbms: do not treat SAVEPOINT and RELEASE SAVEPOINT as write queries.
 * (T204531) rdbms: reduce LoadBalancer replication log spam.
 * (T213489) Avoid session double-start in Setup.php.
+* (T215324) (T210937) list=users mistakenly reports user as missing.
 
 === Changes since MediaWiki 1.32.0-rc.2 ===
 * (T188327) Fix slow queries in migrateActors.php.
@@ -309,6 +310,8 @@ because of Phabricator reports.
 * (T198132) Added language support for Manipuri (mni).
 * (T201276) Added language support for Western Armenian (hyw).
 * (T201583) Added language support for Mon (mnw).
+* (T213717) Fixed a translation error on Goan Konkani (gom-deva) translations
+  for NS_TEMPLATE.
 
 === Breaking changes in 1.32 ===
 * $wgRequestTime, deprecated in 1.25, was removed. Use
