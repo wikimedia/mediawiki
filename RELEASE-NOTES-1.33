@@ -224,11 +224,14 @@ because of Phabricator reports.
 * Password::equals() is deprecated, use verify().
 * BaseTemplate::msgWiki() and QuickTemplate::msgWiki() will be removed. Use
   other means to fetch a properly escaped message string or Message object.
+* (T126091) The 'ResourceLoaderTestModules' hook, which lets you declare QUnit
+  testing code for your JavaScript modules, is deprecated. Instead, you can now
+  use the new extension registration key 'QUnitTestModule'.
 
 === Other changes in 1.33 ===
 * (T208871) The hard-coded Google search form on the database error page was
   removed.
-* (T201747) Html::openElement() warns if given an element name wiht a space
+* (T201747) Html::openElement() warns if given an element name with a space
   in it.
 
 == Compatibility ==

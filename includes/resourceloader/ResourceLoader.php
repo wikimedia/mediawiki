@@ -408,24 +408,24 @@ class ResourceLoader implements LoggerAwareInterface {
 				. 'Edit your <code>LocalSettings.php</code> to enable it.' );
 		}
 
-		// Get core test suites
-		$testModules = [];
-		$testModules['qunit'] = [];
-		// Get other test suites (e.g. from extensions)
+		$testModules = [
+			'qunit' => [],
+		];
+
+		// Get test suites from extensions
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$rl = $this;
 		Hooks::run( 'ResourceLoaderTestModules', [ &$testModules, &$rl ] );
+		$extRegistry = ExtensionRegistry::getInstance();
+		// In case of conflict, the deprecated hook has precedence.
+		$testModules['qunit'] += $extRegistry->getAttribute( 'QUnitTestModules' );
 
-		// Add the testrunner (which configures QUnit) to the dependencies.
-		// Since it must be ready before any of the test suites are executed.
+		// Add the QUnit testrunner as implicit dependency to extension test suites.
 		foreach ( $testModules['qunit'] as &$module ) {
-			// Make sure all test modules are top-loading so that when QUnit starts
-			// on document-ready, it will run once and finish. If some tests arrive
-			// later (possibly after QUnit has already finished) they will be ignored.
-			$module['position'] = 'top';
 			$module['dependencies'][] = 'test.mediawiki.qunit.testrunner';
 		}
 
+		// Get core test suites
 		$testModules['qunit'] =
 			( include "$IP/tests/qunit/QUnitTestResources.php" ) + $testModules['qunit'];
 
