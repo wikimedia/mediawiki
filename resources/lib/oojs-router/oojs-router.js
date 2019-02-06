@@ -1,12 +1,12 @@
 /*!
- * OOjs Router v0.1.0
+ * OOjs Router v0.2.0
  * https://www.mediawiki.org/wiki/OOjs_Router
  *
  * Copyright 2011-2019 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-01-11T03:40:55Z
+ * Date: 2019-02-06T21:26:01Z
  */
 ( function ( $ ) {
 
@@ -142,15 +142,32 @@ OO.Router.prototype.route = OO.Router.prototype.addRoute;
 /**
  * Navigate to a specific route.
  *
+ * @param {string} title of new page
+ * @param {Object} options
+ * @param {string} options.path e.g. '/path/' or '/path/#foo'
+ * @param {boolean} options.useReplaceState Set replaceStateState to use pushState when you want to
+ *   avoid long history queues.
+ */
+OO.Router.prototype.navigateTo = function ( title, options ) {
+	if ( options.useReplaceState ) {
+		history.replaceState( null, title, options.path );
+	} else {
+		history.pushState( null, title, options.path );
+	}
+};
+
+/**
+ * Navigate to a specific ''hash fragment'' route.
+ *
  * @param {string} path String with a route (hash without #).
+ * @deprecated use navigateTo instead
  */
 OO.Router.prototype.navigate = function ( path ) {
-	var history = window.history;
 	// Take advantage of `pushState` when available, to clear the hash and
 	// not leave `#` in the history. An entry with `#` in the history has
 	// the side-effect of resetting the scroll position when navigating the
 	// history.
-	if ( path === '' && history && history.pushState ) {
+	if ( path === '' ) {
 		// To clear the hash we need to cut the hash from the URL.
 		path = window.location.href.replace( /#.*$/, '' );
 		history.pushState( null, document.title, path );

@@ -112,11 +112,13 @@ oojs:
 
 oojs-router:
   type: tar
-  src: https://registry.npmjs.org/oojs-router/-/oojs-router-0.1.0.tgz
-  integrity: sha384-h5D3oeG4TeizHhgXY8Z9ghnas3BcNQI7keiUrwS06Zu4zSCiU6ht+Tu8eRbWuqhs
+  src: https://registry.npmjs.org/oojs-router/-/oojs-router-0.2.0.tgz
+  integrity: sha384-VngYqdQ3vTDMXbm4e4FUZCCGos7fB0Jkr9V+kBL5MElprK1h0yQZOzBNnMHtSJS/
   dest:
     package/dist/oojs-router.js:
     package/LICENSE:
+    package/AUTHORS.txt:
+    package/History.md:
 
 ooui:
   type: tar
