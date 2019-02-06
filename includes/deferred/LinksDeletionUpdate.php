@@ -225,7 +225,7 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 
 	public function getAsJobSpecification() {
 		return [
-			'wiki' => WikiMap::getWikiIdFromDomain( $this->getDB()->getDomainID() ),
+			'wiki' => WikiMap::getWikiIdFromDbDomain( $this->getDB()->getDomainID() ),
 			'job'  => new JobSpecification(
 				'deleteLinks',
 				[ 'pageId' => $this->pageId, 'timestamp' => $this->timestamp ],

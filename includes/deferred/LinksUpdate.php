@@ -1162,7 +1162,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		}
 
 		return [
-			'wiki' => WikiMap::getWikiIdFromDomain( $this->getDB()->getDomainID() ),
+			'wiki' => WikiMap::getWikiIdFromDbDomain( $this->getDB()->getDomainID() ),
 			'job'  => new JobSpecification(
 				'refreshLinksPrioritized',
 				[

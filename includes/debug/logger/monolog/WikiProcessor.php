@@ -38,7 +38,7 @@ class WikiProcessor {
 	public function __invoke( array $record ) {
 		global $wgVersion;
 		$record['extra']['host'] = wfHostname();
-		$record['extra']['wiki'] = WikiMap::getWikiIdFromDomain( WikiMap::getCurrentWikiDomain() );
+		$record['extra']['wiki'] = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
 		$record['extra']['mwversion'] = $wgVersion;
 		$record['extra']['reqId'] = \WebRequest::getRequestId();
 		if ( wfIsCLI() && isset( $_SERVER['argv'] ) ) {
