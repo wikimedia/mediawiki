@@ -724,17 +724,3 @@ abstract class JobQueue {
 		$stats->updateCount( "jobqueue.{$key}.{$type}", $delta );
 	}
 }
-
-/**
- * @ingroup JobQueue
- * @since 1.22
- */
-class JobQueueError extends MWException {
-}
-
-class JobQueueConnectionError extends JobQueueError {
-}
-
-class JobQueueReadOnlyError extends JobQueueError {
-
-}
