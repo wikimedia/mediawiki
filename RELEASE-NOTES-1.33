@@ -185,6 +185,7 @@ because of Phabricator reports.
 * The 'jquery.byteLimit' module alias for 'jquery.lengthLimit',
   deprecated in 1.31, was removed.
 * Revision::fetchRevision(), deprecated in 1.28, was removed.
+* Class SquidUpdate, deprecated in 1.27, was removed.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
