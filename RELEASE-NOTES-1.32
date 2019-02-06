@@ -8,6 +8,8 @@ THIS IS NOT A RELEASE YET
 * rdbms: do not treat SAVEPOINT and RELEASE SAVEPOINT as write queries.
 * (T204531) rdbms: reduce LoadBalancer replication log spam.
 * (T213489) Avoid session double-start in Setup.php.
+* (T213717) Correct namespace 'Template' for gom-deva
+* (T198054) Fix login page crash caused by unknown language via ?uselang
 * (T215324) (T210937) list=users mistakenly reports user as missing.
 
 === Changes since MediaWiki 1.32.0-rc.2 ===
