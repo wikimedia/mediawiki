@@ -48,6 +48,7 @@ interface ILBFactory {
 	 *  - wanCache: WANObjectCache object [optional]
 	 *  - hostname: The name of the current server [optional]
 	 *  - cliMode: Whether the execution context is a CLI script. [optional]
+	 *  - maxLag: Try to avoid DB replicas with lag above this many seconds [optional]
 	 *  - profiler: Class name or instance with profileIn()/profileOut() methods. [optional]
 	 *  - trxProfiler: TransactionProfiler instance. [optional]
 	 *  - replLogger: PSR-3 logger instance. [optional]
