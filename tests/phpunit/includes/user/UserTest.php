@@ -1285,17 +1285,18 @@ class UserTest extends MediaWikiTestCase {
 
 	public static function provideIsBlockedFrom() {
 		return [
-			'Basic operation' => [ 'Test page', true ],
-			'User talk page, not allowed' => [ self::USER_TALK_PAGE, true, [
+			'Sitewide block, basic operation' => [ 'Test page', true ],
+			'Sitewide block, not allowing user talk' => [
+				self::USER_TALK_PAGE, true, [
 					'allowUsertalk' => false,
 				]
 			],
-			'User talk page, allowed' => [
-					self::USER_TALK_PAGE, false, [
+			'Sitewide block, allowing user talk' => [
+				self::USER_TALK_PAGE, false, [
 					'allowUsertalk' => true,
 				]
 			],
-			'User talk page, allowed but $wgBlockAllowsUTEdit is false' => [
+			'Sitewide block, allowing user talk but $wgBlockAllowsUTEdit is false' => [
 				self::USER_TALK_PAGE, true, [
 					'allowUsertalk' => true,
 					'blockAllowsUTEdit' => false,
@@ -1311,40 +1312,51 @@ class UserTest extends MediaWikiTestCase {
 					'pageRestrictions' => [ 'Test page' ],
 				]
 			],
-			'Partial block, allowing user talk' => [
+			'Partial block, not allowing user talk but user talk page is not blocked' => [
 				self::USER_TALK_PAGE, false, [
 					'allowUsertalk' => false,
 					'pageRestrictions' => [ 'Test page' ],
 				]
 			],
-			'Partial block, not allowing user talk' => [
+			'Partial block, allowing user talk but user talk page is blocked' => [
 				self::USER_TALK_PAGE, true, [
 					'allowUsertalk' => true,
 					'pageRestrictions' => [ self::USER_TALK_PAGE ],
 				]
 			],
-			'Partial block, allowing user talk but $wgBlockAllowsUTEdit is false' => [
+			'Partial block, user talk page is not blocked but $wgBlockAllowsUTEdit is false' => [
 				self::USER_TALK_PAGE, false, [
 					'allowUsertalk' => false,
 					'pageRestrictions' => [ 'Test page' ],
 					'blockAllowsUTEdit' => false,
 				]
 			],
-			'Partial block, not allowing user talk with $wgBlockAllowsUTEdit set to false' => [
+			'Partial block, user talk page is blocked and $wgBlockAllowsUTEdit is false' => [
 				self::USER_TALK_PAGE, true, [
 					'allowUsertalk' => true,
 					'pageRestrictions' => [ self::USER_TALK_PAGE ],
 					'blockAllowsUTEdit' => false,
 				]
 			],
-			'Partial namespace block, not allowing user talk' => [ self::USER_TALK_PAGE, true, [
-				'allowUsertalk' => false,
-				'namespaceRestrictions' => [ NS_USER_TALK ],
-			] ],
-			'Partial namespace block, not allowing user talk' => [ self::USER_TALK_PAGE, false, [
-				'allowUsertalk' => true,
-				'namespaceRestrictions' => [ NS_USER_TALK ],
-			] ],
+			'Partial user talk namespace block, not allowing user talk' => [
+				self::USER_TALK_PAGE, true, [
+					'allowUsertalk' => false,
+					'namespaceRestrictions' => [ NS_USER_TALK ],
+				]
+			],
+			'Partial user talk namespace block, allowing user talk' => [
+				self::USER_TALK_PAGE, false, [
+					'allowUsertalk' => true,
+					'namespaceRestrictions' => [ NS_USER_TALK ],
+				]
+			],
+			'Partial user talk namespace block, where $wgBlockAllowsUTEdit is false' => [
+				self::USER_TALK_PAGE, true, [
+					'allowUsertalk' => true,
+					'namespaceRestrictions' => [ NS_USER_TALK ],
+					'blockAllowsUTEdit' => false,
+				]
+			],
 		];
 	}
 
