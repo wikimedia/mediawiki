@@ -528,15 +528,15 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @param Title $title
 	 * @param Revision|null $old Prior page revision
 	 * @param Revision|null $new New page revision
-	 * @param string $wikiId
+	 * @param string $domain Database domain ID
 	 * @since 1.28
 	 */
 	public static function invalidateModuleCache(
-		Title $title, Revision $old = null, Revision $new = null, $wikiId
+		Title $title, Revision $old = null, Revision $new = null, $domain
 	) {
 		static $formats = [ CONTENT_FORMAT_CSS, CONTENT_FORMAT_JAVASCRIPT ];
 
-		Assert::parameterType( 'string', $wikiId, '$wikiId' );
+		Assert::parameterType( 'string', $domain, '$domain' );
 
 		// TODO: MCR: differentiate between page functionality and content model!
 		//       Not all pages containing CSS or JS have to be modules! [PageType]
@@ -550,7 +550,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 		if ( $purge ) {
 			$cache = ObjectCache::getMainWANInstance();
-			$key = $cache->makeGlobalKey( 'resourceloader', 'titleinfo', $wikiId );
+			$key = $cache->makeGlobalKey( 'resourceloader', 'titleinfo', $domain );
 			$cache->touchCheckKey( $key );
 		}
 	}
