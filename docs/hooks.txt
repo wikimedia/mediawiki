@@ -2833,17 +2833,17 @@ such as when responding to a resource
 loader request or generating HTML output.
 &$resourceLoader: ResourceLoader object
 
-'ResourceLoaderTestModules': Let you add new JavaScript testing modules. This is
-called after the addition of 'qunit' and MediaWiki testing resources.
-&$testModules: array of JavaScript testing modules. The 'qunit' framework,
-  included in core, is fed using tests/qunit/QUnitTestResources.php.
-  To add a new qunit module named 'myext.tests':
-	$testModules['qunit']['myext.tests'] = [
-		'script' => 'extension/myext/tests.js',
-		'dependencies' => <any module dependency you might have>
+'ResourceLoaderTestModules': DEPRECATED since 1.33! Register ResourceLoader modules
+that are only available when `$wgEnableJavaScriptTest` is true. Use this for test
+suites and other test-only resources.
+&$testModules: one array of modules per test framework. The modules array
+follows the same format as `$wgResourceModules`. For example:
+	$testModules['qunit']['ext.Example.test'] = [
+		'localBasePath' => __DIR__ . '/tests/qunit',
+		'remoteExtPath' => 'Example/tests/qunit',
+		'script' => [ 'tests/qunit/foo.js' ],
+		'dependencies' => [ 'ext.Example.foo' ]
 	 ];
-  For QUnit framework, the mediawiki.tests.qunit.testrunner dependency will be
-  added to any module.
 &$ResourceLoader: object
 
 'RevisionDataUpdates': Called when constructing a list of DeferrableUpdate to be
