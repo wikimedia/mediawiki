@@ -279,8 +279,6 @@ because of Phabricator reports.
   code that needs this behaviour should use OO.ui.debounce/throttle.
 
 === Other changes in 1.33 ===
-* (T208871) The hard-coded Google search form on the database error page was
-  removed.
 * (T201747) Html::openElement() warns if given an element name with a space
   in it.
 
