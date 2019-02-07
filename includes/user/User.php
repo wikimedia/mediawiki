@@ -496,7 +496,6 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return string
 	 */
 	protected function getCacheKey( WANObjectCache $cache ) {
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		return $cache->makeGlobalKey( 'user', 'id', $lbFactory->getLocalDomainID(), $this->mId );
@@ -520,7 +519,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @since 1.25
 	 */
 	protected function loadFromCache() {
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$data = $cache->getWithSetCallback(
 			$this->getCacheKey( $cache ),
 			$cache::TTL_HOUR,
@@ -2809,7 +2808,7 @@ class User implements IDBAccessObject, UserIdentity {
 			return;
 		}
 
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$key = $this->getCacheKey( $cache );
 		if ( $mode === 'refresh' ) {
 			$cache->delete( $key, 1 );
