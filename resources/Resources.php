@@ -337,6 +337,8 @@ return [
 		'targets' => [ 'mobile', 'desktop' ],
 	],
 	'jquery.throttle-debounce' => [
+		'deprecated' => 'Please use OO.ui.throttle/debounce instead. See '
+			. 'https://phabricator.wikimedia.org/T213426',
 		'scripts' => 'resources/lib/jquery.ba-throttle-debounce.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
