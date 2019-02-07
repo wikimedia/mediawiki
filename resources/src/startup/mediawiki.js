@@ -2348,12 +2348,14 @@
 								!Array.isArray( descriptor.script )
 							) {
 								encodedScript = '{' +
-									Object.keys( descriptor.script ).map( function ( key ) {
-										var value = descriptor.script[ key ];
+									'"main":' + JSON.stringify( descriptor.script.main ) + ',' +
+									'"files":{' +
+									Object.keys( descriptor.script.files ).map( function ( key ) {
+										var value = descriptor.script.files[ key ];
 										return JSON.stringify( key ) + ':' +
 											( typeof value === 'function' ? value : JSON.stringify( value ) );
 									} ).join( ',' ) +
-									'}';
+									'}}';
 							} else {
 								encodedScript = JSON.stringify( descriptor.script );
 							}
