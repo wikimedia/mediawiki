@@ -71,16 +71,16 @@ class JobQueueGroup {
 		global $wgLocalDatabases;
 
 		if ( $domain === false ) {
-			$domain = WikiMap::getCurrentWikiDomain()->getId();
+			$domain = WikiMap::getCurrentWikiDbDomain()->getId();
 		}
 
 		if ( !isset( self::$instances[$domain] ) ) {
 			self::$instances[$domain] = new self( $domain, wfConfiguredReadOnlyReason() );
 			// Make sure jobs are not getting pushed to bogus wikis. This can confuse
 			// the job runner system into spawning endless RPC requests that fail (T171371).
-			$wikiId = WikiMap::getWikiIdFromDomain( $domain );
+			$wikiId = WikiMap::getWikiIdFromDbDomain( $domain );
 			if (
-				!WikiMap::isCurrentWikiDomain( $domain ) &&
+				!WikiMap::isCurrentWikiDbDomain( $domain ) &&
 				!in_array( $wikiId, $wgLocalDatabases )
 			) {
 				self::$instances[$domain]->invalidDomain = true;
@@ -430,10 +430,10 @@ class JobQueueGroup {
 	 */
 	private function getCachedConfigVar( $name ) {
 		// @TODO: cleanup this whole method with a proper config system
-		if ( WikiMap::isCurrentWikiDomain( $this->domain ) ) {
+		if ( WikiMap::isCurrentWikiDbDomain( $this->domain ) ) {
 			return $GLOBALS[$name]; // common case
 		} else {
-			$wiki = WikiMap::getWikiIdFromDomain( $this->domain );
+			$wiki = WikiMap::getWikiIdFromDbDomain( $this->domain );
 			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 			$value = $cache->getWithSetCallback(
 				$cache->makeGlobalKey( 'jobqueue', 'configvalue', $this->domain, $name ),

@@ -51,7 +51,7 @@ class LockManagerGroup {
 	 */
 	public static function singleton( $domain = false ) {
 		if ( $domain === false ) {
-			$domain = WikiMap::getCurrentWikiDomain()->getId();
+			$domain = WikiMap::getCurrentWikiDbDomain()->getId();
 		}
 
 		if ( !isset( self::$instances[$domain] ) ) {

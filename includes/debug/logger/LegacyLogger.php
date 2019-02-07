@@ -327,7 +327,7 @@ class LegacyLogger extends AbstractLogger {
 		$date = $d->format( 'D M j G:i:s T Y' );
 
 		$host = wfHostname();
-		$wiki = WikiMap::getWikiIdFromDomain( WikiMap::getCurrentWikiDomain() );
+		$wiki = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
 
 		$text = "{$date}\t{$host}\t{$wiki}\t{$message}\n";
 		return $text;
@@ -343,7 +343,7 @@ class LegacyLogger extends AbstractLogger {
 	 */
 	protected static function formatAsWfDebugLog( $channel, $message, $context ) {
 		$time = wfTimestamp( TS_DB );
-		$wiki = WikiMap::getWikiIdFromDomain( WikiMap::getCurrentWikiDomain() );
+		$wiki = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
 		$host = wfHostname();
 		$text = "{$time} {$host} {$wiki}: {$message}\n";
 		return $text;

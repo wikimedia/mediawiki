@@ -811,7 +811,7 @@ LUA;
 		$type = is_string( $type ) ? $type : $this->type;
 
 		// Use wiki ID for b/c
-		$keyspace = WikiMap::getWikiIdFromDomain( $this->domain );
+		$keyspace = WikiMap::getWikiIdFromDbDomain( $this->domain );
 
 		$parts = [ $keyspace, 'jobqueue', $type, $prop ];
 

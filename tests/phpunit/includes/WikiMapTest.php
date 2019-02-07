@@ -249,18 +249,18 @@ class WikiMapTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetWikiIdFromDomain
-	 * @covers WikiMap::getWikiIdFromDomain()
+	 * @covers WikiMap::getWikiIdFromDbDomain()
 	 */
 	public function testGetWikiIdFromDomain( $domain, $wikiId ) {
-		$this->assertEquals( $wikiId, WikiMap::getWikiIdFromDomain( $domain ) );
+		$this->assertEquals( $wikiId, WikiMap::getWikiIdFromDbDomain( $domain ) );
 	}
 
 	/**
-	 * @covers WikiMap::isCurrentWikiDomain()
-	 * @covers WikiMap::getCurrentWikiDomain()
+	 * @covers WikiMap::isCurrentWikiDbDomain()
+	 * @covers WikiMap::getCurrentWikiDbDomain()
 	 */
 	public function testIsCurrentWikiDomain() {
-		$this->assertTrue( WikiMap::isCurrentWikiDomain( wfWikiID() ) );
+		$this->assertTrue( WikiMap::isCurrentWikiDbDomain( wfWikiID() ) );
 
 		$localDomain = DatabaseDomain::newFromId( wfWikiID() );
 		$domain1 = new DatabaseDomain(
@@ -268,10 +268,10 @@ class WikiMapTest extends MediaWikiLangTestCase {
 		$domain2 = new DatabaseDomain(
 			$localDomain->getDatabase(), null, $localDomain->getTablePrefix() );
 
-		$this->assertTrue( WikiMap::isCurrentWikiDomain( $domain1 ), 'Schema ignored' );
-		$this->assertTrue( WikiMap::isCurrentWikiDomain( $domain2 ), 'Schema ignored' );
+		$this->assertTrue( WikiMap::isCurrentWikiDbDomain( $domain1 ), 'Schema ignored' );
+		$this->assertTrue( WikiMap::isCurrentWikiDbDomain( $domain2 ), 'Schema ignored' );
 
-		$this->assertTrue( WikiMap::isCurrentWikiDomain( WikiMap::getCurrentWikiDomain() ) );
+		$this->assertTrue( WikiMap::isCurrentWikiDbDomain( WikiMap::getCurrentWikiDbDomain() ) );
 	}
 
 	public function provideIsCurrentWikiId() {
@@ -294,8 +294,8 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideIsCurrentWikiId
 	 * @covers WikiMap::isCurrentWikiId()
-	 * @covers WikiMap::getCurrentWikiDomain()
-	 * @covers WikiMap::getWikiIdFromDomain()
+	 * @covers WikiMap::getCurrentWikiDbDomain()
+	 * @covers WikiMap::getWikiIdFromDbDomain()
 	 */
 	public function testIsCurrentWikiId( $wikiId, $db, $schema, $prefix ) {
 		$this->setMwGlobals(

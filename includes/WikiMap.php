@@ -196,7 +196,7 @@ class WikiMap {
 				$infoMap = [];
 				// Make sure at least the current wiki is set, for simple configurations.
 				// This also makes it the first in the map, which is useful for common cases.
-				$wikiId = self::getWikiIdFromDomain( self::getCurrentWikiDomain() );
+				$wikiId = self::getWikiIdFromDbDomain( self::getCurrentWikiDbDomain() );
 				$infoMap[$wikiId] = [
 					'url' => $wgCanonicalServer,
 					'parts' => wfParseUrl( $wgCanonicalServer )
@@ -250,8 +250,9 @@ class WikiMap {
 	 *
 	 * @param string|DatabaseDomain $domain
 	 * @return string
+	 * @since 1.31
 	 */
-	public static function getWikiIdFromDomain( $domain ) {
+	public static function getWikiIdFromDbDomain( $domain ) {
 		$domain = DatabaseDomain::newFromId( $domain );
 
 		if ( !in_array( $domain->getSchema(), [ null, 'mediawiki' ], true ) ) {
@@ -270,10 +271,19 @@ class WikiMap {
 	}
 
 	/**
+	 * @param string $domain
+	 * @return string
+	 * @deprecated Since 1.33; use getWikiIdFromDbDomain()
+	 */
+	public static function getWikiIdFromDomain( $domain ) {
+		return self::getWikiIdFromDbDomain( $domain );
+	}
+
+	/**
 	 * @return DatabaseDomain Database domain of the current wiki
 	 * @since 1.33
 	 */
-	public static function getCurrentWikiDomain() {
+	public static function getCurrentWikiDbDomain() {
 		global $wgDBname, $wgDBmwschema, $wgDBprefix;
 		// Avoid invoking LBFactory to avoid any chance of recursion
 		return new DatabaseDomain( $wgDBname, $wgDBmwschema, (string)$wgDBprefix );
@@ -284,9 +294,9 @@ class WikiMap {
 	 * @return bool Whether $domain has the same DB/prefix as the current wiki
 	 * @since 1.33
 	 */
-	public static function isCurrentWikiDomain( $domain ) {
+	public static function isCurrentWikiDbDomain( $domain ) {
 		$domain = DatabaseDomain::newFromId( $domain );
-		$curDomain = self::getCurrentWikiDomain();
+		$curDomain = self::getCurrentWikiDbDomain();
 
 		if ( !in_array( $curDomain->getSchema(), [ null, 'mediawiki' ], true ) ) {
 			// Include the schema if it is set and is not the default placeholder.
@@ -308,6 +318,6 @@ class WikiMap {
 	 * @since 1.33
 	 */
 	public static function isCurrentWikiId( $wikiId ) {
-		return ( self::getWikiIdFromDomain( self::getCurrentWikiDomain() ) === $wikiId );
+		return ( self::getWikiIdFromDbDomain( self::getCurrentWikiDbDomain() ) === $wikiId );
 	}
 }

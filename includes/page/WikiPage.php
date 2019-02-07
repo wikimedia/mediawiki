@@ -3506,7 +3506,7 @@ class WikiPage implements Page, IDBAccessObject {
 				// means that some cache invalidations happen that are not strictly needed.
 				$cache->makeGlobalKey(
 					'interwiki-page',
-					WikiMap::getCurrentWikiDomain()->getId(),
+					WikiMap::getCurrentWikiDbDomain()->getId(),
 					$title->getDBkey()
 				)
 			);
