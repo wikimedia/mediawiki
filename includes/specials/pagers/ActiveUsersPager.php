@@ -76,64 +76,120 @@ class ActiveUsersPager extends UsersPager {
 		return 'qcc_title';
 	}
 
-	function getQueryInfo() {
+	function getQueryInfo( $data = null ) {
 		$dbr = $this->getDatabase();
 
-		$rcQuery = ActorMigration::newMigration()->getJoin( 'rc_user' );
+		$useActor = (bool)(
+			$this->getConfig()->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_READ_NEW
+		);
 
 		$activeUserSeconds = $this->getConfig()->get( 'ActiveUserDays' ) * 86400;
 		$timestamp = $dbr->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
-		$tables = [ 'querycachetwo', 'user', 'rc' => [ 'recentchanges' ] + $rcQuery['tables'] ];
+		$fname = __METHOD__ . ' (' . $this->getSqlComment() . ')';
+
+		// Inner subselect to pull the active users out of querycachetwo
+		$tables = [ 'querycachetwo', 'user' ];
+		$fields = [ 'qcc_title', 'user_id' ];
 		$jconds = [
 			'user' => [ 'JOIN', 'user_name = qcc_title' ],
-			'rc' => [ 'JOIN', $rcQuery['fields']['rc_user_text'] . ' = qcc_title' ],
-		] + $rcQuery['joins'];
+		];
 		$conds = [
 			'qcc_type' => 'activeusers',
 			'qcc_namespace' => NS_USER,
-			'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ), // Don't count wikidata.
-			'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE ), // Don't count categorization changes.
-			'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' ),
-			'rc_timestamp >= ' . $dbr->addQuotes( $timestamp ),
 		];
+		$options = [];
+		if ( $data !== null ) {
+			$options['ORDER BY'] = 'qcc_title ' . $data['dir'];
+			$options['LIMIT'] = $data['limit'];
+			$conds = array_merge( $conds, $data['conds'] );
+		}
 		if ( $this->requestedUser != '' ) {
 			$conds[] = 'qcc_title >= ' . $dbr->addQuotes( $this->requestedUser );
 		}
 		if ( $this->groups !== [] ) {
-			$tables[] = 'user_groups';
-			$jconds['user_groups'] = [ 'JOIN', [ 'ug_user = user_id' ] ];
-			$conds['ug_group'] = $this->groups;
-			$conds[] = 'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() );
+			$tables['ug1'] = 'user_groups';
+			$jconds['ug1'] = [ 'JOIN', 'ug1.ug_user = user_id' ];
+			$conds['ug1.ug_group'] = $this->groups;
+			$conds[] = 'ug1.ug_expiry IS NULL OR ug1.ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() );
 		}
 		if ( $this->excludegroups !== [] ) {
-			foreach ( $this->excludegroups as $group ) {
-				$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
-					'user_groups', '1', [
-						'ug_user = user_id',
-						'ug_group' => $group,
-						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
-					]
-				) . ')';
-			}
+			$tables['ug2'] = 'user_groups';
+			$jconds['ug2'] = [ 'LEFT JOIN', [
+				'ug2.ug_user = user_id',
+				'ug2.ug_group' => $this->excludegroups,
+				'ug2.ug_expiry IS NULL OR ug2.ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() ),
+			] ];
+			$conds['ug2.ug_user'] = null;
 		}
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
 			$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
 					'ipblocks', '1', [ 'ipb_user=user_id', 'ipb_deleted' => 1 ]
 				) . ')';
 		}
+		if ( $useActor ) {
+			$tables[] = 'actor';
+			$jconds['actor'] = [
+				'JOIN',
+				'actor_user = user_id',
+			];
+			$fields[] = 'actor_id';
+		}
+		$subquery = $dbr->buildSelectSubquery( $tables, $fields, $conds, $fname, $options, $jconds );
+
+		// Outer query to select the recent edit counts for the selected active users
+		$tables = [ 'qcc_users' => $subquery, 'recentchanges' ];
+		$jconds = [ 'recentchanges' => [
+			'JOIN', $useActor ? 'rc_actor = actor_id' : 'rc_user_text = qcc_title',
+		] ];
+		$conds = [
+			'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ), // Don't count wikidata.
+			'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE ), // Don't count categorization changes.
+			'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' ),
+			'rc_timestamp >= ' . $dbr->addQuotes( $timestamp ),
+		];
 
 		return [
 			'tables' => $tables,
 			'fields' => [
 				'qcc_title',
 				'user_name' => 'qcc_title',
-				'user_id' => 'MAX(user_id)',
+				'user_id' => 'user_id',
 				'recentedits' => 'COUNT(*)'
 			],
 			'options' => [ 'GROUP BY' => [ 'qcc_title' ] ],
 			'conds' => $conds,
 			'join_conds' => $jconds,
 		];
+	}
+
+	protected function buildQueryInfo( $offset, $limit, $descending ) {
+		$fname = __METHOD__ . ' (' . $this->getSqlComment() . ')';
+
+		$sortColumns = array_merge( [ $this->mIndexField ], $this->mExtraSortFields );
+		if ( $descending ) {
+			$orderBy = $sortColumns;
+			$operator = $this->mIncludeOffset ? '>=' : '>';
+		} else {
+			$orderBy = [];
+			foreach ( $sortColumns as $col ) {
+				$orderBy[] = $col . ' DESC';
+			}
+			$operator = $this->mIncludeOffset ? '<=' : '<';
+		}
+		$info = $this->getQueryInfo( [
+			'limit' => intval( $limit ),
+			'order' => $descending ? 'DESC' : 'ASC',
+			'conds' =>
+				$offset != '' ? [ $this->mIndexField . $operator . $this->mDb->addQuotes( $offset ) ] : [],
+		] );
+
+		$tables = $info['tables'];
+		$fields = $info['fields'];
+		$conds = $info['conds'];
+		$options = $info['options'];
+		$join_conds = $info['join_conds'];
+		$options['ORDER BY'] = $orderBy;
+		return [ $tables, $fields, $conds, $fname, $options, $join_conds ];
 	}
 
 	protected function doBatchLookups() {

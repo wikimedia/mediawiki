@@ -20,6 +20,8 @@ production.
   IP addresses, internationalized domain names, and possibly mailto links.
 * (T193868) $wgChangeTagsSchemaMigrationStage — This temporary setting, added in
   MediaWiki 1.32, now defaults to MIGRATION_NEW instead of MIGRATION_WRITE_BOTH.
+* Special:ActiveUsers will no longer filter out users who became inactive since
+  the last time the active users query cache was updated.
 
 ==== Removed configuration ====
 * (T199334) $wgTagStatisticsNewTable — This temporary setting, added in
