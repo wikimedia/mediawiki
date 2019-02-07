@@ -82,7 +82,7 @@ class UserMailer {
 	static function makeMsgId() {
 		global $wgSMTP, $wgServer;
 
-		$domainId = WikiMap::getCurrentWikiDomain()->getId();
+		$domainId = WikiMap::getCurrentWikiDbDomain()->getId();
 		$msgid = uniqid( $domainId . ".", true /** for cygwin */ );
 		if ( is_array( $wgSMTP ) && isset( $wgSMTP['IDHost'] ) && $wgSMTP['IDHost'] ) {
 			$domain = $wgSMTP['IDHost'];

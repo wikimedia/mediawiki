@@ -366,7 +366,7 @@ abstract class JobQueue {
 		global $wgJobClasses;
 
 		$this->assertNotReadOnly();
-		if ( !WikiMap::isCurrentWikiDomain( $this->domain ) ) {
+		if ( !WikiMap::isCurrentWikiDbDomain( $this->domain ) ) {
 			throw new MWException(
 				"Cannot pop '{$this->type}' job off foreign '{$this->domain}' wiki queue." );
 		} elseif ( !isset( $wgJobClasses[$this->type] ) ) {

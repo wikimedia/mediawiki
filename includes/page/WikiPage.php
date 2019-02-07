@@ -3033,7 +3033,10 @@ class WikiPage implements Page, IDBAccessObject {
 		// Clear caches
 		self::onArticleDelete( $this->mTitle );
 		ResourceLoaderWikiModule::invalidateModuleCache(
-			$this->mTitle, $revision, null, wfWikiID()
+			$this->mTitle,
+			$revision,
+			null,
+			WikiMap::getCurrentWikiDbDomain()->getId()
 		);
 
 		// Reset this object and the Title object
@@ -3506,7 +3509,7 @@ class WikiPage implements Page, IDBAccessObject {
 				// means that some cache invalidations happen that are not strictly needed.
 				$cache->makeGlobalKey(
 					'interwiki-page',
-					WikiMap::getCurrentWikiDomain()->getId(),
+					WikiMap::getCurrentWikiDbDomain()->getId(),
 					$title->getDBkey()
 				)
 			);

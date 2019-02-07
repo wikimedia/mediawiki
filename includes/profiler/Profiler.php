@@ -115,7 +115,7 @@ abstract class Profiler {
 	 */
 	public function getProfileID() {
 		if ( $this->profileID === false ) {
-			return WikiMap::getCurrentWikiDomain()->getId();
+			return WikiMap::getCurrentWikiDbDomain()->getId();
 		} else {
 			return $this->profileID;
 		}
