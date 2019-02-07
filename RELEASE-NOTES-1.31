@@ -51,6 +51,7 @@ THIS IS NOT A RELEASE YET
 * (T204767) Add join conditions to ActiveUsersPager
 * (T210621) User: Bypass repeatable-read when creating an actor_id.
 * (T204531) rdbms: reduce LoadBalancer replication log spam.
+* (T195525) Fix db error outage page.
 
 == MediaWiki 1.31.1 ==
 
