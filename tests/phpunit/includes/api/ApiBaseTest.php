@@ -529,9 +529,33 @@ class ApiBaseTest extends ApiTestCase {
 				'foo',
 				[ [ 'apiwarn-deprecation-parameter', 'myParam' ] ],
 			],
+			'Deprecated parameter with default, unspecified' => [
+				null,
+				[ ApiBase::PARAM_DEPRECATED => true, ApiBase::PARAM_DFLT => 'foo' ],
+				'foo',
+				[],
+			],
+			'Deprecated parameter with default, specified' => [
+				'foo',
+				[ ApiBase::PARAM_DEPRECATED => true, ApiBase::PARAM_DFLT => 'foo' ],
+				'foo',
+				[ [ 'apiwarn-deprecation-parameter', 'myParam' ] ],
+			],
 			'Deprecated parameter value' => [
 				'a',
 				[ ApiBase::PARAM_DEPRECATED_VALUES => [ 'a' => true ] ],
+				'a',
+				[ [ 'apiwarn-deprecation-parameter', 'myParam=a' ] ],
+			],
+			'Deprecated parameter value as default, unspecified' => [
+				null,
+				[ ApiBase::PARAM_DEPRECATED_VALUES => [ 'a' => true ], ApiBase::PARAM_DFLT => 'a' ],
+				'a',
+				[],
+			],
+			'Deprecated parameter value as default, specified' => [
+				'a',
+				[ ApiBase::PARAM_DEPRECATED_VALUES => [ 'a' => true ], ApiBase::PARAM_DFLT => 'a' ],
 				'a',
 				[ [ 'apiwarn-deprecation-parameter', 'myParam=a' ] ],
 			],
