@@ -48,6 +48,8 @@ production.
   Content::getNativeData() for text-based content models.
 * (T210814) SVGs are now by default displayed in wiki language on image
   pages.
+* (T214706) LinksUpdate::getAddedExternalLinks() and
+  LinksUpdate::getRemovedExternalLinks() were introduced.
 
 === External library changes in 1.33 ===
 

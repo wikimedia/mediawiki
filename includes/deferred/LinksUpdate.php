@@ -85,6 +85,16 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	private $linkDeletions = null;
 
 	/**
+	 * @var null|array Added external links if calculated.
+	 */
+	private $externalLinkInsertions = null;
+
+	/**
+	 * @var null|array Deleted external links if calculated.
+	 */
+	private $externalLinkDeletions = null;
+
+	/**
 	 * @var null|array Added properties if calculated.
 	 */
 	private $propertyInsertions = null;
@@ -234,11 +244,14 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 
 		# External links
 		$existingEL = $this->getExistingExternals();
+		$this->externalLinkDeletions = $this->getExternalDeletions( $existingEL );
+		$this->externalLinkInsertions = $this->getExternalInsertions(
+			$existingEL );
 		$this->incrTableUpdate(
 			'externallinks',
 			'el',
-			$this->getExternalDeletions( $existingEL ),
-			$this->getExternalInsertions( $existingEL ) );
+			$this->externalLinkDeletions,
+			$this->externalLinkInsertions );
 
 		# Language links
 		$existingLL = $this->getExistingInterlangs();
@@ -1097,6 +1110,36 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Fetch external links added by this LinksUpdate. Only available after
+	 * the update is complete.
+	 * @since 1.33
+	 * @return null|array Array of Strings
+	 */
+	public function getAddedExternalLinks() {
+		if ( $this->externalLinkInsertions === null ) {
+			return null;
+		}
+		$result = [];
+		foreach ( $this->externalLinkInsertions as $key => $value ) {
+			$result[] = $value['el_to'];
+		}
+		return $result;
+	}
+
+	/**
+	 * Fetch external links removed by this LinksUpdate. Only available after
+	 * the update is complete.
+	 * @since 1.33
+	 * @return null|array Array of Strings
+	 */
+	public function getRemovedExternalLinks() {
+		if ( $this->externalLinkDeletions === null ) {
+			return null;
+		}
+		return array_keys( $this->externalLinkDeletions );
 	}
 
 	/**

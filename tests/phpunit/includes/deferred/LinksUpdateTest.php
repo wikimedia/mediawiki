@@ -118,6 +118,8 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers ParserOutput::addExternalLink
+	 * @covers LinksUpdate::getAddedExternalLinks
+	 * @covers LinksUpdate::getRemovedExternalLinks
 	 */
 	public function testUpdate_externallinks() {
 		/** @var ParserOutput $po */
@@ -125,7 +127,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$po->addExternalLink( "http://testing.com/wiki/Foo" );
 
-		$this->assertLinksUpdate(
+		$update = $this->assertLinksUpdate(
 			$t,
 			$po,
 			'externallinks',
@@ -135,6 +137,31 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 				[ 'http://testing.com/wiki/Foo', 'http://com.testing./wiki/Foo' ],
 			]
 		);
+
+		$this->assertArrayEquals( [
+			"http://testing.com/wiki/Foo"
+		], $update->getAddedExternalLinks() );
+
+		$po = new ParserOutput();
+		$po->setTitleText( $t->getPrefixedText() );
+		$po->addExternalLink( 'http://testing.com/wiki/Bar' );
+		$update = $this->assertLinksUpdate(
+			$t,
+			$po,
+			'externallinks',
+			'el_to, el_index',
+			'el_from = ' . self::$testingPageId,
+			[
+				[ 'http://testing.com/wiki/Bar', 'http://com.testing./wiki/Bar' ],
+			]
+		);
+
+		$this->assertArrayEquals( [
+			"http://testing.com/wiki/Bar"
+		], $update->getAddedExternalLinks() );
+		$this->assertArrayEquals( [
+			"http://testing.com/wiki/Foo"
+		], $update->getRemovedExternalLinks() );
 	}
 
 	/**
