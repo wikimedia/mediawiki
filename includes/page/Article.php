@@ -1946,15 +1946,13 @@ class Article implements Page {
 
 		// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 		// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
-		// Unicode codepoints (or 255 UTF-8 bytes for old schema).
-		$conf = $this->getContext()->getConfig();
-		$oldCommentSchema = $conf->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
+		// Unicode codepoints.
 		$fields[] = new OOUI\FieldLayout(
 			new OOUI\TextInputWidget( [
 				'name' => 'wpReason',
 				'inputId' => 'wpReason',
 				'tabIndex' => 2,
-				'maxLength' => $oldCommentSchema ? 255 : CommentStore::COMMENT_CHARACTER_LIMIT,
+				'maxLength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 				'infusable' => true,
 				'value' => $reason,
 				'autofocus' => true,

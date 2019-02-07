@@ -593,8 +593,7 @@ CREATE TABLE /*_*/archive (
   ar_title varchar(255) binary NOT NULL default '',
 
   -- Basic revision stuff...
-  ar_comment varbinary(767) NOT NULL default '', -- Deprecated in favor of ar_comment_id
-  ar_comment_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that ar_comment should be used)
+  ar_comment_id bigint unsigned NOT NULL,
   ar_user int unsigned NOT NULL default 0, -- Deprecated in favor of ar_actor
   ar_user_text varchar(255) binary NOT NULL DEFAULT '', -- Deprecated in favor of ar_actor
   ar_actor bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that ar_user/ar_user_text should be used)
@@ -1044,12 +1043,8 @@ CREATE TABLE /*_*/ipblocks (
   -- Actor who made the block.
   ipb_by_actor bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that ipb_by/ipb_by_text should be used)
 
-  -- Text comment made by blocker. Deprecated in favor of ipb_reason_id
-  ipb_reason varbinary(767) NOT NULL default '',
-
   -- Key to comment_id. Text comment made by blocker.
-  -- ("DEFAULT 0" is temporary, signaling that ipb_reason should be used)
-  ipb_reason_id bigint unsigned NOT NULL DEFAULT 0,
+  ipb_reason_id bigint unsigned NOT NULL,
 
   -- Creation (or refresh) date in standard YMDHMS form.
   -- IP blocks expire automatically.
@@ -1180,10 +1175,7 @@ CREATE TABLE /*_*/image (
 
   -- Description field as entered by the uploader.
   -- This is displayed in image upload history and logs.
-  -- Deprecated in favor of img_description_id.
-  img_description varbinary(767) NOT NULL default '',
-
-  img_description_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that img_description should be used)
+  img_description_id bigint unsigned NOT NULL,
 
   -- user_id and user_name of uploader.
   -- Deprecated in favor of img_actor.
@@ -1233,8 +1225,7 @@ CREATE TABLE /*_*/oldimage (
   oi_width int NOT NULL default 0,
   oi_height int NOT NULL default 0,
   oi_bits int NOT NULL default 0,
-  oi_description varbinary(767) NOT NULL default '', -- Deprecated.
-  oi_description_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that oi_description should be used)
+  oi_description_id bigint unsigned NOT NULL,
   oi_user int unsigned NOT NULL default 0, -- Deprecated in favor of oi_actor
   oi_user_text varchar(255) binary NOT NULL DEFAULT '', -- Deprecated in favor of oi_actor
   oi_actor bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that oi_user/oi_user_text should be used)
@@ -1284,8 +1275,7 @@ CREATE TABLE /*_*/filearchive (
   -- Deletion information, if this file is deleted.
   fa_deleted_user int,
   fa_deleted_timestamp binary(14) default '',
-  fa_deleted_reason varbinary(767) default '', -- Deprecated
-  fa_deleted_reason_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that fa_deleted_reason should be used)
+  fa_deleted_reason_id bigint unsigned NOT NULL,
 
   -- Duped fields from image
   fa_size int unsigned default 0,
@@ -1296,8 +1286,7 @@ CREATE TABLE /*_*/filearchive (
   fa_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D") default NULL,
   fa_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart", "chemical") default "unknown",
   fa_minor_mime varbinary(100) default "unknown",
-  fa_description varbinary(767) default '', -- Deprecated
-  fa_description_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that fa_description should be used)
+  fa_description_id bigint unsigned NOT NULL,
   fa_user int unsigned default 0, -- Deprecated in favor of fa_actor
   fa_user_text varchar(255) binary DEFAULT '', -- Deprecated in favor of fa_actor
   fa_actor bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that fa_user/fa_user_text should be used)
@@ -1398,8 +1387,7 @@ CREATE TABLE /*_*/recentchanges (
   rc_title varchar(255) binary NOT NULL default '',
 
   -- as in revision...
-  rc_comment varbinary(767) NOT NULL default '', -- Deprecated.
-  rc_comment_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that rc_comment should be used)
+  rc_comment_id bigint unsigned NOT NULL,
   rc_minor tinyint unsigned NOT NULL default 0,
 
   -- Edits by user accounts with the 'bot' rights key are
@@ -1622,13 +1610,8 @@ CREATE TABLE /*_*/logging (
   log_title varchar(255) binary NOT NULL default '',
   log_page int unsigned NULL,
 
-  -- Freeform text. Interpreted as edit history comments.
-  -- Deprecated in favor of log_comment_id.
-  log_comment varbinary(767) NOT NULL default '',
-
   -- Key to comment_id. Comment summarizing the change.
-  -- ("DEFAULT 0" is temporary, signaling that log_comment should be used)
-  log_comment_id bigint unsigned NOT NULL DEFAULT 0,
+  log_comment_id bigint unsigned NOT NULL,
 
   -- miscellaneous parameters:
   -- LF separated list (old system) or serialized PHP array (new system)
@@ -1805,8 +1788,7 @@ CREATE TABLE /*_*/protected_titles (
   pt_namespace int NOT NULL,
   pt_title varchar(255) binary NOT NULL,
   pt_user int unsigned NOT NULL,
-  pt_reason varbinary(767) default '', -- Deprecated.
-  pt_reason_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that pt_reason should be used)
+  pt_reason_id bigint unsigned NOT NULL,
   pt_timestamp binary(14) NOT NULL,
   pt_expiry varbinary(14) NOT NULL default '',
   pt_create_perm varbinary(60) NOT NULL,

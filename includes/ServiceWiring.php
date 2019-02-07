@@ -85,7 +85,7 @@ return [
 	'CommentStore' => function ( MediaWikiServices $services ) : CommentStore {
 		return new CommentStore(
 			$services->getContentLanguage(),
-			$services->getMainConfig()->get( 'CommentTableSchemaMigrationStage' )
+			MIGRATION_NEW
 		);
 	},
 

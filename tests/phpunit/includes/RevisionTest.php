@@ -281,7 +281,6 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromRowWithBadPageId() {
-		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_NEW );
 		$this->overrideMwServices();
 		Wikimedia\suppressWarnings();
 		$rev = new Revision( (object)[
@@ -602,7 +601,6 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::loadFromTitle
 	 */
 	public function testLoadFromTitle() {
-		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_NEW );
 		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_OLD );
 		$this->overrideMwServices();
 		$title = $this->getMockTitle();

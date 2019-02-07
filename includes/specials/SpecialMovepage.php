@@ -333,14 +333,12 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 		// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
-		// Unicode codepoints (or 255 UTF-8 bytes for old schema).
-		$conf = $this->getConfig();
-		$oldCommentSchema = $conf->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
+		// Unicode codepoints.
 		$fields[] = new OOUI\FieldLayout(
 			new OOUI\TextInputWidget( [
 				'name' => 'wpReason',
 				'id' => 'wpReason',
-				'maxLength' => $oldCommentSchema ? 200 : CommentStore::COMMENT_CHARACTER_LIMIT,
+				'maxLength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 				'infusable' => true,
 				'value' => $this->reason,
 			] ),

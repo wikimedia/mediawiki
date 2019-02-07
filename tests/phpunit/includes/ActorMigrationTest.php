@@ -571,10 +571,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	public static function provideInsertRoundTrip() {
 		$db = wfGetDB( DB_REPLICA ); // for timestamps
 
-		$ipbfields = [
-		];
-		$revfields = [
-		];
+		$comment = MediaWikiServices::getInstance()->getCommentStore()
+			->createComment( wfGetDB( DB_MASTER ), '' );
 
 		return [
 			'recentchanges' => [ 'recentchanges', 'rc_user', 'rc_id', [
@@ -584,12 +582,14 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 				'rc_this_oldid' => 42,
 				'rc_last_oldid' => 41,
 				'rc_source' => 'test',
+				'rc_comment_id' => $comment->id,
 			] ],
 			'ipblocks' => [ 'ipblocks', 'ipb_by', 'ipb_id', [
 				'ipb_range_start' => '',
 				'ipb_range_end' => '',
 				'ipb_timestamp' => $db->timestamp(),
 				'ipb_expiry' => $db->getInfinity(),
+				'ipb_reason_id' => $comment->id,
 			] ],
 			'revision' => [ 'revision', 'rev_user', 'rev_id', [
 				'rev_page' => 42,

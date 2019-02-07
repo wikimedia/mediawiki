@@ -47,15 +47,6 @@ class MigrateComments extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		global $wgCommentTableSchemaMigrationStage;
-
-		if ( $wgCommentTableSchemaMigrationStage < MIGRATION_WRITE_NEW ) {
-			$this->output(
-				"...cannot update while \$wgCommentTableSchemaMigrationStage < MIGRATION_WRITE_NEW\n"
-			);
-			return false;
-		}
-
 		$this->migrateToTemp(
 			'revision', 'rev_id', 'rev_comment', 'revcomment_rev', 'revcomment_comment_id'
 		);
@@ -138,13 +129,18 @@ class MigrateComments extends LoggedUpdateMaintenance {
 	 * @param string $oldField Old comment field name
 	 */
 	protected function migrate( $table, $primaryKey, $oldField ) {
+		$dbw = $this->getDB( DB_MASTER );
+		if ( !$dbw->fieldExists( $table, $oldField, __METHOD__ ) ) {
+			$this->output( "No need to migrate $table.$oldField, field does not exist\n" );
+			return;
+		}
+
 		$newField = $oldField . '_id';
 		$primaryKey = (array)$primaryKey;
 		$pkFilter = array_flip( $primaryKey );
 		$this->output( "Beginning migration of $table.$oldField to $table.$newField\n" );
 		wfWaitForSlaves();
 
-		$dbw = $this->getDB( DB_MASTER );
 		$next = '1=1';
 		$countUpdated = 0;
 		$countComments = 0;
@@ -229,6 +225,12 @@ class MigrateComments extends LoggedUpdateMaintenance {
 	 * @param string $newField New comment field name
 	 */
 	protected function migrateToTemp( $table, $primaryKey, $oldField, $newPrimaryKey, $newField ) {
+		$dbw = $this->getDB( DB_MASTER );
+		if ( !$dbw->fieldExists( $table, $oldField, __METHOD__ ) ) {
+			$this->output( "No need to migrate $table.$oldField, field does not exist\n" );
+			return;
+		}
+
 		$newTable = $table . '_comment_temp';
 		$this->output( "Beginning migration of $table.$oldField to $newTable.$newField\n" );
 		wfWaitForSlaves();

@@ -421,9 +421,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$out->addModules( [ 'mediawiki.special.revisionDelete' ] );
 			$out->addModuleStyles( 'mediawiki.special' );
 
-			$conf = $this->getConfig();
-			$oldCommentSchema = $conf->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
-
 			$form = Xml::openElement( 'form', [ 'method' => 'post',
 					'action' => $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] ),
 					'id' => 'mw-revdel-form-revisions' ] ) .
@@ -450,9 +447,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 							'id' => 'wpReason',
 							// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 							// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
-							// Unicode codepoints (or 255 UTF-8 bytes for old schema).
+							// Unicode codepoints.
 							// "- 155" is to leave room for the 'wpRevDeleteReasonList' value.
-							'maxlength' => $oldCommentSchema ? 100 : CommentStore::COMMENT_CHARACTER_LIMIT - 155,
+							'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT - 155,
 						] ) .
 					'</td>' .
 				"</tr><tr>\n" .

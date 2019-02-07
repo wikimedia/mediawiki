@@ -35,6 +35,8 @@ production.
 * $wgEnableParserCache, deprecated since 1.26, was removed.
   If disabling the parser cache is still desirable,
   set `$wgParserCacheType = CACHE_NONE;` instead.
+* $wgCommentTableSchemaMigrationStage has been removed. Extension code finding
+  it unset should treat it as being MIGRATION_NEW.
 
 === New features in 1.33 ===
 * (T96041) __EXPECTUNUSEDCATEGORY__ on a category page causes the category

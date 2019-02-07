@@ -1261,10 +1261,7 @@ abstract class DatabaseUpdater {
 	 * @since 1.30
 	 */
 	protected function migrateComments() {
-		global $wgCommentTableSchemaMigrationStage;
-		if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_NEW &&
-			!$this->updateRowExists( 'MigrateComments' )
-		) {
+		if ( !$this->updateRowExists( 'MigrateComments' ) ) {
 			$this->output(
 				"Migrating comments to the 'comments' table, printing progress markers. For large\n" .
 				"databases, you may want to hit Ctrl-C and do this manually with\n" .
@@ -1281,20 +1278,14 @@ abstract class DatabaseUpdater {
 	 * @since 1.32
 	 */
 	protected function migrateImageCommentTemp() {
-		global $wgCommentTableSchemaMigrationStage;
-
 		if ( $this->tableExists( 'image_comment_temp' ) ) {
-			if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
-				$this->output( "Merging image_comment_temp into the image table\n" );
-				$task = $this->maintenance->runChild(
-					MigrateImageCommentTemp::class, 'migrateImageCommentTemp.php'
-				);
-				$task->setForce();
-				$ok = $task->execute();
-				$this->output( $ok ? "done.\n" : "errors were encountered.\n" );
-			} else {
-				$ok = true;
-			}
+			$this->output( "Merging image_comment_temp into the image table\n" );
+			$task = $this->maintenance->runChild(
+				MigrateImageCommentTemp::class, 'migrateImageCommentTemp.php'
+			);
+			$task->setForce();
+			$ok = $task->execute();
+			$this->output( $ok ? "done.\n" : "errors were encountered.\n" );
 			if ( $ok ) {
 				$this->dropTable( 'image_comment_temp' );
 			}

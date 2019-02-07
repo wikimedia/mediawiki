@@ -714,8 +714,6 @@ class UserrightsPage extends SpecialPage {
 				->rawParams( $userToolLinks )->parse()
 		);
 		if ( $canChangeAny ) {
-			$conf = $this->getConfig();
-			$oldCommentSchema = $conf->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
 			$this->getOutput()->addHTML(
 				$this->msg( 'userrights-groups-help', $user->getName() )->parse() .
 				$grouplist .
@@ -730,8 +728,8 @@ class UserrightsPage extends SpecialPage {
 								'id' => 'wpReason',
 								// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 								// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
-								// Unicode codepoints (or 255 UTF-8 bytes for old schema).
-								'maxlength' => $oldCommentSchema ? 255 : CommentStore::COMMENT_CHARACTER_LIMIT,
+								// Unicode codepoints.
+								'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 							] ) .
 						"</td>
 					</tr>
