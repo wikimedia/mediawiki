@@ -1,7 +1,7 @@
 <?php
 
 class RemexDriverTest extends MediaWikiTestCase {
-	static private $remexTidyTestData = [
+	private static $remexTidyTestData = [
 		// Tests from Html5Depurate
 		[
 			'Empty string',

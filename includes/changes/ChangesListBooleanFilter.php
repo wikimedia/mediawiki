@@ -161,7 +161,7 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	 * @inheritDoc
 	 */
 	public function displaysOnUnstructuredUi() {
-		return !!$this->showHide;
+		return (bool)$this->showHide;
 	}
 
 	/**

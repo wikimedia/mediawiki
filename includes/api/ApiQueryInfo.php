@@ -118,7 +118,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		return $this->tokenFunctions;
 	}
 
-	static protected $cachedTokens = [];
+	protected static $cachedTokens = [];
 
 	/**
 	 * @deprecated since 1.24

@@ -1,6 +1,6 @@
 <?php
 
-// phpcs:disable MediaWiki.Commenting.PhpunitAnnotations.NotClassTrait
+// phpcs:disable MediaWiki.Commenting.PhpunitAnnotations.NotClass
 
 namespace MediaWiki\Tests\Revision;
 
@@ -27,7 +27,7 @@ trait RevisionRecordTests {
 	 *
 	 * @return RevisionRecord
 	 */
-	protected abstract function newRevision( array $rowOverrides = [] );
+	abstract protected function newRevision( array $rowOverrides = [] );
 
 	private function provideAudienceCheckData( $field ) {
 		yield 'field accessible for oversighter (ALL)' => [

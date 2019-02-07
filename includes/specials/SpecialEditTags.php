@@ -222,7 +222,6 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$numRevisions = 0;
 		// Live revisions...
 		$list = $this->getList();
-		// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 		for ( $list->reset(); $list->current(); $list->next() ) {
 			$item = $list->current();
 			$numRevisions++;
@@ -311,7 +310,6 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			// Otherwise, use a multi-select field for adding tags, and a list of
 			// checkboxes for removing them
 
-			// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 			for ( $list->reset(); $list->current(); $list->next() ) {
 				$currentTags = $list->current()->getTags();
 				if ( $currentTags ) {

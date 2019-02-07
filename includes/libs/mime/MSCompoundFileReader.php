@@ -14,9 +14,6 @@
  * specific language governing permissions and limitations under the License.
  */
 
-// strlen() is actually pretty fast compared to just about any loop body
-// phpcs:disable Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
-
 /**
  * Read the directory of a Microsoft Compound File Binary file, a.k.a. an OLE
  * file, and detect the MIME type.

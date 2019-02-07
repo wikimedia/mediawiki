@@ -5,7 +5,7 @@
  * @covers HTMLCheckMatrix
  */
 class HTMLCheckMatrixTest extends MediaWikiTestCase {
-	static private $defaultOptions = [
+	private static $defaultOptions = [
 		'rows' => [ 'r1', 'r2' ],
 		'columns' => [ 'c1', 'c2' ],
 		'fieldname' => 'test',

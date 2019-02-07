@@ -388,7 +388,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$numRevisions = 0;
 		// Live revisions...
 		$list = $this->getList();
-		// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 		for ( $list->reset(); $list->current(); $list->next() ) {
 			$item = $list->current();
 

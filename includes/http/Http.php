@@ -25,7 +25,7 @@ use MediaWiki\Logger\LoggerFactory;
  * @ingroup HTTP
  */
 class Http {
-	static public $httpEngine = false;
+	public static $httpEngine = false;
 
 	/**
 	 * Perform an HTTP request

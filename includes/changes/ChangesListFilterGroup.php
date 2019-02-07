@@ -429,7 +429,7 @@ abstract class ChangesListFilterGroup {
 	 * @return bool
 	 */
 	public function anySelected( FormOptions $opts ) {
-		return !!count( array_filter(
+		return (bool)count( array_filter(
 			$this->getFilters(),
 			function ( ChangesListFilter $filter ) use ( $opts ) {
 				return $filter->isSelected( $opts );
