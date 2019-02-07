@@ -2629,6 +2629,7 @@
 	"ipb_expiry_old": "Vervaldatum is in het verleden.",
 	"ipb_expiry_temp": "Blokkades voor verborgen gebruikers moeten permanent zijn.",
 	"ipb_hide_invalid": "Het is niet mogelijk dit account te verbergen; het heeft meer dan {{PLURAL:$1|één bewerking|$1 bewerkingen}}.",
+	"ipb_hide_partial": "Blokkades die de gebruikersnaam verbergen moeten op de gehele wiki van toepassing zijn.",
 	"ipb_already_blocked": "\"$1\" is al geblokkeerd",
 	"ipb-needreblock": "$1 is al geblokkeerd.\nWilt u de instellingen wijzigen?",
 	"ipb-otherblocks-header": "Andere {{PLURAL:$1|blokkade|blokkades}}",
