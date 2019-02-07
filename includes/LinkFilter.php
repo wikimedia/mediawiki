@@ -54,7 +54,7 @@ class LinkFilter {
 			return 0;
 		}
 
-		$text = $content->getNativeData();
+		$text = $content->getText();
 
 		$regex = self::makeRegex( $filterEntry, $protocol );
 		return preg_match( $regex, $text );

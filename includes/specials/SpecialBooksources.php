@@ -171,7 +171,7 @@ class SpecialBookSources extends SpecialPage {
 			if ( $content instanceof TextContent ) {
 				// XXX: in the future, this could be stored as structured data, defining a list of book sources
 
-				$text = $content->getNativeData();
+				$text = $content->getText();
 				$out->addWikiTextAsInterface( str_replace( 'MAGICNUMBER', $isbn, $text ) );
 
 				return true;

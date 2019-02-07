@@ -59,7 +59,7 @@ abstract class ContentHandler {
 	 * If $content is null, this method returns the empty string.
 	 *
 	 * If $content is an instance of TextContent, this method returns the flat
-	 * text as returned by $content->getNativeData().
+	 * text as returned by $content->getText().
 	 *
 	 * If $content is not a TextContent object, the behavior of this method
 	 * depends on the global $wgContentHandlerTextFallback:

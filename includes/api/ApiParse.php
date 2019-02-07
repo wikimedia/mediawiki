@@ -487,7 +487,7 @@ class ApiParse extends ApiBase {
 			}
 
 			$wgParser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
-			$xml = $wgParser->preprocessToDom( $this->content->getNativeData() )->__toString();
+			$xml = $wgParser->preprocessToDom( $this->content->getText() )->__toString();
 			$result_array['parsetree'] = $xml;
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'parsetree';
 		}

@@ -181,7 +181,7 @@ class ApiFeedContributions extends ApiBase {
 
 		if ( $content instanceof TextContent ) {
 			// only textual content has a "source view".
-			$html = nl2br( htmlspecialchars( $content->getNativeData() ) );
+			$html = nl2br( htmlspecialchars( $content->getText() ) );
 		} else {
 			// XXX: we could get an HTML representation of the content via getParserOutput, but that may
 			//     contain JS magic and generally may not be suitable for inclusion in a feed.

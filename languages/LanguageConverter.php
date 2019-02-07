@@ -1033,7 +1033,7 @@ class LanguageConverter {
 				$revision = Revision::newFromTitle( $title );
 				if ( $revision ) {
 					if ( $revision->getContentModel() == CONTENT_MODEL_WIKITEXT ) {
-						$txt = $revision->getContent( Revision::RAW )->getNativeData();
+						$txt = $revision->getContent( Revision::RAW )->getText();
 					}
 
 					// @todo in the future, use a specialized content model, perhaps based on json!
