@@ -3123,7 +3123,7 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 function wfCanIPUseHTTPS( $ip ) {
 	$canDo = true;
 	Hooks::run( 'CanIPUseHTTPS', [ $ip, &$canDo ] );
-	return !!$canDo;
+	return (bool)$canDo;
 }
 
 /**

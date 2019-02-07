@@ -89,7 +89,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	protected $mAttribs = [];
 
 	/** @var bool */
-	static private $modeMapping = false;
+	private static $modeMapping = false;
 
 	/**
 	 * Get a new image gallery. This is the method other callers

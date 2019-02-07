@@ -52,7 +52,7 @@ class RemexStripTagHandler implements TokenHandler {
 	// (although "block-level" is not technically defined for elements that are
 	// new in HTML5).
 	// Structured as tag => true to allow O(1) membership test.
-	static private $BLOCK_LEVEL_TAGS = [
+	private static $BLOCK_LEVEL_TAGS = [
 		'address' => true,
 		'article' => true,
 		'aside' => true,

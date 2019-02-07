@@ -544,7 +544,7 @@ class Revision implements IDBAccessObject {
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 *
-	 * @access private
+	 * @private
 	 */
 	function __construct( $row, $queryFlags = 0, Title $title = null ) {
 		global $wgUser;

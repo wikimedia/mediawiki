@@ -101,7 +101,7 @@ class BaseDump {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function nextPage() {
 		if ( $this->skipTo( 'page', 'mediawiki' ) ) {
@@ -121,7 +121,7 @@ class BaseDump {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function nextRev() {
 		if ( $this->skipTo( 'revision' ) ) {
@@ -134,7 +134,7 @@ class BaseDump {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 * @return string
 	 */
 	function nextText() {
@@ -144,7 +144,7 @@ class BaseDump {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 * @param string $name
 	 * @param string $parent
 	 * @return bool|null
@@ -177,7 +177,7 @@ class BaseDump {
 	 * no sub-elements or such scary things.
 	 *
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function nodeContents() {
 		if ( $this->atEnd ) {
@@ -203,7 +203,7 @@ class BaseDump {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 * @return null
 	 */
 	function close() {

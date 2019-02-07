@@ -474,7 +474,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 *
 	 * @param stdClass $row The row from which to extract the data.
 	 * @return array An array mapping strings (descriptors) to their respective string values.
-	 * @access public
 	 */
 	public function extractRowInfo( $row ) {
 		/* Determine the title of the page that has been changed. */

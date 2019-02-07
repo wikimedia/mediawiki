@@ -186,7 +186,7 @@ class XmlDumpWriter {
 	/**
 	 * Closes a "<page>" section on the output stream.
 	 *
-	 * @access private
+	 * @private
 	 * @return string
 	 */
 	function closePage() {
@@ -199,7 +199,7 @@ class XmlDumpWriter {
 	 *
 	 * @param object $row
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function writeRevision( $row ) {
 		$out = "    <revision>\n";
@@ -289,7 +289,7 @@ class XmlDumpWriter {
 	 *
 	 * @param object $row
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function writeLogItem( $row ) {
 		$out = "  <logitem>\n";

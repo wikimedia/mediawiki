@@ -426,7 +426,7 @@ class MovePage {
 	 * Move a file associated with a page to a new location.
 	 * Can also be used to revert after a DB failure.
 	 *
-	 * @access private
+	 * @private
 	 * @param Title Old location to move the file from.
 	 * @param Title New location to move the file to.
 	 * @return Status

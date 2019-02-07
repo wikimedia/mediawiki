@@ -1148,7 +1148,7 @@ EOT;
 	 * distinguish them from MIME types.
 	 *
 	 * This function relies on the mapping defined by $this->mMediaTypes
-	 * @access private
+	 * @private
 	 * @param string $extMime
 	 * @return int|string
 	 */

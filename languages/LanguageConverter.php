@@ -37,7 +37,7 @@ class LanguageConverter {
 	 * @since 1.20
 	 * @var array
 	 */
-	static public $languagesWithVariants = [
+	public static $languagesWithVariants = [
 		'en',
 		'crh',
 		'gan',

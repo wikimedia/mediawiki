@@ -907,7 +907,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			return false;
 		}
 
-		if ( ! Hooks::run( 'BeforeResetNotificationTimestamp', [ &$user, &$title, $force, &$oldid ] ) ) {
+		if ( !Hooks::run( 'BeforeResetNotificationTimestamp', [ &$user, &$title, $force, &$oldid ] ) ) {
 			return false;
 		}
 
