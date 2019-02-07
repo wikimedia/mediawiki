@@ -227,7 +227,6 @@ return [
 		'scripts' => 'resources/lib/jquery.fullscreen.js',
 	],
 	'jquery.getAttrs' => [
-		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/src/jquery/jquery.getAttrs.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -640,6 +639,7 @@ return [
 		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.widget.js',
 		'group' => 'jquery.ui',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	// Effects
 	'jquery.effects.core' => [
