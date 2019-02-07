@@ -871,7 +871,7 @@ class SpecialBlock extends FormSpecialPage {
 					$title = Title::newFromText( $text );
 					// Use the link cache since the title has already been loaded when
 					// the field was validated.
-					$restriction = new PageRestriction( 0, $title->getArticleId() );
+					$restriction = new PageRestriction( 0, $title->getArticleID() );
 					$restriction->setTitle( $title );
 					return $restriction;
 				}, explode( "\n", $data['PageRestrictions'] ) );
