@@ -27,6 +27,12 @@ Some specific notes for MediaWiki 1.33 upgrades are below:
   run your wiki with $wgActorTableSchemaMigrationStage SCHEMA_COMPAT_READ_OLD,
   note that log_search rows needed to find revision deletions by target user
   were incorrectly deleted. See T215464 for details.
+* If revision deletions were performed when the wiki was configured with
+  $wgActorTableSchemaMigrationStage SCHEMA_COMPAT_WRITE_BOTH and without
+  migrateActors.php having been run, the log_search table may contain rows with
+  empty values for "target_author_actor" which will prevent log searches for
+  revision deletions by target user from finding those log entries. These rows
+  may be corrected by (re-)running migrateActors.php.
 
 For notes on 1.32.x and older releases, see HISTORY.
 
