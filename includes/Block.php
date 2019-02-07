@@ -1186,6 +1186,9 @@ class Block {
 			case 'read':
 				$res = false;
 				break;
+			case 'purge':
+				$res = false;
+				break;
 		}
 		if ( !$res && $blockDisablesLogin ) {
 			// If a block would disable login, then it should

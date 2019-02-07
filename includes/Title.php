@@ -2703,10 +2703,11 @@ class Title implements LinkTarget, IDBAccessObject {
 		}
 
 		// Determine if the user is blocked from this action on this page.
-		// What gets passed into this method is a user right, not an action nmae.
+		// What gets passed into this method is a user right, not an action name.
 		// There is no way to instantiate an action by restriction. However, this
 		// will get the action where the restriction is the same. This may result
 		// in actions being blocked that shouldn't be.
+		$actionObj = null;
 		if ( Action::exists( $action ) ) {
 			// Clone the title to prevent mutations to this object which is done
 			// by Title::loadFromRow() in WikiPage::loadFromRow().
@@ -2714,14 +2715,16 @@ class Title implements LinkTarget, IDBAccessObject {
 			// Creating an action will perform several database queries to ensure that
 			// the action has not been overridden by the content type.
 			// @todo FIXME: Pass the relevant context into this function.
-			$action = Action::factory( $action, $page, RequestContext::getMain() );
-		} else {
-			$action = null;
+			$actionObj = Action::factory( $action, $page, RequestContext::getMain() );
+			// Ensure that the retrieved action matches the restriction.
+			if ( $actionObj && $actionObj->getRestriction() !== $action ) {
+				$actionObj = null;
+			}
 		}
 
 		// If no action object is returned, assume that the action requires unblock
 		// which is the default.
-		if ( !$action || $action->requiresUnblock() ) {
+		if ( !$actionObj || $actionObj->requiresUnblock() ) {
 			if ( $user->isBlockedFrom( $this, $useReplica ) ) {
 				// @todo FIXME: Pass the relevant context into this function.
 				$errors[] = $block
