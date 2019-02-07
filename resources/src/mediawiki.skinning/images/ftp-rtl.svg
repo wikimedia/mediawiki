@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="13" width="13" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
-<g transform="translate(-136.35715,-374.43362)">
-<path style="opacity:1;fill:#3465ba;" d="m148.4,376.9,0,7.5-1-0.9872,0-6.013-2,0-2,1-4-0.0002,0,2-1,0,0-2.5,0.5-0.5002,4.5,0.0002,2-1,2.5,0z"/>
-<path style="opacity:1;fill:#16a4e8;" d="m143.4,379.4,1-0.0001,2.5,0,0.5,0.5,1,4.5-10-0.0001,0-4.5,0.5-0.5zm0,1-4-0.0001,0,3,7.75-0.0001-0.75-3-2,0z"/>
-<path style="opacity:1;fill:#3465ba;" d="m147.4,385.4,0,1-8,0,0-1z"/>
-<path style="opacity:1;fill:#3465ba;" d="m144.4,383.9,0,2-2,0,0-2c0-0.5,2-0.5,2,0z"/>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13">
+	<path fill="#3465ba" d="M12.043 2.466v7.5l-1-.987V2.966h-2l-2 1h-4v2h-1v-2.5l.5-.5h4.5l2-1h2.5z"/>
+	<path fill="#16a4e8" d="M7.043 4.966h3.5l.5.5 1 4.5h-10v-4.5l.5-.5zm0 1h-4v3h7.75l-.75-3h-2z"/>
+	<path fill="#3465ba" d="M11.043 10.966v1h-8v-1z"/>
+	<path fill="#3465ba" d="M8.043 9.466v2h-2v-2c0-.5 2-.5 2 0z"/>
 </svg>
