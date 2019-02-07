@@ -28,13 +28,13 @@
 require_once __DIR__ . '/../autoload.php';
 
 class AutoLoader {
-	static protected $autoloadLocalClassesLower = null;
+	protected static $autoloadLocalClassesLower = null;
 
 	/**
 	 * @private Only public for ExtensionRegistry
 	 * @var string[] Namespace (ends with \) => Path (ends with /)
 	 */
-	static public $psr4Namespaces = [];
+	public static $psr4Namespaces = [];
 
 	/**
 	 * autoload - take a class name and attempt to load it

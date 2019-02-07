@@ -1072,7 +1072,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * Test if the specified index represents an open connection
 	 *
 	 * @param int $index Server index
-	 * @access private
+	 * @private
 	 * @return bool
 	 */
 	private function isOpen( $index ) {

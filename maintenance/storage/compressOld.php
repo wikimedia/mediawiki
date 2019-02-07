@@ -362,7 +362,6 @@ class CompressOld extends Maintenance {
 				$primaryOldid = $revs[$i]->rev_text_id;
 
 				# Get the text of each revision and add it to the object
-				// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 				for ( $j = 0; $j < $thisChunkSize && $chunk->isHappy(); $j++ ) {
 					$oldid = $revs[$i + $j]->rev_text_id;
 

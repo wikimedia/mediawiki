@@ -23,7 +23,7 @@
  *       Not used by OOUI form fields.
  */
 class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
-	static private $requiredParams = [
+	private static $requiredParams = [
 		// Required by underlying HTMLFormField
 		'fieldname',
 		// Required by HTMLCheckMatrix

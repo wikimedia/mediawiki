@@ -38,7 +38,7 @@ use MediaWiki\MediaWikiServices;
  */
 class Title implements LinkTarget, IDBAccessObject {
 	/** @var MapCacheLRU */
-	static private $titleCache = null;
+	private static $titleCache = null;
 
 	/**
 	 * Title::newFromText maintains a cache to avoid expensive re-normalization of
@@ -205,7 +205,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * @access protected
+	 * @protected
 	 */
 	function __construct() {
 	}

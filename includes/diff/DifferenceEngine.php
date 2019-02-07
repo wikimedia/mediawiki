@@ -1655,7 +1655,7 @@ class DifferenceEngine extends ContextSource {
 			RevisionRecord::FOR_THIS_USER, $this->getUser() );
 
 		$this->mRevisionsIdsLoaded = $this->mRevisionsLoaded = true;
-		$this->mTextLoaded = !!$oldRevision + 1;
+		$this->mTextLoaded = $oldRevision ? 2 : 1;
 		$this->isContentOverridden = false;
 		$this->slotDiffRenderers = null;
 	}

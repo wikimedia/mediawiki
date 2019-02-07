@@ -820,7 +820,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function getFlag( $flag ) {
-		return !!( $this->flags & $flag );
+		return (bool)( $this->flags & $flag );
 	}
 
 	/**

@@ -83,7 +83,6 @@ class DeleteBatch extends Maintenance {
 		$dbw = $this->getDB( DB_MASTER );
 
 		# Handle each entry
-		// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 		for ( $linenum = 1; !feof( $file ); $linenum++ ) {
 			$line = trim( fgets( $file ) );
 			if ( $line == '' ) {

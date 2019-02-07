@@ -63,7 +63,7 @@ class CrhExceptions {
 	private function addMappings( $mapArray, &$A2B, &$B2A, $exactCase = false,
 			$prePat = '', $postPat = '' ) {
 		foreach ( $mapArray as $WordA => $WordB ) {
-			if ( ! $exactCase ) {
+			if ( !$exactCase ) {
 				$ucA = $this->myUc( $WordA );
 				$ucWordA = $this->myUcWord( $WordA );
 				$ucB = $this->myUc( $WordB );
@@ -71,17 +71,17 @@ class CrhExceptions {
 			}
 
 			# if there are regexes, only map toward backregs
-			if ( ! preg_match( '/\$[1-9]/', $WordA ) ) {
+			if ( !preg_match( '/\$[1-9]/', $WordA ) ) {
 				$A2B[ $prePat . $WordA . $postPat ] = $WordB;
-				if ( ! $exactCase ) {
+				if ( !$exactCase ) {
 					$A2B[ $prePat . $ucWordA . $postPat ] = $ucWordB;
 					$A2B[ $prePat . $ucA . $postPat ] = $ucB;
 				}
 			}
 
-			if ( ! preg_match( '/\$[1-9]/', $WordB ) ) {
+			if ( !preg_match( '/\$[1-9]/', $WordB ) ) {
 				$B2A[ $prePat . $WordB . $postPat ] = $WordA;
-				if ( ! $exactCase ) {
+				if ( !$exactCase ) {
 					$B2A[ $prePat . $ucWordB . $postPat ] = $ucWordA;
 					$B2A[ $prePat . $ucB . $postPat ] = $ucA;
 				}
