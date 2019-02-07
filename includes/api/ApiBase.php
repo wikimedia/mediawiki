@@ -1157,6 +1157,7 @@ abstract class ApiBase extends ContextSource {
 			}
 
 			$value = $this->getMain()->getCheck( $encParamName );
+			$provided = $value;
 		} elseif ( $type == 'upload' ) {
 			if ( isset( $default ) ) {
 				// Having a default value is not allowed
@@ -1169,6 +1170,7 @@ abstract class ApiBase extends ContextSource {
 				self::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
 			}
 			$value = $this->getMain()->getUpload( $encParamName );
+			$provided = $value->exists();
 			if ( !$value->exists() ) {
 				// This will get the value without trying to normalize it
 				// (because trying to normalize a large binary file
@@ -1183,6 +1185,7 @@ abstract class ApiBase extends ContextSource {
 			}
 		} else {
 			$value = $this->getMain()->getVal( $encParamName, $default );
+			$provided = $this->getMain()->getCheck( $encParamName );
 
 			if ( isset( $value ) && $type == 'namespace' ) {
 				$type = MWNamespace::getValidNamespaces();
@@ -1373,7 +1376,7 @@ abstract class ApiBase extends ContextSource {
 			}
 
 			// Set a warning if a deprecated parameter has been passed
-			if ( $deprecated && $value !== false ) {
+			if ( $deprecated && $provided ) {
 				$feature = $encParamName;
 				$m = $this;
 				while ( !$m->isMain() ) {
@@ -1387,7 +1390,7 @@ abstract class ApiBase extends ContextSource {
 			}
 
 			// Set a warning if a deprecated parameter value has been passed
-			$usedDeprecatedValues = $deprecatedValues && $value !== false
+			$usedDeprecatedValues = $deprecatedValues && $provided
 				? array_intersect( array_keys( $deprecatedValues ), (array)$value )
 				: [];
 			if ( $usedDeprecatedValues ) {
