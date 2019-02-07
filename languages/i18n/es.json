@@ -2064,7 +2064,7 @@
 	"pageswithprop-prophidden-binary": "valor de la propiedad binaria oculta ($1)",
 	"doubleredirects": "Redirecciones dobles",
 	"doubleredirectstext": "Esta página contiene una lista de páginas que redirigen a otras páginas de redirección.\nCada fila contiene enlaces a la segunda y tercera redirección, así como la primera línea de la segunda redirección, en la que usualmente se encontrará el artículo «real» al que la primera redirección debería apuntar.\nLas entradas <del>tachadas</del> han sido resueltas.",
-	"double-redirect-fixed-move": "[[$1]] se ha trasladado.\nSe actualizó automáticamente y ahora redirecciona a [[$2]].",
+	"double-redirect-fixed-move": "[[$1]] se ha trasladado.\nSe actualizó automáticamente y ahora redirige a [[$2]].",
 	"double-redirect-fixed-maintenance": "Corrección automática de redirección doble de [[$1]] a [[$2]] mediante una tarea de mantenimiento",
 	"double-redirect-fixer": "Corrector de redirecciones",
 	"brokenredirects": "Redirecciones incorrectas",

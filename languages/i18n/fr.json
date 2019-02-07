@@ -2725,6 +2725,7 @@
 	"ipb_expiry_old": "L’heure d’expiration est passée.",
 	"ipb_expiry_temp": "Les blocages de noms d'utilisateurs cachés doivent être permanents.",
 	"ipb_hide_invalid": "Impossible de supprimer ce compte ; il semble avoir plus {{PLURAL:$1|d’une modification|de $1 modifications}}.",
+	"ipb_hide_partial": "Les blocages de nom d’utilisateur masqués doivent être des blocages pour le site.",
 	"ipb_already_blocked": "« $1 » est déjà bloqué",
 	"ipb-needreblock": "$1 est déjà bloqué. Voulez-vous modifier les paramètres ?",
 	"ipb-otherblocks-header": "{{PLURAL:$1|Autre blocage|Autres blocages}}",

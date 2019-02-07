@@ -893,7 +893,7 @@
 	"searchprofile-everything-tooltip": "Tedeesteyan hemine cı geyre (pelanê werênayışi zi tey)",
 	"searchprofile-advanced-tooltip": "Cayê namanê xısusiyan de cı geyre",
 	"search-result-size": "$1 ({{PLURAL:$2|1 çeku|$2 çekuy}})",
-	"search-result-category-size": "{{PLURAL:$1|1 eza|$1 ezayan}} ({{PLURAL:$2|1 kategoriyê bini|$2 kategirayanê binan}}, {{PLURAL:$3|1 dosya|$3 dosyayan}})",
+	"search-result-category-size": "{{PLURAL:$1|1 eza|$1 ezayi}} ({{PLURAL:$2|1 kategoriya bınêne|$2 kategoriyê bınêni}}, {{PLURAL:$3|1 dosya|$3 dosyeyi}})",
 	"search-redirect": "($1 ra kırışiyaya)",
 	"search-section": "(qısmê $1)",
 	"search-category": "(kategoriye $1)",

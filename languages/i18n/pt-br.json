@@ -2679,6 +2679,7 @@
 	"ipb_expiry_old": "O tempo de expiração está no passado.",
 	"ipb_expiry_temp": "Bloqueios com nome de usuário ocultado devem ser permanentes.",
 	"ipb_hide_invalid": "Não foi possível suprimir esta conta; ela tem mais de {{PLURAL:$1|uma}}edições.",
+	"ipb_hide_partial": "Bloqueios de nome de usuário ocultos devem ser bloqueados em todo o site.",
 	"ipb_already_blocked": "\"$1\" já se encontra bloqueado",
 	"ipb-needreblock": "$1 já se encontra bloqueado. Deseja alterar as configurações?",
 	"ipb-otherblocks-header": "{{PLURAL:$1|Outro bloqueio|Outros bloqueios}}",

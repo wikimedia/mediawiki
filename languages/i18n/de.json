@@ -2635,6 +2635,7 @@
 	"ipb_expiry_old": "Der Zeitpunkt des Ablaufs liegt in der Vergangenheit.",
 	"ipb_expiry_temp": "Benutzernamens-Sperren mit der Verstecken-Option müssen permanent sein.",
 	"ipb_hide_invalid": "Dieses Konto kann nicht unterdrückt werden, da es mehr als {{PLURAL:$1|eine Bearbeitung|$1 Bearbeitungen}} aufweist.",
+	"ipb_hide_partial": "Versteckte Benutzernamenssperren müssen websiteweite Sperren sein.",
 	"ipb_already_blocked": "„$1“ ist bereits gesperrt",
 	"ipb-needreblock": "„$1“ ist bereits gesperrt. Möchtest du die Sperrparameter ändern?",
 	"ipb-otherblocks-header": "Andere {{PLURAL:$1|Sperre|Sperren}}",
