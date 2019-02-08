@@ -247,9 +247,7 @@
 		<exclude-pattern>*/includes/specials/forms/PreferencesFormLegacy\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialListusers\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialMyRedirectPages\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialUploadStash\.php</exclude-pattern>
 		<exclude-pattern>*/includes/StubObject\.php</exclude-pattern>
-		<exclude-pattern>*/includes/upload/UploadFromChunks\.php</exclude-pattern>
 		<exclude-pattern>*/includes/upload/UploadStash\.php</exclude-pattern>
 		<exclude-pattern>*/includes/utils/AutoloadGenerator\.php</exclude-pattern>
 		<exclude-pattern>*/includes/WebResponse\.php</exclude-pattern>
