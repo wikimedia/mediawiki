@@ -197,6 +197,13 @@ because of Phabricator reports.
   Sanitizer::escapeIdForLink() or escapeIdForExternalInterwiki() instead.
 * Title->canTalk(), deprecated in 1.30, was removed. Instead, use
   Title->canHaveTalkPage().
+* Title's methods for site and user page related to CSS and JS, deprecated in
+  1.31, were removed:
+  * Title->isCssOrJsPage() — Use Title->isSiteConfigPage()
+  * Title->isCssJsSubpage() – Use Title->isUserConfigPage()
+  * Title->getSkinFromCssJsSubpage() – Use Title->getSkinFromConfigSubpage()
+  * Title->isCssSubpage() – Use Title->isUserCssConfigPage()
+  * Title->isJsSubpage() – Use Title->isUserJsConfigPage()
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected

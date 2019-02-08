@@ -1281,17 +1281,6 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * @return bool
-	 * @deprecated Since 1.31; use ::isSiteConfigPage() instead (which also checks for JSON pages)
-	 */
-	public function isCssOrJsPage() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return ( NS_MEDIAWIKI == $this->mNamespace
-				&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
-					|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ) );
-	}
-
-	/**
 	 * Is this a "config" (.css, .json, or .js) sub-page of a user page?
 	 *
 	 * @return bool
@@ -1303,17 +1292,6 @@ class Title implements LinkTarget, IDBAccessObject {
 			|| $this->isUserJsonConfigPage()
 			|| $this->isUserJsConfigPage()
 		);
-	}
-
-	/**
-	 * @return bool
-	 * @deprecated Since 1.31; use ::isUserConfigPage() instead (which also checks for JSON pages)
-	 */
-	public function isCssJsSubpage() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return ( NS_USER == $this->mNamespace && $this->isSubpage()
-				&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
-					|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ) );
 	}
 
 	/**
@@ -1333,15 +1311,6 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * @deprecated Since 1.31; use ::getSkinFromConfigSubpage() instead
-	 * @return string Containing skin name from .css, .json, or .js subpage title
-	 */
-	public function getSkinFromCssJsSubpage() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return $this->getSkinFromConfigSubpage();
-	}
-
-	/**
 	 * Is this a CSS "config" sub-page of a user page?
 	 *
 	 * @return bool
@@ -1353,15 +1322,6 @@ class Title implements LinkTarget, IDBAccessObject {
 			&& $this->isSubpage()
 			&& $this->hasContentModel( CONTENT_MODEL_CSS )
 		);
-	}
-
-	/**
-	 * @deprecated Since 1.31; use ::isUserCssConfigPage()
-	 * @return bool
-	 */
-	public function isCssSubpage() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return $this->isUserCssConfigPage();
 	}
 
 	/**
@@ -1390,15 +1350,6 @@ class Title implements LinkTarget, IDBAccessObject {
 			&& $this->isSubpage()
 			&& $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
 		);
-	}
-
-	/**
-	 * @deprecated Since 1.31; use ::isUserJsConfigPage()
-	 * @return bool
-	 */
-	public function isJsSubpage() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return $this->isUserJsConfigPage();
 	}
 
 	/**
