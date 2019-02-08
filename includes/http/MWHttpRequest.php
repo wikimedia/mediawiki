@@ -129,6 +129,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 			$this->setOriginalRequest( $options['originalRequest'] );
 		}
 
+		$this->setHeader( 'X-Request-Id', WebRequest::getRequestId() );
+
 		$members = [ "postData", "proxy", "noProxy", "sslVerifyHost", "caInfo",
 				"method", "followRedirects", "maxRedirects", "sslVerifyCert", "callback" ];
 

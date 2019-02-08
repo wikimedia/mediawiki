@@ -127,9 +127,7 @@
 		box-shadow: none;
 	}
 
-	&:disabled,
-	&.mw-ui-quiet.mw-ui-progressive,
-	&.mw-ui-quiet.mw-ui-destructive {
+	&:disabled {
 		background-color: @colorGray12;
 		color: @colorBaseInverted;
 		border-color: @colorGray12;
@@ -176,7 +174,9 @@
 	// </div>
 	//
 	// Styleguide 2.1.1.
-	&.mw-ui-quiet {
+	&.mw-ui-quiet,
+	&.mw-ui-quiet.mw-ui-progressive,
+	&.mw-ui-quiet.mw-ui-destructive {
 		background-color: transparent;
 		// Quiet buttons all start gray, and reveal
 		// progressive/destructive color on hover and active.
@@ -203,7 +203,9 @@
 			box-shadow: none;
 		}
 
-		&:disabled {
+		&:disabled,
+		&:disabled:hover,
+		&:disabled:active {
 			background-color: transparent;
 			color: @colorDisabledText;
 			border-color: transparent;
