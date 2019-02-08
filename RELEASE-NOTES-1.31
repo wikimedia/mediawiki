@@ -16,7 +16,7 @@ THIS IS NOT A RELEASE YET
     * (T206976, T206977) Also in the bundled LocalisationUpdate and ParserFunctions extensions.
   * (T206979) Fix PHP 7.3 warnings of using "compact()" when some variables may
     not be set.
-  * Fix PHP 7.3 warnings "preg_replace(): [...] invalid range in character class"
+  * (T215632) FormatMetadata and UploadStash regexes fixed to be PHP 7.3-compatible.
   * Avoid PHP 7.2 warnings in DBConRefTest about count() on non-Countable
   * Suppress "Headers already sent" in PHP 7.2 too
   * (T206476) Output only to stderr in unit tests
