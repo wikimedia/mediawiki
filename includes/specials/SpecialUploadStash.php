@@ -447,10 +447,3 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		return true;
 	}
 }
-
-/**
- * @ingroup SpecialPage
- * @ingroup Upload
- */
-class SpecialUploadStashTooLargeException extends UploadStashException {
-}

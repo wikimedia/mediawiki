@@ -409,18 +409,3 @@ class UploadFromChunks extends UploadFromFile {
 		}
 	}
 }
-
-class UploadChunkZeroLengthFileException extends MWException {
-}
-
-class UploadChunkFileException extends MWException {
-}
-
-class UploadChunkVerificationException extends MWException {
-	public $msg;
-	public function __construct( array $res ) {
-		$this->msg = wfMessage( ...$res );
-		parent::__construct( wfMessage( ...$res )
-			->inLanguage( 'en' )->useDatabase( false )->text() );
-	}
-}
