@@ -4021,13 +4021,6 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * @deprecated since 1.27 use getCdnUrls()
-	 */
-	public function getSquidURLs() {
-		return $this->getCdnUrls();
-	}
-
-	/**
 	 * Purge all applicable CDN URLs
 	 */
 	public function purgeSquid() {
