@@ -1642,8 +1642,8 @@ class DifferenceEngine extends ContextSource {
 			$this->mOldPage = Title::newFromLinkTarget( $oldRevision->getPageAsLinkTarget() );
 			// This method is meant for edit diffs and such so there is no reason to provide a
 			// revision that's not readable to the user, but check it just in case.
-			$this->mOldContent = $oldRevision ? $oldRevision->getContent( SlotRecord::MAIN,
-				RevisionRecord::FOR_THIS_USER, $this->getUser() ) : null;
+			$this->mOldContent = $oldRevision->getContent( SlotRecord::MAIN,
+				RevisionRecord::FOR_THIS_USER, $this->getUser() );
 		} else {
 			$this->mOldPage = null;
 			$this->mOldRev = $this->mOldid = false;
