@@ -588,14 +588,15 @@ class User implements IDBAccessObject, UserIdentity {
 		$name = self::getCanonicalName( $name, $validate );
 		if ( $name === false ) {
 			return false;
-		} else {
-			// Create unloaded user object
-			$u = new User;
-			$u->mName = $name;
-			$u->mFrom = 'name';
-			$u->setItemLoaded( 'name' );
-			return $u;
 		}
+
+		// Create unloaded user object
+		$u = new User;
+		$u->mName = $name;
+		$u->mFrom = 'name';
+		$u->setItemLoaded( 'name' );
+
+		return $u;
 	}
 
 	/**
@@ -1125,12 +1126,12 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		// Preg yells if you try to give it an empty string
-		if ( $wgInvalidUsernameCharacters !== '' ) {
-			if ( preg_match( '/[' . preg_quote( $wgInvalidUsernameCharacters, '/' ) . ']/', $name ) ) {
-				wfDebugLog( 'username', __METHOD__ .
-					": '$name' invalid due to wgInvalidUsernameCharacters" );
-				return false;
-			}
+		if ( $wgInvalidUsernameCharacters !== '' &&
+			preg_match( '/[' . preg_quote( $wgInvalidUsernameCharacters, '/' ) . ']/', $name )
+		) {
+			wfDebugLog( 'username', __METHOD__ .
+				": '$name' invalid due to wgInvalidUsernameCharacters" );
+			return false;
 		}
 
 		return self::isUsableName( $name );
@@ -1160,19 +1161,20 @@ class User implements IDBAccessObject, UserIdentity {
 		$result = $this->checkPasswordValidity( $password );
 		if ( $result->isGood() ) {
 			return true;
-		} else {
-			$messages = [];
-			foreach ( $result->getErrorsByType( 'error' ) as $error ) {
-				$messages[] = $error['message'];
-			}
-			foreach ( $result->getErrorsByType( 'warning' ) as $warning ) {
-				$messages[] = $warning['message'];
-			}
-			if ( count( $messages ) === 1 ) {
-				return $messages[0];
-			}
-			return $messages;
 		}
+
+		$messages = [];
+		foreach ( $result->getErrorsByType( 'error' ) as $error ) {
+			$messages[] = $error['message'];
+		}
+		foreach ( $result->getErrorsByType( 'warning' ) as $warning ) {
+			$messages[] = $warning['message'];
+		}
+		if ( count( $messages ) === 1 ) {
+			return $messages[0];
+		}
+
+		return $messages;
 	}
 
 	/**
@@ -1213,12 +1215,14 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $result === false ) {
 			$status->merge( $upp->checkUserPassword( $this, $password ), true );
 			return $status;
-		} elseif ( $result === true ) {
-			return $status;
-		} else {
-			$status->error( $result );
-			return $status; // the isValidPassword hook set a string $result and returned true
 		}
+
+		if ( $result === true ) {
+			return $status;
+		}
+
+		$status->error( $result );
+		return $status; // the isValidPassword hook set a string $result and returned true
 	}
 
 	/**
@@ -1464,12 +1468,13 @@ class User implements IDBAccessObject, UserIdentity {
 			$this->mGroupMemberships = null; // deferred
 			$this->getEditCount(); // revalidation for nulls
 			return true;
-		} else {
-			// Invalid user_id
-			$this->mId = 0;
-			$this->loadDefaults();
-			return false;
 		}
+
+		// Invalid user_id
+		$this->mId = 0;
+		$this->loadDefaults();
+
+		return false;
 	}
 
 	/**
@@ -1974,10 +1979,10 @@ class User implements IDBAccessObject, UserIdentity {
 				if ( $blockIsValid && $useBlockCookie ) {
 					// Use the block.
 					return $tmpBlock;
-				} else {
-					// If the block is not valid, remove the cookie.
-					Block::clearCookie( $this->getRequest()->response() );
 				}
+
+				// If the block is not valid, remove the cookie.
+				Block::clearCookie( $this->getRequest()->response() );
 			} else {
 				// If the block doesn't exist, remove the cookie.
 				Block::clearCookie( $this->getRequest()->response() );
@@ -1996,11 +2001,9 @@ class User implements IDBAccessObject, UserIdentity {
 	public function isDnsBlacklisted( $ip, $checkWhitelist = false ) {
 		global $wgEnableDnsBlacklist, $wgDnsBlacklistUrls, $wgProxyWhitelist;
 
-		if ( !$wgEnableDnsBlacklist ) {
-			return false;
-		}
-
-		if ( $checkWhitelist && in_array( $ip, $wgProxyWhitelist ) ) {
+		if ( !$wgEnableDnsBlacklist ||
+			( $checkWhitelist && in_array( $ip, $wgProxyWhitelist ) )
+		) {
 			return false;
 		}
 
@@ -2044,9 +2047,9 @@ class User implements IDBAccessObject, UserIdentity {
 					wfDebugLog( 'dnsblacklist', "Hostname $host is {$ipList[0]}, it's a proxy says $basename!" );
 					$found = true;
 					break;
-				} else {
-					wfDebugLog( 'dnsblacklist', "Requested $host, not found in $basename." );
 				}
+
+				wfDebugLog( 'dnsblacklist', "Requested $host, not found in $basename." );
 			}
 		}
 
@@ -2166,11 +2169,9 @@ class User implements IDBAccessObject, UserIdentity {
 			if ( isset( $limits['anon'] ) ) {
 				$keys[$cache->makeKey( 'limiter', $action, 'anon' )] = $limits['anon'];
 			}
-		} else {
+		} elseif ( isset( $limits['user'] ) ) {
 			// limits for logged-in users
-			if ( isset( $limits['user'] ) ) {
-				$userLimit = $limits['user'];
-			}
+			$userLimit = $limits['user'];
 		}
 
 		// limits for anons and for newbie logged-in users
@@ -2460,7 +2461,9 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $this->mId === null && $this->mName !== null && self::isIP( $this->mName ) ) {
 			// Special case, we know the user is anonymous
 			return 0;
-		} elseif ( !$this->isItemLoaded( 'id' ) ) {
+		}
+
+		if ( !$this->isItemLoaded( 'id' ) ) {
 			// Don't load if this was initialized from an ID
 			$this->load();
 		}
@@ -2485,14 +2488,15 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $this->isItemLoaded( 'name', 'only' ) ) {
 			// Special case optimisation
 			return $this->mName;
-		} else {
-			$this->load();
-			if ( $this->mName === false ) {
-				// Clean up IPs
-				$this->mName = IP::sanitizeIP( $this->getRequest()->getIP() );
-			}
-			return $this->mName;
 		}
+
+		$this->load();
+		if ( $this->mName === false ) {
+			// Clean up IPs
+			$this->mName = IP::sanitizeIP( $this->getRequest()->getIP() );
+		}
+
+		return $this->mName;
 	}
 
 	/**
@@ -2638,7 +2642,9 @@ class User implements IDBAccessObject, UserIdentity {
 		$talks = [];
 		if ( !Hooks::run( 'UserRetrieveNewTalks', [ &$user, &$talks ] ) ) {
 			return $talks;
-		} elseif ( !$this->getNewtalk() ) {
+		}
+
+		if ( !$this->getNewtalk() ) {
 			return [];
 		}
 		$utp = $this->getTalkPage();
@@ -2666,19 +2672,19 @@ class User implements IDBAccessObject, UserIdentity {
 	public function getNewMessageRevisionId() {
 		$newMessageRevisionId = null;
 		$newMessageLinks = $this->getNewMessageLinks();
-		if ( $newMessageLinks ) {
-			// Note: getNewMessageLinks() never returns more than a single link
-			// and it is always for the same wiki, but we double-check here in
-			// case that changes some time in the future.
-			if ( count( $newMessageLinks ) === 1
-				&& WikiMap::isCurrentWikiId( $newMessageLinks[0]['wiki'] )
-				&& $newMessageLinks[0]['rev']
-			) {
-				/** @var Revision $newMessageRevision */
-				$newMessageRevision = $newMessageLinks[0]['rev'];
-				$newMessageRevisionId = $newMessageRevision->getId();
-			}
+
+		// Note: getNewMessageLinks() never returns more than a single link
+		// and it is always for the same wiki, but we double-check here in
+		// case that changes some time in the future.
+		if ( $newMessageLinks && count( $newMessageLinks ) === 1
+			&& WikiMap::isCurrentWikiId( $newMessageLinks[0]['wiki'] )
+			&& $newMessageLinks[0]['rev']
+		) {
+			/** @var Revision $newMessageRevision */
+			$newMessageRevision = $newMessageLinks[0]['rev'];
+			$newMessageRevisionId = $newMessageRevision->getId();
 		}
+
 		return $newMessageRevisionId;
 	}
 
@@ -2718,10 +2724,10 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $dbw->affectedRows() ) {
 			wfDebug( __METHOD__ . ": set on ($field, $id)\n" );
 			return true;
-		} else {
-			wfDebug( __METHOD__ . " already set ($field, $id)\n" );
-			return false;
 		}
+
+		wfDebug( __METHOD__ . " already set ($field, $id)\n" );
+		return false;
 	}
 
 	/**
@@ -2738,10 +2744,10 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $dbw->affectedRows() ) {
 			wfDebug( __METHOD__ . ": killed on ($field, $id)\n" );
 			return true;
-		} else {
-			wfDebug( __METHOD__ . ": already gone ($field, $id)\n" );
-			return false;
 		}
+
+		wfDebug( __METHOD__ . ": already gone ($field, $id)\n" );
+		return false;
 	}
 
 	/**
@@ -3022,25 +3028,30 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( !$this->mToken ) {
 			// The user doesn't have a token, return null to indicate that.
 			return null;
-		} elseif ( $this->mToken === self::INVALID_TOKEN ) {
+		}
+
+		if ( $this->mToken === self::INVALID_TOKEN ) {
 			// We return a random value here so existing token checks are very
 			// likely to fail.
 			return MWCryptRand::generateHex( self::TOKEN_LENGTH );
-		} elseif ( $wgAuthenticationTokenVersion === null ) {
+		}
+
+		if ( $wgAuthenticationTokenVersion === null ) {
 			// $wgAuthenticationTokenVersion not in use, so return the raw secret
 			return $this->mToken;
-		} else {
-			// $wgAuthenticationTokenVersion in use, so hmac it.
-			$ret = MWCryptHash::hmac( $wgAuthenticationTokenVersion, $this->mToken, false );
-
-			// The raw hash can be overly long. Shorten it up.
-			$len = max( 32, self::TOKEN_LENGTH );
-			if ( strlen( $ret ) < $len ) {
-				// Should never happen, even md5 is 128 bits
-				throw new \UnexpectedValueException( 'Hmac returned less than 128 bits' );
-			}
-			return substr( $ret, -$len );
 		}
+
+		// $wgAuthenticationTokenVersion in use, so hmac it.
+		$ret = MWCryptHash::hmac( $wgAuthenticationTokenVersion, $this->mToken, false );
+
+		// The raw hash can be overly long. Shorten it up.
+		$len = max( 32, self::TOKEN_LENGTH );
+		if ( strlen( $ret ) < $len ) {
+			// Should never happen, even md5 is 128 bits
+			throw new \UnexpectedValueException( 'Hmac returned less than 128 bits' );
+		}
+
+		return substr( $ret, -$len );
 	}
 
 	/**
@@ -3129,19 +3140,17 @@ class User implements IDBAccessObject, UserIdentity {
 		$type = $oldaddr != '' ? 'changed' : 'set';
 		$notificationResult = null;
 
-		if ( $wgEmailAuthentication ) {
+		if ( $wgEmailAuthentication && $type === 'changed' ) {
 			// Send the user an email notifying the user of the change in registered
 			// email address on their previous email address
-			if ( $type == 'changed' ) {
-				$change = $str != '' ? 'changed' : 'removed';
-				$notificationResult = $this->sendMail(
-					wfMessage( 'notificationemail_subject_' . $change )->text(),
-					wfMessage( 'notificationemail_body_' . $change,
-						$this->getRequest()->getIP(),
-						$this->getName(),
-						$str )->text()
-				);
-			}
+			$change = $str != '' ? 'changed' : 'removed';
+			$notificationResult = $this->sendMail(
+				wfMessage( 'notificationemail_subject_' . $change )->text(),
+				wfMessage( 'notificationemail_body_' . $change,
+					$this->getRequest()->getIP(),
+					$this->getName(),
+					$str )->text()
+			);
 		}
 
 		$this->setEmail( $str );
@@ -3211,9 +3220,9 @@ class User implements IDBAccessObject, UserIdentity {
 
 		if ( array_key_exists( $oname, $this->mOptions ) ) {
 			return $this->mOptions[$oname];
-		} else {
-			return $defaultOverride;
 		}
+
+		return $defaultOverride;
 	}
 
 	/**
@@ -3543,14 +3552,15 @@ class User implements IDBAccessObject, UserIdentity {
 		global $wgSecureLogin;
 		if ( !$wgSecureLogin ) {
 			return false;
-		} else {
-			$https = $this->getBoolOption( 'prefershttps' );
-			Hooks::run( 'UserRequiresHTTPS', [ $this, &$https ] );
-			if ( $https ) {
-				$https = wfCanIPUseHTTPS( $this->getRequest()->getIP() );
-			}
-			return $https;
 		}
+
+		$https = $this->getBoolOption( 'prefershttps' );
+		Hooks::run( 'UserRequiresHTTPS', [ $this, &$https ] );
+		if ( $https ) {
+			$https = wfCanIPUseHTTPS( $this->getRequest()->getIP() );
+		}
+
+		return $https;
 	}
 
 	/**
@@ -3932,10 +3942,10 @@ class User implements IDBAccessObject, UserIdentity {
 	public function getRequest() {
 		if ( $this->mRequest ) {
 			return $this->mRequest;
-		} else {
-			global $wgRequest;
-			return $wgRequest;
 		}
+
+		global $wgRequest;
+		return $wgRequest;
 	}
 
 	/**
@@ -4107,19 +4117,18 @@ class User implements IDBAccessObject, UserIdentity {
 		$learnerRegistration = wfTimestamp( TS_MW, $now - $wgLearnerMemberSince * 86400 );
 		$experiencedRegistration = wfTimestamp( TS_MW, $now - $wgExperiencedUserMemberSince * 86400 );
 
-		if (
-			$editCount < $wgLearnerEdits ||
-			$registration > $learnerRegistration
-		) {
+		if ( $editCount < $wgLearnerEdits ||
+		$registration > $learnerRegistration ) {
 			return 'newcomer';
-		} elseif (
-			$editCount > $wgExperiencedUserEdits &&
+		}
+
+		if ( $editCount > $wgExperiencedUserEdits &&
 			$registration <= $experiencedRegistration
 		) {
 			return 'experienced';
-		} else {
-			return 'learner';
 		}
+
+		return 'learner';
 	}
 
 	/**
@@ -4936,9 +4945,9 @@ class User implements IDBAccessObject, UserIdentity {
 				return false;
 			}
 			return true;
-		} else {
-			return $confirmed;
 		}
+
+		return $confirmed;
 	}
 
 	/**
@@ -5214,9 +5223,9 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $title ) {
 			return MediaWikiServices::getInstance()
 				->getLinkRenderer()->makeLink( $title, $text );
-		} else {
-			return htmlspecialchars( $text );
 		}
+
+		return htmlspecialchars( $text );
 	}
 
 	/**
@@ -5239,9 +5248,9 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $title ) {
 			$page = $title->getFullText();
 			return "[[$page|$text]]";
-		} else {
-			return $text;
 		}
+
+		return $text;
 	}
 
 	/**
@@ -5710,9 +5719,9 @@ class User implements IDBAccessObject, UserIdentity {
 
 		if ( $groups ) {
 			return Status::newFatal( 'badaccess-groups', $wgLang->commaList( $groups ), count( $groups ) );
-		} else {
-			return Status::newFatal( 'badaccess-group0' );
 		}
+
+		return Status::newFatal( 'badaccess-group0' );
 	}
 
 	/**
