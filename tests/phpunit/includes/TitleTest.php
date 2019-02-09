@@ -730,18 +730,6 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertSame( $expected, $actual, $title->getPrefixedDBkey() );
 	}
 
-	/**
-	 * @dataProvider provideCanHaveTalkPage
-	 * @covers Title::canTalk
-	 *
-	 * @param Title $title
-	 * @param bool $expected
-	 */
-	public function testCanTalk( Title $title, $expected ) {
-		$actual = $title->canTalk();
-		$this->assertSame( $expected, $actual, $title->getPrefixedDBkey() );
-	}
-
 	public static function provideGetTalkPage_good() {
 		return [
 			[ Title::makeTitle( NS_MAIN, 'Test' ), Title::makeTitle( NS_TALK, 'Test' ) ],
