@@ -233,6 +233,8 @@ because of Phabricator reports.
   of SessionManager, has been removed.
 * SessionManager::autoCreateUser, deprecated in 1.27, has been removed. Use
   MediaWiki\Auth\AuthManager::autoCreateUser instead.
+* The mw.libs.jpegmeta property, deprecated in 1.31, was removed.
+  Use require( 'mediawiki.libs.jpegmeta' ) instead.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
