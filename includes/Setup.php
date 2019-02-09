@@ -580,21 +580,6 @@ if ( $wgMaximalPasswordLength !== false ) {
 	$wgPasswordPolicy['policies']['default']['MaximalPasswordLength'] = $wgMaximalPasswordLength;
 }
 
-// Backwards compatibility warning
-if ( !$wgSessionsInObjectCache ) {
-	wfDeprecated( '$wgSessionsInObjectCache = false', '1.27' );
-	if ( $wgSessionHandler ) {
-		wfDeprecated( '$wgSessionsHandler', '1.27' );
-	}
-	$cacheType = get_class( ObjectCache::getInstance( $wgSessionCacheType ) );
-	wfDebugLog(
-		'caches',
-		"Session data will be stored in \"$cacheType\" cache with " .
-			"expiry $wgObjectCacheSessionExpiry seconds"
-	);
-}
-$wgSessionsInObjectCache = true;
-
 if ( $wgPHPSessionHandling !== 'enable' &&
 	$wgPHPSessionHandling !== 'warn' &&
 	$wgPHPSessionHandling !== 'disable'
