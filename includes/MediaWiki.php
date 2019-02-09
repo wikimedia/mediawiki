@@ -569,8 +569,11 @@ class MediaWiki {
 	}
 
 	/**
-	 * This function commits all DB changes as needed before
-	 * the user can receive a response (in case commit fails)
+	 * This function commits all DB and session changes as needed *before* the
+	 * client can receive a response (in case DB commit fails) and thus also before
+	 * the response can trigger a subsequent related request by the client
+	 *
+	 * If there is a significant amount of content to flush, it can be done in $postCommitWork
 	 *
 	 * @param IContextSource $context
 	 * @param callable|null $postCommitWork [default: null]
@@ -598,6 +601,8 @@ class MediaWiki {
 		// Run updates that need to block the user or affect output (this is the last chance)
 		DeferredUpdates::doUpdates( 'enqueue', DeferredUpdates::PRESEND );
 		wfDebug( __METHOD__ . ': pre-send deferred updates completed' );
+		// T214471: persist the session to avoid race conditions on subsequent requests
+		$request->getSession()->save();
 
 		// Should the client return, their request should observe the new ChronologyProtector
 		// DB positions. This request might be on a foreign wiki domain, so synchronously update

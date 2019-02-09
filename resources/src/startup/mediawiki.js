@@ -314,21 +314,23 @@
 		 * @param {string} key Name of property to create in `obj`
 		 * @param {Mixed} val The value this property should return when accessed
 		 * @param {string} [msg] Optional text to include in the deprecation message
-		 * @param {string} [logName=key] Optional custom name for the feature.
-		 *  This is used instead of `key` in the message and `mw.deprecate` tracking.
+		 * @param {string} [logName] Name for the feature for logging and tracking
+		 *  purposes. Except for properties of the window object, tracking is only
+		 *  enabled if logName is set.
 		 */
 		log.deprecate = function ( obj, key, val, msg, logName ) {
 			var stacks;
 			function maybeLog() {
-				var name,
+				var name = logName || key,
 					trace = new Error().stack;
 				if ( !stacks ) {
 					stacks = new StringSet();
 				}
 				if ( !stacks.has( trace ) ) {
 					stacks.add( trace );
-					name = logName || key;
-					mw.track( 'mw.deprecate', name );
+					if ( logName || obj === window ) {
+						mw.track( 'mw.deprecate', name );
+					}
 					mw.log.warn(
 						'Use of "' + name + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' )
 					);

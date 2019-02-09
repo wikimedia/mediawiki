@@ -206,6 +206,9 @@ because of Phabricator reports.
   * Title->getSkinFromCssJsSubpage() – Use Title->getSkinFromConfigSubpage()
   * Title->isCssSubpage() – Use Title->isUserCssConfigPage()
   * Title->isJsSubpage() – Use Title->isUserJsConfigPage()
+* SiteSQLStore, deprecated in 1.27 and whose only method, ::newInstance(),
+  would return the global SiteStore instance, has been removed. You can get to
+  this via MediaWiki\MediaWikiServices::getInstance()->getSiteStore() directly.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
