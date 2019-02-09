@@ -217,6 +217,8 @@ because of Phabricator reports.
   use MediaWikiServices::getInstance()->getEventRelayerGroup() directly.
 * LinkCache->addLink(), deprecated in 1.27, has been removed. It is thought to
   be unused, and is distinct from OutputPage->addLink(), which remains.
+* JsonContent->getJsonData(), deprecated in 1.25, has been removed. Instead, use
+  JsonContent->getData().
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected

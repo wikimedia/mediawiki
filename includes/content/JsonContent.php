@@ -29,17 +29,6 @@ class JsonContent extends TextContent {
 	}
 
 	/**
-	 * Decodes the JSON into a PHP associative array.
-	 *
-	 * @deprecated since 1.25 Use getData instead.
-	 * @return array|null
-	 */
-	public function getJsonData() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return FormatJson::decode( $this->getText(), true );
-	}
-
-	/**
 	 * Decodes the JSON string.
 	 *
 	 * Note that this parses it without casting objects to associative arrays.
