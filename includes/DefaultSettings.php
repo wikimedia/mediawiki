@@ -2513,19 +2513,9 @@ $wgMainStash = 'db-replicated';
 $wgParserCacheExpireTime = 86400;
 
 /**
- * @deprecated since 1.27, session data is always stored in object cache.
- */
-$wgSessionsInObjectCache = true;
-
-/**
  * The expiry time to use for session storage, in seconds.
  */
 $wgObjectCacheSessionExpiry = 3600;
-
-/**
- * @deprecated since 1.27, MediaWiki\Session\SessionManager doesn't use PHP session storage.
- */
-$wgSessionHandler = null;
 
 /**
  * Whether to use PHP session handling ($_SESSION and session_*() functions)

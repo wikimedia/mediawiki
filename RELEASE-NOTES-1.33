@@ -228,6 +228,9 @@ because of Phabricator reports.
 * User::getGroupName() and ::getGroupMember(), both deprecated in 1.29, have
   been removed. Instead, please use UserGroupMembership::getGroupName() and
   UserGroupMembership::getGroupMemberName().
+* Backwards compatibility for setting wgSessionsInObjectCache to false or using
+  wgSessionHandler, both of which were deprecated in 1.27 with the introduction
+  of SessionManager, has been removed.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
