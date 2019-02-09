@@ -66,6 +66,7 @@ production.
   * The deprecated IPSet\IPSet alias was removed, Wikimedia\IPSet must be
     used instead.
 * Updated qunitjs from 2.6.2 to 2.9.1.
+* Updated jquery-client from 2.0.1 to 2.0.2.
 
 ==== Removed external libraries ====
 
