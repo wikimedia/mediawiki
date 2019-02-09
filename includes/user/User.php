@@ -5125,31 +5125,6 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Get the localized descriptive name for a group, if it exists
-	 * @deprecated since 1.29 Use UserGroupMembership::getGroupName instead
-	 *
-	 * @param string $group Internal group name
-	 * @return string Localized descriptive group name
-	 */
-	public static function getGroupName( $group ) {
-		wfDeprecated( __METHOD__, '1.29' );
-		return UserGroupMembership::getGroupName( $group );
-	}
-
-	/**
-	 * Get the localized descriptive name for a member of a group, if it exists
-	 * @deprecated since 1.29 Use UserGroupMembership::getGroupMemberName instead
-	 *
-	 * @param string $group Internal group name
-	 * @param string $username Username for gender (since 1.19)
-	 * @return string Localized name for group member
-	 */
-	public static function getGroupMember( $group, $username = '#' ) {
-		wfDeprecated( __METHOD__, '1.29' );
-		return UserGroupMembership::getGroupMemberName( $group, $username );
-	}
-
-	/**
 	 * Return the set of defined explicit groups.
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.

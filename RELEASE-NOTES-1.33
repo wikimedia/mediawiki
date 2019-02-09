@@ -223,6 +223,11 @@ because of Phabricator reports.
   exception ID is the same as the request ID, from WebRequest::getRequestId().
 * SearchEngine::getNearMatchResultSet(), deprecated in 1.27, has been removed.
   You can use SearchEngine::getNearMatcher() instead.
+* EmailNotification::updateWatchlistTimestamp, deprecated in 1.27, has been
+  removed. Instead, use WatchedItemStore::updateNotificationTimestamp directly.
+* User::getGroupName() and ::getGroupMember(), both deprecated in 1.29, have
+  been removed. Instead, please use UserGroupMembership::getGroupName() and
+  UserGroupMembership::getGroupMemberName().
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
