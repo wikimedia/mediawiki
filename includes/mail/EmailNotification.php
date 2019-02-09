@@ -24,7 +24,6 @@
  * @author Luke Welling lwelling@wikimedia.org
  */
 
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -87,33 +86,6 @@ class EmailNotification {
 	 */
 	public function getPageStatus() {
 		return $this->pageStatus;
-	}
-
-	/**
-	 * @deprecated since 1.27 use WatchedItemStore::updateNotificationTimestamp directly
-	 *
-	 * @param User $editor The editor that triggered the update.  Their notification
-	 *  timestamp will not be updated(they have already seen it)
-	 * @param LinkTarget $linkTarget The link target of the title to update timestamps for
-	 * @param string $timestamp Set the update timestamp to this value
-	 *
-	 * @return int[] Array of user IDs
-	 */
-	public static function updateWatchlistTimestamp(
-		User $editor,
-		LinkTarget $linkTarget,
-		$timestamp
-	) {
-		wfDeprecated( __METHOD__, '1.27' );
-		$config = RequestContext::getMain()->getConfig();
-		if ( !$config->get( 'EnotifWatchlist' ) && !$config->get( 'ShowUpdatedMarker' ) ) {
-			return [];
-		}
-		return MediaWikiServices::getInstance()->getWatchedItemStore()->updateNotificationTimestamp(
-			$editor,
-			$linkTarget,
-			$timestamp
-		);
 	}
 
 	/**
