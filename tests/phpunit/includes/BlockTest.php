@@ -131,7 +131,7 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::prevents
+	 * @covers Block::appliesToRight
 	 */
 	public function testBlockedUserCanNotCreateAccount() {
 		$username = 'BlockedUserToCreateAccountWith';
@@ -174,8 +174,8 @@ class BlockTest extends MediaWikiLangTestCase {
 		// Reload block from DB
 		$userBlock = Block::newFromTarget( $username );
 		$this->assertTrue(
-			(bool)$block->prevents( 'createaccount' ),
-			"Block object in DB should prevents 'createaccount'"
+			(bool)$block->appliesToRight( 'createaccount' ),
+			"Block object in DB should block right 'createaccount'"
 		);
 
 		$this->assertInstanceOf(
@@ -304,7 +304,7 @@ class BlockTest extends MediaWikiLangTestCase {
 			$block->setBlocker( $blocker );
 			$block->mReason = $insBlock['desc'];
 			$block->mExpiry = 'infinity';
-			$block->prevents( 'createaccount', $insBlock['ACDisable'] );
+			$block->isCreateAccountBlocked( $insBlock['ACDisable'] );
 			$block->isHardblock( $insBlock['isHardblock'] );
 			$block->isAutoblocking( $insBlock['isAutoBlocking'] );
 			$block->insert();
@@ -422,7 +422,7 @@ class BlockTest extends MediaWikiLangTestCase {
 
 		# Check default parameter
 		$this->assertFalse(
-			(bool)$block->prevents( 'createaccount' ),
+			(bool)$block->appliesToRight( 'createaccount' ),
 			"Account creation should not be blocked by default"
 		);
 	}
@@ -761,14 +761,14 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::prevents
+	 * @covers Block::appliesToRight
 	 */
 	public function testBlockAllowsPurge() {
 		$this->setMwGlobals( [
 			'wgBlockDisablesLogin' => false,
 		] );
 		$block = new Block();
-		$this->assertFalse( $block->prevents( 'purge' ) );
+		$this->assertFalse( $block->appliesToRight( 'purge' ) );
 	}
 
 }

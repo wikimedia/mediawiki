@@ -270,7 +270,7 @@ class PasswordReset implements LoggerAwareInterface {
 			// Normal block. Maybe it was meant for someone else and the user just needs to log in;
 			// or maybe it was issued specifically to prevent some IP from messing with password
 			// reset? Go out on a limb and use the registration allowed flag to decide.
-			return $block->prevents( 'createaccount' );
+			return $block->isCreateAccountBlocked();
 		} elseif ( $type === 'proxy' ) {
 			// we disallow actions through proxy even if the user is logged in
 			// so it makes sense to disallow password resets as well
