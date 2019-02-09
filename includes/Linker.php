@@ -1964,23 +1964,6 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated since 1.28, use Language::formatSize() directly
-	 *
-	 * Format a size in bytes for output, using an appropriate
-	 * unit (B, KB, MB or GB) according to the magnitude in question
-	 *
-	 * @since 1.16.3
-	 * @param int $size Size to format
-	 * @return string
-	 */
-	public static function formatSize( $size ) {
-		wfDeprecated( __METHOD__, '1.28' );
-
-		global $wgLang;
-		return htmlspecialchars( $wgLang->formatSize( $size ) );
-	}
-
-	/**
 	 * Given the id of an interface element, constructs the appropriate title
 	 * attribute from the system messages.  (Note, this is usually the id but
 	 * isn't always, because sometimes the accesskey needs to go on a different
