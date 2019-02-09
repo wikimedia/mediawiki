@@ -215,6 +215,8 @@ because of Phabricator reports.
   version in DummyLinker). You can use TemplatesOnThisPageFormatter directly.
 * EventRelayerGroup::singleton(), deprecated in 1.27, has been removed. You can
   use MediaWikiServices::getInstance()->getEventRelayerGroup() directly.
+* LinkCache->addLink(), deprecated in 1.27, has been removed. It is thought to
+  be unused, and is distinct from OutputPage->addLink(), which remains.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
