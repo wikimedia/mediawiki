@@ -378,23 +378,6 @@ final class SessionManager implements SessionManagerInterface {
 	 */
 
 	/**
-	 * Auto-create the given user, if necessary
-	 * @private Don't call this yourself. Let Setup.php do it for you at the right time.
-	 * @deprecated since 1.27, use MediaWiki\Auth\AuthManager::autoCreateUser instead
-	 * @param User $user User to auto-create
-	 * @return bool Success
-	 * @codeCoverageIgnore
-	 */
-	public static function autoCreateUser( User $user ) {
-		wfDeprecated( __METHOD__, '1.27' );
-		return \MediaWiki\Auth\AuthManager::singleton()->autoCreateUser(
-			$user,
-			\MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_SESSION,
-			false
-		)->isGood();
-	}
-
-	/**
 	 * Prevent future sessions for the user
 	 *
 	 * The intention is that the named account will never again be usable for

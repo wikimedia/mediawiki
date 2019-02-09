@@ -231,6 +231,8 @@ because of Phabricator reports.
 * Backwards compatibility for setting wgSessionsInObjectCache to false or using
   wgSessionHandler, both of which were deprecated in 1.27 with the introduction
   of SessionManager, has been removed.
+* SessionManager::autoCreateUser, deprecated in 1.27, has been removed. Use
+  MediaWiki\Auth\AuthManager::autoCreateUser instead.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
