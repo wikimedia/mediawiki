@@ -1057,17 +1057,6 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Can this title have a corresponding talk page?
 	 *
-	 * @deprecated since 1.30, use canHaveTalkPage() instead.
-	 *
-	 * @return bool True if this title either is a talk page or can have a talk page associated.
-	 */
-	public function canTalk() {
-		return $this->canHaveTalkPage();
-	}
-
-	/**
-	 * Can this title have a corresponding talk page?
-	 *
 	 * @see MWNamespace::hasTalkNamespace
 	 * @since 1.30
 	 *
