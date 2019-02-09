@@ -66,6 +66,7 @@ production.
   * The deprecated IPSet\IPSet alias was removed, Wikimedia\IPSet must be
     used instead.
 * Updated qunitjs from 2.6.2 to 2.9.1.
+* Updated jquery-client from 2.0.1 to 2.0.2.
 
 ==== Removed external libraries ====
 
@@ -235,6 +236,8 @@ because of Phabricator reports.
   MediaWiki\Auth\AuthManager::autoCreateUser instead.
 * The mw.libs.jpegmeta property, deprecated in 1.31, was removed.
   Use require( 'mediawiki.libs.jpegmeta' ) instead.
+* The mw.user.stickyRandomId() method, deprecated in 1.32, was removed.
+  Use mw.user.getPageviewToken() instead.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
