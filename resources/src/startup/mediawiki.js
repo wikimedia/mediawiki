@@ -13,8 +13,7 @@
 	'use strict';
 
 	var mw, StringSet, log,
-		hasOwn = Object.prototype.hasOwnProperty,
-		trackQueue = [];
+		hasOwn = Object.prototype.hasOwnProperty;
 
 	/**
 	 * FNV132 hash function
@@ -29,10 +28,10 @@
 	 * @return {string} hash as an seven-character base 36 string
 	 */
 	function fnv132( str ) {
-		/* eslint-disable no-bitwise */
 		var hash = 0x811C9DC5,
 			i;
 
+		/* eslint-disable no-bitwise */
 		for ( i = 0; i < str.length; i++ ) {
 			hash += ( hash << 1 ) + ( hash << 4 ) + ( hash << 7 ) + ( hash << 8 ) + ( hash << 24 );
 			hash ^= str.charCodeAt( i );
@@ -42,9 +41,9 @@
 		while ( hash.length < 7 ) {
 			hash = '0' + hash;
 		}
+		/* eslint-enable no-bitwise */
 
 		return hash;
-		/* eslint-enable no-bitwise */
 	}
 
 	function defineFallbacks() {
@@ -102,16 +101,14 @@
 	function logError( topic, data ) {
 		var msg,
 			e = data.exception,
-			source = data.source,
-			module = data.module,
 			console = window.console;
 
 		if ( console && console.log ) {
-			msg = ( e ? 'Exception' : 'Error' ) + ' in ' + source;
-			if ( module ) {
-				msg += ' in module ' + module;
-			}
-			msg += ( e ? ':' : '.' );
+			msg = ( e ? 'Exception' : 'Error' ) +
+				' in ' + data.source +
+				( data.module ? ' in module ' + data.module : '' ) +
+				( e ? ':' : '.' );
+
 			console.log( msg );
 
 			// If we have an exception object, log it to the warning channel to trigger
@@ -141,13 +138,11 @@
 			this.set = function ( selection, value ) {
 				var s;
 				if ( arguments.length > 1 ) {
-					if ( typeof selection !== 'string' ) {
-						return false;
+					if ( typeof selection === 'string' ) {
+						setGlobalMapValue( this, selection, value );
+						return true;
 					}
-					setGlobalMapValue( this, selection, value );
-					return true;
-				}
-				if ( typeof selection === 'object' ) {
+				} else if ( typeof selection === 'object' ) {
 					for ( s in selection ) {
 						setGlobalMapValue( this, s, selection[ s ] );
 					}
@@ -217,13 +212,13 @@
 			var s;
 			// Use `arguments.length` because `undefined` is also a valid value.
 			if ( arguments.length > 1 ) {
-				if ( typeof selection !== 'string' ) {
-					return false;
+				// Set one key
+				if ( typeof selection === 'string' ) {
+					this.values[ selection ] = value;
+					return true;
 				}
-				this.values[ selection ] = value;
-				return true;
-			}
-			if ( typeof selection === 'object' ) {
+			} else if ( typeof selection === 'object' ) {
+				// Set multiple keys
 				for ( s in selection ) {
 					this.values[ s ] = selection[ s ];
 				}
@@ -332,7 +327,7 @@
 						mw.track( 'mw.deprecate', name );
 					}
 					mw.log.warn(
-						'Use of "' + name + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' )
+						'Use of "' + name + '" is deprecated.' + ( msg ? ' ' + msg : '' )
 					);
 				}
 			}
@@ -366,7 +361,7 @@
 	mw = {
 		redefineFallbacksForTest: function () {
 			if ( !window.QUnit ) {
-				throw new Error( 'Reset not allowed outside unit tests' );
+				throw new Error( 'Not allowed' );
 			}
 			defineFallbacks();
 		},
@@ -381,12 +376,13 @@
 		 * @return {number} Current time
 		 */
 		now: function () {
-			// Optimisation: Define the shortcut on first call, not at module definition.
+			// Optimisation: Make startup initialisation faster by defining the
+			// shortcut on first call, not at module definition.
 			var perf = window.performance,
 				navStart = perf && perf.timing && perf.timing.navigationStart;
 
 			// Define the relevant shortcut
-			mw.now = navStart && typeof perf.now === 'function' ?
+			mw.now = navStart && perf.now ?
 				function () { return navStart + perf.now(); } :
 				Date.now;
 
@@ -396,14 +392,16 @@
 		/**
 		 * List of all analytic events emitted so far.
 		 *
+		 * Exposed only for use by mediawiki.base.
+		 *
 		 * @private
 		 * @property {Array}
 		 */
-		trackQueue: trackQueue,
+		trackQueue: [],
 
 		track: function ( topic, data ) {
-			trackQueue.push( { topic: topic, timeStamp: mw.now(), data: data } );
-			// The base module extends this method to fire events here
+			mw.trackQueue.push( { topic: topic, timeStamp: mw.now(), data: data } );
+			// This method is extended by mediawiki.base to also fire events.
 		},
 
 		/**
@@ -841,7 +839,7 @@
 							i -= 1;
 							try {
 								if ( failed && job.error ) {
-									job.error( new Error( 'Module has failed dependencies' ), job.dependencies );
+									job.error( new Error( 'Failed dependencies' ), job.dependencies );
 								} else if ( !failed && job.ready ) {
 									job.ready();
 								}
@@ -951,11 +949,11 @@
 
 				// Add base modules
 				if ( baseModules.indexOf( module ) === -1 ) {
-					baseModules.forEach( function ( baseModule ) {
-						if ( resolved.indexOf( baseModule ) === -1 ) {
-							resolved.push( baseModule );
+					for ( i = 0; i < baseModules.length; i++ ) {
+						if ( resolved.indexOf( baseModules[ i ] ) === -1 ) {
+							resolved.push( baseModules[ i ] );
 						}
-					} );
+					}
 				}
 
 				// Tracks down dependencies
@@ -1248,9 +1246,9 @@
 						// these as the server will deny them anyway (T101806).
 						if ( registry[ module ].group === 'private' ) {
 							setAndPropagate( module, 'error' );
-							return;
+						} else {
+							queue.push( module );
 						}
-						queue.push( module );
 					}
 				} );
 
@@ -1324,8 +1322,8 @@
 							} else {
 								mainScript = script.files[ script.main ];
 								if ( typeof mainScript !== 'function' ) {
-									throw new Error( 'Main script file ' + script.main + ' in module ' + module +
-										'must be of type function, is of type ' + typeof mainScript );
+									throw new Error( 'Main file ' + script.main + ' in module ' + module +
+										' must be of type function, found ' + typeof mainScript );
 								}
 								// jQuery parameters are not passed for multi-file modules
 								mainScript(
@@ -2034,7 +2032,7 @@
 								return;
 							}
 							// Unknown type
-							throw new Error( 'invalid type for external url, must be text/css or text/javascript. not ' + type );
+							throw new Error( 'type must be text/css or text/javascript, found ' + type );
 						}
 						// Called with single module
 						modules = [ modules ];
@@ -2120,7 +2118,7 @@
 					// Only ready modules can be required
 					if ( state !== 'ready' ) {
 						// Module may've forgotten to declare a dependency
-						throw new Error( 'Module "' + moduleName + '" is not loaded.' );
+						throw new Error( 'Module "' + moduleName + '" is not loaded' );
 					}
 
 					return registry[ moduleName ].module.exports;
@@ -2284,6 +2282,7 @@
 							this.stats.hits++;
 							return this.items[ key ];
 						}
+
 						this.stats.misses++;
 						return false;
 					},
@@ -2350,8 +2349,8 @@
 								!Array.isArray( descriptor.script )
 							) {
 								encodedScript = '{' +
-									'"main":' + JSON.stringify( descriptor.script.main ) + ',' +
-									'"files":{' +
+									'main:' + JSON.stringify( descriptor.script.main ) + ',' +
+									'files:{' +
 									Object.keys( descriptor.script.files ).map( function ( key ) {
 										var value = descriptor.script.files[ key ];
 										return JSON.stringify( key ) + ':' +
