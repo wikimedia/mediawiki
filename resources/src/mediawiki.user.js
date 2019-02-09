@@ -190,10 +190,4 @@
 		}
 	} );
 
-	/**
-	 * @method stickyRandomId
-	 * @deprecated since 1.32 use getPageviewToken instead
-	 */
-	mw.log.deprecate( mw.user, 'stickyRandomId', mw.user.getPageviewToken, 'Please use getPageviewToken instead' );
-
 }() );
