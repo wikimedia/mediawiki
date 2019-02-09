@@ -2,6 +2,45 @@ const MWBot = require( 'mwbot' ),
 	Page = require( './Page' ),
 	FRONTPAGE_REQUESTS_MAX_RUNS = 10; // (arbitrary) safe-guard against endless execution
 
+function getJobCount() {
+	let bot = new MWBot( {
+		apiUrl: `${browser.options.baseUrl}/api.php`
+	} );
+	return new Promise( ( resolve ) => {
+		return bot.request( {
+			action: 'query',
+			meta: 'siteinfo',
+			siprop: 'statistics'
+		} ).then( ( response ) => {
+			resolve( response.query.statistics.jobs );
+		} );
+	} );
+}
+
+function log( message ) {
+	process.stdout.write( `RunJobs ${message}\n` );
+}
+
+function runThroughFrontPageRequests( runCount = 1 ) {
+	let page = new Page();
+	log( `through requests to the front page (run ${runCount}).` );
+
+	page.openTitle( '' );
+
+	return getJobCount().then( ( jobCount ) => {
+		if ( jobCount === 0 ) {
+			log( 'found no more queued jobs.' );
+			return;
+		}
+		log( `detected ${jobCount} more queued job(s).` );
+		if ( runCount >= FRONTPAGE_REQUESTS_MAX_RUNS ) {
+			log( 'stopping requests to the front page due to reached limit.' );
+			return;
+		}
+		return runThroughFrontPageRequests( ++runCount );
+	} );
+}
+
 /**
  * Trigger the execution of jobs
  *
@@ -26,47 +65,8 @@ class RunJobs {
 
 	static run() {
 		browser.call( () => {
-			return this.runThroughFrontPageRequests();
+			return runThroughFrontPageRequests();
 		} );
-	}
-
-	static getJobCount() {
-		let bot = new MWBot( {
-			apiUrl: `${browser.options.baseUrl}/api.php`
-		} );
-		return new Promise( ( resolve ) => {
-			return bot.request( {
-				action: 'query',
-				meta: 'siteinfo',
-				siprop: 'statistics'
-			} ).then( ( response ) => {
-				resolve( response.query.statistics.jobs );
-			} );
-		} );
-	}
-
-	static runThroughFrontPageRequests( runCount = 1 ) {
-		let page = new Page();
-		this.log( `through requests to the front page (run ${runCount}).` );
-
-		page.openTitle( '' );
-
-		return this.getJobCount().then( ( jobCount ) => {
-			if ( jobCount === 0 ) {
-				this.log( 'found no more queued jobs.' );
-				return;
-			}
-			this.log( `detected ${jobCount} more queued job(s).` );
-			if ( runCount >= FRONTPAGE_REQUESTS_MAX_RUNS ) {
-				this.log( 'stopping requests to the front page due to reached limit.' );
-				return;
-			}
-			return this.runThroughFrontPageRequests( ++runCount );
-		} );
-	}
-
-	static log( message ) {
-		process.stdout.write( `RunJobs ${message}\n` );
 	}
 }
 
