@@ -220,7 +220,9 @@ because of Phabricator reports.
 * JsonContent->getJsonData(), deprecated in 1.25, has been removed. Instead, use
   JsonContent->getData().
 * MWExceptionHandler::getLogId(), deprecated in 1.27, has been removed, as the
-  exception ID is the same as the request ID, from WebRequest::getRequestId()..
+  exception ID is the same as the request ID, from WebRequest::getRequestId().
+* SearchEngine::getNearMatchResultSet(), deprecated in 1.27, has been removed.
+  You can use SearchEngine::getNearMatcher() instead.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected

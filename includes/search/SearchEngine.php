@@ -280,18 +280,6 @@ abstract class SearchEngine {
 	}
 
 	/**
-	 * Do a near match (see SearchEngine::getNearMatch) and wrap it into a
-	 * SearchResultSet.
-	 * @deprecated since 1.27; Use SearchEngine::getNearMatcher()
-	 * @param string $searchterm
-	 * @return SearchResultSet
-	 */
-	public static function getNearMatchResultSet( $searchterm ) {
-		wfDeprecated( __METHOD__, '1.27' );
-		return static::defaultNearMatcher()->getNearMatchResultSet( $searchterm );
-	}
-
-	/**
 	 * Get chars legal for search
 	 * NOTE: usage as static is deprecated and preserved only as BC measure
 	 * @param int $type type of search chars (see self::CHARS_ALL
