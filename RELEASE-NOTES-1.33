@@ -219,6 +219,8 @@ because of Phabricator reports.
   be unused, and is distinct from OutputPage->addLink(), which remains.
 * JsonContent->getJsonData(), deprecated in 1.25, has been removed. Instead, use
   JsonContent->getData().
+* MWExceptionHandler::getLogId(), deprecated in 1.27, has been removed, as the
+  exception ID is the same as the request ID, from WebRequest::getRequestId()..
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
