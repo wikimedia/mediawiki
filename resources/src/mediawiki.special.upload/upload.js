@@ -490,7 +490,7 @@
 				};
 				img.src = dataURL;
 			}, mw.config.get( 'wgFileCanRotate' ) ? function ( data ) {
-				var jpegmeta = mw.loader.require( 'mediawiki.libs.jpegmeta' );
+				var jpegmeta = require( 'mediawiki.libs.jpegmeta' );
 				try {
 					meta = jpegmeta( data, file.fileName );
 					// eslint-disable-next-line no-underscore-dangle, camelcase
