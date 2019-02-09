@@ -209,6 +209,12 @@ because of Phabricator reports.
 * SiteSQLStore, deprecated in 1.27 and whose only method, ::newInstance(),
   would return the global SiteStore instance, has been removed. You can get to
   this via MediaWiki\MediaWikiServices::getInstance()->getSiteStore() directly.
+* Linker::formatSize, deprecated in 1.28, has been removed (with DummyLinker's).
+  Instead, use Language->formatSize() with the relevant Language object.
+* Linker::formatTemplates, deprecated in 1.28, has been removed (along with the
+  version in DummyLinker). You can use TemplatesOnThisPageFormatter directly.
+* EventRelayerGroup::singleton(), deprecated in 1.27, has been removed. You can
+  use MediaWikiServices::getInstance()->getEventRelayerGroup() directly.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected

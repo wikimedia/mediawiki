@@ -403,36 +403,8 @@ class DummyLinker {
 		);
 	}
 
-	/**
-	 * @deprecated since 1.28, use TemplatesOnThisPageFormatter directly
-	 */
-	public function formatTemplates(
-		$templates,
-		$preview = false,
-		$section = false,
-		$more = null
-	) {
-		wfDeprecated( __METHOD__, '1.28' );
-
-		return Linker::formatTemplates(
-			$templates,
-			$preview,
-			$section,
-			$more
-		);
-	}
-
 	public function formatHiddenCategories( $hiddencats ) {
 		return Linker::formatHiddenCategories( $hiddencats );
-	}
-
-	/**
-	 * @deprecated since 1.28, use Language::formatSize() directly
-	 */
-	public function formatSize( $size ) {
-		wfDeprecated( __METHOD__, '1.28' );
-
-		return Linker::formatSize( $size );
 	}
 
 	public function titleAttrib( $name, $options = null, array $msgParams = [] ) {

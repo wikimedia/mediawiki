@@ -1896,47 +1896,6 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated since 1.28, use TemplatesOnThisPageFormatter directly
-	 *
-	 * Returns HTML for the "templates used on this page" list.
-	 *
-	 * Make an HTML list of templates, and then add a "More..." link at
-	 * the bottom. If $more is null, do not add a "More..." link. If $more
-	 * is a Title, make a link to that title and use it. If $more is a string,
-	 * directly paste it in as the link (escaping needs to be done manually).
-	 * Finally, if $more is a Message, call toString().
-	 *
-	 * @since 1.16.3. $more added in 1.21
-	 * @param Title[] $templates Array of templates
-	 * @param bool $preview Whether this is for a preview
-	 * @param bool $section Whether this is for a section edit
-	 * @param Title|Message|string|null $more An escaped link for "More..." of the templates
-	 * @return string HTML output
-	 */
-	public static function formatTemplates( $templates, $preview = false,
-		$section = false, $more = null
-	) {
-		wfDeprecated( __METHOD__, '1.28' );
-
-		$type = false;
-		if ( $preview ) {
-			$type = 'preview';
-		} elseif ( $section ) {
-			$type = 'section';
-		}
-
-		if ( $more instanceof Message ) {
-			$more = $more->toString();
-		}
-
-		$formatter = new TemplatesOnThisPageFormatter(
-			RequestContext::getMain(),
-			MediaWikiServices::getInstance()->getLinkRenderer()
-		);
-		return $formatter->format( $templates, $type, $more );
-	}
-
-	/**
 	 * Returns HTML for the "hidden categories on this page" list.
 	 *
 	 * @since 1.16.3
@@ -1961,23 +1920,6 @@ class Linker {
 			$outText .= '</ul>';
 		}
 		return $outText;
-	}
-
-	/**
-	 * @deprecated since 1.28, use Language::formatSize() directly
-	 *
-	 * Format a size in bytes for output, using an appropriate
-	 * unit (B, KB, MB or GB) according to the magnitude in question
-	 *
-	 * @since 1.16.3
-	 * @param int $size Size to format
-	 * @return string
-	 */
-	public static function formatSize( $size ) {
-		wfDeprecated( __METHOD__, '1.28' );
-
-		global $wgLang;
-		return htmlspecialchars( $wgLang->formatSize( $size ) );
 	}
 
 	/**
