@@ -190,22 +190,6 @@ class LinkCache {
 	}
 
 	/**
-	 * Add a title to the link cache, return the page_id or zero if non-existent
-	 *
-	 * @deprecated since 1.27, unused
-	 * @param string $title Prefixed DB key
-	 * @return int Page ID or zero
-	 */
-	public function addLink( $title ) {
-		wfDeprecated( __METHOD__, '1.27' );
-		$nt = Title::newFromDBkey( $title );
-		if ( !$nt ) {
-			return 0;
-		}
-		return $this->addLinkObj( $nt );
-	}
-
-	/**
 	 * Fields that LinkCache needs to select
 	 *
 	 * @since 1.28
