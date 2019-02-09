@@ -793,10 +793,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$out->addJsConfigVars( 'wgStructuredChangeFiltersCollapsedState', $collapsed );
 
 			$out->addJsConfigVars(
-				'wgRCFiltersChangeTags',
-				$this->getChangeTagList()
-			);
-			$out->addJsConfigVars(
 				'StructuredChangeFiltersDisplayConfig',
 				[
 					'maxDays' => (int)$this->getConfig()->get( 'RCMaxAge' ) / ( 24 * 3600 ), // Translate to days
@@ -823,26 +819,35 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				'wgStructuredChangeFiltersCollapsedPreferenceName',
 				static::$collapsedPreferenceName
 			);
-
-			$out->addJsConfigVars(
-				'StructuredChangeFiltersLiveUpdatePollingRate',
-				$this->getConfig()->get( 'StructuredChangeFiltersLiveUpdatePollingRate' )
-			);
 		} else {
 			$out->addBodyClasses( 'mw-rcfilters-disabled' );
 		}
 	}
 
 	/**
+	 * Get config vars to export with the mediawiki.rcfilters.filters.ui module.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @return array
+	 */
+	public static function getRcFiltersConfigVars( ResourceLoaderContext $context ) {
+		return [
+			'RCFiltersChangeTags' => self::getChangeTagList( $context ),
+			'StructuredChangeFiltersEditWatchlistUrl' =>
+				SpecialPage::getTitleFor( 'EditWatchlist' )->getLocalURL()
+		];
+	}
+
+	/**
 	 * Fetch the change tags list for the front end
 	 *
+	 * @param ResourceLoaderContext $context
 	 * @return array Tag data
 	 */
-	protected function getChangeTagList() {
+	protected static function getChangeTagList( ResourceLoaderContext $context ) {
 		$cache = ObjectCache::getMainWANInstance();
-		$context = $this->getContext();
 		return $cache->getWithSetCallback(
-			$cache->makeKey( 'changeslistspecialpage-changetags', $context->getLanguage()->getCode() ),
+			$cache->makeKey( 'changeslistspecialpage-changetags', $context->getLanguage() ),
 			$cache::TTL_MINUTE * 10,
 			function () use ( $context ) {
 				$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
@@ -857,6 +862,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				arsort( $tagHitCounts );
 				*/
 				$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags );
+
+				// HACK work around ChangeTags::truncateTagDescription() requiring a RequestContext
+				$fakeContext = new RequestContext;
+				$fakeContext->setLanguage( Language::factory( $context->getLanguage() ) );
 
 				// Build the list and data
 				$result = [];
@@ -873,7 +882,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 							),
 							'description' =>
 								ChangeTags::truncateTagDescription(
-									$tagName, self::TAG_DESC_CHARACTER_LIMIT, $context
+									$tagName,
+									self::TAG_DESC_CHARACTER_LIMIT,
+									$fakeContext
 								),
 							'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
 							'hits' => $hits,
