@@ -235,6 +235,8 @@ because of Phabricator reports.
   MediaWiki\Auth\AuthManager::autoCreateUser instead.
 * The mw.libs.jpegmeta property, deprecated in 1.31, was removed.
   Use require( 'mediawiki.libs.jpegmeta' ) instead.
+* The mw.user.stickyRandomId() method, deprecated in 1.32, was removed.
+  Use mw.user.getPageviewToken() instead.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
