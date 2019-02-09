@@ -1,7 +1,9 @@
 ( function () {
 	'use strict';
 
-	var util;
+	var util,
+		config = require( './config.json' ),
+		origConfig = config;
 
 	/**
 	 * Encode the string like PHP's rawurlencode
@@ -50,6 +52,20 @@
 
 		/* Main body */
 
+		setOptionsForTest: function ( opts ) {
+			if ( !window.QUnit ) {
+				throw new Error( 'Modifying options not allowed outside unit tests' );
+			}
+			config = $.extend( {}, config, opts );
+		},
+
+		resetOptionsForTest: function () {
+			if ( !window.QUnit ) {
+				throw new Error( 'Resetting options not allowed outside unit tests' );
+			}
+			config = origConfig;
+		},
+
 		/**
 		 * Encode the string like PHP's rawurlencode
 		 *
@@ -68,7 +84,7 @@
 		 * @return {string} Encoded string
 		 */
 		escapeIdForAttribute: function ( str ) {
-			var mode = mw.config.get( 'wgFragmentMode' )[ 0 ];
+			var mode = config.FragmentMode[ 0 ];
 
 			return escapeIdInternal( str, mode );
 		},
@@ -83,7 +99,7 @@
 		 * @return {string} Encoded string
 		 */
 		escapeIdForLink: function ( str ) {
-			var mode = mw.config.get( 'wgFragmentMode' )[ 0 ];
+			var mode = config.FragmentMode[ 0 ];
 
 			return escapeIdInternal( str, mode );
 		},

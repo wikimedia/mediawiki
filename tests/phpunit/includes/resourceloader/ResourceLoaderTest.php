@@ -148,10 +148,6 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 			'SkinModule (FileModule subclass)' => [ true,
 				[ 'class' => ResourceLoaderSkinModule::class, 'scripts' => 'example.js' ]
 			],
-			'JqueryMsgModule (FileModule subclass)' => [ true, [
-				'class' => ResourceLoaderJqueryMsgModule::class,
-				'scripts' => 'example.js',
-			] ],
 			'WikiModule' => [ false, [
 				'class' => ResourceLoaderWikiModule::class,
 				'scripts' => [ 'MediaWiki:Example.js' ],
