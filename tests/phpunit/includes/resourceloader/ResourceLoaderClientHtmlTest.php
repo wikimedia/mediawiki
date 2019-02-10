@@ -225,7 +225,7 @@ Deprecation message.' ]
 			. '<script>(window.RLQ=window.RLQ||[]).push(function(){'
 			. 'mw.config.set({"key":"value"});'
 			. 'mw.loader.state({"test.exempt":"ready","test.private":"loading","test.styles.pure":"ready","test.styles.private":"ready","test.styles.deprecated":"ready","test.scripts":"loading"});'
-			. 'mw.loader.implement("test.private@{blankVer}",function($,jQuery,require,module){},{"css":[]});'
+			. 'mw.loader.implement("test.private@{blankVer}",null,{"css":[]});'
 			. 'RLPAGEMODULES=["test"];mw.loader.load(RLPAGEMODULES);'
 			. 'mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts\u0026only=scripts\u0026skin=fallback");'
 			. '});</script>' . "\n"
@@ -343,7 +343,7 @@ Deprecation message.' ]
 				'context' => [],
 				'modules' => [ 'test.private' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.private@{blankVer}",function($,jQuery,require,module){},{"css":[]});});</script>',
+				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.private@{blankVer}",null,{"css":[]});});</script>',
 			],
 			[
 				'context' => [],
@@ -393,7 +393,7 @@ Deprecation message.' ]
 				'context' => [],
 				'modules' => [ 'test.shouldembed' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.shouldembed@09p30q0",function($,jQuery,require,module){},{"css":[]});});</script>',
+				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.shouldembed@09p30q0",null,{"css":[]});});</script>',
 			],
 			[
 				'context' => [],
@@ -411,7 +411,7 @@ Deprecation message.' ]
 				'context' => [],
 				'modules' => [ 'test', 'test.shouldembed' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test\u0026skin=fallback");mw.loader.implement("test.shouldembed@09p30q0",function($,jQuery,require,module){},{"css":[]});});</script>',
+				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test\u0026skin=fallback");mw.loader.implement("test.shouldembed@09p30q0",null,{"css":[]});});</script>',
 			],
 			[
 				'context' => [],
