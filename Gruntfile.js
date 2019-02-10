@@ -8,7 +8,6 @@ module.exports = function ( grunt ) {
 
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
-	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-eslint' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-karma' );
@@ -103,6 +102,18 @@ module.exports = function ( grunt ) {
 		},
 		karma: {
 			options: {
+				customLaunchers: {
+					ChromeCustom: {
+						base: 'ChromeHeadless',
+						// Chrome requires --no-sandbox in Docker/CI.
+						// Newer CI images expose CHROMIUM_FLAGS which sets this (and
+						// anything else it might need) automatically. Older CI images,
+						// (including Quibble for MW) don't set it yet.
+						flags: ( process.env.CHROMIUM_FLAGS ||
+							( process.env.ZUUL_PROJECT ? '--no-sandbox' : '' )
+						).split( ' ' )
+					}
+				},
 				proxies: karmaProxy,
 				files: [ {
 					pattern: wgServer + wgScriptPath + '/index.php?title=Special:JavaScriptTest/qunit/export',
@@ -122,13 +133,10 @@ module.exports = function ( grunt ) {
 				crossOriginAttribute: false
 			},
 			main: {
-				browsers: [ 'Chrome' ]
-			},
-			chromium: {
-				browsers: [ 'Chromium' ]
+				browsers: [ 'ChromeCustom' ]
 			},
 			firefox: {
-				browsers: [ 'Firefox' ]
+				browsers: [ 'FirefoxHeadless' ]
 			}
 		},
 		copy: {
@@ -159,7 +167,4 @@ module.exports = function ( grunt ) {
 	grunt.registerTask( 'minify', 'svgmin' );
 	grunt.registerTask( 'lint', [ 'eslint', 'banana', 'stylelint' ] );
 	grunt.registerTask( 'qunit', [ 'assert-mw-env', 'karma:main' ] );
-
-	grunt.registerTask( 'test', [ 'lint' ] );
-	grunt.registerTask( 'default', [ 'minify', 'test' ] );
 };
