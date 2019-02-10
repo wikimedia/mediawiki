@@ -2341,9 +2341,11 @@
 
 						try {
 							if ( typeof descriptor.script === 'function' ) {
+								// Function literal: cast to string
 								encodedScript = String( descriptor.script );
 							} else if (
-								// Plain object: an object that is not null and is not an array
+								// Plain object: serialise as object literal (not JSON),
+								// making sure to preserve the functions.
 								typeof descriptor.script === 'object' &&
 								descriptor.script &&
 								!Array.isArray( descriptor.script )
@@ -2358,6 +2360,7 @@
 									} ).join( ',' ) +
 									'}}';
 							} else {
+								// Array of urls, or null.
 								encodedScript = JSON.stringify( descriptor.script );
 							}
 							args = [
