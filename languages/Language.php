@@ -245,7 +245,7 @@ class Language {
 			// It's not possible to customise this code with class files, so
 			// just return a Language object. This is to support uselang= hacks.
 			$lang = new Language;
-			$lang->setCode( $code );
+			$lang->mCode = $code;
 			return $lang;
 		}
 
@@ -267,7 +267,7 @@ class Language {
 			$class = self::classFromCode( $fallbackCode );
 			if ( class_exists( $class ) ) {
 				$lang = new $class;
-				$lang->setCode( $code );
+				$lang->mCode = $code;
 				return $lang;
 			}
 		}
@@ -4449,6 +4449,7 @@ class Language {
 	 * @deprecated since 1.32, use Language::factory to create a new object instead.
 	 */
 	public function setCode( $code ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		$this->mCode = $code;
 		// Ensure we don't leave incorrect cached data lying around
 		$this->mHtmlCode = null;
