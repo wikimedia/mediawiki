@@ -3169,7 +3169,7 @@
 	"watchlistedit-clear-done": "Vaš spisak nadgledanja je očišćen.",
 	"watchlistedit-clear-jobqueue": "Vaš spisak nadgledanja će biti očišćen. Ovo može potrajati neko vreme!",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|1 naslov je uklonjen|$1 naslova su uklonjena|$1 naslova je uklonjeno}}:",
-	"watchlistedit-too-many": "Ima previše stranica za prikaz ovde.",
+	"watchlistedit-too-many": "Ima previše stranica za prikaz.",
 	"watchlisttools-clear": "očisti spisak nadgledanja",
 	"watchlisttools-view": "prikaži srodne promene",
 	"watchlisttools-edit": "prikaži i uredi spisak nadgledanja",

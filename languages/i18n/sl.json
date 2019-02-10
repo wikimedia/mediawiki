@@ -2552,6 +2552,7 @@
 	"ipb_expiry_old": "Čas izteka je v preteklosti.",
 	"ipb_expiry_temp": "Blokade skritih uporabniških imen morajo biti trajne.",
 	"ipb_hide_invalid": "Ne morem skriti tega računa; ima več kot $1 {{PLURAL:$1|urejanje|urejanji|urejanja|urejanj}}.",
+	"ipb_hide_partial": "Blokade s skritim uporabniškim imenom morajo biti blokade po celotni strani.",
 	"ipb_already_blocked": "\"$1\" je že blokiran",
 	"ipb-needreblock": "$1 je že blokiran.\nAli želite spremeniti nastavitve blokade?",
 	"ipb-otherblocks-header": "{{PLURAL:$1|Druga blokada|Drugi blokadi|Druge blokade}}",

@@ -1459,7 +1459,7 @@
 	"rcfilters-quickfilters-placeholder-description": "フィルターの設定を保存し、後で再び使用するためには、下のアクティブフィルター内のブックマークアイコンをクリックしてください。",
 	"rcfilters-savedqueries-defaultlabel": "保存したフィルター",
 	"rcfilters-savedqueries-rename": "名称を変更",
-	"rcfilters-savedqueries-setdefault": "デフォルトに設定",
+	"rcfilters-savedqueries-setdefault": "既定に設定",
 	"rcfilters-savedqueries-unsetdefault": "既定から削除",
 	"rcfilters-savedqueries-remove": "削除",
 	"rcfilters-savedqueries-new-name-label": "名称",

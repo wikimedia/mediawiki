@@ -2383,7 +2383,7 @@
 	"protectedarticle-comment": "{{GENDER:$2|受保護}} \"[[$1]]\"",
 	"modifiedarticleprotection-comment": "{{GENDER:$2|已變更}} \"[[$1]]\" 的保護層級",
 	"unprotectedarticle-comment": "{{GENDER:$2|已移除}} \"[[$1]]\" 的保護",
-	"protect-title": "變更 \"$1\" 的保護層級",
+	"protect-title": "變更「$1」的保護層級",
 	"protect-title-notallowed": "檢視 \"$1\" 的保護層級",
 	"prot_1movedto2": "已移動 [[$1]] 至 [[$2]]",
 	"protect-badnamespace-title": "不可保護的命名空間",

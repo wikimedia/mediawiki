@@ -2636,6 +2636,7 @@
 	"ipb_expiry_old": "Czas wygaśnięcia blokady już minął.",
 	"ipb_expiry_temp": "Ukryte blokowanie nazwy użytkownika należy wykonać trwale.",
 	"ipb_hide_invalid": "Ukrycie konta tego użytkownika nie jest możliwe, wykonał on więcej niż {{PLURAL:$1|jedną edycję|$1 edycje|$1 edycji}}.",
+	"ipb_hide_partial": "Ukrywanie nazwy użytkownika jest możliwe tylko przy blokadach całkowitych.",
 	"ipb_already_blocked": "„$1” jest już zablokowany",
 	"ipb-needreblock": "$1 jest już zablokowany. Czy chcesz zmienić ustawienia blokady?",
 	"ipb-otherblocks-header": "{{PLURAL:$1|Inna blokada|Inne blokady}}",

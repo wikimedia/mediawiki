@@ -2638,6 +2638,7 @@
 	"ipb_expiry_old": "终止时间已过去。",
 	"ipb_expiry_temp": "隐藏用户名的封禁必须是永久性的。",
 	"ipb_hide_invalid": "无法隐藏此用户名；它拥有多于$1次编辑。",
+	"ipb_hide_partial": "隐藏用户名封禁必须为站内封禁",
 	"ipb_already_blocked": "“$1”已被封禁。",
 	"ipb-needreblock": "$1已被封禁。您是否想更改封禁设置？",
 	"ipb-otherblocks-header": "其他{{PLURAL:$1|封禁}}",

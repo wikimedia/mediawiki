@@ -821,7 +821,7 @@
 	"undo-main-slot-only": "La redakto ne povis esti malfarita, ĉar ĝi koncernas enhavon ekster la ĉefa traktujo.",
 	"undo-norev": "La redakto ne povis esti malfarita ĉar ĝi aŭ ne ekzistas aŭ estis forigita.",
 	"undo-nochange": "Ŝajne la redakto jam estis malfarita.",
-	"undo-summary": "Nuligis version $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuto]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])",
+	"undo-summary": "Versiono $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuto]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]]) nuligita",
 	"undo-summary-username-hidden": "Malfari ŝanĝon $1 de kaŝita uzanto",
 	"cantcreateaccount-text": "Konto-kreado de ĉi tiu IP-adreso ('''$1''') estis forbarita de [[User:$3|$3]].\n\nLa kialo donata de $3 estas ''$2''.",
 	"cantcreateaccount-range-text": "La kreado de kontoj de IP-adresoj en la intervalo <strong>$1</strong>, kiu inkludas vian IP-adreson (<strong>$4</strong>), estis blokita de [[User:$3|$3]].\n\nLa donita kialo de $3 estas <em>$2</em>",
