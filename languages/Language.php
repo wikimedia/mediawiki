@@ -4404,18 +4404,6 @@ class Language {
 	}
 
 	/**
-	 * @param string $code
-	 * @deprecated since 1.32, use Language::factory to create a new object instead.
-	 */
-	public function setCode( $code ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		$this->mCode = $code;
-		// Ensure we don't leave incorrect cached data lying around
-		$this->mHtmlCode = null;
-		$this->mParentLanguage = false;
-	}
-
-	/**
 	 * Get the language code from a file name. Inverse of getFileName()
 	 * @param string $filename $prefix . $languageCode . $suffix
 	 * @param string $prefix Prefix before the language code

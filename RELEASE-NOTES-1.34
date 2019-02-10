@@ -73,6 +73,8 @@ because of Phabricator reports.
   * CryptRand class
   * CryptRand service
   * Functions of the MWCryptRand class: singleton(), wasStrong() and generate().
+* Language::setCode, deprecated in 1.32, was removed. Use Language::factory to
+  create a new Language object with a different language code.
 * …
 
 === Deprecations in 1.34 ===
