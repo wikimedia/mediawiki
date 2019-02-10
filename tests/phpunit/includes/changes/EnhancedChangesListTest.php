@@ -27,6 +27,12 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		$styleModules = $enhancedChangesList->getOutput()->getModuleStyles();
 
 		$this->assertContains(
+			'mediawiki.icon',
+			$styleModules,
+			'has mediawiki.icon'
+		);
+
+		$this->assertContains(
 			'mediawiki.special.changeslist',
 			$styleModules,
 			'has mediawiki.special.changeslist'
@@ -46,7 +52,6 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		$modules = $enhancedChangesList->getOutput()->getModules();
 
 		$this->assertContains( 'jquery.makeCollapsible', $modules, 'has jquery.makeCollapsible' );
-		$this->assertContains( 'mediawiki.icon', $modules, 'has mediawiki.icon' );
 	}
 
 	public function testBeginRecentChangesList_html() {
