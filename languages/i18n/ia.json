@@ -2550,6 +2550,7 @@
 	"ipb_expiry_old": "Le hora de expiration es in le passato.",
 	"ipb_expiry_temp": "Le blocadas de nomines de usator celate debe esser permanente.",
 	"ipb_hide_invalid": "Impossibile supprimer iste conto; illo ha plus de {{PLURAL:$1|un modification|$1 modificationes}}.",
+	"ipb_hide_partial": "Blocadas in que le nomine de usator es celate debe esser pro tote le sito.",
 	"ipb_already_blocked": "\"$1\" es ja blocate",
 	"ipb-needreblock": "$1 es ja blocate. Esque tu vole cambiar le configurationes?",
 	"ipb-otherblocks-header": "Altere {{PLURAL:$1|blocada|blocadas}}",

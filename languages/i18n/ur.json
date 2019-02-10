@@ -2524,6 +2524,7 @@
 	"move-watch": "اصل اور ہدف صفحہ کو زیر نظر کریں",
 	"movepagebtn": "مـنـتـقـل",
 	"pagemovedsub": "منتقلی کامیاب",
+	"cannotmove": "حسبِ ذیل {{PLURAL:$1|وجہ|وجوہات}} کی بِنا پر صفحہ منتقل نہیں کیا جا سکتا۔",
 	"movepage-moved": "<strong>\"$1\" کو \"$2\" کی جانب منتقل کر دیا گیا</strong>",
 	"movepage-moved-redirect": "رجوع مکرر تخلیق کر دیا گیا۔",
 	"movepage-moved-noredirect": "رجوع مکرر کو بننے سے روک دیا گیا ہے۔",

@@ -91,7 +91,7 @@
 	"config-invalid-db-server-oracle": "Neveljaven TNS zbirke podatkov »$1«.\nUporabite ali \"ime TNS\" ali niz \"Easy Connect\" ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Načini poimenovanja Oracle])",
 	"config-invalid-db-name": "Neveljavno ime zbirke podatkov »$1«.\nUporabljajte samo črke ASCII (a-z, A-Z), številke (0-9), podčrtaje (_) in vezaje (-).",
 	"config-invalid-db-prefix": "Neveljavna predpona zbirke podatkov »$1«.\nUporabljajte samo črke ASCII (a-z, A-Z), številke (0-9), podčrtaje (_) in vezaje (-).",
-	"config-connection-error": "$1.\n\nPreverite gostitelja, uporabniško ime in geslo spodaj ter poskusite znova.",
+	"config-connection-error": "$1.\n\nPreverite gostitelja, uporabniško ime in geslo ter poskusite znova. Če kot gostitelja zbirke podatkov uporabljate »localhost«, poskusite namesto tega uporabiti »127.0.0.1« (ali obratno).",
 	"config-postgres-old": "Potreben je PostgreSQL $1 ali novejši; vi imate $2.",
 	"config-sqlite-connection-error": "$1.\n\nPreverite mapo podatkov in ime zbirke podatkov spodaj ter poskusite znova.",
 	"config-sqlite-readonly": "Datoteka <code>$1</code> ni zapisljiva.",
