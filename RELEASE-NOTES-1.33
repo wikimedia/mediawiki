@@ -67,6 +67,8 @@ production.
     used instead.
 * Updated qunitjs from 2.6.2 to 2.9.1.
 * Updated jquery-client from 2.0.1 to 2.0.2.
+* Updated psy/psysh from 0.9.6 to 0.9.9 (dev-only).
+* Updated nikic/php-parser from 3.1.3 to 3.1.5 (dev-only).
 
 ==== Removed external libraries ====
 

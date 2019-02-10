@@ -67,11 +67,11 @@
 		"justinrainbow/json-schema": "~5.2",
 		"mediawiki/mediawiki-codesniffer": "24.0.0",
 		"monolog/monolog": "~1.22.1",
-		"nikic/php-parser": "3.1.3",
+		"nikic/php-parser": "3.1.5",
 		"seld/jsonlint": "1.7.1",
 		"nmred/kafka-php": "0.1.5",
 		"phpunit/phpunit": "4.8.36 || ^6.5",
-		"psy/psysh": "0.9.6",
+		"psy/psysh": "0.9.9",
 		"wikimedia/avro": "1.8.0",
 		"wikimedia/testing-access-wrapper": "~1.0",
 		"wmde/hamcrest-html-matchers": "^0.1.0"
