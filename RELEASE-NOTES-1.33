@@ -253,6 +253,8 @@ because of Phabricator reports.
 * Removed deprecated class property WikiRevision::$importer.
 * ResourceLoaderFileModule::readStyleFiles() now requires its $context
   parameter.
+* The ChangeList::insertArticleLink() method, that was deprecated in 1.27, has
+  been removed.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
