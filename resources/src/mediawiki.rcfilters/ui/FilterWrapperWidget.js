@@ -90,7 +90,7 @@
 				this.numChangesAndDateWidget.$element
 			);
 
-		if ( mw.config.get( 'StructuredChangeFiltersLiveUpdatePollingRate' ) ) {
+		if ( this.controller.pollingRate ) {
 			$bottom.prepend( this.liveUpdateButton.$element );
 		}
 

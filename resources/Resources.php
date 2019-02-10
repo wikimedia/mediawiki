@@ -1813,6 +1813,7 @@ return [
 			'dm/ItemModel.js',
 			'dm/SavedQueriesModel.js',
 			'dm/SavedQueryItemModel.js',
+			'config.json' => [ 'config' => [ 'StructuredChangeFiltersLiveUpdatePollingRate' ] ],
 		],
 		'dependencies' => [
 			'mediawiki.String',
@@ -1866,6 +1867,7 @@ return [
 			'ui/RclTargetPageWidget.js',
 			'ui/RclToOrFromWidget.js',
 			'ui/WatchlistTopSectionWidget.js',
+			'config.json' => [ 'callback' => 'ChangesListSpecialPage::getRcFiltersConfigVars' ],
 		],
 		'styles' => [
 			'styles/mw.rcfilters.mixins.less',

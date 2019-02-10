@@ -33,6 +33,8 @@
 		this.collapsedPreferenceName = config.collapsedPreferenceName;
 		this.normalizeTarget = !!config.normalizeTarget;
 
+		this.pollingRate = require( './config.json' ).StructuredChangeFiltersLiveUpdatePollingRate;
+
 		this.requestCounter = {};
 		this.baseFilterState = {};
 		this.uriProcessor = null;
@@ -278,7 +280,6 @@
 		this.initialized = true;
 		this.switchView( 'default' );
 
-		this.pollingRate = mw.config.get( 'StructuredChangeFiltersLiveUpdatePollingRate' );
 		if ( this.pollingRate ) {
 			this._scheduleLiveUpdate();
 		}
