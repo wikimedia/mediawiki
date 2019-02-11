@@ -30,7 +30,7 @@
 		"oojs/oojs-ui": "0.30.2",
 		"pear/mail": "1.4.1",
 		"pear/mail_mime": "1.10.2",
-		"pear/net_smtp": "1.8.0",
+		"pear/net_smtp": "1.8.1",
 		"php": ">=5.6.99",
 		"psr/log": "1.0.2",
 		"wikimedia/assert": "0.2.2",

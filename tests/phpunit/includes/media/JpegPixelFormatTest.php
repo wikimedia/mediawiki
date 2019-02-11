@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Shell\Shell;
+
 /**
  * Tests related to JPEG chroma subsampling via $wgJpegPixelFormat setting.
  *
@@ -46,21 +49,21 @@ class JpegPixelFormatTest extends MediaWikiMediaTestCase {
 		$path = $thumb->getLocalCopyPath();
 		$this->assertTrue( is_string( $path ), "path returned for JPEG thumbnail for $fmtStr" );
 
-		$cmd = [
-			'identify',
+		$result = Shell::command( 'identify',
 			'-format',
 			'%[jpeg:sampling-factor]',
 			$path
-		];
-		$retval = null;
-		$output = wfShellExec( $cmd, $retval );
-		$this->assertTrue( $retval === 0, "ImageMagick's identify command should return success" );
+		)->execute();
+		$this->assertEquals( 0,
+			$result->getExitCode(),
+			"ImageMagick's identify command should return success"
+		);
 
 		$expected = $samplingFactor;
-		$actual = trim( $output );
+		$actual = trim( $result->getStdout() );
 		$this->assertEquals(
 			$expected,
-			trim( $output ),
+			$actual,
 			"IM identify expects JPEG chroma subsampling \"$expected\" for $fmtStr"
 		);
 	}
