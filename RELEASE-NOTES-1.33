@@ -56,6 +56,7 @@ production.
 ==== New external libraries ====
 * Added wikimedia/password-blacklist 0.1.4.
 * Added guzzlehttp/guzzle 6.3.3.
+* Added jakub-onderka/php-console-highlighter 0.3.2 explicitly (dev-only).
 
 ==== Changed external libraries ====
 * Updated OOUI from v0.29.2 to v0.30.2.
