@@ -7472,13 +7472,6 @@ $wgAutoloadAttemptLowercase = true;
 $wgExtensionCredits = [];
 
 /**
- * Authentication plugin.
- * @var $wgAuth AuthPlugin
- * @deprecated since 1.27 use $wgAuthManagerConfig instead
- */
-$wgAuth = null;
-
-/**
  * Global list of hooks.
  *
  * The key is one of the events made available by MediaWiki, you can find

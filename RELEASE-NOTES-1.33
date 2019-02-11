@@ -41,6 +41,8 @@ production.
   set `$wgParserCacheType = CACHE_NONE;` instead.
 * $wgCommentTableSchemaMigrationStage has been removed. Extension code finding
   it unset should treat it as being MIGRATION_NEW.
+* $wgAuth – This old setting, deprecated in 1.27, has been removed as part of
+  the removal of AuthPlugin.
 
 === New features in 1.33 ===
 * (T96041) __EXPECTUNUSEDCATEGORY__ on a category page causes the category
@@ -269,6 +271,13 @@ because of Phabricator reports.
   has been removed.
 * The 'jquery.xmldom' module has been removed.
 * The 'jquery.mockjax' module has been removed.
+* AuthPlugin and related code, deprecated in 1.27, has been removed. Extensions
+  should instead use AuthManager. The following no longer exist:
+  * The AuthPlugin class itself and the related AuthPluginUser class and i18n
+  * The AuthPluginSetup and AuthPluginAutoCreate hooks
+  * The transitional wrapper classes AuthPluginPrimaryAuthenticationProvider,
+    AuthManagerAuthPlugin, and AuthManagerAuthPluginUser.
+  * The $wgAuth configuration setting and its use in Setup.php and unit tests
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected

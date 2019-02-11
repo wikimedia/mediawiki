@@ -1571,7 +1571,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			);
 		}
 
-		AuthManager::callLegacyAuthPlugin( 'updateExternalDB', [ $user ] );
 		$user->saveSettings();
 
 		return $result;

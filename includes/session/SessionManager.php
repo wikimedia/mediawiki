@@ -314,11 +314,6 @@ final class SessionManager implements SessionManagerInterface {
 		$user->setToken();
 		$user->saveSettings();
 
-		$authUser = \MediaWiki\Auth\AuthManager::callLegacyAuthPlugin( 'getUserInstance', [ &$user ] );
-		if ( $authUser ) {
-			$authUser->resetAuthToken();
-		}
-
 		foreach ( $this->getProviders() as $provider ) {
 			$provider->invalidateSessionsForUser( $user );
 		}
