@@ -186,19 +186,16 @@
 	/**
 	 * Get the first item with a current conflict
 	 *
-	 * @return {mw.rcfilters.dm.FilterItem} Conflicted item
+	 * @return {mw.rcfilters.dm.FilterItem|undefined} Conflicted item or undefined when not found
 	 */
 	FiltersViewModel.prototype.getFirstConflictedItem = function () {
-		var conflictedItem;
-
-		this.getItems().forEach( function ( filterItem ) {
+		var i, filterItem, items = this.getItems();
+		for ( i = 0; i < items.length; i++ ) {
+			filterItem = items[ i ];
 			if ( filterItem.isSelected() && filterItem.isConflicted() ) {
-				conflictedItem = filterItem;
-				return false;
+				return filterItem;
 			}
-		} );
-
-		return conflictedItem;
+		}
 	};
 
 	/**
