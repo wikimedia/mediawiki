@@ -78,6 +78,8 @@ production.
 === Bug fixes in 1.33 ===
 * (T164211) Special:UserRights could sometimes fail with a
   "conflict detected" error when there weren't any conflicts.
+* (T215566) Unable to determine if the database exists
+  during a fresh installation.
 
 === Action API changes in 1.33 ===
 * (T198913) Added 'ApiOptions' hook.

@@ -23,6 +23,8 @@
 use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\DBExpectedError;
+use Wikimedia\Rdbms\DBConnectionError;
 
 /**
  * Base class for DBMS-specific installation helper classes.
@@ -620,7 +622,12 @@ abstract class DatabaseInstaller {
 			return false;
 		}
 
-		if ( !$this->db->selectDB( $this->getVar( 'wgDBname' ) ) ) {
+		try {
+			$this->db->selectDB( $this->getVar( 'wgDBname' ) );
+		} catch ( DBConnectionError $e ) {
+			// Don't catch DBConnectionError
+			throw $e;
+		} catch ( DBExpectedError $e ) {
 			return false;
 		}
 
