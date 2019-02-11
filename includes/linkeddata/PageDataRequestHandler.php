@@ -40,7 +40,6 @@ class PageDataRequestHandler {
 	 * @param WebRequest $request
 	 *
 	 * @return bool
-	 * @throws HttpError
 	 */
 	public function canHandleRequest( $subPage, WebRequest $request ) {
 		if ( $subPage === '' || $subPage === null ) {
