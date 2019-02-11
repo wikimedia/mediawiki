@@ -16,6 +16,8 @@ THIS IS NOT A RELEASE YET
 * (T208871) The hard-coded Google search form on the database error page was
   removed.
 * (T204800) Fix Title::getFragmentForURL for bad interwiki prefix
+* (T215566) Fix installer being unable to determine if the database exists
+  during a fresh installation.
 
 === Changes since MediaWiki 1.32.0-rc.2 ===
 * (T188327) Fix slow queries in migrateActors.php.
