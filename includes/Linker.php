@@ -114,15 +114,20 @@ class Linker {
 		} else {
 			$text = $html; // null
 		}
+
 		if ( in_array( 'known', $options, true ) ) {
 			return $linkRenderer->makeKnownLink( $target, $text, $customAttribs, $query );
-		} elseif ( in_array( 'broken', $options, true ) ) {
-			return $linkRenderer->makeBrokenLink( $target, $text, $customAttribs, $query );
-		} elseif ( in_array( 'noclasses', $options, true ) ) {
-			return $linkRenderer->makePreloadedLink( $target, $text, '', $customAttribs, $query );
-		} else {
-			return $linkRenderer->makeLink( $target, $text, $customAttribs, $query );
 		}
+
+		if ( in_array( 'broken', $options, true ) ) {
+			return $linkRenderer->makeBrokenLink( $target, $text, $customAttribs, $query );
+		}
+
+		if ( in_array( 'noclasses', $options, true ) ) {
+			return $linkRenderer->makePreloadedLink( $target, $text, '', $customAttribs, $query );
+		}
+
+		return $linkRenderer->makeLink( $target, $text, $customAttribs, $query );
 	}
 
 	/**
@@ -193,9 +198,9 @@ class Linker {
 					getFormattedNsText( $namespace );
 			}
 			return $context->msg( 'invalidtitle-knownnamespace', $namespace, $name, $title )->text();
-		} else {
-			return $context->msg( 'invalidtitle-unknownnamespace', $namespace, $title )->text();
 		}
+
+		return $context->msg( 'invalidtitle-unknownnamespace', $namespace, $title )->text();
 	}
 
 	/**
@@ -207,14 +212,12 @@ class Linker {
 		if ( $target->getNamespace() == NS_SPECIAL && !$target->isExternal() ) {
 			list( $name, $subpage ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
 				resolveAlias( $target->getDBkey() );
-			if ( !$name ) {
-				return $target;
+			if ( $name ) {
+				return SpecialPage::getTitleValueFor( $name, $subpage, $target->getFragment() );
 			}
-			$ret = SpecialPage::getTitleValueFor( $name, $subpage, $target->getFragment() );
-			return $ret;
-		} else {
-			return $target;
 		}
+
+		return $target;
 	}
 
 	/**
@@ -259,7 +262,9 @@ class Linker {
 		return Html::element( 'img',
 			[
 				'src' => $url,
-				'alt' => $alt ] );
+				'alt' => $alt
+			]
+		);
 	}
 
 	/**
@@ -730,12 +735,15 @@ class Linker {
 
 		if ( $wgUploadMissingFileUrl ) {
 			return wfAppendQuery( $wgUploadMissingFileUrl, $q );
-		} elseif ( $wgUploadNavigationUrl ) {
-			return wfAppendQuery( $wgUploadNavigationUrl, $q );
-		} else {
-			$upload = SpecialPage::getTitleFor( 'Upload' );
-			return $upload->getLocalURL( $q );
 		}
+
+		if ( $wgUploadNavigationUrl ) {
+			return wfAppendQuery( $wgUploadNavigationUrl, $q );
+		}
+
+		$upload = SpecialPage::getTitleFor( 'Upload' );
+
+		return $upload->getLocalURL( $q );
 	}
 
 	/**
@@ -998,10 +1006,11 @@ class Linker {
 	public static function userTalkLink( $userId, $userText ) {
 		$userTalkPage = Title::makeTitle( NS_USER_TALK, $userText );
 		$moreLinkAttribs['class'] = 'mw-usertoollinks-talk';
-		$userTalkLink = self::link( $userTalkPage,
-						wfMessage( 'talkpagelinktext' )->escaped(),
-						$moreLinkAttribs );
-		return $userTalkLink;
+
+		return self::link( $userTalkPage,
+			wfMessage( 'talkpagelinktext' )->escaped(),
+			$moreLinkAttribs
+		);
 	}
 
 	/**
@@ -1013,10 +1022,11 @@ class Linker {
 	public static function blockLink( $userId, $userText ) {
 		$blockPage = SpecialPage::getTitleFor( 'Block', $userText );
 		$moreLinkAttribs['class'] = 'mw-usertoollinks-block';
-		$blockLink = self::link( $blockPage,
-					 wfMessage( 'blocklink' )->escaped(),
-					 $moreLinkAttribs );
-		return $blockLink;
+
+		return self::link( $blockPage,
+			wfMessage( 'blocklink' )->escaped(),
+			$moreLinkAttribs
+		);
 	}
 
 	/**
@@ -1027,10 +1037,10 @@ class Linker {
 	public static function emailLink( $userId, $userText ) {
 		$emailPage = SpecialPage::getTitleFor( 'Emailuser', $userText );
 		$moreLinkAttribs['class'] = 'mw-usertoollinks-mail';
-		$emailLink = self::link( $emailPage,
-					 wfMessage( 'emaillink' )->escaped(),
-					 $moreLinkAttribs );
-		return $emailLink;
+		return self::link( $emailPage,
+			wfMessage( 'emaillink' )->escaped(),
+			$moreLinkAttribs
+		);
 	}
 
 	/**
@@ -1107,9 +1117,7 @@ class Linker {
 
 		# Render autocomments and make links:
 		$comment = self::formatAutocomments( $comment, $title, $local, $wikiId );
-		$comment = self::formatLinksInComment( $comment, $title, $local, $wikiId );
-
-		return $comment;
+		return self::formatLinksInComment( $comment, $title, $local, $wikiId );
 	}
 
 	/**
@@ -1166,9 +1174,11 @@ class Linker {
 						$section = $auto;
 						# Remove links that a user may have manually put in the autosummary
 						# This could be improved by copying as much of Parser::stripSectionName as desired.
-						$section = str_replace( '[[:', '', $section );
-						$section = str_replace( '[[', '', $section );
-						$section = str_replace( ']]', '', $section );
+						$section = str_replace( [
+							'[[:',
+							'[[',
+							']]'
+						], '', $section );
 
 						// We don't want any links in the auto text to be linked, but we still
 						// want to show any [[ ]]
@@ -1679,12 +1689,10 @@ class Linker {
 			$fallbackAnchor = htmlspecialchars( $fallbackAnchor );
 			$fallback = "<span id=\"$fallbackAnchor\"></span>";
 		}
-		$ret = "<h$level$attribs"
+		return "<h$level$attribs"
 			. "$fallback<span class=\"mw-headline\" id=\"$anchorEscaped\">$html</span>"
 			. $link
 			. "</h$level>";
-
-		return $ret;
 	}
 
 	/**
@@ -1889,10 +1897,10 @@ class Linker {
 			}
 
 			return self::link( $title, $html, $attrs, $query, $options );
-		} else {
-			$html = $context->msg( 'rollbacklink' )->escaped();
-			return self::link( $title, $html, $attrs, $query, $options );
 		}
+
+		$html = $context->msg( 'rollbacklink' )->escaped();
+		return self::link( $title, $html, $attrs, $query, $options );
 	}
 
 	/**
