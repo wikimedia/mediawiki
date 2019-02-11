@@ -88,7 +88,6 @@ class WatchedItemQueryService {
 
 	/**
 	 * @return IDatabase
-	 * @throws MWException
 	 */
 	private function getConnection() {
 		return $this->loadBalancer->getConnectionRef( DB_REPLICA, [ 'watchlist' ] );
