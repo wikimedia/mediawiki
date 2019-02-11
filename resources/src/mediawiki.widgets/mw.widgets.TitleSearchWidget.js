@@ -77,6 +77,11 @@
 		var widget = this;
 
 		this.getRequestData().done( function ( data ) {
+			if ( widget.query.isReadOnly() ) {
+				// The request object is always abortable, so just
+				// prevent the results from displaying
+				return;
+			}
 			// Parent method
 			mw.widgets.TitleSearchWidget.parent.prototype.onQueryChange.call( widget );
 			widget.results.addItems( widget.getOptionsFromData( data ) );
@@ -100,6 +105,31 @@
 	 */
 	mw.widgets.TitleSearchWidget.prototype.getRequestCacheDataFromResponse = function ( response ) {
 		return response.query || {};
+	};
+
+	/**
+	 * Check if the widget is read-only.
+	 *
+	 * @return {boolean}
+	 */
+	mw.widgets.TitleSearchWidget.prototype.isReadOnly = function () {
+		return this.query.isReadOnly();
+	};
+
+	/**
+	 * Set the read-only state of the widget.
+	 *
+	 * @param {boolean} readOnly Make input read-only
+	 * @chainable
+	 * @return {mw.widgets.TitleSearchWidget} The widget, for chaining
+	 */
+	mw.widgets.TitleSearchWidget.prototype.setReadOnly = function ( readOnly ) {
+		this.query.setReadOnly( readOnly );
+		if ( readOnly ) {
+			// Hide results
+			this.results.clearItems();
+		}
+		return this;
 	};
 
 }() );
