@@ -254,6 +254,10 @@
 								"noflip": {
 									"type": "boolean",
 									"description": "Whether to skip CSSJanus LTR-to-RTL flipping for this module. Recommended for styles imported from libraries that already properly handle their RTL styles. Default is false, meaning CSSJanus will be applied on RTL-mode output."
+								},
+								"packageFiles": {
+									"type": ["object", "array"],
+									"description": "Package files that can be require()d"
 								}
 							}
 						},
