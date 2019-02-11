@@ -19,6 +19,8 @@
  * @ingroup Testing
  */
 
+use MediaWiki\Shell\Shell;
+
 /**
  * This is a TestRecorder responsible for printing information about progress,
  * success and failure to the console. It is specific to the parserTests.php
@@ -176,9 +178,6 @@ class ParserTestPrinter extends TestRecorder {
 		$outfile = "$prefix-$outFileTail";
 		$this->dumpToFile( $output, $outfile );
 
-		$shellInfile = wfEscapeShellArg( $infile );
-		$shellOutfile = wfEscapeShellArg( $outfile );
-
 		global $wgDiff3;
 		// we assume that people with diff3 also have usual diff
 		if ( $this->useDwdiff ) {
@@ -187,7 +186,11 @@ class ParserTestPrinter extends TestRecorder {
 			$shellCommand = ( wfIsWindows() && !$wgDiff3 ) ? 'fc' : 'diff -au';
 		}
 
-		$diff = wfShellExec( "$shellCommand $shellInfile $shellOutfile" );
+		$result = Shell::command()
+			->unsafeParams( $shellCommand )
+			->params( $infile, $outfile )
+			->execute();
+		$diff = $result->getStdout();
 
 		unlink( $infile );
 		unlink( $outfile );
