@@ -2056,7 +2056,7 @@
 	"apisandbox-intro": "استخدم هذه الصفحة للتجربة ب<strong>MediaWiki web service API</strong>.\nارجع إلى [[mw:API:Main page|توثيق الAPI]] للمزيد من التفاصيل حول استخدام الAPI. مثال: [https://www.mediawiki.org/wiki/API#A_simple_example احصل على محتوى صفحة رئيسية]. اختر فعلا لترى المزيد من الأمثلة.\n\nلاحظ أنه، على الرغم من أن هذا ملعب، فالأفعال التي تقوم بها على هذه الصفحة ربما تعدل الويكي.",
 	"apisandbox-submit": "عمل الطلب",
 	"apisandbox-reset": "إفراغ",
-	"apisandbox-retry": "أعد المحاولة",
+	"apisandbox-retry": "إعادة المحاولة",
 	"apisandbox-loading": "تحميل المعلومات لAPI module \"$1\"...",
 	"apisandbox-load-error": "حدث خطأ أثناء تحميل المعلومات لAPI module \"$1\": $2",
 	"apisandbox-no-parameters": "وحدة API هذه ليس بها معاملات.",
