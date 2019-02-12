@@ -3578,7 +3578,7 @@
 	"expand_templates_generate_rawhtml": "Amosar o HTML en bruto",
 	"expand_templates_preview": "Vista previa",
 	"expand_templates_preview_fail_html": "<em>Dado que o código HTML puro está activado en {{SITENAME}} e se produciu unha perda dos datos da sesión, a vista previa está oculta como precaución contra ataques mediante código JavaScript.</em>\n\n<strong>Se este é un intento lexítimo de acceso á vista previa, probe de novo.</strong>\nEn caso de que siga sen funcionar, intente [[Special:UserLogout|saír]] e volver entrar na súa conta e verifique que o seu navegador permite o uso de cookies neste sitio.",
-	"expand_templates_preview_fail_html_anon": "<em>Dado que o código HTML puro está activado en {{SITENAME}} e produciuse unha perda dos datos da sesión, a vista previa está oculta como precaución contra ataques mediante código JavaScript.</em>\n\n<strong>Se este é un intento lexítimo de acceso á vista previa, probe a [[Special:UserLogout|saír]] e volver a entrar coa súa conta.</strong>",
+	"expand_templates_preview_fail_html_anon": "<em>Dado que o código HTML puro está activado en {{SITENAME}} e produciuse unha perda dos datos da sesión, a vista previa está oculta como precaución contra ataques mediante código JavaScript.</em>\n\n<strong>Se este é un intento lexítimo de acceso á vista previa, probe a [[UserLogin|iniciar a sesión]] e volver a entrar coa súa conta.</strong>",
 	"expand_templates_input_missing": "Necesita proporcionar polo menos algún texto wiki de entrada.",
 	"pagelanguage": "Cambiar a lingua da páxina",
 	"pagelang-name": "Páxina",

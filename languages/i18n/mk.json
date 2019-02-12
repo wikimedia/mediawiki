@@ -1546,7 +1546,7 @@
 	"recentchanges-page-removed-from-category": "[[:$1]] отстранета од категорија",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] отстранета од категорија, [[Special:WhatLinksHere/$1|оваа страница е вклучена во рамките на други страници]]",
 	"autochange-username": "Автоматски промени на МедијаВики",
-	"upload": "Подигање",
+	"upload": "Подигни податотека",
 	"uploadbtn": "Подигни",
 	"reuploaddesc": "Прекини и назад кон образецот за подигање",
 	"upload-tryagain": "Поднеси изменет опис на податотеката",
