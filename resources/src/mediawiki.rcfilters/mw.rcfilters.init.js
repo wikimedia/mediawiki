@@ -123,7 +123,7 @@
 			mw.config.get( 'wgStructuredChangeFilters' ),
 			// All namespaces without Media namespace
 			getNamespaces( [ 'Media' ] ),
-			require( './config.json' ).RCFiltersChangeTags,
+			mw.config.get( 'wgRCFiltersChangeTags' ),
 			conditionalViews
 		);
 
