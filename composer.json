@@ -44,7 +44,7 @@
 		"wikimedia/less.php": "1.8.0",
 		"wikimedia/object-factory": "1.0.0",
 		"wikimedia/password-blacklist": "0.1.4",
-		"wikimedia/php-session-serializer": "1.0.6",
+		"wikimedia/php-session-serializer": "1.0.7",
 		"wikimedia/purtle": "1.0.7",
 		"wikimedia/relpath": "2.1.1",
 		"wikimedia/remex-html": "2.0.1",
@@ -54,7 +54,7 @@
 		"wikimedia/timestamp": "2.2.0",
 		"wikimedia/wait-condition-loop": "1.0.1",
 		"wikimedia/wrappedstring": "3.0.1",
-		"wikimedia/xmp-reader": "0.6.1",
+		"wikimedia/xmp-reader": "0.6.2",
 		"zordius/lightncandy": "0.23"
 	},
 	"require-dev": {
