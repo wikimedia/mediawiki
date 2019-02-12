@@ -23,6 +23,9 @@
  * @copyright © 2013 Wikimedia Foundation Inc.
  */
 
+use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LBFactorySimple;
 use Wikimedia\Rdbms\LBFactoryMulti;
@@ -456,7 +459,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		);
 		unset( $db );
 
-		/** @var Database $db */
+		/** @var IMaintainableDatabase $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
 
 		$this->assertEquals(
@@ -531,7 +534,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			]
 		);
 		$lb = $factory->getMainLB();
-		/** @var Database $db */
+		/** @var IMaintainableDatabase $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
 
 		$this->assertEquals( '', $db->getDomainID(), "Null domain used" );
@@ -592,7 +595,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			]
 		);
 		$lb = $factory->getMainLB();
-		/** @var Database $db */
+		/** @var IDatabase $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
 
 		if ( $db->getType() === 'sqlite' ) {
