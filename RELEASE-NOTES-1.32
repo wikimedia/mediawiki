@@ -1,6 +1,4 @@
-== MediaWiki 1.32 ==
-
-THIS IS NOT A RELEASE YET
+== MediaWiki 1.32.1 ==
 
 === Changes since MediaWiki 1.32.0 ===
 * (T213577) rdbms: avoid transaction status errors from ping() in rollback().
@@ -18,6 +16,8 @@ THIS IS NOT A RELEASE YET
 * (T204800) Fix Title::getFragmentForURL for bad interwiki prefix
 * (T215566) Fix installer being unable to determine if the database exists
   during a fresh installation.
+
+== MediaWiki 1.32.0 ==
 
 === Changes since MediaWiki 1.32.0-rc.2 ===
 * (T188327) Fix slow queries in migrateActors.php.
