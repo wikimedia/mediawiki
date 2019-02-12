@@ -47,7 +47,8 @@
 	ul.mw-collapsible:not( @{exclude} ):before,
 	// Where the tbody or thead is the first child of the collapsible table
 	table.mw-collapsible:not( @{exclude} ) :first-child tr:first-child th:last-child:before,
-	table.mw-collapsible:not( @{exclude} ) > caption:first-child:after {
+	table.mw-collapsible:not( @{exclude} ) > caption:first-child:after,
+	div.mw-collapsible:not( @{exclude} ):before {
 		content: '[@{msg-collapsible-collapse}]';
 	}
 
