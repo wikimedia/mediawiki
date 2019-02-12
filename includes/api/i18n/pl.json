@@ -15,7 +15,8 @@
 			"Sethakill",
 			"Woytecr",
 			"InternerowyGołąb",
-			"CiaPan"
+			"CiaPan",
+			"Vlad5250"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentacja]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista dyskusyjna]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Ogłoszenia dotyczące API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Błędy i propozycje]\n</div>\n<strong>Stan:</strong> Wszystkie funkcje opisane na tej stronie powinny działać, ale API nadal jest aktywnie rozwijane i mogą się zmienić w dowolnym czasie. Subskrybuj [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ listę dyskusyjną mediawiki-api-announce], aby móc na bieżąco dowiadywać się o aktualizacjach.\n\n<strong>Błędne żądania:</strong> Gdy zostanie wysłane błędne żądanie do API, zostanie wysłany w odpowiedzi nagłówek HTTP z kluczem \"MediaWiki-API-Error\" i zarówno jego wartość jak i wartość kodu błędu wysłanego w odpowiedzi będą miały taką samą wartość. Aby uzyskać więcej informacji, zobacz [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Błędy i ostrzeżenia]].\n\n<strong>Testowanie:</strong> Aby łatwo testować żądania API, zobacz [[Special:ApiSandbox]].",
@@ -599,7 +600,7 @@
 	"api-pageset-param-redirects-generator": "Automatycznie rozwiązuj przekierowania ze stron podanych w <var>$1titles</var>, <var>$1pageids</var>, oraz <var>$1revids</var>, a także ze stron zwróconych przez <var>$1generator</var>.",
 	"api-pageset-param-converttitles": "Konwertuj tytuły do innych wariantów, jeżeli trzeba. Będzie działać tylko wtedy, gdy język zawartości wiki będzie wspierał konwersje wariantów. Języki, które wspierają konwersję wariantów to m.in. $1.",
 	"api-help-title": "Pomoc MediaWiki API",
-	"api-help-lead": "To jest automatycznie wygenerowana strona dokumentacji MediaWiki API.\nDokumentacja i przykłady: https://www.mediawiki.org/wiki/API",
+	"api-help-lead": "To jest automatycznie wygenerowana strona dokumentacji MediaWiki API.\n\nDokumentacja i przykłady: https://www.mediawiki.org/wiki/API",
 	"api-help-main-header": "Moduł główny",
 	"api-help-undocumented-module": "Brak dokumentacji dla modułu $1.",
 	"api-help-flag-deprecated": "Ten moduł jest przestarzały.",

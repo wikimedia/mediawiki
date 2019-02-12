@@ -1690,7 +1690,7 @@
 	"apierror-mustbeloggedin": "Vous devez être connecté pour $1.",
 	"apierror-mustbeposted": "Le module <kbd>$1</kbd> nécessite une requête POST.",
 	"apierror-mustpostparams": "{{PLURAL:$2|Le paramètre suivant a été trouvé|Les paramètres suivants ont été trouvés}} dans la chaîne de requête, mais doit être dans le corps du POST : $1.",
-	"apierror-noapiwrite": "La modification de ce wiki via l’API est désactivée. Assurez-vous que la déclaration <code>$wgEnableWriteAPI=true;</code> st inclue dans le fichier <code>LocalSettings.php</code> du wiki.",
+	"apierror-noapiwrite": "La modification de ce wiki via l’API est désactivée. Assurez-vous que la déclaration <code>$wgEnableWriteAPI=true;</code> est incluse dans le fichier <code>LocalSettings.php</code> du wiki.",
 	"apierror-nochanges": "Aucun changement n’a été demandé.",
 	"apierror-nodeleteablefile": "Pas de telle ancienne version du fichier.",
 	"apierror-no-direct-editing": "La modification directe via l’API n’est pas prise en charge pour le modèle de contenu $1 utilisé par $2.",
