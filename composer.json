@@ -40,7 +40,7 @@
 		"wikimedia/cldr-plural-rule-parser": "1.0.0",
 		"wikimedia/composer-merge-plugin": "1.4.1",
 		"wikimedia/html-formatter": "1.0.2",
-		"wikimedia/ip-set": "2.0.0",
+		"wikimedia/ip-set": "2.0.1",
 		"wikimedia/less.php": "1.8.0",
 		"wikimedia/object-factory": "1.0.0",
 		"wikimedia/password-blacklist": "0.1.4",
