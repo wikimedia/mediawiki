@@ -262,11 +262,13 @@ class BlockListPager extends TablePager {
 
 			switch ( $restriction->getType() ) {
 				case PageRestriction::TYPE:
-					$items[$restriction->getType()][] = HTML::rawElement(
-						'li',
-						[],
-						Linker::link( $restriction->getTitle() )
-					);
+					if ( $restriction->getTitle() ) {
+						$items[$restriction->getType()][] = HTML::rawElement(
+							'li',
+							[],
+							Linker::link( $restriction->getTitle() )
+						);
+					}
 					break;
 				case NamespaceRestriction::TYPE:
 					$text = $restriction->getValue() === NS_MAIN

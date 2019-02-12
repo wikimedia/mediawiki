@@ -20,6 +20,11 @@ class PageRestrictionTest extends RestrictionTestCase {
 
 		$page = $this->getExistingTestPage( 'Mars' );
 		$this->assertFalse( $restriction->matches( $page->getTitle() ) );
+
+		// Deleted page.
+		$restriction = new $class( 2, 99999 );
+		$page = $this->getExistingTestPage( 'Saturn' );
+		$this->assertFalse( $restriction->matches( $page->getTitle() ) );
 	}
 
 	public function testGetType() {
