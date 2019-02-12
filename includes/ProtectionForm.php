@@ -353,12 +353,9 @@ class ProtectionForm {
 		$user = $context->getUser();
 		$output = $context->getOutput();
 		$lang = $context->getLanguage();
-		$conf = $context->getConfig();
-		$cascadingRestrictionLevels = $conf->get( 'CascadingRestrictionLevels' );
 		$out = '';
 		if ( !$this->disabled ) {
 			$output->addModules( 'mediawiki.legacy.protect' );
-			$output->addJsConfigVars( 'wgCascadeableLevels', $cascadingRestrictionLevels );
 			$out .= Xml::openElement( 'form', [ 'method' => 'post',
 				'action' => $this->mTitle->getLocalURL( 'action=protect' ),
 				'id' => 'mw-Protect-Form' ] );

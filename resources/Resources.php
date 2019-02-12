@@ -2386,7 +2386,12 @@ return [
 		],
 	],
 	'mediawiki.legacy.protect' => [
-		'scripts' => 'resources/src/mediawiki.legacy/protect.js',
+		'localBasePath' => "$IP/resources/src/mediawiki.legacy",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.legacy",
+		'packageFiles' => [
+			'protect.js',
+			'config.json' => [ 'config' => [ 'CascadingRestrictionLevels' ] ],
+		],
 		'dependencies' => 'jquery.lengthLimit',
 		'messages' => [ 'protect-unchain-permissions' ]
 	],
