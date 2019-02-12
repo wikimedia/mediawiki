@@ -140,7 +140,9 @@ class BlockListPagerTest extends MediaWikiTestCase {
 
 		$restrictions = [
 			( new PageRestriction( 0, $pageId ) )->setTitle( $title ),
-			new NamespaceRestriction( 0, NS_MAIN )
+			new NamespaceRestriction( 0, NS_MAIN ),
+			// Deleted page.
+			new PageRestriction( 0, 999999 ),
 		];
 
 		$wrappedPager = TestingAccessWrapper::newFromObject( $pager );

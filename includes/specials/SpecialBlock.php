@@ -405,7 +405,9 @@ class SpecialBlock extends FormSpecialPage {
 				foreach ( $block->getRestrictions() as $restriction ) {
 					switch ( $restriction->getType() ) {
 						case PageRestriction::TYPE:
-							$pageRestrictions[] = $restriction->getTitle()->getPrefixedText();
+							if ( $restriction->getTitle() ) {
+								$pageRestrictions[] = $restriction->getTitle()->getPrefixedText();
+							}
 							break;
 						case NamespaceRestriction::TYPE:
 							$namespaceRestrictions[] = $restriction->getValue();

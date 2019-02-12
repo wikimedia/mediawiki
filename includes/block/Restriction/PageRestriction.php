@@ -35,7 +35,7 @@ class PageRestriction extends AbstractRestriction {
 	const TYPE_ID = 1;
 
 	/**
-	 * @var \Title
+	 * @var \Title|bool
 	 */
 	protected $title;
 
@@ -43,6 +43,10 @@ class PageRestriction extends AbstractRestriction {
 	 * {@inheritdoc}
 	 */
 	public function matches( \Title $title ) {
+		if ( !$this->getTitle() ) {
+			return false;
+		}
+
 		return $title->equals( $this->getTitle() );
 	}
 
@@ -66,11 +70,17 @@ class PageRestriction extends AbstractRestriction {
 	 * @return \Title|null
 	 */
 	public function getTitle() {
-		if ( !$this->title ) {
+		if ( $this->title === null ) {
 			$this->title = \Title::newFromID( $this->value );
+
+			// If the title does not exist, set to false to prevent multiple database
+			// queries.
+			if ( $this->title === null ) {
+				$this->title = false;
+			}
 		}
 
-		return $this->title;
+		return $this->title ?? null;
 	}
 
 	/**

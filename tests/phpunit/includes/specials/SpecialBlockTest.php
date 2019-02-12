@@ -121,6 +121,8 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			new PageRestriction( 0, $pageSaturn->getId() ),
 			new PageRestriction( 0, $pageMars->getId() ),
 			new NamespaceRestriction( 0, NS_TALK ),
+			// Deleted page.
+			new PageRestriction( 0, 999999 ),
 		] );
 
 		$block->insert();
