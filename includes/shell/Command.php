@@ -26,6 +26,7 @@ use MediaWiki\ShellDisabledError;
 use Profiler;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * Class used for executing shell commands
@@ -431,9 +432,9 @@ class Command {
 			// TODO replace with clear_last_error when requirements are bumped to PHP7
 			set_error_handler( function () {
 			}, 0 );
-			\Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			trigger_error( '' );
-			\Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 			restore_error_handler();
 
 			$readPipes = array_filter( $pipes, function ( $fd ) use ( $desc ) {

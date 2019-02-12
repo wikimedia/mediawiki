@@ -32,6 +32,7 @@ use MediaWiki\Session\SessionManager;
 use MediaWiki\Shell\Shell;
 use Wikimedia\ScopedCallback;
 use Wikimedia\WrappedString;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * Load an extension
@@ -799,9 +800,9 @@ function wfParseUrl( $url ) {
 	if ( $wasRelative ) {
 		$url = "http:$url";
 	}
-	Wikimedia\suppressWarnings();
+	AtEase::suppressWarnings();
 	$bits = parse_url( $url );
-	Wikimedia\restoreWarnings();
+	AtEase::restoreWarnings();
 	// parse_url() returns an array without scheme for some invalid URLs, e.g.
 	// parse_url("%0Ahttp://example.com") == [ 'host' => '%0Ahttp', 'path' => 'example.com' ]
 	if ( !$bits || !isset( $bits['scheme'] ) ) {
@@ -1972,9 +1973,9 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	}
 
 	// Turn off the normal warning, we're doing our own below
-	Wikimedia\suppressWarnings();
+	AtEase::suppressWarnings();
 	$ok = mkdir( $dir, $mode, true ); // PHP5 <3
-	Wikimedia\restoreWarnings();
+	AtEase::restoreWarnings();
 
 	if ( !$ok ) {
 		// directory may have been created on another request since we last checked
@@ -2212,9 +2213,9 @@ function wfMerge( $old, $mine, $yours, &$result, &$mergeAttemptResult = null ) {
 
 	# This check may also protect against code injection in
 	# case of broken installations.
-	Wikimedia\suppressWarnings();
+	AtEase::suppressWarnings();
 	$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
-	Wikimedia\restoreWarnings();
+	AtEase::restoreWarnings();
 
 	if ( !$haveDiff3 ) {
 		wfDebug( "diff3 not found\n" );
@@ -2296,9 +2297,9 @@ function wfDiff( $before, $after, $params = '-u' ) {
 	}
 
 	global $wgDiff;
-	Wikimedia\suppressWarnings();
+	AtEase::suppressWarnings();
 	$haveDiff = $wgDiff && file_exists( $wgDiff );
-	Wikimedia\restoreWarnings();
+	AtEase::restoreWarnings();
 
 	# This check may also protect against code injection in
 	# case of broken installations.
@@ -2474,7 +2475,7 @@ function wfSetupSession( $sessionId = false ) {
 	if ( session_id() !== $session->getId() ) {
 		session_id( $session->getId() );
 	}
-	Wikimedia\quietCall( 'session_start' );
+	AtEase::quietCall( 'session_start' );
 }
 
 /**
