@@ -24,7 +24,10 @@
 			editingRestrictionWidget = infuseIfExists( $( '#mw-input-wpEditingRestriction' ) ),
 			preventTalkPageEdit = infuseIfExists( $( '#mw-input-wpDisableUTEdit' ) ),
 			pageRestrictionsWidget = infuseIfExists( $( '#mw-input-wpPageRestrictions' ) ),
-			namespaceRestrictionsWidget = infuseIfExists( $( '#mw-input-wpNamespaceRestrictions' ) );
+			namespaceRestrictionsWidget = infuseIfExists( $( '#mw-input-wpNamespaceRestrictions' ) ),
+			createAccountWidget = infuseIfExists( $( '#mw-input-wpCreateAccount' ) ),
+			userChangedCreateAccount = false,
+			updatingBlockOptions = false;
 
 		function updateBlockOptions() {
 			var blocktarget = blockTargetWidget.getValue().trim(),
@@ -76,6 +79,11 @@
 					) === -1
 				);
 			}
+			if ( !userChangedCreateAccount ) {
+				updatingBlockOptions = true;
+				createAccountWidget.setSelected( isSitewide );
+				updatingBlockOptions = false;
+			}
 
 		}
 
@@ -92,6 +100,12 @@
 			if ( namespaceRestrictionsWidget ) {
 				namespaceRestrictionsWidget.on( 'change', updateBlockOptions );
 			}
+
+			createAccountWidget.on( 'change', function () {
+				if ( !updatingBlockOptions ) {
+					userChangedCreateAccount = true;
+				}
+			} );
 
 			// Call them now to set initial state (ie. Special:Block/Foobar?wpBlockExpiry=2+hours)
 			updateBlockOptions();
