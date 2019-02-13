@@ -956,16 +956,25 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 			$cache::TTL_WEEK,
 			function () use ( $contents, $fileName ) {
 				$parser = self::javaScriptParser();
+				$err = null;
 				try {
+					Wikimedia\suppressWarnings();
 					$parser->parse( $contents, $fileName, 1 );
-					$result = $contents;
 				} catch ( Exception $e ) {
-					// We'll save this to cache to avoid having to re-validate broken JS
-					$err = $e->getMessage();
-					$result = "mw.log.error(" .
-						Xml::encodeJsVar( "JavaScript parse error: $err" ) . ");";
+					$err = $e;
+				} finally {
+					Wikimedia\restoreWarnings();
 				}
-				return $result;
+				if ( $err ) {
+					// Send the error to the browser console client-side.
+					// By returning this as replacement for the actual script,
+					// we ensure modules are safe to load in a batch request,
+					// without causing other unrelated modules to break.
+					return 'mw.log.error(' .
+						Xml::encodeJsVar( 'JavaScript parse error: ' . $err->getMessage() ) .
+						');';
+				}
+				return $contents;
 			}
 		);
 	}
