@@ -11,10 +11,12 @@ namespace MediaWiki\Widget;
 class TitlesMultiselectWidget extends TagMultiselectWidget {
 
 	protected $showMissing = null;
+	protected $excludeDynamicNamespaces = null;
 
 	/**
 	 * @param array $config Configuration options
 	 *   - bool $config['showMissing'] Show missing pages
+	 *   - bool $config['excludeDynamicNamespaces'] Exclude pages in negative namespaces
 	 */
 	public function __construct( array $config = [] ) {
 		parent::__construct( $config );
@@ -22,6 +24,9 @@ class TitlesMultiselectWidget extends TagMultiselectWidget {
 		// Properties
 		if ( isset( $config['showMissing'] ) ) {
 			$this->showMissing = $config['showMissing'];
+		}
+		if ( isset( $config['excludeDynamicNamespaces'] ) ) {
+			$this->excludeDynamicNamespaces = $config['excludeDynamicNamespaces'];
 		}
 
 		$this->addClasses( [ 'mw-widgets-titlesMultiselectWidget' ] );
@@ -34,6 +39,9 @@ class TitlesMultiselectWidget extends TagMultiselectWidget {
 	public function getConfig( &$config ) {
 		if ( $this->showMissing !== null ) {
 			$config['showMissing'] = $this->showMissing;
+		}
+		if ( $this->excludeDynamicNamespaces !== null ) {
+			$config['excludeDynamicNamespaces'] = $this->excludeDynamicNamespaces;
 		}
 
 		return parent::getConfig( $config );

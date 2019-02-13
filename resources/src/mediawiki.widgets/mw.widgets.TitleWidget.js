@@ -26,6 +26,7 @@
 	 * @cfg {boolean} [showMissing=true] Show missing pages
 	 * @cfg {boolean} [addQueryInput=true] Add exact user's input query to results
 	 * @cfg {boolean} [excludeCurrentPage] Exclude the current page from suggestions
+	 * @cfg {boolean} [excludeDynamicNamespaces] Exclude pages whose namespace is negative
 	 * @cfg {boolean} [validateTitle=true] Whether the input must be a valid title
 	 * @cfg {boolean} [required=false] Whether the input must not be empty
 	 * @cfg {boolean} [highlightSearchQuery=true] Highlight the partial query the user used for this title
@@ -51,6 +52,7 @@
 		this.showMissing = config.showMissing !== false;
 		this.addQueryInput = config.addQueryInput !== false;
 		this.excludeCurrentPage = !!config.excludeCurrentPage;
+		this.excludeDynamicNamespaces = !!config.excludeDynamicNamespaces;
 		this.validateTitle = config.validateTitle !== undefined ? config.validateTitle : true;
 		this.highlightSearchQuery = config.highlightSearchQuery === undefined ? true : !!config.highlightSearchQuery;
 		this.cache = config.cache;
@@ -236,6 +238,11 @@
 
 			// When excludeCurrentPage is set, don't list the current page unless the user has type the full title
 			if ( this.excludeCurrentPage && suggestionPage.title === currentPageName && suggestionPage.title !== titleObj.getPrefixedText() ) {
+				continue;
+			}
+
+			// When excludeDynamicNamespaces is set, ignore all pages with negative namespace
+			if ( this.excludeDynamicNamespaces && suggestionPage.ns < 0 ) {
 				continue;
 			}
 			pageData[ suggestionPage.title ] = {
