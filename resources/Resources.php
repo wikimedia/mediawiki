@@ -2133,7 +2133,7 @@ return [
 		'styles' => 'resources/src/mediawiki.special.changeslist.enhanced.css',
 	],
 	'mediawiki.special.changeslist.legend' => [
-		'styles' => 'resources/src/mediawiki.special.changeslist.legend.css',
+		'styles' => 'resources/src/mediawiki.special.changeslist.legend.less',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.changeslist.legend.js' => [
