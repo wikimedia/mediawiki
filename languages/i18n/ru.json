@@ -136,7 +136,8 @@
 			"Force majeure",
 			"Infovarius",
 			"Cronolio",
-			"Nk88"
+			"Nk88",
+			"Edward Chernenko"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -2267,7 +2268,7 @@
 	"post-expand-template-argument-category-desc": "Страница станет больше <code>$wgMaxArticleSize</code> после раскрытия аргумента шаблона (что-нибудь в тройных фигурных скобках, например, <code>{{{Foo}}})</code>).",
 	"expensive-parserfunction-category-desc": "На странице используется слишком много ресурсоёмких функций (таких, как <code>#ifexist</code>). Подробнее — на странице [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].",
 	"broken-file-category-desc": "Страница содержит некорректную файловую ссылку (ссылку на несуществующий файл).",
-	"hidden-category-category-desc": "Эта категория содержит метку <code><nowiki>__HIDDENCAT__</nowiki></code> содержимом странице, что по умолчанию предотвращает её отображение на страницах в разделе категорий.",
+	"hidden-category-category-desc": "В вики-тексте этой категории есть метка <code><nowiki>__HIDDENCAT__</nowiki></code>, из-за чего она не показывается в разделе «Категории:» тех страниц, которые в неё включены.",
 	"trackingcategories-nodesc": "Описание отсутствует.",
 	"trackingcategories-disabled": "Категория отключена",
 	"mailnologin": "Адрес для отправки отсутствует",
