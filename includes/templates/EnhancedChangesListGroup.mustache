@@ -1,6 +1,6 @@
 <input type="checkbox" class="mw-enhancedchanges-checkbox" id="{{ checkboxId }}">{{!
-}}<table class="{{# tableClasses }}{{ . }} {{/ tableClasses }}" data-mw-ts="{{{ fullTimestamp }}}">
-	<tr class="mw-rcfilters-ui-highlights-enhanced-toplevel {{# filterClasses }}{{ . }} {{/ filterClasses }}">
+}}<table class="{{# tableClasses }}{{ . }} {{/ tableClasses }}" data-mw-ts="{{ fullTimestamp }}">
+	<tr class="mw-rcfilters-ui-highlights-enhanced-toplevel{{# filterClasses }} {{ . }}{{/ filterClasses }}">
 		<td>
 			<div class="mw-rcfilters-ui-highlights">
 				<div class="mw-rcfilters-ui-highlights-color-none" data-color="none"></div>
@@ -26,7 +26,7 @@
 		}}</td>
 	</tr>
 	{{# lines }}
-	<tr class="mw-rcfilters-ui-highlights-enhanced-nested {{# classes }}{{ . }} {{/ classes }}"{{{ attribs }}}>
+	<tr class="mw-rcfilters-ui-highlights-enhanced-nested{{# classes }} {{ . }}{{/ classes }}"{{{ attribs }}}>
 		<td></td>
 		<td></td>
 		<td></td>
