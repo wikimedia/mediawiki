@@ -86,7 +86,7 @@
 								// * If using EnhancedChangesList and $this is not part of a grouped log entry, use the <table> grouped entry
 								$row =
 									$this.closest(
-										'li, table.mw-collapsible.mw-changeslist-log td[data-target-page], table' );
+										'li, .mw-enhancedchanges-checkbox + table.mw-changeslist-log td[data-target-page], table' );
 								$link = $row.find( '.mw-unwatch-link, .mw-watch-link' );
 
 								callback( rowTitle, $row, $link );

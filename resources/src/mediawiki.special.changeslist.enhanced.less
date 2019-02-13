@@ -3,6 +3,27 @@
  * a.k.a. Enhanced Recent Changes is enabled.
  */
 
+@import 'mediawiki.skin.variables.less';
+
+.mw-enhancedchanges-checkbox {
+	// The checkbox must be hidden. A display:none would also hide the
+	// checkbox. But an element hidden by display:none is not focusable
+	// via keyboard. Therefor make the checkbox invisible on another way
+	// to allow to focus the checkbox with keyboard.
+
+	// Remove any size of the checkbox.
+	position: absolute;
+	// Make the checkbox invisible.
+	opacity: 0;
+	// Prevent that the checkbox is clickable and changes the cursor.
+	z-index: @z-index-bottom;
+
+	// Hide the nested changes if the checkbox is not checked.
+	&:not( :checked ) + table > tbody > tr:not( :first-of-type ) {
+		display: none;
+	}
+}
+
 table.mw-enhanced-rc {
 	border: 0;
 	border-spacing: 0;
@@ -27,19 +48,25 @@ td.mw-enhanced-rc {
 	font-family: monospace, monospace;
 }
 
-/* Show/hide arrows in enhanced changeslist */
-/* stylelint-disable-next-line selector-class-pattern */
-.mw-enhanced-rc .collapsible-expander {
-	float: none;
-}
-
-/* If JS is disabled, the arrows or the placeholder space shouldn't be shown */
-.client-nojs .mw-enhancedchanges-arrow-space {
-	display: none;
-}
-
 .mw-enhancedchanges-arrow {
 	padding-top: 2px;
+	background-position: left bottom;
+	background-repeat: no-repeat;
+	cursor: pointer;
+
+	.mw-enhancedchanges-checkbox:not( :checked ) + table & {
+		background-image: url( mediawiki.icon/images/arrow-collapsed-ltr.svg );
+	}
+
+	.mw-enhancedchanges-checkbox:checked + table & {
+		background-image: url( mediawiki.icon/images/arrow-expanded.svg );
+	}
+
+	// Show a focus ring around the label when focusing the invisible checkbox.
+	// This simulates that the label is in focus.
+	.mw-enhancedchanges-checkbox:focus + table & {
+		outline: auto;
+	}
 }
 
 .mw-enhancedchanges-arrow-space {

@@ -99,10 +99,10 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 		$message = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results' ),
 		isEmpty = $changesListContent === 'NO_RESULTS',
-		// For enhanced mode, we have to load these modules, which are
+		// For enhanced mode, we have to load this modules, which is
 		// not loaded for the 'regular' mode in the backend
 		loaderPromise = mw.user.options.get( 'usenewrc' ) && !OO.ui.isMobile() ?
-			mw.loader.using( [ 'mediawiki.special.changeslist.enhanced', 'mediawiki.icon' ] ) :
+			mw.loader.using( [ 'mediawiki.special.changeslist.enhanced' ] ) :
 			$.Deferred().resolve(),
 		widget = this;
 
@@ -257,7 +257,7 @@ ChangesListWrapperWidget.prototype.emphasizeNewChanges = function ( from ) {
  */
 ChangesListWrapperWidget.prototype.updateEnhancedParentHighlight = function () {
 	var activeHighlightClasses,
-		$enhancedTopPageCell = this.$element.find( 'table.mw-enhanced-rc.mw-collapsible' );
+		$enhancedTopPageCell = this.$element.find( 'table.mw-enhanced-rc' );
 
 	activeHighlightClasses = this.filtersViewModel.getCurrentlyUsedHighlightColors().map( function ( color ) {
 		return 'mw-rcfilters-highlight-color-' + color;
