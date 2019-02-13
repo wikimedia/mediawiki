@@ -1077,16 +1077,18 @@ class Linker {
 	 * @since 1.16.3
 	 * @param Revision $rev
 	 * @param bool $isPublic Show only if all users can see it
+	 * @param bool $useParentheses (optional) Wrap comments in parentheses where needed
 	 * @return string HTML
 	 */
-	public static function revUserTools( $rev, $isPublic = false ) {
+	public static function revUserTools( $rev, $isPublic = false, $useParentheses = true ) {
 		if ( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		} elseif ( $rev->userCan( Revision::DELETED_USER ) ) {
 			$userId = $rev->getUser( Revision::FOR_THIS_USER );
 			$userText = $rev->getUserText( Revision::FOR_THIS_USER );
 			$link = self::userLink( $userId, $userText )
-				. self::userToolLinks( $userId, $userText );
+				. self::userToolLinks( $userId, $userText, false, 0, null,
+					$useParentheses );
 		} else {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		}
@@ -1532,9 +1534,8 @@ class Linker {
 			$stxt = wfMessage( 'historyempty' )->escaped();
 		} else {
 			$stxt = wfMessage( 'nbytes' )->numParams( $size )->escaped();
-			$stxt = wfMessage( 'parentheses' )->rawParams( $stxt )->escaped();
 		}
-		return "<span class=\"history-size\">$stxt</span>";
+		return "<span class=\"history-size mw-diff-bytes\">$stxt</span>";
 	}
 
 	/**
