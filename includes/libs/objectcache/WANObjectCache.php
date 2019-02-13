@@ -1264,21 +1264,26 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			}
 		}
 
-		// A deleted key with a negative TTL left must be tombstoned
+		// Only a tombstoned key yields no value yet has a (negative) "current time left"
 		$isTombstone = ( $curTTL !== null && $value === false );
-		if ( $isTombstone && $lockTSE <= 0 ) {
-			// Use the INTERIM value for tombstoned keys to reduce regeneration load
-			$lockTSE = self::INTERIM_KEY_TTL;
+		// Decide if only one thread should handle regeneration at a time
+		if ( $isTombstone ) {
+			// Note that since tombstones no-op set(), $lockTSE and $curTTL cannot be used to
+			// deduce the key hotness because $curTTL will always keep increasing until the
+			// tombstone expires or is overwritten by a new tombstone. Also, even if $lockTSE
+			// is not set, constant regeneration of a key for the tombstone lifetime might be
+			// very expensive. In either case, reduce regeneration load during this time by
+			// using the INTERIM value key with a small TTL.
+			$useMutex = true;
+		} else {
+			$useMutex =
+				// Assume a key is hot if requested soon ($lockTSE seconds) after invalidation.
+				// This avoids stampedes when timestamps from $checkKeys/$touchedCallback bump.
+				( $curTTL !== null && $curTTL <= 0 && abs( $curTTL ) <= $lockTSE ) ||
+				// Assume a key is hot if there is no value and a busy fallback is given.
+				// This avoids stampedes on eviction or preemptive renegeration taking too long.
+				( $busyValue !== null && $value === false );
 		}
-		// Assume a key is hot if requested soon after invalidation
-		$isHot = ( $curTTL !== null && $curTTL <= 0 && abs( $curTTL ) <= $lockTSE );
-		// Use the mutex if there is no value and a busy fallback is given
-		$checkBusy = ( $busyValue !== null && $value === false );
-		// Decide whether a single thread should handle regenerations.
-		// This avoids stampedes when $checkKeys are bumped and when preemptive
-		// renegerations take too long. It also reduces regenerations while $key
-		// is tombstoned. This balances cache freshness with avoiding DB load.
-		$useMutex = ( $isHot || ( $isTombstone && $lockTSE > 0 ) || $checkBusy );
 
 		$lockAcquired = false;
 		if ( $useMutex ) {
@@ -1325,17 +1330,17 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$valueIsCacheable = ( $value !== false && $ttl >= 0 );
 
 		// When delete() is called, writes are write-holed by the tombstone,
-		// so use a special INTERIM key to pass the new value around threads.
-		if ( ( $isTombstone && $lockTSE > 0 ) && $valueIsCacheable ) {
-			$tempTTL = max( 1, (int)$lockTSE ); // set() expects seconds
+		// so use a special INTERIM key to pass the new value among threads.
+		if ( $isTombstone && $valueIsCacheable ) {
+			$tempTTL = max( self::INTERIM_KEY_TTL, (int)$lockTSE ); // set() expects seconds
 			$newAsOf = $this->getCurrentTime();
 			$wrapped = $this->wrap( $value, $tempTTL, $newAsOf );
 			// Avoid using set() to avoid pointless mcrouter broadcasting
 			$this->setInterimValue( $key, $wrapped, $tempTTL );
 		}
 
-		// Save the value unless a mutex-winning thread is already expected to do that
-		if ( $valueIsCacheable && ( !$useMutex || $lockAcquired ) ) {
+		// Save the value unless a lock-winning thread is already expected to do that
+		if ( $valueIsCacheable && !$isTombstone && ( !$useMutex || $lockAcquired ) ) {
 			$setOpts['lockTSE'] = $lockTSE;
 			$setOpts['staleTTL'] = $staleTTL;
 			// Use best known "since" timestamp if not provided
