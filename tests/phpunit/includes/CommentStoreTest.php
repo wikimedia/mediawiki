@@ -383,6 +383,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			"message keys $from" );
 		$this->assertEquals( $expect['message']->text(), $actual->message->text(),
 			"message rendering $from" );
+		$this->assertEquals( $expect['text'], $actual->message->text(),
+			"message rendering and text $from" );
 		$this->assertEquals( $expect['data'], $actual->data, "data $from" );
 	}
 
@@ -400,7 +402,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 		$expectOld = [
 			'text' => $expect['text'],
-			'message' => new RawMessage( '$1', [ $expect['text'] ] ),
+			'message' => new RawMessage( '$1', [ Message::plaintextParam( $expect['text'] ) ] ),
 			'data' => null,
 		];
 
@@ -490,7 +492,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 		$expectOld = [
 			'text' => $expect['text'],
-			'message' => new RawMessage( '$1', [ $expect['text'] ] ),
+			'message' => new RawMessage( '$1', [ Message::plaintextParam( $expect['text'] ) ] ),
 			'data' => null,
 		];
 
@@ -568,7 +570,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$db = wfGetDB( DB_REPLICA ); // for timestamps
 
 		$msgComment = new Message( 'parentheses', [ 'message comment' ] );
-		$textCommentMsg = new RawMessage( '$1', [ 'text comment' ] );
+		$textCommentMsg = new RawMessage( '$1', [ Message::plaintextParam( '{{text}} comment' ) ] );
 		$nestedMsgComment = new Message( [ 'parentheses', 'rawmessage' ], [ new Message( 'mainpage' ) ] );
 		$comStoreComment = new CommentStoreComment(
 			null, 'comment store comment', null, [ 'foo' => 'bar' ]
@@ -576,15 +578,15 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 		return [
 			'Simple table, text comment' => [
-				'commentstore1', 'cs1_comment', 'cs1_id', 'text comment', null, [
-					'text' => 'text comment',
+				'commentstore1', 'cs1_comment', 'cs1_id', '{{text}} comment', null, [
+					'text' => '{{text}} comment',
 					'message' => $textCommentMsg,
 					'data' => null,
 				]
 			],
 			'Simple table, text comment with data' => [
-				'commentstore1', 'cs1_comment', 'cs1_id', 'text comment', [ 'message' => 42 ], [
-					'text' => 'text comment',
+				'commentstore1', 'cs1_comment', 'cs1_id', '{{text}} comment', [ 'message' => 42 ], [
+					'text' => '{{text}} comment',
 					'message' => $textCommentMsg,
 					'data' => [ 'message' => 42 ],
 				]
@@ -619,15 +621,15 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			],
 
 			'Revision, text comment' => [
-				'commentstore2', 'cs2_comment', 'cs2_id', 'text comment', null, [
-					'text' => 'text comment',
+				'commentstore2', 'cs2_comment', 'cs2_id', '{{text}} comment', null, [
+					'text' => '{{text}} comment',
 					'message' => $textCommentMsg,
 					'data' => null,
 				]
 			],
 			'Revision, text comment with data' => [
-				'commentstore2', 'cs2_comment', 'cs2_id', 'text comment', [ 'message' => 42 ], [
-					'text' => 'text comment',
+				'commentstore2', 'cs2_comment', 'cs2_id', '{{text}} comment', [ 'message' => 42 ], [
+					'text' => '{{text}} comment',
 					'message' => $textCommentMsg,
 					'data' => [ 'message' => 42 ],
 				]
