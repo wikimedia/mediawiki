@@ -1210,6 +1210,7 @@
 	"uploaddisabledtext": "Ne permisesas sendar arkivi.",
 	"upload-maxfilesize": "Maxima grandeso dil arkivo: $1",
 	"watchthisupload": "Surveyar ica arkivo",
+	"filewasdeleted": "Altr arkivo kun ca sama nomo sendesis antee, e pose efacesis.\nAnte probar risendar ol, vu mustas ante verifikar $1.",
 	"upload-file-error": "Interna eroro",
 	"upload-file-error-text": "Eventis interna eroro kande on probis kreir tempala arkivo che la reto-servero.\nVoluntes kontaktar ula [[Special:ListUsers/sysop|administrero]].",
 	"upload-misc-error": "Sendo-eroro nekonocita",

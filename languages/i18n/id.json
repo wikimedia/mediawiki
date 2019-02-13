@@ -2100,7 +2100,7 @@
 	"magiclink-tracking-isbn": "Halaman yang menggunakan pranala magis ISBN",
 	"magiclink-tracking-isbn-desc": "Halaman ini menggunakan pranala magis ISBN. Lihat [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] bagaimana melakukan migrasi.",
 	"specialloguserlabel": "Pengguna:",
-	"speciallogtitlelabel": "Target (judul atau{{ns:pengguna}}:nama pengguna untuk pengguna)",
+	"speciallogtitlelabel": "Target (judul atau {{ns:user}}:nama pengguna untuk pengguna)",
 	"log": "Catatan (Log)",
 	"logeventslist-submit": "Tampilkan",
 	"logeventslist-more-filters": "Tampilkan log tambahan:",

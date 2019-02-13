@@ -121,7 +121,8 @@
 			"Wedhro",
 			"Malore",
 			"Ruthven",
-			"Manfredi26"
+			"Manfredi26",
+			"Albe Albe 460"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -2630,6 +2631,7 @@
 	"proxyblockreason": "Questo indirizzo IP è stato bloccato perché risulta essere un proxy aperto. Si prega di contattare il proprio fornitore di accesso a Internet o il supporto tecnico e informarli di questo grave problema di sicurezza.",
 	"sorbsreason": "Questo indirizzo IP è elencato come proxy aperto nella lista DNSBL utilizzata da {{SITENAME}}.",
 	"sorbs_create_account_reason": "Non è possibile creare nuove utenze con questo indirizzo IP perché è elencato come proxy aperto nella lista DNSBL utilizzata da {{SITENAME}}.",
+	"softblockrangesreason": "I contributi anonimi non sono consentiti dal tuo indirizzo IP ($1). Accedi con la tua utenza.",
 	"xffblockreason": "Un indirizzo IP presente nell'intestazione X-Forwarded-For, tuo o del server proxy che stai utilizzando, è stato bloccato. La motivazione originale del blocco è: $1",
 	"cant-see-hidden-user": "L'utente che si sta tentando di bloccare è stato già bloccato e nascosto. Poiché non hai il permesso \"hideuser\", non è possibile visualizzare o modificare il blocco dell'utente.",
 	"ipbblocked": "Non puoi bloccare o sbloccare altri utenti, perché tu stesso sei bloccato",
@@ -2674,6 +2676,7 @@
 	"movepage-moved": "'''\"$1\" è stata spostata a \"$2\"'''",
 	"movepage-moved-redirect": "È stato creato un redirect.",
 	"movepage-moved-noredirect": "La creazione di un redirect è stata soppressa.",
+	"movepage-delete-first": "La pagina di destinazione ha troppe versioni da cancellare come parte di uno spostamento della pagina. Per prima cosa cancella la manualmente pagina, poi riprova.",
 	"articleexists": "Una pagina con questo nome esiste già oppure il nome scelto non è valido.\nScegliere un titolo diverso per la pagina.",
 	"cantmove-titleprotected": "Lo spostamento della pagina non è possibile in quanto il nuovo titolo è stato protetto per impedirne la creazione",
 	"movetalk": "Sposta anche la pagina di discussione.",
@@ -3803,6 +3806,7 @@
 	"pagedata-not-acceptable": "Nessun formato corrispondente trovato. Tipi MIME supportati: $1",
 	"pagedata-bad-title": "Titolo non valido: $1.",
 	"unregistered-user-config": "Per motivi di sicurezza, non è possibile caricare sottopagine utente JavaScript, CSS e JSON per utenti non registrati.",
+	"passwordpolicies-summary": "Questo è un elenco delle politiche sulle password efficaci per i gruppi di utenti definiti in questo wiki.",
 	"passwordpolicies-group": "Gruppo",
 	"passwordpolicies-policies": "Politiche",
 	"passwordpolicies-policy-minimalpasswordlength": "La password deve essere lunga almeno $1 {{PLURAL:$1|carattere|caratteri}}",
@@ -3812,5 +3816,6 @@
 	"passwordpolicies-policy-maximalpasswordlength": "La password deve essere lunga meno di $1 {{PLURAL:$1|carattere|caratteri}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "La password non può essere {{PLURAL:$1|la password più popolare|nell'elenco delle $1 password più popolari}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "La password non può essere nell'elenco delle 100 000 password utilizzate più comunemente.",
+	"easydeflate-invaliddeflate": "Il contenuto fornito non è compresso correttamente",
 	"unprotected-js": "Per motivi di sicurezza, non è possibile caricare JavaScript da pagine non protette. Crea javascript solo nel namespace MediaWiki o come sottopagina Utente"
 }
