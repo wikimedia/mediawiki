@@ -305,7 +305,7 @@ class LoadBalancer implements ILoadBalancer {
 
 				$host = $this->getServerName( $i );
 				if ( $lag === false && !is_infinite( $maxServerLag ) ) {
-					$this->replLogger->error(
+					$this->replLogger->debug(
 						__METHOD__ .
 						": server {host} is not replicating?", [ 'host' => $host ] );
 					unset( $loads[$i] );
