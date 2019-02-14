@@ -3,6 +3,12 @@
 	"description": "MediaWiki extension.json schema",
 	"type": "object",
 	"additionalProperties": false,
+	"patternProperties": {
+		"^@": {
+			"type": "string",
+			"description": "Arbitrary notes, ignored by the parser."
+		}
+	},
 	"properties": {
 		"manifest_version": {
 			"type": "integer",
