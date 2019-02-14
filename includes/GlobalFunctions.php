@@ -225,7 +225,7 @@ function wfMergeErrorArrays( ...$args ) {
  *
  * @param array $array The array.
  * @param array $insert The array to insert.
- * @param mixed $after The key to insert after
+ * @param mixed $after The key to insert after. Callers need to make sure the key is set.
  * @return array
  */
 function wfArrayInsertAfter( array $array, array $insert, $after ) {
