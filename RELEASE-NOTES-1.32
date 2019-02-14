@@ -711,8 +711,8 @@ because of Phabricator reports.
   recentchanges.rc_cur_time from the PostgreSQL schema.
 
 == Compatibility ==
-MediaWiki 1.32 requires PHP 7.0.0 or later. Although HHVM 3.18.5 or later is
-supported, it is generally advised to use PHP 7.0.0 or later for long term
+MediaWiki 1.32 requires PHP 7.0.13 or later. Although HHVM 3.18.5 or later is
+supported, it is generally advised to use PHP 7.0.13 or later for long term
 support. MediaWiki requires that the mbstring, xml, ctype, json, iconv and
 fileinfo PHP extensions are loaded to work.
 
