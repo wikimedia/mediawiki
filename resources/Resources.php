@@ -2357,6 +2357,7 @@ return [
 		'dependencies' => [
 			'mediawiki.api',
 			'mediawiki.jqueryMsg',
+			'mediawiki.notify',
 			'mediawiki.Title',
 			'mediawiki.util',
 			'oojs-ui-core',
