@@ -3,22 +3,9 @@
  */
 
 /* Remember the collapse state of the legend on recent changes and watchlist pages. */
-( function () {
-	var
-		cookieName = 'changeslist-state',
-		// Expanded by default
-		doCollapsibleLegend = function ( $container ) {
-			$container.find( '.mw-changeslist-legend' )
-				.makeCollapsible( {
-					collapsed: mw.cookie.get( cookieName ) === 'collapsed'
-				} )
-				.on( 'beforeExpand.mw-collapsible', function () {
-					mw.cookie.set( cookieName, 'expanded' );
-				} )
-				.on( 'beforeCollapse.mw-collapsible', function () {
-					mw.cookie.set( cookieName, 'collapsed' );
-				} );
-		};
-
-	mw.hook( 'wikipage.content' ).add( doCollapsibleLegend );
-}() );
+mw.hook( 'wikipage.content' ).add( function ( $container ) {
+	$container.find( '.mw-changeslist-legend' )
+		.on( 'toggle', function () {
+			mw.cookie.set( 'changeslist-state', this.open ? 'expanded' : 'collapsed' );
+		} );
+} );

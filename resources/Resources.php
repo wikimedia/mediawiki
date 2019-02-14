@@ -2229,7 +2229,6 @@ return [
 	'mediawiki.special.changeslist.legend.js' => [
 		'scripts' => 'resources/src/mediawiki.special.changeslist.legend.js',
 		'dependencies' => [
-			'jquery.makeCollapsible',
 			'mediawiki.cookie',
 		],
 	],

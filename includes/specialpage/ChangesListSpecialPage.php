@@ -1762,13 +1762,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		# Collapsible
 		$collapsedState = $this->getRequest()->getCookie( 'changeslist-state' );
-		$collapsedClass = $collapsedState === 'collapsed' ? 'mw-collapsed' : '';
 
-		$legend = Html::rawElement(
-			'div',
-			[ 'class' => [ 'mw-changeslist-legend', 'mw-collapsible', $collapsedClass ] ],
-			$legendHeading .
-				Html::rawElement( 'div', [ 'class' => 'mw-collapsible-content' ], $legend )
+		$legend = Html::rawElement( 'details', [
+				'class' => 'mw-changeslist-legend',
+				'open' => $collapsedState !== 'collapsed' ? 'open' : null,
+			],
+			Html::rawElement( 'summary', [], $legendHeading ) .
+				$legend
 		);
 
 		return $legend;
