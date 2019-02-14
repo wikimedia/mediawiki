@@ -2130,7 +2130,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.changeslist.enhanced' => [
-		'styles' => 'resources/src/mediawiki.special.changeslist.enhanced.css',
+		'styles' => 'resources/src/mediawiki.special.changeslist.enhanced.less',
 	],
 	'mediawiki.special.changeslist.legend' => [
 		'styles' => 'resources/src/mediawiki.special.changeslist.legend.less',
