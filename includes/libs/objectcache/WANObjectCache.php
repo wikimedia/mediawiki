@@ -1238,9 +1238,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		$preCallbackTime = $this->getCurrentTime();
 		// Determine if a cached value regeneration is needed or desired
-		if ( $value !== false
-			&& $this->isAliveOrInGracePeriod( $curTTL, $graceTTL )
-			&& $this->isValid( $value, $versioned, $asOf, $minTime )
+		if (
+			$this->isValid( $value, $versioned, $asOf, $minTime ) &&
+			$this->isAliveOrInGracePeriod( $curTTL, $graceTTL )
 		) {
 			$preemptiveRefresh = (
 				$this->worthRefreshExpiring( $curTTL, $lowTTL ) ||
@@ -1265,48 +1265,48 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		// Only a tombstoned key yields no value yet has a (negative) "current time left"
-		$isTombstone = ( $curTTL !== null && $value === false );
+		$isKeyTombstoned = ( $curTTL !== null && $value === false );
 		// Decide if only one thread should handle regeneration at a time
-		if ( $isTombstone ) {
+		$useMutex =
 			// Note that since tombstones no-op set(), $lockTSE and $curTTL cannot be used to
 			// deduce the key hotness because $curTTL will always keep increasing until the
 			// tombstone expires or is overwritten by a new tombstone. Also, even if $lockTSE
 			// is not set, constant regeneration of a key for the tombstone lifetime might be
-			// very expensive. In either case, reduce regeneration load during this time by
-			// using the INTERIM value key with a small TTL.
-			$useMutex = true;
-		} else {
-			$useMutex =
-				// Assume a key is hot if requested soon ($lockTSE seconds) after invalidation.
-				// This avoids stampedes when timestamps from $checkKeys/$touchedCallback bump.
-				( $curTTL !== null && $curTTL <= 0 && abs( $curTTL ) <= $lockTSE ) ||
-				// Assume a key is hot if there is no value and a busy fallback is given.
-				// This avoids stampedes on eviction or preemptive renegeration taking too long.
-				( $busyValue !== null && $value === false );
-		}
+			// very expensive. Assume tombstoned keys are possibly hot in order to reduce
+			// the risk of high regeneration load after the delete() method is called.
+			$isKeyTombstoned ||
+			// Assume a key is hot if requested soon ($lockTSE seconds) after invalidation.
+			// This avoids stampedes when timestamps from $checkKeys/$touchedCallback bump.
+			( $curTTL !== null && $curTTL <= 0 && abs( $curTTL ) <= $lockTSE ) ||
+			// Assume a key is hot if there is no value and a busy fallback is given.
+			// This avoids stampedes on eviction or preemptive regeneration taking too long.
+			( $busyValue !== null && $value === false );
 
 		$lockAcquired = false;
 		if ( $useMutex ) {
 			// Acquire a datacenter-local non-blocking lock
 			if ( $this->cache->add( self::MUTEX_KEY_PREFIX . $key, 1, self::LOCK_TTL ) ) {
-				// Lock acquired; this thread should update the key
+				// Lock acquired; this thread will recompute the value and update cache
 				$lockAcquired = true;
-			} elseif ( $value !== false && $this->isValid( $value, $versioned, $asOf, $minTime ) ) {
+			} elseif ( $this->isValid( $value, $versioned, $asOf, $minTime ) ) {
+				// Lock not acquired and a stale value exists; use the stale value
 				$this->stats->increment( "wanobjectcache.$kClass.hit.stale" );
-				// If it cannot be acquired; then the stale value can be used
+
 				return $value;
 			} else {
-				// Use the INTERIM value for tombstoned keys to reduce regeneration load.
-				// For hot keys, either another thread has the lock or the lock failed;
-				// use the INTERIM value from the last thread that regenerated it.
-				$value = $this->getInterimValue( $key, $versioned, $minTime, $asOf );
-				if ( $value !== false ) {
-					$this->stats->increment( "wanobjectcache.$kClass.hit.volatile" );
+				// Lock not acquired and no stale value exists
+				if ( $isKeyTombstoned ) {
+					// Use the INTERIM value from the last thread that regenerated it if possible
+					$value = $this->getInterimValue( $key, $versioned, $minTime, $asOf );
+					if ( $value !== false ) {
+						$this->stats->increment( "wanobjectcache.$kClass.hit.volatile" );
 
-					return $value;
+						return $value;
+					}
 				}
-				// Use the busy fallback value if nothing else
+
 				if ( $busyValue !== null ) {
+					// Use the busy fallback value if nothing else
 					$miss = is_infinite( $minTime ) ? 'renew' : 'miss';
 					$this->stats->increment( "wanobjectcache.$kClass.$miss.busy" );
 
@@ -1329,24 +1329,24 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		}
 		$valueIsCacheable = ( $value !== false && $ttl >= 0 );
 
-		// When delete() is called, writes are write-holed by the tombstone,
-		// so use a special INTERIM key to pass the new value among threads.
-		if ( $isTombstone && $valueIsCacheable ) {
-			$tempTTL = max( self::INTERIM_KEY_TTL, (int)$lockTSE ); // set() expects seconds
-			$newAsOf = $this->getCurrentTime();
-			$wrapped = $this->wrap( $value, $tempTTL, $newAsOf );
-			// Avoid using set() to avoid pointless mcrouter broadcasting
-			$this->setInterimValue( $key, $wrapped, $tempTTL );
-		}
-
-		// Save the value unless a lock-winning thread is already expected to do that
-		if ( $valueIsCacheable && !$isTombstone && ( !$useMutex || $lockAcquired ) ) {
-			$setOpts['lockTSE'] = $lockTSE;
-			$setOpts['staleTTL'] = $staleTTL;
-			// Use best known "since" timestamp if not provided
-			$setOpts += [ 'since' => $preCallbackTime ];
-			// Update the cache; this will fail if the key is tombstoned
-			$this->set( $key, $value, $ttl, $setOpts );
+		if ( $valueIsCacheable ) {
+			if ( $isKeyTombstoned ) {
+				// When delete() is called, writes are write-holed by the tombstone,
+				// so use a special INTERIM key to pass the new value among threads.
+				$tempTTL = max( self::INTERIM_KEY_TTL, (int)$lockTSE ); // set() expects seconds
+				$newAsOf = $this->getCurrentTime();
+				$wrapped = $this->wrap( $value, $tempTTL, $newAsOf );
+				// Avoid using set() to avoid pointless mcrouter broadcasting
+				$this->setInterimValue( $key, $wrapped, $tempTTL );
+			} elseif ( !$useMutex || $lockAcquired ) {
+				// Save the value unless a lock-winning thread is already expected to do that
+				$setOpts['lockTSE'] = $lockTSE;
+				$setOpts['staleTTL'] = $staleTTL;
+				// Use best known "since" timestamp if not provided
+				$setOpts += [ 'since' => $preCallbackTime ];
+				// Update the cache; this will fail if the key is tombstoned
+				$this->set( $key, $value, $ttl, $setOpts );
+			}
 		}
 
 		if ( $lockAcquired ) {
@@ -1400,7 +1400,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		$wrapped = $this->cache->get( self::INTERIM_KEY_PREFIX . $key );
 		list( $value ) = $this->unwrap( $wrapped, $this->getCurrentTime() );
-		if ( $value !== false && $this->isValid( $value, $versioned, $asOf, $minTime ) ) {
+		if ( $this->isValid( $value, $versioned, $asOf, $minTime ) ) {
 			$asOf = $wrapped[self::FLD_TIME];
 
 			return $value;
@@ -2081,16 +2081,18 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * Check whether $value is appropriately versioned and not older than $minTime (if set)
+	 * Check if $value is not false, versioned (if needed), and not older than $minTime (if set)
 	 *
-	 * @param array $value
+	 * @param array|bool $value
 	 * @param bool $versioned
 	 * @param float $asOf The time $value was generated
 	 * @param float $minTime The last time the main value was generated (0.0 if unknown)
 	 * @return bool
 	 */
 	protected function isValid( $value, $versioned, $asOf, $minTime ) {
-		if ( $versioned && !isset( $value[self::VFLD_VERSION] ) ) {
+		if ( $value === false ) {
+			return false;
+		} elseif ( $versioned && !isset( $value[self::VFLD_VERSION] ) ) {
 			return false;
 		} elseif ( $minTime > 0 && $asOf < $minTime ) {
 			return false;
