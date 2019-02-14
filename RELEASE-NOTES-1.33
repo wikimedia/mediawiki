@@ -339,6 +339,9 @@ because of Phabricator reports.
   Use CdnCacheUpdate::newFromTitles() instead.
 * Handling of multiple arguments by the Block constructor, deprecated in 1.26,
   has been removed.
+* The translation of main page in Sardinian (sc) was changed from "Pàgina Base"
+  to "Pàgina printzipale". Existing wikis using this content language need to
+  move the main page or change the name through MediaWiki:Mainpage page.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
