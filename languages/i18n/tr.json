@@ -2588,6 +2588,7 @@
 	"move-watch": "Bu sayfayı izle",
 	"movepagebtn": "Sayfayı taşı",
 	"pagemovedsub": "İsim değişikliği tamamlandı.",
+	"cannotmove": "Sayfa, aşağıdaki {{PLURAL:$1|nedenden|nedenlerden}} ötürü taşınamadı:",
 	"movepage-moved": "'''\"$1\",  \"$2\" sayfasına taşındı'''",
 	"movepage-moved-redirect": "Bir yönlendirme oluşturuldu.",
 	"movepage-moved-noredirect": "Bir yönlendirme oluşturulması bastırıldı.",

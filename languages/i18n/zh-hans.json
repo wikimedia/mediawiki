@@ -108,7 +108,8 @@
 			"Hello903hello",
 			"A Chinese Wikipedian",
 			"Angrydog001",
-			"GoForceX"
+			"GoForceX",
+			"Ff98sha"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -653,6 +654,7 @@
 	"resetpass-abort-generic": "密码更改已经被扩展程序中止。",
 	"resetpass-expired": "您的密码已经到期。请设置新登录密码。",
 	"resetpass-expired-soft": "您的密码已经到期，需要更改。请现在更换新密码，或单击“{{int:authprovider-resetpass-skip-label}}”以稍后更改。",
+	"resetpass-validity": "您的密码无效：$1\n\n请设置新登录密码登录。",
 	"resetpass-validity-soft": "您的密码无效：$1\n\n请选择一个新密码，或单击“{{int:authprovider-resetpass-skip-label}}”以稍后更改。",
 	"passwordreset": "重置密码",
 	"passwordreset-text-one": "请完成此表单来通过电子邮件接收临时密码。",
@@ -2611,6 +2613,8 @@
 	"emailblock": "电子邮件停用",
 	"blocklist-nousertalk": "不能编辑自己的讨论页",
 	"blocklist-editing": "编辑中",
+	"blocklist-editing-page": "页面",
+	"blocklist-editing-ns": "名字空间",
 	"ipblocklist-empty": "封禁列表为空。",
 	"ipblocklist-no-results": "请求的IP地址或用户名没有被封禁。",
 	"blocklink": "封禁",
