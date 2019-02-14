@@ -77,12 +77,12 @@ class EnhancedChangesList extends ChangesList {
 		$this->lastdate = '';
 		$this->rclistOpen = false;
 		$this->getOutput()->addModuleStyles( [
+			'mediawiki.icon',
 			'mediawiki.special.changeslist',
 			'mediawiki.special.changeslist.enhanced',
 		] );
 		$this->getOutput()->addModules( [
 			'jquery.makeCollapsible',
-			'mediawiki.icon',
 		] );
 
 		return '<div class="mw-changeslist">';
