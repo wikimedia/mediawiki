@@ -68,7 +68,10 @@ class Block {
 	/** @var int Hack for foreign blocking (CentralAuth) */
 	private $forcedTargetID;
 
-	/** @var int Block::TYPE_ constant. Can only be USER, IP or RANGE internally */
+	/**
+	 * @var int Block::TYPE_ constant. After the block has been loaded
+	 * from the database, this can only be USER, IP or RANGE.
+	 */
 	private $type;
 
 	/** @var User */
@@ -188,7 +191,7 @@ class Block {
 	}
 
 	/**
-	 * Load a blocked user from their block id.
+	 * Load a block from the block id.
 	 *
 	 * @param int $id Block id to search for
 	 * @return Block|null
@@ -1547,7 +1550,9 @@ class Block {
 	}
 
 	/**
-	 * Get the type of target for this particular block
+	 * Get the type of target for this particular block. Autoblocks have whichever type
+	 * corresponds to their target, so to detect if a block is an autoblock, we have to
+	 * check the mAuto property instead.
 	 * @return int Block::TYPE_ constant, will never be TYPE_ID
 	 */
 	public function getType() {
