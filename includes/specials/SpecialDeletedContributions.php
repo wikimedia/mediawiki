@@ -146,15 +146,18 @@ class DeletedContributionsPage extends SpecialPage {
 		if ( $talk ) {
 			$tools = SpecialContributions::getUserLinks( $this, $userObj );
 
-			# Link to contributions
-			$insert['contribs'] = $linkRenderer->makeKnownLink(
+			$contributionsLink = $linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Contributions', $nt->getDBkey() ),
 				$this->msg( 'sp-deletedcontributions-contribs' )->text()
 			);
-
-			// Swap out the deletedcontribs link for our contribs one
-			$tools = wfArrayInsertAfter( $tools, $insert, 'deletedcontribs' );
-			unset( $tools['deletedcontribs'] );
+			if ( isset( $tools['deletedcontribs'] ) ) {
+				// Swap out the deletedcontribs link for our contribs one
+				$tools = wfArrayInsertAfter(
+					$tools, [ 'contribs' => $contributionsLink ], 'deletedcontribs' );
+				unset( $tools['deletedcontribs'] );
+			} else {
+				$tools['contribs'] = $contributionsLink;
+			}
 
 			$links = $this->getLanguage()->pipeList( $tools );
 
