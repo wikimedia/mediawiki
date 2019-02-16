@@ -895,7 +895,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   Revision::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
-	 * @return string Comment stored for the last article revision
+	 * @return string|null Comment stored for the last article revision, or null if the specified
+	 *  audience does not have access to the comment.
 	 */
 	public function getComment( $audience = Revision::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
