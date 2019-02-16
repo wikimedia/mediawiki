@@ -293,6 +293,8 @@ because of Phabricator reports.
 * The mw.language.specialCharacters property from the
   'mediawiki.language.specialCharacters' module has been deprecated.
   Use require( 'mediawiki.language.specialCharacters' ) instead.
+* ChangeTags::purgeTagUsageCache() has been deprecated, and is expected to be
+  removed in a future release.
 
 === Other changes in 1.33 ===
 * (T201747) Html::openElement() warns if given an element name with a space
