@@ -413,6 +413,13 @@ return [
 		);
 	},
 
+	'ResourceLoader' => function ( MediaWikiServices $services ) : ResourceLoader {
+		return new ResourceLoader(
+			$services->getMainConfig(),
+			LoggerFactory::getInstance( 'resourceloader' )
+		);
+	},
+
 	'RevisionFactory' => function ( MediaWikiServices $services ) : RevisionFactory {
 		return $services->getRevisionStore();
 	},

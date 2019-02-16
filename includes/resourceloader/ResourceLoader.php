@@ -245,6 +245,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		$this->logger = $logger ?: new NullLogger();
 
 		if ( !$config ) {
+			// TODO: Deprecate and remove.
 			$this->logger->debug( __METHOD__ . ' was called without providing a Config instance' );
 			$config = MediaWikiServices::getInstance()->getMainConfig();
 		}

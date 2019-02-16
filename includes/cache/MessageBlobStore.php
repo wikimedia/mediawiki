@@ -23,6 +23,7 @@
  * @author Timo Tijhof
  */
 
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -194,7 +195,7 @@ class MessageBlobStore implements LoggerAwareInterface {
 		// Lazy-initialise this property because most callers don't need it.
 		if ( $this->resourceloader === null ) {
 			$this->logger->warning( __CLASS__ . ' created without a ResourceLoader instance' );
-			$this->resourceloader = new ResourceLoader();
+			$this->resourceloader = MediaWikiServices::getInstance()->getResourceLoader();
 		}
 		return $this->resourceloader;
 	}

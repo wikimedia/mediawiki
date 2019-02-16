@@ -46,7 +46,7 @@ class CleanupRemovedModules extends Maintenance {
 		$this->output( "Cleaning up module_deps table...\n" );
 
 		$dbw = $this->getDB( DB_MASTER );
-		$rl = new ResourceLoader( MediaWikiServices::getInstance()->getMainConfig() );
+		$rl = MediaWikiServices::getInstance()->getResourceLoader();
 		$moduleNames = $rl->getModuleNames();
 		$res = $dbw->select( 'module_deps',
 			[ 'md_module', 'md_skin' ],
