@@ -1130,3 +1130,7 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-Genealogy
 	branch = REL1_32
 	ignore = dirty
+[submodule "extensions/IncidentReporting"]
+	path = extensions/IncidentReporting
+	url = https://github.com/miraheze/IncidentReporting
+	branch = master
