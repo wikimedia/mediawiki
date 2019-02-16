@@ -1029,5 +1029,12 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->getUserPermissionsErrors( 'upload', $this->user ) );
 		$this->assertEquals( [],
 			$this->title->getUserPermissionsErrors( 'purge', $this->user ) );
+
+		// Test no block.
+		$this->user->mBlockedby = null;
+		$this->user->mBlock = null;
+
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'edit', $this->user ) );
 	}
 }
