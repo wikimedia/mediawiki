@@ -420,8 +420,6 @@ class ChangeTags {
 			}
 		}
 
-		self::purgeTagUsageCache();
-
 		Hooks::run( 'ChangeTagsAfterUpdateTags', [ $tagsToAdd, $tagsToRemove, $prevTags,
 			$rc_id, $rev_id, $log_id, $params, $rc, $user ] );
 
@@ -1456,18 +1454,15 @@ class ChangeTags {
 		$cache->touchCheckKey( $cache->makeKey( 'valid-tags-hook' ) );
 
 		MediaWikiServices::getInstance()->getChangeTagDefStore()->reloadMap();
-
-		self::purgeTagUsageCache();
 	}
 
 	/**
 	 * Invalidates the tag statistics cache only.
 	 * @since 1.25
+	 * @deprecated since 1.33 the cache this purges no longer exists
 	 */
 	public static function purgeTagUsageCache() {
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-
-		$cache->touchCheckKey( $cache->makeKey( 'change-tag-statistics' ) );
+		wfDeprecated( __METHOD__, '1.33' );
 	}
 
 	/**
