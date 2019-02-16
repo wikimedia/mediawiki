@@ -37,7 +37,7 @@ use Wikimedia\Rdbms\Database;
  */
 class MessageBlobStore implements LoggerAwareInterface {
 
-	/* @var ResourceLoader|null */
+	/* @var ResourceLoader */
 	private $resourceloader;
 
 	/**
@@ -51,13 +51,13 @@ class MessageBlobStore implements LoggerAwareInterface {
 	protected $wanCache;
 
 	/**
-	 * @param ResourceLoader|null $rl
+	 * @param ResourceLoader $rl
 	 * @param LoggerInterface|null $logger
 	 */
-	public function __construct( ResourceLoader $rl = null, LoggerInterface $logger = null ) {
+	public function __construct( ResourceLoader $rl, LoggerInterface $logger = null ) {
 		$this->resourceloader = $rl;
 		$this->logger = $logger ?: new NullLogger();
-		$this->wanCache = ObjectCache::getMainWANInstance();
+		$this->wanCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 	}
 
 	/**
@@ -191,12 +191,6 @@ class MessageBlobStore implements LoggerAwareInterface {
 	 * @return ResourceLoader
 	 */
 	protected function getResourceLoader() {
-		// Back-compat: This class supports instantiation without a ResourceLoader object.
-		// Lazy-initialise this property because most callers don't need it.
-		if ( $this->resourceloader === null ) {
-			$this->logger->warning( __CLASS__ . ' created without a ResourceLoader instance' );
-			$this->resourceloader = MediaWikiServices::getInstance()->getResourceLoader();
-		}
 		return $this->resourceloader;
 	}
 

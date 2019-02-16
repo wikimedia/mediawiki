@@ -1034,7 +1034,9 @@ class LocalisationCache {
 		# HACK: If using a null (i.e. disabled) storage backend, we
 		# can't write to the MessageBlobStore either
 		if ( $purgeBlobs && !$this->store instanceof LCStoreNull ) {
-			$blobStore = new MessageBlobStore();
+			$blobStore = new MessageBlobStore(
+				MediaWikiServices::getInstance()->getResourceLoader()
+			);
 			$blobStore->clear();
 		}
 	}

@@ -255,6 +255,7 @@ because of Phabricator reports.
   parameter.
 * The ChangeList::insertArticleLink() method, that was deprecated in 1.27, has
   been removed.
+* MessageBlobStore::__construct() now requires its $rl parameter.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
