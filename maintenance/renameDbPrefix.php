@@ -82,7 +82,9 @@ class RenameDbPrefix extends Maintenance {
 				// $old should be regexp safe ([a-zA-Z_])
 				$newTable = preg_replace( '/^' . $old . '/', $new, $table );
 				$this->output( "Renaming table $table to $newTable\n" );
-				$dbw->query( "RENAME TABLE $table TO $newTable" );
+				$oldTableEnc = $dbw->addIdentifierQuotes( $table );
+				$newTableEnc = $dbw->addIdentifierQuotes( $newTable );
+				$dbw->query( "RENAME TABLE $oldTableEnc TO $newTableEnc" );
 			}
 			$count++;
 		}
