@@ -703,7 +703,7 @@ class SpecialVersion extends SpecialPage {
 				[ 'class' => 'mw-version-ext-name' ]
 			);
 		} else {
-			$extensionNameLink = $extensionName;
+			$extensionNameLink = htmlspecialchars( $extensionName );
 		}
 
 		// ... and the version information
