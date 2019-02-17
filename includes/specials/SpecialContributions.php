@@ -45,6 +45,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			'mediawiki.special',
 			'mediawiki.special.changeslist',
 		] );
+		$out->addModules( 'mediawiki.special.recentchanges' );
 		$this->addHelpLink( 'Help:User contributions' );
 
 		$this->opts = [];
@@ -606,6 +607,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			$labelNewbies . '<br>' . $labelUsername . ' ' . $input . ' '
 		);
 
+		$hidden = $this->opts['namespace'] === '' ? ' mw-input-hidden' : '';
 		$namespaceSelection = Xml::tags(
 			'div',
 			[],
@@ -624,11 +626,11 @@ class SpecialContributions extends IncludableSpecialPage {
 			) . "\u{00A0}" .
 				Html::rawElement(
 					'span',
-					[ 'class' => 'mw-input-with-label' ],
+					[ 'class' => 'mw-input-with-label' . $hidden ],
 					Xml::checkLabel(
 						$this->msg( 'invert' )->text(),
 						'nsInvert',
-						'nsInvert',
+						'nsinvert',
 						$this->opts['nsInvert'],
 						[
 							'title' => $this->msg( 'tooltip-invert' )->text(),
@@ -636,11 +638,11 @@ class SpecialContributions extends IncludableSpecialPage {
 						]
 					) . "\u{00A0}"
 				) .
-				Html::rawElement( 'span', [ 'class' => 'mw-input-with-label' ],
+				Html::rawElement( 'span', [ 'class' => 'mw-input-with-label' . $hidden ],
 					Xml::checkLabel(
 						$this->msg( 'namespace_association' )->text(),
 						'associated',
-						'associated',
+						'nsassociated',
 						$this->opts['associated'],
 						[
 							'title' => $this->msg( 'tooltip-namespace_association' )->text(),
