@@ -30,9 +30,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		parent::setUp();
 
 		$this->cache = new WANObjectCache( [
-			'cache' => new HashBagOStuff(),
-			'pool' => 'testcache-hash',
-			'relayer' => new EventRelayerNull( [] )
+			'cache' => new HashBagOStuff()
 		] );
 
 		$wanCache = TestingAccessWrapper::newFromObject( $this->cache );
@@ -440,8 +438,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		};
 
 		$cache = new NearExpiringWANObjectCache( [
-			'cache'        => new HashBagOStuff(),
-			'pool'         => 'empty',
+			'cache'        => new HashBagOStuff()
 		] );
 
 		$wasSet = 0;
@@ -468,7 +465,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		};
 		$cache = new NearExpiringWANObjectCache( [
 			'cache'        => new HashBagOStuff(),
-			'pool'         => 'empty',
 			'asyncHandler' => $asyncHandler
 		] );
 
@@ -500,8 +496,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( $value, $v, "New value stored" );
 
 		$cache = new PopularityRefreshingWANObjectCache( [
-			'cache'   => new HashBagOStuff(),
-			'pool'    => 'empty'
+			'cache'   => new HashBagOStuff()
 		] );
 
 		$mockWallClock = $priorTime;
@@ -694,7 +689,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			WANObjectCache::VALUE_KEY_PREFIX . 'k1' => 'val-id1',
 			WANObjectCache::VALUE_KEY_PREFIX . 'k2' => 'val-id2'
 		] );
-		$wanCache = new WANObjectCache( [ 'cache' => $localBag, 'pool' => 'testcache-hash' ] );
+		$wanCache = new WANObjectCache( [ 'cache' => $localBag ] );
 
 		// Warm the process cache
 		$keyedIds = new ArrayIterator( [ 'k1' => 'id1', 'k2' => 'id2' ] );
@@ -1504,9 +1499,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			->willReturn( false );
 
 		$wanCache = new WANObjectCache( [
-			'cache' => $backend,
-			'pool' => 'testcache-hash',
-			'relayer' => new EventRelayerNull( [] )
+			'cache' => $backend
 		] );
 
 		$isStale = null;
@@ -1556,8 +1549,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$localBag->expects( $this->never() )->method( 'delete' );
 		$wanCache = new WANObjectCache( [
 			'cache' => $localBag,
-			'pool' => 'testcache-hash',
-			'relayer' => new EventRelayerNull( [] ),
 			'mcrouterAware' => true,
 			'region' => 'pmtpa',
 			'cluster' => 'mw-wan'
@@ -1582,8 +1573,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			->setMethods( [ 'set' ] )->getMock();
 		$wanCache = new WANObjectCache( [
 			'cache' => $localBag,
-			'pool' => 'testcache-hash',
-			'relayer' => new EventRelayerNull( [] ),
 			'mcrouterAware' => true,
 			'region' => 'pmtpa',
 			'cluster' => 'mw-wan'
@@ -1600,8 +1589,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			->setMethods( [ 'set' ] )->getMock();
 		$wanCache = new WANObjectCache( [
 			'cache' => $localBag,
-			'pool' => 'testcache-hash',
-			'relayer' => new EventRelayerNull( [] ),
 			'mcrouterAware' => true,
 			'region' => 'pmtpa',
 			'cluster' => 'mw-wan'
@@ -1618,8 +1605,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			->setMethods( [ 'delete' ] )->getMock();
 		$wanCache = new WANObjectCache( [
 			'cache' => $localBag,
-			'pool' => 'testcache-hash',
-			'relayer' => new EventRelayerNull( [] ),
 			'mcrouterAware' => true,
 			'region' => 'pmtpa',
 			'cluster' => 'mw-wan'
@@ -1633,7 +1618,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 	public function testEpoch() {
 		$bag = new HashBagOStuff();
-		$cache = new WANObjectCache( [ 'cache' => $bag, 'pool' => 'testcache-hash' ] );
+		$cache = new WANObjectCache( [ 'cache' => $bag ] );
 		$key = $cache->makeGlobalKey( 'The whole of the Law' );
 
 		$now = microtime( true );
@@ -1649,7 +1634,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$cache = new WANObjectCache( [
 			'cache' => $bag,
-			'pool' => 'testcache-hash',
 			'epoch' => $now - 3600
 		] );
 		$cache->setMockTime( $now );
@@ -1660,7 +1644,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$now += 30;
 		$cache = new WANObjectCache( [
 			'cache' => $bag,
-			'pool' => 'testcache-hash',
 			'epoch' => $now + 3600
 		] );
 		$cache->setMockTime( $now );
@@ -1746,9 +1729,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			->willReturn( 'special' );
 
 		$wanCache = new WANObjectCache( [
-			'cache' => $backend,
-			'pool' => 'testcache-hash',
-			'relayer' => new EventRelayerNull( [] )
+			'cache' => $backend
 		] );
 
 		$this->assertSame( 'special', $wanCache->makeKey( 'a', 'b' ) );
@@ -1764,9 +1745,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			->willReturn( 'special' );
 
 		$wanCache = new WANObjectCache( [
-			'cache' => $backend,
-			'pool' => 'testcache-hash',
-			'relayer' => new EventRelayerNull( [] )
+			'cache' => $backend
 		] );
 
 		$this->assertSame( 'special', $wanCache->makeGlobalKey( 'a', 'b' ) );
@@ -1787,9 +1766,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testStatsKeyClass( $key, $class ) {
 		$wanCache = TestingAccessWrapper::newFromObject( new WANObjectCache( [
-			'cache' => new HashBagOStuff,
-			'pool' => 'testcache-hash',
-			'relayer' => new EventRelayerNull( [] )
+			'cache' => new HashBagOStuff
 		] ) );
 
 		$this->assertEquals( $class, $wanCache->determineKeyClass( $key ) );

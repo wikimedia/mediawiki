@@ -69,7 +69,6 @@ class WANObjectCacheReaper implements LoggerAwareInterface {
 	 *        The callback must fully duck-type test the object, since can be any model class.
 	 * @param array $params Additional options:
 	 *          - channel: the name of the update event stream.
-	 *            Default: WANObjectCache::DEFAULT_PURGE_CHANNEL.
 	 *          - initialStartWindow: seconds back in time to start if the position is lost.
 	 *            Default: 1 hour.
 	 *          - logger: an SPL monolog instance [optional]

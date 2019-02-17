@@ -690,8 +690,7 @@ if ( $wgMainWANCache === false ) {
 	$wgMainWANCache = 'mediawiki-main-default';
 	$wgWANObjectCaches[$wgMainWANCache] = [
 		'class'    => WANObjectCache::class,
-		'cacheId'  => $wgMainCacheType,
-		'channels' => [ 'purge' => 'wancache-main-default-purge' ]
+		'cacheId'  => $wgMainCacheType
 	];
 }
 

@@ -221,8 +221,6 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 	const PC_PRIMARY = 'primary:1000'; // process cache name and max key count
 
-	const DEFAULT_PURGE_CHANNEL = 'wancache-purge';
-
 	/**
 	 * @param array $params
 	 *   - cache    : BagOStuff object for a persistent cache
