@@ -912,7 +912,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			'span',
 			[ 'class' => 'rclistfrom' ],
 			$this->makeOptionsLink(
-				$this->msg( 'rclistfrom' )->rawParams( $now, $timenow, $datenow )->parse(),
+				$this->msg( 'rclistfrom' )->plaintextParams( $now, $timenow, $datenow )->parse(),
 				[ 'from' => $timestamp ],
 				$nondefaults
 			)
