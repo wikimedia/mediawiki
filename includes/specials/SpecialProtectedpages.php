@@ -110,10 +110,10 @@ class SpecialProtectedpages extends SpecialPage {
 				'class' => 'HTMLMultiSelectField',
 				'label' => $this->msg( 'protectedpages-filters' )->text(),
 				'flatlist' => true,
-				'options' => [
-					$this->msg( 'protectedpages-indef' )->text() => 'indefonly',
-					$this->msg( 'protectedpages-cascade' )->text() => 'cascadeonly',
-					$this->msg( 'protectedpages-noredirect' )->text() => 'noredirect',
+				'options-messages' => [
+					'protectedpages-indef' => 'indefonly',
+					'protectedpages-cascade' => 'cascadeonly',
+					'protectedpages-noredirect' => 'noredirect',
 				],
 				'default' => $filters,
 			],
