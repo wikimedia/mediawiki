@@ -2616,6 +2616,7 @@
 	"ipb_expiry_old": "Utgångstiden har redan passerat.",
 	"ipb_expiry_temp": "För att dölja användarnamnet måste blockeringen vara permanent.",
 	"ipb_hide_invalid": "Kan inte undanhålla detta konto; det har fler än {{PLURAL:$1|en redigering|$1 redigeringar}}.",
+	"ipb_hide_partial": "Dolda användarnamnsblockeringar måste gälla hela webbplatsen.",
 	"ipb_already_blocked": "\"$1\" är redan blockerad",
 	"ipb-needreblock": "$1 är redan blockerad. Vill du ändra inställningarna?",
 	"ipb-otherblocks-header": "{{PLURAL:$1|Annan blockering|Andra blockeringar}}",

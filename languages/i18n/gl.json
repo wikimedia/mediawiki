@@ -2588,6 +2588,7 @@
 	"ipb_expiry_old": "O tempo de expiración é no pasado.",
 	"ipb_expiry_temp": "Os bloqueos a nomes de usuario agochados deberían ser permanentes.",
 	"ipb_hide_invalid": "Non se pode suprimir esta conta; ten máis {{PLURAL:$1|dunha edición|de $1 edicións}}.",
+	"ipb_hide_partial": "Os bloqueos con nome de usuario oculto deben ser para todo o sitio.",
 	"ipb_already_blocked": "\"$1\" xa está bloqueado",
 	"ipb-needreblock": "$1 xa está bloqueado. Quere cambiar as configuracións?",
 	"ipb-otherblocks-header": "{{PLURAL:$1|Outro bloqueo|Outros bloqueos}}",

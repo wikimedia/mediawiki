@@ -358,7 +358,7 @@
 	"nstab-template": "Skabelon",
 	"nstab-help": "Hjælpeside",
 	"nstab-category": "Kategori",
-	"mainpage-nstab": "Hovedside",
+	"mainpage-nstab": "Fovedside",
 	"nosuchaction": "Funktionen findes ikke",
 	"nosuchactiontext": "Handlingen som er angivet i URL'en er ugyldig.\nDu har måske skrevet URL'en forkert eller fulgt et ukorrekt link.\nDet kan også skyldes en fejl i softwaren, som bruges af {{SITENAME}}.",
 	"nosuchspecialpage": "En sådan specialside findes ikke",
