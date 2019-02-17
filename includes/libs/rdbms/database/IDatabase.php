@@ -1156,6 +1156,17 @@ interface IDatabase {
 	public function addQuotes( $s );
 
 	/**
+	 * Quotes an identifier, in order to make user controlled input safe
+	 *
+	 * Depending on the database this will either be `backticks` or "double quotes"
+	 *
+	 * @param string $s
+	 * @return string
+	 * @since 1.33
+	 */
+	public function addIdentifierQuotes( $s );
+
+	/**
 	 * LIKE statement wrapper, receives a variable-length argument list with
 	 * parts of pattern to match containing either string literals that will be
 	 * escaped or tokens returned by anyChar() or anyString(). Alternatively,
