@@ -177,8 +177,8 @@ class SpecialBlock extends FormSpecialPage {
 				'type' => 'radio',
 				'cssclass' => 'mw-block-editing-restriction',
 				'options' => [
-					$this->msg( 'ipb-sitewide' )->text() => 'sitewide',
-					$this->msg( 'ipb-partial' )->text() => 'partial',
+					$this->msg( 'ipb-sitewide' )->escaped() => 'sitewide',
+					$this->msg( 'ipb-partial' )->escaped() => 'partial',
 				],
 				'section' => 'actions',
 			];
