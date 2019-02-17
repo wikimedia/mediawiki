@@ -687,7 +687,7 @@
 	 * @return {boolean} Namespace is a signature namespace
 	 */
 	Title.wantSignaturesNamespace = function ( namespaceId ) {
-		return this.isTalkNamespace( namespaceId ) ||
+		return Title.isTalkNamespace( namespaceId ) ||
 			mw.config.get( 'wgExtraSignatureNamespaces' ).indexOf( namespaceId ) !== -1;
 	};
 

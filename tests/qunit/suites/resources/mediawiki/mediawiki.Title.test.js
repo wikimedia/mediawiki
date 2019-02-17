@@ -324,19 +324,14 @@
 	} );
 
 	QUnit.test( 'wantSignaturesNamespace', function ( assert ) {
-		var namespaces = mw.config.values.wgExtraSignatureNamespaces;
-
-		mw.config.values.wgExtraSignatureNamespaces = [];
+		mw.config.set( 'wgExtraSignatureNamespaces', [] );
 		assert.strictEqual( mw.Title.wantSignaturesNamespace( 0 ), false, 'Main namespace has no signatures' );
 		assert.strictEqual( mw.Title.wantSignaturesNamespace( 1 ), true, 'Talk namespace has signatures' );
 		assert.strictEqual( mw.Title.wantSignaturesNamespace( 2 ), false, 'NS2 has no signatures' );
 		assert.strictEqual( mw.Title.wantSignaturesNamespace( 3 ), true, 'NS3 has signatures' );
 
-		mw.config.values.wgExtraSignatureNamespaces = [ 0 ];
+		mw.config.set( 'wgExtraSignatureNamespaces', [ 0 ] );
 		assert.strictEqual( mw.Title.wantSignaturesNamespace( 0 ), true, 'Main namespace has signatures when explicitly defined' );
-
-		// Restore
-		mw.config.values.wgExtraSignatureNamespaces = namespaces;
 	} );
 
 	QUnit.test( 'Throw error on invalid title', function ( assert ) {
