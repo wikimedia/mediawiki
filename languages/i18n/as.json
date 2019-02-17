@@ -24,7 +24,8 @@
 			"Fitoschido",
 			"Sagsag",
 			"Bodhisattwa",
-			"Vlad5250"
+			"Vlad5250",
+			"ৰাজীৱ গোস্বামী"
 		]
 	},
 	"tog-underline": "সংযোগসমূহ অধোৰেখিত কৰক:",
@@ -505,6 +506,7 @@
 	"resetpass_submit": "গুপ্তশব্দ বহুৱাওক আৰু প্ৰৱেশ কৰক",
 	"changepassword-success": "আপোনাৰ গুপ্তশব্দ সফলতাৰে সলনি কৰা হৈছে!",
 	"changepassword-throttled": "আপুনি স‍ম্প্ৰতি অজস্ৰবাৰ লগ্‌-ইনৰ প্ৰয়াস কৰিছে।\nঅনুগ্ৰহ কৰি $1 সময়ৰ পিছত আকৌ চেষ্টা কৰক।",
+	"botpasswords-disabled": "Bot গুপ্তশব্দ নিষ্ক্ৰিয়",
 	"botpasswords-label-create": "সৃষ্টি কৰক",
 	"botpasswords-label-update": "আপডেট কৰক",
 	"botpasswords-label-cancel": "বাতিল কৰক",

@@ -193,6 +193,7 @@
 	"exif-copyrighted-false": "Status for ophavsret er ikke angivet",
 	"exif-photometricinterpretation-0": "Sort-hvid (sort er 0)",
 	"exif-photometricinterpretation-1": "Sort-hvid (sort er 0)",
+	"exif-photometricinterpretation-3": "Palet",
 	"exif-unknowndate": "Ukendt dato",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "Horisontalt spejlet",

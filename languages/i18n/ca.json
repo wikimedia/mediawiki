@@ -2422,7 +2422,7 @@
 	"contribsub2": "Per a {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "El compte d'usuari «$1» no està registrat.",
 	"nocontribs": "No s’ha trobat cap canvi que encaixés amb aquests criteris.",
-	"uctop": "actual",
+	"uctop": "darrera",
 	"month": "Mes (i anteriors):",
 	"year": "Any (i anteriors):",
 	"sp-contributions-newbies": "Mostra les contribucions dels usuaris novells",

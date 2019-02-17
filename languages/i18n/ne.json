@@ -33,7 +33,8 @@
 			"ديفيد",
 			"Haribanshi",
 			"Parbat subedi",
-			"पर्वत सुबेदी"
+			"पर्वत सुबेदी",
+			"हिमाल सुबेदी"
 		]
 	},
 	"tog-underline": "रेखाङ्कित लिङ्क:",
@@ -3166,5 +3167,6 @@
 	"authmanager-email-label": "ईमेल",
 	"authmanager-email-help": "इमेल ठेगाना",
 	"authprovider-resetpass-skip-label": "छोड्नुहोस्",
-	"edit-error-short": "त्रुटि: $1"
+	"edit-error-short": "त्रुटि: $1",
+	"passwordpolicies": "पासवोर्ड नितिहरू"
 }

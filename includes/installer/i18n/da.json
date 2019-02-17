@@ -64,6 +64,8 @@
 	"config-header-sqlite": "SQLite-indstillinger",
 	"config-header-oracle": "Oracle-indstillinger",
 	"config-invalid-db-type": "Ugyldig databasetype",
+	"config-sqlite-readonly": "Filen <code>$1</code> er ikke skrivbar.",
+	"config-sqlite-cant-create-db": "Kunne ikke oprette databasefilen <code>$1</code>.",
 	"config-db-web-create": "Opret kontoen hvis den ikke allerede findes",
 	"config-mysql-innodb": "InnoDB (anbefalet)",
 	"config-mysql-myisam": "MyISAM",
