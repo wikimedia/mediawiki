@@ -152,6 +152,17 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 		$this->opts = ContribsPager::processDateFilter( $this->opts );
 
+		if ( $this->opts['namespace'] < NS_MAIN ) {
+			$this->getOutput()->wrapWikiMsg(
+				"<div class=\"mw-invalid-namespace-assoc error\">\n\$1\n</div>",
+				[
+					'namespace-not-associated',
+					wfEscapeWikiText( $this->opts['namespace'] ),
+				] );
+			$out->addHTML( $this->getForm() );
+			return;
+		}
+
 		$feedType = $request->getVal( 'feed' );
 
 		$feedParams = [
