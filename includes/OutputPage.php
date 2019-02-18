@@ -21,7 +21,6 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -3276,10 +3275,8 @@ class OutputPage extends ContextSource {
 	 */
 	public function getResourceLoader() {
 		if ( is_null( $this->mResourceLoader ) ) {
-			$this->mResourceLoader = new ResourceLoader(
-				$this->getConfig(),
-				LoggerFactory::getInstance( 'resourceloader' )
-			);
+			// Lazy-initialise as needed
+			$this->mResourceLoader = MediaWikiServices::getInstance()->getResourceLoader();
 		}
 		return $this->mResourceLoader;
 	}

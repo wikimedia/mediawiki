@@ -44,6 +44,7 @@ use ParserCache;
 use ParserFactory;
 use PasswordFactory;
 use ProxyLookup;
+use ResourceLoader;
 use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
@@ -742,6 +743,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getReadOnlyMode() {
 		return $this->getService( 'ReadOnlyMode' );
+	}
+
+	/**
+	 * @since 1.33
+	 * @return ResourceLoader
+	 */
+	public function getResourceLoader() {
+		return $this->getService( 'ResourceLoader' );
 	}
 
 	/**

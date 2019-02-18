@@ -21,6 +21,8 @@
  * @ingroup Deployment
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Output class modelled on OutputPage.
  *
@@ -147,7 +149,7 @@ class WebInstallerOutput {
 			'mediawiki.skinning.interface',
 		];
 
-		$resourceLoader = new ResourceLoader();
+		$resourceLoader = MediaWikiServices::getInstance()->getResourceLoader();
 
 		if ( file_exists( "$wgStyleDirectory/Vector/skin.json" ) ) {
 			// Force loading Vector skin if available as a fallback skin

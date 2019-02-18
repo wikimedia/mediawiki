@@ -133,9 +133,20 @@ class ResourceLoaderContext implements MessageLocalizer {
 	/**
 	 * Return a dummy ResourceLoaderContext object suitable for passing into
 	 * things that don't "really" need a context.
+	 *
+	 * Use cases:
+	 * - Creating html5shiv script tag in OutputPage.
+	 * - FileModule::readStyleFiles (deprecated, to be removed).
+	 * - Unit tests (deprecated, create empty instance directly or use RLTestCase).
+	 *
 	 * @return ResourceLoaderContext
 	 */
 	public static function newDummyContext() {
+		// This currently creates a non-empty instance of ResourceLoader (all modules registered),
+		// but that's probably not needed. So once that moves into ServiceWiring, this'll
+		// become more like the EmptyResourceLoader class we have in PHPUnit tests, which
+		// is what this should've had originally. If this turns out to be untrue, change to:
+		// `MediaWikiServices::getInstance()->getResourceLoader()` instead.
 		return new self( new ResourceLoader(
 			MediaWikiServices::getInstance()->getMainConfig(),
 			LoggerFactory::getInstance( 'resourceloader' )
