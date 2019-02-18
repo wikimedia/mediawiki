@@ -22,6 +22,10 @@ production.
   MediaWiki 1.32, now defaults to MIGRATION_NEW instead of MIGRATION_WRITE_BOTH.
 * Special:ActiveUsers will no longer filter out users who became inactive since
   the last time the active users query cache was updated.
+* If you ran migrateActors.php using an older version of MediaWiki and want to
+  run your wiki with $wgActorTableSchemaMigrationStage SCHEMA_COMPAT_READ_OLD,
+  note that log_search rows needed to find revision deletions by target user
+  were incorrectly deleted. See T215464 for details.
 
 ==== Removed configuration ====
 * (T199334) $wgTagStatisticsNewTable — This temporary setting, added in

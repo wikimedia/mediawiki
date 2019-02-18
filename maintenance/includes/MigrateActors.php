@@ -413,13 +413,13 @@ class MigrateActors extends LoggedUpdateMaintenance {
 	protected function migrateLogSearch() {
 		$complainedAboutUsers = [];
 
-		$primaryKey = [ 'ls_field', 'ls_value' ];
+		$primaryKey = [ 'ls_value', 'ls_log_id' ];
 		$pkFilter = array_flip( $primaryKey );
 		$this->output( "Beginning migration of log_search\n" );
 		wfWaitForSlaves();
 
 		$dbw = $this->getDB( DB_MASTER );
-		$countUpdated = 0;
+		$countInserted = 0;
 		$countActors = 0;
 		$countErrors = 0;
 
@@ -427,72 +427,44 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		while ( true ) {
 			// Fetch the rows needing update
 			$res = $dbw->select(
+				[ 'log_search', 'actor' ],
+				[ 'ls_value', 'ls_log_id', 'actor_id' ],
 				[
-					'ls' => $dbw->buildSelectSubquery(
-						'log_search',
-						'ls_value',
-						[
-							'ls_field' => 'target_author_id',
-							$next
-						],
-						__METHOD__,
-						[
-							'DISTINCT',
-							'ORDER BY' => [ 'ls_value' ],
-							'LIMIT' => $this->mBatchSize,
-						]
-					),
-					'actor'
+					'ls_field' => 'target_author_id',
+					$next
 				],
-				[
-					'ls_field' => $dbw->addQuotes( 'target_author_id' ),
-					'ls_value',
-					'actor_id'
-				],
-				[],
 				__METHOD__,
-				[],
+				[
+					'ORDER BY' => $primaryKey,
+					'LIMIT' => $this->mBatchSize,
+				],
 				[ 'actor' => [ 'LEFT JOIN', 'ls_value = ' . $dbw->buildStringCast( 'actor_user' ) ] ]
 			);
 			if ( !$res->numRows() ) {
 				break;
 			}
 
-			// Update the rows
-			$del = [];
+			// Insert a 'target_author_actor' for each 'target_author_id'
+			$ins = [];
 			foreach ( $res as $row ) {
 				$lastRow = $row;
 				if ( !$row->actor_id ) {
 					list( , $display ) = $this->makeNextCond( $dbw, $primaryKey, $row );
-					$this->error( "No actor for row with $display\n" );
+					$this->error( "No actor for target_author_id row with $display\n" );
 					$countErrors++;
 					continue;
 				}
-				$dbw->update(
-					'log_search',
-					[
-						'ls_field' => 'target_author_actor',
-						'ls_value' => $row->actor_id,
-					],
-					[
-						'ls_field' => $row->ls_field,
-						'ls_value' => $row->ls_value,
-					],
-					__METHOD__,
-					[ 'IGNORE' ]
-				);
-				$countUpdated += $dbw->affectedRows();
-				$del[] = $row->ls_value;
+				$ins[] = [
+					'ls_field' => 'target_author_actor',
+					'ls_value' => $row->actor_id,
+					'ls_log_id' => $row->ls_log_id,
+				];
 			}
-			if ( $del ) {
-				$dbw->delete(
-					'log_search', [ 'ls_field' => 'target_author_id', 'ls_value' => $del ], __METHOD__
-				);
-				$countUpdated += $dbw->affectedRows();
-			}
+			$dbw->insert( 'log_search', $ins, __METHOD__, [ 'IGNORE' ] );
+			$countInserted += $dbw->affectedRows();
 
 			list( $next, $display ) = $this->makeNextCond( $dbw, $primaryKey, $lastRow );
-			$this->output( "... $display\n" );
+			$this->output( "... target_author_id, $display\n" );
 			wfWaitForSlaves();
 		}
 
@@ -500,31 +472,17 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		while ( true ) {
 			// Fetch the rows needing update
 			$res = $dbw->select(
+				[ 'log_search', 'actor' ],
+				[ 'ls_value', 'ls_log_id', 'actor_id' ],
 				[
-					'ls' => $dbw->buildSelectSubquery(
-						'log_search',
-						'ls_value',
-						[
-							'ls_field' => 'target_author_ip',
-							$next
-						],
-						__METHOD__,
-						[
-							'DISTINCT',
-							'ORDER BY' => [ 'ls_value' ],
-							'LIMIT' => $this->mBatchSize,
-						]
-					),
-					'actor'
+					'ls_field' => 'target_author_ip',
+					$next
 				],
-				[
-					'ls_field' => $dbw->addQuotes( 'target_author_ip' ),
-					'ls_value',
-					'actor_id'
-				],
-				[],
 				__METHOD__,
-				[],
+				[
+					'ORDER BY' => $primaryKey,
+					'LIMIT' => $this->mBatchSize,
+				],
 				[ 'actor' => [ 'LEFT JOIN', 'ls_value = actor_name' ] ]
 			);
 			if ( !$res->numRows() ) {
@@ -538,45 +496,31 @@ class MigrateActors extends LoggedUpdateMaintenance {
 				$dbw, 'ls_value', $rows, $complainedAboutUsers, $countErrors
 			);
 
-			// Update the rows
-			$del = [];
+			// Insert a 'target_author_actor' for each 'target_author_ip'
+			$ins = [];
 			foreach ( $rows as $row ) {
 				if ( !$row->actor_id ) {
 					list( , $display ) = $this->makeNextCond( $dbw, $primaryKey, $row );
-					$this->error( "Could not make actor for row with $display\n" );
+					$this->error( "Could not make actor for target_author_ip row with $display\n" );
 					$countErrors++;
 					continue;
 				}
-				$dbw->update(
-					'log_search',
-					[
-						'ls_field' => 'target_author_actor',
-						'ls_value' => $row->actor_id,
-					],
-					[
-						'ls_field' => $row->ls_field,
-						'ls_value' => $row->ls_value,
-					],
-					__METHOD__,
-					[ 'IGNORE' ]
-				);
-				$countUpdated += $dbw->affectedRows();
-				$del[] = $row->ls_value;
+				$ins[] = [
+					'ls_field' => 'target_author_actor',
+					'ls_value' => $row->actor_id,
+					'ls_log_id' => $row->ls_log_id,
+				];
 			}
-			if ( $del ) {
-				$dbw->delete(
-					'log_search', [ 'ls_field' => 'target_author_ip', 'ls_value' => $del ], __METHOD__
-				);
-				$countUpdated += $dbw->affectedRows();
-			}
+			$dbw->insert( 'log_search', $ins, __METHOD__, [ 'IGNORE' ] );
+			$countInserted += $dbw->affectedRows();
 
 			list( $next, $display ) = $this->makeNextCond( $dbw, $primaryKey, $lastRow );
-			$this->output( "... $display\n" );
+			$this->output( "... target_author_ip, $display\n" );
 			wfWaitForSlaves();
 		}
 
 		$this->output(
-			"Completed migration, updated $countUpdated row(s) with $countActors new actor(s), "
+			"Completed migration, inserted $countInserted row(s) with $countActors new actor(s), "
 			. "$countErrors error(s)\n"
 		);
 		return $countErrors;
