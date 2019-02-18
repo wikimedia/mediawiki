@@ -246,6 +246,7 @@ because of Phabricator reports.
   Use require( 'mediawiki.libs.jpegmeta' ) instead.
 * The mw.user.stickyRandomId() method, deprecated in 1.32, was removed.
   Use mw.user.getPageviewToken() instead.
+* Removed deprecated class property WikiRevision::$importer.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
