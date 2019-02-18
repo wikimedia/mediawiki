@@ -2456,23 +2456,20 @@ $wgMainWANCache = false;
  *
  * The format is an associative array where the key is a cache identifier, and
  * the value is an associative array of parameters. The "cacheId" parameter is
- * a cache identifier from $wgObjectCaches. The "channels" parameter is a map of
- * actions ('purge') to PubSub channels defined in $wgEventRelayerConfig.
- * The "loggroup" parameter controls where log events are sent.
+ * a cache identifier from $wgObjectCaches. The "loggroup" parameter controls
+ * where log events are sent.
  *
  * @since 1.26
  */
 $wgWANObjectCaches = [
 	CACHE_NONE => [
 		'class'    => WANObjectCache::class,
-		'cacheId'  => CACHE_NONE,
-		'channels' => []
+		'cacheId'  => CACHE_NONE
 	]
 	/* Example of a simple single data-center cache:
 	'memcached-php' => [
 		'class'    => WANObjectCache::class,
-		'cacheId'  => 'memcached-php',
-		'channels' => [ 'purge' => 'wancache-main-memcached-purge' ]
+		'cacheId'  => 'memcached-php'
 	]
 	*/
 ];
