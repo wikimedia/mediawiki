@@ -130,6 +130,39 @@ class ApiMoveTest extends ApiTestCase {
 		}
 	}
 
+	public function testMoveWhileBlocked() {
+		$this->assertNull( Block::newFromTarget( '127.0.0.1' ), 'Sanity check' );
+
+		$block = new Block( [
+			'address' => self::$users['sysop']->getUser()->getName(),
+			'by' => self::$users['sysop']->getUser()->getId(),
+			'reason' => 'Capriciousness',
+			'timestamp' => '19370101000000',
+			'expiry' => 'infinity',
+			'enableAutoblock' => true,
+		] );
+		$block->insert();
+
+		$name = ucfirst( __FUNCTION__ );
+		$id = $this->createPage( $name );
+
+		try {
+			$this->doApiRequestWithToken( [
+				'action' => 'move',
+				'from' => $name,
+				'to' => "$name 2",
+			] );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertSame( 'You have been blocked from editing.', $ex->getMessage() );
+			$this->assertNotNull( Block::newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
+		} finally {
+			$block->delete();
+			self::$users['sysop']->getUser()->clearInstanceCache();
+			$this->assertSame( $id, Title::newFromText( $name )->getArticleID() );
+		}
+	}
+
 	// @todo File moving
 
 	public function testPingLimiter() {

@@ -97,6 +97,7 @@ production.
 * action=setnotificationtimestamp will now update the watchlist asynchronously
   if entirewatchlist is set, so updates may not be visible immediately
 * Block info will be added to "blocked" errors from more modules.
+* (T216245) Autoblocks will now be spread by action=edit and action=move.
 
 === Action API internal changes in 1.33 ===
 * A number of deprecated methods for API documentation, intended for overriding
@@ -113,6 +114,8 @@ production.
   hyphen. Methods such as ApiBase::dieWithError() and
   ApiMessageTrait::setApiCode() will throw an InvalidArgumentException if
   passed a bad code.
+* ApiBase::checkTitleUserPermissions() now takes an options array as its third
+  parameter. Passing a User object or null is deprecated.
 
 === Languages updated in 1.33 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -299,6 +302,9 @@ because of Phabricator reports.
   Use require( 'mediawiki.language.specialCharacters' ) instead.
 * ChangeTags::purgeTagUsageCache() has been deprecated, and is expected to be
   removed in a future release.
+* Passing a User object or null as the third parameter to
+  ApiBase::checkTitleUserPermissions() has been deprecated. Pass an array
+  [ 'user' => $user ] instead.
 
 === Other changes in 1.33 ===
 * (T201747) Html::openElement() warns if given an element name with a space
