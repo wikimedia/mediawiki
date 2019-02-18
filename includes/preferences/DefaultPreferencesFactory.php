@@ -843,7 +843,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'options' => $stubThresholdOptions,
 			// This is not a raw HTML message; label-raw is needed for the manual <a></a>
 			'label-raw' => $l10n->msg( 'stub-threshold' )->rawParams(
-				'<a href="#" class="stub">' .
+				'<a class="stub">' .
 				$l10n->msg( 'stub-threshold-sample-link' )->parse() .
 				'</a>' )->parse(),
 		];
