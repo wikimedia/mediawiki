@@ -1,8 +1,10 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * Sanity checks for making sure registered resources are sane.
  *
- * @file
  * @author Antoine Musso
  * @author Niklas Laxström
  * @author Santhosh Thottingal
@@ -171,8 +173,8 @@ class ResourcesTest extends MediaWikiTestCase {
 		$org_wgEnableJavaScriptTest = $wgEnableJavaScriptTest;
 		$wgEnableJavaScriptTest = true;
 
-		// Initialize ResourceLoader
-		$rl = new ResourceLoader();
+		// Get main ResourceLoader
+		$rl = MediaWikiServices::getInstance()->getResourceLoader();
 
 		$modules = [];
 
