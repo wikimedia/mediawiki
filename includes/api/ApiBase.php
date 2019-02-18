@@ -1034,6 +1034,40 @@ abstract class ApiBase extends ContextSource {
 		return $pageObj;
 	}
 
+    /**
+	 * Get a Title object from a title.
+	 *
+	 * @since 1.32
+	 * @param string $title 
+	 * @return Title
+	 */
+    private function getTitleFromTitle( $title )
+    {
+        $titleObj = Title::newFromText( $title );
+        if ( !$titleObj || $titleObj->isExternal() ) {
+            $this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $title) ] );
+        }
+        
+        return $titleObj;
+    }
+
+    /**
+     * Get a Title object from a pageid.
+     *
+     * @since 1.32
+     * @param string $pageid
+     * @return Title
+     */
+    private function getTitleFromPageId( $pageid )
+    {
+        $titleObj = Title::newFromID( $pageid );
+        if ( !$titleObj ) {
+            $this->dieWithError( [ 'apierror-nosuchpageid', $pageid ] );
+        }
+
+        return $titleObj;
+    }
+
 	/**
 	 * Get a Title object from a title or pageid param, if possible.
 	 * Can die, if no param is set or if the title or page id is not valid.
@@ -1046,18 +1080,11 @@ abstract class ApiBase extends ContextSource {
 		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
 
 		$titleObj = null;
-		if ( isset( $params['title'] ) ) {
-			$titleObj = Title::newFromText( $params['title'] );
-			if ( !$titleObj || $titleObj->isExternal() ) {
-				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
-			}
-			return $titleObj;
-		} elseif ( isset( $params['pageid'] ) ) {
-			$titleObj = Title::newFromID( $params['pageid'] );
-			if ( !$titleObj ) {
-				$this->dieWithError( [ 'apierror-nosuchpageid', $params['pageid'] ] );
-			}
-		}
+        if ( isset( $this->params['title'] )) {
+            $titleObj = $this->getTitleFromTitle( $params['title'] );
+        } elseif ( isset( $params['pageid'] )) {
+            $titleObj = $this->getTitleFromPageId( $params['pageid']);
+        }
 
 		return $titleObj;
 	}
