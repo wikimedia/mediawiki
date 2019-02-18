@@ -136,7 +136,6 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 *
 	 * Use cases:
 	 * - Creating html5shiv script tag in OutputPage.
-	 * - FileModule::readStyleFiles (deprecated, to be removed).
 	 * - Unit tests (deprecated, create empty instance directly or use RLTestCase).
 	 *
 	 * @return ResourceLoaderContext

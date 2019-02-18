@@ -878,25 +878,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get the contents of a list of CSS files.
 	 *
-	 * This is considered a private method. Exposed for internal use by WebInstallerOutput.
-	 *
-	 * @private
+	 * @internal This is considered a private method. Exposed for internal use by WebInstallerOutput.
 	 * @param array $styles Map of media type to file paths to read, remap, and concatenate
 	 * @param bool $flip
-	 * @param ResourceLoaderContext|null $context
+	 * @param ResourceLoaderContext $context
 	 * @return array List of concatenated and remapped CSS data from $styles,
 	 *     keyed by media type
 	 * @throws MWException
-	 * @since 1.27 Calling this method without a ResourceLoaderContext instance
-	 *   is deprecated.
 	 */
-	public function readStyleFiles( array $styles, $flip, $context = null ) {
-		if ( $context === null ) {
-			wfDeprecated( __METHOD__ . ' without a ResourceLoader context', '1.27' );
-			$context = ResourceLoaderContext::newDummyContext();
-		}
-
-		if ( empty( $styles ) ) {
+	public function readStyleFiles( array $styles, $flip, $context ) {
+		if ( !$styles ) {
 			return [];
 		}
 		foreach ( $styles as $media => $files ) {
