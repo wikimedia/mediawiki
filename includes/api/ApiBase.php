@@ -271,6 +271,14 @@ abstract class ApiBase extends ContextSource {
 	/** @var int[][][] Cache for self::filterIDs() */
 	private static $filterIDsCache = [];
 
+	/** $var array Map of web UI block messages to corresponding API messages and codes */
+	private static $blockMsgMap = [
+		'blockedtext' => [ 'apierror-blocked', 'blocked' ],
+		'blockedtext-partial' => [ 'apierror-blocked', 'blocked' ],
+		'autoblockedtext' => [ 'apierror-autoblocked', 'autoblocked' ],
+		'systemblockedtext' => [ 'apierror-systemblocked', 'blocked' ],
+	];
+
 	/** @var ApiMain */
 	private $mMainModule;
 	/** @var string */
@@ -1797,28 +1805,9 @@ abstract class ApiBase extends ContextSource {
 
 		$status = Status::newGood();
 		foreach ( $errors as $error ) {
-			if ( is_array( $error ) && $error[0] === 'blockedtext' && $user->getBlock() ) {
-				$status->fatal( ApiMessage::create(
-					'apierror-blocked',
-					'blocked',
-					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
-				) );
-			} elseif ( is_array( $error ) && $error[0] === 'blockedtext-partial' && $user->getBlock() ) {
-				$status->fatal( ApiMessage::create(
-					'apierror-blocked-partial',
-					'blocked',
-					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
-				) );
-			} elseif ( is_array( $error ) && $error[0] === 'autoblockedtext' && $user->getBlock() ) {
-				$status->fatal( ApiMessage::create(
-					'apierror-autoblocked',
-					'autoblocked',
-					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
-				) );
-			} elseif ( is_array( $error ) && $error[0] === 'systemblockedtext' && $user->getBlock() ) {
-				$status->fatal( ApiMessage::create(
-					'apierror-systemblocked',
-					'blocked',
+			if ( is_array( $error ) && isset( self::$blockMsgMap[$error[0]] ) && $user->getBlock() ) {
+				list( $msg, $code ) = self::$blockMsgMap[$error[0]];
+				$status->fatal( ApiMessage::create( $msg, $code,
 					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
 				) );
 			} else {
@@ -1826,6 +1815,26 @@ abstract class ApiBase extends ContextSource {
 			}
 		}
 		return $status;
+	}
+
+	/**
+	 * Add block info to block messages in a Status
+	 * @since 1.33
+	 * @param StatusValue $status
+	 * @param User|null $user
+	 */
+	public function addBlockInfoToStatus( StatusValue $status, User $user = null ) {
+		if ( $user === null ) {
+			$user = $this->getUser();
+		}
+
+		foreach ( self::$blockMsgMap as $msg => list( $apiMsg, $code ) ) {
+			if ( $status->hasMessage( $msg ) && $user->getBlock() ) {
+				$status->replaceMessage( $msg, ApiMessage::create( $apiMsg, $code,
+					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
+				) );
+			}
+		}
 	}
 
 	/**
@@ -2065,6 +2074,7 @@ abstract class ApiBase extends ContextSource {
 			$status = $newStatus;
 		}
 
+		$this->addBlockInfoToStatus( $status );
 		throw new ApiUsageException( $this, $status );
 	}
 
