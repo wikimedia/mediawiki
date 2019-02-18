@@ -1045,7 +1045,7 @@ abstract class ApiBase extends ContextSource {
     {
         $titleObj = Title::newFromText( $title );
         if ( !$titleObj || $titleObj->isExternal() ) {
-            $this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $title) ] );
+            $this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $title ) ] );
         }
         
         return $titleObj;
@@ -1083,7 +1083,7 @@ abstract class ApiBase extends ContextSource {
         if ( isset( $this->params['title'] )) {
             $titleObj = $this->getTitleFromTitle( $params['title'] );
         } elseif ( isset( $params['pageid'] )) {
-            $titleObj = $this->getTitleFromPageId( $params['pageid']);
+            $titleObj = $this->getTitleFromPageId( $params['pageid'] );
         }
 
 		return $titleObj;
