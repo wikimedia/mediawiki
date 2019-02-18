@@ -182,7 +182,8 @@
 			"Theklan",
 			"Laura Ospina",
 			"Pipino-pumuki",
-			"Carlosmg.dg"
+			"Carlosmg.dg",
+			"Mynor Archila"
 		]
 	},
 	"tog-underline": "Enlaces a subrayar:",
@@ -906,6 +907,7 @@
 	"edit-gone-missing": "No se ha podido actualizar la página.\nParece haber sido borrada.",
 	"edit-conflict": "Conflicto de edición.",
 	"edit-no-change": "Se ignoró tu edición porque no se hizo ningún cambio en el texto.",
+	"edit-slots-cannot-add": "{{PLURAL:$1|La siguiente ranura no es soportada|Las siguientes ranuras no son soportadas}} aquí:",
 	"edit-slots-missing": "{{PLURAL:$1|Falta el siguiente espacio|Faltan los siguientes espacios}}: $2",
 	"postedit-confirmation-created": "Se ha creado la página.",
 	"postedit-confirmation-restored": "Se ha restaurado la página.",
@@ -2155,6 +2157,7 @@
 	"move": "Trasladar",
 	"movethispage": "Trasladar esta página",
 	"unusedimagestext": "Los siguientes archivos existen pero no están insertados en ninguna página.\nTen en cuenta que otros sitios web pueden enlazar un archivo directamente por la URL, y por tanto pueden estar listados aquí a pesar de estar siendo usados de forma activa.",
+	"unusedimagestext-categorizedimgisused": "Los siguientes archivos existen, pero no están integrados en ninguna página. Las imágenes categorizadas son consideradas como utilizadas, a pesar de que no están incrustadas en ninguna página. Por favor tómese en cuenta que otros sitios pueden enlazarse a un archivo con una URL directa, y todavía pueden enlistarse aquí a pesar de estar en uso activo.",
 	"unusedcategoriestext": "Las siguientes categorías han sido creadas, pero ningún artículo o categoría las utiliza.",
 	"notargettitle": "No hay página objetivo",
 	"notargettext": "No has especificado sobre qué página deseas llevar a cabo esta acción.",
