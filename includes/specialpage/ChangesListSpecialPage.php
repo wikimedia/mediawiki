@@ -848,23 +848,23 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
 				$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
 
-				// Hit counts disabled for perf reasons, see T169997
-				/*
 				$tagStats = ChangeTags::tagUsageStatistics();
 				$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags, $tagStats );
 
-				// Sort by hits
-				arsort( $tagHitCounts );
-				*/
-				$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags );
+				// Sort by hits (disabled for now)
+				//arsort( $tagHitCounts );
 
 				// Build the list and data
 				$result = [];
 				foreach ( $tagHitCounts as $tagName => $hits ) {
 					if (
-						// Only get active tags
-						isset( $explicitlyDefinedTags[ $tagName ] ) ||
-						isset( $softwareActivatedTags[ $tagName ] )
+						(
+							// Only get active tags
+							isset( $explicitlyDefinedTags[ $tagName ] ) ||
+							isset( $softwareActivatedTags[ $tagName ] )
+						) &&
+						// Only get tags with more than 0 hits
+						$hits > 0
 					) {
 						$result[] = [
 							'name' => $tagName,
