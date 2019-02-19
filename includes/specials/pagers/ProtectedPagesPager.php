@@ -32,7 +32,7 @@ class ProtectedPagesPager extends TablePager {
 	private $linkRenderer;
 
 	/**
-	 * @param SpecialProtectedpages $form
+	 * @param SpecialPage $form
 	 * @param array $conds
 	 * @param string $type
 	 * @param string $level
