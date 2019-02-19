@@ -387,7 +387,7 @@
 	"nospecialpagetext": "<strong>您請求的特定頁面無效。</strong>\n\n欲取得有效的特定頁面清單可至 [[Special:SpecialPages|{{int:specialpages}}]]。",
 	"error": "錯誤",
 	"databaseerror": "資料庫錯誤",
-	"databaseerror-text": "出現資料庫查詢錯誤。\n這可能表示系統有問題存在。",
+	"databaseerror-text": "出現資料庫查詢錯誤。\n這表示系統可能有問題存在。",
 	"databaseerror-textcl": "資料庫查詢錯誤。",
 	"databaseerror-query": "查詢：$1",
 	"databaseerror-function": "功能：$1",
