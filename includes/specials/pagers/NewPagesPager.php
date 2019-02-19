@@ -24,14 +24,20 @@
  */
 class NewPagesPager extends ReverseChronologicalPager {
 
-	// Stored opts
+	/**
+	 * @var FormOptions
+	 */
 	protected $opts;
 
 	/**
-	 * @var HTMLForm
+	 * @var SpecialNewpages
 	 */
 	protected $mForm;
 
+	/**
+	 * @param SpecialNewpages $form
+	 * @param FormOptions $opts
+	 */
 	public function __construct( $form, FormOptions $opts ) {
 		parent::__construct( $form->getContext() );
 		$this->mForm = $form;
