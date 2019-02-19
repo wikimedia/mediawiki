@@ -616,6 +616,9 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * @covers Block::appliesToTitle
 	 */
 	public function testAppliesToTitleReturnsTrueOnSitewideBlock() {
+		$this->setMwGlobals( [
+			'wgBlockDisablesLogin' => false,
+		] );
 		$user = $this->getTestUser()->getUser();
 		$block = new Block( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
@@ -642,6 +645,9 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * @covers Block::appliesToTitle
 	 */
 	public function testAppliesToTitleOnPartialBlock() {
+		$this->setMwGlobals( [
+			'wgBlockDisablesLogin' => false,
+		] );
 		$user = $this->getTestUser()->getUser();
 		$block = new Block( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
@@ -673,6 +679,9 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * @covers Block::appliesToPage
 	 */
 	public function testAppliesToReturnsTrueOnSitewideBlock() {
+		$this->setMwGlobals( [
+			'wgBlockDisablesLogin' => false,
+		] );
 		$user = $this->getTestUser()->getUser();
 		$block = new Block( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
@@ -697,6 +706,9 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * @covers Block::appliesToPage
 	 */
 	public function testAppliesToPageOnPartialPageBlock() {
+		$this->setMwGlobals( [
+			'wgBlockDisablesLogin' => false,
+		] );
 		$user = $this->getTestUser()->getUser();
 		$block = new Block( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
@@ -725,6 +737,9 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * @covers Block::appliesToNamespace
 	 */
 	public function testAppliesToNamespaceOnPartialNamespaceBlock() {
+		$this->setMwGlobals( [
+			'wgBlockDisablesLogin' => false,
+		] );
 		$user = $this->getTestUser()->getUser();
 		$block = new Block( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
@@ -749,6 +764,9 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * @covers Block::prevents
 	 */
 	public function testBlockAllowsPurge() {
+		$this->setMwGlobals( [
+			'wgBlockDisablesLogin' => false,
+		] );
 		$block = new Block();
 		$this->assertFalse( $block->prevents( 'purge' ) );
 	}

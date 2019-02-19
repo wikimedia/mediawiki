@@ -25,6 +25,9 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 	 * @covers ::rowToRestriction
 	 */
 	public function testLoadMultipleRestrictions() {
+		$this->setMwGlobals( [
+			'wgBlockDisablesLogin' => false,
+		] );
 		$block = $this->insertBlock();
 
 		$pageFoo = $this->getExistingTestPage( 'Foo' );
