@@ -2425,6 +2425,7 @@
 	"anoncontribs": "תרומות",
 	"contribsub2": "עבור {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "חשבון המשתמש \"$1\" אינו רשום.",
+	"negative-namespace-not-supported": "אין תמיכה במרחבי שם בעלי ערך שלילי.",
 	"nocontribs": "לא נמצאו שינויים המתאימים לקריטריונים אלו.",
 	"uctop": "נוכחי",
 	"month": "עד החודש:",
