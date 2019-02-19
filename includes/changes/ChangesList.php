@@ -473,17 +473,6 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param string &$s Article link will be appended to this string, in place.
-	 * @param RecentChange $rc
-	 * @param bool $unpatrolled
-	 * @param bool $watched
-	 * @deprecated since 1.27, use getArticleLink instead.
-	 */
-	public function insertArticleLink( &$s, RecentChange $rc, $unpatrolled, $watched ) {
-		$s .= $this->getArticleLink( $rc, $unpatrolled, $watched );
-	}
-
-	/**
 	 * @param RecentChange &$rc
 	 * @param bool $unpatrolled
 	 * @param bool $watched

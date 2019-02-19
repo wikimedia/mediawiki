@@ -154,11 +154,9 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		if ( $this->opts['namespace'] < NS_MAIN ) {
 			$this->getOutput()->wrapWikiMsg(
-				"<div class=\"mw-invalid-namespace-assoc error\">\n\$1\n</div>",
-				[
-					'namespace-not-associated',
-					wfEscapeWikiText( $this->opts['namespace'] ),
-				] );
+				"<div class=\"mw-negative-namespace-not-supported error\">\n\$1\n</div>",
+				[ 'negative-namespace-not-supported' ]
+			);
 			$out->addHTML( $this->getForm() );
 			return;
 		}
