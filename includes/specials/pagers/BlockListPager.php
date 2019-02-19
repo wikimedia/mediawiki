@@ -32,7 +32,6 @@ use Wikimedia\Rdbms\IResultWrapper;
 class BlockListPager extends TablePager {
 
 	protected $conds;
-	protected $page;
 
 	/**
 	 * Array of restrictions.
@@ -46,7 +45,6 @@ class BlockListPager extends TablePager {
 	 * @param array $conds
 	 */
 	public function __construct( $page, $conds ) {
-		$this->page = $page;
 		$this->conds = $conds;
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 		parent::__construct( $page->getContext() );
