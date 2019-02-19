@@ -2534,7 +2534,7 @@
 	"anoncontribs": "Contributions",
 	"contribsub2": "For {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "User account \"$1\" is not registered.",
-	"namespace-not-associated": "Namespace \"$1\" is a negative value that does not have an associated namespace.",
+	"negative-namespace-not-supported": "Namespaces with negative values are not supported.",
 	"nocontribs": "No changes were found matching these criteria.",
 	"uctop": "current",
 	"month": "From month (and earlier):",
