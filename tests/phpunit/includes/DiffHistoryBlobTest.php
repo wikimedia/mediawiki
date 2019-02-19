@@ -15,7 +15,6 @@ class DiffHistoryBlobTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Test for DiffHistoryBlob::xdiffAdler32()
 	 * @dataProvider provideXdiffAdler32
 	 * @covers DiffHistoryBlob::xdiffAdler32
 	 */

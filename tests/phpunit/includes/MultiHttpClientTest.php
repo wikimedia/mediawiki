@@ -1,8 +1,6 @@
 <?php
 
 /**
- * Tests for MultiHttpClient
- *
  * The urls herein are not actually called, because we mock the return results.
  *
  * @covers MultiHttpClient
