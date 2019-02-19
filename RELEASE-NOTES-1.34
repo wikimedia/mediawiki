@@ -86,6 +86,9 @@ because of Phabricator reports.
 * (T152908) Added language support for N'Ko (nqo).
 
 === Breaking changes in 1.34 ===
+* The global functions wfSuppressWarnings and wfRestoreWarnings, deprecated in
+  1.26, have been removed. Use Wikimedia\AtEase\AtEase::suppressWarnings() and
+  Wikimedia\AtEase\AtEase::restoreWarnings() directly.
 * Preferences class, deprecated in 1.31, has been removed.
 * The following parts of code, deprecated in 1.32, were removed in favor of
   built-in PHP functions:

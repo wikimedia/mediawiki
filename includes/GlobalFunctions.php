@@ -1847,24 +1847,6 @@ function wfNegotiateType( $cprefs, $sprefs ) {
 }
 
 /**
- * Reference-counted warning suppression
- *
- * @deprecated since 1.26, use Wikimedia\suppressWarnings() directly
- * @param bool $end
- */
-function wfSuppressWarnings( $end = false ) {
-	Wikimedia\suppressWarnings( $end );
-}
-
-/**
- * @deprecated since 1.26, use Wikimedia\restoreWarnings() directly
- * Restore error level to previous value
- */
-function wfRestoreWarnings() {
-	Wikimedia\restoreWarnings();
-}
-
-/**
  * Get a timestamp string in one of various formats
  *
  * @param mixed $outputtype A timestamp in one of the supported formats, the
