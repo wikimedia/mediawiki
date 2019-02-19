@@ -1033,7 +1033,7 @@ class DifferenceEngine extends ContextSource {
 			// Try cache
 			if ( !$this->mRefreshCache ) {
 				$difftext = $cache->get( $key );
-				if ( $difftext ) {
+				if ( is_string( $difftext ) ) {
 					wfIncrStats( 'diff_cache.hit' );
 					$difftext = $this->localiseDiff( $difftext );
 					$difftext .= "\n<!-- diff cache key $key -->\n";
