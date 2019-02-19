@@ -99,7 +99,7 @@ class ActiveUsersPager extends UsersPager {
 		];
 		$options = [];
 		if ( $data !== null ) {
-			$options['ORDER BY'] = 'qcc_title ' . $data['dir'];
+			$options['ORDER BY'] = 'qcc_title ' . $data['order'];
 			$options['LIMIT'] = $data['limit'];
 			$conds = array_merge( $conds, $data['conds'] );
 		}
