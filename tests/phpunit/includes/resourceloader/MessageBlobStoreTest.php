@@ -9,6 +9,7 @@ use Wikimedia\TestingAccessWrapper;
 class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
+	use PHPUnit4And6Compat;
 
 	protected function setUp() {
 		parent::setUp();
@@ -37,7 +38,7 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 
 	protected function makeBlobStore( $methods = null, $rl = null ) {
 		$blobStore = $this->getMockBuilder( MessageBlobStore::class )
-			->setConstructorArgs( [ $rl ] )
+			->setConstructorArgs( [ $rl ?? $this->createMock( ResourceLoader::class ) ] )
 			->setMethods( $methods )
 			->getMock();
 
