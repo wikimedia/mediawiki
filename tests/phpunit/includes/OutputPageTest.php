@@ -2531,7 +2531,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		$nonce->setAccessible( true );
 		$nonce->setValue( $out, 'secret' );
 		$rl = $out->getResourceLoader();
-		$rl->setMessageBlobStore( new NullMessageBlobStore() );
+		$rl->setMessageBlobStore( $this->createMock( MessageBlobStore::class ) );
 		$rl->register( [
 			'test.foo' => new ResourceLoaderTestModule( [
 				'script' => 'mw.test.foo( { a: true } );',
@@ -2647,7 +2647,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			->method( 'buildCssLinksArray' )
 			->willReturn( [] );
 		$rl = $op->getResourceLoader();
-		$rl->setMessageBlobStore( new NullMessageBlobStore() );
+		$rl->setMessageBlobStore( $this->createMock( MessageBlobStore::class ) );
 
 		// Register custom modules
 		$rl->register( [
@@ -3049,23 +3049,5 @@ class OutputPageTest extends MediaWikiTestCase {
 		}
 
 		return new OutputPage( $context );
-	}
-}
-
-/**
- * MessageBlobStore that doesn't do anything
- */
-class NullMessageBlobStore extends MessageBlobStore {
-	public function get( ResourceLoader $resourceLoader, $modules, $lang ) {
-		return [];
-	}
-
-	public function updateModule( $name, ResourceLoaderModule $module, $lang ) {
-	}
-
-	public function updateMessage( $key ) {
-	}
-
-	public function clear() {
 	}
 }

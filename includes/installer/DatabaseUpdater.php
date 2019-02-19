@@ -1074,7 +1074,9 @@ abstract class DatabaseUpdater {
 		}
 
 		// ResourceLoader: Message cache
-		$blobStore = new MessageBlobStore();
+		$blobStore = new MessageBlobStore(
+			MediaWikiServices::getInstance()->getResourceLoader()
+		);
 		$blobStore->clear();
 
 		// ResourceLoader: File-dependency cache
