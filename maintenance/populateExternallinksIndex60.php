@@ -73,7 +73,7 @@ class PopulateExternallinksIndex60 extends LoggedUpdateMaintenance {
 					],
 					[
 						'el_id' => $row->el_id,
-					], __METHOD__, [ 'IGNORE' ]
+					], __METHOD__
 				);
 			}
 			wfWaitForSlaves();
