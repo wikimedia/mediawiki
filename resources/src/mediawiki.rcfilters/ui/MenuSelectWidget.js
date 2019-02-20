@@ -156,7 +156,7 @@
 		this.$overlay.append( this.highlightPopup.$element );
 
 		// Count groups per view
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( groups, function ( groupName, groupModel ) {
 			if ( !groupModel.isHidden() ) {
 				viewGroupCount[ groupModel.getView() ] = viewGroupCount[ groupModel.getView() ] || 0;
@@ -164,7 +164,7 @@
 			}
 		} );
 
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( groups, function ( groupName, groupModel ) {
 			var currentItems = [],
 				view = groupModel.getView();

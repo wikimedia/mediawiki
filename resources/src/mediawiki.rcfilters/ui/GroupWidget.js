@@ -23,7 +23,7 @@
 
 		if ( config.events ) {
 			// Aggregate events
-			// eslint-disable-next-line jquery/no-each-util
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( config.events, function ( eventName, eventEmit ) {
 				aggregate[ eventName ] = eventEmit;
 			} );

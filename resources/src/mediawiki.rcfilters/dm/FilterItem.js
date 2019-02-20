@@ -98,7 +98,7 @@
 
 		key = key || 'contextDescription';
 
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( conflicts, function ( filterName, conflict ) {
 			if ( !conflict.item.isSelected() ) {
 				return;

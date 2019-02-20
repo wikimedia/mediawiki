@@ -371,7 +371,7 @@
 			 */
 			getQueryString: function () {
 				var args = [];
-				// eslint-disable-next-line jquery/no-each-util
+				// eslint-disable-next-line no-jquery/no-each-util
 				$.each( this.query, function ( key, val ) {
 					var k = Uri.encode( key ),
 						vals = Array.isArray( val ) ? val : [ val ];

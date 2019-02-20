@@ -12,6 +12,6 @@
 		"valid-jsdoc": "off",
 		"qunit/require-expect": "off",
 		"qunit/resolve-async": "off",
-		"jquery/no-parse-html-literal": "off"
+		"no-jquery/no-parse-html-literal": "off"
 	}
 }
