@@ -206,6 +206,7 @@ class JobQueueDB extends JobQueue {
 	/**
 	 * This function should *not* be called outside of JobQueueDB
 	 *
+	 * @suppress SecurityCheck-SQLInjection Bug in phan-taint-check handling bulk inserts
 	 * @param IDatabase $dbw
 	 * @param IJobSpecification[] $jobs
 	 * @param int $flags
