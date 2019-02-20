@@ -1474,8 +1474,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testEditWhileBlocked() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->setExpectedException( ApiUsageException::class,
-			'You have been blocked from editing.' );
+		$this->assertNull( Block::newFromTarget( '127.0.0.1' ), 'Sanity check' );
 
 		$block = new Block( [
 			'address' => self::$users['sysop']->getUser()->getName(),
@@ -1483,6 +1482,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'reason' => 'Capriciousness',
 			'timestamp' => '19370101000000',
 			'expiry' => 'infinity',
+			'enableAutoblock' => true,
 		] );
 		$block->insert();
 
@@ -1492,6 +1492,10 @@ class ApiEditPageTest extends ApiTestCase {
 				'title' => $name,
 				'text' => 'Some text',
 			] );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertSame( 'You have been blocked from editing.', $ex->getMessage() );
+			$this->assertNotNull( Block::newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
 		} finally {
 			$block->delete();
 			self::$users['sysop']->getUser()->clearInstanceCache();

@@ -116,7 +116,8 @@ class ApiEditPage extends ApiBase {
 		// Now let's check whether we're even allowed to do this
 		$this->checkTitleUserPermissions(
 			$titleObj,
-			$titleObj->exists() ? 'edit' : [ 'edit', 'create' ]
+			$titleObj->exists() ? 'edit' : [ 'edit', 'create' ],
+			[ 'autoblock' => true ]
 		);
 
 		$toMD5 = $params['text'];
