@@ -423,6 +423,11 @@ class ResourceLoader implements LoggerAwareInterface {
 
 		// Add the QUnit testrunner as implicit dependency to extension test suites.
 		foreach ( $testModules['qunit'] as &$module ) {
+			// Shuck any single-module dependency as an array
+			if ( is_string( $module['dependencies'] ) ) {
+				$module['dependencies'] = [ $module['dependencies'] ];
+			}
+
 			$module['dependencies'][] = 'test.mediawiki.qunit.testrunner';
 		}
 
