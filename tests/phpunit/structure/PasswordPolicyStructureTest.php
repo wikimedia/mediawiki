@@ -18,14 +18,17 @@ class PasswordPolicyStructureTest extends MediaWikiTestCase {
 
 		// This won't actually find all flags, just the ones in use. Can't really be helped,
 		// other than adding the core flags here.
-		$flags = [ 'forceChange' ];
+		$flags = [ 'forceChange', 'suggestChangeOnLogin' ];
 		foreach ( $wgPasswordPolicy['policies'] as $group => $checks ) {
 			foreach ( $checks as $check => $settings ) {
 				if ( is_array( $settings ) ) {
-					$flags = array_merge( $flags, array_diff( $settings, [ 'value' ] ) );
+					$flags = array_unique(
+						array_merge( $flags, array_diff( array_keys( $settings ), [ 'value' ] ) )
+					);
 				}
 			}
 		}
+
 		foreach ( $flags as $flag ) {
 			yield [ $flag ];
 		}
