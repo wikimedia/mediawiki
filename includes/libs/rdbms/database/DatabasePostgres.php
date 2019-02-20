@@ -640,6 +640,18 @@ __INDEXATTR__;
 		return true;
 	}
 
+	protected function makeUpdateOptionsArray( $options ) {
+		if ( !is_array( $options ) ) {
+			$options = [ $options ];
+		}
+
+		// PostgreSQL doesn't support anything like "ignore" for
+		// UPDATE.
+		$options = array_diff( $options, [ 'IGNORE' ] );
+
+		return parent::makeUpdateOptionsArray( $options );
+	}
+
 	/**
 	 * INSERT SELECT wrapper
 	 * $varMap must be an associative array of the form [ 'dest1' => 'source1', ... ]
