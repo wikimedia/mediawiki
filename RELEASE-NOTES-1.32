@@ -17,6 +17,7 @@
 * (T215566) Fix installer being unable to determine if the database exists
   during a fresh installation.
 * (T204423) Backport support for hyphenated DB names in JobQueueGroup.
+* (T215169) Fix for Database::update() with IGNORE option fails on PostgreSQL.
 
 == MediaWiki 1.32.0 ==
 
