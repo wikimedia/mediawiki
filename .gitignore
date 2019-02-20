@@ -52,6 +52,7 @@ npm-debug.log
 node_modules/
 /tests/phpunit/phpunit.phar
 /tests/selenium/log
+.eslintcache
 
 # Composer
 /vendor
