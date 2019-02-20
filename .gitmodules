@@ -1129,3 +1129,7 @@
 	path = extensions/IncidentReporting
 	url = https://github.com/miraheze/IncidentReporting
 	branch = master
+[submodule "extensions/NumberedHeadings"]
+	path = extensions/NumberedHeadings
+	url = https://github.com/staspika/mediawiki-numberedheadings
+	branch = master
