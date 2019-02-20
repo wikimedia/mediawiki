@@ -137,6 +137,14 @@ interface ILoadBalancer {
 	public function resolveDomainID( $domain );
 
 	/**
+	 * Close all connection and redefine the local domain for testing or schema creation
+	 *
+	 * @param DatabaseDomain|string $domain
+	 * @since 1.33
+	 */
+	public function redefineLocalDomain( $domain );
+
+	/**
 	 * Get the index of the reader connection, which may be a replica DB
 	 *
 	 * This takes into account load ratios and lag times. It should
