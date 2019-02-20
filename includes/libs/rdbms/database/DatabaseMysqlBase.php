@@ -1548,6 +1548,10 @@ abstract class DatabaseMysqlBase extends Database {
 			!preg_match( '/^SELECT\s+(GET|RELEASE|IS_FREE)_LOCK\(/', $sql );
 	}
 
+	public function buildStringCast( $field ) {
+		return "CAST( $field AS BINARY )";
+	}
+
 	/**
 	 * @param string $field Field or column to cast
 	 * @return string
