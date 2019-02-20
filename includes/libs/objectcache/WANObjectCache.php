@@ -159,6 +159,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 	/** Seconds to keep lock keys around */
 	const LOCK_TTL = 10;
+	/** Seconds to no-op key set() calls to avoid large blob I/O stampedes */
+	const COOLOFF_TTL = 1;
 	/** Default remaining TTL at which to consider pre-emptive regeneration */
 	const LOW_TTL = 30;
 
@@ -190,6 +192,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/** Tiny negative float to use when CTL comes up >= 0 due to clock skew */
 	const TINY_NEGATIVE = -0.000001;
 
+	/** Seconds of delay after get() where set() storms are a consideration with 'lockTSE' */
+	const SET_DELAY_HIGH_SEC = 0.1;
+
 	/** Cache format version number */
 	const VERSION = 1;
 
@@ -213,6 +218,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	const INTERIM_KEY_PREFIX = 'WANCache:i:';
 	const TIME_KEY_PREFIX = 'WANCache:t:';
 	const MUTEX_KEY_PREFIX = 'WANCache:m:';
+	const COOLOFF_KEY_PREFIX = 'WANCache:c:';
 
 	const PURGE_VAL_PREFIX = 'PURGED:';
 
@@ -1034,21 +1040,28 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      is useful if thousands or millions of keys depend on the same entity. The entity can
 	 *      simply have its "check" key updated whenever the entity is modified.
 	 *      Default: [].
-	 *   - graceTTL: If the key is invalidated (by "checkKeys") less than this many seconds ago,
-	 *      consider reusing the stale value. The odds of a refresh becomes more likely over time,
-	 *      becoming certain once the grace period is reached. This can reduce traffic spikes
-	 *      when millions of keys are compared to the same "check" key and touchCheckKey() or
-	 *      resetCheckKey() is called on that "check" key. This option is not useful for the
-	 *      case of the key simply expiring on account of its TTL (use "lowTTL" instead).
+	 *   - graceTTL: If the key is invalidated (by "checkKeys"/"touchedCallback") less than this
+	 *      many seconds ago, consider reusing the stale value. The odds of a refresh becomes
+	 *      more likely over time, becoming certain once the grace period is reached. This can
+	 *      reduce traffic spikes when millions of keys are compared to the same "check" key and
+	 *      touchCheckKey() or resetCheckKey() is called on that "check" key. This option is not
+	 *      useful for avoiding traffic spikes in the case of the key simply expiring on account
+	 *      of its TTL (use "lowTTL" instead).
 	 *      Default: WANObjectCache::GRACE_TTL_NONE.
-	 *   - lockTSE: If the key is tombstoned or invalidated (by "checkKeys") less than this many
-	 *      seconds ago, try to have a single thread handle cache regeneration at any given time.
-	 *      Other threads will try to use stale values if possible. If, on miss, the time since
-	 *      expiration is low, the assumption is that the key is hot and that a stampede is worth
-	 *      avoiding. Setting this above WANObjectCache::HOLDOFF_TTL makes no difference. The
-	 *      higher this is set, the higher the worst-case staleness can be. This option does not
-	 *      by itself handle the case of the key simply expiring on account of its TTL, so make
-	 *      sure that "lowTTL" is not disabled when using this option.
+	 *   - lockTSE: If the key is tombstoned or invalidated (by "checkKeys"/"touchedCallback")
+	 *      less than this many seconds ago, try to have a single thread handle cache regeneration
+	 *      at any given time. Other threads will use stale values if possible. If, on miss,
+	 *      the time since expiration is low, the assumption is that the key is hot and that a
+	 *      stampede is worth avoiding. Note that if the key falls out of cache then concurrent
+	 *      threads will all run the callback on cache miss until the value is saved in cache.
+	 *      The only stampede protection in that case is from duplicate cache sets when the
+	 *      callback takes longer than WANObjectCache::SET_DELAY_HIGH_SEC seconds; consider
+	 *      using "busyValue" if such stampedes are a problem. Note that the higher "lockTSE" is
+	 *      set, the higher the worst-case staleness of returned values can be. Also note that
+	 *      this option does not by itself handle the case of the key simply expiring on account
+	 *      of its TTL, so make sure that "lowTTL" is not disabled when using this option. Avoid
+	 *      combining this option with delete() as it can always cause a stampede due to their
+	 *      being no stale value available until after a thread completes the callback.
 	 *      Use WANObjectCache::TSE_NONE to disable this logic.
 	 *      Default: WANObjectCache::TSE_NONE.
 	 *   - busyValue: If no value exists and another thread is currently regenerating it, use this
@@ -1267,12 +1280,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			// This avoids stampedes on eviction or preemptive regeneration taking too long.
 			( $busyValue !== null && $value === false );
 
-		$lockAcquired = false;
+		$hasLock = false;
 		if ( $useMutex ) {
 			// Acquire a datacenter-local non-blocking lock
 			if ( $this->cache->add( self::MUTEX_KEY_PREFIX . $key, 1, self::LOCK_TTL ) ) {
 				// Lock acquired; this thread will recompute the value and update cache
-				$lockAcquired = true;
+				$hasLock = true;
 			} elseif ( $this->isValid( $value, $versioned, $asOf, $minTime ) ) {
 				// Lock not acquired and a stale value exists; use the stale value
 				$this->stats->increment( "wanobjectcache.$kClass.hit.stale" );
@@ -1315,26 +1328,31 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$valueIsCacheable = ( $value !== false && $ttl >= 0 );
 
 		if ( $valueIsCacheable ) {
+			$ago = max( $this->getCurrentTime() - $preCallbackTime, 0.0 );
 			if ( $isKeyTombstoned ) {
-				// When delete() is called, writes are write-holed by the tombstone,
-				// so use a special INTERIM key to pass the new value among threads.
-				$tempTTL = max( self::INTERIM_KEY_TTL, (int)$lockTSE ); // set() expects seconds
-				$newAsOf = $this->getCurrentTime();
-				$wrapped = $this->wrap( $value, $tempTTL, $newAsOf );
-				// Avoid using set() to avoid pointless mcrouter broadcasting
-				$this->setInterimValue( $key, $wrapped, $tempTTL );
-			} elseif ( !$useMutex || $lockAcquired ) {
-				// Save the value unless a lock-winning thread is already expected to do that
-				$setOpts['lockTSE'] = $lockTSE;
-				$setOpts['staleTTL'] = $staleTTL;
-				// Use best known "since" timestamp if not provided
-				$setOpts += [ 'since' => $preCallbackTime ];
-				// Update the cache; this will fail if the key is tombstoned
-				$this->set( $key, $value, $ttl, $setOpts );
+				if ( $this->checkAndSetCooloff( $key, $kClass, $ago, $lockTSE, $hasLock ) ) {
+					// When delete() is called, writes are write-holed by the tombstone,
+					// so use a special INTERIM key to pass the new value among threads.
+					$tempTTL = max( self::INTERIM_KEY_TTL, (int)$lockTSE ); // set() expects seconds
+					$newAsOf = $this->getCurrentTime();
+					$wrapped = $this->wrap( $value, $tempTTL, $newAsOf );
+					// Avoid using set() to avoid pointless mcrouter broadcasting
+					$this->setInterimValue( $key, $wrapped, $tempTTL );
+				}
+			} elseif ( !$useMutex || $hasLock ) {
+				if ( $this->checkAndSetCooloff( $key, $kClass, $ago, $lockTSE, $hasLock ) ) {
+					// Save the value unless a lock-winning thread is already expected to do that
+					$setOpts['lockTSE'] = $lockTSE;
+					$setOpts['staleTTL'] = $staleTTL;
+					// Use best known "since" timestamp if not provided
+					$setOpts += [ 'since' => $preCallbackTime ];
+					// Update the cache; this will fail if the key is tombstoned
+					$this->set( $key, $value, $ttl, $setOpts );
+				}
 			}
 		}
 
-		if ( $lockAcquired ) {
+		if ( $hasLock ) {
 			// Avoid using delete() to avoid pointless mcrouter broadcasting
 			$this->cache->changeTTL( self::MUTEX_KEY_PREFIX . $key, (int)$preCallbackTime - 60 );
 		}
@@ -1343,6 +1361,41 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$this->stats->increment( "wanobjectcache.$kClass.$miss.compute" );
 
 		return $value;
+	}
+
+	/**
+	 * @param string $key
+	 * @param string $kClass
+	 * @param float $elapsed Seconds spent regenerating the value
+	 * @param float $lockTSE
+	 * @param $hasLock bool
+	 * @return bool Whether it is OK to proceed with a key set operation
+	 */
+	private function checkAndSetCooloff( $key, $kClass, $elapsed, $lockTSE, $hasLock ) {
+		// If $lockTSE is set, the lock was bypassed because there was no stale/interim value,
+		// and $elapsed indicates that regeration is slow, then there is a risk of set()
+		// stampedes with large blobs. With a typical scale-out infrastructure, CPU and query
+		// load from $callback invocations is distributed among appservers and replica DBs,
+		// but cache operations for a given key route to a single cache server (e.g. striped
+		// consistent hashing).
+		if ( $lockTSE < 0 || $hasLock ) {
+			return true; // either not a priori hot or thread has the lock
+		} elseif ( $elapsed <= self::SET_DELAY_HIGH_SEC ) {
+			return true; // not enough time for threads to pile up
+		}
+
+		$this->cache->clearLastError();
+		if (
+			!$this->cache->add( self::COOLOFF_KEY_PREFIX . $key, 1, self::COOLOFF_TTL ) &&
+			// Don't treat failures due to I/O errors as the key being in cooloff
+			$this->cache->getLastError() === BagOStuff::ERR_NONE
+		) {
+			$this->stats->increment( "wanobjectcache.$kClass.cooloff_bounce" );
+
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
