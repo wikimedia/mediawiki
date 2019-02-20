@@ -1343,6 +1343,54 @@ class ApiBaseTest extends ApiTestCase {
 		], $user ) );
 	}
 
+	public function testAddBlockInfoToStatus() {
+		$mock = new MockApi();
+
+		// Sanity check empty array
+		$expect = Status::newGood();
+		$test = Status::newGood();
+		$mock->addBlockInfoToStatus( $test );
+		$this->assertEquals( $expect, $test );
+
+		// No blocked $user, so no special block handling
+		$expect = Status::newGood();
+		$expect->fatal( 'blockedtext' );
+		$expect->fatal( 'autoblockedtext' );
+		$expect->fatal( 'systemblockedtext' );
+		$expect->fatal( 'mainpage' );
+		$expect->fatal( 'parentheses', 'foobar' );
+		$test = clone $expect;
+		$mock->addBlockInfoToStatus( $test );
+		$this->assertEquals( $expect, $test );
+
+		// Has a blocked $user, so special block handling
+		$user = $this->getMutableTestUser()->getUser();
+		$block = new \Block( [
+			'address' => $user->getName(),
+			'user' => $user->getID(),
+			'by' => $this->getTestSysop()->getUser()->getId(),
+			'reason' => __METHOD__,
+			'expiry' => time() + 100500,
+		] );
+		$block->insert();
+		$blockinfo = [ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) ];
+
+		$expect = Status::newGood();
+		$expect->fatal( ApiMessage::create( 'apierror-blocked', 'blocked', $blockinfo ) );
+		$expect->fatal( ApiMessage::create( 'apierror-autoblocked', 'autoblocked', $blockinfo ) );
+		$expect->fatal( ApiMessage::create( 'apierror-systemblocked', 'blocked', $blockinfo ) );
+		$expect->fatal( 'mainpage' );
+		$expect->fatal( 'parentheses', 'foobar' );
+		$test = Status::newGood();
+		$test->fatal( 'blockedtext' );
+		$test->fatal( 'autoblockedtext' );
+		$test->fatal( 'systemblockedtext' );
+		$test->fatal( 'mainpage' );
+		$test->fatal( 'parentheses', 'foobar' );
+		$mock->addBlockInfoToStatus( $test, $user );
+		$this->assertEquals( $expect, $test );
+	}
+
 	public function testDieStatus() {
 		$mock = new MockApi();
 

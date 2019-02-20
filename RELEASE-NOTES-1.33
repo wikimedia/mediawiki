@@ -100,6 +100,7 @@ production.
   deletion will be processed via the job queue.
 * action=setnotificationtimestamp will now update the watchlist asynchronously
   if entirewatchlist is set, so updates may not be visible immediately
+* Block info will be added to "blocked" errors from more modules.
 
 === Action API internal changes in 1.33 ===
 * A number of deprecated methods for API documentation, intended for overriding
