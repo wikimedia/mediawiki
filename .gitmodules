@@ -822,11 +822,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-EventLogging
 	branch = REL1_32
 	ignore = dirty
-[submodule "extensions/PdfBook"]
-	path = extensions/PdfBook
-	url = https://gitlab.com/Aranad/PdfBook.git
-	branch = master
-	ignore = dirty
 [submodule "extensions/ArticleFeedbackv5"]
 	path = extensions/ArticleFeedbackv5
 	url = https://github.com/wikimedia/mediawiki-extensions-ArticleFeedbackv5
