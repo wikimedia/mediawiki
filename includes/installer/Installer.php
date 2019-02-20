@@ -1464,6 +1464,7 @@ abstract class Installer {
 	/**
 	 * Installs the auto-detected extensions.
 	 *
+	 * @suppress SecurityCheck-OTHER It thinks $exts/$IP is user controlled but they are not.
 	 * @return Status
 	 */
 	protected function includeExtensions() {

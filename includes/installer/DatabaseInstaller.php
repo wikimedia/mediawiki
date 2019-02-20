@@ -373,6 +373,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * Perform database upgrades
 	 *
+	 * @suppress SecurityCheck-XSS Escaping provided by $this->outputHandler
 	 * @return bool
 	 */
 	public function doUpgrade() {
