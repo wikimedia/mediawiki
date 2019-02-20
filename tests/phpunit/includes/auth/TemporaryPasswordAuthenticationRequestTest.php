@@ -26,18 +26,32 @@ class TemporaryPasswordAuthenticationRequestTest extends AuthenticationRequestTe
 		global $wgPasswordPolicy;
 
 		$policy = $wgPasswordPolicy;
-		$policy['policies']['default'] += [
+		unset( $policy['policies'] );
+		$policy['policies']['default'] = [
 			'MinimalPasswordLength' => 1,
-			'MinimalPasswordLengthToLogin' => 1,
+			'MinimumPasswordLengthToLogin' => 1,
 		];
 
-		$this->setMwGlobals( 'wgPasswordPolicy', $policy );
+		$this->setMwGlobals( [
+			'wgMinimalPasswordLength' => 10,
+			'wgPasswordPolicy' => $policy,
+		] );
 
 		$ret1 = TemporaryPasswordAuthenticationRequest::newRandom();
 		$ret2 = TemporaryPasswordAuthenticationRequest::newRandom();
-		$this->assertNotSame( '', $ret1->password );
-		$this->assertNotSame( '', $ret2->password );
+		$this->assertEquals( 10, strlen( $ret1->password ) );
+		$this->assertEquals( 10, strlen( $ret2->password ) );
 		$this->assertNotSame( $ret1->password, $ret2->password );
+
+		$policy['policies']['default']['MinimalPasswordLength'] = 15;
+		$this->setMwGlobals( 'wgPasswordPolicy', $policy );
+		$ret = TemporaryPasswordAuthenticationRequest::newRandom();
+		$this->assertEquals( 15, strlen( $ret->password ) );
+
+		$policy['policies']['default']['MinimalPasswordLength'] = [ 'value' => 20 ];
+		$this->setMwGlobals( 'wgPasswordPolicy', $policy );
+		$ret = TemporaryPasswordAuthenticationRequest::newRandom();
+		$this->assertEquals( 20, strlen( $ret->password ) );
 	}
 
 	public function testNewInvalid() {
