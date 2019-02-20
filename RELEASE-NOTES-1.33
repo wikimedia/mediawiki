@@ -316,6 +316,9 @@ because of Phabricator reports.
 === Other changes in 1.33 ===
 * (T201747) Html::openElement() warns if given an element name with a space
   in it.
+* The implementation of buildStringCast() in Wikimedia\Rdbms\Database has
+  changed to explicitly cast. Subclasses relying on the base-class
+  implementation should check whether they need to override it now.
 
 == Compatibility ==
 MediaWiki 1.33 requires PHP 7.0.13 or later. Although HHVM 3.18.5 or later is
