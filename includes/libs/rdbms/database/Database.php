@@ -2278,7 +2278,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function buildStringCast( $field ) {
-		return $field;
+		// In theory this should work for any standards-compliant
+		// SQL implementation, although it may not be the best way to do it.
+		return "CAST( $field AS CHARACTER )";
 	}
 
 	public function buildIntegerCast( $field ) {

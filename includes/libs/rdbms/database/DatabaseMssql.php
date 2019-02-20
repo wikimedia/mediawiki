@@ -1398,6 +1398,11 @@ class DatabaseMssql extends Database {
 
 		return $old;
 	}
+
+	public function buildStringCast( $field ) {
+		return "CAST( $field AS NVARCHAR )";
+	}
+
 }
 
 /**
