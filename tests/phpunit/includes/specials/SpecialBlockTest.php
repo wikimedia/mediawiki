@@ -88,9 +88,9 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 		$this->assertSame( (string)$block->getTarget(), $fields['Target']['default'] );
 		$this->assertSame( $block->isHardblock(), $fields['HardBlock']['default'] );
-		$this->assertSame( $block->prevents( 'createaccount' ), $fields['CreateAccount']['default'] );
+		$this->assertSame( $block->isCreateAccountBlocked(), $fields['CreateAccount']['default'] );
 		$this->assertSame( $block->isAutoblocking(), $fields['AutoBlock']['default'] );
-		$this->assertSame( $block->prevents( 'editownusertalk' ), $fields['DisableUTEdit']['default'] );
+		$this->assertSame( !$block->isUsertalkEditAllowed(), $fields['DisableUTEdit']['default'] );
 		$this->assertSame( $block->mReason, $fields['Reason']['default'] );
 		$this->assertSame( 'infinite', $fields['Expiry']['default'] );
 	}

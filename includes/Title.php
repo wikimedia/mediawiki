@@ -2621,7 +2621,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		$block = $user->getBlock( $useReplica );
 
 		// The block may explicitly allow an action (like "read" or "upload").
-		if ( $block && $block->prevents( $action ) === false ) {
+		if ( $block && $block->appliesToRight( $action ) === false ) {
 			return $errors;
 		}
 
