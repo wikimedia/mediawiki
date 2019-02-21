@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.2
+ * OOUI v0.30.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-01-23T01:14:20Z
+ * Date: 2019-02-21T10:57:07Z
  */
 ( function ( OO ) {
 
@@ -624,7 +624,10 @@ OO.ui.Element = function OoUiElement( config ) {
 	config = config || {};
 
 	// Properties
-	this.$ = $;
+	this.$ = function () {
+		OO.ui.warnDeprecation( 'this.$ is deprecated, use global $ instead' );
+		return $.apply( this, arguments );
+	};
 	this.elementId = null;
 	this.visible = true;
 	this.data = config.data;
@@ -1150,8 +1153,8 @@ OO.ui.Element.static.getScrollLeft = ( function () {
 	function test() {
 		var $definer = $( '<div>' ).attr( {
 				dir: 'rtl',
-				style: 'font-size: 14px; width: 1px; height: 1px; position: absolute; top: -1000px; overflow: scroll;'
-			} ).text( 'A' ),
+				style: 'font-size: 14px; width: 4px; height: 1px; position: absolute; top: -1000px; overflow: scroll;'
+			} ).text( 'ABCD' ),
 			definer = $definer[ 0 ];
 
 		$definer.appendTo( 'body' );
@@ -2102,7 +2105,7 @@ OO.ui.mixin.TabIndexedElement.prototype.isLabelableNode = function ( $node ) {
  */
 OO.ui.mixin.TabIndexedElement.prototype.focus = function () {
 	if ( !this.isDisabled() ) {
-		this.$tabIndexed.focus();
+		this.$tabIndexed.trigger( 'focus' );
 	}
 	return this;
 };
@@ -2114,7 +2117,7 @@ OO.ui.mixin.TabIndexedElement.prototype.focus = function () {
  * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.TabIndexedElement.prototype.blur = function () {
-	this.$tabIndexed.blur();
+	this.$tabIndexed.trigger( 'blur' );
 	return this;
 };
 
@@ -6566,7 +6569,7 @@ OO.ui.SelectWidget.prototype.onFocus = function ( event ) {
 	}
 
 	if ( event.target !== this.$element[ 0 ] ) {
-		this.$focusOwner.focus();
+		this.$focusOwner.trigger( 'focus' );
 	}
 };
 
@@ -7555,7 +7558,8 @@ OO.ui.MenuSectionOptionWidget.static.highlightable = false;
  * @cfg {boolean} [hideOnChoose=true] Hide the menu when the user chooses an option.
  * @cfg {boolean} [filterFromInput=false] Filter the displayed options from the input
  * @cfg {boolean} [highlightOnFilter] Highlight the first result when filtering
- * @cfg {number} [width] Width of the menu
+ * @param {number|string} [width] Width of the menu as a number of pixels or CSS string with unit suffix,
+ *  used by {@link OO.ui.mixin.ClippableElement ClippableElement}
  */
 OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	// Configuration initialization
@@ -8328,7 +8332,7 @@ OO.mixinClass( OO.ui.RadioSelectWidget, OO.ui.mixin.TabIndexedElement );
  * with OO.ui.SelectWidget to create a selection of mutually exclusive options. For more information
  * and examples, please see the [OOUI documentation on MediaWiki][1].
  *
- * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Multioptions
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options
  *
  * @class
  * @extends OO.ui.Widget
@@ -9481,7 +9485,7 @@ OO.ui.CheckboxInputWidget.prototype.isSelected = function () {
  */
 OO.ui.CheckboxInputWidget.prototype.simulateLabelClick = function () {
 	if ( !this.isDisabled() ) {
-		this.$input.click();
+		this.$handle.trigger( 'click' );
 	}
 	this.focus();
 };
@@ -9900,7 +9904,7 @@ OO.ui.RadioInputWidget.prototype.isSelected = function () {
  */
 OO.ui.RadioInputWidget.prototype.simulateLabelClick = function () {
 	if ( !this.isDisabled() ) {
-		this.$input.click();
+		this.$input.trigger( 'click' );
 	}
 	this.focus();
 };
@@ -11606,19 +11610,40 @@ OO.ui.ComboBoxInputWidget.prototype.onMenuToggle = function ( isVisible ) {
 };
 
 /**
- * @inheritdoc
+ * Update the disabled state of the controls
+ *
+ * @chainable
+ * @protected
+ * @return {OO.ui.ComboBoxInputWidget} The widget, for chaining
  */
-OO.ui.ComboBoxInputWidget.prototype.setDisabled = function ( disabled ) {
-	// Parent method
-	OO.ui.ComboBoxInputWidget.parent.prototype.setDisabled.call( this, disabled );
-
+OO.ui.ComboBoxInputWidget.prototype.updateControlsDisabled = function () {
+	var disabled = this.isDisabled() || this.isReadOnly();
 	if ( this.dropdownButton ) {
-		this.dropdownButton.setDisabled( this.isDisabled() );
+		this.dropdownButton.setDisabled( disabled );
 	}
 	if ( this.menu ) {
-		this.menu.setDisabled( this.isDisabled() );
+		this.menu.setDisabled( disabled );
 	}
+	return this;
+};
 
+/**
+ * @inheritdoc
+ */
+OO.ui.ComboBoxInputWidget.prototype.setDisabled = function () {
+	// Parent method
+	OO.ui.ComboBoxInputWidget.parent.prototype.setDisabled.apply( this, arguments );
+	this.updateControlsDisabled();
+	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ComboBoxInputWidget.prototype.setReadOnly = function () {
+	// Parent method
+	OO.ui.ComboBoxInputWidget.parent.prototype.setReadOnly.apply( this, arguments );
+	this.updateControlsDisabled();
 	return this;
 };
 

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.2
+ * OOUI v0.30.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-01-23T01:14:27Z
+ * Date: 2019-02-21T10:57:15Z
  */
 .oo-ui-tool {
   -webkit-box-sizing: border-box;
@@ -38,7 +38,7 @@
   left: 0.71428571em;
 }
 .oo-ui-tool .oo-ui-tool-title {
-  line-height: 1.07142857em;
+  line-height: 1;
 }
 .oo-ui-tool.oo-ui-widget-enabled {
   -webkit-transition: background-color 100ms;
@@ -232,7 +232,7 @@
   padding: 1em 0.85714286em 0.92857143em;
 }
 .oo-ui-popupToolGroup.oo-ui-labelElement .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
-  line-height: 1.07142857em;
+  line-height: 1;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup.oo-ui-labelElement .oo-ui-popupToolGroup-handle {
   padding-left: 0.71428571em;
@@ -287,7 +287,7 @@
 }
 .oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-accel {
   color: #72777d;
-  line-height: 1.07142857em;
+  line-height: 1;
 }
 .oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-accel:not( :empty ) {
   padding-left: 1.28571429em;

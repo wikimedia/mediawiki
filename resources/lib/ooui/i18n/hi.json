@@ -9,7 +9,8 @@
 			"Ankita-ks",
 			"Param Mudgal",
 			"Sfic",
-			"Rishi.Singh"
+			"Rishi.Singh",
+			"Prong$31"
 		]
 	},
 	"ooui-outline-control-move-down": "प्रविष्टि नीचे ले जाएँ",
@@ -28,5 +29,6 @@
 	"ooui-selectfile-button-select": "फ़ाइल चुनें",
 	"ooui-selectfile-not-supported": "फ़ाइल का चयन समर्थित नहीं है",
 	"ooui-selectfile-placeholder": "कोई फाइल चुनी नही गई हेै",
-	"ooui-selectfile-dragdrop-placeholder": "फ़ाइल यहाँ डालें"
+	"ooui-selectfile-dragdrop-placeholder": "फ़ाइल यहाँ डालें",
+	"ooui-field-help": "सहायता"
 }

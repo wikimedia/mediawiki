@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.2
+ * OOUI v0.30.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-01-23T01:14:20Z
+ * Date: 2019-02-21T10:57:07Z
  */
 ( function ( OO ) {
 
@@ -2359,7 +2359,6 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 				) {
 					$focused = previousPage.$element.find( ':focus' );
 					if ( $focused.length ) {
-						// eslint-disable-next-line jquery/no-event-shorthand
 						$focused[ 0 ].blur();
 					}
 				}
@@ -2372,7 +2371,6 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 				// blurred when it was hidden, but browsers are not very consistent about this.
 				$focused = previousPage.$element.find( ':focus' );
 				if ( $focused.length ) {
-					// eslint-disable-next-line jquery/no-event-shorthand
 					$focused[ 0 ].blur();
 				}
 			}
@@ -2828,7 +2826,6 @@ OO.ui.IndexLayout.prototype.setTabPanel = function ( name ) {
 				) {
 					$focused = previousTabPanel.$element.find( ':focus' );
 					if ( $focused.length ) {
-						// eslint-disable-next-line jquery/no-event-shorthand
 						$focused[ 0 ].blur();
 					}
 				}
@@ -2841,7 +2838,6 @@ OO.ui.IndexLayout.prototype.setTabPanel = function ( name ) {
 				// blurred when it was hidden, but browsers are not very consistent about this.
 				$focused = previousTabPanel.$element.find( ':focus' );
 				if ( $focused.length ) {
-					// eslint-disable-next-line jquery/no-event-shorthand
 					$focused[ 0 ].blur();
 				}
 			}
@@ -4387,7 +4383,7 @@ OO.ui.TagMultiselectWidget.prototype.doInputBackspace = function ( e, withMetaKe
 			// If Ctrl/Cmd was pressed, delete item entirely.
 			// Otherwise put it into the text field for editing.
 			if ( !withMetaKey ) {
-				this.input.setValue( item.getData() );
+				this.input.setValue( item.getLabel() );
 			}
 		}
 
@@ -5798,7 +5794,7 @@ OO.ui.SelectFileWidget.prototype.onKeyPress = function ( e ) {
 	if ( this.isSupported && !this.isDisabled() && this.$input &&
 		( e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
 	) {
-		this.$input.click();
+		this.$input.trigger( 'click' );
 		return false;
 	}
 };
@@ -5812,7 +5808,7 @@ OO.ui.SelectFileWidget.prototype.onKeyPress = function ( e ) {
  */
 OO.ui.SelectFileWidget.prototype.onDropTargetClick = function () {
 	if ( this.isSupported && !this.isDisabled() && this.$input ) {
-		this.$input.click();
+		this.$input.trigger( 'click' );
 		return false;
 	}
 };
