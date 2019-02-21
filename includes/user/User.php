@@ -1927,7 +1927,7 @@ class User implements IDBAccessObject, UserIdentity {
 			$this->mBlockedby = $block->getByName();
 			$this->mBlockreason = $block->mReason;
 			$this->mHideName = $block->mHideName;
-			$this->mAllowUsertalk = !$block->prevents( 'editownusertalk' );
+			$this->mAllowUsertalk = $block->isUsertalkEditAllowed();
 		} else {
 			$this->mBlock = null;
 			$this->mBlockedby = '';
@@ -2275,7 +2275,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool True if blocked, false otherwise
 	 */
 	public function isBlocked( $bFromReplica = true ) {
-		return $this->getBlock( $bFromReplica ) instanceof Block && $this->getBlock()->prevents( 'edit' );
+		return $this->getBlock( $bFromReplica ) instanceof Block &&
+			$this->getBlock()->appliesToRight( 'edit' );
 	}
 
 	/**
@@ -2305,26 +2306,7 @@ class User implements IDBAccessObject, UserIdentity {
 				// Special handling for a user's own talk page. The block is not aware
 				// of the user, so this must be done here.
 				if ( $title->equals( $this->getTalkPage() ) ) {
-					if ( $block->isSitewide() ) {
-						// If the block is sitewide, whatever is set is what is honored.
-						// This must be checked here, because Block::appliesToPage will
-						// return true for a sitewide block.
-						$blocked = $block->prevents( 'editownusertalk' );
-					} else {
-						// The page restrictions always take precedence over the namespace
-						// restrictions. If the user is explicity blocked from their own
-						// talk page, nothing can change that.
-						$blocked = $block->appliesToPage( $title->getArticleID() );
-
-						// If the block applies to the user talk namespace, then whatever is
-						// set is what is honored.
-						if ( !$blocked && $block->appliesToNamespace( NS_USER_TALK ) ) {
-							$blocked = $block->prevents( 'editownusertalk' );
-						}
-
-						// If another type of restriction is added, it should be checked
-						// here.
-					}
+					$blocked = $block->appliesToUsertalk( $title );
 				} else {
 					$blocked = $block->appliesToTitle( $title );
 				}
@@ -4536,7 +4518,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function isBlockedFromCreateAccount() {
 		$this->getBlockedStatus();
-		if ( $this->mBlock && $this->mBlock->prevents( 'createaccount' ) ) {
+		if ( $this->mBlock && $this->mBlock->appliesToRight( 'createaccount' ) ) {
 			return $this->mBlock;
 		}
 
@@ -4547,7 +4529,7 @@ class User implements IDBAccessObject, UserIdentity {
 			$this->mBlockedFromCreateAccount = Block::newFromTarget( null, $this->getRequest()->getIP() );
 		}
 		return $this->mBlockedFromCreateAccount instanceof Block
-			&& $this->mBlockedFromCreateAccount->prevents( 'createaccount' )
+			&& $this->mBlockedFromCreateAccount->appliesToRight( 'createaccount' )
 			? $this->mBlockedFromCreateAccount
 			: false;
 	}
@@ -4558,7 +4540,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function isBlockedFromEmailuser() {
 		$this->getBlockedStatus();
-		return $this->mBlock && $this->mBlock->prevents( 'sendemail' );
+		return $this->mBlock && $this->mBlock->appliesToRight( 'sendemail' );
 	}
 
 	/**
@@ -4569,7 +4551,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function isBlockedFromUpload() {
 		$this->getBlockedStatus();
-		return $this->mBlock && $this->mBlock->prevents( 'upload' );
+		return $this->mBlock && $this->mBlock->appliesToRight( 'upload' );
 	}
 
 	/**

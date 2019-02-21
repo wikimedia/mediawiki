@@ -57,10 +57,10 @@ class Block {
 	private $mBlockEmail;
 
 	/** @var bool */
-	private $mDisableUsertalk;
+	private $allowUsertalk;
 
 	/** @var bool */
-	private $mCreateAccount;
+	private $blockCreateAccount;
 
 	/** @var User|string */
 	private $target;
@@ -180,11 +180,9 @@ class Block {
 		$this->isHardblock( !$options['anonOnly'] );
 		$this->isAutoblocking( (bool)$options['enableAutoblock'] );
 		$this->isSitewide( (bool)$options['sitewide'] );
-
-		# Prevention measures
-		$this->prevents( 'sendemail', (bool)$options['blockEmail'] );
-		$this->prevents( 'editownusertalk', !$options['allowUsertalk'] );
-		$this->prevents( 'createaccount', (bool)$options['createAccount'] );
+		$this->isEmailBlocked( (bool)$options['blockEmail'] );
+		$this->isCreateAccountBlocked( (bool)$options['createAccount'] );
+		$this->isUsertalkEditAllowed( (bool)$options['allowUsertalk'] );
 
 		$this->mFromMaster = false;
 		$this->systemBlockType = $options['systemBlock'];
@@ -302,12 +300,12 @@ class Block {
 			&& $this->type == $block->type
 			&& $this->mAuto == $block->mAuto
 			&& $this->isHardblock() == $block->isHardblock()
-			&& $this->prevents( 'createaccount' ) == $block->prevents( 'createaccount' )
+			&& $this->isCreateAccountBlocked() == $block->isCreateAccountBlocked()
 			&& $this->mExpiry == $block->mExpiry
 			&& $this->isAutoblocking() == $block->isAutoblocking()
 			&& $this->mHideName == $block->mHideName
-			&& $this->prevents( 'sendemail' ) == $block->prevents( 'sendemail' )
-			&& $this->prevents( 'editownusertalk' ) == $block->prevents( 'editownusertalk' )
+			&& $this->isEmailBlocked() == $block->isEmailBlocked()
+			&& $this->isUsertalkEditAllowed() == $block->isUsertalkEditAllowed()
 			&& $this->mReason == $block->mReason
 			&& $this->isSitewide() == $block->isSitewide()
 			// Block::getRestrictions() may perform a database query, so keep it at
@@ -411,13 +409,12 @@ class Block {
 			if ( $score < $bestBlockScore ) {
 				$bestBlockScore = $score;
 				$bestRow = $row;
-				$bestBlockPreventsEdit = $block->prevents( 'edit' );
+				$bestBlockPreventsEdit = $block->appliesToRight( 'edit' );
 			}
 		}
 
 		if ( $bestRow !== null ) {
 			$this->initFromRow( $bestRow );
-			$this->prevents( 'edit', $bestBlockPreventsEdit );
 			return true;
 		} else {
 			return false;
@@ -500,9 +497,9 @@ class Block {
 		$this->isAutoblocking( $row->ipb_enable_autoblock );
 		$this->isSitewide( (bool)$row->ipb_sitewide );
 
-		$this->prevents( 'createaccount', $row->ipb_create_account );
-		$this->prevents( 'sendemail', $row->ipb_block_email );
-		$this->prevents( 'editownusertalk', !$row->ipb_allow_usertalk );
+		$this->isCreateAccountBlocked( $row->ipb_create_account );
+		$this->isEmailBlocked( $row->ipb_block_email );
+		$this->isUsertalkEditAllowed( $row->ipb_allow_usertalk );
 	}
 
 	/**
@@ -705,14 +702,14 @@ class Block {
 			'ipb_timestamp'        => $dbw->timestamp( $this->mTimestamp ),
 			'ipb_auto'             => $this->mAuto,
 			'ipb_anon_only'        => !$this->isHardblock(),
-			'ipb_create_account'   => $this->prevents( 'createaccount' ),
+			'ipb_create_account'   => $this->isCreateAccountBlocked(),
 			'ipb_enable_autoblock' => $this->isAutoblocking(),
 			'ipb_expiry'           => $expiry,
 			'ipb_range_start'      => $this->getRangeStart(),
 			'ipb_range_end'        => $this->getRangeEnd(),
 			'ipb_deleted'          => intval( $this->mHideName ), // typecast required for SQLite
-			'ipb_block_email'      => $this->prevents( 'sendemail' ),
-			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' ),
+			'ipb_block_email'      => $this->isEmailBlocked(),
+			'ipb_allow_usertalk'   => $this->isUsertalkEditAllowed(),
 			'ipb_parent_block_id'  => $this->mParentBlockId,
 			'ipb_sitewide'         => $this->isSitewide(),
 		] + CommentStore::getStore()->insert( $dbw, 'ipb_reason', $this->mReason )
@@ -727,9 +724,9 @@ class Block {
 	 */
 	protected function getAutoblockUpdateArray( IDatabase $dbw ) {
 		return [
-			'ipb_create_account'   => $this->prevents( 'createaccount' ),
+			'ipb_create_account'   => $this->isCreateAccountBlocked(),
 			'ipb_deleted'          => (int)$this->mHideName, // typecast required for SQLite
-			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' ),
+			'ipb_allow_usertalk'   => $this->isUsertalkEditAllowed(),
 			'ipb_sitewide'         => $this->isSitewide(),
 		] + CommentStore::getStore()->insert( $dbw, 'ipb_reason', $this->mReason )
 			+ ActorMigration::newMigration()->getInsertValues( $dbw, 'ipb_by', $this->getBlocker() );
@@ -914,10 +911,10 @@ class Block {
 		$timestamp = wfTimestampNow();
 		$autoblock->mTimestamp = $timestamp;
 		$autoblock->mAuto = 1;
-		$autoblock->prevents( 'createaccount', $this->prevents( 'createaccount' ) );
+		$autoblock->isCreateAccountBlocked( $this->isCreateAccountBlocked() );
 		# Continue suppressing the name if needed
 		$autoblock->mHideName = $this->mHideName;
-		$autoblock->prevents( 'editownusertalk', $this->prevents( 'editownusertalk' ) );
+		$autoblock->isUsertalkEditAllowed( $this->isUsertalkEditAllowed() );
 		$autoblock->mParentBlockId = $this->mId;
 		$autoblock->isSitewide( $this->isSitewide() );
 		$autoblock->setRestrictions( $this->getRestrictions() );
@@ -1147,8 +1144,96 @@ class Block {
 	}
 
 	/**
+	 * Get or set the flag indicating whether this block blocks the target from
+	 * creating an account. (Note that the flag may be overridden depending on
+	 * global configs.)
+	 *
+	 * @since 1.33
+	 * @param null|bool $x Value to set (if null, just get the property value)
+	 * @return bool Value of the property
+	 */
+	public function isCreateAccountBlocked( $x = null ) {
+		return wfSetVar( $this->blockCreateAccount, $x );
+	}
+
+	/**
+	 * Get or set the flag indicating whether this block blocks the target from
+	 * sending emails. (Note that the flag may be overridden depending on
+	 * global configs.)
+	 *
+	 * @since 1.33
+	 * @param null|bool $x Value to set (if null, just get the property value)
+	 * @return bool Value of the property
+	 */
+	public function isEmailBlocked( $x = null ) {
+		return wfSetVar( $this->mBlockEmail, $x );
+	}
+
+	/**
+	 * Get or set the flag indicating whether this block blocks the target from
+	 * editing their own user talk page. (Note that the flag may be overridden
+	 * depending on global configs.)
+	 *
+	 * @since 1.33
+	 * @param null|bool $x Value to set (if null, just get the property value)
+	 * @return bool Value of the property
+	 */
+	public function isUsertalkEditAllowed( $x = null ) {
+		return wfSetVar( $this->allowUsertalk, $x );
+	}
+
+	/**
+	 * Determine whether the Block prevents a given right. A right
+	 * may be blacklisted or whitelisted, or determined from a
+	 * property on the Block object. For certain rights, the property
+	 * may be overridden according to global configs.
+	 *
+	 * @since 1.33
+	 * @param string $right Right to check
+	 * @return bool|null null if unrecognized right or unset property
+	 */
+	public function appliesToRight( $right ) {
+		$config = RequestContext::getMain()->getConfig();
+		$blockDisablesLogin = $config->get( 'BlockDisablesLogin' );
+
+		$res = null;
+		switch ( $right ) {
+			case 'edit':
+				// TODO: fix this case to return proper value
+				$res = true;
+				break;
+			case 'createaccount':
+				$res = $this->isCreateAccountBlocked();
+				break;
+			case 'sendemail':
+				$res = $this->isEmailBlocked();
+				break;
+			case 'upload':
+				// Until T6995 is completed
+				$res = $this->isSitewide();
+				break;
+			case 'read':
+				$res = false;
+				break;
+			case 'purge':
+				$res = false;
+				break;
+		}
+		if ( !$res && $blockDisablesLogin ) {
+			// If a block would disable login, then it should
+			// prevent any right that all users cannot do
+			$anon = new User;
+			$res = $anon->isAllowed( $right ) ? $res : true;
+		}
+
+		return $res;
+	}
+
+	/**
 	 * Get/set whether the Block prevents a given action
 	 *
+	 * @deprecated since 1.33, use appliesToRight to determine block
+	 *  behaviour, and specific methods to get/set properties
 	 * @param string $action Action to check
 	 * @param bool|null $x Value for set, or null to just get value
 	 * @return bool|null Null for unrecognized rights.
@@ -1165,7 +1250,7 @@ class Block {
 				$res = true;
 				break;
 			case 'createaccount':
-				$res = wfSetVar( $this->mCreateAccount, $x );
+				$res = wfSetVar( $this->blockCreateAccount, $x );
 				break;
 			case 'sendemail':
 				$res = wfSetVar( $this->mBlockEmail, $x );
@@ -1179,7 +1264,8 @@ class Block {
 				// since partially blocked users are always allowed to edit
 				// their own talk page unless a restriction exists on the
 				// page or User_talk: namespace
-				$res = wfSetVar( $this->mDisableUsertalk, $x );
+				wfSetVar( $this->allowUsertalk, $x === null ? null : !$x );
+				$res = !$this->isUserTalkEditAllowed();
 
 				// edit own user talk can be disabled by config
 				if ( !$blockAllowsUTEdit ) {
@@ -1406,8 +1492,8 @@ class Block {
 		// Sort hard blocks before soft ones and secondarily sort blocks
 		// that disable account creation before those that don't.
 		usort( $blocks, function ( Block $a, Block $b ) {
-			$aWeight = (int)$a->isHardblock() . (int)$a->prevents( 'createaccount' );
-			$bWeight = (int)$b->isHardblock() . (int)$b->prevents( 'createaccount' );
+			$aWeight = (int)$a->isHardblock() . (int)$a->appliesToRight( 'createaccount' );
+			$bWeight = (int)$b->isHardblock() . (int)$b->appliesToRight( 'createaccount' );
 			return strcmp( $bWeight, $aWeight ); // highest weight first
 		} );
 
@@ -1431,7 +1517,7 @@ class Block {
 			// is why the order of the blocks matters
 			if ( !$block->isHardblock() && $blocksListExact['hard'] ) {
 				break;
-			} elseif ( !$block->prevents( 'createaccount' ) && $blocksListExact['disable_create'] ) {
+			} elseif ( !$block->appliesToRight( 'createaccount' ) && $blocksListExact['disable_create'] ) {
 				break;
 			}
 
@@ -1440,7 +1526,7 @@ class Block {
 				if ( (string)$block->getTarget() === $checkip ) {
 					if ( $block->isHardblock() ) {
 						$blocksListExact['hard'] = $blocksListExact['hard'] ?: $block;
-					} elseif ( $block->prevents( 'createaccount' ) ) {
+					} elseif ( $block->appliesToRight( 'createaccount' ) ) {
 						$blocksListExact['disable_create'] = $blocksListExact['disable_create'] ?: $block;
 					} elseif ( $block->mAuto ) {
 						$blocksListExact['auto'] = $blocksListExact['auto'] ?: $block;
@@ -1455,7 +1541,7 @@ class Block {
 				) {
 					if ( $block->isHardblock() ) {
 						$blocksListRange['hard'] = $blocksListRange['hard'] ?: $block;
-					} elseif ( $block->prevents( 'createaccount' ) ) {
+					} elseif ( $block->appliesToRight( 'createaccount' ) ) {
 						$blocksListRange['disable_create'] = $blocksListRange['disable_create'] ?: $block;
 					} elseif ( $block->mAuto ) {
 						$blocksListRange['auto'] = $blocksListRange['auto'] ?: $block;
@@ -1814,9 +1900,92 @@ class Block {
 	}
 
 	/**
+	 * Determine whether the block allows the user to edit their own
+	 * user talk page. This is done separately from Block::appliesToRight
+	 * because there is no right for editing one's own user talk page
+	 * and because the user's talk page needs to be passed into the
+	 * Block object, which is unaware of the user.
+	 *
+	 * The ipb_allow_usertalk flag (which corresponds to the property
+	 * allowUsertalk) is used on sitewide blocks and partial blocks
+	 * that contain a namespace restriction on the user talk namespace,
+	 * but do not contain a page restriction on the user's talk page.
+	 * For all other (i.e. most) partial blocks, the flag is ignored,
+	 * and the user can always edit their user talk page unless there
+	 * is a page restriction on their user talk page, in which case
+	 * they can never edit it. (Ideally the flag would be stored as
+	 * null in these cases, but the database field isn't nullable.)
+	 *
+	 * @since 1.33
+	 * @param Title|null $usertalk The user's user talk page. If null,
+	 *  and if the target is a User, the target's userpage is used
+	 * @return bool The user can edit their talk page
+	 */
+	public function appliesToUsertalk( Title $usertalk = null ) {
+		$target = $this->target;
+		$targetIsUser = $target instanceof User;
+		$targetName = $targetIsUser ? $target->getName() : $target;
+
+		if ( !$usertalk ) {
+			if ( $targetIsUser ) {
+				$usertalk = $this->target->getTalkPage();
+			} else {
+				throw new InvalidArgumentException(
+					'$usertalk must be provided if block target is not a user/IP'
+				);
+			}
+		}
+
+		if ( $usertalk->getNamespace() !== NS_USER_TALK ) {
+			throw new InvalidArgumentException(
+				'$usertalk must be a user talk page'
+			);
+		}
+
+		switch ( $this->type ) {
+			case self::TYPE_USER:
+			case self::TYPE_IP:
+				if ( $usertalk->getText() !== $targetName ) {
+					throw new InvalidArgumentException(
+						'$usertalk must be a talk page for the block target'
+					);
+				}
+				break;
+			case self::TYPE_RANGE:
+				if ( !IP::isInRange( $usertalk->getText(), $target ) ) {
+					throw new InvalidArgumentException(
+						'$usertalk must be a talk page for an IP within the block target range'
+					);
+				}
+				break;
+			default:
+				throw new LogicException(
+					'Cannot determine validity of $usertalk for this type of block'
+				);
+		}
+
+		if ( !$this->isSitewide() ) {
+			if ( $this->appliesToPage( $usertalk->getArticleID() ) ) {
+				return true;
+			}
+			if ( !$this->appliesToNamespace( NS_USER_TALK ) ) {
+				return false;
+			}
+		}
+
+		// This is a type of block which uses the ipb_allow_usertalk
+		// flag. The flag can still be overridden by global configs.
+		$config = RequestContext::getMain()->getConfig();
+		if ( !$config->get( 'BlockAllowsUTEdit' ) ) {
+			return true;
+		}
+		return !$this->isUsertalkEditAllowed();
+	}
+
+	/**
 	 * Checks if a block applies to a particular title
 	 *
-	 * This check does not consider whether `$this->prevents( 'editownusertalk' )`
+	 * This check does not consider whether `$this->isUsertalkEditAllowed`
 	 * returns false, as the identity of the user making the hypothetical edit
 	 * isn't known here (particularly in the case of IP hardblocks, range
 	 * blocks, and auto-blocks).
@@ -1865,7 +2034,7 @@ class Block {
 	/**
 	 * Checks if a block applies to a particular page
 	 *
-	 * This check does not consider whether `$this->prevents( 'editownusertalk' )`
+	 * This check does not consider whether `$this->isUsertalkEditAllowed`
 	 * returns false, as the identity of the user making the hypothetical edit
 	 * isn't known here (particularly in the case of IP hardblocks, range
 	 * blocks, and auto-blocks).

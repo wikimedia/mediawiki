@@ -316,6 +316,10 @@ because of Phabricator reports.
 * Passing a User object or null as the third parameter to
   ApiBase::checkTitleUserPermissions() has been deprecated. Pass an array
   [ 'user' => $user ] instead.
+* (T211578) Block::prevents is deprecated. Use Block::isEmailBlocked,
+  Block::isCreateAccountBlocked and Block::isUsertalkEditAllowed to get and set
+  block properties; use Block::appliesToRight and Block::appliesToUsertalk to
+  check block behaviour.
 
 === Other changes in 1.33 ===
 * (T201747) Html::openElement() warns if given an element name with a space

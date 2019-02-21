@@ -335,11 +335,11 @@ class SpecialBlock extends FormSpecialPage {
 				|| $block->getTarget() == $this->target ) # or if it is, the range is what we're about to block
 		) {
 			$fields['HardBlock']['default'] = $block->isHardblock();
-			$fields['CreateAccount']['default'] = $block->prevents( 'createaccount' );
+			$fields['CreateAccount']['default'] = $block->isCreateAccountBlocked();
 			$fields['AutoBlock']['default'] = $block->isAutoblocking();
 
 			if ( isset( $fields['DisableEmail'] ) ) {
-				$fields['DisableEmail']['default'] = $block->prevents( 'sendemail' );
+				$fields['DisableEmail']['default'] = $block->isEmailBlocked();
 			}
 
 			if ( isset( $fields['HideUser'] ) ) {
@@ -347,7 +347,7 @@ class SpecialBlock extends FormSpecialPage {
 			}
 
 			if ( isset( $fields['DisableUTEdit'] ) ) {
-				$fields['DisableUTEdit']['default'] = $block->prevents( 'editownusertalk' );
+				$fields['DisableUTEdit']['default'] = !$block->isUsertalkEditAllowed();
 			}
 
 			// If the username was hidden (ipb_deleted == 1), don't show the reason
@@ -849,9 +849,9 @@ class SpecialBlock extends FormSpecialPage {
 		$block->setBlocker( $performer );
 		$block->mReason = $data['Reason'][0];
 		$block->mExpiry = $expiryTime;
-		$block->prevents( 'createaccount', $data['CreateAccount'] );
-		$block->prevents( 'editownusertalk', ( !$wgBlockAllowsUTEdit || $data['DisableUTEdit'] ) );
-		$block->prevents( 'sendemail', $data['DisableEmail'] );
+		$block->isCreateAccountBlocked( $data['CreateAccount'] );
+		$block->isUsertalkEditAllowed( !$wgBlockAllowsUTEdit || !$data['DisableUTEdit'] );
+		$block->isEmailBlocked( $data['DisableEmail'] );
 		$block->isHardblock( $data['HardBlock'] );
 		$block->isAutoblocking( $data['AutoBlock'] );
 		$block->mHideName = $data['HideUser'];
@@ -919,12 +919,12 @@ class SpecialBlock extends FormSpecialPage {
 
 				$priorBlock = clone $currentBlock;
 				$currentBlock->isHardblock( $block->isHardblock() );
-				$currentBlock->prevents( 'createaccount', $block->prevents( 'createaccount' ) );
+				$currentBlock->isCreateAccountBlocked( $block->isCreateAccountBlocked() );
 				$currentBlock->mExpiry = $block->mExpiry;
 				$currentBlock->isAutoblocking( $block->isAutoblocking() );
 				$currentBlock->mHideName = $block->mHideName;
-				$currentBlock->prevents( 'sendemail', $block->prevents( 'sendemail' ) );
-				$currentBlock->prevents( 'editownusertalk', $block->prevents( 'editownusertalk' ) );
+				$currentBlock->isEmailBlocked( $block->isEmailBlocked() );
+				$currentBlock->isUsertalkEditAllowed( $block->isUsertalkEditAllowed() );
 				$currentBlock->mReason = $block->mReason;
 
 				if ( $enablePartialBlocks ) {
@@ -976,7 +976,7 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		# Block constructor sanitizes certain block options on insert
-		$data['BlockEmail'] = $block->prevents( 'sendemail' );
+		$data['BlockEmail'] = $block->isEmailBlocked();
 		$data['AutoBlock'] = $block->isAutoblocking();
 
 		# Prepare log parameters
