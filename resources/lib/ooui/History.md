@@ -1,4 +1,30 @@
 # OOUI Release History
+## v0.30.3 / 2019-02-20
+### Styles
+* WikimediaUI theme: Align TagItemWidget's close icon correctly (Volker E.)
+* WikimediaUI theme: Provide single-line TextInputWidgets with a distinct height (Volker E.)
+* WikimediaUI theme: Unify `padding-top` and `padding-bottom` values (Volker E.)
+* WikimediaUI theme: Use consistent base size for TagMultiselectWidget's input (Volker E.)
+* WikimediaUI theme: Use distinct `height` for NumberInputWidget's widgets (Volker E.)
+
+### Code
+* Deprecation warnings for this.$ (Bartosz Dziewoński)
+* ComboBoxInputWidget: Disable controls when widget is set to read-only (Ed Sanders)
+* MenuSelectWidget: Documentation fix (Ed Sanders)
+* ProgressBarWidget: Fix irregularities in indeterminate styling (Bartosz Dziewoński)
+* TagMultiselectWidget: Populate input with item label on backspace (Thalia Chan)
+* Update getScrollLeft from upstream (Ed Sanders)
+* themes: Replace element by class attribute selector (Volker E.)
+* WikimediaUI theme: Remove variables with duplicated values (Volker E.)
+* build: Enforce selector prefixes in tutorials by stylelint (Ed Sanders)
+* build: Update eslint-config-wikimedia from 0.10.0 to 0.10.1 (James D. Forrester)
+* build: Updating mediawiki/mediawiki-codesniffer to 24.0.0 (libraryupgrader)
+* demos: Address oversized ButtonWidget (icon-only) in IE & Edge (Volker E.)
+* demos: Render demo header cleaner from top (Volker E.)
+* demos: Use `demo-root` class in PHP demos as well (Volker E.)
+* docs: Fix URI in description (Volker E.)
+
+
 ## v0.30.2 / 2019-01-22
 ### Features
 * Allow dropdown menu items to be disabled (Sam Wilson)
