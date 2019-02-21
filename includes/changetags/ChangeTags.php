@@ -141,11 +141,11 @@ class ChangeTags {
 	 * we consider the tag hidden, and return false.
 	 *
 	 * @param string $tag
-	 * @param IContextSource $context
+	 * @param MessageLocalizer $context
 	 * @return string|bool Tag description or false if tag is to be hidden.
 	 * @since 1.25 Returns false if tag is to be hidden.
 	 */
-	public static function tagDescription( $tag, IContextSource $context ) {
+	public static function tagDescription( $tag, MessageLocalizer $context ) {
 		$msg = $context->msg( "tag-$tag" );
 		if ( !$msg->exists() ) {
 			// No such message, so return the HTML-escaped tag name.
@@ -168,11 +168,11 @@ class ChangeTags {
 	 * for the long description.
 	 *
 	 * @param string $tag
-	 * @param IContextSource $context
+	 * @param MessageLocalizer $context
 	 * @return Message|bool Message object of the tag long description or false if
 	 *  there is no description.
 	 */
-	public static function tagLongDescriptionMessage( $tag, IContextSource $context ) {
+	public static function tagLongDescriptionMessage( $tag, MessageLocalizer $context ) {
 		$msg = $context->msg( "tag-$tag-description" );
 		if ( !$msg->exists() ) {
 			return false;
@@ -196,6 +196,8 @@ class ChangeTags {
 	 * @return string Truncated long tag description.
 	 */
 	public static function truncateTagDescription( $tag, $length, IContextSource $context ) {
+		// FIXME: Make this accept MessageLocalizer and Language instead of IContextSource
+
 		$originalDesc = self::tagLongDescriptionMessage( $tag, $context );
 		// If there is no tag description, return empty string
 		if ( !$originalDesc ) {

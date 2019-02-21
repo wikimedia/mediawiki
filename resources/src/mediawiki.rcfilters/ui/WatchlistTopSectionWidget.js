@@ -30,7 +30,7 @@
 		editWatchlistButton = new OO.ui.ButtonWidget( {
 			label: mw.msg( 'rcfilters-watchlist-edit-watchlist-button' ),
 			icon: 'edit',
-			href: mw.config.get( 'wgStructuredChangeFiltersEditWatchlistUrl' )
+			href: require( '../config.json' ).StructuredChangeFiltersEditWatchlistUrl
 		} );
 		markSeenButton = new MarkSeenButtonWidget( controller, changesListModel );
 
