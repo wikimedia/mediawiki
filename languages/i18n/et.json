@@ -152,7 +152,7 @@
 	"pagecategories": "{{PLURAL:$1|Kategooria|Kategooriad}}",
 	"category_header": "Leheküljed kategoorias \"$1\"",
 	"subcategories": "Alamkategooriad",
-	"category-media-header": "Meediafaile kategoorias \"$1\"",
+	"category-media-header": "Meedia kategoorias \"$1\"",
 	"category-empty": "<em>Selles kategoorias pole praegu ühtegi lehekülge ega meediafaili.</em>",
 	"hidden-categories": "{{PLURAL:$1|Peidetud kategooria|Peidetud kategooriad}}",
 	"hidden-category-category": "Peidetud kategooriad",

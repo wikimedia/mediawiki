@@ -2467,6 +2467,7 @@
 	"anoncontribs": "contributi",
 	"contribsub2": "Per {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "L'utenza \"$1\" non è registrata.",
+	"negative-namespace-not-supported": "I namespace con valori negativi non sono supportati.",
 	"nocontribs": "Non sono state trovate modifiche che soddisfino i criteri di ricerca.",
 	"uctop": "attuale",
 	"month": "Dal mese (e precedenti):",

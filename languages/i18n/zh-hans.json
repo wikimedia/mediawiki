@@ -115,7 +115,7 @@
 	},
 	"tog-underline": "链接下划线：",
 	"tog-hideminor": "在最近更改中隐藏小编辑",
-	"tog-hidepatrolled": "在最近更改中隐藏已检查过的编辑",
+	"tog-hidepatrolled": "在最近更改中隐藏已巡查过的编辑",
 	"tog-newpageshidepatrolled": "在新页面列表中隐藏已巡查页面",
 	"tog-hidecategorization": "隐藏页面的分类",
 	"tog-extendwatchlist": "扩展监视列表以显示所有更改，而不仅是最近的更改",
@@ -2497,6 +2497,7 @@
 	"anoncontribs": "贡献",
 	"contribsub2": "{{GENDER:$3|$1}}的贡献（$2）",
 	"contributions-userdoesnotexist": "用户“$1”尚未注册。",
+	"negative-namespace-not-supported": "不支持带有负值的命名空间",
 	"nocontribs": "没有找到匹配这些规则的更改。",
 	"uctop": "当前",
 	"month": "截止月份：",
@@ -3538,6 +3539,9 @@
 	"logentry-partialblock-block-page": "{{PLURAL:$1|页面|页面}}$2",
 	"logentry-partialblock-block-ns": "{{PLURAL:$1|命名空间|命名空间}}$2",
 	"logentry-partialblock-block": "$1{{GENDER:$2|封禁了}}{{GENDER:$4|$3}}对$7的编辑，持续时间至$5 $6",
+	"logentry-partialblock-reblock": "$1{{GENDER:$2|已更改}}在$7的{{GENDER:$4|$3}}禁止编辑封锁设定为期限至$5 $6",
+	"logentry-non-editing-block-block": "$1{{GENDER:$2|已封锁}}{{GENDER:$4|$3}}的指定非编辑操作，终止时间为$5 $6",
+	"logentry-non-editing-block-reblock": "$1{{GENDER:$2|已变更}}封禁了{{GENDER:$4|$3}}的指定非编辑操作，终止时间为$5 $6",
 	"logentry-suppress-block": "$1{{GENDER:$2|封禁了}}{{GENDER:$4|$3}}，持续时间$5 $6",
 	"logentry-suppress-reblock": "$1将{{GENDER:$4|$3}}的封禁设置{{GENDER:$2|更改为}}持续时间$5 $6",
 	"logentry-import-upload": "$1通过上传{{GENDER:$2|导入}}了$3",
@@ -3909,5 +3913,6 @@
 	"passwordpolicies-policy-maximalpasswordlength": "密码长度必须少于$1个{{PLURAL:$1|字符}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "密码不能{{PLURAL:$1|是最常见的密码|在$1个最常见密码的列表中}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "密码不能在100000个最常用的密码列表中。",
-	"easydeflate-invaliddeflate": "提供的内容未被适当缩小"
+	"easydeflate-invaliddeflate": "提供的内容未被适当缩小",
+	"unprotected-js": "基于安全原因，JavaScript不能在未保护页面中载入。请在 MediaWiki : 命名空间或者用户子页面中添加JavaScript。"
 }

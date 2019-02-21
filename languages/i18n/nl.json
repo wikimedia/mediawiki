@@ -2477,6 +2477,7 @@
 	"anoncontribs": "Bijdragen",
 	"contribsub2": "Voor {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Gebruikersaccount \"$1\" bestaat niet.",
+	"negative-namespace-not-supported": "Naamruimten met negatieve waarden worden niet ondersteund.",
 	"nocontribs": "Geen wijzigingen gevonden die aan de gestelde criteria voldoen.",
 	"uctop": "laatste wijziging",
 	"month": "Van maand (en eerder):",
