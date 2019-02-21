@@ -154,6 +154,7 @@ exports.config = {
 	*/
 	beforeTest: function ( test ) {
 		if ( process.env.DISPLAY && process.env.DISPLAY.startsWith( ':' ) ) {
+			var logBuffer;
 			let videoPath = filePath( test, logPath, 'mp4' );
 			const { spawn } = require( 'child_process' );
 			ffmpeg = spawn( 'ffmpeg', [
@@ -166,17 +167,29 @@ exports.config = {
 				videoPath // output file
 			] );
 
+			logBuffer = function ( buffer, prefix ) {
+				let lines = buffer.toString().trim().split( '\n' );
+				lines.forEach( function ( line ) {
+					console.log( prefix + line );
+				} );
+			};
+
 			ffmpeg.stdout.on( 'data', ( data ) => {
-				console.log( `ffmpeg stdout: ${data}` );
+				logBuffer( data, 'ffmpeg stdout: ' );
 			} );
 
 			ffmpeg.stderr.on( 'data', ( data ) => {
-				console.log( `ffmpeg stderr: ${data}` );
+				logBuffer( data, 'ffmpeg stderr: ' );
 			} );
 
-			ffmpeg.on( 'close', ( code ) => {
+			ffmpeg.on( 'close', ( code, signal ) => {
 				console.log( '\n\tVideo location:', videoPath, '\n' );
-				console.log( `ffmpeg exited with code ${code}` );
+				if ( code !== null ) {
+					console.log( `\tffmpeg exited with code ${code} ${videoPath}` );
+				}
+				if ( signal !== null ) {
+					console.log( `\tffmpeg received signal ${signal} ${videoPath}` );
+				}
 			} );
 		}
 	},
