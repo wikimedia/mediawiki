@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.2
+ * OOUI v0.30.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-01-23T01:14:27Z
+ * Date: 2019-02-21T10:57:15Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -451,7 +451,7 @@
   margin-top: 0.25em;
   margin-left: 0.25em;
 }
-.oo-ui-fieldLayout-messages > li {
+.oo-ui-fieldLayout-messages > [class|='oo-ui-fieldLayout-messages'] {
   margin: 0;
   padding: 0;
 }
@@ -1564,7 +1564,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-progressBarWidget-indeterminate .oo-ui-progressBarWidget-bar {
   width: 40%;
-  border-left: 1px solid #a6cee1;
+  border-left: 1px solid #ccc;
   -webkit-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
   -moz-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
   animation: oo-ui-progressBarWidget-slide 2s infinite linear;

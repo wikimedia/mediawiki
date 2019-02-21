@@ -66,7 +66,7 @@ production.
 * Added jakub-onderka/php-console-highlighter 0.3.2 explicitly (dev-only).
 
 ==== Changed external libraries ====
-* Updated OOUI from v0.29.2 to v0.30.2.
+* Updated OOUI from v0.29.2 to v0.30.3.
 * Updated OOjs Router from pre-release to v0.2.0.
 * Updated wikimedia/xmp-reader from 0.6.0 to 0.6.2.
 * Updated wikimedia/scoped-callback from 2.0.0 to 3.0.0.
