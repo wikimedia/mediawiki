@@ -132,10 +132,14 @@ class ForeignResourceManager {
 	}
 
 	private function fetch( $src, $integrity ) {
-		$data = Http::get( $src, [ 'followRedirects' => false ] );
-		if ( $data === false ) {
+		$req = MWHttpRequest::factory( $src, [ 'method' => 'GET', 'followRedirects' => false ] );
+		if ( !$req->execute()->isOK() ) {
 			throw new Exception( "Failed to download resource at {$src}" );
 		}
+		if ( $req->getStatus() !== 200 ) {
+			throw new Exception( "Unexpected HTTP {$req->getStatus()} response from {$src}" );
+		}
+		$data = $req->getContent();
 		$algo = $integrity === null ? $this->defaultAlgo : explode( '-', $integrity )[0];
 		$actualIntegrity = $algo . '-' . base64_encode( hash( $algo, $data, true ) );
 		if ( $integrity === $actualIntegrity ) {
