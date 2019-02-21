@@ -189,6 +189,7 @@ class SpecialBlock extends FormSpecialPage {
 				'max' => 10,
 				'cssclass' => 'mw-block-restriction',
 				'showMissing' => false,
+				'excludeDynamicNamespaces' => true,
 				'input' => [
 					'autocomplete' => false
 				],
