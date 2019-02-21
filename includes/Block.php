@@ -375,9 +375,6 @@ class Block {
 		# Lower will be better
 		$bestBlockScore = 100;
 
-		# This is begging for $this = $bestBlock, but that's not allowed in PHP :(
-		$bestBlockPreventsEdit = null;
-
 		foreach ( $res as $row ) {
 			$block = self::newFromRow( $row );
 
@@ -409,7 +406,6 @@ class Block {
 			if ( $score < $bestBlockScore ) {
 				$bestBlockScore = $score;
 				$bestRow = $row;
-				$bestBlockPreventsEdit = $block->appliesToRight( 'edit' );
 			}
 		}
 
