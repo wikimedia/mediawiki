@@ -401,6 +401,9 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$expectedResult,
 		$reason
 	) {
+		$this->setMwGlobals( [
+			'wgBlockDisablesLogin' => false,
+		] );
 		$this->setGroupPermissions( 'sysop', 'unblockself', true );
 		$this->setGroupPermissions( 'user', 'block', true );
 		// Getting errors about creating users in db in provider.
