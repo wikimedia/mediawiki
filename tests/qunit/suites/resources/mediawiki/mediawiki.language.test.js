@@ -598,7 +598,7 @@
 		]
 	};
 
-	// eslint-disable-next-line jquery/no-each-util
+	// eslint-disable-next-line no-jquery/no-each-util
 	$.each( grammarTests, function ( langCode, test ) {
 		if ( langCode === mw.config.get( 'wgUserLanguage' ) ) {
 			grammarTest( langCode, test );

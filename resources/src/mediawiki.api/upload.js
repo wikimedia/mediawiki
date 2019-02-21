@@ -233,7 +233,7 @@
 
 			file.name = 'file';
 
-			// eslint-disable-next-line jquery/no-each-util
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( data, function ( key, val ) {
 				$form.append( getHiddenInput( key, val ) );
 			} );

@@ -15,13 +15,13 @@
 			function toggleToc() {
 				if ( $tocList.is( ':hidden' ) ) {
 					// FIXME: Use CSS transitions
-					// eslint-disable-next-line jquery/no-slide
+					// eslint-disable-next-line no-jquery/no-slide
 					$tocList.slideDown( 'fast' );
 					$tocToggleLink.text( mw.msg( 'hidetoc' ) );
 					$this.removeClass( 'tochidden' );
 					mw.cookie.set( 'hidetoc', null );
 				} else {
-					// eslint-disable-next-line jquery/no-slide
+					// eslint-disable-next-line no-jquery/no-slide
 					$tocList.slideUp( 'fast' );
 					$tocToggleLink.text( mw.msg( 'showtoc' ) );
 					$this.addClass( 'tochidden' );

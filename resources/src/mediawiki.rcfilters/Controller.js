@@ -69,7 +69,7 @@
 		// Prepare views
 		if ( namespaceStructure ) {
 			items = [];
-			// eslint-disable-next-line jquery/no-each-util
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( namespaceStructure, function ( namespaceID, label ) {
 				// Build and clean up the individual namespace items definition
 				items.push( {
@@ -207,7 +207,7 @@
 		// Before we do anything, we need to see if we require additional items in the
 		// groups that have 'AllowArbitrary'. For the moment, those are only single_option
 		// groups; if we ever expand it, this might need further generalization:
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( views, function ( viewName, viewData ) {
 			viewData.groups.forEach( function ( groupData ) {
 				var extraValues = [];
@@ -898,7 +898,7 @@
 	 */
 	Controller.prototype.updateNumericPreference = function ( prefName, newValue ) {
 		// FIXME: $.isNumeric is deprecated
-		// eslint-disable-next-line jquery/no-is-numeric
+		// eslint-disable-next-line no-jquery/no-is-numeric
 		if ( !$.isNumeric( newValue ) ) {
 			return;
 		}

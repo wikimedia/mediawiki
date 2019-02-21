@@ -5,7 +5,7 @@
 		var done = assert.async(),
 			$canvas = $( '<div>' ).css( 'background-color', '#fff' ).appendTo( '#qunit-fixture' );
 
-		// eslint-disable-next-line jquery/no-animate
+		// eslint-disable-next-line no-jquery/no-animate
 		$canvas.animate( { 'background-color': '#000' }, 3 ).promise()
 			.done( function () {
 				var endColors = $.colorUtil.getRGB( $canvas.css( 'background-color' ) );

@@ -767,7 +767,6 @@
 				)
 			)
 		) {
-			// eslint-disable-next-line jquery/no-animate
 			$( container ).animate( {
 				scrollTop: newScrollTop
 			} );

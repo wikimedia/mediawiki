@@ -91,7 +91,7 @@
 			// Hide the current pane
 			if ( requestedPaneId === currentPaneId ) {
 				// FIXME: Use CSS transition
-				// eslint-disable-next-line jquery/no-slide
+				// eslint-disable-next-line no-jquery/no-slide
 				$currentPane.slideUp( updateHov );
 				debug.$container.data( 'currentPane', null );
 				return;
@@ -101,7 +101,7 @@
 
 			if ( currentPaneId === undefined || currentPaneId === null ) {
 				// FIXME: Use CSS transition
-				// eslint-disable-next-line jquery/no-slide
+				// eslint-disable-next-line no-jquery/no-slide
 				$requestedPane.slideDown( updateHov );
 			} else {
 				$currentPane.hide();

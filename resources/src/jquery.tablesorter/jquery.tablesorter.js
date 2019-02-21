@@ -324,7 +324,7 @@
 
 			// Loop through all the dom cells of the thead
 			$tableRows.each( function ( rowIndex, row ) {
-				// eslint-disable-next-line jquery/no-each-util
+				// eslint-disable-next-line no-jquery/no-each-util
 				$.each( row.cells, function ( columnIndex, cell ) {
 					var matrixRowIndex,
 						matrixColumnIndex;
@@ -773,7 +773,7 @@
 	function convertSortList( sortObjects ) {
 		var sortList = [];
 		sortObjects.forEach( function ( sortObject ) {
-			// eslint-disable-next-line jquery/no-each-util
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( sortObject, function ( columnIndex, order ) {
 				var orderIndex = ( order === 'desc' ) ? 1 : 0;
 				sortList.push( [ parseInt( columnIndex, 10 ), orderIndex ] );
