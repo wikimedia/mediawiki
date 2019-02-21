@@ -101,8 +101,11 @@ abstract class Password {
 	 * @param string|null $hash The raw hash, including the type
 	 */
 	final public function __construct( PasswordFactory $factory, array $config, $hash = null ) {
+		if ( !$this->isSupported() ) {
+			throw new Exception( 'PHP support not found for ' . get_class( $this ) );
+		}
 		if ( !isset( $config['type'] ) ) {
-			throw new MWException( 'Password configuration must contain a type name.' );
+			throw new Exception( 'Password configuration must contain a type name.' );
 		}
 		$this->config = $config;
 		$this->factory = $factory;
@@ -123,6 +126,15 @@ abstract class Password {
 	 */
 	final public function getType() {
 		return $this->config['type'];
+	}
+
+	/**
+	 * Whether current password type is supported on this system.
+	 *
+	 * @return bool
+	 */
+	protected function isSupported() {
+		return true;
 	}
 
 	/**
@@ -169,9 +181,7 @@ abstract class Password {
 	 * @return bool
 	 */
 	public function verify( $password ) {
-		Assert::parameter( is_string( $password ),
-			'$password', 'must be string, actual: ' . gettype( $password )
-		);
+		Assert::parameterType( 'string', $password, '$password' );
 
 		// No need to use the factory because we're definitely making
 		// an object of the same type.
