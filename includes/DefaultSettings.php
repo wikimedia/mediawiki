@@ -1234,7 +1234,7 @@ $wgAllowTitlesInSVG = false;
  *
  * @since 1.33
  */
-$wgMediaInTargetLanguage = false;
+$wgMediaInTargetLanguage = true;
 
 /**
  * The maximum number of pixels a source image can have if it is to be scaled
