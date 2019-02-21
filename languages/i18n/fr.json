@@ -2573,6 +2573,7 @@
 	"anoncontribs": "Contributions",
 	"contribsub2": "Pour {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Le compte d’utilisateur « $1 » n’est pas enregistré.",
+	"negative-namespace-not-supported": "Les espaces de noms avec des valeurs négatives ne sont pas supportés.",
 	"nocontribs": "Aucune modification correspondant à ces critères n'a été trouvée.",
 	"uctop": "actuelle",
 	"month": "À partir du mois (et précédents) :",

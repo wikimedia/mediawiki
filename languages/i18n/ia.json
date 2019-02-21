@@ -2398,6 +2398,7 @@
 	"anoncontribs": "Contributiones",
 	"contribsub2": "Pro {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Le conto de usator \"$1\" non es registrate.",
+	"negative-namespace-not-supported": "Le spatios de nomines con valores negative non es supportate.",
 	"nocontribs": "Nulle modification correspondente a iste criterios ha essite trovate.",
 	"uctop": "ultime",
 	"month": "A partir del mense (e anterior):",

@@ -2483,6 +2483,7 @@
 	"anoncontribs": "Beiträge",
 	"contribsub2": "Von {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Das Benutzerkonto „$1“ ist nicht vorhanden.",
+	"negative-namespace-not-supported": "Namensräume mit negativen Werten werden nicht unterstützt.",
 	"nocontribs": "Es wurden keine Benutzerbeiträge mit diesen Kriterien gefunden.",
 	"uctop": "aktuell",
 	"month": "und Monat:",

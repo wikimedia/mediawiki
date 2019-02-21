@@ -1918,7 +1918,7 @@
 	"filedelete-maintenance": "Eliminação e restauro de ficheiros foram temporariamente impossibilitadas durante a manutenção.",
 	"filedelete-maintenance-title": "Não é possível eliminar o ficheiro",
 	"mimesearch": "Pesquisa de ficheiros pelo tipo MIME",
-	"mimesearch-summary": "Esta página permite a filtragem de ficheiros pelo seu tipo MIME.\nSintaxe: \"tipo de conteúdo/subtipo\" ou \"tipo de conteúdo/*\". Exemplos, <code>image/jpeg</code>, <code>image/png</code>, <code>application/*</code>.",
+	"mimesearch-summary": "Esta página permite a filtragem de ficheiros pelo seu [[w:pt:Tipo de mídia da Internet|tipo MIME]].\nSintaxe: \"tipo de conteúdo/subtipo\" ou \"tipo de conteúdo/*\". Exemplos: <code>image/jpeg</code>, <code>image/png</code>, <code>application/*</code>.",
 	"mimetype": "Tipo MIME:",
 	"download": "descarregar",
 	"unwatchedpages": "Páginas não vigiadas",
