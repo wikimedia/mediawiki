@@ -469,6 +469,7 @@ class Names {
 		'xal' => 'хальмг', # Kalmyk-Oirat
 		'xh' => 'isiXhosa', # Xhosan
 		'xmf' => 'მარგალური', # Mingrelian
+		'xsy' => 'saisiyat', # SaiSiyat - T216479
 		'yi' => 'ייִדיש', # Yiddish
 		'yo' => 'Yorùbá', # Yoruba
 		'yue' => '粵語', # Cantonese
