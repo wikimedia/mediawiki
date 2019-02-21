@@ -54,6 +54,9 @@ production.
   pages.
 * (T214706) LinksUpdate::getAddedExternalLinks() and
   LinksUpdate::getRemovedExternalLinks() were introduced.
+* Argon2 password hashing is now available, can be enabled via
+  $wgPasswordDefault = 'argon2'. It's designed to resist timing attacks
+  (requires PHP 7.2+) and GPU hacking (7.3+).
 
 === External library changes in 1.33 ===
 

@@ -60,9 +60,8 @@ abstract class PasswordTestCase extends MediaWikiTestCase {
 	 * @dataProvider providePasswordTests
 	 */
 	public function testHashing( $shouldMatch, $hash, $password ) {
-		$fromHash = $this->passwordFactory->newFromCiphertext( $hash );
-		$fromPassword = $this->passwordFactory->newFromPlaintext( $password, $fromHash );
-		$this->assertSame( $shouldMatch, $fromHash->equals( $fromPassword ) );
+		$passwordObj = $this->passwordFactory->newFromCiphertext( $hash );
+		$this->assertSame( $shouldMatch, $passwordObj->verify( $password ) );
 	}
 
 	/**
@@ -85,6 +84,7 @@ abstract class PasswordTestCase extends MediaWikiTestCase {
 
 		$this->assertFalse( $invalid->equals( $normal ) );
 		$this->assertFalse( $normal->equals( $invalid ) );
+		$this->assertFalse( $invalid->verify( $hash ) );
 	}
 
 	protected function getValidTypes() {
@@ -106,6 +106,13 @@ abstract class PasswordTestCase extends MediaWikiTestCase {
 		$fromType = $this->passwordFactory->newFromType( $type );
 		$fromType->crypt( 'password' );
 		$fromPlaintext = $this->passwordFactory->newFromPlaintext( 'password', $fromType );
-		$this->assertTrue( $fromType->equals( $fromPlaintext ) );
+		$this->assertTrue( $fromType->verify( 'password' ) );
+		$this->assertTrue( $fromPlaintext->verify( 'password' ) );
+		$this->assertFalse( $fromType->verify( 'different password' ) );
+		$this->assertFalse( $fromPlaintext->verify( 'different password' ) );
+		$this->assertEquals( get_class( $fromType ),
+			get_class( $fromPlaintext ),
+			'newFromPlaintext() should produce instance of the same class as newFromType()'
+		);
 	}
 }
