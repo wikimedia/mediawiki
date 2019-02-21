@@ -206,7 +206,7 @@
 
 		// Check for filters that should be initially selected by their default value
 		if ( this.isSticky() ) {
-			// eslint-disable-next-line jquery/no-each-util
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( this.defaultFilters, function ( filterName, filterValue ) {
 				model.getItemByName( filterName ).toggleSelected( filterValue );
 			} );
@@ -567,7 +567,7 @@
 					selected = [];
 
 				// Find if any are selected
-				// eslint-disable-next-line jquery/no-each-util
+				// eslint-disable-next-line no-jquery/no-each-util
 				$.each( filters, function ( name, value ) {
 					if ( value ) {
 						selected.push( name );
@@ -616,7 +616,7 @@
 			// all false
 
 			// Go over the items and define the correct values
-			// eslint-disable-next-line jquery/no-each-util
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( filterRepresentation, function ( name, value ) {
 				// We must store all parameter values as strings '0' or '1'
 				if ( model.getType() === 'send_unselected_if_any' ) {
@@ -634,7 +634,7 @@
 		} else if ( this.getType() === 'string_options' ) {
 			values = [];
 
-			// eslint-disable-next-line jquery/no-each-util
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( filterRepresentation, function ( name, value ) {
 				// Collect values
 				if ( value ) {
@@ -695,7 +695,7 @@
 				}
 			} );
 
-			// eslint-disable-next-line jquery/no-each-util
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( expandedParams, function ( paramName, paramValue ) {
 				var filterItem = paramToFilterMap[ paramName ];
 

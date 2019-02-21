@@ -158,7 +158,7 @@
 
 		style.textContent = css;
 		document.body.appendChild( style );
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( style.sheet.cssRules, function ( index, rule ) {
 			selectors.total++;
 			// document.querySelector() on prefixed pseudo-elements can throw exceptions

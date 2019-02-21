@@ -74,7 +74,7 @@
 		// Can't use fadeTo because it calls show(), and we might want to keep some elements hidden
 		// (e.g. empty #catlinks)
 		// FIXME: Use CSS transition
-		// eslint-disable-next-line jquery/no-animate
+		// eslint-disable-next-line no-jquery/no-animate
 		$copyElements.animate( { opacity: 0.4 }, 'fast' );
 
 		api = new mw.Api();
@@ -151,7 +151,7 @@
 				}
 
 				newList = [];
-				// eslint-disable-next-line jquery/no-each-util
+				// eslint-disable-next-line no-jquery/no-each-util
 				$.each( response.parse.indicators, function ( name, indicator ) {
 					newList.push(
 						$( '<div>' )
@@ -261,7 +261,7 @@
 		} ).always( function () {
 			$spinner.hide();
 			// FIXME: Use CSS transition
-			// eslint-disable-next-line jquery/no-animate
+			// eslint-disable-next-line no-jquery/no-animate
 			$copyElements.animate( {
 				opacity: 1
 			}, 'fast' );

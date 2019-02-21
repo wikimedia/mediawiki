@@ -155,7 +155,7 @@
 		 * @return {boolean}
 		 */
 		matchAttribute: function ( objects, attrName ) {
-			// eslint-disable-next-line jquery/no-map-util
+			// eslint-disable-next-line no-jquery/no-map-util
 			return $.map( objects, function ( object ) {
 				return object[ attrName ];
 			} ).filter( function ( item, index, a ) {

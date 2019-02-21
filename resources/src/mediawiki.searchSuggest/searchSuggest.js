@@ -2,7 +2,7 @@
  * Add search suggestions to the search form.
  */
 ( function () {
-	// eslint-disable-next-line jquery/no-map-util
+	// eslint-disable-next-line no-jquery/no-map-util
 	var searchNS = $.map( mw.config.get( 'wgFormattedNamespaces' ), function ( nsName, nsID ) {
 		if ( nsID >= 0 && mw.user.options.get( 'searchNs' + nsID ) ) {
 			// Cast string key to number

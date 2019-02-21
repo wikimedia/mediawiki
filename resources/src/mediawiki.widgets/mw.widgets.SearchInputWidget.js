@@ -194,7 +194,7 @@
 			urls = data.data[ 3 ],
 			self = this;
 
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( titles, function ( i, result ) {
 			items.push( new mw.widgets.TitleOptionWidget(
 				self.getOptionWidgetData(

@@ -249,7 +249,7 @@
 		}
 
 		// FIXME: Use CSS transition
-		// eslint-disable-next-line jquery/no-fade
+		// eslint-disable-next-line no-jquery/no-fade
 		$newChanges
 			.hide()
 			.fadeIn( 1000 );

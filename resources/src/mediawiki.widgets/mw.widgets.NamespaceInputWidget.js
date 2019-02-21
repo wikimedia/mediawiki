@@ -45,7 +45,7 @@
 			exclude = config.exclude || [],
 			mainNamespace = mw.config.get( 'wgNamespaceIds' )[ '' ];
 
-		// eslint-disable-next-line jquery/no-map-util
+		// eslint-disable-next-line no-jquery/no-map-util
 		options = $.map( mw.config.get( 'wgFormattedNamespaces' ), function ( name, ns ) {
 			if ( ns < mainNamespace || exclude.indexOf( Number( ns ) ) !== -1 ) {
 				return null; // skip

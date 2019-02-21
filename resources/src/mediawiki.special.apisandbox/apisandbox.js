@@ -524,7 +524,7 @@
 					break;
 
 				case 'namespace':
-					// eslint-disable-next-line jquery/no-map-util
+					// eslint-disable-next-line no-jquery/no-map-util
 					items = $.map( mw.config.get( 'wgFormattedNamespaces' ), function ( name, ns ) {
 						if ( ns === '0' ) {
 							name = mw.message( 'blanknamespace' ).text();
@@ -1599,7 +1599,7 @@
 		}
 
 		toRemove = {};
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( this.templatedItemsCache, function ( k, el ) {
 			if ( el.widget.isElementAttached() ) {
 				toRemove[ k ] = el;
@@ -1688,7 +1688,7 @@
 					}
 				} else {
 					newVars = {};
-					// eslint-disable-next-line jquery/no-each-util
+					// eslint-disable-next-line no-jquery/no-each-util
 					$.each( p.vars, function ( k, v ) {
 						newVars[ k ] = v.replace( placeholder, value );
 					} );
@@ -1704,11 +1704,11 @@
 		};
 		while ( toProcess.length ) {
 			p = toProcess.shift();
-			// eslint-disable-next-line jquery/no-each-util
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( p.vars, doProcess );
 		}
 
-		// eslint-disable-next-line jquery/no-map-util
+		// eslint-disable-next-line no-jquery/no-map-util
 		toRemove = $.map( toRemove, function ( el, name ) {
 			delete that.widgets[ name ];
 			return [ el.widgetField, el.helpField ];
@@ -2000,7 +2000,7 @@
 		if ( this.paramInfo === null ) {
 			return [];
 		} else {
-			// eslint-disable-next-line jquery/no-map-util
+			// eslint-disable-next-line no-jquery/no-map-util
 			promises = $.map( this.widgets, function ( widget ) {
 				return widget.apiCheckValid();
 			} );
@@ -2026,7 +2026,7 @@
 		if ( this.paramInfo === null ) {
 			this.loadFromQueryParams = params;
 		} else {
-			// eslint-disable-next-line jquery/no-each-util
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( this.widgets, function ( name, widget ) {
 				var v = Object.prototype.hasOwnProperty.call( params, name ) ? params[ name ] : undefined;
 				widget.setApiValue( v );
@@ -2042,7 +2042,7 @@
 	 * @param {Object} displayParams Write query parameters for display into this object
 	 */
 	ApiSandbox.PageLayout.prototype.getQueryParams = function ( params, displayParams ) {
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( this.widgets, function ( name, widget ) {
 			var value = widget.getApiValue();
 			if ( value !== undefined ) {
@@ -2062,7 +2062,7 @@
 	 */
 	ApiSandbox.PageLayout.prototype.getSubpages = function () {
 		var ret = [];
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( this.widgets, function ( name, widget ) {
 			var submodules, i;
 			if ( typeof widget.getSubmodules === 'function' ) {

@@ -12,6 +12,6 @@
 	"rules": {
 		"quote-props": [ "error", "as-needed" ],
 		"max-len": "off",
-		"jquery/no-global-selector": "off"
+		"no-jquery/no-global-selector": "off"
 	}
 }

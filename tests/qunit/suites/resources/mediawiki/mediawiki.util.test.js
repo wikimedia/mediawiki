@@ -151,7 +151,7 @@
 	QUnit.test( 'wikiUrlencode', function ( assert ) {
 		assert.strictEqual( util.wikiUrlencode( 'Test:A & B/Here' ), 'Test:A_%26_B/Here' );
 		// See also wfUrlencodeTest.php#provideURLS
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( {
 			'+': '%2B',
 			'&': '%26',
