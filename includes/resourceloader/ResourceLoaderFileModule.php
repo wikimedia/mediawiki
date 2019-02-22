@@ -1093,15 +1093,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			if ( is_string( $fileInfo ) ) {
 				$fileInfo = [ 'name' => $fileInfo, 'file' => $fileInfo ];
 			} elseif ( !isset( $fileInfo['name'] ) ) {
-				// Backwards compatibility
-				if ( !is_numeric( $alias ) ) {
-					$fileInfo['name'] = $alias;
-				} else {
-					$msg = __METHOD__ . ": invalid package file definition for module " .
-						"\"{$this->getName()}\": 'name' key is required when value is not a string";
-					wfDebugLog( 'resourceloader', $msg );
-					throw new MWException( $msg );
-				}
+				$msg = __METHOD__ . ": invalid package file definition for module " .
+					"\"{$this->getName()}\": 'name' key is required when value is not a string";
+				wfDebugLog( 'resourceloader', $msg );
+				throw new MWException( $msg );
 			}
 
 			// Infer type from alias if needed
