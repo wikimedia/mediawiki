@@ -3,6 +3,7 @@
 use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\MonologSpi;
+use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
@@ -1124,7 +1125,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				$this->loggers[$channel] = $singletons['loggers'][$channel] ?? null;
 			}
 			$singletons['loggers'][$channel] = $logger;
-		} elseif ( $provider instanceof LegacySpi ) {
+		} elseif ( $provider instanceof LegacySpi || $provider instanceof LogCapturingSpi ) {
 			if ( !isset( $this->loggers[$channel] ) ) {
 				$this->loggers[$channel] = $singletons[$channel] ?? null;
 			}
@@ -1151,7 +1152,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				} else {
 					$singletons['loggers'][$channel] = $logger;
 				}
-			} elseif ( $provider instanceof LegacySpi ) {
+			} elseif ( $provider instanceof LegacySpi || $provider instanceof LogCapturingSpi ) {
 				if ( $logger === null ) {
 					unset( $singletons[$channel] );
 				} else {

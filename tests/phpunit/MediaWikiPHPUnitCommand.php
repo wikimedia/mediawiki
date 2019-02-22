@@ -2,6 +2,7 @@
 
 class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 	private $cliArgs;
+	private $logListener;
 
 	public function __construct( $ignorableOptions, $cliArgs ) {
 		$ignore = function ( $arg ) {
@@ -18,14 +19,24 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 			$this->arguments['configuration'] = __DIR__ . '/suite.xml';
 		}
 
-		// Add our own listener
+		// Add our own listeners
 		$this->arguments['listeners'][] = new MediaWikiPHPUnitTestListener;
+		$this->logListener = new MediaWikiLoggerPHPUnitTestListener;
+		$this->arguments['listeners'][] = $this->logListener;
 
 		// Output only to stderr to avoid "Headers already sent" problems
 		$this->arguments['stderr'] = true;
+
+		// We could create a printer instance and avoid passing the
+		// listener statically, but then we have to recreate the
+		// appropriate arguments handling + defaults.
+		if ( !isset( $this->arguments['printer'] ) ) {
+			$this->arguments['printer'] = MediaWikiPHPUnitResultPrinter::class;
+		}
 	}
 
 	protected function createRunner() {
+		MediaWikiPHPUnitResultPrinter::setLogListener( $this->logListener );
 		$runner = new MediaWikiTestRunner;
 		$runner->setMwCliArgs( $this->cliArgs );
 		return $runner;
