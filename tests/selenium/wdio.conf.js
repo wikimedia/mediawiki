@@ -117,7 +117,8 @@ exports.config = {
 
 	// Setting this enables automatic screenshots for when a browser command fails
 	// It is also used by afterTest for capturig failed assertions.
-	screenshotPath: logPath,
+	// We disable it since we have our screenshot handler in the afterTest hook.
+	screenshotPath: null,
 
 	// Default timeout for each waitFor* command.
 	waitforTimeout: 10 * 1000,
@@ -153,7 +154,7 @@ exports.config = {
 	*/
 	beforeTest: function ( test ) {
 		if ( process.env.DISPLAY && process.env.DISPLAY.startsWith( ':' ) ) {
-			let videoPath = filePath( test, this.screenshotPath, 'mp4' );
+			let videoPath = filePath( test, logPath, 'mp4' );
 			const { spawn } = require( 'child_process' );
 			ffmpeg = spawn( 'ffmpeg', [
 				'-f', 'x11grab', //  grab the X11 display
@@ -196,8 +197,8 @@ exports.config = {
 			return;
 		}
 		// save screenshot
-		let screenshotPath = filePath( test, this.screenshotPath, 'png' );
-		browser.saveScreenshot( screenshotPath );
-		console.log( '\n\tScreenshot location:', screenshotPath, '\n' );
+		let screenshotfile = filePath( test, logPath, 'png' );
+		browser.saveScreenshot( screenshotfile );
+		console.log( '\n\tScreenshot location:', screenshotfile, '\n' );
 	}
 };
