@@ -2620,8 +2620,9 @@ class Title implements LinkTarget, IDBAccessObject {
 		$useReplica = ( $rigor !== 'secure' );
 		$block = $user->getBlock( $useReplica );
 
-		// The block may explicitly allow an action (like "read" or "upload").
-		if ( $block && $block->appliesToRight( $action ) === false ) {
+		// If the user does not have a block, or the block they do have explicitly
+		// allows the action (like "read" or "upload").
+		if ( !$block || $block->appliesToRight( $action ) === false ) {
 			return $errors;
 		}
 
@@ -2650,9 +2651,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		if ( !$actionObj || $actionObj->requiresUnblock() ) {
 			if ( $user->isBlockedFrom( $this, $useReplica ) ) {
 				// @todo FIXME: Pass the relevant context into this function.
-				$errors[] = $block
-					? $block->getPermissionsError( RequestContext::getMain() )
-					: [ 'actionblockedtext' ];
+				$errors[] = $block->getPermissionsError( RequestContext::getMain() );
 			}
 		}
 
