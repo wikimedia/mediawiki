@@ -405,7 +405,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 				$base + [
 					'packageFiles' => [
 						'script-comment.js',
-						'script-nosemi.js' => [ 'main' => true ]
+						[ 'name' => 'script-nosemi.js', 'main' => true ]
 					],
 					'deprecated' => 'Deprecation test',
 					'name' => 'test-deprecated'
@@ -431,8 +431,8 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			[
 				$base + [
 					'packageFiles' => [
-						'init.js' => [ 'file' => 'script-comment.js', 'main' => true ],
-						'nosemi.js' => 'script-nosemi.js'
+						[ 'name' => 'init.js', 'file' => 'script-comment.js', 'main' => true ],
+						[ 'name' => 'nosemi.js', 'file' => 'script-nosemi.js' ],
 					]
 				],
 				[
@@ -452,13 +452,13 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			[
 				$base + [
 					'packageFiles' => [
-						'foo.json' => [ 'content' => [ 'Hello' => 'world' ] ],
+						[ 'name' => 'foo.json', 'content' => [ 'Hello' => 'world' ] ],
 						'sample.json',
-						'bar.js' => [ 'content' => "console.log('Hello');" ],
-						'data' => [ 'type' => 'data', 'callback' => function ( $context ) {
+						[ 'name' => 'bar.js', 'content' => "console.log('Hello');" ],
+						[ 'name' => 'data.json', 'callback' => function ( $context ) {
 							return [ 'langCode' => $context->getLanguage() ];
 						} ],
-						'config' => [ 'type' => 'data', 'config' => [
+						[ 'name' => 'config.json', 'config' => [
 							'Sitename',
 							'wgVersion' => 'Version',
 						] ],
@@ -478,11 +478,11 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 							'type' => 'script',
 							'content' => "console.log('Hello');",
 						],
-						'data' => [
+						'data.json' => [
 							'type' => 'data',
 							'content' => [ 'langCode' => 'fy' ]
 						],
-						'config' => [
+						'config.json' => [
 							'type' => 'data',
 							'content' => [
 								'Sitename' => $config->get( 'Sitename' ),
@@ -507,7 +507,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			[
 				$base + [
 					'packageFiles' => [
-						'foo.json' => [ 'callback' => 'functionThatDoesNotExist142857' ]
+						[ 'name' => 'foo.json', 'callback' => 'functionThatDoesNotExist142857' ]
 					]
 				],
 				false
@@ -515,7 +515,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			[
 				$base + [
 					'packageFiles' => [
-						'foo' => [ 'type' => 'script', 'config' => [ 'Sitename' ] ]
+						'foo.json' => [ 'type' => 'script', 'config' => [ 'Sitename' ] ]
 					]
 				],
 				false
@@ -523,7 +523,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			[
 				$base + [
 					'packageFiles' => [
-						'foo.js' => [ 'config' => 'Sitename' ]
+						[ 'name' => 'foo.js', 'config' => 'Sitename' ]
 					]
 				],
 				false
@@ -548,11 +548,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 				$base + [
 					'packageFiles' => [
 						'script-nosemi.js',
-						'foo.json' => [
-							'type' => 'data',
-							'content' => [ 'Hello' => 'world' ],
-							'main' => true
-						]
+						[ 'name' => 'foo.json', 'content' => [ 'Hello' => 'world' ], 'main' => true ]
 					]
 				],
 				false
