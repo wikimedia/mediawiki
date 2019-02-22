@@ -90,6 +90,121 @@ jquery.cookie:
       src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/CHANGELOG.md
       integrity: sha384-SQOHhLc7PHxHDQpGE/zv9XfXKL0A7OBu8kuyVDnHVp+zSoWyRw4xUJ+LSm5ql4kS
 
+moment:
+  type: tar
+  src: https://codeload.github.com/moment/moment/tar.gz/2.19.3
+  integrity: sha384-23slJjNZmatbTdfvDaiQRrDVwRyNUySKqqm++Rk3Wrs0If3W6Pt744q5kYPw1JKJ
+  dest:
+    moment-2.19.3/moment.js:
+    moment-2.19.3/CHANGELOG.md:
+    moment-2.19.3/README.md:
+    moment-2.19.3/LICENSE:
+    moment-2.19.3/locale/af.js: locale
+    moment-2.19.3/locale/ar-ma.js: locale
+    moment-2.19.3/locale/ar-sa.js: locale
+    moment-2.19.3/locale/ar-tn.js: locale
+    moment-2.19.3/locale/ar.js: locale
+    moment-2.19.3/locale/az.js: locale
+    moment-2.19.3/locale/be.js: locale
+    moment-2.19.3/locale/bg.js: locale
+    moment-2.19.3/locale/bm.js: locale
+    moment-2.19.3/locale/bn.js: locale
+    moment-2.19.3/locale/bo.js: locale
+    moment-2.19.3/locale/br.js: locale
+    moment-2.19.3/locale/bs.js: locale
+    moment-2.19.3/locale/ca.js: locale
+    moment-2.19.3/locale/cs.js: locale
+    moment-2.19.3/locale/cv.js: locale
+    moment-2.19.3/locale/cy.js: locale
+    moment-2.19.3/locale/da.js: locale
+    moment-2.19.3/locale/de-at.js: locale
+    moment-2.19.3/locale/de-ch.js: locale
+    moment-2.19.3/locale/de.js: locale
+    moment-2.19.3/locale/dv.js: locale
+    moment-2.19.3/locale/el.js: locale
+    moment-2.19.3/locale/en-au.js: locale
+    moment-2.19.3/locale/en-ca.js: locale
+    moment-2.19.3/locale/en-gb.js: locale
+    moment-2.19.3/locale/eo.js: locale
+    moment-2.19.3/locale/es.js: locale
+    moment-2.19.3/locale/et.js: locale
+    moment-2.19.3/locale/eu.js: locale
+    moment-2.19.3/locale/fa.js: locale
+    moment-2.19.3/locale/fi.js: locale
+    moment-2.19.3/locale/fo.js: locale
+    moment-2.19.3/locale/fr-ca.js: locale
+    moment-2.19.3/locale/fr.js: locale
+    moment-2.19.3/locale/fy.js: locale
+    moment-2.19.3/locale/gd.js: locale
+    moment-2.19.3/locale/gl.js: locale
+    moment-2.19.3/locale/gom-latn.js: locale
+    moment-2.19.3/locale/gu.js: locale
+    moment-2.19.3/locale/he.js: locale
+    moment-2.19.3/locale/hi.js: locale
+    moment-2.19.3/locale/hr.js: locale
+    moment-2.19.3/locale/hu.js: locale
+    moment-2.19.3/locale/hy-am.js: locale
+    moment-2.19.3/locale/id.js: locale
+    moment-2.19.3/locale/is.js: locale
+    moment-2.19.3/locale/it.js: locale
+    moment-2.19.3/locale/ja.js: locale
+    moment-2.19.3/locale/jv.js: locale
+    moment-2.19.3/locale/ka.js: locale
+    moment-2.19.3/locale/kk.js: locale
+    moment-2.19.3/locale/km.js: locale
+    moment-2.19.3/locale/kn.js: locale
+    moment-2.19.3/locale/ko.js: locale
+    moment-2.19.3/locale/ky.js: locale
+    moment-2.19.3/locale/lb.js: locale
+    moment-2.19.3/locale/lo.js: locale
+    moment-2.19.3/locale/lt.js: locale
+    moment-2.19.3/locale/lv.js: locale
+    moment-2.19.3/locale/mi.js: locale
+    moment-2.19.3/locale/mk.js: locale
+    moment-2.19.3/locale/ml.js: locale
+    moment-2.19.3/locale/mr.js: locale
+    moment-2.19.3/locale/ms-my.js: locale
+    moment-2.19.3/locale/ms.js: locale
+    moment-2.19.3/locale/my.js: locale
+    moment-2.19.3/locale/nb.js: locale
+    moment-2.19.3/locale/ne.js: locale
+    moment-2.19.3/locale/nl.js: locale
+    moment-2.19.3/locale/nn.js: locale
+    moment-2.19.3/locale/pa-in.js: locale
+    moment-2.19.3/locale/pl.js: locale
+    moment-2.19.3/locale/pt-br.js: locale
+    moment-2.19.3/locale/pt.js: locale
+    moment-2.19.3/locale/ro.js: locale
+    moment-2.19.3/locale/ru.js: locale
+    moment-2.19.3/locale/sd.js: locale
+    moment-2.19.3/locale/se.js: locale
+    moment-2.19.3/locale/si.js: locale
+    moment-2.19.3/locale/sk.js: locale
+    moment-2.19.3/locale/sl.js: locale
+    moment-2.19.3/locale/sq.js: locale
+    moment-2.19.3/locale/sr-cyrl.js: locale
+    moment-2.19.3/locale/sr.js: locale
+    moment-2.19.3/locale/ss.js: locale
+    moment-2.19.3/locale/sv.js: locale
+    moment-2.19.3/locale/sw.js: locale
+    moment-2.19.3/locale/ta.js: locale
+    moment-2.19.3/locale/te.js: locale
+    moment-2.19.3/locale/tet.js: locale
+    moment-2.19.3/locale/th.js: locale
+    moment-2.19.3/locale/tl-ph.js: locale
+    moment-2.19.3/locale/tr.js: locale
+    moment-2.19.3/locale/tzm-latn.js: locale
+    moment-2.19.3/locale/tzm.js: locale
+    moment-2.19.3/locale/uk.js: locale
+    moment-2.19.3/locale/ur.js: locale
+    moment-2.19.3/locale/uz-latn.js: locale
+    moment-2.19.3/locale/uz.js: locale
+    moment-2.19.3/locale/vi.js: locale
+    moment-2.19.3/locale/yo.js: locale
+    moment-2.19.3/locale/zh-cn.js: locale
+    moment-2.19.3/locale/zh-hk.js: locale
+    moment-2.19.3/locale/zh-tw.js: locale
+
 mustache:
   type: multi-file
   files:
