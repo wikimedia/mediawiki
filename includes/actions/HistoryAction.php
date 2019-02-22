@@ -133,6 +133,7 @@ class HistoryAction extends FormlessAction {
 		$out->setFeedAppendQuery( 'action=history' );
 		$out->addModules( 'mediawiki.action.history' );
 		$out->addModuleStyles( [
+			'mediawiki.interface.helpers.styles',
 			'mediawiki.action.history.styles',
 			'mediawiki.special.changeslist',
 		] );

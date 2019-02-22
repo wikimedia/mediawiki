@@ -1,0 +1,32 @@
+/**
+ * Helper classes used across special pages
+ */
+
+/* Content dividers */
+/* @todo FIXME: Hard coded ". .". Is there a message for this? Should there be? */
+.mw-changeslist-separator:empty:before {
+	content: '. .';
+}
+
+.comment--without-parentheses,
+.mw-changeslist-links,
+.mw-diff-bytes,
+/* Needed by pages calling ChangeTags::formatSummaryRow (T212613) */
+.mw-tag-markers,
+.mw-uctop {
+	&:before {
+		content: '@{msg-parentheses-start}';
+	}
+
+	&:after {
+		content: '@{msg-parentheses-end}';
+	}
+}
+
+.mw-changeslist-links {
+	display: inline-block;
+
+	> span:not( :first-child ):before {
+		content: '@{msg-pipe-separator}';
+	}
+}
