@@ -64,8 +64,8 @@ class UserPasswordPolicy {
 	}
 
 	/**
-	 * Check if a passwords meets the effective password policy for a User.
-	 * @param User $user who's policy we are checking
+	 * Check if a password meets the effective password policy for a User.
+	 * @param User $user whose policy we are checking
 	 * @param string $password the password to check
 	 * @return Status error to indicate the password didn't meet the policy, or fatal to
 	 *   indicate the user shouldn't be allowed to login. The status value will be an array,
@@ -83,10 +83,10 @@ class UserPasswordPolicy {
 	}
 
 	/**
-	 * Check if a passwords meets the effective password policy for a User, using a set
+	 * Check if a password meets the effective password policy for a User, using a set
 	 * of groups they may or may not belong to. This function does not use the DB, so can
 	 * be used in the installer.
-	 * @param User $user who's policy we are checking
+	 * @param User $user whose policy we are checking
 	 * @param string $password the password to check
 	 * @param array $groups list of groups to which we assume the user belongs
 	 * @return Status error to indicate the password didn't meet the policy, or fatal to
