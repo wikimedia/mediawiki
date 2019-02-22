@@ -61,13 +61,10 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		$this->fld_patrolled = isset( $prop['patrolled'] );
 		$this->fld_tags = isset( $prop['tags'] );
 
-		// Most of this code will use the 'contributions' group DB, which can map to replica DBs
+		// The main query may use the 'contributions' group DB, which can map to replica DBs
 		// with extra user based indexes or partioning by user. The additional metadata
 		// queries should use a regular replica DB since the lookup pattern is not all by user.
 		$dbSecondary = $this->getDB(); // any random replica DB
-
-		// TODO: if the query is going only against the revision table, should this be done?
-		$this->selectNamedDB( 'contributions', DB_REPLICA, 'contributions' );
 
 		$sort = ( $this->params['dir'] == 'newer' ? '' : ' DESC' );
 		$op = ( $this->params['dir'] == 'older' ? '<' : '>' );
@@ -267,6 +264,13 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		// With the new schema, the DB query will order by actor so update $this->orderBy to match.
 		if ( $batchSize > 1 && ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) ) {
 			$this->orderBy = 'actor';
+		}
+
+		// Use the 'contributions' replica, but only if we're querying by user ID (T216656).
+		if ( $this->orderBy === 'id' &&
+			!( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW )
+		) {
+			$this->selectNamedDB( 'contributions', DB_REPLICA, 'contributions' );
 		}
 
 		$count = 0;
