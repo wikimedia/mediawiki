@@ -1191,7 +1191,7 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
 		'packageFiles' => [
 			'mediawiki.ForeignStructuredUpload.js',
-			'config.json' => [ 'config' => [ 'UploadDialog' ] ],
+			[ 'name' => 'config.json', 'config' => [ 'UploadDialog' ] ],
 		],
 		'dependencies' => [
 			'mediawiki.ForeignUpload',
@@ -1344,7 +1344,7 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
 		'packageFiles' => [
 			'mediawiki.util.js',
-			'config.json' => [ 'config' => [ 'FragmentMode' ] ],
+			[ 'name' => 'config.json', 'config' => [ 'FragmentMode' ] ],
 		],
 		'dependencies' => [
 			'jquery.accessKeyLabel',
@@ -1591,7 +1591,7 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.jqueryMsg",
 		'packageFiles' => [
 			'mediawiki.jqueryMsg.js',
-			'parserDefaults.json' => [ 'callback' => function ( ResourceLoaderContext $context ) {
+			[ 'name' => 'parserDefaults.json', 'callback' => function ( ResourceLoaderContext $context ) {
 				$tagData = Sanitizer::getRecognizedTagData();
 				$allowedHtmlElements = array_merge(
 					array_keys( $tagData['htmlpairs'] ),
@@ -1636,7 +1636,7 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.language",
 		'packageFiles' => [
 			'mediawiki.language.names.js',
-			'names.json' => [ 'callback' => function ( ResourceLoaderContext $context ) {
+			[ 'name' => 'names.json', 'callback' => function ( ResourceLoaderContext $context ) {
 				return Language::fetchLanguageNames( $context->getLanguage(), 'all' );
 			} ],
 		],
@@ -1823,7 +1823,7 @@ return [
 			'dm/ItemModel.js',
 			'dm/SavedQueriesModel.js',
 			'dm/SavedQueryItemModel.js',
-			'config.json' => [ 'config' => [ 'StructuredChangeFiltersLiveUpdatePollingRate' ] ],
+			[ 'name' => 'config.json', 'config' => [ 'StructuredChangeFiltersLiveUpdatePollingRate' ] ],
 		],
 		'dependencies' => [
 			'mediawiki.String',
@@ -1877,7 +1877,7 @@ return [
 			'ui/RclTargetPageWidget.js',
 			'ui/RclToOrFromWidget.js',
 			'ui/WatchlistTopSectionWidget.js',
-			'config.json' => [ 'callback' => 'ChangesListSpecialPage::getRcFiltersConfigVars' ],
+			[ 'name' => 'config.json', 'callback' => 'ChangesListSpecialPage::getRcFiltersConfigVars' ],
 		],
 		'styles' => [
 			'styles/mw.rcfilters.mixins.less',
@@ -2423,7 +2423,7 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.legacy",
 		'packageFiles' => [
 			'protect.js',
-			'config.json' => [ 'config' => [ 'CascadingRestrictionLevels' ] ],
+			[ 'name' => 'config.json', 'config' => [ 'CascadingRestrictionLevels' ] ],
 		],
 		'dependencies' => 'jquery.lengthLimit',
 		'messages' => [ 'protect-unchain-permissions' ]

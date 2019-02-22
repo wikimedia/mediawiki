@@ -90,6 +90,17 @@ jquery.cookie:
       src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/CHANGELOG.md
       integrity: sha384-SQOHhLc7PHxHDQpGE/zv9XfXKL0A7OBu8kuyVDnHVp+zSoWyRw4xUJ+LSm5ql4kS
 
+moment:
+  type: tar
+  src: https://codeload.github.com/moment/moment/tar.gz/2.19.3
+  integrity: sha384-23slJjNZmatbTdfvDaiQRrDVwRyNUySKqqm++Rk3Wrs0If3W6Pt744q5kYPw1JKJ
+  dest:
+    moment-2.19.3/moment.js:
+    moment-2.19.3/CHANGELOG.md:
+    moment-2.19.3/README.md:
+    moment-2.19.3/LICENSE:
+    moment-2.19.3/locale/*.js: locale
+
 mustache:
   type: multi-file
   files:
