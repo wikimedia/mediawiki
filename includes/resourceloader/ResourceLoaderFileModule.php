@@ -204,12 +204,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *         // If 'packageFiles' is set, 'scripts' cannot also be set
 	 *         'packageFiles' => [
 	 *             [file path string], // or:
-	 *             [file alias] => [file path string], // or:
-	 *             [file alias] => [ 'file' => [file path string], 'type' => 'script'|'data' ], // or:
-	 *             [file alias] => [ 'content' => [string], 'type' => 'script'|'data' ], // or:
-	 *             [file alias] => [ 'callback' => [callable], 'type' => 'script'|'data' ], // or:
-	 *             [file alias] => [ 'config' => [ [config var name], ... ], 'type' => 'data' ], // or:
-	 *             [file alias] => [ 'config' => [ [JS name] => [PHP name] ], 'type' => 'data' ],
+	 *             [ 'name' => [file name], 'file' => [file path], 'type' => 'script'|'data' ], // or:
+	 *             [ 'name' => [name], 'content' => [string], 'type' => 'script'|'data' ], // or:
+	 *             [ 'name' => [name], 'callback' => [callable], 'type' => 'script'|'data' ],
+	 *             [ 'name' => [name], 'config' => [ [config var name], ... ], 'type' => 'data' ],
+	 *             [ 'name' => [name], 'config' => [ [JS name] => [PHP name] ], 'type' => 'data' ],
 	 *         ],
 	 *         // Modules which must be loaded before this module
 	 *         'dependencies' => [module name string or array of module name strings],
@@ -1091,25 +1090,25 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$mainFile = null;
 
 		foreach ( $this->packageFiles as $alias => $fileInfo ) {
-			// Alias is optional, but only when specfiying plain file names (strings)
-			if ( is_int( $alias ) ) {
-				if ( is_array( $fileInfo ) ) {
+			if ( is_string( $fileInfo ) ) {
+				$fileInfo = [ 'name' => $fileInfo, 'file' => $fileInfo ];
+			} elseif ( !isset( $fileInfo['name'] ) ) {
+				// Backwards compatibility
+				if ( !is_numeric( $alias ) ) {
+					$fileInfo['name'] = $alias;
+				} else {
 					$msg = __METHOD__ . ": invalid package file definition for module " .
-						"\"{$this->getName()}\": key is required when value is not a string";
+						"\"{$this->getName()}\": 'name' key is required when value is not a string";
 					wfDebugLog( 'resourceloader', $msg );
 					throw new MWException( $msg );
 				}
-				$alias = $fileInfo;
-			}
-			if ( !is_array( $fileInfo ) ) {
-				$fileInfo = [ 'file' => $fileInfo ];
 			}
 
 			// Infer type from alias if needed
-			$type = $fileInfo['type'] ?? self::getPackageFileType( $alias );
+			$type = $fileInfo['type'] ?? self::getPackageFileType( $fileInfo['name'] );
 			$expanded = [ 'type' => $type ];
 			if ( !empty( $fileInfo['main'] ) ) {
-				$mainFile = $alias;
+				$mainFile = $fileInfo['name'];
 				if ( $type !== 'script' ) {
 					$msg = __METHOD__ . ": invalid package file definition for module " .
 						"\"{$this->getName()}\": main file \"$mainFile\" must be of type \"script\", not \"$type\"";
@@ -1126,15 +1125,15 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				if ( is_callable( $fileInfo['callback'] ) ) {
 					$expanded['content'] = $fileInfo['callback']( $context );
 				} else {
-					$msg = __METHOD__ . ": invalid callback for package file \"$alias\"" .
+					$msg = __METHOD__ . ": invalid callback for package file \"{$fileInfo['name']}\"" .
 						" in module \"{$this->getName()}\"";
 					wfDebugLog( 'resourceloader', $msg );
 					throw new MWException( $msg );
 				}
 			} elseif ( isset( $fileInfo['config'] ) ) {
 				if ( $type !== 'data' ) {
-					$msg = __METHOD__ . ": invalid use of \"config\" for package file \"$alias\" in module " .
-						"\"{$this->getName()}\": type must be \"data\" but is \"$type\"";
+					$msg = __METHOD__ . ": invalid use of \"config\" for package file \"{$fileInfo['name']}\" " .
+						"in module \"{$this->getName()}\": type must be \"data\" but is \"$type\"";
 					wfDebugLog( 'resourceloader', $msg );
 					throw new MWException( $msg );
 				}
@@ -1144,16 +1143,17 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				}
 				$expanded['content'] = $expandedConfig;
 			} elseif ( !empty( $fileInfo['main'] ) ) {
-				// 'foo.js' => [ 'main' => true ] is shorthand
-				$expanded['filePath'] = $alias;
+				// [ 'name' => 'foo.js', 'main' => true ] is shorthand
+				$expanded['filePath'] = $fileInfo['name'];
 			} else {
-				$msg = __METHOD__ . ": invalid package file definition for \"$alias\" in module " .
-					"\"{$this->getName()}\": one of \"file\", \"content\", \"callback\" or \"config\" must be set";
+				$msg = __METHOD__ . ": invalid package file definition for \"{$fileInfo['name']}\" " .
+					"in module \"{$this->getName()}\": one of \"file\", \"content\", \"callback\" or \"config\" " .
+					"must be set";
 				wfDebugLog( 'resourceloader', $msg );
 				throw new MWException( $msg );
 			}
 
-			$expandedFiles[$alias] = $expanded;
+			$expandedFiles[$fileInfo['name']] = $expanded;
 		}
 
 		if ( $expandedFiles && $mainFile === null ) {
