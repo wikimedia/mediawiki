@@ -42,6 +42,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$out = $this->getOutput();
 		// Modules required for viewing the list of contributions (also when included on other pages)
 		$out->addModuleStyles( [
+			'mediawiki.interface.helpers.styles',
 			'mediawiki.special',
 			'mediawiki.special.changeslist',
 		] );
