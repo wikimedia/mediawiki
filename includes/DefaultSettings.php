@@ -940,7 +940,7 @@ $wgFileBlacklist = [
 	# HTML may contain cookie-stealing JavaScript and web bugs
 	'html', 'htm', 'js', 'jsb', 'mhtml', 'mht', 'xhtml', 'xht',
 	# PHP scripts may execute arbitrary code on the server
-	'php', 'phtml', 'php3', 'php4', 'php5', 'phps',
+	'php', 'phtml', 'php3', 'php4', 'php5', 'phps', 'phar',
 	# Other types that may be interpreted by some servers
 	'shtml', 'jhtml', 'pl', 'py', 'cgi',
 	# May contain harmful executables for Windows victims
