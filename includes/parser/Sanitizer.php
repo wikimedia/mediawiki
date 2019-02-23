@@ -1375,20 +1375,14 @@ class Sanitizer {
 
 	/**
 	 * Given a string containing a space delimited list of ids, escape each id
-	 * to match ids escaped by the escapeId() function.
-	 *
-	 * @todo remove $options completely in 1.32
+	 * to match ids escaped by the escapeIdForAttribute() function.
 	 *
 	 * @since 1.27
 	 *
 	 * @param string $referenceString Space delimited list of ids
-	 * @param string|array $options Deprecated and does nothing.
 	 * @return string
 	 */
-	static function escapeIdReferenceList( $referenceString, $options = [] ) {
-		if ( $options ) {
-			wfDeprecated( __METHOD__ . ' with $options', '1.31' );
-		}
+	public static function escapeIdReferenceList( $referenceString ) {
 		# Explode the space delimited list string into an array of tokens
 		$references = preg_split( '/\s+/', "{$referenceString}", -1, PREG_SPLIT_NO_EMPTY );
 
