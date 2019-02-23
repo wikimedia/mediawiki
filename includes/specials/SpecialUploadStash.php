@@ -165,8 +165,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 *
 	 * @param File $file
 	 * @param array $params
-	 *
-	 * @return bool Success
 	 */
 	private function outputThumbFromStash( $file, $params ) {
 		$flags = 0;

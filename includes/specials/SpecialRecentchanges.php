@@ -674,7 +674,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * Creates the choose namespace selection
 	 *
 	 * @param FormOptions $opts
-	 * @return string
+	 * @return string[]
 	 */
 	protected function namespaceFilterForm( FormOptions $opts ) {
 		$nsSelect = Html::namespaceSelector(

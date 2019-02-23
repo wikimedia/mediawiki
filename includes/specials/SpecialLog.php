@@ -180,7 +180,6 @@ class SpecialLog extends SpecialPage {
 	 *
 	 * @param FormOptions $opts
 	 * @param string $par
-	 * @throws ConfigException
 	 */
 	private function parseParams( FormOptions $opts, $par ) {
 		# Get parameters
