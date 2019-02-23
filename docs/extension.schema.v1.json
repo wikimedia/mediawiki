@@ -347,7 +347,7 @@
 							"properties": {
 								"class": {
 									"type": "string",
-									"pattern": "^((?!ResourceLoader(File|Image)Module).)*$"
+									"pattern": "^(?!ResourceLoader(File|Image|Wiki)Module).*$"
 								}
 							},
 							"required": ["class"]
