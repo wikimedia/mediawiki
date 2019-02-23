@@ -814,7 +814,8 @@ class Language {
 	 * @return array
 	 */
 	public function getExtraUserToggles() {
-		return (array)self::$dataCache->getItem( $this->mCode, 'extraUserToggles' );
+		wfDeprecated( __METHOD__, '1.34' );
+		return [];
 	}
 
 	/**
