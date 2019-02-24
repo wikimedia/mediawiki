@@ -1,8 +1,5 @@
 <?php
 
-/**
- * Tests for IEUrlExtension::findIE6Extension
- */
 class IEUrlExtensionTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;

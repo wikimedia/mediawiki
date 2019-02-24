@@ -1,7 +1,6 @@
 <?php
 
 /**
- * Unit tests for the HTMLCheckMatrix
  * @covers HTMLCheckMatrix
  */
 class HTMLCheckMatrixTest extends MediaWikiTestCase {
