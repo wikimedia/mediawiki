@@ -1,6 +1,88 @@
 Changelog
 =========
 
+### 2.24.0 [See full changelog](https://gist.github.com/marwahaha/12366fe45bee328f33acf125d4cd540e)
+
+* Release Jan 21, 2019
+
+* [#4338](https://github.com/moment/moment/pull/4338) [bugfix] Fix startOf/endOf DST issues while boosting performance
+* [#4553](https://github.com/moment/moment/pull/4553) [feature] Add localeSort param to Locale weekday methods
+* [#4887](https://github.com/moment/moment/pull/4887) [bugfix] Make Duration#as work with quarters
+* 3 new locales (it-ch, ga, en-SG)
+* Lots of locale improvements
+
+### 2.23.0 [See full changelog](https://gist.github.com/marwahaha/eadb7ac11b761290399a576f8b2419a5)
+
+* Release Dec 12, 2018
+
+* [#4863](https://github.com/moment/moment/pull/4863) [new locale] added Kurdish language (ku)
+* [#4417](https://github.com/moment/moment/pull/4417) [bugfix] isBetween should return false for invalid dates
+* [#4700](https://github.com/moment/moment/pull/4700) [bugfix] Fix [#4698](https://github.com/moment/moment/pull/4698): Use ISO WeekYear for HTML5_FMT.WEEK
+* [#4563](https://github.com/moment/moment/pull/4563) [feature] Fix [#4518](https://github.com/moment/moment/pull/4518): Add support to add/subtract ISO weeks
+* other locale changes, build process changes, typos
+
+### 2.22.2 [See full changelog](https://gist.github.com/marwahaha/4d992c13c2dbc0f59d4d8acae1dc6d3a)
+
+* Release May 31, 2018
+
+* [#4564](https://github.com/moment/moment/pull/4564) [bugfix] Avoid using trim()
+* [#4453](https://github.com/moment/moment/pull/4453) [bugfix] Treat periods as periods, not regex-anything period, for weekday parsing in strict mode.
+* Minor locale improvements (pa-in, be, az)
+
+### 2.22.1 [See full changelog](https://gist.github.com/marwahaha/ff2cd13d0eda08afb7a237b10aae558c)
+
+* Release Apr 14, 2018
+
+* [#4495](https://github.com/moment/moment/pull/4495) [bugfix] Added HTML5_FMT to moment.d.ts
+* Minor locale improvements
+* QUnit upgrade and coveralls reporting
+
+### 2.22.0 [See full changelog](https://gist.github.com/marwahaha/ae895025dac3f0641fa9ec2e36d282bb)
+
+* Release Mar 30, 2018
+
+* [#4423](https://github.com/moment/moment/pull/4423) [new locale] Added Mongolian locale mn
+* Various locale improvements
+* Minor misc changes
+
+### 2.21.0 [See full changelog](https://gist.github.com/marwahaha/80d19ef882b71df1948df7865efdd40e)
+
+* Release Mar 2, 2018
+
+* [#4391](https://github.com/moment/moment/pull/4391) [bugfix] Fix [#4390](https://github.com/moment/moment/pull/4390): use offset properly in toISOString
+* [#4310](https://github.com/moment/moment/pull/4310) [bugfix] Fix [#3883](https://github.com/moment/moment/pull/3883) lazy load parentLocale in defineLocale, fallback to global if missing
+* [#4085](https://github.com/moment/moment/pull/4085) [misc] Print console warning when setting non-existent locales
+* [#4371](https://github.com/moment/moment/pull/4371) [misc] fix deprecated rollup options
+* New locales: ug-cn, en-il, tg
+* Various locale improvements
+
+### 2.20.1 [See changelog](https://gist.github.com/marwahaha/d72c1cb22076373be889b16272cbd187)
+
+* Release Dec 18, 2017
+
+* [#4359](https://github.com/moment/moment/pull/4359) [locale] Fix Arabic locale for months (again)
+* [#4357](https://github.com/moment/moment/pull/4357) [misc] Add optional parameter keepOffset to toISOString
+
+### 2.20.0 [See full changelog](https://gist.github.com/marwahaha/e0d4135fbf8bb75fa85c4aa2bddc5031)
+
+* Release Dec 16, 2017
+
+* [#4312](https://github.com/moment/moment/pull/4312) [bugfix] Fix [#4251](https://github.com/moment/moment/pull/4251): Avoid RFC2822 in utc() test
+* [#4240](https://github.com/moment/moment/pull/4240) [bugfix] Fix incorrect strict parsing with full-width parentheses
+* [#4341](https://github.com/moment/moment/pull/4341) [feature] Prevent toISOString converting to UTC (issue [#1751](https://github.com/moment/moment/pull/1751))
+* [#4154](https://github.com/moment/moment/pull/4154) [feature] add format constants to support output to HTML5 input type formats (see [#3928](https://github.com/moment/moment/pull/3928))
+* [#4143](https://github.com/moment/moment/pull/4143) [new locale] mt: Maltese language
+* [#4183](https://github.com/moment/moment/pull/4183) [locale] Relative seconds i18n
+* Various other locale improvements
+
+### 2.19.4 [See changelog](https://gist.github.com/marwahaha/d3b7b0ddf4bdae512244f16e8cc59efb)
+
+* Release Dec 10, 2017
+
+* [#4332](https://github.com/moment/moment/pull/4332) [bugfix] Fix weekday verification for UTC and offset days (fixes [#4227](https://github.com/moment/moment/pull/4227))
+* [#4336](https://github.com/moment/moment/pull/4336) [bugfix] Fix [#4334](https://github.com/moment/moment/pull/4334): Remove unused function call argument
+* [#4246](https://github.com/moment/moment/pull/4246) [misc] Add 'ss' relative time key to typescript definition
+
 ### 2.19.3 [See changelog](https://gist.github.com/marwahaha/3654006bc0c2e522451c08d12c0bfabf)
 
 * Release Nov 29, 2017
