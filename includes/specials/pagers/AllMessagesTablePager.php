@@ -281,7 +281,10 @@ class AllMessagesTablePager extends TablePager {
 		return '';
 	}
 
-	/** @return string HTML */
+	/**
+	 * @param stdClass $row
+	 * @return string HTML
+	 */
 	function formatRow( $row ) {
 		// Do all the normal stuff
 		$s = parent::formatRow( $row );
@@ -306,7 +309,11 @@ class AllMessagesTablePager extends TablePager {
 		return [];
 	}
 
-	/** @return array HTML attributes */
+	/**
+	 * @param string $field
+	 * @param string $value
+	 * @return array HTML attributes
+	 */
 	function getCellAttrs( $field, $value ) {
 		$attr = [];
 		if ( $field === 'am_title' ) {
