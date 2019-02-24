@@ -310,8 +310,6 @@ class SpecialBlock extends FormSpecialPage {
 	 * If the user has already been blocked with similar settings, load that block
 	 * and change the defaults for the form fields to match the existing settings.
 	 * @param array &$fields HTMLForm descriptor array
-	 * @return bool Whether fields were altered (that is, whether the target is
-	 *     already blocked)
 	 */
 	protected function maybeAlterFormDefaults( &$fields ) {
 		# This will be overwritten by request data

@@ -374,7 +374,6 @@ class SpecialEditTags extends UnlistedSpecialPage {
 
 	/**
 	 * UI entry point for form submission.
-	 * @throws PermissionsError
 	 * @return bool
 	 */
 	protected function submit() {

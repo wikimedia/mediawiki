@@ -32,8 +32,8 @@ class SpecialLinkAccounts extends AuthManagerSpecialPage {
 
 	/**
 	 * @param null|string $subPage
-	 * @throws MWException
-	 * @throws PermissionsError
+	 * @throws ErrorPageError
+	 * @throws LogicException
 	 */
 	public function execute( $subPage ) {
 		$this->setHeaders();
