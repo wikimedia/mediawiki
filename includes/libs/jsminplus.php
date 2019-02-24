@@ -1292,7 +1292,10 @@ class JSParser
 
 					if ($tt == OP_DOT)
 					{
-						$this->t->mustMatch(TOKEN_IDENTIFIER);
+						$tt = $this->t->get();
+						if (!$this->isKeyword($tt) && $tt !== TOKEN_IDENTIFIER)
+							throw $this->t->newSyntaxError("Unexpected token; token identifier or keyword expected.");
+
 						array_push($operands, new JSNode($this->t, OP_DOT, array_pop($operands), new JSNode($this->t)));
 					}
 					else
@@ -1427,6 +1430,11 @@ class JSParser
 							}
 							else
 							{
+								// Accept keywords as property names by treating
+								// them similarly with identifiers
+								if ($this->isKeyword($tt))
+									$tt = TOKEN_IDENTIFIER;
+
 								switch ($tt)
 								{
 									case TOKEN_IDENTIFIER:
@@ -1617,6 +1625,46 @@ class JSParser
 		array_push($operands, $n);
 
 		return $n;
+	}
+
+	private function isKeyword($tt)
+	{
+		switch ($tt) {
+			case KEYWORD_BREAK:
+			case KEYWORD_CASE:
+			case KEYWORD_CATCH:
+			case KEYWORD_CONST:
+			case KEYWORD_CONTINUE:
+			case KEYWORD_DEBUGGER:
+			case KEYWORD_DEFAULT:
+			case KEYWORD_DELETE:
+			case KEYWORD_DO:
+			case KEYWORD_ELSE:
+			case KEYWORD_ENUM:
+			case KEYWORD_FALSE:
+			case KEYWORD_FINALLY:
+			case KEYWORD_FOR:
+			case KEYWORD_FUNCTION:
+			case KEYWORD_IF:
+			case KEYWORD_IN:
+			case KEYWORD_INSTANCEOF:
+			case KEYWORD_NEW:
+			case KEYWORD_NULL:
+			case KEYWORD_RETURN:
+			case KEYWORD_SWITCH:
+			case KEYWORD_THIS:
+			case KEYWORD_THROW:
+			case KEYWORD_TRUE:
+			case KEYWORD_TRY:
+			case KEYWORD_TYPEOF:
+			case KEYWORD_VAR:
+			case KEYWORD_VOID:
+			case KEYWORD_WHILE:
+			case KEYWORD_WITH:
+				return true;
+			default:
+				return false;
+		}
 	}
 }
 
