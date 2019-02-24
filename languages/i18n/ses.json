@@ -4,7 +4,8 @@
 			"Songhay",
 			"Macofe",
 			"Matma Rex",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Dobu ganda-žeeriyan:",
@@ -1066,8 +1067,10 @@
 	"right-editsemiprotected": "Moɲey kaŋ jejebandi sanda \"{{int:protect-level-autoconfirmed}}\" fasal",
 	"right-editinterface": "Goykaw diidogoo fasal",
 	"right-editusercss": "Goykaw taney CSS tukey fasal",
+	"right-edituserjson": "Goykaw taney JSON tukey fasal",
 	"right-edituserjs": "Goykaw taney JavaScript tuke fasal",
 	"right-editmyusercss": "War boŋ goykaw CSS tukey fasal",
+	"right-editmyuserjson": "War boŋ JSON tukey fasal",
 	"right-editmyuserjs": "War boŋ JavaScript tukey fasal",
 	"right-viewmywatchlist": "War boŋ hawgayhayey guna",
 	"right-editmywatchlist": "War boŋ hawgayhayey fasal. Laasaabu kaŋ teera fooyaŋ ga mooyaŋ tonton bila nda woo fondaa.",

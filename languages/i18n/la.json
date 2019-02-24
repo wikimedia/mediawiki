@@ -29,7 +29,8 @@
 			"Laurentianus",
 			"Guillermo2149",
 			"Fitoschido",
-			"LittlePuppers"
+			"LittlePuppers",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Versores linea denotandi:",
@@ -770,6 +771,7 @@
 	"right-protect": "Protectionem mutare vel paginas protectas recensere",
 	"right-editprotected": "Paginas protectas recensere (sine protectione defluente quasi cataracta)",
 	"right-editusercss": "Paginas CSS aliorum usorum recensere",
+	"right-edituserjson": "Paginas JSON aliorum usorum recensere",
 	"right-edituserjs": "Paginas JS aliorum usorum recensere",
 	"right-rollback": "Cito reverti recensiones proximas usoris cuiuslibet paginae",
 	"right-import": "Paginas ex vicis aliis importare",

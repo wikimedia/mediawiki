@@ -11,7 +11,8 @@
 			"Urhixidur",
 			"아라",
 			"Macofe",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Ferwiese unnerstriekje:",
@@ -833,6 +834,7 @@
 	"right-editprotected": "Skutsede Sieden beoarbaidje (sunner Kaskadenskuts)",
 	"right-editinterface": "Benutserinterface beoarbaidje",
 	"right-editusercss": "Beoarbaidjen fon CSS-Doatäie fon uur Benutsere",
+	"right-edituserjson": "Beoarbaidjen fon JSON-Doatäie fon uur Benutsere",
 	"right-edituserjs": "Beoarbaidjen fon JS-Doatäie fon uur Benutsere",
 	"right-rollback": "Gau räägels Traalen",
 	"right-markbotedits": "Gau räägels troalde Beoarbaidengen as Bot-Beoarbaidenge markierje",

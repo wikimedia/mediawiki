@@ -53,7 +53,8 @@
 			"Tiven2240",
 			"Sureshkhole",
 			"Pushkar Ekbote",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "दुव्यांचे अधोरेखन:",
@@ -1200,6 +1201,7 @@
 	"right-editcontentmodel": "पानाचा आशय नमूना संपादा",
 	"right-editinterface": "सदस्य पसंतीक्रम बदला",
 	"right-editusercss": "इतर सदस्यांच्या CSS संचिका संपादित करा",
+	"right-edituserjson": "इतर सदस्यांच्या JSON संचिका संपादित करा",
 	"right-edituserjs": "इतर सदस्यांच्या JS संचिका संपादित करा",
 	"right-editmyusercss": "स्वत:च्या सदस्यनामाच्या 'सीएसएस' संचिका संपादा",
 	"right-editmyuserjs": "स्वत:च्या सदस्यनामाच्या 'जावास्क्रिप्ट' संचिका संपादा",

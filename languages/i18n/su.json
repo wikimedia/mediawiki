@@ -15,7 +15,8 @@
 			"Uchup19",
 			"WikiKaruhun",
 			"Dipusparaga",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Gurat-handapan tutumbu",
@@ -1123,8 +1124,10 @@
 	"right-editcontentmodel": "Édit modél kontén kaca",
 	"right-editinterface": "Édit antarbenget pamaké",
 	"right-editusercss": "Édit berkas CSS pamaké séjén",
+	"right-edituserjson": "Édit berkas JSON pamaké séjén",
 	"right-edituserjs": "Ngédit berkas JS pamaké séjén",
 	"right-editmyusercss": "Édit berkas CSS pamaké anjeun",
+	"right-editmyuserjson": "Édit berkas JSON pamaké anjeun",
 	"right-editmyuserjs": "Édit berkas JavaScript pamaké anjeun",
 	"right-viewmywatchlist": "Tempo daptar awaseun anjeun",
 	"right-editmywatchlist": "Édit daptar awaseun anjeung. Masih aya cara nambahkeun kaca tanpa kudu mibanda ieu hak.",

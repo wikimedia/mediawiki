@@ -12,7 +12,8 @@
 			"아라",
 			"Macofe",
 			"Stephanecbisson",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Çykgytlaryň aşagyny çyz:",
@@ -807,6 +808,7 @@
 	"right-editprotected": "Goragly sahypalary redaktirle (goragy kaskadlamazdan)",
 	"right-editinterface": "Ulanyjy interfeýsini redaktirle",
 	"right-editusercss": "Başga ulanyjylaryň CSS faýllaryny redaktirle",
+	"right-edituserjson": "Başga ulanyjylaryň JSON faýllaryny redaktirle",
 	"right-edituserjs": "Başga ulanyjylaryň JS faýllaryny redaktirle",
 	"right-rollback": "Belli bir sahypany redaktirlän iň soňky ulanyjynyň özgerdişlerini dessine öňki katdyna getir",
 	"right-markbotedits": "Öňki katdyna getirilen özgerdişleri bot özgerdişi diýip belle",

@@ -10,7 +10,8 @@
 			"Matma Rex",
 			"Wikicology",
 			"Fitoschido",
-			"Olaniyan Olushola"
+			"Olaniyan Olushola",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Ìfàlàsábẹ́ àwọn àjápọ̀:",
@@ -985,6 +986,7 @@
 	"right-editprotected": "Àtúnṣe àwọn ojúewé aláàbò (láìsí àbò àjámọ́ra)",
 	"right-editinterface": "Àtúnṣe ìfojúkojú oníṣe",
 	"right-editusercss": "Àtúnṣe àwọn fáìlì CSS ti àwọn oníṣe mìíràn",
+	"right-edituserjson": "Àtúnṣe àwọn fáìlì JSON ti àwọn oníṣe mìíràn",
 	"right-edituserjs": "Àtúnṣe àwọn fáìlì JS ti àwọn oníṣe mìíràn",
 	"right-rollback": "Kíákíá yí àwọn àtúnṣe oníṣe tó ṣàtúnṣe ojúewé kan pàtó gbẹ̀yìn sẹ́yìn",
 	"right-markbotedits": "Ṣe àmì sí àwọn àtúnṣe àyípadà bíi àtúnṣe bot",

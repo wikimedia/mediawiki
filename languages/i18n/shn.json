@@ -8,7 +8,8 @@
 			"Saimawnkham",
 			"Saosukham",
 			"Sengwan",
-			"Ninjastrikers"
+			"Ninjastrikers",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "ႁဵင်းၵွင်ႉ ဢၼ်ထတ်းထႅဝ်တႂ်ႈဝႆႉ:",
@@ -979,8 +980,10 @@
 	"right-editcontentmodel": "မႄးထတ်း ၽၢင်ႁၢင်ႈတူဝ်ၶဝ်ႈပႃး ၶွင်ၼႃႈလိၵ်ႈ",
 	"right-editinterface": "မႄးထတ်း ယူင်ႉႁၢင်ႈ ၽူႈၸႂ်ႉတိုဝ်း",
 	"right-editusercss": "မႄးထတ်း ၾၢႆႇ CSS ၶွင် ၽူႈၸႂ်ႉတိုဝ်းတၢင်ႇၸိူဝ်း",
+	"right-edituserjson": "မႄးထတ်း ၾၢႆႇ JSON ၶွင် ၽူႈၸႂ်ႉတိုဝ်းတၢင်ႇၸိူဝ်း",
 	"right-edituserjs": "မႄးထတ်း ၾၢႆႇ JavaScript ၶွင် ၽူႈၸႂ်ႉတိုဝ်း တၢင်ႇၸိူဝ်း",
 	"right-editmyusercss": "မႄးထတ်း ၾၢႆႇ CSS ၶွင်ႁင်းၸဝ်ႈၵဝ်ႇ",
+	"right-editmyuserjson": "မႄးထတ်း ၾၢႆႇ JSON ၶွင်ႁင်းၸဝ်ႈၵဝ်ႇ",
 	"right-editmyuserjs": "မႄးထတ်း ၾၢႆႇ JavaScript ၶွင်ႁင်းၸဝ်ႈၵဝ်ႇ",
 	"right-viewmywatchlist": "တူၺ်း သဵၼ်ႈမၢႆပႂ်ႉတူၺ်း ႁင်းၶွင်ၵဝ်ႇ",
 	"right-editmywatchlist": "မႄးထတ်း သဵၼ်ႈမၢႆပႂ်ႉတူၺ်း ႁင်းတူဝ်ၵဝ်ႇ။ မၢႆတွင်းဝႆႉဝႃႈ လွင်ႈႁဵတ်းသၢင်ႈ ၵမ်ႈၽွင်ႈၼႆႉ ႁူမ်ႈဝႃႈဢမ်ႇမီးသုၼ်ႇၵေႃႈ တိုၵ်ႉတေထႅမ်သႂ်ႇ ၼႃႈလိၵ်ႈၵႂႃႇယူႇ။",

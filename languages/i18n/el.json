@@ -57,7 +57,8 @@
 			"Nikosgranturismogt",
 			"KATRINE1992",
 			"Fitoschido",
-			"KATRINE1993"
+			"KATRINE1993",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Υπογράμμιση συνδέσμων:",
@@ -1226,8 +1227,10 @@
 	"right-editcontentmodel": "Επεξεργασίας του μοντέλου περιεχόμενου σελίδας",
 	"right-editinterface": "Επεξεργασία της διασύνδεσης χρήστη",
 	"right-editusercss": "Μεταγραφή των αρχείων CSS άλλων χρηστών",
+	"right-edituserjson": "Μεταγραφή των αρχείων JSON άλλων χρηστών",
 	"right-edituserjs": "Μεταγραφή των αρχείων JS άλλων χρηστών",
 	"right-editmyusercss": "Επεξεργασία των ιδιωτικών αρχείων CSS χρήστη",
+	"right-editmyuserjson": "Επεξεργασία των ιδιωτικών αρχείων JSON χρήστη",
 	"right-editmyuserjs": "Επεξεργασία των ιδιωτικών αρχείων JavaScript χρήστη",
 	"right-viewmywatchlist": "Προβολή της δικής σας λίστα παρακολούθησης",
 	"right-editmywatchlist": "Επεξεργασία της δικής σας λίστας παρακολούθησής. Σημειώστε ότι κάποιες ενέργειες θα εξακολουθούν να προσθέτουν σελίδες, ακόμα και χωρίς αυτό το δικαίωμα.",

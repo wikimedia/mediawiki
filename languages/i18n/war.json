@@ -12,7 +12,8 @@
 			"MarcoAurelio",
 			"Macofe",
 			"Matma Rex",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Bagisa ha ilarom an mga sumpay:",
@@ -950,6 +951,7 @@
 	"right-unblockself": "Lugaring nga makakatanggal han pagpugong",
 	"right-editinterface": "Igliwat an user interface",
 	"right-editusercss": "Igliwat an kanan iba mga gumaramit nga mga paypay han CSS",
+	"right-edituserjson": "Igliwat an kanan iba mga gumaramit nga mga paypay han JSON",
 	"right-edituserjs": "Iliwat an kanan iba mga gumaramit nga paypay han JavaScript",
 	"right-viewmywatchlist": "Kitaa an imo kalugaringon nga talaan hin barantayon",
 	"right-editmywatchlist": "Igliwat an imo talaan hin barantayon. Pasabot la nga an pipira ng abuhat in padayon nga madugang hin mga pakli bisan waray hini nga katungod.",

@@ -16,7 +16,8 @@
 			"Nistha.aslp",
 			"Matma Rex",
 			"Susant purohit",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "ଲିଙ୍କତଳେ ଗାର ଟାଣିବା:",
@@ -1083,8 +1084,10 @@
 	"right-editsemiprotected": "\"{{int:protect-level-autoconfirmed}}\" ଭାବେ ଲୁଚାଯାଇଥିବା ପୃଷ୍ଠାସବୁ ସମ୍ପାଦନା କରନ୍ତୁ",
 	"right-editinterface": "ସଭ୍ୟଙ୍କ ଇଣ୍ଟରଫେସ ବଦଳାଇବେ",
 	"right-editusercss": "ବାକି ସଭ୍ୟମାନଙ୍କ CSS ଫାଇଲସବୁ ବଦଳାଇବେ",
+	"right-edituserjson": "ବାକି ସଭ୍ୟମାନଙ୍କ JSON ଫାଇଲସବୁ ବଦଳାଇବେ",
 	"right-edituserjs": "ବାକି ସଭ୍ୟମାନଙ୍କର ଜାଭାସ୍କ୍ରିପ୍ଟ ଫାଇଲ ସବୁକୁ ବଦଳାଇବେ",
 	"right-editmyusercss": "ନିଜ ସଭ୍ୟ CSS ଫାଇଲସବୁ ସମ୍ପାଦନା କରନ୍ତୁ",
+	"right-editmyuserjson": "ନିଜର ସଭ୍ୟ JSON ଫାଇଲ ସମ୍ପାଦନା କରନ୍ତୁ",
 	"right-editmyuserjs": "ନିଜର ସଭ୍ୟ JavaScript ଫାଇଲ ସମ୍ପାଦନା କରନ୍ତୁ",
 	"right-viewmywatchlist": "ନିଜର ଦେଖଣାତାଲିକା ଦେଖନ୍ତୁ",
 	"right-editmywatchlist": "ନିଜ ଦେଖଣାତାଲିକା ଦେଖନ୍ତୁ । ଜାଣିରଖନ୍ତୁ ଯେ ଏହି ଅଧିକାର ବିନା ମଧ୍ୟ କିଛି କାମ ଅଧିକ ପୃଷ୍ଠା ଯୋଡ଼ୁଥିବ ।",

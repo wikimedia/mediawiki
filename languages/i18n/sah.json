@@ -18,7 +18,8 @@
 			"Ай-Куо",
 			"Туллук",
 			"Fitoschido",
-			"София"
+			"София",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Сигэлэри аннынан тардыы:",
@@ -1174,6 +1175,7 @@
 	"right-editcontentmodel": "Сирэй ис тутулун уларытыы",
 	"right-editinterface": "Кыттааччы интерфейсын уларытыы",
 	"right-editusercss": "Атын кыттааччылар CSS-билэлэрин уларытыы",
+	"right-edituserjson": "Атын кыттааччылар JSON-билэлэрин уларытыы",
 	"right-edituserjs": "Атын кыттааччылар JS-билэлэрин уларытыы",
 	"right-editmyusercss": "Кыттааччы CSS-билэтин уларытыы",
 	"right-editmyuserjs": "Бэйэ JavaScript-билэлэрин уларытыы",

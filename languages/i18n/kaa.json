@@ -10,7 +10,8 @@
 			"Urhixidur",
 			"아라",
 			"Macofe",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Siltewdin' astın sız:",
@@ -606,6 +607,7 @@
 	"right-editprotected": "Qorg'alg'an betlerdi o'zgertiw (kaskadlı qorg'awsız)",
 	"right-editinterface": "Paydalanıwshı interfeysin o'zgertiw",
 	"right-editusercss": "Basqa paydalanıwshılardın' CSS faylların o'zgertiw",
+	"right-edituserjson": "Basqa paydalanıwshılardın' JSON faylların o'zgertiw",
 	"right-edituserjs": "Basqa paydalanıwshılardın' JS faylların o'zgertiw",
 	"right-markbotedits": "Qaytarılg'an o'zgerislerdi botlardiki dep belgilew",
 	"right-import": "Basqa wikilerden betlerdi import qılıw",

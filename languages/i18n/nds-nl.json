@@ -18,7 +18,8 @@
 			"Kolega2357",
 			"Macofe",
 			"Matma Rex",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Verwiezingen onderstrepen",
@@ -998,8 +999,10 @@
 	"right-editsemiprotected": "Ziejen bewarken die beveiligd bin as \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editinterface": "Systeemteksten bewarken",
 	"right-editusercss": "De CSS-bestaanden van aandere gebrukers bewarken",
+	"right-edituserjson": "De JSON-bestaanden van aandere gebrukers bewarken",
 	"right-edituserjs": "De JS-bestaanden van aandere gebrukers bewarken",
 	"right-editmyusercss": "Joew eigen CSS-ziejen bewarken",
+	"right-editmyuserjson": "Joew eigen JSON-ziejen bewarken",
 	"right-editmyuserjs": "Joew eigen JavaScript-ziejen bewarken",
 	"right-viewmywatchlist": "Joew eigen volglieste bekieken",
 	"right-editmywatchlist": "Joew eigen volglieste bewarken. Via sommige haandelingen kunnen nog altied ziejen derbie ezet wörden, zelfs zonder disse bevoegdheid",

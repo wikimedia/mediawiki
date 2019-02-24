@@ -11,7 +11,8 @@
 			"Macofe",
 			"Sebranik",
 			"Ghiutun",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Jonoštada kosketused:",
@@ -846,6 +847,7 @@
 	"right-editprotected": "Redaktiruida kaitud lehtpoled (kaskadkaičemata)",
 	"right-editinterface": "Redaktiruida kävutajan intefeis",
 	"right-editusercss": "Redaktiruida toižiden kävutajiden CSS-failad",
+	"right-edituserjson": "Redaktiruida toižiden kävutajiden JSON-failad",
 	"right-edituserjs": "Redaktiruida toižiden kävutajiden JS-failad",
 	"right-noratelimit": "Ei ole kaidendust piguden mödhe",
 	"right-import": "Importiruida lehtpolid toižiš wikišpäi",

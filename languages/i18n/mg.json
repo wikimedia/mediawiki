@@ -9,7 +9,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Macofe",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Hanipika ny rohy:",
@@ -1123,8 +1124,10 @@
 	"right-editcontentmodel": "Hanova ny modelim-botoatin'ny pejy",
 	"right-editinterface": "Manova ny interface ny mpikambana",
 	"right-editusercss": "Manova ny rakitra CSS ny mpikambana hafa",
+	"right-edituserjson": "Manova ny rakitra JSON an'ny mpikambana hafa",
 	"right-edituserjs": "Manova ny rakitra JS an'ny mpikambana hafa",
 	"right-editmyusercss": "Manova ny rakitra CSS-nao",
+	"right-editmyuserjson": "Manova ny rakitra JSON-nao",
 	"right-editmyuserjs": "Manova ny rakitra JavaScript-nao",
 	"right-viewmywatchlist": "Mijery ny pejy arahanao",
 	"right-editmywatchlist": "Manova ny lisitry ny pejy arahanao. Fantaro koa fa hanampy pejy ny tao sasany na dia tsy manana ity zo ity aza.",

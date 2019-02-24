@@ -17,7 +17,8 @@
 			"Nemo bis",
 			"Mormegil",
 			"Mirgulkali",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Сілтеменің астын сызу:",
@@ -1081,8 +1082,10 @@
 	"right-editcontentmodel": "Беттің контент моделін өңдеу",
 	"right-editinterface": "Қатысушы тілдесіуін өңдеу",
 	"right-editusercss": "Басқа қатысушылардың CSS файлдарын өңдеу",
+	"right-edituserjson": "Басқа қатысушылардың JSON файлдарын өңдеу",
 	"right-edituserjs": "Басқа қатысушылардың JavaScript файлдарын өңдеу",
 	"right-editmyusercss": "Өзіңіздің қатысушы CSS файлдарыңызды өңдеу",
+	"right-editmyuserjson": "Өзіңіздің қатысушы JSON файлдарыңызды өңдеу",
 	"right-editmyuserjs": "Өзіңіздің қатысушы JavaScript файлдарыңызды өңдеу",
 	"right-viewmywatchlist": "Бақылау тізіміңізді қарау",
 	"right-editmywatchlist": "Өзіңіздің баптауларыңызды өңдеу. Note some actions will still add pages even without this right.",

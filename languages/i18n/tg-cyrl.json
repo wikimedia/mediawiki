@@ -16,7 +16,8 @@
 			"ToJack",
 			"Vashgird",
 			"Fitoschido",
-			"TajikMaterialist"
+			"TajikMaterialist",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Пайвандҳо хаткашида:",
@@ -840,6 +841,7 @@
 	"right-editprotected": "Вироиши саҳифаҳои ҳифзшуда чун \"{{int:protect-level-sysop}}\"",
 	"right-editinterface": "Вироиши намоиши корбарӣ",
 	"right-editusercss": "Вироиши парвандаҳои CSS дигар корбарон",
+	"right-edituserjson": "Вироиши парвандаҳои JSON дигар корбарон",
 	"right-edituserjs": "Вироиши парвандаҳои JS дигар корбарон",
 	"right-rollback": "зуд вогардонидани вироишоти корбари охирин",
 	"right-markbotedits": "Аломат задани вироишҳои вогардонишуда ба унвони вироиши бот",

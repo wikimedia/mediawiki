@@ -16,7 +16,8 @@
 			"Munkhzaya.E",
 			"Macofe",
 			"Irus",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Линкүүдийн доогуур зураас зур:",
@@ -1022,8 +1023,10 @@
 	"right-editcontentmodel": "Хуудасны моделын агуулгыг засах",
 	"right-editinterface": "Хэрэглэгчийн интерфэйсийг засварлах",
 	"right-editusercss": "Бусад хэрэглэгчдийн CSS файлуудыг засварлах",
+	"right-edituserjson": "Бусад хэрэглэгчдийн JSON файлуудыг засварлах",
 	"right-edituserjs": "Бусад хэрэглэгчдийн JS файлуудыг засварлах",
 	"right-editmyusercss": "Өөрийн хэрэглэгчийн CSS файлыг засах",
+	"right-editmyuserjson": "Өөрийн хэрэглэгчийн JSON файлыг засах",
 	"right-editmyuserjs": "Өөрийн хэрэглэгчийн JavaScript файлыг засах",
 	"right-viewmywatchlist": "Өөрийн харах жагсаалтыг харах",
 	"right-editmywatchlist": "Өөрийн харах жагсаалтыг засна. Зарим үйлдэл энэ эрх байхгүй ч хуудас нэмнэ.",

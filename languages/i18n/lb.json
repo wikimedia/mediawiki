@@ -17,7 +17,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Nemo bis",
-			"Matma Rex"
+			"Matma Rex",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Linken ënnersträichen:",
@@ -628,7 +629,6 @@
 	"blockedtitle": "Benotzer ass gespaart",
 	"blockedtext": "<strong>Äre Benotzernumm oder Är IP-Adress gouf gespaart.</strong>\n\nD'Spär gouf vum $1 gemaach.\nAls Grond gouf <em>$2</em> uginn.\n\n* Ufank vun der Spär: $8\n* Enn vun der Spär: $6\n* Spär betrëfft: $7\n\nDir kënnt den/d' $1 kontaktéieren oder ee vun den aneren [[{{MediaWiki:Grouppage-sysop}}|Administrateure]] fir iwwer d'Spär ze schwätzen.\n\nDëst sollt Dir besonnesch maachen, wann Dir d'Gefill hutt, datt de Grond fir d'Spären net bei Iech läit.\nD'Ursaach dofir ass an deem Fall, datt Dir eng dynamesch IP hutt, iwwer en Access-Provider, iwwer deen och aner Leit fueren.\nAus deem Grond ass et recommandéiert, sech e Benotzernumm zouzeleeën, fir all Mëssverständnes z'evitéieren.\n\nDir kënnt d'Funktioun \"{{int:emailuser}}\" nëmme benotzen, wann Dir eng gëlteg E-Mail Adress bei Ären [[Special:Preferences|Astellungen]] aginn hutt.\nÄr aktuell IP-Adress ass $3 an d'Nummer vun der Spär ass #$5.\nSchreift all dës Informatioune w.e.g. bei all Ufro derbäi.",
 	"autoblockedtext": "Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dee vum $1 gespaart gouf.\nDe Grond dofir war:\n\n:''$2''\n\n* Ufank vun der Spär: $8\n* Dauer vun der Spär: $6\n* D'Spär leeft of: $7\n\nDir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur]] kontaktéieren, fir iwwer déi Spär ze diskutéieren.\n\nBedenkt datt Dir d'Funktioun \"Dësem Benotzer eng E-Mail schécken\" benotze kënnt wann Dir eng gëlteg E-Mail-Adress an Ären [[Special:Preferences|Astellungen]] uginn hutt a wann dat net fir Iech gespaart gouf.\n\nÄr aktuell IP-Adress ass $3 an d'Nummer vun Ärer Spär ass $5.\nGitt dës Donnéeë w.e.g bei allen Ufroen zu dëser Spär un.",
-	"actionblockedtext": "Dir gouft gespaart fir dës Aktioun ze maachen.",
 	"blockednoreason": "Kee Grond uginn",
 	"whitelistedittext": "Dir musst Iech $1, fir Säiten änneren ze kënnen.",
 	"confirmedittext": "Dir musst är E-Mail-Adress confirméieren, ier Dir Ännerunge maache kënnt.\nGitt w.e.g. eng E-Mailadrss a validéiert se op äre [[Special:Preferences|Benotzerastellungen]].",
@@ -1152,8 +1152,10 @@
 	"right-editcontentmodel": "De Modell vum Inhalt vun enger Säit änneren",
 	"right-editinterface": "De Benotzerinterface änneren",
 	"right-editusercss": "Anere Benotzer hir CSS Fichieren änneren",
+	"right-edituserjson": "Anere Benotzer hir JSON Fichieren änneren",
 	"right-edituserjs": "Anere Benotzer hir JavaScript Fichieren änneren",
 	"right-editmyusercss": "Är eegen CSS-Fichieren änneren",
+	"right-editmyuserjson": "Är eege JSON-Fichieren änneren",
 	"right-editmyuserjs": "Är eege JavaScript-Fichieren änneren",
 	"right-viewmywatchlist": "Kuckt Är eegen Iwwerwaachungslëscht",
 	"right-editmywatchlist": "Ännert Är eegen Iwwerwaachungslëscht. Denkt drun datt och aner Aktioune Säiten op d'Iwwerwaachungslëscht dobäisetzen.",

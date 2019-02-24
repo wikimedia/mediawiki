@@ -23,7 +23,8 @@
 			"MJPCubelo",
 			"Blakegripling ph",
 			"LR Guanzon",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Pagsasalungguhit ng kawing:",
@@ -1049,6 +1050,7 @@
 	"right-editprotected": "Baguhin ang mga pahinang nakasanggalang (walang baita-baitang na panananggalang)",
 	"right-editinterface": "Baguhin ang ugnayang-hangganan ng tagagamit",
 	"right-editusercss": "Baguhin ang mga talaksang CSS ng ibang mga tagagamit",
+	"right-edituserjson": "Baguhin ang mga talaksang JSON ng ibang mga tagagamit",
 	"right-edituserjs": "Baguhin ang mga talaksang JS ng ibang mga tagagamit",
 	"right-rollback": "Mabilisang pagulungin pabalik sa dati ang mga pagbabago ng huling tagagamit na nagbago ng isang partikular na pahina",
 	"right-markbotedits": "Itatak ang mga binalik na mga pagbabago bilang pagbabagong bot",

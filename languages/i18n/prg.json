@@ -6,7 +6,8 @@
 			"Peteris",
 			"아라",
 			"Macofe",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Autengīnsenin paglaubasnā",
@@ -702,6 +703,7 @@
 	"right-editprotected": "Redigīs pakūnstans pāusans (šlāit weldītan pakūnsenin)",
 	"right-editinterface": "Redigīs tērpautajas interfācan",
 	"right-editusercss": "Redigīs CSS zūrbrukins kitēisan tērpautajan",
+	"right-edituserjson": "Redigīs JSON zūrbrukins kitēisan tērpautajan",
 	"right-edituserjs": "Redigīs JS zūrbrukins kitēisan tērpautajan",
 	"right-rollback": "Dīwai etwārtai wartinnais redigīsenin stesse tērpautajan, kawīds redigijja ainuntan pāusan kāigi panzdaums",
 	"right-markbotedits": "Ebzentlis naikīntans redigīsenins kāigi bōtas redigīsenins",

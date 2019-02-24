@@ -10,7 +10,8 @@
 			"아라",
 			"Macofe",
 			"Fanjiayi",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Rëddaatu lëkkalekaay yi :",
@@ -768,6 +769,7 @@
 	"right-editprotected": "Soppi xët yees aar",
 	"right-editinterface": "Soppi jokkalekaayu jëfandikukat bi",
 	"right-editusercss": "Soppi dencukaay yu CSS yu yeneen jëfandikukat",
+	"right-edituserjson": "Soppi dencukaay yu JSON yu yeneen jëfandikukat",
 	"right-edituserjs": "Soppi dencukaay yu JS yu yeneen jëfandikukat",
 	"right-rollback": "Loppanti gu gaaw gu coppite yub jëfandikukat bu mujj ci wenn xët wi",
 	"right-markbotedits": "Fésal coppite yi niki yu ab bot def",

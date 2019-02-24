@@ -28,7 +28,8 @@
 			"Zulfadli51",
 			"Fitoschido",
 			"MNH48",
-			"Tofeiku"
+			"Tofeiku",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Garis bawah pautan:",
@@ -1160,8 +1161,10 @@
 	"right-editcontentmodel": "Menyunting model kandungan laman",
 	"right-editinterface": "Menyunting antara muka pengguna",
 	"right-editusercss": "Menyunting fail CSS pengguna lain",
+	"right-edituserjson": "Menyunting fail JSON pengguna lain",
 	"right-edituserjs": "Menyunting fail JavaScript pengguna lain",
 	"right-editmyusercss": "Menyunting fail CSS pengguna sendiri",
+	"right-editmyuserjson": "Menyunting fail JSON pengguna sendiri",
 	"right-editmyuserjs": "Menyunting fail JavaScript pengguna sendiri",
 	"right-viewmywatchlist": "Melihat senarai pantau sendiri",
 	"right-editmywatchlist": "Menyunting senarai pantau sendiri. Perhatian: sesetengah tindakan masih akan dapat menambah halaman walaupun tanpa hak ini.",

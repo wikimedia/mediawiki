@@ -3024,7 +3024,7 @@
 	"tags-manage-blocked": "Nemôžete spravovať značky, pokým ste {{GENDER:|zablokovaný|zablokovaná}}.",
 	"tags-create-heading": "Vytvoriť novú značku",
 	"tags-create-explanation": "Novo vytvorené značky sú implicitne k dispozícii používateľom a botom.",
-	"tags-create-tag-name": "Názov stránky:",
+	"tags-create-tag-name": "Názov značky:",
 	"tags-create-reason": "Dôvod:",
 	"tags-create-submit": "Vytvoriť",
 	"tags-create-no-name": "Musíte zadať názov značky.",

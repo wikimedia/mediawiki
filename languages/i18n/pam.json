@@ -10,7 +10,8 @@
 			"Leeheonjin",
 			"TTO",
 			"Macofe",
-			"Amiel Guanlao"
+			"Amiel Guanlao",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Gulisan lang panglalam deng suglung:",
@@ -665,6 +666,7 @@
 	"right-editprotected": "I-edit la reng bulung a protektadu/makakambil (alang proteksiun a tuki-tuki o cascading protection)",
 	"right-editinterface": "I-edit ya ing user interface",
 	"right-editusercss": "I-edit la reng simpan (file) dang CSS deng aliwang talagamit",
+	"right-edituserjson": "I-edit la reng simpan (file) dang JSON deng aliwang talagamit",
 	"right-edituserjs": "I-edit la reng simpan (file) dang JS deng aliwang talagamit",
 	"right-rollback": "Gad yang iurung (revert) ing tauling talagamit a mig-edit king partikular a bulung",
 	"right-markbotedits": "Tatakan la reng edit a miurung (reverted edits) antimong bot edit",

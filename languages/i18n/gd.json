@@ -11,7 +11,8 @@
 			"GunChleoc",
 			"Macofe",
 			"Matma Rex",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Fo-loidhneadh nan ceanglaichean:",
@@ -1117,8 +1118,10 @@
 	"right-editcontentmodel": "Deasaich modail susbaint duilleige",
 	"right-editinterface": "Cead gus eadar-aghaidh nan cleachdaichean a dheasachadh",
 	"right-editusercss": "Cead gus faidhlichean CSS càich a dheasachadh",
+	"right-edituserjson": "Cead gus faidhlichean JSON càich a dheasachadh",
 	"right-edituserjs": "Cead gus faidhlichean JavaScript càich a dheasachadh",
 	"right-editmyusercss": "Cead gus faidhlichean CSS agad fhèin a dheasachadh",
+	"right-editmyuserjson": "Cead gus faidhlichean JSON agad fhèin a dheasachadh",
 	"right-editmyuserjs": "Cead gus faidhlichean JavaScript agad fhèin a dheasachadh",
 	"right-viewmywatchlist": "Cead an clàr-faire agad fhèin a shealltainn",
 	"right-editmywatchlist": "Cead an clàr-faire agad fhèin a dheasachadh. Thoir an aire gun cuir cuid a gnìomhan duilleagan ris fiù 's mur eil an cead seo agad.",

@@ -6,7 +6,8 @@
 			"Kaztrans",
 			"아라",
 			"Macofe",
-			"Zpizza"
+			"Zpizza",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Siltemeniñ astın sız:",
@@ -620,6 +621,7 @@
 	"right-editprotected": "Qorğalğan betterdi öñdew (bawlı qorğawlarsız)",
 	"right-editinterface": "Paýdalanwşılıq tildesiwin öñdew",
 	"right-editusercss": "Basqa qatıswşılardıñ CSS faýldarın öñdew",
+	"right-edituserjson": "Basqa qatıswşılardıñ JSON faýldarın öñdew",
 	"right-edituserjs": "Basqa qatıswşılardıñ JS faýldarın öñdew",
 	"right-rollback": "Belgili betti öñdegen soñğı qatıswşınıñ öñdemelerinen jıldam şegindirw",
 	"right-markbotedits": "Şegindirlgen öñdemelerdi bottardiki dep belgilew",
