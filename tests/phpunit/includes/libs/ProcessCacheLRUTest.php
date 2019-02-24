@@ -1,8 +1,6 @@
 <?php
 
 /**
- * Test for ProcessCacheLRU class.
- *
  * Note that it uses the ProcessCacheLRUTestable class which extends some
  * properties and methods visibility. That class is defined at the end of the
  * file containing this class.

@@ -1,7 +1,5 @@
 <?php
 /**
- * Tests for the FauxResponse class
- *
  * Copyright @ 2011 Alexandre Emsenhuber
  *
  * This program is free software; you can redistribute it and/or modify

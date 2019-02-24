@@ -212,7 +212,6 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Test for Html::expandAttributes()
 	 * Please note it output a string prefixed with a space!
 	 * @covers Html::expandAttributes
 	 */

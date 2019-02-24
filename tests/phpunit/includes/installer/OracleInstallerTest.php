@@ -1,8 +1,6 @@
 <?php
 
 /**
- * Tests for OracleInstaller
- *
  * @group Database
  * @group Installer
  */
