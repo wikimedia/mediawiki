@@ -20,7 +20,8 @@
 			"Macofe",
 			"Muddyb",
 			"Fitoschido",
-			"Rance"
+			"Rance",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Wekea mstari viungo:",
@@ -1016,8 +1017,10 @@
 	"right-editcontentmodel": "Hariri yaliyomo katika ukurasa",
 	"right-editinterface": "Kuhariri kusano ya mtumiaji",
 	"right-editusercss": "Hariri mafaili ya CSS ya watumiaji wengine",
+	"right-edituserjson": "Hariri mafaili ya JSON ya watumiaji wengine",
 	"right-edituserjs": "Hariri mafaili ya JavaScript ya watumiaji wengine",
 	"right-editmyusercss": "Hariri faili zako za CSS",
+	"right-editmyuserjson": "Hariri faili zako za JSON",
 	"right-editmyuserjs": "Hariri faili zako za HatiJava",
 	"right-viewmywatchlist": "Tazama orodha yako ya maangalizi",
 	"right-editmywatchlist": "Hariri orodha yako mwenyewe ya maangalizi.Angalia baadhi ya hatua bado zitaongeza kurasa hata bila haki hii.",

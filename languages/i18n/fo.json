@@ -13,7 +13,8 @@
 			"아라",
 			"Macofe",
 			"Irus",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Undirstrika leinki:",
@@ -981,8 +982,10 @@
 	"right-editsemiprotected": "Rætta síður sum er vardar sum \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editinterface": "Rætta brúkaramarkamótið",
 	"right-editusercss": "Rætta CSS fílur hjá øðrum brúkarum",
+	"right-edituserjson": "Rætta JSON fílur hjá øðrum brúkarum",
 	"right-edituserjs": "Rætta JavaScript fílur hjá øðrum brúkarum",
 	"right-editmyusercss": "Rætta tínar egnu brúkara CSS fílur",
+	"right-editmyuserjson": "Rætta tínar egnu brúkara JSON fílur",
 	"right-editmyuserjs": "Rætta tínar egnu brúkara JavaScript fílur",
 	"right-viewmywatchlist": "Síggj tín egna eftirlitslista",
 	"right-editmywatchlist": "Rætta tín egna eftirlitslista. Legg til merkis at summar handlingar fara framvegis at leggja síður afturat sjálvt uttan hesi rættindi.",

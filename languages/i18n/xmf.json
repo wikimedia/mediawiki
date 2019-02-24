@@ -18,7 +18,8 @@
 			"Macofe",
 			"Nemo bis",
 			"Otogi",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "რცხუეფიშ ათოღაზუა:",
@@ -1007,8 +1008,10 @@
 	"right-editcontentmodel": "გვერდის კონტენტური მოდელის რედაქტირება",
 	"right-editinterface": "მომხმარებლის ინტერფეისის შეცვლა",
 	"right-editusercss": "სხვა მომხმარებლების CSS-ფაილების შესწორება",
+	"right-edituserjson": "სხვა მომხმარებლების JSON-ფაილების შესწორება",
 	"right-edituserjs": "სხვა მომხმარებლების JavaScript-ფაილების შესწორება",
 	"right-editmyusercss": "თქვენი საკუთარი CSS-ფაილების რედაქტირება",
+	"right-editmyuserjson": "თქვენი საკუთარი JSON-ფაილების რედაქტირება",
 	"right-editmyuserjs": "თქვენი საკუთარი JavaScript-ფაილების რედაქტირება",
 	"right-viewmywatchlist": "თქვენი კონტროლის სიის ხილვა",
 	"right-editmywatchlist": "თქვენი კონტროლის სიის რედაქტირება; მიაქციეთ ყურადღება, რომ ზოგიერთი ქმედება დაამატებს გვერდებს ასეთი უფლების გარეშეც",

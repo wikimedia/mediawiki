@@ -10,7 +10,8 @@
 			"Macofe",
 			"Mbrt",
 			"Empu",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Garisen ngisoré pranala:",
@@ -908,6 +909,7 @@
 	"right-editprotected": "Nyunting kaca-kaca sing direksa (tanpa pangreksan runtun)",
 	"right-editinterface": "Nyunting antarmukane panganggo",
 	"right-editusercss": "Nyunting berkas CSS panganggo liyane",
+	"right-edituserjson": "Nyunting berkas JSON panganggo liyane",
 	"right-edituserjs": "Nyunting berkas JavaScript panganggo liyane",
 	"right-rollback": "Gelis gole mbalekna suntingane panganggo pungkasan sing nyunting kaca tartamtu",
 	"right-markbotedits": "Nandani suntingan ''rollback'' dadi suntingane bot",

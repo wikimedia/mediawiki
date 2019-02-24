@@ -12,7 +12,8 @@
 			"Rachmat.Wahidi",
 			"Macofe",
 			"Robin van der Vliet",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Dislienükön yümis:",
@@ -805,6 +806,7 @@
 	"right-editprotected": "Bevobön padis pejelöl äs \"{{int:protect-level-sysop}}\"",
 	"right-editinterface": "Votükön gebanaloveikömi",
 	"right-editusercss": "Redakön ragivis-CSS gebanas votik",
+	"right-edituserjson": "Redakön ragivis-JSON gebanas votik",
 	"right-edituserjs": "Redakön ragivis-JS gebanas votik",
 	"right-rollback": "Sädunön vifiko redakamis gebana lätik, kel äredakon padi semik.",
 	"right-markbotedits": "Bepenön redakamis pesädunöl as redakams ela bot",

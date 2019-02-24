@@ -34,7 +34,8 @@
 			"SusithCM",
 			"Sandaru",
 			1100100,
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "සබැඳි යටීර කිරීම:",
@@ -1089,8 +1090,10 @@
 	"right-editcontentmodel": "පිටුවෙහි ඇති අන්තර්ගතය ආකෘතිය සංස්කරණය කරන්න",
 	"right-editinterface": "පරිශීලක අතුරු-මුව සංස්කරණය කරන්න",
 	"right-editusercss": "අනෙකුත් පරිශීලකයන්ගේ  CSS ගොනු සංස්කරණය කරන්න",
+	"right-edituserjson": "අනෙකුත් පරිශීලකයන්ගේ JSON ගොනු සංස්කරණය කරන්න",
 	"right-edituserjs": "අනෙකුත් පරිශීලකයන්ගේ  JS ගොනු සංස්කරණය කරන්න",
 	"right-editmyusercss": "ඔබේ ම පරිශීලක CSS ගොනු සංස්කරණය කරන්න",
+	"right-editmyuserjson": "ඔබේ ම පරිශීලක JSON ගොනු සංස්කරණය කරන්න",
 	"right-editmyuserjs": "ඔබේ ම පරිශීලක ජාවාස්ක්රිප්ට් ගොනු සංස්කරණය කරන්න",
 	"right-viewmywatchlist": "ඔබගේ මුර-ලැයිස්තුව පෙන්වන්න",
 	"right-editmywatchlist": "ඔබේ ම මුර-ලැයිස්තුවෙහි සංස්කරණය කරන්න. සමහර ක්රියාකාරකම් තවමත් පවා මෙම අයිතිය නොමැතිව පිටු එකතු වේ සලකන්න.",

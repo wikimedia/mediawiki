@@ -27,7 +27,8 @@
 			"Nemo bis",
 			"Asmen",
 			"MyraMidnight",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Undirstrika tengla:",
@@ -1161,6 +1162,7 @@
 	"right-editsemiprotected": "Breyta síðum vernduðum sem „{{int:protect-level-autoconfirmed}}“",
 	"right-editinterface": "Breyta notandaviðmótinu",
 	"right-editusercss": "Breyta CSS-skrám annarra",
+	"right-edituserjson": "Breyta JSON-skrám annarra",
 	"right-edituserjs": "Breyta JS-skrám annarra",
 	"right-editsitecss": "Breyta CSS á öllu vefsvæðinu",
 	"right-editsitejson": "Breyta JSON á öllu vefsvæðinu",

@@ -38,7 +38,8 @@
 			"Fitoschido",
 			"Luanibraj",
 			"Matěj Suchánek",
-			"Bjakupi"
+			"Bjakupi",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Nënvizimi i lidhjes:",
@@ -1120,8 +1121,10 @@
 	"right-editcontentmodel": "Redakto modelin e përmbajtjes së një faqeje",
 	"right-editinterface": "Ndrysho parapamjen e përdoruesit",
 	"right-editusercss": "Redakto skedat CSS të përdoruesve tjerë",
+	"right-edituserjson": "Redakto skedat JSON të përdoruesve tjerë",
 	"right-edituserjs": "Redakto skedat JS të përdoruesve tjerë",
 	"right-editmyusercss": "Redakto CSS - skedat e tua të përdoruesit",
+	"right-editmyuserjson": "Redakto JSON - skedat e tua të përdoruesit",
 	"right-editmyuserjs": "Redakto JavaScript - skedat e tua të përdoruesit",
 	"right-viewmywatchlist": "Shfaq listën time mbikqyrëse",
 	"right-editmywatchlist": "Ndrysho listën tënde të mbikëqyrjes. Kujdes se disa veprime do të shtojnë faqe edhe pa këtë të drejtë.",

@@ -31,7 +31,8 @@
 			"Bhatakati aatma",
 			"YmKavishwar",
 			"Kevin Kovadia",
-			"Drashti4"
+			"Drashti4",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "કડીઓની નીચે લીટી (અંડરલાઇન):",
@@ -1035,8 +1036,10 @@
 	"right-editprotected": "પાનામાં \"{{int:protect-level-sysop}}\" તરીકે ફેરફાર કરો",
 	"right-editinterface": "સભ્ય સંભાષણ પટલમાં ફેરફાર કરો",
 	"right-editusercss": "અન્ય સભ્યોની CSS ફાઇલમાં ફેરફાર કરો",
+	"right-edituserjson": "અન્ય સભ્યોની JSON ફાઇલમાં ફેરફાર કરો",
 	"right-edituserjs": "અન્ય સભ્યોની JavaScript ફાઇલમાં ફેરફાર કરો",
 	"right-editmyusercss": "તમારી પોતાની CSS ફાઇલોમાં ફેરફાર કરો",
+	"right-editmyuserjson": "તમારી પોતાની JSON ફાઇલોમાં ફેરફાર કરો",
 	"right-editmyuserjs": "તમારી પોતાની જાવાસ્ક્રિપ્ટ ફાઇલોમાં ફેરફાર કરો",
 	"right-viewmywatchlist": "તમારી પોતાની ધ્યાનસૂચી જુઓ",
 	"right-viewmyprivateinfo": "તમારી પોતાની અંગત માહિતી જુઓ (દા.ત. ઇમેલ સરનામું, ખરું નામ)",

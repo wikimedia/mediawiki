@@ -2891,7 +2891,7 @@
 	"previousdiff": "← Önceki değişiklik",
 	"nextdiff": "Sonraki değişiklik →",
 	"mediawarning": "'''Uyarı''': Bu dosya türü kötü niyetli kodlar içerebilir.\nBunu çalıştırmak, sisteminizi tehlikeye atabilir.",
-	"imagemaxsize": "Resim boyutu sınırı:<br />''(dosya açıklama sayfaları için)''",
+	"imagemaxsize": "Dosya açıklama sayfalarındaki resim boyutu sınırı:",
 	"thumbsize": "Küçük boyut:",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|sayfa|sayfa}}",
 	"file-info": "dosya boyutu: $1, MIME tipi: $2",

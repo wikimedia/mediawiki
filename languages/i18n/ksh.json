@@ -12,7 +12,8 @@
 			"Macofe",
 			"Nemo bis",
 			"Fitoschido",
-			"MusikAnimal"
+			"MusikAnimal",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Dun de Lengks ongerschtriische:",
@@ -1132,8 +1133,10 @@
 	"right-editcontentmodel": "et Modäll vum Ennhald vun Sigge verändere",
 	"right-editinterface": "Sigge met de Täxte änndere, di et Wikki kallt",
 	"right-editusercss": "Anderlücks CSS-Dateie ändere",
+	"right-edituserjson": "Anderlücks JSON-Dateie ändere",
 	"right-edituserjs": "Anderlücks JS-Dateie ändere",
 	"right-editmyusercss": "De eije <i lang=\"en\" xml:lang=\"en\">CSS</i> Datteije aanlääje un ändere",
+	"right-editmyuserjson": "Eije JSON-Datteije aanlääje un ändere",
 	"right-editmyuserjs": "Eije JaavaSkrepp-Datteije aanlääje un ändere",
 	"right-viewmywatchlist": "De eije Oppaßleß beloore",
 	"right-editmywatchlist": "De eije Oppaßleß ändere. Opjepaß: e paa Axjuhne donn Sigge en di Less_eren, och der ohne dat Rääsch.",

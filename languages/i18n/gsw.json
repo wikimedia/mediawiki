@@ -23,7 +23,8 @@
 			"Macofe",
 			"Xð",
 			"Terfili",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Links unterstryche:",
@@ -1096,6 +1097,7 @@
 	"right-editcontentmodel": "Inhaltsmodäll vo’re Syten ändere",
 	"right-editinterface": "Benutzerinterface bearbeite",
 	"right-editusercss": "Bearbeite vu CSS-Dateie vu andere Benutzer",
+	"right-edituserjson": "Bearbeite vu JSON-Dateie vu andere Benutzer",
 	"right-edituserjs": "Bearbeite vu JS-Dateie vu andere Benutzer",
 	"right-editmyusercss": "Dyni eigete CSS-Dateien ändere",
 	"right-editmyuserjs": "Eigeti JavaScript-Dateie bearbeite",

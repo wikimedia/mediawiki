@@ -14,7 +14,8 @@
 			"Matma Rex",
 			"MTSap",
 			"Nemo bis",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Ħoloq sottolinjati:",
@@ -999,8 +1000,10 @@
 	"right-editcontentmodel": "Jimmodifika l-mudell ta' kontenut ta' paġna",
 	"right-editinterface": "Immodifika l-interfaċċa tal-utent",
 	"right-editusercss": "Modifika l-fajls CSS ta' utenti oħrajn",
+	"right-edituserjson": "Modifika l-fajls JSON ta' utenti oħrajn",
 	"right-edituserjs": "Modifika l-fajls JS ta' utenti oħrajn",
 	"right-editmyusercss": "Immodifika l-fajls tas-CSS personali",
+	"right-editmyuserjson": "Immodifika l-fajls tal-JSON personali",
 	"right-editmyuserjs": "Immodifika l-fajls tal-JavaScript personali",
 	"right-viewmywatchlist": "Ara l-lista ta' osservazzjonijiet tiegħek",
 	"right-editmywatchlist": "Jimmodifika l-lista ta' osservazzjonijiet personali. Kun af li ċerti azzjonijiet jistgħu jżidu paġni anke mingħajr dan id-dritt.",

@@ -15,7 +15,8 @@
 			"Muhraz",
 			"Ardzun",
 			"Amjad Khan",
-			"Zakiy"
+			"Zakiy",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Garih bawahi tautan:",
@@ -898,6 +899,7 @@
 	"right-unblockself": "Malapehan sakek diri surang",
 	"right-editinterface": "Manyuntiang antarmuko pangguno",
 	"right-editusercss": "Manyuntiang berkas CSS pangguno lain",
+	"right-edituserjson": "Manyuntiang berkas JSON pangguno lain",
 	"right-edituserjs": "Manyuntiang berkas JS pangguno lain",
 	"right-noratelimit": "Indak dipangaruahi jo pambatehan jumlah suntiangan",
 	"right-import": "Mangimpor laman dari wiki lain",

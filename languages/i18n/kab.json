@@ -20,7 +20,8 @@
 			"Slimane AMIRI",
 			"SlimaneAmiri",
 			"Sayem AtVkm",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Aderrer n iseɣwan:",
@@ -1091,8 +1092,10 @@
 	"right-editsemiprotected": "Beddel isebtar i gdelen s « {{int:protect-level-autoconfirmed}} »",
 	"right-editinterface": "Beddel agrudem n useqdac",
 	"right-editusercss": "Beddel ifuyla CSS n iseqdacen nniḍen",
+	"right-edituserjson": "Beddel ifuyla JSON n iseqdacen nniḍen",
 	"right-edituserjs": "Beddel ifuyla JavaScript n iseqdacen nniḍen",
 	"right-editmyusercss": "Beddel ifuyla CSS n umseqdac inek/inem",
+	"right-editmyuserjson": "Beddel ifuyla JSON n umseqdac inek/inem",
 	"right-editmyuserjs": "Beddel ifuyla Javascript n umseqdac inek/inem",
 	"right-viewmywatchlist": "Zeṛ umuɣ inek/inem n uḍfar",
 	"right-editmywatchlist": "Beddel umuɣ inek/inem n uḍfar. Ger tamawt af kra n tigawin ad rnunt isebtar nniḍen war azref agi.",

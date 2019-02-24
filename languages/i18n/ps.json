@@ -11,7 +11,8 @@
 			"Ibrahim khashrowdi",
 			"Baloch Khan",
 			"Fitoschido",
-			"Amjad Khan"
+			"Amjad Khan",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "کرښنې تړنې:",
@@ -1085,8 +1086,10 @@
 	"right-protect": "د ژغورنې کچه بدلول او ځوړاوبېزه ژغورلي مخونه سمول",
 	"right-editinterface": "د کارن ليدنمخ سمول",
 	"right-editusercss": "د نورو کارنانو د CSS دوتنې سمول",
+	"right-edituserjson": "د نورو کارنانو د JSON دوتنې سمول",
 	"right-edituserjs": "د نورو کارنانو د JS (جاوا سکرېپټ) دوتنې سمول",
 	"right-editmyusercss": "خپل د CSS دوتنې سمول",
+	"right-editmyuserjson": "خپل د JSON دوتنې سمول",
 	"right-editmyuserjs": "خپل د جاواسکرېپټ دوتنې سمول",
 	"right-viewmywatchlist": "خپل کتنلړ کتل",
 	"right-editmyprivateinfo": "خپل شخصي مالومات سمول (بېلگه. برېښليک پته، آرنوم)",

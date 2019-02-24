@@ -28,7 +28,8 @@
 			"Stephanecbisson",
 			"Fitoschido",
 			"Matěj Suchánek",
-			"ਗੁਰਪ੍ਰੀਤ ਹੁੰਦਲ"
+			"ਗੁਰਪ੍ਰੀਤ ਹੁੰਦਲ",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "ਲਿੰਕ ਹੇਠ-ਲਾਈਨ:",
@@ -955,8 +956,10 @@
 	"right-unblockself": "ਕਿਸੇ ਤੋਂ ਪਾਬੰਦੀ ਹਟਾਓ",
 	"right-editinterface": "ਵਰਤੋਂਕਾਰ ਇੰਟਰਫ਼ੇਸ ਸੋਧੋ",
 	"right-editusercss": "ਹੋਰ ਵਰਤੋਂਕਾਰਾਂ ਦੀਆਂ CSS ਫ਼ਾਈਲਾਂ ਸੋਧਣ",
+	"right-edituserjson": "ਹੋਰ ਵਰਤੋਂਕਾਰਾਂ ਦੀਆਂ JSON ਫ਼ਾਈਲਾਂ ਸੋਧਣ",
 	"right-edituserjs": "ਹੋਰ ਵਰਤੋਂਕਾਰਾਂ ਦੀਆਂ ਜਾਵਾਸਕਰਿਪਟ ਫ਼ਾਈਲਾਂ ਸੋਧਣ",
 	"right-editmyusercss": "ਆਪਣੀਆਂ ਵਰਤੋਂਕਾਰ CSS ਫ਼ਾਈਲਾਂ ਸੋਧੋ",
+	"right-editmyuserjson": "ਆਪਣੀਆਂ ਵਰਤੋਂਕਾਰ JSON ਫ਼ਾਈਲਾਂ ਸੋਧੋ",
 	"right-editmyuserjs": "ਆਪਣੀਆਂ ਵਰਤੋਂਕਾਰ ਜਾਵਾਸਕਰਿਪਟ ਫ਼ਾਈਲਾਂ ਸੋਧੋ",
 	"right-viewmywatchlist": "ਆਪਣੀ ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵੇਖੋ",
 	"right-editmywatchlist": "ਆਪਣੀ ਨਿਗਰਾਨੀ-ਲਿਸਟ ਸੋਧੋ। ਧਿਆਨ ਦਿਓ ਕਿ ਕੁਝ ਸਫ਼ੇ ਇਸ ਹੱਕ ਤੋਂ ਬਿਨਾਂ ਵੀ ਜੁੜਨਗੇ।",

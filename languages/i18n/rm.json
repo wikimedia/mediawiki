@@ -15,7 +15,8 @@
 			"Translaziuns",
 			"Terfili",
 			"MarcoAurelio",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Suttastritgar colliaziuns:",
@@ -916,6 +917,7 @@
 	"right-editprotected": "Modifitgar paginas protegidas cun «{{int:protect-level-sysop}}»",
 	"right-editinterface": "Modifitgar l'interfascha per l'utilisader",
 	"right-editusercss": "Modifitgar datotecas da CSS d'auters utilisaders",
+	"right-edituserjson": "Modifitgar datotecas da JSON d'auters utilisaders",
 	"right-edituserjs": "Modifitgar datotecas da JavaScript d'auters utilisaders",
 	"right-rollback": "Revocar svelt las modificaziuns da l'ultim utilisader che ha modifitgà ina pagina particulara.",
 	"right-markbotedits": "Marcar modificaziuns revocadas sco modificaziuns da bots",

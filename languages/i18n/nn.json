@@ -27,7 +27,8 @@
 			"Matma Rex",
 			"Mortensson",
 			"Danmichaelo",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Strek under lenkjer:",
@@ -1089,8 +1090,10 @@
 	"right-editcontentmodel": "Endra innhaldsmodellen til ei side",
 	"right-editinterface": "Redigere brukargrensesnittet",
 	"right-editusercss": "Endre andre brukarar sine CSS-filer",
+	"right-edituserjson": "Endre andre brukarar sine JSON-filer",
 	"right-edituserjs": "Endre andre brukarar sine JS-filer",
 	"right-editmyusercss": "Endra eigne CSS-filer",
+	"right-editmyuserjson": "Endra eigne JSON-filer",
 	"right-editmyuserjs": "Endra eigne JavaScript-filer",
 	"right-viewmywatchlist": "Sjå eiga overvakingsliste",
 	"right-editmywatchlist": "Endra eiga overvakingsliste. Merk at somme handlingane framleis vil leggja til sider utan denne retten.",

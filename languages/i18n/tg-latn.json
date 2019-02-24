@@ -5,7 +5,8 @@
 			"Liangent",
 			"아라",
 			"Macofe",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Zerpajvandho xat kaşida şavand:",
@@ -627,6 +628,7 @@
 	"right-editprotected": "Viroişi sahifahoi hifzşuda (biduni hifzi obşorī)",
 	"right-editinterface": "Viroişi namoişi korbarī",
 	"right-editusercss": "Viroişi parvandahoi CSS digar korbaron",
+	"right-edituserjson": "Viroişi parvandahoi JSON digar korbaron",
 	"right-edituserjs": "Viroişi parvandahoi JS digar korbaron",
 	"right-rollback": "Vogardoniji tezi viroişhoi oxirin korbare, ki jak sahifaro viroiş kardaast",
 	"right-markbotedits": "Alomat zadani viroişhoi vogardonişuda ba unvoni viroişi bot",

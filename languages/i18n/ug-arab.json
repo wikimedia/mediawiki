@@ -15,7 +15,8 @@
 			"Amire80",
 			"Uzdil",
 			"چۈشكۈن",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "ئۇلانما ئاستى سىزىقى:",
@@ -1086,6 +1087,7 @@
 	"right-editprotected": "قوغدالغان بەتنى تەھرىرلە (زەنجىرسىمان قۇلۇپلانمىغان)",
 	"right-editinterface": "ئىشلەتكۈچى كۆرۈنمە يۈزىنى تەھرىرلە",
 	"right-editusercss": "باشقا ئىشلەتكۈچىنىڭ CSS ھۆججىتىنى تەھرىرلە",
+	"right-edituserjson": "باشقا ئىشلەتكۈچىنىڭ JSON ھۆججىتىنى تەھرىرلە",
 	"right-edituserjs": "باشقا ئىشلەتكۈچىنىڭ  JS ھۆججىتىنى تەھرىرلە",
 	"right-editmyusercss": "ئۆزىڭىزنىڭ CSS ھۆججىتىڭىزنى تەھرىرلەڭ",
 	"right-editmyuserjs": "ئۆزىڭىزنىڭ JavaScript ھۆججىتىڭىزنى تەھرىرلەڭ",

@@ -19,7 +19,8 @@
 			"Macofe",
 			"Nemo bis",
 			"Alefbeis",
-			"Sol lemon"
+			"Sol lemon",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "שטרייכט אונטער לינקען",
@@ -1158,6 +1159,7 @@
 	"right-editcontentmodel": "רעדאקטירן אינהאלט־מאדעל פון א בלאט",
 	"right-editinterface": "רעדאַקטירן די באַניצער אייבערפֿלאַך",
 	"right-editusercss": "רעדאַקטירן אַנדערע באַניצערס CSS טעקעס",
+	"right-edituserjson": "רעדאַקטירן אַנדערע באַניצערס JSON טעקעס",
 	"right-edituserjs": "רעדאַקטירן אַנדערע באַניצערס JS טעקעס",
 	"right-editmyusercss": "רעדאקטירע אײַערע אייגענע באניצער CSS טעקעס",
 	"right-editmyuserjs": "רעדאקטירן אײַערע אייגענע באניצער JavaScript טעקעס",

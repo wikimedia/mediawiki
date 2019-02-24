@@ -17,7 +17,8 @@
 			"Abbas dhothar",
 			"Saraiki",
 			"BukhariSaeed",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "جوڑ تھلے لین:",
@@ -924,6 +925,7 @@
 	"right-editprotected": "بچاۓ صفے بدلو",
 	"right-editinterface": "ورتن وکھالہ بدلو",
 	"right-editusercss": "دوجے ورتن والیاں دیاں CSS  فائلاں بدلو",
+	"right-edituserjson": "دوجے ورتن والیاں دیاں JSON فائلاں بدلو",
 	"right-edituserjs": "دوجے ورتن والیاں دیاں  JavaScript  فائلاں بدلو",
 	"right-rollback": "جلدی نال آخری ورتن والے دیاں تبدیلیاں اک خاص صفے تے واپس کرو۔",
 	"right-markbotedits": "پچھے کیتیاں تبدیلیاں تے بوٹ دی تبدیلی دا نشان لگاؤ",

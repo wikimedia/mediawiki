@@ -25,7 +25,8 @@
 			"Suchichi02",
 			"逆襲的天邪鬼",
 			"Fitoschido",
-			"A2093064"
+			"A2093064",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "以底線識鏈接：",
@@ -947,6 +948,7 @@
 	"right-editprotected": "纂「{{int:protect-level-sysop}}」錮頁",
 	"right-editinterface": "纂要",
 	"right-editusercss": "纂他簿之CSS檔",
+	"right-edituserjson": "纂他簿之JSON檔",
 	"right-edituserjs": "纂他簿之JavaScript檔",
 	"right-rollback": "速復上簿頁之纂",
 	"right-markbotedits": "標復纂為機纂",

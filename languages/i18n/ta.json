@@ -54,7 +54,9 @@
 			"Kaartic",
 			"Fitoschido",
 			"Matěj Suchánek",
-			"UY Scuti"
+			"UY Scuti",
+			"CaptainIRS",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "அடிக்கோடிட்டத்தை இணை:",
@@ -1161,8 +1163,10 @@
 	"right-editcontentmodel": "பக்கத்தின் உள்ளடக்க வகையைத் திருத்து",
 	"right-editinterface": "பயனர் இடைமுகப்பை தொகுக்கவும்",
 	"right-editusercss": "மற்ற பயனர்களின் CSS கோப்புகளை திருத்து",
+	"right-edituserjson": "மற்ற பயனர்களின் JSON கோப்புகளை திருத்து",
 	"right-edituserjs": "மற்ற பயனர்களின் சாவாநிரல் (JavaScript) கோப்புகளைத் திருத்து",
 	"right-editmyusercss": "உங்களின் CSS கோப்புகளைத் திருத்து",
+	"right-editmyuserjson": "உங்கள் JSON கோப்புகளைத் திருத்து",
 	"right-editmyuserjs": "உங்கள் JavaScript கோப்புகளைத் திருத்து",
 	"right-viewmywatchlist": "உமது கவனிப்புப்பட்டியலைப் பார்",
 	"right-editmywatchlist": "உங்கள் கவனிப்புப் பட்டியலைத் திருத்து. கவனிக்க சில செயல்கள் உரிமையின்றி பக்கங்களைச் சேர்க்கலாம்.",
@@ -2989,7 +2993,7 @@
 	"feedback-thanks": "நன்றி! உங்கள் கருத்துகள் \"[$2 $1]\" பக்கத்தில்பதிவு செய்யப்பட்டுள்ளது .",
 	"feedback-thanks-title": "நன்றி!",
 	"feedback-useragent": "பயனர் முகவர்:",
-	"searchsuggest-search": "தேடு",
+	"searchsuggest-search": "{{SITENAME}}-இல் தேடுக",
 	"searchsuggest-containing": "கொண்டுள்ளது...",
 	"api-error-badtoken": "உள்ளகப் பிழை: தவறான அடையாளம்.",
 	"api-error-emptypage": "புதிய, காலி பக்கங்கள் உருவாக்கல் அனுமதிக்கப்படவில்லை.",

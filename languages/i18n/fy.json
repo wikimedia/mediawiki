@@ -20,7 +20,8 @@
 			"Catrope",
 			"Sjoerddebruin",
 			"Ieneach fan 'e Esk",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Keppelings ûnderstreekje:",
@@ -859,7 +860,8 @@
 	"right-protect": "Befeiligingsnivo's feroarje en beskerme siden bewurkje",
 	"right-editprotected": "Befeilige siden bewurkje (sûnder cascading-befeiliging)",
 	"right-editinterface": "Brûkersinterface bewurkje",
-	"right-editusercss": "De CSS-JS-triemmen fan oare brûkers bewurkje",
+	"right-editusercss": "De CSS-triemmen fan oare brûkers bewurkje",
+	"right-edituserjson": "De JSON-triemmen fan oare brûkers bewurkje",
 	"right-edituserjs": "De JS-triemmen fan oare brûkers bewurkje",
 	"right-rollback": "Gau de lêste bewurking(s) fan in brûker fan in side tebekdraaie",
 	"right-markbotedits": "Tebekdraaide bewurkings markearje as botbewurkings",

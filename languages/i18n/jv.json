@@ -18,7 +18,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Fitoschido",
-			"Notanotheramy"
+			"Notanotheramy",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Garis ngisori pranala:",
@@ -1120,8 +1121,10 @@
 	"right-editcontentmodel": "Besut modhèl kontèn kaca",
 	"right-editinterface": "Besut antarmuka panganggo",
 	"right-editusercss": "Besut barkas-barkas CSS panganggo liya",
+	"right-edituserjson": "Besut barkas-barkas JSON panganggo liya",
 	"right-edituserjs": "Besut barkas-barkas JavaScript panganggo liya",
 	"right-editmyusercss": "Owahi barkas CSS panganggo panjenengan",
+	"right-editmyuserjson": "Owahi barkas JSON panganggo panjenengan",
 	"right-editmyuserjs": "Owahi barkas JavaScript panganggo panjenengan",
 	"right-viewmywatchlist": "Deleng pawawangané panjenengan",
 	"right-editmywatchlist": "Owahi pawawangané panjenengan. Cathetan: ana cara liyane kanggo nambahi kaca menyang pratélan, sanadyan ora duwe hak iki.",

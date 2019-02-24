@@ -12,7 +12,8 @@
 			"Taylortheturtle",
 			"아라",
 			"Redhotchili23",
-			"Macofe"
+			"Macofe",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Kuritan sa idalom ang mga tabid:",
@@ -880,6 +881,7 @@
 	"right-editprotected": "Baguhon ang mga panid nga ginprotekta (waay sing proteksyon nga de-grado)",
 	"right-editinterface": "Baguhon ang user interface.",
 	"right-editusercss": "Baguhon ang mga CSS files sang iban nga naga-usar.",
+	"right-edituserjson": "Baguhon ang mga JSON files sang iban nga naga-usar.",
 	"right-edituserjs": "Baguhon ang mga Javascript files sang iban nga mga naga-usar.",
 	"right-rollback": "Dasigay nga ibalik sa nahauna nga estado ang mga pagbag-o sang ulihi nga naga-usar nga nabag-o sa isa ka partikular nga panid.",
 	"right-markbotedits": "Markahan ang mga rolled back nga mga ginbag-o bilang mga ginbag-o sang mga bot.",
