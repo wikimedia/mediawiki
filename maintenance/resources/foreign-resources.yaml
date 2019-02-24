@@ -92,14 +92,14 @@ jquery.cookie:
 
 moment:
   type: tar
-  src: https://codeload.github.com/moment/moment/tar.gz/2.19.3
-  integrity: sha384-23slJjNZmatbTdfvDaiQRrDVwRyNUySKqqm++Rk3Wrs0If3W6Pt744q5kYPw1JKJ
+  src: https://codeload.github.com/moment/moment/tar.gz/2.24.0
+  integrity: sha384-2/I9rfqkN8AAgh5wOXXphuo827uV7lMmOodrCfIvqC6W6JKKiDGOwd+lE3e8R0yz
   dest:
-    moment-2.19.3/moment.js:
-    moment-2.19.3/CHANGELOG.md:
-    moment-2.19.3/README.md:
-    moment-2.19.3/LICENSE:
-    moment-2.19.3/locale/*.js: locale
+    moment-2.24.0/moment.js:
+    moment-2.24.0/CHANGELOG.md:
+    moment-2.24.0/README.md:
+    moment-2.24.0/LICENSE:
+    moment-2.24.0/locale/*.js: locale
 
 mustache:
   type: multi-file
