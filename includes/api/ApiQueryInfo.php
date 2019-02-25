@@ -411,8 +411,8 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( $titleExists ) {
 			$pageInfo['touched'] = wfTimestamp( TS_ISO_8601, $this->pageTouched[$pageid] );
-			$pageInfo['lastrevid'] = intval( $this->pageLatest[$pageid] );
-			$pageInfo['length'] = intval( $this->pageLength[$pageid] );
+			$pageInfo['lastrevid'] = (int)$this->pageLatest[$pageid];
+			$pageInfo['length'] = (int)$this->pageLength[$pageid];
 
 			if ( isset( $this->pageIsRedir[$pageid] ) && $this->pageIsRedir[$pageid] ) {
 				$pageInfo['redirect'] = true;
@@ -738,10 +738,10 @@ class ApiQueryInfo extends ApiQueryBase {
 		foreach ( $res as $row ) {
 			if ( MWNamespace::isTalk( $row->page_namespace ) ) {
 				$this->talkids[MWNamespace::getSubject( $row->page_namespace )][$row->page_title] =
-					intval( $row->page_id );
+					(int)$row->page_id;
 			} else {
 				$this->subjectids[MWNamespace::getTalk( $row->page_namespace )][$row->page_title] =
-					intval( $row->page_id );
+					(int)$row->page_id;
 			}
 		}
 	}

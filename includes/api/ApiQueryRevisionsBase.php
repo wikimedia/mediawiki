@@ -229,9 +229,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		$anyHidden = false;
 
 		if ( $this->fld_ids ) {
-			$vals['revid'] = intval( $revision->getId() );
+			$vals['revid'] = (int)$revision->getId();
 			if ( !is_null( $revision->getParentId() ) ) {
-				$vals['parentid'] = intval( $revision->getParentId() );
+				$vals['parentid'] = (int)$revision->getParentId();
 			}
 		}
 
@@ -267,7 +267,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_size ) {
 			try {
-				$vals['size'] = intval( $revision->getSize() );
+				$vals['size'] = (int)$revision->getSize();
 			} catch ( RevisionAccessException $e ) {
 				// Back compat: If there's no size, return 0.
 				// @todo: Gergő says to mention T198099 as a "todo" here.
@@ -410,7 +410,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		ApiResult::setArrayType( $vals, 'assoc' );
 
 		if ( $this->fld_slotsize ) {
-			$vals['size'] = intval( $slot->getSize() );
+			$vals['size'] = (int)$slot->getSize();
 		}
 
 		if ( $this->fld_slotsha1 ) {

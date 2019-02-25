@@ -258,14 +258,14 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			$op = ( $dir == 'newer' ? '>' : '<' );
 			if ( $optimizeGenerateTitles ) {
 				$this->dieContinueUsageIf( count( $cont ) != 2 );
-				$ns = intval( $cont[0] );
+				$ns = (int)$cont[0];
 				$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
 				$title = $db->addQuotes( $cont[1] );
 				$this->addWhere( "ar_namespace $op $ns OR " .
 					"(ar_namespace = $ns AND ar_title $op= $title)" );
 			} elseif ( $mode == 'all' ) {
 				$this->dieContinueUsageIf( count( $cont ) != 4 );
-				$ns = intval( $cont[0] );
+				$ns = (int)$cont[0];
 				$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
 				$title = $db->addQuotes( $cont[1] );
 				$ts = $db->addQuotes( $db->timestamp( $cont[2] ) );

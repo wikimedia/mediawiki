@@ -137,7 +137,7 @@ class ApiFeedContributions extends ApiBase {
 		}
 
 		// Hook completed and did not return a valid feed item
-		$title = Title::makeTitle( intval( $row->page_namespace ), $row->page_title );
+		$title = Title::makeTitle( (int)$row->page_namespace, $row->page_title );
 		if ( $title && $title->userCan( 'read', $this->getUser() ) ) {
 			$date = $row->rev_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();

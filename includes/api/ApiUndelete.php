@@ -84,8 +84,8 @@ class ApiUndelete extends ApiBase {
 		$this->setWatch( $params['watchlist'], $titleObj );
 
 		$info['title'] = $titleObj->getPrefixedText();
-		$info['revisions'] = intval( $retval[0] );
-		$info['fileversions'] = intval( $retval[1] );
+		$info['revisions'] = (int)$retval[0];
+		$info['fileversions'] = (int)$retval[1];
 		$info['reason'] = $retval[2];
 		$this->getResult()->addValue( null, $this->getModuleName(), $info );
 	}

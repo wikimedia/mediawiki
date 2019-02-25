@@ -1282,7 +1282,7 @@ abstract class ApiBase extends ContextSource {
 								}
 							}
 						} else {
-							$value = intval( $value );
+							$value = (int)$value;
 							if ( !is_null( $min ) || !is_null( $max ) ) {
 								$this->validateLimit( $paramName, $value, $min, $max, null, $enforceLimits );
 							}
@@ -1311,7 +1311,7 @@ abstract class ApiBase extends ContextSource {
 								: $paramSettings[self::PARAM_MAX];
 							$this->getResult()->addParsedLimit( $this->getModuleName(), $value );
 						} else {
-							$value = intval( $value );
+							$value = (int)$value;
 							$this->validateLimit(
 								$paramName,
 								$value,

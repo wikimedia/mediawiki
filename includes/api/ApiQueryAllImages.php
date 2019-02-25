@@ -217,11 +217,11 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 		// Filters not depending on sort
 		if ( isset( $params['minsize'] ) ) {
-			$this->addWhere( 'img_size>=' . intval( $params['minsize'] ) );
+			$this->addWhere( 'img_size>=' . (int)$params['minsize'] );
 		}
 
 		if ( isset( $params['maxsize'] ) ) {
-			$this->addWhere( 'img_size<=' . intval( $params['maxsize'] ) );
+			$this->addWhere( 'img_size<=' . (int)$params['maxsize'] );
 		}
 
 		$sha1 = false;

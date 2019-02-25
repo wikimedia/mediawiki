@@ -61,7 +61,7 @@ class ApiFeedWatchlist extends ApiBase {
 			}
 
 			// limit to the number of hours going from now back
-			$endTime = wfTimestamp( TS_MW, time() - intval( $params['hours'] * 60 * 60 ) );
+			$endTime = wfTimestamp( TS_MW, time() - (int)$params['hours'] * 60 * 60 );
 
 			// Prepare parameters for nested request
 			$fauxReqArr = [

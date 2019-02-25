@@ -1277,8 +1277,8 @@ class ApiMain extends ApiBase {
 			if ( $lagInfo['lag'] > $maxLag ) {
 				$response = $this->getRequest()->response();
 
-				$response->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
-				$response->header( 'X-Database-Lag: ' . intval( $lagInfo['lag'] ) );
+				$response->header( 'Retry-After: ' . max( (int)$maxLag, 5 ) );
+				$response->header( 'X-Database-Lag: ' . (int)$lagInfo['lag'] );
 
 				if ( $this->getConfig()->get( 'ShowHostnames' ) ) {
 					$this->dieWithError(

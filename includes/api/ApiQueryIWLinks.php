@@ -73,7 +73,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			$this->dieContinueUsageIf( count( $cont ) != 3 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$db = $this->getDB();
-			$iwlfrom = intval( $cont[0] );
+			$iwlfrom = (int)$cont[0];
 			$iwlprefix = $db->addQuotes( $cont[1] );
 			$iwltitle = $db->addQuotes( $cont[2] );
 			$this->addWhere(

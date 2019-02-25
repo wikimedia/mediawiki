@@ -155,7 +155,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 			$op = ( $dir == 'newer' ? '>' : '<' );
 			if ( $revCount !== 0 ) {
 				$this->dieContinueUsageIf( count( $cont ) != 2 );
-				$rev = intval( $cont[0] );
+				$rev = (int)$cont[0];
 				$this->dieContinueUsageIf( strval( $rev ) !== $cont[0] );
 				$ar_id = (int)$cont[1];
 				$this->dieContinueUsageIf( strval( $ar_id ) !== $cont[1] );
@@ -164,7 +164,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 					"ar_id $op= $ar_id)" );
 			} else {
 				$this->dieContinueUsageIf( count( $cont ) != 4 );
-				$ns = intval( $cont[0] );
+				$ns = (int)$cont[0];
 				$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
 				$title = $db->addQuotes( $cont[1] );
 				$ts = $db->addQuotes( $db->timestamp( $cont[2] ) );

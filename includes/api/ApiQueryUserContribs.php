@@ -523,12 +523,12 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$anyHidden = true;
 		}
 		if ( $this->fld_ids ) {
-			$vals['pageid'] = intval( $row->rev_page );
-			$vals['revid'] = intval( $row->rev_id );
-			// $vals['textid'] = intval( $row->rev_text_id ); // todo: Should this field be exposed?
+			$vals['pageid'] = (int)$row->rev_page;
+			$vals['revid'] = (int)$row->rev_id;
+			// $vals['textid'] = (int)$row->rev_text_id; // todo: Should this field be exposed?
 
 			if ( !is_null( $row->rev_parent_id ) ) {
-				$vals['parentid'] = intval( $row->rev_parent_id );
+				$vals['parentid'] = (int)$row->rev_parent_id;
 			}
 		}
 
@@ -577,7 +577,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		}
 
 		if ( $this->fld_size && !is_null( $row->rev_len ) ) {
-			$vals['size'] = intval( $row->rev_len );
+			$vals['size'] = (int)$row->rev_len;
 		}
 
 		if ( $this->fld_sizediff
@@ -585,7 +585,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			&& !is_null( $row->rev_parent_id )
 		) {
 			$parentLen = $this->parentLens[$row->rev_parent_id] ?? 0;
-			$vals['sizediff'] = intval( $row->rev_len - $parentLen );
+			$vals['sizediff'] = (int)$row->rev_len - $parentLen;
 		}
 
 		if ( $this->fld_tags ) {

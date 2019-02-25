@@ -510,7 +510,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param string $prefix Module prefix
 	 */
 	public static function addTitleInfo( &$arr, $title, $prefix = '' ) {
-		$arr[$prefix . 'ns'] = intval( $title->getNamespace() );
+		$arr[$prefix . 'ns'] = (int)$title->getNamespace();
 		$arr[$prefix . 'title'] = $title->getPrefixedText();
 	}
 
@@ -524,7 +524,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$result = $this->getResult();
 		ApiResult::setIndexedTagName( $data, $this->getModulePrefix() );
 
-		return $result->addValue( [ 'query', 'pages', intval( $pageId ) ],
+		return $result->addValue( [ 'query', 'pages', (int)$pageId ],
 			$this->getModuleName(),
 			$data );
 	}
