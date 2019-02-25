@@ -31,12 +31,16 @@ $wgVisualEditorAvailableNamespaces = [
     "_merge_strategy" => "array_plus"
 ];
 
+// Creating base64 encoded path
+$fullPath = $GLOBALS['wgServer'] . $GLOBALS['wgScriptPath'];
+$encFullPath = base64_encode( $fullPath );
+
 // Linking with Parsoid
 $wgVirtualRestConfig['modules']['parsoid'] = array(
 	// URL to the Parsoid instance
 	// Use port 8142 if you use the Debian package
-	'url' => 'http://localhost:8000',
-	'domain' => 'bluespice',
+	'url' => 'http://127.0.0.1:8000',
+	'domain' => $encFullPath,
 	'forwardCookies' => true
 );
 
