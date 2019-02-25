@@ -275,6 +275,8 @@ abstract class MediaTransformOutput {
  * @ingroup Media
  */
 class ThumbnailImage extends MediaTransformOutput {
+	private static $firstNonIconImageRendered = false;
+
 	/**
 	 * Get a thumbnail object from a file and parameters.
 	 * If $path is set to null, the output file is treated as a source copy.
@@ -356,6 +358,8 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * @return string
 	 */
 	function toHtml( $options = [] ) {
+		global $wgPriorityHints;
+
 		if ( count( func_get_args() ) == 2 ) {
 			throw new MWException( __METHOD__ . ' called in the old style' );
 		}
@@ -369,6 +373,14 @@ class ThumbnailImage extends MediaTransformOutput {
 			'src' => $this->url,
 			'decoding' => 'async',
 		];
+
+		if ( $wgPriorityHints
+			&& !self::$firstNonIconImageRendered
+			&& $this->width * $this->height > 100 * 100 ) {
+			self::$firstBigImageRendered = true;
+
+			$attribs['importance'] = 'high';
+		}
 
 		if ( !empty( $options['custom-url-link'] ) ) {
 			$linkAttribs = [ 'href' => $options['custom-url-link'] ];

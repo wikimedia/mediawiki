@@ -9038,6 +9038,24 @@ $wgEnableRollbackConfirmationPrompt = true;
 $wgEnableBlockNoticeStats = false;
 
 /**
+ * Origin Trials tokens.
+ *
+ * @since 1.34
+ * @var array
+ */
+$wgOriginTrials = [];
+
+/**
+ * Enable client-side Priority Hints.
+ *
+ * @warning EXPERIMENTAL!
+ *
+ * @since 1.34
+ * @var bool
+ */
+$wgPriorityHints = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
