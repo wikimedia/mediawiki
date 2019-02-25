@@ -34,7 +34,7 @@ class JpegHandler extends ExifBitmapHandler {
 	const SRGB_EXIF_COLOR_SPACE = 'sRGB';
 	const SRGB_ICC_PROFILE_DESCRIPTION = 'sRGB IEC61966-2.1';
 
-	function normaliseParams( $image, &$params ) {
+	public function normaliseParams( $image, &$params ) {
 		if ( !parent::normaliseParams( $image, $params ) ) {
 			return false;
 		}
@@ -90,7 +90,7 @@ class JpegHandler extends ExifBitmapHandler {
 		return $res;
 	}
 
-	function getScriptParams( $params ) {
+	protected function getScriptParams( $params ) {
 		$res = parent::getScriptParams( $params );
 		if ( isset( $params['quality'] ) ) {
 			$res['quality'] = $params['quality'];
@@ -98,7 +98,7 @@ class JpegHandler extends ExifBitmapHandler {
 		return $res;
 	}
 
-	function getMetadata( $image, $filename ) {
+	public function getMetadata( $image, $filename ) {
 		try {
 			$meta = BitmapMetadataHandler::Jpeg( $filename );
 			if ( !is_array( $meta ) ) {

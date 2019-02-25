@@ -41,7 +41,7 @@ class SvgHandler extends ImageHandler {
 		'title' => 'ObjectName',
 	];
 
-	function isEnabled() {
+	public function isEnabled() {
 		global $wgSVGConverters, $wgSVGConverter;
 		if ( !isset( $wgSVGConverters[$wgSVGConverter] ) ) {
 			wfDebug( "\$wgSVGConverter is invalid, disabling SVG rendering.\n" );
@@ -399,7 +399,7 @@ class SvgHandler extends ImageHandler {
 		}
 	}
 
-	function getThumbType( $ext, $mime, $params = null ) {
+	public function getThumbType( $ext, $mime, $params = null ) {
 		return [ 'png', 'image/png' ];
 	}
 
@@ -412,7 +412,7 @@ class SvgHandler extends ImageHandler {
 	 * @param File $file
 	 * @return string
 	 */
-	function getLongDesc( $file ) {
+	public function getLongDesc( $file ) {
 		global $wgLang;
 
 		$metadata = $this->unpackMetadata( $file->getMetadata() );
@@ -438,7 +438,7 @@ class SvgHandler extends ImageHandler {
 	 * @param string $filename
 	 * @return string Serialised metadata
 	 */
-	function getMetadata( $file, $filename ) {
+	public function getMetadata( $file, $filename ) {
 		$metadata = [ 'version' => self::SVG_METADATA_VERSION ];
 		try {
 			$metadata += SVGMetadataExtractor::getMetadata( $filename );
@@ -469,7 +469,7 @@ class SvgHandler extends ImageHandler {
 		return 'parsed-svg';
 	}
 
-	function isMetadataValid( $image, $metadata ) {
+	public function isMetadataValid( $image, $metadata ) {
 		$meta = $this->unpackMetadata( $metadata );
 		if ( $meta === false ) {
 			return self::METADATA_BAD;
@@ -493,7 +493,7 @@ class SvgHandler extends ImageHandler {
 	 * @param bool|IContextSource $context Context to use (optional)
 	 * @return array|bool
 	 */
-	function formatMetadata( $file, $context = false ) {
+	public function formatMetadata( $file, $context = false ) {
 		$result = [
 			'visible' => [],
 			'collapsed' => []
@@ -594,7 +594,7 @@ class SvgHandler extends ImageHandler {
 	 * @param array $params
 	 * @return array
 	 */
-	function getScriptParams( $params ) {
+	protected function getScriptParams( $params ) {
 		$scriptParams = [ 'width' => $params['width'] ];
 		if ( isset( $params['lang'] ) ) {
 			$scriptParams['lang'] = $params['lang'];

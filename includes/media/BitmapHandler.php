@@ -91,7 +91,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * @param array &$params
 	 * @return bool
 	 */
-	function normaliseParams( $image, &$params ) {
+	public function normaliseParams( $image, &$params ) {
 		global $wgMaxInterlacingAreas;
 		if ( !parent::normaliseParams( $image, $params ) ) {
 			return false;
