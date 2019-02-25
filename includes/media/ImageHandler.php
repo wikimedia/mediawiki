@@ -74,7 +74,7 @@ abstract class ImageHandler extends MediaHandler {
 		}
 	}
 
-	function getScriptParams( $params ) {
+	protected function getScriptParams( $params ) {
 		return [ 'width' => $params['width'] ];
 	}
 
