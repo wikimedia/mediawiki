@@ -101,8 +101,7 @@ abstract class Action implements MessageLocalizer {
 			if ( !class_exists( $classOrCallable ) ) {
 				return false;
 			}
-			$obj = new $classOrCallable( $page, $context );
-			return $obj;
+			return new $classOrCallable( $page, $context );
 		}
 
 		if ( is_callable( $classOrCallable ) ) {
@@ -142,7 +141,7 @@ abstract class Action implements MessageLocalizer {
 			} else {
 				$actionName = 'view';
 			}
-		} elseif ( $actionName == 'editredlink' ) {
+		} elseif ( $actionName === 'editredlink' ) {
 			$actionName = 'edit';
 		}
 
@@ -359,7 +358,7 @@ abstract class Action implements MessageLocalizer {
 	 */
 	protected function setHeaders() {
 		$out = $this->getOutput();
-		$out->setRobotPolicy( "noindex,nofollow" );
+		$out->setRobotPolicy( 'noindex,nofollow' );
 		$out->setPageTitle( $this->getPageTitle() );
 		$out->setSubtitle( $this->getDescription() );
 		$out->setArticleRelated( true );
