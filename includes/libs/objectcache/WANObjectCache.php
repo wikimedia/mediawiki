@@ -1222,19 +1222,18 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$minTime = $opts['minAsOf'] ?? self::MIN_TIMESTAMP_NONE;
 		$versioned = isset( $opts['version'] );
 		$touchedCallback = $opts['touchedCallback'] ?? null;
+		$initialTime = $this->getCurrentTime();
 
 		// Get a collection name to describe this class of key
 		$kClass = $this->determineKeyClass( $key );
 
-		// Get the current key value
+		// Get the current key value and populate $curTTL and $asOf accordingly
 		$curTTL = null;
 		$cValue = $this->get( $key, $curTTL, $checkKeys, $asOf ); // current value
 		$value = $cValue; // return value
-
 		// Apply additional dynamic expiration logic if supplied
 		$curTTL = $this->applyTouchedCallback( $value, $asOf, $curTTL, $touchedCallback );
 
-		$preCallbackTime = $this->getCurrentTime();
 		// Determine if a cached value regeneration is needed or desired
 		if (
 			$this->isValid( $value, $versioned, $asOf, $minTime ) &&
@@ -1242,7 +1241,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		) {
 			$preemptiveRefresh = (
 				$this->worthRefreshExpiring( $curTTL, $lowTTL ) ||
-				$this->worthRefreshPopular( $asOf, $ageNew, $popWindow, $preCallbackTime )
+				$this->worthRefreshPopular( $asOf, $ageNew, $popWindow, $initialTime )
 			);
 
 			if ( !$preemptiveRefresh ) {
@@ -1317,6 +1316,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			throw new InvalidArgumentException( "Invalid cache miss callback provided." );
 		}
 
+		$preCallbackTime = $this->getCurrentTime();
 		// Generate the new value from the callback...
 		$setOpts = [];
 		++$this->callbackDepth;
@@ -1328,7 +1328,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$valueIsCacheable = ( $value !== false && $ttl >= 0 );
 
 		if ( $valueIsCacheable ) {
-			$ago = max( $this->getCurrentTime() - $preCallbackTime, 0.0 );
+			$ago = max( $this->getCurrentTime() - $initialTime, 0.0 );
+			$this->stats->timing( "wanobjectcache.$kClass.regen_set_delay", 1000 * $ago );
+
 			if ( $isKeyTombstoned ) {
 				if ( $this->checkAndSetCooloff( $key, $kClass, $ago, $lockTSE, $hasLock ) ) {
 					// When delete() is called, writes are write-holed by the tombstone,
@@ -1354,7 +1356,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		if ( $hasLock ) {
 			// Avoid using delete() to avoid pointless mcrouter broadcasting
-			$this->cache->changeTTL( self::MUTEX_KEY_PREFIX . $key, (int)$preCallbackTime - 60 );
+			$this->cache->changeTTL( self::MUTEX_KEY_PREFIX . $key, (int)$initialTime - 60 );
 		}
 
 		$miss = is_infinite( $minTime ) ? 'renew' : 'miss';
