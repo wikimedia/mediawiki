@@ -725,6 +725,13 @@ class PageUpdater {
 			return null;
 		}
 
+		// Due to the hook call above, it can manipulate, the $summary var making it a string.
+		// But the var has to return a instanceof CommentStoreComment, otherwise it will fatal
+		// later on. Bug T216893
+		if ( !( $summary instanceof CommentStoreComment ) ) {
+			$summary = CommentStoreComment::newUnsavedComment( trim( $summary ) );
+		}
+
 		// Provide autosummaries if one is not provided and autosummaries are enabled
 		// XXX: $summary == null seems logical, but the empty string may actually come from the user
 		// XXX: Move this logic out of the storage layer! It does not belong here! Use a callback?
