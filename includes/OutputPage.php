@@ -2523,6 +2523,18 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Get the Origin-Trial header values. This is used to enable Chrome Origin
+	 * Trials: https://github.com/GoogleChrome/OriginTrials
+	 *
+	 * @return array
+	 */
+	private function getOriginTrials() {
+		$config = $this->getConfig();
+
+		return $config->get( 'OriginTrials' );
+	}
+
+	/**
 	 * Send cache control HTTP headers
 	 */
 	public function sendCacheControl() {
@@ -2686,6 +2698,11 @@ class OutputPage extends ContextSource {
 		$frameOptions = $this->getFrameOptions();
 		if ( $frameOptions ) {
 			$response->header( "X-Frame-Options: $frameOptions" );
+		}
+
+		$originTrials = $this->getOriginTrials();
+		foreach ( $originTrials as $originTrial ) {
+			$response->header( "Origin-Trial: $originTrial", false );
 		}
 
 		ContentSecurityPolicy::sendHeaders( $this );

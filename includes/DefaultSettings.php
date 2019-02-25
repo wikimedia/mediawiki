@@ -9038,6 +9038,14 @@ $wgEnableRollbackConfirmationPrompt = true;
 $wgEnableBlockNoticeStats = false;
 
 /**
+ * Origin Trials tokens.
+ *
+ * @since 1.34
+ * @var array
+ */
+$wgOriginTrials = [];
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
