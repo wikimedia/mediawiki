@@ -1912,18 +1912,18 @@ class Block {
 	 * they can never edit it. (Ideally the flag would be stored as
 	 * null in these cases, but the database field isn't nullable.)
 	 *
+	 * This method does not validate that the passed in talk page belongs to the
+	 * block target since the target (an IP) might not be the same as the user's
+	 * talk page (if they are logged in).
+	 *
 	 * @since 1.33
 	 * @param Title|null $usertalk The user's user talk page. If null,
 	 *  and if the target is a User, the target's userpage is used
 	 * @return bool The user can edit their talk page
 	 */
 	public function appliesToUsertalk( Title $usertalk = null ) {
-		$target = $this->target;
-		$targetIsUser = $target instanceof User;
-		$targetName = $targetIsUser ? $target->getName() : $target;
-
 		if ( !$usertalk ) {
-			if ( $targetIsUser ) {
+			if ( $this->target instanceof User ) {
 				$usertalk = $this->target->getTalkPage();
 			} else {
 				throw new InvalidArgumentException(
@@ -1936,28 +1936,6 @@ class Block {
 			throw new InvalidArgumentException(
 				'$usertalk must be a user talk page'
 			);
-		}
-
-		switch ( $this->type ) {
-			case self::TYPE_USER:
-			case self::TYPE_IP:
-				if ( $usertalk->getText() !== $targetName ) {
-					throw new InvalidArgumentException(
-						'$usertalk must be a talk page for the block target'
-					);
-				}
-				break;
-			case self::TYPE_RANGE:
-				if ( !IP::isInRange( $usertalk->getText(), $target ) ) {
-					throw new InvalidArgumentException(
-						'$usertalk must be a talk page for an IP within the block target range'
-					);
-				}
-				break;
-			default:
-				throw new LogicException(
-					'Cannot determine validity of $usertalk for this type of block'
-				);
 		}
 
 		if ( !$this->isSitewide() ) {
