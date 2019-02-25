@@ -238,7 +238,7 @@ abstract class ImageHandler extends MediaHandler {
 	 * @param File $file
 	 * @return string
 	 */
-	function getLongDesc( $file ) {
+	public function getLongDesc( $file ) {
 		global $wgLang;
 		$pages = $file->pageCount();
 		$size = htmlspecialchars( $wgLang->formatSize( $file->getSize() ) );

@@ -83,7 +83,7 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * @param array $metadata
 	 * @return bool|int
 	 */
-	function isMetadataValid( $image, $metadata ) {
+	public function isMetadataValid( $image, $metadata ) {
 		global $wgShowEXIF;
 		if ( !$wgShowEXIF ) {
 			# Metadata disabled and so an empty field is expected
@@ -127,7 +127,7 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * @param bool|IContextSource $context Context to use (optional)
 	 * @return array|bool
 	 */
-	function formatMetadata( $image, $context = false ) {
+	public function formatMetadata( $image, $context = false ) {
 		$meta = $this->getCommonMetaArray( $image );
 		if ( count( $meta ) === 0 ) {
 			return false;
