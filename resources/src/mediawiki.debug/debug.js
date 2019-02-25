@@ -298,10 +298,10 @@
 			$table = $( '<table>' ).attr( 'id', 'mw-debug-querylist' );
 
 			$( '<tr>' )
-				.append( $( '<th>' ).text( '#' ).css( 'width', '4em' ) )
-				.append( $( '<th>' ).text( 'SQL' ) )
-				.append( $( '<th>' ).text( 'Time' ).css( 'width', '8em' ) )
-				.append( $( '<th>' ).text( 'Call' ).css( 'width', '18em' ) )
+				.append( $( '<th>' ).attr( 'scope', 'col' ).text( '#' ).css( 'width', '4em' ) )
+				.append( $( '<th>' ).attr( 'scope', 'col' ).text( 'SQL' ) )
+				.append( $( '<th>' ).attr( 'scope', 'col' ).text( 'Time' ).css( 'width', '8em' ) )
+				.append( $( '<th>' ).attr( 'scope', 'col' ).text( 'Call' ).css( 'width', '18em' ) )
 				.appendTo( $table );
 
 			for ( i = 0, length = this.data.queries.length; i < length; i += 1 ) {
@@ -352,12 +352,12 @@
 				$table = $( '<table>' ).appendTo( $unit );
 
 				$( '<tr>' )
-					.html( '<th>Key</th><th>Value</th>' )
+					.html( '<th scope="col">Key</th><th scope="col">Value</th>' )
 					.appendTo( $table );
 
 				for ( key in data ) {
 					$( '<tr>' )
-						.append( $( '<th>' ).text( key ) )
+						.append( $( '<th>' ).attr( 'scope', 'row' ).text( key ) )
 						.append( $( '<td>' ).text( data[ key ] ) )
 						.appendTo( $table );
 				}
