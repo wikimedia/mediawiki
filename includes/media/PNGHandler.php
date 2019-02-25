@@ -34,7 +34,7 @@ class PNGHandler extends BitmapHandler {
 	 * @param string $filename
 	 * @return string
 	 */
-	function getMetadata( $image, $filename ) {
+	public function getMetadata( $image, $filename ) {
 		try {
 			$metadata = BitmapMetadataHandler::PNG( $filename );
 		} catch ( Exception $e ) {
@@ -52,7 +52,7 @@ class PNGHandler extends BitmapHandler {
 	 * @param bool|IContextSource $context Context to use (optional)
 	 * @return array|bool
 	 */
-	function formatMetadata( $image, $context = false ) {
+	public function formatMetadata( $image, $context = false ) {
 		$meta = $this->getCommonMetaArray( $image );
 		if ( count( $meta ) === 0 ) {
 			return false;
@@ -111,7 +111,7 @@ class PNGHandler extends BitmapHandler {
 		return 'parsed-png';
 	}
 
-	function isMetadataValid( $image, $metadata ) {
+	public function isMetadataValid( $image, $metadata ) {
 		if ( $metadata === self::BROKEN_FILE ) {
 			// Do not repetitivly regenerate metadata on broken file.
 			return self::METADATA_GOOD;
@@ -142,7 +142,7 @@ class PNGHandler extends BitmapHandler {
 	 * @param File $image
 	 * @return string
 	 */
-	function getLongDesc( $image ) {
+	public function getLongDesc( $image ) {
 		global $wgLang;
 		$original = parent::getLongDesc( $image );
 

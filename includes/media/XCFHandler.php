@@ -49,7 +49,7 @@ class XCFHandler extends BitmapHandler {
 	 * @param array|null $params
 	 * @return array
 	 */
-	function getThumbType( $ext, $mime, $params = null ) {
+	public function getThumbType( $ext, $mime, $params = null ) {
 		return [ 'png', 'image/png' ];
 	}
 
