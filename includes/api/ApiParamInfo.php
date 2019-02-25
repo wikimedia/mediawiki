@@ -361,7 +361,7 @@ class ApiParamInfo extends ApiBase {
 						break;
 					case 'integer':
 					case 'limit':
-						$item['default'] = intval( $settings[ApiBase::PARAM_DFLT] );
+						$item['default'] = (int)$settings[ApiBase::PARAM_DFLT];
 						break;
 					case 'timestamp':
 						$item['default'] = wfTimestamp( TS_ISO_8601, $settings[ApiBase::PARAM_DFLT] );

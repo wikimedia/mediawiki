@@ -135,7 +135,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				// Add a WHERE clause for sortkey and from
 				$this->dieContinueUsageIf( !$this->validateHexSortkey( $cont[1] ) );
 				$escSortkey = $this->getDB()->addQuotes( hex2bin( $cont[1] ) );
-				$from = intval( $cont[2] );
+				$from = (int)$cont[2];
 				$op = $dir == 'newer' ? '>' : '<';
 				// $contWhere is used further down
 				$contWhere = "cl_sortkey $op $escSortkey OR " .
@@ -245,7 +245,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					ApiResult::META_TYPE => 'assoc',
 				];
 				if ( $fld_ids ) {
-					$vals['pageid'] = intval( $row->page_id );
+					$vals['pageid'] = (int)$row->page_id;
 				}
 				if ( $fld_title ) {
 					$title = Title::makeTitle( $row->page_namespace, $row->page_title );

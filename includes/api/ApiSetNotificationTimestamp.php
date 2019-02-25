@@ -161,7 +161,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 					$ns = $title->getNamespace();
 					$dbkey = $title->getDBkey();
 					$r = [
-						'ns' => intval( $ns ),
+						'ns' => (int)$ns,
 						'title' => $title->getPrefixedText(),
 					];
 					if ( !$title->exists() ) {

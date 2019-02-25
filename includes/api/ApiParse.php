@@ -330,7 +330,7 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( !is_null( $oldid ) ) {
-			$result_array['revid'] = intval( $oldid );
+			$result_array['revid'] = (int)$oldid;
 		}
 
 		if ( $params['redirects'] && !is_null( $redirValues ) ) {

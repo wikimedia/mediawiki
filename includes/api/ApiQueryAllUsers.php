@@ -281,10 +281,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				$data['hidden'] = true;
 			}
 			if ( $fld_editcount ) {
-				$data['editcount'] = intval( $row->user_editcount );
+				$data['editcount'] = (int)$row->user_editcount;
 			}
 			if ( $params['activeusers'] ) {
-				$data['recentactions'] = intval( $row->recentactions );
+				$data['recentactions'] = (int)$row->recentactions;
 				// @todo 'recenteditcount' is set for BC, remove in 1.25
 				$data['recenteditcount'] = $data['recentactions'];
 			}

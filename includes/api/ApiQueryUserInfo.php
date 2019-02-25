@@ -119,7 +119,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	protected function getCurrentUserInfo() {
 		$user = $this->getUser();
 		$vals = [];
-		$vals['id'] = intval( $user->getId() );
+		$vals['id'] = (int)$user->getId();
 		$vals['name'] = $user->getName();
 
 		if ( $user->isAnon() ) {
@@ -189,7 +189,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if ( isset( $this->prop['editcount'] ) ) {
 			// use intval to prevent null if a non-logged-in user calls
 			// api.php?format=jsonfm&action=query&meta=userinfo&uiprop=editcount
-			$vals['editcount'] = intval( $user->getEditCount() );
+			$vals['editcount'] = (int)$user->getEditCount();
 		}
 
 		if ( isset( $this->prop['ratelimits'] ) ) {
@@ -284,8 +284,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		foreach ( $this->getConfig()->get( 'RateLimits' ) as $action => $limits ) {
 			foreach ( $categories as $cat ) {
 				if ( isset( $limits[$cat] ) && !is_null( $limits[$cat] ) ) {
-					$retval[$action][$cat]['hits'] = intval( $limits[$cat][0] );
-					$retval[$action][$cat]['seconds'] = intval( $limits[$cat][1] );
+					$retval[$action][$cat]['hits'] = (int)$limits[$cat][0];
+					$retval[$action][$cat]['seconds'] = (int)$limits[$cat][1];
 				}
 			}
 		}

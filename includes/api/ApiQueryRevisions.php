@@ -292,7 +292,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 					$ts = $db->addQuotes( $db->timestampOrNull( $params['start'] ) );
 					if ( $params['startid'] !== null ) {
 						$this->addWhere( "$tsField $op $ts OR "
-							. "$tsField = $ts AND $idField $op= " . intval( $params['startid'] ) );
+							. "$tsField = $ts AND $idField $op= " . (int)$params['startid'] );
 					} else {
 						$this->addWhere( "$tsField $op= $ts" );
 					}
@@ -302,7 +302,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 					$ts = $db->addQuotes( $db->timestampOrNull( $params['end'] ) );
 					if ( $params['endid'] !== null ) {
 						$this->addWhere( "$tsField $op $ts OR "
-							. "$tsField = $ts AND $idField $op= " . intval( $params['endid'] ) );
+							. "$tsField = $ts AND $idField $op= " . (int)$params['endid'] );
 					} else {
 						$this->addWhere( "$tsField $op= $ts" );
 					}
@@ -354,7 +354,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$this->addWhereFld( 'rev_id', array_keys( $revs ) );
 
 			if ( $params['continue'] !== null ) {
-				$this->addWhere( 'rev_id >= ' . intval( $params['continue'] ) );
+				$this->addWhere( 'rev_id >= ' . (int)$params['continue'] );
 			}
 			$this->addOption( 'ORDER BY', 'rev_id' );
 		} elseif ( $pageCount > 0 ) {
@@ -374,8 +374,8 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			if ( $params['continue'] !== null ) {
 				$cont = explode( '|', $params['continue'] );
 				$this->dieContinueUsageIf( count( $cont ) != 2 );
-				$pageid = intval( $cont[0] );
-				$revid = intval( $cont[1] );
+				$pageid = (int)$cont[0];
+				$revid = (int)$cont[1];
 				$this->addWhere(
 					"rev_page > $pageid OR " .
 					"(rev_page = $pageid AND " .
@@ -403,12 +403,12 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 				// additional pages to be had. Stop here...
 				if ( $enumRevMode ) {
 					$this->setContinueEnumParameter( 'continue',
-						$row->rev_timestamp . '|' . intval( $row->rev_id ) );
+						$row->rev_timestamp . '|' . (int)$row->rev_id );
 				} elseif ( $revCount > 0 ) {
-					$this->setContinueEnumParameter( 'continue', intval( $row->rev_id ) );
+					$this->setContinueEnumParameter( 'continue', (int)$row->rev_id );
 				} else {
-					$this->setContinueEnumParameter( 'continue', intval( $row->rev_page ) .
-						'|' . intval( $row->rev_id ) );
+					$this->setContinueEnumParameter( 'continue', (int)$row->rev_page .
+						'|' . (int)$row->rev_id );
 				}
 				break;
 			}
@@ -438,12 +438,12 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 				if ( !$fit ) {
 					if ( $enumRevMode ) {
 						$this->setContinueEnumParameter( 'continue',
-							$row->rev_timestamp . '|' . intval( $row->rev_id ) );
+							$row->rev_timestamp . '|' . (int)$row->rev_id );
 					} elseif ( $revCount > 0 ) {
-						$this->setContinueEnumParameter( 'continue', intval( $row->rev_id ) );
+						$this->setContinueEnumParameter( 'continue', (int)$row->rev_id );
 					} else {
-						$this->setContinueEnumParameter( 'continue', intval( $row->rev_page ) .
-							'|' . intval( $row->rev_id ) );
+						$this->setContinueEnumParameter( 'continue', (int)$row->rev_page .
+							'|' . (int)$row->rev_id );
 					}
 					break;
 				}

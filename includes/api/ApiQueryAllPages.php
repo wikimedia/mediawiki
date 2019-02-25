@@ -122,12 +122,12 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		$this->addFields( $selectFields );
 		$forceNameTitleIndex = true;
 		if ( isset( $params['minsize'] ) ) {
-			$this->addWhere( 'page_len>=' . intval( $params['minsize'] ) );
+			$this->addWhere( 'page_len>=' . (int)$params['minsize'] );
 			$forceNameTitleIndex = false;
 		}
 
 		if ( isset( $params['maxsize'] ) ) {
-			$this->addWhere( 'page_len<=' . intval( $params['maxsize'] ) );
+			$this->addWhere( 'page_len<=' . (int)$params['maxsize'] );
 			$forceNameTitleIndex = false;
 		}
 
@@ -238,8 +238,8 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			if ( is_null( $resultPageSet ) ) {
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 				$vals = [
-					'pageid' => intval( $row->page_id ),
-					'ns' => intval( $title->getNamespace() ),
+					'pageid' => (int)$row->page_id,
+					'ns' => (int)$title->getNamespace(),
 					'title' => $title->getPrefixedText()
 				];
 				$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $vals );
