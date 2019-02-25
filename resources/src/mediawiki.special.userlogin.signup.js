@@ -30,7 +30,7 @@
 		updateForCheckbox();
 	} );
 
-	// Check if the username is invalid or already taken
+	// Check if the username is invalid or already taken; show username normalisation warning
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		var $usernameInput = $root.find( '#wpName2' ),
 			$passwordInput = $root.find( '#wpPassword2' ),
@@ -42,6 +42,10 @@
 		function checkUsername( username ) {
 			// We could just use .then() if we didn't have to pass on .abort()…
 			var d, apiPromise;
+
+			// Leading/trailing/multiple whitespace characters are always stripped in usernames,
+			// this should not require a warning. We do warn about underscores.
+			username = username.replace( / +/g, ' ' ).trim();
 
 			d = $.Deferred();
 			apiPromise = api.get( {
@@ -68,6 +72,10 @@
 								return m.html;
 							} ) : []
 						} );
+					} else if ( userinfo.name !== username ) {
+						d.resolve( { valid: true, messages: [
+							mw.message( 'createacct-normalization', username, userinfo.name ).parseDom()
+						] } );
 					} else {
 						d.resolve( { valid: true, messages: [] } );
 					}

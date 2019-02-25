@@ -2353,6 +2353,7 @@ return [
 			'createacct-emailrequired',
 			'noname',
 			'userexists',
+			'createacct-normalization',
 		],
 		'dependencies' => [
 			'mediawiki.api',
