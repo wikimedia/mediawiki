@@ -130,7 +130,7 @@ class DjVuHandler extends ImageHandler {
 	 * @param array $params
 	 * @return array
 	 */
-	function getScriptParams( $params ) {
+	protected function getScriptParams( $params ) {
 		return [
 			'width' => $params['width'],
 			'page' => $params['page'],

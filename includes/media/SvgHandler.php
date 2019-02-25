@@ -594,7 +594,7 @@ class SvgHandler extends ImageHandler {
 	 * @param array $params
 	 * @return array
 	 */
-	function getScriptParams( $params ) {
+	protected function getScriptParams( $params ) {
 		$scriptParams = [ 'width' => $params['width'] ];
 		if ( isset( $params['lang'] ) ) {
 			$scriptParams['lang'] = $params['lang'];

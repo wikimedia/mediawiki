@@ -90,7 +90,7 @@ class JpegHandler extends ExifBitmapHandler {
 		return $res;
 	}
 
-	function getScriptParams( $params ) {
+	protected function getScriptParams( $params ) {
 		$res = parent::getScriptParams( $params );
 		if ( isset( $params['quality'] ) ) {
 			$res['quality'] = $params['quality'];
