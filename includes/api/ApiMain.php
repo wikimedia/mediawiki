@@ -1632,7 +1632,7 @@ class ApiMain extends ApiBase {
 	 */
 	protected function logRequest( $time, $e = null ) {
 		$request = $this->getRequest();
-		$logCtx = [
+		$legacyLogCtx = [
 			'ts' => time(),
 			'ip' => $request->getIP(),
 			'userAgent' => $this->getUserAgent(),
@@ -1643,17 +1643,43 @@ class ApiMain extends ApiBase {
 			'params' => [],
 		];
 
+		$logCtx = [
+			'$schema' => '/mediawiki/api/request/0.0.1',
+			'meta' => [
+				'id' => UIDGenerator::newUUIDv1(),
+				'dt' => gmdate( 'c' ),
+				'domain' => $this->getConfig()->get( 'ServerName' ),
+				'stream' => 'mediawiki.api-request'
+			],
+			'http' => [
+				'method' => $request->getMethod(),
+				'client_ip' => $request->getIP(),
+				'request_headers' => [
+					'user-agent' => $request->getHeader( 'User-agent' ),
+					'api-user-agent' => $request->getHeader( 'Api-user-agent' )
+				],
+			],
+			'database' => wfWikiID(),
+			'backend_time_ms' => (int)round( $time * 1000 ),
+			'params' => []
+		];
+
+		$logCtx['meta']['request_id'] =
+			$logCtx['http']['request_headers']['x-request-id'] = WebRequest::getRequestId();
+
 		if ( $e ) {
+			$logCtx['api_error_codes'] = [];
 			foreach ( $this->errorMessagesFromException( $e ) as $msg ) {
-				$logCtx['errorCodes'][] = $msg->getApiCode();
+				$legacyLogCtx['errorCodes'][] = $msg->getApiCode();
+				$logCtx['api_error_codes'][] = $msg->getApiCode();
 			}
 		}
 
 		// Construct space separated message for 'api' log channel
 		$msg = "API {$request->getMethod()} " .
 			wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) .
-			" {$logCtx['ip']} " .
-			"T={$logCtx['timeSpentBackend']}ms";
+			" {$legacyLogCtx['ip']} " .
+			"T={$legacyLogCtx['timeSpentBackend']}ms";
 
 		$sensitive = array_flip( $this->getSensitiveParams() );
 		foreach ( $this->getParamsUsed() as $name ) {
@@ -1672,13 +1698,17 @@ class ApiMain extends ApiBase {
 				$encValue = $this->encodeRequestLogValue( $value );
 			}
 
+			$legacyLogCtx['params'][$name] = $value;
 			$logCtx['params'][$name] = $value;
 			$msg .= " {$name}={$encValue}";
 		}
 
 		wfDebugLog( 'api', $msg, 'private' );
-		// ApiAction channel is for structured data consumers
-		wfDebugLog( 'ApiAction', '', 'private', $logCtx );
+		// ApiAction channel is for structured data consumers.
+		// The ApiAction was using logging channel is deprecated and is replaced
+		// by the api-request channel.
+		wfDebugLog( 'ApiAction', '', 'private', $legacyLogCtx );
+		wfDebugLog( 'api-request', '', 'private', $logCtx );
 	}
 
 	/**
