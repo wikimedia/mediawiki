@@ -2450,10 +2450,14 @@ $wgLang: the user language
 $wikiPage: the WikiPage (object) being saved
 $user: the user (object) saving the article
 $content: the new article content, as a Content object
-$summary: the article summary (comment)
-$isminor: minor flag
-$iswatch: watch flag
-$section: section #
+&$summary: CommentStoreComment object containing the edit comment. Can be replaced with a new one.
+$isminor: Boolean flag specifying if the edit was marked as minor.
+$iswatch: Previously a watch flag. Currently unused, always null.
+$section: Previously the section number being edited. Currently unused, always null.
+$flags: All EDIT_… flags (including EDIT_MINOR) as an integer number. See WikiPage::doEditContent
+  documentation for flags' definition.
+$status: StatusValue object for the hook handlers resulting status. Either set $status->fatal() or
+  return false to abort the save action.
 
 'PageContentSaveComplete': After an article has been updated.
 $wikiPage: WikiPage modified
