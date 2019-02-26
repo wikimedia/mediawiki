@@ -1,3 +1,12 @@
+== MediaWiki 1.32.2 ==
+THIS IS NOT A RELEASE YET
+
+=== Changes since MediaWiki 1.32.1 ===
+* (T204423) Backport support for hyphenated DB names in JobQueueGroup.
+* (T216968) Return pageid as int in both list=iwbacklinks and
+  list=langbacklinks.
+* (T215169) Fix for Database::update() with IGNORE option fails on PostgreSQL.
+
 == MediaWiki 1.32.1 ==
 
 === Changes since MediaWiki 1.32.0 ===
@@ -16,8 +25,6 @@
 * (T204800) Fix Title::getFragmentForURL for bad interwiki prefix
 * (T215566) Fix installer being unable to determine if the database exists
   during a fresh installation.
-* (T204423) Backport support for hyphenated DB names in JobQueueGroup.
-* (T215169) Fix for Database::update() with IGNORE option fails on PostgreSQL.
 
 == MediaWiki 1.32.0 ==
 
