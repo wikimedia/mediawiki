@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class MergeHistory {
 
-	/** @const int Maximum number of revisions that can be merged at once */
+	/** Maximum number of revisions that can be merged at once */
 	const REVISION_LIMIT = 5000;
 
 	/** @var Title Page from which history will be merged */
