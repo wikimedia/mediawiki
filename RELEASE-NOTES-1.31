@@ -56,6 +56,7 @@ THIS IS NOT A RELEASE YET
   removed.
 * (T209885) Prevent populateSearchIndex.php from breaking once actor migration
   has been started.
+* (T216968) Return pageid as int in both list=iwbacklinks and list=langbacklinks.
 * (T215169) Fix for Database::update() with IGNORE option fails on PostgreSQL.
 
 == MediaWiki 1.31.1 ==
