@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediawiki\Logger;
+namespace MediaWiki\Logger;
 
 use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface;

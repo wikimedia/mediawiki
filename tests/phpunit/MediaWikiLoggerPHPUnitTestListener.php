@@ -1,8 +1,8 @@
 <?php
 
-use Mediawiki\Logger\LoggerFactory;
-use Mediawiki\Logger\Spi;
-use Mediawiki\Logger\LogCapturingSpi;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Logger\Spi;
+use MediaWiki\Logger\LogCapturingSpi;
 
 /**
  * Replaces the logging SPI on each test run. This allows
