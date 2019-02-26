@@ -202,11 +202,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	const FLD_VALUE = 1; // key to the cached value
 	const FLD_TTL = 2; // key to the original TTL
 	const FLD_TIME = 3; // key to the cache time
-	const FLD_FLAGS = 4; // key to the flags bitfield
+	const FLD_FLAGS = 4; // key to the flags bitfield (reserved number)
 	const FLD_HOLDOFF = 5; // key to any hold-off TTL
-
-	/** @var int Treat this value as expired-on-arrival */
-	const FLG_STALE = 1;
 
 	const ERR_NONE = 0; // no error
 	const ERR_NO_RESPONSE = 1; // no response
@@ -525,41 +522,67 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		// Do not cache potentially uncommitted data as it might get rolled back
 		if ( !empty( $opts['pending'] ) ) {
-			$this->logger->info( 'Rejected set() for {cachekey} due to pending writes.',
-				[ 'cachekey' => $key ] );
+			$this->logger->info(
+				'Rejected set() for {cachekey} due to pending writes.',
+				[ 'cachekey' => $key ]
+			);
 
 			return true; // no-op the write for being unsafe
 		}
 
-		$wrapExtra = []; // additional wrapped value fields
+		$logicalTTL = null; // logical TTL override
 		// Check if there's a risk of writing stale data after the purge tombstone expired
 		if ( $lag === false || ( $lag + $age ) > self::MAX_READ_LAG ) {
-			// Case A: read lag with "lockTSE"; save but record value as stale
-			if ( $lockTSE >= 0 ) {
-				$ttl = max( 1, (int)$lockTSE ); // set() expects seconds
-				$wrapExtra[self::FLD_FLAGS] = self::FLG_STALE; // mark as stale
-			// Case B: any long-running transaction; ignore this set()
-			} elseif ( $age > self::MAX_READ_LAG ) {
-				$this->logger->info( 'Rejected set() for {cachekey} due to snapshot lag.',
-					[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ] );
+			// Case A: any long-running transaction
+			if ( $age > self::MAX_READ_LAG ) {
+				if ( $lockTSE >= 0 ) {
+					// Store value as *almost* stale to avoid cache and mutex stampedes
+					$logicalTTL = self::TTL_SECOND;
+					$this->logger->info(
+						'Lowered set() TTL for {cachekey} due to snapshot lag.',
+						[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ]
+					);
+				} else {
+					$this->logger->info(
+						'Rejected set() for {cachekey} due to snapshot lag.',
+						[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ]
+					);
 
-				return true; // no-op the write for being unsafe
-			// Case C: high replication lag; lower TTL instead of ignoring all set()s
+					return true; // no-op the write for being unsafe
+				}
+			// Case B: high replication lag; lower TTL instead of ignoring all set()s
 			} elseif ( $lag === false || $lag > self::MAX_READ_LAG ) {
-				$ttl = $ttl ? min( $ttl, self::TTL_LAGGED ) : self::TTL_LAGGED;
-				$this->logger->warning( 'Lowered set() TTL for {cachekey} due to replication lag.',
-					[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ] );
-			// Case D: medium length request with medium replication lag; ignore this set()
+				if ( $lockTSE >= 0 ) {
+					$logicalTTL = min( $ttl ?: INF, self::TTL_LAGGED );
+				} else {
+					$ttl = min( $ttl ?: INF, self::TTL_LAGGED );
+				}
+				$this->logger->warning(
+					'Lowered set() TTL for {cachekey} due to replication lag.',
+					[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ]
+				);
+			// Case C: medium length request with medium replication lag
 			} else {
-				$this->logger->info( 'Rejected set() for {cachekey} due to high read lag.',
-					[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ] );
+				if ( $lockTSE >= 0 ) {
+					// Store value as *almost* stale to avoid cache and mutex stampedes
+					$logicalTTL = self::TTL_SECOND;
+					$this->logger->info(
+						'Lowered set() TTL for {cachekey} due to high read lag.',
+						[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ]
+					);
+				} else {
+					$this->logger->info(
+						'Rejected set() for {cachekey} due to high read lag.',
+						[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ]
+					);
 
-				return true; // no-op the write for being unsafe
+					return true; // no-op the write for being unsafe
+				}
 			}
 		}
 
 		// Wrap that value with time/TTL/version metadata
-		$wrapped = $this->wrap( $value, $ttl, $now ) + $wrapExtra;
+		$wrapped = $this->wrap( $value, $logicalTTL ?: $ttl, $now );
 
 		$func = function ( $cache, $key, $cWrapped ) use ( $wrapped ) {
 			return ( is_string( $cWrapped ) )
@@ -1266,7 +1289,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		// Decide if only one thread should handle regeneration at a time
 		$useMutex =
 			// Note that since tombstones no-op set(), $lockTSE and $curTTL cannot be used to
-			// deduce the key hotness because $curTTL will always keep increasing until the
+			// deduce the key hotness because |$curTTL| will always keep increasing until the
 			// tombstone expires or is overwritten by a new tombstone. Also, even if $lockTSE
 			// is not set, constant regeneration of a key for the tombstone lifetime might be
 			// very expensive. Assume tombstoned keys are possibly hot in order to reduce
@@ -2148,12 +2171,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			return [ false, null ];
 		}
 
-		$flags = $wrapped[self::FLD_FLAGS] ?? 0;
-		if ( ( $flags & self::FLG_STALE ) == self::FLG_STALE ) {
-			// Treat as expired, with the cache time as the expiration
-			$age = $now - $wrapped[self::FLD_TIME];
-			$curTTL = min( -$age, self::TINY_NEGATIVE );
-		} elseif ( $wrapped[self::FLD_TTL] > 0 ) {
+		if ( $wrapped[self::FLD_TTL] > 0 ) {
 			// Get the approximate time left on the key
 			$age = $now - $wrapped[self::FLD_TIME];
 			$curTTL = max( $wrapped[self::FLD_TTL] - $age, 0.0 );
