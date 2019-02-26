@@ -57,28 +57,28 @@ abstract class AbstractRestriction implements Restriction {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public static function getType() {
 		return static::TYPE;
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public static function getTypeId() {
 		return static::TYPE_ID;
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getBlockId() {
 		return $this->blockId;
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function setBlockId( $blockId ) {
 		$this->blockId = (int)$blockId;
@@ -87,21 +87,21 @@ abstract class AbstractRestriction implements Restriction {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getValue() {
 		return $this->value;
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public static function newFromRow( \stdClass $row ) {
 		return new static( $row->ir_ipb_id, $row->ir_value );
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function toRow() {
 		return [
@@ -112,14 +112,14 @@ abstract class AbstractRestriction implements Restriction {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function equals( Restriction $other ) {
 		return $this->getHash() === $other->getHash();
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getHash() {
 		return $this->getType() . '-' . $this->getValue();

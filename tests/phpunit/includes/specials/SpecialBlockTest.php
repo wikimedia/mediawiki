@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class SpecialBlockTest extends SpecialPageTestBase {
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	protected function newSpecialPage() {
 		return new SpecialBlock();

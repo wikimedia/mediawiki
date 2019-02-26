@@ -25,17 +25,17 @@ namespace MediaWiki\Block\Restriction;
 class NamespaceRestriction extends AbstractRestriction {
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	const TYPE = 'ns';
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	const TYPE_ID = 2;
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function matches( \Title $title ) {
 		return $this->getValue() === $title->getNamespace();

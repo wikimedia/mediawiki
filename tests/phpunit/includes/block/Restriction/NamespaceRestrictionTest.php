@@ -29,7 +29,7 @@ class NamespaceRestrictionTest extends RestrictionTestCase {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	protected function getClass() {
 		return NamespaceRestriction::class;
