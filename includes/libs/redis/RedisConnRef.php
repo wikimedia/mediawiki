@@ -33,9 +33,10 @@ class RedisConnRef implements LoggerAwareInterface {
 	protected $pool;
 	/** @var Redis */
 	protected $conn;
-
-	protected $server; // string
-	protected $lastError; // string
+	/** @var string */
+	protected $server;
+	/** @var string|null */
+	protected $lastError;
 
 	/**
 	 * @var LoggerInterface
