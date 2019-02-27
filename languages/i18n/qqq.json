@@ -2811,6 +2811,8 @@
 	"ipb-confirm": "Used as hidden field in the form on [[Special:Block]].",
 	"ipb-sitewide": "A type of block the user can select from on [[Special:Block]].",
 	"ipb-partial": "A type of block the user can select from on [[Special:Block]].",
+	"ipb-sitewide-help": "Help text describing the effects of a sitewide block on [[Special:Block]]",
+	"ipb-partial-help": "Help text describing the effects of a partial block on  [[Special:Block]]",
 	"ipb-pages-label": "The label for an autocomplete text field to specify pages to block a user from editing on [[Special:Block]].",
 	"ipb-namespaces-label": "The label for an autocomplete text field to specify namespaces to block a user from editing on [[Special:Block]].",
 	"badipaddress": "An error message shown when one entered an invalid IP address in blocking page.",

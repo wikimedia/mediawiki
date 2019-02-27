@@ -143,6 +143,8 @@ class SpecialBlock extends FormSpecialPage {
 	protected function getFormFields() {
 		global $wgBlockAllowsUTEdit;
 
+		$this->getOutput()->enableOOUI();
+
 		$user = $this->getUser();
 
 		$suggestedDurations = self::getSuggestedDurations();
@@ -177,8 +179,16 @@ class SpecialBlock extends FormSpecialPage {
 				'type' => 'radio',
 				'cssclass' => 'mw-block-editing-restriction',
 				'options' => [
-					$this->msg( 'ipb-sitewide' )->escaped() => 'sitewide',
-					$this->msg( 'ipb-partial' )->escaped() => 'partial',
+					$this->msg( 'ipb-sitewide' )->escaped() .
+						new \OOUI\LabelWidget( [
+							'classes' => [ 'oo-ui-inline-help' ],
+							'label' => $this->msg( 'ipb-sitewide-help' )->text(),
+						] ) => 'sitewide',
+					$this->msg( 'ipb-partial' )->escaped() .
+						new \OOUI\LabelWidget( [
+							'classes' => [ 'oo-ui-inline-help' ],
+							'label' => $this->msg( 'ipb-partial-help' )->text(),
+						] ) => 'partial',
 				],
 				'section' => 'actions',
 			];
