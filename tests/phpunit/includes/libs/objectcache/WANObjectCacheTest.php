@@ -911,30 +911,65 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	public function testLockTSESlow() {
 		$cache = $this->cache;
 		$key = wfRandomString();
+		$key2 = wfRandomString();
 		$value = wfRandomString();
 
+		$mockWallClock = 1549343530.2053;
+		$priorTime = $mockWallClock;
+		$cache->setMockTime( $mockWallClock );
+
 		$calls = 0;
-		$func = function ( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value, $cache, $key ) {
+		$func = function ( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value, $priorTime ) {
 			++$calls;
-			$setOpts['since'] = microtime( true ) - 10;
-			// Immediately kill any mutex rather than waiting a second
-			$cache->delete( $cache::MUTEX_KEY_PREFIX . $key );
+			$setOpts['since'] = $priorTime - 10;
 			return $value;
 		};
 
-		// Value should be marked as stale due to snapshot lag
+		// Value should be given a low logical TTL due to snapshot lag
 		$curTTL = null;
-		$ret = $cache->getWithSetCallback( $key, 30, $func, [ 'lockTSE' => 5 ] );
+		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5 ] );
 		$this->assertEquals( $value, $ret );
 		$this->assertEquals( $value, $cache->get( $key, $curTTL ), 'Value was populated' );
-		$this->assertLessThan( 0, $curTTL, 'Value has negative curTTL' );
+		$this->assertEquals( 1, $curTTL, 'Value has reduced logical TTL', 0.01 );
 		$this->assertEquals( 1, $calls, 'Value was generated' );
+
+		$mockWallClock += 2;
+
+		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5 ] );
+		$this->assertEquals( $value, $ret );
+		$this->assertEquals( 2, $calls, 'Callback used (mutex acquired)' );
 
 		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
 		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
-		$ret = $cache->getWithSetCallback( $key, 30, $func, [ 'lockTSE' => 5 ] );
+
+		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5 ] );
 		$this->assertEquals( $value, $ret );
-		$this->assertEquals( 1, $calls, 'Callback was not used' );
+		$this->assertEquals( 3, $calls, 'Callback was not used (mutex not acquired)' );
+
+		$calls = 0;
+		$func2 = function ( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value, $priorTime ) {
+			++$calls;
+			$setOpts['lag'] = 15;
+			return $value;
+		};
+
+		// Value should be given a low logical TTL due to replication lag
+		$curTTL = null;
+		$ret = $cache->getWithSetCallback( $key2, 300, $func2, [ 'lockTSE' => 5 ] );
+		$this->assertEquals( $value, $ret );
+		$this->assertEquals( $value, $cache->get( $key2, $curTTL ), 'Value was populated' );
+		$this->assertEquals( 30, $curTTL, 'Value has reduced logical TTL', 0.01 );
+		$this->assertEquals( 1, $calls, 'Value was generated' );
+
+		$ret = $cache->getWithSetCallback( $key2, 300, $func2, [ 'lockTSE' => 5 ] );
+		$this->assertEquals( $value, $ret );
+		$this->assertEquals( 1, $calls, 'Callback was used (not expired)' );
+
+		$mockWallClock += 31;
+
+		$ret = $cache->getWithSetCallback( $key2, 300, $func2, [ 'lockTSE' => 5 ] );
+		$this->assertEquals( $value, $ret );
+		$this->assertEquals( 2, $calls, 'Callback was used (mutex acquired)' );
 	}
 
 	/**
@@ -950,8 +985,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$calls = 0;
 		$func = function () use ( &$calls, $value, $cache, $key ) {
 			++$calls;
-			// Immediately kill any mutex rather than waiting a second
-			$cache->delete( $cache::MUTEX_KEY_PREFIX . $key );
 			return $value;
 		};
 
