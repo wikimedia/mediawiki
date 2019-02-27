@@ -28,6 +28,7 @@
  */
 class ResourceLoaderImageModule extends ResourceLoaderModule {
 
+	/** @var array|null */
 	protected $definition = null;
 
 	/**
@@ -38,10 +39,18 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 
 	protected $origin = self::ORIGIN_CORE_SITEWIDE;
 
+	/** @var ResourceLoaderImage[]|null */
+	protected $imageObjects = null;
+	/** @var array */
 	protected $images = [];
+	/** @var string|null */
 	protected $defaultColor = null;
 	protected $useDataURI = true;
+	/** @var array|null */
+	protected $globalVariants = null;
+	/** @var array */
 	protected $variants = [];
+	/** @var string|null */
 	protected $prefix = null;
 	protected $selectorWithoutVariant = '.{prefix}-{name}';
 	protected $selectorWithVariant = '.{prefix}-{name}-{variant}';
@@ -240,7 +249,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 */
 	public function getImages( ResourceLoaderContext $context ) {
 		$skin = $context->getSkin();
-		if ( !isset( $this->imageObjects ) ) {
+		if ( $this->imageObjects === null ) {
 			$this->loadFromDefinition();
 			$this->imageObjects = [];
 		}
@@ -288,7 +297,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 */
 	public function getGlobalVariants( ResourceLoaderContext $context ) {
 		$skin = $context->getSkin();
-		if ( !isset( $this->globalVariants ) ) {
+		if ( $this->globalVariants === null ) {
 			$this->loadFromDefinition();
 			$this->globalVariants = [];
 		}
