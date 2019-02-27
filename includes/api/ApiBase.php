@@ -2223,12 +2223,23 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function logFeatureUsage( $feature ) {
 		$request = $this->getRequest();
-		$s = '"' . addslashes( $feature ) . '"' .
-			' "' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) . '"' .
-			' "' . $request->getIP() . '"' .
-			' "' . addslashes( $request->getHeader( 'Referer' ) ) . '"' .
-			' "' . addslashes( $this->getMain()->getUserAgent() ) . '"';
-		wfDebugLog( 'api-feature-usage', $s, 'private' );
+		$ctx = [
+			'feature' => $feature,
+			// Spaces to underscores in 'username' for historical reasons.
+			'username' => str_replace( ' ', '_', $this->getUser()->getName() ),
+			'ip' => $request->getIP(),
+			'referer' => (string)$request->getHeader( 'Referer' ),
+			'agent' => $this->getMain()->getUserAgent(),
+		];
+
+		// Text string is deprecated. Remove (or replace with just $feature) in MW 1.34.
+		$s = '"' . addslashes( $ctx['feature'] ) . '"' .
+			' "' . wfUrlencode( $ctx['username'] ) . '"' .
+			' "' . $ctx['ip'] . '"' .
+			' "' . addslashes( $ctx['referer'] ) . '"' .
+			' "' . addslashes( $ctx['agent'] ) . '"';
+
+		wfDebugLog( 'api-feature-usage', $s, 'private', $ctx );
 	}
 
 	/**@}*/
