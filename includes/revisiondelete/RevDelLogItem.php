@@ -105,7 +105,7 @@ class RevDelLogItem extends RevDelItem {
 		$loglink = $this->list->msg( 'parentheses' )->rawParams( $loglink )->escaped();
 		// User links and action text
 		$action = $formatter->getActionText();
-		// Comment
+
 		$comment = CommentStore::getStore()->getComment( 'log_comment', $this->row )->text;
 		$comment = $this->list->getLanguage()->getDirMark()
 			. Linker::commentBlock( $comment );

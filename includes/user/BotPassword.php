@@ -473,7 +473,6 @@ class BotPassword implements IDBAccessObject {
 			return Status::newFatal( 'botpasswords-locked' );
 		}
 
-		// Throttle
 		$throttle = null;
 		if ( !empty( $wgPasswordAttemptThrottle ) ) {
 			$throttle = new MediaWiki\Auth\Throttler( $wgPasswordAttemptThrottle, [

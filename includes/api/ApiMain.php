@@ -1592,17 +1592,14 @@ class ApiMain extends ApiBase {
 			$this->setupExternalResponse( $module, $params );
 		}
 
-		// Execute
 		$module->execute();
 		Hooks::run( 'APIAfterExecute', [ &$module ] );
 
 		$this->reportUnusedParams();
 
 		if ( !$this->mInternalMode ) {
-			// append Debug information
 			MWDebug::appendDebugInfoToApiResult( $this->getContext(), $this->getResult() );
 
-			// Print result data
 			$this->printResult();
 		}
 	}
