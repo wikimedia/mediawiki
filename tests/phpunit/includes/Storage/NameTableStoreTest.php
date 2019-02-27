@@ -208,7 +208,7 @@ class NameTableStoreTest extends MediaWikiTestCase {
 
 	public function provideGetName() {
 		return [
-			[ new HashBagOStuff(), 3, 3 ],
+			[ new HashBagOStuff(), 3, 2 ],
 			[ new EmptyBagOStuff(), 3, 3 ],
 		];
 	}
@@ -217,26 +217,27 @@ class NameTableStoreTest extends MediaWikiTestCase {
 	 * @dataProvider provideGetName
 	 */
 	public function testGetName( $cacheBag, $insertCalls, $selectCalls ) {
+		// Check for operations to in-memory cache (IMC) and persistent cache (PC)
 		$store = $this->getNameTableSqlStore( $cacheBag, $insertCalls, $selectCalls );
 
 		// Get 1 ID and make sure getName returns correctly
-		$fooId = $store->acquireId( 'foo' );
-		$this->assertSame( 'foo', $store->getName( $fooId ) );
+		$fooId = $store->acquireId( 'foo' ); // regen PC, set IMC, update IMC, tombstone PC
+		$this->assertSame( 'foo', $store->getName( $fooId ) ); // use IMC
 
 		// Get another ID and make sure getName returns correctly
-		$barId = $store->acquireId( 'bar' );
-		$this->assertSame( 'bar', $store->getName( $barId ) );
+		$barId = $store->acquireId( 'bar' ); // update IMC, tombstone PC
+		$this->assertSame( 'bar', $store->getName( $barId ) ); // use IMC
 
 		// Blitz the cache and make sure it still returns
-		TestingAccessWrapper::newFromObject( $store )->tableCache = null;
-		$this->assertSame( 'foo', $store->getName( $fooId ) );
-		$this->assertSame( 'bar', $store->getName( $barId ) );
+		TestingAccessWrapper::newFromObject( $store )->tableCache = null; // clear IMC
+		$this->assertSame( 'foo', $store->getName( $fooId ) ); // regen interim PC, set IMC
+		$this->assertSame( 'bar', $store->getName( $barId ) ); // use IMC
 
 		// Blitz the cache again and get another ID and make sure getName returns correctly
-		TestingAccessWrapper::newFromObject( $store )->tableCache = null;
-		$bazId = $store->acquireId( 'baz' );
-		$this->assertSame( 'baz', $store->getName( $bazId ) );
-		$this->assertSame( 'baz', $store->getName( $bazId ) );
+		TestingAccessWrapper::newFromObject( $store )->tableCache = null; // clear IMC
+		$bazId = $store->acquireId( 'baz' ); // set IMC using interim PC, update IMC, tombstone PC
+		$this->assertSame( 'baz', $store->getName( $bazId ) ); // uses IMC
+		$this->assertSame( 'baz', $store->getName( $bazId ) ); // uses IMC
 	}
 
 	public function testGetName_masterFallback() {

@@ -121,6 +121,9 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testProcessCache() {
+		$mockWallClock = 1549343530.2053;
+		$this->cache->setMockTime( $mockWallClock );
+
 		$hit = 0;
 		$callback = function () use ( &$hit ) {
 			++$hit;
@@ -154,18 +157,28 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( 6, $hit, "New values cached" );
 
 		foreach ( $keys as $i => $key ) {
+			// Should evict from process cache
 			$this->cache->delete( $key );
+			$mockWallClock += 0.001; // cached values will be newer than tombstone
+			// Get into cache (specific process cache group)
 			$this->cache->getWithSetCallback(
 				$key, 100, $callback, [ 'pcTTL' => 5, 'pcGroup' => $groups[$i] ] );
 		}
-		$this->assertEquals( 9, $hit, "Values evicted" );
+		$this->assertEquals( 9, $hit, "Values evicted by delete()" );
 
-		$key = reset( $keys );
 		// Get into cache (default process cache group)
+		$key = reset( $keys );
 		$this->cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
-		$this->assertEquals( 10, $hit, "Value calculated" );
+		$this->assertEquals( 9, $hit, "Value recently interim-cached" );
+
+		$mockWallClock += 0.2; // interim key not brand new
+		$this->cache->clearProcessCache();
 		$this->cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
-		$this->assertEquals( 10, $hit, "Value cached" );
+		$this->assertEquals( 10, $hit, "Value calculated (interim key not recent and reset)" );
+		$this->cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
+		$this->assertEquals( 10, $hit, "Value process cached" );
+
+		$mockWallClock += 0.2; // interim key not brand new
 		$outerCallback = function () use ( &$callback, $key ) {
 			$v = $this->cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
 
@@ -240,7 +253,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$t2 = $cache->getCheckKeyTime( $cKey2 );
 		$this->assertGreaterThanOrEqual( $priorTime, $t2, 'Check keys generated on miss' );
 
-		$mockWallClock += 0.01;
+		$mockWallClock += 0.2; // interim key is not brand new and check keys have past values
 		$priorTime = $mockWallClock; // reference time
 		$wasSet = 0;
 		$v = $cache->getWithSetCallback(
@@ -437,9 +450,9 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			return $value;
 		};
 
-		$cache = new NearExpiringWANObjectCache( [
-			'cache'        => new HashBagOStuff()
-		] );
+		$cache = new NearExpiringWANObjectCache( [ 'cache' => new HashBagOStuff() ] );
+		$mockWallClock = 1549343530.2053;
+		$cache->setMockTime( $mockWallClock );
 
 		$wasSet = 0;
 		$key = wfRandomString();
@@ -447,6 +460,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$v = $cache->getWithSetCallback( $key, 20, $func, $opts );
 		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value calculated" );
+
+		$mockWallClock += 0.2; // interim key is not brand new
 		$v = $cache->getWithSetCallback( $key, 20, $func, $opts );
 		$this->assertEquals( 2, $wasSet, "Value re-calculated" );
 
@@ -872,6 +887,9 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$key = wfRandomString();
 		$value = wfRandomString();
 
+		$mockWallClock = 1549343530.2053;
+		$cache->setMockTime( $mockWallClock );
+
 		$calls = 0;
 		$func = function () use ( &$calls, $value, $cache, $key ) {
 			++$calls;
@@ -892,6 +910,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( 1, $calls, 'Callback was not used' );
 
 		$cache->delete( $key );
+		$mockWallClock += 0.001; // cached values will be newer than tombstone
 		$ret = $cache->getWithSetCallback( $key, 30, $func,
 			[ 'lockTSE' => 5, 'checkKeys' => $checkKeys ] );
 		$this->assertEquals( $value, $ret, 'Callback was used; interim saved' );
@@ -915,13 +934,12 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$value = wfRandomString();
 
 		$mockWallClock = 1549343530.2053;
-		$priorTime = $mockWallClock;
 		$cache->setMockTime( $mockWallClock );
 
 		$calls = 0;
-		$func = function ( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value, $priorTime ) {
+		$func = function ( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value, &$mockWallClock ) {
 			++$calls;
-			$setOpts['since'] = $priorTime - 10;
+			$setOpts['since'] = $mockWallClock - 10;
 			return $value;
 		};
 
@@ -933,21 +951,34 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( 1, $curTTL, 'Value has reduced logical TTL', 0.01 );
 		$this->assertEquals( 1, $calls, 'Value was generated' );
 
-		$mockWallClock += 2;
+		$mockWallClock += 2; // low logical TTL expired
 
 		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5 ] );
 		$this->assertEquals( $value, $ret );
 		$this->assertEquals( 2, $calls, 'Callback used (mutex acquired)' );
 
+		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5 ] );
+		$this->assertEquals( $value, $ret );
+		$this->assertEquals( 2, $calls, 'Callback was not used (interim value used)' );
+
+		$mockWallClock += 2; // low logical TTL expired
 		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
 		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
 
 		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5 ] );
 		$this->assertEquals( $value, $ret );
-		$this->assertEquals( 3, $calls, 'Callback was not used (mutex not acquired)' );
+		$this->assertEquals( 2, $calls, 'Callback was not used (mutex not acquired)' );
+
+		$mockWallClock += 301; // physical TTL expired
+		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
+		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
+
+		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5 ] );
+		$this->assertEquals( $value, $ret );
+		$this->assertEquals( 3, $calls, 'Callback was used (mutex not acquired, not in cache)' );
 
 		$calls = 0;
-		$func2 = function ( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value, $priorTime ) {
+		$func2 = function ( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value ) {
 			++$calls;
 			$setOpts['lag'] = 15;
 			return $value;
@@ -982,6 +1013,9 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$value = wfRandomString();
 		$busyValue = wfRandomString();
 
+		$mockWallClock = 1549343530.2053;
+		$cache->setMockTime( $mockWallClock );
+
 		$calls = 0;
 		$func = function () use ( &$calls, $value, $cache, $key ) {
 			++$calls;
@@ -991,6 +1025,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$ret = $cache->getWithSetCallback( $key, 30, $func, [ 'busyValue' => $busyValue ] );
 		$this->assertEquals( $value, $ret );
 		$this->assertEquals( 1, $calls, 'Value was populated' );
+
+		$mockWallClock += 0.2; // interim keys not brand new
 
 		// Acquire a lock to verify that getWithSetCallback uses busyValue properly
 		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
@@ -1013,6 +1049,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( 2, $calls, 'Callback was not used; used busy value' );
 
 		$this->internalCache->delete( $cache::MUTEX_KEY_PREFIX . $key );
+		$mockWallClock += 0.001; // cached values will be newer than tombstone
 		$ret = $cache->getWithSetCallback( $key, 30, $func,
 			[ 'lockTSE' => 30, 'busyValue' => $busyValue, 'checkKeys' => $checkKeys ] );
 		$this->assertEquals( $value, $ret, 'Callback was used; saved interim' );
@@ -1333,6 +1370,9 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	public function testInterimHoldOffCaching() {
 		$cache = $this->cache;
 
+		$mockWallClock = 1549343530.2053;
+		$cache->setMockTime( $mockWallClock );
+
 		$value = 'CRL-40-940';
 		$wasCalled = 0;
 		$func = function () use ( &$wasCalled, $value ) {
@@ -1347,9 +1387,15 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$v = $cache->getWithSetCallback( $key, 60, $func );
 		$v = $cache->getWithSetCallback( $key, 60, $func );
 		$this->assertEquals( 1, $wasCalled, 'Value cached' );
+
 		$cache->delete( $key );
+		$mockWallClock += 0.001; // cached values will be newer than tombstone
 		$v = $cache->getWithSetCallback( $key, 60, $func );
 		$this->assertEquals( 2, $wasCalled, 'Value regenerated (got mutex)' ); // sets interim
+		$v = $cache->getWithSetCallback( $key, 60, $func );
+		$this->assertEquals( 2, $wasCalled, 'Value interim cached' ); // reuses interim
+
+		$mockWallClock += 0.2; // interim key not brand new
 		$v = $cache->getWithSetCallback( $key, 60, $func );
 		$this->assertEquals( 3, $wasCalled, 'Value regenerated (got mutex)' ); // sets interim
 		// Lock up the mutex so interim cache is used
