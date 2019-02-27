@@ -134,9 +134,12 @@
 	// This specifies styling for individual field validation error messages.
 	// Show them below the fields to prevent line break glitches, and leave
 	// some space between the field and the error message box.
-	.mw-ui-vform-field .error {
-		display: block;
-		margin-top: 5px;
+	.mw-ui-vform-field {
+		.error,
+		.warning {
+			display: block;
+			margin-top: 5px;
+		}
 	}
 }
 
