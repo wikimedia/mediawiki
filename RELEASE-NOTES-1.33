@@ -122,6 +122,8 @@ production.
   passed a bad code.
 * ApiBase::checkTitleUserPermissions() now takes an options array as its third
   parameter. Passing a User object or null is deprecated.
+* The api-feature-usage log channel now has log context. The text message is
+  deprecated and will be removed in the future.
 
 === Languages updated in 1.33 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -321,6 +323,8 @@ because of Phabricator reports.
   Block::isCreateAccountBlocked and Block::isUsertalkEditAllowed to get and set
   block properties; use Block::appliesToRight and Block::appliesToUsertalk to
   check block behaviour.
+* The api-feature-usage log channel now has log context. The text message is
+  deprecated and will be removed in the future.
 
 === Other changes in 1.33 ===
 * (T201747) Html::openElement() warns if given an element name with a space
