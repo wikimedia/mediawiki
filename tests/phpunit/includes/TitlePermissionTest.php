@@ -1037,4 +1037,54 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->assertEquals( [],
 			$this->title->getUserPermissionsErrors( 'edit', $this->user ) );
 	}
+
+	/**
+	 * @covers Title::checkUserBlock
+	 *
+	 * Tests to determine that the passed in permission does not get mixed up with
+	 * an action of the same name.
+	 */
+	public function testUserBlockAction() {
+		global $wgLang;
+
+		$tester = $this->getMockBuilder( Action::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$tester->method( 'getName' )
+			->willReturn( 'tester' );
+		$tester->method( 'getRestriction' )
+			->willReturn( 'test' );
+		$tester->method( 'requiresUnblock' )
+			->willReturn( false );
+
+		$this->setMwGlobals( [
+			'wgActions' => [
+				'tester' => $tester,
+			],
+			'wgGroupPermissions' => [
+				'*' => [
+					'tester' => true,
+				],
+			],
+		] );
+
+		$now = time();
+		$this->user->mBlockedby = $this->user->getName();
+		$this->user->mBlock = new Block( [
+			'address' => '127.0.8.1',
+			'by' => $this->user->getId(),
+			'reason' => 'no reason given',
+			'timestamp' => $now,
+			'auto' => false,
+			'expiry' => 'infinity',
+		] );
+
+		$errors = [ [ 'blockedtext',
+				'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
+				'Useruser', null, 'infinite', '127.0.8.1',
+				$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ];
+
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'tester', $this->user ) );
+	}
 }
