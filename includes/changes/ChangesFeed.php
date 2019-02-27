@@ -207,7 +207,7 @@ class ChangesFeed {
 
 		foreach ( $sorted as $obj ) {
 			$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
-			$talkpage = MWNamespace::canTalk( $obj->rc_namespace )
+			$talkpage = MWNamespace::hasTalkNamespace( $obj->rc_namespace )
 				? $title->getTalkPage()->getFullURL()
 				: '';
 
