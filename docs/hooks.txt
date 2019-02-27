@@ -3837,6 +3837,23 @@ the database) have been saved. Compare to the UserSaveOptions hook, which is
 called before.
 $user: The User for which the options have been saved
 
+'UserSendConfirmationMail': Called just before a confirmation email is sent to
+a user. Hook handlers can modify the email that will be sent.
+$user: The User for which the confirmation email is going to be sent
+&$mail: Associative array describing the email, with the following keys:
+  - subject: Subject line of the email
+  - body: Email body. Can be a string, or an array with keys 'text' and 'html'
+  - from: User object, or null meaning $wgPasswordSender will be used
+  - replyTo: MailAddress object or null
+$info: Associative array with additional information:
+  - type: 'created' if the user's account was just created; 'set' if the user
+    set an email address when they previously didn't have one; 'changed' if
+    the user had an email address and changed it
+  - ip: The IP address from which the user set/changed their email address
+  - confirmURL: URL the user should visit to confirm their email
+  - invalidateURL: URL the user should visit to invalidate confirmURL
+  - expiration: time and date when confirmURL expires
+
 'UserSetCookies': DEPRECATED since 1.27! If you're trying to replace core
 session cookie handling, you want to create a subclass of
 MediaWiki\Session\CookieSessionProvider instead. Otherwise, you can no longer
