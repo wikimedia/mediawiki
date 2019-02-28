@@ -482,7 +482,7 @@ class RebuildRecentchanges extends Maintenance {
 
 	/**
 	 * Rebuild pass 5: Delete duplicate entries where we generate both a page revision and a log
-	 * entry for a single action (upload only, at the moment, but potentially move, protect, ...).
+	 * entry for a single action (upload, move, protect, import, etc.).
 	 *
 	 * @param ILBFactory $lbFactory
 	 */
@@ -497,7 +497,7 @@ class RebuildRecentchanges extends Maintenance {
 			[
 				'ls_log_id = log_id',
 				'ls_field' => 'associated_rev_id',
-				'log_type' => 'upload',
+				'log_type != ' . $dbw->addQuotes( 'create' ),
 				'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
 				'log_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
 			],
