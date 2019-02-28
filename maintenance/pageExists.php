@@ -36,7 +36,6 @@ class PageExists extends Maintenance {
 		$title = Title::newFromText( $titleArg );
 		$pageExists = $title && $title->exists();
 
-		$text = '';
 		$code = 0;
 		if ( $pageExists ) {
 			$text = "{$title} exists.";

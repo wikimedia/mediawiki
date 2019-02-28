@@ -142,7 +142,6 @@ TEXT
 			wfWaitForSlaves();
 		}
 		$count = 0;
-		$batchCount = 0;
 		$batchConds = [];
 		do {
 			$this->output( "Selecting next " . self::BATCH_SIZE . " rows..." );

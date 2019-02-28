@@ -77,7 +77,6 @@ class MergeMessageFileList extends Maintenance {
 			$extdir = $this->getOption( 'extensions-dir' );
 			# Allow multiple directories to be passed with ":" as delimiter
 			$extdirs = explode( ':', $extdir );
-			$entries = [];
 			foreach ( $extdirs as $extdir ) {
 				$entries = scandir( $extdir );
 				foreach ( $entries as $extname ) {

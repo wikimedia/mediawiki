@@ -72,8 +72,6 @@ class MysqlMaintenance extends Maintenance {
 			$host = $this->getOption( 'host' );
 			$serverCount = $lb->getServerCount();
 			for ( $index = 0; $index < $serverCount; ++$index ) {
-				$serverInfo = $lb->getServerInfo( $index );
-
 				if ( $lb->getServerName( $index ) === $host ) {
 					break;
 				}

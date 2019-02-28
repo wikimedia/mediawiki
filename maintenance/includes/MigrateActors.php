@@ -414,7 +414,6 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		$complainedAboutUsers = [];
 
 		$primaryKey = [ 'ls_value', 'ls_log_id' ];
-		$pkFilter = array_flip( $primaryKey );
 		$this->output( "Beginning migration of log_search\n" );
 		wfWaitForSlaves();
 
