@@ -1769,6 +1769,8 @@ class Linker {
 		}
 
 		if ( $context->getUser()->getBoolOption( 'showrollbackconfirmation' ) ) {
+			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+			$stats->increment( 'rollbackconfirmation.event.load' );
 			$context->getOutput()->addModules( 'mediawiki.page.rollback.confirmation' );
 		}
 
