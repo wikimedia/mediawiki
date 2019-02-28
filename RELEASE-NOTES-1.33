@@ -90,6 +90,7 @@ For notes on 1.32.x and older releases, see HISTORY.
   language where available.
 * Special:ActiveUsers will no longer filter out users who became inactive since
   the last time the active users query cache was updated.
+* (T215675) RecentChange and ManualLogEntry implement new Taggable interface.
 
 === New developer features in 1.33 ===
 * The AuthManagerLoginAuthenticateAudit hook has a new parameter for
@@ -386,6 +387,9 @@ because of Phabricator reports.
   deprecated and will be removed in the future.
 * The FileBasedSiteLookup class has been deprecated. For a cacheable SiteLookup
   implementation, use CachingSiteStore instead.
+* ManualLogEntry::setTags() is deprecated, use ManualLogEntry::addTags()
+  instead. The setTags() method was overriding the tags, addTags() doesn't
+  override, only adds new tags.
 
 === Other changes in 1.33 ===
 * (T201747) Html::openElement() warns if given an element name with a space

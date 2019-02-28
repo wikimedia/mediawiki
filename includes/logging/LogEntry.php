@@ -28,9 +28,11 @@
  * @since 1.19
  */
 
+use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Assert\Assert;
 
 /**
  * Interface for log entries. Every log entry has these methods.
@@ -436,7 +438,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
  *
  * @since 1.19
  */
-class ManualLogEntry extends LogEntryBase {
+class ManualLogEntry extends LogEntryBase implements Taggable {
 	/** @var string Type of log entry */
 	protected $type;
 
@@ -586,14 +588,30 @@ class ManualLogEntry extends LogEntryBase {
 	 *
 	 * @since 1.27
 	 * @param string|string[]|null $tags
+	 * @deprecated since 1.33 Please use addTags() instead
 	 */
 	public function setTags( $tags ) {
-		if ( $tags === null ) {
-			$tags = [];
-		} elseif ( is_string( $tags ) ) {
+		if ( $this->tags ) {
+			wfDebug( 'Overwriting existing ManualLogEntry tags' );
+		}
+		$this->tags = [];
+		if ( $tags !== null ) {
+			$this->addTags( $tags );
+		}
+	}
+
+	/**
+	 * Add change tags for the log entry
+	 *
+	 * @since 1.33
+	 * @param string|string[] $tags Tags to apply
+	 */
+	public function addTags( $tags ) {
+		if ( is_string( $tags ) ) {
 			$tags = [ $tags ];
 		}
-		$this->tags = $tags;
+		Assert::parameterElementType( 'string', $tags, 'tags' );
+		$this->tags = array_unique( array_merge( $this->tags, $tags ) );
 	}
 
 	/**

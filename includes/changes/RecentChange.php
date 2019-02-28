@@ -19,6 +19,7 @@
  *
  * @file
  */
+use MediaWiki\ChangeTags\Taggable;
 
 /**
  * Utility class for creating new RC entries
@@ -65,7 +66,7 @@
  *  we're having to include both rc_comment and rc_comment_text/rc_comment_data
  *  so random crap works right.
  */
-class RecentChange {
+class RecentChange implements Taggable {
 	// Constants for the rc_source field.  Extensions may also have
 	// their own source constants.
 	const SRC_EDIT = 'mw.edit';
@@ -1198,7 +1199,7 @@ class RecentChange {
 	 *
 	 * @since 1.28
 	 *
-	 * @param string|array $tags
+	 * @param string|string[] $tags
 	 */
 	public function addTags( $tags ) {
 		if ( is_string( $tags ) ) {
