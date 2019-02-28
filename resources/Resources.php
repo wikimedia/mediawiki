@@ -840,6 +840,7 @@ return [
 		],
 		'dependencies' => [
 			'mediawiki.language',
+			'mediawiki.RegExp',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
