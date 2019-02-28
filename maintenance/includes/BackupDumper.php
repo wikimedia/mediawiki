@@ -165,15 +165,12 @@ abstract class BackupDumper extends Maintenance {
 
 			switch ( $opt ) {
 				case 'plugin':
-					$val = explode( ':', $param );
+					$val = explode( ':', $param, 2 );
 
 					if ( count( $val ) === 1 ) {
 						$this->loadPlugin( $val[0], '' );
 					} elseif ( count( $val ) === 2 ) {
 						$this->loadPlugin( $val[0], $val[1] );
-					} else {
-						$this->fatalError( 'Invalid plugin parameter' );
-						return;
 					}
 
 					break;
@@ -202,7 +199,7 @@ abstract class BackupDumper extends Maintenance {
 						$sink = new DumpOutput();
 					}
 
-					$split = explode( ':', $param );
+					$split = explode( ':', $param, 2 );
 					$key = $split[0];
 
 					if ( !isset( $this->filterTypes[$key] ) ) {
@@ -215,8 +212,6 @@ abstract class BackupDumper extends Maintenance {
 						$filter = new $type( $sink );
 					} elseif ( count( $split ) === 2 ) {
 						$filter = new $type( $sink, $split[1] );
-					} else {
-						$this->fatalError( 'Invalid filter parameter' );
 					}
 
 					// references are lame in php...

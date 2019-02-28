@@ -71,7 +71,7 @@ class UpdateRestrictions extends Maintenance {
 			foreach ( $res as $row ) {
 				$oldRestrictions = [];
 				foreach ( explode( ':', trim( $row->page_restrictions ) ) as $restrict ) {
-					$temp = explode( '=', trim( $restrict ) );
+					$temp = explode( '=', trim( $restrict ), 2 );
 					// Make sure we are not settings restrictions to ""
 					if ( count( $temp ) == 1 && $temp[0] ) {
 						// old old format should be treated as edit/move restriction
