@@ -402,7 +402,7 @@ SPARQL;
 	/**
 	 * Get iterator for links for categories.
 	 * @param IDatabase $dbr
-	 * @param array $ids List of page IDs
+	 * @param int[] $ids List of page IDs
 	 * @return Traversable
 	 */
 	protected function getCategoryLinksIterator( IDatabase $dbr, array $ids ) {

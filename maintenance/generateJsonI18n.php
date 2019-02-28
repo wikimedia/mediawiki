@@ -182,7 +182,7 @@ class GenerateJsonI18n extends Maintenance {
 	/**
 	 * Get an array of author names from a documentation comment containing @author declarations.
 	 * @param string $comment Documentation comment
-	 * @return array Array of author names (strings)
+	 * @return string[] Array of author names
 	 */
 	protected function getAuthorsFromComment( $comment ) {
 		$matches = null;
