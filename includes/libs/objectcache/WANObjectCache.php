@@ -1271,13 +1271,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				$this->stats->increment( "wanobjectcache.$kClass.hit.good" );
 
 				return $value;
-			} elseif ( $this->asyncHandler ) {
-				// Update the cache value later, such during post-send of an HTTP request
-				$func = $this->asyncHandler;
-				$func( function () use ( $key, $ttl, $callback, $opts, $asOf ) {
-					$opts['minAsOf'] = INF; // force a refresh
-					$this->doGetWithSetCallback( $key, $ttl, $callback, $opts, $asOf );
-				} );
+			} elseif ( $this->scheduleAsyncRefresh( $key, $ttl, $callback, $opts ) ) {
 				$this->stats->increment( "wanobjectcache.$kClass.hit.refresh" );
 
 				return $value;
@@ -2010,6 +2004,28 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		return $ok;
+	}
+
+	/**
+	 * @param string $key
+	 * @param int $ttl
+	 * @param callable $callback
+	 * @param array $opts
+	 * @return bool Success
+	 */
+	private function scheduleAsyncRefresh( $key, $ttl, $callback, $opts ) {
+		if ( !$this->asyncHandler ) {
+			return false;
+		}
+		// Update the cache value later, such during post-send of an HTTP request
+		$func = $this->asyncHandler;
+		$func( function () use ( $key, $ttl, $callback, $opts ) {
+			$asOf = null; // unused
+			$opts['minAsOf'] = INF; // force a refresh
+			$this->doGetWithSetCallback( $key, $ttl, $callback, $opts, $asOf );
+		} );
+
+		return true;
 	}
 
 	/**
