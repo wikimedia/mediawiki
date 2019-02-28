@@ -1831,6 +1831,7 @@
 	"showhideselectedlogentries": "Dewis dangos neu guddio cofnodion lòg",
 	"checkbox-all": "Y cyfan",
 	"checkbox-none": "Dim",
+	"checkbox-invert": "Gwrthdroi",
 	"allpages": "Pob tudalen",
 	"nextpage": "Y bloc nesaf gan ddechrau gyda ($1)",
 	"prevpage": "Y bloc cynt gan ddechrau gyda ($1)",

@@ -1088,6 +1088,7 @@
 	"group-autoconfirmed": "स्वत निश्चित गरिएका प्रयोगकर्ताहरू",
 	"group-bot": "बोटहरू",
 	"group-sysop": "प्रवन्धकहरू",
+	"group-interface-admin": "अन्तरमोहडा सम्पादक",
 	"group-bureaucrat": "प्रशासकहरू",
 	"group-suppress": "अतिदृष्टिहरू",
 	"group-all": "(सबै)",
