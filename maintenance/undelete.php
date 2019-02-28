@@ -37,7 +37,7 @@ class Undelete extends Maintenance {
 
 		$user = $this->getOption( 'user', false );
 		$reason = $this->getOption( 'reason', '' );
-		$pageName = $this->getArg();
+		$pageName = $this->getArg( 0 );
 
 		$title = Title::newFromText( $pageName );
 		if ( !$title ) {

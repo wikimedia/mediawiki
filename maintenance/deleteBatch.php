@@ -69,8 +69,8 @@ class DeleteBatch extends Maintenance {
 		}
 		$wgUser = $user;
 
-		if ( $this->hasArg() ) {
-			$file = fopen( $this->getArg(), 'r' );
+		if ( $this->hasArg( 0 ) ) {
+			$file = fopen( $this->getArg( 0 ), 'r' );
 		} else {
 			$file = $this->getStdin();
 		}

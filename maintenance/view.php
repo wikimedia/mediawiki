@@ -36,7 +36,7 @@ class ViewCLI extends Maintenance {
 	}
 
 	public function execute() {
-		$title = Title::newFromText( $this->getArg() );
+		$title = Title::newFromText( $this->getArg( 0 ) );
 		if ( !$title ) {
 			$this->fatalError( "Invalid title" );
 		}

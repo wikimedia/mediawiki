@@ -38,7 +38,7 @@ class JSParseHelper extends Maintenance {
 	}
 
 	public function execute() {
-		if ( $this->hasArg() ) {
+		if ( $this->hasArg( 0 ) ) {
 			$files = $this->mArgs;
 		} else {
 			$this->maybeHelp( true ); // @todo fixme this is a lame API :)
