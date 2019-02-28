@@ -2436,6 +2436,7 @@
 	"anoncontribs": "Bidrag",
 	"contribsub2": "For {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Brukerkontoen «$1» er ikke registrert.",
+	"negative-namespace-not-supported": "Navnerom med negative verdier støttes ikke.",
 	"nocontribs": "Ingen endringer er funnet som passer disse kriteriene.",
 	"uctop": "siste",
 	"month": "Fra måned (og tidligere):",
