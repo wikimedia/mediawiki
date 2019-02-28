@@ -637,7 +637,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function getContentModel() {
 		if ( $this->exists() ) {
-			$cache = ObjectCache::getMainWANInstance();
+			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 
 			return $cache->getWithSetCallback(
 				$cache->makeKey( 'page-content-model', $this->getLatest() ),
