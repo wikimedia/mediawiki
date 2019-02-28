@@ -2673,6 +2673,7 @@ return [
 			'period-pm',
 		],
 		'dependencies' => [
+			'mediawiki.RegExp',
 			'oojs-ui-core',
 			'oojs-ui.styles.icons-moderation',
 			'oojs-ui.styles.icons-movement',
