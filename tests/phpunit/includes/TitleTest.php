@@ -289,7 +289,6 @@ class TitleTest extends MediaWikiTestCase {
 	 * @param array|string|bool $expected Required error
 	 * @dataProvider provideTestIsValidMoveOperation
 	 * @covers Title::isValidMoveOperation
-	 * @covers Title::validateFileMoveOperation
 	 */
 	public function testIsValidMoveOperation( $source, $target, $expected ) {
 		$this->setMwGlobals( 'wgContentHandlerUseDB', false );
@@ -315,7 +314,6 @@ class TitleTest extends MediaWikiTestCase {
 			[ 'Test', 'Special:FooBar', 'immobile-target-namespace' ],
 			[ 'MediaWiki:Common.js', 'Help:Some wikitext page', 'bad-target-model' ],
 			[ 'Page', 'File:Test.jpg', 'nonfile-cannot-move-to-file' ],
-			// for Title::validateFileMoveOperation
 			[ 'File:Test.jpg', 'Page', 'imagenocrossnamespace' ],
 		];
 	}
