@@ -116,7 +116,7 @@ class RawAction extends FormlessAction {
 				$elevatedText = $elevated ? 'by elevated ' : '';
 				$log = LoggerFactory::getInstance( "security" );
 				$log->warning(
-					"Unsafe JS/CSS/Json $elevatedText" . "load - {user} loaded {title} with {ctype}",
+					"Unsafe JS/CSS/Json {$elevatedText}load - {user} loaded {title} with {ctype}",
 					[
 						'user' => $this->getUser()->getName(),
 						'title' => $title->getPrefixedDBKey(),

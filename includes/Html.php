@@ -213,7 +213,7 @@ class Html {
 			// Silly XML.
 			return substr( $start, 0, -1 ) . '/>';
 		} else {
-			return "$start$contents" . self::closeElement( $element );
+			return $start . $contents . self::closeElement( $element );
 		}
 	}
 
@@ -973,7 +973,7 @@ class Html {
 		if ( $isXHTML ) { // XHTML5
 			// XML MIME-typed markup should have an xml header.
 			// However a DOCTYPE is not needed.
-			$ret .= "<?xml version=\"1.0\" encoding=\"UTF-8\" ?" . ">\n";
+			$ret .= "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
 
 			// Add the standard xmlns
 			$attribs['xmlns'] = 'http://www.w3.org/1999/xhtml';
