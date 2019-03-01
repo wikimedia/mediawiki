@@ -4724,22 +4724,38 @@ class User implements IDBAccessObject, UserIdentity {
 
 		if ( $type == 'created' || $type === false ) {
 			$message = 'confirmemail_body';
+			$type = 'created';
 		} elseif ( $type === true ) {
 			$message = 'confirmemail_body_changed';
+			$type = 'changed';
 		} else {
 			// Messages: confirmemail_body_changed, confirmemail_body_set
 			$message = 'confirmemail_body_' . $type;
 		}
 
-		return $this->sendMail( wfMessage( 'confirmemail_subject' )->text(),
-			wfMessage( $message,
+		$mail = [
+			'subject' => wfMessage( 'confirmemail_subject' )->text(),
+			'body' => wfMessage( $message,
 				$this->getRequest()->getIP(),
 				$this->getName(),
 				$url,
 				$wgLang->userTimeAndDate( $expiration, $this ),
 				$invalidateURL,
 				$wgLang->userDate( $expiration, $this ),
-				$wgLang->userTime( $expiration, $this ) )->text() );
+				$wgLang->userTime( $expiration, $this ) )->text(),
+			'from' => null,
+			'replyTo' => null,
+		];
+		$info = [
+			'type' => $type,
+			'ip' => $this->getRequest()->getIP(),
+			'confirmURL' => $url,
+			'invalidateURL' => $invalidateURL,
+			'expiration' => $expiration
+		];
+
+		Hooks::run( 'UserSendConfirmationMail', [ $this, &$mail, $info ] );
+		return $this->sendMail( $mail['subject'], $mail['body'], $mail['from'], $mail['replyTo'] );
 	}
 
 	/**
@@ -4750,7 +4766,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param string $body Message body
 	 * @param User|null $from Optional sending user; if unspecified, default
 	 *   $wgPasswordSender will be used.
-	 * @param string|null $replyto Reply-To address
+	 * @param MailAddress|null $replyto Reply-To address
 	 * @return Status
 	 */
 	public function sendMail( $subject, $body, $from = null, $replyto = null ) {
