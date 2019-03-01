@@ -1133,3 +1133,7 @@
 	path = extensions/NumberedHeadings
 	url = https://github.com/staspika/mediawiki-numberedheadings
 	branch = master
+[submodule "extensions/CirrusSearch"]
+	path = extensions/CirrusSearch
+	url = https://github.com/wikimedia/mediawiki-extensions-CirrusSearch.git
+        branch = REL1_32
