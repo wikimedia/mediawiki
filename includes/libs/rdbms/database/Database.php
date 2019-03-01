@@ -1019,13 +1019,22 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Run a query and return a DBMS-dependent wrapper (that has all IResultWrapper methods)
+	 * Run a query and return a DBMS-dependent wrapper or boolean
 	 *
-	 * This might return things, such as mysqli_result, that do not formally implement
-	 * IResultWrapper, but nonetheless implement all of its methods correctly
+	 * For SELECT queries, this returns either:
+	 *   - a) A driver-specific value/resource, only on success. This can be iterated
+	 *        over by calling fetchObject()/fetchRow() until there are no more rows.
+	 *        Alternatively, the result can be passed to resultObject() to obtain a
+	 *        ResultWrapper instance which can then be iterated over via "foreach".
+	 *   - b) False, on any query failure
 	 *
-	 * @param string $sql SQL query.
-	 * @return IResultWrapper|bool Iterator to feed to fetchObject/fetchRow; false on failure
+	 * For non-SELECT queries, this returns either:
+	 *   - a) A driver-specific value/resource, only on success
+	 *   - b) True, only on success (e.g. no meaningful result other than "OK")
+	 *   - c) False, on any query failure
+	 *
+	 * @param string $sql SQL query
+	 * @return mixed|bool An object, resource, or true on success; false on failure
 	 */
 	abstract protected function doQuery( $sql );
 

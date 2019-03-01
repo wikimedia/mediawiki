@@ -157,7 +157,6 @@ class DatabaseMssql extends Database {
 	/**
 	 * @param string $sql
 	 * @return bool|MssqlResultWrapper|resource
-	 * @throws DBUnexpectedError
 	 */
 	protected function doQuery( $sql ) {
 		// several extensions seem to think that all databases support limits

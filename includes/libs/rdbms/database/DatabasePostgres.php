@@ -216,6 +216,10 @@ class DatabasePostgres extends Database {
 			!preg_match( '/^SELECT\s+pg_(try_|)advisory_\w+\(/', $sql );
 	}
 
+	/**
+	 * @param string $sql
+	 * @return bool|mixed|resource
+	 */
 	public function doQuery( $sql ) {
 		$conn = $this->getBindingHandle();
 
