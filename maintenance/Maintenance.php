@@ -1251,7 +1251,7 @@ abstract class Maintenance {
 			$settingsFile = "$IP/LocalSettings.php";
 		}
 		if ( isset( $this->mOptions['wiki'] ) ) {
-			$bits = explode( '-', $this->mOptions['wiki'] );
+			$bits = explode( '-', $this->mOptions['wiki'], 2 );
 			if ( count( $bits ) == 1 ) {
 				$bits[] = '';
 			}

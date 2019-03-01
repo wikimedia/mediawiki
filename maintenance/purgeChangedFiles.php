@@ -77,7 +77,7 @@ class PurgeChangedFiles extends Maintenance {
 		global $wgHTCPRouting;
 
 		if ( $this->hasOption( 'htcp-dest' ) ) {
-			$parts = explode( ':', $this->getOption( 'htcp-dest' ) );
+			$parts = explode( ':', $this->getOption( 'htcp-dest' ), 2 );
 			if ( count( $parts ) < 2 ) {
 				// Add default htcp port
 				$parts[] = '4827';
