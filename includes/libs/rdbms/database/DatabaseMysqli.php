@@ -37,7 +37,7 @@ use stdClass;
 class DatabaseMysqli extends DatabaseMysqlBase {
 	/**
 	 * @param string $sql
-	 * @return mysqli_result
+	 * @return mysqli_result|bool
 	 */
 	protected function doQuery( $sql ) {
 		$conn = $this->getBindingHandle();

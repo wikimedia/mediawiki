@@ -184,6 +184,10 @@ class DatabaseOracle extends Database {
 		return $this->trxLevel ? OCI_NO_AUTO_COMMIT : OCI_COMMIT_ON_SUCCESS;
 	}
 
+	/**
+	 * @param string $sql
+	 * @return bool|mixed|ORAResult
+	 */
 	protected function doQuery( $sql ) {
 		wfDebug( "SQL: [$sql]\n" );
 		if ( !StringUtils::isUtf8( $sql ) ) {
