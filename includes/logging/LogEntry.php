@@ -776,11 +776,7 @@ class ManualLogEntry extends LogEntryBase {
 
 					if ( $to === 'rc' || $to === 'rcandudp' ) {
 						// save RC, passing tags so they are applied there
-						$tags = $this->getTags();
-						if ( is_null( $tags ) ) {
-							$tags = [];
-						}
-						$rc->addTags( $tags );
+						$rc->addTags( $this->getTags() ?? [] );
 						$rc->save( $rc::SEND_NONE );
 					}
 
