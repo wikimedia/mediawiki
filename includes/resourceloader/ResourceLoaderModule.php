@@ -943,7 +943,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		if ( !$this->getConfig()->get( 'ResourceLoaderValidateJS' ) ) {
 			return $contents;
 		}
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
 			$cache->makeGlobalKey(
 				'resourceloader',

@@ -3337,7 +3337,7 @@ class Title implements LinkTarget, IDBAccessObject {
 				$dbr = wfGetDB( DB_MASTER );
 				$rows = $loadRestrictionsFromDb( $dbr );
 			} else {
-				$cache = ObjectCache::getMainWANInstance();
+				$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 				$rows = $cache->getWithSetCallback(
 					// Page protections always leave a new null revision
 					$cache->makeKey( 'page-restrictions', $id, $this->getLatestRevID() ),

@@ -56,7 +56,7 @@ class JobQueueDB extends JobQueue {
 		parent::__construct( $params );
 
 		$this->cluster = $params['cluster'] ?? false;
-		$this->cache = ObjectCache::getMainWANInstance();
+		$this->cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 	}
 
 	protected function supportedOrders() {

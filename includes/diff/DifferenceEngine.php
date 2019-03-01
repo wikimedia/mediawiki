@@ -1024,7 +1024,7 @@ class DifferenceEngine extends ContextSource {
 
 		// Cacheable?
 		$key = false;
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		if ( $this->mOldid && $this->mNewid ) {
 			// Check if subclass is still using the old way
 			// for backwards-compatibility

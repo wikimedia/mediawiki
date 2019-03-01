@@ -26,6 +26,7 @@ use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Abstraction for ResourceLoader modules which pull from wiki pages
@@ -482,7 +483,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		$func = [ static::class, 'fetchTitleInfo' ];
 		$fname = __METHOD__;
 
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$allInfo = $cache->getWithSetCallback(
 			$cache->makeGlobalKey( 'resourceloader', 'titleinfo', $db->getDomainID(), $hash ),
 			$cache::TTL_HOUR,
@@ -549,7 +550,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		}
 
 		if ( $purge ) {
-			$cache = ObjectCache::getMainWANInstance();
+			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 			$key = $cache->makeGlobalKey( 'resourceloader', 'titleinfo', $domain );
 			$cache->touchCheckKey( $key );
 		}
