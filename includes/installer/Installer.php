@@ -1184,8 +1184,8 @@ abstract class Installer {
 	public function dirIsExecutable( $dir, $url ) {
 		$scriptTypes = [
 			'php' => [
-				"<?php echo 'ex' . 'ec';",
-				"#!/var/env php\n<?php echo 'ex' . 'ec';",
+				"<?php echo 'exec';",
+				"#!/var/env php\n<?php echo 'exec';",
 			],
 		];
 

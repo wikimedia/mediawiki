@@ -1853,7 +1853,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		} catch ( DBUnexpectedError $ex ) {
 			$this->assertSame(
 				'Invalid atomic section ended (got ' . __METHOD__ . ' but expected ' .
-					__METHOD__ . 'X' . ').',
+					__METHOD__ . 'X).',
 				$ex->getMessage()
 			);
 		}
