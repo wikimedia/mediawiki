@@ -184,9 +184,9 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 						$option = [ 'default' => $option ];
 					}
 					foreach ( $option as $skin => $data ) {
-						if ( !is_array( $option ) ) {
+						if ( !is_array( $data ) ) {
 							throw new InvalidArgumentException(
-								"Invalid list error. '$option' given, array expected."
+								"Invalid list error. '$data' given, array expected."
 							);
 						}
 					}
