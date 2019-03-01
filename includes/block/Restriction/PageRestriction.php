@@ -25,12 +25,12 @@ namespace MediaWiki\Block\Restriction;
 class PageRestriction extends AbstractRestriction {
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	const TYPE = 'page';
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	const TYPE_ID = 1;
 
@@ -40,7 +40,7 @@ class PageRestriction extends AbstractRestriction {
 	protected $title;
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function matches( \Title $title ) {
 		if ( !$this->getTitle() ) {
@@ -84,7 +84,7 @@ class PageRestriction extends AbstractRestriction {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public static function newFromRow( \stdClass $row ) {
 		$restriction = parent::newFromRow( $row );

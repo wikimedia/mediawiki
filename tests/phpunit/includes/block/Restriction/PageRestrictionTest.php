@@ -61,7 +61,7 @@ class PageRestrictionTest extends RestrictionTestCase {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	protected function getClass() {
 		return PageRestriction::class;

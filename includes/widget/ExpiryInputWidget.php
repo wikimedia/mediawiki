@@ -54,7 +54,7 @@ class ExpiryInputWidget extends Widget {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getConfig( &$config ) {
 		$config['required'] = $this->required;
