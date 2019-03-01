@@ -315,7 +315,7 @@ class SquidPurgeClient {
 				}
 				if ( $this->readState == 'status' ) {
 					$this->processStatusLine( $lines[0] );
-				} else { // header
+				} else {
 					$this->processHeaderLine( $lines[0] );
 				}
 				$this->readBuffer = $lines[1];

@@ -327,7 +327,6 @@ class CoreParserFunctions {
 
 		$username = trim( $username );
 
-		// default
 		$gender = User::getDefaultOption( 'gender' );
 
 		// allow prefix and normalize (e.g. "&#42;foo" -> "*foo" ).

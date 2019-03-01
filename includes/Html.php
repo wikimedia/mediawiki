@@ -983,7 +983,6 @@ class Html {
 				$attribs["xmlns:$tag"] = $ns;
 			}
 		} else { // HTML5
-			// DOCTYPE
 			$ret .= "<!DOCTYPE html>\n";
 		}
 

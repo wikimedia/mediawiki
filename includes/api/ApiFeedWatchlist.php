@@ -102,10 +102,8 @@ class ApiFeedWatchlist extends ApiBase {
 				$fauxReqArr['wlallrev'] = '';
 			}
 
-			// Create the request
 			$fauxReq = new FauxRequest( $fauxReqArr );
 
-			// Execute
 			$module = new ApiMain( $fauxReq );
 			$module->execute();
 

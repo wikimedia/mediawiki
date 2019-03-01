@@ -734,7 +734,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		}
 		$content['scripts'] = $scripts;
 
-		// Styles
 		$styles = [];
 		// Don't create empty stylesheets like [ '' => '' ] for modules
 		// that don't *have* any stylesheets (T40024).

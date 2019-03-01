@@ -40,7 +40,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function setup( $par ) {
-		// Options
 		$opts = new FormOptions();
 		$this->opts = $opts; // bind
 		$opts->add( 'hideliu', false );
@@ -63,13 +62,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$opts->add( $key, $params['default'] );
 		}
 
-		// Set values
 		$opts->fetchValuesFromRequest( $this->getRequest() );
 		if ( $par ) {
 			$this->parseParams( $par );
 		}
 
-		// Validate
 		$opts->validateIntBounds( 'limit', 0, 5000 );
 	}
 
