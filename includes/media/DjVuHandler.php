@@ -20,6 +20,7 @@
  * @file
  * @ingroup Media
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Handler for DjVu images
@@ -402,7 +403,7 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	protected function getDimensionInfo( File $file ) {
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'file-djvu', 'dimensions', $file->getSha1() ),
 			$cache::TTL_INDEFINITE,

@@ -25,6 +25,7 @@ use Wikimedia\Rdbms\DBQueryTimeoutError;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Special page which uses a ChangesList to show query results.
@@ -845,7 +846,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return array Tag data
 	 */
 	protected static function getChangeTagList( ResourceLoaderContext $context ) {
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'changeslistspecialpage-changetags', $context->getLanguage() ),
 			$cache::TTL_MINUTE * 10,

@@ -282,7 +282,8 @@ class AjaxResponse {
 			return false;
 		}
 
-		$mcvalue = ObjectCache::getMainWANInstance()->get( $mckey );
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$mcvalue = $cache->get( $mckey );
 		if ( $mcvalue ) {
 			# Check to see if the value has been invalidated
 			if ( $touched <= $mcvalue['timestamp'] ) {
@@ -304,11 +305,13 @@ class AjaxResponse {
 	 * @return bool
 	 */
 	function storeInMemcached( $mckey, $expiry = 86400 ) {
-		ObjectCache::getMainWANInstance()->set( $mckey,
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$cache->set( $mckey,
 			[
 				'timestamp' => wfTimestampNow(),
 				'value' => $this->mText
-			], $expiry
+			],
+			$expiry
 		);
 
 		return true;
