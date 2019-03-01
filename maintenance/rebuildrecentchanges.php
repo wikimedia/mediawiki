@@ -168,6 +168,15 @@ class RebuildRecentchanges extends Maintenance {
 					+ $actorMigration->getInsertValues( $dbw, 'rc_user', $user ),
 				__METHOD__
 			);
+
+			$rcid = $dbw->insertId();
+			$dbw->update(
+				'change_tag',
+				[ 'ct_rc_id' => $rcid ],
+				[ 'ct_rev_id' => $row->rev_id ],
+				__METHOD__
+			);
+
 			if ( ( ++$inserted % $this->getBatchSize() ) == 0 ) {
 				$lbFactory->waitForReplication();
 			}
@@ -336,6 +345,14 @@ class RebuildRecentchanges extends Maintenance {
 					'rc_deleted' => $row->log_deleted
 				] + $commentStore->insert( $dbw, 'rc_comment', $comment )
 					+ $actorMigration->getInsertValues( $dbw, 'rc_user', $user ),
+				__METHOD__
+			);
+
+			$rcid = $dbw->insertId();
+			$dbw->update(
+				'change_tag',
+				[ 'ct_rc_id' => $rcid ],
+				[ 'ct_log_id' => $row->log_id ],
 				__METHOD__
 			);
 
