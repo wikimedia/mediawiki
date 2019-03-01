@@ -38,7 +38,9 @@ class SpecialLog extends SpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
-		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
+		$out = $this->getOutput();
+		$out->addModules( 'mediawiki.userSuggest' );
+		$out->addModuleStyles( 'mediawiki.interface.helpers.styles' );
 		$this->addHelpLink( 'Help:Log' );
 
 		$opts = new FormOptions;
