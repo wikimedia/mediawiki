@@ -326,7 +326,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	private function unserialize( $string ) {
 		if ( $this->encoding === 'YAML' ) {
 			return yaml_parse( $string );
-		} else { // JSON
+		} else {
 			return json_decode( $string, true );
 		}
 	}

@@ -643,7 +643,7 @@ return [
 		'group' => 'jquery.ui',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	// Effects
+
 	'jquery.effects.core' => [
 		'deprecated' => true,
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect.js',

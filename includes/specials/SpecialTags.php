@@ -237,10 +237,8 @@ class SpecialTags extends SpecialPage {
 		// add raw $hitcount for sorting, because tags-hitcount contains numbers and letters
 		$newRow .= Xml::tags( 'td', [ 'data-sort-value' => $hitcount ], $hitcountLabel );
 
-		// actions
 		$actionLinks = [];
 
-		// delete
 		if ( $showDeleteActions && ChangeTags::canDeleteTag( $tag )->isOK() ) {
 			$actionLinks[] = $linkRenderer->makeKnownLink(
 				$this->getPageTitle( 'delete' ),
@@ -250,7 +248,6 @@ class SpecialTags extends SpecialPage {
 		}
 
 		if ( $showManageActions ) { // we've already checked that the user had the requisite userright
-			// activate
 			if ( ChangeTags::canActivateTag( $tag )->isOK() ) {
 				$actionLinks[] = $linkRenderer->makeKnownLink(
 					$this->getPageTitle( 'activate' ),
@@ -259,7 +256,6 @@ class SpecialTags extends SpecialPage {
 					[ 'tag' => $tag ] );
 			}
 
-			// deactivate
 			if ( ChangeTags::canDeactivateTag( $tag )->isOK() ) {
 				$actionLinks[] = $linkRenderer->makeKnownLink(
 					$this->getPageTitle( 'deactivate' ),

@@ -85,7 +85,7 @@ class ChangeTagsLogItem extends RevisionItemBase {
 		$loglink = $this->list->msg( 'parentheses' )->rawParams( $loglink )->escaped();
 		// User links and action text
 		$action = $formatter->getActionText();
-		// Comment
+
 		$comment = $this->list->getLanguage()->getDirMark() .
 			$formatter->getComment();
 

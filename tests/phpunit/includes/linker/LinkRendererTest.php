@@ -55,7 +55,6 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			$linkRenderer->makeKnownLink( $target, null, [], [ 'foo' => 'bar' ] )
 		);
 
-		// forcearticlepath
 		$linkRenderer->setForceArticlePath( true );
 		$this->assertEquals(
 			'<a href="/wiki/Foobar?foo=bar" title="Foobar">Foobar</a>',
