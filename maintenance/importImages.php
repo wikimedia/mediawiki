@@ -418,7 +418,7 @@ class ImportImages extends Maintenance {
 				$files = [];
 				while ( ( $file = readdir( $dhl ) ) !== false ) {
 					if ( is_file( $dir . '/' . $file ) ) {
-						list( /* $name */, $ext ) = $this->splitFilename( $dir . '/' . $file );
+						$ext = pathinfo( $file, PATHINFO_EXTENSION );
 						if ( array_search( strtolower( $ext ), $exts ) !== false ) {
 							$files[] = $dir . '/' . $file;
 						}
@@ -434,21 +434,6 @@ class ImportImages extends Maintenance {
 		} else {
 			return [];
 		}
-	}
-
-	/**
-	 * Split a filename into filename and extension
-	 *
-	 * @param string $filename
-	 * @return array
-	 */
-	private function splitFilename( $filename ) {
-		$parts = explode( '.', $filename );
-		$ext = $parts[count( $parts ) - 1];
-		unset( $parts[count( $parts ) - 1] );
-		$fname = implode( '.', $parts );
-
-		return [ $fname, $ext ];
 	}
 
 	/**
