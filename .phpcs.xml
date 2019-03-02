@@ -250,7 +250,6 @@
 		<exclude-pattern>*/includes/StubObject\.php</exclude-pattern>
 		<exclude-pattern>*/includes/upload/UploadStash\.php</exclude-pattern>
 		<exclude-pattern>*/includes/utils/AutoloadGenerator\.php</exclude-pattern>
-		<exclude-pattern>*/includes/WebResponse\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/dumpIterator\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/Maintenance\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/findDeprecated\.php</exclude-pattern>
