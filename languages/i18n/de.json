@@ -3861,6 +3861,7 @@
 	"passwordpolicies-policy-maximalpasswordlength": "Ein Passwort muss weniger als {{PLURAL:$1|ein|$1}} Zeichen lang sein",
 	"passwordpolicies-policy-passwordcannotbepopular": "Ein Passwort kann nicht {{PLURAL:$1|das beliebteste Passwort|in der Liste der $1 beliebtesten Passwörter}} sein",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Das Passwort kann nicht in der Liste der 100.000 am häufigsten verwendeten Passwörter sein.",
+	"passwordpolicies-policyflag-forcechange": "muss bei der Anmeldung geändert werden",
 	"easydeflate-invaliddeflate": "Der angegebene Inhalt ist nicht ordnungsgemäß komprimiert",
 	"unprotected-js": "Aus Sicherheitsgründen kann JavaScript-Code nicht mehr von ungeschützten Seiten geladen werden. Erstelle die JavaScript-Seite bitte ausschließlich im Namensraum „MediaWiki“ oder als Benutzerunterseite."
 }

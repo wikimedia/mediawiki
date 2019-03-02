@@ -3847,5 +3847,6 @@
 	"passwordpolicies-policy-maximalpasswordlength": "Wachtwoord moet minder dan $1 {{PLURAL:$1|teken|tekens}} bevatten",
 	"passwordpolicies-policy-passwordcannotbepopular": "Watchwoord mag niet {{PLURAL:$1|overeenkomen met het bekende wachtwoord|voorkomen in de lijst met $1 bekende wachtwoorden}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Wachtwoorden mogen niet voorkomen in de lijst met 100.000 veelvoorkomende wachtwoorden.",
+	"passwordpolicies-policyflag-forcechange": "moet gewijzigd worden bij het aanmelden",
 	"unprotected-js": "Vanwege veiligheidsredenen kan er geen JavaScript geladen worden vanaf onbeveiligde pagina's. Gelieve alleen JavaScript pagina's aan te maken in de MediaWiki: naamruimte of als een subpagina van een gebruikerspagina."
 }
