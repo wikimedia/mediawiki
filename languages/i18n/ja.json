@@ -1749,7 +1749,7 @@
 	"upload-form-label-infoform-description-tooltip": "この作品に対して特筆すべきことをすべて説明します。\n写真であれば、主に何が写っているのか、いつ、どこで撮ったものなのかについて述べてください。",
 	"upload-form-label-usage-title": "使用法",
 	"upload-form-label-usage-filename": "ファイル名",
-	"upload-form-label-own-work": "これはあなた自身による作業です",
+	"upload-form-label-own-work": "これはわたし自身による作品です",
 	"upload-form-label-infoform-categories": "カテゴリ",
 	"upload-form-label-infoform-date": "日付",
 	"upload-form-label-own-work-message-generic-local": "私は {{SITENAME}} 上での以下の利用規約とライセンス方針で、このファイルをアップロードしていることを確認します。",

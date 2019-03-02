@@ -2085,5 +2085,6 @@
 	"special-characters-group-khmer": "ქჰმერული",
 	"special-characters-title-endash": "საშუალო ტირე",
 	"special-characters-title-emdash": "გრძელი ტირე",
-	"special-characters-title-minus": "მინუსის ნიშანი"
+	"special-characters-title-minus": "მინუსის ნიშანი",
+	"passwordpolicies-policyflag-forcechange": "მიშულაშ ბორჯის ითირას ოკო"
 }

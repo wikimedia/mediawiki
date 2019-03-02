@@ -3894,6 +3894,7 @@
 	"passwordpolicies-policy-maximalpasswordlength": "Лозинката не треба да има повеќе од $1 {{PLURAL:$1|знак|знаци}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "Лозинката не треба да биде {{PLURAL:$1|најзастапената|од списокот на $1 најзастапени лозинки}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Лозинката не може да биде меѓу 100.000-те најчести лозинки.",
+	"passwordpolicies-policyflag-forcechange": "мора да се промени при најава",
 	"easydeflate-invaliddeflate": "Содржината не е соодветно прочистена",
 	"unprotected-js": "JavaScript не може да се вчита од незаштитени страници од безбедносни причини. Создавајте JavaScript само во именскиот простор МедијаВики: или како корисничка потстраница"
 }
