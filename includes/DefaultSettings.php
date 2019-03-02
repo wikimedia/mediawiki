@@ -7933,6 +7933,7 @@ $wgActionFilteredLogs = [
 	'upload' => [
 		'upload' => [ 'upload' ],
 		'overwrite' => [ 'overwrite' ],
+		'revert' => [ 'revert' ],
 	],
 ];
 
