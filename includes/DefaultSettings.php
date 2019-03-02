@@ -4480,6 +4480,13 @@ $wgCentralIdLookupProvider = 'local';
  *		100,000 commonly used passwords. Due to the size of the list this
  *      is a probabilistic test.
  *
+ * If you add custom checks, for Special:PasswordPolicies to display them correctly,
+ * every check should have a corresponding passwordpolicies-policy-<check> message,
+ * and every settings field other than 'value' should have a corresponding
+ * passwordpolicies-policyflag-<flag> message (<check> and <flag> are in lowercase).
+ * The check message receives the policy value as a parameter, the flag message
+ * receives the flag value (or values if it's an array).
+ *
  * @since 1.26
  * @see PasswordPolicyChecks
  * @see User::checkPasswordValidity()

@@ -4378,7 +4378,8 @@
 	"passwordpolicies-summary": "The description used on [[Special:PasswordPolicies]].\n\nRefers to {{msg-mw|Passwordpolicies-helppage}}.",
 	"passwordpolicies-group": "The title of the column in the table, about user groups (like you are in the ''translator'' group).\n\n{{Identical|Group}}\n{{Related|Passwordpolicies}}",
 	"passwordpolicies-policies": "The title of the column in the table, about password policies.\n{{Related|Passwordpolicies}}",
-	"passwordpolicies-policy-display": "{{optional}}\nParameters:\n* $1 - the text from the \"passwordpolicies-policy-...\" messages, i.e. {{msg-mw|passwordpolicies-policy-minimalpasswordlength}}\n* $2 - the name of this password policy",
+	"passwordpolicies-policy-display": "{{optional}}\nParameters:\n* $1 - the text from the \"passwordpolicies-policy-...\" messages, e.g. {{msg-mw|passwordpolicies-policy-minimalpasswordlength}}\n* $2 - the name of this password policy",
+	"passwordpolicies-policy-displaywithflags": "{{optional}}\nParameters:\n* $1 - the text from the \"passwordpolicies-policy-...\" messages, i.e. {{msg-mw|passwordpolicies-policy-minimalpasswordlength}}\n* $2 - the name of this password policy\n* $3 - comma-separated list of the text from the \"passwordpolicies-policyflag-...\" messages, e.g. {{msg-mw|passwordpolicies-policyflag-forcechange}}",
 	"passwordpolicies-policy-minimalpasswordlength": "Password policy that enforces a minimum number of characters a password must be. $1 - minimum number of characters that a password can be",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Password policy that enforces a minimum number of characters a password must be to be able to login to the wiki. $1 - minimum number of characters that a password can be to be able to login",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Password policy that enforces that the password of the account cannot be the same as the username",
@@ -4386,6 +4387,7 @@
 	"passwordpolicies-policy-maximalpasswordlength": "Password policy that enforces a maximum number of characters a password must be. $1 - maximum number of characters that a password can be",
 	"passwordpolicies-policy-passwordcannotbepopular": "Password policy that enforces that a password is not in a list of $1 number of \"popular\" passwords. $1 - number of popular passwords the password will be checked against",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Password policy that enforces that a password is not in a list of 100,000 number of \"popular\" passwords.",
+	"passwordpolicies-policyflag-forcechange": "Password policy flag that enforces changing invalid passwords on login.",
 	"easydeflate-invaliddeflate": "Error message if the content passed to easydeflate was not deflated (compressed) properly",
 	"unprotected-js": "Error message shown when trying to load javascript via action=raw that is not protected"
 }
