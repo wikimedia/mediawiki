@@ -37,7 +37,7 @@ use MediaWiki\MediaWikiServices;
  *       and does not rely on global state or the database.
  */
 class Title implements LinkTarget, IDBAccessObject {
-	/** @var MapCacheLRU */
+	/** @var MapCacheLRU|null */
 	private static $titleCache = null;
 
 	/**
@@ -140,7 +140,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * Only public to share cache with TitleFormatter
 	 *
 	 * @private
-	 * @var string
+	 * @var string|null
 	 */
 	public $prefixedText = null;
 
@@ -173,10 +173,10 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * the database or false if not loaded, yet. */
 	private $mDbPageLanguage = false;
 
-	/** @var TitleValue A corresponding TitleValue object */
+	/** @var TitleValue|null A corresponding TitleValue object */
 	private $mTitleValue = null;
 
-	/** @var bool Would deleting this page be a big deletion? */
+	/** @var bool|null Would deleting this page be a big deletion? */
 	private $mIsBigDeletion = null;
 	// @}
 
@@ -219,7 +219,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return Title|null Title, or null on an error
 	 */
 	public static function newFromDBkey( $key ) {
-		$t = new Title();
+		$t = new self();
 		$t->mDbkeyform = $key;
 
 		try {
@@ -287,7 +287,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		}
 
 		try {
-			return self::newFromTextThrow( strval( $text ), $defaultNamespace );
+			return self::newFromTextThrow( (string)$text, $defaultNamespace );
 		} catch ( MalformedTitleException $ex ) {
 			return null;
 		}
@@ -337,7 +337,7 @@ class Title implements LinkTarget, IDBAccessObject {
 
 		$t = new Title();
 		$t->mDbkeyform = strtr( $filteredText, ' ', '_' );
-		$t->mDefaultNamespace = intval( $defaultNamespace );
+		$t->mDefaultNamespace = (int)$defaultNamespace;
 
 		$t->secureAndSplit();
 		if ( $defaultNamespace == NS_MAIN ) {
@@ -385,7 +385,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return MapCacheLRU
 	 */
 	private static function getTitleCache() {
-		if ( self::$titleCache == null ) {
+		if ( self::$titleCache === null ) {
 			self::$titleCache = new MapCacheLRU( self::CACHE_MAX );
 		}
 		return self::$titleCache;
@@ -499,7 +499,7 @@ class Title implements LinkTarget, IDBAccessObject {
 				$this->mLatestID = (int)$row->page_latest;
 			}
 			if ( !$this->mForcedContentModel && isset( $row->page_content_model ) ) {
-				$this->mContentModel = strval( $row->page_content_model );
+				$this->mContentModel = (string)$row->page_content_model;
 			} elseif ( !$this->mForcedContentModel ) {
 				$this->mContentModel = false; # initialized lazily in getContentModel()
 			}
@@ -546,7 +546,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		$t = new Title();
 		$t->mInterwiki = $interwiki;
 		$t->mFragment = $fragment;
-		$t->mNamespace = $ns = intval( $ns );
+		$t->mNamespace = $ns = (int)$ns;
 		$t->mDbkeyform = strtr( $title, ' ', '_' );
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
 		$t->mUrlform = wfUrlencode( $t->mDbkeyform );
