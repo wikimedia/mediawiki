@@ -35,9 +35,6 @@ class AvailableRightsTest extends PHPUnit\Framework\TestCase {
 		return $rights;
 	}
 
-	/**
-	 * @coversNothing
-	 */
 	public function testAvailableRights() {
 		$missingRights = array_diff(
 			$this->getAllVisibleRights(),
@@ -69,8 +66,6 @@ class AvailableRightsTest extends PHPUnit\Framework\TestCase {
 	 * Test, if for all rights a right- message exist,
 	 * which is used on Special:ListGroupRights as help text
 	 * Extensions and core
-	 *
-	 * @coversNothing
 	 */
 	public function testAllRightsWithMessage() {
 		$this->checkMessagesExist( 'right-' );

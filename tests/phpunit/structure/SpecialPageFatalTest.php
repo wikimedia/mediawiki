@@ -11,7 +11,6 @@ use MediaWiki\MediaWikiServices;
  *
  * @since 1.32
  * @author Addshore
- * @coversNothing
  */
 class SpecialPageFatalTest extends MediaWikiTestCase {
 	public function provideSpecialPages() {

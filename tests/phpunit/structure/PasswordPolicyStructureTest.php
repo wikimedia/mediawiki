@@ -1,8 +1,5 @@
 <?php
 
-/**
- * @coversNothing
- */
 class PasswordPolicyStructureTest extends MediaWikiTestCase {
 
 	public function provideChecks() {

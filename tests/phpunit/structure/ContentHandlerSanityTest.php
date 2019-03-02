@@ -32,7 +32,6 @@ class ContentHandlerSanityTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @coversNothing
 	 * @dataProvider provideHandlers
 	 * @param ContentHandler $handler
 	 */
