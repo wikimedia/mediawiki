@@ -140,9 +140,9 @@ class WebInstaller extends Installer {
 		$this->request = $request;
 
 		// Add parser hooks
-		global $wgParser;
-		$wgParser->setHook( 'downloadlink', [ $this, 'downloadLinkHook' ] );
-		$wgParser->setHook( 'doclink', [ $this, 'docLink' ] );
+		$parser = MediaWikiServices::getInstance()->getParser();
+		$parser->setHook( 'downloadlink', [ $this, 'downloadLinkHook' ] );
+		$parser->setHook( 'doclink', [ $this, 'docLink' ] );
 	}
 
 	/**
