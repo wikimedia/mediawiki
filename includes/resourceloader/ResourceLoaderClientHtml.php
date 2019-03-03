@@ -47,9 +47,6 @@ class ResourceLoaderClientHtml {
 	private $moduleStyles = [];
 
 	/** @var array */
-	private $moduleScripts = [];
-
-	/** @var array */
 	private $exemptStates = [];
 
 	/** @var array */
@@ -102,16 +99,6 @@ class ResourceLoaderClientHtml {
 	}
 
 	/**
-	 * Ensure the scripts of one or more modules are loaded.
-	 *
-	 * @deprecated since 1.28
-	 * @param array $modules Array of module names
-	 */
-	public function setModuleScripts( array $modules ) {
-		$this->moduleScripts = $modules;
-	}
-
-	/**
 	 * Set state of special modules that are handled by the caller manually.
 	 *
 	 * See OutputPage::buildExemptModules() for use cases.
@@ -139,7 +126,6 @@ class ResourceLoaderClientHtml {
 			],
 			'general' => [],
 			'styles' => [],
-			'scripts' => [],
 			// Embedding for private modules
 			'embed' => [
 				'styles' => [],
@@ -217,26 +203,6 @@ class ResourceLoaderClientHtml {
 			}
 		}
 
-		foreach ( $this->moduleScripts as $name ) {
-			$module = $rl->getModule( $name );
-			if ( !$module ) {
-				continue;
-			}
-
-			$group = $module->getGroup();
-			$context = $this->getContext( $group, ResourceLoaderModule::TYPE_SCRIPTS );
-			if ( $module->isKnownEmpty( $context ) ) {
-				// Avoid needless request for empty module
-				$data['states'][$name] = 'ready';
-			} else {
-				// Load from load.php?only=scripts via <script src></script>
-				$data['scripts'][] = $name;
-
-				// Avoid duplicate request from mw.loader
-				$data['states'][$name] = 'loading';
-			}
-		}
-
 		return $data;
 	}
 
@@ -308,15 +274,6 @@ class ResourceLoaderClientHtml {
 					. ResourceLoader::encodeJsonForScript( $data['general'] )
 					. ';'
 					. 'mw.loader.load(RLPAGEMODULES);',
-				$nonce
-			);
-		}
-
-		// Inline RLQ: Load only=scripts
-		if ( $data['scripts'] ) {
-			$chunks[] = $this->getLoad(
-				$data['scripts'],
-				ResourceLoaderModule::TYPE_SCRIPTS,
 				$nonce
 			);
 		}

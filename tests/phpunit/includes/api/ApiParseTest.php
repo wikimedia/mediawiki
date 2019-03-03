@@ -650,7 +650,6 @@ class ApiParseTest extends ApiTestCase {
 			function ( $parser ) {
 				$output = $parser->getOutput();
 				$output->addModules( [ 'foo', 'bar' ] );
-				$output->addModuleScripts( [ 'baz', 'quuz' ] );
 				$output->addModuleStyles( [ 'aaa', 'zzz' ] );
 				$output->addJsConfigVars( [ 'x' => 'y', 'z' => -3 ] );
 			}
@@ -663,7 +662,7 @@ class ApiParseTest extends ApiTestCase {
 		] );
 
 		$this->assertSame( [ 'foo', 'bar' ], $res[0]['parse']['modules'] );
-		$this->assertSame( [ 'baz', 'quuz' ], $res[0]['parse']['modulescripts'] );
+		$this->assertSame( [], $res[0]['parse']['modulescripts'] );
 		$this->assertSame( [ 'aaa', 'zzz' ], $res[0]['parse']['modulestyles'] );
 		$this->assertSame( [ 'x' => 'y', 'z' => -3 ], $res[0]['parse']['jsconfigvars'] );
 		$this->assertSame( '{"x":"y","z":-3}', $res[0]['parse']['encodedjsconfigvars'] );

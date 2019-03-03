@@ -106,7 +106,6 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 	 * @covers ResourceLoaderClientHtml::__construct
 	 * @covers ResourceLoaderClientHtml::setModules
 	 * @covers ResourceLoaderClientHtml::setModuleStyles
-	 * @covers ResourceLoaderClientHtml::setModuleScripts
 	 * @covers ResourceLoaderClientHtml::getData
 	 * @covers ResourceLoaderClientHtml::getContext
 	 */
@@ -132,13 +131,6 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 			'test.styles.deprecated',
 			'test.unregistered.styles',
 		] );
-		$client->setModuleScripts( [
-			'test.scripts',
-			'test.scripts.user',
-			'test.scripts.user.empty',
-			'test.scripts.shouldembed',
-			'test.unregistered.scripts',
-		] );
 
 		$expected = [
 			'states' => [
@@ -151,10 +143,6 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 				'test.styles.private' => 'ready',
 				'test.styles.shouldembed' => 'ready',
 				'test.styles.deprecated' => 'ready',
-				'test.scripts' => 'loading',
-				'test.scripts.user' => 'loading',
-				'test.scripts.user.empty' => 'ready',
-				'test.scripts.shouldembed' => 'loading',
 			],
 			'general' => [
 				'test',
@@ -162,11 +150,6 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 			'styles' => [
 				'test.styles.pure',
 				'test.styles.deprecated',
-			],
-			'scripts' => [
-				'test.scripts',
-				'test.scripts.user',
-				'test.scripts.shouldembed',
 			],
 			'embed' => [
 				'styles' => [ 'test.styles.private', 'test.styles.shouldembed' ],
@@ -213,9 +196,6 @@ Deprecation message.' ]
 			'test.styles.private',
 			'test.styles.deprecated',
 		] );
-		$client->setModuleScripts( [
-			'test.scripts',
-		] );
 		$client->setExemptStates( [
 			'test.exempt' => 'ready',
 		] );
@@ -224,10 +204,9 @@ Deprecation message.' ]
 		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
 			. '<script>(window.RLQ=window.RLQ||[]).push(function(){'
 			. 'mw.config.set({"key":"value"});'
-			. 'mw.loader.state({"test.exempt":"ready","test.private":"loading","test.styles.pure":"ready","test.styles.private":"ready","test.styles.deprecated":"ready","test.scripts":"loading"});'
+			. 'mw.loader.state({"test.exempt":"ready","test.private":"loading","test.styles.pure":"ready","test.styles.private":"ready","test.styles.deprecated":"ready"});'
 			. 'mw.loader.implement("test.private@{blankVer}",null,{"css":[]});'
 			. 'RLPAGEMODULES=["test"];mw.loader.load(RLPAGEMODULES);'
-			. 'mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts\u0026only=scripts\u0026skin=fallback");'
 			. '});</script>' . "\n"
 			. '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.deprecated%2Cpure&amp;only=styles&amp;skin=fallback"/>' . "\n"
 			. '<style>.private{}</style>' . "\n"
@@ -311,9 +290,6 @@ Deprecation message.' ]
 		] );
 		$client->setModuleStyles( [
 			'test.styles.deprecated',
-		] );
-		$client->setModuleScripts( [
-			'test.scripts',
 		] );
 		// phpcs:disable Generic.Files.LineLength
 		$expected = '<script>(window.RLQ=window.RLQ||[]).push(function(){'

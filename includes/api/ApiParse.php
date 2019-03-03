@@ -417,11 +417,13 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['modules'] ) ) {
 			if ( $skin ) {
 				$result_array['modules'] = $outputPage->getModules();
-				$result_array['modulescripts'] = $outputPage->getModuleScripts();
+				// Deprecated since 1.32 (T188689)
+				$result_array['modulescripts'] = [];
 				$result_array['modulestyles'] = $outputPage->getModuleStyles();
 			} else {
 				$result_array['modules'] = array_values( array_unique( $p_result->getModules() ) );
-				$result_array['modulescripts'] = array_values( array_unique( $p_result->getModuleScripts() ) );
+				// Deprecated since 1.32 (T188689)
+				$result_array['modulescripts'] = [];
 				$result_array['modulestyles'] = array_values( array_unique( $p_result->getModuleStyles() ) );
 			}
 		}

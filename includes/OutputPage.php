@@ -153,9 +153,6 @@ class OutputPage extends ContextSource {
 	protected $mModules = [];
 
 	/** @var array */
-	protected $mModuleScripts = [];
-
-	/** @var array */
 	protected $mModuleStyles = [];
 
 	/** @var ResourceLoader */
@@ -552,30 +549,12 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Get the list of script-only modules to load on this page.
-	 *
-	 * @param bool $filter
-	 * @param string|null $position Unused
-	 * @return array Array of module names
+	 * @deprecated since 1.33 Use getModules() instead.
+	 * @return array
 	 */
-	public function getModuleScripts( $filter = false, $position = null ) {
-		return $this->getModules( $filter, null, 'mModuleScripts',
-			ResourceLoaderModule::TYPE_SCRIPTS
-		);
-	}
-
-	/**
-	 * Load the scripts of one or more ResourceLoader modules, on this page.
-	 *
-	 * This method exists purely to provide the legacy behaviour of loading
-	 * a module's scripts in the global scope, and without dependency resolution.
-	 * See <https://phabricator.wikimedia.org/T188689>.
-	 *
-	 * @deprecated since 1.31 Use addModules() instead.
-	 * @param string|array $modules Module name (string) or array of module names
-	 */
-	public function addModuleScripts( $modules ) {
-		$this->mModuleScripts = array_merge( $this->mModuleScripts, (array)$modules );
+	public function getModuleScripts() {
+		wfDeprecated( __METHOD__, '1.33' );
+		return [];
 	}
 
 	/**
@@ -1970,7 +1949,6 @@ class OutputPage extends ContextSource {
 		$this->mNoGallery = $parserOutput->getNoGallery();
 		$this->mHeadItems = array_merge( $this->mHeadItems, $parserOutput->getHeadItems() );
 		$this->addModules( $parserOutput->getModules() );
-		$this->addModuleScripts( $parserOutput->getModuleScripts() );
 		$this->addModuleStyles( $parserOutput->getModuleStyles() );
 		$this->addJsConfigVars( $parserOutput->getJsConfigVars() );
 		$this->mPreventClickjacking = $this->mPreventClickjacking
@@ -2037,7 +2015,6 @@ class OutputPage extends ContextSource {
 		$this->addParserOutputText( $parserOutput, $poOptions );
 
 		$this->addModules( $parserOutput->getModules() );
-		$this->addModuleScripts( $parserOutput->getModuleScripts() );
 		$this->addModuleStyles( $parserOutput->getModuleStyles() );
 
 		$this->addJsConfigVars( $parserOutput->getJsConfigVars() );
@@ -3183,7 +3160,6 @@ class OutputPage extends ContextSource {
 			$rlClient->setConfig( $this->getJSVars() );
 			$rlClient->setModules( $this->getModules( /*filter*/ true ) );
 			$rlClient->setModuleStyles( $moduleStyles );
-			$rlClient->setModuleScripts( $this->getModuleScripts( /*filter*/ true ) );
 			$rlClient->setExemptStates( $exemptStates );
 			$this->rlClient = $rlClient;
 		}
