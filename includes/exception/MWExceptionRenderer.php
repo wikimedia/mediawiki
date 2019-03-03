@@ -268,6 +268,7 @@ class MWExceptionRenderer {
 	 * Print a message, if possible to STDERR.
 	 * Use this in command line mode only (see isCommandLine)
 	 *
+	 * @suppress SecurityCheck-XSS
 	 * @param string $message Failure text
 	 */
 	private static function printError( $message ) {
