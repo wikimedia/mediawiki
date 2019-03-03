@@ -686,10 +686,10 @@ abstract class Installer {
 	 * @return string
 	 */
 	public function parse( $text, $lineStart = false ) {
-		global $wgParser;
+		$parser = MediaWikiServices::getInstance()->getParser();
 
 		try {
-			$out = $wgParser->parse( $text, $this->parserTitle, $this->parserOptions, $lineStart );
+			$out = $parser->parse( $text, $this->parserTitle, $this->parserOptions, $lineStart );
 			$html = $out->getText( [
 				'enableSectionEditLinks' => false,
 				'unwrap' => true,
