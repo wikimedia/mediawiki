@@ -288,9 +288,6 @@ return [
 		'messages' => [ 'collapsible-expand', 'collapsible-collapse' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'jquery.mockjax' => [
-		'scripts' => 'resources/lib/jquery.mockjax.js',
-	],
 	'jquery.mw-jump' => [
 		'scripts' => 'resources/src/jquery/jquery.mw-jump.js',
 		'targets' => [ 'desktop', 'mobile' ],
