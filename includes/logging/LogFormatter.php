@@ -329,6 +329,7 @@ class LogFormatter {
 							->rawParams( $target )->inContentLanguage()->escaped();
 						break;
 					case 'overwrite':
+					case 'revert':
 						$text = wfMessage( 'overwroteimage' )
 							->rawParams( $target )->inContentLanguage()->escaped();
 						break;
