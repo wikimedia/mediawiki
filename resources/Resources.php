@@ -232,11 +232,6 @@ return [
 		'scripts' => 'resources/src/jquery/jquery.getAttrs.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'jquery.hidpi' => [
-		'deprecated' => 'Use of the srcset polyfill is deprecated since MediaWiki 1.32.0',
-		'scripts' => 'resources/src/jquery/jquery.hidpi.js',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'jquery.highlightText' => [
 		'scripts' => 'resources/src/jquery/jquery.highlightText.js',
 		'dependencies' => [
