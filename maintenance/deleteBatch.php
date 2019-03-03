@@ -80,8 +80,6 @@ class DeleteBatch extends Maintenance {
 			$this->fatalError( "Unable to read file, exiting" );
 		}
 
-		$dbw = $this->getDB( DB_MASTER );
-
 		# Handle each entry
 		for ( $linenum = 1; !feof( $file ); $linenum++ ) {
 			$line = trim( fgets( $file ) );

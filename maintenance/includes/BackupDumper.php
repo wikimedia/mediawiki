@@ -74,9 +74,6 @@ abstract class BackupDumper extends Maintenance {
 	/** @var LoadBalancer */
 	protected $lb;
 
-	// @todo Unused?
-	private $stubText = false; // include rev_text_id instead of text; for 2-pass dump
-
 	/**
 	 * @param array|null $args For backward compatibility
 	 */

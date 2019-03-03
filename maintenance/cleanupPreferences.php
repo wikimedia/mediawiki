@@ -60,7 +60,6 @@ class CleanupPreferences extends Maintenance {
 		global $wgHiddenPrefs, $wgDefaultUserOptions;
 
 		$dbw = $this->getDB( DB_MASTER );
-		$didWork = false;
 		$hidden = $this->hasOption( 'hidden' );
 		$unknown = $this->hasOption( 'unknown' );
 		$bogus = $this->hasOption( 'bogus' );
