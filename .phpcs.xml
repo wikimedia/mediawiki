@@ -101,7 +101,6 @@
 		<exclude-pattern>*/includes/specials/SpecialMostlinkedtemplates\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialMostrevisions\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialMovepage\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialMyRedirectPages\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialNewimages\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialRandompage\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialShortpages\.php</exclude-pattern>
@@ -243,10 +242,7 @@
 		<exclude-pattern>*/includes/RevisionList\.php</exclude-pattern>
 		<exclude-pattern>*/includes/search/SearchEngine\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specialpage/LoginSignupSpecialPage\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specialpage/RedirectSpecialPage\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/forms/PreferencesFormLegacy\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialListusers\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialMyRedirectPages\.php</exclude-pattern>
 		<exclude-pattern>*/includes/StubObject\.php</exclude-pattern>
 		<exclude-pattern>*/includes/upload/UploadStash\.php</exclude-pattern>
 		<exclude-pattern>*/includes/utils/AutoloadGenerator\.php</exclude-pattern>
