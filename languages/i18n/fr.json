@@ -3677,7 +3677,7 @@
 	"logentry-rights-autopromote": "$1 {{GENDER:$2|a été promu}} automatiquement de $4 à $5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|a téléversé}} $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|a téléversé}} une nouvelle version de $3",
-	"logentry-upload-revert": "$1 {{GENDER:$2|a téléversé}} $3",
+	"logentry-upload-revert": "$1 {{GENDER:$2|a annulé}} $3 vers une ancienne version",
 	"log-name-managetags": "Journal des modifications de balises",
 	"log-description-managetags": "Cette page recense les tâches de maintenance liées aux [[Special:Tags|balises]]. Le journal contient uniquement les actions faites manuellement par un administrateur ; les balises peuvent être créées ou supprimées par le logiciel wiki sans que cette action ne soit inscrite dans ce journal.",
 	"logentry-managetags-create": "$1 {{GENDER:$2|a créé}} la balise « $4 ».",
@@ -3914,6 +3914,7 @@
 	"log-action-filter-suppress-reblock": "Suppression d’utilisateur par blocage réitéré",
 	"log-action-filter-upload-upload": "Nouveau téléversement",
 	"log-action-filter-upload-overwrite": "Réitérer le téléversement",
+	"log-action-filter-upload-revert": "Révoquer",
 	"authmanager-authn-not-in-progress": "L’authentification n’est pas en cours ou les données de session ont été perdues. Veuillez recommencer depuis le début.",
 	"authmanager-authn-no-primary": "Les informations d’identification fournies n’ont pas pu être authentifiées.",
 	"authmanager-authn-no-local-user": "Les informations d’identification fournies ne sont associées à aucun utilisateur sur ce wiki.",
@@ -4020,6 +4021,7 @@
 	"passwordpolicies-policy-maximalpasswordlength": "Les mots de passe doivent avoir moins de $1 caractère{{PLURAL:$1||s}} de long",
 	"passwordpolicies-policy-passwordcannotbepopular": "Le mot de passe ne peut pas être {{PLURAL:$1|le mot de passe populaire|dans la liste des $1 mots de passe populaires}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Le mot de passe ne peut pas faire partie de la liste des 100 000 mots de passe les plus communément utilisés.",
+	"passwordpolicies-policyflag-forcechange": "doit changer à la reconnexion",
 	"easydeflate-invaliddeflate": "Le contenu fourni n'est pas correctement développé",
 	"unprotected-js": "Pour des raisons de sécurité, JavaScript ne peut pas être chargé depuis des pages non protégées. Veuillez ne créer du javascript que dans l’espace de noms MediaWiki: ou comme sous-page utilisateur"
 }

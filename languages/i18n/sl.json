@@ -3749,6 +3749,7 @@
 	"passwordpolicies-policy-maximalpasswordlength": "Geslo ne sme biti daljše od $1 {{PLURAL:$1|znak|znaka|znake|znakov}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "Geslo ne sme biti {{PLURAL:$1|1=popularno geslo|na seznamu $1 popularnih gesel}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Geslo ne more biti na seznamu 100.000 najpogosteje uporabljenih gesel.",
+	"passwordpolicies-policyflag-forcechange": "treba spremeniti ob prijavi",
 	"easydeflate-invaliddeflate": "Dana vsebina ni pravilno stisnjena",
 	"unprotected-js": "Iz varnostnih razlogov JavaScripta ni možno naložiti z nezaščitenih strani. Prosimo, da JavaScript ustvarite samo v imenskem prostoru MediaWiki ali kot uporabniško podstran."
 }
