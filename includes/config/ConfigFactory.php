@@ -44,7 +44,7 @@ class ConfigFactory implements SalvageableService {
 	protected $configs = [];
 
 	/**
-	 * @deprecated since 1.27, use MediaWikiServices::getConfigFactory() instead.
+	 * @deprecated since 1.27, use MediaWikiServices::getInstance()->getConfigFactory() instead.
 	 *
 	 * @return ConfigFactory
 	 */
