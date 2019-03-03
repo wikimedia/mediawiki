@@ -343,9 +343,6 @@ return [
 		'scripts' => 'resources/lib/jquery.ba-throttle-debounce.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'jquery.xmldom' => [
-		'scripts' => 'resources/lib/jquery.xmldom.js',
-	],
 
 	/* jQuery Tipsy */
 

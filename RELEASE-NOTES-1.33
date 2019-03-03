@@ -267,6 +267,7 @@ because of Phabricator reports.
 * MessageBlobStore::__construct() now requires its $rl parameter.
 * Second parameter to Sanitizer::escapeIdReferenceList() (deprecated in 1.31)
   has been removed.
+* The 'jquery.xmldom' module has been removed.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
