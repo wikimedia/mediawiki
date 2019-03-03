@@ -268,6 +268,7 @@ because of Phabricator reports.
 * Second parameter to Sanitizer::escapeIdReferenceList() (deprecated in 1.31)
   has been removed.
 * The 'jquery.xmldom' module has been removed.
+* The 'jquery.mockjax' module has been removed.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
