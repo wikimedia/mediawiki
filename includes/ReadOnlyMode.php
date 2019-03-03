@@ -4,7 +4,7 @@ use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * A service class for fetching the wiki's current read-only mode.
- * To obtain an instance, use MediaWikiServices::getReadOnlyMode().
+ * To obtain an instance, use MediaWikiServices::getInstance()->getReadOnlyMode().
  *
  * @since 1.29
  */

@@ -365,7 +365,7 @@ class ObjectCache {
 	 *
 	 * @since 1.26
 	 * @return WANObjectCache
-	 * @deprecated Since 1.28 Use MediaWikiServices::getMainWANObjectCache()
+	 * @deprecated Since 1.28 Use MediaWikiServices::getInstance()->getMainWANObjectCache()
 	 */
 	public static function getMainWANInstance() {
 		return MediaWikiServices::getInstance()->getMainWANObjectCache();
@@ -388,7 +388,7 @@ class ObjectCache {
 	 *
 	 * @return BagOStuff
 	 * @since 1.26
-	 * @deprecated Since 1.28 Use MediaWikiServices::getMainObjectStash
+	 * @deprecated Since 1.28 Use MediaWikiServices::getInstance()->getMainObjectStash()
 	 */
 	public static function getMainStashInstance() {
 		return MediaWikiServices::getInstance()->getMainObjectStash();

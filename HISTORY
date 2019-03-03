@@ -522,8 +522,8 @@ because of Phabricator reports.
 * SearchResult::setExtensionData argument has been changed from accepting an
   array to accepting a Closure that returns the array when called.
 * Class CryptRand, everything in MWCryptRand except generateHex() and function
-  MediaWikiServices::getCryptRand() are deprecated, use random_bytes() to
-  generate cryptographically secure random byte sequences.
+  MediaWikiServices::getInstance()->getCryptRand() are deprecated, use
+  random_bytes() to generate cryptographically secure random byte sequences.
 * Parser::getConverterLanguage() is deprecated.  Use ::getTargetLanguage()
   instead.
 * Language::markNoConversion() is deprecated.  It confused readers because
@@ -590,10 +590,12 @@ because of Phabricator reports.
 * All MagicWord static methods are now deprecated.  Use the MagicWordFactory
   methods instead.
 * PasswordFactory::init is deprecated. To get a password factory with the
-  standard configuration, use MediaWikiServices::getPasswordFactory.
-* $wgContLang is deprecated, use MediaWikiServices::getContentLanguage()
+  standard configuration, use
+  MediaWikiServices::getInstance()->getPasswordFactory.
+* $wgContLang is deprecated, use
+  MediaWikiServices::getInstance()->getContentLanguage() instead.
+* $wgParser is deprecated, use MediaWikiServices::getInstance()->getParser()
   instead.
-* $wgParser is deprecated, use MediaWikiServices::getParser() instead.
 * wfGetMainCache() is deprecated, use ObjectCache::getLocalClusterInstance()
   instead.
 * wfGetCache() is deprecated, use ObjectCache::getInstance() instead.
