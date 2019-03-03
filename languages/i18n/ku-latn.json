@@ -64,7 +64,9 @@
 	"tog-norollbackdiff": "Ciyawaziyê piştî şûndekirinê nîşan nede",
 	"underline-always": "Hertim",
 	"underline-never": "Qet",
-	"underline-default": "Tercîhên lêgerokê",
+	"underline-default": "Tercîhên lêgerok an jî xuyangê",
+	"editfont-style": "Şêwaza curetîpê ya qada sererastkirinê:",
+	"editfont-monospace": "Curetîpa yek-navberî",
 	"editfont-sansserif": "Fonta Sans-serif'ê",
 	"editfont-serif": "Fonta Serif'ê",
 	"sunday": "yekşem",
@@ -168,6 +170,7 @@
 	"returnto": "Vegere $1.",
 	"tagline": "Ji {{SITENAME}}",
 	"help": "Alîkarî",
+	"help-mediawiki": "Alîkariya di derbarê MedyaWîkiyê de",
 	"search": "Lêgerîn",
 	"searchbutton": "Lêgerîn",
 	"go": "Here",
@@ -1856,6 +1859,7 @@
 	"log-action-filter-all": "Hemû",
 	"log-action-filter-block-block": "Asteng bike",
 	"log-action-filter-upload-upload": "Barkirina nû",
+	"log-action-filter-upload-revert": "Şûnde vegerîne",
 	"authmanager-email-label": "E-name",
 	"authmanager-email-help": "Navnîşana e-nameyê"
 }

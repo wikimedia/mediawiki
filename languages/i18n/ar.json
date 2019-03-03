@@ -76,7 +76,8 @@
 			"Azouz.anis",
 			"Elbasyouny",
 			"Omar Ghrida",
-			"AHmed Khaled"
+			"AHmed Khaled",
+			"البراء صالح"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -2681,9 +2682,9 @@
 	"move-subpages": "انقل الصفحات الفرعية (حتى $1)",
 	"move-talk-subpages": "انقل الصفحات الفرعية لصفحة النقاش (حتى $1)",
 	"movepage-page-exists": "الصفحة $1 موجودة بالفعل ولا يمكن الكتابة عليها تلقائياً.",
-	"movepage-page-moved": "نقلت صفحة $1 إلى $2.",
+	"movepage-page-moved": "نقلت صفحة $1 إلى $2 بنجاح.",
 	"movepage-page-unmoved": "لم يمكن نقل صفحة $1 إلى $2.",
-	"movepage-max-pages": "تم نقل الحد الأقصى وهو {{PLURAL:$1||صفحة واحدة|صفحتان|$1 صفحات|$1 صفحة}} ولن يتم نقل المزيد تلقائياً.",
+	"movepage-max-pages": "تم نقل الحد الأقصى وهو {{PLURAL:$1|صفحة واحدة|صفحتان|$1 صفحات|$1 صفحة}} ولن يتم نقل المزيد تلقائيا.",
 	"movelogpage": "سجل النقل",
 	"movelogpagetext": "بالأسفل قائمة بالصفحات التي تم نقلها.",
 	"movesubpage": "{{PLURAL:$1||الصفحة الفرعية|الصفحتان الفرعيتان|الصفحات الفرعية}}",
@@ -3556,7 +3557,7 @@
 	"logentry-rights-autopromote": "تمَ تلقائياً ترقية {{GENDER:$2|المستخدم|المستخدمة}} $1 من  $4 إلى $5",
 	"logentry-upload-upload": " {{GENDER:$2|رفع|رفعت}} $1 $3",
 	"logentry-upload-overwrite": "{{GENDER:$2|رفع|رفعت}} $1 نسخة جديدة من  $3",
-	"logentry-upload-revert": "{{GENDER:$2|رفع|رفعت}} $1 $3",
+	"logentry-upload-revert": "$1 {{GENDER:$2|استرجع|استرجعت}} $3 لنسخة قديمة",
 	"log-name-managetags": "سجل إدارة الوسوم",
 	"log-description-managetags": "هذه الصفحة تعرض مهام الإدارة المرتعلقة ب[[Special:Tags|الوسوم]]. السجل يحتوي فقط على الافعال التي تم عملها يدويا بواسطة إداري؛ الوسوم ربما يتم إنشاؤها او حذفها بواسطة برنامج الويكي بدون تسجيل مدخلة في هذا السجل.",
 	"logentry-managetags-create": "$1 {{GENDER:$2|أنشأ|أنشأت}} الوسم \"$4\"",
@@ -3791,6 +3792,7 @@
 	"log-action-filter-suppress-reblock": "إخفاء المستخدم بواسطة إعادة المنع",
 	"log-action-filter-upload-upload": "رفع جديد",
 	"log-action-filter-upload-overwrite": "إعادة الرفع",
+	"log-action-filter-upload-revert": "استرجاع",
 	"authmanager-authn-not-in-progress": "عملية التحقق ليست جارية أو بينات الجلسة تم فقدها. من فضلك ابدأ مرة ثانية من البداية.",
 	"authmanager-authn-no-primary": "الاعتماد الموفر لم يمكن التحقق منه.",
 	"authmanager-authn-no-local-user": "الاعتماد الموفر غير مرتبط بأي مستخدم على هذه الويكي.",

@@ -205,7 +205,6 @@
 	"edit": "Edit",
 	"edit-local": "Edit local description",
 	"create": "Create",
-	"create-local": "Add local description",
 	"delete": "Delete",
 	"undelete_short": "Undelete {{PLURAL:$1|one edit|$1 edits}}",
 	"viewdeleted_short": "View {{PLURAL:$1|one deleted edit|$1 deleted edits}}",
