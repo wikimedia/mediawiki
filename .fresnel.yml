@@ -1,12 +1,12 @@
 warmup: true
 runs: 5
 scenarios:
-  # Load a page view
-  # The only page that exists by default is the main page.
-  # But, its actual name is configurable/unknown (T216791).
-  # Omit 'title' to let MediaWiki show the defaul (which is the main page),
-  # and a query string to prevent the normalization redirect.
-  - url: "{MW_SERVER}{MW_SCRIPT_PATH}/index.php?noredirectplz"
+  Load a page:
+    # The only page that exists by default is the main page.
+    # But, its actual name is configurable/unknown (T216791).
+    # Omit 'title' to let MediaWiki show the defaul (which is the main page),
+    # and a query string to prevent a normalization redirect.
+    url: "{MW_SERVER}{MW_SCRIPT_PATH}/index.php?noredirectplz"
     viewport:
       width: 1100
       height: 700
@@ -17,8 +17,8 @@ scenarios:
     probes:
       - screenshot
       - trace
-  # Load an 'edit' form
-  - url: "{MW_SERVER}{MW_SCRIPT_PATH}/index.php?action=edit"
+  Load the editor:
+    url: "{MW_SERVER}{MW_SCRIPT_PATH}/index.php?action=edit"
     viewport:
       width: 1100
       height: 700
@@ -29,8 +29,8 @@ scenarios:
     probes:
       - screenshot
       - trace
-  # View recent changes
-  - url: "{MW_SERVER}{MW_SCRIPT_PATH}/index.php?title=Special:RecentChanges"
+  View recent changes:
+    url: "{MW_SERVER}{MW_SCRIPT_PATH}/index.php?title=Special:RecentChanges"
     viewport:
       width: 1100
       height: 700
