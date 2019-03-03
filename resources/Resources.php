@@ -1569,7 +1569,7 @@ return [
 	],
 
 	'mediawiki.cldr' => [
-		'scripts' => 'resources/src/mediawiki.language/mediawiki.cldr.js',
+		'scripts' => 'resources/src/mediawiki.cldr/index.js',
 		'dependencies' => [
 			'mediawiki.libs.pluralruleparser',
 		],
