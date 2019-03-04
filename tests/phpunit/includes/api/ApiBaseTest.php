@@ -1297,6 +1297,8 @@ class ApiBaseTest extends ApiTestCase {
 	public function testErrorArrayToStatus() {
 		$mock = new MockApi();
 
+		$msg = new Message( 'mainpage' );
+
 		// Sanity check empty array
 		$expect = Status::newGood();
 		$this->assertEquals( $expect, $mock->errorArrayToStatus( [] ) );
@@ -1307,12 +1309,16 @@ class ApiBaseTest extends ApiTestCase {
 		$expect->fatal( 'autoblockedtext' );
 		$expect->fatal( 'systemblockedtext' );
 		$expect->fatal( 'mainpage' );
+		$expect->fatal( $msg );
+		$expect->fatal( $msg, 'foobar' );
 		$expect->fatal( 'parentheses', 'foobar' );
 		$this->assertEquals( $expect, $mock->errorArrayToStatus( [
 			[ 'blockedtext' ],
 			[ 'autoblockedtext' ],
 			[ 'systemblockedtext' ],
 			'mainpage',
+			$msg,
+			[ $msg, 'foobar' ],
 			[ 'parentheses', 'foobar' ],
 		] ) );
 
@@ -1333,18 +1339,24 @@ class ApiBaseTest extends ApiTestCase {
 		$expect->fatal( ApiMessage::create( 'apierror-autoblocked', 'autoblocked', $blockinfo ) );
 		$expect->fatal( ApiMessage::create( 'apierror-systemblocked', 'blocked', $blockinfo ) );
 		$expect->fatal( 'mainpage' );
+		$expect->fatal( $msg );
+		$expect->fatal( $msg, 'foobar' );
 		$expect->fatal( 'parentheses', 'foobar' );
 		$this->assertEquals( $expect, $mock->errorArrayToStatus( [
 			[ 'blockedtext' ],
 			[ 'autoblockedtext' ],
 			[ 'systemblockedtext' ],
 			'mainpage',
+			$msg,
+			[ $msg, 'foobar' ],
 			[ 'parentheses', 'foobar' ],
 		], $user ) );
 	}
 
 	public function testAddBlockInfoToStatus() {
 		$mock = new MockApi();
+
+		$msg = new Message( 'mainpage' );
 
 		// Sanity check empty array
 		$expect = Status::newGood();
@@ -1358,6 +1370,8 @@ class ApiBaseTest extends ApiTestCase {
 		$expect->fatal( 'autoblockedtext' );
 		$expect->fatal( 'systemblockedtext' );
 		$expect->fatal( 'mainpage' );
+		$expect->fatal( $msg );
+		$expect->fatal( $msg, 'foobar' );
 		$expect->fatal( 'parentheses', 'foobar' );
 		$test = clone $expect;
 		$mock->addBlockInfoToStatus( $test );
@@ -1380,12 +1394,16 @@ class ApiBaseTest extends ApiTestCase {
 		$expect->fatal( ApiMessage::create( 'apierror-autoblocked', 'autoblocked', $blockinfo ) );
 		$expect->fatal( ApiMessage::create( 'apierror-systemblocked', 'blocked', $blockinfo ) );
 		$expect->fatal( 'mainpage' );
+		$expect->fatal( $msg );
+		$expect->fatal( $msg, 'foobar' );
 		$expect->fatal( 'parentheses', 'foobar' );
 		$test = Status::newGood();
 		$test->fatal( 'blockedtext' );
 		$test->fatal( 'autoblockedtext' );
 		$test->fatal( 'systemblockedtext' );
 		$test->fatal( 'mainpage' );
+		$test->fatal( $msg );
+		$test->fatal( $msg, 'foobar' );
 		$test->fatal( 'parentheses', 'foobar' );
 		$mock->addBlockInfoToStatus( $test, $user );
 		$this->assertEquals( $expect, $test );
