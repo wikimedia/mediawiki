@@ -121,6 +121,9 @@ class Block {
 	 *                          created by MediaWiki rather than being stored
 	 *                          in the database. Value is a string to return
 	 *                          from self::getSystemBlockType().
+	 *     sitewide bool        Disallow editing all pages and all contribution
+	 *                          actions, except those specifically allowed by
+	 *                          other block flags
 	 *
 	 * @since 1.26 accepts $options array instead of individual parameters; order
 	 * of parameters above reflects the original order
