@@ -377,7 +377,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		if ( $wgPriorityHints
 			&& !self::$firstNonIconImageRendered
 			&& $this->width * $this->height > 100 * 100 ) {
-			self::$firstBigImageRendered = true;
+			self::$firstNonIconImageRendered = true;
 
 			$attribs['importance'] = 'high';
 		}
