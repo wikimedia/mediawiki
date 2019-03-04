@@ -138,15 +138,14 @@ class ActiveUsersPager extends UsersPager {
 
 		// Outer query to select the recent edit counts for the selected active users
 		$tables = [ 'qcc_users' => $subquery, 'recentchanges' ];
-		$jconds = [ 'recentchanges' => [
-			'JOIN', $useActor ? 'rc_actor = actor_id' : 'rc_user_text = qcc_title',
-		] ];
-		$conds = [
+		$jconds = [ 'recentchanges' => [ 'LEFT JOIN', [
+			$useActor ? 'rc_actor = actor_id' : 'rc_user_text = qcc_title',
 			'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ), // Don't count wikidata.
 			'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE ), // Don't count categorization changes.
 			'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' ),
 			'rc_timestamp >= ' . $dbr->addQuotes( $timestamp ),
-		];
+		] ] ];
+		$conds = [];
 
 		return [
 			'tables' => $tables,
@@ -154,7 +153,7 @@ class ActiveUsersPager extends UsersPager {
 				'qcc_title',
 				'user_name' => 'qcc_title',
 				'user_id' => 'user_id',
-				'recentedits' => 'COUNT(*)'
+				'recentedits' => 'COUNT(rc_id)'
 			],
 			'options' => [ 'GROUP BY' => [ 'qcc_title' ] ],
 			'conds' => $conds,
@@ -167,9 +166,11 @@ class ActiveUsersPager extends UsersPager {
 
 		$sortColumns = array_merge( [ $this->mIndexField ], $this->mExtraSortFields );
 		if ( $descending ) {
+			$dir = 'ASC';
 			$orderBy = $sortColumns;
 			$operator = $this->mIncludeOffset ? '>=' : '>';
 		} else {
+			$dir = 'DESC';
 			$orderBy = [];
 			foreach ( $sortColumns as $col ) {
 				$orderBy[] = $col . ' DESC';
@@ -178,7 +179,7 @@ class ActiveUsersPager extends UsersPager {
 		}
 		$info = $this->getQueryInfo( [
 			'limit' => intval( $limit ),
-			'order' => $descending ? 'DESC' : 'ASC',
+			'order' => $dir,
 			'conds' =>
 				$offset != '' ? [ $this->mIndexField . $operator . $this->mDb->addQuotes( $offset ) ] : [],
 		] );
