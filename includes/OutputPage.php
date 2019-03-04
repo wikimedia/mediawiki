@@ -953,6 +953,8 @@ class OutputPage extends ContextSource {
 	 * good tags like \<i\> will be dropped entirely.
 	 *
 	 * @param string|Message $name
+	 * @param-taint $name tainted
+	 * Phan-taint-check gets very confused by $name being either a string or a Message
 	 */
 	public function setPageTitle( $name ) {
 		if ( $name instanceof Message ) {
@@ -966,7 +968,7 @@ class OutputPage extends ContextSource {
 
 		# change "<i>foo&amp;bar</i>" to "foo&bar"
 		$this->setHTMLTitle(
-			$this->msg( 'pagetitle' )->rawParams( Sanitizer::stripAllTags( $nameWithTags ) )
+			$this->msg( 'pagetitle' )->plaintextParams( Sanitizer::stripAllTags( $nameWithTags ) )
 				->inContentLanguage()
 		);
 	}
