@@ -2241,10 +2241,8 @@
 								return;
 							}
 						} catch ( e ) {
-							mw.trackError( 'resourceloader.exception', {
-								exception: e,
-								source: 'store-localstorage-init'
-							} );
+							// Perhaps localStorage was disabled by the user, or got corrupted.
+							// See point 3 and 4 below. (T195647)
 						}
 
 						// If we get here, one of four things happened:
