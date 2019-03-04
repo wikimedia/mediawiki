@@ -31,7 +31,6 @@ use MediaWiki\Revision\SlotRecord;
  *
  * @todo Move and rewrite code to an Action class
  *
- * See design.txt for an overview.
  * Note: edit user interface and cache support functions have been
  * moved to separate EditPage and HTMLFileCache classes.
  */
