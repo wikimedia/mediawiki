@@ -233,10 +233,10 @@ class WikiExporter {
 		foreach ( $res as $row ) {
 			$this->author_list .= "<contributor>" .
 				"<username>" .
-				htmlentities( $row->rev_user_text ) .
+				htmlspecialchars( $row->rev_user_text ) .
 				"</username>" .
 				"<id>" .
-				$row->rev_user .
+				( (int)$row->rev_user ) .
 				"</id>" .
 				"</contributor>";
 		}
