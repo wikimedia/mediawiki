@@ -1805,13 +1805,16 @@ abstract class ApiBase extends ContextSource {
 
 		$status = Status::newGood();
 		foreach ( $errors as $error ) {
-			if ( is_array( $error ) && isset( self::$blockMsgMap[$error[0]] ) && $user->getBlock() ) {
+			if ( !is_array( $error ) ) {
+				$error = [ $error ];
+			}
+			if ( is_string( $error[0] ) && isset( self::$blockMsgMap[$error[0]] ) && $user->getBlock() ) {
 				list( $msg, $code ) = self::$blockMsgMap[$error[0]];
 				$status->fatal( ApiMessage::create( $msg, $code,
 					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
 				) );
 			} else {
-				$status->fatal( ...(array)$error );
+				$status->fatal( ...$error );
 			}
 		}
 		return $status;

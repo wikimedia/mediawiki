@@ -3984,28 +3984,6 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * Check if the requested move target is a valid file move target
-	 * @todo move this to MovePage
-	 * @param Title $nt Target title
-	 * @return array List of errors
-	 */
-	protected function validateFileMoveOperation( $nt ) {
-		global $wgUser;
-
-		$errors = [];
-
-		$destFile = wfLocalFile( $nt );
-		$destFile->load( File::READ_LATEST );
-		if ( !$wgUser->isAllowed( 'reupload-shared' )
-			&& !$destFile->exists() && wfFindFile( $nt )
-		) {
-			$errors[] = [ 'file-exists-sharedrepo' ];
-		}
-
-		return $errors;
-	}
-
-	/**
 	 * Move a title to a new location
 	 *
 	 * @deprecated since 1.25, use the MovePage class instead
