@@ -484,7 +484,7 @@
 	"site-rss-feed": "Used in the HTML header of a wiki's RSS feed.\nHTML markup cannot be used.\n\nParameters:\n* $1 - <nowiki>{{SITENAME}}</nowiki>\n{{Identical|S1 RSS/Atom feed}}",
 	"site-atom-feed": "Used in the HTML header of a wiki's Atom feed.\nHTML markup cannot be used.\n\nParameters:\n* $1 - <nowiki>{{SITENAME}}</nowiki>\n{{Identical|S1 RSS/Atom feed}}",
 	"page-rss-feed": "Parameters:\n* $1 - page title\nSee also:\n* {{msg-mw|Page-atom-feed}}\n{{Identical|S1 RSS/Atom feed}}",
-	"page-atom-feed": "Parameters:\n* $1 - page title\nSee also:\n* {{msg-mw|Page-rss-feed}}\n{{Identical|S1 RSS/Atom feed}}",
+	"page-atom-feed": "Used as the \"title\" attribute in the <link rel=\"alternate\" type=\"application/atom+xml\"> element of the HTML source of the page. Not rendered in the web page.\n\nParameters:\n* $1 - page title\nSee also:\n* {{msg-mw|Page-rss-feed}}\n{{Identical|S1 RSS/Atom feed}}",
 	"feed-atom": "{{optional}}\nSee also:\n* {{msg-mw|Feed-atom}}\n* {{msg-mw|Accesskey-feed-atom}}\n* {{msg-mw|Tooltip-feed-atom}}",
 	"feed-rss": "{{optional}}\nSee also:\n* {{msg-mw|Feed-rss}}\n* {{msg-mw|Accesskey-feed-rss}}\n* {{msg-mw|Tooltip-feed-rss}}",
 	"sitenotice": "{{Notranslate}}\n\nMediaWiki:Sitenotice is displayed above the page title for all users if it is defined, unless it is superseded by another notice. 'Defined' means it exists and has content other than the single character '-'.\n\nManual: [[mw:Manual:Interface/Sitenotice]]",
