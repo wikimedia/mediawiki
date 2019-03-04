@@ -1651,15 +1651,21 @@ class ApiMain extends ApiBase {
 			'http' => [
 				'method' => $request->getMethod(),
 				'client_ip' => $request->getIP(),
-				'request_headers' => [
-					'user-agent' => $request->getHeader( 'User-agent' ),
-					'api-user-agent' => $request->getHeader( 'Api-user-agent' )
-				],
+				'request_headers' => []
 			],
 			'database' => wfWikiID(),
 			'backend_time_ms' => (int)round( $time * 1000 ),
 			'params' => []
 		];
+
+		// If set, these headers will be logged in http.request_headers.
+		// A http.request_headers entry should not be set if the header was not provided.
+		if ( $request->getHeader( 'User-agent' ) ) {
+			$logCtx['http']['request_headers']['user-agent'] = $request->getHeader( 'User-agent' );
+		}
+		if ( $request->getHeader( 'Api-user-agent' ) ) {
+			$logCtx['http']['request_headers']['api-user-agent'] = $request->getHeader( 'Api-user-agent' );
+		}
 
 		$logCtx['meta']['request_id'] =
 			$logCtx['http']['request_headers']['x-request-id'] = WebRequest::getRequestId();
