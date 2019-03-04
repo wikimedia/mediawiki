@@ -183,6 +183,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$db, 'log_user', User::newFromName( $params['user'], false )
 			);
 			$this->addWhere( $q['conds'] );
+
+			// T71222: MariaDB's optimizer, at least 10.1.37 and .38, likes to choose a wildly bad plan for
+			// some reason for this code path. Tell it not to use the wrong index it wants to pick.
+			$this->addOption( 'IGNORE INDEX', [ 'logging' => [ 'times' ] ] );
 		}
 
 		$title = $params['title'];
