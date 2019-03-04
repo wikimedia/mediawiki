@@ -21,7 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Widget\DateInputWidget;
 
 /**
@@ -237,8 +236,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				$out->addWikiMsg( 'nocontribs', $target );
 			} else {
 				# Show a message about replica DB lag, if applicable
-				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-				$lag = $lb->safeGetLag( $pager->getDatabase() );
+				$lag = $pager->getDatabase()->getSessionLagStatus()['lag'];
 				if ( $lag > 0 ) {
 					$out->showLagWarning( $lag );
 				}

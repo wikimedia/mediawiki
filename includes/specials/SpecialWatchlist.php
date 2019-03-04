@@ -458,7 +458,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$services = MediaWikiServices::getInstance();
 
 		# Show a message about replica DB lag, if applicable
-		$lag = $services->getDBLoadBalancer()->safeGetLag( $dbr );
+		$lag = $dbr->getSessionLagStatus()['lag'];
 		if ( $lag > 0 ) {
 			$output->showLagWarning( $lag );
 		}
