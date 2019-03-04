@@ -167,27 +167,38 @@ class SpecialSearch extends SpecialPage {
 				$url = str_replace( '$1', urlencode( $term ), $searchForwardUrl );
 				$out->redirect( $url );
 			} else {
-				$out->addHTML(
-					"<fieldset>" .
-						"<legend>" .
-							$this->msg( 'search-external' )->escaped() .
-						"</legend>" .
-						"<p class='mw-searchdisabled'>" .
-							$this->msg( 'searchdisabled' )->escaped() .
-						"</p>" .
-						$this->msg( 'googlesearch' )->rawParams(
-							htmlspecialchars( $term ),
-							'UTF-8',
-							$this->msg( 'searchbutton' )->escaped()
-						)->text() .
-					"</fieldset>"
-				);
+				$this->showGoogleSearch( $term );
 			}
 
 			return;
 		}
 
 		$this->showResults( $term );
+	}
+
+	/**
+	 * Output a google search form if search is disabled
+	 *
+	 * @param string $term Search term
+	 * @todo FIXME Maybe we should get rid of this raw html message at some future time
+	 * @suppress SecurityCheck-XSS
+	 */
+	private function showGoogleSearch( $term ) {
+		$this->getOutput()->addHTML(
+			"<fieldset>" .
+				"<legend>" .
+					$this->msg( 'search-external' )->escaped() .
+				"</legend>" .
+				"<p class='mw-searchdisabled'>" .
+					$this->msg( 'searchdisabled' )->escaped() .
+				"</p>" .
+				$this->msg( 'googlesearch' )->rawParams(
+					htmlspecialchars( $term ),
+					'UTF-8',
+					$this->msg( 'searchbutton' )->escaped()
+				)->text() .
+			"</fieldset>"
+		);
 	}
 
 	/**
