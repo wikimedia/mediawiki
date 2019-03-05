@@ -25,7 +25,7 @@
  * Uses asynchronous I/O, allowing purges to be done in a highly parallel
  * manner.
  *
- * Could be replaced by curl_multi_exec() or some such.
+ * @todo Consider using MultiHttpClient.
  */
 class SquidPurgeClient {
 	/** @var string */

@@ -132,11 +132,14 @@ class Http {
 	}
 
 	/**
-	 * Checks that the given URI is a valid one. Hardcoding the
-	 * protocols, because we only want protocols that both cURL
-	 * and php support.
+	 * Check that the given URI is a valid one.
 	 *
-	 * file:// should not be allowed here for security purpose (r67684)
+	 * This hardcodes a small set of protocols only, because we want to
+	 * deterministically reject protocols not supported by all HTTP-transport
+	 * methods.
+	 *
+	 * "file://" specifically must not be allowed, for security purpose
+	 * (see <https://www.mediawiki.org/wiki/Special:Code/MediaWiki/r67684>).
 	 *
 	 * @todo FIXME this is wildly inaccurate and fails to actually check most stuff
 	 *
