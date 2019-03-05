@@ -34,12 +34,6 @@ class AuthManagerTest extends \MediaWikiTestCase {
 	/** @var TestingAccessWrapper */
 	protected $managerPriv;
 
-	protected function setUp() {
-		parent::setUp();
-
-		$this->setMwGlobals( [ 'wgAuth' => null ] );
-	}
-
 	/**
 	 * Sets a mock on a hook
 	 * @param string $hook
@@ -2352,8 +2346,6 @@ class AuthManagerTest extends \MediaWikiTestCase {
 	}
 
 	public function testAutoAccountCreation() {
-		global $wgHooks;
-
 		// PHPUnit seems to have a bug where it will call the ->with()
 		// callbacks for our hooks again after the test is run (WTF?), which
 		// breaks here because $username no longer matches $user by the end of
@@ -2771,15 +2763,10 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$session->clear();
 		$username = self::usernameForCreation();
 		$user = \User::newFromName( $username );
-		$this->hook( 'AuthPluginAutoCreate', $this->once() )
-			->with( $callback );
-		$this->hideDeprecated( 'AuthPluginAutoCreate hook (used in ' .
-				get_class( $wgHooks['AuthPluginAutoCreate'][0] ) . '::onAuthPluginAutoCreate)' );
 		$this->hook( 'LocalUserCreated', $this->once() )
 			->with( $callback, $this->equalTo( true ) );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true );
 		$this->unhook( 'LocalUserCreated' );
-		$this->unhook( 'AuthPluginAutoCreate' );
 		$this->assertEquals( \Status::newGood(), $ret );
 		$this->assertNotEquals( 0, $user->getId() );
 		$this->assertEquals( $username, $user->getName() );

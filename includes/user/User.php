@@ -1258,10 +1258,7 @@ class User implements IDBAccessObject, UserIdentity {
 			return false;
 		}
 
-		// Reject various classes of invalid names
-		$name = AuthManager::callLegacyAuthPlugin(
-			'getCanonicalName', [ $t->getText() ], $t->getText()
-		);
+		$name = $t->getText();
 
 		switch ( $validate ) {
 			case false:
@@ -1667,7 +1664,6 @@ class User implements IDBAccessObject, UserIdentity {
 
 		// update groups in external authentication database
 		Hooks::run( 'UserGroupsChanged', [ $this, $toPromote, [], false, false, $oldUGMs, $newUGMs ] );
-		AuthManager::callLegacyAuthPlugin( 'updateExternalDBGroups', [ $this, $toPromote ] );
 
 		$logEntry = new ManualLogEntry( 'rights', 'autopromote' );
 		$logEntry->setPerformer( $this );
@@ -2407,10 +2403,8 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $this->mLocked !== null ) {
 			return $this->mLocked;
 		}
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$user = $this;
-		$authUser = AuthManager::callLegacyAuthPlugin( 'getUserInstance', [ &$user ], null );
-		$this->mLocked = $authUser && $authUser->isLocked();
+		// Reset for hook
+		$this->mLocked = false;
 		Hooks::run( 'UserIsLocked', [ $this, &$this->mLocked ] );
 		return $this->mLocked;
 	}
@@ -2426,10 +2420,8 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 		$this->getBlockedStatus();
 		if ( !$this->mHideName ) {
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$user = $this;
-			$authUser = AuthManager::callLegacyAuthPlugin( 'getUserInstance', [ &$user ], null );
-			$this->mHideName = $authUser && $authUser->isHidden();
+			// Reset for hook
+			$this->mHideName = false;
 			Hooks::run( 'UserIsHidden', [ $this, &$this->mHideName ] );
 		}
 		return (bool)$this->mHideName;

@@ -787,16 +787,6 @@ $extraData: An array (string => string) with extra information, intended to be
   added to log contexts. Fields it might include:
   - appId: the application ID, only if the login was with a bot password
 
-'AuthPluginAutoCreate': DEPRECATED since 1.27! Use the 'LocalUserCreated' hook
-instead. Called when creating a local account for an user logged in from an
-external authentication method.
-$user: User object created locally
-
-'AuthPluginSetup': DEPRECATED since 1.27! Extensions should be updated to use
-AuthManager. Update or replace authentication plugin object ($wgAuth). Gives a
-chance for an extension to set it programmatically to a variable class.
-&$auth: the $wgAuth object, probably a stub
-
 'AutopromoteCondition': Check autopromote condition for user.
 $type: condition type
 $args: arguments

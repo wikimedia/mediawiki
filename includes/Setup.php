@@ -792,22 +792,6 @@ $wgContLang = MediaWikiServices::getInstance()->getContentLanguage();
 // Now that variant lists may be available...
 $wgRequest->interpolateTitle();
 
-if ( !is_object( $wgAuth ) ) {
-	$wgAuth = new MediaWiki\Auth\AuthManagerAuthPlugin;
-	Hooks::run( 'AuthPluginSetup', [ &$wgAuth ] );
-}
-if ( $wgAuth && !$wgAuth instanceof MediaWiki\Auth\AuthManagerAuthPlugin ) {
-	MediaWiki\Auth\AuthManager::singleton()->forcePrimaryAuthenticationProviders( [
-		new MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider( [
-			'authoritative' => false,
-		] ),
-		new MediaWiki\Auth\AuthPluginPrimaryAuthenticationProvider( $wgAuth ),
-		new MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider( [
-			'authoritative' => true,
-		] ),
-	], '$wgAuth is ' . get_class( $wgAuth ) );
-}
-
 /**
  * @var MediaWiki\Session\SessionId|null $wgInitialSessionId The persistent
  * session ID (if any) loaded at startup

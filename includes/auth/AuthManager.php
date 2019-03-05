@@ -232,7 +232,9 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Call a legacy AuthPlugin method, if necessary
+	 * This used to call a legacy AuthPlugin method, if necessary. Since that code has
+	 * been removed, it now just returns the $return parameter.
+	 *
 	 * @codeCoverageIgnore
 	 * @deprecated For backwards compatibility only, should be avoided in new code
 	 * @param string $method AuthPlugin method to call
@@ -241,13 +243,8 @@ class AuthManager implements LoggerAwareInterface {
 	 * @return mixed Return value from the AuthPlugin method, or $return
 	 */
 	public static function callLegacyAuthPlugin( $method, array $params, $return = null ) {
-		global $wgAuth;
-
-		if ( $wgAuth && !$wgAuth instanceof AuthManagerAuthPlugin ) {
-			return $wgAuth->$method( ...$params );
-		} else {
-			return $return;
-		}
+		wfDeprecated( __METHOD__, '1.33' );
+		return $return;
 	}
 
 	/**
@@ -1745,7 +1742,6 @@ class AuthManager implements LoggerAwareInterface {
 		// Inform the providers
 		$this->callMethodOnProviders( 6, 'autoCreatedAccount', [ $user, $source ] );
 
-		\Hooks::run( 'AuthPluginAutoCreate', [ $user ], '1.27' );
 		\Hooks::run( 'LocalUserCreated', [ $user, true ] );
 		$user->saveSettings();
 

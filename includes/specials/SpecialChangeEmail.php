@@ -177,7 +177,6 @@ class SpecialChangeEmail extends FormSpecialPage {
 		Hooks::run( 'PrefsEmailAudit', [ $user, $oldaddr, $newaddr ] );
 
 		$user->saveSettings();
-		MediaWiki\Auth\AuthManager::callLegacyAuthPlugin( 'updateExternalDB', [ $user ] );
 
 		return $status;
 	}
