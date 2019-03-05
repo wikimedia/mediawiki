@@ -1744,7 +1744,6 @@ class OutputPageTest extends MediaWikiTestCase {
 	// @todo Make sure to test the following in addParserOutputMetadata() as well when we add tests
 	// for them:
 	//   * addModules()
-	//   * addModuleScripts()
 	//   * addModuleStyles()
 	//   * addJsConfigVars()
 	//   * enableOOUI()

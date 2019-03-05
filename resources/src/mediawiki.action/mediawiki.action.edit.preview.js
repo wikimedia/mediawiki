@@ -145,7 +145,6 @@
 				}
 				if ( response.parse.modules ) {
 					mw.loader.load( response.parse.modules.concat(
-						response.parse.modulescripts,
 						response.parse.modulestyles
 					) );
 				}
