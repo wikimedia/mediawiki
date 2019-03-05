@@ -905,24 +905,11 @@ return [
 		],
 	],
 	'mediawiki.diff.styles' => [
-		// FIXME: Remove class and lessMessages
-		// when I6aad563e48f41c783df8b176a4f437e60a1255cc has
-		// been in production for 1 week.
-		'class' => ResourceLoaderLessVarFileModule::class,
 		'styles' => [
-			// Remove resources/src/mediawiki.interface.helpers.styles.less
-			// when I6aad563e48f41c783df8b176a4f437e60a1255cc has
-			// been in production for 1 week.
-			'resources/src/mediawiki.interface.helpers.styles.less',
 			'resources/src/mediawiki.diff.styles/diff.css',
 			'resources/src/mediawiki.diff.styles/print.css' => [
 				'media' => 'print'
 			],
-		],
-		'lessMessages' => [
-			'parentheses-start',
-			'parentheses-end',
-			'pipe-separator'
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -2137,19 +2124,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.changeslist' => [
-		// FIXME: Remove class and lessMessages
-		// when I6aad563e48f41c783df8b176a4f437e60a1255cc has
-		// been in production for 1 week.
-		'class' => ResourceLoaderLessVarFileModule::class,
-		'lessMessages' => [
-			'parentheses-start',
-			'parentheses-end',
-			'pipe-separator'
-		],
 		'styles' => [
-			// FIXME: Remove this line when I6aad563e48f41c783df8b176a4f437e60a1255cc has
-			// been in production for 1 week.
-			'resources/src/mediawiki.interface.helpers.styles.less',
 			'resources/src/mediawiki.special.changeslist.less',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
