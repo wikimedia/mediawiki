@@ -3526,7 +3526,6 @@
 	"log-action-filter-protect-move_prot": "Taşıma koruması",
 	"log-action-filter-upload-upload": "Yeni yükleme",
 	"log-action-filter-upload-overwrite": "Yeniden yükle",
-	"authmanager-authplugin-setpass-bad-domain": "Geçersiz alanadı.",
 	"authmanager-autocreate-noperm": "Otomatik kullanıcı oluşturma izni yok.",
 	"authmanager-userdoesnotexist": "\"$1\" kullanıcı hesabı kayıtlı değil.",
 	"authmanager-email-label": "E-posta",

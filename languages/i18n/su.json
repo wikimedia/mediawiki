@@ -3178,8 +3178,6 @@
 	"log-action-filter-upload-overwrite": "Unjal deui",
 	"authmanager-create-disabled": "Panyieunan akun ditumpurkeun",
 	"authmanager-create-from-login": "Pikeun nyieun akun, mangga eusi ieu kolom di handap.",
-	"authmanager-authplugin-setpass-failed-title": "Parobahan kecap sandi gagal",
-	"authmanager-authplugin-setpass-bad-domain": "Domain teu sah.",
 	"authmanager-autocreate-noperm": "Panyieunan akun otomatis teu diidinan.",
 	"authmanager-userdoesnotexist": "Akun pamaké \"$1\" teu kadaptar.",
 	"authmanager-username-help": "Sandiasma pikeun oténtikasi.",

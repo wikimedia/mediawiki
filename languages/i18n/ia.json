@@ -3637,6 +3637,7 @@
 	"log-action-filter-suppress-reblock": "Suppression de usator per re-blocada",
 	"log-action-filter-upload-upload": "Nove file incargate",
 	"log-action-filter-upload-overwrite": "File re-incargate",
+	"log-action-filter-upload-revert": "Reverter",
 	"authmanager-authn-not-in-progress": "Le authentication non es in curso o le datos del session ha essite perdite. Per favor, recomencia ab initio.",
 	"authmanager-authn-no-primary": "Le credentiales fornite non poteva esse authenticate.",
 	"authmanager-authn-no-local-user": "Le credentiales fornite non es associate a alcun usator in iste wiki.",
@@ -3649,11 +3650,6 @@
 	"authmanager-create-no-primary": "Le credentiales fornite non pote esser usate pro crear un conto.",
 	"authmanager-link-no-primary": "Le credentiales fornite non pote esser usate pro ligar un conto.",
 	"authmanager-link-not-in-progress": "Nulle ligation de conto es in curso, o le datos del session ha essite perdite. Per favor, recomencia ab initio.",
-	"authmanager-authplugin-setpass-failed-title": "Cambio de contrasigno fallite",
-	"authmanager-authplugin-setpass-failed-message": "Le modulo de authentication ha refusate le cambio de contrasigno.",
-	"authmanager-authplugin-create-fail": "Le modulo de authentication ha refusate le creation de conto.",
-	"authmanager-authplugin-setpass-denied": "Le modulo de authentication non permitte cambiar contrasignos.",
-	"authmanager-authplugin-setpass-bad-domain": "Dominio non valide.",
 	"authmanager-autocreate-noperm": "Le creation automatic de contos non es permittite.",
 	"authmanager-autocreate-exception": "Le creation automatic de contos ha essite temporarimente disactivate a causa de errores previe.",
 	"authmanager-userdoesnotexist": "Le conto de usator \"$1\" non es registrate.",
@@ -3742,6 +3738,7 @@
 	"passwordpolicies-policy-maximalpasswordlength": "Le contrasigno debe continer minus de $1 {{PLURAL:$1|character|characteres}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "Le contrasigno non pote esser {{PLURAL:$1|le contrasigno le plus popular|in le lista de $1 contrasignos popular}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Le contrasigno non pote apparer in le lista del 100.000 contrasignos le plus commun.",
+	"passwordpolicies-policyflag-forcechange": "debe cambiar al apertura de session",
 	"easydeflate-invaliddeflate": "Le contento fornite non es correctemente comprimite",
 	"unprotected-js": "Pro motivos de securitate, non es possibile cargar codice JavaScript de paginas non protegite. Crea JavaScript solmente in le spatio de nomines \"MediaWiki:\" o como un subpagina de usator."
 }

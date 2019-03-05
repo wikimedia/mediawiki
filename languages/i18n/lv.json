@@ -2889,7 +2889,6 @@
 	"log-action-filter-upload-upload": "Jauna augšupielāde",
 	"log-action-filter-upload-overwrite": "Atkārtota augšupielāde",
 	"authmanager-create-disabled": "Kontu veidošana ir atspējota.",
-	"authmanager-authplugin-setpass-bad-domain": "Nederīgs domēns.",
 	"authmanager-email-label": "E-pasts",
 	"authmanager-email-help": "E-pasta adrese",
 	"authmanager-realname-label": "Tavs īstais vārds",

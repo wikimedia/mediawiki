@@ -3531,8 +3531,6 @@
 	"log-action-filter-upload-upload": "Carecamende nuève",
 	"log-action-filter-upload-overwrite": "Recareche",
 	"log-action-filter-upload-revert": "Turnate",
-	"authmanager-authplugin-setpass-failed-title": "Cangiamende d'a passuord fallite",
-	"authmanager-authplugin-setpass-bad-domain": "Dominie invalide.",
 	"authmanager-email-label": "Email",
 	"authmanager-email-help": "Indirizze e-mail",
 	"authmanager-realname-label": "Nome vere",

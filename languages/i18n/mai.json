@@ -3225,7 +3225,6 @@
 	"log-action-filter-upload-upload": "नया अपलोड",
 	"log-action-filter-upload-overwrite": "फैनसे अपलोड",
 	"authmanager-create-disabled": "लेखा निर्माण अशक्त कएल",
-	"authmanager-authplugin-setpass-bad-domain": "अमान्य जालस्थल।",
 	"authmanager-userdoesnotexist": "प्रयोक्ता खाता \"$1\" पंजीकृत नै अछि।",
 	"authmanager-email-label": "इमेल",
 	"authmanager-email-help": "ई-पत्र ठेगान:",

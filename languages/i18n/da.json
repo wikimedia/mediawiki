@@ -3460,8 +3460,6 @@
 	"log-action-filter-upload-revert": "Gendan",
 	"authmanager-create-disabled": "Kontooprettelse deaktiveret",
 	"authmanager-create-from-login": "For at oprette din konto, så udfyld venligst felterne.",
-	"authmanager-authplugin-setpass-failed-title": "Ændring af adgangskode mislykkedes",
-	"authmanager-authplugin-setpass-bad-domain": "Ugyldig domæne.",
 	"authmanager-autocreate-noperm": "Automatisk kontooprettelse er ikke tilladt.",
 	"authmanager-userdoesnotexist": "Brugerkontoen \"$1\" er ikke registreret.",
 	"authmanager-email-label": "E-post",

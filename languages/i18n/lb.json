@@ -3360,8 +3360,6 @@
 	"log-action-filter-upload-overwrite": "Nees eroplueden",
 	"authmanager-create-disabled": "D'Opmaache vu Benotzerkonten ass gespaart.",
 	"authmanager-create-from-login": "Fir Äre Benotzerkont unzeleeën fëllt w.e.g. d'Felder aus.",
-	"authmanager-authplugin-setpass-failed-title": "Änner vum Passwuert huet net funktionéiert",
-	"authmanager-authplugin-setpass-bad-domain": "Net valabelen Domain.",
 	"authmanager-autocreate-noperm": "Automatescht Uleeë vu Benotzerkonten ass net erlaabt.",
 	"authmanager-autocreate-exception": "Automatescht Uleeë vu Benotzerkonte gouf op Grond vu fréiere Feeler temporär ausgeschalt.",
 	"authmanager-userdoesnotexist": "De Benotzerkont \"$1\" ass net registréiert.",

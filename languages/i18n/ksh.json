@@ -3266,8 +3266,6 @@
 	"authmanager-authn-autocreate-failed": "Automattesch ene Zojang för heh et Wikki hät nit jeflup: $1",
 	"authmanager-create-disabled": "Neu Aanmelde es afjeschalldt",
 	"authmanager-create-from-login": "Öm Der ene Zohjang aanzelähje, bes esu johd, un föll heh di Fällder us:",
-	"authmanager-authplugin-setpass-failed-title": "Dat Paßwoot ze änndere hät nit jeflupp",
-	"authmanager-authplugin-setpass-bad-domain": "Onjöltijje Domäijn",
 	"authmanager-autocreate-noperm": "Automattesch Zohjäng aanzelähje es nit zohjelohße.",
 	"authmanager-autocreate-exception": "Automattesch Zohjäng aanzelähje es wähje verjange Fähler för en Zigg nit zohjelohße.",
 	"authmanager-userdoesnotexist": "Ene Metmaacher mem Nahme „$1“ es nit ennjedrahre.",

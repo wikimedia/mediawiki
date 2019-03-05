@@ -3280,7 +3280,6 @@
 	"log-action-filter-upload-overwrite": "Tornar mandar",
 	"authmanager-authn-autocreate-failed": "La creacion automatica d’un compte local a fracassat : $1",
 	"authmanager-create-disabled": "La creacion de compte es desactivada.",
-	"authmanager-authplugin-setpass-bad-domain": "Domeni invalid.",
 	"authmanager-autocreate-noperm": "La creacion automatica de compte es pas autorizada.",
 	"authmanager-password-help": "Senhal per l'autentificacion.",
 	"authmanager-domain-help": "Domeni per l'autentificacion extèrna.",
