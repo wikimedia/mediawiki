@@ -203,9 +203,11 @@ abstract class FormSpecialPage extends SpecialPage {
 	protected function checkExecutePermissions( User $user ) {
 		$this->checkPermissions();
 
-		if ( $this->requiresUnblock() && $user->isBlocked() ) {
+		if ( $this->requiresUnblock() ) {
 			$block = $user->getBlock();
-			throw new UserBlockedError( $block );
+			if ( $block && $block->isSitewide() ) {
+				throw new UserBlockedError( $block );
+			}
 		}
 
 		if ( $this->requiresWrite() ) {
