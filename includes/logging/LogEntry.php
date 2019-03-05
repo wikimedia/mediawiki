@@ -462,8 +462,8 @@ class ManualLogEntry extends LogEntryBase {
 	/** @var int A rev id associated to the log entry */
 	protected $revId = 0;
 
-	/** @var array Change tags add to the log entry */
-	protected $tags = null;
+	/** @var string[] Change tags add to the log entry */
+	protected $tags = [];
 
 	/** @var int Deletion state of the log entry */
 	protected $deleted;
@@ -579,11 +579,16 @@ class ManualLogEntry extends LogEntryBase {
 	/**
 	 * Set change tags for the log entry.
 	 *
+	 * Passing `null` means the same as empty array,
+	 * for compatibility with WikiPage::doUpdateRestrictions().
+	 *
 	 * @since 1.27
-	 * @param string|string[] $tags
+	 * @param string|string[]|null $tags
 	 */
 	public function setTags( $tags ) {
-		if ( is_string( $tags ) ) {
+		if ( $tags === null ) {
+			$tags = [];
+		} elseif ( is_string( $tags ) ) {
 			$tags = [ $tags ];
 		}
 		$this->tags = $tags;
@@ -776,7 +781,7 @@ class ManualLogEntry extends LogEntryBase {
 
 					if ( $to === 'rc' || $to === 'rcandudp' ) {
 						// save RC, passing tags so they are applied there
-						$rc->addTags( $this->getTags() ?? [] );
+						$rc->addTags( $this->getTags() );
 						$rc->save( $rc::SEND_NONE );
 					}
 
@@ -836,7 +841,7 @@ class ManualLogEntry extends LogEntryBase {
 
 	/**
 	 * @since 1.27
-	 * @return array
+	 * @return string[]
 	 */
 	public function getTags() {
 		return $this->tags;
