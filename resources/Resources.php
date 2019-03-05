@@ -752,6 +752,7 @@ return [
 			'fy' => 'resources/lib/moment/locale/fy.js',
 			'gd' => 'resources/lib/moment/locale/gd.js',
 			'gl' => 'resources/lib/moment/locale/gl.js',
+			'gom' => 'resources/lib/moment/locale/gom-latn.js',
 			'gom-latn' => 'resources/lib/moment/locale/gom-latn.js',
 			'gu' => 'resources/lib/moment/locale/gu.js',
 			'he' => 'resources/lib/moment/locale/he.js',
