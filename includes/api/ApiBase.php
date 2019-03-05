@@ -2225,6 +2225,15 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $feature Feature being used.
 	 */
 	public function logFeatureUsage( $feature ) {
+		static $loggedFeatures = [];
+
+		// Only log each feature once per request. We can get multiple calls from calls to
+		// extractRequestParams() with different values for 'parseLimit', for example.
+		if ( isset( $loggedFeatures[$feature] ) ) {
+			return;
+		}
+		$loggedFeatures[$feature] = true;
+
 		$request = $this->getRequest();
 		$ctx = [
 			'feature' => $feature,
