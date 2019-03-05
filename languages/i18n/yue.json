@@ -3165,7 +3165,6 @@
 	"log-action-filter-protect-protect": "保護",
 	"log-action-filter-protect-unprotect": "取消保護",
 	"log-action-filter-upload-overwrite": "再上載",
-	"authmanager-authplugin-setpass-failed-title": "改唔到密碼",
 	"authmanager-email-label": "電郵",
 	"authmanager-email-help": "電郵地址",
 	"authmanager-realname-label": "真名",

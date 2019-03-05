@@ -3652,8 +3652,6 @@
 	"authmanager-authn-autocreate-failed": "Ha fallat la creació automàtica d'un compte local: $1",
 	"authmanager-create-disabled": "S'ha inhabilitat la creació de comptes.",
 	"authmanager-create-from-login": "Per crear un compte, ompliu els camps.",
-	"authmanager-authplugin-setpass-failed-title": "El canvi de contrasenya ha fallat",
-	"authmanager-authplugin-setpass-bad-domain": "Domini invàlid.",
 	"authmanager-autocreate-noperm": "No es permet la creació automàtica de comptes.",
 	"authmanager-userdoesnotexist": "El compte d'usuari «$1» no està registrat.",
 	"authmanager-username-help": "Nom d'usuari per a l'autenticació.",

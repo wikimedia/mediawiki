@@ -3421,7 +3421,6 @@
 	"log-action-filter-upload-upload": "Яңы күсереү",
 	"log-action-filter-upload-overwrite": "Ҡабаттан тейәү",
 	"authmanager-create-disabled": "Иҫәп яҙмаһын булдырыу бикләнгән.",
-	"authmanager-authplugin-setpass-failed-title": "Серһүҙҙе үҙгәртеү хатаһы",
 	"authmanager-userdoesnotexist": "\"$1\" иҫәп яҙмаһы теркәлмәгән.",
 	"authmanager-domain-help": "Тышҡы аутентификация домены (өҫтәмә).",
 	"authmanager-email-label": "Электрон почта адресы",

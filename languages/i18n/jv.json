@@ -3190,7 +3190,6 @@
 	"authmanager-authn-autocreate-failed": "Gawéan otomatis akun lokal wurung: $1",
 	"authmanager-create-disabled": "Gawéan akun dipatèni.",
 	"authmanager-create-from-login": "Saperlu nggawé akun, panjenengan mangga ngisi babagan-babagan ing ngisor iki.",
-	"authmanager-authplugin-setpass-bad-domain": "Dhomain ora trep.",
 	"authmanager-autocreate-noperm": "Gawéan akun otomatis ora diidinaké.",
 	"authmanager-autocreate-exception": "Gawéan akun otomatis sawetara dipatèni amarga masalah sadurungé.",
 	"authmanager-userdoesnotexist": "Akun panganggo \"$1\" ora kadhaftar.",

@@ -3519,8 +3519,6 @@
 	"authmanager-create-no-primary": "അംഗത്വസൃഷ്ടിക്ക് നൽകിയിരിക്കുന്ന വിവരങ്ങൾ ഉപയോഗിക്കാനാവില്ല.",
 	"authmanager-link-no-primary": "അംഗത്വം ബന്ധിപ്പിക്കാൻ നൽകിയിരിക്കുന്ന വിവരങ്ങൾ ഉപയോഗിക്കാനാവില്ല.",
 	"authmanager-link-not-in-progress": "സെഷൻ ഡേറ്റ നഷ്ടപ്പെട്ടതിനാൽ അംഗത്വം ബന്ധിപ്പിക്കലിന്റെ പുരോഗതി നഷ്ടമായിരിക്കുന്നു. ദയവായി  ആദ്യം മുതൽ വീണ്ടും തുടങ്ങുക.",
-	"authmanager-authplugin-setpass-failed-title": "രഹസ്യവാക്ക് മാറ്റം പരാജയപ്പെട്ടു",
-	"authmanager-authplugin-setpass-bad-domain": "അസാധുവായ ഡൊമൈൻ.",
 	"authmanager-userdoesnotexist": "\"$1\" എന്ന ഉപയോക്തൃ അം‌ഗത്വം നിലവിലില്ല.",
 	"authmanager-userlogin-remembermypassword-help": "രഹസ്യവാക്ക് സെഷൻ കാലയളവിലധികം ഓർത്തുവെക്കണോ.",
 	"authmanager-username-help": "രഹസ്യവാക്ക് ഉപയോഗിച്ചുള്ള സാധൂകരണം.",

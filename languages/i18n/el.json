@@ -3509,7 +3509,6 @@
 	"log-action-filter-upload-upload": "Νέα μεταφόρτωση",
 	"log-action-filter-upload-overwrite": "Επαναμεταφόρτωση",
 	"authmanager-create-disabled": "Η δημιουργία λογαριασμού έχει απενεργοποιηθεί.",
-	"authmanager-authplugin-setpass-failed-title": "Η αλλαγή κωδικού πρόσβασης απέτυχε",
 	"authmanager-email-label": "Διεύθυνση ηλ. ταχυδρομείου",
 	"authmanager-email-help": "Διεύθυνση ηλεκτρονικού ταχυδρομείου:",
 	"authmanager-realname-label": "Πραγματικό όνομα",

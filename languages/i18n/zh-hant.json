@@ -101,7 +101,8 @@
 			"Kanashimi",
 			"Hello903hello",
 			"Luuva",
-			"Davidzdh"
+			"Davidzdh",
+			"WQL"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -253,7 +254,7 @@
 	"navigation-heading": "導覽選單",
 	"errorpagetitle": "錯誤",
 	"returnto": "返回「$1」頁面",
-	"tagline": "出自 {{SITENAME}}",
+	"tagline": "出自{{SITENAME}}",
 	"help": "說明",
 	"help-mediawiki": "有關 MediaWiki 的說明",
 	"search": "搜尋",
@@ -3761,11 +3762,6 @@
 	"authmanager-create-no-primary": "提供的憑證不能用於帳號建立。",
 	"authmanager-link-no-primary": "提供的憑證無使用在帳號連結。",
 	"authmanager-link-not-in-progress": "帳號連結尚未進行或連線階段資料已遺失，請重頭再開始。",
-	"authmanager-authplugin-setpass-failed-title": "密碼變更失敗",
-	"authmanager-authplugin-setpass-failed-message": "認証外掛已拒絕密碼變更。",
-	"authmanager-authplugin-create-fail": "認証外掛已拒絕帳號建立。",
-	"authmanager-authplugin-setpass-denied": "驗證外掛程式不允許變更密碼。",
-	"authmanager-authplugin-setpass-bad-domain": "無效網域。",
 	"authmanager-autocreate-noperm": "不允許自動帳號建立。",
 	"authmanager-autocreate-exception": "自動帳號建立因發生錯誤臨時關閉。",
 	"authmanager-userdoesnotexist": "使用者帳號 \"$1\" 尚未註冊。",

@@ -3480,8 +3480,6 @@
 	"authmanager-create-from-login": "Norėdami sukurti savo paskyrą užpildykite laukelius žemiau.",
 	"authmanager-create-not-in-progress": "Paskyros kūrimas nevyksta arba buvo prarasti sesijos duomenys. Prašome pradėti iš naujo.",
 	"authmanager-link-not-in-progress": "Paskyrų susiejimas nevyksta arba buvo prarasti sesijos duomenys. Prašome pradėti iš naujo.",
-	"authmanager-authplugin-setpass-failed-title": "Slaptažodžio keitimas nepavyko",
-	"authmanager-authplugin-setpass-bad-domain": "Negalimas domenas.",
 	"authmanager-autocreate-noperm": "Automatinis paskyros kūrimas neleidžiamas.",
 	"authmanager-autocreate-exception": "Automatinis paskyros kūrimas laikinai neleidžiamas dėl ankstesnių klaidų.",
 	"authmanager-userdoesnotexist": "Vartotojo paskyrą „$1“ nėra registruota.",

@@ -1509,8 +1509,6 @@
 	"log-action-filter-suppress-delete": "Laxiy pkt’aniy quw zngazyan",
 	"log-action-filter-upload-upload": "Misan sni’",
 	"log-action-filter-upload-overwrite": "T’aring lawziy pawsa’ sa kktan",
-	"authmanager-authplugin-setpass-failed-title": "Wal yaqih quw sinbah sa mima’",
-	"authmanager-authplugin-setpass-bad-domain": "Ungat zyuwaw na wangyu’.",
 	"authmanager-email-label": "e-meyo’",
 	"authmanager-email-help": "Zyusyo na e-meyo’",
 	"authmanager-realname-label": "Spzyang balay lalu’",
