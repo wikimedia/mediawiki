@@ -6,6 +6,7 @@ THIS IS NOT A RELEASE YET
 * (T216968) Return pageid as int in both list=iwbacklinks and
   list=langbacklinks.
 * (T215169) Fix for Database::update() with IGNORE option fails on PostgreSQL.
+* Fix typo in rebuildrecentchanges.php resulting in rogue bot flags.
 
 == MediaWiki 1.32.1 ==
 
