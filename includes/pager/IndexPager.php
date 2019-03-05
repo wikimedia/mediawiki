@@ -75,13 +75,21 @@ abstract class IndexPager extends ContextSource implements Pager {
 	const DIR_ASCENDING = false;
 	const DIR_DESCENDING = true;
 
+	/** @var WebRequest */
 	public $mRequest;
+	/** @var int[] List of default entry limit options to be presented to clients */
 	public $mLimitsShown = [ 20, 50, 100, 250, 500 ];
+	/** @var int The default entry limit choosen for clients */
 	public $mDefaultLimit = 50;
-	public $mOffset, $mLimit;
+	/** @var string|int The starting point to enumerate entries */
+	public $mOffset;
+	/** @var int The maximum number of entries to show */
+	public $mLimit;
+	/** @var bool Whether the listing query completed */
 	public $mQueryDone = false;
 	/** @var IDatabase */
 	public $mDb;
+	/** @var stdClass|null Extra row fetched at the end to see if the end was reached */
 	public $mPastTheEndRow;
 
 	/**
@@ -99,11 +107,11 @@ abstract class IndexPager extends ContextSource implements Pager {
 	protected $mOrderType;
 	/**
 	 * $mDefaultDirection gives the direction to use when sorting results:
-	 * DIR_ASCENDING or DIR_DESCENDING.  If $mIsBackwards is set, we
-	 * start from the opposite end, but we still sort the page itself according
-	 * to $mDefaultDirection.  E.g., if $mDefaultDirection is false but we're
-	 * going backwards, we'll display the last page of results, but the last
-	 * result will be at the bottom, not the top.
+	 * DIR_ASCENDING or DIR_DESCENDING. If $mIsBackwards is set, we start from
+	 * the opposite end, but we still sort the page itself according to
+	 * $mDefaultDirection. For example, if $mDefaultDirection is DIR_ASCENDING
+	 * but we're going backwards, we'll display the last page of results, but
+	 * the last result will be at the bottom, not the top.
 	 *
 	 * Like $mIndexField, $mDefaultDirection will be a single value even if the
 	 * class supports multiple default directions for different order types.
@@ -202,8 +210,10 @@ abstract class IndexPager extends ContextSource implements Pager {
 		$fname = __METHOD__ . ' (' . static::class . ')';
 		$section = Profiler::instance()->scopedProfileIn( $fname );
 
-		// @todo This should probably compare to DIR_DESCENDING and DIR_ASCENDING constants
-		$descending = ( $this->mIsBackwards == $this->mDefaultDirection );
+		$descending = $this->mIsBackwards
+			? ( $this->mDefaultDirection === self::DIR_DESCENDING )
+			: ( $this->mDefaultDirection === self::DIR_ASCENDING );
+
 		# Plus an extra row so that we can tell the "next" link should be shown
 		$queryLimit = $this->mLimit + 1;
 
