@@ -1676,7 +1676,7 @@
 	"upload-scripted-pi-callback": "Неможливо завантажити файл, що містить інструкції опрацювання таблиці стилів XML.",
 	"upload-scripted-dtd": "Неможливо завантажувати SVG-файли, які містять нестандартну декларацію DTD.",
 	"uploaded-script-svg": " \t\t\nЗнайдений небезпечний елемент з підтримкою сценаріїв «$1» в завантаженому файлі SVG.",
-	"uploaded-hostile-svg": " \t\nЗнайдений небезпечний CSS-код в елементі стилю завантаженого файлу SVG.",
+	"uploaded-hostile-svg": "Знайдений небезпечний CSS-код в елементі стилю завантаженого файлу SVG.",
 	"uploaded-event-handler-on-svg": " \t\nУстановка атрибутів обробника подій <code>$1=\"$2\"</code> не дозволено для SVG-файлів.",
 	"uploaded-href-attribute-svg": "<a> елементи можуть лише посилатися (href) на цілі типу data: (вбудований файл), http:// або https://, або ж fragment (#, same-document). Для інших елементів, таких як <image>, дозволені лише data: і fragment. Спробуйте вбудовувати зображення при експортуванні Вашого файлу SVG. Знайдено <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "У завантаженому SVG-файлі знайдено href на небезпечні дані: ціль URI <code>&lt;$1 $2=\"$3\"&gt;</code>.",
@@ -3599,7 +3599,7 @@
 	"logentry-rights-autopromote": "$1 було автоматично переведено із $4 в $5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|завантажив|завантажила}} $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|завантажив|завантажила}} нову версію $3",
-	"logentry-upload-revert": "$1 {{GENDER:$2|завантажив|завантажила}} $3",
+	"logentry-upload-revert": "$1 {{GENDER:$2|повернув|повернула}} $3 до старої версії",
 	"log-name-managetags": "Журнал управління мітками",
 	"log-description-managetags": "На цій сторінці перераховані завдання управління, пов'язані з [[Special:Tags|мітками]]. Журнал містить тільки дії, виконані вручну адміністратором; мітки можуть бути створені або видалені програмним забезпеченням вікі без запису в цей журнал.",
 	"logentry-managetags-create": "$1 {{GENDER:$2|створив|створила}} мітку «$4»",
@@ -3834,6 +3834,7 @@
 	"log-action-filter-suppress-reblock": "Приховування користувача через повторне блокування",
 	"log-action-filter-upload-upload": "Нове завантаження",
 	"log-action-filter-upload-overwrite": "Повторне завантаження",
+	"log-action-filter-upload-revert": "Відкотити",
 	"authmanager-authn-not-in-progress": "Автентифікація не виконується або втрачено дані сесії. Будь ласка, почніть знову з самого початку.",
 	"authmanager-authn-no-primary": "Надані облікові дані не можуть бути завірені.",
 	"authmanager-authn-no-local-user": "Надані облікові дані не пов'язані з жодним користувачем у цій вікі.",
@@ -3939,6 +3940,7 @@
 	"passwordpolicies-policy-maximalpasswordlength": "Пароль повинен бути коротшим $1 {{PLURAL:$1|символа|символів}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "Пароль не може бути {{PLURAL:$1|часто вживаним|будь-яким з $1 часто вживаних паролів}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Пароль не може перебувати у списку 100 000 найчастіше вживаних паролів.",
+	"passwordpolicies-policyflag-forcechange": "має бути змінено при вході",
 	"easydeflate-invaliddeflate": "Наданий вміст не стиснений належним чином",
 	"unprotected-js": "З міркувань безпеки JavaScript не можна запускати з незахищених сторінок. Будь ласка, створюйте javascript лише в просторі MediaWiki, або як особисту підсторінку користувача."
 }

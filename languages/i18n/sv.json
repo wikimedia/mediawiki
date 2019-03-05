@@ -3486,7 +3486,7 @@
 	"logentry-rights-autopromote": "$1 {{GENDER:$2|befordrades}} automatiskt från $4 till $5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|laddade upp}} $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|laddade upp}} en ny version av $3",
-	"logentry-upload-revert": "$1 {{GENDER:$2|laddade upp}} $3",
+	"logentry-upload-revert": "$1 {{GENDER:$2|återställde}} $3 till en gammal version",
 	"log-name-managetags": "Märkeshanteringslogg",
 	"log-description-managetags": "Denna sida innehåller administrativa [[Special:Tags|märke]]srelaterade uppgifter. Loggen innehåller bara åtgärder som utförts manuellt av en administratör; märken kan skapas eller raderas av wikins mjukvara utan att en post registreras i loggen.",
 	"logentry-managetags-create": "$1 {{GENDER:$2|skapade}} märket \"$4\"",
@@ -3721,6 +3721,7 @@
 	"log-action-filter-suppress-reblock": "Användarcensur efter återblockering",
 	"log-action-filter-upload-upload": "Ny uppladdning",
 	"log-action-filter-upload-overwrite": "Återuppladdning",
+	"log-action-filter-upload-revert": "Återställ",
 	"authmanager-authn-not-in-progress": "Autentiseringen pågår inte eller så har sessionsdata förlorats. Var god börja om från början igen.",
 	"authmanager-authn-no-primary": "De angivna inloggningsuppgifterna kunde inte autentiseras.",
 	"authmanager-authn-no-local-user": "De angivna inloggningsuppgifterna är inte associerade med någon användare på denna wiki.",
@@ -3826,6 +3827,7 @@
 	"passwordpolicies-policy-maximalpasswordlength": "Lösenordet måste vara högst $1 {{PLURAL:$1|tecken}} långt",
 	"passwordpolicies-policy-passwordcannotbepopular": "Lösenordet kan inte vara {{PLURAL:$1|det populäraste lösenordet|i listan över de $1 populäraste lösenorden}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Lösenordet kan inte vara med i listan över de 100 000 vanligaste lösenorden.",
+	"passwordpolicies-policyflag-forcechange": "måste ändras vid inloggning",
 	"easydeflate-invaliddeflate": "Innehåll som tillhandahålls är inte helt komprimerat",
 	"unprotected-js": "Av säkerhetsskäl kan inte JavaScript läsas in från oskyddade sidor. Skapa endast JavaScript i namnrymden MediaWiki: eller som en användarundersida."
 }

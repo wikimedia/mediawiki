@@ -3402,7 +3402,7 @@
 	"logentry-rights-autopromote": "$1 ha essite automaticamente {{GENDER:$2|promovite}} de $4 a $5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|ha incargate}} $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|ha incargate}} un nove version de $3",
-	"logentry-upload-revert": "$1 {{GENDER:$2|ha incargate}} $3",
+	"logentry-upload-revert": "$1 {{GENDER:$2|ha revertite}} $3 a un version ancian",
 	"log-name-managetags": "Registro de gestion de etiquettas",
 	"log-description-managetags": "Iste pagina lista le cargas de gestion relative a [[Special:Tags|etiquettas]]. Le registro contine solmente le actiones exequite manualmente per un administrator; etiquettas pote esser create o delite per le software wiki sin insertion de un entrata in iste registro.",
 	"logentry-managetags-create": "$1 {{GENDER:$2|creava}} le etiquetta \"$4\"",

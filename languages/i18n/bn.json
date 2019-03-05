@@ -39,7 +39,8 @@
 			"Shahadat1971",
 			"Rasal Lia",
 			"আফতাবুজ্জামান",
-			"Tahmid02016"
+			"Tahmid02016",
+			"Ifsad"
 		]
 	},
 	"tog-underline": "সংযোগের নিচে দাগ দেখানো হোক:",
@@ -3482,7 +3483,7 @@
 	"logentry-rights-autopromote": "$1 স্বয়ংক্রিয়ভাবে $4 থেকে $5-এ {{GENDER:$2|উন্নীত}} হয়েছেন",
 	"logentry-upload-upload": "$1 $3 {{GENDER:$2|আপলোড করেছেন}}",
 	"logentry-upload-overwrite": "$1 $3-এর একটি নতুন সংস্করণ {{GENDER:$2|আপলোড করেছেন}}",
-	"logentry-upload-revert": "$1 $3 {{GENDER:$2|আপলোড করেছেন}}",
+	"logentry-upload-revert": "$1 $3 একটি পুরাতন সংস্করণে {{GENDER:$2|প্রত্যাবর্তন করেছেন}}",
 	"log-name-managetags": "ট্যাগ ব্যবস্থাপনা লগ",
 	"log-description-managetags": "এই পাতাতে [[Special:Tags|ট্যাগ]] ব্যবস্থাপনা কার্যাবলির একটি তালিকা আছে। এই লগে কেবলমাত্র সেইসব কর্মের তালিকা আছে, যেগুলি একজন প্রশাসক নিজ হাতে সম্পাদন করেছেন; উইকি সফটওয়্যার দিয়ে ট্যাগ সৃষ্টি বা অপসারণ করা সম্ভব, যার কোন ভুক্তি এই লগে সংরক্ষিত হবে না।",
 	"logentry-managetags-create": "$1 \"$4\" ট্যাগটি {{GENDER:$2|তৈরি করেছেন}}",
@@ -3717,6 +3718,7 @@
 	"log-action-filter-suppress-reblock": "পুনরায় বাধাদানের মাধ্যমে ব্যবহারকারী দমন",
 	"log-action-filter-upload-upload": "নতুন আপলোড",
 	"log-action-filter-upload-overwrite": "পুনঃআপলোড",
+	"log-action-filter-upload-revert": "প্রত্যাবর্তন",
 	"authmanager-authn-not-in-progress": "শনাক্তকরণ প্রক্রিয়াটি আর অগ্রসর হচ্ছে না কিংবা সেশনের উপাত্ত হারিয়ে গেছে। অনুগ্রহ করে আবার শুরু থেকে শুরু করুন।",
 	"authmanager-authn-no-primary": "সরবরাহকৃত পরিচয়পত্রের অনুমোদন যাচাই করা যায়নি।",
 	"authmanager-authn-no-local-user": "সরবরাহকৃত পরিচয়জ্ঞাপক তথ্যগুলি এই উইকির কোনও ব্যবহারকারীর সাথে সংশ্লিষ্ট নয়।",
