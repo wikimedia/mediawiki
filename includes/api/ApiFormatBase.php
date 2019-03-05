@@ -307,7 +307,6 @@ abstract class ApiFormatBase extends ApiBase {
 						'html' => $out->getHTML(),
 						'modules' => array_values( array_unique( array_merge(
 							$out->getModules(),
-							$out->getModuleScripts(),
 							$out->getModuleStyles()
 						) ) ),
 						'continue' => $this->getResult()->getResultData( 'continue' ),
