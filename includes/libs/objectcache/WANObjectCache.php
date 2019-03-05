@@ -696,15 +696,16 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @return bool True if the item was purged or not found, false on failure
 	 */
 	final public function delete( $key, $ttl = self::HOLDOFF_TTL ) {
-		$key = self::VALUE_KEY_PREFIX . $key;
-
 		if ( $ttl <= 0 ) {
 			// Publish the purge to all datacenters
-			$ok = $this->relayDelete( $key );
+			$ok = $this->relayDelete( self::VALUE_KEY_PREFIX . $key );
 		} else {
 			// Publish the purge to all datacenters
-			$ok = $this->relayPurge( $key, $ttl, self::HOLDOFF_NONE );
+			$ok = $this->relayPurge( self::VALUE_KEY_PREFIX . $key, $ttl, self::HOLDOFF_NONE );
 		}
+
+		$kClass = $this->determineKeyClassForStats( $key );
+		$this->stats->increment( "wanobjectcache.$kClass.delete." . ( $ok ? 'ok' : 'error' ) );
 
 		return $ok;
 	}
@@ -860,7 +861,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	final public function touchCheckKey( $key, $holdoff = self::HOLDOFF_TTL ) {
 		// Publish the purge to all datacenters
-		return $this->relayPurge( self::TIME_KEY_PREFIX . $key, self::CHECK_KEY_TTL, $holdoff );
+		$ok = $this->relayPurge( self::TIME_KEY_PREFIX . $key, self::CHECK_KEY_TTL, $holdoff );
+
+		$kClass = $this->determineKeyClassForStats( $key );
+		$this->stats->increment( "wanobjectcache.$kClass.ck_touch." . ( $ok ? 'ok' : 'error' ) );
+
+		return $ok;
 	}
 
 	/**
@@ -892,7 +898,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	final public function resetCheckKey( $key ) {
 		// Publish the purge to all datacenters
-		return $this->relayDelete( self::TIME_KEY_PREFIX . $key );
+		$ok = $this->relayDelete( self::TIME_KEY_PREFIX . $key );
+
+		$kClass = $this->determineKeyClassForStats( $key );
+		$this->stats->increment( "wanobjectcache.$kClass.ck_reset." . ( $ok ? 'ok' : 'error' ) );
+
+		return $ok;
 	}
 
 	/**
@@ -1288,8 +1299,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$touchedCb = $opts['touchedCallback'] ?? null;
 		$initialTime = $this->getCurrentTime();
 
-		// Get a collection name to describe this class of key
-		$kClass = $this->determineKeyClass( $key );
+		$kClass = $this->determineKeyClassForStats( $key );
 
 		// Get the current key value
 		$curTTL = self::PASS_BY_REF;
@@ -2299,9 +2309,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 	/**
 	 * @param string $key String of the format <scope>:<class>[:<class or variable>]...
-	 * @return string
+	 * @return string A collection name to describe this class of key
 	 */
-	protected function determineKeyClass( $key ) {
+	protected function determineKeyClassForStats( $key ) {
 		$parts = explode( ':', $key );
 
 		return $parts[1] ?? $parts[0]; // sanity
