@@ -4974,6 +4974,28 @@ class User implements IDBAccessObject, UserIdentity {
 	 *  non-existent/anonymous user accounts.
 	 */
 	public function getFirstEditTimestamp() {
+		return $this->getEditTimestamp( true );
+	}
+
+	/**
+	 * Get the timestamp of the latest edit
+	 *
+	 * @since 1.33
+	 * @return string|bool Timestamp of first edit, or false for
+	 *  non-existent/anonymous user accounts.
+	 */
+	public function getLatestEditTimestamp() {
+		return $this->getEditTimestamp( false );
+	}
+
+	/**
+	 * Get the timestamp of the first or latest edit
+	 *
+	 * @param bool $first True for the first edit, false for the latest one
+	 * @return string|bool Timestamp of first or latest edit, or false for
+	 *  non-existent/anonymous user accounts.
+	 */
+	private function getEditTimestamp( $first ) {
 		if ( $this->getId() == 0 ) {
 			return false; // anons
 		}
@@ -4981,12 +5003,13 @@ class User implements IDBAccessObject, UserIdentity {
 		$actorWhere = ActorMigration::newMigration()->getWhere( $dbr, 'rev_user', $this );
 		$tsField = isset( $actorWhere['tables']['temp_rev_user'] )
 			? 'revactor_timestamp' : 'rev_timestamp';
+		$sortOrder = $first ? 'ASC' : 'DESC';
 		$time = $dbr->selectField(
 			[ 'revision' ] + $actorWhere['tables'],
 			$tsField,
 			[ $actorWhere['conds'] ],
 			__METHOD__,
-			[ 'ORDER BY' => "$tsField ASC" ],
+			[ 'ORDER BY' => "$tsField $sortOrder" ],
 			$actorWhere['joins']
 		);
 		if ( !$time ) {
