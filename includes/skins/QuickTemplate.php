@@ -63,7 +63,7 @@ abstract class QuickTemplate {
 	 */
 	public function extend( $name, $value ) {
 		if ( $this->haveData( $name ) ) {
-			$this->data[$name] = $this->data[$name] . $value;
+			$this->data[$name] .= $value;
 		} else {
 			$this->data[$name] = $value;
 		}
