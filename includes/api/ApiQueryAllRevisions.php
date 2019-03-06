@@ -105,7 +105,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 
 			if ( $needPageTable ) {
 				$revQuery['tables'][] = 'page';
-				$revQuery['joins']['page'] = [ 'INNER JOIN', [ "$pageField = page_id" ] ];
+				$revQuery['joins']['page'] = [ 'JOIN', [ "$pageField = page_id" ] ];
 				if ( (bool)$miser_ns ) {
 					$revQuery['fields'][] = 'page_namespace';
 				}

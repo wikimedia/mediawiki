@@ -112,7 +112,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ( !is_null( $params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
-			$this->addJoinConds( [ 'change_tag' => [ 'INNER JOIN',
+			$this->addJoinConds( [ 'change_tag' => [ 'JOIN',
 				[ 'log_id=ct_log_id' ] ] ] );
 			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 			try {

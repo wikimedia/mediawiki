@@ -235,7 +235,7 @@ class WikiFilePage extends WikiPage {
 			],
 			__METHOD__,
 			[],
-			[ 'categorylinks' => [ 'INNER JOIN', 'page_id = cl_from' ] ]
+			[ 'categorylinks' => [ 'JOIN', 'page_id = cl_from' ] ]
 		);
 
 		return TitleArray::newFromResult( $res );

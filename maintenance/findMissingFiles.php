@@ -46,7 +46,7 @@ class FindMissingFiles extends Maintenance {
 		$joinConds = [];
 		if ( $mtime1 || $mtime2 ) {
 			$joinTables[] = 'page';
-			$joinConds['page'] = [ 'INNER JOIN',
+			$joinConds['page'] = [ 'JOIN',
 				[ 'page_title = img_name', 'page_namespace' => NS_FILE ] ];
 			$joinTables[] = 'logging';
 			$on = [ 'log_page = page_id', 'log_type' => [ 'upload', 'move', 'delete' ] ];
@@ -56,7 +56,7 @@ class FindMissingFiles extends Maintenance {
 			if ( $mtime2 ) {
 				$on[] = "log_timestamp < {$dbr->addQuotes($mtime2)}";
 			}
-			$joinConds['logging'] = [ 'INNER JOIN', $on ];
+			$joinConds['logging'] = [ 'JOIN', $on ];
 		}
 
 		do {

@@ -170,7 +170,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				// Force JOIN order per T106682 to avoid large filesorts
 				[ 'ORDER BY' => $fromCol, 'LIMIT' => 2 * $queryLimit, 'STRAIGHT_JOIN' ],
 				[
-					'page' => [ 'INNER JOIN', "$fromCol = page_id" ],
+					'page' => [ 'JOIN', "$fromCol = page_id" ],
 					'redirect' => [ 'LEFT JOIN', $on ]
 				]
 			);
@@ -180,7 +180,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				[],
 				__CLASS__ . '::showIndirectLinks',
 				[ 'ORDER BY' => 'page_id', 'LIMIT' => $queryLimit ],
-				[ 'page' => [ 'INNER JOIN', "$fromCol = page_id" ] ]
+				[ 'page' => [ 'JOIN', "$fromCol = page_id" ] ]
 			);
 		};
 

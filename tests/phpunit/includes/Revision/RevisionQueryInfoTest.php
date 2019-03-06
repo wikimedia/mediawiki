@@ -244,7 +244,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 					$this->getNewCommentQueryFields( 'rev' )
 				),
 				'joins' => [
-					'page' => [ 'INNER JOIN', [ 'page_id = rev_page' ] ],
+					'page' => [ 'JOIN', [ 'page_id = rev_page' ] ],
 					'user' => [
 						'LEFT JOIN',
 						[ 'actor_rev_user.actor_user != 0', 'user_id = actor_rev_user.actor_user' ],
@@ -289,7 +289,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 				),
 				'joins' => array_merge(
 					[
-						'page' => [ 'INNER JOIN', [ 'page_id = rev_page' ] ],
+						'page' => [ 'JOIN', [ 'page_id = rev_page' ] ],
 						'user' => [
 							'LEFT JOIN',
 							[
@@ -332,7 +332,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 				),
 				'joins' => array_merge(
 					[
-						'page' => [ 'INNER JOIN', [ 'page_id = rev_page' ] ],
+						'page' => [ 'JOIN', [ 'page_id = rev_page' ] ],
 						'user' => [
 							'LEFT JOIN',
 							[
@@ -401,7 +401,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 				),
 				'joins' => array_merge(
 					[
-						'page' => [ 'INNER JOIN', [ 'page_id = rev_page' ] ],
+						'page' => [ 'JOIN', [ 'page_id = rev_page' ] ],
 						'user' => [
 							'LEFT JOIN',
 							[
@@ -464,7 +464,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 					$this->getNewCommentQueryFields( 'rev' )
 				),
 				'joins' => [
-					'page' => [ 'INNER JOIN', [ 'page_id = rev_page' ] ],
+					'page' => [ 'JOIN', [ 'page_id = rev_page' ] ],
 					'user' => [ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ],
 					'temp_rev_comment' => [ 'JOIN', 'temp_rev_comment.revcomment_rev = rev_id' ],
 					'comment_rev_comment'
@@ -517,7 +517,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 					$this->getNewCommentQueryFields( 'rev' )
 				),
 				'joins' => [
-					'page' => [ 'INNER JOIN', [ 'page_id = rev_page' ], ],
+					'page' => [ 'JOIN', [ 'page_id = rev_page' ], ],
 					'temp_rev_comment' => [ 'JOIN', 'temp_rev_comment.revcomment_rev = rev_id' ],
 					'comment_rev_comment'
 						=> [ 'JOIN', 'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id' ],
@@ -571,7 +571,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 					$this->getNewCommentQueryFields( 'rev' )
 				),
 				'joins' => [
-					'text' => [ 'INNER JOIN', [ 'rev_text_id=old_id' ] ],
+					'text' => [ 'JOIN', [ 'rev_text_id=old_id' ] ],
 					'temp_rev_comment' => [ 'JOIN', 'temp_rev_comment.revcomment_rev = rev_id' ],
 					'comment_rev_comment'
 						=> [ 'JOIN', 'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id' ],
@@ -601,7 +601,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 				),
 				'joins' => [
 					'page' => [
-						'INNER JOIN',
+						'JOIN',
 						[ 'page_id = rev_page' ],
 					],
 					'user' => [
@@ -612,7 +612,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 						],
 					],
 					'text' => [
-						'INNER JOIN',
+						'JOIN',
 						[ 'rev_text_id=old_id' ],
 					],
 					'temp_rev_comment' => [ 'JOIN', 'temp_rev_comment.revcomment_rev = rev_id' ],
@@ -686,7 +686,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 					'content_model',
 				],
 				'joins' => [
-					'content' => [ 'INNER JOIN', [ 'slot_content_id = content_id' ] ],
+					'content' => [ 'JOIN', [ 'slot_content_id = content_id' ] ],
 				],
 			]
 		];
@@ -714,7 +714,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 					'model_name',
 				],
 				'joins' => [
-					'content' => [ 'INNER JOIN', [ 'slot_content_id = content_id' ] ],
+					'content' => [ 'JOIN', [ 'slot_content_id = content_id' ] ],
 					'content_models' => [ 'LEFT JOIN', [ 'content_model = model_id' ] ],
 				],
 			]
@@ -993,7 +993,7 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 	public function testRevisionPageJoinCond() {
 		$this->hideDeprecated( 'Revision::pageJoinCond' );
 		$this->assertEquals(
-			[ 'INNER JOIN', [ 'page_id = rev_page' ] ],
+			[ 'JOIN', [ 'page_id = rev_page' ] ],
 			Revision::pageJoinCond()
 		);
 	}

@@ -128,8 +128,8 @@ class ApiDeleteTest extends ApiTestCase {
 			__METHOD__,
 			[],
 			[
-				'change_tag' => [ 'INNER JOIN', 'ct_log_id = log_id' ],
-				'change_tag_def' => [ 'INNER JOIN', 'ctd_id = ct_tag_id' ]
+				'change_tag' => [ 'JOIN', 'ct_log_id = log_id' ],
+				'change_tag_def' => [ 'JOIN', 'ctd_id = ct_tag_id' ]
 			]
 		) );
 	}

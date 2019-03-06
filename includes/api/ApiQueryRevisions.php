@@ -177,7 +177,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			// Always join 'page' so orphaned revisions are filtered out
 			$this->addTables( [ 'revision', 'page' ] );
 			$this->addJoinConds(
-				[ 'page' => [ 'INNER JOIN', [ 'page_id = rev_page' ] ] ]
+				[ 'page' => [ 'JOIN', [ 'page_id = rev_page' ] ] ]
 			);
 			$this->addFields( [
 				'rev_id' => $idField, 'rev_timestamp' => $tsField, 'rev_page' => $pageField
@@ -191,7 +191,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		if ( $params['tag'] !== null ) {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds(
-				[ 'change_tag' => [ 'INNER JOIN', [ 'rev_id=ct_rev_id' ] ] ]
+				[ 'change_tag' => [ 'JOIN', [ 'rev_id=ct_rev_id' ] ] ]
 			);
 			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 			try {

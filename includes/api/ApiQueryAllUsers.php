@@ -117,7 +117,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addTables( 'user_groups', 'ug1' );
 			$this->addJoinConds( [
 				'ug1' => [
-					'INNER JOIN',
+					'JOIN',
 					[
 						'ug1.ug_user=user_id',
 						'ug1.ug_group' => $params['group'],
@@ -172,7 +172,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			// There shouldn't be any duplicate rows in querycachetwo here.
 			$this->addTables( 'querycachetwo' );
 			$this->addJoinConds( [ 'querycachetwo' => [
-				'INNER JOIN', [
+				'JOIN', [
 					'qcc_type' => 'activeusers',
 					'qcc_namespace' => NS_USER,
 					'qcc_title=user_name',

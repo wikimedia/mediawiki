@@ -343,7 +343,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$join_conds = array_merge(
 			[
 				'watchlist' => [
-					'INNER JOIN',
+					'JOIN',
 					[
 						'wl_user' => $user->getId(),
 						'wl_namespace=rc_namespace',
