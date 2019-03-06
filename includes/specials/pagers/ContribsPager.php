@@ -160,14 +160,14 @@ class ContribsPager extends RangeChronologicalPager {
 	 *
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
-	 * @param bool $descending Query direction, false for ascending, true for descending
+	 * @param bool $order IndexPager::QUERY_ASCENDING or IndexPager::QUERY_DESCENDING
 	 * @return IResultWrapper
 	 */
-	function reallyDoQuery( $offset, $limit, $descending ) {
+	function reallyDoQuery( $offset, $limit, $order ) {
 		list( $tables, $fields, $conds, $fname, $options, $join_conds ) = $this->buildQueryInfo(
 			$offset,
 			$limit,
-			$descending
+			$order
 		);
 
 		/*
@@ -193,7 +193,7 @@ class ContribsPager extends RangeChronologicalPager {
 		) ];
 		Hooks::run(
 			'ContribsPager::reallyDoQuery',
-			[ &$data, $this, $offset, $limit, $descending ]
+			[ &$data, $this, $offset, $limit, $order ]
 		);
 
 		$result = [];
@@ -207,7 +207,7 @@ class ContribsPager extends RangeChronologicalPager {
 		}
 
 		// sort results
-		if ( $descending ) {
+		if ( $order === self::QUERY_ASCENDING ) {
 			ksort( $result );
 		} else {
 			krsort( $result );
