@@ -387,6 +387,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		global $IP;
+		$conf = $this->getConfig();
+
 		if ( $context->getOnly() !== 'scripts' ) {
 			return '/* Requires only=script */';
 		}
@@ -400,7 +402,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		if ( $context->getDebug() ) {
 			$mwLoaderCode .= file_get_contents( "$IP/resources/src/startup/mediawiki.log.js" );
 		}
-		if ( $this->getConfig()->get( 'ResourceLoaderEnableJSProfiler' ) ) {
+		if ( $conf->get( 'ResourceLoaderEnableJSProfiler' ) ) {
 			$mwLoaderCode .= file_get_contents( "$IP/resources/src/startup/profiler.js" );
 		}
 
@@ -414,7 +416,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'$CODE.profileScriptStart();' => 'mw.loader.profiler.onScriptStart( module );',
 			'$CODE.profileScriptEnd();' => 'mw.loader.profiler.onScriptEnd( module );',
 		];
-		if ( $this->getConfig()->get( 'ResourceLoaderEnableJSProfiler' ) ) {
+		if ( $conf->get( 'ResourceLoaderEnableJSProfiler' ) ) {
 			// When profiling is enabled, insert the calls.
 			$mwLoaderPairs += $profilerStubs;
 		} else {
@@ -426,7 +428,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// Perform string replacements for startup.js
 		$pairs = [
 			'$VARS.wgLegacyJavaScriptGlobals' => ResourceLoader::encodeJsonForScript(
-				$this->getConfig()->get( 'LegacyJavaScriptGlobals' )
+				$conf->get( 'LegacyJavaScriptGlobals' )
 			),
 			'$VARS.configuration' => ResourceLoader::encodeJsonForScript(
 				$this->getConfigSettings( $context )
