@@ -337,8 +337,6 @@ because of Phabricator reports.
   check block behaviour.
 * The api-feature-usage log channel now has log context. The text message is
   deprecated and will be removed in the future.
-* The "stream" request option in MultiHttpClient has been deprecated.
-  Use the new "sink" option instead.
 
 === Other changes in 1.33 ===
 * (T201747) Html::openElement() warns if given an element name with a space
