@@ -307,6 +307,7 @@ class MWNamespace {
 	 * @return bool True if this namespace either is or has a corresponding talk namespace.
 	 */
 	public static function canTalk( $index ) {
+		wfDeprecated( __METHOD__, '1.30' );
 		return self::hasTalkNamespace( $index );
 	}
 
