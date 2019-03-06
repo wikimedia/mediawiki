@@ -279,6 +279,7 @@ because of Phabricator reports.
   * The transitional wrapper classes AuthPluginPrimaryAuthenticationProvider,
     AuthManagerAuthPlugin, and AuthManagerAuthPluginUser.
   * The $wgAuth configuration setting and its use in Setup.php and unit tests
+* (T217772) The 'wgAvailableSkins' mw.config key in JavaScript, was removed.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
