@@ -154,7 +154,7 @@ class Orphans extends Maintenance {
 			. "(this may take a while on a large wiki)\n" );
 		$result = $dbw->query( "
 			SELECT *
-			FROM $page LEFT OUTER JOIN $revision ON page_latest=rev_id
+			FROM $page LEFT JOIN $revision ON page_latest=rev_id
 		" );
 		$found = 0;
 		foreach ( $result as $row ) {
