@@ -320,7 +320,7 @@ class RebuildRecentchanges extends Maintenance {
 					'rc_title' => $row->log_title,
 					'rc_minor' => 0,
 					'rc_bot' => 0,
-					'rc_patrolled' => 1,
+					'rc_patrolled' => $row->log_type == 'upload' ? 0 : 2,
 					'rc_new' => 0,
 					'rc_this_oldid' => 0,
 					'rc_last_oldid' => 0,
@@ -438,11 +438,12 @@ class RebuildRecentchanges extends Maintenance {
 				foreach ( $actorQuery['orconds'] as $cond ) {
 					$dbw->update(
 						'recentchanges',
-						[ 'rc_patrolled' => 1 ],
+						[ 'rc_patrolled' => 2 ],
 						[
 							$cond,
 							'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
 							'rc_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
+							'rc_patrolled' => 0
 						],
 						__METHOD__
 					);
