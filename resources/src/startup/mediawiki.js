@@ -1579,7 +1579,7 @@
 			 * @param {string[]} batch
 			 */
 			function batchRequest( batch ) {
-				var reqBase, splits, maxQueryLength, b, bSource, bGroup,
+				var reqBase, splits, b, bSource, bGroup,
 					source, group, i, modules, sourceLoadScript,
 					currReqBase, currReqBaseLength, moduleMap, currReqModules, l,
 					lastDotIndex, prefix, suffix, bytesAdded;
@@ -1618,7 +1618,6 @@
 					lang: mw.config.get( 'wgUserLanguage' ),
 					debug: mw.config.get( 'debug' )
 				};
-				maxQueryLength = mw.config.get( 'wgResourceLoaderMaxQueryLength', 2000 );
 
 				// Split module list by source and by group.
 				splits = Object.create( null );
@@ -1674,7 +1673,7 @@
 								modules[ i ].length + 3; // '%7C'.length == 3
 
 							// If the url would become too long, create a new one, but don't create empty requests
-							if ( maxQueryLength > 0 && currReqModules.length && l + bytesAdded > maxQueryLength ) {
+							if ( currReqModules.length && l + bytesAdded > mw.loader.maxQueryLength ) {
 								// Dispatch what we've got...
 								doRequest();
 								// .. and start again.
@@ -1682,7 +1681,7 @@
 								moduleMap = Object.create( null );
 								currReqModules = [];
 
-								mw.track( 'resourceloader.splitRequest', { maxQueryLength: maxQueryLength } );
+								mw.track( 'resourceloader.splitRequest', { maxQueryLength: mw.loader.maxQueryLength } );
 							}
 							if ( !moduleMap[ prefix ] ) {
 								moduleMap[ prefix ] = [];
@@ -1791,6 +1790,15 @@
 				 * @private
 				 */
 				moduleRegistry: registry,
+
+				/**
+				 * Exposed for testing and debugging only.
+				 *
+				 * @see #batchRequest
+				 * @property
+				 * @private
+				 */
+				maxQueryLength: $VARS.maxQueryLength,
 
 				/**
 				 * @inheritdoc #newStyleTag

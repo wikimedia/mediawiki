@@ -34,10 +34,12 @@
 		};
 	</script>
 	<script>
-		// Mock startup.js
+		// Mock ResourceLoaderStartUpModule substitutions
 		window.$VARS = {
-			baseModules: []
+			baseModules: [],
+			maxQueryLength: 2000
 		};
+		// Mock startup.js
 		window.RLQ = [];
 	</script>
 	<script src="modules/src/startup/mediawiki.js"></script>
