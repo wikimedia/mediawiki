@@ -15,6 +15,7 @@
 			};
 		},
 		teardown: function () {
+			mw.loader.maxQueryLength = 2000;
 			// Teardown for StringSet shim test
 			if ( this.nativeSet ) {
 				window.Set = this.nativeSet;
@@ -624,7 +625,7 @@
 			[ 'testUrlIncDump', 'dump', [], null, 'testloader' ]
 		] );
 
-		mw.config.set( 'wgResourceLoaderMaxQueryLength', 10 );
+		mw.loader.maxQueryLength = 10;
 
 		return mw.loader.using( [ 'testUrlIncDump', 'testUrlInc' ] ).then( function ( require ) {
 			assert.propEqual(
