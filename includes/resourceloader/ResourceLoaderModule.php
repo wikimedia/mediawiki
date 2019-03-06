@@ -476,44 +476,51 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 			$localFileRefs = array_values( array_unique( $localFileRefs ) );
 			sort( $localFileRefs );
 			$localPaths = self::getRelativePaths( $localFileRefs );
-
 			$storedPaths = self::getRelativePaths( $this->getFileDependencies( $context ) );
-			// If the list has been modified since last time we cached it, update the cache
-			if ( $localPaths !== $storedPaths ) {
-				$vary = $context->getSkin() . '|' . $context->getLanguage();
-				$cache = ObjectCache::getLocalClusterInstance();
-				$key = $cache->makeKey( __METHOD__, $this->getName(), $vary );
-				$scopeLock = $cache->getScopedLock( $key, 0 );
-				if ( !$scopeLock ) {
-					return; // T124649; avoid write slams
-				}
 
-				// No needless escaping as this isn't HTML output.
-				// Only stored in the database and parsed in PHP.
-				$deps = json_encode( $localPaths, JSON_UNESCAPED_SLASHES );
-				$dbw = wfGetDB( DB_MASTER );
-				$dbw->upsert( 'module_deps',
-					[
-						'md_module' => $this->getName(),
-						'md_skin' => $vary,
-						'md_deps' => $deps,
-					],
-					[ 'md_module', 'md_skin' ],
-					[
-						'md_deps' => $deps,
-					]
+			if ( $localPaths === $storedPaths ) {
+				// Unchanged. Avoid needless database query (especially master conn!).
+				return;
+			}
+
+			// The file deps list has changed, we want to update it.
+			$vary = $context->getSkin() . '|' . $context->getLanguage();
+			$cache = ObjectCache::getLocalClusterInstance();
+			$key = $cache->makeKey( __METHOD__, $this->getName(), $vary );
+			$scopeLock = $cache->getScopedLock( $key, 0 );
+			if ( !$scopeLock ) {
+				// Another request appears to be doing this update already.
+				// Avoid write slams (T124649).
+				return;
+			}
+
+			// No needless escaping as this isn't HTML output.
+			// Only stored in the database and parsed in PHP.
+			$deps = json_encode( $localPaths, JSON_UNESCAPED_SLASHES );
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->upsert( 'module_deps',
+				[
+					'md_module' => $this->getName(),
+					'md_skin' => $vary,
+					'md_deps' => $deps,
+				],
+				[ 'md_module', 'md_skin' ],
+				[
+					'md_deps' => $deps,
+				]
+			);
+
+			if ( $dbw->trxLevel() ) {
+				$dbw->onTransactionResolution(
+					function () use ( &$scopeLock ) {
+						ScopedCallback::consume( $scopeLock ); // release after commit
+					},
+					__METHOD__
 				);
-
-				if ( $dbw->trxLevel() ) {
-					$dbw->onTransactionResolution(
-						function () use ( &$scopeLock ) {
-							ScopedCallback::consume( $scopeLock ); // release after commit
-						},
-						__METHOD__
-					);
-				}
 			}
 		} catch ( Exception $e ) {
+			// Probably a DB failure. Either the read query from getFileDependencies(),
+			// or the write query above.
 			wfDebugLog( 'resourceloader', __METHOD__ . ": failed to update DB: $e" );
 		}
 	}
