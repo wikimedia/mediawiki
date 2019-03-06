@@ -832,7 +832,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	 * @param array $existing
 	 * @return array
 	 */
-	function getPropertyDeletions( $existing ) {
+	private function getPropertyDeletions( $existing ) {
 		return array_diff_assoc( $existing, $this->mProperties );
 	}
 
