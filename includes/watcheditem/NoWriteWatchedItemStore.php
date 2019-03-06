@@ -152,4 +152,7 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
+	public function getLatestNotificationTimestamp( $timestamp, User $user, LinkTarget $target ) {
+		return wfTimestampOrNull( TS_MW, $timestamp );
+	}
 }

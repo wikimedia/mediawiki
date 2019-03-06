@@ -1,6 +1,6 @@
 <?php
 
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -45,7 +45,7 @@ interface WatchedItemQueryServiceExtension {
 	 * @param IDatabase $db Database connection being used for the query
 	 * @param array &$items array of pairs ( WatchedItem $watchedItem, string[] $recentChangeInfo ).
 	 *  May be truncated if necessary, in which case $startFrom must be updated.
-	 * @param ResultWrapper|bool $res Database query result
+	 * @param IResultWrapper|bool $res Database query result
 	 * @param array|null &$startFrom Continuation value. If you truncate $items, set this to
 	 *  [ $recentChangeInfo['rc_timestamp'], $recentChangeInfo['rc_id'] ] from the first item
 	 *  removed.

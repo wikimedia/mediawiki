@@ -598,13 +598,16 @@ return [
 		return new WatchedItemQueryService(
 			$services->getDBLoadBalancer(),
 			$services->getCommentStore(),
-			$services->getActorMigration()
+			$services->getActorMigration(),
+			$services->getWatchedItemStore()
 		);
 	},
 
 	'WatchedItemStore' => function ( MediaWikiServices $services ) : WatchedItemStore {
 		$store = new WatchedItemStore(
 			$services->getDBLoadBalancerFactory(),
+			JobQueueGroup::singleton(),
+			$services->getMainObjectStash(),
 			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
 			$services->getReadOnlyMode(),
 			$services->getMainConfig()->get( 'UpdateRowsPerQuery' )
