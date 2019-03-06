@@ -537,6 +537,7 @@
 	"rcfilters-filter-pageedits-label": "Panacheo sompadonam",
 	"rcfilters-filter-categorization-label": "Vorgache bodol",
 	"rcfilters-filtergroup-lastRevision": "Akherchim uzollnnim",
+	"rcfilters-filter-lastrevision-label": "Sogleanvon novi uzollnni",
 	"rcfilters-tag-prefix-namespace-inverted": "$1 <strong>:nhoi</strong>",
 	"rcnotefrom": "Sokoil <strong>$3, $4<strong> savn {{PLURAL:$5|zalelem bodol dilam|zalelem bodol dileant}} (<strong>$1<strong> meren {{PLURAL:$5|dakhoilam|dakhoileant}}).",
 	"rclistfrom": "$3 $2 savn suru zatelim nove bodol dakhoi",
