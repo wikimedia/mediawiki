@@ -114,7 +114,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgCookieDomain' => $conf->get( 'CookieDomain' ),
 			'wgCookiePath' => $conf->get( 'CookiePath' ),
 			'wgCookieExpiration' => $conf->get( 'CookieExpiration' ),
-			'wgResourceLoaderMaxQueryLength' => $conf->get( 'ResourceLoaderMaxQueryLength' ),
 			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
 			'wgIllegalFileChars' => Title::convertByteClassToUnicodeClass( $illegalFileChars ),
@@ -409,6 +408,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// Perform replacements for mediawiki.js
 		$mwLoaderPairs = [
 			'$VARS.baseModules' => ResourceLoader::encodeJsonForScript( $this->getBaseModules() ),
+			'$VARS.maxQueryLength' => ResourceLoader::encodeJsonForScript(
+				$conf->get( 'ResourceLoaderMaxQueryLength' )
+			),
 		];
 		$profilerStubs = [
 			'$CODE.profileExecuteStart();' => 'mw.loader.profiler.onExecuteStart( module );',
