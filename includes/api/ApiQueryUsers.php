@@ -168,7 +168,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				}
 
 				$this->addTables( 'user_groups' );
-				$this->addJoinConds( [ 'user_groups' => [ 'INNER JOIN', 'ug_user=user_id' ] ] );
+				$this->addJoinConds( [ 'user_groups' => [ 'JOIN', 'ug_user=user_id' ] ] );
 				$this->addFields( [ 'user_name' ] );
 				$this->addFields( UserGroupMembership::selectFields() );
 				$this->addWhere( 'ug_expiry IS NULL OR ug_expiry >= ' .

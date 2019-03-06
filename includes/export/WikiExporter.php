@@ -372,18 +372,18 @@ class WikiExporter {
 				$opts[] = 'STRAIGHT_JOIN';
 				$opts['USE INDEX']['revision'] = 'rev_page_id';
 				unset( $join['revision'] );
-				$join['page'] = [ 'INNER JOIN', 'rev_page=page_id' ];
+				$join['page'] = [ 'JOIN', 'rev_page=page_id' ];
 			}
 		} elseif ( $this->history & self::CURRENT ) {
 			# Latest revision dumps...
 			if ( $this->list_authors && $cond != '' ) { // List authors, if so desired
 				$this->do_list_authors( $cond );
 			}
-			$join['revision'] = [ 'INNER JOIN', 'page_id=rev_page AND page_latest=rev_id' ];
+			$join['revision'] = [ 'JOIN', 'page_id=rev_page AND page_latest=rev_id' ];
 		} elseif ( $this->history & self::STABLE ) {
 			# "Stable" revision dumps...
 			# Default JOIN, to be overridden...
-			$join['revision'] = [ 'INNER JOIN', 'page_id=rev_page AND page_latest=rev_id' ];
+			$join['revision'] = [ 'JOIN', 'page_id=rev_page AND page_latest=rev_id' ];
 			# One, and only one hook should set this, and return false
 			if ( Hooks::run( 'WikiExporter::dumpStableQuery', [ &$tables, &$opts, &$join ] ) ) {
 				throw new MWException( __METHOD__ . " given invalid history dump type." );

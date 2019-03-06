@@ -62,7 +62,7 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		// HACK if we call $dbr->buildGroupConcatField() now, it will return the wrong table names
 		// We have to have the test runner call it instead
 		$baseConcats = [ ',', [ 'change_tag', 'change_tag_def' ], 'ctd_name' ];
-		$joinConds = [ 'change_tag_def' => [ 'INNER JOIN', 'ct_tag_id=ctd_id' ] ];
+		$joinConds = [ 'change_tag_def' => [ 'JOIN', 'ct_tag_id=ctd_id' ] ];
 		$groupConcats = [
 			'recentchanges' => array_merge( $baseConcats, [ 'ct_rc_id=rc_id', $joinConds ] ),
 			'logging' => array_merge( $baseConcats, [ 'ct_log_id=log_id', $joinConds ] ),
@@ -121,7 +121,7 @@ class ChangeTagsTest extends MediaWikiTestCase {
 					'tables' => [ 'recentchanges', 'change_tag' ],
 					'fields' => [ 'rc_id', 'rc_timestamp', 'ts_tags' => $groupConcats['recentchanges'] ],
 					'conds' => [ "rc_timestamp > '20170714183203'", 'ct_tag_id' => [ 1 ] ],
-					'join_conds' => [ 'change_tag' => [ 'INNER JOIN', 'ct_rc_id=rc_id' ] ],
+					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_rc_id=rc_id' ] ],
 					'options' => [ 'ORDER BY' => 'rc_timestamp DESC' ],
 				]
 			],
@@ -139,7 +139,7 @@ class ChangeTagsTest extends MediaWikiTestCase {
 					'tables' => [ 'logging', 'change_tag' ],
 					'fields' => [ 'log_id', 'ts_tags' => $groupConcats['logging'] ],
 					'conds' => [ "log_timestamp > '20170714183203'", 'ct_tag_id' => [ 1 ] ],
-					'join_conds' => [ 'change_tag' => [ 'INNER JOIN', 'ct_log_id=log_id' ] ],
+					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_log_id=log_id' ] ],
 					'options' => [ 'ORDER BY log_timestamp DESC' ],
 				]
 			],
@@ -157,7 +157,7 @@ class ChangeTagsTest extends MediaWikiTestCase {
 					'tables' => [ 'revision', 'change_tag' ],
 					'fields' => [ 'rev_id', 'rev_timestamp', 'ts_tags' => $groupConcats['revision'] ],
 					'conds' => [ "rev_timestamp > '20170714183203'", 'ct_tag_id' => [ 1 ] ],
-					'join_conds' => [ 'change_tag' => [ 'INNER JOIN', 'ct_rev_id=rev_id' ] ],
+					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_rev_id=rev_id' ] ],
 					'options' => [ 'ORDER BY' => 'rev_timestamp DESC' ],
 				]
 			],
@@ -175,7 +175,7 @@ class ChangeTagsTest extends MediaWikiTestCase {
 					'tables' => [ 'archive', 'change_tag' ],
 					'fields' => [ 'ar_id', 'ar_timestamp', 'ts_tags' => $groupConcats['archive'] ],
 					'conds' => [ "ar_timestamp > '20170714183203'", 'ct_tag_id' => [ 1 ] ],
-					'join_conds' => [ 'change_tag' => [ 'INNER JOIN', 'ct_rev_id=ar_rev_id' ] ],
+					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_rev_id=ar_rev_id' ] ],
 					'options' => [ 'ORDER BY' => 'ar_timestamp DESC' ],
 				]
 			],
@@ -223,7 +223,7 @@ class ChangeTagsTest extends MediaWikiTestCase {
 					'tables' => [ 'recentchanges', 'change_tag' ],
 					'fields' => [ 'rc_id', 'rc_timestamp', 'ts_tags' => $groupConcats['recentchanges'] ],
 					'conds' => [ "rc_timestamp > '20170714183203'", 'ct_tag_id' => [ 1, 2 ] ],
-					'join_conds' => [ 'change_tag' => [ 'INNER JOIN', 'ct_rc_id=rc_id' ] ],
+					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_rc_id=rc_id' ] ],
 					'options' => [ 'ORDER BY' => 'rc_timestamp DESC', 'DISTINCT' ],
 				]
 			],
@@ -241,7 +241,7 @@ class ChangeTagsTest extends MediaWikiTestCase {
 					'tables' => [ 'recentchanges', 'change_tag' ],
 					'fields' => [ 'rc_id', 'rc_timestamp', 'ts_tags' => $groupConcats['recentchanges'] ],
 					'conds' => [ "rc_timestamp > '20170714183203'", 'ct_tag_id' => [ 1, 2 ] ],
-					'join_conds' => [ 'change_tag' => [ 'INNER JOIN', 'ct_rc_id=rc_id' ] ],
+					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_rc_id=rc_id' ] ],
 					'options' => [ 'DISTINCT', 'ORDER BY' => 'rc_timestamp DESC' ],
 				]
 			],
@@ -259,7 +259,7 @@ class ChangeTagsTest extends MediaWikiTestCase {
 					'tables' => [ 'recentchanges', 'change_tag' ],
 					'fields' => [ 'rc_id', 'ts_tags' => $groupConcats['recentchanges'] ],
 					'conds' => [ "rc_timestamp > '20170714183203'", 'ct_tag_id' => [ 1, 2 ] ],
-					'join_conds' => [ 'change_tag' => [ 'INNER JOIN', 'ct_rc_id=rc_id' ] ],
+					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_rc_id=rc_id' ] ],
 					'options' => [ 'ORDER BY rc_timestamp DESC', 'DISTINCT' ],
 				]
 			],

@@ -102,7 +102,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$fields = array_merge( $rcQuery['fields'], [
 			'length' => 'page_len', 'rev_id' => 'page_latest', 'page_namespace', 'page_title'
 		] );
-		$join_conds = [ 'page' => [ 'INNER JOIN', 'page_id=rc_cur_id' ] ] + $rcQuery['joins'];
+		$join_conds = [ 'page' => [ 'JOIN', 'page_id=rc_cur_id' ] ] + $rcQuery['joins'];
 
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$pager = $this;

@@ -263,7 +263,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 				],
 				[
 					'watchlist' => [
-						'INNER JOIN',
+						'JOIN',
 						[
 							'wl_namespace=rc_namespace',
 							'wl_title=rc_title'
@@ -386,7 +386,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 				],
 				[
 					'watchlist' => [
-						'INNER JOIN',
+						'JOIN',
 						[
 							'wl_namespace=rc_namespace',
 							'wl_title=rc_title'
@@ -888,7 +888,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 		$expectedJoinConds = array_merge(
 			[
 				'watchlist' => [
-					'INNER JOIN',
+					'JOIN',
 					[
 						'wl_namespace=rc_namespace',
 						'wl_title=rc_title'
@@ -1121,7 +1121,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 				$this->isType( 'string' ),
 				$this->isType( 'array' ),
 				array_merge( [
-					'watchlist' => [ 'INNER JOIN', [ 'wl_namespace=rc_namespace', 'wl_title=rc_title' ] ],
+					'watchlist' => [ 'JOIN', [ 'wl_namespace=rc_namespace', 'wl_title=rc_title' ] ],
 					'page' => [ 'LEFT JOIN', 'rc_cur_id=page_id' ],
 				], $expectedExtraJoins )
 			)
@@ -1159,7 +1159,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 				[],
 				[
 					'watchlist' => [
-						'INNER JOIN',
+						'JOIN',
 						[
 							'wl_namespace=rc_namespace',
 							'wl_title=rc_title'
@@ -1282,7 +1282,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 				[],
 				[
 					'watchlist' => [
-						'INNER JOIN',
+						'JOIN',
 						[
 							'wl_namespace=rc_namespace',
 							'wl_title=rc_title'
@@ -1328,7 +1328,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 				[],
 				[
 					'watchlist' => [
-						'INNER JOIN',
+						'JOIN',
 						[
 							'wl_namespace=rc_namespace',
 							'wl_title=rc_title'

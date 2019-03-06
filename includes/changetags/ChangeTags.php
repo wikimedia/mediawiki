@@ -756,7 +756,7 @@ class ChangeTags {
 			// Add an INNER JOIN on change_tag
 
 			$tables[] = 'change_tag';
-			$join_conds['change_tag'] = [ 'INNER JOIN', $join_cond ];
+			$join_conds['change_tag'] = [ 'JOIN', $join_cond ];
 			$filterTagIds = [];
 			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 			foreach ( (array)$filter_tag as $filterTagName ) {
@@ -808,7 +808,7 @@ class ChangeTags {
 		}
 
 		$tagTables = [ 'change_tag', 'change_tag_def' ];
-		$join_cond_ts_tags = [ 'change_tag_def' => [ 'INNER JOIN', 'ct_tag_id=ctd_id' ] ];
+		$join_cond_ts_tags = [ 'change_tag_def' => [ 'JOIN', 'ct_tag_id=ctd_id' ] ];
 		$field = 'ctd_name';
 
 		return wfGetDB( DB_REPLICA )->buildGroupConcatField(

@@ -360,7 +360,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		if ( !is_null( $params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
-			$this->addJoinConds( [ 'change_tag' => [ 'INNER JOIN', [ 'rc_id=ct_rc_id' ] ] ] );
+			$this->addJoinConds( [ 'change_tag' => [ 'JOIN', [ 'rc_id=ct_rc_id' ] ] ] );
 			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 			try {
 				$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $params['tag'] ) );

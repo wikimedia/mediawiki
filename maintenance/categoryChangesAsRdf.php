@@ -307,7 +307,7 @@ SPARQL;
 			'rc_type' => RC_LOG,
 		] );
 		$it->addJoinConditions( [
-			'page' => [ 'INNER JOIN', 'rc_cur_id = page_id' ],
+			'page' => [ 'JOIN', 'rc_cur_id = page_id' ],
 		] );
 		$this->addIndex( $it );
 		return $it;

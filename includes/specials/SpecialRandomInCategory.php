@@ -219,7 +219,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 				'OFFSET' => $offset
 			],
 			'join_conds' => [
-				'page' => [ 'INNER JOIN', 'cl_from = page_id' ]
+				'page' => [ 'JOIN', 'cl_from = page_id' ]
 			]
 		];
 

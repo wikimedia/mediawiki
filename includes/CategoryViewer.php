@@ -339,7 +339,7 @@ class CategoryViewer extends ContextSource {
 					'ORDER BY' => $this->flip[$type] ? 'cl_sortkey DESC' : 'cl_sortkey',
 				],
 				[
-					'categorylinks' => [ 'INNER JOIN', 'cl_from = page_id' ],
+					'categorylinks' => [ 'JOIN', 'cl_from = page_id' ],
 					'category' => [ 'LEFT JOIN', [
 						'cat_title = page_title',
 						'page_namespace' => NS_CATEGORY

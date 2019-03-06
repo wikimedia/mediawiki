@@ -99,7 +99,7 @@ class PurgeChangedPages extends Maintenance {
 				__METHOD__,
 				[ 'ORDER BY' => 'rev_timestamp', 'LIMIT' => $bSize ],
 				[
-					'page' => [ 'INNER JOIN', 'rev_page=page_id' ],
+					'page' => [ 'JOIN', 'rev_page=page_id' ],
 				]
 			);
 

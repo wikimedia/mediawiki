@@ -83,7 +83,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		if ( !is_null( $params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds(
-				[ 'change_tag' => [ 'INNER JOIN', [ 'ar_rev_id=ct_rev_id' ] ] ]
+				[ 'change_tag' => [ 'JOIN', [ 'ar_rev_id=ct_rev_id' ] ] ]
 			);
 			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 			try {

@@ -1349,7 +1349,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'ctd_name',
 			[ 'ct_rev_id' => $revId ],
 			__METHOD__,
-			[ 'change_tag_def' => [ 'INNER JOIN', 'ctd_id = ct_tag_id' ] ]
+			[ 'change_tag_def' => [ 'JOIN', 'ctd_id = ct_tag_id' ] ]
 			)
 		);
 	}
