@@ -248,6 +248,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 * @param bool $expected
 	 */
 	public function testCanTalk( $index, $expected ) {
+		$this->hideDeprecated( 'MWNamespace::canTalk' );
 		$actual = MWNamespace::canTalk( $index );
 		$this->assertSame( $actual, $expected, "NS $index" );
 	}
