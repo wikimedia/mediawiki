@@ -35,7 +35,6 @@ use Language;
 use MWException;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 
@@ -275,9 +274,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			$this->getCacheKey( $blobAddress ),
 			$this->getCacheTTL(),
 			function ( $unused, &$ttl, &$setOpts ) use ( $blobAddress, $queryFlags ) {
-				list( $index ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
-				$setOpts += Database::getCacheSetOptions( $this->getDBConnection( $index ) );
-
+				// Ignore $setOpts; blobs are immutable and negatives are not cached
 				return $this->fetchBlob( $blobAddress, $queryFlags );
 			},
 			[ 'pcGroup' => self::TEXT_CACHE_GROUP, 'pcTTL' => IExpiringStore::TTL_PROC_LONG ]
@@ -417,7 +414,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 					$this->getCacheKey( $cacheKey ),
 					$this->getCacheTTL(),
 					function () use ( $url, $flags ) {
-						// No negative caching per BlobStore::getBlob()
+						// Ignore $setOpts; blobs are immutable and negatives are not cached
 						$blob = ExternalStore::fetchFromURL( $url, [ 'wiki' => $this->wikiId ] );
 
 						return $blob === false ? false : $this->decompressData( $blob, $flags );
