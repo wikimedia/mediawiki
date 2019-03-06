@@ -333,7 +333,7 @@ class LogPager extends ReverseChronologicalPager {
 			}
 		}
 		# Don't show duplicate rows when using log_search
-		$joins['log_search'] = [ 'INNER JOIN', 'ls_log_id=log_id' ];
+		$joins['log_search'] = [ 'JOIN', 'ls_log_id=log_id' ];
 
 		$info = [
 			'tables' => $tables,

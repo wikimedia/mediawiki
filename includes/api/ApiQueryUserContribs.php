@@ -488,7 +488,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		if ( isset( $this->params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds(
-				[ 'change_tag' => [ 'INNER JOIN', [ $idField . ' = ct_rev_id' ] ] ]
+				[ 'change_tag' => [ 'JOIN', [ $idField . ' = ct_rev_id' ] ] ]
 			);
 			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 			try {

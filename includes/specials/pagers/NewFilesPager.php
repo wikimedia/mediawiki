@@ -122,7 +122,7 @@ class NewFilesPager extends RangeChronologicalPager {
 				$jcond = $rcQuery['fields']['rc_user'] . ' = ' . $imgQuery['fields']['img_user'];
 			}
 			$jconds['recentchanges'] = [
-				'INNER JOIN',
+				'JOIN',
 				[
 					'rc_title = img_name',
 					$jcond,

@@ -145,7 +145,7 @@ class BenchmarkParse extends Maintenance {
 			],
 			__METHOD__,
 			[ 'ORDER BY' => 'rev_timestamp DESC', 'LIMIT' => 1 ],
-			[ 'revision' => [ 'INNER JOIN', 'rev_page=page_id' ] ]
+			[ 'revision' => [ 'JOIN', 'rev_page=page_id' ] ]
 		);
 
 		return $id;

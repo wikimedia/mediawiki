@@ -206,7 +206,7 @@ class ApiUserrightsTest extends ApiTestCase {
 					'log_title' => strtr( $user->getName(), ' ', '_' )
 				],
 				__METHOD__,
-				[ 'change_tag_def' => [ 'INNER JOIN', 'ctd_id = ct_tag_id' ] ]
+				[ 'change_tag_def' => [ 'JOIN', 'ctd_id = ct_tag_id' ] ]
 			)
 		);
 	}

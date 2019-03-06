@@ -2308,7 +2308,7 @@ class RevisionStore
 				'page_is_redirect',
 				'page_len',
 			] );
-			$ret['joins']['page'] = [ 'INNER JOIN', [ 'page_id = rev_page' ] ];
+			$ret['joins']['page'] = [ 'JOIN', [ 'page_id = rev_page' ] ];
 		}
 
 		if ( in_array( 'user', $options, true ) ) {
@@ -2337,7 +2337,7 @@ class RevisionStore
 				'old_text',
 				'old_flags'
 			] );
-			$ret['joins']['text'] = [ 'INNER JOIN', [ 'rev_text_id=old_id' ] ];
+			$ret['joins']['text'] = [ 'JOIN', [ 'rev_text_id=old_id' ] ];
 		}
 
 		return $ret;
@@ -2413,7 +2413,7 @@ class RevisionStore
 					'content_address',
 					'content_model',
 				] );
-				$ret['joins']['content'] = [ 'INNER JOIN', [ 'slot_content_id = content_id' ] ];
+				$ret['joins']['content'] = [ 'JOIN', [ 'slot_content_id = content_id' ] ];
 
 				if ( in_array( 'model', $options, true ) ) {
 					// Use left join to attach model name, so we still find the revision row even

@@ -330,7 +330,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function pageJoinCond() {
 		wfDeprecated( __METHOD__, '1.31' );
-		return [ 'INNER JOIN', [ 'page_id = rev_page' ] ];
+		return [ 'JOIN', [ 'page_id = rev_page' ] ];
 	}
 
 	/**

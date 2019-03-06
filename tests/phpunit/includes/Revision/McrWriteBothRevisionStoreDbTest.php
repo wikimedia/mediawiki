@@ -55,7 +55,7 @@ class McrWriteBothRevisionStoreDbTest extends RevisionStoreDbTestBase {
 			[ 'rev_id' => $rev->getId(), 'rev_text_id > 0' ],
 			[ [ 1 ] ],
 			[],
-			[ 'text' => [ 'INNER JOIN', [ 'rev_text_id = old_id' ] ] ]
+			[ 'text' => [ 'JOIN', [ 'rev_text_id = old_id' ] ] ]
 		);
 
 		parent::assertRevisionExistsInDatabase( $rev );

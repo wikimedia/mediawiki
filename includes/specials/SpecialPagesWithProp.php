@@ -149,7 +149,7 @@ class SpecialPagesWithProp extends QueryPage {
 				'pp_propname' => $this->propName,
 			],
 			'join_conds' => [
-				'page' => [ 'INNER JOIN', 'page_id = pp_page' ]
+				'page' => [ 'JOIN', 'page_id = pp_page' ]
 			],
 			'options' => []
 		];

@@ -160,7 +160,7 @@ class PopulateContentModel extends Maintenance {
 		} else { // revision
 			$selectTables = [ 'revision', 'page' ];
 			$fields = [ 'page_title', 'page_namespace' ];
-			$join_conds = [ 'page' => [ 'INNER JOIN', 'rev_page=page_id' ] ];
+			$join_conds = [ 'page' => [ 'JOIN', 'rev_page=page_id' ] ];
 			$where = $ns === 'all' ? [] : [ 'page_namespace' => $ns ];
 			$page_id_column = 'rev_page';
 			$rev_id_column = 'rev_id';

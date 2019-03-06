@@ -207,7 +207,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 				$conds + $subconds,
 				__METHOD__,
 				$order + $query_options,
-				$join_conds + [ $link_table => [ 'INNER JOIN', $subjoin ] ]
+				$join_conds + [ $link_table => [ 'JOIN', $subjoin ] ]
 			);
 
 			if ( $dbr->unionSupportsOrderAndLimit() ) {

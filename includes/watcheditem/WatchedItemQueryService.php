@@ -693,7 +693,7 @@ class WatchedItemQueryService {
 
 	private function getWatchedItemsWithRCInfoQueryJoinConds( array $options ) {
 		$joinConds = [
-			'watchlist' => [ 'INNER JOIN',
+			'watchlist' => [ 'JOIN',
 				[
 					'wl_namespace=rc_namespace',
 					'wl_title=rc_title'

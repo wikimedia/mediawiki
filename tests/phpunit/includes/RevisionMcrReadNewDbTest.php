@@ -51,7 +51,7 @@ class RevisionMcrReadNewDbTest extends RevisionDbTestBase {
 			[
 				'tables' => [ 'text' ],
 				'fields' => [ 'old_id', 'old_text', 'old_flags', 'rev_text_id' ],
-				'joins' => [ 'text' => [ 'INNER JOIN', 'old_id=rev_text_id' ] ]
+				'joins' => [ 'text' => [ 'JOIN', 'old_id=rev_text_id' ] ]
 			]
 		];
 	}
