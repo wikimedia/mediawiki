@@ -3593,14 +3593,12 @@ class Language {
 				$length -= $ellipsisLength;
 				$string = $getSubstring( $string, 0, $length ); // xyz...
 				$string = $this->removeBadCharLast( $string );
-				$string = rtrim( $string );
-				$string = $string . $ellipsis;
+				$string = rtrim( $string ) . $ellipsis;
 			} else {
 				$length += $ellipsisLength;
 				$string = $getSubstring( $string, $length ); // ...xyz
 				$string = $this->removeBadCharFirst( $string );
-				$string = ltrim( $string );
-				$string = $ellipsis . $string;
+				$string = $ellipsis . ltrim( $string );
 			}
 		}
 

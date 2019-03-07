@@ -810,8 +810,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	public function makeKeyInternal( $keyspace, $args ) {
 		$key = $keyspace;
 		foreach ( $args as $arg ) {
-			$arg = str_replace( ':', '%3A', $arg );
-			$key .= ':' . $arg;
+			$key .= ':' . str_replace( ':', '%3A', $arg );
 		}
 		return strtr( $key, ' ', '_' );
 	}
