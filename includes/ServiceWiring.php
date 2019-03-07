@@ -200,12 +200,12 @@ return [
 	},
 
 	'LinkRenderer' => function ( MediaWikiServices $services ) : LinkRenderer {
-		global $wgUser;
-
 		if ( defined( 'MW_NO_SESSION' ) ) {
 			return $services->getLinkRendererFactory()->create();
 		} else {
-			return $services->getLinkRendererFactory()->createForUser( $wgUser );
+			return $services->getLinkRendererFactory()->createForUser(
+				RequestContext::getMain()->getUser()
+			);
 		}
 	},
 
