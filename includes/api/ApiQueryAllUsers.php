@@ -141,7 +141,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					LIST_OR
 				) ];
 			}
-			$this->addJoinConds( [ 'ug1' => [ 'LEFT OUTER JOIN',
+			$this->addJoinConds( [ 'ug1' => [ 'LEFT JOIN',
 				array_merge( [
 					'ug1.ug_user=user_id',
 					'ug1.ug_expiry IS NULL OR ug1.ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
