@@ -1472,14 +1472,18 @@ class UserTest extends MediaWikiTestCase {
 		MWTimestamp::setFakeTime( function () use ( &$clock ) {
 			return $clock += 1000;
 		} );
-		$user = $this->getTestUser()->getUser();
-		$firstRevision = self::makeEdit( $user, 'Help:UserTest_GetEditTimestamp', 'one', 'test' );
-		$secondRevision = self::makeEdit( $user, 'Help:UserTest_GetEditTimestamp', 'two', 'test' );
-		// Sanity check: revisions timestamp are different
-		$this->assertNotEquals( $firstRevision->getTimestamp(), $secondRevision->getTimestamp() );
+		try {
+			$user = $this->getTestUser()->getUser();
+			$firstRevision = self::makeEdit( $user, 'Help:UserTest_GetEditTimestamp', 'one', 'test' );
+			$secondRevision = self::makeEdit( $user, 'Help:UserTest_GetEditTimestamp', 'two', 'test' );
+			// Sanity check: revisions timestamp are different
+			$this->assertNotEquals( $firstRevision->getTimestamp(), $secondRevision->getTimestamp() );
 
-		$this->assertEquals( $firstRevision->getTimestamp(), $user->getFirstEditTimestamp() );
-		$this->assertEquals( $secondRevision->getTimestamp(), $user->getLatestEditTimestamp() );
+			$this->assertEquals( $firstRevision->getTimestamp(), $user->getFirstEditTimestamp() );
+			$this->assertEquals( $secondRevision->getTimestamp(), $user->getLatestEditTimestamp() );
+		} finally {
+			MWTimestamp::setFakeTime( false );
+		}
 	}
 
 	/**
