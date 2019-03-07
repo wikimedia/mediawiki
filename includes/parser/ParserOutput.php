@@ -1345,7 +1345,7 @@ class ParserOutput extends CacheTime {
 
 		// TODO: we'll have to be smarter about this!
 		$this->mSections = array_merge( $this->mSections, $source->getSections() );
-		$this->mTOCHTML = $this->mTOCHTML . $source->mTOCHTML;
+		$this->mTOCHTML .= $source->mTOCHTML;
 
 		// XXX: we don't want to concatenate title text, so first write wins.
 		// We should use the first *modified* title text, but we don't have the original to check.

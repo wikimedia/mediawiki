@@ -3979,7 +3979,7 @@ class Parser {
 			$name = strtolower( $name );
 			$attributes = Sanitizer::decodeTagAttributes( $attrText );
 			if ( isset( $params['attributes'] ) ) {
-				$attributes = $attributes + $params['attributes'];
+				$attributes += $params['attributes'];
 			}
 
 			if ( isset( $this->mTagHooks[$name] ) ) {
@@ -4522,7 +4522,7 @@ class Parser {
 		if ( $enoughToc && $isMain && !$this->mForceTocPosition ) {
 			// append the TOC at the beginning
 			// Top anchor now in skin
-			$sections[0] = $sections[0] . $toc . "\n";
+			$sections[0] .= $toc . "\n";
 		}
 
 		$full .= implode( '', $sections );
@@ -5122,7 +5122,7 @@ class Parser {
 				'img_link' => 'gallery-internal-link',
 			];
 			if ( $handler ) {
-				$paramMap = $paramMap + $handler->getParamMap();
+				$paramMap += $handler->getParamMap();
 				// We don't want people to specify per-image widths.
 				// Additionally the width parameter would need special casing anyhow.
 				unset( $paramMap['img_width'] );

@@ -1462,4 +1462,38 @@ class UserTest extends MediaWikiTestCase {
 		// clean up
 		$block->delete();
 	}
+
+	/**
+	 * @covers User::getFirstEditTimestamp
+	 * @covers User::getLatestEditTimestamp
+	 */
+	public function testGetFirstLatestEditTimestamp() {
+		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
+		MWTimestamp::setFakeTime( function () use ( &$clock ) {
+			return $clock += 1000;
+		} );
+		$user = $this->getTestUser()->getUser();
+		$firstRevision = self::makeEdit( $user, 'Help:UserTest_GetEditTimestamp', 'one', 'test' );
+		$secondRevision = self::makeEdit( $user, 'Help:UserTest_GetEditTimestamp', 'two', 'test' );
+		// Sanity check: revisions timestamp are different
+		$this->assertNotEquals( $firstRevision->getTimestamp(), $secondRevision->getTimestamp() );
+
+		$this->assertEquals( $firstRevision->getTimestamp(), $user->getFirstEditTimestamp() );
+		$this->assertEquals( $secondRevision->getTimestamp(), $user->getLatestEditTimestamp() );
+	}
+
+	/**
+	 * @param User $user
+	 * @param string $title
+	 * @param string $content
+	 * @param string $comment
+	 * @return \MediaWiki\Revision\RevisionRecord|null
+	 */
+	private static function makeEdit( User $user, $title, $content, $comment ) {
+		$page = WikiPage::factory( Title::newFromText( $title ) );
+		$content = ContentHandler::makeContent( $content, $page->getTitle() );
+		$updater = $page->newPageUpdater( $user );
+		$updater->setContent( 'main', $content );
+		return $updater->saveRevision( CommentStoreComment::newUnsavedComment( $comment ) );
+	}
 }
