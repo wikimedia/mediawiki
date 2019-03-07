@@ -1554,7 +1554,7 @@
 	"recentchangeslinked-feed": "Kapcsolódó változtatások",
 	"recentchangeslinked-toolbox": "Kapcsolódó változtatások",
 	"recentchangeslinked-title": "A(z) $1 laphoz kapcsolódó változtatások",
-	"recentchangeslinked-summary": "Alább azon lapoknak a legutóbbi változtatásai láthatóak, amelyekre hivatkozik egy megadott lap. (Ha egy kategória tagjaira vagy kíváncsi, írd be, hogy {{ns:category}}:katerógianév.)\nA [[Special:Watchlist|figyelőlistádon]] szereplő lapok <strong>félkövérrel</strong> vannak jelölve.",
+	"recentchangeslinked-summary": "Alább azon lapoknak a legutóbbi változtatásai láthatóak, amelyekre hivatkozik egy megadott lap. (Ha egy kategória tagjaira vagy kíváncsi, írd be, hogy {{ns:category}}:kategórianév.)\nA [[Special:Watchlist|figyelőlistádon]] szereplő lapok <strong>félkövérrel</strong> vannak jelölve.",
 	"recentchangeslinked-page": "Lap neve:",
 	"recentchangeslinked-to": "Inkább az erre linkelő lapok változtatásait mutasd",
 	"recentchanges-page-added-to-category": "[[:$1]] hozzáadva a kategóriához",

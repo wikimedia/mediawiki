@@ -2525,6 +2525,8 @@
 	"ipb-confirm": "أكّد المنع",
 	"ipb-sitewide": "كامل",
 	"ipb-partial": "جزئي",
+	"ipb-sitewide-help": "كل صفحة على الويكي وجميع إجراءات المساهمة الأخرى.",
+	"ipb-partial-help": "صفحات أو نطاقات محددة.",
 	"ipb-pages-label": "الصفحات",
 	"ipb-namespaces-label": "نطاقات",
 	"badipaddress": "عنوان أيبي غير صحيح",

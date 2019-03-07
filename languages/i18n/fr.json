@@ -2637,6 +2637,8 @@
 	"ipb-confirm": "Confirmer le blocage",
 	"ipb-sitewide": "À tout le site",
 	"ipb-partial": "Partiel",
+	"ipb-sitewide-help": "Chaque page du wiki et toutes les autres actions de contribution.",
+	"ipb-partial-help": "Pages ou espaces de noms spécifiques.",
 	"ipb-pages-label": "Pages",
 	"ipb-namespaces-label": "Espaces de noms",
 	"badipaddress": "Adresse IP incorrecte",

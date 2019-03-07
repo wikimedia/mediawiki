@@ -2481,6 +2481,8 @@
 	"ipb-confirm": "Потврди блок",
 	"ipb-sitewide": "Насекаде",
 	"ipb-partial": "Делумно",
+	"ipb-sitewide-help": "Секоја страница на викито и сите други придонесувачки дејства.",
+	"ipb-partial-help": "Поединечни страници или именски простори.",
 	"ipb-pages-label": "Страници",
 	"ipb-namespaces-label": "Именски простори",
 	"badipaddress": "Неважечка IP-адреса",
