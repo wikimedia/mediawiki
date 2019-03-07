@@ -2547,6 +2547,8 @@
 	"ipb-confirm": "Sperrung bestätigen",
 	"ipb-sitewide": "Auf der gesamten Website",
 	"ipb-partial": "Teilweise",
+	"ipb-sitewide-help": "Jede Seite auf dem Wiki und alle anderen Beitragsaktionen.",
+	"ipb-partial-help": "Spezielle Seiten oder Namensräume.",
 	"ipb-pages-label": "Seiten",
 	"ipb-namespaces-label": "Namensräume",
 	"badipaddress": "Die IP-Adresse hat ein falsches Format.",

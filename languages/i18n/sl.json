@@ -2464,6 +2464,8 @@
 	"ipb-confirm": "Potrdi blokado",
 	"ipb-sitewide": "Po celotni strani",
 	"ipb-partial": "Delno",
+	"ipb-sitewide-help": "Vsaka stran na wikiju in vsa druga dejanja prispevanja.",
+	"ipb-partial-help": "Določene strani ali imenski prostori.",
 	"ipb-pages-label": "Strani",
 	"ipb-namespaces-label": "Imenski prostori",
 	"badipaddress": "Neveljaven IP-naslov ali uporabniško ime.",

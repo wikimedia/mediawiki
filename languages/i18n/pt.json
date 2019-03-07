@@ -2539,6 +2539,8 @@
 	"ipb-confirm": "Confirmar o bloqueio",
 	"ipb-sitewide": "Em todo o site",
 	"ipb-partial": "Parcial",
+	"ipb-sitewide-help": "Todas as páginas da wiki e todos as outras operações de participação.",
+	"ipb-partial-help": "Páginas ou espaços nominais específicos.",
 	"ipb-pages-label": "Páginas",
 	"ipb-namespaces-label": "Espaços nominais",
 	"badipaddress": "Endereço IP inválido",

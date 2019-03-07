@@ -2549,6 +2549,8 @@
 	"ipb-confirm": "確認封鎖",
 	"ipb-sitewide": "全站範圍",
 	"ipb-partial": "部分",
+	"ipb-sitewide-help": "在 wiki 上的各個頁面以及其它貢獻行為。",
+	"ipb-partial-help": "特殊頁面或命名空間。",
 	"ipb-pages-label": "頁面",
 	"ipb-namespaces-label": "命名空間",
 	"badipaddress": "無效的 IP 位址",
