@@ -730,24 +730,6 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * Modify a cache update operation array for EventRelayer::notify()
-	 *
-	 * This is used for relayed writes, e.g. for broadcasting a change
-	 * to multiple data-centers. If the array contains a 'val' field
-	 * then the command involves setting a key to that value. Note that
-	 * for simplicity, 'val' is always a simple scalar value. This method
-	 * is used to possibly serialize the value and add any cache-specific
-	 * key/values needed for the relayer daemon (e.g. memcached flags).
-	 *
-	 * @param array $event
-	 * @return array
-	 * @since 1.26
-	 */
-	public function modifySimpleRelayEvent( array $event ) {
-		return $event;
-	}
-
-	/**
 	 * @param string $text
 	 */
 	protected function debug( $text ) {

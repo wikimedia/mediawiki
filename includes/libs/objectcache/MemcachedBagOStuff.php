@@ -181,12 +181,4 @@ class MemcachedBagOStuff extends BagOStuff {
 	protected function debugLog( $text ) {
 		$this->logger->debug( $text );
 	}
-
-	public function modifySimpleRelayEvent( array $event ) {
-		if ( array_key_exists( 'val', $event ) ) {
-			$event['flg'] = 0; // data is not serialized nor gzipped (for memcached driver)
-		}
-
-		return $event;
-	}
 }
