@@ -321,7 +321,7 @@ class ForeignAPIFile extends File {
 		if ( $this->repo->canCacheThumbs() ) {
 			$path = $this->repo->getZonePath( 'thumb' ) . '/' . $this->getHashPath();
 			if ( $suffix ) {
-				$path = $path . $suffix . '/';
+				$path .= $suffix . '/';
 			}
 
 			return $path;

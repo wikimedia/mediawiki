@@ -492,7 +492,7 @@ $wgCanonicalNamespaceNames = [
 
 /// @todo UGLY UGLY
 if ( is_array( $wgExtraNamespaces ) ) {
-	$wgCanonicalNamespaceNames = $wgCanonicalNamespaceNames + $wgExtraNamespaces;
+	$wgCanonicalNamespaceNames += $wgExtraNamespaces;
 }
 
 // Hard-deprecate setting $wgDummyLanguageCodes in LocalSettings.php

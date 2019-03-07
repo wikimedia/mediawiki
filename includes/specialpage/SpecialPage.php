@@ -406,7 +406,7 @@ class SpecialPage implements MessageLocalizer {
 		if ( $securityStatus === AuthManager::SEC_OK ) {
 			$uniqueId = $request->getVal( 'postUniqueId' );
 			if ( $uniqueId ) {
-				$key = $key . ':' . $uniqueId;
+				$key .= ':' . $uniqueId;
 				$session = $request->getSession();
 				$data = $session->getSecret( $key );
 				if ( $data ) {
@@ -424,7 +424,7 @@ class SpecialPage implements MessageLocalizer {
 				if ( $data ) {
 					// unique ID in case the same special page is open in multiple browser tabs
 					$uniqueId = MWCryptRand::generateHex( 6 );
-					$key = $key . ':' . $uniqueId;
+					$key .= ':' . $uniqueId;
 					$queryParams['postUniqueId'] = $uniqueId;
 					$session = $request->getSession();
 					$session->persist(); // Just in case

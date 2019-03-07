@@ -811,7 +811,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		$key = $keyspace;
 		foreach ( $args as $arg ) {
 			$arg = str_replace( ':', '%3A', $arg );
-			$key = $key . ':' . $arg;
+			$key .= ':' . $arg;
 		}
 		return strtr( $key, ' ', '_' );
 	}

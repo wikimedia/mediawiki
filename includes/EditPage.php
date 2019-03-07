@@ -1670,7 +1670,7 @@ class EditPage {
 					if ( $query === '' ) {
 						$query = $extraQueryRedirect;
 					} else {
-						$query = $query . '&' . $extraQueryRedirect;
+						$query .= '&' . $extraQueryRedirect;
 					}
 				}
 				$anchor = $resultDetails['sectionanchor'] ?? '';
@@ -1698,7 +1698,7 @@ class EditPage {
 					if ( $extraQuery === '' ) {
 						$extraQuery = $extraQueryRedirect;
 					} else {
-						$extraQuery = $extraQuery . '&' . $extraQueryRedirect;
+						$extraQuery .= '&' . $extraQueryRedirect;
 					}
 				}
 

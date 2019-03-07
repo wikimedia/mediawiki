@@ -73,7 +73,7 @@ class LanguageFi extends Language {
 				break;
 			case 'illative':
 				# Double the last letter and add 'n'
-				$word = $word . mb_substr( $word, -1 ) . 'n';
+				$word .= mb_substr( $word, -1 ) . 'n';
 				break;
 			case 'inessive':
 				$word .= ( $aou ? 'ssa' : 'ssä' );
