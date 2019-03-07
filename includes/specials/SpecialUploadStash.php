@@ -261,7 +261,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$scalerThumbUrl = $scalerBaseUrl . '/' . $file->getUrlRel() .
 			'/' . rawurlencode( $scalerThumbName );
 
-		// make a curl call to the scaler to create a thumbnail
+		// make an http request based on wgUploadStashScalerBaseUrl to lazy-create
+		// a thumbnail
 		$httpOptions = [
 			'method' => 'GET',
 			'timeout' => 5 // T90599 attempt to time out cleanly
