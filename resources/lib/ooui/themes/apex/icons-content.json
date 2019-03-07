@@ -14,6 +14,9 @@
 				"rtl": "../wikimediaui/images/icons/articles-rtl.svg"
 			}
 		},
+		"articleAdd": {
+			"file": "../wikimediaui/images/icons/articleAdd.svg"
+		},
 		"articleCheck": {
 			"file": "../wikimediaui/images/icons/articleCheck.svg"
 		},

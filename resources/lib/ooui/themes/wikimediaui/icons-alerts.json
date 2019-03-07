@@ -14,14 +14,20 @@
 		"destructive": {
 			"color": "#d33"
 		},
+		"error": {
+			"color": "#d33"
+		},
 		"warning": {
-			"color": "#ff5d00"
+			"color": "#fc3"
 		}
 	},
 	"images": {
 		"alert": {
 			"file": "images/icons/alert.svg",
-			"variants": [ "warning" ]
+			"variants": [
+				"error",
+				"warning"
+			]
 		},
 		"bell": {
 			"file": "images/icons/bell.svg"

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.3
+ * OOUI v0.30.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-02-21T10:57:07Z
+ * Date: 2019-03-07T09:14:18Z
  */
 ( function ( OO ) {
 
@@ -85,8 +85,8 @@ OO.ui.ActionWidget.prototype.getAction = function () {
  * Get the symbolic name of the mode or modes for which the action is configured to be available.
  *
  * The current mode is set with the action set's {@link OO.ui.ActionSet#setMode setMode} method.
- * Only actions that are configured to be available in the current mode will be visible. All other actions
- * are hidden.
+ * Only actions that are configured to be available in the current mode will be visible.
+ * All other actions are hidden.
  *
  * @return {string[]}
  */
@@ -96,13 +96,16 @@ OO.ui.ActionWidget.prototype.getModes = function () {
 
 /* eslint-disable no-unused-vars */
 /**
- * ActionSets manage the behavior of the {@link OO.ui.ActionWidget action widgets} that comprise them.
+ * ActionSets manage the behavior of the {@link OO.ui.ActionWidget action widgets} that
+ * comprise them.
  * Actions can be made available for specific contexts (modes) and circumstances
  * (abilities). Action sets are primarily used with {@link OO.ui.Dialog Dialogs}.
  *
  * ActionSets contain two types of actions:
  *
- * - Special: Special actions are the first visible actions with special flags, such as 'safe' and 'primary', the default special flags. Additional special flags can be configured in subclasses with the static #specialFlags property.
+ * - Special: Special actions are the first visible actions with special flags, such as 'safe' and
+ *  'primary', the default special flags. Additional special flags can be configured in subclasses
+ *  with the static #specialFlags property.
  * - Other: Other actions include all non-special visible actions.
  *
  * See the [OOUI documentation on MediaWiki][1] for more information.
@@ -117,7 +120,10 @@ OO.ui.ActionWidget.prototype.getModes = function () {
  *     MyProcessDialog.static.name = 'myProcessDialog';
  *     // An action set that uses modes ('edit' and 'help' mode, in this example).
  *     MyProcessDialog.static.actions = [
- *         { action: 'continue', modes: 'edit', label: 'Continue', flags: [ 'primary', 'progressive' ] },
+ *         { action: 'continue', modes: 'edit', label: 'Continue',
+ *           flags: [
+ *               'primary', 'progressive'
+ *         ] },
  *         { action: 'help', modes: 'edit', label: 'Help' },
  *         { modes: 'edit', label: 'Cancel', flags: 'safe' },
  *         { action: 'back', modes: 'help', label: 'Back', flags: 'safe' }
@@ -126,9 +132,13 @@ OO.ui.ActionWidget.prototype.getModes = function () {
  *     MyProcessDialog.prototype.initialize = function () {
  *         MyProcessDialog.parent.prototype.initialize.apply( this, arguments );
  *         this.panel1 = new OO.ui.PanelLayout( { padded: true, expanded: false } );
- *         this.panel1.$element.append( '<p>This dialog uses an action set (continue, help, cancel, back) configured with modes. This is edit mode. Click \'help\' to see help mode.</p>' );
+ *         this.panel1.$element.append( '<p>This dialog uses an action set (continue, help, ' +
+ *             'cancel, back) configured with modes. This is edit mode. Click \'help\' to see ' +
+ *             'help mode.</p>' );
  *         this.panel2 = new OO.ui.PanelLayout( { padded: true, expanded: false } );
- *         this.panel2.$element.append( '<p>This is help mode. Only the \'back\' action widget is configured to be visible here. Click \'back\' to return to \'edit\' mode.</p>' );
+ *         this.panel2.$element.append( '<p>This is help mode. Only the \'back\' action widget ' +
+ *              'is configured to be visible here. Click \'back\' to return to \'edit\' mode.' +
+ *              '</p>' );
  *         this.stackLayout = new OO.ui.StackLayout( {
  *             items: [ this.panel1, this.panel2 ]
  *         } );
@@ -249,7 +259,8 @@ OO.ui.ActionSet.static.specialFlags = [ 'safe', 'primary' ];
  * @event change
  *
  * A 'change' event is emitted when actions are {@link #method-add added}, {@link #clear cleared},
- * or {@link #method-remove removed} from the action set or when the {@link #setMode mode} is changed.
+ * or {@link #method-remove removed} from the action set or when the {@link #setMode mode}
+ * is changed.
  *
  */
 
@@ -352,7 +363,8 @@ OO.ui.ActionSet.prototype.get = function ( filters ) {
 /**
  * Get 'special' actions.
  *
- * Special actions are the first visible action widgets with special flags, such as 'safe' and 'primary'.
+ * Special actions are the first visible action widgets with special flags, such as 'safe' and
+ * 'primary'.
  * Special flags can be configured in subclasses by changing the static #specialFlags property.
  *
  * @return {OO.ui.ActionWidget[]|null} 'Special' action widgets.
@@ -601,16 +613,17 @@ OO.ui.ActionSet.prototype.organize = function () {
 };
 
 /**
- * Errors contain a required message (either a string or jQuery selection) that is used to describe what went wrong
- * in a {@link OO.ui.Process process}. The error's #recoverable and #warning configurations are used to customize the
- * appearance and functionality of the error interface.
+ * Errors contain a required message (either a string or jQuery selection) that is used to describe
+ * what went wrong in a {@link OO.ui.Process process}. The error's #recoverable and #warning
+ * configurations are used to customize the appearance and functionality of the error interface.
  *
- * The basic error interface contains a formatted error message as well as two buttons: 'Dismiss' and 'Try again' (i.e., the error
- * is 'recoverable' by default). If the error is not recoverable, the 'Try again' button will not be rendered and the widget
- * that initiated the failed process will be disabled.
+ * The basic error interface contains a formatted error message as well as two buttons: 'Dismiss'
+ * and 'Try again' (i.e., the error is 'recoverable' by default). If the error is not recoverable,
+ * the 'Try again' button will not be rendered and the widget that initiated the failed process will
+ * be disabled.
  *
- * If the error is a warning, the error interface will include a 'Dismiss' and a 'Continue' button, which will try the
- * process again.
+ * If the error is a warning, the error interface will include a 'Dismiss' and a 'Continue' button,
+ * which will try the process again.
  *
  * For an example of error interfaces, please see the [OOUI documentation on MediaWiki][1].
  *
@@ -625,8 +638,8 @@ OO.ui.ActionSet.prototype.organize = function () {
  *  By default, errors are recoverable, and users can try the process again.
  * @cfg {boolean} [warning=false] Error is a warning.
  *  If the error is a warning, the error interface will include a
- *  'Dismiss' and a 'Continue' button. It is the responsibility of the developer to ensure that the warning
- *  is not triggered a second time if the user chooses to continue.
+ *  'Dismiss' and a 'Continue' button. It is the responsibility of the developer to ensure that the
+ *  warning is not triggered a second time if the user chooses to continue.
  */
 OO.ui.Error = function OoUiError( message, config ) {
 	// Allow passing positional parameters inside the config object
@@ -693,27 +706,28 @@ OO.ui.Error.prototype.getMessageText = function () {
 };
 
 /**
- * A Process is a list of steps that are called in sequence. The step can be a number, a jQuery promise,
- * or a function:
+ * A Process is a list of steps that are called in sequence. The step can be a number, a
+ * jQuery promise, or a function:
  *
  * - **number**: the process will wait for the specified number of milliseconds before proceeding.
- * - **promise**: the process will continue to the next step when the promise is successfully resolved
- *  or stop if the promise is rejected.
- * - **function**: the process will execute the function. The process will stop if the function returns
- *  either a boolean `false` or a promise that is rejected; if the function returns a number, the process
- *  will wait for that number of milliseconds before proceeding.
+ * - **promise**: the process will continue to the next step when the promise is successfully
+ *  resolved or stop if the promise is rejected.
+ * - **function**: the process will execute the function. The process will stop if the function
+ *  returns either a boolean `false` or a promise that is rejected; if the function returns a
+ *  number, the process will wait for that number of milliseconds before proceeding.
  *
  * If the process fails, an {@link OO.ui.Error error} is generated. Depending on how the error is
- * configured, users can dismiss the error and try the process again, or not. If a process is stopped,
- * its remaining steps will not be performed.
+ * configured, users can dismiss the error and try the process again, or not. If a process is
+ * stopped, its remaining steps will not be performed.
  *
  * @class
  *
  * @constructor
- * @param {number|jQuery.Promise|Function} step Number of milliseconds to wait before proceeding, promise
- *  that must be resolved before proceeding, or a function to execute. See #createStep for more information. see #createStep for more information
- * @param {Object} [context=null] Execution context of the function. The context is ignored if the step is
- *  a number or promise.
+ * @param {number|jQuery.Promise|Function} step Number of milliseconds to wait before proceeding,
+ *  promise that must be resolved before proceeding, or a function to execute. See #createStep for
+ *  more information. See #createStep for more information.
+ * @param {Object} [context=null] Execution context of the function. The context is ignored if the
+ *  step is a number or promise.
  */
 OO.ui.Process = function ( step, context ) {
 	// Properties
@@ -735,8 +749,8 @@ OO.initClass( OO.ui.Process );
  * Start the process.
  *
  * @return {jQuery.Promise} Promise that is resolved when all steps have successfully completed.
- *  If any of the steps return a promise that is rejected or a boolean false, this promise is rejected
- *  and any remaining steps are not performed.
+ *  If any of the steps return a promise that is rejected or a boolean false, this promise is
+ *  rejected and any remaining steps are not performed.
  */
 OO.ui.Process.prototype.execute = function () {
 	var i, len, promise;
@@ -958,9 +972,10 @@ OO.ui.WindowInstance.prototype.isClosed = function () {
 };
 
 /**
- * Window managers are used to open and close {@link OO.ui.Window windows} and control their presentation.
- * Managed windows are mutually exclusive. If a new window is opened while a current window is opening
- * or is opened, the current window will be closed and any ongoing {@link OO.ui.Process process} will be cancelled. Windows
+ * Window managers are used to open and close {@link OO.ui.Window windows} and control their
+ * presentation. Managed windows are mutually exclusive. If a new window is opened while a current
+ * window is opening or is opened, the current window will be closed and any on-going
+ * {@link OO.ui.Process process} will be cancelled. Windows
  * themselves are persistent and—rather than being torn down when closed—can be repopulated with the
  * pertinent data and reused.
  *
@@ -971,11 +986,13 @@ OO.ui.WindowInstance.prototype.isClosed = function () {
  * {@link OO.ui.Window#open open} method is used, and the window manager begins to open the window.
  *
  * - an `opening` event is emitted with an `opening` promise
- * - the #getSetupDelay method is called and the returned value is used to time a pause in execution before the
- *   window’s {@link OO.ui.Window#method-setup setup} method is called which executes OO.ui.Window#getSetupProcess.
+ * - the #getSetupDelay method is called and the returned value is used to time a pause in execution
+ *   before the window’s {@link OO.ui.Window#method-setup setup} method is called which executes
+ *   OO.ui.Window#getSetupProcess.
  * - a `setup` progress notification is emitted from the `opening` promise
- * - the #getReadyDelay method is called the returned value is used to time a pause in execution before the
- *   window’s {@link OO.ui.Window#method-ready ready} method is called which executes OO.ui.Window#getReadyProcess.
+ * - the #getReadyDelay method is called the returned value is used to time a pause in execution
+ *   before the window’s {@link OO.ui.Window#method-ready ready} method is called which executes
+ *   OO.ui.Window#getReadyProcess.
  * - a `ready` progress notification is emitted from the `opening` promise
  * - the `opening` promise is resolved with an `opened` promise
  *
@@ -986,13 +1003,13 @@ OO.ui.WindowInstance.prototype.isClosed = function () {
  * to close the window.
  *
  * - the `opened` promise is resolved with `closing` promise and a `closing` event is emitted
- * - the #getHoldDelay method is called and the returned value is used to time a pause in execution before
- *   the window's {@link OO.ui.Window#getHoldProcess getHoldProcess} method is called on the
+ * - the #getHoldDelay method is called and the returned value is used to time a pause in execution
+ *   before the window's {@link OO.ui.Window#getHoldProcess getHoldProcess} method is called on the
  *   window and its result executed
  * - a `hold` progress notification is emitted from the `closing` promise
- * - the #getTeardownDelay() method is called and the returned value is used to time a pause in execution before
- *   the window's {@link OO.ui.Window#getTeardownProcess getTeardownProcess} method is called on the
- *   window and its result executed
+ * - the #getTeardownDelay() method is called and the returned value is used to time a pause in
+ *   execution before the window's {@link OO.ui.Window#getTeardownProcess getTeardownProcess} method
+ *   is called on the window and its result executed
  * - a `teardown` progress notification is emitted from the `closing` promise
  * - the `closing` promise is resolved. The window is now closed
  *
@@ -1059,9 +1076,10 @@ OO.mixinClass( OO.ui.WindowManager, OO.EventEmitter );
  *
  * @event opening
  * @param {OO.ui.Window} win Window that's being opened
- * @param {jQuery.Promise} opened A promise resolved with a value when the window is opened successfully.
- *  This promise also emits `setup` and `ready` notifications. When this promise is resolved, the first
- *  argument of the value is an 'closed' promise, the second argument is the opening data.
+ * @param {jQuery.Promise} opened A promise resolved with a value when the window is opened
+ *  successfully. This promise also emits `setup` and `ready` notifications. When this promise is
+ *  resolved, the first argument of the value is an 'closed' promise, the second argument is the
+ *  opening data.
  * @param {Object} data Window opening data
  */
 
@@ -1070,9 +1088,9 @@ OO.mixinClass( OO.ui.WindowManager, OO.EventEmitter );
  *
  * @event closing
  * @param {OO.ui.Window} win Window that's being closed
- * @param {jQuery.Promise} closed A promise resolved with a value when the window is closed successfully.
- *  This promise also emits `hold` and `teardown` notifications. When this promise is resolved, the first
- *  argument of its value is the closing data.
+ * @param {jQuery.Promise} closed A promise resolved with a value when the window is closed
+ *  successfully. This promise also emits `hold` and `teardown` notifications. When this promise is
+ *  resolved, the first argument of its value is the closing data.
  * @param {Object} data Window closing data
  */
 
@@ -1149,7 +1167,7 @@ OO.ui.WindowManager.prototype.afterWindowResize = function () {
 
 		// Restore focus to the original element if it has changed.
 		// When a layout change is made on resize inputs lose focus
-		// on Android (Chrome and Firefox). See T162127.
+		// on Android (Chrome and Firefox), see T162127.
 		if ( currentFocusedElement !== document.activeElement ) {
 			currentFocusedElement.focus();
 		}
@@ -1219,7 +1237,8 @@ OO.ui.WindowManager.prototype.getSetupDelay = function () {
 };
 
 /**
- * Get the number of milliseconds to wait after setup has finished before executing the ‘ready’ process.
+ * Get the number of milliseconds to wait after setup has finished before executing the ‘ready’
+ * process.
  *
  * @param {OO.ui.Window} win Window being opened
  * @param {Object} [data] Window opening data
@@ -1230,7 +1249,8 @@ OO.ui.WindowManager.prototype.getReadyDelay = function () {
 };
 
 /**
- * Get the number of milliseconds to wait after closing has begun before executing the 'hold' process.
+ * Get the number of milliseconds to wait after closing has begun before executing the 'hold'
+ * process.
  *
  * @param {OO.ui.Window} win Window being closed
  * @param {Object} [data] Window closing data
@@ -1255,9 +1275,9 @@ OO.ui.WindowManager.prototype.getTeardownDelay = function () {
 /**
  * Get a window by its symbolic name.
  *
- * If the window is not yet instantiated and its symbolic name is recognized by a factory, it will be
- * instantiated and added to the window manager automatically. Please see the [OOUI documentation on MediaWiki][3]
- * for more information about using factories.
+ * If the window is not yet instantiated and its symbolic name is recognized by a factory, it will
+ * be instantiated and added to the window manager automatically. Please see the [OOUI documentation
+ * on MediaWiki][3] for more information about using factories.
  * [3]: https://www.mediawiki.org/wiki/OOUI/Windows/Window_managers
  *
  * @param {string} name Symbolic name of the window
@@ -1307,12 +1327,12 @@ OO.ui.WindowManager.prototype.getCurrentWindow = function () {
  *
  * @param {OO.ui.Window|string} win Window object or symbolic name of window to open
  * @param {Object} [data] Window opening data
- * @param {jQuery|null} [data.$returnFocusTo] Element to which the window will return focus when closed.
- *  Defaults the current activeElement. If set to null, focus isn't changed on close.
+ * @param {jQuery|null} [data.$returnFocusTo] Element to which the window will return focus when
+ *  closed. Defaults the current activeElement. If set to null, focus isn't changed on close.
  * @return {OO.ui.WindowInstance} A lifecycle object representing this particular
- *  opening of the window. For backwards-compatibility, then object is also a Thenable that is resolved
- *  when the window is done opening, with nested promise for when closing starts. This behaviour
- *  is deprecated and is not compatible with jQuery 3. See T163510.
+ *  opening of the window. For backwards-compatibility, then object is also a Thenable that is
+ *  resolved when the window is done opening, with nested promise for when closing starts. This
+ *  behaviour is deprecated and is not compatible with jQuery 3, see T163510.
  * @fires opening
  */
 OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, compatOpening ) {
@@ -1376,7 +1396,9 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, comp
 			manager.toggleGlobalEvents( true );
 			manager.toggleAriaIsolation( true );
 		}
-		manager.$returnFocusTo = data.$returnFocusTo !== undefined ? data.$returnFocusTo : $( document.activeElement );
+		manager.$returnFocusTo = data.$returnFocusTo !== undefined ?
+			data.$returnFocusTo :
+			$( document.activeElement );
 		manager.currentWindow = win;
 		manager.lifecycle = lifecycle;
 		manager.preparingToOpen = null;
@@ -1414,8 +1436,8 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, comp
  * @param {OO.ui.Window|string} win Window object or symbolic name of window to close
  * @param {Object} [data] Window closing data
  * @return {OO.ui.WindowInstance} A lifecycle object representing this particular
- *  opening of the window. For backwards-compatibility, the object is also a Thenable that is resolved
- *  when the window is done closing, see T163510.
+ *  opening of the window. For backwards-compatibility, the object is also a Thenable that is
+ *  resolved when the window is done closing, see T163510.
  * @fires closing
  */
 OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
@@ -1516,7 +1538,7 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
  *
  * This function can be called in two manners:
  *
- * 1. `.addWindows( [ windowA, windowB, ... ] )` (where `windowA`, `windowB` are OO.ui.Window objects)
+ * 1. `.addWindows( [ winA, winB, ... ] )` (where `winA`, `winB` are OO.ui.Window objects)
  *
  *    This syntax registers windows under the symbolic names defined in their `.static.name`
  *    properties. For example, if `windowA.constructor.static.name` is `'nameA'`, calling
@@ -1525,7 +1547,7 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
  *
  *    This is the recommended way, as it allows for an easier switch to using a window factory.
  *
- * 2. `.addWindows( { nameA: windowA, nameB: windowB, ... } )`
+ * 2. `.addWindows( { nameA: winA, nameB: winB, ... } )`
  *
  *    This syntax registers windows under the explicitly given symbolic names. In this example,
  *    calling `.openWindow( 'nameA' )` afterwards will open the window `windowA`, regardless of what
@@ -1583,9 +1605,9 @@ OO.ui.WindowManager.prototype.addWindows = function ( windows ) {
 /**
  * Remove the specified windows from the windows manager.
  *
- * Windows will be closed before they are removed. If you wish to remove all windows, you may wish to use
- * the #clearWindows method instead. If you no longer need the window manager and want to ensure that it no
- * longer listens to events, use the #destroy method.
+ * Windows will be closed before they are removed. If you wish to remove all windows, you may wish
+ * to use the #clearWindows method instead. If you no longer need the window manager and want to
+ * ensure that it no longer listens to events, use the #destroy method.
  *
  * @param {string[]} names Symbolic names of windows to remove
  * @return {jQuery.Promise} Promise resolved when window is closed and removed
@@ -1616,9 +1638,9 @@ OO.ui.WindowManager.prototype.removeWindows = function ( names ) {
 /**
  * Remove all windows from the window manager.
  *
- * Windows will be closed before they are removed. Note that the window manager, though not in use, will still
- * listen to events. If the window manager will not be used again, you may wish to use the #destroy method instead.
- * To remove just a subset of windows, use the #removeWindows method.
+ * Windows will be closed before they are removed. Note that the window manager, though not in use,
+ * will still listen to events. If the window manager will not be used again, you may wish to use
+ * the #destroy method instead. To remove just a subset of windows, use the #removeWindows method.
  *
  * @return {jQuery.Promise} Promise resolved when all windows are closed and removed
  */
@@ -1747,9 +1769,9 @@ OO.ui.WindowManager.prototype.toggleAriaIsolation = function ( isolate ) {
 /**
  * Destroy the window manager.
  *
- * Destroying the window manager ensures that it will no longer listen to events. If you would like to
- * continue using the window manager, but wish to remove all windows from it, use the #clearWindows method
- * instead.
+ * Destroying the window manager ensures that it will no longer listen to events. If you would like
+ * to continue using the window manager, but wish to remove all windows from it, use the
+ * #clearWindows method instead.
  */
 OO.ui.WindowManager.prototype.destroy = function () {
 	this.toggleGlobalEvents( false );
@@ -1761,16 +1783,16 @@ OO.ui.WindowManager.prototype.destroy = function () {
 /**
  * A window is a container for elements that are in a child frame. They are used with
  * a window manager (OO.ui.WindowManager), which is used to open and close the window and control
- * its presentation. The size of a window is specified using a symbolic name (e.g., ‘small’, ‘medium’,
- * ‘large’), which is interpreted by the window manager. If the requested size is not recognized,
- * the window manager will choose a sensible fallback.
+ * its presentation. The size of a window is specified using a symbolic name (e.g., ‘small’,
+ * ‘medium’, ‘large’), which is interpreted by the window manager. If the requested size is not
+ * recognized, the window manager will choose a sensible fallback.
  *
  * The lifecycle of a window has three primary stages (opening, opened, and closing) in which
  * different processes are executed:
  *
- * **opening**: The opening stage begins when the window manager's {@link OO.ui.WindowManager#openWindow
- * openWindow} or the window's {@link #open open} methods are used, and the window manager begins to open
- * the window.
+ * **opening**: The opening stage begins when the window manager's
+ * {@link OO.ui.WindowManager#openWindow openWindow} or the window's {@link #open open} methods are
+ * used, and the window manager begins to open the window.
  *
  * - {@link #getSetupProcess} method is called and its result executed
  * - {@link #getReadyProcess} method is called and its result executed
@@ -1779,15 +1801,17 @@ OO.ui.WindowManager.prototype.destroy = function () {
  *
  * **closing**: The closing stage begins when the window manager's
  * {@link OO.ui.WindowManager#closeWindow closeWindow}
- * or the window's {@link #close} methods are used, and the window manager begins to close the window.
+ * or the window's {@link #close} methods are used, and the window manager begins to close the
+ * window.
  *
  * - {@link #getHoldProcess} method is called and its result executed
  * - {@link #getTeardownProcess} method is called and its result executed. The window is now closed
  *
  * Each of the window's processes (setup, ready, hold, and teardown) can be extended in subclasses
- * by overriding the window's #getSetupProcess, #getReadyProcess, #getHoldProcess and #getTeardownProcess
- * methods. Note that each {@link OO.ui.Process process} is executed in series, so asynchronous
- * processing can complete. Always assume window processes are executed asynchronously.
+ * by overriding the window's #getSetupProcess, #getReadyProcess, #getHoldProcess and
+ * #getTeardownProcess methods. Note that each {@link OO.ui.Process process} is executed in series,
+ * so asynchronous processing can complete. Always assume window processes are executed
+ * asynchronously.
  *
  * For more information, please see the [OOUI documentation on MediaWiki] [1].
  *
@@ -1819,7 +1843,7 @@ OO.ui.Window = function OoUiWindow( config ) {
 	this.$frame = $( '<div>' );
 	/**
 	 * Overlay element to use for the `$overlay` configuration option of widgets that support it.
-	 * Things put inside of it are overlaid on top of the window and are not bound to its dimensions.
+	 * Things put inside it are overlaid on top of the window and are not bound to its dimensions.
 	 * See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
 	 *
 	 *     MyDialog.prototype.initialize = function () {
@@ -1828,7 +1852,7 @@ OO.ui.Window = function OoUiWindow( config ) {
 	 *         $overlay: this.$overlay,
 	 *         label: 'Popup button',
 	 *         popup: {
-	 *           $content: $( '<p>Popup contents.</p><p>Popup contents.</p><p>Popup contents.</p>' ),
+	 *           $content: $( '<p>Popup content.</p><p>More content.</p><p>Yet more content.</p>' ),
 	 *           padded: true
 	 *         }
 	 *       } );
@@ -1852,7 +1876,6 @@ OO.ui.Window = function OoUiWindow( config ) {
 	this.$frame
 		.addClass( 'oo-ui-window-frame' )
 		.append( this.$focusTrapBefore, this.$content, this.$focusTrapAfter );
-
 	this.$element
 		.addClass( 'oo-ui-window' )
 		.append( this.$frame, this.$overlay );
@@ -1921,8 +1944,8 @@ OO.ui.Window.prototype.isVisible = function () {
 /**
  * Check if the window is opening.
  *
- * This method is a wrapper around the window manager's {@link OO.ui.WindowManager#isOpening isOpening}
- * method.
+ * This method is a wrapper around the window manager's
+ * {@link OO.ui.WindowManager#isOpening isOpening} method.
  *
  * @return {boolean} Window is opening
  */
@@ -1933,7 +1956,8 @@ OO.ui.Window.prototype.isOpening = function () {
 /**
  * Check if the window is closing.
  *
- * This method is a wrapper around the window manager's {@link OO.ui.WindowManager#isClosing isClosing} method.
+ * This method is a wrapper around the window manager's
+ * {@link OO.ui.WindowManager#isClosing isClosing} method.
  *
  * @return {boolean} Window is closing
  */
@@ -1944,7 +1968,8 @@ OO.ui.Window.prototype.isClosing = function () {
 /**
  * Check if the window is opened.
  *
- * This method is a wrapper around the window manager's {@link OO.ui.WindowManager#isOpened isOpened} method.
+ * This method is a wrapper around the window manager's
+ * {@link OO.ui.WindowManager#isOpened isOpened} method.
  *
  * @return {boolean} Window is opened
  */
@@ -2417,7 +2442,9 @@ OO.ui.Window.prototype.hold = function ( data ) {
 
 	return this.getHoldProcess( data ).execute().then( function () {
 		// Get the focused element within the window's content
-		var $focus = win.$content.find( OO.ui.Element.static.getDocument( win.$content ).activeElement );
+		var $focus = win.$content.find(
+			OO.ui.Element.static.getDocument( win.$content ).activeElement
+		);
 
 		// Blur the focused element
 		if ( $focus.length ) {
@@ -2433,8 +2460,8 @@ OO.ui.Window.prototype.hold = function ( data ) {
 /**
  * Teardown window.
  *
- * This is called by OO.ui.WindowManager during window closing (after the animation), and should not be called directly
- * by other systems.
+ * This is called by OO.ui.WindowManager during window closing (after the animation), and should not
+ * be called directly by other systems.
  *
  * @param {Object} [data] Window closing data
  * @return {jQuery.Promise} Promise resolved when window is torn down
@@ -2454,7 +2481,7 @@ OO.ui.Window.prototype.teardown = function ( data ) {
 /**
  * The Dialog class serves as the base class for the other types of dialogs.
  * Unless extended to include controls, the rendered dialog box is a simple window
- * that users can close by hitting the ‘Esc’ key. Dialog windows are used with OO.ui.WindowManager,
+ * that users can close by hitting the Escape key. Dialog windows are used with OO.ui.WindowManager,
  * which opens, closes, and controls the presentation of the window. See the
  * [OOUI documentation on MediaWiki] [1] for more information.
  *
@@ -2468,7 +2495,8 @@ OO.ui.Window.prototype.teardown = function ( data ) {
  *     MyDialog.prototype.initialize = function () {
  *         MyDialog.parent.prototype.initialize.call( this );
  *         this.content = new OO.ui.PanelLayout( { padded: true, expanded: false } );
- *         this.content.$element.append( '<p>A simple dialog window. Press \'Esc\' to close.</p>' );
+ *         this.content.$element.append( '<p>A simple dialog window. Press Escape key to ' +
+ *             'close.</p>' );
  *         this.$body.append( this.content.$element );
  *     };
  *     MyDialog.prototype.getBodyHeight = function () {
@@ -2544,9 +2572,10 @@ OO.ui.Dialog.static.name = '';
 /**
  * The dialog title.
  *
- * The title can be specified as a plaintext string, a {@link OO.ui.mixin.LabelElement Label} node, or a function
- * that will produce a Label node or string. The title can also be specified with data passed to the
- * constructor (see #getSetupProcess). In this case, the static value will be overridden.
+ * The title can be specified as a plaintext string, a {@link OO.ui.mixin.LabelElement Label} node,
+ * or a function that will produce a Label node or string. The title can also be specified with data
+ * passed to the constructor (see #getSetupProcess). In this case, the static value will be
+ * overridden.
  *
  * @abstract
  * @static
@@ -2558,8 +2587,8 @@ OO.ui.Dialog.static.title = '';
 /**
  * An array of configured {@link OO.ui.ActionWidget action widgets}.
  *
- * Actions can also be specified with data passed to the constructor (see #getSetupProcess). In this case, the static
- * value will be overridden.
+ * Actions can also be specified with data passed to the constructor (see #getSetupProcess). In this
+ * case, the static value will be overridden.
  *
  * [2]: https://www.mediawiki.org/wiki/OOUI/Windows/Process_Dialogs#Action_sets
  *
@@ -2570,7 +2599,7 @@ OO.ui.Dialog.static.title = '';
 OO.ui.Dialog.static.actions = [];
 
 /**
- * Close the dialog when the 'Esc' key is pressed.
+ * Close the dialog when the Escape key is pressed.
  *
  * @static
  * @abstract
@@ -2643,9 +2672,10 @@ OO.ui.Dialog.prototype.getActions = function () {
 /**
  * Get a process for taking action.
  *
- * When you override this method, you can create a new OO.ui.Process and return it, or add additional
- * accept steps to the process the parent method provides using the {@link OO.ui.Process#first 'first'}
- * and {@link OO.ui.Process#next 'next'} methods of OO.ui.Process.
+ * When you override this method, you can create a new OO.ui.Process and return it, or add
+ * additional accept steps to the process the parent method provides using the
+ * {@link OO.ui.Process#first 'first'} and {@link OO.ui.Process#next 'next'} methods of
+ * OO.ui.Process.
  *
  * @param {string} [action] Symbolic name of action
  * @return {OO.ui.Process} Action process
@@ -2805,10 +2835,10 @@ OO.ui.Dialog.prototype.executeAction = function ( action ) {
  *
  * There are two basic types of message dialogs, confirmation and alert:
  *
- * - **confirmation**: the dialog title describes what a progressive action will do and the message provides
- *  more details about the consequences.
- * - **alert**: the dialog title describes which event occurred and the message provides more information
- *  about why the event occurred.
+ * - **confirmation**: the dialog title describes what a progressive action will do and the message
+ *   provides more details about the consequences.
+ * - **alert**: the dialog title describes which event occurred and the message provides more
+ *   information about why the event occurred.
  *
  * The MessageDialog class specifies two actions: ‘accept’, the primary
  * action (e.g., ‘ok’) and ‘reject,’ the safe action (e.g., ‘cancel’). Both will close the window,
@@ -2944,7 +2974,7 @@ OO.ui.MessageDialog.prototype.getActionProcess = function ( action ) {
  * @param {jQuery|string|Function|null} [data.message] Description of the action's consequence
  * @param {string} [data.size] Symbolic name of the dialog size, see OO.ui.Window
  * @param {Object[]} [data.actions] List of OO.ui.ActionOptionWidget configuration options for each
- *   action item
+ *  action item
  */
 OO.ui.MessageDialog.prototype.getSetupProcess = function ( data ) {
 	data = data || {};
@@ -3134,16 +3164,17 @@ OO.ui.MessageDialog.prototype.fitActions = function () {
 /**
  * ProcessDialog windows encapsulate a {@link OO.ui.Process process} and all of the code necessary
  * to complete it. If the process terminates with an error, a customizable {@link OO.ui.Error error
- * interface} alerts users to the trouble, permitting the user to dismiss the error and try again when
- * relevant. The ProcessDialog class is always extended and customized with the actions and content
- * required for each process.
+ * interface} alerts users to the trouble, permitting the user to dismiss the error and try again
+ * when relevant. The ProcessDialog class is always extended and customized with the actions and
+ * content required for each process.
  *
  * The process dialog box consists of a header that visually represents the ‘working’ state of long
  * processes with an animation. The header contains the dialog title as well as
  * two {@link OO.ui.ActionWidget action widgets}:  a ‘safe’ action on the left (e.g., ‘Cancel’) and
  * a ‘primary’ action on the right (e.g., ‘Done’).
  *
- * Like other windows, the process dialog is managed by a {@link OO.ui.WindowManager window manager}.
+ * Like other windows, the process dialog is managed by a
+ * {@link OO.ui.WindowManager window manager}.
  * Please see the [OOUI documentation on MediaWiki][1] for more information and examples.
  *
  *     @example
@@ -3163,7 +3194,9 @@ OO.ui.MessageDialog.prototype.fitActions = function () {
  *     MyProcessDialog.prototype.initialize = function () {
  *         MyProcessDialog.parent.prototype.initialize.apply( this, arguments );
  *         this.content = new OO.ui.PanelLayout( { padded: true, expanded: false } );
- *         this.content.$element.append( '<p>This is a process dialog window. The header contains the title and two buttons: \'Cancel\' (a safe action) on the left and \'Done\' (a primary action)  on the right.</p>' );
+ *         this.content.$element.append( '<p>This is a process dialog window. The header ' +
+ *             'contains the title and two buttons: \'Cancel\' (a safe action) on the left and ' +
+ *             '\'Done\' (a primary action)  on the right.</p>' );
  *         this.$body.append( this.content.$element );
  *     };
  *     MyProcessDialog.prototype.getActionProcess = function ( action ) {
@@ -3253,9 +3286,15 @@ OO.ui.ProcessDialog.prototype.initialize = function () {
 	this.$errorsTitle = $( '<div>' );
 
 	// Events
-	this.dismissButton.connect( this, { click: 'onDismissErrorButtonClick' } );
-	this.retryButton.connect( this, { click: 'onRetryButtonClick' } );
-	this.title.connect( this, { labelChange: 'fitLabel' } );
+	this.dismissButton.connect( this, {
+		click: 'onDismissErrorButtonClick'
+	} );
+	this.retryButton.connect( this, {
+		click: 'onRetryButtonClick'
+	} );
+	this.title.connect( this, {
+		labelChange: 'fitLabel'
+	} );
 
 	// Initialization
 	this.title.$element.addClass( 'oo-ui-processDialog-title' );
@@ -3296,7 +3335,10 @@ OO.ui.ProcessDialog.prototype.getActionWidgetConfig = function ( config ) {
 	// Change back buttons to icon only on mobile
 	if (
 		isMobile &&
-		( config.flags === 'back' || ( Array.isArray( config.flags ) && config.flags.indexOf( 'back' ) !== -1 ) )
+		(
+			config.flags === 'back' ||
+			( Array.isArray( config.flags ) && config.flags.indexOf( 'back' ) !== -1 )
+		)
 	) {
 		$.extend( config, {
 			icon: 'previous',
@@ -3352,8 +3394,9 @@ OO.ui.ProcessDialog.prototype.setDimensions = function () {
 
 	this.fitLabel();
 
-	// If there are many actions, they might be shown on multiple lines. Their layout can change when
-	// resizing the dialog and when changing the actions. Adjust the height of the footer to fit them.
+	// If there are many actions, they might be shown on multiple lines. Their layout can change
+	// when resizing the dialog and when changing the actions. Adjust the height of the footer to
+	// fit them.
 	dialog.$body.css( 'bottom', dialog.$foot.outerHeight( true ) );
 	// Wait for CSS transition to finish and do it again :(
 	setTimeout( function () {
@@ -3400,7 +3443,8 @@ OO.ui.ProcessDialog.prototype.fitLabel = function () {
 		// We have enough space to center the label
 		leftWidth = rightWidth = biggerWidth;
 	} else {
-		// Let's hope we at least have enough space not to overlap, because we can't wrap the label…
+		// Let's hope we at least have enough space not to overlap, because we can't wrap
+		// the label.
 		if ( this.getDir() === 'ltr' ) {
 			leftWidth = safeWidth;
 			rightWidth = primaryWidth;
@@ -3447,7 +3491,7 @@ OO.ui.ProcessDialog.prototype.showErrors = function ( errors ) {
 	this.$errorItems = $( items );
 	if ( recoverable ) {
 		abilities[ this.currentAction ] = true;
-		// Copy the flags from the first matching action
+		// Copy the flags from the first matching action.
 		actions = this.actions.get( { actions: this.currentAction } );
 		if ( actions.length ) {
 			this.retryButton.clearFlags().setFlags( actions[ 0 ].getFlags() );
@@ -3486,7 +3530,7 @@ OO.ui.ProcessDialog.prototype.getTeardownProcess = function ( data ) {
 	// Parent method
 	return OO.ui.ProcessDialog.parent.prototype.getTeardownProcess.call( this, data )
 		.first( function () {
-			// Make sure to hide errors
+			// Make sure to hide errors.
 			this.hideErrors();
 			this.fitOnOpen = false;
 		}, this );
@@ -3573,13 +3617,15 @@ OO.ui.confirm = function ( text, options ) {
 /**
  * Display a quick modal prompt dialog, using a OO.ui.MessageDialog. While the dialog is open,
  * the rest of the page will be dimmed out and the user won't be able to interact with it. The
- * dialog has a text input widget and two action buttons, one to confirm an operation (labelled "OK")
- * and one to cancel it (labelled "Cancel").
+ * dialog has a text input widget and two action buttons, one to confirm an operation
+ * (labelled "OK") and one to cancel it (labelled "Cancel").
  *
  * A window manager is created automatically when this function is called for the first time.
  *
  *     @example
- *     OO.ui.prompt( 'Choose a line to go to', { textInput: { placeholder: 'Line number' } } ).done( function ( result ) {
+ *     OO.ui.prompt( 'Choose a line to go to', {
+ *         textInput: { placeholder: 'Line number' }
+ *     } ).done( function ( result ) {
  *         if ( result !== null ) {
  *             console.log( 'User typed "' + result + '" then clicked "OK".' );
  *         } else {
@@ -3589,7 +3635,8 @@ OO.ui.confirm = function ( text, options ) {
  *
  * @param {jQuery|string} text Message text to display
  * @param {Object} [options] Additional options, see OO.ui.MessageDialog#getSetupProcess
- * @param {Object} [options.textInput] Additional options for text input widget, see OO.ui.TextInputWidget
+ * @param {Object} [options.textInput] Additional options for text input widget,
+ *  see OO.ui.TextInputWidget
  * @return {jQuery.Promise} Promise resolved when the user closes the dialog. If the user chose to
  *  confirm, the promise will resolve with the value of the text input widget; otherwise, it will
  *  resolve to `null`.
