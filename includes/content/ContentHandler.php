@@ -691,6 +691,10 @@ abstract class ContentHandler {
 			$pageLang = Language::factory( $lang );
 		}
 
+		// Simplify hook handlers by only passing objects of one type, in case nothing
+		// else has unstubbed the StubUserLang object by now.
+		StubObject::unstub( $wgLang );
+
 		Hooks::run( 'PageContentLanguage', [ $title, &$pageLang, $wgLang ] );
 
 		return wfGetLangObj( $pageLang );

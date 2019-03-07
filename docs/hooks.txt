@@ -2448,7 +2448,7 @@ $title: Title object
 &$pageLang: the page content language. Input can be anything (under control of
   hook subscribers), but hooks should return Language objects. Language code
   strings are deprecated.
-$userLang: the user language (Language or StubUserLang object)
+$userLang: the user language (Language object)
 
 'PageContentSave': Before an article is saved.
 $wikiPage: the WikiPage (object) being saved
