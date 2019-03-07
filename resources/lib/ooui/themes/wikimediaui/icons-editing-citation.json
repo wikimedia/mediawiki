@@ -14,8 +14,11 @@
 		"destructive": {
 			"color": "#d33"
 		},
+		"error": {
+			"color": "#d33"
+		},
 		"warning": {
-			"color": "#ff5d00"
+			"color": "#fc3"
 		}
 	},
 	"images": {
@@ -37,9 +40,6 @@
 				"rtl": "images/icons/newspaper-rtl.svg"
 			}
 		},
-		"web": {
-			"file": "images/icons/web.svg"
-		},
 		"reference": {
 			"file": "images/icons/reference.svg"
 		},
@@ -54,6 +54,10 @@
 				"ltr": "images/icons/references-ltr.svg",
 				"rtl": "images/icons/references-rtl.svg"
 			}
+		},
+		"web": {
+			"file": "images/icons/web.svg",
+			"deprecated": "Deprecated since v0.30.2, use 'browser' from 'interactions' pack instead."
 		}
 	}
 }

@@ -20,9 +20,6 @@
 				"rtl": "../wikimediaui/images/icons/newspaper-rtl.svg"
 			}
 		},
-		"web": {
-			"file": "../wikimediaui/images/icons/web.svg"
-		},
 		"reference": {
 			"file": "../wikimediaui/images/icons/reference.svg"
 		},
@@ -37,6 +34,10 @@
 				"ltr": "../wikimediaui/images/icons/references-ltr.svg",
 				"rtl": "../wikimediaui/images/icons/references-rtl.svg"
 			}
+		},
+		"web": {
+			"file": "../wikimediaui/images/icons/web.svg",
+			"deprecated": "Deprecated since v0.30.2, use 'browser' from 'interactions' pack instead."
 		}
 	}
 }

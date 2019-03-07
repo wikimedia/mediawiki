@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.3
+ * OOUI v0.30.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-02-21T10:57:15Z
+ * Date: 2019-03-07T09:14:26Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -688,7 +688,7 @@
 .oo-ui-outlineOptionWidget-level-2.oo-ui-iconElement .oo-ui-iconElement-icon {
   left: 5em;
 }
-.oo-ui-selectWidget-depressed .oo-ui-outlineOptionWidget.oo-ui-optionWidget-selected {
+.oo-ui-selectWidget-unpressed .oo-ui-outlineOptionWidget.oo-ui-optionWidget-selected {
   background-color: #a7dcff;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
 }
@@ -936,17 +936,17 @@
   background-image: -moz-linear-gradient(top, #fafafa 0, #ddd 100%);
   background-image: linear-gradient(to bottom, #fafafa 0, #ddd 100%);
   color: #333;
-  width: auto;
-  max-width: 100%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  height: 1.7em;
+  width: auto;
+  max-width: 100%;
+  height: 1.71875em;
   margin: 0.1em;
   border: 1px solid #ccc;
   border-radius: 3px;
   padding: 0 0.4em;
-  line-height: 1.7em;
+  line-height: 1.640625em;
   vertical-align: middle;
 }
 .oo-ui-tagItemWidget.oo-ui-labelElement .oo-ui-labelElement-label {

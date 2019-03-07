@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.3
+ * OOUI v0.30.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-02-21T10:57:15Z
+ * Date: 2019-03-07T09:14:26Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -1018,7 +1018,7 @@
   border: 1px solid #a2a9b1;
   border-radius: 1.57142857em;
   padding: 0 0.57142857em;
-  line-height: 1.57142857em;
+  line-height: 1.42857143em;
   vertical-align: middle;
 }
 .oo-ui-tagItemWidget.oo-ui-labelElement .oo-ui-labelElement-label {
