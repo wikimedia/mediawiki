@@ -14,8 +14,6 @@ class MediaWikiLoggerPHPUnitTestListener extends PHPUnit_Framework_BaseTestListe
 	private $originalSpi;
 	/** @var Spi|null */
 	private $spi;
-	/** @var array|null */
-	private $lastTestLogs;
 
 	/**
 	 * A test started.
@@ -29,6 +27,40 @@ class MediaWikiLoggerPHPUnitTestListener extends PHPUnit_Framework_BaseTestListe
 		LoggerFactory::registerProvider( $this->spi );
 	}
 
+	public function addRiskyTest( PHPUnit_Framework_Test $test, Exception $e, $time ) {
+		$this->augmentTestWithLogs( $test );
+	}
+
+	public function addIncompleteTest( PHPUnit_Framework_Test $test, Exception $e, $time ) {
+		$this->augmentTestWithLogs( $test );
+	}
+
+	public function addSkippedTest( PHPUnit_Framework_Test $test, Exception $e, $time ) {
+		$this->augmentTestWithLogs( $test );
+	}
+
+	public function addError( PHPUnit_Framework_Test $test, Exception $e, $time ) {
+		$this->augmentTestWithLogs( $test );
+	}
+
+	public function addWarning( PHPUnit_Framework_Test $test, PHPUnit\Framework\Warning $e, $time ) {
+		$this->augmentTestWithLogs( $test );
+	}
+
+	public function addFailure( PHPUnit_Framework_Test $test,
+		PHPUnit_Framework_AssertionFailedError $e, $time
+	) {
+		$this->augmentTestWithLogs( $test );
+	}
+
+	private function augmentTestWithLogs( PHPUnit_Framework_Test $test ) {
+		if ( $this->spi ) {
+			$logs = $this->spi->getLogs();
+			$formatted = $this->formatLogs( $logs );
+			$test->_formattedMediaWikiLogs = $formatted;
+		}
+	}
+
 	/**
 	 * A test ended.
 	 *
@@ -36,7 +68,6 @@ class MediaWikiLoggerPHPUnitTestListener extends PHPUnit_Framework_BaseTestListe
 	 * @param float $time
 	 */
 	public function endTest( PHPUnit_Framework_Test $test, $time ) {
-		$this->lastTestLogs = $this->spi->getLogs();
 		LoggerFactory::registerProvider( $this->originalSpi );
 		$this->originalSpi = null;
 		$this->spi = null;
@@ -46,13 +77,10 @@ class MediaWikiLoggerPHPUnitTestListener extends PHPUnit_Framework_BaseTestListe
 	 * Get string formatted logs generated during the last
 	 * test to execute.
 	 *
+	 * @param array $logs
 	 * @return string
 	 */
-	public function getLog() {
-		$logs = $this->lastTestLogs;
-		if ( !$logs ) {
-			return '';
-		}
+	private function formatLogs( array $logs ) {
 		$message = [];
 		foreach ( $logs as $log ) {
 			$message[] = sprintf(
