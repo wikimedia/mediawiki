@@ -1169,7 +1169,7 @@ abstract class UploadBase {
 	 * scripts, so the blacklist needs to check them all.
 	 *
 	 * @param string $filename
-	 * @return array
+	 * @return array [ string, string[] ]
 	 */
 	public static function splitExtensions( $filename ) {
 		$bits = explode( '.', $filename );
@@ -1194,8 +1194,8 @@ abstract class UploadBase {
 	 * Perform case-insensitive match against a list of file extensions.
 	 * Returns an array of matching extensions.
 	 *
-	 * @param array $ext
-	 * @param array $list
+	 * @param string[] $ext
+	 * @param string[] $list
 	 * @return bool
 	 */
 	public static function checkFileExtensionList( $ext, $list ) {

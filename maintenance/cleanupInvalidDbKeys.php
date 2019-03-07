@@ -30,7 +30,7 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class CleanupInvalidDbKeys extends Maintenance {
-	/** @var array List of tables to clean up, and the field prefix for that table */
+	/** @var array[] List of tables to clean up, and the field prefix for that table */
 	protected static $tables = [
 		// Data tables
 		[ 'page', 'page' ],

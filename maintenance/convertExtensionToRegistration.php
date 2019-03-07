@@ -19,7 +19,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 	/**
 	 * Things that were formerly globals and should still be converted
 	 *
-	 * @var array
+	 * @var string[]
 	 */
 	protected $formerGlobals = [
 		'TrackingCategories',
@@ -28,7 +28,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 	/**
 	 * No longer supported globals (with reason) should not be converted and emit a warning
 	 *
-	 * @var array
+	 * @var string[]
 	 */
 	protected $noLongerSupportedGlobals = [
 		'SpecialPageGroups' => 'deprecated', // Deprecated 1.21, removed in 1.26
@@ -37,7 +37,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 	/**
 	 * Keys that should be put at the top of the generated JSON file (T86608)
 	 *
-	 * @var array
+	 * @var string[]
 	 */
 	protected $promote = [
 		'name',

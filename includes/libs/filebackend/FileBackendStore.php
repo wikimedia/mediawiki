@@ -1009,7 +1009,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $container Resolved container name
 	 * @param string $dir Resolved path relative to container
 	 * @param array $params
-	 * @return Traversable|array|null Returns null on failure
+	 * @return Traversable|string[]|null Returns null on failure
 	 */
 	abstract public function getFileListInternal( $container, $dir, array $params );
 
