@@ -55,7 +55,7 @@ class APCUBagOStuff extends APCBagOStuff {
 		return true;
 	}
 
-	public function delete( $key ) {
+	public function delete( $key, $flags = 0 ) {
 		apcu_delete( $key . self::KEY_SUFFIX );
 
 		return true;

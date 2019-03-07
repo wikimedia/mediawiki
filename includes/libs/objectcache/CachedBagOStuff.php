@@ -68,7 +68,7 @@ class CachedBagOStuff extends HashBagOStuff {
 	}
 
 	public function delete( $key, $flags = 0 ) {
-		parent::delete( $key );
+		parent::delete( $key, $flags );
 		if ( !( $flags & self::WRITE_CACHE_ONLY ) ) {
 			$this->backend->delete( $key );
 		}

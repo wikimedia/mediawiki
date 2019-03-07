@@ -70,7 +70,7 @@ class MemcachedBagOStuff extends BagOStuff {
 			$value, $this->fixExpiry( $exptime ) );
 	}
 
-	public function delete( $key ) {
+	public function delete( $key, $flags = 0 ) {
 		return $this->client->delete( $this->validateKeyEncoding( $key ) );
 	}
 

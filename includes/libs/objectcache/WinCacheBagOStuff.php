@@ -45,7 +45,7 @@ class WinCacheBagOStuff extends BagOStuff {
 		return ( is_array( $result ) && $result === [] ) || $result;
 	}
 
-	public function delete( $key ) {
+	public function delete( $key, $flags = 0 ) {
 		wincache_ucache_delete( $key );
 
 		return true;

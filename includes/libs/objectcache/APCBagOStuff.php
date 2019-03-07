@@ -104,7 +104,7 @@ class APCBagOStuff extends BagOStuff {
 		return $value;
 	}
 
-	public function delete( $key ) {
+	public function delete( $key, $flags = 0 ) {
 		apc_delete( $key . self::KEY_SUFFIX );
 
 		return true;
