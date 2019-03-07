@@ -710,7 +710,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * The callbacks may or may not be called ever, in any particular order.
 	 * They are likely to be invoked when something WRITE_SYNC is used used.
 	 * They should follow a caching pattern as shown below, so that any code
-	 * using the word will get it's result no matter what happens.
+	 * using the work will get it's result no matter what happens.
 	 * @code
 	 *     $result = null;
 	 *     $workCallback = function () use ( &$result ) {
