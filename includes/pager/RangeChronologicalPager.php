@@ -26,6 +26,7 @@ use Wikimedia\Timestamp\TimestampException;
  */
 abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 
+	/** @var string[] */
 	protected $rangeConds = [];
 
 	/**

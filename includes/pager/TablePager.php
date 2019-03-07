@@ -26,8 +26,10 @@
  * @ingroup Pager
  */
 abstract class TablePager extends IndexPager {
+	/** @var string */
 	protected $mSort;
 
+	/** @var stdClass */
 	protected $mCurrentRow;
 
 	public function __construct( IContextSource $context = null ) {

@@ -81,7 +81,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	public $mLimitsShown = [ 20, 50, 100, 250, 500 ];
 	/** @var int The default entry limit choosen for clients */
 	public $mDefaultLimit = 50;
-	/** @var string|int The starting point to enumerate entries */
+	/** @var mixed The starting point to enumerate entries */
 	public $mOffset;
 	/** @var int The maximum number of entries to show */
 	public $mLimit;
@@ -89,20 +89,23 @@ abstract class IndexPager extends ContextSource implements Pager {
 	public $mQueryDone = false;
 	/** @var IDatabase */
 	public $mDb;
-	/** @var stdClass|null Extra row fetched at the end to see if the end was reached */
+	/** @var stdClass|bool|null Extra row fetched at the end to see if the end was reached */
 	public $mPastTheEndRow;
 
 	/**
 	 * The index to actually be used for ordering. This is a single column,
 	 * for one ordering, even if multiple orderings are supported.
+	 * @var string
 	 */
 	protected $mIndexField;
 	/**
 	 * An array of secondary columns to order by. These fields are not part of the offset.
 	 * This is a column list for one ordering, even if multiple orderings are supported.
+	 * @var string[]
 	 */
 	protected $mExtraSortFields;
 	/** For pages that support multiple types of ordering, which one to use.
+	 * @var string|null
 	 */
 	protected $mOrderType;
 	/**
@@ -115,18 +118,31 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * Like $mIndexField, $mDefaultDirection will be a single value even if the
 	 * class supports multiple default directions for different order types.
+	 * @var bool
 	 */
 	public $mDefaultDirection;
+	/** @var bool */
 	public $mIsBackwards;
 
-	/** True if the current result set is the first one */
+	/** @var bool True if the current result set is the first one */
 	public $mIsFirst;
+	/** @var bool */
 	public $mIsLast;
 
-	protected $mLastShown, $mFirstShown, $mPastTheEndIndex, $mDefaultQuery, $mNavigationBar;
+	/** @var mixed */
+	protected $mLastShown;
+	/** @var mixed */
+	protected $mFirstShown;
+	/** @var mixed */
+	protected $mPastTheEndIndex;
+	/** @var array */
+	protected $mDefaultQuery;
+	/** @var string */
+	protected $mNavigationBar;
 
 	/**
 	 * Whether to include the offset in the query
+	 * @var bool
 	 */
 	protected $mIncludeOffset = false;
 
