@@ -1347,12 +1347,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * Error out if the DB is not in a valid state for a query via query()
+	 *
 	 * @param string $sql
 	 * @param string $fname
 	 * @throws DBTransactionStateError
 	 */
 	private function assertTransactionStatus( $sql, $fname ) {
-		if ( $this->getQueryVerb( $sql ) === 'ROLLBACK' ) { // transaction/savepoint
+		$verb = $this->getQueryVerb( $sql );
+		if ( $verb === 'USE' ) {
+			throw new DBUnexpectedError( $this, "Got USE query; use selectDomain() instead." );
+		}
+
+		if ( $verb === 'ROLLBACK' ) { // transaction/savepoint
 			return;
 		}
 

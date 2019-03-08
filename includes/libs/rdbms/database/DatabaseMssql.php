@@ -1167,8 +1167,18 @@ class DatabaseMssql extends Database {
 	}
 
 	protected function doSelectDomain( DatabaseDomain $domain ) {
-		$encDatabase = $this->addIdentifierQuotes( $domain->getDatabase() );
-		$this->query( "USE $encDatabase" );
+		if ( $domain->getSchema() !== null ) {
+			throw new DBExpectedError( $this, __CLASS__ . ": domain schemas are not supported." );
+		}
+
+		$database = $domain->getDatabase();
+		if ( $database !== $this->getDBname() ) {
+			$encDatabase = $this->addIdentifierQuotes( $database );
+			$res = $this->doQuery( "USE $encDatabase" );
+			if ( !$res ) {
+				throw new DBExpectedError( $this, "Could not select database '$database'." );
+			}
+		}
 		// Update that domain fields on success (no exception thrown)
 		$this->currentDomain = $domain;
 
