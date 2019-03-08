@@ -64,11 +64,11 @@
 	 * @return {string}
 	 */
 	function getElementSortKey( node ) {
-		var $node = $( node ),
-			// Use data-sort-value attribute.
-			// Use data() instead of attr() so that live value changes
-			// are processed as well (T40152).
-			data = $node.data( 'sortValue' );
+		// Get data-sort-value attribute. Uses jQuery to allow live value
+		// changes from other code paths via data(), which reside only in jQuery.
+		// Must use $().data() instead of $.data(), as the latter *only*
+		// accesses the live values, without reading HTML5 attribs first (T40152).
+		var data = $( node ).data( 'sortValue' );
 
 		if ( data !== null && data !== undefined ) {
 			// Cast any numbers or other stuff to a string, methods
@@ -76,17 +76,23 @@
 			return String( data );
 		}
 		if ( node.tagName.toLowerCase() === 'img' ) {
-			return $node.attr( 'alt' ) || ''; // handle undefined alt
+			return node.alt;
 		}
-		return $.makeArray( node.childNodes ).map( function ( elem ) {
+		// Iterate the NodeList (not an array).
+		// Also uses null-return as filter in the same pass.
+		// eslint-disable-next-line no-jquery/no-map-util
+		return $.map( node.childNodes, function ( elem ) {
 			if ( elem.nodeType === Node.ELEMENT_NODE ) {
 				if ( $( elem ).hasClass( 'reference' ) ) {
 					return null;
-				} else {
-					return getElementSortKey( elem );
 				}
+				return getElementSortKey( elem );
 			}
-			return $.text( elem );
+			if ( elem.nodeType === Node.TEXT_NODE ) {
+				return elem.textContent;
+			}
+			// Ignore other node types, such as HTML comments.
+			return null;
 		} ).join( '' );
 	}
 
