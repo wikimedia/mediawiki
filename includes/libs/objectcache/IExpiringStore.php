@@ -56,4 +56,9 @@ interface IExpiringStore {
 	const QOS_SYNCWRITES_SS = 4; // strict-serializable, nodes refuse reads if possible stale
 	// Generic "unknown" value that is useful for comparisons (e.g. always good enough)
 	const QOS_UNKNOWN = INF;
+
+	const ERR_NONE = 0; // no error
+	const ERR_NO_RESPONSE = 1; // no response
+	const ERR_UNREACHABLE = 2; // can't connect
+	const ERR_UNEXPECTED = 3; // response gave some error
 }
