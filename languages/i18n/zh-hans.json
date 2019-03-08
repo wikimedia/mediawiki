@@ -543,6 +543,7 @@
 	"badretype": "您所输入的密码并不相同。",
 	"usernameinprogress": "此用户名的账户创建已在进行中。请等待。",
 	"userexists": "用户名已存在。请使用其他名称。",
+	"createacct-normalization": "由于技术限制，您的用户名将被调整为“$2”。",
 	"loginerror": "登录错误",
 	"createacct-error": "账户创建出错",
 	"createaccounterror": "无法建立账户：$1",

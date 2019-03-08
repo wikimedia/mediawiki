@@ -515,6 +515,7 @@
 	"badretype": "As palavras-passe que introduziu não coincidem.",
 	"usernameinprogress": "Já está a ser criada uma conta para este nome de utilizador.\nAguarde, por favor.",
 	"userexists": "O nome de utilizador introduzido já existe.\nEscolha um nome diferente, por favor.",
+	"createacct-normalization": "O seu nome de utilizador será ajustado para \"$2\" devido a restrições técnicas.",
 	"loginerror": "Erro ao iniciar sessão",
 	"createacct-error": "Erro na criação da conta",
 	"createaccounterror": "Não foi possível criar a conta: $1",

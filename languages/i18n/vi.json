@@ -476,6 +476,7 @@
 	"badretype": "Hai mật khẩu không khớp.",
 	"usernameinprogress": "Đã tiến hành tạo tài khoản với tên người dùng này.\nXin vui lòng chờ đợi.",
 	"userexists": "Tên người dùng được nhập đã có người lấy.\nHãy chọn một tên khác.",
+	"createacct-normalization": "Tên người dùng của bạn sẽ bị chỉnh lại thành “$2” do hạn chế kỹ thuật.",
 	"loginerror": "Lỗi đăng nhập",
 	"createacct-error": "Lỗi mở tài khoản",
 	"createaccounterror": "Không thể mở tài khoản: $1",

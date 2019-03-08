@@ -607,6 +607,7 @@
 	"badretype": "Les mots de passe que vous avez saisis ne correspondent pas.",
 	"usernameinprogress": "Une création de compte pour ce nom d’utilisateur est déjà en cours.\nVeuillez patienter.",
 	"userexists": "Le nom d’utilisateur saisi est déjà utilisé.\nVeuillez choisir un nom différent.",
+	"createacct-normalization": "Votre nom d’utilisateur sera modifié en « $2 » à cause de restrictions techniques.",
 	"loginerror": "Erreur de connexion",
 	"createacct-error": "Erreur lors de la création du compte",
 	"createaccounterror": "Impossible de créer le compte : $1",

@@ -448,6 +448,7 @@
 	"badretype": "Gesli, ki ste ju vnesli, se ne ujemata.",
 	"usernameinprogress": "Ustvarjanje računa za to uporabniško ime je že v teku. Prosimo, počakajte.",
 	"userexists": "Uporabniško ime, ki ste ga vnesli, je že zasedeno.\nProsimo, izberite drugo.",
+	"createacct-normalization": "Vaše uporabniško ime bomo spremenili na »$2« zaradi tehničnih omejitev.",
 	"loginerror": "Napaka ob prijavi",
 	"createacct-error": "Napaka pri ustvarjanju računa",
 	"createaccounterror": "Ne morem ustvariti računa: $1",

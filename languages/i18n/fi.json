@@ -493,6 +493,7 @@
 	"badretype": "Syöttämäsi salasanat ovat keskenään erilaiset.",
 	"usernameinprogress": "Tunnuksen luominen tälle käyttäjänimelle on parhaillaan käynnissä.\nOle hyvä ja odota.",
 	"userexists": "Pyytämäsi käyttäjänimi on jo käytössä. Valitse toinen käyttäjänimi.",
+	"createacct-normalization": "Käyttäjätunnuksesi muutetaan muotoon \"$2\" teknisten rajoitusten vuoksi.",
 	"loginerror": "Sisäänkirjautumisvirhe",
 	"createacct-error": "Virhe tunnuksen luomisessa",
 	"createaccounterror": "Tunnuksen luonti ei onnistunut: $1",

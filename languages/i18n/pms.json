@@ -427,6 +427,7 @@
 	"badretype": "Le doe ciav che a l'ha scrivù a resto diferente antra 'd lor.",
 	"usernameinprogress": "Na creassion ëd cont për së stranòm a l'é già an cors. Ch'a l'abia passiensa.",
 	"userexists": "Lë stranòm anserì a l'é già dovrà.\nPër piasì ch'a serna në stranòm diferent.",
+	"createacct-normalization": "Sò stranòm a sarà modificà a «$2» për dle contrente técniche.",
 	"loginerror": "Eror ën rintrand ant ël sistema",
 	"createacct-error": "Eror durant la creassion dël cont",
 	"createaccounterror": "A l'é nen podusse creé ël cont: $1",
