@@ -161,11 +161,11 @@ class ActiveUsersPager extends UsersPager {
 		];
 	}
 
-	protected function buildQueryInfo( $offset, $limit, $descending ) {
+	protected function buildQueryInfo( $offset, $limit, $order ) {
 		$fname = __METHOD__ . ' (' . $this->getSqlComment() . ')';
 
 		$sortColumns = array_merge( [ $this->mIndexField ], $this->mExtraSortFields );
-		if ( $descending ) {
+		if ( $order === self::QUERY_ASCENDING ) {
 			$dir = 'ASC';
 			$orderBy = $sortColumns;
 			$operator = $this->mIncludeOffset ? '>=' : '>';
