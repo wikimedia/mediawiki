@@ -532,6 +532,7 @@
 	"badretype": "兩次輸入的密碼並不相同。",
 	"usernameinprogress": "已正在進行此使用者名稱的帳號建立作業。\n請稍候。",
 	"userexists": "您所輸入的使用者名稱已存在，請另選一個名稱。",
+	"createacct-normalization": "基於技術限制，您的用戶名將調整為「$2」。",
 	"loginerror": "登入錯誤",
 	"createacct-error": "帳號建立錯誤",
 	"createaccounterror": "無法建立帳號：$1",

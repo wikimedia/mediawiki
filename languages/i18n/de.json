@@ -526,6 +526,7 @@
 	"badretype": "Die beiden Passwörter stimmen nicht überein.",
 	"usernameinprogress": "Eine Benutzerkontenerstellung für diesen Benutzernamen ist bereits in Bearbeitung.\nBitte warten.",
 	"userexists": "Dieser Benutzername ist schon vergeben.\nBitte wähle einen anderen.",
+	"createacct-normalization": "Dein Benutzername wird aufgrund technischer Beschränkungen zu „$2“ geändert.",
 	"loginerror": "Fehler bei der Anmeldung",
 	"createacct-error": "Fehler beim Erstellen des Benutzerkontos",
 	"createaccounterror": "Benutzerkonto konnte nicht erstellt werden: $1",

@@ -2520,6 +2520,7 @@
 	"ipb-confirm": "차단 확인",
 	"ipb-sitewide": "사이트 전체",
 	"ipb-partial": "부분",
+	"ipb-partial-help": "특정 문서 또는 이름공간입니다.",
 	"ipb-pages-label": "문서",
 	"ipb-namespaces-label": "이름공간",
 	"badipaddress": "잘못된 IP 주소",
