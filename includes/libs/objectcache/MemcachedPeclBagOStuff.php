@@ -27,6 +27,8 @@
  * @ingroup Cache
  */
 class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
+	/** @var Memcached */
+	protected $client;
 
 	/**
 	 * Available parameters are:
@@ -93,24 +95,22 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		$this->client->setOption( Memcached::OPT_LIBKETAMA_COMPATIBLE, true );
 
 		// Set the serializer
-		switch ( $params['serializer'] ) {
-			case 'php':
-				$this->client->setOption( Memcached::OPT_SERIALIZER, Memcached::SERIALIZER_PHP );
-				break;
-			case 'igbinary':
-				if ( !Memcached::HAVE_IGBINARY ) {
-					throw new InvalidArgumentException(
-						__CLASS__ . ': the igbinary extension is not available ' .
-						'but igbinary serialization was requested.'
-					);
-				}
-				$this->client->setOption( Memcached::OPT_SERIALIZER, Memcached::SERIALIZER_IGBINARY );
-				break;
-			default:
+		$ok = false;
+		if ( $params['serializer'] === 'php' ) {
+			$ok = $this->client->setOption( Memcached::OPT_SERIALIZER, Memcached::SERIALIZER_PHP );
+		} elseif ( $params['serializer'] === 'igbinary' ) {
+			if ( !Memcached::HAVE_IGBINARY ) {
 				throw new InvalidArgumentException(
-					__CLASS__ . ': invalid value for serializer parameter'
+					__CLASS__ . ': the igbinary extension is not available ' .
+					'but igbinary serialization was requested.'
 				);
+			}
+			$ok = $this->client->setOption( Memcached::OPT_SERIALIZER, Memcached::SERIALIZER_IGBINARY );
 		}
+		if ( !$ok ) {
+			throw new InvalidArgumentException( __CLASS__ . ': invalid serializer parameter' );
+		}
+
 		$servers = [];
 		foreach ( $params['servers'] as $host ) {
 			if ( preg_match( '/^\[(.+)\]:(\d+)$/', $host, $m ) ) {
@@ -138,9 +138,6 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $params;
 	}
 
-	/**
-	 * @suppress PhanTypeNonVarPassByRef
-	 */
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$this->debug( "get($key)" );
 		if ( defined( Memcached::class . '::GET_EXTENDED' ) ) { // v3.0.0
@@ -160,9 +157,13 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $result;
 	}
 
-	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->debug( "set($key)" );
-		$result = parent::set( $key, $value, $exptime, $flags = 0 );
+		$result = $this->client->set(
+			$this->validateKeyEncoding( $key ),
+			$value,
+			$this->fixExpiry( $exptime )
+		);
 		if ( $result === false && $this->client->getResultCode() === Memcached::RES_NOTSTORED ) {
 			// "Not stored" is always used as the mcrouter response with AllAsyncRoute
 			return true;
@@ -172,12 +173,14 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->debug( "cas($key)" );
-		return $this->checkResult( $key, parent::cas( $casToken, $key, $value, $exptime, $flags ) );
+		$result = $this->client->cas( $casToken, $this->validateKeyEncoding( $key ),
+			$value, $this->fixExpiry( $exptime ) );
+		return $this->checkResult( $key, $result );
 	}
 
-	public function delete( $key, $flags = 0 ) {
+	protected function doDelete( $key, $flags = 0 ) {
 		$this->debug( "delete($key)" );
-		$result = parent::delete( $key );
+		$result = $this->client->delete( $this->validateKeyEncoding( $key ) );
 		if ( $result === false && $this->client->getResultCode() === Memcached::RES_NOTFOUND ) {
 			// "Not found" is counted as success in our interface
 			return true;
@@ -187,7 +190,12 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->debug( "add($key)" );
-		return $this->checkResult( $key, parent::add( $key, $value, $exptime ) );
+		$result = $this->client->add(
+			$this->validateKeyEncoding( $key ),
+			$value,
+			$this->fixExpiry( $exptime )
+		);
+		return $this->checkResult( $key, $result );
 	}
 
 	public function incr( $key, $value = 1 ) {
@@ -242,7 +250,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $result;
 	}
 
-	public function getMulti( array $keys, $flags = 0 ) {
+	public function doGetMulti( array $keys, $flags = 0 ) {
 		$this->debug( 'getMulti(' . implode( ', ', $keys ) . ')' );
 		foreach ( $keys as $key ) {
 			$this->validateKeyEncoding( $key );
@@ -260,9 +268,55 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( false, $result );
 	}
 
-	public function changeTTL( $key, $expiry = 0, $flags = 0 ) {
+	public function deleteMulti( array $keys, $flags = 0 ) {
+		$this->debug( 'deleteMulti(' . implode( ', ', $keys ) . ')' );
+		foreach ( $keys as $key ) {
+			$this->validateKeyEncoding( $key );
+		}
+		$result = $this->client->deleteMulti( $keys ) ?: [];
+		$ok = true;
+		foreach ( $result as $code ) {
+			if ( !in_array( $code, [ true, Memcached::RES_NOTFOUND ], true ) ) {
+				// "Not found" is counted as success in our interface
+				$ok = false;
+			}
+		}
+		return $this->checkResult( false, $ok );
+	}
+
+	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
 		$this->debug( "touch($key)" );
-		$result = $this->client->touch( $key, $expiry );
+		$result = $this->client->touch( $key, $exptime );
 		return $this->checkResult( $key, $result );
+	}
+
+	protected function serialize( $value ) {
+		if ( is_int( $value ) ) {
+			return $value;
+		}
+
+		$serializer = $this->client->getOption( Memcached::OPT_SERIALIZER );
+		if ( $serializer === Memcached::SERIALIZER_PHP ) {
+			return serialize( $value );
+		} elseif ( $serializer === Memcached::SERIALIZER_IGBINARY ) {
+			return igbinary_serialize( $value );
+		}
+
+		throw new UnexpectedValueException( __METHOD__ . ": got serializer '$serializer'." );
+	}
+
+	protected function unserialize( $value ) {
+		if ( $this->isInteger( $value ) ) {
+			return (int)$value;
+		}
+
+		$serializer = $this->client->getOption( Memcached::OPT_SERIALIZER );
+		if ( $serializer === Memcached::SERIALIZER_PHP ) {
+			return unserialize( $value );
+		} elseif ( $serializer === Memcached::SERIALIZER_IGBINARY ) {
+			return igbinary_unserialize( $value );
+		}
+
+		throw new UnexpectedValueException( __METHOD__ . ": got serializer '$serializer'." );
 	}
 }

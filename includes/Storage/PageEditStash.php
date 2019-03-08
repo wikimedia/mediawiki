@@ -338,7 +338,12 @@ class PageEditStash {
 	public function stashInputText( $text, $textHash ) {
 		$textKey = $this->cache->makeKey( 'stashedit', 'text', $textHash );
 
-		return $this->cache->set( $textKey, $text, self::MAX_CACHE_TTL );
+		return $this->cache->set(
+			$textKey,
+			$text,
+			self::MAX_CACHE_TTL,
+			BagOStuff::WRITE_ALLOW_SEGMENTS
+		);
 	}
 
 	/**
@@ -388,7 +393,7 @@ class PageEditStash {
 	 */
 	private function getStashKey( Title $title, $contentHash, User $user ) {
 		return $this->cache->makeKey(
-			'stashed-edit-info',
+			'stashedit-info-v1',
 			md5( $title->getPrefixedDBkey() ),
 			// Account for the edit model/text
 			$contentHash,
@@ -398,28 +403,12 @@ class PageEditStash {
 	}
 
 	/**
-	 * @param string $hash
-	 * @return string
-	 */
-	private function getStashParserOutputKey( $hash ) {
-		return $this->cache->makeKey( 'stashed-edit-output', $hash );
-	}
-
-	/**
 	 * @param string $key
 	 * @return stdClass|bool Object map (pstContent,output,outputID,timestamp,edits) or false
 	 */
 	private function getStashValue( $key ) {
 		$stashInfo = $this->cache->get( $key );
-		if ( !is_object( $stashInfo ) ) {
-			return false;
-		}
-
-		$parserOutputKey = $this->getStashParserOutputKey( $stashInfo->outputID );
-		$parserOutput = $this->cache->get( $parserOutputKey );
-		if ( $parserOutput instanceof ParserOutput ) {
-			$stashInfo->output = $parserOutput;
-
+		if ( is_object( $stashInfo ) && $stashInfo->output instanceof ParserOutput ) {
 			return $stashInfo;
 		}
 
@@ -459,23 +448,14 @@ class PageEditStash {
 		}
 
 		// Store what is actually needed and split the output into another key (T204742)
-		$parserOutputID = md5( $key );
 		$stashInfo = (object)[
 			'pstContent' => $pstContent,
-			'outputID'   => $parserOutputID,
+			'output'     => $parserOutput,
 			'timestamp'  => $timestamp,
 			'edits'      => $user->getEditCount()
 		];
 
-		$ok = $this->cache->set( $key, $stashInfo, $ttl );
-		if ( $ok ) {
-			$ok = $this->cache->set(
-				$this->getStashParserOutputKey( $parserOutputID ),
-				$parserOutput,
-				$ttl
-			);
-		}
-
+		$ok = $this->cache->set( $key, $stashInfo, $ttl, BagOStuff::WRITE_ALLOW_SEGMENTS );
 		if ( $ok ) {
 			// These blobs can waste slots in low cardinality memcached slabs
 			$this->pruneExcessStashedEntries( $user, $key );
@@ -494,7 +474,7 @@ class PageEditStash {
 		$keyList = $this->cache->get( $key ) ?: [];
 		if ( count( $keyList ) >= self::MAX_CACHE_RECENT ) {
 			$oldestKey = array_shift( $keyList );
-			$this->cache->delete( $oldestKey );
+			$this->cache->delete( $oldestKey, BagOStuff::WRITE_PRUNE_SEGMENTS );
 		}
 
 		$keyList[] = $newKey;

@@ -49,6 +49,7 @@ class HashBagOStuff extends BagOStuff {
 	 *   - maxKeys : only allow this many keys (using oldest-first eviction)
 	 */
 	function __construct( $params = [] ) {
+		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;
 		parent::__construct( $params );
 
 		$this->token = microtime( true ) . ':' . mt_rand();
@@ -75,7 +76,7 @@ class HashBagOStuff extends BagOStuff {
 		return $this->bag[$key][self::KEY_VAL];
 	}
 
-	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		// Refresh key position for maxCacheKeys eviction
 		unset( $this->bag[$key] );
 		$this->bag[$key] = [
@@ -94,14 +95,14 @@ class HashBagOStuff extends BagOStuff {
 	}
 
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
-		if ( $this->get( $key ) === false ) {
-			return $this->set( $key, $value, $exptime, $flags );
+		if ( $this->hasKey( $key ) && !$this->expire( $key ) ) {
+			return false; // key already set
 		}
 
-		return false; // key already set
+		return $this->doSet( $key, $value, $exptime, $flags );
 	}
 
-	public function delete( $key, $flags = 0 ) {
+	protected function doDelete( $key, $flags = 0 ) {
 		unset( $this->bag[$key] );
 
 		return true;
@@ -136,7 +137,7 @@ class HashBagOStuff extends BagOStuff {
 			return false;
 		}
 
-		$this->delete( $key );
+		$this->doDelete( $key );
 
 		return true;
 	}
