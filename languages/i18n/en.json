@@ -459,6 +459,7 @@
 	"badretype": "The passwords you entered do not match.",
 	"usernameinprogress": "An account creation for this user name is already in progress.\nPlease wait.",
 	"userexists": "Username entered already in use.\nPlease choose a different name.",
+	"createacct-normalization": "Your username will be adjusted to \"$2\" due to technical restrictions.",
 	"loginerror": "Login error",
 	"createacct-error": "Account creation error",
 	"createaccounterror": "Could not create account: $1",
