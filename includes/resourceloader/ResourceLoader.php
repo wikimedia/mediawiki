@@ -1695,8 +1695,10 @@ MESSAGE;
 			'modules' => self::makePackedModulesString( $modules ),
 			'lang' => $lang,
 			'skin' => $skin,
-			'debug' => $debug ? 'true' : 'false',
 		];
+		if ( $debug === true ) {
+			$query['debug'] = 'true';
+		}
 		if ( $user !== null ) {
 			$query['user'] = $user;
 		}

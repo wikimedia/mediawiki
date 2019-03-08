@@ -207,9 +207,9 @@ Deprecation message.' ]
 			. 'mw.loader.implement("test.private@{blankVer}",null,{"css":[]});'
 			. 'RLPAGEMODULES=["test"];mw.loader.load(RLPAGEMODULES);'
 			. '});</script>' . "\n"
-			. '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.deprecated%2Cpure&amp;only=styles&amp;skin=fallback"/>' . "\n"
+			. '<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.deprecated%2Cpure&amp;only=styles&amp;skin=fallback"/>' . "\n"
 			. '<style>.private{}</style>' . "\n"
-			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback"></script>';
+			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback"></script>';
 		// phpcs:enable
 		$expected = self::expandVariables( $expected );
 
@@ -229,7 +229,7 @@ Deprecation message.' ]
 
 		// phpcs:disable Generic.Files.LineLength
 		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
-			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback&amp;target=example"></script>';
+			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback&amp;target=example"></script>';
 		// phpcs:enable
 
 		$this->assertEquals( $expected, $client->getHeadHtml() );
@@ -248,7 +248,7 @@ Deprecation message.' ]
 
 		// phpcs:disable Generic.Files.LineLength
 		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
-			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;safemode=1&amp;skin=fallback"></script>';
+			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;safemode=1&amp;skin=fallback"></script>';
 		// phpcs:enable
 
 		$this->assertEquals( $expected, $client->getHeadHtml() );
@@ -267,7 +267,7 @@ Deprecation message.' ]
 
 		// phpcs:disable Generic.Files.LineLength
 		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
-			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback"></script>';
+			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback"></script>';
 		// phpcs:enable
 
 		$this->assertEquals( $expected, $client->getHeadHtml() );
@@ -329,28 +329,28 @@ Deprecation message.' ]
 				'modules' => [ 'test.scripts.raw' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
 				'extra' => [],
-				'output' => '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.scripts.raw&amp;only=scripts&amp;skin=fallback"></script>',
+				'output' => '<script async="" src="/w/load.php?lang=nl&amp;modules=test.scripts.raw&amp;only=scripts&amp;skin=fallback"></script>',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.scripts.raw' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
 				'extra' => [ 'sync' => '1' ],
-				'output' => '<script src="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.scripts.raw&amp;only=scripts&amp;skin=fallback&amp;sync=1"></script>',
+				'output' => '<script src="/w/load.php?lang=nl&amp;modules=test.scripts.raw&amp;only=scripts&amp;skin=fallback&amp;sync=1"></script>',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.scripts.user' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
 				'extra' => [],
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts.user\u0026only=scripts\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
+				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test.scripts.user\u0026only=scripts\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.user' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
 				'extra' => [],
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.user\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
+				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test.user\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
 			],
 			[
 				'context' => [ 'debug' => 'true' ],
@@ -365,14 +365,14 @@ Deprecation message.' ]
 				'modules' => [ 'test.styles.pure', 'test.styles.mixed' ],
 				'only' => ResourceLoaderModule::TYPE_STYLES,
 				'extra' => [],
-				'output' => '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.mixed%2Cpure&amp;only=styles&amp;skin=fallback"/>',
+				'output' => '<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.mixed%2Cpure&amp;only=styles&amp;skin=fallback"/>',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.styles.noscript' ],
 				'only' => ResourceLoaderModule::TYPE_STYLES,
 				'extra' => [],
-				'output' => '<noscript><link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.noscript&amp;only=styles&amp;skin=fallback"/></noscript>',
+				'output' => '<noscript><link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.noscript&amp;only=styles&amp;skin=fallback"/></noscript>',
 			],
 			[
 				'context' => [],
@@ -400,7 +400,7 @@ Deprecation message.' ]
 				'modules' => [ 'test', 'test.shouldembed' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
 				'extra' => [],
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test\u0026skin=fallback");mw.loader.implement("test.shouldembed@09p30q0",null,{"css":[]});});</script>',
+				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test\u0026skin=fallback");mw.loader.implement("test.shouldembed@09p30q0",null,{"css":[]});});</script>',
 			],
 			[
 				'context' => [],
@@ -408,7 +408,7 @@ Deprecation message.' ]
 				'only' => ResourceLoaderModule::TYPE_STYLES,
 				'extra' => [],
 				'output' =>
-					'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.pure&amp;only=styles&amp;skin=fallback"/>' . "\n"
+					'<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.pure&amp;only=styles&amp;skin=fallback"/>' . "\n"
 					. '<style>.shouldembed{}</style>'
 			],
 			[
@@ -417,9 +417,9 @@ Deprecation message.' ]
 				'only' => ResourceLoaderModule::TYPE_STYLES,
 				'extra' => [],
 				'output' =>
-					'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.ordering.a%2Cb&amp;only=styles&amp;skin=fallback"/>' . "\n"
+					'<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.ordering.a%2Cb&amp;only=styles&amp;skin=fallback"/>' . "\n"
 					. '<style>.orderingC{}.orderingD{}</style>' . "\n"
-					. '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.ordering.e&amp;only=styles&amp;skin=fallback"/>'
+					. '<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.ordering.e&amp;only=styles&amp;skin=fallback"/>'
 			],
 		];
 		// phpcs:enable
