@@ -87,12 +87,6 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/** @var int[] Map of (ATTR_* class constant => QOS_* class constant) */
 	protected $attrMap = [];
 
-	/** Possible values for getLastError() */
-	const ERR_NONE = 0; // no error
-	const ERR_NO_RESPONSE = 1; // no response
-	const ERR_UNREACHABLE = 2; // can't connect
-	const ERR_UNEXPECTED = 3; // response gave some error
-
 	/** Bitfield constants for get()/getMulti() */
 	const READ_LATEST = 1; // use latest data for replicated stores
 	const READ_VERIFIED = 2; // promise that caller can tell when keys are stale
@@ -727,24 +721,6 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 */
 	public function addBusyCallback( callable $workCallback ) {
 		$this->busyCallbacks[] = $workCallback;
-	}
-
-	/**
-	 * Modify a cache update operation array for EventRelayer::notify()
-	 *
-	 * This is used for relayed writes, e.g. for broadcasting a change
-	 * to multiple data-centers. If the array contains a 'val' field
-	 * then the command involves setting a key to that value. Note that
-	 * for simplicity, 'val' is always a simple scalar value. This method
-	 * is used to possibly serialize the value and add any cache-specific
-	 * key/values needed for the relayer daemon (e.g. memcached flags).
-	 *
-	 * @param array $event
-	 * @return array
-	 * @since 1.26
-	 */
-	public function modifySimpleRelayEvent( array $event ) {
-		return $event;
 	}
 
 	/**

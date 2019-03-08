@@ -284,6 +284,7 @@ because of Phabricator reports.
 * (T217772) The 'wgAvailableSkins' mw.config key in JavaScript, was removed.
 * Language::markNoConversion, deprecated in 1.32, has been removed. Use
   LanguageConverter::markNoConversion instead.
+* BagOStuff::modifySimpleRelayEvent() method has been removed.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected

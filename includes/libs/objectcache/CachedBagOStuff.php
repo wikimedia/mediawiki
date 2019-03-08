@@ -117,9 +117,5 @@ class CachedBagOStuff extends HashBagOStuff {
 		return $this->backend->clearLastError();
 	}
 
-	public function modifySimpleRelayEvent( array $event ) {
-		return $this->backend->modifySimpleRelayEvent( $event );
-	}
-
 	// @codeCoverageIgnoreEnd
 }
