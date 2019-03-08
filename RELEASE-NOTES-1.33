@@ -59,6 +59,8 @@ production.
 * Argon2 password hashing is now available, can be enabled via
   $wgPasswordDefault = 'argon2'. It's designed to resist timing attacks
   (requires PHP 7.2+) and GPU hacking (7.3+).
+* Special:CreateAccount now warns the user if their chosen username has to be
+  normalized.
 
 === External library changes in 1.33 ===
 
