@@ -106,7 +106,7 @@ class HashBagOStuff extends BagOStuff {
 		return true;
 	}
 
-	public function delete( $key ) {
+	public function delete( $key, $flags = 0 ) {
 		unset( $this->bag[$key] );
 
 		return true;

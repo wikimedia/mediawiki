@@ -39,7 +39,7 @@ class EmptyBagOStuff extends BagOStuff {
 		return true;
 	}
 
-	public function delete( $key ) {
+	public function delete( $key, $flags = 0 ) {
 		return true;
 	}
 

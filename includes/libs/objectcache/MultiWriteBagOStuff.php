@@ -139,7 +139,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		return $this->doWrite( $this->cacheIndexes, $asyncWrites, 'set', $key, $value, $exptime );
 	}
 
-	public function delete( $key ) {
+	public function delete( $key, $flags = 0 ) {
 		return $this->doWrite( $this->cacheIndexes, $this->asyncWrites, 'delete', $key );
 	}
 

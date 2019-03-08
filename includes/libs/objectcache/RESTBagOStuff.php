@@ -124,16 +124,8 @@ class RESTBagOStuff extends BagOStuff {
 		return false;
 	}
 
-	/**
-	 * Set an item
-	 *
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
-	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
-	 * @return bool Success
-	 */
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
+		// @TODO: respect WRITE_SYNC (e.g. EACH_QUORUM)
 		$req = [
 			'method' => 'PUT',
 			'url' => $this->url . rawurlencode( $key ),
@@ -146,13 +138,8 @@ class RESTBagOStuff extends BagOStuff {
 		return $this->handleError( "Failed to store $key", $rcode, $rerr );
 	}
 
-	/**
-	 * Delete an item.
-	 *
-	 * @param string $key
-	 * @return bool True if the item was deleted or not found, false on failure
-	 */
-	public function delete( $key ) {
+	public function delete( $key, $flags = 0 ) {
+		// @TODO: respect WRITE_SYNC (e.g. EACH_QUORUM)
 		$req = [
 			'method' => 'DELETE',
 			'url' => $this->url . rawurlencode( $key ),

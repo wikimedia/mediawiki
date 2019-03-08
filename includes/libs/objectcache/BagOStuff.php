@@ -262,8 +262,9 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * @param string $key
 	 * @return bool True if the item was deleted or not found, false on failure
+	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
 	 */
-	abstract public function delete( $key );
+	abstract public function delete( $key, $flags = 0 );
 
 	/**
 	 * Merge changes into the existing cache value (possibly creating a new one)
