@@ -207,7 +207,7 @@ abstract class File implements IDBAccessObject {
 		if ( !is_callable( $function ) ) {
 			return null;
 		} else {
-			$this->$name = call_user_func( $function );
+			$this->$name = $function();
 
 			return $this->$name;
 		}

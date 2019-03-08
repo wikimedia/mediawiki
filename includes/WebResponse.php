@@ -205,7 +205,7 @@ class WebResponse {
 				wfDebugLog( 'cookie', 'already set ' . $func . ': "' . implode( '", "', $data ) . '"' );
 			} else {
 				wfDebugLog( 'cookie', $func . ': "' . implode( '", "', $data ) . '"' );
-				if ( call_user_func_array( $func, array_values( $data ) ) ) {
+				if ( $func( ...array_values( $data ) ) ) {
 					self::$setCookies[$key] = $deleting ? null : [ $func, $data ];
 				}
 			}
