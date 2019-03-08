@@ -1841,14 +1841,14 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider statsKeyProvider
-	 * @covers WANObjectCache::determineKeyClass
+	 * @covers WANObjectCache::determineKeyClassForStats
 	 */
 	public function testStatsKeyClass( $key, $class ) {
 		$wanCache = TestingAccessWrapper::newFromObject( new WANObjectCache( [
 			'cache' => new HashBagOStuff
 		] ) );
 
-		$this->assertEquals( $class, $wanCache->determineKeyClass( $key ) );
+		$this->assertEquals( $class, $wanCache->determineKeyClassForStats( $key ) );
 	}
 }
 
