@@ -423,7 +423,9 @@ class SqlBagOStuff extends BagOStuff {
 		return (bool)$db->affectedRows();
 	}
 
-	public function delete( $key ) {
+	public function delete( $key, $flags = 0 ) {
+		$ok = true;
+
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		$db = null;
 		$silenceScope = $this->silenceTransactionProfiler();
@@ -435,10 +437,13 @@ class SqlBagOStuff extends BagOStuff {
 				__METHOD__ );
 		} catch ( DBError $e ) {
 			$this->handleWriteError( $e, $db, $serverIndex );
-			return false;
+			$ok = false;
+		}
+		if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
+			$ok = $this->waitForReplication() && $ok;
 		}
 
-		return true;
+		return $ok;
 	}
 
 	public function incr( $key, $step = 1 ) {
@@ -711,14 +716,8 @@ class SqlBagOStuff extends BagOStuff {
 		if ( $exception instanceof DBConnectionError ) {
 			$this->markServerDown( $exception, $serverIndex );
 		}
-		$this->logger->error( "DBError: {$exception->getMessage()}" );
-		if ( $exception instanceof DBConnectionError ) {
-			$this->setLastError( BagOStuff::ERR_UNREACHABLE );
-			$this->logger->debug( __METHOD__ . ": ignoring connection error" );
-		} else {
-			$this->setLastError( BagOStuff::ERR_UNEXPECTED );
-			$this->logger->debug( __METHOD__ . ": ignoring query error" );
-		}
+
+		$this->setAndLogDBError( $exception );
 	}
 
 	/**
@@ -734,6 +733,13 @@ class SqlBagOStuff extends BagOStuff {
 			$this->markServerDown( $exception, $serverIndex );
 		}
 
+		$this->setAndLogDBError( $exception );
+	}
+
+	/**
+	 * @param DBError $exception
+	 */
+	private function setAndLogDBError( DBError $exception ) {
 		$this->logger->error( "DBError: {$exception->getMessage()}" );
 		if ( $exception instanceof DBConnectionError ) {
 			$this->setLastError( BagOStuff::ERR_UNREACHABLE );
@@ -806,20 +812,26 @@ class SqlBagOStuff extends BagOStuff {
 		}
 
 		// Main LB is used; wait for any replica DBs to catch up
-		$masterPos = $lb->getMasterPos();
-		if ( !$masterPos ) {
-			return true; // not applicable
+		try {
+			$masterPos = $lb->getMasterPos();
+			if ( !$masterPos ) {
+				return true; // not applicable
+			}
+
+			$loop = new WaitConditionLoop(
+				function () use ( $lb, $masterPos ) {
+					return $lb->waitForAll( $masterPos, 1 );
+				},
+				$this->syncTimeout,
+				$this->busyCallbacks
+			);
+
+			return ( $loop->invoke() === $loop::CONDITION_REACHED );
+		} catch ( DBError $e ) {
+			$this->setAndLogDBError( $e );
+
+			return false;
 		}
-
-		$loop = new WaitConditionLoop(
-			function () use ( $lb, $masterPos ) {
-				return $lb->waitForAll( $masterPos, 1 );
-			},
-			$this->syncTimeout,
-			$this->busyCallbacks
-		);
-
-		return ( $loop->invoke() === $loop::CONDITION_REACHED );
 	}
 
 	/**

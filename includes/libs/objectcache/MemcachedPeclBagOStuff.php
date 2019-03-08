@@ -172,7 +172,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( $key, parent::cas( $casToken, $key, $value, $exptime ) );
 	}
 
-	public function delete( $key ) {
+	public function delete( $key, $flags = 0 ) {
 		$this->debugLog( "delete($key)" );
 		$result = parent::delete( $key );
 		if ( $result === false && $this->client->getResultCode() === Memcached::RES_NOTFOUND ) {
