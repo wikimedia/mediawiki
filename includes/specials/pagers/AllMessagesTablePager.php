@@ -167,24 +167,25 @@ class AllMessagesTablePager extends TablePager {
 	}
 
 	/**
-	 *  This function normally does a database query to get the results; we need
+	 * This function normally does a database query to get the results; we need
 	 * to make a pretend result using a FakeResultWrapper.
 	 * @param string $offset
 	 * @param int $limit
-	 * @param bool $descending
+	 * @param bool $order
 	 * @return FakeResultWrapper
 	 */
-	function reallyDoQuery( $offset, $limit, $descending ) {
+	function reallyDoQuery( $offset, $limit, $order ) {
+		$asc = ( $order === self::QUERY_ASCENDING );
 		$result = new FakeResultWrapper( [] );
 
-		$messageNames = $this->getAllMessages( $descending );
+		$messageNames = $this->getAllMessages( $order );
 		$statuses = self::getCustomisedStatuses( $messageNames, $this->langcode, $this->foreign );
 
 		$count = 0;
 		foreach ( $messageNames as $key ) {
 			$customised = isset( $statuses['pages'][$key] );
 			if ( $customised !== $this->custom &&
-				( $descending && ( $key < $offset || !$offset ) || !$descending && $key > $offset ) &&
+				( $asc && ( $key < $offset || !$offset ) || !$asc && $key > $offset ) &&
 				( ( $this->prefix && preg_match( $this->prefix, $key ) ) || $this->prefix === false )
 			) {
 				$actual = wfMessage( $key )->inLanguage( $this->lang )->plain();

@@ -321,15 +321,15 @@ class ImageListPager extends TablePager {
 	 *   is descending, so I renamed it to $asc here.
 	 * @param int $offset
 	 * @param int $limit
-	 * @param bool $asc
-	 * @return array
+	 * @param bool $order IndexPager::QUERY_ASCENDING or IndexPager::QUERY_DESCENDING
+	 * @return FakeResultWrapper
 	 * @throws MWException
 	 */
-	function reallyDoQuery( $offset, $limit, $asc ) {
+	function reallyDoQuery( $offset, $limit, $order ) {
 		$prevTableName = $this->mTableName;
 		$this->mTableName = 'image';
 		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
-			$this->buildQueryInfo( $offset, $limit, $asc );
+			$this->buildQueryInfo( $offset, $limit, $order );
 		$imageRes = $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds );
 		$this->mTableName = $prevTableName;
 
@@ -347,13 +347,13 @@ class ImageListPager extends TablePager {
 		$this->mIndexField = 'oi_' . substr( $this->mIndexField, 4 );
 
 		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
-			$this->buildQueryInfo( $offset, $limit, $asc );
+			$this->buildQueryInfo( $offset, $limit, $order );
 		$oldimageRes = $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds );
 
 		$this->mTableName = $prevTableName;
 		$this->mIndexField = $oldIndex;
 
-		return $this->combineResult( $imageRes, $oldimageRes, $limit, $asc );
+		return $this->combineResult( $imageRes, $oldimageRes, $limit, $order );
 	}
 
 	/**
