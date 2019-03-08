@@ -26,6 +26,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 			$options = [ 'lang' => $options ];
 		}
 		$options += [
+			'debug' => 'true',
 			'lang' => 'en',
 			'dir' => 'ltr',
 			'skin' => 'vector',
@@ -35,6 +36,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 		];
 		$resourceLoader = $rl ?: new ResourceLoader();
 		$request = new FauxRequest( [
+				'debug' => $options['debug'],
 				'lang' => $options['lang'],
 				'modules' => $options['modules'],
 				'only' => $options['only'],

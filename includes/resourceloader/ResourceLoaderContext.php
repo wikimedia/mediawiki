@@ -72,10 +72,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 
 		// Various parameters
 		$this->user = $request->getRawVal( 'user' );
-		$this->debug = $request->getFuzzyBool(
-			'debug',
-			$this->getConfig()->get( 'ResourceLoaderDebug' )
-		);
+		$this->debug = $request->getRawVal( 'debug' ) === 'true';
 		$this->only = $request->getRawVal( 'only', null );
 		$this->version = $request->getRawVal( 'version', null );
 		$this->raw = $request->getFuzzyBool( 'raw' );
