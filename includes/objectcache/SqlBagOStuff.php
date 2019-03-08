@@ -732,13 +732,6 @@ class SqlBagOStuff extends BagOStuff {
 	protected function handleWriteError( DBError $exception, IDatabase $db = null, $serverIndex ) {
 		if ( !$db ) {
 			$this->markServerDown( $exception, $serverIndex );
-		} elseif ( $db->wasReadOnlyError() ) {
-			if ( $db->trxLevel() && $this->usesMainDB() ) {
-				// Errors like deadlocks and connection drops already cause rollback.
-				// For consistency, we have no choice but to throw an error and trigger
-				// complete rollback if the main DB is also being used as the cache DB.
-				throw $exception;
-			}
 		}
 
 		$this->logger->error( "DBError: {$exception->getMessage()}" );
