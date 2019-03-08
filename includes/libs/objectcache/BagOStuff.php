@@ -87,12 +87,6 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/** @var int[] Map of (ATTR_* class constant => QOS_* class constant) */
 	protected $attrMap = [];
 
-	/** Possible values for getLastError() */
-	const ERR_NONE = 0; // no error
-	const ERR_NO_RESPONSE = 1; // no response
-	const ERR_UNREACHABLE = 2; // can't connect
-	const ERR_UNEXPECTED = 3; // response gave some error
-
 	/** Bitfield constants for get()/getMulti() */
 	const READ_LATEST = 1; // use latest data for replicated stores
 	const READ_VERIFIED = 2; // promise that caller can tell when keys are stale

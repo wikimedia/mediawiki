@@ -214,12 +214,6 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	const FLD_FLAGS = 4; // key to the flags bitfield (reserved number)
 	const FLD_HOLDOFF = 5; // key to any hold-off TTL
 
-	const ERR_NONE = 0; // no error
-	const ERR_NO_RESPONSE = 1; // no response
-	const ERR_UNREACHABLE = 2; // can't connect
-	const ERR_UNEXPECTED = 3; // response gave some error
-	const ERR_RELAY = 4; // relay broadcast failed
-
 	const VALUE_KEY_PREFIX = 'WANCache:v:';
 	const INTERIM_KEY_PREFIX = 'WANCache:i:';
 	const TIME_KEY_PREFIX = 'WANCache:t:';
@@ -237,7 +231,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param array $params
 	 *   - cache    : BagOStuff object for a persistent cache
 	 *   - logger   : LoggerInterface object
-	 *   - stats    : LoggerInterface object
+	 *   - stats    : StatsdDataFactoryInterface object
 	 *   - asyncHandler : A function that takes a callback and runs it later. If supplied,
 	 *       whenever a preemptive refresh would be triggered in getWithSetCallback(), the
 	 *       current cache value is still used instead. However, the async-handler function
