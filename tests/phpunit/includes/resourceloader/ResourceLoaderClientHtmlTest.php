@@ -21,7 +21,6 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 			'ResourceModuleSkinStyles' => [],
 			'ResourceModules' => [],
 			'EnableJavaScriptTest' => false,
-			'ResourceLoaderDebug' => false,
 			'LoadScript' => '/w/load.php',
 		] );
 		return new ResourceLoaderContext(
@@ -208,9 +207,9 @@ Deprecation message.' ]
 			. 'mw.loader.implement("test.private@{blankVer}",null,{"css":[]});'
 			. 'RLPAGEMODULES=["test"];mw.loader.load(RLPAGEMODULES);'
 			. '});</script>' . "\n"
-			. '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.deprecated%2Cpure&amp;only=styles&amp;skin=fallback"/>' . "\n"
+			. '<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.deprecated%2Cpure&amp;only=styles&amp;skin=fallback"/>' . "\n"
 			. '<style>.private{}</style>' . "\n"
-			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback"></script>';
+			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback"></script>';
 		// phpcs:enable
 		$expected = self::expandVariables( $expected );
 
@@ -230,7 +229,7 @@ Deprecation message.' ]
 
 		// phpcs:disable Generic.Files.LineLength
 		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
-			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback&amp;target=example"></script>';
+			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback&amp;target=example"></script>';
 		// phpcs:enable
 
 		$this->assertEquals( $expected, $client->getHeadHtml() );
@@ -249,7 +248,7 @@ Deprecation message.' ]
 
 		// phpcs:disable Generic.Files.LineLength
 		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
-			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;safemode=1&amp;skin=fallback"></script>';
+			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;safemode=1&amp;skin=fallback"></script>';
 		// phpcs:enable
 
 		$this->assertEquals( $expected, $client->getHeadHtml() );
@@ -268,7 +267,7 @@ Deprecation message.' ]
 
 		// phpcs:disable Generic.Files.LineLength
 		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
-			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback"></script>';
+			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback"></script>';
 		// phpcs:enable
 
 		$this->assertEquals( $expected, $client->getHeadHtml() );
@@ -307,18 +306,21 @@ Deprecation message.' ]
 				'context' => [],
 				'modules' => [ 'test.unknown' ],
 				'only' => ResourceLoaderModule::TYPE_STYLES,
+				'extra' => [],
 				'output' => '',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.styles.private' ],
 				'only' => ResourceLoaderModule::TYPE_STYLES,
+				'extra' => [],
 				'output' => '<style>.private{}</style>',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.private' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
+				'extra' => [],
 				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.private@{blankVer}",null,{"css":[]});});</script>',
 			],
 			[
@@ -326,85 +328,98 @@ Deprecation message.' ]
 				// Eg. startup module
 				'modules' => [ 'test.scripts.raw' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
-				'output' => '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.scripts.raw&amp;only=scripts&amp;skin=fallback"></script>',
+				'extra' => [],
+				'output' => '<script async="" src="/w/load.php?lang=nl&amp;modules=test.scripts.raw&amp;only=scripts&amp;skin=fallback"></script>',
 			],
 			[
-				'context' => [ 'sync' => true ],
+				'context' => [],
 				'modules' => [ 'test.scripts.raw' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
-				'output' => '<script src="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.scripts.raw&amp;only=scripts&amp;skin=fallback&amp;sync=1"></script>',
+				'extra' => [ 'sync' => '1' ],
+				'output' => '<script src="/w/load.php?lang=nl&amp;modules=test.scripts.raw&amp;only=scripts&amp;skin=fallback&amp;sync=1"></script>',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.scripts.user' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts.user\u0026only=scripts\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
+				'extra' => [],
+				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test.scripts.user\u0026only=scripts\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.user' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.user\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
+				'extra' => [],
+				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test.user\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
 			],
 			[
-				'context' => [ 'debug' => true ],
+				'context' => [ 'debug' => 'true' ],
 				'modules' => [ 'test.styles.pure', 'test.styles.mixed' ],
 				'only' => ResourceLoaderModule::TYPE_STYLES,
+				'extra' => [],
 				'output' => '<link rel="stylesheet" href="/w/load.php?debug=true&amp;lang=nl&amp;modules=test.styles.mixed&amp;only=styles&amp;skin=fallback"/>' . "\n"
 					. '<link rel="stylesheet" href="/w/load.php?debug=true&amp;lang=nl&amp;modules=test.styles.pure&amp;only=styles&amp;skin=fallback"/>',
 			],
 			[
-				'context' => [ 'debug' => false ],
+				'context' => [ 'debug' => 'false' ],
 				'modules' => [ 'test.styles.pure', 'test.styles.mixed' ],
 				'only' => ResourceLoaderModule::TYPE_STYLES,
-				'output' => '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.mixed%2Cpure&amp;only=styles&amp;skin=fallback"/>',
+				'extra' => [],
+				'output' => '<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.mixed%2Cpure&amp;only=styles&amp;skin=fallback"/>',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.styles.noscript' ],
 				'only' => ResourceLoaderModule::TYPE_STYLES,
-				'output' => '<noscript><link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.noscript&amp;only=styles&amp;skin=fallback"/></noscript>',
+				'extra' => [],
+				'output' => '<noscript><link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.noscript&amp;only=styles&amp;skin=fallback"/></noscript>',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.shouldembed' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
+				'extra' => [],
 				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.shouldembed@09p30q0",null,{"css":[]});});</script>',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.styles.shouldembed' ],
 				'only' => ResourceLoaderModule::TYPE_STYLES,
+				'extra' => [],
 				'output' => '<style>.shouldembed{}</style>',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.scripts.shouldembed' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
+				'extra' => [],
 				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.state({"test.scripts.shouldembed":"ready"});});</script>',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test', 'test.shouldembed' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test\u0026skin=fallback");mw.loader.implement("test.shouldembed@09p30q0",null,{"css":[]});});</script>',
+				'extra' => [],
+				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test\u0026skin=fallback");mw.loader.implement("test.shouldembed@09p30q0",null,{"css":[]});});</script>',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.styles.pure', 'test.styles.shouldembed' ],
 				'only' => ResourceLoaderModule::TYPE_STYLES,
+				'extra' => [],
 				'output' =>
-					'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.pure&amp;only=styles&amp;skin=fallback"/>' . "\n"
+					'<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.pure&amp;only=styles&amp;skin=fallback"/>' . "\n"
 					. '<style>.shouldembed{}</style>'
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.ordering.a', 'test.ordering.e', 'test.ordering.b', 'test.ordering.d', 'test.ordering.c' ],
 				'only' => ResourceLoaderModule::TYPE_STYLES,
+				'extra' => [],
 				'output' =>
-					'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.ordering.a%2Cb&amp;only=styles&amp;skin=fallback"/>' . "\n"
+					'<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.ordering.a%2Cb&amp;only=styles&amp;skin=fallback"/>' . "\n"
 					. '<style>.orderingC{}.orderingD{}</style>' . "\n"
-					. '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.ordering.e&amp;only=styles&amp;skin=fallback"/>'
+					. '<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.ordering.e&amp;only=styles&amp;skin=fallback"/>'
 			],
 		];
 		// phpcs:enable
@@ -422,8 +437,14 @@ Deprecation message.' ]
 	 * @covers ResourceLoader::makeLoaderQuery
 	 * @covers ResourceLoader::makeInlineScript
 	 */
-	public function testMakeLoad( array $extraQuery, array $modules, $type, $expected ) {
-		$context = self::makeContext( $extraQuery );
+	public function testMakeLoad(
+		array $contextQuery,
+		array $modules,
+		$type,
+		array $extraQuery,
+		$expected
+	) {
+		$context = self::makeContext( $contextQuery );
 		$context->getResourceLoader()->register( self::makeSampleModules() );
 		$actual = ResourceLoaderClientHtml::makeLoad( $context, $modules, $type, $extraQuery, false );
 		$expected = self::expandVariables( $expected );
