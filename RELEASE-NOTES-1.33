@@ -282,6 +282,8 @@ because of Phabricator reports.
     AuthManagerAuthPlugin, and AuthManagerAuthPluginUser.
   * The $wgAuth configuration setting and its use in Setup.php and unit tests
 * (T217772) The 'wgAvailableSkins' mw.config key in JavaScript, was removed.
+* Language::markNoConversion, deprecated in 1.32, has been removed. Use
+  LanguageConverter::markNoConversion instead.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
