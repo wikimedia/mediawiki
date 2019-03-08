@@ -1106,7 +1106,7 @@ MESSAGE;
 								// mw.loader.implement will use globalEval if scripts is a string.
 								// Minify manually here, because general response minification is
 								// not effective due it being a string literal, not a function.
-								if ( !self::inDebugMode() ) {
+								if ( !$context->getDebug() ) {
 									$scripts = self::filter( 'minify-js', $scripts ); // T107377
 								}
 							} else {

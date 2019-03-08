@@ -767,11 +767,11 @@ END
 		}, $scripts );
 		$rl->register( $modules );
 
-		$this->setMwGlobals( 'wgResourceLoaderDebug', $debug );
 		$context = $this->getResourceLoaderContext(
 			[
 				'modules' => implode( '|', array_keys( $modules ) ),
 				'only' => 'scripts',
+				'debug' => $debug ? 'true' : 'false',
 			],
 			$rl
 		);

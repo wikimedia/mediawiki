@@ -21,7 +21,6 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 			'ResourceModuleSkinStyles' => [],
 			'ResourceModules' => [],
 			'EnableJavaScriptTest' => false,
-			'ResourceLoaderDebug' => false,
 			'LoadScript' => '/w/load.php',
 		] );
 		return new ResourceLoaderContext(
@@ -329,7 +328,7 @@ Deprecation message.' ]
 				'output' => '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.scripts.raw&amp;only=scripts&amp;skin=fallback"></script>',
 			],
 			[
-				'context' => [ 'sync' => true ],
+				'context' => [ 'sync' => '1' ],
 				'modules' => [ 'test.scripts.raw' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
 				'output' => '<script src="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.scripts.raw&amp;only=scripts&amp;skin=fallback&amp;sync=1"></script>',
@@ -347,14 +346,14 @@ Deprecation message.' ]
 				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.user\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
 			],
 			[
-				'context' => [ 'debug' => true ],
+				'context' => [ 'debug' => 'true' ],
 				'modules' => [ 'test.styles.pure', 'test.styles.mixed' ],
 				'only' => ResourceLoaderModule::TYPE_STYLES,
 				'output' => '<link rel="stylesheet" href="/w/load.php?debug=true&amp;lang=nl&amp;modules=test.styles.mixed&amp;only=styles&amp;skin=fallback"/>' . "\n"
 					. '<link rel="stylesheet" href="/w/load.php?debug=true&amp;lang=nl&amp;modules=test.styles.pure&amp;only=styles&amp;skin=fallback"/>',
 			],
 			[
-				'context' => [ 'debug' => false ],
+				'context' => [ 'debug' => 'false' ],
 				'modules' => [ 'test.styles.pure', 'test.styles.mixed' ],
 				'only' => ResourceLoaderModule::TYPE_STYLES,
 				'output' => '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.mixed%2Cpure&amp;only=styles&amp;skin=fallback"/>',
