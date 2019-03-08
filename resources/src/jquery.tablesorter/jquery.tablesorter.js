@@ -59,6 +59,10 @@
 		return false;
 	}
 
+	/**
+	 * @param {HTMLElement} node
+	 * @return {string}
+	 */
 	function getElementSortKey( node ) {
 		var $node = $( node ),
 			// Use data-sort-value attribute.
@@ -70,9 +74,6 @@
 			// Cast any numbers or other stuff to a string, methods
 			// like charAt, toLowerCase and split are expected.
 			return String( data );
-		}
-		if ( !node ) {
-			return $node.text();
 		}
 		if ( node.tagName.toLowerCase() === 'img' ) {
 			return $node.attr( 'alt' ) || ''; // handle undefined alt
