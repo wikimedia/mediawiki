@@ -157,24 +157,3 @@ abstract class JobQueueAggregator {
 		return $pendingDBs;
 	}
 }
-
-/**
- * @ingroup JobQueue
- */
-class JobQueueAggregatorNull extends JobQueueAggregator {
-	protected function doNotifyQueueEmpty( $wiki, $type ) {
-		return true;
-	}
-
-	protected function doNotifyQueueNonEmpty( $wiki, $type ) {
-		return true;
-	}
-
-	protected function doGetAllReadyWikiQueues() {
-		return [];
-	}
-
-	protected function doPurge() {
-		return true;
-	}
-}
