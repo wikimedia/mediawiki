@@ -374,7 +374,7 @@ class ExtensionRegistry {
 				}
 				throw new UnexpectedValueException( "callback '$cb' is not callable" );
 			}
-			call_user_func( $cb, $info['credits'][$name] );
+			$cb( $info['credits'][$name] );
 		}
 	}
 
