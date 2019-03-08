@@ -1643,32 +1643,28 @@ class ApiMain extends ApiBase {
 		$logCtx = [
 			'$schema' => '/mediawiki/api/request/0.0.1',
 			'meta' => [
+				'request_id' => WebRequest::getRequestId(),
 				'id' => UIDGenerator::newUUIDv1(),
-				'dt' => gmdate( 'c' ),
+				'dt' => wfTimestamp( TS_ISO_8601 ),
 				'domain' => $this->getConfig()->get( 'ServerName' ),
 				'stream' => 'mediawiki.api-request'
 			],
 			'http' => [
 				'method' => $request->getMethod(),
-				'client_ip' => $request->getIP(),
-				'request_headers' => []
+				'client_ip' => $request->getIP()
 			],
 			'database' => wfWikiID(),
 			'backend_time_ms' => (int)round( $time * 1000 ),
-			'params' => []
 		];
 
 		// If set, these headers will be logged in http.request_headers.
-		// A http.request_headers entry should not be set if the header was not provided.
-		if ( $request->getHeader( 'User-agent' ) ) {
-			$logCtx['http']['request_headers']['user-agent'] = $request->getHeader( 'User-agent' );
+		$httpRequestHeadersToLog = [ 'accept-language', 'referer', 'user-agent' ];
+		foreach ( $httpRequestHeadersToLog as $header ) {
+			if ( $request->getHeader( $header ) ) {
+				// Set the header in http.request_headers
+				$logCtx['http']['request_headers'][$header] = $request->getHeader( $header );
+			}
 		}
-		if ( $request->getHeader( 'Api-user-agent' ) ) {
-			$logCtx['http']['request_headers']['api-user-agent'] = $request->getHeader( 'Api-user-agent' );
-		}
-
-		$logCtx['meta']['request_id'] =
-			$logCtx['http']['request_headers']['x-request-id'] = WebRequest::getRequestId();
 
 		if ( $e ) {
 			$logCtx['api_error_codes'] = [];
