@@ -195,7 +195,7 @@ class CategoryMembershipChangeJob extends Job {
 		// Get the prior revision (the same for null edits)
 		if ( $newRev->getParentId() ) {
 			$oldRev = Revision::newFromId( $newRev->getParentId(), Revision::READ_LATEST );
-			if ( !$oldRev->getContent() ) {
+			if ( !$oldRev || !$oldRev->getContent() ) {
 				return; // deleted?
 			}
 		} else {
