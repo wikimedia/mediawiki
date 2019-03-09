@@ -866,8 +866,7 @@ abstract class Installer {
 		}
 
 		if ( !$caches ) {
-			$key = 'config-no-cache-apcu';
-			$this->showMessage( $key );
+			$this->showMessage( 'config-no-cache-apcu' );
 		}
 
 		$this->setVar( '_Caches', $caches );
