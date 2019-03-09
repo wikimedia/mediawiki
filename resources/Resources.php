@@ -2766,6 +2766,7 @@ return [
 	'mediawiki.widgets.NamespacesMultiselectWidget' => [
 		'scripts' => [
 			'resources/src/mediawiki.widgets/mw.widgets.NamespacesMultiselectWidget.js',
+			'resources/src/mediawiki.widgets/mw.widgets.NamespacesMenuOptionWidget.js',
 		],
 		'dependencies' => [
 			'oojs-ui-widgets',
