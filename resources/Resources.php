@@ -1341,7 +1341,7 @@ return [
 		'styles' => 'resources/src/mediawiki.checkboxtoggle.styles.css',
 	],
 	'mediawiki.cookie' => [
-		'scripts' => 'resources/src/mediawiki.cookie.js',
+		'scripts' => 'resources/src/mediawiki.cookie/index.js',
 		'dependencies' => 'jquery.cookie',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
