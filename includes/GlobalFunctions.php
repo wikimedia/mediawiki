@@ -334,6 +334,7 @@ function wfUrlencode( $s ) {
 	static $needle;
 
 	if ( is_null( $s ) ) {
+		// Reset $needle for testing.
 		$needle = null;
 		return '';
 	}
