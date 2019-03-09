@@ -1120,7 +1120,6 @@
 					if ( script.parentNode ) {
 						script.parentNode.removeChild( script );
 					}
-					script = null;
 					if ( callback ) {
 						callback();
 						callback = null;
