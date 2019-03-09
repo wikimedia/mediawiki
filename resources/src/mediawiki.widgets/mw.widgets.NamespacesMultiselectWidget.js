@@ -38,7 +38,10 @@
 			{
 				clearInputOnChoose: true,
 				inputPosition: 'inline',
-				allowEditTags: false
+				allowEditTags: false,
+				menu: {
+					filterMode: 'substring'
+				}
 			},
 			config,
 			{
@@ -83,5 +86,18 @@
 
 	OO.inheritClass( mw.widgets.NamespacesMultiselectWidget, OO.ui.MenuTagMultiselectWidget );
 	OO.mixinClass( mw.widgets.NamespacesMultiselectWidget, OO.ui.mixin.PendingElement );
+
+	/* Methods */
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.NamespacesMultiselectWidget.prototype.createMenuOptionWidget = function ( data, label, icon ) {
+		return new mw.widgets.NamespacesMenuOptionWidget( {
+			data: data,
+			label: label || data,
+			icon: icon
+		} );
+	};
 
 }() );
