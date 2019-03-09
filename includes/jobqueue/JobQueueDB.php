@@ -20,7 +20,7 @@
  * @file
  */
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBError;
 use MediaWiki\MediaWikiServices;
@@ -40,12 +40,17 @@ class JobQueueDB extends JobQueue {
 
 	/** @var WANObjectCache */
 	protected $cache;
+	/** @var IDatabase|DBError|null */
+	protected $conn;
 
-	/** @var bool|string Name of an external DB cluster. False if not set */
-	protected $cluster = false;
+	/** @var array|null Server configuration array */
+	protected $server;
+	/** @var string|null Name of an external DB cluster or null for the local DB cluster */
+	protected $cluster;
 
 	/**
 	 * Additional parameters include:
+	 *   - server  : Server configuration array for Database::factory. Overrides "cluster".
 	 *   - cluster : The name of an external cluster registered via LBFactory.
 	 *               If not specified, the primary DB cluster for the wiki will be used.
 	 *               This can be overridden with a custom cluster so that DB handles will
@@ -55,7 +60,12 @@ class JobQueueDB extends JobQueue {
 	protected function __construct( array $params ) {
 		parent::__construct( $params );
 
-		$this->cluster = $params['cluster'] ?? false;
+		if ( isset( $params['server'] ) ) {
+			$this->server = $params['server'];
+		} elseif ( isset( $params['cluster'] ) && is_string( $params['cluster'] ) ) {
+			$this->cluster = $params['cluster'];
+		}
+
 		$this->cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 	}
 
@@ -542,9 +552,15 @@ class JobQueueDB extends JobQueue {
 	 * @return void
 	 */
 	protected function doWaitForBackups() {
+		if ( $this->server ) {
+			return; // not using LBFactory instance
+		}
+
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lbFactory->waitForReplication(
-			[ 'domain' => $this->domain, 'cluster' => $this->cluster ] );
+		$lbFactory->waitForReplication( [
+			'domain' => $this->domain,
+			'cluster' => is_string( $this->cluster ) ? $this->cluster : false
+		] );
 	}
 
 	/**
@@ -599,7 +615,11 @@ class JobQueueDB extends JobQueue {
 	}
 
 	public function getCoalesceLocationInternal() {
-		return $this->cluster
+		if ( $this->server ) {
+			return null; // not using the LBFactory instance
+		}
+
+		return is_string( $this->cluster )
 			? "DBCluster:{$this->cluster}:{$this->domain}"
 			: "LBFactory:{$this->domain}";
 	}
@@ -744,7 +764,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @throws JobQueueConnectionError
-	 * @return DBConnRef
+	 * @return IDatabase
 	 */
 	protected function getReplicaDB() {
 		try {
@@ -756,7 +776,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @throws JobQueueConnectionError
-	 * @return DBConnRef
+	 * @return IDatabase
 	 */
 	protected function getMasterDB() {
 		try {
@@ -768,20 +788,37 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @param int $index (DB_REPLICA/DB_MASTER)
-	 * @return DBConnRef
+	 * @return IDatabase
 	 */
 	protected function getDB( $index ) {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lb = ( $this->cluster !== false )
-			? $lbFactory->getExternalLB( $this->cluster )
-			: $lbFactory->getMainLB( $this->domain );
+		if ( $this->server ) {
+			if ( $this->conn instanceof IDatabase ) {
+				return $this->conn;
+			} elseif ( $this->conn instanceof DBError ) {
+				throw $this->conn;
+			}
 
-		return ( $lb->getServerType( $lb->getWriterIndex() ) !== 'sqlite' )
-			// Keep a separate connection to avoid contention and deadlocks;
-			// However, SQLite has the opposite behavior due to DB-level locking.
-			? $lb->getConnectionRef( $index, [], $this->domain, $lb::CONN_TRX_AUTOCOMMIT )
-			// Jobs insertion will be defered until the PRESEND stage to reduce contention.
-			: $lb->getConnectionRef( $index, [], $this->domain );
+			try {
+				$this->conn = Database::factory( $this->server['type'], $this->server );
+			} catch ( DBError $e ) {
+				$this->conn = $e;
+				throw $e;
+			}
+
+			return $this->conn;
+		} else {
+			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+			$lb = is_string( $this->cluster )
+				? $lbFactory->getExternalLB( $this->cluster )
+				: $lbFactory->getMainLB( $this->domain );
+
+			return ( $lb->getServerType( $lb->getWriterIndex() ) !== 'sqlite' )
+				// Keep a separate connection to avoid contention and deadlocks;
+				// However, SQLite has the opposite behavior due to DB-level locking.
+				? $lb->getConnectionRef( $index, [], $this->domain, $lb::CONN_TRX_AUTOCOMMIT )
+				// Jobs insertion will be defered until the PRESEND stage to reduce contention.
+				: $lb->getConnectionRef( $index, [], $this->domain );
+		}
 	}
 
 	/**
