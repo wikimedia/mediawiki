@@ -1633,8 +1633,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * Generate a secret value for variables using our CryptRand generator.
-	 * Produce a warning if the random source was insecure.
+	 * Generate a secret value for variables using a secure generator.
 	 *
 	 * @param array $keys
 	 * @return Status

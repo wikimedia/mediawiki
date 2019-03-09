@@ -37,7 +37,7 @@
 # You can also set the following parser properties via test options:
 #  wgEnableUploads, wgAllowExternalImages, wgMaxTocLevel,
 #  wgLinkHolderBatchSize, wgRawHtml, wgInterwikiMagic,
-#  wgEnableMagicLinks, wgMediaInTargetLanguage
+#  wgEnableMagicLinks
 #
 # For testing purposes, temporary articles can created:
 # !!article / NAMESPACE:TITLE / !!text / ARTICLE TEXT / !!endarticle
@@ -15955,7 +15955,6 @@ parsoid=wt2html,wt2wt,html2html
 SVG thumbnails in page language
 !! options
 language=ru
-wgMediaInTargetLanguage = true
 !! wikitext
 [[File:Foobar.svg]] [[File:Foobar.svg|lang=en]]
 !! html/php
@@ -15967,7 +15966,6 @@ wgMediaInTargetLanguage = true
 SVG thumbnails in page language not present in the file
 !! options
 language=de
-wgMediaInTargetLanguage = true
 !! wikitext
 [[File:Foobar.svg]] [[File:Foobar.svg|lang=ru]]
 !! html/php
