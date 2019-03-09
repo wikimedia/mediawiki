@@ -11,8 +11,6 @@ production.
 * $wgEnablePartialBlocks – This enables the Partial Blocks feature, which gives
   accounts with block permissions the ability to block users, IPs, and IP ranges
   from editing specific pages, while allowing them to edit the rest of the wiki.
-* $wgMediaInTargetLanguage – whether multilingual images should be dispalyed in
-  the current parse language where available.
 
 ==== Changed configuration ====
 * Some external link searches will not work correctly until update.php (or
@@ -61,6 +59,8 @@ production.
   (requires PHP 7.2+) and GPU hacking (7.3+).
 * Special:CreateAccount now warns the user if their chosen username has to be
   normalized.
+* (T205040) Multilingual images are now be displayed in the current parse
+  language where available.
 
 === External library changes in 1.33 ===
 

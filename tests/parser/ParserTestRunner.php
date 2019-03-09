@@ -282,7 +282,6 @@ class ParserTestRunner {
 		$setup['wgHtml5'] = true;
 		$setup['wgDisableLangConversion'] = false;
 		$setup['wgDisableTitleConversion'] = false;
-		$setup['wgMediaInTargetLanguage'] = false;
 
 		// "extra language links"
 		// see https://gerrit.wikimedia.org/r/111390
@@ -1090,7 +1089,6 @@ class ParserTestRunner {
 				+ [ 'ISBN' => true, 'PMID' => true, 'RFC' => true ],
 			// Test with legacy encoding by default until HTML5 is very stable and default
 			'wgFragmentMode' => [ 'legacy' ],
-			'wgMediaInTargetLanguage' => self::getOptionValue( 'wgMediaInTargetLanguage', $opts, false ),
 		];
 
 		$nonIncludable = self::getOptionValue( 'wgNonincludableNamespaces', $opts, false );
