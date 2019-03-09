@@ -38,9 +38,10 @@ require dirname( __DIR__ ) . '/includes/WebStart.php';
 wfInstallerMain();
 
 function wfInstallerMain() {
-	global $wgRequest, $wgLang, $wgMetaNamespace, $wgCanonicalNamespaceNames;
+	global $wgLang, $wgMetaNamespace, $wgCanonicalNamespaceNames;
+	$request = RequestContext::getMain()->getRequest();
 
-	$installer = InstallerOverrides::getWebInstaller( $wgRequest );
+	$installer = InstallerOverrides::getWebInstaller( $request );
 
 	if ( !$installer->startSession() ) {
 		if ( $installer->request->getVal( "css" ) ) {
@@ -62,8 +63,8 @@ function wfInstallerMain() {
 		$session = array();
 	}
 
-	if ( !is_null( $wgRequest->getVal( 'uselang' ) ) ) {
-		$langCode = $wgRequest->getVal( 'uselang' );
+	if ( !is_null( $request->getVal( 'uselang' ) ) ) {
+		$langCode = $request->getVal( 'uselang' );
 	} elseif ( isset( $session['settings']['_UserLang'] ) ) {
 		$langCode = $session['settings']['_UserLang'];
 	} else {
