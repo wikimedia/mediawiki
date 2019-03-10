@@ -622,10 +622,10 @@ class ProtectionForm {
 	/**
 	 * Show protection long extracts for this page
 	 *
-	 * @param OutputPage &$out
+	 * @param OutputPage $out
 	 * @private
 	 */
-	function showLogExtract( &$out ) {
+	function showLogExtract( OutputPage $out ) {
 		# Show relevant lines from the protection log:
 		$protectLogPage = new LogPage( 'protect' );
 		$out->addHTML( Xml::element( 'h2', null, $protectLogPage->getName()->text() ) );
