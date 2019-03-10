@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -61,10 +63,10 @@ class FormatInstallDoc extends Maintenance {
 		$outText = InstallDocFormatter::format( $inText );
 
 		if ( $this->hasOption( 'html' ) ) {
-			global $wgParser;
+			$parser = MediaWikiServices::getInstance()->getParser();
 			$opt = new ParserOptions;
 			$title = Title::newFromText( 'Text file' );
-			$out = $wgParser->parse( $outText, $title, $opt );
+			$out = $parser->parse( $outText, $title, $opt );
 			$outText = "<html><body>\n" . $out->getText() . "\n</body></html>\n";
 		}
 
