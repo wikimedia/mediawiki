@@ -49,6 +49,7 @@ use User;
  * @since 1.27
  */
 final class UserInfo {
+	/** @var bool */
 	private $verified = false;
 
 	/** @var User|null */
