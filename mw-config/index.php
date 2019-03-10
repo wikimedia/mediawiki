@@ -44,7 +44,7 @@ function wfInstallerMain() {
 	$installer = InstallerOverrides::getWebInstaller( $request );
 
 	if ( !$installer->startSession() ) {
-		if ( $installer->request->getVal( "css" ) ) {
+		if ( $installer->request->getVal( 'css' ) ) {
 			// Do not display errors on css pages
 			$installer->outputCss();
 			exit;
@@ -63,7 +63,7 @@ function wfInstallerMain() {
 		$session = array();
 	}
 
-	if ( !is_null( $request->getVal( 'uselang' ) ) ) {
+	if ( $request->getVal( 'uselang' ) !== null ) {
 		$langCode = $request->getVal( 'uselang' );
 	} elseif ( isset( $session['settings']['_UserLang'] ) ) {
 		$langCode = $session['settings']['_UserLang'];
