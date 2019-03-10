@@ -1341,7 +1341,17 @@ return [
 		'styles' => 'resources/src/mediawiki.checkboxtoggle.styles.css',
 	],
 	'mediawiki.cookie' => [
-		'scripts' => 'resources/src/mediawiki.cookie/index.js',
+		'localBasePath' => "$IP/resources/src/mediawiki.cookie",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.cookie",
+		'packageFiles' => [
+			'index.js',
+			[ 'name' => 'config.json', 'config' => [
+				'prefix' => 'CookiePrefix',
+				'domain' => 'CookieDomain',
+				'path' => 'CookiePath',
+				'expires' => 'CookieExpiration'
+			] ],
+		],
 		'dependencies' => 'jquery.cookie',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
