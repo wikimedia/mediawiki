@@ -206,7 +206,6 @@
 			Whitelist existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
-		<exclude-pattern>*/includes/actions/HistoryAction\.php</exclude-pattern>
 		<exclude-pattern>*/includes/api/ApiErrorFormatter\.php</exclude-pattern>
 		<exclude-pattern>*/includes/api/ApiImport\.php</exclude-pattern>
 		<exclude-pattern>*/includes/api/ApiMessage\.php</exclude-pattern>
