@@ -139,11 +139,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	protected function mysqlSetCharset( $charset ) {
 		$conn = $this->getBindingHandle();
 
-		if ( method_exists( $conn, 'set_charset' ) ) {
-			return $conn->set_charset( $charset );
-		} else {
-			return $this->query( 'SET NAMES ' . $charset, __METHOD__ );
-		}
+		return $conn->set_charset( $charset );
 	}
 
 	/**
