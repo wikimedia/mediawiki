@@ -722,7 +722,7 @@
 	"sectioneditnotsupported-text": "呢版唔支援逐改段。",
 	"permissionserrors": "權限出錯",
 	"permissionserrorstext": "根據下面嘅{{PLURAL:$1|原因|原因}}，你並無權限去做呢樣嘢:",
-	"permissionserrorstext-withaction": "根據下面嘅{{PLURAL:$1|原因|原因}}，你並無權限去做$2:",
+	"permissionserrorstext-withaction": "根據下面嘅{{PLURAL:$1|原因}}，你無權去$2：",
 	"contentmodelediterror": "你唔改得呢版修訂，因為呢個修訂嘅內容模型係 <code>$1</code> ，同而家嘅內容模型 <code>$2</code> 有分別。",
 	"recreate-moveddeleted-warn": "'''警告: 你而家重開一版係先前曾經刪除過嘅。'''\n\n你應該要考慮吓繼續編輯呢一版係唔係適合嘅。\n為咗方便起見，呢一版嘅刪除同搬版記錄已經響下面提供:",
 	"moveddeleted-notice": "呢一版已經刪咗。\n呢版嘅刪除同搬版日誌響下面提供咗以便參考。",

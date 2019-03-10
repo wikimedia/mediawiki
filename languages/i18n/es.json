@@ -183,7 +183,8 @@
 			"Laura Ospina",
 			"Pipino-pumuki",
 			"Carlosmg.dg",
-			"Mynor Archila"
+			"Mynor Archila",
+			"Jorge Ubilla"
 		]
 	},
 	"tog-underline": "Enlaces a subrayar:",
@@ -906,7 +907,7 @@
 	"edit-gone-missing": "No se ha podido actualizar la página.\nParece haber sido borrada.",
 	"edit-conflict": "Conflicto de edición.",
 	"edit-no-change": "Se ignoró tu edición porque no se hizo ningún cambio en el texto.",
-	"edit-slots-cannot-add": "{{PLURAL:$1|La siguiente ranura no es soportada|Las siguientes ranuras no son soportadas}} aquí:",
+	"edit-slots-cannot-add": "{{PLURAL:$1|La siguiente ranura no es soportada|Las siguientes ranuras no son soportadas}} aquí: $2.",
 	"edit-slots-missing": "{{PLURAL:$1|Falta el siguiente espacio|Faltan los siguientes espacios}}: $2",
 	"postedit-confirmation-created": "Se ha creado la página.",
 	"postedit-confirmation-restored": "Se ha restaurado la página.",
@@ -2578,6 +2579,7 @@
 	"anoncontribs": "Contribuciones",
 	"contribsub2": "Para {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "La cuenta de usuario «$1» no está registrada.",
+	"negative-namespace-not-supported": "Los espacios de nombres con valores negativos no están permitidos",
 	"nocontribs": "No se encontraron cambios que cumplieran estos criterios.",
 	"uctop": "última",
 	"month": "Desde el mes (y anteriores):",
@@ -2642,6 +2644,7 @@
 	"ipb-confirm": "Confirmar bloqueo",
 	"ipb-sitewide": "En todo el sitio",
 	"ipb-partial": "Parcial",
+	"ipb-sitewide-help": "Todas las páginas en la Wiki y todas las acciones de contribución.",
 	"ipb-pages-label": "Páginas",
 	"ipb-namespaces-label": "Espacios de nombres",
 	"badipaddress": "La dirección IP no tiene el formato correcto.",

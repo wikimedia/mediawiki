@@ -2239,7 +2239,7 @@
 	"confirmdeletetext": "Iz zbirke podatkov boste izbrisali stran ali sliko skupaj z vso njeno zgodovino.\nProsimo, '''potrdite''', da to resnično želite, da razumete posledice dejanja in da se ravnate po [[{{MediaWiki:Policy-url}}|pravilih]].",
 	"actioncomplete": "Poseg je končan",
 	"actionfailed": "Dejanje spodletelo",
-	"deletedtext": "Stran »$1« je izbrisana.\nZa zapise nedavnih brisanj glej $2.",
+	"deletedtext": "Stran »$1« je izbrisana.\nZa zapise o pred kratkim opravljenih izbrisih glejte $2.",
 	"dellogpage": "Dnevnik brisanja",
 	"dellogpagetext": "Spodaj je prikazan seznam nedavnih brisanj.",
 	"deletionlog": "dnevnik brisanja",

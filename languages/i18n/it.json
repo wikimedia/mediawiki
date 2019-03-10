@@ -2674,6 +2674,7 @@
 	"move-watch": "Aggiungi la pagina agli osservati speciali",
 	"movepagebtn": "Sposta la pagina",
 	"pagemovedsub": "Spostamento effettuato con successo",
+	"cannotmove": "La pagina non può essere spostata {{PLURAL:$1|per la seguente ragione|per le seguenti ragioni}}:",
 	"movepage-moved": "'''\"$1\" è stata spostata a \"$2\"'''",
 	"movepage-moved-redirect": "È stato creato un redirect.",
 	"movepage-moved-noredirect": "La creazione di un redirect è stata soppressa.",

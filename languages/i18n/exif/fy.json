@@ -3,7 +3,8 @@
 		"authors": [
 			"Kening Aldgilles",
 			"Robin van der Vliet",
-			"Snakesteuben"
+			"Snakesteuben",
+			"PiefPafPier"
 		]
 	},
 	"exif-imagewidth": "Breedte",
@@ -24,7 +25,7 @@
 	"exif-pixelxdimension": "Ofbyldingsbreedte",
 	"exif-pixelydimension": "Ofbyldingshichte",
 	"exif-usercomment": "Opmerkings",
-	"exif-relatedsoundfile": "Besibbe audiotriem",
+	"exif-relatedsoundfile": "Besibbe audiobestân",
 	"exif-datetimeoriginal": "Tiidstip gegevensoanmaak",
 	"exif-datetimedigitized": "Tiidstip digitalisearring",
 	"exif-subsectime": "Datum tijd subsekonden",
@@ -37,7 +38,7 @@
 	"exif-lightsource": "Ljochtboarne",
 	"exif-flash": "Flits",
 	"exif-focallength-format": "$1 mm",
-	"exif-filesource": "Triemboarne",
+	"exif-filesource": "Bestânsboarne",
 	"exif-whitebalance": "Wytbalâns",
 	"exif-contrast": "Kontrast",
 	"exif-saturation": "Sêding",

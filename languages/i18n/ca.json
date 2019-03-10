@@ -498,6 +498,7 @@
 	"badretype": "Les contrasenyes que heu introduït no coincideixen.",
 	"usernameinprogress": "La creació d'un compte per a aquest usuari ja està en curs. Espereu.",
 	"userexists": "El nom que heu entrat ja és en ús.\nEscolliu-ne un de diferent.",
+	"createacct-normalization": "El vostre nom d'usuari s'ajustarà a «$2» per restriccions tècniques.",
 	"loginerror": "Error d'inici de sessió",
 	"createacct-error": "Error de creació de compte",
 	"createaccounterror": "No s'ha pogut crear el compte: $1",
