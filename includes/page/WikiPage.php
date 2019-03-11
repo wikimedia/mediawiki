@@ -2626,7 +2626,9 @@ class WikiPage implements Page, IDBAccessObject {
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$wikiPage = $this;
 
-		$deleter = is_null( $deleter ) ? $wgUser : $deleter;
+		if ( !$deleter ) {
+			$deleter = $wgUser;
+		}
 		if ( !Hooks::run( 'ArticleDelete',
 			[ &$wikiPage, &$deleter, &$reason, &$error, &$status, $suppress ]
 		) ) {
