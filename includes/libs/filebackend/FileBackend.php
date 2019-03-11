@@ -831,7 +831,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * files whereas key/value store backends might revoke container
 	 * access to the storage user representing end-users in web requests.
 	 *
-	 * This is not guaranteed to actually make files or listings publically hidden.
+	 * This is not guaranteed to actually make files or listings publicly hidden.
 	 * Additional server configuration may be needed to achieve the desired effect.
 	 *
 	 * @param array $params Parameters include:
@@ -864,7 +864,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * access to the storage user representing end-users in web requests.
 	 * This essentially can undo the result of secure() calls.
 	 *
-	 * This is not guaranteed to actually make files or listings publically viewable.
+	 * This is not guaranteed to actually make files or listings publicly viewable.
 	 * Additional server configuration may be needed to achieve the desired effect.
 	 *
 	 * @param array $params Parameters include:
