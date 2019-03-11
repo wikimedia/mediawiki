@@ -869,7 +869,7 @@ class EditPage {
 		} elseif ( $this->section == 'new' ) {
 			// Nothing *to* preview for new sections
 			return false;
-		} elseif ( ( $request->getVal( 'preload' ) !== null || $this->mTitle->exists() )
+		} elseif ( ( $request->getCheck( 'preload' ) || $this->mTitle->exists() )
 			&& $this->context->getUser()->getOption( 'previewonfirst' )
 		) {
 			// Standard preference behavior
@@ -975,7 +975,7 @@ class EditPage {
 
 			$this->scrolltop = $request->getIntOrNull( 'wpScrolltop' );
 
-			if ( $this->textbox1 === '' && $request->getVal( 'wpTextbox1' ) === null ) {
+			if ( $this->textbox1 === '' && !$request->getCheck( 'wpTextbox1' ) ) {
 				// wpTextbox1 field is missing, possibly due to being "too big"
 				// according to some filter rules such as Suhosin's setting for
 				// suhosin.request.max_value_length (d'oh)
