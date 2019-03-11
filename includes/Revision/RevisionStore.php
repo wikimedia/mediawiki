@@ -1760,10 +1760,16 @@ class RevisionStore
 	 * @param object $row
 	 * @param int $queryFlags
 	 * @param Title|null $title
-	 *
+	 * @param bool $fromCache if true, the returned RevisionRecord will ensure that no stale
+	 *   data is returned from getters, by querying the database as needed
 	 * @return RevisionRecord
 	 */
-	public function newRevisionFromRow( $row, $queryFlags = 0, Title $title = null ) {
+	public function newRevisionFromRow(
+		$row,
+		$queryFlags = 0,
+		Title $title = null,
+		$fromCache = false
+	) {
 		Assert::parameterType( 'object', $row, '$row' );
 
 		if ( !$title ) {
@@ -1797,7 +1803,23 @@ class RevisionStore
 
 		$slots = $this->newRevisionSlots( $row->rev_id, $row, $queryFlags, $title );
 
-		return new RevisionStoreRecord( $title, $user, $comment, $row, $slots, $this->wikiId );
+		// If this is a cached row, instantiate a cache-aware revision class to avoid stale data.
+		if ( $fromCache ) {
+			$rev = new RevisionStoreCacheRecord(
+				function ( $revId ) use ( $queryFlags ) {
+					$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
+					return $this->fetchRevisionRowFromConds(
+						$db,
+						[ 'rev_id' => intval( $revId ) ]
+					);
+				},
+				$title, $user, $comment, $row, $slots, $this->wikiId
+			);
+		} else {
+			$rev = new RevisionStoreRecord(
+				$title, $user, $comment, $row, $slots, $this->wikiId );
+		}
+		return $rev;
 	}
 
 	/**
@@ -2773,27 +2795,29 @@ class RevisionStore
 			return false;
 		}
 
+		// Load the row from cache if possible.  If not possible, populate the cache.
+		// As a minor optimization, remember if this was a cache hit or miss.
+		// We can sometimes avoid a database query later if this is a cache miss.
+		$fromCache = true;
 		$row = $this->cache->getWithSetCallback(
 			// Page/rev IDs passed in from DB to reflect history merges
 			$this->getRevisionRowCacheKey( $db, $pageId, $revId ),
 			WANObjectCache::TTL_WEEK,
-			function ( $curValue, &$ttl, array &$setOpts ) use ( $db, $pageId, $revId ) {
+			function ( $curValue, &$ttl, array &$setOpts ) use (
+				$db, $pageId, $revId, &$fromCache
+			) {
 				$setOpts += Database::getCacheSetOptions( $db );
-
-				$conds = [
-					'rev_page' => intval( $pageId ),
-					'page_id' => intval( $pageId ),
-					'rev_id' => intval( $revId ),
-				];
-
-				$row = $this->fetchRevisionRowFromConds( $db, $conds );
-				return $row ?: false; // don't cache negatives
+				$row = $this->fetchRevisionRowFromConds( $db, [ 'rev_id' => intval( $revId ) ] );
+				if ( $row ) {
+					$fromCache = false;
+				}
+				return $row; // don't cache negatives
 			}
 		);
 
-		// Reflect revision deletion and user renames
+		// Reflect revision deletion and user renames.
 		if ( $row ) {
-			return $this->newRevisionFromRow( $row, 0, $title );
+			return $this->newRevisionFromRow( $row, 0, $title, $fromCache );
 		} else {
 			return false;
 		}

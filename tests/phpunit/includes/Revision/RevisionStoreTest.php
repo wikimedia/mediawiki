@@ -21,6 +21,9 @@ use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 use WikitextContent;
 
+/**
+ * Tests RevisionStore
+ */
 class RevisionStoreTest extends MediaWikiTestCase {
 
 	private function useTextId() {
