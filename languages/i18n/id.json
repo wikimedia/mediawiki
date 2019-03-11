@@ -61,7 +61,8 @@
 			"Dodolzk",
 			"Fitoschido",
 			"Palladin911",
-			"Bagas Chrisara"
+			"Bagas Chrisara",
+			"Pebaryan"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -2526,6 +2527,7 @@
 	"ipb-confirm": "Konfirmasi blokir",
 	"ipb-sitewide": "Keseluruhan situs",
 	"ipb-partial": "Parsial",
+	"ipb-partial-help": "Halaman atau ruangnama khusus.",
 	"ipb-pages-label": "Halaman",
 	"ipb-namespaces-label": "Ruang nama",
 	"badipaddress": "Format alamat IP atau nama pengguna salah.",
@@ -3293,6 +3295,7 @@
 	"redirect-file": "Nama berkas",
 	"redirect-logid": "ID log",
 	"redirect-not-exists": "Nilai tidak ditemukan",
+	"redirect-not-numeric": "Nilai bukan numerik",
 	"fileduplicatesearch": "Pencarian berkas duplikat",
 	"fileduplicatesearch-summary": "Pencarian duplikat berkas berdasarkan nilai hash-nya.",
 	"fileduplicatesearch-filename": "Nama berkas:",
