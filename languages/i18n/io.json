@@ -708,6 +708,8 @@
 	"content-json-empty-array": "vakua tabelo",
 	"deprecated-self-close-category": "Pagini qui uzas nevalida etiketi HTML por klozajo",
 	"duplicate-args-category": "Pagini kun argumenti duopligita che shabloni",
+	"language-converter-depth-warning": "La limito di profundeso dil linguo-konvertilo superiresis ($1)",
+	"node-count-exceeded-warning": "La pagino superiras la maxima nombro di nodi permisebla",
 	"parser-unstrip-loop-warning": "Renkontresis nefinita procedo ('loop') en la funciono \"Unstrip\"",
 	"undo-success": "La redakto ne povas desfacesar.\nVerifikez adinfre per komparo inter la du versioni se to esas fakte quon vu deziras facar; pose 'salvez' la modifiki por kompletigar la redakto.",
 	"undo-failure": "Ne povis nuligar la redakto pro konflikti kun intermeza redakti.",
@@ -1217,6 +1219,7 @@
 	"uploaddisabled": "Pardonez, la adkargo esas desaktiva.",
 	"uploaddisabledtext": "Ne permisesas sendar arkivi.",
 	"upload-maxfilesize": "Maxima grandeso dil arkivo: $1",
+	"upload-description": "Deskripto dil arkivo",
 	"watchthisupload": "Surveyar ica arkivo",
 	"filewasdeleted": "Altr arkivo kun ca sama nomo sendesis antee, e pose efacesis.\nAnte probar risendar ol, vu mustas ante verifikar $1.",
 	"upload-file-error": "Interna eroro",
@@ -2086,5 +2089,6 @@
 	"log-action-filter-delete": "Tipo di efacado:",
 	"log-action-filter-all": "Omno",
 	"log-action-filter-contentmodel-change": "Modifiko di la kontenajo di ula modelo",
-	"log-action-filter-suppress-reblock": "User suppression by reblock"
+	"log-action-filter-suppress-reblock": "User suppression by reblock",
+	"authprovider-resetpass-skip-label": "Preterpasar"
 }
