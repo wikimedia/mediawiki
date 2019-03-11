@@ -1667,11 +1667,10 @@ class EditPage {
 			case self::AS_SUCCESS_NEW_ARTICLE:
 				$query = $resultDetails['redirect'] ? 'redirect=no' : '';
 				if ( $extraQueryRedirect ) {
-					if ( $query === '' ) {
-						$query = $extraQueryRedirect;
-					} else {
-						$query .= '&' . $extraQueryRedirect;
+					if ( $query !== '' ) {
+						$query .= '&';
 					}
+					$query .= $extraQueryRedirect;
 				}
 				$anchor = $resultDetails['sectionanchor'] ?? '';
 				$out->redirect( $this->mTitle->getFullURL( $query ) . $anchor );
@@ -1688,18 +1687,16 @@ class EditPage {
 				);
 
 				if ( $resultDetails['redirect'] ) {
-					if ( $extraQuery == '' ) {
-						$extraQuery = 'redirect=no';
-					} else {
-						$extraQuery = 'redirect=no&' . $extraQuery;
+					if ( $extraQuery !== '' ) {
+						$extraQuery = '&' . $extraQuery;
 					}
+					$extraQuery = 'redirect=no' . $extraQuery;
 				}
 				if ( $extraQueryRedirect ) {
-					if ( $extraQuery === '' ) {
-						$extraQuery = $extraQueryRedirect;
-					} else {
-						$extraQuery .= '&' . $extraQueryRedirect;
+					if ( $extraQuery !== '' ) {
+						$extraQuery .= '&';
 					}
+					$extraQuery .= $extraQueryRedirect;
 				}
 
 				$out->redirect( $this->mTitle->getFullURL( $extraQuery ) . $sectionanchor );
