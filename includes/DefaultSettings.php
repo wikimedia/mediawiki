@@ -4445,6 +4445,11 @@ $wgCentralIdLookupProvider = 'local';
  * - value: (number, boolean or null) the value to pass to the callback
  * - forceChange: (bool, default false) if the password is invalid, do
  *   not let the user log in without changing the password
+ * - suggestChangeOnLogin: (bool, default false) if true and the password is
+ *   invalid, suggest a password change if logging in. If all the failing policies
+ *   that apply to the user have this set to false, the password change
+ *   screen will not be shown. 'forceChange' takes precedence over
+ *   'suggestChangeOnLogin' if they are both present.
  * As a shorthand for [ 'value' => <value> ], simply <value> can be written.
  * When multiple password policies are defined for a user, the settings
  * arrays are merged, and for fields which are set in both arrays, the
@@ -4514,10 +4519,10 @@ $wgPasswordPolicy = [
 			'PasswordNotInLargeBlacklist' => true,
 		],
 		'default' => [
-			'MinimalPasswordLength' => 1,
-			'PasswordCannotMatchUsername' => true,
-			'PasswordCannotMatchBlacklist' => true,
-			'MaximalPasswordLength' => 4096,
+			'MinimalPasswordLength' => [ 'value' => 1, 'suggestChangeOnLogin' => true ],
+			'PasswordCannotMatchUsername' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
+			'PasswordCannotMatchBlacklist' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
+			'MaximalPasswordLength' => [ 'value' => 4096, 'suggestChangeOnLogin' => true ],
 		],
 	],
 	'checks' => [

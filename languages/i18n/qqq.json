@@ -4387,6 +4387,7 @@
 	"passwordpolicies-policy-passwordcannotbepopular": "Password policy that enforces that a password is not in a list of $1 number of \"popular\" passwords. $1 - number of popular passwords the password will be checked against",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Password policy that enforces that a password is not in a list of 100,000 number of \"popular\" passwords.",
 	"passwordpolicies-policyflag-forcechange": "Password policy flag that enforces changing invalid passwords on login.",
+	"passwordpolicies-policyflag-suggestchangeonlogin": "Password policy flag that suggests changing invalid passwords on login.",
 	"easydeflate-invaliddeflate": "Error message if the content passed to easydeflate was not deflated (compressed) properly",
 	"unprotected-js": "Error message shown when trying to load javascript via action=raw that is not protected"
 }
