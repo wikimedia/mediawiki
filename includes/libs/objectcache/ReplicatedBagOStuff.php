@@ -103,7 +103,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 	}
 
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
-		return $this->writeStore->add( $key, $value, $exptime );
+		return $this->writeStore->add( $key, $value, $exptime, $flags );
 	}
 
 	public function incr( $key, $value = 1 ) {

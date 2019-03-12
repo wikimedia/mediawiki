@@ -352,6 +352,7 @@ because of Phabricator reports.
 * The implementation of buildStringCast() in Wikimedia\Rdbms\Database has
   changed to explicitly cast. Subclasses relying on the base-class
   implementation should check whether they need to override it now.
+* BagOStuff::add is now abstract and must explicitly be defined in subclasses.
 
 == Compatibility ==
 MediaWiki 1.33 requires PHP 7.0.13 or later. Although HHVM 3.18.5 or later is
