@@ -122,10 +122,13 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 
 		if ( !$reset && $this->config->get( 'InvalidPasswordReset' ) && !$status->isGood() ) {
 			$hard = $status->getValue()['forceChange'] ?? false;
-			$reset = (object)[
-				'msg' => $status->getMessage( $hard ? 'resetpass-validity' : 'resetpass-validity-soft' ),
-				'hard' => $hard,
-			];
+
+			if ( $hard || !empty( $status->getValue()['suggestChangeOnLogin'] ) ) {
+				$reset = (object)[
+					'msg' => $status->getMessage( $hard ? 'resetpass-validity' : 'resetpass-validity-soft' ),
+					'hard' => $hard,
+				];
+			}
 		}
 
 		if ( $reset ) {

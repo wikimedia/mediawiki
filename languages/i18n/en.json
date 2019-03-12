@@ -4181,6 +4181,7 @@
 	"passwordpolicies-policy-passwordcannotbepopular": "Password cannot be {{PLURAL:$1|the popular password|in the list of $1 popular passwords}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Password cannot be in the list of 100,000 most commonly used passwords.",
 	"passwordpolicies-policyflag-forcechange": "must change on login",
+	"passwordpolicies-policyflag-suggestchangeonlogin": "suggest change on login",
 	"easydeflate-invaliddeflate": "Content provided is not properly deflated",
 	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage"
 }

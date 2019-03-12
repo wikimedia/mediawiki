@@ -1191,6 +1191,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * - forceChange (bool): if set to true, the user should not be
 	 *   allowed to log with this password unless they change it during
 	 *   the login process (see ResetPasswordSecondaryAuthenticationProvider).
+	 * - suggestChangeOnLogin (bool): if set to true, the user should be prompted for
+	 *   a password change on login.
 	 *
 	 * @param string $password Desired password
 	 * @return Status

@@ -46,6 +46,13 @@ class LocalPasswordPrimaryAuthenticationProvider
 		$this->loginOnly = !empty( $params['loginOnly'] );
 	}
 
+	/**
+	 * Check if the password has expired and needs a reset
+	 *
+	 * @param string $username
+	 * @param \stdClass $row A row from the user table
+	 * @return \stdClass|null
+	 */
 	protected function getPasswordResetData( $username, $row ) {
 		$now = wfTimestamp();
 		$expiration = wfTimestampOrNull( TS_UNIX, $row->user_password_expires );

@@ -142,7 +142,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 		$this->assertNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
 
 		$manager->removeAuthenticationSessionData( null );
-		$status = \Status::newGood();
+		$status = \Status::newGood( [ 'suggestChangeOnLogin' => true ] );
 		$status->error( 'testing' );
 		$providerPriv->setPasswordResetFlag( 'Foo', $status );
 		$ret = $manager->getAuthenticationSessionData( 'reset-pass' );
