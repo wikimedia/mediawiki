@@ -311,7 +311,7 @@ class SqlBagOStuff extends BagOStuff {
 		return $values;
 	}
 
-	public function setMulti( array $data, $expiry = 0 ) {
+	public function setMulti( array $data, $expiry = 0, $flags = 0 ) {
 		$keysByTable = [];
 		foreach ( $data as $key => $value ) {
 			list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
@@ -381,7 +381,7 @@ class SqlBagOStuff extends BagOStuff {
 		return $ok;
 	}
 
-	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
+	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		$db = null;
 		$silenceScope = $this->silenceTransactionProfiler();
@@ -493,7 +493,7 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
-		$ok = $this->mergeViaCas( $key, $callback, $exptime, $attempts );
+		$ok = $this->mergeViaCas( $key, $callback, $exptime, $attempts, $flags );
 		if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
 			$ok = $this->waitForReplication() && $ok;
 		}
@@ -501,7 +501,7 @@ class SqlBagOStuff extends BagOStuff {
 		return $ok;
 	}
 
-	public function changeTTL( $key, $expiry = 0 ) {
+	public function changeTTL( $key, $expiry = 0, $flags = 0 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		$db = null;
 		$silenceScope = $this->silenceTransactionProfiler();

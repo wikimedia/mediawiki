@@ -94,7 +94,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 		return $this->writeStore->delete( $key, $flags );
 	}
 
-	public function add( $key, $value, $exptime = 0 ) {
+	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
 		return $this->writeStore->add( $key, $value, $exptime );
 	}
 

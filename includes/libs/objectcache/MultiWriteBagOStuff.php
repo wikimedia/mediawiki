@@ -143,7 +143,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		return $this->doWrite( $this->cacheIndexes, $this->asyncWrites, 'delete', $key );
 	}
 
-	public function add( $key, $value, $exptime = 0 ) {
+	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
 		// Try the write to the top-tier cache
 		$ok = $this->doWrite( [ 0 ], $this->asyncWrites, 'add', $key, $value, $exptime );
 		if ( $ok ) {

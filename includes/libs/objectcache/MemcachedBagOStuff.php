@@ -65,7 +65,7 @@ class MemcachedBagOStuff extends BagOStuff {
 			$this->fixExpiry( $exptime ) );
 	}
 
-	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
+	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		return $this->client->cas( $casToken, $this->validateKeyEncoding( $key ),
 			$value, $this->fixExpiry( $exptime ) );
 	}
@@ -74,7 +74,7 @@ class MemcachedBagOStuff extends BagOStuff {
 		return $this->client->delete( $this->validateKeyEncoding( $key ) );
 	}
 
-	public function add( $key, $value, $exptime = 0 ) {
+	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
 		return $this->client->add( $this->validateKeyEncoding( $key ), $value,
 			$this->fixExpiry( $exptime ) );
 	}
@@ -83,7 +83,7 @@ class MemcachedBagOStuff extends BagOStuff {
 		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
 	}
 
-	public function changeTTL( $key, $exptime = 0 ) {
+	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
 		return $this->client->touch( $this->validateKeyEncoding( $key ),
 			$this->fixExpiry( $exptime ) );
 	}
