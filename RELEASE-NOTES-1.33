@@ -285,6 +285,8 @@ because of Phabricator reports.
 * Language::markNoConversion, deprecated in 1.32, has been removed. Use
   LanguageConverter::markNoConversion instead.
 * BagOStuff::modifySimpleRelayEvent() method has been removed.
+* ParserOutput::getLegacyOptions, deprecated in 1.30, has been removed.
+  Use ParserOutput::allCacheVaryingOptions instead.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
