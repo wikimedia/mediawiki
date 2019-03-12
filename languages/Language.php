@@ -27,6 +27,7 @@
  */
 
 use CLDRPluralRuleParser\Evaluator;
+use Wikimedia\Assert\Assert;
 
 /**
  * Internationalisation code
@@ -404,20 +405,11 @@ class Language {
 	 *
 	 * @param string $code
 	 *
-	 * @throws MWException
 	 * @since 1.18
 	 * @return bool
 	 */
 	public static function isValidBuiltInCode( $code ) {
-		if ( !is_string( $code ) ) {
-			if ( is_object( $code ) ) {
-				$addmsg = " of class " . get_class( $code );
-			} else {
-				$addmsg = '';
-			}
-			$type = gettype( $code );
-			throw new MWException( __METHOD__ . " must be passed a string, $type given$addmsg" );
-		}
+		Assert::parameterType( 'string', $code, '$code' );
 
 		return (bool)preg_match( '/^[a-z0-9-]{2,}$/', $code );
 	}
@@ -2847,12 +2839,9 @@ class Language {
 	/**
 	 * @param string $s
 	 * @return string
-	 * @throws MWException
 	 */
 	function checkTitleEncoding( $s ) {
-		if ( is_array( $s ) ) {
-			throw new MWException( 'Given array to checkTitleEncoding.' );
-		}
+		Assert::parameterType( 'string', $s, '$s' );
 		if ( StringUtils::isUtf8( $s ) ) {
 			return $s;
 		}
