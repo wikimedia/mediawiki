@@ -97,6 +97,14 @@ class APCBagOStuff extends BagOStuff {
 		return true;
 	}
 
+	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+		return apc_add(
+			$key . self::KEY_SUFFIX,
+			$this->setSerialize( $value ),
+			$exptime
+		);
+	}
+
 	protected function setSerialize( $value ) {
 		if ( !$this->nativeSerialize && !$this->isInteger( $value ) ) {
 			$value = serialize( $value );

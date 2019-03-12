@@ -55,6 +55,14 @@ class APCUBagOStuff extends APCBagOStuff {
 		return true;
 	}
 
+	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+		return apcu_add(
+			$key . self::KEY_SUFFIX,
+			$this->setSerialize( $value ),
+			$exptime
+		);
+	}
+
 	public function delete( $key, $flags = 0 ) {
 		apcu_delete( $key . self::KEY_SUFFIX );
 
