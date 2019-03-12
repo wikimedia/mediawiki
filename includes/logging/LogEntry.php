@@ -28,6 +28,8 @@
  * @since 1.19
  */
 
+use MediaWiki\Linker\LinkTarget;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -527,20 +529,20 @@ class ManualLogEntry extends LogEntryBase {
 	 * Set the user that performed the action being logged.
 	 *
 	 * @since 1.19
-	 * @param User $performer
+	 * @param UserIdentity $performer
 	 */
-	public function setPerformer( User $performer ) {
-		$this->performer = $performer;
+	public function setPerformer( UserIdentity $performer ) {
+		$this->performer = User::newFromIdentity( $performer );
 	}
 
 	/**
 	 * Set the title of the object changed.
 	 *
 	 * @since 1.19
-	 * @param Title $target
+	 * @param LinkTarget $target
 	 */
-	public function setTarget( Title $target ) {
-		$this->target = $target;
+	public function setTarget( LinkTarget $target ) {
+		$this->target = Title::newFromLinkTarget( $target );
 	}
 
 	/**
