@@ -158,6 +158,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$handler = ContentHandler::getForTitle( $title );
 		$lang = $handler->getPageLanguage( $title );
 
+		$this->assertInstanceOf( Language::class, $lang );
 		$this->assertEquals( $expected->getCode(), $lang->getCode() );
 	}
 

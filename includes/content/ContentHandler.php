@@ -667,7 +667,7 @@ abstract class ContentHandler {
 	 * This default implementation just returns the content language (except for pages
 	 * in the MediaWiki namespace)
 	 *
-	 * Note that the pages language is not cacheable, since it may in some
+	 * Note that the page's language is not cacheable, since it may in some
 	 * cases depend on user settings.
 	 *
 	 * Also note that the page language may or may not depend on the actual content of the page,
@@ -684,7 +684,7 @@ abstract class ContentHandler {
 		global $wgLang;
 		$pageLang = MediaWikiServices::getInstance()->getContentLanguage();
 
-		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
+		if ( $title->inNamespace( NS_MEDIAWIKI ) ) {
 			// Parse mediawiki messages with correct target language
 			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $title->getText() );
 			$pageLang = Language::factory( $lang );
