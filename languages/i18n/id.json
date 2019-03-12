@@ -97,7 +97,7 @@
 	"tog-watchlisthidebots": "Sembunyikan suntingan bot di daftar pantauan",
 	"tog-watchlisthideminor": "Sembunyikan suntingan kecil di daftar pantauan",
 	"tog-watchlisthideliu": "Sembunyikan suntingan pengguna masuk log di daftar pantauan",
-	"tog-watchlistreloadautomatically": "Muat ulang daftar pantauan secara otomatis ketika sebuah tapis berubah (JavaScript diperlukan)",
+	"tog-watchlistreloadautomatically": "Muat ulang daftar pantauan secara otomatis ketika sebuah filter berubah (JavaScript diperlukan)",
 	"tog-watchlistunwatchlinks": "Tambahkan penanda pantau/hapus pantauan ke halaman yang dipantau yang berubah (JavaScript diperlukan untuk mengganti fungsi ini)",
 	"tog-watchlisthideanons": "Sembunyikan suntingan pengguna anonim di daftar pantauan",
 	"tog-watchlisthidepatrolled": "Sembunyikan suntingan terpatroli di daftar pantauan",
