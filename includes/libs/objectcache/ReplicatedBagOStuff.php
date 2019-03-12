@@ -90,8 +90,16 @@ class ReplicatedBagOStuff extends BagOStuff {
 		return $this->writeStore->set( $key, $value, $exptime, $flags );
 	}
 
+	public function setMulti( array $keys, $exptime = 0, $flags = 0 ) {
+		return $this->writeStore->setMulti( $keys, $exptime, $flags );
+	}
+
 	public function delete( $key, $flags = 0 ) {
 		return $this->writeStore->delete( $key, $flags );
+	}
+
+	public function deleteMulti( array $keys, $flags = 0 ) {
+		return $this->writeStore->deleteMulti( $keys, $flags );
 	}
 
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
