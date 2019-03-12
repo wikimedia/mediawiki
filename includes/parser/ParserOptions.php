@@ -1262,25 +1262,6 @@ class ParserOptions {
 	}
 
 	/**
-	 * Returns the full array of options that would have been used by
-	 * in 1.16.
-	 * Used to get the old parser cache entries when available.
-	 * @deprecated since 1.30. You probably want self::allCacheVaryingOptions() instead.
-	 * @return string[]
-	 */
-	public static function legacyOptions() {
-		wfDeprecated( __METHOD__, '1.30' );
-		return [
-			'stubthreshold',
-			'numberheadings',
-			'userlang',
-			'thumbsize',
-			'editsection',
-			'printable'
-		];
-	}
-
-	/**
 	 * Return all option keys that vary the options hash
 	 * @since 1.30
 	 * @return string[]
