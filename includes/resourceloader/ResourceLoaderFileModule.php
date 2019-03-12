@@ -198,10 +198,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *         ],
 	 *         // Scripts to include in debug contexts
 	 *         'debugScripts' => [file path string or array of file path strings],
-	 *         // For package modules: files to make available for internal require() use
-	 *         // 'type' is optional, and will be inferred from the file name extension if omitted
-	 *         // 'config' can only be used when 'type' is 'data'; vars are resolved with Config::get()
-	 *         // If 'packageFiles' is set, 'scripts' cannot also be set
+	 *         // For package modules: files to be made available for internal require() do not
+	 *         // need to have 'type' defined; it will be inferred from the file name extension
+	 *         // if omitted. 'config' can only be used when 'type' is 'data'; the variables are
+	 *         // resolved with Config::get(). The first entry in 'packageFiles' is always the
+	 *         // module entry point. If 'packageFiles' is set, 'scripts' cannot also be set.
 	 *         'packageFiles' => [
 	 *             [file path string], // or:
 	 *             [ 'name' => [file name], 'file' => [file path], 'type' => 'script'|'data' ], // or:
