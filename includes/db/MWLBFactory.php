@@ -54,7 +54,9 @@ abstract class MWLBFactory {
 				$mainConfig->get( 'DBmwschema' ),
 				$mainConfig->get( 'DBprefix' )
 			),
-			'profiler' => Profiler::instance(),
+			'profiler' => function ( $section ) {
+				return Profiler::instance()->scopedProfileIn( $section );
+			},
 			'trxProfiler' => Profiler::instance()->getTransactionProfiler(),
 			'replLogger' => LoggerFactory::getInstance( 'DBReplication' ),
 			'queryLogger' => LoggerFactory::getInstance( 'DBQuery' ),

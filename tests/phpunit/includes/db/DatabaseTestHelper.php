@@ -45,7 +45,7 @@ class DatabaseTestHelper extends Database {
 	public function __construct( $testName, array $opts = [] ) {
 		$this->testName = $testName;
 
-		$this->profiler = new ProfilerStub( [] );
+		$this->profiler = null;
 		$this->trxProfiler = new TransactionProfiler();
 		$this->cliMode = $opts['cliMode'] ?? true;
 		$this->connLogger = new \Psr\Log\NullLogger();
