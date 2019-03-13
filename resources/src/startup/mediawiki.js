@@ -29,10 +29,10 @@
 	 */
 	function fnv132( str ) {
 		var hash = 0x811C9DC5,
-			i;
+			i = 0;
 
 		/* eslint-disable no-bitwise */
-		for ( i = 0; i < str.length; i++ ) {
+		for ( ; i < str.length; i++ ) {
 			hash += ( hash << 1 ) + ( hash << 4 ) + ( hash << 7 ) + ( hash << 8 ) + ( hash << 24 );
 			hash ^= str.charCodeAt( i );
 		}
@@ -734,8 +734,8 @@
 			 * @return {boolean} True if all modules are in state 'ready', false otherwise
 			 */
 			function allReady( modules ) {
-				var i;
-				for ( i = 0; i < modules.length; i++ ) {
+				var i = 0;
+				for ( ; i < modules.length; i++ ) {
 					if ( mw.loader.getState( modules[ i ] ) !== 'ready' ) {
 						return false;
 					}
@@ -764,8 +764,9 @@
 			 * @return {boolean} True if no modules are in state 'error' or 'missing', false otherwise
 			 */
 			function anyFailed( modules ) {
-				var i, state;
-				for ( i = 0; i < modules.length; i++ ) {
+				var state,
+					i = 0;
+				for ( ; i < modules.length; i++ ) {
 					state = mw.loader.getState( modules[ i ] );
 					if ( state === 'error' || state === 'missing' ) {
 						return true;
@@ -982,8 +983,9 @@
 			 * @throws {Error} If an unregistered module or a dependency loop is encountered
 			 */
 			function resolve( modules ) {
-				var i, resolved = [];
-				for ( i = 0; i < modules.length; i++ ) {
+				var resolved = [],
+					i = 0;
+				for ( ; i < modules.length; i++ ) {
 					sortDependencies( modules[ i ], resolved );
 				}
 				return resolved;
@@ -998,8 +1000,10 @@
 			 * @return {Array} List of dependencies.
 			 */
 			function resolveStubbornly( modules ) {
-				var i, saved, resolved = [];
-				for ( i = 0; i < modules.length; i++ ) {
+				var saved,
+					resolved = [],
+					i = 0;
+				for ( ; i < modules.length; i++ ) {
 					saved = resolved.slice();
 					try {
 						sortDependencies( modules[ i ], resolved );
@@ -1816,12 +1820,12 @@
 				 * @private
 				 */
 				work: function () {
-					var q, batch, implementations, sourceModules;
-
-					batch = [];
+					var implementations, sourceModules,
+						batch = [],
+						q = 0;
 
 					// Appends a list of modules from the queue to the batch
-					for ( q = 0; q < queue.length; q++ ) {
+					for ( ; q < queue.length; q++ ) {
 						// Only load modules which are registered
 						if ( queue[ q ] in registry && registry[ queue[ q ] ].state === 'registered' ) {
 							// Prevent duplicate entries
