@@ -797,6 +797,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 			function () use ( $newId, $to ) {
 				$log = new LogPage( $this->getType() );
 				if ( !$log->isRestricted() ) {
+					Hooks::runWithoutAbort( 'ManualLogEntryBeforePublish', [ $this ] );
 					$rc = $this->getRecentChange( $newId );
 
 					if ( $to === 'rc' || $to === 'rcandudp' ) {

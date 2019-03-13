@@ -2210,6 +2210,10 @@ ResourceLoaderGetConfigVars instead.
   Skin::makeVariablesScript
 $out: The OutputPage which called the hook, can be used to get the real title.
 
+'ManualLogEntryBeforePublish': Allows to access or modify log entry just before it is
+published.
+$logEntry: ManualLogEntry object
+
 'MarkPatrolled': Before an edit is marked patrolled.
 $rcid: ID of the revision to be marked patrolled
 &$user: the user (object) marking the revision as patrolled
