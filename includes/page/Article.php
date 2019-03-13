@@ -2857,7 +2857,10 @@ class Article implements Page {
 	 * @return array
 	 */
 	public function doRollback( $fromP, $summary, $token, $bot, &$resultDetails, User $user = null ) {
-		$user = is_null( $user ) ? $this->getContext()->getUser() : $user;
+		if ( !$user ) {
+			$user = $this->getContext()->getUser();
+		}
+
 		return $this->mPage->doRollback( $fromP, $summary, $token, $bot, $resultDetails, $user );
 	}
 
@@ -2870,7 +2873,10 @@ class Article implements Page {
 	 * @return array
 	 */
 	public function commitRollback( $fromP, $summary, $bot, &$resultDetails, User $guser = null ) {
-		$guser = is_null( $guser ) ? $this->getContext()->getUser() : $guser;
+		if ( !$guser ) {
+			$guser = $this->getContext()->getUser();
+		}
+
 		return $this->mPage->commitRollback( $fromP, $summary, $bot, $resultDetails, $guser );
 	}
 

@@ -4995,9 +4995,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	public function canUseNoindex() {
 		global $wgExemptFromUserRobotsControl;
 
-		$bannedNamespaces = is_null( $wgExemptFromUserRobotsControl )
-			? MWNamespace::getContentNamespaces()
-			: $wgExemptFromUserRobotsControl;
+		$bannedNamespaces = $wgExemptFromUserRobotsControl ?? MWNamespace::getContentNamespaces();
 
 		return !in_array( $this->mNamespace, $bannedNamespaces );
 	}
