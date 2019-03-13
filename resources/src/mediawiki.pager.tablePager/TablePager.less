@@ -15,16 +15,20 @@
 	}
 }
 
-.TablePager .TablePager_sort-ascending a {
-	padding-left: 15px;
-	background: none left center no-repeat;
-	.background-image-svg('images/arrow-sort-ascending.svg', 'images/arrow-sort-ascending.png');
-}
+.mw-datatable {
+	&-is-sorted a {
+		background-position: left center;
+		background-repeat: no-repeat;
+		padding-left: 15px;
+	}
 
-.TablePager .TablePager_sort-descending a {
-	padding-left: 15px;
-	background: none left center no-repeat;
-	.background-image-svg('images/arrow-sort-descending.svg', 'images/arrow-sort-descending.png');
+	&-is-ascending a {
+		.background-image-svg( 'images/arrow-sort-ascending.svg', 'images/arrow-sort-ascending.png' );
+	}
+
+	&-is-descending a {
+		.background-image-svg( 'images/arrow-sort-descending.svg', 'images/arrow-sort-descending.png' );
+	}
 }
 
 .TablePager_nav {
