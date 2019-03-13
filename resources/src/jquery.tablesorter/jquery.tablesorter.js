@@ -816,6 +816,10 @@
 					$table = $( table ),
 					firstTime = true;
 
+				// Don't construct twice on the same table
+				if ( $.data( table, 'tablesorter' ) ) {
+					return;
+				}
 				// Quit if no tbody
 				if ( !table.tBodies ) {
 					return;
