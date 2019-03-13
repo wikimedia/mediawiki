@@ -3939,6 +3939,7 @@
 	"passwordpolicies-policy-passwordcannotbepopular": "Пароль не може бути {{PLURAL:$1|часто вживаним|будь-яким з $1 часто вживаних паролів}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Пароль не може перебувати у списку 100 000 найчастіше вживаних паролів.",
 	"passwordpolicies-policyflag-forcechange": "має бути змінено при вході",
+	"passwordpolicies-policyflag-suggestchangeonlogin": "запропонувати зміну при вході",
 	"easydeflate-invaliddeflate": "Наданий вміст не стиснений належним чином",
 	"unprotected-js": "З міркувань безпеки JavaScript не можна запускати з незахищених сторінок. Будь ласка, створюйте javascript лише в просторі MediaWiki, або як особисту підсторінку користувача."
 }

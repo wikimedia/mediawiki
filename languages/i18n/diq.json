@@ -162,7 +162,7 @@
 	"category-file-count": "{{PLURAL:$2|Na kategori tenya dosya ya cêri muhtewa kena.|Na kategori de $2 ra pêro piya {{PLURAL:$1|1 dosya est a|$1 dosyey est ê}}.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Dosye|$1 Dosyey}} na kategori de yê.",
 	"listingcontinuesabbrev": "dewam...",
-	"index-category": "Perrê rêzıni",
+	"index-category": "Pelê rêzıni",
 	"noindex-category": "Perrê bêrêzıni",
 	"broken-file-category": "Perri be linkanê dosya çewte",
 	"categoryviewer-pagedlinks": "($1) ($2)",

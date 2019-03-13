@@ -4020,6 +4020,7 @@
 	"passwordpolicies-policy-passwordcannotbepopular": "Le mot de passe ne peut pas être {{PLURAL:$1|le mot de passe populaire|dans la liste des $1 mots de passe populaires}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Le mot de passe ne peut pas faire partie de la liste des 100 000 mots de passe les plus communément utilisés.",
 	"passwordpolicies-policyflag-forcechange": "doit changer à la reconnexion",
+	"passwordpolicies-policyflag-suggestchangeonlogin": "suggérer une modification à la connexion",
 	"easydeflate-invaliddeflate": "Le contenu fourni n'est pas correctement développé",
 	"unprotected-js": "Pour des raisons de sécurité, JavaScript ne peut pas être chargé depuis des pages non protégées. Veuillez ne créer du javascript que dans l’espace de noms MediaWiki: ou comme sous-page utilisateur"
 }

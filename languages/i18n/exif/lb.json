@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Robby",
-			"Soued031"
+			"Soued031",
+			"Les Meloures"
 		]
 	},
 	"exif-imagewidth": "Breet",
@@ -251,7 +252,7 @@
 	"exif-sensingmethod-7": "Dräilineare Sensor",
 	"exif-sensingmethod-8": "Sequentielle lineare Farwsensor",
 	"exif-filesource-3": "Digital Kamera",
-	"exif-scenetype-1": "D'Bild gouf photograféiert",
+	"exif-scenetype-1": "D'Bild gouf fotograféiert",
 	"exif-customrendered-0": "Standard",
 	"exif-customrendered-1": "Benotzerdefinéiert",
 	"exif-exposuremode-0": "Automatesch Beliichtung",
