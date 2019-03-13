@@ -2,7 +2,6 @@
 
 class RemexDriverTest extends MediaWikiTestCase {
 	private static $remexTidyTestData = [
-		// Tests from Html5Depurate
 		[
 			'Empty string',
 			"",
