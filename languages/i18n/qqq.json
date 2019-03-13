@@ -1440,7 +1440,7 @@
 	"right-reupload-own": "{{doc-right|reupload-own}}\nRight to upload a file under a file name that already exists, and that the same user has uploaded.\n\nRelated messages:\n* {{msg-mw|right-upload}}\n* {{msg-mw|right-reupload}}",
 	"right-reupload-shared": "{{doc-right|reupload-shared}}\nThe right to upload a file locally under a file name that already exists in a shared database (for example Commons).\n\nRelated messages:\n* {{msg-mw|right-upload}}\n* {{msg-mw|right-reupload}}",
 	"right-upload_by_url": "{{doc-right|upload_by_url}}",
-	"right-purge": "{{doc-right|purge}}\nThe right to use <code>&action=purge</code> in the URL, without needing to confirm it (by default, anonymous users need to confirm it).",
+	"right-purge": "{{doc-right|purge}}\nThe right to use <code>&action=purge</code> in the URL.",
 	"right-autoconfirmed": "{{doc-right|autoconfirmed}}\nIf your account is older than [[mw:Manual:$wgAutoConfirmAge|wgAutoConfirmAge]] and if you have at least [[mw:Manual:$wgAutoConfirmCount|$wgAutoConfirmCount]] edits, you are in the '''group \"autoconfirmed\"''' (note that you can't see this group at [[Special:ListUsers]]).\nIf you are in that group, you have (by default) the '''right \"autoconfirmed\"''', which exempts you from certain rate limits (those based on your IP address or otherwise intended solely for new users). Other rate limits may still apply; see {{msg-mw|right-noratelimit}}.",
 	"right-bot": "{{doc-right|bot}}",
 	"right-nominornewtalk": "{{doc-right|nominornewtalk}}\nIf someone with this right (bots by default) edits a user talk page and marks it as minor (requires {{msg-mw|right-minoredit}}), the user will not get a notification \"You have new messages\".",
