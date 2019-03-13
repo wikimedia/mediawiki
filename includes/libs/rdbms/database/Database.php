@@ -2782,6 +2782,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			return;
 		}
 
+		$uniqueIndexes = (array)$uniqueIndexes;
 		// Single row case
 		if ( !is_array( reset( $rows ) ) ) {
 			$rows = [ $rows ];
@@ -2861,13 +2862,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->query( $sql, $fname );
 	}
 
-	public function upsert( $table, array $rows, array $uniqueIndexes, array $set,
+	public function upsert( $table, array $rows, $uniqueIndexes, array $set,
 		$fname = __METHOD__
 	) {
 		if ( $rows === [] ) {
 			return true; // nothing to do
 		}
 
+		$uniqueIndexes = (array)$uniqueIndexes;
 		if ( !is_array( reset( $rows ) ) ) {
 			$rows = [ $rows ];
 		}
