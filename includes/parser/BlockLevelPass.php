@@ -357,7 +357,6 @@ class BlockLevelPass {
 						if ( $pendingPTag ) {
 							$output .= $this->closeParagraph();
 							$pendingPTag = false;
-							$this->lastSection = '';
 						}
 					} else {
 						# paragraph
@@ -369,7 +368,6 @@ class BlockLevelPass {
 							} else {
 								if ( $this->lastSection !== 'p' ) {
 									$output .= $this->closeParagraph();
-									$this->lastSection = '';
 									$pendingPTag = '<p>';
 								} else {
 									$pendingPTag = '</p><p>';
