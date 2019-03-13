@@ -511,6 +511,7 @@
 	"badretype": "De lösenord du uppgett överensstämmer inte med varandra.",
 	"usernameinprogress": "Kontoskapandet för detta användarnamn är redan i full gång.\nVänligen vänta.",
 	"userexists": "Det valda användarnamnet används redan.\nVar god välj ett annat namn.",
+	"createacct-normalization": "Ditt användarnamn kommer att justeras till \"$2\" p.g.a. tekniska begränsningar.",
 	"loginerror": "Inloggningsproblem",
 	"createacct-error": "Fel när konto skulle skapas",
 	"createaccounterror": "Kunde inte skapa konto: $1",
@@ -2529,6 +2530,8 @@
 	"ipb-confirm": "Bekräfta blockering",
 	"ipb-sitewide": "Hela webbplatsen",
 	"ipb-partial": "Partiell",
+	"ipb-sitewide-help": "Alla sidor på wikin och alla andra bidragsåtgärder.",
+	"ipb-partial-help": "Specifika sidor eller namnrymder.",
 	"ipb-pages-label": "Sidor",
 	"ipb-namespaces-label": "Namnrymder",
 	"badipaddress": "Du har inte skrivit IP-adressen korrekt.",
@@ -3823,6 +3826,7 @@
 	"passwordpolicies-policy-passwordcannotbepopular": "Lösenordet kan inte vara {{PLURAL:$1|det populäraste lösenordet|i listan över de $1 populäraste lösenorden}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Lösenordet kan inte vara med i listan över de 100 000 vanligaste lösenorden.",
 	"passwordpolicies-policyflag-forcechange": "måste ändras vid inloggning",
+	"passwordpolicies-policyflag-suggestchangeonlogin": "föreslå ändring vid inloggning",
 	"easydeflate-invaliddeflate": "Innehåll som tillhandahålls är inte helt komprimerat",
 	"unprotected-js": "Av säkerhetsskäl kan inte JavaScript läsas in från oskyddade sidor. Skapa endast JavaScript i namnrymden MediaWiki: eller som en användarundersida."
 }
