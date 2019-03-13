@@ -132,12 +132,12 @@ abstract class TablePager extends IndexPager {
 					// We don't actually know in which direction other fields will be sorted by default…
 					if ( $this->mDefaultDirection == IndexPager::DIR_DESCENDING ) {
 						$linkType = 'asc';
-						$class = "$sortClass TablePager_sort-descending";
+						$class = "$sortClass mw-datatable-is-sorted mw-datatable-is-descending";
 						$query['asc'] = '1';
 						$query['desc'] = '';
 					} else {
 						$linkType = 'desc';
-						$class = "$sortClass TablePager_sort-ascending";
+						$class = "$sortClass mw-datatable-is-sorted mw-datatable-is-ascending";
 						$query['asc'] = '';
 						$query['desc'] = '1';
 					}
