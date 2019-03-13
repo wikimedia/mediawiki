@@ -437,6 +437,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		} else {
 			$title = null;
 		}
+
 		return $title;
 	}
 
