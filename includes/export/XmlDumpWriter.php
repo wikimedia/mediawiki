@@ -254,7 +254,12 @@ class XmlDumpWriter {
 		} elseif ( isset( $row->old_text ) ) {
 			// Raw text from the database may have invalid chars
 			$text = strval( Revision::getRevisionText( $row ) );
-			$text = $content_handler->exportTransform( $text, $content_format );
+			try {
+				$text = $content_handler->exportTransform( $text, $content_format );
+			}
+			catch ( MWException $ex ) {
+				// leave text as is; that's the way it goes
+			}
 			$out .= "      " . Xml::elementClean( 'text',
 				[ 'xml:space' => 'preserve', 'bytes' => intval( $row->rev_len ) ],
 				strval( $text ) ) . "\n";
