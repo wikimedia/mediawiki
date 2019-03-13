@@ -147,11 +147,12 @@ abstract class Profiler {
 		}
 	}
 
-	// Kept BC for now, remove when possible
 	public function profileIn( $functionname ) {
+		wfDeprecated( __METHOD__, '1.33' );
 	}
 
 	public function profileOut( $functionname ) {
+		wfDeprecated( __METHOD__, '1.33' );
 	}
 
 	/**
