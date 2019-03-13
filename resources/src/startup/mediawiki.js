@@ -52,13 +52,15 @@
 		 * @private
 		 * @class
 		 */
-		StringSet = window.Set || function StringSet() {
+		StringSet = window.Set || function () {
 			var set = Object.create( null );
-			this.add = function ( value ) {
-				set[ value ] = true;
-			};
-			this.has = function ( value ) {
-				return value in set;
+			return {
+				add: function ( value ) {
+					set[ value ] = true;
+				},
+				has: function ( value ) {
+					return value in set;
+				}
 			};
 		};
 	}
