@@ -120,7 +120,7 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 				case 'json':
 					return CONTENT_MODEL_JSON;
 				default:
-					return is_null( $model ) ? CONTENT_MODEL_TEXT : $model;
+					return $model ?? CONTENT_MODEL_TEXT;
 			}
 		}
 

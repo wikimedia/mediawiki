@@ -108,9 +108,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$request = $this->getRequest();
 		$out->addModuleStyles( 'mediawiki.special' );
 
-		$this->mTarget = is_null( $par )
-			? $request->getVal( 'wpTarget', $request->getVal( 'target', '' ) )
-			: $par;
+		$this->mTarget = $par ?? $request->getVal( 'wpTarget', $request->getVal( 'target', '' ) );
 
 		// Make sure, that HTMLForm uses the correct target.
 		$request->setVal( 'wpTarget', $this->mTarget );

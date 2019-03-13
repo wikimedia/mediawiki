@@ -182,9 +182,10 @@ just a test"
 	 */
 	public function testReplaceSection( $text, $section, $with, $sectionTitle, $expected ) {
 		$content = $this->newContent( $text );
+		/** @var WikitextContent $c */
 		$c = $content->replaceSection( $section, $this->newContent( $with ), $sectionTitle );
 
-		$this->assertEquals( $expected, is_null( $c ) ? null : $c->getText() );
+		$this->assertEquals( $expected, $c ? $c->getText() : null );
 	}
 
 	/**

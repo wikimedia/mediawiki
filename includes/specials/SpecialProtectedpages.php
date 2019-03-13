@@ -46,8 +46,7 @@ class SpecialProtectedpages extends SpecialPage {
 		$size = $request->getIntOrNull( 'size' );
 		$ns = $request->getIntOrNull( 'namespace' );
 
-		$filters = $request->getArray( 'wpfilters' );
-		$filters = is_null( $filters ) ? [] : $filters;
+		$filters = $request->getArray( 'wpfilters', [] );
 		$indefOnly = in_array( 'indefonly', $filters );
 		$cascadeOnly = in_array( 'cascadeonly', $filters );
 		$noRedirect = in_array( 'noredirect', $filters );

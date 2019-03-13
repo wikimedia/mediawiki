@@ -632,8 +632,8 @@ class ApiParse extends ApiBase {
 	 */
 	private function formatSummary( $title, $params ) {
 		global $wgParser;
-		$summary = !is_null( $params['summary'] ) ? $params['summary'] : '';
-		$sectionTitle = !is_null( $params['sectiontitle'] ) ? $params['sectiontitle'] : '';
+		$summary = $params['summary'] ?? '';
+		$sectionTitle = $params['sectiontitle'] ?? '';
 
 		if ( $this->section === 'new' && ( $sectionTitle === '' || $summary === '' ) ) {
 			if ( $sectionTitle !== '' ) {

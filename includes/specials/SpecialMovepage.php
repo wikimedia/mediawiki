@@ -75,7 +75,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$this->outputHeader();
 
 		$request = $this->getRequest();
-		$target = !is_null( $par ) ? $par : $request->getVal( 'target' );
+		$target = $par ?? $request->getVal( 'target' );
 
 		// Yes, the use of getVal() and getText() is wanted, see T22365
 

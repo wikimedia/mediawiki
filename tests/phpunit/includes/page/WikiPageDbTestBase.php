@@ -851,7 +851,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 
 		# now, test the actual redirect
 		$t = $page->getRedirectTarget();
-		$this->assertEquals( $target, is_null( $t ) ? null : $t->getFullText() );
+		$this->assertEquals( $target, $t ? $t->getFullText() : null );
 	}
 
 	/**
@@ -1109,9 +1109,10 @@ more stuff
 		$page = $this->createPage( $title, $text, $model );
 
 		$content = ContentHandler::makeContent( $with, $page->getTitle(), $page->getContentModel() );
+		/** @var TextContent $c */
 		$c = $page->replaceSectionContent( $section, $content, $sectionTitle );
 
-		$this->assertEquals( $expected, is_null( $c ) ? null : trim( $c->getText() ) );
+		$this->assertEquals( $expected, $c ? trim( $c->getText() ) : null );
 	}
 
 	/**
@@ -1125,9 +1126,10 @@ more stuff
 		$baseRevId = $page->getLatest();
 
 		$content = ContentHandler::makeContent( $with, $page->getTitle(), $page->getContentModel() );
+		/** @var TextContent $c */
 		$c = $page->replaceSectionAtRev( $section, $content, $sectionTitle, $baseRevId );
 
-		$this->assertEquals( $expected, is_null( $c ) ? null : trim( $c->getText() ) );
+		$this->assertEquals( $expected, $c ? trim( $c->getText() ) : null );
 	}
 
 	/**

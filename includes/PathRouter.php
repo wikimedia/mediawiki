@@ -252,7 +252,7 @@ class PathRouter {
 		// array() (a match with no data) but our WebRequest caller
 		// expects array() even when we have no matches so return
 		// a array() when we have null
-		return is_null( $matches ) ? [] : $matches;
+		return $matches ?? [];
 	}
 
 	/**
