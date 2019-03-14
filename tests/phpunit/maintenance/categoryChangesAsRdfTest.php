@@ -242,7 +242,7 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 		$this->assertFileContains( $testFileName, $sparql );
 
 		$processed = $processedProperty->getValue( $dumpScript );
-		$expectedProcessed = $preProcessed;
+		$expectedProcessed = array_keys( $preProcessed );
 		foreach ( $result as $row ) {
 			if ( isset( $row->_processed ) ) {
 				$this->assertArrayHasKey( $row->_processed, $processed,
@@ -250,7 +250,7 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 				$expectedProcessed[] = $row->_processed;
 			}
 		}
-		$this->assertArrayEquals( $expectedProcessed, array_keys( $processed ),
+		$this->assertSame( $expectedProcessed, array_keys( $processed ),
 			'Processed array has wrong items' );
 	}
 

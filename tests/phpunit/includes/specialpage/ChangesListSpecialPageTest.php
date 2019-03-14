@@ -613,8 +613,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 				'Learner1', 'Learner2', 'Learner3', 'Learner4',
 				'Experienced1',
 			],
-			$this->fetchUsers( [ 'learner', 'experienced' ], $now ),
-			'Learner and more experienced'
+			$this->fetchUsers( [ 'learner', 'experienced' ], $now )
 		);
 	}
 

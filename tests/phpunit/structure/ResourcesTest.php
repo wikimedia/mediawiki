@@ -155,7 +155,7 @@ class ResourcesTest extends MediaWikiTestCase {
 		$css = file_get_contents( $basepath . 'comments.css' );
 		$files = CSSMin::getLocalFileReferences( $css, $basepath );
 		$expected = [ $basepath . 'not-commented.gif' ];
-		$this->assertArrayEquals(
+		$this->assertSame(
 			$expected,
 			$files,
 			'Url(...) expression in comment should be omitted.'
