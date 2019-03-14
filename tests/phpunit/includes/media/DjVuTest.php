@@ -25,7 +25,7 @@ class DjVuTest extends MediaWikiMediaTestCase {
 	}
 
 	public function testGetImageSize() {
-		$this->assertArrayEquals(
+		$this->assertSame(
 			[ 2480, 3508, 'DjVu', 'width="2480" height="3508"' ],
 			$this->handler->getImageSize( null, $this->filePath . '/LoremIpsum.djvu' ),
 			'Test file LoremIpsum.djvu should have a size of 2480 * 3508'
@@ -51,8 +51,8 @@ class DjVuTest extends MediaWikiMediaTestCase {
 
 	public function testGetPageDimensions() {
 		$file = $this->dataFile( 'LoremIpsum.djvu', 'image/x.djvu' );
-		$this->assertArrayEquals(
-			[ 2480, 3508 ],
+		$this->assertSame(
+			[ 'width' => 2480, 'height' => 3508 ],
 			$this->handler->getPageDimensions( $file, 1 ),
 			'Page 1 of test file LoremIpsum.djvu should have a size of 2480 * 3508'
 		);
