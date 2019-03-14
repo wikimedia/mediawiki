@@ -3858,7 +3858,8 @@
 	"passwordpolicies-policy-maximalpasswordlength": "הסיסמה חייבת להיות קצרה יותר {{PLURAL:$1|מתו אחד|מ־$1 תווים}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "הסיסמה לא יכולה להיות זהה {{PLURAL:$1|לסיסמה נפוצה|לאחת הסיסמאות שנמצאות ברשימה של $1 הסיסמאות הנפוצות}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "הסיסמה לא יכולה להיות ברשימת 100,000 הסיסמאות הנפוצות ביותר.",
-	"passwordpolicies-policyflag-forcechange": "נדרש שינוי הסיסמה בכניסה",
+	"passwordpolicies-policyflag-forcechange": "לדרוש שינוי בעת כניסה לחשבון",
+	"passwordpolicies-policyflag-suggestchangeonlogin": "להציע שינוי בעת כניסה לחשבון",
 	"easydeflate-invaliddeflate": "התוכן שהועבר אינו דחוס כנדרש",
 	"unprotected-js": "מסיבות אבטחה, לא ניתן לטעון JavaScript מדפים שאינם מוגנים. ניתן ליצור סקריפטי JavaScript רק במרחב השם \"מדיה ויקי:\" או בדפי משנה של דף המשתמש."
 }
