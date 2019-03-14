@@ -3993,18 +3993,6 @@ $wgInterwikiFallbackSite = 'wiki';
 /** @} */ # end of Interwiki caching settings.
 
 /**
- * @name SiteStore caching settings.
- * @{
- */
-
-/**
- * Specify the file location for the Sites json cache file.
- */
-$wgSitesCacheFile = false;
-
-/** @} */ # end of SiteStore caching settings.
-
-/**
  * If local interwikis are set up which allow redirects,
  * set this regexp to restrict URLs which will be displayed
  * as 'redirected from' links.
