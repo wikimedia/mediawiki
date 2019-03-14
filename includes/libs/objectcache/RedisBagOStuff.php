@@ -189,12 +189,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	/**
-	 * @param array $data
-	 * @param int $expiry
-	 * @return bool
-	 */
-	public function setMulti( array $data, $expiry = 0 ) {
+	public function setMulti( array $data, $expiry = 0, $flags = 0 ) {
 		$batches = [];
 		$conns = [];
 		foreach ( $data as $key => $value ) {
@@ -238,7 +233,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function add( $key, $value, $expiry = 0 ) {
+	public function add( $key, $value, $expiry = 0, $flags = 0 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -299,7 +294,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function changeTTL( $key, $expiry = 0 ) {
+	public function changeTTL( $key, $expiry = 0, $flags = 0 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;

@@ -31,7 +31,7 @@ class EmptyBagOStuff extends BagOStuff {
 		return false;
 	}
 
-	public function add( $key, $value, $exp = 0 ) {
+	public function add( $key, $value, $exp = 0, $flags = 0 ) {
 		return true;
 	}
 
