@@ -417,7 +417,7 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function upsert(
-		$table, array $rows, array $uniqueIndexes, array $set, $fname = __METHOD__
+		$table, array $rows, $uniqueIndexes, array $set, $fname = __METHOD__
 	) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

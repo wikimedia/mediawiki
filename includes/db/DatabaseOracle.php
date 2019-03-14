@@ -591,7 +591,7 @@ class DatabaseOracle extends Database {
 		}
 	}
 
-	public function upsert( $table, array $rows, array $uniqueIndexes, array $set,
+	public function upsert( $table, array $rows, $uniqueIndexes, array $set,
 		$fname = __METHOD__
 	) {
 		if ( $rows === [] ) {
