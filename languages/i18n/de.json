@@ -141,6 +141,7 @@
 	"tog-norollbackdiff": "Unterschiede nach dem Zurücksetzen nicht anzeigen",
 	"tog-useeditwarning": "Warnen, sofern eine zur Bearbeitung geöffnete Seite verlassen wird, die nicht gespeicherte Änderungen enthält",
 	"tog-prefershttps": "Immer eine sichere Verbindung benutzen, solange ich angemeldet bin",
+	"tog-showrollbackconfirmation": "Beim Klicken auf einen Zurücksetzen-Link eine Bestätigungsaufforderung anzeigen",
 	"underline-always": "immer",
 	"underline-never": "nie",
 	"underline-default": "abhängig von der Benutzeroberfläche oder Browsereinstellung",
