@@ -159,7 +159,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->debugLog( "set($key)" );
-		$result = parent::set( $key, $value, $exptime );
+		$result = parent::set( $key, $value, $exptime, $flags = 0 );
 		if ( $result === false && $this->client->getResultCode() === Memcached::RES_NOTSTORED ) {
 			// "Not stored" is always used as the mcrouter response with AllAsyncRoute
 			return true;
@@ -167,9 +167,9 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( $key, $result );
 	}
 
-	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
+	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->debugLog( "cas($key)" );
-		return $this->checkResult( $key, parent::cas( $casToken, $key, $value, $exptime ) );
+		return $this->checkResult( $key, parent::cas( $casToken, $key, $value, $exptime, $flags ) );
 	}
 
 	public function delete( $key, $flags = 0 ) {
@@ -182,7 +182,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( $key, $result );
 	}
 
-	public function add( $key, $value, $exptime = 0 ) {
+	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->debugLog( "add($key)" );
 		return $this->checkResult( $key, parent::add( $key, $value, $exptime ) );
 	}
@@ -248,12 +248,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( false, $result );
 	}
 
-	/**
-	 * @param array $data
-	 * @param int $exptime
-	 * @return bool
-	 */
-	public function setMulti( array $data, $exptime = 0 ) {
+	public function setMulti( array $data, $exptime = 0, $flags = 0 ) {
 		$this->debugLog( 'setMulti(' . implode( ', ', array_keys( $data ) ) . ')' );
 		foreach ( array_keys( $data ) as $key ) {
 			$this->validateKeyEncoding( $key );
@@ -262,7 +257,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( false, $result );
 	}
 
-	public function changeTTL( $key, $expiry = 0 ) {
+	public function changeTTL( $key, $expiry = 0, $flags = 0 ) {
 		$this->debugLog( "touch($key)" );
 		$result = $this->client->touch( $key, $expiry );
 		return $this->checkResult( $key, $result );
