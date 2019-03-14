@@ -386,6 +386,7 @@ class Language {
 	 */
 	public static function isValidCode( $code ) {
 		static $cache = [];
+		Assert::parameterType( 'string', $code, '$code' );
 		if ( !isset( $cache[$code] ) ) {
 			// People think language codes are html safe, so enforce it.
 			// Ideally we should only allow a-zA-Z0-9-
