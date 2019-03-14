@@ -19,6 +19,9 @@
 		},
 		"warning": {
 			"color": "#fc3"
+		},
+		"success": {
+			"color": "#14866d"
 		}
 	},
 	"images": {
@@ -37,7 +40,7 @@
 		},
 		"check": {
 			"file": "images/icons/check.svg",
-			"variants": [ "destructive" ]
+			"variants": [ "destructive", "success" ]
 		},
 		"checkAll": {
 			"file": "images/icons/checkAll.svg"
