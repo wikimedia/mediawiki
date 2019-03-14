@@ -320,6 +320,7 @@ class FindHooks extends Maintenance {
 			$iterator = new DirectoryIterator( $dir );
 		}
 
+		/** @var SplFileInfo $info */
 		foreach ( $iterator as $info ) {
 			// Ignore directories, work only on php files,
 			if ( $info->isFile() && in_array( $info->getExtension(), [ 'php', 'inc' ] )
