@@ -267,6 +267,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * (which will be false if not present), and takes the arguments:
 	 * (this BagOStuff, cache key, current value, TTL).
 	 * The TTL parameter is reference set to $exptime. It can be overriden in the callback.
+	 * If the callback returns false, then the current value will be unchanged (including TTL).
 	 *
 	 * @param string $key
 	 * @param callable $callback Callback method to be executed

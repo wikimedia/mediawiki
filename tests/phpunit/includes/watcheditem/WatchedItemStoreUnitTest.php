@@ -2388,7 +2388,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$oldid
 			)
 		);
-		$this->assertEquals( 1, $getTimestampCallCounter );
+		$this->assertEquals( 2, $getTimestampCallCounter );
 
 		ScopedCallback::consume( $scopedOverrideRevision );
 	}
@@ -2530,7 +2530,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$oldid
 			)
 		);
-		$this->assertEquals( 1, $getTimestampCallCounter );
+		$this->assertEquals( 2, $getTimestampCallCounter );
 
 		ScopedCallback::consume( $scopedOverrideRevision );
 	}
@@ -2609,7 +2609,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$oldid
 			)
 		);
-		$this->assertEquals( 1, $getTimestampCallCounter );
+		$this->assertEquals( 2, $getTimestampCallCounter );
 
 		ScopedCallback::consume( $scopedOverrideRevision );
 	}
