@@ -27,7 +27,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Preferences
  */
-class DefaultPreferencesFactoryTest extends MediaWikiTestCase {
+class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 
 	/** @var IContextSource */
 	protected $context;
@@ -81,6 +81,50 @@ class DefaultPreferencesFactoryTest extends MediaWikiTestCase {
 		$prefs = $this->getPreferencesFactory()->getFormDescriptor( $user, $this->context );
 		$this->assertArrayHasKey( 'cssclass', $prefs['emailauthentication'] );
 		$this->assertEquals( $cssClass, $prefs['emailauthentication']['cssclass'] );
+	}
+
+	/**
+	 * @covers MediaWiki\Preferences\DefaultPreferencesFactory::renderingPreferences()
+	 */
+	public function testShowRollbackConfIsHiddenForUsersWithoutRollbackRights() {
+		$userMock = $this->getMockBuilder( User::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$userMock->method( 'isAllowed' )
+			->willReturn( false );
+		$userMock->method( 'getEffectiveGroups' )
+			->willReturn( [] );
+		$userMock->method( 'getGroupMemberships' )
+			->willReturn( [] );
+		$userMock->method( 'getOptions' )
+			->willReturn( [ 'test' => 'yes' ] );
+
+		$prefs = $this->getPreferencesFactory()->getFormDescriptor( $userMock, $this->context );
+		$this->assertArrayNotHasKey( 'showrollbackconfirmation', $prefs );
+	}
+
+	/**
+	 * @covers MediaWiki\Preferences\DefaultPreferencesFactory::renderingPreferences()
+	 */
+	public function testShowRollbackConfIsShownForUsersWithRollbackRights() {
+		$userMock = $this->getMockBuilder( User::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$userMock->method( 'isAllowed' )
+			->willReturn( true );
+		$userMock->method( 'getEffectiveGroups' )
+			->willReturn( [] );
+		$userMock->method( 'getGroupMemberships' )
+			->willReturn( [] );
+		$userMock->method( 'getOptions' )
+			->willReturn( [ 'test' => 'yes' ] );
+
+		$prefs = $this->getPreferencesFactory()->getFormDescriptor( $userMock, $this->context );
+		$this->assertArrayHasKey( 'showrollbackconfirmation', $prefs );
+		$this->assertEquals(
+			'rendering/advancedrendering',
+			$prefs['showrollbackconfirmation']['section']
+		);
 	}
 
 	public function emailAuthenticationProvider() {
