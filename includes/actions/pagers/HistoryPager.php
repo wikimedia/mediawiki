@@ -541,7 +541,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			);
 		}
 
-		$nextRev = new Revision( $next );
+		$nextRev = new Revision( $next, 0, $this->getTitle() );
 
 		if ( !$prevRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
 			|| !$nextRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
