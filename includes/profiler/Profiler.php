@@ -212,7 +212,7 @@ abstract class Profiler {
 	}
 
 	/**
-	 * Log the data to some store or even the page output
+	 * Log the data to the backing store for all ProfilerOutput instances that have one
 	 *
 	 * @since 1.25
 	 */
@@ -225,27 +225,38 @@ abstract class Profiler {
 			return;
 		}
 
-		$outputs = $this->getOutputs();
-		if ( !$outputs ) {
-			return;
+		$outputs = [];
+		foreach ( $this->getOutputs() as $output ) {
+			if ( !$output->logsToOutput() ) {
+				$outputs[] = $output;
+			}
 		}
 
-		$stats = $this->getFunctionStats();
-		foreach ( $outputs as $output ) {
-			$output->log( $stats );
+		if ( $outputs ) {
+			$stats = $this->getFunctionStats();
+			foreach ( $outputs as $output ) {
+				$output->log( $stats );
+			}
 		}
 	}
 
 	/**
-	 * Output current data to the page output if configured to do so
+	 * Log the data to the script/request output for all ProfilerOutput instances that do so
 	 *
 	 * @throws MWException
 	 * @since 1.26
 	 */
 	public function logDataPageOutputOnly() {
+		$outputs = [];
 		foreach ( $this->getOutputs() as $output ) {
-			if ( $output instanceof ProfilerOutputText ) {
-				$stats = $this->getFunctionStats();
+			if ( $output->logsToOutput() ) {
+				$outputs[] = $output;
+			}
+		}
+
+		if ( $outputs ) {
+			$stats = $this->getFunctionStats();
+			foreach ( $outputs as $output ) {
 				$output->log( $stats );
 			}
 		}

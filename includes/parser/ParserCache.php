@@ -189,9 +189,8 @@ class ParserCache {
 		}
 
 		// Determine the options which affect this article
-		$casToken = null;
 		$optionsKey = $this->mMemc->get(
-			$this->getOptionsKey( $article ), $casToken, BagOStuff::READ_VERIFIED );
+			$this->getOptionsKey( $article ), BagOStuff::READ_VERIFIED );
 		if ( $optionsKey instanceof CacheTime ) {
 			if ( $useOutdated < self::USE_EXPIRED && $optionsKey->expired( $article->getTouched() ) ) {
 				$this->incrementStats( $article, "miss.expired" );
@@ -257,7 +256,7 @@ class ParserCache {
 
 		$casToken = null;
 		/** @var ParserOutput $value */
-		$value = $this->mMemc->get( $parserOutputKey, $casToken, BagOStuff::READ_VERIFIED );
+		$value = $this->mMemc->get( $parserOutputKey, BagOStuff::READ_VERIFIED );
 		if ( !$value ) {
 			wfDebug( "ParserOutput cache miss.\n" );
 			$this->incrementStats( $article, "miss.absent" );

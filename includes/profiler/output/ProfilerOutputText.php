@@ -35,6 +35,11 @@ class ProfilerOutputText extends ProfilerOutput {
 		parent::__construct( $collector, $params );
 		$this->thresholdMs = $params['thresholdMs'] ?? 1.0;
 	}
+
+	public function logsToOutput() {
+		return true;
+	}
+
 	public function log( array $stats ) {
 		if ( $this->collector->getTemplated() ) {
 			$out = '';
