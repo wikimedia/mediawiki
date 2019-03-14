@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.4
+ * OOUI v0.31.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-03-07T09:14:18Z
+ * Date: 2019-03-14T00:52:20Z
  */
 ( function ( OO ) {
 
@@ -659,7 +659,8 @@ OO.ui.Element = function OoUiElement( config ) {
 		this.$element.append( config.content.map( function ( v ) {
 			if ( typeof v === 'string' ) {
 				// Escape string so it is properly represented in HTML.
-				return document.createTextNode( v );
+				// Don't create empty text nodes for empty strings.
+				return v ? document.createTextNode( v ) : undefined;
 			} else if ( v instanceof OO.ui.HtmlSnippet ) {
 				// Bypass escaping.
 				return v.toString();
@@ -2301,12 +2302,6 @@ OO.ui.mixin.ButtonElement.prototype.onDocumentMouseUp = function ( e ) {
 	this.getElementDocument().removeEventListener( 'mouseup', this.onDocumentMouseUpHandler, true );
 };
 
-// Deprecated alias since 0.28.3
-OO.ui.mixin.ButtonElement.prototype.onMouseUp = function () {
-	OO.ui.warnDeprecation( 'onMouseUp is deprecated, use onDocumentMouseUp instead' );
-	this.onDocumentMouseUp.apply( this, arguments );
-};
-
 /**
  * Handles mouse click events.
  *
@@ -2352,12 +2347,6 @@ OO.ui.mixin.ButtonElement.prototype.onDocumentKeyUp = function ( e ) {
 	this.$element.removeClass( 'oo-ui-buttonElement-pressed' );
 	// Stop listening for keyup, since we only needed this once
 	this.getElementDocument().removeEventListener( 'keyup', this.onDocumentKeyUpHandler, true );
-};
-
-// Deprecated alias since 0.28.3
-OO.ui.mixin.ButtonElement.prototype.onKeyUp = function () {
-	OO.ui.warnDeprecation( 'onKeyUp is deprecated, use onDocumentKeyUp instead' );
-	this.onDocumentKeyUp.apply( this, arguments );
 };
 
 /**
@@ -2928,8 +2917,6 @@ OO.ui.mixin.LabelElement.prototype.setLabelContent = function ( label ) {
  *     { default: 'bold-a', en: 'bold-b', de: 'bold-f' }
  *  See the [OOUI documentation on MediaWiki] [2] for a list of icons included in the library.
  * [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Icons
- * @cfg {string|Function} [iconTitle] A text string used as the icon title, or a function that
- *  returns title text. The icon title is displayed when users move the mouse over the icon.
  */
 OO.ui.mixin.IconElement = function OoUiMixinIconElement( config ) {
 	// Configuration initialization
@@ -2938,16 +2925,9 @@ OO.ui.mixin.IconElement = function OoUiMixinIconElement( config ) {
 	// Properties
 	this.$icon = null;
 	this.icon = null;
-	this.iconTitle = null;
-
-	// `iconTitle`s are deprecated since 0.30.0
-	if ( config.iconTitle !== undefined ) {
-		OO.ui.warnDeprecation( 'IconElement: Widgets with iconTitle set are deprecated, use title instead. See T76638 for details.' );
-	}
 
 	// Initialization
 	this.setIcon( config.icon || this.constructor.static.icon );
-	this.setIconTitle( config.iconTitle || this.constructor.static.iconTitle );
 	this.setIconElement( config.$icon || $( '<span>' ) );
 };
 
@@ -3050,40 +3030,6 @@ OO.ui.mixin.IconElement.prototype.setIcon = function ( icon ) {
 };
 
 /**
- * Set the icon title. Use `null` to remove the title.
- *
- * @param {string|Function|null} iconTitle A text string used as the icon title,
- *  a function that returns title text, or `null` for no title.
- * @chainable
- * @return {OO.ui.Element} The element, for chaining
- * @deprecated
- */
-OO.ui.mixin.IconElement.prototype.setIconTitle = function ( iconTitle ) {
-	iconTitle =
-		( typeof iconTitle === 'function' || ( typeof iconTitle === 'string' && iconTitle.length ) ) ?
-			OO.ui.resolveMsg( iconTitle ) : null;
-
-	if ( this.iconTitle !== iconTitle ) {
-		this.iconTitle = iconTitle;
-		if ( this.$icon ) {
-			if ( this.iconTitle !== null ) {
-				this.$icon.attr( 'title', iconTitle );
-			} else {
-				this.$icon.removeAttr( 'title' );
-			}
-		}
-	}
-
-	// `setIconTitle` is deprecated since 0.30.0
-	if ( iconTitle !== null ) {
-		// Avoid a warning when this is called from the constructor with no iconTitle set
-		OO.ui.warnDeprecation( 'IconElement: setIconTitle is deprecated, use setTitle of TitledElement instead. See T76638 for details.' );
-	}
-
-	return this;
-};
-
-/**
  * Get the symbolic name of the icon.
  *
  * @return {string} Icon name
@@ -3127,9 +3073,6 @@ OO.ui.mixin.IconElement.prototype.getIconTitle = function () {
  *  See the [OOUI documentation on MediaWiki][2] for a list of indicators included
  *  in the library.
  * [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Indicators
- * @cfg {string|Function} [indicatorTitle] A text string used as the indicator title,
- *  or a function that returns title text. The indicator title is displayed when users move
- *  the mouse over the indicator.
  */
 OO.ui.mixin.IndicatorElement = function OoUiMixinIndicatorElement( config ) {
 	// Configuration initialization
@@ -3138,16 +3081,9 @@ OO.ui.mixin.IndicatorElement = function OoUiMixinIndicatorElement( config ) {
 	// Properties
 	this.$indicator = null;
 	this.indicator = null;
-	this.indicatorTitle = null;
-
-	// `indicatorTitle`s are deprecated since 0.30.0
-	if ( config.indicatorTitle !== undefined ) {
-		OO.ui.warnDeprecation( 'IndicatorElement: Widgets with indicatorTitle set are deprecated, use title instead. See T76638 for details.' );
-	}
 
 	// Initialization
 	this.setIndicator( config.indicator || this.constructor.static.indicator );
-	this.setIndicatorTitle( config.indicatorTitle || this.constructor.static.indicatorTitle );
 	this.setIndicatorElement( config.$indicator || $( '<span>' ) );
 };
 
@@ -3233,42 +3169,6 @@ OO.ui.mixin.IndicatorElement.prototype.setIndicator = function ( indicator ) {
 		this.$indicator.toggleClass( 'oo-ui-indicatorElement-noIndicator', !this.indicator );
 	}
 	this.updateThemeClasses();
-
-	return this;
-};
-
-/**
- * Set the indicator title.
- *
- * The title is displayed when a user moves the mouse over the indicator.
- *
- * @param {string|Function|null} indicatorTitle Indicator title text, a function that returns text,
- *  or `null` for no indicator title
- * @chainable
- * @return {OO.ui.Element} The element, for chaining
- * @deprecated
- */
-OO.ui.mixin.IndicatorElement.prototype.setIndicatorTitle = function ( indicatorTitle ) {
-	indicatorTitle =
-		( typeof indicatorTitle === 'function' || ( typeof indicatorTitle === 'string' && indicatorTitle.length ) ) ?
-			OO.ui.resolveMsg( indicatorTitle ) : null;
-
-	if ( this.indicatorTitle !== indicatorTitle ) {
-		this.indicatorTitle = indicatorTitle;
-		if ( this.$indicator ) {
-			if ( this.indicatorTitle !== null ) {
-				this.$indicator.attr( 'title', indicatorTitle );
-			} else {
-				this.$indicator.removeAttr( 'title' );
-			}
-		}
-	}
-
-	// `setIndicatorTitle` is deprecated since 0.30.0
-	if ( indicatorTitle !== null ) {
-		// Avoid a warning when this is called from the constructor with no indicatorTitle set
-		OO.ui.warnDeprecation( 'IndicatorElement: setIndicatorTitle is deprecated, use setTitle of TitledElement instead. See T76638 for details.' );
-	}
 
 	return this;
 };
@@ -3836,16 +3736,16 @@ OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.IndicatorElement.call( this, config );
 	OO.ui.mixin.LabelElement.call( this, config );
-	OO.ui.mixin.TitledElement.call( this, $.extend( {}, config, {
+	OO.ui.mixin.TitledElement.call( this, $.extend( {
 		$titled: this.$button
-	} ) );
+	}, config ) );
 	OO.ui.mixin.FlaggedElement.call( this, config );
-	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, {
+	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {
 		$tabIndexed: this.$button
-	} ) );
-	OO.ui.mixin.AccessKeyedElement.call( this, $.extend( {}, config, {
+	}, config ) );
+	OO.ui.mixin.AccessKeyedElement.call( this, $.extend( {
 		$accessKeyed: this.$button
-	} ) );
+	}, config ) );
 
 	// Properties
 	this.href = null;
@@ -4065,9 +3965,9 @@ OO.ui.ButtonGroupWidget = function OoUiButtonGroupWidget( config ) {
 	OO.ui.ButtonGroupWidget.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.GroupElement.call( this, $.extend( {}, config, {
+	OO.ui.mixin.GroupElement.call( this, $.extend( {
 		$group: this.$element
-	} ) );
+	}, config ) );
 	OO.ui.mixin.TitledElement.call( this, config );
 
 	// Initialization
@@ -4153,19 +4053,19 @@ OO.ui.IconWidget = function OoUiIconWidget( config ) {
 	OO.ui.IconWidget.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.IconElement.call( this, $.extend( {}, config, {
+	OO.ui.mixin.IconElement.call( this, $.extend( {
 		$icon: this.$element
-	} ) );
-	OO.ui.mixin.TitledElement.call( this, $.extend( {}, config, {
+	}, config ) );
+	OO.ui.mixin.TitledElement.call( this, $.extend( {
 		$titled: this.$element
-	} ) );
-	OO.ui.mixin.LabelElement.call( this, $.extend( {}, config, {
+	}, config ) );
+	OO.ui.mixin.LabelElement.call( this, $.extend( {
 		$label: this.$element,
 		invisibleLabel: true
-	} ) );
-	OO.ui.mixin.FlaggedElement.call( this, $.extend( {}, config, {
+	}, config ) );
+	OO.ui.mixin.FlaggedElement.call( this, $.extend( {
 		$flagged: this.$element
-	} ) );
+	}, config ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-iconWidget' );
@@ -4228,16 +4128,16 @@ OO.ui.IndicatorWidget = function OoUiIndicatorWidget( config ) {
 	OO.ui.IndicatorWidget.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.IndicatorElement.call( this, $.extend( {}, config, {
+	OO.ui.mixin.IndicatorElement.call( this, $.extend( {
 		$indicator: this.$element
-	} ) );
-	OO.ui.mixin.TitledElement.call( this, $.extend( {}, config, {
+	}, config ) );
+	OO.ui.mixin.TitledElement.call( this, $.extend( {
 		$titled: this.$element
-	} ) );
-	OO.ui.mixin.LabelElement.call( this, $.extend( {}, config, {
+	}, config ) );
+	OO.ui.mixin.LabelElement.call( this, $.extend( {
 		$label: this.$element,
 		invisibleLabel: true
-	} ) );
+	}, config ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-indicatorWidget' );
@@ -4309,9 +4209,9 @@ OO.ui.LabelWidget = function OoUiLabelWidget( config ) {
 	OO.ui.LabelWidget.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.LabelElement.call( this, $.extend( {}, config, {
+	OO.ui.mixin.LabelElement.call( this, $.extend( {
 		$label: this.$element
-	} ) );
+	}, config ) );
 	OO.ui.mixin.TitledElement.call( this, config );
 
 	// Properties
@@ -5396,10 +5296,10 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 
 	// Mixin constructors
 	OO.ui.mixin.LabelElement.call( this, config );
-	OO.ui.mixin.ClippableElement.call( this, $.extend( {}, config, {
+	OO.ui.mixin.ClippableElement.call( this, $.extend( {
 		$clippable: this.$body,
 		$clippableContainer: this.$popup
-	} ) );
+	}, config ) );
 	OO.ui.mixin.FloatableElement.call( this, config );
 
 	// Properties
@@ -5498,12 +5398,6 @@ OO.ui.PopupWidget.prototype.onDocumentMouseDown = function ( e ) {
 	}
 };
 
-// Deprecated alias since 0.28.3
-OO.ui.PopupWidget.prototype.onMouseDown = function () {
-	OO.ui.warnDeprecation( 'onMouseDown is deprecated, use onDocumentMouseDown instead' );
-	this.onDocumentMouseDown.apply( this, arguments );
-};
-
 /**
  * Bind document mouse down listener.
  *
@@ -5519,12 +5413,6 @@ OO.ui.PopupWidget.prototype.bindDocumentMouseDownListener = function () {
 	// that it should be emitting, so we add it to this and will operate the event handler
 	// on whichever of these events was triggered first
 	this.getElementDocument().addEventListener( 'click', this.onDocumentMouseDownHandler, true );
-};
-
-// Deprecated alias since 0.28.3
-OO.ui.PopupWidget.prototype.bindMouseDownListener = function () {
-	OO.ui.warnDeprecation( 'bindMouseDownListener is deprecated, use bindDocumentMouseDownListener instead' );
-	this.bindDocumentMouseDownListener.apply( this, arguments );
 };
 
 /**
@@ -5546,12 +5434,6 @@ OO.ui.PopupWidget.prototype.onCloseButtonClick = function () {
 OO.ui.PopupWidget.prototype.unbindDocumentMouseDownListener = function () {
 	this.getElementDocument().removeEventListener( 'mousedown', this.onDocumentMouseDownHandler, true );
 	this.getElementDocument().removeEventListener( 'click', this.onDocumentMouseDownHandler, true );
-};
-
-// Deprecated alias since 0.28.3
-OO.ui.PopupWidget.prototype.unbindMouseDownListener = function () {
-	OO.ui.warnDeprecation( 'unbindMouseDownListener is deprecated, use unbindDocumentMouseDownListener instead' );
-	this.unbindDocumentMouseDownListener.apply( this, arguments );
 };
 
 /**
@@ -5580,12 +5462,6 @@ OO.ui.PopupWidget.prototype.bindDocumentKeyDownListener = function () {
 	this.getElementDocument().addEventListener( 'keydown', this.onDocumentKeyDownHandler, true );
 };
 
-// Deprecated alias since 0.28.3
-OO.ui.PopupWidget.prototype.bindKeyDownListener = function () {
-	OO.ui.warnDeprecation( 'bindKeyDownListener is deprecated, use bindDocumentKeyDownListener instead' );
-	this.bindDocumentKeyDownListener.apply( this, arguments );
-};
-
 /**
  * Unbind document key down listener.
  *
@@ -5593,12 +5469,6 @@ OO.ui.PopupWidget.prototype.bindKeyDownListener = function () {
  */
 OO.ui.PopupWidget.prototype.unbindDocumentKeyDownListener = function () {
 	this.getElementDocument().removeEventListener( 'keydown', this.onDocumentKeyDownHandler, true );
-};
-
-// Deprecated alias since 0.28.3
-OO.ui.PopupWidget.prototype.unbindKeyDownListener = function () {
-	OO.ui.warnDeprecation( 'unbindKeyDownListener is deprecated, use unbindDocumentKeyDownListener instead' );
-	this.unbindDocumentKeyDownListener.apply( this, arguments );
 };
 
 /**
@@ -6311,9 +6181,9 @@ OO.ui.OptionWidget = function OoUiOptionWidget( config ) {
 	OO.ui.mixin.TitledElement.call( this, config );
 
 	// Properties
-	this.selected = false;
 	this.highlighted = false;
 	this.pressed = false;
+	this.setSelected( !!config.selected );
 
 	// Initialization
 	this.$element
@@ -6321,7 +6191,6 @@ OO.ui.OptionWidget = function OoUiOptionWidget( config ) {
 		// Allow programmatic focussing (and by access key), but not tabbing
 		.attr( 'tabindex', '-1' )
 		.attr( 'role', 'option' )
-		.attr( 'aria-selected', 'false' )
 		.addClass( 'oo-ui-optionWidget' )
 		.append( this.$label );
 };
@@ -6560,9 +6429,9 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	OO.ui.SelectWidget.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.GroupWidget.call( this, $.extend( {}, config, {
+	OO.ui.mixin.GroupWidget.call( this, $.extend( {
 		$group: this.$element
-	} ) );
+	}, config ) );
 
 	// Properties
 	this.pressed = false;
@@ -6770,12 +6639,6 @@ OO.ui.SelectWidget.prototype.onDocumentMouseUp = function ( e ) {
 	return false;
 };
 
-// Deprecated alias since 0.28.3
-OO.ui.SelectWidget.prototype.onMouseUp = function () {
-	OO.ui.warnDeprecation( 'onMouseUp is deprecated, use onDocumentMouseUp instead' );
-	this.onDocumentMouseUp.apply( this, arguments );
-};
-
 /**
  * Handle document mouse move events.
  *
@@ -6792,12 +6655,6 @@ OO.ui.SelectWidget.prototype.onDocumentMouseMove = function ( e ) {
 			this.selecting = item;
 		}
 	}
-};
-
-// Deprecated alias since 0.28.3
-OO.ui.SelectWidget.prototype.onMouseMove = function () {
-	OO.ui.warnDeprecation( 'onMouseMove is deprecated, use onDocumentMouseMove instead' );
-	this.onDocumentMouseMove.apply( this, arguments );
 };
 
 /**
@@ -6893,12 +6750,6 @@ OO.ui.SelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 	}
 };
 
-// Deprecated alias since 0.28.3
-OO.ui.SelectWidget.prototype.onKeyDown = function () {
-	OO.ui.warnDeprecation( 'onKeyDown is deprecated, use onDocumentKeyDown instead' );
-	this.onDocumentKeyDown.apply( this, arguments );
-};
-
 /**
  * Bind document key down listener.
  *
@@ -6908,12 +6759,6 @@ OO.ui.SelectWidget.prototype.bindDocumentKeyDownListener = function () {
 	this.getElementDocument().addEventListener( 'keydown', this.onDocumentKeyDownHandler, true );
 };
 
-// Deprecated alias since 0.28.3
-OO.ui.SelectWidget.prototype.bindKeyDownListener = function () {
-	OO.ui.warnDeprecation( 'bindKeyDownListener is deprecated, use bindDocumentKeyDownListener instead' );
-	this.bindDocumentKeyDownListener.apply( this, arguments );
-};
-
 /**
  * Unbind document key down listener.
  *
@@ -6921,12 +6766,6 @@ OO.ui.SelectWidget.prototype.bindKeyDownListener = function () {
  */
 OO.ui.SelectWidget.prototype.unbindDocumentKeyDownListener = function () {
 	this.getElementDocument().removeEventListener( 'keydown', this.onDocumentKeyDownHandler, true );
-};
-
-// Deprecated alias since 0.28.3
-OO.ui.SelectWidget.prototype.unbindKeyDownListener = function () {
-	OO.ui.warnDeprecation( 'unbindKeyDownListener is deprecated, use unbindDocumentKeyDownListener instead' );
-	this.unbindDocumentKeyDownListener.apply( this, arguments );
 };
 
 /**
@@ -7018,12 +6857,6 @@ OO.ui.SelectWidget.prototype.onDocumentKeyPress = function ( e ) {
 	e.stopPropagation();
 };
 
-// Deprecated alias since 0.28.3
-OO.ui.SelectWidget.prototype.onKeyPress = function () {
-	OO.ui.warnDeprecation( 'onKeyPress is deprecated, use onDocumentKeyPress instead' );
-	this.onDocumentKeyPress.apply( this, arguments );
-};
-
 /**
  * Get a matcher for the specific string
  *
@@ -7071,12 +6904,6 @@ OO.ui.SelectWidget.prototype.bindDocumentKeyPressListener = function () {
 	this.getElementDocument().addEventListener( 'keypress', this.onDocumentKeyPressHandler, true );
 };
 
-// Deprecated alias since 0.28.3
-OO.ui.SelectWidget.prototype.bindKeyPressListener = function () {
-	OO.ui.warnDeprecation( 'bindKeyPressListener is deprecated, use bindDocumentKeyPressListener instead' );
-	this.bindDocumentKeyPressListener.apply( this, arguments );
-};
-
 /**
  * Unbind document key down listener.
  *
@@ -7088,12 +6915,6 @@ OO.ui.SelectWidget.prototype.bindKeyPressListener = function () {
 OO.ui.SelectWidget.prototype.unbindDocumentKeyPressListener = function () {
 	this.getElementDocument().removeEventListener( 'keypress', this.onDocumentKeyPressHandler, true );
 	this.clearKeyPressBuffer();
-};
-
-// Deprecated alias since 0.28.3
-OO.ui.SelectWidget.prototype.unbindKeyPressListener = function () {
-	OO.ui.warnDeprecation( 'unbindKeyPressListener is deprecated, use unbindDocumentKeyPressListener instead' );
-	this.unbindDocumentKeyPressListener.apply( this, arguments );
 };
 
 /**
@@ -7730,7 +7551,7 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	OO.ui.MenuSelectWidget.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.ClippableElement.call( this, $.extend( {}, config, { $clippable: this.$group } ) );
+	OO.ui.mixin.ClippableElement.call( this, $.extend( { $clippable: this.$group }, config ) );
 	OO.ui.mixin.FloatableElement.call( this, config );
 
 	// Initial vertical positions other than 'center' will result in
@@ -8214,12 +8035,12 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.IndicatorElement.call( this, config );
 	OO.ui.mixin.LabelElement.call( this, config );
-	OO.ui.mixin.TitledElement.call( this, $.extend( {}, config, {
+	OO.ui.mixin.TitledElement.call( this, $.extend( {
 		$titled: this.$label
-	} ) );
-	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, {
+	}, config ) );
+	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {
 		$tabIndexed: this.$handle
-	} ) );
+	}, config ) );
 
 	// Properties
 	this.menu = new OO.ui.MenuSelectWidget( $.extend( {
@@ -9106,7 +8927,6 @@ OO.ui.ProgressBarWidget.prototype.setProgress = function ( progress ) {
  * @abstract
  * @class
  * @extends OO.ui.Widget
- * @mixins OO.ui.mixin.FlaggedElement
  * @mixins OO.ui.mixin.TabIndexedElement
  * @mixins OO.ui.mixin.TitledElement
  * @mixins OO.ui.mixin.AccessKeyedElement
@@ -9134,16 +8954,15 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 	this.inputFilter = config.inputFilter;
 
 	// Mixin constructors
-	OO.ui.mixin.FlaggedElement.call( this, config );
-	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, {
+	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {
 		$tabIndexed: this.$input
-	} ) );
-	OO.ui.mixin.TitledElement.call( this, $.extend( {}, config, {
+	}, config ) );
+	OO.ui.mixin.TitledElement.call( this, $.extend( {
 		$titled: this.$input
-	} ) );
-	OO.ui.mixin.AccessKeyedElement.call( this, $.extend( {}, config, {
+	}, config ) );
+	OO.ui.mixin.AccessKeyedElement.call( this, $.extend( {
 		$accessKeyed: this.$input
-	} ) );
+	}, config ) );
 
 	// Events
 	this.$input.on( 'keydown mouseup cut paste change input select', this.onEdit.bind( this ) );
@@ -9168,7 +8987,6 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.InputWidget, OO.ui.Widget );
-OO.mixinClass( OO.ui.InputWidget, OO.ui.mixin.FlaggedElement );
 OO.mixinClass( OO.ui.InputWidget, OO.ui.mixin.TabIndexedElement );
 OO.mixinClass( OO.ui.InputWidget, OO.ui.mixin.TitledElement );
 OO.mixinClass( OO.ui.InputWidget, OO.ui.mixin.AccessKeyedElement );
@@ -9415,6 +9233,7 @@ OO.ui.HiddenInputWidget.static.tagName = 'input';
  * @mixins OO.ui.mixin.IconElement
  * @mixins OO.ui.mixin.IndicatorElement
  * @mixins OO.ui.mixin.LabelElement
+ * @mixins OO.ui.mixin.FlaggedElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -9442,12 +9261,13 @@ OO.ui.ButtonInputWidget = function OoUiButtonInputWidget( config ) {
 	OO.ui.ButtonInputWidget.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.ButtonElement.call( this, $.extend( {}, config, {
+	OO.ui.mixin.ButtonElement.call( this, $.extend( {
 		$button: this.$input
-	} ) );
+	}, config ) );
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.IndicatorElement.call( this, config );
 	OO.ui.mixin.LabelElement.call( this, config );
+	OO.ui.mixin.FlaggedElement.call( this, config );
 
 	// Initialization
 	if ( !config.useInputTag ) {
@@ -9463,6 +9283,7 @@ OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.mixin.ButtonElement );
 OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.mixin.IconElement );
 OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.mixin.IndicatorElement );
 OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.mixin.LabelElement );
+OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.mixin.FlaggedElement );
 
 /* Static Properties */
 
@@ -10586,6 +10407,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.focus = function () {
  * @mixins OO.ui.mixin.IndicatorElement
  * @mixins OO.ui.mixin.PendingElement
  * @mixins OO.ui.mixin.LabelElement
+ * @mixins OO.ui.mixin.FlaggedElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -10627,8 +10449,9 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.IndicatorElement.call( this, config );
-	OO.ui.mixin.PendingElement.call( this, $.extend( {}, config, { $pending: this.$input } ) );
+	OO.ui.mixin.PendingElement.call( this, $.extend( { $pending: this.$input }, config ) );
 	OO.ui.mixin.LabelElement.call( this, config );
+	OO.ui.mixin.FlaggedElement.call( this, config );
 
 	// Properties
 	this.type = this.getSaneType( config );
@@ -10698,6 +10521,7 @@ OO.mixinClass( OO.ui.TextInputWidget, OO.ui.mixin.IconElement );
 OO.mixinClass( OO.ui.TextInputWidget, OO.ui.mixin.IndicatorElement );
 OO.mixinClass( OO.ui.TextInputWidget, OO.ui.mixin.PendingElement );
 OO.mixinClass( OO.ui.TextInputWidget, OO.ui.mixin.LabelElement );
+OO.mixinClass( OO.ui.TextInputWidget, OO.ui.mixin.FlaggedElement );
 
 /* Static Properties */
 
@@ -11940,6 +11764,8 @@ OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
  *  displayed below the widget.
  * @cfg {Array} [warnings] Warning messages about the widget, which will be
  *  displayed below the widget.
+ * @cfg {Array} [successMessages] Success messages on user interactions with the widget,
+ *  which will be displayed below the widget.
  *  The array may contain strings or OO.ui.HtmlSnippet instances.
  * @cfg {Array} [notices] Notices about the widget, which will be displayed
  *  below the widget.
@@ -11978,15 +11804,16 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	OO.ui.FieldLayout.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.LabelElement.call( this, $.extend( {}, config, {
+	OO.ui.mixin.LabelElement.call( this, $.extend( {
 		$label: $( '<label>' )
-	} ) );
-	OO.ui.mixin.TitledElement.call( this, $.extend( {}, config, { $titled: this.$label } ) );
+	}, config ) );
+	OO.ui.mixin.TitledElement.call( this, $.extend( { $titled: this.$label }, config ) );
 
 	// Properties
 	this.fieldWidget = fieldWidget;
 	this.errors = [];
 	this.warnings = [];
+	this.successMessages = [];
 	this.notices = [];
 	this.$field = this.isFieldInline() ? $( '<span>' ) : $( '<div>' );
 	this.$messages = $( '<ul>' );
@@ -12032,6 +11859,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 
 	this.setErrors( config.errors || [] );
 	this.setWarnings( config.warnings || [] );
+	this.setSuccess( config.successMessages || [] );
 	this.setNotices( config.notices || [] );
 	this.setAlignment( config.align );
 	// Call this again to take into account the widget's accessKey
@@ -12091,6 +11919,8 @@ OO.ui.FieldLayout.prototype.makeMessage = function ( kind, text ) {
 	} else if ( kind === 'warning' ) {
 		$icon = new OO.ui.IconWidget( { icon: 'alert', flags: [ 'warning' ] } ).$element;
 		$listItem.attr( 'role', 'alert' );
+	} else if ( kind === 'success' ) {
+		$icon = new OO.ui.IconWidget( { icon: 'check', flags: [ 'success' ] } ).$element;
 	} else if ( kind === 'notice' ) {
 		$icon = new OO.ui.IconWidget( { icon: 'notice' } ).$element;
 	} else {
@@ -12191,6 +12021,21 @@ OO.ui.FieldLayout.prototype.setWarnings = function ( warnings ) {
 };
 
 /**
+ * Set the list of success messages.
+ *
+ * @param {Array} successMessages Success messages about the widget, which will be displayed below
+ *  the widget.
+ *  The array may contain strings or OO.ui.HtmlSnippet instances.
+ * @chainable
+ * @return {OO.ui.BookletLayout} The layout, for chaining
+ */
+OO.ui.FieldLayout.prototype.setSuccess = function ( successMessages ) {
+	this.successMessages = successMessages.slice();
+	this.updateMessages();
+	return this;
+};
+
+/**
  * Set the list of notice messages.
  *
  * @param {Array} notices Notices about the widget, which will be displayed below the widget.
@@ -12205,7 +12050,7 @@ OO.ui.FieldLayout.prototype.setNotices = function ( notices ) {
 };
 
 /**
- * Update the rendering of error, warning and notice messages.
+ * Update the rendering of error, warning, success and notice messages.
  *
  * @private
  */
@@ -12213,7 +12058,12 @@ OO.ui.FieldLayout.prototype.updateMessages = function () {
 	var i;
 	this.$messages.empty();
 
-	if ( this.errors.length || this.warnings.length || this.notices.length ) {
+	if (
+		this.errors.length ||
+		this.warnings.length ||
+		this.successMessages.length ||
+		this.notices.length
+	) {
 		this.$body.after( this.$messages );
 	} else {
 		this.$messages.remove();
@@ -12225,6 +12075,9 @@ OO.ui.FieldLayout.prototype.updateMessages = function () {
 	}
 	for ( i = 0; i < this.warnings.length; i++ ) {
 		this.$messages.append( this.makeMessage( 'warning', this.warnings[ i ] ) );
+	}
+	for ( i = 0; i < this.successMessages.length; i++ ) {
+		this.$messages.append( this.makeMessage( 'success', this.successMessages[ i ] ) );
 	}
 	for ( i = 0; i < this.notices.length; i++ ) {
 		this.$messages.append( this.makeMessage( 'notice', this.notices[ i ] ) );
@@ -12560,7 +12413,7 @@ OO.ui.FormLayout = function OoUiFormLayout( config ) {
 	OO.ui.FormLayout.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.GroupElement.call( this, $.extend( {}, config, { $group: this.$element } ) );
+	OO.ui.mixin.GroupElement.call( this, $.extend( { $group: this.$element }, config ) );
 
 	// Events
 	this.$element.on( 'submit', this.onFormSubmit.bind( this ) );
@@ -12679,6 +12532,19 @@ OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 
 OO.inheritClass( OO.ui.PanelLayout, OO.ui.Layout );
 
+/* Static Methods */
+
+/**
+ * @inheritdoc
+ */
+OO.ui.PanelLayout.static.reusePreInfuseDOM = function ( node, config ) {
+	config = OO.ui.PanelLayout.parent.static.reusePreInfuseDOM( node, config );
+	if ( config.preserveContent !== false ) {
+		config.$content = $( node ).contents();
+	}
+	return config;
+};
+
 /* Methods */
 
 /**
@@ -12723,7 +12589,7 @@ OO.ui.HorizontalLayout = function OoUiHorizontalLayout( config ) {
 	OO.ui.HorizontalLayout.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.GroupElement.call( this, $.extend( {}, config, { $group: this.$element } ) );
+	OO.ui.mixin.GroupElement.call( this, $.extend( { $group: this.$element }, config ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-horizontalLayout' );

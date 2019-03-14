@@ -18,6 +18,9 @@
 		},
 		"warning": {
 			"color": "#fc3"
+		},
+		"success": {
+			"color": "#14866d"
 		}
 	},
 	"images": {
