@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.4
+ * OOUI v0.31.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-03-07T09:14:18Z
+ * Date: 2019-03-14T00:52:20Z
  */
 ( function ( OO ) {
 
@@ -40,7 +40,8 @@ OO.ui.WikimediaUITheme.prototype.getElementClasses = function ( element ) {
 			progressive: false,
 			destructive: false,
 			error: false,
-			warning: false
+			warning: false,
+			success: false
 		},
 		// Parent method
 		classes = OO.ui.WikimediaUITheme.parent.prototype.getElementClasses.call( this, element );
@@ -93,6 +94,7 @@ OO.ui.WikimediaUITheme.prototype.getElementClasses = function ( element ) {
 			variants.destructive = element.hasFlag( 'destructive' );
 			variants.error = element.hasFlag( 'error' );
 			variants.warning = element.hasFlag( 'warning' );
+			variants.success = element.hasFlag( 'success' );
 		}
 	}
 

@@ -1,4 +1,41 @@
 # OOUI Release History
+## v0.31.0 / 2019-03-13
+### Breaking changes
+* [BREAKING CHANGE] Remove FlaggedElement from InputWidget (Ed Sanders)
+* [BREAKING CHANGE] Remove method names deprecated in 0.28.3 (Ed Sanders)
+* [BREAKING CHANGE] indicators: Drop 'search', deprecated in v0.30.0 (James D. Forrester)
+* [BREAKING CHANGE]: Drop `iconTitle` and `indicatorTitle`, deprecated in v0.30.0 (James D. Forrester)
+
+### Features
+* Add 'success' message type (Volker E.)
+* Make mixin configs extendable (Ed Sanders)
+* PanelLayout: Create preserveContent config (Ed Sanders)
+* SelectFileWidget: Be consistent with showDropTarget requiring droppable (Ed Sanders)
+* SelectFileWidget: Mixin TabIndexedElement (Ed Sanders)
+* PHP: Added server-side version of IndexLayout (Cormac Parle)
+* PHP: Implement MenuLayout (Ed Sanders)
+* PHP: Implement StackLayout (Ed Sanders)
+* PHP: Implement TabPanelLayout (Ed Sanders)
+* PHP: Implement TabSelectWidget/TabOptionWidget (Ed Sanders)
+* PHP: Preserve content inside PanelLayout and test (Ed Sanders)
+
+### Styles
+* WikimediaUI theme: Fix ComboBoxInputWidget rounded corners (Bartosz Dziewoński)
+* WikimediaUI theme: Fix toolbar tools' `padding` (Volker E.)
+
+### Code
+* MenuLayout.php: Fix visiblity of properties and default config values (Ed Sanders)
+* Tag.php: Fix (ap/pre)pendContent to behave like JS DOM (Ed Sanders)
+* PHP tests: Only test ltr/rtl for 'dir', remove value='b' tests (Ed Sanders)
+* PHP tests: Only test one string for inputId (Ed Sanders)
+* demo: Unify demo navigation toolbars (Ed Sanders)
+* docs: Change docblock style for array elements in $config (Daimona Eaytoy)
+* build: Upgrade grunt-svg2png to 0.2.7-wmf.2 for audit fixes (James D. Forrester)
+* build: Upgrade imagemin-zopfli to 6.0.0 for audit fix (James D. Forrester)
+* build: Upgrade javascript-stringify to 2.0.0 for audit fix (James D. Forrester)
+* eslint: Enable cache (Ed Sanders)
+
+
 ## v0.30.4 / 2019-03-06
 ### Deprecations
 * [DEPRECATING CHANGE] SelectWidget: Rename '-depressed' to '-unpressed' (Ed Sanders)

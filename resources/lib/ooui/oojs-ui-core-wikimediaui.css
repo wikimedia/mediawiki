@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.4
+ * OOUI v0.31.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-03-07T09:14:26Z
+ * Date: 2019-03-14T00:52:27Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -600,6 +600,9 @@
 }
 .oo-ui-fieldLayout-messages .oo-ui-fieldLayout-messages-error {
   color: #d33;
+}
+.oo-ui-fieldLayout-messages .oo-ui-fieldLayout-messages-success {
+  color: #14866d;
 }
 .oo-ui-fieldLayout-messages .oo-ui-iconWidget.oo-ui-iconElement-icon {
   background-position: 0 0;
@@ -1868,14 +1871,14 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   height: 100%;
   pointer-events: none;
 }
-.oo-ui-comboBoxInputWidget input {
+.oo-ui-comboBoxInputWidget .oo-ui-inputWidget-input {
   height: 2.28571429em;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-right-width: 0;
 }
-.oo-ui-comboBoxInputWidget.oo-ui-comboBoxInputWidget-empty input,
-.oo-ui-comboBoxInputWidget-php input {
+.oo-ui-comboBoxInputWidget.oo-ui-comboBoxInputWidget-empty .oo-ui-inputWidget-input,
+.oo-ui-comboBoxInputWidget-php .oo-ui-inputWidget-input {
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   border-right-width: 1px;

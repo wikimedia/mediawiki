@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.4
+ * OOUI v0.31.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-03-07T09:14:26Z
+ * Date: 2019-03-14T00:52:27Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -703,7 +703,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding: 1em 0.85714286em 0.92857143em;
+  padding: 1em 0.85714286em;
   -webkit-transition: background-color 100ms, color 100ms;
   -moz-transition: background-color 100ms, color 100ms;
   transition: background-color 100ms, color 100ms;

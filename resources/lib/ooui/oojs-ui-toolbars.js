@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.4
+ * OOUI v0.31.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-03-07T09:14:18Z
+ * Date: 2019-03-14T00:52:20Z
  */
 ( function ( OO ) {
 
@@ -687,9 +687,9 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.FlaggedElement.call( this, config );
-	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, {
+	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {
 		$tabIndexed: this.$link
-	} ) );
+	}, config ) );
 
 	// Events
 	this.toolbar.connect( this, {
@@ -1191,12 +1191,6 @@ OO.ui.ToolGroup.prototype.onDocumentMouseKeyUp = function ( e ) {
 	// onMouseKeyUp may be called a second time, depending on where the mouse is when the button is
 	// released, but since `this.pressed` will no longer be true, the second call will be ignored.
 	this.onMouseKeyUp( e );
-};
-
-// Deprecated alias since 0.28.3
-OO.ui.ToolGroup.prototype.onCapturedMouseKeyUp = function () {
-	OO.ui.warnDeprecation( 'onCapturedMouseKeyUp is deprecated, use onDocumentMouseKeyUp instead' );
-	this.onDocumentMouseKeyUp.apply( this, arguments );
 };
 
 /**
@@ -1986,18 +1980,18 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	OO.ui.mixin.LabelElement.call( this, config );
 	OO.ui.mixin.TitledElement.call( this, config );
 	OO.ui.mixin.FlaggedElement.call( this, config );
-	OO.ui.mixin.ClippableElement.call( this, $.extend( {}, config, {
+	OO.ui.mixin.ClippableElement.call( this, $.extend( {
 		$clippable: this.$group
-	} ) );
-	OO.ui.mixin.FloatableElement.call( this, $.extend( {}, config, {
+	}, config ) );
+	OO.ui.mixin.FloatableElement.call( this, $.extend( {
 		$floatable: this.$group,
 		$floatableContainer: this.$handle,
 		hideWhenOutOfView: false,
 		verticalPosition: this.toolbar.position === 'bottom' ? 'above' : 'below'
-	} ) );
-	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, {
+	}, config ) );
+	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {
 		$tabIndexed: this.$handle
-	} ) );
+	}, config ) );
 
 	// Events
 	this.$handle.on( {
@@ -2071,12 +2065,6 @@ OO.ui.PopupToolGroup.prototype.onPopupDocumentMouseKeyUp = function ( e ) {
 		return;
 	}
 	this.setActive( false );
-};
-
-// Deprecated alias since 0.28.3
-OO.ui.PopupToolGroup.prototype.onBlur = function () {
-	OO.ui.warnDeprecation( 'onBlur is deprecated, use onPopupDocumentMouseKeyUp instead' );
-	this.onPopupDocumentMouseKeyUp.apply( this, arguments );
 };
 
 /**

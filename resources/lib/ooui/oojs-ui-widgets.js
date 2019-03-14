@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.30.4
+ * OOUI v0.31.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-03-07T09:14:18Z
+ * Date: 2019-03-14T00:52:20Z
  */
 ( function ( OO ) {
 
@@ -1326,7 +1326,7 @@ OO.ui.StackLayout = function OoUiStackLayout( config ) {
 	OO.ui.StackLayout.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.GroupElement.call( this, $.extend( {}, config, { $group: this.$element } ) );
+	OO.ui.mixin.GroupElement.call( this, $.extend( { $group: this.$element }, config ) );
 
 	// Properties
 	this.currentItem = null;
@@ -1760,11 +1760,14 @@ OO.ui.MenuLayout.prototype.isMenuVisible = function () {
  * Set menu position.
  *
  * @param {string} position Position of menu, either `top`, `after`, `bottom` or `before`
- * @throws {Error} If position value is not supported
  * @chainable
  * @return {OO.ui.MenuLayout} The layout, for chaining
  */
 OO.ui.MenuLayout.prototype.setMenuPosition = function ( position ) {
+	if ( [ 'top', 'bottom', 'before', 'after' ].indexOf( position ) === -1 ) {
+		position = 'before';
+	}
+
 	this.$element.removeClass( 'oo-ui-menuLayout-' + this.menuPosition );
 	this.menuPosition = position;
 	if ( this.menuPosition === 'top' || this.menuPosition === 'before' ) {
@@ -2491,6 +2494,7 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @cfg {OO.ui.StackLayout} [contentPanel] Content stack (see MenuLayout)
  * @cfg {boolean} [continuous=false] Show all tab panels, one after another
  * @cfg {boolean} [autoFocus=true] Focus on the first focusable element when a new tab panel is
  *  displayed. Disabled on mobile.
@@ -2504,18 +2508,20 @@ OO.ui.IndexLayout = function OoUiIndexLayout( config ) {
 
 	// Properties
 	this.currentTabPanelName = null;
-	this.tabPanels = {};
+	// Allow infused widgets to pass existing tabPanels
+	this.tabPanels = config.tabPanels || {};
 
 	this.ignoreFocus = false;
-	this.stackLayout = new OO.ui.StackLayout( {
+	this.stackLayout = this.contentPanel || new OO.ui.StackLayout( {
 		continuous: !!config.continuous,
 		expanded: this.expanded
 	} );
 	this.setContentPanel( this.stackLayout );
 	this.autoFocus = config.autoFocus === undefined || !!config.autoFocus;
 
-	this.tabSelectWidget = new OO.ui.TabSelectWidget();
-	this.tabPanel = new OO.ui.PanelLayout( {
+	// Allow infused widgets to pass an existing tabSelectWidget
+	this.tabSelectWidget = config.tabSelectWidget || new OO.ui.TabSelectWidget();
+	this.tabPanel = this.menuPanel || new OO.ui.PanelLayout( {
 		expanded: this.expanded
 	} );
 	this.setMenuPanel( this.tabPanel );
@@ -2540,6 +2546,8 @@ OO.ui.IndexLayout = function OoUiIndexLayout( config ) {
 	this.tabPanel.$element
 		.addClass( 'oo-ui-indexLayout-tabPanel' )
 		.append( this.tabSelectWidget.$element );
+
+	this.selectFirstSelectableTabPanel();
 };
 
 /* Setup */
@@ -3041,16 +3049,16 @@ OO.ui.ToggleButtonWidget = function OoUiToggleButtonWidget( config ) {
 	OO.ui.ToggleButtonWidget.parent.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.ButtonElement.call( this, $.extend( {}, config, {
+	OO.ui.mixin.ButtonElement.call( this, $.extend( {
 		active: this.active
-	} ) );
+	}, config ) );
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.IndicatorElement.call( this, config );
 	OO.ui.mixin.LabelElement.call( this, config );
 	OO.ui.mixin.FlaggedElement.call( this, config );
-	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, {
+	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {
 		$tabIndexed: this.$button
-	} ) );
+	}, config ) );
 
 	// Events
 	this.connect( this, {
@@ -5481,6 +5489,7 @@ OO.ui.MenuTagMultiselectWidget.prototype.getAllowedValues = function () {
  * @mixins OO.ui.mixin.IconElement
  * @mixins OO.ui.mixin.IndicatorElement
  * @mixins OO.ui.mixin.PendingElement
+ * @mixins OO.ui.mixin.TabIndexedElement
  * @mixins OO.ui.mixin.LabelElement
  * @mixins OO.ui.mixin.TitledElement
  *
@@ -5498,6 +5507,12 @@ OO.ui.MenuTagMultiselectWidget.prototype.getAllowedValues = function () {
 OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 	var dragHandler;
 
+	this.selectButton = new OO.ui.ButtonWidget( {
+		$element: $( '<label>' ),
+		classes: [ 'oo-ui-selectFileWidget-selectButton' ],
+		label: OO.ui.msg( 'ooui-selectfile-button-select' )
+	} );
+
 	// Configuration initialization
 	config = $.extend( {
 		accept: null,
@@ -5505,7 +5520,8 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 		notsupported: OO.ui.msg( 'ooui-selectfile-not-supported' ),
 		droppable: true,
 		showDropTarget: false,
-		thumbnailSizeLimit: 20
+		thumbnailSizeLimit: 20,
+		$tabIndexed: this.selectButton.$tabIndexed
 	}, config );
 
 	// Parent constructor
@@ -5514,15 +5530,18 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.IndicatorElement.call( this, config );
-	OO.ui.mixin.PendingElement.call( this, $.extend( {}, config, {
+	OO.ui.mixin.PendingElement.call( this, $.extend( {
 		$pending: this.$info
-	} ) );
+	}, config ) );
+	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {
+		$tabIndexed: this.selectButton.$tabIndexed
+	}, config ) );
 	OO.ui.mixin.LabelElement.call( this, config );
 	OO.ui.mixin.TitledElement.call( this, config );
 
 	// Properties
 	this.$info = $( '<span>' );
-	this.showDropTarget = config.showDropTarget;
+	this.showDropTarget = config.droppable && config.showDropTarget;
 	this.thumbnailSizeLimit = config.thumbnailSizeLimit;
 	this.isSupported = this.constructor.static.isSupported();
 	this.currentFile = null;
@@ -5535,12 +5554,7 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 	this.notsupported = config.notsupported;
 	this.onFileSelectedHandler = this.onFileSelected.bind( this );
 
-	this.selectButton = new OO.ui.ButtonWidget( {
-		$element: $( '<label>' ),
-		classes: [ 'oo-ui-selectFileWidget-selectButton' ],
-		label: OO.ui.msg( 'ooui-selectfile-button-select' ),
-		disabled: this.disabled || !this.isSupported
-	} );
+	this.selectButton.setDisabled( this.disabled || !this.isSupported );
 
 	this.clearButton = new OO.ui.ButtonWidget( {
 		classes: [ 'oo-ui-selectFileWidget-clearButton' ],
@@ -5573,7 +5587,7 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 		.addClass( 'oo-ui-selectFileWidget-info' )
 		.append( this.$icon, this.$label, this.clearButton.$element, this.$indicator );
 
-	if ( config.droppable && config.showDropTarget ) {
+	if ( this.showDropTarget ) {
 		this.selectButton.setIcon( 'upload' );
 		this.$thumbnail = $( '<div>' ).addClass( 'oo-ui-selectFileWidget-thumbnail' );
 		this.setPendingElement( this.$thumbnail );
@@ -5604,6 +5618,7 @@ OO.inheritClass( OO.ui.SelectFileWidget, OO.ui.Widget );
 OO.mixinClass( OO.ui.SelectFileWidget, OO.ui.mixin.IconElement );
 OO.mixinClass( OO.ui.SelectFileWidget, OO.ui.mixin.IndicatorElement );
 OO.mixinClass( OO.ui.SelectFileWidget, OO.ui.mixin.PendingElement );
+OO.mixinClass( OO.ui.SelectFileWidget, OO.ui.mixin.TabIndexedElement );
 OO.mixinClass( OO.ui.SelectFileWidget, OO.ui.mixin.LabelElement );
 OO.mixinClass( OO.ui.SelectFileWidget, OO.ui.mixin.TitledElement );
 
@@ -5658,37 +5673,6 @@ OO.ui.SelectFileWidget.prototype.setValue = function ( file ) {
 		this.updateUI();
 		this.emit( 'change', this.currentFile );
 	}
-};
-
-/**
- * Focus the widget.
- *
- * Focusses the select file button.
- *
- * @chainable
- * @return {OO.ui.Widget} The widget, for chaining
- */
-OO.ui.SelectFileWidget.prototype.focus = function () {
-	this.selectButton.focus();
-	return this;
-};
-
-/**
- * Blur the widget.
- *
- * @chainable
- * @return {OO.ui.Widget} The widget, for chaining
- */
-OO.ui.SelectFileWidget.prototype.blur = function () {
-	this.selectButton.blur();
-	return this;
-};
-
-/**
- * @inheritdoc
- */
-OO.ui.SelectFileWidget.prototype.simulateLabelClick = function () {
-	this.focus();
 };
 
 /**
