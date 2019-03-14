@@ -489,12 +489,6 @@ abstract class DatabaseMysqlBase extends Database {
 		return $errno == 2062;
 	}
 
-	/**
-	 * @param string $table
-	 * @param array $uniqueIndexes
-	 * @param array $rows
-	 * @param string $fname
-	 */
 	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
 		$this->nativeReplace( $table, $rows, $fname );
 	}
@@ -1326,16 +1320,8 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->query( $sql, $fname );
 	}
 
-	/**
-	 * @param string $table
-	 * @param array $rows
-	 * @param array $uniqueIndexes
-	 * @param array $set
-	 * @param string $fname
-	 * @return bool
-	 */
-	public function upsert( $table, array $rows, array $uniqueIndexes,
-		array $set, $fname = __METHOD__
+	public function upsert(
+		$table, array $rows, $uniqueIndexes, array $set, $fname = __METHOD__
 	) {
 		if ( $rows === [] ) {
 			return true; // nothing to do

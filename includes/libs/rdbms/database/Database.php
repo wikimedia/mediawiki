@@ -1236,7 +1236,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					# option is ROLLBACK, since the snapshots would have been released.
 					$this->trxStatus = self::STATUS_TRX_ERROR;
 					$this->trxStatusCause =
-						$this->makeQueryException( $lastError, $lastErrno, $sql, $fname );
+						$this->getQueryExceptionAndLog( $lastError, $lastErrno, $sql, $fname );
 					$tempIgnore = false; // cannot recover
 					$this->trxStatusIgnoredCause = null;
 				}
@@ -1489,7 +1489,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $tempIgnore ) {
 			$this->queryLogger->debug( "SQL ERROR (ignored): $error\n" );
 		} else {
-			$exception = $this->makeQueryException( $error, $errno, $sql, $fname );
+			$exception = $this->getQueryExceptionAndLog( $error, $errno, $sql, $fname );
 
 			throw $exception;
 		}
@@ -1502,7 +1502,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $fname
 	 * @return DBError
 	 */
-	private function makeQueryException( $error, $errno, $sql, $fname ) {
+	private function getQueryExceptionAndLog( $error, $errno, $sql, $fname ) {
 		$sql1line = mb_substr( str_replace( "\n", "\\n", $sql ), 0, 5 * 1024 );
 		$this->queryLogger->error(
 			"{fname}\t{db_server}\t{errno}\t{error}\t{sql1line}",
@@ -1512,6 +1512,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'error' => $error,
 				'sql1line' => $sql1line,
 				'fname' => $fname,
+				'trace' => ( new RuntimeException() )->getTraceAsString()
 			] )
 		);
 		$this->queryLogger->debug( "SQL ERROR: " . $error . "\n" );
@@ -2782,6 +2783,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			return;
 		}
 
+		$uniqueIndexes = (array)$uniqueIndexes;
 		// Single row case
 		if ( !is_array( reset( $rows ) ) ) {
 			$rows = [ $rows ];
@@ -2861,13 +2863,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->query( $sql, $fname );
 	}
 
-	public function upsert( $table, array $rows, array $uniqueIndexes, array $set,
+	public function upsert( $table, array $rows, $uniqueIndexes, array $set,
 		$fname = __METHOD__
 	) {
 		if ( $rows === [] ) {
 			return true; // nothing to do
 		}
 
+		$uniqueIndexes = (array)$uniqueIndexes;
 		if ( !is_array( reset( $rows ) ) ) {
 			$rows = [ $rows ];
 		}
