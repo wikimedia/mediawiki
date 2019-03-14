@@ -527,6 +527,7 @@ class SanitizerTest extends MediaWikiTestCase {
 			],
 			[ '1<span class="<?php">2</span>3', '123' ],
 			[ '1<span class="<?">2</span>3', '123' ],
+			[ '<th>1</th><td>2</td>', '1 2' ],
 		];
 	}
 
