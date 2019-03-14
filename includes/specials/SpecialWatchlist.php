@@ -63,6 +63,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->addHelpLink( 'Help:Watching pages' );
 		$output->addModuleStyles( [ 'mediawiki.special' ] );
 		$output->addModules( [
+			'mediawiki.special.recentchanges',
 			'mediawiki.special.watchlist',
 		] );
 
@@ -655,14 +656,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				'class' => 'namespaceselector',
 			]
 		) . "\n";
-		$namespaceForm .= '<span class="mw-input-with-label">' . Xml::checkLabel(
+		$hidden = $opts['namespace'] === '' ? ' mw-input-hidden' : '';
+		$namespaceForm .= '<span class="mw-input-with-label' . $hidden . '">' . Xml::checkLabel(
 			$this->msg( 'invert' )->text(),
 			'invert',
 			'nsinvert',
 			$opts['invert'],
 			[ 'title' => $this->msg( 'tooltip-invert' )->text() ]
 		) . "</span>\n";
-		$namespaceForm .= '<span class="mw-input-with-label">' . Xml::checkLabel(
+		$namespaceForm .= '<span class="mw-input-with-label' . $hidden . '">' . Xml::checkLabel(
 			$this->msg( 'namespace_association' )->text(),
 			'associated',
 			'nsassociated',
