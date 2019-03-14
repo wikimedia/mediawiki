@@ -1595,7 +1595,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		$this->ensureMockDatabaseConnection( $db );
 
 		$oldOverrides = $oldOverrides + self::$schemaOverrideDefaults;
-		$originalTables = $this->listOriginalTables( $db, 'unprefixed' );
+		$originalTables = $this->listOriginalTables( $db );
 
 		// Drop tables that need to be restored or removed.
 		$tablesToDrop = array_merge( $oldOverrides['create'], $oldOverrides['alter'] );
@@ -1656,7 +1656,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		$this->ensureMockDatabaseConnection( $db );
 
 		// Drop the tables that will be created by the schema scripts.
-		$originalTables = $this->listOriginalTables( $db, 'unprefixed' );
+		$originalTables = $this->listOriginalTables( $db );
 		$tablesToDrop = array_intersect( $originalTables, $overrides['create'] );
 
 		if ( $tablesToDrop ) {
@@ -1701,29 +1701,36 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Lists all tables in the live database schema.
+	 * Lists all tables in the live database schema, without a prefix.
 	 *
 	 * @param IMaintainableDatabase $db
-	 * @param string $prefix Either 'prefixed' or 'unprefixed'
 	 * @return array
 	 */
-	private function listOriginalTables( IMaintainableDatabase $db, $prefix = 'prefixed' ) {
+	private function listOriginalTables( IMaintainableDatabase $db ) {
 		if ( !isset( $db->_originalTablePrefix ) ) {
 			throw new LogicException( 'No original table prefix know, cannot list tables!' );
 		}
 
 		$originalTables = $db->listTables( $db->_originalTablePrefix, __METHOD__ );
-		if ( $prefix === 'unprefixed' ) {
-			$originalPrefixRegex = '/^' . preg_quote( $db->_originalTablePrefix, '/' ) . '/';
-			$originalTables = array_map(
-				function ( $pt ) use ( $originalPrefixRegex ) {
-					return preg_replace( $originalPrefixRegex, '', $pt );
-				},
-				$originalTables
-			);
-		}
 
-		return $originalTables;
+		$unittestPrefixRegex = '/^' . preg_quote( $this->dbPrefix(), '/' ) . '/';
+		$originalPrefixRegex = '/^' . preg_quote( $db->_originalTablePrefix, '/' ) . '/';
+
+		$originalTables = array_filter(
+			$originalTables,
+			function ( $pt ) use ( $unittestPrefixRegex ) {
+				return !preg_match( $unittestPrefixRegex, $pt );
+			}
+		);
+
+		$originalTables = array_map(
+			function ( $pt ) use ( $originalPrefixRegex ) {
+				return preg_replace( $originalPrefixRegex, '', $pt );
+			},
+			$originalTables
+		);
+
+		return array_unique( $originalTables );
 	}
 
 	/**
@@ -1741,7 +1748,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			throw new LogicException( 'No original table prefix know, cannot restore tables!' );
 		}
 
-		$originalTables = $this->listOriginalTables( $db, 'unprefixed' );
+		$originalTables = $this->listOriginalTables( $db );
 		$tables = array_intersect( $tables, $originalTables );
 
 		$dbClone = new CloneDatabase( $db, $tables, $db->tablePrefix(), $db->_originalTablePrefix );
@@ -1889,7 +1896,17 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @param IDatabase $target
 	 */
 	public function copyTestData( IDatabase $source, IDatabase $target ) {
-		$tables = self::listOriginalTables( $source, 'unprefixed' );
+		if ( $this->db->getType() === 'sqlite' ) {
+			// SQLite uses a non-temporary copy of the searchindex table for testing,
+			// which gets deleted and re-created when setting up the secondary connection,
+			// causing "Error 17" when trying to copy the data. See T191863#4130112.
+			throw new RuntimeException(
+				'Setting up a secondary database connection with test data is currently not'
+				. 'with SQLite. You may want to use markTestSkippedIfDbType() to bypass this issue.'
+			);
+		}
+
+		$tables = self::listOriginalTables( $source );
 
 		foreach ( $tables as $table ) {
 			$res = $source->select( $table, '*', [], __METHOD__ );
