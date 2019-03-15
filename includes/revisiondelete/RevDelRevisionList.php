@@ -179,12 +179,14 @@ class RevDelRevisionList extends RevDelList {
 	}
 
 	public function doPostCommitUpdates( array $visibilityChangeMap ) {
-		$this->title->purgeSquid();
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeTitleUrls( $this->title, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 		// Extensions that require referencing previous revisions may need this
 		Hooks::run( 'ArticleRevisionVisibilitySet', [ $this->title, $this->ids, $visibilityChangeMap ] );
 		MediaWikiServices::getInstance()
 			->getMainWANObjectCache()
 			->touchCheckKey( "RevDelRevisionList:page:{$this->title->getArticleID()}}" );
+
 		return Status::newGood();
 	}
 }

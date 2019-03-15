@@ -17,6 +17,7 @@ use FileBackendGroup;
 use GenderCache;
 use GlobalVarConfig;
 use Hooks;
+use HtmlCacheUpdater;
 use IBufferingStatsdDataFactory;
 use JobRunner;
 use Language;
@@ -688,6 +689,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getGlobalIdGenerator() : GlobalIdGenerator {
 		return $this->getService( 'GlobalIdGenerator' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return HtmlCacheUpdater
+	 */
+	public function getHtmlCacheUpdater() {
+		return $this->getService( 'HtmlCacheUpdater' );
 	}
 
 	/**

@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -152,21 +154,20 @@ class PurgeList extends Maintenance {
 	 * @param array $urls List of URLS to purge from CDNs
 	 */
 	private function sendPurgeRequest( $urls ) {
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
 		if ( $this->delay > 0 ) {
 			foreach ( $urls as $url ) {
 				if ( $this->hasOption( 'verbose' ) ) {
 					$this->output( $url . "\n" );
 				}
-				$u = new CdnCacheUpdate( [ $url ] );
-				$u->doUpdate();
+				$hcu->purgeUrls( $url, $hcu::PURGE_NAIVE );
 				usleep( $this->delay * 1e6 );
 			}
 		} else {
 			if ( $this->hasOption( 'verbose' ) ) {
 				$this->output( implode( "\n", $urls ) . "\n" );
 			}
-			$u = new CdnCacheUpdate( $urls );
-			$u->doUpdate();
+			$hcu->purgeUrls( $urls, $hcu::PURGE_NAIVE );
 		}
 	}
 }

@@ -3577,12 +3577,11 @@ class Title implements LinkTarget, IDBAccessObject {
 
 	/**
 	 * Purge all applicable CDN URLs
+	 * @deprecated 1.35 Use HtmlCacheUpdater
 	 */
 	public function purgeSquid() {
-		DeferredUpdates::addUpdate(
-			new CdnCacheUpdate( [ $this ] ),
-			DeferredUpdates::PRESEND
-		);
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeTitleUrls( $this, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 	}
 
 	/**

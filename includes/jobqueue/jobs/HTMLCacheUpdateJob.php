@@ -1,7 +1,5 @@
 <?php
 /**
- * HTML cache invalidation of all pages linking to a given title.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,14 +16,12 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup JobQueue
- * @ingroup Cache
  */
 
 use MediaWiki\MediaWikiServices;
 
 /**
- * Job to purge the cache for all pages that link to or use another page or file
+ * Job to purge the HTML/file cache for all pages that link to or use another page or file
  *
  * This job comes in a few variants:
  *   - a) Recursive jobs to purge caches for backlink pages for a given title.
@@ -34,6 +30,7 @@ use MediaWiki\MediaWikiServices;
  *        These jobs have (pages:(<page ID>:(<namespace>,<title>),...) set.
  *
  * @ingroup JobQueue
+ * @ingroup Cache
  */
 class HTMLCacheUpdateJob extends Job {
 	public function __construct( Title $title, array $params ) {
@@ -110,7 +107,7 @@ class HTMLCacheUpdateJob extends Job {
 	 * @param array $pages Map of (page ID => (namespace, DB key)) entries
 	 */
 	protected function invalidateTitles( array $pages ) {
-		global $wgUpdateRowsPerQuery, $wgUseFileCache, $wgPageLanguageUseDB;
+		global $wgUpdateRowsPerQuery, $wgPageLanguageUseDB;
 
 		// Get all page IDs in this query into an array
 		$pageIds = array_keys( $pages );
@@ -160,20 +157,9 @@ class HTMLCacheUpdateJob extends Job {
 			__METHOD__
 		) );
 
-		// Update CDN; call purge() directly so as to not bother with secondary purges
-		$urls = [];
-		foreach ( $titleArray as $title ) {
-			/** @var Title $title */
-			$urls = array_merge( $urls, $title->getCdnUrls() );
-		}
-		CdnCacheUpdate::purge( $urls );
-
-		// Update file cache
-		if ( $wgUseFileCache ) {
-			foreach ( $titleArray as $title ) {
-				HTMLFileCache::clearFileCache( $title );
-			}
-		}
+		// Update CDN and file caches (avoiding secondary purge overhead)
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeTitleUrls( $titleArray, $hcu::PURGE_NAIVE );
 	}
 
 	public function getDeduplicationInfo() {
