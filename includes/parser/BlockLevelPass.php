@@ -25,7 +25,7 @@
 class BlockLevelPass {
 	private $DTopen = false;
 	private $inPre = false;
-	private $lastSection = '';
+	private $lastParagraph = '';
 	private $lineStart;
 	private $text;
 
@@ -65,7 +65,7 @@ class BlockLevelPass {
 	 * @return bool
 	 */
 	private function hasOpenParagraph() {
-		return $this->lastSection !== '';
+		return $this->lastParagraph !== '';
 	}
 
 	/**
@@ -77,13 +77,13 @@ class BlockLevelPass {
 	private function closeParagraph( $atTheEnd = false ) {
 		$result = '';
 		if ( $this->hasOpenParagraph() ) {
-			$result = '</' . $this->lastSection . '>';
+			$result = '</' . $this->lastParagraph . '>';
 			if ( !$atTheEnd ) {
 				$result .= "\n";
 			}
 		}
 		$this->inPre = false;
-		$this->lastSection = '';
+		$this->lastParagraph = '';
 		return $result;
 	}
 
@@ -353,14 +353,14 @@ class BlockLevelPass {
 					$inBlockElem = !$closeMatch;
 				} elseif ( !$inBlockElem && !$this->inPre ) {
 					if ( substr( $t, 0, 1 ) == ' '
-						&& ( $this->lastSection === 'pre' || trim( $t ) != '' )
+						&& ( $this->lastParagraph === 'pre' || trim( $t ) != '' )
 						&& !$inBlockquote
 					) {
 						# pre
-						if ( $this->lastSection !== 'pre' ) {
+						if ( $this->lastParagraph !== 'pre' ) {
 							$pendingPTag = false;
 							$output .= $this->closeParagraph() . '<pre>';
-							$this->lastSection = 'pre';
+							$this->lastParagraph = 'pre';
 						}
 						$t = substr( $t, 1 );
 					} elseif ( preg_match( '/^(?:<style\\b[^>]*>.*?<\\/style>\s*|<link\\b[^>]*>\s*)+$/iS', $t ) ) {
@@ -376,9 +376,9 @@ class BlockLevelPass {
 							if ( $pendingPTag ) {
 								$output .= $pendingPTag . '<br />';
 								$pendingPTag = false;
-								$this->lastSection = 'p';
+								$this->lastParagraph = 'p';
 							} else {
-								if ( $this->lastSection !== 'p' ) {
+								if ( $this->lastParagraph !== 'p' ) {
 									$output .= $this->closeParagraph();
 									$pendingPTag = '<p>';
 								} else {
@@ -389,10 +389,10 @@ class BlockLevelPass {
 							if ( $pendingPTag ) {
 								$output .= $pendingPTag;
 								$pendingPTag = false;
-								$this->lastSection = 'p';
-							} elseif ( $this->lastSection !== 'p' ) {
+								$this->lastParagraph = 'p';
+							} elseif ( $this->lastParagraph !== 'p' ) {
 								$output .= $this->closeParagraph() . '<p>';
-								$this->lastSection = 'p';
+								$this->lastParagraph = 'p';
 							}
 						}
 					}
