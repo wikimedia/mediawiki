@@ -63,6 +63,7 @@
 	"tog-norollbackdiff": "Non monstrar differentias post exequer un revocation",
 	"tog-useeditwarning": "Advertir me quando io quita un pagina de modification sin publicar le cambiamentos",
 	"tog-prefershttps": "Sempre usar un connexion secur durante session aperte",
+	"tog-showrollbackconfirmation": "Monstrar un demanda de confirmation al cliccar sur un ligamine de revocation",
 	"underline-always": "Sempre",
 	"underline-never": "Nunquam",
 	"underline-default": "Como definite per tu navigator o apparentia",
@@ -3742,6 +3743,7 @@
 	"passwordpolicies-policy-passwordcannotbepopular": "Le contrasigno non pote esser {{PLURAL:$1|le contrasigno le plus popular|in le lista de $1 contrasignos popular}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Le contrasigno non pote apparer in le lista del 100.000 contrasignos le plus commun.",
 	"passwordpolicies-policyflag-forcechange": "debe cambiar al apertura de session",
+	"passwordpolicies-policyflag-suggestchangeonlogin": "suggerer cambio al apertura de session",
 	"easydeflate-invaliddeflate": "Le contento fornite non es correctemente comprimite",
 	"unprotected-js": "Pro motivos de securitate, non es possibile cargar codice JavaScript de paginas non protegite. Crea JavaScript solmente in le spatio de nomines \"MediaWiki:\" o como un subpagina de usator."
 }

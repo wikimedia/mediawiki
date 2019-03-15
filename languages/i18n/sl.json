@@ -63,6 +63,7 @@
 	"tog-norollbackdiff": "Po izvedeni vrnitvi ne prikaži primerjave",
 	"tog-useeditwarning": "Opozori me, ko skušam zapreti urejevalno polje z neshranjenimi spremembami",
 	"tog-prefershttps": "Med prijavo vedno uporabljaj varno povezavo",
+	"tog-showrollbackconfirmation": "Pokaži potrditveno okno ob kliku na povezavo za vrnitev",
 	"underline-always": "Vedno",
 	"underline-never": "Nikoli",
 	"underline-default": "Koža ali privzeto v brskalniku",
