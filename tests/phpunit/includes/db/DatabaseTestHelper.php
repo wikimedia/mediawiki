@@ -108,7 +108,11 @@ class DatabaseTestHelper extends Database {
 
 		// Handle some internal calls from the Database class
 		$check = $fname;
-		if ( preg_match( '/^Wikimedia\\\\Rdbms\\\\Database::query \((.+)\)$/', $fname, $m ) ) {
+		if ( preg_match(
+			'/^Wikimedia\\\\Rdbms\\\\Database::(?:query|beginIfImplied) \((.+)\)$/',
+			$fname,
+			$m
+		) ) {
 			$check = $m[1];
 		}
 
