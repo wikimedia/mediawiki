@@ -189,7 +189,9 @@ class FileBackendGroup {
 			'wanCache' => MediaWikiServices::getInstance()->getMainWANObjectCache(),
 			'srvCache' => ObjectCache::getLocalServerInstance( 'hash' ),
 			'logger' => LoggerFactory::getInstance( 'FileOperation' ),
-			'profiler' => Profiler::instance()
+			'profiler' => function ( $section ) {
+				return Profiler::instance()->scopedProfileIn( $section );
+			}
 		];
 		$config['lockManager'] =
 			LockManagerGroup::singleton( $config['wikiId'] )->get( $config['lockManager'] );

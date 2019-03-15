@@ -114,7 +114,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	protected $fileJournal;
 	/** @var LoggerInterface */
 	protected $logger;
-	/** @var object|string Class name or object With profileIn/profileOut methods */
+	/** @var callable|null */
 	protected $profiler;
 
 	/** @var callable */
@@ -156,7 +156,8 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - obResetFunc : alternative callback to clear the output buffer
 	 *   - streamMimeFunc : alternative method to determine the content type from the path
 	 *   - logger : Optional PSR logger object.
-	 *   - profiler : Optional class name or object With profileIn/profileOut methods.
+	 *   - profiler : Optional callback that takes a section name argument and returns
+	 *      a ScopedCallback instance that ends the profile section in its destructor.
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $config ) {
@@ -187,6 +188,9 @@ abstract class FileBackend implements LoggerAwareInterface {
 		$this->statusWrapper = $config['statusWrapper'] ?? null;
 
 		$this->profiler = $config['profiler'] ?? null;
+		if ( !is_callable( $this->profiler ) ) {
+			$this->profiler = null;
+		}
 		$this->logger = $config['logger'] ?? new \Psr\Log\NullLogger();
 		$this->statusWrapper = $config['statusWrapper'] ?? null;
 		$this->tmpDirectory = $config['tmpDirectory'] ?? null;
@@ -1599,12 +1603,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @return ScopedCallback|null
 	 */
 	protected function scopedProfileSection( $section ) {
-		if ( $this->profiler ) {
-			call_user_func( [ $this->profiler, 'profileIn' ], $section );
-			return new ScopedCallback( [ $this->profiler, 'profileOut' ], [ $section ] );
-		}
-
-		return null;
+		return $this->profiler ? ( $this->profiler )( $section ) : null;
 	}
 
 	protected function resetOutputBuffer() {
