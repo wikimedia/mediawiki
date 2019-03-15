@@ -40,9 +40,13 @@ class WinCacheBagOStuff extends BagOStuff {
 	public function set( $key, $value, $expire = 0, $flags = 0 ) {
 		$result = wincache_ucache_set( $key, serialize( $value ), $expire );
 
-		/* wincache_ucache_set returns an empty array on success if $value
-		 * was an array, bool otherwise */
-		return ( is_array( $result ) && $result === [] ) || $result;
+		return ( $result === [] || $result === true );
+	}
+
+	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+		$result = wincache_ucache_add( $key, serialize( $value ), $exptime );
+
+		return ( $result === [] || $result === true );
 	}
 
 	public function delete( $key, $flags = 0 ) {
