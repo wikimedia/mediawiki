@@ -67,6 +67,8 @@ For notes on 1.33.x and older releases, see HISTORY.
   from other users originating from Special:EmailUser.
 
 === New developer features in 1.34 ===
+* The ImgAuthModifyHeaders hook was added to img_auth.php to allow modification
+  of headers in private wikis.
 * Language::formatTimePeriod now supports the new 'avoidhours' option to output
   strings like "5 days ago" instead of "5 days 13 hours ago".
 
