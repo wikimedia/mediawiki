@@ -630,14 +630,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
 	 * @return bool Success
 	 */
-	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
-		// @note: avoid lock() here since that method uses *this* method by default
-		if ( $this->get( $key ) === false ) {
-			return $this->set( $key, $value, $exptime, $flags );
-		}
-
-		return false; // key already set
-	}
+	abstract public function add( $key, $value, $exptime = 0, $flags = 0 );
 
 	/**
 	 * Increase stored value of $key by $value while preserving its TTL
