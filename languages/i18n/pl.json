@@ -146,6 +146,7 @@
 	"tog-norollbackdiff": "Nie pokazuj zmian po użyciu funkcji „cofnij”",
 	"tog-useeditwarning": "Ostrzegaj mnie, gdy opuszczam stronę edycji bez zapisania zmian",
 	"tog-prefershttps": "Zawsze używaj bezpiecznego połączenia po zalogowaniu",
+	"tog-showrollbackconfirmation": "Wyświetl komunikat potwierdzający kliknięcie linku wycofującego edycję",
 	"underline-always": "Zawsze",
 	"underline-never": "Nigdy",
 	"underline-default": "według ustawień skórki lub przeglądarki",
