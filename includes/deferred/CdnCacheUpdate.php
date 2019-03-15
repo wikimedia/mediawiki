@@ -63,15 +63,6 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	}
 
 	/**
-	 * @param Title $title
-	 * @return CdnCacheUpdate
-	 * @deprecated since 1.27
-	 */
-	public static function newSimplePurge( Title $title ) {
-		return new CdnCacheUpdate( $title->getCdnUrls() );
-	}
-
-	/**
 	 * Purges the list of URLs passed to the constructor.
 	 */
 	public function doUpdate() {
