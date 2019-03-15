@@ -149,6 +149,7 @@ class HHVMMakeRepo extends Maintenance {
 			),
 			RecursiveIteratorIterator::LEAVES_ONLY
 		);
+		/** @var SplFileInfo $fileInfo */
 		foreach ( $iter as $file => $fileInfo ) {
 			if ( $fileInfo->isFile() ) {
 				$files[] = $file;
