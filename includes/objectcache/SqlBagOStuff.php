@@ -312,6 +312,10 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	public function setMulti( array $data, $expiry = 0, $flags = 0 ) {
+		return $this->insertMulti( $data, $expiry, $flags, true );
+	}
+
+	private function insertMulti( array $data, $expiry, $flags, $replace ) {
 		$keysByTable = [];
 		foreach ( $data as $key => $value ) {
 			list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
@@ -354,19 +358,22 @@ class SqlBagOStuff extends BagOStuff {
 				}
 
 				try {
-					$db->replace(
-						$tableName,
-						[ 'keyname' ],
-						$rows,
-						__METHOD__
-					);
+					if ( $replace ) {
+						$db->replace( $tableName, [ 'keyname' ], $rows, __METHOD__ );
+					} else {
+						$db->insert( $tableName, $rows, __METHOD__, [ 'IGNORE' ] );
+						$result = ( $db->affectedRows() > 0 && $result );
+					}
 				} catch ( DBError $e ) {
 					$this->handleWriteError( $e, $db, $serverIndex );
 					$result = false;
 				}
 
 			}
+		}
 
+		if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
+			$result = $this->waitForReplication() && $result;
 		}
 
 		return $result;
@@ -374,11 +381,14 @@ class SqlBagOStuff extends BagOStuff {
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		$ok = $this->setMulti( [ $key => $value ], $exptime );
-		if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
-			$ok = $this->waitForReplication() && $ok;
-		}
 
 		return $ok;
+	}
+
+	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+		$added = $this->insertMulti( [ $key => $value ], $exptime, $flags, false );
+
+		return $added;
 	}
 
 	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
@@ -423,25 +433,45 @@ class SqlBagOStuff extends BagOStuff {
 		return (bool)$db->affectedRows();
 	}
 
-	public function delete( $key, $flags = 0 ) {
-		$ok = true;
+	public function deleteMulti( array $keys, $flags = 0 ) {
+		$keysByTable = [];
+		foreach ( $keys as $key ) {
+			list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
+			$keysByTable[$serverIndex][$tableName][] = $key;
+		}
 
-		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
-		$db = null;
+		$result = true;
 		$silenceScope = $this->silenceTransactionProfiler();
-		try {
-			$db = $this->getDB( $serverIndex );
-			$db->delete(
-				$tableName,
-				[ 'keyname' => $key ],
-				__METHOD__ );
-		} catch ( DBError $e ) {
-			$this->handleWriteError( $e, $db, $serverIndex );
-			$ok = false;
+		foreach ( $keysByTable as $serverIndex => $serverKeys ) {
+			$db = null;
+			try {
+				$db = $this->getDB( $serverIndex );
+			} catch ( DBError $e ) {
+				$this->handleWriteError( $e, $db, $serverIndex );
+				$result = false;
+				continue;
+			}
+
+			foreach ( $serverKeys as $tableName => $tableKeys ) {
+				try {
+					$db->delete( $tableName, [ 'keyname' => $tableKeys ], __METHOD__ );
+				} catch ( DBError $e ) {
+					$this->handleWriteError( $e, $db, $serverIndex );
+					$result = false;
+				}
+
+			}
 		}
+
 		if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
-			$ok = $this->waitForReplication() && $ok;
+			$result = $this->waitForReplication() && $result;
 		}
+
+		return $result;
+	}
+
+	public function delete( $key, $flags = 0 ) {
+		$ok = $this->deleteMulti( [ $key ], $flags );
 
 		return $ok;
 	}
@@ -458,31 +488,34 @@ class SqlBagOStuff extends BagOStuff {
 				[ 'value', 'exptime' ],
 				[ 'keyname' => $key ],
 				__METHOD__,
-				[ 'FOR UPDATE' ] );
+				[ 'FOR UPDATE' ]
+			);
 			if ( $row === false ) {
 				// Missing
-
-				return null;
+				return false;
 			}
 			$db->delete( $tableName, [ 'keyname' => $key ], __METHOD__ );
 			if ( $this->isExpired( $db, $row->exptime ) ) {
 				// Expired, do not reinsert
-
-				return null;
+				return false;
 			}
 
 			$oldValue = intval( $this->unserialize( $db->decodeBlob( $row->value ) ) );
 			$newValue = $oldValue + $step;
-			$db->insert( $tableName,
+			$db->insert(
+				$tableName,
 				[
 					'keyname' => $key,
 					'value' => $db->encodeBlob( $this->serialize( $newValue ) ),
 					'exptime' => $row->exptime
-				], __METHOD__, 'IGNORE' );
+				],
+				__METHOD__,
+				'IGNORE'
+			);
 
 			if ( $db->affectedRows() == 0 ) {
 				// Race condition. See T30611
-				$newValue = null;
+				$newValue = false;
 			}
 		} catch ( DBError $e ) {
 			$this->handleWriteError( $e, $db, $serverIndex );

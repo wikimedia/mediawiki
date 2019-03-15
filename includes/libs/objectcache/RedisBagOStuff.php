@@ -233,6 +233,45 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
+	public function deleteMulti( array $keys, $flags = 0 ) {
+		$batches = [];
+		$conns = [];
+		foreach ( $keys as $key ) {
+			list( $server, $conn ) = $this->getConnection( $key );
+			if ( !$conn ) {
+				continue;
+			}
+			$conns[$server] = $conn;
+			$batches[$server][] = $key;
+		}
+
+		$result = true;
+		foreach ( $batches as $server => $batchKeys ) {
+			$conn = $conns[$server];
+			try {
+				$conn->multi( Redis::PIPELINE );
+				foreach ( $batchKeys as $key ) {
+					$conn->delete( $key );
+				}
+				$batchResult = $conn->exec();
+				if ( $batchResult === false ) {
+					$this->debug( "deleteMulti request to $server failed" );
+					continue;
+				}
+				foreach ( $batchResult as $value ) {
+					if ( $value === false ) {
+						$result = false;
+					}
+				}
+			} catch ( RedisException $e ) {
+				$this->handleException( $conn, $e );
+				$result = false;
+			}
+		}
+
+		return $result;
+	}
+
 	public function add( $key, $value, $expiry = 0, $flags = 0 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {

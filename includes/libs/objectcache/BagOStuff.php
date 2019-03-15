@@ -463,7 +463,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 			function () use ( $key, $expiry, $fname ) {
 				$this->clearLastError();
 				if ( $this->add( "{$key}:lock", 1, $expiry ) ) {
-					return true; // locked!
+					return WaitConditionLoop::CONDITION_REACHED; // locked!
 				} elseif ( $this->getLastError() ) {
 					$this->logger->warning(
 						$fname . ' failed due to I/O error for {key}.',
@@ -601,6 +601,22 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 			if ( !$this->set( $key, $value, $exptime, $flags ) ) {
 				$res = false;
 			}
+		}
+
+		return $res;
+	}
+
+	/**
+	 * Batch deletion
+	 * @param string[] $keys List of keys
+	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 * @return bool Success
+	 * @since 1.33
+	 */
+	public function deleteMulti( array $keys, $flags = 0 ) {
+		$res = true;
+		foreach ( $keys as $key ) {
+			$res = $this->delete( $key, $flags ) && $res;
 		}
 
 		return $res;
