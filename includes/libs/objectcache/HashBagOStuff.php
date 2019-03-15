@@ -106,6 +106,14 @@ class HashBagOStuff extends BagOStuff {
 		return true;
 	}
 
+	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+		if ( $this->get( $key ) === false ) {
+			return $this->set( $key, $value, $exptime, $flags );
+		}
+
+		return false; // key already set
+	}
+
 	public function delete( $key, $flags = 0 ) {
 		unset( $this->bag[$key] );
 
