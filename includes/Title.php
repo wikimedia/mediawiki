@@ -3255,8 +3255,9 @@ class Title implements LinkTarget, IDBAccessObject {
 		}
 
 		if ( $this->mOldRestrictions === false ) {
-			$this->mOldRestrictions = $dbr->selectField( 'page', 'page_restrictions',
-				[ 'page_id' => $this->getArticleID() ], __METHOD__ );
+			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+			$linkCache->addLinkObj( $this ); # in case we already had an article ID
+			$this->mOldRestrictions = $linkCache->getGoodLinkFieldObj( $this, 'restrictions' );
 		}
 
 		if ( $this->mOldRestrictions != '' ) {
