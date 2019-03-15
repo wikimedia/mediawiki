@@ -234,6 +234,7 @@ class ForeignResourceManager {
 						$from,
 						RecursiveDirectoryIterator::SKIP_DOTS
 					) );
+					/** @var SplFileInfo $file */
 					foreach ( $rii as $file ) {
 						$remote = $file->getPathname();
 						$local = strtr( $remote, [ $from => $to ] );
