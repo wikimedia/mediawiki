@@ -992,13 +992,34 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Make sure isOpen() returns true as a sanity check
+	 * Make sure there is an open connection handle (alive or not) as a sanity check
+	 *
+	 * This guards against fatal errors to the binding handle not being defined
+	 * in cases where open() was never called or close() was already called
 	 *
 	 * @throws DBUnexpectedError
 	 */
-	protected function assertOpen() {
+	protected function assertHasConnectionHandle() {
 		if ( !$this->isOpen() ) {
 			throw new DBUnexpectedError( $this, "DB connection was already closed." );
+		}
+	}
+
+	/**
+	 * Make sure that this server is not marked as a replica nor read-only as a sanity check
+	 *
+	 * @throws DBUnexpectedError
+	 */
+	protected function assertIsWritableMaster() {
+		if ( $this->getLBInfo( 'replica' ) === true ) {
+			throw new DBUnexpectedError(
+				$this,
+				'Write operations are not allowed on replica database connections.'
+			);
+		}
+		$reason = $this->getReadOnlyReason();
+		if ( $reason !== false ) {
+			throw new DBReadOnlyError( $this, "Database is read-only: $reason" );
 		}
 	}
 
@@ -1145,92 +1166,65 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
 		$this->assertTransactionStatus( $sql, $fname );
+		$this->assertHasConnectionHandle();
 
-		# Avoid fatals if close() was called
-		$this->assertOpen();
-
+		$priorTransaction = $this->trxLevel;
 		$priorWritesPending = $this->writesOrCallbacksPending();
 		$this->lastQuery = $sql;
 
-		$isWrite = $this->isWriteQuery( $sql );
-		if ( $isWrite ) {
-			$isNonTempWrite = !$this->registerTempTableOperation( $sql );
-		} else {
-			$isNonTempWrite = false;
-		}
-
-		if ( $isWrite ) {
-			if ( $this->getLBInfo( 'replica' ) === true ) {
-				throw new DBError(
-					$this,
-					'Write operations are not allowed on replica database connections.'
-				);
-			}
+		if ( $this->isWriteQuery( $sql ) ) {
 			# In theory, non-persistent writes are allowed in read-only mode, but due to things
 			# like https://bugs.mysql.com/bug.php?id=33669 that might not work anyway...
-			$reason = $this->getReadOnlyReason();
-			if ( $reason !== false ) {
-				throw new DBReadOnlyError( $this, "Database is read-only: $reason" );
-			}
-			# Set a flag indicating that writes have been done
-			$this->lastWriteTime = microtime( true );
+			$this->assertIsWritableMaster();
+			# Avoid treating temporary table operations as meaningful "writes"
+			$isEffectiveWrite = !$this->registerTempTableOperation( $sql );
+		} else {
+			$isEffectiveWrite = false;
 		}
 
 		# Add trace comment to the begin of the sql string, right after the operator.
 		# Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598)
 		$commentedSql = preg_replace( '/\s|$/', " /* $fname {$this->agent} */ ", $sql, 1 );
 
-		# Start implicit transactions that wrap the request if DBO_TRX is enabled
-		if ( !$this->trxLevel && $this->getFlag( self::DBO_TRX )
-			&& $this->isTransactableQuery( $sql )
-		) {
-			$this->begin( __METHOD__ . " ($fname)", self::TRANSACTION_INTERNAL );
-			$this->trxAutomatic = true;
-		}
-
-		# Keep track of whether the transaction has write queries pending
-		if ( $this->trxLevel && !$this->trxDoneWrites && $isWrite ) {
-			$this->trxDoneWrites = true;
-			$this->trxProfiler->transactionWritingIn(
-				$this->server, $this->getDomainID(), $this->trxShortId );
-		}
-
-		if ( $this->getFlag( self::DBO_DEBUG ) ) {
-			$this->queryLogger->debug( "{$this->getDomainID()} {$commentedSql}" );
-		}
-
 		# Send the query to the server and fetch any corresponding errors
-		$ret = $this->doProfiledQuery( $sql, $commentedSql, $isNonTempWrite, $fname );
+		$ret = $this->attemptQuery( $sql, $commentedSql, $isEffectiveWrite, $fname );
 		$lastError = $this->lastError();
 		$lastErrno = $this->lastErrno();
 
-		# Try reconnecting if the connection was lost
+		$recoverableSR = false; // recoverable statement rollback?
+		$recoverableCL = false; // recoverable connection loss?
+
 		if ( $ret === false && $this->wasConnectionLoss() ) {
-			# Check if any meaningful session state was lost
-			$recoverable = $this->canRecoverFromDisconnect( $sql, $priorWritesPending );
+			# Check if no meaningful session state was lost
+			$recoverableCL = $this->canRecoverFromDisconnect( $sql, $priorWritesPending );
 			# Update session state tracking and try to restore the connection
 			$reconnected = $this->replaceLostConnection( __METHOD__ );
 			# Silently resend the query to the server if it is safe and possible
-			if ( $reconnected && $recoverable ) {
-				$ret = $this->doProfiledQuery( $sql, $commentedSql, $isNonTempWrite, $fname );
+			if ( $recoverableCL && $reconnected ) {
+				$ret = $this->attemptQuery( $sql, $commentedSql, $isEffectiveWrite, $fname );
 				$lastError = $this->lastError();
 				$lastErrno = $this->lastErrno();
 
 				if ( $ret === false && $this->wasConnectionLoss() ) {
 					# Query probably causes disconnects; reconnect and do not re-run it
 					$this->replaceLostConnection( __METHOD__ );
+				} else {
+					$recoverableCL = false; // connection does not need recovering
+					$recoverableSR = $this->wasKnownStatementRollbackError();
 				}
 			}
+		} else {
+			$recoverableSR = $this->wasKnownStatementRollbackError();
 		}
 
 		if ( $ret === false ) {
-			if ( $this->trxLevel ) {
-				if ( $this->wasKnownStatementRollbackError() ) {
+			if ( $priorTransaction ) {
+				if ( $recoverableSR ) {
 					# We're ignoring an error that caused just the current query to be aborted.
 					# But log the cause so we can log a deprecation notice if a caller actually
 					# does ignore it.
 					$this->trxStatusIgnoredCause = [ $lastError, $lastErrno, $fname ];
-				} else {
+				} elseif ( !$recoverableCL ) {
 					# Either the query was aborted or all queries after BEGIN where aborted.
 					# In the first case, the only options going forward are (a) ROLLBACK, or
 					# (b) ROLLBACK TO SAVEPOINT (if one was set). If the later case, the only
@@ -1254,12 +1248,28 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @param string $sql Original SQL query
 	 * @param string $commentedSql SQL query with debugging/trace comment
-	 * @param bool $isWrite Whether the query is a (non-temporary) write operation
+	 * @param bool $isEffectiveWrite Whether the query is a (non-temporary table) write
 	 * @param string $fname Name of the calling function
 	 * @return bool|ResultWrapper True for a successful write query, ResultWrapper
 	 *     object for a successful read query, or false on failure
 	 */
-	private function doProfiledQuery( $sql, $commentedSql, $isWrite, $fname ) {
+	private function attemptQuery( $sql, $commentedSql, $isEffectiveWrite, $fname ) {
+		$this->beginIfImplied( $sql, $fname );
+
+		# Keep track of whether the transaction has write queries pending
+		if ( $isEffectiveWrite ) {
+			$this->lastWriteTime = microtime( true );
+			if ( $this->trxLevel && !$this->trxDoneWrites ) {
+				$this->trxDoneWrites = true;
+				$this->trxProfiler->transactionWritingIn(
+					$this->server, $this->getDomainID(), $this->trxShortId );
+			}
+		}
+
+		if ( $this->getFlag( self::DBO_DEBUG ) ) {
+			$this->queryLogger->debug( "{$this->getDomainID()} {$commentedSql}" );
+		}
+
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
 		# generalizeSQL() will probably cut down the query to reasonable
 		# logging size most of the time. The substr is really just a sanity check.
@@ -1282,7 +1292,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( $ret !== false ) {
 			$this->lastPing = $startTime;
-			if ( $isWrite && $this->trxLevel ) {
+			if ( $isEffectiveWrite && $this->trxLevel ) {
 				$this->updateTrxWriteQueryTime( $sql, $queryRuntime, $this->affectedRows() );
 				$this->trxWriteCallers[] = $fname;
 			}
@@ -1295,8 +1305,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->trxProfiler->recordQueryCompletion(
 			$queryProf,
 			$startTime,
-			$isWrite,
-			$isWrite ? $this->affectedRows() : $this->numRows( $ret )
+			$isEffectiveWrite,
+			$isEffectiveWrite ? $this->affectedRows() : $this->numRows( $ret )
 		);
 		$this->queryLogger->debug( $sql, [
 			'method' => $fname,
@@ -1305,6 +1315,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		] );
 
 		return $ret;
+	}
+
+	/**
+	 * Start an implicit transaction if DBO_TRX is enabled and no transaction is active
+	 *
+	 * @param string $sql
+	 * @param string $fname
+	 */
+	private function beginIfImplied( $sql, $fname ) {
+		if (
+			!$this->trxLevel &&
+			$this->getFlag( self::DBO_TRX ) &&
+			$this->isTransactableQuery( $sql )
+		) {
+			$this->begin( __METHOD__ . " ($fname)", self::TRANSACTION_INTERNAL );
+			$this->trxAutomatic = true;
+		}
 	}
 
 	/**
@@ -1386,8 +1413,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Determine whether or not it is safe to retry queries after a database
-	 * connection is lost
+	 * Determine whether it is safe to retry queries after a database connection is lost
 	 *
 	 * @param string $sql SQL query
 	 * @param bool $priorWritesPending Whether there is a transaction open with
@@ -1436,6 +1462,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Clean things up after transaction loss
 	 */
 	private function handleTransactionLoss() {
+		if ( $this->trxDoneWrites ) {
+			$this->trxProfiler->transactionWritingOut(
+				$this->server,
+				$this->getDomainID(),
+				$this->trxShortId,
+				$this->pendingWriteQueryDuration( self::ESTIMATE_TOTAL ),
+				$this->trxWriteAffectedRows
+			);
+		}
 		$this->trxLevel = 0;
 		$this->trxAtomicCounter = 0;
 		$this->trxIdleCallbacks = []; // T67263; transaction already lost
@@ -3284,7 +3319,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @return bool Whether it is safe to assume the given error only caused statement rollback
+	 * @return bool Whether it is known that the last query error only caused statement rollback
 	 * @note This is for backwards compatibility for callers catching DBError exceptions in
 	 *   order to ignore problems like duplicate key errors or foriegn key violations
 	 * @since 1.31
@@ -3845,8 +3880,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError( $this, $msg );
 		}
 
-		// Avoid fatals if close() was called
-		$this->assertOpen();
+		$this->assertHasConnectionHandle();
 
 		$this->doBegin( $fname );
 		$this->trxStatus = self::STATUS_TRX_OK;
@@ -3922,8 +3956,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 		}
 
-		// Avoid fatals if close() was called
-		$this->assertOpen();
+		$this->assertHasConnectionHandle();
 
 		$this->runOnTransactionPreCommitCallbacks();
 
@@ -3975,8 +4008,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $trxActive ) {
-			// Avoid fatals if close() was called
-			$this->assertOpen();
+			$this->assertHasConnectionHandle();
 
 			$this->doRollback( $fname );
 			$this->trxStatus = self::STATUS_TRX_NONE;
