@@ -99,9 +99,6 @@ class CleanupPreferences extends Maintenance {
 		}
 	}
 
-	/**
-	 *
-	 */
 	private function deleteByWhere( $dbw, $startMessage, $where ) {
 		$this->output( $startMessage . "...\n" );
 		$total = 0;

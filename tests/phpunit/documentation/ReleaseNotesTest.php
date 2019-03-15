@@ -41,8 +41,6 @@ class ReleaseNotesTest extends MediaWikiTestCase {
 		}
 	}
 
-	/**
-	 */
 	private function assertFileLength( $type, $fileName ) {
 		$file = file( $fileName, FILE_IGNORE_NEW_LINES );
 

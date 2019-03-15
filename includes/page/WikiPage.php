@@ -50,13 +50,23 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public $mTitle = null;
 
-	/**@{{
+	/**
+	 * @var bool
 	 * @protected
 	 */
-	public $mDataLoaded = false;         // !< Boolean
-	public $mIsRedirect = false;         // !< Boolean
-	public $mLatest = false;             // !< Integer (false means "not loaded")
-	/**@}}*/
+	public $mDataLoaded = false;
+
+	/**
+	 * @var bool
+	 * @protected
+	 */
+	public $mIsRedirect = false;
+
+	/**
+	 * @var int|false False means "not loaded"
+	 * @protected
+	 */
+	public $mLatest = false;
 
 	/** @var PreparedEdit Map of cache fields (text, parser output, ect) for a proposed/new edit */
 	public $mPreparedEdit = false;
