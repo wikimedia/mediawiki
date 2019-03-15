@@ -260,7 +260,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var int[] Prior flags member variable values */
 	private $priorFlags = [];
 
-	/** @var mixed Class name or object With profileIn/profileOut methods */
+	/** @var callable|null */
 	protected $profiler;
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
@@ -308,7 +308,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$this->srvCache = $params['srvCache'] ?? new HashBagOStuff();
 
-		$this->profiler = $params['profiler'];
+		$this->profiler = is_callable( $params['profiler'] ) ? $params['profiler'] : null;
 		$this->trxProfiler = $params['trxProfiler'];
 		$this->connLogger = $params['connLogger'];
 		$this->queryLogger = $params['queryLogger'];
@@ -408,9 +408,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *      used to adjust lock timeouts or encoding modes and the like.
 	 *   - connLogger: Optional PSR-3 logger interface instance.
 	 *   - queryLogger: Optional PSR-3 logger interface instance.
-	 *   - profiler: Optional class name or object with profileIn()/profileOut() methods.
-	 *      These will be called in query(), using a simplified version of the SQL that also
-	 *      includes the agent as a SQL comment.
+	 *   - profiler : Optional callback that takes a section name argument and returns
+	 *      a ScopedCallback instance that ends the profile section in its destructor.
+	 *      These will be called in query(), using a simplified version of the SQL that
+	 *      also includes the agent as a SQL comment.
 	 *   - trxProfiler: Optional TransactionProfiler instance.
 	 *   - errorLogger: Optional callback that takes an Exception and logs it.
 	 *   - deprecationLogger: Optional callback that takes a string and logs it.
@@ -1272,18 +1273,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$queryProf .= $this->trxShortId ? " [TRX#{$this->trxShortId}]" : "";
 
 		$startTime = microtime( true );
-		if ( $this->profiler ) {
-			$this->profiler->profileIn( $queryProf );
-		}
+		$ps = $this->profiler ? ( $this->profiler )( $queryProf ) : null;
 		$this->affectedRowCount = null;
 		$ret = $this->doQuery( $commentedSql );
 		$this->affectedRowCount = $this->affectedRows();
-		if ( $this->profiler ) {
-			$this->profiler->profileOut( $queryProf );
-		}
+		unset( $ps ); // profile out (if set)
 		$queryRuntime = max( microtime( true ) - $startTime, 0.0 );
-
-		unset( $queryProfSection ); // profile out (if set)
 
 		if ( $ret !== false ) {
 			$this->lastPing = $startTime;
