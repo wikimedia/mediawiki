@@ -2646,7 +2646,7 @@
 	"ipb-sitewide": "En todo el sitio",
 	"ipb-partial": "Parcial",
 	"ipb-sitewide-help": "Todas las páginas en la Wiki y todas las acciones de contribución.",
-	"ipb-partial-help": "Páginas concretas o nombres.",
+	"ipb-partial-help": "Páginas concretas o espacios de nombres.",
 	"ipb-pages-label": "Páginas",
 	"ipb-namespaces-label": "Espacios de nombres",
 	"badipaddress": "La dirección IP no tiene el formato correcto.",
@@ -3947,8 +3947,8 @@
 	"passwordpolicies-policy-maximalpasswordlength": "La contraseña no puede tener más de $1 {{PLURAL:$1|caracter|caracteres}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "La contraseña no puede {{PLURAL:$1|ser la contraseña más popular|encontrarse en la lista de $1 contraseñas populares}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "La contraseña no puede estar en la lista de las 100.000 contraseñas más usadas.",
-	"passwordpolicies-policyflag-forcechange": "Sugerir cambio al iniciar sesion",
-	"passwordpolicies-policyflag-suggestchangeonlogin": "Sugerir cambio al iniciar sesion",
+	"passwordpolicies-policyflag-forcechange": "debe cambiar al acceder a la cuenta",
+	"passwordpolicies-policyflag-suggestchangeonlogin": "sugerir cambio al acceder a la cuenta",
 	"easydeflate-invaliddeflate": "El contenido proporcionado no esta comprimido correctamente",
 	"unprotected-js": "Por razones de seguridad, JavaScript no se puede cargar desde páginas desprotegidas. Crea javascript solo en MediaWiki: espacio de nombres o como subpágina de usuario"
 }

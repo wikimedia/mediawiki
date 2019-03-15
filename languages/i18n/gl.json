@@ -74,6 +74,7 @@
 	"tog-norollbackdiff": "Omitir as diferenzas despois de levar a cabo unha reversión de edicións",
 	"tog-useeditwarning": "Avisar ao deixar unha páxina de edición cos cambios sen gardar",
 	"tog-prefershttps": "Utilizar sempre unha conexión segura para acceder ao sistema",
+	"tog-showrollbackconfirmation": "Amosar unha mensaxe de confirmación ó facer clic nunha ligazón de reversión",
 	"underline-always": "Sempre",
 	"underline-never": "Nunca",
 	"underline-default": "Opción predeterminada da aparencia ou do navegador",
@@ -465,6 +466,7 @@
 	"badretype": "Os contrasinais que inseriu non coinciden.",
 	"usernameinprogress": "Xa está en marcha a creación dunha conta para este nome de usuario.\nPor favor, agarde.",
 	"userexists": "O nome de usuario que inseriu xa está en uso.\nEscolla un nome diferente.",
+	"createacct-normalization": "O seu nome de usuario quedará axustado a \"$2\" debido a restricións técnicas.",
 	"loginerror": "Erro ao acceder ao sistema",
 	"createacct-error": "Erro ao crear a conta",
 	"createaccounterror": "Non se puido crear a conta: $1",
@@ -2500,6 +2502,8 @@
 	"ipb-confirm": "Confirmar o bloqueo",
 	"ipb-sitewide": "En todo o sitio",
 	"ipb-partial": "Parcial",
+	"ipb-sitewide-help": "Tódalas páxinas na wiki e tódalas outras contribucións.",
+	"ipb-partial-help": "Páxinas ou nomes de espazo específicos.",
 	"ipb-pages-label": "Páxinas",
 	"ipb-namespaces-label": "Espazos de nomes",
 	"badipaddress": "O enderezo IP non é válido",
@@ -3828,6 +3832,8 @@
 	"passwordpolicies-policy-maximalpasswordlength": "O contrasinal debe conter menos de $1 {{PLURAL:$1|carácter|caracteres}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "O contrasinal non pode {{PLURAL:$1|ser o contrasinal máis habitual|estar na lista dos $1 máis habituais}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "O contrasinal non pode estar na lista dos 100.000 contrasinais máis usados.",
+	"passwordpolicies-policyflag-forcechange": "debe modificarse ó iniciar sesión",
+	"passwordpolicies-policyflag-suggestchangeonlogin": "suxerir cambio ó iniciar sesión",
 	"easydeflate-invaliddeflate": "O contido fornecido non está debidamente comprimido",
 	"unprotected-js": "Por motivos de seguridade non se pode cargar JavaScript desde páxinas non protexidas. Por favor, cree só JavaScript no espazo de nomes MediaWiki ou como subpáxina de usuario"
 }

@@ -123,6 +123,7 @@
 	"tog-norollbackdiff": "لا تظهر الفروق بعد إجراء استرجاع",
 	"tog-useeditwarning": "حذّرني عندما أغادر تحرير صفحة فيها تغييرات لم أحفظها",
 	"tog-prefershttps": "استخدم دائما اتصالا آمنا عند تسجيل الدخول",
+	"tog-showrollbackconfirmation": "إظهار رسالة تأكيد عند النقر على رابط الاسترجاع",
 	"underline-always": "دائما",
 	"underline-never": "أبدا",
 	"underline-default": "وفق المظهر أو المتصفح",
