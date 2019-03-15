@@ -1,79 +1,105 @@
-== MediaWiki 1.33 ==
+= MediaWiki 1.33 =
+
+== MediaWiki 1.33.0-PRERELEASE ==
 
 THIS IS NOT A RELEASE YET
 
 MediaWiki 1.33 is an alpha-quality branch and is not recommended for use in
 production.
 
-=== Configuration changes in 1.33 ===
+== Upgrading notes for 1.33 ==
+1.33 has several database changes since 1.32, and will not work without schema
+updates. Note that due to changes to some very large tables like the revision
+table, the schema update may take quite long (minutes on a medium sized site,
+many hours on a large site).
 
-==== New configuration ====
-* $wgEnablePartialBlocks – This enables the Partial Blocks feature, which gives
-  accounts with block permissions the ability to block users, IPs, and IP ranges
-  from editing specific pages, while allowing them to edit the rest of the wiki.
+Don't forget to always back up your database before upgrading!
 
-==== Changed configuration ====
+See the file UPGRADE for more detailed upgrade instructions, including
+important information when upgrading from versions prior to 1.11.
+
+Some specific notes for MediaWiki 1.33 upgrades are below:
+
 * Some external link searches will not work correctly until update.php (or
   refreshExternallinksIndex.php) is run. These include searches for links using
   IP addresses, internationalized domain names, and possibly mailto links.
-* (T193868) $wgChangeTagsSchemaMigrationStage — This temporary setting, added in
-  MediaWiki 1.32, now defaults to MIGRATION_NEW instead of MIGRATION_WRITE_BOTH.
-* Special:ActiveUsers will no longer filter out users who became inactive since
-  the last time the active users query cache was updated.
 * If you ran migrateActors.php using an older version of MediaWiki and want to
   run your wiki with $wgActorTableSchemaMigrationStage SCHEMA_COMPAT_READ_OLD,
   note that log_search rows needed to find revision deletions by target user
   were incorrectly deleted. See T215464 for details.
 
+For notes on 1.32.x and older releases, see HISTORY.
+
+=== Configuration changes for system administrators in 1.33 ===
+==== New configuration ====
+* $wgEnablePartialBlocks – This enables the Partial Blocks feature, which gives
+  accounts with block permissions the ability to block users, IPs, and IP ranges
+  from editing specific pages, while allowing them to edit the rest of the wiki.
+  It is a temporary setting for gradual enablement, current default to `false`,
+  and will be set to `true` and then removed once initial development completes.
+
+==== Changed configuration ====
+* $wgChangeTagsSchemaMigrationStage (T193868) — This temporary setting, added in
+  MediaWiki 1.32, now defaults to MIGRATION_NEW instead of MIGRATION_WRITE_BOTH.
+* $wgPasswordPolicy – There is a new password policy to check that the account's
+  password is not in the large blacklist. This is enabled by default for the
+  built-in user groups bureaucrat, sysop, interface-admin, and bot. To configure
+  this for other user groups, set the `PasswordNotInLargeBlacklist` flag `true`.
+* wgPasswordDefault – There is a new password type configuration using Argon2
+  password hashing (which requires PHP 7.2 and above). It's designed to resist
+  timing attacks, and (on systems with PHP 7.3+) GPU hacking; if you configure
+  argon2 to be used, by default, it will automatically choose the best available
+  algorithm depending on which version of PHP you have available. To use this,
+  you can set `$wgPasswordDefault = 'argon2';`.
+
 ==== Removed configuration ====
-* (T199334) $wgTagStatisticsNewTable — This temporary setting, added in
+* $wgTagStatisticsNewTable (T199334) — This temporary setting, added in
   MediaWiki 1.32, has now been removed. When loading Special:Tags, MediaWiki
   will now always use the `change_tag_def` instead of the `change_tag` table.
-* MediaWiki now always tidies user output, and most related
-  configuration has been removed. Thus $wgUseTidy, $wgTidyBin,
-  $wgTidyConf, $wgTidyOpts, $wgTidyInternal, and $wgDebugTidy, all
-  deprecated since 1.26, have now all been removed. The $wgTidyConfig
-  setting remains only for Remex experimental features or debugging.
-* $wgEnableParserCache, deprecated since 1.26, was removed.
-  If disabling the parser cache is still desirable,
-  set `$wgParserCacheType = CACHE_NONE;` instead.
-* $wgCommentTableSchemaMigrationStage has been removed. Extension code finding
-  it unset should treat it as being MIGRATION_NEW.
+* $wgUseTidy, $wgTidyBin, $wgTidyConf, $wgTidyOpts, $wgTidyInternal, and
+  $wgDebugTidy – These options, all deprecated since 1.26, have now all been
+  removed, as MediaWiki now always tidies user output. The $wgTidyConfig setting
+  remains only for experimental features and debugging, and should not be used.
+* $wgEnableParserCache – This setting has been deprecated since 1.26, has now
+  been removed. If you still desire to disable the parser cache, instead you can
+  set `$wgParserCacheType = CACHE_NONE;`.
+* $wgCommentTableSchemaMigrationStage – This temporary migration setting has now
+  been removed. Code finding it unset should treat it as being MIGRATION_NEW.
 * $wgAuth – This old setting, deprecated in 1.27, has been removed as part of
   the removal of AuthPlugin.
-* $wgSitesCacheFile has been removed. It was introduced in 1.25 to allow sites
-  to configure a file in which to cache the SiteStore database table.
-  This was never used. SiteStore already caches its information by default
-  using BagOStuff (e.g. Memcached or APC).
-* $wgClockSkewFudge has been removed. It was used by User.php to minimize the
-  chances of a user.user_touched database update to the "current" timestamp
-  being before the value already there (e.g. due to clock skew between different
-  servers). This is no longer a problem because the code now ensures the
-  timestamp is always higher than the previous one. The writes are guarded with
-  CAS logic (check and set), which prevents updates that would overlap.
+* $wgSitesCacheFile – This configuration was introduced in 1.25 with the intent
+  to allow sites to configure a file in which to cache the SiteStore database
+  table, but it was never used. SiteStore already caches its information by
+  default using BagOStuff (e.g. Memcached or APC).
+* $wgClockSkewFudge – This setting was used by User.php to let sites adjust by
+  how much MediaWiki would fudge when trying to minimize the chances of a
+  user.user_touched database update to the "current" timestamp being before the
+  value already there (e.g. due to clock skew between different servers). This
+  is no longer a problem, because the code now ensures the timestamp is always
+  higher than the previous one. The writes are guarded with CAS logic (check
+  and set), which prevents updates that would overlap.
 
-=== New features in 1.33 ===
+=== New user-facing features in 1.33 ===
 * (T96041) __EXPECTUNUSEDCATEGORY__ on a category page causes the category
   to be hidden on Special:UnusedCategories.
-* Add PasswordPolicy to check the password isn't in the large blacklist.
-* The AuthManagerLoginAuthenticateAudit hook has a new parameter for
-  additional information about the authentication event.
-* TextContent::getText() was introduced as a replacement for
-  Content::getNativeData() for text-based content models.
 * (T210814) SVGs are now by default displayed in wiki language on image
   pages.
-* (T214706) LinksUpdate::getAddedExternalLinks() and
-  LinksUpdate::getRemovedExternalLinks() were introduced.
-* Argon2 password hashing is now available, can be enabled via
-  $wgPasswordDefault = 'argon2'. It's designed to resist timing attacks
-  (requires PHP 7.2+) and GPU hacking (7.3+).
 * Special:CreateAccount now warns the user if their chosen username has to be
   normalized.
 * (T205040) Multilingual images are now be displayed in the current parse
   language where available.
+* Special:ActiveUsers will no longer filter out users who became inactive since
+  the last time the active users query cache was updated.
+
+=== New developer features in 1.33 ===
+* The AuthManagerLoginAuthenticateAudit hook has a new parameter for
+  additional information about the authentication event.
+* TextContent::getText() was introduced as a replacement for
+  Content::getNativeData() for text-based content models.
+* (T214706) LinksUpdate::getAddedExternalLinks() and
+  LinksUpdate::getRemovedExternalLinks() were introduced.
 
 === External library changes in 1.33 ===
-
 ==== New external libraries ====
 * Added wikimedia/password-blacklist 0.1.4.
 * Added guzzlehttp/guzzle 6.3.3.
@@ -97,6 +123,7 @@ production.
 * Updated wikimedia/php-session-serializer from 1.0.6 to 1.0.7.
 
 ==== Removed external libraries ====
+* …
 
 === Bug fixes in 1.33 ===
 * (T164211) Special:UserRights could sometimes fail with a
@@ -384,19 +411,6 @@ The supported versions are:
 * SQLite 3.8.0 or later
 * Oracle 9.0.1 or later
 * Microsoft SQL Server 2005 (9.00.1399)
-
-== Upgrading ==
-1.33 has several database changes since 1.32, and will not work without schema
-updates. Note that due to changes to some very large tables like the revision
-table, the schema update may take quite long (minutes on a medium sized site,
-many hours on a large site).
-
-Don't forget to always back up your database before upgrading!
-
-See the file UPGRADE for more detailed upgrade instructions, including
-important information when upgrading from versions prior to 1.11.
-
-For notes on 1.32.x and older releases, see HISTORY.
 
 == Online documentation ==
 Documentation for both end-users and site administrators is available on
