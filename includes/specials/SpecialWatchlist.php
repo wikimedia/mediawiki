@@ -37,12 +37,16 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	protected static $limitPreferenceName = 'wllimit';
 	protected static $collapsedPreferenceName = 'rcfilters-wl-collapsed';
 
+	/** @var float|int */
 	private $maxDays;
+	/** WatchedItemStore */
+	private $watchStore;
 
 	public function __construct( $page = 'Watchlist', $restriction = 'viewmywatchlist' ) {
 		parent::__construct( $page, $restriction );
 
 		$this->maxDays = $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 );
+		$this->watchStore = MediaWikiServices::getInstance()->getWatchedItemStore();
 	}
 
 	public function doesWrites() {
@@ -187,9 +191,13 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					'label' => 'rcfilters-filter-watchlistactivity-unseen-label',
 					'description' => 'rcfilters-filter-watchlistactivity-unseen-description',
 					'cssClassSuffix' => 'watchedunseen',
-					'isRowApplicableCallable' => function ( $ctx, $rc ) {
+					'isRowApplicableCallable' => function ( $ctx, RecentChange $rc ) {
 						$changeTs = $rc->getAttribute( 'rc_timestamp' );
-						$lastVisitTs = $rc->getAttribute( 'wl_notificationtimestamp' );
+						$lastVisitTs = $this->watchStore->getLatestNotificationTimestamp(
+							$rc->getAttribute( 'wl_notificationtimestamp' ),
+							$rc->getPerformer(),
+							$rc->getTitle()
+						);
 						return $lastVisitTs !== null && $changeTs >= $lastVisitTs;
 					},
 				],
