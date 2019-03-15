@@ -7,6 +7,8 @@ THIS IS NOT A RELEASE YET
 * A change that kept people with a database table prefix that didn't
   end with an underscore from updating was reverted.
 * (T207100) Updated LanguageTr for dotted and dotless I in PHP 7.3.
+* The ImgAuthModifyHeaders hook was added to img_auth.php to allow modification
+  of headers in private wikis.
 
 == MediaWiki 1.33 ==
 
