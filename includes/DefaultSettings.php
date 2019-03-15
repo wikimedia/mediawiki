@@ -2678,14 +2678,6 @@ $wgSidebarCacheExpiry = 86400;
 $wgUseGzip = false;
 
 /**
- * Clock skew or the one-second resolution of time() can occasionally cause cache
- * problems when the user requests two pages within a short period of time. This
- * variable adds a given number of seconds to vulnerable timestamps, thereby giving
- * a grace period.
- */
-$wgClockSkewFudge = 5;
-
-/**
  * Invalidate various caches when LocalSettings.php changes. This is equivalent
  * to setting $wgCacheEpoch to the modification time of LocalSettings.php, as
  * was previously done in the default LocalSettings.php file.
