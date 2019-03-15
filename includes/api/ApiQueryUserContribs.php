@@ -525,7 +525,6 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		if ( $this->fld_ids ) {
 			$vals['pageid'] = (int)$row->rev_page;
 			$vals['revid'] = (int)$row->rev_id;
-			// $vals['textid'] = (int)$row->rev_text_id; // todo: Should this field be exposed?
 
 			if ( !is_null( $row->rev_parent_id ) ) {
 				$vals['parentid'] = (int)$row->rev_parent_id;

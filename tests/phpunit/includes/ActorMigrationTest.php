@@ -593,7 +593,6 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			] ],
 			'revision' => [ 'revision', 'rev_user', 'rev_id', [
 				'rev_page' => 42,
-				'rev_text_id' => 42,
 				'rev_len' => 0,
 				'rev_timestamp' => $db->timestamp(),
 			] ],
@@ -679,7 +678,6 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			$m->getInsertValuesWithTempTable( $this->db, 'rev_user', $userIdentity );
 		$extraFields = [
 			'rev_page' => 42,
-			'rev_text_id' => 42,
 			'rev_len' => 0,
 			'rev_timestamp' => $this->db->timestamp(),
 		] + $cFields;
