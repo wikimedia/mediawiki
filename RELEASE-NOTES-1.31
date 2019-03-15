@@ -4,6 +4,9 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.31.3 ===
 
+* The ImgAuthModifyHeaders hook was added to img_auth.php to allow modification
+  of headers in private wikis.
+
 == MediaWiki 1.31.3 ==
 
 This is a maintenance release of the MediaWiki 1.31 branch.
