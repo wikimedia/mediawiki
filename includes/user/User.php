@@ -4268,7 +4268,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 		Hooks::run( 'UserSaveSettings', [ $this ] );
 		$this->clearSharedCache();
-		$this->getUserPage()->invalidateCache();
+		$this->getUserPage()->purgeSquid();
 	}
 
 	/**
