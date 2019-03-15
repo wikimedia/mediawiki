@@ -1294,13 +1294,8 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$this->mTitle->invalidateCache();
 
-		// Clear file cache
-		HTMLFileCache::clearFileCache( $this->getTitle() );
-		// Send purge after above page_touched update was committed
-		DeferredUpdates::addUpdate(
-			new CdnCacheUpdate( $this->mTitle->getCdnUrls() ),
-			DeferredUpdates::PRESEND
-		);
+		// Clear file cache and send purge after above page_touched update was committed
+		MediaWikiServices::getInstance()->getHtmlCacheUpdater()->purge( $this->mTitle );
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			$messageCache = MessageCache::singleton();
@@ -3384,18 +3379,20 @@ class WikiPage implements Page, IDBAccessObject {
 		// Update existence markers on article/talk tabs...
 		$other = $title->getOtherPage();
 
-		$other->purgeSquid();
+		MediaWikiServices::getInstance()->getHtmlCacheUpdater()->purge( [ $title, $other ] );
 
 		$title->touchLinks();
-		$title->purgeSquid();
 		$title->deleteTitleProtection();
 
 		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
 
 		// Invalidate caches of articles which include this page
-		DeferredUpdates::addUpdate(
-			new HTMLCacheUpdate( $title, 'templatelinks', 'page-create' )
+		$job = HTMLCacheUpdateJob::newForBacklinks(
+			$title,
+			'templatelinks',
+			[ 'causeAction' => 'page-create' ]
 		);
+		JobQueueGroup::singleton()->lazyPush( $job );
 
 		if ( $title->getNamespace() == NS_CATEGORY ) {
 			// Load the Category object, which will schedule a job to create
@@ -3415,19 +3412,14 @@ class WikiPage implements Page, IDBAccessObject {
 		// TODO: move this into a PageEventEmitter service
 
 		// Update existence markers on article/talk tabs...
-		// Clear Backlink cache first so that purge jobs use more up-to-date backlink information
-		BacklinkCache::get( $title )->clear();
 		$other = $title->getOtherPage();
 
-		$other->purgeSquid();
+		MediaWikiServices::getInstance()->getHtmlCacheUpdater()->purge( [ $title, $other ] );
 
 		$title->touchLinks();
-		$title->purgeSquid();
 
 		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
 
-		// File cache
-		HTMLFileCache::clearFileCache( $title );
 		InfoAction::invalidateCache( $title );
 
 		// Messages
@@ -3437,9 +3429,12 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Images
 		if ( $title->getNamespace() == NS_FILE ) {
-			DeferredUpdates::addUpdate(
-				new HTMLCacheUpdate( $title, 'imagelinks', 'page-delete' )
+			$job = HTMLCacheUpdateJob::newForBacklinks(
+				$title,
+				'imagelinks',
+				[ 'causeAction' => 'page-delete' ]
 			);
+			JobQueueGroup::singleton()->lazyPush( $job );
 		}
 
 		// User talk pages
@@ -3472,26 +3467,28 @@ class WikiPage implements Page, IDBAccessObject {
 	) {
 		// TODO: move this into a PageEventEmitter service
 
-		if ( $slotsChanged === null || in_array( SlotRecord::MAIN,  $slotsChanged ) ) {
+		$jobs = [];
+		if ( $slotsChanged === null || in_array( SlotRecord::MAIN, $slotsChanged ) ) {
 			// Invalidate caches of articles which include this page.
 			// Only for the main slot, because only the main slot is transcluded.
 			// TODO: MCR: not true for TemplateStyles! [SlotHandler]
-			DeferredUpdates::addUpdate(
-				new HTMLCacheUpdate( $title, 'templatelinks', 'page-edit' )
+			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
+				$title,
+				'templatelinks',
+				[ 'causeAction' => 'page-edit' ]
 			);
 		}
-
 		// Invalidate the caches of all pages which redirect here
-		DeferredUpdates::addUpdate(
-			new HTMLCacheUpdate( $title, 'redirect', 'page-edit' )
+		$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
+			$title,
+			'redirect',
+			[ 'causeAction' => 'page-edit' ]
 		);
+		JobQueueGroup::singleton()->lazyPush( $jobs );
 
 		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
 
-		// Purge CDN for this page only
-		$title->purgeSquid();
-		// Clear file cache for this page only
-		HTMLFileCache::clearFileCache( $title );
+		MediaWikiServices::getInstance()->getHtmlCacheUpdater()->purge( $title );
 
 		// Purge ?action=info cache
 		$revid = $revision ? $revision->getId() : null;

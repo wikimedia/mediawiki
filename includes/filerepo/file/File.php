@@ -1453,7 +1453,7 @@ abstract class File implements IDBAccessObject {
 		$title = $this->getTitle();
 		if ( $title ) {
 			$title->invalidateCache();
-			$title->purgeSquid();
+			MediaWikiServices::getInstance()->getHtmlCacheUpdater()->purge( $title );
 		}
 	}
 
@@ -1469,9 +1469,12 @@ abstract class File implements IDBAccessObject {
 		// Purge cache of all pages using this file
 		$title = $this->getTitle();
 		if ( $title ) {
-			DeferredUpdates::addUpdate(
-				new HTMLCacheUpdate( $title, 'imagelinks', 'file-purge' )
+			$job = HTMLCacheUpdateJob::newForBacklinks(
+				$title,
+				'imagelinks',
+				[ 'causeAction' => 'file-purge' ]
 			);
+			JobQueueGroup::singleton()->lazyPush( $job );
 		}
 	}
 

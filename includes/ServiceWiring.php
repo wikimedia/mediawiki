@@ -218,6 +218,10 @@ return [
 		return new GenderCache( $services->getNamespaceInfo() );
 	},
 
+	'HtmlCacheUpdater' => function ( MediaWikiServices $services ) : HtmlCacheUpdater {
+		return new HtmlCacheUpdater();
+	},
+
 	'HttpRequestFactory' =>
 	function ( MediaWikiServices $services ) : HttpRequestFactory {
 		return new HttpRequestFactory();

@@ -24,12 +24,12 @@ use Wikimedia\Assert\Assert;
 use MediaWiki\MediaWikiServices;
 
 /**
- * Handles purging appropriate CDN URLs given a title (or titles)
+ * Handles purging the appropriate CDN objects given a list of URLs or Title instances
  * @ingroup Cache
  */
 class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	/** @var string[] Collection of URLs to purge */
-	protected $urls = [];
+	private $urls = [];
 
 	/**
 	 * @param string[] $urlArr Collection of URLs to purge
@@ -59,12 +59,9 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 			$urlArr = array_merge( $urlArr, $title->getCdnUrls() );
 		}
 
-		return new CdnCacheUpdate( $urlArr );
+		return new self( $urlArr );
 	}
 
-	/**
-	 * Purges the list of URLs passed to the constructor.
-	 */
 	public function doUpdate() {
 		global $wgCdnReboundPurgeDelay;
 
@@ -98,10 +95,9 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		wfDebugLog( 'squid', __METHOD__ . ': ' . implode( ' ', $urlArr ) );
 
 		// Reliably broadcast the purge to all edge nodes
-		$relayer = MediaWikiServices::getInstance()->getEventRelayerGroup()
-					->getRelayer( 'cdn-url-purges' );
 		$ts = microtime( true );
-		$relayer->notifyMulti(
+		$relayerGroup = MediaWikiServices::getInstance()->getEventRelayerGroup();
+		$relayerGroup->getRelayer( 'cdn-url-purges' )->notifyMulti(
 			'cdn-url-purges',
 			array_map(
 				function ( $url ) use ( $ts ) {
