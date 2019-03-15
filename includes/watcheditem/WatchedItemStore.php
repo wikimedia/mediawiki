@@ -966,14 +966,31 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			}
 		}
 
+		// Get the timestamp (TS_MW) of this revision to track the latest one seen
+		$seenTime = call_user_func(
+			$this->revisionGetTimestampFromIdCallback,
+			$title,
+			$oldid ?: $title->getLatestRevID()
+		);
+
 		// Mark the item as read immediately in lightweight storage
 		$this->stash->merge(
 			$this->getPageSeenTimestampsKey( $user ),
-			function ( $cache, $key, $current ) use ( $time, $title ) {
+			function ( $cache, $key, $current ) use ( $title, $seenTime ) {
 				$value = $current ?: new MapCacheLRU( 300 );
-				$value->set( $this->getPageSeenKey( $title ), wfTimestamp( TS_MW, $time ) );
+				$subKey = $this->getPageSeenKey( $title );
 
-				$this->latestUpdateCache->set( $key, $value, IExpiringStore::TTL_PROC_LONG );
+				if ( $seenTime > $value->get( $subKey ) ) {
+					// Revision is newer than the last one seen
+					$value->set( $subKey, $seenTime );
+					$this->latestUpdateCache->set( $key, $value, IExpiringStore::TTL_PROC_LONG );
+				} elseif ( $seenTime === false ) {
+					// Revision does not exist
+					$value->set( $subKey, wfTimestamp( TS_MW ) );
+					$this->latestUpdateCache->set( $key, $value, IExpiringStore::TTL_PROC_LONG );
+				} else {
+					return false; // nothing to update
+				}
 
 				return $value;
 			},
@@ -1000,7 +1017,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @param User $user
-	 * @return MapCacheLRU|null
+	 * @return MapCacheLRU|null The map contains prefixed title keys and TS_MW values
 	 */
 	private function getPageSeenTimestamps( User $user ) {
 		$key = $this->getPageSeenTimestampsKey( $user );
