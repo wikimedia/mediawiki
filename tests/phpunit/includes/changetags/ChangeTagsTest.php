@@ -592,7 +592,13 @@ class ChangeTagsTest extends MediaWikiTestCase {
 				'ctd_user_defined' => 1
 			],
 		];
-		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_user_defined' ], '' );
+		$res = $dbr->select(
+			'change_tag_def',
+			[ 'ctd_name', 'ctd_user_defined' ],
+			'',
+			__METHOD__,
+			[ 'ORDER BY' => 'ctd_name' ]
+		);
 		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
 	}
 }
