@@ -287,6 +287,8 @@ because of Phabricator reports.
 * BagOStuff::modifySimpleRelayEvent() method has been removed.
 * ParserOutput::getLegacyOptions, deprecated in 1.30, has been removed.
   Use ParserOutput::allCacheVaryingOptions instead.
+* CdnCacheUpdate::newSimplePurge, deprecated in 1.27, has been removed.
+  Use CdnCacheUpdate::newFromTitles() instead.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
