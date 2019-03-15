@@ -66,11 +66,7 @@ class TemplatesOnThisPageFormatter {
 		}
 
 		# Do a batch existence check
-		$batch = new LinkBatch;
-		foreach ( $templates as $title ) {
-			$batch->addObj( $title );
-		}
-		$batch->execute();
+		( new LinkBatch( $templates ) )->execute();
 
 		# Construct the HTML
 		$outText = '<div class="mw-templatesUsedExplanation">';
