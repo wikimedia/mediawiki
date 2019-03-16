@@ -2762,17 +2762,16 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Generate a current or new-future timestamp to be stored in the
 	 * user_touched field when we update things.
+	 *
 	 * @return string Timestamp in TS_MW format
 	 */
 	private function newTouchedTimestamp() {
-		global $wgClockSkewFudge;
-
-		$time = wfTimestamp( TS_MW, time() + $wgClockSkewFudge );
-		if ( $this->mTouched && $time <= $this->mTouched ) {
-			$time = wfTimestamp( TS_MW, wfTimestamp( TS_UNIX, $this->mTouched ) + 1 );
+		$time = time();
+		if ( $this->mTouched ) {
+			$time = max( $time, wfTimestamp( TS_UNIX, $this->mTouched ) + 1 );
 		}
 
-		return $time;
+		return wfTimestamp( TS_MW, $time );
 	}
 
 	/**

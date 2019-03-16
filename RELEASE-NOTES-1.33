@@ -41,6 +41,16 @@ production.
   it unset should treat it as being MIGRATION_NEW.
 * $wgAuth – This old setting, deprecated in 1.27, has been removed as part of
   the removal of AuthPlugin.
+* $wgSitesCacheFile has been removed. It was introduced in 1.25 to allow sites
+  to configure a file in which to cache the SiteStore database table.
+  This was never used. SiteStore already caches its information by default
+  using BagOStuff (e.g. Memcached or APC).
+* $wgClockSkewFudge has been removed. It was used by User.php to minimize the
+  chances of a user.user_touched database update to the "current" timestamp
+  being before the value already there (e.g. due to clock skew between different
+  servers). This is no longer a problem because the code now ensures the
+  timestamp is always higher than the previous one. The writes are guarded with
+  CAS logic (check and set), which prevents updates that would overlap.
 
 === New features in 1.33 ===
 * (T96041) __EXPECTUNUSEDCATEGORY__ on a category page causes the category
@@ -347,6 +357,8 @@ because of Phabricator reports.
   check block behaviour.
 * The api-feature-usage log channel now has log context. The text message is
   deprecated and will be removed in the future.
+* The FileBasedSiteLookup class has been deprecated. For a cacheable SiteLookup
+  implementation, use CachingSiteStore instead.
 
 === Other changes in 1.33 ===
 * (T201747) Html::openElement() warns if given an element name with a space
