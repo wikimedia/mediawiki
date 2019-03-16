@@ -926,6 +926,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	final public function close() {
 		$exception = null; // error to throw after disconnecting
 
+		$wasOpen = $this->opened;
+		// This should mostly do nothing if the connection is already closed
 		if ( $this->conn ) {
 			// Roll back any dangling transaction first
 			if ( $this->trxLevel ) {
@@ -968,11 +970,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 			// Close the actual connection in the binding handle
 			$closed = $this->closeConnection();
-			$this->conn = false;
 		} else {
 			$closed = true; // already closed; nothing to do
 		}
 
+		$this->conn = false;
 		$this->opened = false;
 
 		// Throw any unexpected errors after having disconnected
@@ -980,12 +982,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw $exception;
 		}
 
-		// Sanity check that no callbacks are dangling
-		$fnames = $this->pendingWriteAndCallbackCallers();
-		if ( $fnames ) {
-			throw new RuntimeException(
-				"Transaction callbacks are still pending:\n" . implode( ', ', $fnames )
-			);
+		// Note that various subclasses call close() at the start of open(), which itself is
+		// called by replaceLostConnection(). In that case, just because onTransactionResolution()
+		// callbacks are pending does not mean that an exception should be thrown. Rather, they
+		// will be executed after the reconnection step.
+		if ( $wasOpen ) {
+			// Sanity check that no callbacks are dangling
+			$fnames = $this->pendingWriteAndCallbackCallers();
+			if ( $fnames ) {
+				throw new RuntimeException(
+					"Transaction callbacks are still pending:\n" . implode( ', ', $fnames )
+				);
+			}
 		}
 
 		return $closed;
@@ -1444,9 +1452,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Clean things up after session (and thus transaction) loss
+	 * Clean things up after session (and thus transaction) loss before reconnect
 	 */
-	private function handleSessionLoss() {
+	private function handleSessionLossPreconnect() {
 		// Clean up tracking of session-level things...
 		// https://dev.mysql.com/doc/refman/5.7/en/implicit-commit.html
 		// https://www.postgresql.org/docs/9.2/static/sql-createtable.html (ignoring ON COMMIT)
@@ -1455,13 +1463,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// https://www.postgresql.org/docs/9.4/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$this->namedLocksHeld = [];
 		// Session loss implies transaction loss
-		$this->handleTransactionLoss();
-	}
-
-	/**
-	 * Clean things up after transaction loss
-	 */
-	private function handleTransactionLoss() {
+		$this->trxLevel = 0;
+		$this->trxAtomicCounter = 0;
+		$this->trxIdleCallbacks = []; // T67263; transaction already lost
+		$this->trxPreCommitCallbacks = []; // T67263; transaction already lost
+		// @note: leave trxRecurringCallbacks in place
 		if ( $this->trxDoneWrites ) {
 			$this->trxProfiler->transactionWritingOut(
 				$this->server,
@@ -1471,10 +1477,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->trxWriteAffectedRows
 			);
 		}
-		$this->trxLevel = 0;
-		$this->trxAtomicCounter = 0;
-		$this->trxIdleCallbacks = []; // T67263; transaction already lost
-		$this->trxPreCommitCallbacks = []; // T67263; transaction already lost
+	}
+
+	/**
+	 * Clean things up after session (and thus transaction) loss after reconnect
+	 */
+	private function handleSessionLossPostconnect() {
 		try {
 			// Handle callbacks in trxEndCallbacks, e.g. onTransactionResolution().
 			// If callback suppression is set then the array will remain unhandled.
@@ -4177,6 +4185,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->closeConnection();
 		$this->opened = false;
 		$this->conn = false;
+
+		$this->handleSessionLossPreconnect();
+
 		try {
 			$this->open(
 				$this->server,
@@ -4205,7 +4216,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			);
 		}
 
-		$this->handleSessionLoss();
+		$this->handleSessionLossPostconnect();
 
 		return $ok;
 	}
@@ -4718,7 +4729,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->opened = false;
 			$this->conn = false;
 			$this->trxEndCallbacks = []; // don't copy
-			$this->handleSessionLoss(); // no trx or locks anymore
+			$this->handleSessionLossPreconnect(); // no trx or locks anymore
 			$this->open(
 				$this->server,
 				$this->user,
