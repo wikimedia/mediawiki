@@ -489,14 +489,10 @@ return [
 	},
 
 	'SiteLookup' => function ( MediaWikiServices $services ) : SiteLookup {
-		$cacheFile = $services->getMainConfig()->get( 'SitesCacheFile' );
-
-		if ( $cacheFile !== false ) {
-			return new FileBasedSiteLookup( $cacheFile );
-		} else {
-			// Use the default SiteStore as the SiteLookup implementation for now
-			return $services->getSiteStore();
-		}
+		// Use SiteStore as the SiteLookup as well. This was originally separated
+		// to allow for a cacheable read-only interface (using FileBasedSiteLookup),
+		// but this was never used. SiteStore has caching (see below).
+		return $services->getSiteStore();
 	},
 
 	'SiteStore' => function ( MediaWikiServices $services ) : SiteStore {
