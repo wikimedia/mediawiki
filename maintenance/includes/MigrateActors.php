@@ -144,6 +144,8 @@ class MigrateActors extends LoggedUpdateMaintenance {
 
 	/**
 	 * Add actors for anons in a set of rows
+	 *
+	 * @suppress SecurityCheck-SQLInjection The array_keys/array_map is too much for static analysis
 	 * @param IDatabase $dbw
 	 * @param string $nameField
 	 * @param object[] &$rows
