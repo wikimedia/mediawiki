@@ -199,7 +199,7 @@ class SpecialUndelete extends SpecialPage {
 			} else {
 				$this->showFile( $this->mFilename );
 			}
-		} elseif ( $this->mAction === "submit" ) {
+		} elseif ( $this->mAction === 'submit' ) {
 			if ( $this->mRestore ) {
 				$this->undelete();
 			} elseif ( $this->mRevdel ) {
@@ -223,13 +223,14 @@ class SpecialUndelete extends SpecialPage {
 		foreach ( $this->getRequest()->getValues() as $key => $val ) {
 			$matches = [];
 			if ( preg_match( "/^ts(\d{14})$/", $key, $matches ) ) {
-				$revisions[ $archive->getRevision( $matches[1] )->getId() ] = 1;
+				$revisions[$archive->getRevision( $matches[1] )->getId()] = 1;
 			}
 		}
+
 		$query = [
-			"type" => "revision",
-			"ids" => $revisions,
-			"target" => $this->mTargetObj->getPrefixedText()
+			'type' => 'revision',
+			'ids' => $revisions,
+			'target' => $this->mTargetObj->getPrefixedText()
 		];
 		$url = SpecialPage::getTitleFor( 'Revisiondelete' )->getFullURL( $query );
 		$this->getOutput()->redirect( $url );
