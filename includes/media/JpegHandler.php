@@ -21,6 +21,8 @@
  * @ingroup Media
  */
 
+use MediaWiki\Shell\Shell;
+
 /**
  * JPEG specific handler.
  * Inherits most stuff from BitmapHandler, just here to do the metadata handler differently.
@@ -140,17 +142,23 @@ class JpegHandler extends ExifBitmapHandler {
 		$rotation = ( $params['rotation'] + $this->getRotation( $file ) ) % 360;
 
 		if ( $wgJpegTran && is_executable( $wgJpegTran ) ) {
-			$cmd = wfEscapeShellArg( $wgJpegTran ) .
-				" -rotate " . wfEscapeShellArg( $rotation ) .
-				" -outfile " . wfEscapeShellArg( $params['dstPath'] ) .
-				" " . wfEscapeShellArg( $params['srcPath'] );
-			wfDebug( __METHOD__ . ": running jpgtran: $cmd\n" );
-			$retval = 0;
-			$err = wfShellExecWithStderr( $cmd, $retval );
-			if ( $retval !== 0 ) {
-				$this->logErrorForExternalProcess( $retval, $err, $cmd );
+			$command = Shell::command( $wgJpegTran,
+				'-rotate',
+				$rotation,
+				'-outfile',
+				$params['dstPath'],
+				$params['srcPath']
+			);
+			$result = $command
+				->includeStderr()
+				->execute();
+			if ( $result->getExitCode() !== 0 ) {
+				$this->logErrorForExternalProcess( $result->getExitCode(),
+					$result->getStdout(),
+					$command
+				);
 
-				return new MediaTransformError( 'thumbnail_error', 0, 0, $err );
+				return new MediaTransformError( 'thumbnail_error', 0, 0, $result->getStdout() );
 			}
 
 			return false;
@@ -240,20 +248,21 @@ class JpegHandler extends ExifBitmapHandler {
 			return false;
 		}
 
-		$cmd = wfEscapeShellArg( $wgExiftool,
+		$result = Shell::command(
+			$wgExiftool,
 			'-EXIF:ColorSpace',
 			'-ICC_Profile:ProfileDescription',
 			'-S',
 			'-T',
 			$filepath
-		);
-
-		$output = wfShellExecWithStderr( $cmd, $retval );
+		)
+			->includeStderr()
+			->execute();
 
 		// Explode EXIF data into an array with [0 => Color Space, 1 => Device Model Desc]
-		$data = explode( "\t", trim( $output ) );
+		$data = explode( "\t", trim( $result->getStdout() ) );
 
-		if ( $retval !== 0 ) {
+		if ( $result->getExitCode() !== 0 ) {
 			return false;
 		}
 
@@ -271,16 +280,20 @@ class JpegHandler extends ExifBitmapHandler {
 			return false;
 		}
 
-		$cmd = wfEscapeShellArg( $wgExiftool,
+		$command = Shell::command( $wgExiftool,
 			'-overwrite_original',
 			'-icc_profile<=' . $profileFilepath,
 			$filepath
 		);
+		$result = $command
+			->includeStderr()
+			->execute();
 
-		$output = wfShellExecWithStderr( $cmd, $retval );
-
-		if ( $retval !== 0 ) {
-			$this->logErrorForExternalProcess( $retval, $output, $cmd );
+		if ( $result->getExitCode() !== 0 ) {
+			$this->logErrorForExternalProcess( $result->getExitCode(),
+				$result->getStdout(),
+				$command
+			);
 
 			return false;
 		}
