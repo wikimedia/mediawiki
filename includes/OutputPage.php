@@ -1146,6 +1146,20 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Return effective list of advertised feed types
+	 * @see addFeedLink()
+	 *
+	 * @return array Array of feed type names ( 'rss', 'atom' )
+	 */
+	protected function getAdvertisedFeedTypes() {
+		if ( $this->getConfig()->get( 'Feed' ) ) {
+			return $this->getConfig()->get( 'AdvertisedFeedTypes' );
+		} else {
+			return [];
+		}
+	}
+
+	/**
 	 * Add default feeds to the page header
 	 * This is mainly kept for backward compatibility, see OutputPage::addFeedLink()
 	 * for the new version
@@ -1157,7 +1171,7 @@ class OutputPage extends ContextSource {
 	public function setFeedAppendQuery( $val ) {
 		$this->mFeedLinks = [];
 
-		foreach ( $this->getConfig()->get( 'AdvertisedFeedTypes' ) as $type ) {
+		foreach ( $this->getAdvertisedFeedTypes() as $type ) {
 			$query = "feed=$type";
 			if ( is_string( $val ) ) {
 				$query .= '&' . $val;
@@ -1173,7 +1187,7 @@ class OutputPage extends ContextSource {
 	 * @param string $href URL
 	 */
 	public function addFeedLink( $format, $href ) {
-		if ( in_array( $format, $this->getConfig()->get( 'AdvertisedFeedTypes' ) ) ) {
+		if ( in_array( $format, $this->getAdvertisedFeedTypes() ) ) {
 			$this->mFeedLinks[$format] = $href;
 		}
 	}
@@ -3737,8 +3751,9 @@ class OutputPage extends ContextSource {
 			# or "Breaking news" one). For this, we see if $wgOverrideSiteFeed is defined.
 			# If so, use it instead.
 			$sitename = $config->get( 'Sitename' );
-			if ( $config->get( 'OverrideSiteFeed' ) ) {
-				foreach ( $config->get( 'OverrideSiteFeed' ) as $type => $feedUrl ) {
+			$overrideSiteFeed = $config->get( 'OverrideSiteFeed' );
+			if ( $overrideSiteFeed ) {
+				foreach ( $overrideSiteFeed as $type => $feedUrl ) {
 					// Note, this->feedLink escapes the url.
 					$feedLinks[] = $this->feedLink(
 						$type,
@@ -3748,7 +3763,7 @@ class OutputPage extends ContextSource {
 				}
 			} elseif ( !$this->getTitle()->isSpecial( 'Recentchanges' ) ) {
 				$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
-				foreach ( $config->get( 'AdvertisedFeedTypes' ) as $format ) {
+				foreach ( $this->getAdvertisedFeedTypes() as $format ) {
 					$feedLinks[] = $this->feedLink(
 						$format,
 						$rctitle->getLocalURL( [ 'feed' => $format ] ),
