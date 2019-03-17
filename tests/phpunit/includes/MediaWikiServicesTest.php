@@ -11,7 +11,7 @@ use Wikimedia\Services\ServiceDisabledException;
  * @group MediaWiki
  */
 class MediaWikiServicesTest extends MediaWikiTestCase {
-	private $deprecatedServices = [ 'CryptRand' ];
+	private $deprecatedServices = [];
 
 	/**
 	 * @return Config

@@ -134,10 +134,6 @@ return [
 		return new CryptHKDF( $secret, $config->get( 'HKDFAlgorithm' ), $cache, $context );
 	},
 
-	'CryptRand' => function () : CryptRand {
-		return new CryptRand();
-	},
-
 	'DateFormatterFactory' => function () : DateFormatterFactory {
 		return new DateFormatterFactory;
 	},

@@ -24,45 +24,7 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
-
 class MWCryptRand {
-	/**
-	 * @deprecated since 1.32
-	 * @return CryptRand
-	 */
-	protected static function singleton() {
-		wfDeprecated( __METHOD__, '1.32' );
-		return MediaWikiServices::getInstance()->getCryptRand();
-	}
-
-	/**
-	 * Return a boolean indicating whether or not the source used for cryptographic
-	 * random bytes generation in the previously run generate* call
-	 * was cryptographically strong.
-	 *
-	 * @deprecated since 1.32, always returns true
-	 *
-	 * @return bool Always true
-	 */
-	public static function wasStrong() {
-		wfDeprecated( __METHOD__, '1.32' );
-		return true;
-	}
-
-	/**
-	 * Generate a run of cryptographically random data and return
-	 * it in raw binary form.
-	 *
-	 * @deprecated since 1.32, use random_bytes()
-	 *
-	 * @param int $bytes The number of bytes of random data to generate
-	 * @return string Raw binary random data
-	 */
-	public static function generate( $bytes ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		return random_bytes( floor( $bytes ) );
-	}
 
 	/**
 	 * Generate a run of cryptographically random data and return
