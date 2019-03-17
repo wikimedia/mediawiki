@@ -124,6 +124,7 @@
 	"tog-norollbackdiff": "Não mostrar diferenças depois de reverter edições em bloco",
 	"tog-useeditwarning": "Avisar-me ao abandonar uma página editada sem gravar as alterações",
 	"tog-prefershttps": "Usar sempre uma ligação segura enquanto tiver sessão iniciada",
+	"tog-showrollbackconfirmation": "Mostrar um pedido de confirmação ao clicar numa hiperligação de reversão",
 	"underline-always": "Sempre",
 	"underline-never": "Nunca",
 	"underline-default": "Usar opção padrão do tema ou do navegador",
@@ -3836,6 +3837,7 @@
 	"passwordpolicies-policy-passwordcannotbepopular": "A palavra-passe não pode {{PLURAL:$1|ser a mais popular|estar na lista das $1 palavras-passe mais populares}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "A palavra-passe não pode constar na lista das 100 000 palavras-passe usadas com mais frequência.",
 	"passwordpolicies-policyflag-forcechange": "deve mudar ao iniciar sessão",
+	"passwordpolicies-policyflag-suggestchangeonlogin": "sugerir alteração ao iniciar sessão",
 	"easydeflate-invaliddeflate": "O conteúdo fornecido não está devidamente comprimido",
 	"unprotected-js": "Por motivos de segurança o JavaScript de páginas desprotegidas não pode ser carregado. Crie javascript só no espaço nominal/domínio MediaWiki: ou numa subpágina do utilizador"
 }
