@@ -295,7 +295,16 @@ class LinkCache {
 	}
 
 	private function isCacheable( LinkTarget $title ) {
-		return ( $title->inNamespace( NS_TEMPLATE ) || $title->inNamespace( NS_FILE ) );
+		$ns = $title->getNamespace();
+		if ( in_array( $ns, [ NS_TEMPLATE, NS_FILE, NS_CATEGORY ] ) ) {
+			return true;
+		}
+		// Focus on transcluded pages more than the main content
+		if ( MWNamespace::isContent( $ns ) ) {
+			return false;
+		}
+		// Non-talk extension namespaces (e.g. NS_MODULE)
+		return ( $ns >= 100 && MWNamespace::isSubject( $ns ) );
 	}
 
 	private function fetchPageRow( IDatabase $db, LinkTarget $nt ) {
