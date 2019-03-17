@@ -12,6 +12,14 @@ class OutputPageTest extends MediaWikiTestCase {
 	const SCREEN_MEDIA_QUERY = 'screen and (min-width: 982px)';
 	const SCREEN_ONLY_MEDIA_QUERY = 'only screen and (min-width: 982px)';
 
+	// @codingStandardsIgnoreStart Generic.Files.LineLength
+	const RSS_RC_LINK = '<link rel="alternate" type="application/rss+xml" title=" RSS feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=rss"/>';
+	const ATOM_RC_LINK = '<link rel="alternate" type="application/atom+xml" title=" Atom feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=atom"/>';
+
+	const RSS_TEST_LINK = '<link rel="alternate" type="application/rss+xml" title="&quot;Test&quot; RSS feed" href="fake-link"/>';
+	const ATOM_TEST_LINK = '<link rel="alternate" type="application/atom+xml" title="&quot;Test&quot; Atom feed" href="fake-link"/>';
+	// @codingStandardsIgnoreEnd
+
 	// Ensure that we don't affect the global ResourceLoader state.
 	protected function setUp() {
 		parent::setUp();
@@ -51,6 +59,64 @@ class OutputPageTest extends MediaWikiTestCase {
 		];
 	}
 
+	private function setupFeedLinks( $feed, $types ) {
+		$outputPage = $this->newInstance( [
+			'AdvertisedFeedTypes' => $types,
+			'Feed' => $feed,
+			'OverrideSiteFeed' => false,
+			'Script' => '/w',
+			'Sitename' => false,
+		] );
+		$outputPage->setTitle( Title::makeTitle( NS_MAIN, 'Test' ) );
+		$this->setMwGlobals( [
+			'wgScript' => '/w/index.php',
+		] );
+		return $outputPage;
+	}
+
+	private function assertFeedLinks( $outputPage, $message, $present, $non_present ) {
+		$links = $outputPage->getHeadLinksArray();
+		foreach ( $present as $link ) {
+			$this->assertContains( $link, $links, $message );
+		}
+		foreach ( $non_present as $link ) {
+			$this->assertNotContains( $link, $links, $message );
+		}
+	}
+
+	private function assertFeedUILinks( $outputPage, $ui_links ) {
+		if ( $ui_links ) {
+			$this->assertTrue( $outputPage->isSyndicated(), 'Syndication should be offered' );
+			$this->assertGreaterThan( 0, count( $outputPage->getSyndicationLinks() ),
+				'Some syndication links should be there' );
+		} else {
+			$this->assertFalse( $outputPage->isSyndicated(), 'No syndication should be offered' );
+			$this->assertEquals( 0, count( $outputPage->getSyndicationLinks() ),
+				'No syndication links should be there' );
+		}
+	}
+
+	public static function provideFeedLinkData() {
+		return [
+			[
+				true, [ 'rss' ], 'Only RSS RC link should be offerred',
+				[ self::RSS_RC_LINK ], [ self::ATOM_RC_LINK ]
+			],
+			[
+				true, [ 'atom' ], 'Only Atom RC link should be offerred',
+				[ self::ATOM_RC_LINK ], [ self::RSS_RC_LINK ]
+			],
+			[
+				true, [], 'No RC feed formats should be offerred',
+				[], [ self::ATOM_RC_LINK, self::RSS_RC_LINK ]
+			],
+			[
+				false, [ 'atom' ], 'No RC feeds should be offerred',
+				[], [ self::ATOM_RC_LINK, self::RSS_RC_LINK ]
+			],
+		];
+	}
+
 	/**
 	 * @covers OutputPage::setCopyrightUrl
 	 * @covers OutputPage::getHeadLinksArray
@@ -63,6 +129,67 @@ class OutputPageTest extends MediaWikiTestCase {
 			Html::element( 'link', [ 'rel' => 'license', 'href' => 'http://example.com' ] ),
 			$op->getHeadLinksArray()['copyright']
 		);
+	}
+
+	/**
+	 * @dataProvider provideFeedLinkData
+	 * @covers OutputPage::getHeadLinksArray
+	 */
+	public function testRecentChangesFeed( $feed, $advertised_feed_types,
+				$message, $present, $non_present ) {
+		$outputPage = $this->setupFeedLinks( $feed, $advertised_feed_types );
+		$this->assertFeedLinks( $outputPage, $message, $present, $non_present );
+	}
+
+	public static function provideAdditionalFeedData() {
+		return [
+			[
+				true, [ 'atom' ], 'Additional Atom feed should be offered',
+				'atom',
+				[ self::ATOM_TEST_LINK, self::ATOM_RC_LINK ],
+				[ self::RSS_TEST_LINK, self::RSS_RC_LINK ],
+				true,
+			],
+			[
+				true, [ 'rss' ], 'Additional RSS feed should be offered',
+				'rss',
+				[ self::RSS_TEST_LINK, self::RSS_RC_LINK ],
+				[ self::ATOM_TEST_LINK, self::ATOM_RC_LINK ],
+				true,
+			],
+			[
+				true, [ 'rss' ], 'Additional Atom feed should NOT be offered with RSS enabled',
+				'atom',
+				[ self::RSS_RC_LINK ],
+				[ self::RSS_TEST_LINK, self::ATOM_TEST_LINK, self::ATOM_RC_LINK ],
+				false,
+			],
+			[
+				false, [ 'atom' ], 'Additional Atom feed should NOT be offered, all feeds disabled',
+				'atom',
+				[],
+				[
+					self::RSS_TEST_LINK, self::ATOM_TEST_LINK,
+					self::ATOM_RC_LINK, self::ATOM_RC_LINK,
+				],
+				false,
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideAdditionalFeedData
+	 * @covers OutputPage::getHeadLinksArray
+	 * @covers OutputPage::addFeedLink
+	 * @covers OutputPage::getSyndicationLinks
+	 * @covers OutputPage::isSyndicated
+	 */
+	public function testAdditionalFeeds( $feed, $advertised_feed_types, $message,
+			$additional_feed_type, $present, $non_present, $any_ui_links ) {
+		$outputPage = $this->setupFeedLinks( $feed, $advertised_feed_types );
+		$outputPage->addFeedLink( $additional_feed_type, 'fake-link' );
+		$this->assertFeedLinks( $outputPage, $message, $present, $non_present );
+		$this->assertFeedUILinks( $outputPage, $any_ui_links );
 	}
 
 	// @todo How to test setStatusCode?
@@ -797,13 +924,19 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::isSyndicated
 	 */
 	public function testSetSyndicated() {
-		$op = $this->newInstance();
+		$op = $this->newInstance( [ 'Feed' => true ] );
 		$this->assertFalse( $op->isSyndicated() );
 
 		$op->setSyndicated();
 		$this->assertTrue( $op->isSyndicated() );
 
 		$op->setSyndicated( false );
+		$this->assertFalse( $op->isSyndicated() );
+
+		$op = $this->newInstance(); // Feed => false by default
+		$this->assertFalse( $op->isSyndicated() );
+
+		$op->setSyndicated();
 		$this->assertFalse( $op->isSyndicated() );
 	}
 
@@ -814,7 +947,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::getSyndicationLinks()
 	 */
 	public function testFeedLinks() {
-		$op = $this->newInstance();
+		$op = $this->newInstance( [ 'Feed' => true ] );
 		$this->assertSame( [], $op->getSyndicationLinks() );
 
 		$op->addFeedLink( 'not a supported format', 'abc' );
@@ -839,6 +972,13 @@ class OutputPageTest extends MediaWikiTestCase {
 			$expected[$type] = $op->getTitle()->getLocalURL( "feed=$type&apples=oranges" );
 		}
 		$this->assertSame( $expected, $op->getSyndicationLinks() );
+
+		$op = $this->newInstance(); // Feed => false by default
+		$this->assertSame( [], $op->getSyndicationLinks() );
+
+		$op->addFeedLink( $feedTypes[0], 'def' );
+		$this->assertFalse( $op->isSyndicated() );
+		$this->assertSame( [], $op->getSyndicationLinks() );
 	}
 
 	/**
