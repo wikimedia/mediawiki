@@ -480,7 +480,7 @@
 	"loginlanguagelabel": "اللوغه: $1",
 	"suspicious-userlogout": "المطلب تاعك باش تسجّل خارج ما تسجّلش خاطر راه يبان مرسول من عند بحّار معطّل ولا  خزّان تاع وسّاط (proxy cache).",
 	"createacct-another-realname-tip": "السميّة الحقّانيّة ماشي ملزومة.\nيلا تستعملها غادي تصلاح باش تنسّب ليك الخدمة الّي غادي تديرها.",
-	"pt-login": "ادخل",
+	"pt-login": "دخول",
 	"pt-login-button": "دخول",
 	"pt-login-continue-button": "واصل الدخول",
 	"pt-createaccount": "اصنع حساب",

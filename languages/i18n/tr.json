@@ -147,6 +147,7 @@
 	"tog-norollbackdiff": "Eski hâline getirdikten sonra farkı gösterme",
 	"tog-useeditwarning": "Bir düzenleme sayfasından değişiklikleri kaydetmeden ayrılırken beni uyar",
 	"tog-prefershttps": "Oturum açıkken her zaman güvenli bir bağlantı kullan",
+	"tog-showrollbackconfirmation": "Geri alma bağlantısına tıkladığınızda bir onay istemi gösterin",
 	"underline-always": "Her zaman",
 	"underline-never": "Hiçbir zaman",
 	"underline-default": "Görünüm ya da tarayıcı varsayılanı",

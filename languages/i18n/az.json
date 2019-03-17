@@ -635,7 +635,7 @@
 	"editingold": "'''DİQQƏT! Siz bu səhifənin köhnə versiyasını redaktə edirsiniz. Məqaləni yaddaşda saxlayacağınız halda bu versiyadan sonra edilmiş hər bir dəyişiklik itiriləcək.'''",
 	"yourdiff": "Fərqlər",
 	"copyrightwarning": "Xahiş olunur diqqətə alasınız ki, {{SITENAME}}dakı bütün fəaliyyətləriniz $2 lisenziyasına tabe olduğu hesab edilir (təfərrüat üçün bax: $1). Əgər yazdıqlarınızın əsaslı şəkildə redaktə edilməsini və istənildiyi vaxt başqa yerə ötürülməsini istəmirsinizsə, yazılarınızı burada dərc etməyin.\n<br />\nSiz eyni zamanda söz verirsiniz ki, bu yazıları siz özünüz yazmısınız və ya onları hamıya açıq mühitdən ya da buna bənzər mənbədən köçürmüsünüz.\n\n----\n\n<div style=\"font-weight: bold; font-size: 110%; color:red;\">MÜƏLLİF HÜQUQLARI İLƏ QORUNMUŞ HEÇ BİR İŞİ İCAZƏSİZ DƏRC ETMƏYİN!</div>",
-	"semiprotectedpagewarning": "'''Qeyd:''' Bu səhifə mühafizəli olduğu üçün yalnız qeydiyyatdan keçmiş istifadəçilər redaktə edə bilərlər.",
+	"semiprotectedpagewarning": "'''Qeyd:''' Bu səhifə mühafizəli olduğu üçün onu yalnız qeydiyyatdan keçmiş istifadəçilər redaktə edə bilərlər.",
 	"titleprotectedwarning": "'''DİQQƏT! Bu səhifə mühafizəlidir, yalnız [[Special:ListGroupRights|icazəsi olan]] istifadəçilər onu redaktə edə bilərlər.'''",
 	"templatesused": "Bu səhifədə istifadə edilmiş {{PLURAL:$1|şablon|şablonlar}}:",
 	"templatesusedpreview": "Bu sınaq göstərişində istifadə edilmiş {{PLURAL:$1|şablon|şablonlar}}:",

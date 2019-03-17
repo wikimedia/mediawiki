@@ -41,7 +41,8 @@
 			"Patriccck",
 			"Ed g2s",
 			"Radana",
-			"Jan Růžička"
+			"Jan Růžička",
+			"Jaroslav Cerny"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -2263,7 +2264,7 @@
 	"confirmdeletetext": "Chystáte se smazat stránku s celou její historií. Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].",
 	"actioncomplete": "Provedeno",
 	"actionfailed": "Operace se nezdařila",
-	"deletedtext": "„$1“ bylo smazáno.\n$2 zaznamenává poslední smazání.",
+	"deletedtext": "Stránka „$1“ byla smazána.\n$2 zaznamenává poslední smazání.",
 	"dellogpage": "Kniha smazaných stránek",
 	"dellogpagetext": "Zde je seznam posledních smazaných stránek.",
 	"deletionlog": "Kniha smazaných stránek",
