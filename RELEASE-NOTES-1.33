@@ -128,6 +128,8 @@ For notes on 1.32.x and older releases, see HISTORY.
 === Bug fixes in 1.33 ===
 * (T164211) Special:UserRights could sometimes fail with a
   "conflict detected" error when there weren't any conflicts.
+* (T216029) Chrome redirects to Special:BadTitle after editing a section with
+  a non-Latin name on a page with non-Latin characters in title.
 
 === Action API changes in 1.33 ===
 * (T198913) Added 'ApiOptions' hook.
