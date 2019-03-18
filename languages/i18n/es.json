@@ -2648,7 +2648,7 @@
 	"ipb-confirm": "Confirmar bloqueo",
 	"ipb-sitewide": "En todo el sitio",
 	"ipb-partial": "Parcial",
-	"ipb-sitewide-help": "Todas las páginas en la Wiki y todas las acciones de contribución.",
+	"ipb-sitewide-help": "Todas las páginas del wiki y el resto de las acciones de contribución.",
 	"ipb-partial-help": "Páginas concretas o espacios de nombres.",
 	"ipb-pages-label": "Páginas",
 	"ipb-namespaces-label": "Espacios de nombres",

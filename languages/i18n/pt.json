@@ -78,7 +78,8 @@
 			"MokaAkashiyaPT",
 			"Athena in Wonderland",
 			"Fitoschido",
-			"Ldacosta"
+			"Ldacosta",
+			"CaiusSPQR"
 		]
 	},
 	"tog-underline": "Sublinhar hiperligações:",
@@ -2204,7 +2205,7 @@
 	"trackingcategories-summary": "Esta página lista as categorias de monitorização geradas automaticamente pelo software MediaWiki. Os nomes das categorias podem ser alterados modificando as mensagens de sistema relevantes no domínio {{ns:8}}.",
 	"trackingcategories-msg": "Categoria monitorada",
 	"trackingcategories-name": "Nome da mensagem",
-	"trackingcategories-desc": "Critérios de inclusão",
+	"trackingcategories-desc": "Critérios de inclusão de categoria",
 	"restricted-displaytitle-ignored": "Páginas com títulos de apresentação ignorados",
 	"restricted-displaytitle-ignored-desc": "Esta página tem um <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> ignorado porque não é equivalente ao título verdadeiro da página.",
 	"noindex-category-desc": "A página não é indexada por robôs porque contém a palavra mágica <code><nowiki>__NOINDEX__</nowiki></code> e está num espaço nominal onde esta palavra mágica é permitida.",
@@ -2508,7 +2509,7 @@
 	"nolinkshere": "Não existem afluentes para <strong>$2</strong> com as condições especificadas.",
 	"nolinkshere-ns": "Não existem afluentes para <strong>$2</strong> no espaço nominal selecionado.",
 	"isredirect": "página de redirecionamento",
-	"istemplate": "inclusão",
+	"istemplate": "transclusão",
 	"isimage": "hiperligação para ficheiro",
 	"whatlinkshere-prev": "{{PLURAL:$1|anterior|$1 anteriores}}",
 	"whatlinkshere-next": "{{PLURAL:$1|próximo|próximos $1}}",
