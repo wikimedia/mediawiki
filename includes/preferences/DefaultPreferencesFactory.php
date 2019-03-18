@@ -121,7 +121,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->skinPreferences( $user, $context, $preferences );
 		$this->datetimePreferences( $user, $context, $preferences );
 		$this->filesPreferences( $context, $preferences );
-		$this->renderingPreferences( $user, $context, $preferences );
+		$this->renderingPreferences( $context, $preferences );
 		$this->editingPreferences( $user, $context, $preferences );
 		$this->rcPreferences( $user, $context, $preferences );
 		$this->watchlistPreferences( $user, $context, $preferences );
@@ -800,12 +800,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	}
 
 	/**
-	 * @param User $user
 	 * @param MessageLocalizer $l10n
 	 * @param array &$defaultPreferences
 	 */
 	protected function renderingPreferences(
-		User $user,
 		MessageLocalizer $l10n,
 		&$defaultPreferences
 	) {
@@ -863,14 +861,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'section' => 'rendering/advancedrendering',
 			'label-message' => 'tog-numberheadings',
 		];
-
-		if ( $user->isAllowed( 'rollback' ) ) {
-			$defaultPreferences['showrollbackconfirmation'] = [
-				'type' => 'toggle',
-				'section' => 'rendering/advancedrendering',
-				'label-message' => 'tog-showrollbackconfirmation',
-			];
-		}
 	}
 
 	/**
