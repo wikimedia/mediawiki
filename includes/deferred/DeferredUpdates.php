@@ -280,6 +280,16 @@ class DeferredUpdates {
 			}
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 
+			// Try to push the update as a job so it can run later perhaps
+			if ( $mode !== 'enqueue' && $update instanceof EnqueueableDataUpdate ) {
+				try {
+					$spec = $update->getAsJobSpecification();
+					JobQueueGroup::singleton( $spec['wiki'] )->push( $spec['job'] );
+				} catch ( Exception $e ) {
+					MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+				}
+			}
+
 			// VW-style hack to work around T190178, so we can make sure
 			// PageMetaDataUpdater doesn't throw exceptions.
 			if ( defined( 'MW_PHPUNIT_TEST' ) ) {
