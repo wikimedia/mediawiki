@@ -165,6 +165,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 			$user->saveSettings();
 		}
 		$this->setMwGlobals( [ 'wgUser' => $user ] );
+		\RequestContext::getMain()->setUser( $user );
 		$newuser = \User::newFromName( 'RandomUser' );
 
 		$provider = new CheckBlocksSecondaryAuthenticationProvider(
