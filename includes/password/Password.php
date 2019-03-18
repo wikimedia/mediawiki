@@ -33,14 +33,6 @@ use Wikimedia\Assert\Assert;
  * to be fulfilled:
  *  * If Password::toString() is called on an object, and the result is passed back in
  *    to PasswordFactory::newFromCiphertext(), the result will be identical to the original.
- *  * The string representations of two Password objects are equal only if
- *    the original plaintext passwords match. In other words, if the toString() result of
- *    two objects match, the passwords are the same, and the user will be logged in.
- *    Since the string representation of a hash includes its type name (@see Password::toString),
- *    this property is preserved across all classes that inherit Password.
- *    If a hashing scheme does not fulfill this expectation, it must make sure to override the
- *    Password::equals() function and use custom comparison logic. However, this is not
- *    recommended unless absolutely required by the hashing mechanism.
  * With these two points in mind, when creating a new Password sub-class, there are some functions
  * you have to override (because they are abstract) and others that you may want to override.
  *
@@ -56,8 +48,9 @@ use Wikimedia\Assert\Assert;
  *  * Password::toString(), which can be useful if the hash was changed in the constructor and
  *    needs to be re-assembled before being returned as a string. This function is expected to add
  *    the type back on to the hash, so make sure to do that if you override the function.
- *  * Password::equals() - This function compares two Password objects to see if they are equal.
- *    The default is to just do a timing-safe string comparison on the $this->hash values.
+ *  * Password::verify() - This function checks if $this->hash was generated with the given
+ *    password. The default is to just hash the password and do a timing-safe string comparison with
+ *    $this->hash.
  *
  * After creating a new password hash type, it can be registered using the static
  * Password::register() method. The default type is set using the Password::setDefaultType() type.
