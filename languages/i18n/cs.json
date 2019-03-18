@@ -2490,6 +2490,8 @@
 	"ipb-confirm": "Potvrdit zablokování",
 	"ipb-sitewide": "Na celém projektu",
 	"ipb-partial": "Částečný",
+	"ipb-sitewide-help": "Všechny stránky na wiki a všechny ostatní způsoby přispívání.",
+	"ipb-partial-help": "Konkrétní stránky nebo jmenné prostory.",
 	"ipb-pages-label": "Stránky",
 	"ipb-namespaces-label": "Jmenné prostory",
 	"badipaddress": "Neplatná IP adresa",
@@ -2578,6 +2580,7 @@
 	"ipb_expiry_old": "Čas vypršení je v minulosti.",
 	"ipb_expiry_temp": "Blokování skrytých uživatelských jmen by měla být trvalá.",
 	"ipb_hide_invalid": "Tento účet nelze utajit; má více než $1 {{PLURAL:$1|editaci|editace|editací}}.",
+	"ipb_hide_partial": "Zablokování se skrytím uživatelského jména musí platit na celém projektu.",
 	"ipb_already_blocked": "„$1“ již je zablokován.",
 	"ipb-needreblock": "$1 je již {{GENDER:$1|zablokován|zablokována|zablokován(a)}}. Chcete změnit nastavení bloku?",
 	"ipb-otherblocks-header": "{{PLURAL:$1|Jiné zablokování|Jiná zablokování}}",
@@ -3831,6 +3834,7 @@
 	"passwordpolicies-policy-passwordcannotbepopular": "Heslo nesmí být {{PLURAL:$1|dané oblíbené heslo|v seznamu $1 oblíbených hesel}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Heslo nesmí být v seznamu 100 000 nejčastěji používaných hesel.",
 	"passwordpolicies-policyflag-forcechange": "nutné změnit při přihlášení",
+	"passwordpolicies-policyflag-suggestchangeonlogin": "navrhnout změnu při přihlášení",
 	"easydeflate-invaliddeflate": "Poskytnutý obsah nebyl správně zkomprimován",
 	"unprotected-js": "Z bezpečnostních důvodů nelze načítat JavaScript z nechráněných stran. Vyrábějte prosím JavaScriptové skripty jen ve jmenném prostoru MediaWiki: nebo jako uživatelskou podstránku"
 }
