@@ -389,7 +389,7 @@
 	ignore = dirty
 [submodule "extensions/Editcount"]
 	path = extensions/Editcount
-	url = https://github.com/wikimedia/mediawiki-extensions-Editcount
+	url = https://github.com/wikimedia/mediawiki-extensions-Editcount.git
 	branch = REL1_32
 	ignore = dirty
 [submodule "extensions/PageNotice"]
