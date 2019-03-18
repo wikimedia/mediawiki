@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Block\SystemBlock;
 
 /**
  * @covers PasswordReset
@@ -102,17 +103,10 @@ class PasswordResetTest extends MediaWikiTestCase {
 				'enableEmail' => true,
 				'allowsAuthenticationDataChange' => true,
 				'canEditPrivate' => true,
-				'block' => new Block( [ 'systemBlock' => 'proxy' ] ),
+				'block' => new SystemBlock(
+					[ 'systemBlock' => 'proxy' ]
+				),
 				'globalBlock' => null,
-				'isAllowed' => false,
-			],
-			'globally blocked with account creation disabled' => [
-				'passwordResetRoutes' => [ 'username' => true ],
-				'enableEmail' => true,
-				'allowsAuthenticationDataChange' => true,
-				'canEditPrivate' => true,
-				'block' => null,
-				'globalBlock' => new Block( [ 'systemBlock' => 'global-block', 'createAccount' => true ] ),
 				'isAllowed' => false,
 			],
 			'globally blocked with account creation not disabled' => [
@@ -121,7 +115,9 @@ class PasswordResetTest extends MediaWikiTestCase {
 				'allowsAuthenticationDataChange' => true,
 				'canEditPrivate' => true,
 				'block' => null,
-				'globalBlock' => new Block( [ 'systemBlock' => 'global-block', 'createAccount' => false ] ),
+				'globalBlock' => new SystemBlock(
+					[ 'systemBlock' => 'global-block' ]
+				),
 				'isAllowed' => true,
 			],
 			'blocked via wgSoftBlockRanges' => [
@@ -129,7 +125,9 @@ class PasswordResetTest extends MediaWikiTestCase {
 				'enableEmail' => true,
 				'allowsAuthenticationDataChange' => true,
 				'canEditPrivate' => true,
-				'block' => new Block( [ 'systemBlock' => 'wgSoftBlockRanges', 'anonOnly' => true ] ),
+				'block' => new SystemBlock(
+					[ 'systemBlock' => 'wgSoftBlockRanges', 'anonOnly' => true ]
+				),
 				'globalBlock' => null,
 				'isAllowed' => true,
 			],
@@ -138,7 +136,7 @@ class PasswordResetTest extends MediaWikiTestCase {
 				'enableEmail' => true,
 				'allowsAuthenticationDataChange' => true,
 				'canEditPrivate' => true,
-				'block' => new Block( [ 'systemBlock' => 'unknown' ] ),
+				'block' => new SystemBlock( [ 'systemBlock' => 'unknown' ] ),
 				'globalBlock' => null,
 				'isAllowed' => false,
 			],

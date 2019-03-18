@@ -22,10 +22,10 @@ namespace MediaWiki\Block;
 
 use Block;
 use IP;
+use MediaWiki\User\UserIdentity;
 use User;
 use WebRequest;
 use Wikimedia\IPSet;
-use MediaWiki\User\UserIdentity;
 
 /**
  * A service class for checking blocks.
@@ -139,22 +139,25 @@ class BlockManager {
 		$block = Block::newFromTarget( $user, $ip, !$fromReplica );
 
 		// Cookie blocking
-		if ( !$block instanceof Block ) {
+		if ( !$block instanceof AbstractBlock ) {
 			$block = $this->getBlockFromCookieValue( $user, $request );
 		}
 
 		// Proxy blocking
-		if ( !$block instanceof Block && $ip !== null && !in_array( $ip, $this->proxyWhitelist ) ) {
+		if ( !$block instanceof AbstractBlock
+			&& $ip !== null
+			&& !in_array( $ip, $this->proxyWhitelist )
+		) {
 			// Local list
 			if ( $this->isLocallyBlockedProxy( $ip ) ) {
-				$block = new Block( [
+				$block = new SystemBlock( [
 					'byText' => wfMessage( 'proxyblocker' )->text(),
 					'reason' => wfMessage( 'proxyblockreason' )->plain(),
 					'address' => $ip,
 					'systemBlock' => 'proxy',
 				] );
 			} elseif ( $isAnon && $this->isDnsBlacklisted( $ip ) ) {
-				$block = new Block( [
+				$block = new SystemBlock( [
 					'byText' => wfMessage( 'sorbs' )->text(),
 					'reason' => wfMessage( 'sorbsreason' )->plain(),
 					'address' => $ip,
@@ -164,7 +167,7 @@ class BlockManager {
 		}
 
 		// (T25343) Apply IP blocks to the contents of XFF headers, if enabled
-		if ( !$block instanceof Block
+		if ( !$block instanceof AbstractBlock
 			&& $this->applyIpBlocksToXff
 			&& $ip !== null
 			&& !in_array( $ip, $this->proxyWhitelist )
@@ -176,19 +179,19 @@ class BlockManager {
 			$xffblocks = Block::getBlocksForIPList( $xff, $isAnon, !$fromReplica );
 			// TODO: remove dependency on Block
 			$block = Block::chooseBlock( $xffblocks, $xff );
-			if ( $block instanceof Block ) {
+			if ( $block instanceof AbstractBlock ) {
 				# Mangle the reason to alert the user that the block
 				# originated from matching the X-Forwarded-For header.
 				$block->setReason( wfMessage( 'xffblockreason', $block->getReason() )->plain() );
 			}
 		}
 
-		if ( !$block instanceof Block
+		if ( !$block instanceof AbstractBlock
 			&& $ip !== null
 			&& $isAnon
 			&& IP::isInRanges( $ip, $this->softBlockRanges )
 		) {
-			$block = new Block( [
+			$block = new SystemBlock( [
 				'address' => $ip,
 				'byText' => 'MediaWiki default',
 				'reason' => wfMessage( 'softblockrangesreason', $ip )->plain(),

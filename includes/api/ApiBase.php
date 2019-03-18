@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Block\AbstractBlock;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -2031,7 +2032,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param Block $block The block used to generate the ApiUsageException
 	 * @throws ApiUsageException always
 	 */
-	public function dieBlocked( Block $block ) {
+	public function dieBlocked( AbstractBlock $block ) {
 		// Die using the appropriate message depending on block type
 		if ( $block->getType() == Block::TYPE_AUTO ) {
 			$this->dieWithError(

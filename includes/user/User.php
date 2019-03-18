@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Block\AbstractBlock;
+use MediaWiki\Block\SystemBlock;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
@@ -278,7 +280,7 @@ class User implements IDBAccessObject, UserIdentity {
 	protected $mImplicitGroups;
 	/** @var array */
 	protected $mFormerGroups;
-	/** @var Block */
+	/** @var AbstractBlock */
 	protected $mGlobalBlock;
 	/** @var bool */
 	protected $mLocked;
@@ -290,13 +292,13 @@ class User implements IDBAccessObject, UserIdentity {
 	/** @var WebRequest */
 	private $mRequest;
 
-	/** @var Block */
+	/** @var AbstractBlock */
 	public $mBlock;
 
 	/** @var bool */
 	protected $mAllowUsertalk;
 
-	/** @var Block */
+	/** @var AbstractBlock */
 	private $mBlockedFromCreateAccount = false;
 
 	/** @var int User::READ_* constant bitfield used to load data */
@@ -1848,7 +1850,7 @@ class User implements IDBAccessObject, UserIdentity {
 			$fromReplica
 		);
 
-		if ( $block instanceof Block ) {
+		if ( $block instanceof AbstractBlock ) {
 			wfDebug( __METHOD__ . ": Found block.\n" );
 			$this->mBlock = $block;
 			$this->mBlockedby = $block->getByName();
@@ -2162,7 +2164,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool True if blocked, false otherwise
 	 */
 	public function isBlocked( $fromReplica = true ) {
-		return $this->getBlock( $fromReplica ) instanceof Block &&
+		return $this->getBlock( $fromReplica ) instanceof AbstractBlock &&
 			$this->getBlock()->appliesToRight( 'edit' );
 	}
 
@@ -2170,11 +2172,11 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Get the block affecting the user, or null if the user is not blocked
 	 *
 	 * @param bool $fromReplica Whether to check the replica DB instead of the master
-	 * @return Block|null
+	 * @return AbstractBlock|null
 	 */
 	public function getBlock( $fromReplica = true ) {
 		$this->getBlockedStatus( $fromReplica );
-		return $this->mBlock instanceof Block ? $this->mBlock : null;
+		return $this->mBlock instanceof AbstractBlock ? $this->mBlock : null;
 	}
 
 	/**
@@ -2230,7 +2232,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool True if blocked, false otherwise
 	 */
 	public function isBlockedGlobally( $ip = '' ) {
-		return $this->getGlobalBlock( $ip ) instanceof Block;
+		return $this->getGlobalBlock( $ip ) instanceof AbstractBlock;
 	}
 
 	/**
@@ -2239,7 +2241,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * This is intended for quick UI checks.
 	 *
 	 * @param string $ip IP address, uses current client if none given
-	 * @return Block|null Block object if blocked, null otherwise
+	 * @return AbstractBlock|null Block object if blocked, null otherwise
 	 * @throws FatalError
 	 * @throws MWException
 	 */
@@ -2261,7 +2263,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 		if ( $blocked && $block === null ) {
 			// back-compat: UserIsBlockedGlobally didn't have $block param first
-			$block = new Block( [
+			$block = new SystemBlock( [
 				'address' => $ip,
 				'systemBlock' => 'global-block'
 			] );
@@ -4392,7 +4394,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 	/**
 	 * Get whether the user is explicitly blocked from account creation.
-	 * @return bool|Block
+	 * @return bool|AbstractBlock
 	 */
 	public function isBlockedFromCreateAccount() {
 		$this->getBlockedStatus();
@@ -4406,7 +4408,7 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $this->mBlockedFromCreateAccount === false && !$this->isAllowed( 'ipblock-exempt' ) ) {
 			$this->mBlockedFromCreateAccount = Block::newFromTarget( null, $this->getRequest()->getIP() );
 		}
-		return $this->mBlockedFromCreateAccount instanceof Block
+		return $this->mBlockedFromCreateAccount instanceof AbstractBlock
 			&& $this->mBlockedFromCreateAccount->appliesToRight( 'createaccount' )
 			? $this->mBlockedFromCreateAccount
 			: false;
