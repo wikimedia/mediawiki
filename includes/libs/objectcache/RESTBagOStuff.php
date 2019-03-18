@@ -126,6 +126,7 @@ class RESTBagOStuff extends BagOStuff {
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		// @TODO: respect WRITE_SYNC (e.g. EACH_QUORUM)
+		// @TODO: respect $exptime
 		$req = [
 			'method' => 'PUT',
 			'url' => $this->url . rawurlencode( $key ),
@@ -139,6 +140,7 @@ class RESTBagOStuff extends BagOStuff {
 	}
 
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+		// @TODO: make this atomic
 		if ( $this->get( $key ) === false ) {
 			return $this->set( $key, $value, $exptime, $flags );
 		}
@@ -157,5 +159,17 @@ class RESTBagOStuff extends BagOStuff {
 			return true;
 		}
 		return $this->handleError( "Failed to delete $key", $rcode, $rerr );
+	}
+
+	public function incr( $key, $value = 1 ) {
+		// @TODO: make this atomic
+		$n = $this->get( $key, self::READ_LATEST );
+		if ( $this->isInteger( $n ) ) { // key exists?
+			$n = max( $n + intval( $value ), 0 );
+			// @TODO: respect $exptime
+			return $this->set( $key, $n ) ? $n : false;
+		}
+
+		return false;
 	}
 }

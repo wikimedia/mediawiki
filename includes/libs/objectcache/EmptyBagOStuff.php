@@ -43,6 +43,10 @@ class EmptyBagOStuff extends BagOStuff {
 		return true;
 	}
 
+	public function incr( $key, $value = 1 ) {
+		return false;
+	}
+
 	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
 		return true; // faster
 	}
