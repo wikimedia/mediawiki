@@ -19,6 +19,7 @@
 	 * @mixins OO.ui.mixin.IconElement
 	 * @mixins OO.ui.mixin.IndicatorElement
 	 * @mixins OO.ui.mixin.PendingElement
+	 * @mixins OO.ui.mixin.FlaggedElement
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
@@ -70,6 +71,7 @@
 		OO.ui.mixin.IconElement.call( this, config );
 		OO.ui.mixin.IndicatorElement.call( this, config );
 		OO.ui.mixin.PendingElement.call( this, config );
+		OO.ui.mixin.FlaggedElement.call( this, config );
 
 		// Properties
 		this.$handle = $( '<span>' );
@@ -174,6 +176,7 @@
 	OO.mixinClass( mw.widgets.datetime.DateTimeInputWidget, OO.ui.mixin.IconElement );
 	OO.mixinClass( mw.widgets.datetime.DateTimeInputWidget, OO.ui.mixin.IndicatorElement );
 	OO.mixinClass( mw.widgets.datetime.DateTimeInputWidget, OO.ui.mixin.PendingElement );
+	OO.mixinClass( mw.widgets.datetime.DateTimeInputWidget, OO.ui.mixin.FlaggedElement );
 
 	/* Static properties */
 
