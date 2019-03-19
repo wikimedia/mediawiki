@@ -3342,12 +3342,17 @@ class Title implements LinkTarget, IDBAccessObject {
 				$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 				$rows = $cache->getWithSetCallback(
 					// Page protections always leave a new null revision
-					$cache->makeKey( 'page-restrictions', $id, $this->getLatestRevID() ),
+					$cache->makeKey( 'page-restrictions-v1', $id, $this->getLatestRevID() ),
 					$cache::TTL_DAY,
 					function ( $curValue, &$ttl, array &$setOpts ) use ( $loadRestrictionsFromDb ) {
 						$dbr = wfGetDB( DB_REPLICA );
 
 						$setOpts += Database::getCacheSetOptions( $dbr );
+						$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+						if ( $lb->hasOrMadeRecentMasterChanges() ) {
+							// @TODO: cleanup Title cache and caller assumption mess in general
+							$ttl = WANObjectCache::TTL_UNCACHEABLE;
+						}
 
 						return $loadRestrictionsFromDb( $dbr );
 					}
