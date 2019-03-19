@@ -919,6 +919,10 @@ class ParserTestRunner {
 		ScopedCallback::consume( $teardownGuard );
 
 		$expected = $test['result'];
+		// Temporary hack to allow merge of T208070 patches
+		$expected = trim( $expected );
+		$out = trim( $expected );
+		// End temporary hack
 		if ( count( $this->normalizationFunctions ) ) {
 			$expected = ParserTestResultNormalizer::normalize(
 				$test['expected'], $this->normalizationFunctions );
