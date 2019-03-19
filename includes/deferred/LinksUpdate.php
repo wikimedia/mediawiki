@@ -32,7 +32,7 @@ use Wikimedia\ScopedCallback;
  *
  * See docs/deferred.txt
  */
-class LinksUpdate extends DataUpdate {
+class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	// @todo make members protected, but make sure extensions don't break
 
 	/** @var int Page ID of the article linked from */
@@ -1186,5 +1186,40 @@ class LinksUpdate extends DataUpdate {
 		}
 
 		return $this->db;
+	}
+
+	public function getAsJobSpecification() {
+		if ( $this->user ) {
+			$userInfo = [
+				'userId' => $this->user->getId(),
+				'userName' => $this->user->getName(),
+			];
+		} else {
+			$userInfo = false;
+		}
+
+		if ( $this->mRevision ) {
+			$triggeringRevisionId = $this->mRevision->getId();
+		} else {
+			$triggeringRevisionId = false;
+		}
+
+		return [
+			'wiki' => WikiMap::getWikiIdFromDbDomain( $this->getDB()->getDomainID() ),
+			'job'  => new JobSpecification(
+				'refreshLinksPrioritized',
+				[
+					// Reuse the parser cache if it was saved
+					'rootJobTimestamp' => $this->mParserOutput->getCacheTime(),
+					'useRecursiveLinksUpdate' => $this->mRecursive,
+					'triggeringUser' => $userInfo,
+					'triggeringRevisionId' => $triggeringRevisionId,
+					'causeAction' => $this->getCauseAction(),
+					'causeAgent' => $this->getCauseAgent()
+				],
+				[ 'removeDuplicates' => true ],
+				$this->getTitle()
+			)
+		];
 	}
 }
