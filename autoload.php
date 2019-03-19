@@ -1193,6 +1193,7 @@ $wgAutoloadLocalClasses = [
 	'RefreshImageMetadata' => __DIR__ . '/maintenance/refreshImageMetadata.php',
 	'RefreshLinks' => __DIR__ . '/maintenance/refreshLinks.php',
 	'RefreshLinksJob' => __DIR__ . '/includes/jobqueue/jobs/RefreshLinksJob.php',
+	'RefreshSecondaryDataUpdate' => __DIR__ . '/includes/deferred/RefreshSecondaryDataUpdate.php',
 	'RemexStripTagHandler' => __DIR__ . '/includes/parser/RemexStripTagHandler.php',
 	'RemoveInvalidEmails' => __DIR__ . '/maintenance/removeInvalidEmails.php',
 	'RemoveUnusedAccounts' => __DIR__ . '/maintenance/removeUnusedAccounts.php',
