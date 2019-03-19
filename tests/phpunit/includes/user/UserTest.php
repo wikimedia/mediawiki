@@ -4,6 +4,7 @@ define( 'NS_UNITTEST', 5600 );
 define( 'NS_UNITTEST_TALK', 5601 );
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\SystemBlock;
@@ -64,6 +65,15 @@ class UserTest extends MediaWikiTestCase {
 		$wgGroupPermissions['*'] = [
 			'editmyoptions' => true,
 		];
+	}
+
+	private function setSessionUser( User $user, WebRequest $request ) {
+		$this->setMwGlobals( 'wgUser', $user );
+		RequestContext::getMain()->setUser( $user );
+		RequestContext::getMain()->setRequest( $request );
+		TestingAccessWrapper::newFromObject( $user )->mRequest = $request;
+		$request->getSession()->setUser( $user );
+		$this->overrideMwServices();
 	}
 
 	/**
@@ -779,28 +789,20 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::getBlockedStatus
 	 */
 	public function testSoftBlockRanges() {
-		$setSessionUser = function ( User $user, WebRequest $request ) {
-			$this->setMwGlobals( 'wgUser', $user );
-			RequestContext::getMain()->setUser( $user );
-			RequestContext::getMain()->setRequest( $request );
-			TestingAccessWrapper::newFromObject( $user )->mRequest = $request;
-			$request->getSession()->setUser( $user );
-			$this->overrideMwServices();
-		};
 		$this->setMwGlobals( 'wgSoftBlockRanges', [ '10.0.0.0/8' ] );
 
 		// IP isn't in $wgSoftBlockRanges
 		$wgUser = new User();
 		$request = new FauxRequest();
 		$request->setIP( '192.168.0.1' );
-		$setSessionUser( $wgUser, $request );
+		$this->setSessionUser( $wgUser, $request );
 		$this->assertNull( $wgUser->getBlock() );
 
 		// IP is in $wgSoftBlockRanges
 		$wgUser = new User();
 		$request = new FauxRequest();
 		$request->setIP( '10.20.30.40' );
-		$setSessionUser( $wgUser, $request );
+		$this->setSessionUser( $wgUser, $request );
 		$block = $wgUser->getBlock();
 		$this->assertInstanceOf( SystemBlock::class, $block );
 		$this->assertSame( 'wgSoftBlockRanges', $block->getSystemBlockType() );
@@ -809,7 +811,7 @@ class UserTest extends MediaWikiTestCase {
 		$wgUser = $this->getTestUser()->getUser();
 		$request = new FauxRequest();
 		$request->setIP( '10.20.30.40' );
-		$setSessionUser( $wgUser, $request );
+		$this->setSessionUser( $wgUser, $request );
 		$this->assertFalse( $wgUser->isAnon(), 'sanity check' );
 		$this->assertNull( $wgUser->getBlock() );
 	}
@@ -1314,6 +1316,35 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertSame( '', $user->blockedFor() );
 		$this->assertFalse( (bool)$user->isHidden() );
 		$this->assertFalse( $user->isBlockedFrom( $ut ) );
+	}
+
+	/**
+	 * @covers User::getBlockedStatus
+	 */
+	public function testCompositeBlocks() {
+		$user = $this->getMutableTestUser()->getUser();
+		$request = $user->getRequest();
+		$this->setSessionUser( $user, $request );
+
+		$ipBlock = new Block( [
+			'address' => $user->getRequest()->getIP(),
+			'by' => $this->getTestSysop()->getUser()->getId(),
+			'createAccount' => true,
+		] );
+		$ipBlock->insert();
+
+		$userBlock = new Block( [
+			'address' => $user,
+			'by' => $this->getTestSysop()->getUser()->getId(),
+			'createAccount' => false,
+		] );
+		$userBlock->insert();
+
+		$block = $user->getBlock();
+		$this->assertInstanceOf( CompositeBlock::class, $block );
+		$this->assertTrue( $block->isCreateAccountBlocked() );
+		$this->assertTrue( $block->appliesToPasswordReset() );
+		$this->assertTrue( $block->appliesToNamespace( NS_MAIN ) );
 	}
 
 	/**
