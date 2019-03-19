@@ -1414,10 +1414,6 @@ class User implements IDBAccessObject, UserIdentity {
 				] );
 				if ( $shouldSetCookie ) {
 					$block->setCookie( $this->getRequest()->response() );
-
-					// temporary measure the use of cookies on ip blocks
-					$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-					$stats->increment( 'block.ipblock.setCookie.success' );
 				}
 			} elseif ( $this->isLoggedIn() && $config->get( 'CookieSetOnAutoblock' ) ) {
 				$shouldSetCookie = $block->getType() === Block::TYPE_USER && $block->isAutoblocking();
