@@ -9,7 +9,7 @@
  */
 interface EnqueueableDataUpdate {
 	/**
-	 * @return array (wiki => wiki ID, job => IJobSpecification)
+	 * @return array (domain => DB domain ID, job => IJobSpecification)
 	 */
 	public function getAsJobSpecification();
 }
