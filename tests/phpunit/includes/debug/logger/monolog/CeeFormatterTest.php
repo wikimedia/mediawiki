@@ -3,6 +3,9 @@
 namespace MediaWiki\Logger\Monolog;
 
 /**
+ * Flay per https://phabricator.wikimedia.org/T218688.
+ *
+ * @group Broken
  * @covers \MediaWiki\Logger\Monolog\CeeFormatter
  */
 class CeeFormatterTest extends \PHPUnit\Framework\TestCase {
