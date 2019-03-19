@@ -583,7 +583,7 @@ interface IDatabase {
 	 * @param string|array $options The query options. See IDatabase::select() for details.
 	 * @param string|array $join_conds The query join conditions. See IDatabase::select() for details.
 	 *
-	 * @return array The values from the field
+	 * @return array The values from the field in the order they were returned from the DB
 	 * @throws DBError
 	 * @since 1.25
 	 */
