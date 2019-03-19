@@ -188,6 +188,11 @@ class PopulateContentTables extends Maintenance {
 			$startOption = 'start-archive';
 		}
 
+		if ( !$this->dbw->fieldExists( $table, $fields['text_id'], __METHOD__ ) ) {
+			$this->writeln( "No need to populate, $table.{$fields['text_id']} field does not exist" );
+			return;
+		}
+
 		$minmax = $this->dbw->selectRow(
 			$table,
 			[ 'min' => "MIN( $idField )", 'max' => "MAX( $idField )" ],
