@@ -109,6 +109,13 @@ class CachedBagOStuff extends HashBagOStuff {
 		return false; // key already set
 	}
 
+	public function incr( $key, $value = 1 ) {
+		$n = $this->backend->incr( $key, $value );
+		parent::delete( $key );
+
+		return $n;
+	}
+
 	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
 		return $this->backend->lock( $key, $timeout, $expiry, $rclass );
 	}
