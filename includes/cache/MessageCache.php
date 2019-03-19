@@ -48,7 +48,7 @@ class MessageCache {
 	/**
 	 * Process cache of loaded messages that are defined in MediaWiki namespace
 	 *
-	 * @var MapCacheLRU Map of (language code => key => " <MESSAGE>" or "!TOO BIG")
+	 * @var MapCacheLRU Map of (language code => key => " <MESSAGE>" or "!TOO BIG" or "!ERROR")
 	 */
 	protected $cache;
 
@@ -535,27 +535,30 @@ class MessageCache {
 		}
 
 		// Set the text for small software-defined messages in the main cache map
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$revQuery = $revisionStore->getQueryInfo( [ 'page', 'user' ] );
 		$res = $dbr->select(
-			[ 'page', 'revision', 'text' ],
-			[ 'page_title', 'page_latest', 'old_id', 'old_text', 'old_flags' ],
+			$revQuery['tables'],
+			$revQuery['fields'],
 			array_merge( $conds, [ 'page_len <= ' . intval( $wgMaxMsgCacheEntrySize ) ] ),
 			__METHOD__ . "($code)-small",
 			[],
-			[
-				'revision' => [ 'JOIN', 'page_latest=rev_id' ],
-				'text' => [ 'JOIN', 'rev_text_id=old_id' ],
-			]
+			$revQuery['joins']
 		);
 		foreach ( $res as $row ) {
 			$name = $this->contLang->lcfirst( $row->page_title );
 			// Include entries/stubs for all keys in $mostused in adaptive mode
 			if ( $wgAdaptiveMessageCache || $this->isMainCacheable( $name, $overridable ) ) {
-				$text = Revision::getRevisionText( $row );
-				if ( $text === false ) {
-					// Failed to fetch data; possible ES errors?
-					// Store a marker to fetch on-demand as a workaround...
-					// TODO Use a differnt marker
-					$entry = '!TOO BIG';
+				try {
+					$rev = $revisionStore->newRevisionFromRow( $row );
+					$content = $rev->getContent( MediaWiki\Revision\SlotRecord::MAIN );
+					$text = $this->getMessageTextFromContent( $content );
+				} catch ( Exception $ex ) {
+					$text = false;
+				}
+
+				if ( !is_string( $text ) ) {
+					$entry = '!ERROR';
 					wfDebugLog(
 						'MessageCache',
 						__METHOD__
@@ -1049,7 +1052,7 @@ class MessageCache {
 		if ( $entry !== null ) {
 			// Message page exists as an override of a software messages
 			if ( substr( $entry, 0, 1 ) === ' ' ) {
-				// The message exists and is not '!TOO BIG'
+				// The message exists and is not '!TOO BIG' or '!ERROR'
 				return (string)substr( $entry, 1 );
 			} elseif ( $entry === '!NONEXISTENT' ) {
 				// The text might be '-' or missing due to some data loss

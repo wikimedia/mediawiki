@@ -1281,27 +1281,45 @@ abstract class Maintenance {
 	 * @author Rob Church <robchur@gmail.com>
 	 */
 	public function purgeRedundantText( $delete = true ) {
+		global $wgMultiContentRevisionSchemaMigrationStage;
+
 		# Data should come off the master, wrapped in a transaction
 		$dbw = $this->getDB( DB_MASTER );
 		$this->beginTransaction( $dbw, __METHOD__ );
 
-		# Get "active" text records from the revisions table
-		$cur = [];
-		$this->output( 'Searching for active text records in revisions table...' );
-		$res = $dbw->select( 'revision', 'rev_text_id', [], __METHOD__, [ 'DISTINCT' ] );
-		foreach ( $res as $row ) {
-			$cur[] = $row->rev_text_id;
-		}
-		$this->output( "done.\n" );
-
-		# Get "active" text records from the archive table
-		$this->output( 'Searching for active text records in archive table...' );
-		$res = $dbw->select( 'archive', 'ar_text_id', [], __METHOD__, [ 'DISTINCT' ] );
-		foreach ( $res as $row ) {
-			# old pre-MW 1.5 records can have null ar_text_id's.
-			if ( $row->ar_text_id !== null ) {
-				$cur[] = $row->ar_text_id;
+		if ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			# Get "active" text records from the revisions table
+			$cur = [];
+			$this->output( 'Searching for active text records in revisions table...' );
+			$res = $dbw->select( 'revision', 'rev_text_id', [], __METHOD__, [ 'DISTINCT' ] );
+			foreach ( $res as $row ) {
+				$cur[] = $row->rev_text_id;
 			}
+			$this->output( "done.\n" );
+
+			# Get "active" text records from the archive table
+			$this->output( 'Searching for active text records in archive table...' );
+			$res = $dbw->select( 'archive', 'ar_text_id', [], __METHOD__, [ 'DISTINCT' ] );
+			foreach ( $res as $row ) {
+				# old pre-MW 1.5 records can have null ar_text_id's.
+				if ( $row->ar_text_id !== null ) {
+					$cur[] = $row->ar_text_id;
+				}
+			}
+			$this->output( "done.\n" );
+		} else {
+			# Get "active" text records via the content table
+			$cur = [];
+			$this->output( 'Searching for active text records via contents table...' );
+			$res = $dbw->select( 'content', 'content_address', [], __METHOD__, [ 'DISTINCT' ] );
+			$blobStore = MediaWikiServices::getInstance()->getBlobStore();
+			foreach ( $res as $row ) {
+				$textId = $blobStore->getTextIdFromAddress( $row->content_address );
+				if ( $textId ) {
+					$cur[] = $textId;
+				}
+			}
+			$this->output( "done.\n" );
 		}
 		$this->output( "done.\n" );
 
