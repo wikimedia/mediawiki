@@ -3775,7 +3775,7 @@
 	"log-action-filter-move-move": "Преместување без запис врз пренасочувања",
 	"log-action-filter-move-move_redir": "Преместување со запис врз пренасочувања",
 	"log-action-filter-newusers-create": "Создавање од анонимен корисник",
-	"log-action-filter-newusers-create2": "Создавање од анонимен корисник",
+	"log-action-filter-newusers-create2": "Создавање од регистриран корисник",
 	"log-action-filter-newusers-autocreate": "Автоматско создавање",
 	"log-action-filter-newusers-byemail": "Создавање со лозинка испратена по е-пошта",
 	"log-action-filter-patrol-patrol": "Рачна патрола",
