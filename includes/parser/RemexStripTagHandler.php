@@ -87,7 +87,10 @@ class RemexStripTagHandler implements TokenHandler {
 		'pre' => true,
 		'section' => true,
 		'table' => true,
+		'td' => true,
 		'tfoot' => true,
+		'th' => true,
+		'tr' => true,
 		'ul' => true,
 		'video' => true,
 	];
