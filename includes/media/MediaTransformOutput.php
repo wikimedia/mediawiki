@@ -358,7 +358,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * @return string
 	 */
 	function toHtml( $options = [] ) {
-		global $wgPriorityHints;
+		global $wgPriorityHints, $wgElementTiming;
 
 		if ( count( func_get_args() ) == 2 ) {
 			throw new MWException( __METHOD__ . ' called in the old style' );
@@ -374,12 +374,19 @@ class ThumbnailImage extends MediaTransformOutput {
 			'decoding' => 'async',
 		];
 
+		$elementTimingName = 'thumbnail';
+
 		if ( $wgPriorityHints
 			&& !self::$firstNonIconImageRendered
 			&& $this->width * $this->height > 100 * 100 ) {
 			self::$firstNonIconImageRendered = true;
 
 			$attribs['importance'] = 'high';
+			$elementTimingName = 'thumbnail-high';
+		}
+
+		if ( $wgElementTiming ) {
+			$attribs['elementtiming'] = $elementTimingName;
 		}
 
 		if ( !empty( $options['custom-url-link'] ) ) {
