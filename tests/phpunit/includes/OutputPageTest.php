@@ -1626,7 +1626,7 @@ class OutputPageTest extends MediaWikiTestCase {
 					"<p><b>Bold</b>\n</p>",
 				], 'No section edit links' => [
 					[ '== Title ==' ],
-					"<h2><span class=\"mw-headline\" id=\"Title\">Title</span></h2>\n",
+					"<h2><span class=\"mw-headline\" id=\"Title\">Title</span></h2>",
 				],
 			],
 			'addWikiTextWithTitle' => [
@@ -1655,7 +1655,7 @@ class OutputPageTest extends MediaWikiTestCase {
 					'<p>* Not a list</p>',
 				], 'No section edit links' => [
 					[ '== Title ==' ],
-					"<h2><span class=\"mw-headline\" id=\"Title\">Title</span></h2>\n",
+					"<h2><span class=\"mw-headline\" id=\"Title\">Title</span></h2>",
 				], 'With title at start' => [
 					[ '* {{PAGENAME}}', true, Title::newFromText( 'Talk:Some page' ) ],
 					"<ul><li>Some page</li></ul>\n",
@@ -1671,7 +1671,7 @@ class OutputPageTest extends MediaWikiTestCase {
 				// Preferred interface: output is tidied
 				'SpecialNewimages' => [
 					[ "<p lang='en' dir='ltr'>\nMy message" ],
-					'<p lang="en" dir="ltr">' . "\nMy message\n</p>"
+					'<p lang="en" dir="ltr">' . "\nMy message</p>"
 				], 'List at start' => [
 					[ '* List' ],
 					"<ul><li>List</li></ul>",
@@ -1686,7 +1686,7 @@ class OutputPageTest extends MediaWikiTestCase {
 					"<p>* Some page</p>",
 				], 'EditPage' => [
 					[ "<div class='mw-editintro'>{{PAGENAME}}", true, Title::newFromText( 'Talk:Some page' ) ],
-					'<div class="mw-editintro">' . "Some page\n</div>"
+					'<div class="mw-editintro">' . "Some page</div>"
 				],
 			],
 			'wrapWikiTextAsInterface' => [
@@ -1695,7 +1695,7 @@ class OutputPageTest extends MediaWikiTestCase {
 					"<div class=\"wrapperClass\"><p>text\n</p></div>"
 				], 'Spurious </div>' => [
 					[ 'wrapperClass', 'text</div><div>more' ],
-					"<div class=\"wrapperClass\"><p>text</p><div>more\n</div></div>"
+					"<div class=\"wrapperClass\"><p>text</p><div>more</div></div>"
 				], 'Extra newlines would break <p> wrappers' => [
 					[ 'two classes', "1\n\n2\n\n3" ],
 					"<div class=\"two classes\"><p>1\n</p><p>2\n</p><p>3\n</p></div>"
@@ -2012,9 +2012,8 @@ class OutputPageTest extends MediaWikiTestCase {
 			'No section edit links' => [
 				[ '== Header ==' ],
 				'<div class="mw-parser-output"><h2><span class="mw-headline" id="Header">' .
-					"Header</span></h2>\n</div>",
-				'<h2><span class="mw-headline" id="Header">Header</span></h2>' .
-					"\n",
+					"Header</span></h2></div>",
+				'<h2><span class="mw-headline" id="Header">Header</span></h2>',
 			]
 		];
 	}
@@ -2084,8 +2083,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			],
 			'No section edit links' => [
 				[ '== Header ==' ],
-				'<h2><span class="mw-headline" id="Header">Header</span></h2>' .
-					"\n",
+				'<h2><span class="mw-headline" id="Header">Header</span></h2>',
 			]
 		];
 	}

@@ -431,7 +431,6 @@ b
 b
 </p>
 <hr />
-
 !! end
 
 !! test
@@ -458,7 +457,6 @@ b
 b
 </p>
 <hr />
-
 !! end
 
 !! test
@@ -505,7 +503,6 @@ b
 b
 </p>
 <hr />
-
 !! end
 
 !! test
@@ -543,7 +540,6 @@ a
 </p><p><br />
 </p>
 <h1><span class="mw-headline" id="b_2">b</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: b">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
-
 !! end
 
 !! test
@@ -643,7 +639,6 @@ C</nowiki>==
 <h2><span id="A_B.0AC"></span><span class="mw-headline" id="A_B
 C">A B
 C</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: A B&#10;C">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! html/parsoid
 <h2 id="A_B
 C"><span id="A_B.0AC" typeof="mw:FallbackId"></span>A <span typeof="mw:Nowiki">B
@@ -1459,7 +1454,6 @@ Non-word characters are valid in extension tags (T19663)
 array (
 )
 </pre>
-
 !! html/parsoid
 <pre typeof="mw:Extension/tåg" data-mw='{"name":"tåg","attrs":{},"body":{"extsrc":"tåg"}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
@@ -1805,7 +1799,6 @@ Comment whitespace
 !! wikitext
 <!-- returns a single newline, not nothing, since the newline after > is not stripped -->
 !! html
-
 !! end
 
 !! test
@@ -1813,7 +1806,6 @@ Comment semantics and delimiters
 !! wikitext
 <!-- --><!----><!-----><!------>
 !! html/php
-
 !! html/parsoid
 <!-- --><!----><!--&#x2D;--><!--&#x2D;&#x2D;-->
 !! end
@@ -1824,7 +1816,6 @@ Comment semantics and delimiters, redux
 <!-- In SGML every "foo" here would actually show up in the text -- foo -- bar
 -- foo -- funky huh? ... -->
 !! html/php
-
 !! html/parsoid
 <!-- In SGML every "foo" here would actually show up in the text &#x2D;&#x2D; foo &#x2D;&#x2D; bar
 &#x2D;&#x2D; foo &#x2D;&#x2D; funky huh? ... -->
@@ -1867,7 +1858,6 @@ parsoid=wt2html,html2html
 !! wikitext
 <!--This comment will run out to the end of the document
 !! html/php
-
 !! html/parsoid
 <!--This comment will run out to the end of the document-->
 !! end
@@ -2082,7 +2072,6 @@ b <div>foo</div>
 !! html
 a <div>foo</div>
 b <div>foo</div>
-
 !! html+tidy
 <p>a </p><div>foo</div><p>
 b </p><div>foo</div>
@@ -2097,7 +2086,6 @@ b <blockquote>foo</blockquote>
 !! html
 a <blockquote>foo</blockquote>
 b <blockquote>foo</blockquote>
-
 !! html+tidy
 <p>a </p><blockquote><p>foo</p></blockquote><p>
 b </p><blockquote><p>foo</p></blockquote>
@@ -2118,15 +2106,13 @@ c
 d e
 </p>
 x <div>foo</div> z
-
 !! html+tidy
 <div>foo</div><p> a
 </p><p>b
 c
 d e
 </p><p>
-x </p><div>foo</div><p> z
-</p>
+x </p><div>foo</div><p> z</p>
 !! end
 
 !! test
@@ -2156,7 +2142,6 @@ b
 <p><br />
 </p>
 <div>e</div>
-
 !! html+tidy
 <div></div>
 <p><br />
@@ -2239,7 +2224,6 @@ No paragraph necessary for SOL transparent template
 !! html/php
 <span><div>foo</div></span>
 <span><div>foo</div></span>
-
 !! html/parsoid
 <span data-parsoid='{"stx":"html"}'><div data-parsoid='{"stx":"html"}'>foo</div></span>
 <link rel="mw:PageProp/Category" href="./Category:Foo"/>
@@ -2454,7 +2438,6 @@ Ident preformatting with inline content
 &lt;cite&gt;
 &lt;em&gt;
 </pre>
-
 !! end
 
 !! test
@@ -2468,7 +2451,6 @@ Regression with preformatted in <center>
 <pre>Blah
 </pre>
 </center>
-
 !! end
 
 !! test
@@ -2492,7 +2474,6 @@ T54763: Preformatted in <blockquote>
 </p>
 </td></tr></table>
 </blockquote>
-
 !! end
 
 !! test
@@ -2509,7 +2490,6 @@ Bar
 </p><p>Bar
 </p>
 </blockquote>
-
 !! end
 
 !! test
@@ -2523,7 +2503,6 @@ Foo <del>bar</del> <ins>baz</ins> quux
 <p>Foo <del>bar</del> <ins>baz</ins> quux
 </p>
 </blockquote>
-
 !! html+tidy
 <blockquote>
 <p>Foo <del>bar</del> <ins>baz</ins> quux
@@ -2539,7 +2518,6 @@ T17491: <ins>/<del> in blockquote (2)
 !! html
 <blockquote>Foo <del>bar</del> <ins>baz</ins> quux
 </blockquote>
-
 !! html+tidy
 <blockquote><p>Foo <del>bar</del> <ins>baz</ins> quux
 </p></blockquote>
@@ -2551,7 +2529,6 @@ T17491: <ins>/<del> in blockquote (2)
 <pre style="background: blue; color:white">Bluescreen of WikiDeath</pre>
 !! html
 <pre style="background: blue; color:white">Bluescreen of WikiDeath</pre>
-
 !! end
 
 !! test
@@ -2560,7 +2537,6 @@ T17491: <ins>/<del> in blockquote (2)
 <pre width="8">Narrow screen goodies</pre>
 !! html
 <pre width="8">Narrow screen goodies</pre>
-
 !! end
 
 !! test
@@ -2569,7 +2545,6 @@ T17491: <ins>/<del> in blockquote (2)
 <pre width="8" onmouseover="alert(document.cookie)">Narrow screen goodies</pre>
 !! html
 <pre width="8">Narrow screen goodies</pre>
-
 !! end
 
 !! test
@@ -2578,7 +2553,6 @@ Entities inside <pre>
 <pre>&lt;</pre>
 !! html
 <pre>&lt;</pre>
-
 !! end
 
 !! test
@@ -2587,7 +2561,6 @@ Entities inside <pre>
 <pre width="8" style="border-width: expression(alert(document.cookie))">Narrow screen goodies</pre>
 !! html
 <pre width="8" style="/* insecure input */">Narrow screen goodies</pre>
-
 !! end
 
 !! test
@@ -2608,7 +2581,6 @@ Entities inside <pre>
 
 </pre>
 <pre>&lt;nowiki&gt;Foo&lt;/nowiki&gt;</pre>
-
 !! end
 
 !! test
@@ -2617,7 +2589,6 @@ Entities inside <pre>
 {{#tag:pre|Foo <nowiki>&rarr;bar</nowiki>}}
 !! html/php
 <pre>Foo &#8594;bar</pre>
-
 !! html/parsoid
 <pre about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"#tag:pre","function":"tag"},"params":{"1":{"wt":"Foo &lt;nowiki>&amp;rarr;bar&lt;/nowiki>"}},"i":0}}]}'>Foo <span typeof="mw:Entity">→</span>bar</pre>
 !! end
@@ -2726,8 +2697,7 @@ Templates: Indent-Pre: 1a. Templates that break a line should suppress <pre>
 !! wikitext
  {{echo|}}
 !! html
-
-!!end
+!! end
 
 !!test
 Templates: Indent-Pre: 1b. Templates that break a line should suppress <pre>
@@ -2850,7 +2820,6 @@ parsoid=wt2html,html2html
 two">hi</pre>
 !! html/php
 <pre class="one two">hi</pre>
-
 !! html/parsoid
 <pre class="one two" typeof="mw:Extension/pre" about="#mwt2" data-mw='{"name":"pre","attrs":{"class":"one two"},"body":{"extsrc":"hi"}}'>hi</pre>
 !! end
@@ -2882,7 +2851,6 @@ parsoid=wt2html
 !! html/php
 <pre>x</pre>
 <table>&lt;pre </table>
-
 !! html/php+tidy
 <pre>x</pre>
 &lt;pre <table></table>
@@ -2916,7 +2884,6 @@ parsoid=wt2html
 <pre style="width:50%;" >{{echo|foo}}</pre>
 !! html/php
 <pre style="width:50%;">{{echo|foo}}</pre>
-
 !! html/parsoid
 <pre typeof="mw:Extension/pre" about="#mwt2" style="width:50%;" data-mw='{"name":"pre","attrs":{"style":"width:50%;"},"body":{"extsrc":"{{echo|foo}}"}}'>{{echo|foo}}</pre>
 !! end
@@ -2927,7 +2894,6 @@ Self-closed pre
 <pre />
 !! html/php
 <pre></pre>
-
 !! html/parsoid
 <pre typeof="mw:Extension/pre" about="#mwt2" data-mw='{"name":"pre","attrs":{}}'></pre>
 !! end
@@ -3403,7 +3369,6 @@ c
 <td>foo</td>
 <td>bar
 </td></tr></table>
-
 !!end
 
 !!test
@@ -3419,7 +3384,6 @@ c
 <tr>
 <td>foo
 </td></tr></table>
-
 !!end
 
 !!test
@@ -3436,7 +3400,6 @@ c
 <tr>
 <th>bar
 </th></tr></table>
-
 !!end
 
 !!test
@@ -3453,7 +3416,6 @@ c
 <tr>
 <td>b
 </td></tr></table>
-
 !! html/parsoid
 <pre>a</pre>
  <table>
@@ -3512,7 +3474,6 @@ a
  </td>
  </tr>
  </table>
-
 !! end
 
 !! test
@@ -3551,7 +3512,6 @@ parsoid=wt2html,html2html
 <pre>bam
 </pre>
 </td></tr></table>
-
 !! html/parsoid
 <table>
  <tbody><tr><th>
@@ -3601,7 +3561,6 @@ parsoid=wt2html,html2html
 <pre>a <span>foo</span>
 </pre>
  b <div> foo </div>
-
 !! html/parsoid
 <pre>a <span data-parsoid='{"stx":"html"}'>foo</span></pre>
 <!-- comment --> <p>b </p><div data-parsoid='{"stx":"html"}'> foo </div>
@@ -3725,7 +3684,6 @@ array (
  <pre class="123">hi</pre>
 !! html/php
  <pre class="123">hi</pre>
-
 !! html/parsoid
  <pre class="123" typeof="mw:Extension/pre" about="#mwt2" data-mw='{"name":"pre","attrs":{"class":"123"},"body":{"extsrc":"hi"}}'>hi</pre>
 !! end
@@ -3744,7 +3702,6 @@ Render paragraphs when indent-pre is suppressed in blocklevels
 </p><p> bar
 </p>
 </blockquote>
-
 !!end
 
 !!test
@@ -3763,7 +3720,6 @@ Render paragraphs when indent-pre is suppressed in blocklevels
 <tr>
 <td>foo
 </td></tr></table>
-
 !!end
 
 ## NOTE: the leading white-space chars on empty line are significant
@@ -3999,7 +3955,6 @@ HTML-pre: 2: indented text
 <pre>
  foo
 </pre>
-
 !!end
 
 !!test
@@ -4020,7 +3975,6 @@ HTML-pre: 3: other wikitext
 '' no-italic ''
 [[ NoLink ]]
 </pre>
-
 !! html/parsoid
 <pre typeof="mw:Extension/pre" about="#mwt2" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n* foo\n# bar\n= no-h =\n&#39;&#39; no-italic &#39;&#39;\n[[ NoLink ]]\n"}}'>* foo
 # bar
@@ -4171,7 +4125,6 @@ T13748: Literal closing tags
 <dt>test 2</dt>
 <dd>test test test test test</dd>
 </dl>
-
 !! end
 
 !! test
@@ -4187,7 +4140,6 @@ Definition and unordered list using wiki syntax nested in unordered list using h
 <dd>description</dd></dl>
 <ul><li>unordered</li></ul>
 </li></ul>
-
 !! end
 
 !! test
@@ -4213,7 +4165,6 @@ Nested definition lists using html syntax
 <dl><dt>x</dt>
 <dd>a</dd>
 <dd>b</dd></dl>
-
 !! end
 
 !! test
@@ -4349,7 +4300,6 @@ Definition Lists: Hacky use to indent tables (WS-insensitive)
 <tr>
 <td>a
 </td></tr></table></dd></dl>
-
 !! html/parsoid
 <dl><dd><table>
 <tbody><tr><td>a</td></tr>
@@ -4415,7 +4365,6 @@ Table / list interaction: indented table with lists in table contents
 <td>c
 <ul><li>d</li></ul>
 </td></tr></table></dd></dl>
-
 !! end
 
 !!test
@@ -4470,8 +4419,6 @@ Definition Lists: Nesting: Multi-level (Parsoid only)
     </dl>
   </dt>
 </dl>
-
-
 !! end
 
 
@@ -4821,7 +4768,6 @@ Definition Lists: colons and tables 1
 <tr>
 <td>y
 </td></tr></table></dd></dl>
-
 !! html/parsoid
 <dl><dd><table>
 <tr>
@@ -6281,10 +6227,8 @@ parsoid=wt2html
 !! wikitext
 {||}
 !! html/php
-
 !! html/parsoid
 <table></table>
-
 !! end
 
 !! test
@@ -6340,7 +6284,6 @@ parsoid=wt2html
 <td>foo</td>
 </tr></tbody>
 </table>
-
 !! end
 
 !! test
@@ -6365,7 +6308,6 @@ A table with nothing but a caption
 <table>
 <caption>caption
 </caption><tr><td></td></tr></table>
-
 !! html/parsoid
 <table><caption>caption</caption></table>
 !! end
@@ -6385,7 +6327,6 @@ A table with caption with default-spaced attributes and a table row
 <tr>
 <td>foo
 </td></tr></table>
-
 !! end
 
 !! test
@@ -6406,7 +6347,6 @@ A table with captions with non-default spaced attributes and a table row
 <tr>
 <td>foo
 </td></tr></table>
-
 !! end
 
 !! test
@@ -6431,7 +6371,6 @@ Table td-cell syntax variations
 <td>style='color:red;'</td>
 <td>baz
 </td></tr></table>
-
 !! end
 
 !! test
@@ -6452,7 +6391,6 @@ Simple table
 <td>3</td>
 <td>4
 </td></tr></table>
-
 !! end
 
 !! test
@@ -6471,7 +6409,6 @@ Simple table but with multiple dashes for row wikitext
 <tr>
 <td>bar
 </td></tr></table>
-
 !! end
 
 !! test
@@ -6542,7 +6479,6 @@ Multiplication table
 <td>10</td>
 <td>15
 </td></tr></table>
-
 !! end
 
 !! test
@@ -6557,7 +6493,6 @@ Accept "||" in table headings
 <th>h1</th>
 <th>h2
 </th></tr></table>
-
 !! end
 
 !! test
@@ -6572,7 +6507,6 @@ Accept "!!" in table data
 <td>Foo!!</td>
 <td>
 </td></tr></table>
-
 !! html/parsoid
 <table>
 <tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'> Foo!! </td><td data-parsoid='{"stx":"row","autoInsertedEnd":true}'></td></tr>
@@ -6591,7 +6525,6 @@ Accept "||" in indented table headings
 <th>h1</th>
 <th>h2
 </th></tr></table></dd></dl>
-
 !! end
 
 !! test
@@ -6606,7 +6539,6 @@ Accept "!!" in templates
 <th>a b</th>
 <th>c
 </th></tr></table>
-
 !! html/parsoid
 <table>
 <tbody><tr><th typeof="mw:Transclusion" about="#mwt1" data-parsoid='{"autoInsertedEnd":true,"pi":[[{"k":"1"}]]}' data-mw='{"parts":["!a ",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"b!!c"}},"i":0}}]}'>a b</th><th about="#mwt1">c</th></tr>
@@ -6626,7 +6558,6 @@ b!!c
 <p>b!!c
 </p>
 </th></tr></table>
-
 !! html/parsoid
 <table>
 <tbody><tr><th>a
@@ -6668,7 +6599,6 @@ Accept empty attributes in td/th cells (td/th cells starting with leading ||)
 </th>
 <td>a
 </td></tr></table>
-
 !! end
 
 !!test
@@ -6684,7 +6614,6 @@ Accept "| !" at start of line in tables (ignore !-attribute)
 <tr>
 <td>bar
 </td></tr></table>
-
 !!end
 
 !!test
@@ -6723,7 +6652,6 @@ Allow +/- in 2nd and later cells in a row, in 1st cell when td-attrs are present
 </td>
 <td>-1
 </td></tr></table>
-
 !!end
 
 !! test
@@ -6751,7 +6679,6 @@ Table rowspan
 </td>
 <td>Cell 3, row 2
 </td></tr></table>
-
 !! end
 
 !! test
@@ -6783,7 +6710,6 @@ Nested table
 </td>
 <td>the original table again
 </td></tr></table>
-
 !! end
 
 !! test
@@ -6797,7 +6723,6 @@ Invalid attributes in table cell (T3830)
 <tr>
 <td>broken
 </td></tr></table>
-
 !! end
 
 !! test
@@ -6817,7 +6742,6 @@ Table cell attributes: Pipes protected by nowikis should be treated as a plain c
 </td>
 <td>title="foo|" bar
 </td></tr></table>
-
 !! html/parsoid
 <table>
 <tbody><tr><td title="foo">bar</td>
@@ -6844,7 +6768,6 @@ parsoid=wt2html,html2html
 </td>
 </tr>
 </table>
-
 !! html/parsoid
 <table><tbody>
 <tr>
@@ -6862,7 +6785,6 @@ Element attributes with double ! should not be broken up by <th>
 <tr>
 <th>hi <div class="!!">ha</div> ho
 </th></tr></table>
-
 !! html/parsoid
 <table>
 <tbody><tr><th>hi <div class="!!" data-parsoid='{"stx":"html"}'>ha</div> ho</th></tr>
@@ -6880,7 +6802,6 @@ Element attributes with double ! should not be broken up by <th>
 <tr>
 <td><div style="color: red !important;" data-contrived="put this here &#124;&#124;">hi</div>
 </td></tr></table>
-
 !! html/parsoid
 <table>
 <tbody><tr><td><div style="color: red !important;" data-contrived="put this here ||" data-parsoid='{"stx":"html"}'>hi</div></td></tr>
@@ -6902,7 +6823,6 @@ parsoid=wt2html
 <td>style="color: red !important;" data-contrived="put this here</td>
 <td>foo
 </td></tr></table>
-
 !! html/parsoid
 <table>
 <tbody><tr><td>style="color: red !important;" data-contrived="put this here</td><td data-parsoid='{"stx":"row","a":{"\"":null},"sa":{"\"":""},"autoInsertedEnd":true}'>foo</td></tr>
@@ -6961,7 +6881,6 @@ parsoid=wt2html
 </td>
 <td style="color:blue">2
 </td></tr></table>
-
 !! html/parsoid
 <table style="border:1px solid black">
 <tr>
@@ -7020,7 +6939,6 @@ parsoid={
 </td>
 <td align="center" style="color:red;">Foo
 </td></tr></table>
-
 !! end
 
 !! test
@@ -7037,7 +6955,6 @@ parsoid={
 <td>Bar</td>
 <td>Baz
 </td></tr></table>
-
 !! html/parsoid
 <table>
 <tbody><tr><td about="#mwt1" typeof="mw:Transclusion" style="color:red;" data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_2","href":"./Template:Table_attribs_2"},"params":{},"i":0}}]}'>Foo</td>
@@ -7065,7 +6982,6 @@ parsoid={
 <td style="color:red;"><i>Bar</i></td>
 <td style="color:brown;"><i>Foo</i> and Baz
 </td></tr></table>
-
 !! html/parsoid
 <table>
 <tbody><tr><th align="center" style="color:red;" typeof="mw:Transclusion" about="#mwt1" data-mw='{"parts":["!align=center ",{"template":{"target":{"wt":"table_header_cells","href":"./Template:Table_header_cells"},"params":{},"i":0}}]}'>Foo</th><th about="#mwt1" style="color:red;"><i about="#mwt1">Bar</i></th><th about="#mwt1" style="color:brown;"><i about="#mwt1">Foo</i> and Baz</th></tr><tr>
@@ -7093,7 +7009,6 @@ parsoid={
 <td style="color:red;"><i>Bar</i></td>
 <td style="color:brown;"><i>Foo</i> and Baz
 </td></tr></table>
-
 !! html/parsoid
 <table about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[],[],[],[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"tbl-start","href":"./Template:Tbl-start"},"params":{},"i":0}},"\n!align=center ",{"template":{"target":{"wt":"table_header_cells","href":"./Template:Table_header_cells"},"params":{},"i":1}},"\n|-\n|align=center ",{"template":{"target":{"wt":"table_cells","href":"./Template:Table_cells"},"params":{},"i":2}},"\n",{"template":{"target":{"wt":"tbl-end","href":"./Template:Tbl-end"},"params":{},"i":3}}]}'>
 <tbody><tr><th align="center" style="color:red;">Foo</th><th style="color:red;"><i>Bar</i></th><th style="color:brown;"><i>Foo</i> and Baz</th></tr>
@@ -7134,7 +7049,6 @@ parsoid=wt2html,html2html
 <tr>
 <th>foo
 </th></tr></table>
-
 !! end
 
 !! test
@@ -7154,7 +7068,6 @@ parsoid=wt2html,html2html
 <tr>
 <td>foo
 </td></tr></table>
-
 !! end
 
 !! test
@@ -7170,7 +7083,6 @@ parsoid=wt2html,html2html
 <tr>
 <td style="">hello
 </td></tr></table>
-
 !! html/parsoid
 <table>
 <tbody><tr><td style="">hello</td></tr>
@@ -7197,7 +7109,6 @@ Wikitext table with a lot of comments
 <tr>
 <td>
 </td></tr></table>
-
 !! end
 
 !! test
@@ -7234,7 +7145,6 @@ b
 <p>b
 </p>
 </td></tr></table>
-
 !! end
 
 !! test
@@ -7251,7 +7161,6 @@ Table cell with a single comment
 </td>
 <td>a
 </td></tr></table>
-
 !! end
 
 !! test
@@ -7269,14 +7178,12 @@ Table-cell after a comment-only-empty-line
 </td>
 <td>b
 </td></tr></table>
-
 !! html/parsoid
 <table>
 <tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'>a</td>
 <!--c1-->
 <!--c2--><td data-parsoid='{"autoInsertedEnd":true}'>b</td></tr>
 </tbody></table>
-
 !! end
 
 !! test
@@ -7299,7 +7206,6 @@ Build table with {{!}}
 <td>data</td>
 <td style="color:red;">second data
 </td></tr></table>
-
 !! end
 
 !! test
@@ -7334,7 +7240,6 @@ Build table with pipe as data
 <td>data with |</td>
 <td>second data with |
 </td></tr></table>
-
 !! end
 
 !! test
@@ -7361,7 +7266,6 @@ Build table with wikilink
 <td>data</td>
 <td>second data <a href="/wiki/Main_Page" title="Main Page">link|text with pipe</a>
 </td></tr></table>
-
 !! end
 
 # The expected HTML structure in this test is debatable. The PHP parser does
@@ -7396,7 +7300,6 @@ a
 
 a
 </table>
-
 !! html/php+tidy
 
 
@@ -7423,7 +7326,6 @@ parsoid=wt2html,html2html
 
 <ul><li>a</li></ul>
 </table>
-
 !! html/php+tidy
 <ul><li>a</li></ul><table>
 
@@ -7477,8 +7379,7 @@ parsoid=wt2html,wt2wt
 </p><table>
 <tbody><tr>
 <td>baz
-</td></tr></tbody></table><p><b>quux</b>
-</p>
+</td></tr></tbody></table><p><b>quux</b></p>
 !! end
 
 !! test
@@ -7519,7 +7420,6 @@ parsoid=wt2html,wt2wt
 <td>baz</td>
 <td>quux
 </td></tr></table>
-
 !! html/parsoid
 <table>
 <tbody><tr><th>foo</th><th>bar
@@ -9686,8 +9586,7 @@ Handling html with a div self-closing tag
 <div title="">
 <div title="bar"></div>
 <div title="bar"></div>
-<div title="bar/">
-</div></div>
+<div title="bar/"></div></div>
 !! html/parsoid
 <div title="" data-parsoid='{"stx":"html","selfClose":true}'></div>
 <div title="" data-parsoid='{"stx":"html","selfClose":true}'></div>
@@ -9768,8 +9667,7 @@ foo <hr
 !! html+tidy
 <hr />
 <hr /><p>
-foo </p><hr /><p> bar
-</p>
+foo </p><hr /><p> bar</p>
 !! end
 
 !! test
@@ -9778,7 +9676,6 @@ Horizontal ruler -- 4+ dashes render hr
 ----
 !! html
 <hr />
-
 !! end
 
 !! test
@@ -9787,7 +9684,6 @@ Horizontal ruler -- eats additional dashes on the same line
 ---------
 !! html
 <hr />
-
 !! end
 
 !! test
@@ -9798,7 +9694,6 @@ Horizontal ruler -- does not collapse dashes on consecutive lines
 !! html
 <hr />
 <hr />
-
 !! end
 
 !! test
@@ -9816,10 +9711,8 @@ Horizontal ruler -- Supports content following dashes on same line
 ---- Foo
 !! html
 <hr /> Foo
-
 !! html+tidy
-<hr /><p> Foo
-</p>
+<hr /><p> Foo</p>
 !! end
 
 ###
@@ -10115,12 +10008,10 @@ Multiple list tags generated by templates
 </li>
 </li>
 
-
 !! html+tidy
 <li>a
 </li><li>b
-</li><li>c
-</li>
+</li><li>c</li>
 !! html/parsoid
 <li about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","autoInsertedEnd":true,"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;li>"}},"i":0}},"a"]}'>a</li>
 <li about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"stx":"html","autoInsertedEnd":true,"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;li>"}},"i":0}},"b"]}'>b</li>
@@ -10234,8 +10125,7 @@ parsoid=wt2html,wt2wt
 <li class="mw-empty-elt" data-parsoid='{"stx":"html","autoInsertedEnd":true}'></li><li data-parsoid='{"stx":"html"}'>not a li-hack
 </li>
 </ul>
-
-!!end
+!! end
 
 !! test
 Parsoid: Make sure nested lists are serialized on their own line even if HTML contains no newlines
@@ -10668,7 +10558,6 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SUBJECTSPACE}}
 !! html/*
-
 !! end
 
 !! test
@@ -10930,7 +10819,6 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 {{SCRIPTPATH}}
 !! html/*
-
 !! end
 
 !! test
@@ -11089,7 +10977,6 @@ Namespace 0 {{ns:0}} (T6783)
 !! wikitext
 {{ns:0}}
 !! html
-
 !! end
 
 !! test
@@ -11097,7 +10984,6 @@ Namespace 0 {{ns:00}} (T6783)
 !! wikitext
 {{ns:00}}
 !! html
-
 !! end
 
 !! test
@@ -11673,7 +11559,6 @@ Template with thumb image (with link in description)
 {{paramtest|param=[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]}}
 !! html/php
 This is a test template with parameter <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Noimage.png" class="new" title="File:Noimage.png">File:Noimage.png</a>  <div class="thumbcaption"><a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">link</a> <a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">caption</a></div></div></div>
-
 !! html+tidy
 <p>This is a test template with parameter </p><div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Noimage.png" class="new" title="File:Noimage.png">File:Noimage.png</a>  <div class="thumbcaption"><a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">link</a> <a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">caption</a></div></div></div>
 !! html/parsoid
@@ -11709,7 +11594,6 @@ T2553: link with two variables in a piped link
 <tr>
 <td>[[{{{1}}}|{{{2}}}]]
 </td></tr></table>
-
 !! html/parsoid
 <table>
 <tbody><tr><td>[[<span about="#mwt5" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"1"},"params":{},"i":0}}]}'>{{{1}}}</span>|<span about="#mwt2" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"2"},"params":{},"i":0}}]}'>{{{2}}}</span>]]</td></tr>
@@ -11737,7 +11621,6 @@ Abort table cell attribute parsing on wikilink
 <td>testing="<a href="/index.php?title=One&amp;action=edit&amp;redlink=1" class="new" title="One (page does not exist)">two</a>" |three</td>
 <td>four
 </td></tr></table>
-
 !! html/parsoid
 <table>
 <tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'>testing <a rel="mw:WikiLink" href="./One" title="One" data-parsoid='{"stx":"piped","a":{"href":"./One"},"sa":{"href":"one"}}'>two</a> |three</td><td data-parsoid='{"stx":"row","autoInsertedEnd":true}'>four</td>
@@ -11886,7 +11769,6 @@ foo {{table}}
 <td>3</td>
 <td>4
 </td></tr></table>
-
 !! end
 
 !! test
@@ -11906,7 +11788,6 @@ foo
 <td>3</td>
 <td>4
 </td></tr></table>
-
 !! end
 
 !! test
@@ -12143,7 +12024,6 @@ Unbalanced includeonly and noinclude tags
 </td>
 <td>d&lt;/includeonly&gt;&lt;/includeonly&gt;
 </td></tr></table>
-
 !!end
 
 !! article
@@ -12162,7 +12042,6 @@ T8563: Edit link generation for section shown by <includeonly>
 !! html
 <h2><span class="mw-headline" id="Includeonly_section">Includeonly section</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Includeonly_section&amp;action=edit&amp;section=T-1" title="Template:Includeonly section">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Section_T-1">Section T-1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Includeonly_section&amp;action=edit&amp;section=T-2" title="Template:Includeonly section">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 # Uses same input as the contents of [[Template:Includeonly section]]
@@ -12188,7 +12067,6 @@ T8563: Edit link generation for section suppressed by <includeonly>
 ==Section 1==
 !! html
 <h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 !! test
@@ -12246,7 +12124,6 @@ some* stuff
 </p>
 <ul><li>here</li></ul>
 <h3><span class="mw-headline" id="here">here</span></h3>
-
 !! html/parsoid
 <!-- comment --><meta typeof="mw:Includes/NoInclude" data-parsoid='{"src":"&lt;noinclude>"}'/><!-- comment --><meta typeof="mw:Includes/NoInclude/End" data-parsoid='{"src":"&lt;/noinclude>"}'/><!-- comment --><h2 id="hu">hu</h2>
 
@@ -12260,7 +12137,6 @@ some* stuff
 <ul><li>here</li></ul>
 
 <meta typeof="mw:Includes/IncludeOnly" data-parsoid='{"src":"&lt;includeonly>can have stuff&lt;/includeonly>"}' data-mw='{"src":"&lt;includeonly>can have stuff&lt;/includeonly>"}'/><meta typeof="mw:Includes/IncludeOnly/End" data-parsoid='{"src":""}'/><h3 id="here">here</h3>
-
 !! end
 
 # TODO: test with DOM fragment reuse!
@@ -12407,7 +12283,6 @@ Parsoid: Merge double tds in nested transclusion content (T52603)
 <td>a
 </td></tr>
 </table>
-
 !!end
 
 ###
@@ -13021,7 +12896,6 @@ Templates: 2. Inside a block tag
 !! html
 <div>Foo</div>
 <blockquote>Foo</blockquote>
-
 !! html+tidy
 <div>Foo</div>
 <blockquote><p>Foo</p></blockquote>
@@ -13061,7 +12935,6 @@ Templates: P-wrapping: 1c. Templates on consecutive lines
 <p>Foo
 </p>
 bar <div>baz</div>
-
 !! html+tidy
 <p>Foo
 </p><p>
@@ -13121,7 +12994,6 @@ Templates: Block Tags: 1. Multiple template uses
 {{echo|<div>Foo</div>}}<div>bar</div>{{echo|<div>baz</div>}}
 !! html
 <div>Foo</div><div>bar</div><div>baz</div>
-
 !!end
 
 !!test
@@ -13130,7 +13002,6 @@ Templates: Block Tags: 2. Back-to-back template uses
 {{echo|<div>Foo</div>}}{{echo|<div>bar</div>}}
 !! html
 <div>Foo</div><div>bar</div>
-
 !!end
 
 ## Parsoid drops empty elements in templates.
@@ -13223,7 +13094,6 @@ Templates: HTML Tag: 1. Generation of HTML attr. key
 <div {{echo|style}}="color:red;">foo</div>
 !! html
 <div style="color:red;">foo</div>
-
 !!end
 
 !!test
@@ -13232,7 +13102,6 @@ Templates: HTML Tag: 2. Generation of HTML attr. value
 <div style={{echo|'color:red;'}}>foo</div>
 !! html
 <div style="color:red;">foo</div>
-
 !!end
 
 !!test
@@ -13241,7 +13110,6 @@ Templates: HTML Tag: 3. Generation of HTML attr key and value
 <div {{echo|style}}={{echo|'color:red;'}}>foo</div>
 !! html
 <div style="color:red;">foo</div>
-
 !!end
 
 !!test
@@ -13250,7 +13118,6 @@ Templates: HTML Tag: 4. Generation of starting piece of HTML attr value
 <div title="{{echo|This is a long title}} with just one piece templated">foo</div>
 !! html
 <div title="This is a long title with just one piece templated">foo</div>
-
 !!end
 
 !!test
@@ -13259,7 +13126,6 @@ Templates: HTML Tag: 5. Generation of middle piece of HTML attr value
 <div title="This is a long title with just {{echo|one piece}} templated">foo</div>
 !! html
 <div title="This is a long title with just one piece templated">foo</div>
-
 !!end
 
 !!test
@@ -13268,7 +13134,6 @@ Templates: HTML Tag: 6. Generation of end piece of HTML attr value
 <div title="This is a long title with just one piece {{echo|templated}}">foo</div>
 !! html
 <div title="This is a long title with just one piece templated">foo</div>
-
 !!end
 
 # SSS FIXME: While it is great we added support for all this,
@@ -13280,7 +13145,6 @@ Templates: HTML Tag: 7. Generation of partial attribute key string
 <div st{{echo|yle}}="color:red;">foo</div>
 !! html
 <div style="color:red;">foo</div>
-
 !!end
 
 !! test
@@ -13289,7 +13153,6 @@ Templates: HTML Tag: 8. Template-generated attribute (k=v)
 <div {{echo|1=id="v1"}}>bar</div>
 !! html
 <div id="v1">bar</div>
-
 !!end
 
 !! test
@@ -13298,7 +13161,6 @@ Templates: HTML Tag: 9. Multiple template-generated attributes
 <div {{echo|1=id="v1" title="foo"}}>bar</div>
 !! html
 <div id="v1" title="foo">bar</div>
-
 !!end
 
 !! test
@@ -13317,7 +13179,6 @@ Templates: Support for templates generating attributes and content
 <tr>
 <td>bar
 </td></tr></table>
-
 !! html/parsoid
 <table style="color:red;" title="T48811" about="#mwt1" typeof="mw:Transclusion mw:ExpandedAttrs" data-mw='{"parts":["{| ",{"template":{"target":{"wt":"mixed_attr_content_template","href":"./Template:Mixed_attr_content_template"},"params":{},"i":0}},"\n|-\n|bar\n|}"]}'>
 <tbody><tr>
@@ -13351,7 +13212,6 @@ Table cell with attribute before expanded attribute
 <div {{echo|style{{=}}"background:&#35;f9f9f9;"}}>foo</div>
 !! html/php
 <div style="background:#f9f9f9;">foo</div>
-
 !! html/parsoid
 <div style="background:#f9f9f9;" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html"}' data-mw='{"attribs":[[{"txt":"style","html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[5,49,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"style{{=}}\\\"background:&amp;amp;#35;f9f9f9;\\\"\"}},\"i\":0}}]}&#39;>style&lt;/span>&lt;span typeof=\"mw:Nowiki\" about=\"#mwt1\" data-parsoid=\"{}\">=&lt;/span>&lt;span about=\"#mwt1\" data-parsoid=\"{}\">\"background:&lt;/span>&lt;span typeof=\"mw:Entity\" about=\"#mwt1\" data-parsoid=&#39;{\"src\":\"&amp;amp;#35;\",\"srcContent\":\"#\"}&#39;>#&lt;/span>&lt;span about=\"#mwt1\" data-parsoid=\"{}\">f9f9f9;\"&lt;/span>"},{"html":""}]]}'>foo</div>
 !! end
@@ -13367,7 +13227,6 @@ Table cell with attribute before expanded attribute
 <tr>
 <td style="background:#f9f9f9;">Foo
 </td></tr></table>
-
 !! html/parsoid
 <table>
 <tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td style="background:#f9f9f9;" typeof="mw:Transclusion" about="#mwt1" data-parsoid='{"autoInsertedEnd":true,"pi":[[]]}' data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_3","href":"./Template:Table_attribs_3"},"params":{},"i":0}}]}'>Foo</td></tr>
@@ -13385,7 +13244,6 @@ Table cell with attribute before expanded attribute
 <tr>
 <td style="background:#f9f9f9;">Foo
 </td></tr></table>
-
 !! html/parsoid
 <table about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[],[],[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"tbl-start","href":"./Template:Tbl-start"},"params":{},"i":0}},"\n|",{"template":{"target":{"wt":"table_attribs_3","href":"./Template:Table_attribs_3"},"params":{},"i":1}},"\n",{"template":{"target":{"wt":"tbl-end","href":"./Template:Tbl-end"},"params":{},"i":2}}]}'>
 <tbody><tr><td style="background:#f9f9f9;">Foo</td></tr>
@@ -13404,7 +13262,6 @@ Table cell with attribute before expanded attribute
 <tr>
 <td style="background: red;">hi
 </td></tr></table>
-
 !! html/parsoid
 <table>
 <tbody><tr><td style="background:  red;" typeof="mw:Transclusion" about="#mwt1" data-parsoid='{"autoInsertedEnd":true,"pi":[[]]}' data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_6","href":"./Template:Table_attribs_6"},"params":{},"i":0}}," hi"]}'> hi</td></tr>
@@ -13417,7 +13274,6 @@ Templates: HTML Tables: 1. Generating start of a HTML table
 {{echo|<table><tr><td>foo</td>}}</tr></table>
 !! html
 <table><tr><td>foo</td></tr></table>
-
 !!end
 
 !!test
@@ -13426,7 +13282,6 @@ Templates: HTML Tables: 2a. Generating middle of a HTML table
 <table><tr>{{echo|<td>foo</td>}}</tr></table>
 !! html
 <table><tr><td>foo</td></tr></table>
-
 !!end
 
 !!test
@@ -13435,7 +13290,6 @@ Templates: HTML Tables: 2b. Generating middle of a HTML table
 <table>{{echo|<tr><td>foo</td></tr>}}</table>
 !! html
 <table><tr><td>foo</td></tr></table>
-
 !!end
 
 !!test
@@ -13444,8 +13298,7 @@ Templates: HTML Tables: 3. Generating end of a HTML table
 <table><tr>{{echo|<td>foo</td></tr></table>}}
 !! html
 <table><tr><td>foo</td></tr></table>
-
-!!end
+!! end
 
 !!test
 Templates: HTML Tables: 4a. Generating a single tag of a HTML table
@@ -13453,8 +13306,7 @@ Templates: HTML Tables: 4a. Generating a single tag of a HTML table
 {{echo|<table>}}<tr><td>foo</td></tr></table>
 !! html
 <table><tr><td>foo</td></tr></table>
-
-!!end
+!! end
 
 !!test
 Templates: HTML Tables: 4b. Generating a single tag of a HTML table
@@ -13462,8 +13314,7 @@ Templates: HTML Tables: 4b. Generating a single tag of a HTML table
 <table>{{echo|<tr>}}<td>foo</td></tr></table>
 !! html
 <table><tr><td>foo</td></tr></table>
-
-!!end
+!! end
 
 !!test
 Templates: HTML Tables: 4c. Generating a single tag of a HTML table
@@ -13471,8 +13322,7 @@ Templates: HTML Tables: 4c. Generating a single tag of a HTML table
 <table><tr>{{echo|<td>}}foo</td></tr></table>
 !! html
 <table><tr><td>foo</td></tr></table>
-
-!!end
+!! end
 
 !!test
 Templates: HTML Tables: 4d. Generating a single tag of a HTML table
@@ -13480,8 +13330,7 @@ Templates: HTML Tables: 4d. Generating a single tag of a HTML table
 <table><tr><td>foo{{echo|</td>}}</tr></table>
 !! html
 <table><tr><td>foo</td></tr></table>
-
-!!end
+!! end
 
 !!test
 Templates: HTML Tables: 4e. Generating a single tag of a HTML table
@@ -13489,8 +13338,7 @@ Templates: HTML Tables: 4e. Generating a single tag of a HTML table
 <table><tr><td>foo</td>{{echo|</tr>}}</table>
 !! html
 <table><tr><td>foo</td></tr></table>
-
-!!end
+!! end
 
 !!test
 Templates: HTML Tables: 4f. Generating a single tag of a HTML table
@@ -13498,8 +13346,7 @@ Templates: HTML Tables: 4f. Generating a single tag of a HTML table
 <table><tr><td>foo</td></tr>{{echo|</table>}}
 !! html
 <table><tr><td>foo</td></tr></table>
-
-!!end
+!! end
 
 !!test
 Templates: HTML Tables: 5. Proper fostering of categories from inside
@@ -13529,7 +13376,6 @@ Templates: Wiki Tables: 1a. Fostering of entire template content
 <table>
 a
 <tr><td></td></tr></table>
-
 !! html/php+tidy
 
 a
@@ -13555,7 +13401,6 @@ foo
 </p>
 </div>
 <tr><td></td></tr></table>
-
 !! html/php+tidy
 <div>
 <p>foo
@@ -13584,7 +13429,6 @@ Templates: Wiki Tables: 2. Fostering of partial template content
 a
 <div>b</div>
 <tr><td></td></tr></table>
-
 !! html/php+tidy
 
 a
@@ -13608,8 +13452,7 @@ Templates: Wiki Tables: 3. td-content via multiple templates
 <tr>
 <td>ab
 </td></tr></table>
-
-!!end
+!! end
 
 !!test
 Templates: Wiki Tables: 4. Templated tags, no content
@@ -13619,8 +13462,7 @@ Templates: Wiki Tables: 4. Templated tags, no content
 !! html
 <table>
 <tr><td></td></tr></table>
-
-!!end
+!! end
 
 !!test
 Templates: Wiki Tables: 5. Templated tags, regular td-tags
@@ -13633,8 +13475,7 @@ Templates: Wiki Tables: 5. Templated tags, regular td-tags
 <tr>
 <td>foo
 </td></tr></table>
-
-!!end
+!! end
 
 !!test
 Templates: Wiki Tables: 6. Templated tags, templated td-tags
@@ -13647,8 +13488,7 @@ Templates: Wiki Tables: 6. Templated tags, templated td-tags
 <tr>
 <td>foo
 </td></tr></table>
-
-!!end
+!! end
 
 ## This test case is very specific to Parsoid's internals
 ## and is hence only tested for Parsoid's code. Parsoid uses
@@ -13741,10 +13581,8 @@ Templates: Ugly nesting: 4. Divs opened/closed across templates
 a<div>b{{echo|c</div>d}}e
 !! html
 a<div>bc</div>de
-
 !! html+tidy
-<p>a</p><div>bc</div><p>de
-</p>
+<p>a</p><div>bc</div><p>de</p>
 !! end
 
 !! test
@@ -14621,7 +14459,6 @@ Right-aligned image
 [[File:Foobar.jpg|right]]
 !! html/php
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></div>
-
 !! html/parsoid
 <figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></figure>
 !! end
@@ -14632,7 +14469,6 @@ Image with caption
 [[File:Foobar.jpg|right|Caption text]]
 !! html/php
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption text"><img alt="Caption text" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></div>
-
 !! html/parsoid
 <figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a><figcaption>Caption text</figcaption></figure>
 !! end
@@ -14643,7 +14479,6 @@ Image with caption, T55312 #1
 [[File:Foobar.jpg|right|Caption page stuff]]
 !! html/php
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption page stuff"><img alt="Caption page stuff" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></div>
-
 !! html/parsoid
 <figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a><figcaption>Caption page stuff</figcaption></figure>
 !! end
@@ -14654,7 +14489,6 @@ Image with caption, T55312 #2
 [[File:Foobar.jpg|right|Caption page=]]
 !! html/php
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption page="><img alt="Caption page=" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></div>
-
 !! html/parsoid
 <figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a><figcaption>Caption page=</figcaption></figure>
 !! end
@@ -14665,7 +14499,6 @@ Image with caption, T55312 #3
 [[File:Foobar.jpg|right|Caption page=stuff]]
 !! html/php
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption page=stuff"><img alt="Caption page=stuff" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></div>
-
 !! html/parsoid
 <figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a><figcaption>Caption page=stuff</figcaption></figure>
 !! end
@@ -14678,7 +14511,6 @@ Image caption with pipe entity
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>one &#x7c; two</div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>one <i>two</i> &#x7c; three</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>one <span typeof="mw:Entity">|</span> two</figcaption></figure>
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>one <i>two</i> <span typeof="mw:Entity">|</span> three</figcaption></figure>
@@ -14695,7 +14527,6 @@ thumbsize=220
 ]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Caption <a href="/index.php?title=Link1&amp;action=edit&amp;redlink=1" class="new" title="Link1 (page does not exist)">Link1</a> [[]] <a href="/index.php?title=Link2&amp;action=edit&amp;redlink=1" class="new" title="Link2 (page does not exist)">Link2</a></div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"Caption [[Link1]]\n[[]]\n[[Link2]]\n"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>Caption <a rel="mw:WikiLink" href="./Link1" title="Link1" data-parsoid='{"stx":"simple","a":{"href":"./Link1"},"sa":{"href":"Link1"}}'>Link1</a>
 [[]]
@@ -14742,7 +14573,6 @@ parsoid=wt2html,wt2wt,html2html
 [[File:Foobar.jpg|right||Caption text]]
 !! html/php
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption text"><img alt="Caption text" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></div>
-
 !! html/parsoid
 <figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a><figcaption>Caption text</figcaption></figure>
 !! end
@@ -14753,7 +14583,6 @@ parsoid=wt2html,wt2wt,html2html
 [[File:Foobar.jpg|thumb|{{echo|137px}}|This is a caption]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:139px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/137px-Foobar.jpg" decoding="async" width="137" height="16" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/206px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/274px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>This is a caption</div></div></div>
-
 !! html/parsoid
 <figure typeof="mw:Image/Thumb mw:ExpandedAttrs" about="#mwt2" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"width","ak":"{{echo|137px}}"},{"ck":"caption","ak":"This is a caption"}]}' data-mw='{"attribs":[["thumbnail",{"html":"thumb"}],["width",{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[24,38,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"137px\"}},\"i\":0}}]}&#39;>137px&lt;/span>"}]]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/137px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="16" width="137" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"16","width":"137"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>This is a caption</figcaption></figure>
 !! end
@@ -14764,7 +14593,6 @@ parsoid=wt2html,wt2wt,html2html
 [[File:Foobar.jpg|{{echo|thumb}}|{{echo|137px}}|This is a caption]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:139px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/137px-Foobar.jpg" decoding="async" width="137" height="16" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/206px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/274px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>This is a caption</div></div></div>
-
 !! html/parsoid
 <figure typeof="mw:Image/Thumb mw:ExpandedAttrs" about="#mwt3" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"{{echo|thumb}}"},{"ck":"width","ak":"{{echo|137px}}"},{"ck":"caption","ak":"This is a caption"}]}' data-mw='{"attribs":[["thumbnail",{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[18,32,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"thumb\"}},\"i\":0}}]}&#39;>thumb&lt;/span>"}],["width",{"html":"&lt;span about=\"#mwt2\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[33,47,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"137px\"}},\"i\":0}}]}&#39;>137px&lt;/span>"}]]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/137px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="16" width="137" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"16","width":"137"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>This is a caption</figcaption></figure>
 !! end
@@ -14788,7 +14616,6 @@ Image with multiple attributes from the same template
 [[File:Foobar.jpg|{{image_attribs}}]]
 !! html/php
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption text"><img alt="Caption text" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></div>
-
 !! html/parsoid
 <figure class="mw-default-size mw-halign-right" typeof="mw:Image mw:Placeholder"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a><figcaption>Caption text</figcaption></figure>
 !! end
@@ -14806,13 +14633,11 @@ thumbsize=220
 </p>
 123<div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></div>456
 123<div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div></div></div></div>456
-
 !! html/php+tidy
 <p>123<a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>456
 </p><p>
 123</p><div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></div><p>456
-123</p><div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div></div></div></div><p>456
-</p>
+123</p><div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div></div></div></div><p>456</p>
 !! html/parsoid
 <p>123<figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></figure-inline>456</p>
 <p>123</p><figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></figure><p>456
@@ -14825,7 +14650,6 @@ Image with multiple captions -- only last one is accepted
 [[File:Foobar.jpg|right|Caption1 - ignored|[[Caption2]] - ignored|Caption3 - accepted]]
 !! html/php
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption3 - accepted"><img alt="Caption3 - accepted" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></div>
-
 !! html/parsoid
 <figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a><figcaption>Caption3 - accepted</figcaption></figure>
 !! end
@@ -14868,7 +14692,6 @@ Image with width attribute at different positions
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption"><img alt="Caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" decoding="async" width="200" height="23" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a></div>
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption"><img alt="Caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" decoding="async" width="200" height="23" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a></div>
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption"><img alt="Caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" decoding="async" width="200" height="23" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a></div>
-
 !! html/parsoid
 <figure class="mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="23" width="200"/></a><figcaption>Caption</figcaption></figure>
 <figure class="mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="23" width="200"/></a><figcaption>Caption</figcaption></figure>
@@ -15029,7 +14852,6 @@ parsoid=wt2html,wt2wt,html2html
 [[File:Foobar.jpg|thumb|link=http://example.com/|Title]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="http://example.com/"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Title</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="http://example.com/"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>Title</figcaption></figure>
 !! end
@@ -15042,7 +14864,6 @@ thumbsize=220
 [[File:Foobar.jpg|thumbnail=Thumb.png|Title]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/File:Foobar.jpg"><img alt="" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Title</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" data-mw='{"thumb":"Thumb.png"}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/e/ea/Thumb.png" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135"/></a><figcaption>Title</figcaption></figure>
 !! end
@@ -15056,7 +14877,6 @@ parsoid=wt2html,wt2wt,html2html
 [[File:Foobar.jpg|thumb=Thumb.png|link=Main_Page|Title]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/Main_Page" title="Main Page"><img alt="" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Title</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" data-mw='{"thumb":"Thumb.png"}'><a href="./Main_Page"><img resource="./File:Foobar.jpg" src="//example.com/images/e/ea/Thumb.png" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135"/></a><figcaption>Title</figcaption></figure>
 !! end
@@ -15070,7 +14890,6 @@ parsoid=wt2html,wt2wt,html2html
 [[File:Foobar.jpg|thumb=Thumb.png|link=http://example.com|Title]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="http://example.com"><img alt="" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Title</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" data-mw='{"thumb":"Thumb.png"}'><a href="http://example.com"><img resource="./File:Foobar.jpg" src="//example.com/images/e/ea/Thumb.png" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135"/></a><figcaption>Title</figcaption></figure>
 !! end
@@ -15084,7 +14903,6 @@ parsoid=wt2html,wt2wt,html2html
 [[File:Foobar.jpg|thumb=Thumb.png|link=|Title]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:137px;"><img alt="" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="thumbimage" />  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Title</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" data-mw='{"thumb":"Thumb.png"}'><span><img resource="./File:Foobar.jpg" src="//example.com/images/e/ea/Thumb.png" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135"/></span><figcaption>Title</figcaption></figure>
 !! end
@@ -15098,7 +14916,6 @@ parsoid=wt2html,wt2wt,html2html
 [[File:Foobar.jpg|thumb=Thumb.png|link=Main_Page|alt=alttext|Title]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/Main_Page" title="Main Page"><img alt="alttext" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Title</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" data-mw='{"thumb":"Thumb.png"}'><a href="./Main_Page"><img alt="alttext" resource="./File:Foobar.jpg" src="//example.com/images/e/ea/Thumb.png" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135"/></a><figcaption>Title</figcaption></figure>
 !! end
@@ -15111,7 +14928,6 @@ parsoid=wt2html,wt2wt,html2html
 [[File:Foobar.jpg|frame|left|This is a test image [[Main Page]]]]
 !! html/php
 <div class="thumb tleft"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption">This is a test image <a href="/wiki/Main_Page" title="Main Page">Main Page</a></div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size mw-halign-left" typeof="mw:Image/Frame"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a><figcaption>This is a test image <a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a></figcaption></figure>
 !! end
@@ -15124,7 +14940,6 @@ parsoid=wt2html,wt2wt,html2html
 [[Image:Foobar.jpg|frame|left|This is a test image [[Main Page]]|alt=Altitude]]
 !! html/php
 <div class="thumb tleft"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Altitude" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption">This is a test image <a href="/wiki/Main_Page" title="Main Page">Main Page</a></div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size mw-halign-left" typeof="mw:Image/Frame"><a href="./File:Foobar.jpg"><img alt="Altitude" resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a><figcaption>This is a test image <a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a></figcaption></figure>
 !! end
@@ -15151,7 +14966,6 @@ Alt image option should handle most kinds of wikitext without barfing
 [[Image:Foobar.jpg|thumb|This is the image caption|alt=This is a [[link]] and a {{echo|''bold template''}}.]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="This is a link and a bold template." src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>This is the image caption</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb mw:ExpandedAttrs" about="#mwt2" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"This is the image caption"},{"ck":"alt","ak":"alt=This is a [[link]] and a {{echo|&apos;&apos;bold template&apos;&apos;}}."}]}' data-mw='{"attribs":[["thumbnail",{"html":"thumb"}],["alt",{"html":"alt=This is a &lt;a rel=\"mw:WikiLink\" href=\"./Link\" title=\"Link\" data-parsoid=&apos;{\"stx\":\"simple\",\"a\":{\"href\":\"./Link\"},\"sa\":{\"href\":\"link\"},\"dsr\":[65,73,2,2]}&apos;>link&lt;/a> and a &lt;i about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"dsr\":[80,106,null,null],\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"&amp;apos;&amp;apos;bold template&amp;apos;&amp;apos;\"}},\"i\":0}}]}&#39;>bold template&lt;/i>."}]]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img alt="This is a link and a bold template." resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" data-parsoid='{"a":{"alt":"This is a link and a bold template.","resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"alt":"alt=This is a [[link]] and a {{echo|&#39;&#39;bold template&#39;&#39;}}.","resource":"Image:Foobar.jpg"}}'/></a><figcaption>This is the image caption</figcaption></figure>
 !! end
@@ -15586,7 +15400,6 @@ Image with heading and horizontal rule in caption
 ]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div><h3><span class="mw-headline" id="Testing">Testing</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Testing">edit</a><span class="mw-editsection-bracket">]</span></span></h3> 123 <hr /></div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"\n=== Testing ===\n123\n--------------\n"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{"href":"File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>
 <h3 id="Testing">Testing</h3>
@@ -15633,7 +15446,6 @@ parsoid=wt2html,wt2wt,html2html
 <div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption">caption</div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption">caption</div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption">caption</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Frame"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a><figcaption>caption</figcaption></figure>
 <figure class="mw-default-size" typeof="mw:Image/Frame"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a><figcaption>caption</figcaption></figure>
@@ -15652,7 +15464,6 @@ parsoid=wt2html,wt2wt,html2html
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>caption</figcaption></figure>
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>caption</figcaption></figure>
@@ -15712,7 +15523,6 @@ parsoid=wt2html,wt2wt,html2html
 [[File:Foobar.jpg|thumb|50px]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:52px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg" decoding="async" width="50" height="6" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/75px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/100px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div></div></div></div>
-
 !! html/parsoid
 <figure typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="6" width="50"/></a></figure>
 !! end
@@ -15728,7 +15538,6 @@ parsoid=wt2html,wt2wt,html2html
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div></div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:2002px;"><a href="/wiki/File:Foobar.svg" class="image"><img alt="Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/2000px-Foobar.svg.png" decoding="async" width="2000" height="1500" class="thumbimage" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/3000px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/4000px-Foobar.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.svg" class="internal" title="Enlarge"></a></div></div></div></div>
-
 !! html/parsoid
 <figure typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></figure>
 <figure typeof="mw:Image/Thumb"><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/thumb/f/ff/Foobar.svg/2000px-Foobar.svg.png" data-file-width="240" data-file-height="180" data-file-type="drawing" height="1500" width="2000"/></a></figure>
@@ -15781,7 +15590,6 @@ parsoid=wt2html,wt2wt,html2html
 <div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Frame"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></figure>
 <figure typeof="mw:Image/Frame"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></figure>
@@ -15830,7 +15638,6 @@ thumbsize=220
 [[File:Foobar.jpg|thumb|http://example.com]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div><a rel="nofollow" class="external free" href="http://example.com">http://example.com</a></div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><a rel="mw:ExtLink" class="external free" href="http://example.com">http://example.com</a></figcaption></figure>
 !! end
@@ -15844,7 +15651,6 @@ parsoid=wt2html,wt2wt,html2html
 [[File:Foobar.jpg|thumb|http://example.com|alt=Alteration]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Alteration" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div><a rel="nofollow" class="external free" href="http://example.com">http://example.com</a></div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img alt="Alteration" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><a rel="mw:ExtLink" class="external free" href="http://example.com">http://example.com</a></figcaption></figure>
 !! end
@@ -15856,7 +15662,6 @@ SVG thumbnails with no language set
 [[File:Foobar.svg|thumb|caption]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.svg" class="image"><img alt="" src="http://example.com/images/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png" decoding="async" width="180" height="135" class="thumbimage" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/270px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.svg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/thumb/f/ff/Foobar.svg/220px-Foobar.svg.png" data-file-width="240" data-file-height="180" data-file-type="drawing" height="165" width="220"/></a><figcaption>caption</figcaption></figure>
 !! end
@@ -15869,7 +15674,6 @@ parsoid=wt2html,wt2wt,html2html
 [[File:Foobar.svg|thumb|caption|lang=de]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/index.php?title=File:Foobar.svg&amp;lang=de" class="image"><img alt="" src="http://example.com/images/thumb/f/ff/Foobar.svg/langde-180px-Foobar.svg.png" decoding="async" width="180" height="135" class="thumbimage" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langde-270px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langde-360px-Foobar.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.svg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/thumb/f/ff/Foobar.svg/220px-Foobar.svg.png" lang="de" data-file-width="240" data-file-height="180" data-file-type="drawing" height="165" width="220"/></a><figcaption>caption</figcaption></figure>
 !! end
@@ -15882,7 +15686,6 @@ parsoid=wt2html,wt2wt,html2html
 [[File:Foobar.svg|thumb|caption|lang=invalid:language:code]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.svg" class="image"><img alt="" src="http://example.com/images/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png" decoding="async" width="180" height="135" class="thumbimage" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/270px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.svg" class="internal" title="Enlarge"></a></div>lang=invalid:language:code</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/thumb/f/ff/Foobar.svg/220px-Foobar.svg.png" data-file-width="240" data-file-height="180" data-file-type="drawing" height="165" width="220"/></a><figcaption>lang=invalid:language:code</figcaption></figure>
 !! end
@@ -15915,7 +15718,6 @@ T3887: A ISBN with a thumbnail
 [[File:Foobar.jpg|thumb|ISBN 1235467890]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div><a href="/wiki/Special:BookSources/1235467890" class="internal mw-magiclink-isbn">ISBN 1235467890</a></div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><a href="./Special:BookSources/1235467890" rel="mw:WikiLink">ISBN 1235467890</a></figcaption></figure>
 !! end
@@ -15926,7 +15728,6 @@ T3887: A RFC with a thumbnail
 [[File:Foobar.jpg|thumb|This is RFC 12354]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>This is <a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc12354">RFC 12354</a></div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>This is <a href="https://tools.ietf.org/html/rfc12354" rel="mw:ExtLink" class="external mw-magiclink">RFC 12354</a></figcaption></figure>
 !! end
@@ -15937,7 +15738,6 @@ T3887: A mailto link with a thumbnail
 [[File:Foobar.jpg|thumb|Please mailto:nobody@example.com]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Please <a rel="nofollow" class="external free" href="mailto:nobody@example.com">mailto:nobody@example.com</a></div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>Please <a rel="mw:ExtLink" class="external free" href="mailto:nobody@example.com">mailto:nobody@example.com</a></figcaption></figure>
 !! end
@@ -16060,7 +15860,6 @@ Image caption containing another image
 [[File:Foobar.jpg|thumb|This is a caption with another [[File:Thumb.png|image]] inside it!]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>This is a caption with another <a href="/wiki/File:Thumb.png" class="image" title="image"><img alt="image" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" /></a> inside it!</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>This is a caption with another <figure-inline class="mw-default-size" typeof="mw:Image" data-mw='{"caption":"image"}'><a href="./File:Thumb.png"><img resource="./File:Thumb.png" src="//example.com/images/e/ea/Thumb.png" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135"/></a></figure-inline> inside it!</figcaption></figure>
 !! end
@@ -16084,7 +15883,6 @@ Image: caption containing leading space
 [[File:Foobar.jpg|thumb| bar]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>bar</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption> bar</figcaption></figure>
 !!end
@@ -16107,7 +15905,6 @@ parsoid=wt2html,wt2wt,html2html
 and some more text.]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:202px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" decoding="async" width="200" height="23" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>This is an example image thumbnail caption with a table <table> <tr> <th>Foo</th> <th>Bar </th></tr> <tr> <td>Foo1</td> <td>Bar1 </td></tr></table> and some more text.</div></div></div>
-
 !! html/parsoid
 <figure typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="23" width="200"/></a><figcaption>This is an example image thumbnail caption with a table
 <table>
@@ -16124,7 +15921,6 @@ T5090: External links other than http: in image captions
 [[File:Foobar.jpg|thumb|200x200px|This caption has [irc://example.net irc] and [https://example.com Secure] ext links in it.]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:202px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" decoding="async" width="200" height="23" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>This caption has <a rel="nofollow" class="external text" href="irc://example.net">irc</a> and <a rel="nofollow" class="external text" href="https://example.com">Secure</a> ext links in it.</div></div></div>
-
 !! html/parsoid
 <figure typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="23" width="200"/></a><figcaption>This caption has <a rel="mw:ExtLink" class="external text" href="irc://example.net">irc</a> and <a rel="mw:ExtLink" class="external text" href="https://example.com">Secure</a> ext links in it.</figcaption></figure>
 !! end
@@ -16151,7 +15947,6 @@ language=es
 [[Archivo:Foobar.jpg|izquierda|enlace=foo|caption]]
 !! html/php
 <div class="floatleft"><a href="/wiki/Foo" title="caption"><img alt="caption" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></div>
-
 !! html/parsoid
 <figure class="mw-default-size mw-halign-left" typeof="mw:Image"><a href="./Foo"><img resource="./Archivo:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a><figcaption>caption</figcaption></figure>
 !! end
@@ -16166,7 +15961,6 @@ language=es
 [[Archivo:Foobar.jpg|miniatura|izquierda|enlace=foo|caption]]
 !! html/php
 <div class="thumb tleft"><div class="thumbinner" style="width:222px;"><a href="/wiki/Foo" title="Foo"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/Archivo:Foobar.jpg" class="internal" title="Aumentar"></a></div>caption</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size mw-halign-left" typeof="mw:Image/Thumb"><a href="./Foo"><img resource="./Archivo:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>caption</figcaption></figure>
 !! end
@@ -16212,7 +16006,6 @@ parsoid=wt2html,wt2wt,html2html
 <div class="thumb tleft"><div class="thumbinner" style="width:222px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
 <div class="thumb tleft"><div class="thumbinner" style="width:222px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size mw-halign-left" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>caption</figcaption></figure>
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>caption</figcaption></figure>
@@ -17064,7 +16857,6 @@ parsoid=wt2html,html2html
 !! html/php
 <div>a
 <a href="/wiki/Foo" title="Foo">Foo</a></div>
-
 !! html/parsoid
 <link rel="mw:PageProp/Category" href="./Category:Foo"/><div>a
 
@@ -17320,7 +17112,6 @@ Some text
 <p>Some text
 </p>
 <h3><span class="mw-headline" id="Another_headline">Another headline</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Another headline">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
-
 !! end
 
 !! test
@@ -17345,7 +17136,6 @@ __FORCETOC__
 <h2><span class="mw-headline" id="Headline">Headline</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Headline">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Headline_2_2">Headline 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Headline 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Headline_3">Headline</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Headline">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 # perl -e 'print "="x$_," Level $_ heading","="x$_,"\n" for 1..10'
@@ -17406,7 +17196,6 @@ parsoid=wt2html
 <h6><span class="mw-headline" id=".3D.3DLevel_8_Heading.3D.3D">==Level 8 Heading==</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=8" title="Edit section: ==Level 8 Heading==">edit</a><span class="mw-editsection-bracket">]</span></span></h6>
 <h6><span class="mw-headline" id=".3D.3D.3DLevel_9_Heading.3D.3D.3D">===Level 9 Heading===</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=9" title="Edit section: ===Level 9 Heading===">edit</a><span class="mw-editsection-bracket">]</span></span></h6>
 <h6><span class="mw-headline" id=".3D.3D.3D.3DLevel_10_Heading.3D.3D.3D.3D">====Level 10 Heading====</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=10" title="Edit section: ====Level 10 Heading====">edit</a><span class="mw-editsection-bracket">]</span></span></h6>
-
 !! html/parsoid
 <h1 id="Level_1_Heading" data-parsoid='{}'>Level 1 Heading</h1>
 <h2 id="Level_2_Heading" data-parsoid='{}'>Level 2 Heading</h2>
@@ -17456,7 +17245,6 @@ TOC regression (T11764)
 <h3><span class="mw-headline" id="title_1.2">title 1.2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: title 1.2">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 <h2><span class="mw-headline" id="title_2">title 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: title 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="title_2.1">title 2.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: title 2.1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
-
 !! end
 
 !! test
@@ -17472,7 +17260,6 @@ __FORCETOC__
 </div>
 
 <h2><span class="mw-headline" id="New_title"><span id="old-anchor"></span>New title</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: New title">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 !! test
@@ -17509,7 +17296,6 @@ wgMaxTocLevel=3
 <h3><span class="mw-headline" id="title_1.2">title 1.2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: title 1.2">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 <h2><span class="mw-headline" id="title_2">title 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: title 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="title_2.1">title 2.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: title 2.1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
-
 !! end
 
 !! test
@@ -17539,7 +17325,6 @@ wgMaxTocLevel=3
 <h4><span class="mw-headline" id="Section_1.1.1">Section 1.1.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Section 1.1.1">edit</a><span class="mw-editsection-bracket">]</span></span></h4>
 <h4><span class="mw-headline" id="Section_1.1.1.1">Section 1.1.1.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Section 1.1.1.1">edit</a><span class="mw-editsection-bracket">]</span></span></h4>
 <h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 
@@ -17551,7 +17336,6 @@ Resolving duplicate section names
 !! html
 <h2><span class="mw-headline" id="Foo_bar">Foo bar</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Foo_bar_2">Foo bar</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 !! test
@@ -17562,7 +17346,6 @@ Resolving duplicate section names with differing case (T12721)
 !! html
 <h2><span class="mw-headline" id="Foo_bar">Foo bar</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Foo_Bar_2">Foo Bar</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 !! article
@@ -17584,7 +17367,6 @@ __NOTOC__
 <h3><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-1" title="Template:Sections">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 <h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-2" title="Template:Sections">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Section_4">Section 4</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Section 4">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 !! test
@@ -17596,7 +17378,6 @@ __NOEDITSECTION__
 !! html
 <h2><span class="mw-headline" id="Section_1">Section 1</span></h2>
 <h2><span class="mw-headline" id="Section_2">Section 2</span></h2>
-
 !! end
 
 !! test
@@ -17605,7 +17386,6 @@ Link inside a section heading
 ==Section with a [[Main Page|link]] in it==
 !! html
 <h2><span class="mw-headline" id="Section_with_a_link_in_it">Section with a <a href="/wiki/Main_Page" title="Main Page">link</a> in it</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section with a link in it">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 !! test
@@ -17630,7 +17410,6 @@ __TOC__
 <h2><span class="mw-headline" id="title_1">title 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="title_1.1">title 1.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 <h2><span class="mw-headline" id="title_2">title 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 !! test
@@ -17857,7 +17636,6 @@ parsoid=wt2html,wt2wt,html2html
 <h1><span class="mw-headline" id=".3Dfoo">=foo</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: =foo">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
 <h1><span class="mw-headline" id="italic_heading.3D"><i>italic</i> heading=</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: italic heading=">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
 <h1><span class="mw-headline" id=".3Ditalic_heading">=<i>italic</i> heading</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: =italic heading">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
-
 !! html/parsoid
 <h1 id="foo="><span id="foo.3D" typeof="mw:FallbackId"></span>foo=</h1>
 <h1 id="=foo"><span id=".3Dfoo" typeof="mw:FallbackId"></span>=foo</h1>
@@ -17903,7 +17681,6 @@ __NOEDITSECTION__
 </span></h1>
 <h2><span class="mw-headline" id="Header_2.1">Header 2.1</span></h2>
 <h2><span class="mw-headline" id="Header_2.2">Header 2.2</span></h2>
-
 !! html/parsoid
 <h1 id="Header_1" data-parsoid='{"stx":"html"}'>Header 1</h1>
 <h2 id="Header_1.1" data-parsoid='{}'>Header 1.1</h2>
@@ -17930,7 +17707,6 @@ c3-->
 <h2><span class="mw-headline" id="foo">foo</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: foo">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="bar">bar</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="baz">baz</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: baz">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! html/parsoid
 <h2 id="foo">foo</h2><!---->
 <h2 id="bar">bar</h2><!--c1-->
@@ -17989,7 +17765,6 @@ div with no attributes
 <div>HTML rocks</div>
 !! html
 <div>HTML rocks</div>
-
 !! end
 
 !! test
@@ -17998,7 +17773,6 @@ div with double-quoted attribute
 <div id="rock">HTML rocks</div>
 !! html
 <div id="rock">HTML rocks</div>
-
 !! end
 
 !! test
@@ -18007,7 +17781,6 @@ div with single-quoted attribute
 <div id='rock'>HTML rocks</div>
 !! html
 <div id="rock">HTML rocks</div>
-
 !! end
 
 !! test
@@ -18016,7 +17789,6 @@ div with unquoted attribute
 <div id=rock>HTML rocks</div>
 !! html
 <div id="rock">HTML rocks</div>
-
 !! end
 
 !! test
@@ -18025,8 +17797,7 @@ div with illegal double attributes
 <div id="a" id="b">HTML rocks</div>
 !! html
 <div id="b">HTML rocks</div>
-
-!!end
+!! end
 
 !! test
 div with empty attribute value, space before equals
@@ -18036,7 +17807,6 @@ parsoid=wt2html,html2html
 <div class =>HTML rocks</div>
 !! html/php
 <div class="">HTML rocks</div>
-
 !! html/parsoid
 <div class="" data-parsoid='{"stx":"html"}'>HTML rocks</div>
 !! end
@@ -18051,7 +17821,6 @@ parsoid=wt2html,html2html
 <div id= title=>HTML rocks</div>
 !! html/php
 <div id="title=">HTML rocks</div>
-
 !! html/parsoid
 <div id="title=" data-parsoid='{"stx":"html"}'>HTML rocks</div>
 !! end
@@ -18083,7 +17852,6 @@ parsoid=wt2html,html2html
 <tr>
 <td>hi
 </td></tr></table>
-
 !! html/parsoid
 <table title="id=">
 <tbody><tr><td>hi</td></tr>
@@ -18096,7 +17864,6 @@ div with braces in attribute value
 <div title="{}">Foo</div>
 !! html/php
 <div title="&#123;&#125;">Foo</div>
-
 !! html/parsoid
 <div title="{}">Foo</div>
 !! end
@@ -18109,7 +17876,6 @@ parsoid=wt2html,html2html
 <div class=>HTML rocks</div>
 !! html/php
 <div class="">HTML rocks</div>
-
 !! html/parsoid
 <div class="">HTML rocks</div>
 !! end
@@ -18120,8 +17886,7 @@ HTML multiple attributes correction
 <p class="error" class="awesome">Awesome!</p>
 !! html
 <p class="awesome">Awesome!</p>
-
-!!end
+!! end
 
 !! test
 Table multiple attributes correction
@@ -18134,8 +17899,7 @@ Table multiple attributes correction
 <tr>
 <th class="awesome">status
 </th></tr></table>
-
-!!end
+!! end
 
 !! test
 DIV IN UPPERCASE
@@ -18143,8 +17907,7 @@ DIV IN UPPERCASE
 <DIV ID="x">HTML ROCKS</DIV>
 !! html
 <div id="x">HTML ROCKS</div>
-
-!!end
+!! end
 
 !! test
 Non-ASCII pseudo-tags are rendered as text
@@ -18233,7 +17996,6 @@ parsoid=wt2html
 !! html/php
 <div style="style=">hi</div>
 <div>ho</div>
-
 !! html/parsoid
 <div style=" style=" data-parsoid='{"stx":"html","a":{"123\"":null},"sa":{"123\"":""}}'>hi</div>
 <div data-parsoid='{"stx":"html","a":{"=":null},"sa":{"=":""}}'>ho</div>
@@ -18375,7 +18137,6 @@ parsoid=wt2html,html2html
 [[Media:Foobar.jpg|Safe Link<div style=display:none>" onmouseover="alert(document.cookie)" onfoo="</div>]]
 !! html/php
 <a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Safe Link&lt;div style="display:none"&gt;" onmouseover="alert(document.cookie)" onfoo="&lt;/div&gt;</a>
-
 !! html/php+tidy
 <p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Safe Link</a></p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg"><div style="display:none">" onmouseover="alert(document.cookie)" onfoo="</div></a>
 !! html/parsoid
@@ -18628,7 +18389,6 @@ T4304: HTML attribute safety (safe template; regression T4309)
 <div title="{{test}}"></div>
 !! html/php
 <div title="This is a test template"></div>
-
 !! html/parsoid
 <div title="This is a test template" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"title":"This is a test template"},"sa":{"title":"{{test}}"}}' data-mw='{"attribs":[[{"txt":"title"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[12,20,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"test\",\"href\":\"./Template:Test\"},\"params\":{},\"i\":0}}]}&#39;>This is a test template&lt;/span>"}]]}'></div>
 !! end
@@ -18640,7 +18400,6 @@ T4304: HTML attribute safety (dangerous template; 2309)
 <div title="{{dangerous attribute}}"></div>
 !! html/php
 <div title=""></div>
-
 !! html/parsoid
 <div title='" onmouseover="alert(document.cookie)' about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"title":"\" onmouseover=\"alert(document.cookie)"},"sa":{"title":"{{dangerous attribute}}"}}' data-mw='{"attribs":[[{"txt":"title"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[12,35,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"dangerous attribute\",\"href\":\"./Template:Dangerous_attribute\"},\"params\":{},\"i\":0}}]}&#39;>\" onmouseover=\"alert(document.cookie)&lt;/span>"}]]}'></div>
 !! end
@@ -18651,7 +18410,6 @@ T4304: HTML attribute safety (dangerous style template; 2309)
 <div style="{{dangerous style attribute}}"></div>
 !! html/php
 <div style="/* insecure input */"></div>
-
 !! html/parsoid
 <div style="/* insecure input */" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"{{dangerous style attribute}}"}}' data-mw='{"attribs":[[{"txt":"style"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[12,41,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"dangerous style attribute\",\"href\":\"./Template:Dangerous_style_attribute\"},\"params\":{},\"i\":0}}]}&#39;>border-size: expression(alert(document.cookie))&lt;/span>"}]]}'></div>
 !! end
@@ -18662,7 +18420,6 @@ T4304: HTML attribute safety (safe parameter; 2309)
 {{div style|width: 200px}}
 !! html/php
 <div style="float: right; width: 200px">Magic div</div>
-
 !! html/parsoid
 <div style="float: right; width: 200px" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","a":{"style":"float: right; width: 200px"},"sa":{"style":"float: right; {{{1}}}"},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"div style","href":"./Template:Div_style"},"params":{"1":{"wt":"width: 200px"}},"i":0}}]}'>Magic div</div>
 !! end
@@ -18673,7 +18430,6 @@ T4304: HTML attribute safety (unsafe parameter; 2309)
 {{div style|width: expression(alert(document.cookie))}}
 !! html/php
 <div style="/* insecure input */">Magic div</div>
-
 !! html/parsoid
 <div style="/* insecure input */" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"float: right; {{{1}}}"},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"div style","href":"./Template:Div_style"},"params":{"1":{"wt":"width: expression(alert(document.cookie))"}},"i":0}}]}'>Magic div</div>
 !! end
@@ -18685,7 +18441,6 @@ T4304: HTML attribute safety (unsafe breakout parameter; 2309)
 {{div style|"><script>alert(document.cookie)</script>}}
 !! html
 <div style="float: right;">&lt;script&gt;alert(document.cookie)&lt;/script&gt;"&gt;Magic div</div>
-
 !! end
 
 ## Parsoid output here differs; needs investigation.
@@ -18695,7 +18450,6 @@ T4304: HTML attribute safety (unsafe breakout parameter 2; 2309)
 {{div style|" ><script>alert(document.cookie)</script>}}
 !! html
 <div style="float: right;">&lt;script&gt;alert(document.cookie)&lt;/script&gt;"&gt;Magic div</div>
-
 !! end
 
 !! test
@@ -18704,7 +18458,6 @@ T4304: HTML attribute safety (link)
 <div title="[[Main Page]]"></div>
 !! html/php
 <div title="&#91;&#91;Main Page&#93;&#93;"></div>
-
 !! html/parsoid
 <div title="[[Main Page]]"></div>
 !! end
@@ -18715,7 +18468,6 @@ T4304: HTML attribute safety (italics)
 <div title="''foobar''"></div>
 !! html
 <div title="&#39;&#39;foobar&#39;&#39;"></div>
-
 !! end
 
 !! test
@@ -18724,7 +18476,6 @@ T4304: HTML attribute safety (bold)
 <div title="'''foobar'''"></div>
 !! html
 <div title="&#39;&#39;&#39;foobar&#39;&#39;&#39;"></div>
-
 !! end
 
 !! test
@@ -18733,7 +18484,6 @@ T4304: HTML attribute safety (ISBN)
 <div title="ISBN 1234567890"></div>
 !! html
 <div title="&#73;SBN 1234567890"></div>
-
 !! end
 
 !! test
@@ -18742,7 +18492,6 @@ T4304: HTML attribute safety (RFC)
 <div title="RFC 1234"></div>
 !! html
 <div title="&#82;FC 1234"></div>
-
 !! end
 
 !! test
@@ -18751,7 +18500,6 @@ T4304: HTML attribute safety (PMID)
 <div title="PMID 1234567890"></div>
 !! html
 <div title="&#80;MID 1234567890"></div>
-
 !! end
 
 !! test
@@ -18760,7 +18508,6 @@ T4304: HTML attribute safety (web link)
 <div title="http://example.com/"></div>
 !! html
 <div title="http&#58;//example.com/"></div>
-
 !! end
 
 !! test
@@ -18769,7 +18516,6 @@ T4304: HTML attribute safety (named web link)
 <div title="[http://example.com/ link]"></div>
 !! html/php
 <div title="&#91;http&#58;//example.com/ link&#93;"></div>
-
 !! html/parsoid
 <div title="[http://example.com/ link]"></div>
 !! end
@@ -18780,7 +18526,6 @@ T5244: HTML attribute safety (extension; safe)
 <div style="<nowiki>background:blue</nowiki>"></div>
 !! html/php
 <div style="background:blue"></div>
-
 !! html/parsoid
 <div style="background:blue" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"style":"background:blue"},"sa":{"style":"&lt;nowiki>background:blue&lt;/nowiki>"}}' data-mw='{"attribs":[[{"txt":"style"},{"html":"&lt;span typeof=\"mw:Nowiki\" data-parsoid=&apos;{\"dsr\":[12,44,8,9]}&apos;>background:blue&lt;/span>"}]]}'></div>
 !! end
@@ -18791,7 +18536,6 @@ T5244: HTML attribute safety (extension; unsafe)
 <div style="<nowiki>border-left:expression(alert(document.cookie))</nowiki>"></div>
 !! html/php
 <div style="/* insecure input */"></div>
-
 !! html/parsoid
 <div style="/* insecure input */" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"&lt;nowiki>border-left:expression(alert(document.cookie))&lt;/nowiki>"}}' data-mw='{"attribs":[[{"txt":"style"},{"html":"&lt;span typeof=\"mw:Nowiki\" data-parsoid=&apos;{\"dsr\":[12,75,8,9]}&apos;>border-left:expression(alert(document.cookie))&lt;/span>"}]]}'></div>
 !! end
@@ -18804,7 +18548,6 @@ MSIE CSS safety test: spurious slash
 <div style="background-image:u\rl(javascript:alert('boo'))">evil</div>
 !! html/php
 <div style="/* insecure input */">evil</div>
-
 !! html/parsoid
 <div style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"background-image:u\\rl(javascript:alert(&#39;boo&#39;))"}}'>evil</div>
 !! end
@@ -18815,7 +18558,6 @@ MSIE CSS safety test: hex code
 <div style="background-image:u\72l(javascript:alert('boo'))">evil</div>
 !! html/php
 <div style="/* insecure input */">evil</div>
-
 !! html/parsoid
 <div style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"background-image:u\\72l(javascript:alert(&#39;boo&#39;))"}}'>evil</div>
 !! end
@@ -18826,7 +18568,6 @@ MSIE CSS safety test: comment in url
 <div style="background-image:u/**/rl(javascript:alert('boo'))">evil</div>
 !! html/php
 <div style="background-image:u rl(javascript:alert(&#39;boo&#39;))">evil</div>
-
 !! html/parsoid
 <div style="background-image:u rl(javascript:alert('boo'))" data-parsoid='{"stx":"html","a":{"style":"background-image:u rl(javascript:alert(&#39;boo&#39;))"},"sa":{"style":"background-image:u/**/rl(javascript:alert(&#39;boo&#39;))"}}'>evil</div>
 !! end
@@ -18837,7 +18578,6 @@ MSIE CSS safety test: comment in expression
 <div style="background-image:expres/**/sion(alert('boo4'))">evil4</div>
 !! html/php
 <div style="background-image:expres sion(alert(&#39;boo4&#39;))">evil4</div>
-
 !! html/parsoid
 <div style="background-image:expres sion(alert('boo4'))" data-parsoid='{"stx":"html","a":{"style":"background-image:expres sion(alert(&#39;boo4&#39;))"},"sa":{"style":"background-image:expres/**/sion(alert(&#39;boo4&#39;))"}}'>evil4</div>
 !! end
@@ -18848,7 +18588,6 @@ CSS safety test (all browsers): vertical tab (T57332 / CVE-2013-4567)
 <p style="font-size: 100px; background-image:url\b(https://www.google.com/images/srpr/logo6w.png)">A</p>
 !! html/php
 <p style="/* invalid control char */">A</p>
-
 !! html/parsoid
 <p style="/* invalid control char */" data-parsoid='{"stx":"html","a":{"style":"/* invalid control char */"},"sa":{"style":"font-size: 100px; background-image:url\\b(https://www.google.com/images/srpr/logo6w.png)"}}'>A</p>
 !! end
@@ -18861,7 +18600,6 @@ MSIE 6 CSS safety test: Fullwidth (T57332)
 !! html/php
 <p style="/* insecure input */">A</p>
 <div style="/* insecure input */">B</div>
-
 !! html/parsoid
 <p style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"font-size: 100px; color: ｅｘｐｒｅｓｓｉｏｎ((title=&#39;XSSed&#39;),&#39;red&#39;)"}}'>A</p>
 <div style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"top:ＥＸＰＲＥＳＳＩＯＮ(alert())"}}'>B</div>
@@ -18875,7 +18613,6 @@ MSIE 6 CSS safety test: IPA extensions (T57332)
 !! html/php
 <div style="/* insecure input */">A</div>
 <p style="/* insecure input */">B</p>
-
 !! html/parsoid
 <div style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"background-image:uʀʟ(javascript:alert())"}}'>A</div>
 <p style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"font-size: 100px; color: expʀessɪoɴ((title=&#39;XSSed&#39;),&#39;red&#39;)"}}'>B</p>
@@ -18891,7 +18628,6 @@ MSIE 6 CSS safety test: sup/sub script (T57332)
 <div style="/* insecure input */">A</div>
 <div style="/* insecure input */">B</div>
 <p style="/* insecure input */">C</p>
-
 !! html/parsoid
 <div style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"background-image:url⁽javascript:alert())"}}'>A</div>
 <div style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"background-image:url₍javascript:alert())"}}'>B</div>
@@ -18908,7 +18644,6 @@ title="&#100;&#97;&#116;&#97;&#58;&#116;&#101;&#120;&#116;&#47;&#104;&#116;&#109
 style="-o-link:attr(title);-o-link-source:current">X</div>
 !! html/php
 <div title="data:text/html,&lt;img src=1 onerror=alert(1)&gt;" style="/* insecure input */">X</div>
-
 !! html/parsoid
 <div title="data:text/html,&lt;img src=1 onerror=alert(1)>" style="/* insecure input */" data-parsoid='{"stx":"html","a":{"title":"data:text/html,&lt;img src=1 onerror=alert(1)>","style":"/* insecure input */"},"sa":{"title":"&amp;#100;&amp;#97;&amp;#116;&amp;#97;&amp;#58;&amp;#116;&amp;#101;&amp;#120;&amp;#116;&amp;#47;&amp;#104;&amp;#116;&amp;#109;&amp;#108;&amp;#44;&amp;#60;&amp;#105;&amp;#109;&amp;#103;&amp;#32;&amp;#115;&amp;#114;&amp;#99;&amp;#61;&amp;#49;&amp;#32;&amp;#111;&amp;#110;&amp;#101;&amp;#114;&amp;#114;&amp;#111;&amp;#114;&amp;#61;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#49;&amp;#41;&amp;#62;","style":"-o-link:attr(title);-o-link-source:current"}}'>X</div>
 !! end
@@ -18931,7 +18666,6 @@ MSIE 6 CSS safety test: Repetition markers (T57332)
 <p style="/* insecure input */">E</p>
 <p style="/* insecure input */">F</p>
 <p style="/* insecure input */">G</p>
-
 !! html/parsoid
 <p style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"font-size: 100px; color: expres〱ion((title=&#39;XSSed&#39;),&#39;red&#39;)"}}'>A</p>
 <p style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"font-size: 100px; color: expresゝion((title=&#39;XSSed&#39;),&#39;red&#39;)"}}'>B</p>
@@ -18953,8 +18687,7 @@ Table attribute legitimate extension
 <tr>
 <th style="color:blue">status
 </th></tr></table>
-
-!!end
+!! end
 
 !! test
 Table attribute safety
@@ -18967,7 +18700,6 @@ Table attribute safety
 <tr>
 <th style="/* insecure input */">status
 </th></tr></table>
-
 !! end
 
 !! test
@@ -18976,7 +18708,6 @@ CSS line continuation 1
 <div style="background-image: u\&#10;rl(test.jpg);"></div>
 !! html
 <div style="/* insecure input */"></div>
-
 !! end
 
 !! test
@@ -18985,7 +18716,6 @@ CSS line continuation 2
 <div style="background-image: u\&#13;rl(test.jpg); "></div>
 !! html
 <div style="/* invalid control char */"></div>
-
 !! end
 
 !! article
@@ -19000,7 +18730,6 @@ Expansion of multi-line templates in attribute values (T8255)
 <div style="background: {{identity|#00FF00}}">-</div>
 !! html
 <div style="background: #00FF00">-</div>
-
 !! end
 
 !! test
@@ -19010,7 +18739,6 @@ Expansion of multi-line templates in attribute values (T8255 sanity check)
 #00FF00">-</div>
 !! html/php
 <div style="background: #00FF00">-</div>
-
 !! html/parsoid
 <div style="background:
 #00FF00">-</div>
@@ -19022,7 +18750,6 @@ Expansion of multi-line templates in attribute values (T8255 sanity check 2)
 <div style="background: &#10;#00FF00">-</div>
 !! html
 <div style="background: &#10;#00FF00">-</div>
-
 !! end
 
 !! test
@@ -19048,7 +18775,6 @@ Parser hook: empty input
 array (
 )
 </pre>
-
 !! html/parsoid
 <pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":""}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
@@ -19066,7 +18792,6 @@ NULL
 array (
 )
 </pre>
-
 !! html/parsoid
 <pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
@@ -19081,7 +18806,6 @@ NULL
 array (
 )
 </pre>
-
 !! html/parsoid
 <pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
@@ -19096,7 +18820,6 @@ Parser hook: basic input
 array (
 )
 </pre>
-
 !! html/parsoid
 <pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"input"}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
@@ -19114,7 +18837,6 @@ parsoid=wt2html,html2html
 array (
 )
 </pre>
-
 !! html/parsoid
 <pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"input"}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
@@ -19132,7 +18854,6 @@ parsoid=wt2html,html2html
 array (
 )
 </pre>
-
 !! html/parsoid
 <pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"input"}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
@@ -19149,13 +18870,11 @@ parsoid=wt2html
 array (
 )
 </pre>&lt;/tag&gt;
-
 !! html/php+tidy
 <pre>'<tag>'
 array (
 )
-</tag></pre><p>&lt;/tag&gt;
-</p>
+</tag></pre><p>&lt;/tag&gt;</p>
 !! html/parsoid
 <pre typeof="mw:Extension/tag" about="#mwt2" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"&lt;tag>"}}'></pre><p>&lt;/tag></p>
 !! end
@@ -19174,7 +18893,6 @@ array (
   'square' => '',
 )
 </pre>
-
 !! html/parsoid
 <pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{"width":"200","height":"100","depth":"50","square":""},"body":{"extsrc":""}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
@@ -19196,7 +18914,6 @@ array (
   'square' => '',
 )
 </pre>
-
 !! html/parsoid
 <pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{"width":"200","height":"100","depth":"50","square":""},"body":{"extsrc":""}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
@@ -19212,7 +18929,6 @@ array (
   'filename' => '/tmp/bla',
 )
 </pre>
-
 !! html/parsoid
 <pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{"filename":"/tmp/bla"},"body":{"extsrc":""}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
@@ -19231,7 +18947,6 @@ array (
   'foo' => 'bar',
 )
 </pre>text
-
 !! html/parsoid
 <pre typeof="mw:Extension/tag" about="#mwt2" data-mw='{"name":"tag","attrs":{"foo":"bar"}}'></pre><p>text</p>
 !! end
@@ -19301,7 +19016,6 @@ Goodbye
 array (
 )
 </pre>
-
 !! end
 
 ###
@@ -19402,8 +19116,7 @@ parsoid=wt2html
 !! wikitext
 Table not started</td></tr></table>
 !! html+tidy
-<p>Table not started
-</p>
+<p>Table not started</p>
 !! end
 
 !! test
@@ -19476,7 +19189,6 @@ Sanitizer: Validating that <meta> and <link> work, but only for Microdata
 	<link itemprop="hello" href="http&#58;//example.org" />
 </p>
 </div>
-
 !! end
 
 !! test
@@ -19591,8 +19303,7 @@ Punctuation: CSS !important (T13874)
 <div style="width:50% !important">important</div>
 !! html
 <div style="width:50% !important">important</div>
-
-!!end
+!! end
 
 !! test
 Punctuation: CSS ! important (T13874; with space after)
@@ -19600,8 +19311,7 @@ Punctuation: CSS ! important (T13874; with space after)
 <div style="width:50% ! important">important</div>
 !! html
 <div style="width:50%&#32;! important">important</div>
-
-!!end
+!! end
 
 !! test
 HTML bullet list, closed tags (T7497)
@@ -19615,13 +19325,11 @@ HTML bullet list, closed tags (T7497)
 <li>One</li>
 <li>Two</li>
 </ul>
-
 !! html/parsoid
 <ul data-parsoid='{"stx":"html"}'>
 <li data-parsoid='{"stx":"html"}'>One</li>
 <li data-parsoid='{"stx":"html"}'>Two</li>
 </ul>
-
 !! end
 
 !! test
@@ -19641,7 +19349,6 @@ HTML bullet list, unclosed tags (T7497)
 <li data-parsoid='{"stx":"html","autoInsertedEnd":true}'>One</li>
 <li data-parsoid='{"stx":"html","autoInsertedEnd":true}'>Two</li>
 </ul>
-
 !! end
 
 !! test
@@ -19656,13 +19363,11 @@ HTML ordered list, closed tags (T7497)
 <li>One</li>
 <li>Two</li>
 </ol>
-
 !! html/parsoid
 <ol data-parsoid='{"stx":"html"}'>
 <li data-parsoid='{"stx":"html"}'>One</li>
 <li data-parsoid='{"stx":"html"}'>Two</li>
 </ol>
-
 !! end
 
 !! test
@@ -19683,7 +19388,6 @@ HTML ordered list, unclosed tags (T7497)
 <li data-parsoid='{"stx":"html","autoInsertedEnd":true}'>One</li>
 <li data-parsoid='{"stx":"html","autoInsertedEnd":true}'>Two</li>
 </ol>
-
 !! end
 
 !! test
@@ -19708,7 +19412,6 @@ HTML nested bullet list, closed tags (T7497)
 </ul>
 </li>
 </ul>
-
 !! html/parsoid
 <ul data-parsoid='{"stx":"html"}'>
 <li data-parsoid='{"stx":"html"}'>One</li>
@@ -19765,7 +19468,6 @@ HTML nested ordered list, closed tags (T7497)
 </ol>
 </li>
 </ol>
-
 !! end
 
 !! test
@@ -19788,7 +19490,6 @@ HTML nested ordered list, open tags (T7497)
 <li>Sub-two
 </ol>
 </ol>
-
 !! html/parsoid
 <ol>
 <li>One
@@ -19802,7 +19503,6 @@ HTML nested ordered list, open tags (T7497)
 </ol>
 </li>
 </ol>
-
 !! end
 
 !! test
@@ -19813,7 +19513,6 @@ HTML ordered list item with parameters oddity
 !! html
 <ol><li id="fragment">One</li>
 </ol>
-
 !! end
 
 # parsoid doesn't explicitly mark autonumbered links, see T55505
@@ -19862,7 +19561,6 @@ Fuzz testing: Parser13
 </td>
 </tr>
 </table>
-
 !! end
 
 # Note that Parsoid output differs from the PHP parser here: the PHP
@@ -19880,7 +19578,6 @@ http://<div id="toc" class="toc"><input type="checkbox" role="button" id="toctog
 <li class="toclevel-1 tocsection-1"><a href="#onmouseover.3D"><span class="tocnumber">1</span> <span class="toctext">onmouseover=</span></a></li>
 </ul>
 </div>
-
 
 !! html/php+tidy
 <h2><span class="mw-headline" id="onmouseover.3D">onmouseover=</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: onmouseover=">edit</a><span class="mw-editsection-bracket">]</span></span></h2><p>
@@ -19906,7 +19603,6 @@ parsoid=wt2html,html2html
 <table style="&#95;_TOC&#95;_">
 <tr><td></td></tr>
 </table>
-
 !! html/php+tidy
 <h2><span class="mw-headline" id="a">a</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: a">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <table style="&#95;_TOC&#95;_">
@@ -19951,7 +19647,6 @@ Fuzz testing: Parser21
 </td>
 </tr>
 </table>
-
 !! end
 
 !! test
@@ -19966,7 +19661,6 @@ http://===r:::https://b
 <table>
 <tr><td></td></tr>
 </table>
-
 !! end
 
 ## Remex doesn't account for fostered content.
@@ -19996,7 +19690,6 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 </td>
 </tr>
 </table>
-
 !! html/php+tidy
 
 {{{|
@@ -20008,8 +19701,7 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 <td>
 </td>
 </tr>
-</tbody></table><p><u class="&#124;">
-</u></p>
+</tbody></table>
 !! html/parsoid
 <p data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'>
 {{{|
@@ -20072,7 +19764,6 @@ Fuzz testing: URL adjacent extension (no space, dirty; pre)
 http://example.com<pre>junk</pre>
 !! html/php
 <a rel="nofollow" class="external free" href="http://example.com">http://example.com</a><pre>junk</pre>
-
 !! html/php+tidy
 <p><a rel="nofollow" class="external free" href="http://example.com">http://example.com</a></p><pre>junk</pre>
 !! html/parsoid
@@ -20085,7 +19776,6 @@ Fuzz testing: image with bogus manual thumbnail
 [[Image:foobar.jpg|thumbnail= ]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;">Error creating thumbnail:   <div class="thumbcaption"></div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"manualthumb","ak":"thumbnail= "}]}' data-mw='{"errors":[{"key":"apierror-invalidtitle","message":"Invalid thumbnail title.","params":{"name":""}}],"thumb":""}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{"href":"Image:foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="./Special:FilePath/Foobar.jpg" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"220"},"sa":{"resource":"Image:foobar.jpg"}}'/></a></figure>
 !! end
@@ -20099,7 +19789,6 @@ parsoid=wt2html
 <pre dir="&#10;"></pre>
 !! html/php
 <pre dir="&#10;"></pre>
-
 !! html/parsoid
 <pre dir="
 " typeof="mw:Extension/pre" about="#mwt2"data-mw='{"name":"pre","attrs":{"dir":"\n"},"body":{"extsrc":""}}'></pre>
@@ -20117,7 +19806,6 @@ parsoid=html2wt
 "></pre>
 !! html/php
 <pre dir=""></pre>
-
 !! end
 
 !! test
@@ -20126,7 +19814,6 @@ Templates in extension attributes are not expanded
 <pre dir="{{echo|ltr}}"></pre>
 !! html/php
 <pre dir="{{echo|ltr}}"></pre>
-
 !! html/parsoid
 <pre dir="{{echo|ltr}}" typeof="mw:Extension/pre" about="#mwt2" data-mw='{"name":"pre","attrs":{"dir":"{{echo|ltr}}"},"body":{"extsrc":""}}'></pre>
 !! end
@@ -20150,7 +19837,6 @@ Parsing optional HTML elements (T8171)
     </td><td> And yet som tabular data</td>
   </tr>
 </table>
-
 !! end
 
 !! test
@@ -20172,7 +19858,6 @@ Correct handling of <td>, <tr> (T8171)
     <td> And yet som tabular data</td>
   </tr>
 </table>
-
 !! end
 
 
@@ -20250,7 +19935,6 @@ Special page transclusion
 !! html
 <ul class="mw-prefixindex-list"><li><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></li>
 </ul>
-
 !! end
 
 !! test
@@ -20264,7 +19948,6 @@ Special page transclusion twice (T7021)
 </ul>
 <ul class="mw-prefixindex-list"><li><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></li>
 </ul>
-
 !! end
 
 !! test
@@ -20656,8 +20339,7 @@ section=2
 <!-- -->==sec1==
 ==sec2==
 !! html/php
-
-!!end
+!! end
 
 # Formerly testing for T4607, now resolved by the use of unmarked sections
 # instead of respecting HTML-style headings
@@ -21280,7 +20962,6 @@ File:File:Foobar.jpg
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" type="123" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{"type":"123","summary":"345"},"body":{"extsrc":"\nFile:File:Foobar.jpg\n"}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><figure-inline typeof="mw:Error mw:Image"><a href="./File:File:Foobar.jpg"><img resource="./File:File:Foobar.jpg" src="./Special:FilePath/File:Foobar.jpg" height="120" width="120"/></a></figure-inline></div><div class="gallerytext"></div></li>
@@ -21343,7 +21024,6 @@ image4    |300px| centre
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><figure-inline typeof="mw:Error mw:Image"><a href="./File:Image1.png"><img resource="./File:Image1.png" src="./Special:FilePath/Image1.png" height="120" width="120"/></a></figure-inline></div><div class="gallerytext"></div></li>
@@ -21405,7 +21085,6 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" style="max-width: 226px; _width: 226px;" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{"widths":"70px","heights":"40px","perrow":"2"},"body":{}}'>
 <li class="gallerycaption">Foo <a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a></li>
@@ -21466,7 +21145,6 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" style="max-width: 226px; _width: 226px;" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{"widths":"70px","heights":"40px","perrow":"2","caption":"Foo [[Main Page]]"},"body":{"extsrc":"\nFile:Nonexistent.jpg|caption\nFile:Nonexistent.jpg\nimage:foobar.jpg|some &#39;&#39;&#39;caption&#39;&#39;&#39; [[Main Page]]\nimage:foobar.jpg\nimage:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.\n"}}'>
 <li class="gallerycaption">Foo <a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a></li>
@@ -21492,7 +21170,6 @@ File:Foobar.jpg
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{"widths":"70","heights":"40"},"body":{"extsrc":"\nFile:Foobar.jpg\n"}}'>
 <li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><figure-inline typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="8" width="70"/></a></figure-inline></div><div class="gallerytext"></div></li>
@@ -21513,7 +21190,6 @@ File:Foobar.jpg
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{"widths":"70em","heights":"40em"},"body":{"extsrc":"\nFile:Foobar.jpg\n"}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><figure-inline typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></figure-inline></div><div class="gallerytext"></div></li>
@@ -21553,7 +21229,6 @@ image:foobar.jpg|link=Main Page#section|caption
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><figure-inline typeof="mw:Image"><a href="./Main_Page"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></figure-inline></div><div class="gallerytext"></div></li>
@@ -21583,7 +21258,6 @@ File:Foobar.jpg|{{echo|ho}}
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt6" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
 <li class="gallerycaption"><span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"hi"}},"i":0}}]}'>hi</span></li>
@@ -21612,7 +21286,6 @@ File:Foobar.jpg|Image caption
 			</div>
 		</div></li>
 </ul>
-
 !! end
 
 !! test
@@ -21643,7 +21316,6 @@ File:Foobar.jpg|alt=galleryalt|{{Test|unamedParam|alt=param}}
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt6" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><figure-inline typeof="mw:Image"><a href="./File:Foobar.jpg"><img alt="galleryalt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></figure-inline></div><div class="gallerytext"><figure-inline typeof="mw:Image" data-mw='{"caption":"desc"}'><a href="./File:Foobar.jpg"><img alt="inneralt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/20px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="2" width="20"/></a></figure-inline></div></li>
@@ -21697,7 +21369,6 @@ some <b>caption</b> <a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{"showfilename":""},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><figure-inline typeof="mw:Error mw:Image"><a href="./File:Nonexistent.jpg"><img resource="./File:Nonexistent.jpg" src="./Special:FilePath/Nonexistent.jpg" height="120" width="120"/></a></figure-inline></div><div class="gallerytext"><a href="./File:Nonexistent.jpg" class="galleryfilename galleryfilename-truncate" title="File:Nonexistent.jpg">File:Nonexistent.jpg</a>caption</div></li>
@@ -21745,7 +21416,6 @@ foobar.jpg
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><figure-inline typeof="mw:Error mw:Image"><a href="./File:Nonexistent.jpg"><img resource="./File:Nonexistent.jpg" src="./Special:FilePath/Nonexistent.jpg" height="120" width="120"/></a></figure-inline></div><div class="gallerytext"></div></li>
@@ -21773,7 +21443,6 @@ File:Foobar.jpg|alt=galleryalt|link=Wikilink
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><figure-inline typeof="mw:Image"><a href="./Wikilink"><img alt="galleryalt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></figure-inline></div><div class="gallerytext"></div></li>
@@ -21798,7 +21467,6 @@ File:Foobar.jpg|alt=galleryalt|link=http://www.example.org
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><figure-inline typeof="mw:Image"><a href="http://www.example.org"><img alt="galleryalt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></figure-inline></div><div class="gallerytext"></div></li>
@@ -21823,7 +21491,6 @@ File:foobar.jpg|caption|alt=galleryalt|link=http://www.example.org
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{"extsrc":"\nFile:foobar.jpg|caption|alt=galleryalt|link=http://www.example.org\n"}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><figure-inline typeof="mw:Image"><a href="http://www.example.org"><img alt="galleryalt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></figure-inline></div><div class="gallerytext">caption</div></li>
@@ -21849,7 +21516,6 @@ File:Foobar.jpg|alt=galleryalt|link=" onclick="alert('malicious javascript code!
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><figure-inline typeof="mw:Image"><a href="./%22_onclick=%22alert('malicious_javascript_code!');"><img alt="galleryalt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></figure-inline></div><div class="gallerytext"></div></li>
@@ -21876,7 +21542,6 @@ File:Foobar.jpg|link=<
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><figure-inline typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></figure-inline></div><div class="gallerytext">link=&lt;</div></li>
@@ -21919,7 +21584,6 @@ File:Foobar.jpg
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional center" style="text-align: center;" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{"class":"center","style":"text-align: center;"},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><figure-inline typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></figure-inline></div><div class="gallerytext"></div></li>
@@ -21944,7 +21608,6 @@ File:Foobar.jpg
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-slideshow" data-showthumbnails="1" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{"mode":"slideshow","showthumbnails":""},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px;"><figure-inline typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></figure-inline></div><div class="gallerytext"></div></li>
@@ -22164,7 +21827,6 @@ Centre-aligned image
 [[Image:foobar.jpg|centre]]
 !! html/php
 <div class="center"><div class="floatnone"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size mw-halign-center" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"center","ak":"centre"}]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"Image:foobar.jpg"}}'/></a></figure>
 !! end
@@ -22175,7 +21837,6 @@ None-aligned image
 [[Image:foobar.jpg|none]]
 !! html/php
 <div class="floatnone"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></div>
-
 !! html/parsoid
 <figure class="mw-default-size mw-halign-none" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"Image:foobar.jpg"}}'/></a></figure>
 !! end
@@ -22255,8 +21916,7 @@ dt/dd/dl test
 <dl><dd><dl><dt><dl><dt><dl><dt><dl><dd><dl><dd></dt></dl></dd></dl></dd></dl></dd></dl></dd></dl></dd></dl>
 !! html/parsoid
 <dl><dd><dl><dt><dl><dt><dl><dt><dl><dd><dl><dd></dd></dl></dd></dl></dt></dl></dt></dl></dt></dl></dd></dl>
-
-!!end
+!! end
 
 # Images with the "|" character in external URLs in comment tags; Eats half the comment, leaves unmatched "</a>" tag.
 !! test
@@ -22265,7 +21925,6 @@ Images with the "|" character in the comment
 [[File:Foobar.jpg|thumb|An [http://test/?param1=|left|&param2=|x external] URL]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>An <a rel="nofollow" class="external text" href="http://test/?param1=%7Cleft%7C&amp;param2=%7Cx">external</a> URL</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>An <a rel="mw:ExtLink" class="external text" href="http://test/?param1=%7Cleft%7C&amp;param2=%7Cx" data-parsoid='{"a":{"href":"http://test/?param1=%7Cleft%7C&amp;param2=%7Cx"},"sa":{"href":"http://test/?param1=|left|&amp;param2=|x"}}'>external</a> URL</figcaption></figure>
 !! end
@@ -22423,7 +22082,6 @@ Don't fall for the self-closing div
 <div>hello world</div/>
 !! html
 <div>hello world</div>
-
 !! end
 
 !! test
@@ -22478,7 +22136,6 @@ Inclusion of !userCanEdit() content
 {{MediaWiki:Fake}}
 !! html
 <h2><span class="mw-headline" id="header">header</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=MediaWiki:Fake&amp;action=edit&amp;section=T-1" title="MediaWiki:Fake">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 
@@ -22515,7 +22172,6 @@ Out-of-order TOC heading levels
 <h1><span class="mw-headline" id="1">1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: 1">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
 <h5><span class="mw-headline" id="5">5</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: 5">edit</a><span class="mw-editsection-bracket">]</span></span></h5>
 <h2><span class="mw-headline" id="2_2">2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 
@@ -22972,7 +22628,6 @@ conversion:
 цонверсион:
 </p>
 <h2><span class="mw-headline" id="Latinski">Латински</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Уредите одељак „Латински”">уреди</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! html/parsoid
 <h2 id="-{Naslov}-"><span id="-.7BNaslov.7D-" typeof="mw:FallbackId"></span><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"Naslov"}}'></span></h2>
 
@@ -23546,8 +23201,7 @@ language=zh variant=zh-cn
 !! html/php+tidy
 <span>ab<div>cd
 <span>ab<div>cd
-<span>ad
-</span></div></span></div></span>
+<span>ad</span></div></span></div></span>
 !! html/parsoid
 <span data-parsoid='{"stx":"html","autoInsertedEnd":true}'>a<div typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"b&lt;div data-parsoid=&apos;{\"stx\":\"html\",\"autoInsertedEnd\":true,\"dsr\":[10,16,5,0]}&apos;>c&lt;/div>"}}'></div>d
 
@@ -23753,7 +23407,6 @@ language=sr
 [[Датотека:Foobar.jpg|thumb|-{R|caption:}-]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="internal" title="Повећајте"></a></div>caption:</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"}]}'><a href="./Датотека:Foobar.jpg"><img resource="./Датотека:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"caption:"}}' data-parsoid='{"fl":["R"]}'></span></figcaption></figure>
 !! end
@@ -23766,7 +23419,6 @@ language=zh variant=zh-cn
 [[File:Foobar.jpg|thumb|-{|zh-cn:blog (hk: -{zh-hans|WEBJOURNAL}-, tw: -{zh-hans|WEBLOG}-)}-]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="放大"></a></div>blog (hk: WEBJOURNAL, tw: WEBLOG)</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"}]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><span typeof="mw:LanguageVariant" data-mw-variant='{"twoway":[{"l":"zh-cn","t":"blog (hk: &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"filter\":{\"l\":[\"zh-hans\"],\"t\":\"WEBJOURNAL\"}}&#39; data-parsoid=&#39;{\"fl\":[\"zh-hans\"],\"dsr\":[43,65,null,2]}&#39;>&lt;/span>, tw: &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"filter\":{\"l\":[\"zh-hans\"],\"t\":\"WEBLOG\"}}&#39; data-parsoid=&#39;{\"fl\":[\"zh-hans\"],\"dsr\":[71,89,null,2]}&#39;>&lt;/span>)"}]}'></span></figcaption></figure>
 !! end
@@ -23798,7 +23450,6 @@ File:foobar.jpg|{{Test|unamedParam|alt=-{R|param}-}}|alt=galleryalt
 			</div>
 		</div></li>
 </ul>
-
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt6" data-mw='{"name":"gallery","attrs":{},"body":{"extsrc":"\nFile:foobar.jpg|[[File:foobar.jpg|20px|desc|alt=-{R|foo}-|-{R|bar}-]]|alt=-{R|bat}-\nFile:foobar.jpg|{{Test|unamedParam|alt=-{R|param}-}}|alt=galleryalt\n"}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><figure-inline typeof="mw:Image"><a href="./File:Foobar.jpg"><img alt="" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></figure-inline></div><div class="gallerytext"><figure-inline typeof="mw:Image" data-mw='{"caption":"&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"disabled\":{\"t\":\"bar\"}}&#39; data-parsoid=&#39;{\"fl\":[\"R\"],\"dsr\":[68,77,null,2]}&#39;>&lt;/span>"}'><a href="./File:Foobar.jpg"><img alt="" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/20px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="2" width="20"/></a></figure-inline></div></li>
@@ -23871,7 +23522,6 @@ parsoid=wt2html,wt2wt,html2html
 <tr>
 <td>B
 </td></tr></table>
-
 !! html/parsoid
 <table>
 <tbody>
@@ -24100,7 +23750,6 @@ Morwen/13: Unclosed link followed by heading
 <p>[[link
 </p>
 <h2><span class="mw-headline" id="heading">heading</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: heading">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 !! test
@@ -24112,7 +23761,6 @@ HHP2.1: Heuristics for headings in preprocessor parenthetical structures
 <p>{{foo|
 </p>
 <h1><span class="mw-headline" id="heading">heading</span></h1>
-
 !! end
 
 !! test
@@ -24124,7 +23772,6 @@ HHP2.2: Heuristics for headings in preprocessor parenthetical structures
 <p>{{foo|
 </p>
 <h2><span class="mw-headline" id="heading">heading</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: heading">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 !! test
@@ -24146,7 +23793,6 @@ Line two</div>
 !! html
 <div>Line one
 Line two</div>
-
 !! end
 
 !! test
@@ -24161,7 +23807,6 @@ Line two</div>
 <p>Line one
 </p>
 Line two</div>
-
 !! end
 
 !! test
@@ -24176,7 +23821,6 @@ Line two
 <p>Line two
 </p>
 </div>
-
 !! end
 
 !! test
@@ -24193,7 +23837,6 @@ Line two
 </p><p>Line two
 </p>
 </div>
-
 !! end
 
 # doBlockLevels screws up this output and Remex cleans up as much as it can.
@@ -24221,7 +23864,6 @@ Line two</blockquote>
 !! html
 <blockquote>Line one
 Line two</blockquote>
-
 !! html+tidy
 <blockquote><p>Line one
 Line two</p></blockquote>
@@ -24239,7 +23881,6 @@ Line two</blockquote>
 <p>Line one
 </p>
 Line two</blockquote>
-
 !! html+tidy
 <blockquote>
 <p>Line one
@@ -24259,7 +23900,6 @@ Line two
 <p>Line two
 </p>
 </blockquote>
-
 !! html+tidy
 <blockquote><p>Line one
 </p><p>Line two
@@ -24281,7 +23921,6 @@ Line two
 </p><p>Line two
 </p>
 </blockquote>
-
 !! end
 
 ## This is a corner case interaction between the paragraph wrapping in the
@@ -24299,7 +23938,6 @@ Line two</div></blockquote>
 !! html
 <blockquote><div>Line one
 Line two</div></blockquote>
-
 !! end
 
 !! test
@@ -24314,7 +23952,6 @@ Line two</div></blockquote>
 <p>Line one
 </p>
 Line two</div></blockquote>
-
 !! end
 
 !! test
@@ -24329,7 +23966,6 @@ Line two
 <p>Line two
 </p>
 </div></blockquote>
-
 !! end
 
 !! test
@@ -24346,7 +23982,6 @@ Line two
 </p><p>Line two
 </p>
 </div></blockquote>
-
 !! end
 
 !! test
@@ -24370,7 +24005,6 @@ Free external link invading image caption
 [[Image:Foobar.jpg|thumb|http://x|hello]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>hello</div></div></div>
-
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"bogus","ak":"http://x"},{"ck":"caption","ak":"hello"}]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"resource":"Image:Foobar.jpg"}}'/></a><figcaption>hello</figcaption></figure>
 !! end
@@ -24613,7 +24247,6 @@ Id starting with underscore
 <div id="_ref"></div>
 !! html/*
 <div id="_ref"></div>
-
 !! end
 
 !! test
@@ -24883,7 +24516,6 @@ paragraphs</indicator>
 <tr>
 <td>cell
 </td></tr></table>
-
 10=<p>Two
 </p><p>paragraphs
 </p>
@@ -24947,13 +24579,11 @@ Play a bit with r67090 and T5158
 <div style="width:50% !important">&#160;</div>
 <div style="width:50% !important">&#160;</div>
 <div style="border&#32;: solid;">&#160;</div>
-
 !! html/parsoid
 <div style="width:50% !important" data-parsoid='{"stx":"html"}'><span typeof="mw:Entity" data-parsoid='{"srcContent":" "}'> </span></div>
 <div style="width:50% !important" data-parsoid='{"stx":"html","a":{"style":"width:50% !important"},"sa":{"style":"width:50%&amp;nbsp;!important"}}'><span typeof="mw:Entity" data-parsoid='{"srcContent":" "}'> </span></div>
 <div style="width:50% !important" data-parsoid='{"stx":"html","a":{"style":"width:50% !important"},"sa":{"style":"width:50%&amp;#160;!important"}}'><span typeof="mw:Entity" data-parsoid='{"srcContent":" "}'> </span></div>
 <div style="border : solid;" data-parsoid='{"stx":"html"}'><span typeof="mw:Entity" data-parsoid='{"srcContent":" "}'> </span></div>
-
 !! end
 
 !! test
@@ -24997,7 +24627,6 @@ HTML5 data attributes
 <p><span data-foo="bar">Baz</span>
 </p>
 <p data-abc-def_hij="">Quuz</p>
-
 !! html/parsoid
 <p><span data-foo="bar" data-parsoid='{"stx":"html"}'>Baz</span></p>
 <p data-abc-def_hij="" data-parsoid='{"stx":"html"}'>Quuz</p>
@@ -25009,7 +24638,6 @@ Strip reserved data attributes
 <div data-mw="foo" data-parsoid="bar" data-mw-someext="baz" data-ok="fred" data-ooui="xyzzy" data-bad:ns="ns">d</div>
 !! html/php
 <div data-ok="fred">d</div>
-
 !! html/parsoid
 <div data-x-data-mw="foo" data-x-data-parsoid="bar" data-x-data-mw-someext="baz" data-ok="fred" data-parsoid='{"stx":"html","a":{"data-ooui":null,"data-bad:ns":null},"sa":{"data-ooui":"xyzzy","data-bad:ns":"ns"}}'>d</div>
 !! end
@@ -25189,7 +24817,6 @@ __TOC__
 </div>
 
 <h2><span class="mw-headline" id="Lost_episodes"><i>Lost</i> episodes</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Lost episodes">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! html/parsoid
 <meta property="mw:PageProp/toc" data-parsoid='{}'/>
 <h2 id="Lost_episodes" data-parsoid='{}'><i>Lost</i> episodes</h2>
@@ -25210,7 +24837,6 @@ __TOC__
 </div>
 
 <h2><span class="mw-headline" id="should_be_bold_then_normal_text"><b>should be bold</b> then normal text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: should be bold then normal text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! html/parsoid
 <meta property="mw:PageProp/toc" data-parsoid='{}'/>
 <h2 id="should_be_bold_then_normal_text" data-parsoid='{}'><b>should be bold</b> then normal text</h2>
@@ -25231,7 +24857,6 @@ __TOC__
 </div>
 
 <h2><span class="mw-headline" id="Image">Image <a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Image">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! html/parsoid
 <meta property="mw:PageProp/toc" data-parsoid='{}'/>
 <h2 id="Image" data-parsoid='{}'>Image <figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"Image:foobar.jpg"}}'/></a></figure-inline></h2>
@@ -25252,7 +24877,6 @@ __TOC__
 </div>
 
 <h2><span class="mw-headline" id="Quote"><blockquote>Quote</blockquote></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Quote">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! html/php+tidy
 <div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
@@ -25312,7 +24936,6 @@ __TOC__
 
 <h2><span class="mw-headline" id="Foo_Bar"><i>Foo</i> <b>Bar</b></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Foo_Bar_2"><i>Foo</i> <blockquote>Bar</blockquote></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! html/php+tidy
 <div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
@@ -25351,7 +24974,6 @@ __TOC__
 
 <h2><span class="mw-headline" id="Hello"><sup class="in-h2">Hello</sup></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Hello">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="b.22.3EEvilbye"><sup class="a"> b"&gt;Evilbye</sup></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: b&quot;&gt;Evilbye">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! html/parsoid
 <meta property="mw:PageProp/toc" />
 <h2 id="Hello"><sup class="in-h2" data-parsoid='{"stx":"html"}'>Hello</sup></h2>
@@ -25388,7 +25010,6 @@ __TOC__
 <h2><span class="mw-headline" id="The_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span style="font-style: italic">The attributes on these span tags must be deleted from the TOC</span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: The attributes on these span tags must be deleted from the TOC">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="All_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span style="font-style: italic" dir="ltr">All attributes on these span tags must be deleted from the TOC</span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: All attributes on these span tags must be deleted from the TOC">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Attributes_after_dir_on_these_span_tags_must_be_deleted_from_the_TOC"><span dir="ltr" style="font-style: italic">Attributes after dir on these span tags must be deleted from the TOC</span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Attributes after dir on these span tags must be deleted from the TOC">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! html/parsoid
 <meta property="mw:PageProp/toc" data-parsoid='{}'/>
 <h2 id="C++" data-parsoid='{}'><span id="C.2B.2B" typeof="mw:FallbackId"></span><span dir="ltr">C++</span></h2>
@@ -25411,7 +25032,6 @@ __TOC__
 </div>
 
 <h2><span class="mw-headline" id="test"><bdi>test</bdi></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: test">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! html/parsoid
 <meta property="mw:PageProp/toc" data-parsoid='{}'/>
 <h2 id="test" data-parsoid='{}'><bdi>test</bdi></h2>
@@ -25430,7 +25050,6 @@ __TOC__
 </div>
 
 <h2><span class="mw-headline" id="test_test_test"><s>test</s> test <strike>test</strike></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: test test test">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! html/parsoid
 <meta property="mw:PageProp/toc" data-parsoid='{}'/>
 <h2 id="test_test_test" data-parsoid='{}'><s>test</s> test <strike>test</strike></h2>
@@ -25451,7 +25070,6 @@ __TOC__
 </div>
 
 <h2><span class="mw-headline" id="Style"><style>.foo {}</style>Style<style>.bar {}</style></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Style">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! html/parsoid
 <meta property="mw:PageProp/toc" data-parsoid="{}"/>
 <h2 id="Style" data-parsoid="{}"><style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo {}"}}'>.foo {}</style>Style<style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".bar {}"}}'>.bar {}</style></h2>
@@ -25472,7 +25090,6 @@ __TOC__
 </div>
 
 <h2><span class="mw-headline" id="Script"><script>alert(1);</script>Script<script>alert(1);</script></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Script">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! html/parsoid
 <meta property="mw:PageProp/toc" data-parsoid='{}'/>
 <h2 id="Script" data-parsoid='{}'><script typeof="mw:Extension/html" about="#mwt4" data-mw='{"name":"html","attrs":{},"body":{"extsrc":"&lt;script>alert(1);&lt;/script>"}}'>alert(1);</script>Script<script typeof="mw:Extension/html" about="#mwt6" data-mw='{"name":"html","attrs":{},"body":{"extsrc":"&lt;script>alert(1);&lt;/script>"}}'>alert(1);</script></h2>
@@ -25491,7 +25108,6 @@ __TOC__
 </div>
 
 <h2><span class="mw-headline" id="x">x</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: x">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! html/parsoid
 <meta property="mw:PageProp/toc" data-parsoid='{}'/>
 <h2 id="x" data-parsoid='{}'>x</h2>
@@ -25511,7 +25127,6 @@ title=[[Main Page]]
 {{int:T34057}}
 !! html
 <h2><span class="mw-headline" id="Headline_text">Headline text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Headline text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 !! test
@@ -25630,7 +25245,6 @@ nowiki inside link inside heading (T20295)
 ==[[foo|x<nowiki>y</nowiki>z]]==
 !! html
 <h2><span class="mw-headline" id="xyz"><a href="/wiki/Foo" title="Foo">xyz</a></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: xyz">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 !! test
@@ -25639,8 +25253,7 @@ new support for bdi element (T33817)
 <p dir="rtl" lang="he">ולדימיר לנין (ברוסית: <bdi lang="ru">Владимир Ленин</bdi>, 24 באפריל 1870–22 בינואר 1924) הוא מנהיג פוליטי קומוניסטי רוסי.</p>
 !! html
 <p dir="rtl" lang="he">ולדימיר לנין (ברוסית: <bdi lang="ru">Владимир Ленин</bdi>, 24 באפריל 1870–22 בינואר 1924) הוא מנהיג פוליטי קומוניסטי רוסי.</p>
-
-!!end
+!! end
 
 !! test
 Ignore pipe between table row attributes
@@ -25658,7 +25271,6 @@ Ignore pipe between table row attributes
 <tr id="foo" style="color: red">
 <td>bar
 </td></tr></table>
-
 !! end
 
 !!test
@@ -25787,7 +25399,6 @@ Lead
 <h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Section_4">Section 4</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Section 4">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Section_5">Section 5</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Section 5">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! end
 
 
@@ -25882,8 +25493,7 @@ parsoid=wt2html,wt2wt
 !! wikitext
 <small>'''foo[[File:Foobar.jpg|thumb|caption]]bar'''</small>
 !! html/php+tidy
-<p><small><b>foo</b></small></p><small><b><div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div></b></small><p><small><b>bar</b></small>
-</p>
+<p><small><b>foo</b></small></p><small><b><div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div></b></small><p><small><b>bar</b></small></p>
 !! html/parsoid
 <p><small><b>foo</b></small></p><small><b><figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>caption</figcaption></figure></b></small><p><small><b>bar</b></small></p>
 !! end
@@ -26072,8 +25682,7 @@ parsoid=html2wt
 ====<nowiki>=foo=</nowiki>====
 =====<nowiki>=foo=</nowiki>=====
 ======<nowiki>=foo=</nowiki>======
-
-!!end
+!! end
 
 !! test
 Headings: 2. Outside heading nest on a single line <h1>foo</h1>*bar
@@ -26184,7 +25793,6 @@ parsoid=wt2html,html2html
 <h1><span class="mw-headline" id=".3D">=</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: =">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
 <h1><span class="mw-headline" id=".3D.3D">==</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: ==">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
 <h2><span class="mw-headline" id=".3D_2">=</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: =">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-
 !! html/parsoid
 <p>=
 ==</p>
@@ -26316,7 +25924,6 @@ new
 
 ==A==
 a
-
 !! end
 
 !! test
@@ -26329,7 +25936,6 @@ parsoid=wt2html
 ===============
 !! html/php
 <h6><span id=".3D.3D.3D"></span><span class="mw-headline" id="===">===</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: ===">edit</a><span class="mw-editsection-bracket">]</span></span></h6>
-
 !! html/parsoid
 <h6 id="==="><span id=".3D.3D.3D" typeof="mw:FallbackId"></span>===</h6>
 !! end
@@ -26673,7 +26279,6 @@ parsoid=html2wt
 </td>
 <td>a<i><div>b||c</div></i>
 </td></tr></table>
-
 !! end
 
 !! test
@@ -26685,7 +26290,6 @@ parsoid=html2wt
 <tr>
 <td>foo!!bar
 </td></tr></table>
-
 !! wikitext
 {|
 |foo!!bar
@@ -26701,7 +26305,6 @@ parsoid=html2wt
 <tr>
 <th>foo!bar
 </th></tr></table>
-
 !! wikitext
 {|
 !foo!bar
@@ -26737,7 +26340,6 @@ parsoid=html2wt
 </th>
 <th><i><span>foo!!bar</span></i>
 </th></tr></table>
-
 !! end
 
 !! test
@@ -26761,7 +26363,6 @@ parsoid=html2wt
 </th>
 <th>foo||bar
 </th></tr></table>
-
 !! end
 
 !! test
@@ -26776,7 +26377,6 @@ parsoid=html2wt
 <tr>
 <td>-bar
 </td></tr></table>
-
 !! wikitext
 {|
 !-bar
@@ -26797,7 +26397,6 @@ parsoid=html2wt
 <tr>
 <td>+bar
 </td></tr></table>
-
 !! wikitext
 {|
 !+bar
@@ -26860,7 +26459,6 @@ bar|baz
 <td>x
 <div>a|b</div>
 </td></tr></table>
-
 !! end
 
 !! test
@@ -26888,7 +26486,6 @@ parsoid=html2wt
 </td>
 <td>-2
 </td></tr></table>
-
 !! end
 
 !! test
@@ -26915,7 +26512,6 @@ parsoid=html2wt
 <td>x</td>
 <td>}
 </td></tr></table>
-
 !! end
 
 !! test
@@ -27010,7 +26606,6 @@ parsoid=html2wt
 </td>
 <td>bar&gt;
 </td></tr></table>
-
 !! end
 
 #### --------------- Links ----------------
@@ -27895,8 +27490,7 @@ parsoid=wt2html,html2html
 !! wikitext
 <div title="Hello world />Foo
 !! html/php+tidy
-<div title="Hello world"></div><p>Foo
-</p>
+<div title="Hello world"></div><p>Foo</p>
 !! html/parsoid
 <div title="Hello world " data-parsoid='{"stx":"html","selfClose":true}'></div><p>Foo</p>
 !! end
@@ -27914,13 +27508,11 @@ parsoid=wt2html,html2html
 <tr>
 <td title="Hello world">Foo
 </td></tr></table>
-
 !! html/parsoid
 <table>
 <tr>
 <td title="Hello world">Foo
 </td></tr></table>
-
 !! end
 
 !! test
@@ -27939,14 +27531,12 @@ parsoid=wt2html,html2html
 </td>
 <td style="color:red">Bar
 </td></tr></table>
-
 !! html/parsoid
 <table><tbody>
 <tr>
 <td title="Hello world">Foo
 </td><td style="color: red">Bar
 </td></tr></tbody></table>
-
 !! end
 
 !!test
@@ -27961,8 +27551,7 @@ Accept empty td cell attribute
 <td align="center">foo</td>
 <td>
 </td></tr></table>
-
-!!end
+!! end
 
 !!test
 Non-empty attributes in th-cells
@@ -27976,8 +27565,7 @@ Non-empty attributes in th-cells
 <th>Foo</th>
 <th style="color: red">Bar
 </th></tr></table>
-
-!!end
+!! end
 
 !!test
 Accept empty attributes in th-cells
@@ -27991,8 +27579,7 @@ Accept empty attributes in th-cells
 <th>foo</th>
 <th>bar
 </th></tr></table>
-
-!!end
+!! end
 
 !!test
 Empty table rows go away
@@ -28012,7 +27599,6 @@ Empty table rows go away
 </td></tr>
 
 </table>
-
 !! end
 
 ###
@@ -28031,7 +27617,6 @@ RT-ed inter-element separators should be valid separators
 <table>
 
 </table>
-
 !! html/parsoid
 <table>
 <tbody><tr class='mw-empty-elt' data-parsoid='{"startTagSrc":"|-","a":{"[[foo]]":null},"sa":{"[[foo]]":""},"autoInsertedEnd":true}'></tr>
@@ -28079,8 +27664,7 @@ Empty TD followed by TD with tpl-generated attribute
 </td>
 <td>foo
 </td></tr></table>
-
-!!end
+!! end
 
 !!test
 Indented table with an empty td
@@ -28098,8 +27682,7 @@ Indented table with an empty td
 </td>
 <td>foo
 </td></tr></table>
-
-!!end
+!! end
 
 !! test
 Indented table with blank lines in between (T85627)
@@ -28116,7 +27699,6 @@ Indented table with blank lines in between (T85627)
 <p><br /> 
 </p>
 </td></tr></table>
-
 !! html/parsoid
  <table>
  <tbody><tr><td>foo
@@ -28138,7 +27720,6 @@ Indented block & table
 <tr>
 <td>foo
 </td></tr></table>
-
 !! html/parsoid
  <div data-parsoid='{"stx":"html"}'>foo</div>
  <table><tbody>
@@ -28159,7 +27740,6 @@ Indent and comment before table row
 <tr>
 <td>there
 </td></tr></table>
-
 !! html/parsoid
 <table>
  <!--hi--><tbody><tr data-parsoid='{"startTagSrc":"|-","autoInsertedEnd":true}'>
@@ -28213,8 +27793,7 @@ Empty TR followed by mixed-ws-comment line should RT correctly
 <tr>
 <!--c--> </tr><!--d-->
 </tbody></table>
-
-!!end
+!! end
 
 !!test
 Multi-line image caption generated by templates with/without trailing newlines
@@ -28479,8 +28058,7 @@ parsoid=wt2wt,wt2html
 !! wikitext
 <table>{{echo|hi</table>hello}}
 !! html/php+tidy
-hi<table></table><p>hello
-</p>
+hi<table></table><p>hello</p>
 !! html/parsoid
 <p about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"firstWikitextNode":"TABLE_html","pi":[[{"k":"1"}]]}' data-mw='{"parts":["&lt;table>",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"hi&lt;/table>hello"}},"i":0}}]}'>hi</p><table about="#mwt2"></table><p about="#mwt2">hello</p>
 !! end
@@ -28532,7 +28110,6 @@ hello
 {{OpenTable}}
 |}
 !! html/parsoid
-
 !! end
 
 !! test
@@ -30676,7 +30253,6 @@ parsoid={
 
 [[foo]]
 x
-
 !! end
 
 !! test
@@ -31680,7 +31256,6 @@ Decoding of HTML entities in embedded HTML tags
 <table class="1&2&amp;3&amp;amp;4&amp;amp;amp;5"><tr><td>x</td></tr></table>
 !! html/php
 <table class="1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"><tr><td>x</td></tr></table>
-
 !! html/parsoid
 <table class="1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5" data-parsoid='{"stx":"html","a":{"class":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"sa":{"class":"1&amp;2&amp;amp;3&amp;amp;amp;4&amp;amp;amp;amp;5"}}'><tbody><tr data-parsoid='{"stx":"html"}'><td data-parsoid='{"stx":"html"}'>x</td></tr></tbody></table>
 !! end
