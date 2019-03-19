@@ -80,6 +80,14 @@ class NameTableStoreTest extends MediaWikiTestCase {
 			->willReturnCallback( function () {
 				return call_user_func_array( [ $this->db, 'insertId' ], func_get_args() );
 			} );
+		$mock->expects( $this->any() )
+			->method( 'query' )
+			->willReturn( [] );
+		$mock->expects( $this->any() )
+			->method( 'isOpen' )
+			->willReturn( true );
+		$wrapper = TestingAccessWrapper::newFromObject( $mock );
+		$wrapper->queryLogger = new NullLogger();
 		return $mock;
 	}
 

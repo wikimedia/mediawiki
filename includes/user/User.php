@@ -1715,7 +1715,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 		if ( $success ) {
 			$this->mTouched = $newTouched;
-			$this->clearSharedCache();
+			$this->clearSharedCache( 'changed' );
 		} else {
 			// Clears on failure too since that is desired if the cache is stale
 			$this->clearSharedCache( 'refresh' );
@@ -2771,29 +2771,26 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * Called implicitly from invalidateCache() and saveSettings().
 	 *
-	 * @param string $mode Use 'refresh' to clear now; otherwise before DB commit
+	 * @param string $mode Use 'refresh' to clear now or 'changed' to clear before DB commit
 	 */
-	public function clearSharedCache( $mode = 'changed' ) {
+	public function clearSharedCache( $mode = 'refresh' ) {
 		if ( !$this->getId() ) {
 			return;
 		}
 
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$key = $this->getCacheKey( $cache );
+
 		if ( $mode === 'refresh' ) {
-			$cache->delete( $key, 1 );
+			$cache->delete( $key, 1 ); // low tombstone/"hold-off" TTL
 		} else {
-			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-			if ( $lb->hasOrMadeRecentMasterChanges() ) {
-				$lb->getConnection( DB_MASTER )->onTransactionPreCommitOrIdle(
-					function () use ( $cache, $key ) {
-						$cache->delete( $key );
-					},
-					__METHOD__
-				);
-			} else {
-				$cache->delete( $key );
-			}
+			$lb->getConnection( DB_MASTER )->onTransactionPreCommitOrIdle(
+				function () use ( $cache, $key ) {
+					$cache->delete( $key );
+				},
+				__METHOD__
+			);
 		}
 	}
 
@@ -2804,7 +2801,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function invalidateCache() {
 		$this->touch();
-		$this->clearSharedCache();
+		$this->clearSharedCache( 'changed' );
 	}
 
 	/**
@@ -4255,7 +4252,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$this->saveOptions();
 
 		Hooks::run( 'UserSaveSettings', [ $this ] );
-		$this->clearSharedCache();
+		$this->clearSharedCache( 'changed' );
 		$this->getUserPage()->purgeSquid();
 	}
 
