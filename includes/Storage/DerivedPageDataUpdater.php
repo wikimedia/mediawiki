@@ -24,7 +24,6 @@ namespace MediaWiki\Storage;
 
 use ApiStashEdit;
 use CategoryMembershipChangeJob;
-use RefreshSecondaryDataUpdate;
 use Content;
 use ContentHandler;
 use DataUpdate;
@@ -1591,31 +1590,14 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 				$update->setRevision( $legacyRevision );
 				$update->setTriggeringUser( $triggeringUser );
 			}
-		}
-
-		if ( $options['defer'] === false ) {
-			foreach ( $updates as $update ) {
-				if ( $update instanceof DataUpdate && $options['transactionTicket'] !== null ) {
+			if ( $options['defer'] === false ) {
+				if ( $options['transactionTicket'] !== null ) {
 					$update->setTransactionTicket( $options['transactionTicket'] );
 				}
 				$update->doUpdate();
+			} else {
+				DeferredUpdates::addUpdate( $update, $options['defer'] );
 			}
-		} else {
-			$cacheTime = $this->getCanonicalParserOutput()->getCacheTime();
-			// Bundle all of the data updates into a single deferred update wrapper so that
-			// any failure will cause at most one refreshLinks job to be enqueued by
-			// DeferredUpdates::doUpdates(). This is hard to do when there are many separate
-			// updates that are not defined as being related.
-			$update = new RefreshSecondaryDataUpdate(
-				$this->wikiPage,
-				$updates,
-				$options,
-				$cacheTime,
-				$this->loadbalancerFactory->getLocalDomainID()
-			);
-			$update->setRevision( $legacyRevision );
-			$update->setTriggeringUser( $triggeringUser );
-			DeferredUpdates::addUpdate( $update, $options['defer'] );
 		}
 	}
 
