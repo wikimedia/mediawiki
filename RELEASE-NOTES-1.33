@@ -91,6 +91,8 @@ For notes on 1.32.x and older releases, see HISTORY.
 * Special:ActiveUsers will no longer filter out users who became inactive since
   the last time the active users query cache was updated.
 * (T215675) RecentChange and ManualLogEntry implement new Taggable interface.
+* (T215675) Added a hook, ManualLogEntryBeforePublish, to allow extensions
+  to modify (example: add tags) log entries.
 
 === New developer features in 1.33 ===
 * The AuthManagerLoginAuthenticateAudit hook has a new parameter for
