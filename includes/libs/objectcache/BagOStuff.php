@@ -636,29 +636,15 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/**
 	 * Increase stored value of $key by $value while preserving its TTL
 	 * @param string $key Key to increase
-	 * @param int $value Value to add to $key (Default 1)
+	 * @param int $value Value to add to $key (default: 1) [optional]
 	 * @return int|bool New value or false on failure
 	 */
-	public function incr( $key, $value = 1 ) {
-		if ( !$this->lock( $key, 1 ) ) {
-			return false;
-		}
-		$n = $this->get( $key, self::READ_LATEST );
-		if ( $this->isInteger( $n ) ) { // key exists?
-			$n += intval( $value );
-			$this->set( $key, max( 0, $n ) ); // exptime?
-		} else {
-			$n = false;
-		}
-		$this->unlock( $key );
-
-		return $n;
-	}
+	abstract public function incr( $key, $value = 1 );
 
 	/**
 	 * Decrease stored value of $key by $value while preserving its TTL
 	 * @param string $key
-	 * @param int $value
+	 * @param int $value Value to subtract from $key (default: 1) [optional]
 	 * @return int|bool New value or false on failure
 	 */
 	public function decr( $key, $value = 1 ) {

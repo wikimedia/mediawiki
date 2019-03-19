@@ -120,6 +120,18 @@ class HashBagOStuff extends BagOStuff {
 		return true;
 	}
 
+	public function incr( $key, $value = 1 ) {
+		$n = $this->get( $key );
+		if ( $this->isInteger( $n ) ) {
+			$n = max( $n + intval( $value ), 0 );
+			$this->bag[$key][self::KEY_VAL] = $n;
+
+			return $n;
+		}
+
+		return false;
+	}
+
 	public function clear() {
 		$this->bag = [];
 	}

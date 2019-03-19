@@ -79,6 +79,18 @@ class MemcachedBagOStuff extends BagOStuff {
 			$this->fixExpiry( $exptime ) );
 	}
 
+	public function incr( $key, $value = 1 ) {
+		$n = $this->client->incr( $this->validateKeyEncoding( $key ), $value );
+
+		return ( $n !== false && $n !== null ) ? $n : false;
+	}
+
+	public function decr( $key, $value = 1 ) {
+		$n = $this->client->decr( $this->validateKeyEncoding( $key ), $value );
+
+		return ( $n !== false && $n !== null ) ? $n : false;
+	}
+
 	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
 		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
 	}
