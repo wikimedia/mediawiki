@@ -96,7 +96,8 @@
 			"Tavleen",
 			"Jayantanth",
 			"Gopalindians",
-			"Prong$31"
+			"Prong$31",
+			"Eisheeta"
 		]
 	},
 	"tog-underline": "कड़ी रेखांकित:",
@@ -142,6 +143,7 @@
 	"tog-norollbackdiff": "सम्पादन वापस लेने के बाद अन्तर न दिखायें",
 	"tog-useeditwarning": "जब मैं किसी सम्पादन पृष्ठ को बिना बदलावों को बिना सहेजे छोड़ूँ तो मुझे सूचित करें।",
 	"tog-prefershttps": "सत्र आरम्भ करते समय सदैव सुरक्षित कनेक्शन का प्रयोग करें",
+	"tog-showrollbackconfirmation": "रोलबैक लिंक पर क्लिक करते समय एक पुष्टिकरण संकेत दिखाएं",
 	"underline-always": "सदैव",
 	"underline-never": "कभी नहीं",
 	"underline-default": "त्वचा या प्राथमिक ब्राउज़र",
@@ -531,6 +533,7 @@
 	"badretype": "आपने जो कूटशब्द दिये हैं वे एक दूसरे से नहीं मिलते। फिर से लिखें।",
 	"usernameinprogress": "इस प्रयोक्ता का खाता निर्माण अभी चालू है।\nकृपया प्रतीक्षा करें।",
 	"userexists": "आपका दिया सदस्यनाम पहले से प्रयोग में है।\nकृपया कोई अन्य सदस्यनाम चुनें।",
+	"createacct-normalization": "आपका उपयोगकर्ता नाम तकनीकी प्रतिबंधों के कारण \"$2\" में समायोजित किया जाएगा।",
 	"loginerror": "लॉग इन त्रुटि",
 	"createacct-error": "खाता निर्माण त्रुटि",
 	"createaccounterror": "खाता नहीं बन पाया: $1",
@@ -3777,6 +3780,7 @@
 	"log-action-filter-suppress-reblock": "पुन: ब्लॉक द्वारा युजर अवरोध",
 	"log-action-filter-upload-upload": "नया अपलोड",
 	"log-action-filter-upload-overwrite": "फिर से अपलोड",
+	"log-action-filter-upload-revert": "पूर्ववत करें",
 	"authmanager-authn-not-in-progress": "प्रमाणीकरण प्रगति में नहीं है या सत्र डेटा खो गया है। कृपया शुरुआत से फिर से शुरू करें",
 	"authmanager-authn-no-primary": "आपूर्ति किए गए क्रेडेंशियल्स को प्रमाणित नहीं किया जा सका।",
 	"authmanager-authn-no-local-user": "दिए गए क्रेडेंशियल इस विकी पर किसी भी उपयोगकर्ता से जुड़े नहीं हैं।",

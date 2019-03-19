@@ -122,7 +122,7 @@
 	"tog-enotifminoredits": "Auch bei kleinen Änderungen an Seiten und Dateien E-Mails senden",
 	"tog-enotifrevealaddr": "Meine E-Mail-Adresse in Benachrichtigungs-E-Mails anzeigen",
 	"tog-shownumberswatching": "Anzahl der beobachtenden Benutzer anzeigen",
-	"tog-oldsig": "Die vorhandene Signatur:",
+	"tog-oldsig": "Die genutzte Signatur:",
 	"tog-fancysig": "Signatur als Wikitext behandeln (ohne automatische Verlinkung)",
 	"tog-uselivepreview": "Vorschau ohne Neuladen der Seite anzeigen",
 	"tog-forceeditsummary": "Warnen, sofern beim Speichern die Zusammenfassung fehlt",

@@ -39,7 +39,7 @@
 	"exif-rowsperstrip": "Number of rows per strip",
 	"exif-stripbytecounts": "Bytes per compressed strip",
 	"exif-jpeginterchangeformat": "Offset to JPEG SOI",
-	"exif-jpeginterchangeformatlength": "Bytes of JPEG data",
+	"exif-jpeginterchangeformatlength": "JPEG verilerinin baytı",
 	"exif-whitepoint": "Beyaz nokta kromatiği",
 	"exif-primarychromaticities": "Chromaticities of primarities",
 	"exif-ycbcrcoefficients": "Renk aralığı dönüştürme matris katsayısı",
