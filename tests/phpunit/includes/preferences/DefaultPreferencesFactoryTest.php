@@ -87,6 +87,8 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 	 * @covers MediaWiki\Preferences\DefaultPreferencesFactory::renderingPreferences()
 	 */
 	public function testShowRollbackConfIsHiddenForUsersWithoutRollbackRights() {
+		// TODO Remove temporary skip marker once feature is added back in
+		$this->markTestSkipped();
 		$userMock = $this->getMockBuilder( User::class )
 			->disableOriginalConstructor()
 			->getMock();
@@ -107,6 +109,8 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 	 * @covers MediaWiki\Preferences\DefaultPreferencesFactory::renderingPreferences()
 	 */
 	public function testShowRollbackConfIsShownForUsersWithRollbackRights() {
+		// TODO Remove temporary skip marker once feature is added back in
+		$this->markTestSkipped();
 		$userMock = $this->getMockBuilder( User::class )
 			->disableOriginalConstructor()
 			->getMock();
