@@ -91,11 +91,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @return Config
 	 */
 	public function getConfig() {
-		if ( !is_null( $this->config ) ) {
-			return $this->config;
-		} else {
-			return $this->getContext()->getConfig();
-		}
+		return $this->config ?: $this->getContext()->getConfig();
 	}
 
 	/**
@@ -111,11 +107,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @return Timing
 	 */
 	public function getTiming() {
-		if ( !is_null( $this->timing ) ) {
-			return $this->timing;
-		} else {
-			return $this->getContext()->getTiming();
-		}
+		return $this->timing ?: $this->getContext()->getTiming();
 	}
 
 	/**
@@ -129,11 +121,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @return WebRequest
 	 */
 	public function getRequest() {
-		if ( !is_null( $this->request ) ) {
-			return $this->request;
-		} else {
-			return $this->getContext()->getRequest();
-		}
+		return $this->request ?: $this->getContext()->getRequest();
 	}
 
 	/**
@@ -147,11 +135,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @return Title|null
 	 */
 	public function getTitle() {
-		if ( !is_null( $this->title ) ) {
-			return $this->title;
-		} else {
-			return $this->getContext()->getTitle();
-		}
+		return $this->title ?: $this->getContext()->getTitle();
 	}
 
 	/**
@@ -165,11 +149,13 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	public function canUseWikiPage() {
 		if ( $this->wikipage !== null ) {
 			return true;
-		} elseif ( $this->title !== null ) {
-			return $this->title->canExist();
-		} else {
-			return $this->getContext()->canUseWikiPage();
 		}
+
+		if ( $this->title !== null ) {
+			return $this->title->canExist();
+		}
+
+		return $this->getContext()->canUseWikiPage();
 	}
 
 	/**
@@ -190,11 +176,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @return WikiPage
 	 */
 	public function getWikiPage() {
-		if ( !is_null( $this->wikipage ) ) {
-			return $this->wikipage;
-		} else {
-			return $this->getContext()->getWikiPage();
-		}
+		return $this->wikipage ?: $this->getContext()->getWikiPage();
 	}
 
 	/**
@@ -208,11 +190,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @return OutputPage
 	 */
 	public function getOutput() {
-		if ( !is_null( $this->output ) ) {
-			return $this->output;
-		} else {
-			return $this->getContext()->getOutput();
-		}
+		return $this->output ?: $this->getContext()->getOutput();
 	}
 
 	/**
@@ -226,11 +204,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @return User
 	 */
 	public function getUser() {
-		if ( !is_null( $this->user ) ) {
-			return $this->user;
-		} else {
-			return $this->getContext()->getUser();
-		}
+		return $this->user ?: $this->getContext()->getUser();
 	}
 
 	/**
@@ -255,11 +229,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @since 1.19
 	 */
 	public function getLanguage() {
-		if ( !is_null( $this->lang ) ) {
-			return $this->lang;
-		} else {
-			return $this->getContext()->getLanguage();
-		}
+		return $this->lang ?: $this->getContext()->getLanguage();
 	}
 
 	/**
@@ -274,11 +244,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @return Skin
 	 */
 	public function getSkin() {
-		if ( !is_null( $this->skin ) ) {
-			return $this->skin;
-		} else {
-			return $this->getContext()->getSkin();
-		}
+		return $this->skin ?: $this->getContext()->getSkin();
 	}
 
 	/**
