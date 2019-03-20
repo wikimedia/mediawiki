@@ -9042,6 +9042,16 @@ $wgOriginTrials = [];
 $wgPriorityHints = false;
 
 /**
+ * Enable Element Timing.
+ *
+ * @warning EXPERIMENTAL!
+ *
+ * @since 1.34
+ * @var bool
+ */
+$wgElementTiming = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
