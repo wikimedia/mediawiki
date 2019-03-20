@@ -127,6 +127,7 @@
 	"tog-norollbackdiff": "Visa inte diff efter tillbakarullning",
 	"tog-useeditwarning": "Varna mig om jag lämnar en redigeringssida med osparade ändringar",
 	"tog-prefershttps": "Använd alltid en säker anslutning medan jag är inloggad",
+	"tog-showrollbackconfirmation": "Visa en bekräftelsedialog när man klickar på en tillbakarullningslänk",
 	"underline-always": "Alltid",
 	"underline-never": "Aldrig",
 	"underline-default": "Webbläsarens eller utseendets standardinställning",
