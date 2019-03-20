@@ -4,7 +4,8 @@
 			"Ebraminio",
 			"Huji",
 			"Meisam",
-			"ZxxZxxZ"
+			"ZxxZxxZ",
+			"Reza1615"
 		]
 	},
 	"exif-imagewidth": "عرض",
@@ -52,6 +53,7 @@
 	"exif-exposuretime": "زمان نوردهی",
 	"exif-exposuretime-format": "$1 ثانیه ($2)",
 	"exif-fnumber": "ضریب اف",
+	"exif-fnumber-format": "f/$1",
 	"exif-exposureprogram": "برنامهٔ نوردهی",
 	"exif-spectralsensitivity": "حساسیت طیفی",
 	"exif-isospeedratings": "درجه‌بندی سرعت ایزو",
@@ -190,7 +192,14 @@
 	"exif-compression-4": "رمزگذاری نمابر سی‌سی‌آی‌تی‌تی گروه ۴",
 	"exif-copyrighted-true": "دارای حق تکثیر",
 	"exif-copyrighted-false": "وضعیت حق‌تکثیر تعیین نشده است",
+	"exif-photometricinterpretation-0": "سیاه و سفید (سفید ۰ است)",
 	"exif-photometricinterpretation-1": "سیاه و سفید (سیاه ۰ است)",
+	"exif-photometricinterpretation-3": "پالت",
+	"exif-photometricinterpretation-4": "شفافیت پوشش",
+	"exif-photometricinterpretation-5": "جداشده (احتمالاُ CMYK)",
+	"exif-photometricinterpretation-8": "CIE L*a*b*",
+	"exif-photometricinterpretation-9": "CIE L*a*b* (رمزنگاری ICC)",
+	"exif-photometricinterpretation-10": "CIE L*a*b* (رمزنگاری ITU)",
 	"exif-unknowndate": "تاریخ نامعلوم",
 	"exif-orientation-1": "عادی",
 	"exif-orientation-2": "افقی پشت و روشده",
