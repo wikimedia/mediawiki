@@ -1,4 +1,4 @@
-/**
+﻿/**
 * hoverIntent is similar to jQuery's built-in "hover" function except that
 * instead of firing the onMouseOver event immediately, hoverIntent checks
 * to see if the user's mouse has slowed down (beneath the sensitivity
@@ -81,7 +81,7 @@
 			if ( p == this ) { return false; }
 
 			// copy objects to be passed into t (required for event object to be passed in IE)
-			var ev = $.extend({},e);
+			var ev = jQuery.extend({},e);
 			var ob = this;
 
 			// cancel hoverIntent timer if it exists

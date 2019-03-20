@@ -223,10 +223,10 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.form' => [
-		'scripts' => 'resources/lib/jquery.form.js',
+		'scripts' => 'resources/lib/jquery.form/jquery.form.js',
 	],
 	'jquery.fullscreen' => [
-		'scripts' => 'resources/lib/jquery.fullscreen.js',
+		'scripts' => 'resources/lib/jquery.fullscreen/jquery.fullscreen.js',
 	],
 	'jquery.getAttrs' => [
 		'scripts' => 'resources/src/jquery/jquery.getAttrs.js',
@@ -240,7 +240,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.hoverIntent' => [
-		'scripts' => 'resources/lib/jquery.hoverIntent.js',
+		'scripts' => 'resources/lib/jquery.hoverIntent/jquery.hoverIntent.js',
 	],
 	'jquery.i18n' => [
 		'scripts' => [
@@ -299,7 +299,7 @@ return [
 	],
 	'jquery.jStorage' => [
 		'deprecated' => 'Please use "mediawiki.storage" instead.',
-		'scripts' => 'resources/lib/jquery.jStorage.js',
+		'scripts' => 'resources/lib/jquery.jStorage/jstorage.js',
 	],
 	'jquery.suggestions' => [
 		'targets' => [ 'desktop', 'mobile' ],
@@ -332,7 +332,7 @@ return [
 	'jquery.throttle-debounce' => [
 		'deprecated' => 'Please use OO.ui.throttle/debounce instead. See '
 			. 'https://phabricator.wikimedia.org/T213426',
-		'scripts' => 'resources/lib/jquery.ba-throttle-debounce.js',
+		'scripts' => 'resources/lib/jquery.throttle-debounce/jquery.ba-throttle-debounce.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 

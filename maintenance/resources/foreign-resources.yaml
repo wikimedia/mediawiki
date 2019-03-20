@@ -90,6 +90,36 @@ jquery.cookie:
       src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/CHANGELOG.md
       integrity: sha384-SQOHhLc7PHxHDQpGE/zv9XfXKL0A7OBu8kuyVDnHVp+zSoWyRw4xUJ+LSm5ql4kS
 
+jquery.form:
+  type: file
+  src: https://raw.githubusercontent.com/jquery-form/form/ff80d9ddf4/jquery.form.js
+  integrity: sha384-h4G2CrcSbixzMvrrK259cNBYaL/vS1D4+KdUN9NJDzQnTU1bQ6Avluget+Id13M7
+  dest: jquery.form.js
+
+jquery.fullscreen:
+  type: file
+  src: https://raw.githubusercontent.com/theopolisme/jquery-fullscreen/v2.1.0/jquery.fullscreen.js
+  integrity: sha384-G4KPs2d99tgcsyUnJ3eeZ1r2hEKDwZfc4+/xowL/LIemq2VVwEE8HpVAWt4WYNLR
+  dest: jquery.fullscreen.js
+
+jquery.hoverIntent:
+  type: file
+  src: https://raw.githubusercontent.com/briancherne/jquery-hoverIntent/823603fdac/jquery.hoverIntent.js
+  integrity: sha384-lca0haN0hqFGGh2aYUhtAgX9dhVHfQnTADH4svDeM6gcXnL7aFGeAi1NYwipDMyS
+  dest: jquery.hoverIntent.js
+
+jquery.jStorage:
+  type: file
+  src: https://raw.githubusercontent.com/andris9/jStorage/v0.4.12/jstorage.js
+  integrity: sha384-geMeN8k803kPp6cqRL4VNfuSM1L8DcbKRk0St/KHJzxgpX9S0y9FA6HxA/JgucrJ
+  dest: jstorage.js
+
+jquery.throttle-debounce:
+  type: file
+  src: https://raw.githubusercontent.com/cowboy/jquery-throttle-debounce/v1.1/jquery.ba-throttle-debounce.js
+  integrity: sha384-ULOy4DbAghrCqRcrTJLXOY9e4gDpWh0BeEf6xMSL0VtNudXWggcb6AmrVrl4KDAP
+  dest: jquery.ba-throttle-debounce.js
+
 moment:
   type: tar
   src: https://codeload.github.com/moment/moment/tar.gz/2.24.0
