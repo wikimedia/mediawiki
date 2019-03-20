@@ -65,20 +65,10 @@ class BagOStuffTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers BagOStuff::merge
-	 * @covers BagOStuff::mergeViaLock
 	 * @covers BagOStuff::mergeViaCas
 	 */
 	public function testMerge() {
 		$key = $this->cache->makeKey( self::TEST_KEY );
-		$locks = false;
-		$checkLockingCallback = function ( BagOStuff $cache, $key, $oldVal ) use ( &$locks ) {
-			$locks = $cache->get( "$key:lock" );
-
-			return false;
-		};
-
-		$this->cache->merge( $key, $checkLockingCallback, 5 );
-		$this->assertFalse( $this->cache->get( $key ) );
 
 		$calls = 0;
 		$casRace = false; // emulate a race
@@ -103,31 +93,19 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->assertEquals( 'mergedmerged', $this->cache->get( $key ) );
 
 		$calls = 0;
-		if ( $locks ) {
-			// merge were something else already was merging (e.g. had the lock)
-			$this->cache->lock( $key );
-			$this->assertFalse(
-				$this->cache->merge( $key, $callback, 5, 1 ),
-				'Non-blocking merge (locking)'
-			);
-			$this->cache->unlock( $key );
-			$this->assertEquals( 0, $calls );
-		} else {
-			$casRace = true;
-			$this->assertFalse(
-				$this->cache->merge( $key, $callback, 5, 1 ),
-				'Non-blocking merge (CAS)'
-			);
-			$this->assertEquals( 1, $calls );
-		}
+		$casRace = true;
+		$this->assertFalse(
+			$this->cache->merge( $key, $callback, 5, 1 ),
+			'Non-blocking merge (CAS)'
+		);
+		$this->assertEquals( 1, $calls );
 	}
 
 	/**
 	 * @covers BagOStuff::merge
-	 * @covers BagOStuff::mergeViaLock
 	 * @dataProvider provideTestMerge_fork
 	 */
-	public function testMerge_fork( $exists, $winsLocking, $resLocking, $resCAS ) {
+	public function testMerge_fork( $exists, $childWins, $resCAS ) {
 		$key = $this->cache->makeKey( self::TEST_KEY );
 		$pCallback = function ( BagOStuff $cache, $key, $oldVal ) {
 			return ( $oldVal === false ) ? 'init-parent' : $oldVal . '-merged-parent';
@@ -153,16 +131,12 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$fork &= !$this->cache instanceof MultiWriteBagOStuff;
 		if ( $fork ) {
 			$pid = null;
-			$locked = false;
 			// Function to start merge(), run another merge() midway through, then finish
-			$func = function ( BagOStuff $cache, $key, $cur )
-				use ( $pCallback, $cCallback, &$pid, &$locked )
-			{
+			$func = function ( $cache, $key, $cur ) use ( $pCallback, $cCallback, &$pid ) {
 				$pid = pcntl_fork();
 				if ( $pid == -1 ) {
 					return false;
 				} elseif ( $pid ) {
-					$locked = $cache->get( "$key:lock" ); // parent has lock?
 					pcntl_wait( $status );
 
 					return $pCallback( $cache, $key, $cur );
@@ -182,15 +156,9 @@ class BagOStuffTest extends MediaWikiTestCase {
 				return; // can't fork, ignore this test...
 			}
 
-			if ( $locked ) {
-				// merge succeed since child was locked out
-				$this->assertEquals( $winsLocking, $merged );
-				$this->assertEquals( $this->cache->get( $key ), $resLocking );
-			} else {
-				// merge has failed because child process was merging (and we only attempted once)
-				$this->assertEquals( !$winsLocking, $merged );
-				$this->assertEquals( $this->cache->get( $key ), $resCAS );
-			}
+			// merge has failed because child process was merging (and we only attempted once)
+			$this->assertEquals( !$childWins, $merged );
+			$this->assertEquals( $this->cache->get( $key ), $resCAS );
 		} else {
 			$this->markTestSkipped( 'No pcntl methods available' );
 		}
@@ -198,9 +166,9 @@ class BagOStuffTest extends MediaWikiTestCase {
 
 	function provideTestMerge_fork() {
 		return [
-			// (already exists, parent wins if locking, result if locking, result if CAS)
-			[ false, true, 'init-parent', 'init-child' ],
-			[ true, true, 'x-merged-parent', 'x-merged-child' ]
+			// (already exists, child wins CAS, result of CAS)
+			[ false, true, 'init-child' ],
+			[ true, true, 'x-merged-child' ]
 		];
 	}
 

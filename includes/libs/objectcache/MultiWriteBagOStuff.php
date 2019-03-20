@@ -104,7 +104,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		if ( ( $flags & self::READ_LATEST ) == self::READ_LATEST ) {
 			// If the latest write was a delete(), we do NOT want to fallback
 			// to the other tiers and possibly see the old value. Also, this
-			// is used by mergeViaLock(), which only needs to hit the primary.
+			// is used by merge(), which only needs to hit the primary.
 			return $this->caches[0]->get( $key, $flags );
 		}
 
