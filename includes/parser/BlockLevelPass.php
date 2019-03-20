@@ -192,6 +192,7 @@ class BlockLevelPass {
 		# happening here is handling of block-level elements p, pre,
 		# and making lists from lines starting with * # : etc.
 		$textLines = StringUtils::explode( "\n", $text );
+		$lineCount = substr_count( $text, "\n" ) + 1;
 
 		$lastPrefix = $output = '';
 		$this->DTopen = $inBlockElem = false;
@@ -199,7 +200,6 @@ class BlockLevelPass {
 		$pendingPTag = false;
 		$inBlockquote = false;
 
-		$lineCount = count( $textLines );
 		foreach ( $textLines as $i => $inputLine ) {
 			# Fix up $lineStart
 			if ( !$this->lineStart ) {
