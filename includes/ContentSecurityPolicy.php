@@ -98,11 +98,14 @@ class ContentSecurityPolicy {
 	 *
 	 * @param int $reportOnly Either self::REPORT_ONLY_MODE or self::FULL_MODE
 	 * @return string Name of http header
+	 * @throws UnexpectedValueException
 	 */
 	private function getHeaderName( $reportOnly ) {
 		if ( $reportOnly === self::REPORT_ONLY_MODE ) {
 			return 'Content-Security-Policy-Report-Only';
-		} elseif ( $reportOnly === self::FULL_MODE ) {
+		}
+
+		if ( $reportOnly === self::FULL_MODE ) {
 			return 'Content-Security-Policy';
 		}
 		throw new UnexpectedValueException( $reportOnly );
@@ -111,7 +114,8 @@ class ContentSecurityPolicy {
 	/**
 	 * Determine what CSP policies to set for this page
 	 *
-	 * @param array|bool $config Policy configuration (Either $wgCSPHeader or $wgCSPReportOnlyHeader)
+	 * @param array|bool $policyConfig Policy configuration
+	 *   (Either $wgCSPHeader or $wgCSPReportOnlyHeader)
 	 * @param int $mode self::REPORT_ONLY_MODE, self::FULL_MODE
 	 * @return string Policy directives, or empty string for no policy.
 	 */
@@ -152,8 +156,8 @@ class ContentSecurityPolicy {
 			}
 		}
 		// Note: default on if unspecified.
-		if ( ( !isset( $policyConfig['unsafeFallback'] )
-			|| $policyConfig['unsafeFallback'] )
+		if ( !isset( $policyConfig['unsafeFallback'] )
+			|| $policyConfig['unsafeFallback']
 		) {
 			// unsafe-inline should be ignored on browsers
 			// that support 'nonce-foo' sources.
