@@ -139,7 +139,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/**
 	 * Get an item with the given key, regenerating and setting it if not found
 	 *
-	 * If the callback returns false, then nothing is stored.
+	 * Nothing is stored nor deleted if the callback returns false
 	 *
 	 * @param string $key
 	 * @param int $ttl Time-to-live (seconds)
@@ -176,7 +176,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @param string $key
 	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
 	 * @param int|null $oldFlags [unused]
-	 * @return mixed Returns false on failure and if the item does not exist
+	 * @return mixed Returns false on failure or if the item does not exist
 	 */
 	public function get( $key, $flags = 0, $oldFlags = null ) {
 		// B/C for ( $key, &$casToken = null, $flags = 0 )
@@ -223,7 +223,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/**
 	 * @param string $key
 	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
-	 * @return mixed Returns false on failure and if the item does not exist
+	 * @return mixed Returns false on failure or if the item does not exist
 	 */
 	abstract protected function doGet( $key, $flags = 0 );
 
@@ -233,7 +233,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @param string $key
 	 * @param mixed &$casToken
 	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
-	 * @return mixed Returns false on failure and if the item does not exist
+	 * @return mixed Returns false on failure or if the item does not exist
 	 * @throws Exception
 	 */
 	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
@@ -267,7 +267,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * (which will be false if not present), and takes the arguments:
 	 * (this BagOStuff, cache key, current value, TTL).
 	 * The TTL parameter is reference set to $exptime. It can be overriden in the callback.
-	 * If the callback returns false, then the current value will be unchanged (including TTL).
+	 * Nothing is stored nor deleted if the callback returns false.
 	 *
 	 * @param string $key
 	 * @param callable $callback Callback method to be executed
@@ -422,18 +422,32 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * Reset the TTL on a key if it exists
+	 * Change the expiration on a key if it exists
+	 *
+	 * If an expiry in the past is given then the key will immediately be expired
 	 *
 	 * @param string $key
-	 * @param int $expiry
+	 * @param int $expiry TTL or UNIX timestamp
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
-	 * @return bool Success Returns false if there is no key
+	 * @return bool Success Returns false on failure or if the item does not exist
 	 * @since 1.28
 	 */
 	public function changeTTL( $key, $expiry = 0, $flags = 0 ) {
-		$value = $this->get( $key );
+		$found = false;
 
-		return ( $value === false ) ? false : $this->set( $key, $value, $expiry, $flags );
+		$ok = $this->merge(
+			$key,
+			function ( $cache, $ttl, $currentValue ) use ( &$found ) {
+				$found = ( $currentValue !== false );
+
+				return $currentValue; // nothing is written if this is false
+			},
+			$expiry,
+			1, // 1 attempt
+			$flags
+		);
+
+		return ( $ok && $found );
 	}
 
 	/**
