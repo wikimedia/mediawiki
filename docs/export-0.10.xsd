@@ -224,7 +224,7 @@
 				<!-- This isn't a good idea; we should be using "ID" instead of "NMTOKEN" -->
 				<!-- However, "NMTOKEN" is strictest definition that is both compatible with existing -->
 				<!-- usage ([0-9]+) and with the "ID" type. -->
-				<attribute name="id" type="NMTOKEN" />
+				<attribute name="id" use="optional" type="NMTOKEN" />
 				<attribute name="bytes" use="optional" type="nonNegativeInteger" />
 			</extension>
 		</simpleContent>
