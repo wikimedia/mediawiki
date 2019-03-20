@@ -345,10 +345,10 @@ class NameTableStore {
 	/**
 	 * Reap the WANCache entry for this table.
 	 *
-	 * @param callable $purgeCallback callback to 'purge' the WAN cache
+	 * @param callable $purgeCallback Callback to 'purge' the WAN cache
 	 */
 	private function purgeWANCache( $purgeCallback ) {
-		// If the LB has no DB changes don't both with onTransactionPreCommitOrIdle
+		// If the LB has no DB changes don't bother with onTransactionPreCommitOrIdle
 		if ( !$this->loadBalancer->hasOrMadeRecentMasterChanges() ) {
 			$purgeCallback();
 			return;
