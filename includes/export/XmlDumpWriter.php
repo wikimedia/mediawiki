@@ -22,13 +22,22 @@
  *
  * @file
  */
-
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Storage\SqlBlobStore;
 
 /**
  * @ingroup Dump
  */
 class XmlDumpWriter {
+
+	/**
+	 * Title of the currently processed page
+	 *
+	 * @var Title|null
+	 */
+	private $currentTitle = null;
+
 	/**
 	 * Opens the XML output stream's root "<mediawiki>" element.
 	 * This does not include an xml directive, so is safe to include
@@ -159,12 +168,13 @@ class XmlDumpWriter {
 	 */
 	public function openPage( $row ) {
 		$out = "  <page>\n";
-		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-		$out .= '    ' . Xml::elementClean( 'title', [], self::canonicalTitle( $title ) ) . "\n";
+		$this->currentTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
+		$canonicalTitle = self::canonicalTitle( $this->currentTitle );
+		$out .= '    ' . Xml::elementClean( 'title', [], $canonicalTitle ) . "\n";
 		$out .= '    ' . Xml::element( 'ns', [], strval( $row->page_namespace ) ) . "\n";
 		$out .= '    ' . Xml::element( 'id', [], strval( $row->page_id ) ) . "\n";
 		if ( $row->page_is_redirect ) {
-			$page = WikiPage::factory( $title );
+			$page = WikiPage::factory( $this->currentTitle );
 			$redirect = $page->getRedirectTarget();
 			if ( $redirect instanceof Title && $redirect->isValidRedirectTarget() ) {
 				$out .= '    ';
@@ -178,7 +188,7 @@ class XmlDumpWriter {
 				strval( $row->page_restrictions ) ) . "\n";
 		}
 
-		Hooks::run( 'XmlDumpWriterOpenPage', [ $this, &$out, $row, $title ] );
+		Hooks::run( 'XmlDumpWriterOpenPage', [ $this, &$out, $row, $this->currentTitle ] );
 
 		return $out;
 	}
@@ -191,6 +201,20 @@ class XmlDumpWriter {
 	 */
 	function closePage() {
 		return "  </page>\n";
+	}
+
+	/**
+	 * @return RevisionStore
+	 */
+	private function getRevisionStore() {
+		return MediaWikiServices::getInstance()->getRevisionStore();
+	}
+
+	/**
+	 * @return SqlBlobStore
+	 */
+	private function getBlobStore() {
+		return MediaWikiServices::getInstance()->getBlobStore();
 	}
 
 	/**
@@ -228,16 +252,17 @@ class XmlDumpWriter {
 			}
 		}
 
+		// TODO: rev_content_model no longer exists with MCR, see T174031
 		if ( isset( $row->rev_content_model ) && !is_null( $row->rev_content_model ) ) {
 			$content_model = strval( $row->rev_content_model );
 		} else {
 			// probably using $wgContentHandlerUseDB = false;
-			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-			$content_model = ContentHandler::getDefaultModelFor( $title );
+			$content_model = ContentHandler::getDefaultModelFor( $this->currentTitle );
 		}
 
 		$content_handler = ContentHandler::getForModelID( $content_model );
 
+		// TODO: rev_content_format no longer exists with MCR, see T174031
 		if ( isset( $row->rev_content_format ) && !is_null( $row->rev_content_format ) ) {
 			$content_format = strval( $row->rev_content_format );
 		} else {
@@ -258,11 +283,44 @@ class XmlDumpWriter {
 			$out .= "      " . Xml::elementClean( 'text',
 				[ 'xml:space' => 'preserve', 'bytes' => intval( $row->rev_len ) ],
 				strval( $text ) ) . "\n";
-		} else {
-			// Stub output
+		} elseif ( isset( $row->_load_content ) ) {
+			// TODO: make this fully MCR aware, see T174031
+			$rev = $this->getRevisionStore()->newRevisionFromRow( $row, 0, $this->currentTitle );
+			$slot = $rev->getSlot( 'main' );
+			$content = $slot->getContent();
+
+			if ( $content instanceof TextContent ) {
+				// HACK: For text based models, bypass the serialization step.
+				// This allows extensions (like Flow)that use incompatible combinations
+				// of serialization format and content model.
+				$text = $content->getNativeData();
+			} else {
+				$text = $content->serialize( $content_format );
+			}
+
+			$text = $content_handler->exportTransform( $text, $content_format );
+			$out .= "      " . Xml::elementClean( 'text',
+				[ 'xml:space' => 'preserve', 'bytes' => intval( $slot->getSize() ) ],
+				strval( $text ) ) . "\n";
+		} elseif ( isset( $row->rev_text_id ) ) {
+			// Stub output for pre-MCR schema
+			// TODO: MCR: rev_text_id only exists in the pre-MCR schema. Remove this when
+			// we drop support for the old schema.
 			$out .= "      " . Xml::element( 'text',
 				[ 'id' => $row->rev_text_id, 'bytes' => intval( $row->rev_len ) ],
 				"" ) . "\n";
+		} else {
+			// Backwards-compatible stub output for MCR aware schema
+			// TODO: MCR: emit content addresses instead of text ids, see T174031, T199121
+			$rev = $this->getRevisionStore()->newRevisionFromRow( $row, 0, $this->currentTitle );
+			$slot = $rev->getSlot( 'main' );
+
+			// Note that this is currently the ONLY reason we have a BlobStore here at all.
+			// When removing this line, check whether the BlobStore has become unused.
+			$textId = $this->getBlobStore()->getTextIdFromAddress( $slot->getAddress() );
+			$out .= "      " . Xml::element( 'text',
+					[ 'id' => $textId, 'bytes' => intval( $slot->getSize() ) ],
+					"" ) . "\n";
 		}
 
 		if ( isset( $row->rev_sha1 )
