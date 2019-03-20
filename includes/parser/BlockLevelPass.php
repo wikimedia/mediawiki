@@ -192,6 +192,7 @@ class BlockLevelPass {
 		# happening here is handling of block-level elements p, pre,
 		# and making lists from lines starting with * # : etc.
 		$textLines = StringUtils::explode( "\n", $text );
+		# Count this way because $textLines could be an ExplodeIterator
 		$lineCount = substr_count( $text, "\n" ) + 1;
 
 		$lastPrefix = $output = '';
@@ -200,7 +201,9 @@ class BlockLevelPass {
 		$pendingPTag = false;
 		$inBlockquote = false;
 
-		foreach ( $textLines as $i => $inputLine ) {
+		$nextLineNum = 0;
+		foreach ( $textLines as $inputLine ) {
+			$nextLineNum += 1;
 			# Fix up $lineStart
 			if ( !$this->lineStart ) {
 				$output .= $inputLine;
@@ -407,7 +410,7 @@ class BlockLevelPass {
 					$output .= $t;
 					// Add a newline if there's an open paragraph
 					// or we've yet to reach the last line.
-					if ( $i < $lineCount - 1 || $this->hasOpenParagraph() ) {
+					if ( $nextLineNum < $lineCount || $this->hasOpenParagraph() ) {
 						$output .= "\n";
 					}
 				} else {
