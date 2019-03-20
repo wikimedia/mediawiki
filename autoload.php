@@ -426,6 +426,7 @@ $wgAutoloadLocalClasses = [
 	'DumpFilter' => __DIR__ . '/includes/export/DumpFilter.php',
 	'DumpGZipOutput' => __DIR__ . '/includes/export/DumpGZipOutput.php',
 	'DumpIterator' => __DIR__ . '/maintenance/dumpIterator.php',
+	'DumpLBZip2Output' => __DIR__ . '/includes/export/DumpLBZip2Output.php',
 	'DumpLatestFilter' => __DIR__ . '/includes/export/DumpLatestFilter.php',
 	'DumpLinks' => __DIR__ . '/maintenance/dumpLinks.php',
 	'DumpMessages' => __DIR__ . '/maintenance/language/dumpMessages.php',
