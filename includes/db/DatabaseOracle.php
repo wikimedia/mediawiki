@@ -116,7 +116,7 @@ class DatabaseOracle extends Database {
 			$this->setFlag( DBO_PERSISTENT );
 		}
 
-		$session_mode = $this->flags & DBO_SYSDBA ? OCI_SYSDBA : OCI_DEFAULT;
+		$session_mode = ( $this->flags & DBO_SYSDBA ) ? OCI_SYSDBA : OCI_DEFAULT;
 
 		Wikimedia\suppressWarnings();
 		if ( $this->flags & DBO_PERSISTENT ) {
