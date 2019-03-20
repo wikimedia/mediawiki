@@ -542,7 +542,7 @@ class ApiUpload extends ApiBase {
 		}
 
 		// Check blocks
-		if ( $user->isBlocked() ) {
+		if ( $user->isBlockedFromUpload() ) {
 			$this->dieBlocked( $user->getBlock() );
 		}
 
