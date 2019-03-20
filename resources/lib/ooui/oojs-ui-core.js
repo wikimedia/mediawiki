@@ -6,7 +6,7 @@
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-03-14T00:52:20Z
+ * Date: 2019-03-20T23:07:02Z
  */
 ( function ( OO ) {
 
@@ -7470,6 +7470,7 @@ OO.ui.MenuSectionOptionWidget = function OoUiMenuSectionOptionWidget( config ) {
 	this.$element
 		.addClass( 'oo-ui-menuSectionOptionWidget' )
 		.removeAttr( 'role aria-selected' );
+	this.selected = false;
 };
 
 /* Setup */
