@@ -152,7 +152,7 @@ abstract class TablePager extends IndexPager {
 
 		$tableClass = $this->getTableClass();
 		$ret = Html::openElement( 'table', [
-			'class' => "mw-datatable $tableClass" ]
+			'class' => " $tableClass" ]
 		);
 		$ret .= Html::rawElement( 'thead', [], Html::rawElement( 'tr', [], "\n" . $s . "\n" ) );
 		$ret .= Html::openElement( 'tbody' ) . "\n";
@@ -266,10 +266,11 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
+	 * TablePager relies on `mw-datatable` for styling, see T214208
 	 * @return string
 	 */
 	protected function getTableClass() {
-		return 'TablePager';
+		return 'mw-datatable';
 	}
 
 	/**
