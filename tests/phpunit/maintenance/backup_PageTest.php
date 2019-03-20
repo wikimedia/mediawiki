@@ -3,8 +3,13 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use DumpBackup;
+use MediaWiki\MediaWikiServices;
+use MediaWikiTestCase;
+use MWException;
 use Title;
 use WikiExporter;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\LoadBalancer;
 use WikiPage;
 
 /**
@@ -26,6 +31,11 @@ class BackupDumperPageTest extends DumpTestCase {
 	private $revId3_1, $textId3_1, $revId3_2, $textId3_2;
 	private $revId4_1, $textId4_1;
 	private $namespace, $talk_namespace;
+
+	/**
+	 * @var LoadBalancer|null
+	 */
+	private $streamingLoadBalancer = null;
 
 	function addDBData() {
 		// be sure, titles created here using english namespace names
@@ -101,15 +111,73 @@ class BackupDumperPageTest extends DumpTestCase {
 			"Page ids increasing without holes" );
 	}
 
+	function tearDown() {
+		parent::tearDown();
+
+		if ( isset( $this->streamingLoadBalancer ) ) {
+			$this->streamingLoadBalancer->closeAll();
+		}
+	}
+
+	/**
+	 * Returns a new database connection which is separate from the conenctions returned
+	 * by the default LoadBalancer instance.
+	 *
+	 * @return IDatabase
+	 */
+	private function newStreamingDBConnection() {
+		// Create a *new* LoadBalancer, so no connections are shared
+		if ( !$this->streamingLoadBalancer ) {
+			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
+			$this->streamingLoadBalancer = $lbFactory->newMainLB();
+		}
+
+		$db = $this->streamingLoadBalancer->getConnection( DB_REPLICA );
+
+		// Make sure the DB connection has the fake table clones and the fake table prefix
+		MediaWikiTestCase::setupDatabaseWithTestPrefix( $db );
+
+		// Make sure the DB connection has all the test data
+		$this->copyTestData( $this->db, $db );
+
+		return $db;
+	}
+
+	/**
+	 * @param array $argv
+	 * @param int $startId
+	 * @param int $endId
+	 *
+	 * @return DumpBackup
+	 */
+	private function newDumpBackup( $argv, $startId, $endId ) {
+		$dumper = new DumpBackup( $argv );
+		$dumper->startId = $startId;
+		$dumper->endId = $endId;
+		$dumper->reporting = false;
+
+		// NOTE: The copyTestData() method used by newStreamingDBConnection()
+		// doesn't work with SQLite (T217607).
+		// But DatabaseSqlite doesn't support streaming anyway, so just skip that part.
+		if ( $this->db->getType() === 'sqlite' ) {
+			$dumper->setDB( $this->db );
+		} else {
+			$dumper->setDB( $this->newStreamingDBConnection() );
+		}
+
+		return $dumper;
+	}
+
 	function testFullTextPlain() {
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
 
-		$dumper = new DumpBackup();
-		$dumper->loadWithArgv( [ '--full', '--quiet', '--output', 'file:' . $fname ] );
-		$dumper->startId = $this->pageId1;
-		$dumper->endId = $this->pageId4 + 1;
-		$dumper->setDB( $this->db );
+		$dumper = $this->newDumpBackup(
+			[ '--full', '--quiet', '--output', 'file:' . $fname ],
+			$this->pageId1,
+			$this->pageId4 + 1
+		);
 
 		// Performing the dump
 		$dumper->execute();
@@ -161,11 +229,11 @@ class BackupDumperPageTest extends DumpTestCase {
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
 
-		$dumper = new DumpBackup();
-		$dumper->loadWithArgv( [ '--full', '--quiet', '--output', 'file:' . $fname, '--stub' ] );
-		$dumper->startId = $this->pageId1;
-		$dumper->endId = $this->pageId4 + 1;
-		$dumper->setDB( $this->db );
+		$dumper = $this->newDumpBackup(
+			[ '--full', '--quiet', '--output', 'file:' . $fname, '--stub' ],
+			$this->pageId1,
+			$this->pageId4 + 1
+		);
 
 		// Performing the dump
 		$dumper->execute();
@@ -211,11 +279,11 @@ class BackupDumperPageTest extends DumpTestCase {
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
 
-		$dumper = new DumpBackup( [ '--output', 'file:' . $fname ] );
-		$dumper->startId = $this->pageId1;
-		$dumper->endId = $this->pageId4 + 1;
-		$dumper->reporting = false;
-		$dumper->setDB( $this->db );
+		$dumper = $this->newDumpBackup(
+			[ '--output', 'file:' . $fname ],
+			$this->pageId1,
+			$this->pageId4 + 1
+		);
 
 		// Performing the dump
 		$dumper->dump( WikiExporter::CURRENT, WikiExporter::STUB );
@@ -257,11 +325,11 @@ class BackupDumperPageTest extends DumpTestCase {
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
 
-		$dumper = new DumpBackup( [ '--output', 'gzip:' . $fname ] );
-		$dumper->startId = $this->pageId1;
-		$dumper->endId = $this->pageId4 + 1;
-		$dumper->reporting = false;
-		$dumper->setDB( $this->db );
+		$dumper = $this->newDumpBackup(
+			[ '--output', 'gzip:' . $fname ],
+			$this->pageId1,
+			$this->pageId4 + 1
+		);
 
 		// Performing the dump
 		$dumper->dump( WikiExporter::CURRENT, WikiExporter::STUB );
@@ -316,14 +384,17 @@ class BackupDumperPageTest extends DumpTestCase {
 		$fnameMetaCurrent = $this->getNewTempFile();
 		$fnameArticles = $this->getNewTempFile();
 
-		$dumper = new DumpBackup( [ "--full", "--stub", "--output=gzip:" . $fnameMetaHistory,
-			"--output=gzip:" . $fnameMetaCurrent, "--filter=latest",
-			"--output=gzip:" . $fnameArticles, "--filter=latest",
-			"--filter=notalk", "--filter=namespace:!NS_USER",
-			"--reporting=1000" ] );
-		$dumper->startId = $this->pageId1;
-		$dumper->endId = $this->pageId4 + 1;
-		$dumper->setDB( $this->db );
+		$dumper = $this->newDumpBackup(
+			[ "--full", "--stub", "--output=gzip:" . $fnameMetaHistory,
+				"--output=gzip:" . $fnameMetaCurrent, "--filter=latest",
+				"--output=gzip:" . $fnameArticles, "--filter=latest",
+				"--filter=notalk", "--filter=namespace:!NS_USER",
+				"--reporting=1000"
+			],
+			$this->pageId1,
+			$this->pageId4 + 1
+		);
+		$dumper->reporting = true;
 
 		// xmldumps-backup uses reporting. We will not check the exact reported
 		// message, as they are dependent on the processing power of the used
