@@ -238,7 +238,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
+	public function query( $sql, $fname = __METHOD__, $flags = 0 ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

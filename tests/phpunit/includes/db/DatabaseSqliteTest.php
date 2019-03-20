@@ -531,7 +531,7 @@ class DatabaseSqliteMock extends DatabaseSqlite {
 		return Database::factory( 'SqliteMock', $p );
 	}
 
-	function query( $sql, $fname = '', $tempIgnore = false ) {
+	function query( $sql, $fname = '', $flags = 0 ) {
 		return true;
 	}
 

@@ -819,8 +819,12 @@ __INDEXATTR__;
 
 		$temporary = $temporary ? 'TEMPORARY' : '';
 
-		$ret = $this->query( "CREATE $temporary TABLE $newNameE " .
-			"(LIKE $oldNameE INCLUDING DEFAULTS INCLUDING INDEXES)", $fname );
+		$ret = $this->query(
+			"CREATE $temporary TABLE $newNameE " .
+				"(LIKE $oldNameE INCLUDING DEFAULTS INCLUDING INDEXES)",
+			$fname,
+			$this::QUERY_PSEUDO_PERMANENT
+		);
 		if ( !$ret ) {
 			return $ret;
 		}
@@ -842,7 +846,10 @@ __INDEXATTR__;
 			$fieldE = $this->addIdentifierQuotes( $field );
 			$newSeqE = $this->addIdentifierQuotes( $newSeq );
 			$newSeqQ = $this->addQuotes( $newSeq );
-			$this->query( "CREATE $temporary SEQUENCE $newSeqE OWNED BY $newNameE.$fieldE", $fname );
+			$this->query(
+				"CREATE $temporary SEQUENCE $newSeqE OWNED BY $newNameE.$fieldE",
+				$fname
+			);
 			$this->query(
 				"ALTER TABLE $newNameE ALTER COLUMN $fieldE SET DEFAULT nextval({$newSeqQ}::regclass)",
 				$fname

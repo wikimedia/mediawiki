@@ -106,6 +106,14 @@ interface IDatabase {
 	/** @var int Enable compression in connection protocol */
 	const DBO_COMPRESS = 512;
 
+	/** @var int Ignore query errors and return false when they happen */
+	const QUERY_SILENCE_ERRORS = 1; // b/c for 1.32 query() argument; note that (int)true = 1
+	/**
+	 * @var int Treat the TEMPORARY table from the given CREATE query as if it is
+	 *   permanent as far as write tracking is concerned. This is useful for testing.
+	 */
+	const QUERY_PSEUDO_PERMANENT = 2;
+
 	/**
 	 * A string describing the current software version, and possibly
 	 * other details in a user-friendly way. Will be listed on Special:Version, etc.
@@ -527,13 +535,13 @@ interface IDatabase {
 	 * @param string $sql SQL query
 	 * @param string $fname Name of the calling function, for profiling/SHOW PROCESSLIST
 	 *     comment (you can use __METHOD__ or add some extra info)
-	 * @param bool $tempIgnore Whether to avoid throwing an exception on errors...
-	 *     maybe best to catch the exception instead?
+	 * @param int $flags Bitfield of IDatabase::QUERY_* constants. Note that suppression
+	 *     of errors is best handled by try/catch rather than using one of these flags.
 	 * @return bool|IResultWrapper True for a successful write query, IResultWrapper object
-	 *     for a successful read query, or false on failure if $tempIgnore set
+	 *     for a successful read query, or false on failure if QUERY_SILENCE_ERRORS is set.
 	 * @throws DBError
 	 */
-	public function query( $sql, $fname = __METHOD__, $tempIgnore = false );
+	public function query( $sql, $fname = __METHOD__, $flags = 0 );
 
 	/**
 	 * Free a result object returned by query() or select(). It's usually not

@@ -280,6 +280,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var int No transaction is active */
 	const STATUS_TRX_NONE = 3;
 
+	/** @var int Writes to this temporary table do not affect lastDoneWrites() */
+	const TEMP_NORMAL = 1;
+	/** @var int Writes to this temporary table effect lastDoneWrites() */
+	const TEMP_PSEUDO_PERMANENT = 2;
+
 	/**
 	 * @note exceptions for missing libraries/drivers should be thrown in initConnection()
 	 * @param array $params Parameters passed from Database::factory()
@@ -1135,46 +1140,54 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @param string $sql A SQL query
-	 * @return bool Whether $sql is SQL for TEMPORARY table operation
+	 * @param bool $pseudoPermanent Treat any table from CREATE TEMPORARY as pseudo-permanent
+	 * @return int|null A self::TEMP_* constant for temp table operations or null otherwise
 	 */
-	protected function registerTempTableOperation( $sql ) {
-		if ( preg_match(
-			'/^CREATE\s+TEMPORARY\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?[`"\']?(\w+)[`"\']?/i',
-			$sql,
-			$matches
-		) ) {
-			$this->sessionTempTables[$matches[1]] = 1;
+	protected function registerTempTableWrite( $sql, $pseudoPermanent ) {
+		static $qt = '[`"\']?(\w+)[`"\']?'; // quoted table
 
-			return true;
-		} elseif ( preg_match(
-			'/^DROP\s+(?:TEMPORARY\s+)?TABLE\s+(?:IF\s+EXISTS\s+)?[`"\']?(\w+)[`"\']?/i',
+		if ( preg_match(
+			'/^CREATE\s+TEMPORARY\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?' . $qt . '/i',
 			$sql,
 			$matches
 		) ) {
-			$isTemp = isset( $this->sessionTempTables[$matches[1]] );
+			$type = $pseudoPermanent ? self::TEMP_PSEUDO_PERMANENT : self::TEMP_NORMAL;
+			$this->sessionTempTables[$matches[1]] = $type;
+
+			return $type;
+		} elseif ( preg_match(
+			'/^DROP\s+(?:TEMPORARY\s+)?TABLE\s+(?:IF\s+EXISTS\s+)?' . $qt . '/i',
+			$sql,
+			$matches
+		) ) {
+			$type = $this->sessionTempTables[$matches[1]] ?? null;
 			unset( $this->sessionTempTables[$matches[1]] );
 
-			return $isTemp;
+			return $type;
 		} elseif ( preg_match(
-			'/^TRUNCATE\s+(?:TEMPORARY\s+)?TABLE\s+(?:IF\s+EXISTS\s+)?[`"\']?(\w+)[`"\']?/i',
+			'/^TRUNCATE\s+(?:TEMPORARY\s+)?TABLE\s+(?:IF\s+EXISTS\s+)?' . $qt . '/i',
 			$sql,
 			$matches
 		) ) {
-			return isset( $this->sessionTempTables[$matches[1]] );
+			return $this->sessionTempTables[$matches[1]] ?? null;
 		} elseif ( preg_match(
-			'/^(?:INSERT\s+(?:\w+\s+)?INTO|UPDATE|DELETE\s+FROM)\s+[`"\']?(\w+)[`"\']?/i',
+			'/^(?:(?:INSERT|REPLACE)\s+(?:\w+\s+)?INTO|UPDATE|DELETE\s+FROM)\s+' . $qt . '/i',
 			$sql,
 			$matches
 		) ) {
-			return isset( $this->sessionTempTables[$matches[1]] );
+			return $this->sessionTempTables[$matches[1]] ?? null;
 		}
 
-		return false;
+		return null;
 	}
 
-	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
+	public function query( $sql, $fname = __METHOD__, $flags = 0 ) {
 		$this->assertTransactionStatus( $sql, $fname );
 		$this->assertHasConnectionHandle();
+
+		$flags = (int)$flags; // b/c; this field used to be a bool
+		$ignoreErrors = $this->hasFlags( $flags, self::QUERY_SILENCE_ERRORS );
+		$pseudoPermanent = $this->hasFlags( $flags, self::QUERY_PSEUDO_PERMANENT );
 
 		$priorTransaction = $this->trxLevel;
 		$priorWritesPending = $this->writesOrCallbacksPending();
@@ -1184,8 +1197,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			# In theory, non-persistent writes are allowed in read-only mode, but due to things
 			# like https://bugs.mysql.com/bug.php?id=33669 that might not work anyway...
 			$this->assertIsWritableMaster();
-			# Avoid treating temporary table operations as meaningful "writes"
-			$isEffectiveWrite = !$this->registerTempTableOperation( $sql );
+			# Do not treat temporary table writes as "meaningful writes" that need committing.
+			# Profile them as reads. Integration tests can override this behavior via $flags.
+			$tableType = $this->registerTempTableWrite( $sql, $pseudoPermanent );
+			$isEffectiveWrite = ( $tableType !== self::TEMP_NORMAL );
 		} else {
 			$isEffectiveWrite = false;
 		}
@@ -1240,12 +1255,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					$this->trxStatus = self::STATUS_TRX_ERROR;
 					$this->trxStatusCause =
 						$this->getQueryExceptionAndLog( $lastError, $lastErrno, $sql, $fname );
-					$tempIgnore = false; // cannot recover
+					$ignoreErrors = false; // cannot recover
 					$this->trxStatusIgnoredCause = null;
 				}
 			}
 
-			$this->reportQueryError( $lastError, $lastErrno, $sql, $fname, $tempIgnore );
+			$this->reportQueryError( $lastError, $lastErrno, $sql, $fname, $ignoreErrors );
 		}
 
 		return $this->resultObject( $ret );
@@ -1514,17 +1529,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * Report a query error. Log the error, and if neither the object ignore
-	 * flag nor the $tempIgnore flag is set, throw a DBQueryError.
+	 * flag nor the $ignoreErrors flag is set, throw a DBQueryError.
 	 *
 	 * @param string $error
 	 * @param int $errno
 	 * @param string $sql
 	 * @param string $fname
-	 * @param bool $tempIgnore
+	 * @param bool $ignoreErrors
 	 * @throws DBQueryError
 	 */
-	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
-		if ( $tempIgnore ) {
+	public function reportQueryError( $error, $errno, $sql, $fname, $ignoreErrors = false ) {
+		if ( $ignoreErrors ) {
 			$this->queryLogger->debug( "SQL ERROR (ignored): $error\n" );
 		} else {
 			$exception = $this->getQueryExceptionAndLog( $error, $errno, $sql, $fname );
@@ -4682,6 +4697,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function setIndexAliases( array $aliases ) {
 		$this->indexAliases = $aliases;
+	}
+
+	/**
+	 * @param int $field
+	 * @param int $flags
+	 * @return bool
+	 */
+	protected function hasFlags( $field, $flags ) {
+		return ( ( $field & $flags ) === $flags );
 	}
 
 	/**
