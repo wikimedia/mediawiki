@@ -2838,11 +2838,14 @@ class Language {
 	}
 
 	/**
+	 * TODO: $s is not always a string per T218883
 	 * @param string $s
 	 * @return string
 	 */
 	function checkTitleEncoding( $s ) {
-		Assert::parameterType( 'string', $s, '$s' );
+		if ( is_array( $s ) ) {
+			throw new MWException( 'Given array to checkTitleEncoding.' );
+		}
 		if ( StringUtils::isUtf8( $s ) ) {
 			return $s;
 		}
