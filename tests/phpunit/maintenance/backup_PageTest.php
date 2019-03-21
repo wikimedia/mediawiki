@@ -12,6 +12,7 @@ use WikiExporter;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 use WikiPage;
+use XmlDumpWriter;
 
 /**
  * Tests for page dumps of BackupDumper
@@ -171,7 +172,9 @@ class BackupDumperPageTest extends DumpTestCase {
 	}
 
 	public function schemaVersionProvider() {
-		yield [ '0.10' ];
+		foreach ( XmlDumpWriter::$supportedSchemas as $schemaVersion ) {
+			yield [ $schemaVersion ];
+		}
 	}
 
 	/**

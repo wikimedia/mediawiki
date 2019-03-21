@@ -893,6 +893,7 @@ class WikiImporter {
 				) . " exceeds the maximum allowable size ($wgMaxArticleSize KB)" );
 		}
 
+		// FIXME: process schema version 11!
 		$revision = new WikiRevision( $this->config );
 
 		if ( isset( $revisionInfo['id'] ) ) {

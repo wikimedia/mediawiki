@@ -1769,6 +1769,8 @@ class Linker {
 		}
 
 		if ( $context->getUser()->getBoolOption( 'showrollbackconfirmation' ) ) {
+			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+			$stats->increment( 'rollbackconfirmation.event.load' );
 			$context->getOutput()->addModules( 'mediawiki.page.rollback.confirmation' );
 		}
 
@@ -1865,21 +1867,25 @@ class Linker {
 		}
 
 		$title = $rev->getTitle();
+
 		$query = [
 			'action' => 'rollback',
 			'from' => $rev->getUserText(),
 			'token' => $context->getUser()->getEditToken( 'rollback' ),
 		];
+
 		$attrs = [
 			'data-mw' => 'interface',
 			'title' => $context->msg( 'tooltip-rollback' )->text(),
 			'data-rollback-count' => (int)$editCount
 		];
+
 		$options = [ 'known', 'noclasses' ];
 
 		if ( $context->getRequest()->getBool( 'bot' ) ) {
+			//T17999
+			$query['hidediff'] = '1';
 			$query['bot'] = '1';
-			$query['hidediff'] = '1'; // T17999
 		}
 
 		$disableRollbackEditCount = false;

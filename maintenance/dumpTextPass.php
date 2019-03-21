@@ -30,7 +30,6 @@ require_once __DIR__ . '/../includes/export/WikiExporter.php';
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\BlobAccessException;
-use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
@@ -143,7 +142,7 @@ TEXT
 	}
 
 	/**
-	 * @return BlobStore
+	 * @return SqlBlobStore
 	 */
 	private function getBlobStore() {
 		return MediaWikiServices::getInstance()->getBlobStore();
@@ -737,16 +736,16 @@ TEXT
 	}
 
 	/**
-	 * @param int|string $id Content address, or text row ID.
+	 * @param int|string $address Content address, or text row ID.
 	 * @return bool|string
 	 */
-	private function getTextSpawned( $id ) {
+	private function getTextSpawned( $address ) {
 		Wikimedia\suppressWarnings();
 		if ( !$this->spawnProc ) {
 			// First time?
 			$this->openSpawn();
 		}
-		$text = $this->getTextSpawnedOnce( $id );
+		$text = $this->getTextSpawnedOnce( $address );
 		Wikimedia\restoreWarnings();
 
 		return $text;
@@ -814,11 +813,15 @@ TEXT
 	}
 
 	/**
-	 * @param int|string $id Content address, or text row ID.
+	 * @param int|string $address Content address, or text row ID.
 	 * @return bool|string
 	 */
-	private function getTextSpawnedOnce( $id ) {
-		$ok = fwrite( $this->spawnWrite, "$id\n" );
+	private function getTextSpawnedOnce( $address ) {
+		if ( is_int( $address ) || intval( $address ) ) {
+			$address = SqlBlobStore::makeAddressFromTextId( (int)$address );
+		}
+
+		$ok = fwrite( $this->spawnWrite, "$address\n" );
 		// $this->progress( ">> $id" );
 		if ( !$ok ) {
 			return false;
@@ -830,26 +833,17 @@ TEXT
 			return false;
 		}
 
-		// check that the text id they are sending is the one we asked for
+		// check that the text address they are sending is the one we asked for
 		// this avoids out of sync revision text errors we have encountered in the past
 		$newAddress = fgets( $this->spawnRead );
 		if ( $newAddress === false ) {
 			return false;
 		}
 		if ( strpos( $newAddress, ':' ) === false ) {
-			$newId = intval( $newAddress );
-			if ( $newId === false ) {
-				return false;
-			}
-		} else {
-			try {
-				$newAddressFields = SqlBlobStore::splitBlobAddress( $newAddress );
-				$newId = $newAddressFields[ 1 ];
-			} catch ( InvalidArgumentException $ex ) {
-				return false;
-			}
+			$newAddress = SqlBlobStore::makeAddressFromTextId( intval( $newAddress ) );
 		}
-		if ( $id != intval( $newId ) ) {
+
+		if ( $newAddress !== $address ) {
 			return false;
 		}
 

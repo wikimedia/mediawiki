@@ -6,9 +6,12 @@ class HistoryPage extends Page {
 	get headingText() { return browser.getText( '#firstHeading' ); }
 	get comment() { return browser.element( '#pagehistory .comment' ); }
 	get rollback() { return browser.element( '.mw-rollback-link' ); }
+	get rollbackLink() { return browser.element( '.mw-rollback-link a' ); }
 	get rollbackConfirmable() { return browser.element( '.mw-rollback-link .jquery-confirmable-text' ); }
 	get rollbackConfirmableYes() { return browser.element( '.mw-rollback-link .jquery-confirmable-button-yes' ); }
 	get rollbackConfirmableNo() { return browser.element( '.mw-rollback-link .jquery-confirmable-button-no' ); }
+	get rollbackNonJsConfirmable() { return browser.element( '.mw-htmlform .oo-ui-fieldsetLayout-header .oo-ui-labelElement-label' ); }
+	get rollbackNonJsConfirmableYes() { return browser.element( '.mw-htmlform .mw-htmlform-submit-buttons button' ); }
 
 	open( title ) {
 		super.openTitle( title, { action: 'history' } );
