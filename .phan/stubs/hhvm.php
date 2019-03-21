@@ -18,6 +18,8 @@
 
 // phpcs:ignoreFile
 
+define( 'HHVM_VERSION', '3.18.6-dev' );
+
 /**
  * @param callable $callback
  * @param mixed ...$parameters
