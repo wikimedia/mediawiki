@@ -13,10 +13,6 @@ language: php
 # - Required for non-buggy xml library for XmlTypeCheck/UploadBaseTest (T75176).
 dist: trusty
 
-git:
-  depth: 3
-  quiet: true
-
 # Cache NPM and Composer directories
 # <https://docs.travis-ci.com/user/caching/>
 cache:
