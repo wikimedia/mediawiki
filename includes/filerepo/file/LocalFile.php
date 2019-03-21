@@ -1838,8 +1838,13 @@ class LocalFile extends File {
 
 		$this->lock();
 
-		$archiveName = wfTimestamp( TS_MW ) . '!' . $this->getName();
-		$archiveRel = $this->getArchiveRel( $archiveName );
+		if ( $this->isOld() ) {
+			$archiveRel = $dstRel;
+			$archiveName = basename( $archiveRel );
+		} else {
+			$archiveName = wfTimestamp( TS_MW ) . '!' . $this->getName();
+			$archiveRel = $this->getArchiveRel( $archiveName );
+		}
 
 		if ( $repo->hasSha1Storage() ) {
 			$sha1 = FileRepo::isVirtualUrl( $srcPath )
