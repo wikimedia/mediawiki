@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.0
+ * OOUI v0.31.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-03-14T00:52:27Z
+ * Date: 2019-03-21T15:54:46Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -462,7 +462,38 @@
 }
 
 .oo-ui-pendingElement-pending {
-  background-image: /* @embed */ url(themes/wikimediaui/images/textures/pending.gif);
+  background-color: #eaecf0;
+  background-image: -webkit-linear-gradient(135deg, #fff 25%, transparent 25%, transparent 50%, #fff 50%, #fff 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(135deg, #fff 25%, transparent 25%, transparent 50%, #fff 50%, #fff 75%, transparent 75%, transparent);
+  background-image: linear-gradient(135deg, #fff 25%, transparent 25%, transparent 50%, #fff 50%, #fff 75%, transparent 75%, transparent);
+  background-size: 1.42857143em 1.42857143em;
+  -webkit-animation: oo-ui-pendingElement-stripes 650ms linear infinite;
+  -moz-animation: oo-ui-pendingElement-stripes 650ms linear infinite;
+  animation: oo-ui-pendingElement-stripes 650ms linear infinite;
+}
+@-webkit-keyframes oo-ui-pendingElement-stripes {
+  0% {
+    background-position: -1.42857143em 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+@-moz-keyframes oo-ui-pendingElement-stripes {
+  0% {
+    background-position: -1.42857143em 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+@keyframes oo-ui-pendingElement-stripes {
+  0% {
+    background-position: -1.42857143em 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
 
 
@@ -1540,7 +1571,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   line-height: 1.286;
 }
 .oo-ui-textInputWidget .oo-ui-pendingElement-pending {
-  background-color: transparent;
+  background-color: #eaecf0;
 }
 .oo-ui-textInputWidget.oo-ui-iconElement .oo-ui-inputWidget-input {
   padding-left: 2.64285714em;
@@ -2081,6 +2112,70 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-numberInputWidget.oo-ui-widget-disabled.oo-ui-numberInputWidget-buttoned .oo-ui-iconElement-icon {
   opacity: 1;
+}
+
+.oo-ui-selectFileInputWidget {
+  width: 100%;
+  max-width: 50em;
+  margin-right: 0.5em;
+}
+.oo-ui-selectFileInputWidget-selectButton > .oo-ui-buttonElement-button {
+  position: relative;
+  overflow: hidden;
+}
+.oo-ui-selectFileInputWidget-selectButton > .oo-ui-buttonElement-button > [type='file'] {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+  padding-top: 100px;
+}
+.oo-ui-selectFileInputWidget-selectButton.oo-ui-widget-disabled > .oo-ui-buttonElement-button > [type='file'] {
+  display: none;
+}
+.oo-ui-selectFileInputWidget-info > .oo-ui-inputWidget-input {
+  pointer-events: none;
+}
+.oo-ui-selectFileInputWidget-label {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-overflow: ellipsis;
+}
+.oo-ui-selectFileInputWidget-clearButton {
+  position: absolute;
+  z-index: 2;
+}
+.oo-ui-selectFileInputWidget-empty .oo-ui-selectFileInputWidget-clearButton {
+  display: none;
+}
+.oo-ui-selectFileInputWidget-empty.oo-ui-widget-enabled .oo-ui-selectFileInputWidget-label {
+  cursor: default;
+}
+.oo-ui-selectFileInputWidget:last-child {
+  margin-right: 0;
+}
+.oo-ui-selectFileInputWidget-label {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  right: 2.85714286em;
+  padding-top: 0.57142857em;
+  padding-left: 0.57142857em;
+  padding-bottom: 0.57142857em;
+  white-space: nowrap;
+}
+.oo-ui-selectFileInputWidget.oo-ui-labelElement .oo-ui-selectFileInputWidget-label {
+  line-height: 1;
 }
 
 .oo-ui-defaultOverlay {
