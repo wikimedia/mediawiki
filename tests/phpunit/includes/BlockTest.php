@@ -373,61 +373,6 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::__construct
-	 */
-	public function testDeprecatedConstructor() {
-		$this->hideDeprecated( 'Block::__construct with multiple arguments' );
-		$username = 'UnthinkablySecretRandomUsername';
-		$reason = 'being irrational';
-
-		# Set up the target
-		$u = User::newFromName( $username );
-		if ( $u->getId() == 0 ) {
-			$u->addToDatabase();
-			TestUser::setPasswordForUser( $u, 'TotallyObvious' );
-		}
-		unset( $u );
-
-		# Make sure the user isn't blocked
-		$this->assertNull(
-			Block::newFromTarget( $username ),
-			"$username should not be blocked"
-		);
-
-		# Perform the block
-		$block = new Block(
-			/* address */ $username,
-			/* user */ 0,
-			/* by */ $this->getTestSysop()->getUser()->getId(),
-			/* reason */ $reason,
-			/* timestamp */ 0,
-			/* auto */ false,
-			/* expiry */ 0
-		);
-		$block->insert();
-
-		# Check target
-		$this->assertEquals(
-			$block->getTarget()->getName(),
-			$username,
-			"Target should be set properly"
-		);
-
-		# Check supplied parameter
-		$this->assertEquals(
-			$block->mReason,
-			$reason,
-			"Reason should be non-default"
-		);
-
-		# Check default parameter
-		$this->assertFalse(
-			(bool)$block->appliesToRight( 'createaccount' ),
-			"Account creation should not be blocked by default"
-		);
-	}
-
-	/**
 	 * @covers Block::getSystemBlockType
 	 * @covers Block::insert
 	 * @covers Block::doAutoblock

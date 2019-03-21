@@ -148,14 +148,6 @@ class Block {
 			'sitewide'        => true,
 		];
 
-		if ( func_num_args() > 1 || !is_array( $options ) ) {
-			$options = array_combine(
-				array_slice( array_keys( $defaults ), 0, func_num_args() ),
-				func_get_args()
-			);
-			wfDeprecated( __METHOD__ . ' with multiple arguments', '1.26' );
-		}
-
 		$options += $defaults;
 
 		$this->setTarget( $options['address'] );
