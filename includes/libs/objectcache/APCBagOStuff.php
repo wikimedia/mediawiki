@@ -73,24 +73,25 @@ class APCBagOStuff extends BagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0 ) {
-		return $this->getUnserialize(
-			apc_fetch( $key . self::KEY_SUFFIX )
-		);
+		return $this->unserialize( apc_fetch( $key . self::KEY_SUFFIX ) );
 	}
 
-	protected function getUnserialize( $value ) {
-		if ( is_string( $value ) && !$this->nativeSerialize ) {
-			$value = $this->isInteger( $value )
-				? intval( $value )
-				: unserialize( $value );
+	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
+		$casToken = null;
+
+		$blob = apc_fetch( $key . self::KEY_SUFFIX );
+		$value = $this->unserialize( $blob );
+		if ( $value !== false ) {
+			$casToken = $blob; // don't bother hashing this
 		}
+
 		return $value;
 	}
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		apc_store(
 			$key . self::KEY_SUFFIX,
-			$this->setSerialize( $value ),
+			$this->serialize( $value ),
 			$exptime
 		);
 
@@ -100,16 +101,9 @@ class APCBagOStuff extends BagOStuff {
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
 		return apc_add(
 			$key . self::KEY_SUFFIX,
-			$this->setSerialize( $value ),
+			$this->serialize( $value ),
 			$exptime
 		);
-	}
-
-	protected function setSerialize( $value ) {
-		if ( !$this->nativeSerialize && !$this->isInteger( $value ) ) {
-			$value = serialize( $value );
-		}
-		return $value;
 	}
 
 	public function delete( $key, $flags = 0 ) {
@@ -124,5 +118,25 @@ class APCBagOStuff extends BagOStuff {
 
 	public function decr( $key, $value = 1 ) {
 		return apc_dec( $key . self::KEY_SUFFIX, $value );
+	}
+
+	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
+		return $this->mergeViaCas( $key, $callback, $exptime, $attempts, $flags );
+	}
+
+	protected function serialize( $value ) {
+		if ( !$this->nativeSerialize && !$this->isInteger( $value ) ) {
+			$value = serialize( $value );
+		}
+		return $value;
+	}
+
+	protected function unserialize( $value ) {
+		if ( is_string( $value ) && !$this->nativeSerialize ) {
+			$value = $this->isInteger( $value )
+				? intval( $value )
+				: unserialize( $value );
+		}
+		return $value;
 	}
 }

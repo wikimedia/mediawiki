@@ -40,15 +40,25 @@ class APCUBagOStuff extends APCBagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0 ) {
-		return $this->getUnserialize(
-			apcu_fetch( $key . self::KEY_SUFFIX )
-		);
+		return $this->unserialize( apcu_fetch( $key . self::KEY_SUFFIX ) );
+	}
+
+	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
+		$casToken = null;
+
+		$blob = apcu_fetch( $key . self::KEY_SUFFIX );
+		$value = $this->unserialize( $blob );
+		if ( $value !== false ) {
+			$casToken = $blob; // don't bother hashing this
+		}
+
+		return $value;
 	}
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		apcu_store(
 			$key . self::KEY_SUFFIX,
-			$this->setSerialize( $value ),
+			$this->serialize( $value ),
 			$exptime
 		);
 
@@ -58,7 +68,7 @@ class APCUBagOStuff extends APCBagOStuff {
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
 		return apcu_add(
 			$key . self::KEY_SUFFIX,
-			$this->setSerialize( $value ),
+			$this->serialize( $value ),
 			$exptime
 		);
 	}
@@ -93,5 +103,9 @@ class APCUBagOStuff extends APCBagOStuff {
 		} else {
 			return false;
 		}
+	}
+
+	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
+		return $this->mergeViaCas( $key, $callback, $exptime, $attempts, $flags );
 	}
 }
