@@ -5,7 +5,7 @@ const assert = require( 'assert' ),
 	EditPage = require( '../pageobjects/edit.page' ),
 	HistoryPage = require( '../pageobjects/history.page' ),
 	UndoPage = require( '../pageobjects/undo.page' ),
-	UserLoginPage = require( '../pageobjects/userlogin.page' ),
+	UserLoginPage = require( 'wdio-mediawiki/LoginPage' ),
 	Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'Page', function () {
@@ -91,7 +91,7 @@ describe( 'Page', function () {
 
 		// check
 		HistoryPage.open( name );
-		assert.strictEqual( HistoryPage.comment.getText(), `(Created page with "${content}")` );
+		assert.strictEqual( HistoryPage.comment.getText(), `(Created or updated page with "${content}")` );
 	} );
 
 	it( 'should be deletable', function () {

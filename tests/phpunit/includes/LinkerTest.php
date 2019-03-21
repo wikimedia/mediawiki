@@ -285,6 +285,48 @@ class LinkerTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * @covers Linker::generateRollback
+	 * @dataProvider provideCasesForRollbackGeneration
+	 */
+	public function testGenerateRollback( $rollbackEnabled, $expectedModules ) {
+		$this->markTestSkippedIfDbType( 'postgres' );
+
+		$context = RequestContext::getMain();
+		$user = $context->getUser();
+		$user->setOption( 'showrollbackconfirmation', $rollbackEnabled );
+
+		$pageData = $this->insertPage( 'Rollback_Test_Page' );
+		$page = WikiPage::factory( $pageData['title'] );
+
+		$updater = $page->newPageUpdater( $user );
+		$updater->setContent( \MediaWiki\Revision\SlotRecord::MAIN,
+			new TextContent( 'Technical Wishes 123!' )
+		);
+		$summary = CommentStoreComment::newUnsavedComment( 'Some comment!' );
+		$updater->saveRevision( $summary );
+
+		$rollbackOutput = Linker::generateRollback( $page->getRevision(), $context );
+		$modules = $context->getOutput()->getModules();
+
+		$this->assertEquals( $expectedModules, $modules );
+		$this->assertContains( 'rollback 1 edit', $rollbackOutput );
+	}
+
+	public static function provideCasesForRollbackGeneration() {
+		return [
+			[
+				true,
+				[ 'mediawiki.page.rollback.confirmation' ]
+
+			],
+			[
+				false,
+				[]
+			]
+		];
+	}
+
 	public static function provideCasesForFormatLinksInComment() {
 		// phpcs:disable Generic.Files.LineLength
 		return [

@@ -1768,6 +1768,10 @@ class Linker {
 			$inner = $context->msg( 'brackets' )->rawParams( $inner )->escaped();
 		}
 
+		if ( $context->getUser()->getBoolOption( 'showrollbackconfirmation' ) ) {
+			$context->getOutput()->addModules( 'mediawiki.page.rollback.confirmation' );
+		}
+
 		return '<span class="mw-rollback-link">' . $inner . '</span>';
 	}
 
@@ -1869,6 +1873,7 @@ class Linker {
 		$attrs = [
 			'data-mw' => 'interface',
 			'title' => $context->msg( 'tooltip-rollback' )->text(),
+			'data-rollback-count' => (int)$editCount
 		];
 		$options = [ 'known', 'noclasses' ];
 

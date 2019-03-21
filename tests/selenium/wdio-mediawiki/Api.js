@@ -5,22 +5,31 @@ const MWBot = require( 'mwbot' );
 module.exports = {
 	/**
 	 * Shortcut for `MWBot#edit( .. )`.
+	 * Default username, password and base URL is used unless specified
 	 *
 	 * @since 1.0.0
 	 * @see <https://www.mediawiki.org/wiki/API:Edit>
 	 * @param {string} title
 	 * @param {string} content
+	 * @param {string} username - Optional
+	 * @param {string} password - Optional
+	 * @param {baseUrl} baseUrl - Optional
 	 * @return {Object} Promise for API action=edit response data.
 	 */
-	edit( title, content ) {
+	edit( title,
+		content,
+		username = browser.options.username,
+		password = browser.options.password,
+		baseUrl = browser.options.baseUrl
+	) {
 		let bot = new MWBot();
 
 		return bot.loginGetEditToken( {
-			apiUrl: `${browser.options.baseUrl}/api.php`,
-			username: browser.options.username,
-			password: browser.options.password
+			apiUrl: `${baseUrl}/api.php`,
+			username: username,
+			password: password
 		} ).then( function () {
-			return bot.edit( title, content, `Created page with "${content}"` );
+			return bot.edit( title, content, `Created or updated page with "${content}"` );
 		} );
 	},
 

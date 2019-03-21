@@ -4877,6 +4877,7 @@ $wgDefaultUserOptions = [
 	'rows' => 25, // @deprecated since 1.29 No longer used in core
 	'showhiddencats' => 0,
 	'shownumberswatching' => 1,
+	'showrollbackconfirmation' => 0,
 	'skin' => false,
 	'stubthreshold' => 0,
 	'thumbsize' => 5,
@@ -9003,15 +9004,6 @@ $wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_OLD;
  * @var bool
  */
 $wgEnablePartialBlocks = false;
-
-/**
- * Enable confirmation prompt for rollback actions to prevent accidental rollbacks.
- * May be disabled to reduce number of clicks needed to perform rollbacks.
- *
- * @since 1.33
- * @var bool
- */
-$wgEnableRollbackConfirmationPrompt = true;
 
 /**
  * Enable stats monitoring when Block Notices are displayed in different places around core
