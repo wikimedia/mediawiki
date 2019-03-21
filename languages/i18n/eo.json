@@ -2224,7 +2224,6 @@
 	"revertpage": "Malfaris redaktojn de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]]) al la lasta versio de [[User:$1|$1]]",
 	"revertpage-nouser": "Restarigis redaktojn de (salutnomo forigita) al lasta revizio de {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Restaris redaktojn de {{GENDER:$3|$1}}; ŝanĝis al lasta versio de {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Malfaritis redaktojn far $1;\nŝanĝis al la lasta reviziaĵo far $2. [$3 Prezenti ŝanĝojn]",
 	"sessionfailure-title": "Seanco malsukcesis",
 	"sessionfailure": "Ŝajnas, ke estas problemo kun via ensalutado;\nĈi ago estis nuligita por malhelpi fiensalutadon.\nBonvolu resendi la formularoj",
 	"changecontentmodel": "Ŝanĝi la enhavomodelon de paĝo",

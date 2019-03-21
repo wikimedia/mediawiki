@@ -2179,7 +2179,6 @@
 	"revertpage": "Insubli ti panagurnos babaen ni [[Special:Contributions/$2|$2]] ([[User talk:$2|tungtungan]]), naisubli iti naudi a rebision babaen ni [[User:$1|$1]]",
 	"revertpage-nouser": "Naisubli dagiti inurnos babaen ti nailemmeng nga agar-aramat iti kinaudi a rebision babaen ni {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Naibabawi dagiti panagurnos babaen ni {{GENDER:$3|$1}};\nnaisubli manen ti naudi a rebision babaen ni {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Naibabawi dagiti panagurnos babaen ni $1;\nisubli ti naudi a rebision babaen ni $2. [$3 Ipakita dagiti binaliwan]",
 	"sessionfailure-title": "Napaay ti sesion",
 	"sessionfailure": "Adda parikut ti sesion ti panagserrekmo;\ndaytoy nga aramid ket naibabawi a kas pagpawilan ti panaghijack ti sesion.\nPangngaasi nga ited manen ti porma.",
 	"changecontentmodel": "Baliwan ti modelo ti linaon ti panid",

@@ -2160,7 +2160,6 @@
 	"revertpage": "Kemmoù distaolet gant [[Special:Contributions/$2|$2]] ([[User talk:$2|Kaozeal]]); adlakaet d'ar stumm diwezhañ a-gent gant [[User:$1|$1]]",
 	"revertpage-nouser": "Disteuler kemmoù un implijer kuzhet ha distreiñ d'ar stumm diwezhañ gant an {{GENDER:$1|[[implijer :$1|$1]]}}",
 	"rollback-success": "Nullet ar c'hemmoù gant {{GENDER:$3|$1}};\nadlakaet diouzh ar stumm diwezhañ gant {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Nullet ar c'hemmoù gant $1;\nadlakaet diouzh ar stumm diwezhañ gant $2. [$3 Diskouez ar c'hemmoù]",
 	"sessionfailure-title": "Fazi dalc'h",
 	"sessionfailure": "Evit doare ez eus ur gudenn gant ho talc'h;\nNullet eo bet an ober-mañ a-benn en em wareziñ diouzh an tagadennoù preizhañ.\nKlikit war \"kent\" hag adkargit ar bajenn oc'h deuet drezi; goude klaskit en-dro.",
 	"changecontentmodel": "Cheñch patrom danvez ur bajenn",

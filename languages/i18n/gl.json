@@ -2305,7 +2305,6 @@
 	"revertpage": "Desfixéronse as edicións de [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]]); cambiado á última versión feita por [[User:$1|$1]]",
 	"revertpage-nouser": "Desfixéronse as edicións dun usuario agochado; cambiado á última versión feita por {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Desfixéronse as edicións de {{GENDER:$3|$1}};\nvolveuse á última edición, feita por {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Revertéronse as edicións de $1;\nrestaurouse a última revisión de $2. [$3 Amosar os cambios]",
 	"sessionfailure-title": "Erro de sesión",
 	"sessionfailure": "Parece que hai un problema co rexistro da súa sesión;\nesta acción cancelouse como precaución fronte ao secuestro de sesións.\nPor favor, volva enviar o formulario.",
 	"changecontentmodel": "Cambiar o modelo de contido dunha páxina",

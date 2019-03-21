@@ -2312,7 +2312,6 @@
 	"revertpage": "Käyttäjän [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän [[User:$1|$1]] tekemään versioon.",
 	"revertpage-nouser": "Käyttäjän (käyttäjänimi poistettu) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän {{GENDER:$1|[[User:$1|$1]]}} tekemään versioon",
 	"rollback-success": "Käyttäjän {{GENDER:$3|$1}} tekemät muokkaukset kumottiin ja sivu palautettiin käyttäjän {{GENDER:$4|$2}} versioon.",
-	"rollback-success-notify": "Kumottiin käyttäjän $1 muokkaukset; palautettiin viimeiseen käyttäjän $2 versioon. [$3 Näytä muutokset]",
 	"sessionfailure-title": "Istuntovirhe",
 	"sessionfailure": "Näyttää siltä, että tämänhetkisessä istunnossasi on jokin ongelma; \ntämä toiminto on peruutettu varotoimena istunnon kaappaamisen estämiseksi.\nLähetä lomake uudelleen.",
 	"changecontentmodel": "Muuta sivun sisältömallia",

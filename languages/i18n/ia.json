@@ -2269,7 +2269,6 @@
 	"revertpage": "Reverteva modificationes per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) al ultime version per [[User:$1|$1]]",
 	"revertpage-nouser": "Reverteva modificationes per un usator celate al ultime version per {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Revocava modificationes per {{GENDER:$3|$1}};\nretornava al version per {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Modificationes de $1 revertite;\nultime version de $2 restaurate. [$3 Monstrar cambiamentos]",
 	"sessionfailure-title": "Error de session",
 	"sessionfailure": "Il pare haber un problema con tu session;\niste action ha essite cancellate como precaution contra le robamento de sessiones.\nPer favor, resubmitte le formulario.",
 	"changecontentmodel": "Cambiar le modello de contento de un pagina",

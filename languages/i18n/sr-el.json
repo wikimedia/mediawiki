@@ -2261,7 +2261,6 @@
 	"revertpage": "Vraćene izmene {{GENDER:$2|korisnika|korisnice}} [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]]) na poslednju izmenu {{GENDER:$1|korisnika|korisnice}} [[User:$1|$1]]",
 	"revertpage-nouser": "Vraćene izmene skrivenog korisnika na poslednju izmenu {{GENDER:$1|korisnika|korisnice}} [[User:$1|$1]]",
 	"rollback-success": "Vraćene izmene {{GENDER:$1|korisnika|korisnice}} {{GENDER:$3|$1}}  na poslednju izmenu {{GENDER:$2|korisnika|korisnice}} {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Vraćene izmene korisnika $1;\nvraćeno na poslednju izmenu korisnika $2. [$3 Prikaži promene]",
 	"sessionfailure-title": "Sesija je okončana",
 	"sessionfailure": "Izgleda da postoji problem s vašom sesijom;\nova radnja je otkazana da bi se izbegla zloupotreba.\nMolimo, ponovo pošaljite obrazac.",
 	"changecontentmodel": "Promena modela sadržaja stranice",

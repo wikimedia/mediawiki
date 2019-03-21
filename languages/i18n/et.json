@@ -2283,7 +2283,6 @@
 	"revertpage": "Tühistati kasutaja [[Special:Contributions/$2|$2]] ([[User talk:$2|arutelu]]) tehtud muudatused ja pöörduti tagasi viimasele muudatusele, mille tegi [[User:$1|$1]].",
 	"revertpage-nouser": "Tühistati peidetud kasutaja muudatused ja pöörduti tagasi viimasele muudatusele, mille tegi [[User:$1|$1]].",
 	"rollback-success": "Tühistati muudatused, mille tegi {{GENDER:$3|$1}};\npöörduti tagasi viimasele muudatusele, mille tegi {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Tühistatud kasutaja $1 tehtud muudatused;\npöördutud tagasi kasutaja $2 viimase redaktsiooni juurde. [$3 Näita muudatusi]",
 	"sessionfailure-title": "Seansiviga",
 	"sessionfailure": "Näib, et sinu sisselogimisseanss on probleemne.\nSeansiärandamise vastase ettevaatusabinõuna on see toiming tühistatud.\nPalun saada vorm uuesti.",
 	"changecontentmodel": "Lehekülje sisumudeli muutmine",

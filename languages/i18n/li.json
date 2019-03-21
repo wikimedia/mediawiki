@@ -2213,7 +2213,6 @@
 	"revertpage": "Wieziginge door [[Special:Contributions/$2|$2]] ([[User talk:$2|Euverlik]]) trukgedriejd tot de lètste versie door [[User:$1|$1]]",
 	"revertpage-nouser": "Verangeringe door 'ne verstaoke gebroeker trökgedrejd nao de litste versie van {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Verangeringe door {{GENDER:$3|$1}} trökgedrejd;\nlitste versie van {{GENDER:$4|$2}} herstèld.",
-	"rollback-success-notify": "De verangeringe door $1 zint trökgedrejd;\nde litste versie van $2 is herstèld. [$3 Tuin verangeringe]",
 	"sessionfailure-title": "Sessiefout",
 	"sessionfailure": "'t Liek op det se e perbleem höbs mit dien aanmeldingssessie;\ndees hanjeling is aafgebraoke oet veurzörg taenge 'nen hack.\nVersjik estebleef 't formeleer.",
 	"changecontentmodel": "Bewirk inhawdsmodel van pagina",

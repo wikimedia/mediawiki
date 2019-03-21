@@ -2275,7 +2275,6 @@
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) wikilariaren aldaketak deseginda, edukia [[User:$1|$1]] wikilariaren azken bertsiora itzuli da.",
 	"revertpage-nouser": "{{GENDER:$1|[[User:$1|$1]]}}-n azken berrikuspena ezkutatutako erabiltzaile batek egindako leheneraketa aldaketak.",
 	"rollback-success": "{{GENDER:$3|$1}}; wikilariaren aldaketak deseginda,\nedukia {{GENDER:$4|$2}} wikilariaren azken bertsiora itzuli da.",
-	"rollback-success-notify": "$1k leheneratutako aldaketal;\nazkenengo berrikusketara aldatu da berriz $2ren eskutik. [$3 Erakutsi aldaketak]",
 	"sessionfailure-title": "Saio-akatsa",
 	"sessionfailure": "Badirudi saioarekin arazoren bat dagoela; ekintza hau ezeztatua izan da, saio bahiketa saihesteko neurri bezala. Mesedez, nabigatzaileko \"atzera\" botoian klik egin, hona ekarri zaituen orrialde hori berriz kargatu, eta saiatu berriz.",
 	"changecontentmodel": "Aldatu orri bateko eduki eredua",

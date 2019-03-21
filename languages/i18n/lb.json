@@ -2119,7 +2119,6 @@
 	"revertpage": "Ännerunge vum [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]",
 	"revertpage-nouser": "Zréckgesaten Ännerungen duerch e verstoppte Benotzer op déi lescht Versioun vum {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "D'Ännerunge vum {{GENDER:$3|$1}} goufen zréckgesat op déi lescht Versioun vum {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Zréckgesat Ännerunge vum $1:\nzréckgeännert op déi lescht Versioun vum $2. [$3 Ännerunge weisen]",
 	"sessionfailure-title": "Setzungsfeeler",
 	"sessionfailure": "Et schéngt e Problem mat Ärer Sessioun ze ginn;\nDës Aktioun gouf aus Sécherheetsgrënn ofgebrach, fir ze verhënneren datt Är Sessioun piratéiert ka ginn.\nSchéckt de Formulaire w.e.g. nach eng Kéier.",
 	"changecontentmodel": "De Modell vum Inhalt vun enger Säit änneren",

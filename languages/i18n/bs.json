@@ -2179,7 +2179,6 @@
 	"revertpage": "Vraćene izmjene {{GENDER:$2|korisnika|korisnice}} [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]]) na posljednju izmjenu {{GENDER:$1|korisnika|korisnice}} [[User:$1|$1]]",
 	"revertpage-nouser": "Vraćene izmjene skrivenog korisnika na posljednju reviziju, koju je {{GENDER:$1|napravio|napravila}} [[User:$1|$1]]",
 	"rollback-success": "Vraćene izmjene {{GENDER:$3|korisnika|korisnice}} $1 na posljednju verziju {{GENDER:$4|korisnika|korisnice}} $2.",
-	"rollback-success-notify": "Vraćenje izmjene korisnika $1;\nvraćeno na posljednju izmjenu korisnika $2. [$3 Prikaži izmjene]",
 	"sessionfailure-title": "Greška u sesiji",
 	"sessionfailure": "Izgleda da postoji problem sa vašom sesijom; ova akcija je otkazana kao prevencija protiv napadanja sesija. Kliknite \"back\" (''nazad'') i osvježite stranicu sa koje ste došli, i opet pokušajte.",
 	"changecontentmodel": "Promijeni model sadržaja stranice",

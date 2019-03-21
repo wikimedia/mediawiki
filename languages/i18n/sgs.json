@@ -1320,7 +1320,6 @@
 	"editcomment": "Padėrbėma paāškėnėms bova: <em>$1</em>.",
 	"revertpage": "Atmests [[Special:Contributions/$2|$2]] ([[User talk:$2|aptarėms]]) pakeitėms; sogrōžints atmains, katron padėrba nauduotuos [[User:$1|$1]]",
 	"rollback-success": "Atmestė $1 padėrbtė keitėmā; grōžints $2 padėrbts atmains.",
-	"rollback-success-notify": "Atmestė $1 padėrbtė keitėmā; grōžints $2 padėrbts atmains. [$3 ruodītė keitėmus]",
 	"sessionfailure-title": "Sesėjės klaida",
 	"sessionfailure": "Atruod ka īr biedū so Tamstas prėsėjongėmo; tas vēksmos bova grōžints kāp atsargoma prėimonė nu sesėjės vuogėma.\nPrašoum mīgtė „atgal“ ėr parkrautė poslapi ėš katruo atiejėt, ė pamieginkėt apent.",
 	"changecontentmodel-title-label": "Poslapė pavadėnėms",

@@ -2271,7 +2271,6 @@
 	"revertpage": "vrnitev sprememb uporabnika [[Special:Contributions/$2|$2]] ([[User talk:$2|pogovor]]) na zadnje urejanje uporabnika [[User:$1|$1]]",
 	"revertpage-nouser": "vrnitev sprememb skritega uporabnika na zadnjo redakcijo {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Razveljavljene spremembe {{GENDER:$3|uporabnika|uporabnice}} $1;\nvrnjeno na urejanje {{GENDER:$4|uporabnika|uporabnice}} $2.",
-	"rollback-success-notify": "Povrnili smo urejanja $1;\nspremenjeno nazaj na zadnjo redakcijo $2. [$3 Prikaži spremembe]",
 	"sessionfailure-title": "Neuspeh seje",
 	"sessionfailure": "Zdi se, da z vašo sejo prijave obstaja težava;\nto dejanje smo preklicali, da bi preprečili morebitno ugrabitev seje. Prosimo, ponovno potrdite obrazec.",
 	"changecontentmodel": "Spremeni model vsebine strani",

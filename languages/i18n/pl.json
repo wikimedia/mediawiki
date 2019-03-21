@@ -2355,7 +2355,6 @@
 	"revertpage": "Wycofano edycje użytkownika [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].",
 	"revertpage-nouser": "Wycofano edycje ukrytego użytkownika. Autor przywróconej wersji to {{GENDER:$1|[[User:$1|$1]]}}.",
 	"rollback-success": "Wycofano edycje {{GENDER:$3|użytkownika|użytkowniczki}} $1;\nprzywrócono ostatnią wersję autorstwa {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Wycofano edycje użytkownika $1;\nprzywrócono ostatnią wersję autorstwa $2. [$3 Pokaż zmiany]",
 	"sessionfailure-title": "Błąd sesji",
 	"sessionfailure": "Wydaje się, że wystąpił błąd z Twoją sesją zalogowania;\nto działanie zostało anulowane, aby uniknąć przechwycenia sesji.\nPrześlij formularz jeszcze raz.",
 	"changecontentmodel": "Edycja modelu zawartości strony",

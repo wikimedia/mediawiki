@@ -2112,7 +2112,6 @@
 	"revertpage": "Posledné úpravy používateľa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusia]]) vrátené; bola obnovená posledná úprava $1",
 	"revertpage-nouser": "Vrátené úpravy od skrytého používateľa na poslednú revíziu od {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Úpravy $1 vrátené; obnovená posledná verzia od $2.",
-	"rollback-success-notify": "Úpravy používateľa $1 boli vrátené;\nobnovená posledná revízia od používateľa $2. [$3 Zobraziť zmeny]",
 	"sessionfailure-title": "Chyba relácie",
 	"sessionfailure": "Zdá sa, že je problém s vašou prihlasovacou reláciou;\ntáto akcia bola zrušená ako prevencia proti zneužitiu relácie (session).\nProsím, stlačte \"naspäť\", obnovte stránku, z ktorej ste sa sem dostali, a skúste to znova.",
 	"changecontentmodel": "Zmeniť model obsahu stránky",

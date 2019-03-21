@@ -2015,7 +2015,6 @@
 	"revertpage": "mapatiku tuway [[Special:Contributions/$2|$2]] ([[User talk:$2|sasukamu]]) a mikawaway-kalumyiti sazikuzay nay [[User:$1|$1]] amisumad nu ayaway a baziyong",
 	"revertpage-nouser": "mapatiku tu midimut misaungayay ku mikawaway-kalumyiti malasazikuz {{GENDER:$1|[[User:$1|$1]]}} masumad nu ayaway a baziyong",
 	"rollback-success": "mapatiku tuway {{GENDER:$3|$1}} mapasanga’ay a mikawaway-kalumyiti;\nmisumad tatiku nay {{GENDER:$4|$2}} masumad nu ayaway sazikuzay a baziyong.",
-	"rollback-success-notify": "mapatiku $1 nikawawan mikawaway-kalumyiti;\nmisumad patiku ta $2 masumad nu ayaway a sazikuz cacay baziyong. [$3 paazih ku masumaday]",
 	"sessionfailure-title": "kasasiket mungangaw",
 	"sessionfailure": "kisu patalabu kasasiketan mahiza simunday,\nsaka pataayaw-milangat kasasiketan maalaw atu madebung, tina saungay mapalawpes tuway.\npitatiku ayaway a kasabelih, miliyaw maasip kya kasabelih pitaneng aca.",
 	"changecontentmodel": "misumad lacul tatudungen misanga’",

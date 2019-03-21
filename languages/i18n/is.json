@@ -2112,7 +2112,6 @@
 	"revertpage": "Tók aftur breytingar [[Special:Contributions/$2|$2]] ([[User talk:$2|spjall]]), breytt til síðustu útgáfu [[User:$1|$1]]",
 	"revertpage-nouser": "Tók aftur breytingar falins notanda til síðustu útgáfu {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Tók til baka breytingar eftir {{GENDER:$3|$1}};\nsetti yfir á síðustu útgáfu eftir {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Tók aftur breytingar $1;\nbreytti í síðustu útgafu $2. [$3 Sýna breytingar]",
 	"sessionfailure-title": "Mistök í setu",
 	"sessionfailure": "Líklega er vandamál með innskráningarsetuna þína;\nhætt hefur verið við þessa aðgerð sem vörn gegn mögulegu samskiptaráni setunar.\nReyndu að senda upplýsingarnar aftur inn.",
 	"changecontentmodel": "Breyta efnislíkani síðu",

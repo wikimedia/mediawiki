@@ -2251,7 +2251,6 @@
 	"revertpage": "Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]]) hasta la cabera versión de [[User:$1|$1]]",
 	"revertpage-nouser": "Revertíes les ediciones de (usuariu desaniciáu) a la cabera revisión de {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Revertíes les ediciones de {{GENDER:$3|$1}}; devueltu a la última revisión de {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Revertíes les ediciones de $1 a la última revisión de $2. [$3 Ver cambeos]",
 	"sessionfailure-title": "Fallu de sesión",
 	"sessionfailure": "Paez qu'hai un problema col aniciu de sesión;\natayóse esta aición por precaución escontra secuestru de sesiones.\nUnvia'l formulariu otra vegada.",
 	"changecontentmodel": "Cambiar el modelu de conteníu d'una páxina",

@@ -2347,7 +2347,6 @@
 	"revertpage": "Wijzigingen door [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) hersteld tot de laatste versie door [[User:$1|$1]]",
 	"revertpage-nouser": "Wijzigingen door een verborgen gebruiker teruggedraaid naar de laatste versie door {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Wijzigingen door {{GENDER:$3|$1}} ongedaan gemaakt;\nlaatste versie van {{GENDER:$4|$2}} hersteld.",
-	"rollback-success-notify": "De wijzigingen door $1 zijn teruggedraaid;\nde laatste versie van $2 is hersteld. [$3 Wijzigingen weergeven]",
 	"sessionfailure-title": "Sessiefout",
 	"sessionfailure": "Er lijkt een probleem te zijn met uw aanmeldsessie.\nUw handeling is gestopt uit voorzorg tegen een beveiligingsrisico (dat bestaat uit mogelijke \"hijacking\" van deze sessie).\nProbeer het formulier opnieuw te versturen.",
 	"changecontentmodel": "Inhoudsmodel van pagina bewerken",
