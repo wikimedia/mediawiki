@@ -17,6 +17,8 @@ THIS IS NOT A RELEASE YET
 * (T208871) The hard-coded Google search form on the database error page was
   removed.
 * (T216968) Return pageid as int in both list=iwbacklinks and list=langbacklinks.
+* (T218608) Fix an issue that prevents Extension:OAuth working when
+  $wgBlockDisablesLogin is true.
 
 == MediaWiki 1.27.5 ==
 
