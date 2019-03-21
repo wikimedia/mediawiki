@@ -387,12 +387,10 @@ class WebRequest {
 		$name = strtr( $name, '.', '_' );
 		if ( isset( $arr[$name] ) ) {
 			$data = $arr[$name];
-			if ( isset( $_GET[$name] ) && !is_array( $data ) ) {
+			if ( isset( $_GET[$name] ) && is_string( $data ) ) {
 				# Check for alternate/legacy character encoding.
 				$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-				if ( $contLang ) {
-					$data = $contLang->checkTitleEncoding( $data );
-				}
+				$data = $contLang->checkTitleEncoding( $data );
 			}
 			$data = $this->normalizeUnicode( $data );
 			return $data;
