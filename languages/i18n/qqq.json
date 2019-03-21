@@ -253,6 +253,7 @@
 	"tog-useeditwarning": "Used as label for the checkbox in [[Special:Preferences#mw-prefsection-editing|Special:Preferences]].",
 	"tog-prefershttps": "Toggle option used in [[Special:Preferences]] that indicates if the user wants to use a secure connection when logged in",
 	"tog-showrollbackconfirmation": "Toggle option used in [[Special:Preferences]] to enable/disable rollback confirmation prompt. Should be visible only to users with rollback rights.",
+	"tog-showrollbackconfirmation-prerelease-warning": "Notice for wikis where the option can be set before the feature is enabled.\n\nNote: This notice is temporary and will only appear before the rollback confirmation feature is released.",
 	"underline-always": "Used in [[Special:Preferences#mw-prefsection-rendering|Preferences]].\n\nThis option means \"always underline links\", there are also options {{msg-mw|Underline-never}} and {{msg-mw|Underline-default}}.\n\n{{Gender}}\n{{Identical|Always}}",
 	"underline-never": "Used in [[Special:Preferences#mw-prefsection-rendering|Preferences]].\n\nThis option means \"never underline links\", there are also options {{msg-mw|Underline-always}} and {{msg-mw|Underline-default}}.\n\n{{Gender}}\n{{Identical|Never}}",
 	"underline-default": "Used in [[Special:Preferences#mw-prefsection-rendering|Preferences]].\n\nThis option means \"underline links as in your user skin or your browser\", there are also options {{msg-mw|Underline-never}} and {{msg-mw|Underline-always}}.\n\n{{Gender}}\n{{Identical|Browser default}}",

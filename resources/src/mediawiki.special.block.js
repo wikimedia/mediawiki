@@ -26,7 +26,7 @@
 			pageRestrictionsWidget = infuseIfExists( $( '#mw-input-wpPageRestrictions' ) ),
 			namespaceRestrictionsWidget = infuseIfExists( $( '#mw-input-wpNamespaceRestrictions' ) ),
 			createAccountWidget = infuseIfExists( $( '#mw-input-wpCreateAccount' ) ),
-			userChangedCreateAccount = false,
+			userChangedCreateAccount = $( '#mw-input-wpBlockId' ).val() || $( '#mw-input-wpWasPosted' ).val() || false,
 			updatingBlockOptions = false;
 
 		function updateBlockOptions() {
