@@ -2390,7 +2390,7 @@
 	"deleting-backlinks-warning": "<strong>Warning:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|Other pages]] link to or transclude the page you are about to delete.",
 	"deleting-subpages-warning": "<strong>Warning:</strong> The page you are about to delete has [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|a subpage|$1 subpages|51=over 50 subpages}}]].",
 	"rollback": "Roll back edits",
-	"rollback-confirmation-confirm": "Rollback of {{PLURAL:$1|0=these edits|one edit|$1 edits}}?",
+	"rollback-confirmation-confirm": "Please confirm:",
 	"rollback-confirmation-yes": "Rollback",
 	"rollback-confirmation-no": "Cancel",
 	"rollbacklink": "rollback",
