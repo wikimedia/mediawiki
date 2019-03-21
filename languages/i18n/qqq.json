@@ -2596,7 +2596,7 @@
 	"deleting-backlinks-warning": "A warning shown when a page that is being deleted has at least one link to it or is transcluded in at least one page.",
 	"deleting-subpages-warning": "A warning shown when a page that is being deleted has at least one subpage. $1 is the number of subpages of the page. For any number of subpages over 50, $1 will be 51.\nSee also:\n* {{msg-mw|Deleting-backlinks-warning}}",
 	"rollback": "{{Identical|Rollback}}",
-	"rollback-confirmation-confirm": "Question shown to user to confirm that they want to proceed with the rollback.\n\nParameters:\n* $1 - number of edits that will be rolled back.",
+	"rollback-confirmation-confirm": "Prompt which asks the user to confirm that they want to really perform the rollback action after clicking on the rollback button.",
 	"rollback-confirmation-yes": "Button text to confirm that a rollback should be executed.",
 	"rollback-confirmation-no": "Button text to cancel a rollback instead of executing it.",
 	"rollbacklink": "{{Doc-actionlink}}\nThis link text appears on the recent changes page to users who have the \"rollback\" right.\nThis message has a tooltip {{msg-mw|tooltip-rollback}}\n{{Identical|Rollback}}",
