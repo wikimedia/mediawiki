@@ -374,7 +374,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	public function preventSessionsForUser( $username ) {
 		if ( !$this->canChangeUser() ) {
 			throw new \BadMethodCallException(
-				__METHOD__ . ' must be implmented when canChangeUser() is false'
+				__METHOD__ . ' must be implemented when canChangeUser() is false'
 			);
 		}
 	}
