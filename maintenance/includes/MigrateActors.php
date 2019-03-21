@@ -32,14 +32,22 @@ require_once __DIR__ . '/../Maintenance.php';
  * @ingroup Maintenance
  */
 class MigrateActors extends LoggedUpdateMaintenance {
+
+	protected $tables = null;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Migrates actors from pre-1.31 columns to the \'actor\' table' );
+		$this->addOption( 'tables', 'List of tables to process, comma-separated', false, true );
 		$this->setBatchSize( 100 );
 	}
 
 	protected function getUpdateKey() {
 		return __CLASS__;
+	}
+
+	protected function doTable( $table ) {
+		return $this->tables === null || in_array( $table, $this->tables, true );
 	}
 
 	protected function doDBUpdates() {
@@ -52,28 +60,51 @@ class MigrateActors extends LoggedUpdateMaintenance {
 			return false;
 		}
 
-		$this->output( "Creating actor entries for all registered users\n" );
-		$end = 0;
-		$dbw = $this->getDB( DB_MASTER );
-		$max = $dbw->selectField( 'user', 'MAX(user_id)', '', __METHOD__ );
-		$count = 0;
-		while ( $end < $max ) {
-			$start = $end + 1;
-			$end = min( $start + $this->mBatchSize, $max );
-			$this->output( "... $start - $end\n" );
-			$dbw->insertSelect(
-				'actor',
-				'user',
-				[ 'actor_user' => 'user_id', 'actor_name' => 'user_name' ],
-				[ "user_id >= $start", "user_id <= $end" ],
-				__METHOD__,
-				[ 'IGNORE' ],
-				[ 'ORDER BY' => [ 'user_id' ] ]
-			);
-			$count += $dbw->affectedRows();
-			wfWaitForSlaves();
+		$tables = $this->getOption( 'tables' );
+		if ( $tables !== null ) {
+			$this->tables = explode( ',', $tables );
 		}
-		$this->output( "Completed actor creation, added $count new actor(s)\n" );
+
+		if ( $this->doTable( 'user' ) ) {
+			$this->output( "Creating actor entries for all registered users\n" );
+			$end = 0;
+			$dbw = $this->getDB( DB_MASTER );
+			$max = $dbw->selectField( 'user', 'MAX(user_id)', '', __METHOD__ );
+			$count = 0;
+			while ( $end < $max ) {
+				$start = $end + 1;
+				$end = min( $start + $this->mBatchSize, $max );
+				$this->output( "... $start - $end\n" );
+				$dbw->insertSelect(
+					'actor',
+					'user',
+					[ 'actor_user' => 'user_id', 'actor_name' => 'user_name' ],
+					[ "user_id >= $start", "user_id <= $end" ],
+					__METHOD__,
+					[ 'IGNORE' ],
+					[ 'ORDER BY' => [ 'user_id' ] ]
+				);
+				$count += $dbw->affectedRows();
+				wfWaitForSlaves();
+			}
+			$this->output( "Completed actor creation, added $count new actor(s)\n" );
+		} else {
+			$this->output( "Checking that actors exist for all registered users\n" );
+			$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
+			$anyMissing = $dbr->selectField(
+				[ 'user', 'actor' ],
+				'1',
+				[ 'actor_id' => null ],
+				__METHOD__,
+				[ 'LIMIT 1' ],
+				[ 'actor' => [ 'LEFT JOIN', 'actor_user = user_id' ] ]
+			);
+			if ( $anyMissing ) {
+				$this->error( 'Some users lack actors; run without --tables or include `user` in --tables.' );
+				return false;
+			}
+			$this->output( "Ok, continuing.\n" );
+		}
 
 		$errors = 0;
 		$errors += $this->migrateToTemp(
@@ -229,6 +260,11 @@ class MigrateActors extends LoggedUpdateMaintenance {
 	 * @return int Number of errors
 	 */
 	protected function migrate( $table, $primaryKey, $userField, $nameField, $actorField ) {
+		if ( !$this->doTable( $table ) ) {
+			$this->output( "Skipping $table, not included in --tables\n" );
+			return 0;
+		}
+
 		$complainedAboutUsers = [];
 
 		$primaryKey = (array)$primaryKey;
@@ -325,6 +361,11 @@ class MigrateActors extends LoggedUpdateMaintenance {
 	protected function migrateToTemp(
 		$table, $primaryKey, $extra, $userField, $nameField, $newPrimaryKey, $actorField
 	) {
+		if ( !$this->doTable( $table ) ) {
+			$this->output( "Skipping $table, not included in --tables\n" );
+			return 0;
+		}
+
 		$complainedAboutUsers = [];
 
 		$newTable = $table . '_actor_temp';
@@ -413,6 +454,11 @@ class MigrateActors extends LoggedUpdateMaintenance {
 	 * @return int Number of errors
 	 */
 	protected function migrateLogSearch() {
+		if ( !$this->doTable( 'log_search' ) ) {
+			$this->output( "Skipping log_search, not included in --tables\n" );
+			return 0;
+		}
+
 		$complainedAboutUsers = [];
 
 		$primaryKey = [ 'ls_value', 'ls_log_id' ];
@@ -423,6 +469,25 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		$countInserted = 0;
 		$countActors = 0;
 		$countErrors = 0;
+
+		$anyBad = $dbw->selectField(
+			'log_search',
+			1,
+			[ 'ls_field' => 'target_author_actor', 'ls_value' => '' ],
+			__METHOD__,
+			[ 'LIMIT' => 1 ]
+		);
+		if ( $anyBad ) {
+			$this->output( "... Deleting bogus rows due to T21552\n" );
+			$dbw->delete(
+				'log_search',
+				[ 'ls_field' => 'target_author_actor', 'ls_value' => '' ],
+				__METHOD__
+			);
+			$ct = $dbw->affectedRows();
+			$this->output( "... Deleted $ct bogus row(s) from T21552\n" );
+			wfWaitForSlaves();
+		}
 
 		$next = '1=1';
 		while ( true ) {
