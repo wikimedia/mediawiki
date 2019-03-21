@@ -1844,16 +1844,14 @@ class User implements IDBAccessObject, UserIdentity {
 		# user is not immune to autoblocks/hardblocks, and they are the current user so we
 		# know which IP address they're actually coming from
 		$ip = null;
-		if ( !$this->isAllowed( 'ipblock-exempt' ) ) {
-			$sessionUser = RequestContext::getMain()->getUser();
-			// the session user is set up towards the end of Setup.php. Until then,
-			// assume it's a logged-out user.
-			$globalUserName = $sessionUser->isSafeToLoad()
-				? $sessionUser->getName()
-				: IP::sanitizeIP( $sessionUser->getRequest()->getIP() );
-			if ( $this->getName() === $globalUserName ) {
-				$ip = $this->getRequest()->getIP();
-			}
+		$sessionUser = RequestContext::getMain()->getUser();
+		// the session user is set up towards the end of Setup.php. Until then,
+		// assume it's a logged-out user.
+		$globalUserName = $sessionUser->isSafeToLoad()
+			? $sessionUser->getName()
+			: IP::sanitizeIP( $sessionUser->getRequest()->getIP() );
+		if ( $this->getName() === $globalUserName && !$this->isAllowed( 'ipblock-exempt' ) ) {
+			$ip = $this->getRequest()->getIP();
 		}
 
 		// User/IP blocking
