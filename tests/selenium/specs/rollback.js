@@ -66,6 +66,22 @@ describe( 'Rollback with confirmation', function () {
 			return browser.getText( '#firstHeading' ) === 'Action complete';
 		}, 5000, 'Expected rollback page to appear.' );
 	} );
+
+	it( 'should verify rollbacks via GET requests are confirmed on a follow-up page', function () {
+		var rollbackActionUrl = HistoryPage.rollbackLink.getAttribute( 'href' );
+		browser.url( rollbackActionUrl );
+
+		browser.waitUntil( function () {
+			return HistoryPage.rollbackNonJsConfirmable.getText() === 'Revert edits to this page?';
+		}, 5000, 'Expected rollback confirmation page to appear for GET-based rollbacks.' );
+
+		HistoryPage.rollbackNonJsConfirmableYes.click();
+
+		browser.waitUntil( function () {
+			return browser.getText( '#firstHeading' ) === 'Action complete';
+		}, 5000, 'Expected rollback page to appear.' );
+	} );
+
 } );
 
 describe( 'Rollback without confirmation', function () {
@@ -103,12 +119,21 @@ describe( 'Rollback without confirmation', function () {
 		HistoryPage.open( name );
 	} );
 
-	it( 'should perform rollback without asking the user to confirm', function () {
+	it( 'should perform rollback via POST request without asking the user to confirm', function () {
 		HistoryPage.rollback.click();
 
 		// waitUntil indirectly asserts that the content we are looking for is present
 		browser.waitUntil( function () {
 			return HistoryPage.headingText === 'Action complete';
+		}, 5000, 'Expected rollback page to appear.' );
+	} );
+
+	it( 'should perform rollback via GET request without asking the user to confirm', function () {
+		var rollbackActionUrl = HistoryPage.rollbackLink.getAttribute( 'href' );
+		browser.url( rollbackActionUrl );
+
+		browser.waitUntil( function () {
+			return browser.getText( '#firstHeading' ) === 'Action complete';
 		}, 5000, 'Expected rollback page to appear.' );
 	} );
 } );
