@@ -566,15 +566,24 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getAnyOpenConnection( $i, $flags = 0 ) {
+		$i = ( $i === self::DB_MASTER ) ? $this->getWriterIndex() : $i;
 		$autocommit = ( ( $flags & self::CONN_TRX_AUTOCOMMIT ) == self::CONN_TRX_AUTOCOMMIT );
+
 		foreach ( $this->conns as $connsByServer ) {
-			if ( !isset( $connsByServer[$i] ) ) {
-				continue;
+			if ( $i === self::DB_REPLICA ) {
+				$indexes = array_keys( $connsByServer );
+			} else {
+				$indexes = isset( $connsByServer[$i] ) ? [ $i ] : [];
 			}
 
-			foreach ( $connsByServer[$i] as $conn ) {
-				if ( !$autocommit || $conn->getLBInfo( 'autoCommitOnly' ) ) {
-					return $conn;
+			foreach ( $indexes as $index ) {
+				foreach ( $connsByServer[$index] as $conn ) {
+					if ( !$conn->isOpen() ) {
+						continue; // some sort of error occured?
+					}
+					if ( !$autocommit || $conn->getLBInfo( 'autoCommitOnly' ) ) {
+						return $conn;
+					}
 				}
 			}
 		}
