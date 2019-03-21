@@ -331,6 +331,8 @@ because of Phabricator reports.
   Use ParserOutput::allCacheVaryingOptions instead.
 * CdnCacheUpdate::newSimplePurge, deprecated in 1.27, has been removed.
   Use CdnCacheUpdate::newFromTitles() instead.
+* Handling of multiple arguments by the Block constructor, deprecated in 1.26,
+  has been removed.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
