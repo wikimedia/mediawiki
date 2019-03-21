@@ -113,6 +113,8 @@ interface IDatabase {
 	 *   permanent as far as write tracking is concerned. This is useful for testing.
 	 */
 	const QUERY_PSEUDO_PERMANENT = 2;
+	/** @var int Enforce that a query does not make effective writes */
+	const QUERY_REPLICA_ROLE = 4;
 
 	/** @var bool Parameter to unionQueries() for UNION ALL */
 	const UNION_ALL = true;

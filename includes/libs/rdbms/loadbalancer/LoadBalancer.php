@@ -834,23 +834,36 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	public function getConnectionRef( $db, $groups = [], $domain = false, $flags = 0 ) {
+	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ) {
 		$domain = $this->resolveDomainID( $domain );
+		$role = $this->getRoleFromIndex( $i );
 
-		return new DBConnRef( $this, $this->getConnection( $db, $groups, $domain, $flags ) );
+		return new DBConnRef( $this, $this->getConnection( $i, $groups, $domain, $flags ), $role );
 	}
 
-	public function getLazyConnectionRef( $db, $groups = [], $domain = false, $flags = 0 ) {
+	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ) {
 		$domain = $this->resolveDomainID( $domain );
+		$role = $this->getRoleFromIndex( $i );
 
-		return new DBConnRef( $this, [ $db, $groups, $domain, $flags ] );
+		return new DBConnRef( $this, [ $i, $groups, $domain, $flags ], $role );
 	}
 
-	public function getMaintenanceConnectionRef( $db, $groups = [], $domain = false, $flags = 0 ) {
+	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ) {
 		$domain = $this->resolveDomainID( $domain );
+		$role = $this->getRoleFromIndex( $i );
 
 		return new MaintainableDBConnRef(
-			$this, $this->getConnection( $db, $groups, $domain, $flags ) );
+			$this, $this->getConnection( $i, $groups, $domain, $flags ), $role );
+	}
+
+	/**
+	 * @param int $i Server index or DB_MASTER/DB_REPLICA
+	 * @return int One of DB_MASTER/DB_REPLICA
+	 */
+	private function getRoleFromIndex( $i ) {
+		return ( $i === self::DB_MASTER || $i === $this->getWriterIndex() )
+			? self::DB_MASTER
+			: self::DB_REPLICA;
 	}
 
 	public function openConnection( $i, $domain = false, $flags = 0 ) {
