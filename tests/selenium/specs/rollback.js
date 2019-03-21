@@ -43,7 +43,7 @@ describe( 'Rollback with confirmation', function () {
 
 		HistoryPage.rollback.click();
 
-		assert.strictEqual( HistoryPage.rollbackConfirmable.getText(), 'Rollback of one edit?' );
+		assert.strictEqual( HistoryPage.rollbackConfirmable.getText(), 'Please confirm:' );
 		assert.strictEqual( HistoryPage.rollbackConfirmableYes.getText(), 'Rollback' );
 		assert.strictEqual( HistoryPage.rollbackConfirmableNo.getText(), 'Cancel' );
 	} );
