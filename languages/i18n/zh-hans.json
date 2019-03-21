@@ -2367,7 +2367,6 @@
 	"revertpage": "恢复[[Special:Contributions/$2|$2]]（[[User talk:$2|讨论]]）的编辑至[[User:$1|$1]]的最后版本",
 	"revertpage-nouser": "恢复隐藏用户的编辑至{{GENDER:$1|[[User:$1|$1]]}}的最后版本",
 	"rollback-success": "已恢复{{GENDER:$3|$1}}的编辑；更改回{{GENDER:$4|$2}}的最后版本。",
-	"rollback-success-notify": "已回退$1的编辑，更改回$2的最后版本。[$3 显示更改]",
 	"sessionfailure-title": "会话无效",
 	"sessionfailure": "似乎您的登录会话有问题；为了防止会话劫持，这个操作已经被取消。请重新提交表单。",
 	"changecontentmodel": "更改一个页面的内容模型",

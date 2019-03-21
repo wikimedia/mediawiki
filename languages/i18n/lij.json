@@ -2128,7 +2128,6 @@
 	"revertpage": "Annullou e modiffiche de [[Special:Contributions/$2|$2]] ([[User talk:$2|discuscion]]), riportâ a-a verscion precedente de [[User:$1|$1]]",
 	"revertpage-nouser": "Annullou e modiffiche de un utente ascoso, riportâ a-a verscion precedente de {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Annullou e modiffiche de {{GENDER:$3|$1}}; paggina riportâ a l'urtima verscion de {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Annullou e modiffiche de $1;\npaggina riportâ a l'urtima revixon de $2. [$3 Mostra e modiffiche]",
 	"sessionfailure-title": "Sescion fallia",
 	"sessionfailure": "S'è veificou un problema inta sescion ch'a l'identiffica l'accesso; o scistema o no l'ha eseguio o comando impartio pe precauçion. Torna a-a paggina precedente co-o tasto 'Inderê' do to browser, recarega a paggina e riproeuva.",
 	"changecontentmodel": "Cangia o modello de contegnuo de 'na paggina",

@@ -1880,7 +1880,6 @@
 	"revertpage": "Deasachaidhean a chaidh a thilleadh leis [[Special:Contributions/$2|$2]] ([[User talk:$2|an deasbaireachd]]) dhan mhùthadh mu dheireadh le [[User:$1|$1]]",
 	"revertpage-nouser": "Deasachaidhean a chaidh a thilleadh le cleachdaiche falaichte dhan mhùthadh mu dheireadh le [[User:$1|$1]]",
 	"rollback-success": "Na deasachaidhean a chaidh a thilleadh le $1;\nchaidh an tilleadh gun mhùthadh mu dheireadh le $2.",
-	"rollback-success-notify": "Na deasachaidhean a chaidh a thilleadh le $1;\nchaidh an tilleadh gun mhùthadh mu dheireadh le $2. [$3 Seall na h-atharraichean]",
 	"sessionfailure-title": "Trioblaid leis an t-seisean",
 	"sessionfailure": "Tha duilgheadas ann leis an seisean logaidh a-steach agad a-rèir coltais;\nchaidh sgur dhen ghnìomh seo a chum dìon o session hijacking.\nTill dhan duilleag roimhpe, ath-luchdaich an duilleag ud 's feuch ris a-rithist an uairsin.",
 	"logentry-contentmodel-change-revertlink": "till",

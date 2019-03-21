@@ -2298,7 +2298,6 @@
 	"revertpage": "Visszaállítottam a lap korábbi változatát [[Special:Contributions/$2|$2]] ([[User talk:$2|vita]]) szerkesztéséről [[User:$1|$1]] szerkesztésére",
 	"revertpage-nouser": "Visszaállítottam a lap korábbi változatát (szerkesztőnév eltávolítva) szerkesztéséről [[User:$1|$1]] szerkesztésére",
 	"rollback-success": "{{GENDER:$3|$1}} szerkesztéseit visszaállítottam {{GENDER:$4|$2}} utolsó változatára.",
-	"rollback-success-notify": "$1 szerkesztései visszaállítva;\nhelyreállítva $2 utolsó változata. [$3 Változtatások megtekintése]",
 	"sessionfailure-title": "Munkamenethiba",
 	"sessionfailure": "Úgy látszik, hogy probléma van a bejelentkezési munkameneteddel;\nez a művelet a munkamenet eltérítése miatti óvatosságból megszakadt.\nKérjük, küldd el újra az űrlapot.",
 	"changecontentmodel": "A lap tartalommodelljének megváltoztatása",

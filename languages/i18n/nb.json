@@ -2308,7 +2308,6 @@
 	"revertpage": "Tilbakestilte endringer av [[Special:Contributions/$2|$2]] ([[User talk:$2|brukerdiskusjon]]) til siste versjon av [[User:$1|$1]]",
 	"revertpage-nouser": "Tilbakestilt endringer av skjult bruker til siste versjon av\n{{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Tilbakestilte endringer av {{GENDER:$3|$1}}; endret til siste versjon av {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Tilbakestilte endringer av $1;\nendret tilbake til siste revisjon av $2. [$3 Vis endringer]",
 	"sessionfailure-title": "Sesjonsfeil",
 	"sessionfailure": "Det ser ut til å være et problem med innloggingen din, og handlingen ble avbrutt av sikkerhetshensyn. Vennlgist prøv å sende skjemaet en gang til.",
 	"changecontentmodel": "Endre innholdsmodell for en side",

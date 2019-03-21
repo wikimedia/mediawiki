@@ -2192,7 +2192,6 @@
 	"revertpage": "Editas par [[Special:Contributions/$2|$2]] ([[User talk:$2|discute]]) ia es reversada a la revisa la plu resente par [[User:$1|$1]]",
 	"revertpage-nouser": "Editas par un usor ascondeda ia es reversada a la revisa la plu resente par [[User:$1|$1]]",
 	"rollback-success": "Editas par {{GENDER:$3|$1}} ia es reversada e cambiada a la revisa la plu resente par {{GENDER:$4|$2}}",
-	"rollback-success-notify": "Editas par $1 ia es reversada e cambiada a la revisa la plu resente par $2. [$3 Mostra cambias]",
 	"sessionfailure-title": "Fali de sesion",
 	"sessionfailure": "Lo pare ce tua sesion de autentici ave un problem; esta ata ia es canselada per proteje contra saisis de sesion. Reenvia la formulario, per favore.",
 	"changecontentmodel": "Cambia model de contenida de un paje",

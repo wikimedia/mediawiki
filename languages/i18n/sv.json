@@ -2336,7 +2336,6 @@
 	"revertpage": "Återställde redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]) till senaste versionen av [[User:$1|$1]]",
 	"revertpage-nouser": "Återställde redigeringar av en dold användare till den senaste versionen av {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Återställde ändringar av {{GENDER:$3|$1}};\nändrade tillbaka till senaste versionen av {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Återställde ändringar av $1;\nändrade tillbaka till senaste sidversion av $2. [$3 Visa ändringar]",
 	"sessionfailure-title": "Sessionsfel",
 	"sessionfailure": "Någonting med din inloggningssession är på tok;\ndin begärda åtgärd har avbrutits för att förhindra att någon kapar din session.\nSkicka formuläret igen.",
 	"changecontentmodel": "Ändra innehållsmodell för en sida",

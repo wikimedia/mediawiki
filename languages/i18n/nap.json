@@ -2166,7 +2166,6 @@
 	"revertpage": "Cangiaje 'e cagnamiénte 'e [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]]), cu â verzione 'e pprimma 'e  [[User:$1|$1]]",
 	"revertpage-nouser": "Annullate 'e cagnamiente 'e n'utente annascunnuto, è stata ripigliata ll'urdema verzione 'e {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Cagnamiente annullate 'a {{GENDER:$3|$1}};\ns'è turnato arreto a l'urdema verzione 'e {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Cagnamiente annullate 'a $1;\ns'è turnat arreto a l'urdema verzione 'e $2. [$3 Fà vedé 'e cagnamiente]",
 	"sessionfailure-title": "Sessione fallita",
 	"sessionfailure": "Pare ca stanno probbleme cu 'a sessiona toja;\nst'azione è stata fermata pe' precauzione annanz' 'e cavall' 'e troia;\nPe' piacere turnate arreto, carrecate n'ata vota 'a paggena pe pruvate n'ata vota.",
 	"changecontentmodel": "Cagna 'o mudello 'e cuntenute 'e na paggena",

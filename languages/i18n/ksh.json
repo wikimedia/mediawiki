@@ -1982,7 +1982,6 @@
 	"revertpage": "Änderunge vun däm Metmaacher „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|däm sing Klaafsigg]]) fottjeschmeße, un doför de lätzde Väsjohn vum „[[User:$1|$1]]“ widder zeröckjehollt",
 	"revertpage-nouser": "Änderunge vun enem Metmaacher, däm singe Name vershtoche es, retuur jemaat op de letzte Version {{GENDER:$1|vum|vum|vumm Metmaacher|vun dä|vum}} [[User:$1|$1]]",
 	"rollback-success": "De Änderungen vum $1 zeröckjenumme, un dobei de letzte Version vum $2 widder jehollt.",
-	"rollback-success-notify": "Änderonge {{GENDER:$1|vum|vum|vumm Metmaacher|vun dä|vum}} „$1“ sin zerök jenumme un di Sigg es op der Schtand vun doför {{GENDER:$2|vum|vum|vumm Metmaacher|vun dä|vum}} „$2“ jesaz. [$3 Belohr, wat derbeij veränndert wood]",
 	"sessionfailure-title": "Fähler met dä Daate vum Enlogge",
 	"sessionfailure": "Et jov wall e täschnesch Problehm met Dingem Login. Dröm ham_mer dat us Vörseesch jäz nix jemaht, domet mer nit velleich Ding Änderong däm verkihrte Metmaacher ongerjubele. Jangk zeröck un versöhk et noch ens.",
 	"changecontentmodel": "Et Modäll vum Ennhald vun ene Sigg verändere",

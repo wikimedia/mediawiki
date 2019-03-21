@@ -2192,7 +2192,6 @@
 	"revertpage": "Atmestas [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarimas]]) pakeitimas; sugrąžinta [[User:$1|$1]] versija",
 	"revertpage-nouser": "Atversti pakeitimai paslėpto vartotojo, grąžino prieš tai buvusią versiją {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Atmesti {{GENDER:$3|$1}} pakeitimai;\ngrąžinta prieš tai buvusi {{GENDER:$4|$2}} versija.",
-	"rollback-success-notify": "Atmesti $1 pakeitimai;\ngrąžinta prieš tai buvusi $2 versija. [$3 Rodyti skirtumus]",
 	"sessionfailure-title": "Sesijos klaida",
 	"sessionfailure": "Atrodo yra problemų su jūsų prisijungimo sesija; šis veiksmas buvo atšauktas kaip atsargumo priemonė prieš sesijos vogimą.\nPrašome iš naujo pateikti formą.",
 	"changecontentmodel": "Keisti puslapio turinio modelį",

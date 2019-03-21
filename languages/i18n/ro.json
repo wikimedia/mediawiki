@@ -2302,7 +2302,6 @@
 	"revertpage": "Anularea modificărilor efectuate de către [[Special:Contributions/$2|$2]] ([[User talk:$2|discuție]]) și revenire la ultima versiune de către [[User:$1|$1]]",
 	"revertpage-nouser": "Anularea modificărilor efectuate de un utilizator ascuns și revenirea la ultima modificare de către {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Modificările făcute de {{GENDER:$3|$1}} au fost anulate;\nam revenit la ultima versiune de {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "S-a revenit asupra schimbărilor făcute de $1;\nam revenit la ultima versiune de $2. [$3 Arată schimbările]",
 	"sessionfailure-title": "Eroare de sesiune",
 	"sessionfailure": "Se pare că este o problemă cu sesiunea de autentificare; această acțiune a fost oprită ca o precauție împotriva furtului sesiunii. Vă rugăm să trimiteți formularul din nou.",
 	"changecontentmodel": "Modificare model de conținut al unei pagini",

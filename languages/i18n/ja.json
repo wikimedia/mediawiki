@@ -2369,7 +2369,6 @@
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|トーク]]) による編集を [[User:$1|$1]] による直前の版へ差し戻しました",
 	"revertpage-nouser": "非表示の利用者による編集を {{GENDER:$1|[[User:$1|$1]]}} による直前の版へ差し戻しました",
 	"rollback-success": "{{GENDER:$3|$1}}による編集を差し戻しました。\n{{GENDER:$4|$2}}による直前の版へ変更されました。",
-	"rollback-success-notify": "$1による編集を差し戻しました。\n$2による直前の版へ変更されました。[$3 変更を表示]",
 	"sessionfailure-title": "セッションの失敗",
 	"sessionfailure": "ログインのセッションに問題が発生しました。\nセッション乗っ取りを防ぐため、操作を取り消しました。\nフォームを再送信してください。",
 	"changecontentmodel": "ページのコンテンツ・モデルの変更",

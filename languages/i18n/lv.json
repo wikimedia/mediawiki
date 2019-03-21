@@ -1871,6 +1871,7 @@
 	"delete-toobig": "Šai lapai ir liela izmaiņu hronoloģija, vairāk nekā $1 {{PLURAL:$1|versijas|versija|versijas}}.\nŠādu lapu dzēšana ir atslēgta, lai novērstu nejaušus traucējumus {{grammar:lokatīvs|{{SITENAME}}}}.",
 	"deleting-backlinks-warning": "'''Brīdinājums:''' uz lapu, ko grasies izdzēst, ved [[Special:WhatLinksHere/{{FULLPAGENAME}}|saites no citām lapām]].",
 	"rollback": "Novērst labojumus",
+	"rollback-confirmation-no": "Atcelt",
 	"rollbacklink": "novērst",
 	"rollbacklinkcount": "atcelt $1 {{PLURAL:$1|labojumus|labojumu|labojumus}}",
 	"rollbacklinkcount-morethan": "atcelt vairāk kā $1 {{PLURAL:$1|labojumus|labojumu|labojumus}}",

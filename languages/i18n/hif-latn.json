@@ -2137,7 +2137,6 @@
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ke badlao ke [[User:$1|$1]] ke aakhri badlao ke jaise kar dewa gais hai.",
 	"revertpage-nouser": "Reverted edits by a hidden user to last revision by {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Reverted edits by {{GENDER:$3|$1}};\nchanged back to last revision by {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "$1 ke badlao ke pahile jaise kar dewa gais hai;\nbadlao ke $2 ke aakhri version kar dewa gais hai.[$3 Show changes]",
 	"sessionfailure-title": "Session fail hoe gais hae",
 	"sessionfailure": "Aap ke login session me kuch karrbarr hai.\niske cancel kar dewa gais hai jisse ki koi iisession ke hijack nai kar.\nMeharbani kar ke  \"back\" ke press kar ke jon pana se aap aae rahaa ke fir se load karo, tab fir kosis karo.",
 	"changecontentmodel": "Panna ke content model ke badlo",

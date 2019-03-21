@@ -2347,7 +2347,6 @@
 	"revertpage": "Foram revertidas as edições de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última revisão de [[User:$1|$1]]",
 	"revertpage-nouser": "Foram revertidas as edições de um utilizador oculto para a última revisão de {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Foram revertidas as edições de {{GENDER:$3|$1}}; reposta a última edição de {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Revertidas as edições de $1;\nMudança para a última revisão de $2. [$3 Mostrar alterações]",
 	"sessionfailure-title": "Erro de sessão",
 	"sessionfailure": "Foram detetados problemas com a sua sessão;\na operação foi cancelada como medida de proteção contra a intercetação de sessões.\nReenvie o formulário, por favor.",
 	"changecontentmodel": "Alterar modelo de conteúdo de uma página",

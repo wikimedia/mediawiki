@@ -1207,7 +1207,6 @@
 	"revertpage": "Suntingane [[Special:Contributions/$2|$2]] ([[User talk:$2|dhiskusi]]) dibalekna maring versi pungkasan sekang [[User:$1|$1]]",
 	"revertpage-nouser": "Mbalekna suntingan sekang (jeneng panganggo dibusek) ming revisi pungkasan sekang [[User:$1|$1]]",
 	"rollback-success": "Mbalekna suntingane $1;\ndibalekna ming revisi pungkasan sekang $2.",
-	"rollback-success-notify": "Mbalekna besutan sekang $1; owah mbalik nggo revisi mburi sekang $2. [$3 Deleng owahane]",
 	"sessionfailure-title": "Sèsi gagal",
 	"sessionfailure": "Ketone lagi ana masalah karo sesi log-e Rika;\nloge Rika wis dibatalna nggo nyegah pambajakan.\nMonggo mbalik ming kaca sedurunge, dibaleni gole muatna kaca (reload) lan jajal diunggahna maning.",
 	"protectlogpage": "Log pangreksan",

@@ -2028,7 +2028,6 @@
 	"revertpage": "Wedi gwrthdroi golygiadau gan [[Special:Contributions/$2|$2]] ([[User talk:$2|Sgwrs]]); wedi adfer y golygiad diweddaraf gan [[User:$1|$1]]",
 	"revertpage-nouser": "Wedi gwrthdroi golygiadau gan ddefnyddiwr cudd; wedi adfer y golygiad diweddaraf gan {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Gwrthdrowyd y golygiadau gan {{GENDER:$3|$1}};\nailosodwyd y golygiad olaf gan {{GENDER:$4|$2}}.",
-	"rollback-success-notify": "Gwrthdrowyd y golygiadau gan $1;\nailosodwyd y golygiad olaf gan $2. [$3 Dangoser y gwahaniaeth]",
 	"sessionfailure-title": "Sesiwn wedi methu",
 	"sessionfailure": "Mae'n debyg fod yna broblem gyda'ch sesiwn mewngofnodi; diddymwyd y weithred er mwyn diogelu'r sustem rhag ddefnyddwyr maleisus. Gwasgwch botwm 'nôl' eich porwr ac ail-lwythwch y dudalen honno, yna ceisiwch eto.",
 	"changecontentmodel-title-label": "Teitl y ddalen",

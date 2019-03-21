@@ -2298,7 +2298,6 @@
 	"revertpage": "Đã lùi lại sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]) quay về phiên bản cuối của [[User:$1|$1]]",
 	"revertpage-nouser": "Đã lùi lại sửa đổi của người dùng ẩn quay về phiên bản cuối của {{GENDER:$1}}[[User:$1|$1]]",
 	"rollback-success": "Đã hủy sửa đổi của {{GENDER:$3}}$1;\nquay về phiên bản cuối của {{GENDER:$4}}$2.",
-	"rollback-success-notify": "Đã hủy sửa đổi của $1;\nquay về phiên bản cuối của $2. [$3 Xem thay đổi]",
 	"sessionfailure-title": "Phiên thất bại",
 	"sessionfailure": "Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy gửi lại biểu mẫu.",
 	"changecontentmodel": "Thay đổi kiểu nội dung của một trang",
