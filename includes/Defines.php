@@ -317,3 +317,13 @@ define( 'MIGRATION_WRITE_BOTH', 0x10000000 | SCHEMA_COMPAT_READ_BOTH | SCHEMA_CO
 define( 'MIGRATION_WRITE_NEW', 0x20000000 | SCHEMA_COMPAT_READ_BOTH | SCHEMA_COMPAT_WRITE_NEW );
 define( 'MIGRATION_NEW', 0x30000000 | SCHEMA_COMPAT_NEW );
 /**@}*/
+
+/**@{
+ * XML dump schema versions, for use with XmlDumpWriter.
+ * See also the corresponding export-nnnn.xsd files in the docs directory,
+ * which are also listed at <https://www.mediawiki.org/xml/>.
+ * Note that not all old schema versions are represented here, as several
+ * were already unsupported at the time these constants were introduced.
+ */
+define( 'XML_DUMP_SCHEMA_VERSION_10', '0.10' );
+/**@}*/

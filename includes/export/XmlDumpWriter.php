@@ -30,6 +30,13 @@ use MediaWiki\Storage\SqlBlobStore;
  * @ingroup Dump
  */
 class XmlDumpWriter {
+	/**
+	 * @var string[] the schema versions supported for output
+	 * @final
+	 */
+	public static $supportedSchemas = [
+		XML_DUMP_SCHEMA_VERSION_10,
+	];
 
 	/**
 	 * Title of the currently processed page
