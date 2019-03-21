@@ -60,6 +60,8 @@ THIS IS NOT A RELEASE YET
 * (T215169) Fix for Database::update() with IGNORE option fails on PostgreSQL.
 * (T204423) Backport support for hyphenated DB names in JobQueueGroup.
 * (T199474) Fix typo in rebuildrecentchanges.php resulting in rogue flags.
+* (T218608) Fix an issue that prevents Extension:OAuth working when
+  $wgBlockDisablesLogin is true.
 
 == MediaWiki 1.31.1 ==
 
