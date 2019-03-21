@@ -2,7 +2,7 @@
 
 	/**
 	 * Provides various methods needed for formatting dates and times. This
-	 * implementation implments the [Discordian calendar][1], mainly for testing with
+	 * implementation implements the [Discordian calendar][1], mainly for testing with
 	 * something very different from the usual Gregorian calendar.
 	 *
 	 * Being intended mainly for testing, niceties like i18n and better
