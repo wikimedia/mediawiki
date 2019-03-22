@@ -34,8 +34,15 @@ class HashBagOStuff extends BagOStuff {
 	/** @var int Max entries allowed */
 	protected $maxCacheKeys;
 
+	/** @var string CAS token prefix for this instance */
+	private $token;
+
+	/** @var int CAS token counter */
+	private static $casCounter = 0;
+
 	const KEY_VAL = 0;
 	const KEY_EXP = 1;
+	const KEY_CAS = 2;
 
 	/**
 	 * @param array $params Additional parameters include:
@@ -44,32 +51,11 @@ class HashBagOStuff extends BagOStuff {
 	function __construct( $params = [] ) {
 		parent::__construct( $params );
 
+		$this->token = microtime( true ) . ':' . mt_rand();
 		$this->maxCacheKeys = $params['maxKeys'] ?? INF;
 		if ( $this->maxCacheKeys <= 0 ) {
 			throw new InvalidArgumentException( '$maxKeys parameter must be above zero' );
 		}
-	}
-
-	protected function expire( $key ) {
-		$et = $this->bag[$key][self::KEY_EXP];
-		if ( $et == self::TTL_INDEFINITE || $et > $this->getCurrentTime() ) {
-			return false;
-		}
-
-		$this->delete( $key );
-
-		return true;
-	}
-
-	/**
-	 * Does this bag have a non-null value for the given key?
-	 *
-	 * @param string $key
-	 * @return bool
-	 * @since 1.27
-	 */
-	protected function hasKey( $key ) {
-		return isset( $this->bag[$key] );
 	}
 
 	protected function doGet( $key, $flags = 0 ) {
@@ -89,12 +75,24 @@ class HashBagOStuff extends BagOStuff {
 		return $this->bag[$key][self::KEY_VAL];
 	}
 
+	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
+		$casToken = null;
+
+		$value = $this->doGet( $key );
+		if ( $value !== false ) {
+			$casToken = $this->bag[$key][self::KEY_CAS];
+		}
+
+		return $value;
+	}
+
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		// Refresh key position for maxCacheKeys eviction
 		unset( $this->bag[$key] );
 		$this->bag[$key] = [
 			self::KEY_VAL => $value,
-			self::KEY_EXP => $this->convertExpiry( $exptime )
+			self::KEY_EXP => $this->convertExpiry( $exptime ),
+			self::KEY_CAS => $this->token . ':' . ++self::$casCounter
 		];
 
 		if ( count( $this->bag ) > $this->maxCacheKeys ) {
@@ -132,7 +130,40 @@ class HashBagOStuff extends BagOStuff {
 		return false;
 	}
 
+	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
+		return $this->mergeViaCas( $key, $callback, $exptime, $attempts, $flags );
+	}
+
+	/**
+	 * Clear all values in cache
+	 */
 	public function clear() {
 		$this->bag = [];
+	}
+
+	/**
+	 * @param string $key
+	 * @return bool
+	 */
+	protected function expire( $key ) {
+		$et = $this->bag[$key][self::KEY_EXP];
+		if ( $et == self::TTL_INDEFINITE || $et > $this->getCurrentTime() ) {
+			return false;
+		}
+
+		$this->delete( $key );
+
+		return true;
+	}
+
+	/**
+	 * Does this bag have a non-null value for the given key?
+	 *
+	 * @param string $key
+	 * @return bool
+	 * @since 1.27
+	 */
+	protected function hasKey( $key ) {
+		return isset( $this->bag[$key] );
 	}
 }

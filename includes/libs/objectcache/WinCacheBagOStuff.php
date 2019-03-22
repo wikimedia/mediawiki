@@ -29,12 +29,50 @@
  */
 class WinCacheBagOStuff extends BagOStuff {
 	protected function doGet( $key, $flags = 0 ) {
-		$val = wincache_ucache_get( $key );
-		if ( is_string( $val ) ) {
-			$val = unserialize( $val );
+		$blob = wincache_ucache_get( $key );
+
+		return is_string( $blob ) ? unserialize( $blob ) : false;
+	}
+
+	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
+		$casToken = null;
+
+		$blob = wincache_ucache_get( $key );
+		if ( !is_string( $blob ) ) {
+			return false;
 		}
 
-		return $val;
+		$value = unserialize( $blob );
+		if ( $value === false ) {
+			return false;
+		}
+
+		$casToken = $blob; // don't bother hashing this
+
+		return $value;
+	}
+
+	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
+		if ( !wincache_lock( $key ) ) { // optimize with FIFO lock
+			return false;
+		}
+
+		$curCasToken = null; // passed by reference
+		$this->getWithToken( $key, $curCasToken, self::READ_LATEST );
+		if ( $casToken === $curCasToken ) {
+			$success = $this->set( $key, $value, $exptime, $flags );
+		} else {
+			$this->logger->info(
+				__METHOD__ . ' failed due to race condition for {key}.',
+				[ 'key' => $key ]
+			);
+
+			$success = false; // mismatched or failed
+		}
+
+		wincache_unlock( $key );
+
+		return $success;
 	}
 
 	public function set( $key, $value, $expire = 0, $flags = 0 ) {
@@ -56,14 +94,7 @@ class WinCacheBagOStuff extends BagOStuff {
 	}
 
 	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
-		if ( wincache_lock( $key ) ) { // optimize with FIFO lock
-			$ok = $this->mergeViaLock( $key, $callback, $exptime, $attempts, $flags );
-			wincache_unlock( $key );
-		} else {
-			$ok = false;
-		}
-
-		return $ok;
+		return $this->mergeViaCas( $key, $callback, $exptime, $attempts, $flags );
 	}
 
 	/**
@@ -109,18 +140,20 @@ class WinCacheBagOStuff extends BagOStuff {
 	 * @return int|bool New value or false on failure
 	 */
 	public function incr( $key, $value = 1 ) {
-		if ( !$this->lock( $key ) ) {
+		if ( !wincache_lock( $key ) ) { // optimize with FIFO lock
 			return false;
 		}
-		$n = $this->get( $key );
-		if ( $this->isInteger( $n ) ) { // key exists?
-			$n += intval( $value );
+
+		$n = $this->doGet( $key );
+		if ( $this->isInteger( $n ) ) {
+			$n = max( $n + (int)$value, 0 );
 			$oldTTL = wincache_ucache_info( false, $key )["ucache_entries"][1]["ttl_seconds"];
-			$this->set( $key, max( 0, $n ), $oldTTL );
+			$this->set( $key, $n, $oldTTL );
 		} else {
 			$n = false;
 		}
-		$this->unlock( $key );
+
+		wincache_unlock( $key );
 
 		return $n;
 	}
