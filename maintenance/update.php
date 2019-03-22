@@ -242,6 +242,24 @@ class UpdateMediaWiki extends Maintenance {
 			'manualRecache' => false,
 		];
 	}
+
+	public function validateParamsAndArgs() {
+		// Allow extensions to add additional params.
+		$params = [];
+		Hooks::run( 'MaintenanceUpdateAddParams', [ &$params ] );
+		foreach ( $params as $name => $param ) {
+			$this->addOption(
+				$name,
+				$param['desc'],
+				$param['require'] ?? false,
+				$param['withArg'] ?? false,
+				$param['shortName'] ?? false,
+				$param['multiOccurrence'] ?? false
+			);
+		}
+
+		parent::validateParamsAndArgs();
+	}
 }
 
 $maintClass = UpdateMediaWiki::class;

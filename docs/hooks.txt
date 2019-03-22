@@ -2198,6 +2198,16 @@ Special:LonelyPages.
 'MagicWordwgVariableIDs': When defining new magic words IDs.
 &$variableIDs: array of strings
 
+'MaintenanceUpdateAddParams': allow extensions to add params to the update.php
+maintenance script.
+&$params: array to populate with the params to be added. Array elements are keyed by
+the param name. Each param is an associative array that must include the following keys:
+  - desc The description of the param to show on --help
+  - require Is the param required? Defaults to false if not set.
+  - withArg Is an argument required with this option?  Defaults to false if not set.
+  - shortName Character to use as short name, or false if none.  Defaults to false if not set.
+  - multiOccurrence Can this option be passed multiple times?  Defaults to false if not set.
+
 'MaintenanceRefreshLinksInit': before executing the refreshLinks.php maintenance
 script.
 $refreshLinks: RefreshLinks object

@@ -54,6 +54,18 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  * is the execute() method. See docs/maintenance.txt for more info
  * and a quick demo of how to use it.
  *
+ * Terminology:
+ *   params: registry of named values that may be passed to the script
+ *   arg list: registry of positional values that may be passed to the script
+ *   options: passed param values
+ *   args: passed positional values
+ *
+ * In the command:
+ *   mwscript somescript.php --foo=bar baz
+ * foo is a param
+ * bar is the option value of the option for param foo
+ * baz is the arg value at index 0 in the arg list
+ *
  * @since 1.16
  * @ingroup Maintenance
  */
@@ -69,13 +81,13 @@ abstract class Maintenance {
 	// Const for getStdin()
 	const STDIN_ALL = 'all';
 
-	// This is the desired params
+	// Array of desired/allowed params
 	protected $mParams = [];
 
 	// Array of mapping short parameters to long ones
 	protected $mShortParamsMap = [];
 
-	// Array of desired args
+	// Array of desired/allowed args
 	protected $mArgList = [];
 
 	// This is the list of options that were actually passed
@@ -738,7 +750,6 @@ abstract class Maintenance {
 		}
 
 		$this->loadParamsAndArgs();
-		$this->maybeHelp();
 
 		# Set the memory limit
 		# Note we need to set it again later in cache LocalSettings changed it
@@ -758,8 +769,6 @@ abstract class Maintenance {
 		while ( ob_get_level() > 0 ) {
 			ob_end_flush();
 		}
-
-		$this->validateParamsAndArgs();
 	}
 
 	/**
@@ -979,7 +988,7 @@ abstract class Maintenance {
 	/**
 	 * Run some validation checks on the params, etc
 	 */
-	protected function validateParamsAndArgs() {
+	public function validateParamsAndArgs() {
 		$die = false;
 		# Check to make sure we've got all the required options
 		foreach ( $this->mParams as $opt => $info ) {
@@ -1005,9 +1014,7 @@ abstract class Maintenance {
 			}
 		}
 
-		if ( $die ) {
-			$this->maybeHelp( true );
-		}
+		$this->maybeHelp( $die );
 	}
 
 	/**
