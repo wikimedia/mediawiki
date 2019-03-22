@@ -74,11 +74,27 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function tablePrefix( $prefix = null ) {
+		if ( $this->conn === null && $prefix === null ) {
+			$domain = DatabaseDomain::newFromId( $this->params[self::FLD_DOMAIN] );
+			// Avoid triggering a database connection
+			return $domain->getTablePrefix();
+		} elseif ( $this->conn !== null && $prefix === null ) {
+			// This will just return the prefix
+			return $this->__call( __FUNCTION__, func_get_args() );
+		}
 		// Disallow things that might confuse the LoadBalancer tracking
 		throw new DBUnexpectedError( $this, "Database selection is disallowed to enable reuse." );
 	}
 
 	public function dbSchema( $schema = null ) {
+		if ( $this->conn === null && $schema === null ) {
+			$domain = DatabaseDomain::newFromId( $this->params[self::FLD_DOMAIN] );
+			// Avoid triggering a database connection
+			return $domain->getSchema();
+		} elseif ( $this->conn !== null && $schema === null ) {
+			// This will just return the schema
+			return $this->__call( __FUNCTION__, func_get_args() );
+		}
 		// Disallow things that might confuse the LoadBalancer tracking
 		throw new DBUnexpectedError( $this, "Database selection is disallowed to enable reuse." );
 	}
@@ -235,7 +251,7 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function close() {
-		return $this->__call( __FUNCTION__, func_get_args() );
+		throw new DBUnexpectedError( $this->conn, 'Cannot close shared connection.' );
 	}
 
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
@@ -385,6 +401,12 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function getDBname() {
+		if ( $this->conn === null ) {
+			$domain = DatabaseDomain::newFromId( $this->params[self::FLD_DOMAIN] );
+			// Avoid triggering a database connection
+			return $domain->getDatabase();
+		}
+
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

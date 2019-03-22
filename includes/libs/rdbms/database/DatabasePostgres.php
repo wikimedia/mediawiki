@@ -1346,10 +1346,6 @@ SQL;
 		return [ $startOpts, $useIndex, $preLimitTail, $postLimitTail, $ignoreIndex ];
 	}
 
-	public function getServer() {
-		return $this->server;
-	}
-
 	public function buildConcat( $stringList ) {
 		return implode( ' || ', $stringList );
 	}
