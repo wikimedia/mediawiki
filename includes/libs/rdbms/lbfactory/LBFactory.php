@@ -634,7 +634,7 @@ abstract class LBFactory implements ILBFactory {
 	public function setLocalDomainPrefix( $prefix ) {
 		$this->localDomain = new DatabaseDomain(
 			$this->localDomain->getDatabase(),
-			null,
+			$this->localDomain->getSchema(),
 			$prefix
 		);
 
