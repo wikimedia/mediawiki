@@ -1006,7 +1006,7 @@ class AuthManager implements LoggerAwareInterface {
 		if ( $block ) {
 			$errorParams = [
 				$block->getTarget(),
-				$block->mReason ?: wfMessage( 'blockednoreason' )->text(),
+				$block->getReason() ?: wfMessage( 'blockednoreason' )->text(),
 				$block->getByName()
 			];
 

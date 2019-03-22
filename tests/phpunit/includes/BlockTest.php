@@ -94,7 +94,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		$madeAt = wfTimestamp( TS_MW );
 
 		// delta to stop one-off errors when things happen to go over a second mark.
-		$delta = abs( $madeAt - $block->mTimestamp );
+		$delta = abs( $madeAt - $block->getTimestamp() );
 		$this->assertLessThan(
 			2,
 			$delta,
@@ -302,8 +302,8 @@ class BlockTest extends MediaWikiLangTestCase {
 			$block = new Block();
 			$block->setTarget( $target );
 			$block->setBlocker( $blocker );
-			$block->mReason = $insBlock['desc'];
-			$block->mExpiry = 'infinity';
+			$block->setReason( $insBlock['desc'] );
+			$block->setExpiry( 'infinity' );
 			$block->isCreateAccountBlocked( $insBlock['ACDisable'] );
 			$block->isHardblock( $insBlock['isHardblock'] );
 			$block->isAutoblocking( $insBlock['isAutoBlocking'] );
@@ -369,7 +369,9 @@ class BlockTest extends MediaWikiLangTestCase {
 		$xffblocks = Block::getBlocksForIPList( $list, true );
 		$this->assertEquals( $exCount, count( $xffblocks ), 'Number of blocks for ' . $xff );
 		$block = Block::chooseBlock( $xffblocks, $list );
-		$this->assertEquals( $exResult, $block->mReason, 'Correct block type for XFF header ' . $xff );
+		$this->assertEquals(
+			$exResult, $block->getReason(), 'Correct block type for XFF header ' . $xff
+		);
 	}
 
 	/**
