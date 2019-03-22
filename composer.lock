@@ -2882,11 +2882,11 @@
         },
         {
             "name": "wikimedia/smash-pig",
-            "version": "v0.5.8.4",
+            "version": "v0.5.9",
             "source": {
                 "type": "git",
                 "url": "https://gerrit.wikimedia.org/r/wikimedia/fundraising/SmashPig.git",
-                "reference": "8cd33dc97c9b2fb41513f40170d3748aabf61e1a"
+                "reference": "5a056c7c9319f7e47a9d6a3ab7afa0fc9efa00ad"
             },
             "require": {
                 "amzn/login-and-pay-with-amazon-sdk-php": "dev-master",
@@ -2945,7 +2945,7 @@
                 "donations",
                 "payments"
             ],
-            "time": "2018-12-05T21:56:40+00:00"
+            "time": "2019-03-15T16:27:43+00:00"
         },
         {
             "name": "wikimedia/timestamp",
@@ -3506,12 +3506,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/JetBrains/phpstorm-stubs.git",
-                "reference": "d1ecf6422d5b5717efacd6bc45af65a8f83bb668"
+                "reference": "9e6540f9200bb3e9b1d091ab7bde1b735aa27427"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JetBrains/phpstorm-stubs/zipball/d1ecf6422d5b5717efacd6bc45af65a8f83bb668",
-                "reference": "d1ecf6422d5b5717efacd6bc45af65a8f83bb668",
+                "url": "https://api.github.com/repos/JetBrains/phpstorm-stubs/zipball/9e6540f9200bb3e9b1d091ab7bde1b735aa27427",
+                "reference": "9e6540f9200bb3e9b1d091ab7bde1b735aa27427",
                 "shasum": ""
             },
             "require-dev": {
@@ -3537,7 +3537,7 @@
                 "stubs",
                 "type"
             ],
-            "time": "2019-01-31T11:23:32+00:00"
+            "time": "2019-02-28T12:27:25+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -4495,6 +4495,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2018-08-09T05:50:03+00:00"
         },
         {
