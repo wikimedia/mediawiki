@@ -1884,8 +1884,7 @@ class Linker {
 
 		$attrs = [
 			'data-mw' => 'interface',
-			'title' => $context->msg( 'tooltip-rollback' )->text(),
-			'data-rollback-count' => (int)$editCount
+			'title' => $context->msg( 'tooltip-rollback' )->text()
 		];
 
 		$options = [ 'known', 'noclasses' ];
