@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.0
+ * OOUI v0.31.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-03-20T23:07:02Z
+ * Date: 2019-03-21T15:54:37Z
  */
 ( function ( OO ) {
 
@@ -295,7 +295,7 @@ OO.ui.throttle = function ( func, wait ) {
 		previous = 0,
 		run = function () {
 			timeout = null;
-			previous = OO.ui.now();
+			previous = Date.now();
 			func.apply( context, args );
 		};
 	return function () {
@@ -304,7 +304,7 @@ OO.ui.throttle = function ( func, wait ) {
 		// period. If it's less, run the function immediately. If it's more,
 		// set a timeout for the remaining time -- but don't replace an
 		// existing timeout, since that'd indefinitely prolong the wait.
-		var remaining = wait - ( OO.ui.now() - previous );
+		var remaining = wait - ( Date.now() - previous );
 		context = this;
 		args = arguments;
 		if ( remaining <= 0 ) {
@@ -323,10 +323,12 @@ OO.ui.throttle = function ( func, wait ) {
 /**
  * A (possibly faster) way to get the current timestamp as an integer.
  *
+ * @deprecated Since 0.31.1; use `Date.now()` instead.
  * @return {number} Current timestamp, in milliseconds since the Unix epoch
  */
-OO.ui.now = Date.now || function () {
-	return new Date().getTime();
+OO.ui.now = function () {
+	OO.ui.warnDeprecation( 'OO.ui.now() is deprecated, use Date.now() instead' );
+	return Date.now();
 };
 
 /**
@@ -2118,7 +2120,7 @@ OO.ui.mixin.TabIndexedElement.prototype.getInputId = function () {
 OO.ui.mixin.TabIndexedElement.prototype.isLabelableNode = function ( $node ) {
 	var
 		labelableTags = [ 'button', 'meter', 'output', 'progress', 'select', 'textarea' ],
-		tagName = $node.prop( 'tagName' ).toLowerCase();
+		tagName = ( $node.prop( 'tagName' ) || '' ).toLowerCase();
 
 	if ( tagName === 'input' && $node.attr( 'type' ) !== 'hidden' ) {
 		return true;
@@ -6420,6 +6422,7 @@ OO.ui.OptionWidget.prototype.getMatchText = function () {
  *  Options are created with {@link OO.ui.OptionWidget OptionWidget} classes. See
  *  the [OOUI documentation on MediaWiki] [2] for examples.
  *  [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options
+ * @cfg {boolean} [multiselect] Allow for multiple selections
  */
 OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	// Configuration initialization
@@ -6436,6 +6439,7 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	// Properties
 	this.pressed = false;
 	this.selecting = null;
+	this.multiselect = !!config.multiselect;
 	this.onDocumentMouseUpHandler = this.onDocumentMouseUp.bind( this );
 	this.onDocumentMouseMoveHandler = this.onDocumentMouseMove.bind( this );
 	this.onDocumentKeyDownHandler = this.onDocumentKeyDown.bind( this );
@@ -6496,13 +6500,16 @@ OO.mixinClass( OO.ui.SelectWidget, OO.ui.mixin.GroupWidget );
  * A `select` event is emitted when the selection is modified programmatically with the #selectItem
  * method.
  *
- * @param {OO.ui.OptionWidget|null} item Selected item
+ * @param {OO.ui.OptionWidget[]|OO.ui.OptionWidget|null} items Currently selected items
  */
 
 /**
  * @event choose
+ *
  * A `choose` event is emitted when an item is chosen with the #chooseItem method.
+ *
  * @param {OO.ui.OptionWidget} item Chosen item
+ * @param {boolean} selected Item is selected
  */
 
 /**
@@ -6699,12 +6706,13 @@ OO.ui.SelectWidget.prototype.onMouseLeave = function () {
 OO.ui.SelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 	var nextItem,
 		handled = false,
-		currentItem = this.findHighlightedItem() || this.findSelectedItem();
+		currentItem = this.findHighlightedItem(),
+		firstItem = this.getItems()[ 0 ];
 
 	if ( !this.isDisabled() && this.isVisible() ) {
 		switch ( e.keyCode ) {
 			case OO.ui.Keys.ENTER:
-				if ( currentItem && currentItem.constructor.static.highlightable ) {
+				if ( currentItem ) {
 					// Was only highlighted, now let's select it. No-op if already selected.
 					this.chooseItem( currentItem );
 					handled = true;
@@ -6713,18 +6721,18 @@ OO.ui.SelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 			case OO.ui.Keys.UP:
 			case OO.ui.Keys.LEFT:
 				this.clearKeyPressBuffer();
-				nextItem = this.findRelativeSelectableItem( currentItem, -1 );
+				nextItem = currentItem ? this.findRelativeSelectableItem( currentItem, -1 ) : firstItem;
 				handled = true;
 				break;
 			case OO.ui.Keys.DOWN:
 			case OO.ui.Keys.RIGHT:
 				this.clearKeyPressBuffer();
-				nextItem = this.findRelativeSelectableItem( currentItem, 1 );
+				nextItem = currentItem ? this.findRelativeSelectableItem( currentItem, 1 ) : firstItem;
 				handled = true;
 				break;
 			case OO.ui.Keys.ESCAPE:
 			case OO.ui.Keys.TAB:
-				if ( currentItem && currentItem.constructor.static.highlightable ) {
+				if ( currentItem ) {
 					currentItem.setHighlighted( false );
 				}
 				this.unbindDocumentKeyDownListener();
@@ -6945,19 +6953,35 @@ OO.ui.SelectWidget.prototype.findTargetItem = function ( e ) {
 };
 
 /**
+ * Find all selected items, if there are any. If the widget allows for multiselect
+ * it will return an array of selected options. If the widget doesn't allow for
+ * multiselect, it will return the selected option or null if no item is selected.
+ *
+ * @return {OO.ui.OptionWidget[]|OO.ui.OptionWidget|null} If the widget is multiselect
+ *  then return an array of selected items (or empty array),
+ *  if the widget is not multiselect, return a single selected item, or `null`
+ *  if no item is selected
+ */
+OO.ui.SelectWidget.prototype.findSelectedItems = function () {
+	var selected = this.items.filter( function ( item ) {
+		return item.isSelected();
+	} );
+
+	return this.multiselect ?
+		selected :
+		selected[ 0 ] || null;
+};
+
+/**
  * Find selected item.
  *
- * @return {OO.ui.OptionWidget|null} Selected item, `null` if no item is selected
+ * @return {OO.ui.OptionWidget[]|OO.ui.OptionWidget|null} If the widget is multiselect
+ *  then return an array of selected items (or empty array),
+ *  if the widget is not multiselect, return a single selected item, or `null`
+ *  if no item is selected
  */
 OO.ui.SelectWidget.prototype.findSelectedItem = function () {
-	var i, len;
-
-	for ( i = 0, len = this.items.length; i < len; i++ ) {
-		if ( this.items[ i ].isSelected() ) {
-			return this.items[ i ];
-		}
-	}
-	return null;
+	return this.findSelectedItems();
 };
 
 /**
@@ -7105,6 +7129,30 @@ OO.ui.SelectWidget.prototype.selectItemByData = function ( data ) {
 };
 
 /**
+ * Programmatically unselect an option by its reference. If the widget
+ * allows for multiple selections, there may be other items still selected;
+ * otherwise, no items will be selected.
+ * If no item is given, all selected items will be unselected.
+ *
+ * @param {OO.ui.OptionWidget} [item] Item to unselect
+ * @fires select
+ * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
+ */
+OO.ui.SelectWidget.prototype.unselectItem = function ( item ) {
+	if ( item ) {
+		item.setSelected( false );
+	} else {
+		this.items.forEach( function ( item ) {
+			item.setSelected( false );
+		} );
+	}
+
+	this.emit( 'select', this.findSelectedItems() );
+	return this;
+};
+
+/**
  * Programmatically select an option by its reference. If the `item` parameter is omitted,
  * all options will be deselected.
  *
@@ -7117,14 +7165,20 @@ OO.ui.SelectWidget.prototype.selectItem = function ( item ) {
 	var i, len, selected,
 		changed = false;
 
-	for ( i = 0, len = this.items.length; i < len; i++ ) {
-		selected = this.items[ i ] === item;
-		if ( this.items[ i ].isSelected() !== selected ) {
-			this.items[ i ].setSelected( selected );
-			changed = true;
+	if ( this.multiselect && item ) {
+		// Select the item directly
+		item.setSelected( true );
+	} else {
+		for ( i = 0, len = this.items.length; i < len; i++ ) {
+			selected = this.items[ i ] === item;
+			if ( this.items[ i ].isSelected() !== selected ) {
+				this.items[ i ].setSelected( selected );
+				changed = true;
+			}
 		}
 	}
 	if ( changed ) {
+		// TODO: When should a non-highlightable element be selected?
 		if ( item && !item.constructor.static.highlightable ) {
 			if ( item ) {
 				this.$focusOwner.attr( 'aria-activedescendant', item.getElementId() );
@@ -7132,7 +7186,7 @@ OO.ui.SelectWidget.prototype.selectItem = function ( item ) {
 				this.$focusOwner.removeAttr( 'aria-activedescendant' );
 			}
 		}
-		this.emit( 'select', item );
+		this.emit( 'select', this.findSelectedItems() );
 	}
 
 	return this;
@@ -7185,8 +7239,13 @@ OO.ui.SelectWidget.prototype.pressItem = function ( item ) {
  */
 OO.ui.SelectWidget.prototype.chooseItem = function ( item ) {
 	if ( item ) {
-		this.selectItem( item );
-		this.emit( 'choose', item );
+		if ( this.multiselect && item.isSelected() ) {
+			this.unselectItem( item );
+		} else {
+			this.selectItem( item );
+		}
+
+		this.emit( 'choose', item, item.isSelected() );
 	}
 
 	return this;
@@ -7655,7 +7714,7 @@ OO.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 				break;
 			case OO.ui.Keys.ESCAPE:
 			case OO.ui.Keys.TAB:
-				if ( currentItem ) {
+				if ( currentItem && !this.multiselect ) {
 					currentItem.setHighlighted( false );
 				}
 				this.toggle( false );
@@ -7710,10 +7769,6 @@ OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 		// Process the final section
 		if ( section ) {
 			section.toggle( showAll || !sectionEmpty );
-		}
-
-		if ( anyVisible && this.items.length && !exactMatch ) {
-			this.scrollItemIntoView( this.items[ 0 ] );
 		}
 
 		if ( !anyVisible ) {
@@ -7872,7 +7927,7 @@ OO.ui.MenuSelectWidget.prototype.clearItems = function () {
  * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
-	var change, originalHeight, flippedHeight;
+	var change, originalHeight, flippedHeight, selectedItem;
 
 	visible = ( visible === undefined ? !this.visible : !!visible ) && !!this.items.length;
 	change = visible !== this.isVisible();
@@ -7937,9 +7992,13 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 
 			this.$focusOwner.attr( 'aria-expanded', 'true' );
 
-			if ( this.findSelectedItem() ) {
-				this.$focusOwner.attr( 'aria-activedescendant', this.findSelectedItem().getElementId() );
-				this.findSelectedItem().scrollElementIntoView( { duration: 0 } );
+			selectedItem = this.findSelectedItem();
+			if ( !this.multiselect && selectedItem ) {
+				// TODO: Verify if this is even needed; This is already done on highlight changes
+				// in SelectWidget#highlightItem, so we should just need to highlight the item we need to
+				// highlight here and not bother with attr or checking selections.
+				this.$focusOwner.attr( 'aria-activedescendant', selectedItem.getElementId() );
+				selectedItem.scrollElementIntoView( { duration: 0 } );
 			}
 
 			// Auto-hide
@@ -7960,6 +8019,13 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 	}
 
 	return this;
+};
+
+/**
+ * Scroll to the top of the menu
+ */
+OO.ui.MenuSelectWidget.prototype.scrollToTop = function () {
+	this.$element.scrollTop( 0 );
 };
 
 /**
@@ -10397,7 +10463,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.focus = function () {
  *     // A TextInputWidget.
  *     var textInput = new OO.ui.TextInputWidget( {
  *         value: 'Text input'
- *     } )
+ *     } );
  *     $( document.body ).append( textInput.$element );
  *
  * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs
@@ -11117,6 +11183,7 @@ OO.ui.SearchInputWidget = function OoUiSearchInputWidget( config ) {
 	this.connect( this, {
 		change: 'onChange'
 	} );
+	this.$indicator.on( 'click', this.onIndicatorClick.bind( this ) );
 
 	// Initialization
 	this.updateSearchIndicator();
@@ -11140,9 +11207,12 @@ OO.ui.SearchInputWidget.prototype.getSaneType = function () {
 };
 
 /**
- * @inheritdoc
+ * Handle click events on the indicator
+ *
+ * @param {jQuery.Event} e Click event
+ * @return {boolean}
  */
-OO.ui.SearchInputWidget.prototype.onIndicatorMouseDown = function ( e ) {
+OO.ui.SearchInputWidget.prototype.onIndicatorClick = function ( e ) {
 	if ( e.which === OO.ui.MouseButtons.LEFT ) {
 		// Clear the text field
 		this.setValue( '' );
@@ -11205,8 +11275,8 @@ OO.ui.SearchInputWidget.prototype.setReadOnly = function ( state ) {
  *     // A MultilineTextInputWidget.
  *     var multilineTextInput = new OO.ui.MultilineTextInputWidget( {
  *         value: 'Text input on multiple lines'
- *     } )
- *     $( 'body' ).append( multilineTextInput.$element );
+ *     } );
+ *     $( document.body ).append( multilineTextInput.$element );
  *
  * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs#MultilineTextInputWidget
  *
@@ -12360,21 +12430,21 @@ OO.ui.FieldsetLayout.static.tagName = 'fieldset';
  * [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs
  *
  *     @example
- *     // Example of a form layout that wraps a fieldset layout
+ *     // Example of a form layout that wraps a fieldset layout.
  *     var input1 = new OO.ui.TextInputWidget( {
- *         placeholder: 'Username'
- *     } );
- *     var input2 = new OO.ui.TextInputWidget( {
- *         placeholder: 'Password',
- *         type: 'password'
- *     } );
- *     var submit = new OO.ui.ButtonInputWidget( {
- *         label: 'Submit'
- *     } );
+ *             placeholder: 'Username'
+ *         } ),
+ *         input2 = new OO.ui.TextInputWidget( {
+ *             placeholder: 'Password',
+ *             type: 'password'
+ *         } ),
+ *         submit = new OO.ui.ButtonInputWidget( {
+ *             label: 'Submit'
+ *         } ),
+ *         fieldset = new OO.ui.FieldsetLayout( {
+ *             label: 'A form layout'
+ *         } );
  *
- *     var fieldset = new OO.ui.FieldsetLayout( {
- *         label: 'A form layout'
- *     } );
  *     fieldset.addItems( [
  *         new OO.ui.FieldLayout( input1, {
  *             label: 'Username',
@@ -12565,7 +12635,7 @@ OO.ui.PanelLayout.prototype.focus = function () {
  * Note that inline elements, such as OO.ui.ButtonWidgets, do not need this wrapper.
  *
  *     @example
- *     // HorizontalLayout with a text input and a label
+ *     // HorizontalLayout with a text input and a label.
  *     var layout = new OO.ui.HorizontalLayout( {
  *       items: [
  *         new OO.ui.LabelWidget( { label: 'Label' } ),
@@ -12974,6 +13044,254 @@ OO.ui.NumberInputWidget.prototype.setDisabled = function ( disabled ) {
 	if ( this.plusButton ) {
 		this.plusButton.setDisabled( this.isDisabled() );
 	}
+
+	return this;
+};
+
+/**
+ * SelectFileInputWidgets allow for selecting files, using <input type="file">. These
+ * widgets can be configured with {@link OO.ui.mixin.IconElement icons}, {@link
+ * OO.ui.mixin.IndicatorElement indicators} and {@link OO.ui.mixin.TitledElement titles}.
+ * Please see the [OOUI documentation on MediaWiki] [1] for more information and examples.
+ *
+ * SelectFileInputWidgets must be used in HTML forms, as getValue only returns the filename.
+ *
+ *     @example
+ *     // A file select input widget.
+ *     var selectFile = new OO.ui.SelectFileInputWidget();
+ *     $( document.body ).append( selectFile.$element );
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets
+ *
+ * @class
+ * @extends OO.ui.InputWidget
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {string[]|null} [accept=null] MIME types to accept. null accepts all types.
+ * @cfg {string} [placeholder] Text to display when no file is selected.
+ * @cfg {Object} [button] Config to pass to select file button.
+ * @cfg {string} [icon] Icon to show next to file info
+ */
+OO.ui.SelectFileInputWidget = function OoUiSelectFileInputWidget( config ) {
+	config = config || {};
+
+	// Construct buttons before parent method is called (calling setDisabled)
+	this.selectButton = new OO.ui.ButtonWidget( $.extend( {
+		$element: $( '<label>' ),
+		classes: [ 'oo-ui-selectFileInputWidget-selectButton' ],
+		label: OO.ui.msg( 'ooui-selectfile-button-select' )
+	}, config.button ) );
+
+	// Configuration initialization
+	config = $.extend( {
+		accept: null,
+		placeholder: OO.ui.msg( 'ooui-selectfile-placeholder' ),
+		$tabIndexed: this.selectButton.$tabIndexed
+	}, config );
+
+	this.info = new OO.ui.SearchInputWidget( {
+		classes: [ 'oo-ui-selectFileInputWidget-info' ],
+		placeholder: config.placeholder,
+		// Pass an empty collection so that .focus() always does nothing
+		$tabIndexed: $( [] )
+	} ).setIcon( config.icon );
+	// Set tabindex manually on $input as $tabIndexed has been overridden
+	this.info.$input.attr( 'tabindex', -1 );
+
+	// Parent constructor
+	OO.ui.SelectFileInputWidget.parent.call( this, config );
+
+	// Properties
+	this.currentFile = null;
+	if ( Array.isArray( config.accept ) ) {
+		this.accept = config.accept;
+	} else {
+		this.accept = null;
+	}
+	this.onFileSelectedHandler = this.onFileSelected.bind( this );
+
+	// Events
+	this.info.connect( this, { change: 'onInfoChange' } );
+	this.selectButton.$button.on( {
+		keypress: this.onKeyPress.bind( this )
+	} );
+	this.connect( this, { change: 'updateUI' } );
+
+	// Initialization
+	this.setupInput();
+
+	this.fieldLayout = new OO.ui.ActionFieldLayout( this.info, this.selectButton, { align: 'top' } );
+
+	this.$element
+		.addClass( 'oo-ui-selectFileInputWidget' )
+		.append( this.fieldLayout.$element );
+
+	this.updateUI();
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.SelectFileInputWidget, OO.ui.InputWidget );
+
+/* Methods */
+
+/**
+ * Get the filename of the currently selected file.
+ *
+ * @return {string} Filename
+ */
+OO.ui.SelectFileInputWidget.prototype.getFilename = function () {
+	if ( this.currentFile ) {
+		return this.currentFile.name;
+	} else {
+		// Try to strip leading fakepath.
+		return this.getValue().split( '\\' ).pop();
+	}
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.SelectFileInputWidget.prototype.setValue = function ( value ) {
+	if ( value === undefined ) {
+		// Called during init, don't replace value if just infusing.
+		return;
+	}
+	if ( value ) {
+		// We need to update this.value, but without trying to modify
+		// the DOM value, which would throw an exception.
+		if ( this.value !== value ) {
+			this.value = value;
+			this.emit( 'change', this.value );
+		}
+	} else {
+		this.currentFile = null;
+		// Parent method
+		OO.ui.SelectFileInputWidget.super.prototype.setValue.call( this, '' );
+	}
+};
+
+/**
+ * Handle file selection from the input.
+ *
+ * @protected
+ * @param {jQuery.Event} e
+ */
+OO.ui.SelectFileInputWidget.prototype.onFileSelected = function ( e ) {
+	var file = OO.getProp( e.target, 'files', 0 ) || null;
+
+	if ( file && !this.isAllowedType( file.type ) ) {
+		file = null;
+	}
+
+	this.currentFile = file;
+};
+
+/**
+ * Update the user interface when a file is selected or unselected.
+ *
+ * @protected
+ */
+OO.ui.SelectFileInputWidget.prototype.updateUI = function () {
+	this.info.setValue( this.getFilename() );
+};
+
+/**
+ * Setup the input element.
+ *
+ * @protected
+ */
+OO.ui.SelectFileInputWidget.prototype.setupInput = function () {
+	this.$input
+		.attr( {
+			type: 'file',
+			// this.selectButton is tabindexed
+			tabindex: -1,
+			// Infused input may have previously by
+			// TabIndexed, so remove aria-disabled attr.
+			'aria-disabled': null
+		} )
+		.on( 'change', this.onFileSelectedHandler );
+
+	if ( this.accept ) {
+		this.$input.attr( 'accept', this.accept.join( ', ' ) );
+	}
+	this.selectButton.$button.append( this.$input );
+};
+
+/**
+ * Determine if we should accept this file.
+ *
+ * @private
+ * @param {string} mimeType File MIME type
+ * @return {boolean}
+ */
+OO.ui.SelectFileInputWidget.prototype.isAllowedType = function ( mimeType ) {
+	var i, mimeTest;
+
+	if ( !this.accept || !mimeType ) {
+		return true;
+	}
+
+	for ( i = 0; i < this.accept.length; i++ ) {
+		mimeTest = this.accept[ i ];
+		if ( mimeTest === mimeType ) {
+			return true;
+		} else if ( mimeTest.substr( -2 ) === '/*' ) {
+			mimeTest = mimeTest.substr( 0, mimeTest.length - 1 );
+			if ( mimeType.substr( 0, mimeTest.length ) === mimeTest ) {
+				return true;
+			}
+		}
+	}
+
+	return false;
+};
+
+/**
+ * Handle info input change events
+ *
+ * The info widget can only be changed by the user
+ * with the clear button.
+ *
+ * @private
+ * @param {string} value
+ */
+OO.ui.SelectFileInputWidget.prototype.onInfoChange = function ( value ) {
+	if ( value === '' ) {
+		this.setValue( null );
+	}
+};
+
+/**
+ * Handle key press events.
+ *
+ * @private
+ * @param {jQuery.Event} e Key press event
+ * @return {undefined/boolean} False to prevent default if event is handled
+ */
+OO.ui.SelectFileInputWidget.prototype.onKeyPress = function ( e ) {
+	if ( !this.isDisabled() && this.$input &&
+		( e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+	) {
+		// Emit a click to open the file selector.
+		this.$input.trigger( 'click' );
+		// Taking focus from the selectButton means keyUp isn't fired, so fire it manually.
+		this.selectButton.onDocumentKeyUp( e );
+		return false;
+	}
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.SelectFileInputWidget.prototype.setDisabled = function ( disabled ) {
+	// Parent method
+	OO.ui.SelectFileInputWidget.parent.prototype.setDisabled.call( this, disabled );
+
+	this.selectButton.setDisabled( disabled );
+	this.info.setDisabled( disabled );
 
 	return this;
 };

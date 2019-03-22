@@ -1,4 +1,45 @@
 # OOUI Release History
+## v0.31.1 / 2019-03-21
+### Deprecations
+* [DEPRECATING CHANGE] core: Remove unused Date.now fallback (Timo Tijhof)
+* [DEPRECATING CHANGE] textures: Deprecate 'pending.gif' (Volker E.)
+* [DEPRECATING CHANGE] textures: Deprecate unused 'transparency' (Volker E.)
+
+### Features
+* MenuTagMultiselectWidget: `hideOnChoose` should be set to false (Moriel Schottlender)
+* MenuTagMultiselectWidget: `highlightOnFilter` only if not `allowArbitrary` (Moriel Schottlender)
+* MenuTagMultiselectWidget: Fix highlight and scrolling to item behavior (Moriel Schottlender)
+* SearchInputWidget: Use click handler for indicator (Ed Sanders)
+* SelectWidget: Allow multiselect mode, add to MenuTagMultiselectWidget (Moriel Schottlender)
+* SelectFileWidget: Support a button-only mode (Ed Sanders)
+* SelectFileWidget: Suppress misleading browser default tooltips (Bartosz Dziewoński)
+* SelectFileInputWidget: Create as a super-class of SelectFileWidget (Ed Sanders)
+* SelectFileInputWidget: Allow button config to be passed (Ed Sanders)
+* TagMultiselectWidget: Edit by item label, not data (Moriel Schottlender)
+
+### Styles
+* Separate SelectFileWidget and SelectFileInputWidget styles (Ed Sanders)
+* themes: Provide `background` needed for PendingElement on inputs (Volker E.)
+* themes: Replace 'pending.gif' with CSS animation (Volker E.)
+* icons: Manually rewrite paths of tableMove….svg icons (Thiemo Kreuz)
+* icons: Recreate settings.svg icon with shorter syntax (Thiemo Kreuz)
+* icons: Remove invisible parts from web.svg icon (Thiemo Kreuz)
+* icons: Remove unused dotted borders from imageLayout….svg icons (Thiemo Kreuz)
+* icons: Use rounded <rect> elements to optimize some SVG icons (Thiemo Kreuz)
+
+### Code
+* MenuSectionOptionWidget: Avoid select events (Gabriel Birke)
+* SelectFileInputWidget: Rewrite as an ActionFieldLayout (Ed Sanders)
+* testsuitegenerator: Reduce PHP test count by 40% (Ed Sanders)
+* testsuitegenerator: Reduce some code duplication (Bartosz Dziewoński)
+* testsuitegenerator: Use normal methods more instead of lambdas (Bartosz Dziewoński)
+* docs: Clarify some types in documentation (Bartosz Dziewoński)
+* docs: Fix missing `;` and typos in documentation examples (Volker E.)
+* demos: Make demo toolbar narrower (Ed Sanders)
+* build: Specify library entry (Stephen Niedzielski)
+* Grunt: Add a quick-build-code task for JS-only quick builds (Ed Sanders)
+
+
 ## v0.31.0 / 2019-03-13
 ### Breaking changes
 * [BREAKING CHANGE] Remove FlaggedElement from InputWidget (Ed Sanders)
