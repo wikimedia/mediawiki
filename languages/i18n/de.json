@@ -95,7 +95,8 @@
 			"ToBeFree",
 			"PerfektesChaos",
 			"Kurt Jansson",
-			"McDutchie"
+			"McDutchie",
+			"Johanna Strodt (WMDE)"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -141,7 +142,8 @@
 	"tog-norollbackdiff": "Unterschiede nach dem Zurücksetzen nicht anzeigen",
 	"tog-useeditwarning": "Warnen, sofern eine zur Bearbeitung geöffnete Seite verlassen wird, die nicht gespeicherte Änderungen enthält",
 	"tog-prefershttps": "Immer eine sichere Verbindung benutzen, solange ich angemeldet bin",
-	"tog-showrollbackconfirmation": "Beim Klicken auf einen Zurücksetzen-Link eine Bestätigungsaufforderung anzeigen",
+	"tog-showrollbackconfirmation": "Bei Klick auf „kommentarlos zurücksetzen“ eine Sicherheitsabfrage anzeigen",
+	"tog-showrollbackconfirmation-prerelease-warning": "Bitte beachten: Diese Funktion steht noch nicht zur Verfügung. Du kannst aber bereits jetzt definieren, ob du eine Sicherheitsabfrage haben möchtest. Diese Einstellung wird dann bei der [https://de.wikipedia.org/wiki/Wikipedia:Technische_Wünsche/Topwünsche/Sicherheitsabfrage#Status späteren Bereitstellung] der Funktion berücksichtigt.",
 	"underline-always": "immer",
 	"underline-never": "nie",
 	"underline-default": "abhängig von der Benutzeroberfläche oder Browsereinstellung",
@@ -2342,7 +2344,7 @@
 	"deleting-backlinks-warning": "<strong>Warnung:</strong> Es verweisen noch [[Special:WhatLinksHere/{{FULLPAGENAME}}|andere Seiten]] auf diese zu löschende Seite oder sie ist noch an anderer Stelle eingebunden.",
 	"deleting-subpages-warning": "<strong>Warnung:</strong> Die Seite, die du löschen möchtest, hat [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|eine Unterseite|$1 Unterseiten|51=über 50 Unterseiten}}]].",
 	"rollback": "Zurücksetzen der Änderungen",
-	"rollback-confirmation-confirm": "{{PLURAL:$1|0=Diese Bearbeitungen|Eine Bearbeitung|$1 Bearbeitungen}} zurücksetzen?",
+	"rollback-confirmation-confirm": "Bitte bestätigen:",
 	"rollback-confirmation-yes": "Zurücksetzen",
 	"rollback-confirmation-no": "Abbrechen",
 	"rollbacklink": "Zurücksetzen",

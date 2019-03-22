@@ -27,7 +27,8 @@
 			"Facenapalm",
 			"Movses",
 			"Vlad5250",
-			"Athena Atterdag"
+			"Athena Atterdag",
+			"Diralik"
 		]
 	},
 	"config-desc": "Инсталлятор MediaWiki",
@@ -270,7 +271,7 @@
 	"config-cc-not-chosen": "Выберите, какую лицензию Creative Commons Вы хотите использовать, и нажмите кнопку \"proceed\".",
 	"config-advanced-settings": "Дополнительные настройки",
 	"config-cache-options": "Параметры кэширования объектов:",
-	"config-cache-help": "Кэширование объектов используется для повышения скорости MediaWiki путем кэширования часто используемых данных.\nДля средних и больших сайтов кеширование настоятельно рекомендуется включать, а для небольших сайтов кеширование может показать преимущество.",
+	"config-cache-help": "Кэширование объектов используется для повышения скорости MediaWiki путём кэширования часто используемых данных.\nДля средних и больших сайтов кеширование настоятельно рекомендуется включать, а для небольших сайтов кеширование может показать преимущество.",
 	"config-cache-none": "Без кэширования (никакой функционал не теряется, но крупные вики-сайты могут работать медленнее)",
 	"config-cache-accel": "Кэширование PHP-объектов (APC, APCu или WinCache)",
 	"config-cache-memcached": "Использовать Memcached (требует дополнительной настройки)",
@@ -331,7 +332,7 @@
 	"config-download-localsettings": "Загрузить <code>LocalSettings.php</code>",
 	"config-help": "справка",
 	"config-help-tooltip": "нажмите, чтобы развернуть",
-	"config-nofile": "Файл \"$1\" не удается найти. Он был удален?",
+	"config-nofile": "Файл \"$1\" не удаётся найти. Он был удалён?",
 	"config-extension-link": "Знаете ли вы, что ваш вики-проект поддерживает [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions расширения]?\n\nВы можете просмотреть [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category расширения по категориям]",
 	"config-skins-screenshots": "$1 (скриншоты: $2)",
 	"config-extensions-requires": "$1 (требуется $2)",

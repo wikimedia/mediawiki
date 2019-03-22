@@ -66,6 +66,7 @@
 	"tog-useeditwarning": "Папярэджваць мяне, калі я буду пакідаць старонку рэдагаваньня зь незахаванымі зьменамі",
 	"tog-prefershttps": "Заўсёды карыстацца бясьпечным злучэньнем па ўваходзе ў сыстэму",
 	"tog-showrollbackconfirmation": "Паказваць акно пацьвярджэньня пры націсканьні спасылкі адкату",
+	"tog-showrollbackconfirmation-prerelease-warning": "Калі ласка, заўважце: гэтая магчымасьць яшчэ недаступная. Калі вы вызначаце гэты парамэтар, ваш выбар будзе захаваны да [https://meta.wikimedia.org/wiki/WMDE_Technical_Wishes/Rollback#Status запуску функцыі].",
 	"underline-always": "Заўсёды",
 	"underline-never": "Ніколі",
 	"underline-default": "Паводле браўзэра або афармленьня",
