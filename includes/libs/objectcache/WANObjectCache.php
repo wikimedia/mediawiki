@@ -320,7 +320,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *   - tombAsOf: UNIX timestamp of the tombstone or null if the key is not tombstoned
 	 *   - lastCKPurge: UNIX timestamp of the highest check key or null if none provided
 	 *
-	 * Othwerwise, $info will transform into the cached value timestamp.
+	 * Otherwise, $info will transform into the cached value timestamp.
 	 *
 	 * @param string $key Cache key made from makeKey() or makeGlobalKey()
 	 * @param mixed|null &$curTTL Approximate TTL left on the key if present/tombstoned [returned]
