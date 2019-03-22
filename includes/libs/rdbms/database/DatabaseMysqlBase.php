@@ -1407,7 +1407,7 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		// See https://dev.mysql.com/doc/refman/5.5/en/error-messages-server.html
-		return in_array( $errno, [ 1022, 1216, 1217, 1137, 1146, 1051, 1054 ], true );
+		return in_array( $errno, [ 1022, 1062, 1216, 1217, 1137, 1146, 1051, 1054 ], true );
 	}
 
 	/**
