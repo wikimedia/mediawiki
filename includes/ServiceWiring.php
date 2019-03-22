@@ -149,7 +149,10 @@ return [
 		$lbConf = MWLBFactory::applyDefaultConfig(
 			$mainConfig->get( 'LBFactoryConf' ),
 			$mainConfig,
-			$services->getConfiguredReadOnlyMode()
+			$services->getConfiguredReadOnlyMode(),
+			$services->getLocalServerObjectCache(),
+			$services->getMainObjectStash(),
+			$services->getMainWANObjectCache()
 		);
 		$class = MWLBFactory::getLBFactoryClass( $lbConf );
 
