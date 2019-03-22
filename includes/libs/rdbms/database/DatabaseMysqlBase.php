@@ -486,7 +486,9 @@ abstract class DatabaseMysqlBase extends Database {
 	abstract protected function mysqlError( $conn = null );
 
 	protected function wasQueryTimeout( $error, $errno ) {
-		return $errno == 2062;
+		// https://dev.mysql.com/doc/refman/8.0/en/client-error-reference.html
+		// https://phabricator.wikimedia.org/T170638
+		return in_array( $errno, [ 2062, 3024 ] );
 	}
 
 	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
@@ -1407,7 +1409,7 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		// See https://dev.mysql.com/doc/refman/5.5/en/error-messages-server.html
-		return in_array( $errno, [ 1022, 1216, 1217, 1137, 1146, 1051, 1054 ], true );
+		return in_array( $errno, [ 1022, 1062, 1216, 1217, 1137, 1146, 1051, 1054 ], true );
 	}
 
 	/**
