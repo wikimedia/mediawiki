@@ -1668,6 +1668,7 @@ class RevisionStore
 	) {
 		if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_NEW ) ) {
 			$mainSlot = $this->emulateMainSlot_1_29( $revisionRow, $queryFlags, $title );
+			// @phan-suppress-next-line PhanTypeInvalidCallableArraySize false positive
 			$slots = new RevisionSlots( [ SlotRecord::MAIN => $mainSlot ] );
 		} else {
 			// XXX: do we need the same kind of caching here

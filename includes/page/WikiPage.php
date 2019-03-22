@@ -2997,7 +2997,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param Content|null $content Page content to be used when determining
 	 *   the required updates. This may be needed because $this->getContent()
 	 *   may already return null when the page proper was deleted.
-	 * @param RevisionRecord|Revision|null $revision The current page revision at the time of
+	 * @param Revision|null $revision The current page revision at the time of
 	 *   deletion, used when determining the required updates. This may be needed because
 	 *   $this->getRevision() may already return null when the page proper was deleted.
 	 * @param User|null $user The user that caused the deletion
