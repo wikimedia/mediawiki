@@ -2325,6 +2325,8 @@
 	"deleting-backlinks-warning": "<strong>Attenzione:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|altre pagine]] contengono collegamenti o inclusioni alla pagina che stai per cancellare.",
 	"deleting-subpages-warning": "<strong>Attenzione:</strong> la pagina che stai per cancellare ha [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|una sotto-pagina|$1 sotto-pagine|51=più di 50 sotto-pagine}}]].",
 	"rollback": "Annulla le modifiche",
+	"rollback-confirmation-yes": "Rollback",
+	"rollback-confirmation-no": "Annulla",
 	"rollbacklink": "rollback",
 	"rollbacklinkcount": "rollback di {{PLURAL:$1|una modifica|$1 modifiche}}",
 	"rollbacklinkcount-morethan": "rollback di più di {{PLURAL:$1|una modifica|$1 modifiche}}",

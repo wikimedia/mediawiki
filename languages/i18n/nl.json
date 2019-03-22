@@ -2335,6 +2335,8 @@
 	"deleting-backlinks-warning": "<strong>Waarschuwing:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|andere pagina's]] gebruiken of verwijzen naar de pagina die u wilt verwijderen.",
 	"deleting-subpages-warning": "<strong>Waarschuwing:</strong>De pagina die u wilt verwijderen heeft [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|een deelpagina|$1 deelpagina's|51=meer dan 50 deelpagina's}}]].",
 	"rollback": "Wijzigingen ongedaan maken",
+	"rollback-confirmation-yes": "Terugdraaien",
+	"rollback-confirmation-no": "Annuleren",
 	"rollbacklink": "terugdraaien",
 	"rollbacklinkcount": "{{PLURAL:$1|één bewerking|$1 bewerkingen}} terugdraaien",
 	"rollbacklinkcount-morethan": "Meer dan {{PLURAL:$1|één bewerking|$1 bewerkingen}} terugdraaien",

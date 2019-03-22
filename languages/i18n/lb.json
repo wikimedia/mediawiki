@@ -2107,6 +2107,8 @@
 	"deleting-backlinks-warning": "<strong>Opgepasst:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|Aner Säite]] linken op déi Säit déi Dir am Gaang sidd ze läschen oder déi Säit Déi Dir am Gaang sidd ze läschen ass an aner Säiten agebonn.",
 	"deleting-subpages-warning": "<strong>Opgepasst:</strong> D'Säit, déi Dir läsche wëllt, huet [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|eng Ënnersäit|$1 Ënnersäiten|51=méi wéi 50 Ënnersäiten}}]].",
 	"rollback": "Ännerungen zrécksetzen",
+	"rollback-confirmation-yes": "Zrécksetzen",
+	"rollback-confirmation-no": "Ofbriechen",
 	"rollbacklink": "Zrécksetzen",
 	"rollbacklinkcount": "{{PLURAL:$1|Eng Ännerung|$1 Ännerungen}} zrécksetzen",
 	"rollbacklinkcount-morethan": "méi wéi {{PLURAL:$1|Eng Ännerung|$1 Ännerungen}} zrécksetzen",

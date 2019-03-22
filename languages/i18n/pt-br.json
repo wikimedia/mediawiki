@@ -2384,6 +2384,7 @@
 	"deleting-backlinks-warning": "'''Cuidado:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|outras páginas]] ligam ou redirecionam para a página que você está prestes a eliminar.",
 	"deleting-subpages-warning": "<strong>Aviso:</strong> A página que você está prestes a excluir tem [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|uma subpágina|$1 subpáginas|51=mais de 50 subpáginas}}]].",
 	"rollback": "Reverter edições",
+	"rollback-confirmation-confirm": "Por favor confirme:",
 	"rollback-confirmation-yes": "Reverter",
 	"rollback-confirmation-no": "Cancelar",
 	"rollbacklink": "reverter",

@@ -347,7 +347,7 @@
 	"apihelp-parse-paramvalue-prop-revid": "يضيف معرِف المراجعة للصفحة التي تم تحليلها.",
 	"apihelp-parse-paramvalue-prop-displaytitle": "يضيف العنوان في تحليل نصوص الويكي.",
 	"apihelp-parse-paramvalue-prop-headitems": "يعطي عناصر لوضعها في <code>&lt;head&gt;</code> الصفحة.",
-	"apihelp-parse-paramvalue-prop-headhtml": "يعطي تحليل <code>&lt;head&gt;</code> الصفحة.",
+	"apihelp-parse-paramvalue-prop-headhtml": "يمنح نوع مستند محلولا، ويفتح عنصر <code>&lt;html&gt;</code>، <code>&lt;head&gt;</code> ويفتح <code>&lt;body&gt;</code> الصفحة.",
 	"apihelp-parse-paramvalue-prop-modules": "يعطي وحدات ResourceLoader المستخدمة في الصفحة، للتحميل; استخدم <code>mw.loader.using()</code>، يجب طلب <kbd>jsconfigvars</kbd> أو <kbd>encodedjsconfigvars</kbd> بشكل مشترك مع <kbd>modules</kbd>.",
 	"apihelp-parse-paramvalue-prop-jsconfigvars": "يعطي متغيرات تكوين جافا سكريبت الخاصة بهذه الصفحة. للتطبيق; استخدم <code>mw.config.set()</code>.",
 	"apihelp-parse-paramvalue-prop-encodedjsconfigvars": "يعطي متغيرات تكوين جافا سكريبت الخاصة بهذه الصفحة كسلسلة JSON.",
