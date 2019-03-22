@@ -1820,11 +1820,11 @@ class User implements IDBAccessObject, UserIdentity {
 
 	/**
 	 * Get blocking information
-	 * @param bool $bFromReplica Whether to check the replica DB first.
+	 * @param bool $fromReplica Whether to check the replica DB first.
 	 *   To improve performance, non-critical checks are done against replica DBs.
 	 *   Check when actually saving should be done against master.
 	 */
-	private function getBlockedStatus( $bFromReplica = true ) {
+	private function getBlockedStatus( $fromReplica = true ) {
 		global $wgProxyWhitelist, $wgApplyIpBlocksToXff, $wgSoftBlockRanges;
 
 		if ( $this->mBlockedby != -1 ) {
@@ -1855,7 +1855,7 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		// User/IP blocking
-		$block = Block::newFromTarget( $this, $ip, !$bFromReplica );
+		$block = Block::newFromTarget( $this, $ip, !$fromReplica );
 
 		// Cookie blocking
 		if ( !$block instanceof Block ) {
@@ -1891,7 +1891,7 @@ class User implements IDBAccessObject, UserIdentity {
 			$xff = $this->getRequest()->getHeader( 'X-Forwarded-For' );
 			$xff = array_map( 'trim', explode( ',', $xff ) );
 			$xff = array_diff( $xff, [ $ip ] );
-			$xffblocks = Block::getBlocksForIPList( $xff, $this->isAnon(), !$bFromReplica );
+			$xffblocks = Block::getBlocksForIPList( $xff, $this->isAnon(), !$fromReplica );
 			$block = Block::chooseBlock( $xffblocks, $xff );
 			if ( $block instanceof Block ) {
 				# Mangle the reason to alert the user that the block
@@ -2263,23 +2263,23 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Check if user is blocked
 	 *
-	 * @param bool $bFromReplica Whether to check the replica DB instead of
+	 * @param bool $fromReplica Whether to check the replica DB instead of
 	 *   the master. Hacked from false due to horrible probs on site.
 	 * @return bool True if blocked, false otherwise
 	 */
-	public function isBlocked( $bFromReplica = true ) {
-		return $this->getBlock( $bFromReplica ) instanceof Block &&
+	public function isBlocked( $fromReplica = true ) {
+		return $this->getBlock( $fromReplica ) instanceof Block &&
 			$this->getBlock()->appliesToRight( 'edit' );
 	}
 
 	/**
 	 * Get the block affecting the user, or null if the user is not blocked
 	 *
-	 * @param bool $bFromReplica Whether to check the replica DB instead of the master
+	 * @param bool $fromReplica Whether to check the replica DB instead of the master
 	 * @return Block|null
 	 */
-	public function getBlock( $bFromReplica = true ) {
-		$this->getBlockedStatus( $bFromReplica );
+	public function getBlock( $fromReplica = true ) {
+		$this->getBlockedStatus( $fromReplica );
 		return $this->mBlock instanceof Block ? $this->mBlock : null;
 	}
 
