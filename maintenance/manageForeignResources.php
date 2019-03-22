@@ -19,7 +19,7 @@
  * @ingroup Maintenance
  */
 
-require_once __DIR__ . '/../Maintenance.php';
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Manage foreign resources registered with ResourceLoader.
@@ -55,7 +55,7 @@ TEXT
 	public function execute() {
 		global $IP;
 		$frm = new ForeignResourceManager(
-			 __DIR__ . '/foreign-resources.yaml',
+			 "{$IP}/resources/lib/foreign-resources.yaml",
 			 "{$IP}/resources/lib",
 			function ( $text ) {
 				$this->output( $text );
