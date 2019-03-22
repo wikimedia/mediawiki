@@ -1445,7 +1445,7 @@ abstract class Maintenance {
 			'user',
 			'page_restrictions'
 		];
-		$db->lockTables( $read, $write, __CLASS__ . '::' . __METHOD__ );
+		$db->lockTables( $read, $write, __CLASS__ . '-searchIndexLock' );
 	}
 
 	/**
@@ -1453,7 +1453,7 @@ abstract class Maintenance {
 	 * @param IMaintainableDatabase &$db
 	 */
 	private function unlockSearchindex( $db ) {
-		$db->unlockTables( __CLASS__ . '::' . __METHOD__ );
+		$db->unlockTables( __CLASS__ . '-searchIndexLock' );
 	}
 
 	/**
