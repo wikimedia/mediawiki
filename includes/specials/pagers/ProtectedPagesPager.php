@@ -49,7 +49,7 @@ class ProtectedPagesPager extends TablePager {
 		LinkRenderer $linkRenderer
 	) {
 		$this->mConds = $conds;
-		$this->type = ( $type ) ? $type : 'edit';
+		$this->type = $type ?: 'edit';
 		$this->level = $level;
 		$this->namespace = $namespace;
 		$this->sizetype = $sizetype;
