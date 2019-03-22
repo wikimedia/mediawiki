@@ -44,7 +44,27 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$db->method( 'select' )->willReturn( new FakeResultWrapper( [] ) );
+		$open = true;
+		$db->method( 'select' )->willReturnCallback( function () use ( &$open ) {
+			if ( !$open ) {
+				throw new LogicException( "Not open" );
+			}
+
+			return new FakeResultWrapper( [] );
+		} );
+		$db->method( 'close' )->willReturnCallback( function () use ( &$open ) {
+			$open = false;
+
+			return true;
+		} );
+		$db->method( 'isOpen' )->willReturnCallback( function () use ( &$open ) {
+			return $open;
+		} );
+		$db->method( 'open' )->willReturnCallback( function () use ( &$open ) {
+			$open = true;
+
+			return $open;
+		} );
 		$db->method( '__toString' )->willReturn( 'MOCK_DB' );
 
 		return $db;
@@ -122,6 +142,9 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 'dummy', $ref->getDomainID() );
 	}
 
+	/**
+	 * @covers Wikimedia\Rdbms\DBConnRef::select
+	 */
 	public function testSelect() {
 		// select should get passed through normally
 		$ref = $this->getDBConnRef();
@@ -137,4 +160,13 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		$this->assertInternalType( 'string', $ref->__toString() );
 	}
 
+	/**
+	 * @covers Wikimedia\Rdbms\DBConnRef::close
+	 * @expectedException \Wikimedia\Rdbms\DBUnexpectedError
+	 */
+	public function testClose() {
+		$lb = $this->getLoadBalancerMock();
+		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ] );
+		$ref->close();
+	}
 }
