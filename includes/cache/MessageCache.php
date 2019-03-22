@@ -540,7 +540,10 @@ class MessageCache {
 		$res = $dbr->select(
 			$revQuery['tables'],
 			$revQuery['fields'],
-			array_merge( $conds, [ 'page_len <= ' . intval( $wgMaxMsgCacheEntrySize ) ] ),
+			array_merge( $conds, [
+				'page_len <= ' . intval( $wgMaxMsgCacheEntrySize ),
+				'page_latest = rev_id' // get the latest revision only
+			] ),
 			__METHOD__ . "($code)-small",
 			[],
 			$revQuery['joins']
