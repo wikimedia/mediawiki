@@ -981,4 +981,93 @@ class TitleTest extends MediaWikiTestCase {
 			[ 'Main Page', false ],
 		];
 	}
+
+	public function provideEquals() {
+		yield [
+			Title::newFromText( 'Main Page' ),
+			Title::newFromText( 'Main Page' ),
+			true
+		];
+		yield [
+			Title::newFromText( 'Main Page' ),
+			Title::newFromText( 'Not The Main Page' ),
+			false
+		];
+		yield [
+			Title::newFromText( 'Main Page' ),
+			Title::newFromText( 'Project:Main Page' ),
+			false
+		];
+		yield [
+			Title::newFromText( 'File:Example.png' ),
+			Title::newFromText( 'Image:Example.png' ),
+			true
+		];
+		yield [
+			Title::newFromText( 'Special:Version' ),
+			Title::newFromText( 'Special:Version' ),
+			true
+		];
+		yield [
+			Title::newFromText( 'Special:Version' ),
+			Title::newFromText( 'Special:Recentchanges' ),
+			false
+		];
+		yield [
+			Title::newFromText( 'Special:Version' ),
+			Title::newFromText( 'Main Page' ),
+			false
+		];
+		yield [
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			true
+		];
+		yield [
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			Title::makeTitle( NS_MAIN, 'Bar', '', '' ),
+			false
+		];
+		yield [
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			Title::makeTitle( NS_TALK, 'Foo', '', '' ),
+			false
+		];
+		yield [
+			Title::makeTitle( NS_MAIN, 'Foo', 'Bar', '' ),
+			Title::makeTitle( NS_MAIN, 'Foo', 'Bar', '' ),
+			true
+		];
+		yield [
+			Title::makeTitle( NS_MAIN, 'Foo', 'Bar', '' ),
+			Title::makeTitle( NS_MAIN, 'Foo', 'Baz', '' ),
+			true
+		];
+		yield [
+			Title::makeTitle( NS_MAIN, 'Foo', 'Bar', '' ),
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			true
+		];
+		yield [
+			Title::makeTitle( NS_MAIN, 'Foo', '', 'baz' ),
+			Title::makeTitle( NS_MAIN, 'Foo', '', 'baz' ),
+			true
+		];
+		yield [
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			Title::makeTitle( NS_MAIN, 'Foo', '', 'baz' ),
+			false
+		];
+	}
+
+	/**
+	 * @covers Title::equals
+	 * @dataProvider provideEquals
+	 */
+	public function testEquals( Title $firstValue, /* LinkTarget */ $secondValue, $expectedSame ) {
+		$this->assertSame(
+			$expectedSame,
+			$firstValue->equals( $secondValue )
+		);
+	}
 }
