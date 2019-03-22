@@ -74,11 +74,13 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function tablePrefix( $prefix = null ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
+		// Disallow things that might confuse the LoadBalancer tracking
+		throw new DBUnexpectedError( $this, "Database selection is disallowed to enable reuse." );
 	}
 
 	public function dbSchema( $schema = null ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
+		// Disallow things that might confuse the LoadBalancer tracking
+		throw new DBUnexpectedError( $this, "Database selection is disallowed to enable reuse." );
 	}
 
 	public function getLBInfo( $name = null ) {
@@ -86,11 +88,13 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function setLBInfo( $name, $value = null ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
+		// Disallow things that might confuse the LoadBalancer tracking
+		throw new DBUnexpectedError( $this, "Changing LB info is disallowed to enable reuse." );
 	}
 
 	public function setLazyMasterHandle( IDatabase $conn ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
+		// Disallow things that might confuse the LoadBalancer tracking
+		throw new DBUnexpectedError( $this, "Database injection is disallowed to enable reuse." );
 	}
 
 	public function implicitGroupby() {
