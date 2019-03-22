@@ -1129,16 +1129,20 @@
 	path = extensions/IncidentReporting
 	url = https://github.com/miraheze/IncidentReporting
 	branch = master
+        ignore = dirty
 [submodule "extensions/NumberedHeadings"]
 	path = extensions/NumberedHeadings
 	url = https://github.com/staspika/mediawiki-numberedheadings
 	branch = master
+        ignore = dirty
 [submodule "extensions/CirrusSearch"]
 	path = extensions/CirrusSearch
 	url = https://github.com/wikimedia/mediawiki-extensions-CirrusSearch.git
         branch = REL1_32
+        ignore = dirty
 [submodule "extensions/Elastica"]
 	path = extensions/Elastica
 	url = https://github.com/wikimedia/mediawiki-extensions-Elastica.git
         branch = REL1_32
+        ignore = dirty
 
