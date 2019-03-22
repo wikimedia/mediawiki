@@ -72,7 +72,7 @@ class XmlTypeCheck {
 	 * Additional parsing options
 	 */
 	private $parserOptions = [
-		'processing_instruction_handler' => '',
+		'processing_instruction_handler' => null,
 		'external_dtd_handler' => '',
 		'dtd_handler' => '',
 		'require_safe_dtd' => true
