@@ -319,8 +319,6 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @throws MWException If a duplicate module registration is attempted
 	 * @throws MWException If a module name contains illegal characters (pipes or commas)
 	 * @throws MWException If something other than a ResourceLoaderModule is being registered
-	 * @return bool False if there were any errors, in which case one or more modules were
-	 *   not registered
 	 */
 	public function register( $name, $info = null ) {
 		$moduleSkinStyles = $this->config->get( 'ResourceModuleSkinStyles' );

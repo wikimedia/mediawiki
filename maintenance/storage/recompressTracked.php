@@ -274,7 +274,9 @@ class RecompressTracked {
 	function dispatch( /*...*/ ) {
 		$args = func_get_args();
 		$pipes = $this->replicaPipes;
-		$numPipes = stream_select( $x = [], $pipes, $y = [], 3600 );
+		$x = [];
+		$y = [];
+		$numPipes = stream_select( $x, $pipes, $y, 3600 );
 		if ( !$numPipes ) {
 			$this->critical( "Error waiting to write to replica DBs. Aborting" );
 			exit( 1 );

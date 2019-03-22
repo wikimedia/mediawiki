@@ -390,7 +390,6 @@ interface ILBFactory {
 	 * the aliases can be removed, and then the old X-named indexes dropped.
 	 *
 	 * @param string[] $aliases
-	 * @return mixed
 	 * @since 1.31
 	 */
 	public function setIndexAliases( array $aliases );
