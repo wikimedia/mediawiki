@@ -84,6 +84,8 @@ For notes on 1.32.x and older releases, see HISTORY.
   is no longer a problem, because the code now ensures the timestamp is always
   higher than the previous one. The writes are guarded with CAS logic (check
   and set), which prevents updates that would overlap.
+* $wgDBmysql5 (T196185) - This experimental setting, deprecated in 1.31, has
+  been removed.
 
 === New user-facing features in 1.33 ===
 * (T96041) __EXPECTUNUSEDCATEGORY__ on a category page causes the category
