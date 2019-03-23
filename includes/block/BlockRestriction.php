@@ -73,7 +73,7 @@ class BlockRestriction {
 	 * @return bool
 	 */
 	public static function insert( array $restrictions ) {
-		if ( empty( $restrictions ) ) {
+		if ( !$restrictions ) {
 			return false;
 		}
 
@@ -85,7 +85,7 @@ class BlockRestriction {
 			$rows[] = $restriction->toRow();
 		}
 
-		if ( empty( $rows ) ) {
+		if ( !$rows ) {
 			return false;
 		}
 
