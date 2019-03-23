@@ -91,12 +91,14 @@ class BlockRestriction {
 
 		$dbw = wfGetDB( DB_MASTER );
 
-		return $dbw->insert(
+		$dbw->insert(
 			'ipblocks_restrictions',
 			$rows,
 			__METHOD__,
 			[ 'IGNORE' ]
 		);
+
+		return true;
 	}
 
 	/**
