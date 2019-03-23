@@ -251,6 +251,13 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			);
 		}
 
+		if ( isset( $this->prop['latestcontrib'] ) ) {
+			$ts = $this->getLatestContributionTime();
+			if ( $ts !== null ) {
+				$vals['latestcontrib'] = $ts;
+			}
+		}
+
 		return $vals;
 	}
 
@@ -293,6 +300,40 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		return $retval;
 	}
 
+	/**
+	 * @return string|null ISO 8601 timestamp of current user's last contribution or null if none
+	 */
+	protected function getLatestContributionTime() {
+		global $wgActorTableSchemaMigrationStage;
+
+		$user = $this->getUser();
+		$dbr = $this->getDB();
+
+		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
+			if ( $user->getActorId() === null ) {
+				return null;
+			}
+			$res = $dbr->selectField( 'revision_actor_temp',
+				'MAX(revactor_timestamp)',
+				[ 'revactor_actor' => $user->getActorId() ],
+				__METHOD__
+			);
+		} else {
+			if ( $user->isLoggedIn() ) {
+				$conds = [ 'rev_user' => $user->getId() ];
+			} else {
+				$conds = [ 'rev_user_text' => $user->getName() ];
+			}
+			$res = $dbr->selectField( 'revision',
+				'MAX(rev_timestamp)',
+				$conds,
+				__METHOD__
+			);
+		}
+
+		return $res ? wfTimestamp( TS_ISO_8601, $res ) : null;
+	}
+
 	public function getAllowedParams() {
 		return [
 			'prop' => [
@@ -315,6 +356,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'unreadcount',
 					'centralids',
 					'preferencestoken',
+					'latestcontrib',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
 					'unreadcount' => [
