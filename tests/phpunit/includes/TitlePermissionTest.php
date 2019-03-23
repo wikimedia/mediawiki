@@ -923,7 +923,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			'auto' => true,
 			'expiry' => 0
 		] );
-		$this->user->mBlock->mTimestamp = 0;
+		$this->user->mBlock->setTimestamp( 0 );
 		$this->assertEquals( [ [ 'autoblockedtext',
 				'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
 				'Useruser', null, 'infinite', '127.0.8.1',

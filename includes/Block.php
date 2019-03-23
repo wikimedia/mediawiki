@@ -165,13 +165,13 @@ class Block {
 			$this->setBlocker( $options['byText'] );
 		}
 
-		$this->mReason = $options['reason'];
+		$this->setReason( $options['reason'] );
 		$this->mTimestamp = wfTimestamp( TS_MW, $options['timestamp'] );
-		$this->mExpiry = wfGetDB( DB_REPLICA )->decodeExpiry( $options['expiry'] );
+		$this->setExpiry( wfGetDB( DB_REPLICA )->decodeExpiry( $options['expiry'] ) );
 
 		# Boolean settings
 		$this->mAuto = (bool)$options['auto'];
-		$this->mHideName = (bool)$options['hideName'];
+		$this->setHideName( (bool)$options['hideName'] );
 		$this->isHardblock( !$options['anonOnly'] );
 		$this->isAutoblocking( (bool)$options['enableAutoblock'] );
 		$this->isSitewide( (bool)$options['sitewide'] );
@@ -296,12 +296,12 @@ class Block {
 			&& $this->mAuto == $block->mAuto
 			&& $this->isHardblock() == $block->isHardblock()
 			&& $this->isCreateAccountBlocked() == $block->isCreateAccountBlocked()
-			&& $this->mExpiry == $block->mExpiry
+			&& $this->getExpiry() == $block->getExpiry()
 			&& $this->isAutoblocking() == $block->isAutoblocking()
-			&& $this->mHideName == $block->mHideName
+			&& $this->getHideName() == $block->getHideName()
 			&& $this->isEmailBlocked() == $block->isEmailBlocked()
 			&& $this->isUsertalkEditAllowed() == $block->isUsertalkEditAllowed()
-			&& $this->mReason == $block->mReason
+			&& $this->getReason() == $block->getReason()
 			&& $this->isSitewide() == $block->isSitewide()
 			// Block::getRestrictions() may perform a database query, so keep it at
 			// the end.
@@ -473,16 +473,18 @@ class Block {
 
 		$this->mTimestamp = wfTimestamp( TS_MW, $row->ipb_timestamp );
 		$this->mAuto = $row->ipb_auto;
-		$this->mHideName = $row->ipb_deleted;
+		$this->setHideName( $row->ipb_deleted );
 		$this->mId = (int)$row->ipb_id;
 		$this->mParentBlockId = $row->ipb_parent_block_id;
 
 		// I wish I didn't have to do this
 		$db = wfGetDB( DB_REPLICA );
-		$this->mExpiry = $db->decodeExpiry( $row->ipb_expiry );
-		$this->mReason = CommentStore::getStore()
+		$this->setExpiry( $db->decodeExpiry( $row->ipb_expiry ) );
+		$this->setReason(
+			CommentStore::getStore()
 			// Legacy because $row may have come from self::selectFields()
-			->getCommentLegacy( $db, 'ipb_reason', $row )->text;
+			->getCommentLegacy( $db, 'ipb_reason', $row )->text
+		);
 
 		$this->isHardblock( !$row->ipb_anon_only );
 		$this->isAutoblocking( $row->ipb_enable_autoblock );
@@ -679,7 +681,7 @@ class Block {
 	 * @return array
 	 */
 	protected function getDatabaseArray( IDatabase $dbw ) {
-		$expiry = $dbw->encodeExpiry( $this->mExpiry );
+		$expiry = $dbw->encodeExpiry( $this->getExpiry() );
 
 		if ( $this->forcedTargetID ) {
 			$uid = $this->forcedTargetID;
@@ -690,7 +692,7 @@ class Block {
 		$a = [
 			'ipb_address'          => (string)$this->target,
 			'ipb_user'             => $uid,
-			'ipb_timestamp'        => $dbw->timestamp( $this->mTimestamp ),
+			'ipb_timestamp'        => $dbw->timestamp( $this->getTimestamp() ),
 			'ipb_auto'             => $this->mAuto,
 			'ipb_anon_only'        => !$this->isHardblock(),
 			'ipb_create_account'   => $this->isCreateAccountBlocked(),
@@ -698,12 +700,12 @@ class Block {
 			'ipb_expiry'           => $expiry,
 			'ipb_range_start'      => $this->getRangeStart(),
 			'ipb_range_end'        => $this->getRangeEnd(),
-			'ipb_deleted'          => intval( $this->mHideName ), // typecast required for SQLite
+			'ipb_deleted'          => intval( $this->getHideName() ), // typecast required for SQLite
 			'ipb_block_email'      => $this->isEmailBlocked(),
 			'ipb_allow_usertalk'   => $this->isUsertalkEditAllowed(),
 			'ipb_parent_block_id'  => $this->mParentBlockId,
 			'ipb_sitewide'         => $this->isSitewide(),
-		] + CommentStore::getStore()->insert( $dbw, 'ipb_reason', $this->mReason )
+		] + CommentStore::getStore()->insert( $dbw, 'ipb_reason', $this->getReason() )
 			+ ActorMigration::newMigration()->getInsertValues( $dbw, 'ipb_by', $this->getBlocker() );
 
 		return $a;
@@ -716,10 +718,10 @@ class Block {
 	protected function getAutoblockUpdateArray( IDatabase $dbw ) {
 		return [
 			'ipb_create_account'   => $this->isCreateAccountBlocked(),
-			'ipb_deleted'          => (int)$this->mHideName, // typecast required for SQLite
+			'ipb_deleted'          => (int)$this->getHideName(), // typecast required for SQLite
 			'ipb_allow_usertalk'   => $this->isUsertalkEditAllowed(),
 			'ipb_sitewide'         => $this->isSitewide(),
-		] + CommentStore::getStore()->insert( $dbw, 'ipb_reason', $this->mReason )
+		] + CommentStore::getStore()->insert( $dbw, 'ipb_reason', $this->getReason() )
 			+ ActorMigration::newMigration()->getInsertValues( $dbw, 'ipb_by', $this->getBlocker() );
 	}
 
@@ -883,7 +885,7 @@ class Block {
 			# Check if the block is an autoblock and would exceed the user block
 			# if renewed. If so, do nothing, otherwise prolong the block time...
 			if ( $ipblock->mAuto && // @todo Why not compare $ipblock->mExpiry?
-				$this->mExpiry > self::getAutoblockExpiry( $ipblock->mTimestamp )
+				$this->getExpiry() > self::getAutoblockExpiry( $ipblock->getTimestamp() )
 			) {
 				# Reset block timestamp to now and its expiry to
 				# $wgAutoblockExpiry in the future
@@ -897,26 +899,28 @@ class Block {
 		wfDebug( "Autoblocking {$this->getTarget()}@" . $autoblockIP . "\n" );
 		$autoblock->setTarget( $autoblockIP );
 		$autoblock->setBlocker( $this->getBlocker() );
-		$autoblock->mReason = wfMessage( 'autoblocker', $this->getTarget(), $this->mReason )
-			->inContentLanguage()->plain();
+		$autoblock->setReason(
+			wfMessage( 'autoblocker', $this->getTarget(), $this->getReason() )
+				->inContentLanguage()->plain()
+		);
 		$timestamp = wfTimestampNow();
 		$autoblock->mTimestamp = $timestamp;
 		$autoblock->mAuto = 1;
 		$autoblock->isCreateAccountBlocked( $this->isCreateAccountBlocked() );
 		# Continue suppressing the name if needed
-		$autoblock->mHideName = $this->mHideName;
+		$autoblock->setHideName( $this->getHideName() );
 		$autoblock->isUsertalkEditAllowed( $this->isUsertalkEditAllowed() );
 		$autoblock->mParentBlockId = $this->mId;
 		$autoblock->isSitewide( $this->isSitewide() );
 		$autoblock->setRestrictions( $this->getRestrictions() );
 
-		if ( $this->mExpiry == 'infinity' ) {
+		if ( $this->getExpiry() == 'infinity' ) {
 			# Original block was indefinite, start an autoblock now
-			$autoblock->mExpiry = self::getAutoblockExpiry( $timestamp );
+			$autoblock->setExpiry( self::getAutoblockExpiry( $timestamp ) );
 		} else {
 			# If the user is already blocked with an expiry date, we don't
 			# want to pile on top of that.
-			$autoblock->mExpiry = min( $this->mExpiry, self::getAutoblockExpiry( $timestamp ) );
+			$autoblock->setExpiry( min( $this->getExpiry(), self::getAutoblockExpiry( $timestamp ) ) );
 		}
 
 		# Insert the block...
@@ -951,10 +955,10 @@ class Block {
 		$timestamp = wfTimestampNow();
 		wfDebug( "Block::isExpired() checking current " . $timestamp . " vs $this->mExpiry\n" );
 
-		if ( !$this->mExpiry ) {
+		if ( !$this->getExpiry() ) {
 			return false;
 		} else {
-			return $timestamp > $this->mExpiry;
+			return $timestamp > $this->getExpiry();
 		}
 	}
 
@@ -972,13 +976,13 @@ class Block {
 	public function updateTimestamp() {
 		if ( $this->mAuto ) {
 			$this->mTimestamp = wfTimestamp();
-			$this->mExpiry = self::getAutoblockExpiry( $this->mTimestamp );
+			$this->setExpiry( self::getAutoblockExpiry( $this->getTimestamp() ) );
 
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'ipblocks',
 				[ /* SET */
-					'ipb_timestamp' => $dbw->timestamp( $this->mTimestamp ),
-					'ipb_expiry' => $dbw->timestamp( $this->mExpiry ),
+					'ipb_timestamp' => $dbw->timestamp( $this->getTimestamp() ),
+					'ipb_expiry' => $dbw->timestamp( $this->getExpiry() ),
 				],
 				[ /* WHERE */
 					'ipb_id' => $this->getId(),
@@ -1072,6 +1076,46 @@ class Block {
 		}
 
 		return $this;
+	}
+
+	/**
+	 * Get the reason given for creating the block
+	 *
+	 * @since 1.33
+	 * @return string
+	 */
+	public function getReason() {
+		return $this->mReason;
+	}
+
+	/**
+	 * Set the reason for creating the block
+	 *
+	 * @since 1.33
+	 * @param string $reason
+	 */
+	public function setReason( $reason ) {
+		$this->mReason = $reason;
+	}
+
+	/**
+	 * Get whether the block hides the target's username
+	 *
+	 * @since 1.33
+	 * @return bool The block hides the username
+	 */
+	public function getHideName() {
+		return $this->mHideName;
+	}
+
+	/**
+	 * Set whether ths block hides the target's username
+	 *
+	 * @since 1.33
+	 * @param bool $hideName The block hides the username
+	 */
+	public function setHideName( $hideName ) {
+		$this->mHideName = $hideName;
 	}
 
 	/**
@@ -1660,12 +1704,43 @@ class Block {
 	}
 
 	/**
-	 * @since 1.19
+	 * Get the block expiry time
 	 *
-	 * @return mixed|string
+	 * @since 1.19
+	 * @return string
 	 */
 	public function getExpiry() {
 		return $this->mExpiry;
+	}
+
+	/**
+	 * Set the block expiry time
+	 *
+	 * @since 1.33
+	 * @param string $expiry
+	 */
+	public function setExpiry( $expiry ) {
+		$this->mExpiry = $expiry;
+	}
+
+	/**
+	 * Get the timestamp indicating when the block was created
+	 *
+	 * @since 1.33
+	 * @return string
+	 */
+	public function getTimestamp() {
+		return $this->mTimestamp;
+	}
+
+	/**
+	 * Set the timestamp indicating when the block was created
+	 *
+	 * @since 1.33
+	 * @param string $timestamp
+	 */
+	public function setTimestamp( $timestamp ) {
+		$this->mTimestamp = $timestamp;
 	}
 
 	/**
@@ -1830,7 +1905,7 @@ class Block {
 			$link = $blocker;
 		}
 
-		$reason = $this->mReason;
+		$reason = $this->getReason();
 		if ( $reason == '' ) {
 			$reason = $context->msg( 'blockednoreason' )->text();
 		}
@@ -1847,9 +1922,9 @@ class Block {
 			$context->getRequest()->getIP(),
 			$this->getByName(),
 			$systemBlockType ?? $this->getId(),
-			$lang->formatExpiry( $this->mExpiry ),
+			$lang->formatExpiry( $this->getExpiry() ),
 			(string)$intended,
-			$lang->userTimeAndDate( $this->mTimestamp, $context->getUser() ),
+			$lang->userTimeAndDate( $this->getTimestamp(), $context->getUser() ),
 		];
 	}
 

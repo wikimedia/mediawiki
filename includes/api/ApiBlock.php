@@ -135,7 +135,7 @@ class ApiBlock extends ApiBase {
 
 		$block = Block::newFromTarget( $target, null, true );
 		if ( $block instanceof Block ) {
-			$res['expiry'] = ApiResult::formatExpiry( $block->mExpiry, 'infinite' );
+			$res['expiry'] = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
 			$res['id'] = $block->getId();
 		} else {
 			# should be unreachable
