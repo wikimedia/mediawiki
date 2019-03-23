@@ -71,7 +71,6 @@
 			any new occurrences.
 		-->
 		<exclude-pattern>*/includes/Feed\.php</exclude-pattern>
-		<exclude-pattern>*/includes/RevisionList\.php</exclude-pattern>
 		<exclude-pattern>*/includes/installer/PhpBugTests\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialMostinterwikis\.php</exclude-pattern>
 		<exclude-pattern>*/includes/compat/XMPReader\.php</exclude-pattern>
@@ -232,7 +231,6 @@
 		<exclude-pattern>*/includes/poolcounter/PoolCounter\.php</exclude-pattern>
 		<exclude-pattern>*/includes/PrefixSearch\.php</exclude-pattern>
 		<exclude-pattern>*/includes/profiler/SectionProfiler\.php</exclude-pattern>
-		<exclude-pattern>*/includes/RevisionList\.php</exclude-pattern>
 		<exclude-pattern>*/includes/search/SearchEngine\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specialpage/LoginSignupSpecialPage\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/forms/PreferencesFormLegacy\.php</exclude-pattern>
