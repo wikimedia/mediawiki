@@ -61,15 +61,23 @@ class UserrightsPage extends SpecialPage {
 		$isself = $this->getUser()->equals( $targetUser );
 
 		$available = $this->changeableGroups();
-		if ( $targetUser->getId() == 0 ) {
+		if ( $targetUser->getId() === 0 ) {
 			return false;
 		}
 
-		return !empty( $available['add'] )
-			|| !empty( $available['remove'] )
-			|| ( ( $isself || !$checkIfSelf ) &&
-				( !empty( $available['add-self'] )
-					|| !empty( $available['remove-self'] ) ) );
+		if ( $available['add'] || $available['remove'] ) {
+			// can change some rights for any user
+			return true;
+		}
+
+		if ( ( $available['add-self'] || $available['remove-self'] )
+			&& ( $isself || !$checkIfSelf )
+		) {
+			// can change some rights for self
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
