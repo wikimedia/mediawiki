@@ -350,9 +350,11 @@ class SpecialBlock extends FormSpecialPage {
 
 		$block = Block::newFromTarget( $this->target );
 
-		if ( $block instanceof Block && !$block->mAuto # The block exists and isn't an autoblock
-			&& ( $this->type != Block::TYPE_RANGE # The block isn't a rangeblock
-				|| $block->getTarget() == $this->target ) # or if it is, the range is what we're about to block
+		// Populate fields if there is a block that is not an autoblock; if it is a range
+		// block, only populate the fields if the range is the same as $this->target
+		if ( $block instanceof Block && $block->getType() !== Block::TYPE_AUTO
+			&& ( $this->type != Block::TYPE_RANGE
+				|| $block->getTarget() == $this->target )
 		) {
 			$fields['HardBlock']['default'] = $block->isHardblock();
 			$fields['CreateAccount']['default'] = $block->isCreateAccountBlocked();
@@ -363,7 +365,7 @@ class SpecialBlock extends FormSpecialPage {
 			}
 
 			if ( isset( $fields['HideUser'] ) ) {
-				$fields['HideUser']['default'] = $block->mHideName;
+				$fields['HideUser']['default'] = $block->getHideName();
 			}
 
 			if ( isset( $fields['DisableUTEdit'] ) ) {
@@ -372,8 +374,8 @@ class SpecialBlock extends FormSpecialPage {
 
 			// If the username was hidden (ipb_deleted == 1), don't show the reason
 			// unless this user also has rights to hideuser: T37839
-			if ( !$block->mHideName || $this->getUser()->isAllowed( 'hideuser' ) ) {
-				$fields['Reason']['default'] = $block->mReason;
+			if ( !$block->getHideName() || $this->getUser()->isAllowed( 'hideuser' ) ) {
+				$fields['Reason']['default'] = $block->getReason();
 			} else {
 				$fields['Reason']['default'] = '';
 			}
@@ -389,10 +391,10 @@ class SpecialBlock extends FormSpecialPage {
 				$fields['Confirm']['default'] = 1;
 			}
 
-			if ( $block->mExpiry == 'infinity' ) {
+			if ( $block->getExpiry() == 'infinity' ) {
 				$fields['Expiry']['default'] = 'infinite';
 			} else {
-				$fields['Expiry']['default'] = wfTimestamp( TS_RFC2822, $block->mExpiry );
+				$fields['Expiry']['default'] = wfTimestamp( TS_RFC2822, $block->getExpiry() );
 			}
 
 			$fields['BlockId']['default'] = $block->getId();
@@ -873,14 +875,14 @@ class SpecialBlock extends FormSpecialPage {
 		$block = new Block();
 		$block->setTarget( $target );
 		$block->setBlocker( $performer );
-		$block->mReason = $data['Reason'][0];
-		$block->mExpiry = $expiryTime;
+		$block->setReason( $data['Reason'][0] );
+		$block->setExpiry( $expiryTime );
 		$block->isCreateAccountBlocked( $data['CreateAccount'] );
 		$block->isUsertalkEditAllowed( !$wgBlockAllowsUTEdit || !$data['DisableUTEdit'] );
 		$block->isEmailBlocked( $data['DisableEmail'] );
 		$block->isHardblock( $data['HardBlock'] );
 		$block->isAutoblocking( $data['AutoBlock'] );
-		$block->mHideName = $data['HideUser'];
+		$block->setHideName( $data['HideUser'] );
 
 		if ( $isPartialBlock ) {
 			$block->isSitewide( false );
@@ -939,19 +941,19 @@ class SpecialBlock extends FormSpecialPage {
 				}
 				# If the name was hidden and the blocking user cannot hide
 				# names, then don't allow any block changes...
-				if ( $currentBlock->mHideName && !$performer->isAllowed( 'hideuser' ) ) {
+				if ( $currentBlock->getHideName() && !$performer->isAllowed( 'hideuser' ) ) {
 					return [ 'cant-see-hidden-user' ];
 				}
 
 				$priorBlock = clone $currentBlock;
 				$currentBlock->isHardblock( $block->isHardblock() );
 				$currentBlock->isCreateAccountBlocked( $block->isCreateAccountBlocked() );
-				$currentBlock->mExpiry = $block->mExpiry;
+				$currentBlock->setExpiry( $block->getExpiry() );
 				$currentBlock->isAutoblocking( $block->isAutoblocking() );
-				$currentBlock->mHideName = $block->mHideName;
+				$currentBlock->setHideName( $block->getHideName() );
 				$currentBlock->isEmailBlocked( $block->isEmailBlocked() );
 				$currentBlock->isUsertalkEditAllowed( $block->isUsertalkEditAllowed() );
-				$currentBlock->mReason = $block->mReason;
+				$currentBlock->setReason( $block->getReason() );
 
 				if ( $enablePartialBlocks ) {
 					// Maintain the sitewide status. If partial blocks is not enabled,
@@ -970,12 +972,12 @@ class SpecialBlock extends FormSpecialPage {
 				$logaction = 'reblock';
 
 				# Unset _deleted fields if requested
-				if ( $currentBlock->mHideName && !$data['HideUser'] ) {
+				if ( $currentBlock->getHideName() && !$data['HideUser'] ) {
 					RevisionDeleteUser::unsuppressUserName( $target, $userId );
 				}
 
 				# If hiding/unhiding a name, this should go in the private logs
-				if ( (bool)$currentBlock->mHideName ) {
+				if ( (bool)$currentBlock->getHideName() ) {
 					$data['HideUser'] = true;
 				}
 

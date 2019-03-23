@@ -757,7 +757,7 @@ class UserTest extends MediaWikiTestCase {
 
 		// 3. Change the block's expiry (to 2 hours), and the cookie's should be changed also.
 		$newExpiry = wfTimestamp() + 2 * 60 * 60;
-		$block->mExpiry = wfTimestamp( TS_MW, $newExpiry );
+		$block->setExpiry( wfTimestamp( TS_MW, $newExpiry ) );
 		$block->update();
 		$user2tmp = $this->getTestUser()->getUser();
 		$request2 = new FauxRequest();

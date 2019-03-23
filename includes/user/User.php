@@ -1896,7 +1896,7 @@ class User implements IDBAccessObject, UserIdentity {
 			if ( $block instanceof Block ) {
 				# Mangle the reason to alert the user that the block
 				# originated from matching the X-Forwarded-For header.
-				$block->mReason = wfMessage( 'xffblockreason', $block->mReason )->plain();
+				$block->setReason( wfMessage( 'xffblockreason', $block->getReason() )->plain() );
 			}
 		}
 
@@ -1918,8 +1918,8 @@ class User implements IDBAccessObject, UserIdentity {
 			wfDebug( __METHOD__ . ": Found block.\n" );
 			$this->mBlock = $block;
 			$this->mBlockedby = $block->getByName();
-			$this->mBlockreason = $block->mReason;
-			$this->mHideName = $block->mHideName;
+			$this->mBlockreason = $block->getReason();
+			$this->mHideName = $block->getHideName();
 			$this->mAllowUsertalk = $block->isUsertalkEditAllowed();
 		} else {
 			$this->mBlock = null;
