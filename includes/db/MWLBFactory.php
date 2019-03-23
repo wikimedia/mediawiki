@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\DatabaseDomain;
 
@@ -39,10 +38,18 @@ abstract class MWLBFactory {
 	 * @param array $lbConf Config for LBFactory::__construct()
 	 * @param Config $mainConfig Main config object from MediaWikiServices
 	 * @param ConfiguredReadOnlyMode $readOnlyMode
+	 * @param BagOStuff $srvCace
+	 * @param BagOStuff $mainStash
+	 * @param WANObjectCache $wanCache
 	 * @return array
 	 */
-	public static function applyDefaultConfig( array $lbConf, Config $mainConfig,
-		ConfiguredReadOnlyMode $readOnlyMode
+	public static function applyDefaultConfig(
+		array $lbConf,
+		Config $mainConfig,
+		ConfiguredReadOnlyMode $readOnlyMode,
+		BagOStuff $srvCace,
+		BagOStuff $mainStash,
+		WANObjectCache $wanCache
 	) {
 		global $wgCommandLineMode;
 
@@ -91,6 +98,20 @@ abstract class MWLBFactory {
 							'port' => $mainConfig->get( 'DBport' ),
 							'useWindowsAuth' => $mainConfig->get( 'DBWindowsAuthentication' )
 						];
+					} elseif ( $server['type'] === 'mysql' ) {
+						// A DB name is not needed to connect to mysql; 'dbname' is useless.
+						// This field only defines the DB to use for unspecified DB domains.
+						$ldDB = $mainConfig->get( 'DBname' ); // local domain DB
+						$srvDB = $server['dbname'] ?? null; // server DB
+						if ( $srvDB !== null && $srvDB !== $ldDB ) {
+							self::reportMismatchedDBs( $srvDB, $ldDB );
+						}
+					}
+
+					$ldTP = $mainConfig->get( 'DBprefix' ); // local domain prefix
+					$srvTP = $server['tablePrefix'] ?? null; // server table prefix
+					if ( $srvTP !== '' && $srvTP !== $ldTP ) {
+						self::reportMismatchedPrefixes( $srvTP, $ldTP );
 					}
 
 					if ( in_array( $server['type'], $typesWithSchema, true ) ) {
@@ -151,23 +172,67 @@ abstract class MWLBFactory {
 			}
 		}
 
-		$services = MediaWikiServices::getInstance();
+		$lbConf = self::applyDefaultCaching( $lbConf, $srvCace, $mainStash, $wanCache );
 
+		return $lbConf;
+	}
+
+	/**
+	 * @param array $lbConf
+	 * @param BagOStuff $sCache
+	 * @param BagOStuff $mStash
+	 * @param WANObjectCache $wCache
+	 * @return array
+	 */
+	private static function applyDefaultCaching(
+		array $lbConf, BagOStuff $sCache, BagOStuff $mStash, WANObjectCache $wCache
+	) {
 		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
-		$sCache = $services->getLocalServerObjectCache();
 		if ( $sCache->getQoS( $sCache::ATTR_EMULATION ) > $sCache::QOS_EMULATION_SQL ) {
 			$lbConf['srvCache'] = $sCache;
 		}
-		$mStash = $services->getMainObjectStash();
 		if ( $mStash->getQoS( $mStash::ATTR_EMULATION ) > $mStash::QOS_EMULATION_SQL ) {
 			$lbConf['memStash'] = $mStash;
 		}
-		$wCache = $services->getMainWANObjectCache();
 		if ( $wCache->getQoS( $wCache::ATTR_EMULATION ) > $wCache::QOS_EMULATION_SQL ) {
 			$lbConf['wanCache'] = $wCache;
 		}
 
 		return $lbConf;
+	}
+
+	/**
+	 * @param string $srvDB Server config database
+	 * @param string $ldDB Local DB domain database
+	 */
+	private static function reportMismatchedDBs( $srvDB, $ldDB ) {
+		$e = new UnexpectedValueException(
+			"\$wgDBservers has dbname='$srvDB' but \$wgDBname='$ldDB'. " .
+			"Set \$wgDBname to the database used by this wiki project. " .
+			"There is rarely a need to set 'dbname' in \$wgDBservers. " .
+			"Functions like wfWikiId(), remote wiki database access, the use " .
+			"of Database::getDomainId(), and other features are not reliable when " .
+			"\$wgDBservers does not match the local wiki database/prefix."
+		);
+		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
+		exit;
+	}
+
+	/**
+	 * @param string $srvTP Server config table prefix
+	 * @param string $ldTP Local DB domain database
+	 */
+	private static function reportMismatchedPrefixes( $srvTP, $ldTP ) {
+		$e = new UnexpectedValueException(
+			"\$wgDBservers has tablePrefix='$srvTP' but \$wgDBprefix='$ldTP'. " .
+			"Set \$wgDBprefix to the table prefix used by this wiki project. " .
+			"There is rarely a need to set 'tablePrefix' in \$wgDBservers. " .
+			"Functions like wfWikiId(), remote wiki database access, the use " .
+			"of Database::getDomainId(), and other features are not reliable when " .
+			"\$wgDBservers does not match the local wiki database/prefix."
+		);
+		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
+		exit;
 	}
 
 	/**
