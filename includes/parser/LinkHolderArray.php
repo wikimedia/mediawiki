@@ -610,40 +610,26 @@ class LinkHolderArray {
 	}
 
 	/**
-	 * Replace <!--LINK--> link placeholders with plain text of links
+	 * Replace <!--LINK--> and <!--IWLINK--> link placeholders with plain text of links
 	 * (not HTML-formatted).
 	 *
 	 * @param string $text
 	 * @return string
 	 */
 	public function replaceText( $text ) {
-		$text = preg_replace_callback(
-			'/<!--(LINK|IWLINK)\'" (.*?)-->/',
-			[ $this, 'replaceTextCallback' ],
-			$text );
+		return preg_replace_callback(
+			'/<!--(IW)?LINK\'" (.*?)-->/',
+			function ( $matches ) {
+				list( $unchanged, $isInterwiki, $key ) = $matches;
 
-		return $text;
-	}
-
-	/**
-	 * Callback for replaceText()
-	 *
-	 * @param array $matches
-	 * @return string
-	 * @private
-	 */
-	public function replaceTextCallback( $matches ) {
-		list( , $type, $key ) = $matches;
-		if ( $type == 'LINK' ) {
-			list( $ns, $index ) = explode( ':', $key, 2 );
-			if ( isset( $this->internals[$ns][$index]['text'] ) ) {
-				return $this->internals[$ns][$index]['text'];
-			}
-		} elseif ( $type == 'IWLINK' ) {
-			if ( isset( $this->interwikis[$key]['text'] ) ) {
-				return $this->interwikis[$key]['text'];
-			}
-		}
-		return $matches[0];
+				if ( !$isInterwiki ) {
+					list( $ns, $index ) = explode( ':', $key, 2 );
+					return $this->internals[$ns][$index]['text'] ?? $unchanged;
+				} else {
+					return $this->interwikis[$key]['text'] ?? $unchanged;
+				}
+			},
+			$text
+		);
 	}
 }
