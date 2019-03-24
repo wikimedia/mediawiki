@@ -2,6 +2,9 @@
 
 // phpcs:ignoreFile
 
+define( 'EXCIMER_REAL', 0 );
+define( 'EXCIMER_CPU', 1 );
+
 class ExcimerProfiler {
 	public function __construct() {
 	}

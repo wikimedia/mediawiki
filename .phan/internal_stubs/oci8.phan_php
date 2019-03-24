@@ -1,0 +1,589 @@
+<?php
+
+// @phan-stub-for-extension oci8@2.0.7
+
+
+class OCI_Lob  {
+
+	
+	public function load () {}
+
+	
+	public function tell () {}
+
+	
+	public function truncate ($length = 0) {}
+
+	
+	public function erase ($offset = null, $length = null) {}
+
+	
+	public function flush ($flag = null) {}
+
+	
+	public function setbuffering ($on_off) {}
+
+	
+	public function getbuffering () {}
+
+	
+	public function rewind () {}
+
+	
+	public function read ($length) {}
+
+	
+	public function eof () {}
+
+	
+	public function seek ($offset, $whence = OCI_SEEK_SET) {}
+
+	
+	public function write ($data, $length = null) {}
+
+	
+	public function append (OCI_Lob $lob_from) {}
+
+	
+	public function size () {}
+
+	
+	public function writetofile ($filename, $start, $length) {}
+
+	
+	public function export ($filename, $start = null, $length = null) {}
+
+	
+	public function import ($filename) {}
+
+	
+	public function writeTemporary ($data, $lob_type = OCI_TEMP_CLOB) {}
+
+	
+	public function close () {}
+
+	
+	public function save ($data, $offset = null) {}
+
+	
+	public function savefile ($filename) {}
+
+	
+	public function free () {}
+
+}
+
+
+class OCI_Collection  {
+
+	
+	public function append ($value) {}
+
+	
+	public function getelem ($index) {}
+
+	
+	public function assignelem ($index, $value) {}
+
+	
+	public function assign (OCI_Collection $from) {}
+
+	
+	public function size () {}
+
+	
+	public function max () {}
+
+	
+	public function trim ($num) {}
+
+	
+	public function free () {}
+
+}
+
+
+function oci_define_by_name ($statement, $column_name, &$variable, $type = SQLT_CHR) {}
+
+
+function oci_bind_by_name ($statement, $bv_name, &$variable, $maxlength = -1, $type = SQLT_CHR) {}
+
+
+function oci_bind_array_by_name ($statement, $name, array &$var_array, $max_table_length, $max_item_length = -1, $type = SQLT_AFC) {}
+
+
+function oci_field_is_null ($statement, $field) {}
+
+
+function oci_field_name ($statement, $field) {}
+
+
+function oci_field_size ($statement, $field) {}
+
+
+function oci_field_scale ($statement, $field) {}
+
+
+function oci_field_precision ($statement, $field) {}
+
+
+function oci_field_type ($statement, $field) {}
+
+
+function oci_field_type_raw ($statement, $field) {}
+
+
+function oci_execute ($statement, $mode = OCI_COMMIT_ON_SUCCESS) {}
+
+
+function oci_cancel ($statement) {}
+
+
+function oci_fetch ($statement) {}
+
+
+function oci_fetch_object ($statement) {}
+
+
+function oci_fetch_row ($statement) {}
+
+
+function oci_fetch_assoc ($statement) {}
+
+
+function oci_fetch_array ($statement, $mode = null) {}
+
+
+function ocifetchinto ($statement_resource, &$result, $mode = null) {}
+
+
+function oci_fetch_all ($statement, array &$output, $skip = 0, $maxrows = -1, $flags = OCI_FETCHSTATEMENT_BY_COLUMN | OCI_ASSOC) {}
+
+
+function oci_free_statement ($statement) {}
+
+
+function oci_internal_debug ($onoff) {}
+
+
+function oci_num_fields ($statement) {}
+
+
+function oci_parse ($connection, $sql_text) {}
+
+
+function oci_get_implicit_resultset ($statement) {}
+
+
+function oci_new_cursor ($connection) {}
+
+
+function oci_result ($statement, $field) {}
+
+
+function oci_client_version () {}
+
+
+function oci_server_version ($connection) {}
+
+
+function oci_statement_type ($statement) {}
+
+
+function oci_num_rows ($statement) {}
+
+
+function oci_close ($connection) {}
+
+
+function oci_connect ($username, $password, $connection_string = null, $character_set = null, $session_mode = null) {}
+
+
+function oci_new_connect ($username, $password, $connection_string = null, $character_set = null, $session_mode = null) {}
+
+
+function oci_pconnect ($username, $password, $connection_string = null, $character_set = null, $session_mode = null) {}
+
+
+function oci_error ($resource = null) {}
+
+
+function oci_free_descriptor ($descriptor) {}
+
+
+function oci_lob_is_equal (OCI_Lob $lob1, OCI_Lob $lob2) {}
+
+
+function oci_lob_copy (OCI_Lob $lob_to, OCI_Lob $lob_from, $length = 0) {}
+
+
+function oci_commit ($connection) {}
+
+
+function oci_rollback ($connection) {}
+
+
+function oci_new_descriptor ($connection, $type = OCI_DTYPE_LOB) {}
+
+
+function oci_set_prefetch ($statement, $rows) {}
+
+
+function oci_set_client_identifier ($connection, $client_identifier) {}
+
+
+function oci_set_edition ($edition) {}
+
+
+function oci_set_module_name ($connection, $module_name) {}
+
+
+function oci_set_action ($connection, $action_name) {}
+
+
+function oci_set_client_info ($connection, $client_info) {}
+
+
+function oci_password_change ($connection, $username, $old_password, $new_password) {}
+
+
+function oci_new_collection ($connection, $tdo, $schema = null) {}
+
+
+function oci_free_cursor ($statement_resource) {}
+
+
+function ocifreecursor ($statement_resource) {}
+
+
+function ocibindbyname ($statement, $column_name, &$variable, $maximum_length = -1, $type = SQLT_CHR) {}
+
+
+function ocidefinebyname ($statement, $column_name, &$variable, $type = SQLT_CHR) {}
+
+
+function ocicolumnisnull ($statement, $column_number_or_name) {}
+
+
+function ocicolumnname ($statement, $column_number) {}
+
+
+function ocicolumnsize ($statement, $column_number_or_name) {}
+
+
+function ocicolumnscale ($statement_resource, $column_number) {}
+
+
+function ocicolumnprecision ($statement_resource, $column_number) {}
+
+
+function ocicolumntype ($statement_resource, $column_number) {}
+
+
+function ocicolumntyperaw ($statement_resource, $column_number) {}
+
+
+function ociexecute ($statement_resource, $mode = OCI_COMMIT_ON_SUCCESS) {}
+
+
+function ocicancel ($statement_resource) {}
+
+
+function ocifetch ($statement_resource) {}
+
+
+function ocifetchstatement ($statement_resource, &$output, $skip, $maximum_rows, $flags) {}
+
+
+function ocifreestatement ($statement_resource) {}
+
+
+function ociinternaldebug ($mode) {}
+
+
+function ocinumcols ($statement_resource) {}
+
+
+function ociparse ($connection_resource, $sql_text) {}
+
+
+function ocinewcursor ($connection_resource) {}
+
+
+function ociresult ($statement_resource, $column_number_or_name) {}
+
+
+function ociserverversion ($connection_resource) {}
+
+
+function ocistatementtype ($statement_resource) {}
+
+
+function ocirowcount ($statement_resource) {}
+
+
+function ocilogoff ($connection_resource) {}
+
+
+function ocilogon ($username, $password, $connection_string, $character_set, $session_mode) {}
+
+
+function ocinlogon ($username, $password, $connection_string, $character_set, $session_mode) {}
+
+
+function ociplogon ($username, $password, $connection_string, $character_set, $session_mode) {}
+
+
+function ocierror ($connection_or_statement_resource) {}
+
+
+function ocifreedesc ($lob_descriptor) {}
+
+
+function ocisavelob ($lob_descriptor, $data, $offset) {}
+
+
+function ocisavelobfile ($lob_descriptor, $filename) {}
+
+
+function ociwritelobtofile ($lob_descriptor, $filename, $start, $length) {}
+
+
+function ociloadlob ($lob_descriptor) {}
+
+
+function ocicommit ($connection_resource) {}
+
+
+function ocirollback ($connection_resource) {}
+
+
+function ocinewdescriptor ($connection_resource, $type = OCI_DTYPE_LOB) {}
+
+
+function ocisetprefetch ($statement_resource, $number_of_rows) {}
+
+
+function ocipasswordchange ($connection_resource_or_connection_string_or_dbname, $username, $old_password, $new_password) {}
+
+
+function ocifreecollection ($collection) {}
+
+
+function ocinewcollection ($connection_resource, $tdo, $schema = null) {}
+
+
+function ocicollappend ($collection, $value) {}
+
+
+function ocicollgetelem ($collection, $index) {}
+
+
+function ocicollassignelem ($collection, $index, $value) {}
+
+
+function ocicollsize ($collection) {}
+
+
+function ocicollmax ($collection) {}
+
+
+function ocicolltrim ($collection, $number) {}
+
+
+
+function ociwritetemporarylob($lob_descriptor, $data, $lob_type = OCI_TEMP_CLOB ) {}
+
+
+function ocicloselob($lob_descriptor){}
+
+
+function ocicollassign($to, $from ) {}
+
+define ('OCI_DEFAULT', 0);
+
+
+define ('OCI_SYSOPER', 4);
+
+
+define ('OCI_SYSDBA', 2);
+
+
+define ('OCI_CRED_EXT', -2147483648);
+
+
+define ('OCI_DESCRIBE_ONLY', 16);
+
+
+define ('OCI_COMMIT_ON_SUCCESS', 32);
+
+
+define ('OCI_NO_AUTO_COMMIT', 0);
+
+
+define ('OCI_EXACT_FETCH', 2);
+
+
+define ('OCI_SEEK_SET', 0);
+
+
+define ('OCI_SEEK_CUR', 1);
+
+
+define ('OCI_SEEK_END', 2);
+
+
+define ('OCI_LOB_BUFFER_FREE', 1);
+
+
+define ('SQLT_BFILEE', 114);
+
+
+define ('SQLT_CFILEE', 115);
+
+
+define ('SQLT_CLOB', 112);
+
+
+define ('SQLT_BLOB', 113);
+
+
+define ('SQLT_RDD', 104);
+
+
+define ('SQLT_INT', 3);
+
+
+define ('SQLT_NUM', 2);
+
+
+define ('SQLT_RSET', 116);
+
+
+define ('SQLT_AFC', 96);
+
+
+define ('SQLT_CHR', 1);
+
+
+define ('SQLT_VCS', 9);
+
+
+define ('SQLT_AVC', 97);
+
+
+define ('SQLT_STR', 5);
+
+
+define ('SQLT_LVC', 94);
+
+
+define ('SQLT_FLT', 4);
+
+
+define ('SQLT_UIN', 68);
+
+
+define ('SQLT_LNG', 8);
+
+
+define ('SQLT_LBI', 24);
+
+
+define ('SQLT_BIN', 23);
+
+
+define ('SQLT_ODT', 156);
+
+
+define ('SQLT_BDOUBLE', 22);
+
+
+define ('SQLT_BFLOAT', 21);
+
+
+define ('OCI_B_NTY', 108);
+
+
+define ('SQLT_NTY', 108);
+
+
+define ('OCI_SYSDATE', "SYSDATE");
+
+
+define ('OCI_B_BFILE', 114);
+
+
+define ('OCI_B_CFILEE', 115);
+
+
+define ('OCI_B_CLOB', 112);
+
+
+define ('OCI_B_BLOB', 113);
+
+
+define ('OCI_B_ROWID', 104);
+
+
+define ('OCI_B_CURSOR', 116);
+
+
+define ('OCI_B_BIN', 23);
+
+
+define ('OCI_B_INT', 3);
+
+
+define ('OCI_B_NUM', 2);
+
+
+define ('OCI_FETCHSTATEMENT_BY_COLUMN', 16);
+
+
+define ('OCI_FETCHSTATEMENT_BY_ROW', 32);
+
+
+define ('OCI_ASSOC', 1);
+
+
+define ('OCI_NUM', 2);
+
+
+define ('OCI_BOTH', 3);
+
+
+define ('OCI_RETURN_NULLS', 4);
+
+
+define ('OCI_RETURN_LOBS', 8);
+
+
+define ('OCI_DTYPE_FILE', 56);
+
+
+define ('OCI_DTYPE_LOB', 50);
+
+
+define ('OCI_DTYPE_ROWID', 54);
+
+
+define ('OCI_D_FILE', 56);
+
+
+define ('OCI_D_LOB', 50);
+
+
+define ('OCI_D_ROWID', 54);
+
+
+define ('OCI_TEMP_CLOB', 2);
+
+
+define ('OCI_TEMP_BLOB', 1);
+
+
+define ('SQLT_BOL', 252);
+
+
+define ('OCI_B_BOL', 252);
