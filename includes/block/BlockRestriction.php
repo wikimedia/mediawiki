@@ -51,7 +51,7 @@ class BlockRestriction {
 			return [];
 		}
 
-		$db = $db ?: wfGetDb( DB_REPLICA );
+		$db = $db ?: wfGetDB( DB_REPLICA );
 
 		$result = $db->select(
 			[ 'ipblocks_restrictions', 'page' ],
@@ -182,7 +182,7 @@ class BlockRestriction {
 
 		$parentBlockId = (int)$parentBlockId;
 
-		$db = wfGetDb( DB_MASTER );
+		$db = wfGetDB( DB_MASTER );
 
 		$db->startAtomic( __METHOD__ );
 
