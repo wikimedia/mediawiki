@@ -223,6 +223,8 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Regression test for T218918
+	 * @group Broken
+	 * @fixme Disabled per https://phabricator.wikimedia.org/T219042
 	 */
 	public function testLoadFromDB_fetchLatestRevision() {
 		// Create three revisions of the same message page.
