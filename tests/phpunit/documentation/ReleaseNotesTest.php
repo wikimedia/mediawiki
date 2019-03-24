@@ -49,7 +49,8 @@ class ReleaseNotesTest extends MediaWikiTestCase {
 			"$type file '$fileName' is inaccessible."
 		);
 
-		foreach ( $file as $num => $line ) {
+		foreach ( $file as $i => $line ) {
+			$num = $i + 1;
 			$this->assertLessThanOrEqual(
 				// FILE_IGNORE_NEW_LINES drops the \n at the EOL, so max length is 80 not 81.
 				80,
