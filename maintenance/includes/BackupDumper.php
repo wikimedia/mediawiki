@@ -26,6 +26,7 @@
  */
 
 require_once __DIR__ . '/../Maintenance.php';
+require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LoadBalancer;
