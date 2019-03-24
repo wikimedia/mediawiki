@@ -536,7 +536,6 @@ class LocalisationCache {
 			}
 		} elseif ( $_fileType == 'aliases' ) {
 			if ( isset( $aliases ) ) {
-				/** @suppress PhanUndeclaredVariable */
 				$data['aliases'] = $aliases;
 			}
 		} else {

@@ -87,9 +87,6 @@ class FileBackendMultiWrite extends FileBackend {
 	 *                      This will apply such updates post-send for web requests. Note that
 	 *                      any checks from "syncChecks" are still synchronous.
 	 *
-	 * Bogus warning
-	 * @suppress PhanAccessMethodProtected
-	 *
 	 * @param array $config
 	 * @throws FileBackendError
 	 */
