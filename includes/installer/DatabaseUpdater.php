@@ -410,9 +410,7 @@ abstract class DatabaseUpdater {
 		$this->updatesSkipped = [];
 
 		foreach ( $updates as $funcList ) {
-			$func = $funcList[0];
-			$args = $funcList[1];
-			$origParams = $funcList[2];
+			list( $func, $args, $origParams ) = $funcList;
 			$func( ...$args );
 			flush();
 			$this->updatesSkipped[] = $origParams;

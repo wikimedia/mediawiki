@@ -1710,12 +1710,8 @@ class Linker {
 	static function splitTrail( $trail ) {
 		$regex = MediaWikiServices::getInstance()->getContentLanguage()->linkTrail();
 		$inside = '';
-		if ( $trail !== '' ) {
-			$m = [];
-			if ( preg_match( $regex, $trail, $m ) ) {
-				$inside = $m[1];
-				$trail = $m[2];
-			}
+		if ( $trail !== '' && preg_match( $regex, $trail, $m ) ) {
+			list( , $inside, $trail ) = $m;
 		}
 		return [ $inside, $trail ];
 	}

@@ -456,9 +456,7 @@ class DiffEngine {
 
 		// need to store these so we don't lose them when they're
 		// overwritten by the recursion
-		$len = $snake[2];
-		$startx = $snake[0];
-		$starty = $snake[1];
+		list( $startx, $starty, $len ) = $snake;
 
 		// the middle snake is part of the LCS, store it
 		for ( $i = 0; $i < $len; ++$i ) {

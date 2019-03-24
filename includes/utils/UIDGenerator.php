@@ -137,8 +137,7 @@ class UIDGenerator {
 			$time = $info['time'];
 			$counter = $info['offsetCounter'];
 		} else {
-			$time = $info[0];
-			$counter = $info[1];
+			list( $time, $counter ) = $info;
 		}
 		// Take the 46 LSBs of "milliseconds since epoch"
 		$id_bin = $this->millisecondsSinceEpochBinary( $time );
@@ -192,9 +191,7 @@ class UIDGenerator {
 			$counter = $info['offsetCounter'];
 			$clkSeq = $info['clkSeq'];
 		} else {
-			$time = $info[0];
-			$counter = $info[1];
-			$clkSeq = $info[2];
+			list( $time, $counter, $clkSeq ) = $info;
 		}
 		// Take the 46 LSBs of "milliseconds since epoch"
 		$id_bin = $this->millisecondsSinceEpochBinary( $time );

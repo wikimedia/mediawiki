@@ -632,8 +632,7 @@ class LinkHolderArray {
 	 * @private
 	 */
 	public function replaceTextCallback( $matches ) {
-		$type = $matches[1];
-		$key = $matches[2];
+		list( , $type, $key ) = $matches;
 		if ( $type == 'LINK' ) {
 			list( $ns, $index ) = explode( ':', $key, 2 );
 			if ( isset( $this->internals[$ns][$index]['text'] ) ) {

@@ -63,9 +63,7 @@ class LanguageKk_cyrl extends Language {
 		$secondPerson = [ "з" ]; // 1st plural, 2nd formal
 		$thirdPerson = [ "ы", "і" ]; // 3rd
 
-		$lastLetter = $this->lastLetter( $word, $allVowels );
-		$wordEnding =& $lastLetter[0];
-		$wordLastVowel =& $lastLetter[1];
+		list( $wordEnding, $wordLastVowel ) = $this->lastLetter( $word, $allVowels );
 
 		// Now convert the word
 		switch ( $case ) {
@@ -297,9 +295,7 @@ class LanguageKk_cyrl extends Language {
 		$secondPerson = [ "z" ]; // 1st plural, 2nd formal
 		$thirdPerson = [ "ı", "i" ]; // 3rd
 
-		$lastLetter = $this->lastLetter( $word, $allVowels );
-		$wordEnding =& $lastLetter[0];
-		$wordLastVowel =& $lastLetter[1];
+		list( $wordEnding, $wordLastVowel ) = $this->lastLetter( $word, $allVowels );
 
 		// Now convert the word
 		switch ( $case ) {
@@ -531,9 +527,7 @@ class LanguageKk_cyrl extends Language {
 		$secondPerson = [ "ز" ]; // 1st plural, 2nd formal
 		$thirdPerson = [ "ى", "ٸ" ]; // 3rd
 
-		$lastLetter = $this->lastLetter( $word, $allVowels );
-		$wordEnding = $lastLetter[0];
-		$wordLastVowel = $lastLetter[1];
+		list( $wordEnding, $wordLastVowel ) = $this->lastLetter( $word, $allVowels );
 
 		// Now convert the word
 		switch ( $case ) {
@@ -737,7 +731,7 @@ class LanguageKk_cyrl extends Language {
 
 	/**
 	 * @param string $word
-	 * @param array $allVowels
+	 * @param string[] $allVowels
 	 * @return array
 	 */
 	function lastLetter( $word, $allVowels ) {

@@ -26,6 +26,7 @@
  */
 
 require_once __DIR__ . '/../Maintenance.php';
+require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -163,8 +164,7 @@ abstract class BackupDumper extends Maintenance {
 
 		$options = $this->orderedOptions;
 		foreach ( $options as $arg ) {
-			$opt = $arg[0];
-			$param = $arg[1];
+			list( $opt, $param ) = $arg;
 
 			switch ( $opt ) {
 				case 'plugin':
