@@ -969,7 +969,7 @@ class DatabaseOracle extends Database {
 		// Defines must comply with ^define\s*([^\s=]*)\s*=\s?'\{\$([^\}]*)\}';
 		while ( !feof( $fp ) ) {
 			if ( $lineCallback ) {
-				call_user_func( $lineCallback );
+				$lineCallback();
 			}
 			$line = trim( fgets( $fp, 1024 ) );
 			$sl = strlen( $line ) - 1;
@@ -1015,7 +1015,7 @@ class DatabaseOracle extends Database {
 
 					$cmd = $this->replaceVars( $cmd );
 					if ( $inputCallback ) {
-						call_user_func( $inputCallback, $cmd );
+						$inputCallback( $cmd );
 					}
 					$res = $this->doQuery( $cmd );
 					if ( $resultCallback ) {
