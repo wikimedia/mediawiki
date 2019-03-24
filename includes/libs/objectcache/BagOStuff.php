@@ -278,7 +278,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @throws InvalidArgumentException
 	 */
 	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
-		return $this->mergeViaLock( $key, $callback, $exptime, $attempts, $flags );
+		return $this->mergeViaCas( $key, $callback, $exptime, $attempts, $flags );
 	}
 
 	/**
@@ -311,11 +311,13 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 
 			// Derive the new value from the old value
 			$value = call_user_func( $callback, $this, $key, $currentValue, $exptime );
+			$hadNoCurrentValue = ( $currentValue === false );
+			unset( $currentValue ); // free RAM in case the value is large
 
 			$this->clearLastError();
 			if ( $value === false ) {
 				$success = true; // do nothing
-			} elseif ( $currentValue === false ) {
+			} elseif ( $hadNoCurrentValue ) {
 				// Try to create the key, failing if it gets created in the meantime
 				$success = $this->add( $key, $value, $exptime, $flags );
 			} else {
@@ -365,58 +367,6 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		$this->unlock( $key );
-
-		return $success;
-	}
-
-	/**
-	 * @see BagOStuff::merge()
-	 *
-	 * @param string $key
-	 * @param callable $callback Callback method to be executed
-	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
-	 * @param int $attempts The amount of times to attempt a merge in case of failure
-	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
-	 * @return bool Success
-	 */
-	protected function mergeViaLock( $key, $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
-		if ( $attempts <= 1 ) {
-			$timeout = 0; // clearly intended to be "non-blocking"
-		} else {
-			$timeout = 3;
-		}
-
-		if ( !$this->lock( $key, $timeout ) ) {
-			return false;
-		}
-
-		$this->clearLastError();
-		$reportDupes = $this->reportDupes;
-		$this->reportDupes = false;
-		$currentValue = $this->get( $key, self::READ_LATEST );
-		$this->reportDupes = $reportDupes;
-
-		if ( $this->getLastError() ) {
-			$this->logger->warning(
-				__METHOD__ . ' failed due to I/O error on get() for {key}.',
-				[ 'key' => $key ]
-			);
-
-			$success = false;
-		} else {
-			// Derive the new value from the old value
-			$value = call_user_func( $callback, $this, $key, $currentValue, $exptime );
-			if ( $value === false ) {
-				$success = true; // do nothing
-			} else {
-				$success = $this->set( $key, $value, $exptime, $flags ); // set the new value
-			}
-		}
-
-		if ( !$this->unlock( $key ) ) {
-			// this should never happen
-			trigger_error( "Could not release lock for key '$key'." );
-		}
 
 		return $success;
 	}
