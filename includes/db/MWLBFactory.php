@@ -109,7 +109,7 @@ abstract class MWLBFactory {
 					}
 
 					$ldTP = $mainConfig->get( 'DBprefix' ); // local domain prefix
-					$srvTP = $server['tablePrefix'] ?? null; // server table prefix
+					$srvTP = $server['tablePrefix'] ?? ''; // server table prefix
 					if ( $srvTP !== '' && $srvTP !== $ldTP ) {
 						self::reportMismatchedPrefixes( $srvTP, $ldTP );
 					}
