@@ -163,8 +163,7 @@ abstract class BackupDumper extends Maintenance {
 
 		$options = $this->orderedOptions;
 		foreach ( $options as $arg ) {
-			$opt = $arg[0];
-			$param = $arg[1];
+			list( $opt, $param ) = $arg;
 
 			switch ( $opt ) {
 				case 'plugin':

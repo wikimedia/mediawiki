@@ -1045,10 +1045,7 @@ class Parser {
 				$inside = $p[5];
 			} else {
 				# tag
-				$element = $p[1];
-				$attributes = $p[2];
-				$close = $p[3];
-				$inside = $p[4];
+				list( , $element, $attributes, $close, $inside ) = $p;
 			}
 
 			$marker = self::MARKER_PREFIX . "-$element-" . sprintf( '%08X', $n++ ) . self::MARKER_SUFFIX;
@@ -1072,8 +1069,7 @@ class Parser {
 					$tail = '';
 					$text = '';
 				} else {
-					$tail = $q[1];
-					$text = $q[2];
+					list( , $tail, $text ) = $q;
 				}
 			}
 
@@ -2240,8 +2236,7 @@ class Parser {
 
 			if ( $useLinkPrefixExtension ) {
 				if ( preg_match( $e2, $s, $m ) ) {
-					$prefix = $m[2];
-					$s = $m[1];
+					list( , $s, $prefix ) = $m;
 				} else {
 					$prefix = '';
 				}

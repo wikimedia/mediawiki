@@ -321,9 +321,7 @@ class ImagePage extends Article {
 		$dirmark = $lang->getDirMarkEntity();
 		$request = $this->getContext()->getRequest();
 
-		$max = $this->getImageLimitsFromOption( $user, 'imagesize' );
-		$maxWidth = $max[0];
-		$maxHeight = $max[1];
+		list( $maxWidth, $maxHeight ) = $this->getImageLimitsFromOption( $user, 'imagesize' );
 
 		if ( $this->displayImg->exists() ) {
 			# image
@@ -1029,7 +1027,7 @@ EOT
 	 *
 	 * @param User $user
 	 * @param string $optionName Name of a option to check, typically imagesize or thumbsize
-	 * @return array
+	 * @return int[]
 	 * @since 1.21
 	 */
 	public function getImageLimitsFromOption( $user, $optionName ) {
