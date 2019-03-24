@@ -700,14 +700,6 @@ class DatabaseOracle extends Database {
 		return new Blob( $b );
 	}
 
-	function decodeBlob( $b ) {
-		if ( $b instanceof Blob ) {
-			$b = $b->fetch();
-		}
-
-		return $b;
-	}
-
 	function unionQueries( $sqls, $all ) {
 		$glue = ' UNION ALL ';
 
@@ -1348,10 +1340,6 @@ class DatabaseOracle extends Database {
 
 	function bitOr( $fieldLeft, $fieldRight ) {
 		return 'BITOR(' . $fieldLeft . ', ' . $fieldRight . ')';
-	}
-
-	function getServer() {
-		return $this->server;
 	}
 
 	public function buildGroupConcatField(
