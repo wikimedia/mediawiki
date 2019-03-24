@@ -46,13 +46,18 @@ abstract class QueryPage extends SpecialPage {
 	 * The number of rows returned by the query. Reading this variable
 	 * only makes sense in functions that are run after the query has been
 	 * done, such as preprocessResults() and formatRow().
+	 *
+	 * @var int
 	 */
 	protected $numRows;
 
+	/**
+	 * @var string|null
+	 */
 	protected $cachedTimestamp = null;
 
 	/**
-	 * Whether to show prev/next links
+	 * @var bool Whether to show prev/next links
 	 */
 	protected $shownavigation = true;
 
@@ -62,7 +67,8 @@ abstract class QueryPage extends SpecialPage {
 	 *
 	 * DO NOT CHANGE THIS LIST without testing that
 	 * maintenance/updateSpecialPages.php still works.
-	 * @return array
+	 *
+	 * @return string[][]
 	 */
 	public static function getPages() {
 		static $qp = null;
@@ -166,7 +172,7 @@ abstract class QueryPage extends SpecialPage {
 	 * Subclasses return an array of fields to order by here. Don't append
 	 * DESC to the field names, that'll be done automatically if
 	 * sortDescending() returns true.
-	 * @return array
+	 * @return string[]
 	 * @since 1.18
 	 */
 	function getOrderFields() {
@@ -378,7 +384,7 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Get a DB connection to be used for slow recache queries
-	 * @return IDatabase
+	 * @return \Wikimedia\Rdbms\Database
 	 */
 	function getRecacheDB() {
 		return wfGetDB( DB_REPLICA, [ $this->getName(), 'QueryPage::recache', 'vslow' ] );
@@ -500,6 +506,9 @@ abstract class QueryPage extends SpecialPage {
 		return [ 'value' ];
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getCachedTimestamp() {
 		if ( is_null( $this->cachedTimestamp ) ) {
 			$dbr = wfGetDB( DB_REPLICA );

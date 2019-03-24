@@ -3727,6 +3727,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		// @todo: get rid of secureAndSplit, refactor parsing code.
 		// @note: getTitleParser() returns a TitleParser implementation which does not have a
 		//        splitTitleString method, but the only implementation (MediaWikiTitleCodec) does
+		/** @var MediaWikiTitleCodec $titleCodec */
 		$titleCodec = MediaWikiServices::getInstance()->getTitleParser();
 		// MalformedTitleException can be thrown here
 		$parts = $titleCodec->splitTitleString( $this->mDbkeyform, $this->mDefaultNamespace );
