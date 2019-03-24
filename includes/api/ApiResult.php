@@ -498,7 +498,7 @@ class ApiResult implements ApiSerializable {
 			throw new InvalidArgumentException( 'Content value must be named' );
 		}
 		$this->addContentField( $path, $name, $flags );
-		$this->addValue( $path, $name, $value, $flags );
+		return $this->addValue( $path, $name, $value, $flags );
 	}
 
 	/**
