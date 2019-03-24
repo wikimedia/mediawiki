@@ -1,38 +1,92 @@
-### Format of this file
+# ## Format of this file
 #
-# The top-level keys are directory names (under resources/lib/).
-# They should match module names (as registered in Resources.php), but there are exceptions.
-# Each top-level key holds a resource descriptor that must have one of
-# the following `type` values:
+# The top-level keys in this file correspond with directories under resources/lib/.
+# These in turn are registered as module bundles in Resources.php.
 #
-# - `tar`: For tarball archive (may be gzip-compressed).
-# - `file: For a plain file.
+# ## How to install an foreign resource
+#
+# 1. Add or update the url(s) for the upstream module to this YAML file.
+#
+#    Look at other modules for examples. To install a module from npm,
+#    we use the tarball distribution from npmjs.org. This is the same as what
+#    the npm CLI uses. For example, to install jquery-client@9.2.0, use:
+#    <https://registry.npmjs.org/jquery-client/-/jquery-client-9.2.0.tgz>.
+#
+# 2. If the upstream maintainers publish an integrity hash, set that as well.
+#    Otherwise, use manageForeignResources.php to compute the integrity hash.
+#
+#    Run `php manageForeignResources.php make-sri "my module name"`
+#
+#    This will download the specified file(s) and print their integrity hashes,
+#    already formatted in YAML, ready for copying to this file.
+#
+# 3. Last but not least, decide where files go.
+#
+#    If you specified a direct url to JavaScript or CSS file, this step is
+#    optional. See the corresponding documentation section below for more
+#    information and examples for "dest" keys. Once you've set any "dest" keys,
+#    run `php manageForeignResources.php update "my module name"`.
+#
+# ## Package formats
+#
+# Each top-level key must use one of these types:
+#
+# - `file`: For a plain file.
 # - `multi-file`: For multiple plain files.
+# - `tar`: For a tarball archive (may be compressed).
 #
-### Type tar
-#
-# The `src` and `integrity` keys are required.
-#
-# * `src`: Full URL to the remote resource.
-# * `integrity`: Cryptographic hash (integrity metadata format per <https://www.w3.org/TR/SRI/>).
-# * `dest`: An object mapping paths to files or directory from the remote resource to a destination
-#    in the module directory. The value of key in dest may be omitted, which will extract the key
-#    directly to the module directory.
-#
-### Type file
-#
-# The `src` and `integrity` keys are required.
+# ### The "file" type
 #
 # * `src`: Full URL to the remote resource.
 # * `integrity`: Cryptographic hash (integrity metadata format per <https://www.w3.org/TR/SRI/>).
-# * `dest`: The name of the file in the module directory. Default: Basename of URL.
+# * `dest`: [optional] The file name to use in the module directory. Default: Basename of URL.
 #
-### Type multi-file
+# For example, the following would produce resources/lib/mymodule/x.js:
 #
-# The `files` key is required.
+#     mymodule:
+#       type: file
+#       src: https://mymodule.example/1.2.3/x.js
+#       integrity: sha384-Je+NE+saisQuoi
 #
-# * `files`: An object mapping destination paths to an object containing `src` and `integrity`
-#    keys.
+# ### The "multi-file" type
+#
+# * `files`: An object mapping destination paths to `src` and `integrity` keys.
+#
+# For example:
+#
+#     mymodule:
+#       type: multi-file
+#       files:
+#         x.js:
+#           src: https://mymodule.example/1.2.3/x.js
+#           integrity: sha384-Je+NE+saisQuoi
+#         x.css:
+#           src: https://mymodule.example/1.2.3/x.css
+#           integrity: sha384-Je+NE+saisQuoi
+#
+# ### The "tar" type
+#
+# * `src`: Full URL to the remote resource.
+# * `integrity`: Cryptographic hash (integrity metadata format per <https://www.w3.org/TR/SRI/>).
+# * `dest`: [optional] The default is to extract all files from the package.
+#    To only extract some of the files or directories, use "dest" to specify
+#    files, directories, and/or glob patterns. You can use a site like https://unpkg.com/
+#    to easily inspect an npm package, like <https://unpkg.com/jquery-client@2.0.2/>.
+#
+# For example:
+#
+#     mymodule:
+#       type: tar
+#       src: https://registry.npmjs.org/jquery-client/-/jquery-client-9.2.0.tgz
+#       integrity: sha384-Je+NE+saisQuoi
+#       dest:
+#         package/dist/x.js:
+#         package/dist/i18n:
+#         package/dist/style/*.css:
+#
+# The would extract the "x.js" file, the "i18n" directory (recursive),
+# and any "*.css" files from the "style" directory.
+#
 
 CLDRPluralRuleParser:
   type: file
@@ -94,31 +148,26 @@ jquery.form:
   type: file
   src: https://raw.githubusercontent.com/jquery-form/form/ff80d9ddf4/jquery.form.js
   integrity: sha384-h4G2CrcSbixzMvrrK259cNBYaL/vS1D4+KdUN9NJDzQnTU1bQ6Avluget+Id13M7
-  dest: jquery.form.js
 
 jquery.fullscreen:
   type: file
   src: https://raw.githubusercontent.com/theopolisme/jquery-fullscreen/v2.1.0/jquery.fullscreen.js
   integrity: sha384-G4KPs2d99tgcsyUnJ3eeZ1r2hEKDwZfc4+/xowL/LIemq2VVwEE8HpVAWt4WYNLR
-  dest: jquery.fullscreen.js
 
 jquery.hoverIntent:
   type: file
   src: https://raw.githubusercontent.com/briancherne/jquery-hoverIntent/823603fdac/jquery.hoverIntent.js
   integrity: sha384-lca0haN0hqFGGh2aYUhtAgX9dhVHfQnTADH4svDeM6gcXnL7aFGeAi1NYwipDMyS
-  dest: jquery.hoverIntent.js
 
 jquery.jStorage:
   type: file
   src: https://raw.githubusercontent.com/andris9/jStorage/v0.4.12/jstorage.js
   integrity: sha384-geMeN8k803kPp6cqRL4VNfuSM1L8DcbKRk0St/KHJzxgpX9S0y9FA6HxA/JgucrJ
-  dest: jstorage.js
 
 jquery.throttle-debounce:
   type: file
   src: https://raw.githubusercontent.com/cowboy/jquery-throttle-debounce/v1.1/jquery.ba-throttle-debounce.js
   integrity: sha384-ULOy4DbAghrCqRcrTJLXOY9e4gDpWh0BeEf6xMSL0VtNudXWggcb6AmrVrl4KDAP
-  dest: jquery.ba-throttle-debounce.js
 
 moment:
   type: tar
