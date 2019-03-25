@@ -947,8 +947,8 @@ abstract class UploadBase {
 		 */
 		list( $partname, $ext ) = $this->splitExtensions( $this->mFilteredName );
 
-		if ( count( $ext ) ) {
-			$this->mFinalExtension = trim( $ext[count( $ext ) - 1] );
+		if ( $ext !== [] ) {
+			$this->mFinalExtension = trim( end( $ext ) );
 		} else {
 			$this->mFinalExtension = '';
 
