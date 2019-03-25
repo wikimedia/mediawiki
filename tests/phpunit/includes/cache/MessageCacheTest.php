@@ -223,8 +223,6 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Regression test for T218918
-	 * @group Broken
-	 * @fixme Disabled per https://phabricator.wikimedia.org/T219042
 	 */
 	public function testLoadFromDB_fetchLatestRevision() {
 		// Create three revisions of the same message page.
@@ -239,7 +237,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$importRevision = new WikiRevision( new HashConfig() );
 		$importRevision->setTitle( $r3->getTitle() );
 		$importRevision->setComment( 'Imported edit' );
-		$importRevision->setTimestamp( '19991122334455' );
+		$importRevision->setTimestamp( '19991122001122' );
 		$importRevision->setText( 'IMPORTED OLD TEST' );
 		$importRevision->setUsername( 'Alan Smithee' );
 
