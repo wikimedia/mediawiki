@@ -84,12 +84,15 @@ class RESTBagOStuff extends BagOStuff {
 		$this->client->setLogger( $logger );
 	}
 
-	/**
-	 * @param string $key
-	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
-	 * @return mixed Returns false on failure and if the item does not exist
-	 */
 	protected function doGet( $key, $flags = 0 ) {
+		$casToken = null;
+
+		return $this->getWithToken( $key, $casToken, $flags );
+	}
+
+	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
+		$casToken = null;
+
 		$req = [
 			'method' => 'GET',
 			'url' => $this->url . rawurlencode( $key ),
@@ -98,29 +101,17 @@ class RESTBagOStuff extends BagOStuff {
 		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->client->run( $req );
 		if ( $rcode === 200 ) {
 			if ( is_string( $rbody ) ) {
-				return unserialize( $rbody );
+				$value = unserialize( $rbody );
+				/// @FIXME: use some kind of hash or UUID header as CAS token
+				$casToken = ( $value !== false ) ? $rbody : null;
+
+				return $value;
 			}
 			return false;
 		}
 		if ( $rcode === 0 || ( $rcode >= 400 && $rcode != 404 ) ) {
 			return $this->handleError( "Failed to fetch $key", $rcode, $rerr );
 		}
-		return false;
-	}
-
-	/**
-	 * Handle storage error
-	 * @param string $msg Error message
-	 * @param int $rcode Error code from client
-	 * @param string $rerr Error message from client
-	 * @return false
-	 */
-	protected function handleError( $msg, $rcode, $rerr ) {
-		$this->logger->error( "$msg : ({code}) {error}", [
-			'code' => $rcode,
-			'error' => $rerr
-		] );
-		$this->setLastError( $rcode === 0 ? self::ERR_UNREACHABLE : self::ERR_UNEXPECTED );
 		return false;
 	}
 
@@ -170,6 +161,26 @@ class RESTBagOStuff extends BagOStuff {
 			return $this->set( $key, $n ) ? $n : false;
 		}
 
+		return false;
+	}
+
+	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
+		return $this->mergeViaCas( $key, $callback, $exptime, $attempts, $flags );
+	}
+
+	/**
+	 * Handle storage error
+	 * @param string $msg Error message
+	 * @param int $rcode Error code from client
+	 * @param string $rerr Error message from client
+	 * @return false
+	 */
+	protected function handleError( $msg, $rcode, $rerr ) {
+		$this->logger->error( "$msg : ({code}) {error}", [
+			'code' => $rcode,
+			'error' => $rerr
+		] );
+		$this->setLastError( $rcode === 0 ? self::ERR_UNREACHABLE : self::ERR_UNEXPECTED );
 		return false;
 	}
 }
