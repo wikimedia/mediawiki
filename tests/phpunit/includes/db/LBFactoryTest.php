@@ -707,10 +707,10 @@ class LBFactoryTest extends MediaWikiTestCase {
 		);
 		unset( $conn1 );
 
-		$factory->redefineLocalDomain( 'somedb-prefix' );
-		$this->assertEquals( 'somedb-prefix', $factory->getLocalDomainID() );
+		$factory->redefineLocalDomain( 'somedb-prefix_' );
+		$this->assertEquals( 'somedb-prefix_', $factory->getLocalDomainID() );
 
-		$domain = new DatabaseDomain( $wgDBname, null, 'pref' );
+		$domain = new DatabaseDomain( $wgDBname, null, 'pref_' );
 		$factory->redefineLocalDomain( $domain );
 
 		$n = 0;

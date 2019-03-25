@@ -13,7 +13,7 @@ class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
 	public static function provideConstruct() {
 		return [
 			'All strings' =>
-				[ 'foo', 'bar', 'baz', 'foo-bar-baz' ],
+				[ 'foo', 'bar', 'baz_', 'foo-bar-baz_' ],
 			'Nothing' =>
 				[ null, null, '', '' ],
 			'Invalid $database' =>
@@ -23,9 +23,9 @@ class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
 			'Invalid $prefix' =>
 				[ 'foo', 'bar', 0, '', true ],
 			'Dash' =>
-				[ 'foo-bar', 'baz', 'baa', 'foo?hbar-baz-baa' ],
+				[ 'foo-bar', 'baz', 'baa_', 'foo?hbar-baz-baa_' ],
 			'Question mark' =>
-				[ 'foo?bar', 'baz', 'baa', 'foo??bar-baz-baa' ],
+				[ 'foo?bar', 'baz', 'baa_', 'foo??bar-baz-baa_' ],
 		];
 	}
 
@@ -53,17 +53,17 @@ class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
 			'Basic' =>
 				[ 'foo', 'foo', null, '' ],
 			'db+prefix' =>
-				[ 'foo-bar', 'foo', null, 'bar' ],
+				[ 'foo-bar_', 'foo', null, 'bar_' ],
 			'db+schema+prefix' =>
-				[ 'foo-bar-baz', 'foo', 'bar', 'baz' ],
+				[ 'foo-bar-baz_', 'foo', 'bar', 'baz_' ],
 			'?h -> -' =>
-				[ 'foo?hbar-baz-baa', 'foo-bar', 'baz', 'baa' ],
+				[ 'foo?hbar-baz-baa_', 'foo-bar', 'baz', 'baa_' ],
 			'?? -> ?' =>
-				[ 'foo??bar-baz-baa', 'foo?bar', 'baz', 'baa' ],
+				[ 'foo??bar-baz-baa_', 'foo?bar', 'baz', 'baa_' ],
 			'? is left alone' =>
-				[ 'foo?bar-baz-baa', 'foo?bar', 'baz', 'baa' ],
+				[ 'foo?bar-baz-baa_', 'foo?bar', 'baz', 'baa_' ],
 			'too many parts' =>
-				[ 'foo-bar-baz-baa', '', '', '', true ],
+				[ 'foo-bar-baz-baa_', '', '', '', true ],
 			'from instance' =>
 				[ DatabaseDomain::newUnspecified(), null, null, '' ],
 		];
@@ -90,13 +90,13 @@ class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
 			'Basic' =>
 				[ 'foo', 'foo', null, '' ],
 			'db+prefix' =>
-				[ 'foo-bar', 'foo', null, 'bar' ],
+				[ 'foo-bar_', 'foo', null, 'bar_' ],
 			'db+schema+prefix' =>
-				[ 'foo-bar-baz', 'foo', 'bar', 'baz' ],
+				[ 'foo-bar-baz_', 'foo', 'bar', 'baz_' ],
 			'?h -> -' =>
-				[ 'foo?hbar-baz-baa', 'foo-bar', 'baz', 'baa' ],
+				[ 'foo?hbar-baz-baa_', 'foo-bar', 'baz', 'baa_' ],
 			'?? -> ?' =>
-				[ 'foo??bar-baz-baa', 'foo?bar', 'baz', 'baa' ],
+				[ 'foo??bar-baz-baa_', 'foo?bar', 'baz', 'baa_' ],
 			'Nothing' =>
 				[ '', null, null, '' ],
 		];
@@ -136,23 +136,23 @@ class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
 			'Basic' =>
 				[ 'foo', 'foo', null, '', true ],
 			'db+prefix' =>
-				[ 'foo-bar', 'foo', null, 'bar', true ],
+				[ 'foo-bar_', 'foo', null, 'bar_', true ],
 			'db+schema+prefix' =>
-				[ 'foo-bar-baz', 'foo', 'bar', 'baz', true ],
+				[ 'foo-bar-baz_', 'foo', 'bar', 'baz_', true ],
 			'db+dontcare_schema+prefix' =>
-				[ 'foo-bar-baz', 'foo', null, 'baz', false ],
+				[ 'foo-bar-baz_', 'foo', null, 'baz_', false ],
 			'?h -> -' =>
-				[ 'foo?hbar-baz-baa', 'foo-bar', 'baz', 'baa', true ],
+				[ 'foo?hbar-baz-baa_', 'foo-bar', 'baz', 'baa_', true ],
 			'?? -> ?' =>
-				[ 'foo??bar-baz-baa', 'foo?bar', 'baz', 'baa', true ],
+				[ 'foo??bar-baz-baa_', 'foo?bar', 'baz', 'baa_', true ],
 			'Nothing' =>
 				[ '', null, null, '', true ],
 			'dontcaredb+dontcaredbschema+prefix' =>
-				[ 'mywiki-mediawiki-prefix', null, null, 'prefix', false ],
+				[ 'mywiki-mediawiki-prefix_', null, null, 'prefix_', false ],
 			'dontcaredb+schema+prefix' =>
-				[ 'mywiki-schema-prefix', null, 'schema', 'prefix', false ],
+				[ 'mywiki-schema-prefix_', null, 'schema', 'prefix_', false ],
 			'db+dontcareschema+prefix' =>
-				[ 'mywiki-schema-prefix', 'mywiki', null, 'prefix', false ],
+				[ 'mywiki-schema-prefix_', 'mywiki', null, 'prefix_', false ],
 			'postgres-db-jobqueue' =>
 				[ 'postgres-mediawiki-', 'postgres', null, '', false ]
 		];
@@ -178,13 +178,13 @@ class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
 	public static function provideIsCompatible2() {
 		return [
 			'db+schema+prefix' =>
-				[ 'mywiki-schema-prefix', 'thatwiki', 'schema', 'prefix' ],
+				[ 'mywiki-schema-prefix_', 'thatwiki', 'schema', 'prefix_' ],
 			'dontcaredb+dontcaredbschema+prefix' =>
-				[ 'thatwiki-mediawiki-otherprefix', null, null, 'prefix' ],
+				[ 'thatwiki-mediawiki-otherprefix_', null, null, 'prefix_' ],
 			'dontcaredb+schema+prefix' =>
-				[ 'mywiki-otherschema-prefix', null, 'schema', 'prefix' ],
+				[ 'mywiki-otherschema-prefix_', null, 'schema', 'prefix_' ],
 			'db+dontcareschema+prefix' =>
-				[ 'notmywiki-schema-prefix', 'mywiki', null, 'prefix' ],
+				[ 'notmywiki-schema-prefix_', 'mywiki', null, 'prefix_' ],
 		];
 	}
 

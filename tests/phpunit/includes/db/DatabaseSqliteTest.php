@@ -164,9 +164,9 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$this->assertEquals( 'foo', $db->tableName( 'foo' ) );
 		$this->assertEquals( 'sqlite_master', $db->tableName( 'sqlite_master' ) );
-		$db->tablePrefix( 'foo' );
+		$db->tablePrefix( 'foo_' );
 		$this->assertEquals( 'sqlite_master', $db->tableName( 'sqlite_master' ) );
-		$this->assertEquals( 'foobar', $db->tableName( 'bar' ) );
+		$this->assertEquals( 'foo_bar', $db->tableName( 'bar' ) );
 	}
 
 	/**
