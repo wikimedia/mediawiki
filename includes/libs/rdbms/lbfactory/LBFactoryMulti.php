@@ -89,9 +89,6 @@ class LBFactoryMulti extends LBFactory {
 	 */
 	private $readOnlyBySection = [];
 
-	/** @var array Load balancer factory configuration */
-	private $conf;
-
 	/** @var LoadBalancer[] */
 	private $mainLBs = [];
 
@@ -166,7 +163,6 @@ class LBFactoryMulti extends LBFactory {
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
 
-		$this->conf = $conf;
 		$required = [ 'sectionsByDB', 'sectionLoads', 'serverTemplate' ];
 		$optional = [ 'groupLoadsBySection', 'groupLoadsByDB', 'hostsByName',
 			'externalLoads', 'externalTemplateOverrides', 'templateOverridesByServer',
