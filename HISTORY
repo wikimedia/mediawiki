@@ -12539,6 +12539,76 @@ Full API documentation is available at https://www.mediawiki.org/wiki/API
 
 == MediaWiki 1.11 ==
 
+== MediaWiki 1.11.2 ==
+
+March 2, 2008
+
+This is a security release of the Fall 2007 snapshot release of MediaWiki.
+Possible cross-site information leaks using the callback parameter for
+JSON-formatted results in the API are prevented by dropping user credentials.
+
+MediaWiki release versions prior to 1.11 are not vulnerable, as they do not
+include the callback feature which allows client-side JavaScript on other sites
+to reach API data.
+
+Changes in this release:
+
+* User credentials are dropped for API JSON requests using a callback
+* Edit tokens are not reported for API JSON requests using a callback
+
+== MediaWiki 1.11.1 ==
+
+January 23, 2008
+
+This is a security and bugfix release of the Fall 2007 snapshot release of
+ MediaWiki. A potential XSS injection vector affecting api.php only for
+ Microsoft Internet Explorer users has been closed.
+
+Changes in this release:
+* (bug [[bugzilla:11450|11450]]) Fix creation of objectcache table on upgrade
+* (bug [[bugzilla:11462|11462]]) Fix typo in LanguageGetSpecialPageAliases hook
+name
+* Fix regression in LinkBatch.php breaking PHP 5.0
+* Security fix for API on MSIE
+
+To work around the vulnerability without upgrading, you may disable the API if
+you don't need it:
+:[[Manual:$wgEnableAPI|$wgEnableAPI]] = false;
+
+Not vulnerable versions:
+* 1.12 or later
+* 1.11 >= 1.11.1
+* 1.10 >= 1.10.3
+* 1.9 >= 1.9.5
+* 1.8 any version (if $wgEnableAPI has been left off)
+
+Vulnerable versions:
+* 1.11 <= 1.11.0rc1
+* 1.10 <= 1.10.2
+* 1.9 <= 1.9.4
+* 1.8 any version (if $wgEnableAPI has been switched on)
+
+MediaWiki 1.7 and below are not affected as they do not include the API
+functionality, however the BotQuery extension is similarly vulnerable unless
+updated to the latest SVN version.
+
+== MediaWiki 1.11.0 ==
+
+September 10, 2007
+
+This is the Fall 2007 snapshot release of MediaWiki.
+
+MediaWiki is now using a "continuous integration" development model with
+quarterly snapshot releases. The latest development code is always kept "ready
+to run", and in fact runs our own sites on Wikipedia.
+
+Release branches will continue to receive security updates for about a year
+from first release, but nonessential bugfixes and feature developments will be
+made on the development trunk and appear in the next quarterly release.
+
+Those wishing to use the latest code instead of a branch release can obtain it
+from source control: [[Download from SVN]]
+
 This is the Summer 2007 branch release of MediaWiki.
 
 MediaWiki is now using a "continuous integration" development model with
@@ -12552,6 +12622,33 @@ will be made on the development trunk and appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: https://www.mediawiki.org/wiki/Download_from_SVN
 
+== Changes since 1.11.0rc1 ==
+
+A possible HTML/XSS injection vector in the API pretty-printing mode has been
+found and fixed.
+
+The vulnerability may be worked around in an unfixed version by simply
+disabling the API interface if it is not in use, by adding this to
+[[Manual:LocalSettings.php|LocalSettings.php]]:<br />
+<code>[[Manual:$wgEnableAPI|$wgEnableAPI]] = false;</code> <br />
+(This is the default setting in 1.8.x.)
+
+Not vulnerable versions:
+* 1.11 >= 1.11.0
+* 1.10 >= 1.10.2
+* 1.9 >= 1.9.4
+* 1.8 >= 1.8.5
+
+Vulnerable versions:
+* 1.11 <= 1.11.0rc1
+* 1.10 <= 1.10.1
+* 1.9 <= 1.9.3
+* 1.8 <= 1.8.4 (if [[Manual:$wgEnableAPI|$wgEnableAPI]] has been switched on)
+
+MediaWiki 1.7 and below are not affected as they do not include the faulty
+function, however the [[Extension:BotQuery|BotQuery extension]] is similarly
+vulnerable unless updated to the latest SVN version.
+
 == Configuration changes since 1.10 ==
 
 * $wgThumbUpright - Adjust width of upright images when parameter 'upright' is
@@ -12560,7 +12657,8 @@ it from source control: https://www.mediawiki.org/wiki/Download_from_SVN
   usergroups
 * $wgEnotifImpersonal, $wgEnotifUseJobQ - Bulk mail options for large sites
 * $wgShowHostnames - Expose server host names through the API and HTML comments
-* $wgSaveDeletedFiles has been removed, the feature is now enabled unconditionally
+* $wgSaveDeletedFiles has been removed, the feature is now enabled
+unconditionally
 
 == New features since 1.10 ==
 
