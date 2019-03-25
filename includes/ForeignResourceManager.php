@@ -69,8 +69,10 @@ class ForeignResourceManager {
 	 * @throws Exception
 	 */
 	public function run( $action, $module ) {
-		if ( !in_array( $action, [ 'update', 'verify', 'make-sri' ] ) ) {
-			throw new Exception( 'Invalid action parameter.' );
+		$actions = [ 'update', 'verify', 'make-sri' ];
+		if ( !in_array( $action, $actions ) ) {
+			$this->error( "Invalid action.\n\nMust be one of " . implode( ', ', $actions ) . '.' );
+			return false;
 		}
 		$this->action = $action;
 
@@ -80,7 +82,11 @@ class ForeignResourceManager {
 		} elseif ( isset( $registry[ $module ] ) ) {
 			$modules = [ $module => $registry[ $module ] ];
 		} else {
-			throw new Exception( 'Unknown module name.' );
+			$this->error( "Unknown module name.\n\nMust be one of:\n" .
+				wordwrap( implode( ', ', array_keys( $registry ) ), 80 ) .
+				'.'
+			);
+			return false;
 		}
 
 		foreach ( $modules as $moduleName => $info ) {
