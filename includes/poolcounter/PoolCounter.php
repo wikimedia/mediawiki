@@ -39,7 +39,7 @@
  * that start with "nowait:". However, only 0 timeouts (non-blocking requests)
  * can be used with "nowait:" keys.
  *
- * By default PoolCounter_Stub is used, which provides no locking. You
+ * By default PoolCounterNull is used, which provides no locking. You
  * can get a useful one in the PoolCounter extension.
  */
 abstract class PoolCounter {
@@ -111,7 +111,7 @@ abstract class PoolCounter {
 	public static function factory( $type, $key ) {
 		global $wgPoolCounterConf;
 		if ( !isset( $wgPoolCounterConf[$type] ) ) {
-			return new PoolCounter_Stub;
+			return new PoolCounterNull;
 		}
 		$conf = $wgPoolCounterConf[$type];
 		$class = $conf['class'];
@@ -206,25 +206,5 @@ abstract class PoolCounter {
 	 */
 	protected function hashKeyIntoSlots( $type, $key, $slots ) {
 		return $type . ':' . ( hexdec( substr( sha1( $key ), 0, 4 ) ) % $slots );
-	}
-}
-
-// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
-class PoolCounter_Stub extends PoolCounter {
-
-	public function __construct() {
-		/* No parameters needed */
-	}
-
-	public function acquireForMe() {
-		return Status::newGood( PoolCounter::LOCKED );
-	}
-
-	public function acquireForAnyone() {
-		return Status::newGood( PoolCounter::LOCKED );
-	}
-
-	public function release() {
-		return Status::newGood( PoolCounter::RELEASED );
 	}
 }
