@@ -654,7 +654,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function closeAll() {
-		$this->forEachLBCallMethod( 'closeAll', [] );
+		$this->forEachLBCallMethod( 'closeAll' );
 	}
 
 	public function setAgentName( $agent ) {
