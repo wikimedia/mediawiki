@@ -166,7 +166,7 @@ class Block {
 		}
 
 		$this->setReason( $options['reason'] );
-		$this->mTimestamp = wfTimestamp( TS_MW, $options['timestamp'] );
+		$this->setTimestamp( wfTimestamp( TS_MW, $options['timestamp'] ) );
 		$this->setExpiry( wfGetDB( DB_REPLICA )->decodeExpiry( $options['expiry'] ) );
 
 		# Boolean settings
@@ -471,7 +471,7 @@ class Block {
 			$row->ipb_by, $row->ipb_by_text, $row->ipb_by_actor ?? null
 		) );
 
-		$this->mTimestamp = wfTimestamp( TS_MW, $row->ipb_timestamp );
+		$this->setTimestamp( wfTimestamp( TS_MW, $row->ipb_timestamp ) );
 		$this->mAuto = $row->ipb_auto;
 		$this->setHideName( $row->ipb_deleted );
 		$this->mId = (int)$row->ipb_id;
@@ -904,7 +904,7 @@ class Block {
 				->inContentLanguage()->plain()
 		);
 		$timestamp = wfTimestampNow();
-		$autoblock->mTimestamp = $timestamp;
+		$autoblock->setTimestamp( $timestamp );
 		$autoblock->mAuto = 1;
 		$autoblock->isCreateAccountBlocked( $this->isCreateAccountBlocked() );
 		# Continue suppressing the name if needed
@@ -975,7 +975,7 @@ class Block {
 	 */
 	public function updateTimestamp() {
 		if ( $this->mAuto ) {
-			$this->mTimestamp = wfTimestamp();
+			$this->setTimestamp( wfTimestamp() );
 			$this->setExpiry( self::getAutoblockExpiry( $this->getTimestamp() ) );
 
 			$dbw = wfGetDB( DB_MASTER );
