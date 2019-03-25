@@ -17,7 +17,6 @@ interface Processor {
 	 * @param string $path Absolute path of JSON file
 	 * @param array $info
 	 * @param int $version manifest_version for info
-	 * @return array "credits" information to store
 	 */
 	public function extractInfo( $path, array $info, $version );
 
