@@ -766,7 +766,7 @@ class ChangeTags {
 					// Return nothing.
 					$conds[] = '0';
 					break;
-				};
+				}
 			}
 
 			if ( $filterTagIds !== [] ) {
