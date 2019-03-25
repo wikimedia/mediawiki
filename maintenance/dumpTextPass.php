@@ -839,6 +839,7 @@ TEXT
 		if ( $newAddress === false ) {
 			return false;
 		}
+		$newAddress = trim( $newAddress );
 		if ( strpos( $newAddress, ':' ) === false ) {
 			$newAddress = SqlBlobStore::makeAddressFromTextId( intval( $newAddress ) );
 		}
