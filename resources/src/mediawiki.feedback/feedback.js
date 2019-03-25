@@ -230,9 +230,6 @@
 			padded: true
 		} );
 
-		this.$spinner = $( '<div>' )
-			.addClass( 'feedback-spinner' );
-
 		// Feedback form
 		this.feedbackMessageLabel = new OO.ui.LabelWidget( {
 			classes: [ 'mw-feedbackDialog-welcome-message' ]

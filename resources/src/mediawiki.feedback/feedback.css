@@ -1,13 +1,3 @@
-.feedback-spinner {
-	display: inline-block;
-	zoom: 1;
-	*display: inline; /* IE7 and below */ /* stylelint-disable declaration-block-no-duplicate-properties */
-	/* @embed */
-	background: url( images/spinner.gif );
-	width: 18px;
-	height: 18px;
-}
-
 .mw-feedbackDialog-welcome-message,
 .mw-feedbackDialog-feedback-terms {
 	line-height: 1.4;
