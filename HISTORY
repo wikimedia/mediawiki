@@ -4785,6 +4785,11 @@ of files that are no longer available follows.
 
 = MediaWiki 1.23 =
 
+== MediaWiki 1.23.17 ==
+
+=== Changes since 1.23.16 === <!--T:69-->
+* Fix syntax errors introduced in 1.23.16 when running PHP 5.3.
+
 == MediaWiki 1.23.16 ==
 This is a security and maintenance release of the MediaWiki 1.23 branch.
 
@@ -7044,6 +7049,52 @@ changes to languages because of Bugzilla reports.
 
 == MediaWiki 1.19 ==
 
+== MediaWiki 1.19.24 ==
+
+This is a security and maintenance release of the MediaWiki 1.19 branch.
+
+=== Changes since 1.19.23 ===
+
+* ({{bug|T85848}}, {{bug|T71210}}) SECURITY: Don't parse XMP blocks that
+contain XML entities, to prevent various DoS attacks.
+* ({{bug|T88310}}) SECURITY: Always expand xml entities when checking SVG's.
+* ({{bug|T73394}}) SECURITY: Escape > in Html::expandAttributes to prevent XSS.
+* ({{bug|T85855}}) SECURITY: Don't execute another user's CSS or JS on preview.
+* ({{bug|T85349}}, {{bug|T85850}}, {{bug|T86711}}) SECURITY: Multiple issues
+fixed in SVG filtering to prevent XSS and protect viewer's privacy.
+
+== MediaWiki 1.19.23 ==
+
+This is a security and maintenance release of the MediaWiki 1.19 branch.
+
+=== Changes since 1.19.22 ===
+
+* (bug T76686) [SECURITY] thumb.php outputs wikitext message as raw HTML, which
+could lead to xss. Permission to edit MediaWiki namespace is required to
+exploit this.
+* (bug T74222) The original patch for T74222 was reverted as unnecessary.
+* Add missing $ in front of variable in OutputPage.php
+
+== MediaWiki 1.19.22 ==
+
+This is a security and maintenance release of the MediaWiki 1.19 branch.
+
+=== Changes since 1.19.21 ===
+
+* ({{bug|66776}}, {{bug|71478}}) SECURITY:  User PleaseStand reported a way to
+inject code into API clients that used format=php to process pages that
+underwent flash policy mangling. This was fixed along with improving how the
+mangling was done for format=json, and allowing sites to disable the mangling
+using $wgMangleFlashPolicy.
+* ({{bug|72222}}) SECURITY: Do not show log action when the entry is revdeleted
+with DELETED_ACTION. NOTICE: this may be reverted in a future release pending a
+public RFC about the desired functionality. This issue was reported by user
+Bawolff.
+* ({{bug|71621}}) Make allowing site-wide styles on restricted special pages a
+config option.
+* $wgMangleFlashPolicy was added to make MediaWiki's mangling of anything that
+might be a flash policy directive configurable.
+
 == MediaWiki 1.19.21 ==
 This is a maintenance release of the MediaWiki 1.19 branch.
 
@@ -7617,6 +7668,20 @@ changes to languages because of Bugzilla reports.
   dependencies in the module registry and/or wrapping them in a callback to mw.loader.using.
 
 == MediaWiki 1.18 ==
+
+== MediaWiki 1.18.6 ==
+2012-11-29
+
+This is a maintenance and security release of the MediaWiki 1.18 branch
+
+=== Changes since 1.18.5 ===
+* ([[bugzilla:40995|bug 40995]]) Prevent session fixation in Special:UserLogin
+(CVE-2012-5391)
+* ([[bugzilla:41400|bug 41400]]) Prevent linker regex from exceeding PCRE
+backtrack limit
+* Localisation updates
+* Increase permitted runtime for testParserTest
+* ([[bugzilla:36179|bug 36179]]) Unquote 'null' for PostgreSQL.
 
 == MediaWiki 1.18.5 ==
 2012-08-30
@@ -11983,9 +12048,143 @@ Other changes in this release:
   the page
 * list=exturlusage in "list all links" mode can now filter by protocol
 
-
-
 == MediaWiki 1.12 ==
+
+== MediaWiki 1.12.4 ==
+
+February 7, 2009
+
+A number of cross-site scripting (XSS) security vulnerabilities were discovered
+in the web-based installer (config/index.php). These vulnerabilities all
+require a live installer -- once the installer has been used to install a wiki,
+it is deactivated.
+
+Note that cross-site scripting vulnerabilities can be used to attack any
+website in the same cookie domain. So if you have an uninstalled copy of
+MediaWiki on the same site as an active web service, MediaWiki could be used to
+attack the active service.
+
+If you are hosting an old copy of MediaWiki that you have never installed, you
+are advised to remove it from the web.
+
+== MediaWiki 1.12.3 ==
+
+* Fixed packaging/distribution error. Many files were missing from the
+distributed tarball.
+
+== MediaWiki 1.12.2 ==
+
+David Remahl of Apple's Product Security team has identified a number of
+security issues in previous releases of MediaWiki. Subsequent analysis by the
+MediaWiki development team expanded the scope of these vulnerabilities. The
+issues with a significant impact are as follows:
+
+* A local script injection vulnerability affecting Internet Explorer clients
+for all MediaWiki installations with uploads enabled. [CVE-2008-5250]
+* A local script injection vulnerability affecting clients with SVG scripting
+capability (such as Firefox 1.5+), for all MediaWiki installations with SVG
+uploads enabled. [CVE-2008-5250]
+* A CSRF vulnerability affecting the Special:Import feature, for all MediaWiki
+installations since the feature was introduced in 1.3.0. [CVE-2008-5252]
+
+A local script injection vulnerability allows an attacker with a wiki account
+to steal another user's login session, and to act as that user on the wiki. The
+attacker uploads a malicious script file, and tricks the victim into executing
+it.
+
+CSRF vulnerabilities allow an attacker to act as an authorised user on the
+wiki, but unlike an XSS vulnerability, the attacker can only act as the user in
+a specific and restricted way. The present CSRF vulnerability allows pages to
+be edited, with forged revision histories. Like an XSS vulnerability, the
+authorised user must visit the malicious web page to activate the attack.
+
+These three vulnerabilities are all fixed in this release.
+
+David Remahl also reminded us of some security-related configuration issues:
+
+* By default, MediaWiki stores a backup of deleted images in the images/deleted
+directory. If you do not want these images to be publically accessible, make
+sure this directory is not accessible from the web. MediaWiki takes some steps
+to avoid leaking these images, but these measures are not perfect.
+* Set display_errors=off in your php.ini to avoid path disclosure via PHP fatal
+errors. This is the default on most shared web hosts.
+* Enabling MediaWiki's debugging features, such as $wgShowExceptionDetails, may
+lead to path disclosure.
+
+Other changes in this release:
+
+* Avoid fatal error in profileinfo.php when not configured.
+* Add a .htaccess to deleted images directory for additional protection against
+exposure of deleted files with known SHA-1 hashes on default installations.
+* Avoid streaming uploaded files to the user via index.php. This allows
+security-conscious users to serve uploaded files via a different domain, and
+thus client-side scripts executed from that domain cannot access the login
+cookies. Affects Special:Undelete, img_auth.php and thumb.php.
+* When streaming files via index.php, use the MIME type detected from the file
+extension, not from the data. This reduces the XSS attack surface.
+* Blacklist redirects via Special:Filepath. Such redirects exacerbate any XSS
+vulnerabilities involving uploads of files containing scripts.
+* Internationalisation updates.
+
+== MediaWiki 1.12.1 ==
+
+Changes since 1.12.0:
+* (bug [[bugzilla:13522|13522]]) Fix fatal error in Parser::extractTagsAndParams
+* (bug [[bugzilla:12077|12077]]) Fix HTML nesting for TOC
+* (bug [[bugzilla:13532|13532]]) Use proper timestamp call when reverting images
+* (bug [[bugzilla:13649|13649]], [[bugzilla:14084|14084]]) Bad call to
+wfTimestamp()
+* (bug [[bugzilla:13770|13770]]) Use Preprocessor_Hash by default to avoid
+missing DOM module errors
+* (bug [[bugzilla:13442|13442]]) API: Missing pages in prop=langlinks and
+prop=extlinks are now handled properly.
+* (bug [[bugzilla:13482|13482]]) API: Disabled search types handled properly
+* (bug [[bugzilla:13836|13836]]) API: Fixed fatal errors resulting from
+combining iiprop=metadata  with format=xml
+* (bug [[bugzilla:11633|11633]]) API: Explicitly convert redirect titles to
+strings due to PHP's very weak typing on array keys.
+* API: Fixing main page display in meta=siteinfo
+* (bug [[bugzilla:11719|11719]]) API: Remove trailing blanks in YAML output.
+* (bug [[bugzilla:13718|13718]]) API: Return the proper continue parameter for
+cmsort=timestamp
+* Security: Work around misconfiguration by requiring strict comparisons for
+in_array in User::isAllowed().
+* Security: Fixed XSS vulnerability in useskin parameter.
+
+== MediaWiki 1.12.0 ==
+
+This is the quarterly branch release of [[MediaWiki]] for Winter 2008.
+
+MediaWiki is now using a "continuous integration" development model with
+quarterly snapshot releases. The latest development code is always kept "ready
+to run", and in fact runs our own sites on [[wikipedia:|Wikipedia]].
+
+Release branches will continue to receive security updates for about a year
+from first release, but nonessential bugfixes and feature developments will be
+made on the development trunk and appear in the next quarterly release.
+
+Those wishing to use the latest code instead of a branch release can obtain it
+from source control: [[Download from SVN]].
+
+Changes since 1.12.0rc1:
+*(bug [[bugzilla:13359|13359]]) Double-escaping in [[Special:Allpages]].
+*Localization updates.
+
+== MediaWiki 1.12.0rc1 ==
+
+This is a release candidate of the Winter 2008 quarterly snapshot release of
+[[MediaWiki]].
+
+MediaWiki is now using a "continuous integration" development model with
+quarterly snapshot releases. The latest development code is always kept "ready
+to run", and in fact runs our own sites on [[wikipedia:|Wikipedia]].
+
+Release branches will continue to receive security updates for about a year
+from first release, but nonessential bugfixes and feature developments will be
+made on the development trunk and appear in the next quarterly release.
+
+Those wishing to use the latest code instead of a branch release can obtain it
+from source control: [[Download from SVN]].
 
 This is the Winter 2007 quarterly release.
 
