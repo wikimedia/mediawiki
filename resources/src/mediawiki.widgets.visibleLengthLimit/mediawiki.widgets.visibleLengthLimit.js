@@ -14,12 +14,21 @@
 	 *
 	 * @param {OO.ui.TextInputWidget} textInputWidget Text input widget
 	 * @param {number} [limit] Byte limit, defaults to $input's maxlength
+	 * @param {Function} [filterFunction] Function to call on the string before assessing the length.
 	 */
-	mw.widgets.visibleByteLimit = function ( textInputWidget, limit ) {
+	mw.widgets.visibleByteLimit = function ( textInputWidget, limit, filterFunction ) {
 		limit = limit || +textInputWidget.$input.attr( 'maxlength' );
+		if ( !filterFunction || typeof filterFunction !== 'function' ) {
+			filterFunction = undefined;
+		}
 
 		function updateCount() {
-			var remaining = limit - byteLength( textInputWidget.getValue() );
+			var value = textInputWidget.getValue(),
+				remaining;
+			if ( filterFunction ) {
+				value = filterFunction( value );
+			}
+			remaining = limit - byteLength( value );
 			if ( remaining > 99 ) {
 				remaining = '';
 			} else {
@@ -32,7 +41,7 @@
 		updateCount();
 
 		// Actually enforce limit
-		textInputWidget.$input.byteLimit( limit );
+		textInputWidget.$input.byteLimit( limit, filterFunction );
 	};
 
 	/**
@@ -41,13 +50,22 @@
 	 * Uses jQuery#codePointLimit to enforce the limit.
 	 *
 	 * @param {OO.ui.TextInputWidget} textInputWidget Text input widget
-	 * @param {number} [limit] Byte limit, defaults to $input's maxlength
+	 * @param {number} [limit] Code point limit, defaults to $input's maxlength
+	 * @param {Function} [filterFunction] Function to call on the string before assessing the length.
 	 */
-	mw.widgets.visibleCodePointLimit = function ( textInputWidget, limit ) {
+	mw.widgets.visibleCodePointLimit = function ( textInputWidget, limit, filterFunction ) {
 		limit = limit || +textInputWidget.$input.attr( 'maxlength' );
+		if ( !filterFunction || typeof filterFunction !== 'function' ) {
+			filterFunction = undefined;
+		}
 
 		function updateCount() {
-			var remaining = limit - codePointLength( textInputWidget.getValue() );
+			var value = textInputWidget.getValue(),
+				remaining;
+			if ( filterFunction ) {
+				value = filterFunction( value );
+			}
+			remaining = limit - codePointLength( value );
 			if ( remaining > 99 ) {
 				remaining = '';
 			} else {
@@ -60,7 +78,7 @@
 		updateCount();
 
 		// Actually enforce limit
-		textInputWidget.$input.codePointLimit( limit );
+		textInputWidget.$input.codePointLimit( limit, filterFunction );
 	};
 
 }() );
