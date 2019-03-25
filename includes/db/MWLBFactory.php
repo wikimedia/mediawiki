@@ -122,7 +122,6 @@ abstract class MWLBFactory {
 						'tablePrefix' => $mainConfig->get( 'DBprefix' ),
 						'flags' => DBO_DEFAULT,
 						'sqlMode' => $mainConfig->get( 'SQLMode' ),
-						'utf8Mode' => $mainConfig->get( 'DBmysql5' )
 					];
 
 					$lbConf['servers'][$i] = $server;
@@ -142,7 +141,6 @@ abstract class MWLBFactory {
 					'load' => 1,
 					'flags' => $flags,
 					'sqlMode' => $mainConfig->get( 'SQLMode' ),
-					'utf8Mode' => $mainConfig->get( 'DBmysql5' )
 				];
 				if ( in_array( $server['type'], $typesWithSchema, true ) ) {
 					$server += [ 'schema' => $mainConfig->get( 'DBmwschema' ) ];
@@ -168,7 +166,6 @@ abstract class MWLBFactory {
 					$lbConf['serverTemplate']['schema'] = $mainConfig->get( 'DBmwschema' );
 				}
 				$lbConf['serverTemplate']['sqlMode'] = $mainConfig->get( 'SQLMode' );
-				$lbConf['serverTemplate']['utf8Mode'] = $mainConfig->get( 'DBmysql5' );
 			}
 		}
 
