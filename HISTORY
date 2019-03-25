@@ -4785,6 +4785,11 @@ of files that are no longer available follows.
 
 = MediaWiki 1.23 =
 
+== MediaWiki 1.23.17 ==
+
+=== Changes since 1.23.16 === <!--T:69-->
+* Fix syntax errors introduced in 1.23.16 when running PHP 5.3.
+
 == MediaWiki 1.23.16 ==
 This is a security and maintenance release of the MediaWiki 1.23 branch.
 
