@@ -50,6 +50,7 @@ sftp-config.json
 # Building & testing
 npm-debug.log
 node_modules/
+/resources/lib/.foreign
 /tests/phpunit/phpunit.phar
 /tests/selenium/log
 .eslintcache
