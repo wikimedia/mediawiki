@@ -592,6 +592,7 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.spinner' => [
+		'deprecated' => 'Please use "jquery.spinner" instead.',
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.spinner.js',
 		'dependencies' => [
 			'jquery.ui.core',
