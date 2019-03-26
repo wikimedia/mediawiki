@@ -1093,7 +1093,7 @@ class Linker {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		}
 		if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
-			return ' <span class="history-deleted">' . $link . '</span>';
+			return ' <span class="history-deleted mw-userlink">' . $link . '</span>';
 		}
 		return $link;
 	}
@@ -1519,7 +1519,7 @@ class Linker {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
 		}
 		if ( $rev->isDeleted( Revision::DELETED_COMMENT ) ) {
-			return " <span class=\"history-deleted\">$block</span>";
+			return " <span class=\"history-deleted comment\">$block</span>";
 		}
 		return $block;
 	}

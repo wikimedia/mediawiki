@@ -485,7 +485,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$link = htmlspecialchars( $date );
 		}
 		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			$link = "<span class=\"history-deleted\">$link</span>";
+			$link = "<span class=\"history-deleted mw-changeslist-date\">$link</span>";
 		}
 
 		return $link;
