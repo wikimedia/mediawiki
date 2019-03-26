@@ -91,10 +91,6 @@ class MemcachedBagOStuff extends BagOStuff {
 		return ( $n !== false && $n !== null ) ? $n : false;
 	}
 
-	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
-		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
-	}
-
 	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
 		return $this->client->touch( $this->validateKeyEncoding( $key ),
 			$this->fixExpiry( $exptime ) );
