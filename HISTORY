@@ -13424,6 +13424,121 @@ Full API documentation is available at https://www.mediawiki.org/wiki/API
 
 == MediaWiki 1.10 ==
 
+== MediaWiki 1.10.4 ==
+
+March 2, 2008
+
+* Correction for API path fix, broken in 1.10.3
+
+== MediaWiki 1.10.3 ==
+
+January 23, 2008
+
+This is a security update to the Winter 2007 quarterly release. A potential
+XSS injection vector affecting api.php only for Microsoft Internet Explorer
+users has been closed.
+
+
+To work around the vulnerability without upgrading, you may disable the API if
+you don't need it:
+
+:[[Manual:$wgEnableAPI|$wgEnableAPI]] = false;
+
+Not vulnerable versions:
+* 1.12 or later
+* 1.11 >= 1.11.1
+* 1.10 >= 1.10.3
+* 1.9 >= 1.9.5
+* 1.8 any version (if $wgEnableAPI has been left off)
+
+Vulnerable versions:
+* 1.11 <= 1.11.0rc1
+* 1.10 <= 1.10.2
+* 1.9 <= 1.9.4
+* 1.8 any version (if $wgEnableAPI has been switched on)
+
+MediaWiki 1.7 and below are not affected as they do not include the API
+functionality, however the BotQuery extension is similarly vulnerable unless
+updated to the latest SVN version.
+
+== MediaWiki 1.10.2 ==
+September 10, 2007
+
+This is a security fix update to the Spring 2007 quarterly release snapshot. A
+possible HTML/XSS injection vector in the API pretty-printing mode has been
+found and fixed.
+
+The vulnerability may be worked around in an unfixed version by simply
+disabling the API interface if it is not in use, by adding this to
+LocalSettings.php:
+:[[Manual:$wgEnableAPI|$wgEnableAPI]] = false;
+
+Not vulnerable versions:
+* 1.11 >= 1.11.0
+* 1.10 >= 1.10.2
+* 1.9 >= 1.9.4
+* 1.8 >= 1.8.5
+
+Vulnerable versions:
+* 1.11 <= 1.11.0rc1
+* 1.10 <= 1.10.1
+* 1.9 <= 1.9.3
+* 1.8 <= 1.8.4 (if $wgEnableAPI has been switched on)
+
+MediaWiki 1.7 and below are not affected as they do not include the faulty
+function, however the BotQuery extension is similarly vulnerable unless updated
+to the latest SVN version.
+
+== MediaWiki 1.10.1 ==
+July 13, 2007
+
+This is a bugfix update to the Spring 2007 quarterly release snapshot. A number
+of fixes to improve compatibility with PostgreSQL, some versions of MySQL, and
+some PHP configurations are included.
+
+Changes since 1.10.0:
+
+* (bug [[bugzilla:9417|9417]]) Uploading new versions of images when using
+Postgres no longer  throws warnings.
+* (bug [[bugzilla:9908|9908]]) Using tsearch2 with Postgres 8.1 no longer gives
+an error.
+* (bug [[bugzilla:9973|9973]]) Changed size was shown in advanced recentchanges
+collapsible items with $wgRCShowChangedSized = false.
+* Fixed installation on MyISAM or old InnoDB with charset=utf8, was giving
+overlong key errors.
+* Fixed zero-padding issues with MySQL 5 binary schema
+* (bug [[bugzilla:9820|9820]]) session.save_path check no longer halts
+installation, but warns of possible bad values
+* (bug [[bugzilla:9978|9978]]) Fixed session.save_path validation when using
+extended configuration format, e.g. "5;/tmp"
+
+== MediaWiki 1.10.0 ==
+May 9, 2007
+
+This is the quarterly release snapshot for Spring 2007. See below for a full
+list of changes since the 1.9.x series.
+
+Changes since 1.10.0rc2:
+
+* (bug [[bugzilla:9808|9808]]) Fix regression that ignored user 'rclimit'
+option for Special:Contributions
+
+== MediaWiki 1.10.0rc2 ==
+May 4, 2007
+
+THIS IS A RELEASE CANDIDATE MADE AVAILABLE FOR TESTING!
+A FINAL 1.10.0 RELEASE WILL APPEAR WITHIN A FEW DAYS.
+
+Changes since 1.10.0rc1:
+* Various l10n fixes and updates
+* Fix for upgrade of page_restrictions table
+* (bug [[bugzilla:9780|9780]]) Fix normalization of titles with initial colon
+followed by whitespace
+* Fix for regression in upload: wrong size info saved into image table
+* Avoid cyclic stub problems when authorization hooks do funny things with the
+user and the database at load time
+
+== MediaWiki 1.10.0rc1 ==
 This is the Spring 2007 branch release of MediaWiki.
 
 MediaWiki is now using a "continuous integration" development model with
