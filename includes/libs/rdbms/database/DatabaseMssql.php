@@ -1328,8 +1328,9 @@ class DatabaseMssql extends Database {
 
 	/**
 	 * @param string $name
-	 * @param string $format
-	 * @return string
+	 * @param string $format One of "quoted" (default), "raw", or "split".
+	 * @return string|array When the requested $format is "split", a list of database, schema, and
+	 *  table name is returned. Database and schema can be `false`.
 	 */
 	function tableName( $name, $format = 'quoted' ) {
 		# Replace reserved words with better ones
@@ -1344,18 +1345,17 @@ class DatabaseMssql extends Database {
 	/**
 	 * call this instead of tableName() in the updater when renaming tables
 	 * @param string $name
-	 * @param string $format One of quoted, raw, or split
-	 * @return string
+	 * @param string $format One of "quoted" (default), "raw", or "split".
+	 * @return string|array When the requested $format is "split", a list of database, schema, and
+	 *  table name is returned. Database and schema can be `false`.
+	 * @private
 	 */
 	function realTableName( $name, $format = 'quoted' ) {
 		$table = parent::tableName( $name, $format );
 		if ( $format == 'split' ) {
 			// Used internally, we want the schema split off from the table name and returned
 			// as a list with 3 elements (database, schema, table)
-			$table = explode( '.', $table );
-			while ( count( $table ) < 3 ) {
-				array_unshift( $table, false );
-			}
+			return array_pad( explode( '.', $table, 3 ), -3, false );
 		}
 		return $table;
 	}
