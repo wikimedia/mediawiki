@@ -116,7 +116,7 @@ class DatabasePostgres extends Database {
 			$connectVars['port'] = (int)$this->port;
 		}
 		if ( $this->flags & self::DBO_SSL ) {
-			$connectVars['sslmode'] = 1;
+			$connectVars['sslmode'] = 'require';
 		}
 
 		$this->connectString = $this->makeConnectionString( $connectVars );
