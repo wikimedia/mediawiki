@@ -793,8 +793,24 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 * @param string $to One of: rcandudp (default), rc, udp
 	 */
 	public function publish( $newId, $to = 'rcandudp' ) {
+		$canAddTags = true;
+		// FIXME: this code should be removed once all callers properly call publish()
+		if ( $to === 'udp' && !$newId && !$this->getAssociatedRevId() ) {
+			\MediaWiki\Logger\LoggerFactory::getInstance( 'logging' )->warning(
+				'newId and/or revId must be set when calling ManualLogEntry::publish()',
+				[
+					'newId' => $newId,
+					'to' => $to,
+					'revId' => $this->getAssociatedRevId(),
+					// pass a new exception to register the stack trace
+					'exception' => new RuntimeException()
+				]
+			);
+			$canAddTags = false;
+		}
+
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $newId, $to ) {
+			function () use ( $newId, $to, $canAddTags ) {
 				$log = new LogPage( $this->getType() );
 				if ( !$log->isRestricted() ) {
 					Hooks::runWithoutAbort( 'ManualLogEntryBeforePublish', [ $this ] );
@@ -806,9 +822,14 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 						$rc->save( $rc::SEND_NONE );
 					} else {
 						$tags = $this->getTags();
-						if ( $tags ) {
-							$revId = $this->getAssociatedRevId(); // Use null if $revId is 0
-							ChangeTags::addTags( $tags, null, $revId > 0 ? $revId : null, $newId );
+						if ( $tags && $canAddTags ) {
+							$revId = $this->getAssociatedRevId();
+							ChangeTags::addTags(
+								$tags,
+								null,
+								$revId > 0 ? $revId : null,
+								$newId > 0 ? $newId : null
+							);
 						}
 					}
 
