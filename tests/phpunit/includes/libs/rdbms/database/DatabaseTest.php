@@ -633,10 +633,10 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$oldDomain = $this->db->getDomainId();
 		$this->assertInternalType( 'string', $old, 'Prefix is string' );
 		$this->assertSame( $old, $this->db->tablePrefix(), "Prefix unchanged" );
-		$this->assertSame( $old, $this->db->tablePrefix( 'xxx' ) );
-		$this->assertSame( 'xxx', $this->db->tablePrefix(), "Prefix set" );
+		$this->assertSame( $old, $this->db->tablePrefix( 'xxx_' ) );
+		$this->assertSame( 'xxx_', $this->db->tablePrefix(), "Prefix set" );
 		$this->db->tablePrefix( $old );
-		$this->assertNotEquals( 'xxx', $this->db->tablePrefix() );
+		$this->assertNotEquals( 'xxx_', $this->db->tablePrefix() );
 		$this->assertSame( $oldDomain, $this->db->getDomainId() );
 
 		$old = $this->db->dbSchema();
@@ -659,10 +659,10 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$oldSchema = $this->db->dbSchema();
 		$oldPrefix = $this->db->tablePrefix();
 
-		$this->db->selectDomain( 'testselectdb-xxx' );
+		$this->db->selectDomain( 'testselectdb-xxx_' );
 		$this->assertSame( 'testselectdb', $this->db->getDBname() );
 		$this->assertSame( '', $this->db->dbSchema() );
-		$this->assertSame( 'xxx', $this->db->tablePrefix() );
+		$this->assertSame( 'xxx_', $this->db->tablePrefix() );
 
 		$this->db->selectDomain( $oldDomain );
 		$this->assertSame( $oldDatabase, $this->db->getDBname() );
@@ -670,10 +670,10 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $oldPrefix, $this->db->tablePrefix() );
 		$this->assertSame( $oldDomain, $this->db->getDomainId() );
 
-		$this->db->selectDomain( 'testselectdb-schema-xxx' );
+		$this->db->selectDomain( 'testselectdb-schema-xxx_' );
 		$this->assertSame( 'testselectdb', $this->db->getDBname() );
 		$this->assertSame( 'schema', $this->db->dbSchema() );
-		$this->assertSame( 'xxx', $this->db->tablePrefix() );
+		$this->assertSame( 'xxx_', $this->db->tablePrefix() );
 
 		$this->db->selectDomain( $oldDomain );
 		$this->assertSame( $oldDatabase, $this->db->getDBname() );

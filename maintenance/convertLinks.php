@@ -126,7 +126,6 @@ class ConvertLinks extends Maintenance {
 		$res = $dbw->query( "SELECT COUNT(*) AS count FROM $links" );
 		$row = $dbw->fetchObject( $res );
 		$numRows = $row->count;
-		$dbw->freeResult( $res );
 
 		if ( $numRows == 0 ) {
 			$this->output( "Updating schema (no rows to convert)...\n" );
@@ -168,7 +167,6 @@ class ConvertLinks extends Maintenance {
 					}
 				}
 			}
-			$dbw->freeResult( $res );
 			$dbw->bufferResults( true );
 			$this->output( "Finished loading IDs.\n\n" );
 			$this->performanceLog(
@@ -214,7 +212,6 @@ class ConvertLinks extends Maintenance {
 						$numBadLinks++;
 					}
 				}
-				$dbw->freeResult( $res );
 				# $this->output( "rowOffset: $rowOffset\ttuplesAdded: "
 				# 	. "$tuplesAdded\tnumBadLinks: $numBadLinks\n" );
 				if ( $tuplesAdded != 0 ) {

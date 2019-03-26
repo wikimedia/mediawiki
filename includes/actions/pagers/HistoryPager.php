@@ -310,11 +310,12 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$curlink = $this->curLink( $rev, $latest );
 		$lastlink = $this->lastLink( $rev, $next );
-		$curLastlinks = $curlink . $this->historyPage->message['pipe-separator'] . $lastlink;
+		$curLastlinks = Html::rawElement( 'span', [], $curlink ) .
+			Html::rawElement( 'span', [], $lastlink );
 		$histLinks = Html::rawElement(
 			'span',
-			[ 'class' => 'mw-history-histlinks' ],
-			$this->msg( 'parentheses' )->rawParams( $curLastlinks )->escaped()
+			[ 'class' => 'mw-history-histlinks mw-changeslist-links' ],
+			$curLastlinks
 		);
 
 		$diffButtons = $this->diffButtons( $rev, $firstInList );
@@ -362,7 +363,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s .= " $link";
 		$s .= $dirmark;
 		$s .= " <span class='history-user'>" .
-			Linker::revUserTools( $rev, true ) . "</span>";
+			Linker::revUserTools( $rev, true, false ) . "</span>";
 		$s .= $dirmark;
 
 		if ( $rev->isMinor() ) {
@@ -374,12 +375,12 @@ class HistoryPager extends ReverseChronologicalPager {
 			# Size is always public data
 			$prevSize = $this->parentLens[$row->rev_parent_id] ?? 0;
 			$sDiff = ChangesList::showCharacterDifference( $prevSize, $rev->getSize() );
-			$fSize = Linker::formatRevisionSize( $rev->getSize() );
-			$s .= ' <span class="mw-changeslist-separator">. .</span> ' . "$fSize $sDiff";
+			$fSize = Linker::formatRevisionSize( $rev->getSize(), false );
+			$s .= ' <span class="mw-changeslist-separator"></span> ' . "$fSize $sDiff";
 		}
 
 		# Text following the character difference is added just before running hooks
-		$s2 = Linker::revComment( $rev, false, true );
+		$s2 = Linker::revComment( $rev, false, true, false );
 
 		if ( $notificationtimestamp && ( $row->rev_timestamp >= $notificationtimestamp ) ) {
 			$s2 .= ' <span class="updatedmarker">' . $this->msg( 'updatedmarker' )->escaped() . '</span>';
@@ -427,7 +428,11 @@ class HistoryPager extends ReverseChronologicalPager {
 		Hooks::run( 'HistoryRevisionTools', [ $rev, &$tools, $prevRev, $user ] );
 
 		if ( $tools ) {
-			$s2 .= ' ' . $this->msg( 'parentheses' )->rawParams( $lang->pipeList( $tools ) )->escaped();
+			$s2 .= ' ' . Html::openElement( 'span', [ 'class' => 'mw-changeslist-links' ] );
+			foreach ( $tools as $tool ) {
+				$s2 .= Html::rawElement( 'span', [], $tool );
+			}
+			$s2 .= Html::closeElement( 'span' );
 		}
 
 		# Tags
@@ -443,7 +448,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		# Include separator between character difference and following text
 		if ( $s2 !== '' ) {
-			$s .= ' <span class="mw-changeslist-separator">. .</span> ' . $s2;
+			$s .= ' <span class="mw-changeslist-separator"></span> ' . $s2;
 		}
 
 		$attribs = [ 'data-mw-revid' => $rev->getId() ];

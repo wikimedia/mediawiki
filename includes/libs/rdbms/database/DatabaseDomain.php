@@ -43,15 +43,17 @@ class DatabaseDomain {
 	 */
 	public function __construct( $database, $schema, $prefix ) {
 		if ( $database !== null && ( !is_string( $database ) || !strlen( $database ) ) ) {
-			throw new InvalidArgumentException( "Database must be null or a non-empty string." );
+			throw new InvalidArgumentException( 'Database must be null or a non-empty string.' );
 		}
 		$this->database = $database;
 		if ( $schema !== null && ( !is_string( $schema ) || !strlen( $schema ) ) ) {
-			throw new InvalidArgumentException( "Schema must be null or a non-empty string." );
+			throw new InvalidArgumentException( 'Schema must be null or a non-empty string.' );
 		}
 		$this->schema = $schema;
 		if ( !is_string( $prefix ) ) {
-			throw new InvalidArgumentException( "Prefix must be a string." );
+			throw new InvalidArgumentException( 'Prefix must be a string.' );
+		} elseif ( $prefix !== '' && substr( $prefix, -1, 1 ) !== '_' ) {
+			throw new InvalidArgumentException( 'A non-empty prefix must end with "_".' );
 		}
 		$this->prefix = $prefix;
 	}
@@ -133,7 +135,7 @@ class DatabaseDomain {
 			return true; // even the prefix doesn't matter
 		}
 
-		$other = ( $other instanceof self ) ? $other : self::newFromId( $other );
+		$other = self::newFromId( $other );
 
 		return (
 			( $this->database === $other->database || $this->database === null ) &&
@@ -188,7 +190,7 @@ class DatabaseDomain {
 	 * @return string
 	 */
 	private function convertToString() {
-		$parts = [ $this->database ];
+		$parts = [ (string)$this->database ];
 		if ( $this->schema !== null ) {
 			$parts[] = $this->schema;
 		}

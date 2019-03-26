@@ -605,7 +605,7 @@ class HTMLForm extends ContextSource {
 		$valid = true;
 		$hoistedErrors = Status::newGood();
 		if ( $this->mValidationErrorMessage ) {
-			foreach ( (array)$this->mValidationErrorMessage as $error ) {
+			foreach ( $this->mValidationErrorMessage as $error ) {
 				$hoistedErrors->fatal( ...$error );
 			}
 		} else {
@@ -700,8 +700,8 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Set a message to display on a validation error.
 	 *
-	 * @param string|array $msg String or Array of valid inputs to wfMessage()
-	 *     (so each entry can be either a String or Array)
+	 * @param array $msg Array of valid inputs to wfMessage()
+	 *     (so each entry must itself be an array of arguments)
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */

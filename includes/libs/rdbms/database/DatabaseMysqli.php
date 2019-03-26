@@ -178,25 +178,6 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return $conn->affected_rows;
 	}
 
-	function doSelectDomain( DatabaseDomain $domain ) {
-		if ( $domain->getSchema() !== null ) {
-			throw new DBExpectedError( $this, __CLASS__ . ": domain schemas are not supported." );
-		}
-
-		$database = $domain->getDatabase();
-		if ( $database !== $this->getDBname() ) {
-			$conn = $this->getBindingHandle();
-			if ( !$conn->select_db( $database ) ) {
-				throw new DBExpectedError( $this, "Could not select database '$database'." );
-			}
-		}
-
-		// Update that domain fields on success (no exception thrown)
-		$this->currentDomain = $domain;
-
-		return true;
-	}
-
 	/**
 	 * @param mysqli_result $res
 	 * @return bool

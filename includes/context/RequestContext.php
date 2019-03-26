@@ -345,12 +345,8 @@ class RequestContext implements IContextSource, MutableContext {
 					$obj = Language::factory( $code );
 					$this->lang = $obj;
 				}
-
+			} finally {
 				unset( $this->recursion );
-			}
-			catch ( Exception $ex ) {
-				unset( $this->recursion );
-				throw $ex;
 			}
 		}
 

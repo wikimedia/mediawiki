@@ -33,7 +33,8 @@
 			"Neriman2003",
 			"Fitoschido",
 			"Toghrul Rahimli",
-			"Vlad5250"
+			"Vlad5250",
+			"Hüseynzadə"
 		]
 	},
 	"tog-underline": "Keçidlərin altını xətlə:",
@@ -425,7 +426,7 @@
 	"userlogin-signwithsecure": "Etibarlı bağlantıdan istifadə edin",
 	"cannotlogin-title": "Daxil olmaq mümkün olmadı",
 	"cannotlogin-text": "Daxil olmaq mümkün deyil.",
-	"cannotloginnow-title": "Daxil olmaq indi mümkün deyil",
+	"cannotloginnow-title": "İndi daxil olmaq mümkün deyil",
 	"cannotloginnow-text": "$1 istifadə edərkən daxil olmaq mümkün deyil.",
 	"cannotcreateaccount-title": "Hesablar yaradıla bilmədi",
 	"cannotcreateaccount-text": "Bu vikidə birbaşa hesab yaratma aktiv deyil.",

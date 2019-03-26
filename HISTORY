@@ -2,6 +2,25 @@ Change notes from older releases. For current info see RELEASE-NOTES-1.33.
 
 = MediaWiki 1.32 =
 
+== MediaWiki 1.32.1 ==
+
+=== Changes since MediaWiki 1.32.0 ===
+* (T213577) rdbms: avoid transaction status errors from ping() in rollback().
+* rdbms: Pass required parameter.
+* rdbms: do not treat SAVEPOINT and RELEASE SAVEPOINT as write queries.
+* (T204531) rdbms: reduce LoadBalancer replication log spam.
+* (T213489) Avoid session double-start in Setup.php.
+* (T213717) Correct namespace 'Template' for gom-deva
+* (T198054) Fix login page crash caused by unknown language via ?uselang
+* (T215324) (T210937) list=users mistakenly reports user as missing.
+* (T209483) Add ILBFactory::redefineLocalDomain method. This is intended for
+use with scripts like addWiki.php to avoid mismatched domain errors.
+* (T208871) The hard-coded Google search form on the database error page was
+removed.
+* (T204800) Fix Title::getFragmentForURL for bad interwiki prefix
+* (T215566) Fix installer being unable to determine if the database exists
+during a fresh installation.
+
 == MediaWiki 1.32.0 ==
 
 === Changes since MediaWiki 1.32.0-rc.2 ===
@@ -11406,6 +11425,43 @@ regularly. Below only new and removed languages are listed.
 
 == MediaWiki 1.13 ==
 
+== MediaWiki 1.13.5 ==
+
+February 22, 2009
+
+This is a maintenance update to the Summer 2008 snapshot release of MediaWiki.
+
+MediaWiki is now using a "continuous integration" development model with
+quarterly snapshot releases. The latest development code is always kept
+"ready to run", and in fact runs our own sites on Wikipedia.
+
+Release branches will continue to receive security updates for about a year
+from first release, but nonessential bugfixes and feature developments
+will be made on the development trunk and appear in the next quarterly release.
+
+Those wishing to use the latest code instead of a branch release can obtain
+it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+
+== Changes since 1.13.4 ==
+
+* (bug 17449) Fixed PostgreSQL installation
+* (bug 17527) Fixed missing MySQL-specific options in installer
+
+== Changes since 1.13.3 ==
+
+A number of cross-site scripting (XSS) security vulnerabilities were discovered
+in the web-based installer (config/index.php). These vulnerabilities all
+require a live installer -- once the installer has been used to install a wiki,
+it is deactivated.
+
+Note that cross-site scripting vulnerabilities can be used to attack any website
+in the same cookie domain. So if you have an uninstalled copy of MediaWiki on
+the same site as an active web service, MediaWiki could be used to attack the
+active service.
+
+If you are hosting an old copy of MediaWiki that you have never installed, you
+are advised to remove it from the web.
+
 == Changes since 1.13.2 ==
 
 David Remahl of Apple's Product Security team has identified a number of
@@ -13424,6 +13480,121 @@ Full API documentation is available at https://www.mediawiki.org/wiki/API
 
 == MediaWiki 1.10 ==
 
+== MediaWiki 1.10.4 ==
+
+March 2, 2008
+
+* Correction for API path fix, broken in 1.10.3
+
+== MediaWiki 1.10.3 ==
+
+January 23, 2008
+
+This is a security update to the Winter 2007 quarterly release. A potential
+XSS injection vector affecting api.php only for Microsoft Internet Explorer
+users has been closed.
+
+
+To work around the vulnerability without upgrading, you may disable the API if
+you don't need it:
+
+:[[Manual:$wgEnableAPI|$wgEnableAPI]] = false;
+
+Not vulnerable versions:
+* 1.12 or later
+* 1.11 >= 1.11.1
+* 1.10 >= 1.10.3
+* 1.9 >= 1.9.5
+* 1.8 any version (if $wgEnableAPI has been left off)
+
+Vulnerable versions:
+* 1.11 <= 1.11.0rc1
+* 1.10 <= 1.10.2
+* 1.9 <= 1.9.4
+* 1.8 any version (if $wgEnableAPI has been switched on)
+
+MediaWiki 1.7 and below are not affected as they do not include the API
+functionality, however the BotQuery extension is similarly vulnerable unless
+updated to the latest SVN version.
+
+== MediaWiki 1.10.2 ==
+September 10, 2007
+
+This is a security fix update to the Spring 2007 quarterly release snapshot. A
+possible HTML/XSS injection vector in the API pretty-printing mode has been
+found and fixed.
+
+The vulnerability may be worked around in an unfixed version by simply
+disabling the API interface if it is not in use, by adding this to
+LocalSettings.php:
+:[[Manual:$wgEnableAPI|$wgEnableAPI]] = false;
+
+Not vulnerable versions:
+* 1.11 >= 1.11.0
+* 1.10 >= 1.10.2
+* 1.9 >= 1.9.4
+* 1.8 >= 1.8.5
+
+Vulnerable versions:
+* 1.11 <= 1.11.0rc1
+* 1.10 <= 1.10.1
+* 1.9 <= 1.9.3
+* 1.8 <= 1.8.4 (if $wgEnableAPI has been switched on)
+
+MediaWiki 1.7 and below are not affected as they do not include the faulty
+function, however the BotQuery extension is similarly vulnerable unless updated
+to the latest SVN version.
+
+== MediaWiki 1.10.1 ==
+July 13, 2007
+
+This is a bugfix update to the Spring 2007 quarterly release snapshot. A number
+of fixes to improve compatibility with PostgreSQL, some versions of MySQL, and
+some PHP configurations are included.
+
+Changes since 1.10.0:
+
+* (bug [[bugzilla:9417|9417]]) Uploading new versions of images when using
+Postgres no longer  throws warnings.
+* (bug [[bugzilla:9908|9908]]) Using tsearch2 with Postgres 8.1 no longer gives
+an error.
+* (bug [[bugzilla:9973|9973]]) Changed size was shown in advanced recentchanges
+collapsible items with $wgRCShowChangedSized = false.
+* Fixed installation on MyISAM or old InnoDB with charset=utf8, was giving
+overlong key errors.
+* Fixed zero-padding issues with MySQL 5 binary schema
+* (bug [[bugzilla:9820|9820]]) session.save_path check no longer halts
+installation, but warns of possible bad values
+* (bug [[bugzilla:9978|9978]]) Fixed session.save_path validation when using
+extended configuration format, e.g. "5;/tmp"
+
+== MediaWiki 1.10.0 ==
+May 9, 2007
+
+This is the quarterly release snapshot for Spring 2007. See below for a full
+list of changes since the 1.9.x series.
+
+Changes since 1.10.0rc2:
+
+* (bug [[bugzilla:9808|9808]]) Fix regression that ignored user 'rclimit'
+option for Special:Contributions
+
+== MediaWiki 1.10.0rc2 ==
+May 4, 2007
+
+THIS IS A RELEASE CANDIDATE MADE AVAILABLE FOR TESTING!
+A FINAL 1.10.0 RELEASE WILL APPEAR WITHIN A FEW DAYS.
+
+Changes since 1.10.0rc1:
+* Various l10n fixes and updates
+* Fix for upgrade of page_restrictions table
+* (bug [[bugzilla:9780|9780]]) Fix normalization of titles with initial colon
+followed by whitespace
+* Fix for regression in upload: wrong size info saved into image table
+* Avoid cyclic stub problems when authorization hooks do funny things with the
+user and the database at load time
+
+== MediaWiki 1.10.0rc1 ==
 This is the Spring 2007 branch release of MediaWiki.
 
 MediaWiki is now using a "continuous integration" development model with
@@ -13913,10 +14084,159 @@ break. Don't forget to always back up your database before upgrading!
 See the file UPGRADE for more detailed upgrade instructions.
 
 = MediaWiki release notes =
-
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+= MediaWiki 1.9 =
+
+== MediaWiki 1.9.6 ==
+
+March 2, 2008
+
+* Correction for API path fix, broken in 1.9.5
+
+== MediaWiki 1.9.5 ==
+
+January 23, 2008
+
+This is a security update to the Winter 2007 quarterly release. A potential XSS
+injection vector affecting api.php only for Microsoft Internet Explorer users
+has been closed.
+
+
+To work around the vulnerability without upgrading, you may disable the API if
+you don't need it:
+
+:[[Manual:$wgEnableAPI|$wgEnableAPI]] = false;
+
+Not vulnerable versions:
+* 1.12 or later
+* 1.11 >= 1.11.1
+* 1.10 >= 1.10.3
+* 1.9 >= 1.9.5
+* 1.8 any version (if $wgEnableAPI has been left off)
+
+Vulnerable versions:
+* 1.11 <= 1.11.0rc1
+* 1.10 <= 1.10.2
+* 1.9 <= 1.9.4
+* 1.8 any version (if $wgEnableAPI has been switched on)
+
+MediaWiki 1.7 and below are not affected as they do not include the API
+functionality, however the BotQuery extension is similarly vulnerable unless
+updated to the latest SVN version.
+
+== MediaWiki 1.9.4 ==
+
+September 10, 2007
+
+This is a security and bug fix update to the Winter 2007 quarterly release.
+Minor compatibility fixes for IIS 5 are included.
+
+* (bug [[bugzilla:8847|8847]]) Strip spurious #fragments from request URI to
+fix redirect loops on some server configurations
+* A possible HTML/XSS injection vector in the API pretty-printing mode has been
+found and fixed.
+
+The vulnerability may be worked around in an unfixed version by simply
+disabling the API interface if it is not in use, by adding this to
+LocalSettings.php:
+
+:[[Manual:$wgEnableAPI|$wgEnableAPI]] = false;
+
+Not vulnerable versions:
+* 1.11 >= 1.11.0
+* 1.10 >= 1.10.2
+* 1.9 >= 1.9.4
+* 1.8 >= 1.8.5
+
+Vulnerable versions:
+* 1.11 <= 1.11.0rc1
+* 1.10 <= 1.10.1
+* 1.9 <= 1.9.3
+* 1.8 <= 1.8.4 (if $wgEnableAPI has been switched on)
+
+MediaWiki 1.7 and below are not affected as they do not include the faulty
+function, however the BotQuery extension is similarly vulnerable unless updated
+to the latest SVN version.
+
+== MediaWiki 1.9.3 ==
+
+February 20, 2007
+
+This is a security and bug-fix update to the Winter 2007 quarterly release.
+Minor compatibility fixes for IIS and PostgreSQL are included.
+
+An XSS injection vulnerability based on Microsoft Internet Explorer's UTF-7
+charset autodetection was located in the AJAX support module, affecting MSIE
+users on MediaWiki 1.6.x and up when the optional setting $wgUseAjax is enabled.
+
+If you are using an extension based on the optional Ajax module, either disable
+it or upgrade to a version containing the fix:
+
+* 1.9: fixed in 1.9.3
+* 1.8: fixed in 1.8.4
+* 1.7: fixed in 1.7.3
+* 1.6: fixed in 1.6.10
+
+There is no known danger in the default configuration, with ''$wgUseAjax'' off.
+
+* ([[mediazilla:8992|8992]]) Fix a remaining raw use of REQUEST_URI in history
+* ([[mediazilla:8984|8984]]) Fix a database error in
+Special:Recentchangeslinked when using the PostgreSQL database.
+* Add ''charset'' to Content-Type headers on various HTTP error responses to
+forestall additional UTF-7-autodetect XSS issues. PHP sends only ''text/html''
+by default when the script didn't specify more details, which some
+inconsiderate browsers consider a license to autodetect the deadly,
+hard-to-escape UTF-7. This fixes an issue with the Ajax interface error message
+on MSIE when ''$wgUseAjax'' is enabled (not default configuration); this UTF-7
+variant on a previously fixed attack vector was discovered by Moshe BA from
+BugSec: [http://www.bugsec.com/articles.php?Security=24
+http://www.bugsec.com/articles.php?Security=24]
+* Trackback responses now specify XML content type
+
+== MediaWiki 1.9.2 ==
+
+February 4, 2007
+
+This is a bug-fix update that fixes some installation and other minor issues
+with the 1.9.1 release as well as a security issue which was introduced in the
+1.9 branch.
+
+JavaScript code which regenerated the "sortable tables" feature did not
+properly sanitize input, leading to an HTML injection vulnerability.
+
+* ([[mediazilla:8774|8774]]) Fix path for GNU FDL rights icon on new installs
+* ([[mediazilla:8819|8819]]) Fix full path disclosure with skins dependencies
+* ([[mediazilla:8819|8819]]) Fixed data-loss bug in compressOld batch text
+compression affecting pages which had null edits (move, protect, etc) as second
+edit in a batch group. Isolated and patched by Travis Derouin.
+* Security fix for sortable tables JavaScript
+
+== MediaWiki 1.9.1 ==
+
+January 24, 2007
+
+This is a bug-fix update that fixes some installation and upgrade issues with
+the original 1.9.0 release.
+
+* ([[mediazilla:3000|3000]]) Fall back to SCRIPT_NAME plus QUERY_STRING when
+REQUEST_URI is not available, as on IIS with PHP-CGI
+* Security fix for DjVu images. (Only affects servers where .djvu file  uploads
+are enabled and ''$wgDjvuToXML'' is set.)
+* ([[mediazilla:8638|8638]]) Fix update from 1.4 and earlier
+* ([[mediazilla:8641|8641]]) Fix order of updates to ipblocks table for updates
+from <=1.7
+* ([[mediazilla:8673|8673]]) Minor fix for web service API content-type header
+* Fix API revision list on PHP 5.2.1; bad reference assignment
+* Fixed up the AjaxSearch
+* Exclude settings files when generating documentation. That could expose the
+database user and password to remote users.
+* ar: fix the 'create a new page' on search page when no exact match found
+* Correct tooltip accesskey hint for Opera on the Macintosh (uses Shift-Esc-,
+not Ctrl-).
+* ([[mediazilla:8719|8719]]) Firefox release notes lie! Fix tooltips for
+Firefox 2 on x11; accesskeys default settings appear to be same as Windows.
 
 == Changes since 1.8 ==
 

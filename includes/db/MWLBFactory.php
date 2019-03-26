@@ -77,6 +77,7 @@ abstract class MWLBFactory {
 			'defaultGroup' => $mainConfig->get( 'DBDefaultGroup' ),
 		];
 
+		$serversCheck = [];
 		// When making changes here, remember to also specify MediaWiki-specific options
 		// for Database classes in the relevant Installer subclass.
 		// Such as MysqlInstaller::openConnection and PostgresInstaller::openConnectionWithParams.
@@ -84,6 +85,7 @@ abstract class MWLBFactory {
 			if ( isset( $lbConf['servers'] ) ) {
 				// Server array is already explicitly configured; leave alone
 			} elseif ( is_array( $mainConfig->get( 'DBservers' ) ) ) {
+				$lbConf['servers'] = [];
 				foreach ( $mainConfig->get( 'DBservers' ) as $i => $server ) {
 					if ( $server['type'] === 'sqlite' ) {
 						$server += [ 'dbDirectory' => $mainConfig->get( 'SQLiteDataDir' ) ];
@@ -98,20 +100,6 @@ abstract class MWLBFactory {
 							'port' => $mainConfig->get( 'DBport' ),
 							'useWindowsAuth' => $mainConfig->get( 'DBWindowsAuthentication' )
 						];
-					} elseif ( $server['type'] === 'mysql' ) {
-						// A DB name is not needed to connect to mysql; 'dbname' is useless.
-						// This field only defines the DB to use for unspecified DB domains.
-						$ldDB = $mainConfig->get( 'DBname' ); // local domain DB
-						$srvDB = $server['dbname'] ?? null; // server DB
-						if ( $srvDB !== null && $srvDB !== $ldDB ) {
-							self::reportMismatchedDBs( $srvDB, $ldDB );
-						}
-					}
-
-					$ldTP = $mainConfig->get( 'DBprefix' ); // local domain prefix
-					$srvTP = $server['tablePrefix'] ?? ''; // server table prefix
-					if ( $srvTP !== '' && $srvTP !== $ldTP ) {
-						self::reportMismatchedPrefixes( $srvTP, $ldTP );
 					}
 
 					if ( in_array( $server['type'], $typesWithSchema, true ) ) {
@@ -160,6 +148,8 @@ abstract class MWLBFactory {
 			if ( !isset( $lbConf['externalClusters'] ) ) {
 				$lbConf['externalClusters'] = $mainConfig->get( 'ExternalServers' );
 			}
+
+			$serversCheck = $lbConf['servers'];
 		} elseif ( $lbConf['class'] === Wikimedia\Rdbms\LBFactoryMulti::class ) {
 			if ( isset( $lbConf['serverTemplate'] ) ) {
 				if ( in_array( $lbConf['serverTemplate']['type'], $typesWithSchema, true ) ) {
@@ -167,8 +157,10 @@ abstract class MWLBFactory {
 				}
 				$lbConf['serverTemplate']['sqlMode'] = $mainConfig->get( 'SQLMode' );
 			}
+			$serversCheck = $lbConf['serverTemplate'] ?? [];
 		}
 
+		self::sanityCheckServerConfig( $serversCheck, $mainConfig );
 		$lbConf = self::applyDefaultCaching( $lbConf, $srvCace, $mainStash, $wanCache );
 
 		return $lbConf;
@@ -196,6 +188,50 @@ abstract class MWLBFactory {
 		}
 
 		return $lbConf;
+	}
+
+	/**
+	 * @param array $servers
+	 * @param Config $mainConfig
+	 */
+	private static function sanityCheckServerConfig( array $servers, Config $mainConfig ) {
+		$ldDB = $mainConfig->get( 'DBname' ); // local domain DB
+		$ldTP = $mainConfig->get( 'DBprefix' ); // local domain prefix
+
+		foreach ( $servers as $server ) {
+			$type = $server['type'] ?? null;
+			$srvDB = $server['dbname'] ?? null; // server DB
+			$srvTP = $server['tablePrefix'] ?? ''; // server table prefix
+
+			if ( $type === 'mysql' ) {
+				// A DB name is not needed to connect to mysql; 'dbname' is useless.
+				// This field only defines the DB to use for unspecified DB domains.
+				if ( $srvDB !== null && $srvDB !== $ldDB ) {
+					self::reportMismatchedDBs( $srvDB, $ldDB );
+				}
+			} elseif ( $type === 'postgres' ) {
+				if ( $srvTP !== '' ) {
+					self::reportIfPrefixSet( $srvTP, $type );
+				}
+			}
+
+			if ( $srvTP !== '' && $srvTP !== $ldTP ) {
+				self::reportMismatchedPrefixes( $srvTP, $ldTP );
+			}
+		}
+	}
+
+	/**
+	 * @param string $prefix Table prefix
+	 * @param string $dbType Database type
+	 */
+	private static function reportIfPrefixSet( $prefix, $dbType ) {
+		$e = new UnexpectedValueException(
+			"\$wgDBprefix is set to '$prefix' but the database type is '$dbType'. " .
+			"MediaWiki does not support using a table prefix with this RDBMS type."
+		);
+		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
+		exit;
 	}
 
 	/**

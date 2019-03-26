@@ -438,6 +438,13 @@ class LBFactoryTest extends MediaWikiTestCase {
 		] );
 	}
 
+	/**
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::doSelectDomain
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::selectDB
+	 * @covers \Wikimedia\Rdbms\DatabaseMssql::selectDB
+	 * @covers DatabaseOracle::selectDB
+	 */
 	public function testNiceDomains() {
 		global $wgDBname;
 
@@ -518,6 +525,13 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$factory->destroy();
 	}
 
+	/**
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::doSelectDomain
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::selectDB
+	 * @covers \Wikimedia\Rdbms\DatabaseMssql::selectDB
+	 * @covers DatabaseOracle::selectDB
+	 */
 	public function testTrickyDomain() {
 		global $wgDBname;
 
@@ -530,7 +544,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$factory = $this->newLBFactoryMulti(
 			[ 'localDomain' => ( new DatabaseDomain( $dbname, null, '' ) )->getId() ],
 			[
-				'dbName' => 'do_not_select_me' // explodes if DB is selected
+				'dbname' => 'do_not_select_me' // explodes if DB is selected
 			]
 		);
 		$lb = $factory->getMainLB();
@@ -584,46 +598,94 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$factory->destroy();
 	}
 
+	/**
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::doSelectDomain
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::selectDB
+	 * @covers \Wikimedia\Rdbms\DatabaseMssql::selectDB
+	 * @covers DatabaseOracle::selectDB
+	 */
 	public function testInvalidSelectDB() {
-		// FIXME: fails under sqlite
-		$this->markTestSkippedIfDbType( 'sqlite' );
+		if ( wfGetDB( DB_MASTER )->databasesAreIndependent() ) {
+			$this->markTestSkipped( "Not applicable per databasesAreIndependent()" );
+		}
+
 		$dbname = 'unittest-domain'; // explodes if DB is selected
 		$factory = $this->newLBFactoryMulti(
 			[ 'localDomain' => ( new DatabaseDomain( $dbname, null, '' ) )->getId() ],
 			[
-				'dbName' => 'do_not_select_me' // explodes if DB is selected
+				'dbname' => 'do_not_select_me' // explodes if DB is selected
 			]
 		);
 		$lb = $factory->getMainLB();
 		/** @var IDatabase $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
 
-		if ( $db->getType() === 'sqlite' ) {
+		\Wikimedia\suppressWarnings();
+		try {
 			$this->assertFalse( $db->selectDB( 'garbage-db' ) );
-		} elseif ( $db->databasesAreIndependent() ) {
-			try {
-				$e = null;
-				$db->selectDB( 'garbage-db' );
-			} catch ( \Wikimedia\Rdbms\DBConnectionError $e ) {
-				// expected
-			}
-			$this->assertInstanceOf( \Wikimedia\Rdbms\DBConnectionError::class, $e );
-			$this->assertFalse( $db->isOpen() );
-		} else {
-			\Wikimedia\suppressWarnings();
-			try {
-				$this->assertFalse( $db->selectDB( 'garbage-db' ) );
-				$this->fail( "No error thrown." );
-			} catch ( \Wikimedia\Rdbms\DBExpectedError $e ) {
-				$this->assertEquals(
-					"Could not select database 'garbage-db'.",
-					$e->getMessage()
-				);
-			}
-			\Wikimedia\restoreWarnings();
+			$this->fail( "No error thrown." );
+		} catch ( \Wikimedia\Rdbms\DBQueryError $e ) {
+			$this->assertRegExp( '/[\'"]garbage-db[\'"]/', $e->getMessage() );
 		}
+		\Wikimedia\restoreWarnings();
 	}
 
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::selectDB
+	 * @covers \Wikimedia\Rdbms\DatabasePostgres::selectDB
+	 * @expectedException \Wikimedia\Rdbms\DBConnectionError
+	 */
+	public function testInvalidSelectDBIndependant() {
+		$dbname = 'unittest-domain'; // explodes if DB is selected
+		$factory = $this->newLBFactoryMulti(
+			[ 'localDomain' => ( new DatabaseDomain( $dbname, null, '' ) )->getId() ],
+			[
+				'dbname' => 'do_not_select_me' // explodes if DB is selected
+			]
+		);
+		$lb = $factory->getMainLB();
+
+		if ( !wfGetDB( DB_MASTER )->databasesAreIndependent() ) {
+			$this->markTestSkipped( "Not applicable per databasesAreIndependent()" );
+		}
+
+		/** @var IDatabase $db */
+		$lb->getConnection( DB_MASTER, [], '' );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::selectDB
+	 * @covers \Wikimedia\Rdbms\DatabasePostgres::selectDB
+	 * @expectedException \Wikimedia\Rdbms\DBConnectionError
+	 */
+	public function testInvalidSelectDBIndependant2() {
+		$dbname = 'unittest-domain'; // explodes if DB is selected
+		$factory = $this->newLBFactoryMulti(
+			[ 'localDomain' => ( new DatabaseDomain( $dbname, null, '' ) )->getId() ],
+			[
+				'dbname' => 'do_not_select_me' // explodes if DB is selected
+			]
+		);
+		$lb = $factory->getMainLB();
+
+		if ( !wfGetDB( DB_MASTER )->databasesAreIndependent() ) {
+			$this->markTestSkipped( "Not applicable per databasesAreIndependent()" );
+		}
+
+		$db = $lb->getConnection( DB_MASTER );
+		\Wikimedia\suppressWarnings();
+		$db->selectDB( 'garbage-db' );
+		\Wikimedia\restoreWarnings();
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::redefineLocalDomain
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::selectDB
+	 * @covers \Wikimedia\Rdbms\DatabaseMssql::selectDB
+	 * @covers DatabaseOracle::selectDB
+	 */
 	public function testRedefineLocalDomain() {
 		global $wgDBname;
 
@@ -645,10 +707,10 @@ class LBFactoryTest extends MediaWikiTestCase {
 		);
 		unset( $conn1 );
 
-		$factory->redefineLocalDomain( 'somedb-prefix' );
-		$this->assertEquals( 'somedb-prefix', $factory->getLocalDomainID() );
+		$factory->redefineLocalDomain( 'somedb-prefix_' );
+		$this->assertEquals( 'somedb-prefix_', $factory->getLocalDomainID() );
 
-		$domain = new DatabaseDomain( $wgDBname, null, 'pref' );
+		$domain = new DatabaseDomain( $wgDBname, null, 'pref_' );
 		$factory->redefineLocalDomain( $domain );
 
 		$n = 0;

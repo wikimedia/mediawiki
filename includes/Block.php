@@ -1036,10 +1036,7 @@ class Block {
 	 * @return int (0 for foreign users)
 	 */
 	public function getBy() {
-		$blocker = $this->getBlocker();
-		return ( $blocker instanceof User )
-			? $blocker->getId()
-			: 0;
+		return $this->getBlocker()->getId();
 	}
 
 	/**
@@ -1048,10 +1045,7 @@ class Block {
 	 * @return string
 	 */
 	public function getByName() {
-		$blocker = $this->getBlocker();
-		return ( $blocker instanceof User )
-			? $blocker->getName()
-			: (string)$blocker; // username
+		return $this->getBlocker()->getName();
 	}
 
 	/**

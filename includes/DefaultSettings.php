@@ -1935,7 +1935,8 @@ $wgSearchType = null;
 $wgSearchTypeAlternatives = null;
 
 /**
- * Table name prefix; this should be alphanumeric and not contain spaces nor hyphens
+ * Table name prefix.
+ * This should be alphanumeric, contain neither spaces nor hyphens, and end in "_"
  */
 $wgDBprefix = '';
 

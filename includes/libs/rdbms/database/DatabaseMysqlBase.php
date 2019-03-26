@@ -225,6 +225,39 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 	}
 
+	protected function doSelectDomain( DatabaseDomain $domain ) {
+		if ( $domain->getSchema() !== null ) {
+			throw new DBExpectedError( $this, __CLASS__ . ": domain schemas are not supported." );
+		}
+
+		$database = $domain->getDatabase();
+		// A null database means "don't care" so leave it as is and update the table prefix
+		if ( $database === null ) {
+			$this->currentDomain = new DatabaseDomain(
+				$this->currentDomain->getDatabase(),
+				null,
+				$domain->getTablePrefix()
+			);
+
+			return true;
+		}
+
+		if ( $database !== $this->getDBname() ) {
+			$sql = 'USE ' . $this->addIdentifierQuotes( $database );
+			$ret = $this->doQuery( $sql );
+			if ( $ret === false ) {
+				$error = $this->lastError();
+				$errno = $this->lastErrno();
+				$this->reportQueryError( $error, $errno, $sql, __METHOD__ );
+			}
+		}
+
+		// Update that domain fields on success (no exception thrown)
+		$this->currentDomain = $domain;
+
+		return true;
+	}
+
 	/**
 	 * Open a connection to a MySQL server
 	 *

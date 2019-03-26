@@ -2984,7 +2984,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function showFileRenameError( $old, $new ) {
 		wfDeprecated( __METHOD__, '1.32' );
-		$this->showFatalError( $this->msg( 'filerenameerror', $old, $new )->escpaed() );
+		$this->showFatalError( $this->msg( 'filerenameerror', $old, $new )->escaped() );
 	}
 
 	/**

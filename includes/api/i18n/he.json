@@ -352,7 +352,7 @@
 	"apihelp-parse-paramvalue-prop-revid": "הוספת מזהה הגרסה של הדף המפוענח.",
 	"apihelp-parse-paramvalue-prop-displaytitle": "הוספת הכותרת של קוד הוויקי המפוענח.",
 	"apihelp-parse-paramvalue-prop-headitems": "נותן פריטים לשים ב־<code>&lt;head&gt;</code> של הדף.",
-	"apihelp-parse-paramvalue-prop-headhtml": "נותן את ה־<code>&lt;head&gt;</code> המפוענח של הדף.",
+	"apihelp-parse-paramvalue-prop-headhtml": "נותן doctype מפוענח, תג <code>&lt;html&gt;</code> פותח, רכיב <code>&lt;head&gt;</code>, ותג <code>&lt;body&gt;</code> פותח של הדף.",
 	"apihelp-parse-paramvalue-prop-modules": "מתן יחידות ResourceLoader שמשמשות בדף. כדי לטעון, יש להשתמש ב<code dir=\"ltr\">mw.loader.using()</code>. יש לבקש את <kbd>jsconfigvars</kbd> או את <kbd>encodedjsconfigvars</kbd> יחד עם <kbd>modules</kbd>.",
 	"apihelp-parse-paramvalue-prop-jsconfigvars": "נותן משתני הגדרות של JavaScript שייחודיים לדף הזה. כדי להחיל, יש להשתמש ב<code dir=\"ltr\">mw.config.set()</code>.",
 	"apihelp-parse-paramvalue-prop-encodedjsconfigvars": "נותן משתני הגדרות של JavaScript שייחודיים לדף הזה בתור מחרוזת JSON.",

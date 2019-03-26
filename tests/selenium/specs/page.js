@@ -91,7 +91,7 @@ describe( 'Page', function () {
 
 		// check
 		HistoryPage.open( name );
-		assert.strictEqual( HistoryPage.comment.getText(), `(Created or updated page with "${content}")` );
+		assert.strictEqual( HistoryPage.comment.getText(), `Created or updated page with "${content}"` );
 	} );
 
 	it( 'should be deletable', function () {
