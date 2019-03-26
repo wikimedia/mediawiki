@@ -2149,7 +2149,10 @@ return [
 	],
 	'mediawiki.special.changeslist' => [
 		'styles' => [
-			'resources/src/mediawiki.special.changeslist.less',
+			'resources/src/mediawiki.special.changeslist/changeslist.less'
+		],
+		'skinStyles' => [
+			'default' => 'resources/src/mediawiki.special.changeslist/default.less',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],

@@ -2,10 +2,6 @@
  * Styling for Special:Watchlist and Special:RecentChanges
  */
 
-.client-js .mw-input-hidden {
-	display: none;
-}
-
 /* Make sure namespace label is aligned correctly on mobile when checkboxes are displayed */
 .mw-label.mw-namespace-label {
 	vertical-align: top;
@@ -13,16 +9,6 @@
 
 .mw-changeslist-line-watched .mw-title {
 	font-weight: bold;
-}
-
-/*
- * Titles, including username links, and also tag names
- * are prone to getting jumbled up
- * with other titles, usernames, etc. in mixed RTL-LTR environment.
- */
-.mw-changeslist .mw-tag-marker,
-.mw-changeslist .mw-title {
-	unicode-bidi: embed;
 }
 
 /* Colored watchlist and recent changes numbers */
@@ -36,17 +22,6 @@
 
 .mw-plusminus-null {
 	color: #a2a9b1; /* gray */
-}
-
-/*
- * Bidi-isolate these numbers.
- * See https://phabricator.wikimedia.org/T93484
- */
-.mw-plusminus-pos,
-.mw-plusminus-neg,
-.mw-plusminus-null {
-	unicode-bidi: -moz-isolate;
-	unicode-bidi: isolate;
 }
 
 /* Prevent FOUC if legend is initially collapsed */
