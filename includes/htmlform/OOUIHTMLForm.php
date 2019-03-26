@@ -151,13 +151,11 @@ class OOUIHTMLForm extends HTMLForm {
 			'expanded' => false,
 			'padded' => true,
 			'framed' => true,
-			'infusable' => false,
 		] );
 
 		$layout->appendContent(
 			new OOUI\FieldsetLayout( [
 				'label' => $legend,
-				'infusable' => false,
 				'items' => [
 					new OOUI\Widget( [
 						'content' => new OOUI\HtmlSnippet( $section )
