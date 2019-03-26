@@ -2599,10 +2599,12 @@ function wfGlobalCacheKey( ...$args ) {
  * Get an ASCII string identifying this wiki
  * This is used as a prefix in memcached keys
  *
+ * @deprecated since 1.35 Use WikiMap::getCurrentWikiDbDomain()/WikiMap::getWikiIdFromDbDomain()
  * @return string
  */
 function wfWikiID() {
 	global $wgDBprefix, $wgDBname;
+
 	if ( $wgDBprefix ) {
 		return "$wgDBname-$wgDBprefix";
 	} else {
