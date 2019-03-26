@@ -74,7 +74,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 		$this->readStore->setDebug( $debug );
 	}
 
-	protected function doGet( $key, $flags = 0 ) {
+	public function get( $key, $flags = 0 ) {
 		return ( $flags & self::READ_LATEST )
 			? $this->writeStore->get( $key, $flags )
 			: $this->readStore->get( $key, $flags );
@@ -159,5 +159,9 @@ class ReplicatedBagOStuff extends BagOStuff {
 
 	public function makeGlobalKey( $class, $component = null ) {
 		return $this->writeStore->makeGlobalKey( ...func_get_args() );
+	}
+
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
 	}
 }

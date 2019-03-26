@@ -234,22 +234,34 @@ class SqlBagOStuff extends BagOStuff {
 		}
 	}
 
-	protected function doGet( $key, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$casToken = null;
 
-		return $this->getWithToken( $key, $casToken, $flags );
-	}
+		$blobs = $this->fetchBlobMulti( [ $key ] );
+		if ( array_key_exists( $key, $blobs ) ) {
+			$blob = $blobs[$key];
+			$value = $this->unserialize( $blob );
 
-	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
-		$values = $this->getMulti( [ $key ] );
-		if ( array_key_exists( $key, $values ) ) {
-			$casToken = $values[$key];
-			return $values[$key];
+			$casToken = ( $value !== false ) ? $blob : null;
+
+			return $value;
 		}
+
 		return false;
 	}
 
 	public function getMulti( array $keys, $flags = 0 ) {
+		$values = [];
+
+		$blobs = $this->fetchBlobMulti( $keys );
+		foreach ( $blobs as $key => $blob ) {
+			$values[$key] = $this->unserialize( $blob );
+		}
+
+		return $values;
+	}
+
+	public function fetchBlobMulti( array $keys, $flags = 0 ) {
 		$values = []; // array of (key => value)
 
 		$keysByTable = [];
@@ -298,7 +310,7 @@ class SqlBagOStuff extends BagOStuff {
 					if ( $this->isExpired( $db, $row->exptime ) ) { // MISS
 						$this->debug( "get: key has expired" );
 					} else { // HIT
-						$values[$key] = $this->unserialize( $db->decodeBlob( $row->value ) );
+						$values[$key] = $db->decodeBlob( $row->value );
 					}
 				} catch ( DBQueryError $e ) {
 					$this->handleWriteError( $e, $db, $row->serverIndex );
@@ -420,7 +432,7 @@ class SqlBagOStuff extends BagOStuff {
 				],
 				[
 					'keyname' => $key,
-					'value' => $db->encodeBlob( $this->serialize( $casToken ) )
+					'value' => $db->encodeBlob( $casToken )
 				],
 				__METHOD__
 			);

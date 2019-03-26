@@ -58,12 +58,10 @@ class HashBagOStuff extends BagOStuff {
 		}
 	}
 
-	protected function doGet( $key, $flags = 0 ) {
-		if ( !$this->hasKey( $key ) ) {
-			return false;
-		}
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		$casToken = null;
 
-		if ( $this->expire( $key ) ) {
+		if ( !$this->hasKey( $key ) || $this->expire( $key ) ) {
 			return false;
 		}
 
@@ -72,18 +70,9 @@ class HashBagOStuff extends BagOStuff {
 		unset( $this->bag[$key] );
 		$this->bag[$key] = $temp;
 
+		$casToken = $this->bag[$key][self::KEY_CAS];
+
 		return $this->bag[$key][self::KEY_VAL];
-	}
-
-	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
-		$casToken = null;
-
-		$value = $this->doGet( $key );
-		if ( $value !== false ) {
-			$casToken = $this->bag[$key][self::KEY_CAS];
-		}
-
-		return $value;
 	}
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
