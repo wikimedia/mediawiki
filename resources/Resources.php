@@ -1454,7 +1454,9 @@ return [
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.css',
 	],
 	'mediawiki.action.history.styles' => [
-		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.styles.css',
+		'skinStyles' => [
+			'default' => 'resources/src/mediawiki.action/mediawiki.action.history.styles.css',
+		],
 	],
 	'mediawiki.action.view.dblClickEdit' => [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.dblClickEdit.js',
@@ -2024,8 +2026,8 @@ return [
 			'parentheses-end',
 			'pipe-separator'
 		],
-		'styles' => [
-			'resources/src/mediawiki.interface.helpers.styles.less',
+		'skinStyles' => [
+			'default' => 'resources/src/mediawiki.interface.helpers.styles.less',
 		],
 		'targets' => [
 			'desktop', 'mobile'
