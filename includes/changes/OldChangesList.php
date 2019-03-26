@@ -87,7 +87,7 @@ class OldChangesList extends ChangesList {
 
 		if ( $rc->mAttribs['rc_log_type'] ) {
 			$logtitle = SpecialPage::getTitleFor( 'Log', $rc->mAttribs['rc_log_type'] );
-			$this->insertLog( $html, $logtitle, $rc->mAttribs['rc_log_type'] );
+			$this->insertLog( $html, $logtitle, $rc->mAttribs['rc_log_type'], false );
 			$flags = $this->recentChangesFlags( [ 'unpatrolled' => $unpatrolled,
 				'bot' => $rc->mAttribs['rc_bot'] ], '' );
 			if ( $flags !== '' ) {
@@ -98,7 +98,7 @@ class OldChangesList extends ChangesList {
 			list( $name, $htmlubpage ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
 				resolveAlias( $rc->mAttribs['rc_title'] );
 			if ( $name == 'Log' ) {
-				$this->insertLog( $html, $rc->getTitle(), $htmlubpage );
+				$this->insertLog( $html, $rc->getTitle(), $htmlubpage, false );
 			}
 		// Regular entries
 		} else {
