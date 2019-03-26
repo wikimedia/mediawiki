@@ -53,11 +53,6 @@ class DatabaseOracle extends Database {
 	private $mFieldInfoCache = [];
 
 	function __construct( array $p ) {
-		global $wgDBprefix;
-
-		if ( $p['tablePrefix'] == 'get from global' ) {
-			$p['tablePrefix'] = $wgDBprefix;
-		}
 		$p['tablePrefix'] = strtoupper( $p['tablePrefix'] );
 		parent::__construct( $p );
 		Hooks::run( 'DatabaseOraclePostInit', [ $this ] );
