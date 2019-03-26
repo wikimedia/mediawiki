@@ -1460,7 +1460,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$oldName = $this->addIdentifierQuotes( $oldName );
 		$query = "CREATE $tmp TABLE $newName (LIKE $oldName)";
 
-		return $this->query( $query, $fname );
+		return $this->query( $query, $fname, $this::QUERY_PSEUDO_PERMANENT );
 	}
 
 	/**

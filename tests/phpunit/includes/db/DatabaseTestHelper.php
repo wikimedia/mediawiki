@@ -133,10 +133,10 @@ class DatabaseTestHelper extends Database {
 		return $s;
 	}
 
-	public function query( $sql, $fname = '', $tempIgnore = false ) {
+	public function query( $sql, $fname = '', $flags = 0 ) {
 		$this->checkFunctionName( $fname );
 
-		return parent::query( $sql, $fname, $tempIgnore );
+		return parent::query( $sql, $fname, $flags );
 	}
 
 	public function tableExists( $table, $fname = __METHOD__ ) {

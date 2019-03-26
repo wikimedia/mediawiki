@@ -1018,7 +1018,7 @@ class DatabaseSqlite extends Database {
 			}
 		}
 
-		$res = $this->query( $sql, $fname );
+		$res = $this->query( $sql, $fname, self::QUERY_PSEUDO_PERMANENT );
 
 		// Take over indexes
 		$indexList = $this->query( 'PRAGMA INDEX_LIST(' . $this->addQuotes( $oldName ) . ')' );
