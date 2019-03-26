@@ -62,6 +62,8 @@ THIS IS NOT A RELEASE YET
 * (T199474) Fix typo in rebuildrecentchanges.php resulting in rogue flags.
 * (T218608) Fix an issue that prevents Extension:OAuth working when
   $wgBlockDisablesLogin is true.
+* (T216029) Chrome redirects to Special:BadTitle after editing a section with
+  a non-Latin name on a page with non-Latin characters in title.
 
 == MediaWiki 1.31.1 ==
 
