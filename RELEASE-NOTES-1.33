@@ -344,6 +344,7 @@ because of Phabricator reports.
 * The translation of main page in Sardinian (sc) was changed from "Pàgina Base"
   to "Pàgina printzipale". Existing wikis using this content language need to
   move the main page or change the name through MediaWiki:Mainpage page.
+* wfSplitWikiID(), deprecated in 1.32, has been removed.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
