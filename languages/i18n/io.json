@@ -173,7 +173,7 @@
 	"help": "Helpo",
 	"help-mediawiki": "Helpo pri MediaWiki",
 	"search": "Sercho",
-	"search-ignored-headings": " #<!-- mantenez ica lineo sen modifiki --> <pre>\n# Tituli qui ignoresos per la sistemo di serchado.\n# Modifiki en ca parto efikeskos balde pos la titulo di la pagino adicionesos a l'indexo.\n# Tu povas acelerar la riindexigo di la pagino facante nihila editado.\n# La sintaxo esas quale infre:\n#   * Omna texti qui finas kun la signo \"#\" fine de la lineo, esas komentaro.\n#   * Omna lineo ne blanka - to esas: skriptata -, esas l'exakta titulo por ignorar la diferi inter mayuskula e minuskula literi, ed altra.\nReferi\nExtera ligili\nVidez anke\n #</pre> <!-- mantenez ica lineo sen modifiki -->",
+	"search-ignored-headings": " #<!-- mantenez ica lineo sen modifiki --> <pre>\n# Tituli qui ignoresos dal sistemo di serchado.\n# Modifiki en ca parto efikeskos balde pos la titulo di la pagino adicionesos a l'indexo.\n# Tu povas acelerar la riindexigo di la pagino facante nihila editado.\n# La sintaxo esas quale infre:\n#   * Omna texti qui finas kun la signo \"#\" fine de la lineo, esas komentaro.\n#   * Omna lineo ne blanka - to esas: skriptata -, esas l'exakta titulo por ignorar la diferi inter mayuskula e minuskula literi, ed altra.\nReferi\nExtera ligili\nVidez anke\n #</pre> <!-- mantenez ica lineo sen modifiki -->",
 	"searchbutton": "Serchez",
 	"go": "Irar",
 	"searcharticle": "Irez",

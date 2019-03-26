@@ -2076,6 +2076,7 @@
 	"delete-warning-toobig": "no pel wayirê tarixê vurnayiş ê derg o, $1 {{PLURAL:$1|revizyonê|revizyonê}} seri de.\nhewn a kerdışê ıney {{SITENAME}} şuxul bıne gırano;\nbı diqqet dewam kerê.",
 	"deleteprotected": "Şıma nêşenê ena perer esternê,  çıkı per starya ya.",
 	"rollback": "vurnayişan tepiya bıger",
+	"rollback-confirmation-no": "Bıtexelne",
 	"rollbacklink": "ageyrayış",
 	"rollbacklinkcount": "$1 {{PLURAL:$1|vurnayış|vurnayışi}} peyd gıroti",
 	"rollbacklinkcount-morethan": "$1 {{PLURAL:$1|vurnayış|vuranyışi}} tewr peyd gırot",

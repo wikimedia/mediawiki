@@ -1045,6 +1045,7 @@
 	"apierror-mustbeloggedin": "$1にログインしている必要があります。",
 	"apierror-noimageredirect": "画像のリダイレクトを作成する権限がありません。",
 	"apierror-nosuchpageid": "ID $1のページはありません。",
+	"apierror-pagelang-disabled": "このウィキではページの言語は変更できません。",
 	"apierror-permissiondenied": "$1に必要な権限がありません。",
 	"apierror-permissiondenied-generic": "アクセスが拒否されました。",
 	"apierror-readonly": "ウィキは現在読み取り専用モードです。",
