@@ -935,7 +935,7 @@ class MediaWiki {
 	) {
 		if ( $config->get( 'StatsdServer' ) && $stats->hasData() ) {
 			try {
-				$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
+				$statsdServer = explode( ':', $config->get( 'StatsdServer' ), 2 );
 				$statsdHost = $statsdServer[0];
 				$statsdPort = $statsdServer[1] ?? 8125;
 				$statsdSender = new SocketSender( $statsdHost, $statsdPort );
