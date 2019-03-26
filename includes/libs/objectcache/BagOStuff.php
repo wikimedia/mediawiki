@@ -261,6 +261,17 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	abstract public function delete( $key, $flags = 0 );
 
 	/**
+	 * Insert an item if it does not already exist
+	 *
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exptime
+	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
+	 * @return bool Success
+	 */
+	abstract public function add( $key, $value, $exptime = 0, $flags = 0 );
+
+	/**
 	 * Merge changes into the existing cache value (possibly creating a new one)
 	 *
 	 * The callback function returns the new value given the current value
@@ -588,16 +599,6 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * Insertion
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime
-	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
-	 * @return bool Success
-	 */
-	abstract public function add( $key, $value, $exptime = 0, $flags = 0 );
-
-	/**
 	 * Increase stored value of $key by $value while preserving its TTL
 	 * @param string $key Key to increase
 	 * @param int $value Value to add to $key (default: 1) [optional]
@@ -704,12 +705,20 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
+	 * @param int $exptime
+	 * @return bool
+	 */
+	protected function expiryIsRelative( $exptime ) {
+		return ( $exptime != 0 && $exptime < ( 10 * self::TTL_YEAR ) );
+	}
+
+	/**
 	 * Convert an optionally relative time to an absolute time
 	 * @param int $exptime
 	 * @return int
 	 */
-	protected function convertExpiry( $exptime ) {
-		if ( $exptime != 0 && $exptime < ( 10 * self::TTL_YEAR ) ) {
+	protected function convertToExpiry( $exptime ) {
+		if ( $this->expiryIsRelative( $exptime ) ) {
 			return (int)$this->getCurrentTime() + $exptime;
 		} else {
 			return $exptime;
