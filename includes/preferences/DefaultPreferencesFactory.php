@@ -870,17 +870,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				'section' => 'rendering/advancedrendering',
 				'label-message' => 'tog-showrollbackconfirmation',
 			];
-
-			/**
-			 * FIXME
-			 * Remove temporary help text and references to DisableRollbackConfirmationFeature
-			 * after release of rollback feature. See T199534
-			 */
-			if ( MediaWikiServices::getInstance()
-				->getMainConfig()->get( 'DisableRollbackConfirmationFeature' ) ) {
-				$defaultPreferences['showrollbackconfirmation']
-				['help-message'] = 'tog-showrollbackconfirmation-prerelease-warning';
-			}
 		}
 	}
 

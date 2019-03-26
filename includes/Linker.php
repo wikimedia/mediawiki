@@ -1765,15 +1765,7 @@ class Linker {
 			$inner = $context->msg( 'brackets' )->rawParams( $inner )->escaped();
 		}
 
-		/**
-		 * FIXME
-		 * Remove all references to DisableRollbackConfirmationFeature
-		 * after release of rollback feature. See T199534
-		 */
-		if ( !MediaWikiServices::getInstance()
-				->getMainConfig()->get( 'DisableRollbackConfirmationFeature' ) &&
-			 $context->getUser()->getBoolOption( 'showrollbackconfirmation' )
-		) {
+		if ( $context->getUser()->getBoolOption( 'showrollbackconfirmation' ) ) {
 			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 			$stats->increment( 'rollbackconfirmation.event.load' );
 			$context->getOutput()->addModules( 'mediawiki.page.rollback.confirmation' );
