@@ -46,6 +46,8 @@ class ApiStashEdit extends ApiBase {
 	const MAX_CACHE_TTL = 300; // 5 minutes
 	const MAX_SIGNATURE_TTL = 60;
 
+	const MAX_CACHE_RECENT = 2;
+
 	public function execute() {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
@@ -461,7 +463,30 @@ class ApiStashEdit extends ApiBase {
 			);
 		}
 
+		if ( $ok ) {
+			// These blobs can waste slots in low cardinality memcached slabs
+			self::pruneExcessStashedEntries( $cache, $user, $key );
+		}
+
 		return $ok ? true : 'store_error';
+	}
+
+	/**
+	 * @param BagOStuff $cache
+	 * @param User $user
+	 * @param string $newKey
+	 */
+	private static function pruneExcessStashedEntries( BagOStuff $cache, User $user, $newKey ) {
+		$key = $cache->makeKey( 'stash-edit-recent', $user->getId() );
+
+		$keyList = $cache->get( $key ) ?: [];
+		if ( count( $keyList ) >= self::MAX_CACHE_RECENT ) {
+			$oldestKey = array_shift( $keyList );
+			$cache->delete( $oldestKey );
+		}
+
+		$keyList[] = $newKey;
+		$cache->set( $key, $keyList, 2 * self::MAX_CACHE_TTL );
 	}
 
 	public function getAllowedParams() {
