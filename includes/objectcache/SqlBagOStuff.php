@@ -344,7 +344,7 @@ class SqlBagOStuff extends BagOStuff {
 			if ( $exptime == 0 ) {
 				$encExpiry = $this->getMaxDateTime( $db );
 			} else {
-				$exptime = $this->convertExpiry( $exptime );
+				$exptime = $this->convertToExpiry( $exptime );
 				$encExpiry = $db->timestamp( $exptime );
 			}
 			foreach ( $serverKeys as $tableName => $tableKeys ) {
@@ -406,7 +406,7 @@ class SqlBagOStuff extends BagOStuff {
 			if ( $exptime == 0 ) {
 				$encExpiry = $this->getMaxDateTime( $db );
 			} else {
-				$exptime = $this->convertExpiry( $exptime );
+				$exptime = $this->convertToExpiry( $exptime );
 				$encExpiry = $db->timestamp( $exptime );
 			}
 			// (T26425) use a replace if the db supports it instead of
@@ -542,7 +542,7 @@ class SqlBagOStuff extends BagOStuff {
 			$db = $this->getDB( $serverIndex );
 			$db->update(
 				$tableName,
-				[ 'exptime' => $db->timestamp( $this->convertExpiry( $expiry ) ) ],
+				[ 'exptime' => $db->timestamp( $this->convertToExpiry( $expiry ) ) ],
 				[ 'keyname' => $key, 'exptime > ' . $db->addQuotes( $db->timestamp( time() ) ) ],
 				__METHOD__
 			);
