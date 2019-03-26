@@ -1412,6 +1412,9 @@ class DatabaseMssql extends Database {
 		return "CAST( $field AS NVARCHAR )";
 	}
 
+	public static function getAttributes() {
+		return [ self::ATTR_SCHEMAS_AS_TABLE_GROUPS => true ];
+	}
 }
 
 /**

@@ -61,8 +61,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	const SLOW_WRITE_SEC = 0.500;
 	const SMALL_WRITE_ROWS = 100;
 
-	/** @var string Whether lock granularity is on the level of the entire database */
+	/** @var string Lock granularity is on the level of the entire database */
 	const ATTR_DB_LEVEL_LOCKING = 'db-level-locking';
+	/** @var string The SCHEMA keyword refers to a grouping of tables in a database */
+	const ATTR_SCHEMAS_AS_TABLE_GROUPS = 'supports-schemas';
 
 	/** @var int New Database instance will not be connected yet when returned */
 	const NEW_UNCONNECTED = 0;
@@ -475,12 +477,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * @param string $dbType A possible DB type (sqlite, mysql, postgres,...)
 	 * @param string|null $driver Optional name of a specific DB client driver
-	 * @return array Map of (Database::ATTRIBUTE_* constant => value) for all such constants
+	 * @return array Map of (Database::ATTR_* constant => value) for all such constants
 	 * @throws InvalidArgumentException
 	 * @since 1.31
 	 */
 	final public static function attributesFromType( $dbType, $driver = null ) {
-		static $defaults = [ self::ATTR_DB_LEVEL_LOCKING => false ];
+		static $defaults = [
+			self::ATTR_DB_LEVEL_LOCKING => false,
+			self::ATTR_SCHEMAS_AS_TABLE_GROUPS => false
+		];
 
 		$class = self::getClass( $dbType, $driver );
 
@@ -544,7 +549,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @return array Map of (Database::ATTRIBUTE_* constant => value
+	 * @return array Map of (Database::ATTR_* constant => value
 	 * @since 1.31
 	 */
 	protected static function getAttributes() {
