@@ -11406,6 +11406,43 @@ regularly. Below only new and removed languages are listed.
 
 == MediaWiki 1.13 ==
 
+== MediaWiki 1.13.5 ==
+
+February 22, 2009
+
+This is a maintenance update to the Summer 2008 snapshot release of MediaWiki.
+
+MediaWiki is now using a "continuous integration" development model with
+quarterly snapshot releases. The latest development code is always kept
+"ready to run", and in fact runs our own sites on Wikipedia.
+
+Release branches will continue to receive security updates for about a year
+from first release, but nonessential bugfixes and feature developments
+will be made on the development trunk and appear in the next quarterly release.
+
+Those wishing to use the latest code instead of a branch release can obtain
+it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+
+== Changes since 1.13.4 ==
+
+* (bug 17449) Fixed PostgreSQL installation
+* (bug 17527) Fixed missing MySQL-specific options in installer
+
+== Changes since 1.13.3 ==
+
+A number of cross-site scripting (XSS) security vulnerabilities were discovered
+in the web-based installer (config/index.php). These vulnerabilities all
+require a live installer -- once the installer has been used to install a wiki,
+it is deactivated.
+
+Note that cross-site scripting vulnerabilities can be used to attack any website
+in the same cookie domain. So if you have an uninstalled copy of MediaWiki on
+the same site as an active web service, MediaWiki could be used to attack the
+active service.
+
+If you are hosting an old copy of MediaWiki that you have never installed, you
+are advised to remove it from the web.
+
 == Changes since 1.13.2 ==
 
 David Remahl of Apple's Product Security team has identified a number of
