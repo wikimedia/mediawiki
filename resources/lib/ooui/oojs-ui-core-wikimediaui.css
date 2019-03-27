@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.1
+ * OOUI v0.31.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-03-21T15:54:46Z
+ * Date: 2019-03-26T23:00:48Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -1251,6 +1251,20 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-checkboxInputWidget [type='checkbox']:checked + span {
   background-size: 1em 1em;
 }
+.oo-ui-checkboxInputWidget [type='checkbox']:indeterminate + span {
+  background-image: none;
+  background-color: #36c;
+  border-color: #36c;
+}
+.oo-ui-checkboxInputWidget [type='checkbox']:indeterminate + span:before {
+  content: ' ';
+  position: absolute;
+  top: 0.57142857em;
+  bottom: 0.57142857em;
+  left: 0.21428571em;
+  right: 0.21428571em;
+  background-color: #fff;
+}
 .oo-ui-checkboxInputWidget [type='checkbox']:disabled + span {
   background-color: #c8ccd1;
   border-color: #c8ccd1;
@@ -1485,11 +1499,18 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   max-width: 50em;
 }
 .oo-ui-textInputWidget .oo-ui-inputWidget-input {
+  -webkit-appearance: none;
   display: block;
   width: 100%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+.oo-ui-textInputWidget input {
+  -moz-appearance: textfield;
+}
+.oo-ui-textInputWidget input::-ms-clear {
+  display: none;
 }
 .oo-ui-textInputWidget textarea {
   overflow: auto;
@@ -1497,19 +1518,10 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget textarea.oo-ui-textInputWidget-autosized {
   resize: none;
 }
-.oo-ui-textInputWidget [type='number'] {
-  -moz-appearance: textfield;
-}
 .oo-ui-textInputWidget [type='number']::-webkit-outer-spin-button,
 .oo-ui-textInputWidget [type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-.oo-ui-textInputWidget [type='search'] {
-  -webkit-appearance: none;
-}
-.oo-ui-textInputWidget [type='search']::-ms-clear {
-  display: none;
 }
 .oo-ui-textInputWidget [type='search']::-webkit-search-decoration,
 .oo-ui-textInputWidget [type='search']::-webkit-search-cancel-button {
@@ -1553,7 +1565,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   user-select: none;
 }
 .oo-ui-textInputWidget .oo-ui-inputWidget-input {
-  -webkit-appearance: none;
   background-color: #fff;
   color: #000;
   margin: 0;

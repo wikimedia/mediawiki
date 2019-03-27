@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.1
+ * OOUI v0.31.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-03-21T15:54:37Z
+ * Date: 2019-03-26T23:00:40Z
  */
 ( function ( OO ) {
 
@@ -9467,6 +9467,7 @@ OO.ui.ButtonInputWidget.prototype.getInputId = function () {
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [selected=false] Select the checkbox initially. By default, the checkbox is
  *  not selected.
+ * @cfg {boolean} [indeterminate=false] Whether the checkbox is in the indeterminate state.
  */
 OO.ui.CheckboxInputWidget = function OoUiCheckboxInputWidget( config ) {
 	// Configuration initialization
@@ -9487,11 +9488,23 @@ OO.ui.CheckboxInputWidget = function OoUiCheckboxInputWidget( config ) {
 		// Required for pretty styling in WikimediaUI theme
 		.append( this.checkIcon.$element );
 	this.setSelected( config.selected !== undefined ? config.selected : false );
+	this.setIndeterminate( config.indeterminate !== undefined ? config.indeterminate : false );
 };
 
 /* Setup */
 
 OO.inheritClass( OO.ui.CheckboxInputWidget, OO.ui.InputWidget );
+
+/* Events */
+
+/**
+ * @event change
+ *
+ * A change event is emitted when the state of the input changes.
+ *
+ * @param {boolean} selected
+ * @param {boolean} indeterminate
+ */
 
 /* Static Properties */
 
@@ -9531,6 +9544,7 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
 		// Allow the stack to clear so the value will be updated
 		setTimeout( function () {
 			widget.setSelected( widget.$input.prop( 'checked' ) );
+			widget.setIndeterminate( widget.$input.prop( 'indeterminate' ) );
 		} );
 	}
 };
@@ -9538,16 +9552,20 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
 /**
  * Set selection state of this checkbox.
  *
- * @param {boolean} state `true` for selected
+ * @param {boolean} state Selected state
+ * @param {boolean} internal Used for internal calls to suppress events
  * @chainable
- * @return {OO.ui.Widget} The widget, for chaining
+ * @return {OO.ui.CheckboxInputWidget} The widget, for chaining
  */
-OO.ui.CheckboxInputWidget.prototype.setSelected = function ( state ) {
+OO.ui.CheckboxInputWidget.prototype.setSelected = function ( state, internal ) {
 	state = !!state;
 	if ( this.selected !== state ) {
 		this.selected = state;
 		this.$input.prop( 'checked', this.selected );
-		this.emit( 'change', this.selected );
+		if ( !internal ) {
+			this.setIndeterminate( false, true );
+			this.emit( 'change', this.selected, this.indeterminate );
+		}
 	}
 	// The first time that the selection state is set (probably while constructing the widget),
 	// remember it in defaultSelected. This property can be later used to check whether
@@ -9572,6 +9590,42 @@ OO.ui.CheckboxInputWidget.prototype.isSelected = function () {
 		this.setSelected( selected );
 	}
 	return this.selected;
+};
+
+/**
+ * Set indeterminate state of this checkbox.
+ *
+ * @param {boolean} state Indeterminate state
+ * @param {boolean} internal Used for internal calls to suppress events
+ * @chainable
+ * @return {OO.ui.CheckboxInputWidget} The widget, for chaining
+ */
+OO.ui.CheckboxInputWidget.prototype.setIndeterminate = function ( state, internal ) {
+	state = !!state;
+	if ( this.indeterminate !== state ) {
+		this.indeterminate = state;
+		this.$input.prop( 'indeterminate', this.indeterminate );
+		if ( !internal ) {
+			this.setSelected( false, true );
+			this.emit( 'change', this.selected, this.indeterminate );
+		}
+	}
+	return this;
+};
+
+/**
+ * Check if this checkbox is selected.
+ *
+ * @return {boolean} Checkbox is selected
+ */
+OO.ui.CheckboxInputWidget.prototype.isIndeterminate = function () {
+	// Resynchronize our internal data with DOM data. Other scripts executing on the page can modify
+	// it, and we won't know unless they're kind enough to trigger a 'change' event.
+	var indeterminate = this.$input.prop( 'indeterminate' );
+	if ( this.indeterminate !== indeterminate ) {
+		this.setIndeterminate( indeterminate );
+	}
+	return this.indeterminate;
 };
 
 /**
@@ -13203,6 +13257,7 @@ OO.ui.SelectFileInputWidget.prototype.updateUI = function () {
  * @protected
  */
 OO.ui.SelectFileInputWidget.prototype.setupInput = function () {
+	var widget = this;
 	this.$input
 		.attr( {
 			type: 'file',
@@ -13212,7 +13267,15 @@ OO.ui.SelectFileInputWidget.prototype.setupInput = function () {
 			// TabIndexed, so remove aria-disabled attr.
 			'aria-disabled': null
 		} )
-		.on( 'change', this.onFileSelectedHandler );
+		.on( 'change', this.onFileSelectedHandler )
+		// Support: IE11
+		// In IE 11, focussing a file input (by clicking on it) displays a text cursor and scrolls
+		// the cursor into view (in this case, it scrolls the button, which has 'overflow: hidden').
+		// Since this messes with our custom styling (the file input has large dimensions and this
+		// causes the label to scroll out of view), scroll the button back to top. (T192131)
+		.on( 'focus', function () {
+			widget.$input.parent().prop( 'scrollTop', 0 );
+		} );
 
 	if ( this.accept ) {
 		this.$input.attr( 'accept', this.accept.join( ', ' ) );

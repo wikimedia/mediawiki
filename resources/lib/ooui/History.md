@@ -1,4 +1,22 @@
 # OOUI Release History
+## v0.31.2 / 2019-03-26
+### Features
+* CheckboxInputWidget: Add support for indeterminate state (Ed Sanders & Bartosz Dziewoński)
+
+### Code
+* DropdownInputWidget: Fix typo in Apex border styles (Ed Sanders)
+* SelectFileInputWidget: Apply IE11 scrolling fix (Ed Sanders)
+* TextInputWidget: Remove proprietary vendor UI extensions (Volker E.)
+* PHP: Tag: Use strict comparison for `array_search` (Ed Sanders)
+* icons: Identical optimization to both newspaper-ltr… and …rtl.svg icons (Thiemo Kreuz)
+* icons: Make use of the auto-closing feature in SVG `<path>`s (Thiemo Kreuz)
+* icons: Remove non-standard offset from web.svg icon (Thiemo Kreuz)
+* demo: Match PHP toolbar to JS (Ed Sanders)
+* build: Update package-lock.json (Ed Sanders)
+* build: Upgrade js-yaml sub-dependency from 3.12.1 to 3.13.0 for DoS fix (James D. Forrester)
+* packages: Massively trim down which files are in npm and composer packages (James D. Forrester)
+
+
 ## v0.31.1 / 2019-03-21
 ### Deprecations
 * [DEPRECATING CHANGE] core: Remove unused Date.now fallback (Timo Tijhof)
