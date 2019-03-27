@@ -93,10 +93,6 @@ class WinCacheBagOStuff extends BagOStuff {
 		return true;
 	}
 
-	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
-		return $this->mergeViaCas( $key, $callback, $exptime, $attempts, $flags );
-	}
-
 	/**
 	 * Construct a cache key.
 	 *
