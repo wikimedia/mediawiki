@@ -519,7 +519,7 @@ class SqlBagOStuff extends BagOStuff {
 			}
 		} catch ( DBError $e ) {
 			$this->handleWriteError( $e, $db, $serverIndex );
-			return null;
+			return false;
 		}
 
 		return $newValue;
