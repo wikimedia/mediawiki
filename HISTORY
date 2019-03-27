@@ -16487,6 +16487,39 @@ place on the development trunk and will appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can [[Download
 from SVN|obtain it from source control]].
 
+=== What's new in 1.6 ===
+
+'''User interface:'''
+* The account creation form has been separated from the user login form.
+* Page protection/unprotection uses a new, expanded form
+
+'''Templates:'''
+* Categories and "what links here" now update as expected when adding or
+removing links in a template.
+* Template parameters can now have default values, as <nowiki>{{{name|default
+value}}}</nowiki>
+
+'''Uploads:'''
+* Optional support for rasterizing SVG images to PNG for inline display
+
+'''Feeds:'''
+* Feed generation upgraded to Atom 1.0
+* Diffs in RSS and Atom feeds are now colored for improved readability.
+
+'''Database:'''
+* MySQL 3.23.x support dropped; 4.0 or later required
+* Experimental support for Unicode mode of MySQL 4.1/5.0 (moderately tested)
+* Experimental Oracle support (not well tested!)
+
+'''Anti-spam extension support:'''
+* [[meta:SpamBlacklist extension|SpamBlacklist extension]] now has support for
+automated cleanup.
+* Support for a [[meta:ConfirmEdit extension|captcha extension]] to restrict
+automated spam edits.
+
+Numerous bug fixes and other behind-the-scenes changes have been made; see the
+file HISTORY for a complete change list.
+
 == Changes since 1.5 ==
 
 * (bug 2885) More PHP 5.1 fixes: skin, search, log, undelete
@@ -17231,39 +17264,6 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 2139) Show page title in subtitle when viewing "read only" page
 * (bug 5452) Update language name for Cree
 
-=== What's new in 1.6 ===
-
-'''User interface:'''
-* The account creation form has been separated from the user login form.
-* Page protection/unprotection uses a new, expanded form
-
-'''Templates:'''
-* Categories and "what links here" now update as expected when adding or
-removing links in a template.
-* Template parameters can now have default values, as <nowiki>{{{name|default
-value}}}</nowiki>
-
-'''Uploads:'''
-* Optional support for rasterizing SVG images to PNG for inline display
-
-'''Feeds:'''
-* Feed generation upgraded to Atom 1.0
-* Diffs in RSS and Atom feeds are now colored for improved readability.
-
-'''Database:'''
-* MySQL 3.23.x support dropped; 4.0 or later required
-* Experimental support for Unicode mode of MySQL 4.1/5.0 (moderately tested)
-* Experimental Oracle support (not well tested!)
-
-'''Anti-spam extension support:'''
-* [[meta:SpamBlacklist extension|SpamBlacklist extension]] now has support for
-automated cleanup.
-* Support for a [[meta:ConfirmEdit extension|captcha extension]] to restrict
-automated spam edits.
-
-Numerous bug fixes and other behind-the-scenes changes have been made; see the
-file HISTORY for a complete change list.
-
 == Compatibility ==
 
 Older PHP 4.2 and 4.1 releases are no longer supported; PHP 4 users must
@@ -17302,7 +17302,11 @@ Some output, particularly involving user-supplied inline HTML, may not produce
 recommended on live sites. (This must be set for MathML to display properly in
 Mozilla.)
 
-----
+
+= MediaWiki 1.5 =
+
+== MediaWiki 1.5.9 ==
+* (bug 3359) Add hooks on completion of file upload
 
 == MediaWiki 1.5.8 ==
 
