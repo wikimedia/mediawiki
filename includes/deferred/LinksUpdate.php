@@ -122,7 +122,11 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		parent::__construct();
 
 		$this->mTitle = $title;
-		$this->mId = $title->getArticleID( Title::GAID_FOR_UPDATE );
+
+		if ( !$this->mId ) {
+			// NOTE: subclasses may initialize mId before calling this constructor!
+			$this->mId = $title->getArticleID( Title::GAID_FOR_UPDATE );
+		}
 
 		if ( !$this->mId ) {
 			throw new InvalidArgumentException(
@@ -1180,7 +1184,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	/**
 	 * @return IDatabase
 	 */
-	private function getDB() {
+	protected function getDB() {
 		if ( !$this->db ) {
 			$this->db = wfGetDB( DB_MASTER );
 		}

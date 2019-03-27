@@ -412,6 +412,11 @@ because of Phabricator reports.
   changed to explicitly cast. Subclasses relying on the base-class
   implementation should check whether they need to override it now.
 * BagOStuff::add is now abstract and must explicitly be defined in subclasses.
+* LinksDeletionUpdate is now a subclass of LinksUpdate. As a consequence,
+  the following hooks will now be triggered upon page deletion in addition
+  to page updates: LinksUpdateConstructed, LinksUpdate, LinksUpdateComplete.
+  LinksUpdateAfterInsert is not triggered since deletions do not cause
+  insertions into links tables.
 
 == Compatibility ==
 MediaWiki 1.33 requires PHP 7.0.13 or later. Although HHVM 3.18.5 or later is
