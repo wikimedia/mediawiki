@@ -4023,15 +4023,12 @@ class Language {
 	 * Checks that convertPlural was given an array and pads it to requested
 	 * amount of forms by copying the last one.
 	 *
-	 * @param array $forms Array of forms given to convertPlural
+	 * @param array $forms
 	 * @param int $count How many forms should there be at least
-	 * @return array Padded array of forms or an exception if not an array
+	 * @return array Padded array of forms
 	 */
 	protected function preConvertPlural( /* Array */ $forms, $count ) {
-		while ( count( $forms ) < $count ) {
-			$forms[] = $forms[count( $forms ) - 1];
-		}
-		return $forms;
+		return array_pad( $forms, $count, end( $forms ) );
 	}
 
 	/**
