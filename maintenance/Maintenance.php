@@ -862,14 +862,7 @@ abstract class Maintenance {
 					$this->setParam( $options, $option, $param );
 				} else {
 					$bits = explode( '=', $option, 2 );
-					if ( count( $bits ) > 1 ) {
-						$option = $bits[0];
-						$param = $bits[1];
-					} else {
-						$param = 1;
-					}
-
-					$this->setParam( $options, $option, $param );
+					$this->setParam( $options, $bits[0], $bits[1] ?? 1 );
 				}
 			} elseif ( $arg == '-' ) {
 				# Lonely "-", often used to indicate stdin or stdout.
@@ -1252,11 +1245,8 @@ abstract class Maintenance {
 		}
 		if ( isset( $this->mOptions['wiki'] ) ) {
 			$bits = explode( '-', $this->mOptions['wiki'], 2 );
-			if ( count( $bits ) == 1 ) {
-				$bits[] = '';
-			}
 			define( 'MW_DB', $bits[0] );
-			define( 'MW_PREFIX', $bits[1] );
+			define( 'MW_PREFIX', $bits[1] ?? '' );
 		} elseif ( isset( $this->mOptions['server'] ) ) {
 			// Provide the option for site admins to detect and configure
 			// multiple wikis based on server names. This offers --server
