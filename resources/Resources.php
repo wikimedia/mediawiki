@@ -1766,19 +1766,6 @@ return [
 			'removedwatchtext-talk',
 		],
 	],
-	'mediawiki.page.rollback' => [
-		'scripts' => 'resources/src/mediawiki.page.rollback.js',
-		'dependencies' => [
-			'mediawiki.api',
-			'mediawiki.notify',
-			'mediawiki.util',
-			'jquery.spinner',
-		],
-		'messages' => [
-			'rollbackfailed',
-			'actioncomplete',
-		],
-	],
 	'mediawiki.page.rollback.confirmation' => [
 		'scripts' => 'resources/src/mediawiki.rollback.confirmation.js',
 		'dependencies' => [
