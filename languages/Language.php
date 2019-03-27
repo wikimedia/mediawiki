@@ -3515,8 +3515,8 @@ class Language {
 	 * Truncate a string to a specified number of characters, appending an optional
 	 * string (e.g. for ellipsis).
 	 *
-	 * This provides multibyte version of truncate() method of this class, suitable for truncation
-	 * based on number of characters, instead of number of bytes.
+	 * This provides multibyte version of truncateForDatabase() method of this class,
+	 * suitable for truncation based on number of characters, instead of number of bytes.
 	 *
 	 * If $length is negative, the string will be truncated from the beginning.
 	 *
