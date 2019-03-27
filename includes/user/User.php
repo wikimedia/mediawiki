@@ -1403,23 +1403,10 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function trackBlockWithCookie() {
 		$block = $this->getBlock();
-		if ( $block && $this->getRequest()->getCookie( 'BlockID' ) === null ) {
-			$config = RequestContext::getMain()->getConfig();
-			$shouldSetCookie = false;
 
-			if ( $this->isAnon() && $config->get( 'CookieSetOnIpBlock' ) ) {
-				// If user is logged-out, set a cookie to track the Block
-				$shouldSetCookie = in_array( $block->getType(), [
-					Block::TYPE_IP, Block::TYPE_RANGE
-				] );
-				if ( $shouldSetCookie ) {
-					$block->setCookie( $this->getRequest()->response() );
-				}
-			} elseif ( $this->isLoggedIn() && $config->get( 'CookieSetOnAutoblock' ) ) {
-				$shouldSetCookie = $block->getType() === Block::TYPE_USER && $block->isAutoblocking();
-				if ( $shouldSetCookie ) {
-					$block->setCookie( $this->getRequest()->response() );
-				}
+		if ( $block && $this->getRequest()->getCookie( 'BlockID' ) === null ) {
+			if ( $block->shouldTrackWithCookie( $this->isAnon() ) ) {
+				$block->setCookie( $this->getRequest()->response() );
 			}
 		}
 	}
