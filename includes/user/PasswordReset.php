@@ -81,9 +81,7 @@ class PasswordReset implements LoggerAwareInterface {
 			$resetRoutes = $this->config->get( 'PasswordResetRoutes' );
 			$status = StatusValue::newGood();
 
-			if ( !is_array( $resetRoutes ) ||
-				 !in_array( true, array_values( $resetRoutes ), true )
-			) {
+			if ( !is_array( $resetRoutes ) || !in_array( true, $resetRoutes, true ) ) {
 				// Maybe password resets are disabled, or there are no allowable routes
 				$status = StatusValue::newFatal( 'passwordreset-disabled' );
 			} elseif (
