@@ -313,7 +313,11 @@ class SpecialContributions extends IncludableSpecialPage {
 		$links = '';
 		if ( $talk ) {
 			$tools = self::getUserLinks( $this, $userObj );
-			$links = $this->getLanguage()->pipeList( $tools );
+			$links = Html::openElement( 'span', [ 'class' => 'mw-changeslist-links' ] );
+			foreach ( $tools as $tool ) {
+				$links .= Html::rawElement( 'span', [], $tool ) . ' ';
+			}
+			$links = trim( $links ) . Html::closeElement( 'span' );
 
 			// Show a note if the user is blocked and display the last block log entry.
 			// Do not expose the autoblocks, since that may lead to a leak of accounts' IPs,
@@ -354,7 +358,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 
 		return Html::rawElement( 'div', [ 'class' => 'mw-contributions-user-tools' ],
-			$this->msg( 'contribsub2' )->rawParams( $user, $links )->params( $userObj->getName() )
+			$this->msg( 'contributions-subtitle' )->rawParams( $user )->params( $userObj->getName() )
+			. ' ' . $links
 		);
 	}
 
