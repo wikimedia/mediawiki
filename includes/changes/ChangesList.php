@@ -617,7 +617,13 @@ class ChangesList extends ContextSource {
 			return ' <span class="history-deleted">' .
 				$this->msg( 'rev-deleted-comment' )->escaped() . '</span>';
 		} else {
-			return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle() );
+			return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle(),
+				// Whether section links should refer to local page (using default false)
+				false,
+				// wikid to generate links for (using default null) */
+				null,
+				// whether parentheses should be rendered as part of the message
+				false );
 		}
 	}
 

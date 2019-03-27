@@ -1001,7 +1001,7 @@ class Linker {
 	 * @return string
 	 */
 	public static function userToolLinksRedContribs( $userId, $userText, $edits = null ) {
-		return self::userToolLinks( $userId, $userText, true, 0, $edits );
+		return self::userToolLinks( $userId, $userText, true, 0, $edits, false );
 	}
 
 	/**
