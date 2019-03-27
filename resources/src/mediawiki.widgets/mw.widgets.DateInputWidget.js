@@ -168,6 +168,7 @@
 			focusout: this.onBlur.bind( this )
 		} );
 		this.calendar.$element.on( {
+			focusout: this.onBlur.bind( this ),
 			click: this.onCalendarClick.bind( this ),
 			keypress: this.onCalendarKeyPress.bind( this )
 		} );
