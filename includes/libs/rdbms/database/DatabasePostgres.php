@@ -1465,6 +1465,10 @@ SQL;
 		return $row ? ( strtolower( $row->default_transaction_read_only ) === 'on' ) : false;
 	}
 
+	public static function getAttributes() {
+		return [ self::ATTR_SCHEMAS_AS_TABLE_GROUPS => true ];
+	}
+
 	/**
 	 * @param string $lockName
 	 * @return string Integer
