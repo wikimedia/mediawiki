@@ -2744,7 +2744,7 @@
 	"ip_range_exceeded": "L'intervalle des adresses IP est plus grand l'intervalle maximum. Intervalle autorisé : /$1 .",
 	"ip_range_toolow": "Les intervalles d'adresses IP ne sont effectivement pas autorisés.",
 	"proxyblocker": "Bloqueur de mandataires",
-	"proxyblockreason": "Votre adresse IP a été bloquée car il s’agit d’un mandataire ouvert.\nVeuillez contacter votre fournisseur d’accès Internet ou votre soutien technique et l’informer de ce sérieux problème de sécurité.",
+	"proxyblockreason": "Votre adresse IP a été bloquée car il s’agit d’un mandataire ouvert.\nVeuillez contacter votre fournisseur d’accès à Internet ou votre service d’assistance technique et l’informer de ce sérieux problème de sécurité.",
 	"sorbsreason": "Votre adresse IP est listée comme mandataire ouvert dans le DNSBL utilisé par {{SITENAME}}.",
 	"sorbs_create_account_reason": "Votre adresse IP est listée comme mandataire ouvert dans le DNSBL utilisé par {{SITENAME}}.\nVous ne pouvez pas créer un compte.",
 	"softblockrangesreason": "Les contributions anonymes ne sont pas autorisées à partir de votre adresse IP ($1). Veuillez vous connecter.",
