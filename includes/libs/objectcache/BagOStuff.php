@@ -175,13 +175,9 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * @param string $key
 	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
-	 * @param int|null $oldFlags [unused]
 	 * @return mixed Returns false on failure or if the item does not exist
 	 */
-	public function get( $key, $flags = 0, $oldFlags = null ) {
-		// B/C for ( $key, &$casToken = null, $flags = 0 )
-		$flags = is_int( $oldFlags ) ? $oldFlags : $flags;
-
+	public function get( $key, $flags = 0 ) {
 		$this->trackDuplicateKeys( $key );
 
 		return $this->doGet( $key, $flags );
@@ -223,22 +219,10 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/**
 	 * @param string $key
 	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
+	 * @param mixed|null &$casToken Token to use for check-and-set comparisons
 	 * @return mixed Returns false on failure or if the item does not exist
 	 */
-	abstract protected function doGet( $key, $flags = 0 );
-
-	/**
-	 * @note This method is only needed if merge() uses mergeViaCas()
-	 *
-	 * @param string $key
-	 * @param mixed &$casToken
-	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
-	 * @return mixed Returns false on failure or if the item does not exist
-	 * @throws Exception
-	 */
-	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
-		throw new Exception( __METHOD__ . ' not implemented.' );
-	}
+	abstract protected function doGet( $key, $flags = 0, &$casToken = null );
 
 	/**
 	 * Set an item
@@ -308,7 +292,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 			$reportDupes = $this->reportDupes;
 			$this->reportDupes = false;
 			$casToken = null; // passed by reference
-			$currentValue = $this->getWithToken( $key, $casToken, self::READ_LATEST );
+			$currentValue = $this->doGet( $key, self::READ_LATEST, $casToken );
 			$this->reportDupes = $reportDupes;
 
 			if ( $this->getLastError() ) {
@@ -365,7 +349,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		$curCasToken = null; // passed by reference
-		$this->getWithToken( $key, $curCasToken, self::READ_LATEST );
+		$this->doGet( $key, self::READ_LATEST, $curCasToken );
 		if ( $casToken === $curCasToken ) {
 			$success = $this->set( $key, $value, $exptime, $flags );
 		} else {

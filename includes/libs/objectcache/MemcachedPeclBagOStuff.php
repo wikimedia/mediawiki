@@ -138,7 +138,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $params;
 	}
 
-	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$this->debugLog( "get($key)" );
 		if ( defined( Memcached::class . '::GET_EXTENDED' ) ) { // v3.0.0
 			$flags = Memcached::GET_EXTENDED;

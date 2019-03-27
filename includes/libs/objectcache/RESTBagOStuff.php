@@ -84,13 +84,7 @@ class RESTBagOStuff extends BagOStuff {
 		$this->client->setLogger( $logger );
 	}
 
-	protected function doGet( $key, $flags = 0 ) {
-		$casToken = null;
-
-		return $this->getWithToken( $key, $casToken, $flags );
-	}
-
-	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$casToken = null;
 
 		$req = [

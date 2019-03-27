@@ -103,7 +103,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		}
 	}
 
-	protected function doGet( $key, $flags = 0 ) {
+	public function get( $key, $flags = 0 ) {
 		if ( ( $flags & self::READ_LATEST ) == self::READ_LATEST ) {
 			// If the latest write was a delete(), we do NOT want to fallback
 			// to the other tiers and possibly see the old value. Also, this
@@ -348,5 +348,9 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 	public function makeGlobalKey( $class, $component = null ) {
 		return $this->caches[0]->makeGlobalKey( ...func_get_args() );
+	}
+
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
 	}
 }
