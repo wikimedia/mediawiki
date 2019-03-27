@@ -404,6 +404,7 @@ because of Phabricator reports.
 * ManualLogEntry::setTags() is deprecated, use ManualLogEntry::addTags()
   instead. The setTags() method was overriding the tags, addTags() doesn't
   override, only adds new tags.
+* Block::isValid is deprecated, since it is no longer needed in core.
 
 === Other changes in 1.33 ===
 * (T201747) Html::openElement() warns if given an element name with a space
