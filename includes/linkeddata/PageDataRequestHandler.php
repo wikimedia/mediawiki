@@ -43,11 +43,7 @@ class PageDataRequestHandler {
 	 */
 	public function canHandleRequest( $subPage, WebRequest $request ) {
 		if ( $subPage === '' || $subPage === null ) {
-			if ( $request->getText( 'target', '' ) === '' ) {
-				return false;
-			} else {
-				return true;
-			}
+			return $request->getText( 'target' ) !== '';
 		}
 
 		$parts = explode( '/', $subPage, 2 );
@@ -90,7 +86,7 @@ class PageDataRequestHandler {
 		if ( $subPage !== '' ) {
 			$title = $parts[1];
 		} else {
-			$title = $request->getText( 'target', '' );
+			$title = $request->getText( 'target' );
 		}
 
 		$revision = $request->getInt( 'oldid', $revision );
@@ -145,7 +141,7 @@ class PageDataRequestHandler {
 		}
 
 		$negotiator = new HttpAcceptNegotiator( $mimeTypes );
-		$format = $negotiator->getBestSupportedKey( $accept, null );
+		$format = $negotiator->getBestSupportedKey( $accept );
 
 		if ( $format === null ) {
 			$format = isset( $accept['text/html'] ) ? 'text/html' : null;
