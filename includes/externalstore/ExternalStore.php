@@ -197,7 +197,7 @@ class ExternalStore {
 					$msg = 'read only';
 				} else {
 					$url = $store->store( $path, $data );
-					if ( strlen( $url ) ) {
+					if ( $url !== false ) {
 						return $url; // a store accepted the write; done!
 					}
 					$msg = 'operation failed';

@@ -2547,7 +2547,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new InvalidArgumentException( "Table must be a string or Subquery." );
 		}
 
-		if ( !strlen( $alias ) || $alias === $table ) {
+		if ( $alias === false || $alias === $table ) {
 			if ( $table instanceof Subquery ) {
 				throw new InvalidArgumentException( "Subquery table missing alias." );
 			}
