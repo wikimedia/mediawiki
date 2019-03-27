@@ -15177,6 +15177,108 @@ they will be run along with the main tests by maintenance/parserTests.php
 * (bug 7537) Add php5 to $wgFileBlacklist
 * (bug 6929) Restore AutoAuthenticate hook
 
+= MediaWiki 1.7=
+
+== MediaWiki 1.7.3 ==
+
+February 20, 2007
+
+This is a security and bug-fix update to the Summer 2006 quarterly release.
+
+An XSS injection vulnerability based on Microsoft Internet Explorer's UTF-7
+charset autodetection was located in the AJAX support module, affecting MSIE
+users on MediaWiki 1.6.x and up when the optional setting
+[[Manual:$wgUseAjax|$wgUseAjax]] is enabled.
+
+If you are using an extension based on the optional Ajax module, either disable
+it or upgrade to a version containing the fix:
+
+* 1.9: fixed in 1.9.3
+* 1.8: fixed in 1.8.4
+* 1.7: fixed in 1.7.3
+* 1.6: fixed in 1.6.10
+
+There is no known danger in the default configuration, with
+[[Manual:$wgUseAjax|$wgUseAjax]] off.
+
+* Add 'charset' to Content-Type headers on various HTTP error responses to
+forestall additional UTF-7-autodetect XSS issues. PHP sends only 'text/html' by
+default when the script didn't specify more details, which some inconsiderate
+browsers consider a license to autodetect the deadly, hard-to-escape UTF-7.
+This fixes an issue with the Ajax interface error message on MSIE when
+[[Manual:$wgUseAjax|$wgUseAjax]] is enabled (not default configuration); this
+UTF-7 variant on a previously fixed attack vector was discovered by Moshe BA
+from BugSec: http://www.bugsec.com/articles.php?Security=24
+* Trackback responses now specify XML content type
+
+== MediaWiki 1.7.2 ==
+
+January 9, 2007
+
+* Note about $wgUploadSizeWarning using byte
+* Update to German bookstore list (de)
+* (bug [[bugzilla:6680|6680]]) Added localisation for Dutch bookstore list (nl)
+* (bug [[bugzilla:6708|6708]]) Minor updates to Russian translation (ru)
+* (bug [[bugzilla:6730|6730]]) Clearer usage of message 'titlematch' in German
+translation (de)
+* Added direction mark to Special:Listredirects
+* XSS fix in AJAX module
+
+An XSS injection vulnerability was located in the AJAX support module,
+affecting MediaWiki 1.6.x and up when the optional setting
+[[Manual:$wgUseAjax|$wgUseAjax]] is enabled.
+
+There is no danger in the default configuration, with
+[[Manual:$wgUseAjax|$wgUseAjax]] off.
+
+If you are using an extension based on the optional AJAX module, either disable
+it or upgrade to a version containing the fix:
+
+* 1.9: fixed in 1.9.0rc2
+* 1.8: fixed in 1.8.3
+* 1.7: fixed in 1.7.2
+* 1.6: fixed in 1.6.9
+
+
+== MediaWiki 1.7.1 ==
+
+July 8, 2006
+
+MediaWiki 1.7.1 is a security and bugfix maintenance release of the Summer 2006
+snapshot:
+
+A potential HTML/JavaScript-injection vulnerability in a debugging script has
+been fixed. Only versions and configurations of PHP vulnerable to the $GLOBALS
+overwrite vulnerability are affected.
+
+As a workaround for existing installs, profileinfo.php may simply be deleted if
+it's not being used.
+
+* Fix for 'emailconfirmed' implicit user group
+* Fix for upgrades on some versions of MySQL 4.0.x
+* Fixed potential XSS in profileinfo.php
+* Installer now shows clear error message about old PHP versions rather than a
+confusing parse error
+
+== MediaWiki 1.7.0 ==
+July 6, 2006
+
+This is the quarterly release snapshot for Summer 2006. While the code
+has been running on Wikipedia for some time, installation and upgrade
+bits may be less well tested. Bug fix releases may follow in the coming
+days or weeks.
+
+MediaWiki is now using a "[[w:en:Continuous_integration|continuous
+integration]]" development model with
+quarterly snapshot releases. The latest development code is always kept
+"ready to run", and in fact runs our own sites on Wikipedia.
+
+Release branches will continue to receive security updates for about a year
+from first release, but nonessential bugfixes and feature development happen
+will be made on the development trunk and appear in the next quarterly release.
+
+Those wishing to use the latest code instead of a branch release can obtain
+it from source control: [[Download from SVN]]
 
 == Changes since 1.6 ==
 
@@ -15800,6 +15902,55 @@ they will be run along with the main tests by maintenance/parserTests.php
 * Implicit group "emailconfirmed" for all users whose email addresses are confirmed
 * (bug 6577) Avoid multiline parser breakage on <pre> with newline in attribute
 * (bug 6771) Make old revisions of MediaWiki pages available with action=raw
+
+
+== Compatibility ==
+MediaWiki 1.7 requires PHP 5 (5.1 recommended). PHP 4 is no longer supported.
+
+If you are unable to run PHP 5, you may have to stick with 1.6 for now.
+
+MySQL 3.23.x is no longer supported; some older hosts may need to upgrade.
+At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
+
+Experimental Oracle support has been dropped as it is unmaintained.
+
+== Upgrading ==
+Several changes to the database have been made from 1.6:
+
+* A new "langlinks" table tracks interlanguage links
+* A new "filearchive" table stores information on deleted files
+* A new "querycache_info" table stores information on query page updates
+
+To ensure that these tables are filled with data, run refreshLinks.php after
+the upgrade.
+
+If you are upgrading from MediaWiki 1.4.x or earlier, some major database
+changes are made, and there is a slightly higher chance that things could
+break. Don't forget to always back up your database before upgrading!
+
+== Configuration changes ==
+
+Some configuration options have changed:
+* $wgAllowExternalImages now defaults to off for increased security.
+* $wgLocalTZoffset was in hours, it is now using minutes.
+* Extensions may register special pages via the $wgSpecialPages array without
+forcing an early load of the SpecialPage.php class file.
+
+== Major new features ==
+
+* Deleted files can now be archived and undeleted, if you set up an appropriate
+non-web-accessible directory. Set $wgSaveDeletedFiles on and an appropriate
+directory path in $wgFileStore['deleted']['directory']
+* Experimental PostgreSQL support has been updated. It may or may not be in
+usable shape; those interested in PostgreSQL are encouraged to follow 1.8
+development.
+
+=== Caveats ===
+Some output, particularly involving user-supplied inline HTML, may not
+produce 100% valid or well-formed XHTML output. Testers are welcome to
+set $wgMimeType = "application/xhtml+xml"; to test for remaining problem
+cases, but this is not recommended on live sites. (This must be set for
+MathML to display properly in Mozilla.)
 
 == Changes since 1.5 ==
 
