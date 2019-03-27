@@ -120,10 +120,6 @@ class APCBagOStuff extends BagOStuff {
 		return apc_dec( $key . self::KEY_SUFFIX, $value );
 	}
 
-	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
-		return $this->mergeViaCas( $key, $callback, $exptime, $attempts, $flags );
-	}
-
 	protected function serialize( $value ) {
 		if ( !$this->nativeSerialize && !$this->isInteger( $value ) ) {
 			$value = serialize( $value );
