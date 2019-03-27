@@ -93,7 +93,7 @@ class ThumbnailRenderJob extends Job {
 		if ( $wgUploadThumbnailRenderHttpCustomDomain ) {
 			$parsedUrl = wfParseUrl( $thumbUrl );
 
-			if ( !$parsedUrl || !isset( $parsedUrl['path'] ) || !strlen( $parsedUrl['path'] ) ) {
+			if ( !isset( $parsedUrl['path'] ) || $parsedUrl['path'] === '' ) {
 				$this->setLastError( __METHOD__ . ": invalid thumb URL: $thumbUrl" );
 				return false;
 			}

@@ -106,7 +106,7 @@ class MovePage {
 
 		$oldid = $this->oldTitle->getArticleID();
 
-		if ( strlen( $this->newTitle->getDBkey() ) < 1 ) {
+		if ( $this->newTitle->getDBkey() === '' ) {
 			$status->fatal( 'articleexists' );
 		}
 		if (

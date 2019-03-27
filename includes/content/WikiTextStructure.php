@@ -154,7 +154,7 @@ class WikiTextStructure {
 			'enableSectionEditTokens' => false,
 			'allowTOC' => false,
 		] );
-		if ( strlen( $text ) == 0 ) {
+		if ( $text === '' ) {
 			$this->allText = "";
 			// empty text - nothing to seek here
 			return;

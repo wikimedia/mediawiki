@@ -217,7 +217,7 @@ class PhpHttpRequest extends MWHttpRequest {
 					break;
 				}
 
-				if ( strlen( $buf ) ) {
+				if ( $buf !== '' ) {
 					call_user_func( $this->callback, $fh, $buf );
 				}
 			}
