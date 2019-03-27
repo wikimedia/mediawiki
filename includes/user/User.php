@@ -28,6 +28,7 @@ use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Assert\Assert;
 use Wikimedia\IPSet;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\Database;
@@ -1749,6 +1750,23 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 	}
 
+	/** @var array|null */
+	private static $defOpt = null;
+	/** @var string|null */
+	private static $defOptLang = null;
+
+	/**
+	 * Reset the process cache of default user options. This is only necessary
+	 * if the wiki configuration has changed since defaults were calculated,
+	 * and as such should only be performed inside the testing suite that
+	 * regularly changes wiki configuration.
+	 */
+	public static function resetGetDefaultOptionsForTestsOnly() {
+		Assert::invariant( defined( 'MW_PHPUNIT_TEST' ), 'Unit tests only' );
+		self::$defOpt = null;
+		self::$defOptLang = null;
+	}
+
 	/**
 	 * Combine the language default options with any site-specific options
 	 * and add the default language variants.
@@ -1758,26 +1776,23 @@ class User implements IDBAccessObject, UserIdentity {
 	public static function getDefaultOptions() {
 		global $wgNamespacesToBeSearchedDefault, $wgDefaultUserOptions, $wgDefaultSkin;
 
-		static $defOpt = null;
-		static $defOptLang = null;
-
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		if ( $defOpt !== null && $defOptLang === $contLang->getCode() ) {
+		if ( self::$defOpt !== null && self::$defOptLang === $contLang->getCode() ) {
 			// The content language does not change (and should not change) mid-request, but the
 			// unit tests change it anyway, and expect this method to return values relevant to the
 			// current content language.
-			return $defOpt;
+			return self::$defOpt;
 		}
 
-		$defOpt = $wgDefaultUserOptions;
+		self::$defOpt = $wgDefaultUserOptions;
 		// Default language setting
-		$defOptLang = $contLang->getCode();
-		$defOpt['language'] = $defOptLang;
+		self::$defOptLang = $contLang->getCode();
+		self::$defOpt['language'] = self::$defOptLang;
 		foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
 			if ( $langCode === $contLang->getCode() ) {
-				$defOpt['variant'] = $langCode;
+				self::$defOpt['variant'] = $langCode;
 			} else {
-				$defOpt["variant-$langCode"] = $langCode;
+				self::$defOpt["variant-$langCode"] = $langCode;
 			}
 		}
 
@@ -1785,13 +1800,13 @@ class User implements IDBAccessObject, UserIdentity {
 		// since extensions may change the set of searchable namespaces depending
 		// on user groups/permissions.
 		foreach ( $wgNamespacesToBeSearchedDefault as $nsnum => $val ) {
-			$defOpt['searchNs' . $nsnum] = (bool)$val;
+			self::$defOpt['searchNs' . $nsnum] = (bool)$val;
 		}
-		$defOpt['skin'] = Skin::normalizeKey( $wgDefaultSkin );
+		self::$defOpt['skin'] = Skin::normalizeKey( $wgDefaultSkin );
 
-		Hooks::run( 'UserGetDefaultOptions', [ &$defOpt ] );
+		Hooks::run( 'UserGetDefaultOptions', [ &self::$defOpt ] );
 
-		return $defOpt;
+		return self::$defOpt;
 	}
 
 	/**
