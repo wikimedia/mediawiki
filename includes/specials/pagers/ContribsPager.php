@@ -155,6 +155,19 @@ class ContribsPager extends RangeChronologicalPager {
 	}
 
 	/**
+	 * Wrap the navigation bar in a p element with identifying class.
+	 * In future we may want to change the `p` tag to a `div` and upstream
+	 * this to the parent class.
+	 *
+	 * @return string HTML
+	 */
+	function getNavigationBar() {
+		return Html::rawElement( 'p', [ 'class' => 'mw-pager-navigation-bar' ],
+			parent::getNavigationBar()
+		);
+	}
+
+	/**
 	 * This method basically executes the exact same code as the parent class, though with
 	 * a hook added, to allow extensions to add additional queries.
 	 *
