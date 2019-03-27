@@ -294,7 +294,7 @@ return [
 	],
 	'jquery.spinner' => [
 		'scripts' => 'resources/src/jquery.spinner/spinner.js',
-		'styles' => 'resources/src/jquery.spinner/spinner.css',
+		'styles' => 'resources/src/jquery.spinner/spinner.less',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.jStorage' => [
@@ -2149,7 +2149,10 @@ return [
 	],
 	'mediawiki.special.changeslist' => [
 		'styles' => [
-			'resources/src/mediawiki.special.changeslist.less',
+			'resources/src/mediawiki.special.changeslist/changeslist.less'
+		],
+		'skinStyles' => [
+			'default' => 'resources/src/mediawiki.special.changeslist/default.less',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],

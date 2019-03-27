@@ -1,0 +1,143 @@
+.mw-spinner {
+	position: relative;
+
+	> .mw-spinner-container {
+		transform-origin: 0 0;
+	}
+}
+
+@mw-spinner-small-size: 20px;
+@mw-spinner-large-size: 32px;
+
+.mw-spinner-small {
+	width: @mw-spinner-small-size;
+	height: @mw-spinner-small-size;
+
+	> .mw-spinner-container {
+		transform: scale( unit( @mw-spinner-small-size / 64 ) );
+	}
+}
+
+.mw-spinner-large {
+	width: @mw-spinner-large-size;
+	height: @mw-spinner-large-size;
+
+	> .mw-spinner-container {
+		transform: scale( unit( @mw-spinner-large-size / 64 ) );
+	}
+}
+
+.mw-spinner-block {
+	display: block;
+	width: 100%;
+	text-align: center;
+
+	> .mw-spinner-container {
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	&.mw-spinner-small > .mw-spinner-container {
+		min-width: @mw-spinner-small-size;
+	}
+
+	&.mw-spinner-large > .mw-spinner-container {
+		min-width: @mw-spinner-large-size;
+	}
+}
+
+.mw-spinner-inline {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+/**
+ * CSS loading spinner adapted from loadingio, CC0
+ * https://github.com/loadingio/css-spinner/
+ */
+.mw-spinner-container > div {
+	transform-origin: 32px 32px;
+	animation: mw-spinner 1.2s linear infinite;
+}
+
+.mw-spinner-container > div:after {
+	content: ' ';
+	display: block;
+	position: absolute;
+	top: 3px;
+	left: 29px;
+	width: 5px;
+	height: 14px;
+	border-radius: 20%;
+	background: #000;
+}
+
+.mw-spinner-container > div:nth-child( 1 ) {
+	transform: rotate( 0deg );
+	animation-delay: -1.1s;
+}
+
+.mw-spinner-container > div:nth-child( 2 ) {
+	transform: rotate( 30deg );
+	animation-delay: -1s;
+}
+
+.mw-spinner-container > div:nth-child( 3 ) {
+	transform: rotate( 60deg );
+	animation-delay: -0.9s;
+}
+
+.mw-spinner-container > div:nth-child( 4 ) {
+	transform: rotate( 90deg );
+	animation-delay: -0.8s;
+}
+
+.mw-spinner-container > div:nth-child( 5 ) {
+	transform: rotate( 120deg );
+	animation-delay: -0.7s;
+}
+
+.mw-spinner-container > div:nth-child( 6 ) {
+	transform: rotate( 150deg );
+	animation-delay: -0.6s;
+}
+
+.mw-spinner-container > div:nth-child( 7 ) {
+	transform: rotate( 180deg );
+	animation-delay: -0.5s;
+}
+
+.mw-spinner-container > div:nth-child( 8 ) {
+	transform: rotate( 210deg );
+	animation-delay: -0.4s;
+}
+
+.mw-spinner-container > div:nth-child( 9 ) {
+	transform: rotate( 240deg );
+	animation-delay: -0.3s;
+}
+
+.mw-spinner-container > div:nth-child( 10 ) {
+	transform: rotate( 270deg );
+	animation-delay: -0.2s;
+}
+
+.mw-spinner-container > div:nth-child( 11 ) {
+	transform: rotate( 300deg );
+	animation-delay: -0.1s;
+}
+
+.mw-spinner-container > div:nth-child( 12 ) {
+	transform: rotate( 330deg );
+	animation-delay: 0s;
+}
+
+@keyframes mw-spinner {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
