@@ -86,13 +86,9 @@ class RedisBagOStuff extends BagOStuff {
 		$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_NONE;
 	}
 
-	protected function doGet( $key, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$casToken = null;
 
-		return $this->getWithToken( $key, $casToken, $flags );
-	}
-
-	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;

@@ -72,11 +72,7 @@ class APCBagOStuff extends BagOStuff {
 		}
 	}
 
-	protected function doGet( $key, $flags = 0 ) {
-		return $this->unserialize( apc_fetch( $key . self::KEY_SUFFIX ) );
-	}
-
-	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$casToken = null;
 
 		$blob = apc_fetch( $key . self::KEY_SUFFIX );

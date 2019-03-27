@@ -32,6 +32,7 @@
  *   up going to the HashBagOStuff used for the in-memory cache).
  *
  * @ingroup Cache
+ * @TODO: Make this class use composition instead of calling super
  */
 class CachedBagOStuff extends HashBagOStuff {
 	/** @var BagOStuff */
@@ -50,10 +51,10 @@ class CachedBagOStuff extends HashBagOStuff {
 		$this->attrMap = $backend->attrMap;
 	}
 
-	protected function doGet( $key, $flags = 0 ) {
-		$ret = parent::doGet( $key, $flags );
+	public function get( $key, $flags = 0 ) {
+		$ret = parent::get( $key, $flags );
 		if ( $ret === false && !$this->hasKey( $key ) ) {
-			$ret = $this->backend->doGet( $key, $flags );
+			$ret = $this->backend->get( $key, $flags );
 			$this->set( $key, $ret, 0, self::WRITE_CACHE_ONLY );
 		}
 		return $ret;

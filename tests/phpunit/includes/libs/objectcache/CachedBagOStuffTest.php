@@ -11,7 +11,7 @@ class CachedBagOStuffTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers CachedBagOStuff::__construct
-	 * @covers CachedBagOStuff::doGet
+	 * @covers CachedBagOStuff::get
 	 */
 	public function testGetFromBackend() {
 		$backend = new HashBagOStuff;
@@ -36,6 +36,7 @@ class CachedBagOStuffTest extends PHPUnit\Framework\TestCase {
 			$cache->set( "key$i", 1 );
 			$this->assertEquals( 1, $cache->get( "key$i" ) );
 			$this->assertEquals( 1, $backend->get( "key$i" ) );
+
 			$cache->delete( "key$i" );
 			$this->assertEquals( false, $cache->get( "key$i" ) );
 			$this->assertEquals( false, $backend->get( "key$i" ) );
@@ -67,7 +68,7 @@ class CachedBagOStuffTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers CachedBagOStuff::doGet
+	 * @covers CachedBagOStuff::get
 	 */
 	public function testCacheBackendMisses() {
 		$backend = new HashBagOStuff;

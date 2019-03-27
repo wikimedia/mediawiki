@@ -28,13 +28,7 @@
  * @ingroup Cache
  */
 class WinCacheBagOStuff extends BagOStuff {
-	protected function doGet( $key, $flags = 0 ) {
-		$blob = wincache_ucache_get( $key );
-
-		return is_string( $blob ) ? unserialize( $blob ) : false;
-	}
-
-	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$casToken = null;
 
 		$blob = wincache_ucache_get( $key );
@@ -43,11 +37,9 @@ class WinCacheBagOStuff extends BagOStuff {
 		}
 
 		$value = unserialize( $blob );
-		if ( $value === false ) {
-			return false;
+		if ( $value !== false ) {
+			$casToken = (string)$blob; // don't bother hashing this
 		}
-
-		$casToken = $blob; // don't bother hashing this
 
 		return $value;
 	}
@@ -58,7 +50,7 @@ class WinCacheBagOStuff extends BagOStuff {
 		}
 
 		$curCasToken = null; // passed by reference
-		$this->getWithToken( $key, $curCasToken, self::READ_LATEST );
+		$this->doGet( $key, self::READ_LATEST, $curCasToken );
 		if ( $casToken === $curCasToken ) {
 			$success = $this->set( $key, $value, $exptime, $flags );
 		} else {

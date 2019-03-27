@@ -39,11 +39,7 @@ class APCUBagOStuff extends APCBagOStuff {
 		parent::__construct( $params );
 	}
 
-	protected function doGet( $key, $flags = 0 ) {
-		return $this->unserialize( apcu_fetch( $key . self::KEY_SUFFIX ) );
-	}
-
-	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$casToken = null;
 
 		$blob = apcu_fetch( $key . self::KEY_SUFFIX );
