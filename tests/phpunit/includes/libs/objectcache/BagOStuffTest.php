@@ -98,7 +98,13 @@ class BagOStuffTest extends MediaWikiTestCase {
 			$this->cache->merge( $key, $callback, 5, 1 ),
 			'Non-blocking merge (CAS)'
 		);
-		$this->assertEquals( 1, $calls );
+		if ( $this->cache instanceof MultiWriteBagOStuff ) {
+			$wrapper = \Wikimedia\TestingAccessWrapper::newFromObject( $this->cache );
+			$n = count( $wrapper->caches );
+		} else {
+			$n = 1;
+		}
+		$this->assertEquals( $n, $calls );
 	}
 
 	/**
