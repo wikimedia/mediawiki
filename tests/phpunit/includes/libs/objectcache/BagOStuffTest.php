@@ -16,7 +16,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		// type defined through parameter
-		if ( $this->getCliArg( 'use-bagostuff' ) ) {
+		if ( $this->getCliArg( 'use-bagostuff' ) !== null ) {
 			$name = $this->getCliArg( 'use-bagostuff' );
 
 			$this->cache = ObjectCache::newFromId( $name );
