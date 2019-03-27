@@ -2118,4 +2118,46 @@ class Block {
 
 		return null;
 	}
+
+	/**
+	 * Check if the block should be tracked with a cookie.
+	 *
+	 * @since 1.33
+	 * @param bool $isIpUser The user is logged out
+	 * @return bool The block should be tracked with a cookie
+	 */
+	public function shouldTrackWithCookie( $isIpUser ) {
+		$config = RequestContext::getMain()->getConfig();
+		switch ( $this->getType() ) {
+			case self::TYPE_IP:
+			case self::TYPE_RANGE:
+				return $isIpUser && $config->get( 'CookieSetOnIpBlock' );
+			case self::TYPE_USER:
+				return !$isIpUser && $config->get( 'CookieSetOnAutoblock' ) && $this->isAutoblocking();
+			default:
+				return false;
+		}
+	}
+
+	/**
+	 * Check if the block prevents a user from resetting their password
+	 *
+	 * @since 1.33
+	 * @return bool|null The block blocks password reset
+	 */
+	public function appliesToPasswordReset() {
+		switch ( $this->getSystemBlockType() ) {
+			case null:
+			case 'global-block':
+				return $this->isCreateAccountBlocked();
+			case 'proxy':
+				return true;
+			case 'dnsbl':
+			case 'wgSoftBlockRanges':
+				return false;
+			default:
+				return false;
+		}
+	}
+
 }
