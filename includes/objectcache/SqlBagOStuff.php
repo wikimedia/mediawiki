@@ -519,7 +519,7 @@ class SqlBagOStuff extends BagOStuff {
 			}
 		} catch ( DBError $e ) {
 			$this->handleWriteError( $e, $db, $serverIndex );
-			return null;
+			return false;
 		}
 
 		return $newValue;
@@ -534,20 +534,33 @@ class SqlBagOStuff extends BagOStuff {
 		return $ok;
 	}
 
-	public function changeTTL( $key, $expiry = 0, $flags = 0 ) {
+	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		$db = null;
 		$silenceScope = $this->silenceTransactionProfiler();
 		try {
 			$db = $this->getDB( $serverIndex );
+			if ( $exptime == 0 ) {
+				$timestamp = $this->getMaxDateTime( $db );
+			} else {
+				$timestamp = $db->timestamp( $this->convertToExpiry( $exptime ) );
+			}
 			$db->update(
 				$tableName,
-				[ 'exptime' => $db->timestamp( $this->convertToExpiry( $expiry ) ) ],
+				[ 'exptime' => $timestamp ],
 				[ 'keyname' => $key, 'exptime > ' . $db->addQuotes( $db->timestamp( time() ) ) ],
 				__METHOD__
 			);
 			if ( $db->affectedRows() == 0 ) {
-				return false;
+				$exists = (bool)$db->selectField(
+					$tableName,
+					1,
+					[ 'keyname' => $key, 'exptime' => $timestamp ],
+					__METHOD__,
+					[ 'FOR UPDATE' ]
+				);
+
+				return $exists;
 			}
 		} catch ( DBError $e ) {
 			$this->handleWriteError( $e, $db, $serverIndex );
