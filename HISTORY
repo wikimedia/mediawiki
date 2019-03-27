@@ -14927,6 +14927,154 @@ MediaWiki's parser test suite can now be expanded with additional test
 files. Custom extensions can add their test files to this array, and
 they will be run along with the main tests by maintenance/parserTests.php
 
+= MediaWiki 1.8=
+
+== MediaWiki 1.8.5 ==
+
+September 10, 2007
+
+This is a security fix update to the Fall 2006 quarterly release snapshot. A
+possible HTML/XSS injection vector in the API pretty-printing mode has been
+found and fixed.
+
+The vulnerability may be worked around in an unfixed version by simply
+disabling the API interface if it is not in use, by adding this to
+LocalSettings.php:
+
+:[[Manual:$wgEnableAPI|$wgEnableAPI]] = false;
+
+(This is the default setting in 1.8.x.)
+
+Not vulnerable versions:
+* 1.11 >= 1.11.0
+* 1.10 >= 1.10.2
+* 1.9 >= 1.9.4
+* 1.8 >= 1.8.5
+
+Vulnerable versions:
+* 1.11 <= 1.11.0rc1
+* 1.10 <= 1.10.1
+* 1.9 <= 1.9.3
+* 1.8 <= 1.8.4 (if $wgEnableAPI has been switched on)
+
+MediaWiki 1.7 and below are not affected as they do not include the faulty
+function, however the BotQuery extension is similarly vulnerable unless updated
+to the latest SVN version.
+
+== MediaWiki 1.8.4 ==
+
+February 20, 2007
+
+This is a security and bug-fix update to the Fall 2006 quarterly release.
+
+An XSS injection vulnerability based on Microsoft Internet Explorer's UTF-7
+charset autodetection was located in the AJAX support module, affecting MSIE
+users on MediaWiki 1.6.x and up when the optional setting
+[[Manual:$wgUseAjax|$wgUseAjax]] is enabled.
+
+If you are using an extension based on the optional Ajax module, either disable
+it or upgrade to a version containing the fix:
+* 1.9: fixed in 1.9.3
+* 1.8: fixed in 1.8.4
+* 1.7: fixed in 1.7.3
+* 1.6: fixed in 1.6.10
+
+There is no known danger in the default configuration, with $wgUseAjax off.
+
+* (bug [[bugzilla:8819|8819]]) Fix full path disclosure with skins dependencies
+* Add 'charset' to Content-Type headers on various HTTP error responses to
+forestall additional UTF-7-autodetect XSS issues. PHP sends only 'text/html' by
+default when the script didn't specify more details, which some inconsiderate
+browsers consider a license to autodetect the deadly, hard-to-escape UTF-7.
+This fixes an issue with the Ajax interface error message on MSIE when
+[[Manual:$wgUseAjax|$wgUseAjax]] is enabled (not default configuration); this
+UTF-7 variant on a previously fixed attack vector was discovered by Moshe BA
+from BugSec: http://www.bugsec.com/articles.php?Security=24
+* Trackback responses now specify XML content type
+
+== MediaWiki 1.8.3 ==
+
+January 9, 2007
+
+MediaWiki 1.8.3 fixes several issues in the Fall 2006 snapshot release:
+
+* ([[mediazilla:7831|7831]]) Regression in AutoAuthenticate hook
+* Run PHP install version checks on update.php so command-line updaters see new
+version requirements
+* Do a check for the PHP 5.0.x 64-bit bug, since this is much more disruptive
+as of MW 1.8 than it used to be. Install or upgrade now aborts with a warning
+and a request to upgrade.
+* XSS fix in AJAX module
+
+An XSS injection vulnerability was located in the AJAX support module,
+affecting MediaWiki 1.6.x and up when the optional setting $wgUseAjax is
+enabled.
+
+There is no danger in the default configuration, with $wgUseAjax off.
+
+If you are using an extension based on the optional AJAX module, either disable
+it or upgrade to a version containing the fix:
+
+== MediaWiki 1.8.2 ==
+
+October 13, 2006
+
+MediaWiki 1.8.2 fixes several issues in the Fall 2006 snapshot release:
+
+* ([[mediazilla:7565|7565]]) Fixed typos in German localisation
+* ([[mediazilla:7562|7562]]) Fix non-ASCII namespaces on Windows/XAMPP servers
+
+== MediaWiki 1.8.1 ==
+
+October 11, 2006
+
+MediaWiki 1.8.1 fixes several issues in the Fall 2006 snapshot release:
+
+* Fix PHP notice and estimates for dumpBackup.php and friends
+* Improved register_globals paranoia checks
+* ([[mediazilla:7545|7545]]) Fix PHP version check on install
+* Experimental web API disabled by default
+* Disable PHP exception backtrace printing unless $wgShowExceptionDetails is
+set. Backtraces may contain sensitive information in function call parameters.
+
+== MediaWiki 1.8.0 ==
+
+October 10, 2006
+
+This is the quarterly release snapshot for Fall 2006. While the code has been
+running on Wikipedia for some time, installation and upgrade bits may be less
+well tested. Bug fix releases may follow in the coming days or weeks.
+
+MediaWiki is now using a "continuous integration" development model with
+quarterly snapshot releases. The latest development code is always kept "ready
+to run", and in fact runs our own sites on Wikipedia.
+
+Release branches will continue to receive security updates for about a year
+from first release, but nonessential bugfixes and feature development happen
+will be made on the development trunk and appear in the next quarterly release.
+
+Those wishing to use the latest code instead of a branch release can obtain it
+from source control: [[Download from SVN]]
+
+== Configuration changes ==
+* $wgUseETag, to enable/disable sending of HTTP ETag headers (default: disabled)
+* $wgLegalTitleChars now includes '+' by default for better compatibility with
+importing data dumps from Wikipedia
+* $wgDefaultUserOptions now includes all default option settings instead of
+only overrides.
+
+== Major new features ==
+* ([[mediazilla:7098|7098]]) Add an option to disable/enable sending of HTTP
+ETag headers, as it seems to result in broken behaviour in combination with
+Squid 2.6 (disabled by default).
+* ([[mediazilla:550|550]]) Allow blocks on anonymous users only.
+* ([[mediazilla:6420|6420]]) Render thumbnails for DJVU images, support
+multipage DJVU display on image pages. Added new 'page=' thumbnail option to
+select a page from a multipage djvu for thumbnail generation.
+* Full Postgres support is now enabled. It requires version 8.1 or better, and
+needs to have both plpgsql and tsearch2 already installed.
+* ([[mediazilla:6386|6386]]) fix grammatical errors in danish naming of talk
+namespaces.
 
 == Changes since 1.7 ==
 
@@ -15176,6 +15324,70 @@ they will be run along with the main tests by maintenance/parserTests.php
 * Add "title" to the opensearch link to allow automatic adding of the search engine in Firefox 2
 * (bug 7537) Add php5 to $wgFileBlacklist
 * (bug 6929) Restore AutoAuthenticate hook
+
+== Languages updated ==
+* Albanian (sq)
+* Bashkir (ba)
+* Bavarian (bar) stub file
+* Belarusian (be)
+* Bishnupriya (bpy) stub file
+* Brazilian Portuguese (pt-br)
+* Cantonese (zh-yue)
+* Catalan (ca)
+* Czech (cs)
+* Dutch (nl)
+* English (en)
+* Finnish (fi)
+* French (fr)
+* Georgian (ka)
+* German (de)
+* Hebrew (he)
+* Hungarian (hu)
+* Indonesian (id)
+* Japanese (ja)
+* Korean (ko)
+* Latin (la)
+* Lojban (jbo)
+* Macedonian (mk)
+* Mazandarani (mzn)
+* Polish (pl)
+* Portuguese (pt)
+* Ripuarian (ksh)
+* Romani (rmy)
+* Russian (ru)
+* Slovak (sk)
+* Spanish (es)
+* Tajic (tg)
+* Tatar (tt)
+* Telugu (te)
+* Uzbek (uz)
+* Yiddish (yi)
+
+== Compatibility ==
+MediaWiki 1.8 requires PHP 5 (5.1 recommended). PHP 4 is no longer supported.
+
+MySQL 3.23.x is no longer supported; some older hosts may need to upgrade. At
+this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
+
+== Upgrading ==
+Some minor database changes have been made since 1.7:
+* new fields and indexes on ipblocks
+* index change on recentchanges
+
+Several changes from 1.5 and 1.6 do require updates to be run on upgrade. To
+ensure that these tables are filled with data, run refreshLinks.php after the
+upgrade.
+
+If you are upgrading from MediaWiki 1.4.x or earlier, some major database
+changes are made, and there is a slightly higher chance that things could
+break. Don't forget to always back up your database before upgrading!
+
+=== Caveats ===
+Some output, particularly involving user-supplied inline HTML, may not produce
+100% valid or well-formed XHTML output. Testers are welcome to set $wgMimeType
+= "application/xhtml+xml"; to test for remaining problem cases, but this is not
+recommended on live sites. (This must be set for MathML to display properly in
+Mozilla.)
 
 = MediaWiki 1.7=
 
