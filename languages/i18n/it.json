@@ -590,7 +590,7 @@
 	"invalidemailaddress": "L'indirizzo e-mail indicato ha un formato non valido. Inserire un indirizzo valido o svuotare la casella.",
 	"cannotchangeemail": "Gli indirizzi e-mail non possono essere modificati in questo wiki.",
 	"emaildisabled": "Questo sito non può inviare messaggi di posta elettronica.",
-	"accountcreated": "Accesso creato",
+	"accountcreated": "Utenza creata",
 	"accountcreatedtext": "È stata creata un'utenza per [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|msg]]).",
 	"createaccount-title": "Creazione di un accesso a {{SITENAME}}",
 	"createaccount-text": "Qualcuno ha creato un accesso a {{SITENAME}} ($4) a nome di $2, associato a questo indirizzo di posta elettronica. La password per l'utente \"$2\" è impostata a \"$3\".\nÈ opportuno eseguire un accesso quanto prima e cambiare la password immediatamente.\n\nSe l'accesso è stato creato per errore, si può ignorare questo messaggio.",
