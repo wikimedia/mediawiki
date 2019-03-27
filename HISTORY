@@ -15952,6 +15952,329 @@ set $wgMimeType = "application/xhtml+xml"; to test for remaining problem
 cases, but this is not recommended on live sites. (This must be set for
 MathML to display properly in Mozilla.)
 
+= MediaWiki 1.6 =
+
+== MediaWiki 1.6.12 ==
+
+February 7, 2009
+
+This is a security update to the Spring 2006 quarterly release.
+
+A number of cross-site scripting (XSS) security vulnerabilities were discovered
+in the web-based installer (config/index.php). These vulnerabilities all
+require a live installer -- once the installer has been used to install a
+wiki,  it is deactivated.
+
+Note that cross-site scripting vulnerabilities can be used to attack any
+website in the same cookie domain. So if you have an uninstalled copy of
+MediaWiki on the same site as an active web service, MediaWiki could be used to
+attack the active service.
+
+If you are hosting an old copy of MediaWiki that you have never installed, you
+are advised to remove it from the web.
+
+== MediaWiki 1.6.11 ==
+
+December 15, 2008
+
+This is a security update to the Spring 2006 quarterly release.
+
+David Remahl of Apple's Product Security team has identified a number of
+security issues in previous releases of MediaWiki. Subsequent analysis by the
+MediaWiki development team expanded the scope of these vulnerabilities. The
+issues with a significant impact are as follows:
+
+* An XSS vulnerability affecting Internet Explorer clients for all MediaWiki
+installations with uploads enabled. [CVE-2008-5250]
+* An XSS vulnerability affecting clients with SVG scripting capability (such as
+Firefox 1.5+), for all MediaWiki installations with SVG uploads enabled.
+[CVE-2008-5250]
+* A CSRF vulnerability affecting the Special:Import feature, for all MediaWiki
+installations since the feature was introduced in 1.3.0. [CVE-2008-5252]
+
+XSS (cross-site scripting) vulnerabilities allow an attacker to steal an
+authorised user's login session, and to act as that user on the wiki. The
+authorised user must visit a web page controlled by the attacker in order to
+activate the attack. Intranet wikis are vulnerable if the attacker can
+determine the intranet URL, even if the attacker cannot access it.
+
+CSRF vulnerabilities allow an attacker to act as an authorised user on the
+wiki, but unlike an XSS vulnerability, the attacker can only act as the user in
+a specific and restricted way. The present CSRF vulnerability allows pages to
+be edited, with forged revision histories. Like an XSS vulnerability, the
+authorised user must visit the malicious web page to activate the attack.
+
+Rather than backport our SVG validation code to this ancient branch, we have
+instead disabled SVG uploads. To enable SVG uploads, please upgrade to
+MediaWiki 1.13.3 or later.
+
+The other two issues have been fixed.
+
+== MediaWiki 1.6.10 ==
+
+February 20, 2007
+
+This is a security and bug-fix update to the Spring 2006 quarterly release.
+
+An XSS injection vulnerability based on Microsoft Internet Explorer's UTF-7
+charset autodetection was located in the AJAX support module, affecting MSIE
+users on MediaWiki 1.6.x and up when the optional setting $wgUseAjax is enabled.
+
+If you are using an extension based on the optional Ajax module, either disable
+it or upgrade to a version containing the fix:
+
+* 1.9: fixed in 1.9.3
+* 1.8: fixed in 1.8.4
+* 1.7: fixed in 1.7.3
+* 1.6: fixed in 1.6.10
+
+There is no known danger in the default configuration, with $wgUseAjax off.
+
+* ([[mediazilla:8819|bug 8819]]) Fix full path disclosure with skins
+dependencies
+* Add 'charset' to Content-Type headers on various HTTP error responses to
+forestall additional UTF-7-autodetect XSS issues. PHP sends only 'text/html' by
+default when the script didn't specify more details, which some inconsiderate
+browsers consider a license to autodetect the deadly, hard-to-escape UTF-7.
+This fixes an issue with the Ajax interface error message on MSIE when
+$wgUseAjax is enabled (not default configuration); this UTF-7 variant on a
+previously fixed attack vector was discovered by Moshe BA from BugSec:
+http://www.bugsec.com/articles.php?Security=24
+* Trackback responses now specify XML content type
+
+== MediaWiki 1.6.9 ==
+
+January 9, 2007
+
+* ([[mediazilla:6621|bug 6621]]) Backported German translation for
+'eauthentsent'
+
+* ([[mediazilla:6680|bug 6680]]) Added localisation for Dutch bookstore list
+(nl)
+* ([[mediazilla:6730|bug 6730]]) Clearer usage of message 'titlematch' in
+German translation (de)
+* XSS fix in AJAX module
+
+An XSS injection vulnerability was located in the AJAX support module,
+affecting MediaWiki 1.6.x and up when the optional setting $wgUseAjax is
+enabled.
+
+There is no danger in the default configuration, with $wgUseAjax off.
+
+If you are using an extension based on the optional AJAX module, either disable
+it or upgrade to a version containing the fix:
+
+* 1.9: fixed in 1.9.0rc2
+* 1.8: fixed in 1.8.3
+* 1.7: fixed in 1.7.2
+* 1.6: fixed in 1.6.9
+
+== MediaWiki 1.6.8 ==
+
+July 8, 2006
+
+MediaWiki 1.6.8 is a security and bugfix maintenance release of the Spring 2006
+snapshot:
+
+A potential HTML/JavaScript-injection vulnerability in a debugging script has
+been fixed. Only versions and configurations of PHP vulnerable to the $GLOBALS
+overwrite vulnerability are affected.
+
+As a workaround for existing installs, profileinfo.php may simply be deleted if
+it's not being used.
+
+* ([[mediazilla:5957|bug 5957]]) Updates to Hebrew translation (he)
+* Respect language directionality when displaying arrow in
+Special:Brokenredirects
+* ([[mediazilla:6415|bug 6415]]) Typo in Parser.php
+* Fixed potential XSS in profileinfo.php
+
+== MediaWiki 1.6.7 ==
+
+June 6, 2006
+
+MediaWiki 1.6.7 is a security and bugfix maintenance release of the Spring 2006
+snapshot:
+
+An HTML/JavaScript-injection vulnerability in the edit form has been closed.
+This vulnerability was new in 1.6.0; MediaWiki versions 1.5.x or earlier are
+not affected.
+
+Extensions, comments, and <nowiki><nowiki></nowiki> sections are now handled in
+a one-pass way which is more reliable and safer. Under earlier versions of
+MediaWiki, certain extensions could be abused to inject HTML/JavaScript into
+the page.
+
+Additional precautions are made against offsite form submissions when the
+restricted raw HTML mode is enabled.
+
+Some small localization and user interface updates are also included.
+
+*([[MediaZilla:6051|bug 6051]]) Improvement to German localisation (de)
+*([[MediaZilla:6017|bug 6017]]) Update bookstore list for German language (de)
+*([[MediaZilla:6138|bug 6138]]) Minor grammar tweak in "loginreqlink"
+*([[MediaZilla:5957|bug 5957]]) Update for Hebrew language (he)
+*Increase robustness of parser placeholders; fixes some glitches when adjacent
+to identifier-ish constructs such as URLs.
+*([[MediaZilla:5384|bug 5384]]) Fix <nowiki><!-- comments --> in <ref></nowiki>
+extension
+*Nesting of different tag extensions and comments should now work more
+consistently and more safely. A cleaner, one-pass tag strip lets the 'outer'
+tag either take source (<nowiki><nowiki></nowiki>-style) or pass it down to
+further parsing (<nowiki><ref></nowiki>-style). There should no longer be
+surprise expansion of foreign extensions inside HTML output, or differences in
+behavior based on the order tags are loaded.
+*([[MediaZilla:885|bug 885]]) Pre-save transform no longer silently appends
+close tags
+*Pre-save transform no longer changes the case of close tags
+*Edit security precautions in raw HTML mode, etc
+
+== MediaWiki 1.6.6 ==
+
+May 23, 2006
+
+MediaWiki 1.6.6 is a security and bugfix maintenance release.
+
+An XSS injection vector in brace replacement has been fixed, as have some
+potential problems with table parsing. Upgrading is strongly recommended for
+all users of 1.6. MediaWiki versions 1.5 and earlier are not affected.
+
+Additionally some localization and user interface updates are included.
+
+* Correct "revertpage" message in English
+* ([[MediaZilla:5507|bug 5507]]) Logouttext now uses wiki markup
+* (bugs [[MediaZilla:5857|5857]], [[MediaZilla:5957|5957]]) Update for German
+localisation (de)
+* ([[MediaZilla:5586|bug 5586]]) <nowiki><gallery></nowiki> treated text as
+links
+* ([[MediaZilla:5957|bug 5957]]) Update for Hebrew language (he)
+* ([[MediaZilla:6025|bug 6025]]) SpecialImport: wrong message when no file
+selected
+* ([[MediaZilla:6015|bug 6015]]) EditPage: add spacing in the boxes "edit is
+minor" and "watch this"
+* ([[MediaZilla:6018|bug 6018]]) Userrights: new message when no user specified
+('nouserspecified')
+* ([[MediaZilla:6055|bug 6055]]) Fix for HTML/JS injection bug in variable
+handler (found by Nick Jenkins)
+* Reordered wiki table handling and <nowiki>__TOC__</nowiki> extraction in the
+parser to better handle some overlapping tag cases.
+* Only the first <nowiki>__TOC__</nowiki> is now turned into a TOC.
+* ([[MediaZilla:361|bug 361]]) URL in URL, they were almost fixed. Now they are.
+
+== MediaWiki 1.6.5 ==
+
+May 2, 2006
+
+* Rolled back the buggy patch for [[MediaZilla:5497|bug 5497]].
+
+== MediaWiki 1.6.4 ==
+
+May 2, 2006
+
+* Further improvements to Hebrew localisation
+* ([[MediaZilla:5544|bug 5544]]) Fix redirect arrow in Special:Listredirects
+for right-to-left languages
+* Replace "doubleredirectsarrow" with a content language check that picks the
+appropriate arrow
+* Remove live debugging hack which caused errors with certain database names
+* ([[MediaZilla:5510|bug 5510]]) Warning produced when using
+<nowiki>{{SUBPAGENAME}}</nowiki> in some namespaces
+* ([[MediaZilla:5548|bug 5548]]) Improvements to Indonesian localisation
+[patch: Ivan Lanin]
+* ([[MediaZilla:5403|bug 5403]]) Fix Special:Newpages RSS/Atom feeds
+* ([[MediaZilla:3359|bug 3359]]) Add hooks on completion of file upload
+* ([[MediaZilla:5184|bug 5184]]) CSS misapplied to elements in
+Special:Allmessages due to conflicting anchor identifiers
+* ([[MediaZilla:5519|bug 5519]]) Allow sidebar cache to be disabled; disable it
+by default.
+* Add $wgReservedUsernames configuration directive to block account creation/use
+* ([[MediaZilla:5576|bug 5576]]) Remove debugging hack in session check
+* ([[MediaZilla:5181|bug 5181]]) Update "nogomatch" for Slovak
+* ([[MediaZilla:5594|bug 5594]]) Id translation up to '# Login and logout
+pages' section
+* ([[MediaZilla:5536|bug 5536]]) Use content language for editing help link
+* Minor improvements to English language files
+* Improvements to German localisation files
+* ([[MediaZilla:5628|bug 5628]]) Translations for MessagesHr.php
+* (bugs [[MediaZilla:5595|5595]], [[MediaZilla:5644|5644]]) Localisation for
+Bosnian language (bs)
+* ([[MediaZilla:5592|bug 5592]]) Actions are logged with the default language
+for the wiki, not the language of the user performing the operation.
+* ([[MediaZilla:5646|bug 5646]]) Compare for identical types in wfElement()
+* Fix for concurrency problem in job queue (image description page invalidation)
+* ([[MediaZilla:5497|bug 5497]]) regeression in HTML normalization in 1.6
+(unclosed <nowiki><li>,<dd>,<dt></nowiki>)
+* ([[MediaZilla:5709|bug 5709]]) Allow customisation of separator for categories
+* ([[MediaZilla:4834|bug 4834]]) Fix XHTML output when using $wgMaxTocLevel
+* Improvements to update scripts; print out the version, check for superuser
+credentials before attempting a connection, and produce a friendlier error if
+the connection fails
+* ([[MediaZilla:5005|bug 5005]]): Fix XHTML <nowiki><gallery></nowiki> output.
+* ([[MediaZilla:5315|bug 5315]]) "Expires: -1" HTTP header made strictly valid
+(using 1970 date).
+* ([[MediaZilla:4825|bug 4825]]): note in DefaultSettings.php about 'profiling'
+table creation
+* Remove unneeded extra whitespace at top of Special:Categories
+* Rewrite reassignEdits script to be more efficient; support optional updates
+to recent changes table; add reporting and silent modes
+* Updated initStats maintenance script
+* ([[MediaZilla:5723|bug 5723]]) Don't count pages linked to from the MediaWiki
+namespace as "wanted"
+* ([[MediaZilla:5789|bug 5789]]) Treat "loginreqpagetext" as wikitext
+* ([[MediaZilla:5796|bug 5796]]) We require MySQL >=4.0.14
+
+== MediaWiki 1.6.3 ==
+
+April 10, 2006
+
+* Fix disappearing red-linked items in the watchlist editing view
+* ([[MediaZilla:5512|bug 5512]]) Spacing in "page has a history" deletion
+warning
+* ([[MediaZilla:5508|bug 5508]]) Switch ENGINE in table statements back to
+TYPE; fixes regression where some versions of MySQL 4.0.x wouldn't work
+* Added note about [[Manual:$wgUrlProtocols|$wgUrlProtocols]] format change
+
+== MediaWiki 1.6.2 ==
+
+April 8, 2006
+
+* Further improvements to Hebrew localisation
+* Fix 'copyright' message for Romanian
+* ([[MediaZilla:5476|bug 5476]]) Invalid xhtml in German localization
+* ([[MediaZilla:5479|bug 5479]]) Id translation for preferences tabs caption
+* ([[MediaZilla:5493|bug 5493]]) Id translation for special pages
+* Additional path fixes in the updater
+* ([[MediaZilla:5344|bug 5344]]) Fix regression that broke slashes in extension
+tag parameters
+
+== MediaWiki 1.6.1 ==
+
+April 5, 2006
+
+Some minor issues in the 1.6.0 release have been corrected:
+* ([[MediaZilla:5458|bug 5458]]) Fix double-URL encoding in block log link in
+contribs and contribs link in block log
+* ([[MediaZilla:5462|bug 5462]]) Bogus missing patch warning in updater
+* ([[MediaZilla:5461|bug 5461]]) Use of deprecated "showhideminor" in
+Special:Recentchangeslinked
+* PHP warning when allow_call_time_pass_reference is off
+* Update to Finnish localization
+
+== MediaWiki 1.6.0 ==
+
+April 5, 2006
+
+MediaWiki is now using a "continuous integration" development model with
+quarterly snapshot releases. The latest development code is always kept "ready
+to run", and in fact runs our own sites on Wikipedia.
+
+Release branches will continue to receive security updates for about a year
+from first release, but nonessential bugfixes and feature development will take
+place on the development trunk and will appear in the next quarterly release.
+
+Those wishing to use the latest code instead of a branch release can [[Download
+from SVN|obtain it from source control]].
+
 == Changes since 1.5 ==
 
 * (bug 2885) More PHP 5.1 fixes: skin, search, log, undelete
@@ -16696,7 +17019,76 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 2139) Show page title in subtitle when viewing "read only" page
 * (bug 5452) Update language name for Cree
 
+=== What's new in 1.6 ===
 
+'''User interface:'''
+* The account creation form has been separated from the user login form.
+* Page protection/unprotection uses a new, expanded form
+
+'''Templates:'''
+* Categories and "what links here" now update as expected when adding or
+removing links in a template.
+* Template parameters can now have default values, as <nowiki>{{{name|default
+value}}}</nowiki>
+
+'''Uploads:'''
+* Optional support for rasterizing SVG images to PNG for inline display
+
+'''Feeds:'''
+* Feed generation upgraded to Atom 1.0
+* Diffs in RSS and Atom feeds are now colored for improved readability.
+
+'''Database:'''
+* MySQL 3.23.x support dropped; 4.0 or later required
+* Experimental support for Unicode mode of MySQL 4.1/5.0 (moderately tested)
+* Experimental Oracle support (not well tested!)
+
+'''Anti-spam extension support:'''
+* [[meta:SpamBlacklist extension|SpamBlacklist extension]] now has support for
+automated cleanup.
+* Support for a [[meta:ConfirmEdit extension|captcha extension]] to restrict
+automated spam edits.
+
+Numerous bug fixes and other behind-the-scenes changes have been made; see the
+file HISTORY for a complete change list.
+
+== Compatibility ==
+
+Older PHP 4.2 and 4.1 releases are no longer supported; PHP 4 users must
+upgrade to 4.3 or later.
+
+MediaWiki 1.6 is the last major version to support PHP 4; future versions will
+require PHP 5.
+
+MySQL 3.23.x is no longer supported; some older hosts may need to upgrade.
+At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
+
+== Upgrading ==
+
+Several changes to the database have been made from 1.5; these are relatively
+minor but do require that the update process be run before the new code will
+work properly:
+
+* A new "templatelinks" table tracks template inclusions.
+* A new "externallinks" table tracks URL links; this can be used by a mass
+spam-cleanup tool in the SpamBlacklist extension.
+* A new "jobs" table stores a queue of pages to update in the background; this
+is used to update links in including pages when templates are edited.
+
+To ensure that these tables are filled with data, run refreshLinks.php after
+the upgrade.
+
+If you are upgrading from MediaWiki 1.4.x or earlier, some major database
+changes are made, and there is a slightly higher chance that things could
+break. Don't forget to always back up your database before upgrading!
+
+=== Caveats ===
+
+Some output, particularly involving user-supplied inline HTML, may not produce
+100% valid or well-formed XHTML output. Testers are welcome to set $wgMimeType
+= "application/xhtml+xml"; to test for remaining problem cases, but this is not
+recommended on live sites. (This must be set for MathML to display properly in
+Mozilla.)
 
 ----
 
