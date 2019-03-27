@@ -263,7 +263,8 @@ class DeferredUpdates {
 			if ( $mode === 'enqueue' && $update instanceof EnqueueableDataUpdate ) {
 				// Run only the job enqueue logic to complete the update later
 				$spec = $update->getAsJobSpecification();
-				JobQueueGroup::singleton( $spec['wiki'] )->push( $spec['job'] );
+				$domain = $spec['domain'] ?? $spec['wiki'];
+				JobQueueGroup::singleton( $domain )->push( $spec['job'] );
 			} elseif ( $update instanceof TransactionRoundDefiningUpdate ) {
 				$update->doUpdate();
 			} else {
