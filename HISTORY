@@ -17824,7 +17824,141 @@ set $wgMimeType = "application/xhtml+xml"; to test for remaining problem
 cases, but this is not recommended on live sites. (This must be set for
 MathML to display properly in Mozilla.)
 
-----
+= MediaWiki 1.4 =
+
+== MediaWiki 1.4.15 ==
+
+(released March 26, 2006) MediaWiki 1.4.15 is a security maintenance release. A
+bug in decoding of certain encoded links could allow injection of raw HTML into
+page output; this could potentially lead to XSS attacks. Additionally, this
+release may display more correctly in IE7 betas.
+
+== MediaWiki 1.4.14 ==
+(released January 19, 2006) MediaWiki 1.4.14 is a security and bugfix
+maintenance release. A bug in edit comment formatting could send PHP into an
+infinite loop if certain malformed links were included. In most installations,
+this would cause the script to fail after PHP's 30-second failsafe timeout. For
+several other minor fixes, see the complete changelog at the end of this file.
+
+== MediaWiki 1.4.13 ==
+(released January 5, 2006) MediaWiki 1.4.13 is a security maintenance
+release.Detection for uploads of Windows Metafile (.wmf) images has been added
+to help protect against a client-side vulnerability in unpatched Microsoft
+Windows operating systems. Sites which have enabled uploads and added
+non-standard file types (such as .ogg, .doc, or .pdf) should upgrade to this
+release to ensure that malicious .wmf files can't be uploaded with a fake
+extension; such files could put visitors to the site at risk. For more details
+on this, see: http://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
+
+== MediaWiki 1.4.12 ==
+(released 2005-11-02) MediaWiki 1.4.12 is a bugfix and security maintenance
+release. A change in PHP 4.4.1 broke handling of extension and
+<nowiki><pre></nowiki> sections, causing garbage data to be inserted in output
+and saved edits. This version works around the change. This release includes
+further corrections to the inline CSS style sanitation which works around a
+JavaScript "feature" on Microsoft Internet Explorer. Users of Microsoft
+Internet Explorer for Windows may be vulnerable to XSS injections on prior 1.4
+releases; users of standards-compliant browsers are not vulnerable.
+
+== MediaWiki 1.4.11 ==
+(released 2005-10-05) MediaWiki 1.4.11 is a security maintenance release.
+Unsafe handling of CSS by Microsoft Internet Explorer could be exploited to
+produce cross-site scripting attacks by JavaScript injection to clients running
+that browser. This release blacklists several additional variants from use in
+HTML inline style attributes. All publicly accessible wikis are recommended to
+upgrade to reduce the risk to visitors using Microsoft web browsers. Note: the
+MediaWiki 1.4.x series is not compatible with PHP 5.0.5 or higher. Upgrade to
+the 1.5.0 release if you require this version of PHP 5.
+
+== MediaWiki 1.4.10 ==
+(released 2005-09-21) MediaWiki 1.4.10 is a security maintenance release. A bug
+in edit submission handling could cause corruption of the previous revision in
+the database if an abnormal URL was used, such as those used by some spambots.
+Affected releases:
+* 1.4.x <= 1.4.9; fixed in 1.4.10
+* 1.3.x <= 1.3.15; fixed in 1.3.16
+1.5 release candidates are not affected by this problem. All publicly editable
+wikis are strongly recommended to upgrade immediately.
+1.4 releases can be manually patched by changing this bit in EditPage.php:
+
+<syntaxhighlight lang="php">
+function importFormData( &$request ) {
+        if( $request->wasPosted() ) {
+</syntaxhighlight>
+to:
+<syntaxhighlight lang="php">
+    function importFormData( &$request ) {
+        if( $request->getVal( 'action' ) == 'submit' && $request->wasPosted() )
+        {
+</syntaxhighlight>
+== MediaWiki 1.4.9 ==
+(released 2005-08-29) MediaWiki 1.4.9 is a security maintenance release. It
+corrects two cross-site scripting security bugs:
+* <nowiki><math></nowiki> tags were handled incorrectly when TeX rendering
+support is off, as in the default configuration.
+* Extension or <nowiki><nowiki></nowiki> sections in Wiki table syntax could
+bypass HTML style attribute restrictions for cross-site scripting attacks
+against Microsoft Internet Explorer Wikis where the optional math support has
+been *enabled* are not vulnerable to the first, but are vulnerable to the
+second.
+
+== MediaWiki 1.4.8 ==
+(released 2005-08-23) MediaWiki 1.4.8 is a bug fix and security maintenance
+release. A flaw in the interaction between extensions and HTML attribute
+sanitization was discovered which could allow unauthorized use of offsite
+resources in style sheets, and possible exploitation of a JavaScript injection
+feature on Microsoft Internet Explorer. This version expands the returned text
+and properly checks it before output. Additionally, an update to
+skins/MonoBook.php ensures that sites using the default MonoBook skin will
+display correctly in the Internet Explorer 7 beta. (1.3 and 1.5 are not
+affected by this bug.)
+
+== MediaWiki 1.4.7 ==
+(released 2005-07-16)
+MediaWiki 1.4.7 is a bug fix release. Those affected by the following problems
+in 1.4.6 should upgrade:
+* Watchlist breakage on MySQL 3.23.x and with table prefix enabled
+* Possible breakage in watchlist, some image resizing modes on PHP 4.1.2 1.4.6
+included a fix for a cross-site scripting vulnerability, so anyone running
+older 1.4 releases is very strongly encouraged to upgrade as well. Note to
+upgraders: this version of MediaWiki is known to produce a large number of
+notice-level warnings under the newly released PHP 4.4.0. These appear however
+to be harmless; if you encounter them add this to your LocalSettings.php to
+suppress the notices: error_reporting( E_ALL & ~E_NOTICE ); PHP 5.1.0beta3 is
+known to be incompatible at this time.
+
+== MediaWiki 1.4.6 ==
+(released 2005-07-07) MediaWiki 1.4.6 is a bug fix and security update release.
+Incorrect escaping of a parameter in the page move template could
+be used to inject JavaScript code by getting a victim to visit a maliciously
+constructed URL. Users of vulnerable releases are recommended to upgrade to
+this release. Vulnerable versions:
+* 1.5 preview series: n <= 1.5beta2 vulnerable, fixed in 1.5beta3
+* 1.4 stable series: 1.4beta6 <= n <= 1.4.5 vulnerable, fixed in 1.4.6
+* 1.3 legacy series: not vulnerable This release also includes fixes for some
+rare bug annoying HTTP errors, a PHP 4.1.2 breakage bug, and works around some
+template limitations introduced in 1.4.5. See the changelog at the end of this
+file for a detailed list of bugs fixed.
+
+== MediaWiki 1.4.5 ==
+(released 2005-06-03) MediaWiki 1.4.5 is a security update and bugfix release.
+Incorrect handling of page template inclusions made it possible to inject
+JavaScript code into HTML attributes, which could lead to cross-site scripting
+attacks on a publicly editable wiki. Vulnerable releases and fix:
+* 1.5 prerelease: fixed in 1.5alpha2
+* 1.4 stable series: fixed in 1.4.5
+* 1.3 legacy series: fixed in 1.3.13
+* 1.2 series no longer supported; upgrade to 1.4.5 strongly recommended This
+release also includes a number of bug fixes (see changelog below) and merges
+some large-server load balancing patches from Wikipedia. An experimental rate
+limiter for page edits and moves can be enabled with global, per-IP,
+per-subnet, or per-user bases. See configuration options in
+includes/DefaultSettings.php
+
+== MediaWiki 1.4.4 ==
+(released 2005-05-04) MediaWiki 1.4.4 is a bugfix release for the 1.4 stable
+release series. Some bugs in the installer/updater and refreshLinks maintenance
+script were introduced in the last release and have been corrected.
 
 == MediaWiki 1.4.3 ==
 
