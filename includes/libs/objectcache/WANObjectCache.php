@@ -194,8 +194,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/** Tiny positive float to use when using "minTime" to assert an inequality */
 	const TINY_POSTIVE = 0.000001;
 
-	/** Seconds of delay after get() where set() storms are a consideration with 'lockTSE' */
-	const SET_DELAY_HIGH_SEC = 0.1;
+	/** Milliseconds of delay after get() where set() storms are a consideration with 'lockTSE' */
+	const SET_DELAY_HIGH_MS = 50;
 	/** Min millisecond set() backoff for keys in hold-off (far less than INTERIM_KEY_TTL) */
 	const RECENT_SET_LOW_MS = 50;
 	/** Max millisecond set() backoff for keys in hold-off (far less than INTERIM_KEY_TTL) */
@@ -1137,7 +1137,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      stampede is worth avoiding. Note that if the key falls out of cache then concurrent
 	 *      threads will all run the callback on cache miss until the value is saved in cache.
 	 *      The only stampede protection in that case is from duplicate cache sets when the
-	 *      callback takes longer than WANObjectCache::SET_DELAY_HIGH_SEC seconds; consider
+	 *      callback takes longer than WANObjectCache::SET_DELAY_HIGH_MS milliseconds; consider
 	 *      using "busyValue" if such stampedes are a problem. Note that the higher "lockTSE" is
 	 *      set, the higher the worst-case staleness of returned values can be. Also note that
 	 *      this option does not by itself handle the case of the key simply expiring on account
@@ -1478,7 +1478,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		// consistent hashing).
 		if ( $lockTSE < 0 || $hasLock ) {
 			return true; // either not a priori hot or thread has the lock
-		} elseif ( $elapsed <= self::SET_DELAY_HIGH_SEC ) {
+		} elseif ( $elapsed <= self::SET_DELAY_HIGH_MS * 1e3 ) {
 			return true; // not enough time for threads to pile up
 		}
 
