@@ -1507,6 +1507,7 @@ return [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.rightClickEdit.js',
 	],
 	'mediawiki.action.edit.editWarning' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.editWarning.js',
 		'dependencies' => [
 			'jquery.textSelection',
