@@ -1702,16 +1702,18 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return string Base name
 	 */
 	public function getBaseText() {
+		$text = $this->getText();
 		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
-			return $this->getText();
+			return $text;
 		}
 
-		$parts = explode( '/', $this->getText() );
-		# Don't discard the real title if there's no subpage involved
-		if ( count( $parts ) > 1 ) {
-			unset( $parts[count( $parts ) - 1] );
+		$lastSlashPos = strrpos( $text, '/' );
+		// Don't discard the real title if there's no subpage involved
+		if ( $lastSlashPos === false ) {
+			return $text;
 		}
-		return implode( '/', $parts );
+
+		return substr( $text, 0, $lastSlashPos );
 	}
 
 	/**
