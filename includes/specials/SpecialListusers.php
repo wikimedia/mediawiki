@@ -35,9 +35,7 @@ class SpecialListUsers extends IncludableSpecialPage {
 	}
 
 	/**
-	 * Show the special page
-	 *
-	 * @param string $par (optional) A group to list users from
+	 * @param string|null $par (optional) A group to list users from
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();

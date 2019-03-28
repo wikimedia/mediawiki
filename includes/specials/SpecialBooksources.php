@@ -36,9 +36,7 @@ class SpecialBookSources extends SpecialPage {
 	}
 
 	/**
-	 * Show the special page
-	 *
-	 * @param string $isbn ISBN passed as a subpage parameter
+	 * @param string|null $isbn ISBN passed as a subpage parameter
 	 */
 	public function execute( $isbn ) {
 		$out = $this->getOutput();

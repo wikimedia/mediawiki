@@ -43,7 +43,7 @@ class SpecialComparePages extends SpecialPage {
 	/**
 	 * Show a form for filtering namespace and username
 	 *
-	 * @param string $par
+	 * @param string|null $par
 	 * @return string
 	 */
 	public function execute( $par ) {
