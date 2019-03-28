@@ -255,7 +255,7 @@ class WikiMap {
 	public static function getWikiIdFromDbDomain( $domain ) {
 		$domain = DatabaseDomain::newFromId( $domain );
 
-		if ( !in_array( $domain->getSchema(), [ null, 'mediawiki' ], true ) ) {
+		if ( !in_array( $domain->getSchema(), [ null, 'mediawiki', 'dbo' ], true ) ) {
 			// Include the schema if it is set and is not the default placeholder.
 			// This means a site admin may have specifically taylored the schemas.
 			// Domain IDs might use the form <DB>-<project>-<language>, meaning that
@@ -298,7 +298,7 @@ class WikiMap {
 		$domain = DatabaseDomain::newFromId( $domain );
 		$curDomain = self::getCurrentWikiDbDomain();
 
-		if ( !in_array( $curDomain->getSchema(), [ null, 'mediawiki' ], true ) ) {
+		if ( !in_array( $curDomain->getSchema(), [ null, 'mediawiki', 'dbo' ], true ) ) {
 			// Include the schema if it is set and is not the default placeholder.
 			// This means a site admin may have specifically taylored the schemas.
 			// Domain IDs might use the form <DB>-<project>-<language>, meaning that
