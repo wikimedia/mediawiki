@@ -59,7 +59,44 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 	/**
 	 * @dataProvider provideFetchOptionsFromRequest
 	 */
-	public function testFetchOptionsFromRequest( $expectedValues, $preferences, $inputParams ) {
+	public function testFetchOptionsFromRequest(
+		$expectedValuesDefaults, $expectedValues, $preferences, $inputParams
+	) {
+		// $defaults and $allFalse are just to make the expected values below
+		// shorter by hiding the background.
+
+		$page = TestingAccessWrapper::newFromObject(
+			$this->newSpecialPage()
+		);
+
+		$page->registerFilters();
+
+		// Does not consider $preferences, just wiki's defaults
+		$wikiDefaults = $page->getDefaultOptions()->getAllValues();
+
+		switch ( $expectedValuesDefaults ) {
+		case 'allFalse':
+			$allFalse = $wikiDefaults;
+
+			foreach ( $allFalse as $key => $value ) {
+				if ( $value === true ) {
+					$allFalse[$key] = false;
+				}
+			}
+
+			// This is not exposed on the form (only in preferences) so it
+			// respects the preference.
+			$allFalse['extended'] = true;
+
+			$expectedValues += $allFalse;
+			break;
+		case 'wikiDefaults':
+			$expectedValues += $wikiDefaults;
+			break;
+		default:
+			$this->fail( "Unknown \$expectedValuesDefaults: $expectedValuesDefaults" );
+		}
+
 		$page = TestingAccessWrapper::newFromObject(
 			$this->newSpecialPage()
 		);
@@ -90,43 +127,21 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 	}
 
 	public function provideFetchOptionsFromRequest() {
-		// $defaults and $allFalse are just to make the expected values below
-		// shorter by hiding the background.
-
-		$page = TestingAccessWrapper::newFromObject(
-			$this->newSpecialPage()
-		);
-
-		$page->registerFilters();
-
-		// Does not consider $preferences, just wiki's defaults
-		$wikiDefaults = $page->getDefaultOptions()->getAllValues();
-
-		$allFalse = $wikiDefaults;
-
-		foreach ( $allFalse as $key => &$value ) {
-			if ( $value === true ) {
-				$value = false;
-			}
-		}
-
-		// This is not exposed on the form (only in preferences) so it
-		// respects the preference.
-		$allFalse['extended'] = true;
-
 		return [
-			[
-				[
+			'ignores casing' => [
+				'expectedValuesDefaults' => 'wikiDefaults',
+				'expectedValues' => [
 					'hideminor' => true,
-				] + $wikiDefaults,
-				[],
-				[
+				],
+				'preferences' => [],
+				'inputParams' => [
 					'hideMinor' => 1,
 				],
 			],
 
-			[
-				[
+			'first two same as prefs, second two overriden' => [
+				'expectedValuesDefaults' => 'wikiDefaults',
+				'expectedValues' => [
 					// First two same as prefs
 					'hideminor' => true,
 					'hidebots' => false,
@@ -135,38 +150,38 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 					'hideanons' => false,
 					'hideliu' => true,
 					'userExpLevel' => 'registered'
-				] + $wikiDefaults,
-				[
+				],
+				'preferences' => [
 					'watchlisthideminor' => 1,
 					'watchlisthidebots' => 0,
 
 					'watchlisthideanons' => 1,
 					'watchlisthideliu' => 0,
 				],
-				[
+				'inputParams' => [
 					'hideanons' => 0,
 					'hideliu' => 1,
 				],
 			],
 
-			// Defaults/preferences for form elements are entirely ignored for
-			// action=submit and omitted elements become false
-			[
-				[
+			'Defaults/preferences for form elements are entirely ignored for '
+			. 'action=submit and omitted elements become false' => [
+				'expectedValuesDefaults' => 'allFalse',
+				'expectedValues' => [
 					'hideminor' => false,
 					'hidebots' => true,
 					'hideanons' => false,
 					'hideliu' => true,
 					'userExpLevel' => 'unregistered'
-				] + $allFalse,
-				[
+				],
+				'preferences' => [
 					'watchlisthideminor' => 0,
 					'watchlisthidebots' => 1,
 
 					'watchlisthideanons' => 0,
 					'watchlisthideliu' => 1,
 				],
-				[
+				'inputParams' => [
 					'hidebots' => 1,
 					'hideliu' => 1,
 					'action' => 'submit',
