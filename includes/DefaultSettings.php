@@ -9031,16 +9031,6 @@ $wgPriorityHints = false;
 $wgElementTiming = false;
 
 /**
- * Temporary option to show rollback confirmation user settings
- * without activating the feature itself
- * @see T217039
- * @since 1.33
- * @deprecated 1.33
- * @var bool
- */
-$wgDisableRollbackConfirmationFeature = false;
-
-/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

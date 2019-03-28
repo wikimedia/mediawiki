@@ -47,7 +47,6 @@
 	"tog-useeditwarning": "Warn me when I leave an edit page with unsaved changes",
 	"tog-prefershttps": "Always use a secure connection while logged in",
 	"tog-showrollbackconfirmation": "Show a confirmation prompt when clicking on a rollback link",
-	"tog-showrollbackconfirmation-prerelease-warning": "Please note: This feature is not available yet. If you set this preference now, your choice will be remembered [https://meta.wikimedia.org/wiki/WMDE_Technical_Wishes/Rollback#Status when the feature is released].",
 	"underline-always": "Always",
 	"underline-never": "Never",
 	"underline-default": "Skin or browser default",

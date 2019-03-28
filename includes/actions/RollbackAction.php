@@ -73,20 +73,12 @@ class RollbackAction extends FormAction {
 	}
 
 	/**
-	 * @throws ConfigException
 	 * @throws ErrorPageError
 	 * @throws ReadOnlyError
 	 * @throws ThrottledError
 	 */
 	public function show() {
-		/**
-		 * FIXME
-		 * Remove temporary check of DisableRollbackConfirmationFeature
-		 * after release of rollback feature. See T199534
-		 */
-		$config = \MediaWiki\MediaWikiServices::getInstance()->getMainConfig();
-		if ( $config->get( 'DisableRollbackConfirmationFeature' ) == true ||
-			 $this->getUser()->getOption( 'showrollbackconfirmation' ) == false ||
+		if ( $this->getUser()->getOption( 'showrollbackconfirmation' ) == false ||
 			 $this->getRequest()->wasPosted() ) {
 			$this->handleRollbackRequest();
 		} else {
