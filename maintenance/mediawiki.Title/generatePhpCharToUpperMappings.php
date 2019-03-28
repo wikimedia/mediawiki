@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 /**
- * Utility to generate mapping file used in phpCharToUpper.js
+ * Utility to generate mapping file used in mw.Title (phpCharToUpper.json)
  *
  * Compares output of String.toUpperCase in JavaScript with
  * mb_strtoupper in PHP, and outputs a list of lower:upper
@@ -29,8 +29,6 @@ for ( $i = 0; $i < 65536; $i++ ) {
 	}
 }
 
-echo 'var toUpperMapping = ' . str_replace( '"', "'",
-	str_replace( '    ', "\t",
-		json_encode( $data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE )
-	)
-) . ";\n";
+echo str_replace( '    ', "\t",
+	json_encode( $data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE )
+) . "\n";

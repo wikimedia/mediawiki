@@ -34,6 +34,8 @@
 	var
 		mwString = require( 'mediawiki.String' ),
 
+		toUpperMapping = require( './phpCharToUpper.json' ),
+
 		namespaceIds = mw.config.get( 'wgNamespaceIds' ),
 
 		/**
@@ -783,6 +785,17 @@
 		}
 	};
 
+	/**
+	 * PHP's strtoupper differs from String.toUpperCase in a number of cases (T147646).
+	 *
+	 * @param {string} chr Unicode character
+	 * @return {string} Unicode character, in upper case, according to the same rules as in PHP
+	 */
+	Title.phpCharToUpper = function ( chr ) {
+		var mapped = toUpperMapping[ chr ];
+		return mapped || chr.toUpperCase();
+	};
+
 	/* Public members */
 
 	Title.prototype = {
@@ -827,8 +840,6 @@
 			) {
 				return this.title;
 			}
-			// PHP's strtoupper differs from String.toUpperCase in a number of cases
-			// Bug: T147646
 			return mw.Title.phpCharToUpper( this.title[ 0 ] ) + this.title.slice( 1 );
 		},
 
