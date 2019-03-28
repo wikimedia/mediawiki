@@ -578,7 +578,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * This is the actual workhorse. It does everything needed to make a
 	 * real, honest-to-gosh query page.
-	 * @param string $par
+	 * @param string|null $par
 	 */
 	public function execute( $par ) {
 		$user = $this->getUser();
