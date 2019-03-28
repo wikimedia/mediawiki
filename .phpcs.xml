@@ -227,7 +227,6 @@
 		<exclude-pattern>*/includes/parser/Preprocessor_Hash\.php</exclude-pattern>
 		<exclude-pattern>*/includes/parser/Preprocessor\.php</exclude-pattern>
 		<exclude-pattern>*/includes/PathRouter\.php</exclude-pattern>
-		<exclude-pattern>*/includes/PrefixSearch\.php</exclude-pattern>
 		<exclude-pattern>*/includes/profiler/SectionProfiler\.php</exclude-pattern>
 		<exclude-pattern>*/includes/search/SearchEngine\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specialpage/LoginSignupSpecialPage\.php</exclude-pattern>
