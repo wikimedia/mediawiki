@@ -134,7 +134,7 @@ For notes on 1.32.x and older releases, see HISTORY.
 * Updated wikimedia/php-session-serializer from 1.0.6 to 1.0.7.
 
 ==== Removed external libraries ====
-* …
+* (T219403) jquery.ui.spinner, deprecated since 1.31, was removed.
 
 === Bug fixes in 1.33 ===
 * (T164211) Special:UserRights could sometimes fail with a
