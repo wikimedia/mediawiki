@@ -268,7 +268,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 						[ 'ar_rev_id' => $revids ],
 						__METHOD__
 					),
-				], false );
+				], $db::UNION_DISTINCT );
 				$res = $db->query( $sql, __METHOD__ );
 				foreach ( $res as $row ) {
 					if ( (int)$row->id === (int)$params['startid'] ) {

@@ -591,18 +591,6 @@ return [
 		],
 		'group' => 'jquery.ui',
 	],
-	'jquery.ui.spinner' => [
-		'scripts' => 'resources/lib/jquery.ui/jquery.ui.spinner.js',
-		'dependencies' => [
-			'jquery.ui.core',
-			'jquery.ui.widget',
-			'jquery.ui.button',
-		],
-		'skinStyles' => [
-			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.spinner.css',
-		],
-		'group' => 'jquery.ui',
-	],
 	'jquery.ui.tabs' => [
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.tabs.js',
 		'dependencies' => [
