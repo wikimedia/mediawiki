@@ -288,13 +288,10 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 */
 	protected function mergeViaCas( $key, $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
 		do {
-			$this->clearLastError();
-			$reportDupes = $this->reportDupes;
-			$this->reportDupes = false;
 			$casToken = null; // passed by reference
+			// Get the old value and CAS token from cache
+			$this->clearLastError();
 			$currentValue = $this->doGet( $key, self::READ_LATEST, $casToken );
-			$this->reportDupes = $reportDupes;
-
 			if ( $this->getLastError() ) {
 				$this->logger->warning(
 					__METHOD__ . ' failed due to I/O error on get() for {key}.',
