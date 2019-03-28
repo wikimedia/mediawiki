@@ -1150,10 +1150,17 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      It is generally preferable to use a class constant when setting this value.
 	 *      This has no effect unless pcTTL is used.
 	 *      Default: WANObjectCache::PC_PRIMARY.
-	 *   - version: Integer version number. This allows for callers to make breaking changes to
-	 *      how values are stored while maintaining compatability and correct cache purges. New
-	 *      versions are stored alongside older versions concurrently. Avoid storing class objects
-	 *      however, as this reduces compatibility (due to serialization).
+	 *   - version: Integer version number. This lets callers make breaking changes to the format
+	 *      of cached values without causing problems for sites that use non-instantaneous code
+	 *      deployments. Old and new code will recognize incompatible versions and purges from
+	 *      both old and new code will been seen by each other. When this method encounters an
+	 *      incompatibly versioned value at the provided key, a "variant key" will be used for
+	 *      reading from and saving to cache. The variant key is specific to the key and version
+	 *      number provided to this method. If the variant key value is older than that of the
+	 *      provided key, or the provided key is non-existant, then the variant key will be seen
+	 *      as non-existant. Therefore, delete() calls invalidate the provided key's variant keys.
+	 *      The "checkKeys" and "touchedCallback" options still apply to variant keys as usual.
+	 *      Avoid storing class objects, as this reduces compatibility (due to serialization).
 	 *      Default: null.
 	 *   - minAsOf: Reject values if they were generated before this UNIX timestamp.
 	 *      This is useful if the source of a key is suspected of having possibly changed
