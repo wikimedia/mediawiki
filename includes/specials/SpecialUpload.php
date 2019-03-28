@@ -146,8 +146,7 @@ class SpecialUpload extends SpecialPage {
 	}
 
 	/**
-	 * Special page entry point
-	 * @param string $par
+	 * @param string|null $par
 	 * @throws ErrorPageError
 	 * @throws Exception
 	 * @throws FatalError

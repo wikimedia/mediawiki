@@ -39,6 +39,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 		parent::__construct( 'Newpages' );
 	}
 
+	/**
+	 * @param string|null $par
+	 */
 	protected function setup( $par ) {
 		$opts = new FormOptions();
 		$this->opts = $opts; // bind
@@ -70,6 +73,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$opts->validateIntBounds( 'limit', 0, 5000 );
 	}
 
+	/**
+	 * @param string $par
+	 */
 	protected function parseParams( $par ) {
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
 		foreach ( $bits as $bit ) {
@@ -115,7 +121,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	/**
 	 * Show a form for filtering namespace and username
 	 *
-	 * @param string $par
+	 * @param string|null $par
 	 */
 	public function execute( $par ) {
 		$out = $this->getOutput();

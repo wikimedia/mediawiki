@@ -34,9 +34,7 @@ class SpecialAutoblockList extends SpecialPage {
 	}
 
 	/**
-	 * Main execution point
-	 *
-	 * @param string $par Title fragment
+	 * @param string|null $par Title fragment
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();
