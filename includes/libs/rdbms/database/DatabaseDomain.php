@@ -42,11 +42,11 @@ class DatabaseDomain {
 	 * @param string $prefix Table prefix
 	 */
 	public function __construct( $database, $schema, $prefix ) {
-		if ( $database !== null && ( !is_string( $database ) || !strlen( $database ) ) ) {
+		if ( $database !== null && ( !is_string( $database ) || $database === '' ) ) {
 			throw new InvalidArgumentException( 'Database must be null or a non-empty string.' );
 		}
 		$this->database = $database;
-		if ( $schema !== null && ( !is_string( $schema ) || !strlen( $schema ) ) ) {
+		if ( $schema !== null && ( !is_string( $schema ) || $schema === '' ) ) {
 			throw new InvalidArgumentException( 'Schema must be null or a non-empty string.' );
 		}
 		$this->schema = $schema;

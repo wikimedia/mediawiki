@@ -562,7 +562,7 @@ class SiteConfiguration {
 				->execute();
 
 			$data = trim( $result->getStdout() );
-			if ( $result->getExitCode() != 0 || !strlen( $data ) ) {
+			if ( $result->getExitCode() || $data === '' ) {
 				throw new MWException( "Failed to run getConfiguration.php: {$result->getStdout()}" );
 			}
 			$res = unserialize( $data );
