@@ -1435,6 +1435,7 @@ return [
 		],
 	],
 	'mediawiki.action.history' => [
+		'dependencies' => [ 'jquery.makeCollapsible' ],
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.history.js',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.css',
 	],
