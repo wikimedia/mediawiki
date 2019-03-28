@@ -521,31 +521,34 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param int $ttl Seconds to live. Special values are:
 	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever (default)
 	 * @param array $opts Options map:
-	 *   - lag : Seconds of replica DB lag. Typically, this is either the replica DB lag
+	 *   - lag: seconds of replica DB lag. Typically, this is either the replica DB lag
 	 *      before the data was read or, if applicable, the replica DB lag before
 	 *      the snapshot-isolated transaction the data was read from started.
 	 *      Use false to indicate that replication is not running.
 	 *      Default: 0 seconds
-	 *   - since : UNIX timestamp of the data in $value. Typically, this is either
+	 *   - since: UNIX timestamp of the data in $value. Typically, this is either
 	 *      the current time the data was read or (if applicable) the time when
 	 *      the snapshot-isolated transaction the data was read from started.
 	 *      Default: 0 seconds
-	 *   - pending : Whether this data is possibly from an uncommitted write transaction.
+	 *   - pending: whether this data is possibly from an uncommitted write transaction.
 	 *      Generally, other threads should not see values from the future and
 	 *      they certainly should not see ones that ended up getting rolled back.
 	 *      Default: false
-	 *   - lockTSE : if excessive replication/snapshot lag is detected, then store the value
+	 *   - lockTSE: if excessive replication/snapshot lag is detected, then store the value
 	 *      with this TTL and flag it as stale. This is only useful if the reads for this key
 	 *      use getWithSetCallback() with "lockTSE" set. Note that if "staleTTL" is set
 	 *      then it will still add on to this TTL in the excessive lag scenario.
 	 *      Default: WANObjectCache::TSE_NONE
-	 *   - staleTTL : Seconds to keep the key around if it is stale. The get()/getMulti()
+	 *   - staleTTL: seconds to keep the key around if it is stale. The get()/getMulti()
 	 *      methods return such stale values with a $curTTL of 0, and getWithSetCallback()
 	 *      will call the regeneration callback in such cases, passing in the old value
 	 *      and its as-of time to the callback. This is useful if adaptiveTTL() is used
 	 *      on the old value's as-of time when it is verified as still being correct.
 	 *      Default: WANObjectCache::STALE_TTL_NONE.
+	 *   - creating: optimize for the case where the key does not already exist.
+	 *      Default: false
 	 * @note Options added in 1.28: staleTTL
+	 * @note Options added in 1.33: creating
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = self::TTL_INDEFINITE, array $opts = [] ) {
@@ -553,6 +556,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$lockTSE = $opts['lockTSE'] ?? self::TSE_NONE;
 		$staleTTL = $opts['staleTTL'] ?? self::STALE_TTL_NONE;
 		$age = isset( $opts['since'] ) ? max( 0, $now - $opts['since'] ) : 0;
+		$creating = $opts['creating'] ?? false;
 		$lag = $opts['lag'] ?? 0;
 
 		// Do not cache potentially uncommitted data as it might get rolled back
@@ -618,14 +622,23 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		// Wrap that value with time/TTL/version metadata
 		$wrapped = $this->wrap( $value, $logicalTTL ?: $ttl, $now );
+		$storeTTL = $ttl + $staleTTL;
 
-		$func = function ( $cache, $key, $cWrapped ) use ( $wrapped ) {
-			return ( is_string( $cWrapped ) )
-				? false // key is tombstoned; do nothing
-				: $wrapped;
-		};
+		if ( $creating ) {
+			$ok = $this->cache->add( self::VALUE_KEY_PREFIX . $key, $wrapped, $storeTTL );
+		} else {
+			$ok = $this->cache->merge(
+				self::VALUE_KEY_PREFIX . $key,
+				function ( $cache, $key, $cWrapped ) use ( $wrapped ) {
+					// A string value means that it is a tombstone; do nothing in that case
+					return ( is_string( $cWrapped ) ) ? false : $wrapped;
+				},
+				$storeTTL,
+				1 // 1 attempt
+			);
+		}
 
-		return $this->cache->merge( self::VALUE_KEY_PREFIX . $key, $func, $ttl + $staleTTL, 1 );
+		return $ok;
 	}
 
 	/**
@@ -1418,6 +1431,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				}
 			} elseif ( !$useMutex || $hasLock ) {
 				if ( $this->checkAndSetCooloff( $key, $kClass, $ago, $lockTSE, $hasLock ) ) {
+					$setOpts['creating'] = ( $curValue === false );
 					// Save the value unless a lock-winning thread is already expected to do that
 					$setOpts['lockTSE'] = $lockTSE;
 					$setOpts['staleTTL'] = $staleTTL;
