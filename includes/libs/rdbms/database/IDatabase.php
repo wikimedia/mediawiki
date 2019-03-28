@@ -114,6 +114,11 @@ interface IDatabase {
 	 */
 	const QUERY_PSEUDO_PERMANENT = 2;
 
+	/** @var bool Parameter to unionQueries() for UNION ALL */
+	const UNION_ALL = true;
+	/** @var bool Parameter to unionQueries() for UNION DISTINCT */
+	const UNION_DISTINCT = false;
+
 	/**
 	 * A string describing the current software version, and possibly
 	 * other details in a user-friendly way. Will be listed on Special:Version, etc.
@@ -1384,7 +1389,7 @@ interface IDatabase {
 	 * This is used for providing overload point for other DB abstractions
 	 * not compatible with the MySQL syntax.
 	 * @param array $sqls SQL statements to combine
-	 * @param bool $all Use UNION ALL
+	 * @param bool $all Either IDatabase::UNION_ALL or IDatabase::UNION_DISTINCT
 	 * @return string SQL fragment
 	 */
 	public function unionQueries( $sqls, $all );

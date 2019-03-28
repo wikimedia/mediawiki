@@ -224,7 +224,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$sql = $subsql[0];
 		} else {
 			// need to resort and relimit after union
-			$sql = $dbr->unionQueries( $subsql, false ) . ' ORDER BY rc_timestamp DESC';
+			$sql = $dbr->unionQueries( $subsql, $dbr::UNION_DISTINCT ) .
+				' ORDER BY rc_timestamp DESC';
 			$sql = $dbr->limitResult( $sql, $limit, false );
 		}
 
