@@ -2611,22 +2611,6 @@ function wfWikiID() {
 }
 
 /**
- * Split a wiki ID into DB name and table prefix
- *
- * @param string $wiki
- *
- * @return array
- * @deprecated 1.32
- */
-function wfSplitWikiID( $wiki ) {
-	$bits = explode( '-', $wiki, 2 );
-	if ( count( $bits ) < 2 ) {
-		$bits[] = '';
-	}
-	return $bits;
-}
-
-/**
  * Get a Database object.
  *
  * @param int $db Index of the connection to get. May be DB_MASTER for the
