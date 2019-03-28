@@ -8,10 +8,10 @@ class DerivativeResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
-	protected static function getContext() {
+	protected static function makeContext() {
 		$request = new FauxRequest( [
-				'lang' => 'zh',
-				'modules' => 'test.context',
+				'lang' => 'qqx',
+				'modules' => 'test.default',
 				'only' => 'scripts',
 				'skin' => 'fallback',
 				'target' => 'test',
@@ -19,123 +19,114 @@ class DerivativeResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 		return new ResourceLoaderContext( new ResourceLoader(), $request );
 	}
 
-	public function testGetInherited() {
-		$derived = new DerivativeResourceLoaderContext( self::getContext() );
-
-		// Request parameters
-		$this->assertEquals( $derived->getDebug(), false );
-		$this->assertEquals( $derived->getLanguage(), 'zh' );
-		$this->assertEquals( $derived->getModules(), [ 'test.context' ] );
-		$this->assertEquals( $derived->getOnly(), 'scripts' );
-		$this->assertEquals( $derived->getSkin(), 'fallback' );
-		$this->assertEquals( $derived->getUser(), null );
-
-		// Misc
-		$this->assertEquals( $derived->getDirection(), 'ltr' );
-		$this->assertEquals( $derived->getHash(), 'zh|fallback|||scripts|||||' );
-	}
-
-	public function testModules() {
-		$derived = new DerivativeResourceLoaderContext( self::getContext() );
+	public function testChangeModules() {
+		$derived = new DerivativeResourceLoaderContext( self::makeContext() );
+		$this->assertSame( $derived->getModules(), [ 'test.default' ], 'inherit from parent' );
 
 		$derived->setModules( [ 'test.override' ] );
-		$this->assertEquals( $derived->getModules(), [ 'test.override' ] );
+		$this->assertSame( $derived->getModules(), [ 'test.override' ] );
 	}
 
-	public function testLanguage() {
-		$context = self::getContext();
-		$derived = new DerivativeResourceLoaderContext( $context );
+	public function testChangeLanguageAndDirection() {
+		$derived = new DerivativeResourceLoaderContext( self::makeContext() );
+		$this->assertSame( $derived->getLanguage(), 'qqx', 'inherit from parent' );
 
 		$derived->setLanguage( 'nl' );
-		$this->assertEquals( $derived->getLanguage(), 'nl' );
-	}
+		$this->assertSame( $derived->getLanguage(), 'nl' );
+		$this->assertSame( $derived->getDirection(), 'ltr' );
 
-	public function testDirection() {
-		$derived = new DerivativeResourceLoaderContext( self::getContext() );
-
-		$derived->setLanguage( 'nl' );
-		$this->assertEquals( $derived->getDirection(), 'ltr' );
-
+		// Changing the language must clear cache of computed direction
 		$derived->setLanguage( 'he' );
-		$this->assertEquals( $derived->getDirection(), 'rtl' );
+		$this->assertSame( $derived->getDirection(), 'rtl' );
+		$this->assertSame( $derived->getLanguage(), 'he' );
 
+		// Overriding the direction explicitly is allowed
 		$derived->setDirection( 'ltr' );
-		$this->assertEquals( $derived->getDirection(), 'ltr' );
+		$this->assertSame( $derived->getDirection(), 'ltr' );
+		$this->assertSame( $derived->getLanguage(), 'he' );
 	}
 
-	public function testSkin() {
-		$derived = new DerivativeResourceLoaderContext( self::getContext() );
+	public function testChangeSkin() {
+		$derived = new DerivativeResourceLoaderContext( self::makeContext() );
+		$this->assertSame( $derived->getSkin(), 'fallback', 'inherit from parent' );
 
-		$derived->setSkin( 'override' );
-		$this->assertEquals( $derived->getSkin(), 'override' );
+		$derived->setSkin( 'myskin' );
+		$this->assertSame( $derived->getSkin(), 'myskin' );
 	}
 
-	public function testUser() {
-		$derived = new DerivativeResourceLoaderContext( self::getContext() );
+	public function testChangeUser() {
+		$derived = new DerivativeResourceLoaderContext( self::makeContext() );
+		$this->assertSame( $derived->getUser(), null, 'inherit from parent' );
 
-		$derived->setUser( 'Example' );
-		$this->assertEquals( $derived->getUser(), 'Example' );
+		$derived->setUser( 'MyUser' );
+		$this->assertSame( $derived->getUser(), 'MyUser' );
 	}
 
-	public function testDebug() {
-		$derived = new DerivativeResourceLoaderContext( self::getContext() );
+	public function testChangeDebug() {
+		$derived = new DerivativeResourceLoaderContext( self::makeContext() );
+		$this->assertSame( $derived->getDebug(), false, 'inherit from parent' );
 
 		$derived->setDebug( true );
-		$this->assertEquals( $derived->getDebug(), true );
+		$this->assertSame( $derived->getDebug(), true );
 	}
 
-	public function testOnly() {
-		$derived = new DerivativeResourceLoaderContext( self::getContext() );
+	public function testChangeOnly() {
+		$derived = new DerivativeResourceLoaderContext( self::makeContext() );
+		$this->assertSame( $derived->getOnly(), 'scripts', 'inherit from parent' );
 
 		$derived->setOnly( 'styles' );
-		$this->assertEquals( $derived->getOnly(), 'styles' );
+		$this->assertSame( $derived->getOnly(), 'styles' );
 
 		$derived->setOnly( null );
-		$this->assertEquals( $derived->getOnly(), null );
+		$this->assertSame( $derived->getOnly(), null );
 	}
 
-	public function testVersion() {
-		$derived = new DerivativeResourceLoaderContext( self::getContext() );
+	public function testChangeVersion() {
+		$derived = new DerivativeResourceLoaderContext( self::makeContext() );
+		$this->assertSame( $derived->getVersion(), null );
 
 		$derived->setVersion( 'hw1' );
-		$this->assertEquals( $derived->getVersion(), 'hw1' );
+		$this->assertSame( $derived->getVersion(), 'hw1' );
 	}
 
-	public function testRaw() {
-		$derived = new DerivativeResourceLoaderContext( self::getContext() );
+	public function testChangeRaw() {
+		$derived = new DerivativeResourceLoaderContext( self::makeContext() );
+		$this->assertSame( $derived->getRaw(), false, 'inherit from parent' );
 
 		$derived->setRaw( true );
-		$this->assertEquals( $derived->getRaw(), true );
+		$this->assertSame( $derived->getRaw(), true );
 	}
 
-	public function testGetHash() {
-		$derived = new DerivativeResourceLoaderContext( self::getContext() );
-
-		$this->assertEquals( $derived->getHash(), 'zh|fallback|||scripts|||||' );
+	public function testChangeHash() {
+		$derived = new DerivativeResourceLoaderContext( self::makeContext() );
+		$this->assertSame( $derived->getHash(), 'qqx|fallback|||scripts|||||', 'inherit' );
 
 		$derived->setLanguage( 'nl' );
 		$derived->setUser( 'Example' );
 		// Assert that subclass is able to clear parent class "hash" member
-		$this->assertEquals( $derived->getHash(), 'nl|fallback||Example|scripts|||||' );
+		$this->assertSame( $derived->getHash(), 'nl|fallback||Example|scripts|||||' );
 	}
 
-	public function testContentOverrides() {
-		$derived = new DerivativeResourceLoaderContext( self::getContext() );
-
-		$this->assertNull( $derived->getContentOverrideCallback() );
+	public function testChangeContentOverrides() {
+		$derived = new DerivativeResourceLoaderContext( self::makeContext() );
+		$this->assertNull( $derived->getContentOverrideCallback(), 'default' );
 
 		$override = function ( Title $t ) {
 			return null;
 		};
 		$derived->setContentOverrideCallback( $override );
-		$this->assertSame( $override, $derived->getContentOverrideCallback() );
+		$this->assertSame( $override, $derived->getContentOverrideCallback(), 'changed' );
 
 		$derived2 = new DerivativeResourceLoaderContext( $derived );
-		$this->assertSame( $override, $derived2->getContentOverrideCallback() );
+		$this->assertSame(
+			$override,
+			$derived2->getContentOverrideCallback(),
+			'change via a second derivative layer'
+		);
 	}
 
-	public function testAccessors() {
-		$context = self::getContext();
+	public function testImmutableAccessors() {
+		$context = self::makeContext();
 		$derived = new DerivativeResourceLoaderContext( $context );
 		$this->assertSame( $derived->getRequest(), $context->getRequest() );
 		$this->assertSame( $derived->getResourceLoader(), $context->getResourceLoader() );
