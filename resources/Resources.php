@@ -1123,9 +1123,11 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.Title' => [
-		'scripts' => [
-			'resources/src/mediawiki.Title/Title.js',
-			'resources/src/mediawiki.Title/phpCharToUpper.js',
+		'localBasePath' => "$IP/resources/src/mediawiki.Title",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.Title",
+		'packageFiles' => [
+			'Title.js',
+			'phpCharToUpper.json'
 		],
 		'dependencies' => [
 			'mediawiki.String',
