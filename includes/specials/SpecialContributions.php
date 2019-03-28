@@ -42,11 +42,16 @@ class SpecialContributions extends IncludableSpecialPage {
 		$out = $this->getOutput();
 		// Modules required for viewing the list of contributions (also when included on other pages)
 		$out->addModuleStyles( [
+			'jquery.makeCollapsible.styles',
 			'mediawiki.interface.helpers.styles',
 			'mediawiki.special',
 			'mediawiki.special.changeslist',
 		] );
-		$out->addModules( 'mediawiki.special.recentchanges' );
+		$out->addModules( [
+			'mediawiki.special.recentchanges',
+			// Certain skins e.g. Minerva might have disabled this module.
+			'mediawiki.page.ready'
+		] );
 		$this->addHelpLink( 'Help:User contributions' );
 
 		$this->opts = [];
@@ -58,7 +63,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		if ( !strlen( $target ) ) {
 			if ( !$this->including() ) {
-				$out->addHTML( $this->getForm() );
+				$out->addHTML( $this->getForm( $this->opts ) );
 			}
 
 			return;
@@ -76,7 +81,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( ExternalUserNames::isExternal( $target ) ) {
 			$userObj = User::newFromName( $target, false );
 			if ( !$userObj ) {
-				$out->addHTML( $this->getForm() );
+				$out->addHTML( $this->getForm( $this->opts ) );
 				return;
 			}
 
@@ -88,12 +93,12 @@ class SpecialContributions extends IncludableSpecialPage {
 		} else {
 			$nt = Title::makeTitleSafe( NS_USER, $target );
 			if ( !$nt ) {
-				$out->addHTML( $this->getForm() );
+				$out->addHTML( $this->getForm( $this->opts ) );
 				return;
 			}
 			$userObj = User::newFromName( $nt->getText(), false );
 			if ( !$userObj ) {
-				$out->addHTML( $this->getForm() );
+				$out->addHTML( $this->getForm( $this->opts ) );
 				return;
 			}
 			$id = $userObj->getId();
@@ -157,7 +162,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				"<div class=\"mw-negative-namespace-not-supported error\">\n\$1\n</div>",
 				[ 'negative-namespace-not-supported' ]
 			);
-			$out->addHTML( $this->getForm() );
+			$out->addHTML( $this->getForm( $this->opts ) );
 			return;
 		}
 
@@ -209,9 +214,6 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->addFeedLinks( $feedParams );
 
 		if ( Hooks::run( 'SpecialContributionsBeforeMainOutput', [ $id, $userObj, $this ] ) ) {
-			if ( !$this->including() ) {
-				$out->addHTML( $this->getForm() );
-			}
 			$pager = new ContribsPager( $this->getContext(), [
 				'target' => $target,
 				'namespace' => $this->opts['namespace'],
@@ -225,6 +227,9 @@ class SpecialContributions extends IncludableSpecialPage {
 				'nsInvert' => $this->opts['nsInvert'],
 				'associated' => $this->opts['associated'],
 			], $this->getLinkRenderer() );
+			if ( !$this->including() ) {
+				$out->addHTML( $this->getForm( $this->opts ) );
+			}
 
 			if ( IP::isValidRange( $target ) && !$pager->isQueryableRange( $target ) ) {
 				// Valid range, but outside CIDR limit.
@@ -466,9 +471,11 @@ class SpecialContributions extends IncludableSpecialPage {
 
 	/**
 	 * Generates the namespace selector form with hidden attributes.
+	 * @param array $pagerOptions with keys contribs, user, deletedOnly, limit, target, topOnly,
+	 *  newOnly, hideMinor, namespace, associated, nsInvert, tagfilter, year, start, end
 	 * @return string HTML fragment
 	 */
-	protected function getForm() {
+	protected function getForm( array $pagerOptions ) {
 		$this->opts['title'] = $this->getPageTitle()->getPrefixedText();
 		// Modules required only for the form
 		$this->getOutput()->addModules( [
@@ -645,6 +652,14 @@ class SpecialContributions extends IncludableSpecialPage {
 		$htmlForm = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$htmlForm
 			->setMethod( 'get' )
+			// When offset is defined, the user is paging through results
+			// so we hide the form by default to allow users to focus on browsing
+			// rather than defining search parameters
+			->setCollapsibleOptions(
+				( $pagerOptions['target'] ?? null ) ||
+				( $pagerOptions['start'] ?? null ) ||
+				( $pagerOptions['end'] ?? null )
+			)
 			->setAction( wfScript() )
 			->setSubmitText( $this->msg( 'sp-contributions-submit' )->text() )
 			->setWrapperLegend( $this->msg( 'sp-contributions-search' )->text() );
