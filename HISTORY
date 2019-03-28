@@ -19541,6 +19541,52 @@ Mozilla.) The new 'MonoBook' skin is not compatible with PHP 5 due to bugs in
 the underlying PHPTAL library. It will be automatically disabled when running
 on PHP5; the older look and feel will be used instead.
 
+= MediaWiki 1.1 =
+
+== MediaWiki 1.1.0, 2003-12-08 ==
+
+This is the new production release. Any following 1.1.x releases are expected
+to contain only bug fixes; developments of new features will go towards a 1.2.0
+release.
+New features in 1.1:
+* New wiki table syntax:
+http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide:_Using_tables
+* User-editable interface messages:
+http://meta.wikipedia.org/wiki/MediaWiki_namespace
+* XML-wrapped page source export with optional history:
+http://meta.wikipedia.org/wiki/XML_import_and_export (There is not yet an
+import function!)
+* "Magic words" Fixes and tweaks:
+* linkscc table caches link data for rendering; faster
+{{manual|rebuildlinks.php}}
+* Numerous bugs in [[skin:Cologne Blue|Cologne Blue]] skin fixed
+* Login gives warning about missing cookies
+* Block log, protection log added; deletion log now includes undeletions
+* Deletion & upload logs now escape comment text properly
+* Problems with <nowiki><nowiki></nowiki> segments in section titles etc
+mitigated
+* Contributions offset and minor edit bugs fixed
+* Whatlinkshere now sorted alphabetically
+* Various exciting new profiling options.
+* Debug log is off by default.
+* Various small bugs fixed. Internal changes:
+* wfQuery has had a second parameter inserted, DB_READ or DB_WRITE. This value
+is not actually used so far.
+* Partial code for categories and Smarty template-based skins is in the tree
+but disabled.
+* Parts of Article.php have been moved to {{manual|EditPage.php}} and
+{{manual|ImagePage.php}}. New translations:
+* fi - Finnish
+* ia - Interlingua
+* no - Norwegian
+* sk - Slovak
+* ta - Tamil
+
+=== Database changes ===
+"linkscc" table added. If upgrading manually (rather than with
+{{manual|update.php}}), run maintenance/archives/patch-linkscc.sql to create
+the table. Older releases were dated snapshots from the old 'stable' branch:
+
 = pre-MediaWiki 1.1.0 =
 
 == Mediawiki-20031118 ==
