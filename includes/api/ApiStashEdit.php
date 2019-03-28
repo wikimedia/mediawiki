@@ -477,7 +477,7 @@ class ApiStashEdit extends ApiBase {
 	 * @param string $newKey
 	 */
 	private static function pruneExcessStashedEntries( BagOStuff $cache, User $user, $newKey ) {
-		$key = $cache->makeKey( 'stash-edit-recent', $user->getId() );
+		$key = $cache->makeKey( 'stash-edit-recent', sha1( $user->getName() ) );
 
 		$keyList = $cache->get( $key ) ?: [];
 		if ( count( $keyList ) >= self::MAX_CACHE_RECENT ) {
