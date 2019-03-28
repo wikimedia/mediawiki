@@ -183,7 +183,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s .= Html::hidden( 'type', 'revision' ) . "\n";
 
 		// Button container stored in $this->buttons for re-use in getEndBody()
-		$this->buttons = '<div>';
+		$this->buttons = Html::openElement( 'div', [ 'class' => 'mw-history-compareselectedversions' ] );
 		$className = 'historysubmit mw-history-compareselectedversions-button';
 		$attrs = [ 'class' => $className ]
 			+ Linker::tooltipAndAccesskeyAttribs( 'compareselectedversions' );
