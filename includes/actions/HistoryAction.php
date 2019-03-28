@@ -103,6 +103,43 @@ class HistoryAction extends FormlessAction {
 	}
 
 	/**
+	 * @param WebRequest $request
+	 * @return string
+	 */
+	private function getTimestampFromRequest( WebRequest $request ) {
+		// Backwards compatibility checks for URIs with only year and/or month.
+		$year = $request->getInt( 'year' );
+		$month = $request->getInt( 'month' );
+		$day = null;
+		if ( $year !== 0 || $month !== 0 ) {
+			if ( $year === 0 ) {
+				$year = MWTimestamp::getLocalInstance()->format( 'Y' );
+			}
+			if ( $month < 1 || $month > 12 ) {
+				// month is invalid so treat as December (all months)
+				$month = 12;
+			}
+			// month is valid so check day
+			$day = cal_days_in_month( CAL_GREGORIAN, $month, $year );
+
+			// Left pad the months and days
+			$month = str_pad( $month, 2, "0", STR_PAD_LEFT );
+			$day = str_pad( $day, 2, "0", STR_PAD_LEFT );
+		}
+
+		$before = $request->getVal( 'date-range-to' );
+		if ( $before ) {
+			$parts = explode( '-', $before );
+			$year = $parts[0];
+			// check date input is valid
+			if ( count( $parts ) === 3 ) {
+				$month = $parts[1];
+				$day = $parts[2];
+			}
+		}
+		return $year && $month && $day ? $year . '-' . $month . '-' . $day : '';
+	}
+	/**
 	 * Print the history page for an article.
 	 */
 	function onView() {
@@ -179,13 +216,8 @@ class HistoryAction extends FormlessAction {
 			return;
 		}
 
-		/**
-		 * Add date selector to quickly get to a certain time
-		 */
-		$year = $request->getInt( 'year' );
-		$month = $request->getInt( 'month' );
+		$ts = $this->getTimestampFromRequest( $request );
 		$tagFilter = $request->getVal( 'tagfilter' );
-		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter, false, $this->getContext() );
 
 		/**
 		 * Option to show only revisions that have been (partially) hidden via RevisionDelete
@@ -195,41 +227,69 @@ class HistoryAction extends FormlessAction {
 		} else {
 			$conds = [];
 		}
+
+		// Add the general form.
+		$action = htmlspecialchars( wfScript() );
+		$fields = [
+			[
+				'name' => 'title',
+				'type' => 'hidden',
+				'default' => $this->getTitle()->getPrefixedDBkey(),
+			],
+			[
+				'name' => 'action',
+				'type' => 'hidden',
+				'default' => 'history',
+			],
+			[
+				'type' => 'date',
+				'default' => $ts,
+				'label' => $this->msg( 'date-range-to' )->text(),
+				'name' => 'date-range-to',
+			],
+			[
+				'label-raw' => $this->msg( 'tag-filter' )->parse(),
+				'type' => 'tagfilter',
+				'id' => 'tagfilter',
+				'name' => 'tagfilter',
+				'value' => $tagFilter,
+			]
+		];
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
-			$checkDeleted = Xml::checkLabel( $this->msg( 'history-show-deleted' )->text(),
-				'deleted', 'mw-show-deleted-only', $request->getBool( 'deleted' ) ) . "\n";
-		} else {
-			$checkDeleted = '';
+			$fields[] = [
+				'type' => 'check',
+				'label' => $this->msg( 'history-show-deleted' )->text(),
+				'default' => $request->getBool( 'deleted' ),
+				'name' => 'deleted',
+			];
 		}
 
-		// Add the general form
-		$action = htmlspecialchars( wfScript() );
-		$content = Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n";
-		$content .= Html::hidden( 'action', 'history' ) . "\n";
-		$content .= Xml::dateMenu(
-			( $year == null ? MWTimestamp::getLocalInstance()->format( 'Y' ) : $year ),
-			$month
-		) . "\u{00A0}";
-		$content .= $tagSelector ? ( implode( "\u{00A0}", $tagSelector ) . "\u{00A0}" ) : '';
-		$content .= $checkDeleted . Html::submitButton(
-			$this->msg( 'historyaction-submit' )->text(),
-			[],
-			[ 'mw-ui-progressive' ]
-		);
-		$out->addHTML(
-			"<form action=\"$action\" method=\"get\" id=\"mw-history-searchform\">" .
-			Xml::fieldset(
-				$this->msg( 'history-fieldset-title' )->text(),
-				$content,
-				[ 'id' => 'mw-history-search' ]
-			) .
-			'</form>'
-		);
+		$out->enableOOUI();
+		$htmlForm = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
+		$htmlForm
+			->setMethod( 'get' )
+			->setAction( $action )
+			->setId( 'mw-history-searchform' )
+			->setSubmitText( $this->msg( 'historyaction-submit' )->text() )
+			->setWrapperLegend( $this->msg( 'history-fieldset-title' )->text() );
+		$htmlForm->loadData();
+
+		$out->addHTML( $htmlForm->getHTML( false ) );
 
 		Hooks::run( 'PageHistoryBeforeList', [ &$this->page, $this->getContext() ] );
 
 		// Create and output the list.
-		$pager = new HistoryPager( $this, $year, $month, $tagFilter, $conds );
+		$dateComponents = explode( '-', $ts );
+		if ( count( $dateComponents ) > 1 ) {
+			$y = $dateComponents[0];
+			$m = $dateComponents[1];
+			$d = $dateComponents[2];
+		} else {
+			$y = '';
+			$m = '';
+			$d = '';
+		}
+		$pager = new HistoryPager( $this, $y, $m, $tagFilter, $conds, $d );
 		$out->addHTML(
 			$pager->getNavigationBar() .
 			$pager->getBody() .
