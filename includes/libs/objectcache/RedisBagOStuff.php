@@ -325,21 +325,29 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function changeTTL( $key, $expiry = 0, $flags = 0 ) {
+	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
 		}
 
-		$expiry = $this->convertToRelative( $expiry );
+		$relative = $this->expiryIsRelative( $exptime );
 		try {
-			$result = $conn->expire( $key, $expiry );
+			if ( $exptime == 0 ) {
+				$result = $conn->persist( $key );
+				$this->logRequest( 'persist', $key, $server, $result );
+			} elseif ( $relative ) {
+				$result = $conn->expire( $key, $this->convertToRelative( $exptime ) );
+				$this->logRequest( 'expire', $key, $server, $result );
+			} else {
+				$result = $conn->expireAt( $key, $this->convertToExpiry( $exptime ) );
+				$this->logRequest( 'expireAt', $key, $server, $result );
+			}
 		} catch ( RedisException $e ) {
 			$result = false;
 			$this->handleException( $conn, $e );
 		}
 
-		$this->logRequest( 'expire', $key, $server, $result );
 		return $result;
 	}
 
