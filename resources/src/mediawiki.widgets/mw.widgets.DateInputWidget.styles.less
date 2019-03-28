@@ -57,12 +57,8 @@
 .mw-widget-dateInputWidget {
 	&.oo-ui-textInputWidget {
 		display: inline-block;
-		position: relative;
 		width: 21em;
-		margin-top: 0.25em;
 		// .oo-ui-inline-spacing( 0.5em ); already inherited from `.oo-ui-inputWidget`
-		margin-bottom: 0.25em;
-		margin-left: 0;
 	}
 
 	// Note that this block applies to both the PHP widget and the JS widget
@@ -88,6 +84,10 @@
 		border-radius: @border-radius-base;
 		padding: @padding-input-text;
 		line-height: @line-height-widget-singleline;
+
+		> .oo-ui-labelElement-label {
+			line-height: @line-height-widget-singleline;
+		}
 	}
 
 	&.oo-ui-widget-enabled {
