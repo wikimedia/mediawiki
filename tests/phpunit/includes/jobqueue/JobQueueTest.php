@@ -31,7 +31,7 @@ class JobQueueTest extends MediaWikiTestCase {
 			$baseConfig = [ 'class' => JobQueueDBSingle::class ];
 		}
 		$baseConfig['type'] = 'null';
-		$baseConfig['wiki'] = wfWikiID();
+		$baseConfig['domain'] = WikiMap::getCurrentWikiDbDomain()->getId();
 		$variants = [
 			'queueRand' => [ 'order' => 'random', 'claimTTL' => 0 ],
 			'queueRandTTL' => [ 'order' => 'random', 'claimTTL' => 10 ],
@@ -75,7 +75,10 @@ class JobQueueTest extends MediaWikiTestCase {
 			$this->markTestSkipped( $desc );
 		}
 		$this->assertEquals( wfWikiID(), $queue->getWiki(), "Proper wiki ID ($desc)" );
-		$this->assertEquals( wfWikiID(), $queue->getDomain(), "Proper wiki ID ($desc)" );
+		$this->assertEquals(
+			WikiMap::getCurrentWikiDbDomain()->getId(),
+			$queue->getDomain(),
+			"Proper wiki ID ($desc)" );
 	}
 
 	/**

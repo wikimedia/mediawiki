@@ -126,7 +126,7 @@ abstract class JobQueue {
 	 * @deprecated 1.33
 	 */
 	final public function getWiki() {
-		return $this->domain;
+		return WikiMap::getWikiIdFromDbDomain( $this->domain );
 	}
 
 	/**
