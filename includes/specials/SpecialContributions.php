@@ -244,9 +244,9 @@ class SpecialContributions extends IncludableSpecialPage {
 
 				$output = $pager->getBody();
 				if ( !$this->including() ) {
-					$output = '<p>' . $pager->getNavigationBar() . '</p>' .
+					$output = $pager->getNavigationBar() .
 						$output .
-						'<p>' . $pager->getNavigationBar() . '</p>';
+						$pager->getNavigationBar();
 				}
 				$out->addHTML( $output );
 			}
@@ -353,7 +353,9 @@ class SpecialContributions extends IncludableSpecialPage {
 			}
 		}
 
-		return $this->msg( 'contribsub2' )->rawParams( $user, $links )->params( $userObj->getName() );
+		return Html::rawElement( 'div', [ 'class' => 'mw-contributions-user-tools' ],
+			$this->msg( 'contribsub2' )->rawParams( $user, $links )->params( $userObj->getName() )
+		);
 	}
 
 	/**
