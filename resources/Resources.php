@@ -1456,6 +1456,7 @@ return [
 		'skinStyles' => [
 			'default' => 'resources/src/mediawiki.action/mediawiki.action.history.styles.css',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.action.view.dblClickEdit' => [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.dblClickEdit.js',
