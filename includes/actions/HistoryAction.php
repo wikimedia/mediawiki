@@ -78,7 +78,7 @@ class HistoryAction extends FormlessAction {
 					->rawParams( $this->getLanguage()->pipeList( $links ) )
 					->escaped();
 		}
-		return $subtitle;
+		return Html::rawElement( 'div', [ 'class' => 'mw-history-subtitle' ], $subtitle );
 	}
 
 	/**
