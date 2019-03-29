@@ -229,7 +229,6 @@ class HistoryAction extends FormlessAction {
 		}
 
 		// Add the general form.
-		$action = htmlspecialchars( wfScript() );
 		$fields = [
 			[
 				'name' => 'title',
@@ -268,7 +267,7 @@ class HistoryAction extends FormlessAction {
 		$htmlForm = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$htmlForm
 			->setMethod( 'get' )
-			->setAction( $action )
+			->setAction( wfScript() )
 			->setId( 'mw-history-searchform' )
 			->setSubmitText( $this->msg( 'historyaction-submit' )->text() )
 			->setWrapperLegend( $this->msg( 'history-fieldset-title' )->text() );
