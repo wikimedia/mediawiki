@@ -50,6 +50,7 @@ describe( 'Rollback with confirmation', function () {
 
 	it( 'should offer a way to cancel rollbacks', function () {
 		HistoryPage.rollback.click();
+		browser.pause( 300 );
 		HistoryPage.rollbackConfirmableNo.click();
 
 		browser.pause( 500 );
