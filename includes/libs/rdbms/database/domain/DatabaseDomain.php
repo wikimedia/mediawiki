@@ -48,6 +48,8 @@ class DatabaseDomain {
 		$this->database = $database;
 		if ( $schema !== null && ( !is_string( $schema ) || $schema === '' ) ) {
 			throw new InvalidArgumentException( 'Schema must be null or a non-empty string.' );
+		} elseif ( $database === null && $schema !== null ) {
+			throw new InvalidArgumentException( 'Schema must be null if database is null.' );
 		}
 		$this->schema = $schema;
 		if ( !is_string( $prefix ) ) {
@@ -120,8 +122,8 @@ class DatabaseDomain {
 	 * Check whether the domain $other meets the specifications of this domain
 	 *
 	 * If this instance has a null database specifier, then $other can have any database
-	 * specified, including the null, and likewise if the schema specifier is null. This
-	 * is not transitive like equals() since a domain that explicitly wants a certain
+	 * specifier, including null. This is likewise true if the schema specifier is null.
+	 * This is not transitive like equals() since a domain that explicitly wants a certain
 	 * database or schema cannot be satisfied by one of another (nor null). If the prefix
 	 * is empty and the DB and schema are both null, then the entire domain is considered
 	 * unspecified, and any prefix of $other is considered compatible.

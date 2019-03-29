@@ -617,6 +617,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function dbSchema( $schema = null ) {
+		if ( strlen( $schema ) && $this->getDBname() === null ) {
+			throw new DBUnexpectedError( $this, "Cannot set schema to '$schema'; no database set." );
+		}
+
 		$old = $this->currentDomain->getSchema();
 		if ( $schema !== null ) {
 			$this->currentDomain = new DatabaseDomain(

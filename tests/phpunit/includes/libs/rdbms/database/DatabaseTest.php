@@ -13,6 +13,8 @@ use Wikimedia\Rdbms\DatabaseMssql;
 use Wikimedia\Rdbms\DBUnexpectedError;
 
 class DatabaseTest extends PHPUnit\Framework\TestCase {
+	/** @var DatabaseTestHelper */
+	private $db;
 
 	use MediaWikiCoversValidator;
 
@@ -629,6 +631,10 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\Database::dbSchema
 	 */
 	public function testSchemaAndPrefixMutators() {
+		$ud = DatabaseDomain::newUnspecified();
+
+		$this->assertEquals( $ud->getId(), $this->db->getDomainID() );
+
 		$old = $this->db->tablePrefix();
 		$oldDomain = $this->db->getDomainId();
 		$this->assertInternalType( 'string', $old, 'Prefix is string' );
@@ -643,11 +649,27 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$oldDomain = $this->db->getDomainId();
 		$this->assertInternalType( 'string', $old, 'Schema is string' );
 		$this->assertSame( $old, $this->db->dbSchema(), "Schema unchanged" );
+
+		$this->db->selectDB( 'y' );
 		$this->assertSame( $old, $this->db->dbSchema( 'xxx' ) );
 		$this->assertSame( 'xxx', $this->db->dbSchema(), "Schema set" );
 		$this->db->dbSchema( $old );
 		$this->assertNotEquals( 'xxx', $this->db->dbSchema() );
-		$this->assertSame( $oldDomain, $this->db->getDomainId() );
+		$this->assertSame( "y", $this->db->getDomainId() );
+	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\Database::tablePrefix
+	 * @covers Wikimedia\Rdbms\Database::dbSchema
+	 * @expectedException DBUnexpectedError
+	 */
+	public function testSchemaWithNoDB() {
+		$ud = DatabaseDomain::newUnspecified();
+
+		$this->assertEquals( $ud->getId(), $this->db->getDomainID() );
+		$this->assertSame( '', $this->db->dbSchema() );
+
+		$this->db->dbSchema( 'xxx' );
 	}
 
 	/**
