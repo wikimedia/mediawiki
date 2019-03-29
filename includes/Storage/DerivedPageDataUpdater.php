@@ -1590,8 +1590,9 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 				$update->setRevision( $legacyRevision );
 				$update->setTriggeringUser( $triggeringUser );
 			}
+
 			if ( $options['defer'] === false ) {
-				if ( $options['transactionTicket'] !== null ) {
+				if ( $update instanceof DataUpdate && $options['transactionTicket'] !== null ) {
 					$update->setTransactionTicket( $options['transactionTicket'] );
 				}
 				$update->doUpdate();
