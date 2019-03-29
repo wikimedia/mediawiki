@@ -50,22 +50,24 @@ final class EnqueueJob extends Job {
 	public static function newFromLocalJobs( $jobs ) {
 		$jobs = is_array( $jobs ) ? $jobs : [ $jobs ];
 
-		return self::newFromJobsByWiki( [ wfWikiID() => $jobs ] );
+		return self::newFromJobsByDomain( [
+			WikiMap::getCurrentWikiDbDomain()->getId() => $jobs
+		] );
 	}
 
 	/**
-	 * @param array $jobsByWiki Map of (wiki => JobSpecification list)
+	 * @param array $jobsByDomain Map of (wiki => JobSpecification list)
 	 * @return EnqueueJob
 	 */
-	public static function newFromJobsByWiki( array $jobsByWiki ) {
+	public static function newFromJobsByDomain( array $jobsByDomain ) {
 		$deduplicate = true;
 
-		$jobMapsByWiki = [];
-		foreach ( $jobsByWiki as $wiki => $jobs ) {
-			$jobMapsByWiki[$wiki] = [];
+		$jobMapsByDomain = [];
+		foreach ( $jobsByDomain as $domain => $jobs ) {
+			$jobMapsByDomain[$domain] = [];
 			foreach ( $jobs as $job ) {
 				if ( $job instanceof JobSpecification ) {
-					$jobMapsByWiki[$wiki][] = $job->toSerializableArray();
+					$jobMapsByDomain[$domain][] = $job->toSerializableArray();
 				} else {
 					throw new InvalidArgumentException( "Jobs must be of type JobSpecification." );
 				}
@@ -75,7 +77,7 @@ final class EnqueueJob extends Job {
 
 		$eJob = new self(
 			Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __CLASS__ ),
-			[ 'jobsByWiki' => $jobMapsByWiki ]
+			[ 'jobsByDomain' => $jobMapsByDomain ]
 		);
 		// If *all* jobs to be pushed are to be de-duplicated (a common case), then
 		// de-duplicate this whole job itself to avoid build up in high traffic cases
@@ -84,13 +86,24 @@ final class EnqueueJob extends Job {
 		return $eJob;
 	}
 
+	/**
+	 * @param array $jobsByWiki
+	 * @return EnqueueJob
+	 * @deprecated Since 1.33; use newFromJobsByDomain()
+	 */
+	public static function newFromJobsByWiki( array $jobsByWiki ) {
+		return self::newFromJobsByDomain( $jobsByWiki );
+	}
+
 	public function run() {
-		foreach ( $this->params['jobsByWiki'] as $wiki => $jobMaps ) {
+		$jobsByDomain = $this->params['jobsByDomain'] ?? $this->params['jobsByWiki']; // b/c
+
+		foreach ( $jobsByDomain as $domain => $jobMaps ) {
 			$jobSpecs = [];
 			foreach ( $jobMaps as $jobMap ) {
 				$jobSpecs[] = JobSpecification::newFromArray( $jobMap );
 			}
-			JobQueueGroup::singleton( $wiki )->push( $jobSpecs );
+			JobQueueGroup::singleton( $domain )->push( $jobSpecs );
 		}
 
 		return true;
