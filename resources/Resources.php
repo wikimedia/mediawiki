@@ -1781,14 +1781,16 @@ return [
 	/* MediaWiki Special pages */
 
 	'mediawiki.rcfilters.filters.base.styles' => [
-		'styles' => [
-			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.less',
+		'skinStyles' => [
+			'default' => 'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.less',
 		],
 	],
 	'mediawiki.rcfilters.highlightCircles.seenunseen.styles' => [
-		'styles' => [
-			'resources/src/mediawiki.rcfilters/' .
-			'styles/mw.rcfilters.ui.ChangesListWrapperWidget.highlightCircles.seenunseen.less',
+		'skinStyles' => [
+			'default' => [
+				'resources/src/mediawiki.rcfilters/' .
+				'styles/mw.rcfilters.ui.ChangesListWrapperWidget.highlightCircles.seenunseen.less',
+			],
 		],
 	],
 	'mediawiki.rcfilters.filters.dm' => [
