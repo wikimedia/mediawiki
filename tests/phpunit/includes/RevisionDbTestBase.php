@@ -26,6 +26,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			[
 				'page',
 				'revision',
+				'comment',
 				'ip_changes',
 				'text',
 				'archive',
@@ -1396,6 +1397,9 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$this->setService( 'MainWANObjectCache', $cache );
 		$db = wfGetDB( DB_MASTER );
 
+		$now = 1553893742;
+		$cache->setMockTime( $now );
+
 		// Get a fresh revision to use during testing
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$rev = $this->testPage->getRevision();
@@ -1409,6 +1413,8 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		);
 		$cache->delete( $key, WANObjectCache::HOLDOFF_NONE );
 		$this->assertFalse( $cache->get( $key ) );
+
+		++$now;
 
 		// Get the new revision and make sure it is in the cache and correct
 		$newRev = Revision::newKnownCurrent( $db, $rev->getPage(), $rev->getId() );
