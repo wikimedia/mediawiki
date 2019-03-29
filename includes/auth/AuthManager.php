@@ -1423,7 +1423,7 @@ class AuthManager implements LoggerAwareInterface {
 					// @codeCoverageIgnoreEnd
 				}
 				$this->setDefaultUserOptions( $user, $creator->isAnon() );
-				\Hooks::run( 'LocalUserCreated', [ $user, false ] );
+				\Hooks::runWithoutAbort( 'LocalUserCreated', [ $user, false ] );
 				$user->saveSettings();
 				$state['userid'] = $user->getId();
 
