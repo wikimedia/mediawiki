@@ -336,7 +336,8 @@ class DeferredUpdates {
 		foreach ( $updates as $update ) {
 			if ( $update instanceof EnqueueableDataUpdate ) {
 				$spec = $update->getAsJobSpecification();
-				JobQueueGroup::singleton( $spec['wiki'] )->push( $spec['job'] );
+				$domain = $spec['domain'] ?? $spec['wiki'];
+				JobQueueGroup::singleton( $domain )->push( $spec['job'] );
 			} else {
 				$remaining[] = $update;
 			}
