@@ -22,7 +22,7 @@ use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
 /**
- * Bootstrap a ResourceLoader client on an HTML page.
+ * Load and configure a ResourceLoader client on an HTML page.
  *
  * @since 1.28
  */
