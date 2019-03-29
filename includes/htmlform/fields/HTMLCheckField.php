@@ -119,7 +119,7 @@ class HTMLCheckField extends HTMLFormField {
 		// Fetch the value in either one of the two following case:
 		// - we have a valid submit attempt (form was just submitted)
 		// - we have a value (an URL manually built by the user, or GET form with no wpFormIdentifier)
-		if ( $this->isSubmitAttempt( $request ) || $request->getVal( $this->mName ) !== null ) {
+		if ( $this->isSubmitAttempt( $request ) || $request->getCheck( $this->mName ) ) {
 			return $invert
 				? !$request->getBool( $this->mName )
 				: $request->getBool( $this->mName );
