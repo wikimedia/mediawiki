@@ -81,10 +81,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->fld_loginfo = isset( $prop['loginfo'] );
 			$this->fld_tags = isset( $prop['tags'] );
 
-			if ( $this->fld_patrol ) {
-				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-					$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'patrol' );
-				}
+			if ( $this->fld_patrol && !$user->useRCPatrol() && !$user->useNPPatrol() ) {
+				$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'patrol' );
 			}
 
 			if ( $this->fld_comment || $this->fld_parsedcomment ) {
@@ -192,12 +190,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					$startFrom = [ $recentChangeInfo['rc_timestamp'], $recentChangeInfo['rc_id'] ];
 					break;
 				}
+			} elseif ( $params['allrev'] ) {
+				$ids[] = (int)$recentChangeInfo['rc_this_oldid'];
 			} else {
-				if ( $params['allrev'] ) {
-					$ids[] = (int)$recentChangeInfo['rc_this_oldid'];
-				} else {
-					$ids[] = (int)$recentChangeInfo['rc_cur_id'];
-				}
+				$ids[] = (int)$recentChangeInfo['rc_cur_id'];
 			}
 		}
 

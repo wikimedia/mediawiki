@@ -31,10 +31,8 @@ class WebInstallerOptions extends WebInstallerPage {
 			$this->submitSkins();
 			return 'skip';
 		}
-		if ( $this->parent->request->wasPosted() ) {
-			if ( $this->submit() ) {
-				return 'continue';
-			}
+		if ( $this->parent->request->wasPosted() && $this->submit() ) {
+			return 'continue';
 		}
 
 		$emailwrapperStyle = $this->getVar( 'wgEnableEmail' ) ? '' : 'display: none';

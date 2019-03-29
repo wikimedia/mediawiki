@@ -1750,13 +1750,11 @@ function wfResetOutputBuffers( $resetGzipEncoding = true ) {
 			// to avoid getting in some kind of infinite loop.
 			break;
 		}
-		if ( $resetGzipEncoding ) {
-			if ( $status['name'] == 'ob_gzhandler' ) {
-				// Reset the 'Content-Encoding' field set by this handler
-				// so we can start fresh.
-				header_remove( 'Content-Encoding' );
-				break;
-			}
+		if ( $resetGzipEncoding && $status['name'] == 'ob_gzhandler' ) {
+			// Reset the 'Content-Encoding' field set by this handler
+			// so we can start fresh.
+			header_remove( 'Content-Encoding' );
+			break;
 		}
 	}
 }

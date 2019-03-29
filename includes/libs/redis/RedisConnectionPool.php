@@ -245,13 +245,11 @@ class RedisConnectionPool implements LoggerAwareInterface {
 
 				return false;
 			}
-			if ( $this->password !== null ) {
-				if ( !$conn->auth( $this->password ) ) {
-					$logger->error(
-						'Authentication error connecting to "{redis_server}"',
-						[ 'redis_server' => $server ]
-					);
-				}
+			if ( ( $this->password !== null ) && !$conn->auth( $this->password ) ) {
+				$logger->error(
+					'Authentication error connecting to "{redis_server}"',
+					[ 'redis_server' => $server ]
+				);
 			}
 		} catch ( RedisException $e ) {
 			$this->downServers[$server] = time() + self::SERVER_DOWN_TTL;
@@ -364,15 +362,13 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	 * @return bool Success
 	 */
 	public function reauthenticateConnection( $server, Redis $conn ) {
-		if ( $this->password !== null ) {
-			if ( !$conn->auth( $this->password ) ) {
-				$this->logger->error(
-					'Authentication error connecting to "{redis_server}"',
-					[ 'redis_server' => $server ]
-				);
+		if ( $this->password !== null && !$conn->auth( $this->password ) ) {
+			$this->logger->error(
+				'Authentication error connecting to "{redis_server}"',
+				[ 'redis_server' => $server ]
+			);
 
-				return false;
-			}
+			return false;
 		}
 
 		return true;

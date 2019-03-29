@@ -1078,10 +1078,8 @@ abstract class UploadBase {
 		$props = $this->mFileProps;
 		$error = null;
 		Hooks::run( 'UploadStashFile', [ $this, $user, $props, &$error ] );
-		if ( $error ) {
-			if ( !is_array( $error ) ) {
-				$error = [ $error ];
-			}
+		if ( $error && !is_array( $error ) ) {
+			$error = [ $error ];
 		}
 		return $error;
 	}
@@ -1916,10 +1914,8 @@ abstract class UploadBase {
 				$output = true; # if there's no output, return true
 			} elseif ( $msgPattern ) {
 				$groups = [];
-				if ( preg_match( $msgPattern, $output, $groups ) ) {
-					if ( $groups[1] ) {
-						$output = $groups[1];
-					}
+				if ( preg_match( $msgPattern, $output, $groups ) && $groups[1] ) {
+					$output = $groups[1];
 				}
 			}
 

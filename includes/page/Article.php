@@ -1131,13 +1131,11 @@ class Article implements Page {
 	 * [[MediaWiki:Talkpagetext]]. For Article::view().
 	 */
 	public function showNamespaceHeader() {
-		if ( $this->getTitle()->isTalkPage() ) {
-			if ( !wfMessage( 'talkpageheader' )->isDisabled() ) {
-				$this->getContext()->getOutput()->wrapWikiMsg(
-					"<div class=\"mw-talkpageheader\">\n$1\n</div>",
-					[ 'talkpageheader' ]
-				);
-			}
+		if ( $this->getTitle()->isTalkPage() && !wfMessage( 'talkpageheader' )->isDisabled() ) {
+			$this->getContext()->getOutput()->wrapWikiMsg(
+				"<div class=\"mw-talkpageheader\">\n$1\n</div>",
+				[ 'talkpageheader' ]
+			);
 		}
 	}
 

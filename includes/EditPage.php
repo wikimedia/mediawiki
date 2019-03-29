@@ -1214,148 +1214,146 @@ class EditPage {
 				$content = $this->getPreloadedContent( $preload, $params );
 			}
 		// For existing pages, get text based on "undo" or section parameters.
+		} elseif ( $this->section != '' ) {
+			// Get section edit text (returns $def_text for invalid sections)
+			$orig = $this->getOriginalContent( $user );
+			$content = $orig ? $orig->getSection( $this->section ) : null;
+
+			if ( !$content ) {
+				$content = $def_content;
+			}
 		} else {
-			if ( $this->section != '' ) {
-				// Get section edit text (returns $def_text for invalid sections)
-				$orig = $this->getOriginalContent( $user );
-				$content = $orig ? $orig->getSection( $this->section ) : null;
+			$undoafter = $request->getInt( 'undoafter' );
+			$undo = $request->getInt( 'undo' );
 
-				if ( !$content ) {
-					$content = $def_content;
-				}
-			} else {
-				$undoafter = $request->getInt( 'undoafter' );
-				$undo = $request->getInt( 'undo' );
+			if ( $undo > 0 && $undoafter > 0 ) {
+				$undorev = Revision::newFromId( $undo );
+				$oldrev = Revision::newFromId( $undoafter );
+				$undoMsg = null;
 
-				if ( $undo > 0 && $undoafter > 0 ) {
-					$undorev = Revision::newFromId( $undo );
-					$oldrev = Revision::newFromId( $undoafter );
-					$undoMsg = null;
-
-					# Sanity check, make sure it's the right page,
-					# the revisions exist and they were not deleted.
-					# Otherwise, $content will be left as-is.
-					if ( !is_null( $undorev ) && !is_null( $oldrev ) &&
-						!$undorev->isDeleted( Revision::DELETED_TEXT ) &&
-						!$oldrev->isDeleted( Revision::DELETED_TEXT )
+				# Sanity check, make sure it's the right page,
+				# the revisions exist and they were not deleted.
+				# Otherwise, $content will be left as-is.
+				if ( !is_null( $undorev ) && !is_null( $oldrev ) &&
+					!$undorev->isDeleted( Revision::DELETED_TEXT ) &&
+					!$oldrev->isDeleted( Revision::DELETED_TEXT )
+				) {
+					if ( WikiPage::hasDifferencesOutsideMainSlot( $undorev, $oldrev )
+						|| !$this->isSupportedContentModel( $oldrev->getContentModel() )
 					) {
-						if ( WikiPage::hasDifferencesOutsideMainSlot( $undorev, $oldrev )
-							|| !$this->isSupportedContentModel( $oldrev->getContentModel() )
-						) {
-							// Hack for undo while EditPage can't handle multi-slot editing
-							$this->context->getOutput()->redirect( $this->mTitle->getFullURL( [
-								'action' => 'mcrundo',
-								'undo' => $undo,
-								'undoafter' => $undoafter,
-							] ) );
-							return false;
-						} else {
-							$content = $this->page->getUndoContent( $undorev, $oldrev );
-
-							if ( $content === false ) {
-								# Warn the user that something went wrong
-								$undoMsg = 'failure';
-							}
-						}
-
-						if ( $undoMsg === null ) {
-							$oldContent = $this->page->getContent( Revision::RAW );
-							$popts = ParserOptions::newFromUserAndLang(
-								$user, MediaWikiServices::getInstance()->getContentLanguage() );
-							$newContent = $content->preSaveTransform( $this->mTitle, $user, $popts );
-							if ( $newContent->getModel() !== $oldContent->getModel() ) {
-								// The undo may change content
-								// model if its reverting the top
-								// edit. This can result in
-								// mismatched content model/format.
-								$this->contentModel = $newContent->getModel();
-								$this->contentFormat = $oldrev->getContentFormat();
-							}
-
-							if ( $newContent->equals( $oldContent ) ) {
-								# Tell the user that the undo results in no change,
-								# i.e. the revisions were already undone.
-								$undoMsg = 'nochange';
-								$content = false;
-							} else {
-								# Inform the user of our success and set an automatic edit summary
-								$undoMsg = 'success';
-
-								# If we just undid one rev, use an autosummary
-								$firstrev = $oldrev->getNext();
-								if ( $firstrev && $firstrev->getId() == $undo ) {
-									$userText = $undorev->getUserText();
-									if ( $userText === '' ) {
-										$undoSummary = $this->context->msg(
-											'undo-summary-username-hidden',
-											$undo
-										)->inContentLanguage()->text();
-									} else {
-										$undoSummary = $this->context->msg(
-											'undo-summary',
-											$undo,
-											$userText
-										)->inContentLanguage()->text();
-									}
-									if ( $this->summary === '' ) {
-										$this->summary = $undoSummary;
-									} else {
-										$this->summary = $undoSummary . $this->context->msg( 'colon-separator' )
-											->inContentLanguage()->text() . $this->summary;
-									}
-									$this->undidRev = $undo;
-								}
-								$this->formtype = 'diff';
-							}
-						}
+						// Hack for undo while EditPage can't handle multi-slot editing
+						$this->context->getOutput()->redirect( $this->mTitle->getFullURL( [
+							'action' => 'mcrundo',
+							'undo' => $undo,
+							'undoafter' => $undoafter,
+						] ) );
+						return false;
 					} else {
-						// Failed basic sanity checks.
-						// Older revisions may have been removed since the link
-						// was created, or we may simply have got bogus input.
-						$undoMsg = 'norev';
+						$content = $this->page->getUndoContent( $undorev, $oldrev );
+
+						if ( $content === false ) {
+							# Warn the user that something went wrong
+							$undoMsg = 'failure';
+						}
 					}
 
-					$out = $this->context->getOutput();
-					// Messages: undo-success, undo-failure, undo-main-slot-only, undo-norev,
-					// undo-nochange.
-					$class = ( $undoMsg == 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
-					$this->editFormPageTop .= Html::rawElement(
-						'div', [ 'class' => $class ],
-						$out->parseAsInterface(
-							$this->context->msg( 'undo-' . $undoMsg )->plain()
+					if ( $undoMsg === null ) {
+						$oldContent = $this->page->getContent( Revision::RAW );
+						$popts = ParserOptions::newFromUserAndLang(
+							$user, MediaWikiServices::getInstance()->getContentLanguage() );
+						$newContent = $content->preSaveTransform( $this->mTitle, $user, $popts );
+						if ( $newContent->getModel() !== $oldContent->getModel() ) {
+							// The undo may change content
+							// model if its reverting the top
+							// edit. This can result in
+							// mismatched content model/format.
+							$this->contentModel = $newContent->getModel();
+							$this->contentFormat = $oldrev->getContentFormat();
+						}
+
+						if ( $newContent->equals( $oldContent ) ) {
+							# Tell the user that the undo results in no change,
+							# i.e. the revisions were already undone.
+							$undoMsg = 'nochange';
+							$content = false;
+						} else {
+							# Inform the user of our success and set an automatic edit summary
+							$undoMsg = 'success';
+
+							# If we just undid one rev, use an autosummary
+							$firstrev = $oldrev->getNext();
+							if ( $firstrev && $firstrev->getId() == $undo ) {
+								$userText = $undorev->getUserText();
+								if ( $userText === '' ) {
+									$undoSummary = $this->context->msg(
+										'undo-summary-username-hidden',
+										$undo
+									)->inContentLanguage()->text();
+								} else {
+									$undoSummary = $this->context->msg(
+										'undo-summary',
+										$undo,
+										$userText
+									)->inContentLanguage()->text();
+								}
+								if ( $this->summary === '' ) {
+									$this->summary = $undoSummary;
+								} else {
+									$this->summary = $undoSummary . $this->context->msg( 'colon-separator' )
+										->inContentLanguage()->text() . $this->summary;
+								}
+								$this->undidRev = $undo;
+							}
+							$this->formtype = 'diff';
+						}
+					}
+				} else {
+					// Failed basic sanity checks.
+					// Older revisions may have been removed since the link
+					// was created, or we may simply have got bogus input.
+					$undoMsg = 'norev';
+				}
+
+				$out = $this->context->getOutput();
+				// Messages: undo-success, undo-failure, undo-main-slot-only, undo-norev,
+				// undo-nochange.
+				$class = ( $undoMsg == 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
+				$this->editFormPageTop .= Html::rawElement(
+					'div', [ 'class' => $class ],
+					$out->parseAsInterface(
+						$this->context->msg( 'undo-' . $undoMsg )->plain()
+					)
+				);
+			}
+
+			if ( $content === false ) {
+				// Hack for restoring old revisions while EditPage
+				// can't handle multi-slot editing.
+
+				$curRevision = $this->page->getRevision();
+				$oldRevision = $this->mArticle->getRevisionFetched();
+
+				if ( $curRevision
+					&& $oldRevision
+					&& $curRevision->getId() !== $oldRevision->getId()
+					&& ( WikiPage::hasDifferencesOutsideMainSlot( $oldRevision, $curRevision )
+						|| !$this->isSupportedContentModel( $oldRevision->getContentModel() ) )
+				) {
+					$this->context->getOutput()->redirect(
+						$this->mTitle->getFullURL(
+							[
+								'action' => 'mcrrestore',
+								'restore' => $oldRevision->getId(),
+							]
 						)
 					);
+
+					return false;
 				}
+			}
 
-				if ( $content === false ) {
-					// Hack for restoring old revisions while EditPage
-					// can't handle multi-slot editing.
-
-					$curRevision = $this->page->getRevision();
-					$oldRevision = $this->mArticle->getRevisionFetched();
-
-					if ( $curRevision
-						&& $oldRevision
-						&& $curRevision->getId() !== $oldRevision->getId()
-						&& ( WikiPage::hasDifferencesOutsideMainSlot( $oldRevision, $curRevision )
-							|| !$this->isSupportedContentModel( $oldRevision->getContentModel() ) )
-					) {
-						$this->context->getOutput()->redirect(
-							$this->mTitle->getFullURL(
-								[
-									'action' => 'mcrrestore',
-									'restore' => $oldRevision->getId(),
-								]
-							)
-						);
-
-						return false;
-					}
-				}
-
-				if ( $content === false ) {
-					$content = $this->getOriginalContent( $user );
-				}
+			if ( $content === false ) {
+				$content = $this->getOriginalContent( $user );
 			}
 		}
 
@@ -2804,11 +2802,9 @@ ERROR;
 
 		$out->addHTML( $this->editFormTextTop );
 
-		if ( $this->wasDeletedSinceLastEdit() ) {
-			if ( $this->formtype !== 'save' ) {
-				$out->wrapWikiMsg( "<div class='error mw-deleted-while-editing'>\n$1\n</div>",
-					'deletedwhileediting' );
-			}
+		if ( $this->wasDeletedSinceLastEdit() && $this->formtype !== 'save' ) {
+			$out->wrapWikiMsg( "<div class='error mw-deleted-while-editing'>\n$1\n</div>",
+				'deletedwhileediting' );
 		}
 
 		// @todo add EditForm plugin interface and use it here!
@@ -3076,12 +3072,12 @@ ERROR;
 			$this->addExplainConflictHeader( $out );
 			$this->editRevId = $this->page->getLatest();
 		} else {
-			if ( $this->section != '' && $this->section != 'new' ) {
-				if ( !$this->summary && !$this->preview && !$this->diff ) {
-					$sectionTitle = self::extractSectionTitle( $this->textbox1 ); // FIXME: use Content object
-					if ( $sectionTitle !== false ) {
-						$this->summary = "/* $sectionTitle */ ";
-					}
+			if ( $this->section != '' && $this->section != 'new' && !$this->summary &&
+				!$this->preview && !$this->diff
+			) {
+				$sectionTitle = self::extractSectionTitle( $this->textbox1 ); // FIXME: use Content object
+				if ( $sectionTitle !== false ) {
+					$this->summary = "/* $sectionTitle */ ";
 				}
 			}
 
@@ -3188,44 +3184,42 @@ ERROR;
 					'anonpreviewwarning'
 				);
 			}
-		} else {
-			if ( $this->mTitle->isUserConfigPage() ) {
-				# Check the skin exists
-				if ( $this->isWrongCaseUserConfigPage() ) {
-					$out->wrapWikiMsg(
-						"<div class='error' id='mw-userinvalidconfigtitle'>\n$1\n</div>",
-						[ 'userinvalidconfigtitle', $this->mTitle->getSkinFromConfigSubpage() ]
-					);
-				}
-				if ( $this->getTitle()->isSubpageOf( $user->getUserPage() ) ) {
-					$isUserCssConfig = $this->mTitle->isUserCssConfigPage();
-					$isUserJsonConfig = $this->mTitle->isUserJsonConfigPage();
-					$isUserJsConfig = $this->mTitle->isUserJsConfigPage();
+		} elseif ( $this->mTitle->isUserConfigPage() ) {
+			# Check the skin exists
+			if ( $this->isWrongCaseUserConfigPage() ) {
+				$out->wrapWikiMsg(
+					"<div class='error' id='mw-userinvalidconfigtitle'>\n$1\n</div>",
+					[ 'userinvalidconfigtitle', $this->mTitle->getSkinFromConfigSubpage() ]
+				);
+			}
+			if ( $this->getTitle()->isSubpageOf( $user->getUserPage() ) ) {
+				$isUserCssConfig = $this->mTitle->isUserCssConfigPage();
+				$isUserJsonConfig = $this->mTitle->isUserJsonConfigPage();
+				$isUserJsConfig = $this->mTitle->isUserJsConfigPage();
 
-					$warning = $isUserCssConfig
-						? 'usercssispublic'
-						: ( $isUserJsonConfig ? 'userjsonispublic' : 'userjsispublic' );
+				$warning = $isUserCssConfig
+					? 'usercssispublic'
+					: ( $isUserJsonConfig ? 'userjsonispublic' : 'userjsispublic' );
 
-					$out->wrapWikiMsg( '<div class="mw-userconfigpublic">$1</div>', $warning );
+				$out->wrapWikiMsg( '<div class="mw-userconfigpublic">$1</div>', $warning );
 
-					if ( $this->formtype !== 'preview' ) {
-						$config = $this->context->getConfig();
-						if ( $isUserCssConfig && $config->get( 'AllowUserCss' ) ) {
-							$out->wrapWikiMsg(
-								"<div id='mw-usercssyoucanpreview'>\n$1\n</div>",
-								[ 'usercssyoucanpreview' ]
-							);
-						} elseif ( $isUserJsonConfig /* No comparable 'AllowUserJson' */ ) {
-							$out->wrapWikiMsg(
-								"<div id='mw-userjsonyoucanpreview'>\n$1\n</div>",
-								[ 'userjsonyoucanpreview' ]
-							);
-						} elseif ( $isUserJsConfig && $config->get( 'AllowUserJs' ) ) {
-							$out->wrapWikiMsg(
-								"<div id='mw-userjsyoucanpreview'>\n$1\n</div>",
-								[ 'userjsyoucanpreview' ]
-							);
-						}
+				if ( $this->formtype !== 'preview' ) {
+					$config = $this->context->getConfig();
+					if ( $isUserCssConfig && $config->get( 'AllowUserCss' ) ) {
+						$out->wrapWikiMsg(
+							"<div id='mw-usercssyoucanpreview'>\n$1\n</div>",
+							[ 'usercssyoucanpreview' ]
+						);
+					} elseif ( $isUserJsonConfig /* No comparable 'AllowUserJson' */ ) {
+						$out->wrapWikiMsg(
+							"<div id='mw-userjsonyoucanpreview'>\n$1\n</div>",
+							[ 'userjsonyoucanpreview' ]
+						);
+					} elseif ( $isUserJsConfig && $config->get( 'AllowUserJs' ) ) {
+						$out->wrapWikiMsg(
+							"<div id='mw-userjsyoucanpreview'>\n$1\n</div>",
+							[ 'userjsyoucanpreview' ]
+						);
 					}
 				}
 			}
@@ -3309,10 +3303,8 @@ ERROR;
 			if ( $this->nosummary ) {
 				return;
 			}
-		} else {
-			if ( !$this->mShowSummaryField ) {
-				return;
-			}
+		} elseif ( !$this->mShowSummaryField ) {
+			return;
 		}
 
 		$labelText = $this->context->msg( $isSubjectPreview ? 'subject' : 'summary' )->parse();
@@ -4450,16 +4442,14 @@ ERROR;
 					$lang->formatNum( $maxArticleSize )
 				]
 			);
-		} else {
-			if ( !$this->context->msg( 'longpage-hint' )->isDisabled() ) {
-				$out->wrapWikiMsg( "<div id='mw-edit-longpage-hint'>\n$1\n</div>",
-					[
-						'longpage-hint',
-						$lang->formatSize( strlen( $this->textbox1 ) ),
-						strlen( $this->textbox1 )
-					]
-				);
-			}
+		} elseif ( !$this->context->msg( 'longpage-hint' )->isDisabled() ) {
+			$out->wrapWikiMsg( "<div id='mw-edit-longpage-hint'>\n$1\n</div>",
+				[
+					'longpage-hint',
+					$lang->formatSize( strlen( $this->textbox1 ) ),
+					strlen( $this->textbox1 )
+				]
+			);
 		}
 	}
 

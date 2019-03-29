@@ -365,16 +365,14 @@ class IcuCollation extends Collation {
 			foreach ( $digits as $digit ) {
 				$letters[] = $this->digitTransformLanguage->formatNum( $digit, true );
 			}
+		} elseif ( $this->locale === 'root' ) {
+			$letters = require "$IP/includes/collation/data/first-letters-root.php";
 		} else {
-			if ( $this->locale === 'root' ) {
-				$letters = require "$IP/includes/collation/data/first-letters-root.php";
-			} else {
-				// FIXME: Is this still used?
-				$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
-				if ( $letters === false ) {
-					throw new MWException( "MediaWiki does not support ICU locale " .
-						"\"{$this->locale}\"" );
-				}
+			// FIXME: Is this still used?
+			$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
+			if ( $letters === false ) {
+				throw new MWException( "MediaWiki does not support ICU locale " .
+					"\"{$this->locale}\"" );
 			}
 		}
 

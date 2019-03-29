@@ -389,17 +389,15 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'credits', false );
 		$tpl->set( 'numberofwatchingusers', false );
 		if ( $title->exists() ) {
-			if ( $out->isArticle() ) {
-				if ( $this->isRevisionCurrent() ) {
-					if ( $wgMaxCredits != 0 ) {
-						/** @var CreditsAction $action */
-						$action = Action::factory(
-							'credits', $this->getWikiPage(), $this->getContext() );
-						$tpl->set( 'credits',
-							$action->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) );
-					} else {
-						$tpl->set( 'lastmod', $this->lastModified() );
-					}
+			if ( $out->isArticle() && $this->isRevisionCurrent() ) {
+				if ( $wgMaxCredits != 0 ) {
+					/** @var CreditsAction $action */
+					$action = Action::factory(
+						'credits', $this->getWikiPage(), $this->getContext() );
+					$tpl->set( 'credits',
+						$action->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) );
+				} else {
+					$tpl->set( 'lastmod', $this->lastModified() );
 				}
 			}
 			if ( $out->showsCopyright() ) {

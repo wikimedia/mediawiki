@@ -445,11 +445,9 @@ class WatchedItemQueryService {
 
 		$conds = array_merge( $conds, $this->getStartEndConds( $db, $options ) );
 
-		if ( !isset( $options['start'] ) && !isset( $options['end'] ) ) {
-			if ( $db->getType() === 'mysql' ) {
-				// This is an index optimization for mysql
-				$conds[] = 'rc_timestamp > ' . $db->addQuotes( '' );
-			}
+		if ( !isset( $options['start'] ) && !isset( $options['end'] ) && $db->getType() === 'mysql' ) {
+			// This is an index optimization for mysql
+			$conds[] = 'rc_timestamp > ' . $db->addQuotes( '' );
 		}
 
 		$conds = array_merge( $conds, $this->getUserRelatedConds( $db, $user, $options ) );

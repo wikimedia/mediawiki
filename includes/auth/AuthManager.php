@@ -2101,10 +2101,8 @@ class AuthManager implements LoggerAwareInterface {
 				$id = $req->getUniqueId();
 
 				// If a required request if from a Primary, mark it as "primary-required" instead
-				if ( $isPrimary ) {
-					if ( $req->required ) {
-						$req->required = AuthenticationRequest::PRIMARY_REQUIRED;
-					}
+				if ( $isPrimary && $req->required ) {
+					$req->required = AuthenticationRequest::PRIMARY_REQUIRED;
 				}
 
 				if (

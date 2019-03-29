@@ -75,22 +75,22 @@ class FileDependency extends CacheDependency {
 			if ( $this->timestamp === false ) {
 				# Still nonexistent
 				return false;
-			} else {
-				# Deleted
-				wfDebug( "Dependency triggered: {$this->filename} deleted.\n" );
-
-				return true;
 			}
-		} else {
-			if ( $lastmod > $this->timestamp ) {
-				# Modified or created
-				wfDebug( "Dependency triggered: {$this->filename} changed.\n" );
 
-				return true;
-			} else {
-				# Not modified
-				return false;
-			}
+			# Deleted
+			wfDebug( "Dependency triggered: {$this->filename} deleted.\n" );
+
+			return true;
 		}
+
+		if ( $lastmod > $this->timestamp ) {
+			# Modified or created
+			wfDebug( "Dependency triggered: {$this->filename} changed.\n" );
+
+			return true;
+		}
+
+		# Not modified
+		return false;
 	}
 }

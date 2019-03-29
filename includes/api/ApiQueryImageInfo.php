@@ -249,13 +249,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			// Don't set $scale['width']; this signals mergeThumbParams() to fill it with the image's width
 			$scale = [];
 			$scale['height'] = $params['urlheight'];
+		} elseif ( $params['urlparam'] ) {
+			// Audio files might not have a width/height.
+			$scale = [];
 		} else {
-			if ( $params['urlparam'] ) {
-				// Audio files might not have a width/height.
-				$scale = [];
-			} else {
-				$scale = null;
-			}
+			$scale = null;
 		}
 
 		return $scale;

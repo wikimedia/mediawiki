@@ -500,10 +500,8 @@ class ApiStructureTest extends MediaWikiTestCase {
 						if ( $value instanceof $type ) {
 							return;
 						}
-					} else {
-						if ( gettype( $value ) === $type ) {
-							return;
-						}
+					} elseif ( gettype( $value ) === $type ) {
+						return;
 					}
 				} else {
 					// Array whose values have specified types, recurse

@@ -428,11 +428,9 @@ class MediaWiki {
 			if ( !$ignoreRedirect && ( $target || $page->isRedirect() ) ) {
 				// Is the target already set by an extension?
 				$target = $target ?: $page->followRedirect();
-				if ( is_string( $target ) ) {
-					if ( !$this->config->get( 'DisableHardRedirects' ) ) {
-						// we'll need to redirect
-						return $target;
-					}
+				if ( is_string( $target ) && !$this->config->get( 'DisableHardRedirects' ) ) {
+					// we'll need to redirect
+					return $target;
 				}
 				if ( is_object( $target ) ) {
 					// Rewrite environment to redirected article

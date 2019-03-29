@@ -162,12 +162,10 @@ class UploadStash {
 			);
 		}
 
-		if ( !$noAuth ) {
-			if ( $this->fileMetadata[$key]['us_user'] != $this->userId ) {
-				throw new UploadStashWrongOwnerException(
-					wfMessage( 'uploadstash-wrong-owner', $key )
-				);
-			}
+		if ( !$noAuth && $this->fileMetadata[$key]['us_user'] != $this->userId ) {
+			throw new UploadStashWrongOwnerException(
+				wfMessage( 'uploadstash-wrong-owner', $key )
+			);
 		}
 
 		return $this->files[$key];

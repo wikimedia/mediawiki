@@ -191,10 +191,8 @@ class BlockListPager extends TablePager {
 			case 'ipb_params':
 				$properties = [];
 
-				if ( $this->getConfig()->get( 'EnablePartialBlocks' ) ) {
-					if ( $row->ipb_sitewide ) {
-						$properties[] = htmlspecialchars( $msg['blocklist-editing-sitewide'] );
-					}
+				if ( $this->getConfig()->get( 'EnablePartialBlocks' ) && $row->ipb_sitewide ) {
+					$properties[] = htmlspecialchars( $msg['blocklist-editing-sitewide'] );
 				}
 
 				if ( !$row->ipb_sitewide && $this->restrictions ) {

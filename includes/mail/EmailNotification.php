@@ -225,10 +225,9 @@ class EmailNotification {
 						&& $watchingUser->getId() != $userTalkId
 						&& !in_array( $watchingUser->getName(), $wgUsersNotifiedOnAllChanges )
 						&& !( $wgBlockDisablesLogin && $watchingUser->isBlocked() )
+						&& Hooks::run( 'SendWatchlistEmailNotification', [ $watchingUser, $title, $this ] )
 					) {
-						if ( Hooks::run( 'SendWatchlistEmailNotification', [ $watchingUser, $title, $this ] ) ) {
-							$this->compose( $watchingUser, self::WATCHLIST );
-						}
+						$this->compose( $watchingUser, self::WATCHLIST );
 					}
 				}
 			}

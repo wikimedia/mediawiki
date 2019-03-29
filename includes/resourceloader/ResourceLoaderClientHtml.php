@@ -450,19 +450,17 @@ class ResourceLoaderClientHtml {
 						// Decide whether to use 'style' or 'script' element
 						if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
 							$chunk = Html::linkedStyle( $url );
+						} elseif ( $context->getRaw() || $isRaw ) {
+							$chunk = Html::element( 'script', [
+								// In SpecialJavaScriptTest, QUnit must load synchronous
+								'async' => !isset( $extraQuery['sync'] ),
+								'src' => $url
+							] );
 						} else {
-							if ( $context->getRaw() || $isRaw ) {
-								$chunk = Html::element( 'script', [
-									// In SpecialJavaScriptTest, QUnit must load synchronous
-									'async' => !isset( $extraQuery['sync'] ),
-									'src' => $url
-								] );
-							} else {
-								$chunk = ResourceLoader::makeInlineScript(
-									Xml::encodeJsCall( 'mw.loader.load', [ $url ] ),
-									$nonce
-								);
-							}
+							$chunk = ResourceLoader::makeInlineScript(
+								Xml::encodeJsCall( 'mw.loader.load', [ $url ] ),
+								$nonce
+							);
 						}
 
 						if ( $group == 'noscript' ) {

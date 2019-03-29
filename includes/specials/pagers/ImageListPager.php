@@ -269,10 +269,8 @@ class ImageListPager extends TablePager {
 				}
 			}
 			$fields['top'] = $dbr->addQuotes( 'no' );
-		} else {
-			if ( $this->mShowAll ) {
-				$fields['top'] = $dbr->addQuotes( 'yes' );
-			}
+		} elseif ( $this->mShowAll ) {
+			$fields['top'] = $dbr->addQuotes( 'yes' );
 		}
 		$fields['thumb'] = $prefix . '_name';
 
@@ -382,14 +380,12 @@ class ImageListPager extends TablePager {
 					$resultArray[] = $topRes2;
 					$topRes2 = $res2->next();
 				}
+			} elseif ( !$ascending ) {
+				$resultArray[] = $topRes2;
+				$topRes2 = $res2->next();
 			} else {
-				if ( !$ascending ) {
-					$resultArray[] = $topRes2;
-					$topRes2 = $res2->next();
-				} else {
-					$resultArray[] = $topRes1;
-					$topRes1 = $res1->next();
-				}
+				$resultArray[] = $topRes1;
+				$topRes1 = $res1->next();
 			}
 		}
 

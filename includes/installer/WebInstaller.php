@@ -1072,12 +1072,10 @@ class WebInstaller extends Installer {
 			if ( $value === null ) {
 				// Checkbox?
 				$this->setVar( $name, false );
+			} elseif ( stripos( $name, 'password' ) !== false ) {
+				$this->setPassword( $name, $value );
 			} else {
-				if ( stripos( $name, 'password' ) !== false ) {
-					$this->setPassword( $name, $value );
-				} else {
-					$this->setVar( $name, $value );
-				}
+				$this->setVar( $name, $value );
 			}
 		}
 
