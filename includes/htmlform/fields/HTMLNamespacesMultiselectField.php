@@ -45,6 +45,10 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 		}
 
 		foreach ( $namespaces as $namespace ) {
+			if ( $namespace < 0 ) {
+				return $this->msg( 'htmlform-select-badoption' );
+			}
+
 			$result = parent::validate( $namespace, $alldata );
 			if ( $result !== true ) {
 				return $result;
