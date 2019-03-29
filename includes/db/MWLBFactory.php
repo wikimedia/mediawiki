@@ -243,8 +243,8 @@ abstract class MWLBFactory {
 			"\$wgDBservers has dbname='$srvDB' but \$wgDBname='$ldDB'. " .
 			"Set \$wgDBname to the database used by this wiki project. " .
 			"There is rarely a need to set 'dbname' in \$wgDBservers. " .
-			"Functions like wfWikiId(), remote wiki database access, the use " .
-			"of Database::getDomainId(), and other features are not reliable when " .
+			"Cross-wiki database access, use of WikiMap::getCurrentWikiDbDomain(), " .
+			"use of Database::getDomainId(), and other features are not reliable when " .
 			"\$wgDBservers does not match the local wiki database/prefix."
 		);
 		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
@@ -260,8 +260,8 @@ abstract class MWLBFactory {
 			"\$wgDBservers has tablePrefix='$srvTP' but \$wgDBprefix='$ldTP'. " .
 			"Set \$wgDBprefix to the table prefix used by this wiki project. " .
 			"There is rarely a need to set 'tablePrefix' in \$wgDBservers. " .
-			"Functions like wfWikiId(), remote wiki database access, the use " .
-			"of Database::getDomainId(), and other features are not reliable when " .
+			"Cross-wiki database access, use of WikiMap::getCurrentWikiDbDomain(), " .
+			"use of Database::getDomainId(), and other features are not reliable when " .
 			"\$wgDBservers does not match the local wiki database/prefix."
 		);
 		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
