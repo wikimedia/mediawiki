@@ -2733,7 +2733,7 @@ class Article implements Page {
 	 * @see WikiPage::setTimestamp
 	 */
 	public function setTimestamp( $ts ) {
-		return $this->mPage->setTimestamp( $ts );
+		$this->mPage->setTimestamp( $ts );
 	}
 
 	/**
