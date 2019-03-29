@@ -396,6 +396,36 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * Render the date and time of a revision in the current user language
+	 * based on whether the user is able to view this information or not.
+	 * @param Revision $rev
+	 * @param User $user
+	 * @param Language $lang
+	 * @param Title|null $title (optional) where Title does not match
+	 *   the Title associated with the Revision
+	 * @internal For usage by Pager classes only (e.g. HistoryPager and ContribsPager).
+	 * @return string HTML
+	 */
+	public static function revDateLink( Revision $rev, User $user, Language $lang, $title = null ) {
+		$ts = $rev->getTimestamp();
+		$date = $lang->userTimeAndDate( $ts, $user );
+		if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
+			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
+				$title !== null ? $title : $rev->getTitle(),
+				$date,
+				[ 'class' => 'mw-changeslist-date' ],
+				[ 'oldid' => $rev->getId() ]
+			);
+		} else {
+			$link = htmlspecialchars( $date );
+		}
+		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+			$link = "<span class=\"history-deleted mw-changeslist-date\">$link</span>";
+		}
+		return $link;
+	}
+
+	/**
 	 * @param string &$s HTML to update
 	 * @param mixed $rc_timestamp
 	 */
@@ -517,6 +547,7 @@ class ChangesList extends ContextSource {
 	 * and a separator
 	 *
 	 * @param RecentChange $rc
+	 * @deprecated use revDateLink instead.
 	 * @return string HTML fragment
 	 */
 	public function getTimestamp( $rc ) {

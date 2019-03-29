@@ -185,7 +185,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s .= Html::hidden( 'type', 'revision' ) . "\n";
 
 		// Button container stored in $this->buttons for re-use in getEndBody()
-		$this->buttons = '<div>';
+		$this->buttons = Html::openElement( 'div', [ 'class' => 'mw-history-compareselectedversions' ] );
 		$className = 'historysubmit mw-history-compareselectedversions-button';
 		$attrs = [ 'class' => $className ]
 			+ Linker::tooltipAndAccesskeyAttribs( 'compareselectedversions' );
@@ -475,22 +475,8 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return string
 	 */
 	function revLink( $rev ) {
-		$date = $this->getLanguage()->userTimeAndDate( $rev->getTimestamp(), $this->getUser() );
-		if ( $rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
-			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
-				$this->getTitle(),
-				$date,
-				[ 'class' => 'mw-changeslist-date' ],
-				[ 'oldid' => $rev->getId() ]
-			);
-		} else {
-			$link = htmlspecialchars( $date );
-		}
-		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			$link = "<span class=\"history-deleted mw-changeslist-date\">$link</span>";
-		}
-
-		return $link;
+		return ChangesList::revDateLink( $rev, $this->getUser(), $this->getLanguage(),
+			$this->getTitle() );
 	}
 
 	/**

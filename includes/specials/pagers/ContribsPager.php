@@ -647,19 +647,7 @@ class ContribsPager extends RangeChronologicalPager {
 			$lang = $this->getLanguage();
 			$comment = $lang->getDirMark() . Linker::revComment( $rev, false, true, false );
 			$date = $lang->userTimeAndDate( $row->rev_timestamp, $user );
-			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
-				$d = $linkRenderer->makeKnownLink(
-					$page,
-					$date,
-					[ 'class' => 'mw-changeslist-date' ],
-					[ 'oldid' => intval( $row->rev_id ) ]
-				);
-			} else {
-				$d = htmlspecialchars( $date );
-			}
-			if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-				$d = '<span class="history-deleted">' . $d . '</span>';
-			}
+			$d = ChangesList::revDateLink( $rev, $user, $lang, $page );
 
 			# Show user names for /newbies as there may be different users.
 			# Note that only unprivileged users have rows with hidden user names excluded.
