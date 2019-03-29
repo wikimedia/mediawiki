@@ -254,9 +254,6 @@ class ResourceLoader implements LoggerAwareInterface {
 		// Add 'local' source first
 		$this->addSource( 'local', $config->get( 'LoadScript' ) );
 
-		// Add other sources
-		$this->addSource( $config->get( 'ResourceLoaderSources' ) );
-
 		// Register core modules
 		$this->register( include "$IP/resources/Resources.php" );
 		// Register extension modules

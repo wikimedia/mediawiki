@@ -417,10 +417,15 @@ return [
 	},
 
 	'ResourceLoader' => function ( MediaWikiServices $services ) : ResourceLoader {
-		return new ResourceLoader(
-			$services->getMainConfig(),
+		$config = $services->getMainConfig();
+
+		$rl = new ResourceLoader(
+			$config,
 			LoggerFactory::getInstance( 'resourceloader' )
 		);
+		$rl->addSource( $config->get( 'ResourceLoaderSources' ) );
+
+		return $rl;
 	},
 
 	'RevisionFactory' => function ( MediaWikiServices $services ) : RevisionFactory {

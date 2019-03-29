@@ -60,9 +60,6 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 			// Avoid influence from wgInvalidateCacheOnLocalSettingsChange
 			'CacheEpoch' => '20140101000000',
 
-			// For ResourceLoader::__construct()
-			'ResourceLoaderSources' => [],
-
 			// For wfScript()
 			'ScriptPath' => '/w',
 			'Script' => '/w/index.php',
