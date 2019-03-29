@@ -47,7 +47,7 @@ class NameTableStore {
 	private $tableCache = null;
 
 	/** @var bool|string */
-	private $wikiId = false;
+	private $domain = false;
 
 	/** @var int */
 	private $cacheTTL;
@@ -77,7 +77,7 @@ class NameTableStore {
 	 * @param string $nameField
 	 * @param callable|null $normalizationCallback Normalization to be applied to names before being
 	 * saved or queried. This should be a callback that accepts and returns a single string.
-	 * @param bool|string $wikiId The ID of the target wiki database. Use false for the local wiki.
+	 * @param bool|string $dbDomain Database domain ID. Use false for the local database domain.
 	 * @param callable|null $insertCallback Callback to change insert fields accordingly.
 	 * This parameter was introduced in 1.32
 	 */
@@ -89,7 +89,7 @@ class NameTableStore {
 		$idField,
 		$nameField,
 		callable $normalizationCallback = null,
-		$wikiId = false,
+		$dbDomain = false,
 		callable $insertCallback = null
 	) {
 		$this->loadBalancer = $dbLoadBalancer;
@@ -99,7 +99,7 @@ class NameTableStore {
 		$this->idField = $idField;
 		$this->nameField = $nameField;
 		$this->normalizationCallback = $normalizationCallback;
-		$this->wikiId = $wikiId;
+		$this->domain = $dbDomain;
 		$this->cacheTTL = IExpiringStore::TTL_MONTH;
 		$this->insertCallback = $insertCallback;
 	}
@@ -111,7 +111,7 @@ class NameTableStore {
 	 * @return IDatabase
 	 */
 	private function getDBConnection( $index, $flags = 0 ) {
-		return $this->loadBalancer->getConnection( $index, [], $this->wikiId, $flags );
+		return $this->loadBalancer->getConnection( $index, [], $this->domain, $flags );
 	}
 
 	/**
@@ -126,7 +126,7 @@ class NameTableStore {
 		return $this->cache->makeGlobalKey(
 			'NameTableSqlStore',
 			$this->table,
-			$this->loadBalancer->resolveDomainID( $this->wikiId )
+			$this->loadBalancer->resolveDomainID( $this->domain )
 		);
 	}
 
