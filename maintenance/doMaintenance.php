@@ -90,6 +90,8 @@ $maintenance->checkRequiredExtensions();
 // This avoids having long running scripts just OOM and lose all the updates.
 $maintenance->setAgentAndTriggers();
 
+$maintenance->validateParamsAndArgs();
+
 // Do the work
 $success = $maintenance->execute();
 
