@@ -230,7 +230,6 @@ class ActiveUsersPager extends UsersPager {
 		$lang = $this->getLanguage();
 
 		$list = [];
-		$user = User::newFromId( $row->user_id );
 
 		$ugms = self::getGroupMemberships( intval( $row->user_id ), $this->userGroupCache );
 		foreach ( $ugms as $ugm ) {
