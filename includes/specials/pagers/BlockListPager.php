@@ -261,7 +261,7 @@ class BlockListPager extends TablePager {
 			switch ( $restriction->getType() ) {
 				case PageRestriction::TYPE:
 					if ( $restriction->getTitle() ) {
-						$items[$restriction->getType()][] = HTML::rawElement(
+						$items[$restriction->getType()][] = Html::rawElement(
 							'li',
 							[],
 							Linker::link( $restriction->getTitle() )
@@ -274,7 +274,7 @@ class BlockListPager extends TablePager {
 						: $this->getLanguage()->getFormattedNsText(
 							$restriction->getValue()
 						);
-					$items[$restriction->getType()][] = HTML::rawElement(
+					$items[$restriction->getType()][] = Html::rawElement(
 						'li',
 						[],
 						Linker::link(
