@@ -624,7 +624,6 @@ END
 	 * @covers ResourceLoader::getLoadScript
 	 */
 	public function testGetLoadScript() {
-		$this->setMwGlobals( 'wgResourceLoaderSources', [] );
 		$rl = new ResourceLoader();
 		$sources = self::fakeSources();
 		$rl->addSource( $sources );

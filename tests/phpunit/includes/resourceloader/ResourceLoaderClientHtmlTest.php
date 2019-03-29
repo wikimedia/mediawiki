@@ -4,110 +4,12 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group ResourceLoader
+ * @covers ResourceLoaderClientHtml
  */
 class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
-	protected static function expandVariables( $text ) {
-		return strtr( $text, [
-			'{blankVer}' => ResourceLoaderTestCase::BLANK_VERSION
-		] );
-	}
-
-	protected static function makeContext( $extraQuery = [] ) {
-		$conf = new HashConfig( [
-			'ResourceLoaderSources' => [],
-			'ResourceModuleSkinStyles' => [],
-			'ResourceModules' => [],
-			'EnableJavaScriptTest' => false,
-			'LoadScript' => '/w/load.php',
-		] );
-		return new ResourceLoaderContext(
-			new ResourceLoader( $conf ),
-			new FauxRequest( array_merge( [
-				'lang' => 'nl',
-				'skin' => 'fallback',
-				'user' => 'Example',
-				'target' => 'phpunit',
-			], $extraQuery ) )
-		);
-	}
-
-	protected static function makeModule( array $options = [] ) {
-		return new ResourceLoaderTestModule( $options );
-	}
-
-	protected static function makeSampleModules() {
-		$modules = [
-			'test' => [],
-			'test.private' => [ 'group' => 'private' ],
-			'test.shouldembed.empty' => [ 'shouldEmbed' => true, 'isKnownEmpty' => true ],
-			'test.shouldembed' => [ 'shouldEmbed' => true ],
-			'test.user' => [ 'group' => 'user' ],
-
-			'test.styles.pure' => [ 'type' => ResourceLoaderModule::LOAD_STYLES ],
-			'test.styles.mixed' => [],
-			'test.styles.noscript' => [
-				'type' => ResourceLoaderModule::LOAD_STYLES,
-				'group' => 'noscript',
-			],
-			'test.styles.user' => [
-				'type' => ResourceLoaderModule::LOAD_STYLES,
-				'group' => 'user',
-			],
-			'test.styles.user.empty' => [
-				'type' => ResourceLoaderModule::LOAD_STYLES,
-				'group' => 'user',
-				'isKnownEmpty' => true,
-			],
-			'test.styles.private' => [
-				'type' => ResourceLoaderModule::LOAD_STYLES,
-				'group' => 'private',
-				'styles' => '.private{}',
-			],
-			'test.styles.shouldembed' => [
-				'type' => ResourceLoaderModule::LOAD_STYLES,
-				'shouldEmbed' => true,
-				'styles' => '.shouldembed{}',
-			],
-			'test.styles.deprecated' => [
-				'type' => ResourceLoaderModule::LOAD_STYLES,
-				'deprecated' => 'Deprecation message.',
-			],
-
-			'test.scripts' => [],
-			'test.scripts.user' => [ 'group' => 'user' ],
-			'test.scripts.user.empty' => [ 'group' => 'user', 'isKnownEmpty' => true ],
-			'test.scripts.raw' => [ 'isRaw' => true ],
-			'test.scripts.shouldembed' => [ 'shouldEmbed' => true ],
-
-			'test.ordering.a' => [ 'shouldEmbed' => false ],
-			'test.ordering.b' => [ 'shouldEmbed' => false ],
-			'test.ordering.c' => [ 'shouldEmbed' => true, 'styles' => '.orderingC{}' ],
-			'test.ordering.d' => [ 'shouldEmbed' => true, 'styles' => '.orderingD{}' ],
-			'test.ordering.e' => [ 'shouldEmbed' => false ],
-		];
-		return array_map( function ( $options ) {
-			return self::makeModule( $options );
-		}, $modules );
-	}
-
-	/**
-	 * @covers ResourceLoaderClientHtml::getDocumentAttributes
-	 */
-	public function testGetDocumentAttributes() {
-		$client = new ResourceLoaderClientHtml( self::makeContext() );
-		$this->assertInternalType( 'array', $client->getDocumentAttributes() );
-	}
-
-	/**
-	 * @covers ResourceLoaderClientHtml::__construct
-	 * @covers ResourceLoaderClientHtml::setModules
-	 * @covers ResourceLoaderClientHtml::setModuleStyles
-	 * @covers ResourceLoaderClientHtml::getData
-	 * @covers ResourceLoaderClientHtml::getContext
-	 */
 	public function testGetData() {
 		$context = self::makeContext();
 		$context->getResourceLoader()->register( self::makeSampleModules() );
@@ -133,10 +35,22 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 
 		$expected = [
 			'states' => [
+				// The below are NOT queued for loading via `mw.loader.load(Array)`.
+				// Instead we tell the client to set their state to "loading" so that
+				// if they are needed as dependencies, the client will not try to
+				// load them on-demand, because the server is taking care of them already.
+				// Either:
+				// - Embedded as inline scripts in the HTML (e.g. user-private code, and
+				//   previews). Once that script tag is reached, the state is "loaded".
+				// - Loaded directly from the HTML with a dedicated HTTP request (e.g.
+				//   user scripts, which vary by a 'user' and 'version' parameter that
+				//   the static user-agnostic startup module won't have).
 				'test.private' => 'loading',
-				'test.shouldembed.empty' => 'ready',
 				'test.shouldembed' => 'loading',
 				'test.user' => 'loading',
+				// The below are known to the server to be empty scripts, or to be
+				// synchronously loaded stylesheets. These start in the "ready" state.
+				'test.shouldembed.empty' => 'ready',
 				'test.styles.pure' => 'ready',
 				'test.styles.user.empty' => 'ready',
 				'test.styles.private' => 'ready',
@@ -171,13 +85,6 @@ Deprecation message.' ]
 		$this->assertEquals( $expected, $access->getData() );
 	}
 
-	/**
-	 * @covers ResourceLoaderClientHtml::setConfig
-	 * @covers ResourceLoaderClientHtml::setExemptStates
-	 * @covers ResourceLoaderClientHtml::getHeadHtml
-	 * @covers ResourceLoaderClientHtml::getLoad
-	 * @covers ResourceLoader::makeLoaderStateScript
-	 */
 	public function testGetHeadHtml() {
 		$context = self::makeContext();
 		$context->getResourceLoader()->register( self::makeSampleModules() );
@@ -218,8 +125,6 @@ Deprecation message.' ]
 
 	/**
 	 * Confirm that 'target' is passed down to the startup module's load url.
-	 *
-	 * @covers ResourceLoaderClientHtml::getHeadHtml
 	 */
 	public function testGetHeadHtmlWithTarget() {
 		$client = new ResourceLoaderClientHtml(
@@ -237,8 +142,6 @@ Deprecation message.' ]
 
 	/**
 	 * Confirm that 'safemode' is passed down to startup.
-	 *
-	 * @covers ResourceLoaderClientHtml::getHeadHtml
 	 */
 	public function testGetHeadHtmlWithSafemode() {
 		$client = new ResourceLoaderClientHtml(
@@ -256,8 +159,6 @@ Deprecation message.' ]
 
 	/**
 	 * Confirm that a null 'target' is the same as no target.
-	 *
-	 * @covers ResourceLoaderClientHtml::getHeadHtml
 	 */
 	public function testGetHeadHtmlWithNullTarget() {
 		$client = new ResourceLoaderClientHtml(
@@ -273,10 +174,6 @@ Deprecation message.' ]
 		$this->assertEquals( $expected, $client->getHeadHtml() );
 	}
 
-	/**
-	 * @covers ResourceLoaderClientHtml::getBodyHtml
-	 * @covers ResourceLoaderClientHtml::getLoad
-	 */
 	public function testGetBodyHtml() {
 		$context = self::makeContext();
 		$context->getResourceLoader()->register( self::makeSampleModules() );
@@ -427,15 +324,9 @@ Deprecation message.' ]
 
 	/**
 	 * @dataProvider provideMakeLoad
-	 * @covers ResourceLoaderClientHtml::makeLoad
-	 * @covers ResourceLoaderClientHtml::makeContext
-	 * @covers ResourceLoader::makeModuleResponse
+	 * @covers ResourceLoaderClientHtml
 	 * @covers ResourceLoaderModule::getModuleContent
-	 * @covers ResourceLoader::getCombinedVersion
-	 * @covers ResourceLoader::createLoaderURL
-	 * @covers ResourceLoader::createLoaderQuery
-	 * @covers ResourceLoader::makeLoaderQuery
-	 * @covers ResourceLoader::makeInlineScript
+	 * @covers ResourceLoader
 	 */
 	public function testMakeLoad(
 		array $contextQuery,
@@ -449,5 +340,93 @@ Deprecation message.' ]
 		$actual = ResourceLoaderClientHtml::makeLoad( $context, $modules, $type, $extraQuery, false );
 		$expected = self::expandVariables( $expected );
 		$this->assertEquals( $expected, (string)$actual );
+	}
+
+	public function testGetDocumentAttributes() {
+		$client = new ResourceLoaderClientHtml( self::makeContext() );
+		$this->assertInternalType( 'array', $client->getDocumentAttributes() );
+	}
+
+	private static function expandVariables( $text ) {
+		return strtr( $text, [
+			'{blankVer}' => ResourceLoaderTestCase::BLANK_VERSION
+		] );
+	}
+
+	private static function makeContext( $extraQuery = [] ) {
+		$conf = new HashConfig( [
+			'ResourceModuleSkinStyles' => [],
+			'ResourceModules' => [],
+			'EnableJavaScriptTest' => false,
+			'LoadScript' => '/w/load.php',
+		] );
+		return new ResourceLoaderContext(
+			new ResourceLoader( $conf ),
+			new FauxRequest( array_merge( [
+				'lang' => 'nl',
+				'skin' => 'fallback',
+				'user' => 'Example',
+				'target' => 'phpunit',
+			], $extraQuery ) )
+		);
+	}
+
+	private static function makeModule( array $options = [] ) {
+		return new ResourceLoaderTestModule( $options );
+	}
+
+	private static function makeSampleModules() {
+		$modules = [
+			'test' => [],
+			'test.private' => [ 'group' => 'private' ],
+			'test.shouldembed.empty' => [ 'shouldEmbed' => true, 'isKnownEmpty' => true ],
+			'test.shouldembed' => [ 'shouldEmbed' => true ],
+			'test.user' => [ 'group' => 'user' ],
+
+			'test.styles.pure' => [ 'type' => ResourceLoaderModule::LOAD_STYLES ],
+			'test.styles.mixed' => [],
+			'test.styles.noscript' => [
+				'type' => ResourceLoaderModule::LOAD_STYLES,
+				'group' => 'noscript',
+			],
+			'test.styles.user' => [
+				'type' => ResourceLoaderModule::LOAD_STYLES,
+				'group' => 'user',
+			],
+			'test.styles.user.empty' => [
+				'type' => ResourceLoaderModule::LOAD_STYLES,
+				'group' => 'user',
+				'isKnownEmpty' => true,
+			],
+			'test.styles.private' => [
+				'type' => ResourceLoaderModule::LOAD_STYLES,
+				'group' => 'private',
+				'styles' => '.private{}',
+			],
+			'test.styles.shouldembed' => [
+				'type' => ResourceLoaderModule::LOAD_STYLES,
+				'shouldEmbed' => true,
+				'styles' => '.shouldembed{}',
+			],
+			'test.styles.deprecated' => [
+				'type' => ResourceLoaderModule::LOAD_STYLES,
+				'deprecated' => 'Deprecation message.',
+			],
+
+			'test.scripts' => [],
+			'test.scripts.user' => [ 'group' => 'user' ],
+			'test.scripts.user.empty' => [ 'group' => 'user', 'isKnownEmpty' => true ],
+			'test.scripts.raw' => [ 'isRaw' => true ],
+			'test.scripts.shouldembed' => [ 'shouldEmbed' => true ],
+
+			'test.ordering.a' => [ 'shouldEmbed' => false ],
+			'test.ordering.b' => [ 'shouldEmbed' => false ],
+			'test.ordering.c' => [ 'shouldEmbed' => true, 'styles' => '.orderingC{}' ],
+			'test.ordering.d' => [ 'shouldEmbed' => true, 'styles' => '.orderingD{}' ],
+			'test.ordering.e' => [ 'shouldEmbed' => false ],
+		];
+		return array_map( function ( $options ) {
+			return self::makeModule( $options );
+		}, $modules );
 	}
 }
