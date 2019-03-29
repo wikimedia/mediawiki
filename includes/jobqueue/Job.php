@@ -132,7 +132,7 @@ abstract class Job implements IJobSpecification {
 	 * @since 1.31
 	 */
 	public function hasExecutionFlag( $flag ) {
-		return ( $this->executionFlags && $flag ) === $flag;
+		return ( $this->executionFlags & $flag ) === $flag;
 	}
 
 	/**
