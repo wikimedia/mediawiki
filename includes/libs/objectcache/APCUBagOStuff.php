@@ -24,20 +24,22 @@
 /**
  * This is a wrapper for APCU's shared memory functions
  *
+ * Use PHP serialization to avoid bugs and easily create CAS tokens.
+ * APCu has a memory corruption bug when the serializer is set to 'default'.
+ * See T120267, and upstream bug reports:
+ *  - https://github.com/krakjoe/apcu/issues/38
+ *  - https://github.com/krakjoe/apcu/issues/35
+ *  - https://github.com/krakjoe/apcu/issues/111
+ *
  * @ingroup Cache
  */
-class APCUBagOStuff extends APCBagOStuff {
+class APCUBagOStuff extends BagOStuff {
 	/**
-	 * Available parameters are:
-	 *   - nativeSerialize:     If true, pass objects to apcu_store(), and trust it
-	 *                          to serialize them correctly. If false, serialize
-	 *                          all values in PHP.
-	 *
-	 * @param array $params
+	 * @var string String to append to each APC key. This may be changed
+	 *  whenever the handling of values is changed, to prevent existing code
+	 *  from encountering older values which it cannot handle.
 	 */
-	public function __construct( array $params = [] ) {
-		parent::__construct( $params );
-	}
+	const KEY_SUFFIX = ':3';
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$casToken = null;
@@ -99,5 +101,13 @@ class APCUBagOStuff extends APCBagOStuff {
 		} else {
 			return false;
 		}
+	}
+
+	protected function serialize( $value ) {
+		return $this->isInteger( $value ) ? (int)$value : serialize( $value );
+	}
+
+	protected function unserialize( $value ) {
+		return $this->isInteger( $value ) ? (int)$value : unserialize( $value );
 	}
 }
