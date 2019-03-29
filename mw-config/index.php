@@ -63,7 +63,7 @@ function wfInstallerMain() {
 		$session = array();
 	}
 
-	if ( $request->getVal( 'uselang' ) !== null ) {
+	if ( $request->getCheck( 'uselang' ) ) {
 		$langCode = $request->getVal( 'uselang' );
 	} elseif ( isset( $session['settings']['_UserLang'] ) ) {
 		$langCode = $session['settings']['_UserLang'];

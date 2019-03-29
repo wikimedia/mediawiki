@@ -129,7 +129,7 @@ class SpecialSearch extends SpecialPage {
 		$this->load();
 		// TODO: This performs database actions on GET request, which is going to
 		// be a problem for our multi-datacenter work.
-		if ( !is_null( $request->getVal( 'nsRemember' ) ) ) {
+		if ( $request->getCheck( 'nsRemember' ) ) {
 			$this->saveNamespaces();
 			// Remove the token from the URL to prevent the user from inadvertently
 			// exposing it (e.g. by pasting it into a public wiki page) or undoing
@@ -141,10 +141,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$this->searchEngineType = $request->getVal( 'srbackend' );
-		if (
-			!$request->getVal( 'fulltext' ) &&
-			$request->getVal( 'offset' ) === null
-		) {
+		if ( !$request->getVal( 'fulltext' ) && !$request->getCheck( 'offset' ) ) {
 			$url = $this->goResult( $term );
 			if ( $url !== null ) {
 				// successful 'go'

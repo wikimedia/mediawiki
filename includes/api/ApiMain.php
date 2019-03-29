@@ -321,7 +321,7 @@ class ApiMain extends ApiBase {
 		$request = $this->getRequest();
 
 		// JSONP mode
-		if ( $request->getVal( 'callback' ) !== null ) {
+		if ( $request->getCheck( 'callback' ) ) {
 			$this->lacksSameOriginSecurity = true;
 			return true;
 		}
