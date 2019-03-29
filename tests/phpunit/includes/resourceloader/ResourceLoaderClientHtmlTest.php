@@ -17,7 +17,6 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 
 	protected static function makeContext( $extraQuery = [] ) {
 		$conf = new HashConfig( [
-			'ResourceLoaderSources' => [],
 			'ResourceModuleSkinStyles' => [],
 			'ResourceModules' => [],
 			'EnableJavaScriptTest' => false,
