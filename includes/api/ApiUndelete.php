@@ -31,7 +31,8 @@ class ApiUndelete extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		$user = $this->getUser();
-		if ( $user->isBlocked() ) {
+		$block = $user->getBlock();
+		if ( $block && $block->isSitewide() ) {
 			$this->dieBlocked( $user->getBlock() );
 		}
 
