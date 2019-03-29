@@ -86,8 +86,11 @@ class GIFHandler extends BitmapHandler {
 		$ser = $image->getMetadata();
 		if ( $ser ) {
 			$metadata = unserialize( $ser );
-
-			return $image->getWidth() * $image->getHeight() * $metadata['frameCount'];
+			if ( isset( $metadata['frameCount'] ) && $metadata['frameCount'] > 0 ) {
+				return $image->getWidth() * $image->getHeight() * $metadata['frameCount'];
+			} else {
+				return $image->getWidth() * $image->getHeight();
+			}
 		} else {
 			return $image->getWidth() * $image->getHeight();
 		}
@@ -101,7 +104,7 @@ class GIFHandler extends BitmapHandler {
 		$ser = $image->getMetadata();
 		if ( $ser ) {
 			$metadata = unserialize( $ser );
-			if ( $metadata['frameCount'] > 1 ) {
+			if ( isset( $metadata['frameCount'] ) && $metadata['frameCount'] > 1 ) {
 				return true;
 			}
 		}
