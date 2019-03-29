@@ -95,7 +95,8 @@ class SpecialUndelete extends SpecialPage {
 		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) && $user->isAllowed( 'suppressrevision' );
 		$this->mToken = $request->getVal( 'token' );
 
-		if ( $this->isAllowed( 'undelete' ) && !$user->isBlocked() ) {
+		$block = $user->getBlock();
+		if ( $this->isAllowed( 'undelete' ) && !( $block && $block->isSitewide() ) ) {
 			$this->mAllowed = true; // user can restore
 			$this->mCanView = true; // user can view content
 		} elseif ( $this->isAllowed( 'deletedtext' ) ) {
