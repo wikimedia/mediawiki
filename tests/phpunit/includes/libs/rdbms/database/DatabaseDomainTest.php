@@ -149,8 +149,6 @@ class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
 				[ '', null, null, '', true ],
 			'dontcaredb+dontcaredbschema+prefix' =>
 				[ 'mywiki-mediawiki-prefix_', null, null, 'prefix_', false ],
-			'dontcaredb+schema+prefix' =>
-				[ 'mywiki-schema-prefix_', null, 'schema', 'prefix_', false ],
 			'db+dontcareschema+prefix' =>
 				[ 'mywiki-schema-prefix_', 'mywiki', null, 'prefix_', false ],
 			'postgres-db-jobqueue' =>
@@ -181,8 +179,6 @@ class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
 				[ 'mywiki-schema-prefix_', 'thatwiki', 'schema', 'prefix_' ],
 			'dontcaredb+dontcaredbschema+prefix' =>
 				[ 'thatwiki-mediawiki-otherprefix_', null, null, 'prefix_' ],
-			'dontcaredb+schema+prefix' =>
-				[ 'mywiki-otherschema-prefix_', null, 'schema', 'prefix_' ],
 			'db+dontcareschema+prefix' =>
 				[ 'notmywiki-schema-prefix_', 'mywiki', null, 'prefix_' ],
 		];
@@ -200,6 +196,20 @@ class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertFalse( $fromId->isCompatible( $id ), 'constructed equals string' );
 		$this->assertFalse( $fromId->isCompatible( $compareIdObj ), 'fromId equals string' );
+	}
+
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testSchemaWithNoDB1() {
+		new DatabaseDomain( null, 'schema', '' );
+	}
+
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testSchemaWithNoDB2() {
+		DatabaseDomain::newFromId( '-schema-prefix' );
 	}
 
 	/**
