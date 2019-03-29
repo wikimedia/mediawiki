@@ -41,7 +41,7 @@ abstract class Job implements IJobSpecification {
 	protected $title;
 
 	/** @var bool Expensive jobs may set this to true */
-	protected $removeDuplicates;
+	protected $removeDuplicates = false;
 
 	/** @var string Text for error that occurred last */
 	protected $error;
@@ -65,13 +65,21 @@ abstract class Job implements IJobSpecification {
 	 * Create the appropriate object to handle a specific job
 	 *
 	 * @param string $command Job command
-	 * @param Title $title Associated title
 	 * @param array $params Job parameters
 	 * @throws InvalidArgumentException
 	 * @return Job
 	 */
-	public static function factory( $command, Title $title, $params = [] ) {
+	public static function factory( $command, $params = [] ) {
 		global $wgJobClasses;
+
+		if ( $params instanceof Title ) {
+			// Backwards compatibility for old signature ($command, $title, $params)
+			$title = $params;
+			$params = func_num_args() >= 3 ? func_get_arg( 2 ) : [];
+		} else {
+			// Subclasses can override getTitle() to return something more meaningful
+			$title = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
+		}
 
 		if ( isset( $wgJobClasses[$command] ) ) {
 			$handler = $wgJobClasses[$command];
@@ -86,9 +94,10 @@ abstract class Job implements IJobSpecification {
 
 			if ( $job instanceof Job ) {
 				$job->command = $command;
+
 				return $job;
 			} else {
-				throw new InvalidArgumentException( "Cannot instantiate job '$command': bad spec!" );
+				throw new InvalidArgumentException( "Could instantiate job '$command': bad spec!" );
 			}
 		}
 
@@ -97,17 +106,21 @@ abstract class Job implements IJobSpecification {
 
 	/**
 	 * @param string $command
-	 * @param Title $title
-	 * @param array|bool $params Can not be === true
+	 * @param array $params
 	 */
-	public function __construct( $command, $title, $params = false ) {
+	public function __construct( $command, $params = [] ) {
+		if ( $params instanceof Title ) {
+			// Backwards compatibility for old signature ($command, $title, $params)
+			$title = $params;
+			$params = func_num_args() >= 3 ? func_get_arg( 2 ) : [];
+		} else {
+			// Subclasses can override getTitle() to return something more meaningful
+			$title = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
+		}
+
 		$this->command = $command;
 		$this->title = $title;
 		$this->params = is_array( $params ) ? $params : []; // sanity
-
-		// expensive jobs may set this to true
-		$this->removeDuplicates = false;
-
 		if ( !isset( $this->params['requestId'] ) ) {
 			$this->params['requestId'] = WebRequest::getRequestId();
 		}
