@@ -634,7 +634,6 @@ class LocalFile extends File {
 		}
 
 		$this->fileExists = true;
-		$this->maybeUpgradeRow();
 	}
 
 	/**
@@ -659,7 +658,7 @@ class LocalFile extends File {
 	/**
 	 * Upgrade a row if it needs it
 	 */
-	function maybeUpgradeRow() {
+	protected function maybeUpgradeRow() {
 		global $wgUpdateCompatibleMetadata;
 
 		if ( wfReadOnly() || $this->upgrading ) {
@@ -1028,6 +1027,7 @@ class LocalFile extends File {
 	 */
 	function purgeCache( $options = [] ) {
 		// Refresh metadata cache
+		$this->maybeUpgradeRow();
 		$this->purgeMetadataCache();
 
 		// Delete thumbnails
