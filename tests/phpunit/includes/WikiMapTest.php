@@ -260,16 +260,19 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	 * @covers WikiMap::getCurrentWikiDbDomain()
 	 */
 	public function testIsCurrentWikiDomain() {
-		$this->assertTrue( WikiMap::isCurrentWikiDbDomain( wfWikiID() ) );
+		$this->setMwGlobals( 'wgDBmwschema', 'mediawiki' );
 
-		$localDomain = DatabaseDomain::newFromId( wfWikiID() );
+		$localDomain = WikiMap::getCurrentWikiDbDomain()->getId();
+		$this->assertTrue( WikiMap::isCurrentWikiDbDomain( $localDomain ) );
+
+		$localDomain = DatabaseDomain::newFromId( $localDomain );
 		$domain1 = new DatabaseDomain(
 			$localDomain->getDatabase(), 'someschema', $localDomain->getTablePrefix() );
 		$domain2 = new DatabaseDomain(
 			$localDomain->getDatabase(), null, $localDomain->getTablePrefix() );
 
-		$this->assertTrue( WikiMap::isCurrentWikiDbDomain( $domain1 ), 'Schema ignored' );
-		$this->assertTrue( WikiMap::isCurrentWikiDbDomain( $domain2 ), 'Schema ignored' );
+		$this->assertFalse( WikiMap::isCurrentWikiDbDomain( $domain1 ), 'Schema not ignored' );
+		$this->assertFalse( WikiMap::isCurrentWikiDbDomain( $domain2 ), 'Null schema not ignored' );
 
 		$this->assertTrue( WikiMap::isCurrentWikiDbDomain( WikiMap::getCurrentWikiDbDomain() ) );
 	}
