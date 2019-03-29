@@ -109,6 +109,7 @@ For notes on 1.32.x and older releases, see HISTORY.
   Content::getNativeData() for text-based content models.
 * (T214706) LinksUpdate::getAddedExternalLinks() and
   LinksUpdate::getRemovedExternalLinks() were introduced.
+* (T213893) Added 'MaintenanceUpdateAddParams' hook
 
 === External library changes in 1.33 ===
 ==== New external libraries ====
