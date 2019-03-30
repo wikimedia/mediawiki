@@ -122,14 +122,6 @@ class MessageBlobStore implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @deprecated since 1.27 Use getBlobs() instead
-	 * @return array
-	 */
-	public function get( ResourceLoader $resourceLoader, $modules, $lang ) {
-		return $this->getBlobs( $modules, $lang );
-	}
-
-	/**
 	 * @since 1.27
 	 * @param ResourceLoaderModule $module
 	 * @param string $lang
