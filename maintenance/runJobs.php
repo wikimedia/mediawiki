@@ -100,7 +100,7 @@ class RunJobs extends Maintenance {
 				$response['reached'] === 'memory-limit'
 			) {
 				// If job queue is empty, output it
-				if ( $response['jobs'] === [] ) {
+				if ( !$outputJSON && $response['jobs'] === [] ) {
 					$this->output( "Job queue is empty.\n" );
 				}
 				break;
