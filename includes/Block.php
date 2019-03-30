@@ -1297,7 +1297,7 @@ class Block {
 				// their own talk page unless a restriction exists on the
 				// page or User_talk: namespace
 				wfSetVar( $this->allowUsertalk, $x === null ? null : !$x );
-				$res = !$this->isUserTalkEditAllowed();
+				$res = !$this->isUsertalkEditAllowed();
 
 				// edit own user talk can be disabled by config
 				if ( !$blockAllowsUTEdit ) {

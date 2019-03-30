@@ -4806,7 +4806,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		$dbw->onTransactionPreCommitOrIdle(
 			function () use ( $dbw ) {
 				ResourceLoaderWikiModule::invalidateModuleCache(
-					$this, null, null, $dbw->getDomainId() );
+					$this, null, null, $dbw->getDomainID() );
 			},
 			__METHOD__
 		);

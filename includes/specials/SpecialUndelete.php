@@ -457,7 +457,7 @@ class SpecialUndelete extends SpecialPage {
 			Message::rawParam( $link ), $time,
 			Message::rawParam( $userLink ), $d, $t
 		);
-		$out->addHtml( '</div>' );
+		$out->addHTML( '</div>' );
 
 		if ( !Hooks::run( 'UndeleteShowRevision', [ $this->mTargetObj, $rev ] ) ) {
 			return;
