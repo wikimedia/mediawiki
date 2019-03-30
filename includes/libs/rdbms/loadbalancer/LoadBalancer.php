@@ -1027,7 +1027,7 @@ class LoadBalancer implements ILoadBalancer {
 				}
 				unset( $this->conns[$connFreeKey][$i][$oldDomain] );
 				// Note that if $domain is an empty string, getDomainID() might not match it
-				$this->conns[$connInUseKey][$i][$conn->getDomainId()] = $conn;
+				$this->conns[$connInUseKey][$i][$conn->getDomainID()] = $conn;
 				$this->connLogger->debug( __METHOD__ .
 					": reusing free connection from $oldDomain for $domain" );
 				break;

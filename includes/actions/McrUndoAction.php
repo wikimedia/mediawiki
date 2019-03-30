@@ -298,7 +298,7 @@ class McrUndoAction extends FormAction {
 			'class' => 'mw-content-' . $pageViewLang->getDir() ];
 		$previewHTML = Html::rawElement( 'div', $attribs, $previewHTML );
 
-		$out->addHtml( $previewhead . $previewHTML );
+		$out->addHTML( $previewhead . $previewHTML );
 	}
 
 	public function onSubmit( $data ) {

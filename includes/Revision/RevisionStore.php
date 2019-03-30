@@ -827,11 +827,11 @@ class RevisionStore
 					// And we have to use raw SQL to bypass the "aggregation used with a locking SELECT" warning
 					// that's for non-MySQL DBs.
 					$row1 = $dbw->query(
-						$dbw->selectSqlText( 'archive', [ 'v' => "MAX(ar_rev_id)" ], '', __METHOD__ ) . ' FOR UPDATE'
+						$dbw->selectSQLText( 'archive', [ 'v' => "MAX(ar_rev_id)" ], '', __METHOD__ ) . ' FOR UPDATE'
 					)->fetchObject();
 					if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW ) ) {
 						$row2 = $dbw->query(
-							$dbw->selectSqlText( 'slots', [ 'v' => "MAX(slot_revision_id)" ], '', __METHOD__ )
+							$dbw->selectSQLText( 'slots', [ 'v' => "MAX(slot_revision_id)" ], '', __METHOD__ )
 								. ' FOR UPDATE'
 						)->fetchObject();
 					} else {
