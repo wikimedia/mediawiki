@@ -44,8 +44,6 @@ abstract class JobQueue {
 
 	/** @var BagOStuff */
 	protected $dupCache;
-	/** @var JobQueueAggregator */
-	protected $aggr;
 
 	const QOS_ATOMIC = 1; // integer; "all-or-nothing" job insertions
 
@@ -69,7 +67,6 @@ abstract class JobQueue {
 			throw new MWException( __CLASS__ . " does not support '{$this->order}' order." );
 		}
 		$this->dupCache = wfGetCache( CACHE_ANYTHING );
-		$this->aggr = $params['aggregator'] ?? new JobQueueAggregatorNull( [] );
 		$this->readOnlyReason = $params['readOnlyReason'] ?? false;
 	}
 
@@ -338,7 +335,6 @@ abstract class JobQueue {
 		}
 
 		$this->doBatchPush( $jobs, $flags );
-		$this->aggr->notifyQueueNonEmpty( $this->domain, $this->type );
 
 		foreach ( $jobs as $job ) {
 			if ( $job->isRootJob() ) {
@@ -375,10 +371,6 @@ abstract class JobQueue {
 		}
 
 		$job = $this->doPop();
-
-		if ( !$job ) {
-			$this->aggr->notifyQueueEmpty( $this->domain, $this->type );
-		}
 
 		// Flag this job as an old duplicate based on its "root" job...
 		try {

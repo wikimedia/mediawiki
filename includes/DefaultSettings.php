@@ -7572,14 +7572,6 @@ $wgJobTypeConf = [
 ];
 
 /**
- * Which aggregator to use for tracking which queues have jobs.
- * These settings should be global to all wikis.
- */
-$wgJobQueueAggregator = [
-	'class' => JobQueueAggregatorNull::class
-];
-
-/**
  * Whether to include the number of jobs that are queued
  * for the API's maxlag parameter.
  * The total number of jobs will be divided by this to get an
