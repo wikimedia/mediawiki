@@ -353,12 +353,14 @@ class JobQueueGroup {
 	/**
 	 * Get the list of job types that have non-empty queues
 	 *
-	 * @return array List of job types that have non-empty queues
+	 * @return string[] List of job types that have non-empty queues
 	 */
 	public function getQueuesWithJobs() {
 		$types = [];
 		foreach ( $this->getCoalescedQueues() as $info ) {
-			$nonEmpty = $info['queue']->getSiblingQueuesWithJobs( $this->getQueueTypes() );
+			/** @var JobQueue $queue */
+			$queue = $info['queue'];
+			$nonEmpty = $queue->getSiblingQueuesWithJobs( $this->getQueueTypes() );
 			if ( is_array( $nonEmpty ) ) { // batching features supported
 				$types = array_merge( $types, $nonEmpty );
 			} else { // we have to go through the queues in the bucket one-by-one
@@ -376,12 +378,14 @@ class JobQueueGroup {
 	/**
 	 * Get the size of the queus for a list of job types
 	 *
-	 * @return array Map of (job type => size)
+	 * @return int[] Map of (job type => size)
 	 */
 	public function getQueueSizes() {
 		$sizeMap = [];
 		foreach ( $this->getCoalescedQueues() as $info ) {
-			$sizes = $info['queue']->getSiblingQueueSizes( $this->getQueueTypes() );
+			/** @var JobQueue $queue */
+			$queue = $info['queue'];
+			$sizes = $queue->getSiblingQueueSizes( $this->getQueueTypes() );
 			if ( is_array( $sizes ) ) { // batching features supported
 				$sizeMap = $sizeMap + $sizes;
 			} else { // we have to go through the queues in the bucket one-by-one
@@ -395,7 +399,7 @@ class JobQueueGroup {
 	}
 
 	/**
-	 * @return array
+	 * @return JobQueue[]
 	 */
 	protected function getCoalescedQueues() {
 		global $wgJobTypeConf;
