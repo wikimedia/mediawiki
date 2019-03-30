@@ -218,7 +218,7 @@ class ApiMain extends ApiBase {
 						'cookies' => $sessionCookies,
 						'ip' => $request->getIP(),
 						'userAgent' => $this->getUserAgent(),
-						'wiki' => wfWikiID(),
+						'wiki' => WikiMap::getCurrentWikiDbDomain()->getId(),
 					]
 				);
 			}
@@ -1633,7 +1633,7 @@ class ApiMain extends ApiBase {
 			'ts' => time(),
 			'ip' => $request->getIP(),
 			'userAgent' => $this->getUserAgent(),
-			'wiki' => wfWikiID(),
+			'wiki' => WikiMap::getCurrentWikiDbDomain()->getId(),
 			'timeSpentBackend' => (int)round( $time * 1000 ),
 			'hadError' => $e !== null,
 			'errorCodes' => [],
@@ -1653,7 +1653,7 @@ class ApiMain extends ApiBase {
 				'method' => $request->getMethod(),
 				'client_ip' => $request->getIP()
 			],
-			'database' => wfWikiID(),
+			'database' => WikiMap::getCurrentWikiDbDomain()->getId(),
 			'backend_time_ms' => (int)round( $time * 1000 ),
 		];
 
