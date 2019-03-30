@@ -32,6 +32,12 @@ class JobQueueMemory extends JobQueue {
 	/** @var array[] */
 	protected static $data = [];
 
+	public function __construct( array $params ) {
+		parent::__construct( $params );
+
+		$this->dupCache = new HashBagOStuff();
+	}
+
 	/**
 	 * @see JobQueue::doBatchPush
 	 *
@@ -43,10 +49,7 @@ class JobQueueMemory extends JobQueue {
 
 		foreach ( $jobs as $job ) {
 			if ( $job->ignoreDuplicates() ) {
-				$sha1 = Wikimedia\base_convert(
-					sha1( serialize( $job->getDeduplicationInfo() ) ),
-					16, 36, 31
-				);
+				$sha1 = sha1( serialize( $job->getDeduplicationInfo() ) );
 				if ( !isset( $unclaimed[$sha1] ) ) {
 					$unclaimed[$sha1] = $job;
 				}
