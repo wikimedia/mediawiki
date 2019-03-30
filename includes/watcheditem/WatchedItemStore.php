@@ -904,10 +904,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		// If the page is watched by the user (or may be watched), update the timestamp
-		$job = new ClearWatchlistNotificationsJob(
-			$user->getUserPage(),
-			[ 'userId'  => $user->getId(), 'timestamp' => $timestamp, 'casTime' => time() ]
-		);
+		$job = new ClearWatchlistNotificationsJob( [
+			'userId'  => $user->getId(), 'timestamp' => $timestamp, 'casTime' => time()
+		] );
 
 		// Try to run this post-send
 		// Calls DeferredUpdates::addCallableUpdate in normal operation

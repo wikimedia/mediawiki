@@ -361,7 +361,7 @@ abstract class JobQueue {
 	 * Outside callers should use JobQueueGroup::pop() instead of this function.
 	 *
 	 * @throws JobQueueError
-	 * @return Job|bool Returns false if there are no jobs
+	 * @return RunnableJob|bool Returns false if there are no jobs
 	 */
 	final public function pop() {
 		$this->assertNotReadOnly();
@@ -383,7 +383,7 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::pop()
-	 * @return Job|bool
+	 * @return RunnableJob|bool
 	 */
 	abstract protected function doPop();
 
@@ -393,11 +393,11 @@ abstract class JobQueue {
 	 * This does nothing for certain queue classes or if "claimTTL" is not set.
 	 * Outside callers should use JobQueueGroup::ack() instead of this function.
 	 *
-	 * @param Job $job
+	 * @param RunnableJob $job
 	 * @return void
 	 * @throws JobQueueError
 	 */
-	final public function ack( Job $job ) {
+	final public function ack( RunnableJob $job ) {
 		$this->assertNotReadOnly();
 		if ( $job->getType() !== $this->type ) {
 			throw new JobQueueError( "Got '{$job->getType()}' job; expected '{$this->type}'." );
@@ -408,9 +408,9 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::ack()
-	 * @param Job $job
+	 * @param RunnableJob $job
 	 */
-	abstract protected function doAck( Job $job );
+	abstract protected function doAck( RunnableJob $job );
 
 	/**
 	 * Register the "root job" of a given job into the queue for de-duplication.
@@ -482,11 +482,11 @@ abstract class JobQueue {
 	/**
 	 * Check if the "root" job of a given job has been superseded by a newer one
 	 *
-	 * @param Job $job
+	 * @param IJobSpecification $job
 	 * @throws JobQueueError
 	 * @return bool
 	 */
-	final protected function isRootJobOldDuplicate( Job $job ) {
+	final protected function isRootJobOldDuplicate( IJobSpecification $job ) {
 		if ( $job->getType() !== $this->type ) {
 			throw new JobQueueError( "Got '{$job->getType()}' job; expected '{$this->type}'." );
 		}
@@ -497,10 +497,10 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::isRootJobOldDuplicate()
-	 * @param Job $job
+	 * @param IJobSpecification $job
 	 * @return bool
 	 */
-	protected function doIsRootJobOldDuplicate( Job $job ) {
+	protected function doIsRootJobOldDuplicate( IJobSpecification $job ) {
 		if ( !$job->hasRootJobParams() ) {
 			return false; // job has no de-deplication info
 		}
@@ -684,6 +684,16 @@ abstract class JobQueue {
 	 */
 	protected function doGetSiblingQueueSizes( array $types ) {
 		return null; // not supported
+	}
+
+	/**
+	 * @param string $command
+	 * @param array $params
+	 * @return Job
+	 */
+	protected function factoryJob( $command, $params ) {
+		// @TODO: dependency inject this as a callback
+		return Job::factory( $command, $params );
 	}
 
 	/**

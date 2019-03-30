@@ -1,6 +1,6 @@
 <?php
 /**
- * Job queue task description base code.
+ * Job queue task description interface
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,19 +21,25 @@
  */
 
 /**
- * Job queue task description interface
+ * Interface for serializable objects that describe a job queue task
+ *
+ * A job specification can be inserted into a queue via JobQueue::push().
+ * The specification parameters should be JSON serializable (e.g. no PHP classes).
+ * Whatever queue the job specification is pushed into is assumed to have job runners
+ * that will eventually pop the job specification from the queue, construct a RunnableJob
+ * instance from the specification, and then execute that instance via RunnableJob::run().
  *
  * @ingroup JobQueue
  * @since 1.23
  */
 interface IJobSpecification {
 	/**
-	 * @return string Job type
+	 * @return string Job type that defines what sort of changes this job makes
 	 */
 	public function getType();
 
 	/**
-	 * @return array
+	 * @return array Parameters that specify sources, targets, and options for execution
 	 */
 	public function getParams();
 
@@ -76,9 +82,4 @@ interface IJobSpecification {
 	 * @return bool Whether this is job is a root job
 	 */
 	public function isRootJob();
-
-	/**
-	 * @return Title Descriptive title (this can simply be informative)
-	 */
-	public function getTitle();
 }

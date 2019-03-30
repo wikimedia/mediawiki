@@ -234,7 +234,7 @@ class JobQueueGroup {
 	 * @param int|string $qtype JobQueueGroup::TYPE_* constant or job type string
 	 * @param int $flags Bitfield of JobQueueGroup::USE_* constants
 	 * @param array $blacklist List of job types to ignore
-	 * @return Job|bool Returns false on failure
+	 * @return RunnableJob|bool Returns false on failure
 	 */
 	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0, array $blacklist = [] ) {
 		global $wgJobClasses;

@@ -380,12 +380,12 @@ class JobQueueTest extends MediaWikiTestCase {
 	}
 
 	function newJob( $i = 0, $rootJob = [] ) {
-		return new NullJob( Title::newMainPage(),
+		return Job::factory( 'null', Title::newMainPage(),
 			[ 'lives' => 0, 'usleep' => 0, 'removeDuplicates' => 0, 'i' => $i ] + $rootJob );
 	}
 
 	function newDedupedJob( $i = 0, $rootJob = [] ) {
-		return new NullJob( Title::newMainPage(),
+		return Job::factory( 'null', Title::newMainPage(),
 			[ 'lives' => 0, 'usleep' => 0, 'removeDuplicates' => 1, 'i' => $i ] + $rootJob );
 	}
 }

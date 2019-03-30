@@ -10,7 +10,17 @@ use MediaWiki\MediaWikiServices;
  * @ingroup JobQueue
  * @since 1.31
  */
-class ClearUserWatchlistJob extends Job {
+class ClearUserWatchlistJob extends Job implements GenericParameterJob {
+	/**
+	 * @param array $params
+	 *  - userId,         The ID for the user whose watchlist is being cleared.
+	 *  - maxWatchlistId, The maximum wl_id at the time the job was first created,
+	 */
+	public function __construct( array $params ) {
+		parent::__construct( 'clearUserWatchlist', $params );
+
+		$this->removeDuplicates = true;
+	}
 
 	/**
 	 * @param User $user User to clear the watchlist for.
@@ -19,26 +29,7 @@ class ClearUserWatchlistJob extends Job {
 	 * @return ClearUserWatchlistJob
 	 */
 	public static function newForUser( User $user, $maxWatchlistId ) {
-		return new self(
-			null,
-			[ 'userId' => $user->getId(), 'maxWatchlistId' => $maxWatchlistId ]
-		);
-	}
-
-	/**
-	 * @param Title|null $title Not used by this job.
-	 * @param array $params
-	 *  - userId,         The ID for the user whose watchlist is being cleared.
-	 *  - maxWatchlistId, The maximum wl_id at the time the job was first created,
-	 */
-	public function __construct( Title $title = null, array $params ) {
-		parent::__construct(
-			'clearUserWatchlist',
-			SpecialPage::getTitleFor( 'EditWatchlist', 'clear' ),
-			$params
-		);
-
-		$this->removeDuplicates = true;
+		return new self( [ 'userId' => $user->getId(), 'maxWatchlistId' => $maxWatchlistId ] );
 	}
 
 	public function run() {
@@ -101,7 +92,7 @@ class ClearUserWatchlistJob extends Job {
 		if ( count( $watchlistIds ) === (int)$batchSize ) {
 			// Until we get less results than the limit, recursively push
 			// the same job again.
-			JobQueueGroup::singleton()->push( new self( $this->getTitle(), $this->getParams() ) );
+			JobQueueGroup::singleton()->push( new self( $this->getParams() ) );
 		}
 
 		return true;

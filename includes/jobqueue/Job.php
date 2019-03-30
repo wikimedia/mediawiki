@@ -27,7 +27,7 @@
  *
  * @ingroup JobQueue
  */
-abstract class Job implements IJobSpecification {
+abstract class Job implements RunnableJob {
 	/** @var string */
 	public $command;
 
@@ -56,12 +56,6 @@ abstract class Job implements IJobSpecification {
 	const JOB_NO_EXPLICIT_TRX_ROUND = 1;
 
 	/**
-	 * Run the job
-	 * @return bool Success
-	 */
-	abstract public function run();
-
-	/**
 	 * Create the appropriate object to handle a specific job
 	 *
 	 * @param string $command Job command
@@ -77,9 +71,12 @@ abstract class Job implements IJobSpecification {
 			$title = $params;
 			$params = func_num_args() >= 3 ? func_get_arg( 2 ) : [];
 		} else {
-			// Subclasses can override getTitle() to return something more meaningful
-			$title = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
+			$title = ( isset( $params['namespace'] ) && isset( $params['title'] ) )
+				? Title::makeTitle( $params['namespace'], $params['title'] )
+				: Title::makeTitle( NS_SPECIAL, '' );
 		}
+
+		$params = is_array( $params ) ? $params : []; // sanity
 
 		if ( isset( $wgJobClasses[$command] ) ) {
 			$handler = $wgJobClasses[$command];
@@ -87,7 +84,11 @@ abstract class Job implements IJobSpecification {
 			if ( is_callable( $handler ) ) {
 				$job = call_user_func( $handler, $title, $params );
 			} elseif ( class_exists( $handler ) ) {
-				$job = new $handler( $title, $params );
+				if ( is_subclass_of( $handler, GenericParameterJob::class ) ) {
+					$job = new $handler( $params );
+				} else {
+					$job = new $handler( $title, $params );
+				}
 			} else {
 				$job = null;
 			}
@@ -112,17 +113,27 @@ abstract class Job implements IJobSpecification {
 		if ( $params instanceof Title ) {
 			// Backwards compatibility for old signature ($command, $title, $params)
 			$title = $params;
-			$params = func_get_arg( 2 );
-		} else {
-			// Subclasses can override getTitle() to return something more meaningful
-			$title = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
+			$params = func_num_args() >= 3 ? func_get_arg( 2 ) : [];
+			$params = is_array( $params ) ? $params : []; // sanity
+			// Set namespace/title params if both are missing and this is not a dummy title
+			if (
+				$title->getDBkey() !== '' &&
+				!isset( $params['namespace'] ) &&
+				!isset( $params['title'] )
+			) {
+				$params['namespace'] = $title->getNamespace();
+				$params['title'] = $title->getDBKey();
+				// Note that JobQueue classes will prefer the parameters over getTitle()
+				$this->title = $title;
+			}
 		}
 
 		$this->command = $command;
-		$this->title = $title;
-		$this->params = is_array( $params ) ? $params : [];
-		if ( !isset( $this->params['requestId'] ) ) {
-			$this->params['requestId'] = WebRequest::getRequestId();
+		$this->params = $params + [ 'requestId' => WebRequest::getRequestId() ];
+		if ( $this->title === null ) {
+			$this->title = ( isset( $params['namespace'] ) && isset( $params['title'] ) )
+				? Title::makeTitle( $params['namespace'], $params['title'] )
+				: Title::makeTitle( NS_SPECIAL, '' );
 		}
 	}
 
@@ -145,7 +156,7 @@ abstract class Job implements IJobSpecification {
 	/**
 	 * @return Title
 	 */
-	public function getTitle() {
+	final public function getTitle() {
 		return $this->title;
 	}
 
@@ -268,8 +279,6 @@ abstract class Job implements IJobSpecification {
 	public function getDeduplicationInfo() {
 		$info = [
 			'type' => $this->getType(),
-			'namespace' => $this->getTitle()->getNamespace(),
-			'title' => $this->getTitle()->getDBkey(),
 			'params' => $this->getParams()
 		];
 		if ( is_array( $info['params'] ) ) {

@@ -2736,6 +2736,8 @@ class WikiPage implements Page, IDBAccessObject {
 			$dbw->endAtomic( __METHOD__ );
 
 			$jobParams = [
+				'namespace' => $this->getTitle()->getNamespace(),
+				'title' => $this->getTitle()->getDBkey(),
 				'wikiPageId' => $id,
 				'requestId' => $webRequestId ?? WebRequest::getRequestId(),
 				'reason' => $reason,
@@ -2745,7 +2747,7 @@ class WikiPage implements Page, IDBAccessObject {
 				'logsubtype' => $logsubtype,
 			];
 
-			$job = new DeletePageJob( $this->getTitle(), $jobParams );
+			$job = new DeletePageJob( $jobParams );
 			JobQueueGroup::singleton()->push( $job );
 
 			$status->warning( 'delete-scheduled',

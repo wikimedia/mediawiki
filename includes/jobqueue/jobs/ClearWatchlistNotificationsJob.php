@@ -33,9 +33,9 @@ use MediaWiki\MediaWikiServices;
  * @ingroup JobQueue
  * @since 1.31
  */
-class ClearWatchlistNotificationsJob extends Job {
-	function __construct( Title $title, array $params ) {
-		parent::__construct( 'clearWatchlistNotifications', $title, $params );
+class ClearWatchlistNotificationsJob extends Job implements GenericParameterJob {
+	function __construct( array $params ) {
+		parent::__construct( 'clearWatchlistNotifications', $params );
 
 		static $required = [ 'userId', 'casTime' ];
 		$missing = implode( ', ', array_diff( $required, array_keys( $this->params ) ) );

@@ -10,11 +10,11 @@ class SiteStatsTest extends MediaWikiTestCase {
 		$this->setService( 'MainWANObjectCache', $cache );
 		$jobq = JobQueueGroup::singleton();
 
-		$jobq->push( new NullJob( Title::newMainPage(), [] ) );
+		$jobq->push( Job::factory( 'null', Title::newMainPage(), [] ) );
 		$this->assertEquals( 1, SiteStats::jobs(),
 			 'A single job enqueued bumps jobscount stat to 1' );
 
-		$jobq->push( new NullJob( Title::newMainPage(), [] ) );
+		$jobq->push( Job::factory( 'null', Title::newMainPage(), [] ) );
 		$this->assertEquals( 1, SiteStats::jobs(),
 			'SiteStats::jobs() count does not reflect addition ' .
 			'of a second job (cached)'
