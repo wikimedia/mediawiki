@@ -110,6 +110,8 @@ For notes on 1.32.x and older releases, see HISTORY.
 * (T214706) LinksUpdate::getAddedExternalLinks() and
   LinksUpdate::getRemovedExternalLinks() were introduced.
 * (T213893) Added 'MaintenanceUpdateAddParams' hook
+* (T219655) The MarkPatrolled hook has a new parameter for the tags
+  associated with this entry in the patrol log.
 
 === External library changes in 1.33 ===
 ==== New external libraries ====
