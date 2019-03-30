@@ -2,9 +2,9 @@
 
 /**
  * @group Media
- * @covers SVGMetadataExtractor
+ * @covers SVGReader
  */
-class SVGMetadataExtractorTest extends \MediaWikiIntegrationTestCase {
+class SVGReaderTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideSvgFiles
@@ -34,7 +34,9 @@ class SVGMetadataExtractorTest extends \MediaWikiIntegrationTestCase {
 
 	function assertMetadata( $infile, $expected ) {
 		try {
-			$data = SVGMetadataExtractor::getMetadata( $infile );
+			$svgReader = new SVGReader( $infile );
+			$data = $svgReader->getMetadata();
+
 			$this->assertEquals( $expected, $data, 'SVG metadata extraction test' );
 		} catch ( MWException $e ) {
 			if ( $expected === false ) {
