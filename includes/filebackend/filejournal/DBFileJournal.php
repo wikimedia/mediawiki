@@ -32,19 +32,19 @@ use Wikimedia\Rdbms\DBError;
 class DBFileJournal extends FileJournal {
 	/** @var IDatabase */
 	protected $dbw;
-
-	protected $wiki = false; // string; wiki DB name
+	/** @var string */
+	protected $domain;
 
 	/**
 	 * Construct a new instance from configuration.
 	 *
 	 * @param array $config Includes:
-	 *     'wiki' : wiki name to use for LoadBalancer
+	 *   domain: database domain ID of the wiki
 	 */
 	protected function __construct( array $config ) {
 		parent::__construct( $config );
 
-		$this->wiki = $config['wiki'];
+		$this->domain = $config['domain'] ?? $config['wiki']; // b/c
 	}
 
 	/**
@@ -184,7 +184,7 @@ class DBFileJournal extends FileJournal {
 		if ( !$this->dbw ) {
 			// Get a separate connection in autocommit mode
 			$lb = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->newMainLB();
-			$this->dbw = $lb->getConnection( DB_MASTER, [], $this->wiki );
+			$this->dbw = $lb->getConnection( DB_MASTER, [], $this->domain );
 			$this->dbw->clearFlag( DBO_TRX );
 		}
 
