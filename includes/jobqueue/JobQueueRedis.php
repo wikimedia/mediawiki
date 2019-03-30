@@ -385,11 +385,11 @@ LUA;
 	 * @throws JobQueueError
 	 */
 	protected function doAck( Job $job ) {
-		if ( !isset( $job->metadata['uuid'] ) ) {
+		$uuid = $job->getMetadata( 'uuid' );
+		if ( $uuid === null ) {
 			throw new UnexpectedValueException( "Job of type '{$job->getType()}' has no UUID." );
 		}
 
-		$uuid = $job->metadata['uuid'];
 		$conn = $this->getConnection();
 		try {
 			static $script =
@@ -643,10 +643,11 @@ LUA;
 			}
 			$title = Title::makeTitle( $item['namespace'], $item['title'] );
 			$job = Job::factory( $item['type'], $title, $item['params'] );
-			$job->metadata['uuid'] = $item['uuid'];
-			$job->metadata['timestamp'] = $item['timestamp'];
+			$job->setMetadata( 'uuid', $item['uuid'] );
+			$job->setMetadata( 'timestamp', $item['timestamp'] );
 			// Add in attempt count for debugging at showJobs.php
-			$job->metadata['attempts'] = $conn->hGet( $this->getQueueKey( 'h-attempts' ), $uid );
+			$job->setMetadata( 'attempts',
+				$conn->hGet( $this->getQueueKey( 'h-attempts' ), $uid ) );
 
 			return $job;
 		} catch ( RedisException $e ) {
@@ -704,8 +705,8 @@ LUA;
 	protected function getJobFromFields( array $fields ) {
 		$title = Title::makeTitle( $fields['namespace'], $fields['title'] );
 		$job = Job::factory( $fields['type'], $title, $fields['params'] );
-		$job->metadata['uuid'] = $fields['uuid'];
-		$job->metadata['timestamp'] = $fields['timestamp'];
+		$job->setMetadata( 'uuid', $fields['uuid'] );
+		$job->setMetadata( 'timestamp', $fields['timestamp'] );
 
 		return $job;
 	}

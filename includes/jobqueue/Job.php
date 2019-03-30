@@ -157,6 +157,36 @@ abstract class Job implements IJobSpecification {
 	}
 
 	/**
+	 * @param string|null $field Metadata field or null to get all the metadata
+	 * @return mixed|null Value; null if missing
+	 * @since 1.33
+	 */
+	public function getMetadata( $field = null ) {
+		if ( $field === null ) {
+			return $this->metadata;
+		}
+
+		return $this->metadata[$field] ?? null;
+	}
+
+	/**
+	 * @param string $field Key name to set the value for
+	 * @param mixed $value The value to set the field for
+	 * @return mixed|null The prior field value; null if missing
+	 * @since 1.33
+	 */
+	public function setMetadata( $field, $value ) {
+		$old = $this->getMetadata( $field );
+		if ( $value === null ) {
+			unset( $this->metadata[$field] );
+		} else {
+			$this->metadata[$field] = $value;
+		}
+
+		return $old;
+	}
+
+	/**
 	 * @return int|null UNIX timestamp to delay running this job until, otherwise null
 	 * @since 1.22
 	 */

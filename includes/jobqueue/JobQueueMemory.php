@@ -132,7 +132,7 @@ class JobQueueMemory extends JobQueue {
 		$job = $this->jobFromSpecInternal( $spec );
 
 		end( $claimed );
-		$job->metadata['claimId'] = key( $claimed );
+		$job->setMetadata( 'claimId', key( $claimed ) );
 
 		return $job;
 	}
@@ -148,7 +148,7 @@ class JobQueueMemory extends JobQueue {
 		}
 
 		$claimed =& $this->getQueueData( 'claimed' );
-		unset( $claimed[$job->metadata['claimId']] );
+		$job->setMetadata( 'claimId', null );
 	}
 
 	/**
