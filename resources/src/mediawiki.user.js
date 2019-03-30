@@ -173,7 +173,7 @@
 			var userGroups = mw.config.get( 'wgUserGroups', [] );
 
 			// Uses promise for backwards compatibility
-			return $.Deferred().resolve( userGroups ).done( callback );
+			return $.Deferred().resolve( userGroups ).then( callback );
 		},
 
 		/**
@@ -186,7 +186,7 @@
 			return getUserInfo().then(
 				function ( userInfo ) { return userInfo.rights; },
 				function () { return []; }
-			).done( callback );
+			).then( callback );
 		}
 	} );
 
