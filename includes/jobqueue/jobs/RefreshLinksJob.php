@@ -54,6 +54,8 @@ class RefreshLinksJob extends Job {
 			!( isset( $params['pages'] ) && count( $params['pages'] ) != 1 )
 		);
 		$this->params += [ 'causeAction' => 'unknown', 'causeAgent' => 'unknown' ];
+		// This will control transaction rounds in order to run DataUpdates
+		$this->executionFlags |= self::JOB_NO_EXPLICIT_TRX_ROUND;
 	}
 
 	/**
@@ -144,6 +146,8 @@ class RefreshLinksJob extends Job {
 		$revisionStore = $services->getRevisionStore();
 		$renderer = $services->getRevisionRenderer();
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
+
+		$lbFactory->beginMasterChanges( __METHOD__ );
 
 		$page = WikiPage::factory( $title );
 		$page->loadPageData( WikiPage::READ_LATEST );
@@ -284,6 +288,9 @@ class RefreshLinksJob extends Job {
 				$options['triggeringUser'] = User::newFromName( $userInfo['userName'], false );
 			}
 		}
+
+		$lbFactory->commitMasterChanges( __METHOD__ );
+
 		$page->doSecondaryDataUpdates( $options );
 
 		InfoAction::invalidateCache( $title );
