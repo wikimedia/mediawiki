@@ -346,6 +346,8 @@ because of Phabricator reports.
   to "Pàgina printzipale". Existing wikis using this content language need to
   move the main page or change the name through MediaWiki:Mainpage page.
 * wfSplitWikiID(), deprecated in 1.32, has been removed.
+* MessageBlobStore::getBlob(), deprecated in 1.27, has been removed.
+  Use ::getBlobs() instead.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
