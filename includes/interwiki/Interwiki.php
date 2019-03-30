@@ -36,7 +36,7 @@ class Interwiki {
 	protected $mAPI;
 
 	/** @var string The name of the database (for a connection to be established
-	 *    with LBFactory::getMainLB( 'wikiid' ))
+	 *    with LBFactory::getMainLB( 'domainId' ))
 	 */
 	protected $mWikiID;
 

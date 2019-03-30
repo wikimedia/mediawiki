@@ -749,7 +749,7 @@ $wgUploadDialog = [
  *   - a) Whether it is fully qualified or wiki-relative.
  *        By default, the paths of files are relative to the current wiki,
  *        which works via prefixing them with the current wiki ID when accessed.
- *        Setting 'wikiId' forces the backend to be fully qualified by prefixing
+ *        Setting 'domainId' forces the backend to be fully qualified by prefixing
  *        all paths with the specified value instead. This can be useful if
  *        multiple wikis need to share the same data. Note that 'name' is *not*
  *        part of any prefix and thus should not be relied upon for namespacing.
