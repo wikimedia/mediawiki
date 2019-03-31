@@ -62,7 +62,7 @@ class Protect extends Maintenance {
 			$this->fatalError( "Invalid username" );
 		}
 
-		$t = Title::newFromText( $this->getArg() );
+		$t = Title::newFromText( $this->getArg( 0 ) );
 		if ( !$t ) {
 			$this->fatalError( "Invalid title" );
 		}

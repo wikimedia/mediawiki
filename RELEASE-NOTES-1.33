@@ -412,6 +412,8 @@ because of Phabricator reports.
   instead. The setTags() method was overriding the tags, addTags() doesn't
   override, only adds new tags.
 * Block::isValid is deprecated, since it is no longer needed in core.
+* Calling Maintenance::hasArg() as well as Maintenance::getArg() with no
+  parameter has been deprecated. Please pass the argument number 0.
 
 === Other changes in 1.33 ===
 * (T201747) Html::openElement() warns if given an element name with a space

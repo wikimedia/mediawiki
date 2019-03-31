@@ -65,8 +65,8 @@ class MoveBatch extends Maintenance {
 		$reason = $this->getOption( 'r', '' );
 		$interval = $this->getOption( 'i', 0 );
 		$noredirects = $this->hasOption( 'noredirects' );
-		if ( $this->hasArg() ) {
-			$file = fopen( $this->getArg(), 'r' );
+		if ( $this->hasArg( 0 ) ) {
+			$file = fopen( $this->getArg( 0 ), 'r' );
 		} else {
 			$file = $this->getStdin();
 		}
