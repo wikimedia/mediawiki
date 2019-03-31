@@ -54,8 +54,10 @@
 		this.calculateSizing( this.data );
 
 		// Get wiki default thumbnail size
+		// FIXME: Now this code is in core it definitely should not depend
+		// on a VE config variable.
 		this.defaultThumbSize = mw.config.get( 'wgVisualEditorConfig' )
-			.defaultUserOptions.defaultthumbsize;
+			.thumbLimits[ mw.user.options.get( 'thumbsize' ) ];
 
 		// Initialization
 		this.setLabel( new mw.Title( this.data.title ).getNameText() );
