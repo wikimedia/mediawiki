@@ -108,6 +108,7 @@
 	"tog-norollbackdiff": "No mostris les diferències després de realitzar una reversió",
 	"tog-useeditwarning": "Avisa'm quan surti d'una pàgina d'edició amb canvis sense desar",
 	"tog-prefershttps": "Utilitza sempre una connexió segura en iniciar una sessió",
+	"tog-showrollbackconfirmation": "Mostra una petició de confirmació en clicar un enllaç de reversió",
 	"underline-always": "Sempre",
 	"underline-never": "Mai",
 	"underline-default": "Per defecte del navegador",

@@ -615,6 +615,7 @@
 	"watchlist-options": "Тергев тизмени кюйлевлери",
 	"enotif_reset": "Бары да сагьифаланы къаралгъандай белгилемек",
 	"dellogpage": "Тайдырыв гюнделиги",
+	"rollback-confirmation-no": "Гери алмакъ",
 	"rollbacklink": "гери алмакъ",
 	"rollbacklinkcount": "$1 {{PLURAL:$1|тюзлевню}} къайтармакъ",
 	"protectlogpage": "Якълав гюнделиги",

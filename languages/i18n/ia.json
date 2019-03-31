@@ -64,7 +64,6 @@
 	"tog-useeditwarning": "Advertir me quando io quita un pagina de modification sin publicar le cambiamentos",
 	"tog-prefershttps": "Sempre usar un connexion secur durante session aperte",
 	"tog-showrollbackconfirmation": "Monstrar un demanda de confirmation al cliccar sur un ligamine de revocation",
-	"tog-showrollbackconfirmation-prerelease-warning": "Nota ben: Iste function non es ancora disponibile. Si tu defini ora iste preferentia, tu selection essera rememorate al [https://meta.wikimedia.org/wiki/WMDE_Technical_Wishes/Rollback#Status quando le function es preste].",
 	"underline-always": "Sempre",
 	"underline-never": "Nunquam",
 	"underline-default": "Como definite per tu navigator o apparentia",

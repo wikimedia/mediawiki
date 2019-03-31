@@ -62,7 +62,8 @@
 			"Fitoschido",
 			"Palladin911",
 			"Bagas Chrisara",
-			"Pebaryan"
+			"Pebaryan",
+			"Veracious"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -1527,7 +1528,7 @@
 	"rcfilters-liveupdates-button-title-off": "Tampilkan perubahan baru ketika perubahan tersebut terjadi",
 	"rcfilters-watchlist-markseen-button": "Tandai semua perubahan sebagai terlihat",
 	"rcfilters-watchlist-edit-watchlist-button": "Sunting daftar pantauan Anda",
-	"rcfilters-watchlist-showupdated": "Perubahan di halaman-halaman yang belum Anda kunjungi sejak perubahan terjadi ditampilkan dalam <strong>huruf terbal</strong>, dan tanda titik tebal di daftar.",
+	"rcfilters-watchlist-showupdated": "Perubahan di halaman-halaman yang belum Anda kunjungi sejak perubahan terjadi ditampilkan dalam <strong>huruf tebal</strong>, dan tanda titik tebal di daftar.",
 	"rcfilters-preference-label": "Gunakan antarmuka non-Javascript",
 	"rcfilters-preference-help": "Muat perubahan terbaru tanpa tapis pencarian atau fungsi penyorotan",
 	"rcfilters-watchlist-preference-label": "Gunakan antarmuka non-Javascript",
@@ -2460,6 +2461,7 @@
 	"mycontris": "Kontribusi",
 	"anoncontribs": "Kontribusi",
 	"contribsub2": "Untuk {{GENDER:$3|$1}} ($2)",
+	"contributions-subtitle": "Untuk {{GENDER:$3|$1}}",
 	"contributions-userdoesnotexist": "Pengguna \"$1\" tidak terdaftar.",
 	"negative-namespace-not-supported": "Ruangnama dengan nilai negatif tidak didukung.",
 	"nocontribs": "Tidak ada perubahan yang sesuai dengan kriteria tersebut.",

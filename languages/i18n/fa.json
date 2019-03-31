@@ -120,7 +120,6 @@
 	"tog-useeditwarning": "زمان خروج از صفحهٔ ویرایش در صورت داشتن ویرایش‌های‌ ذخیره‌نشده به من هشدار داده شود",
 	"tog-prefershttps": "هنگامی که به سامانه وارد شده‌ام، همواره از اتصال امن استفاده شود",
 	"tog-showrollbackconfirmation": "نمایش یک هشدار در هنگام کلیک بر دکمه واگردانی",
-	"tog-showrollbackconfirmation-prerelease-warning": "لطفا توجه کنید که این قابلیت هنوز در دسترس نیست. اگر این قابلیت را فعال کنید انتخابتان برای [https://meta.wikimedia.org/wiki/WMDE_Technical_Wishes/Rollback#Status زمانی که قابلیت فعال شود] ذخیره خواهد شد.",
 	"underline-always": "همیشه",
 	"underline-never": "هرگز",
 	"underline-default": "پیش‌فرض پوسته یا مرورگر",

@@ -1513,7 +1513,7 @@
 	"rcfilters-liveupdates-button-title-off": "Vis nye ændringer når de sker",
 	"rcfilters-watchlist-markseen-button": "Marker alle ændringer som set",
 	"rcfilters-watchlist-edit-watchlist-button": "Rediger din liste med overvågede sider",
-	"rcfilters-watchlist-showupdated": "Ændringer til sider du ikke har besøgt siden ændringerne blev gjort vises med <strong>fed</strong>.",
+	"rcfilters-watchlist-showupdated": "Ændringer til sider du ikke har besøgt siden ændringerne blev gjort vises med <strong>fed</strong> skrift.",
 	"rcfilters-preference-label": "Brug grænsefladesnittet uden JavaScript",
 	"rcfilters-preference-help": "Indlæser Seneste ændringer uden mulighed for søgning med filter eller for fremhævelse.",
 	"rcfilters-watchlist-preference-label": "Brug grænsefladesnittet uden JavaScript",

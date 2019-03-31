@@ -2534,6 +2534,7 @@
 	"mycontris": "Вклад",
 	"anoncontribs": "Вклад",
 	"contribsub2": "Вклад {{GENDER:$3|$1}} ($2)",
+	"contributions-subtitle": "Для {{GENDER:$3|$1}}",
 	"contributions-userdoesnotexist": "Не зарегистрировано учётной записи «$1».",
 	"negative-namespace-not-supported": "Пространства имён с отрицательными значениями не поддерживаются.",
 	"nocontribs": "Изменений, соответствующих заданным условиям, не найдено.",
