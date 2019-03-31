@@ -1700,6 +1700,7 @@
 	"blocklogentry": "blokusis [[$1]] dum periodo di $2 $3",
 	"reblock-logentry": "modifikis la tempo di blokuso [[$1]] por durado di $2 $3",
 	"unblocklogentry": "desblokusis \"$1\"",
+	"block-log-flags-anononly": "nur anonima uzeri",
 	"block-log-flags-nocreate": "ne povas krear konto",
 	"block-log-flags-noautoblock": "automatala blokuso nekapabligata",
 	"block-log-flags-noemail": "e-posto blokusita",

@@ -438,7 +438,7 @@
 	"welcomecreation-msg": "Käyttäjätunnuksesi on luotu.\nVoit nyt muuttaa {{GRAMMAR:genitive|{{SITENAME}}}} [[Special:Preferences|asetuksia]] itsellesi.",
 	"yourname": "Käyttäjänimi:",
 	"userlogin-yourname": "Käyttäjänimi",
-	"userlogin-yourname-ph": "Kirjoita käyttäjätunnus",
+	"userlogin-yourname-ph": "Kirjoita käyttäjänimi",
 	"createacct-another-username-ph": "Lisää käyttäjätunnus",
 	"yourpassword": "Salasana:",
 	"userlogin-yourpassword": "Salasana",
