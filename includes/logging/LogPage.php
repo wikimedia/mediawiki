@@ -104,7 +104,11 @@ class LogPage {
 			'log_page' => $this->target->getArticleID(),
 			'log_params' => $this->params
 		];
-		$data += CommentStore::getStore()->insert( $dbw, 'log_comment', $this->comment );
+		$data += MediaWikiServices::getInstance()->getCommentStore()->insert(
+			$dbw,
+			'log_comment',
+			$this->comment
+		);
 		$data += ActorMigration::newMigration()->getInsertValues( $dbw, 'log_user', $this->doer );
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$newId = $dbw->insertId();
