@@ -1145,4 +1145,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-Elastica.git
         branch = REL1_32
         ignore = dirty
-
+[submodule "extensions/DataDump"]
+	path = extensions/DataDump
+	url = https://github.com/miraheze/DataDump.git
+        branch = master
+        ignore = dirty
