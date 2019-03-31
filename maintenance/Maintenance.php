@@ -336,6 +336,10 @@ abstract class Maintenance {
 	 * @return bool
 	 */
 	protected function hasArg( $argId = 0 ) {
+		if ( func_num_args() === 0 ) {
+			wfDeprecated( __METHOD__ . ' without an $argId', '1.33' );
+		}
+
 		return isset( $this->mArgs[$argId] );
 	}
 
@@ -346,6 +350,10 @@ abstract class Maintenance {
 	 * @return mixed
 	 */
 	protected function getArg( $argId = 0, $default = null ) {
+		if ( func_num_args() === 0 ) {
+			wfDeprecated( __METHOD__ . ' without an $argId', '1.33' );
+		}
+
 		return $this->hasArg( $argId ) ? $this->mArgs[$argId] : $default;
 	}
 

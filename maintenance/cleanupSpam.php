@@ -52,7 +52,7 @@ class CleanupSpam extends Maintenance {
 		// Hack: Grant bot rights so we don't flood RecentChanges
 		$wgUser->addGroup( 'bot' );
 
-		$spec = $this->getArg();
+		$spec = $this->getArg( 0 );
 
 		$protConds = [];
 		foreach ( [ 'http://', 'https://' ] as $prot ) {
