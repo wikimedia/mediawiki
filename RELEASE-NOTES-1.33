@@ -200,6 +200,7 @@ because of Phabricator reports.
   for NS_TEMPLATE.
 * (T212221) Added $digitTransformTable for Santali (sat).
 * (T216479) Added language support for Saisiyat (xsy).
+* (T219728) Added support for new Japanese era name "Reiwa"
 
 === Breaking changes in 1.33 ===
 * The parameteter $lang in DifferenceEngine::setTextLanguage must be of type
