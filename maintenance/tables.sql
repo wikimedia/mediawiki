@@ -1683,7 +1683,7 @@ CREATE TABLE /*_*/job (
 
   -- Any other parameters to the command
   -- Stored as a PHP serialized array, or an empty string if there are no parameters
-  job_params blob NOT NULL,
+  job_params mediumblob NOT NULL,
 
   -- Random, non-unique, number used for job acquisition (for lock concurrency)
   job_random integer unsigned NOT NULL default 0,
