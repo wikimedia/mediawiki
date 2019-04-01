@@ -59,6 +59,10 @@
 		display: inline-block;
 		width: 21em;
 		// .oo-ui-inline-spacing( 0.5em ); already inherited from `.oo-ui-inputWidget`
+
+		.oo-ui-labelElement-label {
+			line-height: @line-height-widget-singleline;
+		}
 	}
 
 	// Note that this block applies to both the PHP widget and the JS widget
@@ -84,10 +88,6 @@
 		border-radius: @border-radius-base;
 		padding: @padding-input-text;
 		line-height: @line-height-widget-singleline;
-
-		> .oo-ui-labelElement-label {
-			line-height: @line-height-widget-singleline;
-		}
 	}
 
 	&.oo-ui-widget-enabled {
