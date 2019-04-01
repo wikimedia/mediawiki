@@ -55,7 +55,8 @@ For notes on 1.33.x and older releases, see HISTORY.
 * …
 
 === Action API changes in 1.34 ===
-* …
+* The 'recenteditcount' response property from action=query list=allusers,
+  deprecated in 1.25, has been removed.
 
 === Action API internal changes in 1.34 ===
 * …
@@ -93,6 +94,8 @@ because of Phabricator reports.
   This behavior was removed, and the method now matches the parent signature
   (SpecialPage::execute) which is to return HTML string or void.
   To obtain the destination title, use RedirectSpecialPage::getRedirect.
+* The 'recenteditcount' response property from action API action=query
+  list=allusers, deprecated in 1.25, has been removed.
 
 === Deprecations in 1.34 ===
 * The MWNamespace class is deprecated. Use MediaWikiServices::getNamespaceInfo.
