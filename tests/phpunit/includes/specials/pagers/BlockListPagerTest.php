@@ -16,13 +16,18 @@ class BlockListPagerTest extends MediaWikiTestCase {
 	 * @dataProvider formatValueEmptyProvider
 	 * @dataProvider formatValueDefaultProvider
 	 * @param string $name
-	 * @param string $value
 	 * @param string $expected
 	 */
-	public function testFormatValue( $name, $value, $expected, $row = null ) {
+	public function testFormatValue( $name, $expected = null, $row = null ) {
 		$this->setMwGlobals( [
 			'wgEnablePartialBlocks' => false,
 		] );
+		// Set the time to now so it does not get off during the test.
+		MWTimestamp::setFakeTime( MWTimestamp::time() );
+
+		$value = $name === 'ipb_timestamp' ? MWTimestamp::time() : '';
+		$expected = $expected ?? MWTimestamp::getInstance()->format( 'H:i, j F Y' );
+
 		$row = $row ?: new stdClass;
 		$pager = new BlockListPager( new SpecialPage(),  [] );
 		$wrappedPager = TestingAccessWrapper::newFromObject( $pager );
@@ -30,6 +35,9 @@ class BlockListPagerTest extends MediaWikiTestCase {
 
 		$formatted = $pager->formatValue( $name, $value );
 		$this->assertEquals( $expected, $formatted );
+
+		// Reset the time.
+		MWTimestamp::setFakeTime( false );
 	}
 
 	/**
@@ -39,17 +47,13 @@ class BlockListPagerTest extends MediaWikiTestCase {
 		return [
 			[
 				'test',
-				'',
 				'Unable to format test',
 			],
 			[
 				'ipb_timestamp',
-				wfTimestamp( TS_UNIX ),
-				date( 'H:i, j F Y' ),
 			],
 			[
 				'ipb_expiry',
-				'',
 				'infinite<br />0 minutes left',
 			],
 		];
@@ -77,31 +81,26 @@ class BlockListPagerTest extends MediaWikiTestCase {
 		return [
 			[
 				'test',
-				'',
 				'Unable to format test',
 				$row,
 			],
 			[
 				'ipb_timestamp',
-				wfTimestamp( TS_UNIX ),
-				date( 'H:i, j F Y' ),
+				null,
 				$row,
 			],
 			[
 				'ipb_expiry',
-				'',
 				'infinite<br />0 minutes left',
 				$row,
 			],
 			[
 				'ipb_by',
-				'',
 				$row->ipb_by_text,
 				$row,
 			],
 			[
 				'ipb_params',
-				'',
 				'<ul><li>account creation disabled</li><li>cannot edit own talk page</li></ul>',
 				$row,
 			]

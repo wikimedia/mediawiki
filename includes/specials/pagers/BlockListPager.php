@@ -161,7 +161,7 @@ class BlockListPager extends TablePager {
 					$formatted .= '<br />' . $this->msg(
 						'ipb-blocklist-duration-left',
 						$language->formatDuration(
-							$timestamp->getTimestamp() - time(),
+							$timestamp->getTimestamp() - MWTimestamp::time(),
 							// reasonable output
 							[
 								'minutes',
