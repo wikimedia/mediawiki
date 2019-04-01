@@ -328,8 +328,9 @@ class EmailNotification {
 
 		$keys['$PAGETITLE'] = $this->title->getPrefixedText();
 		$keys['$PAGETITLE_URL'] = $this->title->getCanonicalURL();
-		$keys['$PAGEMINOREDIT'] = "\n" . ( $this->minorEdit ?
-			wfMessage( 'enotif_minoredit' )->inContentLanguage()->text() : '' );
+		$keys['$PAGEMINOREDIT'] = $this->minorEdit ?
+			"\n\n" . wfMessage( 'enotif_minoredit' )->inContentLanguage()->text() :
+			'';
 		$keys['$UNWATCHURL'] = $this->title->getCanonicalURL( 'action=unwatch' );
 
 		if ( $this->editor->isAnon() ) {
