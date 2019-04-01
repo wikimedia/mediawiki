@@ -247,6 +247,7 @@
 		configure: function ( context, property, value ) {
 			var newCSS,
 				$result, $results, $spanForWidth, childrenWidth,
+				regionIsFixed, regionPosition,
 				i, expWidth, maxWidth, text;
 
 			// Validate creation using fallback values
@@ -271,8 +272,22 @@
 							// Rebuild the suggestions list
 							context.data.$container.show();
 							// Update the size and position of the list
+							regionIsFixed = ( function () {
+								var $el = context.config.$region;
+								do {
+									if ( $el.css( 'position' ) === 'fixed' ) {
+										return true;
+									}
+									$el = $( $el[ 0 ].offsetParent );
+								} while ( $el.length );
+								return false;
+							}() );
+							regionPosition = regionIsFixed ?
+								context.config.$region[ 0 ].getBoundingClientRect() :
+								context.config.$region.offset();
 							newCSS = {
-								top: context.config.$region.offset().top + context.config.$region.outerHeight(),
+								position: regionIsFixed ? 'fixed' : 'absolute',
+								top: regionPosition.top + context.config.$region.outerHeight(),
 								bottom: 'auto',
 								width: context.config.$region.outerWidth(),
 								height: 'auto'
@@ -306,7 +321,7 @@
 											expandFrom = 'start';
 										} else {
 											// Calculate the center points of the input and document
-											regionCenter = $region.offset().left + regionWidth / 2;
+											regionCenter = regionPosition.left + regionWidth / 2;
 											docCenter = docWidth / 2;
 											if ( Math.abs( regionCenter - docCenter ) < ( 0.10 * docCenter ) ) {
 												// If the input's center is within 10% of the document center
@@ -334,12 +349,12 @@
 
 							if ( context.config.expandFrom === 'left' ) {
 								// Expand from left
-								newCSS.left = context.config.$region.offset().left;
+								newCSS.left = regionPosition.left;
 								newCSS.right = 'auto';
 							} else {
 								// Expand from right
 								newCSS.left = 'auto';
-								newCSS.right = $( 'body' ).width() - ( context.config.$region.offset().left + context.config.$region.outerWidth() );
+								newCSS.right = $( 'body' ).width() - ( regionPosition.left + context.config.$region.outerWidth() );
 							}
 
 							context.data.$container.css( newCSS );
