@@ -19,6 +19,7 @@ THIS IS NOT A RELEASE YET
 * (T216968) Return pageid as int in both list=iwbacklinks and list=langbacklinks.
 * (T218608) Fix an issue that prevents Extension:OAuth working when
   $wgBlockDisablesLogin is true.
+* (T219728) Added support for new Japanese era name "Reiwa"
 
 == MediaWiki 1.27.5 ==
 
