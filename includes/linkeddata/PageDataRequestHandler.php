@@ -47,20 +47,15 @@ class PageDataRequestHandler {
 		}
 
 		$parts = explode( '/', $subPage, 2 );
-		if ( $parts !== 2 ) {
-			$slot = $parts[0];
-			if ( $slot === 'main' || $slot === '' ) {
-				return true;
-			}
-		}
-
-		return false;
+		$slot = $parts[0];
+		$title = $parts[1] ?? '';
+		return ( $slot === 'main' || $slot === '' ) && $title !== '';
 	}
 
 	/**
 	 * Main method for handling requests.
 	 *
-	 * @param string $subPage
+	 * @param string|null $subPage
 	 * @param WebRequest $request The request parameters. Known parameters are:
 	 *        - title: the page title
 	 *        - format: the format
@@ -82,9 +77,9 @@ class PageDataRequestHandler {
 
 		$revision = 0;
 
-		$parts = explode( '/', $subPage, 2 );
 		if ( $subPage !== '' ) {
-			$title = $parts[1];
+			$parts = explode( '/', $subPage, 2 );
+			$title = $parts[1] ?? '';
 		} else {
 			$title = $request->getText( 'target' );
 		}

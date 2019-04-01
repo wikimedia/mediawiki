@@ -99,7 +99,7 @@ class PageDataRequestHandlerTest extends \MediaWikiTestCase {
 			'',
 			[ 'target' => 'Helsinki' ],
 			[ 'Accept' => 'text/HTML' ],
-			'!!',
+			'!^$!',
 			303,
 			[ 'Location' => '!Helsinki$!' ]
 		];
@@ -111,7 +111,7 @@ class PageDataRequestHandlerTest extends \MediaWikiTestCase {
 				'revision' => '4242',
 			],
 			[ 'Accept' => 'text/HTML' ],
-			'!!',
+			'!^$!',
 			303,
 			[ 'Location' => '!Helsinki(\?|&)oldid=4242!' ]
 		];
@@ -120,7 +120,7 @@ class PageDataRequestHandlerTest extends \MediaWikiTestCase {
 			'/Helsinki',
 			[],
 			[],
-			'!!',
+			'!^$!',
 			303,
 			[ 'Location' => '!Helsinki&action=raw!' ]
 		];
@@ -136,10 +136,37 @@ class PageDataRequestHandlerTest extends \MediaWikiTestCase {
 		];
 
 		$cases[] = [
-			'main/Helsinki',
+			'no slash',
 			[],
 			[ 'Accept' => 'text/HTML' ],
 			'!!',
+			400,
+			[]
+		];
+
+		$cases[] = [
+			'main',
+			[],
+			[ 'Accept' => 'text/HTML' ],
+			'!!',
+			400,
+			[]
+		];
+
+		$cases[] = [
+			'xyz/Helsinki',
+			[],
+			[ 'Accept' => 'text/HTML' ],
+			'!!',
+			400,
+			[]
+		];
+
+		$cases[] = [
+			'main/Helsinki',
+			[],
+			[ 'Accept' => 'text/HTML' ],
+			'!^$!',
 			303,
 			[ 'Location' => '!Helsinki$!' ]
 		];
@@ -148,7 +175,7 @@ class PageDataRequestHandlerTest extends \MediaWikiTestCase {
 			'/Helsinki',
 			[],
 			[ 'Accept' => 'text/HTML' ],
-			'!!',
+			'!^$!',
 			303,
 			[ 'Location' => '!Helsinki$!' ]
 		];
@@ -157,7 +184,7 @@ class PageDataRequestHandlerTest extends \MediaWikiTestCase {
 			'main/AC/DC',
 			[],
 			[ 'Accept' => 'text/HTML' ],
-			'!!',
+			'!^$!',
 			303,
 			[ 'Location' => '!AC/DC$!' ]
 		];
