@@ -64,6 +64,7 @@ THIS IS NOT A RELEASE YET
   $wgBlockDisablesLogin is true.
 * (T216029) Chrome redirects to Special:BadTitle after editing a section with
   a non-Latin name on a page with non-Latin characters in title.
+* (T219728) Added support for new Japanese era name "Reiwa"
 
 == MediaWiki 1.31.1 ==
 

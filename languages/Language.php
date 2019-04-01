@@ -1931,7 +1931,11 @@ class Language {
 					$gy_offset = '元';
 				}
 				$gy_offset = '昭和' . $gy_offset;
-			} else {
+			} elseif (
+				( ( $gy == 1989 ) && ( $gm == 1 ) && ( $gd >= 8 ) ) ||
+				( ( $gy > 1989 ) && ( $gy < 2019 ) ) ||
+				( ( $gy == 2019 ) && ( $gm < 5 ) )
+			) {
 				# Heisei period
 				$gy_gannen = $gy - 1989 + 1;
 				$gy_offset = $gy_gannen;
@@ -1939,6 +1943,14 @@ class Language {
 					$gy_offset = '元';
 				}
 				$gy_offset = '平成' . $gy_offset;
+			} else {
+				# Reiwa period
+				$gy_gannen = $gy - 2019 + 1;
+				$gy_offset = $gy_gannen;
+				if ( $gy_gannen == 1 ) {
+					$gy_offset = '元';
+				}
+				$gy_offset = '令和' . $gy_offset;
 			}
 		} else {
 			$gy_offset = $gy;
