@@ -139,7 +139,11 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 			$label = $this->getLegend( $key );
 			$content =
 				$this->getHeaderText( $key ) .
-				$this->displaySection( $this->mFieldTree[$key] ) .
+				$this->displaySection(
+					$this->mFieldTree[$key],
+					"",
+					"mw-prefsection-$key-"
+				) .
 				$this->getFooterText( $key );
 
 			$tabPanels[] = new OOUI\TabPanelLayout( [
@@ -148,6 +152,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 				'label' => $label,
 				'content' => new OOUI\FieldsetLayout( [
 					'classes' => [ 'mw-prefs-section-fieldset' ],
+					'id' => "mw-prefsection-$key",
 					'label' => $label,
 					'items' => [
 						new OOUI\Widget( [
