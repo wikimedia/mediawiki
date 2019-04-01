@@ -876,7 +876,7 @@
 	"histfirst": "الأقدم",
 	"histlast": "الأحدث",
 	"historysize": "({{PLURAL:$1|1 بايت|$1 بايت}})",
-	"historyempty": "(فارغة)",
+	"historyempty": "فارغة",
 	"history-feed-title": "تاريخ المراجعة",
 	"history-feed-description": "تاريخ التعديل لهذه الصفحة في الويكي",
 	"history-feed-item-nocomment": "$1 في $2",

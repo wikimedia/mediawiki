@@ -898,7 +898,7 @@
 	"histfirst": "最古",
 	"histlast": "最新",
 	"historysize": "({{PLURAL:$1|$1バイト}})",
-	"historyempty": "(空)",
+	"historyempty": "空",
 	"history-feed-title": "版の履歴",
 	"history-feed-description": "このウィキのこのページに関する変更履歴",
 	"history-feed-item-nocomment": "$2に$1による",

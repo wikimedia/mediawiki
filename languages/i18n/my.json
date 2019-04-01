@@ -642,6 +642,7 @@
 	"editpage-invalidcontentmodel-text": "မာတိကာမော်ဒယ် \"$1\" သည် မထောက်ပံ့ထားပါ။",
 	"editpage-notsupportedcontentformat-title": "မာတိကာပုံစံသည် မထောက်ပံ့ထားပါ",
 	"editpage-notsupportedcontentformat-text": "မာတိကာပုံစံ $1 အား မာတိကာမော်ဒယ် $2 မှ မထောက်ပံ့ထားပါ။",
+	"slot-name-main": "ပင်မ",
 	"content-model-wikitext": "ဝီကီစာသား",
 	"duplicate-args-category": "တမ်းပလိတ်တွင်းရှိ arguments ထပ်နေသော စာမျက်နှာများ",
 	"post-expand-template-inclusion-warning": "'''သတိပေးချက် -''' တမ်းပလိတ်အရွယ်အစား ကြီးလွန်းနေသည်။\nအချို့တမ်းပလိတ်တို့ ပါဝင်မည်မဟုတ်။",
