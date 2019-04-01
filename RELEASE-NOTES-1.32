@@ -12,6 +12,7 @@ THIS IS NOT A RELEASE YET
 * (T216029) Chrome redirects to Special:BadTitle after editing a section with
   a non-Latin name on a page with non-Latin characters in title.
 * Unbreak language related maintenance scripts that use StaticArrayWriter.
+* (T219728) Added support for new Japanese era name "Reiwa"
 
 == MediaWiki 1.32.1 ==
 
