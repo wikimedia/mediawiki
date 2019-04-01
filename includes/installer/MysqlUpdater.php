@@ -375,6 +375,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropTable', 'valid_tag' ],
 			[ 'dropTable', 'tag_summary' ],
 			[ 'dropField', 'protected_titles', 'pt_reason', 'patch-drop-comment-fields.sql' ],
+			[ 'modifyTable', 'job', 'patch-job-params-mediumblob.sql' ],
 		];
 	}
 
