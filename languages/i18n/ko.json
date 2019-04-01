@@ -1233,7 +1233,7 @@
 	"right-reupload-own": "자신이 이미 올린 파일 덮어쓰기",
 	"right-reupload-shared": "공용의 파일을 무시하고 로컬에서 파일 올리기",
 	"right-upload_by_url": "URL 주소에서 파일 올리기",
-	"right-purge": "확인 없이 문서의 캐시를 새로 고침",
+	"right-purge": "문서의 사이트 캐시를 새로 고침",
 	"right-autoconfirmed": "IP 기반의 속도 제한에 영향을 받지 않음",
 	"right-bot": "봇의 편집으로 취급",
 	"right-nominornewtalk": "토론 문서에서 사소한 편집으로 새 메시지 알림을 보내지 않기",

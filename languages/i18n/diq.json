@@ -773,7 +773,7 @@
 	"histfirst": "Verênêr",
 	"histlast": "Peyênêr",
 	"historysize": "({{PLURAL:$1|1 bayt|$1 bayti}})",
-	"historyempty": "(veng)",
+	"historyempty": "veng",
 	"history-feed-title": "Tarixê çımraviyarnayışi",
 	"history-feed-description": "Wiki de tarixê çım ra viyarnayışë na perer",
 	"history-feed-item-nocomment": "$1 miyanê $2i de",

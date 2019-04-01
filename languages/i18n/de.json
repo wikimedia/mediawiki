@@ -895,7 +895,7 @@
 	"histfirst": "älteste",
 	"histlast": "neueste",
 	"historysize": "({{PLURAL:$1|1 Byte|$1 Bytes}})",
-	"historyempty": "(leer)",
+	"historyempty": "leer",
 	"history-feed-title": "Versionsgeschichte",
 	"history-feed-description": "Versionsgeschichte dieser Seite in {{SITENAME}}",
 	"history-feed-item-nocomment": "$1 am $3 um $4 Uhr",

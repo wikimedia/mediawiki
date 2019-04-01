@@ -1243,7 +1243,7 @@
 	"right-reupload-own": "Skriv över egna filer",
 	"right-reupload-shared": "Skriv över delade filer lokalt",
 	"right-upload_by_url": "Ladda upp en fil genom en webbadress",
-	"right-purge": "Rensa cachen för en sida utan att bekräfta",
+	"right-purge": "Rensa webbplatscachen för en sida",
 	"right-autoconfirmed": "Påverkas inte av IP-baserade hastighetsgränser",
 	"right-bot": "Behandlas som en automatisk process",
 	"right-nominornewtalk": "Mindre ändringar på diskussionssidor ger inte besked om nya meddelanden",
