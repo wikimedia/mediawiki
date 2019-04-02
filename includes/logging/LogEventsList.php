@@ -692,6 +692,8 @@ class LogEventsList extends ContextSource {
 			$s .= $loglist->beginLogEventsList() .
 				$logBody .
 				$loglist->endLogEventsList();
+			// add styles for change tags
+			$context->getOutput()->addModuleStyles( 'mediawiki.interface.helpers.styles' );
 		} elseif ( $showIfEmpty ) {
 			$s = Html::rawElement( 'div', [ 'class' => 'mw-warning-logempty' ],
 				$context->msg( 'logempty' )->parse() );
