@@ -11,8 +11,8 @@
 	}
 
 	$( function () {
-		var blockTargetWidget, anonOnlyField, enableAutoblockField, hideUserWidget, hideUserField,
-			watchUserField, expiryWidget, editingWidget, editingRestrictionWidget, preventTalkPageEditWidget,
+		var blockTargetWidget, anonOnlyWidget, enableAutoblockWidget, hideUserWidget, watchUserWidget,
+			expiryWidget, editingWidget, editingRestrictionWidget, preventTalkPageEditWidget,
 			pageRestrictionsWidget, namespaceRestrictionsWidget, createAccountWidget, data,
 			enablePartialBlocks, blockAllowsUTEdit, userChangedCreateAccount, updatingBlockOptions;
 
@@ -30,18 +30,28 @@
 				editingIsSelected = editingWidget.isSelected(),
 				isSitewide = editingIsSelected && editingRestrictionValue === 'sitewide';
 
-			enableAutoblockField.toggle( !isNonEmptyIp );
-			anonOnlyField.toggle( isIp || isEmpty );
+			enableAutoblockWidget.setDisabled( isNonEmptyIp );
+			if ( enableAutoblockWidget.isDisabled() ) {
+				enableAutoblockWidget.setSelected( false );
+			}
 
-			if ( hideUserField ) {
-				hideUserField.toggle( !isNonEmptyIp && isIndefinite && isSitewide );
-				if ( !hideUserField.isVisible() ) {
+			anonOnlyWidget.setDisabled( !isIp && !isEmpty );
+			if ( anonOnlyWidget.isDisabled() ) {
+				anonOnlyWidget.setSelected( false );
+			}
+
+			if ( hideUserWidget ) {
+				hideUserWidget.setDisabled( isNonEmptyIp || !isIndefinite || !isSitewide );
+				if ( hideUserWidget.isDisabled() ) {
 					hideUserWidget.setSelected( false );
 				}
 			}
 
-			if ( watchUserField ) {
-				watchUserField.toggle( !isIpRange || isEmpty );
+			if ( watchUserWidget ) {
+				watchUserWidget.setDisabled( isIpRange && !isEmpty );
+				if ( watchUserWidget.isDisabled() ) {
+					watchUserWidget.setSelected( false );
+				}
 			}
 
 			if ( enablePartialBlocks ) {
@@ -84,8 +94,8 @@
 			editingWidget = OO.ui.infuse( $( '#mw-input-wpEditing' ) );
 			expiryWidget = OO.ui.infuse( $( '#mw-input-wpExpiry' ) );
 			createAccountWidget = OO.ui.infuse( $( '#mw-input-wpCreateAccount' ) );
-			enableAutoblockField = OO.ui.infuse( $( '#mw-input-wpAutoBlock' ).closest( '.oo-ui-fieldLayout' ) );
-			anonOnlyField = OO.ui.infuse( $( '#mw-input-wpHardBlock' ).closest( '.oo-ui-fieldLayout' ) );
+			enableAutoblockWidget = OO.ui.infuse( $( '#mw-input-wpAutoBlock' ) );
+			anonOnlyWidget = OO.ui.infuse( $( '#mw-input-wpHardBlock' ) );
 			blockTargetWidget.on( 'change', updateBlockOptions );
 			editingWidget.on( 'change', updateBlockOptions );
 			expiryWidget.on( 'change', updateBlockOptions );
@@ -96,8 +106,7 @@
 			} );
 
 			// Present for certain rights
-			watchUserField = infuseIfExists( $( '#mw-input-wpWatch' ).closest( '.oo-ui-fieldLayout' ) );
-			hideUserField = infuseIfExists( $( '#mw-input-wpHideUser' ).closest( '.oo-ui-fieldLayout' ) );
+			watchUserWidget = infuseIfExists( $( '#mw-input-wpWatch' ) );
 			hideUserWidget = infuseIfExists( $( '#mw-input-wpHideUser' ) );
 
 			// Present for certain global configs
