@@ -762,7 +762,9 @@ class LogFormatter {
 					$user->getName(),
 					true, // redContribsWhenNoEdits
 					$toolFlags,
-					$user->getEditCount()
+					$user->getEditCount(),
+					// do not render parenthesises in the HTML markup (CSS will provide)
+					false
 				);
 			}
 		}
