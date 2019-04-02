@@ -471,8 +471,7 @@ class SpecialSearch extends SpecialPage {
 				$offset = $this->offset;
 			}
 
-			$prevnext = $this->getLanguage()->viewPrevNext(
-				$this->getPageTitle(),
+			$prevnext = $this->buildPrevNextNavigation(
 				$offset,
 				$this->limit,
 				$this->powerSearchOptions() + [ 'search' => $term ],
