@@ -133,6 +133,15 @@ class PasswordResetTest extends MediaWikiTestCase {
 				'globalBlock' => null,
 				'isAllowed' => true,
 			],
+			'blocked with an unknown system block type' => [
+				'passwordResetRoutes' => [ 'username' => true ],
+				'enableEmail' => true,
+				'allowsAuthenticationDataChange' => true,
+				'canEditPrivate' => true,
+				'block' => new Block( [ 'systemBlock' => 'unknown' ] ),
+				'globalBlock' => null,
+				'isAllowed' => false,
+			],
 			'all OK' => [
 				'passwordResetRoutes' => [ 'username' => true ],
 				'enableEmail' => true,
