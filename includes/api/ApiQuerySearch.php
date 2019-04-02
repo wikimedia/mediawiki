@@ -157,7 +157,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			convertForSearchResult( $matches->termMatches() );
 		$titles = [];
 		$count = 0;
-		$limit = $params['limit'];
 
 		if ( $matches->hasMoreResults() ) {
 			$this->setContinueEnumParameter( 'offset', $params['offset'] + $params['limit'] );

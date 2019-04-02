@@ -504,7 +504,6 @@ class SpecialUndelete extends SpecialPage {
 			] );
 		} else {
 			$sourceView = '';
-			$previewButton = '';
 		}
 
 		$buttonFields[] = new OOUI\ButtonInputWidget( [

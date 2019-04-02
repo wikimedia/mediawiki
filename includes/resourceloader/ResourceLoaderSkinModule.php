@@ -91,7 +91,6 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	private function getLogoPreloadlinks() {
 		$logo = $this->getLogoData( $this->getConfig() );
 
-		$tags = [];
 		$logosPerDppx = [];
 		$logos = [];
 

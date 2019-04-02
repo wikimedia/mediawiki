@@ -175,7 +175,6 @@ abstract class Skin extends ContextSource {
 	 */
 	public function getDefaultModules() {
 		$out = $this->getOutput();
-		$config = $this->getConfig();
 		$user = $this->getUser();
 
 		// Modules declared in the $modules literal are loaded
@@ -1525,7 +1524,6 @@ abstract class Skin extends ContextSource {
 	 *   should fall back to the next notice in its sequence
 	 */
 	private function getCachedNotice( $name ) {
-		$needParse = false;
 		$config = $this->getConfig();
 
 		if ( $name === 'default' ) {

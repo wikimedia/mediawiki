@@ -646,7 +646,6 @@ class ContribsPager extends RangeChronologicalPager {
 
 			$lang = $this->getLanguage();
 			$comment = $lang->getDirMark() . Linker::revComment( $rev, false, true, false );
-			$date = $lang->userTimeAndDate( $row->rev_timestamp, $user );
 			$d = ChangesList::revDateLink( $rev, $user, $lang, $page );
 
 			# Show user names for /newbies as there may be different users.

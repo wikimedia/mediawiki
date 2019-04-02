@@ -107,7 +107,6 @@ class ApiLogin extends ApiBase {
 		}
 
 		$authRes = false;
-		$context = new DerivativeContext( $this->getContext() );
 		$loginType = 'N/A';
 
 		// Check login token
