@@ -1052,7 +1052,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		# # Watchlist #####################################
 		if ( $user->isAllowed( 'editmywatchlist' ) ) {
 			$editWatchlistLinks = '';
-			$editWatchlistLinksOld = [];
 			$editWatchlistModes = [
 				'edit' => [ 'subpage' => false, 'flags' => [] ],
 				'raw' => [ 'subpage' => 'raw', 'flags' => [] ],

@@ -125,7 +125,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		// Check version
 		$version = $conn->getServerVersion();
-		$status = static::meetsMinimumRequirement( $conn->getServerVersion() );
+		$status = static::meetsMinimumRequirement( $version );
 		if ( !$status->isOK() ) {
 			return $status;
 		}

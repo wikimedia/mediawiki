@@ -209,8 +209,6 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	 * the user to modify the tags applied to those items.
 	 */
 	protected function showForm() {
-		$userAllowed = true;
-
 		$out = $this->getOutput();
 		// Messages: tags-edit-revision-selected, tags-edit-logentry-selected
 		$out->wrapWikiMsg( "<strong>$1</strong>", [

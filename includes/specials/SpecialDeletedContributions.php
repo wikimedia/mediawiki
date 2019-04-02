@@ -44,8 +44,6 @@ class DeletedContributionsPage extends SpecialPage {
 		$this->outputHeader();
 		$this->checkPermissions();
 
-		$user = $this->getUser();
-
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'deletedcontributions-title' ) );
 

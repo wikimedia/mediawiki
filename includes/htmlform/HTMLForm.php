@@ -527,7 +527,6 @@ class HTMLForm extends ContextSource {
 	public function tryAuthorizedSubmit() {
 		$result = false;
 
-		$identOkay = false;
 		if ( $this->mFormIdentifier === null ) {
 			$identOkay = true;
 		} else {

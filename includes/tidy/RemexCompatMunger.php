@@ -287,7 +287,6 @@ class RemexCompatMunger implements TreeHandler {
 			$newParent = $this->serializer->getParentNode( $parent );
 			$parent = $newParent;
 			$parentData = $parent->snData;
-			$pElement = $parentData->childPElement;
 			$parentData->childPElement = null;
 			$newRef = $refElement->userData;
 		} elseif ( $under && $parentData->isSplittable

@@ -30,8 +30,6 @@ class ExpiryInputWidget extends Widget {
 	 * @param array $options Configuration options
 	 */
 	public function __construct( Widget $relativeInput, array $options = [] ) {
-		$config = \RequestContext::getMain()->getConfig();
-
 		parent::__construct( $options );
 
 		$this->required = $options['required'] ?? false;

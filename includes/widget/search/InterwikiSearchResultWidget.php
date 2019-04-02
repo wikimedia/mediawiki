@@ -30,7 +30,6 @@ class InterwikiSearchResultWidget implements SearchResultWidget {
 	 */
 	public function render( SearchResult $result, $terms, $position ) {
 		$title = $result->getTitle();
-		$iwPrefix = $result->getTitle()->getInterwiki();
 		$titleSnippet = $result->getTitleSnippet();
 		$snippet = $result->getTextSnippet( $terms );
 

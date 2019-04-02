@@ -180,7 +180,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		] );
 
 		$ids = [];
-		$count = 0;
 		$watchedItemQuery = MediaWikiServices::getInstance()->getWatchedItemQueryService();
 		$items = $watchedItemQuery->getWatchedItemsWithRecentChangeInfo( $wlowner, $options, $startFrom );
 
