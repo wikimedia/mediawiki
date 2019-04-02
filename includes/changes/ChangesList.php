@@ -709,7 +709,8 @@ class ChangesList extends ContextSource {
 					'actor' => $rc->mAttribs['rc_actor'] ?? null,
 					'deleted' => $rc->mAttribs['rc_deleted']
 				] );
-				$s .= ' ' . Linker::generateRollback( $rev, $this->getContext() );
+				$s .= ' ' . Linker::generateRollback( $rev, $this->getContext(),
+					[ 'noBrackets' ] );
 			}
 		}
 	}

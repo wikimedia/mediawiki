@@ -8,6 +8,16 @@
 	content: '. .';
 }
 
+.mw-rollback-link {
+	&:before {
+		content: '@{msg-brackets-start}';
+	}
+
+	&:after {
+		content: '@{msg-brackets-end}';
+	}
+}
+
 /* stylelint-disable-next-line selector-class-pattern */
 .comment--without-parentheses,
 .mw-changeslist-links,
@@ -29,5 +39,11 @@
 
 	> span:not( :first-child ):before {
 		content: '@{msg-pipe-separator}';
+	}
+
+	// In pages like history, do not add additional brackets where not needed
+	.mw-rollback-link:before,
+	.mw-rollback-link:after {
+		content: '';
 	}
 }

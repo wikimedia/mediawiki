@@ -3385,6 +3385,8 @@
 	"parentheses-start": "(",
 	"parentheses-end": ")",
 	"brackets": "[$1]",
+	"brackets-start": "[",
+	"brackets-end": "]",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "← previous page",
 	"imgmultipagenext": "next page →",
