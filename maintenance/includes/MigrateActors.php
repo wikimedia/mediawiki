@@ -478,14 +478,14 @@ class MigrateActors extends LoggedUpdateMaintenance {
 			[ 'LIMIT' => 1 ]
 		);
 		if ( $anyBad ) {
-			$this->output( "... Deleting bogus rows due to T21552\n" );
+			$this->output( "... Deleting bogus rows due to T215525\n" );
 			$dbw->delete(
 				'log_search',
 				[ 'ls_field' => 'target_author_actor', 'ls_value' => '' ],
 				__METHOD__
 			);
 			$ct = $dbw->affectedRows();
-			$this->output( "... Deleted $ct bogus row(s) from T21552\n" );
+			$this->output( "... Deleted $ct bogus row(s) from T215525\n" );
 			wfWaitForSlaves();
 		}
 
