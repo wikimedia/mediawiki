@@ -2146,7 +2146,7 @@ class Block {
 	 * Check if the block prevents a user from resetting their password
 	 *
 	 * @since 1.33
-	 * @return bool|null The block blocks password reset
+	 * @return bool The block blocks password reset
 	 */
 	public function appliesToPasswordReset() {
 		switch ( $this->getSystemBlockType() ) {
@@ -2159,7 +2159,7 @@ class Block {
 			case 'wgSoftBlockRanges':
 				return false;
 			default:
-				return false;
+				return true;
 		}
 	}
 
