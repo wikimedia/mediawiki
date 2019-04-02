@@ -658,8 +658,8 @@ abstract class QueryPage extends SpecialPage {
 				$miserMaxResults = $this->getConfig()->get( 'MiserMode' )
 					&& ( $this->offset + $this->limit >= $this->getMaxResults() );
 				$atEnd = ( $this->numRows <= $this->limit ) || $miserMaxResults;
-				$paging = $this->getLanguage()->viewPrevNext( $this->getPageTitle( $par ), $this->offset,
-					$this->limit, $this->linkParameters(), $atEnd );
+				$paging = $this->buildPrevNextNavigation( $this->offset,
+					$this->limit, $this->linkParameters(), $atEnd, $par );
 				$out->addHTML( '<p>' . $paging . '</p>' );
 			} else {
 				# No results to show, so don't bother with "showing X of Y" etc.

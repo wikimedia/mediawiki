@@ -408,6 +408,8 @@ because of Phabricator reports.
   deprecated and will be removed in the future.
 * The FileBasedSiteLookup class has been deprecated. For a cacheable SiteLookup
   implementation, use CachingSiteStore instead.
+* Language::viewPrevNext function is deprecated, use
+  SpecialPage::buildPrevNextNavigation instead
 * ManualLogEntry::setTags() is deprecated, use ManualLogEntry::addTags()
   instead. The setTags() method was overriding the tags, addTags() doesn't
   override, only adds new tags.
