@@ -2111,6 +2111,11 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   - defer: one of the DeferredUpdates constants, or false to run immediately (default: false).
 	 *     Note that even when this is set to false, some updates might still get deferred (as
 	 *     some update might directly add child updates to DeferredUpdates).
+	 *   - known-revision-output: a combined canonical ParserOutput for the revision, perhaps
+	 *     from some cache. The caller is responsible for ensuring that the ParserOutput indeed
+	 *     matched the $rev and $options. This mechanism is intended as a temporary stop-gap,
+	 *     for the time until caches have been changed to store RenderedRevision states instead
+	 *     of ParserOutput objects. (default: null) (since 1.33)
 	 * @since 1.32
 	 */
 	public function doSecondaryDataUpdates( array $options = [] ) {
