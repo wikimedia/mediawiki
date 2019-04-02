@@ -900,6 +900,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Logger\\Monolog\\LegacyHandler' => __DIR__ . '/includes/debug/logger/monolog/LegacyHandler.php',
 	'MediaWiki\\Logger\\Monolog\\LineFormatter' => __DIR__ . '/includes/debug/logger/monolog/LineFormatter.php',
 	'MediaWiki\\Logger\\Monolog\\LogstashFormatter' => __DIR__ . '/includes/debug/logger/monolog/LogstashFormatter.php',
+	'MediaWiki\\Logger\\Monolog\\MwlogHandler' => __DIR__ . '/includes/debug/logger/monolog/MwlogHandler.php',
 	'MediaWiki\\Logger\\Monolog\\SyslogHandler' => __DIR__ . '/includes/debug/logger/monolog/SyslogHandler.php',
 	'MediaWiki\\Logger\\Monolog\\WikiProcessor' => __DIR__ . '/includes/debug/logger/monolog/WikiProcessor.php',
 	'MediaWiki\\Logger\\NullSpi' => __DIR__ . '/includes/debug/logger/NullSpi.php',
