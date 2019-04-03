@@ -124,9 +124,7 @@
 	 * @param {number} index Protection level
 	 */
 	function setAllSelectors( index ) {
-		getLevelSelectors().each( function () {
-			this.selectedIndex = index;
-		} );
+		getLevelSelectors().prop( 'selectedIndex', index );
 	}
 
 	/**
@@ -148,19 +146,14 @@
 	 *
 	 * @param {Event} event Expiry input that changed
 	 */
-
 	function updateExpiry( event ) {
 		if ( !isUnchained() ) {
-			getExpiryInputs().each( function () {
-				this.value = event.target.value;
-			} );
+			getExpiryInputs().val( event.target.value );
 		}
 		if ( isUnchained() ) {
 			$( '#' + event.target.id.replace( /^mwProtect-(\w+)-expires$/, 'mwProtectExpirySelection-$1' ) ).val( 'othertime' );
 		} else {
-			getExpirySelectors().each( function () {
-				this.value = 'othertime';
-			} );
+			getExpirySelectors().val( 'othertime' );
 		}
 	}
 
@@ -172,12 +165,8 @@
 	 */
 	function updateExpiryList( event ) {
 		if ( !isUnchained() ) {
-			getExpirySelectors().each( function () {
-				this.value = event.target.value;
-			} );
-			getExpiryInputs().each( function () {
-				this.value = '';
-			} );
+			getExpirySelectors().val( event.target.value );
+			getExpiryInputs().val( '' );
 		}
 	}
 
@@ -196,27 +185,19 @@
 	/**
 	 * Set up the protection chaining interface (i.e. "unlock move permissions" checkbox)
 	 * on the protection form
-	 *
-	 * @return {boolean}
 	 */
 	function init() {
 		var $cell = $( '<td>' ),
 			$row = $( '<tr>' ).append( $cell );
 
 		if ( !$( '#mwProtectSet' ).length ) {
-			return false;
+			return;
 		}
 
 		$( 'form#mw-Protect-Form' ).on( 'submit', toggleUnchainedInputs.bind( this, true ) );
-		getExpirySelectors().each( function () {
-			$( this ).on( 'change', updateExpiryList );
-		} );
-		getExpiryInputs().each( function () {
-			$( this ).on( 'keyup change', updateExpiry );
-		} );
-		getLevelSelectors().each( function () {
-			$( this ).on( 'change', updateLevels );
-		} );
+		getExpirySelectors().on( 'change', updateExpiryList );
+		getExpiryInputs().on( 'keyup change', updateExpiry );
+		getLevelSelectors().on( 'change', updateLevels );
 
 		$( '#mwProtectSet > tbody > tr:first' ).after( $row );
 
@@ -244,7 +225,6 @@
 		}
 
 		updateCascadeCheckbox();
-		return true;
 	}
 
 	$( init );
