@@ -238,7 +238,8 @@ class DumpAsserter {
 
 		$this->assertNodeStart( "contributor" );
 		$this->skipWhitespace();
-		$this->assertTextNode( "ip", false );
+		$this->assertTextNode( "username", false );
+		$this->assertTextNode( "id", false );
 		$this->assertNodeEnd( "contributor" );
 		$this->skipWhitespace();
 

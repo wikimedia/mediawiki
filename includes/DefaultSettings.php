@@ -8972,7 +8972,7 @@ $wgXmlDumpSchemaVersion = XML_DUMP_SCHEMA_VERSION_10;
  * @since 1.32 changed allowed flags
  * @var int An appropriate combination of SCHEMA_COMPAT_XXX flags.
  */
-$wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_OLD;
+$wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW;
 
 /**
  * Flag to enable Partial Blocks. This allows an admin to prevent a user from editing specific pages

@@ -57,6 +57,10 @@ For notes on 1.32.x and older releases, see HISTORY.
   argon2 to be used, by default, it will automatically choose the best available
   algorithm depending on which version of PHP you have available. To use this,
   you can set `$wgPasswordDefault = 'argon2';`.
+* $wgActorTableSchemaMigrationStage now defaults to reading the new schema.
+  update.php will back-populate the new database fields due to the changed
+  setting, which may take some time on large wikis. You can avoid downtime by
+  following a process like that described in T188327.
 
 ==== Removed configuration ====
 * $wgTagStatisticsNewTable (T199334) — This temporary setting, added in
