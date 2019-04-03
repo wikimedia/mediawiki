@@ -3556,12 +3556,8 @@ class Language {
 	 * @return string
 	 */
 	private function truncateInternal(
-		$string, $length, $ellipsis, $adjustLength, $measureLength, $getSubstring
+		$string, $length, $ellipsis, $adjustLength, callable $measureLength, callable $getSubstring
 	) {
-		if ( !is_callable( $measureLength ) || !is_callable( $getSubstring ) ) {
-			throw new InvalidArgumentException( 'Invalid callback provided' );
-		}
-
 		# Check if there is no need to truncate
 		if ( $measureLength( $string ) <= abs( $length ) ) {
 			return $string; // no need to truncate
