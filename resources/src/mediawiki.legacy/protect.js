@@ -196,7 +196,7 @@
 
 		$( 'form#mw-Protect-Form' ).on( 'submit', toggleUnchainedInputs.bind( this, true ) );
 		getExpirySelectors().on( 'change', updateExpiryList );
-		getExpiryInputs().on( 'keyup change', updateExpiry );
+		getExpiryInputs().on( 'input change', updateExpiry );
 		getLevelSelectors().on( 'change', updateLevels );
 
 		$( '#mwProtectSet > tbody > tr:first' ).after( $row );
