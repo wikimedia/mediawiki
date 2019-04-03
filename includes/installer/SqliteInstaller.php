@@ -386,6 +386,7 @@ EOT;
 		'type' => 'sqlite',
 		'dbname' => 'wikicache',
 		'tablePrefix' => '',
+		'variables' => [ 'synchronous' => 'NORMAL' ],
 		'dbDirectory' => \$wgSQLiteDataDir,
 		'trxMode' => 'IMMEDIATE',
 		'flags' => 0
@@ -395,6 +396,7 @@ EOT;
 	'type' => 'sqlite',
 	'dbname' => \"{\$wgDBname}_l10n_cache\",
 	'tablePrefix' => '',
+	'variables' => [ 'synchronous' => 'NORMAL' ],
 	'dbDirectory' => \$wgSQLiteDataDir,
 	'trxMode' => 'IMMEDIATE',
 	'flags' => 0
