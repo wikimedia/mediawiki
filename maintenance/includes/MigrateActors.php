@@ -504,7 +504,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 					'ORDER BY' => $primaryKey,
 					'LIMIT' => $this->mBatchSize,
 				],
-				[ 'actor' => [ 'LEFT JOIN', 'ls_value = ' . $dbw->buildStringCast( 'actor_user' ) ] ]
+				[ 'actor' => [ 'LEFT JOIN', 'actor_user = ' . $dbw->buildIntegerCast( 'ls_value' ) ] ]
 			);
 			if ( !$res->numRows() ) {
 				break;
