@@ -114,7 +114,6 @@ class JobQueueGroup {
 		} else {
 			$conf = $conf + $wgJobTypeConf['default'];
 		}
-		$conf['aggregator'] = JobQueueAggregator::singleton();
 		if ( !isset( $conf['readOnlyReason'] ) ) {
 			$conf['readOnlyReason'] = $this->readOnlyReason;
 		}

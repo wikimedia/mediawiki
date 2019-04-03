@@ -317,8 +317,8 @@ class JobQueueDB extends JobQueue {
 				$title = Title::makeTitle( $row->job_namespace, $row->job_title );
 				$job = Job::factory( $row->job_cmd, $title,
 					self::extractBlob( $row->job_params ) );
-				$job->metadata['id'] = $row->job_id;
-				$job->metadata['timestamp'] = $row->job_timestamp;
+				$job->setMetadata( 'id', $row->job_id );
+				$job->setMetadata( 'timestamp', $row->job_timestamp );
 				break; // done
 			} while ( true );
 
@@ -484,7 +484,8 @@ class JobQueueDB extends JobQueue {
 	 * @throws MWException
 	 */
 	protected function doAck( Job $job ) {
-		if ( !isset( $job->metadata['id'] ) ) {
+		$id = $job->getMetadata( 'id' );
+		if ( $id === null ) {
 			throw new MWException( "Job of type '{$job->getType()}' has no ID." );
 		}
 
@@ -493,8 +494,11 @@ class JobQueueDB extends JobQueue {
 		$scope = $this->getScopedNoTrxFlag( $dbw );
 		try {
 			// Delete a row with a single DELETE without holding row locks over RTTs...
-			$dbw->delete( 'job',
-				[ 'job_cmd' => $this->type, 'job_id' => $job->metadata['id'] ], __METHOD__ );
+			$dbw->delete(
+				'job',
+				[ 'job_cmd' => $this->type, 'job_id' => $id ],
+				__METHOD__
+			);
 
 			JobQueue::incrStats( 'acks', $this->type );
 		} catch ( DBError $e ) {
@@ -617,8 +621,8 @@ class JobQueueDB extends JobQueue {
 						Title::makeTitle( $row->job_namespace, $row->job_title ),
 						strlen( $row->job_params ) ? unserialize( $row->job_params ) : []
 					);
-					$job->metadata['id'] = $row->job_id;
-					$job->metadata['timestamp'] = $row->job_timestamp;
+					$job->setMetadata( 'id', $row->job_id );
+					$job->setMetadata( 'timestamp', $row->job_timestamp );
 
 					return $job;
 				}
@@ -724,7 +728,6 @@ class JobQueueDB extends JobQueue {
 					$affected = $dbw->affectedRows();
 					$count += $affected;
 					JobQueue::incrStats( 'recycles', $this->type, $affected );
-					$this->aggr->notifyQueueNonEmpty( $this->domain, $this->type );
 				}
 			}
 
