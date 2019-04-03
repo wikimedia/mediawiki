@@ -724,7 +724,6 @@ class JobQueueDB extends JobQueue {
 					$affected = $dbw->affectedRows();
 					$count += $affected;
 					JobQueue::incrStats( 'recycles', $this->type, $affected );
-					$this->aggr->notifyQueueNonEmpty( $this->domain, $this->type );
 				}
 			}
 
