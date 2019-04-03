@@ -1777,6 +1777,12 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			if ( array_intersect( $tablesUsed, $userTables ) ) {
 				$tablesUsed = array_unique( array_merge( $tablesUsed, $userTables ) );
 				TestUserRegistry::clear();
+
+				// Reset $wgUser, which is probably 127.0.0.1, as its loaded data is probably not valid
+				// @todo Should we start setting $wgUser to something nondeterministic
+				//  to encourage tests to be updated to not depend on it?
+				global $wgUser;
+				$wgUser->clearInstanceCache( $wgUser->mFrom );
 			}
 			if ( array_intersect( $tablesUsed, $pageTables ) ) {
 				$tablesUsed = array_unique( array_merge( $tablesUsed, $pageTables ) );

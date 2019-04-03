@@ -239,7 +239,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$importRevision->setComment( 'Imported edit' );
 		$importRevision->setTimestamp( '19991122001122' );
 		$importRevision->setText( 'IMPORTED OLD TEST' );
-		$importRevision->setUsername( 'Alan Smithee' );
+		$importRevision->setUsername( 'ext>Alan Smithee' );
 
 		$importer = MediaWikiServices::getInstance()->getWikiRevisionOldRevisionImporterNoUpdates();
 		$importer->import( $importRevision );

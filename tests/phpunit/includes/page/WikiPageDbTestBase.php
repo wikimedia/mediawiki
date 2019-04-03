@@ -483,7 +483,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 				'delete',
 				'delete',
 				'testing user 0 deletion',
-				'0',
+				null,
 				'127.0.0.1',
 				(string)$page->getTitle()->getNamespace(),
 				$page->getTitle()->getDBkey(),

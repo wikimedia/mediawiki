@@ -68,7 +68,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	) {
 		$status = $page->doEditContent(
 			ContentHandler::makeContent( $text, $page->getTitle(), $model ),
-			$summary
+			$summary, 0, false, $this->getTestUser()->getUser()
 		);
 
 		if ( $status->isGood() ) {
