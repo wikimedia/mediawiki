@@ -817,6 +817,11 @@ class LogFormatter {
 		foreach ( $this->getParametersForApi() as $key => $value ) {
 			$vals = explode( ':', $key, 3 );
 			if ( count( $vals ) !== 3 ) {
+				if ( $value instanceof __PHP_Incomplete_Class ) {
+					wfLogWarning( 'Log entry of type ' . $this->entry->getFullType() .
+						' contains unrecoverable extra parameters.' );
+					continue;
+				}
 				$logParams[$key] = $value;
 				continue;
 			}
