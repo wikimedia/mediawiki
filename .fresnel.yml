@@ -3,8 +3,8 @@ runs: 5
 scenarios:
   Load a page:
     # The only page that exists by default is the main page.
-    # But, its actual name is configurable/unknown (T216791).
-    # Omit 'title' to let MediaWiki show the defaul (which is the main page),
+    # But its actual name is configurable/unknown (T216791).
+    # Omit 'title' to let MediaWiki show the default (which is the main page),
     # and a query string to prevent a normalization redirect.
     url: "{MW_SERVER}{MW_SCRIPT_PATH}/index.php?noredirectplz"
     viewport:
