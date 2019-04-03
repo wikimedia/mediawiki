@@ -4,7 +4,7 @@
 		reasonCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),
 		reasonByteLimit = mw.config.get( 'wgCommentByteLimit' );
 
-	ProtectionForm = window.ProtectionForm = {
+	ProtectionForm = {
 		/**
 		 * Set up the protection chaining interface (i.e. "unlock move permissions" checkbox)
 		 * on the protection form
