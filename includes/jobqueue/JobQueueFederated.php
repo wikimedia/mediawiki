@@ -287,7 +287,7 @@ class JobQueueFederated extends JobQueue {
 				$job = false;
 			}
 			if ( $job ) {
-				$job->metadata['QueuePartition'] = $partition;
+				$job->setMetadata( 'QueuePartition', $partition );
 
 				return $job;
 			} else {
@@ -300,11 +300,12 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	protected function doAck( Job $job ) {
-		if ( !isset( $job->metadata['QueuePartition'] ) ) {
+		$partition = $job->getMetadata( 'QueuePartition' );
+		if ( $partition === null ) {
 			throw new MWException( "The given job has no defined partition name." );
 		}
 
-		$this->partitionQueues[$job->metadata['QueuePartition']]->ack( $job );
+		$this->partitionQueues[$partition]->ack( $job );
 	}
 
 	protected function doIsRootJobOldDuplicate( Job $job ) {
