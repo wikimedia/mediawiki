@@ -264,28 +264,26 @@ abstract class BaseTemplate extends QuickTemplate {
 					$boxes[$boxName]['content'] = $content;
 				}
 			}
-		} else {
-			if ( $hookContents ) {
-				$boxes['TOOLBOXEND'] = [
-					'id' => 'p-toolboxend',
-					'header' => $boxes['TOOLBOX']['header'],
-					'generated' => false,
-					'content' => "<ul>{$hookContents}</ul>",
-				];
-				// HACK: Make sure that TOOLBOXEND is sorted next to TOOLBOX
-				$boxes2 = [];
-				foreach ( $boxes as $key => $box ) {
-					if ( $key === 'TOOLBOXEND' ) {
-						continue;
-					}
-					$boxes2[$key] = $box;
-					if ( $key === 'TOOLBOX' ) {
-						$boxes2['TOOLBOXEND'] = $boxes['TOOLBOXEND'];
-					}
+		} elseif ( $hookContents ) {
+			$boxes['TOOLBOXEND'] = [
+				'id' => 'p-toolboxend',
+				'header' => $boxes['TOOLBOX']['header'],
+				'generated' => false,
+				'content' => "<ul>{$hookContents}</ul>",
+			];
+			// HACK: Make sure that TOOLBOXEND is sorted next to TOOLBOX
+			$boxes2 = [];
+			foreach ( $boxes as $key => $box ) {
+				if ( $key === 'TOOLBOXEND' ) {
+					continue;
 				}
-				$boxes = $boxes2;
-				// END hack
+				$boxes2[$key] = $box;
+				if ( $key === 'TOOLBOX' ) {
+					$boxes2['TOOLBOXEND'] = $boxes['TOOLBOXEND'];
+				}
 			}
+			$boxes = $boxes2;
+			// END hack
 		}
 
 		return $boxes;

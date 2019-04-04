@@ -40,10 +40,10 @@ class RemexCompatFormatter extends HtmlFormatter {
 
 		$name = $node->name;
 		$attrs = $node->attrs;
-		if ( isset( self::$markedEmptyElements[$name] ) && $attrs->count() === 0 ) {
-			if ( strspn( $contents, "\t\n\f\r " ) === strlen( $contents ) ) {
-				return "<{$name} class=\"mw-empty-elt\">$contents</{$name}>";
-			}
+		if ( isset( self::$markedEmptyElements[$name] ) && $attrs->count() === 0
+			&& strspn( $contents, "\t\n\f\r " ) === strlen( $contents )
+		) {
+			return "<{$name} class=\"mw-empty-elt\">$contents</{$name}>";
 		}
 
 		$s = "<$name";

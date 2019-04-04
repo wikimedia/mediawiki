@@ -601,22 +601,20 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 					[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ]
 				);
 			// Case C: medium length request with medium replication lag
+			} elseif ( $lockTSE >= 0 ) {
+				// Store value as *almost* stale to avoid cache and mutex stampedes
+				$logicalTTL = self::TTL_SECOND;
+				$this->logger->info(
+					'Lowered set() TTL for {cachekey} due to high read lag.',
+					[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ]
+				);
 			} else {
-				if ( $lockTSE >= 0 ) {
-					// Store value as *almost* stale to avoid cache and mutex stampedes
-					$logicalTTL = self::TTL_SECOND;
-					$this->logger->info(
-						'Lowered set() TTL for {cachekey} due to high read lag.',
-						[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ]
-					);
-				} else {
-					$this->logger->info(
-						'Rejected set() for {cachekey} due to high read lag.',
-						[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ]
-					);
+				$this->logger->info(
+					'Rejected set() for {cachekey} due to high read lag.',
+					[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ]
+				);
 
-					return true; // no-op the write for being unsafe
-				}
+				return true; // no-op the write for being unsafe
 			}
 		}
 

@@ -633,20 +633,15 @@ abstract class File implements IDBAccessObject {
 			// one would not expect it to be animated
 			// so true.
 			return true;
-		} else {
-			if ( $this->allowInlineDisplay()
-				&& $handler->isAnimatedImage( $this )
-				&& !$handler->canAnimateThumbnail( $this )
-			) {
-				// Image is animated, but thumbnail isn't.
-				// This is unexpected to the user.
-				return false;
-			} else {
-				// Image is not animated, so one would
-				// not expect thumb to be
-				return true;
-			}
 		}
+
+		return !$this->allowInlineDisplay()
+			// Image is not animated, so one would
+			// not expect thumb to be
+			|| !$handler->isAnimatedImage( $this )
+			// Image is animated, but thumbnail isn't.
+			// This is unexpected to the user.
+			|| $handler->canAnimateThumbnail( $this );
 	}
 
 	/**

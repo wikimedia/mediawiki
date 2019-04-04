@@ -199,20 +199,16 @@ class SvgHandler extends ImageHandler {
 				$params['physicalWidth'] = $wgSVGMaxSize;
 				$params['physicalHeight'] = File::scaleHeight( $srcWidth, $srcHeight, $wgSVGMaxSize );
 			}
-		} else {
-			if ( $params['physicalHeight'] > $wgSVGMaxSize ) {
-				$srcWidth = $image->getWidth( $params['page'] );
-				$srcHeight = $image->getHeight( $params['page'] );
-				$params['physicalWidth'] = File::scaleHeight( $srcHeight, $srcWidth, $wgSVGMaxSize );
-				$params['physicalHeight'] = $wgSVGMaxSize;
-			}
+		} elseif ( $params['physicalHeight'] > $wgSVGMaxSize ) {
+			$srcWidth = $image->getWidth( $params['page'] );
+			$srcHeight = $image->getHeight( $params['page'] );
+			$params['physicalWidth'] = File::scaleHeight( $srcHeight, $srcWidth, $wgSVGMaxSize );
+			$params['physicalHeight'] = $wgSVGMaxSize;
 		}
 		// To prevent the proliferation of thumbnails in languages not present in SVGs, unless
 		// explicitly forced by user.
-		if ( isset( $params['targetlang'] ) ) {
-			if ( !$image->getMatchedLanguage( $params['targetlang'] ) ) {
-				unset( $params['targetlang'] );
-			}
+		if ( isset( $params['targetlang'] ) && !$image->getMatchedLanguage( $params['targetlang'] ) ) {
+			unset( $params['targetlang'] );
 		}
 
 		return $params;

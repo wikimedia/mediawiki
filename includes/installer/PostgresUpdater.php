@@ -1007,13 +1007,11 @@ END;
 	public function addPgExtIndex( $table, $index, $type ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
 			$this->output( "...index '$index' on table '$table' already exists\n" );
+		} elseif ( preg_match( '/^\(/', $type ) ) {
+			$this->output( "Creating index '$index' on table '$table'\n" );
+			$this->db->query( "CREATE INDEX $index ON $table $type" );
 		} else {
-			if ( preg_match( '/^\(/', $type ) ) {
-				$this->output( "Creating index '$index' on table '$table'\n" );
-				$this->db->query( "CREATE INDEX $index ON $table $type" );
-			} else {
-				$this->applyPatch( $type, true, "Creating index '$index' on table '$table'" );
-			}
+			$this->applyPatch( $type, true, "Creating index '$index' on table '$table'" );
 		}
 	}
 

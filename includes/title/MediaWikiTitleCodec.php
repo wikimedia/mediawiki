@@ -421,10 +421,8 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 
 		# Can't make a link to a namespace alone... "empty" local links can only be
 		# self-links with a fragment identifier.
-		if ( $dbkey == '' && $parts['interwiki'] === '' ) {
-			if ( $parts['namespace'] != NS_MAIN ) {
-				throw new MalformedTitleException( 'title-invalid-empty', $text );
-			}
+		if ( $dbkey == '' && $parts['interwiki'] === '' && $parts['namespace'] != NS_MAIN ) {
+			throw new MalformedTitleException( 'title-invalid-empty', $text );
 		}
 
 		// Allow IPv6 usernames to start with '::' by canonicalizing IPv6 titles.

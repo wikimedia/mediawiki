@@ -406,10 +406,10 @@ class XmlTypeCheck {
 			$callbackReturn = false;
 		}
 
-		if ( $checkIfSafe && isset( $parsedDTD['internal'] ) ) {
-			if ( !$this->checkDTDIsSafe( $parsedDTD['internal'] ) ) {
-				$this->wellFormed = false;
-			}
+		if ( $checkIfSafe && isset( $parsedDTD['internal'] ) &&
+			!$this->checkDTDIsSafe( $parsedDTD['internal'] )
+		) {
+			$this->wellFormed = false;
 		}
 	}
 

@@ -221,13 +221,11 @@ class CacheHelper implements ICacheHelper {
 				} else {
 					$value = array_shift( $this->cachedChunks );
 				}
+			} elseif ( array_key_exists( $key, $this->cachedChunks ) ) {
+				$value = $this->cachedChunks[$key];
+				unset( $this->cachedChunks[$key] );
 			} else {
-				if ( array_key_exists( $key, $this->cachedChunks ) ) {
-					$value = $this->cachedChunks[$key];
-					unset( $this->cachedChunks[$key] );
-				} else {
-					wfWarn( "There is no item with key '$key' in this->cachedChunks in " . __METHOD__ );
-				}
+				wfWarn( "There is no item with key '$key' in this->cachedChunks in " . __METHOD__ );
 			}
 		} else {
 			if ( !is_array( $args ) ) {

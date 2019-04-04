@@ -418,10 +418,10 @@ class OldLocalFile extends LocalFile {
 		$dstRel = $this->getArchiveRel( $archiveName );
 		$status = $this->publishTo( $srcPath, $dstRel );
 
-		if ( $status->isGood() ) {
-			if ( !$this->recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user ) ) {
-				$status->fatal( 'filenotfound', $srcPath );
-			}
+		if ( $status->isGood() &&
+			!$this->recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user )
+		) {
+			$status->fatal( 'filenotfound', $srcPath );
 		}
 
 		$this->unlock();

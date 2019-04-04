@@ -380,23 +380,19 @@ class BlockLevelPass {
 								$output .= $pendingPTag . '<br />';
 								$pendingPTag = false;
 								$this->lastParagraph = 'p';
-							} else {
-								if ( $this->lastParagraph !== 'p' ) {
-									$output .= $this->closeParagraph();
-									$pendingPTag = '<p>';
-								} else {
-									$pendingPTag = '</p><p>';
-								}
-							}
-						} else {
-							if ( $pendingPTag ) {
-								$output .= $pendingPTag;
-								$pendingPTag = false;
-								$this->lastParagraph = 'p';
 							} elseif ( $this->lastParagraph !== 'p' ) {
-								$output .= $this->closeParagraph() . '<p>';
-								$this->lastParagraph = 'p';
+								$output .= $this->closeParagraph();
+								$pendingPTag = '<p>';
+							} else {
+								$pendingPTag = '</p><p>';
 							}
+						} elseif ( $pendingPTag ) {
+							$output .= $pendingPTag;
+							$pendingPTag = false;
+							$this->lastParagraph = 'p';
+						} elseif ( $this->lastParagraph !== 'p' ) {
+							$output .= $this->closeParagraph() . '<p>';
+							$this->lastParagraph = 'p';
 						}
 					}
 				}

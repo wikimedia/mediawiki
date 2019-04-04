@@ -86,10 +86,8 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 
 		// Hook can determine default model
 		$title = Title::newFromLinkTarget( $page );
-		if ( !Hooks::run( 'ContentHandlerDefaultModelFor', [ $title, &$model ] ) ) {
-			if ( !is_null( $model ) ) {
-				return $model;
-			}
+		if ( !Hooks::run( 'ContentHandlerDefaultModelFor', [ $title, &$model ] ) && !is_null( $model ) ) {
+			return $model;
 		}
 
 		// Could this page contain code based on the title?

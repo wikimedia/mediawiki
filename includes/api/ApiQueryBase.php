@@ -157,16 +157,14 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	protected function addTables( $tables, $alias = null ) {
 		if ( is_array( $tables ) ) {
-			if ( !is_null( $alias ) ) {
+			if ( $alias !== null ) {
 				ApiBase::dieDebug( __METHOD__, 'Multiple table aliases not supported' );
 			}
 			$this->tables = array_merge( $this->tables, $tables );
+		} elseif ( $alias !== null ) {
+			$this->tables[$alias] = $tables;
 		} else {
-			if ( !is_null( $alias ) ) {
-				$this->tables[$alias] = $tables;
-			} else {
-				$this->tables[] = $tables;
-			}
+			$this->tables[] = $tables;
 		}
 	}
 

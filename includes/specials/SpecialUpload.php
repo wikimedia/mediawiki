@@ -191,11 +191,9 @@ class SpecialUpload extends SpecialPage {
 		$this->loadRequest();
 
 		# Unsave the temporary file in case this was a cancelled upload
-		if ( $this->mCancelUpload ) {
-			if ( !$this->unsaveUploadedFile() ) {
-				# Something went wrong, so unsaveUploadedFile showed a warning
-				return;
-			}
+		if ( $this->mCancelUpload && !$this->unsaveUploadedFile() ) {
+			# Something went wrong, so unsaveUploadedFile showed a warning
+			return;
 		}
 
 		# Process upload or show a form

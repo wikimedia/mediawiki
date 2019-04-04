@@ -487,10 +487,8 @@ class LoadBalancer implements ILoadBalancer {
 			$this->waitForPos = $pos;
 			// If a generic reader connection was already established, then wait now
 			$i = $this->readIndex;
-			if ( $i > 0 ) {
-				if ( !$this->doWait( $i ) ) {
-					$this->laggedReplicaMode = true;
-				}
+			if ( ( $i > 0 ) && !$this->doWait( $i ) ) {
+				$this->laggedReplicaMode = true;
 			}
 		} finally {
 			// Restore the older position if it was higher since this is used for lag-protection

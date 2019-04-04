@@ -38,10 +38,8 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 		// $value is a string, because HTMLForm fields store their values as strings
 		$namespaces = explode( "\n", $value );
 
-		if ( isset( $this->mParams['max'] ) ) {
-			if ( count( $namespaces ) > $this->mParams['max'] ) {
-				return $this->msg( 'htmlform-int-toohigh', $this->mParams['max'] );
-			}
+		if ( isset( $this->mParams['max'] ) && ( count( $namespaces ) > $this->mParams['max'] ) ) {
+			return $this->msg( 'htmlform-int-toohigh', $this->mParams['max'] );
 		}
 
 		foreach ( $namespaces as $namespace ) {

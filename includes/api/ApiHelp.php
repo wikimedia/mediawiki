@@ -559,11 +559,9 @@ class ApiHelp extends ApiBase {
 										$arr = &$submodules;
 										try {
 											$submod = $module->getModuleFromPath( $m );
-											if ( $submod ) {
-												if ( $submod->isDeprecated() ) {
-													$arr = &$deprecatedSubmodules;
-													$attrs['class'] = 'apihelp-deprecated-value';
-												}
+											if ( $submod && $submod->isDeprecated() ) {
+												$arr = &$deprecatedSubmodules;
+												$attrs['class'] = 'apihelp-deprecated-value';
 											}
 										} catch ( ApiUsageException $ex ) {
 											// Ignore

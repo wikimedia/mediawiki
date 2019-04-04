@@ -524,20 +524,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$possibleDrivers = $builtinTypes[$dbType];
 			if ( is_string( $possibleDrivers ) ) {
 				$class = $possibleDrivers;
+			} elseif ( (string)$driver !== '' ) {
+				if ( !isset( $possibleDrivers[$driver] ) ) {
+					throw new InvalidArgumentException( __METHOD__ .
+						" type '$dbType' does not support driver '{$driver}'" );
+				}
+
+				$class = $possibleDrivers[$driver];
 			} else {
-				if ( (string)$driver !== '' ) {
-					if ( !isset( $possibleDrivers[$driver] ) ) {
-						throw new InvalidArgumentException( __METHOD__ .
-							" type '$dbType' does not support driver '{$driver}'" );
-					} else {
-						$class = $possibleDrivers[$driver];
-					}
-				} else {
-					foreach ( $possibleDrivers as $posDriver => $possibleClass ) {
-						if ( extension_loaded( $posDriver ) ) {
-							$class = $possibleClass;
-							break;
-						}
+				foreach ( $possibleDrivers as $posDriver => $possibleClass ) {
+					if ( extension_loaded( $posDriver ) ) {
+						$class = $possibleClass;
+						break;
 					}
 				}
 			}
@@ -644,13 +642,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function getLBInfo( $name = null ) {
 		if ( is_null( $name ) ) {
 			return $this->lbInfo;
-		} else {
-			if ( array_key_exists( $name, $this->lbInfo ) ) {
-				return $this->lbInfo[$name];
-			} else {
-				return null;
-			}
 		}
+
+		if ( array_key_exists( $name, $this->lbInfo ) ) {
+			return $this->lbInfo[$name];
+		}
+
+		return null;
 	}
 
 	public function setLBInfo( $name, $value = null ) {
@@ -3975,17 +3973,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					"$fname: Flushing an explicit transaction, getting out of sync."
 				);
 			}
-		} else {
-			if ( !$this->trxLevel ) {
-				$this->queryLogger->error(
-					"$fname: No transaction to commit, something got out of sync." );
-				return; // nothing to do
-			} elseif ( $this->trxAutomatic ) {
-				throw new DBUnexpectedError(
-					$this,
-					"$fname: Expected mass commit of all peer transactions (DBO_TRX set)."
-				);
-			}
+		} elseif ( !$this->trxLevel ) {
+			$this->queryLogger->error(
+				"$fname: No transaction to commit, something got out of sync." );
+			return; // nothing to do
+		} elseif ( $this->trxAutomatic ) {
+			throw new DBUnexpectedError(
+				$this,
+				"$fname: Expected mass commit of all peer transactions (DBO_TRX set)."
+			);
 		}
 
 		$this->assertHasConnectionHandle();
@@ -4030,13 +4026,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	final public function rollback( $fname = __METHOD__, $flush = '' ) {
 		$trxActive = $this->trxLevel;
 
-		if ( $flush !== self::FLUSHING_INTERNAL && $flush !== self::FLUSHING_ALL_PEERS ) {
-			if ( $this->getFlag( self::DBO_TRX ) ) {
-				throw new DBUnexpectedError(
-					$this,
-					"$fname: Expected mass rollback of all peer transactions (DBO_TRX set)."
-				);
-			}
+		if ( $flush !== self::FLUSHING_INTERNAL
+			&& $flush !== self::FLUSHING_ALL_PEERS
+			&& $this->getFlag( self::DBO_TRX )
+		) {
+			throw new DBUnexpectedError(
+				$this,
+				"$fname: Expected mass rollback of all peer transactions (DBO_TRX set)."
+			);
 		}
 
 		if ( $trxActive ) {
