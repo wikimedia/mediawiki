@@ -35,6 +35,9 @@
 		"bell": {
 			"file": "images/icons/bell.svg"
 		},
+		"error": {
+			"file": "images/icons/error.svg"
+		},
 		"message": {
 			"file": "images/icons/message.svg"
 		},

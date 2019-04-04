@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.2
+ * OOUI v0.31.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-03-26T23:00:48Z
+ * Date: 2019-04-04T19:10:54Z
  */
 .oo-ui-tool {
   -webkit-box-sizing: border-box;
@@ -28,7 +28,7 @@
   padding-left: 2.85714286em;
 }
 .oo-ui-tool-with-label .oo-ui-tool-link {
-  padding: 1em 0.85714286em 1em 2.64285714em;
+  padding: 0.85714286em 0.85714286em 0.85714286em 2.64285714em;
 }
 .oo-ui-tool .oo-ui-iconElement-icon {
   display: block;
@@ -38,7 +38,7 @@
   left: 0.71428571em;
 }
 .oo-ui-tool .oo-ui-tool-title {
-  line-height: 1;
+  line-height: 1.28571429em;
 }
 .oo-ui-tool.oo-ui-widget-enabled {
   -webkit-transition: background-color 100ms;
@@ -229,10 +229,10 @@
   padding-left: 2.85714286em;
 }
 .oo-ui-popupToolGroup.oo-ui-labelElement .oo-ui-popupToolGroup-handle {
-  padding: 1em 0.85714286em;
+  padding: 0.85714286em 0.85714286em;
 }
 .oo-ui-popupToolGroup.oo-ui-labelElement .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
-  line-height: 1;
+  line-height: 1.28571429em;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup.oo-ui-labelElement .oo-ui-popupToolGroup-handle {
   padding-left: 0.71428571em;
@@ -276,7 +276,7 @@
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
 }
 .oo-ui-popupToolGroup-tools .oo-ui-tool-link {
-  padding: 1em 0.85714286em;
+  padding: 0.85714286em 0.85714286em;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup-tools .oo-ui-tool-link {
   padding-left: 0.71428571em;
@@ -287,7 +287,7 @@
 }
 .oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-accel {
   color: #72777d;
-  line-height: 1;
+  line-height: 1.28571429em;
 }
 .oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-accel:not( :empty ) {
   padding-left: 1.28571429em;
@@ -516,14 +516,14 @@
   box-shadow: inset 0 0 0 2px #36c, inset 0 0 0 3px #fff;
 }
 .oo-ui-toolbar-actions > .oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button {
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 0.85714286em;
+  padding-bottom: 0.85714286em;
 }
 .oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-buttonElement > .oo-ui-buttonElement-button {
   border-radius: 0;
   border-width: 0 0 0 1px;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 0.85714286em;
+  padding-bottom: 0.85714286em;
 }
 .oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-popupToolGroup.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-popupToolGroup-handle {
   color: #fff;

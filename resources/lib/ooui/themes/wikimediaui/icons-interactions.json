@@ -83,10 +83,10 @@
 		},
 		"helpNotice": {
 			"file": {
-				"ltr": "images/icons/helpOutlined-ltr.svg",
-				"rtl": "images/icons/helpOutlined-rtl.svg",
+				"ltr": "images/icons/helpNotice-ltr.svg",
+				"rtl": "images/icons/helpNotice-rtl.svg",
 				"lang": {
-					"he,yi": "images/icons/helpOutlined-ltr.svg"
+					"he,yi": "images/icons/helpNotice-ltr.svg"
 				}
 			}
 		},

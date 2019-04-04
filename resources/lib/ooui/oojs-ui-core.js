@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.2
+ * OOUI v0.31.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-03-26T23:00:40Z
+ * Date: 2019-04-04T19:10:48Z
  */
 ( function ( OO ) {
 
@@ -347,124 +347,74 @@ OO.ui.infuse = function ( idOrNode, config ) {
 	return OO.ui.Element.static.infuse( idOrNode, config );
 };
 
-( function () {
-	/**
-	 * Message store for the default implementation of OO.ui.msg.
-	 *
-	 * Environments that provide a localization system should not use this, but should override
-	 * OO.ui.msg altogether.
-	 *
-	 * @private
-	 */
-	var messages = {
-		// Tool tip for a button that moves items in a list down one place
-		'ooui-outline-control-move-down': 'Move item down',
-		// Tool tip for a button that moves items in a list up one place
-		'ooui-outline-control-move-up': 'Move item up',
-		// Tool tip for a button that removes items from a list
-		'ooui-outline-control-remove': 'Remove item',
-		// Label for the toolbar group that contains a list of all other available tools
-		'ooui-toolbar-more': 'More',
-		// Label for the fake tool that expands the full list of tools in a toolbar group
-		'ooui-toolgroup-expand': 'More',
-		// Label for the fake tool that collapses the full list of tools in a toolbar group
-		'ooui-toolgroup-collapse': 'Fewer',
-		// Default label for the tooltip for the button that removes a tag item
-		'ooui-item-remove': 'Remove',
-		// Default label for the accept button of a confirmation dialog
-		'ooui-dialog-message-accept': 'OK',
-		// Default label for the reject button of a confirmation dialog
-		'ooui-dialog-message-reject': 'Cancel',
-		// Title for process dialog error description
-		'ooui-dialog-process-error': 'Something went wrong',
-		// Label for process dialog dismiss error button, visible when describing errors
-		'ooui-dialog-process-dismiss': 'Dismiss',
-		// Label for process dialog retry action button, visible when describing only recoverable
-		// errors
-		'ooui-dialog-process-retry': 'Try again',
-		// Label for process dialog retry action button, visible when describing only warnings
-		'ooui-dialog-process-continue': 'Continue',
-		// Label for button in combobox input that triggers its dropdown
-		'ooui-combobox-button-label': 'Dropdown for combobox',
-		// Label for the file selection widget's select file button
-		'ooui-selectfile-button-select': 'Select a file',
-		// Label for the file selection widget if file selection is not supported
-		'ooui-selectfile-not-supported': 'File selection is not supported',
-		// Label for the file selection widget when no file is currently selected
-		'ooui-selectfile-placeholder': 'No file is selected',
-		// Label for the file selection widget's drop target
-		'ooui-selectfile-dragdrop-placeholder': 'Drop file here',
-		// Label for the help icon attached to a form field
-		'ooui-field-help': 'Help'
-	};
-
-	/**
-	 * Get a localized message.
-	 *
-	 * After the message key, message parameters may optionally be passed. In the default
-	 * implementation, any occurrences of $1 are replaced with the first parameter, $2 with the
-	 * second parameter, etc.
-	 * Alternative implementations of OO.ui.msg may use any substitution system they like, as long
-	 * as they support unnamed, ordered message parameters.
-	 *
-	 * In environments that provide a localization system, this function should be overridden to
-	 * return the message translated in the user's language. The default implementation always
-	 * returns English messages. An example of doing this with
-	 * [jQuery.i18n](https://github.com/wikimedia/jquery.i18n) follows.
-	 *
-	 *     @example
-	 *     var i, iLen, button,
-	 *         messagePath = 'oojs-ui/dist/i18n/',
-	 *         languages = [ $.i18n().locale, 'ur', 'en' ],
-	 *         languageMap = {};
-	 *
-	 *     for ( i = 0, iLen = languages.length; i < iLen; i++ ) {
-	 *         languageMap[ languages[ i ] ] = messagePath + languages[ i ].toLowerCase() + '.json';
-	 *     }
-	 *
-	 *     $.i18n().load( languageMap ).done( function() {
-	 *         // Replace the built-in `msg` only once we've loaded the internationalization.
-	 *         // OOUI uses `OO.ui.deferMsg` for all initially-loaded messages. So long as
-	 *         // you put off creating any widgets until this promise is complete, no English
-	 *         // will be displayed.
-	 *         OO.ui.msg = $.i18n;
-	 *
-	 *         // A button displaying "OK" in the default locale
-	 *         button = new OO.ui.ButtonWidget( {
-	 *             label: OO.ui.msg( 'ooui-dialog-message-accept' ),
-	 *             icon: 'check'
-	 *         } );
-	 *         $( document.body ).append( button.$element );
-	 *
-	 *         // A button displaying "OK" in Urdu
-	 *         $.i18n().locale = 'ur';
-	 *         button = new OO.ui.ButtonWidget( {
-	 *             label: OO.ui.msg( 'ooui-dialog-message-accept' ),
-	 *             icon: 'check'
-	 *         } );
-	 *         $( document.body ).append( button.$element );
-	 *     } );
-	 *
-	 * @param {string} key Message key
-	 * @param {...Mixed} [params] Message parameters
-	 * @return {string} Translated message with parameters substituted
-	 */
-	OO.ui.msg = function ( key ) {
-		var message = messages[ key ],
-			params = Array.prototype.slice.call( arguments, 1 );
-		if ( typeof message === 'string' ) {
-			// Perform $1 substitution
-			message = message.replace( /\$(\d+)/g, function ( unused, n ) {
-				var i = parseInt( n, 10 );
-				return params[ i - 1 ] !== undefined ? params[ i - 1 ] : '$' + n;
-			} );
-		} else {
-			// Return placeholder if message not found
-			message = '[' + key + ']';
-		}
-		return message;
-	};
-}() );
+/**
+ * Get a localized message.
+ *
+ * After the message key, message parameters may optionally be passed. In the default
+ * implementation, any occurrences of $1 are replaced with the first parameter, $2 with the
+ * second parameter, etc.
+ * Alternative implementations of OO.ui.msg may use any substitution system they like, as long
+ * as they support unnamed, ordered message parameters.
+ *
+ * In environments that provide a localization system, this function should be overridden to
+ * return the message translated in the user's language. The default implementation always
+ * returns English messages. An example of doing this with
+ * [jQuery.i18n](https://github.com/wikimedia/jquery.i18n) follows.
+ *
+ *     @example
+ *     var i, iLen, button,
+ *         messagePath = 'oojs-ui/dist/i18n/',
+ *         languages = [ $.i18n().locale, 'ur', 'en' ],
+ *         languageMap = {};
+ *
+ *     for ( i = 0, iLen = languages.length; i < iLen; i++ ) {
+ *         languageMap[ languages[ i ] ] = messagePath + languages[ i ].toLowerCase() + '.json';
+ *     }
+ *
+ *     $.i18n().load( languageMap ).done( function() {
+ *         // Replace the built-in `msg` only once we've loaded the internationalization.
+ *         // OOUI uses `OO.ui.deferMsg` for all initially-loaded messages. So long as
+ *         // you put off creating any widgets until this promise is complete, no English
+ *         // will be displayed.
+ *         OO.ui.msg = $.i18n;
+ *
+ *         // A button displaying "OK" in the default locale
+ *         button = new OO.ui.ButtonWidget( {
+ *             label: OO.ui.msg( 'ooui-dialog-message-accept' ),
+ *             icon: 'check'
+ *         } );
+ *         $( document.body ).append( button.$element );
+ *
+ *         // A button displaying "OK" in Urdu
+ *         $.i18n().locale = 'ur';
+ *         button = new OO.ui.ButtonWidget( {
+ *             label: OO.ui.msg( 'ooui-dialog-message-accept' ),
+ *             icon: 'check'
+ *         } );
+ *         $( document.body ).append( button.$element );
+ *     } );
+ *
+ * @param {string} key Message key
+ * @param {...Mixed} [params] Message parameters
+ * @return {string} Translated message with parameters substituted
+ */
+OO.ui.msg = function ( key ) {
+	// `OO.ui.msg.messages` is defined in code generated during the build process
+	var messages = OO.ui.msg.messages,
+		message = messages[ key ],
+		params = Array.prototype.slice.call( arguments, 1 );
+	if ( typeof message === 'string' ) {
+		// Perform $1 substitution
+		message = message.replace( /\$(\d+)/g, function ( unused, n ) {
+			var i = parseInt( n, 10 );
+			return params[ i - 1 ] !== undefined ? params[ i - 1 ] : '$' + n;
+		} );
+	} else {
+		// Return placeholder if message not found
+		message = '[' + key + ']';
+	}
+	return message;
+};
 
 /**
  * Package a message and arguments for deferred resolution.
@@ -581,6 +531,36 @@ OO.ui.getDefaultOverlay = function () {
 		$( document.body ).append( OO.ui.$defaultOverlay );
 	}
 	return OO.ui.$defaultOverlay;
+};
+
+/**
+ * Message store for the default implementation of OO.ui.msg.
+ *
+ * Environments that provide a localization system should not use this, but should override
+ * OO.ui.msg altogether.
+ *
+ * @private
+ */
+OO.ui.msg.messages = {
+	"ooui-outline-control-move-down": "Move item down",
+	"ooui-outline-control-move-up": "Move item up",
+	"ooui-outline-control-remove": "Remove item",
+	"ooui-toolbar-more": "More",
+	"ooui-toolgroup-expand": "More",
+	"ooui-toolgroup-collapse": "Fewer",
+	"ooui-item-remove": "Remove",
+	"ooui-dialog-message-accept": "OK",
+	"ooui-dialog-message-reject": "Cancel",
+	"ooui-dialog-process-error": "Something went wrong",
+	"ooui-dialog-process-dismiss": "Dismiss",
+	"ooui-dialog-process-retry": "Try again",
+	"ooui-dialog-process-continue": "Continue",
+	"ooui-combobox-button-label": "Dropdown for combobox",
+	"ooui-selectfile-button-select": "Select a file",
+	"ooui-selectfile-not-supported": "File selection is not supported",
+	"ooui-selectfile-placeholder": "No file is selected",
+	"ooui-selectfile-dragdrop-placeholder": "Drop file here",
+	"ooui-field-help": "Help"
 };
 
 /*!
@@ -3458,6 +3438,9 @@ OO.initClass( OO.ui.mixin.TitledElement );
  * The title text, a function that returns text, or `null` for no title. The value of the static
  * property is overridden if the #title config option is used.
  *
+ * If the element has a default title (e.g. `<input type=file>`), `null` will allow that title to be
+ * shown. Use empty string to suppress it.
+ *
  * @static
  * @inheritable
  * @property {string|Function|null}
@@ -3482,9 +3465,7 @@ OO.ui.mixin.TitledElement.prototype.setTitledElement = function ( $titled ) {
 	}
 
 	this.$titled = $titled;
-	if ( this.title ) {
-		this.updateTitle();
-	}
+	this.updateTitle();
 };
 
 /**
@@ -3497,7 +3478,7 @@ OO.ui.mixin.TitledElement.prototype.setTitledElement = function ( $titled ) {
  */
 OO.ui.mixin.TitledElement.prototype.setTitle = function ( title ) {
 	title = typeof title === 'function' ? OO.ui.resolveMsg( title ) : title;
-	title = ( typeof title === 'string' && title.length ) ? title : null;
+	title = typeof title === 'string' ? title : null;
 
 	if ( this.title !== title ) {
 		this.title = title;
@@ -13123,11 +13104,14 @@ OO.ui.NumberInputWidget.prototype.setDisabled = function ( disabled ) {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {string[]|null} [accept=null] MIME types to accept. null accepts all types.
+ * @cfg {boolean} [multiple=false] Allow multiple files to be selected.
  * @cfg {string} [placeholder] Text to display when no file is selected.
  * @cfg {Object} [button] Config to pass to select file button.
  * @cfg {string} [icon] Icon to show next to file info
  */
 OO.ui.SelectFileInputWidget = function OoUiSelectFileInputWidget( config ) {
+	var widget = this;
+
 	config = config || {};
 
 	// Construct buttons before parent method is called (calling setDisabled)
@@ -13157,25 +13141,51 @@ OO.ui.SelectFileInputWidget = function OoUiSelectFileInputWidget( config ) {
 	OO.ui.SelectFileInputWidget.parent.call( this, config );
 
 	// Properties
-	this.currentFile = null;
+	this.currentFiles = this.filterFiles( this.$input[ 0 ].files || [] );
 	if ( Array.isArray( config.accept ) ) {
 		this.accept = config.accept;
 	} else {
 		this.accept = null;
 	}
-	this.onFileSelectedHandler = this.onFileSelected.bind( this );
+	this.multiple = !!config.multiple;
 
 	// Events
 	this.info.connect( this, { change: 'onInfoChange' } );
 	this.selectButton.$button.on( {
 		keypress: this.onKeyPress.bind( this )
 	} );
+	this.$input.on( {
+		change: this.onFileSelected.bind( this ),
+		// Support: IE11
+		// In IE 11, focussing a file input (by clicking on it) displays a text cursor and scrolls
+		// the cursor into view (in this case, it scrolls the button, which has 'overflow: hidden').
+		// Since this messes with our custom styling (the file input has large dimensions and this
+		// causes the label to scroll out of view), scroll the button back to top. (T192131)
+		focus: function () {
+			widget.$input.parent().prop( 'scrollTop', 0 );
+		}
+	} );
 	this.connect( this, { change: 'updateUI' } );
 
-	// Initialization
-	this.setupInput();
-
 	this.fieldLayout = new OO.ui.ActionFieldLayout( this.info, this.selectButton, { align: 'top' } );
+
+	this.$input
+		.attr( {
+			type: 'file',
+			// this.selectButton is tabindexed
+			tabindex: -1,
+			// Infused input may have previously by
+			// TabIndexed, so remove aria-disabled attr.
+			'aria-disabled': null
+		} );
+
+	if ( this.accept ) {
+		this.$input.attr( 'accept', this.accept.join( ', ' ) );
+	}
+	if ( this.multiple ) {
+		this.$input.attr( 'multiple', '' );
+	}
+	this.selectButton.$button.append( this.$input );
 
 	this.$element
 		.addClass( 'oo-ui-selectFileInputWidget' )
@@ -13188,6 +13198,13 @@ OO.ui.SelectFileInputWidget = function OoUiSelectFileInputWidget( config ) {
 
 OO.inheritClass( OO.ui.SelectFileInputWidget, OO.ui.InputWidget );
 
+/* Static properties */
+
+// Set empty title so that browser default tooltips like "No file chosen" don't appear.
+// On SelectFileWidget this tooltip will often be incorrect, so create a consistent
+// experience on SelectFileInputWidget.
+OO.ui.SelectFileInputWidget.static.title = '';
+
 /* Methods */
 
 /**
@@ -13196,8 +13213,10 @@ OO.inheritClass( OO.ui.SelectFileInputWidget, OO.ui.InputWidget );
  * @return {string} Filename
  */
 OO.ui.SelectFileInputWidget.prototype.getFilename = function () {
-	if ( this.currentFile ) {
-		return this.currentFile.name;
+	if ( this.currentFiles.length ) {
+		return this.currentFiles.map( function ( file ) {
+			return file.name;
+		} ).join( ', ' );
 	} else {
 		// Try to strip leading fakepath.
 		return this.getValue().split( '\\' ).pop();
@@ -13220,7 +13239,7 @@ OO.ui.SelectFileInputWidget.prototype.setValue = function ( value ) {
 			this.emit( 'change', this.value );
 		}
 	} else {
-		this.currentFile = null;
+		this.currentFiles = [];
 		// Parent method
 		OO.ui.SelectFileInputWidget.super.prototype.setValue.call( this, '' );
 	}
@@ -13233,13 +13252,7 @@ OO.ui.SelectFileInputWidget.prototype.setValue = function ( value ) {
  * @param {jQuery.Event} e
  */
 OO.ui.SelectFileInputWidget.prototype.onFileSelected = function ( e ) {
-	var file = OO.getProp( e.target, 'files', 0 ) || null;
-
-	if ( file && !this.isAllowedType( file.type ) ) {
-		file = null;
-	}
-
-	this.currentFile = file;
+	this.currentFiles = this.filterFiles( e.target.files || [] );
 };
 
 /**
@@ -13252,64 +13265,38 @@ OO.ui.SelectFileInputWidget.prototype.updateUI = function () {
 };
 
 /**
- * Setup the input element.
- *
- * @protected
- */
-OO.ui.SelectFileInputWidget.prototype.setupInput = function () {
-	var widget = this;
-	this.$input
-		.attr( {
-			type: 'file',
-			// this.selectButton is tabindexed
-			tabindex: -1,
-			// Infused input may have previously by
-			// TabIndexed, so remove aria-disabled attr.
-			'aria-disabled': null
-		} )
-		.on( 'change', this.onFileSelectedHandler )
-		// Support: IE11
-		// In IE 11, focussing a file input (by clicking on it) displays a text cursor and scrolls
-		// the cursor into view (in this case, it scrolls the button, which has 'overflow: hidden').
-		// Since this messes with our custom styling (the file input has large dimensions and this
-		// causes the label to scroll out of view), scroll the button back to top. (T192131)
-		.on( 'focus', function () {
-			widget.$input.parent().prop( 'scrollTop', 0 );
-		} );
-
-	if ( this.accept ) {
-		this.$input.attr( 'accept', this.accept.join( ', ' ) );
-	}
-	this.selectButton.$button.append( this.$input );
-};
-
-/**
  * Determine if we should accept this file.
  *
  * @private
- * @param {string} mimeType File MIME type
- * @return {boolean}
+ * @param {FileList|File[]} files Files to filter
+ * @return {File[]} Filter files
  */
-OO.ui.SelectFileInputWidget.prototype.isAllowedType = function ( mimeType ) {
-	var i, mimeTest;
+OO.ui.SelectFileInputWidget.prototype.filterFiles = function ( files ) {
+	var accept = this.accept;
 
-	if ( !this.accept || !mimeType ) {
-		return true;
-	}
+	function mimeAllowed( file ) {
+		var i, mimeTest,
+			mimeType = file.type;
 
-	for ( i = 0; i < this.accept.length; i++ ) {
-		mimeTest = this.accept[ i ];
-		if ( mimeTest === mimeType ) {
+		if ( !accept || !mimeType ) {
 			return true;
-		} else if ( mimeTest.substr( -2 ) === '/*' ) {
-			mimeTest = mimeTest.substr( 0, mimeTest.length - 1 );
-			if ( mimeType.substr( 0, mimeTest.length ) === mimeTest ) {
+		}
+
+		for ( i = 0; i < accept.length; i++ ) {
+			mimeTest = accept[ i ];
+			if ( mimeTest === mimeType ) {
 				return true;
+			} else if ( mimeTest.substr( -2 ) === '/*' ) {
+				mimeTest = mimeTest.substr( 0, mimeTest.length - 1 );
+				if ( mimeType.substr( 0, mimeTest.length ) === mimeTest ) {
+					return true;
+				}
 			}
 		}
+		return false;
 	}
 
-	return false;
+	return Array.prototype.filter.call( files, mimeAllowed );
 };
 
 /**

@@ -58,10 +58,10 @@
 		},
 		"helpNotice": {
 			"file": {
-				"ltr": "../wikimediaui/images/icons/helpOutlined-ltr.svg",
-				"rtl": "../wikimediaui/images/icons/helpOutlined-rtl.svg",
+				"ltr": "../wikimediaui/images/icons/helpNotice-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/helpNotice-rtl.svg",
 				"lang": {
-					"he,yi": "../wikimediaui/images/icons/helpOutlined-ltr.svg"
+					"he,yi": "../wikimediaui/images/icons/helpNotice-ltr.svg"
 				}
 			}
 		},

@@ -1,4 +1,33 @@
 # OOUI Release History
+## v0.31.3 / 2019-04-03
+### Features
+* SelectFileInputWidget: Support multiple files (Ed Sanders)
+* WikimediaUI theme: Allow inverted icons to appear anywhere (Roan Kattouw)
+
+### Styles
+* CheckboxMultiselect- & RadioselectInputWidget: Fix infusion reflow (Volker E.)
+* DropdownInputWidget: Make WikimediaUI version useable for non-JS users (Volker E.)
+* WikimediaUI theme: Increase and unify widget `line-height` (Volker E.)
+* WikimediaUI theme: Reduce accessory icon's opacity in non-focussed state (Volker E.)
+* WikimediaUI theme: Unify inlined FieldLayout padding (Volker E.)
+* icons: Add 'error' icon to 'alerts' pack (Volker E.)
+* icons: Amend 'helpNotice' filename (Volker E.)
+* icons: Make 'error' octagon regular (Ed Sanders)
+
+### Code
+* SelectFile(Input)Widget: Remove addInput and inline setupInput (Ed Sanders)
+* SelectFileInputWidget: Make 'title' behaviour consistent (Ed Sanders)
+* build: Bump non-qunit devDependencies to latest where possible (Volker E.)
+* build: Do not duplicate localisation messages and their docs in JS code (Bartosz Dziewoński)
+* build: Have 'quick-build' use 'build-code' to include messages (Ed Sanders)
+* build: Remove unnecessary 'enable-source-maps' task (Bartosz Dziewoński)
+* build: We distribute icon/indicator/texture manifests, too (James D. Forrester)
+* demos: Add Vietnamese labels (Volker E.)
+* demos: Add `title` to LTR/RTL ButtonWidgets (Volker E.)
+* demos: Re-order PHP TextInput demo to align with the JS demo (Volker E.)
+* docs: Fix syntax errors in MenuLayout (Huji Lee)
+
+
 ## v0.31.2 / 2019-03-26
 ### Features
 * CheckboxInputWidget: Add support for indeterminate state (Ed Sanders & Bartosz Dziewoński)

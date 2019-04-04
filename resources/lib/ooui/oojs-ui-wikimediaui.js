@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.2
+ * OOUI v0.31.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-03-26T23:00:40Z
+ * Date: 2019-04-04T19:10:48Z
  */
 ( function ( OO ) {
 
@@ -68,7 +68,7 @@ OO.ui.WikimediaUITheme.prototype.getElementClasses = function ( element ) {
 		) {
 			// … use white icon / indicator, regardless of other flags
 			variants.invert = true;
-		} else if ( !isFramed && element.isDisabled() ) {
+		} else if ( !isFramed && element.isDisabled() && !element.hasFlag( 'invert' ) ) {
 			// Frameless disabled button, always use black icon / indicator regardless of
 			// other flags.
 			variants.invert = false;
@@ -92,6 +92,7 @@ OO.ui.WikimediaUITheme.prototype.getElementClasses = function ( element ) {
 				);
 
 			variants.destructive = element.hasFlag( 'destructive' );
+			variants.invert = element.hasFlag( 'invert' );
 			variants.error = element.hasFlag( 'error' );
 			variants.warning = element.hasFlag( 'warning' );
 			variants.success = element.hasFlag( 'success' );

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.2
+ * OOUI v0.31.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-03-26T23:00:48Z
+ * Date: 2019-04-04T19:10:54Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -524,7 +524,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding: 1em 0.85714286em;
+  padding: 0.85714286em 0.85714286em;
   -webkit-transition: background-color 100ms, color 100ms;
   -moz-transition: background-color 100ms, color 100ms;
   transition: background-color 100ms, color 100ms;
@@ -637,8 +637,8 @@
 }
 .oo-ui-tabOptionWidget .oo-ui-labelElement-label {
   border-bottom: 2px solid transparent;
-  padding: 0.57142857em 0.35714286em 0.42857143em;
-  line-height: 1;
+  padding: 0.42857143em 0.35714286em 0.28571429em;
+  line-height: 1.28571429em;
   -webkit-transition: border-color 100ms;
   -moz-transition: border-color 100ms;
   transition: border-color 100ms;
@@ -721,10 +721,10 @@
   box-sizing: border-box;
   height: 2.14285714em;
   border: 0;
-  padding: 0.57142857em 0 0.57142857em 0.57142857em;
+  padding: 0.42857143em 0 0.42857143em 0.57142857em;
   font-family: inherit;
   font-size: inherit;
-  line-height: 1;
+  line-height: 1.28571429em;
   vertical-align: top;
 }
 .oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input::-webkit-input-placeholder {
