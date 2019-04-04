@@ -299,10 +299,10 @@ class Category {
 	/**
 	 * Generic accessor
 	 * @param string $key
-	 * @return bool
+	 * @return mixed
 	 */
 	private function getX( $key ) {
-		if ( !$this->initialize( self::LAZY_INIT_ROW ) ) {
+		if ( $this->{$key} === null && !$this->initialize( self::LAZY_INIT_ROW ) ) {
 			return false;
 		}
 		return $this->{$key};
