@@ -82,13 +82,22 @@ abstract class MWLBFactory {
 		// for Database classes in the relevant Installer subclass.
 		// Such as MysqlInstaller::openConnection and PostgresInstaller::openConnectionWithParams.
 		if ( $lbConf['class'] === Wikimedia\Rdbms\LBFactorySimple::class ) {
+			$httpMethod = $_SERVER['REQUEST_METHOD'] ?? null;
+			// T93097: hint for how file-based databases (e.g. sqlite) should go about locking.
+			// See https://www.sqlite.org/lang_transaction.html
+			// See https://www.sqlite.org/lockingv3.html#shared_lock
+			$isReadRequest = in_array( $httpMethod, [ 'GET', 'HEAD', 'OPTIONS', 'TRACE' ] );
+
 			if ( isset( $lbConf['servers'] ) ) {
 				// Server array is already explicitly configured; leave alone
 			} elseif ( is_array( $mainConfig->get( 'DBservers' ) ) ) {
 				$lbConf['servers'] = [];
 				foreach ( $mainConfig->get( 'DBservers' ) as $i => $server ) {
 					if ( $server['type'] === 'sqlite' ) {
-						$server += [ 'dbDirectory' => $mainConfig->get( 'SQLiteDataDir' ) ];
+						$server += [
+							'dbDirectory' => $mainConfig->get( 'SQLiteDataDir' ),
+							'trxMode' => $isReadRequest ? 'DEFERRED' : 'IMMEDIATE'
+						];
 					} elseif ( $server['type'] === 'postgres' ) {
 						$server += [
 							'port' => $mainConfig->get( 'DBport' ),
@@ -129,6 +138,7 @@ abstract class MWLBFactory {
 					'load' => 1,
 					'flags' => $flags,
 					'sqlMode' => $mainConfig->get( 'SQLMode' ),
+					'trxMode' => $isReadRequest ? 'DEFERRED' : 'IMMEDIATE'
 				];
 				if ( in_array( $server['type'], $typesWithSchema, true ) ) {
 					$server += [ 'schema' => $mainConfig->get( 'DBmwschema' ) ];
