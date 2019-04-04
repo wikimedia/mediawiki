@@ -220,7 +220,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 
 	/**
 	 * Get CSS selector templates used by this module.
-	 * @return string
+	 * @return string[]
 	 */
 	public function getSelectors() {
 		$this->loadFromDefinition();
@@ -428,7 +428,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 			'selectorWithVariant',
 		] as $member ) {
 			$options[$member] = $this->{$member};
-		};
+		}
 
 		$summary[] = [
 			'options' => $options,

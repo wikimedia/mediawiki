@@ -63,7 +63,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 		$this->request = $request;
 		$this->logger = $resourceLoader->getLogger();
 
-		// Future developers: Use WebRequest::getRawVal() instead getVal().
+		// Future developers: Use WebRequest::getRawVal() instead of getVal().
 		// The getVal() method performs slow Language+UTF logic. (f303bb9360)
 
 		// List of modules

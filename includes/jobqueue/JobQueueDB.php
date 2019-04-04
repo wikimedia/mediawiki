@@ -55,6 +55,7 @@ class JobQueueDB extends JobQueue {
 	 *               If not specified, the primary DB cluster for the wiki will be used.
 	 *               This can be overridden with a custom cluster so that DB handles will
 	 *               be retrieved via LBFactory::getExternalLB() and getConnection().
+	 *   - wanCache : An instance of WANObjectCache to use for caching.
 	 * @param array $params
 	 */
 	protected function __construct( array $params ) {
@@ -66,7 +67,7 @@ class JobQueueDB extends JobQueue {
 			$this->cluster = $params['cluster'];
 		}
 
-		$this->cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$this->cache = $params['wanCache'] ?? WANObjectCache::newEmpty();
 	}
 
 	protected function supportedOrders() {
@@ -275,8 +276,8 @@ class JobQueueDB extends JobQueue {
 			foreach ( array_chunk( $rows, 50 ) as $rowBatch ) {
 				$dbw->insert( 'job', $rowBatch, $method );
 			}
-			JobQueue::incrStats( 'inserts', $this->type, count( $rows ) );
-			JobQueue::incrStats( 'dupe_inserts', $this->type,
+			$this->incrStats( 'inserts', $this->type, count( $rows ) );
+			$this->incrStats( 'dupe_inserts', $this->type,
 				count( $rowSet ) + count( $rowList ) - count( $rows )
 			);
 		} catch ( DBError $e ) {
@@ -312,7 +313,7 @@ class JobQueueDB extends JobQueue {
 				if ( !$row ) {
 					break; // nothing to do
 				}
-				JobQueue::incrStats( 'pops', $this->type );
+				$this->incrStats( 'pops', $this->type );
 				// Get the job object from the row...
 				$title = Title::makeTitle( $row->job_namespace, $row->job_title );
 				$job = Job::factory( $row->job_cmd, $title,
@@ -500,7 +501,7 @@ class JobQueueDB extends JobQueue {
 				__METHOD__
 			);
 
-			JobQueue::incrStats( 'acks', $this->type );
+			$this->incrStats( 'acks', $this->type );
 		} catch ( DBError $e ) {
 			$this->throwDBException( $e );
 		}
@@ -727,7 +728,7 @@ class JobQueueDB extends JobQueue {
 					);
 					$affected = $dbw->affectedRows();
 					$count += $affected;
-					JobQueue::incrStats( 'recycles', $this->type, $affected );
+					$this->incrStats( 'recycles', $this->type, $affected );
 				}
 			}
 
@@ -753,7 +754,7 @@ class JobQueueDB extends JobQueue {
 				$dbw->delete( 'job', [ 'job_id' => $ids ], __METHOD__ );
 				$affected = $dbw->affectedRows();
 				$count += $affected;
-				JobQueue::incrStats( 'abandons', $this->type, $affected );
+				$this->incrStats( 'abandons', $this->type, $affected );
 			}
 
 			$dbw->unlock( "jobqueue-recycle-{$this->type}", __METHOD__ );
