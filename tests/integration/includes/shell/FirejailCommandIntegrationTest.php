@@ -40,10 +40,10 @@ class FirejailCommandIntegrationTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideExecute
 	 */
 	public function testExecute( $testCommand, $flag ) {
-		if ( preg_match( '/^sudo /', $testCommand ) ) {
-			if ( Shell::command( 'sudo', '-n', 'ls', '/' )->execute()->getExitCode() ) {
-				$this->markTestSkipped( 'need passwordless sudo' );
-			}
+		if ( preg_match( '/^sudo /', $testCommand )
+			&& Shell::command( 'sudo', '-n', 'ls', '/' )->execute()->getExitCode()
+		) {
+			$this->markTestSkipped( 'need passwordless sudo' );
 		}
 
 		$command = new FirejailCommand( 'firejail' );

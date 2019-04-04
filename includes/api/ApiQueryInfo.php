@@ -515,10 +515,8 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 		}
 
-		if ( $this->fld_varianttitles ) {
-			if ( isset( $this->variantTitles[$pageid] ) ) {
-				$pageInfo['varianttitles'] = $this->variantTitles[$pageid];
-			}
+		if ( $this->fld_varianttitles && isset( $this->variantTitles[$pageid] ) ) {
+			$pageInfo['varianttitles'] = $this->variantTitles[$pageid];
 		}
 
 		if ( $this->params['testactions'] ) {

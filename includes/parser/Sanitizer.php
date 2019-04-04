@@ -578,10 +578,8 @@ class Sanitizer {
 									$badtag = true;
 								}
 							}
-						} else {
-							if ( $t == 'table' ) {
-								$tagstack = array_pop( $tablestack );
-							}
+						} elseif ( $t == 'table' ) {
+							$tagstack = array_pop( $tablestack );
 						}
 						$newparams = '';
 					} else {

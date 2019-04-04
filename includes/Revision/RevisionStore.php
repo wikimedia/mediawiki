@@ -1863,12 +1863,12 @@ class RevisionStore
 		}
 
 		// if we have a content object, use it to set the model and type
-		if ( !empty( $fields['content'] ) ) {
-			if ( !( $fields['content'] instanceof Content ) && !is_array( $fields['content'] ) ) {
-				throw new MWException(
-					'content field must contain a Content object or an array of Content objects.'
-				);
-			}
+		if ( !empty( $fields['content'] ) && !( $fields['content'] instanceof Content )
+			&& !is_array( $fields['content'] )
+		) {
+			throw new MWException(
+				'content field must contain a Content object or an array of Content objects.'
+			);
 		}
 
 		if ( !empty( $fields['text_id'] ) ) {

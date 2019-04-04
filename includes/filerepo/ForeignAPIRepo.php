@@ -348,14 +348,11 @@ class ForeignAPIRepo extends FileRepo {
 		if ( !$knownThumbUrls ) {
 			/* No knownThumbUrls for this file */
 			$knownThumbUrls = [];
-		} else {
-			if ( isset( $knownThumbUrls[$sizekey] ) ) {
-				wfDebug( __METHOD__ . ': Got thumburl from local cache: ' .
-					"{$knownThumbUrls[$sizekey]} \n" );
+		} elseif ( isset( $knownThumbUrls[$sizekey] ) ) {
+			wfDebug( __METHOD__ . ': Got thumburl from local cache: ' .
+				"{$knownThumbUrls[$sizekey]} \n" );
 
-				return $knownThumbUrls[$sizekey];
-			}
-			/* This size is not yet known */
+			return $knownThumbUrls[$sizekey];
 		}
 
 		$metadata = null;

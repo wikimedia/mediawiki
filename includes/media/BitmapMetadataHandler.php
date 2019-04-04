@@ -132,13 +132,13 @@ class BitmapMetadataHandler {
 					// Do some special casing for multilingual values.
 					// Don't discard translations if also as a simple value.
 					foreach ( $this->metadata[$type] as $itemName => $item ) {
-						if ( is_array( $item ) && isset( $item['_type'] ) && $item['_type'] === 'lang' ) {
-							if ( isset( $temp[$itemName] ) && !is_array( $temp[$itemName] ) ) {
-								$default = $temp[$itemName];
-								$temp[$itemName] = $item;
-								$temp[$itemName]['x-default'] = $default;
-								unset( $this->metadata[$type][$itemName] );
-							}
+						if ( is_array( $item ) && isset( $item['_type'] ) && $item['_type'] === 'lang' &&
+							isset( $temp[$itemName] ) && !is_array( $temp[$itemName] )
+						) {
+							$default = $temp[$itemName];
+							$temp[$itemName] = $item;
+							$temp[$itemName]['x-default'] = $default;
+							unset( $this->metadata[$type][$itemName] );
 						}
 					}
 

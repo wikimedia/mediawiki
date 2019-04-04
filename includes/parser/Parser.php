@@ -1421,13 +1421,12 @@ class Parser {
 		 */
 		if ( !( $this->mOptions->getDisableContentConversion()
 			|| isset( $this->mDoubleUnderscores['nocontentconvert'] ) )
+			&& !$this->mOptions->getInterfaceMessage()
 		) {
-			if ( !$this->mOptions->getInterfaceMessage() ) {
-				# The position of the convert() call should not be changed. it
-				# assumes that the links are all replaced and the only thing left
-				# is the <nowiki> mark.
-				$text = $this->getTargetLanguage()->convert( $text );
-			}
+			# The position of the convert() call should not be changed. it
+			# assumes that the links are all replaced and the only thing left
+			# is the <nowiki> mark.
+			$text = $this->getTargetLanguage()->convert( $text );
 		}
 
 		$text = $this->mStripState->unstripNoWiki( $text );
@@ -1767,10 +1766,8 @@ class Parser {
 						// if $firstsingleletterword is set, we don't
 						// look at the other options, so we can bail early.
 						break;
-					} else {
-						if ( $firstmultiletterword == -1 ) {
-							$firstmultiletterword = $i;
-						}
+					} elseif ( $firstmultiletterword == -1 ) {
+						$firstmultiletterword = $i;
 					}
 				}
 			}
@@ -2578,10 +2575,10 @@ class Parser {
 		 * Some of these require message or data lookups and can be
 		 * expensive to check many times.
 		 */
-		if ( Hooks::run( 'ParserGetVariableValueVarCache', [ &$parser, &$this->mVarCache ] ) ) {
-			if ( isset( $this->mVarCache[$index] ) ) {
-				return $this->mVarCache[$index];
-			}
+		if ( Hooks::run( 'ParserGetVariableValueVarCache', [ &$parser, &$this->mVarCache ] )
+			&& isset( $this->mVarCache[$index] )
+		) {
+			return $this->mVarCache[$index];
 		}
 
 		$ts = wfTimestamp( TS_UNIX, $this->mOptions->getTimestamp() );
@@ -5367,10 +5364,8 @@ class Parser {
 									if ( $paramName === 'no-link' ) {
 										$value = true;
 									}
-									if ( $paramName === 'link-url' ) {
-										if ( $this->mOptions->getExternalLinkTarget() ) {
-											$params[$type]['link-target'] = $this->mOptions->getExternalLinkTarget();
-										}
+									if ( ( $paramName === 'link-url' ) && $this->mOptions->getExternalLinkTarget() ) {
+										$params[$type]['link-target'] = $this->mOptions->getExternalLinkTarget();
 									}
 								}
 								break;
@@ -5711,15 +5706,15 @@ class Parser {
 			if ( $sectionIndex == 0 ) {
 				if ( $mode === 'get' ) {
 					return '';
-				} else {
-					return $newText;
 				}
+
+				return $newText;
 			} else {
 				if ( $mode === 'get' ) {
 					return $newText;
-				} else {
-					return $text;
 				}
+
+				return $text;
 			}
 		}
 
@@ -6334,10 +6329,8 @@ class Parser {
 	 */
 	public static function stripOuterParagraph( $html ) {
 		$m = [];
-		if ( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $html, $m ) ) {
-			if ( strpos( $m[1], '</p>' ) === false ) {
-				$html = $m[1];
-			}
+		if ( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $html, $m ) && strpos( $m[1], '</p>' ) === false ) {
+			$html = $m[1];
 		}
 
 		return $html;

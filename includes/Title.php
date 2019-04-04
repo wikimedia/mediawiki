@@ -3556,10 +3556,8 @@ class Title implements LinkTarget, IDBAccessObject {
 			$linkCache->clearLink( $this );
 			$this->mArticleID = $linkCache->addLinkObj( $this );
 			$linkCache->forUpdate( $oldUpdate );
-		} else {
-			if ( $this->mArticleID == -1 ) {
-				$this->mArticleID = $linkCache->addLinkObj( $this );
-			}
+		} elseif ( $this->mArticleID == -1 ) {
+			$this->mArticleID = $linkCache->addLinkObj( $this );
 		}
 		return $this->mArticleID;
 	}

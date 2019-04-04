@@ -286,18 +286,16 @@ class WikiImporter {
 
 			if ( !$title || $title->isExternal() ) {
 				$status->fatal( 'import-rootpage-invalid' );
+			} elseif ( !MWNamespace::hasSubpages( $title->getNamespace() ) ) {
+				$displayNSText = $title->getNamespace() == NS_MAIN
+					? wfMessage( 'blanknamespace' )->text()
+					: MediaWikiServices::getInstance()->getContentLanguage()->
+						getNsText( $title->getNamespace() );
+				$status->fatal( 'import-rootpage-nosubpage', $displayNSText );
 			} else {
-				if ( !MWNamespace::hasSubpages( $title->getNamespace() ) ) {
-					$displayNSText = $title->getNamespace() == NS_MAIN
-						? wfMessage( 'blanknamespace' )->text()
-						: MediaWikiServices::getInstance()->getContentLanguage()->
-							getNsText( $title->getNamespace() );
-					$status->fatal( 'import-rootpage-nosubpage', $displayNSText );
-				} else {
-					// set namespace to 'all', so the namespace check in processTitle() can pass
-					$this->setTargetNamespace( null );
-					$this->setImportTitleFactory( new SubpageImportTitleFactory( $title ) );
-				}
+				// set namespace to 'all', so the namespace check in processTitle() can pass
+				$this->setTargetNamespace( null );
+				$this->setImportTitleFactory( new SubpageImportTitleFactory( $title ) );
 			}
 		}
 		return $status;

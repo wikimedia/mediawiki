@@ -25,10 +25,8 @@ class WebInstallerWelcome extends WebInstallerPage {
 	 * @return string
 	 */
 	public function execute() {
-		if ( $this->parent->request->wasPosted() ) {
-			if ( $this->getVar( '_Environment' ) ) {
-				return 'continue';
-			}
+		if ( $this->parent->request->wasPosted() && $this->getVar( '_Environment' ) ) {
+			return 'continue';
 		}
 		$this->parent->output->addWikiTextAsInterface( wfMessage( 'config-welcome' )->plain() );
 		$status = $this->parent->doEnvironmentChecks();

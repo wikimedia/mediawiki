@@ -574,10 +574,8 @@ class Html {
 		$attrs = [];
 		if ( $nonce !== null ) {
 			$attrs['nonce'] = $nonce;
-		} else {
-			if ( ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() ) ) {
-				wfWarn( "no nonce set on script. CSP will break it" );
-			}
+		} elseif ( ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() ) ) {
+			wfWarn( "no nonce set on script. CSP will break it" );
 		}
 
 		if ( preg_match( '/<\/?script/i', $contents ) ) {
@@ -600,10 +598,8 @@ class Html {
 		$attrs = [ 'src' => $url ];
 		if ( $nonce !== null ) {
 			$attrs['nonce'] = $nonce;
-		} else {
-			if ( ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() ) ) {
-				wfWarn( "no nonce set on script. CSP will break it" );
-			}
+		} elseif ( ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() ) ) {
+			wfWarn( "no nonce set on script. CSP will break it" );
 		}
 
 		return self::element( 'script', $attrs );

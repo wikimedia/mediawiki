@@ -1398,10 +1398,10 @@ class ApiPageSet extends ApiBase {
 						$data[$toPageId],
 						$this->mGeneratorData[$fromNs][$fromDBkey]
 					);
-					if ( $result instanceof ApiResult ) {
-						if ( !$result->addValue( $path, $toPageId, $data[$toPageId], ApiResult::OVERRIDE ) ) {
-							return false;
-						}
+					if ( $result instanceof ApiResult &&
+						!$result->addValue( $path, $toPageId, $data[$toPageId], ApiResult::OVERRIDE )
+					) {
+						return false;
 					}
 				}
 			}

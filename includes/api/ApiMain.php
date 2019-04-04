@@ -1117,19 +1117,17 @@ class ApiMain extends ApiBase {
 					. $this->msg( 'api-usage-mailinglist-ref' )->inLanguage( $formatter->getLanguage() )->text()
 				)
 			);
-		} else {
-			if ( $config->get( 'ShowExceptionDetails' ) ) {
-				$result->addContentValue(
-					$path,
-					'trace',
-					$this->msg( 'api-exception-trace',
-						get_class( $e ),
-						$e->getFile(),
-						$e->getLine(),
-						MWExceptionHandler::getRedactedTraceAsString( $e )
-					)->inLanguage( $formatter->getLanguage() )->text()
-				);
-			}
+		} elseif ( $config->get( 'ShowExceptionDetails' ) ) {
+			$result->addContentValue(
+				$path,
+				'trace',
+				$this->msg( 'api-exception-trace',
+					get_class( $e ),
+					$e->getFile(),
+					$e->getLine(),
+					MWExceptionHandler::getRedactedTraceAsString( $e )
+				)->inLanguage( $formatter->getLanguage() )->text()
+			);
 		}
 
 		// Add the id and such

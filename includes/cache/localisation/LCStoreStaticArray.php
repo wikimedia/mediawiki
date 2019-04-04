@@ -45,11 +45,9 @@ class LCStoreStaticArray implements LCStore {
 	}
 
 	public function startWrite( $code ) {
-		if ( !file_exists( $this->directory ) ) {
-			if ( !wfMkdirParents( $this->directory, null, __METHOD__ ) ) {
-				throw new MWException( "Unable to create the localisation store " .
-					"directory \"{$this->directory}\"" );
-			}
+		if ( !file_exists( $this->directory ) && !wfMkdirParents( $this->directory, null, __METHOD__ ) ) {
+			throw new MWException( "Unable to create the localisation store " .
+				"directory \"{$this->directory}\"" );
 		}
 
 		$this->currentLang = $code;

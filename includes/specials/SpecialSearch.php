@@ -243,14 +243,12 @@ class SpecialSearch extends SpecialPage {
 			$this->namespaces = $nslist;
 		} elseif ( $profile === 'advanced' ) {
 			$this->namespaces = $nslist;
+		} elseif ( isset( $profiles[$profile]['namespaces'] ) ) {
+			$this->namespaces = $profiles[$profile]['namespaces'];
 		} else {
-			if ( isset( $profiles[$profile]['namespaces'] ) ) {
-				$this->namespaces = $profiles[$profile]['namespaces'];
-			} else {
-				// Unknown profile requested
-				$profile = 'default';
-				$this->namespaces = $profiles['default']['namespaces'];
-			}
+			// Unknown profile requested
+			$profile = 'default';
+			$this->namespaces = $profiles['default']['namespaces'];
 		}
 
 		$this->fulltext = $request->getVal( 'fulltext' );

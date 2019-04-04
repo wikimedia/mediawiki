@@ -237,11 +237,9 @@ class MultiHttpClient implements LoggerAwareInterface {
 					}
 				} while ( $mrc == CURLM_CALL_MULTI_PERFORM );
 				// Wait (if possible) for available work...
-				if ( $active > 0 && $mrc == CURLM_OK ) {
-					if ( curl_multi_select( $chm, $selectTimeout ) == -1 ) {
-						// PHP bug 63411; https://curl.haxx.se/libcurl/c/curl_multi_fdset.html
-						usleep( 5000 ); // 5ms
-					}
+				if ( $active > 0 && $mrc == CURLM_OK && curl_multi_select( $chm, $selectTimeout ) == -1 ) {
+					// PHP bug 63411; https://curl.haxx.se/libcurl/c/curl_multi_fdset.html
+					usleep( 5000 ); // 5ms
 				}
 			} while ( $active > 0 && $mrc == CURLM_OK );
 		}

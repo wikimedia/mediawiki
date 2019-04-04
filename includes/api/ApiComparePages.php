@@ -307,10 +307,8 @@ class ApiComparePages extends ApiBase {
 		foreach ( [ 'from', 'to' ] as $prefix ) {
 			if ( $params["{$prefix}rev"] !== null ) {
 				$rev = $this->getRevisionById( $params["{$prefix}rev"] );
-				if ( $rev ) {
-					if ( $rev->hasSlot( $role ) ) {
-						return $rev->getSlot( $role, RevisionRecord::RAW )->getModel();
-					}
+				if ( $rev && $rev->hasSlot( $role ) ) {
+					return $rev->getSlot( $role, RevisionRecord::RAW )->getModel();
 				}
 			}
 		}

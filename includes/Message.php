@@ -1163,14 +1163,11 @@ class Message implements MessageSpecifier, Serializable {
 					// escaped, breaking the replacement and avoiding XSS.
 					$replacementKeys['$' . ( $n + 1 )] = $marker . ( $n + 1 );
 				}
-			} else {
-				if ( $paramType === 'after' ) {
-					$replacementKeys[$marker . ( $n + 1 )] = $value;
-				}
+			} elseif ( $paramType === 'after' ) {
+				$replacementKeys[$marker . ( $n + 1 )] = $value;
 			}
 		}
-		$message = strtr( $message, $replacementKeys );
-		return $message;
+		return strtr( $message, $replacementKeys );
 	}
 
 	/**

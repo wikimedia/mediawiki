@@ -267,14 +267,10 @@ class SpecialContributions extends IncludableSpecialPage {
 				$message = 'sp-contributions-footer';
 			}
 
-			if ( $message ) {
-				if ( !$this->including() ) {
-					if ( !$this->msg( $message, $target )->isDisabled() ) {
-						$out->wrapWikiMsg(
-							"<div class='mw-contributions-footer'>\n$1\n</div>",
-							[ $message, $target ] );
-					}
-				}
+			if ( $message && !$this->including() && !$this->msg( $message, $target )->isDisabled() ) {
+				$out->wrapWikiMsg(
+					"<div class='mw-contributions-footer'>\n$1\n</div>",
+					[ $message, $target ] );
 			}
 		}
 	}

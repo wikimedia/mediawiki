@@ -1405,10 +1405,10 @@ class User implements IDBAccessObject, UserIdentity {
 	public function trackBlockWithCookie() {
 		$block = $this->getBlock();
 
-		if ( $block && $this->getRequest()->getCookie( 'BlockID' ) === null ) {
-			if ( $block->shouldTrackWithCookie( $this->isAnon() ) ) {
-				$block->setCookie( $this->getRequest()->response() );
-			}
+		if ( $block && $this->getRequest()->getCookie( 'BlockID' ) === null
+			&& $block->shouldTrackWithCookie( $this->isAnon() )
+		) {
+			$block->setCookie( $this->getRequest()->response() );
 		}
 	}
 
@@ -4424,10 +4424,8 @@ class User implements IDBAccessObject, UserIdentity {
 					[ 'LOCK IN SHARE MODE' ]
 				);
 				$loaded = false;
-				if ( $this->mId ) {
-					if ( $this->loadFromDatabase( self::READ_LOCKING ) ) {
-						$loaded = true;
-					}
+				if ( $this->mId && $this->loadFromDatabase( self::READ_LOCKING ) ) {
+					$loaded = true;
 				}
 				if ( !$loaded ) {
 					throw new MWException( $fname . ": hit a key conflict attempting " .

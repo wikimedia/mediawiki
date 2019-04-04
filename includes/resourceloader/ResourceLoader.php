@@ -1160,11 +1160,9 @@ MESSAGE;
 				// Use a linebreak between module script and state script (T162719)
 				$out = $this->ensureNewline( $out ) . $stateScript;
 			}
-		} else {
-			if ( $states ) {
-				$this->errors[] = 'Problematic modules: '
-					. self::encodeJsonForScript( $states );
-			}
+		} elseif ( $states ) {
+			$this->errors[] = 'Problematic modules: '
+				. self::encodeJsonForScript( $states );
 		}
 
 		return $out;

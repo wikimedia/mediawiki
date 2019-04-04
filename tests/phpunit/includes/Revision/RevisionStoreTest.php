@@ -528,12 +528,10 @@ class RevisionStoreTest extends MediaWikiTestCase {
 				'old_text' => 'Hello World',
 				'old_flags' => 'utf-8',
 			];
-		} else {
-			if ( !isset( $row['content'] ) && isset( $array['old_text'] ) ) {
-				$row['content'] = [
-					'main' => new WikitextContent( $array['old_text'] ),
-				];
-			}
+		} elseif ( !isset( $row['content'] ) && isset( $array['old_text'] ) ) {
+			$row['content'] = [
+				'main' => new WikitextContent( $array['old_text'] ),
+			];
 		}
 
 		return (object)$row;

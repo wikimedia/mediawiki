@@ -303,18 +303,16 @@ class LocalPasswordPrimaryAuthenticationProvider
 		}
 
 		$req = AuthenticationRequest::getRequestByClass( $reqs, PasswordAuthenticationRequest::class );
-		if ( $req ) {
-			if ( $req->username !== null && $req->password !== null ) {
-				// Nothing we can do besides claim it, because the user isn't in
-				// the DB yet
-				if ( $req->username !== $user->getName() ) {
-					$req = clone $req;
-					$req->username = $user->getName();
-				}
-				$ret = AuthenticationResponse::newPass( $req->username );
-				$ret->createRequest = $req;
-				return $ret;
+		if ( $req && $req->username !== null && $req->password !== null ) {
+			// Nothing we can do besides claim it, because the user isn't in
+			// the DB yet
+			if ( $req->username !== $user->getName() ) {
+				$req = clone $req;
+				$req->username = $user->getName();
 			}
+			$ret = AuthenticationResponse::newPass( $req->username );
+			$ret->createRequest = $req;
+			return $ret;
 		}
 		return AuthenticationResponse::newAbstain();
 	}

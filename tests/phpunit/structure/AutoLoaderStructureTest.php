@@ -112,14 +112,12 @@ class AutoLoaderStructureTest extends MediaWikiTestCase {
 				// 'class Foo {}'
 				$class = $fileNamespace . $match['class'];
 				$classesInFile[$class] = true;
+			} elseif ( !empty( $match['original'] ) ) {
+				// 'class_alias( "Foo", "Bar" );'
+				$aliasesInFile[$match['alias']] = $match['original'];
 			} else {
-				if ( !empty( $match['original'] ) ) {
-					// 'class_alias( "Foo", "Bar" );'
-					$aliasesInFile[$match['alias']] = $match['original'];
-				} else {
-					// 'class_alias( Foo::class, "Bar" );'
-					$aliasesInFile[$match['aliasString']] = $fileNamespace . $match['originalStatic'];
-				}
+				// 'class_alias( Foo::class, "Bar" );'
+				$aliasesInFile[$match['aliasString']] = $fileNamespace . $match['originalStatic'];
 			}
 		}
 

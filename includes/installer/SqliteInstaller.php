@@ -332,10 +332,8 @@ EOT;
 			if ( !is_writable( $file ) ) {
 				return Status::newFatal( 'config-sqlite-readonly', $file );
 			}
-		} else {
-			if ( file_put_contents( $file, '' ) === false ) {
-				return Status::newFatal( 'config-sqlite-cant-create-db', $file );
-			}
+		} elseif ( file_put_contents( $file, '' ) === false ) {
+			return Status::newFatal( 'config-sqlite-cant-create-db', $file );
 		}
 
 		return Status::newGood();

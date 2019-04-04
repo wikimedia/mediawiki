@@ -338,10 +338,8 @@ class BitmapHandler extends TransformationalImageHandler {
 			}
 			$im->setImageDepth( 8 );
 
-			if ( $rotation ) {
-				if ( !$im->rotateImage( new ImagickPixel( 'white' ), 360 - $rotation ) ) {
-					return $this->getMediaTransformError( $params, "Error rotating $rotation degrees" );
-				}
+			if ( $rotation && !$im->rotateImage( new ImagickPixel( 'white' ), 360 - $rotation ) ) {
+				return $this->getMediaTransformError( $params, "Error rotating $rotation degrees" );
 			}
 
 			if ( $this->isAnimatedImage( $image ) ) {

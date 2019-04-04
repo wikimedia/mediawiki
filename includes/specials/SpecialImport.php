@@ -391,10 +391,8 @@ class SpecialImport extends SpecialPage {
 					Xml::closeElement( 'form' ) .
 					Xml::closeElement( 'fieldset' )
 			);
-		} else {
-			if ( empty( $this->importSources ) ) {
-				$out->addWikiMsg( 'importnosources' );
-			}
+		} elseif ( empty( $this->importSources ) ) {
+			$out->addWikiMsg( 'importnosources' );
 		}
 
 		if ( $user->isAllowed( 'import' ) && !empty( $this->importSources ) ) {

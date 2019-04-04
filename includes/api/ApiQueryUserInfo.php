@@ -202,13 +202,11 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['realname'] = $user->getRealName();
 		}
 
-		if ( $user->isAllowed( 'viewmyprivateinfo' ) ) {
-			if ( isset( $this->prop['email'] ) ) {
-				$vals['email'] = $user->getEmail();
-				$auth = $user->getEmailAuthenticationTimestamp();
-				if ( !is_null( $auth ) ) {
-					$vals['emailauthenticated'] = wfTimestamp( TS_ISO_8601, $auth );
-				}
+		if ( $user->isAllowed( 'viewmyprivateinfo' ) && isset( $this->prop['email'] ) ) {
+			$vals['email'] = $user->getEmail();
+			$auth = $user->getEmailAuthenticationTimestamp();
+			if ( $auth !== null ) {
+				$vals['emailauthenticated'] = wfTimestamp( TS_ISO_8601, $auth );
 			}
 		}
 
