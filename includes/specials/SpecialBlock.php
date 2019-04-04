@@ -308,18 +308,6 @@ class SpecialBlock extends FormSpecialPage {
 			'cssclass' => 'mw-block-confirm',
 		];
 
-		// Block Id if a block already exists matching the target
-		$a['BlockId'] = [
-			'type' => 'hidden',
-			'default' => '',
-		];
-
-		// Has the form been submitted
-		$a['WasPosted'] = [
-			'type' => 'hidden',
-			'default' => '',
-		];
-
 		$this->maybeAlterFormDefaults( $a );
 
 		// Allow extensions to add more fields
@@ -397,14 +385,14 @@ class SpecialBlock extends FormSpecialPage {
 				$fields['Expiry']['default'] = wfTimestamp( TS_RFC2822, $block->getExpiry() );
 			}
 
-			$fields['BlockId']['default'] = $block->getId();
-
 			$this->alreadyBlocked = true;
 			$this->preErrors[] = [ 'ipb-needreblock', wfEscapeWikiText( (string)$block->getTarget() ) ];
 		}
 
-		if ( $this->getRequest()->wasPosted() ) {
-			$fields['WasPosted']['default'] = true;
+		if ( $this->alreadyBlocked || $this->getRequest()->wasPosted()
+			|| $this->getRequest()->getCheck( 'wpCreateAccount' )
+		) {
+			$this->getOutput()->addJsConfigVars( 'wgCreateAccountDirty', true );
 		}
 
 		# We always need confirmation to do HideUser
