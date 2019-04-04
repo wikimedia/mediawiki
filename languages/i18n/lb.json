@@ -774,7 +774,7 @@
 	"histfirst": "eelst",
 	"histlast": "neist",
 	"historysize": "({{PLURAL:$1|1 Byte|$1 Byten}})",
-	"historyempty": "(eidel)",
+	"historyempty": "eidel",
 	"history-feed-title": "Historique vun de Versiounen",
 	"history-feed-description": "Versiounshistorique fir dës Säit op der Wiki",
 	"history-feed-item-nocomment": "$1 ëm $2",

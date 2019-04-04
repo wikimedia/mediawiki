@@ -253,7 +253,7 @@
 	"api-help-flag-generator": "Tento modul lze využívat jako generátor.",
 	"api-help-source": "Zdroj: $1",
 	"api-help-license": "Licence: [[$1|$2]]",
-	"api-help-license-noname": "Licence: [[$1|Vizte odkaz]]",
+	"api-help-license-noname": "Licence: [[$1|Viz odkaz]]",
 	"api-help-license-unknown": "Licence: <span class=\"apihelp-unknown\">neznámá</span>",
 	"api-help-parameters": "{{PLURAL:$1|Parametr|Parametry}}:",
 	"api-help-param-deprecated": "Zastaralý.",

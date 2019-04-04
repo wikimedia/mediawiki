@@ -277,7 +277,7 @@
 	"config-install-begin": "Натискаючи \"{{int:config-continue}}\", Ви розпочинаєте встановлення MediaWiki.\nЯкщо Ви все ще хочете внести зміни, натисніть \"{{int:config-back}}\".",
 	"config-install-step-done": "виконано",
 	"config-install-step-failed": "не вдалося",
-	"config-install-extensions": "У тому числі розширення",
+	"config-install-extensions": "Зокрема розширення",
 	"config-install-database": "Налаштування бази даних",
 	"config-install-schema": "Створення схеми",
 	"config-install-pg-schema-not-exist": "Схеми PostgreSQL не існує.",

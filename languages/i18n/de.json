@@ -466,7 +466,7 @@
 	"virus-badscanner": "Fehlerhafte Konfiguration: unbekannter Virenscanner: <em>$1</em>",
 	"virus-scanfailed": "Scan fehlgeschlagen (Code $1)",
 	"virus-unknownscanner": "Unbekannter Virenscanner:",
-	"logouttext": "<strong>Du bist nun abgemeldet.</strong>\n\nBeachte, dass einige Seiten noch anzeigen können, dass du angemeldet bist, solange du nicht deinen Browsercache geleert hast.",
+	"logouttext": "<strong>Du bist nun abgemeldet.</strong>\n\nBeachte, dass einige Seiten noch anzeigen können, dass du angemeldet wärst, solange du nicht deinen Browsercache leerst.",
 	"cannotlogoutnow-title": "Abmeldung nicht erfolgreich",
 	"cannotlogoutnow-text": "Eine Abmeldung ist mit Verwendung von $1 nicht möglich.",
 	"welcomeuser": "Willkommen, $1!",
