@@ -161,6 +161,8 @@ For notes on 1.32.x and older releases, see HISTORY.
   if entirewatchlist is set, so updates may not be visible immediately
 * Block info will be added to "blocked" errors from more modules.
 * (T216245) Autoblocks will now be spread by action=edit and action=move.
+* action=query&meta=userinfo has a new uiprop, 'latestcontrib', that returns
+  the date of user's latest contribution.
 
 === Action API internal changes in 1.33 ===
 * A number of deprecated methods for API documentation, intended for overriding
