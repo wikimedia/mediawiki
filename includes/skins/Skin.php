@@ -55,7 +55,8 @@ abstract class Skin extends ContextSource {
 	 * @return array Associative array of strings
 	 */
 	static function getSkinNames() {
-		return SkinFactory::getDefaultInstance()->getSkinNames();
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		return $skinFactory->getSkinNames();
 	}
 
 	/**
@@ -517,6 +518,7 @@ abstract class Skin extends ContextSource {
 	function getCategoryLinks() {
 		$out = $this->getOutput();
 		$allCats = $out->getCategoryLinks();
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		if ( $allCats === [] ) {
 			return '';
@@ -531,10 +533,10 @@ abstract class Skin extends ContextSource {
 		if ( !empty( $allCats['normal'] ) ) {
 			$t = $embed . implode( $pop . $embed, $allCats['normal'] ) . $pop;
 
-			$msg = $this->msg( 'pagecategories' )->numParams( count( $allCats['normal'] ) )->escaped();
+			$msg = $this->msg( 'pagecategories' )->numParams( count( $allCats['normal'] ) );
 			$linkPage = $this->msg( 'pagecategorieslink' )->inContentLanguage()->text();
 			$title = Title::newFromText( $linkPage );
-			$link = $title ? Linker::link( $title, $msg ) : $msg;
+			$link = $title ? $linkRenderer->makeLink( $title, $msg->text() ) : $msg->escaped();
 			$s .= '<div id="mw-normal-catlinks" class="mw-normal-catlinks">' .
 				$link . $colon . '<ul>' . $t . '</ul></div>';
 		}
@@ -582,6 +584,7 @@ abstract class Skin extends ContextSource {
 	 */
 	function drawCategoryBrowser( $tree ) {
 		$return = '';
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		foreach ( $tree as $element => $parent ) {
 			if ( empty( $parent ) ) {
@@ -594,7 +597,7 @@ abstract class Skin extends ContextSource {
 
 			# add our current element to the list
 			$eltitle = Title::newFromText( $element );
-			$return .= Linker::link( $eltitle, htmlspecialchars( $eltitle->getText() ) );
+			$return .= $linkRenderer->makeLink( $eltitle, $eltitle->getText() );
 		}
 
 		return $return;
@@ -716,6 +719,7 @@ abstract class Skin extends ContextSource {
 	function getUndeleteLink() {
 		$action = $this->getRequest()->getVal( 'action', 'view' );
 		$title = $this->getTitle();
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		if ( ( !$title->exists() || $action == 'history' ) &&
 			$title->quickUserCan( 'deletedhistory', $this->getUser() )
@@ -730,9 +734,9 @@ abstract class Skin extends ContextSource {
 				}
 
 				return $this->msg( $msg )->rawParams(
-					Linker::linkKnown(
+					$linkRenderer->makeKnownLink(
 						SpecialPage::getTitleFor( 'Undelete', $this->getTitle()->getPrefixedDBkey() ),
-						$this->msg( 'restorelink' )->numParams( $n )->escaped() )
+						$this->msg( 'restorelink' )->numParams( $n )->text() )
 					)->escaped();
 			}
 		}
@@ -745,6 +749,7 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	function subPageSubtitle( $out = null ) {
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( $out === null ) {
 			$out = $this->getOutput();
 		}
@@ -774,9 +779,8 @@ abstract class Skin extends ContextSource {
 					$linkObj = Title::newFromText( $growinglink );
 
 					if ( is_object( $linkObj ) && $linkObj->isKnown() ) {
-						$getlink = Linker::linkKnown(
-							$linkObj,
-							htmlspecialchars( $display )
+						$getlink = $linkRenderer->makeKnownLink(
+							$linkObj, $display
 						);
 
 						$c++;
@@ -820,6 +824,7 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	function getCopyright( $type = 'detect' ) {
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( $type == 'detect' ) {
 			if ( !$this->isRevisionCurrent()
 				&& !$this->msg( 'history_copyright' )->inContentLanguage()->isDisabled()
@@ -840,7 +845,9 @@ abstract class Skin extends ContextSource {
 
 		if ( $config->get( 'RightsPage' ) ) {
 			$title = Title::newFromText( $config->get( 'RightsPage' ) );
-			$link = Linker::linkKnown( $title, $config->get( 'RightsText' ) );
+			$link = $linkRenderer->makeKnownLink(
+				$title, new HtmlArmor( $config->get( 'RightsText' ) )
+			);
 		} elseif ( $config->get( 'RightsUrl' ) ) {
 			$link = Linker::makeExternalLink( $config->get( 'RightsUrl' ), $config->get( 'RightsText' ) );
 		} elseif ( $config->get( 'RightsText' ) ) {
@@ -996,9 +1003,10 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	function mainPageLink() {
-		$s = Linker::linkKnown(
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$s = $linkRenderer->makeKnownLink(
 			Title::newMainPage(),
-			$this->msg( 'mainpage' )->escaped()
+			$this->msg( 'mainpage' )->text()
 		);
 
 		return $s;
@@ -1012,13 +1020,14 @@ abstract class Skin extends ContextSource {
 	 */
 	public function footerLink( $desc, $page ) {
 		$title = $this->footerLinkTitle( $desc, $page );
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( !$title ) {
 			return '';
 		}
 
-		return Linker::linkKnown(
+		return $linkRenderer->makeKnownLink(
 			$title,
-			$this->msg( $desc )->escaped()
+			$this->msg( $desc )->text()
 		);
 	}
 
@@ -1438,6 +1447,7 @@ abstract class Skin extends ContextSource {
 		$user = $this->getUser();
 		$newtalks = $user->getNewMessageLinks();
 		$out = $this->getOutput();
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		// Allow extensions to disable or modify the new messages alert
 		if ( !Hooks::run( 'GetNewMessagesAlert', [ &$newMessagesAlert, $newtalks, $user, $out ] ) ) {
@@ -1468,16 +1478,16 @@ abstract class Skin extends ContextSource {
 			// 999 signifies "more than one revision". We don't know how many, and even if we did,
 			// the number of revisions or authors is not necessarily the same as the number of
 			// "messages".
-			$newMessagesLink = Linker::linkKnown(
+			$newMessagesLink = $linkRenderer->makeKnownLink(
 				$uTalkTitle,
-				$this->msg( 'newmessageslinkplural' )->params( $plural )->escaped(),
+				$this->msg( 'newmessageslinkplural' )->params( $plural )->text(),
 				[],
 				$uTalkTitle->isRedirect() ? [ 'redirect' => 'no' ] : []
 			);
 
-			$newMessagesDiffLink = Linker::linkKnown(
+			$newMessagesDiffLink = $linkRenderer->makeKnownLink(
 				$uTalkTitle,
-				$this->msg( 'newmessagesdifflinkplural' )->params( $plural )->escaped(),
+				$this->msg( 'newmessagesdifflinkplural' )->params( $plural )->text(),
 				[],
 				$lastSeenRev !== null
 					? [ 'oldid' => $lastSeenRev->getId(), 'diff' => 'cur' ]
@@ -1634,11 +1644,12 @@ abstract class Skin extends ContextSource {
 
 		$result = '<span class="mw-editsection"><span class="mw-editsection-bracket">[</span>';
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$linksHtml = [];
 		foreach ( $links as $k => $linkDetails ) {
-			$linksHtml[] = Linker::linkKnown(
+			$linksHtml[] = $linkRenderer->makeKnownLink(
 				$linkDetails['targetTitle'],
-				htmlspecialchars( $linkDetails['text'] ),
+				$linkDetails['text'],
 				$linkDetails['attribs'],
 				$linkDetails['query']
 			);

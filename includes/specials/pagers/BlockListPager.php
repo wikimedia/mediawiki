@@ -249,6 +249,7 @@ class BlockListPager extends TablePager {
 	 */
 	private function getRestrictionListHTML( stdClass $row ) {
 		$items = [];
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		foreach ( $this->restrictions as $restriction ) {
 			if ( $restriction->getBlockId() !== (int)$row->ipb_id ) {
@@ -261,20 +262,20 @@ class BlockListPager extends TablePager {
 						$items[$restriction->getType()][] = Html::rawElement(
 							'li',
 							[],
-							Linker::link( $restriction->getTitle() )
+							$linkRenderer->makeLink( $restriction->getTitle() )
 						);
 					}
 					break;
 				case NamespaceRestriction::TYPE:
 					$text = $restriction->getValue() === NS_MAIN
-						? $this->msg( 'blanknamespace' )
+						? $this->msg( 'blanknamespace' )->text()
 						: $this->getLanguage()->getFormattedNsText(
 							$restriction->getValue()
 						);
 					$items[$restriction->getType()][] = Html::rawElement(
 						'li',
 						[],
-						Linker::link(
+						$linkRenderer->makeLink(
 							SpecialPage::getTitleValueFor( 'Allpages' ),
 							$text,
 							[],

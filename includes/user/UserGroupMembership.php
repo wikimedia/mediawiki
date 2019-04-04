@@ -395,12 +395,13 @@ class UserGroupMembership {
 
 		// link to the group description page, if it exists
 		$linkTitle = self::getGroupPage( $group );
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( $linkTitle ) {
 			if ( $format === 'wiki' ) {
 				$linkPage = $linkTitle->getFullText();
 				$groupLink = "[[$linkPage|$groupName]]";
 			} else {
-				$groupLink = Linker::link( $linkTitle, htmlspecialchars( $groupName ) );
+				$groupLink = $linkRenderer->makeLink( $linkTitle, $groupName );
 			}
 		} else {
 			$groupLink = htmlspecialchars( $groupName );
