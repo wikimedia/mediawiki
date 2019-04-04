@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.2
+ * OOUI v0.31.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-03-26T23:00:40Z
+ * Date: 2019-04-04T19:10:48Z
  */
 ( function ( OO ) {
 
@@ -1635,14 +1635,14 @@ OO.ui.StackLayout.prototype.updateHiddenState = function ( items, selectedItem )
  *         contentPanel: contentPanel
  *     } );
  *     menuLayout.$menu.append(
- *         menuPanel.$element.append( '<b>Menu panel</b>', select.$element );
+ *         menuPanel.$element.append( '<b>Menu panel</b>', select.$element )
  *     );
  *     menuLayout.$content.append(
  *         contentPanel.$element.append(
  *             '<b>Content panel</b>',
  *             '<p>Note that the menu is positioned relative to the content panel: ' +
  *             'top, bottom, after, before.</p>'
- *          );
+ *          )
  *     );
  *     $( document.body ).append( menuLayout.$element );
  *
@@ -5566,7 +5566,7 @@ OO.ui.MenuTagMultiselectWidget.prototype.getAllowedValues = function () {
  * @cfg {boolean} [buttonOnly=false] Show only the select file button, no info field. Requires
  *  showDropTarget to be false.
  * @cfg {boolean} [showDropTarget=false] Whether to show a drop target. Requires droppable to be
- *  true.
+ *  true. Not yet supported in multiple file mode.
  * @cfg {number} [thumbnailSizeLimit=20] File size limit in MiB above which to not try and show a
  *  preview (for performance).
  */
@@ -5599,7 +5599,8 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 
 	// Properties
 	droppable = config.droppable && isSupported;
-	this.showDropTarget = droppable && config.showDropTarget;
+	// TODO: Support drop target when multiple is set
+	this.showDropTarget = droppable && config.showDropTarget && !this.multiple;
 	this.thumbnailSizeLimit = config.thumbnailSizeLimit;
 
 	// Events
@@ -5636,6 +5637,13 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 		this.$element.append( this.selectButton.$element );
 		this.fieldLayout.$element.remove();
 	}
+
+	this.$input
+		.on( 'click', function ( e ) {
+			// Prevents dropTarget to get clicked which calls
+			// a click on this input
+			e.stopPropagation();
+		} );
 
 	this.$element.addClass( 'oo-ui-selectFileWidget' );
 
@@ -5681,21 +5689,36 @@ OO.ui.SelectFileWidget.static.isSupportedCache = null;
 /**
  * Get the current value of the field
  *
- * @return {File|null}
+ * For single file widgets returns a File or null.
+ * For multiple file widgets returns a list of Files.
+ *
+ * @return {File|File[]|null}
  */
 OO.ui.SelectFileWidget.prototype.getValue = function () {
-	return this.currentFile;
+	return this.multiple ? this.currentFiles : this.currentFiles[ 0 ];
 };
 
 /**
  * Set the current value of the field
  *
- * @param {File|null} file File to select
+ * @param {File[]|null} files Files to select
  */
-OO.ui.SelectFileWidget.prototype.setValue = function ( file ) {
-	if ( this.currentFile !== file ) {
-		this.currentFile = file;
-		this.emit( 'change', this.currentFile );
+OO.ui.SelectFileWidget.prototype.setValue = function ( files ) {
+	if ( files && !this.multiple ) {
+		files = files.slice( 0, 1 );
+	}
+
+	function comparableFile( file ) {
+		// Use extend to convert to plain objects so they can be compared.
+		return $.extend( {}, file );
+	}
+
+	if ( !OO.compare(
+		files && files.map( comparableFile ),
+		this.currentFiles && this.currentFiles.map( comparableFile )
+	) ) {
+		this.currentFiles = files || [];
+		this.emit( 'change', this.currentFiles );
 	}
 };
 
@@ -5703,7 +5726,9 @@ OO.ui.SelectFileWidget.prototype.setValue = function ( file ) {
  * @inheritdoc
  */
 OO.ui.SelectFileWidget.prototype.getFilename = function () {
-	return this.currentFile ? this.currentFile.name : '';
+	return this.currentFiles.map( function ( file ) {
+		return file.name;
+	} ).join( ', ' );
 };
 
 /**
@@ -5724,12 +5749,12 @@ OO.ui.SelectFileWidget.prototype.updateUI = function () {
 	// Parent method
 	OO.ui.SelectFileWidget.super.prototype.updateUI.call( this );
 
-	if ( this.currentFile ) {
+	if ( this.currentFiles.length ) {
 		this.$element.removeClass( 'oo-ui-selectFileInputWidget-empty' );
 
 		if ( this.showDropTarget ) {
 			this.pushPending();
-			this.loadAndGetImageUrl().done( function ( url ) {
+			this.loadAndGetImageUrl( this.currentFiles[ 0 ] ).done( function ( url ) {
 				this.$thumbnail.css( 'background-image', 'url( ' + url + ' )' );
 			}.bind( this ) ).fail( function () {
 				this.$thumbnail.append(
@@ -5760,15 +5785,14 @@ OO.ui.SelectFileWidget.prototype.updateUI = function () {
 /**
  * If the selected file is an image, get its URL and load it.
  *
+ * @param {File} file File
  * @return {jQuery.Promise} Promise resolves with the image URL after it has loaded
  */
-OO.ui.SelectFileWidget.prototype.loadAndGetImageUrl = function () {
+OO.ui.SelectFileWidget.prototype.loadAndGetImageUrl = function ( file ) {
 	var deferred = $.Deferred(),
-		file = this.currentFile,
 		reader = new FileReader();
 
 	if (
-		file &&
 		( OO.getProp( file, 'type' ) || '' ).indexOf( 'image/' ) === 0 &&
 		file.size < this.thumbnailSizeLimit * 1024 * 1024
 	) {
@@ -5796,48 +5820,23 @@ OO.ui.SelectFileWidget.prototype.loadAndGetImageUrl = function () {
 };
 
 /**
- * Add the input to the widget
- *
- * @private
- */
-OO.ui.SelectFileWidget.prototype.addInput = function () {
-	if ( this.$input ) {
-		this.$input.remove();
-	}
-
-	this.$input = $( '<input>' )
-		// Set empty title so that browser default tooltips like "No file chosen" don't appear.
-		// This input is "empty" after a file was actually chosen, which is misleading.
-		.attr( 'title', '' );
-	this.setupInput();
-};
-
-/**
- * @inheritdoc
- */
-OO.ui.SelectFileWidget.prototype.setupInput = function () {
-	// Parent method
-	OO.ui.SelectFileWidget.super.prototype.setupInput.call( this );
-
-	this.$input.on( 'click', function ( e ) {
-		// Prevents dropTarget to get clicked which calls
-		// a click on this input
-		e.stopPropagation();
-	} );
-};
-
-/**
  * @inheritdoc
  */
 OO.ui.SelectFileWidget.prototype.onFileSelected = function ( e ) {
-	var file = OO.getProp( e.target, 'files', 0 ) || null;
+	var files;
 
-	if ( file && !this.isAllowedType( file.type ) ) {
-		file = null;
+	if ( this.inputClearing ) {
+		return;
 	}
 
-	this.setValue( file );
-	this.addInput();
+	files = this.filterFiles( e.target.files || [] );
+
+	// After a file is selected clear the native widget to avoid confusion
+	this.inputClearing = true;
+	this.$input[ 0 ].value = '';
+	this.inputClearing = false;
+
+	this.setValue( files );
 };
 
 /**
@@ -5862,8 +5861,8 @@ OO.ui.SelectFileWidget.prototype.onDropTargetClick = function () {
  * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.SelectFileWidget.prototype.onDragEnterOrOver = function ( e ) {
-	var itemOrFile,
-		droppableFile = false,
+	var itemsOrFiles,
+		hasDroppableFile = false,
 		dt = e.originalEvent.dataTransfer;
 
 	e.preventDefault();
@@ -5877,21 +5876,21 @@ OO.ui.SelectFileWidget.prototype.onDragEnterOrOver = function ( e ) {
 
 	// DataTransferItem and File both have a type property, but in Chrome files
 	// have no information at this point.
-	itemOrFile = OO.getProp( dt, 'items', 0 ) || OO.getProp( dt, 'files', 0 );
-	if ( itemOrFile ) {
-		if ( this.isAllowedType( itemOrFile.type ) ) {
-			droppableFile = true;
+	itemsOrFiles = dt.items || dt.files;
+	if ( itemsOrFiles && itemsOrFiles.length ) {
+		if ( this.filterFiles( itemsOrFiles ).length ) {
+			hasDroppableFile = true;
 		}
 	// dt.types is Array-like, but not an Array
 	} else if ( Array.prototype.indexOf.call( OO.getProp( dt, 'types' ) || [], 'Files' ) !== -1 ) {
 		// File information is not available at this point for security so just assume
 		// it is acceptable for now.
 		// https://bugzilla.mozilla.org/show_bug.cgi?id=640534
-		droppableFile = true;
+		hasDroppableFile = true;
 	}
 
-	this.$element.toggleClass( 'oo-ui-selectFileWidget-canDrop', droppableFile );
-	if ( !droppableFile ) {
+	this.$element.toggleClass( 'oo-ui-selectFileWidget-canDrop', hasDroppableFile );
+	if ( !hasDroppableFile ) {
 		dt.dropEffect = 'none';
 	}
 
@@ -5916,7 +5915,7 @@ OO.ui.SelectFileWidget.prototype.onDragLeave = function () {
  * @return {undefined/boolean} False to prevent default if event is handled
  */
 OO.ui.SelectFileWidget.prototype.onDrop = function ( e ) {
-	var file = null,
+	var files,
 		dt = e.originalEvent.dataTransfer;
 
 	e.preventDefault();
@@ -5927,13 +5926,8 @@ OO.ui.SelectFileWidget.prototype.onDrop = function ( e ) {
 		return false;
 	}
 
-	file = OO.getProp( dt, 'files', 0 );
-	if ( file && !this.isAllowedType( file.type ) ) {
-		file = null;
-	}
-	if ( file ) {
-		this.setValue( file );
-	}
+	files = this.filterFiles( dt.files || [] );
+	this.setValue( files );
 
 	return false;
 };
