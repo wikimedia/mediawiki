@@ -590,6 +590,13 @@ class RecentChange implements Taggable {
 	public function doMarkPatrolled( User $user, $auto = false, $tags = null ) {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseFilePatrol;
 
+		// Fix up $tags so that the MarkPatrolled hook below always gets an array
+		if ( $tags === null ) {
+			$tags = [];
+		} elseif ( is_string( $tags ) ) {
+			$tags = [ $tags ];
+		}
+
 		$errors = [];
 		// If recentchanges patrol is disabled, only new pages or new file versions
 		// can be patrolled, provided the appropriate config variable is set
@@ -602,7 +609,7 @@ class RecentChange implements Taggable {
 		$right = $auto ? 'autopatrol' : 'patrol';
 		$errors = array_merge( $errors, $this->getTitle()->getUserPermissionsErrors( $right, $user ) );
 		if ( !Hooks::run( 'MarkPatrolled',
-					[ $this->getAttribute( 'rc_id' ), &$user, false, $auto ] )
+					[ $this->getAttribute( 'rc_id' ), &$user, false, $auto, &$tags ] )
 		) {
 			$errors[] = [ 'hookaborted' ];
 		}
