@@ -11,7 +11,8 @@
 			"LordMsz",
 			"Seb35",
 			"Ilimanaq29",
-			"Dvorapa"
+			"Dvorapa",
+			"Patriccck"
 		]
 	},
 	"config-desc": "Instalační program pro MediaWiki",
@@ -137,7 +138,7 @@
 	"config-missing-db-name": "Musíte zadat hodnotu pro „{{int:config-db-name}}“.",
 	"config-missing-db-host": "Musíte zadat hodnotu pro „{{int:config-db-host}}“.",
 	"config-missing-db-server-oracle": "Musíte zadat hodnotu pro „{{int:config-db-host-oracle}}“.",
-	"config-invalid-db-server-oracle": "Chybné databázové TNS „$1“.\nPoužívejte buď „TNS Name“ nebo „Easy Connect“ (vizte [http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods]).",
+	"config-invalid-db-server-oracle": "Chybné databázové TNS „$1“.\nPoužívejte buď „TNS Name“ nebo „Easy Connect“ (viz [http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods]).",
 	"config-invalid-db-name": "Chybné jméno databáze „$1“.\nPoužívejte pouze ASCII písmena (a-z, A-Z), čísla (0-9), podtržítko (_) a spojovník (-).",
 	"config-invalid-db-prefix": "Chybný databázový prefix „$1“.\nPoužívejte pouze ASCII písmena (a-z, A-Z), čísla (0-9), podtržítko (_) a spojovník (-).",
 	"config-connection-error": "$1.\n\nZkontrolujte server, uživatelské jméno a heslo a zkuste to znovu. Pokud jako adresu databázového serveru používáte „localhost“, zkuste použít „127.0.0.1“ (a naopak).",
@@ -216,7 +217,7 @@
 	"config-profile-no-anon": "Vyžadována registrace uživatelů",
 	"config-profile-fishbowl": "Editace jen pro vybrané",
 	"config-profile-private": "Soukromá wiki",
-	"config-profile-help": "Wiki fungují nejlépe, když je necháte editovat co největším možným počtem lidí.\nV MediaWiki můžete snadno kontrolovat poslední změny a vracet zpět libovolnou škodu způsobenou hloupými nebo zlými uživateli.\n\nMnoho lidí však zjistilo, že je MediaWiki užitečné v širokém spektru rolí a někdy není snadné všechny přesvědčit o výhodách wikizvyklostí.\nTakže si můžete vybrat.\n\nModel '''{{int:config-profile-wiki}}''' dovoluje editovat všem, aniž by se museli přihlašovat.\nNa wiki, kde je '''{{int:config-profile-no-anon}}''', se lépe řídí zodpovědnost, ale může to odradit náhodné přispěvatele.\n\nProfil '''{{int:config-profile-fishbowl}}''' umožňuje schváleným uživatelům editovat, ale veřejnost si může stránky prohlížet včetně jejich historie.\n'''{{int:config-profile-private}}''' dovoluje stránky prohlížet jen schváleným uživatelům, kteří je i mohou editovat.\n\nPo instalaci je možná komplexní konfigurace uživatelských práv; vizte [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights odpovídající stránku příručky].",
+	"config-profile-help": "Wiki fungují nejlépe, když je necháte editovat co největším možným počtem lidí.\nV MediaWiki můžete snadno kontrolovat poslední změny a vracet zpět libovolnou škodu způsobenou hloupými nebo zlými uživateli.\n\nMnoho lidí však zjistilo, že je MediaWiki užitečné v širokém spektru rolí a někdy není snadné všechny přesvědčit o výhodách wikizvyklostí.\nTakže si můžete vybrat.\n\nModel '''{{int:config-profile-wiki}}''' dovoluje editovat všem, aniž by se museli přihlašovat.\nNa wiki, kde je '''{{int:config-profile-no-anon}}''', se lépe řídí zodpovědnost, ale může to odradit náhodné přispěvatele.\n\nProfil '''{{int:config-profile-fishbowl}}''' umožňuje schváleným uživatelům editovat, ale veřejnost si může stránky prohlížet včetně jejich historie.\n'''{{int:config-profile-private}}''' dovoluje stránky prohlížet jen schváleným uživatelům, kteří je i mohou editovat.\n\nPo instalaci je možná komplexní konfigurace uživatelských práv; viz [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights odpovídající stránku příručky].",
 	"config-license": "Autorská práva a licence:",
 	"config-license-none": "Bez patičky s licencí",
 	"config-license-cc-by-sa": "Creative Commons Uveďte autora-Zachovejte licenci",

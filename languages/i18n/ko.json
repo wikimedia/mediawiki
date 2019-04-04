@@ -870,7 +870,7 @@
 	"histfirst": "오래됨",
 	"histlast": "최신",
 	"historysize": "({{PLURAL:$1|1 바이트|$1 바이트}})",
-	"historyempty": "(비었음)",
+	"historyempty": "비었음",
 	"history-feed-title": "편집 역사",
 	"history-feed-description": "이 문서의 편집 역사",
 	"history-feed-item-nocomment": "$2에 $1님의 편집",

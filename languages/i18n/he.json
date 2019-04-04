@@ -837,7 +837,7 @@
 	"histfirst": "הישנות ביותר",
 	"histlast": "החדשות ביותר",
 	"historysize": "({{PLURAL:$1|בית אחד|$1 בתים}})",
-	"historyempty": "(ריק)",
+	"historyempty": "ריק",
 	"history-feed-title": "היסטוריית גרסאות",
 	"history-feed-description": "היסטוריית הגרסאות של הדף הזה בוויקי",
 	"history-feed-item-nocomment": "$1 ב־$2",

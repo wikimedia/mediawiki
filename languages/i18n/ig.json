@@ -159,6 +159,7 @@
 	"help": "Inyeáká",
 	"help-mediawiki": "Enyemaka gbasara MidiyaWiki",
 	"search": "Tùwe",
+	"search-ignored-headings": "#</pre><!--hapụ akara a otu ọdi-->",
 	"searchbutton": "Tùwe",
 	"go": "Gá",
 	"searcharticle": "Gá",
