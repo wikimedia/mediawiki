@@ -91,7 +91,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgMultiContentRevisionSchemaMigrationStage' => $this->getMcrMigrationStage(),
 			'wgContentHandlerUseDB' => $this->getContentHandlerUseDB(),
-			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_OLD,
+			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_NEW,
 		] );
 
 		$this->overrideMwServices();

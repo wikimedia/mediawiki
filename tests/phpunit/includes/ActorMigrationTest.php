@@ -658,14 +658,18 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$callback( 1, [] );
 	}
 
-	public function testInsertUserIdentity() {
+	/**
+	 * @dataProvider provideStages
+	 * @param int $stage
+	 */
+	public function testInsertUserIdentity( $stage ) {
 		$this->setMwGlobals( [
 			// for User::getActorId()
-			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+			'wgActorTableSchemaMigrationStage' => $stage
 		] );
 		$this->overrideMwServices();
 
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getMutableTestUser()->getUser();
 		$userIdentity = $this->getMock( UserIdentity::class );
 		$userIdentity->method( 'getId' )->willReturn( $user->getId() );
 		$userIdentity->method( 'getName' )->willReturn( $user->getName() );
@@ -673,7 +677,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 
 		list( $cFields, $cCallback ) = MediaWikiServices::getInstance()->getCommentStore()
 			->insertWithTempTable( $this->db, 'rev_comment', '' );
-		$m = $this->makeMigration( SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW );
+		$m = $this->makeMigration( $stage );
 		list( $fields, $callback ) =
 			$m->getInsertValuesWithTempTable( $this->db, 'rev_user', $userIdentity );
 		$extraFields = [
@@ -692,13 +696,25 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		);
 		$this->assertSame( $user->getId(), (int)$row->rev_user );
 		$this->assertSame( $user->getName(), $row->rev_user_text );
-		$this->assertSame( $user->getActorId(), (int)$row->rev_actor );
+		$this->assertSame(
+			( $stage & SCHEMA_COMPAT_READ_NEW ) ? $user->getActorId() : 0,
+			(int)$row->rev_actor
+		);
 
-		$m = $this->makeMigration( SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW );
+		$m = $this->makeMigration( $stage );
 		$fields = $m->getInsertValues( $this->db, 'dummy_user', $userIdentity );
-		$this->assertSame( $user->getId(), $fields['dummy_user'] );
-		$this->assertSame( $user->getName(), $fields['dummy_user_text'] );
-		$this->assertSame( $user->getActorId(), $fields['dummy_actor'] );
+		if ( $stage & SCHEMA_COMPAT_WRITE_OLD ) {
+			$this->assertSame( $user->getId(), $fields['dummy_user'] );
+			$this->assertSame( $user->getName(), $fields['dummy_user_text'] );
+		} else {
+			$this->assertArrayNotHasKey( 'dummy_user', $fields );
+			$this->assertArrayNotHasKey( 'dummy_user_text', $fields );
+		}
+		if ( $stage & SCHEMA_COMPAT_WRITE_NEW ) {
+			$this->assertSame( $user->getActorId(), $fields['dummy_actor'] );
+		} else {
+			$this->assertArrayNotHasKey( 'dummy_actor', $fields );
+		}
 	}
 
 	public function testNewMigration() {

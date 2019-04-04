@@ -15,7 +15,8 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 			$wgActorTableSchemaMigrationStage = $v;
 			$this->overrideMwServices();
 		}, [ $wgActorTableSchemaMigrationStage ] );
-		$wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD;
+		// Needs to WRITE_BOTH so READ_OLD tests below work. READ mode here doesn't really matter.
+		$wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW;
 		$this->overrideMwServices();
 
 		$users = [
