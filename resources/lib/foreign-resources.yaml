@@ -121,6 +121,10 @@ jquery:
   integrity: sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=
   dest: jquery.js
 
+# TODO: jquery.async.js
+
+# TODO: jquery.chosen
+
 jquery.client:
   type: tar
   src: https://registry.npmjs.org/jquery-client/-/jquery-client-2.0.2.tgz
@@ -159,6 +163,8 @@ jquery.hoverIntent:
   src: https://raw.githubusercontent.com/briancherne/jquery-hoverIntent/823603fdac/jquery.hoverIntent.js
   integrity: sha384-lca0haN0hqFGGh2aYUhtAgX9dhVHfQnTADH4svDeM6gcXnL7aFGeAi1NYwipDMyS
 
+# TODO: jquery.i18n
+
 jquery.jStorage:
   type: file
   src: https://raw.githubusercontent.com/andris9/jStorage/v0.4.12/jstorage.js
@@ -168,6 +174,8 @@ jquery.throttle-debounce:
   type: file
   src: https://raw.githubusercontent.com/cowboy/jquery-throttle-debounce/v1.1/jquery.ba-throttle-debounce.js
   integrity: sha384-ULOy4DbAghrCqRcrTJLXOY9e4gDpWh0BeEf6xMSL0VtNudXWggcb6AmrVrl4KDAP
+
+# TODO: jquery.ui (!)
 
 moment:
   type: tar
