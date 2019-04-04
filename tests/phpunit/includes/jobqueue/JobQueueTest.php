@@ -32,6 +32,8 @@ class JobQueueTest extends MediaWikiTestCase {
 		}
 		$baseConfig['type'] = 'null';
 		$baseConfig['domain'] = WikiMap::getCurrentWikiDbDomain()->getId();
+		$baseConfig['stash'] = new HashBagOStuff();
+		$baseConfig['wanCache'] = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 		$variants = [
 			'queueRand' => [ 'order' => 'random', 'claimTTL' => 0 ],
 			'queueRandTTL' => [ 'order' => 'random', 'claimTTL' => 10 ],

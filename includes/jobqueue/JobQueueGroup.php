@@ -118,6 +118,11 @@ class JobQueueGroup {
 			$conf['readOnlyReason'] = $this->readOnlyReason;
 		}
 
+		$services = MediaWikiServices::getInstance();
+		$conf['stats'] = $services->getStatsdDataFactory();
+		$conf['wanCache'] = $services->getMainWANObjectCache();
+		$conf['stash'] = $services->getMainObjectStash();
+
 		return JobQueue::factory( $conf );
 	}
 
@@ -232,7 +237,17 @@ class JobQueueGroup {
 	 * @return Job|bool Returns false on failure
 	 */
 	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0, array $blacklist = [] ) {
+		global $wgJobClasses;
+
 		$job = false;
+
+		if ( !WikiMap::isCurrentWikiDbDomain( $this->domain ) ) {
+			throw new JobQueueError(
+				"Cannot pop '{$qtype}' job off foreign '{$this->domain}' wiki queue." );
+		} elseif ( is_string( $qtype ) && !isset( $wgJobClasses[$qtype] ) ) {
+			// Do not pop jobs if there is no class for the queue type
+			throw new JobQueueError( "Unrecognized job type '$qtype'." );
+		}
 
 		if ( is_string( $qtype ) ) { // specific job type
 			if ( !in_array( $qtype, $blacklist ) ) {
