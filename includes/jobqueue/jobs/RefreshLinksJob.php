@@ -157,6 +157,7 @@ class RefreshLinksJob extends Job {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scopedLock = LinksUpdate::acquirePageLock( $dbw, $page->getId(), 'job' );
 		if ( $scopedLock === null ) {
+			$lbFactory->commitMasterChanges( __METHOD__ );
 			// Another job is already updating the page, likely for an older revision (T170596).
 			$this->setLastError( 'LinksUpdate already running for this page, try again later.' );
 			return false;
@@ -179,10 +180,12 @@ class RefreshLinksJob extends Job {
 		}
 
 		if ( !$revision ) {
+			$lbFactory->commitMasterChanges( __METHOD__ );
 			$stats->increment( 'refreshlinks.rev_not_found' );
 			$this->setLastError( "Revision not found for {$title->getPrefixedDBkey()}" );
 			return false; // just deleted?
 		} elseif ( $revision->getId() != $latest || $revision->getPageId() !== $page->getId() ) {
+			$lbFactory->commitMasterChanges( __METHOD__ );
 			// Do not clobber over newer updates with older ones. If all jobs where FIFO and
 			// serialized, it would be OK to update links based on older revisions since it
 			// would eventually get to the latest. Since that is not the case (by design),
@@ -212,6 +215,7 @@ class RefreshLinksJob extends Job {
 			}
 
 			if ( $page->getLinksTimestamp() > $skewedTimestamp ) {
+				$lbFactory->commitMasterChanges( __METHOD__ );
 				// Something already updated the backlinks since this job was made
 				$stats->increment( 'refreshlinks.update_skipped' );
 				return true;
