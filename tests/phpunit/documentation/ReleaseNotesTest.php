@@ -34,7 +34,14 @@ class ReleaseNotesTest extends MediaWikiTestCase {
 		}
 
 		// Also test the README and similar files
-		$otherFiles = [ "$IP/COPYING", "$IP/FAQ", "$IP/INSTALL", "$IP/README", "$IP/SECURITY" ];
+		$otherFiles = [
+			"$IP/COPYING",
+			"$IP/FAQ",
+			"$IP/HISTORY",
+			"$IP/INSTALL",
+			"$IP/README",
+			"$IP/SECURITY"
+		];
 
 		foreach ( $otherFiles as $index => $fileName ) {
 			$this->assertFileLength( "Help", $fileName );
