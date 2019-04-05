@@ -39,6 +39,7 @@
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
@@ -82,6 +83,23 @@ return [
 			$services->getMainWANObjectCache(),
 			$services->getMainConfig(),
 			$services->getContentLanguage()
+		);
+	},
+
+	'BlockManager' => function ( MediaWikiServices $services ) : BlockManager {
+		$config = $services->getMainConfig();
+		$context = RequestContext::getMain();
+		return new BlockManager(
+			$context->getUser(),
+			$context->getRequest(),
+			$config->get( 'ApplyIpBlocksToXff' ),
+			$config->get( 'CookieSetOnAutoblock' ),
+			$config->get( 'CookieSetOnIpBlock' ),
+			$config->get( 'DnsBlacklistUrls' ),
+			$config->get( 'EnableDnsBlacklist' ),
+			$config->get( 'ProxyList' ),
+			$config->get( 'ProxyWhitelist' ),
+			$config->get( 'SoftBlockRanges' )
 		);
 	},
 

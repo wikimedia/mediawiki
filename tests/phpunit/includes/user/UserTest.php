@@ -783,6 +783,7 @@ class UserTest extends MediaWikiTestCase {
 			RequestContext::getMain()->setRequest( $request );
 			TestingAccessWrapper::newFromObject( $user )->mRequest = $request;
 			$request->getSession()->setUser( $user );
+			$this->overrideMwServices();
 		};
 		$this->setMwGlobals( 'wgSoftBlockRanges', [ '10.0.0.0/8' ] );
 
@@ -980,7 +981,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertFalse( $user->getExperienceLevel() );
 	}
 
-	public static function provideIsLocallBlockedProxy() {
+	public static function provideIsLocallyBlockedProxy() {
 		return [
 			[ '1.2.3.4', '1.2.3.4' ],
 			[ '1.2.3.4', '1.2.3.0/16' ],
@@ -988,10 +989,12 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideIsLocallBlockedProxy
+	 * @dataProvider provideIsLocallyBlockedProxy
 	 * @covers User::isLocallyBlockedProxy
 	 */
 	public function testIsLocallyBlockedProxy( $ip, $blockListEntry ) {
+		$this->hideDeprecated( 'User::isLocallyBlockedProxy' );
+
 		$this->setMwGlobals(
 			'wgProxyList', []
 		);

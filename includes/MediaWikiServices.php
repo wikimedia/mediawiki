@@ -13,6 +13,7 @@ use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -435,6 +436,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getBlobStoreFactory() {
 		return $this->getService( 'BlobStoreFactory' );
+	}
+
+	/**
+	 * @since 1.34
+	 * @return BlockManager
+	 */
+	public function getBlockManager() : BlockManager {
+		return $this->getService( 'BlockManager' );
 	}
 
 	/**
