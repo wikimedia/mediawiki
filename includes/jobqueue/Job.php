@@ -106,13 +106,13 @@ abstract class Job implements IJobSpecification {
 
 	/**
 	 * @param string $command
-	 * @param array|Title $params
+	 * @param array|Title|null $params
 	 */
-	public function __construct( $command, $params = [] ) {
+	public function __construct( $command, $params = null ) {
 		if ( $params instanceof Title ) {
 			// Backwards compatibility for old signature ($command, $title, $params)
 			$title = $params;
-			$params = func_num_args() >= 3 ? func_get_arg( 2 ) : [];
+			$params = func_get_arg( 2 );
 		} else {
 			// Subclasses can override getTitle() to return something more meaningful
 			$title = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
@@ -120,7 +120,7 @@ abstract class Job implements IJobSpecification {
 
 		$this->command = $command;
 		$this->title = $title;
-		$this->params = is_array( $params ) ? $params : []; // sanity
+		$this->params = is_array( $params ) ? $params : [];
 		if ( !isset( $this->params['requestId'] ) ) {
 			$this->params['requestId'] = WebRequest::getRequestId();
 		}
