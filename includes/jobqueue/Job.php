@@ -106,7 +106,7 @@ abstract class Job implements IJobSpecification {
 
 	/**
 	 * @param string $command
-	 * @param array $params
+	 * @param array|Title $params
 	 */
 	public function __construct( $command, $params = [] ) {
 		if ( $params instanceof Title ) {
