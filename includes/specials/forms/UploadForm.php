@@ -393,7 +393,7 @@ class UploadForm extends HTMLForm {
 	 */
 	public function show() {
 		$this->addUploadJS();
-		parent::show();
+		return parent::show();
 	}
 
 	/**

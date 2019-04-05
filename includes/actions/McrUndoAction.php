@@ -30,7 +30,7 @@ class McrUndoAction extends FormAction {
 
 	protected $undo = 0, $undoafter = 0, $cur = 0;
 
-	/** @param RevisionRecord|null */
+	/** @var RevisionRecord|null */
 	protected $curRev = null;
 
 	public function getName() {

@@ -806,6 +806,8 @@ EOT;
 		if ( $eocdrPos !== false ) {
 			$this->logger->info( __METHOD__ . ": ZIP signature present in $file\n" );
 			// Check if it really is a ZIP file, make sure the EOCDR is at the end (T40432)
+			// FIXME: unpack()'s third argument was added in PHP 7.1
+			// @phan-suppress-next-line PhanParamTooManyInternal
 			$commentLength = unpack( "n", $tail, $eocdrPos + 20 )[0];
 			if ( $eocdrPos + 22 + $commentLength !== strlen( $tail ) ) {
 				$this->logger->info( __METHOD__ . ": ZIP EOCDR not at end. Not a ZIP file." );

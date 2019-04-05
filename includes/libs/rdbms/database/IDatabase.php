@@ -1554,7 +1554,6 @@ interface IDatabase {
 	 *
 	 * @param callable $callback
 	 * @param string $fname Caller name
-	 * @return mixed
 	 * @since 1.28
 	 */
 	public function onTransactionResolution( callable $callback, $fname = __METHOD__ );
@@ -1598,7 +1597,6 @@ interface IDatabase {
 	 *
 	 * @param callable $callback
 	 * @param string $fname
-	 * @return mixed
 	 * @since 1.20
 	 * @deprecated Since 1.32
 	 */
@@ -1644,7 +1642,6 @@ interface IDatabase {
 	 *
 	 * @param string $name Callback name
 	 * @param callable|null $callback Use null to unset a listener
-	 * @return mixed
 	 * @since 1.28
 	 */
 	public function setTransactionListener( $name, callable $callback = null );
@@ -2172,7 +2169,6 @@ interface IDatabase {
 	 * the aliases can be removed, and then the old X-named indexes dropped.
 	 *
 	 * @param string[] $aliases
-	 * @return mixed
 	 * @since 1.31
 	 */
 	public function setIndexAliases( array $aliases );

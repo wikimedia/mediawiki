@@ -204,5 +204,6 @@ class NewFilesPager extends RangeChronologicalPager {
 			. htmlspecialchars( $time )
 			. "</i><br />\n"
 		);
+		return '';
 	}
 }

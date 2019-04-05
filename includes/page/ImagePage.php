@@ -1222,7 +1222,7 @@ EOT
 	 * @return TitleArray|Title[]
 	 */
 	public function getForeignCategories() {
-		$this->mPage->getForeignCategories();
+		return $this->mPage->getForeignCategories();
 	}
 
 }

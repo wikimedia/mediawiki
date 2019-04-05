@@ -132,6 +132,7 @@ class MIMEsearchPage extends QueryPage {
 			->setMethod( 'get' )
 			->prepareForm()
 			->displayForm( false );
+		return '';
 	}
 
 	protected function getSuggestionsForTypes() {

@@ -549,7 +549,6 @@ class SpecialUndelete extends SpecialPage {
 	 *
 	 * @param Revision $previousRev
 	 * @param Revision $currentRev
-	 * @return string HTML
 	 */
 	function showDiff( $previousRev, $currentRev ) {
 		$diffContext = clone $this->getContext();

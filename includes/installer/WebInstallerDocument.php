@@ -32,6 +32,7 @@ abstract class WebInstallerDocument extends WebInstallerPage {
 		$this->parent->output->addWikiTextAsInterface( $text );
 		$this->startForm();
 		$this->endForm( false );
+		return '';
 	}
 
 	/**

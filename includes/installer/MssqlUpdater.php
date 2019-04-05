@@ -166,6 +166,7 @@ class MssqlUpdater extends DatabaseUpdater {
 		parent::applyPatch( $path, $isFullPath, $msg );
 		$this->db->scrollableCursor( $prevScroll );
 		$this->db->prepareStatements( $prevPrep );
+		return true;
 	}
 
 	/**

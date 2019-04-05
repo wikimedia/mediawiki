@@ -96,5 +96,6 @@ class ClearWatchlistNotificationsJob extends Job {
 				$firstBatch = false;
 			}
 		} while ( $idsToUpdate );
+		return true;
 	}
 }

@@ -129,6 +129,7 @@ class LockManagerGroup {
 			}
 			$config['logger'] = LoggerFactory::getInstance( 'LockManager' );
 
+			// @phan-suppress-next-line PhanTypeInstantiateAbstract
 			$this->managers[$name]['instance'] = new $class( $config );
 		}
 

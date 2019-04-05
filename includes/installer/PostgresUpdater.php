@@ -839,7 +839,7 @@ END;
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
 
-			return;
+			return true;
 		}
 
 		// Second requirement: the new index must be missing
@@ -853,17 +853,18 @@ END;
 					"            $old should be manually removed if not needed anymore.\n" );
 			}
 
-			return;
+			return true;
 		}
 
 		// Third requirement: the old index must exist
 		if ( !$this->db->indexExists( $table, $old, __METHOD__ ) ) {
 			$this->output( "...skipping: index $old doesn't exist.\n" );
 
-			return;
+			return true;
 		}
 
 		$this->db->query( "ALTER INDEX $old RENAME TO $new" );
+		return true;
 	}
 
 	protected function dropPgField( $table, $field ) {

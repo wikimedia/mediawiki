@@ -154,7 +154,6 @@ class SpecialExpandTemplates extends SpecialPage {
 	 *
 	 * @param string $title Value for context title field
 	 * @param string $input Value for input textbox
-	 * @return string
 	 */
 	private function makeForm( $title, $input ) {
 		$fields = [

@@ -710,7 +710,6 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * are shown closer to the bottom; weight defaults to 0. Negative weight is allowed.)
 	 * Keep order if weights are equal.
 	 * @param array &$formDescriptor
-	 * @return array
 	 */
 	protected static function sortFormDescriptorFields( array &$formDescriptor ) {
 		$i = 0;

@@ -800,6 +800,7 @@ abstract class ApiBase extends ContextSource {
 					// $results if all are done.
 					unset( $targets[$placeholder] );
 					$placeholder = '{' . $placeholder . '}';
+					// @phan-suppress-next-line PhanTypeNoAccessiblePropertiesForeach
 					foreach ( $results[$target] as $value ) {
 						if ( !preg_match( '/^[^{}]*$/', $value ) ) {
 							// Skip values that make invalid parameter names.
