@@ -1364,6 +1364,9 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			JobQueueGroup::singleton()->get( $type )->delete();
 		}
 
+		// T219673: close any connections from code that failed to call reuseConnection()
+		// or is still holding onto a DBConnRef instance (e.g. in a singleton).
+		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->closeAll();
 		CloneDatabase::changePrefix( self::$oldTablePrefix );
 
 		self::$oldTablePrefix = false;
