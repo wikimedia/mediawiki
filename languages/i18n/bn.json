@@ -833,7 +833,7 @@
 	"histfirst": "সবচেয়ে পুরনো",
 	"histlast": "সবচেয়ে নতুন",
 	"historysize": "({{PLURAL:$1|১ বাইট|$1 বাইট}})",
-	"historyempty": "(খালি)",
+	"historyempty": "খালি",
 	"history-feed-title": "সংশোধনের ইতিহাস",
 	"history-feed-description": "এই উইকিতে এই পাতার সংশোধনের ইতিহাস",
 	"history-feed-item-nocomment": "$2-এ $1",

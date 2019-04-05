@@ -949,6 +949,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-options": "Listet alle Einstellungen auf, die der aktuelle Benutzer festgelegt hat.",
 	"apihelp-query+userinfo-paramvalue-prop-editcount": "Ergänzt den Bearbeitungszähler des aktuellen Benutzers.",
 	"apihelp-query+userinfo-paramvalue-prop-realname": "Fügt den bürgerlichen Namen des Benutzers hinzu.",
+	"apihelp-query+userinfo-paramvalue-prop-latestcontrib": "Ergänzt das Datum des letzten Benutzerbeitrags.",
 	"apihelp-query+userinfo-example-simple": "Informationen über den aktuellen Benutzer abrufen",
 	"apihelp-query+userinfo-example-data": "Ruft zusätzliche Informationen über den aktuellen Benutzer ab.",
 	"apihelp-query+users-summary": "Informationen über eine Liste von Benutzern abrufen.",

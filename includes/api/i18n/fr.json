@@ -1250,6 +1250,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-registrationdate": "Ajoute la date d’inscription de l’utilisateur.",
 	"apihelp-query+userinfo-paramvalue-prop-unreadcount": "Ajoute le compteur de pages non lues de la liste de suivi de l’utilisateur (au maximum $1 ; renvoie <samp>$2</samp> s’il y en a plus).",
 	"apihelp-query+userinfo-paramvalue-prop-centralids": "Ajoute les IDs centraux et l’état d’attachement de l’utilisateur.",
+	"apihelp-query+userinfo-paramvalue-prop-latestcontrib": "Ajoute la date de la dernière contribution de l'utilisateur.",
 	"apihelp-query+userinfo-param-attachedwiki": "Avec <kbd>$1prop=centralids</kbd>, indiquer si l’utilisateur est attaché au wiki identifié par cet ID.",
 	"apihelp-query+userinfo-example-simple": "Obtenir des informations sur l’utilisateur actuel.",
 	"apihelp-query+userinfo-example-data": "Obtenir des informations supplémentaires sur l’utilisateur actuel.",
