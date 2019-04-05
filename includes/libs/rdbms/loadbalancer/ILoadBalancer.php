@@ -291,13 +291,13 @@ interface ILoadBalancer {
 	 *
 	 * @see ILoadBalancer::getConnection() for parameter information
 	 *
-	 * @param int $db Server index or DB_MASTER/DB_REPLICA
+	 * @param int $i Server index or DB_MASTER/DB_REPLICA
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
 	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return MaintainableDBConnRef
 	 */
-	public function getMaintenanceConnectionRef( $db, $groups = [], $domain = false, $flags = 0 );
+	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 );
 
 	/**
 	 * Open a connection to the server given by the specified index
