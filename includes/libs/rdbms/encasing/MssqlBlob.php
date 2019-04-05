@@ -7,6 +7,7 @@ class MssqlBlob extends Blob {
 
 	/**
 	 * @param string $data
+	 * @suppress PhanTypeMagicVoidWithReturn
 	 */
 	public function __construct( $data ) {
 		if ( $data instanceof MssqlBlob ) {
