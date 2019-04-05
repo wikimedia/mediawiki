@@ -65,7 +65,7 @@ abstract class Job implements IJobSpecification {
 	 * Create the appropriate object to handle a specific job
 	 *
 	 * @param string $command Job command
-	 * @param array $params Job parameters
+	 * @param array|Title $params Job parameters
 	 * @throws InvalidArgumentException
 	 * @return Job
 	 */
