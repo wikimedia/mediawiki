@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\LoadMonitorNull;
  * @covers \Wikimedia\Rdbms\LoadBalancer
  */
 class LoadBalancerTest extends MediaWikiTestCase {
-	private function makeServerConfig() {
+	private function makeServerConfig( $flags = DBO_DEFAULT ) {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
 
 		return [
@@ -44,7 +44,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 			'type' => $wgDBtype,
 			'dbDirectory' => $wgSQLiteDataDir,
 			'load' => 0,
-			'flags' => DBO_TRX // REPEATABLE-READ for consistency
+			'flags' => $flags
 		];
 	}
 
@@ -57,7 +57,8 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$called = false;
 		$lb = new LoadBalancer( [
-			'servers' => [ $this->makeServerConfig() ],
+			// Simulate web request with DBO_TRX
+			'servers' => [ $this->makeServerConfig( DBO_TRX ) ],
 			'queryLogger' => MediaWiki\Logger\LoggerFactory::getInstance( 'DBQuery' ),
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
 			'chronologyCallback' => function () use ( &$called ) {
@@ -71,8 +72,8 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$this->assertSame( 'my_test_wiki', $lb->resolveDomainID( 'my_test_wiki' ) );
 		$this->assertSame( $ld->getId(), $lb->resolveDomainID( false ) );
 		$this->assertSame( $ld->getId(), $lb->resolveDomainID( $ld ) );
-
 		$this->assertFalse( $called );
+
 		$dbw = $lb->getConnection( DB_MASTER );
 		$this->assertTrue( $called );
 		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
@@ -106,39 +107,10 @@ class LoadBalancerTest extends MediaWikiTestCase {
 	}
 
 	public function testWithReplica() {
-		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
+		global $wgDBserver;
 
-		$servers = [
-			[ // master
-				'host'        => $wgDBserver,
-				'dbname'      => $wgDBname,
-				'tablePrefix' => $this->dbPrefix(),
-				'user'        => $wgDBuser,
-				'password'    => $wgDBpassword,
-				'type'        => $wgDBtype,
-				'dbDirectory' => $wgSQLiteDataDir,
-				'load'        => 0,
-				'flags'       => DBO_TRX // REPEATABLE-READ for consistency
-			],
-			[ // emulated replica
-				'host'        => $wgDBserver,
-				'dbname'      => $wgDBname,
-				'tablePrefix' => $this->dbPrefix(),
-				'user'        => $wgDBuser,
-				'password'    => $wgDBpassword,
-				'type'        => $wgDBtype,
-				'dbDirectory' => $wgSQLiteDataDir,
-				'load'        => 100,
-				'flags'       => DBO_TRX // REPEATABLE-READ for consistency
-			]
-		];
-
-		$lb = new LoadBalancer( [
-			'servers' => $servers,
-			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
-			'queryLogger' => MediaWiki\Logger\LoggerFactory::getInstance( 'DBQuery' ),
-			'loadMonitorClass' => LoadMonitorNull::class
-		] );
+		// Simulate web request with DBO_TRX
+		$lb = $this->newMultiServerLocalLoadBalancer( DBO_TRX );
 
 		$dbw = $lb->getConnection( DB_MASTER );
 		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
@@ -178,6 +150,51 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		}
 
 		$lb->closeAll();
+	}
+
+	private function newSingleServerLocalLoadBalancer() {
+		global $wgDBname;
+
+		return new LoadBalancer( [
+			'servers' => [ $this->makeServerConfig() ],
+			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() )
+		] );
+	}
+
+	private function newMultiServerLocalLoadBalancer( $flags = DBO_DEFAULT ) {
+		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
+
+		$servers = [
+			[ // master
+				'host' => $wgDBserver,
+				'dbname' => $wgDBname,
+				'tablePrefix' => $this->dbPrefix(),
+				'user' => $wgDBuser,
+				'password' => $wgDBpassword,
+				'type' => $wgDBtype,
+				'dbDirectory' => $wgSQLiteDataDir,
+				'load' => 0,
+				'flags' => $flags
+			],
+			[ // emulated replica
+				'host' => $wgDBserver,
+				'dbname' => $wgDBname,
+				'tablePrefix' => $this->dbPrefix(),
+				'user' => $wgDBuser,
+				'password' => $wgDBpassword,
+				'type' => $wgDBtype,
+				'dbDirectory' => $wgSQLiteDataDir,
+				'load' => 100,
+				'flags' => $flags
+			]
+		];
+
+		return new LoadBalancer( [
+			'servers' => $servers,
+			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
+			'queryLogger' => MediaWiki\Logger\LoggerFactory::getInstance( 'DBQuery' ),
+			'loadMonitorClass' => LoadMonitorNull::class
+		] );
 	}
 
 	private function assertWriteForbidden( Database $db ) {
@@ -286,12 +303,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 	 * @covers LoadBalancer::getAnyOpenConnection()
 	 */
 	function testOpenConnection() {
-		global $wgDBname;
-
-		$lb = new LoadBalancer( [
-			'servers' => [ $this->makeServerConfig() ],
-			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() )
-		] );
+		$lb = $this->newSingleServerLocalLoadBalancer();
 
 		$i = $lb->getWriterIndex();
 		$this->assertEquals( null, $lb->getAnyOpenConnection( $i ) );
