@@ -55,7 +55,7 @@ class ComposerVersionNormalizer {
 			$version = substr( $version, 0, $dashPosition );
 		}
 
-		$version = implode( '.', array_pad( explode( '.', $version ), 4, '0' ) );
+		$version = implode( '.', array_pad( explode( '.', $version, 4 ), 4, '0' ) );
 
 		if ( $dashPosition !== false ) {
 			$version .= $suffix;

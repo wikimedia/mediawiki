@@ -537,7 +537,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 		// Extension::OATHAuth.
 
 		// Unseal and check
-		$pieces = explode( '.', $encrypted );
+		$pieces = explode( '.', $encrypted, 4 );
 		if ( count( $pieces ) !== 3 ) {
 			$ex = new \Exception( 'Invalid sealed-secret format' );
 			$this->logger->warning( $ex->getMessage(), [ 'exception' => $ex ] );
