@@ -134,6 +134,7 @@ class AutoLoader {
 			'MediaWiki\\Edit\\' => __DIR__ . '/edit/',
 			'MediaWiki\\EditPage\\' => __DIR__ . '/editpage/',
 			'MediaWiki\\Linker\\' => __DIR__ . '/linker/',
+			'MediaWiki\\Permissions\\' => __DIR__ . '/Permissions/',
 			'MediaWiki\\Preferences\\' => __DIR__ . '/preferences/',
 			'MediaWiki\\Revision\\' => __DIR__ . '/Revision/',
 			'MediaWiki\\Session\\' => __DIR__ . '/session/',

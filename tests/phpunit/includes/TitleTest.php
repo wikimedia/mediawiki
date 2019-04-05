@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -326,7 +327,7 @@ class TitleTest extends MediaWikiTestCase {
 	 * @param string $action
 	 * @param array|string|bool $expected Required error
 	 *
-	 * @covers Title::checkReadPermissions
+	 * @covers \Mediawiki\Permissions\PermissionManager::checkReadPermissions
 	 * @dataProvider dataWgWhitelistReadRegexp
 	 */
 	public function testWgWhitelistReadRegexp( $whitelistRegexp, $source, $action, $expected ) {
@@ -562,6 +563,32 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertEquals( $dbkey, $title->getDBkey() );
 		$this->assertEquals( $value->getNamespace(), $title->getNamespace() );
 		$this->assertEquals( $value->getFragment(), $title->getFragment() );
+	}
+
+	/**
+	 * @covers Title::newFromLinkTarget
+	 * @dataProvider provideNewFromTitleValue
+	 */
+	public function testNewFromLinkTarget( LinkTarget $value ) {
+		$title = Title::newFromLinkTarget( $value );
+
+		$dbkey = str_replace( ' ', '_', $value->getText() );
+		$this->assertEquals( $dbkey, $title->getDBkey() );
+		$this->assertEquals( $value->getNamespace(), $title->getNamespace() );
+		$this->assertEquals( $value->getFragment(), $title->getFragment() );
+	}
+
+	/**
+	 * @covers Title::newFromLinkTarget
+	 */
+	public function testNewFromLinkTarget_clone() {
+		$title = Title::newFromText( __METHOD__ );
+		$this->assertSame( $title, Title::newFromLinkTarget( $title ) );
+
+		// The Title::NEW_CLONE flag should ensure that a fresh instance is returned.
+		$clone = Title::newFromLinkTarget( $title, Title::NEW_CLONE );
+		$this->assertNotSame( $title, $clone );
+		$this->assertTrue( $clone->equals( $title ) );
 	}
 
 	public static function provideGetTitleValue() {
