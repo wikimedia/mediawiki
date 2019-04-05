@@ -731,6 +731,7 @@ class Title implements LinkTarget, IDBAccessObject {
 				// Allow unicode if a single high-bit character appears
 				$r0 = sprintf( '\x%02x', $ord0 );
 				$allowUnicode = true;
+				// @phan-suppress-next-line PhanParamSuspiciousOrder false positive
 			} elseif ( strpos( '-\\[]^', $d0 ) !== false ) {
 				$r0 = '\\' . $d0;
 			} else {

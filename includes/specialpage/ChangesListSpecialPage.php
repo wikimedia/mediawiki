@@ -1072,6 +1072,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$filterDefinition = $this->transformFilterDefinition( $filterDefinition );
 			}
 
+			// @phan-suppress-next-line PhanNonClassMethodCall
 			$this->registerFilterGroup( new $className( $groupDefinition ) );
 		}
 	}

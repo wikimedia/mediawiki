@@ -60,7 +60,13 @@ class LanguageConverter {
 	public $mVariantFallbacks;
 	public $mVariantNames;
 	public $mTablesLoaded = false;
+
+	/**
+	 * @var ReplacementArray[]
+	 * @phan-var array<string,ReplacementArray>
+	 */
 	public $mTables;
+
 	// 'bidirectional' 'unidirectional' 'disable' for each variant
 	public $mManualLevel;
 

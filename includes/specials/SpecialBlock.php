@@ -620,6 +620,7 @@ class SpecialBlock extends FormSpecialPage {
 	 *     the HTMLForm
 	 * @param WebRequest|null $request Optionally try and get data from a request too
 	 * @return array [ User|string|null, Block::TYPE_ constant|null ]
+	 * @phan-return array{0:User|string|null,1:int|null}
 	 */
 	public static function getTargetAndType( $par, WebRequest $request = null ) {
 		$i = 0;
