@@ -2291,29 +2291,15 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param Title $title Title to check
 	 * @param bool $fromReplica Whether to check the replica DB instead of the master
 	 * @return bool
+	 * @throws MWException
+	 *
+	 * @deprecated since 1.33,
+	 * use MediaWikiServices::getInstance()->getPermissionManager()->isBlockedFrom(..)
+	 *
 	 */
 	public function isBlockedFrom( $title, $fromReplica = false ) {
-		$blocked = $this->isHidden();
-
-		if ( !$blocked ) {
-			$block = $this->getBlock( $fromReplica );
-			if ( $block ) {
-				// Special handling for a user's own talk page. The block is not aware
-				// of the user, so this must be done here.
-				if ( $title->equals( $this->getTalkPage() ) ) {
-					$blocked = $block->appliesToUsertalk( $title );
-				} else {
-					$blocked = $block->appliesToTitle( $title );
-				}
-			}
-		}
-
-		// only for the purpose of the hook. We really don't need this here.
-		$allowUsertalk = $this->mAllowUsertalk;
-
-		Hooks::run( 'UserIsBlockedFrom', [ $this, $title, &$blocked, &$allowUsertalk ] );
-
-		return $blocked;
+		return MediaWikiServices::getInstance()->getPermissionManager()
+			->isBlockedFrom( $this, $title, $fromReplica );
 	}
 
 	/**
@@ -5741,4 +5727,14 @@ class User implements IDBAccessObject, UserIdentity {
 		// XXX it's not clear whether central ID providers are supposed to obey this
 		return $this->getName() === $user->getName();
 	}
+
+	/**
+	 * Checks if usertalk is allowed
+	 *
+	 * @return bool
+	 */
+	public function isAllowUsertalk() {
+		return $this->mAllowUsertalk;
+	}
+
 }

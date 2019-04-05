@@ -46,6 +46,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Revision\MainSlotRoleHandler;
@@ -387,6 +388,16 @@ return [
 			$services->getStatsdDataFactory(),
 			$wiki
 		);
+	},
+
+	'PermissionManager' => function ( MediaWikiServices $services ) : PermissionManager {
+		$config = $services->getMainConfig();
+		return new PermissionManager(
+			$services->getSpecialPageFactory(),
+			$config->get( 'WhitelistRead' ),
+			$config->get( 'WhitelistReadRegexp' ),
+			$config->get( 'EmailConfirmToEdit' ),
+			$config->get( 'BlockDisablesLogin' ) );
 	},
 
 	'PreferencesFactory' => function ( MediaWikiServices $services ) : PreferencesFactory {

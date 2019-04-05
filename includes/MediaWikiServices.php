@@ -14,6 +14,7 @@ use Hooks;
 use IBufferingStatsdDataFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Revision\RevisionRenderer;
@@ -719,6 +720,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getPerDbNameStatsdDataFactory() {
 		return $this->getService( 'PerDbNameStatsdDataFactory' );
+	}
+
+	/**
+	 * @since 1.33
+	 * @return PermissionManager
+	 */
+	public function getPermissionManager() {
+		return $this->getService( 'PermissionManager' );
 	}
 
 	/**
