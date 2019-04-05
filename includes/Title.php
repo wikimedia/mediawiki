@@ -54,6 +54,13 @@ class Title implements LinkTarget, IDBAccessObject {
 	const GAID_FOR_UPDATE = 1;
 
 	/**
+	 * Flag for use with factory methods like newFromLinkTarget() that have
+	 * a $forceClone parameter. If set, the method must return a new instance.
+	 * Without this flag, some factory methods may return existing instances.
+	 */
+	const NEW_CLONE = 'clone';
+
+	/**
 	 * @name Private member variables
 	 * Please use the accessor functions instead.
 	 * @private
@@ -231,27 +238,39 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * Create a new Title from a TitleValue
+	 * Returns a Title given a TitleValue.
+	 * If the given TitleValue is already a Title instance, that instance is returned,
+	 * unless $forceClone is "clone". If $forceClone is "clone" and the given TitleValue
+	 * is already a Title instance, that instance is copied using the clone operator.
 	 *
 	 * @param TitleValue $titleValue Assumed to be safe.
+	 * @param string $forceClone set to NEW_CLONE to ensure a fresh instance is returned.
 	 *
 	 * @return Title
 	 */
-	public static function newFromTitleValue( TitleValue $titleValue ) {
-		return self::newFromLinkTarget( $titleValue );
+	public static function newFromTitleValue( TitleValue $titleValue, $forceClone = '' ) {
+		return self::newFromLinkTarget( $titleValue, $forceClone );
 	}
 
 	/**
-	 * Create a new Title from a LinkTarget
+	 * Returns a Title given a LinkTarget.
+	 * If the given LinkTarget is already a Title instance, that instance is returned,
+	 * unless $forceClone is "clone". If $forceClone is "clone" and the given LinkTarget
+	 * is already a Title instance, that instance is copied using the clone operator.
 	 *
 	 * @param LinkTarget $linkTarget Assumed to be safe.
+	 * @param string $forceClone set to NEW_CLONE to ensure a fresh instance is returned.
 	 *
 	 * @return Title
 	 */
-	public static function newFromLinkTarget( LinkTarget $linkTarget ) {
+	public static function newFromLinkTarget( LinkTarget $linkTarget, $forceClone = '' ) {
 		if ( $linkTarget instanceof Title ) {
 			// Special case if it's already a Title object
-			return $linkTarget;
+			if ( $forceClone === self::NEW_CLONE ) {
+				return clone $linkTarget;
+			} else {
+				return $linkTarget;
+			}
 		}
 		return self::makeTitle(
 			$linkTarget->getNamespace(),
@@ -267,6 +286,10 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * Title objects returned by this method are guaranteed to be valid, and
 	 * thus return true from the isValid() method.
+	 *
+	 * @note The Title instance returned by this method is not guaranteed to be a fresh instance.
+	 * It may instead be a cached instance created previously, with references to it remaining
+	 * elsewhere.
 	 *
 	 * @param string|int|null $text The link text; spaces, prefixes, and an
 	 *   initial ':' indicating the main namespace are accepted.
@@ -301,6 +324,10 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * Title objects returned by this method are guaranteed to be valid, and
 	 * thus return true from the isValid() method.
+	 *
+	 * @note The Title instance returned by this method is not guaranteed to be a fresh instance.
+	 * It may instead be a cached instance created previously, with references to it remaining
+	 * elsewhere.
 	 *
 	 * @see Title::newFromText
 	 *
@@ -592,6 +619,10 @@ class Title implements LinkTarget, IDBAccessObject {
 
 	/**
 	 * Create a new Title for the Main Page
+	 *
+	 * @note The Title instance returned by this method is not guaranteed to be a fresh instance.
+	 * It may instead be a cached instance created previously, with references to it remaining
+	 * elsewhere.
 	 *
 	 * @return Title The new object
 	 */
