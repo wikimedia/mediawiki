@@ -154,7 +154,7 @@ class ForeignAPIFile extends File {
 
 	/**
 	 * @param int $page
-	 * @return int|number
+	 * @return int
 	 */
 	public function getWidth( $page = 1 ) {
 		return isset( $this->mInfo['width'] ) ? intval( $this->mInfo['width'] ) : 0;
