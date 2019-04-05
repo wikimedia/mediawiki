@@ -1230,6 +1230,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-registrationdate": "يضيف تاريخ تسجيل المستخدم.",
 	"apihelp-query+userinfo-paramvalue-prop-unreadcount": "يضيف عدد الصفحات غير المقروءة في قائمة مراقبة المستخدم (بحد أقصى $1; ترجع <samp>$2</samp> إذا كان أكثر).",
 	"apihelp-query+userinfo-paramvalue-prop-centralids": "يضيف المعرفات المركزية وحالة المرفقات للمستخدم.",
+	"apihelp-query+userinfo-paramvalue-prop-latestcontrib": "يضيف تاريخ آخر مساهمة للمستخدم.",
 	"apihelp-query+userinfo-param-attachedwiki": "باستخدام <kbd>$1prop=centralids</kbd>، حدد ما إذا كان المستخدم مرتبطا بالويكي المحدد بواسطة هذا المعرف.",
 	"apihelp-query+userinfo-example-simple": "الحصول على معلومات حول المستخدم الحالي.",
 	"apihelp-query+userinfo-example-data": "الحصول على معلومات حول المستخدم الحالي.",

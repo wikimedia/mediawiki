@@ -2530,7 +2530,7 @@
 	"version-entrypoints-header-url": "ইউআৰএল",
 	"version-libraries-version": "সংস্কৰণ",
 	"redirect": "ফাইল, সদস্য, পৃষ্ঠা বা সংশোধন বা লগ আই ডি-ৰে পুনঃনিৰ্দেশ",
-	"redirect-summary": "এই বিশেষ পৃষ্ঠাটোৱে আপোনাক অন্য এটা ফাইললৈ (ফাইলৰ নাম), এটা পৃষ্ঠালৈ (সংশোধন আই ডি বা পৃষ্ঠা আই ডি), অথবা অন্য সদস্যৰ পৃষ্ঠালৈ (সদস্যৰ সাংখ্যিক আই ডি) পুনঃনির্দেশিত কৰিছে।\nব্যৱহাৰ: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], বা [[{{#Special:Redirect}}/user/101]]।",
+	"redirect-summary": "এই বিশেষ পৃষ্ঠাটোৱে আপোনাক অন্য এটা ফাইললৈ (ফাইলৰ নাম), এটা পৃষ্ঠালৈ (সংশোধন আই ডি বা পৃষ্ঠা আই ডি), অথবা অন্য সদস্যৰ পৃষ্ঠালৈ (সদস্যৰ সাংখ্যিক আই ডি), এটা সূচী ভুক্তিলৈ (প্ৰদত্ত সূচী ভুক্তি) পুনঃনির্দেশিত কৰিছে।\nব্যৱহাৰ: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]] বা [[{{#Special:Redirect}}/logid/186]]।",
 	"redirect-submit": "যাওক",
 	"redirect-lookup": "চাওক:",
 	"redirect-value": "মূল্য:",
