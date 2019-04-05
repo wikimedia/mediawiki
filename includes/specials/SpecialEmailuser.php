@@ -298,7 +298,6 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * Form to ask for target user name.
 	 *
 	 * @param string $name User name submitted.
-	 * @return string Form asking for user name.
 	 */
 	protected function userForm( $name ) {
 		$htmlForm = HTMLForm::factory( 'ooui', [

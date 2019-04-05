@@ -166,7 +166,6 @@ class TextConflictHelper {
 	 * HTML to build the textbox1 on edit conflicts
 	 *
 	 * @param array $customAttribs
-	 * @return string HTML
 	 */
 	public function getEditConflictMainTextBox( array $customAttribs = [] ) {
 		$builder = new TextboxBuilder();
