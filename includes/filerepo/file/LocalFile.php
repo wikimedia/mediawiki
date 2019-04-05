@@ -796,11 +796,14 @@ class LocalFile extends File {
 	/** isVisible inherited */
 
 	/**
+	 * Checks if this file exists in its parent repo, as referenced by its
+	 * virtual URL.
+	 *
 	 * @return bool
 	 */
 	function isMissing() {
 		if ( $this->missing === null ) {
-			list( $fileExists ) = $this->repo->fileExists( $this->getVirtualUrl() );
+			$fileExists = $this->repo->fileExists( $this->getVirtualUrl() );
 			$this->missing = !$fileExists;
 		}
 
