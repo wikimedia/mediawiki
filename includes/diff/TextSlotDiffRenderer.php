@@ -214,12 +214,6 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 					$newText,
 					2
 				);
-
-				// Log a warning in case the configuration value is set to not silently ignore it
-				if ( $this->wikiDiff2MovedParagraphDetectionCutoff > 0 ) {
-					wfLogWarning( '$wgWikiDiff2MovedParagraphDetectionCutoff is set but has no
-						effect since the used version of WikiDiff2 does not support it.' );
-				}
 			}
 
 			return $text;
