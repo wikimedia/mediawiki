@@ -115,38 +115,28 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	"PhanTypeComparisonFromArray",
 	// approximate error count: 2
 	"PhanTypeComparisonToArray",
-	// approximate error count: 1
-	"PhanTypeConversionFromArray",
 	// approximate error count: 2
 	"PhanTypeExpectedObjectOrClassName",
 	// approximate error count: 7
 	"PhanTypeExpectedObjectPropAccess",
 	// approximate error count: 3
 	"PhanTypeInstantiateAbstract",
-	// approximate error count: 1
-	"PhanTypeInvalidCallableArraySize",
 	// approximate error count: 62
 	"PhanTypeInvalidDimOffset",
 	// approximate error count: 10
 	"PhanTypeInvalidExpressionArrayDestructuring",
-	// approximate error count: 1
-	"PhanTypeInvalidLeftOperand",
 	// approximate error count: 7
 	"PhanTypeInvalidLeftOperandOfIntegerOp",
 	// approximate error count: 2
 	"PhanTypeInvalidRightOperand",
 	// approximate error count: 2
 	"PhanTypeInvalidRightOperandOfIntegerOp",
-	// approximate error count: 1
-	"PhanTypeMagicVoidWithReturn",
 	// approximate error count: 152
 	"PhanTypeMismatchArgument",
 	// approximate error count: 28
 	"PhanTypeMismatchArgumentInternal",
 	// approximate error count: 1
 	"PhanTypeMismatchBitwiseBinaryOperands",
-	// approximate error count: 1
-	"PhanTypeMismatchDeclaredParam",
 	// approximate error count: 2
 	"PhanTypeMismatchDimEmpty",
 	// approximate error count: 29
