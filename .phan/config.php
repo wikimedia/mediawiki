@@ -77,7 +77,7 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	"PhanAccessMethodInternal",
 	// approximate error count: 17
 	"PhanCommentParamOnEmptyParamList",
-	// approximate error count: 30
+	// approximate error count: 29
 	"PhanCommentParamWithoutRealParam",
 	// approximate error count: 2
 	"PhanCompatibleNegativeStringOffset",
@@ -93,9 +93,9 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	"PhanPluginDuplicateExpressionBinaryOp",
 	// approximate error count: 2
 	"PhanTraitParentReference",
-	// approximate error count: 26
+	// approximate error count: 30
 	"PhanTypeArraySuspicious",
-	// approximate error count: 33
+	// approximate error count: 27
 	"PhanTypeArraySuspiciousNullable",
 	// approximate error count: 26
 	"PhanTypeComparisonFromArray",
@@ -105,9 +105,9 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	"PhanTypeExpectedObjectOrClassName",
 	// approximate error count: 7
 	"PhanTypeExpectedObjectPropAccess",
-	// approximate error count: 62
+	// approximate error count: 63
 	"PhanTypeInvalidDimOffset",
-	// approximate error count: 10
+	// approximate error count: 6
 	"PhanTypeInvalidExpressionArrayDestructuring",
 	// approximate error count: 7
 	"PhanTypeInvalidLeftOperandOfIntegerOp",
@@ -115,7 +115,7 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	"PhanTypeInvalidRightOperand",
 	// approximate error count: 2
 	"PhanTypeInvalidRightOperandOfIntegerOp",
-	// approximate error count: 152
+	// approximate error count: 154
 	"PhanTypeMismatchArgument",
 	// approximate error count: 27
 	"PhanTypeMismatchArgumentInternal",
@@ -123,13 +123,13 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	"PhanTypeMismatchBitwiseBinaryOperands",
 	// approximate error count: 2
 	"PhanTypeMismatchDimEmpty",
-	// approximate error count: 29
+	// approximate error count: 27
 	"PhanTypeMismatchDimFetch",
 	// approximate error count: 10
 	"PhanTypeMismatchForeach",
-	// approximate error count: 78
+	// approximate error count: 77
 	"PhanTypeMismatchProperty",
-	// approximate error count: 85
+	// approximate error count: 84
 	"PhanTypeMismatchReturn",
 	// approximate error count: 12
 	"PhanTypeObjectUnsetDeclaredProperty",
@@ -141,9 +141,9 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	"PhanUndeclaredConstant",
 	// approximate error count: 3
 	"PhanUndeclaredInvokeInCallable",
-	// approximate error count: 239
+	// approximate error count: 237
 	"PhanUndeclaredMethod",
-	// approximate error count: 847
+	// approximate error count: 846
 	"PhanUndeclaredProperty",
 	// approximate error count: 2
 	"PhanUndeclaredVariableAssignOp",
