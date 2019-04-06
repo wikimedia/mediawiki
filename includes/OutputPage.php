@@ -2187,7 +2187,7 @@ class OutputPage extends ContextSource {
 	 * Parse wikitext and return the HTML (internal implementation helper)
 	 *
 	 * @param string $text
-	 * @param Title The title to use
+	 * @param Title $title The title to use
 	 * @param bool $linestart Is this the start of a line?
 	 * @param bool $tidy Whether the output should be tidied
 	 * @param bool $interface Use interface language (instead of content language) while parsing

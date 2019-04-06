@@ -427,8 +427,8 @@ class MovePage {
 	 * Can also be used to revert after a DB failure.
 	 *
 	 * @private
-	 * @param Title Old location to move the file from.
-	 * @param Title New location to move the file to.
+	 * @param Title $oldTitle Old location to move the file from.
+	 * @param Title $newTitle New location to move the file to.
 	 * @return Status
 	 */
 	private function moveFile( $oldTitle, $newTitle ) {

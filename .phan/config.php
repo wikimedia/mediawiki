@@ -147,10 +147,6 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	"PhanUndeclaredVariableAssignOp",
 	// approximate error count: 55
 	"PhanUndeclaredVariableDim",
-	// approximate error count: 3
-	"PhanUnextractableAnnotationElementName",
-	// approximate error count: 4
-	"PhanUnextractableAnnotationSuffix",
 ] );
 
 $cfg['ignore_undeclared_variables_in_global_scope'] = true;
