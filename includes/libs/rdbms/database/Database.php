@@ -104,7 +104,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var callable Deprecation logging callback */
 	protected $deprecationLogger;
 
-	/** @var resource|null Database connection */
+	/** @var object|resource|null Database connection */
 	protected $conn = null;
 	/** @var bool */
 	protected $opened = false;
