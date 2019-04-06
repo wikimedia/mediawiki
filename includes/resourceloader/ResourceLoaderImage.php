@@ -73,7 +73,7 @@ class ResourceLoaderImage {
 		}
 		// Remove 'deprecated' key
 		if ( is_array( $this->descriptor ) ) {
-			unset( $this->descriptor[ 'deprecated' ] );
+			unset( $this->descriptor['deprecated'] );
 		}
 
 		// Ensure that all files have common extension.
