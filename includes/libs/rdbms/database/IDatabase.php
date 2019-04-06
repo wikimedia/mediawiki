@@ -1013,6 +1013,7 @@ interface IDatabase {
 	 * @param string $valuename
 	 *
 	 * @return string
+	 * @deprecated Since 1.33
 	 */
 	public function aggregateValue( $valuedata, $valuename = 'value' );
 

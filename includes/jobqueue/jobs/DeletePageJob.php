@@ -4,7 +4,7 @@
  * Class DeletePageJob
  */
 class DeletePageJob extends Job {
-	public function __construct( $title, $params ) {
+	public function __construct( $title, $params = [] ) {
 		parent::__construct( 'deletePage', $title, $params );
 	}
 
