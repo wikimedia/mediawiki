@@ -205,7 +205,6 @@
 			any new occurrences.
 		-->
 		<exclude-pattern>*/includes/api/ApiErrorFormatter\.php</exclude-pattern>
-		<exclude-pattern>*/includes/api/ApiImport\.php</exclude-pattern>
 		<exclude-pattern>*/includes/compat/XMPReader\.php</exclude-pattern>
 		<exclude-pattern>*/includes/diff/DairikiDiff\.php</exclude-pattern>
 		<exclude-pattern>*/includes/filerepo/file/LocalFile\.php</exclude-pattern>
