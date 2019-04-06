@@ -414,6 +414,14 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function buildGreatest( $fields, $values ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function buildLeast( $fields, $values ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function buildSubstring( $input, $startPosition, $length = null ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
