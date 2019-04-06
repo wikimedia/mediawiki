@@ -469,8 +469,8 @@ class WikiExporter {
 	protected function outputPageStreamBatch( $results, $lastRow ) {
 		foreach ( $results as $row ) {
 			if ( $lastRow === null ||
-				$lastRow->page_namespace != $row->page_namespace ||
-				$lastRow->page_title != $row->page_title ) {
+				$lastRow->page_namespace !== $row->page_namespace ||
+				$lastRow->page_title !== $row->page_title ) {
 				if ( $lastRow !== null ) {
 					$output = '';
 					if ( $this->dumpUploads ) {
