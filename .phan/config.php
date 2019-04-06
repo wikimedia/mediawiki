@@ -110,15 +110,11 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	// approximate error count: 7
 	"PhanTypeInvalidLeftOperandOfIntegerOp",
 	// approximate error count: 2
-	"PhanTypeInvalidRightOperand",
-	// approximate error count: 2
 	"PhanTypeInvalidRightOperandOfIntegerOp",
 	// approximate error count: 154
 	"PhanTypeMismatchArgument",
 	// approximate error count: 27
 	"PhanTypeMismatchArgumentInternal",
-	// approximate error count: 1
-	"PhanTypeMismatchBitwiseBinaryOperands",
 	// approximate error count: 2
 	"PhanTypeMismatchDimEmpty",
 	// approximate error count: 27
