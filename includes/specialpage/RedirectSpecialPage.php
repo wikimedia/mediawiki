@@ -38,7 +38,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 */
 	public function execute( $subpage ) {
 		$redirect = $this->getRedirect( $subpage );
-		$query = $this->getRedirectQuery();
+		$query = $this->getRedirectQuery( $subpage );
 
 		if ( $redirect instanceof Title ) {
 			// Redirect to a page title with possible query parameters
@@ -66,9 +66,10 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 * Return part of the request string for a special redirect page
 	 * This allows passing, e.g. action=history to Special:Mypage, etc.
 	 *
+	 * @param string|null $subpage
 	 * @return array|bool
 	 */
-	public function getRedirectQuery() {
+	public function getRedirectQuery( $subpage ) {
 		$params = [];
 		$request = $this->getRequest();
 
