@@ -22,7 +22,7 @@
  */
 
 class UserGroupExpiryJob extends Job {
-	public function __construct( $params = false ) {
+	public function __construct( $params = [] ) {
 		parent::__construct( 'userGroupExpiry', Title::newMainPage(), $params );
 		$this->removeDuplicates = true;
 	}
