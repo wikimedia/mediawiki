@@ -151,7 +151,7 @@ class JobQueueMemory extends JobQueue {
 		}
 
 		$claimed =& $this->getQueueData( 'claimed' );
-		$job->setMetadata( 'claimId', null );
+		unset( $claimed[$job->getMetadata( 'claimId' )] );
 	}
 
 	/**
