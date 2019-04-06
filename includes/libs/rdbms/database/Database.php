@@ -1032,7 +1032,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected function assertIsWritableMaster() {
 		if ( $this->getLBInfo( 'replica' ) === true ) {
-			throw new DBUnexpectedError(
+			throw new DBReadOnlyRoleError(
 				$this,
 				'Write operations are not allowed on replica database connections.'
 			);
@@ -1194,7 +1194,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$flags = (int)$flags; // b/c; this field used to be a bool
 		$ignoreErrors = $this->hasFlags( $flags, self::QUERY_SILENCE_ERRORS );
-		$pseudoPermanent = $this->hasFlags( $flags, self::QUERY_PSEUDO_PERMANENT );
 
 		$priorTransaction = $this->trxLevel;
 		$priorWritesPending = $this->writesOrCallbacksPending();
@@ -1206,8 +1205,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->assertIsWritableMaster();
 			# Do not treat temporary table writes as "meaningful writes" that need committing.
 			# Profile them as reads. Integration tests can override this behavior via $flags.
+			$pseudoPermanent = $this->hasFlags( $flags, self::QUERY_PSEUDO_PERMANENT );
 			$tableType = $this->registerTempTableWrite( $sql, $pseudoPermanent );
 			$isEffectiveWrite = ( $tableType !== self::TEMP_NORMAL );
+			# DBConnRef uses QUERY_REPLICA_ROLE to enforce the replica role for raw SQL queries
+			if ( $isEffectiveWrite && $this->hasFlags( $flags, self::QUERY_REPLICA_ROLE ) ) {
+				throw new DBReadOnlyRoleError( $this, "Cannot write; target role is DB_REPLICA" );
+			}
 		} else {
 			$isEffectiveWrite = false;
 		}
