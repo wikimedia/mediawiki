@@ -144,7 +144,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	/**
 	 * @param WebRequest $request
 	 *
-	 * @return array("<overall message>","<select value>","<text field value>")
+	 * @return array ["<overall message>","<select value>","<text field value>"]
 	 */
 	public function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {

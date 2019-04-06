@@ -467,7 +467,7 @@ class IP {
 	 * to an integer network and a number of bits
 	 *
 	 * @param string $range IP with CIDR prefix
-	 * @return array(int or string, int)
+	 * @return array [int or string, int]
 	 */
 	public static function parseCIDR( $range ) {
 		if ( self::isIPv6( $range ) ) {
@@ -557,7 +557,7 @@ class IP {
 	 *
 	 * @param string $range
 	 *
-	 * @return array(string, int)
+	 * @return array [string, int]
 	 */
 	private static function parseCIDR6( $range ) {
 		# Explode into <expanded IP,range>
@@ -598,7 +598,7 @@ class IP {
 	 *
 	 * @param string $range
 	 *
-	 * @return array(string, string)
+	 * @return array [string, string]
 	 */
 	private static function parseRange6( $range ) {
 		# Expand any IPv6 IP
