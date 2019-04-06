@@ -1052,6 +1052,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * There is light processing to simplify core maintenance.
 	 * @param array $definition
+	 * @phan-param array<int,array{class:string}> $definition
 	 */
 	protected function registerFiltersFromDefinitions( array $definition ) {
 		$autoFillPriority = -1;
@@ -1072,7 +1073,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$filterDefinition = $this->transformFilterDefinition( $filterDefinition );
 			}
 
-			// @phan-suppress-next-line PhanNonClassMethodCall
 			$this->registerFilterGroup( new $className( $groupDefinition ) );
 		}
 	}
