@@ -433,7 +433,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				// Avoid including ids or timestamps of revision/page tables so
 				// that versions are not wasted
 				$title = new TitleValue( (int)$row->page_namespace, $row->page_title );
-				$titleInfo[ self::makeTitleKey( $title ) ] = [
+				$titleInfo[self::makeTitleKey( $title )] = [
 					'page_len' => $row->page_len,
 					'page_latest' => $row->page_latest,
 					'page_touched' => $row->page_touched,

@@ -385,7 +385,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( $this->packageFiles !== null ) {
 			$packageFiles = $this->getPackageFiles( $context );
 			if ( $deprecationScript ) {
-				$mainFile =& $packageFiles['files'][ $packageFiles['main'] ];
+				$mainFile =& $packageFiles['files'][$packageFiles['main']];
 				$mainFile['content'] = $deprecationScript . $mainFile['content'];
 			}
 			return $packageFiles;
