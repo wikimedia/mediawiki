@@ -1922,7 +1922,7 @@
 	"brokenredirectstext": "Tato přesměrování vedou na neexistující stránky:",
 	"brokenredirects-edit": "editovat",
 	"brokenredirects-delete": "smazat",
-	"withoutinterwiki": "Stránky bez mezijazykových odkazů (interwiki)",
+	"withoutinterwiki": "Stránky bez mezijazykových odkazů",
 	"withoutinterwiki-summary": "Tyto stránky neobsahují žádný mezijazykový odkaz:",
 	"withoutinterwiki-legend": "Prefix",
 	"withoutinterwiki-submit": "Zobrazit",

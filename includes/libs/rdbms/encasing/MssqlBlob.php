@@ -6,12 +6,11 @@ class MssqlBlob extends Blob {
 	/** @noinspection PhpMissingParentConstructorInspection */
 
 	/**
-	 * @param string $data
-	 * @suppress PhanTypeMagicVoidWithReturn
+	 * @param Blob|array|string $data
 	 */
 	public function __construct( $data ) {
 		if ( $data instanceof MssqlBlob ) {
-			return $data;
+			$this->data = $data->data;
 		} elseif ( $data instanceof Blob ) {
 			$this->data = $data->fetch();
 		} elseif ( is_array( $data ) && is_object( $data ) ) {

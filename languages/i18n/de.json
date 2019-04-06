@@ -2968,7 +2968,7 @@
 	"pageinfo-robot-index": "Erlaubt",
 	"pageinfo-robot-noindex": "Nicht erlaubt",
 	"pageinfo-watchers": "Anzahl der Beobachter dieser Seite",
-	"pageinfo-visiting-watchers": "Anzahl der Beobachter dieser Seite, die die letzten Bearbeitungen besucht haben",
+	"pageinfo-visiting-watchers": "Anzahl der Beobachter dieser Seite, welche die letzten Bearbeitungen besucht haben",
 	"pageinfo-few-watchers": "Weniger als {{PLURAL:$1|ein|$1}} Beobachter",
 	"pageinfo-few-visiting-watchers": "Es könnte einen beobachtenden Benutzer geben oder nicht, der die letzten Bearbeitungen besucht hat",
 	"pageinfo-redirects-name": "Anzahl der Weiterleitungen zu dieser Seite",
