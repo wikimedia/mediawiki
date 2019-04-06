@@ -75,12 +75,12 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	 */
 	private function getDBConnRef( ILoadBalancer $lb = null ) {
 		$lb = $lb ?: $this->getLoadBalancerMock();
-		return new DBConnRef( $lb, $this->getDatabaseMock() );
+		return new DBConnRef( $lb, $this->getDatabaseMock(), DB_MASTER );
 	}
 
 	public function testConstruct() {
 		$lb = $this->getLoadBalancerMock();
-		$ref = new DBConnRef( $lb, $this->getDatabaseMock() );
+		$ref = new DBConnRef( $lb, $this->getDatabaseMock(), DB_MASTER );
 
 		$this->assertInstanceOf( ResultWrapper::class, $ref->select( 'whatever', '*' ) );
 	}
@@ -99,10 +99,19 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
 		$ref = new DBConnRef(
 			$lb,
-			[ DB_MASTER, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTOCOMMIT ]
+			[ DB_MASTER, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTOCOMMIT ],
+			DB_MASTER
 		);
 
 		$this->assertInstanceOf( ResultWrapper::class, $ref->select( 'whatever', '*' ) );
+		$this->assertEquals( DB_MASTER, $ref->getReferenceRole() );
+
+		$ref2 = new DBConnRef(
+			$lb,
+			[ DB_MASTER, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTOCOMMIT ],
+			DB_REPLICA
+		);
+		$this->assertEquals( DB_REPLICA, $ref2->getReferenceRole() );
 	}
 
 	public function testDestruct() {
@@ -124,7 +133,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		$this->setExpectedException( InvalidArgumentException::class, '' );
 
 		$lb = $this->getLoadBalancerMock();
-		new DBConnRef( $lb, 17 ); // bad constructor argument
+		new DBConnRef( $lb, 17, DB_REPLICA ); // bad constructor argument
 	}
 
 	/**
@@ -137,7 +146,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		$lb->expects( $this->never() )
 			->method( 'getConnection' );
 
-		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ] );
+		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ], DB_REPLICA );
 
 		$this->assertSame( 'dummy', $ref->getDomainID() );
 	}
@@ -156,7 +165,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		$this->assertInternalType( 'string', $ref->__toString() );
 
 		$lb = $this->getLoadBalancerMock();
-		$ref = new DBConnRef( $lb, [ DB_MASTER, [], 'test', 0 ] );
+		$ref = new DBConnRef( $lb, [ DB_MASTER, [], 'test', 0 ], DB_MASTER );
 		$this->assertInternalType( 'string', $ref->__toString() );
 	}
 
@@ -166,7 +175,49 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testClose() {
 		$lb = $this->getLoadBalancerMock();
-		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ] );
+		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ], DB_MASTER );
 		$ref->close();
+	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\DBConnRef::getReferenceRole
+	 */
+	public function testGetReferenceRole() {
+		$lb = $this->getLoadBalancerMock();
+		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ], DB_REPLICA );
+		$this->assertSame( DB_REPLICA, $ref->getReferenceRole() );
+
+		$ref = new DBConnRef( $lb, [ DB_MASTER, [], 'dummy', 0 ], DB_MASTER );
+		$this->assertSame( DB_MASTER, $ref->getReferenceRole() );
+
+		$ref = new DBConnRef( $lb, [ 1, [], 'dummy', 0 ], DB_REPLICA );
+		$this->assertSame( DB_REPLICA, $ref->getReferenceRole() );
+
+		$ref = new DBConnRef( $lb, [ 0, [], 'dummy', 0 ], DB_MASTER );
+		$this->assertSame( DB_MASTER, $ref->getReferenceRole() );
+	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\DBConnRef::getReferenceRole
+	 * @expectedException Wikimedia\Rdbms\DBReadOnlyRoleError
+	 * @dataProvider provideRoleExceptions
+	 */
+	public function testRoleExceptions( $method, $args ) {
+		$lb = $this->getLoadBalancerMock();
+		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ], DB_REPLICA );
+		$ref->$method( ...$args );
+	}
+
+	function provideRoleExceptions() {
+		return [
+			[ 'insert', [ 'table', [ 'a' => 1 ] ] ],
+			[ 'update', [ 'table', [ 'a' => 1 ], [ 'a' => 2 ] ] ],
+			[ 'delete', [ 'table', [ 'a' => 1 ] ] ],
+			[ 'replace', [ 'table', [ 'a' ], [ 'a' => 1 ] ] ],
+			[ 'upsert', [ 'table', [ 'a' => 1 ], [ 'a' ], [ 'a = a + 1' ] ] ],
+			[ 'lock', [ 'k', 'method' ] ],
+			[ 'unlock', [ 'k', 'method' ] ],
+			[ 'getScopedLockAndFlush', [ 'k', 'method', 1 ] ]
+		];
 	}
 }

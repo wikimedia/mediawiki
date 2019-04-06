@@ -1636,6 +1636,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\DBQueryError' => __DIR__ . '/includes/libs/rdbms/exception/DBQueryError.php',
 	'Wikimedia\\Rdbms\\DBQueryTimeoutError' => __DIR__ . '/includes/libs/rdbms/exception/DBQueryTimeoutError.php',
 	'Wikimedia\\Rdbms\\DBReadOnlyError' => __DIR__ . '/includes/libs/rdbms/exception/DBReadOnlyError.php',
+	'Wikimedia\\Rdbms\\DBReadOnlyRoleError' => __DIR__ . '/includes/libs/rdbms/exception/DBReadOnlyRoleError.php',
 	'Wikimedia\\Rdbms\\DBReplicationWaitError' => __DIR__ . '/includes/libs/rdbms/exception/DBReplicationWaitError.php',
 	'Wikimedia\\Rdbms\\DBTransactionError' => __DIR__ . '/includes/libs/rdbms/exception/DBTransactionError.php',
 	'Wikimedia\\Rdbms\\DBTransactionSizeError' => __DIR__ . '/includes/libs/rdbms/exception/DBTransactionSizeError.php',

@@ -307,11 +307,16 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$i = $lb->getWriterIndex();
 		$this->assertEquals( null, $lb->getAnyOpenConnection( $i ) );
+
 		$conn1 = $lb->getConnection( $i );
 		$this->assertNotEquals( null, $conn1 );
 		$this->assertEquals( $conn1, $lb->getAnyOpenConnection( $i ) );
+		$this->assertFalse( $conn1->getFlag( DBO_TRX ) );
+
 		$conn2 = $lb->getConnection( $i, [], false, $lb::CONN_TRX_AUTOCOMMIT );
 		$this->assertNotEquals( null, $conn2 );
+		$this->assertFalse( $conn2->getFlag( DBO_TRX ) );
+
 		if ( $lb->getServerAttributes( $i )[Database::ATTR_DB_LEVEL_LOCKING] ) {
 			$this->assertEquals( null,
 				$lb->getAnyOpenConnection( $i, $lb::CONN_TRX_AUTOCOMMIT ) );
@@ -355,7 +360,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				'type' => $wgDBtype,
 				'dbDirectory' => $wgSQLiteDataDir,
 				'load' => 0,
-				'flags' => DBO_TRX // REPEATABLE-READ for consistency
+				'flags' => DBO_TRX // simulate a web request with DBO_TRX
 			],
 		];
 
@@ -427,5 +432,61 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$conn1->close();
 		$conn2->close();
+	}
+
+	public function testDBConnRefReadsMasterAndReplicaRoles() {
+		$lb = $this->newSingleServerLocalLoadBalancer();
+
+		$rConn = $lb->getConnectionRef( DB_REPLICA );
+		$wConn = $lb->getConnectionRef( DB_MASTER );
+		$wConn2 = $lb->getConnectionRef( 0 );
+
+		$v = [ 'value' => '1', '1' ];
+		$sql = 'SELECT MAX(1) AS value';
+		foreach ( [ $rConn, $wConn, $wConn2 ] as $conn ) {
+			$conn->clearFlag( $conn::DBO_TRX );
+
+			$res = $conn->query( $sql, __METHOD__ );
+			$this->assertEquals( $v, $conn->fetchRow( $res ) );
+
+			$res = $conn->query( $sql, __METHOD__, $conn::QUERY_REPLICA_ROLE );
+			$this->assertEquals( $v, $conn->fetchRow( $res ) );
+		}
+
+		$wConn->getScopedLockAndFlush( 'key', __METHOD__, 1 );
+		$wConn2->getScopedLockAndFlush( 'key2', __METHOD__, 1 );
+	}
+
+	/**
+	 * @expectedException \Wikimedia\Rdbms\DBReadOnlyRoleError
+	 */
+	public function testDBConnRefWritesReplicaRole() {
+		$lb = $this->newSingleServerLocalLoadBalancer();
+
+		$rConn = $lb->getConnectionRef( DB_REPLICA );
+
+		$rConn->query( 'DELETE FROM sometesttable WHERE 1=0' );
+	}
+
+	/**
+	 * @expectedException \Wikimedia\Rdbms\DBReadOnlyRoleError
+	 */
+	public function testDBConnRefWritesReplicaRoleIndex() {
+		$lb = $this->newMultiServerLocalLoadBalancer();
+
+		$rConn = $lb->getConnectionRef( 1 );
+
+		$rConn->query( 'DELETE FROM sometesttable WHERE 1=0' );
+	}
+
+	/**
+	 * @expectedException \Wikimedia\Rdbms\DBReadOnlyRoleError
+	 */
+	public function testDBConnRefWritesReplicaRoleInsert() {
+		$lb = $this->newMultiServerLocalLoadBalancer();
+
+		$rConn = $lb->getConnectionRef( DB_REPLICA );
+
+		$rConn->insert( 'test', [ 't' => 1 ], __METHOD__ );
 	}
 }
