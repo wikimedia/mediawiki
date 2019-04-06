@@ -401,7 +401,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			self::$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
 			self::$reuseDB = $this->getCliArg( 'reuse-db' );
 
-			$this->db = wfGetDB( DB_MASTER );
+			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+			$this->db = $lb->getConnection( DB_MASTER );
 
 			$this->checkDbIsSupported();
 
@@ -1457,12 +1458,12 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @note this method only works when first called. Subsequent calls have no effect,
 	 * even if using different parameters.
 	 *
-	 * @param Database $db The database connection
+	 * @param IMaintainableDatabase $db The database connection
 	 * @param string $prefix The prefix to use for the new table set (aka schema).
 	 *
 	 * @throws MWException If the database table prefix is already $prefix
 	 */
-	public static function setupTestDB( Database $db, $prefix ) {
+	public static function setupTestDB( IMaintainableDatabase $db, $prefix ) {
 		if ( self::$dbSetup ) {
 			return;
 		}

@@ -2730,7 +2730,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		$id = $this->getArticleID();
 		if ( $id ) {
 			$fname = __METHOD__;
-			$loadRestrictionsFromDb = function ( Database $dbr ) use ( $fname, $id ) {
+			$loadRestrictionsFromDb = function ( IDatabase $dbr ) use ( $fname, $id ) {
 				return iterator_to_array(
 					$dbr->select(
 						'page_restrictions',

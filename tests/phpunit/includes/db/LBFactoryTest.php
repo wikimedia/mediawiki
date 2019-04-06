@@ -23,7 +23,6 @@
  * @copyright © 2013 Wikimedia Foundation Inc.
  */
 
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\LBFactory;
@@ -730,7 +729,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$factory->destroy();
 	}
 
-	private function quoteTable( Database $db, $table ) {
+	private function quoteTable( IDatabase $db, $table ) {
 		if ( $db->getType() === 'sqlite' ) {
 			return $table;
 		} else {
