@@ -29,6 +29,7 @@ require_once __DIR__ . '/7zip.inc';
 require_once __DIR__ . '/../includes/export/WikiExporter.php';
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Shell\Shell;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -756,7 +757,7 @@ TEXT
 
 		if ( file_exists( "$IP/../multiversion/MWScript.php" ) ) {
 			$cmd = implode( " ",
-				array_map( 'wfEscapeShellArg',
+				array_map( [ Shell::class, 'escape' ],
 					[
 						$this->php,
 						"$IP/../multiversion/MWScript.php",
@@ -764,7 +765,7 @@ TEXT
 						'--wiki', wfWikiID() ] ) );
 		} else {
 			$cmd = implode( " ",
-				array_map( 'wfEscapeShellArg',
+				array_map( [ Shell::class, 'escape' ],
 					[
 						$this->php,
 						"$IP/maintenance/fetchText.php",

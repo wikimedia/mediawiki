@@ -21,6 +21,7 @@
  * @ingroup Media
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Shell\Shell;
 
 /**
  * Handler for DjVu images
@@ -204,7 +205,7 @@ class DjVuHandler extends ImageHandler {
 
 		# Use a subshell (brackets) to aggregate stderr from both pipeline commands
 		# before redirecting it to the overall stdout. This works in both Linux and Windows XP.
-		$cmd = '(' . wfEscapeShellArg(
+		$cmd = '(' . Shell::escape(
 			$wgDjvuRenderer,
 			"-format=ppm",
 			"-page={$page}",
@@ -213,7 +214,7 @@ class DjVuHandler extends ImageHandler {
 		if ( $wgDjvuPostProcessor ) {
 			$cmd .= " | {$wgDjvuPostProcessor}";
 		}
-		$cmd .= ' > ' . wfEscapeShellArg( $dstPath ) . ') 2>&1';
+		$cmd .= ' > ' . Shell::escape( $dstPath ) . ') 2>&1';
 		wfDebug( __METHOD__ . ": $cmd\n" );
 		$retval = '';
 		$err = wfShellExec( $cmd, $retval );
