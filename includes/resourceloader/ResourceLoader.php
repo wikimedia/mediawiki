@@ -1445,7 +1445,7 @@ MESSAGE;
 			}
 		}
 
-		array_walk( $modules, [ 'self', 'trimArray' ] );
+		array_walk( $modules, [ self::class, 'trimArray' ] );
 
 		return Xml::encodeJsCall(
 			'mw.loader.register',
