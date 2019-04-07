@@ -58,6 +58,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * Flag for use with factory methods like newFromLinkTarget() that have
 	 * a $forceClone parameter. If set, the method must return a new instance.
 	 * Without this flag, some factory methods may return existing instances.
+	 *
+	 * @since 1.33
 	 */
 	const NEW_CLONE = 'clone';
 
