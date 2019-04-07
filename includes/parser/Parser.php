@@ -229,12 +229,6 @@ class Parser {
 	public $mInputSize = false; # For {{PAGESIZE}} on current page.
 
 	/**
-	 * @var string Deprecated accessor for the strip marker prefix.
-	 * @deprecated since 1.26; use Parser::MARKER_PREFIX instead.
-	 */
-	public $mUniqPrefix = self::MARKER_PREFIX;
-
-	/**
 	 * @var array Array with the language name of each language link (i.e. the
 	 * interwiki prefix) in the key, value arbitrary. Used to avoid sending
 	 * duplicate language links to the ParserOutput.
