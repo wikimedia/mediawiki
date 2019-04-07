@@ -436,6 +436,8 @@ because of Phabricator reports.
   insertions into links tables.
 * Category::newFromID( $id )->getID() will now return $id without any
   validation, to avoid a mostly unnecessary DB query.
+* On Special:Version, the name for an extension can no longer be arbitrary
+  html when no link is specified.
 
 == Compatibility ==
 MediaWiki 1.33 requires PHP 7.0.13 or later. Although HHVM 3.18.5 or later is
