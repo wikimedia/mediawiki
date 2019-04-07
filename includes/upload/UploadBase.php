@@ -21,6 +21,7 @@
  * @ingroup Upload
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Shell\Shell;
 
 /**
  * @defgroup Upload Upload related
@@ -1863,10 +1864,10 @@ abstract class UploadBase {
 
 		if ( strpos( $command, "%f" ) === false ) {
 			# simple pattern: append file to scan
-			$command .= " " . wfEscapeShellArg( $file );
+			$command .= " " . Shell::escape( $file );
 		} else {
 			# complex pattern: replace "%f" with file to scan
-			$command = str_replace( "%f", wfEscapeShellArg( $file ), $command );
+			$command = str_replace( "%f", Shell::escape( $file ), $command );
 		}
 
 		wfDebug( __METHOD__ . ": running virus scan: $command \n" );

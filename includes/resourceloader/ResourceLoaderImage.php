@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Shell\Shell;
+
 /**
  * Class encapsulating an image used in a ResourceLoaderImageModule.
  *
@@ -373,7 +375,7 @@ class ResourceLoaderImage {
 		if ( strpos( $wgSVGConverter, 'rsvg' ) === 0 ) {
 			$command = 'rsvg-convert';
 			if ( $wgSVGConverterPath ) {
-				$command = wfEscapeShellArg( "$wgSVGConverterPath/" ) . $command;
+				$command = Shell::escape( "$wgSVGConverterPath/" ) . $command;
 			}
 
 			$process = proc_open(

@@ -26,6 +26,7 @@
  * @ingroup Media
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Shell\Shell;
 
 /**
  * Handler for images that need to be transformed
@@ -517,7 +518,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			function () use ( $method ) {
 				global $wgImageMagickConvertCommand;
 
-				$cmd = wfEscapeShellArg( $wgImageMagickConvertCommand ) . ' -version';
+				$cmd = Shell::escape( $wgImageMagickConvertCommand ) . ' -version';
 				wfDebug( $method . ": Running convert -version\n" );
 				$retval = '';
 				$return = wfShellExecWithStderr( $cmd, $retval );
