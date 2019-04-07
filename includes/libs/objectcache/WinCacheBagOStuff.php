@@ -70,12 +70,18 @@ class WinCacheBagOStuff extends BagOStuff {
 	public function set( $key, $value, $expire = 0, $flags = 0 ) {
 		$result = wincache_ucache_set( $key, serialize( $value ), $expire );
 
+		// false positive, wincache_ucache_set returns an empty array
+		// in some circumstances.
+		// @phan-suppress-next-line PhanTypeComparisonToArray
 		return ( $result === [] || $result === true );
 	}
 
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
 		$result = wincache_ucache_add( $key, serialize( $value ), $exptime );
 
+		// false positive, wincache_ucache_add returns an empty array
+		// in some circumstances.
+		// @phan-suppress-next-line PhanTypeComparisonToArray
 		return ( $result === [] || $result === true );
 	}
 

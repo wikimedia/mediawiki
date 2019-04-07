@@ -2205,6 +2205,9 @@ class User implements IDBAccessObject, UserIdentity {
 
 		// Set the user limit key
 		if ( $userLimit !== false ) {
+			// phan is confused because &can-bypass's value is a bool, so it assumes
+			// that $userLimit is also a bool here.
+			// @phan-suppress-next-line PhanTypeInvalidExpressionArrayDestructuring
 			list( $max, $period ) = $userLimit;
 			wfDebug( __METHOD__ . ": effective user limit: $max in {$period}s\n" );
 			$keys[$cache->makeKey( 'limiter', $action, 'user', $id )] = $userLimit;
@@ -2236,6 +2239,9 @@ class User implements IDBAccessObject, UserIdentity {
 
 		$triggered = false;
 		foreach ( $keys as $key => $limit ) {
+			// phan is confused because &can-bypass's value is a bool, so it assumes
+			// that $userLimit is also a bool here.
+			// @phan-suppress-next-line PhanTypeInvalidExpressionArrayDestructuring
 			list( $max, $period ) = $limit;
 			$summary = "(limit $max in {$period}s)";
 			$count = $cache->get( $key );
