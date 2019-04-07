@@ -858,6 +858,9 @@ class PPDStack {
 		return $this->accum;
 	}
 
+	/**
+	 * @return bool|PPDPart
+	 */
 	public function getCurrentPart() {
 		if ( $this->top === false ) {
 			return false;
@@ -970,6 +973,9 @@ class PPDStackElement {
 		$this->parts[] = new $class( $s );
 	}
 
+	/**
+	 * @return PPDPart
+	 */
 	public function getCurrentPart() {
 		return $this->parts[count( $this->parts ) - 1];
 	}

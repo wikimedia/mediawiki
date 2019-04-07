@@ -99,8 +99,6 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	"PhanTypeComparisonFromArray",
 	// approximate error count: 2
 	"PhanTypeComparisonToArray",
-	// approximate error count: 7
-	"PhanTypeExpectedObjectPropAccess",
 	// approximate error count: 63
 	"PhanTypeInvalidDimOffset",
 	// approximate error count: 6
