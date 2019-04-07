@@ -24,6 +24,8 @@
  * @ingroup Media
  */
 
+use MediaWiki\Shell\Shell;
+
 /**
  * Support for detecting/validating DjVu image files and getting
  * some basic file metadata (resolution etc)
@@ -253,19 +255,19 @@ class DjVuImage {
 		if ( isset( $wgDjvuDump ) ) {
 			# djvudump is faster as of version 3.5
 			# https://sourceforge.net/p/djvu/bugs/71/
-			$cmd = wfEscapeShellArg( $wgDjvuDump ) . ' ' . wfEscapeShellArg( $this->mFilename );
+			$cmd = Shell::escape( $wgDjvuDump ) . ' ' . Shell::escape( $this->mFilename );
 			$dump = wfShellExec( $cmd );
 			$xml = $this->convertDumpToXML( $dump );
 		} elseif ( isset( $wgDjvuToXML ) ) {
-			$cmd = wfEscapeShellArg( $wgDjvuToXML ) . ' --without-anno --without-text ' .
-				wfEscapeShellArg( $this->mFilename );
+			$cmd = Shell::escape( $wgDjvuToXML ) . ' --without-anno --without-text ' .
+				Shell::escape( $this->mFilename );
 			$xml = wfShellExec( $cmd );
 		} else {
 			$xml = null;
 		}
 		# Text layer
 		if ( isset( $wgDjvuTxt ) ) {
-			$cmd = wfEscapeShellArg( $wgDjvuTxt ) . ' --detail=page ' . wfEscapeShellArg( $this->mFilename );
+			$cmd = Shell::escape( $wgDjvuTxt ) . ' --detail=page ' . Shell::escape( $this->mFilename );
 			wfDebug( __METHOD__ . ": $cmd\n" );
 			$retval = '';
 			$txt = wfShellExec( $cmd, $retval, [], [ 'memory' => self::DJVUTXT_MEMORY_LIMIT ] );

@@ -20,6 +20,8 @@
  * @file
  * @ingroup Media
  */
+
+use MediaWiki\Shell\Shell;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -335,11 +337,11 @@ class SvgHandler extends ImageHandler {
 				// External command
 				$cmd = str_replace(
 					[ '$path/', '$width', '$height', '$input', '$output' ],
-					[ $wgSVGConverterPath ? wfEscapeShellArg( "$wgSVGConverterPath/" ) : "",
+					[ $wgSVGConverterPath ? Shell::escape( "$wgSVGConverterPath/" ) : "",
 						intval( $width ),
 						intval( $height ),
-						wfEscapeShellArg( $srcPath ),
-						wfEscapeShellArg( $dstPath ) ],
+						Shell::escape( $srcPath ),
+						Shell::escape( $dstPath ) ],
 					$wgSVGConverters[$wgSVGConverter]
 				);
 

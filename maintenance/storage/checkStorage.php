@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Shell\Shell;
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	$optionsWithoutArgs = [ 'fix' ];
@@ -451,7 +452,7 @@ class CheckStorage {
 		echo "Filtering XML dump...\n";
 		$exitStatus = 0;
 		passthru( 'mwdumper ' .
-			wfEscapeShellArg(
+			Shell::escape(
 				"--output=file:$filteredXmlFileName",
 				"--filter=revlist:$revFileName",
 				$xml

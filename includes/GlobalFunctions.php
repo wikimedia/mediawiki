@@ -2136,7 +2136,7 @@ function wfStringToBool( $val ) {
  * @param string|string[] ...$args strings to escape and glue together,
  *  or a single array of strings parameter
  * @return string
- * @deprecated since 1.30 use MediaWiki\Shell::escape()
+ * @deprecated since 1.30 use MediaWiki\Shell\Shell::escape()
  */
 function wfEscapeShellArg( ...$args ) {
 	return Shell::escape( ...$args );
