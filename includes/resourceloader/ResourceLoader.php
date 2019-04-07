@@ -1119,6 +1119,10 @@ MESSAGE;
 
 				if ( !$context->getDebug() ) {
 					$strContent = self::filter( $filter, $strContent );
+				} else {
+					// In debug mode, separate each response by a new line.
+					// For example, between 'mw.loader.implement();' statements.
+					$strContent = $this->ensureNewline( $strContent );
 				}
 
 				if ( $context->getOnly() === 'scripts' ) {
