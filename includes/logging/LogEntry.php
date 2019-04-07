@@ -100,7 +100,7 @@ interface LogEntry {
 	/**
 	 * Get the access restriction.
 	 *
-	 * @return string
+	 * @return int
 	 */
 	public function getDeleted();
 
