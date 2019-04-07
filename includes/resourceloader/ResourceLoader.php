@@ -1173,7 +1173,7 @@ MESSAGE;
 	 */
 	private function ensureNewline( $str ) {
 		$end = substr( $str, -1 );
-		if ( $end === false || $end === "\n" ) {
+		if ( $end === false || $end === '' || $end === "\n" ) {
 			return $str;
 		}
 		return $str . "\n";
@@ -1445,7 +1445,7 @@ MESSAGE;
 			}
 		}
 
-		array_walk( $modules, [ 'self', 'trimArray' ] );
+		array_walk( $modules, [ self::class, 'trimArray' ] );
 
 		return Xml::encodeJsCall(
 			'mw.loader.register',
