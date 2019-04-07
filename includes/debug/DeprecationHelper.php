@@ -50,7 +50,7 @@ trait DeprecationHelper {
 	 * the name of the class defining the property, <component> is the MediaWiki component
 	 * (extension, skin etc.) for use in the deprecation warning) or null if it is MediaWiki.
 	 * E.g. [ 'mNewRev' => [ '1.32', 'DifferenceEngine', null ]
-	 * @var string[]
+	 * @var string[][]
 	 */
 	protected $deprecatedPublicProperties = [];
 
