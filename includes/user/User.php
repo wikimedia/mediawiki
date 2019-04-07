@@ -1675,7 +1675,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param array $conditions WHERE conditions for use with Database::update
 	 * @return array WHERE conditions for use with Database::update
 	 */
-	protected function makeUpdateConditions( Database $db, array $conditions ) {
+	protected function makeUpdateConditions( IDatabase $db, array $conditions ) {
 		if ( $this->mTouched ) {
 			// CAS check: only update if the row wasn't changed sicne it was loaded.
 			$conditions['user_touched'] = $db->timestamp( $this->mTouched );

@@ -202,6 +202,7 @@ class CommentStore {
 	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 *  All tables, fields, and joins are aliased, so `+` is safe to use.
+	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public function getJoin( $key = null ) {
 		$key = $this->getKey( $key );
