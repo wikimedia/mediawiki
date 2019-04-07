@@ -3697,6 +3697,7 @@ class Language {
 					}
 				} elseif ( $dispLen > $length && $dispLen > strlen( $ellipsis ) ) {
 					# String in fact does need truncation, the truncation point was OK.
+					// @phan-suppress-next-line PhanTypeInvalidExpressionArrayDestructuring
 					list( $ret, $openTags ) = $maybeState; // reload state
 					$ret = $this->removeBadCharLast( $ret ); // multi-byte char fix
 					$ret .= $ellipsis; // add ellipsis
