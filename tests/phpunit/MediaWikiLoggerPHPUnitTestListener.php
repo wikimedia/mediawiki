@@ -83,6 +83,11 @@ class MediaWikiLoggerPHPUnitTestListener extends PHPUnit_Framework_BaseTestListe
 	private function formatLogs( array $logs ) {
 		$message = [];
 		foreach ( $logs as $log ) {
+			if ( $log['channel'] === 'PHPUnitCommand' ) {
+				// Don't print the log of PHPUnit events while running PHPUnit,
+				// because PHPUnit is already printing those already.
+				continue;
+			}
 			$message[] = sprintf(
 				'[%s] [%s] %s %s',
 				$log['channel'],

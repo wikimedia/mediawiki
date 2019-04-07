@@ -120,7 +120,7 @@ Deprecation message.' ]
 		// phpcs:enable
 		$expected = self::expandVariables( $expected );
 
-		$this->assertEquals( $expected, $client->getHeadHtml() );
+		$this->assertSame( $expected, (string)$client->getHeadHtml() );
 	}
 
 	/**
@@ -137,7 +137,7 @@ Deprecation message.' ]
 			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback&amp;target=example"></script>';
 		// phpcs:enable
 
-		$this->assertEquals( $expected, $client->getHeadHtml() );
+		$this->assertSame( $expected, (string)$client->getHeadHtml() );
 	}
 
 	/**
@@ -154,7 +154,7 @@ Deprecation message.' ]
 			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;safemode=1&amp;skin=fallback"></script>';
 		// phpcs:enable
 
-		$this->assertEquals( $expected, $client->getHeadHtml() );
+		$this->assertSame( $expected, (string)$client->getHeadHtml() );
 	}
 
 	/**
@@ -171,7 +171,7 @@ Deprecation message.' ]
 			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback"></script>';
 		// phpcs:enable
 
-		$this->assertEquals( $expected, $client->getHeadHtml() );
+		$this->assertSame( $expected, (string)$client->getHeadHtml() );
 	}
 
 	public function testGetBodyHtml() {
@@ -193,7 +193,7 @@ Deprecation message.' ]
 			. '});</script>';
 		// phpcs:enable
 
-		$this->assertEquals( $expected, $client->getBodyHtml() );
+		$this->assertSame( $expected, (string)$client->getBodyHtml() );
 	}
 
 	public static function provideMakeLoad() {
@@ -339,7 +339,7 @@ Deprecation message.' ]
 		$context->getResourceLoader()->register( self::makeSampleModules() );
 		$actual = ResourceLoaderClientHtml::makeLoad( $context, $modules, $type, $extraQuery, false );
 		$expected = self::expandVariables( $expected );
-		$this->assertEquals( $expected, (string)$actual );
+		$this->assertSame( $expected, (string)$actual );
 	}
 
 	public function testGetDocumentAttributes() {
