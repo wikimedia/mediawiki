@@ -694,6 +694,7 @@ abstract class Installer {
 				'enableSectionEditLinks' => false,
 				'unwrap' => true,
 			] );
+			$html = Parser::stripOuterParagraph( $html );
 		} catch ( Wikimedia\Services\ServiceDisabledException $e ) {
 			$html = '<!--DB access attempted during parse-->  ' . htmlspecialchars( $text );
 		}
