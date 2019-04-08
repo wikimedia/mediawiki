@@ -289,8 +289,13 @@ class XmlDumpWriter {
 			try {
 				$text = $content_handler->exportTransform( $text, $content_format );
 			}
-			catch ( MWException $ex ) {
-				// leave text as is; that's the way it goes
+			catch ( Exception $ex ) {
+				if ( $ex instanceof MWException || $ex instanceof RuntimeException ) {
+					// leave text as is; that's the way it goes
+					wfLogWarning( 'exportTransform failed on text for revid ' . $row->rev_id . "\n" );
+				} else {
+					throw $ex;
+				}
 			}
 			$out .= "      " . Xml::elementClean( 'text',
 				[ 'xml:space' => 'preserve', 'bytes' => intval( $row->rev_len ) ],
@@ -299,21 +304,33 @@ class XmlDumpWriter {
 			// TODO: make this fully MCR aware, see T174031
 			$rev = $this->getRevisionStore()->newRevisionFromRow( $row, 0, $this->currentTitle );
 			$slot = $rev->getSlot( 'main' );
-			$content = $slot->getContent();
+			try {
+				$content = $slot->getContent();
 
-			if ( $content instanceof TextContent ) {
-				// HACK: For text based models, bypass the serialization step.
-				// This allows extensions (like Flow)that use incompatible combinations
-				// of serialization format and content model.
-				$text = $content->getNativeData();
-			} else {
-				$text = $content->serialize( $content_format );
+				if ( $content instanceof TextContent ) {
+					// HACK: For text based models, bypass the serialization step.
+					// This allows extensions (like Flow)that use incompatible combinations
+					// of serialization format and content model.
+					$text = $content->getNativeData();
+				} else {
+					$text = $content->serialize( $content_format );
+				}
+				$text = $content_handler->exportTransform( $text, $content_format );
+				$out .= "      " . Xml::elementClean( 'text',
+					[ 'xml:space' => 'preserve', 'bytes' => intval( $slot->getSize() ) ],
+					strval( $text ) ) . "\n";
 			}
-
-			$text = $content_handler->exportTransform( $text, $content_format );
-			$out .= "      " . Xml::elementClean( 'text',
-				[ 'xml:space' => 'preserve', 'bytes' => intval( $slot->getSize() ) ],
-				strval( $text ) ) . "\n";
+			catch ( Exception $ex ) {
+				if ( $ex instanceof MWException || $ex instanceof RuntimeException ) {
+					// there's no provsion in the schema for an attribute that will let
+					// the user know this element was unavailable due to error; an empty
+					// tag is the best we can do
+					$out .= "      " . Xml::element( 'text' ) . "\n";
+					wfLogWarning( 'failed to load content for revid ' . $row->rev_id . "\n" );
+				} else {
+					throw $ex;
+				}
+			}
 		} elseif ( isset( $row->rev_text_id ) ) {
 			// Stub output for pre-MCR schema
 			// TODO: MCR: rev_text_id only exists in the pre-MCR schema. Remove this when
