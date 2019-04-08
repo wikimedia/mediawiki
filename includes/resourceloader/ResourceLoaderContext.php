@@ -132,7 +132,6 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 * things that don't "really" need a context.
 	 *
 	 * Use cases:
-	 * - Creating html5shiv script tag in OutputPage.
 	 * - Unit tests (deprecated, create empty instance directly or use RLTestCase).
 	 *
 	 * @return ResourceLoaderContext
