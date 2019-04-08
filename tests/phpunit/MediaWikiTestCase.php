@@ -1616,6 +1616,10 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 		if ( $tablesToRestore ) {
 			$this->recloneMockTables( $db, $tablesToRestore );
+
+			// Reset the restored tables, mainly for the side effect of
+			// re-calling $this->addCoreDBData() if necessary.
+			$this->resetDB( $db, $tablesToRestore );
 		}
 	}
 
@@ -1630,6 +1634,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 		if ( $oldOverrides['alter'] || $oldOverrides['create'] || $oldOverrides['drop'] ) {
 			$this->undoSchemaOverrides( $db, $oldOverrides );
+			unset( $db->_schemaOverrides );
 		}
 
 		// Determine new overrides.
