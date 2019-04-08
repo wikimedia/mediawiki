@@ -150,6 +150,7 @@
 	"config-sqlite-cant-create-db": "Non poteva crear le file de base de datos <code>$1</code>.",
 	"config-sqlite-fts3-downgrade": "PHP non ha supporto pro FTS3. Le tabellas es retrogradate.",
 	"config-can-upgrade": "Il ha tabellas MediaWiki in iste base de datos.\nPro actualisar los a MediaWiki $1, clicca super '''Continuar'''.",
+	"config-upgrade-error": "Un error ha occurrite durante le actualisation del tabellas MediaWiki in tu base de datos.\n\nPro plus information, examina le registro supra. Pro tentar lo de novo, clicca sur <strong>Continuar</strong>.",
 	"config-upgrade-done": "Actualisation complete.\n\nTu pote ora [$1 comenciar a usar tu wiki].\n\nSi tu vole regenerar tu file <code>LocalSettings.php</code>, clicca super le button hic infra.\nIsto '''non es recommendate''' si tu non ha problemas con tu wiki.",
 	"config-upgrade-done-no-regenerate": "Actualisation complete.\n\nTu pote ora [$1 comenciar a usar tu wiki].",
 	"config-regenerate": "Regenerar LocalSettings.php →",
@@ -305,6 +306,7 @@
 	"config-install-done": "<strong>Felicitationes!</strong>\nTu ha installate MediaWiki.\n\nLe installator ha generate un file <code>LocalSettings.php</code>.\nIste contine tote le configuration.\n\nEs necessari discargar lo e poner lo in le base del installation wiki (le mesme directorio que index.php).\nLe discargamento debe haber comenciate automaticamente.\n\nSi le discargamento non ha comenciate, o si illo esseva cancellate, recomencia le discargamento con un clic sur le ligamine sequente:\n\n$3\n\n<strong>Nota:</strong> Si tu non discarga iste file de configuration ora, illo non essera disponibile plus tarde.\n\nPost facer isto, tu pote <strong>[$2 entrar in tu wiki]</strong>.",
 	"config-install-done-path": "<strong>Felicitationes!</strong>\nTu ha installate MediaWiki.\n\nLe installator ha generate un file <code>LocalSettings.php</code>.\nIste contine tote le configuration.\n\nEs necessari discargar lo e poner lo in <code>$4</code>.\nLe discargamento debe haber comenciate automaticamente.\n\nSi le discargamento non ha comenciate, o si illo esseva cancellate, recomencia le discargamento con un clic sur le ligamine sequente:\n\n$3\n\n<strong>Nota:</strong> Si tu non discarga iste file de configuration ora, illo non essera disponibile plus tarde.\n\nPost facer isto, tu pote <strong>[$2 entrar in tu wiki]</strong>.",
 	"config-install-success": "MediaWiki ha essite installate con successo. Tu pote ora\nvisitar <$1$2> pro vider tu wiki.\nSi tu ha questiones, consulta nostre lista de questiones frequentemente ponite:\n<https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ> o usa un del\nforos de supporto indicate sur ille pagina.",
+	"config-install-db-success": "Le installation del base de datos ha succedite",
 	"config-download-localsettings": "Discargar <code>LocalSettings.php</code>",
 	"config-help": "adjuta",
 	"config-help-tooltip": "clicca pro displicar",
@@ -313,6 +315,8 @@
 	"config-skins-screenshots": "$1 (capturas de schermo: $2)",
 	"config-extensions-requires": "$1 (require $2)",
 	"config-screenshot": "captura de schermo",
+	"config-extension-not-found": "Impossibile trovar le file de registration pro le extension \"$1\"",
+	"config-extension-dependency": "Un error de dependentia se ha producite durante le installation del extension \"$1\": $2",
 	"mainpagetext": "<strong>MediaWiki ha essite installate.</strong>",
 	"mainpagedocfooter": "Consulta le [https://meta.wikimedia.org/wiki/Help:Contents Guida del usator] pro information sur le uso del software wiki.\n\n== Pro initiar ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de configurationes]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ a proposito de MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de diffusion pro annuncios de nove versiones de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traducer MediaWiki in tu lingua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Como combatter le spam in tu wiki]"
 }

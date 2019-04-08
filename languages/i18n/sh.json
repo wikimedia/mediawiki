@@ -1993,7 +1993,7 @@
 	"logeventslist-tag-log": "Evidencija oznaka",
 	"all-logs-page": "Sve evidencije - Све евиденције",
 	"alllogstext": "Zajednički prikaz svih dostupnih evidencija sa {{SITENAME}}.\nMožete specificirati prikaz izabiranjem specifičnog spiska, korisničkog imena ili promjenjenog članka (razlikovati velika slova).",
-	"logempty": "Ne postoji takav zapis.",
+	"logempty": "Nema pronađenih stavki u evidenciji.",
 	"log-title-wildcard": "Traži naslove koji počinju s ovim tekstom",
 	"showhideselectedlogentries": "Prikaži/sakrij izabrane zapise u evidenciji",
 	"log-edit-tags": "Uredi oznake izabranih zapisničkih unosa",
