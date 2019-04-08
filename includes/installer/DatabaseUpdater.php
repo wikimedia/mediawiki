@@ -22,6 +22,7 @@
  */
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
@@ -177,14 +178,18 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * @param Database $db
+	 * @param IMaintainableDatabase $db
 	 * @param bool $shared
 	 * @param Maintenance|null $maintenance
 	 *
 	 * @throws MWException
 	 * @return DatabaseUpdater
 	 */
-	public static function newForDB( Database $db, $shared = false, Maintenance $maintenance = null ) {
+	public static function newForDB(
+		IMaintainableDatabase $db,
+		$shared = false,
+		Maintenance $maintenance = null
+	) {
 		$type = $db->getType();
 		if ( in_array( $type, Installer::getDBTypes() ) ) {
 			$class = ucfirst( $type ) . 'Updater';
