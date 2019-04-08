@@ -428,6 +428,7 @@ return [
 	},
 
 	'ResourceLoader' => function ( MediaWikiServices $services ) : ResourceLoader {
+		global $IP;
 		$config = $services->getMainConfig();
 
 		$rl = new ResourceLoader(
@@ -435,6 +436,7 @@ return [
 			LoggerFactory::getInstance( 'resourceloader' )
 		);
 		$rl->addSource( $config->get( 'ResourceLoaderSources' ) );
+		$rl->register( include "$IP/resources/Resources.php" );
 
 		return $rl;
 	},

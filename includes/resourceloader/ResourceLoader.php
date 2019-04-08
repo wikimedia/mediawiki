@@ -240,8 +240,6 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @param LoggerInterface|null $logger [optional]
 	 */
 	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
-		global $IP;
-
 		$this->logger = $logger ?: new NullLogger();
 
 		if ( !$config ) {
@@ -254,8 +252,9 @@ class ResourceLoader implements LoggerAwareInterface {
 		// Add 'local' source first
 		$this->addSource( 'local', $config->get( 'LoadScript' ) );
 
-		// Register core modules
-		$this->register( include "$IP/resources/Resources.php" );
+		// Special module that always exists
+		$this->register( 'startup', [ 'class' => ResourceLoaderStartUpModule::class ] );
+
 		// Register extension modules
 		$this->register( $config->get( 'ResourceModules' ) );
 

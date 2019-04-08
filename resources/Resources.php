@@ -27,12 +27,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 global $wgResourceBasePath;
 
 return [
-
-	/**
-	 * Special modules who have their own classes
-	 */
-	'startup' => [ 'class' => ResourceLoaderStartUpModule::class ],
-
 	// Scripts managed by the local wiki (stored in the MediaWiki namespace)
 	'site' => [ 'class' => ResourceLoaderSiteModule::class ],
 	'site.styles' => [ 'class' => ResourceLoaderSiteStylesModule::class ],
