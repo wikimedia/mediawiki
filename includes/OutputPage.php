@@ -3223,7 +3223,10 @@ class OutputPage extends ContextSource {
 		// Use an IE conditional comment to serve the script only to old IE
 		$pieces[] = '<!--[if lt IE 9]>' .
 			ResourceLoaderClientHtml::makeLoad(
-				ResourceLoaderContext::newDummyContext(),
+				new ResourceLoaderContext(
+					$this->getResourceLoader(),
+					new FauxRequest( [] )
+				),
 				[ 'html5shiv' ],
 				ResourceLoaderModule::TYPE_SCRIPTS,
 				[ 'sync' => true ],
