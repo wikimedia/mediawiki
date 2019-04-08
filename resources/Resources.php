@@ -1440,7 +1440,7 @@ return [
 	],
 	'mediawiki.action.history.styles' => [
 		'skinStyles' => [
-			'default' => 'resources/src/mediawiki.action/mediawiki.action.history.styles.css',
+			'default' => 'resources/src/mediawiki.action/mediawiki.action.history.styles.less',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
