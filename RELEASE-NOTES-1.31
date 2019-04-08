@@ -3,6 +3,7 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.31.4 ===
+* Fix extra newlines in installer.
 * Followup T230402, PermissionManager doesn't exist until 1.33, so fix the
   backported patches to use User::isAllowed() instead.
 
