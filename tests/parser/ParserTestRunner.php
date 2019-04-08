@@ -327,7 +327,7 @@ class ParserTestRunner {
 		// This is essential and overrides disabling of database messages in TestSetup
 		$setup['wgUseDatabaseMessages'] = true;
 		$reset = function () {
-			MessageCache::destroyInstance();
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'MessageCache' );
 		};
 		$setup[] = $reset;
 		$teardown[] = $reset;

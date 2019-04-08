@@ -105,44 +105,14 @@ class MessageCache {
 	private $loadedLanguages = [];
 
 	/**
-	 * Singleton instance
+	 * Get the singleton instance of this class
 	 *
-	 * @var MessageCache $instance
-	 */
-	private static $instance;
-
-	/**
-	 * Get the signleton instance of this class
-	 *
+	 * @deprecated in 1.34 inject an instance of this class instead of using global state
 	 * @since 1.18
 	 * @return MessageCache
 	 */
 	public static function singleton() {
-		if ( self::$instance === null ) {
-			global $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgUseLocalMessageCache;
-			$services = MediaWikiServices::getInstance();
-			self::$instance = new self(
-				$services->getMainWANObjectCache(),
-				wfGetMessageCacheStorage(),
-				$wgUseLocalMessageCache
-					? $services->getLocalServerObjectCache()
-					: new EmptyBagOStuff(),
-				$wgUseDatabaseMessages,
-				$wgMsgCacheExpiry,
-				$services->getContentLanguage()
-			);
-		}
-
-		return self::$instance;
-	}
-
-	/**
-	 * Destroy the singleton instance
-	 *
-	 * @since 1.18
-	 */
-	public static function destroyInstance() {
-		self::$instance = null;
+		return MediaWikiServices::getInstance()->getMessageCache();
 	}
 
 	/**

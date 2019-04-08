@@ -343,7 +343,8 @@ because of Phabricator reports.
   Use IDatabase::getDomainID() instead.
 * (T191231) Support for using Oracle or MSSQL as database backends has been
   dropped.
-* …
+* MessageCache::destroyInstance() has been removed. Instead, call
+  MediaWikiTestCase::resetServices().
 
 === Deprecations in 1.34 ===
 * The MWNamespace class is deprecated. Use NamespaceInfo.
@@ -446,6 +447,8 @@ because of Phabricator reports.
   deprecation above this method is no longer needed/called and should not be
   implemented by SearchEngine implementation.
 * IDatabase::bufferResults() has been deprecated. Use query batching instead.
+* MessageCache::singleton() is deprecated. Use
+  MediaWikiServices::getMessageCache().
 
 === Other changes in 1.34 ===
 * …
