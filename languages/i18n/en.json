@@ -2366,7 +2366,7 @@
 	"delete-confirm": "Delete \"$1\"",
 	"delete-legend": "Delete",
 	"historywarning": "<strong>Warning:</strong> The page you are about to delete has a history with $1 {{PLURAL:$1|revision|revisions}}:",
-	"historyaction-submit": "Show",
+	"historyaction-submit": "Show revisions",
 	"confirmdeletetext": "You are about to delete a page along with all of its history.\nPlease confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].",
 	"actioncomplete": "Action complete",
 	"actionfailed": "Action failed",
