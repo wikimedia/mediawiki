@@ -536,14 +536,13 @@
 			 *             'dependencies': ['required.foo', 'bar.also', ...]
 			 *             'group': 'somegroup', (or) null
 			 *             'source': 'local', (or) 'anotherwiki'
-			 *             'skip': 'return !!window.Example', (or) null
+			 *             'skip': 'return !!window.Example', (or) null, (or) boolean result of skip
 			 *             'module': export Object
 			 *
 			 *             // Set from execute() or mw.loader.state()
 			 *             'state': 'registered', 'loaded', 'loading', 'ready', 'error', or 'missing'
 			 *
 			 *             // Optionally added at run-time by mw.loader.implement()
-			 *             'skipped': true
 			 *             'script': closure, array of urls, or string
 			 *             'style': { ... } (see #execute)
 			 *             'messages': { 'key': 'value', ... }
@@ -717,7 +716,7 @@
 
 			/**
 			 * @private
-			 * @param {Array} modules List of module names
+			 * @param {string[]} modules List of module names
 			 * @return {string} Hash of concatenated version hashes.
 			 */
 			function getCombinedVersion( modules ) {
@@ -732,7 +731,7 @@
 			 * execute the module or job now.
 			 *
 			 * @private
-			 * @param {Array} modules Names of modules to be checked
+			 * @param {string[]} modules Names of modules to be checked
 			 * @return {boolean} True if all modules are in state 'ready', false otherwise
 			 */
 			function allReady( modules ) {
@@ -929,12 +928,11 @@
 					throw new Error( 'Unknown dependency: ' + module );
 				}
 
-				if ( registry[ module ].skip !== null ) {
+				if ( typeof registry[ module ].skip === 'string' ) {
 					// eslint-disable-next-line no-new-func
-					skip = new Function( registry[ module ].skip );
-					registry[ module ].skip = null;
-					if ( skip() ) {
-						registry[ module ].skipped = true;
+					skip = ( new Function( registry[ module ].skip )() );
+					registry[ module ].skip = !!skip;
+					if ( skip ) {
 						registry[ module ].dependencies = [];
 						setAndPropagate( module, 'ready' );
 						return;
