@@ -207,6 +207,12 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	function closePage() {
+		if ( $this->currentTitle !== null ) {
+			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+			// In rare cases, link cache has the same key for some pages which
+			// might be read as part of the same batch. T220424 and T220316
+			$linkCache->clearLink( $this->currentTitle );
+		}
 		return "  </page>\n";
 	}
 
