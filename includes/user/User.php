@@ -1671,7 +1671,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * protected against race conditions using a compare-and-set (CAS) mechanism
 	 * based on comparing $this->mTouched with the user_touched field.
 	 *
-	 * @param Database $db
+	 * @param IDatabase $db
 	 * @param array $conditions WHERE conditions for use with Database::update
 	 * @return array WHERE conditions for use with Database::update
 	 */
