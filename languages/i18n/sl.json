@@ -816,7 +816,7 @@
 	"histfirst": "najstarejše",
 	"histlast": "najnovejše",
 	"historysize": "({{PLURAL:$1|$1 zlog|$1 zloga|$1 zlogi|$1 zlogov}})",
-	"historyempty": "(prazno)",
+	"historyempty": "prazno",
 	"history-feed-title": "Zgodovina strani",
 	"history-feed-description": "Zgodovina navedene strani {{GRAMMAR:rodilnik|{{SITENAME}}}}",
 	"history-feed-item-nocomment": "$1 ob $2",

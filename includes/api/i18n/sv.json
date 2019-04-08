@@ -483,6 +483,7 @@
 	"apihelp-query+usercontribs-summary": "Hämta alla redigeringar av en användare.",
 	"apihelp-query+userinfo-summary": "Få information om den aktuella användaren.",
 	"apihelp-query+userinfo-paramvalue-prop-preferencestoken": "Hämta en nyckel för att ändra aktuell användares inställningar.",
+	"apihelp-query+userinfo-paramvalue-prop-latestcontrib": "Lägg till datumet för användarens senaste bidrag.",
 	"apihelp-query+userinfo-example-simple": "Få information om den aktuella användaren.",
 	"apihelp-query+userinfo-example-data": "Få ytterligare information om den aktuella användaren.",
 	"apihelp-query+users-summary": "Hämta information om en lista över användare.",

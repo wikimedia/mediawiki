@@ -3422,7 +3422,7 @@
 	"logentry-rights-autopromote": "$1 automatikoki $4tik $5ra  {{GENDER:$2|igo}} egin zaio",
 	"logentry-upload-upload": "$1(e)k $3 {{GENDER:$2|igo du}}",
 	"logentry-upload-overwrite": "$1(e)k $3(r)en bertsio berria {{GENDER:$2|igo du}}",
-	"logentry-upload-revert": "$1(e)k $3 {{GENDER:$2|igo du}}",
+	"logentry-upload-revert": "$1(e)k $3 bertsio zahar batera {{GENDER:$2|itzuli du}}",
 	"log-name-managetags": "Etiketa kudeatze erregistroa",
 	"log-description-managetags": "Orrialde honetan [[Special:Tags|etiketekin]] lotutako kudeaketa-zereginak zerrendatzen dira. Saioak administratzaileak eskuz egiten dituen ekintzak soilik ditu; Wiki softwarerrarekin etiketak sortu edo ezabatzeko ahalmenarekin erregistro honetan erregistratutako sarrerarik gabe.",
 	"logentry-managetags-create": "$1 lankideak \"$4\" etiketa {{GENDER:$2|sortu du}}",

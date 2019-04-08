@@ -40,7 +40,8 @@
 			"Fitoschido",
 			"Dcljr",
 			"Bukhari",
-			"Sajidkhan"
+			"Sajidkhan",
+			"Hmfs.ind"
 		]
 	},
 	"tog-underline": "ربط کی خط کشیدگی:",
@@ -327,7 +328,7 @@
 	"nstab-category": "زمرہ",
 	"mainpage-nstab": "صفحۂ اول",
 	"nosuchaction": "مطلوبہ اقدام موجود نہیں",
-	"nosuchactiontext": "URL کی جانب سے مختص کیا گیا عمل درست نہیں.\nآپ نے شاید URL غلط لکھا، یا کسی غیر صحیح ربط کی پیروی کی ہے.\n{{اِس سے SITENAME کے زیرِ استعمال مصنع لطیف میں کھٹمل کی نشاندہی کا بھی اندیشہ ہے}}.",
+	"nosuchactiontext": "URL کی جانب سے مختص کیا گیا عمل درست نہیں۔\nآپ نے شاید URL غلط لکھا ہے یا کسی نادرست ربط پر کلک کیا ہے۔\nاِس سے {{SITENAME}} کے زیرِ استعمال سافٹ ویئر میں کسی خامی کی موجودگی کا بھی اندیشہ ہے۔",
 	"nosuchspecialpage": "کوئی ایسا خاص صفحہ نہیں",
 	"nospecialpagetext": "<strong>آپ نے ایک غیر موجود خصوصی صفحہ کی درخواست کی ہے۔</strong>\n\nدرست خاص صفحات کی ایک فہرست [[Special:SpecialPages|{{int:specialpages}}]] پر دیکھی جاسکتی ہے۔",
 	"error": "نقص",
