@@ -2776,6 +2776,7 @@
 	"logentry-import-upload": "$1 {{GENDER:$2|بارکرد}} $3 بە بەکارھێنانی [[special:Import|بارکەر]]",
 	"logentry-import-interwiki": "$1 $3ی لە ویکییەکی ترەوە ھاوردەکرد",
 	"logentry-import-interwiki-details": "$1 $3ی لە $5ەوە ھەناردە کرد ($4 بەسەرداچوونەوە)",
+	"logentry-merge-merge": "$1 $3ی لەگەڵ $4 تێکەڵکرد (بەسەرداچوونەکان لە $5 زیاترن)",
 	"logentry-move-move": "$1 پەڕەی $3ی {{GENDER:$2|گواستەوە}} بۆ $4",
 	"logentry-move-move-noredirect": "$1 پەڕەی $3ی بە بێ بەجێھشتنی ڕەوانەکەرێک {{GENDER:$2|گواستەوە}} بۆ $4",
 	"logentry-move-move_redir": "$1 پەڕەی $3 {{GENDER:$2|گواستەوە}} بۆ $4 کە پێشتر ڕەوانەکەر بوو",

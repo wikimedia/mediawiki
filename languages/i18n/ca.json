@@ -2258,7 +2258,7 @@
 	"delete-confirm": "Supressió de la pàgina «$1»",
 	"delete-legend": "Suprimeix",
 	"historywarning": "<strong>Avís:</strong> la pàgina que esteu a punt d'eliminar té un historial amb $1 {{PLURAL:$1|revisió|revisions}}:",
-	"historyaction-submit": "Mostra",
+	"historyaction-submit": "Mostra les revisions",
 	"confirmdeletetext": "Esteu a punt d'esborrar de forma permanent una pàgina o imatge i tot el seu historial de la base de dades.\nConfirmeu que realment ho voleu fer, que enteneu les\nconseqüències, i que el que esteu fent està d'acord amb la [[{{MediaWiki:Policy-url}}|política]] del projecte.",
 	"actioncomplete": "Acció realitzada",
 	"actionfailed": "L'acció ha fallat",

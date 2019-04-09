@@ -2297,7 +2297,7 @@
 	"delete-confirm": "حذف \"$1\"",
 	"delete-legend": "حذف",
 	"historywarning": "'''تنبيه:''' الصفحة التي تريد حذفها بها {{PLURAL:$1|نسخة|نسخة واحدة|نسختان|$1 نسخ|$1 نسخة}}. انظر",
-	"historyaction-submit": "أظهر",
+	"historyaction-submit": "عرض المراجعات",
 	"confirmdeletetext": "أنت على وشك أن تقوم بحذف صفحة بالإضافة إلى كل تاريخها.\nمن فضلك التأكد من عزمك على الحذف، وبأنك مدرك للعواقب، وبأنك تقوم بهذا بالتوافق مع [[{{MediaWiki:Policy-url}}|السياسة]].",
 	"actioncomplete": "انتهاء العملية",
 	"actionfailed": "الفعل فشل",
