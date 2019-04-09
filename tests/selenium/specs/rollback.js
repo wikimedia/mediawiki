@@ -50,7 +50,9 @@ describe( 'Rollback with confirmation', function () {
 
 	it( 'should offer a way to cancel rollbacks', function () {
 		HistoryPage.rollback.click();
+
 		browser.pause( 300 );
+
 		HistoryPage.rollbackConfirmableNo.click();
 
 		browser.pause( 500 );
@@ -60,6 +62,9 @@ describe( 'Rollback with confirmation', function () {
 
 	it( 'should perform rollbacks after confirming intention', function () {
 		HistoryPage.rollback.click();
+
+		browser.pause( 300 );
+
 		HistoryPage.rollbackConfirmableYes.click();
 
 		// waitUntil indirectly asserts that the content we are looking for is present
