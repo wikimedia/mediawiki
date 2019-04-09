@@ -20,7 +20,6 @@
  * @file
  * @ingroup Deployment
  */
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use MediaWiki\MediaWikiServices;
@@ -60,7 +59,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * Handle to the database subclass
 	 *
-	 * @var Database
+	 * @var IMaintainableDatabase
 	 */
 	protected $db;
 
@@ -111,11 +110,15 @@ abstract class DatabaseUpdater {
 	protected $holdContentHandlerUseDB = true;
 
 	/**
-	 * @param Database &$db To perform updates on
+	 * @param IMaintainableDatabase &$db To perform updates on
 	 * @param bool $shared Whether to perform updates on shared tables
 	 * @param Maintenance|null $maintenance Maintenance object which created us
 	 */
-	protected function __construct( Database &$db, $shared, Maintenance $maintenance = null ) {
+	protected function __construct(
+		IMaintainableDatabase &$db,
+		$shared,
+		Maintenance $maintenance = null
+	) {
 		$this->db = $db;
 		$this->db->setFlag( DBO_DDLMODE ); // For Oracle's handling of schema files
 		$this->shared = $shared;
@@ -203,7 +206,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * Get a database connection to run updates
 	 *
-	 * @return Database
+	 * @return IMaintainableDatabase
 	 */
 	public function getDB() {
 		return $this->db;
