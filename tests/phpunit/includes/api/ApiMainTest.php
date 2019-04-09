@@ -141,6 +141,7 @@ class ApiMainTest extends ApiTestCase {
 	public function testSetCacheModeUnrecognized() {
 		$api = new ApiMain();
 		$api->setCacheMode( 'unrecognized' );
+		$this->resetServices();
 		$this->assertSame(
 			'private',
 			TestingAccessWrapper::newFromObject( $api )->mCacheMode,
@@ -150,7 +151,6 @@ class ApiMainTest extends ApiTestCase {
 
 	public function testSetCacheModePrivateWiki() {
 		$this->setGroupPermissions( '*', 'read', false );
-
 		$wrappedApi = TestingAccessWrapper::newFromObject( new ApiMain() );
 		$wrappedApi->setCacheMode( 'public' );
 		$this->assertSame( 'private', $wrappedApi->mCacheMode );
@@ -401,7 +401,7 @@ class ApiMainTest extends ApiTestCase {
 		} else {
 			$user = new User();
 		}
-		$user->mRights = $rights;
+		$this->overrideUserPermissions( $user, $rights );
 		try {
 			$this->doApiRequest( [
 				'action' => 'query',

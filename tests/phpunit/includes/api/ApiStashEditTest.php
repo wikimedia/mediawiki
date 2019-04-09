@@ -307,6 +307,7 @@ class ApiStashEditTest extends ApiTestCase {
 
 		// Nor does the original one if they become a bot
 		$user->addGroup( 'bot' );
+		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache();
 		$this->assertFalse(
 			$this->doCheckCache( $user ),
 			"We assume bots don't have cache entries"
@@ -315,6 +316,7 @@ class ApiStashEditTest extends ApiTestCase {
 		// But other groups are okay
 		$user->removeGroup( 'bot' );
 		$user->addGroup( 'sysop' );
+		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache();
 		$this->assertInstanceOf( stdClass::class, $this->doCheckCache( $user ) );
 	}
 

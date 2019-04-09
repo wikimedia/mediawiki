@@ -111,95 +111,7 @@ class User implements IDBAccessObject, UserIdentity {
 	];
 
 	/**
-	 * Array of Strings Core rights.
-	 * Each of these should have a corresponding message of the form
-	 * "right-$right".
-	 * @showinitializer
 	 * @var string[]
-	 */
-	protected static $mCoreRights = [
-		'apihighlimits',
-		'applychangetags',
-		'autoconfirmed',
-		'autocreateaccount',
-		'autopatrol',
-		'bigdelete',
-		'block',
-		'blockemail',
-		'bot',
-		'browsearchive',
-		'changetags',
-		'createaccount',
-		'createpage',
-		'createtalk',
-		'delete',
-		'deletechangetags',
-		'deletedhistory',
-		'deletedtext',
-		'deletelogentry',
-		'deleterevision',
-		'edit',
-		'editcontentmodel',
-		'editinterface',
-		'editprotected',
-		'editmyoptions',
-		'editmyprivateinfo',
-		'editmyusercss',
-		'editmyuserjson',
-		'editmyuserjs',
-		'editmywatchlist',
-		'editsemiprotected',
-		'editsitecss',
-		'editsitejson',
-		'editsitejs',
-		'editusercss',
-		'edituserjson',
-		'edituserjs',
-		'hideuser',
-		'import',
-		'importupload',
-		'ipblock-exempt',
-		'managechangetags',
-		'markbotedits',
-		'mergehistory',
-		'minoredit',
-		'move',
-		'movefile',
-		'move-categorypages',
-		'move-rootuserpages',
-		'move-subpages',
-		'nominornewtalk',
-		'noratelimit',
-		'override-export-depth',
-		'pagelang',
-		'patrol',
-		'patrolmarks',
-		'protect',
-		'purge',
-		'read',
-		'reupload',
-		'reupload-own',
-		'reupload-shared',
-		'rollback',
-		'sendemail',
-		'siteadmin',
-		'suppressionlog',
-		'suppressredirect',
-		'suppressrevision',
-		'unblockself',
-		'undelete',
-		'unwatchedpages',
-		'upload',
-		'upload_by_url',
-		'userrights',
-		'userrights-interwiki',
-		'viewmyprivateinfo',
-		'viewmywatchlist',
-		'viewsuppressed',
-		'writeapi',
-	];
-
-	/**
 	 * @var string[] Cached results of getAllRights()
 	 */
 	protected static $mAllRights = false;
@@ -274,8 +186,6 @@ class User implements IDBAccessObject, UserIdentity {
 	public $mBlockedby;
 	/** @var string */
 	protected $mHash;
-	/** @var array */
-	public $mRights;
 	/** @var string */
 	protected $mBlockreason;
 	/** @var array */
@@ -331,6 +241,24 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function __toString() {
 		return (string)$this->getName();
+	}
+
+	public function __get( $name ) {
+		// A shortcut for $mRights deprecation phase
+		if ( $name === 'mRights' ) {
+			return $this->getRights();
+		}
+	}
+
+	public function __set( $name, $value ) {
+		// A shortcut for $mRights deprecation phase, only known legitimate use was for
+		// testing purposes, other uses seem bad in principle
+		if ( $name === 'mRights' ) {
+			MediaWikiServices::getInstance()->getPermissionManager()->overrideUserRightsForTesting(
+				$this,
+				is_null( $value ) ? [] : $value
+			);
+		}
 	}
 
 	/**
@@ -1699,17 +1627,25 @@ class User implements IDBAccessObject, UserIdentity {
 	 *   given source. May be "name", "id", "actor", "defaults", "session", or false for no reload.
 	 */
 	public function clearInstanceCache( $reloadFrom = false ) {
+		global $wgFullyInitialised;
+
 		$this->mNewtalk = -1;
 		$this->mDatePreference = null;
 		$this->mBlockedby = -1; # Unset
 		$this->mHash = false;
-		$this->mRights = null;
 		$this->mEffectiveGroups = null;
 		$this->mImplicitGroups = null;
 		$this->mGroupMemberships = null;
 		$this->mOptions = null;
 		$this->mOptionsLoaded = false;
 		$this->mEditCount = null;
+
+		// Replacement of former `$this->mRights = null` line
+		if ( $wgFullyInitialised && $this->mFrom ) {
+			MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache(
+				$this
+			);
+		}
 
 		if ( $reloadFrom ) {
 			$this->mLoadedItems = [];
@@ -2149,7 +2085,6 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param Title $title Title to check
 	 * @param bool $fromReplica Whether to check the replica DB instead of the master
 	 * @return bool
-	 * @throws MWException
 	 *
 	 * @deprecated since 1.33,
 	 * use MediaWikiServices::getInstance()->getPermissionManager()->isBlockedFrom(..)
@@ -3395,44 +3330,13 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Get the permissions this user has.
 	 * @return string[] permission names
+	 *
+	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
+	 * ->getUserPermissions(..) instead
+	 *
 	 */
 	public function getRights() {
-		if ( is_null( $this->mRights ) ) {
-			$this->mRights = self::getGroupPermissions( $this->getEffectiveGroups() );
-			Hooks::run( 'UserGetRights', [ $this, &$this->mRights ] );
-
-			// Deny any rights denied by the user's session, unless this
-			// endpoint has no sessions.
-			if ( !defined( 'MW_NO_SESSION' ) ) {
-				$allowedRights = $this->getRequest()->getSession()->getAllowedUserRights();
-				if ( $allowedRights !== null ) {
-					$this->mRights = array_intersect( $this->mRights, $allowedRights );
-				}
-			}
-
-			Hooks::run( 'UserGetRightsRemove', [ $this, &$this->mRights ] );
-			// Force reindexation of rights when a hook has unset one of them
-			$this->mRights = array_values( array_unique( $this->mRights ) );
-
-			// If block disables login, we should also remove any
-			// extra rights blocked users might have, in case the
-			// blocked user has a pre-existing session (T129738).
-			// This is checked here for cases where people only call
-			// $user->isAllowed(). It is also checked in Title::checkUserBlock()
-			// to give a better error message in the common case.
-			$config = RequestContext::getMain()->getConfig();
-			// @TODO Partial blocks should not prevent the user from logging in.
-			//       see: https://phabricator.wikimedia.org/T208895
-			if (
-				$this->isLoggedIn() &&
-				$config->get( 'BlockDisablesLogin' ) &&
-				$this->getBlock()
-			) {
-				$anon = new User;
-				$this->mRights = array_intersect( $this->mRights, $anon->getRights() );
-			}
-		}
-		return $this->mRights;
+		return MediaWikiServices::getInstance()->getPermissionManager()->getUserPermissions( $this );
 	}
 
 	/**
@@ -3601,8 +3505,7 @@ class User implements IDBAccessObject, UserIdentity {
 		// Refresh the groups caches, and clear the rights cache so it will be
 		// refreshed on the next call to $this->getRights().
 		$this->getEffectiveGroups( true );
-		$this->mRights = null;
-
+		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache( $this );
 		$this->invalidateCache();
 
 		return true;
@@ -3633,8 +3536,7 @@ class User implements IDBAccessObject, UserIdentity {
 		// Refresh the groups caches, and clear the rights cache so it will be
 		// refreshed on the next call to $this->getRights().
 		$this->getEffectiveGroups( true );
-		$this->mRights = null;
-
+		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache( $this );
 		$this->invalidateCache();
 
 		return true;
@@ -3717,16 +3619,17 @@ class User implements IDBAccessObject, UserIdentity {
 
 	/**
 	 * Internal mechanics of testing a permission
+	 *
+	 * @deprecated since 1.34, use MediaWikiServices::getInstance()
+	 * ->getPermissionManager()->userHasRight(...) instead
+	 *
 	 * @param string $action
+	 *
 	 * @return bool
 	 */
 	public function isAllowed( $action = '' ) {
-		if ( $action === '' ) {
-			return true; // In the spirit of DWIM
-		}
-		// Use strict parameter to avoid matching numeric 0 accidentally inserted
-		// by misconfiguration: 0 == 'foo'
-		return in_array( $action, $this->getRights(), true );
+		return MediaWikiServices::getInstance()->getPermissionManager()
+			->userHasRight( $this, $action );
 	}
 
 	/**
@@ -4875,45 +4778,27 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Get the permissions associated with a given list of groups
 	 *
+	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
+	 *             ->getGroupPermissions() instead
+	 *
 	 * @param array $groups Array of Strings List of internal group names
 	 * @return array Array of Strings List of permission key names for given groups combined
 	 */
 	public static function getGroupPermissions( $groups ) {
-		global $wgGroupPermissions, $wgRevokePermissions;
-		$rights = [];
-		// grant every granted permission first
-		foreach ( $groups as $group ) {
-			if ( isset( $wgGroupPermissions[$group] ) ) {
-				$rights = array_merge( $rights,
-					// array_filter removes empty items
-					array_keys( array_filter( $wgGroupPermissions[$group] ) ) );
-			}
-		}
-		// now revoke the revoked permissions
-		foreach ( $groups as $group ) {
-			if ( isset( $wgRevokePermissions[$group] ) ) {
-				$rights = array_diff( $rights,
-					array_keys( array_filter( $wgRevokePermissions[$group] ) ) );
-			}
-		}
-		return array_unique( $rights );
+		return MediaWikiServices::getInstance()->getPermissionManager()->getGroupPermissions( $groups );
 	}
 
 	/**
 	 * Get all the groups who have a given permission
 	 *
+	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
+	 *             ->getGroupsWithPermission() instead
+	 *
 	 * @param string $role Role to check
 	 * @return array Array of Strings List of internal group names with the given permission
 	 */
 	public static function getGroupsWithPermission( $role ) {
-		global $wgGroupPermissions;
-		$allowedGroups = [];
-		foreach ( array_keys( $wgGroupPermissions ) as $group ) {
-			if ( self::groupHasPermission( $group, $role ) ) {
-				$allowedGroups[] = $group;
-			}
-		}
-		return $allowedGroups;
+		return MediaWikiServices::getInstance()->getPermissionManager()->getGroupsWithPermission( $role );
 	}
 
 	/**
@@ -4923,15 +4808,17 @@ class User implements IDBAccessObject, UserIdentity {
 	 * User::isEveryoneAllowed() instead. That properly checks if it's revoked
 	 * from anyone.
 	 *
+	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
+	 * ->groupHasPermission(..) instead
+	 *
 	 * @since 1.21
 	 * @param string $group Group to check
 	 * @param string $role Role to check
 	 * @return bool
 	 */
 	public static function groupHasPermission( $group, $role ) {
-		global $wgGroupPermissions, $wgRevokePermissions;
-		return isset( $wgGroupPermissions[$group][$role] ) && $wgGroupPermissions[$group][$role]
-			&& !( isset( $wgRevokePermissions[$group][$role] ) && $wgRevokePermissions[$group][$role] );
+		return MediaWikiServices::getInstance()->getPermissionManager()
+			->groupHasPermission( $group, $role );
 	}
 
 	/**
@@ -4944,51 +4831,16 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Specifically, session-based rights restrictions (such as OAuth or bot
 	 * passwords) are applied based on the current session.
 	 *
-	 * @since 1.22
+	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
+	 *             ->isEveryoneAllowed() instead
+	 *
 	 * @param string $right Right to check
+	 *
 	 * @return bool
+	 * @since 1.22
 	 */
 	public static function isEveryoneAllowed( $right ) {
-		global $wgGroupPermissions, $wgRevokePermissions;
-		static $cache = [];
-
-		// Use the cached results, except in unit tests which rely on
-		// being able change the permission mid-request
-		if ( isset( $cache[$right] ) && !defined( 'MW_PHPUNIT_TEST' ) ) {
-			return $cache[$right];
-		}
-
-		if ( !isset( $wgGroupPermissions['*'][$right] ) || !$wgGroupPermissions['*'][$right] ) {
-			$cache[$right] = false;
-			return false;
-		}
-
-		// If it's revoked anywhere, then everyone doesn't have it
-		foreach ( $wgRevokePermissions as $rights ) {
-			if ( isset( $rights[$right] ) && $rights[$right] ) {
-				$cache[$right] = false;
-				return false;
-			}
-		}
-
-		// Remove any rights that aren't allowed to the global-session user,
-		// unless there are no sessions for this endpoint.
-		if ( !defined( 'MW_NO_SESSION' ) ) {
-			$allowedRights = SessionManager::getGlobalSession()->getAllowedUserRights();
-			if ( $allowedRights !== null && !in_array( $right, $allowedRights, true ) ) {
-				$cache[$right] = false;
-				return false;
-			}
-		}
-
-		// Allow extensions to say false
-		if ( !Hooks::run( 'UserIsEveryoneAllowed', [ $right ] ) ) {
-			$cache[$right] = false;
-			return false;
-		}
-
-		$cache[$right] = true;
-		return true;
+		return MediaWikiServices::getInstance()->getPermissionManager()->isEveryoneAllowed( $right );
 	}
 
 	/**
@@ -5007,19 +4859,14 @@ class User implements IDBAccessObject, UserIdentity {
 
 	/**
 	 * Get a list of all available permissions.
+	 *
+	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
+	 *             ->getAllPermissions() instead
+	 *
 	 * @return string[] Array of permission names
 	 */
 	public static function getAllRights() {
-		if ( self::$mAllRights === false ) {
-			global $wgAvailableRights;
-			if ( count( $wgAvailableRights ) ) {
-				self::$mAllRights = array_unique( array_merge( self::$mCoreRights, $wgAvailableRights ) );
-			} else {
-				self::$mAllRights = self::$mCoreRights;
-			}
-			Hooks::run( 'UserGetAllRights', [ &self::$mAllRights ] );
-		}
-		return self::$mAllRights;
+		return MediaWikiServices::getInstance()->getPermissionManager()->getAllPermissions();
 	}
 
 	/**

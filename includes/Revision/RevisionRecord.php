@@ -515,10 +515,19 @@ abstract class RevisionRecord {
 			} else {
 				$permissions = [ 'deletedhistory' ];
 			}
+
+			// XXX: How can we avoid global scope here?
+			//      Perhaps the audience check should be done in a callback.
+			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 			$permissionlist = implode( ', ', $permissions );
 			if ( $title === null ) {
 				wfDebug( "Checking for $permissionlist due to $field match on $bitfield\n" );
-				return $user->isAllowedAny( ...$permissions );
+				foreach ( $permissions as $perm ) {
+					if ( $permissionManager->userHasRight( $user, $perm ) ) {
+						return true;
+					}
+				}
+				return false;
 			} else {
 				$text = $title->getPrefixedText();
 				wfDebug( "Checking for $permissionlist on $text due to $field match on $bitfield\n" );
