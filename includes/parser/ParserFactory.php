@@ -18,6 +18,7 @@
  * @file
  * @ingroup Parser
  */
+use MediaWiki\Linker\LinkRendererFactory;
 
 use MediaWiki\Special\SpecialPageFactory;
 
@@ -43,6 +44,9 @@ class ParserFactory {
 	/** @var Config */
 	private $siteConfig;
 
+	/** @var LinkRendererFactory */
+	private $linkRendererFactory;
+
 	/**
 	 * @param array $parserConf See $wgParserConf documentation
 	 * @param MagicWordFactory $magicWordFactory
@@ -50,11 +54,12 @@ class ParserFactory {
 	 * @param string $urlProtocols As returned from wfUrlProtocols()
 	 * @param SpecialPageFactory $spFactory
 	 * @param Config $siteConfig
+	 * @param LinkRendererFactory $linkRendererFactory
 	 * @since 1.32
 	 */
 	public function __construct(
 		array $parserConf, MagicWordFactory $magicWordFactory, Language $contLang, $urlProtocols,
-		SpecialPageFactory $spFactory, Config $siteConfig
+		SpecialPageFactory $spFactory, Config $siteConfig, LinkRendererFactory $linkRendererFactory
 	) {
 		$this->parserConf = $parserConf;
 		$this->magicWordFactory = $magicWordFactory;
@@ -62,6 +67,7 @@ class ParserFactory {
 		$this->urlProtocols = $urlProtocols;
 		$this->specialPageFactory = $spFactory;
 		$this->siteConfig = $siteConfig;
+		$this->linkRendererFactory = $linkRendererFactory;
 	}
 
 	/**
@@ -70,6 +76,7 @@ class ParserFactory {
 	 */
 	public function create() : Parser {
 		return new Parser( $this->parserConf, $this->magicWordFactory, $this->contLang, $this,
-			$this->urlProtocols, $this->specialPageFactory, $this->siteConfig );
+			$this->urlProtocols, $this->specialPageFactory, $this->siteConfig,
+			$this->linkRendererFactory );
 	}
 }
