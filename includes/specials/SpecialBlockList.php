@@ -31,6 +31,8 @@ class SpecialBlockList extends SpecialPage {
 
 	protected $options;
 
+	protected $blockType;
+
 	function __construct() {
 		parent::__construct( 'BlockList' );
 	}
@@ -43,13 +45,14 @@ class SpecialBlockList extends SpecialPage {
 		$this->outputHeader();
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'ipblocklist' ) );
-		$out->addModuleStyles( [ 'mediawiki.special' ] );
+		$out->addModuleStyles( [ 'mediawiki.special', 'mediawiki.special.blocklist' ] );
 
 		$request = $this->getRequest();
 		$par = $request->getVal( 'ip', $par );
 		$this->target = trim( $request->getVal( 'wpTarget', $par ) );
 
 		$this->options = $request->getArray( 'wpOptions', [] );
+		$this->blockType = $request->getVal( 'blockType' );
 
 		$action = $request->getText( 'action' );
 
@@ -83,14 +86,33 @@ class SpecialBlockList extends SpecialPage {
 				],
 				'flatlist' => true,
 			],
-			'Limit' => [
-				'type' => 'limitselect',
-				'label-message' => 'table_pager_limit_label',
-				'options' => $pager->getLimitSelectList(),
-				'name' => 'limit',
-				'default' => $pager->getLimit(),
-			],
 		];
+
+		if ( $this->getConfig()->get( 'EnablePartialBlocks' ) ) {
+			$fields['BlockType'] = [
+				'type' => 'select',
+				'label-message' => 'blocklist-type',
+				'options' => [
+					$this->msg( 'blocklist-type-opt-all' )->escaped() => '',
+					$this->msg( 'blocklist-type-opt-sitewide' )->escaped() => 'sitewide',
+					$this->msg( 'blocklist-type-opt-partial' )->escaped() => 'partial',
+				],
+				'name' => 'blockType',
+				'cssclass' => 'mw-field-block-type',
+			];
+		}
+
+		$fields['Limit'] = [
+			'type' => 'limitselect',
+			'label-message' => 'table_pager_limit_label',
+			'options' => $pager->getLimitSelectList(),
+			'name' => 'limit',
+			'default' => $pager->getLimit(),
+			'cssclass' => $this->getConfig()->get( 'EnablePartialBlocks' ) ?
+				'mw-field-limit mw-has-field-block-type' :
+				'mw-field-limit',
+		];
+
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle() ); // Remove subpage
 		$form = HTMLForm::factory( 'ooui', $fields, $context );
@@ -157,6 +179,12 @@ class SpecialBlockList extends SpecialPage {
 		}
 		if ( in_array( 'rangeblocks', $this->options ) ) {
 			$conds[] = "ipb_range_end = ipb_range_start";
+		}
+
+		if ( $this->blockType === 'sitewide' ) {
+			$conds[] = 'ipb_sitewide = 1';
+		} elseif ( $this->blockType === 'partial' ) {
+			$conds[] = 'ipb_sitewide = 0';
 		}
 
 		return new BlockListPager( $this, $conds );
