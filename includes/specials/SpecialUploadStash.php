@@ -261,6 +261,15 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$scalerThumbUrl = $scalerBaseUrl . '/' . $file->getUrlRel() .
 			'/' . rawurlencode( $scalerThumbName );
 
+		// If a thumb proxy is set up for the repo, we favor that, as that will
+		// keep the request internal
+		$thumbProxyUrl = $file->getRepo()->getThumbProxyUrl();
+
+		if ( strlen( $thumbProxyUrl ) ) {
+			$scalerThumbUrl = $thumbProxyUrl . '/temp/' . $file->getUrlRel() .
+			'/' . rawurlencode( $scalerThumbName );
+		}
+
 		// make an http request based on wgUploadStashScalerBaseUrl to lazy-create
 		// a thumbnail
 		$httpOptions = [
@@ -268,6 +277,14 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			'timeout' => 5 // T90599 attempt to time out cleanly
 		];
 		$req = MWHttpRequest::factory( $scalerThumbUrl, $httpOptions, __METHOD__ );
+
+		$secret = $file->getRepo()->getThumbProxySecret();
+
+		// Pass a secret key shared with the proxied service if any
+		if ( strlen( $secret ) ) {
+			$req->setHeader( 'X-Swift-Secret', $secret );
+		}
+
 		$status = $req->execute();
 		if ( !$status->isOK() ) {
 			$errors = $status->getErrorsArray();
