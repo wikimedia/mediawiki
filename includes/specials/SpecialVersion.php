@@ -206,6 +206,7 @@ class SpecialVersion extends SpecialPage {
 			'Victor Vasiliev', 'Rotem Liss', 'Platonides', 'Antoine Musso',
 			'Timo Tijhof', 'Daniel Kinzler', 'Jeroen De Dauw', 'Brad Jorsch',
 			'Bartosz Dziewoński', 'Ed Sanders', 'Moriel Schottlender',
+			'Kunal Mehta', 'James D. Forrester', 'Brian Wolff', 'Adam Shorland',
 			$othersLink, $translatorsLink
 		];
 
