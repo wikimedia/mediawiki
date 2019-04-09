@@ -561,6 +561,8 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 
 		$content = $header;
 		$iterations = intval( $iterations );
+		$username = $this->getTestUser()->getUser()->getName();
+		$userid = $this->getTestUser()->getUser()->getId();
 		for ( $i = 0; $i < $iterations; $i++ ) {
 			$page1 = '  <page>
     <title>BackupDumperTestP1</title>
@@ -570,7 +572,8 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
       <id>' . ( $this->revId1_1 + $i * self::$numOfRevs ) . '</id>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
-        <ip>127.0.0.1</ip>
+        <username>' . $username . '</username>
+        <id>' . $userid . '</id>
       </contributor>
       <comment>BackupDumperTestP1Summary1</comment>
       <model>wikitext</model>
@@ -588,7 +591,8 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
       <id>' . ( $this->revId2_1 + $i * self::$numOfRevs ) . '</id>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
-        <ip>127.0.0.1</ip>
+        <username>' . $username . '</username>
+        <id>' . $userid . '</id>
       </contributor>
       <comment>BackupDumperTestP2Summary1</comment>
       <model>wikitext</model>
@@ -601,7 +605,8 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
       <parentid>' . ( $this->revId2_1 + $i * self::$numOfRevs ) . '</parentid>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
-        <ip>127.0.0.1</ip>
+        <username>' . $username . '</username>
+        <id>' . $userid . '</id>
       </contributor>
       <comment>BackupDumperTestP2Summary2</comment>
       <model>wikitext</model>
@@ -614,7 +619,8 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
       <parentid>' . ( $this->revId2_2 + $i * self::$numOfRevs ) . '</parentid>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
-        <ip>127.0.0.1</ip>
+        <username>' . $username . '</username>
+        <id>' . $userid . '</id>
       </contributor>
       <comment>BackupDumperTestP2Summary3</comment>
       <model>wikitext</model>
@@ -627,7 +633,8 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
       <parentid>' . ( $this->revId2_3 + $i * self::$numOfRevs ) . '</parentid>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
-        <ip>127.0.0.1</ip>
+        <username>' . $username . '</username>
+        <id>' . $userid . '</id>
       </contributor>
       <comment>BackupDumperTestP2Summary4 extra</comment>
       <model>wikitext</model>
@@ -647,7 +654,8 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
       <id>' . ( $this->revId4_1 + $i * self::$numOfRevs ) . '</id>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
-        <ip>127.0.0.1</ip>
+        <username>' . $username . '</username>
+        <id>' . $userid . '</id>
       </contributor>
       <comment>Talk BackupDumperTestP1 Summary1</comment>
       <model>BackupTextPassTestModel</model>
