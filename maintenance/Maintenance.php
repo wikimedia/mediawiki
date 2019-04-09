@@ -42,6 +42,13 @@ define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 
 $maintClass = false;
 
+// Some extensions rely on MW_INSTALL_PATH to find core files to include. Setting it here helps them
+// if they're included by a core script (like DatabaseUpdater) after Maintenance.php has already
+// been run.
+if ( strval( getenv( 'MW_INSTALL_PATH' ) ) === '' ) {
+	putenv( 'MW_INSTALL_PATH=' . realpath( __DIR__ . '/..' ) );
+}
+
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -171,11 +178,8 @@ abstract class Maintenance {
 	 * their own constructors
 	 */
 	public function __construct() {
-		// Setup $IP, using MW_INSTALL_PATH if it exists
 		global $IP;
-		$IP = strval( getenv( 'MW_INSTALL_PATH' ) ) !== ''
-			? getenv( 'MW_INSTALL_PATH' )
-			: realpath( __DIR__ . '/..' );
+		$IP = getenv( 'MW_INSTALL_PATH' );
 
 		$this->addDefaultParams();
 		register_shutdown_function( [ $this, 'outputChanneled' ], false );
