@@ -21,6 +21,7 @@
  * @ingroup Parser
  */
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Special\SpecialPageFactory;
 use Wikimedia\ScopedCallback;
@@ -276,6 +277,9 @@ class Parser {
 	/** @var Config */
 	private $siteConfig;
 
+	/** @var LinkRendererFactory */
+	private $linkRendererFactory;
+
 	/**
 	 * @param array $parserConf See $wgParserConf documentation
 	 * @param MagicWordFactory|null $magicWordFactory
@@ -284,11 +288,13 @@ class Parser {
 	 * @param string|null $urlProtocols As returned from wfUrlProtocols()
 	 * @param SpecialPageFactory|null $spFactory
 	 * @param Config|null $siteConfig
+	 * @param LinkRendererFactory|null $linkRendererFactory
 	 */
 	public function __construct(
 		array $parserConf = [], MagicWordFactory $magicWordFactory = null,
 		Language $contLang = null, ParserFactory $factory = null, $urlProtocols = null,
-		SpecialPageFactory $spFactory = null, Config $siteConfig = null
+		SpecialPageFactory $spFactory = null, Config $siteConfig = null,
+		LinkRendererFactory $linkRendererFactory = null
 	) {
 		$this->mConf = $parserConf;
 		$this->mUrlProtocols = $urlProtocols ?? wfUrlProtocols();
@@ -320,6 +326,9 @@ class Parser {
 		$this->factory = $factory ?? $services->getParserFactory();
 		$this->specialPageFactory = $spFactory ?? $services->getSpecialPageFactory();
 		$this->siteConfig = $siteConfig ?? MediaWikiServices::getInstance()->getMainConfig();
+
+		$this->linkRendererFactory =
+			$linkRendererFactory ?? MediaWikiServices::getInstance()->getLinkRendererFactory();
 	}
 
 	/**
@@ -973,9 +982,9 @@ class Parser {
 	 * @return LinkRenderer
 	 */
 	public function getLinkRenderer() {
+		// XXX We make the LinkRenderer with current options and then cache it forever
 		if ( !$this->mLinkRenderer ) {
-			$this->mLinkRenderer = MediaWikiServices::getInstance()
-				->getLinkRendererFactory()->create();
+			$this->mLinkRenderer = $this->linkRendererFactory->create();
 			$this->mLinkRenderer->setStubThreshold(
 				$this->getOptions()->getStubThreshold()
 			);
