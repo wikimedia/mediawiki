@@ -4,8 +4,8 @@
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.33 is an alpha-quality branch and is not recommended for use in
-production.
+MediaWiki 1.33 is a pre-release testing branch, and is not recommended for use
+in production.
 
 == Upgrading notes for 1.33 ==
 1.33 has several database changes since 1.32, and will not work without schema
