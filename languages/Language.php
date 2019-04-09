@@ -2854,7 +2854,7 @@ class Language {
 	}
 
 	/**
-	 * @return array
+	 * @return string
 	 */
 	function fallback8bitEncoding() {
 		return self::$dataCache->getItem( $this->mCode, 'fallback8bitEncoding' );
