@@ -2713,12 +2713,34 @@ class Language {
 	public function uc( $str, $first = false ) {
 		if ( $first ) {
 			if ( $this->isMultibyte( $str ) ) {
-				return mb_strtoupper( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
+				return $this->mbUpperChar( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
 			} else {
 				return ucfirst( $str );
 			}
 		} else {
 			return $this->isMultibyte( $str ) ? mb_strtoupper( $str ) : strtoupper( $str );
+		}
+	}
+
+	/**
+	 * Convert character to uppercase, allowing overrides of the default mb_upper
+	 * behaviour, which is buggy in many ways. Having a conversion table can be
+	 * useful during transitions between PHP versions where unicode changes happen.
+	 * This can make some resources unreachable on-wiki, see discussion at T219279.
+	 * Providing such a conversion table can allow to manage the transition period.
+	 *
+	 * @since 1.34
+	 *
+	 * @param string $char
+	 *
+	 * @return string
+	 */
+	protected function mbUpperChar( $char ) {
+		global $wgOverrideUcfirstCharacters;
+		if ( array_key_exists( $char, $wgOverrideUcfirstCharacters ) ) {
+			return $wgOverrideUcfirstCharacters[$char];
+		} else {
+			return mb_strtoupper( $char );
 		}
 	}
 
