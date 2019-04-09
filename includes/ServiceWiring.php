@@ -571,8 +571,13 @@ return [
 	},
 
 	'SpecialPageFactory' => function ( MediaWikiServices $services ) : SpecialPageFactory {
+		$config = $services->getMainConfig();
+		$options = [];
+		foreach ( SpecialPageFactory::$constructorOptions as $key ) {
+			$options[$key] = $config->get( $key );
+		}
 		return new SpecialPageFactory(
-			$services->getMainConfig(),
+			$options,
 			$services->getContentLanguage()
 		);
 	},

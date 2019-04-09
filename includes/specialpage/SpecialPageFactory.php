@@ -34,6 +34,7 @@ use RequestContext;
 use SpecialPage;
 use Title;
 use User;
+use Wikimedia\Assert\Assert;
 
 /**
  * Factory for handling the special page list and generating SpecialPage objects.
@@ -215,17 +216,36 @@ class SpecialPageFactory {
 	private $aliases;
 
 	/** @var Config */
-	private $config;
+	private $options;
 
 	/** @var Language */
 	private $contLang;
 
 	/**
-	 * @param Config $config
+	 * TODO Make this a const when HHVM support is dropped (T192166)
+	 *
+	 * @var array
+	 * @since 1.33
+	 * */
+	public static $constructorOptions = [
+		'ContentHandlerUseDB',
+		'DisableInternalSearch',
+		'EmailAuthentication',
+		'EnableEmail',
+		'EnableJavaScriptTest',
+		'PageLanguageUseDB',
+		'SpecialPages',
+	];
+
+	/**
+	 * @param array $options
 	 * @param Language $contLang
 	 */
-	public function __construct( Config $config, Language $contLang ) {
-		$this->config = $config;
+	public function __construct( array $options, Language $contLang ) {
+		Assert::parameter( count( $options ) === count( self::$constructorOptions ) &&
+			!array_diff( self::$constructorOptions, array_keys( $options ) ),
+			'$options', 'Wrong set of options present' );
+		$this->options = $options;
 		$this->contLang = $contLang;
 	}
 
@@ -248,32 +268,32 @@ class SpecialPageFactory {
 		if ( !is_array( $this->list ) ) {
 			$this->list = self::$coreList;
 
-			if ( !$this->config->get( 'DisableInternalSearch' ) ) {
+			if ( !$this->options['DisableInternalSearch'] ) {
 				$this->list['Search'] = \SpecialSearch::class;
 			}
 
-			if ( $this->config->get( 'EmailAuthentication' ) ) {
+			if ( $this->options['EmailAuthentication'] ) {
 				$this->list['Confirmemail'] = \EmailConfirmation::class;
 				$this->list['Invalidateemail'] = \EmailInvalidation::class;
 			}
 
-			if ( $this->config->get( 'EnableEmail' ) ) {
+			if ( $this->options['EnableEmail'] ) {
 				$this->list['ChangeEmail'] = \SpecialChangeEmail::class;
 			}
 
-			if ( $this->config->get( 'EnableJavaScriptTest' ) ) {
+			if ( $this->options['EnableJavaScriptTest'] ) {
 				$this->list['JavaScriptTest'] = \SpecialJavaScriptTest::class;
 			}
 
-			if ( $this->config->get( 'PageLanguageUseDB' ) ) {
+			if ( $this->options['PageLanguageUseDB'] ) {
 				$this->list['PageLanguage'] = \SpecialPageLanguage::class;
 			}
-			if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
+			if ( $this->options['ContentHandlerUseDB'] ) {
 				$this->list['ChangeContentModel'] = \SpecialChangeContentModel::class;
 			}
 
 			// Add extension special pages
-			$this->list = array_merge( $this->list, $this->config->get( 'SpecialPages' ) );
+			$this->list = array_merge( $this->list, $this->options['SpecialPages'] );
 
 			// This hook can be used to disable unwanted core special pages
 			// or conditionally register special pages.
