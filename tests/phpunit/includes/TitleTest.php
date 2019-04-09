@@ -355,7 +355,7 @@ class TitleTest extends MediaWikiTestCase {
 
 		// New anonymous user with no rights
 		$user = new User;
-		$user->mRights = [];
+		$this->overrideUserPermissions( $user, [] );
 		$errors = $title->userCan( $action, $user );
 
 		if ( is_bool( $expected ) ) {

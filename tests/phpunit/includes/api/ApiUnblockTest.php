@@ -89,6 +89,7 @@ class ApiUnblockTest extends ApiTestCase {
 		$this->setExpectedApiException( 'apierror-permissiondenied-unblock' );
 
 		$this->setGroupPermissions( 'sysop', 'block', false );
+		$this->overrideMwServices();
 
 		$this->doUnblock();
 	}
@@ -141,6 +142,7 @@ class ApiUnblockTest extends ApiTestCase {
 		ChangeTags::defineTag( 'custom tag' );
 
 		$this->setGroupPermissions( 'user', 'applychangetags', false );
+		$this->overrideMwServices();
 
 		$this->doUnblock( [ 'tags' => 'custom tag' ] );
 	}

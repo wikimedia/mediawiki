@@ -1420,6 +1420,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$readOnlyMode->setReason( false );
 
 		$this->setGroupPermissions( '*', 'createaccount', false );
+		$this->overrideMwServices();
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
 		$this->assertFalse( $status->isOK() );
 		$this->assertTrue( $status->hasMessage( 'badaccess-groups' ) );
@@ -1446,6 +1447,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		];
 		$block = new DatabaseBlock( $blockOptions );
 		$block->insert();
+		$this->overrideMwServices();
 		$status = $this->manager->checkAccountCreatePermissions( $user );
 		$this->assertFalse( $status->isOK() );
 		$this->assertTrue( $status->hasMessage( 'cantcreateaccount-text' ) );
@@ -2365,6 +2367,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->mergeMwGlobalArrayValue( 'wgObjectCaches',
 			[ __METHOD__ => [ 'class' => 'HashBagOStuff' ] ] );
 		$this->setMwGlobals( [ 'wgMainCacheType' => __METHOD__ ] );
+		// Supply services with updated globals
+		$this->overrideMwServices();
 
 		// Set up lots of mocks...
 		$mocks = [];
@@ -2549,6 +2553,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		// IP unable to create accounts
 		$this->setGroupPermissions( '*', 'createaccount', false );
 		$this->setGroupPermissions( '*', 'autocreateaccount', false );
+		$this->overrideMwServices();
 		$session->clear();
 		$user = \User::newFromName( $username );
 		$this->hook( 'LocalUserCreated', $this->never() );
@@ -2585,6 +2590,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$session->clear();
 		$user = \User::newFromName( $username );
 		$this->hook( 'LocalUserCreated', $this->never() );
+		$this->overrideMwServices();
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true );
 		$this->unhook( 'LocalUserCreated' );
 		$this->assertEquals( \Status::newFatal( 'ok' ), $ret );
