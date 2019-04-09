@@ -266,7 +266,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$thumbProxyUrl = $file->getRepo()->getThumbProxyUrl();
 
 		if ( strlen( $thumbProxyUrl ) ) {
-			$scalerThumbUrl = $thumbProxyUrl . '/temp/' . $file->getUrlRel() .
+			$scalerThumbUrl = $thumbProxyUrl . 'temp/' . $file->getUrlRel() .
 			'/' . rawurlencode( $scalerThumbName );
 		}
 
