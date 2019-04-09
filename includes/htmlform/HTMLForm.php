@@ -222,6 +222,20 @@ class HTMLForm extends ContextSource {
 	protected $mAction = false;
 
 	/**
+	 * Whether the HTML form can be collapsed
+	 * @since 1.33
+	 * @var bool
+	 */
+	protected $mCollapsible = false;
+
+	/**
+	 * Whether the HTML form IS collapsed by default
+	 * @since 1.33
+	 * @var bool
+	 */
+	protected $mCollapsed = false;
+
+	/**
 	 * Form attribute autocomplete. A typical value is "off". null does not set the attribute
 	 * @since 1.27
 	 * @var string|null
@@ -1045,6 +1059,18 @@ class HTMLForm extends ContextSource {
 		$html = $this->wrapForm( $html );
 
 		return '' . $this->mPre . $html . $this->mPost;
+	}
+
+	/**
+	 * Make the form collapsible
+	 * @since 1.33
+	 * @param bool $collapsed whether it should be by default
+	 * @return HTMLForm $this for chaining calls (since 1.20)
+	 */
+	public function setCollapsible( $collapsed = false ) {
+		$this->mCollapsible = true;
+		$this->mCollapsed = $collapsed;
+		return $this;
 	}
 
 	/**
