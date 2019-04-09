@@ -2020,7 +2020,7 @@
 				 *  "text/javascript"; if no type is provided, text/javascript is assumed.
 				 */
 				load: function ( modules, type ) {
-					var filtered, l;
+					var l;
 
 					// Allow calling with a url or single dependency as a string
 					if ( typeof modules === 'string' ) {
@@ -2044,16 +2044,10 @@
 						modules = [ modules ];
 					}
 
-					// Filter out top-level modules that are unknown or failed to load before.
-					filtered = modules.filter( function ( module ) {
-						var state = mw.loader.getState( module );
-						return state !== 'error' && state !== 'missing';
-					} );
-					// Resolve remaining list using the known dependency tree.
-					// This also filters out modules with unknown dependencies. (T36853)
-					filtered = resolveStubbornly( filtered );
-					// Some modules are not yet ready, add to module load queue.
-					enqueue( filtered, undefined, undefined );
+					// Resolve modules into flat list for internal queuing.
+					// This also filters out unknown modules and modules with
+					// unknown dependencies, allowing the rest to continue. (T36853)
+					enqueue( resolveStubbornly( modules ), undefined, undefined );
 				},
 
 				/**

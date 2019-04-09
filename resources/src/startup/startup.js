@@ -44,11 +44,11 @@
  *
  * Other browsers that pass the check are considered Grade X.
  *
- * @param {string} [str] User agent, defaults to navigator.userAgent
+ * @private
+ * @param {string} ua User agent string
  * @return {boolean} User agent is compatible with MediaWiki JS
  */
-function isCompatible( str ) {
-	var ua = str || navigator.userAgent;
+function isCompatible( ua ) {
 	return !!(
 		// https://caniuse.com/#feat=es5
 		// https://caniuse.com/#feat=use-strict
@@ -76,7 +76,7 @@ function isCompatible( str ) {
 	);
 }
 
-if ( !isCompatible() ) {
+if ( !isCompatible( navigator.userAgent ) ) {
 	// Handle Grade C
 	// Undo speculative Grade A <html> class. See ResourceLoaderClientHtml::getDocumentAttributes().
 	document.documentElement.className = document.documentElement.className
