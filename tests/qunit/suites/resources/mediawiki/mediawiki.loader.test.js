@@ -255,7 +255,7 @@
 		assert.deepEqual(
 			[ {
 				topic: 'resourceloader.exception',
-				error: 'Unknown dependency: test.load.unreg',
+				error: 'Unknown module: test.load.unreg',
 				source: 'resolve'
 			} ],
 			capture
@@ -281,7 +281,7 @@
 		assert.deepEqual(
 			[ {
 				topic: 'resourceloader.exception',
-				error: 'Unknown dependency: test.load.missingdep2',
+				error: 'Unknown module: test.load.missingdep2',
 				source: 'resolve'
 			} ],
 			capture

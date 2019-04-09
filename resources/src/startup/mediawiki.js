@@ -917,15 +917,14 @@
 			 *  dependencies, such that later modules depend on earlier modules. The array
 			 *  contains the module names. If the array contains already some module names,
 			 *  this function appends its result to the pre-existing array.
-			 * @param {StringSet} [unresolved] Used to track the current dependency
-			 *  chain, and to report loops in the dependency graph.
-			 * @throws {Error} If any unregistered module or a dependency loop is encountered
+			 * @param {StringSet} [unresolved] Used to detect loops in the dependency graph.
+			 * @throws {Error} If an unknown module or a circular dependency is encountered
 			 */
 			function sortDependencies( module, resolved, unresolved ) {
-				var i, deps, skip;
+				var i, skip, deps;
 
 				if ( !( module in registry ) ) {
-					throw new Error( 'Unknown dependency: ' + module );
+					throw new Error( 'Unknown module: ' + module );
 				}
 
 				if ( typeof registry[ module ].skip === 'string' ) {
@@ -939,25 +938,12 @@
 					}
 				}
 
-				if ( resolved.indexOf( module ) !== -1 ) {
-					// Module already resolved; nothing to do
-					return;
-				}
 				// Create unresolved if not passed in
 				if ( !unresolved ) {
 					unresolved = new StringSet();
 				}
 
-				// Add base modules
-				if ( baseModules.indexOf( module ) === -1 ) {
-					for ( i = 0; i < baseModules.length; i++ ) {
-						if ( resolved.indexOf( baseModules[ i ] ) === -1 ) {
-							resolved.push( baseModules[ i ] );
-						}
-					}
-				}
-
-				// Tracks down dependencies
+				// Track down dependencies
 				deps = registry[ module ].dependencies;
 				unresolved.add( module );
 				for ( i = 0; i < deps.length; i++ ) {
@@ -971,6 +957,7 @@
 						sortDependencies( deps[ i ], resolved, unresolved );
 					}
 				}
+
 				resolved.push( module );
 			}
 
@@ -983,7 +970,8 @@
 			 * @throws {Error} If an unregistered module or a dependency loop is encountered
 			 */
 			function resolve( modules ) {
-				var resolved = [],
+				// Always load base modules
+				var resolved = baseModules.slice(),
 					i = 0;
 				for ( ; i < modules.length; i++ ) {
 					sortDependencies( modules[ i ], resolved );
@@ -1001,7 +989,8 @@
 			 */
 			function resolveStubbornly( modules ) {
 				var saved,
-					resolved = [],
+					// Always load base modules
+					resolved = baseModules.slice(),
 					i = 0;
 				for ( ; i < modules.length; i++ ) {
 					saved = resolved.slice();
