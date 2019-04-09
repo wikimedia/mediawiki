@@ -23,6 +23,8 @@
  * @file
  * @ingroup Search
  */
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * Search engine hook base class for Postgres
@@ -137,10 +139,16 @@ class SearchPostgres extends SearchDatabase {
 		$top = $res->fetchRow()[0];
 
 		$this->searchTerms = [];
+		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
 		if ( $top === "" ) { # # e.g. if only stopwords are used XXX return something better
 			$query = "SELECT page_id, page_namespace, page_title, 0 AS score " .
-				"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
-				"AND r.rev_text_id = c.old_id AND 1=0";
+				"FROM page p, revision r, slots s, content c, pagecontent pc " .
+				"WHERE p.page_latest = r.rev_id " .
+				"AND s.slot_revision_id = r.rev_id " .
+				"AND s.slot_role_id = " . $slotRoleStore->getId( SlotRecord::MAIN ) . " " .
+				"AND c.content_id = s.slot_content_id " .
+				"AND pc.old_id = substring( c.content_address from '^tt:([0-9]+)$' )::int " .
+				"AND 1=0";
 		} else {
 			$m = [];
 			if ( preg_match_all( "/'([^']+)'/", $top, $m, PREG_SET_ORDER ) ) {
@@ -151,10 +159,14 @@ class SearchPostgres extends SearchDatabase {
 
 			$query = "SELECT page_id, page_namespace, page_title, " .
 				"ts_rank($fulltext, to_tsquery($searchstring), 5) AS score " .
-				"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
-				"AND r.rev_text_id = c.old_id AND $fulltext @@ to_tsquery($searchstring)";
+				"FROM page p, revision r, slots s, content c, pagecontent pc " .
+				"WHERE p.page_latest = r.rev_id " .
+				"AND s.slot_revision_id = r.rev_id " .
+				"AND s.slot_role_id = " . $slotRoleStore->getId( SlotRecord::MAIN ) . " " .
+				"AND c.content_id = s.slot_content_id " .
+				"AND pc.old_id = substring( c.content_address from '^tt:([0-9]+)$' )::int " .
+				"AND $fulltext @@ to_tsquery($searchstring)";
 		}
-
 		# # Namespaces - defaults to 0
 		if ( !is_null( $this->namespaces ) ) { // null -> search all
 			if ( count( $this->namespaces ) < 1 ) {
@@ -178,9 +190,17 @@ class SearchPostgres extends SearchDatabase {
 
 	function update( $pageid, $title, $text ) {
 		# # We don't want to index older revisions
-		$sql = "UPDATE pagecontent SET textvector = NULL WHERE textvector IS NOT NULL and old_id IN " .
-				"(SELECT DISTINCT rev_text_id FROM revision WHERE rev_page = " . intval( $pageid ) .
-				" ORDER BY rev_text_id DESC OFFSET 1)";
+		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
+		$sql = "UPDATE pagecontent SET textvector = NULL " .
+			"WHERE textvector IS NOT NULL " .
+			"AND old_id IN " .
+			"(SELECT DISTINCT substring( c.content_address from '^tt:([0-9]+)$' )::int AS old_rev_text_id " .
+			" FROM content c, slots s, revision r " .
+			" WHERE r.rev_page = $pageid " .
+			" AND s.slot_revision_id = r.rev_id " .
+			" AND s.slot_role_id = " . $slotRoleStore->getId( SlotRecord::MAIN ) . " " .
+			" AND c.content_id = s.slot_content_id " .
+			" ORDER BY old_rev_text_id DESC OFFSET 1)";
 		$this->db->query( $sql );
 		return true;
 	}
