@@ -45,17 +45,29 @@ class LinkCache {
 	/** @var TitleFormatter */
 	private $titleFormatter;
 
+	/** @var NamespaceInfo */
+	private $nsInfo;
+
 	/**
 	 * How many Titles to store. There are two caches, so the amount actually
 	 * stored in memory can be up to twice this.
 	 */
 	const MAX_SIZE = 10000;
 
-	public function __construct( TitleFormatter $titleFormatter, WANObjectCache $cache ) {
+	public function __construct(
+		TitleFormatter $titleFormatter,
+		WANObjectCache $cache,
+		NamespaceInfo $nsInfo = null
+	) {
+		if ( !$nsInfo ) {
+			wfDeprecated( __METHOD__ . ' with no NamespaceInfo argument', '1.34' );
+			$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		}
 		$this->goodLinks = new MapCacheLRU( self::MAX_SIZE );
 		$this->badLinks = new MapCacheLRU( self::MAX_SIZE );
 		$this->wanCache = $cache;
 		$this->titleFormatter = $titleFormatter;
+		$this->nsInfo = $nsInfo;
 	}
 
 	/**
@@ -300,11 +312,11 @@ class LinkCache {
 			return true;
 		}
 		// Focus on transcluded pages more than the main content
-		if ( MWNamespace::isContent( $ns ) ) {
+		if ( $this->nsInfo->isContent( $ns ) ) {
 			return false;
 		}
 		// Non-talk extension namespaces (e.g. NS_MODULE)
-		return ( $ns >= 100 && MWNamespace::isSubject( $ns ) );
+		return ( $ns >= 100 && $this->nsInfo->isSubject( $ns ) );
 	}
 
 	private function fetchPageRow( IDatabase $db, LinkTarget $nt ) {
