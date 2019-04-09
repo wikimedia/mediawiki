@@ -21,6 +21,7 @@
 
 /**
  * Expansion frame with template arguments
+ * @deprecated since 1.34, use PPTemplateFrame_Hash
  * @ingroup Parser
  */
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps

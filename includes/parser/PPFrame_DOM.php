@@ -21,6 +21,7 @@
 
 /**
  * An expansion frame, used as a context to expand the result of preprocessToObj()
+ * @deprecated since 1.34, use PPFrame_Hash
  * @ingroup Parser
  */
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
