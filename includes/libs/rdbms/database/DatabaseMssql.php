@@ -702,12 +702,6 @@ class DatabaseMssql extends Database {
 				}
 				if ( is_null( $value ) ) {
 					$sql .= 'null';
-				} elseif ( is_array( $value ) || is_object( $value ) ) {
-					if ( is_object( $value ) && $value instanceof Blob ) {
-						$sql .= $this->addQuotes( $value );
-					} else {
-						$sql .= $this->addQuotes( serialize( $value ) );
-					}
 				} else {
 					$sql .= $this->addQuotes( $value );
 				}
