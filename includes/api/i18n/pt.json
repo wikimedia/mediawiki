@@ -1228,6 +1228,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-registrationdate": "Adiciona a data de registo do utilizador.",
 	"apihelp-query+userinfo-paramvalue-prop-unreadcount": "Adiciona a contagem de páginas não lidas da lista de páginas vigiadas do utilizador (máximo $1; devolve <samp>$2</samp> se forem mais).",
 	"apihelp-query+userinfo-paramvalue-prop-centralids": "Adiciona os identificadores centrais e o estado de ligação central (''attachment'') do utilizador.",
+	"apihelp-query+userinfo-paramvalue-prop-latestcontrib": "Adiciona a data da última contribuição do utilizador.",
 	"apihelp-query+userinfo-param-attachedwiki": "Com <kbd>$1prop=centralids</kbd>, indicar se o utilizador tem ligação com a wiki designada por este identificador.",
 	"apihelp-query+userinfo-example-simple": "Obter informações sobre o utilizador atual.",
 	"apihelp-query+userinfo-example-data": "Obter informações adicionais sobre o utilizador atual.",

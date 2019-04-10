@@ -792,6 +792,7 @@
 	"logentry-newusers-autocreate": "$1 մասնակցային հաշիւը {{GENDER:$2|ստեղծուած է}} ինքնաբերաբար",
 	"logentry-upload-upload": "$1 {{GENDER:$2|ներբեռնուած է}} $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|վերբեռնեց}} $3ի նոր տարբերակ",
+	"feedback-cancel": "Չեղարկել",
 	"searchsuggest-search": "Որոնել {{SITENAME}} կայքին մէջ",
 	"duration-days": "$1 {{PLURAL:$1|օր}}",
 	"randomrootpage": "Պատահական արմատ էջ"
