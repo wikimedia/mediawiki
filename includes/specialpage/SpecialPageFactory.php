@@ -24,17 +24,16 @@
 
 namespace MediaWiki\Special;
 
-use Config;
 use Hooks;
 use IContextSource;
 use Language;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkRenderer;
 use Profiler;
 use RequestContext;
 use SpecialPage;
 use Title;
 use User;
-use Wikimedia\Assert\Assert;
 
 /**
  * Factory for handling the special page list and generating SpecialPage objects.
@@ -215,7 +214,7 @@ class SpecialPageFactory {
 	/** @var array */
 	private $aliases;
 
-	/** @var Config */
+	/** @var ServiceOptions */
 	private $options;
 
 	/** @var Language */
@@ -238,13 +237,11 @@ class SpecialPageFactory {
 	];
 
 	/**
-	 * @param array $options
+	 * @param ServiceOptions $options
 	 * @param Language $contLang
 	 */
-	public function __construct( array $options, Language $contLang ) {
-		Assert::parameter( count( $options ) === count( self::$constructorOptions ) &&
-			!array_diff( self::$constructorOptions, array_keys( $options ) ),
-			'$options', 'Wrong set of options present' );
+	public function __construct( ServiceOptions $options, Language $contLang ) {
+		$options->assertRequiredOptions( self::$constructorOptions );
 		$this->options = $options;
 		$this->contLang = $contLang;
 	}
@@ -268,32 +265,32 @@ class SpecialPageFactory {
 		if ( !is_array( $this->list ) ) {
 			$this->list = self::$coreList;
 
-			if ( !$this->options['DisableInternalSearch'] ) {
+			if ( !$this->options->get( 'DisableInternalSearch' ) ) {
 				$this->list['Search'] = \SpecialSearch::class;
 			}
 
-			if ( $this->options['EmailAuthentication'] ) {
+			if ( $this->options->get( 'EmailAuthentication' ) ) {
 				$this->list['Confirmemail'] = \EmailConfirmation::class;
 				$this->list['Invalidateemail'] = \EmailInvalidation::class;
 			}
 
-			if ( $this->options['EnableEmail'] ) {
+			if ( $this->options->get( 'EnableEmail' ) ) {
 				$this->list['ChangeEmail'] = \SpecialChangeEmail::class;
 			}
 
-			if ( $this->options['EnableJavaScriptTest'] ) {
+			if ( $this->options->get( 'EnableJavaScriptTest' ) ) {
 				$this->list['JavaScriptTest'] = \SpecialJavaScriptTest::class;
 			}
 
-			if ( $this->options['PageLanguageUseDB'] ) {
+			if ( $this->options->get( 'PageLanguageUseDB' ) ) {
 				$this->list['PageLanguage'] = \SpecialPageLanguage::class;
 			}
-			if ( $this->options['ContentHandlerUseDB'] ) {
+			if ( $this->options->get( 'ContentHandlerUseDB' ) ) {
 				$this->list['ChangeContentModel'] = \SpecialChangeContentModel::class;
 			}
 
 			// Add extension special pages
-			$this->list = array_merge( $this->list, $this->options['SpecialPages'] );
+			$this->list = array_merge( $this->list, $this->options->get( 'SpecialPages' ) );
 
 			// This hook can be used to disable unwanted core special pages
 			// or conditionally register special pages.

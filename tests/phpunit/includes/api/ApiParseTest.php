@@ -121,6 +121,7 @@ class ApiParseTest extends ApiTestCase {
 
 		$this->setMwGlobals( 'wgExtraInterlanguageLinkPrefixes', [ 'madeuplanguage' ] );
 		$this->tablesUsed[] = 'interwiki';
+		$this->overrideMwServices();
 	}
 
 	/**
@@ -581,8 +582,6 @@ class ApiParseTest extends ApiTestCase {
 	 * @param array $arr Extra params to add to API request
 	 */
 	private function doTestLangLinks( array $arr = [] ) {
-		$this->setupInterwiki();
-
 		$res = $this->doApiRequest( array_merge( [
 			'action' => 'parse',
 			'title' => 'Omelette',
@@ -600,10 +599,12 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testLangLinks() {
+		$this->setupInterwiki();
 		$this->doTestLangLinks();
 	}
 
 	public function testLangLinksWithSkin() {
+		$this->setupInterwiki();
 		$this->setupSkin();
 		$this->doTestLangLinks( [ 'useskin' => 'testing' ] );
 	}

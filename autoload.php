@@ -872,6 +872,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWikiVersionFetcher' => __DIR__ . '/includes/MediaWikiVersionFetcher.php',
 	'MediaWiki\\ChangeTags\\Taggable' => __DIR__ . '/includes/changetags/Taggable.php',
 	'MediaWiki\\Config\\ConfigRepository' => __DIR__ . '/includes/config/ConfigRepository.php',
+	'MediaWiki\\Config\\ServiceOptions' => __DIR__ . '/includes/config/ServiceOptions.php',
 	'MediaWiki\\DB\\PatchFileLocation' => __DIR__ . '/includes/db/PatchFileLocation.php',
 	'MediaWiki\\Diff\\ComplexityException' => __DIR__ . '/includes/diff/ComplexityException.php',
 	'MediaWiki\\Diff\\WordAccumulator' => __DIR__ . '/includes/diff/WordAccumulator.php',
