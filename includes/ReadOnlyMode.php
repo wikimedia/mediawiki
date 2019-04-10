@@ -58,11 +58,4 @@ class ReadOnlyMode {
 	public function setReason( $msg ) {
 		$this->configuredReadOnly->setReason( $msg );
 	}
-
-	/**
-	 * Clear the cache of the read only file
-	 */
-	public function clearCache() {
-		$this->configuredReadOnly->clearCache();
-	}
 }

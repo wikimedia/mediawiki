@@ -353,6 +353,8 @@ because of Phabricator reports.
 * MessageBlobStore::getBlob(), deprecated in 1.27, has been removed.
   Use ::getBlobs() instead.
 * The .background-size() LESS mixin, deprecated in 1.27, has been removed.
+* ReadOnlyMode::clearCache() and ConfiguredReadOnlyMode::clearCache() have been
+  removed. Use MediaWikiTestCase::overrideMwServices() instead.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
