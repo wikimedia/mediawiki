@@ -26,29 +26,28 @@
  *
  * @ingroup JobQueue
  */
-final class DuplicateJob extends Job {
+final class DuplicateJob extends Job implements GenericParameterJob {
 	/**
 	 * Callers should use DuplicateJob::newFromJob() instead
 	 *
-	 * @param Title $title
 	 * @param array $params Job parameters
 	 */
-	function __construct( Title $title, array $params ) {
-		parent::__construct( 'duplicate', $title, $params );
+	function __construct( array $params ) {
+		parent::__construct( 'duplicate', $params );
 	}
 
 	/**
 	 * Get a duplicate no-op version of a job
 	 *
-	 * @param Job $job
+	 * @param RunnableJob $job
 	 * @return Job
 	 */
-	public static function newFromJob( Job $job ) {
-		$djob = new self( $job->getTitle(), $job->getParams() );
+	public static function newFromJob( RunnableJob $job ) {
+		$djob = new self( $job->getParams() );
 		$djob->command = $job->getType();
 		$djob->params = is_array( $djob->params ) ? $djob->params : [];
 		$djob->params = [ 'isDuplicate' => true ] + $djob->params;
-		$djob->metadata = $job->metadata;
+		$djob->metadata = $job->getMetadata();
 
 		return $djob;
 	}

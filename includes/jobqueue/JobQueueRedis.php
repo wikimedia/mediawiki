@@ -307,7 +307,7 @@ LUA;
 
 	/**
 	 * @see JobQueue::doPop()
-	 * @return Job|bool
+	 * @return RunnableJob|bool
 	 * @throws JobQueueError
 	 */
 	protected function doPop() {
@@ -379,12 +379,12 @@ LUA;
 
 	/**
 	 * @see JobQueue::doAck()
-	 * @param Job $job
-	 * @return Job|bool
+	 * @param RunnableJob $job
+	 * @return RunnableJob|bool
 	 * @throws UnexpectedValueException
 	 * @throws JobQueueError
 	 */
-	protected function doAck( Job $job ) {
+	protected function doAck( RunnableJob $job ) {
 		$uuid = $job->getMetadata( 'uuid' );
 		if ( $uuid === null ) {
 			throw new UnexpectedValueException( "Job of type '{$job->getType()}' has no UUID." );
@@ -463,11 +463,11 @@ LUA;
 
 	/**
 	 * @see JobQueue::doIsRootJobOldDuplicate()
-	 * @param Job $job
+	 * @param IJobSpecification $job
 	 * @return bool
 	 * @throws JobQueueError
 	 */
-	protected function doIsRootJobOldDuplicate( Job $job ) {
+	protected function doIsRootJobOldDuplicate( IJobSpecification $job ) {
 		if ( !$job->hasRootJobParams() ) {
 			return false; // job has no de-deplication info
 		}
@@ -627,7 +627,7 @@ LUA;
 	 *
 	 * @param string $uid
 	 * @param RedisConnRef $conn
-	 * @return Job|bool Returns false if the job does not exist
+	 * @return RunnableJob|bool Returns false if the job does not exist
 	 * @throws JobQueueError
 	 * @throws UnexpectedValueException
 	 */
@@ -641,8 +641,10 @@ LUA;
 			if ( !is_array( $item ) ) { // this shouldn't happen
 				throw new UnexpectedValueException( "Could not find job with ID '$uid'." );
 			}
-			$title = Title::makeTitle( $item['namespace'], $item['title'] );
-			$job = Job::factory( $item['type'], $title, $item['params'] );
+
+			$params = $item['params'];
+			$params += [ 'namespace' => $item['namespace'], 'title' => $item['title'] ];
+			$job = $this->factoryJob( $item['type'], $params );
 			$job->setMetadata( 'uuid', $item['uuid'] );
 			$job->setMetadata( 'timestamp', $item['timestamp'] );
 			// Add in attempt count for debugging at showJobs.php
@@ -684,8 +686,8 @@ LUA;
 		return [
 			// Fields that describe the nature of the job
 			'type' => $job->getType(),
-			'namespace' => $job->getTitle()->getNamespace(),
-			'title' => $job->getTitle()->getDBkey(),
+			'namespace' => $job->getParams()['namespace'] ?? NS_SPECIAL,
+			'title' => $job->getParams()['title'] ?? '',
 			'params' => $job->getParams(),
 			// Some jobs cannot run until a "release timestamp"
 			'rtimestamp' => $job->getReleaseTimestamp() ?: 0,
@@ -700,11 +702,13 @@ LUA;
 
 	/**
 	 * @param array $fields
-	 * @return Job|bool
+	 * @return RunnableJob|bool
 	 */
 	protected function getJobFromFields( array $fields ) {
-		$title = Title::makeTitle( $fields['namespace'], $fields['title'] );
-		$job = Job::factory( $fields['type'], $title, $fields['params'] );
+		$params = $fields['params'];
+		$params += [ 'namespace' => $fields['namespace'], 'title' => $fields['title'] ];
+
+		$job = $this->factoryJob( $fields['type'], $params );
 		$job->setMetadata( 'uuid', $fields['uuid'] );
 		$job->setMetadata( 'timestamp', $fields['timestamp'] );
 
