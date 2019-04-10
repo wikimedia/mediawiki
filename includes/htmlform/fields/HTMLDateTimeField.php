@@ -172,6 +172,7 @@ class HTMLDateTimeField extends HTMLTextField {
 		}
 
 		if ( $this->mType === 'date' ) {
+			$this->mParent->getOutput()->addModuleStyles( 'mediawiki.widgets.DateInputWidget.styles' );
 			return new MediaWiki\Widget\DateInputWidget( $params );
 		} else {
 			return new MediaWiki\Widget\DateTimeInputWidget( $params );
