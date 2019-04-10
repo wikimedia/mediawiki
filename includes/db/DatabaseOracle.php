@@ -64,7 +64,6 @@ class DatabaseOracle extends Database {
 		$this->keywordTableMap = $params['keywordTableMap'] ?? [];
 		$params['tablePrefix'] = strtoupper( $params['tablePrefix'] );
 		parent::__construct( $params );
-		Hooks::run( 'DatabaseOraclePostInit', [ $this ] );
 	}
 
 	function __destruct() {
@@ -650,7 +649,7 @@ class DatabaseOracle extends Database {
 	 * Return sequence_name if table has a sequence
 	 *
 	 * @param string $table
-	 * @return bool
+	 * @return string[]|bool
 	 */
 	private function getSequenceData( $table ) {
 		if ( $this->sequenceData == null ) {

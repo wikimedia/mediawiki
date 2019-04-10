@@ -83,7 +83,7 @@ because of Phabricator reports.
   configuration changes from after they were created, so you must reset
   services after any configuration change. Even if your code works now, it is
   likely to break in future versions as more code is moved to services.
-* …
+* The ill-defined "DatabaseOraclePostInit" hook has been removed.
 
 === Deprecations in 1.34 ===
 * The MWNamespace class is deprecated. Use MediaWikiServices::getNamespaceInfo.
