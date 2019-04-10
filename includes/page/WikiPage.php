@@ -3602,7 +3602,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function updateCategoryCounts( array $added, array $deleted, $id = 0 ) {
 		$id = $id ?: $this->getId();
-		$type = MWNamespace::getCategoryLinkType( $this->getTitle()->getNamespace() );
+		$type = MediaWikiServices::getInstance()->getNamespaceInfo()->
+			getCategoryLinkType( $this->getTitle()->getNamespace() );
 
 		$addFields = [ 'cat_pages = cat_pages + 1' ];
 		$removeFields = [ 'cat_pages = cat_pages - 1' ];

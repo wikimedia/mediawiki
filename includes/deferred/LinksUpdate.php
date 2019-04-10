@@ -615,7 +615,8 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
 			$contLang->findVariantLink( $name, $nt, true );
 
-			$type = MWNamespace::getCategoryLinkType( $this->mTitle->getNamespace() );
+			$type = MediaWikiServices::getInstance()->getNamespaceInfo()->
+				getCategoryLinkType( $this->mTitle->getNamespace() );
 
 			# Treat custom sortkeys as a prefix, so that if multiple
 			# things are forced to sort as '*' or something, they'll
