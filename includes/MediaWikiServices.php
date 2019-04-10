@@ -39,6 +39,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MWException;
 use MimeAnalyzer;
+use NamespaceInfo;
 use ObjectCache;
 use Parser;
 use ParserCache;
@@ -676,6 +677,15 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.33
+	 * @return NamespaceInfo
+	 */
+	public function getNamespaceInfo() : NamespaceInfo {
+		return $this->getService( 'NamespaceInfo' );
+	}
+
+	/**
+	 * @since 1.32
 	 * @return OldRevisionImporter
 	 */
 	public function getOldRevisionImporter() {

@@ -26,6 +26,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -186,7 +187,8 @@ TEXT
 				}
 				# cl_type will be wrong for lots of pages if cl_collation is 0,
 				# so let's update it while we're here.
-				$type = MWNamespace::getCategoryLinkType( $title->getNamespace() );
+				$type = MediaWikiServices::getInstance()->getNamespaceInfo()->
+					getCategoryLinkType( $title->getNamespace() );
 				$newSortKey = $collation->getSortKey(
 					$title->getCategorySortkey( $prefix ) );
 				if ( $verboseStats ) {

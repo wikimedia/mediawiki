@@ -272,7 +272,8 @@ class MovePage {
 			[ 'cl_from' => $pageid ],
 			__METHOD__
 		);
-		$type = MWNamespace::getCategoryLinkType( $this->newTitle->getNamespace() );
+		$type = MediaWikiServices::getInstance()->getNamespaceInfo()->
+			getCategoryLinkType( $this->newTitle->getNamespace() );
 		foreach ( $prefixes as $prefixRow ) {
 			$prefix = $prefixRow->cl_sortkey_prefix;
 			$catTo = $prefixRow->cl_to;
