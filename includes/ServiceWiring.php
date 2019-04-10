@@ -330,16 +330,16 @@ return [
 		return new MimeAnalyzer( $params );
 	},
 
+	'NamespaceInfo' => function ( MediaWikiServices $services ) : NamespaceInfo {
+		return new NamespaceInfo( $services->getMainConfig() );
+	},
+
 	'NameTableStoreFactory' => function ( MediaWikiServices $services ) : NameTableStoreFactory {
 		return new NameTableStoreFactory(
 			$services->getDBLoadBalancerFactory(),
 			$services->getMainWANObjectCache(),
 			LoggerFactory::getInstance( 'NameTableSqlStore' )
 		);
-	},
-
-	'NamespaceInfo' => function ( MediaWikiServices $services ) : NamespaceInfo {
-		return new NamespaceInfo( $services->getMainConfig() );
 	},
 
 	'OldRevisionImporter' => function ( MediaWikiServices $services ) : OldRevisionImporter {
