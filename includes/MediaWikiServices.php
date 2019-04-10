@@ -669,19 +669,19 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * @since 1.32
-	 * @return NameTableStoreFactory
-	 */
-	public function getNameTableStoreFactory() {
-		return $this->getService( 'NameTableStoreFactory' );
-	}
-
-	/**
 	 * @since 1.33
 	 * @return NamespaceInfo
 	 */
 	public function getNamespaceInfo() : NamespaceInfo {
 		return $this->getService( 'NamespaceInfo' );
+	}
+
+	/**
+	 * @since 1.32
+	 * @return NameTableStoreFactory
+	 */
+	public function getNameTableStoreFactory() {
+		return $this->getService( 'NameTableStoreFactory' );
 	}
 
 	/**
