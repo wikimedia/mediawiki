@@ -3,16 +3,13 @@
 /**
  * Class DeletePageJob
  */
-class DeletePageJob extends Job {
-	public function __construct( $title, $params = [] ) {
-		parent::__construct( 'deletePage', $title, $params );
+class DeletePageJob extends Job implements GenericParameterJob {
+	public function __construct( array $params ) {
+		parent::__construct( 'deletePage', $params );
+
+		$this->title = Title::makeTitle( $params['namespace'], $params['title'] );
 	}
 
-	/**
-	 * Execute the job
-	 *
-	 * @return bool
-	 */
 	public function run() {
 		// Failure to load the page is not job failure.
 		// A parallel deletion operation may have already completed the page deletion.

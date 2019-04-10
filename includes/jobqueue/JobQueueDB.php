@@ -290,7 +290,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::doPop()
-	 * @return Job|bool
+	 * @return RunnableJob|bool
 	 */
 	protected function doPop() {
 		$dbw = $this->getMasterDB();
@@ -314,10 +314,12 @@ class JobQueueDB extends JobQueue {
 					break; // nothing to do
 				}
 				$this->incrStats( 'pops', $this->type );
+
 				// Get the job object from the row...
-				$title = Title::makeTitle( $row->job_namespace, $row->job_title );
-				$job = Job::factory( $row->job_cmd, $title,
-					self::extractBlob( $row->job_params ) );
+				$params = self::extractBlob( $row->job_params );
+				$params = is_array( $params ) ? $params : []; // sanity
+				$params += [ 'namespace' => $row->job_namespace, 'title' => $row->job_title ];
+				$job = $this->factoryJob( $row->job_cmd, $params );
 				$job->setMetadata( 'id', $row->job_id );
 				$job->setMetadata( 'timestamp', $row->job_timestamp );
 				break; // done
@@ -481,10 +483,10 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::doAck()
-	 * @param Job $job
+	 * @param RunnableJob $job
 	 * @throws MWException
 	 */
-	protected function doAck( Job $job ) {
+	protected function doAck( RunnableJob $job ) {
 		$id = $job->getMetadata( 'id' );
 		if ( $id === null ) {
 			throw new MWException( "Job of type '{$job->getType()}' has no ID." );
@@ -617,11 +619,14 @@ class JobQueueDB extends JobQueue {
 			return new MappedIterator(
 				$dbr->select( 'job', self::selectFields(), $conds ),
 				function ( $row ) {
-					$job = Job::factory(
-						$row->job_cmd,
-						Title::makeTitle( $row->job_namespace, $row->job_title ),
-						strlen( $row->job_params ) ? unserialize( $row->job_params ) : []
-					);
+					$params = strlen( $row->job_params ) ? unserialize( $row->job_params ) : [];
+					$params = is_array( $params ) ? $params : []; // sanity
+					$params += [
+						'namespace' => $row->job_namespace,
+						'title' => $row->job_title
+					];
+
+					$job = $this->factoryJob( $row->job_cmd, $params );
 					$job->setMetadata( 'id', $row->job_id );
 					$job->setMetadata( 'timestamp', $row->job_timestamp );
 
@@ -774,8 +779,8 @@ class JobQueueDB extends JobQueue {
 		return [
 			// Fields that describe the nature of the job
 			'job_cmd' => $job->getType(),
-			'job_namespace' => $job->getTitle()->getNamespace(),
-			'job_title' => $job->getTitle()->getDBkey(),
+			'job_namespace' => $job->getParams()['namespace'] ?? NS_SPECIAL,
+			'job_title' => $job->getParams()['title'] ?? '',
 			'job_params' => self::makeBlob( $job->getParams() ),
 			// Additional job metadata
 			'job_timestamp' => $db->timestamp(),

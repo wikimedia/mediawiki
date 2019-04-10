@@ -71,13 +71,10 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		self::purge( $this->urls );
 
 		if ( $wgCdnReboundPurgeDelay > 0 ) {
-			JobQueueGroup::singleton()->lazyPush( new CdnPurgeJob(
-				Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __CLASS__ ),
-				[
-					'urls' => $this->urls,
-					'jobReleaseTimestamp' => time() + $wgCdnReboundPurgeDelay
-				]
-			) );
+			JobQueueGroup::singleton()->lazyPush( new CdnPurgeJob( [
+				'urls' => $this->urls,
+				'jobReleaseTimestamp' => time() + $wgCdnReboundPurgeDelay
+			] ) );
 		}
 	}
 
