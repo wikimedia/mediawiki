@@ -364,7 +364,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 		} ) );
 
 		$sortedNames = $names;
-		sort( $sortedNames );
+		natcasesort( $sortedNames );
 
 		$this->assertSame( $sortedNames, $names,
 			'Please keep service getters sorted alphabetically' );
