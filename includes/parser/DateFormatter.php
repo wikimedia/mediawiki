@@ -258,7 +258,7 @@ class DateFormatter {
 
 		if ( !isset( $bits['m'] ) ) {
 			$m = $this->makeIsoMonth( $bits['F'] );
-			if ( !$m || $m == '00' ) {
+			if ( $m === false ) {
 				$fail = true;
 			} else {
 				$bits['m'] = $m;
@@ -311,7 +311,7 @@ class DateFormatter {
 		if ( $fail ) {
 			// This occurs when parsing a date with day or month outside the bounds
 			// of possibilities.
-			$text = $orig;
+			return $orig;
 		}
 
 		$isoBits = [];
@@ -336,8 +336,8 @@ class DateFormatter {
 	private function getMonthRegex() {
 		$names = [];
 		for ( $i = 1; $i <= 12; $i++ ) {
-			$names[] = $this->lang->getMonthName( $i );
-			$names[] = $this->lang->getMonthAbbreviation( $i );
+			$names[] = preg_quote( $this->lang->getMonthName( $i ), '/' );
+			$names[] = preg_quote( $this->lang->getMonthAbbreviation( $i ), '/' );
 		}
 		return implode( '|', $names );
 	}
@@ -345,11 +345,14 @@ class DateFormatter {
 	/**
 	 * Makes an ISO month, e.g. 02, from a month name
 	 * @param string $monthName Month name
-	 * @return string ISO month name
+	 * @return string|false ISO month name, or false if the input was invalid
 	 */
 	private function makeIsoMonth( $monthName ) {
-		$n = $this->xMonths[$this->lang->lc( $monthName )];
-		return sprintf( '%02d', $n );
+		$isoMonth = $this->xMonths[$this->lang->lc( $monthName )] ?? false;
+		if ( $isoMonth === false ) {
+			return false;
+		}
+		return sprintf( '%02d', $isoMonth );
 	}
 
 	/**
