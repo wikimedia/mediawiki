@@ -63,11 +63,4 @@ class ConfiguredReadOnlyMode {
 	public function setReason( $msg ) {
 		$this->overrideReason = $msg;
 	}
-
-	/**
-	 * Clear the cache of the read only file
-	 */
-	public function clearCache() {
-		$this->fileReason = null;
-	}
 }

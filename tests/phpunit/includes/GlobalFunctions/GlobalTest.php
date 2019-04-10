@@ -14,6 +14,7 @@ class GlobalTest extends MediaWikiTestCase {
 		unlink( $readOnlyFile );
 
 		$this->setMwGlobals( [
+			'wgReadOnly' => null,
 			'wgReadOnlyFile' => $readOnlyFile,
 			'wgUrlProtocols' => [
 				'http://',
@@ -108,10 +109,6 @@ class GlobalTest extends MediaWikiTestCase {
 	 * @covers ::wfReadOnly
 	 */
 	public function testReadOnlyEmpty() {
-		global $wgReadOnly;
-		$wgReadOnly = null;
-
-		MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()->clearCache();
 		$this->assertFalse( wfReadOnly() );
 		$this->assertFalse( wfReadOnly() );
 	}
@@ -121,23 +118,17 @@ class GlobalTest extends MediaWikiTestCase {
 	 * @covers ::wfReadOnly
 	 */
 	public function testReadOnlySet() {
-		global $wgReadOnly, $wgReadOnlyFile;
-
-		$readOnlyMode = MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode();
-		$readOnlyMode->clearCache();
+		global $wgReadOnlyFile;
 
 		$f = fopen( $wgReadOnlyFile, "wt" );
 		fwrite( $f, 'Message' );
 		fclose( $f );
-		$wgReadOnly = null; # Check on $wgReadOnlyFile
+
+		// Reset the service to avoid cached results
+		$this->overrideMwServices();
 
 		$this->assertTrue( wfReadOnly() );
 		$this->assertTrue( wfReadOnly() ); # Check cached
-
-		unlink( $wgReadOnlyFile );
-		$readOnlyMode->clearCache();
-		$this->assertFalse( wfReadOnly() );
-		$this->assertFalse( wfReadOnly() );
 	}
 
 	/**
@@ -146,9 +137,12 @@ class GlobalTest extends MediaWikiTestCase {
 	 */
 	public function testReadOnlyGlobalChange() {
 		$this->assertFalse( wfReadOnlyReason() );
+
 		$this->setMwGlobals( [
 			'wgReadOnly' => 'reason'
 		] );
+		$this->overrideMwServices();
+
 		$this->assertSame( 'reason', wfReadOnlyReason() );
 	}
 
