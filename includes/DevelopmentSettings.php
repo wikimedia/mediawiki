@@ -25,8 +25,8 @@ ini_set( 'display_errors', 1 );
  * Debugging: MediaWiki
  */
 global $wgDevelopmentWarnings, $wgShowExceptionDetails, $wgShowHostnames,
-	$wgDebugRawPage, $wgDebugComments, $wgDebugDumpSql, $wgDebugTimestamps,
-	$wgCommandLineMode, $wgDebugLogFile, $wgDBerrorLog, $wgDebugLogGroups;
+	$wgDebugRawPage, $wgSQLMode, $wgCommandLineMode, $wgDebugLogFile,
+	$wgDBerrorLog, $wgDebugLogGroups;
 
 // Use of wfWarn() should cause tests to fail
 $wgDevelopmentWarnings = true;
