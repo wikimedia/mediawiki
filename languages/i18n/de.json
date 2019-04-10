@@ -2320,7 +2320,7 @@
 	"delete-confirm": "Löschen von „$1“",
 	"delete-legend": "Löschen",
 	"historywarning": "<strong>Achtung:</strong> Die Seite, die du löschen möchtest, hat eine Versionsgeschichte mit {{PLURAL:$1|einer Version|$1 Versionen}}:",
-	"historyaction-submit": "Anzeigen",
+	"historyaction-submit": "Versionen anzeigen",
 	"confirmdeletetext": "Du bist dabei, eine Seite mit allen zugehörigen älteren Versionen zu löschen. Bitte bestätige dazu, dass du dir der Konsequenzen bewusst bist, und dass du in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] handelst.",
 	"actioncomplete": "Aktion beendet",
 	"actionfailed": "Aktion fehlgeschlagen",

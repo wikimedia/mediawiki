@@ -2305,7 +2305,7 @@
 	"delete-confirm": "Cancella \"$1\"",
 	"delete-legend": "Cancella",
 	"historywarning": "'''Attenzione:''' La pagina che stai per cancellare ha una cronologia con $1 {{PLURAL:$1|versione|versioni}}:",
-	"historyaction-submit": "Mostra",
+	"historyaction-submit": "Mostra versioni",
 	"confirmdeletetext": "Stai per cancellare una pagina con tutta la sua cronologia. Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:Policy-url}}]].",
 	"actioncomplete": "Azione completata",
 	"actionfailed": "Azione fallita",
