@@ -64,11 +64,10 @@ FilterItem.prototype.getState = function () {
 /**
  * Get the message for the display area for the currently active conflict
  *
- * @private
  * @return {string} Conflict result message key
  */
 FilterItem.prototype.getCurrentConflictResultMessage = function () {
-	var details = {};
+	var details;
 
 	// First look in filter's own conflicts
 	details = this.getConflictDetails( this.getOwnConflicts(), 'globalDescription' );

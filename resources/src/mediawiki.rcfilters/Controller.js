@@ -34,7 +34,6 @@ Controller = function MwRcfiltersController( filtersModel, changesListModel, sav
 	this.pollingRate = require( './config.json' ).StructuredChangeFiltersLiveUpdatePollingRate;
 
 	this.requestCounter = {};
-	this.baseFilterState = {};
 	this.uriProcessor = null;
 	this.initialized = false;
 	this.wereSavedQueriesSaved = false;

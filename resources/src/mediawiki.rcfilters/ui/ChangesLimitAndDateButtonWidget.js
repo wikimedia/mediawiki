@@ -147,8 +147,6 @@ ChangesLimitAndDateButtonWidget.prototype.onPopupDays = function ( filterName ) 
 
 /**
  * Respond to limit choose event
- *
- * @param {string} filterName Filter name
  */
 ChangesLimitAndDateButtonWidget.prototype.updateButtonLabel = function () {
 	var message,
