@@ -216,17 +216,23 @@ class NameTableStoreTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideGetName
 	 */
-	public function testGetName( $cacheBag, $insertCalls, $selectCalls ) {
+	public function testGetName( BagOStuff $cacheBag, $insertCalls, $selectCalls ) {
+		$now = microtime( true );
+		$cacheBag->setMockTime( $now );
 		// Check for operations to in-memory cache (IMC) and persistent cache (PC)
 		$store = $this->getNameTableSqlStore( $cacheBag, $insertCalls, $selectCalls );
 
 		// Get 1 ID and make sure getName returns correctly
 		$fooId = $store->acquireId( 'foo' ); // regen PC, set IMC, update IMC, tombstone PC
+		$now += 0.01;
 		$this->assertSame( 'foo', $store->getName( $fooId ) ); // use IMC
+		$now += 0.01;
 
 		// Get another ID and make sure getName returns correctly
 		$barId = $store->acquireId( 'bar' ); // update IMC, tombstone PC
+		$now += 0.01;
 		$this->assertSame( 'bar', $store->getName( $barId ) ); // use IMC
+		$now += 0.01;
 
 		// Blitz the cache and make sure it still returns
 		TestingAccessWrapper::newFromObject( $store )->tableCache = null; // clear IMC
@@ -236,6 +242,7 @@ class NameTableStoreTest extends MediaWikiTestCase {
 		// Blitz the cache again and get another ID and make sure getName returns correctly
 		TestingAccessWrapper::newFromObject( $store )->tableCache = null; // clear IMC
 		$bazId = $store->acquireId( 'baz' ); // set IMC using interim PC, update IMC, tombstone PC
+		$now += 0.01;
 		$this->assertSame( 'baz', $store->getName( $bazId ) ); // uses IMC
 		$this->assertSame( 'baz', $store->getName( $bazId ) ); // uses IMC
 	}
