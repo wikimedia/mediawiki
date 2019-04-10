@@ -366,6 +366,8 @@ because of Phabricator reports.
   For classes that inherit from MediaWikiTestCase and used setMwGlobals() to
   modify a variable that affects namespaces, caches will automatically be
   reset and any calls to MWNamespace::clearCaches() can be removed entirely.
+* ReadOnlyMode::clearCache() and ConfiguredReadOnlyMode::clearCache() have been
+  removed. Use MediaWikiTestCase::overrideMwServices() instead.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected
