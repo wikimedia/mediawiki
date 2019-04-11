@@ -45,6 +45,7 @@ For notes on 1.33.x and older releases, see HISTORY.
 * …
 
 ==== Changed external libraries ====
+* Updated Mustache from 1.0.0 to v3.0.1.
 * …
 
 ==== Removed external libraries ====
