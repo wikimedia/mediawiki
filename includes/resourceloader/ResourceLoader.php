@@ -1567,7 +1567,7 @@ MESSAGE;
 	 * For example, `[ 'foo.bar', 'foo.baz', 'bar.baz', 'bar.quux' ]`
 	 * becomes `'foo.bar,baz|bar.baz,quux'`.
 	 *
-	 * This process is reversed by ResourceLoaderContext::expandModuleNames().
+	 * This process is reversed by ResourceLoader::expandModuleNames().
 	 * See also mw.loader#buildModulesString() which is a port of this, used
 	 * on the client-side.
 	 *
@@ -1589,6 +1589,44 @@ MESSAGE;
 			$arr[] = $p . implode( ',', $suffixes );
 		}
 		return implode( '|', $arr );
+	}
+
+	/**
+	 * Expand a string of the form `jquery.foo,bar|jquery.ui.baz,quux` to
+	 * an array of module names like `[ 'jquery.foo', 'jquery.bar',
+	 * 'jquery.ui.baz', 'jquery.ui.quux' ]`.
+	 *
+	 * This process is reversed by ResourceLoader::makePackedModulesString().
+	 *
+	 * @since 1.33
+	 * @param string $modules Packed module name list
+	 * @return array Array of module names
+	 */
+	public static function expandModuleNames( $modules ) {
+		$retval = [];
+		$exploded = explode( '|', $modules );
+		foreach ( $exploded as $group ) {
+			if ( strpos( $group, ',' ) === false ) {
+				// This is not a set of modules in foo.bar,baz notation
+				// but a single module
+				$retval[] = $group;
+			} else {
+				// This is a set of modules in foo.bar,baz notation
+				$pos = strrpos( $group, '.' );
+				if ( $pos === false ) {
+					// Prefixless modules, i.e. without dots
+					$retval = array_merge( $retval, explode( ',', $group ) );
+				} else {
+					// We have a prefix and a bunch of suffixes
+					$prefix = substr( $group, 0, $pos ); // 'foo'
+					$suffixes = explode( ',', substr( $group, $pos + 1 ) ); // [ 'bar', 'baz' ]
+					foreach ( $suffixes as $suffix ) {
+						$retval[] = "$prefix.$suffix";
+					}
+				}
+			}
+		}
+		return $retval;
 	}
 
 	/**

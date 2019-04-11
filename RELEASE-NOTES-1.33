@@ -435,6 +435,8 @@ because of Phabricator reports.
 * Calling Maintenance::hasArg() as well as Maintenance::getArg() with no
   parameter has been deprecated. Please pass the argument number 0.
 * The MWNamespace class is deprecated.  Use MediaWikiServices::getNamespaceInfo.
+* ResourceLoaderContext::expandModuleNames has been deprecated.
+  Use ResourceLoader::expandModuleNames instead.
 
 === Other changes in 1.33 ===
 * (T201747) Html::openElement() warns if given an element name with a space
