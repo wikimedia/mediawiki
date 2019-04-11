@@ -377,7 +377,8 @@ return [
 			wfUrlProtocols(),
 			$services->getSpecialPageFactory(),
 			$services->getMainConfig(),
-			$services->getLinkRendererFactory()
+			$services->getLinkRendererFactory(),
+			$services->getNamespaceInfo()
 		);
 	},
 
