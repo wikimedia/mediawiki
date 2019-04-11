@@ -24,7 +24,7 @@
  * This is a utility class for dealing with namespaces that encodes all the "magic" behaviors of
  * them based on index.  The textual names of the namespaces are handled by Language.php.
  *
- * @since 1.33
+ * @since 1.34
  */
 class NamespaceInfo {
 

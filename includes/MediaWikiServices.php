@@ -667,7 +667,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * @since 1.33
+	 * @since 1.34
 	 * @return NamespaceInfo
 	 */
 	public function getNamespaceInfo() : NamespaceInfo {
