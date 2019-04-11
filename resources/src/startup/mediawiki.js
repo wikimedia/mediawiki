@@ -1490,7 +1490,7 @@
 			 * to a query string of the form `foo.bar,baz|bar.baz,quux`.
 			 *
 			 * See `ResourceLoader::makePackedModulesString()` in PHP, of which this is a port.
-			 * On the server, unpacking is done by `ResourceLoaderContext::expandModuleNames()`.
+			 * On the server, unpacking is done by `ResourceLoader::expandModuleNames()`.
 			 *
 			 * Note: This is only half of the logic, the other half has to be in #batchRequest(),
 			 * because its implementation needs to keep track of potential string size in order
