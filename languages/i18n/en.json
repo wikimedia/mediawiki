@@ -1471,7 +1471,7 @@
 	"rcfilters-savedqueries-already-saved": "These filters are already saved. Change your settings to create a new Saved Filter.",
 	"rcfilters-restore-default-filters": "Restore default filters",
 	"rcfilters-clear-all-filters": "Clear all filters",
-	"rcfilters-show-new-changes": "View newest changes",
+	"rcfilters-show-new-changes": "View new changes since $1",
 	"rcfilters-search-placeholder": "Filter changes (use menu or search for filter name)",
 	"rcfilters-invalid-filter": "Invalid filter",
 	"rcfilters-empty-filter": "No active filters. All contributions are shown.",

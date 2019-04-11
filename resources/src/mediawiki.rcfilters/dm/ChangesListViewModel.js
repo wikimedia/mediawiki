@@ -117,6 +117,7 @@ ChangesListViewModel.prototype.extractNextFrom = function ( $fieldset ) {
 	var data = $fieldset.find( '.rclistfrom > a, .wlinfo' ).data( 'params' );
 	if ( data && data.from ) {
 		this.nextFrom = data.from;
+		this.nextFromFormatted = data.fromFormatted;
 	}
 };
 
@@ -125,6 +126,13 @@ ChangesListViewModel.prototype.extractNextFrom = function ( $fieldset ) {
  */
 ChangesListViewModel.prototype.getNextFrom = function () {
 	return this.nextFrom;
+};
+
+/**
+ * @return {string} The 'from' parameter formatted per the user's datetime format preference
+ */
+ChangesListViewModel.prototype.getNextFromFormatted = function () {
+	return this.nextFromFormatted;
 };
 
 /**
