@@ -55,6 +55,17 @@ class AvailableRightsTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Test, if for all rights an action- message exist,
+	 * which is used on Special:ListGroupRights as help text
+	 * Extensions and core
+	 *
+	 * @coversNothing
+	 */
+	public function testAllActionsWithMessages() {
+		$this->checkMessagesExist( 'action-' );
+	}
+
+	/**
 	 * Test, if for all rights a right- message exist,
 	 * which is used on Special:ListGroupRights as help text
 	 * Extensions and core
@@ -62,27 +73,34 @@ class AvailableRightsTest extends PHPUnit\Framework\TestCase {
 	 * @coversNothing
 	 */
 	public function testAllRightsWithMessage() {
+		$this->checkMessagesExist( 'right-' );
+	}
+
+	/**
+	 * @param string $prefix
+	 */
+	private function checkMessagesExist( $prefix ) {
 		// Getting all user rights, for core: User::$mCoreRights, for extensions: $wgAvailableRights
 		$allRights = User::getAllRights();
 		$allMessageKeys = Language::getMessageKeysFor( 'en' );
 
-		$rightsWithMessage = [];
+		$messagesToCheck = [];
 		foreach ( $allMessageKeys as $message ) {
 			// === 0: must be at beginning of string (position 0)
-			if ( strpos( $message, 'right-' ) === 0 ) {
-				$rightsWithMessage[] = substr( $message, strlen( 'right-' ) );
+			if ( strpos( $message, $prefix ) === 0 ) {
+				$messagesToCheck[] = substr( $message, strlen( $prefix ) );
 			}
 		}
 
 		$missing = array_diff(
 			$allRights,
-			$rightsWithMessage
+			$messagesToCheck
 		);
 
 		$this->assertEquals(
 			[],
 			$missing,
-			'Each user rights (core/extensions) has a corresponding right- message.'
+			"Each user right (core/extensions) has a corresponding $prefix message."
 		);
 	}
 }
