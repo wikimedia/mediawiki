@@ -27,7 +27,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Special\SpecialPageFactory;
 use MessageSpecifier;
 use MWException;
-use MWNamespace;
+use NamespaceInfo;
 use RequestContext;
 use SpecialPage;
 use Title;
@@ -78,13 +78,15 @@ class PermissionManager {
 		$whitelistRead,
 		$whitelistReadRegexp,
 		$emailConfirmToEdit,
-		$blockDisablesLogin
+		$blockDisablesLogin,
+		NamespaceInfo $nsInfo
 	) {
 		$this->specialPageFactory = $specialPageFactory;
 		$this->whitelistRead = $whitelistRead;
 		$this->whitelistReadRegexp = $whitelistReadRegexp;
 		$this->emailConfirmToEdit = $emailConfirmToEdit;
 		$this->blockDisablesLogin = $blockDisablesLogin;
+		$this->nsInfo = $nsInfo;
 	}
 
 	/**
@@ -597,13 +599,15 @@ class PermissionManager {
 			return $errors;
 		}
 
-		$isSubPage = MWNamespace::hasSubpages( $page->getNamespace() ) ?
+		$isSubPage = $this->nsInfo->hasSubpages( $page->getNamespace() ) ?
 			strpos( $page->getText(), '/' ) !== false : false;
 
 		if ( $action == 'create' ) {
 			if (
-				( MWNamespace::isTalk( $page->getNamespace() ) && !$user->isAllowed( 'createtalk' ) ) ||
-				( !MWNamespace::isTalk( $page->getNamespace() ) && !$user->isAllowed( 'createpage' ) )
+				( $this->nsInfo->isTalk( $page->getNamespace() ) &&
+					!$user->isAllowed( 'createtalk' ) ) ||
+				( !$this->nsInfo->isTalk( $page->getNamespace() ) &&
+					!$user->isAllowed( 'createpage' ) )
 			) {
 				$errors[] = $user->isAnon() ? [ 'nocreatetext' ] : [ 'nocreate-loggedin' ];
 			}
@@ -817,7 +821,7 @@ class PermissionManager {
 			}
 		} elseif ( $action == 'move' ) {
 			// Check for immobile pages
-			if ( !MWNamespace::isMovable( $page->getNamespace() ) ) {
+			if ( !$this->nsInfo->isMovable( $page->getNamespace() ) ) {
 				// Specific message for this case
 				$errors[] = [ 'immobile-source-namespace', $page->getNsText() ];
 			} elseif ( !$page->isMovable() ) {
@@ -825,7 +829,7 @@ class PermissionManager {
 				$errors[] = [ 'immobile-source-page' ];
 			}
 		} elseif ( $action == 'move-target' ) {
-			if ( !MWNamespace::isMovable( $page->getNamespace() ) ) {
+			if ( !$this->nsInfo->isMovable( $page->getNamespace() ) ) {
 				$errors[] = [ 'immobile-target-namespace', $page->getNsText() ];
 			} elseif ( !$page->isMovable() ) {
 				$errors[] = [ 'immobile-target-page' ];

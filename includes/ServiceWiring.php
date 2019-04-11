@@ -406,7 +406,9 @@ return [
 			$config->get( 'WhitelistRead' ),
 			$config->get( 'WhitelistReadRegexp' ),
 			$config->get( 'EmailConfirmToEdit' ),
-			$config->get( 'BlockDisablesLogin' ) );
+			$config->get( 'BlockDisablesLogin' ),
+			$services->getNamespaceInfo()
+		);
 	},
 
 	'PreferencesFactory' => function ( MediaWikiServices $services ) : PreferencesFactory {
