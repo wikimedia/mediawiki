@@ -76,9 +76,17 @@ because of Phabricator reports.
   * Functions of the MWCryptRand class: singleton(), wasStrong() and generate().
 * Language::setCode, deprecated in 1.32, was removed. Use Language::factory to
   create a new Language object with a different language code.
+* MWNamespace::clearCaches() has been removed.  So has the $rebuild parameter
+  to MWNamespace::getCanonicalNamespaces(), which was deprecated since 1.31.
+  Instead, reset services, such as by calling $this->overrideMwServices() (if
+  your test extends MediaWikiTestCase). Services will generally not pick up
+  configuration changes from after they were created, so you must reset
+  services after any configuration change. Even if your code works now, it is
+  likely to break in future versions as more code is moved to services.
 * …
 
 === Deprecations in 1.34 ===
+* The MWNamespace class is deprecated. Use MediaWikiServices::getNamespaceInfo.
 * …
 
 === Other changes in 1.34 ===

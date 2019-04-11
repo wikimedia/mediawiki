@@ -359,13 +359,6 @@ because of Phabricator reports.
 * MessageBlobStore::getBlob(), deprecated in 1.27, has been removed.
   Use ::getBlobs() instead.
 * The .background-size() LESS mixin, deprecated in 1.27, has been removed.
-* MWNamespace::clearCaches() has been removed.  So has the $rebuild parameter
-  to MWNamespace::getCanonicalNamespaces(), which was deprecated since 1.31.
-  Instead, create a new NamespaceInfo, such as by calling
-  resetServiceForTesting( 'NamespaceInfo' ) on a MediaWikiServices.
-  For classes that inherit from MediaWikiTestCase and used setMwGlobals() to
-  modify a variable that affects namespaces, caches will automatically be
-  reset and any calls to MWNamespace::clearCaches() can be removed entirely.
 * ReadOnlyMode::clearCache() and ConfiguredReadOnlyMode::clearCache() have been
   removed. Use MediaWikiTestCase::overrideMwServices() instead.
 
@@ -436,7 +429,6 @@ because of Phabricator reports.
 * Block::isValid is deprecated, since it is no longer needed in core.
 * Calling Maintenance::hasArg() as well as Maintenance::getArg() with no
   parameter has been deprecated. Please pass the argument number 0.
-* The MWNamespace class is deprecated.  Use MediaWikiServices::getNamespaceInfo.
 * ResourceLoaderContext::expandModuleNames has been deprecated.
   Use ResourceLoader::expandModuleNames instead.
 
