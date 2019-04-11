@@ -1,9 +1,10 @@
 <?php
 
-use MediaWiki\Block\BlockRestriction;
+use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * @group Blocking
@@ -280,7 +281,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( $reason, $block->getReason() );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertCount( 2, $block->getRestrictions() );
-		$this->assertTrue( BlockRestriction::equals( $block->getRestrictions(), [
+		$this->assertTrue( $this->getBlockRestrictionStore()->equals( $block->getRestrictions(), [
 			new PageRestriction( $block->getId(), $pageMars->getId() ),
 			new PageRestriction( $block->getId(), $pageSaturn->getId() ),
 		] ) );
@@ -335,7 +336,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertFalse( $block->isSitewide() );
 		$this->assertCount( 2, $block->getRestrictions() );
-		$this->assertTrue( BlockRestriction::equals( $block->getRestrictions(), [
+		$this->assertTrue( $this->getBlockRestrictionStore()->equals( $block->getRestrictions(), [
 			new PageRestriction( $block->getId(), $pageMars->getId() ),
 			new PageRestriction( $block->getId(), $pageSaturn->getId() ),
 		] ) );
@@ -351,7 +352,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertFalse( $block->isSitewide() );
 		$this->assertCount( 1, $block->getRestrictions() );
-		$this->assertTrue( BlockRestriction::equals( $block->getRestrictions(), [
+		$this->assertTrue( $this->getBlockRestrictionStore()->equals( $block->getRestrictions(), [
 			new PageRestriction( $block->getId(), $pageMars->getId() ),
 		] ) );
 
@@ -470,5 +471,18 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	protected function resetTables() {
 		$this->db->delete( 'ipblocks', '*', __METHOD__ );
 		$this->db->delete( 'ipblocks_restrictions', '*', __METHOD__ );
+	}
+
+	/**
+	 * Get a BlockRestrictionStore instance
+	 *
+	 * @return BlockRestrictionStore
+	 */
+	private function getBlockRestrictionStore() : BlockRestrictionStore {
+		$loadBalancer = $this->getMockBuilder( LoadBalancer::class )
+					   ->disableOriginalConstructor()
+					   ->getMock();
+
+		return new BlockRestrictionStore( $loadBalancer );
 	}
 }
