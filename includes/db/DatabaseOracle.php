@@ -52,11 +52,18 @@ class DatabaseOracle extends Database {
 	/** @var array */
 	private $mFieldInfoCache = [];
 
-	function __construct( array $p ) {
-		$p['tablePrefix'] = strtoupper( $p['tablePrefix'] );
-		parent::__construct( $p );
+	/** @var string[] Map of (reserved table name => alternate table name) */
+	private $keywordTableMap = [];
 
-		// @TODO: dependency inject
+	/**
+	 * @see Database::__construct()
+	 * @param array $params Additional parameters include:
+	 *   - keywordTableMap : Map of reserved table names to alternative table names to use
+	 */
+	function __construct( array $params ) {
+		$this->keywordTableMap = $params['keywordTableMap'] ?? [];
+		$params['tablePrefix'] = strtoupper( $params['tablePrefix'] );
+		parent::__construct( $params );
 		Hooks::run( 'DatabaseOraclePostInit', [ $this ] );
 	}
 
@@ -180,7 +187,6 @@ class DatabaseOracle extends Database {
 	 * @return bool|mixed|ORAResult
 	 */
 	protected function doQuery( $sql ) {
-		wfDebug( "SQL: [$sql]\n" );
 		if ( !mb_check_encoding( (string)$sql, 'UTF-8' ) ) {
 			throw new DBUnexpectedError( $this, "SQL encoding is invalid\n$sql" );
 		}
@@ -619,22 +625,19 @@ class DatabaseOracle extends Database {
 		return parent::upsert( $table, $rows, $uniqueIndexes, $set, $fname );
 	}
 
-	function tableName( $name, $format = 'quoted' ) {
-		/*
-		Replace reserved words with better ones
-		Using uppercase because that's the only way Oracle can handle
-		quoted tablenames
-		*/
-		switch ( $name ) {
-			case 'user':
-				$name = 'MWUSER';
-				break;
-			case 'text':
-				$name = 'PAGECONTENT';
-				break;
-		}
+	public function tableName( $name, $format = 'quoted' ) {
+		// Replace reserved words with better ones
+		$name = $this->remappedTableName( $name );
 
 		return strtoupper( parent::tableName( $name, $format ) );
+	}
+
+	/**
+	 * @param string $name
+	 * @return string Value of $name or remapped name if $name is a reserved keyword
+	 */
+	public function remappedTableName( $name ) {
+		return $this->keywordTableMap[$name] ?? $name;
 	}
 
 	function tableNameInternal( $name ) {
@@ -651,19 +654,27 @@ class DatabaseOracle extends Database {
 	 */
 	private function getSequenceData( $table ) {
 		if ( $this->sequenceData == null ) {
-			$result = $this->doQuery( "SELECT lower(asq.sequence_name),
-				lower(atc.table_name),
-				lower(atc.column_name)
-			FROM all_sequences asq, all_tab_columns atc
-			WHERE decode(
-					atc.table_name,
-					'{$this->tablePrefix}MWUSER',
-					'{$this->tablePrefix}USER',
-					atc.table_name
-				) || '_' ||
-				atc.column_name || '_SEQ' = '{$this->tablePrefix}' || asq.sequence_name
-				AND asq.sequence_owner = upper('{$this->getDBname()}')
-				AND atc.owner = upper('{$this->getDBname()}')" );
+			$dbname = $this->currentDomain->getDatabase();
+			$prefix = $this->currentDomain->getTablePrefix();
+			// See https://docs.oracle.com/cd/B19306_01/server.102/b14200/functions040.htm
+			$decodeArgs = [ 'atc.table_name' ]; // the switch
+			foreach ( $this->keywordTableMap as $reserved => $alternative ) {
+				$search = strtoupper( $prefix . $alternative ); // case
+				$replace = strtoupper( $prefix . $reserved ); // result
+				$decodeArgs[] = $this->addQuotes( $search );
+				$decodeArgs[] = $this->addQuotes( $replace );
+			}
+			$decodeArgs[] = [ 'atc.table_name' ]; // default
+			$decodeArgs = implode( ', ', $decodeArgs );
+
+			$result = $this->doQuery(
+				"SELECT lower(asq.sequence_name), lower(atc.table_name), lower(atc.column_name)
+				FROM all_sequences asq, all_tab_columns atc
+				WHERE decode({$decodeArgs}) || '_' ||
+				atc.column_name || '_SEQ' = '{$prefix}' || asq.sequence_name
+				AND asq.sequence_owner = upper('{$dbname}')
+				AND atc.owner = upper('{$dbname}')"
+			);
 
 			while ( ( $row = $result->fetchRow() ) !== false ) {
 				$this->sequenceData[$row[1]] = [
@@ -717,13 +728,14 @@ class DatabaseOracle extends Database {
 		$fname = __METHOD__
 	) {
 		$temporary = $temporary ? 'TRUE' : 'FALSE';
+		$tablePrefix = $this->currentDomain->getTablePrefix();
 
 		$newName = strtoupper( $newName );
 		$oldName = strtoupper( $oldName );
 
-		$tabName = substr( $newName, strlen( $this->tablePrefix ) );
+		$tabName = substr( $newName, strlen( $tablePrefix ) );
 		$oldPrefix = substr( $oldName, 0, strlen( $oldName ) - strlen( $tabName ) );
-		$newPrefix = strtoupper( $this->tablePrefix );
+		$newPrefix = strtoupper( $tablePrefix );
 
 		return $this->doQuery( "BEGIN DUPLICATE_TABLE( '$tabName', " .
 			"'$oldPrefix', '$newPrefix', $temporary ); END;" );
