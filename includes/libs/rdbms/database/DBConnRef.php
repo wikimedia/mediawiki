@@ -46,8 +46,8 @@ class DBConnRef implements IDatabase {
 
 	function __call( $name, array $arguments ) {
 		if ( $this->conn === null ) {
-			list( $db, $groups, $wiki, $flags ) = $this->params;
-			$this->conn = $this->lb->getConnection( $db, $groups, $wiki, $flags );
+			list( $index, $groups, $wiki, $flags ) = $this->params;
+			$this->conn = $this->lb->getConnection( $index, $groups, $wiki, $flags );
 		}
 
 		return $this->conn->$name( ...$arguments );
@@ -301,6 +301,10 @@ class DBConnRef implements IDatabase {
 		$table, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []
 	) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function limitResult( $sql, $limit, $offset = false ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
