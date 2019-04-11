@@ -141,16 +141,15 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return array
 	 */
 	protected function getFormFields() {
-		global $wgBlockAllowsUTEdit;
+		$conf = $this->getConfig();
+		$enablePartialBlocks = $conf->get( 'EnablePartialBlocks' );
+		$blockAllowsUTEdit = $conf->get( 'BlockAllowsUTEdit' );
 
 		$this->getOutput()->enableOOUI();
 
 		$user = $this->getUser();
 
 		$suggestedDurations = self::getSuggestedDurations();
-
-		$conf = $this->getConfig();
-		$enablePartialBlocks = $conf->get( 'EnablePartialBlocks' );
 
 		$a = [];
 
@@ -232,7 +231,7 @@ class SpecialBlock extends FormSpecialPage {
 			];
 		}
 
-		if ( $wgBlockAllowsUTEdit ) {
+		if ( $blockAllowsUTEdit ) {
 			$a['DisableUTEdit'] = [
 				'type' => 'check',
 				'label-message' => 'ipb-disableusertalk',
