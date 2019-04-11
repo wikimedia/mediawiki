@@ -1135,7 +1135,6 @@ $wgAutoloadLocalClasses = [
 	'PostgreSqlLockManager' => __DIR__ . '/includes/libs/lockmanager/PostgreSqlLockManager.php',
 	'PostgresInstaller' => __DIR__ . '/includes/installer/PostgresInstaller.php',
 	'PostgresUpdater' => __DIR__ . '/includes/installer/PostgresUpdater.php',
-	'Preferences' => __DIR__ . '/includes/Preferences.php',
 	'PreferencesForm' => __DIR__ . '/includes/specials/forms/PreferencesFormLegacy.php',
 	'PreferencesFormLegacy' => __DIR__ . '/includes/specials/forms/PreferencesFormLegacy.php',
 	'PreferencesFormOOUI' => __DIR__ . '/includes/specials/forms/PreferencesFormOOUI.php',
