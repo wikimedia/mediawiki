@@ -288,12 +288,12 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @dataProvider providePackedModules
-	 * @covers ResourceLoaderContext::expandModuleNames
+	 * @covers ResourceLoader::expandModuleNames
 	 */
 	public function testExpandModuleNames( $desc, $modules, $packed, $unpacked = null ) {
 		$this->assertEquals(
 			$unpacked ?: $modules,
-			ResourceLoaderContext::expandModuleNames( $packed ),
+			ResourceLoader::expandModuleNames( $packed ),
 			$desc
 		);
 	}

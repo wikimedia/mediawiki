@@ -68,7 +68,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 
 		// List of modules
 		$modules = $request->getRawVal( 'modules' );
-		$this->modules = $modules ? self::expandModuleNames( $modules ) : [];
+		$this->modules = $modules ? ResourceLoader::expandModuleNames( $modules ) : [];
 
 		// Various parameters
 		$this->user = $request->getRawVal( 'user' );
@@ -91,40 +91,16 @@ class ResourceLoaderContext implements MessageLocalizer {
 	}
 
 	/**
-	 * Expand a string of the form `jquery.foo,bar|jquery.ui.baz,quux` to
-	 * an array of module names like `[ 'jquery.foo', 'jquery.bar',
-	 * 'jquery.ui.baz', 'jquery.ui.quux' ]`.
+	 * Reverse the process done by ResourceLoader::makePackedModulesString().
 	 *
-	 * This process is reversed by ResourceLoader::makePackedModulesString().
-	 *
+	 * @deprecated since 1.33 Use ResourceLoader::expandModuleNames instead.
 	 * @param string $modules Packed module name list
 	 * @return array Array of module names
+	 * @codeCoverageIgnore
 	 */
 	public static function expandModuleNames( $modules ) {
-		$retval = [];
-		$exploded = explode( '|', $modules );
-		foreach ( $exploded as $group ) {
-			if ( strpos( $group, ',' ) === false ) {
-				// This is not a set of modules in foo.bar,baz notation
-				// but a single module
-				$retval[] = $group;
-			} else {
-				// This is a set of modules in foo.bar,baz notation
-				$pos = strrpos( $group, '.' );
-				if ( $pos === false ) {
-					// Prefixless modules, i.e. without dots
-					$retval = array_merge( $retval, explode( ',', $group ) );
-				} else {
-					// We have a prefix and a bunch of suffixes
-					$prefix = substr( $group, 0, $pos ); // 'foo'
-					$suffixes = explode( ',', substr( $group, $pos + 1 ) ); // [ 'bar', 'baz' ]
-					foreach ( $suffixes as $suffix ) {
-						$retval[] = "$prefix.$suffix";
-					}
-				}
-			}
-		}
-		return $retval;
+		wfDeprecated( __METHOD__, '1.33' );
+		return ResourceLoader::expandModuleNames( $modules );
 	}
 
 	/**
