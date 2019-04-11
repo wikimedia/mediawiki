@@ -211,6 +211,19 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function getType() {
+		if ( $this->conn === null ) {
+			// Avoid triggering a database connection
+			if ( $this->params[self::FLD_INDEX] === ILoadBalancer::DB_MASTER ) {
+				$index = $this->lb->getWriterIndex();
+			} else {
+				$index = $this->params[self::FLD_INDEX];
+			}
+			if ( $index >= 0 ) {
+				// In theory, if $index is DB_REPLICA, the type could vary
+				return $this->lb->getServerType( $index );
+			}
+		}
+
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
