@@ -259,7 +259,7 @@ class DatabaseSqlite extends Database {
 	 * Check if the searchindext table is FTS enabled.
 	 * @return bool False if not enabled.
 	 */
-	function checkForEnabledSearch() {
+	public function checkForEnabledSearch() {
 		if ( self::$fulltextEnabled === null ) {
 			self::$fulltextEnabled = false;
 			$table = $this->tableName( 'searchindex' );
