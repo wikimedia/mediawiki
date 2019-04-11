@@ -158,6 +158,11 @@ abstract class MWLBFactory {
 				// Work around the reserved word usage in MediaWiki schema
 				'keywordTableMap' => [ 'user' => 'mwuser', 'text' => 'pagecontent' ]
 			];
+		} elseif ( $server['type'] === 'oracle' ) {
+			$server += [
+				// Work around the reserved word usage in MediaWiki schema
+				'keywordTableMap' => [ 'user' => 'mwuser', 'text' => 'pagecontent' ]
+			];
 		} elseif ( $server['type'] === 'mssql' ) {
 			$server += [
 				'port' => $mainConfig->get( 'DBport' ),
