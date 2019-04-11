@@ -363,15 +363,6 @@ FilterGroup.prototype.getDefaultFilters = function () {
 };
 
 /**
- * This is for a single_option and string_options group types
- * it returns the value of the default
- *
- * @return {string} Value of the default
- */
-FilterGroup.prototype.getDefaulParamValue = function () {
-	return this.defaultParams[ this.getName() ];
-};
-/**
  * Get the messags defining the 'whats this' popup for this group
  *
  * @return {Object} What's this messages
@@ -421,21 +412,6 @@ FilterGroup.prototype.getConflicts = function () {
  */
 FilterGroup.prototype.setConflicts = function ( conflicts ) {
 	this.conflicts = conflicts;
-};
-
-/**
- * Set conflicts for each filter item in the group based on the
- * given conflict map
- *
- * @param {Object} conflicts Object representing the conflict map,
- *  keyed by the item name, where its value is an object for all its conflicts
- */
-FilterGroup.prototype.setFilterConflicts = function ( conflicts ) {
-	this.getItems().forEach( function ( filterItem ) {
-		if ( conflicts[ filterItem.getName() ] ) {
-			filterItem.setConflicts( conflicts[ filterItem.getName() ] );
-		}
-	} );
 };
 
 /**
@@ -871,7 +847,6 @@ FilterGroup.prototype.getView = function () {
 /**
  * Get the prefix used for the filter names inside this group.
  *
- * @param {string} [name] Filter name to prefix
  * @return {string} Group prefix
  */
 FilterGroup.prototype.getNamePrefix = function () {

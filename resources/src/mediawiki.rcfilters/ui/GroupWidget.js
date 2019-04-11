@@ -6,7 +6,7 @@
  *
  * @constructor
  * @param {Object} [config] Configuration object
- * @param {Object} [events] Events to aggregate. The object represent the
+ * @cfg {Object} [events] Events to aggregate. The object represent the
  *  event name to aggregate and the event value to emit on aggregate for items.
  */
 var GroupWidget = function MwRcfiltersUiViewSwitchWidget( config ) {

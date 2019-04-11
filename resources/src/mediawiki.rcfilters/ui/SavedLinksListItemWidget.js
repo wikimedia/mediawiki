@@ -262,7 +262,6 @@ SavedLinksListItemWidget.prototype.onInputChange = function ( value ) {
 /**
  * Save the name of the query
  *
- * @param {string} [value] The value to save
  * @fires edit
  */
 SavedLinksListItemWidget.prototype.save = function () {

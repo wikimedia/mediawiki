@@ -225,7 +225,7 @@ FiltersViewModel.prototype.getFirstConflictedItem = function () {
  */
 FiltersViewModel.prototype.initializeFilters = function ( filterGroups, views ) {
 	var filterConflictResult, groupConflictResult,
-		allViews = {},
+		allViews,
 		model = this,
 		items = [],
 		groupConflictMap = {},

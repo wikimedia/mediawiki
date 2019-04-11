@@ -2678,10 +2678,6 @@ class OutputPage extends ContextSource {
 		$response->header( 'Content-language: ' .
 			MediaWikiServices::getInstance()->getContentLanguage()->getHtmlCode() );
 
-		if ( !$this->mArticleBodyOnly ) {
-			$sk = $this->getSkin();
-		}
-
 		$linkHeader = $this->getLinkHeader();
 		if ( $linkHeader ) {
 			$response->header( $linkHeader );

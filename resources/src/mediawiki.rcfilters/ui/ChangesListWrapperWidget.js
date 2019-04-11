@@ -28,7 +28,6 @@ var ChangesListWrapperWidget = function MwRcfiltersUiChangesListWrapperWidget(
 	this.filtersViewModel = filtersViewModel;
 	this.changesListViewModel = changesListViewModel;
 	this.controller = controller;
-	this.highlightClasses = null;
 
 	// Events
 	this.filtersViewModel.connect( this, {
@@ -51,22 +50,6 @@ var ChangesListWrapperWidget = function MwRcfiltersUiChangesListWrapperWidget(
 /* Initialization */
 
 OO.inheritClass( ChangesListWrapperWidget, OO.ui.Widget );
-
-/**
- * Get all available highlight classes
- *
- * @return {string[]} An array of available highlight class names
- */
-ChangesListWrapperWidget.prototype.getHighlightClasses = function () {
-	if ( !this.highlightClasses || !this.highlightClasses.length ) {
-		this.highlightClasses = this.filtersViewModel.getItemsSupportingHighlights()
-			.map( function ( filterItem ) {
-				return filterItem.getCssClass();
-			} );
-	}
-
-	return this.highlightClasses;
-};
 
 /**
  * Respond to the highlight feature being toggled on and off
