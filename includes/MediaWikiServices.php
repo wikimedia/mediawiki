@@ -7,6 +7,7 @@ use Config;
 use ConfigFactory;
 use CryptHKDF;
 use CryptRand;
+use DateFormatterFactory;
 use EventRelayerGroup;
 use GenderCache;
 use GlobalVarConfig;
@@ -524,6 +525,14 @@ class MediaWikiServices extends ServiceContainer {
 	public function getCryptRand() {
 		wfDeprecated( __METHOD__, '1.32' );
 		return $this->getService( 'CryptRand' );
+	}
+
+	/**
+	 * @since 1.33
+	 * @return DateFormatterFactory
+	 */
+	public function getDateFormatterFactory() {
+		return $this->getService( 'DateFormatterFactory' );
 	}
 
 	/**

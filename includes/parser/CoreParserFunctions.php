@@ -113,7 +113,7 @@ class CoreParserFunctions {
 	 */
 	public static function formatDate( $parser, $date, $defaultPref = null ) {
 		$lang = $parser->getFunctionLang();
-		$df = DateFormatter::getInstance( $lang );
+		$df = MediaWikiServices::getInstance()->getDateFormatterFactory()->get( $lang );
 
 		$date = trim( $date );
 

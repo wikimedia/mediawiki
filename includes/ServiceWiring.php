@@ -138,6 +138,10 @@ return [
 		return new CryptRand();
 	},
 
+	'DateFormatterFactory' => function () : DateFormatterFactory {
+		return new DateFormatterFactory;
+	},
+
 	'DBLoadBalancer' => function ( MediaWikiServices $services ) : Wikimedia\Rdbms\LoadBalancer {
 		// just return the default LB from the DBLoadBalancerFactory service
 		return $services->getDBLoadBalancerFactory()->getMainLB();
