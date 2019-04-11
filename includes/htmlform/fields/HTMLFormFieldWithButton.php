@@ -59,6 +59,7 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 			'type' => $this->mButtonType,
 			'label' => $this->mButtonValue,
 			'flags' => $this->mButtonFlags,
+			'id' => $this->mButtonId,
 		] + OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( [ 'disabled', 'tabindex' ] )
 		) );
