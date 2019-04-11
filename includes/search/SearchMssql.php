@@ -36,7 +36,9 @@ class SearchMssql extends SearchDatabase {
 	 * @return SqlSearchResultSet
 	 */
 	protected function doSearchTextInDB( $term ) {
-		$resultSet = $this->db->query( $this->getQuery( $this->filter( $term ), true ) );
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$resultSet = $dbr->query( $this->getQuery( $this->filter( $term ), true ) );
+
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
@@ -47,7 +49,9 @@ class SearchMssql extends SearchDatabase {
 	 * @return SqlSearchResultSet
 	 */
 	protected function doSearchTitleInDB( $term ) {
-		$resultSet = $this->db->query( $this->getQuery( $this->filter( $term ), false ) );
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$resultSet = $dbr->query( $this->getQuery( $this->filter( $term ), false ) );
+
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
@@ -72,7 +76,9 @@ class SearchMssql extends SearchDatabase {
 	 * @return string
 	 */
 	private function queryLimit( $sql ) {
-		return $this->db->limitResult( $sql, $this->limit, $this->offset );
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+
+		return $dbr->limitResult( $sql, $this->limit, $this->offset );
 	}
 
 	/**
@@ -120,8 +126,9 @@ class SearchMssql extends SearchDatabase {
 	 */
 	private function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
-		$page = $this->db->tableName( 'page' );
-		$searchindex = $this->db->tableName( 'searchindex' );
+		$dbr = $this->lb->getMaintenanceConnectionRef( DB_REPLICA );
+		$page = $dbr->tableName( 'page' );
+		$searchindex = $dbr->tableName( 'searchindex' );
 
 		return 'SELECT page_id, page_namespace, page_title, ftindex.[RANK]' .
 			"FROM $page,FREETEXTTABLE($searchindex , $match, LANGUAGE 'English') as ftindex " .
@@ -159,8 +166,10 @@ class SearchMssql extends SearchDatabase {
 			}
 		}
 
-		$searchon = $this->db->addQuotes( implode( ',', $q ) );
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$searchon = $dbr->addQuotes( implode( ',', $q ) );
 		$field = $this->getIndexField( $fulltext );
+
 		return "$field, $searchon";
 	}
 
@@ -179,13 +188,14 @@ class SearchMssql extends SearchDatabase {
 		// to properly decode the stream as UTF-8.  SQL doesn't support UTF8 as a data type
 		// but the indexer will correctly handle it by this method.  Since all we are doing
 		// is passing this data to the indexer and never retrieving it via PHP, this will save space
-		$table = $this->db->tableName( 'searchindex' );
+		$dbr = $this->lb->getMaintenanceConnectionRef( DB_MASTER );
+		$table = $dbr->tableName( 'searchindex' );
 		$utf8bom = '0xEFBBBF';
 		$si_title = $utf8bom . bin2hex( $title );
 		$si_text = $utf8bom . bin2hex( $text );
 		$sql = "DELETE FROM $table WHERE si_page = $id;";
 		$sql .= "INSERT INTO $table (si_page, si_title, si_text) VALUES ($id, $si_title, $si_text)";
-		return $this->db->query( $sql, 'SearchMssql::update' );
+		return $dbr->query( $sql, 'SearchMssql::update' );
 	}
 
 	/**
@@ -197,13 +207,14 @@ class SearchMssql extends SearchDatabase {
 	 * @return bool|IResultWrapper
 	 */
 	function updateTitle( $id, $title ) {
-		$table = $this->db->tableName( 'searchindex' );
+		$dbr = $this->lb->getMaintenanceConnectionRef( DB_MASTER );
+		$table = $dbr->tableName( 'searchindex' );
 
 		// see update for why we are using the utf8bom
 		$utf8bom = '0xEFBBBF';
 		$si_title = $utf8bom . bin2hex( $title );
 		$sql = "DELETE FROM $table WHERE si_page = $id;";
 		$sql .= "INSERT INTO $table (si_page, si_title, si_text) VALUES ($id, $si_title, 0x00)";
-		return $this->db->query( $sql, 'SearchMssql::updateTitle' );
+		return $dbr->query( $sql, 'SearchMssql::updateTitle' );
 	}
 }

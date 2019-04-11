@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\DatabaseSqlite;
 
 /**
  * Search engine hook for SQLite
@@ -33,7 +34,10 @@ class SearchSqlite extends SearchDatabase {
 	 * @return bool
 	 */
 	function fulltextSearchSupported() {
-		return $this->db->checkForEnabledSearch();
+		/** @var DatabaseSqlite $dbr */
+		$dbr = $this->lb->getConnection( DB_REPLICA );
+
+		return $dbr->checkForEnabledSearch();
 	}
 
 	/**
@@ -120,8 +124,10 @@ class SearchSqlite extends SearchDatabase {
 			wfDebug( __METHOD__ . ": Can't understand search query '{$filteredText}'\n" );
 		}
 
-		$searchon = $this->db->addQuotes( $searchon );
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$searchon = $dbr->addQuotes( $searchon );
 		$field = $this->getIndexField( $fulltext );
+
 		return " $field MATCH $searchon ";
 	}
 
@@ -178,10 +184,11 @@ class SearchSqlite extends SearchDatabase {
 
 		$filteredTerm =
 			$this->filter( MediaWikiServices::getInstance()->getContentLanguage()->lc( $term ) );
-		$resultSet = $this->db->query( $this->getQuery( $filteredTerm, $fulltext ) );
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$resultSet = $dbr->query( $this->getQuery( $filteredTerm, $fulltext ) );
 
 		$total = null;
-		$totalResult = $this->db->query( $this->getCountQuery( $filteredTerm, $fulltext ) );
+		$totalResult = $dbr->query( $this->getCountQuery( $filteredTerm, $fulltext ) );
 		$row = $totalResult->fetchObject();
 		if ( $row ) {
 			$total = intval( $row->c );
@@ -202,7 +209,8 @@ class SearchSqlite extends SearchDatabase {
 		if ( $this->namespaces === [] ) {
 			$namespaces = '0';
 		} else {
-			$namespaces = $this->db->makeList( $this->namespaces );
+			$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+			$namespaces = $dbr->makeList( $this->namespaces );
 		}
 		return 'AND page_namespace IN (' . $namespaces . ')';
 	}
@@ -213,7 +221,9 @@ class SearchSqlite extends SearchDatabase {
 	 * @return string
 	 */
 	private function limitResult( $sql ) {
-		return $this->db->limitResult( $sql, $this->limit, $this->offset );
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+
+		return $dbr->limitResult( $sql, $this->limit, $this->offset );
 	}
 
 	/**
@@ -248,8 +258,9 @@ class SearchSqlite extends SearchDatabase {
 	 */
 	private function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
-		$page = $this->db->tableName( 'page' );
-		$searchindex = $this->db->tableName( 'searchindex' );
+		$dbr = $this->lb->getMaintenanceConnectionRef( DB_REPLICA );
+		$page = $dbr->tableName( 'page' );
+		$searchindex = $dbr->tableName( 'searchindex' );
 		return "SELECT $searchindex.rowid, page_namespace, page_title " .
 			"FROM $page,$searchindex " .
 			"WHERE page_id=$searchindex.rowid AND $match";
@@ -257,8 +268,9 @@ class SearchSqlite extends SearchDatabase {
 
 	private function getCountQuery( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
-		$page = $this->db->tableName( 'page' );
-		$searchindex = $this->db->tableName( 'searchindex' );
+		$dbr = $this->lb->getMaintenanceConnectionRef( DB_REPLICA );
+		$page = $dbr->tableName( 'page' );
+		$searchindex = $dbr->tableName( 'searchindex' );
 		return "SELECT COUNT(*) AS c " .
 			"FROM $page,$searchindex " .
 			"WHERE page_id=$searchindex.rowid AND $match " .
@@ -279,10 +291,8 @@ class SearchSqlite extends SearchDatabase {
 		}
 		// @todo find a method to do it in a single request,
 		// couldn't do it so far due to typelessness of FTS3 tables.
-		$dbw = wfGetDB( DB_MASTER );
-
+		$dbw = $this->lb->getConnectionRef( DB_MASTER );
 		$dbw->delete( 'searchindex', [ 'rowid' => $id ], __METHOD__ );
-
 		$dbw->insert( 'searchindex',
 			[
 				'rowid' => $id,
@@ -302,8 +312,8 @@ class SearchSqlite extends SearchDatabase {
 		if ( !$this->fulltextSearchSupported() ) {
 			return;
 		}
-		$dbw = wfGetDB( DB_MASTER );
 
+		$dbw = $this->lb->getConnectionRef( DB_MASTER );
 		$dbw->update( 'searchindex',
 			[ 'si_title' => $title ],
 			[ 'rowid' => $id ],
