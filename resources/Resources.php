@@ -2100,7 +2100,15 @@ return [
 		],
 	],
 	'mediawiki.special.block' => [
-		'scripts' => 'resources/src/mediawiki.special.block.js',
+		'localBasePath' => "$IP/resources/src",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src",
+		'packageFiles' => [
+			'mediawiki.special.block.js',
+			[ 'name' => 'config.json', 'config' => [
+				'EnablePartialBlocks',
+				'BlockAllowsUTEdit',
+			] ],
+		],
 		'dependencies' => [
 			'oojs-ui-core',
 			'oojs-ui.styles.icons-editing-core',
