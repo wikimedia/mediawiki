@@ -2198,8 +2198,6 @@ class OutputPage extends ContextSource {
 	 * @return ParserOutput
 	 */
 	private function parseInternal( $text, $title, $linestart, $tidy, $interface, $language ) {
-		global $wgParser;
-
 		if ( is_null( $title ) ) {
 			throw new MWException( 'Empty $mTitle in ' . __METHOD__ );
 		}
@@ -2212,7 +2210,7 @@ class OutputPage extends ContextSource {
 			$oldLang = $popts->setTargetLanguage( $language );
 		}
 
-		$parserOutput = $wgParser->getFreshParser()->parse(
+		$parserOutput = MediaWikiServices::getInstance()->getParser()->getFreshParser()->parse(
 			$text, $title, $popts,
 			$linestart, true, $this->mRevisionId
 		);

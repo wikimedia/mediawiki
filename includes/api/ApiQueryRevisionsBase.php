@@ -496,8 +496,6 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 * @return array
 	 */
 	private function extractDeprecatedContent( Content $content, RevisionRecord $revision ) {
-		global $wgParser;
-
 		$vals = [];
 		$title = Title::newFromLinkTarget( $revision->getPageAsLinkTarget() );
 
@@ -505,12 +503,13 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
 				$t = $content->getText(); # note: don't set $text
 
-				$wgParser->startExternalParse(
+				$parser = MediaWikiServices::getInstance()->getParser();
+				$parser->startExternalParse(
 					$title,
 					ParserOptions::newFromContext( $this->getContext() ),
 					Parser::OT_PREPROCESS
 				);
-				$dom = $wgParser->preprocessToDom( $t );
+				$dom = $parser->preprocessToDom( $t );
 				if ( is_callable( [ $dom, 'saveXML' ] ) ) {
 					$xml = $dom->saveXML();
 				} else {
@@ -537,7 +536,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
 					$text = $content->getText();
 
-					$text = $wgParser->preprocess(
+					$text = MediaWikiServices::getInstance()->getParser()->preprocess(
 						$text,
 						$title,
 						ParserOptions::newFromContext( $this->getContext() )

@@ -1719,10 +1719,10 @@ class ParserTestRunner {
 	 * @return bool True if tag hook is present
 	 */
 	public function requireHook( $name ) {
-		global $wgParser;
+		$parser = MediaWikiServices::getInstance()->getParser();
 
-		$wgParser->firstCallInit(); // make sure hooks are loaded.
-		if ( isset( $wgParser->mTagHooks[$name] ) ) {
+		$parser->firstCallInit(); // make sure hooks are loaded.
+		if ( isset( $parser->mTagHooks[$name] ) ) {
 			return true;
 		} else {
 			$this->recorder->warning( "   This test suite requires the '$name' hook " .
@@ -1738,11 +1738,11 @@ class ParserTestRunner {
 	 * @return bool True if function hook is present
 	 */
 	public function requireFunctionHook( $name ) {
-		global $wgParser;
+		$parser = MediaWikiServices::getInstance()->getParser();
 
-		$wgParser->firstCallInit(); // make sure hooks are loaded.
+		$parser->firstCallInit(); // make sure hooks are loaded.
 
-		if ( isset( $wgParser->mFunctionHooks[$name] ) ) {
+		if ( isset( $parser->mFunctionHooks[$name] ) ) {
 			return true;
 		} else {
 			$this->recorder->warning( "   This test suite requires the '$name' function " .
@@ -1758,11 +1758,11 @@ class ParserTestRunner {
 	 * @return bool True if function hook is present
 	 */
 	public function requireTransparentHook( $name ) {
-		global $wgParser;
+		$parser = MediaWikiServices::getInstance()->getParser();
 
-		$wgParser->firstCallInit(); // make sure hooks are loaded.
+		$parser->firstCallInit(); // make sure hooks are loaded.
 
-		if ( isset( $wgParser->mTransparentTagHooks[$name] ) ) {
+		if ( isset( $parser->mTransparentTagHooks[$name] ) ) {
 			return true;
 		} else {
 			$this->recorder->warning( "   This test suite requires the '$name' transparent " .

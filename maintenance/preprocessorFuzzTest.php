@@ -195,7 +195,7 @@ class PPFuzzTest {
 	}
 
 	function execute() {
-		global $wgParser, $wgUser;
+		global $wgUser;
 
 		$wgUser = new PPFuzzUser;
 		$wgUser->mName = 'Fuzz';
@@ -206,7 +206,7 @@ class PPFuzzTest {
 		$options->setTemplateCallback( [ $this, 'templateHook' ] );
 		$options->setTimestamp( wfTimestampNow() );
 		$this->output = call_user_func(
-			[ $wgParser, $this->entryPoint ],
+			[ MediaWikiServices::getInstance()->getParser(), $this->entryPoint ],
 			$this->mainText,
 			$this->title,
 			$options

@@ -58,7 +58,7 @@ class PreprocessDump extends DumpIterator {
 	}
 
 	public function checkOptions() {
-		global $wgParser, $wgParserConf, $wgPreprocessorCacheThreshold;
+		global $wgParserConf, $wgPreprocessorCacheThreshold;
 
 		if ( !$this->hasOption( 'cache' ) ) {
 			$wgPreprocessorCacheThreshold = false;
@@ -72,7 +72,7 @@ class PreprocessDump extends DumpIterator {
 			$name = Preprocessor_DOM::class;
 		}
 
-		$wgParser->firstCallInit();
+		MediaWikiServices::getInstance()->getParser()->firstCallInit();
 		$this->mPreprocessor = new $name( $this );
 	}
 

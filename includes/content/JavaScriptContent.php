@@ -25,6 +25,8 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Content for JavaScript pages.
  *
@@ -56,12 +58,12 @@ class JavaScriptContent extends TextContent {
 	 * @return JavaScriptContent
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
-		global $wgParser;
 		// @todo Make pre-save transformation optional for script pages
 		// See T34858
 
 		$text = $this->getText();
-		$pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
+		$pst = MediaWikiServices::getInstance()->getParser()
+			->preSaveTransform( $text, $title, $user, $popts );
 
 		return new static( $pst );
 	}

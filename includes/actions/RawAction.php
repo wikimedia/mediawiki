@@ -27,6 +27,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * A simple method to retrieve the plain source of an article,
@@ -181,8 +182,6 @@ class RawAction extends FormlessAction {
 	 * @return string|bool
 	 */
 	public function getRawText() {
-		global $wgParser;
-
 		$text = false;
 		$title = $this->getTitle();
 		$request = $this->getRequest();
@@ -221,7 +220,7 @@ class RawAction extends FormlessAction {
 		}
 
 		if ( $text !== false && $text !== '' && $request->getRawVal( 'templates' ) === 'expand' ) {
-			$text = $wgParser->preprocess(
+			$text = MediaWikiServices::getInstance()->getParser()->preprocess(
 				$text,
 				$title,
 				ParserOptions::newFromContext( $this->getContext() )
