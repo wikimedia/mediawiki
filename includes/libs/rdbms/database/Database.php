@@ -3191,34 +3191,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->query( $sql, $fname );
 	}
 
-	/**
-	 * Construct a LIMIT query with optional offset. This is used for query
-	 * pages. The SQL should be adjusted so that only the first $limit rows
-	 * are returned. If $offset is provided as well, then the first $offset
-	 * rows should be discarded, and the next $limit rows should be returned.
-	 * If the result of the query is not ordered, then the rows to be returned
-	 * are theoretically arbitrary.
-	 *
-	 * $sql is expected to be a SELECT, if that makes a difference.
-	 *
-	 * The version provided by default works in MySQL and SQLite. It will very
-	 * likely need to be overridden for most other DBMSes.
-	 *
-	 * @param string $sql SQL query we will append the limit too
-	 * @param int $limit The SQL limit
-	 * @param int|bool $offset The SQL offset (default false)
-	 * @throws DBUnexpectedError
-	 * @return string
-	 */
 	public function limitResult( $sql, $limit, $offset = false ) {
 		if ( !is_numeric( $limit ) ) {
 			throw new DBUnexpectedError( $this,
 				"Invalid non-numeric limit passed to limitResult()\n" );
 		}
-
+		// This version works in MySQL and SQLite. It will very likely need to be
+		// overridden for most other RDBMS subclasses.
 		return "$sql LIMIT "
-		. ( ( is_numeric( $offset ) && $offset != 0 ) ? "{$offset}," : "" )
-		. "{$limit} ";
+			. ( ( is_numeric( $offset ) && $offset != 0 ) ? "{$offset}," : "" )
+			. "{$limit} ";
 	}
 
 	public function unionSupportsOrderAndLimit() {
