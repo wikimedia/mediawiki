@@ -171,6 +171,9 @@ abstract class MWLBFactory {
 
 		$flags = DBO_DEFAULT;
 		$flags |= $mainConfig->get( 'DebugDumpSql' ) ? DBO_DEBUG : 0;
+		if ( $server['type'] === 'oracle' ) {
+			$flags |= $mainConfig->get( 'DBOracleDRCP' ) ? DBO_PERSISTENT : 0;
+		}
 
 		$server += [
 			'tablePrefix' => $mainConfig->get( 'DBprefix' ),

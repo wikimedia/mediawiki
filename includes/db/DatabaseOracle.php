@@ -21,7 +21,7 @@
  * @ingroup Database
  */
 
-use MediaWiki\MediaWikiServices;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\Blob;
@@ -55,6 +55,8 @@ class DatabaseOracle extends Database {
 	function __construct( array $p ) {
 		$p['tablePrefix'] = strtoupper( $p['tablePrefix'] );
 		parent::__construct( $p );
+
+		// @TODO: dependency inject
 		Hooks::run( 'DatabaseOraclePostInit', [ $this ] );
 	}
 
@@ -79,8 +81,6 @@ class DatabaseOracle extends Database {
 	}
 
 	protected function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
-		global $wgDBOracleDRCP;
-
 		if ( !function_exists( 'oci_connect' ) ) {
 			throw new DBConnectionError(
 				$this,
@@ -105,10 +105,6 @@ class DatabaseOracle extends Database {
 
 		if ( !strlen( $user ) ) { # e.g. the class is being loaded
 			return null;
-		}
-
-		if ( $wgDBOracleDRCP ) {
-			$this->setFlag( DBO_PERSISTENT );
 		}
 
 		$session_mode = ( $this->flags & DBO_SYSDBA ) ? OCI_SYSDBA : OCI_DEFAULT;
@@ -185,8 +181,8 @@ class DatabaseOracle extends Database {
 	 */
 	protected function doQuery( $sql ) {
 		wfDebug( "SQL: [$sql]\n" );
-		if ( !StringUtils::isUtf8( $sql ) ) {
-			throw new InvalidArgumentException( "SQL encoding is invalid\n$sql" );
+		if ( !mb_check_encoding( (string)$sql, 'UTF-8' ) ) {
+			throw new DBUnexpectedError( $this, "SQL encoding is invalid\n$sql" );
 		}
 
 		// handle some oracle specifics
@@ -420,7 +416,11 @@ class DatabaseOracle extends Database {
 		}
 
 		if ( $val === null ) {
-			if ( $col_info != false && $col_info->isNullable() == 0 && $col_info->defaultValue() != null ) {
+			if (
+				$col_info != false &&
+				$col_info->isNullable() == 0 &&
+				$col_info->defaultValue() != null
+			) {
 				$bind .= 'DEFAULT';
 			} else {
 				$bind .= 'NULL';
@@ -481,12 +481,14 @@ class DatabaseOracle extends Database {
 				}
 
 				// backward compatibility
-				if ( preg_match( '/^timestamp.*/i', $col_type ) == 1 && strtolower( $val ) == 'infinity' ) {
+				if (
+					preg_match( '/^timestamp.*/i', $col_type ) == 1 &&
+					strtolower( $val ) == 'infinity'
+				) {
 					$val = $this->getInfinity();
 				}
 
-				$val = MediaWikiServices::getInstance()->getContentLanguage()->
-					checkTitleEncoding( $val );
+				$val = $this->getVerifiedUTF8( $val );
 				if ( oci_bind_by_name( $stmt, ":$col", $val, -1, SQLT_CHR ) === false ) {
 					$e = oci_error( $stmt );
 					$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
@@ -498,7 +500,10 @@ class DatabaseOracle extends Database {
 				$lob[$col] = oci_new_descriptor( $this->conn, OCI_D_LOB );
 				if ( $lob[$col] === false ) {
 					$e = oci_error( $stmt );
-					throw new DBUnexpectedError( $this, "Cannot create LOB descriptor: " . $e['message'] );
+					throw new DBUnexpectedError(
+						$this,
+						"Cannot create LOB descriptor: " . $e['message']
+					);
 				}
 
 				if ( is_object( $val ) ) {
@@ -554,7 +559,8 @@ class DatabaseOracle extends Database {
 		if ( $sequenceData !== false &&
 			!isset( $varMap[$sequenceData['column']] )
 		) {
-			$varMap[$sequenceData['column']] = 'GET_SEQUENCE_VALUE(\'' . $sequenceData['sequence'] . '\')';
+			$varMap[$sequenceData['column']] =
+				'GET_SEQUENCE_VALUE(\'' . $sequenceData['sequence'] . '\')';
 		}
 
 		// count-alias subselect fields to avoid abigious definition errors
@@ -573,7 +579,8 @@ class DatabaseOracle extends Database {
 			$selectJoinConds
 		);
 
-		$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ') ' . $selectSql;
+		$sql = "INSERT INTO $destTable (" .
+			implode( ',', array_keys( $varMap ) ) . ') ' . $selectSql;
 
 		if ( in_array( 'IGNORE', $insertOptions ) ) {
 			$this->ignoreDupValOnIndex = true;
@@ -756,8 +763,10 @@ class DatabaseOracle extends Database {
 		return $this->doQuery( "DROP TABLE $tableName CASCADE CONSTRAINTS PURGE" );
 	}
 
-	function timestamp( $ts = 0 ) {
-		return wfTimestamp( TS_ORACLE, $ts );
+	public function timestamp( $ts = 0 ) {
+		$t = new ConvertibleTimestamp( $ts );
+		// Let errors bubble up to avoid putting garbage in the DB
+		return $t->getTimestamp( TS_ORACLE );
 	}
 
 	/**
@@ -912,7 +921,10 @@ class DatabaseOracle extends Database {
 	 */
 	function fieldInfo( $table, $field ) {
 		if ( is_array( $table ) ) {
-			throw new DBUnexpectedError( $this, 'DatabaseOracle::fieldInfo called with table array!' );
+			throw new DBUnexpectedError(
+				$this,
+				'DatabaseOracle::fieldInfo called with table array!'
+			);
 		}
 
 		return $this->fieldInfoMulti( $table, $field );
@@ -1061,12 +1073,7 @@ class DatabaseOracle extends Database {
 	}
 
 	function addQuotes( $s ) {
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		if ( isset( $contLang->mLoaded ) && $contLang->mLoaded ) {
-			$s = $contLang->checkTitleEncoding( $s );
-		}
-
-		return "'" . $this->strencode( $s ) . "'";
+		return "'" . $this->strencode( $this->getVerifiedUTF8( $s ) ) . "'";
 	}
 
 	public function addIdentifierQuotes( $s ) {
@@ -1090,11 +1097,9 @@ class DatabaseOracle extends Database {
 		$col_type = $col_info != false ? $col_info->type() : 'CONSTANT';
 		if ( $col_type == 'CLOB' ) {
 			$col = 'TO_CHAR(' . $col . ')';
-			$val =
-				MediaWikiServices::getInstance()->getContentLanguage()->checkTitleEncoding( $val );
+			$val = $this->getVerifiedUTF8( $val );
 		} elseif ( $col_type == 'VARCHAR2' ) {
-			$val =
-				MediaWikiServices::getInstance()->getContentLanguage()->checkTitleEncoding( $val );
+			$val = $this->getVerifiedUTF8( $val );
 		}
 	}
 
@@ -1260,12 +1265,14 @@ class DatabaseOracle extends Database {
 					$val = $val->getData();
 				}
 
-				if ( preg_match( '/^timestamp.*/i', $col_type ) == 1 && strtolower( $val ) == 'infinity' ) {
+				if (
+					preg_match( '/^timestamp.*/i', $col_type ) == 1 &&
+					strtolower( $val ) == 'infinity'
+				) {
 					$val = '31-12-2030 12:00:00.000000';
 				}
 
-				$val = MediaWikiServices::getInstance()->getContentLanguage()->
-					checkTitleEncoding( $val );
+				$val = $this->getVerifiedUTF8( $val );
 				if ( oci_bind_by_name( $stmt, ":$col", $val ) === false ) {
 					$e = oci_error( $stmt );
 					$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
@@ -1277,7 +1284,10 @@ class DatabaseOracle extends Database {
 				$lob[$col] = oci_new_descriptor( $this->conn, OCI_D_LOB );
 				if ( $lob[$col] === false ) {
 					$e = oci_error( $stmt );
-					throw new DBUnexpectedError( $this, "Cannot create LOB descriptor: " . $e['message'] );
+					throw new DBUnexpectedError(
+						$this,
+						"Cannot create LOB descriptor: " . $e['message']
+					);
 				}
 
 				if ( is_object( $val ) ) {
@@ -1365,5 +1375,17 @@ class DatabaseOracle extends Database {
 
 	public function getInfinity() {
 		return '31-12-2030 12:00:00.000000';
+	}
+
+	/**
+	 * @param string $s
+	 * @return string
+	 */
+	private function getVerifiedUTF8( $s ) {
+		if ( mb_check_encoding( (string)$s, 'UTF-8' ) ) {
+			return $s; // valid
+		}
+
+		throw new DBUnexpectedError( $this, "Non BLOB/CLOB field must be UTF-8." );
 	}
 }
