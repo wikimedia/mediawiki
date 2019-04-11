@@ -6,7 +6,6 @@ use CommentStore;
 use Config;
 use ConfigFactory;
 use CryptHKDF;
-use CryptRand;
 use DateFormatterFactory;
 use EventRelayerGroup;
 use GenderCache;
@@ -515,16 +514,6 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getCryptHKDF() {
 		return $this->getService( 'CryptHKDF' );
-	}
-
-	/**
-	 * @since 1.28
-	 * @deprecated since 1.32, use random_bytes()/random_int()
-	 * @return CryptRand
-	 */
-	public function getCryptRand() {
-		wfDeprecated( __METHOD__, '1.32' );
-		return $this->getService( 'CryptRand' );
 	}
 
 	/**

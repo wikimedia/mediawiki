@@ -68,6 +68,11 @@ because of Phabricator reports.
 
 === Breaking changes in 1.34 ===
 * Preferences class, deprecated in 1.31, has been removed.
+* The following parts of code, deprecated in 1.32, were removed in favor of
+  built-in PHP functions:
+  * CryptRand class
+  * CryptRand service
+  * Functions of the MWCryptRand class: singleton(), wasStrong() and generate().
 * …
 
 === Deprecations in 1.34 ===
