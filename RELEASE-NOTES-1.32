@@ -11,6 +11,7 @@ THIS IS NOT A RELEASE YET
   $wgBlockDisablesLogin is true.
 * (T216029) Chrome redirects to Special:BadTitle after editing a section with
   a non-Latin name on a page with non-Latin characters in title.
+* Unbreak language related maintenance scripts that use StaticArrayWriter.
 
 == MediaWiki 1.32.1 ==
 
