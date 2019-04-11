@@ -47,8 +47,10 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 
 	public function testAccessors() {
 		$ctx = new ResourceLoaderContext( $this->getResourceLoader(), new FauxRequest( [] ) );
+		$this->assertInstanceOf( ResourceLoader::class, $ctx->getResourceLoader() );
+		$this->assertInstanceOf( Config::class, $ctx->getConfig() );
 		$this->assertInstanceOf( WebRequest::class, $ctx->getRequest() );
-		$this->assertInstanceOf( \Psr\Log\LoggerInterface::class, $ctx->getLogger() );
+		$this->assertInstanceOf( Psr\Log\LoggerInterface::class, $ctx->getLogger() );
 	}
 
 	public function testTypicalRequest() {
