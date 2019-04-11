@@ -22,7 +22,7 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * @deprecated since 1.33, use NamespaceInfo instead
+ * @deprecated since 1.34, use NamespaceInfo instead
  */
 class MWNamespace {
 	/**
