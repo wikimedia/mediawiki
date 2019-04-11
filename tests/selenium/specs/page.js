@@ -80,7 +80,7 @@ describe( 'Page', function () {
 
 		// check
 		assert.strictEqual( EditPage.heading.getText(), name );
-		assert.strictEqual( EditPage.displayedContent.getText(), editContent );
+		assert( EditPage.displayedContent.getText().match( new RegExp( editContent ) ) );
 	} );
 
 	it( 'should have history @daily', function () {
