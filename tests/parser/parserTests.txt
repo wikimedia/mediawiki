@@ -24146,6 +24146,49 @@ language=nl title=[[MediaWiki:Common.css]]
 </p>
 !! end
 
+!! test
+formatdate with invalid month
+!! wikitext
+{{#formatdate:2019-22-22|dmy}}
+!! html
+<p>2019-22-22
+</p>
+!! end
+
+!! test
+formatdate: dots in month name do not match any char (T220563)
+!! options
+language=de
+!! wikitext
+{{#formatdate:jun. 3|dmy}}
+{{#formatdate:junx 3|dmy}}
+!! html
+<p><span class="mw-formatted-date" title="06-03">3 Juni</span>
+junx 3
+</p>
+!! end
+
+!! test
+formatdate uses correct capitalisation in French
+!! options
+language=fr
+!! wikitext
+{{#formatdate:Juin 3|dmy}}
+!! html
+<p><span class="mw-formatted-date" title="06-03">3 juin</span>
+</p>
+!! end
+
+!! test
+formatdate uses correct capitalisation in English
+!! wikitext
+{{#formatdate:june 3|dmy}}
+!! html
+<p><span class="mw-formatted-date" title="06-03">3 June</span>
+</p>
+!! end
+
+
 #
 #
 #
