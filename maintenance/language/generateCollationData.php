@@ -23,6 +23,8 @@
 
 require_once __DIR__ . '/../Maintenance.php';
 
+use Wikimedia\StaticArrayWriter;
+
 /**
  * Generate first letter data files for Collation.php
  *
