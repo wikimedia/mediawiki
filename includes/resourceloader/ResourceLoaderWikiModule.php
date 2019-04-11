@@ -82,7 +82,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 *  getPages.
 	 */
 	public function __construct( array $options = null ) {
-		if ( is_null( $options ) ) {
+		if ( $options === null ) {
 			return;
 		}
 
