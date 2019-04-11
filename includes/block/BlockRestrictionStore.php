@@ -28,16 +28,29 @@ use MediaWiki\Block\Restriction\Restriction;
 use MWException;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 
-class BlockRestriction {
+class BlockRestrictionStore {
 
 	/**
 	 * Map of all of the restriction types.
 	 */
-	private static $types = [
+	private $types = [
 		PageRestriction::TYPE_ID => PageRestriction::class,
 		NamespaceRestriction::TYPE_ID => NamespaceRestriction::class,
 	];
+
+	/**
+	 * @var ILoadBalancer
+	 */
+	private $loadBalancer;
+
+	/*
+	 * @param LoadBalancer $loadBalancer load balancer for acquiring database connections
+	 */
+	public function __construct( ILoadBalancer $loadBalancer ) {
+		$this->loadBalancer = $loadBalancer;
+	}
 
 	/**
 	 * Retrieves the restrictions from the database by block id.
@@ -47,12 +60,12 @@ class BlockRestriction {
 	 * @param IDatabase|null $db
 	 * @return Restriction[]
 	 */
-	public static function loadByBlockId( $blockId, IDatabase $db = null ) {
+	public function loadByBlockId( $blockId, IDatabase $db = null ) {
 		if ( $blockId === null || $blockId === [] ) {
 			return [];
 		}
 
-		$db = $db ?: wfGetDB( DB_REPLICA );
+		$db = $db ?: $this->loadBalancer->getConnection( DB_REPLICA );
 
 		$result = $db->select(
 			[ 'ipblocks_restrictions', 'page' ],
@@ -63,7 +76,7 @@ class BlockRestriction {
 			[ 'page' => [ 'LEFT JOIN', [ 'ir_type' => PageRestriction::TYPE_ID, 'ir_value=page_id' ] ] ]
 		);
 
-		return self::resultToRestrictions( $result );
+		return $this->resultToRestrictions( $result );
 	}
 
 	/**
@@ -73,7 +86,7 @@ class BlockRestriction {
 	 * @param Restriction[] $restrictions
 	 * @return bool
 	 */
-	public static function insert( array $restrictions ) {
+	public function insert( array $restrictions ) {
 		if ( !$restrictions ) {
 			return false;
 		}
@@ -90,7 +103,7 @@ class BlockRestriction {
 			return false;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
 
 		$dbw->insert(
 			'ipblocks_restrictions',
@@ -110,13 +123,13 @@ class BlockRestriction {
 	 * @param Restriction[] $restrictions
 	 * @return bool
 	 */
-	public static function update( array $restrictions ) {
-		$dbw = wfGetDB( DB_MASTER );
+	public function update( array $restrictions ) {
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
 
 		$dbw->startAtomic( __METHOD__ );
 
 		// Organize the restrictions by blockid.
-		$restrictionList = self::restrictionsByBlockId( $restrictions );
+		$restrictionList = $this->restrictionsByBlockId( $restrictions );
 
 		// Load the existing restrictions and organize by block id. Any block ids
 		// that were passed into this function will be used to load all of the
@@ -133,8 +146,8 @@ class BlockRestriction {
 				[ 'FOR UPDATE' ]
 			);
 
-			$existingList = self::restrictionsByBlockId(
-				self::resultToRestrictions( $result )
+			$existingList = $this->restrictionsByBlockId(
+				$this->resultToRestrictions( $result )
 			);
 		}
 
@@ -142,12 +155,12 @@ class BlockRestriction {
 		// Perform the actions on a per block-id basis.
 		foreach ( $restrictionList as $blockId => $blockRestrictions ) {
 			// Insert all of the restrictions first, ignoring ones that already exist.
-			$success = self::insert( $blockRestrictions );
+			$success = $this->insert( $blockRestrictions );
 
 			// Update the result. The first false is the result, otherwise, true.
 			$result = $success && $result;
 
-			$restrictionsToRemove = self::restrictionsToRemove(
+			$restrictionsToRemove = $this->restrictionsToRemove(
 				$existingList[$blockId] ?? [],
 				$restrictions
 			);
@@ -156,7 +169,7 @@ class BlockRestriction {
 				continue;
 			}
 
-			$success = self::delete( $restrictionsToRemove );
+			$success = $this->delete( $restrictionsToRemove );
 
 			// Update the result. The first false is the result, otherwise, true.
 			$result = $success && $result;
@@ -175,15 +188,15 @@ class BlockRestriction {
 	 * @param Restriction[] $restrictions
 	 * @return bool
 	 */
-	public static function updateByParentBlockId( $parentBlockId, array $restrictions ) {
+	public function updateByParentBlockId( $parentBlockId, array $restrictions ) {
 		// If removing all of the restrictions, then just delete them all.
 		if ( empty( $restrictions ) ) {
-			return self::deleteByParentBlockId( $parentBlockId );
+			return $this->deleteByParentBlockId( $parentBlockId );
 		}
 
 		$parentBlockId = (int)$parentBlockId;
 
-		$db = wfGetDB( DB_MASTER );
+		$db = $this->loadBalancer->getConnection( DB_MASTER );
 
 		$db->startAtomic( __METHOD__ );
 
@@ -197,7 +210,7 @@ class BlockRestriction {
 
 		$result = true;
 		foreach ( $blockIds as $id ) {
-			$success = self::update( self::setBlockId( $id, $restrictions ) );
+			$success = $this->update( $this->setBlockId( $id, $restrictions ) );
 			// Update the result. The first false is the result, otherwise, true.
 			$result = $success && $result;
 		}
@@ -215,8 +228,8 @@ class BlockRestriction {
 	 * @throws MWException
 	 * @return bool
 	 */
-	public static function delete( array $restrictions ) {
-		$dbw = wfGetDB( DB_MASTER );
+	public function delete( array $restrictions ) {
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
 		$result = true;
 		foreach ( $restrictions as $restriction ) {
 			if ( !$restriction instanceof Restriction ) {
@@ -245,8 +258,8 @@ class BlockRestriction {
 	 * @throws MWException
 	 * @return bool
 	 */
-	public static function deleteByBlockId( $blockId ) {
-		$dbw = wfGetDB( DB_MASTER );
+	public function deleteByBlockId( $blockId ) {
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
 		return $dbw->delete(
 			'ipblocks_restrictions',
 			[ 'ir_ipb_id' => $blockId ],
@@ -262,8 +275,8 @@ class BlockRestriction {
 	 * @throws MWException
 	 * @return bool
 	 */
-	public static function deleteByParentBlockId( $parentBlockId ) {
-		$dbw = wfGetDB( DB_MASTER );
+	public function deleteByParentBlockId( $parentBlockId ) {
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
 		return $dbw->deleteJoin(
 			'ipblocks_restrictions',
 			'ipblocks',
@@ -284,7 +297,7 @@ class BlockRestriction {
 	 * @param Restriction[] $b
 	 * @return bool
 	 */
-	public static function equals( array $a, array $b ) {
+	public function equals( array $a, array $b ) {
 		$filter = function ( $restriction ) {
 			return $restriction instanceof Restriction;
 		};
@@ -329,7 +342,7 @@ class BlockRestriction {
 	 * @param Restriction[] $restrictions
 	 * @return Restriction[]
 	 */
-	public static function setBlockId( $blockId, array $restrictions ) {
+	public function setBlockId( $blockId, array $restrictions ) {
 		$blockRestrictions = [];
 
 		foreach ( $restrictions as $restriction ) {
@@ -356,7 +369,7 @@ class BlockRestriction {
 	 * @param Restriction[] $new
 	 * @return array
 	 */
-	private static function restrictionsToRemove( array $existing, array $new ) {
+	private function restrictionsToRemove( array $existing, array $new ) {
 		return array_filter( $existing, function ( $e ) use ( $new ) {
 			foreach ( $new as $restriction ) {
 				if ( !$restriction instanceof Restriction ) {
@@ -379,7 +392,7 @@ class BlockRestriction {
 	 * @param Restriction[] $restrictions
 	 * @return array
 	 */
-	private static function restrictionsByBlockId( array $restrictions ) {
+	private function restrictionsByBlockId( array $restrictions ) {
 		$blockRestrictions = [];
 
 		foreach ( $restrictions as $restriction ) {
@@ -404,10 +417,10 @@ class BlockRestriction {
 	 * @param IResultWrapper $result
 	 * @return Restriction[]
 	 */
-	private static function resultToRestrictions( IResultWrapper $result ) {
+	private function resultToRestrictions( IResultWrapper $result ) {
 		$restrictions = [];
 		foreach ( $result as $row ) {
-			$restriction = self::rowToRestriction( $row );
+			$restriction = $this->rowToRestriction( $row );
 
 			if ( !$restriction ) {
 				continue;
@@ -425,9 +438,9 @@ class BlockRestriction {
 	 * @param \stdClass $row
 	 * @return Restriction|null
 	 */
-	private static function rowToRestriction( \stdClass $row ) {
-		if ( array_key_exists( (int)$row->ir_type, self::$types ) ) {
-			$class = self::$types[ (int)$row->ir_type ];
+	private function rowToRestriction( \stdClass $row ) {
+		if ( array_key_exists( (int)$row->ir_type, $this->types ) ) {
+			$class = $this->types[ (int)$row->ir_type ];
 			return call_user_func( [ $class, 'newFromRow' ], $row );
 		}
 

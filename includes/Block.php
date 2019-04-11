@@ -22,7 +22,7 @@
 
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
-use MediaWiki\Block\BlockRestriction;
+use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
@@ -305,7 +305,9 @@ class Block {
 			&& $this->isSitewide() == $block->isSitewide()
 			// Block::getRestrictions() may perform a database query, so keep it at
 			// the end.
-			&& BlockRestriction::equals( $this->getRestrictions(), $block->getRestrictions() )
+			&& $this->getBlockRestrictionStore()->equals(
+				$this->getRestrictions(), $block->getRestrictions()
+			)
 		);
 	}
 
@@ -523,10 +525,10 @@ class Block {
 
 		$dbw = wfGetDB( DB_MASTER );
 
-		BlockRestriction::deleteByParentBlockId( $this->getId() );
+		$this->getBlockRestrictionStore()->deleteByParentBlockId( $this->getId() );
 		$dbw->delete( 'ipblocks', [ 'ipb_parent_block_id' => $this->getId() ], __METHOD__ );
 
-		BlockRestriction::deleteByBlockId( $this->getId() );
+		$this->getBlockRestrictionStore()->deleteByBlockId( $this->getId() );
 		$dbw->delete( 'ipblocks', [ 'ipb_id' => $this->getId() ], __METHOD__ );
 
 		return $dbw->affectedRows() > 0;
@@ -565,7 +567,7 @@ class Block {
 		if ( $affected ) {
 			$this->setId( $dbw->insertId() );
 			if ( $this->restrictions ) {
-				BlockRestriction::insert( $this->restrictions );
+				$this->getBlockRestrictionStore()->insert( $this->restrictions );
 			}
 		}
 
@@ -585,12 +587,12 @@ class Block {
 			);
 			if ( $ids ) {
 				$dbw->delete( 'ipblocks', [ 'ipb_id' => $ids ], __METHOD__ );
-				BlockRestriction::deleteByBlockId( $ids );
+				$this->getBlockRestrictionStore()->deleteByBlockId( $ids );
 				$dbw->insert( 'ipblocks', $row, __METHOD__, [ 'IGNORE' ] );
 				$affected = $dbw->affectedRows();
 				$this->setId( $dbw->insertId() );
 				if ( $this->restrictions ) {
-					BlockRestriction::insert( $this->restrictions );
+					$this->getBlockRestrictionStore()->insert( $this->restrictions );
 				}
 			}
 		}
@@ -634,9 +636,9 @@ class Block {
 		if ( $this->restrictions !== null ) {
 			// An empty array should remove all of the restrictions.
 			if ( empty( $this->restrictions ) ) {
-				$success = BlockRestriction::deleteByBlockId( $this->getId() );
+				$success = $this->getBlockRestrictionStore()->deleteByBlockId( $this->getId() );
 			} else {
-				$success = BlockRestriction::update( $this->restrictions );
+				$success = $this->getBlockRestrictionStore()->update( $this->restrictions );
 			}
 			// Update the result. The first false is the result, otherwise, true.
 			$result = $result && $success;
@@ -653,11 +655,11 @@ class Block {
 
 			// Only update the restrictions if they have been modified.
 			if ( $this->restrictions !== null ) {
-				BlockRestriction::updateByParentBlockId( $this->getId(), $this->restrictions );
+				$this->getBlockRestrictionStore()->updateByParentBlockId( $this->getId(), $this->restrictions );
 			}
 		} else {
 			// autoblock no longer required, delete corresponding autoblock(s)
-			BlockRestriction::deleteByParentBlockId( $this->getId() );
+			$this->getBlockRestrictionStore()->deleteByParentBlockId( $this->getId() );
 			$dbw->delete(
 				'ipblocks',
 				[ 'ipb_parent_block_id' => $this->getId() ],
@@ -1069,7 +1071,9 @@ class Block {
 		$this->mId = (int)$blockId;
 
 		if ( is_array( $this->restrictions ) ) {
-			$this->restrictions = BlockRestriction::setBlockId( $blockId, $this->restrictions );
+			$this->restrictions = $this->getBlockRestrictionStore()->setBlockId(
+				$blockId, $this->restrictions
+			);
 		}
 
 		return $this;
@@ -1367,7 +1371,9 @@ class Block {
 					$fname
 				);
 				if ( $ids ) {
-					BlockRestriction::deleteByBlockId( $ids );
+					$blockRestrictionStore = MediaWikiServices::getInstance()->getBlockRestrictionStore();
+					$blockRestrictionStore->deleteByBlockId( $ids );
+
 					$dbw->delete( 'ipblocks', [ 'ipb_id' => $ids ], $fname );
 				}
 			}
@@ -1941,7 +1947,7 @@ class Block {
 			if ( !$this->mId ) {
 				return [];
 			}
-			$this->restrictions = BlockRestriction::loadByBlockId( $this->mId );
+			$this->restrictions = $this->getBlockRestrictionStore()->loadByBlockId( $this->mId );
 		}
 
 		return $this->restrictions;
@@ -2163,4 +2169,12 @@ class Block {
 		}
 	}
 
+	/**
+	 * Get a BlockRestrictionStore instance
+	 *
+	 * @return BlockRestrictionStore
+	 */
+	private function getBlockRestrictionStore() : BlockRestrictionStore {
+		return MediaWikiServices::getInstance()->getBlockRestrictionStore();
+	}
 }

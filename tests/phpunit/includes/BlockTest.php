@@ -1,8 +1,9 @@
 <?php
 
-use MediaWiki\Block\BlockRestriction;
+use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @group Database
@@ -612,7 +613,7 @@ class BlockTest extends MediaWikiLangTestCase {
 
 		$pageRestriction = new PageRestriction( $block->getId(), $pageFoo->getId() );
 		$namespaceRestriction = new NamespaceRestriction( $block->getId(), NS_USER );
-		BlockRestriction::insert( [ $pageRestriction, $namespaceRestriction ] );
+		$this->getBlockRestrictionStore()->insert( [ $pageRestriction, $namespaceRestriction ] );
 
 		$this->assertTrue( $block->appliesToTitle( $pageFoo->getTitle() ) );
 		$this->assertFalse( $block->appliesToTitle( $pageBar->getTitle() ) );
@@ -673,7 +674,7 @@ class BlockTest extends MediaWikiLangTestCase {
 			$block->getId(),
 			$title->getArticleID()
 		);
-		BlockRestriction::insert( [ $pageRestriction ] );
+		$this->getBlockRestrictionStore()->insert( [ $pageRestriction ] );
 
 		$this->assertTrue( $block->appliesToPage( $title->getArticleID() ) );
 
@@ -699,7 +700,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		$block->insert();
 
 		$namespaceRestriction = new NamespaceRestriction( $block->getId(), NS_MAIN );
-		BlockRestriction::insert( [ $namespaceRestriction ] );
+		$this->getBlockRestrictionStore()->insert( [ $namespaceRestriction ] );
 
 		$this->assertTrue( $block->appliesToNamespace( NS_MAIN ) );
 		$this->assertFalse( $block->appliesToNamespace( NS_USER ) );
@@ -718,4 +719,12 @@ class BlockTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $block->appliesToRight( 'purge' ) );
 	}
 
+	/**
+	 * Get an instance of BlockRestrictionStore
+	 *
+	 * @return BlockRestrictionStore
+	 */
+	protected function getBlockRestrictionStore() : BlockRestrictionStore {
+		return MediaWikiServices::getInstance()->getBlockRestrictionStore();
+	}
 }

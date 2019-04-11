@@ -21,9 +21,9 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\Block\BlockRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
+use MediaWiki\MediaWikiServices;
 
 /**
  * A special page that allows users with 'block' right to block users from
@@ -950,8 +950,9 @@ class SpecialBlock extends FormSpecialPage {
 					$currentBlock->isSitewide( $block->isSitewide() );
 
 					// Set the block id of the restrictions.
+					$blockRestrictionStore = MediaWikiServices::getInstance()->getBlockRestrictionStore();
 					$currentBlock->setRestrictions(
-						BlockRestriction::setBlockId( $currentBlock->getId(), $restrictions )
+						$blockRestrictionStore->setBlockId( $currentBlock->getId(), $restrictions )
 					);
 				}
 

@@ -39,6 +39,7 @@
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
@@ -80,6 +81,12 @@ return [
 			$services->getMainWANObjectCache(),
 			$services->getMainConfig(),
 			$services->getContentLanguage()
+		);
+	},
+
+	'BlockRestrictionStore' => function ( MediaWikiServices $services ) : BlockRestrictionStore {
+		return new BlockRestrictionStore(
+			$services->getDBLoadBalancer()
 		);
 	},
 
