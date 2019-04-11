@@ -1113,6 +1113,25 @@ interface IDatabase {
 	);
 
 	/**
+	 * Construct a LIMIT query with optional offset. This is used for query
+	 * pages. The SQL should be adjusted so that only the first $limit rows
+	 * are returned. If $offset is provided as well, then the first $offset
+	 * rows should be discarded, and the next $limit rows should be returned.
+	 * If the result of the query is not ordered, then the rows to be returned
+	 * are theoretically arbitrary.
+	 *
+	 * $sql is expected to be a SELECT, if that makes a difference.
+	 *
+	 * @param string $sql SQL query we will append the limit too
+	 * @param int $limit The SQL limit
+	 * @param int|bool $offset The SQL offset (default false)
+	 * @throws DBUnexpectedError
+	 * @return string
+	 * @since 1.34
+	 */
+	public function limitResult( $sql, $limit, $offset = false );
+
+	/**
 	 * Returns true if DBs are assumed to be on potentially different servers
 	 *
 	 * In systems like mysql/mariadb, different databases can easily be referenced on a single
