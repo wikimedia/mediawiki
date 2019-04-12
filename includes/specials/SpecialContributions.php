@@ -372,70 +372,74 @@ class SpecialContributions extends IncludableSpecialPage {
 		$username = $target->getName();
 		$userpage = $target->getUserPage();
 		$talkpage = $target->getTalkPage();
+		$isIP = IP::isValid( $username );
+		$isRange = IP::isValidRange( $username );
 
 		$linkRenderer = $sp->getLinkRenderer();
 
 		# No talk pages for IP ranges.
-		if ( !IP::isValidRange( $username ) ) {
+		if ( !$isRange ) {
 			$tools['user-talk'] = $linkRenderer->makeLink(
 				$talkpage,
 				$sp->msg( 'sp-contributions-talk' )->text()
 			);
 		}
 
-		if ( ( $id !== null ) || ( $id === null && IP::isIPAddress( $username ) ) ) {
-			if ( $sp->getUser()->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
-				if ( $target->getBlock() && $target->getBlock()->getType() != Block::TYPE_AUTO ) {
-					$tools['block'] = $linkRenderer->makeKnownLink( # Change block link
-						SpecialPage::getTitleFor( 'Block', $username ),
-						$sp->msg( 'change-blocklink' )->text()
-					);
-					$tools['unblock'] = $linkRenderer->makeKnownLink( # Unblock link
-						SpecialPage::getTitleFor( 'Unblock', $username ),
-						$sp->msg( 'unblocklink' )->text()
-					);
-				} else { # User is not blocked
-					$tools['block'] = $linkRenderer->makeKnownLink( # Block link
-						SpecialPage::getTitleFor( 'Block', $username ),
-						$sp->msg( 'blocklink' )->text()
-					);
-				}
-			}
-
-			# Block log link
-			$tools['log-block'] = $linkRenderer->makeKnownLink(
-				SpecialPage::getTitleFor( 'Log', 'block' ),
-				$sp->msg( 'sp-contributions-blocklog' )->text(),
-				[],
-				[ 'page' => $userpage->getPrefixedText() ]
-			);
-
-			# Suppression log link (T61120)
-			if ( $sp->getUser()->isAllowed( 'suppressionlog' ) ) {
-				$tools['log-suppression'] = $linkRenderer->makeKnownLink(
-					SpecialPage::getTitleFor( 'Log', 'suppress' ),
-					$sp->msg( 'sp-contributions-suppresslog', $username )->text(),
-					[],
-					[ 'offender' => $username ]
+		if ( $sp->getUser()->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
+			if ( $target->getBlock() && $target->getBlock()->getType() != Block::TYPE_AUTO ) {
+				$tools['block'] = $linkRenderer->makeKnownLink( # Change block link
+					SpecialPage::getTitleFor( 'Block', $username ),
+					$sp->msg( 'change-blocklink' )->text()
+				);
+				$tools['unblock'] = $linkRenderer->makeKnownLink( # Unblock link
+					SpecialPage::getTitleFor( 'Unblock', $username ),
+					$sp->msg( 'unblocklink' )->text()
+				);
+			} else { # User is not blocked
+				$tools['block'] = $linkRenderer->makeKnownLink( # Block link
+					SpecialPage::getTitleFor( 'Block', $username ),
+					$sp->msg( 'blocklink' )->text()
 				);
 			}
 		}
 
-		# Don't show some links for IP ranges
-		if ( !IP::isValidRange( $username ) ) {
-			# Uploads
-			$tools['uploads'] = $linkRenderer->makeKnownLink(
-				SpecialPage::getTitleFor( 'Listfiles', $username ),
-				$sp->msg( 'sp-contributions-uploads' )->text()
+		# Block log link
+		$tools['log-block'] = $linkRenderer->makeKnownLink(
+			SpecialPage::getTitleFor( 'Log', 'block' ),
+			$sp->msg( 'sp-contributions-blocklog' )->text(),
+			[],
+			[ 'page' => $userpage->getPrefixedText() ]
+		);
+
+		# Suppression log link (T61120)
+		if ( $sp->getUser()->isAllowed( 'suppressionlog' ) ) {
+			$tools['log-suppression'] = $linkRenderer->makeKnownLink(
+				SpecialPage::getTitleFor( 'Log', 'suppress' ),
+				$sp->msg( 'sp-contributions-suppresslog', $username )->text(),
+				[],
+				[ 'offender' => $username ]
 			);
+		}
+
+		# Don't show some links for IP ranges
+		if ( !$isRange ) {
+			# Uploads: hide if IPs cannot upload (T220674)
+			if ( !$isIP || $target->isAllowed( 'upload' ) ) {
+				$tools['uploads'] = $linkRenderer->makeKnownLink(
+					SpecialPage::getTitleFor( 'Listfiles', $username ),
+					$sp->msg( 'sp-contributions-uploads' )->text()
+				);
+			}
 
 			# Other logs link
+			# Todo: T146628
 			$tools['logs'] = $linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Log', $username ),
 				$sp->msg( 'sp-contributions-logs' )->text()
 			);
 
 			# Add link to deleted user contributions for priviledged users
+			# Todo: T183457
 			if ( $sp->getUser()->isAllowed( 'deletedhistory' ) ) {
 				$tools['deletedcontribs'] = $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'DeletedContributions', $username ),
