@@ -142,7 +142,7 @@ class SearchSqlite extends SearchDatabase {
 		return $regex;
 	}
 
-	public static function legalSearchChars( $type = self::CHARS_ALL ) {
+	public function legalSearchChars( $type = self::CHARS_ALL ) {
 		$searchChars = parent::legalSearchChars( $type );
 		if ( $type === self::CHARS_ALL ) {
 			// " for phrase, * for wildcard
