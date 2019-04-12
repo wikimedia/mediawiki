@@ -36,8 +36,9 @@ use MediaWiki\Shell\Shell;
  * @ingroup Media
  */
 class DjVuImage {
+
 	/**
-	 * @const DJVUTXT_MEMORY_LIMIT Memory limit for the DjVu description software
+	 * Memory limit for the DjVu description software
 	 */
 	const DJVUTXT_MEMORY_LIMIT = 300000;
 

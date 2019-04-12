@@ -46,18 +46,20 @@ use Wikimedia\Rdbms\IDatabase;
  * of the database.
  */
 class User implements IDBAccessObject, UserIdentity {
+
 	/**
-	 * @const int Number of characters in user_token field.
+	 * Number of characters required for the user_token field.
 	 */
 	const TOKEN_LENGTH = 32;
 
 	/**
-	 * @const string An invalid value for user_token
+	 * An invalid string value for the user_token field.
 	 */
 	const INVALID_TOKEN = '*** INVALID ***';
 
 	/**
-	 * @const int Serialized record version.
+	 * Version number to tag cached versions of serialized User objects. Should be increased when
+	 * {@link $mCacheVars} or one of it's members changes.
 	 */
 	const VERSION = 13;
 

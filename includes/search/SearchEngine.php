@@ -56,16 +56,16 @@ abstract class SearchEngine {
 	/** @var array Feature values */
 	protected $features = [];
 
-	/** @const string profile type for completionSearch */
+	/** Profile type for completionSearch */
 	const COMPLETION_PROFILE_TYPE = 'completionSearchProfile';
 
-	/** @const string profile type for query independent ranking features */
+	/** Profile type for query independent ranking features */
 	const FT_QUERY_INDEP_PROFILE_TYPE = 'fulltextQueryIndepProfile';
 
-	/** @const int flag for legalSearchChars: includes all chars allowed in a search query */
+	/** Integer flag for legalSearchChars: includes all chars allowed in a search query */
 	const CHARS_ALL = 1;
 
-	/** @const int flag for legalSearchChars: includes all chars allowed in a search term */
+	/** Integer flag for legalSearchChars: includes all chars allowed in a search term */
 	const CHARS_NO_SYNTAX = 2;
 
 	/**

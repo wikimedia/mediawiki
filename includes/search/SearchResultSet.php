@@ -25,17 +25,16 @@
  * @ingroup Search
  */
 class SearchResultSet implements Countable, IteratorAggregate {
+
 	/**
-	 * Types of interwiki results
-	 */
-	/**
-	 * Results that are displayed only together with existing main wiki results
-	 * @var int
+	 * Identifier for interwiki results that are displayed only together with existing main wiki
+	 * results.
 	 */
 	const SECONDARY_RESULTS = 0;
+
 	/**
-	 * Results that can displayed even if no existing main wiki results exist
-	 * @var int
+	 * Identifier for interwiki results that can be displayed even if no existing main wiki results
+	 * exist.
 	 */
 	const INLINE_RESULTS = 1;
 
