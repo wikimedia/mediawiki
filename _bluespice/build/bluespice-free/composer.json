@@ -50,7 +50,7 @@
 		"bluespice/usersidebar": "dev-REL1_31_dev",
 		"bluespice/watchlist": "dev-REL1_31_dev",
 		"bluespice/whoisonline": "dev-REL1_31_dev",
-		"mediawiki/extjs-base": "dev-REL1_31_dev",
+		"mediawiki/extjs-base": "dev-REL1_31",
 
 		"mediawiki/chameleon-skin": "~1.0",
 		"bluespice/calumma": "dev-REL1_31_dev"
