@@ -1700,7 +1700,7 @@ class JSNode
 	public $funDecls = array();
 	public $varDecls = array();
 
-	public function __construct($t, $type=0)
+	public function __construct($t, $type=0, ...$nodes)
 	{
 		if ($token = $t->currentToken())
 		{
@@ -1716,11 +1716,9 @@ class JSNode
 			$this->lineno = $t->lineno;
 		}
 
-		if (($numargs = func_num_args()) > 2)
+		foreach($nodes as $node)
 		{
-			$args = func_get_args();
-			for ($i = 2; $i < $numargs; $i++)
-				$this->addNode($args[$i]);
+			$this->addNode($node);
 		}
 	}
 

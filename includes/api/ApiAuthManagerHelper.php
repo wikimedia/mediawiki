@@ -345,10 +345,10 @@ class ApiAuthManagerHelper {
 	/**
 	 * Fetch the standard parameters this helper recognizes
 	 * @param string $action AuthManager action
-	 * @param string $param,... Parameters to use
+	 * @param string ...$wantedParams Parameters to use
 	 * @return array
 	 */
-	public static function getStandardParams( $action, $param /* ... */ ) {
+	public static function getStandardParams( $action, ...$wantedParams ) {
 		$params = [
 			'requests' => [
 				ApiBase::PARAM_TYPE => 'string',
@@ -384,8 +384,6 @@ class ApiAuthManagerHelper {
 		];
 
 		$ret = [];
-		$wantedParams = func_get_args();
-		array_shift( $wantedParams );
 		foreach ( $wantedParams as $name ) {
 			if ( isset( $params[$name] ) ) {
 				$ret[$name] = $params[$name];

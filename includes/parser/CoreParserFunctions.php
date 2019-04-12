@@ -90,13 +90,13 @@ class CoreParserFunctions {
 
 	/**
 	 * @param Parser $parser
-	 * @param string $part1
+	 * @param string $part1 Message key
+	 * @param mixed ...$params To pass to wfMessage()
 	 * @return array
 	 */
-	public static function intFunction( $parser, $part1 = '' /*, ... */ ) {
+	public static function intFunction( $parser, $part1 = '', ...$params ) {
 		if ( strval( $part1 ) !== '' ) {
-			$args = array_slice( func_get_args(), 2 );
-			$message = wfMessage( $part1, $args )
+			$message = wfMessage( $part1, $params )
 				->inLanguage( $parser->getOptions()->getUserLangObj() );
 			return [ $message->plain(), 'noparse' => false ];
 		} else {
@@ -313,11 +313,10 @@ class CoreParserFunctions {
 	/**
 	 * @param Parser $parser
 	 * @param string $username
+	 * @param string ...$forms What to output for each gender
 	 * @return string
 	 */
-	public static function gender( $parser, $username ) {
-		$forms = array_slice( func_get_args(), 2 );
-
+	public static function gender( $parser, $username, ...$forms ) {
 		// Some shortcuts to avoid loading user data unnecessarily
 		if ( count( $forms ) === 0 ) {
 			return '';
@@ -351,10 +350,10 @@ class CoreParserFunctions {
 	/**
 	 * @param Parser $parser
 	 * @param string $text
+	 * @param string ...$forms What to output for each number (singular, dual, plural, etc.)
 	 * @return string
 	 */
-	public static function plural( $parser, $text = '' ) {
-		$forms = array_slice( func_get_args(), 2 );
+	public static function plural( $parser, $text = '', ...$forms ) {
 		$text = $parser->getFunctionLang()->parseFormattedNumber( $text );
 		settype( $text, ctype_digit( $text ) ? 'int' : 'float' );
 		return $parser->getFunctionLang()->convertPlural( $text, $forms );

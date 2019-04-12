@@ -151,13 +151,11 @@ class ArrayUtils {
 	 * @since 1.23
 	 *
 	 * @param array $array1 The array to compare from
-	 * @param array $array2,... More arrays to compare against
+	 * @param array ...$arrays More arrays to compare against
 	 * @return array An array containing all the values from array1
 	 *               that are not present in any of the other arrays.
 	 */
-	public static function arrayDiffAssocRecursive( $array1 ) {
-		$arrays = func_get_args();
-		array_shift( $arrays );
+	public static function arrayDiffAssocRecursive( $array1, ...$arrays ) {
 		$ret = [];
 
 		foreach ( $array1 as $key => $value ) {

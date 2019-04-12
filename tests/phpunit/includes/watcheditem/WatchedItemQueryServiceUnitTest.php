@@ -204,8 +204,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			} ) );
 		$mock->expects( $this->any() )
 			->method( 'isAllowedAny' )
-			->will( $this->returnCallback( function () use ( $notAllowedAction ) {
-				$actions = func_get_args();
+			->will( $this->returnCallback( function ( ...$actions ) use ( $notAllowedAction ) {
 				return !in_array( $notAllowedAction, $actions );
 			} ) );
 

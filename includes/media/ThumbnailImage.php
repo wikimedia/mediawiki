@@ -112,7 +112,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	function toHtml( $options = [] ) {
 		global $wgPriorityHints, $wgElementTiming;
 
-		if ( count( func_get_args() ) == 2 ) {
+		if ( func_num_args() == 2 ) {
 			throw new MWException( __METHOD__ . ' called in the old style' );
 		}
 
