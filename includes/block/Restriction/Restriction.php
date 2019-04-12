@@ -61,7 +61,7 @@ interface Restriction {
 	 * Gets the id of the type of restriction. This id is used in the database.
 	 *
 	 * @since 1.33
-	 * @return string
+	 * @return int
 	 */
 	public static function getTypeId();
 
