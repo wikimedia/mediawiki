@@ -2050,7 +2050,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
  */
 function wfRecursiveRemoveDir( $dir ) {
 	wfDebug( __FUNCTION__ . "( $dir )\n" );
-	// taken from https://secure.php.net/manual/en/function.rmdir.php#98622
+	// taken from https://www.php.net/manual/en/function.rmdir.php#98622
 	if ( is_dir( $dir ) ) {
 		$objects = scandir( $dir );
 		foreach ( $objects as $object ) {

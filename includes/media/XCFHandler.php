@@ -67,7 +67,7 @@ class XCFHandler extends BitmapHandler {
 		}
 
 		# Forge a return array containing metadata information just like getimagesize()
-		# See PHP documentation at: https://secure.php.net/getimagesize
+		# See PHP documentation at: https://www.php.net/getimagesize
 		return [
 			0 => $header['width'],
 			1 => $header['height'],

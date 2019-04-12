@@ -46,7 +46,7 @@ class HttpRequestFactory {
 		if ( !Http::$httpEngine ) {
 			Http::$httpEngine = 'guzzle';
 		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
-			throw new DomainException( __METHOD__ . ': curl (https://secure.php.net/curl) is not ' .
+			throw new DomainException( __METHOD__ . ': curl (https://www.php.net/curl) is not ' .
 			   'installed, but Http::$httpEngine is set to "curl"' );
 		}
 
@@ -64,7 +64,7 @@ class HttpRequestFactory {
 					throw new DomainException( __METHOD__ . ': allow_url_fopen ' .
 					   'needs to be enabled for pure PHP http requests to ' .
 					   'work. If possible, curl should be used instead. See ' .
-					   'https://secure.php.net/curl.'
+					   'https://www.php.net/curl.'
 					);
 				}
 				return new PhpHttpRequest( $url, $options, $caller, Profiler::instance() );

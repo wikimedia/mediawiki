@@ -431,7 +431,7 @@ interface IDatabase {
 
 	/**
 	 * Get the number of fields in a result object
-	 * @see https://secure.php.net/mysql_num_fields
+	 * @see https://www.php.net/mysql_num_fields
 	 *
 	 * @param mixed $res A SQL result
 	 * @return int
@@ -440,7 +440,7 @@ interface IDatabase {
 
 	/**
 	 * Get a field name in a result object
-	 * @see https://secure.php.net/mysql_field_name
+	 * @see https://www.php.net/mysql_field_name
 	 *
 	 * @param mixed $res A SQL result
 	 * @param int $n
@@ -461,7 +461,7 @@ interface IDatabase {
 
 	/**
 	 * Change the position of the cursor in a result object
-	 * @see https://secure.php.net/mysql_data_seek
+	 * @see https://www.php.net/mysql_data_seek
 	 *
 	 * @param mixed $res A SQL result
 	 * @param int $row
@@ -470,7 +470,7 @@ interface IDatabase {
 
 	/**
 	 * Get the last error number
-	 * @see https://secure.php.net/mysql_errno
+	 * @see https://www.php.net/mysql_errno
 	 *
 	 * @return int
 	 */
@@ -478,7 +478,7 @@ interface IDatabase {
 
 	/**
 	 * Get a description of the last error
-	 * @see https://secure.php.net/mysql_error
+	 * @see https://www.php.net/mysql_error
 	 *
 	 * @return string
 	 */
@@ -486,7 +486,7 @@ interface IDatabase {
 
 	/**
 	 * Get the number of rows affected by the last write query
-	 * @see https://secure.php.net/mysql_affected_rows
+	 * @see https://www.php.net/mysql_affected_rows
 	 *
 	 * @return int
 	 */

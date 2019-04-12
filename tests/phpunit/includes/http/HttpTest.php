@@ -202,7 +202,7 @@ class HttpTest extends MediaWikiTestCase {
 
 	/**
 	 * Constant values are from PHP 5.3.28 using cURL 7.24.0
-	 * @see https://secure.php.net/manual/en/curl.constants.php
+	 * @see https://www.php.net/manual/en/curl.constants.php
 	 *
 	 * All constant values are present so that developers don’t need to remember
 	 * to add them if added at a later date. The commented out constants were
@@ -515,7 +515,7 @@ class MWHttpRequestTester extends MWHttpRequest {
 		if ( !Http::$httpEngine ) {
 			Http::$httpEngine = 'guzzle';
 		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
-			throw new DomainException( __METHOD__ . ': curl (https://secure.php.net/curl) is not ' .
+			throw new DomainException( __METHOD__ . ': curl (https://www.php.net/curl) is not ' .
 				'installed, but Http::$httpEngine is set to "curl"' );
 		}
 
@@ -528,7 +528,7 @@ class MWHttpRequestTester extends MWHttpRequest {
 				if ( !wfIniGetBool( 'allow_url_fopen' ) ) {
 					throw new DomainException( __METHOD__ .
 						': allow_url_fopen needs to be enabled for pure PHP HTTP requests to work. '
-							. 'If possible, curl should be used instead. See https://secure.php.net/curl.' );
+							. 'If possible, curl should be used instead. See https://www.php.net/curl.' );
 				}
 
 				return new PhpHttpRequestTester( $url, $options, $caller );

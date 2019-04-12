@@ -1193,9 +1193,6 @@ a custom editor, e.g. for a special namespace, etc.
 $article: Article being edited
 $user: User performing the edit
 
-'DatabaseOraclePostInit': Called after initialising an Oracle database
-$db: the DatabaseOracle object
-
 'DeletedContribsPager::reallyDoQuery': Called before really executing the query
 for Special:DeletedContributions
 Similar to ContribsPager::reallyDoQuery

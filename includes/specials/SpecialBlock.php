@@ -1075,7 +1075,7 @@ class SpecialBlock extends FormSpecialPage {
 	 *
 	 * @todo strtotime() only accepts English strings. This means the expiry input
 	 *       can only be specified in English.
-	 * @see https://secure.php.net/manual/en/function.strtotime.php
+	 * @see https://www.php.net/manual/en/function.strtotime.php
 	 *
 	 * @param string $expiry Whatever was typed into the form
 	 * @return string|bool Timestamp or 'infinity' or false on error.

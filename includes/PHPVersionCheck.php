@@ -112,7 +112,7 @@ class PHPVersionCheck {
 			'vendor' => 'the PHP Group',
 			'upstreamSupported' => '5.6.0',
 			'minSupported' => '7.0.13',
-			'upgradeURL' => 'https://secure.php.net/downloads.php',
+			'upgradeURL' => 'https://www.php.net/downloads.php',
 		);
 	}
 
@@ -206,7 +206,7 @@ HTML;
 
 			$missingExtText = '';
 			$missingExtHtml = '';
-			$baseUrl = 'https://secure.php.net';
+			$baseUrl = 'https://www.php.net';
 			foreach ( $missingExtensions as $ext ) {
 				$missingExtText .= " * $ext <$baseUrl/$ext>\n";
 				$missingExtHtml .= "<li><b>$ext</b> "
