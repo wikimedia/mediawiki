@@ -954,6 +954,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			$newInstance->redefineService( $name, $callback );
 		}
 
+		self::resetGlobalParser();
+
 		return $newInstance;
 	}
 
@@ -1018,6 +1020,9 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		);
 
 		MediaWikiServices::forceGlobalInstance( $newServices );
+
+		self::resetGlobalParser();
+
 		return $newServices;
 	}
 
@@ -1046,7 +1051,24 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		MediaWikiServices::forceGlobalInstance( self::$originalServices );
 		$currentServices->destroy();
 
+		self::resetGlobalParser();
+
 		return true;
+	}
+
+	/**
+	 * If $wgParser has been unstubbed, replace it with a fresh one so it picks up any config
+	 * changes. $wgParser is deprecated, but we still support it for now.
+	 */
+	private static function resetGlobalParser() {
+		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgParser
+		global $wgParser;
+		if ( $wgParser instanceof StubObject ) {
+			return;
+		}
+		$wgParser = new StubObject( 'wgParser', function () {
+			return MediaWikiServices::getInstance()->getParser();
+		} );
 	}
 
 	/**
