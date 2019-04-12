@@ -71,7 +71,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 
 	protected function tearDown() {
 		foreach ( $this->pagesToDelete as $p ) {
-			/* @var $p WikiPage */
+			/* @var WikiPage $p */
 
 			try {
 				if ( $p->exists() ) {

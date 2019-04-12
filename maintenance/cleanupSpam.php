@@ -68,7 +68,7 @@ class CleanupSpam extends Maintenance {
 			$this->output( "Finding spam on " . count( $wgLocalDatabases ) . " wikis\n" );
 			$found = false;
 			foreach ( $wgLocalDatabases as $wikiID ) {
-				/** @var $dbr Database */
+				/** @var Database $dbr */
 				$dbr = $this->getDB( DB_REPLICA, [], $wikiID );
 
 				foreach ( $protConds as $conds ) {
@@ -97,7 +97,7 @@ class CleanupSpam extends Maintenance {
 			// Clean up spam on this wiki
 
 			$count = 0;
-			/** @var $dbr Database */
+			/** @var Database $dbr */
 			$dbr = $this->getDB( DB_REPLICA );
 			foreach ( $protConds as $prot => $conds ) {
 				$res = $dbr->select(

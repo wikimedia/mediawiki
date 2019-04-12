@@ -313,14 +313,14 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 		$customContentHandler->expects( $this->any() )
 			->method( 'createDifferenceEngine' )
 			->willReturn( $customDifferenceEngine );
-		/** @var $customContentHandler ContentHandler */
+		/** @var ContentHandler $customContentHandler */
 		$customContent = $this->getMockBuilder( Content::class )
 			->setMethods( [ 'getContentHandler' ] )
 			->getMockForAbstractClass();
 		$customContent->expects( $this->any() )
 			->method( 'getContentHandler' )
 			->willReturn( $customContentHandler );
-		/** @var $customContent Content */
+		/** @var Content $customContent */
 		$customContent2 = clone $customContent;
 
 		$slotDiffRenderer = $customContentHandler->getSlotDiffRenderer( RequestContext::getMain() );

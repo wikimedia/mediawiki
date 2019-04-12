@@ -1227,7 +1227,7 @@ abstract class DatabaseUpdater {
 	 */
 	protected function rebuildLocalisationCache() {
 		/**
-		 * @var $cl RebuildLocalisationCache
+		 * @var RebuildLocalisationCache $cl
 		 */
 		$cl = $this->maintenance->runChild(
 			RebuildLocalisationCache::class, 'rebuildLocalisationCache.php'

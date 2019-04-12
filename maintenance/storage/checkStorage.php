@@ -104,7 +104,7 @@ class CheckStorage {
 			);
 			foreach ( $res as $row ) {
 				/**
-				 * @var $flags int
+				 * @var int $flags
 				 */
 				$flags = $row->old_flags;
 				$id = $row->old_id;

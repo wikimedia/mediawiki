@@ -717,7 +717,7 @@ abstract class Maintenance {
 		}
 
 		/**
-		 * @var $child Maintenance
+		 * @var Maintenance $child
 		 */
 		$child = new $maintClass();
 		$child->loadParamsAndArgs( $this->mSelf, $this->mOptions, $this->mArgs );
@@ -1191,7 +1191,7 @@ abstract class Maintenance {
 
 			if ( $wgDBservers ) {
 				/**
-				 * @var $wgDBservers array
+				 * @var array $wgDBservers
 				 */
 				foreach ( $wgDBservers as $i => $server ) {
 					$wgDBservers[$i]['user'] = $wgDBuser;
