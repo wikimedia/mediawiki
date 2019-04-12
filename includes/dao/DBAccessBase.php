@@ -2,7 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Base class for objects that allow access to other wiki's databases using
@@ -88,7 +88,7 @@ abstract class DBAccessBase implements IDBAccessObject {
 	 *
 	 * @since 1.21
 	 *
-	 * @return LoadBalancer The database load balancer object
+	 * @return ILoadBalancer The database load balancer object
 	 */
 	public function getLoadBalancer() {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
