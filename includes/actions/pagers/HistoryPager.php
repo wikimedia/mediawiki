@@ -603,6 +603,15 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	/**
+	 * @inheritDoc
+	 */
+	function getDefaultQuery() {
+		parent::getDefaultQuery();
+		unset( $this->mDefaultQuery['date-range-to'] );
+		return $this->mDefaultQuery;
+	}
+
+	/**
 	 * This is called if a write operation is possible from the generated HTML
 	 * @param bool $enable
 	 */
