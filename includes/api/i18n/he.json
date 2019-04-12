@@ -1235,6 +1235,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-registrationdate": "הוספת תאריך הרישום של המשתמש.",
 	"apihelp-query+userinfo-paramvalue-prop-unreadcount": "הוספת מניין הדפים שלא נקראו ברשימת המעקב של המשתמש (לכל היותר $1; מחזיר <samp>$2</samp> אם יש יותר).",
 	"apihelp-query+userinfo-paramvalue-prop-centralids": "הוספת המזהה המרכזי ומצב השיוך למשתמש.",
+	"apihelp-query+userinfo-paramvalue-prop-latestcontrib": "הוספת התאריך של התרומה האחרונה של המשתמש.",
 	"apihelp-query+userinfo-param-attachedwiki": "עם <kbd>$1prop=centralids</kbd>, לציין האם המשתמש משויך לוויקי עם המזהה הזה.",
 	"apihelp-query+userinfo-example-simple": "קבלת מידע על המשתמש הנוכחי.",
 	"apihelp-query+userinfo-example-data": "קבלת מידע נוסף על המשתמש הנוכחי.",

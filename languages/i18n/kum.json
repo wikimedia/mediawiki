@@ -332,7 +332,7 @@
 	"page_first": "биринчи",
 	"page_last": "ахырынчы",
 	"histlegend": "Тюзлевлерден сайлав: тенглешдирмеге сюеген бары тюрлерин белгилеп '''{{int:compare-submit}}''' бас.<br />\nАчыкълавлар: '''({{int:cur}})''' — гьалиги тюрюнден башгъалыкъ; '''({{int:last}})''' — алдагъы тюрюнден башгъалыкъ; '''{{int:minoreditletter}}''' — увакъ тюзелтив.",
-	"history-fieldset-title": "Тюзлевлеге излев",
+	"history-fieldset-title": "Тюзлев сюзгюч",
 	"histfirst": "инг эсгилер",
 	"histlast": "инг янгылар",
 	"historyempty": "бош",

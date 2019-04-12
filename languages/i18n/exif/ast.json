@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Esbardu",
-			"Xuacu"
+			"Xuacu",
+			"Enolp"
 		]
 	},
 	"exif-imagewidth": "Anchor",
@@ -29,7 +30,7 @@
 	"exif-datetime": "Data y hora de cambiu del ficheru",
 	"exif-imagedescription": "Títulu de la imaxe",
 	"exif-make": "Fabricante de la cámara",
-	"exif-model": "Modelu de cámara",
+	"exif-model": "Modelu de la cámara",
 	"exif-software": "Software usáu",
 	"exif-artist": "Autor",
 	"exif-copyright": "Titular del Copyright",
@@ -63,6 +64,7 @@
 	"exif-lightsource": "Fonte de la lluz",
 	"exif-flash": "Flax",
 	"exif-focallength": "Llonxitú focal de la lente",
+	"exif-focallength-format": "$1 mm",
 	"exif-subjectarea": "Área del suxetu",
 	"exif-flashenergy": "Enerxía del flax",
 	"exif-focalplanexresolution": "Resolución X del planu focal",
@@ -89,7 +91,7 @@
 	"exif-gpsversionid": "Versión de la etiqueta GPS",
 	"exif-gpslatituderef": "Llatitú Norte o Sur",
 	"exif-gpslatitude": "Llatitú",
-	"exif-gpslongituderef": "Llonxitú Este o Oeste",
+	"exif-gpslongituderef": "Llonxitú este u oeste",
 	"exif-gpslongitude": "Llonxitú",
 	"exif-gpsaltituderef": "Referencia d'altitú",
 	"exif-gpsaltitude": "Altitú",

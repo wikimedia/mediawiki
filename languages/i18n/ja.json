@@ -2334,7 +2334,7 @@
 	"delete-confirm": "「$1」の削除",
 	"delete-legend": "削除",
 	"historywarning": "<strong>警告:</strong> 削除しようとしているページには、$1版の履歴があります:",
-	"historyaction-submit": "表示",
+	"historyaction-submit": "更新の表示",
 	"confirmdeletetext": "ページをすべての履歴とともに削除しようとしています。\n本当にこの操作を行いたいか、操作の結果を理解しているか、およびこの操作が[[{{MediaWiki:Policy-url}}|方針]]に従っているかどうか、確認してください。",
 	"actioncomplete": "操作を完了しました",
 	"actionfailed": "操作に失敗しました",
