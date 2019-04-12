@@ -836,7 +836,7 @@
 	"page_first": "první",
 	"page_last": "poslední",
 	"histlegend": "(teď) = rozdíly oproti nynější verzi, (předchozí) = rozdíly oproti předchozí verzi, <b>m</b> = malá editace",
-	"history-fieldset-title": "Hledat revize",
+	"history-fieldset-title": "Filtrovat revize",
 	"history-show-deleted": "Pouze smazané",
 	"histfirst": "nejstarší",
 	"histlast": "nejnovější",

@@ -811,7 +811,7 @@
 	"page_first": "першая",
 	"page_last": "апошняя",
 	"histlegend": "Параўнаньне: адзначце пунктамі дзьве вэрсіі для параўнаньня і націсьніце «ўвод» альбо кнопку ўнізе.<br />\nТлумачэньне: <strong>({{int:cur}})</strong> = адрозьненьні ад цяперашняй вэрсіі, <strong>({{int:last}})</strong> = адрозьненьні ад папярэдняй вэрсіі, <strong>{{int:minoreditletter}}</strong> = дробная праўка.",
-	"history-fieldset-title": "Пошук вэрсіяў",
+	"history-fieldset-title": "Фільтар вэрсіяў",
 	"history-show-deleted": "Толькі выдаленыя",
 	"histfirst": "найстарэйшыя",
 	"histlast": "найноўшыя",

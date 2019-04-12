@@ -2140,6 +2140,7 @@
 	"ipb-unblock": "Opphev blokkeringa av eit brukarnamn eller ei IP-adresse",
 	"ipb-blocklist": "Vis gjeldande blokkeringar",
 	"ipb-blocklist-contribs": "Bidrag frå $1",
+	"block-actions": "Handlingar som skal blokkerast:",
 	"block-expiry": "Opphøyrstid:",
 	"unblockip": "Opphev blokkering",
 	"unblockiptext": "Bruk skjemaet nedanfor for å oppheve blokkeringa av ein tidlegare blokkert brukar.",

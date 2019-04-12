@@ -2236,7 +2236,7 @@
 	"delete-confirm": "Brisanje »$1«",
 	"delete-legend": "Izbriši",
 	"historywarning": "<strong>Opozorilo:</strong> Stran, ki jo nameravate izbrisati, ima zgodovino s približno $1 {{PLURAL:$1|redakcijo|redakcijama|redakcijami}}:",
-	"historyaction-submit": "Prikaži",
+	"historyaction-submit": "Pokaži redakcije",
 	"confirmdeletetext": "Iz zbirke podatkov boste izbrisali stran ali sliko skupaj z vso njeno zgodovino.\nProsimo, '''potrdite''', da to resnično želite, da razumete posledice dejanja in da se ravnate po [[{{MediaWiki:Policy-url}}|pravilih]].",
 	"actioncomplete": "Poseg je končan",
 	"actionfailed": "Dejanje spodletelo",
