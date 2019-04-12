@@ -544,7 +544,7 @@ class DifferenceEngine extends ContextSource {
 			if ( $samePage && $this->mNewPage && $permissionManager->quickUserCan(
 				'edit', $user, $this->mNewPage
 			) ) {
-				if ( $this->mNewRev->isCurrent() && $permissionManager->userCan(
+				if ( $this->mNewRev->isCurrent() && $permissionManager->quickUserCan(
 					'rollback', $user, $this->mNewPage
 				) ) {
 					$rollbackLink = Linker::generateRollback( $this->mNewRev, $this->getContext(),
