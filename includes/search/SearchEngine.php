@@ -281,12 +281,11 @@ abstract class SearchEngine {
 
 	/**
 	 * Get chars legal for search
-	 * NOTE: usage as static is deprecated and preserved only as BC measure
 	 * @param int $type type of search chars (see self::CHARS_ALL
 	 * and self::CHARS_NO_SYNTAX). Defaults to CHARS_ALL
 	 * @return string
 	 */
-	public static function legalSearchChars( $type = self::CHARS_ALL ) {
+	public function legalSearchChars( $type = self::CHARS_ALL ) {
 		return "A-Za-z_'.0-9\\x80-\\xFF\\-";
 	}
 
