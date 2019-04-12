@@ -2607,7 +2607,13 @@ class Parser {
 			// @TODO: disallow this word on all namespaces
 			$this->nsInfo->isContent( $this->mTitle->getNamespace() )
 		) {
-			return $this->mRevisionId ? '-' : '';
+			if ( $this->mRevisionId ) {
+				return '-';
+			} else {
+				$this->mOutput->setFlag( 'vary-revision-exists' );
+
+				return '';
+			}
 		};
 
 		$pageLang = $this->getFunctionLang();
