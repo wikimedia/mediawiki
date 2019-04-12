@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @ingroup Parser
@@ -73,10 +74,12 @@ abstract class Preprocessor {
 			return;
 		}
 
-		$cache = ObjectCache::getLocalClusterInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$key = $cache->makeKey(
 			defined( 'static::CACHE_PREFIX' ) ? static::CACHE_PREFIX : static::class,
-			md5( $text ), $flags );
+			md5( $text ),
+			$flags
+		);
 		$value = sprintf( "%08d", static::CACHE_VERSION ) . $tree;
 
 		$cache->set( $key, $value, 86400 );
@@ -102,11 +105,13 @@ abstract class Preprocessor {
 			return false;
 		}
 
-		$cache = ObjectCache::getLocalClusterInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 
 		$key = $cache->makeKey(
 			defined( 'static::CACHE_PREFIX' ) ? static::CACHE_PREFIX : static::class,
-			md5( $text ), $flags );
+			md5( $text ),
+			$flags
+		);
 
 		$value = $cache->get( $key );
 		if ( !$value ) {
