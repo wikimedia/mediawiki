@@ -574,7 +574,7 @@ class UIDGenerator {
 		$start = microtime( true );
 		do {
 			$ct = time();
-			// https://secure.php.net/manual/en/language.operators.comparison.php
+			// https://www.php.net/manual/en/language.operators.comparison.php
 			if ( $ct >= $time ) {
 				// current time is higher than or equal to than $time
 				return $ct;

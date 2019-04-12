@@ -14,7 +14,7 @@ fi
 
 VER=5.6.32
 TAR="php-$VER.tar.gz"
-PHPURL="https://secure.php.net/get/$TAR/from/this/mirror"
+PHPURL="https://www.php.net/get/$TAR/from/this/mirror"
 
 cd "$DEV"
 
