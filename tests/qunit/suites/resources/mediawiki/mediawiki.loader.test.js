@@ -562,7 +562,8 @@
 
 	QUnit.test( '.implement( package files )', function ( assert ) {
 		var done = assert.async(),
-			initJsRan = false;
+			initJsRan = false,
+			counter = 41;
 		mw.loader.implement(
 			'test.implement.packageFiles',
 			{
@@ -570,9 +571,8 @@
 				files: {
 					'resources/src/foo/data/hello.json': { hello: 'world' },
 					'resources/src/foo/foo.js': function ( require, module ) {
-						window.mwTestFooJsCounter = window.mwTestFooJsCounter || 41;
-						window.mwTestFooJsCounter++;
-						module.exports = { answer: window.mwTestFooJsCounter };
+						counter++;
+						module.exports = { answer: counter };
 					},
 					'resources/src/bar/bar.js': function ( require, module ) {
 						var core = require( './core.js' );
