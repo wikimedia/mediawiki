@@ -32,14 +32,14 @@ STR;
 
 	/**
 	 * Merges all requests parameter + expected values into one
-	 * @param array $v,... List of arrays, each of which contains exactly two
+	 * @param array ...$arrays List of arrays, each of which contains exactly two
 	 * @return array
 	 */
-	protected function merge( /*...*/ ) {
+	protected function merge( ...$arrays ) {
 		$request = [];
 		$expected = [];
-		foreach ( func_get_args() as $v ) {
-			list( $req, $exp ) = $this->validateRequestExpectedPair( $v );
+		foreach ( $arrays as $array ) {
+			list( $req, $exp ) = $this->validateRequestExpectedPair( $array );
 			$request = array_merge_recursive( $request, $req );
 			$this->mergeExpected( $expected, $exp );
 		}

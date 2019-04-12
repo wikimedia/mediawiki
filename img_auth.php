@@ -186,13 +186,12 @@ function wfImageAuthMain() {
  * subsequent arguments to $msg2 will be passed as parameters only for replacing in $msg2
  * @param string $msg1
  * @param string $msg2
+ * @param mixed ...$args To pass as params to wfMessage() with $msg2. Either variadic, or a single
+ *   array argument.
  */
-function wfForbidden( $msg1, $msg2 ) {
+function wfForbidden( $msg1, $msg2, ...$args ) {
 	global $wgImgAuthDetails;
 
-	$args = func_get_args();
-	array_shift( $args );
-	array_shift( $args );
 	$args = ( isset( $args[0] ) && is_array( $args[0] ) ) ? $args[0] : $args;
 
 	$msgHdr = wfMessage( $msg1 )->escaped();

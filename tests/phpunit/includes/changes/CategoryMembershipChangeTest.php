@@ -39,8 +39,8 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 	 */
 	private static $pageName = 'CategoryMembershipChangeTestPage';
 
-	public static function newForCategorizationCallback() {
-		self::$lastNotifyArgs = func_get_args();
+	public static function newForCategorizationCallback( ...$args ) {
+		self::$lastNotifyArgs = $args;
 		self::$notifyCallCounter += 1;
 		return self::$mockRecentChange;
 	}

@@ -69,10 +69,10 @@ class ImportReporter extends ContextSource {
 		);
 	}
 
-	function reportLogItem( /* ... */ ) {
+	function reportLogItem( ...$args ) {
 		$this->mLogItemCount++;
 		if ( is_callable( $this->mOriginalLogCallback ) ) {
-			call_user_func_array( $this->mOriginalLogCallback, func_get_args() );
+			call_user_func_array( $this->mOriginalLogCallback, $args );
 		}
 	}
 
@@ -86,8 +86,7 @@ class ImportReporter extends ContextSource {
 	 */
 	public function reportPage( $title, $foreignTitle, $revisionCount,
 			$successCount, $pageInfo ) {
-		$args = func_get_args();
-		call_user_func_array( $this->mOriginalPageOutCallback, $args );
+		call_user_func_array( $this->mOriginalPageOutCallback, func_get_args() );
 
 		if ( $title === null ) {
 			# Invalid or non-importable title; a notice is already displayed

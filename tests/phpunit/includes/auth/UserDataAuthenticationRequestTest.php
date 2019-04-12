@@ -53,9 +53,8 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 	 * @dataProvider provideLoadFromSubmission
 	 */
 	public function testLoadFromSubmission(
-		array $args, array $data, $expectState /* $hiddenPref, $enableEmail */
+		array $args, array $data, $expectState, $hiddenPref = null, $enableEmail = null
 	) {
-		list( $args, $data, $expectState, $hiddenPref, $enableEmail ) = func_get_args();
 		$this->setMwGlobals( 'wgHiddenPrefs', $hiddenPref );
 		$this->setMwGlobals( 'wgEnableEmail', $enableEmail );
 		parent::testLoadFromSubmission( $args, $data, $expectState );

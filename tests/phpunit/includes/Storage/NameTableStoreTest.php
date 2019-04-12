@@ -62,23 +62,23 @@ class NameTableStoreTest extends MediaWikiTestCase {
 			->getMock();
 		$mock->expects( $this->exactly( $insertCalls ) )
 			->method( 'insert' )
-			->willReturnCallback( function () {
-				return call_user_func_array( [ $this->db, 'insert' ], func_get_args() );
+			->willReturnCallback( function ( ...$args ) {
+				return call_user_func_array( [ $this->db, 'insert' ], $args );
 			} );
 		$mock->expects( $this->exactly( $selectCalls ) )
 			->method( 'select' )
-			->willReturnCallback( function () {
-				return call_user_func_array( [ $this->db, 'select' ], func_get_args() );
+			->willReturnCallback( function ( ...$args ) {
+				return call_user_func_array( [ $this->db, 'select' ], $args );
 			} );
 		$mock->expects( $this->exactly( $insertCalls ) )
 			->method( 'affectedRows' )
-			->willReturnCallback( function () {
-				return call_user_func_array( [ $this->db, 'affectedRows' ], func_get_args() );
+			->willReturnCallback( function ( ...$args ) {
+				return call_user_func_array( [ $this->db, 'affectedRows' ], $args );
 			} );
 		$mock->expects( $this->any() )
 			->method( 'insertId' )
-			->willReturnCallback( function () {
-				return call_user_func_array( [ $this->db, 'insertId' ], func_get_args() );
+			->willReturnCallback( function ( ...$args ) {
+				return call_user_func_array( [ $this->db, 'insertId' ], $args );
 			} );
 		return $mock;
 	}

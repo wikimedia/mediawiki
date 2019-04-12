@@ -200,24 +200,23 @@ class CliInstaller extends Installer {
 		$this->showMessage( 'config-install-step-done' );
 	}
 
-	public function showMessage( $msg /*, ... */ ) {
-		echo $this->getMessageText( func_get_args() ) . "\n";
+	public function showMessage( $msg, ...$params ) {
+		echo $this->getMessageText( $msg, $params ) . "\n";
 		flush();
 	}
 
-	public function showError( $msg /*, ... */ ) {
-		echo "***{$this->getMessageText( func_get_args() )}***\n";
+	public function showError( $msg, ...$params ) {
+		echo "***{$this->getMessageText( $msg, $params )}***\n";
 		flush();
 	}
 
 	/**
+	 * @param string $msg
 	 * @param array $params
 	 *
 	 * @return string
 	 */
-	protected function getMessageText( $params ) {
-		$msg = array_shift( $params );
-
+	protected function getMessageText( $msg, $params ) {
 		$text = wfMessage( $msg, $params )->parse();
 
 		$text = preg_replace( '/<a href="(.*?)".*?>(.*?)<\/a>/', '$2 &lt;$1&gt;', $text );
