@@ -233,7 +233,6 @@ class HTMLForm extends ContextSource {
 	protected $mButtons = [];
 
 	protected $mWrapperLegend = false;
-	protected $mWrapperAttributes = [];
 
 	/**
 	 * Salt for the edit token.
@@ -1089,7 +1088,7 @@ class HTMLForm extends ContextSource {
 		# Include a <fieldset> wrapper for style, if requested.
 		if ( $this->mWrapperLegend !== false ) {
 			$legend = is_string( $this->mWrapperLegend ) ? $this->mWrapperLegend : false;
-			$html = Xml::fieldset( $legend, $html, $this->mWrapperAttributes );
+			$html = Xml::fieldset( $legend, $html );
 		}
 
 		return Html::rawElement(
@@ -1530,19 +1529,6 @@ class HTMLForm extends ContextSource {
 	 */
 	public function setWrapperLegend( $legend ) {
 		$this->mWrapperLegend = $legend;
-
-		return $this;
-	}
-
-	/**
-	 * For internal use only. Use is discouraged, and should only be used where
-	 * support for gadgets/user scripts is warranted.
-	 * @param array $attributes
-	 * @internal
-	 * @return HTMLForm $this for chaining calls
-	 */
-	public function setWrapperAttributes( $attributes ) {
-		$this->mWrapperAttributes = $attributes;
 
 		return $this;
 	}

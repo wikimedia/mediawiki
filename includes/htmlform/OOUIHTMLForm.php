@@ -288,7 +288,7 @@ class OOUIHTMLForm extends HTMLForm {
 						'content' => new OOUI\HtmlSnippet( $html )
 					] ),
 				],
-			] + OOUI\Element::configFromHtmlAttributes( $this->mWrapperAttributes ) );
+			] );
 		} else {
 			$content = new OOUI\HtmlSnippet( $html );
 		}

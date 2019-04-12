@@ -270,7 +270,6 @@ class HistoryAction extends FormlessAction {
 			->setAction( wfScript() )
 			->setId( 'mw-history-searchform' )
 			->setSubmitText( $this->msg( 'historyaction-submit' )->text() )
-			->setWrapperAttributes( [ 'id' => 'mw-history-search' ] )
 			->setWrapperLegend( $this->msg( 'history-fieldset-title' )->text() );
 		$htmlForm->loadData();
 
