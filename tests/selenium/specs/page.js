@@ -80,7 +80,8 @@ describe( 'Page', function () {
 
 		// check
 		assert.strictEqual( EditPage.heading.getText(), name );
-		assert( EditPage.displayedContent.getText().match( new RegExp( editContent ) ) );
+		// eslint-disable-next-line no-restricted-syntax
+		assert( EditPage.displayedContent.getText().includes( editContent ) );
 	} );
 
 	it( 'should have history @daily', function () {
