@@ -750,9 +750,6 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 
 		$parentRevision = $this->grabCurrentRevision();
 
-		$this->slotsOutput = [];
-		$this->canonicalParserOutput = null;
-
 		// The edit may have already been prepared via api.php?action=stashedit
 		$stashedEdit = false;
 
