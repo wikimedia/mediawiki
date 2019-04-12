@@ -1,5 +1,7 @@
 /* Special:Search */
 
+/* stylelint-disable selector-class-pattern */
+
 /*
  * Fixes sister projects box moving down the extract
  * of the first result (T18886).

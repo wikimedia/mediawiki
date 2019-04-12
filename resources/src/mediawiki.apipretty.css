@@ -1,3 +1,5 @@
+/* stylelint-disable selector-class-pattern */
+
 .mw-special-ApiHelp h1.firstHeading {
 	display: none;
 }

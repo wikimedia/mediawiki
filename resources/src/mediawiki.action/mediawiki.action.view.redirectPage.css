@@ -2,6 +2,8 @@
  * Display neat icons on redirect pages.
  */
 
+/* stylelint-disable selector-class-pattern */
+
 /* Hide, but keep accessible for screen-readers. */
 .redirectMsg p {
 	overflow: hidden;

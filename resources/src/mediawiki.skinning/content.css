@@ -5,6 +5,8 @@
  * (ie: the CSS classing built into the system), like the TOC.
  */
 
+/* stylelint-disable selector-class-pattern */
+
 /* Table of Contents */
 .toc,
 .mw-warning,

@@ -2,6 +2,7 @@
  * Styles for Special:MovePage
  */
 
+/* stylelint-disable-next-line selector-class-pattern */
 .movepage-wrapper {
 	width: 50em;
 }

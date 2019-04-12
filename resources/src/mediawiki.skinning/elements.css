@@ -6,6 +6,8 @@
  * This style sheet is used by the Monobook and Vector skins.
  */
 
+/* stylelint-disable selector-class-pattern */
+
 /* Links */
 a {
 	text-decoration: none;
