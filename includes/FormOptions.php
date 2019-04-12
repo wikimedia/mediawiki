@@ -381,7 +381,7 @@ class FormOptions implements ArrayAccess {
 
 	/** @name ArrayAccess functions
 	 * These functions implement the ArrayAccess PHP interface.
-	 * @see https://secure.php.net/manual/en/class.arrayaccess.php
+	 * @see https://www.php.net/manual/en/class.arrayaccess.php
 	 */
 	/* @{ */
 	/**
