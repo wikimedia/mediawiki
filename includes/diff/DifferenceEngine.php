@@ -250,7 +250,7 @@ class DifferenceEngine extends ContextSource {
 
 			$slotContents = $this->getSlotContents();
 			$this->slotDiffRenderers = array_map( function ( $contents ) {
-				/** @var $content Content */
+				/** @var Content $content */
 				$content = $contents['new'] ?: $contents['old'];
 				return $content->getContentHandler()->getSlotDiffRenderer( $this->getContext() );
 			}, $slotContents );

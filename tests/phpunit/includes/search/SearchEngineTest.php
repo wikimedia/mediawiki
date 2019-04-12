@@ -271,7 +271,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	 */
 	public function testSearchIndexFields() {
 		/**
-		 * @var $mockEngine SearchEngine
+		 * @var SearchEngine $mockEngine
 		 */
 		$mockEngine = $this->getMockBuilder( SearchEngine::class )
 			->setMethods( [ 'makeSearchFieldMapping' ] )->getMock();
