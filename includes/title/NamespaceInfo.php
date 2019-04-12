@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Config\ServiceOptions;
+
 /**
  * This is a utility class for dealing with namespaces that encodes all the "magic" behaviors of
  * them based on index.  The textual names of the namespaces are handled by Language.php.
@@ -44,14 +46,36 @@ class NamespaceInfo {
 	/** @var int[]|null Valid namespaces cache */
 	private $validNamespaces = null;
 
-	/** @var Config */
-	private $config;
+	/** @var ServiceOptions */
+	private $options;
 
 	/**
-	 * @param Config $config
+	 * TODO Make this const when HHVM support is dropped (T192166)
+	 *
+	 * @since 1.34
+	 * @var array
 	 */
-	public function __construct( Config $config ) {
-		$this->config = $config;
+	public static $constructorOptions = [
+		'AllowImageMoving',
+		'CanonicalNamespaceNames',
+		'CapitalLinkOverrides',
+		'CapitalLinks',
+		'ContentNamespaces',
+		'ExtraNamespaces',
+		'ExtraSignatureNamespaces',
+		'NamespaceContentModels',
+		'NamespaceProtection',
+		'NamespacesWithSubpages',
+		'NonincludableNamespaces',
+		'RestrictionLevels',
+	];
+
+	/**
+	 * @param ServiceOptions $options
+	 */
+	public function __construct( ServiceOptions $options ) {
+		$options->assertRequiredOptions( self::$constructorOptions );
+		$this->options = $options;
 	}
 
 	/**
@@ -81,7 +105,7 @@ class NamespaceInfo {
 	 */
 	public function isMovable( $index ) {
 		$result = !( $index < NS_MAIN ||
-			( $index == NS_FILE && !$this->config->get( 'AllowImageMoving' ) ) );
+			( $index == NS_FILE && !$this->options->get( 'AllowImageMoving' ) ) );
 
 		/**
 		 * @since 1.20
@@ -215,11 +239,11 @@ class NamespaceInfo {
 	public function getCanonicalNamespaces() {
 		if ( $this->canonicalNamespaces === null ) {
 			$this->canonicalNamespaces =
-				[ NS_MAIN => '' ] + $this->config->get( 'CanonicalNamespaceNames' );
+				[ NS_MAIN => '' ] + $this->options->get( 'CanonicalNamespaceNames' );
 			$this->canonicalNamespaces +=
 				ExtensionRegistry::getInstance()->getAttribute( 'ExtensionNamespaces' );
-			if ( is_array( $this->config->get( 'ExtraNamespaces' ) ) ) {
-				$this->canonicalNamespaces += $this->config->get( 'ExtraNamespaces' );
+			if ( is_array( $this->options->get( 'ExtraNamespaces' ) ) ) {
+				$this->canonicalNamespaces += $this->options->get( 'ExtraNamespaces' );
 			}
 			Hooks::run( 'CanonicalNamespaces', [ &$this->canonicalNamespaces ] );
 		}
@@ -297,7 +321,7 @@ class NamespaceInfo {
 	 * @return bool
 	 */
 	public function isContent( $index ) {
-		return $index == NS_MAIN || in_array( $index, $this->config->get( 'ContentNamespaces' ) );
+		return $index == NS_MAIN || in_array( $index, $this->options->get( 'ContentNamespaces' ) );
 	}
 
 	/**
@@ -309,7 +333,7 @@ class NamespaceInfo {
 	 */
 	public function wantSignatures( $index ) {
 		return $this->isTalk( $index ) ||
-			in_array( $index, $this->config->get( 'ExtraSignatureNamespaces' ) );
+			in_array( $index, $this->options->get( 'ExtraSignatureNamespaces' ) );
 	}
 
 	/**
@@ -329,7 +353,7 @@ class NamespaceInfo {
 	 * @return bool
 	 */
 	public function hasSubpages( $index ) {
-		return !empty( $this->config->get( 'NamespacesWithSubpages' )[$index] );
+		return !empty( $this->options->get( 'NamespacesWithSubpages' )[$index] );
 	}
 
 	/**
@@ -337,7 +361,7 @@ class NamespaceInfo {
 	 * @return array Array of namespace indices
 	 */
 	public function getContentNamespaces() {
-		$contentNamespaces = $this->config->get( 'ContentNamespaces' );
+		$contentNamespaces = $this->options->get( 'ContentNamespaces' );
 		if ( !is_array( $contentNamespaces ) || $contentNamespaces === [] ) {
 			return [ NS_MAIN ];
 		} elseif ( !in_array( NS_MAIN, $contentNamespaces ) ) {
@@ -391,13 +415,13 @@ class NamespaceInfo {
 		if ( in_array( $index, $this->alwaysCapitalizedNamespaces ) ) {
 			return true;
 		}
-		$overrides = $this->config->get( 'CapitalLinkOverrides' );
+		$overrides = $this->options->get( 'CapitalLinkOverrides' );
 		if ( isset( $overrides[$index] ) ) {
 			// CapitalLinkOverrides is explicitly set
 			return $overrides[$index];
 		}
 		// Default to the global setting
-		return $this->config->get( 'CapitalLinks' );
+		return $this->options->get( 'CapitalLinks' );
 	}
 
 	/**
@@ -418,7 +442,7 @@ class NamespaceInfo {
 	 * @return bool
 	 */
 	public function isNonincludable( $index ) {
-		$namespaces = $this->config->get( 'NonincludableNamespaces' );
+		$namespaces = $this->options->get( 'NonincludableNamespaces' );
 		return $namespaces && in_array( $index, $namespaces );
 	}
 
@@ -433,7 +457,7 @@ class NamespaceInfo {
 	 * @return null|string Default model name for the given namespace, if set
 	 */
 	public function getNamespaceContentModel( $index ) {
-		return $this->config->get( 'NamespaceContentModels' )[$index] ?? null;
+		return $this->options->get( 'NamespaceContentModels' )[$index] ?? null;
 	}
 
 	/**
@@ -445,10 +469,10 @@ class NamespaceInfo {
 	 * @return array
 	 */
 	public function getRestrictionLevels( $index, User $user = null ) {
-		if ( !isset( $this->config->get( 'NamespaceProtection' )[$index] ) ) {
+		if ( !isset( $this->options->get( 'NamespaceProtection' )[$index] ) ) {
 			// All levels are valid if there's no namespace restriction.
 			// But still filter by user, if necessary
-			$levels = $this->config->get( 'RestrictionLevels' );
+			$levels = $this->options->get( 'RestrictionLevels' );
 			if ( $user ) {
 				$levels = array_values( array_filter( $levels, function ( $level ) use ( $user ) {
 					$right = $level;
@@ -467,7 +491,7 @@ class NamespaceInfo {
 		// First, get the list of groups that can edit this namespace.
 		$namespaceGroups = [];
 		$combine = 'array_merge';
-		foreach ( (array)$this->config->get( 'NamespaceProtection' )[$index] as $right ) {
+		foreach ( (array)$this->options->get( 'NamespaceProtection' )[$index] as $right ) {
 			if ( $right == 'sysop' ) {
 				$right = 'editprotected'; // BC
 			}
@@ -485,7 +509,7 @@ class NamespaceInfo {
 		// group that can edit the namespace but would be blocked by the
 		// restriction.
 		$usableLevels = [ '' ];
-		foreach ( $this->config->get( 'RestrictionLevels' ) as $level ) {
+		foreach ( $this->options->get( 'RestrictionLevels' ) as $level ) {
 			$right = $level;
 			if ( $right == 'sysop' ) {
 				$right = 'editprotected'; // BC
