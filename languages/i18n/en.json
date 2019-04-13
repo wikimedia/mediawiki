@@ -4090,7 +4090,7 @@
 	"log-action-filter-newusers-create": "Creation by anonymous user",
 	"log-action-filter-newusers-create2": "Creation by registered user",
 	"log-action-filter-newusers-autocreate": "Automatic creation",
-	"log-action-filter-newusers-byemail": "Creation with password sent by e-mail",
+	"log-action-filter-newusers-byemail": "Creation with password sent by email",
 	"log-action-filter-patrol-patrol": "Manual patrol",
 	"log-action-filter-patrol-autopatrol": "Automatic patrol",
 	"log-action-filter-protect-protect": "Protection",
