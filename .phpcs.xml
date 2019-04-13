@@ -70,7 +70,6 @@
 			Whitelist existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
-		<exclude-pattern>*/includes/Feed\.php</exclude-pattern>
 		<exclude-pattern>*/includes/installer/PhpBugTests\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialMostinterwikis\.php</exclude-pattern>
 		<exclude-pattern>*/includes/compat/XMPReader\.php</exclude-pattern>
@@ -212,7 +211,6 @@
 		<exclude-pattern>*/includes/api/ApiRsd\.php</exclude-pattern>
 		<exclude-pattern>*/includes/compat/XMPReader\.php</exclude-pattern>
 		<exclude-pattern>*/includes/diff/DairikiDiff\.php</exclude-pattern>
-		<exclude-pattern>*/includes/Feed\.php</exclude-pattern>
 		<exclude-pattern>*/includes/filerepo/file/LocalFile\.php</exclude-pattern>
 		<exclude-pattern>*/includes/htmlform/HTMLFormElement\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/FileBackendStore\.php</exclude-pattern>
