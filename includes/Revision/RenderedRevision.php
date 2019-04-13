@@ -380,9 +380,9 @@ class RenderedRevision implements SlotRenderingProvider {
 		$method = __METHOD__;
 
 		if ( $out->getFlag( 'vary-revision' ) ) {
-			// XXX: Would be just keep the output if the speculative revision ID was correct,
-			// but that can go wrong for some edge cases, like {{PAGEID}} during page creation.
-			// For that specific case, it would perhaps nice to have a vary-page flag.
+			// If {{PAGEID}} resolved to 0 or {{REVISIONTIMESTAMP}} used the current
+			// timestamp rather than that of an actual revision, then those words need
+			// to resolve to the actual page ID or revision timestamp, respectively.
 			$this->saveParseLogger->info(
 				"$method: Prepared output has vary-revision...\n"
 			);
