@@ -37,8 +37,6 @@ abstract class DatabaseInstaller {
 	/**
 	 * The Installer object.
 	 *
-	 * @todo Naming this parent is confusing, 'installer' would be clearer.
-	 *
 	 * @var WebInstaller
 	 */
 	public $parent;
