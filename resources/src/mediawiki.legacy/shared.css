@@ -9,6 +9,8 @@
  * blocking CSS common to all pages.
  */
 
+/* stylelint-disable selector-class-pattern */
+
 /* GENERAL CLASSES FOR DIRECTIONALITY SUPPORT */
 
 /**

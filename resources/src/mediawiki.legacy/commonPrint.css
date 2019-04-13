@@ -6,6 +6,8 @@
  * Copyright Alexander Limi
  */
 
+/* stylelint-disable selector-class-pattern */
+
 /**
  * Hide all the elements irrelevant for printing
  * Skins however can and should override.

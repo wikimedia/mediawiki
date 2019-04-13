@@ -1,5 +1,6 @@
 /* Styles for links to RSS/Atom feeds in sidebar */
 
+/* stylelint-disable-next-line selector-class-pattern */
 a.feedlink {
 	/* SVG support using a transparent gradient to guarantee cross-browser
 	 * compatibility (browsers able to understand gradient syntax support also SVG).
