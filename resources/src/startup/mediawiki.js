@@ -1156,10 +1156,11 @@
 			 * Utility function for execute()
 			 *
 			 * @ignore
-			 * @param {string} [media] Media attribute
 			 * @param {string} url URL
+			 * @param {string} [media] Media attribute
+			 * @param {Node|null} [nextNode]
 			 */
-			function addLink( media, url ) {
+			function addLink( url, media, nextNode ) {
 				var el = document.createElement( 'link' );
 
 				el.rel = 'stylesheet';
@@ -1170,8 +1171,8 @@
 				// see #addEmbeddedCSS, T33676, T43331, and T49277 for details.
 				el.href = url;
 
-				if ( marker && marker.parentNode ) {
-					marker.parentNode.insertBefore( el, marker );
+				if ( nextNode && nextNode.parentNode ) {
+					nextNode.parentNode.insertBefore( el, nextNode );
 				} else {
 					document.head.appendChild( el );
 				}
@@ -1425,7 +1426,7 @@
 							for ( i = 0; i < value.length; i++ ) {
 								if ( key === 'bc-url' ) {
 									// back-compat: { <media>: [url, ..] }
-									addLink( media, value[ i ] );
+									addLink( value[ i ], media, marker );
 								} else if ( key === 'css' ) {
 									// { "css": [css, ..] }
 									addEmbeddedCSS( value[ i ], cssHandle() );
@@ -1438,7 +1439,7 @@
 							for ( media in value ) {
 								urls = value[ media ];
 								for ( i = 0; i < urls.length; i++ ) {
-									addLink( media, urls[ i ] );
+									addLink( urls[ i ], media, marker );
 								}
 							}
 						}
