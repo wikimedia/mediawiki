@@ -77,6 +77,11 @@
 						"php": {
 							"type": "string",
 							"description": "Version constraint string against PHP."
+						},
+						"ability-shell": {
+							"type": "boolean",
+							"default": false,
+							"description": "Whether this extension requires shell access."
 						}
 					},
 					"patternProperties": {

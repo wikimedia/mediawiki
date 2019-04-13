@@ -2,6 +2,8 @@
 
 use Composer\Semver\Semver;
 use Wikimedia\ScopedCallback;
+use MediaWiki\Shell\Shell;
+use MediaWiki\ShellDisabledError;
 
 /**
  * ExtensionRegistry class
@@ -144,7 +146,8 @@ class ExtensionRegistry {
 		// A few more things to vary the cache on
 		$versions = [
 			'registration' => self::CACHE_VERSION,
-			'mediawiki' => $wgVersion
+			'mediawiki' => $wgVersion,
+			'abilities' => $this->getAbilities(),
 		];
 
 		// We use a try/catch because we don't want to fail here
@@ -208,6 +211,38 @@ class ExtensionRegistry {
 	}
 
 	/**
+	 * Get the list of abilities and their values
+	 * @return bool[]
+	 */
+	private function getAbilities() {
+		return [
+			'shell' => !Shell::isDisabled(),
+		];
+	}
+
+	/**
+	 * Queries information about the software environment and constructs an appropiate version checker
+	 *
+	 * @return VersionChecker
+	 */
+	private function buildVersionChecker() {
+		global $wgVersion;
+		// array to optionally specify more verbose error messages for
+		// missing abilities
+		$abilityErrors = [
+			'shell' => ( new ShellDisabledError() )->getMessage(),
+		];
+
+		return new VersionChecker(
+			$wgVersion,
+			PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION . '.' . PHP_RELEASE_VERSION,
+			get_loaded_extensions(),
+			$this->getAbilities(),
+			$abilityErrors
+		);
+	}
+
+	/**
 	 * Process a queue of extensions and return their extracted data
 	 *
 	 * @param array $queue keys are filenames, values are ignored
@@ -216,16 +251,11 @@ class ExtensionRegistry {
 	 * @throws ExtensionDependencyError
 	 */
 	public function readFromQueue( array $queue ) {
-		global $wgVersion;
 		$autoloadClasses = [];
 		$autoloadNamespaces = [];
 		$autoloaderPaths = [];
 		$processor = new ExtensionProcessor();
-		$versionChecker = new VersionChecker(
-			$wgVersion,
-			PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION . '.' . PHP_RELEASE_VERSION,
-			get_loaded_extensions()
-		);
+		$versionChecker = $this->buildVersionChecker();
 		$extDependencies = [];
 		$incompatible = [];
 		$warnings = false;
