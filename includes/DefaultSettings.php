@@ -8996,7 +8996,7 @@ $wgEnableBlockNoticeStats = false;
 /**
  * Origin Trials tokens.
  *
- * @since 1.34
+ * @since 1.33
  * @var array
  */
 $wgOriginTrials = [];
@@ -9006,7 +9006,7 @@ $wgOriginTrials = [];
  *
  * @warning EXPERIMENTAL!
  *
- * @since 1.34
+ * @since 1.33
  * @var bool
  */
 $wgPriorityHints = false;
@@ -9016,10 +9016,41 @@ $wgPriorityHints = false;
  *
  * @warning EXPERIMENTAL!
  *
- * @since 1.34
+ * @since 1.33
  * @var bool
  */
 $wgElementTiming = false;
+
+/**
+ * Expiry of the endpoint definition for the Reporting API.
+ *
+ * @warning EXPERIMENTAL!
+ *
+ * @since 1.34
+ * @var int
+ */
+$wgReportToExpiry = 86400;
+
+/**
+ * List of endpoints for the Reporting API.
+ *
+ * @warning EXPERIMENTAL!
+ *
+ * @since 1.34
+ * @var array
+ */
+$wgReportToEndpoints = [];
+
+/**
+ * List of Feature Policy Reporting types to enable.
+ * Each entry is turned into a Feature-Policy-Report-Only header.
+ *
+ * @warning EXPERIMENTAL!
+ *
+ * @since 1.34
+ * @var array
+ */
+$wgFeaturePolicyReportOnly = [];
 
 /**
  * For really cool vim folding this needs to be at the end:

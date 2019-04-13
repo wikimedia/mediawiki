@@ -2527,6 +2527,37 @@ class OutputPage extends ContextSource {
 		return $config->get( 'OriginTrials' );
 	}
 
+	private function getReportTo() {
+		$config = $this->getConfig();
+
+		$expiry = $config->get( 'ReportToExpiry' );
+
+		if ( !$expiry ) {
+			return false;
+		}
+
+		$endpoints = $config->get( 'ReportToEndpoints' );
+
+		if ( !$endpoints ) {
+			return false;
+		}
+
+		$output = [ 'max_age' => $expiry, 'endpoints' => [] ];
+
+		foreach ( $endpoints as $endpoint ) {
+			$output['endpoints'][] = [ 'url' => $endpoint ];
+		}
+
+		return json_encode( $output, JSON_UNESCAPED_SLASHES );
+	}
+
+	private function getFeaturePolicyReportOnly() {
+		$config = $this->getConfig();
+
+		$features = $config->get( 'FeaturePolicyReportOnly' );
+		return implode( ';', $features );
+	}
+
 	/**
 	 * Send cache control HTTP headers
 	 */
@@ -2692,6 +2723,16 @@ class OutputPage extends ContextSource {
 		$originTrials = $this->getOriginTrials();
 		foreach ( $originTrials as $originTrial ) {
 			$response->header( "Origin-Trial: $originTrial", false );
+		}
+
+		$reportTo = $this->getReportTo();
+		if ( $reportTo ) {
+			$response->header( "Report-To: $reportTo" );
+		}
+
+		$featurePolicyReportOnly = $this->getFeaturePolicyReportOnly();
+		if ( $featurePolicyReportOnly ) {
+			$response->header( "Feature-Policy-Report-Only: $featurePolicyReportOnly" );
 		}
 
 		ContentSecurityPolicy::sendHeaders( $this );
