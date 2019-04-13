@@ -49,15 +49,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	private function getConfigSettings( $context ) {
 		$conf = $this->getConfig();
 
-		// We can't use Title::newMainPage() if 'mainpage' is in
-		// $wgForceUIMsgAsContentMsg because that will try to use the session
-		// user's language and we have no session user. This does the
-		// equivalent but falling back to our ResourceLoaderContext language
-		// instead.
-		$mainPage = Title::newFromText( $context->msg( 'mainpage' )->inContentLanguage()->text() );
-		if ( !$mainPage ) {
-			$mainPage = Title::newFromText( 'Main Page' );
-		}
+		// Passing a context is important as Title::newMainPage() may otherwise
+		// try to intialise a session, which is not allowed on load.php requests.
+		$mainPage = Title::newMainPage( $context );
 
 		/**
 		 * Namespace related preparation
