@@ -23,16 +23,19 @@
 	margin-bottom: 30px;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .mw-number-text.icon-edits {
 	/* @embed */
 	background: url( images/icon-edits.png ) no-repeat left center;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .mw-number-text.icon-pages {
 	/* @embed */
 	background: url( images/icon-pages.png ) no-repeat left center;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .mw-number-text.icon-contributors {
 	/* @embed */
 	background: url( images/icon-contributors.png ) no-repeat left center;

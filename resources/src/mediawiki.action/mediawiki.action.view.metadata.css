@@ -13,6 +13,7 @@
 }
 
 @media print {
+	/* stylelint-disable-next-line selector-class-pattern */
 	.mw_metadata .mw-metadata-show-hide-extended {
 		display: none;
 	}

@@ -1,4 +1,5 @@
 /* Hide the complete TOC on print when the TOC is hidden. */
+/* stylelint-disable-next-line selector-class-pattern */
 .toctogglecheckbox:checked + .toctitle {
 	display: none;
 }
