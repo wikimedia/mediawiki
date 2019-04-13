@@ -63,6 +63,7 @@ use Wikimedia\Services\ServiceContainer;
 use Wikimedia\Services\NoSuchServiceException;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MagicWordFactory;
+use MediaWiki\Storage\PageEditStash;
 
 /**
  * Service locator for MediaWiki core services.
@@ -688,6 +689,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getOldRevisionImporter() {
 		return $this->getService( 'OldRevisionImporter' );
+	}
+
+	/**
+	 * @return PageEditStash
+	 * @since 1.34
+	 */
+	public function getPageEditStash() {
+		return $this->getService( 'PageEditStash' );
 	}
 
 	/**
