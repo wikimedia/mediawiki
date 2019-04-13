@@ -1760,7 +1760,8 @@ class PPNode_Hash_Tree implements PPNode {
 	 *
 	 * @param array $store
 	 * @param int $index
-	 * @return PPNode_Hash_Tree|PPNode_Hash_Attr|PPNode_Hash_Text
+	 * @return PPNode_Hash_Tree|PPNode_Hash_Attr|PPNode_Hash_Text|false
+	 * @throws MWException
 	 */
 	public static function factory( array $store, $index ) {
 		if ( !isset( $store[$index] ) ) {
@@ -1784,6 +1785,7 @@ class PPNode_Hash_Tree implements PPNode {
 
 	/**
 	 * Convert a node to XML, for debugging
+	 * @return string
 	 */
 	public function __toString() {
 		$inner = '';
