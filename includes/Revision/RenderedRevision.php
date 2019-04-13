@@ -395,6 +395,14 @@ class RenderedRevision implements SlotRenderingProvider {
 				"$method: Prepared output has vary-revision-id with wrong ID...\n"
 			);
 			return true;
+		} elseif ( $out->getFlag( 'vary-revision-exists' ) ) {
+			// If {{REVISIONID}} resolved to '', it now needs to resolve to '-'.
+			// Note that edit stashing always uses '-', which can be used for both
+			// edit filter checks and canonical parser cache.
+			$this->saveParseLogger->info(
+				"$method: Prepared output has vary-revision-exists...\n"
+			);
+			return true;
 		} else {
 			// NOTE: In the original fix for T135261, the output was discarded if 'vary-user' was
 			// set for a null-edit. The reason was that the original rendering in that case was
