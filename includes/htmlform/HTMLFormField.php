@@ -77,7 +77,9 @@ abstract class HTMLFormField {
 	 *
 	 * @return Message
 	 */
-	public function msg( ...$args ) {
+	public function msg() {
+		$args = func_get_args();
+
 		if ( $this->mParent ) {
 			return $this->mParent->msg( ...$args );
 		}
