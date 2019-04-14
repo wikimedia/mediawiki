@@ -26,7 +26,7 @@
 	"config-page-upgradedoc": "Bilindkirin",
 	"config-page-existingwiki": "Wîkiya heye",
 	"config-restart": "Erê, jinûve bide destpêkirin",
-	"config-apc": "[https://secure.php.net/apc APC] hate avakirin",
+	"config-apc": "[https://www.php.net/apc APC] hate avakirin",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] hate avakirin",
 	"config-diff3-bad": "GNU diff3 nehate dîtin.",
 	"config-db-type": "Cureya danegehê:",

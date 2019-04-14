@@ -812,7 +812,7 @@
 	"history-feed-description": "響哩個wiki嘅哩一頁嘅修訂歷史",
 	"history-feed-item-nocomment": "$1 響 $2",
 	"history-feed-empty": "要求嘅頁面並唔存在。\n佢可能響哩個 wiki 度刪除咗或者改咗名。\n試吓[[Special:Search|響哩個wiki度搵]]有關新頁面嘅資料。",
-	"history-edit-tags": "編輯已經揀咗嘅分頁",
+	"history-edit-tags": "改揀咗嘅改動嘅標籤",
 	"rev-deleted-comment": "(編輯摘要已經移除咗)",
 	"rev-deleted-user": "(用戶名已經移除咗)",
 	"rev-deleted-event": "(日誌詳情已經移除咗)",
