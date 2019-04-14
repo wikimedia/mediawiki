@@ -218,7 +218,6 @@
 		<exclude-pattern>*/includes/parser/Preprocessor_Hash\.php</exclude-pattern>
 		<exclude-pattern>*/includes/parser/Preprocessor\.php</exclude-pattern>
 		<exclude-pattern>*/includes/profiler/SectionProfiler\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specialpage/LoginSignupSpecialPage\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/forms/PreferencesFormLegacy\.php</exclude-pattern>
 		<exclude-pattern>*/includes/StubObject\.php</exclude-pattern>
 		<exclude-pattern>*/includes/upload/UploadStash\.php</exclude-pattern>
