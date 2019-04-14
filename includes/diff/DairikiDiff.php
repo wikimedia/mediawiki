@@ -326,9 +326,3 @@ class Diff {
 		return $lines;
 	}
 }
-
-/**
- * @deprecated Alias for WordAccumulator, to be soon removed
- */
-class HWLDFWordAccumulator extends MediaWiki\Diff\WordAccumulator {
-}

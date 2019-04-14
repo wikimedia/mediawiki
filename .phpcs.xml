@@ -170,17 +170,6 @@
 			Whitelist existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
-		<exclude-pattern>*/includes/specials/SpecialActiveusers\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialBooksources\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialEmailuser\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialListfiles\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialListgrants\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialListgrouprights\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialListusers.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialRecentchanges\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialRecentchangeslinked\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialRevisiondelete\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialWhatlinkshere\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/alltrans\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/digit2html\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/langmemusage\.php</exclude-pattern>
