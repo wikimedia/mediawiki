@@ -749,7 +749,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 
 	/**
 	 * Remove the associated temporary file
-	 * @return status Success
+	 * @return bool Success
 	 */
 	public function remove() {
 		if ( !$this->repo->fileExists( $this->path ) ) {
