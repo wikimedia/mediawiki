@@ -48,7 +48,7 @@ describe( 'Rollback with confirmation', function () {
 		assert.strictEqual( HistoryPage.rollbackConfirmableNo.getText(), 'Cancel' );
 	} );
 
-	it( 'should offer a way to cancel rollbacks', function () {
+	it.skip( 'should offer a way to cancel rollbacks', function () {
 		HistoryPage.rollback.click();
 
 		browser.pause( 300 );
@@ -60,7 +60,7 @@ describe( 'Rollback with confirmation', function () {
 		assert.strictEqual( HistoryPage.heading.getText(), 'Revision history of "' + name + '"' );
 	} );
 
-	it( 'should perform rollbacks after confirming intention', function () {
+	it.skip( 'should perform rollbacks after confirming intention', function () {
 		HistoryPage.rollback.click();
 
 		browser.pause( 300 );
