@@ -26,15 +26,13 @@
  * @ingroup Feed
  */
 class ChangesFeed {
-	public $format, $type, $titleMsg, $descMsg;
+	private $format;
 
 	/**
 	 * @param string $format Feed's format (either 'rss' or 'atom')
-	 * @param string $type Type of feed (for cache keys)
 	 */
-	public function __construct( $format, $type ) {
+	public function __construct( $format ) {
 		$this->format = $format;
-		$this->type = $type;
 	}
 
 	/**

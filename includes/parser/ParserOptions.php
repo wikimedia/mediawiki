@@ -123,7 +123,7 @@ class ParserOptions {
 	 */
 
 	/**
-	 * Fetch an option, generically
+	 * Fetch an option and track that is was accessed
 	 * @since 1.30
 	 * @param string $name Option name
 	 * @return mixed
@@ -133,13 +133,20 @@ class ParserOptions {
 			throw new InvalidArgumentException( "Unknown parser option $name" );
 		}
 
-		if ( isset( self::$lazyOptions[$name] ) && $this->options[$name] === null ) {
-			$this->options[$name] = call_user_func( self::$lazyOptions[$name], $this, $name );
-		}
+		$this->lazyLoadOption( $name );
 		if ( !empty( self::$inCacheKey[$name] ) ) {
 			$this->optionUsed( $name );
 		}
 		return $this->options[$name];
+	}
+
+	/**
+	 * @param string $name Lazy load option without tracking usage
+	 */
+	private function lazyLoadOption( $name ) {
+		if ( isset( self::$lazyOptions[$name] ) && $this->options[$name] === null ) {
+			$this->options[$name] = call_user_func( self::$lazyOptions[$name], $this, $name );
+		}
 	}
 
 	/**
@@ -1197,22 +1204,16 @@ class ParserOptions {
 	 * @since 1.25
 	 */
 	public function matches( ParserOptions $other ) {
-		// Populate lazy options
-		foreach ( self::$lazyOptions as $name => $callback ) {
-			if ( $this->options[$name] === null ) {
-				$this->options[$name] = call_user_func( $callback, $this, $name );
-			}
-			if ( $other->options[$name] === null ) {
-				$other->options[$name] = call_user_func( $callback, $other, $name );
-			}
-		}
-
 		// Compare most options
 		$options = array_keys( $this->options );
 		$options = array_diff( $options, [
 			'enableLimitReport', // only affects HTML comments
 		] );
 		foreach ( $options as $option ) {
+			// Resolve any lazy options
+			$this->lazyLoadOption( $option );
+			$other->lazyLoadOption( $option );
+
 			$o1 = $this->optionToString( $this->options[$option] );
 			$o2 = $this->optionToString( $other->options[$option] );
 			if ( $o1 !== $o2 ) {
@@ -1231,6 +1232,27 @@ class ParserOptions {
 		] );
 		foreach ( $fields as $field ) {
 			if ( !is_object( $this->$field ) && $this->$field !== $other->$field ) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * @param ParserOptions $other
+	 * @return bool Whether the cache key relevant options match those of $other
+	 * @since 1.33
+	 */
+	public function matchesForCacheKey( ParserOptions $other ) {
+		foreach ( self::allCacheVaryingOptions() as $option ) {
+			// Populate any lazy options
+			$this->lazyLoadOption( $option );
+			$other->lazyLoadOption( $option );
+
+			$o1 = $this->optionToString( $this->options[$option] );
+			$o2 = $this->optionToString( $other->options[$option] );
+			if ( $o1 !== $o2 ) {
 				return false;
 			}
 		}
@@ -1314,10 +1336,9 @@ class ParserOptions {
 		$inCacheKey = self::allCacheVaryingOptions();
 
 		// Resolve any lazy options
-		foreach ( array_intersect( $forOptions, $inCacheKey, array_keys( self::$lazyOptions ) ) as $k ) {
-			if ( $this->options[$k] === null ) {
-				$this->options[$k] = call_user_func( self::$lazyOptions[$k], $this, $k );
-			}
+		$lazyOpts = array_intersect( $forOptions, $inCacheKey, array_keys( self::$lazyOptions ) );
+		foreach ( $lazyOpts as $k ) {
+			$this->lazyLoadOption( $k );
 		}
 
 		$options = $this->options;
