@@ -2021,34 +2021,28 @@
 				 *  "text/javascript"; if no type is provided, text/javascript is assumed.
 				 */
 				load: function ( modules, type ) {
-					var l;
-
-					// Allow calling with a url or single dependency as a string
-					if ( typeof modules === 'string' ) {
-						// "https://example.org/x.js", "http://example.org/x.js", "//example.org/x.js", "/x.js"
-						if ( /^(https?:)?\/?\//.test( modules ) ) {
-							if ( type === 'text/css' ) {
-								l = document.createElement( 'link' );
-								l.rel = 'stylesheet';
-								l.href = modules;
-								document.head.appendChild( l );
-								return;
-							}
-							if ( type === 'text/javascript' || type === undefined ) {
-								addScript( modules );
-								return;
-							}
+					if ( typeof modules === 'string' && /^(https?:)?\/?\//.test( modules ) ) {
+						// Called with a url like so:
+						// - "https://example.org/x.js"
+						// - "http://example.org/x.js"
+						// - "//example.org/x.js"
+						// - "/x.js"
+						if ( type === 'text/css' ) {
+							addLink( modules );
+						} else if ( type === 'text/javascript' || type === undefined ) {
+							addScript( modules );
+						} else {
 							// Unknown type
 							throw new Error( 'type must be text/css or text/javascript, found ' + type );
 						}
-						// Called with single module
-						modules = [ modules ];
+					} else {
+						// One or more modules
+						modules = typeof modules === 'string' ? [ modules ] : modules;
+						// Resolve modules into flat list for internal queuing.
+						// This also filters out unknown modules and modules with
+						// unknown dependencies, allowing the rest to continue. (T36853)
+						enqueue( resolveStubbornly( modules ), undefined, undefined );
 					}
-
-					// Resolve modules into flat list for internal queuing.
-					// This also filters out unknown modules and modules with
-					// unknown dependencies, allowing the rest to continue. (T36853)
-					enqueue( resolveStubbornly( modules ), undefined, undefined );
 				},
 
 				/**
