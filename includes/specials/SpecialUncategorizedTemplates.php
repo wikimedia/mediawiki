@@ -1,8 +1,6 @@
 <?php
 /**
- * Implements Special:Mostrevisions
- *
- * Copyright © 2005 Ævar Arnfjörð Bjarmason
+ * Implements Special:Uncategorizedtemplates
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,19 +19,18 @@
  *
  * @file
  * @ingroup SpecialPage
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @author Rob Church <robchur@gmail.com>
  */
 
-class MostrevisionsPage extends FewestrevisionsPage {
-	function __construct( $name = 'Mostrevisions' ) {
+/**
+ * Special page lists all uncategorised pages in the
+ * template namespace
+ *
+ * @ingroup SpecialPage
+ */
+class SpecialUncategorizedTemplates extends SpecialUncategorizedPages {
+	public function __construct( $name = 'Uncategorizedtemplates' ) {
 		parent::__construct( $name );
-	}
-
-	function sortDescending() {
-		return true;
-	}
-
-	protected function getGroupName() {
-		return 'highuse';
+		$this->requestedNamespace = NS_TEMPLATE;
 	}
 }

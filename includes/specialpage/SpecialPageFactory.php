@@ -69,35 +69,35 @@ class SpecialPageFactory {
 	 */
 	private static $coreList = [
 		// Maintenance Reports
-		'BrokenRedirects' => \BrokenRedirectsPage::class,
-		'Deadendpages' => \DeadendPagesPage::class,
-		'DoubleRedirects' => \DoubleRedirectsPage::class,
-		'Longpages' => \LongPagesPage::class,
-		'Ancientpages' => \AncientPagesPage::class,
-		'Lonelypages' => \LonelyPagesPage::class,
-		'Fewestrevisions' => \FewestrevisionsPage::class,
-		'Withoutinterwiki' => \WithoutInterwikiPage::class,
+		'BrokenRedirects' => \SpecialBrokenRedirects::class,
+		'Deadendpages' => \SpecialDeadendPages::class,
+		'DoubleRedirects' => \SpecialDoubleRedirects::class,
+		'Longpages' => \SpecialLongPages::class,
+		'Ancientpages' => \SpecialAncientPages::class,
+		'Lonelypages' => \SpecialLonelyPages::class,
+		'Fewestrevisions' => \SpecialFewestRevisions::class,
+		'Withoutinterwiki' => \SpecialWithoutInterwiki::class,
 		'Protectedpages' => \SpecialProtectedpages::class,
 		'Protectedtitles' => \SpecialProtectedtitles::class,
-		'Shortpages' => \ShortPagesPage::class,
-		'Uncategorizedcategories' => \UncategorizedCategoriesPage::class,
-		'Uncategorizedimages' => \UncategorizedImagesPage::class,
-		'Uncategorizedpages' => \UncategorizedPagesPage::class,
-		'Uncategorizedtemplates' => \UncategorizedTemplatesPage::class,
-		'Unusedcategories' => \UnusedCategoriesPage::class,
-		'Unusedimages' => \UnusedimagesPage::class,
-		'Unusedtemplates' => \UnusedtemplatesPage::class,
-		'Unwatchedpages' => \UnwatchedpagesPage::class,
-		'Wantedcategories' => \WantedCategoriesPage::class,
+		'Shortpages' => \SpecialShortPages::class,
+		'Uncategorizedcategories' => \SpecialUncategorizedCategories::class,
+		'Uncategorizedimages' => \SpecialUncategorizedImages::class,
+		'Uncategorizedpages' => \SpecialUncategorizedPages::class,
+		'Uncategorizedtemplates' => \SpecialUncategorizedTemplates::class,
+		'Unusedcategories' => \SpecialUnusedCategories::class,
+		'Unusedimages' => \SpecialUnusedImages::class,
+		'Unusedtemplates' => \SpecialUnusedTemplates::class,
+		'Unwatchedpages' => \SpecialUnwatchedPages::class,
+		'Wantedcategories' => \SpecialWantedCategories::class,
 		'Wantedfiles' => \WantedFilesPage::class,
 		'Wantedpages' => \WantedPagesPage::class,
-		'Wantedtemplates' => \WantedTemplatesPage::class,
+		'Wantedtemplates' => \SpecialWantedTemplates::class,
 
 		// List of pages
 		'Allpages' => \SpecialAllPages::class,
 		'Prefixindex' => \SpecialPrefixindex::class,
 		'Categories' => \SpecialCategories::class,
-		'Listredirects' => \ListredirectsPage::class,
+		'Listredirects' => \SpecialListRedirects::class,
 		'PagesWithProp' => \SpecialPagesWithProp::class,
 		'TrackingCategories' => \SpecialTrackingCategories::class,
 
@@ -119,7 +119,7 @@ class SpecialPageFactory {
 		'ChangePassword' => \SpecialChangePassword::class,
 		'BotPasswords' => \SpecialBotPasswords::class,
 		'PasswordReset' => \SpecialPasswordReset::class,
-		'DeletedContributions' => \DeletedContributionsPage::class,
+		'DeletedContributions' => \SpecialDeletedContributions::class,
 		'Preferences' => \SpecialPreferences::class,
 		'ResetTokens' => \SpecialResetTokens::class,
 		'Contributions' => \SpecialContributions::class,
@@ -144,12 +144,12 @@ class SpecialPageFactory {
 		// Media reports and uploads
 		'Listfiles' => \SpecialListFiles::class,
 		'Filepath' => \SpecialFilepath::class,
-		'MediaStatistics' => \MediaStatisticsPage::class,
-		'MIMEsearch' => \MIMEsearchPage::class,
-		'FileDuplicateSearch' => \FileDuplicateSearchPage::class,
+		'MediaStatistics' => \SpecialMediaStatistics::class,
+		'MIMEsearch' => \SpecialMIMESearch::class,
+		'FileDuplicateSearch' => \SpecialFileDuplicateSearch::class,
 		'Upload' => \SpecialUpload::class,
 		'UploadStash' => \SpecialUploadStash::class,
-		'ListDuplicatedFiles' => \ListDuplicatedFilesPage::class,
+		'ListDuplicatedFiles' => \SpecialListDuplicatedFiles::class,
 
 		// Data and tools
 		'ApiSandbox' => \SpecialApiSandbox::class,
@@ -160,7 +160,7 @@ class SpecialPageFactory {
 		'Unlockdb' => \SpecialUnlockdb::class,
 
 		// Redirecting special pages
-		'LinkSearch' => \LinkSearchPage::class,
+		'LinkSearch' => \SpecialLinkSearch::class,
 		'Randompage' => \RandomPage::class,
 		'RandomInCategory' => \SpecialRandomInCategory::class,
 		'Randomredirect' => \SpecialRandomredirect::class,
@@ -168,13 +168,13 @@ class SpecialPageFactory {
 		'GoToInterwiki' => \SpecialGoToInterwiki::class,
 
 		// High use pages
-		'Mostlinkedcategories' => \MostlinkedCategoriesPage::class,
+		'Mostlinkedcategories' => \SpecialMostLinkedCategories::class,
 		'Mostimages' => \MostimagesPage::class,
-		'Mostinterwikis' => \MostinterwikisPage::class,
-		'Mostlinked' => \MostlinkedPage::class,
-		'Mostlinkedtemplates' => \MostlinkedTemplatesPage::class,
-		'Mostcategories' => \MostcategoriesPage::class,
-		'Mostrevisions' => \MostrevisionsPage::class,
+		'Mostinterwikis' => \SpecialMostInterwikis::class,
+		'Mostlinked' => \SpecialMostLinked::class,
+		'Mostlinkedtemplates' => \SpecialMostLinkedTemplates::class,
+		'Mostcategories' => \SpecialMostCategories::class,
+		'Mostrevisions' => \SpecialMostRevisions::class,
 
 		// Page tools
 		'ComparePages' => \SpecialComparePages::class,
@@ -282,8 +282,8 @@ class SpecialPageFactory {
 			}
 
 			if ( $this->options->get( 'EmailAuthentication' ) ) {
-				$this->list['Confirmemail'] = \EmailConfirmation::class;
-				$this->list['Invalidateemail'] = \EmailInvalidation::class;
+				$this->list['Confirmemail'] = \SpecialConfirmEmail::class;
+				$this->list['Invalidateemail'] = \SpecialEmailInvalidate::class;
 			}
 
 			if ( $this->options->get( 'EnableEmail' ) ) {

@@ -1,6 +1,8 @@
 <?php
 /**
- * Implements Special:Longpages
+ * Implements Special:Mostrevisions
+ *
+ * Copyright © 2005 Ævar Arnfjörð Bjarmason
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,14 +21,11 @@
  *
  * @file
  * @ingroup SpecialPage
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
-/**
- *
- * @ingroup SpecialPage
- */
-class LongPagesPage extends ShortPagesPage {
-	function __construct( $name = 'Longpages' ) {
+class SpecialMostRevisions extends SpecialFewestRevisions {
+	function __construct( $name = 'Mostrevisions' ) {
 		parent::__construct( $name );
 	}
 
@@ -35,6 +34,6 @@ class LongPagesPage extends ShortPagesPage {
 	}
 
 	protected function getGroupName() {
-		return 'maintenance';
+		return 'highuse';
 	}
 }

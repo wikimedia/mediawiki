@@ -30,7 +30,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @ingroup SpecialPage
  */
-class WantedCategoriesPage extends WantedQueryPage {
+class SpecialWantedCategories extends WantedQueryPage {
 	private $currentCategoryCounts;
 
 	function __construct( $name = 'Wantedcategories' ) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Implements Special:Lonelypaages
+ * Implements Special:Deadenpages
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,24 +24,25 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * A special page looking for articles with no article linking to them,
- * thus being lonely.
+ * A special page that list pages that contain no link to other pages
  *
  * @ingroup SpecialPage
  */
-class LonelyPagesPage extends PageQueryPage {
-	function __construct( $name = 'Lonelypages' ) {
+class SpecialDeadendPages extends PageQueryPage {
+
+	function __construct( $name = 'Deadendpages' ) {
 		parent::__construct( $name );
 	}
 
 	function getPageHeader() {
-		return $this->msg( 'lonelypagestext' )->parseAsBlock();
+		return $this->msg( 'deadendpagestext' )->parseAsBlock();
 	}
 
-	function sortDescending() {
-		return false;
-	}
-
+	/**
+	 * LEFT JOIN is expensive
+	 *
+	 * @return bool
+	 */
 	function isExpensive() {
 		return true;
 	}
@@ -50,48 +51,39 @@ class LonelyPagesPage extends PageQueryPage {
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
+	function sortDescending() {
+		return false;
+	}
+
 	function getQueryInfo() {
-		$tables = [ 'page', 'pagelinks', 'templatelinks' ];
-		$conds = [
-			'pl_namespace IS NULL',
-			'page_namespace' => MediaWikiServices::getInstance()->getNamespaceInfo()->
-				getContentNamespaces(),
-			'page_is_redirect' => 0,
-			'tl_namespace IS NULL'
-		];
-		$joinConds = [
-			'pagelinks' => [
-				'LEFT JOIN', [
-					'pl_namespace = page_namespace',
-					'pl_title = page_title'
-				]
-			],
-			'templatelinks' => [
-				'LEFT JOIN', [
-					'tl_namespace = page_namespace',
-					'tl_title = page_title'
-				]
-			]
-		];
-
-		// Allow extensions to modify the query
-		Hooks::run( 'LonelyPagesQuery', [ &$tables, &$conds, &$joinConds ] );
-
 		return [
-			'tables' => $tables,
+			'tables' => [ 'page', 'pagelinks' ],
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'page_title'
 			],
-			'conds' => $conds,
-			'join_conds' => $joinConds
+			'conds' => [
+				'pl_from IS NULL',
+				'page_namespace' => MediaWikiServices::getInstance()->getNamespaceInfo()->
+					getContentNamespaces(),
+				'page_is_redirect' => 0
+			],
+			'join_conds' => [
+				'pagelinks' => [
+					'LEFT JOIN',
+					[ 'page_id=pl_from' ]
+				]
+			]
 		];
 	}
 
 	function getOrderFields() {
 		// For some crazy reason ordering by a constant
-		// causes a filesort in MySQL 5
+		// causes a filesort
 		if ( count( MediaWikiServices::getInstance()->getNamespaceInfo()->
 			getContentNamespaces() ) > 1
 		) {

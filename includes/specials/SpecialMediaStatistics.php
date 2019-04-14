@@ -28,7 +28,7 @@ use Wikimedia\Rdbms\IDatabase;
 /**
  * @ingroup SpecialPage
  */
-class MediaStatisticsPage extends QueryPage {
+class SpecialMediaStatistics extends QueryPage {
 	protected $totalCount = 0, $totalBytes = 0;
 
 	/**

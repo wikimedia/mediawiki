@@ -28,7 +28,7 @@ use MediaWiki\MediaWikiServices;
  * Implements Special:DeletedContributions to display archived revisions
  * @ingroup SpecialPage
  */
-class DeletedContributionsPage extends SpecialPage {
+class SpecialDeletedContributions extends SpecialPage {
 	/** @var FormOptions */
 	protected $mOpts;
 

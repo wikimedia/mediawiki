@@ -30,7 +30,7 @@ use Wikimedia\Rdbms\IDatabase;
  *
  * @ingroup SpecialPage
  */
-class DoubleRedirectsPage extends QueryPage {
+class SpecialDoubleRedirects extends QueryPage {
 	function __construct( $name = 'DoubleRedirects' ) {
 		parent::__construct( $name );
 	}

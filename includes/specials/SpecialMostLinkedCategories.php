@@ -1,6 +1,8 @@
 <?php
 /**
- * Implements Special:Mostinterwikis
+ * Implements Special:Mostlinkedcategories
+ *
+ * Copyright © 2005, Ævar Arnfjörð Bjarmason
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +21,7 @@
  *
  * @file
  * @ingroup SpecialPage
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
 use MediaWiki\MediaWikiServices;
@@ -26,17 +29,13 @@ use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * A special page that listed pages that have highest interwiki count
+ * A querypage to show categories ordered in descending order by the pages in them
  *
  * @ingroup SpecialPage
  */
-class MostinterwikisPage extends QueryPage {
-	function __construct( $name = 'Mostinterwikis' ) {
+class SpecialMostLinkedCategories extends QueryPage {
+	function __construct( $name = 'Mostlinkedcategories' ) {
 		parent::__construct( $name );
-	}
-
-	public function isExpensive() {
-		return true;
 	}
 
 	function isSyndicated() {
@@ -45,33 +44,20 @@ class MostinterwikisPage extends QueryPage {
 
 	public function getQueryInfo() {
 		return [
-			'tables' => [
-				'langlinks',
-				'page'
-			], 'fields' => [
-				'namespace' => 'page_namespace',
-				'title' => 'page_title',
-				'value' => 'COUNT(*)'
-			], 'conds' => [
-				'page_namespace' =>
-					MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces()
-			], 'options' => [
-				'HAVING' => 'COUNT(*) > 1',
-				'GROUP BY' => [
-					'page_namespace',
-					'page_title'
-				]
-			], 'join_conds' => [
-				'page' => [
-					'LEFT JOIN',
-					'page_id = ll_from'
-				]
-			]
+			'tables' => [ 'category' ],
+			'fields' => [ 'title' => 'cat_title',
+				'namespace' => NS_CATEGORY,
+				'value' => 'cat_pages' ],
+			'conds' => [ 'cat_pages > 0' ],
 		];
 	}
 
+	function sortDescending() {
+		return true;
+	}
+
 	/**
-	 * Pre-fill the link cache
+	 * Fetch user page links and cache their existence
 	 *
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
@@ -82,33 +68,28 @@ class MostinterwikisPage extends QueryPage {
 
 	/**
 	 * @param Skin $skin
-	 * @param object $result
+	 * @param object $result Result row
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		$title = Title::makeTitleSafe( $result->namespace, $result->title );
-		if ( !$title ) {
+		$nt = Title::makeTitleSafe( NS_CATEGORY, $result->title );
+		if ( !$nt ) {
 			return Html::element(
 				'span',
 				[ 'class' => 'mw-invalidtitle' ],
 				Linker::getInvalidTitleDescription(
 					$this->getContext(),
-					$result->namespace,
-					$result->title
-				)
+					NS_CATEGORY,
+					$result->title )
 			);
 		}
 
-		$linkRenderer = $this->getLinkRenderer();
-		if ( $this->isCached() ) {
-			$link = $linkRenderer->makeLink( $title );
-		} else {
-			$link = $linkRenderer->makeKnownLink( $title );
-		}
+		$text = MediaWikiServices::getInstance()->getContentLanguage()
+			->convert( htmlspecialchars( $nt->getText() ) );
+		$plink = $this->getLinkRenderer()->makeLink( $nt, new HtmlArmor( $text ) );
+		$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
 
-		$count = $this->msg( 'ninterwikis' )->numParams( $result->value )->escaped();
-
-		return $this->getLanguage()->specialList( $link, $count );
+		return $this->getLanguage()->specialList( $plink, $nlinks );
 	}
 
 	protected function getGroupName() {

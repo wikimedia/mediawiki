@@ -70,47 +70,12 @@
 			Whitelist existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
-		<exclude-pattern>*/includes/specials/SpecialMostinterwikis\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialAncientpages\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialBrokenRedirects\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialConfirmemail\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialDeadendpages\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialDeletedContributions\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialDoubleRedirects\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialEmailInvalidate\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialFewestrevisions\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialFileDuplicateSearch\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialLinkSearch\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialListDuplicatedFiles\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialListredirects\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialLonelypages\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialLongpages\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialMIMEsearch\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialMediaStatistics\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialMostcategories\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialMostimages\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialMostlinked\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialMostlinkedcategories\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialMostlinkedtemplates\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialMostrevisions\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialMovepage\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialNewimages\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialRandompage\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialShortpages\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialUncategorizedcategories\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialUncategorizedimages\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialUncategorizedpages\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialUncategorizedtemplates\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialUnusedcategories\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialUnusedimages\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialUnusedtemplates\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialUnwatchedpages\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialUserrights\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialWantedcategories\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialWantedfiles\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialWantedpages\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialWantedtemplates\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialWithoutinterwiki\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/CodeCleanerGlobalsPass.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/archives/upgradeLogging\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_HTTP_HTTPS\.php</exclude-pattern>

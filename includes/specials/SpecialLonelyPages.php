@@ -1,6 +1,6 @@
 <?php
 /**
- * Implements Special:Uncategorizedpages
+ * Implements Special:Lonelypaages
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,18 +24,18 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * A special page looking for page without any category.
+ * A special page looking for articles with no article linking to them,
+ * thus being lonely.
  *
  * @ingroup SpecialPage
- * @todo FIXME: Make $requestedNamespace selectable, unify all subclasses into one
  */
-class UncategorizedPagesPage extends PageQueryPage {
-	/** @var int|false */
-	protected $requestedNamespace = false;
-
-	function __construct( $name = 'Uncategorizedpages' ) {
+class SpecialLonelyPages extends PageQueryPage {
+	function __construct( $name = 'Lonelypages' ) {
 		parent::__construct( $name );
-		$this->addHelpLink( 'Help:Categories' );
+	}
+
+	function getPageHeader() {
+		return $this->msg( 'lonelypagestext' )->parseAsBlock();
 	}
 
 	function sortDescending() {
@@ -51,40 +51,54 @@ class UncategorizedPagesPage extends PageQueryPage {
 	}
 
 	function getQueryInfo() {
+		$tables = [ 'page', 'pagelinks', 'templatelinks' ];
+		$conds = [
+			'pl_namespace IS NULL',
+			'page_namespace' => MediaWikiServices::getInstance()->getNamespaceInfo()->
+				getContentNamespaces(),
+			'page_is_redirect' => 0,
+			'tl_namespace IS NULL'
+		];
+		$joinConds = [
+			'pagelinks' => [
+				'LEFT JOIN', [
+					'pl_namespace = page_namespace',
+					'pl_title = page_title'
+				]
+			],
+			'templatelinks' => [
+				'LEFT JOIN', [
+					'tl_namespace = page_namespace',
+					'tl_title = page_title'
+				]
+			]
+		];
+
+		// Allow extensions to modify the query
+		Hooks::run( 'LonelyPagesQuery', [ &$tables, &$conds, &$joinConds ] );
+
 		return [
-			'tables' => [ 'page', 'categorylinks' ],
+			'tables' => $tables,
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'page_title'
 			],
-			// default for page_namespace is all content namespaces (if requestedNamespace is false)
-			// otherwise, page_namespace is requestedNamespace
-			'conds' => [
-				'cl_from IS NULL',
-				'page_namespace' => $this->requestedNamespace !== false
-						? $this->requestedNamespace
-						: MediaWikiServices::getInstance()->getNamespaceInfo()->
-							getContentNamespaces(),
-				'page_is_redirect' => 0
-			],
-			'join_conds' => [
-				'categorylinks' => [ 'LEFT JOIN', 'cl_from = page_id' ]
-			]
+			'conds' => $conds,
+			'join_conds' => $joinConds
 		];
 	}
 
 	function getOrderFields() {
 		// For some crazy reason ordering by a constant
-		// causes a filesort
-		if ( $this->requestedNamespace === false &&
-			count( MediaWikiServices::getInstance()->getNamespaceInfo()->
-				getContentNamespaces() ) > 1
+		// causes a filesort in MySQL 5
+		if ( count( MediaWikiServices::getInstance()->getNamespaceInfo()->
+			getContentNamespaces() ) > 1
 		) {
 			return [ 'page_namespace', 'page_title' ];
+		} else {
+			return [ 'page_title' ];
 		}
-
-		return [ 'page_title' ];
 	}
 
 	protected function getGroupName() {

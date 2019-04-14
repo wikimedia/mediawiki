@@ -33,7 +33,7 @@ use Wikimedia\Rdbms\IDatabase;
  *
  * @ingroup SpecialPage
  */
-class UnwatchedpagesPage extends QueryPage {
+class SpecialUnwatchedPages extends QueryPage {
 
 	function __construct( $name = 'Unwatchedpages' ) {
 		parent::__construct( $name, 'unwatchedpages' );

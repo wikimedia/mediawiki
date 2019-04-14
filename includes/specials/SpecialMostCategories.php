@@ -1,8 +1,8 @@
 <?php
 /**
- * Implements Special:Mostlinkedcategories
+ * Implements Special:Mostcategories
  *
- * Copyright © 2005, Ævar Arnfjörð Bjarmason
+ * Copyright © 2005 Ævar Arnfjörð Bjarmason
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,13 +29,17 @@ use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * A querypage to show categories ordered in descending order by the pages in them
+ * A special page that list pages that have highest category count
  *
  * @ingroup SpecialPage
  */
-class MostlinkedCategoriesPage extends QueryPage {
-	function __construct( $name = 'Mostlinkedcategories' ) {
+class SpecialMostCategories extends QueryPage {
+	function __construct( $name = 'Mostcategories' ) {
 		parent::__construct( $name );
+	}
+
+	public function isExpensive() {
+		return true;
 	}
 
 	function isSyndicated() {
@@ -44,21 +48,28 @@ class MostlinkedCategoriesPage extends QueryPage {
 
 	public function getQueryInfo() {
 		return [
-			'tables' => [ 'category' ],
-			'fields' => [ 'title' => 'cat_title',
-				'namespace' => NS_CATEGORY,
-				'value' => 'cat_pages' ],
-			'conds' => [ 'cat_pages > 0' ],
+			'tables' => [ 'categorylinks', 'page' ],
+			'fields' => [
+				'namespace' => 'page_namespace',
+				'title' => 'page_title',
+				'value' => 'COUNT(*)'
+			],
+			'conds' => [ 'page_namespace' =>
+				MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces() ],
+			'options' => [
+				'HAVING' => 'COUNT(*) > 1',
+				'GROUP BY' => [ 'page_namespace', 'page_title' ]
+			],
+			'join_conds' => [
+				'page' => [
+					'LEFT JOIN',
+					'page_id = cl_from'
+				]
+			]
 		];
 	}
 
-	function sortDescending() {
-		return true;
-	}
-
 	/**
-	 * Fetch user page links and cache their existence
-	 *
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
 	 */
@@ -72,24 +83,29 @@ class MostlinkedCategoriesPage extends QueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		$nt = Title::makeTitleSafe( NS_CATEGORY, $result->title );
-		if ( !$nt ) {
+		$title = Title::makeTitleSafe( $result->namespace, $result->title );
+		if ( !$title ) {
 			return Html::element(
 				'span',
 				[ 'class' => 'mw-invalidtitle' ],
 				Linker::getInvalidTitleDescription(
 					$this->getContext(),
-					NS_CATEGORY,
-					$result->title )
+					$result->namespace,
+					$result->title
+				)
 			);
 		}
 
-		$text = MediaWikiServices::getInstance()->getContentLanguage()
-			->convert( htmlspecialchars( $nt->getText() ) );
-		$plink = $this->getLinkRenderer()->makeLink( $nt, new HtmlArmor( $text ) );
-		$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
+		$linkRenderer = $this->getLinkRenderer();
+		if ( $this->isCached() ) {
+			$link = $linkRenderer->makeLink( $title );
+		} else {
+			$link = $linkRenderer->makeKnownLink( $title );
+		}
 
-		return $this->getLanguage()->specialList( $plink, $nlinks );
+		$count = $this->msg( 'ncategories' )->numParams( $result->value )->escaped();
+
+		return $this->getLanguage()->specialList( $link, $count );
 	}
 
 	protected function getGroupName() {

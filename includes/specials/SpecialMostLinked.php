@@ -33,7 +33,7 @@ use Wikimedia\Rdbms\IDatabase;
  *
  * @ingroup SpecialPage
  */
-class MostlinkedPage extends QueryPage {
+class SpecialMostLinked extends QueryPage {
 	function __construct( $name = 'Mostlinked' ) {
 		parent::__construct( $name );
 	}

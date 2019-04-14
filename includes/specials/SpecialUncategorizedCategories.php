@@ -26,7 +26,7 @@
  *
  * @ingroup SpecialPage
  */
-class UncategorizedCategoriesPage extends UncategorizedPagesPage {
+class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 	/**
 	 * Holds a list of categories, which shouldn't be listed on this special page,
 	 * even if it is uncategorized.
