@@ -29,7 +29,7 @@ use User;
  * A PreferencesFactory is a MediaWiki service that provides the definitions of preferences for a
  * given user. These definitions are in the form of an HTMLForm descriptor.
  *
- * PreferencesFormLegacy (a subclass of HTMLForm) is used to generate the Preferences form, and
+ * PreferencesFormOOUI (a subclass of HTMLForm) is used to generate the Preferences form, and
  * handles generic submission, CSRF protection, layout and other logic in a reusable manner.
  *
  * In order to generate the form, the HTMLForm object needs an array structure detailing the
