@@ -257,6 +257,7 @@ $wgAutoloadLocalClasses = [
 	'ChannelFeed' => __DIR__ . '/includes/changes/ChannelFeed.php',
 	'CheckBadRedirects' => __DIR__ . '/maintenance/checkBadRedirects.php',
 	'CheckComposerLockUpToDate' => __DIR__ . '/maintenance/checkComposerLockUpToDate.php',
+	'CheckDependencies' => __DIR__ . '/maintenance/checkDependencies.php',
 	'CheckExtensionsCLI' => __DIR__ . '/maintenance/language/checkLanguage.inc',
 	'CheckImages' => __DIR__ . '/maintenance/checkImages.php',
 	'CheckLanguageCLI' => __DIR__ . '/maintenance/language/checkLanguage.inc',
