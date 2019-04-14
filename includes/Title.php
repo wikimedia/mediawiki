@@ -623,15 +623,33 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Create a new Title for the Main Page
 	 *
+	 * This uses the 'mainpage' interface message, which could be specified in
+	 * `$wgForceUIMsgAsContentMsg`. If that is the case, then calling this method
+	 * will use the user language, which would involve initialising the session
+	 * via `RequestContext::getMain()->getLanguage()`. For session-less endpoints,
+	 * be sure to pass in a MessageLocalizer (such as your own RequestContext,
+	 * or ResourceloaderContext) to prevent an error.
+	 *
 	 * @note The Title instance returned by this method is not guaranteed to be a fresh instance.
 	 * It may instead be a cached instance created previously, with references to it remaining
 	 * elsewhere.
 	 *
-	 * @return Title The new object
+	 * @param MessageLocalizer|null $localizer An optional context to use (since 1.34)
+	 * @return Title
 	 */
-	public static function newMainPage() {
-		$title = self::newFromText( wfMessage( 'mainpage' )->inContentLanguage()->text() );
-		// Don't give fatal errors if the message is broken
+	public static function newMainPage( MessageLocalizer $localizer = null ) {
+		if ( $localizer ) {
+			$msg = $localizer->msg( 'mainpage' );
+		} else {
+			$msg = wfMessage( 'mainpage' );
+		}
+
+		$title = self::newFromText( $msg->inContentLanguage()->text() );
+
+		// Every page renders at least one link to the Main Page (e.g. sidebar).
+		// If the localised value is invalid, don't produce fatal errors that
+		// would make the wiki inaccessible (and hard to fix the invalid message).
+		// Gracefully fallback...
 		if ( !$title ) {
 			$title = self::newFromText( 'Main Page' );
 		}
