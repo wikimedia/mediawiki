@@ -205,7 +205,8 @@
 			"The Discoverer",
 			"Bencemac",
 			"Zoranzoki21",
-			"Woytecr"
+			"Woytecr",
+			"PiefPafPier"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1588,7 +1589,7 @@
 	"action-changetags": "{{doc-action|changetags}}",
 	"action-deletechangetags": "{{doc-action|deletechangetags}}",
 	"action-purge": "{{doc-action|purge}}",
-	"action-apihighlimits": "{{doct|apihighlimits}}",
+	"action-apihighlimits": "{{doc-action|apihighlimits}}",
 	"action-autoconfirmed": "{{doc-action|autoconfirmed}}",
 	"action-bigdelete": "{{doc-action|bigdelete}}",
 	"action-blockemail": "{{doc-action|blockemail}}",
@@ -1653,7 +1654,7 @@
 	"rcfilters-activefilters-show-tooltip": "Tooltip for the button that shows the active filters list and dropdown in [[Special:RecentChanges]].",
 	"rcfilters-advancedfilters": "Title for the buttons allowing the user to switch to the various advanced filters views.",
 	"rcfilters-limit-title": "Title for the options to change the number of results shown.",
-	"rcfilters-limit-and-date-label": "Title for the button that opens the operation to control how many results to show and in which time period to search. \n\nParameters: $1 - Number of results shown\n\n$2 - Time period to search. One of {{msg-mw|rcfilters-days-title}} or {{msg-mw|rcfilters-hours-title}} is used as $2\n{{Identical|Change}}",
+	"rcfilters-limit-and-date-label": "Title for the button that opens the operation to control how many results to show and in which time period to search. \n\nParameters: $1 - Number of results shown\n\n$2 - Time period to search. One of {{msg-mw|Rcfilters-days-show-days}} or {{msg-mw|Rcfilters-days-show-hours}} is used as $2\n{{Identical|Change}}",
 	"rcfilters-date-popup-title": "Section title of date options on recent changes results",
 	"rcfilters-days-title": "Title for the options to change the number of days for the results shown.",
 	"rcfilters-hours-title": "Title for the options to change the number of hours for the results shown.",
