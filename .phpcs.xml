@@ -70,7 +70,6 @@
 			Whitelist existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
-		<exclude-pattern>*/includes/installer/PhpBugTests\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialMostinterwikis\.php</exclude-pattern>
 		<exclude-pattern>*/includes/diff/DairikiDiff\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialAncientpages\.php</exclude-pattern>
