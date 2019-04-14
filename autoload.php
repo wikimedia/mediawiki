@@ -1037,7 +1037,6 @@ $wgAutoloadLocalClasses = [
 	'ORAField' => __DIR__ . '/includes/db/ORAField.php',
 	'ORAResult' => __DIR__ . '/includes/db/ORAResult.php',
 	'ObjectCache' => __DIR__ . '/includes/objectcache/ObjectCache.php',
-	'ObjectFactory' => __DIR__ . '/includes/compat/ObjectFactory.php',
 	'OldChangesList' => __DIR__ . '/includes/changes/OldChangesList.php',
 	'OldLocalFile' => __DIR__ . '/includes/filerepo/file/OldLocalFile.php',
 	'OldRevisionImporter' => __DIR__ . '/includes/import/OldRevisionImporter.php',
