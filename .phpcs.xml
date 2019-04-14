@@ -194,7 +194,6 @@
 		-->
 		<exclude-pattern>*/includes/api/ApiErrorFormatter\.php</exclude-pattern>
 		<exclude-pattern>*/includes/diff/DairikiDiff\.php</exclude-pattern>
-		<exclude-pattern>*/includes/htmlform/HTMLFormElement\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/FileBackendStore\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/FSFileBackend\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/SwiftFileBackend\.php</exclude-pattern>
