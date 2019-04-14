@@ -67,7 +67,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 
 		$testUser = $this->getTestUser();
 		$form = $this->getPreferencesFactory()->getForm( $testUser->getUser(), $this->context );
-		$this->assertInstanceOf( PreferencesFormLegacy::class, $form );
+		$this->assertInstanceOf( PreferencesFormOOUI::class, $form );
 		$this->assertCount( 5, $form->getPreferenceSections() );
 	}
 
@@ -162,7 +162,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 		$configMock = new HashConfig( [
 			'HiddenPrefs' => []
 		] );
-		$form = $this->getMockBuilder( PreferencesFormLegacy::class )
+		$form = $this->getMockBuilder( PreferencesFormOOUI::class )
 			->disableOriginalConstructor()
 			->getMock();
 

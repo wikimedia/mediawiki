@@ -43,7 +43,7 @@ use MWTimestamp;
 use OutputPage;
 use Parser;
 use ParserOptions;
-use PreferencesFormLegacy;
+use PreferencesFormOOUI;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use Skin;
@@ -1430,7 +1430,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	public function getForm(
 		User $user,
 		IContextSource $context,
-		$formClass = PreferencesFormLegacy::class,
+		$formClass = PreferencesFormOOUI::class,
 		array $remove = []
 	) {
 		// We use ButtonWidgets in some of the getPreferences() functions
