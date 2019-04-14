@@ -993,6 +993,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( [
 			'wgEmailConfirmToEdit' => true,
 			'wgEmailAuthentication' => true,
+			'wgBlockDisablesLogin' => false,
 		] );
 
 		$this->overrideMwServices();
