@@ -22,6 +22,7 @@ namespace MediaWiki\Preferences;
 
 use HTMLForm;
 use IContextSource;
+use PreferencesFormOOUI;
 use User;
 
 /**
@@ -62,7 +63,7 @@ interface PreferencesFactory {
 	public function getForm(
 		User $user,
 		IContextSource $contextSource,
-		$formClass = \PreferencesFormLegacy::class,
+		$formClass = PreferencesFormOOUI::class,
 		array $remove = []
 	);
 
