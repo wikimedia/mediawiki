@@ -101,7 +101,7 @@ class ApiFeedRecentChanges extends ApiBase {
 				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $this->params['target'] ) ] );
 			}
 
-			$feed = new ChangesFeed( $feedFormat, false );
+			$feed = new ChangesFeed( $feedFormat );
 			$feedObj = $feed->getFeedObject(
 				$this->msg( 'recentchangeslinked-title', $title->getPrefixedText() )
 					->inContentLanguage()->text(),
@@ -109,7 +109,7 @@ class ApiFeedRecentChanges extends ApiBase {
 				SpecialPage::getTitleFor( 'Recentchangeslinked' )->getFullURL()
 			);
 		} else {
-			$feed = new ChangesFeed( $feedFormat, 'rcfeed' );
+			$feed = new ChangesFeed( $feedFormat );
 			$feedObj = $feed->getFeedObject(
 				$this->msg( 'recentchanges' )->inContentLanguage()->text(),
 				$this->msg( 'recentchanges-feed-description' )->inContentLanguage()->text(),
