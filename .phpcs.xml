@@ -71,7 +71,6 @@
 			any new occurrences.
 		-->
 		<exclude-pattern>*/includes/specials/SpecialMostinterwikis\.php</exclude-pattern>
-		<exclude-pattern>*/includes/diff/DairikiDiff\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialAncientpages\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialBrokenRedirects\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialConfirmemail\.php</exclude-pattern>
@@ -192,7 +191,6 @@
 			any new occurrences.
 		-->
 		<exclude-pattern>*/includes/api/ApiErrorFormatter\.php</exclude-pattern>
-		<exclude-pattern>*/includes/diff/DairikiDiff\.php</exclude-pattern>
 		<exclude-pattern>*/includes/parser/Preprocessor_DOM\.php</exclude-pattern>
 		<exclude-pattern>*/includes/parser/Preprocessor_Hash\.php</exclude-pattern>
 		<exclude-pattern>*/includes/parser/Preprocessor\.php</exclude-pattern>
