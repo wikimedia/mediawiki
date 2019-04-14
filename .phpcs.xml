@@ -212,8 +212,6 @@
 		<exclude-pattern>*/includes/libs/filebackend/FileBackendStore\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/FSFileBackend\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/SwiftFileBackend\.php</exclude-pattern>
-		<exclude-pattern>*/includes/logging/LogEntry\.php</exclude-pattern>
-		<exclude-pattern>*/includes/logging/LogFormatter\.php</exclude-pattern>
 		<exclude-pattern>*/includes/parser/Preprocessor_DOM\.php</exclude-pattern>
 		<exclude-pattern>*/includes/parser/Preprocessor_Hash\.php</exclude-pattern>
 		<exclude-pattern>*/includes/parser/Preprocessor\.php</exclude-pattern>
