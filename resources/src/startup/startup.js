@@ -3,8 +3,8 @@
  *
  * - Beware: This file MUST parse without errors on even the most ancient of browsers!
  */
-/* eslint-disable no-implicit-globals, vars-on-top, no-unmodified-loop-condition */
-/* global $VARS, $CODE */
+/* eslint-disable no-implicit-globals */
+/* global $VARS, $CODE, RLQ:true, NORLQ:true */
 
 /**
  * See <https://www.mediawiki.org/wiki/Compatibility#Browsers>
@@ -85,17 +85,17 @@ if ( !isCompatible( navigator.userAgent ) ) {
 		.replace( /(^|\s)client-js(\s|$)/, '$1client-nojs$2' );
 
 	// Process any callbacks for Grade C
-	while ( window.NORLQ && window.NORLQ[ 0 ] ) {
-		window.NORLQ.shift()();
+	while ( window.NORLQ && NORLQ[ 0 ] ) {
+		NORLQ.shift()();
 	}
-	window.NORLQ = {
+	NORLQ = {
 		push: function ( fn ) {
 			fn();
 		}
 	};
 
 	// Clear and disable the Grade A queue
-	window.RLQ = {
+	RLQ = {
 		push: function () {}
 	};
 } else {
@@ -137,24 +137,25 @@ if ( !isCompatible( navigator.userAgent ) ) {
 		// arrivals will also be processed. Late arrival can happen because
 		// startup.js is executed asynchronously, concurrently with the streaming
 		// response of the HTML.
-		var queue = window.RLQ;
-		window.RLQ = [];
-		/* global RLQ */
+		RLQ = window.RLQ || [];
 		RLQ.push = function ( fn ) {
 			if ( typeof fn === 'function' ) {
 				fn();
 			} else {
-				// This callback requires a module, handled in mediawiki.base.
+				// If the first parameter is not a function, then it is an array
+				// containing a list of required module names and a function.
+				// Do an actual push for now, as this signature is handled
+				// later by mediawiki.base.js.
 				RLQ[ RLQ.length ] = fn;
 			}
 		};
-		while ( queue && queue[ 0 ] ) {
-			// Re-use our new push() method
-			RLQ.push( queue.shift() );
+		while ( RLQ[ 0 ] ) {
+			// Process all values gathered so far
+			RLQ.push( RLQ.shift() );
 		}
 
 		// Clear and disable the Grade C queue
-		window.NORLQ = {
+		NORLQ = {
 			push: function () {}
 		};
 	}() );
