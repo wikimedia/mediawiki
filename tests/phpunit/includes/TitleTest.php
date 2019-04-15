@@ -157,12 +157,7 @@ class TitleTest extends MediaWikiTestCase {
 			]
 		] );
 
-		// Reset TitleParser since we modified $wgLocalInterwikis
-		$this->setService( 'TitleParser', new MediaWikiTitleCodec(
-				Language::factory( 'en' ),
-				new GenderCache(),
-				[ 'localtestiw' ]
-		) );
+		$this->overrideMwServices();
 	}
 
 	/**

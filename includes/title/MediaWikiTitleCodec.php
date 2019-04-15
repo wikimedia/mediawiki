@@ -57,19 +57,34 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	protected $interwikiLookup;
 
 	/**
+	 * @var NamespaceInfo
+	 */
+	protected $nsInfo;
+
+	/**
 	 * @param Language $language The language object to use for localizing namespace names.
 	 * @param GenderCache $genderCache The gender cache for generating gendered namespace names
 	 * @param string[]|string $localInterwikis
 	 * @param InterwikiLookup|null $interwikiLookup
+	 * @param NamespaceInfo|null $nsInfo
 	 */
 	public function __construct( Language $language, GenderCache $genderCache,
-		$localInterwikis = [], $interwikiLookup = null
+		$localInterwikis = [], InterwikiLookup $interwikiLookup = null,
+		NamespaceInfo $nsInfo = null
 	) {
+		if ( !$interwikiLookup ) {
+			wfDeprecated( __METHOD__ . ' with no InterwikiLookup argument', '1.34' );
+			$interwikiLookup = MediaWikiServices::getInstance()->getInterwikiLookup();
+		}
+		if ( !$nsInfo ) {
+			wfDeprecated( __METHOD__ . ' with no NamespaceInfo argument', '1.34' );
+			$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		}
 		$this->language = $language;
 		$this->genderCache = $genderCache;
 		$this->localInterwikis = (array)$localInterwikis;
-		$this->interwikiLookup = $interwikiLookup ?:
-			MediaWikiServices::getInstance()->getInterwikiLookup();
+		$this->interwikiLookup = $interwikiLookup;
+		$this->nsInfo = $nsInfo;
 	}
 
 	/**
@@ -83,7 +98,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 */
 	public function getNamespaceName( $namespace, $text ) {
 		if ( $this->language->needsGenderDistinction() &&
-			MWNamespace::hasGenderDistinction( $namespace )
+			$this->nsInfo->hasGenderDistinction( $namespace )
 		) {
 			// NOTE: we are assuming here that the title text is a user name!
 			$gender = $this->genderCache->getGenderOf( $text, __METHOD__ );
