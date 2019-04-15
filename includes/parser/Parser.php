@@ -2607,7 +2607,7 @@ class Parser {
 			// @TODO: disallow this word on all namespaces
 			$this->nsInfo->isContent( $this->mTitle->getNamespace() )
 		) {
-			if ( $this->mRevisionId ) {
+			if ( $this->mRevisionId || $this->mOptions->getSpeculativeRevId() ) {
 				return '-';
 			} else {
 				$this->mOutput->setFlag( 'vary-revision-exists' );
