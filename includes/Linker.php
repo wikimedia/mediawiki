@@ -41,12 +41,12 @@ class Linker {
 	/**
 	 * This function returns an HTML link to the given target.  It serves a few
 	 * purposes:
-	 *   1) If $target is a Title, the correct URL to link to will be figured
+	 *   1) If $target is a LinkTarget, the correct URL to link to will be figured
 	 *      out automatically.
 	 *   2) It automatically adds the usual classes for various types of link
 	 *      targets: "new" for red links, "stub" for short articles, etc.
 	 *   3) It escapes all attribute values safely so there's no risk of XSS.
-	 *   4) It provides a default tooltip if the target is a Title (the page
+	 *   4) It provides a default tooltip if the target is a LinkTarget (the page
 	 *      name of the target).
 	 * link() replaces the old functions in the makeLink() family.
 	 *
@@ -57,7 +57,7 @@ class Linker {
 	 *   change to support Images, literal URLs, etc.
 	 * @param string $html The HTML contents of the <a> element, i.e.,
 	 *   the link text.  This is raw HTML and will not be escaped.  If null,
-	 *   defaults to the prefixed text of the Title; or if the Title is just a
+	 *   defaults to the prefixed text of the LinkTarget; or if the LinkTarget is just a
 	 *   fragment, the contents of the fragment.
 	 * @param array $customAttribs A key => value array of extra HTML attributes,
 	 *   such as title and class.  (href is ignored.)  Classes will be
@@ -136,7 +136,7 @@ class Linker {
 	 * @since 1.16.3
 	 * @deprecated since 1.28, use MediaWiki\Linker\LinkRenderer instead
 	 * @see Linker::link
-	 * @param Title $target
+	 * @param LinkTarget $target
 	 * @param string $html
 	 * @param array $customAttribs
 	 * @param array $query
@@ -157,7 +157,7 @@ class Linker {
 	 * make*LinkObj static functions, but $query is not used.
 	 *
 	 * @since 1.16.3
-	 * @param Title $nt
+	 * @param LinkTarget $nt
 	 * @param string $html [optional]
 	 * @param string $query [optional]
 	 * @param string $trail [optional]
@@ -166,6 +166,7 @@ class Linker {
 	 * @return string
 	 */
 	public static function makeSelfLinkObj( $nt, $html = '', $query = '', $trail = '', $prefix = '' ) {
+		$nt = Title::newFromLinkTarget( $nt );
 		$ret = "<a class=\"mw-selflink selflink\">{$prefix}{$html}</a>{$trail}";
 		if ( !Hooks::run( 'SelfLinkBegin', [ $nt, &$html, &$trail, &$prefix, &$ret ] ) ) {
 			return $ret;
@@ -272,7 +273,7 @@ class Linker {
 	 * HTML that that syntax inserts in the page.
 	 *
 	 * @param Parser $parser
-	 * @param Title $title Title object of the file (not the currently viewed page)
+	 * @param LinkTarget $title LinkTarget object of the file (not the currently viewed page)
 	 * @param File $file File object, or false if it doesn't exist
 	 * @param array $frameParams Associative array of parameters external to the media handler.
 	 *     Boolean parameters are indicated by presence or absence, the value is arbitrary and
@@ -291,7 +292,7 @@ class Linker {
 	 *          class           HTML for image classes. Plain text.
 	 *          caption         HTML for image caption.
 	 *          link-url        URL to link to
-	 *          link-title      Title object to link to
+	 *          link-title      LinkTarget object to link to
 	 *          link-target     Value for the target attribute, only with link-url
 	 *          no-link         Boolean, suppress description link
 	 *          targetlang      (optional) Target language code, see Parser::getTargetLanguage()
@@ -304,10 +305,11 @@ class Linker {
 	 * @since 1.20
 	 * @return string HTML for an image, with links, wrappers, etc.
 	 */
-	public static function makeImageLink( Parser $parser, Title $title,
+	public static function makeImageLink( Parser $parser, LinkTarget $title,
 		$file, $frameParams = [], $handlerParams = [], $time = false,
 		$query = "", $widthOption = null
 	) {
+		$title = Title::newFromLinkTarget( $title );
 		$res = null;
 		$dummy = new DummyLinker;
 		if ( !Hooks::run( 'ImageBeforeProduceHTML', [ &$dummy, &$title,
@@ -483,7 +485,7 @@ class Linker {
 
 	/**
 	 * Make HTML for a thumbnail including image, border and caption
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 * @param File|bool $file File object or false if it doesn't exist
 	 * @param string $label
 	 * @param string $alt
@@ -493,7 +495,7 @@ class Linker {
 	 * @param string $manualthumb
 	 * @return string
 	 */
-	public static function makeThumbLinkObj( Title $title, $file, $label = '', $alt = '',
+	public static function makeThumbLinkObj( LinkTarget $title, $file, $label = '', $alt = '',
 		$align = 'right', $params = [], $framed = false, $manualthumb = ""
 	) {
 		$frameParams = [
@@ -511,7 +513,7 @@ class Linker {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 * @param File $file
 	 * @param array $frameParams
 	 * @param array $handlerParams
@@ -519,7 +521,7 @@ class Linker {
 	 * @param string $query
 	 * @return string
 	 */
-	public static function makeThumbLink2( Title $title, $file, $frameParams = [],
+	public static function makeThumbLink2( LinkTarget $title, $file, $frameParams = [],
 		$handlerParams = [], $time = false, $query = ""
 	) {
 		$exists = $file && $file->exists();
@@ -585,7 +587,7 @@ class Linker {
 		# ThumbnailImage::toHtml() already adds page= onto the end of DjVu URLs
 		# So we don't need to pass it here in $query. However, the URL for the
 		# zoom icon still needs it, so we make a unique query for it. See T16771
-		$url = $title->getLocalURL( $query );
+		$url = Title::newFromLinkTarget( $title )->getLocalURL( $query );
 		if ( $page ) {
 			$url = wfAppendQuery( $url, [ 'page' => $page ] );
 		}
@@ -668,7 +670,7 @@ class Linker {
 	 * Make a "broken" link to an image
 	 *
 	 * @since 1.16.3
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 * @param string $label Link label (plain text)
 	 * @param string $query Query string
 	 * @param string $unused1 Unused parameter kept for b/c
@@ -679,10 +681,12 @@ class Linker {
 	public static function makeBrokenImageLinkObj( $title, $label = '',
 		$query = '', $unused1 = '', $unused2 = '', $time = false
 	) {
-		if ( !$title instanceof Title ) {
-			wfWarn( __METHOD__ . ': Requires $title to be a Title object.' );
+		if ( !$title instanceof LinkTarget ) {
+			wfWarn( __METHOD__ . ': Requires $title to be a LinkTarget object.' );
 			return "<!-- ERROR -->" . htmlspecialchars( $label );
 		}
+
+		$title = Title::castFromLinkTarget( $title );
 
 		global $wgEnableUploads, $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
 		if ( $label == '' ) {
@@ -722,13 +726,13 @@ class Linker {
 	 * Get the URL to upload a certain file
 	 *
 	 * @since 1.16.3
-	 * @param Title $destFile Title object of the file to upload
+	 * @param LinkTarget $destFile LinkTarget object of the file to upload
 	 * @param string $query Urlencoded query string to prepend
 	 * @return string Urlencoded URL
 	 */
 	protected static function getUploadUrl( $destFile, $query = '' ) {
 		global $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
-		$q = 'wpDestFile=' . $destFile->getPartialURL();
+		$q = 'wpDestFile=' . Title::castFromLinkTarget( $destFile )->getPartialURL();
 		if ( $query != '' ) {
 			$q .= '&' . $query;
 		}
@@ -750,7 +754,7 @@ class Linker {
 	 * Create a direct link to a given uploaded file.
 	 *
 	 * @since 1.16.3
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 * @param string $html Pre-sanitized HTML
 	 * @param string $time MW timestamp of file creation time
 	 * @return string HTML
@@ -765,14 +769,14 @@ class Linker {
 	 * This will make a broken link if $file is false.
 	 *
 	 * @since 1.16.3
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 * @param File|bool $file File object or false
 	 * @param string $html Pre-sanitized HTML
 	 * @return string HTML
 	 *
 	 * @todo Handle invalid or missing images better.
 	 */
-	public static function makeMediaLinkFile( Title $title, $file, $html = '' ) {
+	public static function makeMediaLinkFile( LinkTarget $title, $file, $html = '' ) {
 		if ( $file && $file->exists() ) {
 			$url = $file->getUrl();
 			$class = 'internal';
@@ -794,7 +798,7 @@ class Linker {
 		];
 
 		if ( !Hooks::run( 'LinkerMakeMediaLinkFile',
-			[ $title, $file, &$html, &$attribs, &$ret ] ) ) {
+			[ Title::castFromLinkTarget( $title ), $file, &$html, &$attribs, &$ret ] ) ) {
 			wfDebug( "Hook LinkerMakeMediaLinkFile changed the output of link "
 				. "with url {$url} and text {$html} to {$ret}\n", true );
 			return $ret;
@@ -835,7 +839,7 @@ class Linker {
 	 * @param-taint $linktype escapes_html
 	 * @param array $attribs Array of extra attributes to <a>
 	 * @param-taint $attribs escapes_html
-	 * @param Title|null $title Title object used for title specific link attributes
+	 * @param LinkTarget|null $title LinkTarget object used for title specific link attributes
 	 * @param-taint $title none
 	 * @return string
 	 */
@@ -902,7 +906,7 @@ class Linker {
 			}
 			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
 		} else {
-			$page = Title::makeTitle( NS_USER, $userName );
+			$page = new TitleValue( NS_USER, strtr( $userName, ' ', '_' ) );
 		}
 
 		// Wrap the output with <bdi> tags for directionality isolation
@@ -1011,7 +1015,7 @@ class Linker {
 	 * @return string HTML fragment with user talk link
 	 */
 	public static function userTalkLink( $userId, $userText ) {
-		$userTalkPage = Title::makeTitle( NS_USER_TALK, $userText );
+		$userTalkPage = new TitleValue( NS_USER_TALK, strtr( $userText, ' ', '_' ) );
 		$moreLinkAttribs['class'] = 'mw-usertoollinks-talk';
 
 		return self::link( $userTalkPage,
@@ -1108,8 +1112,8 @@ class Linker {
 	 * @since 1.16.3. $wikiId added in 1.26
 	 *
 	 * @param string $comment
-	 * @param Title|null $title Title object (to generate link to the section in autocomment)
-	 *  or null
+	 * @param LinkTarget|null $title LinkTarget object (to generate link to the section in
+	 *  autocomment) or null
 	 * @param bool $local Whether section links should refer to local page
 	 * @param string|null $wikiId Id (as used by WikiMap) of the wiki to generate links to.
 	 *  For use with external changes.
@@ -1139,7 +1143,7 @@ class Linker {
 	 * Called by Linker::formatComment.
 	 *
 	 * @param string $comment Comment text
-	 * @param Title|null $title An optional title object used to links to sections
+	 * @param LinkTarget|null $title An optional LinkTarget object used to links to sections
 	 * @param bool $local Whether section links should refer to local page
 	 * @param string|null $wikiId Id of the wiki to link to (if not the local wiki),
 	 *  as used by WikiMap.
@@ -1175,7 +1179,8 @@ class Linker {
 
 				Hooks::run(
 					'FormatAutocomments',
-					[ &$comment, $pre, $auto, $post, $title, $local, $wikiId ]
+					[ &$comment, $pre, $auto, $post, Title::castFromLinkTarget( $title ), $local,
+					$wikiId ]
 				);
 
 				if ( $comment === null ) {
@@ -1195,10 +1200,9 @@ class Linker {
 
 						$section = substr( Parser::guessSectionNameFromStrippedText( $section ), 1 );
 						if ( $local ) {
-							$sectionTitle = Title::makeTitleSafe( NS_MAIN, '', $section );
+							$sectionTitle = new TitleValue( NS_MAIN, '', $section );
 						} else {
-							$sectionTitle = Title::makeTitleSafe( $title->getNamespace(),
-								$title->getDBkey(), $section );
+							$sectionTitle = $title->createFragmentTarget( $section );
 						}
 						if ( $sectionTitle ) {
 							$auto = Linker::makeCommentLink(
@@ -1239,7 +1243,7 @@ class Linker {
 	 * 	function is html, $comment must be sanitized for use as html. You probably want
 	 * 	to pass $comment through Sanitizer::escapeHtmlAllowEntities() before calling
 	 * 	this function.
-	 * @param Title|null $title An optional title object used to links to sections
+	 * @param LinkTarget|null $title An optional LinkTarget object used to links to sections
 	 * @param bool $local Whether section links should refer to local page
 	 * @param string|null $wikiId Id of the wiki to link to (if not the local wiki),
 	 *  as used by WikiMap.
@@ -1318,8 +1322,11 @@ class Linker {
 						$linkText = $text;
 						$linkTarget = Linker::normalizeSubpageLink( $title, $match[1], $linkText );
 
-						$target = Title::newFromText( $linkTarget );
-						if ( $target ) {
+						Title::newFromText( $linkTarget );
+						try {
+							$target = MediaWikiServices::getInstance()->getTitleParser()->
+								parseTitle( $linkTarget );
+
 							if ( $target->getText() == '' && !$target->isExternal()
 								&& !$local && $title
 							) {
@@ -1327,6 +1334,8 @@ class Linker {
 							}
 
 							$thelink = Linker::makeCommentLink( $target, $linkText . $inside, $wikiId ) . $trail;
+						} catch ( MalformedTitleException $e ) {
+							// Fall through
 						}
 					}
 				}
@@ -1347,7 +1356,7 @@ class Linker {
 	}
 
 	/**
-	 * Generates a link to the given Title
+	 * Generates a link to the given LinkTarget
 	 *
 	 * @note This is only public for technical reasons. It's not intended for use outside Linker.
 	 *
@@ -1383,7 +1392,7 @@ class Linker {
 	}
 
 	/**
-	 * @param Title $contextTitle
+	 * @param LinkTarget $contextTitle
 	 * @param string $target
 	 * @param string &$text
 	 * @return string
@@ -1414,6 +1423,8 @@ class Linker {
 			}
 			# T9425
 			$target = trim( $target );
+			$contextPrefixedText = MediaWikiServices::getInstance()->getTitleFormatter()->
+				getPrefixedText( $contextTitle );
 			# Look at the first character
 			if ( $target != '' && $target[0] === '/' ) {
 				# / at end means we don't want the slash to be shown
@@ -1425,7 +1436,7 @@ class Linker {
 					$noslash = substr( $target, 1 );
 				}
 
-				$ret = $contextTitle->getPrefixedText() . '/' . trim( $noslash ) . $suffix;
+				$ret = $contextPrefixedText . '/' . trim( $noslash ) . $suffix;
 				if ( $text === '' ) {
 					$text = $target . $suffix;
 				} # this might be changed for ugliness reasons
@@ -1438,7 +1449,7 @@ class Linker {
 					$nodotdot = substr( $nodotdot, 3 );
 				}
 				if ( $dotdotcount > 0 ) {
-					$exploded = explode( '/', $contextTitle->getPrefixedText() );
+					$exploded = explode( '/', $contextPrefixedText );
 					if ( count( $exploded ) > $dotdotcount ) { # not allowed to go below top level page
 						$ret = implode( '/', array_slice( $exploded, 0, -$dotdotcount ) );
 						# / at the end means don't show full path
@@ -1467,7 +1478,8 @@ class Linker {
 	 *
 	 * @since 1.16.3. $wikiId added in 1.26
 	 * @param string $comment
-	 * @param Title|null $title Title object (to generate link to section in autocomment) or null
+	 * @param LinkTarget|null $title LinkTarget object (to generate link to section in autocomment)
+	 *  or null
 	 * @param bool $local Whether section links should refer to local page
 	 * @param string|null $wikiId Id (as used by WikiMap) of the wiki to generate links to.
 	 *  For use with external changes.
@@ -2040,10 +2052,10 @@ class Linker {
 	 *
 	 * @param User $user
 	 * @param Revision $rev
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 * @return string HTML fragment
 	 */
-	public static function getRevDeleteLink( User $user, Revision $rev, Title $title ) {
+	public static function getRevDeleteLink( User $user, Revision $rev, LinkTarget $title ) {
 		$canHide = $user->isAllowed( 'deleterevision' );
 		if ( !$canHide && !( $rev->getVisibility() && $user->isAllowed( 'deletedhistory' ) ) ) {
 			return '';
@@ -2052,12 +2064,14 @@ class Linker {
 		if ( !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
 			return self::revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 		}
+		$prefixedDbKey = MediaWikiServices::getInstance()->getTitleFormatter()->
+			getPrefixedDBkey( $title );
 		if ( $rev->getId() ) {
 			// RevDelete links using revision ID are stable across
 			// page deletion and undeletion; use when possible.
 			$query = [
 				'type' => 'revision',
-				'target' => $title->getPrefixedDBkey(),
+				'target' => $prefixedDbKey,
 				'ids' => $rev->getId()
 			];
 		} else {
@@ -2065,7 +2079,7 @@ class Linker {
 			// We have to refer to these by timestamp, ick!
 			$query = [
 				'type' => 'archive',
-				'target' => $title->getPrefixedDBkey(),
+				'target' => $prefixedDbKey,
 				'ids' => $rev->getTimestamp()
 			];
 		}

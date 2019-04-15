@@ -22,6 +22,7 @@
  */
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Special\SpecialPageFactory;
 use Wikimedia\ScopedCallback;
@@ -1980,7 +1981,7 @@ class Parser {
 	 * @since 1.21
 	 * @param string|bool $url Optional URL, to extract the domain from for rel =>
 	 *   nofollow if appropriate
-	 * @param Title|null $title Optional Title, for wgNoFollowNsExceptions lookups
+	 * @param LinkTarget|null $title Optional LinkTarget, for wgNoFollowNsExceptions lookups
 	 * @return string|null Rel attribute for $url
 	 */
 	public static function getExternalLinkRel( $url = false, $title = null ) {
