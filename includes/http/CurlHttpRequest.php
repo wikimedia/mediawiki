@@ -28,6 +28,18 @@ class CurlHttpRequest extends MWHttpRequest {
 	protected $headerText = "";
 
 	/**
+	 * @throws RuntimeException
+	 */
+	public function __construct() {
+		if ( !function_exists( 'curl_init' ) ) {
+			throw new RuntimeException(
+				__METHOD__ . ': curl (https://www.php.net/curl) is not installed' );
+		}
+
+		parent::__construct( ...func_get_args() );
+	}
+
+	/**
 	 * @param resource $fh
 	 * @param string $content
 	 * @return int

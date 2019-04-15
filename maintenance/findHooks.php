@@ -34,6 +34,8 @@
  * @author Antoine Musso <hashar at free dot fr>
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -216,7 +218,7 @@ class FindHooks extends Maintenance {
 
 		$retval = [];
 		while ( true ) {
-			$json = Http::get(
+			$json = MediaWikiServices::getInstance()->getHttpRequestFactory()->get(
 				wfAppendQuery( 'https://www.mediawiki.org/w/api.php', $params ),
 				[],
 				__METHOD__

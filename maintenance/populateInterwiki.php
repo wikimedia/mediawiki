@@ -86,7 +86,7 @@ TEXT
 			$url = rtrim( $this->source, '?' ) . '?' . $url;
 		}
 
-		$json = Http::get( $url );
+		$json = MediaWikiServices::getInstance()->getHttpRequestFactory()->get( $url );
 		$data = json_decode( $json, true );
 
 		if ( is_array( $data ) ) {

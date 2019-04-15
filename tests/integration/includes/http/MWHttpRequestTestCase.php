@@ -1,19 +1,25 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	protected static $httpEngine;
 	protected $oldHttpEngine;
 
+	/** @var HttpRequestFactory */
+	private $factory;
+
 	public function setUp() {
 		parent::setUp();
 		$this->oldHttpEngine = Http::$httpEngine;
 		Http::$httpEngine = static::$httpEngine;
 
+		$this->factory = MediaWikiServices::getInstance()->getHttpRequestFactory();
+
 		try {
-			$request = MWHttpRequest::factory( 'null:' );
-		} catch ( DomainException $e ) {
+			$request = $factory->create( 'null:' );
+		} catch ( RuntimeException $e ) {
 			$this->markTestSkipped( static::$httpEngine . ' engine not supported' );
 		}
 
@@ -32,19 +38,19 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	// --------------------
 
 	public function testIsRedirect() {
-		$request = MWHttpRequest::factory( 'http://httpbin.org/get' );
+		$request = $this->factory->create( 'http://httpbin.org/get' );
 		$status = $request->execute();
 		$this->assertTrue( $status->isGood() );
 		$this->assertFalse( $request->isRedirect() );
 
-		$request = MWHttpRequest::factory( 'http://httpbin.org/redirect/1' );
+		$request = $this->factory->create( 'http://httpbin.org/redirect/1' );
 		$status = $request->execute();
 		$this->assertTrue( $status->isGood() );
 		$this->assertTrue( $request->isRedirect() );
 	}
 
 	public function testgetFinalUrl() {
-		$request = MWHttpRequest::factory( 'http://httpbin.org/redirect/3' );
+		$request = $this->factory->create( 'http://httpbin.org/redirect/3' );
 		if ( !$request->canFollowRedirects() ) {
 			$this->markTestSkipped( 'cannot follow redirects' );
 		}
@@ -52,14 +58,14 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 		$this->assertTrue( $status->isGood() );
 		$this->assertNotSame( 'http://httpbin.org/get', $request->getFinalUrl() );
 
-		$request = MWHttpRequest::factory( 'http://httpbin.org/redirect/3', [ 'followRedirects'
+		$request = $this->factory->create( 'http://httpbin.org/redirect/3', [ 'followRedirects'
 			=> true ] );
 		$status = $request->execute();
 		$this->assertTrue( $status->isGood() );
 		$this->assertSame( 'http://httpbin.org/get', $request->getFinalUrl() );
 		$this->assertResponseFieldValue( 'url', 'http://httpbin.org/get', $request );
 
-		$request = MWHttpRequest::factory( 'http://httpbin.org/redirect/3', [ 'followRedirects'
+		$request = $this->factory->create( 'http://httpbin.org/redirect/3', [ 'followRedirects'
 		=> true ] );
 		$status = $request->execute();
 		$this->assertTrue( $status->isGood() );
@@ -71,7 +77,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 			return;
 		}
 
-		$request = MWHttpRequest::factory( 'http://httpbin.org/redirect/3', [ 'followRedirects'
+		$request = $this->factory->create( 'http://httpbin.org/redirect/3', [ 'followRedirects'
 		=> true, 'maxRedirects' => 1 ] );
 		$status = $request->execute();
 		$this->assertTrue( $status->isGood() );
@@ -79,7 +85,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testSetCookie() {
-		$request = MWHttpRequest::factory( 'http://httpbin.org/cookies' );
+		$request = $this->factory->create( 'http://httpbin.org/cookies' );
 		$request->setCookie( 'foo', 'bar' );
 		$request->setCookie( 'foo2', 'bar2', [ 'domain' => 'example.com' ] );
 		$status = $request->execute();
@@ -88,7 +94,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testSetCookieJar() {
-		$request = MWHttpRequest::factory( 'http://httpbin.org/cookies' );
+		$request = $this->factory->create( 'http://httpbin.org/cookies' );
 		$cookieJar = new CookieJar();
 		$cookieJar->setCookie( 'foo', 'bar', [ 'domain' => 'httpbin.org' ] );
 		$cookieJar->setCookie( 'foo2', 'bar2', [ 'domain' => 'example.com' ] );
@@ -97,7 +103,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 		$this->assertTrue( $status->isGood() );
 		$this->assertResponseFieldValue( 'cookies', [ 'foo' => 'bar' ], $request );
 
-		$request = MWHttpRequest::factory( 'http://httpbin.org/cookies/set?foo=bar' );
+		$request = $this->factory->create( 'http://httpbin.org/cookies/set?foo=bar' );
 		$cookieJar = new CookieJar();
 		$request->setCookieJar( $cookieJar );
 		$status = $request->execute();
@@ -106,7 +112,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 
 		$this->markTestIncomplete( 'CookieJar does not handle deletion' );
 
-		// $request = MWHttpRequest::factory( 'http://httpbin.org/cookies/delete?foo' );
+		// $request = $this->factory->create( 'http://httpbin.org/cookies/delete?foo' );
 		// $cookieJar = new CookieJar();
 		// $cookieJar->setCookie( 'foo', 'bar', [ 'domain' => 'httpbin.org' ] );
 		// $cookieJar->setCookie( 'foo2', 'bar2', [ 'domain' => 'httpbin.org' ] );
@@ -118,7 +124,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testGetResponseHeaders() {
-		$request = MWHttpRequest::factory( 'http://httpbin.org/response-headers?Foo=bar' );
+		$request = $this->factory->create( 'http://httpbin.org/response-headers?Foo=bar' );
 		$status = $request->execute();
 		$this->assertTrue( $status->isGood() );
 		$headers = array_change_key_case( $request->getResponseHeaders(), CASE_LOWER );
@@ -127,7 +133,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testSetHeader() {
-		$request = MWHttpRequest::factory( 'http://httpbin.org/headers' );
+		$request = $this->factory->create( 'http://httpbin.org/headers' );
 		$request->setHeader( 'Foo', 'bar' );
 		$status = $request->execute();
 		$this->assertTrue( $status->isGood() );
@@ -135,14 +141,14 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testGetStatus() {
-		$request = MWHttpRequest::factory( 'http://httpbin.org/status/418' );
+		$request = $this->factory->create( 'http://httpbin.org/status/418' );
 		$status = $request->execute();
 		$this->assertFalse( $status->isOK() );
 		$this->assertSame( $request->getStatus(), 418 );
 	}
 
 	public function testSetUserAgent() {
-		$request = MWHttpRequest::factory( 'http://httpbin.org/user-agent' );
+		$request = $this->factory->create( 'http://httpbin.org/user-agent' );
 		$request->setUserAgent( 'foo' );
 		$status = $request->execute();
 		$this->assertTrue( $status->isGood() );
@@ -150,7 +156,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testSetData() {
-		$request = MWHttpRequest::factory( 'http://httpbin.org/post', [ 'method' => 'POST' ] );
+		$request = $this->factory->create( 'http://httpbin.org/post', [ 'method' => 'POST' ] );
 		$request->setData( [ 'foo' => 'bar', 'foo2' => 'bar2' ] );
 		$status = $request->execute();
 		$this->assertTrue( $status->isGood() );
@@ -163,7 +169,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 			return;
 		}
 
-		$request = MWHttpRequest::factory( 'http://httpbin.org/ip' );
+		$request = $this->factory->create( 'http://httpbin.org/ip' );
 		$data = '';
 		$request->setCallback( function ( $fh, $content ) use ( &$data ) {
 			$data .= $content;
@@ -177,7 +183,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testBasicAuthentication() {
-		$request = MWHttpRequest::factory( 'http://httpbin.org/basic-auth/user/pass', [
+		$request = $this->factory->create( 'http://httpbin.org/basic-auth/user/pass', [
 			'username' => 'user',
 			'password' => 'pass',
 		] );
@@ -185,7 +191,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 		$this->assertTrue( $status->isGood() );
 		$this->assertResponseFieldValue( 'authenticated', true, $request );
 
-		$request = MWHttpRequest::factory( 'http://httpbin.org/basic-auth/user/pass', [
+		$request = $this->factory->create( 'http://httpbin.org/basic-auth/user/pass', [
 			'username' => 'user',
 			'password' => 'wrongpass',
 		] );
@@ -195,7 +201,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testFactoryDefaults() {
-		$request = MWHttpRequest::factory( 'http://acme.test' );
+		$request = $this->factory->create( 'http://acme.test' );
 		$this->assertInstanceOf( MWHttpRequest::class, $request );
 	}
 

@@ -85,7 +85,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 
 	/**
 	 * @param string $url Url to use. If protocol-relative, will be expanded to an http:// URL
-	 * @param array $options (optional) extra params to pass (see Http::request())
+	 * @param array $options (optional) extra params to pass (see HttpRequestFactory::create())
 	 * @param string $caller The method making this request, for profiling
 	 * @param Profiler|null $profiler An instance of the profiler for profiling, or null
 	 * @throws Exception
@@ -172,9 +172,9 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 
 	/**
 	 * Generate a new request object
-	 * Deprecated: @see HttpRequestFactory::create
+	 * @deprecated since 1.34, use HttpRequestFactory instead
 	 * @param string $url Url to use
-	 * @param array|null $options (optional) extra params to pass (see Http::request())
+	 * @param array|null $options (optional) extra params to pass (see HttpRequestFactory::create())
 	 * @param string $caller The method making this request, for profiling
 	 * @throws DomainException
 	 * @return MWHttpRequest
@@ -224,7 +224,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		if ( self::isLocalURL( $this->url ) || $this->noProxy ) {
 			$this->proxy = '';
 		} else {
-			$this->proxy = Http::getProxy();
+			global $wgHTTPProxy;
+			$this->proxy = (string)$wgHTTPProxy;
 		}
 	}
 
@@ -661,5 +662,28 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 
 		$this->reqHeaders['X-Forwarded-For'] = $originalRequest['ip'];
 		$this->reqHeaders['X-Original-User-Agent'] = $originalRequest['userAgent'];
+	}
+
+	/**
+	 * Check that the given URI is a valid one.
+	 *
+	 * This hardcodes a small set of protocols only, because we want to
+	 * deterministically reject protocols not supported by all HTTP-transport
+	 * methods.
+	 *
+	 * "file://" specifically must not be allowed, for security reasons
+	 * (see <https://www.mediawiki.org/wiki/Special:Code/MediaWiki/r67684>).
+	 *
+	 * @todo FIXME this is wildly inaccurate and fails to actually check most stuff
+	 *
+	 * @since 1.34
+	 * @param string $uri URI to check for validity
+	 * @return bool
+	 */
+	public static function isValidURI( $uri ) {
+		return (bool)preg_match(
+			'/^https?:\/\/[^\/\s]\S*$/D',
+			$uri
+		);
 	}
 }

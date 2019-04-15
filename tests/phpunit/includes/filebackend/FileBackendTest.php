@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -1538,7 +1539,8 @@ class FileBackendTest extends MediaWikiTestCase {
 		$url = $this->backend->getFileHttpUrl( [ 'src' => $source ] );
 
 		if ( $url !== null ) { // supported
-			$data = Http::request( "GET", $url, [], __METHOD__ );
+			$data = MediaWikiServices::getInstance()->getHttpRequestFactory()->
+				get( $url, [], __METHOD__ );
 			$this->assertEquals( $content, $data,
 				"HTTP GET of URL has right contents ($backendName)." );
 		}
