@@ -40,6 +40,21 @@ class ResourceLoaderImage {
 		'jpg' => 'image/jpg',
 	];
 
+	/** @var string */
+	private $name;
+	/** @var string */
+	private $module;
+	/** @var string|array */
+	private $descriptor;
+	/** @var string */
+	private $basePath;
+	/** @var array */
+	private $variants;
+	/** @var string|null */
+	private $defaultColor;
+	/** @var string */
+	private $extension;
+
 	/**
 	 * @param string $name Image name
 	 * @param string $module Module name

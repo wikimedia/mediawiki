@@ -29,7 +29,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 			'debug' => 'true',
 			'lang' => 'en',
 			'dir' => 'ltr',
-			'skin' => 'vector',
+			'skin' => 'fallback',
 			'modules' => 'startup',
 			'only' => 'scripts',
 			'safemode' => null,
