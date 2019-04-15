@@ -103,6 +103,8 @@ because of Phabricator reports.
 
 === Deprecations in 1.34 ===
 * The MWNamespace class is deprecated. Use MediaWikiServices::getNamespaceInfo.
+* ExtensionRegistry->load() is deprecated, as it breaks dependency checking.
+  Instead, use ->queue().
 * …
 
 === Other changes in 1.34 ===
