@@ -593,6 +593,27 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertTrue( $clone->equals( $title ) );
 	}
 
+	public function provideCastFromLinkTarget() {
+		return array_merge( [ [ null ] ], self::provideNewFromTitleValue() );
+	}
+
+	/**
+	 * @covers Title::castFromLinkTarget
+	 * @dataProvider provideCastFromLinkTarget
+	 */
+	public function testCastFromLinkTarget( $value ) {
+		$title = Title::castFromLinkTarget( $value );
+
+		if ( $value === null ) {
+			$this->assertNull( $title );
+		} else {
+			$dbkey = str_replace( ' ', '_', $value->getText() );
+			$this->assertSame( $dbkey, $title->getDBkey() );
+			$this->assertSame( $value->getNamespace(), $title->getNamespace() );
+			$this->assertSame( $value->getFragment(), $title->getFragment() );
+		}
+	}
+
 	public static function provideGetTitleValue() {
 		return [
 			[ 'Foo' ],
