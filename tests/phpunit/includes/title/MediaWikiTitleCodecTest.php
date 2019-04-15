@@ -333,7 +333,9 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 				new TitleValue( NS_CATEGORY,
 					'X' . str_repeat( 'x', 247 ) ) ],
 			[ str_repeat( 'x', 252 ), NS_MAIN, 'en',
-				'X' . str_repeat( 'x', 251 ) ]
+				'X' . str_repeat( 'x', 251 ) ],
+			// Test decoding and normalization
+			[ '&quot;n&#x303;&#34;', NS_MAIN, 'en', new TitleValue( NS_MAIN, '"ñ"' ) ],
 		];
 	}
 
