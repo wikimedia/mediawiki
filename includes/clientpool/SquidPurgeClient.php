@@ -68,9 +68,8 @@ class SquidPurgeClient {
 
 	/**
 	 * @param string $server
-	 * @param array $options
 	 */
-	public function __construct( $server, $options = [] ) {
+	public function __construct( $server ) {
 		$parts = explode( ':', $server, 2 );
 		$this->host = $parts[0];
 		$this->port = $parts[1] ?? 80;
