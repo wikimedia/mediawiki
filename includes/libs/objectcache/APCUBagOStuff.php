@@ -54,13 +54,11 @@ class APCUBagOStuff extends BagOStuff {
 	}
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
-		apcu_store(
+		return apcu_store(
 			$key . self::KEY_SUFFIX,
 			$this->serialize( $value ),
 			$exptime
 		);
-
-		return true;
 	}
 
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
