@@ -12,7 +12,18 @@
 @ooui-padding-vertical: 4 / @ooui-font-size-browser / @ooui-font-size-base; // equals `0.285714em`≈`4px`
 
 .mw-htmlform-ooui-wrapper.oo-ui-panelLayout-padded {
+	// Reducing `padding-top`, as the heading's `line-height` provides similar distance.
 	padding: @ooui-spacing-medium @ooui-spacing-large @ooui-spacing-large;
+
+	// Trigger only when collapsible & JS is available via `.mw-collapsed`.
+	.client-js & .oo-ui-fieldsetLayout.mw-collapsed .oo-ui-fieldsetLayout-header {
+		// Negative margin to match the reduced distance on the top caused by the previous rule.
+		margin-bottom: -( @ooui-spacing-large - @ooui-spacing-medium );
+
+		.oo-ui-labelElement-label {
+			margin-bottom: 0;
+		}
+	}
 }
 
 .mw-htmlform-ooui {
