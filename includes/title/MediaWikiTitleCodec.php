@@ -164,13 +164,17 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @return TitleValue
 	 */
 	public function parseTitle( $text, $defaultNamespace = NS_MAIN ) {
+		// Convert things like &eacute; &#257; or &#x3017; into normalized (T16952) text
+		$filteredText = Sanitizer::decodeCharReferencesAndNormalize( $text );
+
 		// NOTE: this is an ugly cludge that allows this class to share the
 		// code for parsing with the old Title class. The parser code should
 		// be refactored to avoid this.
-		$parts = $this->splitTitleString( $text, $defaultNamespace );
+		$parts = $this->splitTitleString( $filteredText, $defaultNamespace );
 
-		// Relative fragment links are not supported by TitleValue
-		if ( $parts['dbkey'] === '' ) {
+		// Fragment-only is okay, but only with no namespace
+		if ( $parts['dbkey'] === '' &&
+		( $parts['fragment'] === '' || $parts['namespace'] !== NS_MAIN ) ) {
 			throw new MalformedTitleException( 'title-invalid-empty', $text );
 		}
 
