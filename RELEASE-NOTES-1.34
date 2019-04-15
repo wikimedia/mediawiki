@@ -89,6 +89,10 @@ because of Phabricator reports.
 * ObjectFactory class, deprecated in 1.31, has been removed.
 * HWLDFWordAccumudlator class, deprecated in 1.28, has been removed.
 * XMPInfo, XMPReader and XMPValidate, deprecated in 1.32, have been removed.
+* The RedirectSpecialPage::execute method could sometimes return a Title object.
+  This behavior was removed, and the method now matches the parent signature
+  (SpecialPage::execute) which is to return HTML string or void.
+  To obtain the destination title, use RedirectSpecialPage::getRedirect.
 
 === Deprecations in 1.34 ===
 * The MWNamespace class is deprecated. Use MediaWikiServices::getNamespaceInfo.

@@ -35,23 +35,19 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 
 	/**
 	 * @param string|null $subpage
-	 * @return Title|bool
 	 */
 	public function execute( $subpage ) {
 		$redirect = $this->getRedirect( $subpage );
 		$query = $this->getRedirectQuery();
-		// Redirect to a page title with possible query parameters
+
 		if ( $redirect instanceof Title ) {
+			// Redirect to a page title with possible query parameters
 			$url = $redirect->getFullUrlForRedirect( $query );
 			$this->getOutput()->redirect( $url );
-
-			return $redirect;
 		} elseif ( $redirect === true ) {
 			// Redirect to index.php with query parameters
 			$url = wfAppendQuery( wfScript( 'index' ), $query );
 			$this->getOutput()->redirect( $url );
-
-			return $redirect;
 		} else {
 			$this->showNoRedirectPage();
 		}
