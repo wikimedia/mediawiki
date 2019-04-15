@@ -109,11 +109,7 @@ class MagicWord {
 		$this->mId = $id;
 		$this->mSynonyms = (array)$syn;
 		$this->mCaseSensitive = $cs;
-		$this->contLang = $contLang;
-
-		if ( !$contLang ) {
-			$this->contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		}
+		$this->contLang = $contLang ?: MediaWikiServices::getInstance()->getContentLanguage();
 	}
 
 	/**

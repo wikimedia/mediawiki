@@ -38,11 +38,7 @@ abstract class SearchDatabase extends SearchEngine {
 	 * @param IDatabase|null $db The database to search from
 	 */
 	public function __construct( IDatabase $db = null ) {
-		if ( $db ) {
-			$this->db = $db;
-		} else {
-			$this->db = wfGetDB( DB_REPLICA );
-		}
+		$this->db = $db ?: wfGetDB( DB_REPLICA );
 	}
 
 	/**

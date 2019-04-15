@@ -49,10 +49,7 @@ class MagicWordArray {
 	 */
 	public function __construct( $names = [], MagicWordFactory $factory = null ) {
 		$this->names = $names;
-		$this->factory = $factory;
-		if ( !$factory ) {
-			$this->factory = MediaWikiServices::getInstance()->getMagicWordFactory();
-		}
+		$this->factory = $factory ?: MediaWikiServices::getInstance()->getMagicWordFactory();
 	}
 
 	/**
