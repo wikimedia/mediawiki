@@ -103,7 +103,8 @@ class TitleValue implements LinkTarget {
 		// Sanity check, no full validation or normalization applied here!
 		Assert::parameter( !preg_match( '/^_|[ \r\n\t]|_$/', $dbkey ), '$dbkey',
 			"invalid DB key '$dbkey'" );
-		Assert::parameter( $dbkey !== '', '$dbkey', 'should not be empty' );
+		Assert::parameter( $dbkey !== '' || ( $fragment !== '' && $namespace === NS_MAIN ),
+			'$dbkey', 'should not be empty unless namespace is main and fragment is non-empty' );
 
 		$this->namespace = $namespace;
 		$this->dbkey = $dbkey;
