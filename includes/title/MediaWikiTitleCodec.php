@@ -157,8 +157,9 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		// be refactored to avoid this.
 		$parts = $this->splitTitleString( $filteredText, $defaultNamespace );
 
-		// Relative fragment links are not supported by TitleValue
-		if ( $parts['dbkey'] === '' ) {
+		// Fragment-only is okay, but only with no namespace
+		if ( $parts['dbkey'] === '' &&
+		( $parts['fragment'] === '' || $parts['namespace'] !== NS_MAIN ) ) {
 			throw new MalformedTitleException( 'title-invalid-empty', $text );
 		}
 
