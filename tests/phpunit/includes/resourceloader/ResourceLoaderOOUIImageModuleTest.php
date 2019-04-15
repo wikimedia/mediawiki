@@ -56,9 +56,9 @@ class ResourceLoaderOOUIImageModuleTest extends ResourceLoaderTestCase {
 			'Generated styles use the default image (embed)'
 		);
 		$this->assertRegExp(
-			'/vector/',
+			'/fallback/',
 			$styles['all'],
-			'Generated styles use the default image (link)'
+			'Generated styles use the default skin (link)'
 		);
 	}
 
