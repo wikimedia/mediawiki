@@ -19,6 +19,8 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\Interwiki\InterwikiLookup;
+
 /**
  * @covers MediaWikiTitleCodec
  *
@@ -37,21 +39,6 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 			'wgMetaNamespace' => 'Project',
 			'wgLocalInterwikis' => [ 'localtestiw' ],
 			'wgCapitalLinks' => true,
-
-			// NOTE: this is why global state is evil.
-			// TODO: refactor access to the interwiki codes so it can be injected.
-			'wgHooks' => [
-				'InterwikiLoadPrefix' => [
-					function ( $prefix, &$data ) {
-						if ( $prefix === 'localtestiw' ) {
-							$data = [ 'iw_url' => 'localtestiw' ];
-						} elseif ( $prefix === 'remotetestiw' ) {
-							$data = [ 'iw_url' => 'remotetestiw' ];
-						}
-						return false;
-					}
-				]
-			]
 		] );
 		$this->setUserLang( 'en' );
 		$this->setContentLang( 'en' );
@@ -77,12 +64,60 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 		return $genderCache;
 	}
 
+	/**
+	 * Returns a mock InterwikiLookup that only has an isValidInterwiki() method, which recognizes
+	 * 'localtestiw' and 'remotetestiw'. All other methods throw.
+	 *
+	 * @return InterwikiLookup
+	 */
+	private function getInterwikiLookup() : InterwikiLookup {
+		$iwLookup = $this->createMock( InterwikiLookup::class );
+
+		$iwLookup->expects( $this->any() )
+			->method( 'isValidInterwiki' )
+			->will( $this->returnCallback( function ( $prefix ) {
+				return $prefix === 'localtestiw' || $prefix === 'remotetestiw';
+			} ) );
+
+		$iwLookup->expects( $this->never() )
+			->method( $this->callback( function ( $name ) {
+				return $name !== 'isValidInterwiki';
+			} ) );
+
+		return $iwLookup;
+	}
+
+	/**
+	 * Returns a mock NamespaceInfo that has only a hasGenderDistinction() method, which assumes
+	 * only NS_USER and NS_USER_TALK have a gender distinction. All other methods throw.
+	 *
+	 * @return NamespaceInfo
+	 */
+	private function getNamespaceInfo() : NamespaceInfo {
+		$nsInfo = $this->createMock( NamespaceInfo::class );
+
+		$nsInfo->expects( $this->any() )
+			->method( 'hasGenderDistinction' )
+			->will( $this->returnCallback( function ( $ns ) {
+				return $ns === NS_USER || $ns === NS_USER_TALK;
+			} ) );
+
+		$nsInfo->expects( $this->never() )
+			->method( $this->callback( function ( $name ) {
+				return $name !== 'hasGenderDistinction';
+			} ) );
+
+		return $nsInfo;
+	}
+
 	protected function makeCodec( $lang ) {
-		$gender = $this->getGenderCache();
-		$lang = Language::factory( $lang );
-		// language object can came from cache, which does not respect test settings
-		$lang->resetNamespaces();
-		return new MediaWikiTitleCodec( $lang, $gender );
+		return new MediaWikiTitleCodec(
+			Language::factory( $lang ),
+			$this->getGenderCache(),
+			[],
+			$this->getInterwikiLookup(),
+			$this->getNamespaceInfo()
+		);
 	}
 
 	public static function provideFormat() {

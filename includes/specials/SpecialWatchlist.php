@@ -699,15 +699,16 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		if ( $this->isStructuredFilterUiEnabled() ) {
 			$rcfilterContainer = Html::element(
 				'div',
-				[ 'class' => 'rcfilters-container' ]
+				// TODO: Remove deprecated rcfilters-container class
+				[ 'class' => 'rcfilters-container mw-rcfilters-container' ]
 			);
 
 			$loadingContainer = Html::rawElement(
 				'div',
-				[ 'class' => 'rcfilters-spinner' ],
+				[ 'class' => 'mw-rcfilters-spinner' ],
 				Html::element(
 					'div',
-					[ 'class' => 'rcfilters-spinner-bounce' ]
+					[ 'class' => 'mw-rcfilters-spinner-bounce' ]
 				)
 			);
 
@@ -715,7 +716,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$this->getOutput()->addHTML(
 				Html::rawElement(
 					'div',
-					[ 'class' => 'rcfilters-head' ],
+					// TODO: Remove deprecated rcfilters-head class
+					[ 'class' => 'rcfilters-head mw-rcfilters-head' ],
 					$rcfilterContainer . $form
 				)
 			);
