@@ -17,7 +17,7 @@ describe( 'Rollback with confirmation', function () {
 		// Requires user to log in again, handled by deleteCookie() call in beforeEach function
 		UserLoginPage.loginAdmin();
 
-		browser.pause( 300 );
+		UserLoginPage.waitForScriptsToBeReady();
 		browser.execute( function () {
 			return ( new mw.Api() ).saveOption(
 				'showrollbackconfirmation',
@@ -48,22 +48,22 @@ describe( 'Rollback with confirmation', function () {
 		assert.strictEqual( HistoryPage.rollbackConfirmableNo.getText(), 'Cancel' );
 	} );
 
-	it.skip( 'should offer a way to cancel rollbacks', function () {
+	it( 'should offer a way to cancel rollbacks', function () {
 		HistoryPage.rollback.click();
 
-		browser.pause( 300 );
+		HistoryPage.rollbackConfirmableNo.waitForVisible( 5000 );
 
 		HistoryPage.rollbackConfirmableNo.click();
 
-		browser.pause( 500 );
+		browser.pause( 1000 ); // Waiting to ensure we are NOT redirected and stay on the same page
 
 		assert.strictEqual( HistoryPage.heading.getText(), 'Revision history of "' + name + '"' );
 	} );
 
-	it.skip( 'should perform rollbacks after confirming intention', function () {
+	it( 'should perform rollbacks after confirming intention', function () {
 		HistoryPage.rollback.click();
 
-		browser.pause( 300 );
+		HistoryPage.rollbackConfirmableYes.waitForVisible( 5000 );
 
 		HistoryPage.rollbackConfirmableYes.click();
 
@@ -104,7 +104,7 @@ describe( 'Rollback without confirmation', function () {
 		// Requires user to log in again, handled by deleteCookie() call in beforeEach function
 		UserLoginPage.loginAdmin();
 
-		browser.pause( 300 );
+		UserLoginPage.waitForScriptsToBeReady();
 		browser.execute( function () {
 			return ( new mw.Api() ).saveOption(
 				'showrollbackconfirmation',
