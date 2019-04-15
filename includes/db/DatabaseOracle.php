@@ -470,7 +470,7 @@ class DatabaseOracle extends Database {
 		$this->mLastResult = $stmt = oci_parse( $this->conn, $sql );
 		if ( $stmt === false ) {
 			$e = oci_error( $this->conn );
-			$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
+			$this->reportQueryError( $e['message'], $e['code'], $sql, $fname );
 
 			return false;
 		}
@@ -496,7 +496,7 @@ class DatabaseOracle extends Database {
 				$val = $this->getVerifiedUTF8( $val );
 				if ( oci_bind_by_name( $stmt, ":$col", $val, -1, SQLT_CHR ) === false ) {
 					$e = oci_error( $stmt );
-					$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
+					$this->reportQueryError( $e['message'], $e['code'], $sql, $fname );
 
 					return false;
 				}
@@ -530,7 +530,7 @@ class DatabaseOracle extends Database {
 		if ( oci_execute( $stmt, $this->execFlags() ) === false ) {
 			$e = oci_error( $stmt );
 			if ( !$this->ignoreDupValOnIndex || $e['code'] != '1' ) {
-				$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
+				$this->reportQueryError( $e['message'], $e['code'], $sql, $fname );
 
 				return false;
 			} else {
