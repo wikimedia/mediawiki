@@ -24,6 +24,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Permissions\PermissionManager;
+
 /**
  * MediaWiki page data importer
  *
@@ -83,11 +85,11 @@ class SpecialImport extends SpecialPage {
 		# getUserPermissionsErrors() might actually be used for, hence the 'ns-specialprotected'
 		$errors = wfMergeErrorArrays(
 			$this->getPageTitle()->getUserPermissionsErrors(
-				'import', $user, true,
+				'import', $user, PermissionManager::RIGOR_FULL,
 				[ 'ns-specialprotected', 'badaccess-group0', 'badaccess-groups' ]
 			),
 			$this->getPageTitle()->getUserPermissionsErrors(
-				'importupload', $user, true,
+				'importupload', $user, PermissionManager::RIGOR_FULL,
 				[ 'ns-specialprotected', 'badaccess-group0', 'badaccess-groups' ]
 			)
 		);
