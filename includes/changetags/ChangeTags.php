@@ -604,7 +604,7 @@ class ChangeTags {
 	 * @param int|null $rc_id The rc_id of the change to add the tags to
 	 * @param int|null $rev_id The rev_id of the change to add the tags to
 	 * @param int|null $log_id The log_id of the change to add the tags to
-	 * @param string $params Params to put in the ct_params field of table
+	 * @param string|null $params Params to put in the ct_params field of table
 	 * 'change_tag' when adding tags
 	 * @param string $reason Comment for the log
 	 * @param User $user Who to give credit for the action
