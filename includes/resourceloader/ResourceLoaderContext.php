@@ -84,9 +84,11 @@ class ResourceLoaderContext implements MessageLocalizer {
 
 		$this->skin = $request->getRawVal( 'skin' );
 		$skinnames = Skin::getSkinNames();
-		// If no skin is specified, or we don't recognize the skin, use the default skin
 		if ( !$this->skin || !isset( $skinnames[$this->skin] ) ) {
-			$this->skin = $this->getConfig()->get( 'DefaultSkin' );
+			// The 'skin' parameter is required. (Not yet enforced.)
+			// For requests without a known skin specified,
+			// use MediaWiki's 'fallback' skin for skin-specific decisions.
+			$this->skin = 'fallback';
 		}
 	}
 
@@ -170,7 +172,9 @@ class ResourceLoaderContext implements MessageLocalizer {
 			$lang = $this->getRequest()->getRawVal( 'lang', '' );
 			// Stricter version of RequestContext::sanitizeLangCode()
 			if ( !Language::isValidBuiltInCode( $lang ) ) {
-				$lang = $this->getConfig()->get( 'LanguageCode' );
+				// The 'lang' parameter is required. (Not yet enforced.)
+				// If omitted, localise with the dummy language code.
+				$lang = 'qqx';
 			}
 			$this->language = $lang;
 		}

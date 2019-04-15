@@ -14,8 +14,6 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 	protected static function getResourceLoader() {
 		return new EmptyResourceLoader( new HashConfig( [
 			'ResourceLoaderDebug' => false,
-			'DefaultSkin' => 'fallback',
-			'LanguageCode' => 'nl',
 			'LoadScript' => '/w/load.php',
 		] ) );
 	}
@@ -25,7 +23,7 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 
 		// Request parameters
 		$this->assertEquals( [], $ctx->getModules() );
-		$this->assertEquals( 'nl', $ctx->getLanguage() );
+		$this->assertEquals( 'qqx', $ctx->getLanguage() );
 		$this->assertEquals( false, $ctx->getDebug() );
 		$this->assertEquals( null, $ctx->getOnly() );
 		$this->assertEquals( 'fallback', $ctx->getSkin() );
@@ -34,7 +32,7 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 
 		// Misc
 		$this->assertEquals( 'ltr', $ctx->getDirection() );
-		$this->assertEquals( 'nl|fallback||||||||', $ctx->getHash() );
+		$this->assertEquals( 'qqx|fallback||||||||', $ctx->getHash() );
 		$this->assertInstanceOf( User::class, $ctx->getUserObj() );
 	}
 
