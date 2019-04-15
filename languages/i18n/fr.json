@@ -1501,6 +1501,7 @@
 	"action-bigdelete": "supprimer des pages avec de grands historiques",
 	"action-blockemail": "empêcher un utilisateur d’envoyer des courriels",
 	"action-bot": "être traité comme un processus automatisé",
+	"action-editprotected": "modifier les pages protégées comme « {{int:protect-level-sysop}} »",
 	"action-editsemiprotected": "modifier des pages protégées avec le statut « {{int:protect-level-autoconfirmed}} »",
 	"action-editinterface": "modifier l’interface utilisateur",
 	"action-editusercss": "modifier les fichiers CSS d’autres utilisateurs",
