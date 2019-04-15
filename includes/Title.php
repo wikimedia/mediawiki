@@ -246,6 +246,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * unless $forceClone is "clone". If $forceClone is "clone" and the given TitleValue
 	 * is already a Title instance, that instance is copied using the clone operator.
 	 *
+	 * @deprecated since 1.34, use newFromLinkTarget or castFromLinkTarget
+	 *
 	 * @param TitleValue $titleValue Assumed to be safe.
 	 * @param string $forceClone set to NEW_CLONE to ensure a fresh instance is returned.
 	 *
@@ -281,6 +283,17 @@ class Title implements LinkTarget, IDBAccessObject {
 			$linkTarget->getFragment(),
 			$linkTarget->getInterwiki()
 		);
+	}
+
+	/**
+	 * Same as newFromLinkTarget, but if passed null, returns null.
+	 *
+	 * @param LinkTarget|null $linkTarget Assumed to be safe (if not null).
+	 *
+	 * @return Title|null
+	 */
+	public static function castFromLinkTarget( $linkTarget ) {
+		return $linkTarget ? self::newFromLinkTarget( $linkTarget ) : null;
 	}
 
 	/**
