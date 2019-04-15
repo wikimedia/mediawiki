@@ -262,7 +262,7 @@ class MediaWiki {
 						$target = $specialPage->getRedirect( $subpage );
 						// target can also be true. We let that case fall through to normal processing.
 						if ( $target instanceof Title ) {
-							$query = $specialPage->getRedirectQuery() ?: [];
+							$query = $specialPage->getRedirectQuery( $subpage ) ?: [];
 							$request = new DerivativeRequest( $this->context->getRequest(), $query );
 							$request->setRequestURL( $this->context->getRequest()->getRequestURL() );
 							$this->context->setRequest( $request );
