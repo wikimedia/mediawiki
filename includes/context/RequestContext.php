@@ -368,7 +368,7 @@ class RequestContext implements IContextSource, MutableContext {
 		if ( $this->skin === null ) {
 			$skin = null;
 			Hooks::run( 'RequestContextCreateSkin', [ $this, &$skin ] );
-			$factory = SkinFactory::getDefaultInstance();
+			$factory = MediaWikiServices::getInstance()->getSkinFactory();
 
 			// If the hook worked try to set a skin from it
 			if ( $skin instanceof Skin ) {
