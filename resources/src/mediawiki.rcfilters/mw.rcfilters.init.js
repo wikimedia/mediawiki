@@ -105,7 +105,7 @@ function init() {
 		{
 			$wrapper: $( 'body' ),
 			$topSection: $topSection,
-			$filtersContainer: $( '.rcfilters-container' ),
+			$filtersContainer: $( '.mw-rcfilters-container' ),
 			$changesListContainer: $( '.mw-changeslist, .mw-changeslist-empty' ),
 			$formContainer: $initialFieldset,
 			collapsed: initialCollapsedState
