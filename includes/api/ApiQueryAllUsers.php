@@ -285,8 +285,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 			if ( $params['activeusers'] ) {
 				$data['recentactions'] = (int)$row->recentactions;
-				// @todo 'recenteditcount' is set for BC, remove in 1.25
-				$data['recenteditcount'] = $data['recentactions'];
 			}
 			if ( $fld_registration ) {
 				$data['registration'] = $row->user_registration ?

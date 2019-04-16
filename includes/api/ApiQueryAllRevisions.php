@@ -82,9 +82,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
-			$revQuery = $revisionStore->getQueryInfo(
-				$this->fetchContent ? [ 'page', 'text' ] : [ 'page' ]
-			);
+			$revQuery = $revisionStore->getQueryInfo( [ 'page' ] );
 		} else {
 			$this->limit = $this->getParameter( 'limit' ) ?: 10;
 			$revQuery = [
