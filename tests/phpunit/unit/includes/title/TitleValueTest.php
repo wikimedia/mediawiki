@@ -31,6 +31,8 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 			[ NS_MAIN, '', 'fragment', '', true, false ],
 			[ NS_USER, 'TestThis', 'stuff', '', true, false ],
 			[ NS_USER, 'TestThis', '', 'baz', false, true ],
+			[ NS_MAIN, 'foo bar', '', '', false, false ],
+			[ NS_MAIN, 'foo_bar', '', '', false, false ],
 		];
 	}
 
@@ -44,7 +46,8 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 
 		$this->assertEquals( $ns, $title->getNamespace() );
 		$this->assertTrue( $title->inNamespace( $ns ) );
-		$this->assertEquals( $text, $title->getText() );
+		$this->assertEquals( strtr( $text, ' ', '_' ), $title->getDbKey() );
+		$this->assertEquals( strtr( $text, '_', ' ' ), $title->getText() );
 		$this->assertEquals( $fragment, $title->getFragment() );
 		$this->assertEquals( $hasFragment, $title->hasFragment() );
 		$this->assertEquals( $interwiki, $title->getInterwiki() );
@@ -60,7 +63,6 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 			[ NS_MAIN, 5, 'fragment', '' ],
 			[ NS_MAIN, null, 'fragment', '' ],
 			[ NS_USER, '', 'fragment', '' ],
-			[ NS_MAIN, 'foo bar', '', '' ],
 			[ NS_MAIN, 'bar_', '', '' ],
 			[ NS_MAIN, '_foo', '', '' ],
 			[ NS_MAIN, ' eek ', '', '' ],
