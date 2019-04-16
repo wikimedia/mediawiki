@@ -22,6 +22,7 @@ THIS IS NOT A RELEASE YET
 * (T216968) Return pageid as int in both list=iwbacklinks and list=langbacklinks.
 * (T218608) Fix an issue that prevents Extension:OAuth working when
   $wgBlockDisablesLogin is true.
+* (T25227) action=logout now requires to be posted and have a csrf token.
 
 == MediaWiki 1.30.1 ==
 
