@@ -113,12 +113,11 @@ For notes on 1.32.x and older releases, see HISTORY.
 * (T219655) The MarkPatrolled hook has a new parameter for the tags
   associated with this entry in the patrol log.
 
+
 === External library changes in 1.33 ===
 ==== New external libraries ====
 * Added wikimedia/password-blacklist 0.1.4.
 * Added guzzlehttp/guzzle 6.3.3.
-* Added jakub-onderka/php-console-highlighter 0.3.2 explicitly (dev-only).
-* Added mediawiki/mediawiki-phan-config 0.5.0 (dev-only).
 
 ==== Changed external libraries ====
 * Updated OOUI from v0.29.2 to v0.31.3.
@@ -126,23 +125,34 @@ For notes on 1.32.x and older releases, see HISTORY.
 * Updated moment from v2.19.3 to v2.24.0.
 * Updated wikimedia/xmp-reader from 0.6.0 to 0.6.2.
 * Updated wikimedia/scoped-callback from 2.0.0 to 3.0.0.
-* Updated wikimedia/ip-set from 1.3.0 to 2.0.1.
-  * The deprecated IPSet\IPSet alias was removed, Wikimedia\IPSet must be
-    used instead.
-* Updated qunitjs from 2.6.2 to 2.9.1.
 * Updated jquery-client from 2.0.1 to 2.0.2.
-* Updated psy/psysh from 0.9.6 to 0.9.9 (dev-only).
-* Updated nikic/php-parser from 3.1.3 to 3.1.5 (dev-only).
 * Updated pear/net_smtp from 1.8.0 to 1.8.1.
 * Updated cssjanus/cssjanus from 1.2.0 to 1.2.1.
 * Updated wikimedia/php-session-serializer from 1.0.6 to 1.0.7.
-* Updated mediawiki/mediawiki-codesniffer from 22.0.0 to 25.0.0 (dev-only).
 
 ==== Removed external libraries ====
 * (T219403) jquery.ui.spinner, deprecated since 1.31, was removed.
+
+
+=== Developer library changes in 1.33 ===
+==== New developer libraries ====
+* Added jakub-onderka/php-console-highlighter 0.3.2 explicitly (dev-only).
+* Added mediawiki/mediawiki-phan-config 0.5.0 (dev-only).
+
+==== Changed developer libraries ====
+* Updated wikimedia/ip-set from 1.3.0 to 2.0.1.
+  * The deprecated IPSet\IPSet alias was removed, Wikimedia\IPSet must be
+    used instead.
+* Updated psy/psysh from 0.9.6 to 0.9.9 (dev-only).
+* Updated nikic/php-parser from 3.1.3 to 3.1.5 (dev-only).
+* Updated mediawiki/mediawiki-codesniffer from 22.0.0 to 25.0.0 (dev-only).
+* Updated qunitjs from 2.6.2 to 2.9.1.
+
+==== Removed developer libraries ====
 * The jetbrains/phpstorm-stubs repository was removed in favour of the minimal
   stubs we need, which are kept in the new `.phan/internal_stubs` directory
   (dev-only).
+
 
 === Bug fixes in 1.33 ===
 * (T164211) Special:UserRights could sometimes fail with a
