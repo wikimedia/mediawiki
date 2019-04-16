@@ -65,6 +65,7 @@ THIS IS NOT A RELEASE YET
 * (T216029) Chrome redirects to Special:BadTitle after editing a section with
   a non-Latin name on a page with non-Latin characters in title.
 * (T219728) Added support for new Japanese era name "Reiwa"
+* (T25227) action=logout now requires to be posted and have a csrf token.
 
 == MediaWiki 1.31.1 ==
 

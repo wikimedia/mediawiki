@@ -4468,5 +4468,7 @@
 	"pagedata-not-acceptable": "No matching format found. Supported MIME types: $1",
 	"pagedata-bad-title": "Invalid title: $1.",
 	"unregistered-user-config": "For security reasons JavaScript, CSS and JSON user subpages cannot be loaded for unregistered users.",
-	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage"
+	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage",
+	"userlogout-continue": "If you wish to log out please [$1 continue to the log out page].",
+	"userlogout-sessionerror": "Log out failed due to session error. Please [$1 try again]."
 }
