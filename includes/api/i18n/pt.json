@@ -699,7 +699,7 @@
 	"apihelp-query+deletedrevs-param-tag": "Listar só as revisões marcadas com esta etiqueta.",
 	"apihelp-query+deletedrevs-param-user": "Listar só as revisões deste utilizador.",
 	"apihelp-query+deletedrevs-param-excludeuser": "Não listar edições deste utilizador.",
-	"apihelp-query+deletedrevs-param-namespace": "Listar só as páginas neste domínio.",
+	"apihelp-query+deletedrevs-param-namespace": "Listar só as páginas deste espaço nominal/domínio.",
 	"apihelp-query+deletedrevs-param-limit": "O número máximo de revisões a serem listadas.",
 	"apihelp-query+deletedrevs-param-prop": "As propriedades a serem obtidas:\n;revid:Adiciona o identificador da revisão eliminada.\n;parentid:Adiciona o identificador da revisão anterior da página.\n;user:Adiciona o utilizador que fez a revisão.\n;userid:Adiciona o identificador do utilizador que fez a revisão.\n;comment:Adiciona o comentário da revisão.\n;parsedcomment:Adiciona o comentário da revisão após passagem pelo analisador sintático.\n;minor:Etiqueta a revisão como uma revisão menor.\n;len:Adiciona o comprimento (em bytes) da revisão.\n;sha1:Adiciona o SHA-1 da revisão (na base 16).\n;content:Adiciona o conteúdo da revisão.\n;token:<span class=\"apihelp-deprecated\">Obsoleto.</span> Fornece a chave da edição.\n;tags:Etiquetas da revisão.",
 	"apihelp-query+deletedrevs-example-mode1": "Listar só as últimas revisões eliminadas das páginas <kbd>Main Page</kbd> e <kbd>Talk:Main Page</kbd>, com o conteúdo (modo 1).",

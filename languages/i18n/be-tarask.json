@@ -1331,6 +1331,7 @@
 	"action-apihighlimits": "ўжываньне падвышаных лімітаў у API-запытах",
 	"action-autoconfirmed": "адсутнасьць абмежаваньня хуткасьці паводле IP-адрасу",
 	"action-bigdelete": "выдаленьне старонак зь вялікай гісторыяй",
+	"action-blockemail": "блякаваньне ўдзельніку магчымасьці адпраўкі лістоў электроннай поштай",
 	"nchanges": "$1 {{PLURAL:$1|зьмена|зьмены|зьменаў}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|з апошняга візыту}}",
 	"enhancedrc-history": "гісторыя",

@@ -212,6 +212,7 @@
 	"index-category": "صفحات مفهرسة",
 	"noindex-category": "صفحات غير مفهرسة",
 	"broken-file-category": "صفحات تحوي وصلات ملفات معطوبة",
+	"category-header-numerals": "$1–$2",
 	"about": "عن",
 	"article": "صفحة محتوى",
 	"newwindow": "(تفتح في نافذة جديدة)",

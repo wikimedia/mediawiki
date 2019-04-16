@@ -1428,6 +1428,7 @@
 	"action-reupload-own": "uw eigen bestandsuploads te overschrijven",
 	"action-nominornewtalk": "kleine bewerkingen aan een overlegpagina niet te laten leiden tot een melding 'nieuwe berichten'",
 	"action-markbotedits": "teruggedraaide bewerkingen te markeren als botbewerkingen",
+	"action-patrolmarks": "controletekens in recente wijzigingen te zien",
 	"action-override-export-depth": "pagina's te exporteren, inclusief pagina's waarnaar verwezen wordt, tot een diepte van vijf",
 	"action-suppressredirect": "geen doorverwijzingen achter te laten bij het hernoemen van pagina's",
 	"nchanges": "$1 {{PLURAL:$1|bewerking|bewerkingen}}",
