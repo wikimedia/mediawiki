@@ -1733,16 +1733,16 @@ class DifferenceEngine extends ContextSource {
 	 * by the request context); if oldid is 0, then compare the revision in newid to the
 	 * immediately previous one.
 	 *
-	 * If oldid is false, leave the corresponding revision object set
-	 * to false. This can happen with 'diff=prev' pointing to a non-existent revision,
-	 * and is also used directly by the API.
+	 * If oldid is false, leave the corresponding revision object set to false. This can
+	 * happen with 'diff=prev' pointing to a non-existent revision, and is also used directly
+	 * by the API.
 	 *
 	 * @return bool Whether both revisions were loaded successfully. Setting mOldRev
 	 *   to false counts as successful loading.
 	 */
 	public function loadRevisionData() {
 		if ( $this->mRevisionsLoaded ) {
-			return $this->isContentOverridden || $this->mNewRev && !is_null( $this->mOldRev );
+			return $this->isContentOverridden || ( $this->mOldRev !== null && $this->mNewRev !== null );
 		}
 
 		// Whether it succeeds or fails, we don't want to try again
