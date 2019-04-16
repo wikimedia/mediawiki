@@ -49,10 +49,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	private function getConfigSettings( $context ) {
 		$conf = $this->getConfig();
 
-		// Passing a context is important as Title::newMainPage() may otherwise
-		// try to intialise a session, which is not allowed on load.php requests.
-		$mainPage = Title::newMainPage( $context );
-
 		/**
 		 * Namespace related preparation
 		 * - wgNamespaceIds: Key-value pairs of all localized, canonical and aliases for namespaces.
@@ -94,7 +90,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgVersion' => $conf->get( 'Version' ),
 			'wgEnableAPI' => true, // Deprecated since MW 1.32
 			'wgEnableWriteAPI' => true, // Deprecated since MW 1.32
-			'wgMainPageTitle' => $mainPage->getPrefixedText(),
 			'wgFormattedNamespaces' => $contLang->getFormattedNamespaces(),
 			'wgNamespaceIds' => $namespaceIds,
 			'wgContentNamespaces' => MWNamespace::getContentNamespaces(),
