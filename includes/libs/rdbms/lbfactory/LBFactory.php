@@ -399,7 +399,7 @@ abstract class LBFactory implements ILBFactory {
 				$lbs[] = $lb;
 			} );
 			if ( !$lbs ) {
-				return; // nothing actually used
+				return true; // nothing actually used
 			}
 		}
 
