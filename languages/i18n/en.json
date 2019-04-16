@@ -4517,5 +4517,7 @@
 	"passwordpolicies-policy-maximalpasswordlength": "Password must be less than $1 {{PLURAL:$1|character|characters}} long",
 	"passwordpolicies-policy-passwordcannotbepopular": "Password cannot be {{PLURAL:$1|the popular password|in the list of $1 popular passwords}}",
 	"easydeflate-invaliddeflate": "Content provided is not properly deflated",
-	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage"
+	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage",
+	"userlogout-continue": "If you wish to log out please [$1 continue to the log out page].",
+	"userlogout-sessionerror": "Log out failed due to session error. Please [$1 try again]."
 }

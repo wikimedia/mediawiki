@@ -4719,5 +4719,7 @@
 	"passwordpolicies-policy-maximalpasswordlength": "Password policy that enforces a maximum number of characters a password must be. $1 - maximum number of characters that a password can be",
 	"passwordpolicies-policy-passwordcannotbepopular": "Password policy that enforces that a password is not in a list of $1 number of \"popular\" passwords. $1 - number of popular passwords the password will be checked against",
 	"easydeflate-invaliddeflate": "Error message if the content passed to easydeflate was not deflated (compressed) properly",
-	"unprotected-js": "Error message shown when trying to load javascript via action=raw that is not protected"
+	"unprotected-js": "Error message shown when trying to load javascript via action=raw that is not protected",
+	"userlogout-continue": "Shown if user attempted to log out without a token specified. Probably the user clicked on an old link that hasn't been updated to use the new system. $1 - url that user should click on in order to log out.",
+	"userlogout-sessionerror": "Shown when a user tries to log out with an invalid token. $1 is url with correct token that user should click."
 }
