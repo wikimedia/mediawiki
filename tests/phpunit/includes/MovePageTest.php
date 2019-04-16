@@ -5,6 +5,13 @@
  */
 class MovePageTest extends MediaWikiTestCase {
 
+	public function setUp() {
+		parent::setUp();
+		$this->tablesUsed[] = 'page';
+		$this->tablesUsed[] = 'revision';
+		$this->tablesUsed[] = 'comment';
+	}
+
 	/**
 	 * @dataProvider provideIsValidMove
 	 * @covers MovePage::isValidMove
@@ -82,5 +89,109 @@ class MovePageTest extends MediaWikiTestCase {
 		$user = User::newFromName( 'TitleMove tester' );
 		$status = $mp->move( $user, 'Reason', true );
 		$this->assertTrue( $status->hasMessage( $error ) );
+	}
+
+	/**
+	 * Test moving subpages from one page to another
+	 * @covers MovePage::moveSubpages
+	 */
+	public function testMoveSubpages() {
+		$name = ucfirst( __FUNCTION__ );
+
+		$subPages = [ "Talk:$name/1", "Talk:$name/2" ];
+		$ids = [];
+		$pages = [
+			$name,
+			"Talk:$name",
+			"$name 2",
+			"Talk:$name 2",
+		];
+		foreach ( array_merge( $pages, $subPages ) as $page ) {
+			$ids[$page] = $this->createPage( $page );
+		}
+
+		$oldTitle = Title::newFromText( "Talk:$name" );
+		$newTitle = Title::newFromText( "Talk:$name 2" );
+		$mp = new MovePage( $oldTitle, $newTitle );
+		$status = $mp->moveSubpages( $this->getTestUser()->getUser(), 'Reason', true );
+
+		$this->assertTrue( $status->isGood(),
+			"Moving subpages from Talk:{$name} to Talk:{$name} 2 was not completely successful." );
+		foreach ( $subPages as $page ) {
+			$this->assertMoved( $page, str_replace( $name, "$name 2", $page ), $ids[$page] );
+		}
+	}
+
+	/**
+	 * Test moving subpages from one page to another
+	 * @covers MovePage::moveSubpagesIfAllowed
+	 */
+	public function testMoveSubpagesIfAllowed() {
+		$name = ucfirst( __FUNCTION__ );
+
+		$subPages = [ "Talk:$name/1", "Talk:$name/2" ];
+		$ids = [];
+		$pages = [
+			$name,
+			"Talk:$name",
+			"$name 2",
+			"Talk:$name 2",
+		];
+		foreach ( array_merge( $pages, $subPages ) as $page ) {
+			$ids[$page] = $this->createPage( $page );
+		}
+
+		$oldTitle = Title::newFromText( "Talk:$name" );
+		$newTitle = Title::newFromText( "Talk:$name 2" );
+		$mp = new MovePage( $oldTitle, $newTitle );
+		$status = $mp->moveSubpagesIfAllowed( $this->getTestUser()->getUser(), 'Reason', true );
+
+		$this->assertTrue( $status->isGood(),
+			"Moving subpages from Talk:{$name} to Talk:{$name} 2 was not completely successful." );
+		foreach ( $subPages as $page ) {
+			$this->assertMoved( $page, str_replace( $name, "$name 2", $page ), $ids[$page] );
+		}
+	}
+
+	/**
+	 * Shortcut function to create a page and return its id.
+	 *
+	 * @param string $name Page to create
+	 * @return int ID of created page
+	 */
+	protected function createPage( $name ) {
+		return $this->editPage( $name, 'Content' )->value['revision']->getPage();
+	}
+
+	/**
+	 * @param string $from Prefixed name of source
+	 * @param string $to Prefixed name of destination
+	 * @param string $id Page id of the page to move
+	 * @param array|string|null $opts Options: 'noredirect' to expect no redirect
+	 */
+	protected function assertMoved( $from, $to, $id, $opts = null ) {
+		$opts = (array)$opts;
+
+		Title::clearCaches();
+		$fromTitle = Title::newFromText( $from );
+		$toTitle = Title::newFromText( $to );
+
+		$this->assertTrue( $toTitle->exists(),
+			"Destination {$toTitle->getPrefixedText()} does not exist" );
+
+		if ( in_array( 'noredirect', $opts ) ) {
+			$this->assertFalse( $fromTitle->exists(),
+				"Source {$fromTitle->getPrefixedText()} exists" );
+		} else {
+			$this->assertTrue( $fromTitle->exists(),
+				"Source {$fromTitle->getPrefixedText()} does not exist" );
+			$this->assertTrue( $fromTitle->isRedirect(),
+				"Source {$fromTitle->getPrefixedText()} is not a redirect" );
+
+			$target = Revision::newFromTitle( $fromTitle )->getContent()->getRedirectTarget();
+			$this->assertSame( $toTitle->getPrefixedText(), $target->getPrefixedText() );
+		}
+
+		$this->assertSame( $id, $toTitle->getArticleID() );
 	}
 }
