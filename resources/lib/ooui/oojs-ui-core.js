@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.3
+ * OOUI v0.31.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-04-04T19:10:48Z
+ * Date: 2019-04-16T23:14:51Z
  */
 ( function ( OO ) {
 
@@ -1283,75 +1283,107 @@ OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) 
  * Scroll element into view.
  *
  * @static
- * @param {HTMLElement} el Element to scroll into view
+ * @param {HTMLElement|Object} elOrPosition Element to scroll into view
  * @param {Object} [config] Configuration options
+ * @param {string} [config.animate=true] Animate to the new scroll offset.
  * @param {string} [config.duration='fast'] jQuery animation duration value
  * @param {string} [config.direction] Scroll in only one direction, e.g. 'x' or 'y', omit
  *  to scroll in both directions
+ * @param {Object} [config.padding] Additional padding on the container to scroll past.
+ *  Object containing any of 'top', 'bottom', 'left', or 'right' as numbers.
+ * @param {Object} [config.scrollContainer] Scroll container. Defaults to
+ *  getClosestScrollableContainer of the element.
  * @return {jQuery.Promise} Promise which resolves when the scroll is complete
  */
-OO.ui.Element.static.scrollIntoView = function ( el, config ) {
-	var position, animations, container, $container, elementDimensions, containerDimensions,
-		$window,
+OO.ui.Element.static.scrollIntoView = function ( elOrPosition, config ) {
+	var position, animations, container, $container, elementPosition, containerDimensions,
+		$window, padding, animate, method,
 		deferred = $.Deferred();
 
 	// Configuration initialization
 	config = config || {};
 
+	padding = $.extend( {
+		top: 0,
+		bottom: 0,
+		left: 0,
+		right: 0
+	}, config.padding );
+
+	animate = config.animate !== false;
+
 	animations = {};
-	container = this.getClosestScrollableContainer( el, config.direction );
+	elementPosition = elOrPosition instanceof HTMLElement ?
+		this.getDimensions( elOrPosition ).rect :
+		elOrPosition;
+	container = config.scrollContainer || (
+		elOrPosition instanceof HTMLElement ?
+			this.getClosestScrollableContainer( elOrPosition, config.direction ) :
+			// No scrollContainer or element
+			this.getClosestScrollableContainer( document.body )
+	);
 	$container = $( container );
-	elementDimensions = this.getDimensions( el );
 	containerDimensions = this.getDimensions( container );
-	$window = $( this.getWindow( el ) );
+	$window = $( this.getWindow( container ) );
 
 	// Compute the element's position relative to the container
 	if ( $container.is( 'html, body' ) ) {
 		// If the scrollable container is the root, this is easy
 		position = {
-			top: elementDimensions.rect.top,
-			bottom: $window.innerHeight() - elementDimensions.rect.bottom,
-			left: elementDimensions.rect.left,
-			right: $window.innerWidth() - elementDimensions.rect.right
+			top: elementPosition.top,
+			bottom: $window.innerHeight() - elementPosition.bottom,
+			left: elementPosition.left,
+			right: $window.innerWidth() - elementPosition.right
 		};
 	} else {
 		// Otherwise, we have to subtract el's coordinates from container's coordinates
 		position = {
-			top: elementDimensions.rect.top -
+			top: elementPosition.top -
 				( containerDimensions.rect.top + containerDimensions.borders.top ),
 			bottom: containerDimensions.rect.bottom - containerDimensions.borders.bottom -
-				containerDimensions.scrollbar.bottom - elementDimensions.rect.bottom,
-			left: elementDimensions.rect.left -
+				containerDimensions.scrollbar.bottom - elementPosition.bottom,
+			left: elementPosition.left -
 				( containerDimensions.rect.left + containerDimensions.borders.left ),
 			right: containerDimensions.rect.right - containerDimensions.borders.right -
-				containerDimensions.scrollbar.right - elementDimensions.rect.right
+				containerDimensions.scrollbar.right - elementPosition.right
 		};
 	}
 
 	if ( !config.direction || config.direction === 'y' ) {
-		if ( position.top < 0 ) {
-			animations.scrollTop = containerDimensions.scroll.top + position.top;
-		} else if ( position.top > 0 && position.bottom < 0 ) {
+		if ( position.top < padding.top ) {
+			animations.scrollTop = containerDimensions.scroll.top + position.top - padding.top;
+		} else if ( position.bottom < padding.bottom ) {
 			animations.scrollTop = containerDimensions.scroll.top +
-				Math.min( position.top, -position.bottom );
+				// Scroll the bottom into view, but not at the expense
+				// of scrolling the top out of view
+				Math.min( position.top - padding.top, -position.bottom + padding.bottom );
 		}
 	}
 	if ( !config.direction || config.direction === 'x' ) {
-		if ( position.left < 0 ) {
-			animations.scrollLeft = containerDimensions.scroll.left + position.left;
-		} else if ( position.left > 0 && position.right < 0 ) {
+		if ( position.left < padding.left ) {
+			animations.scrollLeft = containerDimensions.scroll.left + position.left - padding.left;
+		} else if ( position.right < padding.right ) {
 			animations.scrollLeft = containerDimensions.scroll.left +
-				Math.min( position.left, -position.right );
+				// Scroll the right into view, but not at the expense
+				// of scrolling the left out of view
+				Math.min( position.left - padding.left, -position.right + padding.right );
 		}
 	}
 	if ( !$.isEmptyObject( animations ) ) {
-		// eslint-disable-next-line no-jquery/no-animate
-		$container.stop( true ).animate( animations, config.duration === undefined ?
-			'fast' : config.duration );
-		$container.queue( function ( next ) {
+		if ( animate ) {
+			// eslint-disable-next-line no-jquery/no-animate
+			$container.stop( true ).animate( animations, config.duration === undefined ? 'fast' : config.duration );
+			$container.queue( function ( next ) {
+				deferred.resolve();
+				next();
+			} );
+		} else {
+			$container.stop( true );
+			for ( method in animations ) {
+				$container[ method ]( animations[ method ] );
+			}
 			deferred.resolve();
-			next();
-		} );
+		}
 	} else {
 		deferred.resolve();
 	}
@@ -3232,9 +3264,13 @@ OO.ui.mixin.FlaggedElement = function OoUiMixinFlaggedElement( config ) {
 	this.$flagged = null;
 
 	// Initialization
-	this.setFlags( config.flags );
+	this.setFlags( config.flags || this.constructor.static.flags );
 	this.setFlaggedElement( config.$flagged || this.$element );
 };
+
+/* Setup */
+
+OO.initClass( OO.ui.mixin.FlaggedElement );
 
 /* Events */
 
@@ -3247,6 +3283,17 @@ OO.ui.mixin.FlaggedElement = function OoUiMixinFlaggedElement( config ) {
  * @param {Object.<string,boolean>} changes Object keyed by flag name. A Boolean `true` indicates
  * that the flag was added, `false` that the flag was removed.
  */
+
+/* Static Properties */
+
+/**
+ * Initial value to pass to setFlags if no value is provided in config.
+ *
+ * @static
+ * @inheritable
+ * @property {string|string[]|Object.<string, boolean>}
+ */
+OO.ui.mixin.FlaggedElement.static.flags = null;
 
 /* Methods */
 
@@ -6702,13 +6749,15 @@ OO.ui.SelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 			case OO.ui.Keys.UP:
 			case OO.ui.Keys.LEFT:
 				this.clearKeyPressBuffer();
-				nextItem = currentItem ? this.findRelativeSelectableItem( currentItem, -1 ) : firstItem;
+				nextItem = currentItem ?
+					this.findRelativeSelectableItem( currentItem, -1 ) : firstItem;
 				handled = true;
 				break;
 			case OO.ui.Keys.DOWN:
 			case OO.ui.Keys.RIGHT:
 				this.clearKeyPressBuffer();
-				nextItem = currentItem ? this.findRelativeSelectableItem( currentItem, 1 ) : firstItem;
+				nextItem = currentItem ?
+					this.findRelativeSelectableItem( currentItem, 1 ) : firstItem;
 				handled = true;
 				break;
 			case OO.ui.Keys.ESCAPE:
@@ -7976,8 +8025,8 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			selectedItem = this.findSelectedItem();
 			if ( !this.multiselect && selectedItem ) {
 				// TODO: Verify if this is even needed; This is already done on highlight changes
-				// in SelectWidget#highlightItem, so we should just need to highlight the item we need to
-				// highlight here and not bother with attr or checking selections.
+				// in SelectWidget#highlightItem, so we should just need to highlight the item
+				// we need to highlight here and not bother with attr or checking selections.
 				this.$focusOwner.attr( 'aria-activedescendant', selectedItem.getElementId() );
 				selectedItem.scrollElementIntoView( { duration: 0 } );
 			}
@@ -13067,19 +13116,40 @@ OO.ui.NumberInputWidget.prototype.onKeyDown = function ( e ) {
 };
 
 /**
+ * Update the disabled state of the controls
+ *
+ * @chainable
+ * @protected
+ * @return {OO.ui.NumberInputWidget} The widget, for chaining
+ */
+OO.ui.NumberInputWidget.prototype.updateControlsDisabled = function () {
+	var disabled = this.isDisabled() || this.isReadOnly();
+	if ( this.minusButton ) {
+		this.minusButton.setDisabled( disabled );
+	}
+	if ( this.plusButton ) {
+		this.plusButton.setDisabled( disabled );
+	}
+	return this;
+};
+
+/**
  * @inheritdoc
  */
 OO.ui.NumberInputWidget.prototype.setDisabled = function ( disabled ) {
 	// Parent method
 	OO.ui.NumberInputWidget.parent.prototype.setDisabled.call( this, disabled );
+	this.updateControlsDisabled();
+	return this;
+};
 
-	if ( this.minusButton ) {
-		this.minusButton.setDisabled( this.isDisabled() );
-	}
-	if ( this.plusButton ) {
-		this.plusButton.setDisabled( this.isDisabled() );
-	}
-
+/**
+ * @inheritdoc
+ */
+OO.ui.NumberInputWidget.prototype.setReadOnly = function () {
+	// Parent method
+	OO.ui.NumberInputWidget.parent.prototype.setReadOnly.apply( this, arguments );
+	this.updateControlsDisabled();
 	return this;
 };
 
