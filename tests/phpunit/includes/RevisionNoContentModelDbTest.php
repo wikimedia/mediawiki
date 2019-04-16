@@ -44,4 +44,10 @@ class RevisionNoContentModelDbTest extends RevisionDbTestBase {
 		yield [ $row, 789 ];
 	}
 
+	public function provideGetRevisionText() {
+		yield [
+			[ 'text' ]
+		];
+	}
+
 }

@@ -1585,11 +1585,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$this->assertSame( $expected, $rev->getTextId() );
 	}
 
-	public function provideGetRevisionText() {
-		yield [
-			[ 'text' ]
-		];
-	}
+	abstract public function provideGetRevisionText();
 
 	/**
 	 * @dataProvider provideGetRevisionText

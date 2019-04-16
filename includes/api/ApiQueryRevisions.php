@@ -153,9 +153,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			if ( $this->token !== null || $pageCount > 0 ) {
 				$opts[] = 'page';
 			}
-			if ( $this->fetchContent ) {
-				$opts[] = 'text';
-			}
 			if ( $this->fld_user ) {
 				$opts[] = 'user';
 			}
