@@ -335,6 +335,14 @@ class LogPager extends ReverseChronologicalPager {
 		# Don't show duplicate rows when using log_search
 		$joins['log_search'] = [ 'JOIN', 'ls_log_id=log_id' ];
 
+		// T221458: MySQL/MariaDB (10.1.37) can sometimes irrationally decide that querying `actor` before
+		// `logging` and filesorting is somehow better than querying $limit+1 rows from `logging`.
+		// Tell it not to reorder the query. But not when tag filtering was used, as it seems as likely
+		// to be harmed as helped in that case.
+		if ( !$this->mTagFilter ) {
+			$options[] = 'STRAIGHT_JOIN';
+		}
+
 		$info = [
 			'tables' => $tables,
 			'fields' => $fields,
