@@ -233,14 +233,69 @@ class MovePage {
 	}
 
 	/**
+	 * Move a page without taking user permissions into account. Only checks if the move is itself
+	 * invalid, e.g., trying to move a special page or trying to move a page onto one that already
+	 * exists.
+	 *
+	 * @param User $user
+	 * @param string|null $reason
+	 * @param bool|null $createRedirect
+	 * @param string[] $changeTags Change tags to apply to the entry in the move log
+	 * @return Status
+	 */
+	public function move(
+		User $user, $reason = null, $createRedirect = true, array $changeTags = []
+	) {
+		$status = $this->isValidMove();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
+		return $this->moveUnsafe( $user, $reason, $createRedirect, $changeTags );
+	}
+
+	/**
+	 * Same as move(), but with permissions checks.
+	 *
+	 * @param User $user
+	 * @param string|null $reason
+	 * @param bool|null $createRedirect Ignored if user doesn't have suppressredirect permission
+	 * @param string[] $changeTags Change tags to apply to the entry in the move log
+	 * @return Status
+	 */
+	public function moveIfAllowed(
+		User $user, $reason = null, $createRedirect = true, array $changeTags = []
+	) {
+		$status = $this->isValidMove();
+		$status->merge( $this->checkPermissions( $user, $reason ) );
+		if ( $changeTags ) {
+			$status->merge( ChangeTags::canAddTagsAccompanyingChange( $changeTags, $user ) );
+		}
+
+		if ( !$status->isOK() ) {
+			// Auto-block user's IP if the account was "hard" blocked
+			$user->spreadAnyEditBlock();
+			return $status;
+		}
+
+		// Check suppressredirect permission
+		if ( !$user->isAllowed( 'suppressredirect' ) ) {
+			$createRedirect = true;
+		}
+
+		return $this->moveUnsafe( $user, $reason, $createRedirect, $changeTags );
+	}
+
+	/**
+	 * Moves *without* any sort of safety or sanity checks. Hooks can still fail the move, however.
+	 *
 	 * @param User $user
 	 * @param string $reason
 	 * @param bool $createRedirect
-	 * @param string[] $changeTags Change tags to apply to the entry in the move log. Caller
-	 *  should perform permission checks with ChangeTags::canAddTagsAccompanyingChange
+	 * @param string[] $changeTags Change tags to apply to the entry in the move log
 	 * @return Status
 	 */
-	public function move( User $user, $reason, $createRedirect, array $changeTags = [] ) {
+	private function moveUnsafe( User $user, $reason, $createRedirect, array $changeTags ) {
 		global $wgCategoryCollation;
 
 		$status = Status::newGood();
