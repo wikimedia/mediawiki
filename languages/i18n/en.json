@@ -4179,5 +4179,7 @@
 	"undelete-cantedit": "You cannot undelete this page as you are not allowed to edit this page.",
 	"undelete-cantcreate": "You cannot undelete this page as there is no existing page with this name and you are not allowed to create this page.",
 	"unregistered-user-config": "For security reasons JavaScript, CSS and JSON user subpages cannot be loaded for unregistered users.",
-	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage"
+	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage",
+	"userlogout-continue": "If you wish to log out please [$1 continue to the log out page].",
+	"userlogout-sessionerror": "Log out failed due to session error. Please [$1 try again]."
 }

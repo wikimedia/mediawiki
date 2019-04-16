@@ -20,6 +20,7 @@ THIS IS NOT A RELEASE YET
 * (T218608) Fix an issue that prevents Extension:OAuth working when
   $wgBlockDisablesLogin is true.
 * (T219728) Added support for new Japanese era name "Reiwa"
+* (T25227) action=logout now requires to be posted and have a csrf token.
 
 == MediaWiki 1.27.5 ==
 

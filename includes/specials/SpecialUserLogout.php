@@ -48,6 +48,28 @@ class SpecialUserLogout extends UnlistedSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
+		$out = $this->getOutput();
+		$user = $this->getUser();
+		$request = $this->getRequest();
+
+		$logoutToken = $request->getVal( 'logoutToken' );
+		$urlParams = [
+			'logoutToken' => $user->getEditToken( 'logoutToken', $request )
+		] + $request->getValues();
+		unset( $urlParams['title'] );
+		$continueLink = $this->getFullTitle()->getFullUrl( $urlParams );
+
+		if ( $logoutToken === null ) {
+			$this->getOutput()->addWikiMsg( 'userlogout-continue', $continueLink );
+			return;
+		}
+		if ( !$this->getUser()->matchEditToken(
+			$logoutToken, 'logoutToken', $this->getRequest(), 24 * 60 * 60
+		) ) {
+			$this->getOutput()->addWikiMsg( 'userlogout-sessionerror', $continueLink );
+			return;
+		}
+
 		// Make sure it's possible to log out
 		$session = MediaWiki\Session\SessionManager::getGlobalSession();
 		if ( !$session->canSetUser() ) {

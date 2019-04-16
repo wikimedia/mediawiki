@@ -4357,5 +4357,7 @@
 	"undelete-cantedit": "Shown if the user tries to undelete a page that they cannot edit",
 	"undelete-cantcreate": "Shown if the user tries to undelete a page which currently does not exist, and they are not allowed to create it. This could for example happen on a wiki with custom protection levels where the page name has been create-protected and the user has the right to undelete but not the right to edit protected pages.",
 	"unregistered-user-config": "Shown when viewing a user JS, CSS or JSON subpage with ?action=raw&ctype=<mime type> where there is no such user. It is shown as a paragraph after a header saying 'Forbidden'.",
-	"unprotected-js": "Error message shown when trying to load javascript via action=raw that is not protected"
+	"unprotected-js": "Error message shown when trying to load javascript via action=raw that is not protected",
+	"userlogout-continue": "Shown if user attempted to log out without a token specified. Probably the user clicked on an old link that hasn't been updated to use the new system. $1 - url that user should click on in order to log out.",
+	"userlogout-sessionerror": "Shown when a user tries to log out with an invalid token. $1 is url with correct token that user should click."
 }
