@@ -1909,4 +1909,27 @@ class LanguageTest extends LanguageClassesTestCase {
 		$ar2 = new LanguageAr();
 		$this->assertTrue( $ar1->equals( $ar2 ), 'ar equals ar' );
 	}
+
+	/**
+	 * @dataProvider provideUcfirst
+	 * @covers Language::ucfirst
+	 */
+	public function testUcfirst( $orig, $expected, $desc, $overrides = false ) {
+		$lang = new Language();
+		if ( is_array( $overrides ) ) {
+			$this->setMwGlobals( [ 'wgOverrideUcfirstCharacters' => $overrides ] );
+		}
+		$this->assertSame( $lang->ucfirst( $orig ), $expected, $desc );
+	}
+
+	public static function provideUcfirst() {
+		return [
+			[ 'alice', 'Alice', 'simple ASCII string', false ],
+			[ 'århus',  'Århus', 'unicode string', false ],
+			//overrides do not affect ASCII characters
+			[ 'foo', 'Foo', 'ASCII is not overriden', [ 'f' => 'b' ] ],
+			// but they do affect non-ascii ones
+			[ 'èl', 'Ll' , 'Non-ASCII is overridden', [ 'è' => 'L' ] ],
+		];
+	}
 }
