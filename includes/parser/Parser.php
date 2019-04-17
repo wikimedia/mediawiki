@@ -2590,32 +2590,15 @@ class Parser {
 		 * Some of these require message or data lookups and can be
 		 * expensive to check many times.
 		 */
-		if ( Hooks::run( 'ParserGetVariableValueVarCache', [ &$parser, &$this->mVarCache ] )
-			&& isset( $this->mVarCache[$index] )
+		if (
+			Hooks::run( 'ParserGetVariableValueVarCache', [ &$parser, &$this->mVarCache ] ) &&
+			isset( $this->mVarCache[$index] )
 		) {
 			return $this->mVarCache[$index];
 		}
 
 		$ts = wfTimestamp( TS_UNIX, $this->mOptions->getTimestamp() );
 		Hooks::run( 'ParserGetVariableValueTs', [ &$parser, &$ts ] );
-
-		// In miser mode, disable words that always cause double-parses on page save (T137900)
-		static $slowRevWords = [ 'revisionid' => true ]; // @TODO: 'revisiontimestamp'
-		if (
-			isset( $slowRevWords[$index] ) &&
-			$this->siteConfig->get( 'MiserMode' ) &&
-			!$this->mOptions->getInterfaceMessage() &&
-			// @TODO: disallow this word on all namespaces
-			$this->nsInfo->isContent( $this->mTitle->getNamespace() )
-		) {
-			if ( $this->mRevisionId || $this->mOptions->getSpeculativeRevId() ) {
-				return '-';
-			} else {
-				$this->mOutput->setFlag( 'vary-revision-exists' );
-
-				return '';
-			}
-		};
 
 		$pageLang = $this->getFunctionLang();
 
@@ -2740,23 +2723,35 @@ class Parser {
 				$value = $pageid ?: null;
 				break;
 			case 'revisionid':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned.
-				$this->mOutput->setFlag( 'vary-revision-id' );
-				wfDebug( __METHOD__ . ": {{REVISIONID}} used, setting vary-revision-id...\n" );
-				$value = $this->mRevisionId;
-
-				if ( !$value ) {
-					$rev = $this->getRevisionObject();
-					if ( $rev ) {
-						$value = $rev->getId();
+				if (
+					$this->siteConfig->get( 'MiserMode' ) &&
+					!$this->mOptions->getInterfaceMessage() &&
+					// @TODO: disallow this word on all namespaces
+					$this->nsInfo->isContent( $this->mTitle->getNamespace() )
+				) {
+					// Use a stub result instead of the actual revision ID in order to avoid
+					// double parses on page save but still allow preview detection (T137900)
+					if ( $this->getRevisionId() || $this->mOptions->getSpeculativeRevId() ) {
+						$value = '-';
+					} else {
+						$this->mOutput->setFlag( 'vary-revision-exists' );
+						$value = '';
 					}
-				}
-
-				if ( !$value ) {
-					$value = $this->mOptions->getSpeculativeRevId();
-					if ( $value ) {
-						$this->mOutput->setSpeculativeRevIdUsed( $value );
+				} else {
+					# Inform the edit saving system that getting the canonical output after
+					# revision insertion requires another parse using the actual revision ID
+					$this->mOutput->setFlag( 'vary-revision-id' );
+					wfDebug( __METHOD__ . ": {{REVISIONID}} used, setting vary-revision-id...\n" );
+					$value = $this->getRevisionId();
+					if ( $value === 0 ) {
+						$rev = $this->getRevisionObject();
+						$value = $rev ? $rev->getId() : $value;
+					}
+					if ( !$value ) {
+						$value = $this->mOptions->getSpeculativeRevId();
+						if ( $value ) {
+							$this->mOutput->setSpeculativeRevIdUsed( $value );
+						}
 					}
 				}
 				break;
@@ -5850,6 +5845,11 @@ class Parser {
 
 	/**
 	 * Get the ID of the revision we are parsing
+	 *
+	 * The return value will be either:
+	 *   - a) Positive, indicating a specific revision ID (current or old)
+	 *   - b) Zero, meaning the revision ID specified by getCurrentRevisionCallback()
+	 *   - c) Null, meaning the parse is for preview mode and there is no revision
 	 *
 	 * @return int|null
 	 */
