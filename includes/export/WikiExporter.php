@@ -83,13 +83,18 @@ class WikiExporter {
 	 *   - limit: maximum number of rows to return
 	 *   - dir: "asc" or "desc" timestamp order
 	 * @param int $text One of WikiExporter::TEXT or WikiExporter::STUB
+	 * @param null|array $limitNamespaces Comma-separated list of namespace numbers
+	 *   to limit results
 	 */
-	function __construct( $db, $history = self::CURRENT, $text = self::TEXT ) {
+	function __construct( $db, $history = self::CURRENT, $text = self::TEXT,
+			$limitNamespaces = null
+	) {
 		$this->db = $db;
 		$this->history = $history;
 		$this->writer = new XmlDumpWriter( $text, self::schemaVersion() );
 		$this->sink = new DumpOutput();
 		$this->text = $text;
+		$this->limitNamespaces = $limitNamespaces;
 	}
 
 	/**
@@ -468,6 +473,11 @@ class WikiExporter {
 	 */
 	protected function outputPageStreamBatch( $results, $lastRow ) {
 		foreach ( $results as $row ) {
+			if ( $this->limitNamespaces &&
+				!in_array( $row->page_namespace, $this->limitNamespaces ) ) {
+				$lastRow = $row;
+				continue;
+			}
 			if ( $lastRow === null ||
 				$lastRow->page_namespace !== $row->page_namespace ||
 				$lastRow->page_title !== $row->page_title ) {
