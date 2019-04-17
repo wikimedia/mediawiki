@@ -1,4 +1,28 @@
 # OOUI Release History
+## v0.31.4 / 2019-04-16
+### Features
+* Element: Make `scrollIntoView()` more flexible (Ed Sanders)
+* NumberInputWidget: Disable buttons when read-only (Ed Sanders)
+* RequestManager: Add `showPendingRequest` option (Ed Sanders)
+* Toolbar: Support flagged buttons (Ed Sanders)
+
+### Styles
+* CheckboxInputWidget: Fix styling of indeterminate with focus/hover/active (Ed Sanders)
+* CheckboxMultioptionWidget: Remove full width (Thalia Chan)
+* PopupWidget: Progressively enhance to use `filter: drop-shadow()` (Volker E.)
+* RadioOptionWidget: Remove full-width radio buttons to bring consistency with checkboxes (David Barratt)
+* WikimediaUI theme: Fix popup callout border color (Ed Sanders)
+* WikimediaUI theme: Fix PHP Checkbox- & RadioInputWidget native appearance (Volker E.)
+
+### Code
+* Fix `'inherit'` value passed to toolbar mixin (Ed Sanders)
+* MenuSelect-/SelectWidget: Fix eslint `max-len` warnings (Volker E.)
+* NumberInputWidget: Remove duplicate documentation (Ed Sanders)
+* OptionWidget: Fix copy-paste from LabelElement (Bartosz Dziewoński)
+* icons: Point Wikimedia icon in Apex theme to correct file (Stephen Niedzielski)
+* testsuitegenerator: Do not generate duplicate tests if config options are duplicated (Bartosz Dziewoński)
+
+
 ## v0.31.3 / 2019-04-03
 ### Features
 * SelectFileInputWidget: Support multiple files (Ed Sanders)

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.3
+ * OOUI v0.31.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-04-04T19:10:54Z
+ * Date: 2019-04-16T23:15:00Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -879,7 +879,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 
 .oo-ui-radioOptionWidget {
   display: table;
-  width: 100%;
   padding: 0.28571429em 0;
 }
 .oo-ui-radioOptionWidget .oo-ui-radioInputWidget,
@@ -1096,6 +1095,14 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-radius: 2px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
 }
+@supports ( filter: drop-shadow( 0 0 0 ) ) {
+  .oo-ui-popupWidget {
+    filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.3));
+  }
+  .oo-ui-popupWidget-popup {
+    box-shadow: none;
+  }
+}
 .oo-ui-popupWidget-anchored-top {
   margin-top: 9px;
 }
@@ -1105,7 +1112,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor:before {
   bottom: -10px;
   left: -9px;
-  border-bottom-color: #a2a9b1;
+  border-bottom-color: #7b8590;
   border-width: 10px;
 }
 .oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor:after {
@@ -1248,16 +1255,16 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   left: 0;
   width: 1.42857143em;
   height: 1.42857143em;
-  border: 1px solid #72777d;
+  border-color: #72777d;
+  border-style: solid;
   border-radius: 2px;
+  border-width: 0;
 }
-.oo-ui-checkboxInputWidget [type='checkbox']:checked + span {
+:root .oo-ui-checkboxInputWidget [type='checkbox'] + span {
+  border-width: 1px;
+}
+.oo-ui-checkboxInputWidget [type='checkbox']:checked:not( :indeterminate ) + span {
   background-size: 1em 1em;
-}
-.oo-ui-checkboxInputWidget [type='checkbox']:indeterminate + span {
-  background-image: none;
-  background-color: #36c;
-  border-color: #36c;
 }
 .oo-ui-checkboxInputWidget [type='checkbox']:indeterminate + span:before {
   content: ' ';
@@ -1293,20 +1300,24 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-color: #2a4b8d;
   box-shadow: inset 0 0 0 1px #2a4b8d;
 }
-.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked + span {
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked + span,
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:indeterminate + span {
   background-color: #36c;
   border-color: #36c;
 }
-.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:focus + span {
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:focus + span,
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:indeterminate:focus + span {
   background-color: #36c;
   border-color: #36c;
   box-shadow: inset 0 0 0 1px #36c, inset 0 0 0 2px #fff;
 }
-.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:hover + span {
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:hover + span,
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:indeterminate:hover + span {
   background-color: #447ff5;
   border-color: #447ff5;
 }
-.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:active + span {
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:active + span,
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:indeterminate:active + span {
   background-color: #2a4b8d;
   border-color: #2a4b8d;
   box-shadow: inset 0 0 0 1px #2a4b8d;
@@ -1442,8 +1453,13 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   box-sizing: border-box;
   width: 1.42857143em;
   height: 1.42857143em;
-  border: 1px solid #72777d;
+  border-color: #72777d;
+  border-style: solid;
   border-radius: 100%;
+  border-width: 0;
+}
+:root .oo-ui-radioInputWidget [type='radio'] + span {
+  border-width: 1px;
 }
 .oo-ui-radioInputWidget [type='radio'] + span:before {
   content: ' ';
@@ -1997,7 +2013,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 
 .oo-ui-checkboxMultioptionWidget {
   display: table;
-  width: 100%;
   padding: 0.28571429em 0;
 }
 .oo-ui-checkboxMultioptionWidget .oo-ui-checkboxInputWidget,

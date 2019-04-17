@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.3
+ * OOUI v0.31.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-04-04T19:10:48Z
+ * Date: 2019-04-16T23:14:51Z
  */
 ( function ( OO ) {
 
@@ -932,6 +932,18 @@ OO.ui.Tool.prototype.updateTitle = function () {
 	} else {
 		this.$link.removeAttr( 'title' );
 	}
+};
+
+/**
+ * @inheritdoc OO.ui.mixin.IconElement
+ */
+OO.ui.Tool.prototype.setIcon = function ( icon ) {
+	// Mixin method
+	OO.ui.mixin.IconElement.prototype.setIcon.call( this, icon );
+
+	this.$element.toggleClass( 'oo-ui-tool-with-icon', !!this.icon );
+
+	return this;
 };
 
 /**
