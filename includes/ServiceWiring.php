@@ -443,8 +443,17 @@ return [
 			$config,
 			LoggerFactory::getInstance( 'resourceloader' )
 		);
+
 		$rl->addSource( $config->get( 'ResourceLoaderSources' ) );
+
+		// Core modules, then extension/skin modules
 		$rl->register( include "$IP/resources/Resources.php" );
+		$rl->register( $config->get( 'ResourceModules' ) );
+		Hooks::run( 'ResourceLoaderRegisterModules', [ &$rl ] );
+
+		if ( $config->get( 'EnableJavaScriptTest' ) === true ) {
+			$rl->registerTestModules();
+		}
 
 		return $rl;
 	},

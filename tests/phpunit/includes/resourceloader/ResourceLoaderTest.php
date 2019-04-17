@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\TestingAccessWrapper;
+use MediaWiki\MediaWikiServices;
 
 class ResourceLoaderTest extends ResourceLoaderTestCase {
 
@@ -14,25 +15,23 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 
 	/**
 	 * Ensure the ResourceLoaderRegisterModules hook is called.
-	 *
-	 * @covers ResourceLoader::__construct
+	 * @coversNothing
 	 */
-	public function testConstructRegistrationHook() {
-		$resourceLoaderRegisterModulesHook = false;
+	public function testServiceWiring() {
+		$this->overrideMwServices();
 
+		$ranHook = 0;
 		$this->setMwGlobals( 'wgHooks', [
 			'ResourceLoaderRegisterModules' => [
-				function ( &$resourceLoader ) use ( &$resourceLoaderRegisterModulesHook ) {
-					$resourceLoaderRegisterModulesHook = true;
+				function ( &$resourceLoader ) use ( &$ranHook ) {
+					$ranHook++;
 				}
 			]
 		] );
 
-		$unused = new ResourceLoader();
-		$this->assertTrue(
-			$resourceLoaderRegisterModulesHook,
-			'Hook ResourceLoaderRegisterModules called'
-		);
+		MediaWikiServices::getInstance()->getResourceLoader();
+
+		$this->assertSame( 1, $ranHook, 'Hook was called' );
 	}
 
 	/**

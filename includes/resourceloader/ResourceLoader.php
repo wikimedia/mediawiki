@@ -255,17 +255,6 @@ class ResourceLoader implements LoggerAwareInterface {
 		// Special module that always exists
 		$this->register( 'startup', [ 'class' => ResourceLoaderStartUpModule::class ] );
 
-		// Register extension modules
-		$this->register( $config->get( 'ResourceModules' ) );
-
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$rl = $this;
-		Hooks::run( 'ResourceLoaderRegisterModules', [ &$rl ] );
-
-		if ( $config->get( 'EnableJavaScriptTest' ) === true ) {
-			$this->registerTestModules();
-		}
-
 		$this->setMessageBlobStore( new MessageBlobStore( $this, $this->logger ) );
 	}
 
@@ -394,6 +383,9 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 	}
 
+	/**
+	 * @internal For use by ServiceWiring only
+	 */
 	public function registerTestModules() {
 		global $IP;
 
