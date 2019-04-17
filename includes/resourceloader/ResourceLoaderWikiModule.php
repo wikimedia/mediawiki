@@ -144,15 +144,18 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the Database object used in getTitleInfo().
+	 * Get the Database handle used for computing the module version.
 	 *
-	 * Defaults to the local replica DB. Subclasses may want to override this to return a foreign
-	 * database object, or null if getTitleInfo() shouldn't access the database.
+	 * Subclasses may override this to return a foreign database, which would
+	 * allow them to register a module on wiki A that fetches wiki pages from
+	 * wiki B.
 	 *
-	 * NOTE: This ONLY works for getTitleInfo() and isKnownEmpty(), NOT FOR ANYTHING ELSE.
-	 * In particular, it doesn't work for getContent() or getScript() etc.
+	 * The way this works is that the local module is a placeholder that can
+	 * only computer a module version hash. The 'source' of the module must
+	 * be set to the foreign wiki directly. Methods getScript() and getContent()
+	 * will not use this handle and are not valid on the local wiki.
 	 *
-	 * @return IDatabase|null
+	 * @return IDatabase
 	 */
 	protected function getDB() {
 		return wfGetDB( DB_REPLICA );
@@ -379,10 +382,6 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 */
 	protected function getTitleInfo( ResourceLoaderContext $context ) {
 		$dbr = $this->getDB();
-		if ( !$dbr ) {
-			// We're dealing with a subclass that doesn't have a DB
-			return [];
-		}
 
 		$pageNames = array_keys( $this->getPages( $context ) );
 		sort( $pageNames );
@@ -462,8 +461,8 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			$module = $rl->getModule( $name );
 			if ( $module instanceof self ) {
 				$mDB = $module->getDB();
-				// Subclasses may disable getDB and implement getTitleInfo differently
-				if ( $mDB && $mDB->getDomainID() === $db->getDomainID() ) {
+				// Subclasses may implement getDB differently
+				if ( $mDB->getDomainID() === $db->getDomainID() ) {
 					$wikiModules[] = $module;
 					$allPages += $module->getPages( $context );
 				}
