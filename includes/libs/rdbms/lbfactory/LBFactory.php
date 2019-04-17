@@ -674,6 +674,10 @@ abstract class LBFactory implements ILBFactory {
 		return strpos( $url, '?' ) === false ? "$url?cpPosIndex=$index" : "$url&cpPosIndex=$index";
 	}
 
+	public function getChronologyProtectorClientId() {
+		return $this->getChronologyProtector()->getClientId();
+	}
+
 	/**
 	 * @param int $index Write index
 	 * @param int $time UNIX timestamp; can be used to detect stale cookies (T190082)
