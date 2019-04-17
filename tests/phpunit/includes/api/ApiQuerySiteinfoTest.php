@@ -571,22 +571,19 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testExtensionTags() {
-		global $wgParser;
-
 		$expected = array_map(
 			function ( $tag ) {
 				return "<$tag>";
 			},
-			$wgParser->getTags()
+			MediaWikiServices::getInstance()->getParser()->getTags()
 		);
 
 		$this->assertSame( $expected, $this->doQuery( 'extensiontags' ) );
 	}
 
 	public function testFunctionHooks() {
-		global $wgParser;
-
-		$this->assertSame( $wgParser->getFunctionHooks(), $this->doQuery( 'functionhooks' ) );
+		$this->assertSame( MediaWikiServices::getInstance()->getParser()->getFunctionHooks(),
+			$this->doQuery( 'functionhooks' ) );
 	}
 
 	public function testVariables() {

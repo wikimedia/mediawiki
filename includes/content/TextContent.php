@@ -253,11 +253,12 @@ class TextContent extends AbstractContent {
 	protected function fillParserOutput( Title $title, $revId,
 		ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
-		global $wgParser, $wgTextModelsToParse;
+		global $wgTextModelsToParse;
 
 		if ( in_array( $this->getModel(), $wgTextModelsToParse ) ) {
 			// parse just to get links etc into the database, HTML is replaced below.
-			$output = $wgParser->parse( $this->getText(), $title, $options, true, true, $revId );
+			$output = MediaWikiServices::getInstance()->getParser()
+				->parse( $this->getText(), $title, $options, true, true, $revId );
 		}
 
 		if ( $generateHtml ) {

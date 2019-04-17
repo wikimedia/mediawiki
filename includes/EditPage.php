@@ -1816,15 +1816,14 @@ ERROR;
 	 * @return string
 	 */
 	private function newSectionSummary( &$sectionanchor = null ) {
-		global $wgParser;
-
 		if ( $this->sectiontitle !== '' ) {
 			$sectionanchor = $this->guessSectionName( $this->sectiontitle );
 			// If no edit summary was specified, create one automatically from the section
 			// title and have it link to the new section. Otherwise, respect the summary as
 			// passed.
 			if ( $this->summary === '' ) {
-				$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
+				$cleanSectionTitle = MediaWikiServices::getInstance()->getParser()
+					->stripSectionName( $this->sectiontitle );
 				return $this->context->msg( 'newsectionsummary' )
 					->plaintextParams( $cleanSectionTitle )->inContentLanguage()->text();
 			}
@@ -1832,7 +1831,8 @@ ERROR;
 			$sectionanchor = $this->guessSectionName( $this->summary );
 			# This is a new section, so create a link to the new section
 			# in the revision summary.
-			$cleanSummary = $wgParser->stripSectionName( $this->summary );
+			$cleanSummary = MediaWikiServices::getInstance()->getParser()
+				->stripSectionName( $this->summary );
 			return $this->context->msg( 'newsectionsummary' )
 				->plaintextParams( $cleanSummary )->inContentLanguage()->text();
 		}
@@ -3058,8 +3058,8 @@ ERROR;
 	public static function extractSectionTitle( $text ) {
 		preg_match( "/^(=+)(.+)\\1\\s*(\n|$)/i", $text, $matches );
 		if ( !empty( $matches[2] ) ) {
-			global $wgParser;
-			return $wgParser->stripSectionName( trim( $matches[2] ) );
+			return MediaWikiServices::getInstance()->getParser()
+				->stripSectionName( trim( $matches[2] ) );
 		} else {
 			return false;
 		}
@@ -3329,11 +3329,10 @@ ERROR;
 			return "";
 		}
 
-		global $wgParser;
-
 		if ( $isSubjectPreview ) {
 			$summary = $this->context->msg( 'newsectionsummary' )
-				->rawParams( $wgParser->stripSectionName( $summary ) )
+				->rawParams( MediaWikiServices::getInstance()->getParser()
+					->stripSectionName( $summary ) )
 				->inContentLanguage()->text();
 		}
 
@@ -4538,16 +4537,15 @@ ERROR;
 	 * @return string
 	 */
 	private function guessSectionName( $text ) {
-		global $wgParser;
-
 		// Detect Microsoft browsers
 		$userAgent = $this->context->getRequest()->getHeader( 'User-Agent' );
+		$parser = MediaWikiServices::getInstance()->getParser();
 		if ( $userAgent && preg_match( '/MSIE|Edge/', $userAgent ) ) {
 			// ...and redirect them to legacy encoding, if available
-			return $wgParser->guessLegacySectionNameFromWikiText( $text );
+			return $parser->guessLegacySectionNameFromWikiText( $text );
 		}
 		// Meanwhile, real browsers get real anchors
-		$name = $wgParser->guessSectionNameFromWikiText( $text );
+		$name = $parser->guessSectionNameFromWikiText( $text );
 		// With one little caveat: per T216029, fragments in HTTP redirects need to be urlencoded,
 		// otherwise Chrome double-escapes the rest of the URL.
 		return '#' . urlencode( mb_substr( $name, 1 ) );

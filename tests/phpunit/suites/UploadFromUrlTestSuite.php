@@ -16,8 +16,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 	}
 
 	protected function setUp() {
-		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc, $wgUser,
-			$wgLang, $wgOut, $wgRequest, $wgStyleDirectory,
+		global $IP, $messageMemc, $wgMemc, $wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory,
 			$wgParserCacheType, $wgNamespaceAliases, $wgNamespaceProtection;
 
 		$tmpDir = $this->getNewTempDirectory();
@@ -66,7 +65,6 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		$wgUser = new User;
 		$wgLang = $context->getLanguage();
 		$wgOut = $context->getOutput();
-		$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], [ $wgParserConf ] );
 		$wgRequest = $context->getRequest();
 
 		if ( $wgStyleDirectory === false ) {

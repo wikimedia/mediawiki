@@ -4672,7 +4672,7 @@ class Parser {
 	 * If you have pre-fetched the nickname or the fancySig option, you can
 	 * specify them here to save a database query.
 	 * Do not reuse this parser instance after calling getUserSig(),
-	 * as it may have changed if it's the $wgParser.
+	 * as it may have changed.
 	 *
 	 * @param User &$user
 	 * @param string|bool $nickname Nickname to use or false to use user's default nickname
@@ -6359,9 +6359,9 @@ class Parser {
 	/**
 	 * Return this parser if it is not doing anything, otherwise
 	 * get a fresh parser. You can use this method by doing
-	 * $myParser = $wgParser->getFreshParser(), or more simply
-	 * $wgParser->getFreshParser()->parse( ... );
-	 * if you're unsure if $wgParser is safe to use.
+	 * $newParser = $oldParser->getFreshParser(), or more simply
+	 * $oldParser->getFreshParser()->parse( ... );
+	 * if you're unsure if $oldParser is safe to use.
 	 *
 	 * @since 1.24
 	 * @return Parser A parser object that is not parsing anything

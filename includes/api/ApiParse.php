@@ -83,7 +83,7 @@ class ApiParse extends ApiBase {
 		// The parser needs $wgTitle to be set, apparently the
 		// $title parameter in Parser::parse isn't enough *sigh*
 		// TODO: Does this still need $wgTitle?
-		global $wgParser, $wgTitle;
+		global $wgTitle;
 
 		$redirValues = null;
 
@@ -488,8 +488,9 @@ class ApiParse extends ApiBase {
 				$this->dieWithError( 'apierror-parsetree-notwikitext', 'notwikitext' );
 			}
 
-			$wgParser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
-			$xml = $wgParser->preprocessToDom( $this->content->getText() )->__toString();
+			$parser = MediaWikiServices::getInstance()->getParser();
+			$parser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
+			$xml = $parser->preprocessToDom( $this->content->getText() )->__toString();
 			$result_array['parsetree'] = $xml;
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'parsetree';
 		}
@@ -631,7 +632,6 @@ class ApiParse extends ApiBase {
 	 * @return Content|bool
 	 */
 	private function formatSummary( $title, $params ) {
-		global $wgParser;
 		$summary = $params['summary'] ?? '';
 		$sectionTitle = $params['sectiontitle'] ?? '';
 
@@ -641,8 +641,9 @@ class ApiParse extends ApiBase {
 			}
 			if ( $summary !== '' ) {
 				$summary = wfMessage( 'newsectionsummary' )
-					->rawParams( $wgParser->stripSectionName( $summary ) )
-						->inContentLanguage()->text();
+					->rawParams( MediaWikiServices::getInstance()->getParser()
+						->stripSectionName( $summary ) )
+					->inContentLanguage()->text();
 			}
 		}
 		return Linker::formatComment( $summary, $title, $this->section === 'new' );

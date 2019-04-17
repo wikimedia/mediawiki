@@ -1203,18 +1203,18 @@ class MessageCache {
 	 * @return Parser
 	 */
 	public function getParser() {
-		global $wgParser, $wgParserConf;
-
-		if ( !$this->mParser && isset( $wgParser ) ) {
+		global $wgParserConf;
+		if ( !$this->mParser ) {
+			$parser = MediaWikiServices::getInstance()->getParser();
 			# Do some initialisation so that we don't have to do it twice
-			$wgParser->firstCallInit();
+			$parser->firstCallInit();
 			# Clone it and store it
 			$class = $wgParserConf['class'];
 			if ( $class == ParserDiffTest::class ) {
 				# Uncloneable
 				$this->mParser = new $class( $wgParserConf );
 			} else {
-				$this->mParser = clone $wgParser;
+				$this->mParser = clone $parser;
 			}
 		}
 

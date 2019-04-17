@@ -787,12 +787,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendExtensionTags( $property ) {
-		global $wgParser;
 		$tags = array_map(
 			function ( $item ) {
 				return "<$item>";
 			},
-			$wgParser->getTags()
+			MediaWikiServices::getInstance()->getParser()->getTags()
 		);
 		ApiResult::setArrayType( $tags, 'BCarray' );
 		ApiResult::setIndexedTagName( $tags, 't' );
@@ -801,8 +800,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendFunctionHooks( $property ) {
-		global $wgParser;
-		$hooks = $wgParser->getFunctionHooks();
+		$hooks = MediaWikiServices::getInstance()->getParser()->getFunctionHooks();
 		ApiResult::setArrayType( $hooks, 'BCarray' );
 		ApiResult::setIndexedTagName( $hooks, 'h' );
 

@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -408,8 +407,7 @@ class MessageTest extends MediaWikiLangTestCase {
 		// We have to reset the core hook registration.
 		// to register the html hook
 		MessageCache::destroyInstance();
-		$this->setMwGlobals( 'wgParser',
-			MediaWikiServices::getInstance()->getParserFactory()->create() );
+		$this->overrideMwServices();
 
 		$msg = new RawMessage( '<html><script>alert("xss")</script></html>' );
 		$txt = '<span class="error">&lt;html&gt; tags cannot be' .

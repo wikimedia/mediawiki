@@ -23,6 +23,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Give information about the version of MediaWiki, PHP, the DB and extensions
  *
@@ -555,9 +557,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML output
 	 */
 	protected function getParserTags() {
-		global $wgParser;
-
-		$tags = $wgParser->getTags();
+		$tags = MediaWikiServices::getInstance()->getParser()->getTags();
 
 		if ( count( $tags ) ) {
 			$out = Html::rawElement(
@@ -599,9 +599,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML output
 	 */
 	protected function getParserFunctionHooks() {
-		global $wgParser;
-
-		$fhooks = $wgParser->getFunctionHooks();
+		$fhooks = MediaWikiServices::getInstance()->getParser()->getFunctionHooks();
 		if ( count( $fhooks ) ) {
 			$out = Html::rawElement(
 				'h2',
