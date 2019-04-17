@@ -79,7 +79,9 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 
 		$data = $this->getResult()->getResultData();
 		if ( isset( $data['_feed'] ) && isset( $data['_feeditems'] ) ) {
-			$data['_feed']->httpHeaders();
+			/** @var ChannelFeed $feed */
+			$feed = $data['_feed'];
+			$feed->httpHeaders();
 		} else {
 			// Error has occurred, print something useful
 			ApiBase::dieDebug( __METHOD__, 'Invalid feed class/item' );
@@ -94,6 +96,7 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	public function execute() {
 		$data = $this->getResult()->getResultData();
 		if ( isset( $data['_feed'] ) && isset( $data['_feeditems'] ) ) {
+			/** @var ChannelFeed $feed */
 			$feed = $data['_feed'];
 			$items = $data['_feeditems'];
 

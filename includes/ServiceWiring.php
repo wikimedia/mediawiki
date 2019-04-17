@@ -62,6 +62,7 @@ use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\SqlBlobStore;
+use MediaWiki\Storage\PageEditStash;
 
 return [
 	'ActorMigration' => function ( MediaWikiServices $services ) : ActorMigration {
@@ -347,6 +348,20 @@ return [
 			true,
 			LoggerFactory::getInstance( 'OldRevisionImporter' ),
 			$services->getDBLoadBalancer()
+		);
+	},
+
+	'PageEditStash' => function ( MediaWikiServices $services ) : PageEditStash {
+		$config = $services->getMainConfig();
+
+		return new PageEditStash(
+			ObjectCache::getLocalClusterInstance(),
+			$services->getDBLoadBalancer(),
+			LoggerFactory::getInstance( 'StashEdit' ),
+			$services->getStatsdDataFactory(),
+			defined( 'MEDIAWIKI_JOB_RUNNER' ) || $config->get( 'CommandLineMode' )
+				? PageEditStash::INITIATOR_JOB_OR_CLI
+				: PageEditStash::INITIATOR_USER
 		);
 	},
 

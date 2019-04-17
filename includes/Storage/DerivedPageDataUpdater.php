@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Storage;
 
-use ApiStashEdit;
 use CategoryMembershipChangeJob;
 use Content;
 use ContentHandler;
@@ -38,6 +37,7 @@ use LinksDeletionUpdate;
 use LinksUpdate;
 use LogicException;
 use MediaWiki\Edit\PreparedEdit;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionRecord;
@@ -755,9 +755,12 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 
 		// TODO: MCR: allow output for all slots to be stashed.
 		if ( $useStash && $slotsUpdate->isModifiedSlot( SlotRecord::MAIN ) ) {
-			$mainContent = $slotsUpdate->getModifiedSlot( SlotRecord::MAIN )->getContent();
-			$legacyUser = User::newFromIdentity( $user );
-			$stashedEdit = ApiStashEdit::checkCache( $title, $mainContent, $legacyUser );
+			$editStash = MediaWikiServices::getInstance()->getPageEditStash();
+			$stashedEdit = $editStash->checkCache(
+				$title,
+				$slotsUpdate->getModifiedSlot( SlotRecord::MAIN )->getContent(),
+				User::newFromIdentity( $user )
+			);
 		}
 
 		$userPopts = ParserOptions::newFromUserAndLang( $user, $this->contLang );
