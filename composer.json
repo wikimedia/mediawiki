@@ -114,7 +114,10 @@
 	},
 	"config": {
 		"optimize-autoloader": true,
-		"prepend-autoloader": false
+		"prepend-autoloader": false,
+		"platform": {
+			"php": "7.0"
+		}
 	},
 	"extra": {
 		"merge-plugin": {
