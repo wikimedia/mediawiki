@@ -21,7 +21,6 @@
  */
 
 use Wikimedia\Rdbms\IDatabase;
-use MediaWiki\MediaWikiServices;
 
 /**
  * This abstract class implements many basic API functions, and is the base of
@@ -2138,40 +2137,11 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		if ( $errors ) {
-			// track block notices
-			if ( $this->getConfig()->get( 'EnableBlockNoticeStats' ) ) {
-				$this->trackBlockNotices( $errors );
-			}
-
 			if ( !empty( $options['autoblock'] ) ) {
 				$user->spreadAnyEditBlock();
 			}
 
 			$this->dieStatus( $this->errorArrayToStatus( $errors, $user ) );
-		}
-	}
-
-	/**
-	 * Keep track of errors messages resulting from a block
-	 *
-	 * @param array $errors
-	 */
-	private function trackBlockNotices( array $errors ) {
-		$errorMessageKeys = [
-			'blockedtext',
-			'blockedtext-partial',
-			'autoblockedtext',
-			'systemblockedtext',
-		];
-
-		$statsd = MediaWikiServices::getInstance()->getStatsdDataFactory();
-
-		foreach ( $errors as $error ) {
-			if ( in_array( $error[0], $errorMessageKeys ) ) {
-				$wiki = $this->getConfig()->get( 'DBname' );
-				$statsd->increment( 'BlockNotices.' . $wiki . '.MediaWikiApi.returned' );
-				break;
-			}
 		}
 	}
 

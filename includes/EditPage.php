@@ -637,13 +637,6 @@ class EditPage {
 						$this->context->getUser()->spreadAnyEditBlock();
 					} );
 				}
-
-				$config = $this->context->getConfig();
-				if ( $config->get( 'EnableBlockNoticeStats' ) ) {
-					$wiki = $config->get( 'DBname' );
-					$statsd = MediaWikiServices::getInstance()->getStatsdDataFactory();
-					$statsd->increment( 'BlockNotices.' . $wiki . '.WikitextEditor.shown' );
-				}
 			}
 			$this->displayPermissionsError( $permErrors );
 
