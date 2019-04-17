@@ -560,7 +560,7 @@
 	"histfirst": "اول",
 	"histlast": "آخر",
 	"historysize": "({{PLURAL:$1|1 بايت|$1 بايت}})",
-	"historyempty": "(فاضى)",
+	"historyempty": "فاضى",
 	"history-feed-title": "تاريخ المراجعة",
 	"history-feed-description": "تاريخ التعديل بتاع الصفحة دى على الويكي",
 	"history-feed-item-nocomment": "$1 فى $2",

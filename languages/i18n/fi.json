@@ -1375,6 +1375,8 @@
 	"action-apihighlimits": "käyttää korkeampia rajoja API-kyselyissä",
 	"action-bigdelete": "poistaa sivuja, joilla on pitkä historia",
 	"action-blockemail": "estää käyttäjää lähettämästä sähköpostia",
+	"action-editprotected": "muokata sivuja, jotka on suojattu tasolle ”{{int:protect-level-sysop}}”",
+	"action-editsemiprotected": "muokata sivuja, jotka on suojattu tasolle ”{{int:protect-level-autoconfirmed}}”",
 	"action-editusercss": "muokata toisten käyttäjien CSS-tiedostoja",
 	"action-edituserjson": "muokata toisten käyttäjien JSON-tiedostoja",
 	"action-edituserjs": "muokata toisten käyttäjien JavaScript-tiedostoja",

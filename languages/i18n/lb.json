@@ -769,7 +769,7 @@
 	"page_first": "éischt",
 	"page_last": "lescht",
 	"histlegend": "Fir d'Ännerungen unzeweisen: Klickt déi zwou Versiounen un, déi solle verglach ginn.<br />\n*(aktuell) = Ënnerscheed mat der aktueller Versioun,\n*(lescht) = Ënnerscheed mat der aler Versioun,\n*k = Kleng Ännerung.",
-	"history-fieldset-title": "No Versioune sichen",
+	"history-fieldset-title": "Versioune filteren",
 	"history-show-deleted": "Nëmme geläscht Versiounen",
 	"histfirst": "eelst",
 	"histlast": "neist",
