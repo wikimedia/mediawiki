@@ -37,6 +37,10 @@ class GenerateUpperCharTable extends Maintenance {
 		$outfile = $this->getOption( 'outfile', 'upperchar.json' );
 		$toUpperTable = [];
 		for ( $i = 0; $i <= 0x10ffff; $i++ ) {
+			// skip all surrogate codepoints or json_encode would fail.
+			if ( $i >= 0xd800 && $i <= 0xdfff ) {
+				continue;
+			}
 			$char = UtfNormal\Utils::codepointToUtf8( $i );
 			$upper = mb_strtoupper( $char );
 			$toUpperTable[$char] = $upper;
