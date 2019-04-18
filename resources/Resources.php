@@ -2124,6 +2124,10 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.special.blocklist' => [
+		'styles' => 'resources/src/mediawiki.special/blocklist.less',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.special.changecredentials.js' => [
 		'scripts' => 'resources/src/mediawiki.special.changecredentials.js',
 		'dependencies' => [
