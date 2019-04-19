@@ -225,7 +225,18 @@ class ActiveUsersPager extends UsersPager {
 		$userName = $row->user_name;
 
 		$ulinks = Linker::userLink( $row->user_id, $userName );
-		$ulinks .= Linker::userToolLinks( $row->user_id, $userName );
+		$ulinks .= Linker::userToolLinks(
+			$row->user_id,
+			$userName,
+			// Should the contributions link be red if the user has no edits (using default)
+			false,
+			// Customisation flags (using default 0)
+			0,
+			// User edit count (using default)
+			null,
+			// do not wrap the message in parentheses (CSS will provide these)
+			false
+		);
 
 		$lang = $this->getLanguage();
 

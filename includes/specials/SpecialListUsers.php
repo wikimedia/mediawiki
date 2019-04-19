@@ -59,7 +59,9 @@ class SpecialListUsers extends IncludableSpecialPage {
 			$s .= $this->msg( 'listusers-noresult' )->parseAsBlock();
 		}
 
-		$this->getOutput()->addHTML( $s );
+		$out = $this->getOutput();
+		$out->addHTML( $s );
+		$out->addModuleStyles( 'mediawiki.interface.helpers.styles' );
 	}
 
 	/**
