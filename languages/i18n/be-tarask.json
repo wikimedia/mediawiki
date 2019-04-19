@@ -1333,6 +1333,7 @@
 	"action-bigdelete": "выдаленьне старонак зь вялікай гісторыяй",
 	"action-blockemail": "блякаваньне ўдзельніку магчымасьці адпраўкі лістоў электроннай поштай",
 	"action-bot": "тое, каб лічыцца аўтаматычным працэсам",
+	"action-editprotected": "рэдагаваньне старонак, абароненых у рэжыме «{{int:protect-level-sysop}}»",
 	"nchanges": "$1 {{PLURAL:$1|зьмена|зьмены|зьменаў}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|з апошняга візыту}}",
 	"enhancedrc-history": "гісторыя",

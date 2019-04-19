@@ -1381,6 +1381,7 @@
 	"action-changetags": "tilføje og fjerne vilkårlige tags for enkelte versioner og logposter",
 	"action-deletechangetags": "slette tags fra databasen",
 	"action-purge": "rense denne side",
+	"action-bot": "blive behandlet som en automatiseret proces",
 	"nchanges": "$1 {{PLURAL:$1|ændring|ændringer}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|siden sidste besøg}}",
 	"enhancedrc-history": "historik",

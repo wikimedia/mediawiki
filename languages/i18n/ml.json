@@ -439,7 +439,7 @@
 	"userlogin-joinproject": "{{SITENAME}} സം‌രംഭത്തിൽ ചേരുക",
 	"createaccount": "അംഗത്വമെടുക്കുക",
 	"userlogin-resetpassword-link": "താങ്കൾ രഹസ്യവാക്ക് മറന്നോ?",
-	"userlogin-helplink2": "പ്രവേശിക്കാൻ സഹായമാവശ്യമെങ്കിൽ",
+	"userlogin-helplink2": "പ്രവേശിക്കാനുള്ള സഹായം",
 	"userlogin-loggedin": "താങ്കൾ ഇപ്പോൾ തന്നെ {{GENDER:$1|$1}} ആയി പ്രവേശിച്ചിരിക്കുന്നു.\nതാഴെ ഉള്ള ഫോം ഉപയോഗിച്ച് മറ്റൊരു ഉപയോക്താവായി പ്രവേശിക്കാവുന്നതാണ്.",
 	"userlogin-reauth": "താങ്കൾ {{GENDER:$1|$1}} തന്നെയെന്ന് സ്ഥിരീകരിക്കാൻ ദയവായി വീണ്ടും ലോഗിൻ ചെയ്യുക.",
 	"userlogin-createanother": "മറ്റൊരു അംഗത്വമെടുക്കുക",
