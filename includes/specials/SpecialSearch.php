@@ -330,13 +330,6 @@ class SpecialSearch extends SpecialPage {
 		$showSuggestion = $title === null || !$title->isKnown();
 		$search->setShowSuggestion( $showSuggestion );
 
-		$rewritten = $search->transformSearchTerm( $term );
-		if ( $rewritten !== $term ) {
-			$term = $rewritten;
-			wfDeprecated( 'SearchEngine::transformSearchTerm() (overridden by ' .
-				get_class( $search ) . ')', '1.32' );
-		}
-
 		$rewritten = $search->replacePrefixes( $term );
 		if ( $rewritten !== $term ) {
 			wfDeprecated( 'SearchEngine::replacePrefixes() (overridden by ' .
