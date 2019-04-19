@@ -202,6 +202,9 @@ because of Phabricator reports.
   getErrorsOrWarnings() instead.
 * SpecialPage::getTitle(), deprecated in 1.23, has been removed. Use
   SpecialPage::getPageTitle() instead.
+* jquery.ui.effect-bounce, jquery.ui.effect-explode, jquery.ui.effect-fold
+  jquery.ui.effect-pulsate, jquery.ui.effect-slide, jquery.ui.effect-transfer,
+  which are no longer used, have now been removed.
 * …
 
 === Deprecations in 1.34 ===
