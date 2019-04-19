@@ -347,7 +347,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 			[
 				'ip' => '127.0.0.1',
 				'agent' => "Totally-Not-FireFox"
-			]
+			],
+			null
 		);
 
 		$mockDB1->expects( $this->exactly( 1 ) )->method( 'writesOrCallbacksPending' );

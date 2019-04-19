@@ -73,13 +73,19 @@ class ChronologyProtector implements LoggerAwareInterface {
 	/**
 	 * @param BagOStuff $store
 	 * @param array $client Map of (ip: <IP>, agent: <user-agent> [, clientId: <hash>] )
-	 * @param int|null $posIndex Write counter index [optional]
+	 * @param int|null $posIndex Write counter index
+	 * @param string $secret Secret string for HMAC hashing [optional]
 	 * @since 1.27
 	 */
-	public function __construct( BagOStuff $store, array $client, $posIndex = null ) {
+	public function __construct( BagOStuff $store, array $client, $posIndex, $secret = '' ) {
 		$this->store = $store;
-		$this->clientId = $client['clientId'] ??
-			md5( $client['ip'] . "\n" . $client['agent'] );
+		if ( isset( $client['clientId'] ) ) {
+			$this->clientId = $client['clientId'];
+		} else {
+			$this->clientId = strlen( $secret )
+				? hash_hmac( 'md5', $client['ip'] . "\n" . $client['agent'], $secret )
+				: md5( $client['ip'] . "\n" . $client['agent'] );
+		}
 		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId, 'v2' );
 		$this->waitForPosIndex = $posIndex;
 

@@ -24,6 +24,7 @@
 namespace Wikimedia\Rdbms;
 
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
 use BagOStuff;
 use EmptyBagOStuff;
@@ -74,6 +75,8 @@ abstract class LBFactory implements ILBFactory {
 	private $cliMode;
 	/** @var string Agent name for query profiling */
 	private $agent;
+	/** @var string Secret string for HMAC hashing */
+	private $secret;
 
 	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
 	private $tableAliases = [];
@@ -123,7 +126,7 @@ abstract class LBFactory implements ILBFactory {
 		$this->wanCache = $conf['wanCache'] ?? WANObjectCache::newEmpty();
 
 		foreach ( self::$loggerFields as $key ) {
-			$this->$key = $conf[$key] ?? new \Psr\Log\NullLogger();
+			$this->$key = $conf[$key] ?? new NullLogger();
 		}
 		$this->errorLogger = $conf['errorLogger'] ?? function ( Exception $e ) {
 			trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
@@ -148,6 +151,7 @@ abstract class LBFactory implements ILBFactory {
 		$this->hostname = $conf['hostname'] ?? gethostname();
 		$this->agent = $conf['agent'] ?? '';
 		$this->defaultGroup = $conf['defaultGroup'] ?? null;
+		$this->secret = $conf['secret'] ?? '';
 
 		$this->ticket = mt_rand();
 	}
@@ -463,7 +467,7 @@ abstract class LBFactory implements ILBFactory {
 			$this->perfLogger->error( __METHOD__ . ": $fname does not have outer scope.\n" .
 				( new RuntimeException() )->getTraceAsString() );
 
-			return;
+			return false;
 		}
 
 		// The transaction owner and any caller with the empty transaction ticket can commit
@@ -482,6 +486,7 @@ abstract class LBFactory implements ILBFactory {
 		if ( $fnameEffective !== $fname ) {
 			$this->beginMasterChanges( $fnameEffective );
 		}
+
 		return $waitSucceeded;
 	}
 
@@ -508,7 +513,8 @@ abstract class LBFactory implements ILBFactory {
 				'agent' => $this->requestInfo['UserAgent'],
 				'clientId' => $this->requestInfo['ChronologyClientId']
 			],
-			$this->requestInfo['ChronologyPositionIndex']
+			$this->requestInfo['ChronologyPositionIndex'],
+			$this->secret
 		);
 		$this->chronProt->setLogger( $this->replLogger );
 

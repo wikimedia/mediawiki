@@ -57,6 +57,7 @@ interface ILBFactory {
 	 *  - perfLogger: PSR-3 logger instance. [optional]
 	 *  - errorLogger: Callback that takes an Exception and logs it. [optional]
 	 *  - deprecationLogger: Callback to log a deprecation warning. [optional]
+	 *  - secret: Secret string to use for HMAC hashing [optional]
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $conf );
