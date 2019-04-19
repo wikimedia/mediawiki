@@ -1058,7 +1058,7 @@
 [submodule "extensions/ApprovedRevs"]
 	path = extensions/ApprovedRevs
 	url = https://github.com/wikimedia/mediawiki-extensions-ApprovedRevs.git
-	branch = REL1_32
+	branch = master
 	ignore = dirty
 [submodule "extensions/Purge"]
 	path = extensions/Purge
