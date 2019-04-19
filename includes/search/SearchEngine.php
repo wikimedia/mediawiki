@@ -269,19 +269,6 @@ abstract class SearchEngine {
 	}
 
 	/**
-	 * If an exact title match can be found, or a very slightly close match,
-	 * return the title. If no match, returns NULL.
-	 * @deprecated since 1.27; Use SearchEngine::getNearMatcher()
-	 * @param string $searchterm
-	 * @return Title
-	 */
-	public static function getNearMatch( $searchterm ) {
-		wfDeprecated( __METHOD__, '1.27' );
-
-		return static::defaultNearMatcher()->getNearMatch( $searchterm );
-	}
-
-	/**
 	 * Get chars legal for search
 	 * @param int $type type of search chars (see self::CHARS_ALL
 	 * and self::CHARS_NO_SYNTAX). Defaults to CHARS_ALL
@@ -729,79 +716,6 @@ abstract class SearchEngine {
 		// Use default database prefix search
 		$backend = new TitlePrefixSearch;
 		return $backend->defaultSearchBackend( $this->namespaces, $search, $this->limit, $this->offset );
-	}
-
-	/**
-	 * Make a list of searchable namespaces and their canonical names.
-	 * @deprecated since 1.27; use SearchEngineConfig::searchableNamespaces()
-	 * @return array
-	 */
-	public static function searchableNamespaces() {
-		wfDeprecated( __METHOD__, '1.27' );
-
-		return MediaWikiServices::getInstance()->getSearchEngineConfig()->searchableNamespaces();
-	}
-
-	/**
-	 * Extract default namespaces to search from the given user's
-	 * settings, returning a list of index numbers.
-	 * @deprecated since 1.27; use SearchEngineConfig::userNamespaces()
-	 * @param user $user
-	 * @return array
-	 */
-	public static function userNamespaces( $user ) {
-		wfDeprecated( __METHOD__, '1.27' );
-
-		return MediaWikiServices::getInstance()->getSearchEngineConfig()->userNamespaces( $user );
-	}
-
-	/**
-	 * An array of namespaces indexes to be searched by default
-	 * @deprecated since 1.27; use SearchEngineConfig::defaultNamespaces()
-	 * @return array
-	 */
-	public static function defaultNamespaces() {
-		wfDeprecated( __METHOD__, '1.27' );
-
-		return MediaWikiServices::getInstance()->getSearchEngineConfig()->defaultNamespaces();
-	}
-
-	/**
-	 * Get a list of namespace names useful for showing in tooltips
-	 * and preferences
-	 * @deprecated since 1.27; use SearchEngineConfig::namespacesAsText()
-	 * @param array $namespaces
-	 * @return array
-	 */
-	public static function namespacesAsText( $namespaces ) {
-		wfDeprecated( __METHOD__, '1.27' );
-
-		return MediaWikiServices::getInstance()->getSearchEngineConfig()->namespacesAsText( $namespaces );
-	}
-
-	/**
-	 * Load up the appropriate search engine class for the currently
-	 * active database backend, and return a configured instance.
-	 * @deprecated since 1.27; Use SearchEngineFactory::create
-	 * @param string $type Type of search backend, if not the default
-	 * @return SearchEngine
-	 */
-	public static function create( $type = null ) {
-		wfDeprecated( __METHOD__, '1.27' );
-
-		return MediaWikiServices::getInstance()->getSearchEngineFactory()->create( $type );
-	}
-
-	/**
-	 * Return the search engines we support. If only $wgSearchType
-	 * is set, it'll be an array of just that one item.
-	 * @deprecated since 1.27; use SearchEngineConfig::getSearchTypes()
-	 * @return array
-	 */
-	public static function getSearchTypes() {
-		wfDeprecated( __METHOD__, '1.27' );
-
-		return MediaWikiServices::getInstance()->getSearchEngineConfig()->getSearchTypes();
 	}
 
 	/**
