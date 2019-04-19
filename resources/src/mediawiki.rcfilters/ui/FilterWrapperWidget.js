@@ -67,7 +67,6 @@ FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
 	this.showNewChangesLink = new OO.ui.ButtonWidget( {
 		icon: 'reload',
 		framed: false,
-		label: mw.msg( 'rcfilters-show-new-changes' ),
 		flags: [ 'progressive' ],
 		classes: [ 'mw-rcfilters-ui-filterWrapperWidget-showNewChanges' ]
 	} );
@@ -131,6 +130,14 @@ FilterWrapperWidget.prototype.onShowNewChangesClick = function () {
  * @param {boolean} newChangesExist Whether new changes exist
  */
 FilterWrapperWidget.prototype.onNewChangesExist = function ( newChangesExist ) {
+	if ( newChangesExist ) {
+		this.showNewChangesLink.setLabel(
+			mw.message(
+				'rcfilters-show-new-changes',
+				this.changesListModel.getNextFromFormatted()
+			).text()
+		);
+	}
 	this.showNewChangesLink.toggle( newChangesExist );
 };
 

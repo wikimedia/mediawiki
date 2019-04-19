@@ -598,11 +598,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$lang = $this->getLanguage();
 		$timestamp = wfTimestampNow();
+		$now = $lang->userTimeAndDate( $timestamp, $user );
 		$wlInfo = Html::rawElement(
 			'span',
 			[
 				'class' => 'wlinfo',
-				'data-params' => json_encode( [ 'from' => $timestamp ] ),
+				'data-params' => json_encode( [ 'from' => $timestamp, 'fromFormatted' => $now ] ),
 			],
 			$this->msg( 'wlnote' )->numParams( $numRows, round( $opts['days'] * 24 ) )->params(
 				$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user )
