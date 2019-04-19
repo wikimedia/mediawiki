@@ -190,16 +190,18 @@ class MessageBlobStore implements LoggerAwareInterface {
 	 * @since 1.27
 	 * @param string $key Message key
 	 * @param string $lang Language code
-	 * @return string
+	 * @return string|null
 	 */
 	protected function fetchMessage( $key, $lang ) {
 		$message = wfMessage( $key )->inLanguage( $lang );
-		$value = $message->plain();
 		if ( !$message->exists() ) {
 			$this->logger->warning( 'Failed to find {messageKey} ({lang})', [
 				'messageKey' => $key,
 				'lang' => $lang,
 			] );
+			$value = null;
+		} else {
+			$value = $message->plain();
 		}
 		return $value;
 	}
@@ -214,7 +216,10 @@ class MessageBlobStore implements LoggerAwareInterface {
 	private function generateMessageBlob( ResourceLoaderModule $module, $lang ) {
 		$messages = [];
 		foreach ( $module->getMessages() as $key ) {
-			$messages[$key] = $this->fetchMessage( $key, $lang );
+			$value = $this->fetchMessage( $key, $lang );
+			if ( $value !== null ) {
+				$messages[$key] = $value;
+			}
 		}
 
 		$json = FormatJson::encode( (object)$messages );
