@@ -105,7 +105,8 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$userTools = Linker::userToolLinksRedContribs(
 			$this->user->getId(),
 			$this->user->getName(),
-			$this->user->getEditCount()
+			$this->user->getEditCount(),
+			false
 		);
 
 		$titleLink = Linker::link( $this->title, null, [], [] );
