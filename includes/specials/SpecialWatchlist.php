@@ -193,11 +193,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					'cssClassSuffix' => 'watchedunseen',
 					'isRowApplicableCallable' => function ( $ctx, RecentChange $rc ) {
 						$changeTs = $rc->getAttribute( 'rc_timestamp' );
-						$lastVisitTs = $this->watchStore->getLatestNotificationTimestamp(
-							$rc->getAttribute( 'wl_notificationtimestamp' ),
-							$rc->getPerformer(),
-							$rc->getTitle()
-						);
+						$lastVisitTs = $this->getLatestSeenTimestamp( $rc );
+
 						return $lastVisitTs !== null && $changeTs >= $lastVisitTs;
 					},
 				],
@@ -206,16 +203,26 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					'label' => 'rcfilters-filter-watchlistactivity-seen-label',
 					'description' => 'rcfilters-filter-watchlistactivity-seen-description',
 					'cssClassSuffix' => 'watchedseen',
-					'isRowApplicableCallable' => function ( $ctx, $rc ) {
+					'isRowApplicableCallable' => function ( $ctx, RecentChange $rc ) {
 						$changeTs = $rc->getAttribute( 'rc_timestamp' );
-						$lastVisitTs = $rc->getAttribute( 'wl_notificationtimestamp' );
+						$lastVisitTs = $this->getLatestSeenTimestamp( $rc );
+
 						return $lastVisitTs === null || $changeTs < $lastVisitTs;
 					}
 				],
 			],
 			'default' => ChangesListStringOptionsFilterGroup::NONE,
-			'queryCallable' => function ( $specialPageClassName, $context, $dbr,
-					&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues ) {
+			'queryCallable' => function (
+				$specialPageClassName,
+				$context,
+				IDatabase $dbr,
+				&$tables,
+				&$fields,
+				&$conds,
+				&$query_options,
+				&$join_conds,
+				$selectedValues
+			) {
 				if ( $selectedValues === [ 'seen' ] ) {
 					$conds[] = $dbr->makeList( [
 						'wl_notificationtimestamp IS NULL',
@@ -534,7 +541,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$rc->counter = $counter++;
 
 			if ( $this->getConfig()->get( 'ShowUpdatedMarker' ) ) {
-				$updated = $obj->wl_notificationtimestamp;
+				$lastVisitTs = $this->getLatestSeenTimestamp( $rc );
+				$updated = ( $lastVisitTs > $rc->getAttribute( 'timestamp' ) );
 			} else {
 				$updated = false;
 			}
@@ -850,5 +858,17 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$count = $store->countWatchedItems( $this->getUser() );
 		return floor( $count / 2 );
+	}
+
+	/**
+	 * @param RecentChange $rc
+	 * @return string TS_MW timestamp
+	 */
+	protected function getLatestSeenTimestamp( RecentChange $rc ) {
+		return $this->watchStore->getLatestNotificationTimestamp(
+			$rc->getAttribute( 'wl_notificationtimestamp' ),
+			$rc->getPerformer(),
+			$rc->getTitle()
+		);
 	}
 }
