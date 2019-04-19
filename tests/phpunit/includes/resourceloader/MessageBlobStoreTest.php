@@ -34,16 +34,27 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( '{"mainpage":"Main Page"}', $blob, 'Generated blob' );
 	}
 
+	public function testBlobCreation_empty() {
+		$module = $this->makeModule( [] );
+		$rl = new ResourceLoader();
+		$rl->register( $module->getName(), $module );
+
+		$blobStore = $this->makeBlobStore( null, $rl );
+		$blob = $blobStore->getBlob( $module, 'en' );
+
+		$this->assertEquals( '{}', $blob, 'Generated blob' );
+	}
+
 	public function testBlobCreation_unknownMessage() {
-		$module = $this->makeModule( [ 'i-dont-exist' ] );
+		$module = $this->makeModule( [ 'i-dont-exist', 'mainpage', 'i-dont-exist2' ] );
 		$rl = new ResourceLoader();
 		$rl->register( $module->getName(), $module );
 		$blobStore = $this->makeBlobStore( null, $rl );
 
-		// Generating a blob should succeed without errors,
-		// even if a message is unknown.
+		// Generating a blob should continue without errors,
+		// with keys of unknown messages excluded from the blob.
 		$blob = $blobStore->getBlob( $module, 'en' );
-		$this->assertEquals( '{"i-dont-exist":"\u29fci-dont-exist\u29fd"}', $blob, 'Generated blob' );
+		$this->assertEquals( '{"mainpage":"Main Page"}', $blob, 'Generated blob' );
 	}
 
 	public function testMessageCachingAndPurging() {
