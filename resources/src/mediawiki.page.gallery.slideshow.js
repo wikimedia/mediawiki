@@ -19,9 +19,6 @@
 		this.$galleryBox = this.$gallery.find( '.gallerybox' );
 		this.$currentImage = null;
 		this.imageInfoCache = {};
-		if ( this.$gallery.parent().attr( 'id' ) !== 'mw-content-text' ) {
-			this.$container = this.$gallery.parent();
-		}
 
 		// Initialize
 		this.drawCarousel();
@@ -85,11 +82,6 @@
 
 	/**
 	 * @property {jQuery} $currentImage The `<li>` element of the current image.
-	 */
-
-	/**
-	 * @property {jQuery} $container If the gallery contained in an element that is
-	 *   not the main content element, then it stores that element.
 	 */
 
 	/**
@@ -185,15 +177,8 @@
 	 * size.
 	 */
 	mw.GallerySlideshow.prototype.setSizeRequirement = function () {
-		var w, h;
-
-		if ( this.$container !== undefined ) {
-			w = this.$container.width() * 0.9;
-			h = ( this.$container.height() - this.getChromeHeight() ) * 0.9;
-		} else {
-			w = this.$imgContainer.width();
+		var w = this.$imgContainer.width(),
 			h = Math.min( $( window ).height() * ( 3 / 4 ), this.$imgContainer.width() ) - this.getChromeHeight();
-		}
 
 		// Only update and flush the cache if the size changed
 		if ( w !== this.imageWidth || h !== this.imageHeight ) {
@@ -211,7 +196,7 @@
 	 * @return {number} Height
 	 */
 	mw.GallerySlideshow.prototype.getChromeHeight = function () {
-		return this.$interface.outerHeight() + this.$galleryCaption.outerHeight();
+		return this.$interface.outerHeight() + ( this.$galleryCaption.outerHeight() || 0 );
 	};
 
 	/**
