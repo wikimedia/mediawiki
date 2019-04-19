@@ -1002,10 +1002,13 @@ class Linker {
 	 * @param int $userId User identifier
 	 * @param string $userText User name or IP address
 	 * @param int|null $edits User edit count (optional, for performance)
+	 * @param bool $useParentheses (optional) Wrap comments in parentheses where needed
 	 * @return string
 	 */
-	public static function userToolLinksRedContribs( $userId, $userText, $edits = null ) {
-		return self::userToolLinks( $userId, $userText, true, 0, $edits, false );
+	public static function userToolLinksRedContribs(
+		$userId, $userText, $edits = null, $useParentheses = true
+	) {
+		return self::userToolLinks( $userId, $userText, true, 0, $edits, $useParentheses );
 	}
 
 	/**
