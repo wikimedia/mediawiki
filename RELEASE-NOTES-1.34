@@ -97,6 +97,9 @@ because of Phabricator reports.
   To obtain the destination title, use RedirectSpecialPage::getRedirect.
 * The 'recenteditcount' response property from action API action=query
   list=allusers, deprecated in 1.25, has been removed.
+* SearchEngine::userNamespaces(), SearchEngine::namespacesAsText(),
+  SearchEngine::create(), SearchEngine::getSearchTypes() and
+  SearchEngine::getNearMatch(), methods deprecated in 1.27, have been removed
 
 === Deprecations in 1.34 ===
 * The MWNamespace class is deprecated. Use MediaWikiServices::getNamespaceInfo.

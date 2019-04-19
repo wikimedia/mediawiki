@@ -165,7 +165,7 @@ class SearchNearMatcher {
 		# Quoted term? Try without the quotes...
 		$matches = [];
 		if ( preg_match( '/^"([^"]+)"$/', $searchterm, $matches ) ) {
-			return self::getNearMatch( $matches[1] );
+			return $this->getNearMatch( $matches[1] );
 		}
 
 		return null;
