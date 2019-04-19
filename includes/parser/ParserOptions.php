@@ -895,7 +895,7 @@ class ParserOptions {
 
 	/**
 	 * Timestamp used for {{CURRENTDAY}} etc.
-	 * @return string
+	 * @return string TS_MW timestamp
 	 */
 	public function getTimestamp() {
 		if ( !isset( $this->mTimestamp ) ) {

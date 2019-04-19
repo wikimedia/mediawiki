@@ -2785,7 +2785,7 @@ class Parser {
 					# The vary-revision flag must be set, because the magic word
 					# will have a different value once the page is saved.
 					$this->mOutput->setFlag( 'vary-revision' );
-					wfDebug( __METHOD__ . ": {{PAGEID}} used in a new page, setting vary-revision...\n" );
+					wfDebug( __METHOD__ . ": {{PAGEID}} used in a new page, setting vary-revision" );
 				}
 				$value = $pageid ?: null;
 				break;
@@ -2802,13 +2802,14 @@ class Parser {
 						$value = '-';
 					} else {
 						$this->mOutput->setFlag( 'vary-revision-exists' );
+						wfDebug( __METHOD__ . ": {{REVISIONID}} used, setting vary-revision-exists" );
 						$value = '';
 					}
 				} else {
 					# Inform the edit saving system that getting the canonical output after
 					# revision insertion requires another parse using the actual revision ID
 					$this->mOutput->setFlag( 'vary-revision-id' );
-					wfDebug( __METHOD__ . ": {{REVISIONID}} used, setting vary-revision-id...\n" );
+					wfDebug( __METHOD__ . ": {{REVISIONID}} used, setting vary-revision-id" );
 					$value = $this->getRevisionId();
 					if ( $value === 0 ) {
 						$rev = $this->getRevisionObject();
@@ -2838,17 +2839,13 @@ class Parser {
 				$value = $this->getRevisionTimestampSubstring( 0, 4, self::MAX_TTS, $index );
 				break;
 			case 'revisiontimestamp':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": {{REVISIONTIMESTAMP}} used, setting vary-revision...\n" );
-				$value = $this->getRevisionTimestamp();
+				$value = $this->getRevisionTimestampSubstring( 0, 14, self::MAX_TTS, $index );
 				break;
 			case 'revisionuser':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned for null edits.
+				# Inform the edit saving system that getting the canonical output after
+				# revision insertion requires a parse that used the actual user ID
 				$this->mOutput->setFlag( 'vary-user' );
-				wfDebug( __METHOD__ . ": {{REVISIONUSER}} used, setting vary-user...\n" );
+				wfDebug( __METHOD__ . ": {{REVISIONUSER}} used, setting vary-user" );
 				$value = $this->getRevisionUser();
 				break;
 			case 'revisionsize':
@@ -2996,7 +2993,7 @@ class Parser {
 	/**
 	 * @param int $start
 	 * @param int $len
-	 * @param int $mtts Max time-till-save; sets vary-revision if result might change by then
+	 * @param int $mtts Max time-till-save; sets vary-revision-timestamp if result changes by then
 	 * @param string $variable Parser variable name
 	 * @return string
 	 */
@@ -3005,7 +3002,10 @@ class Parser {
 		$resNow = substr( $this->getRevisionTimestamp(), $start, $len );
 		# Possibly set vary-revision if there is not yet an associated revision
 		if ( !$this->getRevisionObject() ) {
-			# Get the timezone-adjusted timestamp $mtts seconds in the future
+			# Get the timezone-adjusted timestamp $mtts seconds in the future.
+			# This future is relative to the current time and not that of the
+			# parser options. The rendered timestamp can be compared to that
+			# of the timestamp specified by the parser options.
 			$resThen = substr(
 				$this->contLang->userAdjust( wfTimestamp( TS_MW, time() + $mtts ), '' ),
 				$start,
@@ -3013,10 +3013,10 @@ class Parser {
 			);
 
 			if ( $resNow !== $resThen ) {
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": $variable used, setting vary-revision...\n" );
+				# Inform the edit saving system that getting the canonical output after
+				# revision insertion requires a parse that used an actual revision timestamp
+				$this->mOutput->setFlag( 'vary-revision-timestamp' );
+				wfDebug( __METHOD__ . ": $variable used, setting vary-revision-timestamp" );
 			}
 		}
 
@@ -3738,6 +3738,7 @@ class Parser {
 					// If we transclude ourselves, the final result
 					// will change based on the new version of the page
 					$this->mOutput->setFlag( 'vary-revision' );
+					wfDebug( __METHOD__ . ": self transclusion, setting vary-revision" );
 				}
 			}
 		}
@@ -5915,7 +5916,7 @@ class Parser {
 	 *
 	 * The return value will be either:
 	 *   - a) Positive, indicating a specific revision ID (current or old)
-	 *   - b) Zero, meaning the revision ID specified by getCurrentRevisionCallback()
+	 *   - b) Zero, meaning the revision ID is specified by getCurrentRevisionCallback()
 	 *   - c) Null, meaning the parse is for preview mode and there is no revision
 	 *
 	 * @return int|null
@@ -5970,20 +5971,25 @@ class Parser {
 	/**
 	 * Get the timestamp associated with the current revision, adjusted for
 	 * the default server-local timestamp
-	 * @return string
+	 * @return string TS_MW timestamp
 	 */
 	public function getRevisionTimestamp() {
-		if ( is_null( $this->mRevisionTimestamp ) ) {
-			$revObject = $this->getRevisionObject();
-			$timestamp = $revObject ? $revObject->getTimestamp() : wfTimestampNow();
-
-			# The cryptic '' timezone parameter tells to use the site-default
-			# timezone offset instead of the user settings.
-			# Since this value will be saved into the parser cache, served
-			# to other users, and potentially even used inside links and such,
-			# it needs to be consistent for all visitors.
-			$this->mRevisionTimestamp = $this->contLang->userAdjust( $timestamp, '' );
+		if ( $this->mRevisionTimestamp !== null ) {
+			return $this->mRevisionTimestamp;
 		}
+
+		# Use specified revision timestamp, falling back to the current timestamp
+		$revObject = $this->getRevisionObject();
+		$timestamp = $revObject ? $revObject->getTimestamp() : $this->mOptions->getTimestamp();
+		$this->mOutput->setRevisionTimestampUsed( $timestamp ); // unadjusted time zone
+
+		# The cryptic '' timezone parameter tells to use the site-default
+		# timezone offset instead of the user settings.
+		# Since this value will be saved into the parser cache, served
+		# to other users, and potentially even used inside links and such,
+		# it needs to be consistent for all visitors.
+		$this->mRevisionTimestamp = $this->contLang->userAdjust( $timestamp, '' );
+
 		return $this->mRevisionTimestamp;
 	}
 

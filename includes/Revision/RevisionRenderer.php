@@ -132,6 +132,13 @@ class RevisionRenderer {
 			return $this->getSpeculativeRevId( $dbIndex );
 		} );
 
+		if ( !$rev->getId() && $rev->getTimestamp() ) {
+			// This is an unsaved revision with an already determined timestamp.
+			// Make the "current" time used during parsing match that of the revision.
+			// Any REVISION* parser variables will match up if the revision is saved.
+			$options->setTimestamp( $rev->getTimestamp() );
+		}
+
 		$title = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
 
 		$renderedRevision = new RenderedRevision(

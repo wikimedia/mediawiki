@@ -207,6 +207,9 @@ class ParserOutput extends CacheTime {
 	/** @var int|null Assumed rev ID for {{REVISIONID}} if no revision is set */
 	private $mSpeculativeRevId;
 
+	/** @var int|null Assumed rev timestamp for {{REVISIONTIMESTAMP}} if no revision is set */
+	private $revisionTimestampUsed;
+
 	/** string CSS classes to use for the wrapping div, stored in the array keys.
 	 * If no class is given, no wrapper is added.
 	 */
@@ -437,6 +440,22 @@ class ParserOutput extends CacheTime {
 	 */
 	public function getSpeculativeRevIdUsed() {
 		return $this->mSpeculativeRevId;
+	}
+
+	/**
+	 * @param string $timestamp TS_MW timestamp
+	 * @since 1.34
+	 */
+	public function setRevisionTimestampUsed( $timestamp ) {
+		$this->revisionTimestampUsed = $timestamp;
+	}
+
+	/**
+	 * @return string|null TS_MW timestamp or null if not used
+	 * @since 1.34
+	 */
+	public function getRevisionTimestampUsed() {
+		return $this->revisionTimestampUsed;
 	}
 
 	public function &getLanguageLinks() {
