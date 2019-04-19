@@ -152,9 +152,18 @@ ul.gallery.mw-gallery-slideshow {
 	.mw-gallery-slideshow-buttons {
 		opacity: 0.5;
 		padding: 1.3em 0;
+		white-space: nowrap;
 
 		.oo-ui-buttonElement {
 			margin: 0 2em;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
 		}
 	}
 
