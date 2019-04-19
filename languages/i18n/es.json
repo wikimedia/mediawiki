@@ -185,7 +185,8 @@
 			"Carlosmg.dg",
 			"Mynor Archila",
 			"Jorge Ubilla",
-			"Marcelo9987"
+			"Marcelo9987",
+			"Cuatro Remos"
 		]
 	},
 	"tog-underline": "Enlaces a subrayar:",
@@ -2581,7 +2582,7 @@
 	"mycontris": "Contribuciones",
 	"anoncontribs": "Contribuciones",
 	"contribsub2": "Para {{GENDER:$3|$1}} ($2)",
-	"contributions-subtitle": "Para {{GENDER:$3|$1}} ($2)",
+	"contributions-subtitle": "Para {{GENDER:$3|$1}}",
 	"contributions-userdoesnotexist": "La cuenta de usuario «$1» no está registrada.",
 	"negative-namespace-not-supported": "Los espacios de nombres con valores negativos no están permitidos",
 	"nocontribs": "No se encontraron cambios que cumplieran estos criterios.",

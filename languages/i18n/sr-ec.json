@@ -255,7 +255,7 @@
 	"pool-servererror": "Услуга бројача редова није доступна ($1).",
 	"poolcounter-usage-error": "Грешка при употреби: $1",
 	"aboutsite": "О пројекту {{SITENAME}}",
-	"aboutpage": "Project:О_пројекту_{{SITENAME}}",
+	"aboutpage": "Project:О_нама",
 	"copyright": "Садржај је доступан под лиценцом $1 осим ако је другачије наведено.",
 	"copyrightpage": "{{ns:project}}:Ауторска права",
 	"currentevents": "Актуелности",

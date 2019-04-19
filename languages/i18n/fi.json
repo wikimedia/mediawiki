@@ -2538,6 +2538,7 @@
 	"ipb-confirm": "Vahvista esto",
 	"ipb-sitewide": "Sivuston laajuinen",
 	"ipb-partial": "Osittainen",
+	"ipb-partial-help": "Tietyt sivut tai nimiavaruudet.",
 	"ipb-pages-label": "Sivut",
 	"ipb-namespaces-label": "Nimiavaruudet",
 	"badipaddress": "IP-osoite on väärin muotoiltu.",

@@ -1166,12 +1166,15 @@
 	"apierror-systemblocked": "Du wurdest von MediaWiki automatisch gesperrt.",
 	"apierror-timeout": "Der Server hat nicht innerhalb der erwarteten Zeit reagiert.",
 	"apierror-toomanyvalues": "Es wurden zu viele Werte für den Parameter <var>$1</var> angegeben. Die Obergrenze liegt bei $2.",
+	"apierror-unknownerror-editpage": "Unbekannter EditPage-Fehler: $1.",
 	"apierror-unknownerror-nocode": "Unbekannter Fehler.",
 	"apierror-unknownerror": "Unbekannter Fehler: „$1“.",
 	"apierror-unknownformat": "Nicht erkanntes Format „$1“.",
+	"apierror-upload-missingresult": "Kein Ergebnis in den Statusdaten.",
 	"apiwarn-compare-no-next": "Die Version $2 ist die aktuelle Version von $1. Es gibt keine zu vergleichende Version für <kbd>torelative=next</kbd>.",
 	"apiwarn-compare-no-prev": "Die Version $2 ist die aktuelle Version von $1. Es gibt keine zu vergleichende Version für <kbd>torelative=prev</kbd>.",
 	"apiwarn-deprecation-missingparam": "Da <var>$1</var> nicht angegeben wurde, wurde ein veraltetes Format für die Ausgabe verwendet. Dieses Format ist veraltet und in Zukunft wird immer das neue Format benutzt.",
+	"apiwarn-deprecation-parameter": "Der Parameter <var>$1</var> ist veraltet.",
 	"apiwarn-ignoring-invalid-templated-value": "Ignorieren des Wertes <kbd>$2</kbd> in <var>$1</var> bei der Verarbeitung von Vorlagenparametern.",
 	"apiwarn-invalidcategory": "„$1“ ist keine Kategorie.",
 	"apiwarn-invalidtitle": "„$1“ ist kein gültiger Titel.",
@@ -1184,6 +1187,7 @@
 	"api-feed-error-title": "Fehler ($1)",
 	"api-usage-docref": "Siehe $1 zur Verwendung der API.",
 	"api-usage-mailinglist-ref": "Abonniere die Mailingliste „mediawiki-api-announce“ auf &lt;https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce&gt; zum Feststellen von API-Veralterungen und „Breaking Changes“.",
+	"api-exception-trace": "$1 bei $2($3)\n$4",
 	"api-credits-header": "Danksagungen",
 	"api-credits": "API-Entwickler:\n* Roan Kattouw (Hauptentwickler von September 2007 bis 2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (Autor, Hauptentwickler von September 2006 bis September 2007)\n* Brad Jorsch (Hauptentwickler seit 2013)\n\nBitte sende deine Kommentare, Vorschläge und Fragen an mediawiki-api@lists.wikimedia.org\noder reiche einen Fehlerbericht auf https://phabricator.wikimedia.org/ ein."
 }
