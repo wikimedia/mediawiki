@@ -1291,17 +1291,6 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Return a random password.
-	 *
-	 * @deprecated since 1.27, use PasswordFactory::generateRandomPasswordString()
-	 * @return string New random password
-	 */
-	public static function randomPassword() {
-		global $wgMinimalPasswordLength;
-		return PasswordFactory::generateRandomPasswordString( $wgMinimalPasswordLength );
-	}
-
-	/**
 	 * Set cached properties to default.
 	 *
 	 * @note This no longer clears uncached lazy-initialised properties;
