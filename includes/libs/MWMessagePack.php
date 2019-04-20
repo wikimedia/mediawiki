@@ -31,6 +31,7 @@
  *
  * @since 1.23
  * @file
+ * @deprecated since 1.34, no longer used
  */
 class MWMessagePack {
 	/** @var bool|null Whether current system is bigendian. **/
@@ -43,11 +44,14 @@ class MWMessagePack {
 	 * (both indexed and associative) types. Object serialization is not
 	 * supported.
 	 *
+	 * @deprecated since 1.34, no longer used
+	 *
 	 * @param mixed $value
 	 * @return string
 	 * @throws InvalidArgumentException if $value is an unsupported type or too long a string
 	 */
 	public static function pack( $value ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		if ( self::$bigendian === null ) {
 			self::$bigendian = pack( 'S', 1 ) === pack( 'n', 1 );
 		}
