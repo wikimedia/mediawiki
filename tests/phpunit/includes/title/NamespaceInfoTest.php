@@ -246,19 +246,6 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 		$this->assertSame( $actual, $expected, "NS $index" );
 	}
 
-	/**
-	 * @dataProvider provideHasTalkNamespace
-	 * @covers MWNamespace::canTalk
-	 *
-	 * @param int $index
-	 * @param bool $expected
-	 */
-	public function testCanTalk( $index, $expected ) {
-		$this->hideDeprecated( 'MWNamespace::canTalk' );
-		$actual = MWNamespace::canTalk( $index );
-		$this->assertSame( $actual, $expected, "NS $index" );
-	}
-
 	private function assertIsContent( $ns ) {
 		$this->assertTrue( $this->obj->isContent( $ns ) );
 	}
