@@ -2713,8 +2713,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		// We can't separate explicit JOIN clauses with ',', use ' ' for those
-		$implicitJoins = $ret ? implode( ',', $ret ) : "";
-		$explicitJoins = $retJOIN ? implode( ' ', $retJOIN ) : "";
+		$implicitJoins = implode( ',', $ret );
+		$explicitJoins = implode( ' ', $retJOIN );
 
 		// Compile our final table clause
 		return implode( ' ', [ $implicitJoins, $explicitJoins ] );
