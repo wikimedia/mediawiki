@@ -101,6 +101,7 @@ because of Phabricator reports.
   SearchEngine::create(), SearchEngine::getSearchTypes() and
   SearchEngine::getNearMatch(), methods deprecated in 1.27, have been removed.
 * FileRepo::streamFile(), deprecated in 1.26, has been removed.
+* User::randomPassword() method, deprecated in 1.27, have been removed.
 
 === Deprecations in 1.34 ===
 * The MWNamespace class is deprecated. Use MediaWikiServices::getNamespaceInfo.
