@@ -1474,27 +1474,30 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			return;
 		}
 
-		if ( $this->options['oldcountable'] === 'no-change' ||
-			( !$this->options['changed'] && !$this->options['moved'] )
-		) {
-			$good = 0;
-		} elseif ( $this->options['created'] ) {
-			$good = (int)$this->isCountable();
-		} elseif ( $this->options['oldcountable'] !== null ) {
-			$good = (int)$this->isCountable()
-				- (int)$this->options['oldcountable'];
-		} elseif ( isset( $this->pageState['oldCountable'] ) ) {
-			$good = (int)$this->isCountable()
-				- (int)$this->pageState['oldCountable'];
-		} else {
-			$good = 0;
-		}
-		$edits = $this->options['changed'] ? 1 : 0;
-		$pages = $this->options['created'] ? 1 : 0;
+		DeferredUpdates::addCallableUpdate( function () {
+			if (
+				$this->options['oldcountable'] === 'no-change' ||
+				( !$this->options['changed'] && !$this->options['moved'] )
+			) {
+				$good = 0;
+			} elseif ( $this->options['created'] ) {
+				$good = (int)$this->isCountable();
+			} elseif ( $this->options['oldcountable'] !== null ) {
+				$good = (int)$this->isCountable()
+					- (int)$this->options['oldcountable'];
+			} elseif ( isset( $this->pageState['oldCountable'] ) ) {
+				$good = (int)$this->isCountable()
+					- (int)$this->pageState['oldCountable'];
+			} else {
+				$good = 0;
+			}
+			$edits = $this->options['changed'] ? 1 : 0;
+			$pages = $this->options['created'] ? 1 : 0;
 
-		DeferredUpdates::addUpdate( SiteStatsUpdate::factory(
-			[ 'edits' => $edits, 'articles' => $good, 'pages' => $pages ]
-		) );
+			DeferredUpdates::addUpdate( SiteStatsUpdate::factory(
+				[ 'edits' => $edits, 'articles' => $good, 'pages' => $pages ]
+			) );
+		} );
 
 		// TODO: make search infrastructure aware of slots!
 		$mainSlot = $this->revision->getSlot( SlotRecord::MAIN );
