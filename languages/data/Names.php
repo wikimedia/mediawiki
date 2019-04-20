@@ -223,7 +223,7 @@ class Names {
 		'jam' => 'Patois', # Jamaican Creole English
 		'jbo' => 'la .lojban.', # Lojban
 		'jut' => 'jysk', # Jutish / Jutlandic
-		'jv' => 'Basa Jawa', # Javanese
+		'jv' => 'Jawa', # Javanese
 		'ka' => 'ქართული', # Georgian
 		'kaa' => 'Qaraqalpaqsha', # Karakalpak
 		'kab' => 'Taqbaylit', # Kabyle
