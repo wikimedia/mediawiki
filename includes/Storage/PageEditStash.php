@@ -221,7 +221,7 @@ class PageEditStash {
 
 		$editInfo = $this->getAndWaitForStashValue( $key );
 		if ( !is_object( $editInfo ) || !$editInfo->output ) {
-			$this->stats->increment( 'editstash.cache_misses.no_stash' );
+			$this->incrStatsByContent( 'cache_misses.no_stash', $content );
 			if ( $this->recentStashEntryCount( $user ) > 0 ) {
 				$logger->info( "Empty cache for key '{key}' but not for user.", $context );
 			} else {
@@ -237,28 +237,28 @@ class PageEditStash {
 		$isCacheUsable = true;
 		if ( $age <= self::PRESUME_FRESH_TTL_SEC ) {
 			// Assume nothing changed in this time
-			$this->stats->increment( 'editstash.cache_hits.presumed_fresh' );
+			$this->incrStatsByContent( 'cache_hits.presumed_fresh', $content );
 			$logger->debug( "Timestamp-based cache hit for key '{key}'.", $context );
 		} elseif ( $user->isAnon() ) {
 			$lastEdit = $this->lastEditTime( $user );
 			$cacheTime = $editInfo->output->getCacheTime();
 			if ( $lastEdit < $cacheTime ) {
 				// Logged-out user made no local upload/template edits in the meantime
-				$this->stats->increment( 'editstash.cache_hits.presumed_fresh' );
+				$this->incrStatsByContent( 'cache_hits.presumed_fresh', $content );
 				$logger->debug( "Edit check based cache hit for key '{key}'.", $context );
 			} else {
 				$isCacheUsable = false;
-				$this->stats->increment( 'editstash.cache_misses.proven_stale' );
+				$this->incrStatsByContent( 'cache_misses.proven_stale', $content );
 				$logger->info( "Stale cache for key '{key}' due to outside edits.", $context );
 			}
 		} else {
 			if ( $editInfo->edits === $user->getEditCount() ) {
 				// Logged-in user made no local upload/template edits in the meantime
-				$this->stats->increment( 'editstash.cache_hits.presumed_fresh' );
+				$this->incrStatsByContent( 'cache_hits.presumed_fresh', $content );
 				$logger->debug( "Edit count based cache hit for key '{key}'.", $context );
 			} else {
 				$isCacheUsable = false;
-				$this->stats->increment( 'editstash.cache_misses.proven_stale' );
+				$this->incrStatsByContent( 'cache_misses.proven_stale', $content );
 				$logger->info( "Stale cache for key '{key}'due to outside edits.", $context );
 			}
 		}
@@ -283,6 +283,15 @@ class PageEditStash {
 		}
 
 		return $editInfo;
+	}
+
+	/**
+	 * @param string $subkey
+	 * @param Content $content
+	 */
+	private function incrStatsByContent( $subkey, Content $content ) {
+		$this->stats->increment( 'editstash.' . $subkey ); // overall for b/c
+		$this->stats->increment( 'editstash_by_model.' . $content->getModel() . '.' . $subkey );
 	}
 
 	/**
