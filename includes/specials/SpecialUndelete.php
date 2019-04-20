@@ -687,7 +687,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		$path = $repo->getZonePath( 'deleted' ) . '/' . $repo->getDeletedHashPath( $key ) . $key;
-		$repo->streamFile( $path );
+		$repo->streamFileWithStatus( $path );
 	}
 
 	protected function showHistory() {

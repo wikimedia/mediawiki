@@ -322,10 +322,10 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			);
 		}
 
-		return $file->getRepo()->streamFile( $file->getPath(),
+		return $file->getRepo()->streamFileWithStatus( $file->getPath(),
 			[ 'Content-Transfer-Encoding: binary',
 				'Expires: Sun, 17-Jan-2038 19:14:07 GMT' ]
-		);
+		)->isOK();
 	}
 
 	/**
