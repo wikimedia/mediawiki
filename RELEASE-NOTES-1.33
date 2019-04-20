@@ -112,6 +112,8 @@ For notes on 1.32.x and older releases, see HISTORY.
 * (T213893) Added 'MaintenanceUpdateAddParams' hook
 * (T219655) The MarkPatrolled hook has a new parameter for the tags
   associated with this entry in the patrol log.
+* (T212472) Extensions can now specify platform abilities they require to work,
+  limited to shell access for now.
 
 
 === External library changes in 1.33 ===
