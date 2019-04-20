@@ -1631,18 +1631,6 @@ class FileRepo {
 	}
 
 	/**
-	 * Attempt to stream a file with the given virtual URL/storage path
-	 *
-	 * @deprecated since 1.26, use streamFileWithStatus
-	 * @param string $virtualUrl
-	 * @param array $headers Additional HTTP headers to send on success
-	 * @return bool Success
-	 */
-	public function streamFile( $virtualUrl, $headers = [] ) {
-		return $this->streamFileWithStatus( $virtualUrl, $headers )->isOK();
-	}
-
-	/**
 	 * Call a callback function for every public regular file in the repository.
 	 * This only acts on the current version of files, not any old versions.
 	 * May use either the database or the filesystem.
