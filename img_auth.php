@@ -177,7 +177,7 @@ function wfImageAuthMain() {
 
 	// Stream the requested file
 	wfDebugLog( 'img_auth', "Streaming `" . $filename . "`." );
-	$repo->streamFile( $filename, $headers, $options );
+	$repo->streamFileWithStatus( $filename, $headers, $options );
 }
 
 /**
