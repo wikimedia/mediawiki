@@ -293,7 +293,7 @@ class LinkRenderer {
 		return $this->makePreloadedLink(
 			$target,
 			$text,
-			$classes ? implode( ' ', $classes ) : '',
+			implode( ' ', $classes ),
 			$extraAttribs,
 			$query
 		);
