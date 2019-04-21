@@ -413,10 +413,12 @@ class ExtensionRegistry {
 	 *
 	 * If some extensions are already queued, this will load
 	 * those as well.
-	 *
+	 * TODO: Remove in MediaWiki 1.35
+	 * @deprecated since 1.34, use ExtensionRegistry->queue() instead
 	 * @param string $path Absolute path to the JSON file
 	 */
 	public function load( $path ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		$this->loadFromQueue(); // First clear the queue
 		$this->queue( $path );
 		$this->loadFromQueue();
