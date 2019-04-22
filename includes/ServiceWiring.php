@@ -43,6 +43,7 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkRenderer;
@@ -170,7 +171,7 @@ return [
 		return new DateFormatterFactory;
 	},
 
-	'DBLoadBalancer' => function ( MediaWikiServices $services ) : Wikimedia\Rdbms\LoadBalancer {
+	'DBLoadBalancer' => function ( MediaWikiServices $services ) : Wikimedia\Rdbms\ILoadBalancer {
 		// just return the default LB from the DBLoadBalancerFactory service
 		return $services->getDBLoadBalancerFactory()->getMainLB();
 	},
@@ -212,8 +213,8 @@ return [
 	},
 
 	'HttpRequestFactory' =>
-	function ( MediaWikiServices $services ) : \MediaWiki\Http\HttpRequestFactory {
-		return new \MediaWiki\Http\HttpRequestFactory();
+	function ( MediaWikiServices $services ) : HttpRequestFactory {
+		return new HttpRequestFactory();
 	},
 
 	'InterwikiLookup' => function ( MediaWikiServices $services ) : InterwikiLookup {
