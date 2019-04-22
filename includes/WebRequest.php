@@ -275,8 +275,18 @@ class WebRequest {
 	public static function getRequestId() {
 		// This method is called from various error handlers and should be kept simple.
 
-		if ( !self::$reqId ) {
-			self::$reqId = $_SERVER['UNIQUE_ID'] ?? wfRandomString( 24 );
+		if ( self::$reqId ) {
+			return self::$reqId;
+		}
+
+		global $wgAllowExternalReqID;
+
+		self::$reqId = $_SERVER['UNIQUE_ID'] ?? wfRandomString( 24 );
+		if ( $wgAllowExternalReqID ) {
+			$id = RequestContext::getMain()->getRequest()->getHeader( 'X-Request-Id' );
+			if ( $id ) {
+				self::$reqId = $id;
+			}
 		}
 
 		return self::$reqId;
