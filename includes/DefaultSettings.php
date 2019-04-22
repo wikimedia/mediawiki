@@ -9025,6 +9025,16 @@ $wgOriginTrials = [];
 $wgPriorityHints = false;
 
 /**
+ * Ratio of requests that should get Priority Hints when the feature is enabled.
+ *
+ * @warning EXPERIMENTAL!
+ *
+ * @since 1.34
+ * @var float
+ */
+$wgPriorityHintsRatio = 1.0;
+
+/**
  * Enable Element Timing.
  *
  * @warning EXPERIMENTAL!
