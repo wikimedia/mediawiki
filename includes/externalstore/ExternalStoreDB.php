@@ -106,7 +106,9 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	}
 
 	public function isReadOnly( $location ) {
-		return ( $this->getLoadBalancer( $location )->getReadOnlyReason() !== false );
+		$lb = $this->getLoadBalancer( $location );
+		$domainId = $this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) );
+		return ( $lb->getReadOnlyReason( $domainId ) !== false );
 	}
 
 	/**
