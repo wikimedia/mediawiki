@@ -1957,6 +1957,7 @@ class Sanitizer {
 
 			// HTML 5 section 4.5
 			'figure'     => $common,
+			'figure-inline' => $common, # T118520
 			'figcaption' => $common,
 
 			# HTML 5 section 4.6
