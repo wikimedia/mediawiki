@@ -1382,7 +1382,7 @@
 	"rcfilters-savedqueries-already-saved": "Iste filtros es jam salveguardate. Cambia tu configuration pro crear un nove filtro salveguardate.",
 	"rcfilters-restore-default-filters": "Restaurar filtros predefinite",
 	"rcfilters-clear-all-filters": "Rader tote le filtros",
-	"rcfilters-show-new-changes": "Vider le modificationes le plus recente",
+	"rcfilters-show-new-changes": "Vider le modificationes apportate desde $1",
 	"rcfilters-search-placeholder": "Filtrar le modificationes (usa le menu o cerca le nomine del filtro)",
 	"rcfilters-invalid-filter": "Filtro non valide",
 	"rcfilters-empty-filter": "Nulle filtro active. Tote le contributiones es monstrate.",

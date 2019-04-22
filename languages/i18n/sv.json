@@ -2604,6 +2604,8 @@
 	"blocklist-userblocks": "Dölj kontoblockeringar",
 	"blocklist-tempblocks": "Dölj tillfälliga blockeringar",
 	"blocklist-addressblocks": "Dölj enskilda IP-blockeringar",
+	"blocklist-type": "Typ:",
+	"blocklist-type-opt-all": "Alla",
 	"blocklist-rangeblocks": "Dölj intervallblockeringar",
 	"blocklist-timestamp": "Tidsstämpel",
 	"blocklist-target": "Mål",
