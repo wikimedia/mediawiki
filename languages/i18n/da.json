@@ -2482,6 +2482,7 @@
 	"blocklist-userblocks": "Skjul blokeringer af kontoer",
 	"blocklist-tempblocks": "Skjul midlertidige blokeringer",
 	"blocklist-addressblocks": "Skjul enkel IP blokeringer",
+	"blocklist-type-opt-partial": "Delvis",
 	"blocklist-rangeblocks": "Skjul blokeringsklasser",
 	"blocklist-timestamp": "Tidsstempel",
 	"blocklist-target": "Mål",
