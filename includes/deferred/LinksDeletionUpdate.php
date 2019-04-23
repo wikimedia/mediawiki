@@ -73,7 +73,7 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 			// T166757: do the update after the main job DB commit
 			DeferredUpdates::addCallableUpdate( function () use ( $title ) {
 				$cat = Category::newFromName( $title->getDBkey() );
-				$cat->refreshCountsIfEmpty();
+				$cat->refreshCountsIfSmall();
 			} );
 		}
 
