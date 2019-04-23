@@ -158,9 +158,7 @@ class ContribsPagerTest extends MediaWikiTestCase {
 
 		$this->assertContains( 'ip_changes', $queryInfo[0] );
 		$this->assertArrayHasKey( 'ip_changes', $queryInfo[5] );
-		$this->assertSame( 'ipc_rev_timestamp', $queryInfo[1]['rev_timestamp'] );
-		$this->assertSame( 'ipc_rev_id', $queryInfo[1]['rev_id'] );
-		$this->assertSame( [ 'rev_timestamp DESC', 'rev_id DESC' ], $queryInfo[4]['ORDER BY'] );
+		$this->assertSame( [ 'ipc_rev_timestamp DESC', 'ipc_rev_id DESC' ], $queryInfo[4]['ORDER BY'] );
 	}
 
 }
