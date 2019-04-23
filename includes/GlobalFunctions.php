@@ -2660,10 +2660,12 @@ function wfGetLB( $wiki = false ) {
  * Get the load balancer factory object
  *
  * @deprecated since 1.27, use MediaWikiServices::getInstance()->getDBLoadBalancerFactory() instead.
+ * TODO: Remove in MediaWiki 1.35
  *
  * @return \Wikimedia\Rdbms\LBFactory
  */
 function wfGetLBFactory() {
+	wfDeprecated( __METHOD__, '1.34' );
 	return MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 }
 
