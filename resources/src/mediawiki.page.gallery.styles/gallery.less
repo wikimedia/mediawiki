@@ -1,0 +1,196 @@
+/* stylelint-disable selector-class-pattern */
+
+/* Galleries */
+/* These display attributes look nonsensical, but are needed to support IE and FF2 */
+/* Don't forget to update gallery.print.css */
+
+ul.gallery {
+	margin: 2px;
+	padding: 2px;
+	display: block;
+}
+
+li.gallerycaption {
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	word-wrap: break-word;
+}
+
+li.gallerybox {
+	vertical-align: top;
+	display: -moz-inline-box;
+	display: inline-block;
+
+	div.thumb {
+		text-align: center;
+		margin: 2px;
+
+		img {
+			display: block;
+			margin: 0 auto;
+		}
+	}
+}
+
+ul.gallery,
+li.gallerybox {
+	zoom: 1;
+	*display: inline;
+}
+
+div.gallerytext {
+	overflow: hidden;
+	font-size: 94%;
+	padding: 2px 4px;
+	word-wrap: break-word;
+}
+
+.galleryfilename {
+	display: block;
+
+	&-truncate {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
+/* new gallery stuff */
+ul.mw-gallery-nolines li.gallerybox {
+	div.thumb {
+		background-color: transparent;
+		border: 0;
+	}
+
+	div.gallerytext {
+		text-align: center;
+	}
+}
+
+/* height constrained gallery */
+
+ul.mw-gallery-packed,
+ul.mw-gallery-packed-overlay,
+ul.mw-gallery-packed-hover {
+	text-align: center;
+
+	li.gallerybox div.thumb {
+		background-color: transparent;
+		border: 0;
+
+		img {
+			margin: 0 auto;
+		}
+	}
+}
+
+ul.mw-gallery-packed-hover,
+ul.mw-gallery-packed-overlay {
+	li.gallerybox {
+		position: relative;
+	}
+}
+
+ul.mw-gallery-packed-hover div.gallerytextwrapper {
+	overflow: hidden;
+	height: 0;
+}
+
+ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper,
+ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper,
+ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper {
+	position: absolute;
+	background: #fff;
+	background: rgba( 255, 255, 255, 0.8 );
+	padding: 5px 10px;
+	bottom: 0;
+	left: 0; /* Needed for IE */
+	height: auto;
+	max-height: 40%;
+	overflow: hidden;
+	font-weight: bold;
+	margin: 2px; /* correspond to style on div.thumb */
+
+	p {
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+	&:hover {
+		overflow: visible;
+		max-height: none;
+
+		p {
+			text-overflow: clip;
+			white-space: normal;
+			overflow: visible;
+		}
+	}
+}
+
+/* Slideshow */
+ul.gallery.mw-gallery-slideshow {
+	display: block;
+	margin: 4em 0;
+
+	.gallerycaption {
+		font-size: 1.3em;
+		margin: 0;
+	}
+
+	.gallerycarousel {
+		display: block;
+		text-align: center;
+
+		&.mw-gallery-slideshow-thumbnails-toggled {
+			margin-bottom: 1.3em;
+		}
+	}
+
+	.mw-gallery-slideshow-buttons {
+		opacity: 0.5;
+		padding: 1.3em 0;
+		white-space: nowrap;
+
+		.oo-ui-buttonElement {
+			margin: 0 2em;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+
+	.gallerybox {
+		&.slideshow-current {
+			background: #efefef;
+		}
+
+		> div {
+			max-width: 120px;
+		}
+
+		div.thumb {
+			border: 0;
+			background: transparent;
+		}
+	}
+}
+
+.mw-gallery-slideshow-img-container a {
+	display: block;
+}
+
+@media screen {
+	/* Background and border colors are defined separately for print mode */
+	li.gallerybox div.thumb {
+		border: 1px solid #c8ccd1;
+		background-color: #f8f9fa;
+	}
+}
