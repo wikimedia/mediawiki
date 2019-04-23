@@ -15,17 +15,17 @@ interface SearchIndexField {
 	 * https://wikimediafoundation.org/2018/08/07/anatomy-search-token-affection/
 	 * https://wikimediafoundation.org/2018/09/13/anatomy-search-variation-under-nature/
 	 */
-	const INDEX_TYPE_TEXT = 0;
+	const INDEX_TYPE_TEXT = 'text';
 	/**
 	 * KEYWORD fields are indexed without any processing, so are appropriate
 	 * for e.g. URLs.  The content will often consist of a single token.
 	 */
-	const INDEX_TYPE_KEYWORD = 1;
-	const INDEX_TYPE_INTEGER = 2;
-	const INDEX_TYPE_NUMBER = 3;
-	const INDEX_TYPE_DATETIME = 4;
-	const INDEX_TYPE_NESTED = 5;
-	const INDEX_TYPE_BOOL = 6;
+	const INDEX_TYPE_KEYWORD = 'keyword';
+	const INDEX_TYPE_INTEGER = 'integer';
+	const INDEX_TYPE_NUMBER = 'number';
+	const INDEX_TYPE_DATETIME = 'datetime';
+	const INDEX_TYPE_NESTED = 'nested';
+	const INDEX_TYPE_BOOL = 'bool';
 
 	/**
 	 * SHORT_TEXT is meant to be used with short text made of mostly ascii
@@ -33,7 +33,7 @@ interface SearchIndexField {
 	 * is used and aggressive splitting to increase recall.
 	 * E.g suited for mime/type
 	 */
-	const INDEX_TYPE_SHORT_TEXT = 7;
+	const INDEX_TYPE_SHORT_TEXT = 'short_text';
 
 	/**
 	 * Generic field flags.
