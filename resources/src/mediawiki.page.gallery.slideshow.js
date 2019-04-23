@@ -242,23 +242,32 @@
 			.removeClass( 'slideshow-current' );
 		$imageLi.addClass( 'slideshow-current' );
 
-		// 2. Create and show thumbnail
 		this.$thumbnail = $imageLi.find( 'img' );
-		this.$img = $( '<img>' ).attr( {
-			src: this.$thumbnail.attr( 'src' ),
-			alt: this.$thumbnail.attr( 'alt' )
-		} );
-		// 'image' class required for detection by MultimediaViewer
-		$imgLink = $( '<a>' ).addClass( 'image' )
-			.attr( 'href', $imageLi.find( 'a' ).eq( 0 ).attr( 'href' ) )
-			.append( this.$img );
+		if ( this.$thumbnail.length ) {
+			// 2. Create and show thumbnail
+			this.$img = $( '<img>' ).attr( {
+				src: this.$thumbnail.attr( 'src' ),
+				alt: this.$thumbnail.attr( 'alt' )
+			} );
+			// 'image' class required for detection by MultimediaViewer
+			$imgLink = $( '<a>' ).addClass( 'image' )
+				.attr( 'href', $imageLi.find( 'a' ).eq( 0 ).attr( 'href' ) )
+				.append( this.$img );
 
-		this.$imgContainer.empty().append( $imgLink );
+			this.$imgContainer.empty().append( $imgLink );
+		} else {
+			// 2b. No image found (e.g. file doesn't exist)
+			this.$imgContainer.text( $imageLi.find( '.thumb' ).text() );
+		}
 
 		// 3. Copy caption
 		this.$imgCaption
 			.empty()
 			.append( $caption.clone() );
+
+		if ( !this.$thumbnail.length ) {
+			return;
+		}
 
 		// 4. Stretch thumbnail to correct size
 		this.setImageSize();
@@ -275,6 +284,10 @@
 				// Pre-fetch the next image
 				this.loadImage( this.getNextImage().find( 'img' ) );
 			}
+		}.bind( this ) ).fail( function () {
+			// Image didn't load
+			var title = mw.Title.newFromImg( this.$img );
+			this.$imgContainer.text( title ? title.getMainText() : '' );
 		}.bind( this ) );
 	};
 
