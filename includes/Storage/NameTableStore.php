@@ -183,11 +183,10 @@ class NameTableStore {
 				$searchResult = $id;
 
 				// As store returned an ID we know we inserted so delete from WAN cache
-				$this->purgeWANCache(
-					function () {
-						$this->cache->delete( $this->getCacheKey() );
-					}
-				);
+				$dbw = $this->getDBConnection( DB_MASTER );
+				$dbw->onTransactionPreCommitOrIdle( function () {
+					$this->cache->delete( $this->getCacheKey() );
+				} );
 			}
 			$this->tableCache = $table;
 		}
@@ -208,14 +207,11 @@ class NameTableStore {
 	 * @return string[] The freshly reloaded name map
 	 */
 	public function reloadMap( $connFlags = 0 ) {
-		$this->tableCache = $this->loadTable(
-			$this->getDBConnection( DB_MASTER, $connFlags )
-		);
-		$this->purgeWANCache(
-			function () {
-				$this->cache->reap( $this->getCacheKey(), INF );
-			}
-		);
+		$dbw = $this->getDBConnection( DB_MASTER, $connFlags );
+		$this->tableCache = $this->loadTable( $dbw );
+		$dbw->onTransactionPreCommitOrIdle( function () {
+			$this->cache->reap( $this->getCacheKey(), INF );
+		} );
 
 		return $this->tableCache;
 	}
@@ -340,22 +336,6 @@ class NameTableStore {
 		$this->tableCache = $table;
 
 		return $table;
-	}
-
-	/**
-	 * Reap the WANCache entry for this table.
-	 *
-	 * @param callable $purgeCallback Callback to 'purge' the WAN cache
-	 */
-	private function purgeWANCache( $purgeCallback ) {
-		// If the LB has no DB changes don't bother with onTransactionPreCommitOrIdle
-		if ( !$this->loadBalancer->hasOrMadeRecentMasterChanges() ) {
-			$purgeCallback();
-			return;
-		}
-
-		$this->getDBConnection( DB_MASTER )
-			->onTransactionPreCommitOrIdle( $purgeCallback, __METHOD__ );
 	}
 
 	/**
