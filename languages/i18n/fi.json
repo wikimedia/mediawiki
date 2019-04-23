@@ -2332,7 +2332,7 @@
 	"deleting-subpages-warning": "<strong>Varoitus:</strong> Sivu jota olet poistamassa on [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|alasivu|$1 alasivua|51=yli 50 alasivua}}]].",
 	"rollback": "palauta aiempaan versioon",
 	"rollback-confirmation-confirm": "Vahvista:",
-	"rollback-confirmation-yes": "Palauta",
+	"rollback-confirmation-yes": "Tee palautus",
 	"rollback-confirmation-no": "Peruuta",
 	"rollbacklink": "palauta",
 	"rollbacklinkcount": "palauta $1 {{PLURAL:$1|muutos|muutosta}}",

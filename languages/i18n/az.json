@@ -293,7 +293,7 @@
 	"confirmable-confirm": "{{GENDER:$1|Siz}} əminsiniz?",
 	"confirmable-yes": "Bəli",
 	"confirmable-no": "Xeyr",
-	"thisisdeleted": "$1 bax və ya bərpa et?",
+	"thisisdeleted": "$1 baxmaq və ya bərpa etmək istəyirsinizmi?",
 	"viewdeleted": "$1 göstərilsin?",
 	"restorelink": "$1 silinmiş redaktəyə",
 	"feedlinks": "Kanal növü:",

@@ -1148,7 +1148,7 @@
 	"right-move-rootuserpages": "Premještanje osnovne stranice suradnika",
 	"right-move-categorypages": "Premještanje kategorizacijskih stranica",
 	"right-movefile": "Premještanje datoteka",
-	"right-suppressredirect": "Ne raditi preusmjeravanje od starog imena prilikom premještanja stranice",
+	"right-suppressredirect": "Ne stvaranje preusmjeravanja od izvornih stranica prilikom premještanja stranica",
 	"right-upload": "Postavljanje datoteka",
 	"right-reupload": "Postavljanje nove inačice datoteke",
 	"right-reupload-own": "Postavljanje nove inačice vlastite datoteke",
