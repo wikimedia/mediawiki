@@ -617,7 +617,7 @@ class UserTest extends MediaWikiTestCase {
 
 		// Confirm that the block has been applied as required.
 		$this->assertTrue( $user1->isLoggedIn() );
-		$this->assertTrue( $user1->isBlocked() );
+		$this->assertInstanceOf( Block::class, $user1->getBlock() );
 		$this->assertEquals( Block::TYPE_USER, $block->getType() );
 		$this->assertTrue( $block->isAutoblocking() );
 		$this->assertGreaterThanOrEqual( 1, $block->getId() );
@@ -638,7 +638,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertNotEquals( $user1->getToken(), $user2->getToken() );
 		$this->assertTrue( $user2->isAnon() );
 		$this->assertFalse( $user2->isLoggedIn() );
-		$this->assertTrue( $user2->isBlocked() );
+		$this->assertInstanceOf( Block::class, $user2->getBlock() );
 		// Non-strict type-check.
 		$this->assertEquals( true, $user2->getBlock()->isAutoblocking(), 'Autoblock does not work' );
 		// Can't directly compare the objects because of member type differences.
@@ -654,7 +654,7 @@ class UserTest extends MediaWikiTestCase {
 		$user3 = User::newFromSession( $request3 );
 		$user3->load();
 		$this->assertTrue( $user3->isLoggedIn() );
-		$this->assertTrue( $user3->isBlocked() );
+		$this->assertInstanceOf( Block::class, $user3->getBlock() );
 		$this->assertEquals( true, $user3->getBlock()->isAutoblocking() ); // Non-strict type-check.
 
 		// Clean up.
@@ -694,7 +694,7 @@ class UserTest extends MediaWikiTestCase {
 
 		// 2. Test that the cookie IS NOT present.
 		$this->assertTrue( $user->isLoggedIn() );
-		$this->assertTrue( $user->isBlocked() );
+		$this->assertInstanceOf( Block::class, $user->getBlock() );
 		$this->assertEquals( Block::TYPE_USER, $block->getType() );
 		$this->assertTrue( $block->isAutoblocking() );
 		$this->assertGreaterThanOrEqual( 1, $user->getBlockId() );
@@ -739,7 +739,7 @@ class UserTest extends MediaWikiTestCase {
 
 		// 2. Test the cookie's expiry timestamp.
 		$this->assertTrue( $user1->isLoggedIn() );
-		$this->assertTrue( $user1->isBlocked() );
+		$this->assertInstanceOf( Block::class, $user1->getBlock() );
 		$this->assertEquals( Block::TYPE_USER, $block->getType() );
 		$this->assertTrue( $block->isAutoblocking() );
 		$this->assertGreaterThanOrEqual( 1, $user1->getBlockId() );
@@ -849,7 +849,7 @@ class UserTest extends MediaWikiTestCase {
 		$user2->load();
 		$this->assertTrue( $user2->isAnon() );
 		$this->assertFalse( $user2->isLoggedIn() );
-		$this->assertFalse( $user2->isBlocked() );
+		$this->assertNull( $user2->getBlock() );
 
 		// Clean up.
 		$block->delete();
@@ -885,7 +885,7 @@ class UserTest extends MediaWikiTestCase {
 		$user1 = User::newFromSession( $request1 );
 		$user1->mBlock = $block;
 		$user1->load();
-		$this->assertTrue( $user1->isBlocked() );
+		$this->assertInstanceOf( Block::class, $user1->getBlock() );
 
 		// 2. Create a new request, set the cookie to just the block ID, and the user should
 		// still get blocked when they log in again.
@@ -897,7 +897,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertNotEquals( $user1->getToken(), $user2->getToken() );
 		$this->assertTrue( $user2->isAnon() );
 		$this->assertFalse( $user2->isLoggedIn() );
-		$this->assertTrue( $user2->isBlocked() );
+		$this->assertInstanceOf( Block::class, $user2->getBlock() );
 		$this->assertEquals( true, $user2->getBlock()->isAutoblocking() ); // Non-strict type-check.
 
 		// Clean up.
@@ -1459,7 +1459,7 @@ class UserTest extends MediaWikiTestCase {
 		$user = User::newFromSession( $request );
 
 		// logged in users should be inmune to cookie block of type ip/range
-		$this->assertFalse( $user->isBlocked() );
+		$this->assertNull( $user->getBlock() );
 
 		// cookie is being cleared
 		$cookies = $request->response()->getCookies();

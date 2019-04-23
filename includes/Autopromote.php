@@ -198,7 +198,8 @@ class Autopromote {
 			case APCOND_IPINRANGE:
 				return IP::isInRange( $user->getRequest()->getIP(), $cond[1] );
 			case APCOND_BLOCKED:
-				return $user->isBlocked();
+				// @TODO Should partial blocks prevent auto promote?
+				return (bool)$user->getBlock();
 			case APCOND_ISBOT:
 				return in_array( 'bot', User::getGroupPermissions( $user->getGroups() ) );
 			default:

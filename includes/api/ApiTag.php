@@ -40,8 +40,10 @@ class ApiTag extends ApiBase {
 		// make sure the user is allowed
 		$this->checkUserRightsAny( 'changetags' );
 
-		if ( $user->isBlocked() ) {
-			$this->dieBlocked( $user->getBlock() );
+		// @TODO Use PermissionManager::isBlockedFrom() instead.
+		$block = $user->getBlock();
+		if ( $block ) {
+			$this->dieBlocked( $block );
 		}
 
 		// Check if user can add tags

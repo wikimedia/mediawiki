@@ -224,7 +224,9 @@ class EmailNotification {
 						&& $watchingUser->isEmailConfirmed()
 						&& $watchingUser->getId() != $userTalkId
 						&& !in_array( $watchingUser->getName(), $wgUsersNotifiedOnAllChanges )
-						&& !( $wgBlockDisablesLogin && $watchingUser->isBlocked() )
+						// @TODO Partial blocks should not prevent the user from logging in.
+						//       see: https://phabricator.wikimedia.org/T208895
+						&& !( $wgBlockDisablesLogin && $watchingUser->getBlock() )
 						&& Hooks::run( 'SendWatchlistEmailNotification', [ $watchingUser, $title, $this ] )
 					) {
 						$this->compose( $watchingUser, self::WATCHLIST );
@@ -262,7 +264,9 @@ class EmailNotification {
 				wfDebug( __METHOD__ . ": user talk page edited, but user does not exist\n" );
 			} elseif ( $targetUser->getId() == $editor->getId() ) {
 				wfDebug( __METHOD__ . ": user edited their own talk page, no notification sent\n" );
-			} elseif ( $wgBlockDisablesLogin && $targetUser->isBlocked() ) {
+			} elseif ( $wgBlockDisablesLogin && $targetUser->getBlock() ) {
+				// @TODO Partial blocks should not prevent the user from logging in.
+				//       see: https://phabricator.wikimedia.org/T208895
 				wfDebug( __METHOD__ . ": talk page owner is blocked and cannot login, no notification sent\n" );
 			} elseif ( $targetUser->getOption( 'enotifusertalkpages' )
 				&& ( !$minorEdit || $targetUser->getOption( 'enotifminoredits' ) )

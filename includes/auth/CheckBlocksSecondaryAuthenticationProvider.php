@@ -59,9 +59,11 @@ class CheckBlocksSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 	}
 
 	public function beginSecondaryAuthentication( $user, array $reqs ) {
+		// @TODO Partial blocks should not prevent the user from logging in.
+		//       see: https://phabricator.wikimedia.org/T208895
 		if ( !$this->blockDisablesLogin ) {
 			return AuthenticationResponse::newAbstain();
-		} elseif ( $user->isBlocked() ) {
+		} elseif ( $user->getBlock() ) {
 			return AuthenticationResponse::newFail(
 				new \Message( 'login-userblocked', [ $user->getName() ] )
 			);
