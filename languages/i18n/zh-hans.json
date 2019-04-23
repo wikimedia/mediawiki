@@ -111,7 +111,8 @@
 			"GoForceX",
 			"Ff98sha",
 			"VulpesVulpes825",
-			"佛壁灯"
+			"佛壁灯",
+			"94rain"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -1506,7 +1507,7 @@
 	"rcfilters-savedqueries-already-saved": "这些过滤器已保存。更改您的设置以创建新的保存过滤器。",
 	"rcfilters-restore-default-filters": "恢复默认过滤器",
 	"rcfilters-clear-all-filters": "清空所有过滤器",
-	"rcfilters-show-new-changes": "显示最新更改",
+	"rcfilters-show-new-changes": "显示自$1以来的最新更改",
 	"rcfilters-search-placeholder": "过滤器更改（使用用于过滤器名称的菜单或搜索功能）",
 	"rcfilters-invalid-filter": "无效过滤器",
 	"rcfilters-empty-filter": "没有应用的过滤器。所有贡献都已显示。",
@@ -2528,7 +2529,7 @@
 	"mycontris": "贡献",
 	"anoncontribs": "贡献",
 	"contribsub2": "{{GENDER:$3|$1}}的贡献（$2）",
-	"contributions-subtitle": "对于{{GENDER:$3|$1}}",
+	"contributions-subtitle": "{{GENDER:$3|$1}}",
 	"contributions-userdoesnotexist": "用户“$1”尚未注册。",
 	"negative-namespace-not-supported": "不支持带有负值的命名空间",
 	"nocontribs": "没有找到匹配这些规则的更改。",
@@ -2637,6 +2638,7 @@
 	"blocklist-userblocks": "隐藏账户封禁",
 	"blocklist-tempblocks": "隐藏临时封禁",
 	"blocklist-addressblocks": "隐藏单个IP封禁",
+	"blocklist-type": "类型：",
 	"blocklist-rangeblocks": "隐藏IP段封禁",
 	"blocklist-timestamp": "时间",
 	"blocklist-target": "目标",
