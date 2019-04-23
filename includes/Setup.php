@@ -736,10 +736,10 @@ $cpPosInfo = LBFactory::getCPInfoFromCookieValue(
 MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setRequestInfo( [
 	'IPAddress' => $wgRequest->getIP(),
 	'UserAgent' => $wgRequest->getHeader( 'User-Agent' ),
-	'ChronologyProtection' => $wgRequest->getHeader( 'MediaWiki-ChronologyProtection' ),
+	'ChronologyProtection' => $wgRequest->getHeader( 'MediaWiki-Chronology-Protection' ),
 	'ChronologyPositionIndex' => $wgRequest->getInt( 'cpPosIndex', $cpPosInfo['index'] ),
 	'ChronologyClientId' => $cpPosInfo['clientId']
-		?? $wgRequest->getHeader( 'MediaWiki-ChronologyClientId' )
+		?? $wgRequest->getHeader( 'MediaWiki-Chronology-Client-Id' )
 ] );
 unset( $cpPosInfo );
 // Make sure that object caching does not undermine the ChronologyProtector improvements
