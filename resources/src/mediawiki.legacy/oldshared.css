@@ -282,21 +282,6 @@ span.comment {
 	color: #c00;
 }
 
-.editExternally {
-	border: 1px solid #808080;
-	background: #fff;
-	padding: 3px;
-	margin-top: 0.5em;
-	float: left;
-	font-size: small;
-	text-align: center;
-}
-
-.editExternallyHelp {
-	font-style: italic;
-	color: #808080;
-}
-
 li span.deleted {
 	text-decoration: line-through;
 	color: #888;
