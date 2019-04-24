@@ -8997,16 +8997,6 @@ $wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_REA
 $wgEnablePartialBlocks = false;
 
 /**
- * Enable stats monitoring when Block Notices are displayed in different places around core
- * and extensions.
- *
- * @since 1.34
- * @deprecated 1.34
- * @var bool
- */
-$wgEnableBlockNoticeStats = false;
-
-/**
  * Origin Trials tokens.
  *
  * @since 1.33
