@@ -178,7 +178,9 @@ class UsersPager extends AlphabeticPager {
 		$ulinks .= Linker::userToolLinksRedContribs(
 			$row->user_id,
 			$userName,
-			(int)$row->edits
+			(int)$row->edits,
+			// don't render parentheses in HTML markup (CSS will provide)
+			false
 		);
 
 		$lang = $this->getLanguage();
