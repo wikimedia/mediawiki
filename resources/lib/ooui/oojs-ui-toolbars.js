@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.4
+ * OOUI v0.31.5
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-04-16T23:14:51Z
+ * Date: 2019-04-24T18:29:08Z
  */
 ( function ( OO ) {
 
@@ -405,7 +405,7 @@ OO.ui.Toolbar.prototype.getToolGroupFactory = function () {
  *
  * @private
  * @param {jQuery.Event} e Mouse down event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.Toolbar.prototype.onPointerDown = function ( e ) {
 	var $closestWidgetToEvent = $( e.target ).closest( '.oo-ui-widget' ),
@@ -1155,7 +1155,7 @@ OO.ui.ToolGroup.prototype.onDisable = function ( isDisabled ) {
  *
  * @protected
  * @param {jQuery.Event} e Mouse down or key down event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.ToolGroup.prototype.onMouseKeyDown = function ( e ) {
 	if (
@@ -2131,7 +2131,7 @@ OO.ui.PopupToolGroup.prototype.onMouseKeyDown = function ( e ) {
  *
  * @protected
  * @param {jQuery.Event} e Mouse up or key up event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.PopupToolGroup.prototype.onHandleMouseKeyUp = function ( e ) {
 	if (
@@ -2150,7 +2150,7 @@ OO.ui.PopupToolGroup.prototype.onHandleMouseKeyUp = function ( e ) {
  *
  * @protected
  * @param {jQuery.Event} e Mouse down or key down event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.PopupToolGroup.prototype.onHandleMouseKeyDown = function ( e ) {
 	var $focusable;

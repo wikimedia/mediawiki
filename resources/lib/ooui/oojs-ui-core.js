@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.4
+ * OOUI v0.31.5
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-04-16T23:14:51Z
+ * Date: 2019-04-24T18:29:08Z
  */
 ( function ( OO ) {
 
@@ -2285,7 +2285,7 @@ OO.ui.mixin.ButtonElement.prototype.setButtonElement = function ( $button ) {
  *
  * @protected
  * @param {jQuery.Event} e Mouse down event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.mixin.ButtonElement.prototype.onMouseDown = function ( e ) {
 	if ( this.isDisabled() || e.which !== OO.ui.MouseButtons.LEFT ) {
@@ -2322,7 +2322,7 @@ OO.ui.mixin.ButtonElement.prototype.onDocumentMouseUp = function ( e ) {
  * @protected
  * @param {jQuery.Event} e Mouse click event
  * @fires click
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.mixin.ButtonElement.prototype.onClick = function ( e ) {
 	if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT ) {
@@ -2369,7 +2369,7 @@ OO.ui.mixin.ButtonElement.prototype.onDocumentKeyUp = function ( e ) {
  * @protected
  * @param {jQuery.Event} e Key press event
  * @fires click
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.mixin.ButtonElement.prototype.onKeyPress = function ( e ) {
 	if ( !this.isDisabled() && ( e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER ) ) {
@@ -6627,7 +6627,7 @@ OO.ui.SelectWidget.prototype.onFocus = function ( event ) {
  *
  * @private
  * @param {jQuery.Event} e Mouse down event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.SelectWidget.prototype.onMouseDown = function ( e ) {
 	var item;
@@ -6650,7 +6650,7 @@ OO.ui.SelectWidget.prototype.onMouseDown = function ( e ) {
  *
  * @private
  * @param {MouseEvent} e Mouse up event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.SelectWidget.prototype.onDocumentMouseUp = function ( e ) {
 	var item;
@@ -6697,7 +6697,7 @@ OO.ui.SelectWidget.prototype.onDocumentMouseMove = function ( e ) {
  *
  * @private
  * @param {jQuery.Event} e Mouse over event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.SelectWidget.prototype.onMouseOver = function ( e ) {
 	var item;
@@ -6716,7 +6716,7 @@ OO.ui.SelectWidget.prototype.onMouseOver = function ( e ) {
  *
  * @private
  * @param {jQuery.Event} e Mouse over event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.SelectWidget.prototype.onMouseLeave = function () {
 	if ( !this.isDisabled() ) {
@@ -6841,7 +6841,7 @@ OO.ui.SelectWidget.prototype.clearKeyPressBuffer = function () {
  *
  * @protected
  * @param {KeyboardEvent} e Key press event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.SelectWidget.prototype.onDocumentKeyPress = function ( e ) {
 	var c, filter, item;
@@ -8045,6 +8045,7 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			this.getElementDocument().removeEventListener( 'mousedown', this.onDocumentMouseDownHandler, true );
 			this.togglePositioning( false );
 			this.toggleClipping( false );
+			this.lastHighlightedItem = null;
 		}
 	}
 
@@ -8232,7 +8233,7 @@ OO.ui.DropdownWidget.prototype.onMenuToggle = function ( isVisible ) {
  *
  * @private
  * @param {jQuery.Event} e Mouse click event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.DropdownWidget.prototype.onClick = function ( e ) {
 	if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT ) {
@@ -8246,7 +8247,7 @@ OO.ui.DropdownWidget.prototype.onClick = function ( e ) {
  *
  * @private
  * @param {jQuery.Event} e Key down event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.DropdownWidget.prototype.onKeyDown = function ( e ) {
 	if (
@@ -10696,7 +10697,7 @@ OO.ui.TextInputWidget.static.validationPatterns = {
  *
  * @private
  * @param {jQuery.Event} e Mouse down event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.TextInputWidget.prototype.onIconMouseDown = function ( e ) {
 	if ( e.which === OO.ui.MouseButtons.LEFT ) {
@@ -10710,7 +10711,7 @@ OO.ui.TextInputWidget.prototype.onIconMouseDown = function ( e ) {
  *
  * @private
  * @param {jQuery.Event} e Mouse down event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.TextInputWidget.prototype.onIndicatorMouseDown = function ( e ) {
 	if ( e.which === OO.ui.MouseButtons.LEFT ) {
@@ -13051,12 +13052,16 @@ OO.ui.NumberInputWidget.prototype.onButtonClick = function ( dir ) {
  *
  * @private
  * @param {jQuery.Event} event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.NumberInputWidget.prototype.onWheel = function ( event ) {
 	var delta = 0;
 
-	if ( !this.isDisabled() && this.$input.is( ':focus' ) ) {
+	if ( this.isDisabled() || this.isReadOnly() ) {
+		return;
+	}
+
+	if ( this.$input.is( ':focus' ) ) {
 		// Standard 'wheel' event
 		if ( event.originalEvent.deltaMode !== undefined ) {
 			this.sawWheelEvent = true;
@@ -13094,24 +13099,26 @@ OO.ui.NumberInputWidget.prototype.onWheel = function ( event ) {
  *
  * @private
  * @param {jQuery.Event} e Key down event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.NumberInputWidget.prototype.onKeyDown = function ( e ) {
-	if ( !this.isDisabled() ) {
-		switch ( e.which ) {
-			case OO.ui.Keys.UP:
-				this.adjustValue( this.buttonStep );
-				return false;
-			case OO.ui.Keys.DOWN:
-				this.adjustValue( -this.buttonStep );
-				return false;
-			case OO.ui.Keys.PAGEUP:
-				this.adjustValue( this.pageStep );
-				return false;
-			case OO.ui.Keys.PAGEDOWN:
-				this.adjustValue( -this.pageStep );
-				return false;
-		}
+	if ( this.isDisabled() || this.isReadOnly() ) {
+		return;
+	}
+
+	switch ( e.which ) {
+		case OO.ui.Keys.UP:
+			this.adjustValue( this.buttonStep );
+			return false;
+		case OO.ui.Keys.DOWN:
+			this.adjustValue( -this.buttonStep );
+			return false;
+		case OO.ui.Keys.PAGEUP:
+			this.adjustValue( this.pageStep );
+			return false;
+		case OO.ui.Keys.PAGEDOWN:
+			this.adjustValue( -this.pageStep );
+			return false;
 	}
 };
 
@@ -13389,7 +13396,7 @@ OO.ui.SelectFileInputWidget.prototype.onInfoChange = function ( value ) {
  *
  * @private
  * @param {jQuery.Event} e Key press event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.SelectFileInputWidget.prototype.onKeyPress = function ( e ) {
 	if ( !this.isDisabled() && this.$input &&

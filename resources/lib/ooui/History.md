@@ -1,4 +1,17 @@
 # OOUI Release History
+## v0.31.5 / 2019-04-24
+### Features
+* MenuSelectWidget: Fix highlight on re-display (Lucas Werkmeister)
+* NumberInputWidget: Disable event listeners when disabled or readOnly (Ed Sanders)
+
+### Styles
+* PopupWidget: Fix stacking context problems caused by `filter: drop-shadow` (Bartosz Dziewoński)
+
+### Code
+* docs: {undefined/boolean} -> {undefined|boolean} (Ed Sanders)
+* icons: Re-crush with 'svgmin' build task (Volker E.)
+
+
 ## v0.31.4 / 2019-04-16
 ### Features
 * Element: Make `scrollIntoView()` more flexible (Ed Sanders)

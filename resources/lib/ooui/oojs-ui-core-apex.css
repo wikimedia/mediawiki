@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.4
+ * OOUI v0.31.5
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-04-16T23:15:00Z
+ * Date: 2019-04-24T18:29:15Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -861,15 +861,14 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 
 .oo-ui-popupWidget {
   position: absolute;
+  z-index: 1;
 }
 .oo-ui-popupWidget-popup {
   position: relative;
   overflow: hidden;
-  z-index: 1;
 }
 .oo-ui-popupWidget-anchor {
   display: none;
-  z-index: 1;
 }
 .oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor {
   display: block;
