@@ -67,6 +67,7 @@ class SpecialActiveUsers extends SpecialPage {
 				Html::rawElement( 'ul', [], $usersBody ) .
 				$pager->getNavigationBar()
 			);
+			$out->addModuleStyles( 'mediawiki.interface.helpers.styles' );
 		} else {
 			$out->addWikiMsg( 'activeusers-noresult' );
 		}
