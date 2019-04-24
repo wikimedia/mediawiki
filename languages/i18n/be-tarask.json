@@ -1339,6 +1339,7 @@
 	"action-editusercss": "рэдагаваньне CSS-файлаў іншых удзельнікаў",
 	"action-edituserjson": "рэдагаваньне JSON-файлаў іншых удзельнікаў",
 	"action-edituserjs": "рэдагаваньне JavaScript-файлаў іншых удзельнікаў",
+	"action-editsitecss": "рэдагаваньне агульнасайтавага CSS",
 	"nchanges": "$1 {{PLURAL:$1|зьмена|зьмены|зьменаў}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|з апошняга візыту}}",
 	"enhancedrc-history": "гісторыя",

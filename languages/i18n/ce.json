@@ -660,6 +660,7 @@
 	"postedit-confirmation-created": "АгӀо кхоьллина.",
 	"postedit-confirmation-restored": "АгӀо меттахӀотта йина.",
 	"postedit-confirmation-saved": "Хьан нисдар дӀаяздина.",
+	"postedit-confirmation-published": "Хьан нисдар дӀаяздина.",
 	"edit-already-exists": "Керла агӀо кхолла цатарло.\nИза хӀинцале йолуш ю.",
 	"defaultmessagetext": "Ӏадйитаран кепаца йоза",
 	"content-failed-to-parse": "Чулацам $2 богӀуш бац $1: $3.",
