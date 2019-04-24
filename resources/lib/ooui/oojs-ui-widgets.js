@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.4
+ * OOUI v0.31.5
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-04-16T23:14:51Z
+ * Date: 2019-04-24T18:29:08Z
  */
 ( function ( OO ) {
 
@@ -3213,7 +3213,7 @@ OO.mixinClass( OO.ui.ToggleSwitchWidget, OO.ui.mixin.TabIndexedElement );
  *
  * @private
  * @param {jQuery.Event} e Mouse click event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.ToggleSwitchWidget.prototype.onClick = function ( e ) {
 	if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT ) {
@@ -3227,7 +3227,7 @@ OO.ui.ToggleSwitchWidget.prototype.onClick = function ( e ) {
  *
  * @private
  * @param {jQuery.Event} e Key press event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.ToggleSwitchWidget.prototype.onKeyPress = function ( e ) {
 	if ( !this.isDisabled() && ( e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER ) ) {
@@ -5848,7 +5848,7 @@ OO.ui.SelectFileWidget.prototype.onFileSelected = function ( e ) {
  *
  * @private
  * @param {jQuery.Event} e Key press event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.SelectFileWidget.prototype.onDropTargetClick = function () {
 	if ( !this.isDisabled() && this.$input ) {
@@ -5862,7 +5862,7 @@ OO.ui.SelectFileWidget.prototype.onDropTargetClick = function () {
  *
  * @private
  * @param {jQuery.Event} e Drag event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.SelectFileWidget.prototype.onDragEnterOrOver = function ( e ) {
 	var itemsOrFiles,
@@ -5916,7 +5916,7 @@ OO.ui.SelectFileWidget.prototype.onDragLeave = function () {
  *
  * @private
  * @param {jQuery.Event} e Drop event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.SelectFileWidget.prototype.onDrop = function ( e ) {
 	var files,
