@@ -20,33 +20,6 @@
 		delay: 500, // ms
 		timeoutID: false,
 
-		keypress: function () {
-			if ( !ajaxUploadDestCheck ) {
-				return;
-			}
-
-			// Find file to upload
-			if ( !$( '#wpDestFile' ).length || !$( '#wpDestFile-warning' ).length ) {
-				return;
-			}
-
-			this.nameToCheck = $( '#wpDestFile' ).val();
-
-			// Clear timer
-			if ( this.timeoutID ) {
-				clearTimeout( this.timeoutID );
-			}
-			// Check response cache
-			if ( Object.prototype.hasOwnProperty.call( this.responseCache, this.nameToCheck ) ) {
-				this.setWarning( this.responseCache[ this.nameToCheck ] );
-				return;
-			}
-
-			this.timeoutID = setTimeout( function () {
-				uploadWarning.timeout();
-			}, this.delay );
-		},
-
 		checkNow: function ( fname ) {
 			if ( !ajaxUploadDestCheck ) {
 				return;
