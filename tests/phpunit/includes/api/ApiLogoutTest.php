@@ -8,33 +8,53 @@
  * @covers ApiLogout
  */
 class ApiLogoutTest extends ApiTestCase {
-	public function setUp() {
+
+	protected function setUp() {
+		global $wgRequest, $wgUser;
+
 		parent::setUp();
+
+		// Link the user to the Session properly so User::doLogout() doesn't complain.
+		$wgRequest->getSession()->setUser( $wgUser );
+		$wgUser = User::newFromSession( $wgRequest );
+		$this->apiContext->setUser( $wgUser );
 	}
 
 	public function testUserLogoutBadToken() {
+		global $wgUser;
+
+		$this->setExpectedApiException( 'apierror-badtoken' );
+
 		try {
 			$token = 'invalid token';
-			$retLogout = $this->doUserLogout( $token );
+			$this->doUserLogout( $token );
+		} finally {
+			$this->assertTrue( $wgUser->isLoggedIn(), 'not logged out' );
 		}
-		catch ( ApiUsageException $e ) {
-			$exceptionMsg = $e->getMessage();
-		}
-
-		$this->assertSame( "Invalid CSRF token.", $exceptionMsg );
 	}
 
 	public function testUserLogout() {
-		// TODO: there has to be a cleaner way to make User::doLogout happy
 		global $wgUser;
-		$wgUser = User::newFromId( '127.0.0.1' );
 
+		$this->assertTrue( $wgUser->isLoggedIn(), 'sanity check' );
 		$token = $this->getUserCsrfTokenFromApi();
-		$retLogout = $this->doUserLogout( $token );
+		$this->doUserLogout( $token );
 		$this->assertFalse( $wgUser->isLoggedIn() );
 	}
 
-	public function getUserCsrfTokenFromApi() {
+	public function testUserLogoutWithWebToken() {
+		global $wgUser, $wgRequest;
+
+		$this->assertTrue( $wgUser->isLoggedIn(), 'sanity check' );
+
+		// Logic copied from SkinTemplate.
+		$token = $wgUser->getEditToken( 'logoutToken', $wgRequest );
+
+		$this->doUserLogout( $token );
+		$this->assertFalse( $wgUser->isLoggedIn() );
+	}
+
+	private function getUserCsrfTokenFromApi() {
 		$retToken = $this->doApiRequest( [
 			'action' => 'query',
 			'meta' => 'tokens',
@@ -46,7 +66,7 @@ class ApiLogoutTest extends ApiTestCase {
 		return $retToken[0]['query']['tokens']['csrftoken'];
 	}
 
-	public function doUserLogout( $logoutToken ) {
+	private function doUserLogout( $logoutToken ) {
 		return $this->doApiRequest( [
 			'action' => 'logout',
 			'token' => $logoutToken
