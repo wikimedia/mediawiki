@@ -49,7 +49,9 @@ class SpecialVersion extends SpecialPage {
 	 * @param string|null $par
 	 */
 	public function execute( $par ) {
-		global $IP, $wgExtensionCredits;
+		global $IP;
+		$config = $this->getConfig();
+		$extensionCredits = $config->get( 'ExtensionCredits' );
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -62,7 +64,7 @@ class SpecialVersion extends SpecialPage {
 		if ( isset( $parts[1] ) ) {
 			$extName = str_replace( '_', ' ', $parts[1] );
 			// Find it!
-			foreach ( $wgExtensionCredits as $group => $extensions ) {
+			foreach ( $extensionCredits as $group => $extensions ) {
 				foreach ( $extensions as $ext ) {
 					if ( isset( $ext['name'] ) && ( $ext['name'] === $extName ) ) {
 						$extNode = &$ext;
@@ -408,12 +410,13 @@ class SpecialVersion extends SpecialPage {
 	 * @return string Wikitext
 	 */
 	public function getExtensionCredits() {
-		global $wgExtensionCredits;
+		$config = $this->getConfig();
+		$extensionCredits = $config->get( 'ExtensionCredits' );
 
 		if (
-			count( $wgExtensionCredits ) === 0 ||
+			count( $extensionCredits ) === 0 ||
 			// Skins are displayed separately, see getSkinCredits()
-			( count( $wgExtensionCredits ) === 1 && isset( $wgExtensionCredits['skin'] ) )
+			( count( $extensionCredits ) === 1 && isset( $extensionCredits['skin'] ) )
 		) {
 			return '';
 		}
@@ -428,14 +431,14 @@ class SpecialVersion extends SpecialPage {
 			Xml::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-ext' ] );
 
 		// Make sure the 'other' type is set to an array.
-		if ( !array_key_exists( 'other', $wgExtensionCredits ) ) {
-			$wgExtensionCredits['other'] = [];
+		if ( !array_key_exists( 'other', $extensionCredits ) ) {
+			$extensionCredits['other'] = [];
 		}
 
 		// Find all extensions that do not have a valid type and give them the type 'other'.
-		foreach ( $wgExtensionCredits as $type => $extensions ) {
+		foreach ( $extensionCredits as $type => $extensions ) {
 			if ( !array_key_exists( $type, $extensionTypes ) ) {
-				$wgExtensionCredits['other'] = array_merge( $wgExtensionCredits['other'], $extensions );
+				$extensionCredits['other'] = array_merge( $extensionCredits['other'], $extensions );
 			}
 		}
 
@@ -633,16 +636,17 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	protected function getExtensionCategory( $type, $message ) {
-		global $wgExtensionCredits;
+		$config = $this->getConfig();
+		$extensionCredits = $config->get( 'ExtensionCredits' );
 
 		$out = '';
 
-		if ( array_key_exists( $type, $wgExtensionCredits ) && count( $wgExtensionCredits[$type] ) > 0 ) {
+		if ( array_key_exists( $type, $extensionCredits ) && count( $extensionCredits[$type] ) > 0 ) {
 			$out .= $this->openExtType( $message, 'credits-' . $type );
 
-			usort( $wgExtensionCredits[$type], [ $this, 'compare' ] );
+			usort( $extensionCredits[$type], [ $this, 'compare' ] );
 
-			foreach ( $wgExtensionCredits[$type] as $extension ) {
+			foreach ( $extensionCredits[$type] as $extension ) {
 				$out .= $this->getCreditsForExtension( $type, $extension );
 			}
 		}
@@ -882,9 +886,9 @@ class SpecialVersion extends SpecialPage {
 			$ret[] = Html::closeElement( 'table' );
 
 			return implode( "\n", $ret );
-		} else {
-			return '';
 		}
+
+		return '';
 	}
 
 	private function openExtType( $text = null, $name = null ) {
@@ -1132,10 +1136,11 @@ class SpecialVersion extends SpecialPage {
 	 * @return string Wikitext
 	 */
 	public function getEntryPointInfo() {
-		global $wgArticlePath, $wgScriptPath;
-		$scriptPath = $wgScriptPath ?: "/";
+		$config = $this->getConfig();
+		$scriptPath = $config->get( 'ScriptPath' ) ?: '/';
+
 		$entryPoints = [
-			'version-entrypoints-articlepath' => $wgArticlePath,
+			'version-entrypoints-articlepath' => $config->get( 'ArticlePath' ),
 			'version-entrypoints-scriptpath' => $scriptPath,
 			'version-entrypoints-index-php' => wfScript( 'index' ),
 			'version-entrypoints-api-php' => wfScript( 'api' ),
