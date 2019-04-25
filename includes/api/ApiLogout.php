@@ -69,6 +69,10 @@ class ApiLogout extends ApiBase {
 		return 'csrf';
 	}
 
+	protected function getWebUITokenSalt( array $params ) {
+		return 'logoutToken';
+	}
+
 	public function isReadMode() {
 		return false;
 	}
