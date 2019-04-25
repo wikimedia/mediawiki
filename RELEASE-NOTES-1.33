@@ -171,6 +171,7 @@ For notes on 1.32.x and older releases, see HISTORY.
 * (T216245) Autoblocks will now be spread by action=edit and action=move.
 * action=query&meta=userinfo has a new uiprop, 'latestcontrib', that returns
   the date of user's latest contribution.
+* (T25227) action=logout now requires to be posted and have a csrf token.
 
 === Action API internal changes in 1.33 ===
 * A number of deprecated methods for API documentation, intended for overriding
