@@ -21,7 +21,7 @@
  */
 
 use Wikimedia\Rdbms\IResultWrapper;
-use MediaWiki\Block\BlockRestriction;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Query module to enumerate all user blocks
@@ -292,7 +292,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 			}
 		}
 
-		$restrictions = BlockRestriction::loadByBlockId( $partialIds );
+		$blockRestrictionStore = MediaWikiServices::getInstance()->getBlockRestrictionStore();
+		$restrictions = $blockRestrictionStore->loadByBlockId( $partialIds );
 
 		$data = [];
 		$keys = [
