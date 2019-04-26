@@ -114,7 +114,7 @@ class Command {
 	 * @param string|string[] ...$args
 	 * @return $this
 	 */
-	public function params( ...$args ) {
+	public function params( ...$args ): Command {
 		if ( count( $args ) === 1 && is_array( reset( $args ) ) ) {
 			// If only one argument has been passed, and that argument is an array,
 			// treat it as a list of arguments
@@ -132,7 +132,7 @@ class Command {
 	 * @param string|string[] ...$args
 	 * @return $this
 	 */
-	public function unsafeParams( ...$args ) {
+	public function unsafeParams( ...$args ): Command {
 		if ( count( $args ) === 1 && is_array( reset( $args ) ) ) {
 			// If only one argument has been passed, and that argument is an array,
 			// treat it as a list of arguments
@@ -155,7 +155,7 @@ class Command {
 	 *   filesize (for ulimit -f), memory, time, walltime.
 	 * @return $this
 	 */
-	public function limits( array $limits ) {
+	public function limits( array $limits ): Command {
 		if ( !isset( $limits['walltime'] ) && isset( $limits['time'] ) ) {
 			// Emulate the behavior of old wfShellExec() where walltime fell back on time
 			// if the latter was overridden and the former wasn't
@@ -172,7 +172,7 @@ class Command {
 	 * @param string[] $env array of variable name => value
 	 * @return $this
 	 */
-	public function environment( array $env ) {
+	public function environment( array $env ): Command {
 		$this->env = $env;
 
 		return $this;
@@ -184,7 +184,7 @@ class Command {
 	 * @param string $method
 	 * @return $this
 	 */
-	public function profileMethod( $method ) {
+	public function profileMethod( $method ): Command {
 		$this->method = $method;
 
 		return $this;
@@ -196,7 +196,7 @@ class Command {
 	 * @param string|null $inputString
 	 * @return $this
 	 */
-	public function input( $inputString ) {
+	public function input( $inputString ): Command {
 		$this->inputString = is_null( $inputString ) ? null : (string)$inputString;
 
 		return $this;
@@ -209,7 +209,7 @@ class Command {
 	 * @param bool $yesno
 	 * @return $this
 	 */
-	public function includeStderr( $yesno = true ) {
+	public function includeStderr( $yesno = true ): Command {
 		$this->doIncludeStderr = $yesno;
 
 		return $this;
@@ -221,7 +221,7 @@ class Command {
 	 * @param bool $yesno
 	 * @return $this
 	 */
-	public function logStderr( $yesno = true ) {
+	public function logStderr( $yesno = true ): Command {
 		$this->doLogStderr = $yesno;
 
 		return $this;
@@ -233,7 +233,7 @@ class Command {
 	 * @param string|false $cgroup Absolute file path to the cgroup, or false to not use a cgroup
 	 * @return $this
 	 */
-	public function cgroup( $cgroup ) {
+	public function cgroup( $cgroup ): Command {
 		$this->cgroup = $cgroup;
 
 		return $this;
@@ -246,7 +246,7 @@ class Command {
 	 * @param int $restrictions
 	 * @return $this
 	 */
-	public function restrict( $restrictions ) {
+	public function restrict( $restrictions ): Command {
 		$this->restrictions |= $restrictions;
 
 		return $this;
@@ -273,7 +273,7 @@ class Command {
 	 *
 	 * @return $this
 	 */
-	public function whitelistPaths( array $paths ) {
+	public function whitelistPaths( array $paths ): Command {
 		// Default implementation is a no-op
 		return $this;
 	}

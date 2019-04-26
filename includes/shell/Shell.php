@@ -116,7 +116,7 @@ class Shell {
 	 *   Example:   [ 'convert', '-font', 'font name' ] would produce "'convert' '-font' 'font name'"
 	 * @return Command
 	 */
-	public static function command( ...$commands ) {
+	public static function command( ...$commands ): Command {
 		if ( count( $commands ) === 1 && is_array( reset( $commands ) ) ) {
 			// If only one argument has been passed, and that argument is an array,
 			// treat it as a list of arguments
@@ -232,7 +232,7 @@ class Shell {
 	 *     'wrapper': Path to a PHP wrapper to handle the maintenance script
 	 * @return Command
 	 */
-	public static function makeScriptCommand( $script, $parameters, $options = [] ) {
+	public static function makeScriptCommand( $script, $parameters, $options = [] ): Command {
 		global $wgPhpCli;
 		// Give site config file a chance to run the script in a wrapper.
 		// The caller may likely want to call wfBasename() on $script.
