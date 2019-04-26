@@ -36,7 +36,8 @@
 			"Stjn",
 			"Edward Chernenko",
 			"Vlad5250",
-			"Diralik"
+			"Diralik",
+			"DmitTrix"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> MediaWiki API — зрелый и стабильный интерфейс, активно поддерживаемый и улучшаемый. Мы стараемся избегать ломающих изменений, однако изредка они могут быть необходимы. Подпишитесь на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].</p>",
@@ -70,6 +71,9 @@
 	"apihelp-block-param-reblock": "Если участник уже заблокирован, перезаписать существующую блокировку.",
 	"apihelp-block-param-watchuser": "Следить за страницей участника и соответствующей страницей обсуждения, принадлежащей участнику или IP-адресу.",
 	"apihelp-block-param-tags": "Изменить метки записи в журнале блокировок.",
+	"apihelp-block-param-partial": "Блокировать пользователю доступ только к определённым страницам или пространствам имён, а не ко всему сайту.",
+	"apihelp-block-param-pagerestrictions": "Список заголовков страниц, редактирование которых заблокировано для этого участника. Действителен, только если <var>partial</var> установлен в true.",
+	"apihelp-block-param-namespacerestrictions": "Список пространств имён, редактирование в которых заблокировано для этого участника. Действителен, только если <var>partial</var> установлен в true.",
 	"apihelp-block-example-ip-simple": "Заблокировать IP-адрес <kbd>192.0.2.5</kbd> на три дня по причине <kbd>First strike</kbd>.",
 	"apihelp-block-example-user-complex": "Бессрочно заблокировать участника <kbd>Vandal</kbd> по причине <kbd>Vandalism</kbd> и предотвратить создание новых аккаунтов и отправку электронной почты.",
 	"apihelp-changeauthenticationdata-summary": "Смена параметров аутентификации для текущего участника.",
@@ -89,7 +93,7 @@
 	"apihelp-compare-param-fromtitle": "Заголовок первой сравниваемой страницы.",
 	"apihelp-compare-param-fromid": "Идентификатор первой сравниваемой страницы.",
 	"apihelp-compare-param-fromrev": "Первая сравниваемая версия.",
-	"apihelp-compare-param-frompst": "Выполнить преобразование перед записью правки (PST) над <var>fromtext</var>.",
+	"apihelp-compare-param-frompst": "Выполнить преобразование перед записью правки (PST) над <var>fromtext-&#x7B;slot}</var>.",
 	"apihelp-compare-param-fromtext": "Используйте этот текст вместо содержимого версии, заданной <var>fromtitle</var>, <var>fromid</var> или <var>fromrev</var>.",
 	"apihelp-compare-param-fromcontentmodel": "Модель содержимого <var>fromtext</var>. Если не задана, будет угадана по другим параметрам.",
 	"apihelp-compare-param-fromcontentformat": "Формат сериализации содержимого <var>fromtext</var>.",
