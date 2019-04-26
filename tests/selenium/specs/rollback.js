@@ -16,14 +16,7 @@ describe( 'Rollback with confirmation', function () {
 		// Enable rollback confirmation for admin user
 		// Requires user to log in again, handled by deleteCookie() call in beforeEach function
 		UserLoginPage.loginAdmin();
-
-		UserLoginPage.waitForScriptsToBeReady();
-		browser.execute( function () {
-			return ( new mw.Api() ).saveOption(
-				'showrollbackconfirmation',
-				'1'
-			);
-		} );
+		HistoryPage.toggleRollbackConfirmationSetting( true );
 	} );
 
 	beforeEach( function () {
@@ -103,14 +96,7 @@ describe( 'Rollback without confirmation', function () {
 		// Disable rollback confirmation for admin user
 		// Requires user to log in again, handled by deleteCookie() call in beforeEach function
 		UserLoginPage.loginAdmin();
-
-		UserLoginPage.waitForScriptsToBeReady();
-		browser.execute( function () {
-			return ( new mw.Api() ).saveOption(
-				'showrollbackconfirmation',
-				'0'
-			);
-		} );
+		HistoryPage.toggleRollbackConfirmationSetting( false );
 	} );
 
 	beforeEach( function () {
