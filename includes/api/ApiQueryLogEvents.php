@@ -238,6 +238,14 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 		}
 
+		// T220999: MySQL/MariaDB (10.1.37) can sometimes irrationally decide that querying `actor` before
+		// `logging` and filesorting is somehow better than querying $limit+1 rows from `logging`.
+		// Tell it not to reorder the query. But not when `letag` was used, as it seems as likely
+		// to be harmed as helped in that case.
+		if ( $params['tag'] === null ) {
+			$this->addOption( 'STRAIGHT_JOIN' );
+		}
+
 		$count = 0;
 		$res = $this->select( __METHOD__ );
 		$result = $this->getResult();
