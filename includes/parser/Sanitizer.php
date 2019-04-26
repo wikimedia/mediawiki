@@ -1918,7 +1918,8 @@ class Sanitizer {
 			# such as <math> when it is rasterized, or if $wgAllowImageTag is
 			# true
 			'img'        => array_merge( $common, [ 'alt', 'src', 'width', 'height', 'srcset' ] ),
-
+			# Attributes for A/V tags added in T163583 / T133673
+			'audio'      => array_merge( $common, [ 'controls', 'preload', 'width', 'height' ] ),
 			'video'      => array_merge( $common, [ 'poster', 'controls', 'preload', 'width', 'height' ] ),
 			'source'     => array_merge( $common, [ 'type', 'src' ] ),
 			'track'      => array_merge( $common, [ 'type', 'src', 'srclang', 'kind', 'label' ] ),
