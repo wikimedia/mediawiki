@@ -2617,7 +2617,8 @@
 	"blocklist-addressblocks": "Ocultar bloqueios de um IP individual",
 	"blocklist-type": "Tipo:",
 	"blocklist-type-opt-all": "Todos",
-	"blocklist-type-opt-partial": "Parcial",
+	"blocklist-type-opt-sitewide": "Todo o ''site''",
+	"blocklist-type-opt-partial": "Parciais",
 	"blocklist-rangeblocks": "Ocultar bloqueios de gamas",
 	"blocklist-timestamp": "Data e hora",
 	"blocklist-target": "Destinatário",
@@ -2640,7 +2641,7 @@
 	"blocklist-editing-page": "páginas",
 	"blocklist-editing-ns": "espaços nominais",
 	"ipblocklist-empty": "A lista de bloqueios encontra-se vazia.",
-	"ipblocklist-no-results": "Nenhum bloqueio correspondente encontrado para o endereço de IP ou nome de utilizador(a) solicitado.",
+	"ipblocklist-no-results": "Não foi encontrado nenhum bloqueio correspondente para o endereço IP ou nome de utilizador pedido.",
 	"blocklink": "bloquear",
 	"unblocklink": "desbloquear",
 	"change-blocklink": "alterar bloqueio",
@@ -3875,5 +3876,7 @@
 	"passwordpolicies-policyflag-forcechange": "deve mudar ao iniciar sessão",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "sugerir alteração ao iniciar sessão",
 	"easydeflate-invaliddeflate": "O conteúdo fornecido não está devidamente comprimido",
-	"unprotected-js": "Por motivos de segurança o JavaScript de páginas desprotegidas não pode ser carregado. Crie javascript só no espaço nominal/domínio MediaWiki: ou numa subpágina do utilizador"
+	"unprotected-js": "Por motivos de segurança o JavaScript de páginas desprotegidas não pode ser carregado. Crie javascript só no espaço nominal/domínio MediaWiki: ou numa subpágina do utilizador",
+	"userlogout-continue": "Se pretende terminar a sessão [$1 prossiga para a página de saída], por favor.",
+	"userlogout-sessionerror": "A sua saída falhou devido a um erro da sessão. [$1 Tente novamente], por favor."
 }

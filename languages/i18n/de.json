@@ -795,7 +795,7 @@
 	"templatesusedsection": "{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} in diesem Abschnitt verwendet:",
 	"template-protected": "(schreibgeschützt)",
 	"template-semiprotected": "(schreibgeschützt für unangemeldete und neue Benutzer)",
-	"hiddencategories": "Diese Seite ist in {{PLURAL:$1|1 versteckter Kategorie|$1 versteckten Kategorien}} enthalten:",
+	"hiddencategories": "Diese Seite ist in {{PLURAL:$1|einer versteckten Kategorie|$1 versteckten Kategorien}} enthalten:",
 	"edittools": "<!-- Dieser Text wird unter dem „Bearbeiten“-Formular sowie dem „Hochladen“-Formular angezeigt. -->",
 	"nocreatetext": "Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Du kannst bestehende Seiten ändern oder dich [[Special:UserLogin|anmelden]].",
 	"nocreate-loggedin": "Du hast nicht die erforderliche Berechtigung, um neue Seiten erstellen zu können.",
@@ -3901,5 +3901,7 @@
 	"passwordpolicies-policyflag-forcechange": "muss bei der Anmeldung geändert werden",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "Änderung bei der Anmeldung vorschlagen",
 	"easydeflate-invaliddeflate": "Der angegebene Inhalt ist nicht ordnungsgemäß komprimiert",
-	"unprotected-js": "Aus Sicherheitsgründen kann JavaScript-Code nicht mehr von ungeschützten Seiten geladen werden. Erstelle die JavaScript-Seite bitte ausschließlich im Namensraum „MediaWiki“ oder als Benutzerunterseite."
+	"unprotected-js": "Aus Sicherheitsgründen kann JavaScript-Code nicht mehr von ungeschützten Seiten geladen werden. Erstelle die JavaScript-Seite bitte ausschließlich im Namensraum „MediaWiki“ oder als Benutzerunterseite.",
+	"userlogout-continue": "Falls du dich abmelden möchtest, [$1 fahre bitte auf der Abmeldeseite fort].",
+	"userlogout-sessionerror": "Abmeldung aufgrund eines Sitzungsfehlers fehlgeschlagen. Bitte [$1 erneut versuchen]."
 }

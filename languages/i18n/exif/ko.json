@@ -7,7 +7,8 @@
 			"Klutzy",
 			"Kwj2772",
 			"Mooozi",
-			"아라"
+			"아라",
+			"Revi"
 		]
 	},
 	"exif-imagewidth": "너비",
@@ -201,6 +202,7 @@
 	"exif-photometricinterpretation-3": "팔레트",
 	"exif-photometricinterpretation-4": "투명 마스크",
 	"exif-photometricinterpretation-5": "분리 (아마도 CMYK)",
+	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC 인코딩)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU 인코딩)",
 	"exif-photometricinterpretation-32803": "컬러 필터 어레이",
