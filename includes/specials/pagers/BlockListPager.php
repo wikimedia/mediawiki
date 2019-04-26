@@ -22,7 +22,6 @@
 /**
  * @ingroup Pager
  */
-use MediaWiki\Block\BlockRestriction;
 use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
@@ -419,7 +418,8 @@ class BlockListPager extends TablePager {
 		if ( $partialBlocks ) {
 			// Mutations to the $row object are not persisted. The restrictions will
 			// need be stored in a separate store.
-			$this->restrictions = BlockRestriction::loadByBlockId( $partialBlocks );
+			$blockRestrictionStore = MediaWikiServices::getInstance()->getBlockRestrictionStore();
+			$this->restrictions = $blockRestrictionStore->loadByBlockId( $partialBlocks );
 		}
 
 		$lb->execute();

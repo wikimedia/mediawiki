@@ -2,17 +2,27 @@
 
 namespace MediaWiki\Tests\Block;
 
-use MediaWiki\Block\BlockRestriction;
+use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @group Database
  * @group Blocking
- * @coversDefaultClass \MediaWiki\Block\BlockRestriction
+ * @coversDefaultClass \MediaWiki\Block\BlockRestrictionStore
  */
-class BlockRestrictionTest extends \MediaWikiLangTestCase {
+class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
+
+	/** @var BlockRestrictionStore */
+	protected $blockRestrictionStore;
+
+	public function setUp() {
+		parent::setUp();
+
+		$this->blockRestrictionStore = MediaWikiServices::getInstance()->getBlockRestrictionStore();
+	}
 
 	public function tearDown() {
 		parent::tearDown();
@@ -33,13 +43,13 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 		$pageFoo = $this->getExistingTestPage( 'Foo' );
 		$pageBar = $this->getExistingTestPage( 'Bar' );
 
-		BlockRestriction::insert( [
+		$this->blockRestrictionStore->insert( [
 			new PageRestriction( $block->getId(), $pageFoo->getId() ),
 			new PageRestriction( $block->getId(), $pageBar->getId() ),
 			new NamespaceRestriction( $block->getId(), NS_USER ),
 		] );
 
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 
 		$this->assertCount( 3, $restrictions );
 	}
@@ -51,7 +61,7 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 	 */
 	public function testWithNoRestrictions() {
 		$block = $this->insertBlock();
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 		$this->assertEmpty( $restrictions );
 	}
 
@@ -61,8 +71,7 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 	 * @covers ::rowToRestriction
 	 */
 	public function testWithEmptyParam() {
-		$restrictions = BlockRestriction::loadByBlockId( [] );
-
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( [] );
 		$this->assertEmpty( $restrictions );
 	}
 
@@ -85,7 +94,7 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 		$this->insertRestriction( $block->getId(), 9, $pageBar->getId() );
 		$this->insertRestriction( $block->getId(), 10, NS_FILE );
 
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 		$this->assertCount( 2, $restrictions );
 	}
 
@@ -100,11 +109,11 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 		$page = $this->getExistingTestPage( $title );
 
 		// Test Page Restrictions.
-		BlockRestriction::insert( [
+		$this->blockRestrictionStore->insert( [
 			new PageRestriction( $block->getId(), $page->getId() ),
 		] );
 
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 
 		list( $pageRestriction ) = $restrictions;
 		$this->assertInstanceOf( PageRestriction::class, $pageRestriction );
@@ -122,11 +131,11 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 	public function testMappingNamespaceRestrictionObject() {
 		$block = $this->insertBlock();
 
-		BlockRestriction::insert( [
+		$this->blockRestrictionStore->insert( [
 			new NamespaceRestriction( $block->getId(), NS_USER ),
 		] );
 
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 
 		list( $namespaceRestriction ) = $restrictions;
 		$this->assertInstanceOf( NamespaceRestriction::class, $namespaceRestriction );
@@ -151,17 +160,17 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 			new NamespaceRestriction( $block->getId(), NS_USER )
 		];
 
-		$result = BlockRestriction::insert( $restrictions );
+		$result = $this->blockRestrictionStore->insert( $restrictions );
 		$this->assertTrue( $result );
 
 		$restrictions = [
 			new \stdClass(),
 		];
 
-		$result = BlockRestriction::insert( $restrictions );
+		$result = $this->blockRestrictionStore->insert( $restrictions );
 		$this->assertFalse( $result );
 
-		$result = BlockRestriction::insert( [] );
+		$result = $this->blockRestrictionStore->insert( [] );
 		$this->assertFalse( $result );
 	}
 
@@ -190,10 +199,10 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 			$invalid,
 		];
 
-		$result = BlockRestriction::insert( $restrictions );
+		$result = $this->blockRestrictionStore->insert( $restrictions );
 		$this->assertTrue( $result );
 
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 		$this->assertCount( 3, $restrictions );
 	}
 
@@ -206,11 +215,11 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 		$block = $this->insertBlock();
 		$pageFoo = $this->getExistingTestPage( 'Foo' );
 		$pageBar = $this->getExistingTestPage( 'Bar' );
-		BlockRestriction::insert( [
+		$this->blockRestrictionStore->insert( [
 				new PageRestriction( $block->getId(), $pageFoo->getId() ),
 		] );
 
-		BlockRestriction::update( [
+		$this->blockRestrictionStore->update( [
 			new \stdClass(),
 			new PageRestriction( $block->getId(), $pageBar->getId() ),
 			new NamespaceRestriction( $block->getId(), NS_USER ),
@@ -238,7 +247,7 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 		$block = $this->insertBlock();
 		$page = $this->getExistingTestPage( 'Foo' );
 
-		BlockRestriction::update( [
+		$this->blockRestrictionStore->update( [
 			new PageRestriction( $block->getId(), $page->getId() ),
 		] );
 
@@ -263,7 +272,7 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 	public function testUpdateNoRestrictions() {
 		$block = $this->insertBlock();
 
-		BlockRestriction::update( [] );
+		$this->blockRestrictionStore->update( [] );
 
 		$db = wfGetDb( DB_REPLICA );
 		$result = $db->select(
@@ -283,11 +292,11 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 	public function testUpdateSame() {
 		$block = $this->insertBlock();
 		$page = $this->getExistingTestPage( 'Foo' );
-		BlockRestriction::insert( [
+		$this->blockRestrictionStore->insert( [
 			new PageRestriction( $block->getId(), $page->getId() ),
 		] );
 
-		BlockRestriction::update( [
+		$this->blockRestrictionStore->update( [
 			new PageRestriction( $block->getId(), $page->getId() ),
 		] );
 
@@ -312,33 +321,33 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 		$block = $this->insertBlock();
 		$pageFoo = $this->getExistingTestPage( 'Foo' );
 		$pageBar = $this->getExistingTestPage( 'Bar' );
-		BlockRestriction::insert( [
+		$this->blockRestrictionStore->insert( [
 			new PageRestriction( $block->getId(), $pageFoo->getId() ),
 		] );
 		$autoblockId = $block->doAutoblock( '127.0.0.1' );
 
 		// Ensure that the restrictions on the block have not changed.
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 		$this->assertCount( 1, $restrictions );
 		$this->assertEquals( $pageFoo->getId(), $restrictions[0]->getValue() );
 
 		// Ensure that the restrictions on the autoblock are the same as the block.
-		$restrictions = BlockRestriction::loadByBlockId( $autoblockId );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $autoblockId );
 		$this->assertCount( 1, $restrictions );
 		$this->assertEquals( $pageFoo->getId(), $restrictions[0]->getValue() );
 
 		// Update the restrictions on the autoblock (but leave the block unchanged)
-		BlockRestriction::updateByParentBlockId( $block->getId(), [
+		$this->blockRestrictionStore->updateByParentBlockId( $block->getId(), [
 			new PageRestriction( $block->getId(), $pageBar->getId() ),
 		] );
 
 		// Ensure that the restrictions on the block have not changed.
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 		$this->assertCount( 1, $restrictions );
 		$this->assertEquals( $pageFoo->getId(), $restrictions[0]->getValue() );
 
 		// Ensure that the restrictions on the autoblock have been updated.
-		$restrictions = BlockRestriction::loadByBlockId( $autoblockId );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $autoblockId );
 		$this->assertCount( 1, $restrictions );
 		$this->assertEquals( $pageBar->getId(), $restrictions[0]->getValue() );
 	}
@@ -350,28 +359,28 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 		// Create a block and an autoblock (a child block)
 		$block = $this->insertBlock();
 		$page = $this->getExistingTestPage( 'Foo' );
-		BlockRestriction::insert( [
+		$this->blockRestrictionStore->insert( [
 			new PageRestriction( $block->getId(), $page->getId() ),
 		] );
 		$autoblockId = $block->doAutoblock( '127.0.0.1' );
 
 		// Ensure that the restrictions on the block have not changed.
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 		$this->assertCount( 1, $restrictions );
 
 		// Ensure that the restrictions on the autoblock have not changed.
-		$restrictions = BlockRestriction::loadByBlockId( $autoblockId );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $autoblockId );
 		$this->assertCount( 1, $restrictions );
 
 		// Remove the restrictions on the autoblock (but leave the block unchanged)
-		BlockRestriction::updateByParentBlockId( $block->getId(), [] );
+		$this->blockRestrictionStore->updateByParentBlockId( $block->getId(), [] );
 
 		// Ensure that the restrictions on the block have not changed.
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 		$this->assertCount( 1, $restrictions );
 
 		// Ensure that the restrictions on the autoblock have been updated.
-		$restrictions = BlockRestriction::loadByBlockId( $autoblockId );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $autoblockId );
 		$this->assertCount( 0, $restrictions );
 	}
 
@@ -382,19 +391,19 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 		// Create a block with no autoblock.
 		$block = $this->insertBlock();
 		$page = $this->getExistingTestPage( 'Foo' );
-		BlockRestriction::insert( [
+		$this->blockRestrictionStore->insert( [
 			new PageRestriction( $block->getId(), $page->getId() ),
 		] );
 
 		// Ensure that the restrictions on the block have not changed.
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 		$this->assertCount( 1, $restrictions );
 
 		// Update the restrictions on any autoblocks (there are none).
-		BlockRestriction::updateByParentBlockId( $block->getId(), $restrictions );
+		$this->blockRestrictionStore->updateByParentBlockId( $block->getId(), $restrictions );
 
 		// Ensure that the restrictions on the block have not changed.
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 		$this->assertCount( 1, $restrictions );
 	}
 
@@ -404,17 +413,19 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 	public function testDelete() {
 		$block = $this->insertBlock();
 		$page = $this->getExistingTestPage( 'Foo' );
-		BlockRestriction::insert( [
+		$this->blockRestrictionStore->insert( [
 			new PageRestriction( $block->getId(), $page->getId() ),
 		] );
 
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 		$this->assertCount( 1, $restrictions );
 
-		$result = BlockRestriction::delete( array_merge( $restrictions, [ new \stdClass() ] ) );
+		$result = $this->blockRestrictionStore->delete(
+			array_merge( $restrictions, [ new \stdClass() ] )
+		);
 		$this->assertTrue( $result );
 
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 		$this->assertCount( 0, $restrictions );
 	}
 
@@ -424,17 +435,17 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 	public function testDeleteByBlockId() {
 		$block = $this->insertBlock();
 		$page = $this->getExistingTestPage( 'Foo' );
-		BlockRestriction::insert( [
+		$this->blockRestrictionStore->insert( [
 			new PageRestriction( $block->getId(), $page->getId() ),
 		] );
 
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 		$this->assertCount( 1, $restrictions );
 
-		$result = BlockRestriction::deleteByBlockId( $block->getId() );
+		$result = $this->blockRestrictionStore->deleteByBlockId( $block->getId() );
 		$this->assertNotFalse( $result );
 
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 		$this->assertCount( 0, $restrictions );
 	}
 
@@ -445,30 +456,30 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 		// Create a block with no autoblock.
 		$block = $this->insertBlock();
 		$page = $this->getExistingTestPage( 'Foo' );
-		BlockRestriction::insert( [
+		$this->blockRestrictionStore->insert( [
 			new PageRestriction( $block->getId(), $page->getId() ),
 		] );
 		$autoblockId = $block->doAutoblock( '127.0.0.1' );
 
 		// Ensure that the restrictions on the block have not changed.
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 		$this->assertCount( 1, $restrictions );
 
 		// Ensure that the restrictions on the autoblock are the same as the block.
-		$restrictions = BlockRestriction::loadByBlockId( $autoblockId );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $autoblockId );
 		$this->assertCount( 1, $restrictions );
 
 		// Remove all of the restrictions on the autoblock (but leave the block unchanged).
-		$result = BlockRestriction::deleteByParentBlockId( $block->getId() );
+		$result = $this->blockRestrictionStore->deleteByParentBlockId( $block->getId() );
 		// NOTE: commented out until https://gerrit.wikimedia.org/r/c/mediawiki/core/+/469324 is merged
 		//$this->assertTrue( $result );
 
 		// Ensure that the restrictions on the block have not changed.
-		$restrictions = BlockRestriction::loadByBlockId( $block->getId() );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
 		$this->assertCount( 1, $restrictions );
 
 		// Ensure that the restrictions on the autoblock have been removed.
-		$restrictions = BlockRestriction::loadByBlockId( $autoblockId );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $autoblockId );
 		$this->assertCount( 0, $restrictions );
 	}
 
@@ -481,7 +492,7 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 	 * @param bool $expected
 	 */
 	public function testEquals( array $a, array $b, $expected ) {
-		$this->assertSame( $expected, BlockRestriction::equals( $a, $b ) );
+		$this->assertSame( $expected, $this->blockRestrictionStore->equals( $a, $b ) );
 	}
 
 	public function equalsDataProvider() {
@@ -561,7 +572,7 @@ class BlockRestrictionTest extends \MediaWikiLangTestCase {
 		$this->assertSame( 1, $restrictions[2]->getBlockId() );
 		$this->assertSame( 1, $restrictions[3]->getBlockId() );
 
-		$result = BlockRestriction::setBlockId( 2, $restrictions );
+		$result = $this->blockRestrictionStore->setBlockId( 2, $restrictions );
 
 		foreach ( $result as $restriction ) {
 			$this->assertSame( 2, $restriction->getBlockId() );
