@@ -141,32 +141,6 @@ function wfArrayDiff2_cmp( $a, $b ) {
 }
 
 /**
- * @deprecated since 1.32, use array_filter() with ARRAY_FILTER_USE_BOTH directly
- *
- * @param array $arr
- * @param callable $callback Will be called with the array value and key (in that order) and
- *   should return a bool which will determine whether the array element is kept.
- * @return array
- */
-function wfArrayFilter( array $arr, callable $callback ) {
-	wfDeprecated( __FUNCTION__, '1.32' );
-	return array_filter( $arr, $callback, ARRAY_FILTER_USE_BOTH );
-}
-
-/**
- * @deprecated since 1.32, use array_filter() with ARRAY_FILTER_USE_KEY directly
- *
- * @param array $arr
- * @param callable $callback Will be called with the array key and should return a bool which
- *   will determine whether the array element is kept.
- * @return array
- */
-function wfArrayFilterByKey( array $arr, callable $callback ) {
-	wfDeprecated( __FUNCTION__, '1.32' );
-	return array_filter( $arr, $callback, ARRAY_FILTER_USE_KEY );
-}
-
-/**
  * Appends to second array if $value differs from that in $default
  *
  * @param string|int $key
