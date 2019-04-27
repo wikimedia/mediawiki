@@ -2132,17 +2132,17 @@ class Block {
 	 * Check if the block should be tracked with a cookie.
 	 *
 	 * @since 1.33
-	 * @param bool $isIpUser The user is logged out
+	 * @param bool $isAnon The user is logged out
 	 * @return bool The block should be tracked with a cookie
 	 */
-	public function shouldTrackWithCookie( $isIpUser ) {
+	public function shouldTrackWithCookie( $isAnon ) {
 		$config = RequestContext::getMain()->getConfig();
 		switch ( $this->getType() ) {
 			case self::TYPE_IP:
 			case self::TYPE_RANGE:
-				return $isIpUser && $config->get( 'CookieSetOnIpBlock' );
+				return $isAnon && $config->get( 'CookieSetOnIpBlock' );
 			case self::TYPE_USER:
-				return !$isIpUser && $config->get( 'CookieSetOnAutoblock' ) && $this->isAutoblocking();
+				return !$isAnon && $config->get( 'CookieSetOnAutoblock' ) && $this->isAutoblocking();
 			default:
 				return false;
 		}
