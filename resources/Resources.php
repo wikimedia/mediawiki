@@ -169,10 +169,6 @@ return [
 		'messages' => [ 'brackets', 'word-separator' ],
 		'targets' => [ 'mobile', 'desktop' ],
 	],
-	'jquery.async' => [
-		'scripts' => 'resources/lib/jquery.async.js',
-		'deprecated' => true,
-	],
 	'jquery.byteLength' => [
 		'scripts' => 'resources/src/jquery/jquery.byteLength.js',
 		'deprecated' => 'Use "mediawiki.String" instead.',

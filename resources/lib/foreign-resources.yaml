@@ -121,8 +121,6 @@ jquery:
   integrity: sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=
   dest: jquery.js
 
-# TODO: jquery.async.js
-
 # TODO: jquery.chosen
 
 jquery.client:

@@ -57,6 +57,7 @@ For notes on 1.33.x and older releases, see HISTORY.
 * …
 
 ==== Removed external libraries ====
+* The jquery.async module, deprecated in 1.33, was removed.
 * …
 
 === Bug fixes in 1.34 ===
