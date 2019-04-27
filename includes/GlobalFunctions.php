@@ -870,18 +870,6 @@ function wfExpandIRI( $url ) {
 }
 
 /**
- * Make URL indexes, appropriate for the el_index field of externallinks.
- *
- * @deprecated since 1.33, use LinkFilter::makeIndexes() instead
- * @param string $url
- * @return array
- */
-function wfMakeUrlIndexes( $url ) {
-	wfDeprecated( __FUNCTION__, '1.33' );
-	return LinkFilter::makeIndexes( $url );
-}
-
-/**
  * Check whether a given URL has a domain that occurs in a given set of domains
  * @param string $url
  * @param array $domains Array of domains (strings)
