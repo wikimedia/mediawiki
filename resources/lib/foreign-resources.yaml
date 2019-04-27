@@ -121,7 +121,28 @@ jquery:
   integrity: sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=
   dest: jquery.js
 
-# TODO: jquery.chosen
+jquery.chosen:
+  type: multi-file
+  files:
+    LICENSE:
+      src: https://raw.githubusercontent.com/harvesthq/chosen/v1.8.2/LICENSE.md
+      integrity: sha384-hxUqOVbJZTd9clMlf9yV18PjyKQ2rUOCXLgFNYlV/blpyeCyiUCpmVjAmNP0yc8M
+    README.md:
+      src: https://raw.githubusercontent.com/harvesthq/chosen/v1.8.2/README.md
+      integrity: sha384-ps8fQiOF1anPibj6QMNii4OcAbZNcy+dkmdJUZzqBgmfjaPth9YDe0TRIk89lfID
+    # Following files taken from CDN because they're built, and don't exist in the repo
+    chosen-sprite.png:
+      src: https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.2/chosen-sprite.png
+      integrity: sha384-QL0lDMjIhfcd5uzKEIPehkhx7l0gHWxFo1taNsY2hdDuYdGAadNhiwKueQ91R8KW
+    chosen-sprite@2x.png:
+      src: https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.2/chosen-sprite%402x.png
+      integrity: sha384-MSDzP+ofFO+lRrCZQn3dztHS/GdR8Ai907bxrRZeuGSi87G8XffEKTxxM99GTvr1
+    chosen.css:
+      src: https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.2/chosen.css
+      integrity: sha384-VeNz/jFhcqEG5UB40sPZW8Bg8sdtbtXW1038aqBPAZy/z/6j1XsSQjRUJ7NEM3nE
+    chosen.jquery.js:
+      src: https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.2/chosen.jquery.js
+      integrity: sha384-EzfvMGW4mwDo/InJrmR/UvtxTUUYUA0cfybfS8aqPG1ItoAQYYYDImWl1gaBzMfQ
 
 jquery.client:
   type: tar
