@@ -104,6 +104,8 @@ because of Phabricator reports.
 * User::randomPassword() method, deprecated in 1.27, have been removed.
 * MWNamespace::canTalk(), deprecated in 1.30, have been removed.
 * Parser class property $mUniqPrefix, deprecated in 1.26, has been removed.
+* wfArrayFilter() and wfArrayFilterByKey(), deprecated in 1.32, have been
+  removed.
 * …
 
 === Deprecations in 1.34 ===
