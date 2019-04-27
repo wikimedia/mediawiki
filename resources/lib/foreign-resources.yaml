@@ -163,7 +163,17 @@ jquery.hoverIntent:
   src: https://raw.githubusercontent.com/briancherne/jquery-hoverIntent/823603fdac/jquery.hoverIntent.js
   integrity: sha384-lca0haN0hqFGGh2aYUhtAgX9dhVHfQnTADH4svDeM6gcXnL7aFGeAi1NYwipDMyS
 
-# TODO: jquery.i18n
+jquery.i18n:
+  type: tar
+  src: https://codeload.github.com/wikimedia/jquery.i18n/tar.gz/v1.0.5
+  integrity: sha384-bkmmKC2byOVjTg4di3o6sSISU49JwXynV9gNGH2zl4U9nh8vZJiauiIvoWgvhwsK
+  dest:
+    jquery.i18n-1.0.5/CODE_OF_CONDUCT.md:
+    jquery.i18n-1.0.5/CREDITS:
+    jquery.i18n-1.0.5/GPL-LICENSE:
+    jquery.i18n-1.0.5/MIT-LICENSE:
+    jquery.i18n-1.0.5/README.md:
+    jquery.i18n-1.0.5/src:
 
 jquery.jStorage:
   type: file
