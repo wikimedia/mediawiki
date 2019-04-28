@@ -106,6 +106,7 @@ because of Phabricator reports.
 * Parser class property $mUniqPrefix, deprecated in 1.26, has been removed.
 * wfArrayFilter() and wfArrayFilterByKey(), deprecated in 1.32, have been
   removed.
+* wfMakeUrlIndexes() function, deprecated in 1.33, have been removed.
 * …
 
 === Deprecations in 1.34 ===
