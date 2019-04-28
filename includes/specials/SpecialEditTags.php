@@ -225,6 +225,9 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 		for ( $list->reset(); $list->current(); $list->next() ) {
 			$item = $list->current();
+			if ( !$item->canView() ) {
+				throw new ErrorPageError( 'permissionserrors', 'tags-update-no-permission' );
+			}
 			$numRevisions++;
 			$out->addHTML( $item->getHTML() );
 		}
