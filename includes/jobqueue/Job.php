@@ -70,13 +70,18 @@ abstract class Job implements RunnableJob {
 			// Backwards compatibility for old signature ($command, $title, $params)
 			$title = $params;
 			$params = func_num_args() >= 3 ? func_get_arg( 2 ) : [];
+		} elseif ( isset( $params['namespace'] ) && isset( $params['title'] ) ) {
+			// Handle job classes that take title as constructor parameter.
+			// If a newer classes like GenericParameterJob uses these parameters,
+			// then this happens in Job::__construct instead.
+			$title = Title::makeTitle( $params['namespace'], $params['title'] );
 		} else {
-			$title = ( isset( $params['namespace'] ) && isset( $params['title'] ) )
-				? Title::makeTitle( $params['namespace'], $params['title'] )
-				: Title::makeTitle( NS_SPECIAL, '' );
+			// Default title for job classes not implementing GenericParameterJob.
+			// This must be a valid title because it not directly passed to
+			// our Job constructor, but rather it's subclasses which may expect
+			// to be able to use it.
+			$title = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
 		}
-
-		$params = is_array( $params ) ? $params : []; // sanity
 
 		if ( isset( $wgJobClasses[$command] ) ) {
 			$handler = $wgJobClasses[$command];
@@ -114,25 +119,35 @@ abstract class Job implements RunnableJob {
 			// Backwards compatibility for old signature ($command, $title, $params)
 			$title = $params;
 			$params = func_num_args() >= 3 ? func_get_arg( 2 ) : [];
-			$params = is_array( $params ) ? $params : []; // sanity
-			// Set namespace/title params if both are missing and this is not a dummy title
-			if (
-				$title->getDBkey() !== '' &&
-				!isset( $params['namespace'] ) &&
-				!isset( $params['title'] )
-			) {
-				$params['namespace'] = $title->getNamespace();
-				$params['title'] = $title->getDBKey();
-				// Note that JobQueue classes will prefer the parameters over getTitle()
-				$this->title = $title;
-			}
+		} else {
+			// Newer jobs may choose to not have a top-level title (e.g. GenericParameterJob)
+			$title = null;
+		}
+
+		if ( !is_array( $params ) ) {
+			throw new InvalidArgumentException( '$params must be an array' );
+		}
+
+		if (
+			$title &&
+			!isset( $params['namespace'] ) &&
+			!isset( $params['title'] )
+		) {
+			// When constructing this class for submitting to the queue,
+			// normalise the $title arg of old job classes as part of $params.
+			$params['namespace'] = $title->getNamespace();
+			$params['title'] = $title->getDBKey();
 		}
 
 		$this->command = $command;
 		$this->params = $params + [ 'requestId' => WebRequest::getRequestId() ];
+
 		if ( $this->title === null ) {
+			// Set this field for access via getTitle().
 			$this->title = ( isset( $params['namespace'] ) && isset( $params['title'] ) )
 				? Title::makeTitle( $params['namespace'], $params['title'] )
+				// GenericParameterJob classes without namespace/title params
+				// should not use getTitle(). Set an invalid title as placeholder.
 				: Title::makeTitle( NS_SPECIAL, '' );
 		}
 	}

@@ -28,10 +28,6 @@ class JobTest extends MediaWikiTestCase {
 
 		return [
 			[
-				$this->getMockJob( false ),
-				'someCommand Special: ' . $requestId
-			],
-			[
 				$this->getMockJob( [ 'key' => 'val' ] ),
 				'someCommand Special: key=val ' . $requestId
 			],
@@ -85,14 +81,22 @@ class JobTest extends MediaWikiTestCase {
 	}
 
 	public function getMockJob( $params ) {
-		$title = new Title();
 		$mock = $this->getMockForAbstractClass(
 			Job::class,
-			[ 'someCommand', $title, $params ],
+			[ 'someCommand', $params ],
 			'SomeJob'
 		);
 
 		return $mock;
+	}
+
+	/**
+	 * @covers Job::__construct()
+	 */
+	public function testInvalidParamsArgument() {
+		$params = false;
+		$this->setExpectedException( InvalidArgumentException::class, '$params must be an array' );
+		$job = $this->getMockJob( $params );
 	}
 
 	/**
@@ -165,15 +169,15 @@ class JobTest extends MediaWikiTestCase {
 	 */
 	public function testJobSignatureTitleBased() {
 		$testPage = Title::makeTitle( NS_PROJECT, 'x' );
-		$blankTitle = Title::makeTitle( NS_SPECIAL, '' );
+		$blankPage = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
 		$params = [ 'z' => 1, 'causeAction' => 'unknown', 'causeAgent' => 'unknown' ];
 		$paramsWithTitle = $params + [ 'namespace' => NS_PROJECT, 'title' => 'x' ];
+		$paramsWithBlankpage = $params + [ 'namespace' => NS_SPECIAL, 'title' => 'Blankpage' ];
 
 		$job = new RefreshLinksJob( $testPage, $params );
 		$this->assertEquals( $testPage->getPrefixedText(), $job->getTitle()->getPrefixedText() );
-		$this->assertSame( $testPage, $job->getTitle() );
+		$this->assertTrue( $testPage->equals( $job->getTitle() ) );
 		$this->assertJobParamsMatch( $job, $paramsWithTitle );
-		$this->assertSame( $testPage, $job->getTitle() );
 
 		$job = Job::factory( 'refreshLinks', $testPage, $params );
 		$this->assertEquals( $testPage->getPrefixedText(), $job->getTitle()->getPrefixedText() );
@@ -184,8 +188,8 @@ class JobTest extends MediaWikiTestCase {
 		$this->assertJobParamsMatch( $job, $paramsWithTitle );
 
 		$job = Job::factory( 'refreshLinks', $params );
-		$this->assertTrue( $blankTitle->equals( $job->getTitle() ) );
-		$this->assertJobParamsMatch( $job, $params );
+		$this->assertTrue( $blankPage->equals( $job->getTitle() ) );
+		$this->assertJobParamsMatch( $job, $paramsWithBlankpage );
 	}
 
 	/**
