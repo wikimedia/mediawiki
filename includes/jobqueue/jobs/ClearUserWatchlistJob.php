@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Job to clear a users watchlist in batches.
@@ -23,12 +24,12 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 	}
 
 	/**
-	 * @param User $user User to clear the watchlist for.
+	 * @param UserIdentity $user User to clear the watchlist for.
 	 * @param int $maxWatchlistId The maximum wl_id at the time the job was first created.
 	 *
 	 * @return ClearUserWatchlistJob
 	 */
-	public static function newForUser( User $user, $maxWatchlistId ) {
+	public static function newForUser( UserIdentity $user, $maxWatchlistId ) {
 		return new self( [ 'userId' => $user->getId(), 'maxWatchlistId' => $maxWatchlistId ] );
 	}
 

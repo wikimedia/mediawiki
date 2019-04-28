@@ -1,8 +1,9 @@
 <?php
 
-use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 
 /**
@@ -121,8 +122,8 @@ class WatchedItemQueryService {
 	 *        'end'                 => string (format accepted by wfTimestamp) requires 'dir' option,
 	 *                                 timestamp to end enumerating
 	 *        'watchlistOwner'      => User user whose watchlist items should be listed if different
-	 *                                 than the one specified with $user param,
-	 *                                 requires 'watchlistOwnerToken' option
+	 *                                 than the one specified with $user param, requires
+	 *                                 'watchlistOwnerToken' option
 	 *        'watchlistOwnerToken' => string a watchlist token used to access another user's
 	 *                                 watchlist, used with 'watchlistOwnerToken' option
 	 *        'limit'               => int maximum numbers of items to return
@@ -256,7 +257,7 @@ class WatchedItemQueryService {
 	/**
 	 * For simple listing of user's watchlist items, see WatchedItemStore::getWatchedItemsForUser
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param array $options Allowed keys:
 	 *        'sort'         => string optional sorting by namespace ID and title
 	 *                          one of the self::SORT_* constants
@@ -272,8 +273,8 @@ class WatchedItemQueryService {
 	 *                          specified using the form option
 	 * @return WatchedItem[]
 	 */
-	public function getWatchedItemsForUser( User $user, array $options = [] ) {
-		if ( $user->isAnon() ) {
+	public function getWatchedItemsForUser( UserIdentity $user, array $options = [] ) {
+		if ( !$user->isRegistered() ) {
 			// TODO: should this just return an empty array or rather complain loud at this point
 			// as e.g. ApiBase::getWatchlistUser does?
 			return [];
@@ -460,11 +461,12 @@ class WatchedItemQueryService {
 		return $conds;
 	}
 
-	private function getWatchlistOwnerId( User $user, array $options ) {
+	private function getWatchlistOwnerId( UserIdentity $user, array $options ) {
 		if ( array_key_exists( 'watchlistOwner', $options ) ) {
 			/** @var User $watchlistOwner */
 			$watchlistOwner = $options['watchlistOwner'];
-			$ownersToken = $watchlistOwner->getOption( 'watchlisttoken' );
+			$ownersToken =
+				$watchlistOwner->getOption( 'watchlisttoken' );
 			$token = $options['watchlistOwnerToken'];
 			if ( $ownersToken == '' || !hash_equals( $ownersToken, $token ) ) {
 				throw ApiUsageException::newWithMessage( null, 'apierror-bad-watchlist-token', 'bad_wltoken' );
@@ -613,7 +615,9 @@ class WatchedItemQueryService {
 		);
 	}
 
-	private function getWatchedItemsForUserQueryConds( IDatabase $db, User $user, array $options ) {
+	private function getWatchedItemsForUserQueryConds(
+		IDatabase $db, UserIdentity $user, array $options
+	) {
 		$conds = [ 'wl_user' => $user->getId() ];
 		if ( $options['namespaceIds'] ) {
 			$conds['wl_namespace'] = array_map( 'intval', $options['namespaceIds'] );

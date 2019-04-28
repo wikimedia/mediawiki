@@ -504,20 +504,24 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers User::isRegistered
 	 * @covers User::isLoggedIn
 	 * @covers User::isAnon
 	 */
 	public function testLoggedIn() {
 		$user = $this->getMutableTestUser()->getUser();
+		$this->assertTrue( $user->isRegistered() );
 		$this->assertTrue( $user->isLoggedIn() );
 		$this->assertFalse( $user->isAnon() );
 
 		// Non-existent users are perceived as anonymous
 		$user = User::newFromName( 'UTNonexistent' );
+		$this->assertFalse( $user->isRegistered() );
 		$this->assertFalse( $user->isLoggedIn() );
 		$this->assertTrue( $user->isAnon() );
 
 		$user = new User;
+		$this->assertFalse( $user->isRegistered() );
 		$this->assertFalse( $user->isLoggedIn() );
 		$this->assertTrue( $user->isAnon() );
 	}

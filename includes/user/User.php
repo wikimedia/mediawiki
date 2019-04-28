@@ -3666,11 +3666,24 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
+	 * Alias of isLoggedIn() with a name that describes its actual functionality. UserIdentity has
+	 * only this new name and not the old isLoggedIn() variant.
+	 *
+	 * @return bool True if user is registered on this wiki, i.e., has a user ID. False if user is
+	 *   anonymous or has no local account (which can happen when importing). This is equivalent to
+	 *   getId() != 0 and is provided for code readability.
+	 * @since 1.34
+	 */
+	public function isRegistered() {
+		return $this->getId() != 0;
+	}
+
+	/**
 	 * Get whether the user is logged in
 	 * @return bool
 	 */
 	public function isLoggedIn() {
-		return $this->getId() != 0;
+		return $this->isRegistered();
 	}
 
 	/**
@@ -3678,7 +3691,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool
 	 */
 	public function isAnon() {
-		return !$this->isLoggedIn();
+		return !$this->isRegistered();
 	}
 
 	/**

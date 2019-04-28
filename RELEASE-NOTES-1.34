@@ -126,6 +126,7 @@ because of Phabricator reports.
   instead.
 * The Config argument to ChangesListSpecialPage::checkStructuredFilterUiEnabled
   is deprecated. Pass only the User argument.
+* WatchedItem::getUser is deprecated. Use getUserIdentity.
 
 === Other changes in 1.34 ===
 * …
