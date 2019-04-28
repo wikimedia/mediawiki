@@ -225,6 +225,9 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		for ( $list->reset(); $list->current(); $list->next() ) {
 			// @codingStandardsIgnoreEnd
 			$item = $list->current();
+			if ( !$item->canView() ){
+				throw new ErrorPageError( 'permissionserrors', 'tags-update-no-permission' );
+			}
 			$numRevisions++;
 			$out->addHTML( $item->getHTML() );
 		}
