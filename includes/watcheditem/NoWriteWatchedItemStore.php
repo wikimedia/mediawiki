@@ -134,7 +134,7 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 
 	public function resetNotificationTimestamp(
 		UserIdentity $user,
-		Title $title,
+		LinkTarget $title,
 		$force = '',
 		$oldid = 0
 	) {

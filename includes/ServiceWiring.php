@@ -707,7 +707,9 @@ return [
 			$services->getMainObjectStash(),
 			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
 			$services->getReadOnlyMode(),
-			$services->getMainConfig()->get( 'UpdateRowsPerQuery' )
+			$services->getMainConfig()->get( 'UpdateRowsPerQuery' ),
+			$services->getNamespaceInfo(),
+			$services->getRevisionLookup()
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
 
