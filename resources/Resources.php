@@ -2514,6 +2514,7 @@ return [
 			'oojs-ui-widgets',
 			'mediawiki.widgets.styles',
 			// TitleInputWidget
+			'oojs-ui.styles.icons-content',
 			'mediawiki.Title',
 			'mediawiki.api',
 			'mediawiki.String',

@@ -33,11 +33,11 @@
 		} else if ( config.missing ) {
 			icon = 'page-not-found';
 		} else if ( config.redirect ) {
-			icon = 'page-redirect';
+			icon = 'articleRedirect';
 		} else if ( config.disambiguation ) {
 			icon = 'page-disambiguation';
 		} else {
-			icon = 'page-existing';
+			icon = 'article';
 		}
 
 		// Config initialization
