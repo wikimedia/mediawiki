@@ -3034,34 +3034,6 @@ class Language {
 	}
 
 	/**
-	 * @deprecated No-op since 1.28
-	 */
-	function initEncoding() {
-		wfDeprecated( __METHOD__, '1.28' );
-		// No-op.
-	}
-
-	/**
-	 * @param string $s
-	 * @return string
-	 * @deprecated No-op since 1.28
-	 */
-	function recodeForEdit( $s ) {
-		wfDeprecated( __METHOD__, '1.28' );
-		return $s;
-	}
-
-	/**
-	 * @param string $s
-	 * @return string
-	 * @deprecated No-op since 1.28
-	 */
-	function recodeInput( $s ) {
-		wfDeprecated( __METHOD__, '1.28' );
-		return $s;
-	}
-
-	/**
 	 * Convert a UTF-8 string to normal form C. In Malayalam and Arabic, this
 	 * also cleans up certain backwards-compatible sequences, converting them
 	 * to the modern Unicode equivalent.
