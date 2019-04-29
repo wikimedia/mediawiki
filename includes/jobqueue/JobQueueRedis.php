@@ -639,7 +639,7 @@ LUA;
 			}
 			$item = $this->unserialize( $data );
 			if ( !is_array( $item ) ) { // this shouldn't happen
-				throw new UnexpectedValueException( "Could not find job with ID '$uid'." );
+				throw new UnexpectedValueException( "Could not unserialize job with ID '$uid'." );
 			}
 
 			$params = $item['params'];

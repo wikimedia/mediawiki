@@ -175,12 +175,4 @@ class MemcachedBagOStuff extends BagOStuff {
 		}
 		return (int)$expiry;
 	}
-
-	/**
-	 * Send a debug message to the log
-	 * @param string $text
-	 */
-	protected function debugLog( $text ) {
-		$this->logger->debug( $text );
-	}
 }
