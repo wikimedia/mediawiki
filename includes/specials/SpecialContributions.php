@@ -385,7 +385,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		if ( ( $id !== null ) || ( $id === null && IP::isIPAddress( $username ) ) ) {
 			if ( $sp->getUser()->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
-				if ( $target->isBlocked() && $target->getBlock()->getType() != Block::TYPE_AUTO ) {
+				if ( $target->getBlock() && $target->getBlock()->getType() != Block::TYPE_AUTO ) {
 					$tools['block'] = $linkRenderer->makeKnownLink( # Change block link
 						SpecialPage::getTitleFor( 'Block', $username ),
 						$sp->msg( 'change-blocklink' )->text()

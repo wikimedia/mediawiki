@@ -160,8 +160,13 @@ class UserrightsPage extends SpecialPage {
 			* (e.g. they don't have the userrights permission), then don't
 			* allow them to change any user rights.
 			*/
-			if ( $user->isBlocked() && !$user->isAllowed( 'userrights' ) ) {
-				throw new UserBlockedError( $user->getBlock() );
+			if ( !$user->isAllowed( 'userrights' ) ) {
+				// @TODO Should the user be blocked from changing user rights if they
+				//       are partially blocked?
+				$block = $user->getBlock();
+				if ( $block ) {
+					throw new UserBlockedError( $user->getBlock() );
+				}
 			}
 
 			$this->checkReadOnly();

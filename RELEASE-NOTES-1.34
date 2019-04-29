@@ -113,6 +113,9 @@ because of Phabricator reports.
 * The MWNamespace class is deprecated. Use MediaWikiServices::getNamespaceInfo.
 * ExtensionRegistry->load() is deprecated, as it breaks dependency checking.
   Instead, use ->queue().
+* User::isBlocked() is deprecated since it does not tell you if the user is
+  blocked from editing a particular page. Use User::getBlock() or
+  PermissionManager::isBlockedFrom() or PermissionManager::userCan() instead.
 * …
 
 === Other changes in 1.34 ===

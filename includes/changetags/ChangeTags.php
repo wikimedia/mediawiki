@@ -482,7 +482,9 @@ class ChangeTags {
 		if ( !is_null( $user ) ) {
 			if ( !$user->isAllowed( 'applychangetags' ) ) {
 				return Status::newFatal( 'tags-apply-no-permission' );
-			} elseif ( $user->isBlocked() ) {
+			} elseif ( $user->getBlock() ) {
+				// @TODO Ensure that the block does not apply to the `applychangetags`
+				//       right.
 				return Status::newFatal( 'tags-apply-blocked', $user->getName() );
 			}
 		}
@@ -555,7 +557,9 @@ class ChangeTags {
 		if ( !is_null( $user ) ) {
 			if ( !$user->isAllowed( 'changetags' ) ) {
 				return Status::newFatal( 'tags-update-no-permission' );
-			} elseif ( $user->isBlocked() ) {
+			} elseif ( $user->getBlock() ) {
+				// @TODO Ensure that the block does not apply to the `changetags`
+				//       right.
 				return Status::newFatal( 'tags-update-blocked', $user->getName() );
 			}
 		}
@@ -973,7 +977,9 @@ class ChangeTags {
 		if ( !is_null( $user ) ) {
 			if ( !$user->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
-			} elseif ( $user->isBlocked() ) {
+			} elseif ( $user->getBlock() ) {
+				// @TODO Ensure that the block does not apply to the `managechangetags`
+				//       right.
 				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
 			}
 		}
@@ -1045,7 +1051,9 @@ class ChangeTags {
 		if ( !is_null( $user ) ) {
 			if ( !$user->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
-			} elseif ( $user->isBlocked() ) {
+			} elseif ( $user->getBlock() ) {
+				// @TODO Ensure that the block does not apply to the `managechangetags`
+				//       right.
 				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
 			}
 		}
@@ -1142,7 +1150,9 @@ class ChangeTags {
 		if ( !is_null( $user ) ) {
 			if ( !$user->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
-			} elseif ( $user->isBlocked() ) {
+			} elseif ( $user->getBlock() ) {
+				// @TODO Ensure that the block does not apply to the `managechangetags`
+				//       right.
 				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
 			}
 		}
@@ -1258,7 +1268,9 @@ class ChangeTags {
 		if ( !is_null( $user ) ) {
 			if ( !$user->isAllowed( 'deletechangetags' ) ) {
 				return Status::newFatal( 'tags-delete-no-permission' );
-			} elseif ( $user->isBlocked() ) {
+			} elseif ( $user->getBlock() ) {
+				// @TODO Ensure that the block does not apply to the `deletechangetags`
+				//       right.
 				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
 			}
 		}
