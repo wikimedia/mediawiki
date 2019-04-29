@@ -77,3 +77,26 @@ $( function () {
 		e.preventDefault();
 	} );
 } );
+
+// Load the search suggestion module when focus the search box.
+function eventListener( e ) {
+	if (
+		e.target.id === 'searchInput' ||
+		/(^|\s)mw-searchInput($|\s)/.test( e.target.className )
+	) {
+		mw.loader.load( 'mediawiki.searchSuggest' );
+		document.removeEventListener( 'focusin', eventListener );
+	}
+}
+document.addEventListener( 'focusin', eventListener );
+
+// Load the search suggestion module when the search box is already focused
+// because the user started typing before the JavaScript is loaded.
+if (
+	document.activeElement && (
+		document.activeElement.id === 'searchInput' ||
+		/(^|\s)mw-searchInput($|\s)/.test( document.activeElement.className )
+	)
+) {
+	mw.loader.load( 'mediawiki.searchSuggest' );
+}
