@@ -1372,7 +1372,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$user = $session->getUser();
 		if ( $user->isLoggedIn() ) {
 			$this->loadFromUserObject( $user );
-			if ( $user->isBlocked() ) {
+			if ( $user->getBlock() ) {
 				// If this user is autoblocked, set a cookie to track the Block. This has to be done on
 				// every session load, because an autoblocked editor might not edit again from the same
 				// IP address after being blocked.
@@ -2261,6 +2261,10 @@ class User implements IDBAccessObject, UserIdentity {
 
 	/**
 	 * Check if user is blocked
+	 *
+	 * @deprecated since 1.34, use User::getBlock() or
+	 *             PermissionManager::isBlockedFrom() or
+	 *             PermissionManager::userCan() instead.
 	 *
 	 * @param bool $fromReplica Whether to check the replica DB instead of
 	 *   the master. Hacked from false due to horrible probs on site.
@@ -3560,10 +3564,12 @@ class User implements IDBAccessObject, UserIdentity {
 			// $user->isAllowed(). It is also checked in Title::checkUserBlock()
 			// to give a better error message in the common case.
 			$config = RequestContext::getMain()->getConfig();
+			// @TODO Partial blocks should not prevent the user from logging in.
+			//       see: https://phabricator.wikimedia.org/T208895
 			if (
 				$this->isLoggedIn() &&
 				$config->get( 'BlockDisablesLogin' ) &&
-				$this->isBlocked()
+				$this->getBlock()
 			) {
 				$anon = new User;
 				$this->mRights = array_intersect( $this->mRights, $anon->getRights() );
@@ -4453,7 +4459,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool A block was spread
 	 */
 	public function spreadAnyEditBlock() {
-		if ( $this->isLoggedIn() && $this->isBlocked() ) {
+		if ( $this->isLoggedIn() && $this->getBlock() ) {
 			return $this->spreadBlock();
 		}
 

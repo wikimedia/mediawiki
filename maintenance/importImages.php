@@ -211,7 +211,8 @@ class ImportImages extends Maintenance {
 
 				if ( $checkUserBlock && ( ( $processed % $checkUserBlock ) == 0 ) ) {
 					$user->clearInstanceCache( 'name' ); // reload from DB!
-					if ( $user->isBlocked() ) {
+					// @TODO Use PermissionManager::isBlockedFrom() instead.
+					if ( $user->getBlock() ) {
 						$this->output( $user->getName() . " was blocked! Aborting.\n" );
 						break;
 					}

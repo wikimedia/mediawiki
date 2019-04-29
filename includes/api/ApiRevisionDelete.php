@@ -38,8 +38,10 @@ class ApiRevisionDelete extends ApiBase {
 		$user = $this->getUser();
 		$this->checkUserRightsAny( RevisionDeleter::getRestriction( $params['type'] ) );
 
-		if ( $user->isBlocked() ) {
-			$this->dieBlocked( $user->getBlock() );
+		// @TODO Use PermissionManager::isBlockedFrom() instead.
+		$block = $user->getBlock();
+		if ( $block ) {
+			$this->dieBlocked( $block );
 		}
 
 		if ( !$params['ids'] ) {

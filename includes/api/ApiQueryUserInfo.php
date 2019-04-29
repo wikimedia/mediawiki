@@ -126,8 +126,11 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['anon'] = true;
 		}
 
-		if ( isset( $this->prop['blockinfo'] ) && $user->isBlocked() ) {
-			$vals = array_merge( $vals, self::getBlockInfo( $user->getBlock() ) );
+		if ( isset( $this->prop['blockinfo'] ) ) {
+			$block = $user->getBlock();
+			if ( $block ) {
+				$vals = array_merge( $vals, self::getBlockInfo( $block ) );
+			}
 		}
 
 		if ( isset( $this->prop['hasmsg'] ) ) {

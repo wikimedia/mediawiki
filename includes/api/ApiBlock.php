@@ -43,13 +43,14 @@ class ApiBlock extends ApiBase {
 		$this->requireOnlyOneParameter( $params, 'user', 'userid' );
 
 		# T17810: blocked admins should have limited access here
-		if ( $user->isBlocked() ) {
+		$block = $user->getBlock();
+		if ( $block ) {
 			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
 			if ( $status !== true ) {
 				$this->dieWithError(
 					$status,
 					null,
-					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
+					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) ]
 				);
 			}
 		}

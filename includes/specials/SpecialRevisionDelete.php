@@ -123,8 +123,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$user = $this->getUser();
 
 		// Check blocks
-		if ( $user->isBlocked() ) {
-			throw new UserBlockedError( $user->getBlock() );
+		// @TODO Use PermissionManager::isBlockedFrom() instead.
+		$block = $user->getBlock();
+		if ( $block ) {
+			throw new UserBlockedError( $block );
 		}
 
 		$this->setHeaders();
