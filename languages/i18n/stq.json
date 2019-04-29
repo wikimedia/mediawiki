@@ -12,7 +12,8 @@
 			"아라",
 			"Macofe",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"PiefPafPier"
 		]
 	},
 	"tog-underline": "Ferwiese unnerstriekje:",
@@ -897,7 +898,7 @@
 	"recentchanges-label-minor": "Litje Annerenge",
 	"recentchanges-label-bot": "Annerenge truch n Bot",
 	"recentchanges-label-unpatrolled": "Nit-kontrollierde Annerenge",
-	"recentchanges-legend-newpage": "$1 - näie Siede",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}<br />(Sjuch uk ju [[Special:NewPages|Lieste mäd näie Sieden]])",
 	"rcnotefrom": "Anwiesd wäide do Annerengen siet '''$2''' (max. '''$1''' Iendraage).",
 	"rclistfrom": "Bloot näie Annerengen siet $3 $2 wiese.",
 	"rcshowhideminor": "Litje Annerengen $1",

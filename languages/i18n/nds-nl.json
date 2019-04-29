@@ -19,7 +19,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"PiefPafPier"
 		]
 	},
 	"tog-underline": "Verwiezingen onderstrepen",
@@ -1081,7 +1082,7 @@
 	"recentchanges-label-unpatrolled": "Disse bewarking is noch neet nå-ekeaken",
 	"recentchanges-label-plusminus": "Disse sydegroutte is mid dit antal bytes ewysigd",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
-	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (see ouk de [[Special:NewPages|lyste mid nye syden]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}<br />(see ouk de [[Special:NewPages|lyste mid nye syden]])",
 	"recentchanges-submit": "Bekiek",
 	"rcfilters-legend-heading": "<strong>Lyste mid ofkortingen:</strong>",
 	"rcfilters-group-results-by-page": "Resultaoten per zied groeperen",

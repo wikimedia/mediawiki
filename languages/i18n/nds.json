@@ -15,7 +15,8 @@
 			"Servien",
 			"Macofe",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"PiefPafPier"
 		]
 	},
 	"tog-underline": "Verwies ünnerstrieken",
@@ -890,7 +891,7 @@
 	"recentchanges-label-bot": "Düsse Ännern worr maakt vun en Bot",
 	"recentchanges-label-unpatrolled": "Düsse Ännern is noch nich kontrolleert worrn",
 	"recentchanges-label-plusminus": "Disse Siedengrött is mit dit Antall Bytes ännert",
-	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (süh ok de [[Special:NewPages|List mit ne'e Sieden]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}<br />(süh ok de [[Special:NewPages|List mit ne'e Sieden]])",
 	"rcnotefrom": "Dit sünd de Ännern siet <b>$2</b> (bet to <b>$1</b> wiest).",
 	"rclistfrom": "Wies ne’e Ännern siet $3 $2",
 	"rcshowhideminor": "lütte Ännern $1",

@@ -929,6 +929,8 @@
 	"ipb-pages-label": "ورقے",
 	"block-reason": "سبب:",
 	"autoblocklist-submit": "ڳولو",
+	"blocklist-type": "قسم:",
+	"blocklist-type-opt-all": "یکے",
 	"blocklist-reason": "سبب:",
 	"infiniteblock": "بے انت",
 	"blocklist-editing": "زیر ترمیم",

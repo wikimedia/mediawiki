@@ -2623,7 +2623,7 @@
 	"blocklog-showlog": "Questo utente è stato bloccato in precedenza. Il registro dei blocchi è riportato di seguito per informazione:",
 	"blocklog-showsuppresslog": "Questo utente è stato bloccato e nascosto in precedenza. Il registro delle rimozioni è riportato di seguito per informazione:",
 	"blocklogentry": "ha bloccato [[$1]] per un periodo di $2 $3",
-	"reblock-logentry": "ha cambiato le impostazioni del blocco per [[$1]] con una scadenza di $2 $3",
+	"reblock-logentry": "ha modificato le impostazioni del blocco per [[$1]] con una scadenza di $2 $3",
 	"blocklogtext": "Di seguito sono elencate le azioni di blocco e sblocco utenti.\nGli indirizzi IP bloccati automaticamente non sono elencati.\nConsultare l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi o blocchi attualmente operativi.",
 	"unblocklogentry": "ha sbloccato $1",
 	"block-log-flags-anononly": "solo utenti anonimi",
@@ -3474,8 +3474,9 @@
 	"logentry-partialblock-block-page": "{{PLURAL:$1|della pagina|delle pagine}} $2",
 	"logentry-partialblock-block-ns": "{{PLURAL:$1|del|dei}} namespace $2",
 	"logentry-partialblock-block": "$1 {{GENDER:$2|ha bloccato}} {{GENDER:$4|$3}} alla modifica $7 con una scadenza di $5 $6",
-	"logentry-partialblock-reblock": "$1 {{GENDER:$2|ha modificato}} le impostazioni del blocco per {{GENDER:$4|$3}} bloccando la modifica $7 con una scadenza di $5 $6",
+	"logentry-partialblock-reblock": "$1 {{GENDER:$2|ha modificato}} le impostazioni del blocco per {{GENDER:$4|$3}} precludendo{{GENDER:$4|gli|le|gli}} la modifica $7 con una scadenza di $5 $6",
 	"logentry-non-editing-block-block": "$1 {{GENDER:$2|ha bloccato}} {{GENDER:$4|$3}} in specifiche azioni non di modifica con una scadenza di $5 $6",
+	"logentry-non-editing-block-reblock": "$1 {{GENDER:$2|ha modificato}} le impostazioni del blocco per {{GENDER:$4|$3}} precludendo{{GENDER:$4|gli|le|gli}} specifiche azioni non di modifica con una scadenza di $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|ha bloccato}} {{GENDER:$4|$3}} con una scadenza di $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|ha modificato}} le impostazioni del blocco per {{GENDER:$4|$3}} con una scadenza di $5 $6",
 	"logentry-import-upload": "$1 {{GENDER:$2|ha importato}} $3 tramite caricamento",
@@ -3836,5 +3837,7 @@
 	"passwordpolicies-policy-passwordcannotbepopular": "La password non può essere {{PLURAL:$1|la password più popolare|nell'elenco delle $1 password più popolari}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "La password non può essere nell'elenco delle 100 000 password utilizzate più comunemente.",
 	"easydeflate-invaliddeflate": "Il contenuto fornito non è compresso correttamente",
-	"unprotected-js": "Per motivi di sicurezza, non è possibile caricare JavaScript da pagine non protette. Crea javascript solo nel namespace MediaWiki o come sottopagina Utente"
+	"unprotected-js": "Per motivi di sicurezza, non è possibile caricare JavaScript da pagine non protette. Crea javascript solo nel namespace MediaWiki o come sottopagina Utente",
+	"userlogout-continue": "Se vuoi uscire [$1 vai alla pagina di logout].",
+	"userlogout-sessionerror": "Logout non riuscito per un errore nella sessione. [$1 Riprova]."
 }
