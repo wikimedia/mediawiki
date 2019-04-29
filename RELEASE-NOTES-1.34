@@ -109,6 +109,8 @@ because of Phabricator reports.
 * wfMakeUrlIndexes() function, deprecated in 1.33, have been removed.
 * User::getGroupPage() and ::makeGroupLinkHTML(), deprecated in 1.29, have been
   removed. Use UserGroupMembership::getGroupPage and ::getLink instead.
+* User::makeGroupLinkWiki(), deprecated in 1.29, has been removed. Use
+  UserGroupMembership::getLink() instead.
 * …
 
 === Deprecations in 1.34 ===
