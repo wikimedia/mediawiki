@@ -29,6 +29,8 @@ use MediaWiki\MediaWikiServices;
  */
 class ApiQueryUserInfo extends ApiQueryBase {
 
+	use ApiBlockInfoTrait;
+
 	const WL_UNREAD_LIMIT = 1000;
 
 	private $params = [];
@@ -48,33 +50,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		$r = $this->getCurrentUserInfo();
 		$result->addValue( 'query', $this->getModuleName(), $r );
-	}
-
-	/**
-	 * Get basic info about a given block
-	 * @param Block $block
-	 * @return array Array containing several keys:
-	 *  - blockid - ID of the block
-	 *  - blockedby - username of the blocker
-	 *  - blockedbyid - user ID of the blocker
-	 *  - blockreason - reason provided for the block
-	 *  - blockedtimestamp - timestamp for when the block was placed/modified
-	 *  - blockexpiry - expiry time of the block
-	 *  - systemblocktype - system block type, if any
-	 */
-	public static function getBlockInfo( Block $block ) {
-		$vals = [];
-		$vals['blockid'] = $block->getId();
-		$vals['blockedby'] = $block->getByName();
-		$vals['blockedbyid'] = $block->getBy();
-		$vals['blockreason'] = $block->getReason();
-		$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->getTimestamp() );
-		$vals['blockexpiry'] = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
-		$vals['blockpartial'] = !$block->isSitewide();
-		if ( $block->getSystemBlockType() !== null ) {
-			$vals['systemblocktype'] = $block->getSystemBlockType();
-		}
-		return $vals;
 	}
 
 	/**
@@ -129,7 +104,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if ( isset( $this->prop['blockinfo'] ) ) {
 			$block = $user->getBlock();
 			if ( $block ) {
-				$vals = array_merge( $vals, self::getBlockInfo( $block ) );
+				$vals = array_merge( $vals, $this->getBlockInfo( $block ) );
 			}
 		}
 

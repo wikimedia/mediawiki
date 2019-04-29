@@ -27,6 +27,7 @@ $wgAutoloadLocalClasses = [
 	'ApiAuthManagerHelper' => __DIR__ . '/includes/api/ApiAuthManagerHelper.php',
 	'ApiBase' => __DIR__ . '/includes/api/ApiBase.php',
 	'ApiBlock' => __DIR__ . '/includes/api/ApiBlock.php',
+	'ApiBlockInfoTrait' => __DIR__ . '/includes/api/ApiBlockInfoTrait.php',
 	'ApiCSPReport' => __DIR__ . '/includes/api/ApiCSPReport.php',
 	'ApiChangeAuthenticationData' => __DIR__ . '/includes/api/ApiChangeAuthenticationData.php',
 	'ApiCheckToken' => __DIR__ . '/includes/api/ApiCheckToken.php',

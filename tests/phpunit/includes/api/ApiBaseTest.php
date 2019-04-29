@@ -1332,7 +1332,10 @@ class ApiBaseTest extends ApiTestCase {
 			'expiry' => time() + 100500,
 		] );
 		$block->insert();
-		$blockinfo = [ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) ];
+		$userInfoTrait = TestingAccessWrapper::newFromObject(
+			$this->getMockForTrait( ApiBlockInfoTrait::class )
+		);
+		$blockinfo = [ 'blockinfo' => $userInfoTrait->getBlockInfo( $block ) ];
 
 		$expect = Status::newGood();
 		$expect->fatal( ApiMessage::create( 'apierror-blocked', 'blocked', $blockinfo ) );
@@ -1387,7 +1390,10 @@ class ApiBaseTest extends ApiTestCase {
 			'expiry' => time() + 100500,
 		] );
 		$block->insert();
-		$blockinfo = [ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) ];
+		$userInfoTrait = TestingAccessWrapper::newFromObject(
+			$this->getObjectForTrait( ApiBlockInfoTrait::class )
+		);
+		$blockinfo = [ 'blockinfo' => $userInfoTrait->getBlockInfo( $block ) ];
 
 		$expect = Status::newGood();
 		$expect->fatal( ApiMessage::create( 'apierror-blocked', 'blocked', $blockinfo ) );
