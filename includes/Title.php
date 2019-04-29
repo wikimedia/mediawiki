@@ -1501,10 +1501,12 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Get a Title object associated with the talk page of this article
 	 *
+	 * @deprecated since 1.34, use NamespaceInfo::getTalkPage
 	 * @return Title The object for the talk page
 	 */
 	public function getTalkPage() {
-		return self::makeTitle( MWNamespace::getTalk( $this->mNamespace ), $this->mDbkeyform );
+		return self::castFromLinkTarget(
+			MediaWikiServices::getInstance()->getNamespaceInfo()->getTalkPage( $this ) );
 	}
 
 	/**
@@ -1528,37 +1530,26 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * Get a title object associated with the subject page of this
 	 * talk page
 	 *
+	 * @deprecated since 1.34, use NamespaceInfo::getSubjectPage
 	 * @return Title The object for the subject page
 	 */
 	public function getSubjectPage() {
-		// Is this the same title?
-		$subjectNS = MWNamespace::getSubject( $this->mNamespace );
-		if ( $this->mNamespace == $subjectNS ) {
-			return $this;
-		}
-		return self::makeTitle( $subjectNS, $this->mDbkeyform );
+		return self::castFromLinkTarget(
+			MediaWikiServices::getInstance()->getNamespaceInfo()->getSubjectPage( $this ) );
 	}
 
 	/**
 	 * Get the other title for this page, if this is a subject page
 	 * get the talk page, if it is a subject page get the talk page
 	 *
+	 * @deprecated since 1.34, use NamespaceInfo::getAssociatedPage
 	 * @since 1.25
 	 * @throws MWException If the page doesn't have an other page
 	 * @return Title
 	 */
 	public function getOtherPage() {
-		if ( $this->isSpecialPage() ) {
-			throw new MWException( 'Special pages cannot have other pages' );
-		}
-		if ( $this->isTalkPage() ) {
-			return $this->getSubjectPage();
-		} else {
-			if ( !$this->canHaveTalkPage() ) {
-				throw new MWException( "{$this->getPrefixedText()} does not have an other page" );
-			}
-			return $this->getTalkPage();
-		}
+		return self::castFromLinkTarget(
+			MediaWikiServices::getInstance()->getNamespaceInfo()->getAssociatedPage( $this ) );
 	}
 
 	/**

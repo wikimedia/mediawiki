@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Linker\LinkTarget;
 
 /**
  * This is a utility class for dealing with namespaces that encodes all the "magic" behaviors of
@@ -150,6 +151,18 @@ class NamespaceInfo {
 	}
 
 	/**
+	 * @param LinkTarget $target
+	 * @return LinkTarget Talk page for $target
+	 * @throws MWException if $target's namespace doesn't have talk pages (e.g., NS_SPECIAL)
+	 */
+	public function getTalkPage( LinkTarget $target ) : LinkTarget {
+		if ( $this->isTalk( $target->getNamespace() ) ) {
+			return $target;
+		}
+		return new TitleValue( $this->getTalk( $target->getNamespace() ), $target->getDbKey() );
+	}
+
+	/**
 	 * Get the subject namespace index for a given namespace
 	 * Special namespaces (NS_MEDIA, NS_SPECIAL) are always the subject.
 	 *
@@ -168,12 +181,24 @@ class NamespaceInfo {
 	}
 
 	/**
+	 * @param LinkTarget $target
+	 * @return LinkTarget Subject page for $target
+	 */
+	public function getSubjectPage( LinkTarget $target ) : LinkTarget {
+		if ( $this->isSubject( $target->getNamespace() ) ) {
+			return $target;
+		}
+		return new TitleValue( $this->getSubject( $target->getNamespace() ), $target->getDbKey() );
+	}
+
+	/**
 	 * Get the associated namespace.
 	 * For talk namespaces, returns the subject (non-talk) namespace
 	 * For subject (non-talk) namespaces, returns the talk namespace
 	 *
 	 * @param int $index Namespace index
 	 * @return int
+	 * @throws MWException if called on a namespace that has no talk pages (e.g., NS_SPECIAL)
 	 */
 	public function getAssociated( $index ) {
 		$this->isMethodValidFor( $index, __METHOD__ );
@@ -182,6 +207,17 @@ class NamespaceInfo {
 			return $this->getTalk( $index );
 		}
 		return $this->getSubject( $index );
+	}
+
+	/**
+	 * @param LinkTarget $target
+	 * @return LinkTarget Talk page for $target if it's a subject page, subject page if it's a talk
+	 *   page
+	 * @throws MWException if $target's namespace doesn't have talk pages (e.g., NS_SPECIAL)
+	 */
+	public function getAssociatedPage( LinkTarget $target ) : LinkTarget {
+		return new TitleValue(
+			$this->getAssociated( $target->getNamespace() ), $target->getDbKey() );
 	}
 
 	/**

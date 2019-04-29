@@ -788,19 +788,6 @@ class TitleTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideGetTalkPage_good
-	 * @covers Title::getTalkPage
-	 */
-	public function testGetTalkPage_good( Title $title, Title $expected ) {
-		$talk = $title->getTalkPage();
-		$this->assertSame(
-			$expected->getPrefixedDBKey(),
-			$talk->getPrefixedDBKey(),
-			$title->getPrefixedDBKey()
-		);
-	}
-
-	/**
-	 * @dataProvider provideGetTalkPage_good
 	 * @covers Title::getTalkPageIfDefined
 	 */
 	public function testGetTalkPageIfDefined_good( Title $title ) {
