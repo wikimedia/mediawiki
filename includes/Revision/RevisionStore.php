@@ -278,12 +278,13 @@ class RevisionStore
 
 	/**
 	 * @param int $mode DB_MASTER or DB_REPLICA
+	 * @param array $groups
 	 *
 	 * @return IDatabase
 	 */
-	private function getDBConnection( $mode ) {
+	private function getDBConnection( $mode, $groups = [] ) {
 		$lb = $this->getDBLoadBalancer();
-		return $lb->getConnection( $mode, [], $this->wikiId );
+		return $lb->getConnection( $mode, $groups, $this->wikiId );
 	}
 
 	/**
@@ -2548,20 +2549,17 @@ class RevisionStore
 	}
 
 	/**
-	 * Get the revision before $rev in the page's history, if any.
-	 * Will return null for the first revision but also for deleted or unsaved revisions.
-	 *
-	 * MCR migration note: this replaces Revision::getPrevious
-	 *
-	 * @see Title::getPreviousRevisionID
-	 * @see PageArchive::getPreviousRevision
+	 * Implementation of getPreviousRevision and getNextRevision.
 	 *
 	 * @param RevisionRecord $rev
-	 * @param Title|null $title if known (optional)
-	 *
+	 * @param int $flags
+	 * @param string $dir 'next' or 'prev'
 	 * @return RevisionRecord|null
 	 */
-	public function getPreviousRevision( RevisionRecord $rev, Title $title = null ) {
+	private function getRelativeRevision( RevisionRecord $rev, $flags, $dir ) {
+		$op = $dir === 'next' ? '>' : '<';
+		$sort = $dir === 'next' ? 'ASC' : 'DESC';
+
 		if ( !$rev->getId() || !$rev->getPageId() ) {
 			// revision is unsaved or otherwise incomplete
 			return null;
@@ -2572,17 +2570,63 @@ class RevisionStore
 			return null;
 		}
 
-		if ( $title === null ) {
-			// this would fail for deleted revisions
-			$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
-		}
+		list( $dbType, ) = DBAccessObjectUtils::getDBOptions( $flags );
+		$db = $this->getDBConnection( $dbType, [ 'contributions' ] );
 
-		$prev = $title->getPreviousRevisionID( $rev->getId() );
-		if ( !$prev ) {
+		$ts = $this->getTimestampFromId( $rev->getId(), $flags );
+		if ( $ts === false ) {
+			// XXX Should this be moved into getTimestampFromId?
+			$ts = $db->selectField( 'archive', 'ar_timestamp',
+				[ 'ar_rev_id' => $rev->getId() ], __METHOD__ );
+			if ( $ts === false ) {
+				// XXX Is this reachable? How can we have a page id but no timestamp?
+				return null;
+			}
+		}
+		$ts = $db->addQuotes( $db->timestamp( $ts ) );
+
+		$revId = $db->selectField( 'revision', 'rev_id',
+			[
+				'rev_page' => $rev->getPageId(),
+				"rev_timestamp $op $ts OR (rev_timestamp = $ts AND rev_id $op {$rev->getId()})"
+			],
+			__METHOD__,
+			[
+				'ORDER BY' => "rev_timestamp $sort, rev_id $sort",
+				'IGNORE INDEX' => 'rev_timestamp', // Probably needed for T159319
+			]
+		);
+
+		if ( $revId === false ) {
 			return null;
 		}
 
-		return $this->getRevisionByTitle( $title, $prev );
+		return $this->getRevisionById( intval( $revId ) );
+	}
+
+	/**
+	 * Get the revision before $rev in the page's history, if any.
+	 * Will return null for the first revision but also for deleted or unsaved revisions.
+	 *
+	 * MCR migration note: this replaces Revision::getPrevious
+	 *
+	 * @see Title::getPreviousRevisionID
+	 * @see PageArchive::getPreviousRevision
+	 *
+	 * @param RevisionRecord $rev
+	 * @param int $flags (optional) $flags include:
+	 *      IDBAccessObject::READ_LATEST: Select the data from the master
+	 *
+	 * @return RevisionRecord|null
+	 */
+	public function getPreviousRevision( RevisionRecord $rev, $flags = 0 ) {
+		if ( $flags instanceof Title ) {
+			// Old calling convention, we don't use Title here anymore
+			wfDeprecated( __METHOD__ . ' with Title', '1.34' );
+			$flags = 0;
+		}
+
+		return $this->getRelativeRevision( $rev, $flags, 'prev' );
 	}
 
 	/**
@@ -2594,32 +2638,18 @@ class RevisionStore
 	 * @see Title::getNextRevisionID
 	 *
 	 * @param RevisionRecord $rev
-	 * @param Title|null $title if known (optional)
-	 *
+	 * @param int $flags (optional) $flags include:
+	 *      IDBAccessObject::READ_LATEST: Select the data from the master
 	 * @return RevisionRecord|null
 	 */
-	public function getNextRevision( RevisionRecord $rev, Title $title = null ) {
-		if ( !$rev->getId() || !$rev->getPageId() ) {
-			// revision is unsaved or otherwise incomplete
-			return null;
+	public function getNextRevision( RevisionRecord $rev, $flags = 0 ) {
+		if ( $flags instanceof Title ) {
+			// Old calling convention, we don't use Title here anymore
+			wfDeprecated( __METHOD__ . ' with Title', '1.34' );
+			$flags = 0;
 		}
 
-		if ( $rev instanceof RevisionArchiveRecord ) {
-			// revision is deleted, so it's not part of the page history
-			return null;
-		}
-
-		if ( $title === null ) {
-			// this would fail for deleted revisions
-			$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
-		}
-
-		$next = $title->getNextRevisionID( $rev->getId() );
-		if ( !$next ) {
-			return null;
-		}
-
-		return $this->getRevisionByTitle( $title, $next );
+		return $this->getRelativeRevision( $rev, $flags, 'next' );
 	}
 
 	/**

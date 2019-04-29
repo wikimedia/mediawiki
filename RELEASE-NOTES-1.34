@@ -131,6 +131,10 @@ because of Phabricator reports.
 * WatchedItem::getUser is deprecated. Use getUserIdentity.
 * Passing a Title as the first parameter to the getTimestampById method of
   RevisionStore is deprecated. Omit it, passing only the remaining parameters.
+* Title::getPreviousRevisionId and Title::getNextRevisionId are deprecated. Use
+  RevisionLookup::getPreviousRevision and RevisionLookup::getNextRevision.
+* The Title parameter to RevisionLookup::getPreviousRevision and
+  RevisionLookup::getNextRevision is deprecated and should be omitted.
 
 === Other changes in 1.34 ===
 * …
