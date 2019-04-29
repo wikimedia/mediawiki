@@ -25,6 +25,7 @@ Some specific notes for MediaWiki 1.34 upgrades are below:
 For notes on 1.33.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.34 ===
+
 ==== New configuration ====
 * …
 
@@ -41,6 +42,7 @@ For notes on 1.33.x and older releases, see HISTORY.
 * …
 
 === External library changes in 1.34 ===
+
 ==== New external libraries ====
 * …
 
@@ -127,6 +129,8 @@ because of Phabricator reports.
 * The Config argument to ChangesListSpecialPage::checkStructuredFilterUiEnabled
   is deprecated. Pass only the User argument.
 * WatchedItem::getUser is deprecated. Use getUserIdentity.
+* Passing a Title as the first parameter to the getTimestampById method of
+  RevisionStore is deprecated. Omit it, passing only the remaining parameters.
 
 === Other changes in 1.34 ===
 * …

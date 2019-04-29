@@ -104,6 +104,18 @@ interface RevisionLookup extends IDBAccessObject {
 	public function getNextRevision( RevisionRecord $rev, Title $title = null );
 
 	/**
+	 * Get rev_timestamp from rev_id, without loading the rest of the row.
+	 *
+	 * MCR migration note: this replaces Revision::getTimestampFromId
+	 *
+	 * @param int $id
+	 * @param int $flags
+	 * @return string|bool False if not found
+	 * @since 1.34 (present earlier in RevisionStore)
+	 */
+	public function getTimestampFromId( $id, $flags = 0 );
+
+	/**
 	 * Load a revision based on a known page ID and current revision ID from the DB
 	 *
 	 * This method allows for the use of caching, though accessing anything that normally

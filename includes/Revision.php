@@ -1256,13 +1256,13 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get rev_timestamp from rev_id, without loading the rest of the row
 	 *
-	 * @param Title $title
+	 * @param Title $title (ignored since 1.34)
 	 * @param int $id
 	 * @param int $flags
 	 * @return string|bool False if not found
 	 */
 	static function getTimestampFromId( $title, $id, $flags = 0 ) {
-		return self::getRevisionStore()->getTimestampFromId( $title, $id, $flags );
+		return self::getRevisionStore()->getTimestampFromId( $id, $flags );
 	}
 
 	/**
