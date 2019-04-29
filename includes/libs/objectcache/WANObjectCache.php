@@ -2325,7 +2325,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @return string A collection name to describe this class of key
 	 */
 	protected function determineKeyClassForStats( $key ) {
-		$parts = explode( ':', $key );
+		$parts = explode( ':', $key, 3 );
 
 		return $parts[1] ?? $parts[0]; // sanity
 	}
