@@ -5156,43 +5156,6 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Get the title of a page describing a particular group
-	 * @deprecated since 1.29 Use UserGroupMembership::getGroupPage instead
-	 *
-	 * @param string $group Internal group name
-	 * @return Title|bool Title of the page if it exists, false otherwise
-	 */
-	public static function getGroupPage( $group ) {
-		wfDeprecated( __METHOD__, '1.29' );
-		return UserGroupMembership::getGroupPage( $group );
-	}
-
-	/**
-	 * Create a link to the group in HTML, if available;
-	 * else return the group name.
-	 * @deprecated since 1.29 Use UserGroupMembership::getLink instead, or
-	 * make the link yourself if you need custom text
-	 *
-	 * @param string $group Internal name of the group
-	 * @param string $text The text of the link
-	 * @return string HTML link to the group
-	 */
-	public static function makeGroupLinkHTML( $group, $text = '' ) {
-		wfDeprecated( __METHOD__, '1.29' );
-
-		if ( $text == '' ) {
-			$text = UserGroupMembership::getGroupName( $group );
-		}
-		$title = UserGroupMembership::getGroupPage( $group );
-		if ( $title ) {
-			return MediaWikiServices::getInstance()
-				->getLinkRenderer()->makeLink( $title, $text );
-		}
-
-		return htmlspecialchars( $text );
-	}
-
-	/**
 	 * Create a link to the group in Wikitext, if available;
 	 * else return the group name.
 	 * @deprecated since 1.29 Use UserGroupMembership::getLink instead, or
