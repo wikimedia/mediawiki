@@ -19,7 +19,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Robin van der Vliet",
-			"Vlad5250"
+			"Vlad5250",
+			"PiefPafPier"
 		]
 	},
 	"tog-underline": "Links óngersjtriepe",
@@ -1306,7 +1307,7 @@
 	"recentchanges-label-unpatrolled": "Dees bewirking is nog neet gekónterleerd",
 	"recentchanges-label-plusminus": "Dees paginagruuedje is verangerdj mit dit aantaal aan bytes",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
-	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (zuuch ouch [[Special:NewPages|de nuuj pagina's]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}<br />(zuuch ouch [[Special:NewPages|de nuuj pagina's]])",
 	"recentchanges-submit": "Tuin",
 	"rcfilters-tag-remove": "Sjaf '$1' weg",
 	"rcfilters-legend-heading": "<strong>Lies mit aafkórtinge:</strong>",

@@ -1920,7 +1920,7 @@
 	"protect-cascadeon": "Šī lapa pašlaik ir aizsargāta, jo tā ir iekļauta {{PLURAL:$1|šajās lapās|šajā lapā|šajās lapās}} (mainot šīs lapas aizsardzības līmeni aizsardzība netiks noņemta):",
 	"protect-default": "Atļaut visiem lietotājiem",
 	"protect-fallback": "Atļaut tikai lietotājiem ar \"$1\" atļauju",
-	"protect-level-autoconfirmed": "Atļaut tikai pašpārbaudītajiem",
+	"protect-level-autoconfirmed": "Atļaut tikai reģistrētiem dalībniekiem",
 	"protect-level-sysop": "Atļaut tikai administratoriem",
 	"protect-summary-cascade": "kaskāde",
 	"protect-expiring": "līdz $1 (UTC)",

@@ -1489,7 +1489,7 @@
 	"rcfilters-savedqueries-already-saved": "Deze filters zijn al opgeslagen. Wijzig uw instellingen om een nieuw Filter op te slaan.",
 	"rcfilters-restore-default-filters": "Standaard filters terugzetten",
 	"rcfilters-clear-all-filters": "Alle filters verwijderen",
-	"rcfilters-show-new-changes": "Toon nieuwste wijzigingen sinds $1",
+	"rcfilters-show-new-changes": "Toon nieuwste wijzigingen",
 	"rcfilters-search-placeholder": "Filter wijzigingen (gebruik het menu of zoek op filternaam)",
 	"rcfilters-invalid-filter": "Ongeldig filter",
 	"rcfilters-empty-filter": "Geen actieve filters. Alle bijdragen worden weergegeven.",

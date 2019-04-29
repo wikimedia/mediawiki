@@ -112,7 +112,8 @@
 			"Ff98sha",
 			"VulpesVulpes825",
 			"佛壁灯",
-			"94rain"
+			"94rain",
+			"Viztor"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -2639,6 +2640,9 @@
 	"blocklist-tempblocks": "隐藏临时封禁",
 	"blocklist-addressblocks": "隐藏单个IP封禁",
 	"blocklist-type": "类型：",
+	"blocklist-type-opt-all": "全部",
+	"blocklist-type-opt-sitewide": "全站",
+	"blocklist-type-opt-partial": "部分的",
 	"blocklist-rangeblocks": "隐藏IP段封禁",
 	"blocklist-timestamp": "时间",
 	"blocklist-target": "目标",
@@ -3950,5 +3954,7 @@
 	"passwordpolicies-policyflag-forcechange": "必须在登录时更改",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "建议在登录时更改",
 	"easydeflate-invaliddeflate": "提供的内容未被适当缩小",
-	"unprotected-js": "基于安全原因，JavaScript不能在未保护页面中载入。请在 MediaWiki : 命名空间或者用户子页面中添加JavaScript。"
+	"unprotected-js": "基于安全原因，JavaScript不能在未保护页面中载入。请在 MediaWiki : 命名空间或者用户子页面中添加JavaScript。",
+	"userlogout-continue": "如果你希望登出请[$1 点这里]。",
+	"userlogout-sessionerror": "登出失败，会话错误。请[$1 重试]"
 }

@@ -121,7 +121,7 @@
 	"tog-norollbackdiff": "되돌리기 후 차이를 보지 않기",
 	"tog-useeditwarning": "바꾼 내용을 저장하지 않고 편집 페이지를 벗어날 때 내게 알리기",
 	"tog-prefershttps": "로그인하는 동안 항상 보안 연결 사용",
-	"tog-showrollbackconfirmation": "롤백 링크를 클릭할 때 확인창을 띄웁니다",
+	"tog-showrollbackconfirmation": "롤백 링크를 클릭할 때 확인창을 표시합니다",
 	"underline-always": "항상",
 	"underline-never": "항상 긋지 않기",
 	"underline-default": "스킨 또는 브라우저 기본값",

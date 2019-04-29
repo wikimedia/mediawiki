@@ -1231,6 +1231,7 @@
 	"grant-editpage": "Uređivanje postojećih stranica",
 	"grant-editprotected": "Uređivanje zaštićenih stranica",
 	"grant-highvolume": "Uređivanja velikog opsega",
+	"grant-patrol": "Ophodnja izmjena stranica",
 	"grant-rollback": "Brzo uklanjanje izmjena stranica",
 	"grant-sendemail": "Slanje e-poruka drugim suradnicima",
 	"grant-uploadeditmovefile": "Postavljanje, zamjena i premještanje datoteka",

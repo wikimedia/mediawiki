@@ -1231,7 +1231,7 @@
 	"prefs-emailconfirm-label": "Confirmation du courriel :",
 	"youremail": "Courriel :",
 	"username": "{{GENDER:$1|Nom d'utilisateur|Nom d'utilisatrice}} :",
-	"prefs-memberingroups": "{{GENDER:$2|Membre}} {{PLURAL:$1|du groupe|des groupes}} :",
+	"prefs-memberingroups": "{{GENDER:$2|Membre}} {{PLURAL:$1|du groupe|des groupes}} :",
 	"prefs-memberingroups-type": "$1",
 	"group-membership-link-with-expiry": "$1 (jusqu'à $2)",
 	"prefs-registration": "Date d'inscription :",
