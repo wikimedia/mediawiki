@@ -48,6 +48,7 @@ module.exports = function ( grunt ) {
 		},
 		banana: {
 			options: {
+				requireLowerCase: false,
 				disallowBlankTranslations: false
 			},
 			core: 'languages/i18n/',
