@@ -73,13 +73,14 @@
 			"Fnielsen",
 			"Weblars",
 			"Kranix",
-			"Psl85"
+			"Psl85",
+			"Dipsacus fullonum"
 		]
 	},
 	"tog-underline": "Understreg link:",
 	"tog-hideminor": "Skjul mindre ændringer i listen over seneste ændringer",
-	"tog-hidepatrolled": "Skjul overvågede redigeringer i seneste ændringer",
-	"tog-newpageshidepatrolled": "Skjul overvågede sider på listen over nye sider",
+	"tog-hidepatrolled": "Skjul patruljerede redigeringer i seneste ændringer",
+	"tog-newpageshidepatrolled": "Skjul patruljerede sider på listen over nye sider",
 	"tog-hidecategorization": "Skjul kategorisering af sider",
 	"tog-extendwatchlist": "Udvid overvågningslisten til at vise alle ændringer og ikke kun den nyeste",
 	"tog-usenewrc": "Gruppér ændringer efter side i listen over seneste ændringer og i overvågningslisten",
@@ -3017,6 +3018,7 @@
 	"autosumm-replace": "Erstatter sidens indhold med \"$1\"",
 	"autoredircomment": "Omdirigering til [[$1]] oprettet",
 	"autosumm-removed-redirect": "Fjernede omdirigering til [[$1]]",
+	"autosumm-changed-redirect-target": "Ændrede omdirigeringsmål fra [[$1]] til [[$2]]",
 	"autosumm-new": "Oprettede siden med \"$1\"",
 	"autosumm-newblank": "Oprettede tom side",
 	"lag-warn-normal": "Ændringer som er nyere end {{PLURAL:$1|et sekund|$1 sekunder}}, vises muligvis ikke i denne liste.",

@@ -17,7 +17,8 @@
 			"아라",
 			"Macofe",
 			"Fitoschido",
-			"Ghiutun"
+			"Ghiutun",
+			"ToBeFree"
 		]
 	},
 	"tog-underline": "Verknipfonga unterstreeicha:",
@@ -1395,7 +1396,7 @@
 	"tooltip-watch": "Fiege diese Seite denner Beobachtungsliste hinzu",
 	"tooltip-recreate": "Seite neu erstella, obwohl se geläscht wurde.",
 	"tooltip-upload": "Huchloada starta",
-	"tooltip-rollback": "Moacht olle letzta Änderunga dar Seite, de vum gleichen Benutzer vurgenumma waan sein, dorch ocke eenen Klick rieckgängig.",
+	"tooltip-rollback": "Moacht olle letzta Änderunga dar Seite, de vum selben Benutzer vurgenumma waan sein, dorch ocke eenen Klick rieckgängig.",
 	"tooltip-undo": "Moacht lediglich diese eene Änderung rieckgängig on zeigt doas Resultat ei dar Vorschau oa, damit ei dar Zusommafassungszeile eene Begründung angegeba waan koan.",
 	"tooltip-summary": "Gib eine kurze Zusammenfassung ein",
 	"anonymous": "{{PLURAL:$1|Anonymer Nutzer|Anonyme Nutzer}} uff {{SITENAME}}",

@@ -2308,7 +2308,7 @@
 	"delete-confirm": "Poista ”$1”",
 	"delete-legend": "Sivun poisto",
 	"historywarning": "<strong>Varoitus:</strong> Sivulla, jota olet poistamassa, on muokkaushistoriaa ja sitä on muokattu $1 {{PLURAL:$1|kerran|kertaa}}:",
-	"historyaction-submit": "Näytä muokkaushistoria",
+	"historyaction-submit": "Näytä versiot",
 	"confirmdeletetext": "Olet poistamassa sivun ja kaiken sen historian.\nVahvista, että olet aikeissa tehdä tämän ja että ymmärrät teon seuraukset ja teet poiston [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.",
 	"actioncomplete": "Toiminto suoritettu",
 	"actionfailed": "Toiminto epäonnistui",

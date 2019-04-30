@@ -2665,7 +2665,7 @@
 	"blocklist-editing-page": "页面",
 	"blocklist-editing-ns": "名字空间",
 	"ipblocklist-empty": "封禁列表为空。",
-	"ipblocklist-no-results": "请求的IP地址或用户名没有被封禁。",
+	"ipblocklist-no-results": "请求的IP地址或用户名未被封禁。",
 	"blocklink": "封禁",
 	"unblocklink": "解封",
 	"change-blocklink": "更改封禁",

@@ -3865,5 +3865,7 @@
 	"passwordpolicies-policyflag-forcechange": "måste ändras vid inloggning",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "föreslå ändring vid inloggning",
 	"easydeflate-invaliddeflate": "Innehåll som tillhandahålls är inte helt komprimerat",
-	"unprotected-js": "Av säkerhetsskäl kan inte JavaScript läsas in från oskyddade sidor. Skapa endast JavaScript i namnrymden MediaWiki: eller som en användarundersida."
+	"unprotected-js": "Av säkerhetsskäl kan inte JavaScript läsas in från oskyddade sidor. Skapa endast JavaScript i namnrymden MediaWiki: eller som en användarundersida.",
+	"userlogout-continue": "Om du vill logga ut, var god [$1 fortsätt till utloggningssidan].",
+	"userlogout-sessionerror": "Utloggning misslyckades p.g.a. sessionsfel. Var god [$1 försök igen]."
 }
