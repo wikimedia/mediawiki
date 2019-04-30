@@ -2369,7 +2369,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @param string $text Content of the page
 	 * @param string $summary Optional summary string for the revision
 	 * @param int $defaultNs Optional namespace id
-	 * @return array Array as returned by WikiPage::doEditContent()
+	 * @return Status Object as returned by WikiPage::doEditContent()
 	 * @throws MWException If this test cases's needsDB() method doesn't return true.
 	 *         Test cases can use "@group Database" to enable database test support,
 	 *         or list the tables under testing in $this->tablesUsed, or override the
