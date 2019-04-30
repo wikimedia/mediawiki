@@ -4203,7 +4203,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$newTouched = $this->newTouchedTimestamp();
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) use ( $newTouched ) {
+		$dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $newTouched ) {
 			global $wgActorTableSchemaMigrationStage;
 
 			$dbw->update( 'user',
@@ -4329,7 +4329,7 @@ class User implements IDBAccessObject, UserIdentity {
 			$fields["user_$name"] = $value;
 		}
 
-		return $dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) use ( $fields ) {
+		return $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $fields ) {
 			$dbw->insert( 'user', $fields, $fname, [ 'IGNORE' ] );
 			if ( $dbw->affectedRows() ) {
 				$newUser = self::newFromId( $dbw->insertId() );
@@ -4383,7 +4383,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$this->mTouched = $this->newTouchedTimestamp();
 
 		$dbw = wfGetDB( DB_MASTER );
-		$status = $dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) {
+		$status = $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) {
 			$noPass = PasswordFactory::newInvalidPassword()->toString();
 			$dbw->insert( 'user',
 				[
