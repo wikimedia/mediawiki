@@ -2942,7 +2942,7 @@
 	"tooltip-watchlistedit-raw-submit": "Beobachtungsliste aktualisieren",
 	"tooltip-recreate": "Seite neu erstellen, obwohl sie gelöscht wurde",
 	"tooltip-upload": "Hochladen starten",
-	"tooltip-rollback": "Macht alle letzten Änderungen der Seite, die vom gleichen Benutzer vorgenommen worden sind, durch nur einen Klick rückgängig.",
+	"tooltip-rollback": "Macht alle letzten Änderungen der Seite, die vom selben Benutzer vorgenommen worden sind, durch nur einen Klick rückgängig.",
 	"tooltip-undo": "Macht lediglich diese eine Änderung rückgängig und zeigt das Resultat in der Vorschau an, damit in der Zusammenfassungszeile eine Begründung angegeben werden kann.",
 	"tooltip-preferences-save": "Einstellungen speichern",
 	"tooltip-summary": "Gib eine kurze Zusammenfassung ein.",

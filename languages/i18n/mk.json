@@ -3861,7 +3861,7 @@
 	"authprovider-confirmlink-request-label": "Сметки кои треба да се поврзат",
 	"authprovider-confirmlink-success-line": "$1: Успешно поврзано.",
 	"authprovider-confirmlink-failed": "Поврзувањето на сметката не е целосно успешно: $1",
-	"authprovider-confirmlink-ok-help": "Продолжи да прикажуваш пораки за неуспешно поврзување.",
+	"authprovider-confirmlink-ok-help": "Продолжи после прикажувањето пораки за неуспешно поврзување.",
 	"authprovider-resetpass-skip-label": "Прескокни",
 	"authprovider-resetpass-skip-help": "Прескокни го задавањето на нова лозинка.",
 	"authform-nosession-login": "Заверката е успешна, но вашиот прелистувач не може да „запомни“ дека сте најавени.\n\n$1",
