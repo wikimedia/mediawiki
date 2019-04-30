@@ -1506,4 +1506,38 @@ class UserTest extends MediaWikiTestCase {
 		$updater->setContent( 'main', $content );
 		return $updater->saveRevision( CommentStoreComment::newUnsavedComment( $comment ) );
 	}
+
+	/**
+	 * @covers User::idFromName
+	 */
+	public function testExistingIdFromName() {
+		$this->assertTrue(
+			array_key_exists( $this->user->getName(), User::$idCacheByName ),
+			'Test user should already be in the id cache.'
+		);
+		$this->assertSame(
+			$this->user->getId(), User::idFromName( $this->user->getName() ),
+			'Id is correctly retreived from the cache.'
+		);
+		$this->assertSame(
+			$this->user->getId(), User::idFromName( $this->user->getName(), User::READ_LATEST ),
+			'Id is correctly retreived from the database.'
+		);
+	}
+
+	/**
+	 * @covers User::idFromName
+	 */
+	public function testNonExistingIdFromName() {
+		$this->assertFalse(
+			array_key_exists( 'NotExisitngUser', User::$idCacheByName ),
+			'Non exisitng user should not be in the id cache.'
+		);
+		$this->assertSame( null, User::idFromName( 'NotExisitngUser' ) );
+		$this->assertTrue(
+			array_key_exists( 'NotExisitngUser', User::$idCacheByName ),
+			'Username will be cached when requested once.'
+		);
+		$this->assertSame( null, User::idFromName( 'NotExisitngUser' ) );
+	}
 }

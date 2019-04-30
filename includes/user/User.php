@@ -914,7 +914,7 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		if ( !( $flags & self::READ_LATEST ) && array_key_exists( $name, self::$idCacheByName ) ) {
-			return self::$idCacheByName[$name];
+			return is_null( self::$idCacheByName[$name] ) ? null : (int)self::$idCacheByName[$name];
 		}
 
 		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
