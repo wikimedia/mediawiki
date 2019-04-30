@@ -1607,7 +1607,6 @@
 	"boteditletter": "b",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_RCview": "[$1]",
-	"number_of_watching_users_pageview": "[$1 watching {{PLURAL:$1|user|users}}]",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} after change",
 	"newsectionsummary": "/* $1 */ new section",
