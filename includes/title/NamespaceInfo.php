@@ -104,8 +104,8 @@ class NamespaceInfo {
 	 * @return bool
 	 */
 	public function isMovable( $index ) {
-		$result = !( $index < NS_MAIN ||
-			( $index == NS_FILE && !$this->options->get( 'AllowImageMoving' ) ) );
+		$result = $index >= NS_MAIN &&
+			( $index != NS_FILE || $this->options->get( 'AllowImageMoving' ) );
 
 		/**
 		 * @since 1.20
@@ -173,18 +173,15 @@ class NamespaceInfo {
 	 * For subject (non-talk) namespaces, returns the talk namespace
 	 *
 	 * @param int $index Namespace index
-	 * @return int|null If no associated namespace could be found
+	 * @return int
 	 */
 	public function getAssociated( $index ) {
 		$this->isMethodValidFor( $index, __METHOD__ );
 
 		if ( $this->isSubject( $index ) ) {
 			return $this->getTalk( $index );
-		} elseif ( $this->isTalk( $index ) ) {
-			return $this->getSubject( $index );
-		} else {
-			return null;
 		}
+		return $this->getSubject( $index );
 	}
 
 	/**
@@ -266,7 +263,7 @@ class NamespaceInfo {
 	 * The input *must* be converted to lower case first
 	 *
 	 * @param string $name Namespace name
-	 * @return int
+	 * @return int|null
 	 */
 	public function getCanonicalIndex( $name ) {
 		if ( $this->namespaceIndexes === false ) {
@@ -283,8 +280,8 @@ class NamespaceInfo {
 	}
 
 	/**
-	 * Returns an array of the namespaces (by integer id) that exist on the
-	 * wiki. Used primarily by the api in help documentation.
+	 * Returns an array of the namespaces (by integer id) that exist on the wiki. Used primarily by
+	 * the API in help documentation. The array is sorted numerically and omits negative namespaces.
 	 * @return array
 	 */
 	public function getValidNamespaces() {
@@ -463,6 +460,9 @@ class NamespaceInfo {
 	/**
 	 * Determine which restriction levels it makes sense to use in a namespace,
 	 * optionally filtered by a user's rights.
+	 *
+	 * @todo Move this to PermissionManager and remove the dependency here on permissions-related
+	 * config settings.
 	 *
 	 * @param int $index Index to check
 	 * @param User|null $user User to check
