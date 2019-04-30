@@ -100,7 +100,7 @@ class Block {
 	const TYPE_ID = 5;
 
 	/**
-	 * Create a new block with specified parameters on a user, IP or IP range.
+	 * Create a new block with specified option parameters on a user, IP or IP range.
 	 *
 	 * @param array $options Parameters of the block:
 	 *     address string|User  Target user name, User object, IP address or IP range
@@ -125,10 +125,9 @@ class Block {
 	 *                          actions, except those specifically allowed by
 	 *                          other block flags
 	 *
-	 * @since 1.26 accepts $options array instead of individual parameters; order
-	 * of parameters above reflects the original order
+	 * @since 1.26 $options array
 	 */
-	function __construct( $options = [] ) {
+	public function __construct( array $options = [] ) {
 		$defaults = [
 			'address'         => '',
 			'user'            => null,
