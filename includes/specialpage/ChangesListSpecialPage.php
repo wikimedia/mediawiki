@@ -159,7 +159,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 			[
 				'name' => 'userExpLevel',
-				'title' => 'rcfilters-filtergroup-userExpLevel',
+				'title' => 'rcfilters-filtergroup-user-experience-level',
 				'class' => ChangesListStringOptionsFilterGroup::class,
 				'isFullCoverage' => true,
 				'filters' => [
@@ -354,7 +354,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 			[
 				'name' => 'lastRevision',
-				'title' => 'rcfilters-filtergroup-lastRevision',
+				'title' => 'rcfilters-filtergroup-lastrevision',
 				'class' => ChangesListBooleanFilterGroup::class,
 				'priority' => -7,
 				'filters' => [

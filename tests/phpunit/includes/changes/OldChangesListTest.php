@@ -143,7 +143,7 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		$recentChange->numberofWatchingusers = 100;
 
 		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
-		$this->assertRegExp( "/(number_of_watching_users_RCview: 100)/", $line );
+		$this->assertRegExp( "/(number-of-watching-users-for-recent-changes: 100)/", $line );
 	}
 
 	public function testRecentChangesLine_watchlistCssClass() {

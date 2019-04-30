@@ -640,7 +640,7 @@ class ChangesList extends ContextSource {
 		return $this->watchMsgCache->getWithSetCallback(
 			"watching-users-msg:$count",
 			function () use ( $count ) {
-				return $this->msg( 'number_of_watching_users_RCview' )
+				return $this->msg( 'number-of-watching-users-for-recent-changes' )
 					->numParams( $count )->escaped();
 			}
 		);
