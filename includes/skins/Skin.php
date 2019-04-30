@@ -1623,8 +1623,7 @@ abstract class Skin extends ContextSource {
 				'text' => $this->msg( 'editsection' )->inLanguage( $lang )->text(),
 				'targetTitle' => $nt,
 				'attribs' => $attribs,
-				'query' => [ 'action' => 'edit', 'section' => $section ],
-				'options' => [ 'noclasses', 'known' ]
+				'query' => [ 'action' => 'edit', 'section' => $section ]
 			]
 		];
 
@@ -1634,12 +1633,11 @@ abstract class Skin extends ContextSource {
 
 		$linksHtml = [];
 		foreach ( $links as $k => $linkDetails ) {
-			$linksHtml[] = Linker::link(
+			$linksHtml[] = Linker::linkKnown(
 				$linkDetails['targetTitle'],
 				htmlspecialchars( $linkDetails['text'] ),
 				$linkDetails['attribs'],
-				$linkDetails['query'],
-				$linkDetails['options']
+				$linkDetails['query']
 			);
 		}
 
