@@ -2633,25 +2633,25 @@ function wfGetLBFactory() {
 
 /**
  * Find a file.
- * Shortcut for RepoGroup::singleton()->findFile()
- *
+ * @deprecated since 1.34, use MediaWikiServices
  * @param string|LinkTarget $title String or LinkTarget object
  * @param array $options Associative array of options (see RepoGroup::findFile)
  * @return File|bool File, or false if the file does not exist
  */
 function wfFindFile( $title, $options = [] ) {
-	return RepoGroup::singleton()->findFile( $title, $options );
+	return MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title, $options );
 }
 
 /**
  * Get an object referring to a locally registered file.
  * Returns a valid placeholder object if the file does not exist.
  *
+ * @deprecated since 1.34, use MediaWikiServices
  * @param Title|string $title
  * @return LocalFile|null A File, or null if passed an invalid Title
  */
 function wfLocalFile( $title ) {
-	return RepoGroup::singleton()->getLocalRepo()->newFile( $title );
+	return MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()->newFile( $title );
 }
 
 /**

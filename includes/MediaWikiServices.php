@@ -48,6 +48,7 @@ use ParserCache;
 use ParserFactory;
 use PasswordFactory;
 use ProxyLookup;
+use RepoGroup;
 use ResourceLoader;
 use SearchEngine;
 use SearchEngineConfig;
@@ -787,6 +788,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getReadOnlyMode() {
 		return $this->getService( 'ReadOnlyMode' );
+	}
+
+	/**
+	 * @since 1.34
+	 * @return RepoGroup
+	 */
+	public function getRepoGroup() : RepoGroup {
+		return $this->getService( 'RepoGroup' );
 	}
 
 	/**
