@@ -601,7 +601,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::loadFromTitle
 	 */
 	public function testLoadFromTitle() {
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_OLD );
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
 		$this->overrideMwServices();
 		$title = $this->getMockTitle();
 
@@ -640,6 +640,7 @@ class RevisionTest extends MediaWikiTestCase {
 				$this->equalTo( [
 					'revision', 'page', 'user',
 					'temp_rev_comment' => 'revision_comment_temp', 'comment_rev_comment' => 'comment',
+					'temp_rev_user' => 'revision_actor_temp', 'actor_rev_user' => 'actor',
 				] ),
 				// We don't really care about the fields are they come from the selectField methods
 				$this->isType( 'array' ),

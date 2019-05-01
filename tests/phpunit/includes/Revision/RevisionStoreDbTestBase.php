@@ -81,7 +81,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgMultiContentRevisionSchemaMigrationStage' => $this->getMcrMigrationStage(),
 			'wgContentHandlerUseDB' => $this->getContentHandlerUseDB(),
-			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_OLD,
+			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_NEW,
 		] );
 
 		$this->overrideMwServices();
@@ -438,9 +438,19 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$queryInfo = $store->getQueryInfo( [ 'user' ] );
 
 		$row = get_object_vars( $row );
+
+		// Use aliased fields from $queryInfo, e.g. rev_user
+		$keys = array_keys( $row );
+		$keys = array_combine( $keys, $keys );
+		$fields = array_intersect_key( $queryInfo['fields'], $keys ) + $keys;
+
+		// assertSelect() fails unless the orders match.
+		ksort( $fields );
+		ksort( $row );
+
 		$this->assertSelect(
 			$queryInfo['tables'],
-			array_keys( $row ),
+			$fields,
 			[ 'rev_id' => $rev->getId() ],
 			[ array_values( $row ) ],
 			[],
@@ -800,7 +810,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			'rev_page' => (string)$rev->getPage(),
 			'rev_timestamp' => $this->db->timestamp( $rev->getTimestamp() ),
 			'rev_user_text' => (string)$rev->getUserText(),
-			'rev_user' => (string)$rev->getUser(),
+			'rev_user' => (string)$rev->getUser() ?: null,
 			'rev_minor_edit' => $rev->isMinor() ? '1' : '0',
 			'rev_deleted' => (string)$rev->getVisibility(),
 			'rev_len' => (string)$rev->getSize(),
@@ -1808,7 +1818,10 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		/** @var Revision $rev */
 		$rev = $page->doEditContent(
 			new WikitextContent( $text ),
-			__METHOD__
+			__METHOD__,
+			0,
+			false,
+			$this->getMutableTestUser()->getUser()
 		)->value['revision'];
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
