@@ -3327,7 +3327,7 @@ class WikiPage implements Page, IDBAccessObject {
 			return [ [ 'alreadyrolled',
 					htmlspecialchars( $this->mTitle->getPrefixedText() ),
 					htmlspecialchars( $fromP ),
-					htmlspecialchars( $targetEditorForPublic ? $targetEditorForPublic->getName() : '' )
+					htmlspecialchars( $currentEditorForPublic ? $currentEditorForPublic->getName() : '' )
 			] ];
 		}
 
