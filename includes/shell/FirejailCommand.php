@@ -51,7 +51,7 @@ class FirejailCommand extends Command {
 	/**
 	 * @inheritDoc
 	 */
-	public function whitelistPaths( array $paths ) {
+	public function whitelistPaths( array $paths ): Command {
 		$this->whitelistedPaths = array_merge( $this->whitelistedPaths, $paths );
 		return $this;
 	}
