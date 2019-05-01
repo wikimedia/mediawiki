@@ -392,8 +392,7 @@ class Block {
 				$start = Wikimedia\base_convert( $block->getRangeStart(), 16, 10 );
 				$size = log( $end - $start + 1, 2 );
 
-				# This has the nice property that a /32 block is ranked equally with a
-				# single-IP block, which is exactly what it is...
+				# Rank a range block covering a single IP equally with a single-IP block
 				$score = self::TYPE_RANGE - 1 + ( $size / 128 );
 
 			} else {
