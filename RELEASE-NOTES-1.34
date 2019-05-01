@@ -120,6 +120,10 @@ because of Phabricator reports.
 * User::isBlocked() is deprecated since it does not tell you if the user is
   blocked from editing a particular page. Use User::getBlock() or
   PermissionManager::isBlockedFrom() or PermissionManager::userCan() instead.
+* User::isLocallyBlockedProxy and User::inDnsBlacklist are deprecated and moved
+  to the BlockManager as private helper methods.
+* User::isDnsBlacklisted is deprecated. Use BlockManager::isDnsBlacklisted
+  instead.
 * …
 
 === Other changes in 1.34 ===
