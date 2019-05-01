@@ -41,9 +41,9 @@ class PageArchiveMcrTest extends PageArchiveTestBase {
 		return [
 			[
 				'ar_minor_edit' => '0',
-				'ar_user' => '0',
+				'ar_user' => null,
 				'ar_user_text' => $this->ipEditor,
-				'ar_actor' => null,
+				'ar_actor' => (string)User::newFromName( $this->ipEditor, false )->getActorId( $this->db ),
 				'ar_len' => '11',
 				'ar_deleted' => '0',
 				'ar_rev_id' => strval( $this->ipRev->getId() ),
@@ -63,7 +63,7 @@ class PageArchiveMcrTest extends PageArchiveTestBase {
 				'ar_minor_edit' => '0',
 				'ar_user' => (string)$this->getTestUser()->getUser()->getId(),
 				'ar_user_text' => $this->getTestUser()->getUser()->getName(),
-				'ar_actor' => null,
+				'ar_actor' => (string)$this->getTestUser()->getUser()->getActorId(),
 				'ar_len' => '7',
 				'ar_deleted' => '0',
 				'ar_rev_id' => strval( $this->firstRev->getId() ),
