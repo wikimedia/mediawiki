@@ -1584,6 +1584,7 @@
 	"mycontris": "Bydragen",
 	"anoncontribs": "Bydragen",
 	"contribsub2": "Foar {{GENDER:$3|$1}} ($2)",
+	"contributions-subtitle": "Foar {{GENDER:$3|$1}}",
 	"nocontribs": "Der binne gjin feroarings fûn dy't oan dizze kritearia foldwaan.",
 	"uctop": "lêste feroaring",
 	"month": "Fan moanne (en earder):",

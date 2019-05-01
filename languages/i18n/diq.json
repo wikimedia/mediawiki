@@ -756,7 +756,7 @@
 	"viewpagelogs": "Qeydanê na pele bımocne",
 	"nohistory": "Verorê vurnayışanê na perer çıni yo.",
 	"currentrev": "Çımraviyarnayışo rocane",
-	"currentrev-asof": "$1 ra tepeya çım ra viyarnayışê cı'yo peyên",
+	"currentrev-asof": "Çımraviyarnayışê $1iyo peyên",
 	"revisionasof": "Çımraviyarnayışê $1",
 	"revision-info": "Vurnayışo ke $1 de terefê {{GENDER:$6|$2}}$7 ra biyo",
 	"previousrevision": "← Çımraviyarnayışo kıhanêr",
