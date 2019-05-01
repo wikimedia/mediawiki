@@ -1813,13 +1813,14 @@ class User implements IDBAccessObject, UserIdentity {
 
 	/**
 	 * Get blocking information
+	 *
+	 * TODO: Move this into the BlockManager, along with block-related properties.
+	 *
 	 * @param bool $fromReplica Whether to check the replica DB first.
 	 *   To improve performance, non-critical checks are done against replica DBs.
 	 *   Check when actually saving should be done against master.
 	 */
 	private function getBlockedStatus( $fromReplica = true ) {
-		global $wgProxyWhitelist, $wgApplyIpBlocksToXff, $wgSoftBlockRanges;
-
 		if ( $this->mBlockedby != -1 ) {
 			return;
 		}
@@ -1833,79 +1834,10 @@ class User implements IDBAccessObject, UserIdentity {
 		// overwriting mBlockedby, surely?
 		$this->load();
 
-		# We only need to worry about passing the IP address to the Block generator if the
-		# user is not immune to autoblocks/hardblocks, and they are the current user so we
-		# know which IP address they're actually coming from
-		$ip = null;
-		$sessionUser = RequestContext::getMain()->getUser();
-		// the session user is set up towards the end of Setup.php. Until then,
-		// assume it's a logged-out user.
-		$globalUserName = $sessionUser->isSafeToLoad()
-			? $sessionUser->getName()
-			: IP::sanitizeIP( $sessionUser->getRequest()->getIP() );
-		if ( $this->getName() === $globalUserName && !$this->isAllowed( 'ipblock-exempt' ) ) {
-			$ip = $this->getRequest()->getIP();
-		}
-
-		// User/IP blocking
-		$block = Block::newFromTarget( $this, $ip, !$fromReplica );
-
-		// Cookie blocking
-		if ( !$block instanceof Block ) {
-			$block = $this->getBlockFromCookieValue( $this->getRequest()->getCookie( 'BlockID' ) );
-		}
-
-		// Proxy blocking
-		if ( !$block instanceof Block && $ip !== null && !in_array( $ip, $wgProxyWhitelist ) ) {
-			// Local list
-			if ( self::isLocallyBlockedProxy( $ip ) ) {
-				$block = new Block( [
-					'byText' => wfMessage( 'proxyblocker' )->text(),
-					'reason' => wfMessage( 'proxyblockreason' )->plain(),
-					'address' => $ip,
-					'systemBlock' => 'proxy',
-				] );
-			} elseif ( $this->isAnon() && $this->isDnsBlacklisted( $ip ) ) {
-				$block = new Block( [
-					'byText' => wfMessage( 'sorbs' )->text(),
-					'reason' => wfMessage( 'sorbsreason' )->plain(),
-					'address' => $ip,
-					'systemBlock' => 'dnsbl',
-				] );
-			}
-		}
-
-		// (T25343) Apply IP blocks to the contents of XFF headers, if enabled
-		if ( !$block instanceof Block
-			&& $wgApplyIpBlocksToXff
-			&& $ip !== null
-			&& !in_array( $ip, $wgProxyWhitelist )
-		) {
-			$xff = $this->getRequest()->getHeader( 'X-Forwarded-For' );
-			$xff = array_map( 'trim', explode( ',', $xff ) );
-			$xff = array_diff( $xff, [ $ip ] );
-			$xffblocks = Block::getBlocksForIPList( $xff, $this->isAnon(), !$fromReplica );
-			$block = Block::chooseBlock( $xffblocks, $xff );
-			if ( $block instanceof Block ) {
-				# Mangle the reason to alert the user that the block
-				# originated from matching the X-Forwarded-For header.
-				$block->setReason( wfMessage( 'xffblockreason', $block->getReason() )->plain() );
-			}
-		}
-
-		if ( !$block instanceof Block
-			&& $ip !== null
-			&& $this->isAnon()
-			&& IP::isInRanges( $ip, $wgSoftBlockRanges )
-		) {
-			$block = new Block( [
-				'address' => $ip,
-				'byText' => 'MediaWiki default',
-				'reason' => wfMessage( 'softblockrangesreason', $ip )->plain(),
-				'anonOnly' => true,
-				'systemBlock' => 'wgSoftBlockRanges',
-			] );
-		}
+		$block = MediaWikiServices::getInstance()->getBlockManager()->getUserBlock(
+			$this,
+			$fromReplica
+		);
 
 		if ( $block instanceof Block ) {
 			wfDebug( __METHOD__ . ": Found block.\n" );
@@ -1929,81 +1861,29 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Try to load a Block from an ID given in a cookie value.
-	 * @param string|null $blockCookieVal The cookie value to check.
-	 * @return Block|bool The Block object, or false if none could be loaded.
-	 */
-	protected function getBlockFromCookieValue( $blockCookieVal ) {
-		// Make sure there's something to check. The cookie value must start with a number.
-		if ( strlen( $blockCookieVal ) < 1 || !is_numeric( substr( $blockCookieVal, 0, 1 ) ) ) {
-			return false;
-		}
-		// Load the Block from the ID in the cookie.
-		$blockCookieId = Block::getIdFromCookieValue( $blockCookieVal );
-		if ( $blockCookieId !== null ) {
-			// An ID was found in the cookie.
-			$tmpBlock = Block::newFromID( $blockCookieId );
-			if ( $tmpBlock instanceof Block ) {
-				$config = RequestContext::getMain()->getConfig();
-
-				switch ( $tmpBlock->getType() ) {
-					case Block::TYPE_USER:
-						$blockIsValid = !$tmpBlock->isExpired() && $tmpBlock->isAutoblocking();
-						$useBlockCookie = ( $config->get( 'CookieSetOnAutoblock' ) === true );
-						break;
-					case Block::TYPE_IP:
-					case Block::TYPE_RANGE:
-						// If block is type IP or IP range, load only if user is not logged in (T152462)
-						$blockIsValid = !$tmpBlock->isExpired() && !$this->isLoggedIn();
-						$useBlockCookie = ( $config->get( 'CookieSetOnIpBlock' ) === true );
-						break;
-					default:
-						$blockIsValid = false;
-						$useBlockCookie = false;
-				}
-
-				if ( $blockIsValid && $useBlockCookie ) {
-					// Use the block.
-					return $tmpBlock;
-				}
-
-				// If the block is not valid, remove the cookie.
-				Block::clearCookie( $this->getRequest()->response() );
-			} else {
-				// If the block doesn't exist, remove the cookie.
-				Block::clearCookie( $this->getRequest()->response() );
-			}
-		}
-		return false;
-	}
-
-	/**
 	 * Whether the given IP is in a DNS blacklist.
 	 *
+	 * @deprecated since 1.34 Use BlockManager::isDnsBlacklisted.
 	 * @param string $ip IP to check
 	 * @param bool $checkWhitelist Whether to check the whitelist first
 	 * @return bool True if blacklisted.
 	 */
 	public function isDnsBlacklisted( $ip, $checkWhitelist = false ) {
-		global $wgEnableDnsBlacklist, $wgDnsBlacklistUrls, $wgProxyWhitelist;
-
-		if ( !$wgEnableDnsBlacklist ||
-			( $checkWhitelist && in_array( $ip, $wgProxyWhitelist ) )
-		) {
-			return false;
-		}
-
-		return $this->inDnsBlacklist( $ip, $wgDnsBlacklistUrls );
+		return MediaWikiServices::getInstance()->getBlockManager()
+			->isDnsBlacklisted( $ip, $checkWhitelist );
 	}
 
 	/**
 	 * Whether the given IP is in a given DNS blacklist.
 	 *
+	 * @deprecated since 1.34 Check via BlockManager::isDnsBlacklisted instead.
 	 * @param string $ip IP to check
 	 * @param string|array $bases Array of Strings: URL of the DNS blacklist
 	 * @return bool True if blacklisted.
 	 */
 	public function inDnsBlacklist( $ip, $bases ) {
+		wfDeprecated( __METHOD__, '1.34' );
+
 		$found = false;
 		// @todo FIXME: IPv6 ???  (https://bugs.php.net/bug.php?id=33170)
 		if ( IP::isIPv4( $ip ) ) {
@@ -2045,11 +1925,13 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Check if an IP address is in the local proxy list
 	 *
+	 * @deprecated since 1.34 Use BlockManager::getUserBlock instead.
 	 * @param string $ip
-	 *
 	 * @return bool
 	 */
 	public static function isLocallyBlockedProxy( $ip ) {
+		wfDeprecated( __METHOD__, '1.34' );
+
 		global $wgProxyList;
 
 		if ( !$wgProxyList ) {

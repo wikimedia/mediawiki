@@ -1021,7 +1021,10 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		$ip = $this->getRequest()->getIP();
-		if ( $creator->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ ) ) {
+		if (
+			MediaWikiServices::getInstance()->getBlockManager()
+				->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ )
+		) {
 			return Status::newFatal( 'sorbs_create_account_reason' );
 		}
 

@@ -1471,10 +1471,12 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			],
 			'wgProxyWhitelist' => [],
 		] );
+		$this->overrideMwServices();
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
 		$this->assertFalse( $status->isOK() );
 		$this->assertTrue( $status->hasMessage( 'sorbs_create_account_reason' ) );
 		$this->setMwGlobals( 'wgProxyWhitelist', [ '127.0.0.1' ] );
+		$this->overrideMwServices();
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
 		$this->assertTrue( $status->isGood() );
 	}
