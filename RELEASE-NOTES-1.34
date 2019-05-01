@@ -449,6 +449,7 @@ because of Phabricator reports.
 * IDatabase::bufferResults() has been deprecated. Use query batching instead.
 * MessageCache::singleton() is deprecated. Use
   MediaWikiServices::getMessageCache().
+* Constructing MovePage directly is deprecated. Use MovePageFactory.
 
 === Other changes in 1.34 ===
 * …

@@ -351,7 +351,6 @@ class Parser {
 		$nsInfo = null,
 		$logger = null
 	) {
-		$services = MediaWikiServices::getInstance();
 		if ( !$svcOptions || is_array( $svcOptions ) ) {
 			// Pre-1.34 calling convention is the first parameter is just ParserConf, the seventh is
 			// Config, and the eighth is LinkRendererFactory.
@@ -363,8 +362,8 @@ class Parser {
 				$this->mConf['preprocessorClass'] = self::getDefaultPreprocessorClass();
 			}
 			$this->svcOptions = new ServiceOptions( self::$constructorOptions,
-				$this->mConf,
-				func_num_args() > 6 ? func_get_arg( 6 ) : $services->getMainConfig()
+				$this->mConf, func_num_args() > 6
+					? func_get_arg( 6 ) : MediaWikiServices::getInstance()->getMainConfig()
 			);
 			$linkRendererFactory = func_num_args() > 7 ? func_get_arg( 7 ) : null;
 			$nsInfo = func_num_args() > 8 ? func_get_arg( 8 ) : null;
@@ -386,14 +385,16 @@ class Parser {
 			self::EXT_LINK_URL_CLASS . '*)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F\\x{FFFD}]*?)\]/Su';
 
 		$this->magicWordFactory = $magicWordFactory ??
-			$services->getMagicWordFactory();
+			MediaWikiServices::getInstance()->getMagicWordFactory();
 
-		$this->contLang = $contLang ?? $services->getContentLanguage();
+		$this->contLang = $contLang ?? MediaWikiServices::getInstance()->getContentLanguage();
 
-		$this->factory = $factory ?? $services->getParserFactory();
-		$this->specialPageFactory = $spFactory ?? $services->getSpecialPageFactory();
-		$this->linkRendererFactory = $linkRendererFactory ?? $services->getLinkRendererFactory();
-		$this->nsInfo = $nsInfo ?? $services->getNamespaceInfo();
+		$this->factory = $factory ?? MediaWikiServices::getInstance()->getParserFactory();
+		$this->specialPageFactory = $spFactory ??
+			MediaWikiServices::getInstance()->getSpecialPageFactory();
+		$this->linkRendererFactory = $linkRendererFactory ??
+			MediaWikiServices::getInstance()->getLinkRendererFactory();
+		$this->nsInfo = $nsInfo ?? MediaWikiServices::getInstance()->getNamespaceInfo();
 		$this->logger = $logger ?: new NullLogger();
 	}
 

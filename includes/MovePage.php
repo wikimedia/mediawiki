@@ -19,9 +19,13 @@
  * @file
  */
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\MovePageFactory;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * Handles the backend logic of moving a page from one title
@@ -41,9 +45,62 @@ class MovePage {
 	 */
 	protected $newTitle;
 
-	public function __construct( Title $oldTitle, Title $newTitle ) {
+	/**
+	 * @var ServiceOptions
+	 */
+	protected $options;
+
+	/**
+	 * @var LoadBalancer
+	 */
+	protected $loadBalancer;
+
+	/**
+	 * @var NamespaceInfo
+	 */
+	protected $nsInfo;
+
+	/**
+	 * @var WatchedItemStore
+	 */
+	protected $watchedItems;
+
+	/**
+	 * @var PermissionManager
+	 */
+	protected $permMgr;
+
+	/**
+	 * Calling this directly is deprecated in 1.34. Use MovePageFactory instead.
+	 *
+	 * @param Title $oldTitle
+	 * @param Title $newTitle
+	 * @param ServiceOptions|null $options
+	 * @param LoadBalancer|null $loadBalancer
+	 * @param NamespaceInfo|null $nsInfo
+	 * @param WatchedItemStore|null $watchedItems
+	 * @param PermissionManager|null $permMgr
+	 */
+	public function __construct(
+		Title $oldTitle,
+		Title $newTitle,
+		ServiceOptions $options = null,
+		LoadBalancer $loadBalancer = null,
+		NamespaceInfo $nsInfo = null,
+		WatchedItemStore $watchedItems = null,
+		PermissionManager $permMgr = null
+	) {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
+		$this->options = $options ??
+			new ServiceOptions( MovePageFactory::$constructorOptions,
+				MediaWikiServices::getInstance()->getMainConfig() );
+		$this->loadBalancer =
+			$loadBalancer ?? MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$this->nsInfo = $nsInfo ?? MediaWikiServices::getInstance()->getNamespaceInfo();
+		$this->watchedItems =
+			$watchedItems ?? MediaWikiServices::getInstance()->getWatchedItemStore();
+		$this->permMgr = $permMgr ?? MediaWikiServices::getInstance()->getPermissionManager();
 	}
 
 	/**
@@ -58,10 +115,10 @@ class MovePage {
 		$status = new Status();
 
 		$errors = wfMergeErrorArrays(
-			$this->oldTitle->getUserPermissionsErrors( 'move', $user ),
-			$this->oldTitle->getUserPermissionsErrors( 'edit', $user ),
-			$this->newTitle->getUserPermissionsErrors( 'move-target', $user ),
-			$this->newTitle->getUserPermissionsErrors( 'edit', $user )
+			$this->permMgr->getPermissionErrors( 'move', $user, $this->oldTitle ),
+			$this->permMgr->getPermissionErrors( 'edit', $user, $this->oldTitle ),
+			$this->permMgr->getPermissionErrors( 'move-target', $user, $this->newTitle ),
+			$this->permMgr->getPermissionErrors( 'edit', $user, $this->newTitle )
 		);
 
 		// Convert into a Status object
@@ -96,7 +153,6 @@ class MovePage {
 	 * @return Status
 	 */
 	public function isValidMove() {
-		global $wgContentHandlerUseDB;
 		$status = new Status();
 
 		if ( $this->oldTitle->equals( $this->newTitle ) ) {
@@ -133,7 +189,7 @@ class MovePage {
 		}
 
 		// Content model checks
-		if ( !$wgContentHandlerUseDB &&
+		if ( !$this->options->get( 'ContentHandlerUseDB' ) &&
 			$this->oldTitle->getContentModel() !== $this->newTitle->getContentModel() ) {
 			// can't move a page if that would change the page's content model
 			$status->fatal(
@@ -430,8 +486,6 @@ class MovePage {
 	 * @return Status
 	 */
 	private function moveUnsafe( User $user, $reason, $createRedirect, array $changeTags ) {
-		global $wgCategoryCollation;
-
 		$status = Status::newGood();
 		Hooks::run( 'TitleMove', [ $this->oldTitle, $this->newTitle, $user, $reason, &$status ] );
 		if ( !$status->isOK() ) {
@@ -439,7 +493,7 @@ class MovePage {
 			return $status;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
 		$dbw->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 
 		Hooks::run( 'TitleMoveStarting', [ $this->oldTitle, $this->newTitle, $user ] );
@@ -461,9 +515,7 @@ class MovePage {
 			[ 'cl_from' => $pageid ],
 			__METHOD__
 		);
-		$services = MediaWikiServices::getInstance();
-		$type = $services->getNamespaceInfo()->
-			getCategoryLinkType( $this->newTitle->getNamespace() );
+		$type = $this->nsInfo->getCategoryLinkType( $this->newTitle->getNamespace() );
 		foreach ( $prefixes as $prefixRow ) {
 			$prefix = $prefixRow->cl_sortkey_prefix;
 			$catTo = $prefixRow->cl_to;
@@ -471,7 +523,7 @@ class MovePage {
 				[
 					'cl_sortkey' => Collation::singleton()->getSortKey(
 							$this->newTitle->getCategorySortkey( $prefix ) ),
-					'cl_collation' => $wgCategoryCollation,
+					'cl_collation' => $this->options->get( 'CategoryCollation' ),
 					'cl_type' => $type,
 					'cl_timestamp=cl_timestamp' ],
 				[
@@ -563,13 +615,10 @@ class MovePage {
 		# Update watchlists
 		$oldtitle = $this->oldTitle->getDBkey();
 		$newtitle = $this->newTitle->getDBkey();
-		$oldsnamespace = $services->getNamespaceInfo()->
-			getSubject( $this->oldTitle->getNamespace() );
-		$newsnamespace = $services->getNamespaceInfo()->
-			getSubject( $this->newTitle->getNamespace() );
+		$oldsnamespace = $this->nsInfo->getSubject( $this->oldTitle->getNamespace() );
+		$newsnamespace = $this->nsInfo->getSubject( $this->newTitle->getNamespace() );
 		if ( $oldsnamespace != $newsnamespace || $oldtitle != $newtitle ) {
-			$services->getWatchedItemStore()->duplicateAllAssociatedEntries(
-				$this->oldTitle, $this->newTitle );
+			$this->watchedItems->duplicateAllAssociatedEntries( $this->oldTitle, $this->newTitle );
 		}
 
 		// If it is a file then move it last.
@@ -739,7 +788,7 @@ class MovePage {
 			$comment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
 
 		$oldpage = WikiPage::factory( $this->oldTitle );
 		$oldcountable = $oldpage->isCountable();

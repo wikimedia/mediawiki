@@ -160,7 +160,8 @@ class CleanupCaps extends TableCleanup {
 			$this->output( "\"$display\" -> \"$targetDisplay\": DRY RUN, NOT MOVED\n" );
 			$ok = 'OK';
 		} else {
-			$mp = new MovePage( $current, $target );
+			$mp = MediaWikiServices::getInstance()->getMovePageFactory()
+				->newMovePage( $current, $target );
 			$status = $mp->move( $this->user, $reason, $createRedirect );
 			$ok = $status->isOK() ? 'OK' : $status->getWikiText( false, false, 'en' );
 			$this->output( "\"$display\" -> \"$targetDisplay\": $ok\n" );

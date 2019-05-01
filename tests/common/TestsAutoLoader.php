@@ -74,6 +74,7 @@ $wgAutoloadClasses += [
 	'TestUserRegistry' => "$testDir/phpunit/includes/TestUserRegistry.php",
 
 	# tests/phpunit/includes
+	'FactoryArgTestTrait' => "$testDir/phpunit/unit/includes/FactoryArgTestTrait.php",
 	'PageArchiveTestBase' => "$testDir/phpunit/includes/page/PageArchiveTestBase.php",
 	'RevisionDbTestBase' => "$testDir/phpunit/includes/RevisionDbTestBase.php",
 	'RevisionTestModifyableContent' => "$testDir/phpunit/includes/RevisionTestModifyableContent.php",

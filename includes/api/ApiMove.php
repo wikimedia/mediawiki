@@ -172,7 +172,7 @@ class ApiMove extends ApiBase {
 	 * @return Status
 	 */
 	protected function movePage( Title $from, Title $to, $reason, $createRedirect, $changeTags ) {
-		$mp = new MovePage( $from, $to );
+		$mp = MediaWikiServices::getInstance()->getMovePageFactory()->newMovePage( $from, $to );
 		$valid = $mp->isValidMove();
 		if ( !$valid->isOK() ) {
 			return $valid;

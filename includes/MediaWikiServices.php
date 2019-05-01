@@ -17,11 +17,12 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
-use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Special\SpecialPageFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
@@ -704,6 +705,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getMimeAnalyzer() {
 		return $this->getService( 'MimeAnalyzer' );
+	}
+
+	/**
+	 * @since 1.34
+	 * @return MovePageFactory
+	 */
+	public function getMovePageFactory() : MovePageFactory {
+		return $this->getService( 'MovePageFactory' );
 	}
 
 	/**

@@ -1,9 +1,55 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Page\MovePageFactory;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\LoadBalancer;
+
 /**
  * @group Database
  */
 class MovePageTest extends MediaWikiTestCase {
+	/**
+	 * @param string $class
+	 * @return object A mock that throws on any method call
+	 */
+	private function getNoOpMock( $class ) {
+		$mock = $this->createMock( $class );
+		$mock->expects( $this->never() )->method( $this->anythingBut( '__destruct' ) );
+		return $mock;
+	}
+
+	/**
+	 * @param LinkTarget $old
+	 * @param LinkTarget $new
+	 * @param array $params Valid keys are: db, options, nsInfo, wiStore. options is an indexed
+	 *   array that will overwrite our defaults, not a ServiceOptions, so it need not contain all
+	 *   keys.
+	 * @return MovePage
+	 */
+	private function newMovePage( $old, $new, array $params = [] ) : MovePage {
+		$mockLB = $this->createMock( LoadBalancer::class );
+		$mockLB->method( 'getConnection' )
+			->willReturn( $params['db'] ?? $this->getNoOpMock( IDatabase::class ) );
+		$mockLB->expects( $this->never() )
+			->method( $this->anythingBut( 'getConnection', '__destruct' ) );
+
+		return new MovePage(
+			$old,
+			$new,
+			new ServiceOptions(
+				MovePageFactory::$constructorOptions,
+				$params['options'] ?? [],
+				[
+					'CategoryCollation' => 'uppercase',
+					'ContentHandlerUseDB' => true,
+				]
+			),
+			$mockLB,
+			$params['nsInfo'] ?? $this->getNoOpMock( NamespaceInfo::class ),
+			$params['wiStore'] ?? $this->getNoOpMock( WatchedItemStore::class )
+		);
+	}
 
 	public function setUp() {
 		parent::setUp();
@@ -23,9 +69,10 @@ class MovePageTest extends MediaWikiTestCase {
 			// We can only set this to false with the old schema
 			$this->setMwGlobals( 'wgContentHandlerUseDB', false );
 		}
-		$mp = new MovePage(
+		$mp = $this->newMovePage(
 			Title::newFromText( $old ),
-			Title::newFromText( $new )
+			Title::newFromText( $new ),
+			[ 'options' => [ 'ContentHandlerUseDB' => false ] ]
 		);
 		$status = $mp->isValidMove();
 		if ( $error === true ) {
@@ -59,6 +106,32 @@ class MovePageTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * Integration test to catch regressions like T74870. Taken and modified
+	 * from SemanticMediaWiki
+	 *
+	 * @covers Title::moveTo
+	 * @covers MovePage::move
+	 */
+	public function testTitleMoveCompleteIntegrationTest() {
+		$this->hideDeprecated( 'Title::moveTo' );
+
+		$oldTitle = Title::newFromText( 'Help:Some title' );
+		WikiPage::factory( $oldTitle )->doEditContent( new WikitextContent( 'foo' ), 'bar' );
+		$newTitle = Title::newFromText( 'Help:Some other title' );
+		$this->assertNull(
+			WikiPage::factory( $newTitle )->getRevision()
+		);
+
+		$this->assertTrue( $oldTitle->moveTo( $newTitle, false, 'test1', true ) );
+		$this->assertNotNull(
+			WikiPage::factory( $oldTitle )->getRevision()
+		);
+		$this->assertNotNull(
+			WikiPage::factory( $newTitle )->getRevision()
+		);
+	}
+
+	/**
 	 * Test for the move operation being aborted via the TitleMove hook
 	 * @covers MovePage::move
 	 */
@@ -73,7 +146,7 @@ class MovePageTest extends MediaWikiTestCase {
 		$oldTitle = Title::newFromText( 'Some old title' );
 		WikiPage::factory( $oldTitle )->doEditContent( new WikitextContent( 'foo' ), 'bar' );
 		$newTitle = Title::newFromText( 'A brand new title' );
-		$mp = new MovePage( $oldTitle, $newTitle );
+		$mp = $this->newMovePage( $oldTitle, $newTitle );
 		$user = User::newFromName( 'TitleMove tester' );
 		$status = $mp->move( $user, 'Reason', true );
 		$this->assertTrue( $status->hasMessage( $error ) );
