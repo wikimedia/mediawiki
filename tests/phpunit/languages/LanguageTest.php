@@ -1812,12 +1812,6 @@ class LanguageTest extends LanguageClassesTestCase {
 	public function testClearCaches() {
 		$languageClass = TestingAccessWrapper::newFromClass( Language::class );
 
-		// Populate $dataCache
-		Language::getLocalisationCache()->getItem( 'zh', 'mainpage' );
-		$oldCacheObj = Language::$dataCache;
-		$this->assertNotCount( 0,
-			TestingAccessWrapper::newFromObject( Language::$dataCache )->loadedItems );
-
 		// Populate $mLangObjCache
 		$lang = Language::factory( 'en' );
 		$this->assertNotCount( 0, Language::$mLangObjCache );
@@ -1836,9 +1830,6 @@ class LanguageTest extends LanguageClassesTestCase {
 
 		Language::clearCaches();
 
-		$this->assertNotSame( $oldCacheObj, Language::$dataCache );
-		$this->assertCount( 0,
-			TestingAccessWrapper::newFromObject( Language::$dataCache )->loadedItems );
 		$this->assertCount( 0, Language::$mLangObjCache );
 		$this->assertCount( 0, $languageClass->fallbackLanguageCache );
 		$this->assertNull( $languageClass->grammarTransformations );

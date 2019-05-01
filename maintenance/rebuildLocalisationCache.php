@@ -29,6 +29,10 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -58,7 +62,7 @@ class RebuildLocalisationCache extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgLocalisationCacheConf;
+		global $wgLocalisationCacheConf, $wgCacheDirectory;
 
 		$force = $this->hasOption( 'force' );
 		$threads = $this->getOption( 'threads', 1 );
@@ -77,13 +81,24 @@ class RebuildLocalisationCache extends Maintenance {
 
 		$conf = $wgLocalisationCacheConf;
 		$conf['manualRecache'] = false; // Allow fallbacks to create CDB files
-		if ( $force ) {
-			$conf['forceRecache'] = true;
-		}
+		$conf['forceRecache'] = $force || !empty( $conf['forceRecache'] );
 		if ( $this->hasOption( 'outdir' ) ) {
 			$conf['storeDirectory'] = $this->getOption( 'outdir' );
 		}
-		$lc = new LocalisationCacheBulkLoad( $conf );
+		// XXX Copy-pasted from ServiceWiring.php. Do we need a factory for this one caller?
+		$lc = new LocalisationCacheBulkLoad(
+			new ServiceOptions(
+				LocalisationCache::$constructorOptions,
+				$conf,
+				MediaWikiServices::getInstance()->getMainConfig()
+			),
+			LocalisationCache::getStoreFromConf( $conf, $wgCacheDirectory ),
+			LoggerFactory::getInstance( 'localisation' ),
+			[ function () {
+				MediaWikiServices::getInstance()->getResourceLoader()
+					->getMessageBlobStore()->clear();
+			} ]
+		);
 
 		$allCodes = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
 		if ( $this->hasOption( 'lang' ) ) {
