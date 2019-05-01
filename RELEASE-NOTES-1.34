@@ -352,6 +352,8 @@ because of Phabricator reports.
 * The UserIsBlockedFrom hook is only called if a block is found first, and
   should only be used to unblock a blocked user.
 * …
+* Language::$dataCache has been removed (without prior deprecation, for
+  practical reasons). Use MediaWikiServices instead to get a LocalisationCache.
 
 === Deprecations in 1.34 ===
 * The MWNamespace class is deprecated. Use NamespaceInfo.
@@ -459,6 +461,7 @@ because of Phabricator reports.
 * Constructing MovePage directly is deprecated. Use MovePageFactory.
 * TempFSFile::factory() has been deprecated. Use TempFSFileFactory instead.
 * wfIsBadImage() is deprecated. Use the BadFileLookup service instead.
+* Language::getLocalisationCache() is deprecated. Use MediaWikiServices.
 
 === Other changes in 1.34 ===
 * …

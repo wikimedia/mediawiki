@@ -39,13 +39,13 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		global $wgExtensionMessagesFiles;
 		self::$oldExtMsgFiles = $wgExtensionMessagesFiles;
 		$wgExtensionMessagesFiles['LogTests'] = __DIR__ . '/LogTests.i18n.php';
-		Language::getLocalisationCache()->recache( 'en' );
+		Language::clearCaches();
 	}
 
 	public static function tearDownAfterClass() {
 		global $wgExtensionMessagesFiles;
 		$wgExtensionMessagesFiles = self::$oldExtMsgFiles;
-		Language::getLocalisationCache()->recache( 'en' );
+		Language::clearCaches();
 
 		parent::tearDownAfterClass();
 	}
