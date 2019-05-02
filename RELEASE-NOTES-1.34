@@ -462,6 +462,11 @@ because of Phabricator reports.
 * TempFSFile::factory() has been deprecated. Use TempFSFileFactory instead.
 * wfIsBadImage() is deprecated. Use the BadFileLookup service instead.
 * Language::getLocalisationCache() is deprecated. Use MediaWikiServices.
+* The following Language methods are deprecated: isSupportedLanguage,
+  isValidCode, isValidBuiltInCode, isKnownLanguageTag, fetchLanguageNames,
+  fetchLanguageName, getFileName, getMessagesFileName, getJsonMessagesFileName.
+  Use the new LanguageNameUtils class instead. (Note that fetchLanguageName(s)
+  are called getLanguageName(s) in the new class.)
 
 === Other changes in 1.34 ===
 * …

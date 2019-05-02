@@ -19,6 +19,7 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
@@ -621,6 +622,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getInterwikiLookup() {
 		return $this->getService( 'InterwikiLookup' );
+	}
+
+	/**
+	 * @since 1.34
+	 * @return LanguageNameUtils
+	 */
+	public function getLanguageNameUtils() {
+		return $this->getService( 'LanguageNameUtils' );
 	}
 
 	/**
