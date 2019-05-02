@@ -1847,21 +1847,21 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			return true;
 		}
 
-		return static::checkStructuredFilterUiEnabled(
-			$this->getConfig(),
-			$this->getUser()
-		);
+		return static::checkStructuredFilterUiEnabled( $this->getUser() );
 	}
 
 	/**
 	 * Static method to check whether StructuredFilter UI is enabled for the given user
 	 *
 	 * @since 1.31
-	 * @param Config $config
 	 * @param User $user
 	 * @return bool
 	 */
-	public static function checkStructuredFilterUiEnabled( Config $config, User $user ) {
+	public static function checkStructuredFilterUiEnabled( $user ) {
+		if ( $user instanceof Config ) {
+			wfDeprecated( __METHOD__ . ' with Config argument', '1.34' );
+			$user = func_get_arg( 1 );
+		}
 		return !$user->getOption( 'rcenhancedfilters-disable' );
 	}
 

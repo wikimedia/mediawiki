@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Storage;
 
-use Config;
 use Language;
+use MediaWiki\Config\ServiceOptions;
 use WANObjectCache;
 use Wikimedia\Rdbms\LBFactory;
 
@@ -45,24 +45,39 @@ class BlobStoreFactory {
 	private $cache;
 
 	/**
-	 * @var Config
+	 * @var ServiceOptions
 	 */
-	private $config;
+	private $options;
 
 	/**
 	 * @var Language
 	 */
 	private $contLang;
 
+	/**
+	 * TODO Make this a const when HHVM support is dropped (T192166)
+	 *
+	 * @var array
+	 * @since 1.34
+	 */
+	public static $constructorOptions = [
+		'CompressRevisions',
+		'DefaultExternalStore',
+		'LegacyEncoding',
+		'RevisionCacheExpiry',
+	];
+
 	public function __construct(
 		LBFactory $lbFactory,
 		WANObjectCache $cache,
-		Config $mainConfig,
+		ServiceOptions $options,
 		Language $contLang
 	) {
+		$options->assertRequiredOptions( self::$constructorOptions );
+
 		$this->lbFactory = $lbFactory;
 		$this->cache = $cache;
-		$this->config = $mainConfig;
+		$this->options = $options;
 		$this->contLang = $contLang;
 	}
 
@@ -92,12 +107,12 @@ class BlobStoreFactory {
 			$wikiId
 		);
 
-		$store->setCompressBlobs( $this->config->get( 'CompressRevisions' ) );
-		$store->setCacheExpiry( $this->config->get( 'RevisionCacheExpiry' ) );
-		$store->setUseExternalStore( $this->config->get( 'DefaultExternalStore' ) !== false );
+		$store->setCompressBlobs( $this->options->get( 'CompressRevisions' ) );
+		$store->setCacheExpiry( $this->options->get( 'RevisionCacheExpiry' ) );
+		$store->setUseExternalStore( $this->options->get( 'DefaultExternalStore' ) !== false );
 
-		if ( $this->config->get( 'LegacyEncoding' ) ) {
-			$store->setLegacyEncoding( $this->config->get( 'LegacyEncoding' ), $this->contLang );
+		if ( $this->options->get( 'LegacyEncoding' ) ) {
+			$store->setLegacyEncoding( $this->options->get( 'LegacyEncoding' ), $this->contLang );
 		}
 
 		return $store;

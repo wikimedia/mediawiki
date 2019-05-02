@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use Wikimedia\TestingAccessWrapper;
@@ -52,7 +53,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 	 */
 	protected function getPreferencesFactory() {
 		return new DefaultPreferencesFactory(
-			$this->config,
+			new ServiceOptions( DefaultPreferencesFactory::$constructorOptions, $this->config ),
 			new Language(),
 			AuthManager::singleton(),
 			MediaWikiServices::getInstance()->getLinkRenderer()

@@ -124,7 +124,8 @@ because of Phabricator reports.
   to the BlockManager as private helper methods.
 * User::isDnsBlacklisted is deprecated. Use BlockManager::isDnsBlacklisted
   instead.
-* …
+* The Config argument to ChangesListSpecialPage::checkStructuredFilterUiEnabled
+  is deprecated. Pass only the User argument.
 
 === Other changes in 1.34 ===
 * …

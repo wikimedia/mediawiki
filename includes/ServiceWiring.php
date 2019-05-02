@@ -42,6 +42,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Config\ConfigRepository;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkRenderer;
@@ -81,7 +82,8 @@ return [
 		return new BlobStoreFactory(
 			$services->getDBLoadBalancerFactory(),
 			$services->getMainWANObjectCache(),
-			$services->getMainConfig(),
+			new ServiceOptions( BlobStoreFactory::$constructorOptions,
+				$services->getMainConfig() ),
 			$services->getContentLanguage()
 		);
 	},
@@ -132,7 +134,11 @@ return [
 	},
 
 	'ConfiguredReadOnlyMode' => function ( MediaWikiServices $services ) : ConfiguredReadOnlyMode {
-		return new ConfiguredReadOnlyMode( $services->getMainConfig() );
+		$config = $services->getMainConfig();
+		return new ConfiguredReadOnlyMode(
+			$config->get( 'ReadOnly' ),
+			$config->get( 'ReadOnlyFile' )
+		);
 	},
 
 	'ContentLanguage' => function ( MediaWikiServices $services ) : Language {
@@ -175,7 +181,7 @@ return [
 
 		$lbConf = MWLBFactory::applyDefaultConfig(
 			$mainConfig->get( 'LBFactoryConf' ),
-			$mainConfig,
+			new ServiceOptions( MWLBFactory::$applyDefaultConfigOptions, $mainConfig ),
 			$services->getConfiguredReadOnlyMode(),
 			$services->getLocalServerObjectCache(),
 			$services->getMainObjectStash(),
@@ -184,7 +190,7 @@ return [
 		$class = MWLBFactory::getLBFactoryClass( $lbConf );
 
 		$instance = new $class( $lbConf );
-		MWLBFactory::setSchemaAliases( $instance, $mainConfig );
+		MWLBFactory::setSchemaAliases( $instance, $mainConfig->get( 'DBtype' ) );
 
 		return $instance;
 	},
@@ -450,7 +456,8 @@ return [
 
 	'PreferencesFactory' => function ( MediaWikiServices $services ) : PreferencesFactory {
 		$factory = new DefaultPreferencesFactory(
-			$services->getMainConfig(),
+			new ServiceOptions(
+				DefaultPreferencesFactory::$constructorOptions, $services->getMainConfig() ),
 			$services->getContentLanguage(),
 			AuthManager::singleton(),
 			$services->getLinkRendererFactory()->create()
@@ -476,6 +483,8 @@ return [
 	},
 
 	'ResourceLoader' => function ( MediaWikiServices $services ) : ResourceLoader {
+		// @todo This should not take a Config object, but it's not so easy to remove because it
+		// exposes it in a getter, which is actually used.
 		global $IP;
 		$config = $services->getMainConfig();
 
@@ -539,6 +548,8 @@ return [
 	},
 
 	'SearchEngineConfig' => function ( MediaWikiServices $services ) : SearchEngineConfig {
+		// @todo This should not take a Config object, but it's not so easy to remove because it
+		// exposes it in a getter, which is actually used.
 		return new SearchEngineConfig( $services->getMainConfig(),
 			$services->getContentLanguage() );
 	},
@@ -623,13 +634,9 @@ return [
 	},
 
 	'SpecialPageFactory' => function ( MediaWikiServices $services ) : SpecialPageFactory {
-		$config = $services->getMainConfig();
-		$options = [];
-		foreach ( SpecialPageFactory::$constructorOptions as $key ) {
-			$options[$key] = $config->get( $key );
-		}
 		return new SpecialPageFactory(
-			$options,
+			new ServiceOptions(
+				SpecialPageFactory::$constructorOptions, $services->getMainConfig() ),
 			$services->getContentLanguage()
 		);
 	},

@@ -21,6 +21,7 @@
  * @ingroup Database
  */
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\DatabaseDomain;
@@ -35,8 +36,34 @@ abstract class MWLBFactory {
 	private static $loggedDeprecations = [];
 
 	/**
+	 * TODO Make this a const when HHVM support is dropped (T192166)
+	 *
+	 * @var array
+	 * @since 1.34
+	 */
+	public static $applyDefaultConfigOptions = [
+		'DBcompress',
+		'DBDefaultGroup',
+		'DBmwschema',
+		'DBname',
+		'DBpassword',
+		'DBport',
+		'DBprefix',
+		'DBserver',
+		'DBservers',
+		'DBssl',
+		'DBtype',
+		'DBuser',
+		'DBWindowsAuthentication',
+		'DebugDumpSql',
+		'ExternalServers',
+		'SQLiteDataDir',
+		'SQLMode',
+	];
+
+	/**
 	 * @param array $lbConf Config for LBFactory::__construct()
-	 * @param Config $mainConfig Main config object from MediaWikiServices
+	 * @param ServiceOptions $options
 	 * @param ConfiguredReadOnlyMode $readOnlyMode
 	 * @param BagOStuff $srvCace
 	 * @param BagOStuff $mainStash
@@ -45,21 +72,23 @@ abstract class MWLBFactory {
 	 */
 	public static function applyDefaultConfig(
 		array $lbConf,
-		Config $mainConfig,
+		ServiceOptions $options,
 		ConfiguredReadOnlyMode $readOnlyMode,
 		BagOStuff $srvCace,
 		BagOStuff $mainStash,
 		WANObjectCache $wanCache
 	) {
+		$options->assertRequiredOptions( self::$applyDefaultConfigOptions );
+
 		global $wgCommandLineMode;
 
 		$typesWithSchema = self::getDbTypesWithSchemas();
 
 		$lbConf += [
 			'localDomain' => new DatabaseDomain(
-				$mainConfig->get( 'DBname' ),
-				$mainConfig->get( 'DBmwschema' ),
-				$mainConfig->get( 'DBprefix' )
+				$options->get( 'DBname' ),
+				$options->get( 'DBmwschema' ),
+				$options->get( 'DBprefix' )
 			),
 			'profiler' => function ( $section ) {
 				return Profiler::instance()->scopedProfileIn( $section );
@@ -74,7 +103,7 @@ abstract class MWLBFactory {
 			'cliMode' => $wgCommandLineMode,
 			'hostname' => wfHostname(),
 			'readOnlyReason' => $readOnlyMode->getReason(),
-			'defaultGroup' => $mainConfig->get( 'DBDefaultGroup' ),
+			'defaultGroup' => $options->get( 'DBDefaultGroup' ),
 		];
 
 		$serversCheck = [];
@@ -84,45 +113,46 @@ abstract class MWLBFactory {
 		if ( $lbConf['class'] === Wikimedia\Rdbms\LBFactorySimple::class ) {
 			if ( isset( $lbConf['servers'] ) ) {
 				// Server array is already explicitly configured
-			} elseif ( is_array( $mainConfig->get( 'DBservers' ) ) ) {
+			} elseif ( is_array( $options->get( 'DBservers' ) ) ) {
 				$lbConf['servers'] = [];
-				foreach ( $mainConfig->get( 'DBservers' ) as $i => $server ) {
-					$lbConf['servers'][$i] = self::initServerInfo( $server, $mainConfig );
+				foreach ( $options->get( 'DBservers' ) as $i => $server ) {
+					$lbConf['servers'][$i] = self::initServerInfo( $server, $options );
 				}
 			} else {
 				$server = self::initServerInfo(
 					[
-						'host' => $mainConfig->get( 'DBserver' ),
-						'user' => $mainConfig->get( 'DBuser' ),
-						'password' => $mainConfig->get( 'DBpassword' ),
-						'dbname' => $mainConfig->get( 'DBname' ),
-						'type' => $mainConfig->get( 'DBtype' ),
+						'host' => $options->get( 'DBserver' ),
+						'user' => $options->get( 'DBuser' ),
+						'password' => $options->get( 'DBpassword' ),
+						'dbname' => $options->get( 'DBname' ),
+						'type' => $options->get( 'DBtype' ),
 						'load' => 1
 					],
-					$mainConfig
+					$options
 				);
 
-				$server['flags'] |= $mainConfig->get( 'DBssl' ) ? DBO_SSL : 0;
-				$server['flags'] |= $mainConfig->get( 'DBcompress' ) ? DBO_COMPRESS : 0;
+				$server['flags'] |= $options->get( 'DBssl' ) ? DBO_SSL : 0;
+				$server['flags'] |= $options->get( 'DBcompress' ) ? DBO_COMPRESS : 0;
 
 				$lbConf['servers'] = [ $server ];
 			}
 			if ( !isset( $lbConf['externalClusters'] ) ) {
-				$lbConf['externalClusters'] = $mainConfig->get( 'ExternalServers' );
+				$lbConf['externalClusters'] = $options->get( 'ExternalServers' );
 			}
 
 			$serversCheck = $lbConf['servers'];
 		} elseif ( $lbConf['class'] === Wikimedia\Rdbms\LBFactoryMulti::class ) {
 			if ( isset( $lbConf['serverTemplate'] ) ) {
 				if ( in_array( $lbConf['serverTemplate']['type'], $typesWithSchema, true ) ) {
-					$lbConf['serverTemplate']['schema'] = $mainConfig->get( 'DBmwschema' );
+					$lbConf['serverTemplate']['schema'] = $options->get( 'DBmwschema' );
 				}
-				$lbConf['serverTemplate']['sqlMode'] = $mainConfig->get( 'SQLMode' );
+				$lbConf['serverTemplate']['sqlMode'] = $options->get( 'SQLMode' );
 			}
 			$serversCheck = [ $lbConf['serverTemplate'] ] ?? [];
 		}
 
-		self::assertValidServerConfigs( $serversCheck, $mainConfig );
+		self::assertValidServerConfigs( $serversCheck, $options->get( 'DBname' ),
+			$options->get( 'DBprefix' ) );
 
 		$lbConf = self::injectObjectCaches( $lbConf, $srvCace, $mainStash, $wanCache );
 
@@ -138,10 +168,10 @@ abstract class MWLBFactory {
 
 	/**
 	 * @param array $server
-	 * @param Config $mainConfig
+	 * @param ServiceOptions $options
 	 * @return array
 	 */
-	private static function initServerInfo( array $server, Config $mainConfig ) {
+	private static function initServerInfo( array $server, ServiceOptions $options ) {
 		if ( $server['type'] === 'sqlite' ) {
 			$httpMethod = $_SERVER['REQUEST_METHOD'] ?? null;
 			// T93097: hint for how file-based databases (e.g. sqlite) should go about locking.
@@ -149,12 +179,12 @@ abstract class MWLBFactory {
 			// See https://www.sqlite.org/lockingv3.html#shared_lock
 			$isHttpRead = in_array( $httpMethod, [ 'GET', 'HEAD', 'OPTIONS', 'TRACE' ] );
 			$server += [
-				'dbDirectory' => $mainConfig->get( 'SQLiteDataDir' ),
+				'dbDirectory' => $options->get( 'SQLiteDataDir' ),
 				'trxMode' => $isHttpRead ? 'DEFERRED' : 'IMMEDIATE'
 			];
 		} elseif ( $server['type'] === 'postgres' ) {
 			$server += [
-				'port' => $mainConfig->get( 'DBport' ),
+				'port' => $options->get( 'DBport' ),
 				// Work around the reserved word usage in MediaWiki schema
 				'keywordTableMap' => [ 'user' => 'mwuser', 'text' => 'pagecontent' ]
 			];
@@ -165,25 +195,25 @@ abstract class MWLBFactory {
 			];
 		} elseif ( $server['type'] === 'mssql' ) {
 			$server += [
-				'port' => $mainConfig->get( 'DBport' ),
-				'useWindowsAuth' => $mainConfig->get( 'DBWindowsAuthentication' )
+				'port' => $options->get( 'DBport' ),
+				'useWindowsAuth' => $options->get( 'DBWindowsAuthentication' )
 			];
 		}
 
 		if ( in_array( $server['type'], self::getDbTypesWithSchemas(), true ) ) {
-			$server += [ 'schema' => $mainConfig->get( 'DBmwschema' ) ];
+			$server += [ 'schema' => $options->get( 'DBmwschema' ) ];
 		}
 
 		$flags = DBO_DEFAULT;
-		$flags |= $mainConfig->get( 'DebugDumpSql' ) ? DBO_DEBUG : 0;
+		$flags |= $options->get( 'DebugDumpSql' ) ? DBO_DEBUG : 0;
 		if ( $server['type'] === 'oracle' ) {
-			$flags |= $mainConfig->get( 'DBOracleDRCP' ) ? DBO_PERSISTENT : 0;
+			$flags |= $options->get( 'DBOracleDRCP' ) ? DBO_PERSISTENT : 0;
 		}
 
 		$server += [
-			'tablePrefix' => $mainConfig->get( 'DBprefix' ),
+			'tablePrefix' => $options->get( 'DBprefix' ),
 			'flags' => $flags,
-			'sqlMode' => $mainConfig->get( 'SQLMode' ),
+			'sqlMode' => $options->get( 'SQLMode' ),
 		];
 
 		return $server;
@@ -215,12 +245,10 @@ abstract class MWLBFactory {
 
 	/**
 	 * @param array $servers
-	 * @param Config $mainConfig
+	 * @param string $lbDB Local domain database name
+	 * @param string $lbTP Local domain prefix
 	 */
-	private static function assertValidServerConfigs( array $servers, Config $mainConfig ) {
-		$ldDB = $mainConfig->get( 'DBname' ); // local domain DB
-		$ldTP = $mainConfig->get( 'DBprefix' ); // local domain prefix
-
+	private static function assertValidServerConfigs( array $servers, $ldDB, $ldTP ) {
 		foreach ( $servers as $server ) {
 			$type = $server['type'] ?? null;
 			$srvDB = $server['dbname'] ?? null; // server DB
@@ -332,8 +360,17 @@ abstract class MWLBFactory {
 		return $class;
 	}
 
-	public static function setSchemaAliases( LBFactory $lbFactory, Config $config ) {
-		if ( $config->get( 'DBtype' ) === 'mysql' ) {
+	/**
+	 * @param LBFactory $lbFactory
+	 * @param string $dbType 'mysql', 'sqlite', etc.
+	 */
+	public static function setSchemaAliases( LBFactory $lbFactory, $dbType ) {
+		if ( $dbType instanceof Config ) {
+			// Before 1.34 this took a whole Config just to get $dbType
+			wfDeprecated( __METHOD__ . ' with Config argument', '1.34' );
+			$dbType = $dbType->get( 'DBtype' );
+		}
+		if ( $dbType === 'mysql' ) {
 			/**
 			 * When SQLite indexes were introduced in r45764, it was noted that
 			 * SQLite requires index names to be unique within the whole database,
