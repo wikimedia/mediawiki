@@ -97,7 +97,8 @@ class RebuildLocalisationCache extends Maintenance {
 			[ function () {
 				MediaWikiServices::getInstance()->getResourceLoader()
 					->getMessageBlobStore()->clear();
-			} ]
+			} ],
+			MediaWikiServices::getInstance()->getLanguageNameUtils()
 		);
 
 		$allCodes = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
