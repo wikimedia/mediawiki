@@ -191,6 +191,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			'wgExtraInterlanguageLinkPrefixes' => [ 'self' ],
 			'wgExtraLanguageNames' => [ 'self' => 'Recursion' ],
 		] );
+		$this->resetServices();
 
 		MessageCache::singleton()->enable();
 
