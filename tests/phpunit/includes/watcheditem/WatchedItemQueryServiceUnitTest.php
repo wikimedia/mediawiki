@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
@@ -78,12 +79,10 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|Database
+	 * @return PHPUnit_Framework_MockObject_MockObject|IDatabase
 	 */
 	private function getMockDb() {
-		$mock = $this->getMockBuilder( Database::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$mock = $this->createMock( IDatabase::class );
 
 		$mock->expects( $this->any() )
 			->method( 'makeList' )
@@ -126,7 +125,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param PHPUnit_Framework_MockObject_MockObject|Database $mockDb
+	 * @param PHPUnit_Framework_MockObject_MockObject|IDatabase $mockDb
 	 * @return PHPUnit_Framework_MockObject_MockObject|LoadBalancer
 	 */
 	private function getMockLoadBalancer( $mockDb ) {
@@ -141,7 +140,6 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param PHPUnit_Framework_MockObject_MockObject|Database $mockDb
 	 * @return PHPUnit_Framework_MockObject_MockObject|WatchedItemStore
 	 */
 	private function getMockWatchedItemStore() {
