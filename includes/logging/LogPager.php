@@ -337,9 +337,9 @@ class LogPager extends ReverseChronologicalPager {
 
 		// T221458: MySQL/MariaDB (10.1.37) can sometimes irrationally decide that querying `actor` before
 		// `logging` and filesorting is somehow better than querying $limit+1 rows from `logging`.
-		// Tell it not to reorder the query. But not when tag filtering was used, as it seems as likely
-		// to be harmed as helped in that case.
-		if ( !$this->mTagFilter ) {
+		// Tell it not to reorder the query. But not when tag filtering or log_search was used, as it
+		// seems as likely to be harmed as helped in that case.
+		if ( !$this->mTagFilter && !array_key_exists( 'ls_field', $this->mConds ) ) {
 			$options[] = 'STRAIGHT_JOIN';
 		}
 
