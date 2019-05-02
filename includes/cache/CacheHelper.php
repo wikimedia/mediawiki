@@ -288,7 +288,9 @@ class CacheHelper implements ICacheHelper {
 			throw new MWException( 'No cache key set, so cannot obtain or save the CacheHelper values.' );
 		}
 
-		return wfMemcKey( ...array_values( $this->cacheKey ) );
+		return ObjectCache::getLocalClusterInstance()->makeKey(
+			...array_values( $this->cacheKey )
+		);
 	}
 
 	/**
