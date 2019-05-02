@@ -563,6 +563,7 @@ $wgAutoloadLocalClasses = [
 	'GenerateJsonI18n' => __DIR__ . '/maintenance/generateJsonI18n.php',
 	'GenerateNormalizerDataAr' => __DIR__ . '/maintenance/language/generateNormalizerDataAr.php',
 	'GenerateNormalizerDataMl' => __DIR__ . '/maintenance/language/generateNormalizerDataMl.php',
+	'GeneratePhpCharToUpperMappings' => __DIR__ . '/maintenance/mediawiki.Title/generatePhpCharToUpperMappings.php',
 	'GenerateSitemap' => __DIR__ . '/maintenance/generateSitemap.php',
 	'GenerateUcfirstOverrides' => __DIR__ . '/maintenance/language/generateUcfirstOverrides.php',
 	'GenerateUpperCharTable' => __DIR__ . '/maintenance/language/generateUpperCharTable.php',
