@@ -337,7 +337,7 @@ interface WatchedItemStoreInterface {
 	 * @param string|null $timestamp Value of wl_notificationtimestamp from the DB
 	 * @param User $user
 	 * @param LinkTarget $target
-	 * @return string TS_MW timestamp or null
+	 * @return string|null TS_MW timestamp or null if all revision were seen
 	 */
 	public function getLatestNotificationTimestamp( $timestamp, User $user, LinkTarget $target );
 }
