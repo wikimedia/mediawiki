@@ -673,10 +673,19 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param int|null $userId User ID, if known
 	 * @param string|null $userName User name, if known
 	 * @param int|null $actorId Actor ID, if known
+	 * @param bool|string $wikiId remote wiki to which the User/Actor ID applies, or false if none
 	 * @return User
 	 */
-	public static function newFromAnyId( $userId, $userName, $actorId ) {
+	public static function newFromAnyId( $userId, $userName, $actorId, $wikiId = false ) {
 		global $wgActorTableSchemaMigrationStage;
+
+		// Stop-gap solution for the problem described in T222212.
+		// Force the User ID and Actor ID to zero for users loaded from the database
+		// of another wiki, to prevent subtle data corruption and confusing failure modes.
+		if ( $wikiId !== false ) {
+			$userId = 0;
+			$actorId = 0;
+		}
 
 		$user = new User;
 		$user->mFrom = 'defaults';

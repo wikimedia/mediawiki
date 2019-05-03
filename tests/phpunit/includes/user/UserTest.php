@@ -1201,6 +1201,15 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertSame( 'Bogus', $test->getName() );
 		$this->assertSame( 654321, $test->getActorId() );
 
+		// Loading remote user by name from remote wiki should succeed
+		$test = User::newFromAnyId( null, 'Bogus', null, 'foo' );
+		$this->assertSame( 0, $test->getId() );
+		$this->assertSame( 'Bogus', $test->getName() );
+		$this->assertSame( 0, $test->getActorId() );
+		$test = User::newFromAnyId( 123456, 'Bogus', 654321, 'foo' );
+		$this->assertSame( 0, $test->getId() );
+		$this->assertSame( 0, $test->getActorId() );
+
 		// Exceptional cases
 		try {
 			User::newFromAnyId( null, null, null );
@@ -1209,6 +1218,13 @@ class UserTest extends MediaWikiTestCase {
 		}
 		try {
 			User::newFromAnyId( 0, null, 0 );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( InvalidArgumentException $ex ) {
+		}
+
+		// Loading remote user by id from remote wiki should fail
+		try {
+			User::newFromAnyId( 123456, null, 654321, 'foo' );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 		}
