@@ -267,7 +267,7 @@ class HistoryAction extends FormlessAction {
 		$htmlForm
 			->setMethod( 'get' )
 			->setAction( wfScript() )
-			->setCollapsible( true )
+			->setCollapsibleOptions( true )
 			->setId( 'mw-history-searchform' )
 			->setSubmitText( $this->msg( 'historyaction-submit' )->text() )
 			->setWrapperAttributes( [ 'id' => 'mw-history-search' ] )

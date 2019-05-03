@@ -290,13 +290,13 @@ class OOUIHTMLForm extends HTMLForm {
 				'classes' => $classes,
 				'group' => new OOUI\StackLayout( [
 					'expanded' => false,
-					'classes' => [ 'oo-ui-fieldsetLayout-group mw-collapsible-content' ],
-					'items' => [
-						new OOUI\Widget( [
-							'content' => new OOUI\HtmlSnippet( $html )
-						] ),
-					],
+					'classes' => [ 'mw-collapsible-content' ],
 				] ),
+				'items' => [
+					new OOUI\Widget( [
+						'content' => new OOUI\HtmlSnippet( $html )
+					] ),
+				],
 			] + OOUI\Element::configFromHtmlAttributes( $this->mWrapperAttributes ) );
 		} else {
 			$content = new OOUI\HtmlSnippet( $html );
