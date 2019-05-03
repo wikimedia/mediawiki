@@ -1347,6 +1347,8 @@
 	"action-editmyuserjs": "рэдагаваньне вашых уласных JavaScript-файлаў",
 	"action-viewsuppressed": "прагляд вэрсіяў, схаваных ад усіх удзельнікаў",
 	"action-hideuser": "блякаваньне імя ўдзельніка і яго хаваньне",
+	"action-ipblock-exempt": "абыход блякаваньняў IP-адрасоў, аўтаблякаваньняў і блякаваньняў дыяпазонаў",
+	"action-unblockself": "разблякаваньне самога сябе",
 	"nchanges": "$1 {{PLURAL:$1|зьмена|зьмены|зьменаў}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|з апошняга візыту}}",
 	"enhancedrc-history": "гісторыя",

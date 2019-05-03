@@ -2531,7 +2531,7 @@
 	"blocklist-editing-page": "paginas",
 	"blocklist-editing-ns": "spatios de nomines",
 	"ipblocklist-empty": "Le lista de blocadas es vacue.",
-	"ipblocklist-no-results": "Le adresse IP o nomine de usator que tu requestava non es blocate.",
+	"ipblocklist-no-results": "Nulle blocadas trovate que corresponde al adresse IP o nomine de usator requestate.",
 	"blocklink": "blocar",
 	"unblocklink": "disblocar",
 	"change-blocklink": "cambiar blocada",

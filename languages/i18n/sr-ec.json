@@ -2513,7 +2513,7 @@
 	"blocklist-userblocks": "Сакриј блокаде налога",
 	"blocklist-tempblocks": "Сакриј привремене блокаде",
 	"blocklist-addressblocks": "Сакриј појединачне блокаде IP-а",
-	"blocklist-type-opt-sitewide": "На новоу сајта",
+	"blocklist-type-opt-sitewide": "На нивоу сајта",
 	"blocklist-type-opt-partial": "Делимично",
 	"blocklist-rangeblocks": "Сакриј блокаде опсега",
 	"blocklist-timestamp": "Временска ознака",
