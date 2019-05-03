@@ -40,11 +40,13 @@ class GeneratePhpCharToUpperMappings extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgContLang;
+		global $wgContLang, $IP;
 
 		$data = [];
 
-		$result = Shell::command( [ 'node', __DIR__ . '/generateJsToUpperCaseList.js' ] )
+		$result = Shell::command(
+				[ 'node', $IP . '/maintenance/mediawiki.Title/generateJsToUpperCaseList.js' ]
+			)
 			// Node allocates lots of memory
 			->limits( [ 'memory' => 1024 * 1024 ] )
 			->execute();
@@ -69,9 +71,15 @@ class GeneratePhpCharToUpperMappings extends Maintenance {
 			}
 		}
 
-		$this->output( str_replace( '    ', "\t",
+		$mappingJson = str_replace( '    ', "\t",
 			json_encode( $data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE )
-		) . "\n" );
+		) . "\n";
+		$outputPath = '/resources/src/mediawiki.Title/phpCharToUpper.json';
+		$file = fopen( $IP . $outputPath, 'w' );
+		fwrite( $file, $mappingJson );
+
+		$this->output( count( $data ) . " differences found.\n" );
+		$this->output( "Written to $outputPath\n" );
 	}
 }
 
