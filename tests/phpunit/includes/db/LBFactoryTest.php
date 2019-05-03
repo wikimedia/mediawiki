@@ -30,7 +30,6 @@ use Wikimedia\Rdbms\LBFactorySimple;
 use Wikimedia\Rdbms\LBFactoryMulti;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\ChronologyProtector;
-use Wikimedia\Rdbms\DatabaseMysqli;
 use Wikimedia\Rdbms\MySQLMasterPos;
 use Wikimedia\Rdbms\DatabaseDomain;
 
@@ -47,7 +46,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 	 * @dataProvider getLBFactoryClassProvider
 	 */
 	public function testGetLBFactoryClass( $expected, $deprecated ) {
-		$mockDB = $this->getMockBuilder( DatabaseMysqli::class )
+		$mockDB = $this->getMockBuilder( IDatabase::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -291,7 +290,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$m2Pos = new MySQLMasterPos( 'db1064-bin.002400/794074907', $now );
 
 		// Master DB 1
-		$mockDB1 = $this->getMockBuilder( DatabaseMysqli::class )
+		$mockDB1 = $this->getMockBuilder( IDatabase::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$mockDB1->method( 'writesOrCallbacksPending' )->willReturn( true );
@@ -316,7 +315,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$lb1->method( 'getMasterPos' )->willReturn( $m1Pos );
 		$lb1->method( 'getServerName' )->with( 0 )->willReturn( 'master1' );
 		// Master DB 2
-		$mockDB2 = $this->getMockBuilder( DatabaseMysqli::class )
+		$mockDB2 = $this->getMockBuilder( IDatabase::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$mockDB2->method( 'writesOrCallbacksPending' )->willReturn( true );
