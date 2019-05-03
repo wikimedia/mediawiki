@@ -1438,7 +1438,7 @@
 	"rcfilters-savedqueries-already-saved": "Ezek a szűrők már el lettek mentve. Módosítsd a beállításokat egy új mentett szűrő készítéséhez.",
 	"rcfilters-restore-default-filters": "Alapértelmezett szűrők visszaállítása",
 	"rcfilters-clear-all-filters": "Összes szűrő kikapcsolása",
-	"rcfilters-show-new-changes": "Legfrissebb változtatások megtekintése",
+	"rcfilters-show-new-changes": "$1-óta történt friss változtatások megtekintése",
 	"rcfilters-search-placeholder": "Változtatások szűrése (használd a menüt vagy keress szűrőkre)",
 	"rcfilters-invalid-filter": "Érvénytelen szűrő",
 	"rcfilters-empty-filter": "Nincs aktív szűrő. Minden közreműködés látható.",
@@ -3811,5 +3811,6 @@
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "A jelszó nem szerepelhet a 100 000 leggyakrabban használt jelszó listáján .",
 	"passwordpolicies-policyflag-forcechange": "lecserélés követelése bejelentkezéskor",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "lecserélés ajánlása bejelentkezéskor",
-	"unprotected-js": "Biztonsági okokból JavaScript nem tölthető be védtelen lapokról. Kérlek egyedül a MediaWiki névtérben készíts JavaScriptet, vagy szerkesztői allapként."
+	"unprotected-js": "Biztonsági okokból JavaScript nem tölthető be védtelen lapokról. Kérlek egyedül a MediaWiki névtérben készíts JavaScriptet, vagy szerkesztői allapként.",
+	"userlogout-continue": "Amennyiben ki szeretnél jelentkezni, [$1 használd a kijelentkezési oldalt]."
 }

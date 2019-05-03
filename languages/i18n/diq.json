@@ -1769,7 +1769,7 @@
 	"ncategories": "$1 {{PLURAL:$1|Kategori|Kategoriy}}",
 	"ninterwikis": "$1 {{PLURAL:$1|interwiki|interwikiy}}",
 	"nlinks": "$1 {{PLURAL:$1|link|linkî}}",
-	"nmembers": "$1 {{PLURAL:$1|eza|ezayan}}",
+	"nmembers": "$1 {{PLURAL:$1|eza|ezayi}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$1|eza|ezayan}}",
 	"nrevisions": "$1 {{PLURAL:$1|vurnayış|vurnayışi}}",
 	"nimagelinks": "$1 {{PLURAL:$1|pele de|pelan de}} gureyeno",
