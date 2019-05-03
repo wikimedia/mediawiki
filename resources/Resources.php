@@ -866,6 +866,7 @@ return [
 	],
 	'mediawiki.content.json' => [
 		'styles' => 'resources/src/mediawiki.content.json.less',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.confirmCloseWindow' => [
 		'scripts' => [
