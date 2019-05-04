@@ -259,8 +259,7 @@ class JobQueueTest extends MediaWikiTestCase {
 		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
 		$this->assertEquals( 0, $queue->getAcquiredCount(), "Queue is empty ($desc)" );
 
-		$id = wfRandomString( 32 );
-		$root1 = Job::newRootJobParams( "nulljobspam:$id" ); // task ID/timestamp
+		$root1 = Job::newRootJobParams( "nulljobspam:testId" ); // task ID/timestamp
 		for ( $i = 0; $i < 5; ++$i ) {
 			$this->assertNull( $queue->push( $this->newJob( 0, $root1 ) ), "Push worked ($desc)" );
 		}

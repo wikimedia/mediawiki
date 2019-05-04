@@ -23,40 +23,40 @@ class ReplicatedBagOStuffTest extends MediaWikiTestCase {
 	 * @covers ReplicatedBagOStuff::set
 	 */
 	public function testSet() {
-		$key = wfRandomString();
-		$value = wfRandomString();
+		$key = 'a key';
+		$value = 'a value';
 		$this->cache->set( $key, $value );
 
 		// Write to master.
-		$this->assertEquals( $this->writeCache->get( $key ), $value );
+		$this->assertEquals( $value, $this->writeCache->get( $key ) );
 		// Don't write to replica. Replication is deferred to backend.
-		$this->assertEquals( $this->readCache->get( $key ), false );
+		$this->assertFalse( $this->readCache->get( $key ) );
 	}
 
 	/**
 	 * @covers ReplicatedBagOStuff::get
 	 */
 	public function testGet() {
-		$key = wfRandomString();
+		$key = 'a key';
 
-		$write = wfRandomString();
+		$write = 'one value';
 		$this->writeCache->set( $key, $write );
-		$read = wfRandomString();
+		$read = 'another value';
 		$this->readCache->set( $key, $read );
 
 		// Read from replica.
-		$this->assertEquals( $this->cache->get( $key ), $read );
+		$this->assertEquals( $read, $this->cache->get( $key ) );
 	}
 
 	/**
 	 * @covers ReplicatedBagOStuff::get
 	 */
 	public function testGetAbsent() {
-		$key = wfRandomString();
-		$value = wfRandomString();
+		$key = 'a key';
+		$value = 'a value';
 		$this->writeCache->set( $key, $value );
 
 		// Don't read from master. No failover if value is absent.
-		$this->assertEquals( $this->cache->get( $key ), false );
+		$this->assertFalse( $this->cache->get( $key ) );
 	}
 }
