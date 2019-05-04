@@ -7506,6 +7506,7 @@ $wgServiceWiringFiles = [
  * can add to this to provide custom jobs.
  * A job handler should either be a class name to be instantiated,
  * or (since 1.30) a callback to use for creating the job object.
+ * The callback takes (Title, array map of parameters) as arguments.
  */
 $wgJobClasses = [
 	'deletePage' => DeletePageJob::class,
@@ -7530,6 +7531,7 @@ $wgJobClasses = [
 	'cdnPurge' => CdnPurgeJob::class,
 	'userGroupExpiry' => UserGroupExpiryJob::class,
 	'clearWatchlistNotifications' => ClearWatchlistNotificationsJob::class,
+	'userOptionsUpdate' => UserOptionsUpdateJob::class,
 	'enqueue' => EnqueueJob::class, // local queue for multi-DC setups
 	'null' => NullJob::class,
 ];
