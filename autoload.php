@@ -1564,6 +1564,7 @@ $wgAutoloadLocalClasses = [
 	'UserNamePrefixSearch' => __DIR__ . '/includes/user/UserNamePrefixSearch.php',
 	'UserNotLoggedIn' => __DIR__ . '/includes/exception/UserNotLoggedIn.php',
 	'UserOptionsMaintenance' => __DIR__ . '/maintenance/userOptions.php',
+	'UserOptionsUpdateJob' => __DIR__ . '/includes/jobqueue/jobs/UserOptionsUpdateJob.php',
 	'UserPasswordPolicy' => __DIR__ . '/includes/password/UserPasswordPolicy.php',
 	'UserRightsProxy' => __DIR__ . '/includes/user/UserRightsProxy.php',
 	'UserrightsPage' => __DIR__ . '/includes/specials/SpecialUserrights.php',
