@@ -178,7 +178,7 @@ class TempFSFile extends FSFile {
 	 * This method should only be called internally
 	 */
 	public static function purgeAllOnShutdown() {
-		foreach ( self::$pathsCollect as $path ) {
+		foreach ( self::$pathsCollect as $path => $unused ) {
 			Wikimedia\suppressWarnings();
 			unlink( $path );
 			Wikimedia\restoreWarnings();
