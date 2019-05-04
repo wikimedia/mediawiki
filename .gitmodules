@@ -594,7 +594,7 @@
 	ignore = dirty
 [submodule "extensions/DynamicPageList3"]
 	path = extensions/DynamicPageList3
-	url = https://github.com/Alexia/DynamicPageList
+	url = https://gitlab.com/hydrawiki/extensions/DynamicPageList.git
 	branch = master
 	ignore = dirty
 [submodule "extensions/WikiTextLoggedInOut"]
