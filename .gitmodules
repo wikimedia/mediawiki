@@ -1150,3 +1150,8 @@
 	url = https://github.com/miraheze/DataDump.git
         branch = master
         ignore = dirty
+[submodule "extensions/DisplayTitle"]
+	path = extensions/DisplayTitle
+	url = https://github.com/wikimedia/mediawiki-extensions-DisplayTitle.git
+        branch = REL1_32
+        ignore = dirty
