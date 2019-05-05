@@ -3035,5 +3035,6 @@
 	"revid": "versjon $1",
 	"interfaceadmin-info": "$1\n\nLøyva for endring av CSS/JS/JSON-filer som gjeld heile nettstaden vart nyleg skilde ut frå <code>editinterface</code>-retten. Om du ikkje skjøner kvifor du får denne feilmeldinga, sjå [[mw:MediaWiki_1.32/interface-admin]].",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Passordet kan ikkje vera det same som brukarnamnet",
-	"passwordpolicies-policy-passwordcannotmatchblacklist": "Passordet kan ikkje passa med svartelista passord"
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "Passordet kan ikkje passa med svartelista passord",
+	"userlogout-sessionerror": "Utlogging gjekk ikkje grunna ein øktfeil. [$1 Freist om att]."
 }

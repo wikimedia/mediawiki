@@ -35,7 +35,8 @@
 			"Hello903hello",
 			"Fitoschido",
 			"Kanashimi",
-			"Roy17"
+			"Roy17",
+			"Tang891228"
 		]
 	},
 	"tog-underline": "連結加底線：",
@@ -359,7 +360,7 @@
 	"title-invalid-talk-namespace": "所請求嘅版面標題指去未開嘅討論版。",
 	"title-invalid-characters": "所請求嘅版面標題有「$1」呢個無效字符。",
 	"title-invalid-relative": "標題有相對路徑。因為用戶嘅瀏覽器經常處理唔到相對路徑（./, ../），所以相對路徑無效。",
-	"title-invalid-magic-tilde": "所請求嘅版面標題有無效嘅波浪線魔法字（<nowiki>~~~</nowiki>）。",
+	"title-invalid-magic-tilde": "所請求嘅版面標題有無效嘅波浪線魔術字（<nowiki>~~~</nowiki>）。",
 	"title-invalid-too-long": "所請求嘅版面標題太長。標題用UTF-8編碼嗰時嘅長度唔應該超過 $1 {{PLURAL:$1|字節}}",
 	"title-invalid-leading-colon": "所請求嘅版面標題開頭有無效冒號。",
 	"perfcached": "以下嘅資料係嚟自快取，可能唔係最新嘅。 最多有{{PLURAL:$1|一個結果|$1個結果}}響快取度。",

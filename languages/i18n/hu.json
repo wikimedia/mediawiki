@@ -1377,13 +1377,17 @@
 	"action-editmyusercss": "saját szerkesztői CSS-fájlok szerkesztése",
 	"action-editmyuserjson": "saját szerkesztői JSON-fájlok szerkesztése",
 	"action-editmyuserjs": "saját szerkesztői JavaScript-fájlok szerkesztése",
+	"action-viewsuppressed": "minden felhasználó elől elrejtett változtatások megtekintése",
+	"action-hideuser": "felhasználói név blokkolása és elrejtése a külvilág elől",
 	"action-ipblock-exempt": "IP-, auto- és tartományblokkok megkerülése",
 	"action-unblockself": "saját felhasználói fiók blokkjának feloldása",
 	"action-noratelimit": "sebességkorlát figyelmen kívül hagyása",
 	"action-reupload-own": "a saját maga által feltöltött fájlok felülírása",
+	"action-nominornewtalk": "vitalapok apró szerkesztése új üzenetről való értesítés kiküldése nélkül",
 	"action-markbotedits": "visszaállított szerkesztések botként való jelölése",
 	"action-patrolmarks": "járőrök jelzéseinek megtekintése a friss változásokban",
 	"action-override-export-depth": "lapok exportálása a hivatkozott lapokkal együtt, legfeljebb 5-ös mélységig",
+	"action-suppressredirect": "átirányítások készítésének kihagyása a lapok régi nevén átnevezéskor",
 	"nchanges": "$1 változtatás",
 	"enhancedrc-since-last-visit": "$1 az utolsó látogatás óta",
 	"enhancedrc-history": "történet",
@@ -3812,5 +3816,6 @@
 	"passwordpolicies-policyflag-forcechange": "lecserélés követelése bejelentkezéskor",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "lecserélés ajánlása bejelentkezéskor",
 	"unprotected-js": "Biztonsági okokból JavaScript nem tölthető be védtelen lapokról. Kérlek egyedül a MediaWiki névtérben készíts JavaScriptet, vagy szerkesztői allapként.",
-	"userlogout-continue": "Amennyiben ki szeretnél jelentkezni, [$1 használd a kijelentkezési oldalt]."
+	"userlogout-continue": "Amennyiben ki szeretnél jelentkezni, [$1 használd a kijelentkezési oldalt].",
+	"userlogout-sessionerror": "Sikertelen kijelentkezés munkamenethiba miatt. Kérlek [$1 próbáld újra]."
 }

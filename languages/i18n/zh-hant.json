@@ -102,7 +102,8 @@
 			"Hello903hello",
 			"Luuva",
 			"Davidzdh",
-			"WQL"
+			"WQL",
+			"Tang891228"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -2151,12 +2152,12 @@
 	"booksources-search": "搜尋",
 	"booksources-text": "下列清單包含其他銷售新書籍或二手書籍的網站連結，可會有你想尋找書籍的進一部資訊：",
 	"booksources-invalid-isbn": "您提供的 ISBN 不正確，請檢查複製的來源是否有誤。",
-	"magiclink-tracking-rfc": "使用 RFC 魔法連結的頁面",
-	"magiclink-tracking-rfc-desc": "此頁面使用 RFC 魔法連結的頁面，請參考 [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] 的如何遷移。",
-	"magiclink-tracking-pmid": "使用 PMID 魔法連結的頁面",
-	"magiclink-tracking-pmid-desc": "此頁面使用 PMID 魔法連結的頁面，請參考 [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] 的如何遷移。",
-	"magiclink-tracking-isbn": "使用 ISBN 魔法連結的頁面",
-	"magiclink-tracking-isbn-desc": "此頁面使用 ISBN 魔法連結的頁面，請參考 [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] 的如何遷移。",
+	"magiclink-tracking-rfc": "使用 RFC 魔術連結的頁面",
+	"magiclink-tracking-rfc-desc": "此頁面使用RFC魔術連結，請參考[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org]以了解如何遷移。",
+	"magiclink-tracking-pmid": "使用 PMID 魔術連結的頁面",
+	"magiclink-tracking-pmid-desc": "此頁面使用PMID魔術連結，請參考[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org]以了解如何遷移。",
+	"magiclink-tracking-isbn": "使用 ISBN 魔術連結的頁面",
+	"magiclink-tracking-isbn-desc": "此頁面使用ISBN魔術連結，請參考[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org]以了解如何遷移。",
 	"specialloguserlabel": "執行者：",
 	"speciallogtitlelabel": "目標（標題或以 {{ns:user}}:使用者名稱 表示使用者）：",
 	"log": "日誌",
