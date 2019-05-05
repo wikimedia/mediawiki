@@ -66,12 +66,16 @@ class PermissionManager {
 	/** @var bool If set to true, blocked users will no longer be allowed to log in */
 	private $blockDisablesLogin;
 
+	/** @var NamespaceInfo */
+	private $nsInfo;
+
 	/**
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param string[] $whitelistRead
 	 * @param string[] $whitelistReadRegexp
 	 * @param bool $emailConfirmToEdit
 	 * @param bool $blockDisablesLogin
+	 * @param NamespaceInfo $nsInfo
 	 */
 	public function __construct(
 		SpecialPageFactory $specialPageFactory,
