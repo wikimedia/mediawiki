@@ -626,6 +626,34 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Title::getPreviousRevisionID
+	 * @covers Title::getRelativeRevisionID
+	 * @covers MediaWiki\Revision\RevisionStore::getPreviousRevision
+	 * @covers MediaWiki\Revision\RevisionStore::getRelativeRevision
+	 */
+	public function testTitleGetPreviousRevisionID() {
+		$oldestId = $this->testPage->getOldestRevision()->getId();
+		$latestId = $this->testPage->getLatest();
+
+		$title = $this->testPage->getTitle();
+
+		$this->assertFalse( $title->getPreviousRevisionID( $oldestId ) );
+
+		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
+		$newId = $this->testPage->getRevision()->getId();
+
+		$this->assertEquals( $latestId, $title->getPreviousRevisionID( $newId ) );
+	}
+
+	/**
+	 * @covers Title::getPreviousRevisionID
+	 * @covers Title::getRelativeRevisionID
+	 */
+	public function testTitleGetPreviousRevisionID_invalid() {
+		$this->assertFalse( $this->testPage->getTitle()->getPreviousRevisionID( 123456789 ) );
+	}
+
+	/**
 	 * @covers Revision::getNext
 	 */
 	public function testGetNext() {
@@ -638,6 +666,33 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 
 		$this->assertNotNull( $rev1->getNext() );
 		$this->assertEquals( $rev2->getId(), $rev1->getNext()->getId() );
+	}
+
+	/**
+	 * @covers Title::getNextRevisionID
+	 * @covers Title::getRelativeRevisionID
+	 * @covers MediaWiki\Revision\RevisionStore::getNextRevision
+	 * @covers MediaWiki\Revision\RevisionStore::getRelativeRevision
+	 */
+	public function testTitleGetNextRevisionID() {
+		$title = $this->testPage->getTitle();
+
+		$origId = $this->testPage->getLatest();
+
+		$this->assertFalse( $title->getNextRevisionID( $origId ) );
+
+		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
+		$newId = $this->testPage->getLatest();
+
+		$this->assertSame( $this->testPage->getLatest(), $title->getNextRevisionID( $origId ) );
+	}
+
+	/**
+	 * @covers Title::getNextRevisionID
+	 * @covers Title::getRelativeRevisionID
+	 */
+	public function testTitleGetNextRevisionID_invalid() {
+		$this->assertFalse( $this->testPage->getTitle()->getNextRevisionID( 123456789 ) );
 	}
 
 	/**

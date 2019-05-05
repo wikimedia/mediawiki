@@ -3730,57 +3730,25 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return int|bool New revision ID, or false if none exists
 	 */
 	private function getRelativeRevisionID( $revId, $flags, $dir ) {
-		$revId = (int)$revId;
-		if ( $dir === 'next' ) {
-			$op = '>';
-			$sort = 'ASC';
-		} elseif ( $dir === 'prev' ) {
-			$op = '<';
-			$sort = 'DESC';
-		} else {
-			throw new InvalidArgumentException( '$dir must be "next" or "prev"' );
-		}
-
-		if ( $flags & self::GAID_FOR_UPDATE ) {
-			$db = wfGetDB( DB_MASTER );
-		} else {
-			$db = wfGetDB( DB_REPLICA, 'contributions' );
-		}
-
-		// Intentionally not caring if the specified revision belongs to this
-		// page. We only care about the timestamp.
-		$ts = $db->selectField( 'revision', 'rev_timestamp', [ 'rev_id' => $revId ], __METHOD__ );
-		if ( $ts === false ) {
-			$ts = $db->selectField( 'archive', 'ar_timestamp', [ 'ar_rev_id' => $revId ], __METHOD__ );
-			if ( $ts === false ) {
-				// Or should this throw an InvalidArgumentException or something?
-				return false;
-			}
-		}
-		$ts = $db->addQuotes( $ts );
-
-		$revId = $db->selectField( 'revision', 'rev_id',
-			[
-				'rev_page' => $this->getArticleID( $flags ),
-				"rev_timestamp $op $ts OR (rev_timestamp = $ts AND rev_id $op $revId)"
-			],
-			__METHOD__,
-			[
-				'ORDER BY' => "rev_timestamp $sort, rev_id $sort",
-				'IGNORE INDEX' => 'rev_timestamp', // Probably needed for T159319
-			]
-		);
-
-		if ( $revId === false ) {
+		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
+		$rlFlags = $flags === self::GAID_FOR_UPDATE ? IDBAccessObject::READ_LATEST : 0;
+		$rev = $rl->getRevisionById( $revId, $rlFlags );
+		if ( !$rev ) {
 			return false;
-		} else {
-			return intval( $revId );
 		}
+		$oldRev = $dir === 'next'
+			? $rl->getNextRevision( $rev, $rlFlags )
+			: $rl->getPreviousRevision( $rev, $rlFlags );
+		if ( !$oldRev ) {
+			return false;
+		}
+		return $oldRev->getId();
 	}
 
 	/**
 	 * Get the revision ID of the previous revision
 	 *
+	 * @deprecated since 1.34, use RevisionLookup::getPreviousRevision
 	 * @param int $revId Revision ID. Get the revision that was before this one.
 	 * @param int $flags Title::GAID_FOR_UPDATE
 	 * @return int|bool Old revision ID, or false if none exists
@@ -3792,6 +3760,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Get the revision ID of the next revision
 	 *
+	 * @deprecated since 1.34, use RevisionLookup::getNextRevision
 	 * @param int $revId Revision ID. Get the revision that was after this one.
 	 * @param int $flags Title::GAID_FOR_UPDATE
 	 * @return int|bool Next revision ID, or false if none exists

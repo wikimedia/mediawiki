@@ -85,11 +85,12 @@ interface RevisionLookup extends IDBAccessObject {
 	 * MCR migration note: this replaces Revision::getPrevious
 	 *
 	 * @param RevisionRecord $rev
-	 * @param Title|null $title if known (optional)
+	 * @param int $flags (optional) $flags include:
+	 *      IDBAccessObject::READ_LATEST: Select the data from the master
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getPreviousRevision( RevisionRecord $rev, Title $title = null );
+	public function getPreviousRevision( RevisionRecord $rev, $flags = 0 );
 
 	/**
 	 * Get next revision for this title
@@ -97,11 +98,12 @@ interface RevisionLookup extends IDBAccessObject {
 	 * MCR migration note: this replaces Revision::getNext
 	 *
 	 * @param RevisionRecord $rev
-	 * @param Title|null $title if known (optional)
+	 * @param int $flags (optional) $flags include:
+	 *      IDBAccessObject::READ_LATEST: Select the data from the master
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getNextRevision( RevisionRecord $rev, Title $title = null );
+	public function getNextRevision( RevisionRecord $rev, $flags = 0 );
 
 	/**
 	 * Get rev_timestamp from rev_id, without loading the rest of the row.
