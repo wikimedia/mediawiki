@@ -25,6 +25,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Permissions\PermissionManager;
 use MovePage;
 use NamespaceInfo;
+use RepoGroup;
 use Title;
 use WatchedItemStore;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -48,6 +49,9 @@ class MovePageFactory {
 	/** @var PermissionManager */
 	private $permMgr;
 
+	/** @var RepoGroup */
+	private $repoGroup;
+
 	/**
 	 * @todo Make this a const when we drop HHVM support (T192166)
 	 * @var array
@@ -62,7 +66,8 @@ class MovePageFactory {
 		LoadBalancer $loadBalancer,
 		NamespaceInfo $nsInfo,
 		WatchedItemStore $watchedItems,
-		PermissionManager $permMgr
+		PermissionManager $permMgr,
+		RepoGroup $repoGroup
 	) {
 		$options->assertRequiredOptions( self::$constructorOptions );
 
@@ -71,6 +76,7 @@ class MovePageFactory {
 		$this->nsInfo = $nsInfo;
 		$this->watchedItems = $watchedItems;
 		$this->permMgr = $permMgr;
+		$this->repoGroup = $repoGroup;
 	}
 
 	/**
@@ -80,6 +86,6 @@ class MovePageFactory {
 	 */
 	public function newMovePage( Title $from, Title $to ) : MovePage {
 		return new MovePage( $from, $to, $this->options, $this->loadBalancer, $this->nsInfo,
-			$this->watchedItems, $this->permMgr );
+			$this->watchedItems, $this->permMgr, $this->repoGroup );
 	}
 }

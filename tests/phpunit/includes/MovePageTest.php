@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Page\MovePageFactory;
+use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 
@@ -22,9 +23,9 @@ class MovePageTest extends MediaWikiTestCase {
 	/**
 	 * @param LinkTarget $old
 	 * @param LinkTarget $new
-	 * @param array $params Valid keys are: db, options, nsInfo, wiStore. options is an indexed
-	 *   array that will overwrite our defaults, not a ServiceOptions, so it need not contain all
-	 *   keys.
+	 * @param array $params Valid keys are: db, options, nsInfo, wiStore, repoGroup.
+	 *   options is an indexed array that will overwrite our defaults, not a ServiceOptions, so it
+	 *   need not contain all keys.
 	 * @return MovePage
 	 */
 	private function newMovePage( $old, $new, array $params = [] ) : MovePage {
@@ -33,6 +34,21 @@ class MovePageTest extends MediaWikiTestCase {
 			->willReturn( $params['db'] ?? $this->getNoOpMock( IDatabase::class ) );
 		$mockLB->expects( $this->never() )
 			->method( $this->anythingBut( 'getConnection', '__destruct' ) );
+
+		$mockLocalFile = $this->createMock( LocalFile::class );
+		$mockLocalFile->method( 'exists' )->willReturn( false );
+		$mockLocalFile->expects( $this->never() )
+			->method( $this->anythingBut( 'exists', 'load', '__destruct' ) );
+
+		$mockLocalRepo = $this->createMock( LocalRepo::class );
+		$mockLocalRepo->method( 'newFile' )->willReturn( $mockLocalFile );
+		$mockLocalRepo->expects( $this->never() )
+			->method( $this->anythingBut( 'newFile', '__destruct' ) );
+
+		$mockRepoGroup = $this->createMock( RepoGroup::class );
+		$mockRepoGroup->method( 'getLocalRepo' )->willReturn( $mockLocalRepo );
+		$mockRepoGroup->expects( $this->never() )
+			->method( $this->anythingBut( 'getLocalRepo', '__destruct' ) );
 
 		return new MovePage(
 			$old,
@@ -47,7 +63,9 @@ class MovePageTest extends MediaWikiTestCase {
 			),
 			$mockLB,
 			$params['nsInfo'] ?? $this->getNoOpMock( NamespaceInfo::class ),
-			$params['wiStore'] ?? $this->getNoOpMock( WatchedItemStore::class )
+			$params['wiStore'] ?? $this->getNoOpMock( WatchedItemStore::class ),
+			$params['permMgr'] ?? $this->getNoOpMock( PermissionManager::class ),
+			$params['repoGroup'] ?? $mockRepoGroup
 		);
 	}
 

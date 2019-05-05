@@ -398,7 +398,8 @@ return [
 			$services->getDBLoadBalancer(),
 			$services->getNamespaceInfo(),
 			$services->getWatchedItemStore(),
-			$services->getPermissionManager()
+			$services->getPermissionManager(),
+			$services->getRepoGroup()
 		);
 	},
 

@@ -71,6 +71,11 @@ class MovePage {
 	protected $permMgr;
 
 	/**
+	 * @var RepoGroup
+	 */
+	protected $repoGroup;
+
+	/**
 	 * Calling this directly is deprecated in 1.34. Use MovePageFactory instead.
 	 *
 	 * @param Title $oldTitle
@@ -88,7 +93,8 @@ class MovePage {
 		LoadBalancer $loadBalancer = null,
 		NamespaceInfo $nsInfo = null,
 		WatchedItemStore $watchedItems = null,
-		PermissionManager $permMgr = null
+		PermissionManager $permMgr = null,
+		RepoGroup $repoGroup = null
 	) {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
@@ -101,6 +107,7 @@ class MovePage {
 		$this->watchedItems =
 			$watchedItems ?? MediaWikiServices::getInstance()->getWatchedItemStore();
 		$this->permMgr = $permMgr ?? MediaWikiServices::getInstance()->getPermissionManager();
+		$this->repoGroup = $repoGroup ?? MediaWikiServices::getInstance()->getRepoGroup();
 	}
 
 	/**
@@ -230,7 +237,7 @@ class MovePage {
 	 */
 	protected function isValidFileMove() {
 		$status = new Status();
-		$file = wfLocalFile( $this->oldTitle );
+		$file = $this->repoGroup->getLocalRepo()->newFile( $this->oldTitle );
 		$file->load( File::READ_LATEST );
 		if ( $file->exists() ) {
 			if ( $this->newTitle->getText() != wfStripIllegalFilenameChars( $this->newTitle->getText() ) ) {
@@ -258,7 +265,7 @@ class MovePage {
 	protected function isValidMoveTarget() {
 		# Is it an existing file?
 		if ( $this->newTitle->inNamespace( NS_FILE ) ) {
-			$file = wfLocalFile( $this->newTitle );
+			$file = $this->repoGroup->getLocalRepo()->newFile( $this->newTitle );
 			$file->load( File::READ_LATEST );
 			if ( $file->exists() ) {
 				wfDebug( __METHOD__ . ": file exists\n" );
@@ -679,15 +686,15 @@ class MovePage {
 			$oldTitle->getPrefixedText()
 		);
 
-		$file = wfLocalFile( $oldTitle );
+		$file = $this->repoGroup->getLocalRepo()->newFile( $oldTitle );
 		$file->load( File::READ_LATEST );
 		if ( $file->exists() ) {
 			$status = $file->move( $newTitle );
 		}
 
 		// Clear RepoGroup process cache
-		RepoGroup::singleton()->clearCache( $oldTitle );
-		RepoGroup::singleton()->clearCache( $newTitle ); # clear false negative cache
+		$this->repoGroup->clearCache( $oldTitle );
+		$this->repoGroup->clearCache( $newTitle ); # clear false negative cache
 		return $status;
 	}
 
