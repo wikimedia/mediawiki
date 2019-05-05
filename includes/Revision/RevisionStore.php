@@ -2658,21 +2658,27 @@ class RevisionStore
 	}
 
 	/**
-	 * Get rev_timestamp from rev_id, without loading the rest of the row
+	 * Get rev_timestamp from rev_id, without loading the rest of the row.
+	 *
+	 * Historically, there was an extra Title parameter that was passed before $id. This is no
+	 * longer needed and is deprecated in 1.34.
 	 *
 	 * MCR migration note: this replaces Revision::getTimestampFromId
 	 *
-	 * @param Title $title
 	 * @param int $id
 	 * @param int $flags
 	 * @return string|bool False if not found
 	 */
-	public function getTimestampFromId( $title, $id, $flags = 0 ) {
+	public function getTimestampFromId( $id, $flags = 0 ) {
+		if ( $id instanceof Title ) {
+			// Old deprecated calling convention supported for backwards compatibility
+			$id = $flags;
+			$flags = func_num_args() > 2 ? func_get_arg( 2 ) : 0;
+		}
 		$db = $this->getDBConnectionRefForQueryFlags( $flags );
 
-		$conds = [ 'rev_id' => $id ];
-		$conds['rev_page'] = $title->getArticleID();
-		$timestamp = $db->selectField( 'revision', 'rev_timestamp', $conds, __METHOD__ );
+		$timestamp =
+			$db->selectField( 'revision', 'rev_timestamp', [ 'rev_id' => $id ], __METHOD__ );
 
 		return ( $timestamp !== false ) ? wfTimestamp( TS_MW, $timestamp ) : false;
 	}

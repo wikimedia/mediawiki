@@ -1416,10 +1416,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			->value['revision'];
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$result = $store->getTimestampFromId(
-			$page->getTitle(),
-			$rev->getId()
-		);
+		$result = $store->getTimestampFromId( $rev->getId() );
 
 		$this->assertSame( $rev->getTimestamp(), $result );
 	}
@@ -1434,10 +1431,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			->value['revision'];
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$result = $store->getTimestampFromId(
-			$page->getTitle(),
-			$rev->getId() + 1
-		);
+		$result = $store->getTimestampFromId( $rev->getId() + 1 );
 
 		$this->assertFalse( $result );
 	}

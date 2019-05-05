@@ -77,8 +77,9 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			$titles = $pageSet->getGoodTitles();
 			$title = reset( $titles );
 			if ( $title ) {
+				// XXX $title isn't actually used, can we just get rid of the previous six lines?
 				$timestamp = MediaWikiServices::getInstance()->getRevisionStore()
-					->getTimestampFromId( $title, $params['torevid'], IDBAccessObject::READ_LATEST );
+					->getTimestampFromId( $params['torevid'], IDBAccessObject::READ_LATEST );
 				if ( $timestamp ) {
 					$timestamp = $dbw->timestamp( $timestamp );
 				} else {
