@@ -589,7 +589,7 @@
 	"botpasswords-editexisting": "تعديل كلمة سر موجودة للبوت",
 	"botpasswords-label-needsreset": "(تحتاج كلمة المرور إلى إعادة الضبط)",
 	"botpasswords-label-appid": "اسم البوت:",
-	"botpasswords-label-create": "أنشأ",
+	"botpasswords-label-create": "إنشاء",
 	"botpasswords-label-update": "تحديث",
 	"botpasswords-label-cancel": "ألغ",
 	"botpasswords-label-delete": "احذف",

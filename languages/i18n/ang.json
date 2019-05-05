@@ -294,6 +294,8 @@
 	"error": "Wōh",
 	"databaseerror": "Cȳþþuhordes wōh",
 	"databaseerror-textcl": "Gecyþneshordfræge misgedwild belamp",
+	"databaseerror-query": "Æsce: $1",
+	"databaseerror-function": "Wice: $1",
 	"databaseerror-error": "Wōg: $1",
 	"laggedslavemode": "'''Warnung:''' Wēnunga næbbe se tramet nīwlīca nīwunga.",
 	"readonly": "Ġifhord locen",

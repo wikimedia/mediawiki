@@ -16,7 +16,8 @@
 			"Woytecr",
 			"InternerowyGołąb",
 			"CiaPan",
-			"Vlad5250"
+			"Vlad5250",
+			"Railfail536"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentacja]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista dyskusyjna]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Ogłoszenia dotyczące API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Błędy i propozycje]\n</div>\n<strong>Stan:</strong> Wszystkie funkcje opisane na tej stronie powinny działać, ale API nadal jest aktywnie rozwijane i mogą się zmienić w dowolnym czasie. Subskrybuj [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ listę dyskusyjną mediawiki-api-announce], aby móc na bieżąco dowiadywać się o aktualizacjach.\n\n<strong>Błędne żądania:</strong> Gdy zostanie wysłane błędne żądanie do API, zostanie wysłany w odpowiedzi nagłówek HTTP z kluczem \"MediaWiki-API-Error\" i zarówno jego wartość jak i wartość kodu błędu wysłanego w odpowiedzi będą miały taką samą wartość. Aby uzyskać więcej informacji, zobacz [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Błędy i ostrzeżenia]].\n\n<strong>Testowanie:</strong> Aby łatwo testować żądania API, zobacz [[Special:ApiSandbox]].",
@@ -81,7 +82,7 @@
 	"apihelp-edit-param-text": "Zawartość strony.",
 	"apihelp-edit-param-summary": "Opis edycji. Także tytuł sekcji gdy użyto $1section=new, a nie ustawiono $1sectiontitle.",
 	"apihelp-edit-param-tags": "Znaczniki zmian do zastosowania w tej edycji.",
-	"apihelp-edit-param-minor": "Drobna zmiana.",
+	"apihelp-edit-param-minor": "Oznacz tą zmianę jako drobną zmianę.",
 	"apihelp-edit-param-notminor": "Nie oznaczaj tej zmiany jako drobną.",
 	"apihelp-edit-param-bot": "Oznacz tę edycję jako edycję bota.",
 	"apihelp-edit-param-basetimestamp": "Czas wersji, która jest edytowana. Służy do wykrywania konfliktów edycji. Można pobrać poprzez [[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]].",
