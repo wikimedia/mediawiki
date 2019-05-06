@@ -7,7 +7,7 @@ class RepoGroupTest extends MediaWikiTestCase {
 
 	function testHasForeignRepoNegative() {
 		$this->setMwGlobals( 'wgForeignFileRepos', [] );
-		RepoGroup::destroySingleton();
+		$this->overrideMwServices();
 		FileBackendGroup::destroySingleton();
 		$this->assertFalse( RepoGroup::singleton()->hasForeignRepos() );
 	}
@@ -27,7 +27,7 @@ class RepoGroupTest extends MediaWikiTestCase {
 
 	function testForEachForeignRepoNone() {
 		$this->setMwGlobals( 'wgForeignFileRepos', [] );
-		RepoGroup::destroySingleton();
+		$this->overrideMwServices();
 		FileBackendGroup::destroySingleton();
 		$fakeCallback = $this->createMock( RepoGroupTestHelper::class );
 		$fakeCallback->expects( $this->never() )->method( 'callback' );
@@ -48,7 +48,7 @@ class RepoGroupTest extends MediaWikiTestCase {
 			'apiThumbCacheExpiry' => 86400,
 			'directory' => $wgUploadDirectory
 		] ] );
-		RepoGroup::destroySingleton();
+		$this->overrideMwServices();
 		FileBackendGroup::destroySingleton();
 	}
 }

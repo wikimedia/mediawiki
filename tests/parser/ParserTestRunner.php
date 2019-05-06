@@ -289,9 +289,14 @@ class ParserTestRunner {
 
 		// All FileRepo changes should be done here by injecting services,
 		// there should be no need to change global variables.
-		RepoGroup::setSingleton( $this->createRepoGroup() );
+		MediaWikiServices::getInstance()->disableService( 'RepoGroup' );
+		MediaWikiServices::getInstance()->redefineService( 'RepoGroup',
+			function () {
+				return $this->createRepoGroup();
+			}
+		);
 		$teardown[] = function () {
-			RepoGroup::destroySingleton();
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'RepoGroup' );
 		};
 
 		// Set up null lock managers
@@ -449,7 +454,8 @@ class ParserTestRunner {
 				'transformVia404' => false,
 				'backend' => $backend
 			],
-			[]
+			[],
+			MediaWikiServices::getInstance()->getMainWANObjectCache()
 		);
 	}
 

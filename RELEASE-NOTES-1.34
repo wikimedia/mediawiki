@@ -142,6 +142,9 @@ because of Phabricator reports.
   MultiHttpClient directly.
 * Http::$httpEngine is deprecated and has no replacement. The default 'guzzle'
   engine will eventually be made the only engine for HTTP requests.
+* RepoGroup::singleton(), RepoGroup::destroySingleton(),
+  RepoGroup::setSingleton(), wfFindFile(), and wfLocalFile() are all
+  deprecated. Use MediaWikiServices instead.
 
 === Other changes in 1.34 ===
 * …

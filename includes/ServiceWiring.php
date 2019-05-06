@@ -484,6 +484,15 @@ return [
 		);
 	},
 
+	'RepoGroup' => function ( MediaWikiServices $services ) : RepoGroup {
+		$config = $services->getMainConfig();
+		return new RepoGroup(
+			$config->get( 'LocalFileRepo' ),
+			$config->get( 'ForeignFileRepos' ),
+			$services->getMainWANObjectCache()
+		);
+	},
+
 	'ResourceLoader' => function ( MediaWikiServices $services ) : ResourceLoader {
 		// @todo This should not take a Config object, but it's not so easy to remove because it
 		// exposes it in a getter, which is actually used.
