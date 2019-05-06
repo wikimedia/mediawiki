@@ -165,7 +165,8 @@ class ForeignDBFile extends LocalFile {
 			$this->repo->descriptionCacheExpiry ?: $cache::TTL_UNCACHEABLE,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $renderUrl, $fname ) {
 				wfDebug( "Fetching shared description from $renderUrl\n" );
-				$res = Http::get( $renderUrl, [], $fname );
+				$res = MediaWikiServices::getInstance()->getHttpRequestFactory()->
+					get( $renderUrl, [], $fname );
 				if ( !$res ) {
 					$ttl = WANObjectCache::TTL_UNCACHEABLE;
 				}

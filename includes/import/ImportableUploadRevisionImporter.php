@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -159,7 +160,8 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 
 		// @todo FIXME!
 		$src = $wikiRevision->getSrc();
-		$data = Http::get( $src, [], __METHOD__ );
+		$data = MediaWikiServices::getInstance()->getHttpRequestFactory()->
+			get( $src, [], __METHOD__ );
 		if ( !$data ) {
 			$this->logger->debug( "IMPORT: couldn't fetch source $src\n" );
 			fclose( $f );

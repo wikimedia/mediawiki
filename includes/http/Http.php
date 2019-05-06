@@ -19,74 +19,40 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Various HTTP related functions
+ * @deprecated since 1.34
  * @ingroup HTTP
  */
 class Http {
-	public static $httpEngine = false;
+	/** @deprecated since 1.34, just use the default engine */
+	public static $httpEngine = null;
 
 	/**
 	 * Perform an HTTP request
 	 *
+	 * @deprecated since 1.34, use HttpRequestFactory::request()
+	 *
 	 * @param string $method HTTP method. Usually GET/POST
 	 * @param string $url Full URL to act on. If protocol-relative, will be expanded to an http:// URL
-	 * @param array $options Options to pass to MWHttpRequest object.
-	 * 	Possible keys for the array:
-	 *    - timeout             Timeout length in seconds
-	 *    - connectTimeout      Timeout for connection, in seconds (curl only)
-	 *    - postData            An array of key-value pairs or a url-encoded form data
-	 *    - proxy               The proxy to use.
-	 *                          Otherwise it will use $wgHTTPProxy (if set)
-	 *                          Otherwise it will use the environment variable "http_proxy" (if set)
-	 *    - noProxy             Don't use any proxy at all. Takes precedence over proxy value(s).
-	 *    - sslVerifyHost       Verify hostname against certificate
-	 *    - sslVerifyCert       Verify SSL certificate
-	 *    - caInfo              Provide CA information
-	 *    - maxRedirects        Maximum number of redirects to follow (defaults to 5)
-	 *    - followRedirects     Whether to follow redirects (defaults to false).
-	 *                          Note: this should only be used when the target URL is trusted,
-	 *                          to avoid attacks on intranet services accessible by HTTP.
-	 *    - userAgent           A user agent, if you want to override the default
-	 *                          MediaWiki/$wgVersion
-	 *    - logger              A \Psr\Logger\LoggerInterface instance for debug logging
-	 *    - username            Username for HTTP Basic Authentication
-	 *    - password            Password for HTTP Basic Authentication
-	 *    - originalRequest     Information about the original request (as a WebRequest object or
-	 *                          an associative array with 'ip' and 'userAgent').
+	 * @param array $options Options to pass to MWHttpRequest object. See HttpRequestFactory::create
+	 *  docs
 	 * @param string $caller The method making this request, for profiling
 	 * @return string|bool (bool)false on failure or a string on success
 	 */
 	public static function request( $method, $url, array $options = [], $caller = __METHOD__ ) {
-		$logger = LoggerFactory::getInstance( 'http' );
-		$logger->debug( "$method: $url" );
-
-		$options['method'] = strtoupper( $method );
-
-		if ( !isset( $options['timeout'] ) ) {
-			$options['timeout'] = 'default';
-		}
-		if ( !isset( $options['connectTimeout'] ) ) {
-			$options['connectTimeout'] = 'default';
-		}
-
-		$req = MWHttpRequest::factory( $url, $options, $caller );
-		$status = $req->execute();
-
-		if ( $status->isOK() ) {
-			return $req->getContent();
-		} else {
-			$errors = $status->getErrorsByType( 'error' );
-			$logger->warning( Status::wrap( $status )->getWikiText( false, false, 'en' ),
-				[ 'error' => $errors, 'caller' => $caller, 'content' => $req->getContent() ] );
-			return false;
-		}
+		$ret = MediaWikiServices::getInstance()->getHttpRequestFactory()->request(
+			$method, $url, $options, $caller );
+		return is_string( $ret ) ? $ret : false;
 	}
 
 	/**
 	 * Simple wrapper for Http::request( 'GET' )
-	 * @see Http::request()
+	 *
+	 * @deprecated since 1.34, use HttpRequestFactory::get()
+	 *
 	 * @since 1.25 Second parameter $timeout removed. Second parameter
 	 * is now $options which can be given a 'timeout'
 	 *
@@ -111,7 +77,8 @@ class Http {
 
 	/**
 	 * Simple wrapper for Http::request( 'POST' )
-	 * @see Http::request()
+	 *
+	 * @deprecated since 1.34, use HttpRequestFactory::post()
 	 *
 	 * @param string $url
 	 * @param array $options
@@ -124,11 +91,12 @@ class Http {
 
 	/**
 	 * A standard user-agent we can use for external requests.
+	 *
+	 * @deprecated since 1.34, use HttpRequestFactory::getUserAgent()
 	 * @return string
 	 */
 	public static function userAgent() {
-		global $wgVersion;
-		return "MediaWiki/$wgVersion";
+		return MediaWikiServices::getInstance()->getHttpRequestFactory()->getUserAgent();
 	}
 
 	/**
@@ -143,37 +111,37 @@ class Http {
 	 *
 	 * @todo FIXME this is wildly inaccurate and fails to actually check most stuff
 	 *
+	 * @deprecated since 1.34, use MWHttpRequest::isValidURI
 	 * @param string $uri URI to check for validity
 	 * @return bool
 	 */
 	public static function isValidURI( $uri ) {
-		return (bool)preg_match(
-			'/^https?:\/\/[^\/\s]\S*$/D',
-			$uri
-		);
+		return MWHttpRequest::isValidURI( $uri );
 	}
 
 	/**
 	 * Gets the relevant proxy from $wgHTTPProxy
 	 *
-	 * @return mixed The proxy address or an empty string if not set.
+	 * @deprecated since 1.34, use $wgHTTPProxy directly
+	 * @return string The proxy address or an empty string if not set.
 	 */
 	public static function getProxy() {
+		wfDeprecated( __METHOD__, '1.34' );
+
 		global $wgHTTPProxy;
-
-		if ( $wgHTTPProxy ) {
-			return $wgHTTPProxy;
-		}
-
-		return "";
+		return (string)$wgHTTPProxy;
 	}
 
 	/**
 	 * Get a configured MultiHttpClient
+	 *
+	 * @deprecated since 1.34, construct it directly
 	 * @param array $options
 	 * @return MultiHttpClient
 	 */
 	public static function createMultiClient( array $options = [] ) {
+		wfDeprecated( __METHOD__, '1.34' );
+
 		global $wgHTTPConnectTimeout, $wgHTTPTimeout, $wgHTTPProxy;
 
 		return new MultiHttpClient( $options + [

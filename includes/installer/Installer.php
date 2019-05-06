@@ -1203,9 +1203,11 @@ abstract class Installer {
 				}
 
 				try {
-					$text = Http::get( $url . $file, [ 'timeout' => 3 ], __METHOD__ );
+					$text = MediaWikiServices::getInstance()->getHttpRequestFactory()->
+						get( $url . $file, [ 'timeout' => 3 ], __METHOD__ );
 				} catch ( Exception $e ) {
-					// Http::get throws with allow_url_fopen = false and no curl extension.
+					// HttpRequestFactory::get can throw with allow_url_fopen = false and no curl
+					// extension.
 					$text = null;
 				}
 				unlink( $dir . $file );
