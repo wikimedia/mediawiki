@@ -894,6 +894,12 @@ class Linker {
 	 * @since 1.16.3. $altUserName was added in 1.19.
 	 */
 	public static function userLink( $userId, $userName, $altUserName = false ) {
+		if ( $userName === '' ) {
+			wfLogWarning( __METHOD__ . ' received an empty username. Are there database errors ' .
+				'that need to be fixed?' );
+			return wfMessage( 'empty-username' )->parse();
+		}
+
 		$classes = 'mw-userlink';
 		$page = null;
 		if ( $userId == 0 ) {
@@ -936,6 +942,12 @@ class Linker {
 		$userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits = null,
 		$useParentheses = true
 	) {
+		if ( $userText === '' ) {
+			wfLogWarning( __METHOD__ . ' received an empty username. Are there database errors ' .
+				'that need to be fixed?' );
+			return ' ' . wfMessage( 'empty-username' )->parse();
+		}
+
 		global $wgUser, $wgDisableAnonTalk, $wgLang;
 		$talkable = !( $wgDisableAnonTalk && $userId == 0 );
 		$blockable = !( $flags & self::TOOL_LINKS_NOBLOCK );
@@ -1018,6 +1030,12 @@ class Linker {
 	 * @return string HTML fragment with user talk link
 	 */
 	public static function userTalkLink( $userId, $userText ) {
+		if ( $userText === '' ) {
+			wfLogWarning( __METHOD__ . ' received an empty username. Are there database errors ' .
+				'that need to be fixed?' );
+			return wfMessage( 'empty-username' )->parse();
+		}
+
 		$userTalkPage = new TitleValue( NS_USER_TALK, strtr( $userText, ' ', '_' ) );
 		$moreLinkAttribs['class'] = 'mw-usertoollinks-talk';
 
@@ -1034,6 +1052,12 @@ class Linker {
 	 * @return string HTML fragment with block link
 	 */
 	public static function blockLink( $userId, $userText ) {
+		if ( $userText === '' ) {
+			wfLogWarning( __METHOD__ . ' received an empty username. Are there database errors ' .
+				'that need to be fixed?' );
+			return wfMessage( 'empty-username' )->parse();
+		}
+
 		$blockPage = SpecialPage::getTitleFor( 'Block', $userText );
 		$moreLinkAttribs['class'] = 'mw-usertoollinks-block';
 
@@ -1049,6 +1073,12 @@ class Linker {
 	 * @return string HTML fragment with e-mail user link
 	 */
 	public static function emailLink( $userId, $userText ) {
+		if ( $userText === '' ) {
+			wfLogWarning( __METHOD__ . ' received an empty username. Are there database errors ' .
+				'that need to be fixed?' );
+			return wfMessage( 'empty-username' )->parse();
+		}
+
 		$emailPage = SpecialPage::getTitleFor( 'Emailuser', $userText );
 		$moreLinkAttribs['class'] = 'mw-usertoollinks-mail';
 		return self::link( $emailPage,
