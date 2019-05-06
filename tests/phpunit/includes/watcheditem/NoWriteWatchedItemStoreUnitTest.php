@@ -78,7 +78,7 @@ class NoWriteWatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$this->setExpectedException( DBReadOnlyError::class );
 		$noWriteService->resetNotificationTimestamp(
 			new UserIdentityValue( 1, 'MockUser', 0 ),
-			Title::newFromText( 'Foo' )
+			new TitleValue( 0, 'Foo' )
 		);
 	}
 

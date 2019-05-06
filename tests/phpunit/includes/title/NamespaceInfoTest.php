@@ -167,85 +167,6 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers NamespaceInfo::getSubject
-	 */
-	public function testGetSubject() {
-		// Special namespaces are their own subjects
-		$obj = $this->newObj();
-		$this->assertEquals( NS_MEDIA, $obj->getSubject( NS_MEDIA ) );
-		$this->assertEquals( NS_SPECIAL, $obj->getSubject( NS_SPECIAL ) );
-
-		$this->assertEquals( NS_MAIN, $obj->getSubject( NS_TALK ) );
-		$this->assertEquals( NS_USER, $obj->getSubject( NS_USER_TALK ) );
-	}
-
-	/**
-	 * Regular getTalk() calls
-	 * Namespaces without a talk page (NS_MEDIA, NS_SPECIAL) are tested in
-	 * the function testGetTalkExceptions()
-	 * @covers NamespaceInfo::getTalk
-	 * @covers NamespaceInfo::isMethodValidFor
-	 */
-	public function testGetTalk() {
-		$obj = $this->newObj();
-		$this->assertEquals( NS_TALK, $obj->getTalk( NS_MAIN ) );
-		$this->assertEquals( NS_TALK, $obj->getTalk( NS_TALK ) );
-		$this->assertEquals( NS_USER_TALK, $obj->getTalk( NS_USER ) );
-		$this->assertEquals( NS_USER_TALK, $obj->getTalk( NS_USER_TALK ) );
-	}
-
-	/**
-	 * Exceptions with getTalk()
-	 * NS_MEDIA does not have talk pages. MediaWiki raise an exception for them.
-	 * @expectedException MWException
-	 * @covers NamespaceInfo::getTalk
-	 * @covers NamespaceInfo::isMethodValidFor
-	 */
-	public function testGetTalkExceptionsForNsMedia() {
-		$this->assertNull( $this->newObj()->getTalk( NS_MEDIA ) );
-	}
-
-	/**
-	 * Exceptions with getTalk()
-	 * NS_SPECIAL does not have talk pages. MediaWiki raise an exception for them.
-	 * @expectedException MWException
-	 * @covers NamespaceInfo::getTalk
-	 */
-	public function testGetTalkExceptionsForNsSpecial() {
-		$this->assertNull( $this->newObj()->getTalk( NS_SPECIAL ) );
-	}
-
-	/**
-	 * Regular getAssociated() calls
-	 * Namespaces without an associated page (NS_MEDIA, NS_SPECIAL) are tested in
-	 * the function testGetAssociatedExceptions()
-	 * @covers NamespaceInfo::getAssociated
-	 */
-	public function testGetAssociated() {
-		$this->assertEquals( NS_TALK, $this->newObj()->getAssociated( NS_MAIN ) );
-		$this->assertEquals( NS_MAIN, $this->newObj()->getAssociated( NS_TALK ) );
-	}
-
-	# ## Exceptions with getAssociated()
-	# ## NS_MEDIA and NS_SPECIAL do not have talk pages. MediaWiki raises
-	# ## an exception for them.
-	/**
-	 * @expectedException MWException
-	 * @covers NamespaceInfo::getAssociated
-	 */
-	public function testGetAssociatedExceptionsForNsMedia() {
-		$this->assertNull( $this->newObj()->getAssociated( NS_MEDIA ) );
-	}
-
-	/**
-	 * @expectedException MWException
-	 * @covers NamespaceInfo::getAssociated
-	 */
-	public function testGetAssociatedExceptionsForNsSpecial() {
-		$this->assertNull( $this->newObj()->getAssociated( NS_SPECIAL ) );
-	}
-
-	/**
 	 * @covers NamespaceInfo::exists
 	 * @dataProvider provideExists
 	 * @param int $ns
@@ -675,6 +596,210 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	}
 
 	// %} End basic methods
+
+	/**********************************************************************************************
+	 * getSubject/Talk/Associated
+	 * %{
+	 */
+	/**
+	 * @dataProvider provideSubjectTalk
+	 * @covers NamespaceInfo::getSubject
+	 * @covers NamespaceInfo::getSubjectPage
+	 * @covers NamespaceInfo::isMethodValidFor
+	 * @covers Title::getSubjectPage
+	 *
+	 * @param int $subject
+	 * @param int $talk
+	 */
+	public function testGetSubject( $subject, $talk ) {
+		$obj = $this->newObj();
+		$this->assertSame( $subject, $obj->getSubject( $subject ) );
+		$this->assertSame( $subject, $obj->getSubject( $talk ) );
+
+		$subjectTitleVal = new TitleValue( $subject, 'A' );
+		$talkTitleVal = new TitleValue( $talk, 'A' );
+		// Object will be the same one passed in if it's a subject, different but equal object if
+		// it's talk
+		$this->assertSame( $subjectTitleVal, $obj->getSubjectPage( $subjectTitleVal ) );
+		$this->assertEquals( $subjectTitleVal, $obj->getSubjectPage( $talkTitleVal ) );
+
+		$subjectTitle = Title::makeTitle( $subject, 'A' );
+		$talkTitle = Title::makeTitle( $talk, 'A' );
+		$this->assertSame( $subjectTitle, $subjectTitle->getSubjectPage() );
+		$this->assertEquals( $subjectTitle, $talkTitle->getSubjectPage() );
+	}
+
+	/**
+	 * @dataProvider provideSpecialNamespaces
+	 * @covers NamespaceInfo::getSubject
+	 * @covers NamespaceInfo::getSubjectPage
+	 *
+	 * @param int $ns
+	 */
+	public function testGetSubject_special( $ns ) {
+		$obj = $this->newObj();
+		$this->assertSame( $ns, $obj->getSubject( $ns ) );
+
+		$title = new TitleValue( $ns, 'A' );
+		$this->assertSame( $title, $obj->getSubjectPage( $title ) );
+	}
+
+	/**
+	 * @dataProvider provideSubjectTalk
+	 * @covers NamespaceInfo::getTalk
+	 * @covers NamespaceInfo::getTalkPage
+	 * @covers NamespaceInfo::isMethodValidFor
+	 * @covers Title::getTalkPage
+	 *
+	 * @param int $subject
+	 * @param int $talk
+	 */
+	public function testGetTalk( $subject, $talk ) {
+		$obj = $this->newObj();
+		$this->assertSame( $talk, $obj->getTalk( $subject ) );
+		$this->assertSame( $talk, $obj->getTalk( $talk ) );
+
+		$subjectTitleVal = new TitleValue( $subject, 'A' );
+		$talkTitleVal = new TitleValue( $talk, 'A' );
+		// Object will be the same one passed in if it's a talk, different but equal object if it's
+		// subject
+		$this->assertEquals( $talkTitleVal, $obj->getTalkPage( $subjectTitleVal ) );
+		$this->assertSame( $talkTitleVal, $obj->getTalkPage( $talkTitleVal ) );
+
+		$subjectTitle = Title::makeTitle( $subject, 'A' );
+		$talkTitle = Title::makeTitle( $talk, 'A' );
+		$this->assertEquals( $talkTitle, $subjectTitle->getTalkPage() );
+		$this->assertSame( $talkTitle, $talkTitle->getTalkPage() );
+	}
+
+	/**
+	 * @dataProvider provideSpecialNamespaces
+	 * @covers NamespaceInfo::getTalk
+	 * @covers NamespaceInfo::isMethodValidFor
+	 *
+	 * @param int $ns
+	 */
+	public function testGetTalk_special( $ns ) {
+		$this->setExpectedException( MWException::class,
+			"NamespaceInfo::getTalk does not make any sense for given namespace $ns" );
+		$this->newObj()->getTalk( $ns );
+	}
+
+	/**
+	 * @dataProvider provideSpecialNamespaces
+	 * @covers NamespaceInfo::getTalk
+	 * @covers NamespaceInfo::getTalkPage
+	 * @covers NamespaceInfo::isMethodValidFor
+	 *
+	 * @param int $ns
+	 */
+	public function testGetTalkPage_special( $ns ) {
+		$this->setExpectedException( MWException::class,
+			"NamespaceInfo::getTalk does not make any sense for given namespace $ns" );
+		$this->newObj()->getTalkPage( new TitleValue( $ns, 'A' ) );
+	}
+
+	/**
+	 * @dataProvider provideSpecialNamespaces
+	 * @covers NamespaceInfo::getTalk
+	 * @covers NamespaceInfo::getTalkPage
+	 * @covers NamespaceInfo::isMethodValidFor
+	 * @covers Title::getTalkPage
+	 *
+	 * @param int $ns
+	 */
+	public function testTitleGetTalkPage_special( $ns ) {
+		$this->setExpectedException( MWException::class,
+			"NamespaceInfo::getTalk does not make any sense for given namespace $ns" );
+		Title::makeTitle( $ns, 'A' )->getTalkPage();
+	}
+
+	/**
+	 * @dataProvider provideSpecialNamespaces
+	 * @covers NamespaceInfo::getAssociated
+	 * @covers NamespaceInfo::isMethodValidFor
+	 *
+	 * @param int $ns
+	 */
+	public function testGetAssociated_special( $ns ) {
+		$this->setExpectedException( MWException::class,
+			"NamespaceInfo::getAssociated does not make any sense for given namespace $ns" );
+		$this->newObj()->getAssociated( $ns );
+	}
+
+	/**
+	 * @dataProvider provideSpecialNamespaces
+	 * @covers NamespaceInfo::getAssociated
+	 * @covers NamespaceInfo::getAssociatedPage
+	 * @covers NamespaceInfo::isMethodValidFor
+	 *
+	 * @param int $ns
+	 */
+	public function testGetAssociatedPage_special( $ns ) {
+		$this->setExpectedException( MWException::class,
+			"NamespaceInfo::getAssociated does not make any sense for given namespace $ns" );
+		$this->newObj()->getAssociatedPage( new TitleValue( $ns, 'A' ) );
+	}
+
+	/**
+	 * @dataProvider provideSpecialNamespaces
+	 * @covers NamespaceInfo::getAssociated
+	 * @covers NamespaceInfo::getAssociatedPage
+	 * @covers NamespaceInfo::isMethodValidFor
+	 * @covers Title::getOtherPage
+	 *
+	 * @param int $ns
+	 */
+	public function testTitleGetOtherPage_special( $ns ) {
+		$this->setExpectedException( MWException::class,
+			"NamespaceInfo::getAssociated does not make any sense for given namespace $ns" );
+		Title::makeTitle( $ns, 'A' )->getOtherPage();
+	}
+
+	/**
+	 * @dataProvider provideSubjectTalk
+	 * @covers NamespaceInfo::getAssociated
+	 * @covers NamespaceInfo::getAssociatedPage
+	 * @covers Title::getOtherPage
+	 *
+	 * @param int $subject
+	 * @param int $talk
+	 */
+	public function testGetAssociated( $subject, $talk ) {
+		$obj = $this->newObj();
+		$this->assertSame( $talk, $obj->getAssociated( $subject ) );
+		$this->assertSame( $subject, $obj->getAssociated( $talk ) );
+
+		$subjectTitle = new TitleValue( $subject, 'A' );
+		$talkTitle = new TitleValue( $talk, 'A' );
+		// Object will not be the same
+		$this->assertEquals( $talkTitle, $obj->getAssociatedPage( $subjectTitle ) );
+		$this->assertEquals( $subjectTitle, $obj->getAssociatedPage( $talkTitle ) );
+
+		$subjectTitle = Title::makeTitle( $subject, 'A' );
+		$talkTitle = Title::makeTitle( $talk, 'A' );
+		$this->assertEquals( $talkTitle, $subjectTitle->getOtherPage() );
+		$this->assertEquals( $subjectTitle, $talkTitle->getOtherPage() );
+	}
+
+	public static function provideSubjectTalk() {
+		return [
+			// Format: [ subject, talk ]
+			'Main/talk' => [ NS_MAIN, NS_TALK ],
+			'User/user talk' => [ NS_USER, NS_USER_TALK ],
+			'Unknown namespaces also supported' => [ 106, 107 ],
+		];
+	}
+
+	public static function provideSpecialNamespaces() {
+		return [
+			'Special' => [ NS_SPECIAL ],
+			'Media' => [ NS_MEDIA ],
+			'Unknown negative index' => [ -613 ],
+		];
+	}
+
+	// %} End getSubject/Talk/Associated
 
 	/**********************************************************************************************
 	 * Canonical namespaces
