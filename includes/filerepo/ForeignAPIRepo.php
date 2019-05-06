@@ -502,8 +502,9 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
-	 * Like a Http:get request, but with custom User-Agent.
-	 * @see Http::get
+	 * Like a HttpRequestFactory::get request, but with custom User-Agent.
+	 * @see HttpRequestFactory::get
+	 * @todo Can this use HttpRequestFactory::get() but just pass the 'userAgent' option?
 	 * @param string $url
 	 * @param string $timeout
 	 * @param array $options

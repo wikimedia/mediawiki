@@ -116,7 +116,7 @@ because of Phabricator reports.
 * …
 
 === Deprecations in 1.34 ===
-* The MWNamespace class is deprecated. Use MediaWikiServices::getNamespaceInfo.
+* The MWNamespace class is deprecated. Use NamespaceInfo.
 * ExtensionRegistry->load() is deprecated, as it breaks dependency checking.
   Instead, use ->queue().
 * User::isBlocked() is deprecated since it does not tell you if the user is
@@ -135,6 +135,13 @@ because of Phabricator reports.
   RevisionLookup::getPreviousRevision and RevisionLookup::getNextRevision.
 * The Title parameter to RevisionLookup::getPreviousRevision and
   RevisionLookup::getNextRevision is deprecated and should be omitted.
+* MWHttpRequest::factory is deprecated. Use HttpRequestFactory.
+* The Http class is deprecated. For the request, get, and post methods, use
+  HttpRequestFactory. For isValidURI, use MWHttpRequest::isValidURI.  For
+  getProxy, use (string)$wgHTTPProxy. For createMultiClient, construct a
+  MultiHttpClient directly.
+* Http::$httpEngine is deprecated and has no replacement. The default 'guzzle'
+  engine will eventually be made the only engine for HTTP requests.
 
 === Other changes in 1.34 ===
 * …

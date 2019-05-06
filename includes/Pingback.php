@@ -22,6 +22,7 @@
 
 use Psr\Log\LoggerInterface;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Send information about this MediaWiki instance to MediaWiki.org.
@@ -229,7 +230,7 @@ class Pingback {
 		$json = FormatJson::encode( $data );
 		$queryString = rawurlencode( str_replace( ' ', '\u0020', $json ) ) . ';';
 		$url = 'https://www.mediawiki.org/beacon/event?' . $queryString;
-		return Http::post( $url ) !== false;
+		return MediaWikiServices::getInstance()->getHttpRequestFactory()->post( $url ) !== null;
 	}
 
 	/**

@@ -8399,7 +8399,7 @@ $wgAsyncHTTPTimeout = 25;
 /**
  * Proxy to use for CURL requests.
  */
-$wgHTTPProxy = false;
+$wgHTTPProxy = '';
 
 /**
  * Local virtual hosts.
