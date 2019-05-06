@@ -1740,7 +1740,8 @@ class RevisionStore
 			$user = User::newFromAnyId(
 				$row->ar_user ?? null,
 				$row->ar_user_text ?? null,
-				$row->ar_actor ?? null
+				$row->ar_actor ?? null,
+				$this->wikiId
 			);
 		} catch ( InvalidArgumentException $ex ) {
 			wfWarn( __METHOD__ . ': ' . $title->getPrefixedDBkey() . ': ' . $ex->getMessage() );
@@ -1794,7 +1795,8 @@ class RevisionStore
 			$user = User::newFromAnyId(
 				$row->rev_user ?? null,
 				$row->rev_user_text ?? null,
-				$row->rev_actor ?? null
+				$row->rev_actor ?? null,
+				$this->wikiId
 			);
 		} catch ( InvalidArgumentException $ex ) {
 			wfWarn( __METHOD__ . ': ' . $title->getPrefixedDBkey() . ': ' . $ex->getMessage() );
@@ -1932,14 +1934,21 @@ class RevisionStore
 		/** @var UserIdentity $user */
 		$user = null;
 
-		if ( isset( $fields['user'] ) && ( $fields['user'] instanceof UserIdentity ) ) {
+		// If a user is passed in, use it if possible. We cannot use a user from a
+		// remote wiki with unsuppressed ids, due to issues described in T222212.
+		if ( isset( $fields['user'] ) &&
+			( $fields['user'] instanceof UserIdentity ) &&
+			( $this->wikiId === false ||
+				( !$fields['user']->getId() && !$fields['user']->getActorId() ) )
+		) {
 			$user = $fields['user'];
 		} else {
 			try {
 				$user = User::newFromAnyId(
 					$fields['user'] ?? null,
 					$fields['user_text'] ?? null,
-					$fields['actor'] ?? null
+					$fields['actor'] ?? null,
+					$this->wikiId
 				);
 			} catch ( InvalidArgumentException $ex ) {
 				$user = null;
