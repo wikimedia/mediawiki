@@ -24,7 +24,7 @@
  */
 class UDPRCFeedEngine extends RCFeedEngine {
 	/**
-	 * @see RCFeedEngine::send
+	 * @see FormattedRCFeed::send
 	 * @param array $feed
 	 * @param string $line
 	 * @return bool
