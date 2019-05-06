@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\IDatabase;
@@ -21,6 +22,46 @@ class MovePageTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * The only files that exist are 'File:Existent.jpg', 'File:Existent2.jpg', and
+	 * 'File:Existent-file-no-page.jpg'. Calling unexpected methods causes a test failure.
+	 *
+	 * @return RepoGroup
+	 */
+	private function getMockRepoGroup() : RepoGroup {
+		$mockExistentFile = $this->createMock( LocalFile::class );
+		$mockExistentFile->method( 'exists' )->willReturn( true );
+		$mockExistentFile->method( 'getMimeType' )->willReturn( 'image/jpeg' );
+		$mockExistentFile->expects( $this->never() )
+			->method( $this->anythingBut( 'exists', 'load', 'getMimeType', '__destruct' ) );
+
+		$mockNonexistentFile = $this->createMock( LocalFile::class );
+		$mockNonexistentFile->method( 'exists' )->willReturn( false );
+		$mockNonexistentFile->expects( $this->never() )
+			->method( $this->anythingBut( 'exists', 'load', '__destruct' ) );
+
+		$mockLocalRepo = $this->createMock( LocalRepo::class );
+		$mockLocalRepo->method( 'newFile' )->will( $this->returnCallback(
+			function ( Title $title ) use ( $mockExistentFile, $mockNonexistentFile ) {
+				if ( in_array( $title->getPrefixedText(),
+					[ 'File:Existent.jpg', 'File:Existent2.jpg', 'File:Existent-file-no-page.jpg' ]
+				) ) {
+					return $mockExistentFile;
+				}
+				return $mockNonexistentFile;
+			}
+		) );
+		$mockLocalRepo->expects( $this->never() )
+			->method( $this->anythingBut( 'newFile', '__destruct' ) );
+
+		$mockRepoGroup = $this->createMock( RepoGroup::class );
+		$mockRepoGroup->method( 'getLocalRepo' )->willReturn( $mockLocalRepo );
+		$mockRepoGroup->expects( $this->never() )
+			->method( $this->anythingBut( 'getLocalRepo', '__destruct' ) );
+
+		return $mockRepoGroup;
+	}
+
+	/**
 	 * @param LinkTarget $old
 	 * @param LinkTarget $new
 	 * @param array $params Valid keys are: db, options, nsInfo, wiStore, repoGroup.
@@ -35,20 +76,14 @@ class MovePageTest extends MediaWikiTestCase {
 		$mockLB->expects( $this->never() )
 			->method( $this->anythingBut( 'getConnection', '__destruct' ) );
 
-		$mockLocalFile = $this->createMock( LocalFile::class );
-		$mockLocalFile->method( 'exists' )->willReturn( false );
-		$mockLocalFile->expects( $this->never() )
-			->method( $this->anythingBut( 'exists', 'load', '__destruct' ) );
-
-		$mockLocalRepo = $this->createMock( LocalRepo::class );
-		$mockLocalRepo->method( 'newFile' )->willReturn( $mockLocalFile );
-		$mockLocalRepo->expects( $this->never() )
-			->method( $this->anythingBut( 'newFile', '__destruct' ) );
-
-		$mockRepoGroup = $this->createMock( RepoGroup::class );
-		$mockRepoGroup->method( 'getLocalRepo' )->willReturn( $mockLocalRepo );
-		$mockRepoGroup->expects( $this->never() )
-			->method( $this->anythingBut( 'getLocalRepo', '__destruct' ) );
+		$mockNsInfo = $this->createMock( NamespaceInfo::class );
+		$mockNsInfo->method( 'isMovable' )->will( $this->returnCallback(
+			function ( $ns ) {
+				return $ns >= 0;
+			}
+		) );
+		$mockNsInfo->expects( $this->never() )
+			->method( $this->anythingBut( 'isMovable', '__destruct' ) );
 
 		return new MovePage(
 			$old,
@@ -62,63 +97,287 @@ class MovePageTest extends MediaWikiTestCase {
 				]
 			),
 			$mockLB,
-			$params['nsInfo'] ?? $this->getNoOpMock( NamespaceInfo::class ),
+			$params['nsInfo'] ?? $mockNsInfo,
 			$params['wiStore'] ?? $this->getNoOpMock( WatchedItemStore::class ),
 			$params['permMgr'] ?? $this->getNoOpMock( PermissionManager::class ),
-			$params['repoGroup'] ?? $mockRepoGroup
+			$params['repoGroup'] ?? $this->getMockRepoGroup()
 		);
 	}
 
 	public function setUp() {
 		parent::setUp();
+
+		// Ensure we have some pages that are guaranteed to exist or not
+		$this->getExistingTestPage( 'Existent' );
+		$this->getExistingTestPage( 'Existent2' );
+		$this->getExistingTestPage( 'File:Existent.jpg' );
+		$this->getExistingTestPage( 'File:Existent2.jpg' );
+		$this->getExistingTestPage( 'MediaWiki:Existent.js' );
+		$this->getExistingTestPage( 'Hooked in place' );
+		$this->getNonExistingTestPage( 'Nonexistent' );
+		$this->getNonExistingTestPage( 'Nonexistent2' );
+		$this->getNonExistingTestPage( 'File:Nonexistent.jpg' );
+		$this->getNonExistingTestPage( 'File:Nonexistent.png' );
+		$this->getNonExistingTestPage( 'File:Existent-file-no-page.jpg' );
+		$this->getNonExistingTestPage( 'MediaWiki:Nonexistent' );
+		$this->getNonExistingTestPage( 'No content allowed' );
+
+		// Set a couple of hooks for specific pages
+		$this->setTemporaryHook( 'ContentModelCanBeUsedOn',
+			function ( $modelId, Title $title, &$ok ) {
+				if ( $title->getPrefixedText() === 'No content allowed' ) {
+					$ok = false;
+				}
+			}
+		);
+
+		$this->setTemporaryHook( 'TitleIsMovable',
+			function ( Title $title, &$result ) {
+				if ( strtolower( $title->getPrefixedText() ) === 'hooked in place' ) {
+					$result = false;
+				}
+			}
+		);
+
 		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'revision';
 		$this->tablesUsed[] = 'comment';
 	}
 
 	/**
-	 * @dataProvider provideIsValidMove
-	 * @covers MovePage::isValidMove
-	 * @covers MovePage::isValidFileMove
+	 * @covers MovePage::__construct
 	 */
-	public function testIsValidMove( $old, $new, $error ) {
-		global $wgMultiContentRevisionSchemaMigrationStage;
-		if ( $wgMultiContentRevisionSchemaMigrationStage === SCHEMA_COMPAT_OLD ) {
-			// We can only set this to false with the old schema
-			$this->setMwGlobals( 'wgContentHandlerUseDB', false );
-		}
-		$mp = $this->newMovePage(
-			Title::newFromText( $old ),
-			Title::newFromText( $new ),
-			[ 'options' => [ 'ContentHandlerUseDB' => false ] ]
+	public function testConstructorDefaults() {
+		$services = MediaWikiServices::getInstance();
+
+		$obj1 = new MovePage( Title::newFromText( 'A' ), Title::newFromText( 'B' ) );
+		$obj2 = new MovePage(
+			Title::newFromText( 'A' ),
+			Title::newFromText( 'B' ),
+			new ServiceOptions( MovePageFactory::$constructorOptions, $services->getMainConfig() ),
+			$services->getDBLoadBalancer(),
+			$services->getNamespaceInfo(),
+			$services->getWatchedItemStore(),
+			$services->getPermissionManager(),
+			$services->getRepoGroup(),
+			$services->getTitleFormatter()
 		);
-		$status = $mp->isValidMove();
-		if ( $error === true ) {
-			$this->assertTrue( $status->isGood() );
-		} else {
-			$this->assertTrue( $status->hasMessage( $error ) );
-		}
+
+		$this->assertEquals( $obj2, $obj1 );
 	}
 
 	/**
-	 * This should be kept in sync with TitleTest::provideTestIsValidMoveOperation
+	 * @dataProvider provideIsValidMove
+	 * @covers MovePage::isValidMove
+	 * @covers MovePage::isValidMoveTarget
+	 * @covers MovePage::isValidFileMove
+	 * @covers MovePage::__construct
+	 * @covers Title::isValidMoveOperation
+	 *
+	 * @param string|Title $old
+	 * @param string|Title $new
+	 * @param array $expectedErrors
+	 * @param array $extraOptions
 	 */
+	public function testIsValidMove(
+		$old, $new, array $expectedErrors, array $extraOptions = []
+	) {
+		if ( is_string( $old ) ) {
+			$old = Title::newFromText( $old );
+		}
+		if ( is_string( $new ) ) {
+			$new = Title::newFromText( $new );
+		}
+		// Can't test MovePage with a null target, only isValidMoveOperation
+		if ( $new ) {
+			$mp = $this->newMovePage( $old, $new, [ 'options' => $extraOptions ] );
+			$this->assertSame( $expectedErrors, $mp->isValidMove()->getErrorsArray() );
+		}
+
+		foreach ( $extraOptions as $key => $val ) {
+			$this->setMwGlobals( "wg$key", $val );
+		}
+		$this->overrideMwServices();
+		$this->setService( 'RepoGroup', $this->getMockRepoGroup() );
+		// This returns true instead of an array if there are no errors
+		$this->hideDeprecated( 'Title::isValidMoveOperation' );
+		$this->assertSame( $expectedErrors ?: true, $old->isValidMoveOperation( $new, false ) );
+	}
+
 	public static function provideIsValidMove() {
 		global $wgMultiContentRevisionSchemaMigrationStage;
 		$ret = [
-			// for MovePage::isValidMove
-			[ 'Test', 'Test', 'selfmove' ],
-			[ 'Special:FooBar', 'Test', 'immobile-source-namespace' ],
-			[ 'Test', 'Special:FooBar', 'immobile-target-namespace' ],
-			[ 'Page', 'File:Test.jpg', 'nonfile-cannot-move-to-file' ],
-			// for MovePage::isValidFileMove
-			[ 'File:Test.jpg', 'Page', 'imagenocrossnamespace' ],
+			'Self move' => [
+				'Existent',
+				'Existent',
+				// @todo There's no reason to return 'articleexists' here
+				[ [ 'selfmove' ], [ 'articleexists' ] ],
+			],
+			'Move to null' => [
+				'Existent',
+				null,
+				[ [ 'badtitletext' ] ],
+			],
+			'Move from empty name' => [
+				Title::makeTitle( NS_MAIN, '' ),
+				'Nonexistent',
+				// @todo More specific error message
+				[ [ 'badarticleerror' ] ],
+			],
+			'Move to empty name' => [
+				'Existent',
+				Title::makeTitle( NS_MAIN, '' ),
+				// @todo article-exists is just not correct, and badarticleerror is too general
+				[ [ 'articleexists' ], [ 'badarticleerror' ] ],
+			],
+			'Move to invalid name' => [
+				'Existent',
+				Title::makeTitle( NS_MAIN, '<' ),
+				// @todo This is wrong
+				[],
+			],
+			'Move between invalid names' => [
+				Title::makeTitle( NS_MAIN, '<' ),
+				Title::makeTitle( NS_MAIN, '>' ),
+				// @todo More specific error message
+				[ [ 'badarticleerror' ] ],
+			],
+			'Move nonexistent' => [
+				'Nonexistent',
+				'Nonexistent2',
+				// @todo More specific error message
+				[ [ 'badarticleerror' ] ],
+			],
+			'Move over existing' => [
+				'Existent',
+				'Existent2',
+				[ [ 'articleexists' ] ],
+			],
+			'Move from another wiki' => [
+				Title::makeTitle( NS_MAIN, 'Test', '', 'otherwiki' ),
+				'Nonexistent',
+				// @todo First error is wrong, second is too vague
+				[ [ 'immobile-source-namespace', '' ], [ 'badarticleerror' ] ],
+			],
+			'Move special page' => [
+				'Special:FooBar',
+				'Nonexistent',
+				// @todo Second error not needed
+				[ [ 'immobile-source-namespace', 'Special' ], [ 'badarticleerror' ] ],
+			],
+			'Move to another wiki' => [
+				'Existent',
+				Title::makeTitle( NS_MAIN, 'Test', '', 'otherwiki' ),
+				// @todo Second error wrong
+				[ [ 'immobile-target-namespace-iw' ], [ 'immobile-target-namespace', '' ] ],
+			],
+			'Move to special page' =>
+				[ 'Existent', 'Special:FooBar', [ [ 'immobile-target-namespace', 'Special' ] ] ],
+			'Move to allowed content model' => [
+				'MediaWiki:Existent.js',
+				'MediaWiki:Nonexistent',
+				[],
+			],
+			'Move to prohibited content model' => [
+				'Existent',
+				'No content allowed',
+				[ [ 'content-not-allowed-here', 'wikitext', 'No content allowed', 'main' ] ],
+			],
+			'Aborted by hook' => [
+				'Hooked in place',
+				'Nonexistent',
+				// @todo Error is wrong
+				[ [ 'immobile-source-namespace', '' ] ],
+			],
+			'Doubly aborted by hook' => [
+				'Hooked in place',
+				'Hooked In Place',
+				// @todo Both errors are wrong
+				[ [ 'immobile-source-namespace', '' ], [ 'immobile-target-namespace', '' ] ],
+			],
+			'Non-file to file' =>
+				[ 'Existent', 'File:Nonexistent.jpg', [ [ 'nonfile-cannot-move-to-file' ] ] ],
+			'File to non-file' => [
+				'File:Existent.jpg',
+				'Nonexistent',
+				// @todo First error not needed
+				[ [ 'imagetypemismatch' ], [ 'imagenocrossnamespace' ] ],
+			],
+			'Existing file to non-existing file' => [
+				'File:Existent.jpg',
+				'File:Nonexistent.jpg',
+				[],
+			],
+			'Existing file to existing file' => [
+				'File:Existent.jpg',
+				'File:Existent2.jpg',
+				[ [ 'articleexists' ] ],
+			],
+			'Existing file to existing file with no page' => [
+				'File:Existent.jpg',
+				'File:Existent-file-no-page.jpg',
+				// @todo Is this correct? Moving over an existing file with no page should succeed?
+				[],
+			],
+			'Existing file to name with slash' => [
+				'File:Existent.jpg',
+				'File:Existent/slashed.jpg',
+				[ [ 'imageinvalidfilename' ] ],
+			],
+			'Mismatched file extension' => [
+				'File:Existent.jpg',
+				'File:Nonexistent.png',
+				[ [ 'imagetypemismatch' ] ],
+			],
 		];
 		if ( $wgMultiContentRevisionSchemaMigrationStage === SCHEMA_COMPAT_OLD ) {
-			// The error can only occur if $wgContentHandlerUseDB is false, which doesn't work with
-			// the new schema, so omit the test in that case
-			array_push( $ret,
-				[ 'MediaWiki:Common.js', 'Help:Some wikitext page', 'bad-target-model' ] );
+			// ContentHandlerUseDB = false only works with the old schema
+			$ret['Move to different content model (ContentHandlerUseDB false)'] = [
+				'MediaWiki:Existent.js',
+				'MediaWiki:Nonexistent',
+				[ [ 'bad-target-model', 'JavaScript', 'wikitext' ] ],
+				[ 'ContentHandlerUseDB' => false ],
+			];
+		}
+		return $ret;
+	}
+
+	/**
+	 * @dataProvider provideMove
+	 * @covers MovePage::move
+	 *
+	 * @param string $old Old name
+	 * @param string $new New name
+	 * @param array $expectedErrors
+	 * @param array $extraOptions
+	 */
+	public function testMove( $old, $new, array $expectedErrors, array $extraOptions = [] ) {
+		if ( is_string( $old ) ) {
+			$old = Title::newFromText( $old );
+		}
+		if ( is_string( $new ) ) {
+			$new = Title::newFromText( $new );
+		}
+
+		$params = [ 'options' => $extraOptions ];
+		if ( $expectedErrors === [] ) {
+			$this->markTestIncomplete( 'Checking actual moves has not yet been implemented' );
+		}
+
+		$obj = $this->newMovePage( $old, $new, $params );
+		$status = $obj->move( $this->getTestUser()->getUser() );
+		$this->assertSame( $expectedErrors, $status->getErrorsArray() );
+	}
+
+	public static function provideMove() {
+		$ret = [];
+		foreach ( self::provideIsValidMove() as $name => $arr ) {
+			list( $old, $new, $expectedErrors, $extraOptions ) = array_pad( $arr, 4, [] );
+			if ( !$new ) {
+				// Not supported by testMove
+				continue;
+			}
+			$ret[$name] = $arr;
 		}
 		return $ret;
 	}

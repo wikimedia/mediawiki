@@ -280,59 +280,6 @@ class TitleTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Auth-less test of Title::isValidMoveOperation
-	 *
-	 * @param string $source
-	 * @param string $target
-	 * @param array|string|bool $expected Required error
-	 * @dataProvider provideTestIsValidMoveOperation
-	 * @covers Title::isValidMoveOperation
-	 */
-	public function testIsValidMoveOperation( $source, $target, $expected ) {
-		global $wgMultiContentRevisionSchemaMigrationStage;
-
-		$this->hideDeprecated( 'Title::isValidMoveOperation' );
-
-		if ( $wgMultiContentRevisionSchemaMigrationStage === SCHEMA_COMPAT_OLD ) {
-			// We can only set this to false with the old schema
-			$this->setMwGlobals( 'wgContentHandlerUseDB', false );
-		}
-
-		$title = Title::newFromText( $source );
-		$nt = Title::newFromText( $target );
-		$errors = $title->isValidMoveOperation( $nt, false );
-		if ( $expected === true ) {
-			$this->assertTrue( $errors );
-		} else {
-			$errors = $this->flattenErrorsArray( $errors );
-			foreach ( (array)$expected as $error ) {
-				$this->assertContains( $error, $errors );
-			}
-		}
-	}
-
-	public static function provideTestIsValidMoveOperation() {
-		global $wgMultiContentRevisionSchemaMigrationStage;
-		$ret = [
-			// for Title::isValidMoveOperation
-			[ 'Some page', '', 'badtitletext' ],
-			[ 'Test', 'Test', 'selfmove' ],
-			[ 'Special:FooBar', 'Test', 'immobile-source-namespace' ],
-			[ 'Test', 'Special:FooBar', 'immobile-target-namespace' ],
-			[ 'Page', 'File:Test.jpg', 'nonfile-cannot-move-to-file' ],
-			[ 'File:Test.jpg', 'Page', 'imagenocrossnamespace' ],
-		];
-		if ( $wgMultiContentRevisionSchemaMigrationStage === SCHEMA_COMPAT_OLD ) {
-			// The error can only occur if $wgContentHandlerUseDB is false, which doesn't work with
-			// the new schema, so omit the test in that case
-			array_push( $ret,
-				[ 'MediaWiki:Common.js', 'Help:Some wikitext page', 'bad-target-model' ]
-			);
-		}
-		return $ret;
-	}
-
-	/**
 	 * Auth-less test of Title::userCan
 	 *
 	 * @param array $whitelistRegexp
@@ -998,6 +945,41 @@ class TitleTest extends MediaWikiTestCase {
 	public function testGetOtherPage_bad( Title $title ) {
 		$this->setExpectedException( MWException::class );
 		$title->getOtherPage();
+	}
+
+	/**
+	 * @dataProvider provideIsMovable
+	 * @covers Title::isMovable
+	 *
+	 * @param string|Title $title
+	 * @param bool $expected
+	 * @param callable|null $hookCallback For TitleIsMovable
+	 */
+	public function testIsMovable( $title, $expected, $hookCallback = null ) {
+		if ( $hookCallback ) {
+			$this->setTemporaryHook( 'TitleIsMovable', $hookCallback );
+		}
+		if ( is_string( $title ) ) {
+			$title = Title::newFromText( $title );
+		}
+
+		$this->assertSame( $expected, $title->isMovable() );
+	}
+
+	public static function provideIsMovable() {
+		return [
+			'Simple title' => [ 'Foo', true ],
+			// @todo Should these next two really be true?
+			'Empty name' => [ Title::makeTitle( NS_MAIN, '' ), true ],
+			'Invalid name' => [ Title::makeTitle( NS_MAIN, '<' ), true ],
+			'Interwiki' => [ Title::makeTitle( NS_MAIN, 'Test', '', 'otherwiki' ), false ],
+			'Special page' => [ 'Special:FooBar', false ],
+			'Aborted by hook' => [ 'Hooked in place', false,
+				function ( Title $title, &$result ) {
+					$result = false;
+				}
+			],
+		];
 	}
 
 	public function provideCreateFragmentTitle() {
