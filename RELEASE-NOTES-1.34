@@ -145,6 +145,8 @@ because of Phabricator reports.
 * RepoGroup::singleton(), RepoGroup::destroySingleton(),
   RepoGroup::setSingleton(), wfFindFile(), and wfLocalFile() are all
   deprecated. Use MediaWikiServices instead.
+* The getSubjectPage, getTalkPage, and getOtherPage of Title are deprecated.
+  Use NamespaceInfo's getSubjectPage, getTalkPage, and getAssociatedPage.
 
 === Other changes in 1.34 ===
 * …
