@@ -231,9 +231,7 @@ class LinkCache {
 	 */
 	public function addLinkObj( LinkTarget $nt ) {
 		$key = $this->titleFormatter->getPrefixedDBkey( $nt );
-		if ( $this->isBadLink( $key ) || $nt->isExternal()
-			|| $nt->inNamespace( NS_SPECIAL )
-		) {
+		if ( $this->isBadLink( $key ) || $nt->isExternal() || $nt->getNamespace() < 0 ) {
 			return 0;
 		}
 		$id = $this->getGoodLinkID( $key );
