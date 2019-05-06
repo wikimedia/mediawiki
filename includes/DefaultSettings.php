@@ -2563,26 +2563,35 @@ $wgUseLocalMessageCache = false;
 $wgAdaptiveMessageCache = false;
 
 /**
- * Localisation cache configuration. Associative array with keys:
- * class:       The class to use. May be overridden by extensions.
+ * Localisation cache configuration.
  *
- * store:       The location to store cache data. May be 'files', 'array', 'db' or
- *              'detect'. If set to "files", data will be in CDB files. If set
- *              to "db", data will be stored to the database. If set to
- *              "detect", files will be used if $wgCacheDirectory is set,
- *              otherwise the database will be used.
- *              "array" is an experimental option that uses PHP files that
- *              store static arrays.
+ * Used by Language::getLocalisationCache() to decide how to construct the
+ * LocalisationCache instance. Associative array with keys:
  *
- * storeClass:  The class name for the underlying storage. If set to a class
- *              name, it overrides the "store" setting.
+ * class:       The class to use for constructing the LocalisationCache object.
+ *              This may be overridden by extensions to a subclass of LocalisationCache.
+ *              Sub classes are expected to still honor the 'storeClass', 'storeDirectory'
+ *              and 'manualRecache' options where applicable.
  *
- * storeDirectory:  If the store class puts its data in files, this is the
- *                  directory it will use. If this is false, $wgCacheDirectory
- *                  will be used.
+ * storeClass:  Which LCStore class implementation to use. This is optional.
+ *              The default LocalisationCache class offers the 'store' option
+ *              as abstraction for this.
  *
- * manualRecache:   Set this to true to disable cache updates on web requests.
- *                  Use maintenance/rebuildLocalisationCache.php instead.
+ * store:       How and where to store localisation cache data.
+ *              This option is ignored if 'storeClass' is explicitly set to a class name.
+ *              Must be one of:
+ *              - 'detect' (default): Automatically select 'files' if 'storeDirectory'
+ *                 or $wgCacheDirectory is set, and fall back to 'db' otherwise.
+ *              - 'files': Store in $wgCacheDirectory as CDB files.
+ *              - 'array': Store in $wgCacheDirectory as PHP static array files.
+ *              - 'db': Store in the l10n_cache database table.
+ *
+ * storeDirectory: If the selected LCStore class puts its data in files, then it
+ *                 will use this directory. If set to false (default), then
+ *                 $wgCacheDirectory is used instead.
+ *
+ * manualRecache: Set this to true to disable cache updates on web requests.
+ *                Use maintenance/rebuildLocalisationCache.php instead.
  */
 $wgLocalisationCacheConf = [
 	'class' => LocalisationCache::class,
