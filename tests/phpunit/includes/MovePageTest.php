@@ -210,8 +210,7 @@ class MovePageTest extends MediaWikiTestCase {
 			'Self move' => [
 				'Existent',
 				'Existent',
-				// @todo There's no reason to return 'articleexists' here
-				[ [ 'selfmove' ], [ 'articleexists' ] ],
+				[ [ 'selfmove' ] ],
 			],
 			'Move to null' => [
 				'Existent',
@@ -221,32 +220,31 @@ class MovePageTest extends MediaWikiTestCase {
 			'Move from empty name' => [
 				Title::makeTitle( NS_MAIN, '' ),
 				'Nonexistent',
-				// @todo More specific error message
+				// @todo More specific error message, or make the move valid if the page actually
+				// exists somehow in the database
 				[ [ 'badarticleerror' ] ],
 			],
 			'Move to empty name' => [
 				'Existent',
 				Title::makeTitle( NS_MAIN, '' ),
-				// @todo article-exists is just not correct, and badarticleerror is too general
-				[ [ 'articleexists' ], [ 'badarticleerror' ] ],
+				[ [ 'movepage-invalid-target-title' ] ],
 			],
 			'Move to invalid name' => [
 				'Existent',
 				Title::makeTitle( NS_MAIN, '<' ),
-				// @todo This is wrong
-				[],
+				[ [ 'movepage-invalid-target-title' ] ],
 			],
 			'Move between invalid names' => [
 				Title::makeTitle( NS_MAIN, '<' ),
 				Title::makeTitle( NS_MAIN, '>' ),
-				// @todo More specific error message
-				[ [ 'badarticleerror' ] ],
+				// @todo First error message should be more specific, or maybe we should make moving
+				// such pages valid if they actually exist somehow in the database
+				[ [ 'movepage-source-doesnt-exist' ], [ 'movepage-invalid-target-title' ] ],
 			],
 			'Move nonexistent' => [
 				'Nonexistent',
 				'Nonexistent2',
-				// @todo More specific error message
-				[ [ 'badarticleerror' ] ],
+				[ [ 'movepage-source-doesnt-exist' ] ],
 			],
 			'Move over existing' => [
 				'Existent',
@@ -256,20 +254,17 @@ class MovePageTest extends MediaWikiTestCase {
 			'Move from another wiki' => [
 				Title::makeTitle( NS_MAIN, 'Test', '', 'otherwiki' ),
 				'Nonexistent',
-				// @todo First error is wrong, second is too vague
-				[ [ 'immobile-source-namespace', '' ], [ 'badarticleerror' ] ],
+				[ [ 'immobile-source-namespace-iw' ] ],
 			],
 			'Move special page' => [
 				'Special:FooBar',
 				'Nonexistent',
-				// @todo Second error not needed
-				[ [ 'immobile-source-namespace', 'Special' ], [ 'badarticleerror' ] ],
+				[ [ 'immobile-source-namespace', 'Special' ] ],
 			],
 			'Move to another wiki' => [
 				'Existent',
 				Title::makeTitle( NS_MAIN, 'Test', '', 'otherwiki' ),
-				// @todo Second error wrong
-				[ [ 'immobile-target-namespace-iw' ], [ 'immobile-target-namespace', '' ] ],
+				[ [ 'immobile-target-namespace-iw' ] ],
 			],
 			'Move to special page' =>
 				[ 'Existent', 'Special:FooBar', [ [ 'immobile-target-namespace', 'Special' ] ] ],
@@ -300,8 +295,7 @@ class MovePageTest extends MediaWikiTestCase {
 			'File to non-file' => [
 				'File:Existent.jpg',
 				'Nonexistent',
-				// @todo First error not needed
-				[ [ 'imagetypemismatch' ], [ 'imagenocrossnamespace' ] ],
+				[ [ 'imagenocrossnamespace' ] ],
 			],
 			'Existing file to non-existing file' => [
 				'File:Existent.jpg',

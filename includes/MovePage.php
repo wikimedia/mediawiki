@@ -164,35 +164,33 @@ class MovePage {
 
 		if ( $this->oldTitle->equals( $this->newTitle ) ) {
 			$status->fatal( 'selfmove' );
+		} elseif ( $this->newTitle->getArticleID() && !$this->isValidMoveTarget() ) {
+			// The move is allowed only if (1) the target doesn't exist, or (2) the target is a
+			// redirect to the source, and has no history (so we can undo bad moves right after
+			// they're done).
+			$status->fatal( 'articleexists' );
 		}
-		if ( !$this->oldTitle->isMovable() ) {
+
+		// @todo If the old title is invalid, maybe we should check if it somehow exists in the
+		// database and allow moving it to a valid name? Why prohibit the move from an empty name
+		// without checking in the database?
+		if ( $this->oldTitle->getDBkey() == '' ) {
+			$status->fatal( 'badarticleerror' );
+		} elseif ( $this->oldTitle->isExternal() ) {
+			$status->fatal( 'immobile-source-namespace-iw' );
+		} elseif ( !$this->oldTitle->isMovable() ) {
 			$status->fatal( 'immobile-source-namespace', $this->oldTitle->getNsText() );
+		} elseif ( !$this->oldTitle->exists() ) {
+			$status->fatal( 'movepage-source-doesnt-exist' );
 		}
+
 		if ( $this->newTitle->isExternal() ) {
 			$status->fatal( 'immobile-target-namespace-iw' );
-		}
-		if ( !$this->newTitle->isMovable() ) {
+		} elseif ( !$this->newTitle->isMovable() ) {
 			$status->fatal( 'immobile-target-namespace', $this->newTitle->getNsText() );
 		}
-
-		$oldid = $this->oldTitle->getArticleID();
-
-		if ( $this->newTitle->getDBkey() === '' ) {
-			$status->fatal( 'articleexists' );
-		}
-		if (
-			( $this->oldTitle->getDBkey() == '' ) ||
-			( !$oldid ) ||
-			( $this->newTitle->getDBkey() == '' )
-		) {
-			$status->fatal( 'badarticleerror' );
-		}
-
-		# The move is allowed only if (1) the target doesn't exist, or
-		# (2) the target is a redirect to the source, and has no history
-		# (so we can undo bad moves right after they're done).
-		if ( $this->newTitle->getArticleID() && !$this->isValidMoveTarget() ) {
-			$status->fatal( 'articleexists' );
+		if ( !$this->newTitle->isValid() ) {
+			$status->fatal( 'movepage-invalid-target-title' );
 		}
 
 		// Content model checks
@@ -237,6 +235,13 @@ class MovePage {
 	 */
 	protected function isValidFileMove() {
 		$status = new Status();
+
+		if ( !$this->newTitle->inNamespace( NS_FILE ) ) {
+			$status->fatal( 'imagenocrossnamespace' );
+			// No need for further errors about the target filename being wrong
+			return $status;
+		}
+
 		$file = $this->repoGroup->getLocalRepo()->newFile( $this->oldTitle );
 		$file->load( File::READ_LATEST );
 		if ( $file->exists() ) {
@@ -246,10 +251,6 @@ class MovePage {
 			if ( !File::checkExtensionCompatibility( $file, $this->newTitle->getDBkey() ) ) {
 				$status->fatal( 'imagetypemismatch' );
 			}
-		}
-
-		if ( !$this->newTitle->inNamespace( NS_FILE ) ) {
-			$status->fatal( 'imagenocrossnamespace' );
 		}
 
 		return $status;
