@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 require_once dirname( __DIR__ ) . '/includes/upload/UploadFromUrlTest.php';
 
 class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
@@ -71,7 +73,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 			$wgStyleDirectory = "$IP/skins";
 		}
 
-		RepoGroup::destroySingleton();
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'RepoGroup' );
 		FileBackendGroup::destroySingleton();
 	}
 
@@ -80,7 +82,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 			$GLOBALS[$var] = $val;
 		}
 		// Restore backends
-		RepoGroup::destroySingleton();
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'RepoGroup' );
 		FileBackendGroup::destroySingleton();
 
 		parent::tearDown();
