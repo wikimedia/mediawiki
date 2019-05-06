@@ -1,18 +1,16 @@
 <?php
 
-/**
- * @group medium
- * @covers ApiQueryUserInfo
- */
-class ApiQueryUserInfoTest extends ApiTestCase {
-	public function testGetBlockInfo() {
-		$apiQueryUserInfo = new ApiQueryUserInfo(
-			new ApiQuery( new ApiMain( $this->apiContext ), 'userinfo' ),
-			'userinfo'
-		);
+use Wikimedia\TestingAccessWrapper;
 
+/**
+ * @covers ApiBlockInfoTrait
+ */
+class ApiBlockInfoTraitTest extends MediaWikiTestCase {
+
+	public function testGetBlockInfo() {
 		$block = new Block();
-		$info = $apiQueryUserInfo->getBlockInfo( $block );
+		$mock = $this->getMockForTrait( ApiBlockInfoTrait::class );
+		$info = TestingAccessWrapper::newFromObject( $mock )->getBlockInfo( $block );
 		$subset = [
 			'blockid' => null,
 			'blockedby' => '',
@@ -25,15 +23,12 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 	}
 
 	public function testGetBlockInfoPartial() {
-		$apiQueryUserInfo = new ApiQueryUserInfo(
-			new ApiQuery( new ApiMain( $this->apiContext ), 'userinfo' ),
-			'userinfo'
-		);
+		$mock = $this->getMockForTrait( ApiBlockInfoTrait::class );
 
 		$block = new Block( [
 			'sitewide' => false,
 		] );
-		$info = $apiQueryUserInfo->getBlockInfo( $block );
+		$info = TestingAccessWrapper::newFromObject( $mock )->getBlockInfo( $block );
 		$subset = [
 			'blockid' => null,
 			'blockedby' => '',
@@ -44,4 +39,5 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 		];
 		$this->assertArraySubset( $subset, $info );
 	}
+
 }

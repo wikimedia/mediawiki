@@ -28,6 +28,8 @@
  */
 class ApiUnblock extends ApiBase {
 
+	use ApiBlockInfoTrait;
+
 	/**
 	 * Unblocks the specified user or provides the reason the unblock failed.
 	 */
@@ -48,7 +50,7 @@ class ApiUnblock extends ApiBase {
 				$this->dieWithError(
 					$status,
 					null,
-					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) ]
+					[ 'blockinfo' => $this->getBlockInfo( $block ) ]
 				);
 			}
 		}
