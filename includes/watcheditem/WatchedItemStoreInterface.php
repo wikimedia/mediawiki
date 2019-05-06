@@ -252,7 +252,7 @@ interface WatchedItemStoreInterface {
 	 * @since 1.31
 	 *
 	 * @param UserIdentity $user
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 * @param string $force Whether to force the write query to be executed even if the
 	 *    page is not watched or the notification timestamp is already NULL.
 	 *    'force' in order to force
@@ -262,7 +262,7 @@ interface WatchedItemStoreInterface {
 	 * @return bool success Whether a job was enqueued
 	 */
 	public function resetNotificationTimestamp(
-		UserIdentity $user, Title $title, $force = '', $oldid = 0 );
+		UserIdentity $user, LinkTarget $title, $force = '', $oldid = 0 );
 
 	/**
 	 * @since 1.31

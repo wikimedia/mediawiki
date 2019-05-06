@@ -2,6 +2,7 @@
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
@@ -68,14 +69,19 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	private $deferredUpdatesAddCallableUpdateCallback;
 
 	/**
-	 * @var callable|null
-	 */
-	private $revisionGetTimestampFromIdCallback;
-
-	/**
 	 * @var int
 	 */
 	private $updateRowsPerQuery;
+
+	/**
+	 * @var NamespaceInfo
+	 */
+	private $nsInfo;
+
+	/**
+	 * @var RevisionLookup
+	 */
+	private $revisionLookup;
 
 	/**
 	 * @var StatsdDataFactoryInterface
@@ -89,6 +95,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param HashBagOStuff $cache
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param int $updateRowsPerQuery
+	 * @param NamespaceInfo $nsInfo
+	 * @param RevisionLookup $revisionLookup
 	 */
 	public function __construct(
 		ILBFactory $lbFactory,
@@ -96,7 +104,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		BagOStuff $stash,
 		HashBagOStuff $cache,
 		ReadOnlyMode $readOnlyMode,
-		$updateRowsPerQuery
+		$updateRowsPerQuery,
+		NamespaceInfo $nsInfo,
+		RevisionLookup $revisionLookup
 	) {
 		$this->lbFactory = $lbFactory;
 		$this->loadBalancer = $lbFactory->getMainLB();
@@ -107,9 +117,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->stats = new NullStatsdDataFactory();
 		$this->deferredUpdatesAddCallableUpdateCallback =
 			[ DeferredUpdates::class, 'addCallableUpdate' ];
-		$this->revisionGetTimestampFromIdCallback =
-			[ Revision::class, 'getTimestampFromId' ];
 		$this->updateRowsPerQuery = $updateRowsPerQuery;
+		$this->nsInfo = $nsInfo;
+		$this->revisionLookup = $revisionLookup;
 
 		$this->latestUpdateCache = new HashBagOStuff( [ 'maxKeys' => 3 ] );
 	}
@@ -142,29 +152,6 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->deferredUpdatesAddCallableUpdateCallback = $callback;
 		return new ScopedCallback( function () use ( $previousValue ) {
 			$this->deferredUpdatesAddCallableUpdateCallback = $previousValue;
-		} );
-	}
-
-	/**
-	 * Overrides the Revision::getTimestampFromId callback
-	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
-	 *
-	 * @param callable $callback
-	 * @see Revision::getTimestampFromId for callback signiture
-	 *
-	 * @return ScopedCallback to reset the overridden value
-	 * @throws MWException
-	 */
-	public function overrideRevisionGetTimestampFromIdCallback( callable $callback ) {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new MWException(
-				'Cannot override Revision::getTimestampFromId callback in operation.'
-			);
-		}
-		$previousValue = $this->revisionGetTimestampFromIdCallback;
-		$this->revisionGetTimestampFromIdCallback = $callback;
-		return new ScopedCallback( function () use ( $previousValue ) {
-			$this->revisionGetTimestampFromIdCallback = $previousValue;
 		} );
 	}
 
@@ -985,13 +972,13 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	/**
 	 * @since 1.27
 	 * @param UserIdentity $user
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 * @param string $force
 	 * @param int $oldid
 	 * @return bool
 	 */
 	public function resetNotificationTimestamp(
-		UserIdentity $user, Title $title, $force = '', $oldid = 0
+		UserIdentity $user, LinkTarget $title, $force = '', $oldid = 0
 	) {
 		$time = time();
 
@@ -1000,15 +987,19 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			return false;
 		}
 
-		// Hook expects User, not UserIdentity
+		// Hook expects User and Title, not UserIdentity and LinkTarget
 		$userObj = User::newFromId( $user->getId() );
+		$titleObj = Title::castFromLinkTarget( $title );
 		if ( !Hooks::run( 'BeforeResetNotificationTimestamp',
-			[ &$userObj, &$title, $force, &$oldid ] )
+			[ &$userObj, &$titleObj, $force, &$oldid ] )
 		) {
 			return false;
 		}
 		if ( !$userObj->equals( $user ) ) {
 			$user = $userObj;
+		}
+		if ( !$titleObj->equals( $title ) ) {
+			$title = $titleObj;
 		}
 
 		$item = null;
@@ -1020,11 +1011,19 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		// Get the timestamp (TS_MW) of this revision to track the latest one seen
-		$seenTime = call_user_func(
-			$this->revisionGetTimestampFromIdCallback,
-			$title,
-			$oldid ?: $title->getLatestRevID()
-		);
+		$id = $oldid;
+		$seenTime = null;
+		if ( !$id ) {
+			$latestRev = $this->revisionLookup->getRevisionByTitle( $title );
+			if ( $latestRev ) {
+				$id = $latestRev->getId();
+				// Save a DB query
+				$seenTime = $latestRev->getTimestamp();
+			}
+		}
+		if ( $seenTime === null ) {
+			$seenTime = $this->revisionLookup->getTimestampFromId( $id );
+		}
 
 		// Mark the item as read immediately in lightweight storage
 		$this->stash->merge(
@@ -1105,14 +1104,15 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	private function getNotificationTimestamp(
-		UserIdentity $user, Title $title, $item, $force, $oldid
+		UserIdentity $user, LinkTarget $title, $item, $force, $oldid
 	) {
 		if ( !$oldid ) {
 			// No oldid given, assuming latest revision; clear the timestamp.
 			return null;
 		}
 
-		if ( !$title->getNextRevisionID( $oldid ) ) {
+		$oldRev = $this->revisionLookup->getRevisionById( $oldid );
+		if ( !$this->revisionLookup->getNextRevision( $oldRev, $title ) ) {
 			// Oldid given and is the latest revision for this title; clear the timestamp.
 			return null;
 		}
@@ -1128,12 +1128,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		// Oldid given and isn't the latest; update the timestamp.
 		// This will result in no further notification emails being sent!
-		// Calls Revision::getTimestampFromId in normal operation
-		$notificationTimestamp = call_user_func(
-			$this->revisionGetTimestampFromIdCallback,
-			$title,
-			$oldid
-		);
+		$notificationTimestamp = $this->revisionLookup->getTimestampFromId( $oldid );
 
 		// We need to go one second to the future because of various strict comparisons
 		// throughout the codebase
@@ -1192,11 +1187,15 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param LinkTarget $newTarget
 	 */
 	public function duplicateAllAssociatedEntries( LinkTarget $oldTarget, LinkTarget $newTarget ) {
-		$oldTarget = Title::newFromLinkTarget( $oldTarget );
-		$newTarget = Title::newFromLinkTarget( $newTarget );
-
-		$this->duplicateEntry( $oldTarget->getSubjectPage(), $newTarget->getSubjectPage() );
-		$this->duplicateEntry( $oldTarget->getTalkPage(), $newTarget->getTalkPage() );
+		// Duplicate first the subject page, then the talk page
+		$this->duplicateEntry(
+			$this->nsInfo->getSubjectPage( $oldTarget ),
+			$this->nsInfo->getSubjectPage( $newTarget )
+		);
+		$this->duplicateEntry(
+			$this->nsInfo->getTalkPage( $oldTarget ),
+			$this->nsInfo->getTalkPage( $newTarget )
+		);
 	}
 
 	/**
@@ -1260,7 +1259,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @param UserIdentity $user
-	 * @param Title[] $titles
+	 * @param LinkTarget[] $titles
 	 */
 	private function uncacheTitlesForUser( UserIdentity $user, array $titles ) {
 		foreach ( $titles as $title ) {

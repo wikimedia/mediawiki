@@ -3982,14 +3982,14 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Compare with another title.
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 * @return bool
 	 */
-	public function equals( Title $title ) {
+	public function equals( LinkTarget $title ) {
 		// Note: === is necessary for proper matching of number-like titles.
-		return $this->mInterwiki === $title->mInterwiki
-			&& $this->mNamespace == $title->mNamespace
-			&& $this->mDbkeyform === $title->mDbkeyform;
+		return $this->mInterwiki === $title->getInterwiki()
+			&& $this->mNamespace == $title->getNamespace()
+			&& $this->mDbkeyform === $title->getDBkey();
 	}
 
 	/**
