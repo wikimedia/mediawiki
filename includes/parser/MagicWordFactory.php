@@ -118,6 +118,7 @@ class MagicWordFactory {
 		'localtimestamp',
 		'directionmark',
 		'contentlanguage',
+		'userlanguage',
 		'pagelanguage',
 		'numberofadmins',
 		'cascadingsources',

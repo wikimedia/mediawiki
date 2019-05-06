@@ -1047,6 +1047,36 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! end
 
 !! test
+Magic Word: {{USERLANGUAGE}} disabled
+!! config
+wgParserEnableUserLanguage=false
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+language=en
+userLanguage=fr
+!! wikitext
+{{USERLANGUAGE}}
+!! html/*
+<p>en
+</p>
+!! end
+
+!! test
+Magic Word: {{USERLANGUAGE}} enabled
+!! config
+wgParserEnableUserLanguage=true
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+language=en
+userLanguage=fr
+!! wikitext
+{{USERLANGUAGE}}
+!! html/*
+<p>fr
+</p>
+!! end
+
+!! test
 Case-sensitive magic words, when cased differently, should just be template transclusions
 !! wikitext
 {{CurrentMonth}}

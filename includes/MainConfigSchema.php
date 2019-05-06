@@ -6722,6 +6722,19 @@ class MainConfigSchema {
 		'type' => 'map',
 	];
 
+	/**
+	 * Set this to true to allow the {{USERLANGUAGE}} magic word to return the
+	 * actual user language. If it is false, {{USERLANGUAGE}} will return the
+	 * page language. Setting this to true is discouraged since the page
+	 * language should typically be used in the content area. Accessing the user
+	 * language using this feature reduces the efficiency of the parser cache.
+	 *
+	 * @since 1.43
+	 */
+	public const ParserEnableUserLanguage = [
+		'default' => false,
+	];
+
 	// endregion -- end of parser settings
 
 	/***************************************************************************/

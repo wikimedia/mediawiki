@@ -2448,6 +2448,12 @@ $wgTranscludeCacheExpiry = null;
 $wgEnableMagicLinks = null;
 
 /**
+ * Config variable stub for the ParserEnableUserLanguage setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ParserEnableUserLanguage
+ */
+$wgParserEnableUserLanguage = null;
+
+/**
  * Config variable stub for the ArticleCountMethod setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ArticleCountMethod
  */

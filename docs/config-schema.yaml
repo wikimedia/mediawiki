@@ -4292,6 +4292,15 @@ config-schema:
             Enable the magic links feature of automatically turning ISBN xxx,
             PMID xxx, RFC xxx into links
             @since 1.28
+    ParserEnableUserLanguage:
+        default: false
+        description: |-
+            Set this to true to allow the {{USERLANGUAGE}} magic word to return the
+            actual user language. If it is false, {{USERLANGUAGE}} will return the
+            page language. Setting this to true is discouraged since the page
+            language should typically be used in the content area. Accessing the user
+            language using this feature reduces the efficiency of the parser cache.
+            @since 1.43
     ArticleCountMethod:
         default: link
         description: |-

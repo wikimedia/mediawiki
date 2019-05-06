@@ -812,6 +812,7 @@ return [
 				'PMID' => false,
 				'RFC' => false,
 			],
+			'ParserEnableUserLanguage' => false,
 			'ArticleCountMethod' => 'link',
 			'ActiveUserDays' => 30,
 			'LearnerEdits' => 10,
