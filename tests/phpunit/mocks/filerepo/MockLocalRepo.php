@@ -7,17 +7,16 @@
  * @since 1.28
  */
 class MockLocalRepo extends LocalRepo {
-	function getLocalCopy( $virtualUrl ) {
-		return new MockFSFile( wfTempDir() . '/' . wfRandomString( 32 ) );
+	public function getLocalCopy( $virtualUrl ) {
+		return new MockFSFile( "Fake path for $virtualUrl" );
 	}
 
-	function getLocalReference( $virtualUrl ) {
-		return new MockFSFile( wfTempDir() . '/' . wfRandomString( 32 ) );
+	public function getLocalReference( $virtualUrl ) {
+		return new MockFSFile( "Fake path for $virtualUrl" );
 	}
 
-	function getFileProps( $virtualUrl ) {
+	public function getFileProps( $virtualUrl ) {
 		$fsFile = $this->getLocalReference( $virtualUrl );
-
 		return $fsFile->getProps();
 	}
 }

@@ -74,12 +74,8 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->assertFalse(
 			wfRandomString() == wfRandomString()
 		);
-		$this->assertEquals(
-			strlen( wfRandomString( 10 ) ), 10
-		);
-		$this->assertTrue(
-			preg_match( '/^[0-9a-f]+$/i', wfRandomString() ) === 1
-		);
+		$this->assertSame( 10, strlen( wfRandomString( 10 ) ), 'length' );
+		$this->assertSame( 1, preg_match( '/^[0-9a-f]+$/i', wfRandomString() ), 'pattern' );
 	}
 
 	/**

@@ -499,14 +499,15 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @return string Absolute name of the temporary directory
 	 */
 	protected function getNewTempDirectory() {
-		// Starting of with a temporary /file/.
+		// Starting of with a temporary *file*.
 		$fileName = $this->getNewTempFile();
 
-		// Converting the temporary /file/ to a /directory/
+		// Converting the temporary file to a *directory*.
 		// The following is not atomic, but at least we now have a single place,
-		// where temporary directory creation is bundled and can be improved
+		// where temporary directory creation is bundled and can be improved.
 		unlink( $fileName );
-		$this->assertTrue( wfMkdirParents( $fileName ) );
+		// If this fails for some reason, PHP will warn and fail the test.
+		mkdir( $fileName, 0777, /* recursive = */ true );
 
 		return $fileName;
 	}

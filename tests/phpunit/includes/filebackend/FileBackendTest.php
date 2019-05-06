@@ -98,7 +98,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			'name' => 'localtesting',
 			'lockManager' => LockManagerGroup::singleton()->get( 'fsLockManager' ),
 			'parallelize' => 'implicit',
-			'wikiId' => wfWikiID() . wfRandomString(),
+			'wikiId' => 'testdb',
 			'backends' => [
 				[
 					'name' => 'localmultitesting1',
@@ -2569,11 +2569,9 @@ class FileBackendTest extends MediaWikiTestCase {
 			'wikiId' => wfWikiID()
 		] ) );
 
-		$name = wfRandomString( 300 );
-
 		$input = [
 			'headers' => [
-				'content-Disposition' => FileBackend::makeContentDisposition( 'inline', $name ),
+				'content-Disposition' => FileBackend::makeContentDisposition( 'inline', 'name' ),
 				'Content-dUration' => 25.6,
 				'X-LONG-VALUE' => str_pad( '0', 300 ),
 				'CONTENT-LENGTH' => 855055,
@@ -2581,7 +2579,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		];
 		$expected = [
 			'headers' => [
-				'content-disposition' => FileBackend::makeContentDisposition( 'inline', $name ),
+				'content-disposition' => FileBackend::makeContentDisposition( 'inline', 'name' ),
 				'content-duration' => 25.6,
 				'content-length' => 855055
 			]

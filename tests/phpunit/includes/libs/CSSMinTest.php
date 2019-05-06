@@ -85,9 +85,9 @@ class CSSMinTest extends MediaWikiTestCase {
 	 * @covers CSSMin::getMimeType
 	 */
 	public function testGetMimeType( $fileContents, $fileExtension, $expected ) {
-		$fileName = wfTempDir() . DIRECTORY_SEPARATOR . uniqid( 'MW_PHPUnit_CSSMinTest_' ) . '.'
-			. $fileExtension;
-		$this->addTmpFiles( $fileName );
+		// Automatically removed when it falls out of scope (including if the test fails)
+		$file = TempFSFile::factory( 'PHPUnit_CSSMinTest_', $fileExtension, wfTempDir() );
+		$fileName = $file->getPath();
 		file_put_contents( $fileName, $fileContents );
 		$this->assertSame( $expected, CSSMin::getMimeType( $fileName ) );
 	}
