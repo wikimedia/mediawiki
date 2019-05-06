@@ -3445,19 +3445,10 @@ class Title implements LinkTarget, IDBAccessObject {
 		array $changeTags = []
 	) {
 		global $wgUser;
-		$err = $this->isValidMoveOperation( $nt, $auth, $reason );
-		if ( is_array( $err ) ) {
-			// Auto-block user's IP if the account was "hard" blocked
-			$wgUser->spreadAnyEditBlock();
-			return $err;
-		}
-		// Check suppressredirect permission
-		if ( $auth && !$wgUser->isAllowed( 'suppressredirect' ) ) {
-			$createRedirect = true;
-		}
 
 		$mp = new MovePage( $this, $nt );
-		$status = $mp->move( $wgUser, $reason, $createRedirect, $changeTags );
+		$method = $auth ? 'moveIfAllowed' : 'move';
+		$status = $mp->$method( $wgUser, $reason, $createRedirect, $changeTags );
 		if ( $status->isOK() ) {
 			return true;
 		} else {
