@@ -8,50 +8,124 @@
 use MediaWiki\Config\ServiceOptions;
 
 class NamespaceInfoTest extends MediaWikiTestCase {
-	private function newObj( array $options = [] ) : NamespaceInfo {
-		$defaults = [
-			'AllowImageMoving' => true,
-			'CanonicalNamespaceNames' => [
-				NS_TALK => 'Talk',
-				NS_USER => 'User',
-				NS_USER_TALK => 'User_talk',
-				NS_SPECIAL => 'Special',
-				NS_MEDIA => 'Media',
-			],
-			'CapitalLinkOverrides' => [],
-			'CapitalLinks' => true,
-			'ContentNamespaces' => [ NS_MAIN ],
-			'ExtraNamespaces' => [],
-			'ExtraSignatureNamespaces' => [],
-			'NamespaceContentModels' => [],
-			'NamespaceProtection' => [],
-			'NamespacesWithSubpages' => [
-				NS_TALK => true,
-				NS_USER => true,
-				NS_USER_TALK => true,
-			],
-			'NonincludableNamespaces' => [],
-			'RestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
-		];
-		return new NamespaceInfo(
-			new ServiceOptions( NamespaceInfo::$constructorOptions, $options, $defaults ) );
+	/**********************************************************************************************
+	 * Shared code
+	 * %{
+	 */
+	private $scopedCallback;
+
+	public function setUp() {
+		parent::setUp();
+
+		// Boo, there's still some global state in the class :(
+		global $wgHooks;
+		$hooks = $wgHooks;
+		unset( $hooks['CanonicalNamespaces'] );
+		$this->setMwGlobals( 'wgHooks', $hooks );
+
+		$this->scopedCallback =
+			ExtensionRegistry::getInstance()->setAttributeForTest( 'ExtensionNamespaces', [] );
+	}
+
+	public function tearDown() {
+		$this->scopedCallback = null;
+
+		parent::tearDown();
 	}
 
 	/**
-	 * @todo Write more tests, handle $wgAllowImageMoving setting
-	 * @covers NamespaceInfo::isMovable
+	 * TODO Make this a const once HHVM support is dropped (T192166)
 	 */
-	public function testIsMovable() {
-		$this->assertFalse( $this->newObj()->isMovable( NS_SPECIAL ) );
+	private static $defaultOptions = [
+		'AllowImageMoving' => true,
+		'CanonicalNamespaceNames' => [
+			NS_TALK => 'Talk',
+			NS_USER => 'User',
+			NS_USER_TALK => 'User_talk',
+			NS_SPECIAL => 'Special',
+			NS_MEDIA => 'Media',
+		],
+		'CapitalLinkOverrides' => [],
+		'CapitalLinks' => true,
+		'ContentNamespaces' => [ NS_MAIN ],
+		'ExtraNamespaces' => [],
+		'ExtraSignatureNamespaces' => [],
+		'NamespaceContentModels' => [],
+		'NamespaceProtection' => [],
+		'NamespacesWithSubpages' => [
+			NS_TALK => true,
+			NS_USER => true,
+			NS_USER_TALK => true,
+		],
+		'NonincludableNamespaces' => [],
+		'RestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
+	];
+
+	private function newObj( array $options = [] ) : NamespaceInfo {
+		return new NamespaceInfo( new ServiceOptions( NamespaceInfo::$constructorOptions,
+			$options, self::$defaultOptions ) );
 	}
 
-	private function assertIsSubject( $ns ) {
-		$this->assertTrue( $this->newObj()->isSubject( $ns ) );
+	// %} End shared code
+
+	/**********************************************************************************************
+	 * Basic methods
+	 * %{
+	 */
+
+	/**
+	 * @covers NamespaceInfo::__construct
+	 * @dataProvider provideConstructor
+	 * @param ServiceOptions $options
+	 * @param string|null $expectedExceptionText
+	 */
+	public function testConstructor( ServiceOptions $options, $expectedExceptionText = null ) {
+		if ( $expectedExceptionText !== null ) {
+			$this->setExpectedException( \Wikimedia\Assert\PreconditionException::class,
+				$expectedExceptionText );
+		}
+		new NamespaceInfo( $options );
+		$this->assertTrue( true );
 	}
 
-	private function assertIsNotSubject( $ns ) {
-		$this->assertFalse(
-			$this->newObj()->isSubject( $ns ) );
+	public function provideConstructor() {
+		return [
+			[ new ServiceOptions( NamespaceInfo::$constructorOptions, self::$defaultOptions ) ],
+			[ new ServiceOptions( [], [] ), 'Required options missing: ' ],
+			[ new ServiceOptions(
+				array_merge( NamespaceInfo::$constructorOptions, [ 'invalid' ] ),
+				self::$defaultOptions,
+				[ 'invalid' => '' ]
+			), 'Unsupported options passed: invalid' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideIsMovable
+	 * @covers NamespaceInfo::isMovable
+	 *
+	 * @param bool $expected
+	 * @param int $ns
+	 * @param bool $allowImageMoving
+	 */
+	public function testIsMovable( $expected, $ns, $allowImageMoving = true ) {
+		$obj = $this->newObj( [ 'AllowImageMoving' => $allowImageMoving ] );
+		$this->assertSame( $expected, $obj->isMovable( $ns ) );
+	}
+
+	public function provideIsMovable() {
+		return [
+			'Main' => [ true, NS_MAIN ],
+			'Talk' => [ true, NS_TALK ],
+			'Special' => [ false, NS_SPECIAL ],
+			'Nonexistent even namespace' => [ true, 1234 ],
+			'Nonexistent odd namespace' => [ true, 12345 ],
+
+			'Media with image moving' => [ false, NS_MEDIA, true ],
+			'Media with no image moving' => [ false, NS_MEDIA, false ],
+			'File with image moving' => [ true, NS_FILE, true ],
+			'File with no image moving' => [ false, NS_FILE, false ],
+		];
 	}
 
 	/**
@@ -110,6 +184,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 * Namespaces without a talk page (NS_MEDIA, NS_SPECIAL) are tested in
 	 * the function testGetTalkExceptions()
 	 * @covers NamespaceInfo::getTalk
+	 * @covers NamespaceInfo::isMethodValidFor
 	 */
 	public function testGetTalk() {
 		$obj = $this->newObj();
@@ -124,6 +199,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 * NS_MEDIA does not have talk pages. MediaWiki raise an exception for them.
 	 * @expectedException MWException
 	 * @covers NamespaceInfo::getTalk
+	 * @covers NamespaceInfo::isMethodValidFor
 	 */
 	public function testGetTalkExceptionsForNsMedia() {
 		$this->assertNull( $this->newObj()->getTalk( NS_MEDIA ) );
@@ -170,8 +246,29 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers NamespaceInfo::exists
+	 * @dataProvider provideExists
+	 * @param int $ns
+	 * @param bool $expected
+	 */
+	public function testExists( $ns, $expected ) {
+		$this->assertSame( $expected, $this->newObj()->exists( $ns ) );
+	}
+
+	public function provideExists() {
+		return [
+			'Main' => [ NS_MAIN, true ],
+			'Talk' => [ NS_TALK, true ],
+			'Media' => [ NS_MEDIA, true ],
+			'Special' => [ NS_SPECIAL, true ],
+			'Nonexistent' => [ 12345, false ],
+			'Negative nonexistent' => [ -12345, false ],
+		];
+	}
+
+	/**
 	 * Note if we add a namespace registration system with keys like 'MAIN'
-	 * we should add tests here for equivilance on things like 'MAIN' == 0
+	 * we should add tests here for equivalence on things like 'MAIN' == 0
 	 * and 'MAIN' == NS_MAIN.
 	 * @covers NamespaceInfo::equals
 	 */
@@ -271,6 +368,58 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 			// NS_MAIN is always content
 			[ NS_MAIN, true, [] ],
 		];
+	}
+
+	/**
+	 * @dataProvider provideWantSignatures
+	 * @covers NamespaceInfo::wantSignatures
+	 *
+	 * @param int $index
+	 * @param bool $expected
+	 */
+	public function testWantSignatures( $index, $expected ) {
+		$this->assertSame( $expected, $this->newObj()->wantSignatures( $index ) );
+	}
+
+	public function provideWantSignatures() {
+		return [
+			'Main' => [ NS_MAIN, false ],
+			'Talk' => [ NS_TALK, true ],
+			'User' => [ NS_USER, false ],
+			'User talk' => [ NS_USER_TALK, true ],
+			'Special' => [ NS_SPECIAL, false ],
+			'Media' => [ NS_MEDIA, false ],
+			'Nonexistent talk' => [ 12345, true ],
+			'Nonexistent subject' => [ 123456, false ],
+			'Nonexistent negative odd' => [ -12345, false ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideWantSignatures_ExtraSignatureNamespaces
+	 * @covers NamespaceInfo::wantSignatures
+	 *
+	 * @param int $index
+	 * @param int $expected
+	 */
+	public function testWantSignatures_ExtraSignatureNamespaces( $index, $expected ) {
+		$obj = $this->newObj( [ 'ExtraSignatureNamespaces' =>
+			[ NS_MAIN, NS_USER, NS_SPECIAL, NS_MEDIA, 123456, -12345 ] ] );
+		$this->assertSame( $expected, $obj->wantSignatures( $index ) );
+	}
+
+	public function provideWantSignatures_ExtraSignatureNamespaces() {
+		$ret = array_map(
+			function ( $arr ) {
+				// We've added all these as extra signature namespaces, so expect true
+				return [ $arr[0], true ];
+			},
+			self::provideWantSignatures()
+		);
+
+		// Add one more that's false
+		$ret['Another nonexistent subject'] = [ 12345678, false ];
+		return $ret;
 	}
 
 	/**
@@ -469,6 +618,34 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provideGetNamespaceContentModel
+	 * @covers NamespaceInfo::getNamespaceContentModel
+	 *
+	 * @param int $ns
+	 * @param string $expected
+	 */
+	public function testGetNamespaceContentModel( $ns, $expected ) {
+		$obj = $this->newObj( [ 'NamespaceContentModels' =>
+			[ NS_USER => CONTENT_MODEL_WIKITEXT, 123 => CONTENT_MODEL_JSON, 1234 => 'abcdef' ],
+		] );
+		$this->assertSame( $expected, $obj->getNamespaceContentModel( $ns ) );
+	}
+
+	public function provideGetNamespaceContentModel() {
+		return [
+			[ NS_MAIN, null ],
+			[ NS_TALK, null ],
+			[ NS_USER, CONTENT_MODEL_WIKITEXT ],
+			[ NS_USER_TALK, null ],
+			[ NS_SPECIAL, null ],
+			[ 122, null ],
+			[ 123, CONTENT_MODEL_JSON ],
+			[ 1234, 'abcdef' ],
+			[ 1235, null ],
+		];
+	}
+
+	/**
 	 * @dataProvider provideGetCategoryLinkType
 	 * @covers NamespaceInfo::getCategoryLinkType
 	 *
@@ -496,4 +673,536 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 			[ 101, 'page' ],
 		];
 	}
+
+	// %} End basic methods
+
+	/**********************************************************************************************
+	 * Canonical namespaces
+	 * %{
+	 */
+
+	// Default canonical namespaces
+	// %{
+	private function getDefaultNamespaces() {
+		return [ NS_MAIN => '' ] + self::$defaultOptions['CanonicalNamespaceNames'];
+	}
+
+	/**
+	 * @covers NamespaceInfo::getCanonicalNamespaces
+	 */
+	public function testGetCanonicalNamespaces() {
+		$this->assertSame(
+			$this->getDefaultNamespaces(),
+			$this->newObj()->getCanonicalNamespaces()
+		);
+	}
+
+	/**
+	 * @dataProvider provideGetCanonicalName
+	 * @covers NamespaceInfo::getCanonicalName
+	 *
+	 * @param int $index
+	 * @param string|bool $expected
+	 */
+	public function testGetCanonicalName( $index, $expected ) {
+		$this->assertSame( $expected, $this->newObj()->getCanonicalName( $index ) );
+	}
+
+	public function provideGetCanonicalName() {
+		return [
+			'Main' => [ NS_MAIN, '' ],
+			'Talk' => [ NS_TALK, 'Talk' ],
+			'With underscore not space' => [ NS_USER_TALK, 'User_talk' ],
+			'Special' => [ NS_SPECIAL, 'Special' ],
+			'Nonexistent' => [ 12345, false ],
+			'Nonexistent negative' => [ -12345, false ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetCanonicalIndex
+	 * @covers NamespaceInfo::getCanonicalIndex
+	 *
+	 * @param string $name
+	 * @param int|null $expected
+	 */
+	public function testGetCanonicalIndex( $name, $expected ) {
+		$this->assertSame( $expected, $this->newObj()->getCanonicalIndex( $name ) );
+	}
+
+	public function provideGetCanonicalIndex() {
+		return [
+			'Main' => [ '', NS_MAIN ],
+			'Talk' => [ 'talk', NS_TALK ],
+			'Not lowercase' => [ 'Talk', null ],
+			'With underscore' => [ 'user_talk', NS_USER_TALK ],
+			'Space is not recognized for underscore' => [ 'user talk', null ],
+			'0' => [ '0', null ],
+		];
+	}
+
+	/**
+	 * @covers NamespaceInfo::getValidNamespaces
+	 */
+	public function testGetValidNamespaces() {
+		$this->assertSame(
+			[ NS_MAIN, NS_TALK, NS_USER, NS_USER_TALK ],
+			$this->newObj()->getValidNamespaces()
+		);
+	}
+
+	// %} End default canonical namespaces
+
+	// No canonical namespace names
+	// %{
+	/**
+	 * @covers NamespaceInfo::getCanonicalNamespaces
+	 */
+	public function testGetCanonicalNamespaces_NoCanonicalNamespaceNames() {
+		$obj = $this->newObj( [ 'CanonicalNamespaceNames' => [] ] );
+
+		$this->assertSame( [ NS_MAIN => '' ], $obj->getCanonicalNamespaces() );
+	}
+
+	/**
+	 * @covers NamespaceInfo::getCanonicalName
+	 */
+	public function testGetCanonicalName_NoCanonicalNamespaceNames() {
+		$obj = $this->newObj( [ 'CanonicalNamespaceNames' => [] ] );
+
+		$this->assertSame( '', $obj->getCanonicalName( NS_MAIN ) );
+		$this->assertFalse( $obj->getCanonicalName( NS_TALK ) );
+	}
+
+	/**
+	 * @covers NamespaceInfo::getCanonicalIndex
+	 */
+	public function testGetCanonicalIndex_NoCanonicalNamespaceNames() {
+		$obj = $this->newObj( [ 'CanonicalNamespaceNames' => [] ] );
+
+		$this->assertSame( NS_MAIN, $obj->getCanonicalIndex( '' ) );
+		$this->assertNull( $obj->getCanonicalIndex( 'talk' ) );
+	}
+
+	/**
+	 * @covers NamespaceInfo::getValidNamespaces
+	 */
+	public function testGetValidNamespaces_NoCanonicalNamespaceNames() {
+		$obj = $this->newObj( [ 'CanonicalNamespaceNames' => [] ] );
+
+		$this->assertSame( [ NS_MAIN ], $obj->getValidNamespaces() );
+	}
+
+	// %} End no canonical namespace names
+
+	// Test extension namespaces
+	// %{
+	private function setupExtensionNamespaces() {
+		$this->scopedCallback = null;
+		$this->scopedCallback = ExtensionRegistry::getInstance()->setAttributeForTest(
+			'ExtensionNamespaces',
+			[ NS_MAIN => 'No effect', NS_TALK => 'No effect', 12345 => 'Extended' ]
+		);
+	}
+
+	/**
+	 * @covers NamespaceInfo::getCanonicalNamespaces
+	 */
+	public function testGetCanonicalNamespaces_ExtensionNamespaces() {
+		$this->setupExtensionNamespaces();
+
+		$this->assertSame(
+			$this->getDefaultNamespaces() + [ 12345 => 'Extended' ],
+			$this->newObj()->getCanonicalNamespaces()
+		);
+	}
+
+	/**
+	 * @covers NamespaceInfo::getCanonicalName
+	 */
+	public function testGetCanonicalName_ExtensionNamespaces() {
+		$this->setupExtensionNamespaces();
+		$obj = $this->newObj();
+
+		$this->assertSame( '', $obj->getCanonicalName( NS_MAIN ) );
+		$this->assertSame( 'Talk', $obj->getCanonicalName( NS_TALK ) );
+		$this->assertSame( 'Extended', $obj->getCanonicalName( 12345 ) );
+	}
+
+	/**
+	 * @covers NamespaceInfo::getCanonicalIndex
+	 */
+	public function testGetCanonicalIndex_ExtensionNamespaces() {
+		$this->setupExtensionNamespaces();
+		$obj = $this->newObj();
+
+		$this->assertSame( NS_MAIN, $obj->getCanonicalIndex( '' ) );
+		$this->assertSame( NS_TALK, $obj->getCanonicalIndex( 'talk' ) );
+		$this->assertSame( 12345, $obj->getCanonicalIndex( 'extended' ) );
+	}
+
+	/**
+	 * @covers NamespaceInfo::getValidNamespaces
+	 */
+	public function testGetValidNamespaces_ExtensionNamespaces() {
+		$this->setupExtensionNamespaces();
+
+		$this->assertSame(
+			[ NS_MAIN, NS_TALK, NS_USER, NS_USER_TALK, 12345 ],
+			$this->newObj()->getValidNamespaces()
+		);
+	}
+
+	// %} End extension namespaces
+
+	// Hook namespaces
+	// %{
+	/**
+	 * @return array Expected canonical namespaces
+	 */
+	private function setupHookNamespaces() {
+		$callback =
+			function ( &$canonicalNamespaces ) {
+				$canonicalNamespaces[NS_MAIN] = 'Main';
+				unset( $canonicalNamespaces[NS_MEDIA] );
+				$canonicalNamespaces[123456] = 'Hooked';
+			};
+		$this->setTemporaryHook( 'CanonicalNamespaces', $callback );
+		$expected = $this->getDefaultNamespaces();
+		( $callback )( $expected );
+		return $expected;
+	}
+
+	/**
+	 * @covers NamespaceInfo::getCanonicalNamespaces
+	 */
+	public function testGetCanonicalNamespaces_HookNamespaces() {
+		$expected = $this->setupHookNamespaces();
+
+		$this->assertSame( $expected, $this->newObj()->getCanonicalNamespaces() );
+	}
+
+	/**
+	 * @covers NamespaceInfo::getCanonicalName
+	 */
+	public function testGetCanonicalName_HookNamespaces() {
+		$this->setupHookNamespaces();
+		$obj = $this->newObj();
+
+		$this->assertSame( 'Main', $obj->getCanonicalName( NS_MAIN ) );
+		$this->assertFalse( $obj->getCanonicalName( NS_MEDIA ) );
+		$this->assertSame( 'Hooked', $obj->getCanonicalName( 123456 ) );
+	}
+
+	/**
+	 * @covers NamespaceInfo::getCanonicalIndex
+	 */
+	public function testGetCanonicalIndex_HookNamespaces() {
+		$this->setupHookNamespaces();
+		$obj = $this->newObj();
+
+		$this->assertSame( NS_MAIN, $obj->getCanonicalIndex( 'main' ) );
+		$this->assertNull( $obj->getCanonicalIndex( 'media' ) );
+		$this->assertSame( 123456, $obj->getCanonicalIndex( 'hooked' ) );
+	}
+
+	/**
+	 * @covers NamespaceInfo::getValidNamespaces
+	 */
+	public function testGetValidNamespaces_HookNamespaces() {
+		$this->setupHookNamespaces();
+
+		$this->assertSame(
+			[ NS_MAIN, NS_TALK, NS_USER, NS_USER_TALK, 123456 ],
+			$this->newObj()->getValidNamespaces()
+		);
+	}
+
+	// %} End hook namespaces
+
+	// Extra namespaces
+	// %{
+	/**
+	 * @return NamespaceInfo
+	 */
+	private function setupExtraNamespaces() {
+		return $this->newObj( [ 'ExtraNamespaces' =>
+			[ NS_MAIN => 'No effect', NS_TALK => 'No effect', 1234567 => 'Extra' ]
+		] );
+	}
+
+	/**
+	 * @covers NamespaceInfo::getCanonicalNamespaces
+	 */
+	public function testGetCanonicalNamespaces_ExtraNamespaces() {
+		$this->assertSame(
+			$this->getDefaultNamespaces() + [ 1234567 => 'Extra' ],
+			$this->setupExtraNamespaces()->getCanonicalNamespaces()
+		);
+	}
+
+	/**
+	 * @covers NamespaceInfo::getCanonicalName
+	 */
+	public function testGetCanonicalName_ExtraNamespaces() {
+		$obj = $this->setupExtraNamespaces();
+
+		$this->assertSame( '', $obj->getCanonicalName( NS_MAIN ) );
+		$this->assertSame( 'Talk', $obj->getCanonicalName( NS_TALK ) );
+		$this->assertSame( 'Extra', $obj->getCanonicalName( 1234567 ) );
+	}
+
+	/**
+	 * @covers NamespaceInfo::getCanonicalIndex
+	 */
+	public function testGetCanonicalIndex_ExtraNamespaces() {
+		$obj = $this->setupExtraNamespaces();
+
+		$this->assertNull( $obj->getCanonicalIndex( 'no effect' ) );
+		$this->assertNull( $obj->getCanonicalIndex( 'no_effect' ) );
+		$this->assertSame( 1234567, $obj->getCanonicalIndex( 'extra' ) );
+	}
+
+	/**
+	 * @covers NamespaceInfo::getValidNamespaces
+	 */
+	public function testGetValidNamespaces_ExtraNamespaces() {
+		$this->assertSame(
+			[ NS_MAIN, NS_TALK, NS_USER, NS_USER_TALK, 1234567 ],
+			$this->setupExtraNamespaces()->getValidNamespaces()
+		);
+	}
+
+	// %} End extra namespaces
+
+	// Canonical namespace caching
+	// %{
+	/**
+	 * @covers NamespaceInfo::getCanonicalNamespaces
+	 */
+	public function testGetCanonicalNamespaces_caching() {
+		$obj = $this->newObj();
+
+		// This should cache the values
+		$obj->getCanonicalNamespaces();
+
+		// Now try to alter them through nefarious means
+		$this->setupExtensionNamespaces();
+		$this->setupHookNamespaces();
+
+		// Should have no effect
+		$this->assertSame( $this->getDefaultNamespaces(), $obj->getCanonicalNamespaces() );
+	}
+
+	/**
+	 * @covers NamespaceInfo::getCanonicalName
+	 */
+	public function testGetCanonicalName_caching() {
+		$obj = $this->newObj();
+
+		// This should cache the values
+		$obj->getCanonicalName( NS_MAIN );
+
+		// Now try to alter them through nefarious means
+		$this->setupExtensionNamespaces();
+		$this->setupHookNamespaces();
+
+		// Should have no effect
+		$this->assertSame( '', $obj->getCanonicalName( NS_MAIN ) );
+		$this->assertSame( 'Media', $obj->getCanonicalName( NS_MEDIA ) );
+		$this->assertFalse( $obj->getCanonicalName( 12345 ) );
+		$this->assertFalse( $obj->getCanonicalName( 123456 ) );
+	}
+
+	/**
+	 * @covers NamespaceInfo::getCanonicalIndex
+	 */
+	public function testGetCanonicalIndex_caching() {
+		$obj = $this->newObj();
+
+		// This should cache the values
+		$obj->getCanonicalIndex( '' );
+
+		// Now try to alter them through nefarious means
+		$this->setupExtensionNamespaces();
+		$this->setupHookNamespaces();
+
+		// Should have no effect
+		$this->assertSame( NS_MAIN, $obj->getCanonicalIndex( '' ) );
+		$this->assertSame( NS_MEDIA, $obj->getCanonicalIndex( 'media' ) );
+		$this->assertNull( $obj->getCanonicalIndex( 'extended' ) );
+		$this->assertNull( $obj->getCanonicalIndex( 'hooked' ) );
+	}
+
+	/**
+	 * @covers NamespaceInfo::getValidNamespaces
+	 */
+	public function testGetValidNamespaces_caching() {
+		$obj = $this->newObj();
+
+		// This should cache the values
+		$obj->getValidNamespaces();
+
+		// Now try to alter through nefarious means
+		$this->setupExtensionNamespaces();
+		$this->setupHookNamespaces();
+
+		// Should have no effect
+		$this->assertSame(
+			[ NS_MAIN, NS_TALK, NS_USER, NS_USER_TALK ],
+			$obj->getValidNamespaces()
+		);
+	}
+
+	// %} End canonical namespace caching
+
+	// Miscellaneous
+	// %{
+
+	/**
+	 * @dataProvider provideGetValidNamespaces_misc
+	 * @covers NamespaceInfo::getValidNamespaces
+	 *
+	 * @param array $namespaces List of namespace indices to return from getCanonicalNamespaces()
+	 *   (list is overwritten by a hook, so NS_MAIN doesn't have to be present)
+	 * @param array $expected
+	 */
+	public function testGetValidNamespaces_misc( array $namespaces, array $expected ) {
+		// Each namespace's name is just its index
+		$this->setTemporaryHook( 'CanonicalNamespaces',
+			function ( &$canonicalNamespaces ) use ( $namespaces ) {
+				$canonicalNamespaces = array_combine( $namespaces, $namespaces );
+			}
+		);
+		$this->assertSame( $expected, $this->newObj()->getValidNamespaces() );
+	}
+
+	public function provideGetValidNamespaces_misc() {
+		return [
+			'Out of order (T109137)' => [ [ 1, 0 ], [ 0, 1 ] ],
+			'Alphabetical order' => [ [ 10, 2 ], [ 2, 10 ] ],
+			'Negative' => [ [ -1000, -500, -2, 0 ], [ 0 ] ],
+		];
+	}
+
+	// %} End miscellaneous
+	// %} End canonical namespaces
+
+	/**********************************************************************************************
+	 * Restriction levels
+	 * %{
+	 */
+
+	/**
+	 * This mock user can only have isAllowed() called on it.
+	 *
+	 * @param array $groups Groups for the mock user to have
+	 * @return User
+	 */
+	private function getMockUser( array $groups = [] ) : User {
+		$groups[] = '*';
+
+		$mock = $this->createMock( User::class );
+		$mock->method( 'isAllowed' )->will( $this->returnCallback(
+			function ( $action ) use ( $groups ) {
+				global $wgGroupPermissions, $wgRevokePermissions;
+				if ( $action == '' ) {
+					return true;
+				}
+				foreach ( $wgRevokePermissions as $group => $rights ) {
+					if ( !in_array( $group, $groups ) ) {
+						continue;
+					}
+					if ( isset( $rights[$action] ) && $rights[$action] ) {
+						return false;
+					}
+				}
+				foreach ( $wgGroupPermissions as $group => $rights ) {
+					if ( !in_array( $group, $groups ) ) {
+						continue;
+					}
+					if ( isset( $rights[$action] ) && $rights[$action] ) {
+						return true;
+					}
+				}
+				return false;
+			}
+		) );
+		$mock->expects( $this->never() )->method( $this->anythingBut( 'isAllowed' ) );
+		return $mock;
+	}
+
+	/**
+	 * @dataProvider provideGetRestrictionLevels
+	 * @covers NamespaceInfo::getRestrictionLevels
+	 *
+	 * @param array $expected
+	 * @param int $ns
+	 * @param User|null $user
+	 */
+	public function testGetRestrictionLevels( array $expected, $ns, User $user = null ) {
+		$this->setMwGlobals( [
+			'wgGroupPermissions' => [
+				'*' => [ 'edit' => true ],
+				'autoconfirmed' => [ 'editsemiprotected' => true ],
+				'sysop' => [
+					'editsemiprotected' => true,
+					'editprotected' => true,
+				],
+				'privileged' => [ 'privileged' => true ],
+			],
+			'wgRevokePermissions' => [
+				'noeditsemiprotected' => [ 'editsemiprotected' => true ],
+			],
+		] );
+		$obj = $this->newObj( [
+			'NamespaceProtection' => [
+				NS_MAIN => 'autoconfirmed',
+				NS_USER => 'sysop',
+				101 => [ 'editsemiprotected', 'privileged' ],
+			],
+		] );
+		$this->assertSame( $expected, $obj->getRestrictionLevels( $ns, $user ) );
+	}
+
+	public function provideGetRestrictionLevels() {
+		return [
+			'No namespace restriction' => [ [ '', 'autoconfirmed', 'sysop' ], NS_TALK ],
+			'Restricted to autoconfirmed' => [ [ '', 'sysop' ], NS_MAIN ],
+			'Restricted to sysop' => [ [ '' ], NS_USER ],
+			// @todo Bug -- 'sysop' protection should be allowed in this case. Someone who's
+			// autoconfirmed and also privileged can edit this namespace, and would be blocked by
+			// the sysop protection.
+			'Restricted to someone in two groups' => [ [ '' ], 101 ],
+
+			'No special permissions' => [ [ '' ], NS_TALK, $this->getMockUser() ],
+			'autoconfirmed' => [
+				[ '', 'autoconfirmed' ],
+				NS_TALK,
+				$this->getMockUser( [ 'autoconfirmed' ] )
+			],
+			'autoconfirmed revoked' => [
+				[ '' ],
+				NS_TALK,
+				$this->getMockUser( [ 'autoconfirmed', 'noeditsemiprotected' ] )
+			],
+			'sysop' => [
+				[ '', 'autoconfirmed', 'sysop' ],
+				NS_TALK,
+				$this->getMockUser( [ 'sysop' ] )
+			],
+			'sysop with autoconfirmed revoked (a bit silly)' => [
+				[ '', 'sysop' ],
+				NS_TALK,
+				$this->getMockUser( [ 'sysop', 'noeditsemiprotected' ] )
+			],
+		];
+	}
+
+	// %} End restriction levels
 }
+
+/**
+ * For really cool vim folding this needs to be at the end:
+ * vim: foldmarker=%{,%} foldmethod=marker
+ */
