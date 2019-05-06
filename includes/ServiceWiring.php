@@ -208,7 +208,7 @@ return [
 	},
 
 	'GenderCache' => function ( MediaWikiServices $services ) : GenderCache {
-		return new GenderCache();
+		return new GenderCache( $services->getNamespaceInfo() );
 	},
 
 	'HttpRequestFactory' =>
