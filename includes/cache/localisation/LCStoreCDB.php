@@ -42,13 +42,11 @@ class LCStoreCDB implements LCStore {
 	/** @var string Current language code */
 	private $currentLang;
 
-	/** @var bool|string Cache directory. False if not set */
+	/** @var string Cache directory */
 	private $directory;
 
 	function __construct( $conf = [] ) {
-		global $wgCacheDirectory;
-
-		$this->directory = $conf['directory'] ?? $wgCacheDirectory;
+		$this->directory = $conf['directory'];
 	}
 
 	public function get( $code, $key ) {

@@ -192,7 +192,11 @@ class LocalisationCache {
 		global $wgCacheDirectory;
 
 		$this->conf = $conf;
+
+		$directory = !empty( $conf['storeDirectory'] ) ? $conf['storeDirectory'] : $wgCacheDirectory;
 		$storeArg = [];
+		$storeArg['directory'] = $directory;
+
 		if ( !empty( $conf['storeClass'] ) ) {
 			$storeClass = $conf['storeClass'];
 		} else {
@@ -209,10 +213,7 @@ class LocalisationCache {
 					$storeClass = LCStoreStaticArray::class;
 					break;
 				case 'detect':
-					if ( !empty( $conf['storeDirectory'] ) ) {
-						$storeClass = LCStoreCDB::class;
-					} elseif ( $wgCacheDirectory ) {
-						$storeArg['directory'] = $wgCacheDirectory;
+					if ( $directory ) {
 						$storeClass = LCStoreCDB::class;
 					} else {
 						$storeClass = LCStoreDB::class;
@@ -227,9 +228,6 @@ class LocalisationCache {
 		}
 
 		wfDebugLog( 'caches', static::class . ": using store $storeClass" );
-		if ( !empty( $conf['storeDirectory'] ) ) {
-			$storeArg['directory'] = $conf['storeDirectory'];
-		}
 
 		$this->store = new $storeClass( $storeArg );
 		foreach ( [ 'manualRecache', 'forceRecache' ] as $var ) {
