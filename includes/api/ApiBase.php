@@ -36,6 +36,8 @@ use Wikimedia\Rdbms\IDatabase;
  */
 abstract class ApiBase extends ContextSource {
 
+	use ApiBlockInfoTrait;
+
 	/**
 	 * @name Constants for ::getAllowedParams() arrays
 	 * These constants are keys in the arrays returned by ::getAllowedParams()
@@ -1811,7 +1813,7 @@ abstract class ApiBase extends ContextSource {
 			if ( is_string( $error[0] ) && isset( self::$blockMsgMap[$error[0]] ) && $user->getBlock() ) {
 				list( $msg, $code ) = self::$blockMsgMap[$error[0]];
 				$status->fatal( ApiMessage::create( $msg, $code,
-					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
+					[ 'blockinfo' => $this->getBlockInfo( $user->getBlock() ) ]
 				) );
 			} else {
 				$status->fatal( ...$error );
@@ -1834,7 +1836,7 @@ abstract class ApiBase extends ContextSource {
 		foreach ( self::$blockMsgMap as $msg => list( $apiMsg, $code ) ) {
 			if ( $status->hasMessage( $msg ) && $user->getBlock() ) {
 				$status->replaceMessage( $msg, ApiMessage::create( $apiMsg, $code,
-					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
+					[ 'blockinfo' => $this->getBlockInfo( $user->getBlock() ) ]
 				) );
 			}
 		}
@@ -2033,19 +2035,19 @@ abstract class ApiBase extends ContextSource {
 			$this->dieWithError(
 				'apierror-autoblocked',
 				'autoblocked',
-				[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) ]
+				[ 'blockinfo' => $this->getBlockInfo( $block ) ]
 			);
 		} elseif ( !$block->isSitewide() ) {
 			$this->dieWithError(
 				'apierror-blocked-partial',
 				'blocked',
-				[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) ]
+				[ 'blockinfo' => $this->getBlockInfo( $block ) ]
 			);
 		} else {
 			$this->dieWithError(
 				'apierror-blocked',
 				'blocked',
-				[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) ]
+				[ 'blockinfo' => $this->getBlockInfo( $block ) ]
 			);
 		}
 	}

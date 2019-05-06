@@ -28,6 +28,8 @@
  */
 class ApiBlock extends ApiBase {
 
+	use ApiBlockInfoTrait;
+
 	/**
 	 * Blocks the user specified in the parameters for the given expiry, with the
 	 * given reason, and with all other settings provided in the params. If the block
@@ -50,7 +52,7 @@ class ApiBlock extends ApiBase {
 				$this->dieWithError(
 					$status,
 					null,
-					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) ]
+					[ 'blockinfo' => $this->getBlockInfo( $block ) ]
 				);
 			}
 		}
