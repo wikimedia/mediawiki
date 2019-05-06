@@ -39,8 +39,8 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MessageLocalizer;
 use MWException;
-use MWNamespace;
 use MWTimestamp;
+use NamespaceInfo;
 use OutputPage;
 use Parser;
 use ParserOptions;
@@ -73,6 +73,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 	/** @var LinkRenderer */
 	protected $linkRenderer;
+
+	/** @var NamespaceInfo */
+	protected $nsInfo;
 
 	/**
 	 * TODO Make this a const when we drop HHVM support (T192166)
@@ -108,16 +111,20 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	];
 
 	/**
+	 * Do not call this directly.  Get it from MediaWikiServices.
+	 *
 	 * @param array|Config $options Config accepted for backwards compatibility
 	 * @param Language $contLang
 	 * @param AuthManager $authManager
 	 * @param LinkRenderer $linkRenderer
+	 * @param NamespaceInfo|null $nsInfo
 	 */
 	public function __construct(
 		$options,
 		Language $contLang,
 		AuthManager $authManager,
-		LinkRenderer $linkRenderer
+		LinkRenderer $linkRenderer,
+		NamespaceInfo $nsInfo = null
 	) {
 		if ( $options instanceof Config ) {
 			wfDeprecated( __METHOD__ . ' with Config parameter', '1.34' );
@@ -126,10 +133,15 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$options->assertRequiredOptions( self::$constructorOptions );
 
+		if ( !$nsInfo ) {
+			wfDeprecated( __METHOD__ . ' with no NamespaceInfo argument', '1.34' );
+			$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		}
 		$this->options = $options;
 		$this->contLang = $contLang;
 		$this->authManager = $authManager;
 		$this->linkRenderer = $linkRenderer;
+		$this->nsInfo = $nsInfo;
 		$this->logger = new NullLogger();
 	}
 
@@ -1262,7 +1274,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param array &$defaultPreferences
 	 */
 	protected function searchPreferences( &$defaultPreferences ) {
-		foreach ( MWNamespace::getValidNamespaces() as $n ) {
+		foreach ( $this->nsInfo->getValidNamespaces() as $n ) {
 			$defaultPreferences['searchNs' . $n] = [
 				'type' => 'api',
 			];
