@@ -34,6 +34,13 @@ class GenderCache {
 	protected $misses = 0;
 	protected $missLimit = 1000;
 
+	/** @var NamespaceInfo */
+	private $nsInfo;
+
+	public function __construct( NamespaceInfo $nsInfo = null ) {
+		$this->nsInfo = $nsInfo ?? MediaWikiServices::getInstance()->getNamespaceInfo();
+	}
+
 	/**
 	 * @deprecated in 1.28 see MediaWikiServices::getInstance()->getGenderCache()
 	 * @return GenderCache
@@ -97,7 +104,7 @@ class GenderCache {
 	public function doLinkBatch( $data, $caller = '' ) {
 		$users = [];
 		foreach ( $data as $ns => $pagenames ) {
-			if ( !MWNamespace::hasGenderDistinction( $ns ) ) {
+			if ( !$this->nsInfo->hasGenderDistinction( $ns ) ) {
 				continue;
 			}
 			foreach ( array_keys( $pagenames ) as $username ) {
@@ -122,7 +129,7 @@ class GenderCache {
 			if ( !$titleObj ) {
 				continue;
 			}
-			if ( !MWNamespace::hasGenderDistinction( $titleObj->getNamespace() ) ) {
+			if ( !$this->nsInfo->hasGenderDistinction( $titleObj->getNamespace() ) ) {
 				continue;
 			}
 			$users[] = $titleObj->getText();

@@ -157,6 +157,7 @@ class TitleTest extends MediaWikiTestCase {
 			]
 		] );
 
+		// Reset services since we modified $wgLocalInterwikis
 		$this->overrideMwServices();
 	}
 

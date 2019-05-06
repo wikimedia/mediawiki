@@ -5,94 +5,91 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Config\ServiceOptions;
 
 class NamespaceInfoTest extends MediaWikiTestCase {
-
-	/** @var NamespaceInfo */
-	private $obj;
-
-	protected function setUp() {
-		parent::setUp();
-
-		$this->setMwGlobals( [
-			'wgContentNamespaces' => [ NS_MAIN ],
-			'wgNamespacesWithSubpages' => [
+	private function newObj( array $options = [] ) : NamespaceInfo {
+		$defaults = [
+			'AllowImageMoving' => true,
+			'CanonicalNamespaceNames' => [
+				NS_TALK => 'Talk',
+				NS_USER => 'User',
+				NS_USER_TALK => 'User_talk',
+				NS_SPECIAL => 'Special',
+				NS_MEDIA => 'Media',
+			],
+			'CapitalLinkOverrides' => [],
+			'CapitalLinks' => true,
+			'ContentNamespaces' => [ NS_MAIN ],
+			'ExtraNamespaces' => [],
+			'ExtraSignatureNamespaces' => [],
+			'NamespaceContentModels' => [],
+			'NamespaceProtection' => [],
+			'NamespacesWithSubpages' => [
 				NS_TALK => true,
 				NS_USER => true,
 				NS_USER_TALK => true,
 			],
-			'wgCapitalLinks' => true,
-			'wgCapitalLinkOverrides' => [],
-			'wgNonincludableNamespaces' => [],
-		] );
-
-		$this->obj = MediaWikiServices::getInstance()->getNamespaceInfo();
+			'NonincludableNamespaces' => [],
+			'RestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
+		];
+		return new NamespaceInfo(
+			new ServiceOptions( NamespaceInfo::$constructorOptions, $options, $defaults ) );
 	}
 
 	/**
-	 * @todo Write more texts, handle $wgAllowImageMoving setting
+	 * @todo Write more tests, handle $wgAllowImageMoving setting
 	 * @covers NamespaceInfo::isMovable
 	 */
 	public function testIsMovable() {
-		$this->assertFalse( $this->obj->isMovable( NS_SPECIAL ) );
+		$this->assertFalse( $this->newObj()->isMovable( NS_SPECIAL ) );
 	}
 
 	private function assertIsSubject( $ns ) {
-		$this->assertTrue( $this->obj->isSubject( $ns ) );
+		$this->assertTrue( $this->newObj()->isSubject( $ns ) );
 	}
 
 	private function assertIsNotSubject( $ns ) {
-		$this->assertFalse( $this->obj->isSubject( $ns ) );
+		$this->assertFalse(
+			$this->newObj()->isSubject( $ns ) );
 	}
 
 	/**
-	 * Please make sure to change testIsTalk() if you change the assertions below
+	 * @param int $ns
+	 * @param bool $expected
+	 * @dataProvider provideIsSubject
 	 * @covers NamespaceInfo::isSubject
 	 */
-	public function testIsSubject() {
-		// Special namespaces
-		$this->assertIsSubject( NS_MEDIA );
-		$this->assertIsSubject( NS_SPECIAL );
-
-		// Subject pages
-		$this->assertIsSubject( NS_MAIN );
-		$this->assertIsSubject( NS_USER );
-		$this->assertIsSubject( 100 ); # user defined
-
-		// Talk pages
-		$this->assertIsNotSubject( NS_TALK );
-		$this->assertIsNotSubject( NS_USER_TALK );
-		$this->assertIsNotSubject( 101 ); # user defined
-	}
-
-	private function assertIsTalk( $ns ) {
-		$this->assertTrue( $this->obj->isTalk( $ns ) );
-	}
-
-	private function assertIsNotTalk( $ns ) {
-		$this->assertFalse( $this->obj->isTalk( $ns ) );
+	public function testIsSubject( $ns, $expected ) {
+		$this->assertSame( $expected, $this->newObj()->isSubject( $ns ) );
 	}
 
 	/**
-	 * Reverse of testIsSubject().
-	 * Please update testIsSubject() if you change assertions below
+	 * @param int $ns
+	 * @param bool $expected
+	 * @dataProvider provideIsSubject
 	 * @covers NamespaceInfo::isTalk
 	 */
-	public function testIsTalk() {
-		// Special namespaces
-		$this->assertIsNotTalk( NS_MEDIA );
-		$this->assertIsNotTalk( NS_SPECIAL );
+	public function testIsTalk( $ns, $expected ) {
+		$this->assertSame( !$expected, $this->newObj()->isTalk( $ns ) );
+	}
 
-		// Subject pages
-		$this->assertIsNotTalk( NS_MAIN );
-		$this->assertIsNotTalk( NS_USER );
-		$this->assertIsNotTalk( 100 ); # user defined
+	public function provideIsSubject() {
+		return [
+			// Special namespaces
+			[ NS_MEDIA, true ],
+			[ NS_SPECIAL, true ],
 
-		// Talk pages
-		$this->assertIsTalk( NS_TALK );
-		$this->assertIsTalk( NS_USER_TALK );
-		$this->assertIsTalk( 101 ); # user defined
+			// Subject pages
+			[ NS_MAIN, true ],
+			[ NS_USER, true ],
+			[ 100, true ],
+
+			// Talk pages
+			[ NS_TALK, false ],
+			[ NS_USER_TALK, false ],
+			[ 101, false ],
+		];
 	}
 
 	/**
@@ -100,11 +97,12 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 */
 	public function testGetSubject() {
 		// Special namespaces are their own subjects
-		$this->assertEquals( NS_MEDIA, $this->obj->getSubject( NS_MEDIA ) );
-		$this->assertEquals( NS_SPECIAL, $this->obj->getSubject( NS_SPECIAL ) );
+		$obj = $this->newObj();
+		$this->assertEquals( NS_MEDIA, $obj->getSubject( NS_MEDIA ) );
+		$this->assertEquals( NS_SPECIAL, $obj->getSubject( NS_SPECIAL ) );
 
-		$this->assertEquals( NS_MAIN, $this->obj->getSubject( NS_TALK ) );
-		$this->assertEquals( NS_USER, $this->obj->getSubject( NS_USER_TALK ) );
+		$this->assertEquals( NS_MAIN, $obj->getSubject( NS_TALK ) );
+		$this->assertEquals( NS_USER, $obj->getSubject( NS_USER_TALK ) );
 	}
 
 	/**
@@ -114,10 +112,11 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 * @covers NamespaceInfo::getTalk
 	 */
 	public function testGetTalk() {
-		$this->assertEquals( NS_TALK, $this->obj->getTalk( NS_MAIN ) );
-		$this->assertEquals( NS_TALK, $this->obj->getTalk( NS_TALK ) );
-		$this->assertEquals( NS_USER_TALK, $this->obj->getTalk( NS_USER ) );
-		$this->assertEquals( NS_USER_TALK, $this->obj->getTalk( NS_USER_TALK ) );
+		$obj = $this->newObj();
+		$this->assertEquals( NS_TALK, $obj->getTalk( NS_MAIN ) );
+		$this->assertEquals( NS_TALK, $obj->getTalk( NS_TALK ) );
+		$this->assertEquals( NS_USER_TALK, $obj->getTalk( NS_USER ) );
+		$this->assertEquals( NS_USER_TALK, $obj->getTalk( NS_USER_TALK ) );
 	}
 
 	/**
@@ -127,7 +126,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 * @covers NamespaceInfo::getTalk
 	 */
 	public function testGetTalkExceptionsForNsMedia() {
-		$this->assertNull( $this->obj->getTalk( NS_MEDIA ) );
+		$this->assertNull( $this->newObj()->getTalk( NS_MEDIA ) );
 	}
 
 	/**
@@ -137,7 +136,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 * @covers NamespaceInfo::getTalk
 	 */
 	public function testGetTalkExceptionsForNsSpecial() {
-		$this->assertNull( $this->obj->getTalk( NS_SPECIAL ) );
+		$this->assertNull( $this->newObj()->getTalk( NS_SPECIAL ) );
 	}
 
 	/**
@@ -147,8 +146,8 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 * @covers NamespaceInfo::getAssociated
 	 */
 	public function testGetAssociated() {
-		$this->assertEquals( NS_TALK, $this->obj->getAssociated( NS_MAIN ) );
-		$this->assertEquals( NS_MAIN, $this->obj->getAssociated( NS_TALK ) );
+		$this->assertEquals( NS_TALK, $this->newObj()->getAssociated( NS_MAIN ) );
+		$this->assertEquals( NS_MAIN, $this->newObj()->getAssociated( NS_TALK ) );
 	}
 
 	# ## Exceptions with getAssociated()
@@ -159,7 +158,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 * @covers NamespaceInfo::getAssociated
 	 */
 	public function testGetAssociatedExceptionsForNsMedia() {
-		$this->assertNull( $this->obj->getAssociated( NS_MEDIA ) );
+		$this->assertNull( $this->newObj()->getAssociated( NS_MEDIA ) );
 	}
 
 	/**
@@ -167,7 +166,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 * @covers NamespaceInfo::getAssociated
 	 */
 	public function testGetAssociatedExceptionsForNsSpecial() {
-		$this->assertNull( $this->obj->getAssociated( NS_SPECIAL ) );
+		$this->assertNull( $this->newObj()->getAssociated( NS_SPECIAL ) );
 	}
 
 	/**
@@ -177,46 +176,57 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 * @covers NamespaceInfo::equals
 	 */
 	public function testEquals() {
-		$this->assertTrue( $this->obj->equals( NS_MAIN, NS_MAIN ) );
-		$this->assertTrue( $this->obj->equals( NS_MAIN, 0 ) ); // In case we make NS_MAIN 'MAIN'
-		$this->assertTrue( $this->obj->equals( NS_USER, NS_USER ) );
-		$this->assertTrue( $this->obj->equals( NS_USER, 2 ) );
-		$this->assertTrue( $this->obj->equals( NS_USER_TALK, NS_USER_TALK ) );
-		$this->assertTrue( $this->obj->equals( NS_SPECIAL, NS_SPECIAL ) );
-		$this->assertFalse( $this->obj->equals( NS_MAIN, NS_TALK ) );
-		$this->assertFalse( $this->obj->equals( NS_USER, NS_USER_TALK ) );
-		$this->assertFalse( $this->obj->equals( NS_PROJECT, NS_TEMPLATE ) );
+		$obj = $this->newObj();
+		$this->assertTrue( $obj->equals( NS_MAIN, NS_MAIN ) );
+		$this->assertTrue( $obj->equals( NS_MAIN, 0 ) ); // In case we make NS_MAIN 'MAIN'
+		$this->assertTrue( $obj->equals( NS_USER, NS_USER ) );
+		$this->assertTrue( $obj->equals( NS_USER, 2 ) );
+		$this->assertTrue( $obj->equals( NS_USER_TALK, NS_USER_TALK ) );
+		$this->assertTrue( $obj->equals( NS_SPECIAL, NS_SPECIAL ) );
+		$this->assertFalse( $obj->equals( NS_MAIN, NS_TALK ) );
+		$this->assertFalse( $obj->equals( NS_USER, NS_USER_TALK ) );
+		$this->assertFalse( $obj->equals( NS_PROJECT, NS_TEMPLATE ) );
 	}
 
 	/**
+	 * @param int $ns1
+	 * @param int $ns2
+	 * @param bool $expected
+	 * @dataProvider provideSubjectEquals
 	 * @covers NamespaceInfo::subjectEquals
 	 */
-	public function testSubjectEquals() {
-		$this->assertSameSubject( NS_MAIN, NS_MAIN );
-		$this->assertSameSubject( NS_MAIN, 0 ); // In case we make NS_MAIN 'MAIN'
-		$this->assertSameSubject( NS_USER, NS_USER );
-		$this->assertSameSubject( NS_USER, 2 );
-		$this->assertSameSubject( NS_USER_TALK, NS_USER_TALK );
-		$this->assertSameSubject( NS_SPECIAL, NS_SPECIAL );
-		$this->assertSameSubject( NS_MAIN, NS_TALK );
-		$this->assertSameSubject( NS_USER, NS_USER_TALK );
+	public function testSubjectEquals( $ns1, $ns2, $expected ) {
+		$this->assertSame( $expected, $this->newObj()->subjectEquals( $ns1, $ns2 ) );
+	}
 
-		$this->assertDifferentSubject( NS_PROJECT, NS_TEMPLATE );
-		$this->assertDifferentSubject( NS_SPECIAL, NS_MAIN );
+	public function provideSubjectEquals() {
+		return [
+			[ NS_MAIN, NS_MAIN, true ],
+			// In case we make NS_MAIN 'MAIN'
+			[ NS_MAIN, 0, true ],
+			[ NS_USER, NS_USER, true ],
+			[ NS_USER, 2, true ],
+			[ NS_USER_TALK, NS_USER_TALK, true ],
+			[ NS_SPECIAL, NS_SPECIAL, true ],
+			[ NS_MAIN, NS_TALK, true ],
+			[ NS_USER, NS_USER_TALK, true ],
+
+			[ NS_PROJECT, NS_TEMPLATE, false ],
+			[ NS_SPECIAL, NS_MAIN, false ],
+			[ NS_MEDIA, NS_SPECIAL, false ],
+			[ NS_SPECIAL, NS_MEDIA, false ],
+		];
 	}
 
 	/**
-	 * @covers NamespaceInfo::subjectEquals
+	 * @dataProvider provideHasTalkNamespace
+	 * @covers NamespaceInfo::hasTalkNamespace
+	 *
+	 * @param int $ns
+	 * @param bool $expected
 	 */
-	public function testSpecialAndMediaAreDifferentSubjects() {
-		$this->assertDifferentSubject(
-			NS_MEDIA, NS_SPECIAL,
-			"NS_MEDIA and NS_SPECIAL are different subject namespaces"
-		);
-		$this->assertDifferentSubject(
-			NS_SPECIAL, NS_MEDIA,
-			"NS_SPECIAL and NS_MEDIA are different subject namespaces"
-		);
+	public function testHasTalkNamespace( $ns, $expected ) {
+		$this->assertSame( $expected, $this->newObj()->hasTalkNamespace( $ns ) );
 	}
 
 	public function provideHasTalkNamespace() {
@@ -235,178 +245,128 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideHasTalkNamespace
-	 * @covers NamespaceInfo::hasTalkNamespace
-	 *
-	 * @param int $index
+	 * @param int $ns
 	 * @param bool $expected
-	 */
-	public function testHasTalkNamespace( $index, $expected ) {
-		$actual = $this->obj->hasTalkNamespace( $index );
-		$this->assertSame( $actual, $expected, "NS $index" );
-	}
-
-	private function assertIsContent( $ns ) {
-		$this->assertTrue( $this->obj->isContent( $ns ) );
-	}
-
-	private function assertIsNotContent( $ns ) {
-		$this->assertFalse( $this->obj->isContent( $ns ) );
-	}
-
-	/**
+	 * @param array $contentNamespaces
 	 * @covers NamespaceInfo::isContent
+	 * @dataProvider provideIsContent
 	 */
-	public function testIsContent() {
-		// NS_MAIN is a content namespace per DefaultSettings.php
-		// and per function definition.
+	public function testIsContent( $ns, $expected, $contentNamespaces = [ NS_MAIN ] ) {
+		$obj = $this->newObj( [ 'ContentNamespaces' => $contentNamespaces ] );
+		$this->assertSame( $expected, $obj->isContent( $ns ) );
+	}
 
-		$this->assertIsContent( NS_MAIN );
-
-		// Other namespaces which are not expected to be content
-
-		$this->assertIsNotContent( NS_MEDIA );
-		$this->assertIsNotContent( NS_SPECIAL );
-		$this->assertIsNotContent( NS_TALK );
-		$this->assertIsNotContent( NS_USER );
-		$this->assertIsNotContent( NS_CATEGORY );
-		$this->assertIsNotContent( 100 );
+	public function provideIsContent() {
+		return [
+			[ NS_MAIN, true ],
+			[ NS_MEDIA, false ],
+			[ NS_SPECIAL, false ],
+			[ NS_TALK, false ],
+			[ NS_USER, false ],
+			[ NS_CATEGORY, false ],
+			[ 100, false ],
+			[ 100, true, [ NS_MAIN, 100, 252 ] ],
+			[ 252, true, [ NS_MAIN, 100, 252 ] ],
+			[ NS_MAIN, true, [ NS_MAIN, 100, 252 ] ],
+			// NS_MAIN is always content
+			[ NS_MAIN, true, [] ],
+		];
 	}
 
 	/**
-	 * Similar to testIsContent() but alters the $wgContentNamespaces
-	 * global variable.
-	 * @covers NamespaceInfo::isContent
-	 */
-	public function testIsContentAdvanced() {
-		global $wgContentNamespaces;
-
-		// Test that user defined namespace #252 is not content
-		$this->assertIsNotContent( 252 );
-
-		// Bless namespace # 252 as a content namespace
-		$wgContentNamespaces[] = 252;
-
-		$this->assertIsContent( 252 );
-
-		// Makes sure NS_MAIN was not impacted
-		$this->assertIsContent( NS_MAIN );
-	}
-
-	private function assertIsWatchable( $ns ) {
-		$this->assertTrue( $this->obj->isWatchable( $ns ) );
-	}
-
-	private function assertIsNotWatchable( $ns ) {
-		$this->assertFalse( $this->obj->isWatchable( $ns ) );
-	}
-
-	/**
+	 * @param int $ns
+	 * @param bool $expected
 	 * @covers NamespaceInfo::isWatchable
+	 * @dataProvider provideIsWatchable
 	 */
-	public function testIsWatchable() {
-		// Specials namespaces are not watchable
-		$this->assertIsNotWatchable( NS_MEDIA );
-		$this->assertIsNotWatchable( NS_SPECIAL );
-
-		// Core defined namespaces are watchables
-		$this->assertIsWatchable( NS_MAIN );
-		$this->assertIsWatchable( NS_TALK );
-
-		// Additional, user defined namespaces are watchables
-		$this->assertIsWatchable( 100 );
-		$this->assertIsWatchable( 101 );
+	public function testIsWatchable( $ns, $expected ) {
+		$this->assertSame( $expected, $this->newObj()->isWatchable( $ns ) );
 	}
 
-	private function assertHasSubpages( $ns ) {
-		$this->assertTrue( $this->obj->hasSubpages( $ns ) );
-	}
+	public function provideIsWatchable() {
+		return [
+			// Specials namespaces are not watchable
+			[ NS_MEDIA, false ],
+			[ NS_SPECIAL, false ],
 
-	private function assertHasNotSubpages( $ns ) {
-		$this->assertFalse( $this->obj->hasSubpages( $ns ) );
+			// Core defined namespaces are watchables
+			[ NS_MAIN, true ],
+			[ NS_TALK, true ],
+
+			// Additional, user defined namespaces are watchables
+			[ 100, true ],
+			[ 101, true ],
+		];
 	}
 
 	/**
+	 * @param int $ns
+	 * @param int $expected
+	 * @param array|null $namespacesWithSubpages To pass to constructor
 	 * @covers NamespaceInfo::hasSubpages
+	 * @dataProvider provideHasSubpages
 	 */
-	public function testHasSubpages() {
-		global $wgNamespacesWithSubpages;
+	public function testHasSubpages( $ns, $expected, array $namespacesWithSubpages = null ) {
+		$obj = $this->newObj( $namespacesWithSubpages
+			? [ 'NamespacesWithSubpages' => $namespacesWithSubpages ]
+			: [] );
+		$this->assertSame( $expected, $obj->hasSubpages( $ns ) );
+	}
 
-		// Special namespaces:
-		$this->assertHasNotSubpages( NS_MEDIA );
-		$this->assertHasNotSubpages( NS_SPECIAL );
+	public function provideHasSubpages() {
+		return [
+			// Special namespaces:
+			[ NS_MEDIA, false ],
+			[ NS_SPECIAL, false ],
 
-		// Namespaces without subpages
-		$this->assertHasNotSubpages( NS_MAIN );
+			// Namespaces without subpages
+			[ NS_MAIN, false ],
+			[ NS_MAIN, true, [ NS_MAIN => true ] ],
+			[ NS_MAIN, false, [ NS_MAIN => false ] ],
 
-		$wgNamespacesWithSubpages[NS_MAIN] = true;
-		$this->assertHasSubpages( NS_MAIN );
-
-		$wgNamespacesWithSubpages[NS_MAIN] = false;
-		$this->assertHasNotSubpages( NS_MAIN );
-
-		// Some namespaces with subpages
-		$this->assertHasSubpages( NS_TALK );
-		$this->assertHasSubpages( NS_USER );
-		$this->assertHasSubpages( NS_USER_TALK );
+			// Some namespaces with subpages
+			[ NS_TALK, true ],
+			[ NS_USER, true ],
+			[ NS_USER_TALK, true ],
+		];
 	}
 
 	/**
+	 * @param $contentNamespaces To pass to constructor
+	 * @param array $expected
+	 * @dataProvider provideGetContentNamespaces
 	 * @covers NamespaceInfo::getContentNamespaces
 	 */
-	public function testGetContentNamespaces() {
-		global $wgContentNamespaces;
+	public function testGetContentNamespaces( $contentNamespaces, array $expected ) {
+		$obj = $this->newObj( [ 'ContentNamespaces' => $contentNamespaces ] );
+		$this->assertSame( $expected, $obj->getContentNamespaces() );
+	}
 
-		$this->assertEquals(
-			[ NS_MAIN ],
-			$this->obj->getContentNamespaces(),
-			'$wgContentNamespaces is an array with only NS_MAIN by default'
-		);
+	public function provideGetContentNamespaces() {
+		return [
+			// Non-array
+			[ '', [ NS_MAIN ] ],
+			[ false, [ NS_MAIN ] ],
+			[ null, [ NS_MAIN ] ],
+			[ 5, [ NS_MAIN ] ],
 
-		# test !is_array( $wgcontentNamespaces )
-		$wgContentNamespaces = '';
-		$this->assertEquals( [ NS_MAIN ], $this->obj->getContentNamespaces() );
+			// Empty array
+			[ [], [ NS_MAIN ] ],
 
-		$wgContentNamespaces = false;
-		$this->assertEquals( [ NS_MAIN ], $this->obj->getContentNamespaces() );
+			// NS_MAIN is forced to be content even if unwanted
+			[ [ NS_USER, NS_CATEGORY ], [ NS_MAIN, NS_USER, NS_CATEGORY ] ],
 
-		$wgContentNamespaces = null;
-		$this->assertEquals( [ NS_MAIN ], $this->obj->getContentNamespaces() );
-
-		$wgContentNamespaces = 5;
-		$this->assertEquals( [ NS_MAIN ], $this->obj->getContentNamespaces() );
-
-		# test $wgContentNamespaces === []
-		$wgContentNamespaces = [];
-		$this->assertEquals( [ NS_MAIN ], $this->obj->getContentNamespaces() );
-
-		# test !in_array( NS_MAIN, $wgContentNamespaces )
-		$wgContentNamespaces = [ NS_USER, NS_CATEGORY ];
-		$this->assertEquals(
-			[ NS_MAIN, NS_USER, NS_CATEGORY ],
-			$this->obj->getContentNamespaces(),
-			'NS_MAIN is forced in $wgContentNamespaces even if unwanted'
-		);
-
-		# test other cases, return $wgcontentNamespaces as is
-		$wgContentNamespaces = [ NS_MAIN ];
-		$this->assertEquals(
-			[ NS_MAIN ],
-			$this->obj->getContentNamespaces()
-		);
-
-		$wgContentNamespaces = [ NS_MAIN, NS_USER, NS_CATEGORY ];
-		$this->assertEquals(
-			[ NS_MAIN, NS_USER, NS_CATEGORY ],
-			$this->obj->getContentNamespaces()
-		);
+			// In other cases, return as-is
+			[ [ NS_MAIN ], [ NS_MAIN ] ],
+			[ [ NS_MAIN, NS_USER, NS_CATEGORY ], [ NS_MAIN, NS_USER, NS_CATEGORY ] ],
+		];
 	}
 
 	/**
 	 * @covers NamespaceInfo::getSubjectNamespaces
 	 */
 	public function testGetSubjectNamespaces() {
-		$subjectsNS = $this->obj->getSubjectNamespaces();
+		$subjectsNS = $this->newObj()->getSubjectNamespaces();
 		$this->assertContains( NS_MAIN, $subjectsNS,
 			"Talk namespaces should have NS_MAIN" );
 		$this->assertNotContains( NS_TALK, $subjectsNS,
@@ -422,7 +382,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 * @covers NamespaceInfo::getTalkNamespaces
 	 */
 	public function testGetTalkNamespaces() {
-		$talkNS = $this->obj->getTalkNamespaces();
+		$talkNS = $this->newObj()->getTalkNamespaces();
 		$this->assertContains( NS_TALK, $talkNS,
 			"Subject namespaces should have NS_TALK" );
 		$this->assertNotContains( NS_MAIN, $talkNS,
@@ -434,138 +394,89 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 			"Subject namespaces should not have NS_SPECIAL" );
 	}
 
-	private function assertIsCapitalized( $ns ) {
-		$this->assertTrue( $this->obj->isCapitalized( $ns ) );
-	}
-
-	private function assertIsNotCapitalized( $ns ) {
-		$this->assertFalse( $this->obj->isCapitalized( $ns ) );
-	}
-
 	/**
-	 * Some namespaces are always capitalized per code definition
-	 * in NamespaceInfo::$alwaysCapitalizedNamespaces
+	 * @param int $ns
+	 * @param bool $expected
+	 * @param bool $capitalLinks To pass to constructor
+	 * @param array $capitalLinkOverrides To pass to constructor
+	 * @dataProvider provideIsCapitalized
 	 * @covers NamespaceInfo::isCapitalized
 	 */
-	public function testIsCapitalizedHardcodedAssertions() {
-		// NS_MEDIA and NS_FILE are treated the same
-		$this->assertEquals(
-			$this->obj->isCapitalized( NS_MEDIA ),
-			$this->obj->isCapitalized( NS_FILE ),
-			'NS_MEDIA and NS_FILE have same capitalization rendering'
-		);
-
-		// Boths are capitalized by default
-		$this->assertIsCapitalized( NS_MEDIA );
-		$this->assertIsCapitalized( NS_FILE );
-
-		// Always capitalized namespaces
-		// @see NamespaceInfo::$alwaysCapitalizedNamespaces
-		$this->assertIsCapitalized( NS_SPECIAL );
-		$this->assertIsCapitalized( NS_USER );
-		$this->assertIsCapitalized( NS_MEDIAWIKI );
+	public function testIsCapitalized(
+		$ns, $expected, $capitalLinks = true, array $capitalLinkOverrides = []
+	) {
+		$obj = $this->newObj( [
+			'CapitalLinks' => $capitalLinks,
+			'CapitalLinkOverrides' => $capitalLinkOverrides,
+		] );
+		$this->assertSame( $expected, $obj->isCapitalized( $ns ) );
 	}
 
-	/**
-	 * Follows up for testIsCapitalizedHardcodedAssertions() but alter the
-	 * global $wgCapitalLink setting to have extended coverage.
-	 *
-	 * NamespaceInfo::isCapitalized() rely on two global settings:
-	 *   $wgCapitalLinkOverrides = []; by default
-	 *   $wgCapitalLinks = true; by default
-	 * This function test $wgCapitalLinks
-	 *
-	 * Global setting correctness is tested against the NS_PROJECT and
-	 * NS_PROJECT_TALK namespaces since they are not hardcoded nor specials
-	 * @covers NamespaceInfo::isCapitalized
-	 */
-	public function testIsCapitalizedWithWgCapitalLinks() {
-		$this->assertIsCapitalized( NS_PROJECT );
-		$this->assertIsCapitalized( NS_PROJECT_TALK );
+	public function provideIsCapitalized() {
+		return [
+			// Test default settings
+			[ NS_PROJECT, true ],
+			[ NS_PROJECT_TALK, true ],
+			[ NS_MEDIA, true ],
+			[ NS_FILE, true ],
 
-		$this->setMwGlobals( 'wgCapitalLinks', false );
+			// Always capitalized no matter what
+			[ NS_SPECIAL, true, false ],
+			[ NS_USER, true, false ],
+			[ NS_MEDIAWIKI, true, false ],
 
-		// hardcoded namespaces (see above function) are still capitalized:
-		$this->assertIsCapitalized( NS_SPECIAL );
-		$this->assertIsCapitalized( NS_USER );
-		$this->assertIsCapitalized( NS_MEDIAWIKI );
+			// Even with an override too
+			[ NS_SPECIAL, true, false, [ NS_SPECIAL => false ] ],
+			[ NS_USER, true, false, [ NS_USER => false ] ],
+			[ NS_MEDIAWIKI, true, false, [ NS_MEDIAWIKI => false ] ],
 
-		// setting is correctly applied
-		$this->assertIsNotCapitalized( NS_PROJECT );
-		$this->assertIsNotCapitalized( NS_PROJECT_TALK );
-	}
+			// Overrides work for other namespaces
+			[ NS_PROJECT, false, true, [ NS_PROJECT => false ] ],
+			[ NS_PROJECT, true, false, [ NS_PROJECT => true ] ],
 
-	/**
-	 * Counter part for NamespaceInfo::testIsCapitalizedWithWgCapitalLinks() now
-	 * testing the $wgCapitalLinkOverrides global.
-	 *
-	 * @todo split groups of assertions in autonomous testing functions
-	 * @covers NamespaceInfo::isCapitalized
-	 */
-	public function testIsCapitalizedWithWgCapitalLinkOverrides() {
-		global $wgCapitalLinkOverrides;
-
-		// Test default settings
-		$this->assertIsCapitalized( NS_PROJECT );
-		$this->assertIsCapitalized( NS_PROJECT_TALK );
-
-		// hardcoded namespaces (see above function) are capitalized:
-		$this->assertIsCapitalized( NS_SPECIAL );
-		$this->assertIsCapitalized( NS_USER );
-		$this->assertIsCapitalized( NS_MEDIAWIKI );
-
-		// Hardcoded namespaces remains capitalized
-		$wgCapitalLinkOverrides[NS_SPECIAL] = false;
-		$wgCapitalLinkOverrides[NS_USER] = false;
-		$wgCapitalLinkOverrides[NS_MEDIAWIKI] = false;
-
-		$this->assertIsCapitalized( NS_SPECIAL );
-		$this->assertIsCapitalized( NS_USER );
-		$this->assertIsCapitalized( NS_MEDIAWIKI );
-
-		$wgCapitalLinkOverrides[NS_PROJECT] = false;
-		$this->assertIsNotCapitalized( NS_PROJECT );
-
-		$wgCapitalLinkOverrides[NS_PROJECT] = true;
-		$this->assertIsCapitalized( NS_PROJECT );
-
-		unset( $wgCapitalLinkOverrides[NS_PROJECT] );
-		$this->assertIsCapitalized( NS_PROJECT );
+			// NS_MEDIA is treated like NS_FILE, and ignores NS_MEDIA overrides
+			[ NS_MEDIA, false, true, [ NS_FILE => false, NS_MEDIA => true ] ],
+			[ NS_MEDIA, true, false, [ NS_FILE => true, NS_MEDIA => false ] ],
+			[ NS_FILE, false, true, [ NS_FILE => false, NS_MEDIA => true ] ],
+			[ NS_FILE, true, false, [ NS_FILE => true, NS_MEDIA => false ] ],
+		];
 	}
 
 	/**
 	 * @covers NamespaceInfo::hasGenderDistinction
 	 */
 	public function testHasGenderDistinction() {
+		$obj = $this->newObj();
+
 		// Namespaces with gender distinctions
-		$this->assertTrue( $this->obj->hasGenderDistinction( NS_USER ) );
-		$this->assertTrue( $this->obj->hasGenderDistinction( NS_USER_TALK ) );
+		$this->assertTrue( $obj->hasGenderDistinction( NS_USER ) );
+		$this->assertTrue( $obj->hasGenderDistinction( NS_USER_TALK ) );
 
 		// Other ones, "genderless"
-		$this->assertFalse( $this->obj->hasGenderDistinction( NS_MEDIA ) );
-		$this->assertFalse( $this->obj->hasGenderDistinction( NS_SPECIAL ) );
-		$this->assertFalse( $this->obj->hasGenderDistinction( NS_MAIN ) );
-		$this->assertFalse( $this->obj->hasGenderDistinction( NS_TALK ) );
+		$this->assertFalse( $obj->hasGenderDistinction( NS_MEDIA ) );
+		$this->assertFalse( $obj->hasGenderDistinction( NS_SPECIAL ) );
+		$this->assertFalse( $obj->hasGenderDistinction( NS_MAIN ) );
+		$this->assertFalse( $obj->hasGenderDistinction( NS_TALK ) );
 	}
 
 	/**
 	 * @covers NamespaceInfo::isNonincludable
 	 */
 	public function testIsNonincludable() {
-		global $wgNonincludableNamespaces;
-
-		$wgNonincludableNamespaces = [ NS_USER ];
-
-		$this->assertTrue( $this->obj->isNonincludable( NS_USER ) );
-		$this->assertFalse( $this->obj->isNonincludable( NS_TEMPLATE ) );
+		$obj = $this->newObj( [ 'NonincludableNamespaces' => [ NS_USER ] ] );
+		$this->assertTrue( $obj->isNonincludable( NS_USER ) );
+		$this->assertFalse( $obj->isNonincludable( NS_TEMPLATE ) );
 	}
 
-	private function assertSameSubject( $ns1, $ns2, $msg = '' ) {
-		$this->assertTrue( $this->obj->subjectEquals( $ns1, $ns2 ), $msg );
-	}
-
-	private function assertDifferentSubject( $ns1, $ns2, $msg = '' ) {
-		$this->assertFalse( $this->obj->subjectEquals( $ns1, $ns2 ), $msg );
+	/**
+	 * @dataProvider provideGetCategoryLinkType
+	 * @covers NamespaceInfo::getCategoryLinkType
+	 *
+	 * @param int $ns
+	 * @param string $expected
+	 */
+	public function testGetCategoryLinkType( $ns, $expected ) {
+		$this->assertSame( $expected, $this->newObj()->getCategoryLinkType( $ns ) );
 	}
 
 	public function provideGetCategoryLinkType() {
@@ -584,17 +495,5 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 			[ 100, 'page' ],
 			[ 101, 'page' ],
 		];
-	}
-
-	/**
-	 * @dataProvider provideGetCategoryLinkType
-	 * @covers NamespaceInfo::getCategoryLinkType
-	 *
-	 * @param int $index
-	 * @param string $expected
-	 */
-	public function testGetCategoryLinkType( $index, $expected ) {
-		$actual = $this->obj->getCategoryLinkType( $index );
-		$this->assertSame( $expected, $actual, "NS $index" );
 	}
 }

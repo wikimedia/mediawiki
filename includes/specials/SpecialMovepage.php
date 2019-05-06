@@ -591,21 +591,12 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		# Do the actual move.
 		$mp = new MovePage( $ot, $nt );
-		$valid = $mp->isValidMove();
-		if ( !$valid->isOK() ) {
-			$this->showForm( $valid->getErrorsArray() );
-			return;
-		}
 
-		$permStatus = $mp->checkPermissions( $user, $this->reason );
-		if ( !$permStatus->isOK() ) {
-			$this->showForm( $permStatus->getErrorsArray(), true );
-			return;
-		}
+		$userPermitted = $mp->checkPermissions( $user, $this->reason )->isOK();
 
-		$status = $mp->move( $user, $this->reason, $createRedirect );
+		$status = $mp->moveIfAllowed( $user, $this->reason, $createRedirect );
 		if ( !$status->isOK() ) {
-			$this->showForm( $status->getErrorsArray() );
+			$this->showForm( $status->getErrorsArray(), !$userPermitted );
 			return;
 		}
 

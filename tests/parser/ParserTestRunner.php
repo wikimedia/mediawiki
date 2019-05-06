@@ -635,6 +635,8 @@ class ParserTestRunner {
 	/**
 	 * Reset the Title-related services that need resetting
 	 * for each test
+	 *
+	 * @todo We need to reset all services on every test
 	 */
 	private function resetTitleServices() {
 		$services = MediaWikiServices::getInstance();
@@ -643,6 +645,7 @@ class ParserTestRunner {
 		$services->resetServiceForTesting( '_MediaWikiTitleCodec' );
 		$services->resetServiceForTesting( 'LinkRenderer' );
 		$services->resetServiceForTesting( 'LinkRendererFactory' );
+		$services->resetServiceForTesting( 'NamespaceInfo' );
 	}
 
 	/**

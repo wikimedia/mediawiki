@@ -208,7 +208,7 @@ return [
 	},
 
 	'GenderCache' => function ( MediaWikiServices $services ) : GenderCache {
-		return new GenderCache();
+		return new GenderCache( $services->getNamespaceInfo() );
 	},
 
 	'HttpRequestFactory' =>
@@ -363,7 +363,8 @@ return [
 	},
 
 	'NamespaceInfo' => function ( MediaWikiServices $services ) : NamespaceInfo {
-		return new NamespaceInfo( $services->getMainConfig() );
+		return new NamespaceInfo( new ServiceOptions( NamespaceInfo::$constructorOptions,
+			$services->getMainConfig() ) );
 	},
 
 	'NameTableStoreFactory' => function ( MediaWikiServices $services ) : NameTableStoreFactory {
