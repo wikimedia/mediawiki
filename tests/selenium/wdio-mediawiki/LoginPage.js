@@ -1,5 +1,4 @@
-const Page = require( './Page' ),
-	Util = require( 'wdio-mediawiki/Util' );
+const Page = require( './Page' );
 
 class LoginPage extends Page {
 	get username() { return browser.element( '#wpName1' ); }
@@ -20,10 +19,6 @@ class LoginPage extends Page {
 
 	loginAdmin() {
 		this.login( browser.options.username, browser.options.password );
-	}
-
-	waitForScriptsToBeReady() {
-		Util.waitForModuleState( 'mediawiki.api' );
 	}
 }
 

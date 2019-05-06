@@ -1,5 +1,6 @@
 const Page = require( 'wdio-mediawiki/Page' ),
-	Api = require( 'wdio-mediawiki/Api' );
+	Api = require( 'wdio-mediawiki/Api' ),
+	Util = require( 'wdio-mediawiki/Util' );
 
 class HistoryPage extends Page {
 	get heading() { return browser.element( '#firstHeading' ); }
@@ -15,6 +16,16 @@ class HistoryPage extends Page {
 
 	open( title ) {
 		super.openTitle( title, { action: 'history' } );
+	}
+
+	toggleRollbackConfirmationSetting( enable ) {
+		Util.waitForModuleState( 'mediawiki.api', 'ready', 5000 );
+		return browser.execute( function ( enable ) {
+			return new mw.Api().saveOption(
+				'showrollbackconfirmation',
+				enable ? '1' : '0'
+			);
+		}, enable );
 	}
 
 	vandalizePage( name, content ) {
