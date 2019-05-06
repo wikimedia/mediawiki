@@ -472,7 +472,17 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @return string Absolute name of the temporary file
 	 */
 	protected function getNewTempFile() {
-		$fileName = tempnam( wfTempDir(), 'MW_PHPUnit_' . static::class . '_' );
+		$fileName = tempnam(
+			wfTempDir(),
+			// Avoid backslashes here as they result in inconsistent results
+			// between Windows and other OS, as well as between functions
+			// that try to normalise these in one or both directions.
+			// For example, tempnam rejects directory separators in the prefix which
+			// means it rejects any namespaced class on Windows.
+			// And then there is, wfMkdirParents which normalises paths always
+			// whereas most other PHP and MW functions do not.
+			'MW_PHPUnit_' . strtr( static::class, [ '\\' => '_' ] ) . '_'
+		);
 		$this->tmpFiles[] = $fileName;
 
 		return $fileName;
