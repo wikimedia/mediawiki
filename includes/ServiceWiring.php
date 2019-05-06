@@ -231,7 +231,8 @@ return [
 	'LinkCache' => function ( MediaWikiServices $services ) : LinkCache {
 		return new LinkCache(
 			$services->getTitleFormatter(),
-			$services->getMainWANObjectCache()
+			$services->getMainWANObjectCache(),
+			$services->getNamespaceInfo()
 		);
 	},
 
