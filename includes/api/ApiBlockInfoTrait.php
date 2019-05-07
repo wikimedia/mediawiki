@@ -18,6 +18,9 @@
  * @file
  */
 
+use MediaWiki\Block\AbstractBlock;
+use MediaWiki\Block\SystemBlock;
+
 /**
  * @ingroup API
  */
@@ -35,7 +38,7 @@ trait ApiBlockInfoTrait {
 	 *  - blockexpiry - expiry time of the block
 	 *  - systemblocktype - system block type, if any
 	 */
-	private function getBlockInfo( Block $block ) {
+	private function getBlockInfo( AbstractBlock $block ) {
 		$vals = [];
 		$vals['blockid'] = $block->getId();
 		$vals['blockedby'] = $block->getByName();
@@ -44,7 +47,7 @@ trait ApiBlockInfoTrait {
 		$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->getTimestamp() );
 		$vals['blockexpiry'] = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
 		$vals['blockpartial'] = !$block->isSitewide();
-		if ( $block->getSystemBlockType() !== null ) {
+		if ( $block instanceof SystemBlock ) {
 			$vals['systemblocktype'] = $block->getSystemBlockType();
 		}
 		return $vals;

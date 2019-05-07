@@ -1,43 +1,42 @@
 <?php
 
 use Wikimedia\TestingAccessWrapper;
+use MediaWiki\Block\SystemBlock;
 
 /**
  * @covers ApiBlockInfoTrait
  */
 class ApiBlockInfoTraitTest extends MediaWikiTestCase {
-
-	public function testGetBlockInfo() {
-		$block = new Block();
+	/**
+	 * @dataProvider provideGetBlockInfo
+	 */
+	public function testGetBlockInfo( $block, $expectedInfo ) {
 		$mock = $this->getMockForTrait( ApiBlockInfoTrait::class );
 		$info = TestingAccessWrapper::newFromObject( $mock )->getBlockInfo( $block );
-		$subset = [
+		$subset = array_merge( [
 			'blockid' => null,
 			'blockedby' => '',
 			'blockedbyid' => 0,
 			'blockreason' => '',
 			'blockexpiry' => 'infinite',
-			'blockpartial' => false,
-		];
+		], $expectedInfo );
 		$this->assertArraySubset( $subset, $info );
 	}
 
-	public function testGetBlockInfoPartial() {
-		$mock = $this->getMockForTrait( ApiBlockInfoTrait::class );
-
-		$block = new Block( [
-			'sitewide' => false,
-		] );
-		$info = TestingAccessWrapper::newFromObject( $mock )->getBlockInfo( $block );
-		$subset = [
-			'blockid' => null,
-			'blockedby' => '',
-			'blockedbyid' => 0,
-			'blockreason' => '',
-			'blockexpiry' => 'infinite',
-			'blockpartial' => true,
+	public static function provideGetBlockInfo() {
+		return [
+			'Sitewide block' => [
+				new Block(),
+				[ 'blockpartial' => false ],
+			],
+			'Partial block' => [
+				new Block( [ 'sitewide' => false ] ),
+				[ 'blockpartial' => true ],
+			],
+			'System block' => [
+				new SystemBlock( [ 'systemBlock' => 'proxy' ] ),
+				[ 'systemblocktype' => 'proxy' ]
+			],
 		];
-		$this->assertArraySubset( $subset, $info );
 	}
-
 }

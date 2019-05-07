@@ -5,6 +5,7 @@ define( 'NS_UNITTEST_TALK', 5601 );
 
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
+use MediaWiki\Block\SystemBlock;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
@@ -804,7 +805,7 @@ class UserTest extends MediaWikiTestCase {
 		$request->setIP( '10.20.30.40' );
 		$setSessionUser( $wgUser, $request );
 		$block = $wgUser->getBlock();
-		$this->assertInstanceOf( Block::class, $block );
+		$this->assertInstanceOf( SystemBlock::class, $block );
 		$this->assertSame( 'wgSoftBlockRanges', $block->getSystemBlockType() );
 
 		// Make sure the block is really soft

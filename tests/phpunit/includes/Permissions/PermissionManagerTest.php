@@ -10,6 +10,7 @@ use Title;
 use User;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\SystemBlock;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 
@@ -1080,19 +1081,18 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		#   $user->mBlock->mExpiry == 'infinity'
 
 		$this->user->mBlockedby = $this->user->getName();
-		$this->user->mBlock = new Block( [
+		$this->user->mBlock = new SystemBlock( [
 			'address' => '127.0.8.1',
 			'by' => $this->user->getId(),
 			'reason' => 'no reason given',
 			'timestamp' => $now,
 			'auto' => false,
-			'expiry' => 10,
 			'systemBlock' => 'test',
 		] );
 
 		$errors = [ [ 'systemblockedtext',
 			'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
-			'Useruser', 'test', '23:00, 31 December 1969', '127.0.8.1',
+			'Useruser', 'test', 'infinite', '127.0.8.1',
 			$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ];
 
 		$this->assertEquals( $errors,

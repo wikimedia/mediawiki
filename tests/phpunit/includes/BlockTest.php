@@ -438,43 +438,6 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::getSystemBlockType
-	 * @covers Block::insert
-	 * @covers Block::doAutoblock
-	 */
-	public function testSystemBlocks() {
-		$user = $this->getUserForBlocking();
-		$this->addBlockForUser( $user );
-
-		$blockOptions = [
-			'address' => $user->getName(),
-			'reason' => 'test system block',
-			'timestamp' => wfTimestampNow(),
-			'expiry' => $this->db->getInfinity(),
-			'byText' => 'MediaWiki default',
-			'systemBlock' => 'test',
-			'enableAutoblock' => true,
-		];
-		$block = new Block( $blockOptions );
-
-		$this->assertSame( 'test', $block->getSystemBlockType() );
-
-		try {
-			$block->insert();
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( MWException $ex ) {
-			$this->assertSame( 'Cannot insert a system block into the database', $ex->getMessage() );
-		}
-
-		try {
-			$block->doAutoblock( '192.0.2.2' );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( MWException $ex ) {
-			$this->assertSame( 'Cannot autoblock from a system block', $ex->getMessage() );
-		}
-	}
-
-	/**
 	 * @covers Block::newFromRow
 	 */
 	public function testNewFromRow() {
