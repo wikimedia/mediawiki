@@ -67,13 +67,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$search->setFeatureData( 'rewrite', (bool)$params['enablerewrites'] );
 		$search->setFeatureData( 'interwiki', (bool)$interwiki );
 
-		$nquery = $search->transformSearchTerm( $query );
-		if ( $nquery !== $query ) {
-			$query = $nquery;
-			wfDeprecated( 'SearchEngine::transformSearchTerm() (overridden by ' .
-				get_class( $search ) . ')', '1.32' );
-		}
-
 		$nquery = $search->replacePrefixes( $query );
 		if ( $nquery !== $query ) {
 			$query = $nquery;
