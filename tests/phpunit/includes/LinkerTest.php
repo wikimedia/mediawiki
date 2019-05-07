@@ -14,11 +14,16 @@ class LinkerTest extends MediaWikiLangTestCase {
 			'wgArticlePath' => '/wiki/$1',
 		] );
 
-		$this->assertEquals(
-			$expected,
-			Linker::userLink( $userId, $userName, $altUserName ),
-			$msg
-		);
+		// We'd also test the warning, but injecting a mock logger into a static method is tricky.
+		if ( $userName === '' ) {
+			Wikimedia\suppressWarnings();
+		}
+		$actual = Linker::userLink( $userId, $userName, $altUserName );
+		if ( $userName === '' ) {
+			Wikimedia\restoreWarnings();
+		}
+
+		$this->assertEquals( $expected, $actual, $msg );
 	}
 
 	public static function provideCasesForUserLink() {
@@ -29,6 +34,9 @@ class LinkerTest extends MediaWikiLangTestCase {
 		# - optional altUserName
 		# - optional message
 		return [
+			# Empty name (T222529)
+			'Empty username, userid 0' => [ '(no username available)', 0, '' ],
+			'Empty username, userid > 0' => [ '(no username available)', 73, '' ],
 
 			# ## ANONYMOUS USER ########################################
 			[
@@ -84,6 +92,118 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 			# ## Regular user ##########################################
 			# TODO!
+		];
+	}
+
+	/**
+	 * @dataProvider provideUserToolLinks
+	 * @covers Linker::userToolLinks
+	 * @param string $expected
+	 * @param int $userId
+	 * @param string $userText
+	 */
+	public function testUserToolLinks( $expected, $userId, $userText ) {
+		// We'd also test the warning, but injecting a mock logger into a static method is tricky.
+		if ( $userText === '' ) {
+			Wikimedia\suppressWarnings();
+		}
+		$actual = Linker::userToolLinks( $userId, $userText );
+		if ( $userText === '' ) {
+			Wikimedia\restoreWarnings();
+		}
+
+		$this->assertSame( $expected, $actual );
+	}
+
+	public static function provideUserToolLinks() {
+		return [
+			// Empty name (T222529)
+			'Empty username, userid 0' => [ ' (no username available)', 0, '' ],
+			'Empty username, userid > 0' => [ ' (no username available)', 73, '' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideUserTalkLink
+	 * @covers Linker::userTalkLink
+	 * @param string $expected
+	 * @param int $userId
+	 * @param string $userText
+	 */
+	public function testUserTalkLink( $expected, $userId, $userText ) {
+		// We'd also test the warning, but injecting a mock logger into a static method is tricky.
+		if ( $userText === '' ) {
+			Wikimedia\suppressWarnings();
+		}
+		$actual = Linker::userTalkLink( $userId, $userText );
+		if ( $userText === '' ) {
+			Wikimedia\restoreWarnings();
+		}
+
+		$this->assertSame( $expected, $actual );
+	}
+
+	public static function provideUserTalkLink() {
+		return [
+			// Empty name (T222529)
+			'Empty username, userid 0' => [ '(no username available)', 0, '' ],
+			'Empty username, userid > 0' => [ '(no username available)', 73, '' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideBlockLink
+	 * @covers Linker::blockLink
+	 * @param string $expected
+	 * @param int $userId
+	 * @param string $userText
+	 */
+	public function testBlockLink( $expected, $userId, $userText ) {
+		// We'd also test the warning, but injecting a mock logger into a static method is tricky.
+		if ( $userText === '' ) {
+			Wikimedia\suppressWarnings();
+		}
+		$actual = Linker::blockLink( $userId, $userText );
+		if ( $userText === '' ) {
+			Wikimedia\restoreWarnings();
+		}
+
+		$this->assertSame( $expected, $actual );
+	}
+
+	public static function provideBlockLink() {
+		return [
+			// Empty name (T222529)
+			'Empty username, userid 0' => [ '(no username available)', 0, '' ],
+			'Empty username, userid > 0' => [ '(no username available)', 73, '' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideEmailLink
+	 * @covers Linker::emailLink
+	 * @param string $expected
+	 * @param int $userId
+	 * @param string $userText
+	 */
+	public function testEmailLink( $expected, $userId, $userText ) {
+		// We'd also test the warning, but injecting a mock logger into a static method is tricky.
+		if ( $userText === '' ) {
+			Wikimedia\suppressWarnings();
+		}
+		$actual = Linker::emailLink( $userId, $userText );
+		if ( $userText === '' ) {
+			Wikimedia\restoreWarnings();
+		}
+
+		$this->assertSame( $expected, $actual );
+	}
+
+	public static function provideEmailLink() {
+		return [
+			// Empty name (T222529)
+			'Empty username, userid 0' => [ '(no username available)', 0, '' ],
+			'Empty username, userid > 0' => [ '(no username available)', 73, '' ],
 		];
 	}
 
