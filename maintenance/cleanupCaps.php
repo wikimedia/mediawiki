@@ -55,7 +55,10 @@ class CleanupCaps extends TableCleanup {
 
 		$this->namespace = intval( $this->getOption( 'namespace', 0 ) );
 
-		if ( MWNamespace::isCapitalized( $this->namespace ) ) {
+		if (
+			MediaWikiServices::getInstance()->getNamespaceInfo()->
+				isCapitalized( $this->namespace )
+		) {
 			$this->output( "Will be moving pages to first letter capitalized titles" );
 			$callback = 'processRowToUppercase';
 		} else {

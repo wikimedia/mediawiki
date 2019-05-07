@@ -2244,18 +2244,19 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		// NOTE: prefer content namespaces
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 		$namespaces = array_unique( array_merge(
-			MWNamespace::getContentNamespaces(),
+			$nsInfo->getContentNamespaces(),
 			[ NS_MAIN, NS_HELP, NS_PROJECT ], // prefer these
-			MWNamespace::getValidNamespaces()
+			$nsInfo->getValidNamespaces()
 		) );
 
 		$namespaces = array_diff( $namespaces, [
 			NS_FILE, NS_CATEGORY, NS_MEDIAWIKI, NS_USER // don't mess with magic namespaces
 		] );
 
-		$talk = array_filter( $namespaces, function ( $ns ) {
-			return MWNamespace::isTalk( $ns );
+		$talk = array_filter( $namespaces, function ( $ns ) use ( $nsInfo ) {
+			return $nsInfo->isTalk( $ns );
 		} );
 
 		// prefer non-talk pages

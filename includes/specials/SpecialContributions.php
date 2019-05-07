@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Widget\DateInputWidget;
 
 /**
@@ -328,7 +329,8 @@ class SpecialContributions extends IncludableSpecialPage {
 
 				if ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
 					if ( $block->getType() == Block::TYPE_RANGE ) {
-						$nt = MWNamespace::getCanonicalName( NS_USER ) . ':' . $block->getTarget();
+						$nt = MediaWikiServices::getInstance()->getNamespaceInfo()->
+							getCanonicalName( NS_USER ) . ':' . $block->getTarget();
 					}
 
 					$out = $this->getOutput(); // showLogExtract() wants first parameter by reference

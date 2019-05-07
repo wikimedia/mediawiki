@@ -182,7 +182,8 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			( $model === null || $model === CONTENT_MODEL_WIKITEXT )
 		) {
 			$ns = $this->getDefaultWikitextNS();
-			$titleString = MWNamespace::getCanonicalName( $ns ) . ':' . $titleString;
+			$titleString = MediaWikiServices::getInstance()->getNamespaceInfo()->
+				getCanonicalName( $ns ) . ':' . $titleString;
 		}
 
 		$title = Title::newFromText( $titleString );

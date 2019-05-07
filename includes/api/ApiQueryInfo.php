@@ -708,10 +708,11 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	private function getTSIDs() {
 		$getTitles = $this->talkids = $this->subjectids = [];
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 
 		/** @var Title $t */
 		foreach ( $this->everything as $t ) {
-			if ( MWNamespace::isTalk( $t->getNamespace() ) ) {
+			if ( $nsInfo->isTalk( $t->getNamespace() ) ) {
 				if ( $this->fld_subjectid ) {
 					$getTitles[] = $t->getSubjectPage();
 				}
@@ -734,12 +735,12 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->addWhere( $lb->constructSet( 'page', $db ) );
 		$res = $this->select( __METHOD__ );
 		foreach ( $res as $row ) {
-			if ( MWNamespace::isTalk( $row->page_namespace ) ) {
-				$this->talkids[MWNamespace::getSubject( $row->page_namespace )][$row->page_title] =
-					(int)$row->page_id;
+			if ( $nsInfo->isTalk( $row->page_namespace ) ) {
+				$this->talkids[$nsInfo->getSubject( $row->page_namespace )][$row->page_title] =
+					(int)( $row->page_id );
 			} else {
-				$this->subjectids[MWNamespace::getTalk( $row->page_namespace )][$row->page_title] =
-					(int)$row->page_id;
+				$this->subjectids[$nsInfo->getTalk( $row->page_namespace )][$row->page_title] =
+					(int)( $row->page_id );
 			}
 		}
 	}

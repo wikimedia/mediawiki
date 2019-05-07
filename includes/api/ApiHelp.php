@@ -583,7 +583,8 @@ class ApiHelp extends ApiBase {
 									break;
 
 								case 'namespace':
-									$namespaces = MWNamespace::getValidNamespaces();
+									$namespaces = MediaWikiServices::getInstance()->
+										getNamespaceInfo()->getValidNamespaces();
 									if ( isset( $settings[ApiBase::PARAM_EXTRA_NAMESPACES] ) &&
 										is_array( $settings[ApiBase::PARAM_EXTRA_NAMESPACES] )
 									) {

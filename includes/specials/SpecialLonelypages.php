@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page looking for articles with no article linking to them,
  * thus being lonely.
@@ -52,7 +54,8 @@ class LonelyPagesPage extends PageQueryPage {
 		$tables = [ 'page', 'pagelinks', 'templatelinks' ];
 		$conds = [
 			'pl_namespace IS NULL',
-			'page_namespace' => MWNamespace::getContentNamespaces(),
+			'page_namespace' => MediaWikiServices::getInstance()->getNamespaceInfo()->
+				getContentNamespaces(),
 			'page_is_redirect' => 0,
 			'tl_namespace IS NULL'
 		];
@@ -89,7 +92,9 @@ class LonelyPagesPage extends PageQueryPage {
 	function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort in MySQL 5
-		if ( count( MWNamespace::getContentNamespaces() ) > 1 ) {
+		if ( count( MediaWikiServices::getInstance()->getNamespaceInfo()->
+			getContentNamespaces() ) > 1
+		) {
 			return [ 'page_namespace', 'page_title' ];
 		} else {
 			return [ 'page_title' ];

@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Feed to Special:RecentChanges and Special:RecentChangesLinked.
  *
@@ -88,9 +90,10 @@ class ChangesFeed {
 			}
 		}
 
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 		foreach ( $sorted as $obj ) {
 			$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
-			$talkpage = MWNamespace::hasTalkNamespace( $obj->rc_namespace )
+			$talkpage = $nsInfo->hasTalkNamespace( $obj->rc_namespace )
 				? $title->getTalkPage()->getFullURL()
 				: '';
 

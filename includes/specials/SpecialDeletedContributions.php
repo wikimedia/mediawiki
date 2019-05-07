@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Implements Special:DeletedContributions to display archived revisions
  * @ingroup SpecialPage
@@ -160,7 +162,8 @@ class DeletedContributionsPage extends SpecialPage {
 			$block = Block::newFromTarget( $userObj, $userObj );
 			if ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
 				if ( $block->getType() == Block::TYPE_RANGE ) {
-					$nt = MWNamespace::getCanonicalName( NS_USER ) . ':' . $block->getTarget();
+					$nt = MediaWikiServices::getInstance()->getNamespaceInfo()->
+						getCanonicalName( NS_USER ) . ':' . $block->getTarget();
 				}
 
 				// LogEventsList::showLogExtract() wants the first parameter by ref

@@ -282,27 +282,28 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data = [
 			ApiResult::META_TYPE => 'assoc',
 		];
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 		foreach (
 			MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces()
 			as $ns => $title
 		) {
 			$data[$ns] = [
 				'id' => (int)$ns,
-				'case' => MWNamespace::isCapitalized( $ns ) ? 'first-letter' : 'case-sensitive',
+				'case' => $nsInfo->isCapitalized( $ns ) ? 'first-letter' : 'case-sensitive',
 			];
 			ApiResult::setContentValue( $data[$ns], 'name', $title );
-			$canonical = MWNamespace::getCanonicalName( $ns );
+			$canonical = $nsInfo->getCanonicalName( $ns );
 
-			$data[$ns]['subpages'] = MWNamespace::hasSubpages( $ns );
+			$data[$ns]['subpages'] = $nsInfo->hasSubpages( $ns );
 
 			if ( $canonical ) {
 				$data[$ns]['canonical'] = strtr( $canonical, '_', ' ' );
 			}
 
-			$data[$ns]['content'] = MWNamespace::isContent( $ns );
-			$data[$ns]['nonincludable'] = MWNamespace::isNonincludable( $ns );
+			$data[$ns]['content'] = $nsInfo->isContent( $ns );
+			$data[$ns]['nonincludable'] = $nsInfo->isNonincludable( $ns );
 
-			$contentmodel = MWNamespace::getNamespaceContentModel( $ns );
+			$contentmodel = $nsInfo->getNamespaceContentModel( $ns );
 			if ( $contentmodel ) {
 				$data[$ns]['defaultcontentmodel'] = $contentmodel;
 			}

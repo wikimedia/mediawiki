@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -643,7 +644,7 @@ class ApiBaseTest extends ApiTestCase {
 					ApiBase::PARAM_ISMULTI => true,
 					ApiBase::PARAM_TYPE => 'namespace',
 				],
-				MWNamespace::getValidNamespaces(),
+				MediaWikiServices::getInstance()->getNamespaceInfo()->getValidNamespaces(),
 				[],
 			],
 			// PARAM_ALL is ignored with namespace types.
@@ -654,7 +655,7 @@ class ApiBaseTest extends ApiTestCase {
 					ApiBase::PARAM_TYPE => 'namespace',
 					ApiBase::PARAM_ALL => false,
 				],
-				MWNamespace::getValidNamespaces(),
+				MediaWikiServices::getInstance()->getNamespaceInfo()->getValidNamespaces(),
 				[],
 			],
 			'Namespace with wildcard "x"' => [

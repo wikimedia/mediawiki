@@ -1080,7 +1080,8 @@ class ParserTestRunner {
 			'wgLanguageCode' => $langCode,
 			'wgRawHtml' => self::getOptionValue( 'wgRawHtml', $opts, false ),
 			'wgNamespacesWithSubpages' => array_fill_keys(
-				MWNamespace::getValidNamespaces(), isset( $opts['subpage'] )
+				MediaWikiServices::getInstance()->getNamespaceInfo()->getValidNamespaces(),
+				isset( $opts['subpage'] )
 			),
 			'wgMaxTocLevel' => $maxtoclevel,
 			'wgAllowExternalImages' => self::getOptionValue( 'wgAllowExternalImages', $opts, true ),

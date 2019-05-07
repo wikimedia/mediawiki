@@ -20,12 +20,13 @@
  * @file
  * @ingroup SpecialPage
  */
+
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Special page which uses a ChangesList to show query results.
@@ -1451,7 +1452,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			if ( $opts[ 'associated' ] ) {
 				$associatedNamespaces = array_map(
 					function ( $ns ) {
-						return MWNamespace::getAssociated( $ns );
+						return MediaWikiServices::getInstance()->getNamespaceInfo()->
+							getAssociated( $ns );
 					},
 					$namespaces
 				);

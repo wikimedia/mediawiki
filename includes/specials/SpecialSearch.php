@@ -647,7 +647,9 @@ class SpecialSearch extends SpecialPage {
 		) {
 			// Reset namespace preferences: namespaces are not searched
 			// when they're not mentioned in the URL parameters.
-			foreach ( MWNamespace::getValidNamespaces() as $n ) {
+			foreach ( MediaWikiServices::getInstance()->getNamespaceInfo()->getValidNamespaces()
+				as $n
+			) {
 				$user->setOption( 'searchNs' . $n, false );
 			}
 			// The request parameters include all the namespaces to be searched.

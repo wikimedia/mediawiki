@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This special page lists the defined password policies for user groups.
  * See also @ref $wgPasswordPolicy.
@@ -84,7 +86,8 @@ class SpecialPasswordPolicies extends SpecialPage {
 			$groupnameLocalized = UserGroupMembership::getGroupName( $group );
 
 			$grouppageLocalizedTitle = UserGroupMembership::getGroupPage( $group )
-				?: Title::newFromText( MWNamespace::getCanonicalName( NS_PROJECT ) . ':' . $group );
+				?: Title::newFromText( MediaWikiServices::getInstance()->getNamespaceInfo()->
+					getCanonicalName( NS_PROJECT ) . ':' . $group );
 
 			$grouppage = $linkRenderer->makeLink(
 				$grouppageLocalizedTitle,

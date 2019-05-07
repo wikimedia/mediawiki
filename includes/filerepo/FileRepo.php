@@ -176,7 +176,8 @@ class FileRepo {
 		}
 
 		// Optional settings that have a default
-		$this->initialCapital = $info['initialCapital'] ?? MWNamespace::isCapitalized( NS_FILE );
+		$this->initialCapital = $info['initialCapital'] ??
+			MediaWikiServices::getInstance()->getNamespaceInfo()->isCapitalized( NS_FILE );
 		$this->url = $info['url'] ?? false; // a subclass may set the URL (e.g. ForeignAPIRepo)
 		if ( isset( $info['thumbUrl'] ) ) {
 			$this->thumbUrl = $info['thumbUrl'];
@@ -645,7 +646,10 @@ class FileRepo {
 	 * @return string
 	 */
 	public function getNameFromTitle( Title $title ) {
-		if ( $this->initialCapital != MWNamespace::isCapitalized( NS_FILE ) ) {
+		if (
+			$this->initialCapital !=
+			MediaWikiServices::getInstance()->getNamespaceInfo()->isCapitalized( NS_FILE )
+		) {
 			$name = $title->getUserCaseDBKey();
 			if ( $this->initialCapital ) {
 				$name = MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $name );

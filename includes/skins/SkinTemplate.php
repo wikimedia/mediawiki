@@ -790,7 +790,8 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-		$linkClass = MediaWikiServices::getInstance()->getLinkRenderer()->getLinkClasses( $title );
+		$services = MediaWikiServices::getInstance();
+		$linkClass = $services->getLinkRenderer()->getLinkClasses( $title );
 
 		// wfMessageFallback will nicely accept $message as an array of fallbacks
 		// or just a single key
@@ -802,8 +803,9 @@ class SkinTemplate extends Skin {
 		if ( $msg->exists() ) {
 			$text = $msg->text();
 		} else {
-			$text = MediaWikiServices::getInstance()->getContentLanguage()->getConverter()->
-				convertNamespace( MWNamespace::getSubject( $title->getNamespace() ) );
+			$text = $services->getContentLanguage()->getConverter()->
+				convertNamespace( $services->getNamespaceInfo()->
+					getSubject( $title->getNamespace() ) );
 		}
 
 		// Avoid PHP 7.1 warning of passing $this by reference
@@ -1086,7 +1088,8 @@ class SkinTemplate extends Skin {
 				}
 
 				if ( $title->quickUserCan( 'protect', $user ) && $title->getRestrictionTypes() &&
-					MWNamespace::getRestrictionLevels( $title->getNamespace(), $user ) !== [ '' ]
+					MediaWikiServices::getInstance()->getNamespaceInfo()->
+						getRestrictionLevels( $title->getNamespace(), $user ) !== [ '' ]
 				) {
 					$mode = $title->isProtected() ? 'unprotect' : 'protect';
 					$content_navigation['actions'][$mode] = [

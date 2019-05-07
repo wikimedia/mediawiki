@@ -755,7 +755,10 @@ abstract class Skin extends ContextSource {
 			return $subpages;
 		}
 
-		if ( $out->isArticle() && MWNamespace::hasSubpages( $title->getNamespace() ) ) {
+		if (
+			$out->isArticle() && MediaWikiServices::getInstance()->getNamespaceInfo()->
+				hasSubpages( $title->getNamespace() )
+		) {
 			$ptext = $title->getPrefixedText();
 			if ( strpos( $ptext, '/' ) !== false ) {
 				$links = explode( '/', $ptext );

@@ -27,6 +27,7 @@
  */
 
 use CLDRPluralRuleParser\Evaluator;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -506,7 +507,8 @@ class Language {
 		if ( is_null( $this->namespaceNames ) ) {
 			global $wgMetaNamespace, $wgMetaNamespaceTalk, $wgExtraNamespaces;
 
-			$validNamespaces = MWNamespace::getCanonicalNamespaces();
+			$validNamespaces = MediaWikiServices::getInstance()->getNamespaceInfo()->
+				getCanonicalNamespaces();
 
 			$this->namespaceNames = $wgExtraNamespaces +
 				self::$dataCache->getItem( $this->mCode, 'namespaceNames' );
@@ -744,7 +746,8 @@ class Language {
 	 */
 	public function getNsIndex( $text ) {
 		$lctext = $this->lc( $text );
-		$ns = MWNamespace::getCanonicalIndex( $lctext );
+		$ns = MediaWikiServices::getInstance()->getNamespaceInfo()->
+			getCanonicalIndex( $lctext );
 		if ( $ns !== null ) {
 			return $ns;
 		}

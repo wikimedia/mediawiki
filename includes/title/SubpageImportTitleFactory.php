@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A class to convert page titles on a foreign wiki (ForeignTitle objects) into
  * page titles on the local wiki (Title objects), placing all pages as subpages
@@ -32,7 +34,10 @@ class SubpageImportTitleFactory implements ImportTitleFactory {
 	 * created
 	 */
 	public function __construct( Title $rootPage ) {
-		if ( !MWNamespace::hasSubpages( $rootPage->getNamespace() ) ) {
+		if (
+			!MediaWikiServices::getInstance()->getNamespaceInfo()->
+				hasSubpages( $rootPage->getNamespace() )
+		) {
 			throw new MWException( "The root page you specified, $rootPage, is in a " .
 				"namespace where subpages are not allowed" );
 		}

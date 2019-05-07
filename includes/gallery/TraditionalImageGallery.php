@@ -169,7 +169,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 
 			// @todo Code is incomplete.
 			// $linkTarget = Title::newFromText( MediaWikiServices::getInstance()->
-			// getContentLanguage()->getNsText( MWNamespace::getUser() ) . ":{$ut}" );
+			// getContentLanguage()->getNsText( MediaWikiServices::getInstance()->
+			// getNamespaceInfo()->getUser() ) . ":{$ut}" );
 			// $ul = Linker::link( $linkTarget, $ut );
 
 			$meta = [];

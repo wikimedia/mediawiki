@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -52,7 +53,8 @@ class MostinterwikisPage extends QueryPage {
 				'title' => 'page_title',
 				'value' => 'COUNT(*)'
 			], 'conds' => [
-				'page_namespace' => MWNamespace::getContentNamespaces()
+				'page_namespace' =>
+					MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces()
 			], 'options' => [
 				'HAVING' => 'COUNT(*) > 1',
 				'GROUP BY' => [

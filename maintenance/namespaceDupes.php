@@ -117,7 +117,10 @@ class NamespaceDupes extends Maintenance {
 		}
 
 		// Now pull in all canonical and alias namespaces...
-		foreach ( MWNamespace::getCanonicalNamespaces() as $ns => $name ) {
+		foreach (
+			MediaWikiServices::getInstance()->getNamespaceInfo()->getCanonicalNamespaces()
+			as $ns => $name
+		) {
 			// This includes $wgExtraNamespaces
 			if ( $name !== '' ) {
 				$spaces[$name] = $ns;
@@ -429,7 +432,10 @@ class NamespaceDupes extends Maintenance {
 	 * @return ResultWrapper
 	 */
 	private function getTargetList( $ns, $name, $options ) {
-		if ( $options['move-talk'] && MWNamespace::isSubject( $ns ) ) {
+		if (
+			$options['move-talk'] &&
+			MediaWikiServices::getInstance()->getNamespaceInfo()->isSubject( $ns )
+		) {
 			$checkNamespaces = [ NS_MAIN, NS_TALK ];
 		} else {
 			$checkNamespaces = NS_MAIN;
@@ -465,9 +471,10 @@ class NamespaceDupes extends Maintenance {
 			$dbk = "$name-" . $dbk;
 		}
 		$destNS = $ns;
-		if ( $sourceNs == NS_TALK && MWNamespace::isSubject( $ns ) ) {
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		if ( $sourceNs == NS_TALK && $nsInfo->isSubject( $ns ) ) {
 			// This is an associated talk page moved with the --move-talk feature.
-			$destNS = MWNamespace::getTalk( $destNS );
+			$destNS = $nsInfo->getTalk( $destNS );
 		}
 		$newTitle = Title::makeTitleSafe( $destNS, $dbk );
 		if ( !$newTitle || !$newTitle->canExist() ) {

@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Special page lists various statistics, including the contents of
  * `site_stats`, plus page view details if enabled
@@ -207,8 +209,8 @@ class SpecialStatistics extends SpecialPage {
 			}
 			$msg = $this->msg( 'grouppage-' . $groupname )->inContentLanguage();
 			if ( $msg->isBlank() ) {
-				$grouppageLocalized = MWNamespace::getCanonicalName( NS_PROJECT ) .
-					':' . $groupname;
+				$grouppageLocalized = MediaWikiServices::getInstance()->getNamespaceInfo()->
+					getCanonicalName( NS_PROJECT ) . ':' . $groupname;
 			} else {
 				$grouppageLocalized = $msg->text();
 			}

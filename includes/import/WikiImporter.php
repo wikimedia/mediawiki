@@ -257,7 +257,7 @@ class WikiImporter {
 			return true;
 		} elseif (
 			$namespace >= 0 &&
-			MWNamespace::exists( intval( $namespace ) )
+			MediaWikiServices::getInstance()->getNamespaceInfo()->exists( intval( $namespace ) )
 		) {
 			$namespace = intval( $namespace );
 			$this->setImportTitleFactory( new NamespaceImportTitleFactory( $namespace ) );
@@ -283,7 +283,10 @@ class WikiImporter {
 
 			if ( !$title || $title->isExternal() ) {
 				$status->fatal( 'import-rootpage-invalid' );
-			} elseif ( !MWNamespace::hasSubpages( $title->getNamespace() ) ) {
+			} elseif (
+				!MediaWikiServices::getInstance()->getNamespaceInfo()->
+				hasSubpages( $title->getNamespace() )
+			) {
 				$displayNSText = $title->getNamespace() == NS_MAIN
 					? wfMessage( 'blanknamespace' )->text()
 					: MediaWikiServices::getInstance()->getContentLanguage()->

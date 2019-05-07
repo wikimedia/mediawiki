@@ -84,7 +84,8 @@ class SpecialListGroupRights extends SpecialPage {
 			$groupnameLocalized = UserGroupMembership::getGroupName( $groupname );
 
 			$grouppageLocalizedTitle = UserGroupMembership::getGroupPage( $groupname )
-				?: Title::newFromText( MWNamespace::getCanonicalName( NS_PROJECT ) . ':' . $groupname );
+				?: Title::newFromText( MediaWikiServices::getInstance()->getNamespaceInfo()->
+				getCanonicalName( NS_PROJECT ) . ':' . $groupname );
 
 			if ( $group == '*' || !$grouppageLocalizedTitle ) {
 				// Do not make a link for the generic * group or group with invalid group page
@@ -162,7 +163,8 @@ class SpecialListGroupRights extends SpecialPage {
 		);
 		$linkRenderer = $this->getLinkRenderer();
 		ksort( $namespaceProtection );
-		$validNamespaces = MWNamespace::getValidNamespaces();
+		$validNamespaces =
+			MediaWikiServices::getInstance()->getNamespaceInfo()->getValidNamespaces();
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		foreach ( $namespaceProtection as $namespace => $rights ) {
 			if ( !in_array( $namespace, $validNamespaces ) ) {

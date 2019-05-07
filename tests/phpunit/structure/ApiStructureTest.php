@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -566,7 +567,8 @@ class ApiStructureTest extends MediaWikiTestCase {
 				break;
 
 			case 'namespace':
-				$validValues = MWNamespace::getValidNamespaces();
+				$validValues = MediaWikiServices::getInstance()->getNamespaceInfo()->
+					getValidNamespaces();
 				if (
 					isset( $config[ApiBase::PARAM_EXTRA_NAMESPACES] ) &&
 					is_array( $config[ApiBase::PARAM_EXTRA_NAMESPACES] )

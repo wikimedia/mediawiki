@@ -211,12 +211,13 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		$res = $this->select( __METHOD__ );
 
 		// Get gender information
-		if ( MWNamespace::hasGenderDistinction( $params['namespace'] ) ) {
+		$services = MediaWikiServices::getInstance();
+		if ( $services->getNamespaceInfo()->hasGenderDistinction( $params['namespace'] ) ) {
 			$users = [];
 			foreach ( $res as $row ) {
 				$users[] = $row->page_title;
 			}
-			MediaWikiServices::getInstance()->getGenderCache()->doQuery( $users, __METHOD__ );
+			$services->getGenderCache()->doQuery( $users, __METHOD__ );
 			$res->rewind(); // reset
 		}
 

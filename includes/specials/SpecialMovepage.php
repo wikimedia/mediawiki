@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page that allows users to change page titles
  *
@@ -297,7 +299,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		$immovableNamespaces = [];
 		foreach ( array_keys( $this->getLanguage()->getNamespaces() ) as $nsId ) {
-			if ( !MWNamespace::isMovable( $nsId ) ) {
+			if ( !MediaWikiServices::getInstance()->getNamespaceInfo()->isMovable( $nsId ) ) {
 				$immovableNamespaces[] = $nsId;
 			}
 		}
@@ -664,11 +666,12 @@ class MovePageForm extends UnlistedSpecialPage {
 		 */
 
 		// @todo FIXME: Use Title::moveSubpages() here
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 		$dbr = wfGetDB( DB_MASTER );
 		if ( $this->moveSubpages && (
-			MWNamespace::hasSubpages( $nt->getNamespace() ) || (
+			$nsInfo->hasSubpages( $nt->getNamespace() ) || (
 				$this->moveTalk
-					&& MWNamespace::hasSubpages( $nt->getTalkPage()->getNamespace() )
+					&& $nsInfo->hasSubpages( $nt->getTalkPage()->getNamespace() )
 			)
 		) ) {
 			$conds = [
@@ -676,11 +679,11 @@ class MovePageForm extends UnlistedSpecialPage {
 					. ' OR page_title = ' . $dbr->addQuotes( $ot->getDBkey() )
 			];
 			$conds['page_namespace'] = [];
-			if ( MWNamespace::hasSubpages( $nt->getNamespace() ) ) {
+			if ( $nsInfo->hasSubpages( $nt->getNamespace() ) ) {
 				$conds['page_namespace'][] = $ot->getNamespace();
 			}
 			if ( $this->moveTalk &&
-				MWNamespace::hasSubpages( $nt->getTalkPage()->getNamespace() )
+				$nsInfo->hasSubpages( $nt->getTalkPage()->getNamespace() )
 			) {
 				$conds['page_namespace'][] = $ot->getTalkPage()->getNamespace();
 			}
@@ -799,7 +802,8 @@ class MovePageForm extends UnlistedSpecialPage {
 	 * @param Title $title Page being moved.
 	 */
 	function showSubpages( $title ) {
-		$nsHasSubpages = MWNamespace::hasSubpages( $title->getNamespace() );
+		$nsHasSubpages = MediaWikiServices::getInstance()->getNamespaceInfo()->
+			hasSubpages( $title->getNamespace() );
 		$subpages = $title->getSubpages();
 		$count = $subpages instanceof TitleArray ? $subpages->count() : 0;
 

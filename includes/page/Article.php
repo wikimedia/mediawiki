@@ -1352,6 +1352,8 @@ class Article implements Page {
 
 		$title = $this->getTitle();
 
+		$services = MediaWikiServices::getInstance();
+
 		# Show info in user (talk) namespace. Does the user exist? Is he blocked?
 		if ( $title->getNamespace() == NS_USER
 			|| $title->getNamespace() == NS_USER_TALK
@@ -1374,7 +1376,8 @@ class Article implements Page {
 				LogEventsList::showLogExtract(
 					$outputPage,
 					'block',
-					MWNamespace::getCanonicalName( NS_USER ) . ':' . $block->getTarget(),
+					$services->getNamespaceInfo()->getCanonicalName( NS_USER ) . ':' .
+						$block->getTarget(),
 					'',
 					[
 						'lim' => 1,
@@ -1396,7 +1399,7 @@ class Article implements Page {
 		# Show delete and move logs if there were any such events.
 		# The logging query can DOS the site when bots/crawlers cause 404 floods,
 		# so be careful showing this. 404 pages must be cheap as they are hard to cache.
-		$cache = MediaWikiServices::getInstance()->getMainObjectStash();
+		$cache = $services->getMainObjectStash();
 		$key = $cache->makeKey( 'page-recent-delete', md5( $title->getPrefixedText() ) );
 		$loggedIn = $this->getContext()->getUser()->isLoggedIn();
 		$sessionExists = $this->getContext()->getRequest()->getSession()->isPersistent();

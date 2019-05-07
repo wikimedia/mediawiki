@@ -45,7 +45,8 @@ class AncientPagesPage extends QueryPage {
 	public function getQueryInfo() {
 		$tables = [ 'page', 'revision' ];
 		$conds = [
-			'page_namespace' => MWNamespace::getContentNamespaces(),
+			'page_namespace' =>
+				MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces(),
 			'page_is_redirect' => 0
 		];
 		$joinConds = [

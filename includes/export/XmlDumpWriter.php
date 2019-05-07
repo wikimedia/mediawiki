@@ -141,6 +141,7 @@ class XmlDumpWriter {
 	 */
 	function namespaces() {
 		$spaces = "<namespaces>\n";
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 		foreach (
 			MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces()
 			as $ns => $title
@@ -149,7 +150,8 @@ class XmlDumpWriter {
 				Xml::element( 'namespace',
 					[
 						'key' => $ns,
-						'case' => MWNamespace::isCapitalized( $ns ) ? 'first-letter' : 'case-sensitive',
+						'case' => $nsInfo->isCapitalized( $ns )
+							? 'first-letter' : 'case-sensitive',
 					], $title ) . "\n";
 		}
 		$spaces .= "    </namespaces>";
