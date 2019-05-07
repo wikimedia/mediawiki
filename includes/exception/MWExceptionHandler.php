@@ -74,9 +74,32 @@ class MWExceptionHandler {
 	 * Install handlers with PHP.
 	 */
 	public static function installHandler() {
+		// This catches:
+		// * Exception objects that were explicitly thrown but not
+		//   caught anywhere in the application. This is rare given those
+		//   would normally be caught at a high-level like MediaWiki::run (index.php),
+		//   api.php, or ResourceLoader::respond (load.php). These high-level
+		//   catch clauses would then call MWExceptionHandler::logException
+		//   or MWExceptionHandler::handleException.
+		//   If they are not caught, then they are handled here.
+		// * Error objects (on PHP 7+), for issues that would historically
+		//   cause fatal errors but may now be caught as Throwable (not Exception).
+		//   Same as previous case, but more common to bubble to here instead of
+		//   caught locally because they tend to not be safe to recover from.
+		//   (e.g. argument TypeErorr, devision by zero, etc.)
 		set_exception_handler( 'MWExceptionHandler::handleUncaughtException' );
+
+		// This catches:
+		// * Non-fatal errors (e.g. PHP Notice, PHP Warning, PHP Error) that do not
+		//   interrupt execution in any way. We log these in the background and then
+		//   continue execution.
+		// * Fatal errors (on HHVM in PHP5 mode) where PHP 7 would throw Throwable.
 		set_error_handler( 'MWExceptionHandler::handleError' );
 
+		// This catches:
+		// * Fatal error for which no Throwable is thrown (PHP 7), and no Error emitted (HHVM).
+		//   This includes Out-Of-Memory and Timeout fatals.
+		//
 		// Reserve 16k of memory so we can report OOM fatals
 		self::$reservedMemory = str_repeat( ' ', 16384 );
 		register_shutdown_function( 'MWExceptionHandler::handleFatalError' );
