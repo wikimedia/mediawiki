@@ -22,9 +22,7 @@ use Cdb\Reader;
 use Cdb\Writer;
 
 /**
- * LCStore implementation which stores data as a collection of CDB files in the
- * directory given by $wgCacheDirectory. If $wgCacheDirectory is not set, this
- * will throw an exception.
+ * LCStore implementation which stores data as a collection of CDB files.
  *
  * Profiling indicates that on Linux, this implementation outperforms MySQL if
  * the directory is on a local filesystem and there is ample kernel cache
