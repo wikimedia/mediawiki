@@ -52,6 +52,7 @@ exports.config = {
 
 	// ==================
 	// Test Files
+	// FIXME: The non-core patterns to be removed once T199116 is fixed.
 	// ==================
 	specs: [
 		relPath( './tests/selenium/wdio-mediawiki/specs/*.js' ),
@@ -63,7 +64,9 @@ exports.config = {
 	],
 	// Patterns to exclude
 	exclude: [
-		relPath( './extensions/CirrusSearch/tests/selenium/specs/**/*.js' )
+		relPath( './extensions/CirrusSearch/tests/selenium/specs/**/*.js' ),
+		// Disabled per T222517
+		relPath( './skins/MinervaNeue/tests/selenium/specs/**/*.js' )
 	],
 
 	// ============
