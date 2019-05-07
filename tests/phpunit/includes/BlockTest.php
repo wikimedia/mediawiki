@@ -132,6 +132,68 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @dataProvider provideNewFromTargetRangeBlocks
+	 * @covers Block::newFromTarget
+	 */
+	public function testNewFromTargetRangeBlocks( $targets, $ip, $expectedTarget ) {
+		$blocker = $this->getTestSysop()->getUser();
+
+		foreach ( $targets as $target ) {
+			$block = new Block();
+			$block->setTarget( $target );
+			$block->setBlocker( $blocker );
+			$block->insert();
+		}
+
+		// Should find the block with the narrowest range
+		$blockTarget = Block::newFromTarget( $this->getTestUser()->getUser(), $ip )->getTarget();
+		$this->assertSame(
+			$blockTarget instanceof User ? $blockTarget->getName() : $blockTarget,
+			$expectedTarget
+		);
+
+		foreach ( $targets as $target ) {
+			$block = Block::newFromTarget( $target );
+			$block->delete();
+		}
+	}
+
+	function provideNewFromTargetRangeBlocks() {
+		return [
+			'Blocks to IPv4 ranges' => [
+				[ '0.0.0.0/20', '0.0.0.0/30', '0.0.0.0/25' ],
+				'0.0.0.0',
+				'0.0.0.0/30'
+			],
+			'Blocks to IPv6 ranges' => [
+				[ '0:0:0:0:0:0:0:0/20', '0:0:0:0:0:0:0:0/30', '0:0:0:0:0:0:0:0/25' ],
+				'0:0:0:0:0:0:0:0',
+				'0:0:0:0:0:0:0:0/30'
+			],
+			'Blocks to wide IPv4 range and IP' => [
+				[ '0.0.0.0/16', '0.0.0.0' ],
+				'0.0.0.0',
+				'0.0.0.0'
+			],
+			'Blocks to wide IPv6 range and IP' => [
+				[ '0:0:0:0:0:0:0:0/19', '0:0:0:0:0:0:0:0' ],
+				'0:0:0:0:0:0:0:0',
+				'0:0:0:0:0:0:0:0'
+			],
+			'Blocks to narrow IPv4 range and IP' => [
+				[ '0.0.0.0/31', '0.0.0.0' ],
+				'0.0.0.0',
+				'0.0.0.0'
+			],
+			'Blocks to narrow IPv6 range and IP' => [
+				[ '0:0:0:0:0:0:0:0/127', '0:0:0:0:0:0:0:0' ],
+				'0:0:0:0:0:0:0:0',
+				'0:0:0:0:0:0:0:0'
+			],
+		];
+	}
+
+	/**
 	 * @covers Block::appliesToRight
 	 */
 	public function testBlockedUserCanNotCreateAccount() {
