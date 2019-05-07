@@ -718,8 +718,7 @@ class MessageCache {
 		$this->wanCache->touchCheckKey( $this->getCheckKey( $code ) );
 
 		// Purge the messages in the message blob store and fire any hook handlers
-		$resourceloader = RequestContext::getMain()->getOutput()->getResourceLoader();
-		$blobStore = $resourceloader->getMessageBlobStore();
+		$blobStore = MediaWikiServices::getInstance()->getResourceLoader()->getMessageBlobStore();
 		foreach ( $replacements as list( $title, $msg ) ) {
 			$blobStore->updateMessage( $this->contLang->lcfirst( $msg ) );
 			Hooks::run( 'MessageCacheReplace', [ $title, $newTextByTitle[$title] ] );
