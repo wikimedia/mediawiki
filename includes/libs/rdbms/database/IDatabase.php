@@ -247,8 +247,8 @@ interface IDatabase {
 	public function implicitOrderby();
 
 	/**
-	 * Return the last query that went through IDatabase::query()
-	 * @return string
+	 * Return the last query that sent on account of IDatabase::query()
+	 * @return string SQL text or empty string if there was no such query
 	 */
 	public function lastQuery();
 
