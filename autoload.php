@@ -1390,6 +1390,7 @@ $wgAutoloadLocalClasses = [
 	'SpecialLockdb' => __DIR__ . '/includes/specials/SpecialLockdb.php',
 	'SpecialLog' => __DIR__ . '/includes/specials/SpecialLog.php',
 	'SpecialMergeHistory' => __DIR__ . '/includes/specials/SpecialMergeHistory.php',
+	'SpecialMute' => __DIR__ . '/includes/specials/SpecialMute.php',
 	'SpecialMyLanguage' => __DIR__ . '/includes/specials/SpecialMyLanguage.php',
 	'SpecialMycontributions' => __DIR__ . '/includes/specials/redirects/SpecialMycontributions.php',
 	'SpecialMypage' => __DIR__ . '/includes/specials/redirects/SpecialMypage.php',

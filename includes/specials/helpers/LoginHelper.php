@@ -25,6 +25,7 @@ class LoginHelper extends ContextSource {
 		'resetpass-no-info',
 		'confirmemail_needlogin',
 		'prefsnologintext2',
+		'specialmute-login-required',
 	];
 
 	/**
