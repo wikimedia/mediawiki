@@ -249,7 +249,8 @@ return [
 	'LinkRendererFactory' => function ( MediaWikiServices $services ) : LinkRendererFactory {
 		return new LinkRendererFactory(
 			$services->getTitleFormatter(),
-			$services->getLinkCache()
+			$services->getLinkCache(),
+			$services->getNamespaceInfo()
 		);
 	},
 

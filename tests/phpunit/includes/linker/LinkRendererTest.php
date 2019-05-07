@@ -165,7 +165,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			0 // redir
 		);
 
-		$linkRenderer = new LinkRenderer( $titleFormatter, $linkCache );
+		$linkRenderer = new LinkRenderer( $titleFormatter, $linkCache, $nsInfo );
 		$linkRenderer->setStubThreshold( 0 );
 		$this->assertEquals(
 			'',
