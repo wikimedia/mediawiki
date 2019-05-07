@@ -22,13 +22,14 @@
 
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
 
-class Block {
+class Block extends AbstractBlock {
 	/** @var string */
 	public $mReason;
 
