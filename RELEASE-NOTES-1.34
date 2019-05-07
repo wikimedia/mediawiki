@@ -55,7 +55,10 @@ For notes on 1.33.x and older releases, see HISTORY.
 * …
 
 === Bug fixes in 1.34 ===
-* …
+* (T222529) If a log entry or page revision is recorded in the database with an
+  empty username, attempting to display it will log an error and return a "no
+  username available" to the user instead of silently displaying nothing or
+  invalid links.
 
 === Action API changes in 1.34 ===
 * The 'recenteditcount' response property from action=query list=allusers,
