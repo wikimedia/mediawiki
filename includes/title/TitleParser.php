@@ -32,8 +32,7 @@
  */
 interface TitleParser {
 	/**
-	 * Parses the given text and constructs a TitleValue. Normalization
-	 * is applied according to the rules appropriate for the form specified by $form.
+	 * Parses the given text and constructs a TitleValue.
 	 *
 	 * @note this only parses local page links, interwiki-prefixes etc. are not considered!
 	 *
