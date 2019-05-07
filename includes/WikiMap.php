@@ -221,19 +221,29 @@ class WikiMap {
 	 * @since 1.30
 	 */
 	public static function getWikiFromUrl( $url ) {
+		global $wgCanonicalServer;
+
+		if ( strpos( $url, "$wgCanonicalServer/" ) === 0 ) {
+			// Optimisation: Handle the the common case.
+			// (Duplicates self::getCanonicalServerInfoForAllWikis)
+			return self::getWikiIdFromDbDomain( self::getCurrentWikiDbDomain() );
+		}
+
 		$urlPartsCheck = wfParseUrl( $url );
 		if ( $urlPartsCheck === false ) {
 			return false;
 		}
 
-		$urlPartsCheck = array_intersect_key( $urlPartsCheck, [ 'host' => 1, 'port' => 1 ] );
+		static $relevantKeys = [ 'host' => 1, 'port' => 1 ];
+		$urlPartsCheck = array_intersect_key( $urlPartsCheck, $relevantKeys );
+
 		foreach ( self::getCanonicalServerInfoForAllWikis() as $wikiId => $info ) {
 			$urlParts = $info['parts'];
 			if ( $urlParts === false ) {
 				continue; // sanity
 			}
 
-			$urlParts = array_intersect_key( $urlParts, [ 'host' => 1, 'port' => 1 ] );
+			$urlParts = array_intersect_key( $urlParts, $relevantKeys );
 			if ( $urlParts == $urlPartsCheck ) {
 				return $wikiId;
 			}
