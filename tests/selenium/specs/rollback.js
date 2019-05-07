@@ -53,7 +53,7 @@ describe( 'Rollback with confirmation', function () {
 		assert.strictEqual( HistoryPage.heading.getText(), 'Revision history of "' + name + '"' );
 	} );
 
-	it( 'should perform rollbacks after confirming intention', function () {
+	it.skip( 'should perform rollbacks after confirming intention', function () {
 		HistoryPage.rollback.click();
 
 		HistoryPage.rollbackConfirmableYes.waitForVisible( 5000 );
