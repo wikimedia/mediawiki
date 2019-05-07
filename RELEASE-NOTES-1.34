@@ -113,6 +113,7 @@ because of Phabricator reports.
   removed. Use UserGroupMembership::getGroupPage and ::getLink instead.
 * User::makeGroupLinkWiki(), deprecated in 1.29, has been removed. Use
   UserGroupMembership::getLink() instead.
+* SavepointPostgres, deprecated in 1.31, has been removed.
 * …
 
 === Deprecations in 1.34 ===
