@@ -112,6 +112,9 @@ because of Phabricator reports.
 * wfArrayFilter() and wfArrayFilterByKey(), deprecated in 1.32, have been
   removed.
 * wfMakeUrlIndexes() function, deprecated in 1.33, have been removed.
+* Method signatures in WatchedItemQueryServiceExtension have changed from taking
+  User objects to taking UserIdentity objects. Extensions implementing this
+  interface need to be changed accordingly.
 * User::getGroupPage() and ::makeGroupLinkHTML(), deprecated in 1.29, have been
   removed. Use UserGroupMembership::getGroupPage and ::getLink instead.
 * User::makeGroupLinkWiki(), deprecated in 1.29, has been removed. Use
