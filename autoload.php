@@ -1683,7 +1683,6 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\PostgresField' => __DIR__ . '/includes/libs/rdbms/field/PostgresField.php',
 	'Wikimedia\\Rdbms\\ResultWrapper' => __DIR__ . '/includes/libs/rdbms/database/resultwrapper/ResultWrapper.php',
 	'Wikimedia\\Rdbms\\SQLiteField' => __DIR__ . '/includes/libs/rdbms/field/SQLiteField.php',
-	'Wikimedia\\Rdbms\\SavepointPostgres' => __DIR__ . '/includes/libs/rdbms/database/utils/SavepointPostgres.php',
 	'Wikimedia\\Rdbms\\SessionConsistentConnectionManager' => __DIR__ . '/includes/libs/rdbms/connectionmanager/SessionConsistentConnectionManager.php',
 	'Wikimedia\\Rdbms\\Subquery' => __DIR__ . '/includes/libs/rdbms/encasing/Subquery.php',
 	'Wikimedia\\Rdbms\\TransactionProfiler' => __DIR__ . '/includes/libs/rdbms/TransactionProfiler.php',
