@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.5
+ * OOUI v0.31.6
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-04-24T18:29:15Z
+ * Date: 2019-05-08T10:08:44Z
  */
 .oo-ui-tool {
   -webkit-box-sizing: border-box;
@@ -179,8 +179,7 @@
   opacity: 1;
 }
 
-.oo-ui-popupTool-popup .oo-ui-popupWidget-popup,
-.oo-ui-popupTool-popup .oo-ui-popupWidget-anchor {
+.oo-ui-popupTool-popup.oo-ui-popupWidget {
   z-index: 4;
 }
 

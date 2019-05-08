@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.5
+ * OOUI v0.31.6
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-04-24T18:29:08Z
+ * Date: 2019-05-08T10:08:36Z
  */
 ( function ( OO ) {
 
@@ -12070,7 +12070,7 @@ OO.ui.FieldLayout.prototype.makeMessage = function ( kind, text ) {
 	var $listItem, $icon, message;
 	$listItem = $( '<li>' );
 	if ( kind === 'error' ) {
-		$icon = new OO.ui.IconWidget( { icon: 'alert', flags: [ 'error' ] } ).$element;
+		$icon = new OO.ui.IconWidget( { icon: 'error', flags: [ 'error' ] } ).$element;
 		$listItem.attr( 'role', 'alert' );
 	} else if ( kind === 'warning' ) {
 		$icon = new OO.ui.IconWidget( { icon: 'alert', flags: [ 'warning' ] } ).$element;
