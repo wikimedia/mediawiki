@@ -4,16 +4,19 @@
  * @group WebRequest
  */
 class WebRequestTest extends MediaWikiTestCase {
-	protected $oldServer;
 
 	protected function setUp() {
 		parent::setUp();
 
 		$this->oldServer = $_SERVER;
+		$this->oldWgRequest = $GLOBALS['wgRequest'];
+		$this->oldWgServer = $GLOBALS['wgServer'];
 	}
 
 	protected function tearDown() {
 		$_SERVER = $this->oldServer;
+		$GLOBALS['wgRequest'] = $this->oldWgRequest;
+		$GLOBALS['wgServer'] = $this->oldWgServer;
 
 		parent::tearDown();
 	}
@@ -366,6 +369,22 @@ class WebRequestTest extends MediaWikiTestCase {
 		$req = $this->mockWebRequest( [ 'x' => 'Value', 'y' => '' ] );
 		$this->assertSame( [ 'x', 'y' ], $req->getValueNames() );
 		$this->assertSame( [ 'x' ], $req->getValueNames( [ 'y' ] ), 'Exclude keys' );
+	}
+
+	/**
+	 * @covers WebRequest
+	 */
+	public function testGetFullRequestURL() {
+		// Stub this for wfGetServerUrl()
+		$GLOBALS['wgServer'] = '//wiki.test';
+		$req = $this->getMock( WebRequest::class, [ 'getRequestURL', 'getProtocol' ] );
+		$req->method( 'getRequestURL' )->willReturn( '/path' );
+		$req->method( 'getProtocol' )->willReturn( 'https' );
+
+		$this->assertSame(
+			'https://wiki.test/path',
+			$req->getFullRequestURL()
+		);
 	}
 
 	/**
