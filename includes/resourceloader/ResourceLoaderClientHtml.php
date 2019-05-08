@@ -233,27 +233,43 @@ class ResourceLoaderClientHtml {
 		$chunks = [];
 
 		// Change "client-nojs" class to client-js. This allows easy toggling of UI components.
-		// This happens synchronously on every page view to avoid flashes of wrong content.
+		// This must happen synchronously on every page view to avoid flashes of wrong content.
 		// See also #getDocumentAttributes() and /resources/src/startup.js.
-		$chunks[] = Html::inlineScript(
-			'document.documentElement.className = document.documentElement.className'
-			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );',
-			$nonce
-		);
+		$script = <<<JAVASCRIPT
+document.documentElement.className = document.documentElement.className
+	.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );
+JAVASCRIPT;
 
-		// Inline RLQ: Set page variables
+		// Inline script: Declare mw.config variables for this page.
 		if ( $this->config ) {
-			$chunks[] = ResourceLoader::makeInlineScript(
-				ResourceLoader::makeConfigSetScript( $this->config ),
-				$nonce
-			);
+			$confJson = ResourceLoader::encodeJsonForScript( $this->config );
+			$script .= <<<JAVASCRIPT
+RLCONF = {$confJson};
+JAVASCRIPT;
 		}
 
-		// Inline RLQ: Initial module states
+		// Inline script: Declare initial module states for this page.
 		$states = array_merge( $this->exemptStates, $data['states'] );
 		if ( $states ) {
-			$chunks[] = ResourceLoader::makeInlineScript(
-				ResourceLoader::makeLoaderStateScript( $states ),
+			$stateJson = ResourceLoader::encodeJsonForScript( $states );
+			$script .= <<<JAVASCRIPT
+RLSTATE = {$stateJson};
+JAVASCRIPT;
+		}
+
+		// Inline script: Declare general modules to load on this page.
+		if ( $data['general'] ) {
+			$pageModulesJson = ResourceLoader::encodeJsonForScript( $data['general'] );
+			$script .= <<<JAVASCRIPT
+RLPAGEMODULES = {$pageModulesJson};
+JAVASCRIPT;
+		}
+
+		if ( $this->context->getDebug() ) {
+			$chunks[] = Html::inlineScript( $script, $nonce );
+		} else {
+			$chunks[] = Html::inlineScript(
+				ResourceLoader::filter( 'minify-js', $script, [ 'cache' => false ] ),
 				$nonce
 			);
 		}
@@ -263,17 +279,6 @@ class ResourceLoaderClientHtml {
 			$chunks[] = $this->getLoad(
 				$data['embed']['general'],
 				ResourceLoaderModule::TYPE_COMBINED,
-				$nonce
-			);
-		}
-
-		// Inline RLQ: Load general modules
-		if ( $data['general'] ) {
-			$chunks[] = ResourceLoader::makeInlineScript(
-				'RLPAGEMODULES='
-					. ResourceLoader::encodeJsonForScript( $data['general'] )
-					. ';'
-					. 'mw.loader.load(RLPAGEMODULES);',
 				$nonce
 			);
 		}
