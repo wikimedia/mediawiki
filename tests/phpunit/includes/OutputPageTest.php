@@ -2711,7 +2711,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			// Single only=scripts load
 			[
 				[ 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ],
-				"<script nonce=\"secret\">(window.RLQ=window.RLQ||[]).push(function(){"
+				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.foo\u0026only=scripts\u0026skin=fallback");'
 					. "});</script>"
 			],
@@ -2724,14 +2724,14 @@ class OutputPageTest extends MediaWikiTestCase {
 			// Private embed (only=scripts)
 			[
 				[ 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ],
-				"<script nonce=\"secret\">(window.RLQ=window.RLQ||[]).push(function(){"
+				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
 					. "mw.test.baz({token:123});\nmw.loader.state({\"test.quux\":\"ready\"});"
 					. "});</script>"
 			],
 			// Load private module (combined)
 			[
 				[ 'test.quux', ResourceLoaderModule::TYPE_COMBINED ],
-				"<script nonce=\"secret\">(window.RLQ=window.RLQ||[]).push(function(){"
+				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
 					. "mw.loader.implement(\"test.quux@1ev0ijv\",function($,jQuery,require,module){"
 					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}"
 					. "\"]});});</script>"
@@ -2749,7 +2749,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			// Load two modules in separate groups
 			[
 				[ [ 'test.group.foo', 'test.group.bar' ], ResourceLoaderModule::TYPE_COMBINED ],
-				"<script nonce=\"secret\">(window.RLQ=window.RLQ||[]).push(function(){"
+				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.group.bar\u0026skin=fallback");'
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.group.foo\u0026skin=fallback");'
 					. "});</script>"
