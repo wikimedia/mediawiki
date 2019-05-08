@@ -28,7 +28,6 @@
 		"alert": {
 			"file": "images/icons/alert.svg",
 			"variants": [
-				"error",
 				"warning"
 			]
 		},
@@ -36,7 +35,10 @@
 			"file": "images/icons/bell.svg"
 		},
 		"error": {
-			"file": "images/icons/error.svg"
+			"file": "images/icons/error.svg",
+			"variants": [
+				"error"
+			]
 		},
 		"message": {
 			"file": "images/icons/message.svg"

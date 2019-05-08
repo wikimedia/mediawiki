@@ -1,4 +1,17 @@
 # OOUI Release History
+## v0.31.6 / 2019-05-07
+### Styles
+* FieldLayout: Use 'error' icon for error messages (Volker E.)
+* FieldLayout, FieldsetLayout: Remove bad `z-index` override for help popup (Bartosz Dziewoński)
+* MenuSelectWidget: Amend value to reflect one option's height (Volker E.)
+* PopupTool: Fix popup `z-index` override (Bartosz Dziewoński)
+* icons: Add 'articleDisambiguation*' and 'articleNotFound*' (Volker E.)
+
+### Code
+* WikimediaUI theme: Fix regression of too short menu items (Volker E.)
+* build: Upgrade eslint-config-wikimedia 0.12.0, drop grunt-jsonlint (James D. Forrester)
+
+
 ## v0.31.5 / 2019-04-24
 ### Features
 * MenuSelectWidget: Fix highlight on re-display (Lucas Werkmeister)

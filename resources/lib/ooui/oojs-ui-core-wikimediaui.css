@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.5
+ * OOUI v0.31.6
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-04-24T18:29:15Z
+ * Date: 2019-05-08T10:08:44Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -546,9 +546,6 @@
 .oo-ui-fieldLayout .oo-ui-fieldLayout-help {
   float: right;
 }
-.oo-ui-fieldLayout .oo-ui-fieldLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
-  z-index: 1;
-}
 .oo-ui-fieldLayout.oo-ui-labelElement,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline {
   margin-top: 0.85714286em;
@@ -714,9 +711,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help {
   float: right;
 }
-.oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
-  z-index: 1;
-}
 .oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-header {
   max-width: 50em;
 }
@@ -836,7 +830,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 
 .oo-ui-decoratedOptionWidget {
-  padding: 0.42857143em 0.85714286em;
+  padding: 0.5em 0.85714286em;
   line-height: 1;
 }
 .oo-ui-decoratedOptionWidget.oo-ui-iconElement {
@@ -846,7 +840,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   left: 0.78571429em;
 }
 .oo-ui-decoratedOptionWidget .oo-ui-labelElement-label {
-  line-height: 1.14285714em;
+  line-height: 1.28571429em;
 }
 .oo-ui-decoratedOptionWidget.oo-ui-indicatorElement {
   padding-right: 2.28571429em;
@@ -1743,7 +1737,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
 }
 .oo-ui-menuSelectWidget.oo-ui-clippableElement-clippable {
-  min-height: 2.6em;
+  min-height: 2.286em;
 }
 .oo-ui-menuSelectWidget-invisible {
   display: none;
