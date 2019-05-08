@@ -113,7 +113,7 @@ Deprecation message.' ]
 			. 'RLSTATE={"test.exempt":"ready","test.private":"loading","test.styles.pure":"ready","test.styles.private":"ready","test.styles.deprecated":"ready"};'
 			. 'RLPAGEMODULES=["test"];'
 			. '</script>' . "\n"
-			. '<script>(window.RLQ=window.RLQ||[]).push(function(){'
+			. '<script>(RLQ=window.RLQ||[]).push(function(){'
 			. 'mw.loader.implement("test.private@{blankVer}",null,{"css":[]});'
 			. '});</script>' . "\n"
 			. '<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.deprecated%2Cpure&amp;only=styles&amp;skin=fallback"/>' . "\n"
@@ -190,7 +190,7 @@ Deprecation message.' ]
 			'test.styles.deprecated',
 		] );
 		// phpcs:disable Generic.Files.LineLength
-		$expected = '<script>(window.RLQ=window.RLQ||[]).push(function(){'
+		$expected = '<script>(RLQ=window.RLQ||[]).push(function(){'
 			. 'mw.log.warn("This page is using the deprecated ResourceLoader module \"test.styles.deprecated\".\nDeprecation message.");'
 			. '});</script>';
 		// phpcs:enable
@@ -220,7 +220,7 @@ Deprecation message.' ]
 				'modules' => [ 'test.private' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
 				'extra' => [],
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.private@{blankVer}",null,{"css":[]});});</script>',
+				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.private@{blankVer}",null,{"css":[]});});</script>',
 			],
 			[
 				'context' => [],
@@ -242,14 +242,14 @@ Deprecation message.' ]
 				'modules' => [ 'test.scripts.user' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
 				'extra' => [],
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test.scripts.user\u0026only=scripts\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
+				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test.scripts.user\u0026only=scripts\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.user' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
 				'extra' => [],
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test.user\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
+				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test.user\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
 			],
 			[
 				'context' => [ 'debug' => 'true' ],
@@ -278,7 +278,7 @@ Deprecation message.' ]
 				'modules' => [ 'test.shouldembed' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
 				'extra' => [],
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.shouldembed@09p30q0",null,{"css":[]});});</script>',
+				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.shouldembed@09p30q0",null,{"css":[]});});</script>',
 			],
 			[
 				'context' => [],
@@ -292,14 +292,14 @@ Deprecation message.' ]
 				'modules' => [ 'test.scripts.shouldembed' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
 				'extra' => [],
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.state({"test.scripts.shouldembed":"ready"});});</script>',
+				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.state({"test.scripts.shouldembed":"ready"});});</script>',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test', 'test.shouldembed' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
 				'extra' => [],
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test\u0026skin=fallback");mw.loader.implement("test.shouldembed@09p30q0",null,{"css":[]});});</script>',
+				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test\u0026skin=fallback");mw.loader.implement("test.shouldembed@09p30q0",null,{"css":[]});});</script>',
 			],
 			[
 				'context' => [],

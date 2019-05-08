@@ -50,12 +50,15 @@ class SearchFormWidget {
 		$offset,
 		$isPowerSearch
 	) {
+		$user = $this->specialSearch->getUser();
+
 		return '<div class="mw-search-form-wrapper">' .
 			Xml::openElement(
 				'form',
 				[
 					'id' => $isPowerSearch ? 'powersearch' : 'search',
-					'method' => 'get',
+					// T151903: default to POST in case JS is disabled
+					'method' => ( $isPowerSearch && $user->isLoggedIn() ) ? 'post' : 'get',
 					'action' => wfScript(),
 				]
 			) .

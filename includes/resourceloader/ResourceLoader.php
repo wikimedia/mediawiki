@@ -1482,7 +1482,7 @@ MESSAGE;
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
 		// Adds a function to lazy-created RLQ
-		return '(window.RLQ=window.RLQ||[]).push(function(){' .
+		return '(RLQ=window.RLQ||[]).push(function(){' .
 			trim( $script ) . '});';
 	}
 
@@ -1496,7 +1496,7 @@ MESSAGE;
 	 */
 	public static function makeInlineCodeWithModule( $modules, $script ) {
 		// Adds an array to lazy-created RLQ
-		return '(window.RLQ=window.RLQ||[]).push(['
+		return '(RLQ=window.RLQ||[]).push(['
 			. self::encodeJsonForScript( $modules ) . ','
 			. 'function(){' . trim( $script ) . '}'
 			. ']);';
@@ -1527,7 +1527,7 @@ MESSAGE;
 
 		return new WrappedString(
 			Html::inlineScript( $js, $nonce ),
-			"<script$escNonce>(window.RLQ=window.RLQ||[]).push(function(){",
+			"<script$escNonce>(RLQ=window.RLQ||[]).push(function(){",
 			'});</script>'
 		);
 	}
