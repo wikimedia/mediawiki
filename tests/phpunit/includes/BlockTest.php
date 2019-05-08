@@ -175,20 +175,30 @@ class BlockTest extends MediaWikiLangTestCase {
 				'0.0.0.0',
 				'0.0.0.0'
 			],
-			'Blocks to wide IPv6 range and IP' => [
-				[ '0:0:0:0:0:0:0:0/19', '0:0:0:0:0:0:0:0' ],
-				'0:0:0:0:0:0:0:0',
-				'0:0:0:0:0:0:0:0'
-			],
 			'Blocks to narrow IPv4 range and IP' => [
 				[ '0.0.0.0/31', '0.0.0.0' ],
 				'0.0.0.0',
 				'0.0.0.0'
 			],
+			'Blocks to wide IPv6 range and IP' => [
+				[ '0:0:0:0:0:0:0:0/19', '0:0:0:0:0:0:0:0' ],
+				'0:0:0:0:0:0:0:0',
+				'0:0:0:0:0:0:0:0'
+			],
 			'Blocks to narrow IPv6 range and IP' => [
 				[ '0:0:0:0:0:0:0:0/127', '0:0:0:0:0:0:0:0' ],
 				'0:0:0:0:0:0:0:0',
 				'0:0:0:0:0:0:0:0'
+			],
+			'Blocks to wide IPv6 range and IP, large numbers' => [
+				[ '2000:DEAD:BEEF:A:0:0:0:0/19', '2000:DEAD:BEEF:A:0:0:0:0' ],
+				'2000:DEAD:BEEF:A:0:0:0:0',
+				'2000:DEAD:BEEF:A:0:0:0:0'
+			],
+			'Blocks to narrow IPv6 range and IP, large numbers' => [
+				[ '2000:DEAD:BEEF:A:0:0:0:0/127', '2000:DEAD:BEEF:A:0:0:0:0' ],
+				'2000:DEAD:BEEF:A:0:0:0:0',
+				'2000:DEAD:BEEF:A:0:0:0:0'
 			],
 		];
 	}

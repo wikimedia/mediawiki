@@ -322,13 +322,13 @@ class Block extends AbstractBlock {
 			if ( $block->getType() == self::TYPE_RANGE ) {
 				# This is the number of bits that are allowed to vary in the block, give
 				# or take some floating point errors
-				$prefix = 'v6-';
-				$end = Wikimedia\base_convert( ltrim( $block->getRangeEnd(), $prefix ), 16, 10 );
-				$start = Wikimedia\base_convert( ltrim( $block->getRangeStart(), $prefix ), 16, 10 );
-				$size = log( $end - $start + 1, 2 );
+				$target = $block->getTarget();
+				$max = IP::isIPv6( $target ) ? 128 : 32;
+				list( $network, $bits ) = IP::parseCIDR( $target );
+				$size = $max - $bits;
 
 				# Rank a range block covering a single IP equally with a single-IP block
-				$score = self::TYPE_RANGE - 1 + ( $size / 128 );
+				$score = self::TYPE_RANGE - 1 + ( $size / $max );
 
 			} else {
 				$score = $block->getType();
