@@ -3068,7 +3068,6 @@ $tooltip: The default tooltip.  Escape before using.
     - text - String for the text
     - attribs - Array of attributes
     - query - Array of query parameters to add to the URL
-    - options - Array of options for Linker::link
 $lang: The language code to use for the link in the wfMessage function
 
 'SkinGetPoweredBy': TODO
