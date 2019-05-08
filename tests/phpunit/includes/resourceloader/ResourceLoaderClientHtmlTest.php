@@ -107,12 +107,14 @@ Deprecation message.' ]
 		] );
 
 		// phpcs:disable Generic.Files.LineLength
-		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
+		$expected = '<script>'
+			. 'document.documentElement.className=document.documentElement.className.replace(/(^|\s)client-nojs(\s|$)/,"$1client-js$2");'
+			. 'RLCONF={"key":"value"};'
+			. 'RLSTATE={"test.exempt":"ready","test.private":"loading","test.styles.pure":"ready","test.styles.private":"ready","test.styles.deprecated":"ready"};'
+			. 'RLPAGEMODULES=["test"];'
+			. '</script>' . "\n"
 			. '<script>(window.RLQ=window.RLQ||[]).push(function(){'
-			. 'mw.config.set({"key":"value"});'
-			. 'mw.loader.state({"test.exempt":"ready","test.private":"loading","test.styles.pure":"ready","test.styles.private":"ready","test.styles.deprecated":"ready"});'
 			. 'mw.loader.implement("test.private@{blankVer}",null,{"css":[]});'
-			. 'RLPAGEMODULES=["test"];mw.loader.load(RLPAGEMODULES);'
 			. '});</script>' . "\n"
 			. '<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.deprecated%2Cpure&amp;only=styles&amp;skin=fallback"/>' . "\n"
 			. '<style>.private{}</style>' . "\n"
@@ -133,7 +135,7 @@ Deprecation message.' ]
 		);
 
 		// phpcs:disable Generic.Files.LineLength
-		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
+		$expected = '<script>document.documentElement.className=document.documentElement.className.replace(/(^|\s)client-nojs(\s|$)/,"$1client-js$2");</script>' . "\n"
 			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback&amp;target=example"></script>';
 		// phpcs:enable
 
@@ -150,7 +152,7 @@ Deprecation message.' ]
 		);
 
 		// phpcs:disable Generic.Files.LineLength
-		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
+		$expected = '<script>document.documentElement.className=document.documentElement.className.replace(/(^|\s)client-nojs(\s|$)/,"$1client-js$2");</script>' . "\n"
 			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;safemode=1&amp;skin=fallback"></script>';
 		// phpcs:enable
 
@@ -167,7 +169,7 @@ Deprecation message.' ]
 		);
 
 		// phpcs:disable Generic.Files.LineLength
-		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
+		$expected = '<script>document.documentElement.className=document.documentElement.className.replace(/(^|\s)client-nojs(\s|$)/,"$1client-js$2");</script>' . "\n"
 			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback"></script>';
 		// phpcs:enable
 
