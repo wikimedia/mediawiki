@@ -849,12 +849,19 @@ class WebRequest {
 	 * in HTML or other output.
 	 *
 	 * If $wgServer is protocol-relative, this will return a fully
-	 * qualified URL with the protocol that was used for this request.
+	 * qualified URL with the protocol of this request object.
 	 *
 	 * @return string
 	 */
 	public function getFullRequestURL() {
-		return wfGetServerUrl( PROTO_CURRENT ) . $this->getRequestURL();
+		// Pass an explicit PROTO constant instead of PROTO_CURRENT so that we
+		// do not rely on state from the global $wgRequest object (which it would,
+		// via wfGetServerUrl/wfExpandUrl/$wgRequest->protocol).
+		if ( $this->getProtocol() === 'http' ) {
+			return wfGetServerUrl( PROTO_HTTP ) . $this->getRequestURL();
+		} else {
+			return wfGetServerUrl( PROTO_HTTPS ) . $this->getRequestURL();
+		}
 	}
 
 	/**
