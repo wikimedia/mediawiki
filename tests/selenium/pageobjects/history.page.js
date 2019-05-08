@@ -42,7 +42,7 @@ class HistoryPage extends Page {
 		} );
 
 		browser.call( function () {
-			Api.edit(
+			return Api.edit(
 				name,
 				'Vandalized: ' + content,
 				vandalUsername
