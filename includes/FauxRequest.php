@@ -170,6 +170,17 @@ class FauxRequest extends WebRequest {
 		return $this->requestUrl;
 	}
 
+	public function getFullRequestURL() {
+		// Pass an explicit PROTO constant instead of PROTO_CURRENT so that we
+		// do not rely on state from the global $wgRequest object (which it would,
+		// via wfGetServerUrl/wfExpandUrl/$wgRequest->protocol).
+		if ( $this->protocol === 'http' ) {
+			return wfGetServerUrl( PROTO_HTTP ) . $this->getRequestURL();
+		} else {
+			return wfGetServerUrl( PROTO_HTTPS ) . $this->getRequestURL();
+		}
+	}
+
 	public function getProtocol() {
 		return $this->protocol;
 	}

@@ -7,6 +7,16 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 	use PHPUnit4And6Compat;
 
+	public function setUp() {
+		parent::setUp();
+		$this->orgWgServer = $GLOBALS['wgServer'];
+	}
+
+	public function tearDown() {
+		$GLOBALS['wgServer'] = $this->orgWgServer;
+		parent::tearDown();
+	}
+
 	/**
 	 * @covers FauxRequest::__construct
 	 */
@@ -148,7 +158,7 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @covers FauxRequest::getRequestURL
 	 */
-	public function testGetRequestURL() {
+	public function testGetRequestURL_disallowed() {
 		$req = new FauxRequest();
 		$this->setExpectedException( MWException::class );
 		$req->getRequestURL();
@@ -162,6 +172,45 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 		$req = new FauxRequest();
 		$req->setRequestURL( 'https://example.org' );
 		$this->assertEquals( 'https://example.org', $req->getRequestURL() );
+	}
+
+	/**
+	 * @covers FauxRequest::getFullRequestURL
+	 */
+	public function testGetFullRequestURL_disallowed() {
+		$GLOBALS['wgServer'] = '//wiki.test';
+		$req = new FauxRequest();
+
+		$this->setExpectedException( MWException::class );
+		$req->getFullRequestURL();
+	}
+
+	/**
+	 * @covers FauxRequest::getFullRequestURL
+	 */
+	public function testGetFullRequestURL_http() {
+		$GLOBALS['wgServer'] = '//wiki.test';
+		$req = new FauxRequest();
+		$req->setRequestURL( '/path' );
+
+		$this->assertSame(
+			'http://wiki.test/path',
+			$req->getFullRequestURL()
+		);
+	}
+
+	/**
+	 * @covers FauxRequest::getFullRequestURL
+	 */
+	public function testGetFullRequestURL_https() {
+		$GLOBALS['wgServer'] = '//wiki.test';
+		$req = new FauxRequest( [], false, null, 'https' );
+		$req->setRequestURL( '/path' );
+
+		$this->assertSame(
+			'https://wiki.test/path',
+			$req->getFullRequestURL()
+		);
 	}
 
 	/**
