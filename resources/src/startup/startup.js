@@ -118,12 +118,26 @@ if ( !isCompatible( navigator.userAgent ) ) {
 		$CODE.registrations();
 
 		mw.config.set( $VARS.configuration );
+		// For the current page
+		mw.config.set( window.RLCONF || {} );
+		mw.loader.state( window.RLSTATE || {} );
+		mw.loader.load( window.RLPAGEMODULES || [] );
 
-		// Process callbacks for Grade A
+		// Process RLQ callbacks
+		//
+		// The code in these callbacks could've been exposed from load.php and
+		// requested client-side. Instead, they are pushed by the server directly
+		// (from ResourceLoaderClientHtml and other parts of MediaWiki). This
+		// saves the need for additional round trips. It also allows load.php
+		// to remain stateless and sending personal data in the HTML instead.
+		//
+		// The HTML inline script lazy-defines the 'RLQ' array. Now that we are
+		// processing it, replace it with an implementation where 'push' actually
+		// considers executing the code directly. This is to ensure any late
+		// arrivals will also be processed. Late arrival can happen because
+		// startup.js is executed asynchronously, concurrently with the streaming
+		// response of the HTML.
 		var queue = window.RLQ;
-		// Replace RLQ placeholder from ResourceLoaderClientHtml with an implementation
-		// that executes simple callbacks, but continues to store callbacks that require
-		// modules.
 		window.RLQ = [];
 		/* global RLQ */
 		RLQ.push = function ( fn ) {
