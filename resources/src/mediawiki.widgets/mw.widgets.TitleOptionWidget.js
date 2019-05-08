@@ -31,11 +31,11 @@
 		if ( !config.showImages ) {
 			icon = null;
 		} else if ( config.missing ) {
-			icon = 'page-not-found';
+			icon = 'articleNotFound';
 		} else if ( config.redirect ) {
 			icon = 'articleRedirect';
 		} else if ( config.disambiguation ) {
-			icon = 'page-disambiguation';
+			icon = 'articleDisambiguation';
 		} else {
 			icon = 'article';
 		}
