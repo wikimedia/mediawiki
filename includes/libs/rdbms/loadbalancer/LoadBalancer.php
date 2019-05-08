@@ -73,7 +73,7 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var array[] Map of (server index => server config array) */
 	private $servers;
 	/** @var float[] Map of (server index => weight) */
-	private $loads;
+	private $genericLoads;
 	/** @var array[] Map of (group => server index => weight) */
 	private $groupLoads;
 	/** @var bool Whether to disregard replica DB lag as a factor in replica DB selection */
@@ -103,8 +103,8 @@ class LoadBalancer implements ILoadBalancer {
 
 	/** @var Database DB connection object that caused a problem */
 	private $errorConnection;
-	/** @var int The generic (not query grouped) replica DB index (of $mServers) */
-	private $readIndex;
+	/** @var int The generic (not query grouped) replica DB index */
+	private $genericReadIndex = -1;
 	/** @var bool|DBMasterPos False if not set */
 	private $waitForPos;
 	/** @var bool Whether the generic reader fell back to a lagged replica DB */
@@ -181,7 +181,6 @@ class LoadBalancer implements ILoadBalancer {
 
 		$this->waitTimeout = $params['waitTimeout'] ?? self::MAX_WAIT_DEFAULT;
 
-		$this->readIndex = -1;
 		$this->conns = [
 			// Connection were transaction rounds may be applied
 			self::KEY_LOCAL => [],
@@ -192,7 +191,7 @@ class LoadBalancer implements ILoadBalancer {
 			self::KEY_FOREIGN_INUSE_NOROUND => [],
 			self::KEY_FOREIGN_FREE_NOROUND => []
 		];
-		$this->loads = [];
+		$this->genericLoads = [];
 		$this->waitForPos = false;
 		$this->allowLagged = false;
 
@@ -206,7 +205,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->loadMonitorConfig += [ 'lagWarnThreshold' => $this->maxLag ];
 
 		foreach ( $params['servers'] as $i => $server ) {
-			$this->loads[$i] = $server['load'];
+			$this->genericLoads[$i] = $server['load'];
 			if ( isset( $server['groupLoads'] ) ) {
 				foreach ( $server['groupLoads'] as $group => $ratio ) {
 					if ( !isset( $this->groupLoads[$group] ) ) {
@@ -396,9 +395,9 @@ class LoadBalancer implements ILoadBalancer {
 		if ( count( $this->servers ) == 1 ) {
 			// Skip the load balancing if there's only one server
 			return $this->getWriterIndex();
-		} elseif ( $group === false && $this->readIndex >= 0 ) {
-			// Shortcut if the generic reader index was already cached
-			return $this->readIndex;
+		} elseif ( $group === false && $this->genericReadIndex >= 0 ) {
+			// A generic reader index was already selected and "waitForPos" was handled
+			return $this->genericReadIndex;
 		}
 
 		if ( $group !== false ) {
@@ -413,7 +412,7 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		} else {
 			// Use the generic load group
-			$loads = $this->loads;
+			$loads = $this->genericLoads;
 		}
 
 		// Scale the configured load ratios according to each server's load and state
@@ -422,27 +421,22 @@ class LoadBalancer implements ILoadBalancer {
 		// Pick a server to use, accounting for weights, load, lag, and "waitForPos"
 		list( $i, $laggedReplicaMode ) = $this->pickReaderIndex( $loads, $domain );
 		if ( $i === false ) {
-			// Replica DB connection unsuccessful
+			// DB connection unsuccessful
 			return false;
 		}
 
-		if ( $this->waitForPos && $i != $this->getWriterIndex() ) {
-			// Before any data queries are run, wait for the server to catch up to the
-			// specified position. This is used to improve session consistency. Note that
-			// when LoadBalancer::waitFor() sets "waitForPos", the waiting triggers here,
-			// so update laggedReplicaMode as needed for consistency.
-			if ( !$this->doWait( $i ) ) {
-				$laggedReplicaMode = true;
-			}
+		// If data seen by queries is expected to reflect the transactions committed as of
+		// or after a given replication position then wait for the DB to apply those changes
+		if ( $this->waitForPos && $i != $this->getWriterIndex() && !$this->doWait( $i ) ) {
+			// Data will be outdated compared to what was expected
+			$laggedReplicaMode = true;
 		}
 
-		if ( $this->readIndex <= 0 && $this->loads[$i] > 0 && $group === false ) {
-			// Cache the generic reader index for future ungrouped DB_REPLICA handles
-			$this->readIndex = $i;
+		if ( $this->genericReadIndex < 0 && $this->genericLoads[$i] > 0 && $group === false ) {
+			// Cache the generic (ungrouped) reader index for future DB_REPLICA handles
+			$this->genericReadIndex = $i;
 			// Record if the generic reader index is in "lagged replica DB" mode
-			if ( $laggedReplicaMode ) {
-				$this->laggedReplicaMode = true;
-			}
+			$this->laggedReplicaMode = ( $laggedReplicaMode || $this->laggedReplicaMode );
 		}
 
 		$serverName = $this->getServerName( $i );
@@ -537,10 +531,10 @@ class LoadBalancer implements ILoadBalancer {
 		try {
 			$this->waitForPos = $pos;
 			// If a generic reader connection was already established, then wait now
-			$i = $this->readIndex;
-			if ( ( $i > 0 ) && !$this->doWait( $i ) ) {
+			if ( $this->genericReadIndex > 0 && !$this->doWait( $this->genericReadIndex ) ) {
 				$this->laggedReplicaMode = true;
 			}
+			// Otherwise, wait until a connection is established in getReaderIndex()
 		} finally {
 			// Restore the older position if it was higher since this is used for lag-protection
 			$this->setWaitForPositionIfHigher( $oldPos );
@@ -552,10 +546,10 @@ class LoadBalancer implements ILoadBalancer {
 		try {
 			$this->waitForPos = $pos;
 
-			$i = $this->readIndex;
+			$i = $this->genericReadIndex;
 			if ( $i <= 0 ) {
 				// Pick a generic replica DB if there isn't one yet
-				$readLoads = $this->loads;
+				$readLoads = $this->genericLoads;
 				unset( $readLoads[$this->getWriterIndex()] ); // replica DBs only
 				$readLoads = array_filter( $readLoads ); // with non-zero load
 				$i = ArrayUtils::pickRandom( $readLoads );
@@ -584,7 +578,7 @@ class LoadBalancer implements ILoadBalancer {
 
 			$ok = true;
 			for ( $i = 1; $i < $serverCount; $i++ ) {
-				if ( $this->loads[$i] > 0 ) {
+				if ( $this->genericLoads[$i] > 0 ) {
 					$start = microtime( true );
 					$ok = $this->doWait( $i, true, $timeout ) && $ok;
 					$timeout -= intval( microtime( true ) - $start );
@@ -779,7 +773,7 @@ class LoadBalancer implements ILoadBalancer {
 			$this->trxProfiler->recordConnection( $host, $dbname, $masterOnly );
 		}
 
-		if ( $masterOnly ) {
+		if ( $serverIndex == $this->getWriterIndex() ) {
 			// If the load balancer is read-only, perhaps due to replication lag, then master
 			// DB handles will reflect that. Note that Database::assertIsWritableMaster() takes
 			// care of replica DB handles whereas getReadOnlyReason() would cause infinite loops.
@@ -1242,7 +1236,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function isNonZeroLoad( $i ) {
-		return array_key_exists( $i, $this->servers ) && $this->loads[$i] != 0;
+		return array_key_exists( $i, $this->servers ) && $this->genericLoads[$i] != 0;
 	}
 
 	public function getServerCount() {
@@ -1695,13 +1689,14 @@ class LoadBalancer implements ILoadBalancer {
 		if (
 			// Avoid recursion if there is only one DB
 			$this->getServerCount() > 1 &&
+			// Avoid recursion if the (non-zero load) master DB was picked for generic reads
+			$this->genericReadIndex !== $this->getWriterIndex() &&
 			// Stay in lagged replica mode during the load balancer instance lifetime
 			!$this->laggedReplicaMode
 		) {
 			try {
-				// See if laggedReplicaMode gets set
-				$conn = $this->getConnection( self::DB_REPLICA, false, $domain );
-				$this->reuseConnection( $conn );
+				// Calling this method will set "laggedReplicaMode" as needed
+				$this->getReaderIndex( false, $domain );
 			} catch ( DBConnectionError $e ) {
 				// Avoid expensive re-connect attempts and failures
 				$this->allReplicasDownMode = true;
@@ -1839,7 +1834,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		$lagTimes = $this->getLagTimes( $domain );
 		foreach ( $lagTimes as $i => $lag ) {
-			if ( $this->loads[$i] > 0 && $lag > $maxLag ) {
+			if ( $this->genericLoads[$i] > 0 && $lag > $maxLag ) {
 				$maxLag = $lag;
 				$host = $this->servers[$i]['host'];
 				$maxIndex = $i;
