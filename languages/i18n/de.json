@@ -2654,6 +2654,7 @@
 	"blocklink": "Sperren",
 	"unblocklink": "Freigeben",
 	"change-blocklink": "Sperre ändern",
+	"empty-username": "(kein Benutzername verfügbar)",
 	"contribslink": "Beiträge",
 	"emaillink": "E-Mail senden",
 	"autoblocker": "Automatische Sperre, da du eine gemeinsame IP-Adresse mit [[User:$1|$1]] benutzt.\nGrund der Benutzersperre: „$2“",

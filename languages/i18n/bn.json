@@ -2934,7 +2934,7 @@
 	"pageinfo-robot-noindex": "অনুনমোদিন",
 	"pageinfo-watchers": "পাতাটি প্রদর্শনের সংখ্যা",
 	"pageinfo-visiting-watchers": "পাতা পর্যবেক্ষকদের সংখ্যা যারা সাম্প্রতিক সম্পাদনাগুলি পরিদর্শন করেছেন",
-	"pageinfo-few-watchers": "$1 জন {{PLURAL:$1|নজরকারীও}} কম",
+	"pageinfo-few-watchers": "$1 জন {{PLURAL:$1|নজরকারীরও}} কম",
 	"pageinfo-few-visiting-watchers": "সাম্প্রতিক সম্পাদনাগুলি সম্ভবত একজন নজরকারী পর্যবেক্ষক করেছেন বা করেনি",
 	"pageinfo-redirects-name": "এই পাতায় পুননির্দেশনাসমূহের সংখ্যা",
 	"pageinfo-subpages-name": "এই পাতার উপপাতাসমূহ",

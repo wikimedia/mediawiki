@@ -2569,6 +2569,7 @@
 	"blocklink": "blokiraj",
 	"unblocklink": "deblokiraj",
 	"change-blocklink": "spremeni blokado",
+	"empty-username": "(uporabniško ime ni na voljo)",
 	"contribslink": "prispevki",
 	"emaillink": "pošljite e-pošto",
 	"autoblocker": "Urejanje vam je bilo samodejno onemogočeno, saj je vaš IP-naslov pred kratkim uporabljal »[[User:$1|$1]]«.\nRazlog za blokado uporabnika $1 je: »$2«",

@@ -820,6 +820,8 @@
 	"revdelete-show-file-confirm": "\"<nowiki>$1</nowiki>\" faylının $2 $3 tarixli silinmiş bir redaktəsini görmək istədiyinizdən əminsizinizmi?",
 	"revdelete-show-file-submit": "Bəli",
 	"logdelete-selected": "Jurnalın {{PLURAL:$1|seçilmiş qeydi|seçilmiş qeydləri}}:",
+	"logdelete-text": "Silinən versiyalar jurnalda hələ də görünəcək, ancaq onların məzmununun müəyyən hissəsi iştirakçılar üçün əlçatmaz olacaqdır.",
+	"revdelete-text-others": "Əlavə məhdudiyyətlər müəyyən edilmədiyi halda, digər idarəçilər hələ də gizli məzmuna giriş edə, onu geri qaytara bilərlər.",
 	"revdelete-legend": "Məhdudiyyətləri müəyyənləşdir:",
 	"revdelete-hide-text": "Dəyişikliyin mətni",
 	"revdelete-hide-image": "Faylın məzmununu gizlə",

@@ -27,7 +27,8 @@
 			"WP MANIKHANTA",
 			"SrihariThalla",
 			"Fitoschido",
-			"Pavan santhosh.s"
+			"Pavan santhosh.s",
+			"MSG17"
 		]
 	},
 	"tog-underline": "లంకె క్రీగీత:",
@@ -735,6 +736,7 @@
 	"editwarning-warning": "ఈ పేజీని వదిలివెళ్ళడం వల్ల మీరు చేసిన మార్పులను కోల్పోయే అవకాశం ఉంది.\nమీరు లాగిన్ అయివుంటే, ఈ హెచ్చరికని మీ అభిరుచులలోని \"{{int:prefs-editing}}\"  విభాగంలో అచేతనం చేసుకోవచ్చు.",
 	"editpage-notsupportedcontentformat-title": "పాఠ్యపు ఆకృతికి మద్దతు లేదు",
 	"editpage-notsupportedcontentformat-text": "$2 పాఠ్యపు మోడల్, పాఠ్యపు ఆకృతి $1 కి మద్దతు ఇవ్వదు",
+	"slot-name-main": "ప్రధాన",
 	"content-model-wikitext": "వికీపాఠ్యం",
 	"content-model-text": "సాదా పాఠ్యం",
 	"content-model-javascript": "జావాస్క్రిప్ట్",

@@ -2601,6 +2601,7 @@
 	"blocklink": "차단",
 	"unblocklink": "차단 해제",
 	"change-blocklink": "차단 설정 바꾸기",
+	"empty-username": "(사용 가능한 사용자 이름 없음)",
 	"contribslink": "기여",
 	"emaillink": "이메일 보내기",
 	"autoblocker": "당신의 IP 주소는 최근에 \"[[User:$1|$1]]\"님이 사용하였기 때문에 자동으로 차단되었습니다.\n$1님이 차단된 이유는 다음과 같습니다: \"$2\"",
