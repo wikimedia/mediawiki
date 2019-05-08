@@ -155,7 +155,7 @@
 	"category-subcat-count-limited": "Šai kategorijai ir {{PLURAL:$1|$1 apakškategorijas|$1 apakškategorija|$1 apakškategorijas}}.",
 	"category-article-count": "{{PLURAL:$2|Šajā kategorijā kopā ir $2 lapu, šobrīd ir {{PLURAL:$1|redzamas $1 no tām|redzama $1 no tām|redzamas $1 no tām}}.|Šī kategorija satur $2 lapu.|Šajā kategorijā kopā ir $2 lapas, šobrīd ir {{PLURAL:$1|redzamas $1 no tām|redzama $1 no tām|redzamas $1 no tām}}.}}",
 	"category-article-count-limited": "Šajā kategorijā ir {{PLURAL:$1|šīs $1 lapas|šī $1 lapa|šīs $1 lapas}}.",
-	"category-file-count": "{{PLURAL:$2|Šajā kategorijā ir $2 failu, no kuriem {{PLURAL:$1|ir redzami $1|redzams ir $1|ir redzami $1}}.|Šī kategorija satur tikai $2 failu.|Šajā kategorijā ir $2 faili, no kuriem {{PLURAL:$1|ir redzami $1|redzams ir $1|ir redzami $1}}.}}",
+	"category-file-count": "{{PLURAL:$2|Šajā kategorijā ir $2 failu, no kuriem {{PLURAL:$1|ir redzami $1|redzams ir $1|ir redzami $1}}.|Šajā kategorijā ir $2 fails, no kura {{PLURAL:$1|ir redzami $1|redzams ir $1|ir redzami $1}}.|Šajā kategorijā ir $2 faili, no kuriem {{PLURAL:$1|ir redzami $1|redzams ir $1|ir redzami $1}}.}}",
 	"category-file-count-limited": "Šajā kategorijā atrodas {{PLURAL:$1|šie $1 faili|tikai šis fails|šie $1 faili}}.",
 	"listingcontinuesabbrev": " (turpinājums)",
 	"index-category": "Indeksētās lapas",

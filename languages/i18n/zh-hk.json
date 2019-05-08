@@ -146,6 +146,7 @@
 	"wlshowhidebots": "機械人",
 	"blanknamespace": "（主要）",
 	"blockip": "封鎖{{GENDER:$1|用戶}}",
+	"empty-username": "沒有用戶名",
 	"contribslink": "貢獻",
 	"blocklogtext": "這是用戶的封禁與解禁操作的日誌記錄。\n自動封禁的 IP 位址不予包含。\n請參考 [[Special:BlockList|封禁清單]] 以檢視目前的封禁。",
 	"tooltip-pt-login": "我們建議您登入，但這並非必要",

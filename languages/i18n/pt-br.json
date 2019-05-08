@@ -2696,6 +2696,7 @@
 	"blocklink": "bloquear",
 	"unblocklink": "desbloquear",
 	"change-blocklink": "alterar bloqueio",
+	"empty-username": "(sem nome de usuário disponível)",
 	"contribslink": "contribs",
 	"emaillink": "enviar um e-mail",
 	"autoblocker": "Você foi automaticamente bloqueado, pois o seu Endereço IP foi recentemente usado por \"[[User:$1|$1]]\". \nO motivo apresentado para o bloqueio de $1 é: \"$2\".",

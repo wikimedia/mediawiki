@@ -14,7 +14,7 @@ Primary scripts:
   api.php
     Script to provide an API for bots to fetch content and informations about
     the site and also modify it. See https://www.mediawiki.org/wiki/API
-    for more informations.
+    for more information.
 
   img_auth.php
     Script that only serve images to logged in users. To configure the wiki

@@ -2669,6 +2669,7 @@
 	"blocklink": "封禁",
 	"unblocklink": "解封",
 	"change-blocklink": "更改封禁",
+	"empty-username": "没有用户名",
 	"contribslink": "贡献",
 	"emaillink": "发送电子邮件",
 	"autoblocker": "因为您与“[[User:$1|$1]]”共享一个IP地址而被自动封禁。$1被封禁的理由是“$2”",

@@ -1455,7 +1455,7 @@
 	"rcfilters-savedqueries-already-saved": "Nämä suodattimet ovat jo tallennettu. Vaihda asetuksiasi luodaksesi uuden tallennetun suodattimen.",
 	"rcfilters-restore-default-filters": "Palauta oletussuodattimet",
 	"rcfilters-clear-all-filters": "Tyhjennä kaikki suodattimet",
-	"rcfilters-show-new-changes": "Näytä uusimmat muutokset",
+	"rcfilters-show-new-changes": "Näytä uudet muutokset $1 alkaen",
 	"rcfilters-search-placeholder": "Suodata muutoksia (käytä valikkoa tai etsi suodattimen nimeä)",
 	"rcfilters-invalid-filter": "Kelvoton suodatin",
 	"rcfilters-empty-filter": "Ei aktiivisia suodattimia. Kaikki muutokset näytetään.",

@@ -1392,7 +1392,7 @@
 	"rcfilters-savedqueries-already-saved": "Тези филтри вече са съхранени. Променете настройките си, за да създадете нов Запазен филтър.",
 	"rcfilters-restore-default-filters": "Възстановяване на филтрите по подразбиране",
 	"rcfilters-clear-all-filters": "Изчистване на всички филтри",
-	"rcfilters-show-new-changes": "Преглед на най-новите промени от $1",
+	"rcfilters-show-new-changes": "Преглед на най-новите промени след $1",
 	"rcfilters-search-placeholder": "Филтриране на промените (използвайте менюто или търсете по име на филтър)",
 	"rcfilters-invalid-filter": "Невалиден филтър",
 	"rcfilters-empty-filter": "Няма активни филтри. Показани са всички редакции.",

@@ -2616,6 +2616,7 @@
 	"blocklink": "blocca",
 	"unblocklink": "sblocca",
 	"change-blocklink": "cambia blocco",
+	"empty-username": "(nessun nome utente disponibile)",
 	"contribslink": "contributi",
 	"emaillink": "invia email",
 	"autoblocker": "Bloccato automaticamente perché l'indirizzo IP è condiviso con l'utente \"[[User:$1|$1]]\".\nIl blocco dell'utente $1 è stato imposto per il seguente motivo: \"$2\".",

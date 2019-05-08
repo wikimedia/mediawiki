@@ -2655,6 +2655,7 @@
 	"blocklink": "封鎖",
 	"unblocklink": "解除封鎖",
 	"change-blocklink": "變更封鎖",
+	"empty-username": "（沒有使用者名稱）",
 	"contribslink": "貢獻",
 	"emaillink": "傳送電子郵件",
 	"autoblocker": "您的 IP 位址因最近被 [[User:$1|$1]] 使用過而被自動封鎖。\n封鎖 $1 的原因為 \"$2\"",
