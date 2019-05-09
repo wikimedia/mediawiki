@@ -2627,7 +2627,7 @@ function wfGetLB( $wiki = false ) {
  * @return \Wikimedia\Rdbms\LBFactory
  */
 function wfGetLBFactory() {
-	wfDeprecated( __METHOD__, '1.34' );
+	wfDeprecated( __METHOD__, '1.27' );
 	return MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 }
 
