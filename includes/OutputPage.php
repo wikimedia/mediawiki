@@ -4232,16 +4232,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * @return bool
-	 * @since 1.23
-	 * @deprecated since 1.31, use $poOptions to addParserOutput() instead.
-	 */
-	public function sectionEditLinksEnabled() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return true;
-	}
-
-	/**
 	 * Helper function to setup the PHP implementation of OOUI to use in this request.
 	 *
 	 * @since 1.26
