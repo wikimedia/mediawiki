@@ -18,24 +18,6 @@ class PageArchivePreMcrTest extends PageArchiveTestBase {
 
 	use PreMcrSchemaOverride;
 
-	/**
-	 * @covers PageArchive::getTextFromRow
-	 */
-	public function testGetTextFromRow() {
-		$this->hideDeprecated( PageArchive::class . '::getTextFromRow' );
-
-		/** @var SqlBlobStore $blobStore */
-		$blobStore = MediaWikiServices::getInstance()->getBlobStore();
-
-		$textId = $blobStore->getTextIdFromAddress(
-			$this->firstRev->getSlot( SlotRecord::MAIN )->getAddress()
-		);
-
-		$row = (object)[ 'ar_text_id' => $textId ];
-		$text = $this->archivedPage->getTextFromRow( $row );
-		$this->assertSame( 'testing', $text );
-	}
-
 	protected function getExpectedArchiveRows() {
 		/** @var SqlBlobStore $blobStore */
 		$blobStore = MediaWikiServices::getInstance()->getBlobStore();

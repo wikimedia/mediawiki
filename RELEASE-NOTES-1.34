@@ -141,6 +141,8 @@ because of Phabricator reports.
   use WatchAction::getWatchToken() with action 'unwatch' directly.
 * Language::initEncoding(), ::recodeForEdit(), and recodeInput(), deprecated in
   1.28, have been removed.
+* PageArchive::getTextFromRow(), ::listAllPages(), and ::getLastRevisionText(),
+  deprecated in 1.32, have been removed.
 * …
 
 === Deprecations in 1.34 ===
