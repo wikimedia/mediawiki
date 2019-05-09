@@ -2685,24 +2685,6 @@ abstract class ApiBase extends ContextSource {
 		] ];
 	}
 
-	/**
-	 * Truncate an array to a certain length.
-	 * @deprecated since 1.32, no replacement
-	 * @param array &$arr Array to truncate
-	 * @param int $limit Maximum length
-	 * @return bool True if the array was truncated, false otherwise
-	 */
-	public static function truncateArray( &$arr, $limit ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		$modified = false;
-		while ( count( $arr ) > $limit ) {
-			array_pop( $arr );
-			$modified = true;
-		}
-
-		return $modified;
-	}
-
 	/**@}*/
 }
 

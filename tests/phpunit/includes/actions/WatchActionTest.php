@@ -271,17 +271,6 @@ class WatchActionTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers WatchAction::getUnwatchToken()
-	 */
-	public function testGetUnwatchToken() {
-		$user = $this->getMock( User::class );
-		$user->expects( $this->once() )->method( 'getEditToken' );
-		$this->hideDeprecated( 'WatchAction::getUnwatchToken' );
-
-		WatchAction::getUnWatchToken( $this->watchAction->getTitle(), $user );
-	}
-
-	/**
 	 * @covers WatchAction::doWatchOrUnwatch()
 	 */
 	public function testDoWatchOrUnwatchUserNotLoggedIn() {
