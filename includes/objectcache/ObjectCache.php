@@ -326,14 +326,6 @@ class ObjectCache {
 		global $wgCommandLineMode;
 
 		$services = MediaWikiServices::getInstance();
-
-		$erGroup = $services->getEventRelayerGroup();
-		if ( isset( $params['channels'] ) ) {
-			foreach ( $params['channels'] as $action => $channel ) {
-				$params['relayers'][$action] = $erGroup->getRelayer( $channel );
-				$params['channels'][$action] = $channel;
-			}
-		}
 		$params['cache'] = self::newFromParams( $params['store'] );
 		$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
 		if ( !$wgCommandLineMode ) {
