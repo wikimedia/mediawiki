@@ -1155,3 +1155,8 @@
         url = https://github.com/wikimedia/mediawiki-extensions-WikiCategoryTagCloud.git
         branch = master
         ignore = dirty
+[submodule "skins/Mask"]
+        path = skins/Mask
+        url = https://github.com/wikimedia/mediawiki-skins-Mask.git
+        branch = REL1_32
+        ignore = dirty
