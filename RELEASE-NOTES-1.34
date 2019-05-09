@@ -139,6 +139,10 @@ because of Phabricator reports.
   been removed. Use ->msg() or ->getMsg() instead.
 * WatchAction::getUnwatchToken(), deprecated in 1.32, has been removed. Instead,
   use WatchAction::getWatchToken() with action 'unwatch' directly.
+* Language::initEncoding(), ::recodeForEdit(), and recodeInput(), deprecated in
+  1.28, have been removed.
+* PageArchive::getTextFromRow(), ::listAllPages(), and ::getLastRevisionText(),
+  deprecated in 1.32, have been removed.
 * …
 
 === Deprecations in 1.34 ===

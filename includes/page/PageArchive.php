@@ -21,7 +21,6 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
-use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -67,23 +66,6 @@ class PageArchive {
 
 	public function doesWrites() {
 		return true;
-	}
-
-	/**
-	 * List all deleted pages recorded in the archive table. Returns result
-	 * wrapper with (ar_namespace, ar_title, count) fields, ordered by page
-	 * namespace/title.
-	 *
-	 * @deprecated since 1.32.
-	 *
-	 * @return IResultWrapper
-	 */
-	public static function listAllPages() {
-		wfDeprecated( __METHOD__, '1.32' );
-
-		$dbr = wfGetDB( DB_REPLICA );
-
-		return self::listPages( $dbr, '' );
 	}
 
 	/**
@@ -368,59 +350,6 @@ class PageArchive {
 		}
 
 		return $rec;
-	}
-
-	/**
-	 * Get the text from an archive row containing ar_text_id.
-	 *
-	 * @deprecated since 1.32. In the MCR schema, ar_text_id no longer exists.
-	 * Calling code should switch to getArchiveRevision().
-	 *
-	 * @todo remove in 1.33
-	 *
-	 * @param object $row Database row
-	 * @return string
-	 */
-	public function getTextFromRow( $row ) {
-		wfDeprecated( __METHOD__, '1.32' );
-
-		if ( empty( $row->ar_text_id ) ) {
-			throw new InvalidArgumentException( '$row->ar_text_id must be set and not empty!' );
-		}
-
-		$address = SqlBlobStore::makeAddressFromTextId( $row->ar_text_id );
-		$blobStore = MediaWikiServices::getInstance()->getBlobStore();
-
-		return $blobStore->getBlob( $address );
-	}
-
-	/**
-	 * Fetch (and decompress if necessary) the stored text of the most
-	 * recently edited deleted revision of the page.
-	 *
-	 * If there are no archived revisions for the page, returns NULL.
-	 *
-	 * @note this bypasses any audience checks.
-	 *
-	 * @deprecated since 1.32. For compatibility with the MCR schema,
-	 * calling code should switch to getLastRevisionId() and getArchiveRevision().
-	 *
-	 * @todo remove in 1.33
-	 *
-	 * @return string|null
-	 */
-	public function getLastRevisionText() {
-		wfDeprecated( __METHOD__, '1.32' );
-
-		$revId = $this->getLastRevisionId();
-
-		if ( $revId ) {
-			$rev = $this->getArchivedRevision( $revId );
-			$content = $rev->getContent( RevisionRecord::RAW );
-			return $content->serialize();
-		}
-
-		return null;
 	}
 
 	/**

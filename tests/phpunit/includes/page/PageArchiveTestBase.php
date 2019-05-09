@@ -253,27 +253,6 @@ abstract class PageArchiveTestBase extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideGetTextFromRowThrowsInvalidArgumentException
-	 * @covers PageArchive::getTextFromRow
-	 */
-	public function testGetTextFromRowThrowsInvalidArgumentException( array $row ) {
-		$this->hideDeprecated( PageArchive::class . '::getTextFromRow' );
-		$this->setExpectedException( InvalidArgumentException::class );
-
-		$this->archivedPage->getTextFromRow( (object)$row );
-	}
-
-	/**
-	 * @covers PageArchive::getLastRevisionText
-	 */
-	public function testGetLastRevisionText() {
-		$this->hideDeprecated( PageArchive::class . '::getLastRevisionText' );
-
-		$text = $this->archivedPage->getLastRevisionText();
-		$this->assertSame( 'Lorem Ipsum', $text );
-	}
-
-	/**
 	 * @covers PageArchive::getLastRevisionId
 	 */
 	public function testGetLastRevisionId() {
