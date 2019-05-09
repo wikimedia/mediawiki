@@ -89,12 +89,8 @@ class UploadStash {
 
 		// if a user was passed, use it. otherwise, attempt to use the global.
 		// this keeps FileRepo from breaking when it creates an UploadStash object
-		if ( $user ) {
-			$this->user = $user;
-		} else {
-			global $wgUser;
-			$this->user = $wgUser;
-		}
+		global $wgUser;
+		$this->user = $user ?: $wgUser;
 
 		if ( is_object( $this->user ) ) {
 			$this->userId = $this->user->getId();

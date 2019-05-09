@@ -7,10 +7,7 @@
  */
 class MagicWordFactoryTest extends MediaWikiTestCase {
 	private function makeMagicWordFactory( Language $contLang = null ) {
-		if ( $contLang === null ) {
-			return new MagicWordFactory( Language::factory( 'en' ) );
-		}
-		return new MagicWordFactory( $contLang );
+		return new MagicWordFactory( $contLang ?: Language::factory( 'en' ) );
 	}
 
 	public function testGetContentLanguage() {
