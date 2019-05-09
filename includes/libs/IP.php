@@ -125,6 +125,7 @@ class IP {
 	 * @return bool True if it is valid
 	 */
 	public static function isValidBlock( $ipRange ) {
+		wfDeprecated( __METHOD__, '1.30' );
 		return self::isValidRange( $ipRange );
 	}
 
