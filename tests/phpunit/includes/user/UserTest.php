@@ -366,7 +366,6 @@ class UserTest extends MediaWikiTestCase {
 	 *	- ensure the password is not the same as the username
 	 *	- ensure the username/password combo isn't forbidden
 	 * @covers User::checkPasswordValidity()
-	 * @covers User::getPasswordValidity()
 	 * @covers User::isValidPassword()
 	 */
 	public function testCheckPasswordValidity() {
@@ -394,7 +393,6 @@ class UserTest extends MediaWikiTestCase {
 				],
 			],
 		] );
-		$this->hideDeprecated( 'User::getPasswordValidity' );
 
 		$user = static::getTestUser()->getUser();
 
@@ -405,24 +403,20 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertFalse( $user->isValidPassword( 'a' ) );
 		$this->assertFalse( $user->checkPasswordValidity( 'a' )->isGood() );
 		$this->assertTrue( $user->checkPasswordValidity( 'a' )->isOK() );
-		$this->assertEquals( 'passwordtooshort', $user->getPasswordValidity( 'a' ) );
 
 		// Maximum length
 		$longPass = str_repeat( 'a', 41 );
 		$this->assertFalse( $user->isValidPassword( $longPass ) );
 		$this->assertFalse( $user->checkPasswordValidity( $longPass )->isGood() );
 		$this->assertFalse( $user->checkPasswordValidity( $longPass )->isOK() );
-		$this->assertEquals( 'passwordtoolong', $user->getPasswordValidity( $longPass ) );
 
 		// Matches username
 		$this->assertFalse( $user->checkPasswordValidity( $user->getName() )->isGood() );
 		$this->assertTrue( $user->checkPasswordValidity( $user->getName() )->isOK() );
-		$this->assertEquals( 'password-name-match', $user->getPasswordValidity( $user->getName() ) );
 
 		// On the forbidden list
 		$user = User::newFromName( 'Useruser' );
 		$this->assertFalse( $user->checkPasswordValidity( 'Passpass' )->isGood() );
-		$this->assertEquals( 'password-login-forbidden', $user->getPasswordValidity( 'Passpass' ) );
 	}
 
 	/**

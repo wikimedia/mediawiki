@@ -145,6 +145,7 @@ because of Phabricator reports.
   deprecated in 1.32, have been removed.
 * OutputPage::getModuleScripts(), ParserOutput::getModuleScripts(), deprecated
   in 1.33, have been removed.
+* User::getPasswordValidity(), deprecated in 1.33, has been removed.
 * …
 
 === Deprecations in 1.34 ===
