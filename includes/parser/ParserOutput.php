@@ -471,14 +471,6 @@ class ParserOutput extends CacheTime {
 		return $this->mSections;
 	}
 
-	/**
-	 * @deprecated since 1.31 Use getText() options.
-	 */
-	public function getEditSectionTokens() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return true;
-	}
-
 	public function &getLinks() {
 		return $this->mLinks;
 	}
@@ -566,14 +558,6 @@ class ParserOutput extends CacheTime {
 		return $this->mLimitReportJSData;
 	}
 
-	/**
-	 * @deprecated since 1.31 Use getText() options.
-	 */
-	public function getTOCEnabled() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return true;
-	}
-
 	public function getEnableOOUI() {
 		return $this->mEnableOOUI;
 	}
@@ -598,14 +582,6 @@ class ParserOutput extends CacheTime {
 		return wfSetVar( $this->mSections, $toc );
 	}
 
-	/**
-	 * @deprecated since 1.31 Use getText() options.
-	 */
-	public function setEditSectionTokens( $t ) {
-		wfDeprecated( __METHOD__, '1.31' );
-		return true;
-	}
-
 	public function setIndexPolicy( $policy ) {
 		return wfSetVar( $this->mIndexPolicy, $policy );
 	}
@@ -616,14 +592,6 @@ class ParserOutput extends CacheTime {
 
 	public function setTimestamp( $timestamp ) {
 		return wfSetVar( $this->mTimestamp, $timestamp );
-	}
-
-	/**
-	 * @deprecated since 1.31 Use getText() options.
-	 */
-	public function setTOCEnabled( $flag ) {
-		wfDeprecated( __METHOD__, '1.31' );
-		return true;
 	}
 
 	public function addCategory( $c, $sort ) {
