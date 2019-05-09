@@ -62,12 +62,8 @@ class LocalFileDeleteBatch {
 		$this->file = $file;
 		$this->reason = $reason;
 		$this->suppress = $suppress;
-		if ( $user ) {
-			$this->user = $user;
-		} else {
-			global $wgUser;
-			$this->user = $wgUser;
-		}
+		global $wgUser;
+		$this->user = $user ?: $wgUser;
 		$this->status = $file->repo->newGood();
 	}
 
