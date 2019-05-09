@@ -245,7 +245,7 @@ abstract class SearchEngine {
 	 * search engine
 	 */
 	public function transformSearchTerm( $term ) {
-		wfDeprecated( __METHOD__, '1.34' );
+		wfDeprecated( __METHOD__, '1.32' );
 		return $term;
 	}
 
