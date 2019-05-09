@@ -41,7 +41,7 @@ abstract class PrefixSearch {
 	 * @return array Array of strings
 	 */
 	public static function titleSearch( $search, $limit, $namespaces = [], $offset = 0 ) {
-		wfDeprecated( __METHOD__, '1.34' );
+		wfDeprecated( __METHOD__, '1.23' );
 		$prefixSearch = new StringPrefixSearch;
 		return $prefixSearch->search( $search, $limit, $namespaces, $offset );
 	}
