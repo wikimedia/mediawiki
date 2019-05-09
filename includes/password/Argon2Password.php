@@ -81,6 +81,8 @@ class Argon2Password extends Password {
 	 * @inheritDoc
 	 */
 	public function equals( $other ) {
+		wfDeprecated( __METHOD__, '1.33' );
+
 		if ( is_string( $other ) ) {
 			return $this->verify( $other );
 		}
