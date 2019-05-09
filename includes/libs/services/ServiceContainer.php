@@ -399,7 +399,7 @@ class ServiceContainer implements DestructibleService {
 	 * @throws ContainerDisabledException if this container has already been destroyed.
 	 * @throws ServiceDisabledException if the requested service has been disabled.
 	 *
-	 * @return object The service instance
+	 * @return mixed The service instance
 	 */
 	public function getService( $name ) {
 		if ( $this->destroyed ) {

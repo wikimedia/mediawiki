@@ -225,6 +225,7 @@ class MediaWikiServices extends ServiceContainer {
 		}
 	}
 
+	/** @noinspection PhpDocSignatureInspection */
 	/**
 	 * Salvages the state of any salvageable service instances in $other.
 	 *
