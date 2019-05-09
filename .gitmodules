@@ -1150,3 +1150,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-DisplayTitle.git
         branch = REL1_32
         ignore = dirty
+[submodule "extensions/WikiCategoryTagCloud"]
+        path = extensions/WikiCategoryTagCloud
+        url = https://github.com/wikimedia/mediawiki-extensions-WikiCategoryTagCloud.git
+        branch = master
+        ignore = dirty
