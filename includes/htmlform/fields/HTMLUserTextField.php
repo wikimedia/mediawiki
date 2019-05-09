@@ -65,7 +65,7 @@ class HTMLUserTextField extends HTMLTextField {
 	protected function isValidIPRange( $value ) {
 		$cidrIPRanges = $this->mParams['iprangelimits'];
 
-		if ( !IP::isValidBlock( $value ) ) {
+		if ( !IP::isValidRange( $value ) ) {
 			return false;
 		}
 
