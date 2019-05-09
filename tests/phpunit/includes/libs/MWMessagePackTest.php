@@ -3,7 +3,7 @@
  * PHP Unit tests for MWMessagePack
  * @covers MWMessagePack
  */
-class MWMessagePackTest extends PHPUnit\Framework\TestCase {
+class MWMessagePackTest extends MediaWikiTestCase {
 
 	use MediaWikiCoversValidator;
 
@@ -71,6 +71,7 @@ class MWMessagePackTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider providePacks
 	 */
 	public function testPack( $type, $value, $expected ) {
+		$this->hideDeprecated( MWMessagePack::class . '::pack' );
 		$actual = bin2hex( MWMessagePack::pack( $value ) );
 		$this->assertEquals( $expected, $actual, $type );
 	}

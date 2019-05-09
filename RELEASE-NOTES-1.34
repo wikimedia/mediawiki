@@ -177,6 +177,7 @@ because of Phabricator reports.
   deprecated. Use MediaWikiServices instead.
 * The getSubjectPage, getTalkPage, and getOtherPage of Title are deprecated.
   Use NamespaceInfo's getSubjectPage, getTalkPage, and getAssociatedPage.
+* MWMessagePack class, no longer used, has been deprecated in 1.34.
 
 === Other changes in 1.34 ===
 * …
