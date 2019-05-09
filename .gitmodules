@@ -792,11 +792,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-ContributionScores
 	branch = REL1_32
 	ignore = dirty
-[submodule "extensions/CustomHeader"]
-	path = extensions/CustomHeader
-	url = https://github.com/miraheze/CustomHeader
-	branch = master
-	ignore = dirty
 [submodule "extensions/TocTree"]
 	path = extensions/TocTree
 	url = https://github.com/wikimedia/mediawiki-extensions-TocTree
