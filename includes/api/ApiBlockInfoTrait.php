@@ -38,7 +38,7 @@ trait ApiBlockInfoTrait {
 	 *  - blockexpiry - expiry time of the block
 	 *  - systemblocktype - system block type, if any
 	 */
-	private function getBlockInfo( AbstractBlock $block ) {
+	private function getBlockDetails( AbstractBlock $block ) {
 		$vals = [];
 		$vals['blockid'] = $block->getId();
 		$vals['blockedby'] = $block->getByName();
