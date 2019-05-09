@@ -1374,21 +1374,6 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Identify that the submit button in the form has a progressive action
-	 * @since 1.25
-	 * @deprecated since 1.32, No need to call. Submit button already
-	 * has a progressive action form.
-	 *
-	 * @return HTMLForm $this for chaining calls (since 1.28)
-	 */
-	public function setSubmitProgressive() {
-		wfDeprecated( __METHOD__, '1.32' );
-		$this->mSubmitFlags = [ 'progressive', 'primary' ];
-
-		return $this;
-	}
-
-	/**
 	 * Set the text for the submit button to a message
 	 * @since 1.19
 	 *

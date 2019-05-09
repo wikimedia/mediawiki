@@ -322,29 +322,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Internal modules used by ResourceLoader that cannot be depended on.
-	 *
-	 * These module(s) should have isRaw() return true, and are not
-	 * legal dependencies (enforced by structure/ResourcesTest).
-	 *
-	 * @deprecated since 1.32 No longer used.
-	 * @return array
-	 */
-	public static function getStartupModules() {
-		wfDeprecated( __METHOD__, '1.32' );
-		return [];
-	}
-
-	/**
-	 * @deprecated since 1.32 No longer used.
-	 * @return array
-	 */
-	public static function getLegacyModules() {
-		wfDeprecated( __METHOD__, '1.32' );
-		return [];
-	}
-
-	/**
 	 * @private For internal use by SpecialJavaScriptTest
 	 * @since 1.32
 	 * @return array

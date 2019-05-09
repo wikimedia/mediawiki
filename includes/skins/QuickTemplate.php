@@ -126,19 +126,6 @@ abstract class QuickTemplate {
 	}
 
 	/**
-	 * @private
-	 * @param string $msgKey
-	 * @warning You should never use this method. I18n messages should be escaped
-	 * @deprecated 1.32 Use ->msg() instead.
-	 * @suppress SecurityCheck-XSS
-	 * @return-taint exec_html
-	 */
-	function msgHtml( $msgKey ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		echo wfMessage( $msgKey )->text();
-	}
-
-	/**
 	 * An ugly, ugly hack.
 	 * @deprecated since 1.33 Use ->msg() instead.
 	 * @param string $msgKey

@@ -123,6 +123,20 @@ because of Phabricator reports.
 * Output::sectionEditLinksEnabled(), ParserOutput::getEditSectionTokens,
   ::getTOCEnabled, ::setEditSectionTokens, ::setTOCEnabled, deprecated in 1.31
   have been removed.
+* Four methods in OutputPage, deprecated in 1.32, have been removed. You should
+  use OutputPage::showFatalError or throw a FatalError instead. The methods are
+  ::showFileCopyError(), ::showFileRenameError(), ::showFileDeleteError(), and
+  ::showFileNotFoundError().
+* ApiBase::truncateArray(), deprecated in 1.32, has been removed.
+* IcuCollation::getICUVersion(), deprecated in 1.32, has been removed. Use PHP's
+  INTL_ICU_VERSION constant directly.
+* HTMLForm::setSubmitProgressive(), deprecated in 1.32, has been removed.
+* ResourceLoaderStartUpModules::getStartupModules() and ::getLegacyModules(),
+  both deprecated in 1.32, have been removed.
+* BaseTemplate::msgHtml() and QuickTemplate::msgHtml(), deprecated in 1.32, have
+  been removed. Use ->msg() or ->getMsg() instead.
+* WatchAction::getUnwatchToken(), deprecated in 1.32, has been removed. Instead,
+  use WatchAction::getWatchToken() with action 'unwatch' directly.
 * …
 
 === Deprecations in 1.34 ===

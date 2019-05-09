@@ -2999,46 +2999,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * @deprecated 1.32 Use OutputPage::showFatalError or throw FatalError instead.
-	 */
-	public function showUnexpectedValueError( $name, $val ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		$this->showFatalError( $this->msg( 'unexpected', $name, $val )->escaped() );
-	}
-
-	/**
-	 * @deprecated 1.32 Use OutputPage::showFatalError or throw FatalError instead.
-	 */
-	public function showFileCopyError( $old, $new ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		$this->showFatalError( $this->msg( 'filecopyerror', $old, $new )->escaped() );
-	}
-
-	/**
-	 * @deprecated 1.32 Use OutputPage::showFatalError or throw FatalError instead.
-	 */
-	public function showFileRenameError( $old, $new ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		$this->showFatalError( $this->msg( 'filerenameerror', $old, $new )->escaped() );
-	}
-
-	/**
-	 * @deprecated 1.32 Use OutputPage::showFatalError or throw FatalError instead.
-	 */
-	public function showFileDeleteError( $name ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		$this->showFatalError( $this->msg( 'filedeleteerror', $name )->escaped() );
-	}
-
-	/**
-	 * @deprecated 1.32 Use OutputPage::showFatalError or throw FatalError instead.
-	 */
-	public function showFileNotFoundError( $name ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		$this->showFatalError( $this->msg( 'filenotfound', $name )->escaped() );
-	}
-
-	/**
 	 * Add a "return to" link pointing to a specified title
 	 *
 	 * @param Title $title Title to link
