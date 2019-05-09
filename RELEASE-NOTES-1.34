@@ -121,7 +121,9 @@ because of Phabricator reports.
   UserGroupMembership::getLink() instead.
 * SavepointPostgres, deprecated in 1.31, has been removed.
 * Output::sectionEditLinksEnabled(), ParserOutput::getEditSectionTokens,
-  ::getTOCEnabled, ::setEditSectionTokens, ::setTOCEnabled, deprecated in 1.31
+  ::getTOCEnabled, ::setEditSectionTokens, ::setTOCEnabled, deprecated in 1.31,
+  have been removed.
+* EditPage::safeUnicodeInput() and ::safeUnicodeOutput(), deprecated in 1.30,
   have been removed.
 * Four methods in OutputPage, deprecated in 1.32, have been removed. You should
   use OutputPage::showFatalError or throw a FatalError instead. The methods are
