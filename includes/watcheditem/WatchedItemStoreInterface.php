@@ -239,7 +239,7 @@ interface WatchedItemStoreInterface {
 	 * @param UserIdentity $editor The editor that triggered the update. Their notification
 	 *  timestamp will not be updated(they have already seen it)
 	 * @param LinkTarget $target The target to update timestamps for
-	 * @param string $timestamp Set the update timestamp to this value
+	 * @param string $timestamp Set the update (first unseen revision) timestamp to this value
 	 *
 	 * @return int[] Array of user IDs the timestamp has been updated for
 	 */
@@ -341,7 +341,7 @@ interface WatchedItemStoreInterface {
 	 * @param string|null $timestamp Value of wl_notificationtimestamp from the DB
 	 * @param UserIdentity $user
 	 * @param LinkTarget $target
-	 * @return string|null TS_MW timestamp or null if all revision were seen
+	 * @return string|null TS_MW timestamp of first unseen revision or null if there isn't one
 	 */
 	public function getLatestNotificationTimestamp(
 		$timestamp, UserIdentity $user, LinkTarget $target );

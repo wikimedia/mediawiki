@@ -1103,6 +1103,14 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		return "{$target->getNamespace()}:{$target->getDBkey()}";
 	}
 
+	/**
+	 * @param UserIdentity $user
+	 * @param LinkTarget $title
+	 * @param WatchedItem $item
+	 * @param bool $force
+	 * @param int|bool $oldid The ID of the last revision that the user viewed
+	 * @return bool|string|null
+	 */
 	private function getNotificationTimestamp(
 		UserIdentity $user, LinkTarget $title, $item, $force, $oldid
 	) {
@@ -1112,7 +1120,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		$oldRev = $this->revisionLookup->getRevisionById( $oldid );
-		if ( !$this->revisionLookup->getNextRevision( $oldRev, $title ) ) {
+		$nextRev = $this->revisionLookup->getNextRevision( $oldRev, $title );
+		if ( !$nextRev ) {
 			// Oldid given and is the latest revision for this title; clear the timestamp.
 			return null;
 		}
@@ -1129,6 +1138,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		// Oldid given and isn't the latest; update the timestamp.
 		// This will result in no further notification emails being sent!
 		$notificationTimestamp = $this->revisionLookup->getTimestampFromId( $oldid );
+		// @FIXME: this should use getTimestamp() for consistency with updates on new edits
+		// $notificationTimestamp = $nextRev->getTimestamp(); // first unseen revision timestamp
 
 		// We need to go one second to the future because of various strict comparisons
 		// throughout the codebase
