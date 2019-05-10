@@ -42,7 +42,7 @@ class ParserOutput extends CacheTime {
 	public $mLanguageLinks;
 
 	/**
-	 * @var array $mCategoriesMap of category names to sort keys
+	 * @var array $mCategories Map of category names to sort keys
 	 */
 	public $mCategories;
 
