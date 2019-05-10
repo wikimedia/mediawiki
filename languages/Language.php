@@ -4658,6 +4658,7 @@ class Language {
 	 *
 	 * @param int|float $seconds
 	 * @param array $format An optional argument that formats the returned string in different ways:
+	 *   If $format['avoid'] === 'avoidhours': don't show hours, just show days
 	 *   If $format['avoid'] === 'avoidseconds': don't show seconds if $seconds >= 1 hour,
 	 *   If $format['avoid'] === 'avoidminutes': don't show seconds/minutes if $seconds > 48 hours,
 	 *   If $format['noabbrevs'] is true: use 'seconds' and friends instead of 'seconds-abbrev'
@@ -4716,12 +4717,19 @@ class Language {
 			$s = $hoursMsg->params( $this->formatNum( $hours ) )->text();
 			$s .= ' ';
 			$s .= $minutesMsg->params( $this->formatNum( $minutes ) )->text();
-			if ( !in_array( $format['avoid'], [ 'avoidseconds', 'avoidminutes' ] ) ) {
+			if ( !in_array( $format['avoid'], [ 'avoidseconds', 'avoidminutes', 'avoidhours' ] ) ) {
 				$s .= ' ' . $secondsMsg->params( $this->formatNum( $secondsPart ) )->text();
 			}
 		} else {
 			$days = floor( $seconds / 86400 );
-			if ( $format['avoid'] === 'avoidminutes' ) {
+			if ( $format['avoid'] === 'avoidhours' ) {
+				$hours = round( ( $seconds - $days * 86400 ) / 3600 );
+				if ( $hours == 24 ) {
+					$hours = 0;
+					$days++;
+				}
+				$s = $daysMsg->params( $this->formatNum( $days ) )->text();
+			} elseif ( $format['avoid'] === 'avoidminutes' ) {
 				$hours = round( ( $seconds - $days * 86400 ) / 3600 );
 				if ( $hours == 24 ) {
 					$hours = 0;

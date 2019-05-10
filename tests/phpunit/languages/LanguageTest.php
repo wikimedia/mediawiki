@@ -137,6 +137,18 @@ class LanguageTest extends LanguageClassesTestCase {
 			],
 			[
 				259199.55,
+				'avoidhours',
+				'3 d',
+				'formatTimePeriod() rounding (>48h), avoidhours'
+			],
+			[
+				259199.55,
+				[ 'avoid' => 'avoidhours', 'noabbrevs' => true ],
+				'3 days',
+				'formatTimePeriod() rounding (>48h), avoidhours'
+			],
+			[
+				259199.55,
 				'avoidminutes',
 				'3 d 0 h',
 				'formatTimePeriod() rounding (>48h), avoidminutes'
