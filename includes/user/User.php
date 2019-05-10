@@ -1163,35 +1163,6 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Given unvalidated password input, return error message on failure.
-	 *
-	 * @param string $password Desired password
-	 * @return bool|string|array True on success, string or array of error message on failure
-	 * @deprecated since 1.33, use checkPasswordValidity
-	 */
-	public function getPasswordValidity( $password ) {
-		wfDeprecated( __METHOD__, '1.33' );
-
-		$result = $this->checkPasswordValidity( $password );
-		if ( $result->isGood() ) {
-			return true;
-		}
-
-		$messages = [];
-		foreach ( $result->getErrorsByType( 'error' ) as $error ) {
-			$messages[] = $error['message'];
-		}
-		foreach ( $result->getErrorsByType( 'warning' ) as $warning ) {
-			$messages[] = $warning['message'];
-		}
-		if ( count( $messages ) === 1 ) {
-			return $messages[0];
-		}
-
-		return $messages;
-	}
-
-	/**
 	 * Check if this is a valid password for this user
 	 *
 	 * Returns a Status object with a set of messages describing

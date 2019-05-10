@@ -549,15 +549,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.33 Use getModules() instead.
-	 * @return array
-	 */
-	public function getModuleScripts() {
-		wfDeprecated( __METHOD__, '1.33' );
-		return [];
-	}
-
-	/**
 	 * Get the list of style-only modules to load on this page.
 	 *
 	 * @param bool $filter

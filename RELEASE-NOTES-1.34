@@ -39,7 +39,8 @@ For notes on 1.33.x and older releases, see HISTORY.
 * …
 
 === New developer features in 1.34 ===
-* …
+* Language::formatTimePeriod now supports the new 'avoidhours' option to output
+  strings like "5 days ago" instead of "5 days 13 hours ago".
 
 === External library changes in 1.34 ===
 
@@ -143,6 +144,9 @@ because of Phabricator reports.
   1.28, have been removed.
 * PageArchive::getTextFromRow(), ::listAllPages(), and ::getLastRevisionText(),
   deprecated in 1.32, have been removed.
+* OutputPage::getModuleScripts(), ParserOutput::getModuleScripts(), deprecated
+  in 1.33, have been removed.
+* User::getPasswordValidity(), deprecated in 1.33, has been removed.
 * …
 
 === Deprecations in 1.34 ===
