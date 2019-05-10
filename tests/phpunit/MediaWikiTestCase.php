@@ -2367,7 +2367,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		if ( $createIfMissing ) {
 			if ( !file_exists( $fileName ) ) {
 				file_put_contents( $fileName, $actualData );
-				$this->markTestSkipped( 'Data file $fileName does not exist' );
+				$this->markTestSkipped( "Data file $fileName does not exist" );
 			}
 		} else {
 			self::assertFileExists( $fileName );
