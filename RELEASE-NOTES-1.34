@@ -144,6 +144,8 @@ because of Phabricator reports.
   1.28, have been removed.
 * PageArchive::getTextFromRow(), ::listAllPages(), and ::getLastRevisionText(),
   deprecated in 1.32, have been removed.
+* OutputPage::getModuleScripts(), ParserOutput::getModuleScripts(), deprecated
+  in 1.33, have been removed.
 * …
 
 === Deprecations in 1.34 ===

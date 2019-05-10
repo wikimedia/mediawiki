@@ -510,11 +510,6 @@ class ParserOutput extends CacheTime {
 		return $this->mModules;
 	}
 
-	public function getModuleScripts() {
-		wfDeprecated( __METHOD__, '1.33' );
-		return [];
-	}
-
 	public function getModuleStyles() {
 		return $this->mModuleStyles;
 	}
