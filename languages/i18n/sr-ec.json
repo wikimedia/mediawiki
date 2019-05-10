@@ -1411,7 +1411,7 @@
 	"rcfilters-savedqueries-already-saved": "Ови филтери су већ сачувани. Промените своја подешавања да бисте направили нове сачуване филтере.",
 	"rcfilters-restore-default-filters": "Врати подразумеване филтере",
 	"rcfilters-clear-all-filters": "Обришите све филтере",
-	"rcfilters-show-new-changes": "Прикажи нове промене од $1",
+	"rcfilters-show-new-changes": "Нове промене од $1",
 	"rcfilters-search-placeholder": "Филтрирајте промене (користите мени или претрагу за име филтера)",
 	"rcfilters-invalid-filter": "Неважећи филтер",
 	"rcfilters-empty-filter": "Нема активних филтера. Сви доприноси су приказани.",

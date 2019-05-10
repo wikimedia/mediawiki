@@ -2128,5 +2128,6 @@
 	"log-action-filter-all": "Omno",
 	"log-action-filter-contentmodel-change": "Modifiko di la kontenajo di ula modelo",
 	"log-action-filter-suppress-reblock": "User suppression by reblock",
-	"authprovider-resetpass-skip-label": "Preterpasar"
+	"authprovider-resetpass-skip-label": "Preterpasar",
+	"authpage-cannot-login-continue": "Ne povis durar l'eniro-procedi. Posible vua sesiono finis pos kelka tempo sen uzo."
 }

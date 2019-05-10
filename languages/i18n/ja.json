@@ -895,7 +895,7 @@
 	"page_first": "先頭",
 	"page_last": "末尾",
 	"histlegend": "差分の選択: 比較したい版のラジオボタンを選択し、Enterキーを押すか、下部のボタンを押します。<br />\n凡例: <strong>({{int:cur}})</strong>＝最新版との比較、<strong>({{int:last}})</strong>＝直前の版との比較、<strong>{{int:minoreditletter}}</strong>＝細部の編集",
-	"history-fieldset-title": "版をフィルター",
+	"history-fieldset-title": "版の絞り込み",
 	"history-show-deleted": "削除版のみ",
 	"histfirst": "最古",
 	"histlast": "最新",
