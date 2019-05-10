@@ -3017,6 +3017,7 @@
 	"redirect-page": "ID stranice",
 	"redirect-revision": "Inačica stranice",
 	"redirect-file": "Datotečno ime",
+	"redirect-not-exists": "Vrijednost nije pronađena",
 	"fileduplicatesearch": "Traži kopije datoteka",
 	"fileduplicatesearch-summary": "Traži kopije datoteka na temelju njihove hash vrijednosti.",
 	"fileduplicatesearch-filename": "Ime datoteke:",
