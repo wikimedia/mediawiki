@@ -2934,7 +2934,7 @@ ERROR;
 		}
 
 		if ( !$this->mTitle->isUserConfigPage() ) {
-			$out->addHTML( self::getEditToolbar( $this->mTitle ) );
+			$out->addHTML( self::getEditToolbar() );
 		}
 
 		if ( $this->blankArticle ) {
@@ -4101,10 +4101,9 @@ ERROR;
 	/**
 	 * Allow extensions to provide a toolbar.
 	 *
-	 * @param Title|null $title Title object for the page being edited (optional)
 	 * @return string|null
 	 */
-	public static function getEditToolbar( $title = null ) {
+	public static function getEditToolbar() {
 		$startingToolbar = '<div id="toolbar"></div>';
 		$toolbar = $startingToolbar;
 
