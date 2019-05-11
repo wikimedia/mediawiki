@@ -57,6 +57,7 @@ class ParserCache {
 	 * @var string
 	 */
 	private $cacheEpoch;
+
 	/**
 	 * Get an instance of this object
 	 *

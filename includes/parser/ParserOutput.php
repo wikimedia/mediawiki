@@ -498,6 +498,7 @@ class ParserOutput extends CacheTime {
 	public function setNoGallery( $value ) {
 		$this->mNoGallery = (bool)$value;
 	}
+
 	public function getNoGallery() {
 		return $this->mNoGallery;
 	}
@@ -628,12 +629,15 @@ class ParserOutput extends CacheTime {
 	public function setNewSection( $value ) {
 		$this->mNewSection = (bool)$value;
 	}
+
 	public function hideNewSection( $value ) {
 		$this->mHideNewSection = (bool)$value;
 	}
+
 	public function getHideNewSection() {
 		return (bool)$this->mHideNewSection;
 	}
+
 	public function getNewSection() {
 		return (bool)$this->mNewSection;
 	}

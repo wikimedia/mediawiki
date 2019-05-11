@@ -61,6 +61,7 @@ if ( !defined( 'MW_CONFIG_CALLBACK' ) && !defined( 'MW_CONFIG_FILE' ) ) {
 
 // Custom setup for Maintenance entry point
 if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
+
 	function wfMaintenanceSetup() {
 		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
 		global $maintenance, $wgLocalisationCacheConf, $wgCacheDirectory;
@@ -75,6 +76,7 @@ if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
 
 		$maintenance->finalSetup();
 	}
+
 	define( 'MW_SETUP_CALLBACK', 'wfMaintenanceSetup' );
 }
 

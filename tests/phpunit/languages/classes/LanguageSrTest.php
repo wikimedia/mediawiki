@@ -238,6 +238,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	}
 
 	# #### HELPERS #####################################################
+
 	/**
 	 *Wrapper to verify text stay the same after applying conversion
 	 * @param string $text Text to convert
