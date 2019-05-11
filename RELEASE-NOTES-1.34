@@ -153,6 +153,7 @@ because of Phabricator reports.
 * User::getPasswordValidity(), deprecated in 1.33, has been removed.
 * ApiQueryBase::prepareUrlQuerySearchString(), deprecated in 1.33, has been
   removed.
+* ChangeTags::purgeTagUsageCache(), deprecated in 1.33, has been removed.
 * …
 
 === Deprecations in 1.34 ===
