@@ -384,6 +384,7 @@ class FormOptions implements ArrayAccess {
 	 * @see https://www.php.net/manual/en/class.arrayaccess.php
 	 */
 	/* @{ */
+
 	/**
 	 * Whether the option exists.
 	 * @param string $name

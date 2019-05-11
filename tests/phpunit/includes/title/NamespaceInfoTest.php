@@ -601,6 +601,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 * getSubject/Talk/Associated
 	 * %{
 	 */
+
 	/**
 	 * @dataProvider provideSubjectTalk
 	 * @covers NamespaceInfo::getSubject
@@ -880,6 +881,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 
 	// No canonical namespace names
 	// %{
+
 	/**
 	 * @covers NamespaceInfo::getCanonicalNamespaces
 	 */
@@ -982,6 +984,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 
 	// Hook namespaces
 	// %{
+
 	/**
 	 * @return array Expected canonical namespaces
 	 */
@@ -1047,6 +1050,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 
 	// Extra namespaces
 	// %{
+
 	/**
 	 * @return NamespaceInfo
 	 */
@@ -1102,6 +1106,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 
 	// Canonical namespace caching
 	// %{
+
 	/**
 	 * @covers NamespaceInfo::getCanonicalNamespaces
 	 */

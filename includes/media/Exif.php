@@ -548,6 +548,7 @@ class Exif {
 	/**#@+
 	 * @return array
 	 */
+
 	/**
 	 * Get $this->mRawExifData
 	 * @return array

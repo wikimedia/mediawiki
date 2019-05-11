@@ -31,5 +31,6 @@
  */
 interface Pager {
 	function getNavigationBar();
+
 	function getBody();
 }

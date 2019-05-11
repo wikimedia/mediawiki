@@ -129,6 +129,7 @@ class ResourceLoaderImageTestable extends ResourceLoaderImage {
 	public function massageSvgPathdata( $svg ) {
 		return parent::massageSvgPathdata( $svg );
 	}
+
 	// Stub, since we don't know if we even have a SVG handler, much less what exactly it'll output
 	public function rasterize( $svg ) {
 		return 'RASTERIZESTUB';

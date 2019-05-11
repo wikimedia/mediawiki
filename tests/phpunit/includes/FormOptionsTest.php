@@ -42,15 +42,19 @@ class FormOptionsTest extends MediaWikiTestCase {
 	private function assertGuessBoolean( $data ) {
 		$this->guess( FormOptions::BOOL, $data );
 	}
+
 	private function assertGuessInt( $data ) {
 		$this->guess( FormOptions::INT, $data );
 	}
+
 	private function assertGuessFloat( $data ) {
 		$this->guess( FormOptions::FLOAT, $data );
 	}
+
 	private function assertGuessString( $data ) {
 		$this->guess( FormOptions::STRING, $data );
 	}
+
 	private function assertGuessArray( $data ) {
 		$this->guess( FormOptions::ARR, $data );
 	}
@@ -62,6 +66,7 @@ class FormOptionsTest extends MediaWikiTestCase {
 			FormOptions::guessType( $data )
 		);
 	}
+
 	/* @} */
 
 	/**

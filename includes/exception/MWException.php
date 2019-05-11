@@ -252,6 +252,7 @@ class MWException extends Exception {
 			header( $header );
 		}
 	}
+
 	private static function statusHeader( $code ) {
 		if ( !headers_sent() ) {
 			HttpStatus::header( $code );

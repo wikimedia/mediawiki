@@ -7,6 +7,7 @@ class MockSearchResult extends SearchResult {
 	public function isMissingRevision() {
 		return $this->isMissingRevision;
 	}
+
 	public function setMissingRevision( $isMissingRevision ) {
 		$this->isMissingRevision = $isMissingRevision;
 		return $this;

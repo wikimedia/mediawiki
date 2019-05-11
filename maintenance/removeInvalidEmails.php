@@ -21,6 +21,7 @@ class RemoveInvalidEmails extends Maintenance {
 		$this->addOption( 'commit', 'Whether to actually update the database', false, false );
 		$this->setBatchSize( 500 );
 	}
+
 	public function execute() {
 		$this->commit = $this->hasOption( 'commit' );
 		$dbr = $this->getDB( DB_REPLICA );
