@@ -1336,7 +1336,7 @@ class ApiBaseTest extends ApiTestCase {
 		$userInfoTrait = TestingAccessWrapper::newFromObject(
 			$this->getMockForTrait( ApiBlockInfoTrait::class )
 		);
-		$blockinfo = [ 'blockinfo' => $userInfoTrait->getBlockInfo( $block ) ];
+		$blockinfo = [ 'blockinfo' => $userInfoTrait->getBlockDetails( $block ) ];
 
 		$expect = Status::newGood();
 		$expect->fatal( ApiMessage::create( 'apierror-blocked', 'blocked', $blockinfo ) );
@@ -1394,7 +1394,7 @@ class ApiBaseTest extends ApiTestCase {
 		$userInfoTrait = TestingAccessWrapper::newFromObject(
 			$this->getObjectForTrait( ApiBlockInfoTrait::class )
 		);
-		$blockinfo = [ 'blockinfo' => $userInfoTrait->getBlockInfo( $block ) ];
+		$blockinfo = [ 'blockinfo' => $userInfoTrait->getBlockDetails( $block ) ];
 
 		$expect = Status::newGood();
 		$expect->fatal( ApiMessage::create( 'apierror-blocked', 'blocked', $blockinfo ) );

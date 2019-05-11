@@ -1816,7 +1816,7 @@ abstract class ApiBase extends ContextSource {
 			if ( is_string( $error[0] ) && isset( self::$blockMsgMap[$error[0]] ) && $user->getBlock() ) {
 				list( $msg, $code ) = self::$blockMsgMap[$error[0]];
 				$status->fatal( ApiMessage::create( $msg, $code,
-					[ 'blockinfo' => $this->getBlockInfo( $user->getBlock() ) ]
+					[ 'blockinfo' => $this->getBlockDetails( $user->getBlock() ) ]
 				) );
 			} else {
 				$status->fatal( ...$error );
@@ -1839,7 +1839,7 @@ abstract class ApiBase extends ContextSource {
 		foreach ( self::$blockMsgMap as $msg => list( $apiMsg, $code ) ) {
 			if ( $status->hasMessage( $msg ) && $user->getBlock() ) {
 				$status->replaceMessage( $msg, ApiMessage::create( $apiMsg, $code,
-					[ 'blockinfo' => $this->getBlockInfo( $user->getBlock() ) ]
+					[ 'blockinfo' => $this->getBlockDetails( $user->getBlock() ) ]
 				) );
 			}
 		}
@@ -2038,19 +2038,19 @@ abstract class ApiBase extends ContextSource {
 			$this->dieWithError(
 				'apierror-autoblocked',
 				'autoblocked',
-				[ 'blockinfo' => $this->getBlockInfo( $block ) ]
+				[ 'blockinfo' => $this->getBlockDetails( $block ) ]
 			);
 		} elseif ( !$block->isSitewide() ) {
 			$this->dieWithError(
 				'apierror-blocked-partial',
 				'blocked',
-				[ 'blockinfo' => $this->getBlockInfo( $block ) ]
+				[ 'blockinfo' => $this->getBlockDetails( $block ) ]
 			);
 		} else {
 			$this->dieWithError(
 				'apierror-blocked',
 				'blocked',
-				[ 'blockinfo' => $this->getBlockInfo( $block ) ]
+				[ 'blockinfo' => $this->getBlockDetails( $block ) ]
 			);
 		}
 	}
