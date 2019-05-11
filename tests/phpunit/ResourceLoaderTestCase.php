@@ -137,6 +137,7 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	public function isRaw() {
 		return $this->isRaw;
 	}
+
 	public function isKnownEmpty( ResourceLoaderContext $context ) {
 		return $this->isKnownEmpty;
 	}

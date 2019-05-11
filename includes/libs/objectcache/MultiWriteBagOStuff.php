@@ -136,6 +136,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 		return $value;
 	}
+
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		return $this->doWrite(
 			$this->cacheIndexes,
@@ -205,6 +206,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		// Only the first cache is locked
 		return $this->caches[0]->unlock( $key );
 	}
+
 	/**
 	 * Delete objects expiring before a certain date.
 	 *
@@ -289,6 +291,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	public function clearLastError() {
 		$this->caches[0]->clearLastError();
 	}
+
 	/**
 	 * Apply a write method to the backing caches specified by $indexes (in order)
 	 *

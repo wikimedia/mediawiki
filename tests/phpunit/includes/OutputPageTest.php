@@ -25,6 +25,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		parent::setUp();
 		ResourceLoader::clearCache();
 	}
+
 	protected function tearDown() {
 		parent::tearDown();
 		ResourceLoader::clearCache();

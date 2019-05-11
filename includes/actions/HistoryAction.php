@@ -139,6 +139,7 @@ class HistoryAction extends FormlessAction {
 		}
 		return $year && $month && $day ? $year . '-' . $month . '-' . $day : '';
 	}
+
 	/**
 	 * Print the history page for an article.
 	 */

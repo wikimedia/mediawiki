@@ -1190,6 +1190,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	// to include data on filters that use the unstructured UI.  messageKeys is a
 	// special top-level value, with the value being an array of the message keys to
 	// send to the client.
+
 	/**
 	 * Gets structured filter information needed by JS
 	 *

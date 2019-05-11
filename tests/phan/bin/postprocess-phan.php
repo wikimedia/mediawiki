@@ -106,6 +106,7 @@ class NoopSuppressor extends Suppressor {
 	public function __construct( $mode ) {
 		$this->mode = $mode;
 	}
+
 	public function suppress( $input ) {
 		echo "Unsupported output mode: {$this->mode}\n$input";
 		return true;

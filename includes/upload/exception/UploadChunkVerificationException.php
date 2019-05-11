@@ -23,6 +23,7 @@
 
 class UploadChunkVerificationException extends MWException {
 	public $msg;
+
 	public function __construct( array $res ) {
 		$this->msg = wfMessage( ...$res );
 		parent::__construct( wfMessage( ...$res )

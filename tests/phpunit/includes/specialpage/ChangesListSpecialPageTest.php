@@ -400,6 +400,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			$user
 		);
 	}
+
 	public function testRcHidepatrolledFilter() {
 		$user = $this->getTestSysop()->getUser();
 		$this->assertConditions(

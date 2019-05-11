@@ -92,6 +92,7 @@ class JsonContentTest extends MediaWikiLangTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 	}
+
 	private function getMockParserOptions() {
 		return $this->getMockBuilder( ParserOptions::class )
 			->disableOriginalConstructor()

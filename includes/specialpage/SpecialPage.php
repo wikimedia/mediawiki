@@ -162,6 +162,7 @@ class SpecialPage implements MessageLocalizer {
 	}
 
 	// @todo FIXME: Decide which syntax to use for this, and stick to it
+
 	/**
 	 * Whether this special page is listed in Special:SpecialPages
 	 * @since 1.3 (r3583)
