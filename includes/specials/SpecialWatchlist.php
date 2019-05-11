@@ -865,16 +865,16 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @return bool User viewed the revision or a newer one
 	 */
 	protected function isChangeEffectivelySeen( RecentChange $rc ) {
-		$lastVisitTs = $this->getLatestSeenTimestampIfHasUnseen( $rc );
+		$firstUnseen = $this->getLatestNotificationTimestamp( $rc );
 
-		return $lastVisitTs === null || $lastVisitTs > $rc->getAttribute( 'rc_timestamp' );
+		return ( $firstUnseen === null || $firstUnseen > $rc->getAttribute( 'rc_timestamp' ) );
 	}
 
 	/**
 	 * @param RecentChange $rc
-	 * @return string|null TS_MW timestamp or null if all revision were seen
+	 * @return string|null TS_MW timestamp of first unseen revision or null if there isn't one
 	 */
-	private function getLatestSeenTimestampIfHasUnseen( RecentChange $rc ) {
+	private function getLatestNotificationTimestamp( RecentChange $rc ) {
 		return $this->watchStore->getLatestNotificationTimestamp(
 			$rc->getAttribute( 'wl_notificationtimestamp' ),
 			$rc->getPerformer(),
