@@ -1471,15 +1471,6 @@ class ChangeTags {
 	}
 
 	/**
-	 * Invalidates the tag statistics cache only.
-	 * @since 1.25
-	 * @deprecated since 1.33 the cache this purges no longer exists
-	 */
-	public static function purgeTagUsageCache() {
-		wfDeprecated( __METHOD__, '1.33' );
-	}
-
-	/**
 	 * Returns a map of any tags used on the wiki to number of edits
 	 * tagged with them, ordered descending by the hitcount.
 	 * This does not include tags defined somewhere that have never been applied.

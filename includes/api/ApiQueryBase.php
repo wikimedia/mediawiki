@@ -424,35 +424,6 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * @deprecated since 1.33, use LinkFilter::getQueryConditions() instead
-	 * @param string|null $query
-	 * @param string|null $protocol
-	 * @return null|string
-	 */
-	public function prepareUrlQuerySearchString( $query = null, $protocol = null ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		$db = $this->getDB();
-		if ( $query !== null && $query !== '' ) {
-			if ( is_null( $protocol ) ) {
-				$protocol = 'http://';
-			}
-
-			$likeQuery = LinkFilter::makeLikeArray( $query, $protocol );
-			if ( !$likeQuery ) {
-				$this->dieWithError( 'apierror-badquery' );
-			}
-
-			$likeQuery = LinkFilter::keepOneWildcard( $likeQuery );
-
-			return 'el_index ' . $db->buildLike( $likeQuery );
-		} elseif ( !is_null( $protocol ) ) {
-			return 'el_index ' . $db->buildLike( "$protocol", $db->anyString() );
-		}
-
-		return null;
-	}
-
-	/**
 	 * Filters hidden users (where the user doesn't have the right to view them)
 	 * Also adds relevant block information
 	 *
