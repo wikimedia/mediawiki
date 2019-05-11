@@ -8,11 +8,11 @@ use MediaWiki\Block\SystemBlock;
  */
 class ApiBlockInfoTraitTest extends MediaWikiTestCase {
 	/**
-	 * @dataProvider provideGetBlockInfo
+	 * @dataProvider provideGetBlockDetails
 	 */
-	public function testGetBlockInfo( $block, $expectedInfo ) {
+	public function testGetBlockDetails( $block, $expectedInfo ) {
 		$mock = $this->getMockForTrait( ApiBlockInfoTrait::class );
-		$info = TestingAccessWrapper::newFromObject( $mock )->getBlockInfo( $block );
+		$info = TestingAccessWrapper::newFromObject( $mock )->getBlockDetails( $block );
 		$subset = array_merge( [
 			'blockid' => null,
 			'blockedby' => '',
@@ -23,7 +23,7 @@ class ApiBlockInfoTraitTest extends MediaWikiTestCase {
 		$this->assertArraySubset( $subset, $info );
 	}
 
-	public static function provideGetBlockInfo() {
+	public static function provideGetBlockDetails() {
 		return [
 			'Sitewide block' => [
 				new Block(),

@@ -53,6 +53,26 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	/**
+	 * Get basic info about a given block
+	 *
+	 * @deprecated since 1.34 Use ApiBlockInfoTrait::getBlockDetails() instead.
+	 * @param Block $block
+	 * @return array See ApiBlockInfoTrait::getBlockDetails
+	 */
+	public static function getBlockInfo( Block $block ) {
+		wfDeprecated( __METHOD__, '1.34' );
+
+		// Hack to access a private method from a trait:
+		$dummy = new class {
+			use ApiBlockInfoTrait {
+				getBlockDetails as public;
+			}
+		};
+
+		return $dummy->getBlockDetails( $block );
+	}
+
+	/**
 	 * Get central user info
 	 * @param Config $config
 	 * @param User $user
@@ -104,7 +124,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if ( isset( $this->prop['blockinfo'] ) ) {
 			$block = $user->getBlock();
 			if ( $block ) {
-				$vals = array_merge( $vals, $this->getBlockInfo( $block ) );
+				$vals = array_merge( $vals, $this->getBlockDetails( $block ) );
 			}
 		}
 

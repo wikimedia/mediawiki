@@ -52,7 +52,7 @@ class ApiBlock extends ApiBase {
 				$this->dieWithError(
 					$status,
 					null,
-					[ 'blockinfo' => $this->getBlockInfo( $block ) ]
+					[ 'blockinfo' => $this->getBlockDetails( $block ) ]
 				);
 			}
 		}
