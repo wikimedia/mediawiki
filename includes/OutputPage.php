@@ -3992,13 +3992,6 @@ class OutputPage extends ContextSource {
 			if ( is_array( $spec ) ) {
 				$args = $spec;
 				$name = array_shift( $args );
-				if ( isset( $args['options'] ) ) {
-					unset( $args['options'] );
-					wfDeprecated(
-						'Adding "options" to ' . __METHOD__ . ' is no longer supported',
-						'1.20'
-					);
-				}
 			} else {
 				$args = [];
 				$name = $spec;
