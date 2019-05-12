@@ -1208,7 +1208,7 @@
 	"right-purge": "Vyčištění vyrovnávací paměti stránky",
 	"right-autoconfirmed": "Imunita vůči rychlostním limitům založeným na IP adrese",
 	"right-bot": "Být považován za automatický proces",
-	"right-nominornewtalk": "Nevypisování oznámení o nové zprávě po malých úpravách diskusní stránky",
+	"right-nominornewtalk": "Potlačení oznámení o nové zprávě po malých úpravách diskusní stránky",
 	"right-apihighlimits": "Používání vyšších limitů v API dotazech",
 	"right-writeapi": "Používání zapisovacího API",
 	"right-delete": "Mazání stránek",
@@ -1377,7 +1377,11 @@
 	"action-unblockself": "odblokovat sebe sama",
 	"action-noratelimit": "nebýt omezeni rychlostními limity",
 	"action-reupload-own": "přepisovat sebou nahrané soubory",
+	"action-nominornewtalk": "potlačit oznámení o nové zprávě při malých úpravách diskusní stránky",
 	"action-markbotedits": "označovat reverty jako editace bota",
+	"action-patrolmarks": "prohlížet si záznamy o prověření v posledních změnách",
+	"action-override-export-depth": "exportovat stránky včetně odkazovaných stránek až do hloubky 5",
+	"action-suppressredirect": "nevyrábět při přesouvání stránek přesměrování z původního názvu",
 	"nchanges": "$1 {{PLURAL:$1|změna|změny|změn}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|od poslední návštěvy}}",
 	"enhancedrc-history": "historie",
@@ -2591,6 +2595,7 @@
 	"blocklink": "zablokovat",
 	"unblocklink": "odblokovat",
 	"change-blocklink": "změnit blok",
+	"empty-username": "(uživatelské jméno není dostupné)",
 	"contribslink": "příspěvky",
 	"emaillink": "poslat e-mail",
 	"autoblocker": "Automatické zablokování kvůli tomu, že vaši IP adresu nedávno používal uživatel „[[User:$1|$1]]“.\nDůvod zablokování uživatele $1: „$2“",
@@ -3870,5 +3875,7 @@
 	"passwordpolicies-policyflag-forcechange": "nutné změnit při přihlášení",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "navrhnout změnu při přihlášení",
 	"easydeflate-invaliddeflate": "Poskytnutý obsah nebyl správně zkomprimován",
-	"unprotected-js": "Z bezpečnostních důvodů nelze načítat JavaScript z nechráněných stran. Vyrábějte prosím JavaScriptové skripty jen ve jmenném prostoru MediaWiki: nebo jako uživatelskou podstránku"
+	"unprotected-js": "Z bezpečnostních důvodů nelze načítat JavaScript z nechráněných stran. Vyrábějte prosím JavaScriptové skripty jen ve jmenném prostoru MediaWiki: nebo jako uživatelskou podstránku",
+	"userlogout-continue": "Pokud se chcete odhlásit, [$1 pokračujte na odhlašovací stránku].",
+	"userlogout-sessionerror": "Kvůli chybě sezení se odhlášení nezdařilo. [$1 Zkuste to prosím znovu]."
 }

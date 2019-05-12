@@ -2597,6 +2597,7 @@
 	"blocklink": "blokkolás",
 	"unblocklink": "blokk feloldása",
 	"change-blocklink": "blokkolás módosítása",
+	"empty-username": "(felhasználónév nem elérhető)",
 	"contribslink": "szerkesztései",
 	"emaillink": "e-mail küldése",
 	"autoblocker": "Az általad használt IP-cím autoblokkolva van, mivel korábban a kitiltott „[[User:$1|$1]]” használta. ($1 blokkolásának indoklása: „'''$2'''”) Ha nem te vagy $1, lépj kapcsolatba valamelyik adminisztrátorral, és kérd az autoblokk feloldását. Ne felejtsd el megírni neki, hogy kinek szóló blokkba ütköztél bele!",

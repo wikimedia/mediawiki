@@ -13,7 +13,8 @@
 			"Siebrand",
 			"Purodha",
 			"Tacsipacsi",
-			"D41D8CD98F"
+			"D41D8CD98F",
+			"Zoranzoki21"
 		]
 	},
 	"apihelp-main-summary": "{{doc-apihelp-summary|main}}",
@@ -1753,7 +1754,7 @@
 	"apierror-unknownaction": "{{doc-apierror}}\n\nParameters:\n* $1 - Action provided.",
 	"apierror-unknownerror-editpage": "{{doc-apierror}}\n\nParameters:\n* $1 - Error code (an integer).",
 	"apierror-unknownerror-nocode": "{{doc-apierror}}",
-	"apierror-unknownerror": "{{doc-apierror}}\n\nParameters:\n* $1 - Error code (possibly a message key) not handled by ApiBase::parseMsg().",
+	"apierror-unknownerror": "{{doc-apierror}}\n\nParameters:\n* $1 - Error code (possibly a message key) not handled by an error handler.",
 	"apierror-unknownformat": "{{doc-apierror}}\n\nParameters:\n* $1 - Format provided.",
 	"apierror-unrecognizedparams": "{{doc-apierror}}\n\nParameters:\n* $1 - List of parameters.\n* $2 - Number of parameters.",
 	"apierror-unrecognizedvalue": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
