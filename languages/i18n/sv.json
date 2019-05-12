@@ -2634,6 +2634,7 @@
 	"blocklink": "blockera",
 	"unblocklink": "ta bort blockering",
 	"change-blocklink": "ändra blockering",
+	"empty-username": "(inget tillgängligt användarnamn)",
 	"contribslink": "bidrag",
 	"emaillink": "skicka e-post",
 	"autoblocker": "Automatisk blockerad eftersom din IP-adress nyligen använts av \"[[User:$1|$1]]\".\nMotiveringen som angavs för blockeringen av $1 var: \"$2\".",

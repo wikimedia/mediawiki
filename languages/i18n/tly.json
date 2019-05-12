@@ -5,7 +5,8 @@
 			"Ganbarzada",
 			"Tuzkozbir",
 			"Гусейн",
-			"아라"
+			"아라",
+			"Baskervill"
 		]
 	},
 	"tog-underline": "Линки жинтоно ријә быкәш:",
@@ -371,6 +372,7 @@
 	"newuserlogpage": "Иштирокәкон ғеидијоти журнал",
 	"action-edit": "Ым сәһифә сәрост кардеј",
 	"nchanges": "$1 {{PLURAL:$1|дәгиши|дәгишон}}",
+	"enhancedrc-history": "Tarıx",
 	"recentchanges": "Ән нујә дәгишон",
 	"recentchanges-legend": "Ән нујә дәгишон кукон",
 	"recentchanges-summary": "Тәмшо быкән бы сәһифәдә че вики охоминә дәгишон нишо доә быән.",
