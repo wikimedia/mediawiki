@@ -507,7 +507,7 @@ Title.makeTitle = function ( namespace, title ) {
  * @return {mw.Title|null} A valid Title object or null if the input cannot be turned into a valid title
  */
 Title.newFromUserInput = function ( title, defaultNamespaceOrOptions, options ) {
-	var namespace, m, id, ext, parts,
+	var namespace, m, id, ext, lastDot,
 		defaultNamespace;
 
 	// defaultNamespace is optional; check whether options moves up
@@ -553,35 +553,27 @@ Title.newFromUserInput = function ( title, defaultNamespaceOrOptions, options ) 
 		namespace === NS_MEDIA ||
 		( options.forUploading && ( namespace === NS_FILE ) )
 	) {
-
 		title = sanitize( title, [ 'generalRule', 'fileRule' ] );
 
 		// Operate on the file extension
 		// Although it is possible having spaces between the name and the ".ext" this isn't nice for
 		// operating systems hiding file extensions -> strip them later on
-		parts = title.split( '.' );
+		lastDot = title.lastIndexOf( '.' );
 
-		if ( parts.length > 1 ) {
-
-			// Get the last part, which is supposed to be the file extension
-			ext = parts.pop();
-
-			// Remove whitespace of the name part (that W/O extension)
-			title = parts.join( '.' ).trim();
-
-			// Cut, if too long and append file extension
-			title = trimFileNameToByteLength( title, ext );
-
-		} else {
-
-			// Missing file extension
-			title = parts.join( '.' ).trim();
-
-			// Name has no file extension and a fallback wasn't provided either
+		// No or empty file extension
+		if ( lastDot === -1 || lastDot >= title.length - 1 ) {
 			return null;
 		}
-	} else {
 
+		// Get the last part, which is supposed to be the file extension
+		ext = title.slice( lastDot + 1 );
+
+		// Remove whitespace of the name part (that without extension)
+		title = title.slice( 0, lastDot ).trim();
+
+		// Cut, if too long and append file extension
+		title = trimFileNameToByteLength( title, ext );
+	} else {
 		title = sanitize( title, [ 'generalRule' ] );
 
 		// Cut titles exceeding the TITLE_MAX_BYTES byte size limit
