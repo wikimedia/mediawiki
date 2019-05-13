@@ -236,20 +236,6 @@ abstract class SearchEngine {
 	}
 
 	/**
-	 * Transform search term in cases when parts of the query came as different
-	 * GET params (when supported), e.g. for prefix queries:
-	 * search=test&prefix=Main_Page/Archive -> test prefix:Main Page/Archive
-	 * @param string $term
-	 * @return string
-	 * @deprecated since 1.32 this should now be handled internally by the
-	 * search engine
-	 */
-	public function transformSearchTerm( $term ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		return $term;
-	}
-
-	/**
 	 * Get service class to finding near matches.
 	 * @param Config $config Configuration to use for the matcher.
 	 * @return SearchNearMatcher
