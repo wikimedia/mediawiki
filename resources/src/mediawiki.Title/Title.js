@@ -228,7 +228,7 @@ var
 	 * @return {Object|boolean}
 	 */
 	parse = function ( title, defaultNamespace ) {
-		var namespace, m, id, i, fragment, ext;
+		var namespace, m, id, i, fragment;
 
 		namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
 
@@ -336,21 +336,9 @@ var
 			return false;
 		}
 
-		// For backwards-compatibility with old mw.Title, we separate the extension from the
-		// rest of the title.
-		i = title.lastIndexOf( '.' );
-		if ( i === -1 || title.length <= i + 1 ) {
-			// Extensions are the non-empty segment after the last dot
-			ext = null;
-		} else {
-			ext = title.slice( i + 1 );
-			title = title.slice( 0, i );
-		}
-
 		return {
 			namespace: namespace,
 			title: title,
-			ext: ext,
 			fragment: fragment
 		};
 	},
@@ -438,7 +426,6 @@ function Title( title, namespace ) {
 
 	this.namespace = parsed.namespace;
 	this.title = parsed.title;
-	this.ext = parsed.ext;
 	this.fragment = parsed.fragment;
 }
 
@@ -465,7 +452,6 @@ Title.newFromText = function ( title, namespace ) {
 	t = Object.create( Title.prototype );
 	t.namespace = parsed.namespace;
 	t.title = parsed.title;
-	t.ext = parsed.ext;
 	t.fragment = parsed.fragment;
 
 	return t;
@@ -824,13 +810,11 @@ Title.prototype = {
 	 * @return {string}
 	 */
 	getName: function () {
-		if (
-			mw.config.get( 'wgCaseSensitiveNamespaces' ).indexOf( this.namespace ) !== -1 ||
-			!this.title.length
-		) {
-			return this.title;
+		var ext = this.getExtension();
+		if ( ext === null ) {
+			return this.getMain();
 		}
-		return mw.Title.phpCharToUpper( this.title[ 0 ] ) + this.title.slice( 1 );
+		return this.getMain().slice( 0, -ext.length - 1 );
 	},
 
 	/**
@@ -852,7 +836,11 @@ Title.prototype = {
 	 * @return {string|null} Name extension or null if there is none
 	 */
 	getExtension: function () {
-		return this.ext;
+		var lastDot = this.title.lastIndexOf( '.' );
+		if ( lastDot === -1 ) {
+			return null;
+		}
+		return this.title.slice( lastDot + 1 ) || null;
 	},
 
 	/**
@@ -863,7 +851,8 @@ Title.prototype = {
 	 * @return {string}
 	 */
 	getDotExtension: function () {
-		return this.ext === null ? '' : '.' + this.ext;
+		var ext = this.getExtension();
+		return ext === null ? '' : '.' + ext;
 	},
 
 	/**
@@ -874,7 +863,13 @@ Title.prototype = {
 	 * @return {string}
 	 */
 	getMain: function () {
-		return this.getName() + this.getDotExtension();
+		if (
+			mw.config.get( 'wgCaseSensitiveNamespaces' ).indexOf( this.namespace ) !== -1 ||
+			!this.title.length
+		) {
+			return this.title;
+		}
+		return mw.Title.phpCharToUpper( this.title[ 0 ] ) + this.title.slice( 1 );
 	},
 
 	/**
