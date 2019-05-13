@@ -155,6 +155,7 @@ because of Phabricator reports.
   removed.
 * ChangeTags::purgeTagUsageCache(), deprecated in 1.33, has been removed.
 * JobQueueGroup::pushLazyJobs(), deprecated in 1.33, has been removed.
+* MediaWikiTestCase::stashMwGlobals(), deprecated in 1.32, has been removed.
 * …
 
 === Deprecations in 1.34 ===

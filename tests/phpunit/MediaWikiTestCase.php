@@ -817,29 +817,6 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		return false;
 	}
 
-	/**
-	 * Stashes the global, will be restored in tearDown()
-	 *
-	 * Individual test functions may override globals through the setMwGlobals() function
-	 * or directly. When directly overriding globals their keys should first be passed to this
-	 * method in setUp to avoid breaking global state for other tests
-	 *
-	 * That way all other tests are executed with the same settings (instead of using the
-	 * unreliable local settings for most tests and fix it only for some tests).
-	 *
-	 * @param array|string $globalKeys Key to the global variable, or an array of keys.
-	 *
-	 * @note To allow changes to global variables to take effect on global service instances,
-	 *       call overrideMwServices().
-	 *
-	 * @since 1.23
-	 * @deprecated since 1.32, use setMwGlobals() and don't alter globals directly
-	 */
-	protected function stashMwGlobals( $globalKeys ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		$this->doStashMwGlobals( $globalKeys );
-	}
-
 	private function doStashMwGlobals( $globalKeys ) {
 		if ( is_string( $globalKeys ) ) {
 			$globalKeys = [ $globalKeys ];
