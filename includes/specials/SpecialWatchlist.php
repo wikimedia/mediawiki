@@ -554,6 +554,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				$rc->numberofWatchingusers = 0;
 			}
 
+			// XXX: this treats pages with no unseen changes as "not on the watchlist" since
+			// everything is on the watchlist and it is an easy way to make pages with unseen
+			// changes appear bold. @TODO: clean this up.
 			$changeLine = $list->recentChangesLine( $rc, $unseen, $counter );
 			if ( $changeLine !== false ) {
 				$s .= $changeLine;
