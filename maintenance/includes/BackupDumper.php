@@ -48,6 +48,7 @@ abstract class BackupDumper extends Maintenance {
 	public $dumpUploads = false;
 	public $dumpUploadFileContents = false;
 	public $orderRevs = false;
+	public $limitNamespaces = [];
 
 	protected $reportingInterval = 100;
 	protected $pageCount = 0;
@@ -264,7 +265,7 @@ abstract class BackupDumper extends Maintenance {
 		$this->initProgress( $history );
 
 		$db = $this->backupDb();
-		$exporter = new WikiExporter( $db, $history, $text );
+		$exporter = new WikiExporter( $db, $history, $text, $this->limitNamespaces );
 		$exporter->setSchemaVersion( $this->schemaVersion );
 		$exporter->dumpUploads = $this->dumpUploads;
 		$exporter->dumpUploadFileContents = $this->dumpUploadFileContents;
