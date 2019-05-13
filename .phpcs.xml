@@ -110,7 +110,6 @@
 		<exclude-pattern>*/includes/specials/SpecialWantedpages\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialWantedtemplates\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialWithoutinterwiki\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/7zip.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/CodeCleanerGlobalsPass.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/archives/upgradeLogging\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_HTTP_HTTPS\.php</exclude-pattern>
@@ -226,7 +225,7 @@
 		-->
 		<exclude-pattern>*/includes/GlobalFunctions\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/FSFileBackend\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/7zip\.inc</exclude-pattern>
+		<exclude-pattern>*/maintenance/includes/SevenZipStream\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/populateImageSha1\.php</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.Usage.ForbiddenFunctions.proc_open">
