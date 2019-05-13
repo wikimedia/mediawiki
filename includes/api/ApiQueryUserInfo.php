@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Block\AbstractBlock;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -56,10 +57,10 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	 * Get basic info about a given block
 	 *
 	 * @deprecated since 1.34 Use ApiBlockInfoTrait::getBlockDetails() instead.
-	 * @param Block $block
+	 * @param AbstractBlock $block
 	 * @return array See ApiBlockInfoTrait::getBlockDetails
 	 */
-	public static function getBlockInfo( Block $block ) {
+	public static function getBlockInfo( AbstractBlock $block ) {
 		wfDeprecated( __METHOD__, '1.34' );
 
 		// Hack to access a private method from a trait:
