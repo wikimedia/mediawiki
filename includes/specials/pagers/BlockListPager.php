@@ -22,6 +22,7 @@
 /**
  * @ingroup Pager
  */
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
@@ -107,10 +108,10 @@ class BlockListPager extends TablePager {
 				if ( $row->ipb_auto ) {
 					$formatted = $this->msg( 'autoblockid', $row->ipb_id )->parse();
 				} else {
-					list( $target, $type ) = Block::parseTarget( $row->ipb_address );
+					list( $target, $type ) = DatabaseBlock::parseTarget( $row->ipb_address );
 					switch ( $type ) {
-						case Block::TYPE_USER:
-						case Block::TYPE_IP:
+						case DatabaseBlock::TYPE_USER:
+						case DatabaseBlock::TYPE_IP:
 							$formatted = Linker::userLink( $target->getId(), $target );
 							$formatted .= Linker::userToolLinks(
 								$target->getId(),
@@ -119,7 +120,7 @@ class BlockListPager extends TablePager {
 								Linker::TOOL_LINKS_NOBLOCK
 							);
 							break;
-						case Block::TYPE_RANGE:
+						case DatabaseBlock::TYPE_RANGE:
 							$formatted = htmlspecialchars( $target );
 					}
 				}

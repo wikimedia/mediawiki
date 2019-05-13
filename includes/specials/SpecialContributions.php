@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Widget\DateInputWidget;
 
@@ -320,15 +321,16 @@ class SpecialContributions extends IncludableSpecialPage {
 			// Do not expose the autoblocks, since that may lead to a leak of accounts' IPs,
 			// and also this will display a totally irrelevant log entry as a current block.
 			if ( !$this->including() ) {
-				// For IP ranges you must give Block::newFromTarget the CIDR string and not a user object.
+				// For IP ranges you must give DatabaseBlock::newFromTarget the CIDR string
+				// and not a user object.
 				if ( $userObj->isIPRange() ) {
-					$block = Block::newFromTarget( $userObj->getName(), $userObj->getName() );
+					$block = DatabaseBlock::newFromTarget( $userObj->getName(), $userObj->getName() );
 				} else {
-					$block = Block::newFromTarget( $userObj, $userObj );
+					$block = DatabaseBlock::newFromTarget( $userObj, $userObj );
 				}
 
-				if ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
-					if ( $block->getType() == Block::TYPE_RANGE ) {
+				if ( !is_null( $block ) && $block->getType() != DatabaseBlock::TYPE_AUTO ) {
+					if ( $block->getType() == DatabaseBlock::TYPE_RANGE ) {
 						$nt = MediaWikiServices::getInstance()->getNamespaceInfo()->
 							getCanonicalName( NS_USER ) . ':' . $block->getTarget();
 					}
@@ -388,7 +390,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 
 		if ( $sp->getUser()->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
-			if ( $target->getBlock() && $target->getBlock()->getType() != Block::TYPE_AUTO ) {
+			if ( $target->getBlock() && $target->getBlock()->getType() != DatabaseBlock::TYPE_AUTO ) {
 				$tools['block'] = $linkRenderer->makeKnownLink( # Change block link
 					SpecialPage::getTitleFor( 'Block', $username ),
 					$sp->msg( 'change-blocklink' )->text()

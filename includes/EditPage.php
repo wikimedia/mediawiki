@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\EditPage\TextboxBuilder;
 use MediaWiki\EditPage\TextConflictHelper;
 use MediaWiki\Logger\LoggerFactory;
@@ -2622,13 +2623,13 @@ ERROR;
 			$username = explode( '/', $this->mTitle->getText(), 2 )[0];
 			$user = User::newFromName( $username, false /* allow IP users */ );
 			$ip = User::isIP( $username );
-			$block = Block::newFromTarget( $user, $user );
+			$block = DatabaseBlock::newFromTarget( $user, $user );
 			if ( !( $user && $user->isLoggedIn() ) && !$ip ) { # User does not exist
 				$out->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n$1\n</div>",
 					[ 'userpage-userdoesnotexist', wfEscapeWikiText( $username ) ] );
 			} elseif (
 				!is_null( $block ) &&
-				$block->getType() != Block::TYPE_AUTO &&
+				$block->getType() != DatabaseBlock::TYPE_AUTO &&
 				( $block->isSitewide() || $user->isBlockedFrom( $this->mTitle ) )
 			) {
 				// Show log extract if the user is sitewide blocked or is partially

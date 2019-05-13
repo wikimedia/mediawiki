@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\MediaWikiServices;
@@ -8,8 +9,9 @@ use MediaWiki\MediaWikiServices;
 /**
  * @group Database
  * @group Blocking
+ * @coversDefaultClass \MediaWiki\Block\DatabaseBlock
  */
-class BlockTest extends MediaWikiLangTestCase {
+class DatabaseBlockTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @return User
@@ -26,12 +28,12 @@ class BlockTest extends MediaWikiLangTestCase {
 	/**
 	 * @param User $user
 	 *
-	 * @return Block
+	 * @return DatabaseBlock
 	 * @throws MWException
 	 */
 	private function addBlockForUser( User $user ) {
 		// Delete the last round's block if it's still there
-		$oldBlock = Block::newFromTarget( $user->getName() );
+		$oldBlock = DatabaseBlock::newFromTarget( $user->getName() );
 		if ( $oldBlock ) {
 			// An old block will prevent our new one from saving.
 			$oldBlock->delete();
@@ -44,7 +46,7 @@ class BlockTest extends MediaWikiLangTestCase {
 			'reason' => 'Parce que',
 			'expiry' => time() + 100500,
 		];
-		$block = new Block( $blockOptions );
+		$block = new DatabaseBlock( $blockOptions );
 
 		$block->insert();
 		// save up ID for use in assertion. Since ID is an autoincrement,
@@ -60,34 +62,34 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::newFromTarget
+	 * @covers ::newFromTarget
 	 */
 	public function testINewFromTargetReturnsCorrectBlock() {
 		$user = $this->getUserForBlocking();
 		$block = $this->addBlockForUser( $user );
 
 		$this->assertTrue(
-			$block->equals( Block::newFromTarget( $user->getName() ) ),
+			$block->equals( DatabaseBlock::newFromTarget( $user->getName() ) ),
 			"newFromTarget() returns the same block as the one that was made"
 		);
 	}
 
 	/**
-	 * @covers Block::newFromID
+	 * @covers ::newFromID
 	 */
 	public function testINewFromIDReturnsCorrectBlock() {
 		$user = $this->getUserForBlocking();
 		$block = $this->addBlockForUser( $user );
 
 		$this->assertTrue(
-			$block->equals( Block::newFromID( $block->getId() ) ),
+			$block->equals( DatabaseBlock::newFromID( $block->getId() ) ),
 			"newFromID() returns the same block as the one that was made"
 		);
 	}
 
 	/**
 	 * per T28425
-	 * @covers Block::__construct
+	 * @covers ::__construct
 	 */
 	public function testT28425BlockTimestampDefaultsToTime() {
 		$user = $this->getUserForBlocking();
@@ -104,17 +106,17 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * CheckUser since being changed to use Block::newFromTarget started failing
-	 * because the new function didn't accept empty strings like Block::load()
+	 * CheckUser since being changed to use DatabaseBlock::newFromTarget started failing
+	 * because the new function didn't accept empty strings like DatabaseBlock::load()
 	 * had. Regression T31116.
 	 *
 	 * @dataProvider provideT31116Data
-	 * @covers Block::newFromTarget
+	 * @covers ::newFromTarget
 	 */
 	public function testT31116NewFromTargetWithEmptyIp( $vagueTarget ) {
 		$user = $this->getUserForBlocking();
 		$initialBlock = $this->addBlockForUser( $user );
-		$block = Block::newFromTarget( $user->getName(), $vagueTarget );
+		$block = DatabaseBlock::newFromTarget( $user->getName(), $vagueTarget );
 
 		$this->assertTrue(
 			$initialBlock->equals( $block ),
@@ -133,27 +135,27 @@ class BlockTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideNewFromTargetRangeBlocks
-	 * @covers Block::newFromTarget
+	 * @covers ::newFromTarget
 	 */
 	public function testNewFromTargetRangeBlocks( $targets, $ip, $expectedTarget ) {
 		$blocker = $this->getTestSysop()->getUser();
 
 		foreach ( $targets as $target ) {
-			$block = new Block();
+			$block = new DatabaseBlock();
 			$block->setTarget( $target );
 			$block->setBlocker( $blocker );
 			$block->insert();
 		}
 
 		// Should find the block with the narrowest range
-		$blockTarget = Block::newFromTarget( $this->getTestUser()->getUser(), $ip )->getTarget();
+		$blockTarget = DatabaseBlock::newFromTarget( $this->getTestUser()->getUser(), $ip )->getTarget();
 		$this->assertSame(
 			$blockTarget instanceof User ? $blockTarget->getName() : $blockTarget,
 			$expectedTarget
 		);
 
 		foreach ( $targets as $target ) {
-			$block = Block::newFromTarget( $target );
+			$block = DatabaseBlock::newFromTarget( $target );
 			$block->delete();
 		}
 	}
@@ -204,7 +206,7 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::appliesToRight
+	 * @covers ::appliesToRight
 	 */
 	public function testBlockedUserCanNotCreateAccount() {
 		$username = 'BlockedUserToCreateAccountWith';
@@ -217,7 +219,7 @@ class BlockTest extends MediaWikiLangTestCase {
 
 		// Sanity check
 		$this->assertNull(
-			Block::newFromTarget( $username ),
+			DatabaseBlock::newFromTarget( $username ),
 			"$username should not be blocked"
 		);
 
@@ -241,18 +243,18 @@ class BlockTest extends MediaWikiLangTestCase {
 			'blockEmail' => true,
 			'byText' => 'm>MetaWikiUser',
 		];
-		$block = new Block( $blockOptions );
+		$block = new DatabaseBlock( $blockOptions );
 		$block->insert();
 
 		// Reload block from DB
-		$userBlock = Block::newFromTarget( $username );
+		$userBlock = DatabaseBlock::newFromTarget( $username );
 		$this->assertTrue(
 			(bool)$block->appliesToRight( 'createaccount' ),
 			"Block object in DB should block right 'createaccount'"
 		);
 
 		$this->assertInstanceOf(
-			Block::class,
+			DatabaseBlock::class,
 			$userBlock,
 			"'$username' block block object should be existent"
 		);
@@ -266,11 +268,11 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::insert
+	 * @covers ::insert
 	 */
 	public function testCrappyCrossWikiBlocks() {
 		// Delete the last round's block if it's still there
-		$oldBlock = Block::newFromTarget( 'UserOnForeignWiki' );
+		$oldBlock = DatabaseBlock::newFromTarget( 'UserOnForeignWiki' );
 		if ( $oldBlock ) {
 			// An old block will prevent our new one from saving.
 			$oldBlock->delete();
@@ -295,14 +297,14 @@ class BlockTest extends MediaWikiLangTestCase {
 			'blockEmail' => true,
 			'byText' => 'Meta>MetaWikiUser',
 		];
-		$block = new Block( $blockOptions );
+		$block = new DatabaseBlock( $blockOptions );
 
 		$res = $block->insert( $this->db );
 		$this->assertTrue( (bool)$res['id'], 'Block succeeded' );
 
 		$user = null; // clear
 
-		$block = Block::newFromID( $res['id'] );
+		$block = DatabaseBlock::newFromID( $res['id'] );
 		$this->assertEquals(
 			'UserOnForeignWiki',
 			$block->getTarget()->getName(),
@@ -326,35 +328,35 @@ class BlockTest extends MediaWikiLangTestCase {
 
 		$blockList = [
 			[ 'target' => '70.2.0.0/16',
-				'type' => Block::TYPE_RANGE,
+				'type' => DatabaseBlock::TYPE_RANGE,
 				'desc' => 'Range Hardblock',
 				'ACDisable' => false,
 				'isHardblock' => true,
 				'isAutoBlocking' => false,
 			],
 			[ 'target' => '2001:4860:4001::/48',
-				'type' => Block::TYPE_RANGE,
+				'type' => DatabaseBlock::TYPE_RANGE,
 				'desc' => 'Range6 Hardblock',
 				'ACDisable' => false,
 				'isHardblock' => true,
 				'isAutoBlocking' => false,
 			],
 			[ 'target' => '60.2.0.0/16',
-				'type' => Block::TYPE_RANGE,
+				'type' => DatabaseBlock::TYPE_RANGE,
 				'desc' => 'Range Softblock with AC Disabled',
 				'ACDisable' => true,
 				'isHardblock' => false,
 				'isAutoBlocking' => false,
 			],
 			[ 'target' => '50.2.0.0/16',
-				'type' => Block::TYPE_RANGE,
+				'type' => DatabaseBlock::TYPE_RANGE,
 				'desc' => 'Range Softblock',
 				'ACDisable' => false,
 				'isHardblock' => false,
 				'isAutoBlocking' => false,
 			],
 			[ 'target' => '50.1.1.1',
-				'type' => Block::TYPE_IP,
+				'type' => DatabaseBlock::TYPE_IP,
 				'desc' => 'Exact Softblock',
 				'ACDisable' => false,
 				'isHardblock' => false,
@@ -366,13 +368,13 @@ class BlockTest extends MediaWikiLangTestCase {
 		foreach ( $blockList as $insBlock ) {
 			$target = $insBlock['target'];
 
-			if ( $insBlock['type'] === Block::TYPE_IP ) {
+			if ( $insBlock['type'] === DatabaseBlock::TYPE_IP ) {
 				$target = User::newFromName( IP::sanitizeIP( $target ), false )->getName();
-			} elseif ( $insBlock['type'] === Block::TYPE_RANGE ) {
+			} elseif ( $insBlock['type'] === DatabaseBlock::TYPE_RANGE ) {
 				$target = IP::sanitizeRange( $target );
 			}
 
-			$block = new Block();
+			$block = new DatabaseBlock();
 			$block->setTarget( $target );
 			$block->setBlocker( $blocker );
 			$block->setReason( $insBlock['desc'] );
@@ -431,30 +433,30 @@ class BlockTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider providerXff
-	 * @covers Block::getBlocksForIPList
-	 * @covers Block::chooseBlock
+	 * @covers ::getBlocksForIPList
+	 * @covers ::chooseBlock
 	 */
 	public function testBlocksOnXff( $xff, $exCount, $exResult ) {
 		$user = $this->getUserForBlocking();
 		$this->addBlockForUser( $user );
 
 		$list = array_map( 'trim', explode( ',', $xff ) );
-		$xffblocks = Block::getBlocksForIPList( $list, true );
+		$xffblocks = DatabaseBlock::getBlocksForIPList( $list, true );
 		$this->assertEquals( $exCount, count( $xffblocks ), 'Number of blocks for ' . $xff );
-		$block = Block::chooseBlock( $xffblocks, $list );
+		$block = DatabaseBlock::chooseBlock( $xffblocks, $list );
 		$this->assertEquals(
 			$exResult, $block->getReason(), 'Correct block type for XFF header ' . $xff
 		);
 	}
 
 	/**
-	 * @covers Block::newFromRow
+	 * @covers ::newFromRow
 	 */
 	public function testNewFromRow() {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'address' => $badActor->getName(),
 			'user' => $badActor->getId(),
 			'by' => $sysop->getId(),
@@ -462,7 +464,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		] );
 		$block->insert();
 
-		$blockQuery = Block::getQueryInfo();
+		$blockQuery = DatabaseBlock::getQueryInfo();
 		$row = $this->db->select(
 			$blockQuery['tables'],
 			$blockQuery['fields'],
@@ -474,45 +476,45 @@ class BlockTest extends MediaWikiLangTestCase {
 			$blockQuery['joins']
 		)->fetchObject();
 
-		$block = Block::newFromRow( $row );
-		$this->assertInstanceOf( Block::class, $block );
+		$block = DatabaseBlock::newFromRow( $row );
+		$this->assertInstanceOf( DatabaseBlock::class, $block );
 		$this->assertEquals( $block->getBy(), $sysop->getId() );
 		$this->assertEquals( $block->getTarget()->getName(), $badActor->getName() );
 		$block->delete();
 	}
 
 	/**
-	 * @covers Block::equals
+	 * @covers ::equals
 	 */
 	public function testEquals() {
-		$block = new Block();
+		$block = new DatabaseBlock();
 
 		$this->assertTrue( $block->equals( $block ) );
 
-		$partial = new Block( [
+		$partial = new DatabaseBlock( [
 			'sitewide' => false,
 		] );
 		$this->assertFalse( $block->equals( $partial ) );
 	}
 
 	/**
-	 * @covers Block::isSitewide
+	 * @covers ::isSitewide
 	 */
 	public function testIsSitewide() {
-		$block = new Block();
+		$block = new DatabaseBlock();
 		$this->assertTrue( $block->isSitewide() );
 
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'sitewide' => true,
 		] );
 		$this->assertTrue( $block->isSitewide() );
 
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'sitewide' => false,
 		] );
 		$this->assertFalse( $block->isSitewide() );
 
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'sitewide' => false,
 		] );
 		$block->isSitewide( true );
@@ -520,11 +522,11 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::getRestrictions
-	 * @covers Block::setRestrictions
+	 * @covers ::getRestrictions
+	 * @covers ::setRestrictions
 	 */
 	public function testRestrictions() {
-		$block = new Block();
+		$block = new DatabaseBlock();
 		$restrictions = [
 			new PageRestriction( 0, 1 )
 		];
@@ -534,14 +536,14 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::getRestrictions
-	 * @covers Block::insert
+	 * @covers ::getRestrictions
+	 * @covers ::insert
 	 */
 	public function testRestrictionsFromDatabase() {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'address' => $badActor->getName(),
 			'user' => $badActor->getId(),
 			'by' => $sysop->getId(),
@@ -553,7 +555,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		$block->insert();
 
 		// Refresh the block from the database.
-		$block = Block::newFromID( $block->getId() );
+		$block = DatabaseBlock::newFromID( $block->getId() );
 		$restrictions = $block->getRestrictions();
 		$this->assertCount( 1, $restrictions );
 		$this->assertTrue( $restriction->equals( $restrictions[0] ) );
@@ -561,13 +563,13 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::insert
+	 * @covers ::insert
 	 */
 	public function testInsertExistingBlock() {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'address' => $badActor->getName(),
 			'user' => $badActor->getId(),
 			'by' => $sysop->getId(),
@@ -596,14 +598,14 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::appliesToTitle
+	 * @covers ::appliesToTitle
 	 */
 	public function testAppliesToTitleReturnsTrueOnSitewideBlock() {
 		$this->setMwGlobals( [
 			'wgBlockDisablesLogin' => false,
 		] );
 		$user = $this->getTestUser()->getUser();
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
 			'allowUsertalk' => true,
 			'sitewide' => true
@@ -625,14 +627,14 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::appliesToTitle
+	 * @covers ::appliesToTitle
 	 */
 	public function testAppliesToTitleOnPartialBlock() {
 		$this->setMwGlobals( [
 			'wgBlockDisablesLogin' => false,
 		] );
 		$user = $this->getTestUser()->getUser();
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
 			'allowUsertalk' => true,
 			'sitewide' => false
@@ -658,15 +660,15 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::appliesToNamespace
-	 * @covers Block::appliesToPage
+	 * @covers ::appliesToNamespace
+	 * @covers ::appliesToPage
 	 */
 	public function testAppliesToReturnsTrueOnSitewideBlock() {
 		$this->setMwGlobals( [
 			'wgBlockDisablesLogin' => false,
 		] );
 		$user = $this->getTestUser()->getUser();
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
 			'allowUsertalk' => true,
 			'sitewide' => true
@@ -686,14 +688,14 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::appliesToPage
+	 * @covers ::appliesToPage
 	 */
 	public function testAppliesToPageOnPartialPageBlock() {
 		$this->setMwGlobals( [
 			'wgBlockDisablesLogin' => false,
 		] );
 		$user = $this->getTestUser()->getUser();
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
 			'allowUsertalk' => true,
 			'sitewide' => false
@@ -717,14 +719,14 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::appliesToNamespace
+	 * @covers ::appliesToNamespace
 	 */
 	public function testAppliesToNamespaceOnPartialNamespaceBlock() {
 		$this->setMwGlobals( [
 			'wgBlockDisablesLogin' => false,
 		] );
 		$user = $this->getTestUser()->getUser();
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
 			'allowUsertalk' => true,
 			'sitewide' => false
@@ -744,13 +746,13 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::appliesToRight
+	 * @covers ::appliesToRight
 	 */
 	public function testBlockAllowsPurge() {
 		$this->setMwGlobals( [
 			'wgBlockDisablesLogin' => false,
 		] );
-		$block = new Block();
+		$block = new DatabaseBlock();
 		$this->assertFalse( $block->appliesToRight( 'purge' ) );
 	}
 

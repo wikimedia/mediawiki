@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 
 /**
@@ -85,7 +86,7 @@ class PasswordResetTest extends MediaWikiTestCase {
 				'enableEmail' => true,
 				'allowsAuthenticationDataChange' => true,
 				'canEditPrivate' => true,
-				'block' => new Block( [ 'createAccount' => true ] ),
+				'block' => new DatabaseBlock( [ 'createAccount' => true ] ),
 				'globalBlock' => null,
 				'isAllowed' => false,
 			],
@@ -94,7 +95,7 @@ class PasswordResetTest extends MediaWikiTestCase {
 				'enableEmail' => true,
 				'allowsAuthenticationDataChange' => true,
 				'canEditPrivate' => true,
-				'block' => new Block( [] ),
+				'block' => new DatabaseBlock( [] ),
 				'globalBlock' => null,
 				'isAllowed' => true,
 			],

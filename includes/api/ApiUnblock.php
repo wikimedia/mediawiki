@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Block\DatabaseBlock;
+
 /**
  * API module that facilitates the unblocking of users. Requires API write mode
  * to be enabled.
@@ -78,14 +80,14 @@ class ApiUnblock extends ApiBase {
 			'Reason' => $params['reason'],
 			'Tags' => $params['tags']
 		];
-		$block = Block::newFromTarget( $data['Target'] );
+		$block = DatabaseBlock::newFromTarget( $data['Target'] );
 		$retval = SpecialUnblock::processUnblock( $data, $this->getContext() );
 		if ( $retval !== true ) {
 			$this->dieStatus( $this->errorArrayToStatus( $retval ) );
 		}
 
 		$res['id'] = $block->getId();
-		$target = $block->getType() == Block::TYPE_AUTO ? '' : $block->getTarget();
+		$target = $block->getType() == DatabaseBlock::TYPE_AUTO ? '' : $block->getTarget();
 		$res['user'] = $target instanceof User ? $target->getName() : $target;
 		$res['userid'] = $target instanceof User ? $target->getId() : 0;
 		$res['reason'] = $params['reason'];
