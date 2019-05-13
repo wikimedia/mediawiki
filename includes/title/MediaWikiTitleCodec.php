@@ -284,7 +284,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		# Strip Unicode bidi override characters.
 		# Sometimes they slip into cut-n-pasted page titles, where the
 		# override chars get included in list displays.
-		$dbkey = preg_replace( '/\xE2\x80[\x8E\x8F\xAA-\xAE]/S', '', $dbkey );
+		$dbkey = preg_replace( '/[\x{200E}\x{200F}\x{202A}-\x{202E}]+/u', '', $dbkey );
 
 		# Clean up whitespace
 		# Note: use of the /u option on preg_replace here will cause
