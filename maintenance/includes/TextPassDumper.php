@@ -26,7 +26,7 @@
  */
 
 require_once __DIR__ . '/BackupDumper.php';
-require_once __DIR__ . '/../7zip.inc';
+require_once __DIR__ . '/SevenZipStream.php';
 require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 
 use MediaWiki\MediaWikiServices;
