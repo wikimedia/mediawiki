@@ -815,18 +815,6 @@ Title.prototype = {
 	},
 
 	/**
-	 * Shortcut for appendable string to form the main page name.
-	 *
-	 * Returns a string like ".json", or "" if no extension.
-	 *
-	 * @return {string}
-	 */
-	getDotExtension: function () {
-		var ext = this.getExtension();
-		return ext === null ? '' : '.' + ext;
-	},
-
-	/**
 	 * Get the main page name
 	 *
 	 * Example: "Example_image.svg" for "File:Example_image.svg".
