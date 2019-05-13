@@ -1,44 +1,12 @@
 <?php
 
 /**
- * @covers Http
- * @group Http
- * @group small
+ * @covers MWHttpRequest
  */
-class HttpTest extends MediaWikiTestCase {
+class MWHttpRequestTest extends PHPUnit\Framework\TestCase {
 
-	/**
-	 * Test Http::isValidURI()
-	 * T29854 : Http::isValidURI is too lax
-	 * @dataProvider provideURI
-	 * @covers Http::isValidURI
-	 */
-	public function testIsValidUri( $expect, $URI, $message = '' ) {
-		$this->assertEquals(
-			$expect,
-			(bool)Http::isValidURI( $URI ),
-			$message
-		);
-	}
-
-	/**
-	 * @covers Http::getProxy
-	 */
-	public function testGetProxy() {
-		$this->hideDeprecated( 'Http::getProxy' );
-
-		$this->setMwGlobals( 'wgHTTPProxy', false );
-		$this->assertEquals(
-			'',
-			Http::getProxy(),
-			'default setting'
-		);
-
-		$this->setMwGlobals( 'wgHTTPProxy', 'proxy.domain.tld' );
-		$this->assertEquals(
-			'proxy.domain.tld',
-			Http::getProxy()
-		);
+	public function testFactory() {
+		$this->assertInstanceOf( 'MWHttpRequest', MWHttpRequest::factory( 'http://example.test' ) );
 	}
 
 	/**
@@ -106,6 +74,20 @@ class HttpTest extends MediaWikiTestCase {
 
 			[ false, 'http://a ¿non !!sens after', 'Allow anything after URI' ],
 		];
+	}
+
+	/**
+	 * Test MWHttpRequest::isValidURI()
+	 * T29854 : Http::isValidURI is too lax
+	 * @dataProvider provideURI
+	 * @covers Http::isValidURI
+	 */
+	public function testIsValidUri( $expect, $URI, $message = '' ) {
+		$this->assertEquals(
+			$expect,
+			(bool)MWHttpRequest::isValidURI( $URI ),
+			$message
+		);
 	}
 
 }

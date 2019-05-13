@@ -67,32 +67,7 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideExistingKeysAndNewValues
-	 *
-	 * @covers MediaWikiTestCase::stashMwGlobals
-	 * @covers MediaWikiTestCase::tearDown
-	 */
-	public function testStashedGlobalsAreRestoredOnTearDown( $globalKey, $newValue ) {
-		$this->hideDeprecated( 'MediaWikiTestCase::stashMwGlobals' );
-		$this->stashMwGlobals( $globalKey );
-		$GLOBALS[$globalKey] = $newValue;
-		$this->assertEquals(
-			$newValue,
-			$GLOBALS[$globalKey],
-			'Global failed to correctly set'
-		);
-
-		$this->tearDown();
-
-		$this->assertEquals(
-			self::$startGlobals[$globalKey],
-			$GLOBALS[$globalKey],
-			'Global failed to be restored on tearDown'
-		);
-	}
-
-	/**
-	 * @covers MediaWikiTestCase::stashMwGlobals
+	 * @covers MediaWikiTestCase::setMwGlobals
 	 * @covers MediaWikiTestCase::tearDown
 	 */
 	public function testSetNonExistentGlobalsAreUnsetOnTearDown() {
