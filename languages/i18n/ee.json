@@ -5,7 +5,8 @@
 			"Natsubee",
 			"아라",
 			"Aguve",
-			"Latercio2000"
+			"Latercio2000",
+			"Hello903hello"
 		]
 	},
 	"tog-underline": "Flitete ɖe kadodo te:",
@@ -662,6 +663,6 @@
 	"logentry-move-move": "$1 {{ŊUTSU/NYƆNU:$2|moved}} axa $3 yi $4",
 	"logentry-newusers-create": "Ezazãŋkɔ $1 la {{AMENYENYE:$2|wɔ vɔ}}",
 	"logentry-upload-upload": "Nedze",
-	"searchsuggest-search": "Di {{SITEŊKƆ}}",
+	"searchsuggest-search": "Di {{SITENAME}}",
 	"expand_templates_preview": "Kpɔe do ŋgɔ"
 }
