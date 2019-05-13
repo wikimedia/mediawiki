@@ -187,10 +187,6 @@ class JobQueueGroup {
 	/**
 	 * Buffer jobs for insertion via push() or call it now if in CLI mode
 	 *
-	 * Note that pushLazyJobs() is registered as a deferred update just before
-	 * DeferredUpdates::doUpdates() in MediaWiki and JobRunner classes in order
-	 * to be executed as the very last deferred update (T100085, T154425).
-	 *
 	 * @param IJobSpecification|IJobSpecification[] $jobs A single Job or a list of Jobs
 	 * @return void
 	 * @since 1.26
@@ -212,17 +208,6 @@ class JobQueueGroup {
 		$this->assertValidJobs( $jobs );
 
 		DeferredUpdates::addUpdate( new JobQueueEnqueueUpdate( $this->domain, $jobs ) );
-	}
-
-	/**
-	 * Push all jobs buffered via lazyPush() into their respective queues
-	 *
-	 * @return void
-	 * @since 1.26
-	 * @deprecated Since 1.33 Not needed anymore
-	 */
-	public static function pushLazyJobs() {
-		wfDeprecated( __METHOD__, '1.33' );
 	}
 
 	/**
