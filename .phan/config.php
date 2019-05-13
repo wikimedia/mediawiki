@@ -32,7 +32,6 @@ $cfg['file_list'] = array_merge(
 	class_exists( PHPUnit_TextUI_Command::class ) ? [] : [ '.phan/stubs/phpunit4.php' ],
 	class_exists( ProfilerExcimer::class ) ? [] : [ '.phan/stubs/excimer.php' ],
 	[
-		'maintenance/7zip.inc',
 		'maintenance/cleanupTable.inc',
 		'maintenance/CodeCleanerGlobalsPass.inc',
 		'maintenance/commandLine.inc',
