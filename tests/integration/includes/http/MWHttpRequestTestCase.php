@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
@@ -251,6 +252,55 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 		$cookieJar = TestingAccessWrapper::newFromObject( $cookieJar );
 		$this->assertArrayNotHasKey( strtolower( $name ),
 			array_change_key_case( $cookieJar->cookie, CASE_LOWER ) );
+	}
+
+	public static function provideRelativeRedirects() {
+		return [
+			[
+				'location' => [ 'http://newsite/file.ext', '/newfile.ext' ],
+				'final' => 'http://newsite/newfile.ext',
+				'Relative file path Location: interpreted as full URL'
+			],
+			[
+				'location' => [ 'https://oldsite/file.ext' ],
+				'final' => 'https://oldsite/file.ext',
+				'Location to the HTTPS version of the site'
+			],
+			[
+				'location' => [
+					'/anotherfile.ext',
+					'http://anotherfile/hoster.ext',
+					'https://anotherfile/hoster.ext'
+				],
+				'final' => 'https://anotherfile/hoster.ext',
+				'Relative file path Location: should keep the latest host and scheme!'
+			],
+			[
+				'location' => [ '/anotherfile.ext' ],
+				'final' => 'http://oldsite/anotherfile.ext',
+				'Relative Location without domain '
+			],
+			[
+				'location' => null,
+				'final' => 'http://oldsite/file.ext',
+				'No Location (no redirect) '
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideRelativeRedirects
+	 * @covers MWHttpRequest::getFinalUrl
+	 */
+	public function testRelativeRedirections( $location, $final, $message = null ) {
+		$h = $this->factory->create( 'http://oldsite/file.ext', [], __METHOD__ );
+		$h = TestingAccessWrapper::newFromObject( $h );
+
+		// Forge a Location header
+		$h->respHeaders['location'] = $location;
+
+		// Verify it correctly fixes the Location
+		$this->assertEquals( $final, $h->getFinalUrl(), $message );
 	}
 
 }
