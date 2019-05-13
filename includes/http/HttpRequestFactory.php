@@ -140,7 +140,7 @@ class HttpRequestFactory {
 	 * @return string|null
 	 */
 	public function get( $url, array $options = [], $caller = __METHOD__ ) {
-		$this->request( 'GET', $url, $options, $caller );
+		return $this->request( 'GET', $url, $options, $caller );
 	}
 
 	/**
@@ -153,7 +153,7 @@ class HttpRequestFactory {
 	 * @return string|null
 	 */
 	public function post( $url, array $options = [], $caller = __METHOD__ ) {
-		$this->request( 'POST', $url, $options, $caller );
+		return $this->request( 'POST', $url, $options, $caller );
 	}
 
 	/**
