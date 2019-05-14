@@ -103,11 +103,12 @@
 		 * @return {string} Parsed message
 		 */
 		parser: function () {
-			var text;
-			if ( mw.config.get( 'wgUserLanguage' ) === 'qqx' ) {
+			var text = this.map.get( this.key );
+			if (
+				mw.config.get( 'wgUserLanguage' ) === 'qqx' &&
+				( !text || text === '(' + this.key + ')' )
+			) {
 				text = '(' + this.key + '$*)';
-			} else {
-				text = this.map.get( this.key );
 			}
 			return mw.format.apply( null, [ text ].concat( this.parameters ) );
 		},
