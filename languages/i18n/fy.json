@@ -750,6 +750,7 @@
 	"prefs-watchlist-managetokens": "Kaaien beheare",
 	"prefs-misc": "Ferskaat",
 	"prefs-resetpass": "Wachtwurd feroarje",
+	"prefs-setemail": "E-mailadres ynstelle",
 	"prefs-email": "E-mail",
 	"prefs-rendering": "Uterlik",
 	"saveprefs": "Bewarje",
@@ -762,6 +763,7 @@
 	"recentchangesdays-max": "Maksimum $1 {{PLURAL:$1|dei|dagen}}",
 	"recentchangescount": "Standert sichtber tal bewurkings yn Koartlyn feroare, sideskiednis en lochs:",
 	"prefs-help-recentchangescount": "Maksimumtal: 1000",
+	"prefs-help-watchlist-token2": "Dit is de geheime tagongskoade ta de webfied fan jo folchlist.\nImmen dy't it wit, sil jo folchlist lêze kinne, dus diel it mei gjinien.\nBy need [[Special:ResetTokens|kinne jo it fernije]].",
 	"prefs-help-tokenmanagement": "Jo kinne de geheime koade foar jo akkount, dy't tagong jout ta de Webfied fan jo folchlist, besjen en fernije. Immen dy't de tagongskoade wit, sil jo folchlist lêze kinne, dus diel it mei gjinien.",
 	"savedprefs": "Jo foarkarren binne fêstlein.",
 	"timezonelegend": "Tiidsône:",
@@ -977,6 +979,7 @@
 	"recentchanges-legend-heading": "<strong>Leginda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}<br />(sjoch ek de [[Special:NewPages|list mei nije siden]])",
 	"recentchanges-submit": "Werjaan",
+	"rcfilters-tag-remove": "'$1' fuortsmite",
 	"rcfilters-legend-heading": "<strong>List fan ôfkoartings:</strong>",
 	"rcfilters-other-review-tools": "Oare oersjochmiddels",
 	"rcfilters-group-results-by-page": "Resultaten op side groepearje",
@@ -2209,6 +2212,8 @@
 	"special-characters-group-thai": "Tai",
 	"mw-widgets-dateinput-no-date": "Gjin datum keazen",
 	"mw-widgets-dateinput-placeholder-day": "JJJJ-MM-DD",
+	"mw-widgets-usersmultiselect-placeholder": "Mear tafoegje...",
+	"mw-widgets-titlesmultiselect-placeholder": "Mear tafoegje...",
 	"date-range-from": "Fan datum:",
 	"date-range-to": "Oant datum:"
 }
