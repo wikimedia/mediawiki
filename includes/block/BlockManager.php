@@ -111,7 +111,7 @@ class BlockManager {
 	 * @param bool $fromReplica Whether to check the replica DB first.
 	 *  To improve performance, non-critical checks are done against replica DBs.
 	 *  Check when actually saving should be done against master.
-	 * @return Block|null The most relevant block, or null if there is no block.
+	 * @return AbstractBlock|null The most relevant block, or null if there is no block.
 	 */
 	public function getUserBlock( User $user, $fromReplica ) {
 		$isAnon = $user->getId() === 0;
