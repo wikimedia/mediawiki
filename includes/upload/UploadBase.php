@@ -2069,10 +2069,10 @@ abstract class UploadBase {
 		$partname = $n ? substr( $filename, 0, $n ) : $filename;
 
 		return (
-			substr( $partname, 3, 3 ) == 'px-' ||
-			substr( $partname, 2, 3 ) == 'px-'
-		) &&
-		preg_match( "/[0-9]{2}/", substr( $partname, 0, 2 ) );
+				substr( $partname, 3, 3 ) == 'px-' ||
+				substr( $partname, 2, 3 ) == 'px-'
+			) &&
+			preg_match( "/[0-9]{2}/", substr( $partname, 0, 2 ) );
 	}
 
 	/**

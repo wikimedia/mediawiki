@@ -109,7 +109,7 @@ class FileDuplicateSearchPage extends QueryPage {
 		$this->hash = '';
 		$title = Title::newFromText( $this->filename, NS_FILE );
 		if ( $title && $title->getText() != '' ) {
-			$this->file = wfFindFile( $title );
+			$this->file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title );
 		}
 
 		$out = $this->getOutput();

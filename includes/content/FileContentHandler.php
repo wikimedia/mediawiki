@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Content handler for File: files
  * TODO: this handler s not used directly now,
@@ -41,7 +43,8 @@ class FileContentHandler extends WikitextContentHandler {
 		if ( NS_FILE != $title->getNamespace() ) {
 			return [];
 		}
-		$file = wfLocalFile( $title );
+		$file = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+			->newFile( $title );
 		if ( !$file || !$file->exists() ) {
 			return [];
 		}

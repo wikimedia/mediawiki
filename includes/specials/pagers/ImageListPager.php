@@ -436,7 +436,8 @@ class ImageListPager extends TablePager {
 	 * @throws MWException
 	 */
 	function formatValue( $field, $value ) {
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$services = MediaWikiServices::getInstance();
+		$linkRenderer = $services->getLinkRenderer();
 		switch ( $field ) {
 			case 'thumb':
 				$opt = [ 'time' => wfTimestamp( TS_MW, $this->mCurrentRow->img_timestamp ) ];
@@ -468,8 +469,9 @@ class ImageListPager extends TablePager {
 						$filePage,
 						$filePage->getText()
 					);
-					$download = Xml::element( 'a',
-						[ 'href' => wfLocalFile( $filePage )->getUrl() ],
+					$download = Xml::element(
+						'a',
+						[ 'href' => $services->getRepoGroup()->findFile( $filePage )->getUrl() ],
 						$imgfile
 					);
 					$download = $this->msg( 'parentheses' )->rawParams( $download )->escaped();

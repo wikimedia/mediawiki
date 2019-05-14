@@ -21,6 +21,8 @@
  * @ingroup JobQueue
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Job for asynchronous rendering of thumbnails.
  *
@@ -36,7 +38,8 @@ class ThumbnailRenderJob extends Job {
 
 		$transformParams = $this->params['transformParams'];
 
-		$file = wfLocalFile( $this->title );
+		$file = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+			->newFile( $this->title );
 		$file->load( File::READ_LATEST );
 
 		if ( $file && $file->exists() ) {

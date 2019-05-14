@@ -110,7 +110,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				if ( !isset( $images[$title] ) ) {
 					if ( isset( $prop['uploadwarning'] ) || isset( $prop['badfile'] ) ) {
 						// uploadwarning and badfile need info about non-existing files
-						$images[$title] = wfLocalFile( $title );
+						$images[$title] = MediaWikiServices::getInstance()->getRepoGroup()
+							->getLocalRepo()->newFile( $title );
 						// Doesn't exist, so set an empty image repository
 						$info['imagerepository'] = '';
 					} else {

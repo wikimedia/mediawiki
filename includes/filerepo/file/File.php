@@ -45,8 +45,16 @@ use MediaWiki\MediaWikiServices;
  *
  * RepoGroup::singleton()->getLocalRepo()->newFile( $title );
  *
- * The convenience functions wfLocalFile() and wfFindFile() should be sufficient
- * in most cases.
+ * Consider the services container below;
+ *
+ * $services = MediaWikiServices::getInstance();
+ *
+ * The convenience services $services->getRepoGroup()->getLocalRepo()->newFile()
+ * and $services->getRepoGroup()->findFile() should be sufficient in most cases.
+ *
+ * @TODO: DI - Instead of using MediaWikiServices::getInstance(), a service should
+ * ideally accept a RepoGroup in its constructor and then, use $this->repoGroup->findFile()
+ * and $this->repoGroup->getLocalRepo()->newFile().
  *
  * @ingroup FileAbstraction
  */
