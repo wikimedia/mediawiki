@@ -160,6 +160,7 @@ because of Phabricator reports.
 * SearchEngine::transformSearchTerm(), deprecated in 1.32, has been removed.
 * The Block typehint only refers to blocks stored in the database. It should be
   updated to AbstractBlock in cases where any type of block could be expected.
+* FileRepoStatus, deprecated in 1.25, has been removed.
 * …
 
 === Deprecations in 1.34 ===
