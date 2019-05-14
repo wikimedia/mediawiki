@@ -28,7 +28,7 @@ trait ApiBlockInfoTrait {
 
 	/**
 	 * Get basic info about a given block
-	 * @param Block $block
+	 * @param AbstractBlock $block
 	 * @return array Array containing several keys:
 	 *  - blockid - ID of the block
 	 *  - blockedby - username of the blocker

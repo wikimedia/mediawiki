@@ -2029,7 +2029,7 @@ abstract class ApiBase extends ContextSource {
 	 * error handler and die with an error message including block info.
 	 *
 	 * @since 1.27
-	 * @param Block $block The block used to generate the ApiUsageException
+	 * @param AbstractBlock $block The block used to generate the ApiUsageException
 	 * @throws ApiUsageException always
 	 */
 	public function dieBlocked( AbstractBlock $block ) {
