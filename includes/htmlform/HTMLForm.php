@@ -1287,7 +1287,7 @@ class HTMLForm extends ContextSource {
 	 * @return string
 	 */
 	public function getErrors( $errors ) {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.28' );
 		return $this->getErrorsOrWarnings( $errors, 'error' );
 	}
 
