@@ -285,7 +285,7 @@ class SearchResult {
 		if ( $extensionData instanceof Closure ) {
 			$this->extensionData = $extensionData;
 		} elseif ( is_array( $extensionData ) ) {
-			wfDeprecated( __METHOD__ . ' with array argument', 1.32 );
+			wfDeprecated( __METHOD__ . ' with array argument', '1.32' );
 			$this->extensionData = function () use ( $extensionData ) {
 				return $extensionData;
 			};
