@@ -2238,6 +2238,7 @@
 	"mycontris": "個人貢獻",
 	"anoncontribs": "貢獻",
 	"contribsub2": "{{GENDER:$3|$1}}嘅貢獻 （$2）",
+	"contributions-subtitle": "{{GENDER:$3|$1}}",
 	"contributions-userdoesnotexist": "用戶「$1」未有註冊。",
 	"nocontribs": "搵唔到符合呢啲條件嘅修改。",
 	"uctop": "最新",

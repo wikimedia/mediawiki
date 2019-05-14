@@ -179,7 +179,7 @@
 	"apihelp-emailuser-param-text": "Corps du courriel.",
 	"apihelp-emailuser-param-ccme": "M’envoyer une copie de ce courriel.",
 	"apihelp-emailuser-example-email": "Envoyer un courriel à l’utilisateur <kbd>WikiSysop</kbd> avec le texte <kbd>Content</kbd>.",
-	"apihelp-expandtemplates-summary": "Réalise l’expansion des modèles dans du wikitexte.",
+	"apihelp-expandtemplates-summary": "Réalise l’expansion des modèles en wikitexte.",
 	"apihelp-expandtemplates-param-title": "Titre de la page.",
 	"apihelp-expandtemplates-param-text": "Wikitexte à convertir.",
 	"apihelp-expandtemplates-param-revid": "ID de révision, pour <code><nowiki>{{REVISIONID}}</nowiki></code> et les variables semblables.",

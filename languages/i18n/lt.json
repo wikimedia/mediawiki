@@ -40,7 +40,8 @@
 			"Manvydasz",
 			"Fitoschido",
 			"Matěj Suchánek",
-			"Vlad5250"
+			"Vlad5250",
+			"Naktis"
 		]
 	},
 	"tog-underline": "Nuorodos pabraukimas:",
@@ -666,7 +667,7 @@
 	"accmailtext": "Atsitiktinai sukurtas naudotojo [[User talk:$1|$1]] slaptažodis nusiųstas į $2.\n\nŠios naujos paskyros slaptažodis gali būti pakeistas <em>[[Special:ChangePassword|keisti slaptažodį]]</em> puslapyje beprisijungiant.",
 	"newarticle": "(Naujas)",
 	"newarticletext": "Jūs patekote į dar neegzistuojantį puslapį.\nNorėdami sukurti puslapį, pradėkite rašyti žemiau esančiame įvedimo lauke\n(plačiau [$1 pagalbos puslapyje]).\nJei patekote čia per klaidą, paprasčiausiai spustelkite  naršyklės mygtuką '''atgal'''.",
-	"anontalkpagetext": "----\n<em>Tai yra anoniminio naudotojo, nesusikūrusio arba nenaudojančio paskyros, aptarimų puslapis.</em>\nDėl to naudojamas IP adresas jo identifikavimui.\nŠis IP adresas gali priklausyti keliems naudotojams.\nJeigu Jūs esate anoniminis naudotojas ir atrodo, kad komentarai nėra skirti Jums, [[Special:CreateAccount|sukurkite paskyrą]] arba [[Special:UserLogin|prisijunkite]], ir nebūsite tapatinamas su kitais anoniminiais naudotojais.",
+	"anontalkpagetext": "----\n<em>Tai yra anoniminio naudotojo, nesusikūrusio arba nenaudojančio paskyros, aptarimų puslapis.</em>\nTodėl, norėdami juos identifikuoti, turime naudoti skaitinį IP adresą.\nŠis IP adresas gali priklausyti keliems naudotojams.\nJei esate anoniminis vartotojas ir manote, kad jums buvo nukreipti nesusiję komentarai, prašome [[Special:CreateAccount|sukurkite paskyrą]] arba [[Special:UserLogin|prisijunkite]], išvengti ateities painiavos su kitais anoniminiais naudotojais.",
 	"noarticletext": "Šiuo metu šiame puslapyje nėra jokio teksto.\nJūs galite [[Special:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] kituose puslapiuose,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ieškoti susijusių įrašų] arba [{{fullurl:{{FULLPAGENAME}}|action=edit}} sukurti šį puslapį]</span>.",
 	"noarticletext-nopermission": "Šiuo metu šiame puslapyje nėra jokio teksto.\nJūs galite [[Special:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] kituose puslapiuose,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ieškoti susijusių įrašų]</span>, tačiau jūs neturite teisės sukurti šio puslapio.",
 	"missing-revision": "Puslapio peržiūra #$1 pavadinto „{{FULLPAGENAME}}“ neegzistuoja.\n\nTai paprastai atsitinka kai pasenusi nuoroda veda į puslapį, kuris buvo ištrintas.\nInformaciją galima rasti [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
