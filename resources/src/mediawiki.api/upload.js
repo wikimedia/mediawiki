@@ -441,7 +441,7 @@
 					}
 
 					// If the call flat out failed, we may want to try again...
-					retry = api.uploadChunk.bind( this, file, data, start, end, filekey, retries - 1 );
+					retry = api.uploadChunk.bind( api, file, data, start, end, filekey, retries - 1 );
 					return api.retry( code, result, retry );
 				},
 				function ( fraction ) {
