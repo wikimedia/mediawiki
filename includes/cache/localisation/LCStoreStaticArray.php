@@ -39,9 +39,7 @@ class LCStoreStaticArray implements LCStore {
 	private $directory;
 
 	public function __construct( $conf = [] ) {
-		global $wgCacheDirectory;
-
-		$this->directory = $conf['directory'] ?? $wgCacheDirectory;
+		$this->directory = $conf['directory'];
 	}
 
 	public function startWrite( $code ) {
