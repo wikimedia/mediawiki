@@ -84,7 +84,7 @@ class SearchResultSet implements Countable, IteratorAggregate {
 			// This class will eventually be abstract. SearchEngine implementations
 			// already have to extend this class anyways to provide the actual
 			// search results.
-			wfDeprecated( __METHOD__, 1.32 );
+			wfDeprecated( __METHOD__, '1.32' );
 		}
 		$this->containedSyntax = $containedSyntax;
 		$this->hasMoreResults = $hasMoreResults;
