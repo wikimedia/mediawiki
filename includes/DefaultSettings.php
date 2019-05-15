@@ -8430,6 +8430,13 @@ $wgLocalVirtualHosts = [];
  */
 $wgHTTPConnectTimeout = 5e0;
 
+/**
+ * Whether to respect/honour the request ID provided by the incoming request
+ * via the `X-Request-Id` header. Set to `true` if the entity sitting in front
+ * of Mediawiki sanitises external requests. Default: `false`.
+ */
+$wgAllowExternalReqID = false;
+
 /** @} */ # End HTTP client }
 
 /************************************************************************//**
