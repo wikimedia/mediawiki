@@ -551,8 +551,9 @@
 					return finishUpload;
 				},
 				function ( errorCode, result ) {
-					if ( result && result.upload && result.upload.filekey ) {
-						// Ignore any warnings if 'filekey' was returned, that's all we care about
+					if ( result && result.upload && result.upload.result === 'Success' && result.upload.filekey ) {
+						// Catch handler is also called in case of warnings (e.g. 'duplicate')
+						// We don't really care about those warnings, as long as the upload got stashed...
 						filekey = result.upload.filekey;
 						return $.Deferred().resolve( finishUpload );
 					}
