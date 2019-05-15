@@ -168,6 +168,7 @@ because of Phabricator reports.
 * FileRepoStatus, deprecated in 1.25, has been removed.
 * The LegacyHookPreAuthenticationProvider class, deprecated since its creation
   in 1.27, has been removed.
+* IP::isValidBlock(), deprecated in 1.30, has been removed.
 * …
 
 === Deprecations in 1.34 ===
