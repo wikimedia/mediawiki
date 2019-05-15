@@ -481,10 +481,8 @@ Title.makeTitle = function ( namespace, title ) {
  *
  * @static
  * @param {string} title
- * @param {number|Object} [defaultNamespaceOrOptions=NS_MAIN]
+ * @param {number} [defaultNamespace=NS_MAIN]
  *  If given, will used as default namespace for the given title.
- *  This method can also be called with two arguments, in which case
- *  this becomes options (see below).
  * @param {Object} [options] additional options
  * @param {boolean} [options.forUploading=true]
  *  Makes sure that a file is uploadable under the title returned.
@@ -492,23 +490,14 @@ Title.makeTitle = function ( namespace, title ) {
  *  Automatically assumed if the title is created in the Media namespace.
  * @return {mw.Title|null} A valid Title object or null if the input cannot be turned into a valid title
  */
-Title.newFromUserInput = function ( title, defaultNamespaceOrOptions, options ) {
-	var namespace, m, id, ext, lastDot,
-		defaultNamespace;
-
-	// defaultNamespace is optional; check whether options moves up
-	if ( arguments.length < 3 && typeof defaultNamespace === 'object' ) {
-		options = defaultNamespaceOrOptions;
-	} else {
-		defaultNamespace = defaultNamespaceOrOptions;
-	}
+Title.newFromUserInput = function ( title, defaultNamespace, options ) {
+	var m, id, ext, lastDot,
+		namespace = parseInt( defaultNamespace ) || NS_MAIN;
 
 	// merge options into defaults
 	options = $.extend( {
 		forUploading: true
 	}, options );
-
-	namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
 
 	// Normalise additional whitespace
 	title = title.replace( /\s/g, ' ' ).trim();
@@ -586,9 +575,7 @@ Title.newFromUserInput = function ( title, defaultNamespaceOrOptions, options ) 
  * @return {mw.Title|null} A valid Title object or null if the title is invalid
  */
 Title.newFromFileName = function ( uncleanName ) {
-	return Title.newFromUserInput( 'File:' + uncleanName, {
-		forUploading: true
-	} );
+	return Title.newFromUserInput( 'File:' + uncleanName );
 };
 
 /**
