@@ -275,7 +275,6 @@
 	"apihelp-login-param-password": "Password.",
 	"apihelp-login-param-domain": "Domain (optional).",
 	"apihelp-login-param-token": "Login token obtained in first request.",
-	"apihelp-login-example-gettoken": "Retrieve a login token.",
 	"apihelp-login-example-login": "Log in.",
 
 	"apihelp-logout-summary": "Log out and clear session data.",

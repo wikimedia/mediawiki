@@ -262,7 +262,6 @@
 	"apihelp-login-param-password": "{{doc-apihelp-param|login|password}}\n{{Identical|Password}}",
 	"apihelp-login-param-domain": "{{doc-apihelp-param|login|domain}}",
 	"apihelp-login-param-token": "{{doc-apihelp-param|login|token}}",
-	"apihelp-login-example-gettoken": "{{doc-apihelp-example|login}}",
 	"apihelp-login-example-login": "{{doc-apihelp-example|login}}\n{{Identical|Log in}}",
 	"apihelp-logout-summary": "{{doc-apihelp-summary|logout}}",
 	"apihelp-logout-example-logout": "{{doc-apihelp-example|logout}}",
