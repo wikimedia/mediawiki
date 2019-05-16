@@ -386,7 +386,7 @@ class ContribsPager extends RangeChronologicalPager {
 			}
 
 			$associatedNS = $this->mDb->addQuotes(
-				MediaWikiServices::getInstance()->getAssociated( $this->namespace )
+				MediaWikiServices::getInstance()->getNamespaceInfo()->getAssociated( $this->namespace )
 			);
 
 			return [
