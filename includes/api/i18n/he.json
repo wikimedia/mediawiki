@@ -264,7 +264,6 @@
 	"apihelp-login-param-password": "ססמה.",
 	"apihelp-login-param-domain": "שם מתחם (רשות).",
 	"apihelp-login-param-token": "אסימון כניסה התקבל בבקשה הראשונה.",
-	"apihelp-login-example-gettoken": "קבלת אסימון כניסה.",
 	"apihelp-login-example-login": "כניסה.",
 	"apihelp-logout-summary": "יציאה וניקוי של נתוני הפעילות.",
 	"apihelp-logout-example-logout": "הוצאת המשתמש הנוכחי.",

@@ -161,7 +161,6 @@
 	"apihelp-login-param-password": "گذرواژه.",
 	"apihelp-login-param-domain": "دامنه (اختیاری)",
 	"apihelp-login-param-token": "بلیط ورود به سامانه که در اولین درخواست دریافت شد.",
-	"apihelp-login-example-gettoken": "دریافت توکن ورود",
 	"apihelp-login-example-login": "ورود",
 	"apihelp-logout-summary": "خروج به همراه پاک نمودن اطلاعات این نشست",
 	"apihelp-logout-example-logout": "خروج کاربر فعلی",

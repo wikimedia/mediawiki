@@ -259,7 +259,6 @@
 	"apihelp-login-param-password": "كلمة السر",
 	"apihelp-login-param-domain": "النطاق (اختياري).",
 	"apihelp-login-param-token": "تم الحصول على رمز الدخول في الطلب الأول.",
-	"apihelp-login-example-gettoken": "استرداد رمز تسجيل الدخول.",
 	"apihelp-login-example-login": "تسجيل الدخول",
 	"apihelp-logout-summary": "تسجيل الخروج ومسح بيانات الجلسة.",
 	"apihelp-logout-example-logout": "تسجيل خروج المستخدم الحالي.",

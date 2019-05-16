@@ -229,7 +229,6 @@
 	"apihelp-login-param-password": "Contrasinal",
 	"apihelp-login-param-domain": "Dominio (opcional).",
 	"apihelp-login-param-token": "Identificador de conexión obtido na primeira petición.",
-	"apihelp-login-example-gettoken": "Recuperar un identificador de conexión.",
 	"apihelp-login-example-login": "Identificarse",
 	"apihelp-logout-summary": "Terminar e limpar datos de sesión.",
 	"apihelp-logout-example-logout": "Cerrar a sesión do usuario actual",

@@ -261,7 +261,6 @@
 	"apihelp-login-param-password": "密码。",
 	"apihelp-login-param-domain": "域名（可选）。",
 	"apihelp-login-param-token": "在首个请求中获得的登录令牌。",
-	"apihelp-login-example-gettoken": "检索登录令牌。",
 	"apihelp-login-example-login": "登录。",
 	"apihelp-logout-summary": "退出并清除会话数据。",
 	"apihelp-logout-example-logout": "退出当前用户。",

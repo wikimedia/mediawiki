@@ -177,7 +177,6 @@
 	"apihelp-login-param-password": "Серһүҙ.",
 	"apihelp-login-param-domain": "Домен (мотлаҡ түгел).",
 	"apihelp-login-param-token": "Беренсе һорау ваҡытынла алынған логин маркер",
-	"apihelp-login-example-gettoken": "Системаға инеү маркерын алыу.",
 	"apihelp-login-example-login": "Танылыу.",
 	"apihelp-logout-summary": "Сығырға һәм сессия мәғлүмәтен юйырға.",
 	"apihelp-logout-example-logout": "Ағымдағы ҡулланыусының киткән саҡта инеүе",

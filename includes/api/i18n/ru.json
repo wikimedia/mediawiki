@@ -275,7 +275,6 @@
 	"apihelp-login-param-password": "Пароль.",
 	"apihelp-login-param-domain": "Домен (необязательно).",
 	"apihelp-login-param-token": "Токен входа, полученный при первом запросе.",
-	"apihelp-login-example-gettoken": "Получить токен входа.",
 	"apihelp-login-example-login": "Войти.",
 	"apihelp-logout-summary": "Выйти и очистить данные сессии.",
 	"apihelp-logout-example-logout": "Выйти из текущей учётной записи.",

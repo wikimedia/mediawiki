@@ -184,7 +184,6 @@
 	"apihelp-login-param-password": "Лозинка.",
 	"apihelp-login-param-domain": "Домен (незадолжително).",
 	"apihelp-login-param-token": "Најавна шифра добиена со првото барање.",
-	"apihelp-login-example-gettoken": "Набави најавна шифра.",
 	"apihelp-login-example-login": "Најава",
 	"apihelp-logout-summary": "Одјави се и исчисти ги податоците на седницата.",
 	"apihelp-logout-example-logout": "Одјави го тековниот корисник",

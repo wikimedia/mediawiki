@@ -224,7 +224,6 @@
 	"apihelp-login-param-name": "Brukernavn.",
 	"apihelp-login-param-password": "Passord.",
 	"apihelp-login-param-domain": "Domene (valgfritt).",
-	"apihelp-login-example-gettoken": "Henter innloggingstegn.",
 	"apihelp-login-example-login": "Logg inn.",
 	"apihelp-logout-summary": "Logg ut og fjern sesjonsdata.",
 	"apihelp-logout-example-logout": "Logg ut den aktuelle brukeren.",

@@ -220,7 +220,6 @@
 	"apihelp-login-param-password": "비밀번호.",
 	"apihelp-login-param-domain": "도메인 (선택).",
 	"apihelp-login-param-token": "처음 요청에서 로그인 토큰을 취득했습니다.",
-	"apihelp-login-example-gettoken": "로그인 토큰을 검색합니다.",
 	"apihelp-login-example-login": "로그인.",
 	"apihelp-logout-summary": "로그아웃하고 세션 데이터를 지웁니다.",
 	"apihelp-logout-example-logout": "현재 사용자를 로그아웃합니다.",

@@ -280,7 +280,6 @@
 	"apihelp-login-param-password": "Mot de passe.",
 	"apihelp-login-param-domain": "Domaine (facultatif).",
 	"apihelp-login-param-token": "Jeton de connexion obtenu à la première requête.",
-	"apihelp-login-example-gettoken": "Récupérer un jeton de connexion",
 	"apihelp-login-example-login": "Se connecter",
 	"apihelp-logout-summary": "Se déconnecter et effacer les données de session.",
 	"apihelp-logout-example-logout": "Déconnecter l’utilisateur actuel.",

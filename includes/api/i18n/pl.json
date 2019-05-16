@@ -185,7 +185,6 @@
 	"apihelp-login-param-password": "Hasło.",
 	"apihelp-login-param-domain": "Domena (opcjonalnie).",
 	"apihelp-login-param-token": "Token logowania zdobyty w pierwszym zapytaniu.",
-	"apihelp-login-example-gettoken": "Zdobądź token logowania.",
 	"apihelp-login-example-login": "Zaloguj się",
 	"apihelp-logout-summary": "Wyloguj i wyczyść dane sesji.",
 	"apihelp-logout-example-logout": "Wyloguj obecnego użytkownika.",
