@@ -115,6 +115,7 @@ class ApiQuery extends ApiBase {
 		'userinfo' => ApiQueryUserInfo::class,
 		'filerepoinfo' => ApiQueryFileRepoInfo::class,
 		'tokens' => ApiQueryTokens::class,
+		'languageinfo' => ApiQueryLanguageinfo::class,
 	];
 
 	/**
