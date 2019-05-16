@@ -713,7 +713,8 @@ interface IDatabase {
 	 *     is applied to a result set after OFFSET.
 	 *
 	 *   - FOR UPDATE: Boolean: lock the returned rows so that they can't be
-	 *     changed until the next COMMIT.
+	 *     changed until the next COMMIT. Cannot be used with aggregate functions
+	 *     (COUNT, MAX, etc., but also DISTINCT).
 	 *
 	 *   - DISTINCT: Boolean: return only unique result rows.
 	 *
