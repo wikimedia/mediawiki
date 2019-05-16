@@ -8299,6 +8299,13 @@ $wgCrossSiteAJAXdomains = [];
  */
 $wgCrossSiteAJAXdomainExceptions = [];
 
+/**
+ * Enable the experimental REST API.
+ *
+ * This will be removed once the REST API is stable and used by clients.
+ */
+$wgEnableRestAPI = false;
+
 /** @} */ # End AJAX and API }
 
 /************************************************************************//**
