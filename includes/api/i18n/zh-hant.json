@@ -265,7 +265,6 @@
 	"apihelp-login-param-password": "密碼。",
 	"apihelp-login-param-domain": "網域名稱（可有可無）。",
 	"apihelp-login-param-token": "在首次請求獲得的登入權杖。",
-	"apihelp-login-example-gettoken": "檢索登入權杖。",
 	"apihelp-login-example-login": "登入",
 	"apihelp-logout-summary": "登出並清除 session 資料。",
 	"apihelp-logout-example-logout": "登出當前使用者",

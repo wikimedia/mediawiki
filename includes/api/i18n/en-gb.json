@@ -32,7 +32,6 @@
 	"apihelp-help-example-query": "Help for two query submodules.",
 	"apihelp-import-summary": "Import a page from another wiki, or an XML file.",
 	"apihelp-import-extended-description": "Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when sending a file for the <var>xml</var> parameter.",
-	"apihelp-login-example-gettoken": "Retrieve a login token.",
 	"apihelp-logout-example-logout": "Log the current user out.",
 	"apihelp-move-param-to": "Title to rename the page to.",
 	"apihelp-move-param-reason": "Reason for the rename.",

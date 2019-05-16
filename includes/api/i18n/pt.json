@@ -257,7 +257,6 @@
 	"apihelp-login-param-password": "Palavra-passe.",
 	"apihelp-login-param-domain": "Domínio (opcional).",
 	"apihelp-login-param-token": "Chave de início de sessão obtida no primeiro pedido.",
-	"apihelp-login-example-gettoken": "Obter uma chave de início de sessão.",
 	"apihelp-login-example-login": "Entrar.",
 	"apihelp-logout-summary": "Terminar a sessão e limpar os dados da sessão.",
 	"apihelp-logout-example-logout": "Terminar a sessão do utilizador atual.",

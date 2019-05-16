@@ -197,7 +197,6 @@
 	"apihelp-login-param-password": "Jelszó.",
 	"apihelp-login-param-domain": "Tartomány (opcionális)",
 	"apihelp-login-param-token": "Az első kérésben megszerzett bejelentkezési token.",
-	"apihelp-login-example-gettoken": "Egy bejelentkezés token lekérése.",
 	"apihelp-login-example-login": "Bejelentkezés.",
 	"apihelp-logout-summary": "Kijelentkezés és munkamenetadatok törlése.",
 	"apihelp-logout-example-logout": "Aktuális felhasználó kijelentkeztetése.",

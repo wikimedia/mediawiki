@@ -252,7 +252,6 @@
 	"apihelp-login-param-password": "Contraseña.",
 	"apihelp-login-param-domain": "Dominio (opcional).",
 	"apihelp-login-param-token": "La clave de inicio de sesión se obtiene en la primera solicitud.",
-	"apihelp-login-example-gettoken": "Recuperar clave de inicio de sesión.",
 	"apihelp-login-example-login": "Acceder.",
 	"apihelp-logout-summary": "Salir y vaciar los datos de la sesión.",
 	"apihelp-logout-example-logout": "Cerrar la sesión del usuario actual.",

@@ -240,7 +240,6 @@
 	"apihelp-login-param-password": "Passwort.",
 	"apihelp-login-param-domain": "Domain (optional).",
 	"apihelp-login-param-token": "Anmeldetoken, den du in der ersten Anfrage erhalten hast.",
-	"apihelp-login-example-gettoken": "Ruft einen Anmelde-Token ab",
 	"apihelp-login-example-login": "Anmelden",
 	"apihelp-logout-summary": "Abmelden und alle Sitzungsdaten löschen.",
 	"apihelp-logout-example-logout": "Meldet den aktuellen Benutzer ab",

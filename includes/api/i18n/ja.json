@@ -222,7 +222,6 @@
 	"apihelp-login-param-password": "パスワード。",
 	"apihelp-login-param-domain": "ドメイン (省略可能)",
 	"apihelp-login-param-token": "最初のリクエストで取得したログイントークンです。",
-	"apihelp-login-example-gettoken": "ログイントークンを取得する。",
 	"apihelp-login-example-login": "ログイン",
 	"apihelp-logout-summary": "ログアウトしてセッションデータを消去します。",
 	"apihelp-logout-example-logout": "現在の利用者をログアウトする。",

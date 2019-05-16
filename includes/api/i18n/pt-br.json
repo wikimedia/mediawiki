@@ -262,7 +262,6 @@
 	"apihelp-login-param-password": "Senha.",
 	"apihelp-login-param-domain": "Domínio (opcional).",
 	"apihelp-login-param-token": "Token de login obtido no primeiro pedido.",
-	"apihelp-login-example-gettoken": "Recupere um token de login.",
 	"apihelp-login-example-login": "Entrar.",
 	"apihelp-logout-summary": "Faça o logout e limpe os dados da sessão.",
 	"apihelp-logout-example-logout": "Finaliza a sessão do usuário atual.",

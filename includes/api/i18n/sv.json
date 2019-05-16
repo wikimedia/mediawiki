@@ -210,7 +210,6 @@
 	"apihelp-login-param-password": "Lösenord.",
 	"apihelp-login-param-domain": "Domän (valfritt).",
 	"apihelp-login-param-token": "Login nyckel erhållen i första begäran.",
-	"apihelp-login-example-gettoken": "Hämta en login nyckel.",
 	"apihelp-login-example-login": "Logga in",
 	"apihelp-logout-summary": "Logga ut och rensa sessionsdata.",
 	"apihelp-logout-example-logout": "Logga ut den aktuella användaren",

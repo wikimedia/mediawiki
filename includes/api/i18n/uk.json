@@ -263,7 +263,6 @@
 	"apihelp-login-param-password": "Пароль.",
 	"apihelp-login-param-domain": "Домен (необов'язково).",
 	"apihelp-login-param-token": "Токен входу в систему, отриманий у першому запиті.",
-	"apihelp-login-example-gettoken": "Отримати токен входу в систему.",
 	"apihelp-login-example-login": "Увійти в систему.",
 	"apihelp-logout-summary": "Вийти й очистити дані сесії.",
 	"apihelp-logout-example-logout": "Вийти з поточного облікового запису.",

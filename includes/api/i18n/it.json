@@ -172,7 +172,6 @@
 	"apihelp-login-param-name": "Nome utente.",
 	"apihelp-login-param-password": "Password.",
 	"apihelp-login-param-domain": "Dominio (opzionale).",
-	"apihelp-login-example-gettoken": "Recupera un token di login.",
 	"apihelp-login-example-login": "Entra.",
 	"apihelp-logout-summary": "Esci e cancella i dati della sessione.",
 	"apihelp-logout-example-logout": "Disconnetti l'utente attuale.",

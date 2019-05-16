@@ -1415,7 +1415,7 @@
 	"rcfilters-hours-title": "Ultimele ore",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|zi|zile|de zile}}",
 	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|oră|ore|de ore}}",
-	"rcfilters-highlighted-filters-list": "FIltru: $1",
+	"rcfilters-highlighted-filters-list": "Filtru: $1",
 	"rcfilters-quickfilters": "Filtre salvate",
 	"rcfilters-quickfilters-placeholder-title": "Niciun filtru salvat deocamdată",
 	"rcfilters-quickfilters-placeholder-description": "Pentru a salva setările de filtrare și a le refolosi mai târziu, faceți clic pe iconița de marcaje în zona de Filtre active de mai jos.",
