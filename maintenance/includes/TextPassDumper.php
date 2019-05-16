@@ -133,7 +133,8 @@ TEXT
 		$this->addOption( 'quiet', 'Don\'t dump status reports to stderr.' );
 		$this->addOption( 'full', 'Dump all revisions of every page' );
 		$this->addOption( 'current', 'Base ETA on number of pages in database instead of all revisions' );
-		$this->addOption( 'spawn', 'Spawn a subprocess for loading text records' );
+		$this->addOption( 'spawn', 'Spawn a subprocess for loading text records, optionally specify ' .
+			'php[,mwscript] paths' );
 		$this->addOption( 'buffersize', 'Buffer size in bytes to use for reading the stub. ' .
 			'(Default: 512KB, Minimum: 4KB)', false, true );
 
@@ -191,7 +192,7 @@ TEXT
 			$this->spawn = true;
 			$val = $this->getOption( 'spawn' );
 			if ( $val !== 1 ) {
-				$this->php = $val;
+				$this->php = explode( ',', $val, 2 );
 			}
 		}
 	}
@@ -756,19 +757,24 @@ TEXT
 	function openSpawn() {
 		global $IP;
 
-		if ( file_exists( "$IP/../multiversion/MWScript.php" ) ) {
+		if ( count( $this->php ) == 2 ) {
+			$mwscriptpath = $this->php[1];
+		} else {
+			$mwscriptpath = "$IP/../multiversion/MWScript.php";
+		}
+		if ( file_exists( $mwscriptpath ) ) {
 			$cmd = implode( " ",
 				array_map( [ Shell::class, 'escape' ],
 					[
-						$this->php,
-						"$IP/../multiversion/MWScript.php",
+						$this->php[0],
+						$mwscriptpath,
 						"fetchText.php",
 						'--wiki', wfWikiID() ] ) );
 		} else {
 			$cmd = implode( " ",
 				array_map( [ Shell::class, 'escape' ],
 					[
-						$this->php,
+						$this->php[0],
 						"$IP/maintenance/fetchText.php",
 						'--wiki', wfWikiID() ] ) );
 		}
