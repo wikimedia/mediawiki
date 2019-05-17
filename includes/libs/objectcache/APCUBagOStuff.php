@@ -34,12 +34,21 @@
  * @ingroup Cache
  */
 class APCUBagOStuff extends BagOStuff {
+	/** @var bool Whether to trust the APC implementation to serialization */
+	private $nativeSerialize;
+
 	/**
 	 * @var string String to append to each APC key. This may be changed
 	 *  whenever the handling of values is changed, to prevent existing code
 	 *  from encountering older values which it cannot handle.
 	 */
-	const KEY_SUFFIX = ':3';
+	const KEY_SUFFIX = ':4';
+
+	public function __construct( array $params = [] ) {
+		parent::__construct( $params );
+		// The extension serialize is still buggy, unlike "php" and "igbinary"
+		$this->nativeSerialize = ( ini_get( 'apc.serializer' ) !== 'default' );
+	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$casToken = null;
@@ -76,11 +85,7 @@ class APCUBagOStuff extends BagOStuff {
 	}
 
 	public function incr( $key, $value = 1 ) {
-		/**
-		 * @todo When we only support php 7 or higher remove this hack
-		 *
-		 * https://github.com/krakjoe/apcu/issues/166
-		 */
+		// https://github.com/krakjoe/apcu/issues/166
 		if ( apcu_exists( $key . self::KEY_SUFFIX ) ) {
 			return apcu_inc( $key . self::KEY_SUFFIX, $value );
 		} else {
@@ -89,11 +94,7 @@ class APCUBagOStuff extends BagOStuff {
 	}
 
 	public function decr( $key, $value = 1 ) {
-		/**
-		 * @todo When we only support php 7 or higher remove this hack
-		 *
-		 * https://github.com/krakjoe/apcu/issues/166
-		 */
+		// https://github.com/krakjoe/apcu/issues/166
 		if ( apcu_exists( $key . self::KEY_SUFFIX ) ) {
 			return apcu_dec( $key . self::KEY_SUFFIX, $value );
 		} else {
@@ -102,10 +103,18 @@ class APCUBagOStuff extends BagOStuff {
 	}
 
 	protected function serialize( $value ) {
+		if ( $this->nativeSerialize ) {
+			return $value;
+		}
+
 		return $this->isInteger( $value ) ? (int)$value : serialize( $value );
 	}
 
 	protected function unserialize( $value ) {
+		if ( $this->nativeSerialize ) {
+			return $value;
+		}
+
 		return $this->isInteger( $value ) ? (int)$value : unserialize( $value );
 	}
 }
