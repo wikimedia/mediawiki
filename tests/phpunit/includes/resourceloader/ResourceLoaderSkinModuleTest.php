@@ -7,8 +7,6 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ResourceLoaderSkinModuleTest extends MediaWikiTestCase {
 
-	use MediaWikiCoversValidator;
-
 	public static function provideGetStyles() {
 		// phpcs:disable Generic.Files.LineLength
 		return [
