@@ -1707,9 +1707,7 @@ class SwiftFileBackend extends FileBackendStore {
 				if ( $rcode >= 200 && $rcode <= 299 ) { // OK
 					$this->authCreds = [
 						'auth_token' => $rhdrs['x-auth-token'],
-						'storage_url' => ( $this->swiftStorageUrl !== null )
-							? $this->swiftStorageUrl
-							: $rhdrs['x-storage-url']
+						'storage_url' => $this->swiftStorageUrl ?? $rhdrs['x-storage-url']
 					];
 
 					$this->srvCache->set( $cacheKey, $this->authCreds, ceil( $this->authTTL / 2 ) );
