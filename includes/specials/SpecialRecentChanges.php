@@ -159,7 +159,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 
 		$this->addHelpLink(
-			'//meta.wikimedia.org/wiki/Special:MyLanguage/Help:Recent_changes',
+			'https://meta.wikimedia.org/wiki/Special:MyLanguage/Help:Recent_changes',
 			true
 		);
 		parent::execute( $subpage );

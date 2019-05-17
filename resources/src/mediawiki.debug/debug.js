@@ -199,7 +199,7 @@
 			}
 
 			bitDiv( 'mwversion' )
-				.append( $( '<a>' ).attr( 'href', '//www.mediawiki.org/' ).text( 'MediaWiki' ) )
+				.append( $( '<a>' ).attr( 'href', 'https://www.mediawiki.org/' ).text( 'MediaWiki' ) )
 				.append( document.createTextNode( ': ' + this.data.mwVersion + ' ' ) )
 				.append( gitInfo );
 
