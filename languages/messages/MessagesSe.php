@@ -134,6 +134,14 @@ $magicWords = [
 	'img_link'                  => [ '1', 'liŋka=$1', 'link=$1' ],
 ];
 
+$defaultDateFormat = 'mdy';
+
+$dateFormats = [
+	'mdy time' => 'G.i',
+	'mdy date' => 'xg j "b." Y',
+	'mdy both' => 'xg j "b." Y "dii." G.i',
+];
+
 $separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];
 
 $linkTrail = '/^(:?[a-zàáâçčʒǯđðéèêëǧǥȟíìîïıǩŋñóòôõßšŧúùûýÿüžþæøåäö]+)(.*)$/sDu';
