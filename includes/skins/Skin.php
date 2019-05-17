@@ -906,7 +906,7 @@ abstract class Skin extends ContextSource {
 		$url2 = htmlspecialchars(
 			"$resourceBasePath/resources/assets/poweredby_mediawiki_176x62.png"
 		);
-		$text = '<a href="//www.mediawiki.org/"><img src="' . $url1
+		$text = '<a href="https://www.mediawiki.org/"><img src="' . $url1
 			. '" srcset="' . $url1_5 . ' 1.5x, ' . $url2 . ' 2x" '
 			. 'height="31" width="88" alt="Powered by MediaWiki" /></a>';
 		Hooks::run( 'SkinGetPoweredBy', [ &$text, $this ] );

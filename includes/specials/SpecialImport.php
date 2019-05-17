@@ -322,7 +322,7 @@ class SpecialImport extends SpecialPage {
 		$action = $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] );
 		$user = $this->getUser();
 		$out = $this->getOutput();
-		$this->addHelpLink( '//meta.wikimedia.org/wiki/Special:MyLanguage/Help:Import', true );
+		$this->addHelpLink( 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Help:Import', true );
 
 		if ( $user->isAllowed( 'importupload' ) ) {
 			$mappingSelection = $this->getMappingFormPart( 'upload' );

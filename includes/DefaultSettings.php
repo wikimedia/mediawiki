@@ -3497,7 +3497,7 @@ $wgFooterIcons = [
 			// "$wgResourceBasePath/resources/assets/poweredby_mediawiki_88x31.png"
 			// plus srcset for 1.5x, 2x resolution variants.
 			"src" => null,
-			"url" => "//www.mediawiki.org/",
+			"url" => "https://www.mediawiki.org/",
 			"alt" => "Powered by MediaWiki",
 		]
 	],
