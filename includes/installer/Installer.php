@@ -494,7 +494,7 @@ abstract class Installer {
 
 		$good = true;
 		// Must go here because an old version of PCRE can prevent other checks from completing
-		list( $pcreVersion ) = explode( ' ', PCRE_VERSION, 2 );
+		$pcreVersion = explode( ' ', PCRE_VERSION, 2 )[0];
 		if ( version_compare( $pcreVersion, self::MINIMUM_PCRE_VERSION, '<' ) ) {
 			$this->showError( 'config-pcre-old', self::MINIMUM_PCRE_VERSION, $pcreVersion );
 			$good = false;
