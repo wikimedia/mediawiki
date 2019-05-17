@@ -74,8 +74,20 @@ class ApiUpload extends ApiBase {
 		}
 
 		// Check if the uploaded file is sane
-		wfDebug( __METHOD__ . " about to verify\n" );
-		$this->verifyUpload();
+		if ( $this->mParams['chunk'] ) {
+			$maxSize = UploadBase::getMaxUploadSize();
+			if ( $this->mParams['filesize'] > $maxSize ) {
+				$this->dieWithError( 'file-too-large' );
+			}
+			if ( !$this->mUpload->getTitle() ) {
+				$this->dieWithError( 'illegal-filename' );
+			}
+		} elseif ( $this->mParams['async'] && $this->mParams['filekey'] ) {
+			// defer verification to background process
+		} else {
+			wfDebug( __METHOD__ . " about to verify\n" );
+			$this->verifyUpload();
+		}
 
 		// Check if the user has the rights to modify or overwrite the requested title
 		// (This check is irrelevant if stashing is already requested, since the errors
