@@ -1912,6 +1912,7 @@ class RevisionStore
 		$this->initializeMutableRevisionFromArray( $revision, $fields );
 
 		if ( isset( $fields['content'] ) && is_array( $fields['content'] ) ) {
+			// @phan-suppress-next-line PhanTypeNoPropertiesForeach
 			foreach ( $fields['content'] as $role => $content ) {
 				$revision->setContent( $role, $content );
 			}

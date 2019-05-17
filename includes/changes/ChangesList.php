@@ -411,7 +411,7 @@ class ChangesList extends ContextSource {
 		$date = $lang->userTimeAndDate( $ts, $user );
 		if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
 			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
-				$title !== null ? $title : $rev->getTitle(),
+				$title ?? $rev->getTitle(),
 				$date,
 				[ 'class' => 'mw-changeslist-date' ],
 				[ 'oldid' => $rev->getId() ]

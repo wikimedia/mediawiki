@@ -123,6 +123,7 @@ class ForkController {
 				pcntl_signal_dispatch();
 			} else {
 				declare( ticks = 1 ) {
+					// @phan-suppress-next-line PhanPluginDuplicateExpressionAssignment
 					$status = $status;
 				}
 			}
