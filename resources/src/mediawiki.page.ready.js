@@ -53,6 +53,29 @@
 			window.print();
 			e.preventDefault();
 		} );
+
+		// Turn logout to a POST action
+		$( '#pt-logout a' ).on( 'click', function ( e ) {
+			var api = new mw.Api(), returnUrl;
+			returnUrl = $( '#pt-logout a' ).attr( 'href' );
+			mw.notify(
+				mw.message( 'logging-out-notify' ),
+				{ tag: 'logout', autoHide: false }
+			);
+			api.postWithToken( 'csrf', {
+				action: 'logout'
+			} ).done( function () {
+				// Horrible hack until deprecation of logoutToken in GET is done
+				returnUrl = returnUrl.replace( /logoutToken=.+?($|&)/g, 'logoutToken=%2B%5C' );
+				window.location = returnUrl;
+			} ).fail( function ( e ) {
+				mw.notify(
+					mw.message( 'logout-failed', e ),
+					{ type: 'error', tag: 'logout', autoHide: false }
+				);
+			} );
+			e.preventDefault();
+		} );
 	} );
 
 }() );

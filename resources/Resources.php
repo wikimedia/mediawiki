@@ -1704,8 +1704,14 @@ return [
 		'dependencies' => [
 			'jquery.accessKeyLabel',
 			'jquery.checkboxShiftClick',
+			'mediawiki.notify',
+			'mediawiki.api'
 		],
 		'targets' => [ 'desktop', 'mobile' ],
+		'messages' => [
+			'logout-failed',
+			'logging-out-notify'
+		]
 	],
 	'mediawiki.page.startup' => [
 		'scripts' => 'resources/src/mediawiki.page.startup.js',
