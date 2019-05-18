@@ -34,7 +34,9 @@ require_once __DIR__ . '/Maintenance.php';
 class CleanupPreferences extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Clean up hidden preferences, removed preferences, and normalizes values';
+		$this->addDescription(
+			'Clean up hidden preferences, removed preferences, and normalizes values'
+		);
 		$this->setBatchSize( 50 );
 		$this->addOption( 'dry-run', 'Print debug info instead of actually deleting' );
 		$this->addOption( 'hidden', 'Drop hidden preferences ($wgHiddenPrefs)' );
