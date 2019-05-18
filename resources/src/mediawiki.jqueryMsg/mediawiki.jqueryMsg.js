@@ -317,13 +317,14 @@ mw.jqueryMsg.Parser.prototype = {
 		var wikiText;
 
 		if ( !Object.prototype.hasOwnProperty.call( this.astCache, key ) ) {
-			if ( mw.config.get( 'wgUserLanguage' ) === 'qqx' ) {
+			wikiText = this.settings.messages.get( key );
+			if (
+				mw.config.get( 'wgUserLanguage' ) === 'qqx' &&
+				( !wikiText || wikiText === '(' + key + ')' )
+			) {
 				wikiText = '(' + key + '$*)';
-			} else {
-				wikiText = this.settings.messages.get( key );
-				if ( typeof wikiText !== 'string' ) {
-					wikiText = '⧼' + key + '⧽';
-				}
+			} else if ( typeof wikiText !== 'string' ) {
+				wikiText = '⧼' + key + '⧽';
 			}
 			wikiText = mw.internalDoTransformFormatForQqx( wikiText, replacements );
 			this.astCache[ key ] = this.wikiTextToAst( wikiText );
