@@ -384,7 +384,7 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Get a DB connection to be used for slow recache queries
-	 * @return \Wikimedia\Rdbms\Database
+	 * @return IDatabase
 	 */
 	function getRecacheDB() {
 		return wfGetDB( DB_REPLICA, [ $this->getName(), 'QueryPage::recache', 'vslow' ] );

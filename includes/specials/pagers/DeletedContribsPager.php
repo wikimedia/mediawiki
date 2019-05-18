@@ -50,7 +50,7 @@ class DeletedContribsPager extends IndexPager {
 	public $namespace = '';
 
 	/**
-	 * @var \Wikimedia\Rdbms\Database
+	 * @var IDatabase
 	 */
 	public $mDb;
 
