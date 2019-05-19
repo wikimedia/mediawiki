@@ -27,6 +27,7 @@
  * @defgroup Dump Dump
  */
 
+use MediaWiki\MediaWikiServices as MediaWikiServicesAlias;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -339,18 +340,28 @@ class WikiExporter {
 			);
 		}
 
-		$revOpts = [ 'page' ];
+		$revQuery = MediaWikiServicesAlias::getInstance()->getRevisionStore()->getQueryInfo(
+			[ 'page' ]
+		);
+		$slotQuery = MediaWikiServicesAlias::getInstance()->getRevisionStore()->getSlotsQueryInfo(
+			[ 'content' ]
+		);
 
-		$revQuery = Revision::getQueryInfo( $revOpts );
-
-		// We want page primary rather than revision
+		// We want page primary rather than revision.
+		// We also want to join in the slots and content tables.
+		// NOTE: This means we may get multiple rows per revision, and more rows
+		// than the batch size! Should be ok, since the max number of slots is
+		// fixed and low (dozens at worst).
 		$tables = array_merge( [ 'page' ], array_diff( $revQuery['tables'], [ 'page' ] ) );
+		$tables = array_merge( $tables, array_diff( $slotQuery['tables'], $tables ) );
 		$join = $revQuery['joins'] + [
-				'revision' => $revQuery['joins']['page']
+				'revision' => $revQuery['joins']['page'],
+				'slots' => [ 'JOIN', [ 'slot_revision_id = rev_id' ] ],
+				'content' => [ 'JOIN', [ 'content_id = slot_content_id' ] ],
 			];
 		unset( $join['page'] );
 
-		$fields = $revQuery['fields'];
+		$fields = array_merge( $revQuery['fields'], $slotQuery['fields'] );
 		$fields[] = 'page_restrictions';
 
 		if ( $this->text != self::STUB ) {
@@ -387,7 +398,6 @@ class WikiExporter {
 			# Full history dumps...
 			# query optimization for history stub dumps
 			if ( $this->text == self::STUB ) {
-				$tables = $revQuery['tables'];
 				$opts[] = 'STRAIGHT_JOIN';
 				$opts['USE INDEX']['revision'] = 'rev_page_id';
 				unset( $join['revision'] );
@@ -464,24 +474,36 @@ class WikiExporter {
 	}
 
 	/**
-	 * Runs through a query result set dumping page and revision records.
-	 * The result set should be sorted/grouped by page to avoid duplicate
-	 * page records in the output.
+	 * Runs through a query result set dumping page, revision, and slot records.
+	 * The result set should join the page, revision, slots, and content tables,
+	 * and be sorted/grouped by page and revision to avoid duplicate page records in the output.
 	 *
 	 * @param IResultWrapper $results
 	 * @param object $lastRow the last row output from the previous call (or null if none)
 	 * @return object the last row processed
 	 */
 	protected function outputPageStreamBatch( $results, $lastRow ) {
-		foreach ( $results as $row ) {
+		$rowCarry = null;
+		while ( true ) {
+			$slotRows = $this->getSlotRowBatch( $results, $rowCarry );
+
+			if ( !$slotRows ) {
+				break;
+			}
+
+			// All revision info is present in all slot rows.
+			// Use the first slot row as the revision row.
+			$revRow = $slotRows[0];
+
 			if ( $this->limitNamespaces &&
-				!in_array( $row->page_namespace, $this->limitNamespaces ) ) {
-				$lastRow = $row;
+				!in_array( $revRow->page_namespace, $this->limitNamespaces ) ) {
+				$lastRow = $revRow;
 				continue;
 			}
+
 			if ( $lastRow === null ||
-				$lastRow->page_namespace !== $row->page_namespace ||
-				$lastRow->page_title !== $row->page_title ) {
+				$lastRow->page_namespace !== $revRow->page_namespace ||
+				$lastRow->page_title !== $revRow->page_title ) {
 				if ( $lastRow !== null ) {
 					$output = '';
 					if ( $this->dumpUploads ) {
@@ -490,15 +512,50 @@ class WikiExporter {
 					$output .= $this->writer->closePage();
 					$this->sink->writeClosePage( $output );
 				}
-				$output = $this->writer->openPage( $row );
-				$this->sink->writeOpenPage( $row, $output );
+				$output = $this->writer->openPage( $revRow );
+				$this->sink->writeOpenPage( $revRow, $output );
 			}
-			$output = $this->writer->writeRevision( $row );
-			$this->sink->writeRevision( $row, $output );
-			$lastRow = $row;
+			$output = $this->writer->writeRevision( $revRow, $slotRows );
+			$this->sink->writeRevision( $revRow, $output );
+			$lastRow = $revRow;
+		}
+
+		if ( $rowCarry ) {
+			throw new LogicException( 'Error while processing a stream of slot rows' );
 		}
 
 		return $lastRow;
+	}
+
+	/**
+	 * Returns all slot rows for a revision.
+	 * Takes and returns a carry row from the last batch;
+	 *
+	 * @param IResultWrapper|array $results
+	 * @param null|object &$carry A row carried over from the last call to getSlotRowBatch()
+	 *
+	 * @return object[]
+	 */
+	protected function getSlotRowBatch( $results, &$carry = null ) {
+		$slotRows = [];
+		$prev = null;
+
+		if ( $carry ) {
+			$slotRows[] = $carry;
+			$prev = $carry;
+			$carry = null;
+		}
+
+		while ( $row = $results->fetchObject() ) {
+			if ( $prev && $prev->rev_id !== $row->rev_id ) {
+				$carry = $row;
+				break;
+			}
+			$slotRows[] = $row;
+			$prev = $row;
+		}
+
+		return $slotRows;
 	}
 
 	/**
