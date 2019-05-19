@@ -10,8 +10,6 @@ use Wikimedia\TestingAccessWrapper;
  */
 class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 
-	use MediaWikiCoversValidator;
-
 	/**
 	 * @return PHPUnit_Framework_MockObject_MockObject|CommentStore
 	 */

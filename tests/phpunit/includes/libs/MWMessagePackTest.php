@@ -5,8 +5,6 @@
  */
 class MWMessagePackTest extends MediaWikiTestCase {
 
-	use MediaWikiCoversValidator;
-
 	/**
 	 * Provides test cases for MWMessagePackTest::testMessagePack
 	 *

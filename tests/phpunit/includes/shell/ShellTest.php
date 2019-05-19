@@ -10,8 +10,6 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ShellTest extends MediaWikiTestCase {
 
-	use MediaWikiCoversValidator;
-
 	public function testIsDisabled() {
 		$this->assertInternalType( 'bool', Shell::isDisabled() ); // sanity
 	}
