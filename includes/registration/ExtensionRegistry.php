@@ -87,6 +87,13 @@ class ExtensionRegistry {
 	protected $testAttributes = [];
 
 	/**
+	 * Whether to check dev-requires
+	 *
+	 * @var bool
+	 */
+	protected $checkDev = false;
+
+	/**
 	 * @var ExtensionRegistry
 	 */
 	private static $instance;
@@ -101,6 +108,14 @@ class ExtensionRegistry {
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * @since 1.34
+	 * @param bool $check
+	 */
+	public function setCheckDevRequires( $check ) {
+		$this->checkDev = $check;
 	}
 
 	/**
@@ -148,6 +163,7 @@ class ExtensionRegistry {
 			'registration' => self::CACHE_VERSION,
 			'mediawiki' => $wgVersion,
 			'abilities' => $this->getAbilities(),
+			'checkDev' => $this->checkDev,
 		];
 
 		// We use a try/catch because we don't want to fail here
@@ -295,7 +311,7 @@ class ExtensionRegistry {
 			}
 
 			// get all requirements/dependencies for this extension
-			$requires = $processor->getRequirements( $info );
+			$requires = $processor->getRequirements( $info, $this->checkDev );
 
 			// validate the information needed and add the requirements
 			if ( is_array( $requires ) && $requires && isset( $info['name'] ) ) {
