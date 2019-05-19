@@ -43,7 +43,7 @@ class SpecialAllMessages extends SpecialPage {
 		$this->setHeaders();
 
 		if ( !$this->getConfig()->get( 'UseDatabaseMessages' ) ) {
-			$out->addWikiMsg( 'allmessagesnotsupportedDB' );
+			$out->addWikiMsg( 'allmessages-not-supported-database' );
 
 			return;
 		}

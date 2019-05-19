@@ -1838,7 +1838,7 @@ class ApiMain extends ApiBase {
 	 */
 	protected function printResult( $httpCode = 0 ) {
 		if ( $this->getConfig()->get( 'DebugAPI' ) !== false ) {
-			$this->addWarning( 'apiwarn-wgDebugAPI' );
+			$this->addWarning( 'apiwarn-wgdebugapi' );
 		}
 
 		$printer = $this->mPrinter;
