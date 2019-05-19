@@ -64,7 +64,7 @@ class UpdateMediaWiki extends Maintenance {
 	function compatChecks() {
 		$minimumPcreVersion = Installer::MINIMUM_PCRE_VERSION;
 
-		list( $pcreVersion ) = explode( ' ', PCRE_VERSION, 2 );
+		$pcreVersion = explode( ' ', PCRE_VERSION, 2 )[0];
 		if ( version_compare( $pcreVersion, $minimumPcreVersion, '<' ) ) {
 			$this->fatalError(
 				"PCRE $minimumPcreVersion or later is required.\n" .
