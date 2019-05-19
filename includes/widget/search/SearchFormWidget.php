@@ -40,6 +40,7 @@ class SearchFormWidget {
 	 * @param int $totalResults The total estimated results found
 	 * @param int $offset Current offset in search results
 	 * @param bool $isPowerSearch Is the 'advanced' section open?
+	 * @param array $options Widget options
 	 * @return string HTML
 	 */
 	public function render(
@@ -48,7 +49,8 @@ class SearchFormWidget {
 		$numResults,
 		$totalResults,
 		$offset,
-		$isPowerSearch
+		$isPowerSearch,
+		array $options = []
 	) {
 		$user = $this->specialSearch->getUser();
 
@@ -63,7 +65,7 @@ class SearchFormWidget {
 				]
 			) .
 				'<div id="mw-search-top-table">' .
-					$this->shortDialogHtml( $profile, $term, $numResults, $totalResults, $offset ) .
+					$this->shortDialogHtml( $profile, $term, $numResults, $totalResults, $offset, $options ) .
 				'</div>' .
 				"<div class='mw-search-visualclear'></div>" .
 				"<div class='mw-search-profile-tabs'>" .
@@ -81,12 +83,20 @@ class SearchFormWidget {
 	 * @param int $numResults The number of results shown
 	 * @param int $totalResults The total estimated results found
 	 * @param int $offset Current offset in search results
+	 * @param array $options Widget options
 	 * @return string HTML
 	 */
-	protected function shortDialogHtml( $profile, $term, $numResults, $totalResults, $offset ) {
+	protected function shortDialogHtml(
+		$profile,
+		$term,
+		$numResults,
+		$totalResults,
+		$offset,
+		array $options = []
+	) {
 		$html = '';
 
-		$searchWidget = new SearchInputWidget( [
+		$searchWidget = new SearchInputWidget( $options + [
 			'id' => 'searchText',
 			'name' => 'search',
 			'autofocus' => trim( $term ) === '',

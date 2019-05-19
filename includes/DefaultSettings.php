@@ -9083,6 +9083,17 @@ $wgReportToEndpoints = [];
 $wgFeaturePolicyReportOnly = [];
 
 /**
+ * Options for Special:Search completion widget form created by SearchFormWidget class.
+ * Settings that can be used:
+ * - showDescriptions: true/false - whether to show opensearch description results
+ * - performSearchOnClick:  true/false - whether to perform search on click
+ * See also TitleWidget.js UI widget.
+ * @since 1.34
+ * @var array
+ */
+$wgSpecialSearchFormOptions = [];
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
