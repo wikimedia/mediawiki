@@ -342,7 +342,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=allpages&apfrom=B'
-				=> 'apihelp-query+allpages-example-B',
+				=> 'apihelp-query+allpages-example-b',
 			'action=query&generator=allpages&gaplimit=4&gapfrom=T&prop=info'
 				=> 'apihelp-query+allpages-example-generator',
 			'action=query&generator=allpages&gaplimit=2&' .
