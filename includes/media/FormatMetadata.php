@@ -1181,7 +1181,7 @@ class FormatMetadata extends ContextSource {
 		$langName = Language::fetchLanguageName( $lowLang );
 		if ( $langName === '' ) {
 			// try just the base language name. (aka en-US -> en ).
-			list( $langPrefix ) = explode( '-', $lowLang, 2 );
+			$langPrefix = explode( '-', $lowLang, 2 )[0];
 			$langName = Language::fetchLanguageName( $langPrefix );
 			if ( $langName === '' ) {
 				// give up.
