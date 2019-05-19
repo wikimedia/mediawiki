@@ -622,7 +622,6 @@ class SkinTemplate extends Skin {
 			$returnto['returnto'] = $page;
 			$query = $request->getVal( 'returntoquery', $this->thisquery );
 			$paramsArray = wfCgiToArray( $query );
-			unset( $paramsArray['logoutToken'] );
 			$query = wfArrayToCgi( $paramsArray );
 			if ( $query != '' ) {
 				$returnto['returntoquery'] = $query;
@@ -695,8 +694,7 @@ class SkinTemplate extends Skin {
 					'href' => self::makeSpecialUrl( 'Userlogout',
 						// Note: userlogout link must always contain an & character, otherwise we might not be able
 						// to detect a buggy precaching proxy (T19790)
-						( $title->isSpecial( 'Preferences' ) ? [] : $returnto )
-						+ [ 'logoutToken' => $this->getUser()->getEditToken( 'logoutToken', $this->getRequest() ) ] ),
+						( $title->isSpecial( 'Preferences' ) ? [] : $returnto ) ),
 					'active' => false
 				];
 			}

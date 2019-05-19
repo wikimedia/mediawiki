@@ -4222,6 +4222,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suggest change on login",
 	"easydeflate-invaliddeflate": "Content provided is not properly deflated",
 	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage",
-	"userlogout-continue": "If you wish to log out please [$1 continue to the log out page].",
-	"userlogout-sessionerror": "Log out failed due to session error. Please [$1 try again]."
+	"userlogout-continue": "Do you want to log out?"
 }
