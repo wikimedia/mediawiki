@@ -77,10 +77,10 @@ class SpecialAllMessages extends SpecialPage {
 				'type' => 'radio',
 				'name' => 'filter',
 				'label-message' => 'allmessages-filter',
-				'options' => [
-					$this->msg( 'allmessages-filter-unmodified' )->text() => 'unmodified',
-					$this->msg( 'allmessages-filter-all' )->text() => 'all',
-					$this->msg( 'allmessages-filter-modified' )->text() => 'modified',
+				'options-messages' => [
+					'allmessages-filter-unmodified' => 'unmodified',
+					'allmessages-filter-all' => 'all',
+					'allmessages-filter-modified' => 'modified',
 				],
 				'default' => 'all',
 				'flatlist' => true,
