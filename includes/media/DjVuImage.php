@@ -111,7 +111,7 @@ class DjVuImage {
 				$this->dumpForm( $file, $chunkLength, $indent + 1 );
 			} else {
 				fseek( $file, $chunkLength, SEEK_CUR );
-				if ( ( $chunkLength & 1 ) == 1 ) {
+				if ( $chunkLength & 1 ) {
 					// Padding byte between chunks
 					fseek( $file, 1, SEEK_CUR );
 				}
@@ -169,7 +169,7 @@ class DjVuImage {
 	private function skipChunk( $file, $chunkLength ) {
 		fseek( $file, $chunkLength, SEEK_CUR );
 
-		if ( ( $chunkLength & 0x01 ) == 1 && !feof( $file ) ) {
+		if ( ( $chunkLength & 1 ) && !feof( $file ) ) {
 			// padding byte
 			fseek( $file, 1, SEEK_CUR );
 		}

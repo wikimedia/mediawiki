@@ -506,13 +506,13 @@ class DiffEngine {
 
 		// value_to_add_forward: a 0 or 1 that we add to the start
 		// offset to make it odd/even
-		if ( ( $M & 1 ) == 1 ) {
+		if ( $M & 1 ) {
 			$value_to_add_forward = 1;
 		} else {
 			$value_to_add_forward = 0;
 		}
 
-		if ( ( $N & 1 ) == 1 ) {
+		if ( $N & 1 ) {
 			$value_to_add_backward = 1;
 		} else {
 			$value_to_add_backward = 0;
@@ -530,7 +530,7 @@ class DiffEngine {
 		$V1[$limit_min_1] = $N;
 		$limit = min( $this->maxDifferences, ceil( ( $N + $M ) / 2 ) );
 
-		if ( ( $delta & 1 ) == 1 ) {
+		if ( $delta & 1 ) {
 			for ( $d = 0; $d <= $limit; ++$d ) {
 				$start_diag = max( $value_to_add_forward + $start_forward, -$d );
 				$end_diag = min( $end_forward, $d );
