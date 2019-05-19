@@ -279,6 +279,11 @@ class LinkerTest extends MediaWikiLangTestCase {
 				"/* [[linkie?]] */",
 			],
 			[
+				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage" title="Special:BlankPage">→‎</a>: </span> // Edit via via</span>',
+				// Regression test for T222857
+				"/*  */ // Edit via via",
+			],
+			[
 				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→‎autocomment</a>: </span> post</span>',
 				"/* autocomment */ post",
 			],
