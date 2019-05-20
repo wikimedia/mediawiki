@@ -286,21 +286,6 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * Some special pages (for example SpecialListusers used to) might not return the
-	 * current object formatted, but return the previous one instead.
-	 * Setting this to return true will ensure formatResult() is called
-	 * one more time to make sure that the very last result is formatted
-	 * as well.
-	 *
-	 * @deprecated since 1.27
-	 *
-	 * @return bool
-	 */
-	function tryLastResult() {
-		return false;
-	}
-
-	/**
 	 * Clear the cache and save new results
 	 *
 	 * @param int|bool $limit Limit for SQL statement
@@ -709,17 +694,6 @@ abstract class QueryPage extends SpecialPage {
 			# $res might contain the whole 1,000 rows, so we read up to
 			# $num [should update this to use a Pager]
 			for ( $i = 0; $i < $num && $row = $res->fetchObject(); $i++ ) {
-				$line = $this->formatResult( $skin, $row );
-				if ( $line ) {
-					$html[] = $this->listoutput
-						? $line
-						: "<li>{$line}</li>\n";
-				}
-			}
-
-			# Flush the final result
-			if ( $this->tryLastResult() ) {
-				$row = null;
 				$line = $this->formatResult( $skin, $row );
 				if ( $line ) {
 					$html[] = $this->listoutput
