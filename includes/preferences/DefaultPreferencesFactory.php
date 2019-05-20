@@ -1294,6 +1294,23 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		# Only show skins that aren't disabled in $wgSkipSkins
 		$validSkinNames = Skin::getAllowedSkins();
+		$allInstalledSkins = Skin::getSkinNames();
+
+		// Display the installed skin the user has specifically requested via useskin=….
+		$useSkin = $context->getRequest()->getRawVal( 'useskin' );
+		if ( isset( $allInstalledSkins[$useSkin] )
+			&& $context->msg( "skinname-$useSkin" )->exists()
+		) {
+			$validSkinNames[$useSkin] = $useSkin;
+		}
+
+		// Display the skin if the user has set it as a preference already before it was hidden.
+		$currentUserSkin = $user->getOption( 'skin' );
+		if ( isset( $allInstalledSkins[$currentUserSkin] )
+			&& $context->msg( "skinname-$useSkin" )->exists()
+		) {
+			$validSkinNames[$currentUserSkin] = $currentUserSkin;
+		}
 
 		foreach ( $validSkinNames as $skinkey => &$skinname ) {
 			$msg = $context->msg( "skinname-{$skinkey}" );
@@ -1504,6 +1521,14 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		 * @var HTMLForm $htmlForm
 		 */
 		$htmlForm = new $formClass( $formDescriptor, $context, 'prefs' );
+
+		// This allows users to opt-in to hidden skins. While this should be discouraged and is not
+		// discoverable, this allows users to still use hidden skins while preventing new users from
+		// adopting unsupported skins. If no useskin=… parameter was provided, it will not show up
+		// in the resulting URL.
+		$htmlForm->setAction( $context->getTitle()->getLocalURL( [
+			'useskin' => $context->getRequest()->getRawVal( 'useskin' )
+		] ) );
 
 		$htmlForm->setModifiedUser( $user );
 		$htmlForm->setId( 'mw-prefs-form' );
