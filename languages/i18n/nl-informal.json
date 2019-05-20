@@ -163,7 +163,6 @@
 	"filename-bad-prefix": "De naam van het bestand dat je aan het uploaden bent begint met '''\"$1\"''', wat een niet-beschrijvende naam is die meestal automatisch door een digitale camera wordt gegeven.\nKies een duidelijke naam voor je bestand.",
 	"uploadstash-badtoken": "Het uitvoeren van de handeling is mislukt. Dit komt mogelijk doordat je bewerkingsreferenties zijn verlopen. Probeer het opnieuw.",
 	"img-auth-nopathinfo": "PATH_INFO ontbreekt.\nJe server is niet ingesteld om deze gegevens door te geven.\nMisschien gebruikt deze CGI, en dan wordt img_auth niet ondersteund.\nZie https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization voor meer informatie.",
-	"img-auth-nologinnWL": "Je bent niet aangemeld en \"$1\" staat niet op de witte lijst.",
 	"img-auth-isdir": "Je probeert de map \"$1\" te benaderen.\nAlleen toegang tot bestanden is toegestaan.",
 	"upload-curl-error28-text": "Het duurde te lang voordat de website antwoordde.\nControleer of de website beschikbaar is, wacht even en probeer het dan opnieuw.\nJe kunt het misschien proberen als het minder druk is.",
 	"upload_source_file": "(een bestand op je computer)",

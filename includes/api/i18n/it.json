@@ -265,7 +265,7 @@
 	"apihelp-query+allimages-param-start": "Il timestamp da cui iniziare l'elenco. Può essere utilizzato solo con $1sort=timestamp.",
 	"apihelp-query+allimages-param-end": "Il timestamp al quale interrompere l'elenco. Può essere utilizzato solo con $1sort=timestamp.",
 	"apihelp-query+allimages-param-limit": "Quante immagini in totale restituire.",
-	"apihelp-query+allimages-example-B": "Mostra un elenco di file a partire dalla lettera <kbd>B</kbd>.",
+	"apihelp-query+allimages-example-b": "Mostra un elenco di file a partire dalla lettera <kbd>B</kbd>.",
 	"apihelp-query+alllinks-summary": "Elenca tutti i collegamenti che puntano ad un namespace indicato.",
 	"apihelp-query+alllinks-param-from": "Il titolo del collegamento da cui iniziare l'elenco.",
 	"apihelp-query+alllinks-param-to": "Il titolo del collegamento al quale interrompere l'elenco.",

@@ -1044,7 +1044,7 @@
 	"allmessagesdefault": "默認其消息文字",
 	"allmessagescurrent": "現時其文字",
 	"allmessagestext": "茲是敆MediaWiki命名空間裏勢系統消息其蜀萆單單。\n如果汝卜想貢獻通用其MediaWiki基本地化服務，起動汝訪問[https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki本地化]共[https://translatewiki.net translatewiki.net]。",
-	"allmessagesnotsupportedDB": "茲蜀頁𣍐使其，因為'''$wgUseDatabaseMessages'''已經乞禁止去了。",
+	"allmessages-not-supported-database": "茲蜀頁𣍐使其，因為'''$wgUseDatabaseMessages'''已經乞禁止去了。",
 	"thumbnail-more": "Huóng-duâi",
 	"importlogpage": "Dô̤-ĭk nĭk-cê",
 	"tooltip-pt-userpage": "{{GENDER:|汝其用戶}}頁",

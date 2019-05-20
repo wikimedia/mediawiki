@@ -358,7 +358,7 @@
 	"apihelp-query+allusers-paramvalue-prop-blockinfo": "현재 차단된 사용자의 정보를 추가함.",
 	"apihelp-query+allusers-paramvalue-prop-editcount": "사용자의 편집 수를 추가합니다.",
 	"apihelp-query+allusers-param-witheditsonly": "편집을 한 사용자만 나열합니다.",
-	"apihelp-query+allusers-example-Y": "<kbd>Y</kbd>로 시작하는 사용자를 나열합니다.",
+	"apihelp-query+allusers-example-y": "<kbd>Y</kbd>로 시작하는 사용자를 나열합니다.",
 	"apihelp-query+authmanagerinfo-summary": "현재의 인증 상태에 대한 정보를 검색합니다.",
 	"apihelp-query+backlinks-summary": "제시된 문서에 연결된 모든 문서를 찾습니다.",
 	"apihelp-query+backlinks-param-namespace": "열거할 이름공간.",

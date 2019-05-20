@@ -220,7 +220,6 @@
 	"zip-bad": "Die Datei ist beschädigt oder eine aus anderweitigen Gründen nicht lesbare ZIP-Datei.\nSie kann daher keiner ordnungsgemässen Sicherheitsüberprüfung unterzogen werden.",
 	"zip-unsupported": "Diese ZIP-Datei verfügt über Komprimierungseigenschaften, die nicht von MediaWiki unterstützt werden.\nSie kann daher keiner ordnungsgemässen Sicherheitsüberprüfung unterzogen werden.",
 	"img-auth-badtitle": "Aus «$1» kann kein gültiger Titel erstellt werden.",
-	"img-auth-nologinnWL": "Du bist nicht angemeldet und «$1» ist nicht in der weissen Liste.",
 	"img-auth-nofile": "Datei «$1» existiert nicht.",
 	"img-auth-isdir": "Du versuchst, auf ein Verzeichnis «$1» zuzugreifen.\nNur Dateizugriff ist erlaubt.",
 	"img-auth-streaming": "Lade «$1».",

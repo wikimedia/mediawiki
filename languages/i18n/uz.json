@@ -803,7 +803,7 @@
 	"rcfilters-savedqueries-add-new-title": "Amaldagi filtrlar eslab qolinsin",
 	"rcfilters-search-placeholder": "Oʻzgarishlarni filtrlash (menyudan foydalaning yoki filtr nomini kiriting)",
 	"rcfilters-filterlist-title": "Filtrlar",
-	"rcfilters-filtergroup-userExpLevel": "Foydalanuvchining tajriba darajasi",
+	"rcfilters-filtergroup-user-experience-level": "Foydalanuvchining tajriba darajasi",
 	"rcfilters-filter-bots-label": "Bot",
 	"rcfilters-filter-minor-label": "Kichik tahrirlar",
 	"rcfilters-filter-major-label": "Oddiy tahrirlar",

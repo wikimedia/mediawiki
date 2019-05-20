@@ -1050,7 +1050,7 @@
 	"rcfilters-filter-pageedits-label": "آلشدکاریٱل بٱلگاْ",
 	"rcfilters-filter-newpages-label": "راسد کردن بٱلگاْ",
 	"rcfilters-filter-categorization-label": "آلشدکاری دٱسداْیٱل",
-	"rcfilters-filtergroup-lastRevision": "آخری ڤانیٱریٱل",
+	"rcfilters-filtergroup-lastrevision": "آخری ڤانیٱریٱل",
 	"rcfilters-filter-lastrevision-label": "آخری ڤانیٱری",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:نیڌ</strong> $1",
 	"rcfilters-target-page-placeholder": "نوم یٱ بٱلگاْ(یا دٱسداْ) ناْ بزنین",

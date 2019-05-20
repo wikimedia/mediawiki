@@ -706,7 +706,6 @@
 	"minoreditletter": "p",
 	"newpageletter": "G",
 	"boteditletter": "b",
-	"number_of_watching_users_pageview": "[tignude di voli di {{PLURAL:$1|un utent|$1 utents}}]",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} dopo la modifiche",
 	"newsectionsummary": "/* $1 */ gnove sezion",
 	"rc-enhanced-expand": "Cjale i detais (al covente JavaScript)",

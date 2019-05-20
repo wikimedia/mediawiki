@@ -1088,7 +1088,6 @@
 	"minoreditletter": "g",
 	"newpageletter": "B",
 	"boteditletter": "b",
-	"number_of_watching_users_pageview": "[$1 nagbabatay hin {{PLURAL:$1|gumaramit|mga gumaramit}}]",
 	"rc-change-size-new": "$1 {{PLURAL:$1|nga byte|nga mga byte}} kahuman han pagbag-o",
 	"newsectionsummary": "/* $1 */ bag-o nga bahin",
 	"rc-enhanced-expand": "Igpakita an detalye",
