@@ -175,6 +175,12 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithEmailBlock() {
+		$this->setMwGlobals( [
+			'wgEnableEmail' => true,
+			'wgEnableUserEmail' => true,
+			'wgSysopEmailBans' => true,
+		] );
+
 		$res = $this->doBlock( [ 'noemail' => '' ] );
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -187,6 +193,12 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithProhibitedEmailBlock() {
+		$this->setMwGlobals( [
+			'wgEnableEmail' => true,
+			'wgEnableUserEmail' => true,
+			'wgSysopEmailBans' => true,
+		] );
+
 		$this->setExpectedException( ApiUsageException::class,
 			"You don't have permission to block users from sending email through the wiki." );
 
