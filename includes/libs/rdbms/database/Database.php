@@ -1607,17 +1607,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$options['LIMIT'] = 1;
 
 		$res = $this->select( $table, $var, $cond, $fname, $options, $join_conds );
-		if ( $res === false || !$this->numRows( $res ) ) {
-			return false;
+		if ( $res === false ) {
+			throw new DBUnexpectedError( $this, "Got false from select()" );
 		}
 
 		$row = $this->fetchRow( $res );
-
-		if ( $row !== false ) {
-			return reset( $row );
-		} else {
+		if ( $row === false ) {
 			return false;
 		}
+
+		return reset( $row );
 	}
 
 	public function selectFieldValues(
@@ -1635,7 +1634,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$res = $this->select( $table, [ 'value' => $var ], $cond, $fname, $options, $join_conds );
 		if ( $res === false ) {
-			return false;
+			throw new DBUnexpectedError( $this, "Got false from select()" );
 		}
 
 		$values = [];
@@ -1872,19 +1871,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	) {
 		$options = (array)$options;
 		$options['LIMIT'] = 1;
-		$res = $this->select( $table, $vars, $conds, $fname, $options, $join_conds );
 
+		$res = $this->select( $table, $vars, $conds, $fname, $options, $join_conds );
 		if ( $res === false ) {
-			return false;
+			throw new DBUnexpectedError( $this, "Got false from select()" );
 		}
 
 		if ( !$this->numRows( $res ) ) {
 			return false;
 		}
 
-		$obj = $this->fetchObject( $res );
-
-		return $obj;
+		return $this->fetchObject( $res );
 	}
 
 	public function estimateRowCount(
