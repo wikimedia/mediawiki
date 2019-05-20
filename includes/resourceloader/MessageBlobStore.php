@@ -96,7 +96,7 @@ class MessageBlobStore implements LoggerAwareInterface {
 		$cache = $this->wanCache;
 		$checkKeys = [
 			// Global check key, see clear()
-			$cache->makeKey( __CLASS__ )
+			$cache->makeGlobalKey( __CLASS__ )
 		];
 		$cacheKeys = [];
 		foreach ( $modules as $name => $module ) {
@@ -173,9 +173,14 @@ class MessageBlobStore implements LoggerAwareInterface {
 	 */
 	public function clear() {
 		$cache = $this->wanCache;
-		// Disable holdoff because this invalidates all modules and also not needed since
-		// LocalisationCache is stored outside the database and doesn't have lag.
-		$cache->touchCheckKey( $cache->makeKey( __CLASS__ ), $cache::HOLDOFF_NONE );
+		// Disable hold-off because:
+		// - LocalisationCache is populated by messages on-disk and don't have DB lag,
+		//   thus there is no need for hold off. We only clear it after new localisation
+		//   updates are known to be deployed to all servers.
+		// - This global check key invalidates message blobs for all modules for all wikis
+		//   in cache contexts (e.g. languages, skins). Setting a hold-off on this key could
+		//   cause a cache stampede since no values would be stored for several seconds.
+		$cache->touchCheckKey( $cache->makeGlobalKey( __CLASS__ ), $cache::HOLDOFF_NONE );
 	}
 
 	/**
