@@ -250,7 +250,6 @@
 	"upload-dialog-button-cancel": "Abbrechen",
 	"uploadstash-badtoken": "Das Entfernen der vorab gespeicherten Dateien war erfolglos, vielleicht weil Ihre Sitzungsdaten abgelaufen sind. Bitte versuchen Sie es erneut.",
 	"img-auth-nopathinfo": "PATH_INFO fehlt.\nIhr Server ist nicht dafür eingerichtet, diese Information weiterzugeben.\nSie könnte CGI-gestützt sein und kann daher img_auth nicht ermöglichen.\nSiehe auch http://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
-	"img-auth-nologinnWL": "Sie sind nicht angemeldet und „$1“ ist nicht in der weißen Liste.",
 	"img-auth-isdir": "Sie versuchen, auf ein Verzeichnis „$1“ zuzugreifen.\nNur Dateizugriff ist erlaubt.",
 	"upload-curl-error6-text": "Die angegebene URL ist nicht erreichbar. Prüfen Sie sowohl die URL auf Fehler als auch den Online-Status der Seite.",
 	"upload-curl-error28-text": "Die Seite braucht zu lange, um zu antworten. Prüfen Sie, ob die Seite online ist, warten Sie einen kurzen Moment und versuchen Sie es dann erneut. Es kann sinnvoll sein, es zu einem anderen Zeitpunkt erneut zu versuchen.",

@@ -502,7 +502,7 @@
 	"allmessagesdefault": "Testu predefinitu",
 	"allmessagescurrent": "Testu attuale",
 	"allmessagestext": "Ista pagina riperturia a lista di tutti i messagi dispunibili in u spaziu MediaWiki. Per cuntribuì à a lucalizazione generica di MediaWiki, visità [[translatewiki:|Translatewiki.net]].",
-	"allmessagesnotsupportedDB": "Ista pagina ùn hè dispunibile perchè '''$wgUseDatabaseMessages''' ùn hè micca attivu.",
+	"allmessages-not-supported-database": "Ista pagina ùn hè dispunibile perchè '''$wgUseDatabaseMessages''' ùn hè micca attivu.",
 	"allmessages-filter-legend": "Filtru",
 	"allmessages-filter": "Filtrà per statu di mudifica:",
 	"allmessages-filter-unmodified": "Micca mudificati",

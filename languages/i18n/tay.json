@@ -616,7 +616,7 @@
 	"rcfilters-filter-newpages-label": "Ps’rux zngazyan",
 	"rcfilters-filter-categorization-label": "Pintbcyan na sinbahan",
 	"rcfilters-filter-logactions-label": "Miru’ sa bbiru’",
-	"rcfilters-filtergroup-lastRevision": "Spzyang giqas na sinnbah",
+	"rcfilters-filtergroup-lastrevision": "Spzyang giqas na sinnbah",
 	"rcnotefrom": "Kwara’ nyux kyahu’ ka {{PLURAL:$5|yasa quw}} qaniy ga, aring sa <strong>$3 $4</strong> ga, yasa pinsbah niya’ krayryax (ana pzyux ga ini’ hzinas sa  <strong>$1</strong>).",
 	"rclistfrom": "Inkahul misan sinbahan sa $2, $3",
 	"rcshowhideminor": "$1 mszik sa ssr’tun",

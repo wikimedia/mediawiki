@@ -859,7 +859,6 @@
 	"minoreditletter": "m",
 	"newpageletter": "N",
 	"boteditletter": "b",
-	"number_of_watching_users_pageview": "[{{PLURAL:$1|jëfandikukat moo koy topp|$1 jëfandikukat ñoo koy topp}}]",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} ginnaaw coppite gi",
 	"newsectionsummary": "/* $1 */ xaaj bu bees",

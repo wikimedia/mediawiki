@@ -1427,7 +1427,7 @@
 	"allmessagesdefault": "默认文本",
 	"allmessagescurrent": "当前文本",
 	"allmessagestext": "该个是MediaWiki名字空间里可用个系统消息列表。如果想搭MediaWiki个本地化贡献翻译，请访问[https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki本地化]搭[https://translatewiki.net translatewiki.net]。",
-	"allmessagesnotsupportedDB": "'''{{ns:special}}:Allmessages''' 呒处显示，因为 '''$wgUseDatabaseMessages''' 关勒浪。",
+	"allmessages-not-supported-database": "'''{{ns:special}}:Allmessages''' 呒处显示，因为 '''$wgUseDatabaseMessages''' 关勒浪。",
 	"thumbnail-more": "放大",
 	"filemissing": "文件寻弗着哉",
 	"importlogpage": "导入记录",

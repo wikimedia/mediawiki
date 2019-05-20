@@ -263,7 +263,7 @@
 	"apihelp-query+allusers-param-limit": "Het totaal aantal aan gebruikersnamen dat getoont moet worden.",
 	"apihelp-query+allusers-param-witheditsonly": "Toon alleen gebruikers die bewerkingen hebben gemaakt.",
 	"apihelp-query+allusers-param-activeusers": "Toon alleen gebruikers die actief zijn geweest in de laatste {{PLURAL:$1|dag|$1 dagen}}.",
-	"apihelp-query+allusers-example-Y": "Toon gebruikers vanaf <kbd>Y</kbd>.",
+	"apihelp-query+allusers-example-y": "Toon gebruikers vanaf <kbd>Y</kbd>.",
 	"apihelp-query+authmanagerinfo-summary": "Haal informatie op over de huidige authentificatiestatus.",
 	"apihelp-query+backlinks-summary": "Vind alle pagina's die verwijzen naar de gegeven pagina.",
 	"apihelp-query+backlinks-param-title": "Te onderzoeken titel. Kan niet in combinatie met <var>$1pageid</var> gebruikt worden.",
