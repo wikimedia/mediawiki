@@ -65,6 +65,8 @@ exports.config = {
 	// Patterns to exclude
 	exclude: [
 		relPath( './extensions/CirrusSearch/tests/selenium/specs/**/*.js' ),
+		// Disabled because these tests modify LocalSettings.php, see T199116 for the long-term fix.
+		relPath( './extensions/FileImporter/tests/selenium/specs/**/*.js' ),
 		// Disabled per T222517
 		relPath( './skins/MinervaNeue/tests/selenium/specs/**/*.js' )
 	],
