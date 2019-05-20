@@ -29,10 +29,6 @@ use MediaWiki\MediaWikiServices;
  * @ingroup JobQueue
  */
 class DoubleRedirectJob extends Job {
-	/** @var string Reason for the change, 'maintenance' or 'move'. Suffix fo
-	 *    message key 'double-redirect-fixed-'.
-	 */
-	private $reason;
 
 	/** @var Title The title which has changed, redirects pointing to this
 	 *    title are fixed
@@ -44,11 +40,15 @@ class DoubleRedirectJob extends Job {
 
 	/**
 	 * @param Title $title
-	 * @param array $params
+	 * @param array $params Expected to contain these elements:
+	 * - 'redirTitle' => string The title that changed and should be fixed.
+	 * - 'reason' => string Reason for the change, can be "move" or "maintenance". Used as a suffix
+	 *   for the message keys "double-redirect-fixed-move" and
+	 *   "double-redirect-fixed-maintenance".
+	 * ]
 	 */
 	function __construct( Title $title, array $params ) {
 		parent::__construct( 'fixDoubleRedirect', $title, $params );
-		$this->reason = $params['reason'];
 		$this->redirTitle = Title::newFromText( $params['redirTitle'] );
 	}
 
@@ -166,7 +166,7 @@ class DoubleRedirectJob extends Job {
 		$article = WikiPage::factory( $this->title );
 
 		// Messages: double-redirect-fixed-move, double-redirect-fixed-maintenance
-		$reason = wfMessage( 'double-redirect-fixed-' . $this->reason,
+		$reason = wfMessage( 'double-redirect-fixed-' . $this->params['reason'],
 			$this->redirTitle->getPrefixedText(), $newTitle->getPrefixedText()
 		)->inContentLanguage()->text();
 		$flags = EDIT_UPDATE | EDIT_SUPPRESS_RC | EDIT_INTERNAL;
