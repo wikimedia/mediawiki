@@ -71,12 +71,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var int New Database instance will already be connected when returned */
 	const NEW_CONNECTED = 1;
 
-	/** @var string SQL query */
-	protected $lastQuery = '';
+	/** @var string The last SQL query attempted */
+	private $lastQuery = '';
 	/** @var float|bool UNIX timestamp of last write query */
-	protected $lastWriteTime = false;
+	private $lastWriteTime = false;
 	/** @var string|bool */
-	protected $phpError = false;
+	private $lastPhpError = false;
+
 	/** @var string Server that this instance is currently connected to */
 	protected $server;
 	/** @var string User that this instance is currently connected under the name of */
@@ -874,7 +875,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Set a custom error handler for logging errors during database connection
 	 */
 	protected function installErrorHandler() {
-		$this->phpError = false;
+		$this->lastPhpError = false;
 		$this->htmlErrors = ini_set( 'html_errors', '0' );
 		set_error_handler( [ $this, 'connectionErrorLogger' ] );
 	}
@@ -897,8 +898,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return string|bool Last PHP error for this DB (typically connection errors)
 	 */
 	protected function getLastPHPError() {
-		if ( $this->phpError ) {
-			$error = preg_replace( '!\[<a.*</a>\]!', '', $this->phpError );
+		if ( $this->lastPhpError ) {
+			$error = preg_replace( '!\[<a.*</a>\]!', '', $this->lastPhpError );
 			$error = preg_replace( '!^.*?:\s?(.*)$!', '$1', $error );
 
 			return $error;
@@ -915,7 +916,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $errstr
 	 */
 	public function connectionErrorLogger( $errno, $errstr ) {
-		$this->phpError = $errstr;
+		$this->lastPhpError = $errstr;
 	}
 
 	/**
@@ -1197,7 +1198,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$priorTransaction = $this->trxLevel;
 		$priorWritesPending = $this->writesOrCallbacksPending();
-		$this->lastQuery = $sql;
 
 		if ( $this->isWriteQuery( $sql ) ) {
 			# In theory, non-persistent writes are allowed in read-only mode, but due to things
@@ -1290,7 +1290,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private function attemptQuery( $sql, $commentedSql, $isEffectiveWrite, $fname ) {
 		$this->beginIfImplied( $sql, $fname );
 
-		# Keep track of whether the transaction has write queries pending
+		// Keep track of whether the transaction has write queries pending
 		if ( $isEffectiveWrite ) {
 			$this->lastWriteTime = microtime( true );
 			if ( $this->trxLevel && !$this->trxDoneWrites ) {
@@ -1300,25 +1300,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 		}
 
-		if ( $this->getFlag( self::DBO_DEBUG ) ) {
-			$this->queryLogger->debug( "{$this->getDomainID()} {$commentedSql}" );
-		}
-
-		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
-		# generalizeSQL() will probably cut down the query to reasonable
-		# logging size most of the time. The substr is really just a sanity check.
-		if ( $isMaster ) {
-			$queryProf = 'query-m: ' . substr( self::generalizeSQL( $sql ), 0, 255 );
-		} else {
-			$queryProf = 'query: ' . substr( self::generalizeSQL( $sql ), 0, 255 );
-		}
-
-		# Include query transaction state
-		$queryProf .= $this->trxShortId ? " [TRX#{$this->trxShortId}]" : "";
+		$prefix = !is_null( $this->getLBInfo( 'master' ) ) ? 'query-m: ' : 'query: ';
+		$generalizedSql = new GeneralizedSql( $sql, $this->trxShortId, $prefix );
 
 		$startTime = microtime( true );
-		$ps = $this->profiler ? ( $this->profiler )( $queryProf ) : null;
+		$ps = $this->profiler
+			? ( $this->profiler )( $generalizedSql->stringify() )
+			: null;
 		$this->affectedRowCount = null;
+		$this->lastQuery = $sql;
 		$ret = $this->doQuery( $commentedSql );
 		$this->affectedRowCount = $this->affectedRows();
 		unset( $ps ); // profile out (if set)
@@ -1337,16 +1327,24 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$this->trxProfiler->recordQueryCompletion(
-			$queryProf,
+			$generalizedSql,
 			$startTime,
 			$isEffectiveWrite,
 			$isEffectiveWrite ? $this->affectedRows() : $this->numRows( $ret )
 		);
-		$this->queryLogger->debug( $sql, [
-			'method' => $fname,
-			'master' => $isMaster,
-			'runtime' => $queryRuntime,
-		] );
+
+		// Avoid the overhead of logging calls unless debug mode is enabled
+		if ( $this->getFlag( self::DBO_DEBUG ) ) {
+			$this->queryLogger->debug(
+				"{method} [{runtime}s]: $sql",
+				[
+					'method' => $fname,
+					'db_host' => $this->getServer(),
+					'domain' => $this->getDomainID(),
+					'runtime' => round( $queryRuntime, 3 )
+				]
+			);
+		}
 
 		return $ret;
 	}
@@ -1546,11 +1544,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param int $errno
 	 * @param string $sql
 	 * @param string $fname
-	 * @param bool $ignoreErrors
+	 * @param bool $ignore
 	 * @throws DBQueryError
 	 */
-	public function reportQueryError( $error, $errno, $sql, $fname, $ignoreErrors = false ) {
-		if ( $ignoreErrors ) {
+	public function reportQueryError( $error, $errno, $sql, $fname, $ignore = false ) {
+		if ( $ignore ) {
 			$this->queryLogger->debug( "SQL ERROR (ignored): $error\n" );
 		} else {
 			$exception = $this->getQueryExceptionAndLog( $error, $errno, $sql, $fname );
@@ -1580,9 +1578,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			] )
 		);
 		$this->queryLogger->debug( "SQL ERROR: " . $error . "\n" );
-		$wasQueryTimeout = $this->wasQueryTimeout( $error, $errno );
-		if ( $wasQueryTimeout ) {
+		if ( $this->wasQueryTimeout( $error, $errno ) ) {
 			$e = new DBQueryTimeoutError( $this, $error, $errno, $sql, $fname );
+		} elseif ( $this->wasConnectionError( $errno ) ) {
+			$e = new DBQueryDisconnectedError( $this, $error, $errno, $sql, $fname );
 		} else {
 			$e = new DBQueryError( $this, $error, $errno, $sql, $fname );
 		}
@@ -2031,36 +2030,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$options[] = 'FOR UPDATE';
 
 		return $this->selectRowCount( $table, '*', $conds, $fname, $options, $join_conds );
-	}
-
-	/**
-	 * Removes most variables from an SQL query and replaces them with X or N for numbers.
-	 * It's only slightly flawed. Don't use for anything important.
-	 *
-	 * @param string $sql A SQL Query
-	 *
-	 * @return string
-	 */
-	protected static function generalizeSQL( $sql ) {
-		# This does the same as the regexp below would do, but in such a way
-		# as to avoid crashing php on some large strings.
-		# $sql = preg_replace( "/'([^\\\\']|\\\\.)*'|\"([^\\\\\"]|\\\\.)*\"/", "'X'", $sql );
-
-		$sql = str_replace( "\\\\", '', $sql );
-		$sql = str_replace( "\\'", '', $sql );
-		$sql = str_replace( "\\\"", '', $sql );
-		$sql = preg_replace( "/'.*'/s", "'X'", $sql );
-		$sql = preg_replace( '/".*"/s', "'X'", $sql );
-
-		# All newlines, tabs, etc replaced by single space
-		$sql = preg_replace( '/\s+/', ' ', $sql );
-
-		# All numbers => N,
-		# except the ones surrounded by characters, e.g. l10n
-		$sql = preg_replace( '/-?\d+(,-?\d+)+/s', 'N,...,N', $sql );
-		$sql = preg_replace( '/(?<![a-zA-Z])-?\d+(?![a-zA-Z])/s', 'N', $sql );
-
-		return $sql;
 	}
 
 	public function fieldExists( $table, $field, $fname = __METHOD__ ) {

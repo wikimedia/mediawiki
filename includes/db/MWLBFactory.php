@@ -56,6 +56,7 @@ abstract class MWLBFactory {
 		'DBuser',
 		'DBWindowsAuthentication',
 		'DebugDumpSql',
+		'DebugLogFile',
 		'ExternalServers',
 		'SQLiteDataDir',
 		'SQLMode',
@@ -206,6 +207,7 @@ abstract class MWLBFactory {
 
 		$flags = DBO_DEFAULT;
 		$flags |= $options->get( 'DebugDumpSql' ) ? DBO_DEBUG : 0;
+		$flags |= $options->get( 'DebugLogFile' ) ? DBO_DEBUG : 0;
 		if ( $server['type'] === 'oracle' ) {
 			$flags |= $options->get( 'DBOracleDRCP' ) ? DBO_PERSISTENT : 0;
 		}
