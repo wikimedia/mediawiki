@@ -1496,6 +1496,7 @@ $wgAutoloadLocalClasses = [
 	'TrackBlobs' => __DIR__ . '/maintenance/storage/trackBlobs.php',
 	'TrackingCategories' => __DIR__ . '/includes/TrackingCategories.php',
 	'TraditionalImageGallery' => __DIR__ . '/includes/gallery/TraditionalImageGallery.php',
+	'TransactionRoundAwareUpdate' => __DIR__ . '/includes/deferred/TransactionRoundAwareUpdate.php',
 	'TransactionRoundDefiningUpdate' => __DIR__ . '/includes/deferred/TransactionRoundDefiningUpdate.php',
 	'TransformParameterError' => __DIR__ . '/includes/media/TransformParameterError.php',
 	'TransformTooBigImageAreaError' => __DIR__ . '/includes/media/TransformTooBigImageAreaError.php',

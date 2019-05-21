@@ -5,7 +5,9 @@
  *
  * @since 1.31
  */
-class TransactionRoundDefiningUpdate implements DeferrableUpdate, DeferrableCallback {
+class TransactionRoundDefiningUpdate
+	implements DeferrableUpdate, DeferrableCallback, TransactionRoundAwareUpdate
+{
 	/** @var callable|null */
 	private $callback;
 	/** @var string */
@@ -26,5 +28,13 @@ class TransactionRoundDefiningUpdate implements DeferrableUpdate, DeferrableCall
 
 	public function getOrigin() {
 		return $this->fname;
+	}
+
+	/**
+	 * @return int One of the class TRX_ROUND_* constants
+	 * @since 1.34
+	 */
+	final public function getTransactionRoundRequirement() {
+		return self::TRX_ROUND_ABSENT;
 	}
 }
