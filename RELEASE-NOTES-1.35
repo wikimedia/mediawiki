@@ -207,6 +207,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Preferences which use HTMLTitlesMultiselectField can make use of
   MultiTitleFilter class for saving title text to/from article IDs in user
   preferences.
+* OutputPage::addHtmlClasses() was added to allow injecting CSS classes on
+  to the <html> element on page load.
 * …
 
 === External library changes in 1.35 ===
