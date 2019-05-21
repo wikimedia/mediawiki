@@ -880,7 +880,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	private function getLatestNotificationTimestamp( RecentChange $rc ) {
 		return $this->watchStore->getLatestNotificationTimestamp(
 			$rc->getAttribute( 'wl_notificationtimestamp' ),
-			$rc->getPerformer(),
+			$this->getUser(),
 			$rc->getTitle()
 		);
 	}
