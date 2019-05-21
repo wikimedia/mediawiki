@@ -317,7 +317,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'handheld', $request->getBool( 'handheld' ) );
 		$tpl->set( 'loggedin', $this->loggedin );
 		$tpl->set( 'notspecialpage', !$title->isSpecialPage() );
-		$tpl->set( 'searchaction', $this->escapeSearchLink() );
+		$tpl->set( 'searchaction', $this->getSearchLink() );
 		$tpl->set( 'searchtitle', SpecialPage::getTitleFor( 'Search' )->getPrefixedDBkey() );
 		$tpl->set( 'search', trim( $request->getVal( 'search' ) ) );
 		$tpl->set( 'stylepath', $wgStylePath );

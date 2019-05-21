@@ -320,6 +320,8 @@ because of Phabricator reports.
 * The use of the $terms param in the ShowSearchHit and ShowSearchHitTitle
   hooks is highly discouraged as it's only populated by SearchDatabase search
   engines.
+* Skin::escapeSearchLink() is deprecated. Use Skin::getSearchLink() or the skin
+  template option 'searchaction' instead.
 
 === Other changes in 1.34 ===
 * …
