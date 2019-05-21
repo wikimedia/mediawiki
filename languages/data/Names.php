@@ -361,7 +361,7 @@ class Names {
 		'rgn' => 'Rumagnôl', # Romagnol
 		'rif' => 'Tarifit', # Tarifit
 		'rm' => 'rumantsch', # Raeto-Romance
-		'rmy' => 'Romani', # Vlax Romany
+		'rmy' => 'romani čhib', # Vlax Romany
 		'rn' => 'Kirundi', # Rundi/Kirundi/Urundi
 		'ro' => 'română', # Romanian
 		'roa-rup' => 'armãneashti', # Aromanian (deprecated code, 'rup' exists in ISO 639-3)
