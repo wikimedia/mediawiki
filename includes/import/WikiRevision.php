@@ -56,14 +56,6 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.2
-	 * @var int
-	 * @deprecated in 1.29. Unused.
-	 * @note Introduced in 436a028086fb3f01c4605c5ad2964d56f9306aca, unused there, unused now.
-	 */
-	public $user = 0;
-
-	/**
-	 * @since 1.2
 	 * @var string
 	 */
 	public $user_text = "";
