@@ -173,6 +173,8 @@ because of Phabricator reports.
 * The LegacyHookPreAuthenticationProvider class, deprecated since its creation
   in 1.27, has been removed.
 * IP::isValidBlock(), deprecated in 1.30, has been removed.
+* WikiPage::prepareContentForEdit now doesn't accept an integer for $revision,
+  was deprecated in 1.25.
 * …
 
 === Deprecations in 1.34 ===

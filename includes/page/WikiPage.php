@@ -1962,9 +1962,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @deprecated since 1.32, use getDerivedDataUpdater instead.
 	 *
 	 * @param Content $content
-	 * @param Revision|RevisionRecord|int|null $revision Revision object.
-	 *        For backwards compatibility, a revision ID is also accepted,
-	 *        but this is deprecated.
+	 * @param Revision|RevisionRecord|null $revision Revision object.
 	 *        Used with vary-revision or vary-revision-id.
 	 * @param User|null $user
 	 * @param string|null $serialFormat IGNORED
@@ -1987,19 +1985,13 @@ class WikiPage implements Page, IDBAccessObject {
 			$user = $wgUser;
 		}
 
-		if ( !is_object( $revision ) ) {
-			$revid = $revision;
-			// This code path is deprecated, and nothing is known to
-			// use it, so performance here shouldn't be a worry.
-			if ( $revid !== null ) {
-				wfDeprecated( __METHOD__ . ' with $revision = revision ID', '1.25' );
-				$store = $this->getRevisionStore();
-				$revision = $store->getRevisionById( $revid, Revision::READ_LATEST );
-			} else {
-				$revision = null;
+		if ( $revision !== null ) {
+			if ( $revision instanceof Revision ) {
+				$revision = $revision->getRevisionRecord();
+			} elseif ( !( $revision instanceof RevisionRecord ) ) {
+				throw new InvalidArgumentException(
+					__METHOD__ . ': invalid $revision argument type ' . gettype( $revision ) );
 			}
-		} elseif ( $revision instanceof Revision ) {
-			$revision = $revision->getRevisionRecord();
 		}
 
 		$slots = RevisionSlotsUpdate::newFromContent( [ SlotRecord::MAIN => $content ] );
