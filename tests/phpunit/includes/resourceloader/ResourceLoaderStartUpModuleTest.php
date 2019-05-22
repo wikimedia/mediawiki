@@ -36,6 +36,78 @@ mw.loader.register( [
 ] );',
 			] ],
 			[ [
+				'msg' => 'Optimise the dependency tree (basic case)',
+				'modules' => [
+					'a' => new ResourceLoaderTestModule( [ 'dependencies' => [ 'b', 'c', 'd' ] ] ),
+					'b' => new ResourceLoaderTestModule( [ 'dependencies' => [ 'c' ] ] ),
+					'c' => new ResourceLoaderTestModule( [ 'dependencies' => [] ] ),
+					'd' => new ResourceLoaderTestModule( [ 'dependencies' => [] ] ),
+				],
+				'out' => '
+mw.loader.addSource( {
+    "local": "/w/load.php"
+} );
+mw.loader.register( [
+    [
+        "a",
+        "{blankVer}",
+        [
+            1,
+            3
+        ]
+    ],
+    [
+        "b",
+        "{blankVer}",
+        [
+            2
+        ]
+    ],
+    [
+        "c",
+        "{blankVer}"
+    ],
+    [
+        "d",
+        "{blankVer}"
+    ]
+] );',
+			] ],
+			[ [
+				'msg' => 'Optimise the dependency tree (tolerate unknown deps)',
+				'modules' => [
+					'a' => new ResourceLoaderTestModule( [ 'dependencies' => [ 'b', 'c', 'x' ] ] ),
+					'b' => new ResourceLoaderTestModule( [ 'dependencies' => [ 'c', 'x' ] ] ),
+					'c' => new ResourceLoaderTestModule( [ 'dependencies' => [] ] ),
+				],
+				'out' => '
+mw.loader.addSource( {
+    "local": "/w/load.php"
+} );
+mw.loader.register( [
+    [
+        "a",
+        "{blankVer}",
+        [
+            1,
+            "x"
+        ]
+    ],
+    [
+        "b",
+        "{blankVer}",
+        [
+            2,
+            "x"
+        ]
+    ],
+    [
+        "c",
+        "{blankVer}"
+    ]
+] );',
+			] ],
+			[ [
 				'msg' => 'Omit raw modules from registry',
 				'modules' => [
 					'test.raw' => new ResourceLoaderTestModule( [ 'isRaw' => true ] ),
@@ -454,8 +526,7 @@ mw.loader.register( [
 
 	/**
 	 * @dataProvider provideGetModuleRegistrations
-	 * @covers ResourceLoaderStartUpModule::getModuleRegistrations
-	 * @covers ResourceLoaderStartUpModule::compileUnresolvedDependencies
+	 * @covers ResourceLoaderStartUpModule
 	 * @covers ResourceLoader::makeLoaderRegisterScript
 	 */
 	public function testGetModuleRegistrations( $case ) {
