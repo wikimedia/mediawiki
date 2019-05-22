@@ -216,6 +216,7 @@ because of Phabricator reports.
   and SystemBlock (for temporary blocks created by the system). SystemBlock
   should be used when creating any temporary blocks.
 * Parser::$mConf is deprecated. It will be removed entirely in a later version.
+  Some context can be found at T224165.
 * Constructing Parser directly is deprecated. Obtain one from ParserFactory.
 
 === Other changes in 1.34 ===
