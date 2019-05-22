@@ -132,7 +132,7 @@ class WatchedItemQueryService {
 	 *                                 id fields ('rc_cur_id', 'rc_this_oldid', 'rc_last_oldid')
 	 *                                 if false (default)
 	 * @param array|null &$startFrom Continuation value: [ string $rcTimestamp, int $rcId ]
-	 * @return array of pairs ( WatchedItem $watchedItem, string[] $recentChangeInfo ),
+	 * @return array[] Array of pairs ( WatchedItem $watchedItem, string[] $recentChangeInfo ),
 	 *         where $recentChangeInfo contains the following keys:
 	 *         - 'rc_id',
 	 *         - 'rc_namespace',
