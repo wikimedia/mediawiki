@@ -20,6 +20,7 @@
  * @file
  * @ingroup Parser
  */
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinkTarget;
@@ -169,8 +170,15 @@ class Parser {
 	 * @var MagicWordArray
 	 */
 	public $mSubstWords;
+
+	/**
+	 * @deprecated since 1.34, there should be no need to use this
+	 * @var array
+	 */
+	public $mConf;
+
 	# Initialised in constructor
-	public $mConf, $mExtLinkBracketedRegex, $mUrlProtocols;
+	public $mExtLinkBracketedRegex, $mUrlProtocols;
 
 	# Initialized in getPreprocessor()
 	/** @var Preprocessor */
@@ -269,8 +277,14 @@ class Parser {
 	/** @var SpecialPageFactory */
 	private $specialPageFactory;
 
-	/** @var Config */
-	private $siteConfig;
+	/**
+	 * This is called $svcOptions instead of $options like elsewhere to avoid confusion with
+	 * $mOptions, which is public and widely used, and also with the local variable $options used
+	 * for ParserOptions throughout this file.
+	 *
+	 * @var ServiceOptions
+	 */
+	private $svcOptions;
 
 	/** @var LinkRendererFactory */
 	private $linkRendererFactory;
@@ -279,45 +293,84 @@ class Parser {
 	private $nsInfo;
 
 	/**
-	 * @param array $parserConf See $wgParserConf documentation
+	 * TODO Make this a const when HHVM support is dropped (T192166)
+	 *
+	 * @var array
+	 * @since 1.33
+	 */
+	public static $constructorOptions = [
+		// See $wgParserConf documentation
+		'class',
+		'preprocessorClass',
+		// See documentation for the corresponding config options
+		'ArticlePath',
+		'EnableScaryTranscluding',
+		'ExtraInterlanguageLinkPrefixes',
+		'FragmentMode',
+		'LanguageCode',
+		'MaxSigChars',
+		'MaxTocLevel',
+		'MiserMode',
+		'ScriptPath',
+		'Server',
+		'ServerName',
+		'ShowHostnames',
+		'Sitename',
+		'StylePath',
+		'TranscludeCacheExpiry',
+	];
+
+	/**
+	 * Constructing parsers directly is deprecated! Use a ParserFactory.
+	 *
+	 * @param ServiceOptions|null $svcOptions
 	 * @param MagicWordFactory|null $magicWordFactory
 	 * @param Language|null $contLang Content language
 	 * @param ParserFactory|null $factory
 	 * @param string|null $urlProtocols As returned from wfUrlProtocols()
 	 * @param SpecialPageFactory|null $spFactory
-	 * @param Config|null $siteConfig
 	 * @param LinkRendererFactory|null $linkRendererFactory
 	 * @param NamespaceInfo|null $nsInfo
 	 */
 	public function __construct(
-		array $parserConf = [], MagicWordFactory $magicWordFactory = null,
+		$svcOptions = null, MagicWordFactory $magicWordFactory = null,
 		Language $contLang = null, ParserFactory $factory = null, $urlProtocols = null,
-		SpecialPageFactory $spFactory = null, Config $siteConfig = null,
-		LinkRendererFactory $linkRendererFactory = null,
-		NamespaceInfo $nsInfo = null
+		SpecialPageFactory $spFactory = null, $linkRendererFactory = null, $nsInfo = null
 	) {
-		$this->mConf = $parserConf;
+		$services = MediaWikiServices::getInstance();
+		if ( !$svcOptions || is_array( $svcOptions ) ) {
+			// Pre-1.34 calling convention is the first parameter is just ParserConf, the seventh is
+			// Config, and the eighth is LinkRendererFactory.
+			$this->mConf = (array)$svcOptions;
+			if ( empty( $this->mConf['class'] ) ) {
+				$this->mConf['class'] = self::class;
+			}
+			if ( empty( $this->mConf['preprocessorClass'] ) ) {
+				$this->mConf['preprocessorClass'] = self::getDefaultPreprocessorClass();
+			}
+			$this->svcOptions = new ServiceOptions( self::$constructorOptions,
+				$this->mConf,
+				func_num_args() > 6 ? func_get_arg( 6 ) : $services->getMainConfig()
+			);
+			$linkRendererFactory = func_num_args() > 7 ? func_get_arg( 7 ) : null;
+			$nsInfo = func_num_args() > 8 ? func_get_arg( 8 ) : null;
+		} else {
+			// New calling convention
+			$svcOptions->assertRequiredOptions( self::$constructorOptions );
+			// $this->mConf is public, so we'll keep those two options there as well for
+			// compatibility until it's removed
+			$this->mConf = [
+				'class' => $svcOptions->get( 'class' ),
+				'preprocessorClass' => $svcOptions->get( 'preprocessorClass' ),
+			];
+			$this->svcOptions = $svcOptions;
+		}
+
 		$this->mUrlProtocols = $urlProtocols ?? wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->mUrlProtocols . ')' .
 			self::EXT_LINK_ADDR .
 			self::EXT_LINK_URL_CLASS . '*)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F\\x{FFFD}]*?)\]/Su';
-		if ( isset( $parserConf['preprocessorClass'] ) ) {
-			$this->mPreprocessorClass = $parserConf['preprocessorClass'];
-		} elseif ( wfIsHHVM() ) {
-			# Under HHVM Preprocessor_Hash is much faster than Preprocessor_DOM
-			$this->mPreprocessorClass = Preprocessor_Hash::class;
-		} elseif ( extension_loaded( 'domxml' ) ) {
-			# PECL extension that conflicts with the core DOM extension (T15770)
-			wfDebug( "Warning: you have the obsolete domxml extension for PHP. Please remove it!\n" );
-			$this->mPreprocessorClass = Preprocessor_Hash::class;
-		} elseif ( extension_loaded( 'dom' ) ) {
-			$this->mPreprocessorClass = Preprocessor_DOM::class;
-		} else {
-			$this->mPreprocessorClass = Preprocessor_Hash::class;
-		}
-		wfDebug( __CLASS__ . ": using preprocessor: {$this->mPreprocessorClass}\n" );
 
-		$services = MediaWikiServices::getInstance();
 		$this->magicWordFactory = $magicWordFactory ??
 			$services->getMagicWordFactory();
 
@@ -325,9 +378,7 @@ class Parser {
 
 		$this->factory = $factory ?? $services->getParserFactory();
 		$this->specialPageFactory = $spFactory ?? $services->getSpecialPageFactory();
-		$this->siteConfig = $siteConfig ?? $services->getMainConfig();
-		$this->linkRendererFactory =
-			$linkRendererFactory ?? $services->getLinkRendererFactory();
+		$this->linkRendererFactory = $linkRendererFactory ?? $services->getLinkRendererFactory();
 		$this->nsInfo = $nsInfo ?? $services->getNamespaceInfo();
 	}
 
@@ -364,6 +415,28 @@ class Parser {
 		}
 
 		Hooks::run( 'ParserCloned', [ $this ] );
+	}
+
+	/**
+	 * Which class should we use for the preprocessor if not otherwise specified?
+	 *
+	 * @since 1.34
+	 * @return string
+	 */
+	public static function getDefaultPreprocessorClass() {
+		if ( wfIsHHVM() ) {
+			# Under HHVM Preprocessor_Hash is much faster than Preprocessor_DOM
+			return Preprocessor_Hash::class;
+		}
+		if ( extension_loaded( 'domxml' ) ) {
+			# PECL extension that conflicts with the core DOM extension (T15770)
+			wfDebug( "Warning: you have the obsolete domxml extension for PHP. Please remove it!\n" );
+			return Preprocessor_Hash::class;
+		}
+		if ( extension_loaded( 'dom' ) ) {
+			return Preprocessor_DOM::class;
+		}
+		return Preprocessor_Hash::class;
 	}
 
 	/**
@@ -597,7 +670,7 @@ class Parser {
 		Hooks::run( 'ParserLimitReportPrepare', [ $this, $this->mOutput ] );
 
 		$limitReport = "NewPP limit report\n";
-		if ( $this->siteConfig->get( 'ShowHostnames' ) ) {
+		if ( $this->svcOptions->get( 'ShowHostnames' ) ) {
 			$limitReport .= 'Parsed by ' . wfHostname() . "\n";
 		}
 		$limitReport .= 'Cached time: ' . $this->mOutput->getCacheTime() . "\n";
@@ -648,7 +721,7 @@ class Parser {
 		$this->mOutput->setLimitReportData( 'limitreport-timingprofile', $profileReport );
 
 		// Add other cache related metadata
-		if ( $this->siteConfig->get( 'ShowHostnames' ) ) {
+		if ( $this->svcOptions->get( 'ShowHostnames' ) ) {
 			$this->mOutput->setLimitReportData( 'cachereport-origin', wfHostname() );
 		}
 		$this->mOutput->setLimitReportData( 'cachereport-timestamp',
@@ -969,7 +1042,7 @@ class Parser {
 	 */
 	public function getPreprocessor() {
 		if ( !isset( $this->mPreprocessor ) ) {
-			$class = $this->mPreprocessorClass;
+			$class = $this->svcOptions->get( 'preprocessorClass' );
 			$this->mPreprocessor = new $class( $this );
 		}
 		return $this->mPreprocessor;
@@ -2386,7 +2459,7 @@ class Parser {
 				if (
 					$iw && $this->mOptions->getInterwikiMagic() && $nottalk && (
 						Language::fetchLanguageName( $iw, null, 'mw' ) ||
-						in_array( $iw, $this->siteConfig->get( 'ExtraInterlanguageLinkPrefixes' ) )
+						in_array( $iw, $this->svcOptions->get( 'ExtraInterlanguageLinkPrefixes' ) )
 					)
 				) {
 					# T26502: filter duplicates
@@ -2718,7 +2791,7 @@ class Parser {
 				break;
 			case 'revisionid':
 				if (
-					$this->siteConfig->get( 'MiserMode' ) &&
+					$this->svcOptions->get( 'MiserMode' ) &&
 					!$this->mOptions->getInterfaceMessage() &&
 					// @TODO: disallow this word on all namespaces
 					$this->nsInfo->isContent( $this->mTitle->getNamespace() )
@@ -2882,21 +2955,21 @@ class Parser {
 				$value = SpecialVersion::getVersion();
 				break;
 			case 'articlepath':
-				return $this->siteConfig->get( 'ArticlePath' );
+				return $this->svcOptions->get( 'ArticlePath' );
 			case 'sitename':
-				return $this->siteConfig->get( 'Sitename' );
+				return $this->svcOptions->get( 'Sitename' );
 			case 'server':
-				return $this->siteConfig->get( 'Server' );
+				return $this->svcOptions->get( 'Server' );
 			case 'servername':
-				return $this->siteConfig->get( 'ServerName' );
+				return $this->svcOptions->get( 'ServerName' );
 			case 'scriptpath':
-				return $this->siteConfig->get( 'ScriptPath' );
+				return $this->svcOptions->get( 'ScriptPath' );
 			case 'stylepath':
-				return $this->siteConfig->get( 'StylePath' );
+				return $this->svcOptions->get( 'StylePath' );
 			case 'directionmark':
 				return $pageLang->getDirMark();
 			case 'contentlanguage':
-				return $this->siteConfig->get( 'LanguageCode' );
+				return $this->svcOptions->get( 'LanguageCode' );
 			case 'pagelanguage':
 				$value = $pageLang->getCode();
 				break;
@@ -3838,7 +3911,7 @@ class Parser {
 	 * @return string
 	 */
 	public function interwikiTransclude( $title, $action ) {
-		if ( !$this->siteConfig->get( 'EnableScaryTranscluding' ) ) {
+		if ( !$this->svcOptions->get( 'EnableScaryTranscluding' ) ) {
 			return wfMessage( 'scarytranscludedisabled' )->inContentLanguage()->text();
 		}
 
@@ -3858,7 +3931,7 @@ class Parser {
 				( $wikiId !== false ) ? $wikiId : 'external',
 				sha1( $url )
 			),
-			$this->siteConfig->get( 'TranscludeCacheExpiry' ),
+			$this->svcOptions->get( 'TranscludeCacheExpiry' ),
 			function ( $oldValue, &$ttl ) use ( $url, $fname, $cache ) {
 				$req = MWHttpRequest::factory( $url, [], $fname );
 
@@ -4230,7 +4303,7 @@ class Parser {
 
 		$headlines = $numMatches !== false ? $matches[3] : [];
 
-		$maxTocLevel = $this->siteConfig->get( 'MaxTocLevel' );
+		$maxTocLevel = $this->svcOptions->get( 'MaxTocLevel' );
 		foreach ( $headlines as $headline ) {
 			$isTemplate = false;
 			$titleText = false;
@@ -4684,7 +4757,7 @@ class Parser {
 
 		$nickname = $nickname == null ? $username : $nickname;
 
-		if ( mb_strlen( $nickname ) > $this->siteConfig->get( 'MaxSigChars' ) ) {
+		if ( mb_strlen( $nickname ) > $this->svcOptions->get( 'MaxSigChars' ) ) {
 			$nickname = $username;
 			wfDebug( __METHOD__ . ": $username has overlong signature.\n" );
 		} elseif ( $fancySig !== false ) {
@@ -6005,7 +6078,7 @@ class Parser {
 	}
 
 	private function makeLegacyAnchor( $sectionName ) {
-		$fragmentMode = $this->siteConfig->get( 'FragmentMode' );
+		$fragmentMode = $this->svcOptions->get( 'FragmentMode' );
 		if ( isset( $fragmentMode[1] ) && $fragmentMode[1] === 'legacy' ) {
 			// ForAttribute() and ForLink() are the same for legacy encoding
 			$id = Sanitizer::escapeIdForAttribute( $sectionName, Sanitizer::ID_FALLBACK );

@@ -416,13 +416,22 @@ return [
 	},
 
 	'ParserFactory' => function ( MediaWikiServices $services ) : ParserFactory {
-		return new ParserFactory(
+		$options = new ServiceOptions( Parser::$constructorOptions,
+			// 'class' and 'preprocessorClass'
 			$services->getMainConfig()->get( 'ParserConf' ),
+			// Make sure to have defaults in case someone overrode ParserConf with something silly
+			[ 'class' => Parser::class,
+				'preprocessorClass' => Parser::getDefaultPreprocessorClass() ],
+			// Plus a buch of actual config options
+			$services->getMainConfig()
+		);
+
+		return new ParserFactory(
+			$options,
 			$services->getMagicWordFactory(),
 			$services->getContentLanguage(),
 			wfUrlProtocols(),
 			$services->getSpecialPageFactory(),
-			$services->getMainConfig(),
 			$services->getLinkRendererFactory(),
 			$services->getNamespaceInfo()
 		);

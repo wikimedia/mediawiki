@@ -213,6 +213,8 @@ because of Phabricator reports.
 * The Block class is separated into Block (for blocks stored in the database),
   and SystemBlock (for temporary blocks created by the system). SystemBlock
   should be used when creating any temporary blocks.
+* Parser::$mConf is deprecated. It will be removed entirely in a later version.
+* Constructing Parser directly is deprecated. Obtain one from ParserFactory.
 
 === Other changes in 1.34 ===
 * …
