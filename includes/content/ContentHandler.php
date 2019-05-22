@@ -646,9 +646,6 @@ abstract class ContentHandler {
 		$slotDiffRenderer->setStatsdDataFactory( $statsdDataFactory );
 		// XXX using the page language would be better, but it's unclear how that should be injected
 		$slotDiffRenderer->setLanguage( $contentLanguage );
-		$slotDiffRenderer->setWikiDiff2MovedParagraphDetectionCutoff(
-			$context->getConfig()->get( 'WikiDiff2MovedParagraphDetectionCutoff' )
-		);
 
 		$engine = DifferenceEngine::getEngine();
 		if ( $engine === false ) {
