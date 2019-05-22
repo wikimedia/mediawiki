@@ -38,7 +38,9 @@ For notes on 1.33.x and older releases, see HISTORY.
 * …
 
 ==== Removed configuration ====
-* …
+* $wgWikiDiff2MovedParagraphDetectionCutoff — If you still want a custom change
+  size threshold, please specify in php.ini, using the configuration variable
+  wikidiff2.moved_paragraph_detection_cutoff.
 
 === New user-facing features in 1.34 ===
 * …

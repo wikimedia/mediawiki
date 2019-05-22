@@ -84,7 +84,6 @@ class TextSlotDiffRendererTest extends MediaWikiTestCase {
 		$slotDiffRenderer = new TextSlotDiffRenderer();
 		$slotDiffRenderer->setStatsdDataFactory( new NullStatsdDataFactory() );
 		$slotDiffRenderer->setLanguage( Language::factory( 'en' ) );
-		$slotDiffRenderer->setWikiDiff2MovedParagraphDetectionCutoff( 0 );
 		$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_PHP );
 		return $slotDiffRenderer;
 	}
