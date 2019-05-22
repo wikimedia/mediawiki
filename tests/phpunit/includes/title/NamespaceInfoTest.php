@@ -1300,11 +1300,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 			'No namespace restriction' => [ [ '', 'autoconfirmed', 'sysop' ], NS_TALK ],
 			'Restricted to autoconfirmed' => [ [ '', 'sysop' ], NS_MAIN ],
 			'Restricted to sysop' => [ [ '' ], NS_USER ],
-			// @todo Bug -- 'sysop' protection should be allowed in this case. Someone who's
-			// autoconfirmed and also privileged can edit this namespace, and would be blocked by
-			// the sysop protection.
-			'Restricted to someone in two groups' => [ [ '' ], 101 ],
-
+			'Restricted to someone in two groups' => [ [ '', 'sysop' ], 101 ],
 			'No special permissions' => [ [ '' ], NS_TALK, $this->getMockUser() ],
 			'autoconfirmed' => [
 				[ '', 'autoconfirmed' ],
