@@ -409,6 +409,8 @@
 	"virus-scanfailed": "scanare eșuată (cod $1)",
 	"virus-unknownscanner": "antivirus necunoscut:",
 	"logouttext": "'''Acum sunteți deconectat.'''\n\nȚineți minte că anumite pagini pot fi în continuare afișate ca și când ați fi autentificat până când curățați memoria cache a navigatorului.",
+	"logging-out-notify": "Sunteți în curs de dezautentificare, așteptați.",
+	"logout-failed": "Nu se poate face dezautentificarea acum: $1",
 	"cannotlogoutnow-title": "Nu se poate deconecta acum",
 	"cannotlogoutnow-text": "Deconectarea nu este posibilă când se utilizează $1.",
 	"welcomeuser": "Bun venit, $1!",

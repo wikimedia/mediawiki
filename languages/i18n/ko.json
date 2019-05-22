@@ -445,6 +445,8 @@
 	"virus-scanfailed": "검사 실패 (코드 $1)",
 	"virus-unknownscanner": "알 수 없는 안티 바이러스:",
 	"logouttext": "<strong>이제 로그아웃했습니다.</strong>\n\n브라우저 캐시를 지울 때까지 일부 문서에서 아직 로그인이 되어 있는 것처럼 보일 수 있음에 유의하세요.",
+	"logging-out-notify": "로그아웃 중이니 기다려 주십시오.",
+	"logout-failed": "지금 로그아웃할 수 없습니다: $1",
 	"cannotlogoutnow-title": "지금 로그아웃할 수 없습니다",
 	"cannotlogoutnow-text": "$1 사용 중에는 로그아웃이 불가능합니다.",
 	"welcomeuser": "$1님, 환영합니다!",

@@ -3680,7 +3680,7 @@
 	"expand_templates_generate_rawhtml": "Прикажувај сиров HTML",
 	"expand_templates_preview": "Преглед",
 	"expand_templates_preview_fail_html": "<em>Бидејќи {{SITENAME}} има овозможено сиров HTML и се јави губиток на седнички податоци, прегледот е скриен како мерка на претпазливост против напади со JavaScript.</em>\n\n<strong>Ако ова е е легитимен обид за преглед, тогаш обидете се повторно.</strong>\nАко не работи и тогаш, [[Special:UserLogout|одјавете се]] и повторно најавете се и проверете дали прелистувачот дозволува колачиња од ова мрежно место.",
-	"expand_templates_preview_fail_html_anon": "<em>Бидејќи {{SITENAME}} има овозможено сиров HTML, а вие не сте најавени, прегледот е скриен како мерка на претпазливост против напади со JavaScript.</em>\n\n<strong>Ако ова е е легитимен обид за преглед, тогаш обидете се повторно.</strong>\nАко не работи и тогаш, [[Special:UserLogout|одјавете се]] и повторно најавете се.",
+	"expand_templates_preview_fail_html_anon": "<em>Бидејќи {{SITENAME}} има овозможено сиров HTML, а вие не сте најавени, прегледот е скриен како мерка на претпазливост против напади со JavaScript.</em>\n\n<strong>Ако ова е легитимен обид за преглед, [[Special:UserLogin|најавете се]] и обидете се повторно.</strong>",
 	"expand_templates_input_missing": "Треба да внесете некаков викитекст.",
 	"pagelanguage": "Менување јазик на страница",
 	"pagelang-name": "Страница",

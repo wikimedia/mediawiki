@@ -456,6 +456,8 @@
 	"virus-scanfailed": "a verificação falhou (código $1)",
 	"virus-unknownscanner": "antivírus desconhecido:",
 	"logouttext": "<strong>Já não está autenticado.</strong>\n\nTenha em atenção que algumas páginas poderão continuar a ser apresentadas como se ainda estivesse autenticado até limpar a ''cache'' do seu navegador.",
+	"logging-out-notify": "A sua sessão está a ser terminada; aguarde, por favor.",
+	"logout-failed": "Não é possível terminar a sessão agora: $1",
 	"cannotlogoutnow-title": "Não é possível encerrar a sessão agora",
 	"cannotlogoutnow-text": "Não pode encerrar a sessão quando utilizar $1.",
 	"welcomeuser": "Bem-vindo, $1!",
