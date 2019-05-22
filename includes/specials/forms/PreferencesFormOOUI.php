@@ -195,7 +195,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 
 	/**
 	 * Get the keys of each top level preference section.
-	 * @return array of section keys
+	 * @return string[] List of section keys
 	 */
 	function getPreferenceSections() {
 		return array_keys( array_filter( $this->mFieldTree, 'is_array' ) );
