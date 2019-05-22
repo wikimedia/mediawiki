@@ -59,14 +59,17 @@
 				pageRestrictionsWidget.setDisabled( !editingIsSelected || isSitewide );
 				namespaceRestrictionsWidget.setDisabled( !editingIsSelected || isSitewide );
 				if ( blockAllowsUTEdit ) {
-					// This option is disabled for partial blocks unless a namespace restriction
-					// for the User_talk namespace is in place.
+					// Disable for partial blocks, unless the block is against the User_talk namespace
 					preventTalkPageEditWidget.setDisabled(
-						editingIsSelected &&
-						editingRestrictionValue === 'partial' &&
-						namespaceRestrictionsWidget.getValue().indexOf(
-							String( mw.config.get( 'wgNamespaceIds' ).user_talk )
-						) === -1
+						// Partial block that doesn't block editing
+						!editingIsSelected ||
+						// Partial block that blocks editing and doesn't block the User_talk namespace
+						(
+							editingRestrictionValue === 'partial' &&
+							namespaceRestrictionsWidget.getValue().indexOf(
+								String( mw.config.get( 'wgNamespaceIds' ).user_talk )
+							) === -1
+						)
 					);
 				}
 			}
