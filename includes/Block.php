@@ -972,7 +972,7 @@ class Block extends AbstractBlock {
 	 * Set the block ID
 	 *
 	 * @param int $blockId
-	 * @return int
+	 * @return self
 	 */
 	private function setId( $blockId ) {
 		$this->mId = (int)$blockId;
