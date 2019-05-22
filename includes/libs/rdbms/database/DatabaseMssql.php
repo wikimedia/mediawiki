@@ -1167,10 +1167,13 @@ class DatabaseMssql extends Database {
 
 		$database = $domain->getDatabase();
 		if ( $database !== $this->getDBname() ) {
-			$encDatabase = $this->addIdentifierQuotes( $database );
-			$res = $this->doQuery( "USE $encDatabase" );
-			if ( !$res ) {
-				throw new DBExpectedError( $this, "Could not select database '$database'." );
+			$sql = 'USE ' . $this->addIdentifierQuotes( $database );
+			list( $res, $err, $errno ) =
+				$this->executeQuery( $sql, __METHOD__, self::QUERY_IGNORE_DBO_TRX );
+
+			if ( $res === false ) {
+				$this->reportQueryError( $err, $errno, $sql, __METHOD__ );
+				return false; // unreachable
 			}
 		}
 		// Update that domain fields on success (no exception thrown)

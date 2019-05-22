@@ -244,11 +244,12 @@ abstract class DatabaseMysqlBase extends Database {
 
 		if ( $database !== $this->getDBname() ) {
 			$sql = 'USE ' . $this->addIdentifierQuotes( $database );
-			$ret = $this->doQuery( $sql );
-			if ( $ret === false ) {
-				$error = $this->lastError();
-				$errno = $this->lastErrno();
-				$this->reportQueryError( $error, $errno, $sql, __METHOD__ );
+			list( $res, $err, $errno ) =
+				$this->executeQuery( $sql, __METHOD__, self::QUERY_IGNORE_DBO_TRX );
+
+			if ( $res === false ) {
+				$this->reportQueryError( $err, $errno, $sql, __METHOD__ );
+				return false; // unreachable
 			}
 		}
 
@@ -952,21 +953,22 @@ abstract class DatabaseMysqlBase extends Database {
 			$gtidArg = $this->addQuotes( implode( ',', $gtidsWait ) );
 			if ( strpos( $gtidArg, ':' ) !== false ) {
 				// MySQL GTIDs, e.g "source_id:transaction_id"
-				$res = $this->doQuery( "SELECT WAIT_FOR_EXECUTED_GTID_SET($gtidArg, $timeout)" );
+				$sql = "SELECT WAIT_FOR_EXECUTED_GTID_SET($gtidArg, $timeout)";
 			} else {
 				// MariaDB GTIDs, e.g."domain:server:sequence"
-				$res = $this->doQuery( "SELECT MASTER_GTID_WAIT($gtidArg, $timeout)" );
+				$sql = "SELECT MASTER_GTID_WAIT($gtidArg, $timeout)";
 			}
 		} else {
 			// Wait on the binlog coordinates
 			$encFile = $this->addQuotes( $pos->getLogFile() );
 			$encPos = intval( $pos->getLogPosition()[$pos::CORD_EVENT] );
-			$res = $this->doQuery( "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)" );
+			$sql = "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)";
 		}
 
+		list( $res, $err ) = $this->executeQuery( $sql, __METHOD__, self::QUERY_IGNORE_DBO_TRX );
 		$row = $res ? $this->fetchRow( $res ) : false;
 		if ( !$row ) {
-			throw new DBExpectedError( $this, "Replication wait failed: {$this->lastError()}" );
+			throw new DBExpectedError( $this, "Replication wait failed: {$err}" );
 		}
 
 		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual

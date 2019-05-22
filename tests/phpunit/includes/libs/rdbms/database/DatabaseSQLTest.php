@@ -1878,7 +1878,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @expectedException \Wikimedia\Rdbms\DBTransactionStateError
-	 * @covers \Wikimedia\Rdbms\Database::assertTransactionStatus
+	 * @covers \Wikimedia\Rdbms\Database::assertQueryIsCurrentlyAllowed
 	 */
 	public function testTransactionErrorState1() {
 		$wrapper = TestingAccessWrapper::newFromObject( $this->database );
