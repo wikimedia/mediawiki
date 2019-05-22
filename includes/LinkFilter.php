@@ -91,7 +91,7 @@ class LinkFilter {
 
 	/**
 	 * Canonicalize a hostname for el_index
-	 * @param string $hose
+	 * @param string $host
 	 * @return string
 	 */
 	private static function indexifyHost( $host ) {
