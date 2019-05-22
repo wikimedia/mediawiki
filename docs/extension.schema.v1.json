@@ -81,7 +81,7 @@
 						"^ext-": {
 							"type": "string",
 							"description": "Required PHP extension.",
-							"const": "*"
+							"enum": ["*"]
 						}
 					}
 				},
