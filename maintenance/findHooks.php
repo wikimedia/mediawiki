@@ -306,7 +306,7 @@ class FindHooks extends Maintenance {
 	/**
 	 * Get hooks from a directory of PHP files.
 	 * @param string $dir Directory path to start at
-	 * @param int $recursive Pass self::FIND_RECURSIVE
+	 * @param int $recurse Pass self::FIND_RECURSIVE
 	 * @return array Array: key => hook name; value => array of arguments or string 'unknown'
 	 */
 	private function getHooksFromDir( $dir, $recurse = 0 ) {
