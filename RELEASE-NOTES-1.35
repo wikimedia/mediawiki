@@ -213,6 +213,9 @@ because of Phabricator reports.
 * User::addNewUserLogEntryAutoCreate, deprecated in 1.27, was removed.
 * FileBasedSiteLookup class, deprecated in 1.33, was removed.
 * The wfGlobalCacheKey global function, deprecated in 1.30, was removed.
+* The APCBagOStuff class was removed. MediaWiki requires PHP 7.2+ (support
+  for HHVM was dropped) and these versions of PHP only support apcu. The default
+  "apc" entry in $wgObjectCaches now refers to APCUBagOStuff.
 * CannotReplaceActiveServiceException, ContainerDisabledException,
   DestructibleService, NoSuchServiceException, SalvageableService,
   ServiceAlreadyDefinedException, ServiceContainer and ServiceDisabledException

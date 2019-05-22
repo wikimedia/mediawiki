@@ -289,11 +289,6 @@ class ObjectCache {
 			if ( PHP_SAPI !== 'cli' || ini_get( 'apc.enable_cli' ) ) {
 				return 'apcu';
 			}
-		} elseif ( function_exists( 'apc_fetch' ) ) {
-			// Make sure the APC methods actually store anything
-			if ( PHP_SAPI !== 'cli' || ini_get( 'apc.enable_cli' ) ) {
-				return 'apc';
-			}
 		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
 			return 'wincache';
 		}
