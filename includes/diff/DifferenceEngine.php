@@ -1172,7 +1172,6 @@ class DifferenceEngine extends ContextSource {
 
 		if ( $engine === 'wikidiff2' ) {
 			$params[] = phpversion( 'wikidiff2' );
-			$params[] = $this->getConfig()->get( 'WikiDiff2MovedParagraphDetectionCutoff' );
 		}
 
 		if ( !$this->isSlotDiffRenderer ) {

@@ -8497,6 +8497,7 @@ $wgExternalDiffEngine = false;
  * See $wgExternalDiffEngine.
  *
  * @since 1.30
+ * @deprecated since 1.34
  */
 $wgWikiDiff2MovedParagraphDetectionCutoff = 0;
 
