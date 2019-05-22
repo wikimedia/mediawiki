@@ -46,7 +46,7 @@ class APCUBagOStuff extends BagOStuff {
 
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
-		// The extension serialize is still buggy, unlike "php" and "igbinary"
+		// The extension serializer is still buggy, unlike "php" and "igbinary"
 		$this->nativeSerialize = ( ini_get( 'apc.serializer' ) !== 'default' );
 	}
 
