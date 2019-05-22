@@ -605,20 +605,6 @@ if ( $wgDebugToolbar && !$wgCommandLineMode ) {
 // re-created while taking into account any custom settings and extensions.
 MediaWikiServices::resetGlobalInstance( new GlobalVarConfig(), 'quick' );
 
-if ( $wgSharedDB && $wgSharedTables ) {
-	// Apply $wgSharedDB table aliases for the local LB (all non-foreign DB connections)
-	MediaWikiServices::getInstance()->getDBLoadBalancer()->setTableAliases(
-		array_fill_keys(
-			$wgSharedTables,
-			[
-				'dbname' => $wgSharedDB,
-				'schema' => $wgSharedSchema,
-				'prefix' => $wgSharedPrefix
-			]
-		)
-	);
-}
-
 // Define a constant that indicates that the bootstrapping of the service locator
 // is complete.
 define( 'MW_SERVICE_BOOTSTRAP_COMPLETE', 1 );
@@ -692,6 +678,20 @@ if ( $wgMainWANCache === false ) {
 		'class'    => WANObjectCache::class,
 		'cacheId'  => $wgMainCacheType
 	];
+}
+
+if ( $wgSharedDB && $wgSharedTables ) {
+	// Apply $wgSharedDB table aliases for the local LB (all non-foreign DB connections)
+	MediaWikiServices::getInstance()->getDBLoadBalancer()->setTableAliases(
+		array_fill_keys(
+			$wgSharedTables,
+			[
+				'dbname' => $wgSharedDB,
+				'schema' => $wgSharedSchema,
+				'prefix' => $wgSharedPrefix
+			]
+		)
+	);
 }
 
 Profiler::instance()->scopedProfileOut( $ps_default2 );
