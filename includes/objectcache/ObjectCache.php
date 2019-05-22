@@ -400,10 +400,10 @@ class ObjectCache {
 	 * @return int|string Index to cache in $wgObjectCaches
 	 */
 	public static function detectLocalServerCache() {
-		if ( function_exists( 'apc_fetch' ) ) {
-			return 'apc';
-		} elseif ( function_exists( 'apcu_fetch' ) ) {
+		if ( function_exists( 'apcu_fetch' ) ) {
 			return 'apcu';
+		} elseif ( function_exists( 'apc_fetch' ) ) {
+			return 'apc';
 		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
 			return 'wincache';
 		}
