@@ -102,6 +102,48 @@
 				}
 			}
 		},
+		"dev-requires": {
+			"type": "object",
+			"description": "Indicates what dependencies are required for development purposes such as running tests. This syntax may be extended in the future.",
+			"additionalProperties": false,
+			"properties": {
+				"MediaWiki": {
+					"type": "string",
+					"description": "Version constraint string against MediaWiki core."
+				},
+				"platform": {
+					"type": "object",
+					"description": "Indicates version constraints against platform services.",
+					"additionalProperties": false,
+					"properties": {
+						"php": {
+							"type": "string",
+							"description": "Version constraint string against PHP."
+						},
+						"ability-shell": {
+							"type": "boolean",
+							"default": false,
+							"description": "Whether this extension requires shell access."
+						}
+					},
+					"patternProperties": {
+						"^ext-": {
+							"type": "string",
+							"description": "Required PHP extension.",
+							"enum": ["*"]
+						}
+					}
+				},
+				"extensions": {
+					"type": "object",
+					"description": "Set of version constraint strings against specific extensions."
+				},
+				"skins": {
+					"type": "object",
+					"description": "Set of version constraint strings against specific skins."
+				}
+			}
+		},
 		"ResourceFileModulePaths": {
 			"type": "object",
 			"description": "Default paths to use for all ResourceLoader file modules",
