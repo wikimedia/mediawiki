@@ -1483,8 +1483,9 @@ class EditPage {
 
 		$user = $this->context->getUser();
 		$title = Title::newFromText( $preload );
+
 		# Check for existence to avoid getting MediaWiki:Noarticletext
-		if ( $title === null || !$title->exists() || !$title->userCan( 'read', $user ) ) {
+		if ( !$this->isPageExistingAndViewable( $title, $user ) ) {
 			// TODO: somehow show a warning to the user!
 			return $handler->makeEmptyContent();
 		}
@@ -1493,7 +1494,7 @@ class EditPage {
 		if ( $page->isRedirect() ) {
 			$title = $page->getRedirectTarget();
 			# Same as before
-			if ( $title === null || !$title->exists() || !$title->userCan( 'read', $user ) ) {
+			if ( !$this->isPageExistingAndViewable( $title, $user ) ) {
 				// TODO: somehow show a warning to the user!
 				return $handler->makeEmptyContent();
 			}
@@ -1524,6 +1525,21 @@ class EditPage {
 		}
 
 		return $content->preloadTransform( $title, $parserOptions, $params );
+	}
+
+	/**
+	 * Verify if a given title exists and the given user is allowed to view it
+	 *
+	 * @see EditPage::getPreloadedContent()
+	 * @param Title|null $title
+	 * @param User $user
+	 * @return bool
+	 * @throws Exception
+	 */
+	private function isPageExistingAndViewable( $title, User $user ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
+		return $title && $title->exists() && $permissionManager->userCan( 'read', $user, $title );
 	}
 
 	/**
@@ -1988,6 +2004,8 @@ ERROR;
 			}
 		}
 
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 		$changingContentModel = false;
 		if ( $this->contentModel !== $this->mTitle->getContentModel() ) {
 			if ( !$config->get( 'ContentHandlerUseDB' ) ) {
@@ -2001,10 +2019,19 @@ ERROR;
 			// Make sure the user can edit the page under the new content model too
 			$titleWithNewContentModel = clone $this->mTitle;
 			$titleWithNewContentModel->setContentModel( $this->contentModel );
-			if ( !$titleWithNewContentModel->userCan( 'editcontentmodel', $user )
-				|| !$titleWithNewContentModel->userCan( 'edit', $user )
+
+			$canEditModel = $permissionManager->userCan(
+				'editcontentmodel',
+				$user,
+				$titleWithNewContentModel
+			);
+
+			if (
+				!$canEditModel
+				|| !$permissionManager->userCan( 'edit', $user, $titleWithNewContentModel )
 			) {
 				$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
+
 				return $status;
 			}
 
@@ -2048,7 +2075,7 @@ ERROR;
 
 		if ( $new ) {
 			// Late check for create permission, just in case *PARANOIA*
-			if ( !$this->mTitle->userCan( 'create', $user ) ) {
+			if ( !$permissionManager->userCan( 'create', $user, $this->mTitle ) ) {
 				$status->fatal( 'nocreatetext' );
 				$status->value = self::AS_NO_CREATE_PERMISSION;
 				wfDebug( __METHOD__ . ": no create permission\n" );
@@ -2672,7 +2699,7 @@ ERROR;
 	protected function showCustomIntro() {
 		if ( $this->editintro ) {
 			$title = Title::newFromText( $this->editintro );
-			if ( $title instanceof Title && $title->exists() && $title->userCan( 'read' ) ) {
+			if ( $this->isPageExistingAndViewable( $title, $this->context->getUser() ) ) {
 				// Added using template syntax, to take <noinclude>'s into account.
 				$this->context->getOutput()->addWikiTextAsContent(
 					'<div class="mw-editintro">{{:' . $title->getFullText() . '}}</div>',
