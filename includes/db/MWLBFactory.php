@@ -245,8 +245,8 @@ abstract class MWLBFactory {
 
 	/**
 	 * @param array $servers
-	 * @param string $lbDB Local domain database name
-	 * @param string $lbTP Local domain prefix
+	 * @param string $ldDB Local domain database name
+	 * @param string $ldTP Local domain prefix
 	 */
 	private static function assertValidServerConfigs( array $servers, $ldDB, $ldTP ) {
 		foreach ( $servers as $server ) {
