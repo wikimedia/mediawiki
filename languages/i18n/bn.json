@@ -2516,6 +2516,8 @@
 	"ipb-confirm": "বাধা নিশ্চিতকরণ",
 	"ipb-sitewide": "সাইটব্যাপী",
 	"ipb-partial": "আংশিক",
+	"ipb-sitewide-help": "উইকিতে সব পাতা ও অন্যান্য সব অবদানে বাধা।",
+	"ipb-partial-help": "নির্দিষ্ট পাতা ও নামস্থানসমূহ।",
 	"ipb-pages-label": "পাতা",
 	"ipb-namespaces-label": "নামস্থানসমূহ",
 	"badipaddress": "আইপি (IP) ঠিকানাটি অগ্রহনযোগ্য",

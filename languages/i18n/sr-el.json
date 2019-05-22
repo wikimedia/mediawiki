@@ -2828,7 +2828,7 @@
 	"lastmodifiedatby": "Ovu stranicu je poslednji put {{GENDER:$4|uredio|uredila|uredio}} $3, na datum $1 u $2 č.",
 	"othercontribs": "Zasnovano na radu korisnika $1.",
 	"others": "drugi",
-	"siteusers": "{{PLURAL:$2|1={{GENDER:$1|korisnik|korisnica}}|korisnici}} na projektu {{SITENAME}} $1",
+	"siteusers": "{{PLURAL:$2|1={{GENDER:$1|suradnika|suradnice}}|suradnica i suradnika}} na projektu {{SITENAME}} $1",
 	"anonusers": "{{PLURAL:$2|anoniman korisnik|anonimni korisnici}} na projektu {{SITENAME}} $1",
 	"creditspage": "Autori stranice",
 	"nocredits": "Ne postoje podaci o autoru ove stranice.",

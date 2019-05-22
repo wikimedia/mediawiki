@@ -387,6 +387,8 @@
 	"virus-scanfailed": "scannamento fallite (codice $1)",
 	"virus-unknownscanner": "antivirus non cognoscite:",
 	"logouttext": "'''Tu ha claudite le session.'''\n\nNota que alcun paginas pote continuar a apparer como si tu esserea ancora authenticate. Pro remediar isto, tu pote vacuar le cache de tu navigator.",
+	"logging-out-notify": "Le session se claude, un momento…",
+	"logout-failed": "Impossibile clauder session ora: $1",
 	"cannotlogoutnow-title": "Impossibile clauder session ora",
 	"cannotlogoutnow-text": "Non es possibile clauder le session usante $1.",
 	"welcomeuser": "Benvenite, $1!",
