@@ -110,7 +110,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * Get ImageMagick subsampling factors for the target JPEG pixel format.
 	 *
 	 * @param string $pixelFormat one of 'yuv444', 'yuv422', 'yuv420'
-	 * @return array of string keys
+	 * @return string[] List of sampling factors
 	 */
 	protected function imageMagickSubsampling( $pixelFormat ) {
 		switch ( $pixelFormat ) {

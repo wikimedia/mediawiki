@@ -192,7 +192,7 @@ class ChangesList extends ContextSource {
 	 * @param RecentChange|RCCacheEntry $rc
 	 * @param string|bool $watched Optionally timestamp for adding watched class
 	 *
-	 * @return array of classes
+	 * @return string[] List of CSS class names
 	 */
 	protected function getHTMLClasses( $rc, $watched ) {
 		$classes = [ self::CSS_CLASS_PREFIX . 'line' ];
