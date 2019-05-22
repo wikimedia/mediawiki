@@ -18,6 +18,8 @@
  * @file
  * @ingroup Parser
  */
+
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Special\SpecialPageFactory;
@@ -26,8 +28,8 @@ use MediaWiki\Special\SpecialPageFactory;
  * @since 1.32
  */
 class ParserFactory {
-	/** @var array */
-	private $parserConf;
+	/** @var ServiceOptions */
+	private $svcOptions;
 
 	/** @var MagicWordFactory */
 	private $magicWordFactory;
@@ -41,9 +43,6 @@ class ParserFactory {
 	/** @var SpecialPageFactory */
 	private $specialPageFactory;
 
-	/** @var Config */
-	private $siteConfig;
-
 	/** @var LinkRendererFactory */
 	private $linkRendererFactory;
 
@@ -51,31 +50,61 @@ class ParserFactory {
 	private $nsInfo;
 
 	/**
-	 * @param array $parserConf See $wgParserConf documentation
+	 * Old parameter list, which we support for backwards compatibility, were:
+	 *   array $parserConf See $wgParserConf documentation
+	 *   MagicWordFactory $magicWordFactory
+	 *   Language $contLang Content language
+	 *   string $urlProtocols As returned from wfUrlProtocols()
+	 *   SpecialPageFactory $spFactory
+	 *   Config $siteConfig
+	 *   LinkRendererFactory $linkRendererFactory
+	 *   NamespaceInfo|null $nsInfo
+	 *
+	 * Some type declarations were intentionally omitted so that the backwards compatibility code
+	 * would work. When backwards compatibility is no longer required, we should remove it, and
+	 * and add the omitted type declarations.
+	 *
+	 * @param ServiceOptions|array $svcOptions
 	 * @param MagicWordFactory $magicWordFactory
 	 * @param Language $contLang Content language
 	 * @param string $urlProtocols As returned from wfUrlProtocols()
 	 * @param SpecialPageFactory $spFactory
-	 * @param Config $siteConfig
 	 * @param LinkRendererFactory $linkRendererFactory
-	 * @param NamespaceInfo|null $nsInfo
+	 * @param NamespaceInfo|LinkRendererFactory|null $nsInfo
 	 * @since 1.32
 	 */
 	public function __construct(
-		array $parserConf, MagicWordFactory $magicWordFactory, Language $contLang, $urlProtocols,
-		SpecialPageFactory $spFactory, Config $siteConfig,
-		LinkRendererFactory $linkRendererFactory, NamespaceInfo $nsInfo = null
+		$svcOptions, MagicWordFactory $magicWordFactory, Language $contLang,
+		$urlProtocols, SpecialPageFactory $spFactory, $linkRendererFactory,
+		$nsInfo = null
 	) {
+		// @todo Do we need to retain compat for constructing this class directly?
 		if ( !$nsInfo ) {
 			wfDeprecated( __METHOD__ . ' with no NamespaceInfo argument', '1.34' );
 			$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 		}
-		$this->parserConf = $parserConf;
+		if ( $linkRendererFactory instanceof Config ) {
+			// Old calling convention had an array in the format of $wgParserConf as the first
+			// parameter, and a Config as the sixth, with LinkRendererFactory as the seventh.
+			wfDeprecated( __METHOD__ . ' with Config parameter', '1.34' );
+			$svcOptions = new ServiceOptions( Parser::$constructorOptions,
+				$svcOptions,
+				[ 'class' => Parser::class,
+					'preprocessorClass' => Parser::getDefaultPreprocessorClass() ],
+				func_get_arg( 5 )
+			);
+			$linkRendererFactory = func_get_arg( 6 );
+			$nsInfo = func_num_args() > 7 ? func_get_arg( 7 ) : null;
+		}
+		$svcOptions->assertRequiredOptions( Parser::$constructorOptions );
+
+		wfDebug( __CLASS__ . ": using preprocessor: {$svcOptions->get( 'preprocessorClass' )}\n" );
+
+		$this->svcOptions = $svcOptions;
 		$this->magicWordFactory = $magicWordFactory;
 		$this->contLang = $contLang;
 		$this->urlProtocols = $urlProtocols;
 		$this->specialPageFactory = $spFactory;
-		$this->siteConfig = $siteConfig;
 		$this->linkRendererFactory = $linkRendererFactory;
 		$this->nsInfo = $nsInfo;
 	}
@@ -85,8 +114,8 @@ class ParserFactory {
 	 * @since 1.32
 	 */
 	public function create() : Parser {
-		return new Parser( $this->parserConf, $this->magicWordFactory, $this->contLang, $this,
-			$this->urlProtocols, $this->specialPageFactory, $this->siteConfig,
-			$this->linkRendererFactory, $this->nsInfo );
+		return new Parser( $this->svcOptions, $this->magicWordFactory, $this->contLang, $this,
+			$this->urlProtocols, $this->specialPageFactory, $this->linkRendererFactory,
+			$this->nsInfo );
 	}
 }
