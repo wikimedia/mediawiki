@@ -524,9 +524,15 @@ class NamespaceInfo {
 			return $levels;
 		}
 
-		// First, get the list of groups that can edit this namespace.
-		$namespaceGroups = [];
-		$combine = 'array_merge';
+		// $wgNamespaceProtection can require one or more rights to edit the namespace, which
+		// may be satisfied by membership in multiple groups each giving a subset of those rights.
+		// A restriction level is redundant if, for any one of the namespace rights, all groups
+		// giving that right also give the restriction level's right. Or, conversely, a
+		// restriction level is not redundant if, for every namespace right, there's at least one
+		// group giving that right without the restriction level's right.
+		//
+		// First, for each right, get a list of groups with that right.
+		$namespaceRightGroups = [];
 		foreach ( (array)$this->options->get( 'NamespaceProtection' )[$index] as $right ) {
 			if ( $right == 'sysop' ) {
 				$right = 'editprotected'; // BC
@@ -535,15 +541,11 @@ class NamespaceInfo {
 				$right = 'editsemiprotected'; // BC
 			}
 			if ( $right != '' ) {
-				$namespaceGroups = call_user_func( $combine, $namespaceGroups,
-					User::getGroupsWithPermission( $right ) );
-				$combine = 'array_intersect';
+				$namespaceRightGroups[$right] = User::getGroupsWithPermission( $right );
 			}
 		}
 
-		// Now, keep only those restriction levels where there is at least one
-		// group that can edit the namespace but would be blocked by the
-		// restriction.
+		// Now, go through the protection levels one by one.
 		$usableLevels = [ '' ];
 		foreach ( $this->options->get( 'RestrictionLevels' ) as $level ) {
 			$right = $level;
@@ -553,9 +555,19 @@ class NamespaceInfo {
 			if ( $right == 'autoconfirmed' ) {
 				$right = 'editsemiprotected'; // BC
 			}
-			if ( $right != '' && ( !$user || $user->isAllowed( $right ) ) &&
-				array_diff( $namespaceGroups, User::getGroupsWithPermission( $right ) )
+
+			if ( $right != '' &&
+				!isset( $namespaceRightGroups[$right] ) &&
+				( !$user || $user->isAllowed( $right ) )
 			) {
+				// Do any of the namespace rights imply the restriction right? (see explanation above)
+				foreach ( $namespaceRightGroups as $groups ) {
+					if ( !array_diff( $groups, User::getGroupsWithPermission( $right ) ) ) {
+						// Yes, this one does.
+						continue 2;
+					}
+				}
+				// No, keep the restriction level
 				$usableLevels[] = $level;
 			}
 		}
