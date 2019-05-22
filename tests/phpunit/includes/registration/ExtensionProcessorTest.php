@@ -717,11 +717,67 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		$processor = new ExtensionProcessor();
 		$this->assertSame(
 			$info['requires'],
-			$processor->getRequirements( $info )
+			$processor->getRequirements( $info, false )
 		);
 		$this->assertSame(
 			[],
-			$processor->getRequirements( [] )
+			$processor->getRequirements( [], false )
+		);
+	}
+
+	public function testGetDevRequirements() {
+		$info = self::$default + [
+			'dev-requires' => [
+				'MediaWiki' => '>= 1.31.0',
+				'platform' => [
+					'ext-foo' => '*',
+				],
+				'skins' => [
+					'Baz' => '*',
+				],
+				'extensions' => [
+					'Biz' => '*',
+				],
+			],
+		];
+		$processor = new ExtensionProcessor();
+		$this->assertSame(
+			$info['dev-requires'],
+			$processor->getRequirements( $info, true )
+		);
+		// Set some standard requirements, so we can test merging
+		$info['requires'] = [
+			'MediaWiki' => '>= 1.25.0',
+			'platform' => [
+				'php' => '>= 5.5.9'
+			],
+			'extensions' => [
+				'Bar' => '*'
+			]
+		];
+		$this->assertSame(
+			[
+				'MediaWiki' => '>= 1.25.0 >= 1.31.0',
+				'platform' => [
+					'php' => '>= 5.5.9',
+					'ext-foo' => '*',
+				],
+				'extensions' => [
+					'Bar' => '*',
+					'Biz' => '*',
+				],
+				'skins' => [
+					'Baz' => '*',
+				],
+			],
+			$processor->getRequirements( $info, true )
+		);
+
+		// If there's no dev-requires, it just returns requires
+		unset( $info['dev-requires'] );
+		$this->assertSame(
+			$info['requires'],
+			$processor->getRequirements( $info, true )
 		);
 	}
 
