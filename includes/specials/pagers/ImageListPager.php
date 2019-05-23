@@ -513,7 +513,7 @@ class ImageListPager extends TablePager {
 				return $this->getLanguage()->formatNum( intval( $value ) + 1 );
 			case 'top':
 				// Messages: listfiles-latestversion-yes, listfiles-latestversion-no
-				return $this->msg( 'listfiles-latestversion-' . $value );
+				return $this->msg( 'listfiles-latestversion-' . $value )->escaped();
 			default:
 				throw new MWException( "Unknown field '$field'" );
 		}
