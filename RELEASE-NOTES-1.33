@@ -165,6 +165,8 @@ For notes on 1.32.x and older releases, see HISTORY.
   "conflict detected" error when there weren't any conflicts.
 * (T216029) Chrome redirects to Special:BadTitle after editing a section with
   a non-Latin name on a page with non-Latin characters in title.
+* (T222385) resourceloader: Use AND instead of OR for upsert conds in
+  saveFileDependencies().
 
 === Action API changes in 1.33 ===
 * (T198913) Added 'ApiOptions' hook.
