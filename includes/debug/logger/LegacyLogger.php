@@ -21,12 +21,14 @@
 namespace MediaWiki\Logger;
 
 use DateTimeZone;
+use Error;
 use Exception;
 use WikiMap;
 use MWDebug;
 use MWExceptionHandler;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
+use Throwable;
 use UDPTransport;
 
 /**
@@ -269,7 +271,7 @@ class LegacyLogger extends AbstractLogger {
 			$e = $context['exception'];
 			$backtrace = false;
 
-			if ( $e instanceof Exception ) {
+			if ( $e instanceof Throwable || $e instanceof Exception ) {
 				$backtrace = MWExceptionHandler::getRedactedTrace( $e );
 
 			} elseif ( is_array( $e ) && isset( $e['trace'] ) ) {
@@ -405,8 +407,9 @@ class LegacyLogger extends AbstractLogger {
 			return $item->format( 'c' );
 		}
 
-		if ( $item instanceof Exception ) {
-			return '[Exception ' . get_class( $item ) . '( ' .
+		if ( $item instanceof Throwable || $item instanceof Exception ) {
+			$which = $item instanceof Error ? 'Error' : 'Exception';
+			return '[' . $which . ' ' . get_class( $item ) . '( ' .
 				$item->getFile() . ':' . $item->getLine() . ') ' .
 				$item->getMessage() . ']';
 		}
