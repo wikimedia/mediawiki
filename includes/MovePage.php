@@ -287,6 +287,132 @@ class MovePage {
 	}
 
 	/**
+	 * Move the source page's subpages to be subpages of the target page, without checking user
+	 * permissions. The caller is responsible for moving the source page itself. We will still not
+	 * do moves that are inherently not allowed, nor will we move more than $wgMaximumMovedPages.
+	 *
+	 * @param User $user
+	 * @param string|null $reason The reason for the move
+	 * @param bool|null $createRedirect Whether to create redirects from the old subpages to
+	 *  the new ones
+	 * @param string[] $changeTags Applied to entries in the move log and redirect page revision
+	 * @return Status Good if no errors occurred. Ok if at least one page succeeded. The "value"
+	 *  of the top-level status is an array containing the per-title status for each page. For any
+	 *  move that succeeded, the "value" of the per-title status is the new page title.
+	 */
+	public function moveSubpages(
+		User $user, $reason = null, $createRedirect = true, array $changeTags = []
+	) {
+		return $this->moveSubpagesInternal( false, $user, $reason, $createRedirect, $changeTags );
+	}
+
+	/**
+	 * Move the source page's subpages to be subpages of the target page, with user permission
+	 * checks. The caller is responsible for moving the source page itself.
+	 *
+	 * @param User $user
+	 * @param string|null $reason The reason for the move
+	 * @param bool|null $createRedirect Whether to create redirects from the old subpages to
+	 *  the new ones. Ignored if the user doesn't have the 'suppressredirect' right.
+	 * @param string[] $changeTags Applied to entries in the move log and redirect page revision
+	 * @return Status Good if no errors occurred. Ok if at least one page succeeded. The "value"
+	 *  of the top-level status is an array containing the per-title status for each page. For any
+	 *  move that succeeded, the "value" of the per-title status is the new page title.
+	 */
+	public function moveSubpagesIfAllowed(
+		User $user, $reason = null, $createRedirect = true, array $changeTags = []
+	) {
+		return $this->moveSubpagesInternal( true, $user, $reason, $createRedirect, $changeTags );
+	}
+
+	/**
+	 * @param bool $checkPermissions
+	 * @param User $user
+	 * @param string $reason
+	 * @param bool $createRedirect
+	 * @param array $changeTags
+	 * @return Status
+	 */
+	private function moveSubpagesInternal(
+		$checkPermissions, User $user, $reason, $createRedirect, array $changeTags
+	) {
+		global $wgMaximumMovedPages;
+		$services = MediaWikiServices::getInstance();
+
+		if ( $checkPermissions ) {
+			if ( !$services->getPermissionManager()->userCan(
+				'move-subpages', $user, $this->oldTitle )
+			) {
+				return Status::newFatal( 'cant-move-subpages' );
+			}
+		}
+
+		$nsInfo = $services->getNamespaceInfo();
+
+		// Do the source and target namespaces support subpages?
+		if ( !$nsInfo->hasSubpages( $this->oldTitle->getNamespace() ) ) {
+			return Status::newFatal( 'namespace-nosubpages',
+				$nsInfo->getCanonicalName( $this->oldTitle->getNamespace() ) );
+		}
+		if ( !$nsInfo->hasSubpages( $this->newTitle->getNamespace() ) ) {
+			return Status::newFatal( 'namespace-nosubpages',
+				$nsInfo->getCanonicalName( $this->newTitle->getNamespace() ) );
+		}
+
+		// Return a status for the overall result. Its value will be an array with per-title
+		// status for each subpage. Merge any errors from the per-title statuses into the
+		// top-level status without resetting the overall result.
+		$topStatus = Status::newGood();
+		$perTitleStatus = [];
+		$subpages = $this->oldTitle->getSubpages( $wgMaximumMovedPages + 1 );
+		$count = 0;
+		foreach ( $subpages as $oldSubpage ) {
+			$count++;
+			if ( $count > $wgMaximumMovedPages ) {
+				$status = Status::newFatal( 'movepage-max-pages', $wgMaximumMovedPages );
+				$perTitleStatus[$oldSubpage->getPrefixedText()] = $status;
+				$topStatus->merge( $status );
+				$topStatus->setOk( true );
+				break;
+			}
+
+			// We don't know whether this function was called before or after moving the root page,
+			// so check both titles
+			if ( $oldSubpage->getArticleID() == $this->oldTitle->getArticleID() ||
+				$oldSubpage->getArticleID() == $this->newTitle->getArticleID()
+			) {
+				// When moving a page to a subpage of itself, don't move it twice
+				continue;
+			}
+			$newPageName = preg_replace(
+					'#^' . preg_quote( $this->oldTitle->getDBkey(), '#' ) . '#',
+					StringUtils::escapeRegexReplacement( $this->newTitle->getDBkey() ), # T23234
+					$oldSubpage->getDBkey() );
+			if ( $oldSubpage->isTalkPage() ) {
+				$newNs = $this->newTitle->getTalkPage()->getNamespace();
+			} else {
+				$newNs = $this->newTitle->getSubjectPage()->getNamespace();
+			}
+			// T16385: we need makeTitleSafe because the new page names may be longer than 255
+			// characters.
+			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
+
+			$mp = new MovePage( $oldSubpage, $newSubpage );
+			$method = $checkPermissions ? 'moveIfAllowed' : 'move';
+			$status = $mp->$method( $user, $reason, $createRedirect, $changeTags );
+			if ( $status->isOK() ) {
+				$status->setResult( true, $newSubpage->getPrefixedText() );
+			}
+			$perTitleStatus[$oldSubpage->getPrefixedText()] = $status;
+			$topStatus->merge( $status );
+			$topStatus->setOk( true );
+		}
+
+		$topStatus->value = $perTitleStatus;
+		return $topStatus;
+	}
+
+	/**
 	 * Moves *without* any sort of safety or sanity checks. Hooks can still fail the move, however.
 	 *
 	 * @param User $user

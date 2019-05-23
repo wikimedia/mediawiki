@@ -3480,6 +3480,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Move this page's subpages to be subpages of $nt
 	 *
+	 * @deprecated since 1.34, use MovePage instead
 	 * @param Title $nt Move target
 	 * @param bool $auth Whether $wgUser's permissions should be checked
 	 * @param string $reason The reason for the move
@@ -3494,7 +3495,6 @@ class Title implements LinkTarget, IDBAccessObject {
 	public function moveSubpages( $nt, $auth = true, $reason = '', $createRedirect = true,
 		array $changeTags = []
 	) {
-		global $wgMaximumMovedPages;
 		// Check permissions
 		if ( !$this->userCan( 'move-subpages' ) ) {
 			return [
@@ -3514,46 +3514,21 @@ class Title implements LinkTarget, IDBAccessObject {
 			];
 		}
 
-		$subpages = $this->getSubpages( $wgMaximumMovedPages + 1 );
+		global $wgUser;
+		$mp = new MovePage( $this, $nt );
+		$method = $auth ? 'moveSubpagesIfAllowed' : 'moveSubpages';
+		$result = $mp->$method( $wgUser, $reason, $createRedirect, $changeTags );
+
+		if ( !$result->isOk() ) {
+			return $result->getErrorsArray();
+		}
+
 		$retval = [];
-		$count = 0;
-		foreach ( $subpages as $oldSubpage ) {
-			$count++;
-			if ( $count > $wgMaximumMovedPages ) {
-				$retval[$oldSubpage->getPrefixedText()] = [
-					[ 'movepage-max-pages', $wgMaximumMovedPages ],
-				];
-				break;
-			}
-
-			// We don't know whether this function was called before
-			// or after moving the root page, so check both
-			// $this and $nt
-			if ( $oldSubpage->getArticleID() == $this->getArticleID()
-				|| $oldSubpage->getArticleID() == $nt->getArticleID()
-			) {
-				// When moving a page to a subpage of itself,
-				// don't move it twice
-				continue;
-			}
-			$newPageName = preg_replace(
-					'#^' . preg_quote( $this->mDbkeyform, '#' ) . '#',
-					StringUtils::escapeRegexReplacement( $nt->getDBkey() ), # T23234
-					$oldSubpage->getDBkey() );
-			if ( $oldSubpage->isTalkPage() ) {
-				$newNs = $nt->getTalkPage()->getNamespace();
+		foreach ( $result->getValue() as $key => $status ) {
+			if ( $status->isOK() ) {
+				$retval[$key] = $status->getValue();
 			} else {
-				$newNs = $nt->getSubjectPage()->getNamespace();
-			}
-			# T16385: we need makeTitleSafe because the new page names may
-			# be longer than 255 characters.
-			$newSubpage = self::makeTitleSafe( $newNs, $newPageName );
-
-			$success = $oldSubpage->moveTo( $newSubpage, $auth, $reason, $createRedirect, $changeTags );
-			if ( $success === true ) {
-				$retval[$oldSubpage->getPrefixedText()] = $newSubpage->getPrefixedText();
-			} else {
-				$retval[$oldSubpage->getPrefixedText()] = $success;
+				$retval[$key] = $status->getErrorsArray();
 			}
 		}
 		return $retval;

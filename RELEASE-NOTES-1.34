@@ -218,6 +218,8 @@ because of Phabricator reports.
 * Parser::$mConf is deprecated. It will be removed entirely in a later version.
   Some context can be found at T224165.
 * Constructing Parser directly is deprecated. Obtain one from ParserFactory.
+* Title::moveSubpages is deprecated. Use MovePage::moveSubpages or
+  MovePage::moveSubpagesIfAllowed.
 
 === Other changes in 1.34 ===
 * …

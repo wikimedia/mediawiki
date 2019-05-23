@@ -201,22 +201,22 @@ class ApiMove extends ApiBase {
 	public function moveSubpages( $fromTitle, $toTitle, $reason, $noredirect, $changeTags = [] ) {
 		$retval = [];
 
-		$success = $fromTitle->moveSubpages( $toTitle, true, $reason, !$noredirect, $changeTags );
-		if ( isset( $success[0] ) ) {
-			$status = $this->errorArrayToStatus( $success );
-			return [ 'errors' => $this->getErrorFormatter()->arrayFromStatus( $status ) ];
+		$mp = new MovePage( $fromTitle, $toTitle );
+		$result =
+			$mp->moveSubpagesIfAllowed( $this->getUser(), $reason, !$noredirect, $changeTags );
+		if ( !$result->isOk() ) {
+			// This means the whole thing failed
+			return [ 'errors' => $this->getErrorFormatter()->arrayFromStatus( $result ) ];
 		}
 
 		// At least some pages could be moved
 		// Report each of them separately
-		foreach ( $success as $oldTitle => $newTitle ) {
+		foreach ( $result->getValue() as $oldTitle => $status ) {
 			$r = [ 'from' => $oldTitle ];
-			if ( is_array( $newTitle ) ) {
-				$status = $this->errorArrayToStatus( $newTitle );
-				$r['errors'] = $this->getErrorFormatter()->arrayFromStatus( $status );
+			if ( $status->isOK() ) {
+				$r['to'] = $status->getValue();
 			} else {
-				// Success
-				$r['to'] = $newTitle;
+				$r['errors'] = $this->getErrorFormatter()->arrayFromStatus( $status );
 			}
 			$retval[] = $r;
 		}
