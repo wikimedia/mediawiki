@@ -2043,6 +2043,7 @@ return [
 			'oojs-ui.styles.icons-editing-advanced',
 			'oojs-ui.styles.icons-interactions',
 			'oojs-ui.styles.icons-moderation',
+			'mediawiki.widgets',
 			'mediawiki.widgets.datetime',
 			'jquery.makeCollapsible',
 		],
