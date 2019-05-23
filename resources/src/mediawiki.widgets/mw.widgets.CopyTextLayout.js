@@ -24,10 +24,12 @@
 	 *  defaults to 'mw-widgets-copytextlayout-copy-fail'.
 	 */
 	mw.widgets.CopyTextLayout = function MwWidgetsCopyTextLayout( config ) {
+		var TextClass;
 		config = config || {};
 
 		// Properties
-		this.textInput = new OO.ui.TextInputWidget( $.extend( {
+		TextClass = config.multiline ? OO.ui.MultilineTextInputWidget : OO.ui.TextInputWidget;
+		this.textInput = new TextClass( $.extend( {
 			value: config.copyText,
 			readOnly: true
 		}, config.textInput ) );
@@ -40,6 +42,15 @@
 
 		// Parent constructor
 		mw.widgets.CopyTextLayout.super.call( this, this.textInput, this.button, config );
+
+		// HACK: Remove classes which connect widgets when using
+		// a multiline text input. TODO: This should be handled in OOUI.
+		if ( config.multiline ) {
+			this.$input.removeClass( 'oo-ui-actionFieldLayout-input' );
+			this.$button
+				.removeClass( 'oo-ui-actionFieldLayout-button' )
+				.addClass( 'mw-widget-copyTextLayout-multiline-button' );
+		}
 
 		// Events
 		this.button.connect( this, { click: 'onButtonClick' } );
