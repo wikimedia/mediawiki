@@ -290,6 +290,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$out = $this->getOutput();
+		$widgetOptions = $this->getConfig()->get( 'SpecialSearchFormOptions' );
 		$formWidget = new MediaWiki\Widget\Search\SearchFormWidget(
 			$this,
 			$this->searchConfig,
@@ -308,7 +309,7 @@ class SpecialSearch extends SpecialPage {
 			// only do the form render here for the empty $term case. Rendering
 			// the form when a search is provided is repeated below.
 			$out->addHTML( $formWidget->render(
-				$this->profile, $term, 0, 0, $this->offset, $this->isPowerSearch()
+				$this->profile, $term, 0, 0, $this->offset, $this->isPowerSearch(), $widgetOptions
 			) );
 			return;
 		}
@@ -365,7 +366,7 @@ class SpecialSearch extends SpecialPage {
 		// start rendering the page
 		$out->enableOOUI();
 		$out->addHTML( $formWidget->render(
-			$this->profile, $term, $num, $totalRes, $this->offset, $this->isPowerSearch()
+			$this->profile, $term, $num, $totalRes, $this->offset, $this->isPowerSearch(), $widgetOptions
 		) );
 
 		// did you mean... suggestions
