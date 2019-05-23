@@ -809,7 +809,7 @@
 	"nohistory": "Ne postoji istorija izmena ove stranice.",
 	"currentrev": "Najnovija izmena",
 	"currentrev-asof": "Najnovija izmena na datum $2 u $3",
-	"revisionasof": "Izmena na datum $2 u $3",
+	"revisionasof": "Izmena na datum $1",
 	"revision-info": "Izmena od $1 od strane {{GENDER:$6|korisnika $2|korisnice $2}}$7",
 	"previousrevision": "← Starija izmena",
 	"nextrevision": "Novija izmena →",
