@@ -14,6 +14,7 @@ class SearchInputWidget extends TitleInputWidget {
 	protected $validateTitle = false;
 	protected $highlightFirst = false;
 	protected $dataLocation = 'header';
+	protected $showDescriptions = false;
 
 	/**
 	 * @param array $config Configuration options
@@ -41,6 +42,10 @@ class SearchInputWidget extends TitleInputWidget {
 			$this->dataLocation = $config['dataLocation'];
 		}
 
+		if ( !empty( $config['showDescriptions'] ) ) {
+			$this->showDescriptions = true;
+		}
+
 		// Initialization
 		$this->addClasses( [ 'mw-widget-searchInputWidget' ] );
 	}
@@ -57,6 +62,9 @@ class SearchInputWidget extends TitleInputWidget {
 		$config['performSearchOnClick'] = $this->performSearchOnClick;
 		if ( $this->dataLocation ) {
 			$config['dataLocation'] = $this->dataLocation;
+		}
+		if ( $this->showDescriptions ) {
+			$config['showDescriptions'] = true;
 		}
 		$config['$overlay'] = true;
 		return parent::getConfig( $config );
