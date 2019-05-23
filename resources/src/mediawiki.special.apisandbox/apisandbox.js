@@ -724,37 +724,32 @@
 		 * @return {OO.ui.MenuOptionWidget[]} Each item's data should be an OO.ui.FieldLayout
 		 */
 		formatRequest: function ( displayParams, rawParams ) {
-			var jsonInput,
+			var jsonLayout,
 				items = [
 					new OO.ui.MenuOptionWidget( {
 						label: Util.parseMsg( 'apisandbox-request-format-url-label' ),
-						data: new OO.ui.FieldLayout(
-							new OO.ui.TextInputWidget( {
-								readOnly: true,
-								value: mw.util.wikiScript( 'api' ) + '?' + $.param( displayParams )
-							} ), {
-								label: Util.parseMsg( 'apisandbox-request-url-label' )
-							}
-						)
+						data: new mw.widgets.CopyTextLayout( {
+							label: Util.parseMsg( 'apisandbox-request-url-label' ),
+							copyText: mw.util.wikiScript( 'api' ) + '?' + $.param( displayParams )
+						} )
 					} ),
 					new OO.ui.MenuOptionWidget( {
 						label: Util.parseMsg( 'apisandbox-request-format-json-label' ),
-						data: new OO.ui.FieldLayout(
-							jsonInput = new OO.ui.MultilineTextInputWidget( {
+						data: jsonLayout = new mw.widgets.CopyTextLayout( {
+							label: Util.parseMsg( 'apisandbox-request-json-label' ),
+							copyText: JSON.stringify( displayParams, null, '\t' ),
+							multiline: true,
+							textInput: {
 								classes: [ 'mw-apisandbox-textInputCode' ],
-								readOnly: true,
 								autosize: true,
-								maxRows: 6,
-								value: JSON.stringify( displayParams, null, '\t' )
-							} ), {
-								label: Util.parseMsg( 'apisandbox-request-json-label' )
+								maxRows: 6
 							}
-						).on( 'toggle', function ( visible ) {
+						} ).on( 'toggle', function ( visible ) {
 							if ( visible ) {
 								// Call updatePosition instead of adjustSize
 								// because the latter has weird caching
 								// behavior and the former bypasses it.
-								jsonInput.updatePosition();
+								jsonLayout.textInput.updatePosition();
 							}
 						} )
 					} )
