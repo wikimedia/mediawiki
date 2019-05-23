@@ -1083,12 +1083,11 @@
 				progressLoading = false;
 				$progressText = $( '<span>' ).text( mw.message( 'apisandbox-sending-request' ).text() );
 				progress = new OO.ui.ProgressBarWidget( {
-					progress: false,
-					$content: $progressText
+					progress: false
 				} );
 
 				$result = $( '<div>' )
-					.append( progress.$element );
+					.append( $progressText, progress.$element );
 
 				resultPage = page = new OO.ui.PageLayout( '|results|', { expanded: false } );
 				page.setupOutlineItem = function () {
@@ -1781,10 +1780,12 @@
 			};
 
 		this.$element.empty()
-			.append( new OO.ui.ProgressBarWidget( {
-				progress: false,
-				text: mw.message( 'apisandbox-loading', this.displayText ).text()
-			} ).$element );
+			.append(
+				document.createTextNode(
+					mw.message( 'apisandbox-loading', this.displayText ).text()
+				),
+				new OO.ui.ProgressBarWidget( { progress: false } ).$element
+			);
 
 		Util.fetchModuleInfo( this.apiModule )
 			.done( function ( pi ) {
