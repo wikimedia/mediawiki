@@ -23,6 +23,8 @@ THIS IS NOT A RELEASE YET
 * (T218608) Fix an issue that prevents Extension:OAuth working when
   $wgBlockDisablesLogin is true.
 * (T25227) action=logout now requires to be posted and have a csrf token.
+* (T222385) resourceloader: Use AND instead of OR for upsert conds in
+  saveFileDependencies().
 
 == MediaWiki 1.30.1 ==
 
