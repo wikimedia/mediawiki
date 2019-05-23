@@ -2503,11 +2503,15 @@ return [
 		'scripts' => [
 			'resources/src/mediawiki.widgets/mw.widgets.NamespaceInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.ComplexNamespaceInputWidget.js',
+			'resources/src/mediawiki.widgets/mw.widgets.CopyTextLayout.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleSearchWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.ComplexTitleInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleOptionWidget.js',
+		],
+		'styles' => [
+			'resources/src/mediawiki.widgets/mw.widgets.CopyTextLayout.css',
 		],
 		'skinStyles' => [
 			'default' => [
@@ -2522,11 +2526,17 @@ return [
 			'mediawiki.Title',
 			'mediawiki.api',
 			'mediawiki.String',
+			// CopyTextLayout
+			'mediawiki.notify',
 		],
 		'messages' => [
 			// NamespaceInputWidget
 			'blanknamespace',
 			'namespacesall',
+			// CopyTextLayout
+			'mw-widgets-copytextlayout-copy',
+			'mw-widgets-copytextlayout-copy-fail',
+			'mw-widgets-copytextlayout-copy-success',
 			// TitleInputWidget
 			'mw-widgets-titleinput-description-new-page',
 			'mw-widgets-titleinput-description-redirect',
