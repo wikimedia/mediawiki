@@ -451,6 +451,8 @@
 	"virus-scanfailed": "skanning misslyckades (kod $1)",
 	"virus-unknownscanner": "okänt antivirusprogram:",
 	"logouttext": "<strong>Du är nu utloggad.</strong>\n\nObservera att det, tills du tömmer din webbläsares cache, på vissa sidor kan det se ut som att du fortfarande är inloggad.",
+	"logging-out-notify": "Du loggas ut, var god vänta.",
+	"logout-failed": "Kan inte logga ut nu: $1",
 	"cannotlogoutnow-title": "Kan inte logga ut nu",
 	"cannotlogoutnow-text": "Det går inte att logga ut med $1.",
 	"welcomeuser": "Välkommen, $1!",

@@ -424,6 +424,8 @@
 	"virus-scanfailed": "skanning mislyktes (kode $1)",
 	"virus-unknownscanner": "ukjent antivirusprogram:",
 	"logouttext": "'''Du er nå logget ut.'''\n\nVær oppmerksom på at noen sider kan fortsette å dukke opp som om du fortsatt var innlogget, helt til du nullstiller nettleserens mellomlager (cache).",
+	"logging-out-notify": "Du blir logget ut, vennligst vent.",
+	"logout-failed": "Kan ikke logge ut nå: $1",
 	"cannotlogoutnow-title": "Kan ikke logge ut nå",
 	"cannotlogoutnow-text": "Å logge ut er ikke mulig ved bruk av $1.",
 	"welcomeuser": "Velkommen $1!",
