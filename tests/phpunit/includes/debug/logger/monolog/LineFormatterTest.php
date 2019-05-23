@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Logger\Monolog;
 
+use AssertionError;
 use InvalidArgumentException;
 use LengthException;
 use LogicException;
@@ -70,6 +71,52 @@ class LineFormatterTest extends MediaWikiTestCase {
 		$this->assertContains( "\n[Exception InvalidArgumentException]", $out );
 		$this->assertContains( "\nCaused by: [Exception LengthException]", $out );
 		$this->assertContains( "\nCaused by: [Exception LogicException]", $out );
+		$this->assertContains( "\n  #0", $out );
+	}
+
+	/**
+	 * @covers MediaWiki\Logger\Monolog\LineFormatter::normalizeException
+	 */
+	public function testNormalizeExceptionErrorNoTrace() {
+		if ( !class_exists( AssertionError::class ) ) {
+			$this->markTestSkipped( 'AssertionError class does not exist' );
+		}
+
+		$fixture = new LineFormatter();
+		$fixture->includeStacktraces( false );
+		$fixture = TestingAccessWrapper::newFromObject( $fixture );
+		$boom = new InvalidArgumentException( 'boom', 0,
+			new LengthException( 'too long', 0,
+				new AssertionError( 'Spock wuz here' )
+			)
+		);
+		$out = $fixture->normalizeException( $boom );
+		$this->assertContains( "\n[Exception InvalidArgumentException]", $out );
+		$this->assertContains( "\nCaused by: [Exception LengthException]", $out );
+		$this->assertContains( "\nCaused by: [Error AssertionError]", $out );
+		$this->assertNotContains( "\n  #0", $out );
+	}
+
+	/**
+	 * @covers MediaWiki\Logger\Monolog\LineFormatter::normalizeException
+	 */
+	public function testNormalizeExceptionErrorTrace() {
+		if ( !class_exists( AssertionError::class ) ) {
+			$this->markTestSkipped( 'AssertionError class does not exist' );
+		}
+
+		$fixture = new LineFormatter();
+		$fixture->includeStacktraces( true );
+		$fixture = TestingAccessWrapper::newFromObject( $fixture );
+		$boom = new InvalidArgumentException( 'boom', 0,
+			new LengthException( 'too long', 0,
+				new AssertionError( 'Spock wuz here' )
+			)
+		);
+		$out = $fixture->normalizeException( $boom );
+		$this->assertContains( "\n[Exception InvalidArgumentException]", $out );
+		$this->assertContains( "\nCaused by: [Exception LengthException]", $out );
+		$this->assertContains( "\nCaused by: [Error AssertionError]", $out );
 		$this->assertContains( "\n  #0", $out );
 	}
 }
