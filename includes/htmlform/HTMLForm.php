@@ -1062,10 +1062,10 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Set whether the HTML form can be collapsed.
+	 * Enable collapsible mode, and set whether the form is collapsed by default.
 	 *
 	 * @since 1.34
-	 * @param bool $collapsedByDefault (optional) whether the form is collapsed by default
+	 * @param bool $collapsedByDefault Whether the form is collapsed by default (optional).
 	 * @return HTMLForm $this for chaining calls
 	 */
 	public function setCollapsibleOptions( $collapsedByDefault = false ) {
