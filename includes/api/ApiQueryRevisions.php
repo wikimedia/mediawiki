@@ -114,7 +114,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 		if ( $revCount > 0 && $enumRevMode ) {
 			$this->dieWithError(
-				[ 'apierror-revisions-nolist', $this->getModulePrefix() ], 'invalidparammix'
+				[ 'apierror-revisions-norevids', $this->getModulePrefix() ], 'invalidparammix'
 			);
 		}
 
