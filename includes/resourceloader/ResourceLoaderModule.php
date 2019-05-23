@@ -507,7 +507,8 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 				[ 'md_module', 'md_skin' ],
 				[
 					'md_deps' => $deps,
-				]
+				],
+				__METHOD__
 			);
 
 			if ( $dbw->trxLevel() ) {
