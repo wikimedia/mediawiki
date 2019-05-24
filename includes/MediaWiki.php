@@ -597,7 +597,7 @@ class MediaWiki {
 		wfDebug( __METHOD__ . ': primary transaction round committed' );
 
 		// Run updates that need to block the user or affect output (this is the last chance)
-		DeferredUpdates::doUpdates( 'enqueue', DeferredUpdates::PRESEND );
+		DeferredUpdates::doUpdates( 'run', DeferredUpdates::PRESEND );
 		wfDebug( __METHOD__ . ': pre-send deferred updates completed' );
 		// T214471: persist the session to avoid race conditions on subsequent requests
 		$request->getSession()->save();
