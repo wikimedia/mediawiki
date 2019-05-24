@@ -108,14 +108,15 @@ class LocalisationCache {
 	 */
 	public static $allKeys = [
 		'fallback', 'namespaceNames', 'bookstoreList',
-		'magicWords', 'messages', 'rtl', 'capitalizeAllNouns', 'digitTransformTable',
-		'separatorTransformTable', 'minimumGroupingDigits',
-		'fallback8bitEncoding', 'linkPrefixExtension',
-		'linkTrail', 'linkPrefixCharset', 'namespaceAliases',
-		'dateFormats', 'datePreferences', 'datePreferenceMigrationMap',
-		'defaultDateFormat', 'extraUserToggles', 'specialPageAliases',
-		'imageFiles', 'preloadedMessages', 'namespaceGenderAliases',
-		'digitGroupingPattern', 'pluralRules', 'pluralRuleTypes', 'compiledPluralRules',
+		'magicWords', 'messages', 'rtl', 'capitalizeAllNouns',
+		'digitTransformTable', 'separatorTransformTable',
+		'minimumGroupingDigits', 'fallback8bitEncoding',
+		'linkPrefixExtension', 'linkTrail', 'linkPrefixCharset',
+		'namespaceAliases', 'dateFormats', 'datePreferences',
+		'datePreferenceMigrationMap', 'defaultDateFormat',
+		'specialPageAliases', 'imageFiles', 'preloadedMessages',
+		'namespaceGenderAliases', 'digitGroupingPattern', 'pluralRules',
+		'pluralRuleTypes', 'compiledPluralRules',
 	];
 
 	/**
@@ -129,7 +130,7 @@ class LocalisationCache {
 	/**
 	 * Keys for items which are a numbered array.
 	 */
-	public static $mergeableListKeys = [ 'extraUserToggles' ];
+	public static $mergeableListKeys = [];
 
 	/**
 	 * Keys for items which contain an array of arrays of equivalent aliases

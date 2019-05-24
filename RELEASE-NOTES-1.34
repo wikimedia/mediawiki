@@ -220,6 +220,9 @@ because of Phabricator reports.
 * Constructing Parser directly is deprecated. Obtain one from ParserFactory.
 * Title::moveSubpages is deprecated. Use MovePage::moveSubpages or
   MovePage::moveSubpagesIfAllowed.
+* The MWNamespace class is deprecated. Use MediaWikiServices::getNamespaceInfo.
+* (T62260) Hard deprecate Language::getExtraUserToggles() method.
+* …
 
 === Other changes in 1.34 ===
 * …
