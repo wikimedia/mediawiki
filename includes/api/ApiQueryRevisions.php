@@ -389,6 +389,10 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 		$this->addOption( 'LIMIT', $this->limit + 1 );
 
+		// T224017: `rev_timestamp` is never the correct index to use for this module, but
+		// MariaDB (10.1.37-39) sometimes insists on trying to use it anyway. Tell it not to.
+		$this->addOption( 'IGNORE INDEX', [ 'revision' => 'rev_timestamp' ] );
+
 		$count = 0;
 		$generated = [];
 		$hookData = [];
