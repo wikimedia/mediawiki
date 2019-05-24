@@ -264,21 +264,28 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Load a block from the database which affects the already-set $this->target:
-	 *     1) A block directly on the given user or IP
-	 *     2) A rangeblock encompassing the given IP (smallest first)
-	 *     3) An autoblock on the given IP
+	 * Load blocks from the database which target the specific target exactly, or which cover the
+	 * vague target.
+	 *
+	 * @param User|String|null $specificTarget
+	 * @param int|null $specificType
+	 * @param bool $fromMaster
 	 * @param User|string|null $vagueTarget Also search for blocks affecting this target.  Doesn't
 	 *     make any sense to use TYPE_AUTO / TYPE_ID here. Leave blank to skip IP lookups.
 	 * @throws MWException
-	 * @return bool Whether a relevant block was found
+	 * @return DatabaseBlock[] Any relevant blocks
 	 */
-	protected function newLoad( $vagueTarget = null ) {
-		$db = wfGetDB( $this->mFromMaster ? DB_MASTER : DB_REPLICA );
+	protected static function newLoad(
+		$specificTarget,
+		$specificType,
+		$fromMaster,
+		$vagueTarget = null
+	) {
+		$db = wfGetDB( $fromMaster ? DB_MASTER : DB_REPLICA );
 
-		if ( $this->type !== null ) {
+		if ( $specificType !== null ) {
 			$conds = [
-				'ipb_address' => [ (string)$this->target ],
+				'ipb_address' => [ (string)$specificTarget ],
 			];
 		} else {
 			$conds = [ 'ipb_address' => [] ];
@@ -317,13 +324,9 @@ class DatabaseBlock extends AbstractBlock {
 			$blockQuery['tables'], $blockQuery['fields'], $conds, __METHOD__, [], $blockQuery['joins']
 		);
 
-		# This result could contain a block on the user, a block on the IP, and a russian-doll
-		# set of rangeblocks.  We want to choose the most specific one, so keep a leader board.
-		$bestRow = null;
-
-		# Lower will be better
-		$bestBlockScore = 100;
-
+		$blocks = [];
+		$blockIds = [];
+		$autoBlocks = [];
 		foreach ( $res as $row ) {
 			$block = self::newFromRow( $row );
 
@@ -333,10 +336,53 @@ class DatabaseBlock extends AbstractBlock {
 			}
 
 			# Don't use anon only blocks on users
-			if ( $this->type == self::TYPE_USER && !$block->isHardblock() ) {
+			if ( $specificType == self::TYPE_USER && !$block->isHardblock() ) {
 				continue;
 			}
 
+			// Check for duplicate autoblocks
+			if ( $block->getType() === self::TYPE_AUTO ) {
+				$autoBlocks[] = $block;
+			} else {
+				$blocks[] = $block;
+				$blockIds[] = $block->getId();
+			}
+		}
+
+		// Only add autoblocks that aren't duplicates
+		foreach ( $autoBlocks as $block ) {
+			if ( !in_array( $block->mParentBlockId, $blockIds ) ) {
+				$blocks[] = $block;
+			}
+		}
+
+		return $blocks;
+	}
+
+	/**
+	 * Choose the most specific block from some combination of user, IP and IP range
+	 * blocks. Decreasing order of specificity: user > IP > narrower IP range > wider IP
+	 * range. A range that encompasses one IP address is ranked equally to a singe IP.
+	 *
+	 * Note that DatabaseBlock::chooseBlocks chooses blocks in a different way.
+	 *
+	 * This is refactored out from DatabaseBlock::newLoad.
+	 *
+	 * @param DatabaseBlock[] $blocks These should not include autoblocks or ID blocks
+	 * @return DatabaseBlock|null The block with the most specific target
+	 */
+	protected static function chooseMostSpecificBlock( $blocks ) {
+		if ( count( $blocks ) === 1 ) {
+			return $blocks[0];
+		}
+
+		# This result could contain a block on the user, a block on the IP, and a russian-doll
+		# set of rangeblocks.  We want to choose the most specific one, so keep a leader board.
+		$bestBlock = null;
+
+		# Lower will be better
+		$bestBlockScore = 100;
+		foreach ( $blocks as $block ) {
 			if ( $block->getType() == self::TYPE_RANGE ) {
 				# This is the number of bits that are allowed to vary in the block, give
 				# or take some floating point errors
@@ -354,16 +400,11 @@ class DatabaseBlock extends AbstractBlock {
 
 			if ( $score < $bestBlockScore ) {
 				$bestBlockScore = $score;
-				$bestRow = $row;
+				$bestBlock = $block;
 			}
 		}
 
-		if ( $bestRow !== null ) {
-			$this->initFromRow( $bestRow );
-			return true;
-		} else {
-			return false;
-		}
+		return $bestBlock;
 	}
 
 	/**
@@ -1134,15 +1175,9 @@ class DatabaseBlock extends AbstractBlock {
 			$type,
 			[ self::TYPE_USER, self::TYPE_IP, self::TYPE_RANGE, null ] )
 		) {
-			$block = new DatabaseBlock();
-			$block->fromMaster( $fromMaster );
-
-			if ( $type !== null ) {
-				$block->setTarget( $target );
-			}
-
-			if ( $block->newLoad( $vagueTarget ) ) {
-				return $block;
+			$blocks = self::newLoad( $target, $type, $fromMaster, $vagueTarget );
+			if ( !empty( $blocks ) ) {
+				return self::chooseMostSpecificBlock( $blocks );
 			}
 		}
 		return null;
