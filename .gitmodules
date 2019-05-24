@@ -695,7 +695,7 @@
 [submodule "skins/Gamepress"]
 	path = skins/Gamepress
 	url = https://github.com/wikimedia/mediawiki-skins-Gamepress.git
-	branch = REL1_32
+	branch = master
 	ignore = dirty
 [submodule "extensions/DismissableSiteNotice"]
 	path = extensions/DismissableSiteNotice
