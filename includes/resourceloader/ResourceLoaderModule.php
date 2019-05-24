@@ -485,7 +485,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 						'md_skin' => $vary,
 						'md_deps' => $deps,
 					],
-					[ 'md_module', 'md_skin' ],
+					[ [ 'md_module', 'md_skin' ] ],
 					[
 						'md_deps' => $deps,
 					]
