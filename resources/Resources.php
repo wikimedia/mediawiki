@@ -2027,6 +2027,7 @@ return [
 			'resources/src/mediawiki.special/userrights.css',
 			'resources/src/mediawiki.special/watchlist.css',
 			'resources/src/mediawiki.special/block.less',
+			'resources/src/mediawiki.special/blocklist.less',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -2127,10 +2128,6 @@ return [
 			'mediawiki.htmlform',
 			'moment',
 		],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-	'mediawiki.special.blocklist' => [
-		'styles' => 'resources/src/mediawiki.special/blocklist.less',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.changecredentials.js' => [
