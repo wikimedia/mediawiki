@@ -150,7 +150,7 @@ class SquidPurgeClient {
 			if ( IP::isIPv4( $this->host ) ) {
 				$this->ip = $this->host;
 			} elseif ( IP::isIPv6( $this->host ) ) {
-				throw new MWException( '$wgSquidServers does not support IPv6' );
+				throw new MWException( '$wgCdnServers does not support IPv6' );
 			} else {
 				Wikimedia\suppressWarnings();
 				$this->ip = gethostbyname( $this->host );
